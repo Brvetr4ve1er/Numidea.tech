@@ -1,4 +1,3 @@
-
 'use client';
 
 import type React from 'react';
@@ -10,11 +9,10 @@ interface StickittyCatAvatarProps extends React.SVGProps<SVGSVGElement> {
   animated?: boolean;
 }
 
-// Replace these with the paths to your images in the 'public' directory
+// Add the paths to your animation frames in the 'public' directory here.
 const animatedImages = [
-  '/stickitty-cat-animation-1.png', // User's first image
-  '/updated-cat-frame.png', // The new image provided by the user
-  '/image3.png', // e.g., /cat-special-effect.png - kept as placeholder
+  '/stickitty-cat-animation-1.png',
+  '/updated-cat-frame.png',
 ];
 
 const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, animated = false, ...props }) => {
