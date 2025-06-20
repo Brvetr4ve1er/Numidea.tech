@@ -10,10 +10,11 @@ interface StickittyCatAvatarProps extends React.SVGProps<SVGSVGElement> {
   animated?: boolean;
 }
 
+// Replace these with the paths to your images in the 'public' directory
 const animatedImages = [
-  'https://placehold.co/50x50.png',
-  'https://placehold.co/50x50.png',
-  'https://placehold.co/50x50.png',
+  '/image1.png', // e.g., /sparkle-effect-1.png
+  '/image2.png', // e.g., /twinkle-star.png
+  '/image3.png', // e.g., /cat-special-effect.png
 ];
 
 const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, animated = false, ...props }) => {
@@ -81,7 +82,7 @@ const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, anim
             width={50}
             height={50}
             className="object-contain"
-            data-ai-hint="sticker sparkle"
+            data-ai-hint="sticker sparkle" // Generic hint, adjust if your images have a specific theme
           />
         </div>
       )}
