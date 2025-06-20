@@ -8,13 +8,13 @@ body {
 
 @layer base {
   :root {
-    --background: 220 20% 7%; /* Matte Black - very dark cool grey */
+    --background: 220 20% 4%; /* Even darker matte black */
     --foreground: 0 0% 95%; /* Off-white for text */
 
-    --card: 220 20% 10%; /* Slightly lighter than background for cards */
+    --card: 220 20% 7%; /* Slightly lighter than background for cards */
     --card-foreground: 0 0% 95%;
 
-    --popover: 220 20% 5%; /* Darker for popovers */
+    --popover: 220 20% 2%; /* Darker for popovers */
     --popover-foreground: 0 0% 95%;
 
     --primary: 45 100% 50%; /* Electric Gold/Yellow */
@@ -23,7 +23,7 @@ body {
     --secondary: 220 15% 20%; /* A muted cool grey for secondary elements */
     --secondary-foreground: 0 0% 90%;
 
-    --muted: 220 15% 15%; /* Muted cool grey */
+    --muted: 220 15% 12%; /* Muted cool grey */
     --muted-foreground: 0 0% 60%; /* Lighter grey for muted text */
 
     --accent: 50 100% 60%; /* A slightly different, brighter gold for accents */
@@ -32,8 +32,8 @@ body {
     --destructive: 0 70% 55%; /* A vibrant red for destructive actions */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 15% 25%; /* Border color that's visible but not harsh */
-    --input: 220 15% 18%; /* Input background color */
+    --border: 220 15% 18%; /* Border color that's visible but not harsh */
+    --input: 220 15% 15%; /* Input background color */
     --ring: 45 100% 55%; /* Ring color, matching primary */
 
     --radius: 0.5rem;
@@ -46,25 +46,25 @@ body {
     --chart-5: 280 70% 60%; /* A contrasting purple */
 
     /* Sidebar colors to match the dark theme */
-    --sidebar-background: 220 20% 9%;
+    --sidebar-background: 220 20% 6%;
     --sidebar-foreground: 0 0% 90%;
     --sidebar-primary: 45 100% 50%;
     --sidebar-primary-foreground: 45 100% 10%;
     --sidebar-accent: 50 100% 60%;
     --sidebar-accent-foreground: 50 100% 10%;
-    --sidebar-border: 220 15% 20%;
+    --sidebar-border: 220 15% 18%;
     --sidebar-ring: 45 100% 55%;
   }
 
   .dark {
     /* Dark theme is the default, but we can specify overrides if needed */
-    --background: 220 20% 7%;
+    --background: 220 20% 4%;
     --foreground: 0 0% 95%;
 
-    --card: 220 20% 10%;
+    --card: 220 20% 7%;
     --card-foreground: 0 0% 95%;
 
-    --popover: 220 20% 5%;
+    --popover: 220 20% 2%;
     --popover-foreground: 0 0% 95%;
 
     --primary: 45 100% 50%;
@@ -73,7 +73,7 @@ body {
     --secondary: 220 15% 20%;
     --secondary-foreground: 0 0% 90%;
 
-    --muted: 220 15% 15%;
+    --muted: 220 15% 12%;
     --muted-foreground: 0 0% 60%;
 
     --accent: 50 100% 60%;
@@ -82,8 +82,8 @@ body {
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 15% 25%;
-    --input: 220 15% 18%;
+    --border: 220 15% 18%;
+    --input: 220 15% 15%;
     --ring: 45 100% 55%;
 
     --chart-1: 45 100% 50%;
@@ -92,13 +92,13 @@ body {
     --chart-4: 200 70% 50%;
     --chart-5: 280 70% 60%;
 
-    --sidebar-background: 220 20% 9%;
+    --sidebar-background: 220 20% 6%;
     --sidebar-foreground: 0 0% 90%;
     --sidebar-primary: 45 100% 50%;
     --sidebar-primary-foreground: 45 100% 10%;
     --sidebar-accent: 50 100% 60%;
     --sidebar-accent-foreground: 50 100% 10%;
-    --sidebar-border: 220 15% 20%;
+    --sidebar-border: 220 15% 18%;
     --sidebar-ring: 45 100% 55%;
   }
 }

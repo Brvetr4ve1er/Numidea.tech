@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import FloatingMascot from '@/components/common/floating-mascot';
+import SparkleBackground from '@/components/common/sparkle-background';
 
 export const metadata: Metadata = {
   title: 'Stickitty.inc - Generative Stickers & Art',
@@ -25,6 +26,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased bg-background text-foreground min-h-screen flex flex-col" suppressHydrationWarning={true}>
+        <SparkleBackground />
         <Header />
         <main className="flex-grow">
           {children}

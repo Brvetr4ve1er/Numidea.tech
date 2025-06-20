@@ -11,8 +11,9 @@ interface StickittyCatAvatarProps extends React.SVGProps<SVGSVGElement> {
 
 // Add the paths to your animation frames in the 'public' directory here.
 const animatedImages = [
-  '/stickitty-cat-animation-1.png',
-  '/updated-cat-frame.png',
+  '/circle kitty dark.jpg',
+  '/cirle kitty yellow.jpg',
+  '/musikitty.jpg' ,
 ];
 
 const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, animated = false, ...props }) => {
