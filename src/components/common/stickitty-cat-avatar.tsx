@@ -13,7 +13,7 @@ interface StickittyCatAvatarProps extends React.SVGProps<SVGSVGElement> {
 // Replace these with the paths to your images in the 'public' directory
 const animatedImages = [
   '/stickitty-cat-animation-1.png', // User's first image
-  '/new-cat-animation-frame.png', // Placeholder for the user's new image
+  '/updated-cat-frame.png', // The new image provided by the user
   '/image3.png', // e.g., /cat-special-effect.png - kept as placeholder
 ];
 
