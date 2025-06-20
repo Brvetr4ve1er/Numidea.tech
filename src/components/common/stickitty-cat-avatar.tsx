@@ -1,14 +1,36 @@
 
+'use client';
+
 import type React from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 interface StickittyCatAvatarProps extends React.SVGProps<SVGSVGElement> {
   animated?: boolean;
 }
 
+const animatedImages = [
+  'https://placehold.co/50x50.png',
+  'https://placehold.co/50x50.png',
+  'https://placehold.co/50x50.png',
+];
+
 const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, animated = false, ...props }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (animated && animatedImages.length > 0) {
+      const intervalId = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % animatedImages.length);
+      }, 1000); // Change image every 1 second
+
+      return () => clearInterval(intervalId);
+    }
+  }, [animated]);
+
   return (
-    <div className={cn("relative", animated && "animate-float")}>
+    <div className={cn("relative", animated && !animatedImages.length && "animate-float")}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"
@@ -51,8 +73,20 @@ const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, anim
           strokeLinecap="round"
         />
       </svg>
-      {animated && (
+      {animated && animatedImages.length > 0 && (
         <div className="absolute inset-0 flex items-center justify-center">
+          <Image
+            src={animatedImages[currentImageIndex]}
+            alt="Stickitty animation"
+            width={50}
+            height={50}
+            className="object-contain"
+            data-ai-hint="sticker sparkle"
+          />
+        </div>
+      )}
+      {animated && animatedImages.length === 0 && ( // Fallback to original sparkle if no images
+         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-primary text-xs font-bold animate-ping">✨</span>
         </div>
       )}
