@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import StickittyCatAvatar from '@/components/common/stickitty-cat-avatar';
-import { ArrowRight, Sparkles, Wand2, ShoppingBag, Edit3 } from 'lucide-react';
+import { ArrowRight, Sparkles, Wand2, ShoppingBag, Edit3, Search } from 'lucide-react';
 
 const FeatureCard = ({ icon, title, description, link, linkText }: { icon: React.ReactNode, title: string, description: string, link?: string, linkText?: string }) => (
   <div className="bg-card p-6 rounded-lg shadow-xl hover:shadow-primary/20 transition-shadow duration-300 flex flex-col animate-slide-up opacity-0" style={{ animationDelay: '0.2s' }}>
@@ -92,7 +92,7 @@ export default function HomePage() {
               linkText="View Drops"
             />
             <FeatureCard
-              icon={<Image size={36} data-ai-hint="magnifying glass search" />}
+              icon={<Search size={36} />}
               title="Visual Search"
               description="Find stickers by vibe or aesthetic. Our AI-powered search understands your style."
               link="/store"
