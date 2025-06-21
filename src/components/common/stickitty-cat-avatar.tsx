@@ -12,8 +12,12 @@ interface StickittyCatAvatarProps extends React.SVGProps<SVGSVGElement> {
 // Add the paths to your animation frames in the 'public' directory here.
 const animatedImages = [
   '/circle kitty dark.jpg',
-  '/cirle kitty yellow.jpg',
+  '/circle kitty yellow.jpg',
   '/musikitty.jpg' ,
+  '/6kitties.jpg',
+  '/disobey snorkitty .jpg',
+  '/starkitty.jpg',
+  '/wizzard kitty.jpg',
 ];
 
 const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, animated = false, ...props }) => {
@@ -78,11 +82,11 @@ const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, anim
           <Image
             src={animatedImages[currentImageIndex]}
             alt="Stickitty animation"
-            width={50} // Adjust width as needed
-            height={50} // Adjust height as needed
+            width={100}
+            height={100}
             className="object-contain"
-            data-ai-hint="cat animation" // Updated hint
-            unoptimized={true} // Good for GIFs or frequently changing images if they are small
+            data-ai-hint="cat animation"
+            unoptimized={true}
           />
         </div>
       )}
