@@ -29,7 +29,7 @@ export default function HomePage() {
           {/* Subtle background pattern or animation placeholder */}
         </div>
         <div className="relative z-10 animate-fade-in">
-          <div className="mb-8 w-48 h-48 mx-auto">
+          <div className="mb-8 w-64 h-64 mx-auto">
             <StickittyCatAvatar animated={true} />
           </div>
           <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 tracking-wider">

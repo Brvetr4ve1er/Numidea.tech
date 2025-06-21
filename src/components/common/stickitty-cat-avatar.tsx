@@ -1,3 +1,4 @@
+
 'use client';
 
 import type React from 'react';
@@ -37,14 +38,13 @@ const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, anim
   // If animated and images exist, render the cycling Image component as the avatar.
   if (animated && animatedImages.length > 0) {
     return (
-      <div className={cn("relative w-full h-full", className)} {...props}>
+      <div className={cn("relative w-full h-full rounded-full overflow-hidden", className)} {...props}>
         <Image
           key={currentImageIndex} // Add key to help React re-render efficiently
           src={animatedImages[currentImageIndex]}
           alt="Stickitty animation"
           layout="fill"
           objectFit="cover" // Ensures the image covers the area, cropping if necessary
-          className="rounded-full" // Clips the image to a circle
           data-ai-hint="cat animation"
           unoptimized={true}
         />
