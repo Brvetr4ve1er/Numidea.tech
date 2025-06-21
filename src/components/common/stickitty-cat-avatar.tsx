@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
-interface StickittyCatAvatarProps extends React.SVGProps<SVGSVGElement> {
+// This interface now extends HTMLDivElement attributes
+interface StickittyCatAvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   animated?: boolean;
 }
 
@@ -33,15 +34,33 @@ const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, anim
     }
   }, [animated]);
 
+  // If animated and images exist, render the cycling Image component as the avatar.
+  if (animated && animatedImages.length > 0) {
+    return (
+      <div className={cn("relative w-full h-full", className)} {...props}>
+        <Image
+          key={currentImageIndex} // Add key to help React re-render efficiently
+          src={animatedImages[currentImageIndex]}
+          alt="Stickitty animation"
+          layout="fill"
+          objectFit="cover" // Ensures the image covers the area, cropping if necessary
+          className="rounded-full" // Clips the image to a circle
+          data-ai-hint="cat animation"
+          unoptimized={true}
+        />
+      </div>
+    );
+  }
+
+  // Fallback to the SVG avatar if not animated or no images are provided.
   return (
-    <div className={cn("relative", animated && !animatedImages.length && "animate-float")}>
+    <div className={cn("relative w-full h-full", className)} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"
-        className={cn("w-full h-full", className)}
+        className="w-full h-full"
         aria-label="Stickitty Cat Avatar"
         data-ai-hint="cat avatar"
-        {...props}
       >
         <circle cx="50" cy="50" r="40" className="fill-gray-900" />
         <path
@@ -77,24 +96,6 @@ const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, anim
           strokeLinecap="round"
         />
       </svg>
-      {animated && animatedImages.length > 0 && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Image
-            src={animatedImages[currentImageIndex]}
-            alt="Stickitty animation"
-            width={100}
-            height={100}
-            className="object-contain"
-            data-ai-hint="cat animation"
-            unoptimized={true}
-          />
-        </div>
-      )}
-      {animated && animatedImages.length === 0 && ( // Fallback to original sparkle if no images
-         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-primary text-xs font-bold animate-ping">✨</span>
-        </div>
-      )}
     </div>
   );
 };
