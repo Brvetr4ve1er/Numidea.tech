@@ -1,3 +1,4 @@
+'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User, Settings, ShoppingBag, Heart, LogOut, Edit3, Wand2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Input } from "@/components/ui/input";
 
 export default function ProfilePage() {
   // Placeholder data

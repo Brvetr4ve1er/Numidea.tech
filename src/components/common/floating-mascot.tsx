@@ -2,9 +2,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import StickittyCatAvatar from './stickitty-cat-avatar';
+import StickittyCatAvatar, { MascotExpression } from './stickitty-cat-avatar';
 import { Button } from '@/components/ui/button';
-import { MessageSquare, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const FloatingMascot = () => {
@@ -31,7 +31,10 @@ const FloatingMascot = () => {
       {isOpen && (
         <div className="bg-card p-4 rounded-lg shadow-xl mb-2 w-64 animate-slide-up">
           <div className="flex justify-between items-center mb-2">
-            <h4 className="font-headline text-primary text-lg">Stickitty</h4>
+            <h4 className="font-headline text-primary text-lg flex items-center gap-2">
+              <StickittyCatAvatar expression="happy" className="w-8 h-8"/>
+              Stickitty
+            </h4>
             <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-7 w-7">
               <X size={18} />
             </Button>
@@ -51,7 +54,7 @@ const FloatingMascot = () => {
         className="rounded-full p-0 w-16 h-16 bg-primary hover:bg-accent text-primary-foreground shadow-2xl flex items-center justify-center animate-float"
         aria-label={isOpen ? "Close Stickitty chat" : "Open Stickitty chat"}
       >
-        {isOpen ? <X size={30} /> : <StickittyCatAvatar className="w-12 h-12 p-1" />}
+        {isOpen ? <X size={30} /> : <StickittyCatAvatar expression="animated" className="w-12 h-12 p-1" />}
       </Button>
     </div>
   );

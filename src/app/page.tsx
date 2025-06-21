@@ -30,7 +30,7 @@ export default function HomePage() {
         </div>
         <div className="relative z-10 animate-fade-in">
           <div className="mb-8 w-64 h-64 mx-auto">
-            <StickittyCatAvatar animated={true} />
+            <StickittyCatAvatar expression="animated" />
           </div>
           <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 tracking-wider">
             <span className="text-primary">Stickitty</span><span className="text-foreground">.inc</span>
