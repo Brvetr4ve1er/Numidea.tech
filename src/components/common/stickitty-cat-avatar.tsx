@@ -1,4 +1,3 @@
-
 'use client';
 
 import type React from 'react';
@@ -18,7 +17,7 @@ const expressionsMap: Record<MascotExpression, string | string[]> = {
   animated: [
     '/circle-kitty-dark.jpg',
     '/circle-kitty-yellow.jpg',
-    '/musikitty.jpg' ,
+    '/musikitty.jpg',
     '/6kitties.jpg',
     '/disobey-snorkitty.jpg',
     '/starkitty.jpg',
