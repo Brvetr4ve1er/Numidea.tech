@@ -72,7 +72,7 @@ const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, expr
             strokeLinecap="round"
           />
           <path
-            d="M30 35 L25 20 M70 35 L75 20" // Ears
+            d="M30 35 L25 20 M70 35 L75 20"
             stroke="hsl(var(--primary))"
             strokeWidth="8"
             fill="none"
@@ -82,7 +82,7 @@ const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, expr
           <circle cx="40" cy="50" r="5" className="fill-primary" />
           <circle cx="60" cy="50" r="5" className="fill-primary" />
           <path
-            d="M45 65 Q50 70 55 65" // Mouth
+            d="M45 65 Q50 70 55 65"
             stroke="hsl(var(--primary))"
             strokeWidth="3"
             fill="none"
