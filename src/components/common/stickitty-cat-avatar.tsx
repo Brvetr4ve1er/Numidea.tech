@@ -7,25 +7,26 @@ import { cn } from '@/lib/utils';
 
 export type MascotExpression = 'default' | 'animated' | 'happy' | 'thinking';
 
-// This interface now extends HTMLDivElement attributes
-interface StickittyCatAvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  expression?: MascotExpression;
-}
-
-const expressionsMap: Record<MascotExpression, string | string[]> = {
+export const expressionsMap: Record<MascotExpression, string | string[]> = {
   default: '/circle-kitty-dark.jpg',
   animated: [
     '/circle-kitty-dark.jpg',
-    '/circle-kitty-yellow.jpg',
-    '/musikitty.jpg',
     '/6kitties.jpg',
-    '/disobey-snorkitty.jpg',
-    '/starkitty.jpg',
+    '/Coffee-Cat-Morning.jpg',
     '/wizzard-kitty.jpg',
+    '/download-(48).jpg',
+    '/disobey-snorkitty.jpg',
+    '/musikitty.jpg',
   ],
   happy: '/circle-kitty-yellow.jpg',
   thinking: '/wizzard-kitty.jpg',
 };
+
+
+// This interface now extends HTMLDivElement attributes
+interface StickittyCatAvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+  expression?: MascotExpression;
+}
 
 const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, expression = 'default', ...props }) => {
   const getInitialImage = () => {
@@ -62,7 +63,7 @@ const StickittyCatAvatar: React.FC<StickittyCatAvatarProps> = ({ className, expr
         key={currentImage} // Key helps React re-render when image source changes
         src={currentImage}
         alt={`Stickitty mascot - ${expression} expression`}
-        layout="fill"
+        fill={true}
         objectFit="cover"
         data-ai-hint="cat mascot"
         unoptimized={true}
