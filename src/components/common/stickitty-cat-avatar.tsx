@@ -14,7 +14,7 @@ export const expressionsMap: Record<MascotExpression, string | string[]> = {
     '/6kitties.jpg',
     '/Coffee-Cat-Morning.jpg',
     '/wizzard-kitty.jpg',
-    '/download-(48).jpg',
+    '/download-48.jpg',
     '/disobey-snorkitty.jpg',
     '/musikitty.jpg',
   ],
