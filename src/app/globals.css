@@ -8,6 +8,55 @@ body {
 
 @layer base {
   :root {
+    --background: 0 0% 100%; /* White */
+    --foreground: 222.2 84% 4.9%; /* Dark Blue-Gray for text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 211 100% 50%; /* #007BFF - Vibrant Tech Blue */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 210 40% 96.1%; /* Light Grayish Blue */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 48 100% 63%; /* #FFDA44 - Soft Yellow */
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 211 100% 50%;
+
+    --radius: 0.5rem; /* 8px */
+
+    /* Chart colors */
+    --chart-1: 211 100% 50%;
+    --chart-2: 48 100% 63%;
+    --chart-3: 160 80% 45%;
+    --chart-4: 0 70% 60%;
+    --chart-5: 280 70% 60%;
+
+    /* Sidebar colors */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 222.2 84% 4.9%;
+    --sidebar-primary: 211 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 48 100% 63%;
+    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 211 100% 50%;
+  }
+
+  .dark {
     --background: 220 20% 4%; /* Even darker matte black */
     --foreground: 0 0% 95%; /* Off-white for text */
 
@@ -17,58 +66,8 @@ body {
     --popover: 220 20% 2%; /* Darker for popovers */
     --popover-foreground: 0 0% 95%;
 
-    --primary: 45 100% 50%; /* Electric Gold/Yellow */
-    --primary-foreground: 45 100% 10%; /* Dark text for primary buttons */
-
-    --secondary: 220 15% 20%; /* A muted cool grey for secondary elements */
-    --secondary-foreground: 0 0% 90%;
-
-    --muted: 220 15% 12%; /* Muted cool grey */
-    --muted-foreground: 0 0% 60%; /* Lighter grey for muted text */
-
-    --accent: 50 100% 60%; /* A slightly different, brighter gold for accents */
-    --accent-foreground: 50 100% 10%; /* Dark text for accent elements */
-
-    --destructive: 0 70% 55%; /* A vibrant red for destructive actions */
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 220 15% 18%; /* Border color that's visible but not harsh */
-    --input: 220 15% 15%; /* Input background color */
-    --ring: 45 100% 55%; /* Ring color, matching primary */
-
-    --radius: 0.5rem;
-
-    /* Chart colors - adjust if charts are used, keeping theme consistency */
-    --chart-1: 45 100% 50%;
-    --chart-2: 50 100% 60%;
-    --chart-3: 35 90% 55%;
-    --chart-4: 200 70% 50%; /* A contrasting blue for charts if needed */
-    --chart-5: 280 70% 60%; /* A contrasting purple */
-
-    /* Sidebar colors to match the dark theme */
-    --sidebar-background: 220 20% 6%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 45 100% 50%;
-    --sidebar-primary-foreground: 45 100% 10%;
-    --sidebar-accent: 50 100% 60%;
-    --sidebar-accent-foreground: 50 100% 10%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 45 100% 55%;
-  }
-
-  .dark {
-    /* Dark theme is the default, but we can specify overrides if needed */
-    --background: 220 20% 4%;
-    --foreground: 0 0% 95%;
-
-    --card: 220 20% 7%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 220 20% 2%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 45 100% 50%;
-    --primary-foreground: 45 100% 10%;
+    --primary: 211 100% 50%; /* #007BFF - Vibrant Tech Blue */
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 220 15% 20%;
     --secondary-foreground: 0 0% 90%;
@@ -76,30 +75,15 @@ body {
     --muted: 220 15% 12%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 50 100% 60%;
-    --accent-foreground: 50 100% 10%;
+    --accent: 48 100% 63%; /* #FFDA44 - Soft Yellow */
+    --accent-foreground: 45 100% 10%;
 
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 220 15% 18%;
     --input: 220 15% 15%;
-    --ring: 45 100% 55%;
-
-    --chart-1: 45 100% 50%;
-    --chart-2: 50 100% 60%;
-    --chart-3: 35 90% 55%;
-    --chart-4: 200 70% 50%;
-    --chart-5: 280 70% 60%;
-
-    --sidebar-background: 220 20% 6%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 45 100% 50%;
-    --sidebar-primary-foreground: 45 100% 10%;
-    --sidebar-accent: 50 100% 60%;
-    --sidebar-accent-foreground: 50 100% 10%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 45 100% 55%;
+    --ring: 211 100% 50%;
   }
 }
 

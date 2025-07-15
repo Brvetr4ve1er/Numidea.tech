@@ -7,9 +7,10 @@ export type NavItem = {
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'Store', href: '/store' },
-  { label: 'Services', href: '/#services' },
-  { label: 'FAQ', href: '/#faq' },
+  { label: 'Shop', href: '/store' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const ADMIN_NAV_LINKS: NavItem[] = [

@@ -1,6 +1,4 @@
 
-// Firestore data models (example structure)
-
 export interface UserProfile {
   uid: string;
   email: string | null;
@@ -9,21 +7,19 @@ export interface UserProfile {
   createdAt: Date;
   // Custom fields
   username?: string;
-  favorites?: string[]; // Array of sticker IDs
-  bio?: string;
-  // Web3 related
-  walletAddress?: string;
+  shippingAddress?: any; // Define more specifically
 }
 
-export interface Sticker {
+export interface Product {
   id: string;
   name: string;
-  description?: string;
-  imageUrl: string; // URL to image in Firebase Storage
-  tags?: string[]; // For visual search by vibe/aesthetic
-  creatorUid?: string; // UID of the user who generated it (if applicable)
-  isTemplate?: boolean; // If it's an admin-uploaded template
-  price?: number; // If purchasable
+  description: string;
+  image: string; // URL to image in Firebase Storage
+  price: number;
+  specs: Record<string, string>;
+  colors: string[];
+  tags: string[];
+  stock: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -31,7 +27,7 @@ export interface Sticker {
 export interface Order {
   id: string;
   userId: string;
-  items: Array<{ stickerId: string; quantity: number; price: number }>;
+  items: Array<{ productId: string; quantity: number; price: number }>;
   totalAmount: number;
   status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
   shippingAddress?: any; // Define more specifically
@@ -40,14 +36,12 @@ export interface Order {
   updatedAt: Date;
 }
 
-// For AI Sticker generation
-export interface StickerGenerationJob {
-  id: string;
-  userId: string;
-  prompt: string;
-  vibe?: string;
-  status: 'pending' | 'processing' | 'completed' | 'failed';
-  resultUrl?: string; // URL to generated sticker in Storage
-  createdAt: Date;
-  completedAt?: Date;
+export interface ServiceRequest {
+    id: string;
+    name: string;
+    email: string;
+    serviceType: 'web-design' | 'branding' | 'automation' | 'print' | 'sourcing';
+    message: string;
+    status: 'new' | 'contacted' | 'in-progress' | 'completed';
+    createdAt: Date;
 }
