@@ -55,9 +55,9 @@ const TestimonialCard = ({ name, comment, imageUrl, aiHint }: { name: string, co
 
 export default function HomePage() {
   const products = [
-    { name: 'Note 10', description: '10.1" Display, Stylus Pen, 128GB Storage. Your ultimate productivity partner.', price: '35,000 DZD', imageUrl: 'https://placehold.co/400x400.png', aiHint: 'tablet stylus' },
-    { name: 'Kids Tablet Pro', description: '8" HD Screen, 64GB Storage, Kid-proof case included. Learning and fun, safely.', price: '24,000 DZD', imageUrl: 'https://placehold.co/400x400.png', aiHint: 'kids tablet' },
-    { name: 'Note 12', description: '12" Super AMOLED, 256GB, Pro-level cameras. For the professional on the move.', price: '55,000 DZD', imageUrl: 'https://placehold.co/400x400.png', aiHint: 'professional tablet' },
+    { name: 'Note 10', description: '10.1" Display, Stylus Pen, 128GB Storage. Your ultimate productivity partner.', price: '35,000 DZD', imageUrl: '/tablet-note-10.png', aiHint: 'tablet stylus' },
+    { name: 'Kids Tablet Pro', description: '8" HD Screen, 64GB Storage, Kid-proof case included. Learning and fun, safely.', price: '24,000 DZD', imageUrl: '/kids-tablet.png', aiHint: 'kids tablet' },
+    { name: 'Note 12', description: '12" Super AMOLED, 256GB, Pro-level cameras. For the professional on the move.', price: '55,000 DZD', imageUrl: '/tablet-note-12.png', aiHint: 'professional tablet' },
   ];
 
   const testimonials = [
