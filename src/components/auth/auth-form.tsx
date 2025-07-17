@@ -11,6 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Separator } from '@/components/ui/separator';
 import { Mail, Lock, User, CheckSquare } from 'lucide-react';
 import { Checkbox } from '../ui/checkbox';
+import { useToast } from '@/hooks/use-toast';
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email address.' }),
@@ -35,6 +36,7 @@ type AuthFormProps = {
 export default function AuthForm({ mode }: AuthFormProps) {
   const isLogin = mode === 'login';
   const schema = isLogin ? loginSchema : signupSchema;
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
@@ -46,7 +48,11 @@ export default function AuthForm({ mode }: AuthFormProps) {
   const onSubmit = (values: z.infer<typeof schema>) => {
     console.log('Form values:', values);
     // Placeholder for actual Firebase Auth logic
-    alert(`${isLogin ? 'Login' : 'Signup'} successful (mock) with email: ${values.email}`);
+    toast({
+        title: `${isLogin ? 'Login' : 'Signup'} Successful!`,
+        description: `Welcome! You've been successfully ${isLogin ? 'logged in' : 'signed up'}.`,
+    });
+    form.reset();
   };
 
   const GoogleIcon = () => (

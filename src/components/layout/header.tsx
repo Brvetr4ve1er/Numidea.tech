@@ -7,13 +7,36 @@ import StickittyLogo from '@/components/common/stickitty-logo';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, UserCircle, Moon } from 'lucide-react';
+import { Menu, UserCircle, Moon, Sun } from 'lucide-react';
 import type { NavItem } from '@/lib/constants';
 import { NAV_LINKS } from '@/lib/constants';
+import { useEffect, useState } from 'react';
 
 
 const Header = () => {
   const pathname = usePathname();
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -39,8 +62,8 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
-            <Moon />
+          <Button variant="ghost" size="icon" onClick={toggleTheme} className="text-muted-foreground hover:text-primary">
+            {theme === 'light' ? <Moon /> : <Sun />}
             <span className="sr-only">Toggle Dark Mode</span>
           </Button>
           <Button variant="ghost" className="hidden md:inline-flex" asChild>

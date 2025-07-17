@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Search, Filter, ShoppingCart, X } from "lucide-react";
-import * as Dialog from "@radix-ui/react-dialog";
+import { Dialog, DialogContent, DialogOverlay, DialogPortal, DialogTrigger, DialogClose, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import React from "react";
 
 const products = [
@@ -70,8 +70,7 @@ const ProductCard = ({ product }: { product: typeof products[0] }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Dialog.Trigger asChild>
+     <Dialog open={open} onOpenChange={setOpen}>
         <Card className="bg-card rounded-lg shadow-sm overflow-hidden flex flex-col group cursor-pointer border hover:shadow-lg transition-all duration-300">
           <CardHeader className="p-0">
             <div className="aspect-square relative overflow-hidden">
@@ -90,14 +89,15 @@ const ProductCard = ({ product }: { product: typeof products[0] }) => {
             <p className="text-xl font-bold text-primary">{product.price}</p>
           </CardContent>
           <CardFooter className="p-4 pt-0">
-             <Button className="w-full" variant="outline">View Details</Button>
+             <DialogTrigger asChild>
+                <Button className="w-full" variant="outline">View Details</Button>
+             </DialogTrigger>
           </CardFooter>
         </Card>
-      </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:rounded-lg">
-          <Dialog.Title className="text-2xl font-bold text-foreground">{product.name}</Dialog.Title>
+      <DialogPortal>
+        <DialogOverlay />
+        <DialogContent className="fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:rounded-lg">
+          <DialogTitle className="text-2xl font-bold text-foreground">{product.name}</DialogTitle>
           <div className="grid md:grid-cols-2 gap-4">
             <Image src={product.imageUrl} alt={product.name} width={200} height={200} className="rounded-lg w-full" data-ai-hint={product.aiHint} />
             <div>
@@ -121,18 +121,18 @@ const ProductCard = ({ product }: { product: typeof products[0] }) => {
               <h4 className="font-semibold text-lg mb-2">Warranty</h4>
               <p className="text-sm text-muted-foreground">{product.warranty}</p>
           </div>
-          <Dialog.Footer className="sm:justify-start">
+          <DialogFooter className="sm:justify-start">
              <Button type="button" className="w-full sm:w-auto bg-primary text-primary-foreground">
                 <ShoppingCart size={18} className="mr-2" /> Add to Cart
               </Button>
-          </Dialog.Footer>
-          <Dialog.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+          </DialogFooter>
+          <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
-          </Dialog.Close>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+          </DialogClose>
+        </DialogContent>
+      </DialogPortal>
+    </Dialog>
   );
 };
 

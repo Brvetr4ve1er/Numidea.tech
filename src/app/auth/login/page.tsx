@@ -3,6 +3,7 @@ import AuthForm from '@/components/auth/auth-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import StickittyLogo from '@/components/common/stickitty-logo';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export default function LoginPage() {
   return (

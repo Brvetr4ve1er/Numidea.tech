@@ -39,13 +39,13 @@ export default function AdminDashboardPage() {
         <h2 className="font-headline text-2xl text-primary mb-4 tracking-wide">Quick Actions</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <Button size="lg" variant="outline" className="justify-start py-6 text-base" asChild>
-            <Link href="/admin/products/new"><UploadCloud className="mr-3 h-5 w-5 text-primary" /> Upload New Product</Link>
+            <Link href="#"><UploadCloud className="mr-3 h-5 w-5 text-primary" /> Upload New Product</Link>
           </Button>
           <Button size="lg" variant="outline" className="justify-start py-6 text-base" asChild>
-            <Link href="/admin/orders"><ShoppingBag className="mr-3 h-5 w-5 text-primary" /> Monitor Orders</Link>
+            <Link href="#"><ShoppingBag className="mr-3 h-5 w-5 text-primary" /> Monitor Orders</Link>
           </Button>
           <Button size="lg" variant="outline" className="justify-start py-6 text-base" asChild>
-            <Link href="/admin/newsletter"><Mail className="mr-3 h-5 w-5 text-primary" /> Send Newsletter</Link>
+            <Link href="#"><Mail className="mr-3 h-5 w-5 text-primary" /> Send Newsletter</Link>
           </Button>
         </div>
       </section>
