@@ -1,37 +1,26 @@
+
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { User, Settings, ShoppingBag, Heart, LogOut, Edit3, Wand2 } from "lucide-react";
-import Image from "next/image";
+import { Settings, ShoppingBag, LogOut, Edit3 } from "lucide-react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 
 export default function ProfilePage() {
   // Placeholder data
   const user = {
-    name: "StickittyFan01",
+    name: "TechFan01",
     email: "user@example.com",
     avatarUrl: "https://placehold.co/128x128.png",
-    joinDate: "Joined October 2023",
+    joinDate: "Joined June 2024",
   };
 
-  const favoriteStickers = [
-    { id: "1", name: "Cyber Cat", imageUrl: "https://placehold.co/200x200.png", aiHint: "cyberpunk cat" },
-    { id: "2", name: "Pixel Ghost", imageUrl: "https://placehold.co/200x200.png", aiHint: "pixel art ghost" },
-    { id: "3", name: "Space Donut", imageUrl: "https://placehold.co/200x200.png", aiHint: "space donut" },
-  ];
-
   const recentOrders = [
-    { id: "ORD001", date: "2023-10-15", total: "$12.50", status: "Delivered" },
-    { id: "ORD002", date: "2023-10-22", total: "$25.00", status: "Shipped" },
-  ];
-
-  const userCreations = [
-    { id: "c1", name: "My Neon Sign", imageUrl: "https://placehold.co/200x200.png", aiHint: "neon sign" },
-    { id: "c2", name: "Abstract Orb", imageUrl: "https://placehold.co/200x200.png", aiHint: "abstract design" },
+    { id: "ORD001", date: "2024-06-15", total: "35,000 DZD", status: "Delivered" },
+    { id: "ORD002", date: "2024-06-22", total: "55,000 DZD", status: "Shipped" },
   ];
 
   return (
@@ -58,56 +47,11 @@ export default function ProfilePage() {
         </CardHeader>
 
         <CardContent className="p-6 md:p-8">
-          <Tabs defaultValue="favorites" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-6 bg-muted">
-              <TabsTrigger value="favorites" className="text-base py-2.5"><Heart className="mr-2 h-4 w-4" />Favorites</TabsTrigger>
-              <TabsTrigger value="creations" className="text-base py-2.5"><Wand2 className="mr-2 h-4 w-4" />My Creations</TabsTrigger>
+          <Tabs defaultValue="orders" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-2 mb-6 bg-muted">
               <TabsTrigger value="orders" className="text-base py-2.5"><ShoppingBag className="mr-2 h-4 w-4" />Orders</TabsTrigger>
               <TabsTrigger value="settings" className="text-base py-2.5"><Settings className="mr-2 h-4 w-4" />Settings</TabsTrigger>
             </TabsList>
-
-            <TabsContent value="favorites">
-              <h2 className="font-headline text-2xl text-primary mb-4 tracking-wide">Favorite Stickers</h2>
-              {favoriteStickers.length > 0 ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                  {favoriteStickers.map(sticker => (
-                    <Link href={`/store/sticker/${sticker.id}`} key={sticker.id} className="group aspect-square block bg-muted/50 rounded-lg overflow-hidden relative hover:shadow-lg transition-shadow">
-                      <Image src={sticker.imageUrl} alt={sticker.name} layout="fill" objectFit="cover" data-ai-hint={sticker.aiHint} />
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <p className="text-white text-sm font-semibold p-2 text-center">{sticker.name}</p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-foreground/70">You haven't favorited any stickers yet.</p>
-              )}
-            </TabsContent>
-            
-            <TabsContent value="creations">
-              <h2 className="font-headline text-2xl text-primary mb-4 tracking-wide">My Creations</h2>
-              {userCreations.length > 0 ? (
-                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                  {userCreations.map(sticker => (
-                    <div key={sticker.id} className="group aspect-square bg-muted/50 rounded-lg overflow-hidden relative hover:shadow-lg transition-shadow">
-                      <Image src={sticker.imageUrl} alt={sticker.name} layout="fill" objectFit="cover" data-ai-hint={sticker.aiHint} />
-                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <p className="text-white text-sm font-semibold p-2 text-center">{sticker.name}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <p className="text-foreground/70 mb-4">No creations yet. Start designing!</p>
-                  <Button asChild>
-                    <Link href="/generator">
-                      <Wand2 className="mr-2 h-4 w-4" /> Create a Sticker
-                    </Link>
-                  </Button>
-                </div>
-              )}
-            </TabsContent>
 
             <TabsContent value="orders">
               <h2 className="font-headline text-2xl text-primary mb-4 tracking-wide">Order History</h2>

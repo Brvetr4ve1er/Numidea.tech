@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart, Users, ShoppingBag, UploadCloud, TrendingUp, Mail } from "lucide-react";
+import { BarChart, Users, ShoppingBag, UploadCloud, Mail } from "lucide-react";
 import Link from "next/link";
 
 const StatCard = ({ title, value, icon, description }: { title: string, value: string, icon: React.ReactNode, description: string }) => (
@@ -22,7 +22,7 @@ export default function AdminDashboardPage() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <header className="mb-10">
         <h1 className="font-headline text-4xl sm:text-5xl text-primary tracking-wider">Admin Dashboard</h1>
-        <p className="text-lg text-foreground/80">Welcome, Stickitty Overlord! Manage your empire.</p>
+        <p className="text-lg text-foreground/80">Welcome, Admin! Manage your StickyTech empire.</p>
       </header>
 
       {/* Stats Overview */}
@@ -39,16 +39,10 @@ export default function AdminDashboardPage() {
         <h2 className="font-headline text-2xl text-primary mb-4 tracking-wide">Quick Actions</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <Button size="lg" variant="outline" className="justify-start py-6 text-base" asChild>
-            <Link href="/admin/products/new"><UploadCloud className="mr-3 h-5 w-5 text-primary" /> Upload New Template/Asset</Link>
+            <Link href="/admin/products/new"><UploadCloud className="mr-3 h-5 w-5 text-primary" /> Upload New Product</Link>
           </Button>
           <Button size="lg" variant="outline" className="justify-start py-6 text-base" asChild>
             <Link href="/admin/orders"><ShoppingBag className="mr-3 h-5 w-5 text-primary" /> Monitor Orders</Link>
-          </Button>
-          <Button size="lg" variant="outline" className="justify-start py-6 text-base" asChild>
-            <Link href="/admin/analytics"><TrendingUp className="mr-3 h-5 w-5 text-primary" /> View Trends & Feedback</Link>
-          </Button>
-          <Button size="lg" variant="outline" className="justify-start py-6 text-base" asChild>
-            <Link href="/admin/drops/new"><BarChart className="mr-3 h-5 w-5 text-primary" /> Trigger AI Drop</Link>
           </Button>
           <Button size="lg" variant="outline" className="justify-start py-6 text-base" asChild>
             <Link href="/admin/newsletter"><Mail className="mr-3 h-5 w-5 text-primary" /> Send Newsletter</Link>
@@ -64,8 +58,8 @@ export default function AdminDashboardPage() {
             <ul className="space-y-3">
               <li className="text-sm text-foreground/90"><span className="font-semibold text-primary">New Order:</span> #ORD1235 placed by user@example.com</li>
               <li className="text-sm text-foreground/90"><span className="font-semibold text-primary">New User:</span> testuser signed up.</li>
-              <li className="text-sm text-foreground/90"><span className="font-semibold text-primary">Asset Upload:</span> 'CoolCatV3.png' uploaded.</li>
-              <li className="text-sm text-foreground/90"><span className="font-semibold text-primary">Feedback:</span> User 'StickerLover' left 5-star review.</li>
+              <li className="text-sm text-foreground/90"><span className="font-semibold text-primary">Product Added:</span> 'Note 12' added to inventory.</li>
+              <li className="text-sm text-foreground/90"><span className="font-semibold text-primary">Quote Request:</span> New request for Web Design from client@email.com.</li>
             </ul>
           </CardContent>
         </Card>
