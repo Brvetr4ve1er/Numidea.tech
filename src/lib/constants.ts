@@ -9,8 +9,8 @@ export const NAV_LINKS: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Shop', href: '/store' },
   { label: 'Services', href: '/services' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export const ADMIN_NAV_LINKS: NavItem[] = [

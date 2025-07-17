@@ -3,8 +3,13 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { ArrowRight, Tablet, Smartphone, ShieldCheck, Package, Rocket, Palette, Bot, Phone, Star, MessageSquare } from 'lucide-react';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowRight, Tablet, Smartphone, ShieldCheck, Package, Rocket, Palette, Bot, Phone, Star, MessageSquare, Users, Shield, Truck, Instagram, MapPin, Send, MessageCircle } from 'lucide-react';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import ContactForm from '@/components/home/contact-form';
+
 
 const ProductCard = ({ name, description, price, imageUrl, aiHint }: { name: string, description: string, price: string, imageUrl: string, aiHint: string }) => (
     <Card className="bg-card rounded-lg shadow-sm overflow-hidden flex flex-col group animate-slide-up opacity-0 border hover:shadow-lg transition-shadow" style={{ animationDelay: '0.1s' }}>
@@ -53,6 +58,30 @@ const TestimonialCard = ({ name, comment, imageUrl, aiHint }: { name: string, co
     </div>
 );
 
+const socialLinks = [
+    {
+        icon: <MessageCircle size={28} />,
+        name: "WhatsApp",
+        handle: "+213 123 456 789",
+        url: "https://wa.me/213123456789",
+        cta: "Chat with us"
+    },
+    {
+        icon: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>,
+        name: "Facebook",
+        handle: "@StickyTechDZ",
+        url: "#",
+        cta: "Follow us"
+    },
+    {
+        icon: <Instagram size={28} />,
+        name: "Instagram",
+        handle: "@StickyTechDZ",
+        url: "#",
+        cta: "Follow us"
+    },
+];
+
 export default function HomePage() {
   const products = [
     { name: 'Note 10', description: '10.1" Display, Stylus Pen, 128GB Storage. Your ultimate productivity partner.', price: '35,000 DZD', imageUrl: '/tablet-note-10.png', aiHint: 'tablet stylus' },
@@ -92,7 +121,7 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5 hover:text-primary font-semibold px-8 py-6 text-lg rounded-lg shadow-sm" asChild>
-              <Link href="/contact">
+              <Link href="/#contact">
                 Contact Us
               </Link>
             </Button>
@@ -192,6 +221,100 @@ export default function HomePage() {
                   ))}
               </Accordion>
           </div>
+      </section>
+
+       {/* About Us Section */}
+      <section id="about" className="w-full py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1">
+            <h2 className="text-3xl font-bold text-foreground mb-4">About StickyTech</h2>
+            <p className="text-muted-foreground mb-4">
+              StickyTech was born from a simple idea: technology in Algeria should be accessible, reliable, and supported locally. We got tired of the hassle of international returns and the uncertainty of product quality. That's why we decided to build a business that not only sells great products but also stands by them.
+            </p>
+            <p className="text-muted-foreground">
+              We hand-pick and test every item we sell to ensure it meets our high standards. We're a small team of tech enthusiasts passionate about helping our community thrive with the right tools.
+            </p>
+          </div>
+          <div className="order-1 md:order-2">
+            <Image
+              src="https://placehold.co/600x400.png"
+              alt="The StickyTech Team"
+              width={600}
+              height={400}
+              className="rounded-lg shadow-md"
+              data-ai-hint="team working technology"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="w-full py-16 bg-secondary/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <header className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Get In Touch</h2>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    We're here to help! Whether you have a question about a product or a project in mind, feel free to reach out.
+                </p>
+            </header>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Contact Info & Socials */}
+                <div className="lg:col-span-1 space-y-8">
+                    {socialLinks.map((link) => (
+                        <Card key={link.name} className="border">
+                            <CardHeader className="flex flex-row items-center gap-4 space-y-0">
+                                <div className="text-primary">{link.icon}</div>
+                                <div>
+                                    <CardTitle className="text-lg">{link.name}</CardTitle>
+                                    <CardDescription>{link.handle}</CardDescription>
+                                </div>
+                            </CardHeader>
+                            <CardContent>
+                                <Button asChild variant="outline" className="w-full">
+                                    <a href={link.url} target="_blank" rel="noopener noreferrer">{link.cta}</a>
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                     <Card className="border">
+                        <CardHeader className="flex flex-row items-center gap-4 space-y-0">
+                             <div className="text-primary"><MapPin size={28} /></div>
+                             <div>
+                                <CardTitle className="text-lg">Our Location</CardTitle>
+                                <CardDescription>Algiers, Algeria</CardDescription>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                             <div className="aspect-video bg-muted rounded-md overflow-hidden">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d204553.79979402513!2d2.959922896561022!3d36.75841315904832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fad614b533d31%3A0x33893a4e934c264!2sAlgiers!5e0!3m2!1sen!2sdz!4v1677610014001!5m2!1sen!2sdz" 
+                                    width="100%" 
+                                    height="100%" 
+                                    style={{border:0}} 
+                                    allowFullScreen={false} 
+                                    loading="lazy" 
+                                    referrerPolicy="no-referrer-when-downgrade">
+                                </iframe>
+                             </div>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* Contact Form */}
+                <div className="lg:col-span-2">
+                    <Card className="h-full border">
+                         <CardHeader>
+                            <CardTitle className="text-2xl font-bold">Send us a Message</CardTitle>
+                            <CardDescription>Fill out the form and we'll get back to you as soon as possible.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                             <ContactForm />
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
+        </div>
       </section>
 
       {/* Final CTA Section */}
