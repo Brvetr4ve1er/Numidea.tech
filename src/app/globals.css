@@ -84,6 +84,15 @@ body {
     --border: 220 15% 18%;
     --input: 220 15% 15%;
     --ring: 211 100% 50%;
+
+    --sidebar-background: 220 20% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 211 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 48 100% 63%;
+    --sidebar-accent-foreground: 45 100% 10%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 211 100% 50%;
   }
 }
 
