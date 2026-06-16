@@ -309,7 +309,7 @@
     <h2 class="sec font-swap-display" id="work-h" data-i18n="work.title">La preuve, <em>en direct.</em></h2>
     <div class="work-grid">
 
-      <article class="proj reveal">
+      <article class="proj reveal" data-cat="health">
         <div class="thumb"><span class="mono-art" aria-hidden="true">DC</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj1.cat">Santé · Next.js</span>
@@ -323,7 +323,7 @@
         </div>
       </article>
 
-      <article class="proj reveal">
+      <article class="proj reveal" data-cat="travel">
         <div class="thumb"><span class="mono-art" aria-hidden="true">AT</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
@@ -336,7 +336,7 @@
         </div>
       </article>
 
-      <article class="proj reveal">
+      <article class="proj reveal" data-cat="industrial">
         <div class="thumb"><span class="mono-art" aria-hidden="true">AF</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Industrie · Web</span>
@@ -349,7 +349,7 @@
         </div>
       </article>
 
-      <article class="proj reveal">
+      <article class="proj reveal" data-cat="streaming">
         <div class="thumb"><span class="mono-art" aria-hidden="true">HS</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Streaming · Commerce</span>
@@ -362,7 +362,7 @@
         </div>
       </article>
 
-      <article class="proj reveal">
+      <article class="proj reveal" data-cat="pwa">
         <div class="thumb"><span class="mono-art" aria-hidden="true">EE</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj5.cat">PWA · Supabase</span>
@@ -378,9 +378,32 @@
 
     </div>
     <div class="work-foot">
-      <a class="btn btn-ghost" href="#contact" data-i18n="work.all">Voir tout le portfolio →</a>
+      <button type="button" class="btn btn-ghost" id="portfolio-open" data-i18n="work.all" aria-haspopup="dialog">Voir tout le portfolio →</button>
     </div>
   </section>
+
+  <!-- ================= PORTFOLIO MODAL ================= -->
+  <div class="modal" id="portfolio-modal" role="dialog" aria-modal="true" aria-labelledby="portfolio-title" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="document">
+      <header class="modal-head">
+        <div>
+          <span class="kicker" style="margin-bottom:6px" data-i18n="portfolio.kicker">Portfolio</span>
+          <h2 id="portfolio-title" class="font-swap-display" data-i18n="portfolio.title">Tout le <em>travail.</em></h2>
+        </div>
+        <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
+      </header>
+      <div class="modal-controls">
+        <label class="modal-search">
+          <span class="sr-only" data-i18n="portfolio.searchLabel">Rechercher un projet</span>
+          <input type="search" id="portfolio-search" data-i18n-ph="portfolio.searchPh" placeholder="Rechercher…" autocomplete="off">
+        </label>
+        <div class="modal-filters" id="portfolio-filters" role="group" aria-label="Catégories"></div>
+      </div>
+      <div class="modal-grid" id="portfolio-grid"></div>
+      <p class="modal-empty" id="portfolio-empty" hidden data-i18n="portfolio.empty">Aucun projet ne correspond — essayez un autre terme.</p>
+    </div>
+  </div>
 
   <!-- ================= HOW WE WORK ================= -->
   <section id="how" aria-labelledby="how-h">

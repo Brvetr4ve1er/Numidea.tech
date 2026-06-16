@@ -227,7 +227,11 @@
       'c5.name': 'Outils & skills IA sur mesure', 'c5.promise': 'Le logiciel qui construit votre logiciel.',
       'c5.brief': 'Outils internes, générateurs et skills sur mesure propulsés par Claude — une tâche répétitive devient une usine en un clic.', 'c5.fam': "L'Esprit",
       'trust.1': 'FR · EN · ع — trilingue', 'trust.2': 'Délais tenus', 'trust.3': 'Réponse < 24h',
-      'trust.4': 'Zéro intermédiaire', 'trust.5': 'Révisions incluses', 'trust.6': 'Tous formats livrés'
+      'trust.4': 'Zéro intermédiaire', 'trust.5': 'Révisions incluses', 'trust.6': 'Tous formats livrés',
+      'portfolio.kicker': 'Portfolio', 'portfolio.title': 'Tout le <em>travail.</em>',
+      'portfolio.close': 'Fermer', 'portfolio.searchLabel': 'Rechercher un projet', 'portfolio.searchPh': 'Rechercher…',
+      'portfolio.all': 'Tout', 'portfolio.empty': 'Aucun projet ne correspond — essayez un autre terme.',
+      'cat.health': 'Santé', 'cat.travel': 'Voyage', 'cat.industrial': 'Industrie', 'cat.streaming': 'Streaming', 'cat.pwa': 'PWA'
     },
     en: {
       'svc.lead': 'Ten capabilities, three families. We feature five up front — the depth waits for whoever digs.',
@@ -273,7 +277,11 @@
       'c5.name': 'Custom AI tools & skills', 'c5.promise': 'Software that builds your software.',
       'c5.brief': 'Claude-powered internal tools, generators and custom skills — a repeatable task becomes a one-click factory.', 'c5.fam': 'The Mind',
       'trust.1': 'FR · EN · ع — trilingual', 'trust.2': 'Deadlines kept', 'trust.3': 'Reply < 24h',
-      'trust.4': 'Zero middlemen', 'trust.5': 'Revisions included', 'trust.6': 'Every format delivered'
+      'trust.4': 'Zero middlemen', 'trust.5': 'Revisions included', 'trust.6': 'Every format delivered',
+      'portfolio.kicker': 'Portfolio', 'portfolio.title': 'All the <em>work.</em>',
+      'portfolio.close': 'Close', 'portfolio.searchLabel': 'Search projects', 'portfolio.searchPh': 'Search…',
+      'portfolio.all': 'All', 'portfolio.empty': 'No project matches — try another term.',
+      'cat.health': 'Healthcare', 'cat.travel': 'Travel', 'cat.industrial': 'Industrial', 'cat.streaming': 'Streaming', 'cat.pwa': 'PWA'
     },
     ar: {
       'svc.lead': 'عشر قدرات، ثلاث عائلات. نُبرز خمساً في المقدّمة — والعمق ينتظر من يبحث.',
@@ -319,7 +327,11 @@
       'c5.name': 'أدوات ومهارات ذكاء اصطناعي مخصّصة', 'c5.promise': 'برمجيات تبني برمجياتك.',
       'c5.brief': 'أدوات داخلية ومولّدات ومهارات مخصّصة بقوّة Claude — مهمّة متكرّرة تصبح مصنعاً بنقرة.', 'c5.fam': 'العقل',
       'trust.1': 'FR · EN · ع — ثلاثية اللغة', 'trust.2': 'مواعيد محترمة', 'trust.3': 'ردّ < ٢٤ ساعة',
-      'trust.4': 'بلا وسطاء', 'trust.5': 'مراجعات مشمولة', 'trust.6': 'كل الصيغ مُسلّمة'
+      'trust.4': 'بلا وسطاء', 'trust.5': 'مراجعات مشمولة', 'trust.6': 'كل الصيغ مُسلّمة',
+      'portfolio.kicker': 'بورتفوليو', 'portfolio.title': '<em>كل</em> الأعمال.',
+      'portfolio.close': 'إغلاق', 'portfolio.searchLabel': 'ابحث عن مشروع', 'portfolio.searchPh': 'ابحث…',
+      'portfolio.all': 'الكل', 'portfolio.empty': 'لا مشروع مطابق — جرّب كلمة أخرى.',
+      'cat.health': 'صحة', 'cat.travel': 'سفر', 'cat.industrial': 'صناعة', 'cat.streaming': 'بث', 'cat.pwa': 'PWA'
     }
   };
   Object.keys(EXTRA).forEach(function (l) {
@@ -469,6 +481,94 @@
     if (closeBtn) closeBtn.addEventListener('click', function () { setMenu(false); });
     if (menu) menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
+    // portfolio modal — filterable gallery built from the live work cards
+    var pOpen = document.querySelector('#portfolio-open');
+    var modal = document.querySelector('#portfolio-modal');
+    if (pOpen && modal) {
+      var grid = modal.querySelector('#portfolio-grid');
+      var filtersEl = modal.querySelector('#portfolio-filters');
+      var psearch = modal.querySelector('#portfolio-search');
+      var pempty = modal.querySelector('#portfolio-empty');
+      var panel = modal.querySelector('.modal-panel');
+      var sourceCards = document.querySelectorAll('#work .proj');
+      var lastFocus = null, curCat = 'all';
+      function pdict() { return I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG]; }
+
+      function buildFilters() {
+        var d = pdict(), cats = [], counts = {};
+        sourceCards.forEach(function (c) {
+          var k = c.getAttribute('data-cat') || 'other';
+          if (cats.indexOf(k) === -1) cats.push(k);
+          counts[k] = (counts[k] || 0) + 1;
+        });
+        filtersEl.innerHTML = '';
+        function chip(key, label, count) {
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'filter-chip';
+          b.setAttribute('data-cat', key);
+          b.setAttribute('aria-pressed', key === curCat ? 'true' : 'false');
+          b.innerHTML = label + ' <span class="ct">' + count + '</span>';
+          b.addEventListener('click', function () { curCat = key; updateChips(); apply(); });
+          return b;
+        }
+        filtersEl.appendChild(chip('all', d['portfolio.all'] || 'Tout', sourceCards.length));
+        cats.forEach(function (k) { filtersEl.appendChild(chip(k, d['cat.' + k] || k, counts[k])); });
+      }
+      function updateChips() {
+        filtersEl.querySelectorAll('.filter-chip').forEach(function (b) {
+          b.setAttribute('aria-pressed', b.getAttribute('data-cat') === curCat ? 'true' : 'false');
+        });
+      }
+      function buildGrid() {
+        grid.innerHTML = '';
+        sourceCards.forEach(function (c) {
+          var clone = c.cloneNode(true);
+          clone.classList.remove('reveal', 'in');
+          grid.appendChild(clone);
+        });
+      }
+      function apply() {
+        var term = (psearch.value || '').trim().toLowerCase(), shown = 0;
+        grid.querySelectorAll('.proj').forEach(function (card) {
+          var okCat = curCat === 'all' || card.getAttribute('data-cat') === curCat;
+          var okTerm = !term || card.textContent.toLowerCase().indexOf(term) !== -1;
+          var show = okCat && okTerm;
+          card.style.display = show ? '' : 'none';
+          if (show) shown++;
+        });
+        pempty.hidden = shown !== 0;
+      }
+      function openModal() {
+        lastFocus = document.activeElement;
+        curCat = 'all'; psearch.value = '';
+        buildFilters(); buildGrid(); apply();
+        modal.hidden = false;
+        document.body.classList.add('modal-open');
+        psearch.focus();
+      }
+      function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove('modal-open');
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+      pOpen.addEventListener('click', openModal);
+      modal.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', closeModal); });
+      psearch.addEventListener('input', apply);
+      document.addEventListener('keydown', function (e) {
+        if (modal.hidden) return;
+        if (e.key === 'Escape') { closeModal(); return; }
+        if (e.key === 'Tab') {
+          var f = Array.prototype.filter.call(
+            panel.querySelectorAll('a[href],button:not([disabled]),input,[tabindex]:not([tabindex="-1"])'),
+            function (el) { return el.offsetParent !== null; });
+          if (!f.length) return;
+          var first = f[0], last = f[f.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+    }
 
     // contact form — designed validation + success
     var form = document.querySelector('#contact-form');
