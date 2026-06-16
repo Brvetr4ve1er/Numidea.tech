@@ -226,6 +226,151 @@
     }
   };
 
+  /* ---- Services Catalog + Trust strip strings (merged into I18N) ---- */
+  var EXTRA = {
+    fr: {
+      'svc.lead': 'Dix capacités, trois familles. On met cinq offres en avant — la profondeur attend ceux qui creusent.',
+      'svc.proofLabel': 'Preuve', 'svc.flagship': '★ Flagship',
+      'rail1': 'I · Le Build', 'rail2': "II · L'Engine", 'rail3': "III · L'Esprit",
+      'fam1.label': 'Famille I — Le Build', 'fam1.tag': "Ce qu'on ouvre, clique et achète.",
+      'fam2.label': "Famille II — L'Engine", 'fam2.tag': 'Le moat. Presque aucun studio local ne le propose.',
+      'fam3.label': "Famille III — L'Esprit", 'fam3.tag': 'Stratégie, systèmes et outils qui se composent.',
+      'prev.tag': 'Offre signature', 'prev.name': "L'Aperçu", 'prev.promise': 'Zéro risque. Juste la preuve.',
+      'prev.brief': 'On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.',
+      'prev.outcome': 'Le « oui » le plus facile que vous donnerez — parce que vous l\'avez déjà vu.',
+      'f1.name': 'Sites & applications web', 'f1.promise': 'Le choix évident.',
+      'f1.brief': 'Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel. On ne thème pas un template ; on construit un design system fin et on possède chaque token.',
+      'f1.outcome': 'Une présence qui dépasse vos concurrents de trois catégories.',
+      'f1.proof': 'Doctor Cherfia Clinic · almaflowclim.fr · Étoile de l\'Est (PWA).',
+      'f2.name': 'Identité & systèmes visuels', 'f2.promise': 'La confiance avant le premier mot.',
+      'f2.brief': 'Logos, couleur, typo, motion et le kit design-system complet — tokens primitifs → sémantiques → composants, documentés. Ce qui fait passer un studio de quatre pour un de quarante.',
+      'f2.outcome': 'Une cohérence qui fait de votre client le leader de sa catégorie.',
+      'f2.proof': 'Verdant (système clinique) · Éclat (système IPTV) · okami-streetwear.',
+      'f3.name': 'Automatisation & pipelines', 'f3.promise': 'Supprimez la corvée.',
+      'f3.brief': 'Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif et fragile qui dévore vos heures — on le fait tourner seul à 3h du matin. Python · Playwright · APIs · Claude.',
+      'f3.outcome': 'La corvée disparaît ; vos gens font le travail qui exige un humain.',
+      'f3.proof': 'Pipeline Playwright → Claude : scrape → enrichissement FR/AR → génération de démos → ZIP par entreprise.',
+      'f4.name': 'Intelligence marché & produit', 'f4.promise': 'Voir le marché clairement.',
+      'f4.brief': 'Transformez le web ouvert en base de données. Veille concurrentielle, intelligence prix/produit, enrichissement de leads sur Maps, Facebook, Ouedkniss, Jumia, Instagram — structuré, scoré, requêtable.',
+      'f4.outcome': 'Des décisions sur preuves, pas sur intuition.',
+      'f4.proof': 'Architecture d\'intelligence produit e-commerce Algérie · base de leads enrichis.',
+      'f4.statlabel': 'leads enrichis',
+      'f5.name': 'Stratégie & conseil croissance', 'f5.promise': 'De la donnée, pas des impressions.',
+      'f5.brief': 'Audits marketing complets, analyse de funnels, positionnement concurrentiel, feuilles de route — honnêtes, ROI d\'abord, par phases. On fait les devoirs sur votre secteur avant l\'appel.',
+      'f5.outcome': 'Vous arrêtez de deviner où l\'argent fuit et vous le réparez par ordre d\'impact.',
+      'f5.proof': 'Audit marché Schengen Alliance Travel — funnel complet + feuille de route en 3 phases.',
+      'f5.stat1label': 'demandes analysées', 'f5.stat2label': 'taux de refus',
+      'cap.summary': 'Capacités — 5 de plus', 'cap.hint': 'La profondeur, pour qui creuse.',
+      'c1.name': 'Boutique & réservation', 'c1.promise': 'De la visite au paiement.',
+      'c1.brief': 'Boutiques en ligne et systèmes de réservation pensés pour l\'achat local — paiement WhatsApp, flux cash, Shopify headless si pertinent.', 'c1.fam': 'Le Build',
+      'c2.name': 'Design graphique & social', 'c2.promise': 'On scroll, on s\'arrête.',
+      'c2.brief': 'Packs social, carrousels, infographies, print — depuis un système visuel verrouillé, pour que tout vous ressemble.', 'c2.fam': 'Le Build',
+      'c3.name': 'Data science & analytics', 'c3.promise': 'Du signal dans le bruit.',
+      'c3.brief': 'Vrai travail statistique — modélisation économétrique, séries temporelles, prévision, dashboards. Analyse testée et défendable.', 'c3.fam': "L'Engine",
+      'c4.name': 'Systèmes de connaissance', 'c4.promise': 'Une entreprise qui se souvient.',
+      'c4.brief': 'Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes pour le RAG. Des structures qui s\'entretiennent seules.', 'c4.fam': "L'Esprit",
+      'c5.name': 'Outils & skills IA sur mesure', 'c5.promise': 'Le logiciel qui construit votre logiciel.',
+      'c5.brief': 'Outils internes, générateurs et skills sur mesure propulsés par Claude — une tâche répétitive devient une usine en un clic.', 'c5.fam': "L'Esprit",
+      'trust.1': 'FR · EN · ع — trilingue', 'trust.2': 'Délais tenus', 'trust.3': 'Réponse < 24h',
+      'trust.4': 'Zéro intermédiaire', 'trust.5': 'Révisions incluses', 'trust.6': 'Tous formats livrés'
+    },
+    en: {
+      'svc.lead': 'Ten capabilities, three families. We feature five up front — the depth waits for whoever digs.',
+      'svc.proofLabel': 'Proof', 'svc.flagship': '★ Flagship',
+      'rail1': 'I · The Build', 'rail2': 'II · The Engine', 'rail3': 'III · The Mind',
+      'fam1.label': 'Family I — The Build', 'fam1.tag': 'Things people open, click, and buy through.',
+      'fam2.label': 'Family II — The Engine', 'fam2.tag': 'The moat. Almost no local studio offers this.',
+      'fam3.label': 'Family III — The Mind', 'fam3.tag': 'Strategy, systems, and tools that compound.',
+      'prev.tag': 'Signature offer', 'prev.name': 'The Preview', 'prev.promise': 'Zero risk. Just proof.',
+      'prev.brief': 'We build a real, working demo of your site up front. Walk into the meeting, see it live, then decide.',
+      'prev.outcome': 'The easiest yes you\'ll ever give — because you\'ve already seen it.',
+      'f1.name': 'Sites & web applications', 'f1.promise': 'The obvious choice.',
+      'f1.brief': 'Bespoke websites and web apps — fast, ranked, conversion-built, front-end to cloud. React · Next.js · Vite · Tailwind on Vercel. We don\'t theme a template; we build a thin design system and own every token.',
+      'f1.outcome': 'A presence that punches three weight classes above your competitors\'.',
+      'f1.proof': 'Doctor Cherfia Clinic · almaflowclim.fr · Étoile de l\'Est (PWA).',
+      'f2.name': 'Branding & visual systems', 'f2.promise': 'Trust before a word is read.',
+      'f2.brief': 'Logos, color, type, motion and the full design-system kit — primitive → semantic → component tokens, documented. The thing that makes a four-person studio look like a forty-person one.',
+      'f2.outcome': 'Consistency that makes your client look like the category leader.',
+      'f2.proof': 'Verdant (clinic system) · Éclat (IPTV system) · okami-streetwear.',
+      'f3.name': 'Automation & pipelines', 'f3.promise': 'Delete the busywork.',
+      'f3.brief': 'Scrapers, data pipelines, lead engines, workflow automations, internal tools. The repetitive, error-prone work quietly eating hours — we make it run itself at 3am. Python · Playwright · APIs · Claude.',
+      'f3.outcome': 'The boring work disappears; your people do the work that needs a human.',
+      'f3.proof': 'Playwright → Claude lead pipeline: scrape → enrich FR/AR → auto-generate demos → ZIP per business.',
+      'f4.name': 'Market & product intelligence', 'f4.promise': 'See the market clearly.',
+      'f4.brief': 'Turn the open web into a database. Competitor monitoring, price/product intelligence, lead enrichment across Maps, Facebook, Ouedkniss, Jumia, Instagram — structured, scored, queryable.',
+      'f4.outcome': 'Decisions on evidence, not gut.',
+      'f4.proof': 'Algeria e-commerce product-intelligence architecture · enriched acquisition database.',
+      'f4.statlabel': 'leads enriched',
+      'f5.name': 'Strategy & growth consulting', 'f5.promise': 'Data, not vibes.',
+      'f5.brief': 'Full marketing audits, funnel analysis, competitive positioning, growth roadmaps — brutally honest, ROI-first, phased. We do the sector homework before the call.',
+      'f5.outcome': 'You stop guessing where the money leaks and fix it in order of impact.',
+      'f5.proof': 'Alliance Travel Schengen-market audit — full funnel + 3-phase roadmap.',
+      'f5.stat1label': 'applications analyzed', 'f5.stat2label': 'refusal rate',
+      'cap.summary': 'Capabilities — 5 more', 'cap.hint': 'Depth, for whoever digs.',
+      'c1.name': 'E-commerce & booking', 'c1.promise': 'From browse to paid.',
+      'c1.brief': 'Online stores and booking systems tuned for how people buy locally — WhatsApp checkout, cash-economy flows, headless Shopify when it fits.', 'c1.fam': 'The Build',
+      'c2.name': 'Graphic & social design', 'c2.promise': 'Scroll-stopping, on brand.',
+      'c2.brief': 'Social packs, carousels, infographics, print — all from one locked visual system so everything looks like you.', 'c2.fam': 'The Build',
+      'c3.name': 'Data science & analytics', 'c3.promise': 'Signal out of noise.',
+      'c3.brief': 'Real statistical work — econometric modeling, time-series, forecasting, dashboards. Tested, diagnosed, defensible analysis.', 'c3.fam': 'The Engine',
+      'c4.name': 'Knowledge systems', 'c4.promise': 'A company that remembers.',
+      'c4.brief': 'Internal knowledge architecture — Obsidian/PARA + Zettelkasten, documentation, RAG-ready bases. Self-maintaining structures.', 'c4.fam': 'The Mind',
+      'c5.name': 'Custom AI tools & skills', 'c5.promise': 'Software that builds your software.',
+      'c5.brief': 'Claude-powered internal tools, generators and custom skills — a repeatable task becomes a one-click factory.', 'c5.fam': 'The Mind',
+      'trust.1': 'FR · EN · ع — trilingual', 'trust.2': 'Deadlines kept', 'trust.3': 'Reply < 24h',
+      'trust.4': 'Zero middlemen', 'trust.5': 'Revisions included', 'trust.6': 'Every format delivered'
+    },
+    ar: {
+      'svc.lead': 'عشر قدرات، ثلاث عائلات. نُبرز خمساً في المقدّمة — والعمق ينتظر من يبحث.',
+      'svc.proofLabel': 'الإثبات', 'svc.flagship': '★ الرائد',
+      'rail1': '١ · البناء', 'rail2': '٢ · المحرّك', 'rail3': '٣ · العقل',
+      'fam1.label': 'العائلة الأولى — البناء', 'fam1.tag': 'ما يفتحه الناس ويضغطونه ويشترون عبره.',
+      'fam2.label': 'العائلة الثانية — المحرّك', 'fam2.tag': 'الخندق. يكاد لا يقدّمه أيّ استوديو محلّي.',
+      'fam3.label': 'العائلة الثالثة — العقل', 'fam3.tag': 'الاستراتيجية والأنظمة والأدوات التي تتراكم.',
+      'prev.tag': 'عرض مميّز', 'prev.name': 'المعاينة', 'prev.promise': 'بلا مخاطرة. مجرّد إثبات.',
+      'prev.brief': 'نبني نسخة تجريبية حقيقية وعاملة من موقعك مسبقاً. تدخل الاجتماع، تراها حيّة، ثم تقرّر.',
+      'prev.outcome': 'أسهل «نعم» ستقولها — لأنّك رأيتها بالفعل.',
+      'f1.name': 'مواقع وتطبيقات ويب', 'f1.promise': 'الخيار البديهي.',
+      'f1.brief': 'مواقع وتطبيقات ويب مخصّصة — سريعة، مُحسّنة للبحث، مبنية للتحويل، من الواجهة إلى السحابة. React · Next.js · Vite · Tailwind على Vercel. لا نُلبِس قالباً جاهزاً؛ نبني نظام تصميم رفيعاً ونملك كل token.',
+      'f1.outcome': 'حضورٌ يتفوّق على منافسيك بثلاث مراتب.',
+      'f1.proof': 'Doctor Cherfia Clinic · almaflowclim.fr · Étoile de l\'Est (PWA).',
+      'f2.name': 'الهوية والأنظمة البصرية', 'f2.promise': 'الثقة قبل قراءة كلمة.',
+      'f2.brief': 'شعارات، ألوان، خطوط، حركة، وطقم نظام التصميم الكامل — رموز أوّلية ← دلالية ← مكوّنات، موثّقة. ما يجعل استوديو من أربعة يبدو كاستوديو من أربعين.',
+      'f2.outcome': 'اتّساقٌ يجعل عميلك يبدو قائد فئته.',
+      'f2.proof': 'Verdant (نظام عيادة) · Éclat (نظام IPTV) · okami-streetwear.',
+      'f3.name': 'الأتمتة والأنابيب', 'f3.promise': 'احذف العمل الممل.',
+      'f3.brief': 'كاشطات، أنابيب بيانات، محرّكات عملاء، أتمتة سير العمل، أدوات داخلية. العمل المتكرّر الهشّ الذي يلتهم ساعاتك — نجعله يعمل وحده عند الثالثة فجراً. بايثون · Playwright · واجهات · Claude.',
+      'f3.outcome': 'العمل الممل يختفي؛ وفريقك ينجز ما يحتاج إنساناً.',
+      'f3.proof': 'أنبوب Playwright ← Claude: كشط ← إثراء فرنسي/عربي ← توليد نماذج ← ZIP لكل نشاط.',
+      'f4.name': 'استخبارات السوق والمنتج', 'f4.promise': 'رؤية السوق بوضوح.',
+      'f4.brief': 'حوّل الويب المفتوح إلى قاعدة بيانات. مراقبة المنافسين، استخبارات الأسعار والمنتجات، إثراء العملاء عبر Maps وFacebook وOuedkniss وJumia وInstagram — مهيكلة، مُقيَّمة، قابلة للاستعلام.',
+      'f4.outcome': 'قراراتٌ على الأدلّة لا على الحدس.',
+      'f4.proof': 'بنية استخبارات منتجات التجارة الإلكترونية في الجزائر · قاعدة عملاء مُثراة.',
+      'f4.statlabel': 'عميلاً مُثرى',
+      'f5.name': 'الاستراتيجية واستشارات النمو', 'f5.promise': 'بيانات، لا انطباعات.',
+      'f5.brief': 'تدقيقات تسويقية كاملة، تحليل قمع، تموضع تنافسي، خرائط نمو — صريحة، تضع العائد أولاً، على مراحل. ننجز واجب القطاع قبل المكالمة.',
+      'f5.outcome': 'تتوقّف عن تخمين مكان تسرّب المال وتصلحه بترتيب الأثر.',
+      'f5.proof': 'تدقيق سوق شنغن لـ Alliance Travel — قمع كامل + خارطة من ٣ مراحل.',
+      'f5.stat1label': 'طلباً حُلِّل', 'f5.stat2label': 'نسبة الرفض',
+      'cap.summary': 'قدرات — ٥ أخرى', 'cap.hint': 'العمق، لمن يبحث.',
+      'c1.name': 'متجر وحجز', 'c1.promise': 'من التصفّح إلى الدفع.',
+      'c1.brief': 'متاجر إلكترونية وأنظمة حجز مضبوطة على طريقة الشراء المحلّية — دفع واتساب، تدفّقات نقدية، Shopify headless عند الحاجة.', 'c1.fam': 'البناء',
+      'c2.name': 'تصميم جرافيكي واجتماعي', 'c2.promise': 'يوقف التمرير، على الهوية.',
+      'c2.brief': 'حزم اجتماعية، كاروسيل، إنفوجرافيك، مطبوعات — من نظام بصري واحد مُقفل، ليبدو كلّ شيء أنت.', 'c2.fam': 'البناء',
+      'c3.name': 'علم البيانات والتحليلات', 'c3.promise': 'إشارة من الضجيج.',
+      'c3.brief': 'عمل إحصائي حقيقي — نمذجة قياسية، سلاسل زمنية، تنبّؤ، لوحات. تحليلٌ مُختبَر وقابل للدفاع.', 'c3.fam': 'المحرّك',
+      'c4.name': 'أنظمة المعرفة', 'c4.promise': 'شركة تتذكّر.',
+      'c4.brief': 'بنية معرفة داخلية — Obsidian/PARA + Zettelkasten، توثيق، قواعد جاهزة للـ RAG. بنى تصون نفسها.', 'c4.fam': 'العقل',
+      'c5.name': 'أدوات ومهارات ذكاء اصطناعي مخصّصة', 'c5.promise': 'برمجيات تبني برمجياتك.',
+      'c5.brief': 'أدوات داخلية ومولّدات ومهارات مخصّصة بقوّة Claude — مهمّة متكرّرة تصبح مصنعاً بنقرة.', 'c5.fam': 'العقل',
+      'trust.1': 'FR · EN · ع — ثلاثية اللغة', 'trust.2': 'مواعيد محترمة', 'trust.3': 'ردّ < ٢٤ ساعة',
+      'trust.4': 'بلا وسطاء', 'trust.5': 'مراجعات مشمولة', 'trust.6': 'كل الصيغ مُسلّمة'
+    }
+  };
+  Object.keys(EXTRA).forEach(function (l) {
+    for (var k in EXTRA[l]) { if (EXTRA[l].hasOwnProperty(k)) I18N[l][k] = EXTRA[l][k]; }
+  });
+
   var SUPPORTED = ['fr', 'en', 'ar'];
   var DEFAULT_LANG = 'fr';
 
@@ -265,21 +410,23 @@
   }
 
   /* ---------------- count-up ---------------- */
+  function group(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
   function countUp(el) {
     if (el.getAttribute('data-counted') === '1') return;
     el.setAttribute('data-counted', '1');
     var target = parseFloat(el.getAttribute('data-count'));
     var suffix = el.getAttribute('data-suffix') || '';
     var prefix = el.getAttribute('data-prefix') || '';
-    if (reduceMotion) { el.textContent = prefix + target + suffix; return; }
+    if (reduceMotion) { el.textContent = prefix + group(target) + suffix; return; }
     var dur = 1200, start = null;
     function frame(t) {
       if (!start) start = t;
       var p = Math.min((t - start) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = prefix + Math.round(target * eased) + suffix;
+      el.textContent = prefix + group(Math.round(target * eased)) + suffix;
       if (p < 1) requestAnimationFrame(frame);
-      else el.textContent = prefix + target + suffix;
+      else el.textContent = prefix + group(target) + suffix;
     }
     requestAnimationFrame(frame);
   }
@@ -325,6 +472,24 @@
     } else {
       document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
       document.querySelectorAll('[data-count]').forEach(countUp);
+    }
+
+    // services family rail — scroll-spy
+    var rail = document.querySelectorAll('.rail-item');
+    var families = document.querySelectorAll('.family');
+    if (rail.length && families.length && 'IntersectionObserver' in window) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          var id = en.target.id;
+          rail.forEach(function (r) {
+            var on = r.getAttribute('href') === '#' + id;
+            r.classList.toggle('active', on);
+            if (on) r.setAttribute('aria-current', 'true'); else r.removeAttribute('aria-current');
+          });
+        });
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+      families.forEach(function (f) { spy.observe(f); });
     }
 
     // mobile menu
