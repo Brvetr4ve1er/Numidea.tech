@@ -27,21 +27,6 @@
       'proof.line': 'De vrais clients. De vrais déploiements. Les liens sont plus bas — cliquez-les.',
       'svc.kicker': '02 — Services',
       'svc.title': 'Ce qu\'on <em>construit.</em>',
-      'svc1.name': 'Sites & applications', 'svc1.promise': 'Le site qui fait de vous le choix évident.',
-      'svc1.desc': 'Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud.',
-      'svc1.outcome': 'Une présence qui dépasse vos concurrents de trois catégories.',
-      'svc2.name': 'Automatisation & données', 'svc2.promise': 'On supprime les tâches répétitives que vous payez à la main.',
-      'svc2.desc': 'Scrapers, pipelines de leads, veille marché, outils internes, intégrations. Python · Playwright · APIs.',
-      'svc2.outcome': 'Le travail ennuyeux et répétitif tourne seul — en silence, à 3h du matin.',
-      'svc3.name': 'Identité & design', 'svc3.promise': 'Un look qui inspire confiance avant qu\'on ait lu un mot.',
-      'svc3.desc': 'Logos, identité visuelle, design systems, motion, le kit complet.',
-      'svc3.outcome': 'Une cohérence qui fait passer un studio de quatre pour un de quarante.',
-      'svc4.name': 'Stratégie & conseil', 'svc4.promise': 'On a fait les devoirs sur votre secteur avant l\'appel.',
-      'svc4.desc': 'Audits de marché, analyse de funnels, intelligence concurrentielle, feuilles de route de croissance.',
-      'svc4.outcome': 'Des décisions appuyées sur la donnée, pas sur des impressions.',
-      'svc5.name': 'L\'aperçu — offre signature', 'svc5.promise': 'Voyez votre site avant de le payer.',
-      'svc5.desc': 'On construit une démo réelle et fonctionnelle de votre projet en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.',
-      'svc5.outcome': 'Une entrée sans risque.',
       'svc.outcomeLabel': 'Résultat',
       'work.kicker': '03 — Réalisations',
       'work.title': 'La preuve, <em>en direct.</em>',
@@ -98,21 +83,6 @@
       'proof.line': 'Real clients. Real deployments. The links are below — click them.',
       'svc.kicker': '02 — Services',
       'svc.title': 'What we <em>build.</em>',
-      'svc1.name': 'Sites & applications', 'svc1.promise': 'The site that makes you the obvious choice.',
-      'svc1.desc': 'Bespoke websites and web apps — fast, ranked, conversion-built, front-end to cloud.',
-      'svc1.outcome': 'A presence that punches three weight classes above your competitors\'.',
-      'svc2.name': 'Automation & data', 'svc2.promise': 'We delete the busywork you\'re paying humans to do.',
-      'svc2.desc': 'Scrapers, lead pipelines, market-intelligence systems, internal tools, integrations. Python · Playwright · APIs.',
-      'svc2.outcome': 'The boring, repetitive, error-prone work runs itself — quietly, at 3am.',
-      'svc3.name': 'Brand & design systems', 'svc3.promise': 'A look people trust before they read a word.',
-      'svc3.desc': 'Logos, visual identity, design systems, motion, the full kit.',
-      'svc3.outcome': 'Consistency that makes a four-person studio look like a forty-person one.',
-      'svc4.name': 'Strategy & consulting', 'svc4.promise': 'We did the homework on your sector before the call.',
-      'svc4.desc': 'Market audits, funnel analysis, competitive intelligence, growth roadmaps.',
-      'svc4.outcome': 'Decisions backed by data, not vibes.',
-      'svc5.name': 'The preview — signature offer', 'svc5.promise': 'See your site before you pay for it.',
-      'svc5.desc': 'We build a real, working demo of your project up front. Walk into the meeting, see it live, then decide.',
-      'svc5.outcome': 'Zero-risk entry.',
       'svc.outcomeLabel': 'Outcome',
       'work.kicker': '03 — Selected work',
       'work.title': 'Proof, <em>live.</em>',
@@ -169,21 +139,6 @@
       'proof.line': 'عملاء حقيقيون. عمليات نشر حقيقية. الروابط في الأسفل — اضغط عليها.',
       'svc.kicker': '٠٢ — الخدمات',
       'svc.title': 'ما الذي <em>نبنيه.</em>',
-      'svc1.name': 'مواقع وتطبيقات', 'svc1.promise': 'الموقع الذي يجعلك الخيار البديهي.',
-      'svc1.desc': 'مواقع وتطبيقات ويب مخصّصة — سريعة، مُحسّنة للبحث، مبنية للتحويل، من الواجهة إلى السحابة.',
-      'svc1.outcome': 'حضورٌ يتفوّق على منافسيك بثلاث مراتب.',
-      'svc2.name': 'الأتمتة والبيانات', 'svc2.promise': 'نحذف المهام المتكرّرة التي تدفع لبشر لإنجازها.',
-      'svc2.desc': 'كاشطات، أنابيب عملاء محتملين، أنظمة استخبارات السوق، أدوات داخلية، تكاملات. بايثون · Playwright · واجهات برمجية.',
-      'svc2.outcome': 'العمل الممل والمتكرّر يجري تلقائياً — بصمت، عند الثالثة فجراً.',
-      'svc3.name': 'الهوية والتصميم', 'svc3.promise': 'مظهرٌ يثق به الناس قبل قراءة كلمة.',
-      'svc3.desc': 'شعارات، هوية بصرية، أنظمة تصميم، حركة، الطقم الكامل.',
-      'svc3.outcome': 'اتّساقٌ يجعل استوديو من أربعة يبدو كاستوديو من أربعين.',
-      'svc4.name': 'الاستراتيجية والاستشارة', 'svc4.promise': 'أنجزنا الواجب عن قطاعك قبل المكالمة.',
-      'svc4.desc': 'تدقيق السوق، تحليل القمع، الاستخبارات التنافسية، خرائط طريق النمو.',
-      'svc4.outcome': 'قراراتٌ مدعومة بالبيانات، لا بالانطباعات.',
-      'svc5.name': 'المعاينة — عرض مميّز', 'svc5.promise': 'شاهد موقعك قبل أن تدفع ثمنه.',
-      'svc5.desc': 'نبني نسخة تجريبية حقيقية وعاملة من مشروعك مسبقاً. تدخل الاجتماع، تراها حيّة، ثم تقرّر.',
-      'svc5.outcome': 'دخولٌ بلا مخاطرة.',
       'svc.outcomeLabel': 'النتيجة',
       'work.kicker': '٠٣ — أعمال مختارة',
       'work.title': 'الإثبات، <em>حيّاً.</em>',
@@ -410,7 +365,11 @@
   }
 
   /* ---------------- count-up ---------------- */
-  function group(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function group(n) {
+    var lang = document.documentElement.getAttribute('lang') || 'fr';
+    try { return new Intl.NumberFormat(lang).format(n); }
+    catch (e) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  }
 
   function countUp(el) {
     if (el.getAttribute('data-counted') === '1') return;
@@ -478,17 +437,21 @@
     var rail = document.querySelectorAll('.rail-item');
     var families = document.querySelectorAll('.family');
     if (rail.length && families.length && 'IntersectionObserver' in window) {
-      var spy = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (!en.isIntersecting) return;
-          var id = en.target.id;
-          rail.forEach(function (r) {
-            var on = r.getAttribute('href') === '#' + id;
-            r.classList.toggle('active', on);
-            if (on) r.setAttribute('aria-current', 'true'); else r.removeAttribute('aria-current');
-          });
+      var inView = {};
+      function setActive(id) {
+        rail.forEach(function (r) {
+          var on = !!id && r.getAttribute('href') === '#' + id;
+          r.classList.toggle('active', on);
+          if (on) r.setAttribute('aria-current', 'true'); else r.removeAttribute('aria-current');
         });
-      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+      }
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { inView[en.target.id] = en.isIntersecting; });
+        // highlight the first family (document order) currently in the band; clear if none
+        var active = null;
+        families.forEach(function (f) { if (active === null && inView[f.id]) active = f.id; });
+        setActive(active);
+      }, { rootMargin: '-20% 0px -55% 0px', threshold: 0 });
       families.forEach(function (f) { spy.observe(f); });
     }
 

@@ -117,12 +117,14 @@ html[dir="rtl"] .progress{left:auto;right:0}
 .mobile-menu{position:fixed;inset:0;z-index:150;background:var(--grad-noir);display:flex;flex-direction:column;justify-content:center;gap:var(--s-5);padding:var(--gutter);transform:translateX(100%);transition:transform var(--dur-base) var(--ease-out);visibility:hidden}
 .mobile-menu.open{transform:translateX(0);visibility:visible}
 .mobile-menu a{font-family:var(--font-display);font-weight:500;font-size:40px;color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
-.mobile-menu.open a{animation:stagger .5s var(--ease-out) forwards}
-.mobile-menu.open a:nth-child(1){animation-delay:.05s}
-.mobile-menu.open a:nth-child(2){animation-delay:.1s}
-.mobile-menu.open a:nth-child(3){animation-delay:.15s}
-.mobile-menu.open a:nth-child(4){animation-delay:.2s}
-.mobile-menu.open a:nth-child(5){animation-delay:.25s}
+.mobile-menu .lang{opacity:0}
+.mobile-menu.open a,.mobile-menu.open .lang{animation:stagger .5s var(--ease-out) forwards}
+.mobile-menu.open a:nth-of-type(1){animation-delay:.05s}
+.mobile-menu.open a:nth-of-type(2){animation-delay:.1s}
+.mobile-menu.open a:nth-of-type(3){animation-delay:.15s}
+.mobile-menu.open a:nth-of-type(4){animation-delay:.2s}
+.mobile-menu.open a:nth-of-type(5){animation-delay:.25s}
+.mobile-menu.open .lang{animation-delay:.3s}
 @keyframes stagger{to{opacity:1;transform:translateY(0)}}
 .mobile-menu .lang{margin-top:var(--s-4);align-self:flex-start}
 .mobile-menu .close{position:absolute;top:20px;right:24px;background:transparent;border:none;color:var(--ice);font-size:34px;cursor:pointer}
@@ -178,25 +180,6 @@ html[dir="rtl"] .ship .top span{margin-left:0;margin-right:auto}
 .stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:var(--s-3)}
 .proof-line{text-align:center;color:var(--muted);margin-top:var(--s-7);font-size:15px}
 
-/* ---------- services ---------- */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--s-5)}
-.svc{background:var(--navy);border:1px solid var(--hairline);border-radius:var(--r-md);padding:var(--s-6);transition:transform var(--dur-slow) var(--ease-out);position:relative;overflow:hidden;display:flex;flex-direction:column}
-.svc::after{content:"";position:absolute;inset:0;border-radius:var(--r-md);padding:1px;background:var(--grad-teal);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity var(--dur-base)}
-.svc:hover{transform:translateY(-4px)}
-.svc:hover::after{opacity:.75}
-.svc .num{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;color:var(--crimson);margin-bottom:var(--s-4)}
-.svc .ico{width:40px;height:40px;border:1px solid var(--teal);border-radius:var(--r-sm);display:grid;place-items:center;color:var(--teal);margin-bottom:var(--s-5);font-size:18px}
-.svc h3{font-family:var(--font-display);font-weight:600;font-size:23px;margin-bottom:var(--s-3)}
-html[dir="rtl"] .svc h3{font-family:var(--font-ar-display)}
-.svc .promise{font-family:var(--font-swash);font-style:italic;font-size:19px;color:var(--teal);margin-bottom:var(--s-4);line-height:1.3}
-html[dir="rtl"] .svc .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:600}
-.svc p{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:var(--s-4)}
-.svc .outcome{font-size:13px;color:var(--ice);line-height:1.5;margin-bottom:var(--s-5);padding-left:14px;border-left:2px solid var(--crimson)}
-html[dir="rtl"] .svc .outcome{padding-left:0;padding-right:14px;border-left:none;border-right:2px solid var(--crimson)}
-.svc .outcome b{color:var(--teal);font-weight:400;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
-.svc .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
-.svc.signature-svc{background:linear-gradient(160deg,rgba(65,30,58,.6),var(--navy));border-color:var(--hairline-2)}
-.svc.signature-svc .ico{border-color:var(--crimson);color:var(--crimson)}
 
 /* ---------- selected work ---------- */
 .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-6)}
@@ -320,7 +303,7 @@ html[dir="rtl"] .rail-item.active{background:linear-gradient(270deg,rgba(9,216,1
 .rail-foot{margin-top:var(--s-5);font-family:var(--font-mono);font-size:11px;color:var(--faint);line-height:1.7;padding:0 14px}
 
 .svc-families{min-width:0}
-.family{padding-top:var(--s-4);scroll-margin-top:96px}
+.family{padding-top:var(--s-4)}
 .family + .family{margin-top:var(--s-8)}
 /* gradient-burn divider */
 .family-head{margin-bottom:var(--s-6)}
@@ -425,6 +408,7 @@ html[dir="rtl"] .cap .promise{font-family:var(--font-ar-body);font-style:normal;
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
   .hero-mesh span{animation:none}
+  .mobile-menu a,.mobile-menu .lang{opacity:1;transform:none}
   .family-head .burn{transform:scaleX(1)}
   .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dashoffset:0}
 }
