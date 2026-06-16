@@ -35,12 +35,28 @@ and vanilla JavaScript, no framework, no build step. Open `index.html` and it ru
 
 ```
 index.html            # the page
+404.html              # designed not-found page
 assets/
   styles.css          # design tokens (Neon Noir v2) + layout
-  app.js              # i18n, nav, count-ups, reveal-on-scroll, form states
+  app.js              # i18n, nav, count-ups, reveal, portfolio modal, form
   favicon.svg         # gradient signature mark
   og.svg              # social share image
+.github/workflows/
+  pages.yml           # auto-deploys the site to GitHub Pages on push
 ```
+
+### Live preview (GitHub Pages)
+
+Every push to the working branch auto-publishes to GitHub Pages via
+`.github/workflows/pages.yml`. The live URL:
+
+```
+https://brvetr4ve1er.github.io/STICKITTY.INC/
+```
+
+One-time setup: repo **Settings → Pages → Build and deployment → Source:
+GitHub Actions** (the workflow tries to enable this automatically on its
+first run). After that, the URL refreshes ~1 minute after each push.
 
 ### Run it locally
 
