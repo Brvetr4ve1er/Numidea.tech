@@ -51,12 +51,12 @@ Every push to the working branch auto-publishes to GitHub Pages via
 `.github/workflows/pages.yml`. The live URL:
 
 ```
-https://brvetr4ve1er.github.io/STICKITTY.INC/
+https://brvetr4ve1er.github.io/Numidea.tech/
 ```
 
-One-time setup: repo **Settings → Pages → Build and deployment → Source:
-GitHub Actions** (the workflow tries to enable this automatically on its
-first run). After that, the URL refreshes ~1 minute after each push.
+One-time setup (required once — the workflow's token cannot enable Pages
+itself): repo **Settings → Pages → Build and deployment → Source:
+GitHub Actions**. After that, the URL refreshes ~1 minute after each push.
 
 ### Run it locally
 
