@@ -18,7 +18,7 @@
       'nav.about': 'À propos', 'nav.services': 'Services', 'nav.work': 'Projets',
       'nav.team': 'Équipe', 'nav.contact': 'Contact', 'nav.cta': 'Parlons-en →',
       'hero.eyebrow': 'Studio de développement · Bordj Bou Arréridj · DZ',
-      'hero.title': 'On construit le logiciel que votre entreprise <span class="swash">attend.</span>',
+      'hero.title': 'On livre. Zéro graisse d\'agence. <span class="swash">Zéro délai raté.</span>',
       'hero.lede': 'Quatre personnes. Le design, le code, la donnée, et celui qui décroche vraiment le téléphone. Du back-end au pixel — et personne entre les deux.',
       'hero.cta1': 'Parlons-en →', 'hero.cta2': 'Voir les projets',
       'ship.status': 'production',
@@ -52,12 +52,12 @@
       'stack.title': 'Le flex <em>discret.</em>',
       'contact.kicker': '07 — Contact',
       'contact.title': 'On <em>construit ?</em>',
-      'contact.sub': 'Dites-nous ce que vous fabriquez. On répond en moins de 24 heures — en français, en anglais ou en arabe.',
+      'contact.sub': 'Dites-nous ce qui presse — ce qui est cassé, ce qui est dû. On répond en moins de 24 heures, en français, anglais ou arabe.',
       'contact.reassure': 'Réponse < 24h · Bordj Bou Arréridj · DZ',
       'form.name': 'Nom', 'form.namePh': 'Votre nom',
       'form.email': 'Email', 'form.emailPh': 'vous@entreprise.com',
       'form.message': 'Message', 'form.messagePh': 'Qu\'est-ce qu\'on construit ?',
-      'form.send': 'Envoyer →',
+      'form.send': 'Démarrer un projet →',
       'form.errName': 'Ajoutez un nom pour qu\'on sache à qui parler.',
       'form.errEmail': 'Ajoutez un email pour qu\'on puisse répondre.',
       'form.errEmailValid': 'Cet email a l\'air incomplet — vérifiez-le.',
@@ -74,7 +74,7 @@
       'nav.about': 'About', 'nav.services': 'Services', 'nav.work': 'Work',
       'nav.team': 'Team', 'nav.contact': 'Contact', 'nav.cta': 'Let\'s talk →',
       'hero.eyebrow': 'Development studio · Bordj Bou Arréridj · DZ',
-      'hero.title': 'We build the software your business has been <span class="swash">waiting</span> for.',
+      'hero.title': 'We ship. No agency fat. <span class="swash">No missed deadlines.</span>',
       'hero.lede': 'Four people. Design, code, data, and the one who actually picks up the phone. From the back-end to the pixel — and no one in between.',
       'hero.cta1': 'Let\'s talk →', 'hero.cta2': 'See the work',
       'ship.status': 'production',
@@ -108,12 +108,12 @@
       'stack.title': 'The quiet <em>flex.</em>',
       'contact.kicker': '07 — Contact',
       'contact.title': 'Let\'s build the <em>thing.</em>',
-      'contact.sub': 'Tell us what you\'re making. We answer in under 24 hours — in French, English, or Arabic.',
+      'contact.sub': 'Tell us what\'s urgent — what\'s broken, what\'s due. We reply in under 24 hours, in French, English, or Arabic.',
       'contact.reassure': 'Response < 24h · Bordj Bou Arréridj · DZ',
       'form.name': 'Name', 'form.namePh': 'Your name',
       'form.email': 'Email', 'form.emailPh': 'you@company.com',
       'form.message': 'Message', 'form.messagePh': 'What are we building?',
-      'form.send': 'Send →',
+      'form.send': 'Start a project →',
       'form.errName': 'Add a name so we know who we\'re talking to.',
       'form.errEmail': 'Add an email so we can reply.',
       'form.errEmailValid': 'That email looks incomplete — check it.',
@@ -130,7 +130,7 @@
       'nav.about': 'من نحن', 'nav.services': 'الخدمات', 'nav.work': 'الأعمال',
       'nav.team': 'الفريق', 'nav.contact': 'تواصل', 'nav.cta': 'لنتحدّث →',
       'hero.eyebrow': 'استوديو تطوير · برج بوعريريج · الجزائر',
-      'hero.title': 'نبني <span class="swash">البرمجيات</span> التي ينتظرها عملك.',
+      'hero.title': 'نُسلّم. بلا ترهّل وكالات. <span class="swash">بلا مواعيد ضائعة.</span>',
       'hero.lede': 'أربعة أشخاص. التصميم، الكود، البيانات، والشخص الذي يردّ على الهاتف فعلاً. من الخادم إلى آخر بكسل — ولا أحد بينهما.',
       'hero.cta1': 'لنتحدّث →', 'hero.cta2': 'شاهد الأعمال',
       'ship.status': 'الإنتاج',
@@ -164,12 +164,12 @@
       'stack.title': 'التباهي <em>الهادئ.</em>',
       'contact.kicker': '٠٧ — تواصل',
       'contact.title': '<em>نبني؟</em>',
-      'contact.sub': 'أخبرنا بما تصنعه. نردّ في أقل من ٢٤ ساعة — بالفرنسية أو الإنجليزية أو العربية.',
+      'contact.sub': 'أخبرنا بما هو عاجل — ما تعطّل، وما استحقّ. نردّ في أقل من ٢٤ ساعة، بالفرنسية أو الإنجليزية أو العربية.',
       'contact.reassure': 'ردّ < ٢٤ ساعة · برج بوعريريج · الجزائر',
       'form.name': 'الاسم', 'form.namePh': 'اسمك',
       'form.email': 'البريد', 'form.emailPh': 'you@company.com',
       'form.message': 'الرسالة', 'form.messagePh': 'ماذا سنبني؟',
-      'form.send': 'إرسال →',
+      'form.send': 'ابدأ مشروعاً →',
       'form.errName': 'أضف اسماً لنعرف بمن نتحدّث.',
       'form.errEmail': 'أضف بريداً لنتمكّن من الردّ.',
       'form.errEmailValid': 'يبدو هذا البريد ناقصاً — تحقّق منه.',
@@ -215,7 +215,7 @@
       'f5.outcome': 'Vous arrêtez de deviner où l\'argent fuit et vous le réparez par ordre d\'impact.',
       'f5.proof': 'Audit marché Schengen Alliance Travel — funnel complet + feuille de route en 3 phases.',
       'f5.stat1label': 'demandes analysées', 'f5.stat2label': 'taux de refus',
-      'cap.summary': 'Capacités — 5 de plus', 'cap.hint': 'La profondeur, pour qui creuse.',
+      'cap.summary': 'Voir toutes les capacités →', 'cap.hint': '5 capacités de plus, pour qui creuse.',
       'c1.name': 'Boutique & réservation', 'c1.promise': 'De la visite au paiement.',
       'c1.brief': 'Boutiques en ligne et systèmes de réservation pensés pour l\'achat local — paiement WhatsApp, flux cash, Shopify headless si pertinent.', 'c1.fam': 'Le Build',
       'c2.name': 'Design graphique & social', 'c2.promise': 'On scroll, on s\'arrête.',
@@ -265,7 +265,7 @@
       'f5.outcome': 'You stop guessing where the money leaks and fix it in order of impact.',
       'f5.proof': 'Alliance Travel Schengen-market audit — full funnel + 3-phase roadmap.',
       'f5.stat1label': 'applications analyzed', 'f5.stat2label': 'refusal rate',
-      'cap.summary': 'Capabilities — 5 more', 'cap.hint': 'Depth, for whoever digs.',
+      'cap.summary': 'See every capability →', 'cap.hint': '5 more capabilities, for whoever digs.',
       'c1.name': 'E-commerce & booking', 'c1.promise': 'From browse to paid.',
       'c1.brief': 'Online stores and booking systems tuned for how people buy locally — WhatsApp checkout, cash-economy flows, headless Shopify when it fits.', 'c1.fam': 'The Build',
       'c2.name': 'Graphic & social design', 'c2.promise': 'Scroll-stopping, on brand.',
@@ -315,7 +315,7 @@
       'f5.outcome': 'تتوقّف عن تخمين مكان تسرّب المال وتصلحه بترتيب الأثر.',
       'f5.proof': 'تدقيق سوق شنغن لـ Alliance Travel — قمع كامل + خارطة من ٣ مراحل.',
       'f5.stat1label': 'طلباً حُلِّل', 'f5.stat2label': 'نسبة الرفض',
-      'cap.summary': 'قدرات — ٥ أخرى', 'cap.hint': 'العمق، لمن يبحث.',
+      'cap.summary': 'اعرض كل القدرات →', 'cap.hint': '٥ قدرات أخرى، لمن يبحث.',
       'c1.name': 'متجر وحجز', 'c1.promise': 'من التصفّح إلى الدفع.',
       'c1.brief': 'متاجر إلكترونية وأنظمة حجز مضبوطة على طريقة الشراء المحلّية — دفع واتساب، تدفّقات نقدية، Shopify headless عند الحاجة.', 'c1.fam': 'البناء',
       'c2.name': 'تصميم جرافيكي واجتماعي', 'c2.promise': 'يوقف التمرير، على الهوية.',
@@ -404,6 +404,7 @@
 
   /* ---------------- DOM ready ---------------- */
   document.addEventListener('DOMContentLoaded', function () {
+   try {
     // restore language
     var saved = DEFAULT_LANG;
     try { saved = localStorage.getItem('numidea-lang') || DEFAULT_LANG; } catch (e) {}
@@ -428,21 +429,36 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // reveal-on-scroll + count-up via IntersectionObserver
+    // reveal-on-scroll + count-up
+    function revealNow(el) {
+      if (el.classList.contains('in')) return;
+      el.classList.add('in');
+      el.querySelectorAll('[data-count]').forEach(countUp);
+      if (el.hasAttribute('data-count')) countUp(el);
+    }
+    var revealEls = document.querySelectorAll('.reveal, [data-count]');
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (!en.isIntersecting) return;
-          en.target.classList.add('in');
-          en.target.querySelectorAll('[data-count]').forEach(countUp);
-          if (en.target.hasAttribute('data-count')) countUp(en.target);
+          revealNow(en.target);
           io.unobserve(en.target);
         });
-      }, { threshold: 0.18 });
-      document.querySelectorAll('.reveal, [data-count]').forEach(function (el) { io.observe(el); });
+      }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+      revealEls.forEach(function (el) { io.observe(el); });
+      // Safety net: never leave on-screen content stuck invisible if the
+      // observer is slow/janky — reveal anything in (or near) the viewport now.
+      function revealInView() {
+        var h = window.innerHeight || document.documentElement.clientHeight;
+        revealEls.forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (r.top < h * 0.92 && r.bottom > 0) revealNow(el);
+        });
+      }
+      revealInView();
+      window.addEventListener('load', revealInView);
     } else {
-      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
-      document.querySelectorAll('[data-count]').forEach(countUp);
+      revealEls.forEach(revealNow);
     }
 
     // services family rail — scroll-spy
@@ -605,5 +621,10 @@
         if (success) success.classList.add('show');
       });
     }
+   } catch (e) {
+    // Never let an init error leave content stuck behind scroll-reveal.
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    if (window.console && console.error) console.error(e);
+   }
   });
 })();

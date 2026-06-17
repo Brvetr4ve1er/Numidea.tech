@@ -84,7 +84,7 @@
     <div class="hero-grid">
       <div>
         <span class="eyebrow" data-i18n="hero.eyebrow">Studio de développement · Bordj Bou Arréridj · DZ</span>
-        <h1 class="hero-h" id="hero-title" data-i18n="hero.title">On construit le logiciel que votre entreprise <span class="swash">attend.</span></h1>
+        <h1 class="hero-h" id="hero-title" data-i18n="hero.title">On livre. Zéro graisse d'agence. <span class="swash">Zéro délai raté.</span></h1>
         <p class="lede" data-i18n="hero.lede">Quatre personnes. Le design, le code, la donnée, et celui qui décroche vraiment le téléphone. Du back-end au pixel — et personne entre les deux.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Parlons-en →</a>
@@ -92,11 +92,17 @@
         </div>
       </div>
       <div class="ship reveal" aria-hidden="true">
-        <div class="top"><i class="r"></i><i class="y"></i><i class="g"></i><span>numidealabs.com</span></div>
+        <div class="top"><i class="r"></i><i class="y"></i><i class="g"></i><span>numidea — deploy</span></div>
         <div class="body">
-          <div class="pr">deploy → numidealabs.com</div>
-          <div class="ok"><span class="dot"></span>200 OK <span class="ms">· 38ms</span></div>
-          <div class="dim">build ✓ · ssl ✓ · <span data-i18n="ship.status">production</span></div>
+          <div class="line"><span class="pr">$</span> git push origin main</div>
+          <div class="line dim">› building… <span class="okk">done in 11s</span></div>
+          <div class="line"><span class="pr">deploy →</span> numidealabs.com</div>
+          <div class="line ok"><span class="dot"></span>200 OK <span class="ms">· 38ms · build ✓ ssl ✓</span></div>
+        </div>
+        <div class="ship-foot">
+          <div><b>99.9%</b><span>uptime</span></div>
+          <div><b>38ms</b><span>TTFB</span></div>
+          <div><b>100</b><span>Lighthouse</span></div>
         </div>
       </div>
     </div>
@@ -256,8 +262,8 @@
         <!-- CAPABILITIES SHELF -->
         <details class="capabilities">
           <summary>
-            <span data-i18n="cap.summary">Capacités — 5 de plus</span>
-            <span class="hint" data-i18n="cap.hint">La profondeur, pour qui creuse.</span>
+            <span data-i18n="cap.summary">Voir toutes les capacités →</span>
+            <span class="hint" data-i18n="cap.hint">5 capacités de plus, pour qui creuse.</span>
             <span class="chev" aria-hidden="true">›</span>
           </summary>
           <div class="cap-grid">
@@ -310,7 +316,7 @@
     <div class="work-grid">
 
       <article class="proj reveal" data-cat="health">
-        <div class="thumb"><span class="mono-art" aria-hidden="true">DC</span></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>doctorcherfia.dz</span></div><span class="cover" aria-hidden="true">Doctor Cherfia</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj1.cat">Santé · Next.js</span>
           <h3>Doctor Cherfia Clinic</h3>
@@ -324,7 +330,7 @@
       </article>
 
       <article class="proj reveal" data-cat="travel">
-        <div class="thumb"><span class="mono-art" aria-hidden="true">AT</span></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliance-travel.dz</span></div><span class="cover" aria-hidden="true">Alliance Travel</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
           <h3>Alliance Travel</h3>
@@ -337,7 +343,7 @@
       </article>
 
       <article class="proj reveal" data-cat="industrial">
-        <div class="thumb"><span class="mono-art" aria-hidden="true">AF</span></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.fr</span></div><span class="cover" aria-hidden="true">Almaflow Clim</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Industrie · Web</span>
           <h3>almaflowclim.fr</h3>
@@ -350,7 +356,7 @@
       </article>
 
       <article class="proj reveal" data-cat="streaming">
-        <div class="thumb"><span class="mono-art" aria-hidden="true">HS</span></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>hammasat.tv</span></div><span class="cover" aria-hidden="true">Hamma Sat</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Streaming · Commerce</span>
           <h3>Hamma Sat IPTV</h3>
@@ -363,7 +369,7 @@
       </article>
 
       <article class="proj reveal" data-cat="pwa">
-        <div class="thumb"><span class="mono-art" aria-hidden="true">EE</span></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>etoile-est.app</span></div><span class="cover" aria-hidden="true">Étoile de l'Est</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj5.cat">PWA · Supabase</span>
           <h3>Étoile de l'Est</h3>
@@ -488,7 +494,7 @@
       <div>
         <span class="kicker" data-i18n="contact.kicker">07 — Contact</span>
         <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">On <em>construit ?</em></h2>
-        <p class="sub" data-i18n="contact.sub">Dites-nous ce que vous fabriquez. On répond en moins de 24 heures — en français, en anglais ou en arabe.</p>
+        <p class="sub" data-i18n="contact.sub">Dites-nous ce qui presse — ce qui est cassé, ce qui est dû. On répond en moins de 24 heures, en français, anglais ou arabe.</p>
         <p class="reassure" data-i18n="contact.reassure">Réponse &lt; 24h · Bordj Bou Arréridj · DZ</p>
       </div>
       <div>
@@ -508,7 +514,7 @@
             <textarea id="f-message" name="message" rows="4" data-i18n-ph="form.messagePh" placeholder="Qu'est-ce qu'on construit ?"></textarea>
             <span class="err" aria-live="polite"></span>
           </div>
-          <button type="submit" class="btn btn-primary" data-i18n="form.send">Envoyer →</button>
+          <button type="submit" class="btn btn-primary" data-i18n="form.send">Démarrer un projet →</button>
         </form>
         <div class="form-success" role="status" aria-live="polite">
           <div class="tick" aria-hidden="true">✓</div>
