@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="fr" dir="ltr" data-theme="noir">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
@@ -49,6 +49,15 @@
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
       <div class="nav-right">
+        <div class="theme-switch">
+          <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="Theme"><span class="ic" aria-hidden="true"></span></button>
+          <div class="theme-menu" role="menu" aria-label="Theme">
+            <button type="button" role="menuitemradio" data-theme-val="noir" aria-checked="true"><span class="dot noir" aria-hidden="true"></span>Neon Noir</button>
+            <button type="button" role="menuitemradio" data-theme-val="daylight" aria-checked="false"><span class="dot daylight" aria-hidden="true"></span>Daylight</button>
+            <button type="button" role="menuitemradio" data-theme-val="mono" aria-checked="false"><span class="dot mono" aria-hidden="true"></span>Monochrome</button>
+            <button type="button" role="menuitemradio" data-theme-val="altneon" aria-checked="false"><span class="dot altneon" aria-hidden="true"></span>Alt-neon</button>
+          </div>
+        </div>
         <div class="lang" role="group" aria-label="Language">
           <button type="button" data-lang="fr" aria-pressed="true">FR</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>

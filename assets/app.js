@@ -415,6 +415,35 @@
       b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
     });
 
+    // theme switcher
+    var THEMES = ['noir', 'daylight', 'mono', 'altneon'];
+    function applyTheme(t) {
+      if (THEMES.indexOf(t) === -1) t = 'noir';
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelectorAll('.theme-menu button').forEach(function (b) {
+        b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
+      });
+      try { localStorage.setItem('numidea-theme', t); } catch (e) {}
+    }
+    var savedTheme = 'noir';
+    try { savedTheme = localStorage.getItem('numidea-theme') || 'noir'; } catch (e) {}
+    applyTheme(savedTheme);
+    var themeBtn = document.querySelector('.theme-btn');
+    var themeMenu = document.querySelector('.theme-menu');
+    if (themeBtn && themeMenu) {
+      function closeTheme() { themeMenu.classList.remove('open'); themeBtn.setAttribute('aria-expanded', 'false'); }
+      themeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = themeMenu.classList.toggle('open');
+        themeBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      themeMenu.querySelectorAll('button').forEach(function (b) {
+        b.addEventListener('click', function () { applyTheme(b.getAttribute('data-theme-val')); closeTheme(); });
+      });
+      document.addEventListener('click', closeTheme);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeTheme(); });
+    }
+
     // navbar scroll state + progress bar
     var navbar = document.querySelector('.navbar');
     var progress = document.querySelector('.progress');
