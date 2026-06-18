@@ -74,8 +74,9 @@ but a server is recommended so fonts and relative paths resolve cleanly.)
 
 - **Color:** deep navy/maroon space (`--void` `#0D1A2F`), crimson for the shout
   (`--crimson` `#BD0927`), teal as rationed neon (`--teal` `#09D8C7`).
-- **Type:** Bodoni Moda + Cormorant italic do the shouting; Space Grotesk for body,
-  Space Mono for data; Aref Ruqaa + IBM Plex Arabic for the RTL experience.
+- **Type:** Space Grotesk for display/headings, IBM Plex Sans for body,
+  IBM Plex Mono for data; IBM Plex Sans Arabic for the RTL experience. Swiss /
+  engineering — confident and technical, no fashion serif.
 - **Rule:** gradients are *light* (glows, beds, duotone), never chrome. One flourish
   per screen, then discipline.
 
