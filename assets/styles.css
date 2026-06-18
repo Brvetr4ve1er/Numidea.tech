@@ -32,6 +32,8 @@
   --font-swash:"Geist", system-ui, sans-serif;
   --font-body:"Geist", system-ui, sans-serif;
   --font-mono:"Geist Mono", ui-monospace, monospace;
+  --font-deco:"Cinzel", Georgia, serif;
+  --font-deco-dec:"Cinzel Decorative", Georgia, serif;
   --font-ar-display:"IBM Plex Sans Arabic", sans-serif;
   --font-ar-body:"IBM Plex Sans Arabic", sans-serif;
 
@@ -104,6 +106,39 @@
   radial-gradient(50% 45% at 8% 25%, rgba(167,139,250,.14), transparent 70%),
   radial-gradient(70% 60% at 50% 110%, rgba(65,30,58,.5), transparent 70%);}
 
+/* ----- ARCANUM: arcane-blue + brass-gold, engraved Deco (primary identity) ----- */
+[data-theme="arcanum"]{
+  --void:#0A1420;--navy:#0F1E30;--plum:#13283E;--maroon:#1A3450;
+  --crimson:#E6B450;--crimson-hi:#F4D27A;--teal:#34D0E8;--teal-dim:#1FA8C4;
+  --ice:#EAF1F8;--muted:#9DB2C6;--faint:#62788E;--hairline:#1C3550;--hairline-2:#27496B;
+  --grad-blood:linear-gradient(135deg,#F4D27A 0%,#B07E2A 52%,#13283E 110%);
+  --grad-noir:radial-gradient(120% 120% at 20% 0%,#15293F 0%,#0F1E30 45%,#0A1420 100%);
+  --grad-teal:linear-gradient(120deg,#34D0E8 0%,#1FA8C4 50%,#0F1E30 120%);
+  --grad-text:linear-gradient(92deg,#34D0E8 0%,#EAF1F8 46%,#E6B450 100%);
+  --glow-teal:0 0 0 1px rgba(52,208,232,.4), 0 0 30px rgba(52,208,232,.22);
+  --glow-crimson:0 0 0 1px rgba(230,180,80,.45), 0 0 34px rgba(230,180,80,.26);
+}
+/* honeycomb + gold/blue arcane atmosphere */
+[data-theme="arcanum"] body::before{background:
+  radial-gradient(55% 50% at 84% 6%, rgba(230,180,80,.16), transparent 70%),
+  radial-gradient(50% 45% at 10% 22%, rgba(52,208,232,.14), transparent 72%),
+  radial-gradient(80% 70% at 50% 112%, rgba(15,40,64,.6), transparent 70%);}
+[data-theme="arcanum"] body::after{opacity:1;background-size:56px 98px;background-image:url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2334D0E8' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l11 6.35 11-6.35V17.9l-11-6.35L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/svg%3E");}
+/* engraved Deco display (LTR only — Arabic keeps its own face) */
+html[data-theme="arcanum"][dir="ltr"] .hero-h,
+html[data-theme="arcanum"][dir="ltr"] h2.sec,
+html[data-theme="arcanum"][dir="ltr"] .contact h2,
+html[data-theme="arcanum"][dir="ltr"] .family-head .lbl,
+html[data-theme="arcanum"][dir="ltr"] .mobile-menu a{font-family:var(--font-deco);font-weight:700;letter-spacing:.01em}
+html[data-theme="arcanum"][dir="ltr"] .hero-h{line-height:1.04;font-size:clamp(38px,6.2vw,86px)}
+html[data-theme="arcanum"][dir="ltr"] .hero-h .swash,
+html[data-theme="arcanum"][dir="ltr"] .contact h2 em{font-family:var(--font-deco-dec);font-weight:700;padding-right:.06em}
+html[data-theme="arcanum"][dir="ltr"] .logo{font-family:var(--font-deco);font-weight:700;letter-spacing:.04em}
+/* gem-glow CTA + kicker brass bar with diamond node */
+[data-theme="arcanum"] .btn-primary{box-shadow:var(--glow-crimson)}
+[data-theme="arcanum"] .kicker::after{content:"";width:6px;height:6px;margin-left:-4px;background:var(--crimson);transform:rotate(45deg);box-shadow:0 0 10px rgba(230,180,80,.7)}
+html[data-theme="arcanum"][dir="rtl"] .kicker::after{margin:0 -4px 0 0}
+
 /* smooth the moment of switching */
 body,.navbar.scrolled,.ship,.svc-row,.proj,.member,.card,.field input,.field textarea,.form,.capabilities{transition:background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
 
@@ -120,6 +155,7 @@ html[dir="rtl"] .theme-menu button{text-align:right}
 .theme-menu button:hover{background:rgba(127,127,127,.10);color:var(--ice)}
 .theme-menu button[aria-checked="true"]{color:var(--teal)}
 .theme-menu .dot{width:15px;height:15px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(127,127,127,.4)}
+.theme-menu .dot.arcanum{background:linear-gradient(135deg,#34D0E8,#E6B450)}
 .theme-menu .dot.noir{background:linear-gradient(135deg,#BD0927,#09D8C7)}
 .theme-menu .dot.daylight{background:linear-gradient(135deg,#0A9C8E,#FFFFFF)}
 .theme-menu .dot.mono{background:linear-gradient(135deg,#E5533D,#D9D4C6)}

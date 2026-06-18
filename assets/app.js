@@ -416,17 +416,17 @@
     });
 
     // theme switcher
-    var THEMES = ['noir', 'daylight', 'mono', 'altneon'];
+    var THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon'];
     function applyTheme(t) {
-      if (THEMES.indexOf(t) === -1) t = 'noir';
+      if (THEMES.indexOf(t) === -1) t = 'arcanum';
       document.documentElement.setAttribute('data-theme', t);
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
       });
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
     }
-    var savedTheme = 'noir';
-    try { savedTheme = localStorage.getItem('numidea-theme') || 'noir'; } catch (e) {}
+    var savedTheme = 'arcanum';
+    try { savedTheme = localStorage.getItem('numidea-theme') || 'arcanum'; } catch (e) {}
     applyTheme(savedTheme);
     var themeBtn = document.querySelector('.theme-btn');
     var themeMenu = document.querySelector('.theme-menu');
