@@ -332,6 +332,27 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .proj .actions a:hover{border-color:var(--teal);color:var(--teal)}
 .work-foot{margin-top:var(--s-7);text-align:center}
 
+/* ---------- project previews ---------- */
+/* committed screenshots (live sites) */
+.proj .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:1;display:block;transform:scale(1.002);transition:transform var(--dur-slow) var(--ease-out);filter:saturate(1.04)}
+.proj:hover .shot{transform:scale(1.045)}
+.proj .thumb:has(.shot){background:var(--navy)}
+.proj .thumb:has(.shot) .cover{display:none}
+.proj .browser{z-index:3}
+.proj .thumb:has(.shot)::before{z-index:2;opacity:1;mix-blend-mode:normal;background:linear-gradient(180deg,rgba(10,20,32,.10),transparent 34%),radial-gradient(circle at 72% 16%,rgba(52,208,232,.16),transparent 60%)}
+/* Arcanum abstract covers (sites not yet live) */
+.proj .thumb--art{background:var(--grad-noir)}
+.proj[data-cat="health"] .thumb--art,.proj[data-cat="streaming"] .thumb--art{--plate:52,208,232}
+.proj[data-cat="travel"] .thumb--art,.proj[data-cat="pwa"] .thumb--art{--plate:230,180,80}
+.proj .thumb--art .art{position:absolute;inset:0;z-index:1;display:grid;place-items:center;background:radial-gradient(70% 80% at 50% 40%,rgba(var(--plate),.22),transparent 70%),url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23E6B450' fill-opacity='0.06' fill-rule='evenodd'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l11 6.35 11-6.35V17.9l-11-6.35L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/svg%3E");background-size:auto,42px 73px}
+.proj .thumb--art .art::before{content:"";position:absolute;inset:16px;border:1px solid rgba(230,180,80,.16)}
+.proj .thumb--art .art::after{content:"";position:absolute;width:10px;height:10px;top:20px;left:20px;border-top:1.5px solid rgba(52,208,232,.5);border-left:1.5px solid rgba(52,208,232,.5)}
+.proj .thumb--art .art-glyph{width:60px;height:60px;fill:none;stroke:rgba(var(--plate),.95);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 12px rgba(var(--plate),.55));transition:transform var(--dur-slow) var(--ease-out)}
+.proj:hover .thumb--art .art-glyph{transform:scale(1.08) rotate(-3deg)}
+.proj .thumb--art .cover{position:absolute;z-index:2;top:auto;bottom:16px;left:0;right:0;padding:0 16px;transform:none;font-size:clamp(15px,2vw,19px);letter-spacing:.01em;color:rgba(234,242,244,.92);text-shadow:0 2px 12px rgba(0,0,0,.55)}
+.proj:hover .thumb--art .cover{transform:none}
+@media (prefers-reduced-motion:reduce){.proj .shot,.proj .thumb--art .art-glyph{transition:none}}
+
 /* ---------- how we work ---------- */
 .steps{position:relative;display:grid;gap:var(--s-7);max-width:760px}
 .steps::before{content:"";position:absolute;left:19px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--crimson),rgba(189,9,39,.1))}

@@ -1,0 +1,14 @@
+{
+  "name": "numidea-labs-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Numidea Labs landing page — static site + project-preview capture pipeline.",
+  "scripts": {
+    "shots": "node scripts/shots.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0",
+    "sharp": "^0.33.5"
+  }
+}

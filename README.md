@@ -93,6 +93,31 @@ but a server is recommended so fonts and relative paths resolve cleanly.)
 
 ---
 
+## Project previews
+
+Each project card shows a **committed screenshot** of the live site
+(`assets/previews/<slug>.webp`, ~10 KB each). Projects that aren't live yet
+fall back automatically to an **Arcanum abstract cover** (inline SVG, brass +
+arcane-blue) — so a card is never broken or empty.
+
+To (re)generate screenshots as sites ship or change:
+
+```bash
+npm install
+npx playwright install chromium   # one-time browser download
+npm run shots                     # capture all live URLs
+npm run shots -- almaflowclim     # or a single project
+```
+
+Live URLs live in the `PROJECTS` map at the top of
+[`scripts/shots.mjs`](scripts/shots.mjs). When a site goes live, set its URL
+there (and swap that card's `.thumb--art` cover for an `<img class="shot">` in
+`index.html`), run `npm run shots`, and commit the new `.webp`. Captures are
+taken at 1280×800 (16:10), retina, then optimised to WebP. `node_modules` is
+git-ignored — only the lightweight `.webp` outputs are committed.
+
+---
+
 ## Contact
 
 **hello@numidealabs.com** · Bordj Bou Arréridj, DZ · response in under 24h
