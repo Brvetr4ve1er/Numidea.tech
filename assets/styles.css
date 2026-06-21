@@ -330,6 +330,9 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .proj .actions{display:flex;gap:8px}
 .proj .actions a{font-family:var(--font-mono);font-size:11px;padding:6px 12px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--ice);text-decoration:none;transition:all var(--dur-fast)}
 .proj .actions a:hover{border-color:var(--teal);color:var(--teal)}
+.proj .actions .soon{font-family:var(--font-mono);font-size:11px;padding:6px 12px;border:1px dashed var(--hairline-2);border-radius:var(--r-pill);color:var(--faint);display:inline-flex;align-items:center;gap:7px}
+.proj .actions .soon::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--faint)}
+.pill.soon{color:var(--faint);border-style:dashed}
 .work-foot{margin-top:var(--s-7);text-align:center}
 
 /* ---------- project previews ---------- */
@@ -445,6 +448,22 @@ details[open] .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dash
 .glyph svg :nth-child(4){transition-delay:.21s}
 .glyph svg :nth-child(n+5){transition-delay:.28s}
 @keyframes glyph-pulse{0%,100%{transform:scale(1)}45%{transform:scale(1.14)}}
+
+/* per-service glyph motion — composes with the stroke draw-on; transform/opacity only */
+.glyph .spin,.glyph .sweep,.glyph .r2,.glyph .r3{transform-box:view-box;transform-origin:12px 12px}
+.glyph .gem{transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:no-preference){
+  .in .glyph .spin{animation:g-spin 9s linear infinite}
+  .in .glyph .sweep{animation:g-spin 4.8s linear infinite}
+  .in .glyph .gem{animation:g-gem 2.6s var(--ease-out) infinite}
+  .in .glyph .r2{animation:g-rad 3.2s var(--ease-out) infinite}
+  .in .glyph .r3{animation:g-rad 3.2s var(--ease-out) .5s infinite}
+  .svc-row:hover .glyph .spin{animation-duration:2.6s}
+  .svc-row:hover .glyph .sweep{animation-duration:1.7s}
+}
+@keyframes g-spin{to{transform:rotate(360deg)}}
+@keyframes g-gem{0%,100%{opacity:.45;transform:scale(.8)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes g-rad{0%{opacity:.85;transform:scale(1)}70%,100%{opacity:0;transform:scale(1.13)}}
 
 /* ---------- services index ---------- */
 .svc-lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:60ch;margin:calc(-1 * var(--s-4)) 0 var(--s-8);line-height:1.6}
