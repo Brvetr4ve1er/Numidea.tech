@@ -3,6 +3,13 @@
 All notable changes to the Numidea Labs knowledge base. Newest first.
 Format: `vMAJOR.MINOR — YYYY-MM-DD`.
 
+## v0.2 — 2026-06-22 — Contact form fixed
+- **Resolved KB-14-001** (critical): the contact form now delivers leads via a
+  `mailto:` handoff to `hello@numidealabs.com` instead of silently dropping them;
+  success copy rewritten to be honest. Updated Domains 7, 8, 10, 14 accordingly.
+- Residual/open: no server-side capture, no conversion analytics (upgrade path:
+  Web3Forms/Formspree). README still has Neon Noir doc-drift.
+
 ## v0.1 — 2026-06-22 — First edition
 - Created `knowledge-base/` with the full 15-domain structure + glossary + index.
 - Populated **verified** content for Domains 1 (Identity), 2 (Brand), 5 (Product),

@@ -21,8 +21,9 @@ Local network and the work itself are the implied top-of-funnel.
 
 ## KB-08-003 · Instrumentation (verified — and a problem)
 - 🔴 **No analytics/tracking installed** on the site (no GA/Plausible/etc.).
-- 🔴 **Contact form delivers nothing** (front-end demo only — Domain 7/14). The
-  marketing funnel currently has **no measurement and no working capture endpoint**.
+- ✅ **Contact form now delivers leads** via `mailto:` handoff (fixed 2026-06-22 —
+  Domain 7/14). Residual: no server-side capture and **no conversion measurement**
+  yet, so the funnel is functional but still **unmeasured**.
 
 > 🔴 SCAFFOLD: No documented acquisition channels, paid performance, social presence,
 > CRM, email/push, referral program, or influencer activity. Historical campaign

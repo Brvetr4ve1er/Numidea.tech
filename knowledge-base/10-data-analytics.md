@@ -25,7 +25,9 @@ tags: [kpi, metrics, analytics, instrumentation]
 
 ## KB-10-002 · Instrumentation status (verified)
 - 🔴 **No web analytics installed.** No product/marketing telemetry on the site.
-- 🔴 **No lead capture** (form is a front-end demo). → No funnel/conversion data.
+- 🟡 **Lead capture works but is unmeasured.** The form now delivers via `mailto:`
+  (fixed 2026-06-22), but there is no server-side capture or conversion tracking, so
+  funnel/conversion data still cannot be computed.
 
 ## KB-10-003 · Internal metrics capability (verified)
 The team *can* build measurement (Family II/III: pipelines, dashboards, data science,

@@ -62,7 +62,7 @@
       'form.errEmail': 'Ajoutez un email pour qu\'on puisse répondre.',
       'form.errEmailValid': 'Cet email a l\'air incomplet — vérifiez-le.',
       'form.errMsg': 'Dites-nous une ligne sur le projet.',
-      'form.success': 'Reçu. On revient vers vous sous 24h.',
+      'form.success': 'Votre email est prêt dans votre messagerie — envoyez-le et on revient sous 24h.',
       'footer.signoff': 'Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.',
       'footer.rights': '© 2026 Numidea Labs · Tous droits réservés',
       'footer.tag': 'Rooted in Numidia · built on ideas'
@@ -118,7 +118,7 @@
       'form.errEmail': 'Add an email so we can reply.',
       'form.errEmailValid': 'That email looks incomplete — check it.',
       'form.errMsg': 'Give us one line about the project.',
-      'form.success': 'Got it. We\'ll be back to you within 24h.',
+      'form.success': 'Your email is ready in your mail app — hit send and we\'ll reply within 24h.',
       'footer.signoff': 'Built in Bordj Bou Arréridj, with black coffee and TypeScript.',
       'footer.rights': '© 2026 Numidea Labs · All rights reserved',
       'footer.tag': 'Rooted in Numidia · built on ideas'
@@ -174,7 +174,7 @@
       'form.errEmail': 'أضف بريداً لنتمكّن من الردّ.',
       'form.errEmailValid': 'يبدو هذا البريد ناقصاً — تحقّق منه.',
       'form.errMsg': 'أخبرنا بسطر عن المشروع.',
-      'form.success': 'وصلتنا. سنعود إليك خلال ٢٤ ساعة.',
+      'form.success': 'بريدك جاهز في تطبيق البريد — أرسله وسنعود إليك خلال ٢٤ ساعة.',
       'footer.signoff': 'بُني في برج بوعريريج، بقهوة سوداء و TypeScript.',
       'footer.rights': '© ٢٠٢٦ نوميديا لابز · كل الحقوق محفوظة',
       'footer.tag': 'جذورها في نوميديا · مبنيّة على الأفكار'
@@ -645,7 +645,13 @@
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err('email', 'form.errEmailValid'); ok = false; }
         if (!msg) { err('message', 'form.errMsg'); ok = false; }
         if (!ok) return;
-        // front-end demo: swap form for the designed success state
+        // Static site, no backend: hand the lead off to the visitor's mail client,
+        // pre-filled to hello@numidealabs.com. Only show success after the handoff.
+        var subject = 'Numidea Labs · ' + name;
+        var body = name + ' <' + email + '>\n\n' + msg;
+        window.location.href = 'mailto:hello@numidealabs.com'
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(body);
         form.style.display = 'none';
         if (success) success.classList.add('show');
       });

@@ -12,16 +12,23 @@ tags: [failures, mistakes, lessons, never-again, bugs, debt]
 > The "never rediscover this" list. Captures real, verified defects and corrected
 > mistakes — plus the structure to log future ones.
 
-## KB-14-001 · 🔴 Contact form silently drops every lead (OPEN, critical)
-- **What:** The contact form (`assets/app.js`) validates input and shows a designed
-  success state but performs **no submission** (no POST, no email, no service). Code
-  comment: "front-end demo."
-- **Impact:** Every prospect who fills the form believes they've reached Numidea;
-  **the message goes nowhere.** Direct revenue leak at the top of the funnel.
-- **Lesson / never-again:** A "success" state must never be shown unless data was
-  actually delivered. **Fix before any marketing push.** Add a real endpoint
-  (Formspree/Netlify Forms/serverless + email) and only show success on a 2xx.
-- `confidence: verified`. Status: **OPEN**.
+## KB-14-001 · Contact form silently dropped every lead (FIXED 2026-06-22)
+- **What:** The contact form (`assets/app.js`) validated input and showed a designed
+  success state but performed **no submission** (no POST, no email). Code comment:
+  "front-end demo." Every prospect believed they'd reached Numidea; the message went
+  nowhere — a direct revenue leak at the top of the funnel.
+- **Fix:** On valid submit the form now opens a **`mailto:` handoff** pre-filled to
+  `hello@numidealabs.com` (subject `Numidea Labs · <name>`, body = name/email/message),
+  and the success copy was rewritten to be honest ("your email is ready — hit send").
+  Chosen because the site is a static GitHub Pages build with no backend and the
+  owner opted for zero-signup delivery.
+- **Residual limitation:** Delivery depends on the visitor having a configured mail
+  client; it is **not** a server-side capture, and there is still **no analytics on
+  conversion**. For guaranteed background capture, upgrade to Web3Forms/Formspree
+  later (the handler is the single place to change).
+- **Lesson / never-again:** Never show a "success" state unless a real handoff/2xx
+  occurred. Audit every "it works" state against what actually happens.
+- `confidence: verified`. Status: **RESOLVED (mailto); upgrade path open.**
 
 ## KB-14-002 · Misleading "Live" labels (FIXED 2026-06-22)
 - **What:** 3 of 5 project cards displayed a "Live" pill + demo link, but only

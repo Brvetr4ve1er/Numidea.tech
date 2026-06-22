@@ -32,9 +32,10 @@ focus rings, keyboard order, semantic landmarks, `prefers-reduced-motion`); "one
 flourish per screen, then discipline."
 
 ## KB-07-004 · Operational risks (verified/inferred)
-- 🔴 **Contact form does not deliver leads.** `assets/app.js` validates and shows a
-  success state but performs **no POST/email** ("front-end demo"). Any lead submitted
-  is **silently lost**. *Highest-priority operational defect.* `confidence: verified`.
+- ✅ **Contact form lead delivery — FIXED 2026-06-22** (was: silently lost). Now hands
+  off via `mailto:` to `hello@numidealabs.com` on valid submit (see KB-14-001).
+  Residual: depends on the visitor's mail client; no server capture/analytics yet —
+  upgrade to Web3Forms/Formspree when warranted. `confidence: verified`.
 - **Bus factor / capacity:** 4 people own everything; single points of failure per
   function. `confidence: inferred`.
 - **Scraping dependency:** intelligence products depend on third-party sites
