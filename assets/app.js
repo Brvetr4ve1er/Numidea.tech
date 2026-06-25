@@ -35,6 +35,8 @@
       'proj3.cat': 'Industrie · Web', 'proj3.desc': 'Une présence statique nette, conçue pour convertir les demandes de devis.',
       'proj4.cat': 'Streaming · Commerce', 'proj4.desc': 'Une boutique de streaming avec paiement WhatsApp, pensée pour l\'acheteur algérien.',
       'proj5.cat': 'PWA · Supabase', 'proj5.desc': 'Une application web progressive offline-first, avec une vraie ingénierie en dessous.',
+      'proj6.cat': 'Voyage · Omra', 'proj6.desc': 'Une vitrine bilingue pour des voyages organisés et l\'Omra au départ de Constantine.',
+      'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'Une boutique de matériel gaming au branding affûté, pensée pour la conversion.',
       'work.live': 'Démo →', 'work.code': 'Code', 'work.soon': 'Bientôt', 'work.all': 'Voir tout le portfolio →',
       'how.kicker': '04 — Méthode',
       'how.title': 'Aucun <em>intermédiaire.</em>',
@@ -91,6 +93,8 @@
       'proj3.cat': 'Industrial · Web', 'proj3.desc': 'A sharp static presence engineered to convert quote requests.',
       'proj4.cat': 'Streaming · Commerce', 'proj4.desc': 'A streaming storefront with WhatsApp checkout, built for the Algerian buyer.',
       'proj5.cat': 'PWA · Supabase', 'proj5.desc': 'An offline-first progressive web app with real engineering underneath.',
+      'proj6.cat': 'Travel · Umrah', 'proj6.desc': 'A bilingual storefront for organized trips and Umrah departing from Constantine.',
+      'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'A sharp-branded gaming-gear store, built to convert.',
       'work.live': 'Live demo →', 'work.code': 'Code', 'work.soon': 'Soon', 'work.all': 'See the full portfolio →',
       'how.kicker': '04 — How we work',
       'how.title': 'No <em>middlemen.</em>',
@@ -147,6 +151,8 @@
       'proj3.cat': 'صناعة · ويب', 'proj3.desc': 'حضور ثابت دقيق مُصمَّم لتحويل طلبات عروض الأسعار.',
       'proj4.cat': 'بث · تجارة', 'proj4.desc': 'متجر بثّ مع دفع عبر واتساب، مبنيٌّ للمشتري الجزائري.',
       'proj5.cat': 'PWA · Supabase', 'proj5.desc': 'تطبيق ويب تقدّمي يعمل دون اتصال، بهندسة حقيقية تحته.',
+      'proj6.cat': 'سفر · عمرة', 'proj6.desc': 'واجهة ثنائية اللغة لرحلات منظَّمة والعمرة انطلاقاً من قسنطينة.',
+      'proj7.cat': 'تجارة · ألعاب', 'proj7.desc': 'متجر لعتاد الألعاب بهوية حادّة، مبنيٌّ للتحويل.',
       'work.live': 'عرض حيّ →', 'work.code': 'الكود', 'work.soon': 'قريباً', 'work.all': 'شاهد كل الأعمال →',
       'how.kicker': '٠٤ — كيف نعمل',
       'how.title': 'بلا <em>وسطاء.</em>',
@@ -231,7 +237,7 @@
       'portfolio.kicker': 'Portfolio', 'portfolio.title': 'Tout le <em>travail.</em>',
       'portfolio.close': 'Fermer', 'portfolio.searchLabel': 'Rechercher un projet', 'portfolio.searchPh': 'Rechercher…',
       'portfolio.all': 'Tout', 'portfolio.empty': 'Aucun projet ne correspond — essayez un autre terme.',
-      'cat.health': 'Santé', 'cat.travel': 'Voyage', 'cat.industrial': 'Industrie', 'cat.streaming': 'Streaming', 'cat.pwa': 'PWA'
+      'cat.health': 'Santé', 'cat.travel': 'Voyage', 'cat.industrial': 'Industrie', 'cat.streaming': 'Streaming', 'cat.commerce': 'Commerce', 'cat.pwa': 'PWA'
     },
     en: {
       'svc.lead': 'Ten capabilities, three families. We feature five up front — the depth waits for whoever digs.',
@@ -281,7 +287,7 @@
       'portfolio.kicker': 'Portfolio', 'portfolio.title': 'All the <em>work.</em>',
       'portfolio.close': 'Close', 'portfolio.searchLabel': 'Search projects', 'portfolio.searchPh': 'Search…',
       'portfolio.all': 'All', 'portfolio.empty': 'No project matches — try another term.',
-      'cat.health': 'Healthcare', 'cat.travel': 'Travel', 'cat.industrial': 'Industrial', 'cat.streaming': 'Streaming', 'cat.pwa': 'PWA'
+      'cat.health': 'Healthcare', 'cat.travel': 'Travel', 'cat.industrial': 'Industrial', 'cat.streaming': 'Streaming', 'cat.commerce': 'Commerce', 'cat.pwa': 'PWA'
     },
     ar: {
       'svc.lead': 'عشر قدرات، ثلاث عائلات. نُبرز خمساً في المقدّمة — والعمق ينتظر من يبحث.',
@@ -331,7 +337,7 @@
       'portfolio.kicker': 'بورتفوليو', 'portfolio.title': '<em>كل</em> الأعمال.',
       'portfolio.close': 'إغلاق', 'portfolio.searchLabel': 'ابحث عن مشروع', 'portfolio.searchPh': 'ابحث…',
       'portfolio.all': 'الكل', 'portfolio.empty': 'لا مشروع مطابق — جرّب كلمة أخرى.',
-      'cat.health': 'صحة', 'cat.travel': 'سفر', 'cat.industrial': 'صناعة', 'cat.streaming': 'بث', 'cat.pwa': 'PWA'
+      'cat.health': 'صحة', 'cat.travel': 'سفر', 'cat.industrial': 'صناعة', 'cat.streaming': 'بث', 'cat.commerce': 'تجارة', 'cat.pwa': 'PWA'
     }
   };
   Object.keys(EXTRA).forEach(function (l) {
