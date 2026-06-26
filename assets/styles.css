@@ -591,6 +591,57 @@ body.modal-open{overflow:hidden}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out)}
 .reveal.in{opacity:1;transform:none}
 
+/* ============================================================
+   PREMIUM PASS — atmosphere · depth · editorial rhythm
+   Additive layer (kept before @media so breakpoints still win).
+   Remove this block to revert to the flat baseline.
+   ============================================================ */
+
+/* 1 — tactile film grain over the whole void (premium dark texture) */
+html::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* deepen the atmosphere: add a brass crown-glow up top + a heavier floor vignette */
+body::before{background:
+  radial-gradient(46% 34% at 50% -8%, rgba(230,180,80,.13), transparent 72%),
+  radial-gradient(60% 50% at 85% 8%, rgba(189,9,39,.17), transparent 70%),
+  radial-gradient(50% 45% at 8% 25%, rgba(9,216,199,.12), transparent 70%),
+  radial-gradient(85% 70% at 50% 122%, rgba(8,16,28,.9), transparent 72%)}
+
+/* 2 — editorial rhythm: drop the flat hairline, draw a fading brass→teal divider */
+main.wrap>section{border-top:none}
+main.wrap>section+section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(100%,720px);height:1px;opacity:.8;
+  background:linear-gradient(90deg,transparent,var(--hairline-2) 16%,rgba(230,180,80,.55) 50%,var(--hairline-2) 84%,transparent)}
+
+/* 3 — full-bleed alternating surface bands so sections stop looking identical
+   (body{overflow-x:hidden} contains the 100vmax bleed) */
+section.band{position:relative}
+section.band::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(19,40,62,.34);
+  box-shadow:0 0 0 100vmax rgba(19,40,62,.34);clip-path:inset(0 -100vmax)}
+section.band+section.band::after{background:rgba(19,40,62,.34)}
+
+/* 4 — give every card family real depth instead of a flat 1px box */
+.proj,.member,.stack-col,.svc-row,.preview{
+  background-image:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,0) 38%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 24px 50px -32px rgba(0,0,0,.85)}
+.member{transition:transform var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
+.stack-col{transition:transform var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out)}
+.proj:hover,.member:hover,.stack-col:hover,.svc-row:hover{
+  border-color:rgba(52,208,232,.35);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 34px 64px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(52,208,232,.22), 0 0 34px -8px rgba(52,208,232,.28)}
+.member:hover,.stack-col:hover{transform:translateY(-4px)}
+
+/* 5 — sharper display type + a brass foil accent on the heading flourish */
+h2.sec{font-size:clamp(34px,4.8vw,62px);letter-spacing:-.025em}
+main.wrap>section h2.sec em{background:var(--grad-blood);-webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-fill-color:transparent}
+/* kicker: glowing node + gradient tick */
+.kicker::before{width:32px;background:linear-gradient(90deg,var(--crimson),transparent)}
+.kicker{gap:var(--s-2)}
+
+@media (prefers-reduced-motion:reduce){.member,.stack-col{transition:none}}
+
 /* ---------- responsive ---------- */
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr}
