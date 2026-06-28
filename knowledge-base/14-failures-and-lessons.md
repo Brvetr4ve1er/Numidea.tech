@@ -39,12 +39,14 @@ tags: [failures, mistakes, lessons, never-again, bugs, debt]
   is "proof over promises." Audit marketing claims against ground truth.
 - `confidence: verified`. Status: **RESOLVED**.
 
-## KB-14-003 · Documentation drift — README vs Arcanum (OPEN, minor)
-- **What:** `README.md` still documents "Neon Noir v2" as the design system after the
-  Arcanum rebrand.
-- **Lesson:** Update docs in the same change as the thing they describe. Schedule a
-  README refresh.
-- `confidence: verified`. Status: **OPEN**.
+## KB-14-003 · Documentation drift — README vs Arcanum (FIXED 2026-06-28)
+- **What:** `README.md` documented "Neon Noir v2" as *the* design system (and the
+  wrong font stack — Space Grotesk/IBM Plex) after the Arcanum rebrand.
+- **Fix:** Rewrote the README design-system section to Arcanum-primary (+ 4 alt
+  themes) with the real Geist/Cinzel/IBM Plex Arabic type stack; the `styles.css`
+  header comments were corrected in the same pass.
+- **Lesson:** Update docs in the same change as the thing they describe.
+- `confidence: verified`. Status: **RESOLVED**.
 
 ## KB-14-004 · Single-source-of-truth gaps (META)
 - **What:** Real names, finances, contracts, customer data, competitor and channel

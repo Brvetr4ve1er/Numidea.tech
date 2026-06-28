@@ -1,18 +1,19 @@
 /* ============================================================
-   NUMIDEA LABS — LANDING · v2 · NEON NOIR
+   NUMIDEA LABS — LANDING
    "Rooted in Numidia, built on ideas."
-   Tokens lifted verbatim from Design System v2.
+   Design-token system. :root holds the base palette (the "Neon
+   Noir" set); Arcanum is the primary theme applied by default
+   (<html data-theme="arcanum">). Each [data-theme] reskins the
+   tokens, so every rule that uses var(--token) reskins for free.
    ============================================================ */
 :root{
   /* — COLOR — */
   --void:#0D1A2F;
   --navy:#17364F;
   --plum:#411E3A;
-  --maroon:#500A1F;
   --crimson:#BD0927;
   --crimson-hi:#E11537;
   --teal:#09D8C7;
-  --teal-dim:#0BB6A8;
   --ice:#EAF2F4;
   --muted:#8FA1AE;
   --faint:#5A6B79;
@@ -46,13 +47,14 @@
 }
 
 /* ============================================================
-   THEME VARIATIONS — :root above is the default "Neon Noir".
-   Each [data-theme] re-skins the color tokens; everything that
-   references them reskins automatically.
+   THEME VARIATIONS — :root above is the "Neon Noir" base palette.
+   Arcanum (below) is the primary theme and ships applied by
+   default; the rest are user-selectable. Each [data-theme]
+   re-skins the color tokens and everything reskins automatically.
    ============================================================ */
 [data-theme="daylight"]{
-  --void:#F4F6F9;--navy:#FFFFFF;--plum:#EEF1F5;--maroon:#F5E7EB;
-  --crimson:#C20A26;--crimson-hi:#E11537;--teal:#0A9C8E;--teal-dim:#0E867B;
+  --void:#F4F6F9;--navy:#FFFFFF;--plum:#EEF1F5;
+  --crimson:#C20A26;--crimson-hi:#E11537;--teal:#0A9C8E;
   --ice:#0D1A2F;--muted:#51606E;--faint:#8496A4;--hairline:#E3E8ED;--hairline-2:#CCD6DD;
   --grad-blood:linear-gradient(135deg,#BD0927 0%,#7C0A22 55%,#411E3A 100%);
   --grad-noir:radial-gradient(120% 120% at 20% 0%,#FFFFFF 0%,#EEF2F6 45%,#E4EAF0 100%);
@@ -77,8 +79,8 @@
 [data-theme="daylight"] .modal-panel{box-shadow:0 40px 120px -30px rgba(13,26,47,.35)}
 
 [data-theme="mono"]{
-  --void:#0B0B0C;--navy:#161619;--plum:#1C1C20;--maroon:#232328;
-  --crimson:#E5533D;--crimson-hi:#F2674F;--teal:#D9D4C6;--teal-dim:#B9B3A2;
+  --void:#0B0B0C;--navy:#161619;--plum:#1C1C20;
+  --crimson:#E5533D;--crimson-hi:#F2674F;--teal:#D9D4C6;
   --ice:#ECECEC;--muted:#9A9AA2;--faint:#62626A;--hairline:#2A2A30;--hairline-2:#3A3A42;
   --grad-blood:linear-gradient(135deg,#E5533D 0%,#7A2A20 55%,#232328 100%);
   --grad-noir:radial-gradient(120% 120% at 20% 0%,#1C1C20 0%,#161619 40%,#0B0B0C 100%);
@@ -94,7 +96,7 @@
 [data-theme="mono"] body::after{opacity:.03}
 
 [data-theme="altneon"]{
-  --crimson:#F59E0B;--crimson-hi:#FBBF24;--teal:#A78BFA;--teal-dim:#8B5CF6;
+  --crimson:#F59E0B;--crimson-hi:#FBBF24;--teal:#A78BFA;
   --grad-blood:linear-gradient(135deg,#F59E0B 0%,#B45309 55%,#3B2A4A 100%);
   --grad-teal:linear-gradient(120deg,#A78BFA 0%,#8B5CF6 50%,#17364F 120%);
   --grad-text:linear-gradient(92deg,#A78BFA 0%,#EAF2F4 45%,#F59E0B 100%);
@@ -108,8 +110,8 @@
 
 /* ----- ARCANUM: arcane-blue + brass-gold, engraved Deco (primary identity) ----- */
 [data-theme="arcanum"]{
-  --void:#0A1420;--navy:#0F1E30;--plum:#13283E;--maroon:#1A3450;
-  --crimson:#E6B450;--crimson-hi:#F4D27A;--teal:#34D0E8;--teal-dim:#1FA8C4;
+  --void:#0A1420;--navy:#0F1E30;--plum:#13283E;
+  --crimson:#E6B450;--crimson-hi:#F4D27A;--teal:#34D0E8;
   --ice:#EAF1F8;--muted:#9DB2C6;--faint:#62788E;--hairline:#1C3550;--hairline-2:#27496B;
   --grad-blood:linear-gradient(135deg,#F4D27A 0%,#B07E2A 52%,#13283E 110%);
   --grad-noir:radial-gradient(120% 120% at 20% 0%,#15293F 0%,#0F1E30 45%,#0A1420 100%);
@@ -204,7 +206,6 @@ html[dir="rtl"] .kicker::before{order:2}
 h2.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(32px,4.4vw,56px);letter-spacing:-.02em;line-height:1.04;margin-bottom:var(--s-7);max-width:18ch}
 /* section-head emphasis kept quiet — the flourish is reserved for hero + contact */
 h2.sec em{font-family:inherit;font-style:normal;color:inherit}
-.note{font-family:var(--font-mono);font-size:12px;color:var(--faint);margin-top:var(--s-5);line-height:1.7}
 
 /* ---------- scroll progress ---------- */
 .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad-blood);box-shadow:0 0 10px rgba(189,9,39,.6);z-index:200}

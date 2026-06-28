@@ -37,7 +37,7 @@ and vanilla JavaScript, no framework, no build step. Open `index.html` and it ru
 index.html            # the page
 404.html              # designed not-found page
 assets/
-  styles.css          # design tokens (Neon Noir v2) + layout
+  styles.css          # design tokens (Arcanum + 4 alt themes) + layout
   app.js              # i18n, nav, count-ups, reveal, portfolio modal, form
   favicon.svg         # gradient signature mark
   og.svg              # social share image
@@ -70,13 +70,16 @@ npx serve .
 Then open <http://localhost:8000>. (Opening `index.html` directly works too,
 but a server is recommended so fonts and relative paths resolve cleanly.)
 
-### Design system — Neon Noir v2
+### Design system — Arcanum (+ 4 alt themes)
 
-- **Color:** deep navy/maroon space (`--void` `#0D1A2F`), crimson for the shout
-  (`--crimson` `#BD0927`), teal as rationed neon (`--teal` `#09D8C7`).
-- **Type:** Space Grotesk for display/headings, IBM Plex Sans for body,
-  IBM Plex Mono for data; IBM Plex Sans Arabic for the RTL experience. Swiss /
-  engineering — confident and technical, no fashion serif.
+- **Color:** one tokenised palette that reskins per theme. **Arcanum** ships
+  applied by default — arcane-blue space (`--void` `#0A1420`) with brass-gold as
+  the flourish (`--crimson` `#E6B450`) and electric teal as rationed neon
+  (`--teal` `#34D0E8`). Four more ship in the switcher: Neon Noir, Daylight,
+  Monochrome, Alt-neon. Every rule reads `var(--token)`, so a theme is a swap.
+- **Type:** Geist for display/body, Geist Mono for data, Cinzel /
+  Cinzel Decorative for the engraved-Deco flourishes, IBM Plex Sans Arabic for
+  the RTL experience.
 - **Rule:** gradients are *light* (glows, beds, duotone), never chrome. One flourish
   per screen, then discipline.
 

@@ -74,8 +74,8 @@ Deep navy/maroon (`--void #0D1A2F`), crimson shout (`#BD0927`), teal rationed ne
 (`#09D8C7`); Space Grotesk + IBM Plex (historical). Still selectable as the "Neon
 Noir" theme. `confidence: verified`.
 
-> 🔴 DOC-DRIFT: `README.md` still describes "Neon Noir v2" as *the* design system;
-> it predates the Arcanum rebrand and should be updated.
+> ✅ DOC-DRIFT RESOLVED (2026-06-28): `README.md` and the `styles.css` header now
+> describe Arcanum as the primary theme with Neon Noir as one of four alternates.
 
 ---
 
