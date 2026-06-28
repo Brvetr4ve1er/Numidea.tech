@@ -640,6 +640,23 @@ main.wrap>section h2.sec em{background:var(--grad-blood);-webkit-background-clip
 .kicker::before{width:32px;background:linear-gradient(90deg,var(--crimson),transparent)}
 .kicker{gap:var(--s-2)}
 
+/* 6 — per-project brand accent: each live card echoes its own site's identity
+   (accent RGB triplet is set inline on the card: style="--accent:R,G,B") */
+.proj--brand .cat{color:rgb(var(--accent))}
+.proj--brand .browser span{color:rgba(var(--accent),.96)}
+.proj--brand .pill.live{color:rgb(var(--accent));border-color:rgba(var(--accent),.6)}
+.proj--brand .pill.live::before{background:rgb(var(--accent));box-shadow:0 0 8px rgb(var(--accent))}
+/* tint the screenshot's overlay sheen + a brand seam under the preview */
+.proj--brand .thumb:has(.shot)::before{background:
+  linear-gradient(180deg,rgba(10,20,32,.14),transparent 36%),
+  radial-gradient(circle at 74% 12%,rgba(var(--accent),.30),transparent 58%)}
+.proj--brand .thumb::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;z-index:4;
+  background:linear-gradient(90deg,transparent,rgba(var(--accent),.85),transparent)}
+/* hover lifts into the brand colour instead of the global teal */
+.proj--brand:hover{border-color:rgba(var(--accent),.45);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 34px 64px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(var(--accent),.32), 0 0 38px -8px rgba(var(--accent),.4)}
+.proj--brand .actions a:hover{border-color:rgb(var(--accent));color:rgb(var(--accent))}
+
 @media (prefers-reduced-motion:reduce){.member,.stack-col{transition:none}}
 
 /* ---------- responsive ---------- */

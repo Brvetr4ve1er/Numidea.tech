@@ -26,11 +26,13 @@ const OUT = join(ROOT, 'assets', 'previews');
 
 // slug → live URL (null = not live yet → keep the abstract cover)
 const PROJECTS = {
-  almaflowclim:  'https://almaflowclim.fr',
-  doctorcherfia: null, // 'https://doctorcherfia.dz'
-  alliancetravel: null, // 'https://alliance-travel.dz'
-  hammasat:      null, // 'https://hammasat.tv'
-  etoileest:     null, // 'https://etoile-est.app'
+  almaflowclim:   'https://almaflowclim.netlify.app',
+  alliancetravel: 'https://alliancetravel34.netlify.app',
+  nomara:         'https://nomaravoyages.netlify.app',
+  glaive:         'https://glaivestore.netlify.app',
+  doctorcherfia:  null, // not deployed yet
+  hammasat:       null, // not deployed yet
+  etoileest:      null, // not deployed yet
 };
 
 const W = 1280, H = 800; // 16:10, matches .proj .thumb aspect-ratio
@@ -44,11 +46,15 @@ async function run() {
 
   if (!targets.length) { console.log('Nothing to capture (no live URLs match).'); return; }
 
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({
+    executablePath: process.env.PW_CHROME || undefined,
+    proxy: process.env.HTTPS_PROXY ? { server: process.env.HTTPS_PROXY } : undefined,
+  });
   const ctx = await browser.newContext({
     viewport: { width: W, height: H },
     deviceScaleFactor: 2,            // retina capture, downscaled on output
     colorScheme: 'light',
+    ignoreHTTPSErrors: !!process.env.HTTPS_PROXY,
   });
 
   for (const [slug, url] of targets) {
