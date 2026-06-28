@@ -46,6 +46,7 @@
         <a href="#services" data-i18n="nav.services">Services</a>
         <a href="#work" data-i18n="nav.work">Projets</a>
         <a href="#team" data-i18n="nav.team">Équipe</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
       <div class="nav-right">
@@ -77,6 +78,7 @@
   <a href="#services" data-i18n="nav.services">Services</a>
   <a href="#work" data-i18n="nav.work">Projets</a>
   <a href="#team" data-i18n="nav.team">Équipe</a>
+  <a href="#faq" data-i18n="nav.faq">FAQ</a>
   <a href="#contact" data-i18n="nav.contact">Contact</a>
   <div class="lang" role="group" aria-label="Language">
     <button type="button" data-lang="fr" aria-pressed="true">FR</button>
@@ -525,6 +527,46 @@
   </section>
 
   <!-- ================= CONTACT ================= -->
+  <!-- ================= FAQ ================= -->
+  <section id="faq" aria-labelledby="faq-h">
+    <span class="kicker" data-i18n="faq.kicker">07 — FAQ</span>
+    <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
+    <p class="sec-lead" data-i18n="faq.lead">Ce qu'on nous demande avant de se lancer — répondu franchement.</p>
+    <div class="faq-list">
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq1.q">Combien de temps pour livrer ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq1.a">Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu'on a cadré le projet ensemble.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq2.q">C'est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq2.a">Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq3.q">Vous travaillez en quelles langues ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq3.a">Français, arabe et anglais — à l'oral, à l'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq4.q">Et après le lancement ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq4.a">On reste. On maintient ce qu'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq5.q">Travaillez-vous à distance ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq5.a">Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l'accès direct au builder.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq6.q">Qu'est-ce qui vous différencie d'une agence ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq6.a">Pas d'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer.</p></div>
+      </details>
+
+    </div>
+  </section>
+
   <section id="contact" class="contact" aria-labelledby="contact-h">
     <div class="contact-grid">
       <div>
@@ -571,6 +613,7 @@
       <a href="#services" data-i18n="nav.services">Services</a>
       <a href="#work" data-i18n="nav.work">Projets</a>
       <a href="#team" data-i18n="nav.team">Équipe</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
       <a href="mailto:hello@numidealabs.com">hello@numidealabs.com</a>
     </nav>
@@ -583,5 +626,16 @@
 </footer>
 
 <script src="assets/app.js" defer></script>
+<!-- FAQ structured data (rich results); mirrors the French default render -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Combien de temps pour livrer ?","acceptedAnswer":{"@type":"Answer","text":"Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu'on a cadré le projet ensemble."}},
+{"@type":"Question","name":"C'est combien ?","acceptedAnswer":{"@type":"Answer","text":"Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez."}},
+{"@type":"Question","name":"Vous travaillez en quelles langues ?","acceptedAnswer":{"@type":"Answer","text":"Français, arabe et anglais — à l'oral, à l'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement."}},
+{"@type":"Question","name":"Et après le lancement ?","acceptedAnswer":{"@type":"Answer","text":"On reste. On maintient ce qu'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne."}},
+{"@type":"Question","name":"Travaillez-vous à distance ?","acceptedAnswer":{"@type":"Answer","text":"Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l'accès direct au builder."}},
+{"@type":"Question","name":"Qu'est-ce qui vous différencie d'une agence ?","acceptedAnswer":{"@type":"Answer","text":"Pas d'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer."}}
+]}
+</script>
 </body>
 </html>

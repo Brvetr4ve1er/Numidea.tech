@@ -558,6 +558,33 @@ html[dir="rtl"] .cap h4{font-family:var(--font-ar-display)}
 html[dir="rtl"] .cap .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:600}
 .cap .brief{font-size:13px;color:var(--muted);line-height:1.5}
 
+/* ---------- FAQ ---------- */
+.faq-list{display:grid;gap:var(--s-4);max-width:840px}
+.faq-item{border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--navy);overflow:hidden;
+  background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 40%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 22px 46px -32px rgba(0,0,0,.85);
+  transition:border-color var(--dur-base) var(--ease-out)}
+.faq-item[open]{border-color:var(--hairline-2)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s-4);
+  padding:var(--s-5);font-family:var(--font-display);font-weight:600;font-size:clamp(16px,1.9vw,19px);
+  letter-spacing:-.01em;color:var(--ice);transition:color var(--dur-fast)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:var(--teal)}
+.faq-item summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:var(--r-sm)}
+html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
+.faq-item .q{flex:1}
+/* plus-mark that morphs to a minus when open */
+.faq-mark{position:relative;flex:none;width:18px;height:18px}
+.faq-mark::before,.faq-mark::after{content:"";position:absolute;background:var(--teal);border-radius:2px;
+  transition:transform var(--dur-base) var(--ease-out),opacity var(--dur-base)}
+.faq-mark::before{top:50%;left:0;right:0;height:2px;transform:translateY(-50%)}
+.faq-mark::after{left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%)}
+.faq-item[open] .faq-mark::after{transform:translateX(-50%) scaleY(0);opacity:0}
+.faq-item[open] summary{color:var(--teal)}
+.faq-a{padding:0 var(--s-5) var(--s-5);color:var(--muted);font-size:15px;line-height:1.65}
+.faq-a p{max-width:64ch}
+@media (prefers-reduced-motion:reduce){.faq-mark::before,.faq-mark::after{transition:none}}
+
 /* ---------- portfolio modal ---------- */
 .modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:var(--gutter)}
 .modal[hidden]{display:none}
