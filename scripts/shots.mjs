@@ -26,12 +26,12 @@ const OUT = join(ROOT, 'assets', 'previews');
 
 // slug → live URL (null = not live yet → keep the abstract cover)
 const PROJECTS = {
+  bordjsteel:     'https://bordjsteelb2b.netlify.app',
   almaflowclim:   'https://almaflowclim.netlify.app',
   alliancetravel: 'https://alliancetravel34.netlify.app',
   nomara:         'https://nomaravoyages.netlify.app',
   glaive:         'https://glaivestore.netlify.app',
   doctorcherfia:  null, // not deployed yet
-  hammasat:       null, // not deployed yet
   etoileest:      null, // not deployed yet
 };
 
