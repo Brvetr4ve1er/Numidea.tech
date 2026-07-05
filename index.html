@@ -425,26 +425,45 @@
     </div>
   </section>
 
-  <!-- ================= PORTFOLIO MODAL ================= -->
+  <!-- ================= PROJECT EXPLORER ================= -->
   <div class="modal" id="portfolio-modal" role="dialog" aria-modal="true" aria-labelledby="portfolio-title" hidden>
     <div class="modal-backdrop" data-close></div>
     <div class="modal-panel" role="document">
-      <header class="modal-head">
-        <div>
-          <span class="kicker" style="margin-bottom:6px" data-i18n="portfolio.kicker">Portfolio</span>
-          <h2 id="portfolio-title" class="font-swap-display" data-i18n="portfolio.title">Tout le <em>travail.</em></h2>
+
+      <!-- browse view -->
+      <div class="explorer" id="explorer-browse">
+        <header class="modal-head">
+          <div>
+            <span class="kicker" style="margin-bottom:6px" data-i18n="portfolio.kicker">Portfolio</span>
+            <h2 id="portfolio-title" class="font-swap-display" data-i18n="portfolio.title">Tout le <em>travail.</em></h2>
+          </div>
+          <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
+        </header>
+        <div class="modal-controls">
+          <label class="modal-search">
+            <span class="sr-only" data-i18n="portfolio.searchLabel">Rechercher un projet</span>
+            <input type="search" id="portfolio-search" data-i18n-ph="portfolio.searchPh" placeholder="Rechercher…" autocomplete="off">
+          </label>
+          <div class="modal-filters" id="portfolio-filters" role="group" aria-label="Catégories"></div>
         </div>
-        <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
-      </header>
-      <div class="modal-controls">
-        <label class="modal-search">
-          <span class="sr-only" data-i18n="portfolio.searchLabel">Rechercher un projet</span>
-          <input type="search" id="portfolio-search" data-i18n-ph="portfolio.searchPh" placeholder="Rechercher…" autocomplete="off">
-        </label>
-        <div class="modal-filters" id="portfolio-filters" role="group" aria-label="Catégories"></div>
+        <p class="explorer-count" id="explorer-count" aria-live="polite"></p>
+        <div class="modal-grid" id="portfolio-grid"></div>
+        <p class="modal-empty" id="portfolio-empty" hidden data-i18n="portfolio.empty">Aucun projet ne correspond — essayez un autre terme.</p>
       </div>
-      <div class="modal-grid" id="portfolio-grid"></div>
-      <p class="modal-empty" id="portfolio-empty" hidden data-i18n="portfolio.empty">Aucun projet ne correspond — essayez un autre terme.</p>
+
+      <!-- detail (case study) view -->
+      <div class="explorer-detail" id="explorer-detail" hidden>
+        <div class="detail-head">
+          <button type="button" class="detail-back" id="detail-back"><span aria-hidden="true">←</span> <span data-i18n="portfolio.back">Tous les projets</span></button>
+          <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
+        </div>
+        <div class="detail-body" id="detail-body" aria-labelledby="detail-title"></div>
+        <nav class="detail-nav" aria-label="Projets">
+          <button type="button" class="detail-prev" id="detail-prev"></button>
+          <button type="button" class="detail-next" id="detail-next"></button>
+        </nav>
+      </div>
+
     </div>
   </div>
 

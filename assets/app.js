@@ -264,6 +264,10 @@
       'portfolio.kicker': 'Portfolio', 'portfolio.title': 'Tout le <em>travail.</em>',
       'portfolio.close': 'Fermer', 'portfolio.searchLabel': 'Rechercher un projet', 'portfolio.searchPh': 'Rechercher…',
       'portfolio.all': 'Tout', 'portfolio.empty': 'Aucun projet ne correspond — essayez un autre terme.',
+      'portfolio.projects': 'projets', 'portfolio.view': 'Détails', 'portfolio.back': 'Tous les projets',
+      'portfolio.prev': 'Précédent', 'portfolio.next': 'Suivant',
+      'detail.visit': 'Voir le site en direct →', 'detail.soon': 'Bientôt en ligne',
+      'detail.problem': 'Le défi', 'detail.approach': 'L\'approche', 'detail.outcome': 'Le résultat',
       'cat.health': 'Santé', 'cat.travel': 'Voyage', 'cat.industrial': 'Industrie', 'cat.commerce': 'Commerce', 'cat.pwa': 'PWA'
     },
     en: {
@@ -314,6 +318,10 @@
       'portfolio.kicker': 'Portfolio', 'portfolio.title': 'All the <em>work.</em>',
       'portfolio.close': 'Close', 'portfolio.searchLabel': 'Search projects', 'portfolio.searchPh': 'Search…',
       'portfolio.all': 'All', 'portfolio.empty': 'No project matches — try another term.',
+      'portfolio.projects': 'projects', 'portfolio.view': 'Details', 'portfolio.back': 'All projects',
+      'portfolio.prev': 'Previous', 'portfolio.next': 'Next',
+      'detail.visit': 'Visit the live site →', 'detail.soon': 'Coming soon',
+      'detail.problem': 'The challenge', 'detail.approach': 'The approach', 'detail.outcome': 'The outcome',
       'cat.health': 'Healthcare', 'cat.travel': 'Travel', 'cat.industrial': 'Industrial', 'cat.commerce': 'Commerce', 'cat.pwa': 'PWA'
     },
     ar: {
@@ -364,6 +372,10 @@
       'portfolio.kicker': 'بورتفوليو', 'portfolio.title': '<em>كل</em> الأعمال.',
       'portfolio.close': 'إغلاق', 'portfolio.searchLabel': 'ابحث عن مشروع', 'portfolio.searchPh': 'ابحث…',
       'portfolio.all': 'الكل', 'portfolio.empty': 'لا مشروع مطابق — جرّب كلمة أخرى.',
+      'portfolio.projects': 'مشاريع', 'portfolio.view': 'التفاصيل', 'portfolio.back': 'كل المشاريع',
+      'portfolio.prev': 'السابق', 'portfolio.next': 'التالي',
+      'detail.visit': 'زيارة الموقع →', 'detail.soon': 'قريباً على الإنترنت',
+      'detail.problem': 'التحدّي', 'detail.approach': 'المقاربة', 'detail.outcome': 'النتيجة',
       'cat.health': 'صحة', 'cat.travel': 'سفر', 'cat.industrial': 'صناعة', 'cat.commerce': 'تجارة', 'cat.pwa': 'PWA'
     }
   };
@@ -373,6 +385,7 @@
 
   var SUPPORTED = ['fr', 'en', 'ar'];
   var DEFAULT_LANG = 'fr';
+  var explorerRerender = null; // set by the project explorer; re-renders it on language switch
 
   function applyLang(lang) {
     if (SUPPORTED.indexOf(lang) === -1) lang = DEFAULT_LANG;
@@ -407,6 +420,7 @@
     });
 
     try { localStorage.setItem('numidea-lang', lang); } catch (e) {}
+    if (typeof explorerRerender === 'function') explorerRerender();
   }
 
   /* ---------------- count-up ---------------- */
@@ -560,82 +574,200 @@
     if (menu) menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
 
-    // portfolio modal — filterable gallery built from the live work cards
+    // ===================== PROJECT EXPLORER =====================
+    // Single source of truth for every project. Text (cat/desc) resolves through
+    // the i18n dictionaries via catKey/descKey so it stays trilingual. Optional
+    // `story` per lang ({problem, approach, outcome}) powers the case-study view.
+    var PROJECTS = [
+      { slug: 'bordj-steel', name: 'Bordj Steel', cat: 'industrial', status: 'live',
+        url: 'https://bordjsteelb2b.netlify.app', shot: 'assets/previews/bordjsteel.webp',
+        accent: '214,55,48', tags: ['B2B', 'Corporate'], featured: true,
+        catKey: 'proj4.cat', descKey: 'proj4.desc' },
+      { slug: 'almaflowclim', name: 'AlmaFlowClim', cat: 'industrial', status: 'live',
+        url: 'https://almaflowclim.netlify.app', shot: 'assets/previews/almaflowclim.webp',
+        accent: '59,164,224', tags: ['Static', 'SEO'], featured: true,
+        catKey: 'proj3.cat', descKey: 'proj3.desc' },
+      { slug: 'alliance-travel', name: 'Alliance Travel', cat: 'travel', status: 'live',
+        url: 'https://alliancetravel34.netlify.app', shot: 'assets/previews/alliancetravel.webp',
+        accent: '95,214,134', tags: ['Brand', 'Funnel'], featured: true,
+        catKey: 'proj2.cat', descKey: 'proj2.desc' },
+      { slug: 'nomara-voyages', name: 'Nomara Voyages', cat: 'travel', status: 'live',
+        url: 'https://nomaravoyages.netlify.app', shot: 'assets/previews/nomara.webp',
+        accent: '34,180,104', tags: ['Bilingue', 'SEO'], featured: true,
+        catKey: 'proj6.cat', descKey: 'proj6.desc' },
+      { slug: 'glaive-store', name: 'Glaive Store', cat: 'commerce', status: 'live',
+        url: 'https://glaivestore.netlify.app', shot: 'assets/previews/glaive.webp',
+        accent: '255,90,31', tags: ['Commerce', 'Brand'], featured: true,
+        catKey: 'proj7.cat', descKey: 'proj7.desc' },
+      { slug: 'doctor-cherfia', name: 'Doctor Cherfia Clinic', cat: 'health', status: 'soon',
+        url: null, shot: null, accent: null, tags: ['Next.js', 'Booking'], featured: true,
+        catKey: 'proj1.cat', descKey: 'proj1.desc' },
+      { slug: 'etoile-est', name: 'Étoile de l\'Est', cat: 'pwa', status: 'soon',
+        url: null, shot: null, accent: null, tags: ['PWA', 'Supabase', 'Offline'], featured: true,
+        catKey: 'proj5.cat', descKey: 'proj5.desc' }
+    ];
+
     var pOpen = document.querySelector('#portfolio-open');
     var modal = document.querySelector('#portfolio-modal');
     if (pOpen && modal) {
+      var browseEl = modal.querySelector('#explorer-browse');
+      var detailEl = modal.querySelector('#explorer-detail');
       var grid = modal.querySelector('#portfolio-grid');
       var filtersEl = modal.querySelector('#portfolio-filters');
       var psearch = modal.querySelector('#portfolio-search');
       var pempty = modal.querySelector('#portfolio-empty');
+      var countEl = modal.querySelector('#explorer-count');
+      var detailBody = modal.querySelector('#detail-body');
       var panel = modal.querySelector('.modal-panel');
-      var sourceCards = document.querySelectorAll('#work .proj');
-      var lastFocus = null, curCat = 'all';
-      function pdict() { return I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG]; }
+      var lastFocus = null, curCat = 'all', curSlug = null, modalOpen = false;
+
+      function dict() { return I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG]; }
+      function t(k, fb) { var d = dict(); return d[k] != null ? d[k] : (fb || k); }
+      function bySlug(s) { for (var i = 0; i < PROJECTS.length; i++) if (PROJECTS[i].slug === s) return PROJECTS[i]; return null; }
+      function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+      function domainOf(p) { return p.url ? p.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : p.name; }
+      function statusPill(p) {
+        return p.status === 'live'
+          ? '<span class="pill live">Live</span>'
+          : '<span class="pill soon">' + esc(t('work.soon', 'Bientôt')) + '</span>';
+      }
+
+      function cardHTML(p) {
+        var d = dict();
+        var cat = d[p.catKey] || p.cat, desc = d[p.descKey] || '';
+        var brand = p.accent ? ' proj--brand' : '';
+        var style = p.accent ? ' style="--accent:' + p.accent + '"' : '';
+        var thumb = p.shot
+          ? '<div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>' + esc(domainOf(p)) + '</span></div>'
+            + '<img class="shot" src="' + p.shot + '" alt="" loading="lazy" decoding="async" width="1280" height="800"></div>'
+          : '<div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>' + esc(domainOf(p)) + '</span></div>'
+            + '<div class="art" aria-hidden="true"></div><span class="cover" aria-hidden="true">' + esc(p.name) + '</span></div>';
+        var pills = p.tags.map(function (x) { return '<span class="pill">' + esc(x) + '</span>'; }).join('') + statusPill(p);
+        return '<a class="proj' + brand + '" data-cat="' + esc(p.cat) + '" href="#/work/' + p.slug + '"' + style + '>'
+          + thumb
+          + '<div class="body"><span class="cat">' + esc(cat) + '</span><h3>' + esc(p.name) + '</h3>'
+          + '<p>' + esc(desc) + '</p><div class="pills">' + pills + '</div>'
+          + '<span class="proj-cta">' + esc(t('portfolio.view', 'Détails')) + ' →</span></div></a>';
+      }
 
       function buildFilters() {
-        var d = pdict(), cats = [], counts = {};
-        sourceCards.forEach(function (c) {
-          var k = c.getAttribute('data-cat') || 'other';
-          if (cats.indexOf(k) === -1) cats.push(k);
-          counts[k] = (counts[k] || 0) + 1;
-        });
+        var d = dict(), cats = [], counts = {};
+        PROJECTS.forEach(function (p) { if (cats.indexOf(p.cat) === -1) cats.push(p.cat); counts[p.cat] = (counts[p.cat] || 0) + 1; });
         filtersEl.innerHTML = '';
         function chip(key, label, count) {
           var b = document.createElement('button');
           b.type = 'button'; b.className = 'filter-chip';
           b.setAttribute('data-cat', key);
           b.setAttribute('aria-pressed', key === curCat ? 'true' : 'false');
-          b.innerHTML = label + ' <span class="ct">' + count + '</span>';
-          b.addEventListener('click', function () { curCat = key; updateChips(); apply(); });
+          b.innerHTML = esc(label) + ' <span class="ct">' + count + '</span>';
+          b.addEventListener('click', function () { curCat = key; renderGrid(); });
           return b;
         }
-        filtersEl.appendChild(chip('all', d['portfolio.all'] || 'Tout', sourceCards.length));
+        filtersEl.appendChild(chip('all', d['portfolio.all'] || 'Tout', PROJECTS.length));
         cats.forEach(function (k) { filtersEl.appendChild(chip(k, d['cat.' + k] || k, counts[k])); });
       }
-      function updateChips() {
+
+      function renderGrid() {
+        var d = dict(), term = (psearch.value || '').trim().toLowerCase();
+        var list = PROJECTS.filter(function (p) {
+          if (curCat !== 'all' && p.cat !== curCat) return false;
+          if (!term) return true;
+          var hay = (p.name + ' ' + (d[p.catKey] || '') + ' ' + (d[p.descKey] || '') + ' ' + p.tags.join(' ')).toLowerCase();
+          return hay.indexOf(term) !== -1;
+        });
         filtersEl.querySelectorAll('.filter-chip').forEach(function (b) {
           b.setAttribute('aria-pressed', b.getAttribute('data-cat') === curCat ? 'true' : 'false');
         });
+        grid.innerHTML = list.map(cardHTML).join('');
+        pempty.hidden = list.length !== 0;
+        countEl.textContent = list.length + ' / ' + PROJECTS.length + ' ' + (d['portfolio.projects'] || 'projets');
       }
-      function buildGrid() {
-        grid.innerHTML = '';
-        sourceCards.forEach(function (c) {
-          var clone = c.cloneNode(true);
-          clone.classList.remove('reveal', 'in');
-          grid.appendChild(clone);
-        });
+
+      function detailHTML(p) {
+        var d = dict(), lang = document.documentElement.getAttribute('lang');
+        var cat = d[p.catKey] || p.cat, desc = d[p.descKey] || '';
+        var brand = p.accent ? ' detail--brand' : '';
+        var style = p.accent ? ' style="--accent:' + p.accent + '"' : '';
+        var hero = p.shot
+          ? '<div class="detail-shot-wrap"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>' + esc(domainOf(p)) + '</span></div>'
+            + '<img class="detail-shot" src="' + p.shot + '" alt="' + esc(p.name) + '" width="1280" height="800"></div>'
+          : '<div class="detail-shot-wrap detail-art"><span class="cover">' + esc(p.name) + '</span></div>';
+        var pills = p.tags.map(function (x) { return '<span class="pill">' + esc(x) + '</span>'; }).join('') + statusPill(p);
+        var action = p.url
+          ? '<a class="btn btn-primary" href="' + p.url + '" target="_blank" rel="noopener">' + esc(t('detail.visit', 'Voir le site →')) + '</a>'
+          : '<span class="detail-soon">' + esc(t('detail.soon', 'Bientôt en ligne')) + '</span>';
+        var story = '';
+        if (p.story && p.story[lang]) {
+          var s = p.story[lang];
+          function sec(key, val) { return val ? '<div class="detail-sec"><h4>' + esc(t(key)) + '</h4><p>' + esc(val) + '</p></div>' : ''; }
+          var body = sec('detail.problem', s.problem) + sec('detail.approach', s.approach) + sec('detail.outcome', s.outcome);
+          if (body) story = '<div class="detail-story">' + body + '</div>';
+        }
+        return '<div class="detail-hero' + brand + '"' + style + '>' + hero + '</div>'
+          + '<div class="detail-info' + brand + '"' + style + '>'
+          + '<span class="cat">' + esc(cat) + '</span>'
+          + '<h3 id="detail-title" tabindex="-1">' + esc(p.name) + '</h3>'
+          + '<p class="detail-overview">' + esc(desc) + '</p>'
+          + '<div class="pills">' + pills + '</div>'
+          + '<div class="detail-actions">' + action + '</div>'
+          + story + '</div>';
       }
-      function apply() {
-        var term = (psearch.value || '').trim().toLowerCase(), shown = 0;
-        grid.querySelectorAll('.proj').forEach(function (card) {
-          var okCat = curCat === 'all' || card.getAttribute('data-cat') === curCat;
-          var okTerm = !term || card.textContent.toLowerCase().indexOf(term) !== -1;
-          var show = okCat && okTerm;
-          card.style.display = show ? '' : 'none';
-          if (show) shown++;
-        });
-        pempty.hidden = shown !== 0;
+
+      function renderDetail(slug) {
+        var p = bySlug(slug);
+        if (!p) { location.hash = '#/work'; return; }
+        curSlug = slug;
+        var d = dict();
+        detailBody.innerHTML = detailHTML(p);
+        var idx = PROJECTS.indexOf(p);
+        var prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
+        var next = PROJECTS[(idx + 1) % PROJECTS.length];
+        var pv = modal.querySelector('#detail-prev'), nx = modal.querySelector('#detail-next');
+        pv.innerHTML = '<span class="dn-dir">← ' + esc(d['portfolio.prev'] || 'Précédent') + '</span><span class="dn-name">' + esc(prev.name) + '</span>';
+        nx.innerHTML = '<span class="dn-dir">' + esc(d['portfolio.next'] || 'Suivant') + ' →</span><span class="dn-name">' + esc(next.name) + '</span>';
+        pv.onclick = function () { location.hash = '#/work/' + prev.slug; };
+        nx.onclick = function () { location.hash = '#/work/' + next.slug; };
+        browseEl.hidden = true; detailEl.hidden = false;
+        panel.scrollTop = 0;
+        var h = detailBody.querySelector('#detail-title'); if (h) h.focus();
       }
+
+      function showBrowse() { curSlug = null; detailEl.hidden = true; browseEl.hidden = false; }
+
       function openModal() {
+        if (modalOpen) return;
         lastFocus = document.activeElement;
-        curCat = 'all'; psearch.value = '';
-        buildFilters(); buildGrid(); apply();
-        modal.hidden = false;
-        document.body.classList.add('modal-open');
-        psearch.focus();
+        buildFilters(); renderGrid();
+        modal.hidden = false; document.body.classList.add('modal-open'); modalOpen = true;
       }
       function closeModal() {
-        modal.hidden = true;
-        document.body.classList.remove('modal-open');
+        if (!modalOpen) return;
+        modal.hidden = true; document.body.classList.remove('modal-open'); modalOpen = false;
+        showBrowse();
+        if (location.hash.indexOf('#/work') === 0) history.replaceState(null, '', location.pathname + location.search);
         if (lastFocus && lastFocus.focus) lastFocus.focus();
       }
-      pOpen.addEventListener('click', openModal);
+
+      // hash router — #/work opens the explorer, #/work/<slug> opens a case study.
+      // Uses a slash so it never clashes with section anchors like #work.
+      function route() {
+        var m = location.hash.match(/^#\/work(?:\/([\w-]+))?/);
+        if (!m) { if (modalOpen) closeModal(); return; }
+        openModal();
+        if (m[1]) renderDetail(m[1]);
+        else { showBrowse(); if (psearch) psearch.focus(); }
+      }
+      window.addEventListener('hashchange', route);
+
+      pOpen.addEventListener('click', function (e) { e.preventDefault(); location.hash = '#/work'; });
+      var backBtn = modal.querySelector('#detail-back');
+      if (backBtn) backBtn.addEventListener('click', function () { location.hash = '#/work'; });
       modal.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', closeModal); });
-      psearch.addEventListener('input', apply);
+      psearch.addEventListener('input', renderGrid);
+
       document.addEventListener('keydown', function (e) {
-        if (modal.hidden) return;
-        if (e.key === 'Escape') { closeModal(); return; }
+        if (!modalOpen) return;
+        if (e.key === 'Escape') { if (!detailEl.hidden) location.hash = '#/work'; else closeModal(); return; }
         if (e.key === 'Tab') {
           var f = Array.prototype.filter.call(
             panel.querySelectorAll('a[href],button:not([disabled]),input,[tabindex]:not([tabindex="-1"])'),
@@ -646,6 +778,15 @@
           else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
         }
       });
+
+      // re-render on language switch (called from applyLang)
+      explorerRerender = function () {
+        if (!modalOpen) return;
+        buildFilters(); renderGrid();
+        if (curSlug) renderDetail(curSlug);
+      };
+
+      route(); // honor a deep link on initial load
     }
 
     // contact form — designed validation + success
