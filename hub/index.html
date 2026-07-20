@@ -8,10 +8,11 @@
 <meta name="theme-color" content="#0a0b0d">
 <meta property="og:title" content="b4vetrave1er.exe // VOIDSPLUNKER.std">
 <meta property="og:description" content="Polymath developer & designer. Design, code, and everything between.">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('void-theme')||'dark';}catch(e){document.documentElement.dataset.theme='dark';}</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -114,11 +115,66 @@
     <a class="link" data-brand="email" href="mailto:hamissemohamedyasser@gmail.com"><span class="mono badge">@</span><span class="ltxt"><b>Email</b><i>hamissemohamedyasser</i></span><span class="go">↗</span></a>
   </div>
 
-  <footer class="hub-foot mono">
-    <span>© MMXXV — b4vetrave1er.exe</span>
-    <span class="dim">designed &amp; built in the void · DZ</span>
-  </footer>
 </main>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="site-foot" id="foot">
+  <div class="foot-top">
+    <span class="foot-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 2 22 12 12 22 2 12Z"/><circle cx="12" cy="12" r="3.4"/></svg>
+    </span>
+    <p class="foot-bio">
+      <b>VOIDSPLUNKER.std</b> is an agency of one. Design meets code; obsession meets output —
+      you work directly with me, <b>Hamisse Mohamed Yasser</b>, a <span class="acc">polymath developer &amp; designer</span>.
+      I build brand identities, immersive web, and the systems humming underneath. I believe design can tell
+      stories, evoke, and connect — and that a single mind, fully committed, beats a committee. Quality over quantity, always.
+    </p>
+  </div>
+
+  <nav class="foot-nav" aria-label="Footer">
+    <div class="foot-col"><h4>Design</h4><ul>
+      <li><a href="#">Behance</a></li><li><a href="#">Dribbble</a></li>
+      <li><a href="#">DeviantArt</a></li><li><a href="#">ArtStation</a></li><li><a href="#">Pinterest</a></li>
+    </ul></div>
+    <div class="foot-col"><h4>Dev</h4><ul>
+      <li><a href="../">Numidea Labs</a></li><li><a href="#">GitHub</a></li>
+      <li><a href="#">Read.cv</a></li><li><a href="#">LinkedIn</a></li>
+    </ul></div>
+    <div class="foot-col"><h4>Social</h4><ul>
+      <li><a href="#">Instagram</a></li><li><a href="#">X / Twitter</a></li>
+      <li><a href="#">YouTube</a></li><li><a href="#">TikTok</a></li><li><a href="#">Are.na</a></li>
+    </ul></div>
+    <div class="foot-col"><h4>Studio</h4><ul>
+      <li><a href="#links">The Archive</a></li><li><a href="../">Numidea Labs</a></li>
+      <li><a href="mailto:hamissemohamedyasser@gmail.com">Contact</a></li>
+    </ul></div>
+  </nav>
+
+  <div class="foot-mid">
+    <div class="foot-socials">
+      <a class="soc" href="mailto:hamissemohamedyasser@gmail.com" aria-label="Email">@</a>
+      <a class="soc" href="#" aria-label="X / Twitter">X</a>
+      <a class="soc" href="#" aria-label="Instagram">IG</a>
+      <a class="soc" href="#" aria-label="Behance">Bē</a>
+      <a class="soc" href="#" aria-label="GitHub">GH</a>
+      <a class="soc" href="#" aria-label="LinkedIn">in</a>
+      <a class="soc" href="#" aria-label="YouTube">YT</a>
+      <a class="soc" href="#" aria-label="Dribbble">dr</a>
+    </div>
+
+    <div class="theme-pill" role="group" aria-label="Theme &amp; scroll">
+      <button type="button" class="tp-sun" id="tpSun" aria-label="Light theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M19.1 4.9l-2.1 2.1M7 16.9l-2.1 2.1"/></svg></button>
+      <button type="button" class="tp-top" id="tpTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+      <button type="button" class="tp-moon" id="tpMoon" aria-label="Dark theme"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg></button>
+    </div>
+  </div>
+
+  <div class="foot-legal">
+    <span>©</span><span id="year">2025</span><span>— made in the void with</span>
+    <span class="heart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.3l-1.5-1.4C5 15 2 12.3 2 8.9 2 6.1 4.1 4 6.9 4c1.6 0 3.1.7 4.1 1.9C12 4.7 13.5 4 15.1 4 17.9 4 20 6.1 20 8.9c0 3.4-3 6.1-8.5 11z"/></svg></span>
+    <span>by</span> <b>b4vetrave1er.exe</b> <span class="dim">· VOIDSPLUNKER.std · DZ</span>
+  </div>
+</footer>
 
 <script src="app.js" defer></script>
 </body>

@@ -142,4 +142,29 @@
     var poses = portrait.querySelectorAll('.pose');
     for (var i = 0; i < poses.length; i++) poses[i].classList.toggle('on', i === n);
   };
+
+  /* ---------------- 6 · theme toggle (footer pill) ---------------- */
+  var htmlEl = document.documentElement;
+  function setTheme(t) { htmlEl.setAttribute('data-theme', t); try { localStorage.setItem('void-theme', t); } catch (e) {} }
+  var sun = document.getElementById('tpSun'), moon = document.getElementById('tpMoon'), toTop = document.getElementById('tpTop');
+  if (sun) sun.addEventListener('click', function () { setTheme('light'); });
+  if (moon) moon.addEventListener('click', function () { setTheme('dark'); });
+  if (toTop) toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+
+  /* ---------------- 7 · scroll-driven pose shift ---------------- */
+  var POSES = 4, heroEl = document.getElementById('hero'), curPose = -1, ticking = false;
+  function poseFromScroll() {
+    var h = (heroEl ? heroEl.offsetHeight : innerHeight) * 0.82;
+    var prog = Math.min(1, Math.max(0, (window.scrollY || window.pageYOffset || 0) / h));
+    var idx = Math.min(POSES - 1, Math.floor(prog * POSES));
+    if (idx !== curPose) { curPose = idx; if (window.VOID.setPose) window.VOID.setPose(idx); }
+  }
+  window.addEventListener('scroll', function () {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () { poseFromScroll(); ticking = false; });
+  }, { passive: true });
+  poseFromScroll();
+
+  /* ---------------- 8 · year ---------------- */
+  var yEl = document.getElementById('year'); if (yEl) yEl.textContent = new Date().getFullYear();
 })();
