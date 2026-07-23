@@ -50,10 +50,21 @@
       'm2.role': 'Spécialiste données', 'm2.detail': 'Pipelines, scraping, la couche intelligence.',
       'm3.role': 'Ventes & partenariats', 'm3.detail': 'Votre premier contact ; le traducteur entre l\'idée et le cadrage.',
       'm4.role': 'Représentant technique', 'm4.detail': 'Garde le build honnête et le client informé.',
-      'stack.kicker': '06 — Stack',
+      'founder.kicker': '06 — Fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
+      'founder.lead': 'Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.',
+      'founder.role': 'Designer & développeur · Fondateur', 'founder.years': '6 ans',
+      'founder.bio': 'Six ans à concevoir des identités, coder des interfaces et livrer des produits — de la marque au front-end au cloud. Je transforme le brief en build, et je reste quand c\'est en ligne.',
+      'founder.cvBtn': 'Voir le parcours ↴', 'founder.cvClose': 'Masquer le parcours ↑', 'founder.portfolio': 'Portfolio personnel ↗',
+      'founder.expLabel': 'Parcours', 'founder.skillsLabel': 'Compétences', 'founder.eduLabel': 'Formation',
+      'founder.skills': 'Design & identité · Web & front-end · Stratégie & contenu. Production ~20 % plus rapide grâce à l\'IA.',
+      'founder.edu': 'Informatique — Université Mohamed El Bachir El Ibrahimi · 2018–2024',
+      'founder.download': 'Télécharger le CV (PDF) ↓',
+      'founder.teamRow': 'Avec lui : <b>D</b> — données & pipelines · <b>S</b> — ventes & partenariats · <b>T</b> — représentant technique',
+      'fx1': 'Graphiste', 'fx2': 'Designer freelance', 'fx3': 'Web & social', 'fx4': 'Identité & web', 'fx5': 'Contenu & vidéo',
+      'stack.kicker': '07 — Stack',
       'stack.title': 'Le flex <em>discret.</em>',
       'stack.lead': 'La pile qu\'on utilise vraiment, choisie pour durer.',
-      'faq.kicker': '07 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
+      'faq.kicker': '08 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
       'faq.lead': 'Ce qu\'on nous demande avant de se lancer — répondu franchement.',
       'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu\'on a cadré le projet ensemble.',
       'faq2.q': 'C\'est combien ?', 'faq2.a': 'Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez.',
@@ -61,7 +72,7 @@
       'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. On maintient ce qu\'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne.',
       'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l\'accès direct au builder.',
       'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer.',
-      'contact.kicker': '08 — Contact',
+      'contact.kicker': '09 — Contact',
       'contact.title': 'On le <em>rend réel ?</em>',
       'contact.sub': 'Dites-nous ce que vous cherchez à concrétiser — l\'urgent, le cassé, l\'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.',
       'contact.reassure': 'Réponse < 24h · Bordj Bou Arréridj · DZ',
@@ -117,10 +128,21 @@
       'm2.role': 'Data specialist', 'm2.detail': 'Pipelines, scraping, the intelligence layer.',
       'm3.role': 'Sales & partnerships', 'm3.detail': 'Your first call; translator between idea and scope.',
       'm4.role': 'Technical representative', 'm4.detail': 'Keeps the build honest and the client informed.',
-      'stack.kicker': '06 — Stack',
+      'founder.kicker': '06 — Founder', 'founder.title': 'The studio has a <em>face.</em>',
+      'founder.lead': 'Behind Numidea: a designer-developer who conceives, codes and ships — no middleman.',
+      'founder.role': 'Designer & developer · Founder', 'founder.years': '6 yrs',
+      'founder.bio': 'Six years designing identities, coding interfaces and shipping products — brand to front-end to cloud. I turn the brief into the build, and I stay once it\'s live.',
+      'founder.cvBtn': 'View the track record ↴', 'founder.cvClose': 'Hide the track record ↑', 'founder.portfolio': 'Personal portfolio ↗',
+      'founder.expLabel': 'Experience', 'founder.skillsLabel': 'Skills', 'founder.eduLabel': 'Education',
+      'founder.skills': 'Design & identity · Web & front-end · Strategy & content. Production ~20% faster with AI.',
+      'founder.edu': 'Computer Science — Univ. Mohamed El Bachir El Ibrahimi · 2018–2024',
+      'founder.download': 'Download résumé (PDF) ↓',
+      'founder.teamRow': 'Alongside him: <b>D</b> — data & pipelines · <b>S</b> — sales & partnerships · <b>T</b> — technical rep',
+      'fx1': 'Graphic Designer', 'fx2': 'Freelance Designer', 'fx3': 'Web & social', 'fx4': 'Identity & web', 'fx5': 'Content & video',
+      'stack.kicker': '07 — Stack',
       'stack.title': 'The quiet <em>flex.</em>',
       'stack.lead': 'The stack we actually use, chosen to last.',
-      'faq.kicker': '07 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
+      'faq.kicker': '08 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
       'faq.lead': 'What people ask before they start — answered straight.',
       'faq1.q': 'How long does it take to ship?', 'faq1.a': 'It depends on scope — but we don\'t keep you waiting. Most sites ship in a few weeks, and you get a firm timeline the moment we\'ve scoped the project together.',
       'faq2.q': 'What does it cost?', 'faq2.a': 'Per project, never a copy-paste template. We quote once the scope is clear — a fixed price, no surprise fees. And we often build a working demo before you commit a dinar.',
@@ -128,7 +150,7 @@
       'faq4.q': 'What happens after launch?', 'faq4.a': 'We stay. We maintain what we ship and we answer when it breaks — in under 24 hours. No "good luck" on launch day.',
       'faq5.q': 'Do you work remotely?', 'faq5.a': 'Yes. We\'re based in Bordj Bou Arréridj but we deliver anywhere — including clients in France. Distance doesn\'t change your direct line to the builder.',
       'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman. The person who scopes your project is the one who codes and ships it — one team, design to deploy. And often, you see a real demo before you pay.',
-      'contact.kicker': '08 — Contact',
+      'contact.kicker': '09 — Contact',
       'contact.title': 'Let\'s make it <em>real.</em>',
       'contact.sub': 'Tell us what you\'re trying to make real — what\'s urgent, what\'s broken, what\'s due. We reply in under 24 hours, in French, English, or Arabic.',
       'contact.reassure': 'Response < 24h · Bordj Bou Arréridj · DZ',
@@ -184,10 +206,21 @@
       'm2.role': 'مختصّ بيانات', 'm2.detail': 'الأنابيب، الكشط، طبقة الذكاء.',
       'm3.role': 'مبيعات وشراكات', 'm3.detail': 'اتصالك الأول؛ المترجم بين الفكرة والنطاق.',
       'm4.role': 'ممثّل تقني', 'm4.detail': 'يبقي البناء صادقاً والعميل مُطّلعاً.',
-      'stack.kicker': '٠٦ — التقنيات',
+      'founder.kicker': '٠٦ — المؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
+      'founder.lead': 'خلف Numidea: مصمّم-مطوّر يتصوّر ويبرمج ويُسلّم — دون وسيط.',
+      'founder.role': 'مصمّم ومطوّر · المؤسّس', 'founder.years': '٦ سنوات',
+      'founder.bio': 'ستّ سنوات في تصميم الهويّات وبرمجة الواجهات وتسليم المنتجات — من العلامة إلى الواجهة إلى السحابة. أحوّل الفكرة إلى منتج، وأبقى بعد الإطلاق.',
+      'founder.cvBtn': 'عرض المسار ↴', 'founder.cvClose': 'إخفاء المسار ↑', 'founder.portfolio': 'المعرض الشخصي ↗',
+      'founder.expLabel': 'المسار', 'founder.skillsLabel': 'المهارات', 'founder.eduLabel': 'التعليم',
+      'founder.skills': 'تصميم وهويّة · ويب وواجهات · استراتيجية ومحتوى. إنتاج أسرع بنحو ٢٠٪ بفضل الذكاء الاصطناعي.',
+      'founder.edu': 'علوم الحاسوب — جامعة محمد البشير الإبراهيمي · ٢٠١٨–٢٠٢٤',
+      'founder.download': 'تحميل السيرة (PDF) ↓',
+      'founder.teamRow': 'إلى جانبه: <b>D</b> — البيانات والأنابيب · <b>S</b> — المبيعات والشراكات · <b>T</b> — الممثّل التقني',
+      'fx1': 'مصمّم غرافيك', 'fx2': 'مصمّم مستقل', 'fx3': 'ويب واجتماعي', 'fx4': 'هويّة وويب', 'fx5': 'محتوى وفيديو',
+      'stack.kicker': '٠٧ — التقنيات',
       'stack.title': 'التباهي <em>الهادئ.</em>',
       'stack.lead': 'التقنيات التي نستخدمها فعلاً، مختارة لتدوم.',
-      'faq.kicker': '٠٧ — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
+      'faq.kicker': '٠٨ — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
       'faq.lead': 'ما يُسأل قبل البدء — بإجابات صريحة.',
       'faq1.q': 'كم يستغرق الإنجاز؟', 'faq1.a': 'يعتمد على حجم المشروع — لكنّنا لا نُبقيك تنتظر. معظم المواقع تنطلق خلال أسابيع، وتحصل على موعد نهائي واضح بمجرّد أن نحدّد نطاق العمل معاً.',
       'faq2.q': 'كم التكلفة؟', 'faq2.a': 'حسب المشروع، لا قوالب جاهزة. نُسعّر بعد توضيح النطاق — سعر ثابت دون مفاجآت. وغالباً نبني نموذجاً يعمل قبل أن تلتزم.',
@@ -195,7 +228,7 @@
       'faq4.q': 'وماذا بعد الإطلاق؟', 'faq4.a': 'نبقى معك. نصون ما نُسلّمه ونردّ حين يتعطّل شيء — في أقل من ٢٤ ساعة. لا « حظّاً موفقاً » يوم الإطلاق.',
       'faq5.q': 'هل تعملون عن بُعد؟', 'faq5.a': 'نعم. مقرّنا في برج بوعريريج لكنّنا نُسلّم في كل مكان — بما في ذلك عملاء في فرنسا. البُعد لا يغيّر تواصلك المباشر مع من يبني.',
       'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط. من يحدّد نطاق مشروعك هو من يبرمجه ويُسلّمه — فريق واحد من التصميم إلى النشر. وغالباً ترى نموذجاً حقيقياً قبل أن تدفع.',
-      'contact.kicker': '٠٨ — تواصل',
+      'contact.kicker': '٠٩ — تواصل',
       'contact.title': '<em>نجعله حقيقة؟</em>',
       'contact.sub': 'أخبرنا بما تسعى إلى تحقيقه — العاجل، المتعطّل، المستحقّ. نردّ في أقل من ٢٤ ساعة، بالفرنسية أو الإنجليزية أو العربية.',
       'contact.reassure': 'ردّ < ٢٤ ساعة · برج بوعريريج · الجزائر',
@@ -787,6 +820,17 @@
       };
 
       route(); // honor a deep link on initial load
+    }
+
+    // founder — résumé accordion (max-height expand + label swap)
+    var cvBtn = document.querySelector('#cv-toggle'), cvPanel = document.querySelector('#cv-panel');
+    if (cvBtn && cvPanel) {
+      cvBtn.addEventListener('click', function () {
+        var open = cvPanel.classList.toggle('open');
+        cvBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        var d = I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG];
+        cvBtn.textContent = open ? (d['founder.cvClose'] || 'Close ↑') : (d['founder.cvBtn'] || 'View résumé ↴');
+      });
     }
 
     // contact form — designed validation + success
