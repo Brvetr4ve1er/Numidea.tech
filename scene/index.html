@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="arcanum">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numidea Labs — The work, in dimension</title>
+<meta name="description" content="A scroll-built 3D scene rendering Numidea Labs' real deployments, scene by scene.">
+<meta name="theme-color" content="#0A1420">
+<meta name="color-scheme" content="dark light">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('numidea-theme')||'arcanum';}catch(e){document.documentElement.dataset.theme='arcanum';}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- scroll runway (height set by JS: scenes × vh) -->
+<div class="runway" id="runway"></div>
+
+<div class="viewport">
+  <!-- ambience -->
+  <div class="hexbg" aria-hidden="true"></div>
+  <div class="glow glow-teal" id="glowT" aria-hidden="true"></div>
+  <div class="glow glow-gold" id="glowG" aria-hidden="true"></div>
+
+  <!-- 3D stage -->
+  <div class="stage" aria-hidden="true">
+
+    <!-- floor grid -->
+    <div class="depth" id="pxGrid">
+      <div class="floor" id="floor"></div>
+    </div>
+
+    <!-- deep: hex ring + numeral -->
+    <div class="depth" id="pxDeep">
+      <div class="hexring" id="hexring">
+        <svg viewBox="0 0 560 560" class="spin-slow">
+          <path d="M280 30 500 158v244L280 530 60 402V158Z" fill="none" class="s-teal" stroke-width="1.4"/>
+          <path d="M280 96 442 190v188L280 472 118 378V190Z" fill="none" class="s-gold" stroke-width="1"/>
+          <path d="M280 30v66M500 158l-58 32M500 402l-58-24M280 530v-58M60 402l58-24M60 158l58 32" class="s-teal2" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="numeral" id="numeral">◆</div>
+    </div>
+
+    <!-- devices -->
+    <div class="depth" id="pxDev">
+      <div class="shadow shadow-lap" id="lapSh"></div>
+      <div class="shadow shadow-ph" id="phSh"></div>
+
+      <!-- LAPTOP -->
+      <div class="dev-anchor"><div class="lap" id="lap">
+        <div class="lap-body">
+          <div class="lap-lid" id="lapLid">
+            <div class="lid-back"><span>◆</span></div>
+            <div class="lid-edge lid-top"></div>
+            <div class="lid-edge lid-left"></div>
+            <div class="lid-edge lid-right"></div>
+            <div class="lid-front">
+              <span class="cam"></span>
+              <div class="screen">
+                <div class="scr scr-boot" id="scrBoot">
+                  <div class="t-cy">$ numidea init --scene 3d</div>
+                  <div>loading case files ............ <span class="t-go">5/5</span></div>
+                  <div>honest statuses ............... <span class="t-cy">OK</span></div>
+                  <div>middlemen ..................... <span class="t-go">0 found</span></div>
+                  <div class="t-ice">scroll to render the work <span class="blink">▊</span></div>
+                </div>
+                <img class="scr shot" id="scr1" src="../assets/previews/almaflowclim.webp" alt="" width="1280" height="800">
+                <img class="scr shot" id="scr2" src="../assets/previews/bordjsteel.webp" alt="" width="1280" height="800">
+                <img class="scr shot" id="scr3" src="../assets/previews/alliancetravel.webp" alt="" width="1280" height="800">
+                <img class="scr shot" id="scr4" src="../assets/previews/nomara.webp" alt="" width="1280" height="800">
+                <div class="glare"></div>
+                <div class="statusbar"><span class="led" id="led"></span><span class="lbl" id="lapLabel">numidea — boot</span><span class="sp"></span><span class="st" id="lapStatus">READY</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="hinge"></div>
+          <div class="lap-base">
+            <div class="base-glow"></div>
+            <div class="keys"></div>
+            <div class="trackpad"></div>
+            <div class="base-front"><div class="notch"></div></div>
+            <div class="base-side base-left"></div>
+            <div class="base-side base-right"></div>
+          </div>
+        </div>
+      </div></div>
+
+      <!-- PHONE -->
+      <div class="dev-anchor"><div class="ph" id="ph">
+        <div class="ph-body">
+          <div class="ph-back"><div class="cammod"><span class="l1"></span><span class="l2"></span><span class="fl"></span></div><span class="mk">◆</span></div>
+          <div class="ph-edge ph-top"></div><div class="ph-edge ph-bottom"></div>
+          <div class="ph-edge ph-left"></div>
+          <div class="ph-edge ph-right"><span class="btn1"></span><span class="btn2"></span></div>
+          <div class="ph-front">
+            <div class="ph-screen">
+              <div class="ph-status"><span>09:41</span><span>5G ▮▮▮</span></div>
+              <div class="pscr pscr-splash" id="pscr0">
+                <span class="dia">◆</span>
+                <span class="nm">NUMIDEA</span>
+                <span class="sub">MOBILE-FIRST · RTL READY</span>
+              </div>
+              <div class="pscr pscr-ui" id="pscr1"><span class="ui-top"></span><span class="ui-h"></span><span class="ui-r"></span><span class="ui-r s"></span><span class="ui-cta">Devis gratuit</span><b class="ui-nm">AlmaFlowClim</b></div>
+              <div class="pscr pscr-ui" id="pscr2"><span class="ui-top"></span><span class="ui-h"></span><span class="ui-r"></span><span class="ui-r s"></span><span class="ui-cta">Nos produits</span><b class="ui-nm">Bordj Steel</b></div>
+              <div class="pscr pscr-ui" id="pscr3"><span class="ui-top"></span><span class="ui-h"></span><span class="ui-r"></span><span class="ui-r s"></span><span class="ui-cta">Réserver</span><b class="ui-nm">Alliance Travel</b></div>
+              <div class="pscr pscr-ui" id="pscr4"><span class="ui-top"></span><span class="ui-h"></span><span class="ui-r"></span><span class="ui-r s"></span><span class="ui-cta">Voir l'offre</span><b class="ui-nm">Nomara · Glaive</b></div>
+              <div class="glare"></div>
+              <div class="notch-ph"></div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- near: chips + ornaments + per-scene icons -->
+    <div class="depth" id="pxNear">
+      <div class="near-anchor">
+        <span class="chip chip-a" id="chipA">HTML/CSS/JS</span>
+        <span class="chip chip-b" id="chipB">ZERO DEPS</span>
+        <span class="chip chip-c" id="chipC">SEO</span>
+        <div class="orn" id="orn"></div>
+        <div class="icons" id="icons"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- corner brackets -->
+  <span class="br br-tl" aria-hidden="true"></span><span class="br br-tr" aria-hidden="true"></span>
+  <span class="br br-bl" aria-hidden="true"></span><span class="br br-br" aria-hidden="true"></span>
+
+  <!-- HUD -->
+  <nav class="hud-nav">
+    <a href="../" class="hud-logo"><span class="d">◆</span> NUMIDEA LABS</a>
+    <span class="hud-slash">/ THE WORK, IN DIMENSION</span>
+    <span class="sp"></span>
+    <span class="hud-scene">SCENE <b id="hudScene">01</b> / 06 · <span id="hudPct">0%</span></span>
+  </nav>
+  <div class="hud-line"><div class="hud-fill" id="hudFill"></div></div>
+  <div class="hud-tel" id="hudTel">LAP [ 0° / 0z ] · PH [ 0° / 0z ] · VEL [ 0.00 ]</div>
+  <div class="hud-tag">RAW STRUCTURE · HONEST STATUS · BBA 36.07°N 4.76°E</div>
+
+  <!-- captions -->
+  <div class="caps">
+    <div class="cap cap-center" id="cap0">
+      <div class="cap-kick">◆ SCROLL-BUILT · SCENE BY SCENE ◆</div>
+      <h1>The work,<br><span class="gold">in dimension.</span></h1>
+      <p class="cap-scroll">SCROLL ↓</p>
+    </div>
+
+    <div class="cap cap-left" id="cap1">
+      <div class="cap-kick">01 · INDUSTRIAL · FRANCE</div>
+      <h2>AlmaFlowClim</h2>
+      <p>Invisible online → a zero-dependency site engineered to convert quote requests. <b>In production.</b></p>
+      <a class="cap-link" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener">visit live ↗</a>
+    </div>
+
+    <div class="cap cap-right" id="cap2">
+      <div class="cap-kick">02 · STEEL · B2B · ALGERIA</div>
+      <h2>Bordj Steel</h2>
+      <p>Reputation built offline, invisible online → a full B2B corporate site: catalogue, references, careers. <b>Live.</b></p>
+      <a class="cap-link" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener">visit live ↗</a>
+    </div>
+
+    <div class="cap cap-left" id="cap3">
+      <div class="cap-kick">03 · TRAVEL · BORDJ BOU ARRÉRIDJ</div>
+      <h2>Alliance Travel</h2>
+      <p>WhatsApp chaos → brand, booking funnel, and a strategy built on <b>544,634 analyzed visa requests</b>.</p>
+      <a class="cap-link" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener">visit live ↗</a>
+    </div>
+
+    <div class="cap cap-right" id="cap4">
+      <div class="cap-kick">04 · TRAVEL · COMMERCE</div>
+      <h2>Nomara Voyages<br>+ Glaive Store</h2>
+      <p>A bilingual Omra showcase, and a gaming storefront with a sharp brand. <b>Both live.</b></p>
+      <a class="cap-link" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener">visit live ↗</a>
+    </div>
+
+    <div class="cap cap-center" id="cap5">
+      <h2 class="cap-out">Your project renders<br><span class="gold">next.</span></h2>
+      <p class="cap-outsub">A working demo of your idea, free, before you decide anything.</p>
+      <p class="cap-soon">In build: Doctor Cherfia Clinic · Étoile de l'Est</p>
+      <div class="cap-cta">
+        <a class="btn btn-primary" href="../#contact">Request the free Preview →</a>
+        <a class="btn btn-ghost" href="../#work">back to the site</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- reduced-motion / no-JS hint -->
+  <noscript><div class="nojs">This scene is scroll-driven and needs JavaScript. <a href="../#work">See the projects list instead ↗</a></div></noscript>
+</div>
+
+<div class="l2-switch" role="group" aria-label="Layout">
+  <span class="l2-switch-lbl">VIEW</span>
+  <a href="../" class="l2-sw">main</a>
+  <a href="../2a/" class="l2-sw">2a</a>
+  <a href="../2b/" class="l2-sw">2b</a>
+  <span class="l2-sw active">3D</span>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
