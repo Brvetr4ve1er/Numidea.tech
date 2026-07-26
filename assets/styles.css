@@ -604,6 +604,25 @@ html[dir="rtl"] .cap h4{font-family:var(--font-ar-display)}
 html[dir="rtl"] .cap .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:600}
 .cap .brief{font-size:13px;color:var(--muted);line-height:1.5}
 
+/* ---------- view switcher (four design directions + 3D) ---------- */
+.view-switch{position:fixed;right:16px;bottom:16px;z-index:250;display:flex;gap:5px;align-items:center;
+  background:color-mix(in srgb,var(--void) 90%,transparent);border:1px solid var(--hairline-2);
+  border-radius:var(--r-pill);padding:6px 8px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  box-shadow:0 18px 40px -24px rgba(0,0,0,.9)}
+.vs-lbl{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint);padding:0 4px}
+.vs-item{font-family:var(--font-mono);font-size:11px;color:var(--muted);border-radius:var(--r-pill);
+  padding:4px 9px;text-decoration:none;transition:all var(--dur-fast)}
+.vs-item.active{background:var(--crimson);color:var(--void);font-weight:700}
+a.vs-item:hover{background:rgba(230,180,80,.16);color:var(--crimson-hi)}
+a.vs-3d{border:1px solid rgba(52,208,232,.4);color:var(--teal)}
+a.vs-3d:hover{background:rgba(52,208,232,.14);color:var(--teal)}
+html[dir="rtl"] .view-switch{right:auto;left:16px}
+@media(max-width:560px){
+  .view-switch{right:10px;bottom:10px;padding:5px 6px;gap:3px}
+  .vs-lbl{display:none}
+  .vs-item{font-size:10.5px;padding:4px 7px}
+}
+
 /* ---------- 3D scene banner (inside the work section) ---------- */
 .scene-banner{display:flex;align-items:center;gap:var(--s-5);margin-top:var(--s-7);padding:var(--s-5) var(--s-6);
   background:var(--navy);border:1px solid rgba(230,180,80,.35);border-radius:var(--r-md);text-decoration:none;color:inherit;
