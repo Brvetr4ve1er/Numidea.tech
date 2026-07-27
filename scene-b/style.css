@@ -1,0 +1,147 @@
+/* ============================================================
+   APPROACH B — baked mockup.
+   The device holds ONE modest angle so the texture never smears;
+   all the "3D" comes from baked lighting: specular edges, glass
+   reflection, screen bloom, contact shadow and a floor mirror.
+   ============================================================ */
+:root{
+  --void:#0A1420;--navy:#0F1E30;--plum:#13283E;
+  --crimson:#E6B450;--crimson-hi:#F4D27A;--teal:#34D0E8;
+  --ice:#EAF1F8;--muted:#9DB2C6;--faint:#62788E;--hairline:#1C3550;--hairline-2:#27496B;
+  --acc:230,180,80;
+  --font-disp:"Cinzel",Georgia,serif;--font-body:"Geist",system-ui,sans-serif;--font-mono:"Geist Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+[data-theme="daylight"]{--void:#EEF1F5;--navy:#FFF;--plum:#E4EAF0;--crimson:#C20A26;--crimson-hi:#E11537;--teal:#0A9C8E;--ice:#0D1A2F;--muted:#51606E;--faint:#8496A4;--hairline:#E3E8ED;--hairline-2:#CCD6DD}
+[data-theme="mono"]{--void:#0B0B0C;--navy:#161619;--plum:#1C1C20;--crimson:#E5533D;--crimson-hi:#F2674F;--teal:#D9D4C6;--ice:#ECECEC;--muted:#9A9AA2;--faint:#62626A;--hairline:#2A2A30;--hairline-2:#3A3A42}
+[data-theme="altneon"]{--crimson:#F59E0B;--crimson-hi:#FBBF24;--teal:#A78BFA}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--void);color:var(--ice);font-family:var(--font-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--crimson-hi);text-decoration:none}
+img{display:block;max-width:100%}
+.sp{flex:1}
+.runway{height:600vh}
+.stagewrap{position:fixed;inset:0;overflow:hidden}
+
+/* ---- studio environment ---- */
+.backdrop{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 50% 118%, color-mix(in srgb,var(--plum) 80%,transparent), transparent 60%),
+    radial-gradient(90% 70% at 50% -18%, color-mix(in srgb,var(--navy) 90%,transparent), transparent 62%),
+    linear-gradient(180deg, var(--void), color-mix(in srgb,var(--void) 70%, #000) 78%)}
+.keylight{position:absolute;left:50%;top:-28%;width:130vw;height:110vh;transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(closest-side, rgba(var(--acc),.16), transparent 70%);
+  transition:background .5s linear,opacity .6s;opacity:.9}
+
+/* ---- rig ---- */
+/* offset right so the caption column is never sat on by the device */
+.rig{position:absolute;left:62%;top:50%;width:min(900px,60vw);
+  transform:translate(-50%,-50%) translateY(var(--riseY,0px)) scale(var(--rigS,1));
+  transition:transform .18s linear;will-change:transform}
+
+.bloom{position:absolute;left:50%;top:34%;width:120%;height:70%;transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(closest-side, rgba(var(--acc),.30), transparent 68%);filter:blur(28px);
+  transition:background .45s linear;opacity:.75}
+
+/* ---- the device: ONE fixed 3/4 angle ---- */
+.device{position:relative;transform-style:preserve-3d;
+  transform:perspective(2400px) rotateX(var(--rx,5deg)) rotateY(var(--ry,-13deg)) rotateZ(var(--rz,0deg))}
+.lid{position:relative;border-radius:16px 16px 6px 6px;padding:12px 12px 14px;
+  /* baked body shading: light from top-left, falloff to bottom-right */
+  background:
+    linear-gradient(152deg,
+      color-mix(in srgb,var(--ice) 26%, var(--plum)) 0%,
+      var(--plum) 16%,
+      var(--navy) 52%,
+      color-mix(in srgb,var(--void) 82%,#000) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.30),         /* top specular edge */
+    inset 1px 0 0 rgba(255,255,255,.12),         /* left rim light */
+    inset -1px 0 0 rgba(0,0,0,.55),              /* right shadow edge */
+    inset 0 -2px 6px rgba(0,0,0,.6),
+    0 42px 90px -34px rgba(0,0,0,.95)}
+.bezel{position:relative;border-radius:8px;padding:0;background:#05090f;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.07), inset 0 2px 10px rgba(0,0,0,.9)}
+.cam{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;
+  background:#0b1420;box-shadow:inset 0 0 3px rgba(var(--acc),.7);z-index:4}
+.panel{position:relative;aspect-ratio:16/10;border-radius:6px;overflow:hidden;background:#04080e;margin-top:9px}
+.panel img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.scr-dim{position:absolute;inset:0;background:#02050a;opacity:0;z-index:3;pointer-events:none}
+/* glass: a broad soft sheen plus a hard diagonal streak */
+.glass{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(118deg, rgba(255,255,255,.13) 0%, rgba(255,255,255,.05) 12%, transparent 30%,
+                    transparent 62%, rgba(var(--acc),.06) 86%, rgba(255,255,255,.09) 100%),
+    radial-gradient(120% 70% at 22% -10%, rgba(255,255,255,.10), transparent 55%)}
+.lid-edge{position:absolute;left:10px;right:10px;bottom:-3px;height:4px;border-radius:0 0 5px 5px;
+  background:linear-gradient(180deg, color-mix(in srgb,var(--ice) 18%,var(--plum)), var(--void))}
+
+/* deck seen almost edge-on (the fixed angle keeps this honest) */
+.deck{position:relative;height:26px;margin:0 auto;width:96%;border-radius:0 0 14px 14px;
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--ice) 20%, var(--plum)) 0%,
+    var(--navy) 34%,
+    color-mix(in srgb,var(--void) 88%,#000) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.26), 0 20px 34px -22px rgba(0,0,0,.95)}
+.deck-lip{position:absolute;left:0;right:0;top:0;height:2px;background:rgba(255,255,255,.18)}
+.trackpad{position:absolute;left:50%;top:8px;transform:translateX(-50%);width:16%;height:8px;border-radius:0 0 4px 4px;
+  background:linear-gradient(180deg,rgba(0,0,0,.5),transparent)}
+
+/* contact shadow — grounds the object */
+.contact{position:absolute;left:50%;bottom:-38px;width:78%;height:60px;transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.85), transparent 70%);filter:blur(14px)}
+
+/* floor mirror */
+.reflection{position:absolute;left:0;right:0;top:100%;margin-top:14px;pointer-events:none;
+  transform:scaleY(-1);opacity:.16;filter:blur(6px);
+  -webkit-mask-image:linear-gradient(180deg,transparent 4%,#000 88%);
+  mask-image:linear-gradient(180deg,transparent 4%,#000 88%)}
+.device.refl{transform:perspective(2400px) rotateX(var(--rx,5deg)) rotateY(var(--ry,-13deg))}
+.refl .lid{padding:12px}
+.refl .panel{margin-top:0}
+
+/* ---- caption ---- */
+.cap{position:absolute;left:clamp(20px,5vw,64px);top:50%;transform:translateY(-50%) translateY(var(--capY,0px));
+  max-width:min(300px,30vw);z-index:5;transition:opacity .3s;pointer-events:none}
+.cap-kick{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.22em;color:rgb(var(--acc))}
+.cap-name{font-family:var(--font-disp);font-weight:700;font-size:clamp(22px,3.2vw,34px);margin-top:10px;line-height:1.1}
+.cap-copy{font-size:13.5px;line-height:1.6;color:var(--muted);margin-top:10px}
+.cap-link{pointer-events:auto;display:inline-block;margin-top:14px;font-family:var(--font-mono);font-size:11px;
+  border:1px solid rgba(var(--acc),.5);border-radius:6px;padding:7px 13px;color:rgb(var(--acc))}
+.cap-link:hover{background:rgba(var(--acc),.14)}
+.cap-link[hidden]{display:none}
+
+/* ---- hud ---- */
+.hud{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:16px;
+  padding:20px clamp(20px,5vw,64px);z-index:6}
+.hud-logo{font-family:var(--font-disp);font-weight:700;font-size:15px;letter-spacing:.12em;color:var(--ice)}
+.hud-logo .d{color:var(--crimson)}
+.hud-tag,.hud-idx{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;color:var(--muted)}
+.hud-idx b{color:rgb(var(--acc));font-weight:400}
+.hud-line{position:absolute;top:62px;left:clamp(20px,5vw,64px);right:clamp(20px,5vw,64px);height:1px;
+  background:rgba(157,178,198,.16);z-index:6}
+.hud-fill{height:1px;width:0;background:linear-gradient(90deg,var(--crimson),var(--crimson-hi))}
+.dots{position:absolute;right:clamp(20px,5vw,64px);top:50%;transform:translateY(-50%);z-index:6;
+  display:flex;flex-direction:column;gap:10px}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(157,178,198,.3);transition:all .3s var(--ease)}
+.dot.on{background:rgb(var(--acc));transform:scale(1.5);box-shadow:0 0 12px rgba(var(--acc),.8)}
+.scrollcue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:6;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;color:var(--faint);transition:opacity .4s}
+
+/* ---- prototype comparison bar ---- */
+.cmp{position:fixed;right:14px;bottom:14px;z-index:50;display:flex;gap:5px;align-items:center;
+  background:rgba(10,20,32,.9);border:1px solid var(--hairline-2);border-radius:99px;padding:6px 8px;backdrop-filter:blur(8px)}
+.cmp-l{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;color:var(--faint);padding:0 4px}
+.cmp-i{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);border-radius:99px;padding:4px 9px}
+.cmp-i.active{background:var(--crimson);color:var(--void);font-weight:700}
+a.cmp-i:hover{background:rgba(230,180,80,.16);color:var(--crimson-hi)}
+
+@media(max-width:820px){
+  .rig{left:50%;width:92vw;top:42%}
+  .cap{left:0;right:0;top:auto;bottom:64px;max-width:none;transform:none;text-align:center;padding:0 20px}
+  .dots{flex-direction:row;right:auto;left:50%;top:auto;bottom:34px;transform:translateX(-50%)}
+  .hud-tag{display:none}
+  .scrollcue{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
