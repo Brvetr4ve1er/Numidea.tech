@@ -106,6 +106,7 @@
     pxGrid: $('pxGrid'), pxDeep: $('pxDeep'), pxDev: $('pxDev'), pxNear: $('pxNear'),
     scrBoot: $('scrBoot'), scr1: $('scr1'), scr2: $('scr2'), scr3: $('scr3'), scr4: $('scr4'),
     pscr0: $('pscr0'), pscr1: $('pscr1'), pscr2: $('pscr2'), pscr3: $('pscr3'), pscr4: $('pscr4'),
+    scrDim: $('scrDim'), pscrDim: $('pscrDim'),
     led: $('led'), lapLabel: $('lapLabel'), lapStatus: $('lapStatus'),
     chipA: $('chipA'), chipB: $('chipB'), chipC: $('chipC'),
     hudFill: $('hudFill'), hudScene: $('hudScene'), hudPct: $('hudPct'), hudTel: $('hudTel'),
@@ -209,15 +210,39 @@
     el.pxDev.style.transform = 'translate(' + px(mx * 14 * PAR) + ',' + px(my * 8 * PAR) + ') rotateY(' + (mx * 1.6 * PAR).toFixed(2) + 'deg)';
     el.pxNear.style.transform = 'translate(' + px(mx * 32 * PAR) + ',' + px(my * 20 * PAR) + ')';
 
-    /* screens */
+    /* screens — a true dissolve, never a double exposure.
+       The outgoing layer stays fully OPAQUE underneath and only the incoming
+       one fades in above it. (Fading both toward 50% stacks two translucent
+       textures and ghosts them together, which is what looked broken.)     */
     function fade(n) { return clamp01(1 - Math.abs(seg - n) * 1.5); }
-    var idle = Math.max(fade(0), fade(5));
-    el.scrBoot.style.opacity = idle;
-    el.scr1.style.opacity = fade(1); el.scr2.style.opacity = fade(2);
-    el.scr3.style.opacity = fade(3); el.scr4.style.opacity = fade(4);
-    el.pscr0.style.opacity = idle;
-    el.pscr1.style.opacity = fade(1); el.pscr2.style.opacity = fade(2);
-    el.pscr3.style.opacity = fade(3); el.pscr4.style.opacity = fade(4);
+    // Never blend two screenshots: the screen blanks, the texture hard-cuts at
+    // the darkest moment, then the screen comes back. Reads as a device
+    // changing apps, and makes ghosting structurally impossible.
+    var mix = tS >= .5 ? 1 : 0;
+    var dim = clamp01(1 - Math.abs(tS - .5) / .11);
+    function dissolve(layers) {
+      var want = [];                           // [element, opacity, z]
+      for (var n = 0; n < layers.length; n++) want.push([layers[n], 0, 0]);
+      want[i][1] = 1; want[i][2] = 1;          // base: opaque
+      if (i + 1 < layers.length) { want[i + 1][1] = mix; want[i + 1][2] = 2; }
+      // a layer can appear twice (boot is both scene 0 and scene 5) — keep the
+      // strongest request for each element rather than letting order decide
+      var seen = [], vals = [];
+      for (var w = 0; w < want.length; w++) {
+        var node = want[w][0]; if (!node) continue;
+        var at = seen.indexOf(node);
+        if (at === -1) { seen.push(node); vals.push([want[w][1], want[w][2]]); }
+        else if (want[w][1] > vals[at][0]) vals[at] = [want[w][1], want[w][2]];
+      }
+      for (var s2 = 0; s2 < seen.length; s2++) {
+        seen[s2].style.opacity = vals[s2][0].toFixed(3);
+        seen[s2].style.zIndex = vals[s2][1];
+      }
+    }
+    dissolve([el.scrBoot, el.scr1, el.scr2, el.scr3, el.scr4, el.scrBoot]);
+    dissolve([el.pscr0, el.pscr1, el.pscr2, el.pscr3, el.pscr4, el.pscr0]);
+    el.scrDim.style.opacity = dim.toFixed(3);
+    el.pscrDim.style.opacity = dim.toFixed(3);
 
     /* captions */
     for (var c = 0; c < 6; c++) {
@@ -228,10 +253,12 @@
       cap.style.visibility = o < .02 ? 'hidden' : 'visible';
     }
 
-    /* icon groups */
+    /* icon groups — they share slot positions, so swap fast through the middle
+       of the segment instead of leaving two sets half-visible the whole way */
     var scene = Math.round(seg);
+    var swap = clamp01((tS - .35) / .3);
     for (var g = 0; g < iconGroups.length; g++) {
-      var go = fade(g) * .9;
+      var go = g === i ? (1 - swap) * .9 : (g === i + 1 ? swap * .9 : 0);
       var nodes = iconGroups[g];
       for (var k = 0; k < nodes.length; k++) nodes[k].style.opacity = go.toFixed(3);
     }

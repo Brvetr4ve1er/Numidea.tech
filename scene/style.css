@@ -101,6 +101,9 @@ img.scr.shot{object-fit:cover;object-position:top center}
 .scr-boot{padding:24px;font-family:var(--font-mono);font-size:14.5px;line-height:2;color:var(--muted)}
 .t-cy{color:var(--teal)}.t-go{color:var(--crimson-hi)}.t-ice{color:var(--ice)}
 .blink{animation:ndblink 1.1s steps(1) infinite}
+/* screen blanks through the swap, so two textures are never blended */
+.scr-dim{position:absolute;inset:0;z-index:6;pointer-events:none;opacity:0;
+  background:radial-gradient(120% 100% at 50% 45%,color-mix(in srgb,var(--screen) 88%,#000),#000)}
 .glare{position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(112deg,rgba(234,241,248,.08),rgba(234,241,248,.02) 18%,transparent 34%,transparent 62%,color-mix(in srgb,var(--teal) 6%,transparent) 90%)}
 .statusbar{position:absolute;left:0;right:0;bottom:0;height:34px;display:flex;align-items:center;gap:8px;padding:0 12px;
