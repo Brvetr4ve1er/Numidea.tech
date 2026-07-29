@@ -899,6 +899,30 @@
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err('email', 'form.errEmailValid'); ok = false; }
         if (!msg) { err('message', 'form.errMsg'); ok = false; }
         if (!ok) return;
+
+        // Durable capture: best-effort insert into Supabase so the lead survives
+        // even when the visitor has no mail client configured (the mailto handoff
+        // below fails silently in that case — this doesn't depend on it at all).
+        // SUPABASE_URL/KEY are filled in once the project exists; until then this
+        // silently no-ops and behaviour is identical to the mailto-only original.
+        if (window.NUMIDEA_SUPABASE_URL && window.NUMIDEA_SUPABASE_KEY) {
+          try {
+            fetch(window.NUMIDEA_SUPABASE_URL + '/rest/v1/leads', {
+              method: 'POST',
+              keepalive: true,
+              headers: {
+                'Content-Type': 'application/json',
+                'apikey': window.NUMIDEA_SUPABASE_KEY,
+                'Authorization': 'Bearer ' + window.NUMIDEA_SUPABASE_KEY
+              },
+              body: JSON.stringify({
+                name: name, contact: email, message: msg,
+                lang: document.documentElement.getAttribute('lang') || 'fr'
+              })
+            }).catch(function () {}); // best-effort — never blocks the visitor
+          } catch (e2) {}
+        }
+
         // Static site, no backend: hand the lead off to the visitor's mail client,
         // pre-filled to hello@numidealabs.com. Only show success after the handoff.
         var subject = 'Numidea Labs · ' + name;

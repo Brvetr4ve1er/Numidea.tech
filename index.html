@@ -744,6 +744,14 @@
   </div>
 </footer>
 
+<!-- Lead-capture config (Supabase). Empty until the project exists — the
+     form falls back to mailto-only until these are filled in. Only the
+     publishable/anon key ever goes here: it's designed to be public, and
+     row-level security restricts it to insert-only, never read. -->
+<script>
+  window.NUMIDEA_SUPABASE_URL = "";
+  window.NUMIDEA_SUPABASE_KEY = "";
+</script>
 <script src="assets/app.js?v=202607282354" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
