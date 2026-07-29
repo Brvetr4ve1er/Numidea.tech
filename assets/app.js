@@ -53,9 +53,6 @@
       'scene.kicker': '◆ PLAN D\'ATELIER · PLANCHE PAR PLANCHE', 'scene.title': 'Les projets, comme un plan.',
       'scene.lead': 'Chaque projet dessiné comme une planche d\'ingénierie : cotes, statuts honnêtes, et le site en vrai.',
       'scene.cta': 'Ouvrir les planches →',
-      'rail.position': 'Un atelier logiciel à Bordj Bou Arréridj.<br>Design, code et déploiement sous un seul toit.<br><span class="ar-gold">Sans intermédiaire.</span>',
-      'rail.founder': 'Fondateur', 'rail.cv': 'CV ↗', 'rail.projects': 'projets', 'rail.live': 'en ligne',
-      'rail.reply': 'réponse', 'rail.sheets': '◆ Voir les planches →',
       'founder.kicker': '06 — Fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
       'founder.lead': 'Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.',
       'founder.role': 'Designer & développeur · Fondateur', 'founder.years': '6 ans',
@@ -137,9 +134,6 @@
       'scene.kicker': '◆ ATELIER DRAWING · SHEET BY SHEET', 'scene.title': 'The work, as a drawing.',
       'scene.lead': 'Every project drawn as an engineering sheet: dimensions, honest statuses, and the real site.',
       'scene.cta': 'Open the sheets →',
-      'rail.position': 'A software atelier in Bordj Bou Arréridj.<br>Design, code and deployment under one roof.<br><span class="ar-gold">No middlemen.</span>',
-      'rail.founder': 'Founder', 'rail.cv': 'CV ↗', 'rail.projects': 'projects', 'rail.live': 'live',
-      'rail.reply': 'reply', 'rail.sheets': '◆ See the sheets →',
       'founder.kicker': '06 — Founder', 'founder.title': 'The studio has a <em>face.</em>',
       'founder.lead': 'Behind Numidea: a designer-developer who conceives, codes and ships — no middleman.',
       'founder.role': 'Designer & developer · Founder', 'founder.years': '6 yrs',
@@ -221,9 +215,6 @@
       'scene.kicker': '◆ مخطط الورشة · لوحةً بلوحة', 'scene.title': 'الأعمال، كمخطط.',
       'scene.lead': 'كل مشروع مرسوم كلوحة هندسية: أبعاد، وحالات صادقة، والموقع الحقيقي.',
       'scene.cta': 'افتح اللوحات →',
-      'rail.position': 'استوديو برمجيات في برج بوعريريج.<br>تصميم وبرمجة ونشر تحت سقف واحد.<br><span class="ar-gold">بلا وسطاء.</span>',
-      'rail.founder': 'المؤسّس', 'rail.cv': 'السيرة ↗', 'rail.projects': 'مشاريع', 'rail.live': 'مباشر',
-      'rail.reply': 'ردّ', 'rail.sheets': '◆ عرض اللوحات →',
       'founder.kicker': '٠٦ — المؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
       'founder.lead': 'خلف Numidea: مصمّم-مطوّر يتصوّر ويبرمج ويُسلّم — دون وسيط.',
       'founder.role': 'مصمّم ومطوّر · المؤسّس', 'founder.years': '٦ سنوات',
@@ -838,24 +829,6 @@
       };
 
       route(); // honor a deep link on initial load
-    }
-
-    // atelier rail — scrollspy (desktop only; the rail is display:none below 1080px)
-    var railLinks = document.querySelectorAll('.ar-nav a[data-spy]');
-    if (railLinks.length && 'IntersectionObserver' in window) {
-      var spyMap = {}, spyOrder = [];
-      railLinks.forEach(function (a) {
-        var t = document.getElementById(a.getAttribute('data-spy'));
-        if (t) { spyMap[t.id] = a; spyOrder.push(t); }
-      });
-      var seen = {};
-      var railIO = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting; });
-        var hit = null;
-        for (var i = 0; i < spyOrder.length; i++) { if (seen[spyOrder[i].id]) { hit = spyOrder[i].id; break; } }
-        railLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-spy') === hit); });
-      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-      spyOrder.forEach(function (t) { railIO.observe(t); });
     }
 
     // founder — résumé accordion (max-height expand + label swap)
