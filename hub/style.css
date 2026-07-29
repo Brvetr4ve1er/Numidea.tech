@@ -168,6 +168,17 @@ a{color:inherit;text-decoration:none}
 .go{font-family:var(--mono);color:var(--faint);transition:.3s var(--ease)}
 .link:hover .go{color:var(--b,var(--acid));transform:translate(2px,-2px)}
 
+/* links with no URL yet: readable, clearly not-yet-live, and not clickable —
+   better than an <a href="#"> that looks broken when you click it */
+.link[data-pending]{cursor:default;opacity:.62;border-style:dashed}
+.link[data-pending]:hover{transform:none;border-color:var(--line-2);background:transparent;box-shadow:none}
+.link[data-pending]:hover .badge{background:var(--ink);color:var(--b,var(--acid));border-color:var(--line-2)}
+.link[data-pending]::after{display:none}
+.link[data-pending] .go{font-size:9px;letter-spacing:.14em;color:var(--faint)}
+.link[data-pending] .go::before{content:"SOON"}
+.link[data-pending] .go{visibility:hidden}
+.link[data-pending] .go::before{visibility:visible}
+
 /* per-brand accents */
 .link[data-brand="behance"]{--b:#3b7bff}
 .link[data-brand="dribbble"]{--b:#ea4c89}
