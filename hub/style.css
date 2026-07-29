@@ -196,6 +196,10 @@ a{color:inherit;text-decoration:none}
 .link[data-brand="tiktok"]{--b:#4de8e0}
 .link[data-brand="gumroad"]{--b:#ff90e8}
 .link[data-brand="email"]{--b:#b6ff2e}
+.link[data-brand="tumblr"]{--b:#8fb3d9}
+.link[data-brand="telegram"]{--b:#3fa9e8}
+.link[data-brand="etsy"]{--b:#f1641e}
+
 
 /* ============================= RESPONSIVE ============================= */
 @media (max-width:860px){
