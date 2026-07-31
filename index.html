@@ -28,12 +28,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cinzel+Decorative:wght@700&family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202607311426">
+<link rel="stylesheet" href="assets/styles.css?v=202607311459">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
   .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dashoffset:0!important}
-  .family-head .burn{transform:scaleX(1)!important}
 </style></noscript>
 </head>
 <body>
@@ -50,7 +49,7 @@
         <a href="#how" data-i18n="nav.about">À propos</a>
         <a href="#services" data-i18n="nav.services">Services</a>
         <a href="#work" data-i18n="nav.work">Projets</a>
-        <a href="#team" data-i18n="nav.team">Équipe</a>
+        <a href="#founder" data-i18n="nav.team">Équipe</a>
         <a href="#faq" data-i18n="nav.faq">FAQ</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
@@ -82,7 +81,7 @@
   <a href="#how" data-i18n="nav.about">À propos</a>
   <a href="#services" data-i18n="nav.services">Services</a>
   <a href="#work" data-i18n="nav.work">Projets</a>
-  <a href="#team" data-i18n="nav.team">Équipe</a>
+  <a href="#founder" data-i18n="nav.team">Équipe</a>
   <a href="#faq" data-i18n="nav.faq">FAQ</a>
   <a href="#contact" data-i18n="nav.contact">Contact</a>
   <div class="lang" role="group" aria-label="Language">
@@ -109,20 +108,12 @@
           <a class="btn btn-teal" href="#work" data-i18n="hero.cta2">Voir les preuves</a>
         </div>
       </div>
-      <div class="ship reveal" aria-hidden="true">
-        <div class="top"><i class="r"></i><i class="y"></i><i class="g"></i><span>numidea — deploy</span></div>
-        <div class="body">
-          <div class="line"><span class="pr">$</span> git push origin main</div>
-          <div class="line dim">› building… <span class="okk">done in 11s</span></div>
-          <div class="line"><span class="pr">deploy →</span> numidealabs.com</div>
-          <div class="line ok"><span class="dot"></span>200 OK <span class="ms">· 38ms · build ✓ ssl ✓</span></div>
-        </div>
-        <div class="ship-foot">
-          <div><b>99.9%</b><span>uptime</span></div>
-          <div><b>38ms</b><span>TTFB</span></div>
-          <div><b>100</b><span>Lighthouse</span></div>
-        </div>
-      </div>
+      <a class="hero-deck reveal" href="#work" aria-label="5 sites clients en ligne">
+        <img src="assets/previews/glaive.webp" alt="" width="1280" height="800" decoding="async">
+        <img src="assets/previews/alliancetravel.webp" alt="" width="1280" height="800" decoding="async">
+        <img src="assets/previews/bordjsteel.webp" alt="" width="1280" height="800" decoding="async">
+        <span class="hd-tag" data-i18n="hero.deckTag">5 sites clients en ligne — les voir →</span>
+      </a>
     </div>
   </section>
 
@@ -138,199 +129,10 @@
     <p class="proof-line" data-i18n="proof.line">De vrais clients. De vrais déploiements. Les preuves sont plus bas — ouvrez-les.</p>
   </section>
 
-  <!-- ================= TRUST STRIP ================= -->
-  <section class="trust reveal" aria-label="How we work">
-    <div class="trust-row">
-      <span class="trust-item"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.3"/><path d="M1.7 8h12.6"/><path d="M8 1.7c2.4 1.9 2.4 10.7 0 12.6c-2.4-1.9-2.4-10.7 0-12.6"/></svg><span data-i18n="trust.1">FR · EN · ع — trilingue</span></span>
-      <span class="trust-item"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.3"/><path d="M5 8.2l2 2 4-4.2"/></svg><span data-i18n="trust.2">Délais tenus</span></span>
-      <span class="trust-item"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.3"/><path d="M8 4.4V8l2.6 1.6"/></svg><span data-i18n="trust.3">Réponse &lt; 24h</span></span>
-      <span class="trust-item"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11"/><path d="M9.5 4.8L13.2 8l-3.7 3.2"/></svg><span data-i18n="trust.4">Zéro intermédiaire</span></span>
-      <span class="trust-item"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 4.6A6 6 0 1 0 14 9"/><path d="M13.6 2.4v3h-3"/></svg><span data-i18n="trust.5">Révisions incluses</span></span>
-      <span class="trust-item"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2l6 3-6 3-6-3 6-3z"/><path d="M2 9l6 3 6-3"/></svg><span data-i18n="trust.6">Tous formats livrés</span></span>
-    </div>
-  </section>
-
-  <!-- ================= SERVICES ================= -->
-  <section id="services" class="band" aria-labelledby="svc-h">
-    <span class="kicker" data-i18n="svc.kicker">02 — Services</span>
-    <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">Ce qu'on <em>rend réel.</em></h2>
-    <p class="svc-lead" data-i18n="svc.lead">Dix capacités, trois familles. On met cinq offres en avant — la profondeur attend ceux qui creusent.</p>
-
-    <!-- SIGNATURE OFFER — pinned -->
-    <article class="preview reveal">
-      <div class="glow" aria-hidden="true"></div>
-      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5" pathLength="1"/><path d="M3 9 L12 4 L21 9" pathLength="1"/><line x1="12" y1="4" x2="12" y2="19" pathLength="1"/><path d="M10.5 12.5 l4 1.8 l-4 1.8 z" pathLength="1"/></svg></span>
-      <div class="body">
-        <span class="tag" data-i18n="prev.tag">Offre signature</span>
-        <h3 data-i18n="prev.name">L'Aperçu</h3>
-        <p class="promise" data-i18n="prev.promise">Zéro risque. Juste la preuve.</p>
-        <p class="brief" data-i18n="prev.brief">On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.</p>
-        <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="prev.outcome">Le « oui » le plus facile que vous donnerez — parce que vous l'avez déjà vu.</span></p>
-      </div>
-    </article>
-
-    <div class="svc-index">
-      <aside class="family-rail" aria-label="Familles de services">
-        <a class="rail-item" href="#fam-build" data-i18n="rail1">I · Le Build</a>
-        <a class="rail-item" href="#fam-engine" data-i18n="rail2">II · L'Engine</a>
-        <a class="rail-item" href="#fam-mind" data-i18n="rail3">III · L'Esprit</a>
-        <p class="rail-foot" data-i18n="cap.hint">La profondeur, pour qui creuse.</p>
-      </aside>
-
-      <div class="svc-families">
-
-        <!-- FAMILY I — THE BUILD -->
-        <div class="family reveal" id="fam-build">
-          <div class="family-head">
-            <div class="burn" aria-hidden="true"></div>
-            <div class="lbl" data-i18n="fam1.label">Famille I — Le Build</div>
-            <div class="tag" data-i18n="fam1.tag">Là où l'idée devient ce qu'on ouvre, clique et achète.</div>
-          </div>
-
-          <article class="svc-row reveal">
-            <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="1.5" pathLength="1"/><line x1="3" y1="8.5" x2="21" y2="8.5" pathLength="1"/><circle cx="5.4" cy="6.5" r=".5" pathLength="1"/><circle cx="7.2" cy="6.5" r=".5" pathLength="1"/><path class="gem" d="M12 11 l2.3 2.6 l-2.3 2.6 l-2.3 -2.6 z" pathLength="1"/></svg></span>
-            <div>
-              <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
-              <h3 data-i18n="f1.name">Sites & applications web</h3>
-              <p class="promise" data-i18n="f1.promise">Le choix évident.</p>
-              <p class="brief" data-i18n="f1.brief">Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel.</p>
-              <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="f1.outcome">Une présence qui dépasse vos concurrents de trois catégories.</span></p>
-              <p class="proof"><b data-i18n="svc.proofLabel">Preuve</b><span data-i18n="f1.proof">Doctor Cherfia Clinic · almaflowclim.fr · Étoile de l'Est (PWA).</span></p>
-              <div class="tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">Tailwind</span><span class="pill">Vercel</span></div>
-            </div>
-          </article>
-
-          <article class="svc-row reveal">
-            <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle class="r3" cx="12" cy="12" r="9.5" pathLength="1"/><circle class="r2" cx="12" cy="12" r="6" pathLength="1"/><circle cx="12" cy="12" r="2.4" pathLength="1"/></svg></span>
-            <div>
-              <h3 data-i18n="f2.name">Identité & systèmes visuels</h3>
-              <p class="promise" data-i18n="f2.promise">La confiance avant le premier mot.</p>
-              <p class="brief" data-i18n="f2.brief">Logos, couleur, typo, motion et le kit design-system complet — tokens primitifs → sémantiques → composants, documentés.</p>
-              <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="f2.outcome">Une cohérence qui fait de votre client le leader de sa catégorie.</span></p>
-              <p class="proof"><b data-i18n="svc.proofLabel">Preuve</b><span data-i18n="f2.proof">Verdant (système clinique) · Éclat (système IPTV) · okami-streetwear.</span></p>
-              <div class="tags"><span class="pill">Identity</span><span class="pill">Design systems</span><span class="pill">Motion</span></div>
-            </div>
-          </article>
-        </div>
-
-        <!-- FAMILY II — THE ENGINE -->
-        <div class="family reveal" id="fam-engine">
-          <div class="family-head">
-            <div class="burn" aria-hidden="true"></div>
-            <div class="lbl" data-i18n="fam2.label">Famille II — L'Engine</div>
-            <div class="tag" data-i18n="fam2.tag">Votre moat — la machinerie que presque aucun studio local ne construit.</div>
-            <span class="moat-badge" title="The moat">◆ THE MOAT</span>
-          </div>
-
-          <article class="svc-row reveal">
-            <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><g class="spin"><circle cx="12" cy="12" r="4.2" pathLength="1"/><path d="M12 3.4 V6.2 M12 17.8 v2.8 M3.4 12 H6.2 M17.8 12 h2.8 M6 6 l2 2 M16 16 l2 2 M18 6 l-2 2 M6 18 l2 -2" pathLength="1"/></g><circle cx="12" cy="12" r="1.3" pathLength="1"/></svg></span>
-            <div>
-              <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
-              <h3 data-i18n="f3.name">Automatisation & pipelines</h3>
-              <p class="promise" data-i18n="f3.promise">Supprimez la corvée.</p>
-              <p class="brief" data-i18n="f3.brief">Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif qui dévore vos heures — on le fait tourner seul à 3h du matin. Python · Playwright · APIs · Claude.</p>
-              <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="f3.outcome">La corvée disparaît ; vos gens font le travail qui exige un humain.</span></p>
-              <p class="proof"><b data-i18n="svc.proofLabel">Preuve</b><span data-i18n="f3.proof">Pipeline Playwright → Claude : scrape → enrichissement FR/AR → génération de démos → ZIP par entreprise.</span></p>
-              <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill">APIs</span><span class="pill">Claude</span></div>
-            </div>
-          </article>
-
-          <article class="svc-row reveal">
-            <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" pathLength="1"/><circle cx="12" cy="12" r="4.8" pathLength="1"/><line class="sweep" x1="12" y1="12" x2="12" y2="3" pathLength="1"/><circle cx="15.6" cy="8.4" r=".9" pathLength="1"/></svg></span>
-            <div>
-              <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
-              <h3 data-i18n="f4.name">Intelligence marché & produit</h3>
-              <p class="promise" data-i18n="f4.promise">Voir le marché clairement.</p>
-              <p class="brief" data-i18n="f4.brief">Transformez le web ouvert en base de données. Veille concurrentielle, intelligence prix/produit, enrichissement de leads sur Maps, Facebook, Ouedkniss, Jumia, Instagram — structuré, scoré, requêtable.</p>
-              <div class="svc-stats">
-                <div><div class="n" data-count="54">54</div><div class="l" data-i18n="f4.statlabel">leads enrichis</div></div>
-              </div>
-              <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="f4.outcome">Des décisions sur preuves, pas sur intuition.</span></p>
-              <p class="proof"><b data-i18n="svc.proofLabel">Preuve</b><span data-i18n="f4.proof">Architecture d'intelligence produit e-commerce Algérie · base de leads enrichis.</span></p>
-              <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill">Maps</span><span class="pill">Scoring</span></div>
-            </div>
-          </article>
-        </div>
-
-        <!-- FAMILY III — THE MIND -->
-        <div class="family reveal" id="fam-mind">
-          <div class="family-head">
-            <div class="burn" aria-hidden="true"></div>
-            <div class="lbl" data-i18n="fam3.label">Famille III — L'Esprit</div>
-            <div class="tag" data-i18n="fam3.tag">Stratégie, systèmes et outils qui se composent.</div>
-          </div>
-
-          <article class="svc-row reveal">
-            <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19 V5 M4 19 H20" pathLength="1"/><path d="M5.5 16 L10 11 L13.5 13.5 L18.5 7" pathLength="1"/><path class="gem" d="M18.5 7 l1.7 1.7 l-1.7 1.7 l-1.7 -1.7 z" pathLength="1"/></svg></span>
-            <div>
-              <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
-              <h3 data-i18n="f5.name">Stratégie & conseil croissance</h3>
-              <p class="promise" data-i18n="f5.promise">De la donnée, pas des impressions.</p>
-              <p class="brief" data-i18n="f5.brief">Audits marketing complets, analyse de funnels, positionnement concurrentiel, feuilles de route — honnêtes, ROI d'abord, par phases. On fait les devoirs sur votre secteur avant l'appel.</p>
-              <div class="svc-stats">
-                <div><div class="n" data-count="544634">544,634</div><div class="l" data-i18n="f5.stat1label">demandes analysées</div></div>
-                <div><div class="n" data-count="35" data-suffix="%">35%</div><div class="l" data-i18n="f5.stat2label">taux de refus</div></div>
-              </div>
-              <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="f5.outcome">Vous arrêtez de deviner où l'argent fuit et vous le réparez par ordre d'impact.</span></p>
-              <p class="proof"><b data-i18n="svc.proofLabel">Preuve</b><span data-i18n="f5.proof">Audit marché Schengen Alliance Travel — funnel complet + feuille de route en 3 phases.</span></p>
-              <div class="tags"><span class="pill">Strategy</span><span class="pill">Funnels</span><span class="pill">Audits</span></div>
-            </div>
-          </article>
-        </div>
-
-        <!-- CAPABILITIES SHELF -->
-        <details class="capabilities">
-          <summary>
-            <span data-i18n="cap.summary">Voir toutes les capacités →</span>
-            <span class="hint" data-i18n="cap.hint">5 capacités de plus, pour qui creuse.</span>
-            <span class="chev" aria-hidden="true">›</span>
-          </summary>
-          <div class="cap-grid">
-            <div class="cap">
-              <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8 H19 L18 19 H6 Z" pathLength="1"/><path d="M8.5 8 V6.5 a3.5 3.5 0 0 1 7 0 V8" pathLength="1"/><path d="M9.5 13 l2 2 l3.5 -3.5" pathLength="1"/></svg></span>
-              <span class="fam" data-i18n="c1.fam">Le Build</span>
-              <h4 data-i18n="c1.name">Boutique & réservation</h4>
-              <p class="promise" data-i18n="c1.promise">De la visite au paiement.</p>
-              <p class="brief" data-i18n="c1.brief">Boutiques en ligne et systèmes de réservation pensés pour l'achat local — paiement WhatsApp, flux cash, Shopify headless si pertinent.</p>
-            </div>
-            <div class="cap">
-              <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1" pathLength="1"/><rect x="13" y="3" width="7" height="7" rx="1" pathLength="1"/><rect x="3" y="13" width="7" height="7" rx="1" pathLength="1"/><rect x="14.5" y="14.5" width="7" height="7" rx="1" pathLength="1"/></svg></span>
-              <span class="fam" data-i18n="c2.fam">Le Build</span>
-              <h4 data-i18n="c2.name">Design graphique & social</h4>
-              <p class="promise" data-i18n="c2.promise">On scroll, on s'arrête.</p>
-              <p class="brief" data-i18n="c2.brief">Packs social, carrousels, infographies, print — depuis un système visuel verrouillé, pour que tout vous ressemble.</p>
-            </div>
-            <div class="cap">
-              <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20 V4 M3 20 H21" pathLength="1"/><path d="M4 17 C9 16 11 8 20 5" pathLength="1"/><circle cx="7" cy="15" r="0.8" pathLength="1"/><circle cx="12" cy="11" r="0.8" pathLength="1"/><circle cx="16" cy="8" r="0.8" pathLength="1"/></svg></span>
-              <span class="fam" data-i18n="c3.fam">L'Engine</span>
-              <h4 data-i18n="c3.name">Data science & analytics</h4>
-              <p class="promise" data-i18n="c3.promise">Du signal dans le bruit.</p>
-              <p class="brief" data-i18n="c3.brief">Vrai travail statistique — modélisation économétrique, séries temporelles, prévision, dashboards. Analyse testée et défendable.</p>
-            </div>
-            <div class="cap">
-              <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="1.6" pathLength="1"/><circle cx="18" cy="8" r="1.6" pathLength="1"/><circle cx="8" cy="18" r="1.6" pathLength="1"/><circle cx="16" cy="17" r="1.6" pathLength="1"/><path d="M6.4 7 L16.6 8 M6 7.4 L7.2 16.5 M9.3 17.6 L14.8 16.8 M17 9.4 L16.4 15.4" pathLength="1"/></svg></span>
-              <span class="fam" data-i18n="c4.fam">L'Esprit</span>
-              <h4 data-i18n="c4.name">Systèmes de connaissance</h4>
-              <p class="promise" data-i18n="c4.promise">Une entreprise qui se souvient.</p>
-              <p class="brief" data-i18n="c4.brief">Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes pour le RAG.</p>
-            </div>
-            <div class="cap">
-              <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4 C6 4 8 11 4.5 12 C8 13 6 20 9 20" pathLength="1"/><path d="M15 4 C18 4 16 11 19.5 12 C16 13 18 20 15 20" pathLength="1"/><path d="M12 8 l-1.5 4 h3 l-1.5 4" pathLength="1"/></svg></span>
-              <span class="fam" data-i18n="c5.fam">L'Esprit</span>
-              <h4 data-i18n="c5.name">Outils & skills IA sur mesure</h4>
-              <p class="promise" data-i18n="c5.promise">Le logiciel qui construit votre logiciel.</p>
-              <p class="brief" data-i18n="c5.brief">Outils internes, générateurs et skills sur mesure propulsés par Claude — une tâche répétitive devient une usine en un clic.</p>
-            </div>
-          </div>
-        </details>
-
-      </div>
-    </div>
-  </section>
 
   <!-- ================= SELECTED WORK ================= -->
   <section id="work" aria-labelledby="work-h">
-    <span class="kicker" data-i18n="work.kicker">03 — Réalisations</span>
+    <span class="kicker" data-i18n="work.kicker">02 — Réalisations</span>
     <h2 class="sec font-swap-display" id="work-h" data-i18n="work.title">La preuve, <em>en direct.</em></h2>
     <p class="sec-lead" data-i18n="work.lead">Des sites réels, en ligne, qu'on peut cliquer — pas des maquettes.</p>
     <div class="work-grid">
@@ -484,8 +286,130 @@
     </div>
   </div>
 
+  <!-- ================= SERVICES ================= -->
+  <section id="services" class="band" aria-labelledby="svc-h">
+    <span class="kicker" data-i18n="svc.kicker">03 — Services</span>
+    <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">Ce qu'on <em>rend réel.</em></h2>
+    <p class="svc-lead" data-i18n="svc.lead">Cinq offres en avant, cinq capacités en réserve — la profondeur attend ceux qui creusent.</p>
+
+    <!-- SIGNATURE OFFER — pinned -->
+    <article class="preview reveal">
+      <div class="glow" aria-hidden="true"></div>
+      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5" pathLength="1"/><path d="M3 9 L12 4 L21 9" pathLength="1"/><line x1="12" y1="4" x2="12" y2="19" pathLength="1"/><path d="M10.5 12.5 l4 1.8 l-4 1.8 z" pathLength="1"/></svg></span>
+      <div class="body">
+        <span class="tag" data-i18n="prev.tag">Offre signature</span>
+        <h3 data-i18n="prev.name">L'Aperçu</h3>
+        <p class="promise" data-i18n="prev.promise">Zéro risque. Juste la preuve.</p>
+        <p class="brief" data-i18n="prev.brief">On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.</p>
+        <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="prev.outcome">Le « oui » le plus facile que vous donnerez — parce que vous l'avez déjà vu.</span></p>
+      </div>
+    </article>
+
+    <div class="svc-grid">
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="1.5" pathLength="1"/><line x1="3" y1="8.5" x2="21" y2="8.5" pathLength="1"/><circle cx="5.4" cy="6.5" r=".5" pathLength="1"/><circle cx="7.2" cy="6.5" r=".5" pathLength="1"/><path class="gem" d="M12 11 l2.3 2.6 l-2.3 2.6 l-2.3 -2.6 z" pathLength="1"/></svg></span>
+        <div>
+          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <h3 data-i18n="f1.name">Sites & applications web</h3>
+          <p class="promise" data-i18n="f1.promise">Le choix évident.</p>
+          <p class="brief" data-i18n="f1.brief">Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel.</p>
+          <div class="tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">Tailwind</span><span class="pill">Vercel</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle class="r3" cx="12" cy="12" r="9.5" pathLength="1"/><circle class="r2" cx="12" cy="12" r="6" pathLength="1"/><circle cx="12" cy="12" r="2.4" pathLength="1"/></svg></span>
+        <div>
+          <h3 data-i18n="f2.name">Identité & systèmes visuels</h3>
+          <p class="promise" data-i18n="f2.promise">La confiance avant le premier mot.</p>
+          <p class="brief" data-i18n="f2.brief">Logos, couleur, typo, motion et le kit design-system complet — tokens primitifs → sémantiques → composants, documentés.</p>
+          <div class="tags"><span class="pill">Identity</span><span class="pill">Design systems</span><span class="pill">Motion</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><g class="spin"><circle cx="12" cy="12" r="4.2" pathLength="1"/><path d="M12 3.4 V6.2 M12 17.8 v2.8 M3.4 12 H6.2 M17.8 12 h2.8 M6 6 l2 2 M16 16 l2 2 M18 6 l-2 2 M6 18 l2 -2" pathLength="1"/></g><circle cx="12" cy="12" r="1.3" pathLength="1"/></svg></span>
+        <div>
+          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <h3 data-i18n="f3.name">Automatisation & pipelines</h3>
+          <p class="promise" data-i18n="f3.promise">Supprimez la corvée.</p>
+          <p class="brief" data-i18n="f3.brief">Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif qui dévore vos heures — on le fait tourner seul à 3h du matin. Python · Playwright · APIs · Claude.</p>
+          <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill">APIs</span><span class="pill">Claude</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" pathLength="1"/><circle cx="12" cy="12" r="4.8" pathLength="1"/><line class="sweep" x1="12" y1="12" x2="12" y2="3" pathLength="1"/><circle cx="15.6" cy="8.4" r=".9" pathLength="1"/></svg></span>
+        <div>
+          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <h3 data-i18n="f4.name">Intelligence marché & produit</h3>
+          <p class="promise" data-i18n="f4.promise">Voir le marché clairement.</p>
+          <p class="brief" data-i18n="f4.brief">Transformez le web ouvert en base de données. Veille concurrentielle, intelligence prix/produit, enrichissement de leads sur Maps, Facebook, Ouedkniss, Jumia, Instagram — structuré, scoré, requêtable.</p>
+          <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill">Maps</span><span class="pill">Scoring</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19 V5 M4 19 H20" pathLength="1"/><path d="M5.5 16 L10 11 L13.5 13.5 L18.5 7" pathLength="1"/><path class="gem" d="M18.5 7 l1.7 1.7 l-1.7 1.7 l-1.7 -1.7 z" pathLength="1"/></svg></span>
+        <div>
+          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <h3 data-i18n="f5.name">Stratégie & conseil croissance</h3>
+          <p class="promise" data-i18n="f5.promise">De la donnée, pas des impressions.</p>
+          <p class="brief" data-i18n="f5.brief">Audits marketing complets, analyse de funnels, positionnement concurrentiel, feuilles de route — honnêtes, ROI d'abord, par phases. On fait les devoirs sur votre secteur avant l'appel.</p>
+          <div class="tags"><span class="pill">Strategy</span><span class="pill">Funnels</span><span class="pill">Audits</span></div>
+        </div>
+      </article>
+    </div>
+
+    <details class="capabilities">
+      <summary>
+        <span data-i18n="cap.summary">Voir toutes les capacités →</span>
+        <span class="hint" data-i18n="cap.hint">5 capacités de plus, pour qui creuse.</span>
+        <span class="chev" aria-hidden="true">›</span>
+      </summary>
+      <div class="cap-grid">
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8 H19 L18 19 H6 Z" pathLength="1"/><path d="M8.5 8 V6.5 a3.5 3.5 0 0 1 7 0 V8" pathLength="1"/><path d="M9.5 13 l2 2 l3.5 -3.5" pathLength="1"/></svg></span>
+          <span class="fam" data-i18n="c1.fam">Le Build</span>
+          <h4 data-i18n="c1.name">Boutique & réservation</h4>
+          <p class="promise" data-i18n="c1.promise">De la visite au paiement.</p>
+          <p class="brief" data-i18n="c1.brief">Boutiques en ligne et systèmes de réservation pensés pour l'achat local — paiement WhatsApp, flux cash, Shopify headless si pertinent.</p>
+        </div>
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1" pathLength="1"/><rect x="13" y="3" width="7" height="7" rx="1" pathLength="1"/><rect x="3" y="13" width="7" height="7" rx="1" pathLength="1"/><rect x="14.5" y="14.5" width="7" height="7" rx="1" pathLength="1"/></svg></span>
+          <span class="fam" data-i18n="c2.fam">Le Build</span>
+          <h4 data-i18n="c2.name">Design graphique & social</h4>
+          <p class="promise" data-i18n="c2.promise">On scroll, on s'arrête.</p>
+          <p class="brief" data-i18n="c2.brief">Packs social, carrousels, infographies, print — depuis un système visuel verrouillé, pour que tout vous ressemble.</p>
+        </div>
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20 V4 M3 20 H21" pathLength="1"/><path d="M4 17 C9 16 11 8 20 5" pathLength="1"/><circle cx="7" cy="15" r="0.8" pathLength="1"/><circle cx="12" cy="11" r="0.8" pathLength="1"/><circle cx="16" cy="8" r="0.8" pathLength="1"/></svg></span>
+          <span class="fam" data-i18n="c3.fam">L'Engine</span>
+          <h4 data-i18n="c3.name">Data science & analytics</h4>
+          <p class="promise" data-i18n="c3.promise">Du signal dans le bruit.</p>
+          <p class="brief" data-i18n="c3.brief">Vrai travail statistique — modélisation économétrique, séries temporelles, prévision, dashboards. Analyse testée et défendable.</p>
+        </div>
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="1.6" pathLength="1"/><circle cx="18" cy="8" r="1.6" pathLength="1"/><circle cx="8" cy="18" r="1.6" pathLength="1"/><circle cx="16" cy="17" r="1.6" pathLength="1"/><path d="M6.4 7 L16.6 8 M6 7.4 L7.2 16.5 M9.3 17.6 L14.8 16.8 M17 9.4 L16.4 15.4" pathLength="1"/></svg></span>
+          <span class="fam" data-i18n="c4.fam">L'Esprit</span>
+          <h4 data-i18n="c4.name">Systèmes de connaissance</h4>
+          <p class="promise" data-i18n="c4.promise">Une entreprise qui se souvient.</p>
+          <p class="brief" data-i18n="c4.brief">Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes pour le RAG.</p>
+        </div>
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4 C6 4 8 11 4.5 12 C8 13 6 20 9 20" pathLength="1"/><path d="M15 4 C18 4 16 11 19.5 12 C16 13 18 20 15 20" pathLength="1"/><path d="M12 8 l-1.5 4 h3 l-1.5 4" pathLength="1"/></svg></span>
+          <span class="fam" data-i18n="c5.fam">L'Esprit</span>
+          <h4 data-i18n="c5.name">Outils & skills IA sur mesure</h4>
+          <p class="promise" data-i18n="c5.promise">Le logiciel qui construit votre logiciel.</p>
+          <p class="brief" data-i18n="c5.brief">Outils internes, générateurs et skills sur mesure propulsés par Claude — une tâche répétitive devient une usine en un clic.</p>
+        </div>
+      </div>
+    </details>
+
+  </section>
+
   <!-- ================= HOW WE WORK ================= -->
-  <section id="how" class="band" aria-labelledby="how-h">
+  <section id="how" aria-labelledby="how-h">
     <span class="kicker" data-i18n="how.kicker">04 — Méthode</span>
     <h2 class="sec font-swap-display" id="how-h" data-i18n="how.title">Aucun <em>intermédiaire.</em></h2>
     <div class="steps">
@@ -507,50 +431,10 @@
     </div>
   </section>
 
-  <!-- ================= TEAM ================= -->
-  <section id="team" aria-labelledby="team-h">
-    <span class="kicker" data-i18n="team.kicker">05 — Équipe</span>
-    <h2 class="sec font-swap-display" id="team-h" data-i18n="team.title">Votre avantage <em>injuste.</em></h2>
-    <p class="team-lead" data-i18n="team.lead">Assez petits pour s'investir. Assez seniors pour livrer.</p>
-    <div class="team-grid">
-      <article class="member reveal">
-        <div class="portrait"><span class="mono" aria-hidden="true">N</span></div>
-        <div class="info">
-          <div class="name">Numidea Lead</div>
-          <div class="role" data-i18n="m1.role">Design & développement</div>
-          <p class="detail" data-i18n="m1.detail">Transforme le brief en build.</p>
-        </div>
-      </article>
-      <article class="member reveal">
-        <div class="portrait"><span class="mono" aria-hidden="true">D</span></div>
-        <div class="info">
-          <div class="name">Data Specialist</div>
-          <div class="role" data-i18n="m2.role">Spécialiste données</div>
-          <p class="detail" data-i18n="m2.detail">Pipelines, scraping, la couche intelligence.</p>
-        </div>
-      </article>
-      <article class="member reveal">
-        <div class="portrait"><span class="mono" aria-hidden="true">S</span></div>
-        <div class="info">
-          <div class="name">Sales & Partnerships</div>
-          <div class="role" data-i18n="m3.role">Ventes & partenariats</div>
-          <p class="detail" data-i18n="m3.detail">Votre premier contact ; le traducteur entre l'idée et le cadrage.</p>
-        </div>
-      </article>
-      <article class="member reveal">
-        <div class="portrait"><span class="mono" aria-hidden="true">T</span></div>
-        <div class="info">
-          <div class="name">Technical Rep</div>
-          <div class="role" data-i18n="m4.role">Représentant technique</div>
-          <p class="detail" data-i18n="m4.detail">Garde le build honnête et le client informé.</p>
-        </div>
-      </article>
-    </div>
-  </section>
 
   <!-- ================= FOUNDER ================= -->
-  <section id="founder" aria-labelledby="founder-h">
-    <span class="kicker" data-i18n="founder.kicker">06 — Fondateur</span>
+  <section id="founder" class="band" aria-labelledby="founder-h">
+    <span class="kicker" data-i18n="founder.kicker">05 — Équipe &amp; fondateur</span>
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Le studio a un <em>visage.</em></h2>
     <p class="sec-lead" data-i18n="founder.lead">Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.</p>
 
@@ -603,23 +487,22 @@
   </section>
 
   <!-- ================= STACK ================= -->
-  <section id="stack" class="band" aria-labelledby="stack-h">
-    <span class="kicker" data-i18n="stack.kicker">07 — Stack</span>
+  <section id="stack" aria-labelledby="stack-h">
+    <span class="kicker" data-i18n="stack.kicker">06 — Stack</span>
     <h2 class="sec font-swap-display" id="stack-h" data-i18n="stack.title">Le flex <em>discret.</em></h2>
-    <p class="sec-lead" data-i18n="stack.lead">La pile qu'on utilise vraiment, choisie pour durer.</p>
-    <div class="stack-grid">
-      <div class="stack-col reveal"><h3>Front</h3><div class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></div></div>
-      <div class="stack-col reveal"><h3>Back</h3><div class="pills"><span class="pill">Node</span><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span></div></div>
-      <div class="stack-col reveal"><h3>Cloud</h3><div class="pills"><span class="pill">Vercel</span><span class="pill">Docker</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span></div></div>
-      <div class="stack-col reveal"><h3>Data</h3><div class="pills"><span class="pill">Playwright</span><span class="pill">Pandas</span><span class="pill">Supabase</span><span class="pill">REST · APIs</span></div></div>
-      <div class="stack-col reveal"><h3>Mobile</h3><div class="pills"><span class="pill">PWA</span><span class="pill">React Native</span><span class="pill">Expo</span></div></div>
+    <div class="stack-strip reveal">
+      <span class="grp"><b>Front</b><span class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></span></span>
+      <span class="grp"><b>Back</b><span class="pills"><span class="pill">Node</span><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span></span></span>
+      <span class="grp"><b>Cloud</b><span class="pills"><span class="pill">Vercel</span><span class="pill">Docker</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span></span></span>
+      <span class="grp"><b>Data</b><span class="pills"><span class="pill">Playwright</span><span class="pill">Pandas</span><span class="pill">Supabase</span><span class="pill">REST · APIs</span></span></span>
+      <span class="grp"><b>Mobile</b><span class="pills"><span class="pill">PWA</span><span class="pill">React Native</span><span class="pill">Expo</span></span></span>
     </div>
   </section>
 
   <!-- ================= CONTACT ================= -->
   <!-- ================= FAQ ================= -->
   <section id="faq" aria-labelledby="faq-h">
-    <span class="kicker" data-i18n="faq.kicker">08 — FAQ</span>
+    <span class="kicker" data-i18n="faq.kicker">07 — FAQ</span>
     <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
     <p class="sec-lead" data-i18n="faq.lead">Ce qu'on nous demande avant de se lancer — répondu franchement.</p>
     <div class="faq-list">
@@ -660,7 +543,7 @@
   <section id="contact" class="contact" aria-labelledby="contact-h">
     <div class="contact-grid">
       <div>
-        <span class="kicker" data-i18n="contact.kicker">09 — Contact</span>
+        <span class="kicker" data-i18n="contact.kicker">08 — Contact</span>
         <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">On le <em>rend réel ?</em></h2>
         <p class="sub" data-i18n="contact.sub">Dites-nous ce que vous cherchez à concrétiser — l'urgent, le cassé, l'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.</p>
         <p class="reassure" data-i18n="contact.reassure">Réponse &lt; 24h · Bordj Bou Arréridj · DZ</p>
@@ -702,7 +585,7 @@
       <a href="#how" data-i18n="nav.about">À propos</a>
       <a href="#services" data-i18n="nav.services">Services</a>
       <a href="#work" data-i18n="nav.work">Projets</a>
-      <a href="#team" data-i18n="nav.team">Équipe</a>
+      <a href="#founder" data-i18n="nav.team">Équipe</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
       <a href="mailto:hello@numidealabs.com">hello@numidealabs.com</a>
@@ -723,7 +606,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202607311426" defer></script>
+<script src="assets/app.js?v=202607311459" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
