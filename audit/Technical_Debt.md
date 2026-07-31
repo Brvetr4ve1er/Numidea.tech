@@ -25,9 +25,9 @@ verifies URL agreement across the three JS sources.
 `?v=` in 4 HTML files; forgetting one re-creates the "THE WEBSITE DIDN'T
 UPDATE" class of bug. → Cured: `npm run bump` rewrites all stamps atomically.
 
-**D-04 · `package-lock.json` is committed *and* gitignored.** The ignore line is
-dead (file already tracked) and misleads contributors. → Fixed: line removed;
-lockfile stays committed for reproducible `npm install`.
+**D-04 · `package-lock.json` was gitignored, so installs weren't reproducible.**
+The lockfile existed locally but was never committed. → Fixed: ignore line
+removed, lockfile committed — `npm install` now resolves identically everywhere.
 
 **D-05 · README structure drift.** The repo-layout block predates `hub/`,
 `scene/`, `scripts/`, `knowledge-base/`, `vercel.json`. → Fixed in this pass.
