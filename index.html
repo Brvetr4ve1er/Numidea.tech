@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cinzel+Decorative:wght@700&family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202607311459">
+<link rel="stylesheet" href="assets/styles.css?v=202607311710">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -540,29 +540,35 @@
     </div>
   </section>
 
-  <section id="contact" class="contact" aria-labelledby="contact-h">
+  <section id="contact" class="contact band" aria-labelledby="contact-h">
+    <span class="kicker" data-i18n="contact.kicker">08 — Contact</span>
+    <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">On le <em>rend réel ?</em></h2>
     <div class="contact-grid">
-      <div>
-        <span class="kicker" data-i18n="contact.kicker">08 — Contact</span>
-        <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">On le <em>rend réel ?</em></h2>
+      <div class="contact-side">
         <p class="sub" data-i18n="contact.sub">Dites-nous ce que vous cherchez à concrétiser — l'urgent, le cassé, l'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.</p>
-        <p class="reassure" data-i18n="contact.reassure">Réponse &lt; 24h · Bordj Bou Arréridj · DZ</p>
+        <dl class="channels">
+          <div class="ch"><dt data-i18n="form.email">Email</dt><dd><a href="mailto:hello@numidealabs.com">hello@numidealabs.com</a></dd></div>
+          <div class="ch"><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
+          <div class="ch"><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">&lt; 24 heures · FR · EN · ع</dd></div>
+        </dl>
       </div>
-      <div>
+      <div class="contact-main">
         <form class="form" id="contact-form" novalidate>
-          <div class="field">
-            <label for="f-name" data-i18n="form.name">Nom</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" data-i18n-ph="form.namePh" placeholder="Votre nom">
-            <span class="err" aria-live="polite"></span>
-          </div>
-          <div class="field">
-            <label for="f-email" data-i18n="form.email">Email</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" data-i18n-ph="form.emailPh" placeholder="vous@entreprise.com">
-            <span class="err" aria-live="polite"></span>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-name" data-i18n="form.name">Nom</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" data-i18n-ph="form.namePh" placeholder="Votre nom">
+              <span class="err" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="f-email" data-i18n="form.email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" data-i18n-ph="form.emailPh" placeholder="vous@entreprise.com">
+              <span class="err" aria-live="polite"></span>
+            </div>
           </div>
           <div class="field">
             <label for="f-message" data-i18n="form.message">Message</label>
-            <textarea id="f-message" name="message" rows="4" data-i18n-ph="form.messagePh" placeholder="Qu'est-ce qu'on construit ?"></textarea>
+            <textarea id="f-message" name="message" rows="5" data-i18n-ph="form.messagePh" placeholder="Qu'est-ce qu'on construit ?"></textarea>
             <span class="err" aria-live="polite"></span>
           </div>
           <button type="submit" class="btn btn-primary" data-i18n="form.send">Démarrer un projet →</button>
@@ -606,7 +612,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202607311459" defer></script>
+<script src="assets/app.js?v=202607311710" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

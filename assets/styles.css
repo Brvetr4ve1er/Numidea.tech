@@ -70,8 +70,6 @@
   radial-gradient(70% 60% at 50% 110%, rgba(120,90,110,.08), transparent 70%);}
 [data-theme="daylight"] body::after{opacity:.05}
 [data-theme="daylight"] .navbar.scrolled{background:rgba(255,255,255,.78)}
-[data-theme="daylight"] .field input,[data-theme="daylight"] .field textarea,[data-theme="daylight"] .modal-search input{background:rgba(255,255,255,.85)}
-[data-theme="daylight"] .form{background:rgba(255,255,255,.6)}
 [data-theme="daylight"] .capabilities{background:rgba(255,255,255,.55)}
 [data-theme="daylight"] .modal-backdrop{background:rgba(13,26,47,.45)}
 [data-theme="daylight"] .modal-panel{box-shadow:0 40px 120px -30px rgba(13,26,47,.35)}
@@ -418,29 +416,42 @@ html[dir="rtl"] .timeline li{grid-template-columns:78px 1fr}
 .stack-strip .pills{display:inline-flex;flex-wrap:wrap;gap:6px}
 
 /* ---------- contact ---------- */
-.contact{background:var(--void);position:relative;overflow:hidden}
-.contact::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(9,216,199,.22),transparent 65%);top:-160px;left:50%;transform:translateX(-50%);filter:blur(30px);pointer-events:none}
-.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:var(--s-8);align-items:start}
-.contact h2{font-family:var(--font-display);font-weight:600;font-size:clamp(40px,6vw,80px);letter-spacing:-.02em;line-height:1}
+/* Full-bleed closing band. No overflow:hidden here — the display face's swash
+   glyphs overhang their box and were getting clipped at the left edge. */
+.contact{position:relative}
+.contact::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(9,216,199,.16),transparent 65%);top:-120px;left:50%;transform:translateX(-50%);filter:blur(30px);pointer-events:none}
+.contact h2{position:relative;font-family:var(--font-display);font-weight:600;font-size:clamp(40px,6vw,84px);letter-spacing:-.02em;line-height:1.04;margin-bottom:var(--s-8);max-width:none}
 .contact h2 em{font-family:var(--font-swash);font-style:normal;color:var(--teal)}
 html[dir="rtl"] .contact h2{font-family:var(--font-ar-display);line-height:1.3}
 html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:normal}
-.contact .sub{color:var(--muted);margin-top:var(--s-5);max-width:42ch;line-height:1.6}
-.contact .reassure{font-family:var(--font-mono);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-top:var(--s-6)}
-.form{background:rgba(23,54,79,.4);border:1px solid var(--hairline-2);border-radius:var(--r-lg);padding:var(--s-7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(300px,.85fr) 1.15fr;gap:var(--s-6) clamp(48px,9vw,140px);align-items:start}
+.contact .sub{color:var(--body-strong);max-width:44ch;line-height:1.65;font-size:16.5px}
+/* direct channels — aligned rows, shared hairlines with the form side */
+.channels{margin-top:var(--s-6);display:grid}
+.channels .ch{display:grid;grid-template-columns:96px 1fr;gap:var(--s-4);align-items:baseline;padding:14px 0;border-top:1px solid var(--hairline)}
+.channels .ch:last-child{border-bottom:1px solid var(--hairline)}
+.channels dt{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.channels dd{font-size:15px;color:var(--ice);overflow-wrap:anywhere}
+.channels dd a{color:var(--crimson-hi);text-decoration:none}
+.channels dd a:hover{text-decoration:underline}
+/* the form sits directly on the band — no card box around it */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0 var(--s-5)}
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:var(--s-5)}
 .field label{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
-.field input,.field textarea{background:rgba(13,26,47,.6);border:1px solid var(--hairline-2);border-radius:var(--r-sm);padding:12px 16px;color:var(--ice);font-family:var(--font-body);font-size:15px;transition:all var(--dur-fast);width:100%;resize:vertical}
+.field input,.field textarea{background:rgba(13,26,47,.6);border:1px solid var(--hairline-2);border-radius:var(--r-sm);padding:13px 16px;color:var(--ice);font-family:var(--font-body);font-size:15px;transition:all var(--dur-fast);width:100%;resize:vertical}
+[data-theme="daylight"] .field input,[data-theme="daylight"] .field textarea,[data-theme="daylight"] .modal-search input{background:rgba(255,255,255,.85)}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:var(--glow-teal)}
 .field input::placeholder,.field textarea::placeholder{color:var(--faint)}
 .field .err{font-family:var(--font-mono);font-size:11px;color:var(--crimson-hi);min-height:14px}
 .field.invalid input,.field.invalid textarea{border-color:var(--crimson)}
-.form .btn{width:100%;justify-content:center}
-.form-success{display:none;text-align:center;padding:var(--s-8) var(--s-5)}
+.form .btn{padding:15px 40px}
+.form-success{display:none;padding:var(--s-7) 0}
 .form-success.show{display:block;animation:stagger .5s var(--ease-out)}
-.form-success .tick{width:64px;height:64px;margin:0 auto var(--s-5);border-radius:50%;border:2px solid var(--teal);display:grid;place-items:center;color:var(--teal);font-size:30px;box-shadow:var(--glow-teal)}
-.form-success p{font-family:var(--font-display);font-size:24px;color:var(--ice)}
+.form-success .tick{width:64px;height:64px;margin-bottom:var(--s-5);border-radius:50%;border:2px solid var(--teal);display:grid;place-items:center;color:var(--teal);font-size:30px;box-shadow:var(--glow-teal)}
+.form-success p{font-family:var(--font-display);font-size:22px;color:var(--ice);max-width:44ch}
 html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
+@media(max-width:960px){.contact-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.form-row{grid-template-columns:1fr}}
 
 /* ---------- footer ---------- */
 .footer{padding:var(--s-8) 0 var(--s-7);border-top:1px solid var(--hairline)}
@@ -773,7 +784,6 @@ main.wrap>section h2.sec em{background:var(--grad-blood);-webkit-background-clip
   .hero-deck{max-width:440px;margin:0 auto}
   .work-grid{grid-template-columns:1fr}
   .work-grid>.proj:last-child:nth-child(odd){max-width:none;margin-inline:0}
-  .contact-grid{grid-template-columns:1fr;gap:var(--s-7)}
   .proof-grid{grid-template-columns:repeat(2,1fr);gap:var(--s-7)}
 }
 @media(max-width:720px){
