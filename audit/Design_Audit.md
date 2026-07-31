@@ -102,6 +102,11 @@ What changed, mapped to the diagnosis:
   dictionary keys removed (still exactly ×3 per remaining key); the family-rail
   scrollspy JS and all orphaned CSS components deleted.
 
-**Still open (mobile):** ~18 viewports is much better but not small; the next
-lever is a compact mobile presentation for the 7 work cards (e.g. reduced media
-height or a 2-up mobile grid). Deliberately left for a separate pass.
+**Mobile pass (done in a follow-up):** below 720px the work cards render as
+compact media-left rows (screenshot slice + clamped two-line copy, decorative
+browser chrome and tag pills dropped, action target ≥40px). The 7-card stack
+went from ~4.5 to ~1.6 viewports; the full mobile page from 24.2 (pre-redesign)
+→ 17.9 → **15.1 viewports**. The contact section was also rebuilt as a
+full-bleed band (title spanning the content width, aligned channel rows, form
+unboxed) which fixed a real clipping bug: `overflow:hidden` was slicing the
+display face's swash overhang at the left edge when the title wrapped.
