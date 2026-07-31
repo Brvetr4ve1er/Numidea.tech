@@ -34,16 +34,31 @@ The marketing site is a **zero-dependency static build**: hand-written HTML, CSS
 and vanilla JavaScript, no framework, no build step. Open `index.html` and it runs.
 
 ```
-index.html            # the page
-404.html              # designed not-found page
+index.html            # the landing page
+404.html              # designed not-found page (host-aware paths)
 assets/
   styles.css          # design tokens (Arcanum + 4 alt themes) + layout
-  app.js              # i18n, nav, count-ups, reveal, portfolio modal, form
+  app.js              # i18n, nav, count-ups, reveal, project explorer, form
+  previews/*.webp     # committed screenshots of the live client sites
   favicon.svg         # gradient signature mark
-  og.svg              # social share image
+  og.svg / og.png     # social share image (SVG source → rasterized PNG)
+  cv_*.pdf            # founder résumé (linked from the founder section)
+hub/                  # VOIDSPLUNKER.std — personal portfolio subsite (own CSS/JS)
+scene/                # "engineering drawing" project showcase (own CSS/JS)
+scripts/
+  shots.mjs           # capture live-site screenshots  → npm run shots
+  check.mjs           # repo invariant checks          → npm run check
+  bump.mjs            # bump all ?v= cache stamps      → npm run bump
+knowledge-base/       # internal institutional memory (markdown)
+audit/                # full codebase audit — start at Executive_Summary.md
+vercel.json           # Vercel-ready hosting config (headers, clean URLs)
 .github/workflows/
   pages.yml           # auto-deploys the site to GitHub Pages on push
 ```
+
+**Before committing:** `npm run check` validates the i18n dictionary (every key
+×3), asset references, cache-stamp uniformity and project-URL sync. After any
+CSS/JS change, `npm run bump` refreshes the cache-bust stamps on every page.
 
 ### Live preview (GitHub Pages)
 

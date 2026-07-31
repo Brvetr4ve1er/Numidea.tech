@@ -5,7 +5,9 @@
   "type": "module",
   "description": "Numidea Labs landing page — static site + project-preview capture pipeline.",
   "scripts": {
-    "shots": "node scripts/shots.mjs"
+    "shots": "node scripts/shots.mjs",
+    "check": "node scripts/check.mjs",
+    "bump": "node scripts/bump.mjs"
   },
   "devDependencies": {
     "playwright": "^1.49.0",

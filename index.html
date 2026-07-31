@@ -8,22 +8,27 @@
 <meta name="theme-color" content="#0A1420">
 <meta name="author" content="Numidea Labs">
 
-<!-- Open Graph / social -->
+<!-- Open Graph / social — scrapers require ABSOLUTE urls and refuse SVG images;
+     og.png is rasterized from og.svg (regenerate together). Update the host here
+     if the site moves to a custom domain. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Numidea Labs">
+<meta property="og:url" content="https://brvetr4ve1er.github.io/Numidea.tech/">
 <meta property="og:title" content="Numidea Labs — Rooted in Numidia, built on ideas">
 <meta property="og:description" content="A studio out of Bordj Bou Arréridj that designs, builds, ships and maintains digital products — and answers when they break.">
-<meta property="og:image" content="assets/og.svg">
+<meta property="og:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Numidea Labs">
 <meta name="twitter:description" content="We build the software your business has been waiting for.">
-<meta name="twitter:image" content="assets/og.svg">
+<meta name="twitter:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.png">
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cinzel+Decorative:wght@700&family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202607292117">
+<link rel="stylesheet" href="assets/styles.css?v=202607311426">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -718,7 +723,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202607292117" defer></script>
+<script src="assets/app.js?v=202607311426" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

@@ -267,6 +267,10 @@ a{color:inherit;text-decoration:none}
 .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
 .foot-col a{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--paper-dim);transition:.2s var(--ease);width:fit-content}
 .foot-col a:hover{color:var(--acc-text);transform:translateX(3px)}
+/* footer rows with no verified URL yet — match the grid's pending idiom */
+.foot-col a.pending{opacity:.45;cursor:default}
+.foot-col a.pending:hover{color:var(--paper-dim);transform:none}
+.foot-col a.pending::after{content:" · soon";font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--faint)}
 html[dir="rtl"] .foot-col a:hover{transform:translateX(-3px)}
 
 .foot-mid{max-width:1200px;margin:clamp(26px,4vh,40px) auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px}

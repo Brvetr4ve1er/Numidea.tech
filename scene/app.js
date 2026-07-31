@@ -226,8 +226,12 @@
   addEventListener('scroll', onScroll, { passive: true });
   if (fine && !reduce) addEventListener('mousemove', onMove, { passive: true });
   addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { goTo(Math.min(N - 1, cur + 1)); }
-    else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { goTo(Math.max(0, cur - 1)); }
+    // horizontal arrows follow reading direction: in RTL, ← advances
+    var rtl = el.root.getAttribute('dir') === 'rtl';
+    var fwd = e.key === 'ArrowDown' || e.key === (rtl ? 'ArrowLeft' : 'ArrowRight');
+    var back = e.key === 'ArrowUp' || e.key === (rtl ? 'ArrowRight' : 'ArrowLeft');
+    if (fwd) { goTo(Math.min(N - 1, cur + 1)); }
+    else if (back) { goTo(Math.max(0, cur - 1)); }
   });
 
   (function loop() { if (dirty) { render(); dirty = false; } requestAnimationFrame(loop); })();
