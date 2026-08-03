@@ -782,25 +782,66 @@ main.wrap>section h2.sec em{background:var(--grad-blood);-webkit-background-clip
    so it survives JS being disabled and needs no DOM injection */
 [data-variant-only]{display:none}
 
-/* ---- VARIANT B — light corporate: the decoration comes off ----
-   Hypothesis: local businesses trust a clean, conventional, "serious
-   company" surface more than a dark atmospheric one. Structure and copy
-   stay put; only the visual temperature changes.                        */
-[data-variant="b"] html::after,
-[data-variant="b"] body::after{display:none}          /* film grain + honeycomb */
-[data-variant="b"] body::before{opacity:.5}            /* calmer atmosphere */
-[data-variant="b"] .hero-mesh{display:none}
-[data-variant="b"]{--r-md:10px;--r-lg:14px;--r-sm:6px} /* crisper corners */
+/* ---- VARIANT B — editorial light ----
+   Hypothesis: a bright, conventional, "serious company" surface reads as
+   more trustworthy to local businesses than a dark atmospheric one.
+   Light and orderly, but not bare: the murky dark-room texture (film grain,
+   honeycomb) comes off and is replaced by architectural structure — a drafting
+   grid, brand-tinted washes, accent rules and colour-tinted elevation.      */
+[data-variant="b"]{--r-sm:8px;--r-md:12px;--r-lg:16px}
+[data-variant="b"] html::after{display:none}              /* film grain: off */
+
+/* drafting grid instead of the honeycomb — architectural, fades toward the fold */
+[data-variant="b"] body::after{opacity:1;background-size:104px 104px;
+  background-image:linear-gradient(color-mix(in srgb,var(--hairline-2) 55%,transparent) 1px,transparent 1px),
+    linear-gradient(90deg,color-mix(in srgb,var(--hairline-2) 55%,transparent) 1px,transparent 1px);
+  -webkit-mask-image:linear-gradient(180deg,#000 0,transparent 62%);
+  mask-image:linear-gradient(180deg,#000 0,transparent 62%)}
+[data-variant="b"] body::before{opacity:.75}
+
+/* hero keeps a wash, re-tinted to the brand and calmed for a light surface */
+[data-variant="b"] .hero-mesh{display:block;opacity:.55}
+[data-variant="b"] .hero-mesh .m1{background:radial-gradient(circle,color-mix(in srgb,var(--crimson) 26%,transparent),transparent 66%)}
+[data-variant="b"] .hero-mesh .m2{background:radial-gradient(circle,color-mix(in srgb,var(--teal) 26%,transparent),transparent 66%)}
+
+/* section labels become tinted pills; headings get an accent rule */
+[data-variant="b"] .kicker{display:inline-flex;align-items:center;gap:0;padding:6px 13px;border-radius:100px;
+  background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal);letter-spacing:.14em}
+[data-variant="b"] .kicker::before,[data-variant="b"] .kicker::after{display:none}
+[data-variant="b"] h2.sec,[data-variant="b"] .contact h2{position:relative;padding-bottom:20px}
+[data-variant="b"] h2.sec::after,[data-variant="b"] .contact h2::after{content:"";position:absolute;bottom:0;
+  inset-inline-start:0;width:76px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--teal),var(--crimson))}
+
+/* elevation: colour-tinted and soft, the way light surfaces actually shade */
 [data-variant="b"] .proj,[data-variant="b"] .svc-row,[data-variant="b"] .preview,
-[data-variant="b"] .faq-item,[data-variant="b"] .founder-card{
-  background-image:none;box-shadow:0 1px 2px rgba(15,30,50,.05)}
+[data-variant="b"] .faq-item,[data-variant="b"] .founder-card{background-image:none;
+  box-shadow:0 1px 2px color-mix(in srgb,var(--hairline-2) 40%,transparent),
+             0 16px 32px -24px color-mix(in srgb,var(--hairline-2) 90%,transparent)}
 [data-variant="b"] .proj:hover,[data-variant="b"] .svc-row:hover{
-  box-shadow:0 12px 28px -18px rgba(15,30,50,.45);border-color:var(--hairline-2)}
+  border-color:color-mix(in srgb,var(--teal) 55%,transparent);
+  box-shadow:0 2px 4px color-mix(in srgb,var(--hairline-2) 45%,transparent),
+             0 26px 48px -26px color-mix(in srgb,var(--teal) 55%,transparent)}
+
+/* service cards get a brand edge that lights up on hover */
+[data-variant="b"] .svc-row{position:relative;overflow:hidden}
+[data-variant="b"] .svc-row::before{content:"";position:absolute;top:0;inset-inline-start:0;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--teal),color-mix(in srgb,var(--crimson) 70%,transparent));
+  transform:scaleX(0);transform-origin:left center;transition:transform var(--dur-base) var(--ease-out)}
+html[dir="rtl"] [data-variant="b"] .svc-row::before{transform-origin:right center}
+[data-variant="b"] .svc-row:hover::before{transform:scaleX(1)}
+[data-variant="b"] .svc-row:hover::after{opacity:0}   /* the dark-theme glow border stays off */
+[data-variant="b"] .glyph{border-color:color-mix(in srgb,var(--teal) 40%,transparent);
+  background:color-mix(in srgb,var(--teal) 7%,transparent)}
+
+/* separators + bands: quiet structure rather than a glowing seam */
 [data-variant="b"] main.wrap>section+section::before{
   background:linear-gradient(90deg,transparent,var(--hairline-2) 20%,var(--hairline-2) 80%,transparent)}
-[data-variant="b"] section.band::after{background:rgba(15,30,50,.035);box-shadow:0 0 0 100vmax rgba(15,30,50,.035)}
-[data-variant="b"] .hero-deck img{box-shadow:0 18px 40px -26px rgba(15,30,50,.5)}
-[data-variant="b"] .contact::before{opacity:.5}
+[data-variant="b"] section.band::after{background:color-mix(in srgb,var(--teal) 4%,transparent);
+  box-shadow:0 0 0 100vmax color-mix(in srgb,var(--teal) 4%,transparent)}
+[data-variant="b"] .hero-deck img{box-shadow:0 20px 44px -26px color-mix(in srgb,var(--hairline-2) 95%,transparent)}
+[data-variant="b"] .contact::before{opacity:.6}
+[data-variant="b"] .channels .ch{border-color:var(--hairline-2)}
+@media(prefers-reduced-motion:reduce){[data-variant="b"] .svc-row::before{transition:none}}
 
 /* ---- VARIANT C — offer-first: the signature offer leads the page ----
    Hypothesis: a concrete, risk-free offer ("we build the demo before you
