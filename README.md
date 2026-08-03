@@ -56,6 +56,22 @@ vercel.json           # Vercel-ready hosting config (headers, clean URLs)
   pages.yml           # auto-deploys the site to GitHub Pages on push
 ```
 
+## A/B/C deployments
+
+One codebase, three hosts, three variants — detected at runtime from the
+hostname (override with `?variant=b` or `window.NUMIDEA_VARIANT`):
+
+| Variant | Host | What differs |
+| --- | --- | --- |
+| **a** | GitHub Pages | Control — current design and copy |
+| **b** | Vercel | Light-first: Daylight is the default theme |
+| **c** | Netlify | Direct-offer hero copy (FR/EN/AR), same design |
+
+Contact-form leads are tagged with the variant, so the Supabase `leads`
+table doubles as the conversion scoreboard. Config: `vercel.json` and
+`netlify.toml` mirror each other (no build, security headers, immutable
+assets).
+
 **Before committing:** `npm run check` validates the i18n dictionary (every key
 ×3), asset references, cache-stamp uniformity and project-URL sync. After any
 CSS/JS change, `npm run bump` refreshes the cache-bust stamps on every page.

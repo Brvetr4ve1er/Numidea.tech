@@ -30,10 +30,12 @@ for (const m of app.matchAll(/'([a-z0-9]+(?:\.[A-Za-z0-9_.]+)?)'\s*:/g)) {
 // keys that look like i18n entries: referenced from HTML or dotted
 const html = read('index.html');
 const refs = new Set([...html.matchAll(/data-i18n(?:-[a-z]+)?="([^"]+)"/g)].map((m) => m[1]));
-const unbalanced = Object.entries(counts).filter(([k, v]) => (refs.has(k) || k.includes('.')) && v !== 3);
+// a key must exist once per language (×3) — variant copy overrides add whole
+// extra fr/en/ar sets, so any multiple of 3 is balanced
+const unbalanced = Object.entries(counts).filter(([k, v]) => (refs.has(k) || k.includes('.')) && v % 3 !== 0);
 unbalanced.length
-  ? bad('i18n unbalanced (must be ×3): ' + unbalanced.map(([k, v]) => `${k}=${v}`).join(', '))
-  : ok('i18n dictionary balanced (every key ×3)');
+  ? bad('i18n unbalanced (must be a multiple of 3): ' + unbalanced.map(([k, v]) => `${k}=${v}`).join(', '))
+  : ok('i18n dictionary balanced (every key ×3 per copy set)');
 const orphans = [...refs].filter((k) => !counts[k]);
 orphans.length ? bad('orphan data-i18n refs: ' + orphans.join(', ')) : ok('no orphan data-i18n references');
 

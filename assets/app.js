@@ -353,6 +353,49 @@
     for (var k in EXTRA[l]) { if (EXTRA[l].hasOwnProperty(k)) I18N[l][k] = EXTRA[l][k]; }
   });
 
+  /* ---------------- A/B/C variant (one codebase, three deployments) ----------
+     a — GitHub Pages : control (current design + copy)
+     b — Vercel       : light-first (Daylight is the default theme)
+     c — Netlify      : direct-offer copy (hero rewritten, same design)
+     Detection is by hostname; override with ?variant=b or window.NUMIDEA_VARIANT
+     (useful on custom domains / local preview). Leads are tagged with the
+     variant so Supabase shows which version converts. */
+  var VARIANT = (function () {
+    try {
+      var q = new URLSearchParams(location.search).get('variant');
+      if (q && /^[abc]$/.test(q)) return q;
+    } catch (e) {}
+    if (window.NUMIDEA_VARIANT === 'a' || window.NUMIDEA_VARIANT === 'b' || window.NUMIDEA_VARIANT === 'c') return window.NUMIDEA_VARIANT;
+    var h = location.hostname;
+    if (h.indexOf('netlify') !== -1) return 'c';
+    if (h.indexOf('vercel') !== -1) return 'b';
+    return 'a';
+  })();
+
+  // variant C: the hero sells the offer directly — everything else unchanged
+  if (VARIANT === 'c') {
+    var COPY_C = {
+      fr: {
+        'hero.title': 'Un site qui vend, livré en semaines. <span class="swash">Démo avant devis.</span>',
+        'hero.lede': 'Numidea construit votre site ou application de A à Z — design, code, mise en ligne, maintenance. Cinq sites clients déjà en ligne ; le vôtre peut être le prochain.',
+        'hero.cta1': 'Demander une démo →'
+      },
+      en: {
+        'hero.title': 'A site that sells, shipped in weeks. <span class="swash">Demo before you pay.</span>',
+        'hero.lede': 'Numidea builds your site or app end to end — design, code, launch, maintenance. Five client sites already live; yours can be next.',
+        'hero.cta1': 'Request a demo →'
+      },
+      ar: {
+        'hero.title': 'موقع يبيع، يُسلَّم في أسابيع. <span class="swash">تجربة قبل الدفع.</span>',
+        'hero.lede': 'نوميديا تبني موقعك أو تطبيقك من الألف إلى الياء — تصميم وبرمجة وإطلاق وصيانة. خمسة مواقع عملاء مباشرة بالفعل؛ وموقعك قد يكون التالي.',
+        'hero.cta1': 'اطلب تجربة →'
+      }
+    };
+    Object.keys(COPY_C).forEach(function (l) {
+      for (var k in COPY_C[l]) { if (COPY_C[l].hasOwnProperty(k)) I18N[l][k] = COPY_C[l][k]; }
+    });
+  }
+
   var SUPPORTED = ['fr', 'en', 'ar'];
   var DEFAULT_LANG = 'fr';
   var explorerRerender = null; // set by the project explorer; re-renders it on language switch
@@ -435,15 +478,16 @@
     // theme switcher
     var THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon'];
     function applyTheme(t) {
-      if (THEMES.indexOf(t) === -1) t = 'arcanum';
+      if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'daylight' : 'arcanum';
       document.documentElement.setAttribute('data-theme', t);
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
       });
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
     }
-    var savedTheme = 'arcanum';
-    try { savedTheme = localStorage.getItem('numidea-theme') || 'arcanum'; } catch (e) {}
+    var defaultTheme = VARIANT === 'b' ? 'daylight' : 'arcanum';
+    var savedTheme = defaultTheme;
+    try { savedTheme = localStorage.getItem('numidea-theme') || defaultTheme; } catch (e) {}
     applyTheme(savedTheme);
     var themeBtn = document.querySelector('.theme-btn');
     var themeMenu = document.querySelector('.theme-menu');
@@ -796,7 +840,8 @@
               },
               body: JSON.stringify({
                 name: name, contact: email, message: msg,
-                lang: document.documentElement.getAttribute('lang') || 'fr'
+                lang: document.documentElement.getAttribute('lang') || 'fr',
+                variant: VARIANT
               })
             }).catch(function () {}); // best-effort — never blocks the visitor
           } catch (e2) {}
