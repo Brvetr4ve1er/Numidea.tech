@@ -772,6 +772,60 @@ main.wrap>section h2.sec em{background:var(--grad-blood);-webkit-background-clip
 .proj--brand .actions a:hover{border-color:rgb(var(--accent));color:rgb(var(--accent))}
 
 
+/* ============================================================
+   A/B/C VARIANTS — one stylesheet, three deployments.
+   [data-variant] is set on <html> before first paint by the inline
+   script in index.html (a=Pages, b=Vercel, c=Netlify).
+   ============================================================ */
+
+/* variant-gated markup: present in the HTML, shown only on its variant,
+   so it survives JS being disabled and needs no DOM injection */
+[data-variant-only]{display:none}
+
+/* ---- VARIANT B — light corporate: the decoration comes off ----
+   Hypothesis: local businesses trust a clean, conventional, "serious
+   company" surface more than a dark atmospheric one. Structure and copy
+   stay put; only the visual temperature changes.                        */
+[data-variant="b"] html::after,
+[data-variant="b"] body::after{display:none}          /* film grain + honeycomb */
+[data-variant="b"] body::before{opacity:.5}            /* calmer atmosphere */
+[data-variant="b"] .hero-mesh{display:none}
+[data-variant="b"]{--r-md:10px;--r-lg:14px;--r-sm:6px} /* crisper corners */
+[data-variant="b"] .proj,[data-variant="b"] .svc-row,[data-variant="b"] .preview,
+[data-variant="b"] .faq-item,[data-variant="b"] .founder-card{
+  background-image:none;box-shadow:0 1px 2px rgba(15,30,50,.05)}
+[data-variant="b"] .proj:hover,[data-variant="b"] .svc-row:hover{
+  box-shadow:0 12px 28px -18px rgba(15,30,50,.45);border-color:var(--hairline-2)}
+[data-variant="b"] main.wrap>section+section::before{
+  background:linear-gradient(90deg,transparent,var(--hairline-2) 20%,var(--hairline-2) 80%,transparent)}
+[data-variant="b"] section.band::after{background:rgba(15,30,50,.035);box-shadow:0 0 0 100vmax rgba(15,30,50,.035)}
+[data-variant="b"] .hero-deck img{box-shadow:0 18px 40px -26px rgba(15,30,50,.5)}
+[data-variant="b"] .contact::before{opacity:.5}
+
+/* ---- VARIANT C — offer-first: the signature offer leads the page ----
+   Hypothesis: a concrete, risk-free offer ("we build the demo before you
+   pay") converts better than a craft-and-proof narrative.               */
+[data-variant="c"] .offer-band{display:flex;align-items:center;gap:clamp(18px,3vw,36px);
+  margin:0 0 var(--s-6);padding:clamp(20px,3vw,30px) clamp(22px,3.5vw,38px);
+  border:1px solid rgba(230,180,80,.4);border-radius:var(--r-lg);
+  background:linear-gradient(120deg,color-mix(in srgb,var(--navy) 92%,transparent),color-mix(in srgb,var(--plum) 55%,transparent));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 60px -40px rgba(0,0,0,.9)}
+.ob-mark{flex:none;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;
+  border:1px solid rgba(230,180,80,.5);color:var(--crimson-hi);font-size:17px}
+.ob-txt{flex:1;min-width:0}
+.ob-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson)}
+.offer-band h2{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,3vw,30px);margin:6px 0 4px;letter-spacing:-.01em}
+html[data-theme="arcanum"][dir="ltr"] .offer-band h2{font-family:var(--font-deco);font-weight:700}
+html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
+.ob-promise{font-size:17px;color:var(--teal);font-weight:600;margin-bottom:6px}
+.ob-brief{font-size:14px;color:var(--muted);line-height:1.55;max-width:64ch}
+.ob-cta{flex:none;white-space:nowrap}
+[data-variant="c"] .offer-band + section{padding-top:var(--s-7)}
+@media(max-width:820px){
+  [data-variant="c"] .offer-band{flex-direction:column;align-items:flex-start}
+  .ob-cta{width:100%;justify-content:center}
+}
+
 /* ---------- responsive ---------- */
 @media(min-width:1100px){
   .work-grid{grid-template-columns:repeat(3,1fr)}

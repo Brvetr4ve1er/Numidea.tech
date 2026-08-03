@@ -24,11 +24,30 @@
 <meta name="twitter:description" content="We build the software your business has been waiting for.">
 <meta name="twitter:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.png">
 
+<!-- A/B/C: resolve the variant + theme BEFORE first paint, so variant B never
+     flashes dark before turning light. Pin a variant by setting
+     window.NUMIDEA_VARIANT below, or preview any with ?variant=a|b|c. -->
+<script>
+  window.NUMIDEA_VARIANT = "";
+  (function () {
+    var d = document.documentElement, v = '';
+    try { v = new URLSearchParams(location.search).get('variant') || ''; } catch (e) {}
+    if (!/^[abc]$/.test(v)) v = window.NUMIDEA_VARIANT || '';
+    if (!/^[abc]$/.test(v)) {
+      var h = location.hostname;
+      v = h.indexOf('netlify') !== -1 ? 'c' : h.indexOf('vercel') !== -1 ? 'b' : 'a';
+    }
+    d.setAttribute('data-variant', v);
+    var def = v === 'b' ? 'daylight' : 'arcanum', t = def;
+    try { t = localStorage.getItem('numidea-theme') || def; } catch (e) {}
+    d.setAttribute('data-theme', t);
+  })();
+</script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cinzel+Decorative:wght@700&family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202608031527">
+<link rel="stylesheet" href="assets/styles.css?v=202608031647">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -116,6 +135,19 @@
       </a>
     </div>
   </section>
+
+  <!-- Variant C only (offer-first): the signature offer promoted above the fold.
+       Hidden by CSS on a/b — no JS required, works with scripts disabled. -->
+  <aside class="offer-band" data-variant-only="c" aria-labelledby="offer-h">
+    <div class="ob-mark" aria-hidden="true">◆</div>
+    <div class="ob-txt">
+      <span class="ob-tag" data-i18n="prev.tag">Offre signature</span>
+      <h2 id="offer-h" data-i18n="prev.name">L'Aperçu</h2>
+      <p class="ob-promise" data-i18n="prev.promise">Zéro risque. Juste la preuve.</p>
+      <p class="ob-brief" data-i18n="prev.brief">On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.</p>
+    </div>
+    <a class="btn btn-primary ob-cta" href="#contact" data-i18n="hero.cta1">Demander ma démo gratuite →</a>
+  </aside>
 
   <!-- ================= PROOF ================= -->
   <section class="proof reveal" aria-labelledby="proof-h">
@@ -611,11 +643,8 @@
 <script>
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
-  // A/B/C: auto-detected from the host (github.io=a, vercel=b, netlify=c).
-  // Set "a" | "b" | "c" here to pin a variant (e.g. on a custom domain).
-  window.NUMIDEA_VARIANT = "";
 </script>
-<script src="assets/app.js?v=202608031527" defer></script>
+<script src="assets/app.js?v=202608031647" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

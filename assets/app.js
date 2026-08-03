@@ -354,45 +354,60 @@
   });
 
   /* ---------------- A/B/C variant (one codebase, three deployments) ----------
-     a — GitHub Pages : control (current design + copy)
-     b — Vercel       : light-first (Daylight is the default theme)
-     c — Netlify      : direct-offer copy (hero rewritten, same design)
-     Detection is by hostname; override with ?variant=b or window.NUMIDEA_VARIANT
-     (useful on custom domains / local preview). Leads are tagged with the
-     variant so Supabase shows which version converts. */
-  var VARIANT = (function () {
-    try {
-      var q = new URLSearchParams(location.search).get('variant');
-      if (q && /^[abc]$/.test(q)) return q;
-    } catch (e) {}
-    if (window.NUMIDEA_VARIANT === 'a' || window.NUMIDEA_VARIANT === 'b' || window.NUMIDEA_VARIANT === 'c') return window.NUMIDEA_VARIANT;
-    var h = location.hostname;
-    if (h.indexOf('netlify') !== -1) return 'c';
-    if (h.indexOf('vercel') !== -1) return 'b';
-    return 'a';
-  })();
+     a — GitHub Pages : control — proof-first atelier, dark Arcanum
+     b — Vercel       : light corporate — Daylight default, decoration stripped
+     c — Netlify      : offer-first — demo-before-you-pay leads the page
+     The variant is resolved before first paint by the inline script in <head>
+     (which also picks the default theme); read it back here. Variant-only
+     markup lives in the HTML behind [data-variant-only], so it works with
+     JS disabled and never needs DOM injection. */
+  var VARIANT = document.documentElement.getAttribute('data-variant') || 'a';
 
-  // variant C: the hero sells the offer directly — everything else unchanged
-  if (VARIANT === 'c') {
-    var COPY_C = {
+  /* Per-variant copy overrides. Each block supplies whole fr/en/ar sets, so the
+     dictionary stays balanced (npm run check enforces multiples of 3). */
+  var COPY = {
+    b: {
       fr: {
-        'hero.title': 'Un site qui vend, livré en semaines. <span class="swash">Démo avant devis.</span>',
-        'hero.lede': 'Numidea construit votre site ou application de A à Z — design, code, mise en ligne, maintenance. Cinq sites clients déjà en ligne ; le vôtre peut être le prochain.',
-        'hero.cta1': 'Demander une démo →'
+        'hero.title': 'Le studio qui construit, livre et <span class="swash">reste.</span>',
+        'hero.lede': 'Numidea Labs conçoit, développe et maintient sites, applications et systèmes de données pour les entreprises algériennes. Une seule équipe, du premier pixel à la mise en production.',
+        'hero.cta1': 'Parler de votre projet →'
       },
       en: {
-        'hero.title': 'A site that sells, shipped in weeks. <span class="swash">Demo before you pay.</span>',
-        'hero.lede': 'Numidea builds your site or app end to end — design, code, launch, maintenance. Five client sites already live; yours can be next.',
-        'hero.cta1': 'Request a demo →'
+        'hero.title': 'The studio that builds, ships and <span class="swash">stays.</span>',
+        'hero.lede': 'Numidea Labs designs, develops and maintains websites, applications and data systems for Algerian businesses. One team, from the first pixel to production.',
+        'hero.cta1': 'Discuss your project →'
       },
       ar: {
-        'hero.title': 'موقع يبيع، يُسلَّم في أسابيع. <span class="swash">تجربة قبل الدفع.</span>',
-        'hero.lede': 'نوميديا تبني موقعك أو تطبيقك من الألف إلى الياء — تصميم وبرمجة وإطلاق وصيانة. خمسة مواقع عملاء مباشرة بالفعل؛ وموقعك قد يكون التالي.',
-        'hero.cta1': 'اطلب تجربة →'
+        'hero.title': 'الاستوديو الذي يبني ويُسلّم <span class="swash">ويبقى.</span>',
+        'hero.lede': 'نوميديا لابز تصمّم وتطوّر وتصون المواقع والتطبيقات وأنظمة البيانات للشركات الجزائرية. فريق واحد، من أول بكسل إلى الإطلاق.',
+        'hero.cta1': 'تحدّث عن مشروعك →'
       }
-    };
-    Object.keys(COPY_C).forEach(function (l) {
-      for (var k in COPY_C[l]) { if (COPY_C[l].hasOwnProperty(k)) I18N[l][k] = COPY_C[l][k]; }
+    },
+    c: {
+      fr: {
+        'hero.title': 'Votre site, construit <span class="swash">avant que vous ne payiez.</span>',
+        'hero.lede': 'On construit une démo réelle et fonctionnelle de votre site. Vous la voyez en direct, vous décidez ensuite. Cinq sites clients déjà en ligne — le vôtre peut être le prochain.',
+        'hero.cta1': 'Demander ma démo gratuite →',
+        'hero.cta2': 'Voir les 5 sites en ligne'
+      },
+      en: {
+        'hero.title': 'Your site, built <span class="swash">before you pay for it.</span>',
+        'hero.lede': 'We build a real, working demo of your site up front. You see it live, then you decide. Five client sites already live — yours can be next.',
+        'hero.cta1': 'Get my free demo →',
+        'hero.cta2': 'See the 5 live sites'
+      },
+      ar: {
+        'hero.title': 'موقعك، مبنيٌّ <span class="swash">قبل أن تدفع.</span>',
+        'hero.lede': 'نبني نسخة تجريبية حقيقية وعاملة من موقعك مسبقاً. تراها حيّة، ثم تقرّر. خمسة مواقع عملاء مباشرة بالفعل — وموقعك قد يكون التالي.',
+        'hero.cta1': 'اطلب تجربتك المجانية →',
+        'hero.cta2': 'شاهد المواقع الخمسة'
+      }
+    }
+  };
+  if (COPY[VARIANT]) {
+    Object.keys(COPY[VARIANT]).forEach(function (l) {
+      var set = COPY[VARIANT][l];
+      for (var k in set) { if (set.hasOwnProperty(k)) I18N[l][k] = set[k]; }
     });
   }
 
@@ -485,9 +500,9 @@
       });
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
     }
+    // the pre-paint script already resolved and applied this; mirror it here
     var defaultTheme = VARIANT === 'b' ? 'daylight' : 'arcanum';
-    var savedTheme = defaultTheme;
-    try { savedTheme = localStorage.getItem('numidea-theme') || defaultTheme; } catch (e) {}
+    var savedTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
     applyTheme(savedTheme);
     var themeBtn = document.querySelector('.theme-btn');
     var themeMenu = document.querySelector('.theme-menu');
@@ -850,7 +865,8 @@
         // Static site, no backend: hand the lead off to the visitor's mail client,
         // pre-filled to hello@numidealabs.com. Only show success after the handoff.
         var subject = 'Numidea Labs · ' + name;
-        var body = name + ' <' + email + '>\n\n' + msg;
+        var body = name + ' <' + email + '>\n\n' + msg
+          + '\n\n--\nnumidealabs · ' + VARIANT + ' · ' + (document.documentElement.getAttribute('lang') || 'fr');
         window.location.href = 'mailto:hello@numidealabs.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);

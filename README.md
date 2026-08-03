@@ -61,14 +61,20 @@ vercel.json           # Vercel-ready hosting config (headers, clean URLs)
 One codebase, three hosts, three variants — detected at runtime from the
 hostname (override with `?variant=b` or `window.NUMIDEA_VARIANT`):
 
-| Variant | Host | What differs |
-| --- | --- | --- |
-| **a** | GitHub Pages | Control — current design and copy |
-| **b** | Vercel | Light-first: Daylight is the default theme |
-| **c** | Netlify | Direct-offer hero copy (FR/EN/AR), same design |
+| Variant | Host | Hypothesis under test | What differs |
+| --- | --- | --- | --- |
+| **a** | GitHub Pages | control | Proof-first atelier, dark Arcanum |
+| **b** | Vercel | a clean, conventional surface reads as more trustworthy to local businesses | Daylight default + decoration stripped (no grain/honeycomb/mesh, flat cards, crisp corners) + plain-spoken hero |
+| **c** | Netlify | a concrete risk-free offer converts better than a craft narrative | Offer-first hero ("built before you pay") + the signature Preview offer promoted above the fold |
 
-Contact-form leads are tagged with the variant, so the Supabase `leads`
-table doubles as the conversion scoreboard. Config: `vercel.json` and
+The variant is resolved **before first paint** by an inline script in
+`index.html` (so B never flashes dark), then read back by `app.js`.
+Variant-only markup lives in the HTML behind `[data-variant-only]`, so it
+works with JS disabled and needs no DOM injection. Per-variant copy is
+supplied as whole fr/en/ar sets in the `COPY` map.
+
+Every contact-form handoff carries `variant` in the mailto body, so leads
+stay attributable with no backend at all. Config: `vercel.json` and
 `netlify.toml` mirror each other (no build, security headers, immutable
 assets).
 
