@@ -18,13 +18,13 @@
       'nav.about': 'À propos', 'nav.services': 'Services', 'nav.work': 'Projets',
       'nav.team': 'Équipe', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
       'hero.eyebrow': 'Atelier d\'ingénierie · Bordj Bou Arréridj · DZ',
-      'hero.title': 'Une ingénierie qui tient de la magie. <span class="swash">La rigueur qui la livre.</span>',
-      'hero.lede': 'Quatre spécialistes qui conçoivent, codent et livrent toute la chaîne — du back-end au dernier pixel. Des systèmes puissants, rendus accessibles, et assumés quand ça casse.',
-      'hero.cta1': 'Construisons →', 'hero.cta2': 'Voir les preuves',
+      'hero.title': 'On construit. On livre. <span class="swash">On répond.</span>',
+      'hero.lede': 'Sites, applications, pipelines de données. Conçus et codés ici, à Bordj Bou Arréridj. Cinq sont en ligne. Réponse sous 24 heures.',
+      'hero.cta1': 'Démarrer un projet', 'hero.cta2': 'Voir le travail',
       'hero.deckTag': '5 sites clients en ligne — les voir →',
       'proof.kicker': '01 — Preuves',
       'proof.s1': 'projets livrés', 'proof.s2': 'spécialistes', 'proof.s3': 'langues', 'proof.s4': 'de réponse',
-      'proof.line': 'De vrais clients. De vrais déploiements. Les preuves sont plus bas — ouvrez-les.',
+      'proof.line': 'Cinq sites en ligne. Cliquables. Vérifiez.',
       'svc.kicker': '03 — Services',
       'svc.title': 'Ce qu\'on <em>rend réel.</em>',
       'svc.outcomeLabel': 'Résultat',
@@ -82,7 +82,7 @@
       'form.errEmailValid': 'Cet email a l\'air incomplet — vérifiez-le.',
       'form.errMsg': 'Dites-nous une ligne sur le projet.',
       'form.success': 'Votre email est prêt dans votre messagerie — envoyez-le et on revient sous 24h.',
-      'footer.signoff': 'Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.',
+      'footer.signoff': 'Construit en lots. Jamais en série.',
       'footer.rights': '© 2026 Numidea Labs · Tous droits réservés',
       'footer.tag': 'Rooted in Numidia · built on ideas'
     },
@@ -93,13 +93,13 @@
       'nav.about': 'About', 'nav.services': 'Services', 'nav.work': 'Work',
       'nav.team': 'Team', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
       'hero.eyebrow': 'Engineering workshop · Bordj Bou Arréridj · DZ',
-      'hero.title': 'Engineering that feels like magic. <span class="swash">Discipline that ships it.</span>',
-      'hero.lede': 'Four specialists who design, build, and ship the whole chain — from the data layer to the last pixel. Powerful systems, made accessible, and answered for when they break.',
-      'hero.cta1': 'Let\'s build it →', 'hero.cta2': 'See the proof',
+      'hero.title': 'We build. We ship. <span class="swash">We answer.</span>',
+      'hero.lede': 'Sites, applications, data pipelines. Designed and coded here, in Bordj Bou Arréridj. Five are live. Reply under 24 hours.',
+      'hero.cta1': 'Start a project', 'hero.cta2': 'See the work',
       'hero.deckTag': '5 client sites live — see them →',
       'proof.kicker': '01 — Proof',
       'proof.s1': 'projects shipped', 'proof.s2': 'specialists', 'proof.s3': 'languages', 'proof.s4': 'response',
-      'proof.line': 'Real clients. Real deployments. The receipts are below — open them.',
+      'proof.line': 'Five sites live. Clickable. Check them.',
       'svc.kicker': '03 — Services',
       'svc.title': 'What we <em>make real.</em>',
       'svc.outcomeLabel': 'Outcome',
@@ -157,7 +157,7 @@
       'form.errEmailValid': 'That email looks incomplete — check it.',
       'form.errMsg': 'Give us one line about the project.',
       'form.success': 'Your email is ready in your mail app — hit send and we\'ll reply within 24h.',
-      'footer.signoff': 'Built in Bordj Bou Arréridj, with black coffee and TypeScript.',
+      'footer.signoff': 'Made in batches. Never in bulk.',
       'footer.rights': '© 2026 Numidea Labs · All rights reserved',
       'footer.tag': 'Rooted in Numidia · built on ideas'
     },
@@ -168,13 +168,13 @@
       'nav.about': 'من نحن', 'nav.services': 'الخدمات', 'nav.work': 'الأعمال',
       'nav.team': 'الفريق', 'nav.faq': 'الأسئلة', 'nav.contact': 'تواصل',
       'hero.eyebrow': 'ورشة هندسة · برج بوعريريج · الجزائر',
-      'hero.title': 'هندسةٌ تكاد تكون سحراً. <span class="swash">وانضباطٌ يُسلّمها.</span>',
-      'hero.lede': 'أربعة مختصّين يصمّمون ويبرمجون ويُطلقون السلسلة كاملةً — من الخادم إلى آخر بكسل. أنظمةٌ قوية، مُتاحةٌ للجميع، ونتحمّل مسؤوليتها حين تتعطّل.',
-      'hero.cta1': 'لنبنِ →', 'hero.cta2': 'شاهد الإثبات',
+      'hero.title': 'نبني. نُطلق. <span class="swash">ونردّ.</span>',
+      'hero.lede': 'مواقع، تطبيقات، أنابيب بيانات. مصمّمة ومبرمَجة هنا، في برج بوعريريج. خمسة منها مباشرة. ردّ في أقل من ٢٤ ساعة.',
+      'hero.cta1': 'ابدأ مشروعاً', 'hero.cta2': 'شاهد الأعمال',
       'hero.deckTag': '٥ مواقع عملاء مباشرة — شاهدها →',
       'proof.kicker': '٠١ — الإثبات',
       'proof.s1': 'مشروعاً مُسلَّماً', 'proof.s2': 'مختصّين', 'proof.s3': 'لغات', 'proof.s4': 'زمن الردّ',
-      'proof.line': 'عملاء حقيقيون. عمليات نشر حقيقية. الإثباتات في الأسفل — افتحها.',
+      'proof.line': 'خمسة مواقع مباشرة. قابلة للنقر. تحقّق.',
       'svc.kicker': '٠٣ — الخدمات',
       'svc.title': 'ما الذي <em>نجعله حقيقة.</em>',
       'svc.outcomeLabel': 'النتيجة',
@@ -232,7 +232,7 @@
       'form.errEmailValid': 'يبدو هذا البريد ناقصاً — تحقّق منه.',
       'form.errMsg': 'أخبرنا بسطر عن المشروع.',
       'form.success': 'بريدك جاهز في تطبيق البريد — أرسله وسنعود إليك خلال ٢٤ ساعة.',
-      'footer.signoff': 'بُني في برج بوعريريج، بقهوة سوداء و TypeScript.',
+      'footer.signoff': 'يُبنى على دفعات. لا بالجملة.',
       'footer.rights': '© ٢٠٢٦ نوميديا لابز · كل الحقوق محفوظة',
       'footer.tag': 'جذورها في نوميديا · مبنيّة على الأفكار'
     }
@@ -465,16 +465,13 @@
     var suffix = el.getAttribute('data-suffix') || '';
     var prefix = el.getAttribute('data-prefix') || '';
     if (reduceMotion) { el.textContent = prefix + group(target) + suffix; return; }
-    var dur = 1200, start = null;
-    function frame(t) {
-      if (!start) start = t;
-      var p = Math.min((t - start) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = prefix + group(Math.round(target * eased)) + suffix;
-      if (p < 1) requestAnimationFrame(frame);
-      else el.textContent = prefix + group(target) + suffix;
-    }
-    requestAnimationFrame(frame);
+    // INDEX ROLL — an odometer, not a tween: 14 discrete steps, then lock
+    var STEPS = 14, i = 0;
+    var tick = setInterval(function () {
+      i++;
+      el.textContent = prefix + group(Math.round(target * (i / STEPS))) + suffix;
+      if (i >= STEPS) { clearInterval(tick); el.textContent = prefix + group(target) + suffix; }
+    }, 40);
   }
 
   /* ---------------- DOM ready ---------------- */
@@ -491,9 +488,10 @@
     });
 
     // theme switcher
-    var THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon'];
+    // the five approved brand pairings — no other combination exists
+    var THEMES = ['flare', 'espresso', 'marigold', 'void', 'signal'];
     function applyTheme(t) {
-      if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'daylight' : 'arcanum';
+      if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'signal' : 'flare';
       document.documentElement.setAttribute('data-theme', t);
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
@@ -501,7 +499,7 @@
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
     }
     // the pre-paint script already resolved and applied this; mirror it here
-    var defaultTheme = VARIANT === 'b' ? 'daylight' : 'arcanum';
+    var defaultTheme = VARIANT === 'b' ? 'signal' : 'flare';
     var savedTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
     applyTheme(savedTheme);
     var themeBtn = document.querySelector('.theme-btn');
@@ -630,6 +628,7 @@
 
       function dict() { return I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG]; }
       function t(k, fb) { var d = dict(); return d[k] != null ? d[k] : (fb || k); }
+      function pad2(n) { return (n < 10 ? '0' : '') + n; }
       function bySlug(s) { for (var i = 0; i < PROJECTS.length; i++) if (PROJECTS[i].slug === s) return PROJECTS[i]; return null; }
       function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
       function domainOf(p) { return p.url ? p.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : p.name; }
@@ -650,7 +649,8 @@
           : '<div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>' + esc(domainOf(p)) + '</span></div>'
             + '<div class="art" aria-hidden="true"></div><span class="cover" aria-hidden="true">' + esc(p.name) + '</span></div>';
         var pills = p.tags.map(function (x) { return '<span class="pill">' + esc(x) + '</span>'; }).join('') + statusPill(p);
-        return '<a class="proj' + brand + '" data-cat="' + esc(p.cat) + '" href="#/work/' + p.slug + '"' + style + '>'
+        var idx = pad2(PROJECTS.indexOf(p) + 1) + '/' + pad2(PROJECTS.length);
+        return '<a class="proj' + brand + '" data-cat="' + esc(p.cat) + '" data-idx="' + idx + '" href="#/work/' + p.slug + '"' + style + '>'
           + thumb
           + '<div class="body"><span class="cat">' + esc(cat) + '</span><h3>' + esc(p.name) + '</h3>'
           + '<p>' + esc(desc) + '</p><div class="pills">' + pills + '</div>'

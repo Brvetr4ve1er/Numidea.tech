@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr" data-theme="arcanum">
+<html lang="fr" dir="ltr" data-theme="flare">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Numidea Labs — On construit le logiciel que votre entreprise attend</title>
 <meta name="description" content="Studio de développement à Bordj Bou Arréridj. On conçoit, on code, on livre et on répond quand ça casse. Sans intermédiaire.">
-<meta name="theme-color" content="#0A1420">
+<meta name="theme-color" content="#F93E06">
 <meta name="author" content="Numidea Labs">
 
 <!-- Open Graph / social — scrapers require ABSOLUTE urls and refuse SVG images;
@@ -38,7 +38,7 @@
       v = h.indexOf('netlify') !== -1 ? 'c' : h.indexOf('vercel') !== -1 ? 'b' : 'a';
     }
     d.setAttribute('data-variant', v);
-    var def = v === 'b' ? 'daylight' : 'arcanum', t = def;
+    var def = v === 'b' ? 'signal' : 'flare', t = def;
     try { t = localStorage.getItem('numidea-theme') || def; } catch (e) {}
     d.setAttribute('data-theme', t);
   })();
@@ -46,8 +46,8 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cinzel+Decorative:wght@700&family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202608031759">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=202608031908">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -63,7 +63,7 @@
 <header class="navbar">
   <div class="nav-inner">
     <div class="bar">
-      <a class="logo" href="#top">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+      <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark --><span class="brick" aria-hidden="true">NL</span>Num<i>idea</i> Labs</a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#how" data-i18n="nav.about">À propos</a>
         <a href="#services" data-i18n="nav.services">Services</a>
@@ -76,11 +76,11 @@
         <div class="theme-switch">
           <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="Theme"><span class="ic" aria-hidden="true"></span></button>
           <div class="theme-menu" role="menu" aria-label="Theme">
-            <button type="button" role="menuitemradio" data-theme-val="arcanum" aria-checked="true"><span class="dot arcanum" aria-hidden="true"></span>Arcanum</button>
-            <button type="button" role="menuitemradio" data-theme-val="noir" aria-checked="false"><span class="dot noir" aria-hidden="true"></span>Neon Noir</button>
-            <button type="button" role="menuitemradio" data-theme-val="daylight" aria-checked="false"><span class="dot daylight" aria-hidden="true"></span>Daylight</button>
-            <button type="button" role="menuitemradio" data-theme-val="mono" aria-checked="false"><span class="dot mono" aria-hidden="true"></span>Monochrome</button>
-            <button type="button" role="menuitemradio" data-theme-val="altneon" aria-checked="false"><span class="dot altneon" aria-hidden="true"></span>Alt-neon</button>
+            <button type="button" role="menuitemradio" data-theme-val="flare" aria-checked="true"><span class="dot flare" aria-hidden="true"></span>Flare</button>
+            <button type="button" role="menuitemradio" data-theme-val="espresso" aria-checked="false"><span class="dot espresso" aria-hidden="true"></span>Espresso</button>
+            <button type="button" role="menuitemradio" data-theme-val="marigold" aria-checked="false"><span class="dot marigold" aria-hidden="true"></span>Marigold</button>
+            <button type="button" role="menuitemradio" data-theme-val="void" aria-checked="false"><span class="dot void" aria-hidden="true"></span>Void</button>
+            <button type="button" role="menuitemradio" data-theme-val="signal" aria-checked="false"><span class="dot signal" aria-hidden="true"></span>Signal</button>
           </div>
         </div>
         <div class="lang" role="group" aria-label="Language">
@@ -120,11 +120,11 @@
     <div class="hero-grid">
       <div>
         <span class="eyebrow" data-i18n="hero.eyebrow">Atelier d'ingénierie · Bordj Bou Arréridj · DZ</span>
-        <h1 class="hero-h" id="hero-title" data-i18n="hero.title">Une ingénierie qui tient de la magie. <span class="swash">La rigueur qui la livre.</span></h1>
-        <p class="lede" data-i18n="hero.lede">Quatre spécialistes qui conçoivent, codent et livrent toute la chaîne — du back-end au dernier pixel. Des systèmes puissants, rendus accessibles, et assumés quand ça casse.</p>
+        <h1 class="hero-h" id="hero-title" data-i18n="hero.title">On construit. On livre. <span class="swash">On répond.</span></h1>
+        <p class="lede" data-i18n="hero.lede">Sites, applications, pipelines de données. Conçus et codés ici, à Bordj Bou Arréridj. Cinq sont en ligne. Réponse sous 24 heures.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Construisons →</a>
-          <a class="btn btn-teal" href="#work" data-i18n="hero.cta2">Voir les preuves</a>
+          <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Démarrer un projet</a>
+          <a class="btn btn-teal" href="#work" data-i18n="hero.cta2">Voir le travail</a>
         </div>
       </div>
       <a class="hero-deck reveal" href="#work" aria-label="5 sites clients en ligne">
@@ -158,7 +158,7 @@
       <div><div class="stat" data-count="3">3</div><div class="stat-label" data-i18n="proof.s3">langues</div></div>
       <div><div class="stat" data-count="24" data-prefix="&lt;" data-suffix="h">&lt;24h</div><div class="stat-label" data-i18n="proof.s4">de réponse</div></div>
     </div>
-    <p class="proof-line" data-i18n="proof.line">De vrais clients. De vrais déploiements. Les preuves sont plus bas — ouvrez-les.</p>
+    <p class="proof-line" data-i18n="proof.line">Cinq sites en ligne. Cliquables. Vérifiez.</p>
   </section>
 
 
@@ -169,7 +169,7 @@
     <p class="sec-lead" data-i18n="work.lead">Des sites réels, en ligne, qu'on peut cliquer — pas des maquettes.</p>
     <div class="work-grid">
 
-      <article class="proj reveal" data-cat="health">
+      <article class="proj reveal" data-cat="health" data-idx="01/07">
         <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>doctorcherfia.dz</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" viewBox="0 0 24 24"><path d="M9.5 3.5h5v6H20.5v5h-6V20.5h-5v-6H3.5v-5h6z"/></svg></div><span class="cover" aria-hidden="true">Doctor Cherfia</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj1.cat">Santé · Next.js</span>
@@ -182,7 +182,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="travel" style="--accent:95,214,134">
+      <article class="proj proj--brand reveal" data-cat="travel" style="--accent:95,214,134" data-idx="02/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" src="assets/previews/alliancetravel.webp" alt="Aperçu du site Alliance Travel" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
@@ -195,7 +195,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="industrial" style="--accent:59,164,224">
+      <article class="proj proj--brand reveal" data-cat="industrial" style="--accent:59,164,224" data-idx="03/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" src="assets/previews/almaflowclim.webp" alt="Aperçu du site AlmaFlowClim" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Industrie · Web</span>
@@ -208,7 +208,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="industrial" style="--accent:214,55,48">
+      <article class="proj proj--brand reveal" data-cat="industrial" style="--accent:214,55,48" data-idx="04/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
@@ -221,7 +221,7 @@
         </div>
       </article>
 
-      <article class="proj reveal" data-cat="pwa">
+      <article class="proj reveal" data-cat="pwa" data-idx="05/07">
         <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>etoile-est.app</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" viewBox="0 0 24 24"><path d="M12 2.5v19M2.5 12h19M5.2 5.2l13.6 13.6M18.8 5.2L5.2 18.8"/></svg></div><span class="cover" aria-hidden="true">Étoile de l'Est</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj5.cat">PWA · Supabase</span>
@@ -234,7 +234,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="travel" style="--accent:34,180,104">
+      <article class="proj proj--brand reveal" data-cat="travel" style="--accent:34,180,104" data-idx="06/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
@@ -247,7 +247,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="commerce" style="--accent:255,90,31">
+      <article class="proj proj--brand reveal" data-cat="commerce" style="--accent:255,90,31" data-idx="07/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" src="assets/previews/glaive.webp" alt="Aperçu du site Glaive Store" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
@@ -618,7 +618,7 @@
 <!-- ================= FOOTER ================= -->
 <footer class="footer wrap">
   <div class="footer-top">
-    <a class="logo" href="#top">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+    <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark --><span class="brick" aria-hidden="true">NL</span>Num<i>idea</i> Labs</a>
     <nav aria-label="Footer">
       <a href="#how" data-i18n="nav.about">À propos</a>
       <a href="#services" data-i18n="nav.services">Services</a>
@@ -629,7 +629,7 @@
       <a href="mailto:hello@numidealabs.com">hello@numidealabs.com</a>
     </nav>
   </div>
-  <p class="signoff" data-i18n="footer.signoff">Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.</p>
+  <p class="signoff" data-i18n="footer.signoff">Construit en lots. Jamais en série.</p>
   <div class="meta">
     <span data-i18n="footer.rights">© 2026 Numidea Labs · Tous droits réservés</span>
     <span data-i18n="footer.tag">Rooted in Numidia · built on ideas</span>
@@ -644,7 +644,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608031759" defer></script>
+<script src="assets/app.js?v=202608031908" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

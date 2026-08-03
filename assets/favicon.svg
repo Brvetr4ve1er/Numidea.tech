@@ -1,18 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#09D8C7"/>
-      <stop offset="0.5" stop-color="#EAF2F4"/>
-      <stop offset="1" stop-color="#BD0927"/>
-    </linearGradient>
-    <radialGradient id="bg" cx="0.2" cy="0" r="1.2">
-      <stop offset="0" stop-color="#411E3A"/>
-      <stop offset="0.5" stop-color="#17364F"/>
-      <stop offset="1" stop-color="#0D1A2F"/>
-    </radialGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
-  <text x="32" y="46" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="700"
-        font-size="42" text-anchor="middle" fill="url(#g)">N</text>
-  <rect x="44" y="16" width="5" height="26" rx="1" fill="#BD0927"/>
+  <rect width="64" height="64" rx="14" fill="#F93E06"/>
+  <rect x="4" y="4" width="56" height="56" rx="11" fill="none" stroke="#2A2D2C" stroke-width="4"/>
+  <g fill="#2A2D2C" font-family="'Space Grotesk',system-ui,sans-serif" font-weight="700"
+     font-size="27" letter-spacing="-2" text-anchor="middle">
+    <text x="32" y="31">N</text><text x="32" y="54">L</text>
+  </g>
 </svg>

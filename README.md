@@ -64,7 +64,7 @@ hostname (override with `?variant=b` or `window.NUMIDEA_VARIANT`):
 | Variant | Host | Hypothesis under test | What differs |
 | --- | --- | --- | --- |
 | **a** | GitHub Pages | control | Proof-first atelier, dark Arcanum |
-| **b** | Vercel | a clean, conventional surface reads as more trustworthy to local businesses | Daylight default + decoration stripped (no grain/honeycomb/mesh, flat cards, crisp corners) + plain-spoken hero |
+| **b** | Vercel | a different colour pairing changes perceived trust | Signal pairing by default + plain-spoken hero |
 | **c** | Netlify | a concrete risk-free offer converts better than a craft narrative | Offer-first hero ("built before you pay") + the signature Preview offer promoted above the fold |
 
 The variant is resolved **before first paint** by an inline script in
@@ -107,18 +107,21 @@ npx serve .
 Then open <http://localhost:8000>. (Opening `index.html` directly works too,
 but a server is recommended so fonts and relative paths resolve cleanly.)
 
-### Design system — Arcanum (+ 4 alt themes)
+### Design system — see [BRAND.md](BRAND.md)
 
-- **Color:** one tokenised palette that reskins per theme. **Arcanum** ships
-  applied by default — arcane-blue space (`--void` `#0A1420`) with brass-gold as
-  the flourish (`--crimson` `#E6B450`) and electric teal as rationed neon
-  (`--teal` `#34D0E8`). Four more ship in the switcher: Neon Noir, Daylight,
-  Monochrome, Alt-neon. Every rule reads `var(--token)`, so a theme is a swap.
-- **Type:** Geist for display/body, Geist Mono for data, Cinzel /
-  Cinzel Decorative for the engraved-Deco flourishes, IBM Plex Sans Arabic for
-  the RTL experience.
-- **Rule:** gradients are *light* (glows, beds, duotone), never chrome. One flourish
-  per screen, then discipline.
+**Industrial signage, poured soft.** Three colours, one diagonal, everything in
+a rounded box.
+
+- **Colour:** `--flare #F93E06` / `--graphite #2A2D2C` / `--bone #F5E6E0`, plus
+  five *approved pairings* exposed as themes (Flare, Espresso, Marigold, Void,
+  Signal). No white, no black, no gradients, no shadows.
+- **Type:** BLOKFORM for display *(pending — Space Grotesk stands in via one
+  token)*, Space Grotesk for UI, JetBrains Mono for every numeral and spec
+  label, IBM Plex Sans Arabic for RTL.
+- **Construction:** 2px borders always, radius set `4/12/28/999`, 8px baseline,
+  depth from colour offset and keylines only.
+- **Logo:** swap point marked in `index.html` — replace `.brick` and the plate
+  around it adapts. Full rules in BRAND.md §4.
 
 ### Features
 
