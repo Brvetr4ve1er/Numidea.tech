@@ -109,19 +109,17 @@ but a server is recommended so fonts and relative paths resolve cleanly.)
 
 ### Design system — see [BRAND.md](BRAND.md)
 
-**Industrial signage, poured soft.** Three colours, one diagonal, everything in
-a rounded box.
+**Quiet ground. Loud type. One accent, used once.**
 
-- **Colour:** `--flare #F93E06` / `--graphite #2A2D2C` / `--bone #F5E6E0`, plus
-  five *approved pairings* exposed as themes (Flare, Espresso, Marigold, Void,
-  Signal). No white, no black, no gradients, no shadows.
-- **Type:** BLOKFORM for display *(pending — Space Grotesk stands in via one
-  token)*, Space Grotesk for UI, JetBrains Mono for every numeral and spec
-  label, IBM Plex Sans Arabic for RTL.
-- **Construction:** 2px borders always, radius set `4/12/28/999`, 8px baseline,
-  depth from colour offset and keylines only.
-- **Logo:** swap point marked in `index.html` — replace `.brick` and the plate
-  around it adapts. Full rules in BRAND.md §4.
+- **Colour:** warm paper `#F7F4EF` and warm near-black `#16130F`; Flare
+  `#F93E06` is the only colour and covers ~2% of any screen. Three palettes:
+  Paper, Ink, Sand.
+- **Type:** Instrument Serif for display (sentence case, 42–150px), Instrument
+  Sans for UI, JetBrains Mono for figure numbers and labels, IBM Plex Sans
+  Arabic for RTL.
+- **Construction:** hairlines not boxes, one 3px radius, 8px baseline, no
+  shadows except the floating hero mockups.
+- **Logo:** swap point marked in `index.html`. Full rules in BRAND.md §8.
 
 ### Features
 

@@ -465,13 +465,17 @@
     var suffix = el.getAttribute('data-suffix') || '';
     var prefix = el.getAttribute('data-prefix') || '';
     if (reduceMotion) { el.textContent = prefix + group(target) + suffix; return; }
-    // INDEX ROLL — an odometer, not a tween: 14 discrete steps, then lock
-    var STEPS = 14, i = 0;
-    var tick = setInterval(function () {
-      i++;
-      el.textContent = prefix + group(Math.round(target * (i / STEPS))) + suffix;
-      if (i >= STEPS) { clearInterval(tick); el.textContent = prefix + group(target) + suffix; }
-    }, 40);
+    // numerals settle rather than spin: eased count, then lock
+    var dur = 1100, start = null;
+    function frame(t) {
+      if (!start) start = t;
+      var p = Math.min((t - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 4);
+      el.textContent = prefix + group(Math.round(target * eased)) + suffix;
+      if (p < 1) requestAnimationFrame(frame);
+      else el.textContent = prefix + group(target) + suffix;
+    }
+    requestAnimationFrame(frame);
   }
 
   /* ---------------- DOM ready ---------------- */
@@ -489,9 +493,10 @@
 
     // theme switcher
     // the five approved brand pairings — no other combination exists
-    var THEMES = ['flare', 'espresso', 'marigold', 'void', 'signal'];
+    // three curated palettes — paper, ink, sand
+    var THEMES = ['paper', 'ink', 'sand'];
     function applyTheme(t) {
-      if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'signal' : 'flare';
+      if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'ink' : 'paper';
       document.documentElement.setAttribute('data-theme', t);
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
@@ -499,7 +504,7 @@
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
     }
     // the pre-paint script already resolved and applied this; mirror it here
-    var defaultTheme = VARIANT === 'b' ? 'signal' : 'flare';
+    var defaultTheme = VARIANT === 'b' ? 'ink' : 'paper';
     var savedTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
     applyTheme(savedTheme);
     var themeBtn = document.querySelector('.theme-btn');

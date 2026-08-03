@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr" data-theme="flare">
+<html lang="fr" dir="ltr" data-theme="paper">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Numidea Labs — On construit le logiciel que votre entreprise attend</title>
 <meta name="description" content="Studio de développement à Bordj Bou Arréridj. On conçoit, on code, on livre et on répond quand ça casse. Sans intermédiaire.">
-<meta name="theme-color" content="#F93E06">
+<meta name="theme-color" content="#F7F4EF">
 <meta name="author" content="Numidea Labs">
 
 <!-- Open Graph / social — scrapers require ABSOLUTE urls and refuse SVG images;
@@ -38,7 +38,7 @@
       v = h.indexOf('netlify') !== -1 ? 'c' : h.indexOf('vercel') !== -1 ? 'b' : 'a';
     }
     d.setAttribute('data-variant', v);
-    var def = v === 'b' ? 'signal' : 'flare', t = def;
+    var def = v === 'b' ? 'ink' : 'paper', t = def;
     try { t = localStorage.getItem('numidea-theme') || def; } catch (e) {}
     d.setAttribute('data-theme', t);
   })();
@@ -46,8 +46,8 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202608032116">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=202608032141">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -63,7 +63,7 @@
 <header class="navbar">
   <div class="nav-inner">
     <div class="bar">
-      <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark --><span class="brick" aria-hidden="true">NL</span>Num<i>idea</i> Labs</a>
+      <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark -->Num<i>idea</i> Labs<span class="brick" aria-hidden="true">DZ</span></a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#how" data-i18n="nav.about">À propos</a>
         <a href="#services" data-i18n="nav.services">Services</a>
@@ -76,11 +76,9 @@
         <div class="theme-switch">
           <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="Theme"><span class="ic" aria-hidden="true"></span></button>
           <div class="theme-menu" role="menu" aria-label="Theme">
-            <button type="button" role="menuitemradio" data-theme-val="flare" aria-checked="true"><span class="dot flare" aria-hidden="true"></span>Flare</button>
-            <button type="button" role="menuitemradio" data-theme-val="espresso" aria-checked="false"><span class="dot espresso" aria-hidden="true"></span>Espresso</button>
-            <button type="button" role="menuitemradio" data-theme-val="marigold" aria-checked="false"><span class="dot marigold" aria-hidden="true"></span>Marigold</button>
-            <button type="button" role="menuitemradio" data-theme-val="void" aria-checked="false"><span class="dot void" aria-hidden="true"></span>Void</button>
-            <button type="button" role="menuitemradio" data-theme-val="signal" aria-checked="false"><span class="dot signal" aria-hidden="true"></span>Signal</button>
+            <button type="button" role="menuitemradio" data-theme-val="paper" aria-checked="true"><span class="dot paper" aria-hidden="true"></span>Paper</button>
+            <button type="button" role="menuitemradio" data-theme-val="ink" aria-checked="false"><span class="dot ink" aria-hidden="true"></span>Ink</button>
+            <button type="button" role="menuitemradio" data-theme-val="sand" aria-checked="false"><span class="dot sand" aria-hidden="true"></span>Sand</button>
           </div>
         </div>
         <div class="lang" role="group" aria-label="Language">
@@ -319,7 +317,7 @@
   </div>
 
   <!-- ================= SERVICES ================= -->
-  <section id="services" class="band" aria-labelledby="svc-h">
+  <section id="services" class="tinted" aria-labelledby="svc-h">
     <span class="kicker" data-i18n="svc.kicker">03 — Services</span>
     <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">Ce qu'on <em>construit.</em></h2>
     <p class="svc-lead" data-i18n="svc.lead">Cinq offres. Cinq capacités de plus en dessous.</p>
@@ -465,7 +463,7 @@
 
 
   <!-- ================= FOUNDER ================= -->
-  <section id="founder" class="band" aria-labelledby="founder-h">
+  <section id="founder" class="tinted" aria-labelledby="founder-h">
     <span class="kicker" data-i18n="founder.kicker">05 — Équipe &amp; fondateur</span>
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Un nom. <em>Un visage.</em></h2>
     <p class="sec-lead" data-i18n="founder.lead">Le fondateur conçoit, code et livre. Vous lui parlez directement.</p>
@@ -618,7 +616,7 @@
 <!-- ================= FOOTER ================= -->
 <footer class="footer wrap">
   <div class="footer-top">
-    <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark --><span class="brick" aria-hidden="true">NL</span>Num<i>idea</i> Labs</a>
+    <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark -->Num<i>idea</i> Labs<span class="brick" aria-hidden="true">DZ</span></a>
     <nav aria-label="Footer">
       <a href="#how" data-i18n="nav.about">À propos</a>
       <a href="#services" data-i18n="nav.services">Services</a>
@@ -644,7 +642,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608032116" defer></script>
+<script src="assets/app.js?v=202608032141" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
