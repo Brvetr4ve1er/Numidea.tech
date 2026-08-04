@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr" data-theme="paper">
+<html lang="fr" dir="ltr" data-theme="midnight">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Numidea Labs — On construit le logiciel que votre entreprise attend</title>
 <meta name="description" content="Studio de développement à Bordj Bou Arréridj. On conçoit, on code, on livre et on répond quand ça casse. Sans intermédiaire.">
-<meta name="theme-color" content="#F7F4EF">
+<meta name="theme-color" content="#08090A">
 <meta name="author" content="Numidea Labs">
 
 <!-- Open Graph / social — scrapers require ABSOLUTE urls and refuse SVG images;
@@ -38,7 +38,7 @@
       v = h.indexOf('netlify') !== -1 ? 'c' : h.indexOf('vercel') !== -1 ? 'b' : 'a';
     }
     d.setAttribute('data-variant', v);
-    var def = v === 'b' ? 'ink' : 'paper', t = def;
+    var def = v === 'b' ? 'daylight' : 'midnight', t = def;
     try { t = localStorage.getItem('numidea-theme') || def; } catch (e) {}
     d.setAttribute('data-theme', t);
   })();
@@ -46,8 +46,8 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202608032141">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=202608040826">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -63,7 +63,7 @@
 <header class="navbar">
   <div class="nav-inner">
     <div class="bar">
-      <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark -->Num<i>idea</i> Labs<span class="brick" aria-hidden="true">DZ</span></a>
+      <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark --><span class="brick" aria-hidden="true">N</span>numidea<i>labs</i></a>
       <nav class="nav-links" aria-label="Primary">
         <a href="#how" data-i18n="nav.about">À propos</a>
         <a href="#services" data-i18n="nav.services">Services</a>
@@ -76,9 +76,9 @@
         <div class="theme-switch">
           <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="Theme"><span class="ic" aria-hidden="true"></span></button>
           <div class="theme-menu" role="menu" aria-label="Theme">
-            <button type="button" role="menuitemradio" data-theme-val="paper" aria-checked="true"><span class="dot paper" aria-hidden="true"></span>Paper</button>
-            <button type="button" role="menuitemradio" data-theme-val="ink" aria-checked="false"><span class="dot ink" aria-hidden="true"></span>Ink</button>
-            <button type="button" role="menuitemradio" data-theme-val="sand" aria-checked="false"><span class="dot sand" aria-hidden="true"></span>Sand</button>
+            <button type="button" role="menuitemradio" data-theme-val="midnight" aria-checked="true"><span class="dot midnight" aria-hidden="true"></span>Midnight</button>
+            <button type="button" role="menuitemradio" data-theme-val="graphite" aria-checked="false"><span class="dot graphite" aria-hidden="true"></span>Graphite</button>
+            <button type="button" role="menuitemradio" data-theme-val="daylight" aria-checked="false"><span class="dot daylight" aria-hidden="true"></span>Daylight</button>
           </div>
         </div>
         <div class="lang" role="group" aria-label="Language">
@@ -123,6 +123,23 @@
         <div class="hero-cta">
           <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Démarrer un projet</a>
           <a class="btn btn-teal" href="#work" data-i18n="hero.cta2">Voir le travail</a>
+        </div>
+      </div>
+      <div class="term reveal" role="img" aria-label="Dernier déploiement : GitHub Pages, 18 secondes, en ligne">
+        <div class="term-bar"><i></i><i></i><i></i><span>numidea — deploy</span></div>
+        <div class="term-body">
+          <span class="l"><span class="p">$</span> git push origin claude/numidea-labs-landing</span>
+          <span class="l d">› Deploy to GitHub Pages · workflow run</span>
+          <span class="l"><span class="ok">✓</span> checkout <span class="d">2s</span></span>
+          <span class="l"><span class="ok">✓</span> configure-pages <span class="d">1s</span></span>
+          <span class="l"><span class="ok">✓</span> upload-artifact <span class="d">4s</span></span>
+          <span class="l"><span class="ok">✓</span> deploy <span class="d">11s</span></span>
+          <span class="l"><span class="ok">●</span> <span class="w">live</span> <span class="d">brvetr4ve1er.github.io/Numidea.tech</span></span>
+        </div>
+        <div class="term-foot">
+          <div><b>18s</b><span>build</span></div>
+          <div><b>0</b><span>deps</span></div>
+          <div><b>3</b><span>langues</span></div>
         </div>
       </div>
       <a class="hero-deck reveal" href="#work" aria-label="5 sites clients en ligne">
@@ -616,7 +633,7 @@
 <!-- ================= FOOTER ================= -->
 <footer class="footer wrap">
   <div class="footer-top">
-    <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark -->Num<i>idea</i> Labs<span class="brick" aria-hidden="true">DZ</span></a>
+    <a class="logo" href="#top"><!-- SWAP POINT: replace .brick with the delivered mark --><span class="brick" aria-hidden="true">N</span>numidea<i>labs</i></a>
     <nav aria-label="Footer">
       <a href="#how" data-i18n="nav.about">À propos</a>
       <a href="#services" data-i18n="nav.services">Services</a>
@@ -642,7 +659,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608032141" defer></script>
+<script src="assets/app.js?v=202608040826" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

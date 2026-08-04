@@ -1,136 +1,102 @@
-# Numidea Labs — Editorial System
+# Numidea Labs — Engineering Surface
 
-> **Quiet ground. Loud type. One accent, used once.**
+> **Cool near-black. Technical sans. Monospace as texture. Real artifacts.**
+
+Register: Linear · Vercel · Resend · Raycast. Not a magazine, not signage —
+a tool that happens to be well made.
 
 ---
 
-## 1 · Creative direction
+## 1 · Why this and not the last two
 
-The studio's product is judgement, not volume. So the site behaves like a
-well-set magazine rather than a signage system: the page is calm, the
-typography does the shouting, and colour is rationed to almost nothing.
+Two earlier directions were built and rejected, and both failures were
+informative:
 
-Three decisions carry the whole thing:
+| Direction | Why it failed |
+| --- | --- |
+| **Industrial signage** — screaming orange field, 45% coverage, uppercase | Loud, not beautiful. Orange at field scale reads cheap on screen. |
+| **Editorial serif** — Instrument Serif on warm cream, huge whitespace | Beautiful, wrong category. Serif + warm paper is the uniform of specialty coffee and skincare — it read as a food brand, not a software studio. |
 
-1. **The serif is the brand.** Instrument Serif at 150px, sentence case, tight
-   leading. An editorial serif in a software studio's mouth reads as
-   confidence — it is the opposite of the template.
-2. **Flare is a highlight, not a field.** The orange survives from the previous
-   system but appears on roughly 2% of any screen: one italic phrase per
-   heading, the hairline in a kicker, a caption, a link underline.
-3. **Hairlines, not boxes.** Nothing is boxed. Sections are separated by
-   whitespace and 1px rules. Depth comes from scale contrast.
+The category signal for a developer studio is not typography restraint. It's
+**cool near-black, a technical sans, monospace used as texture, and real
+build artifacts on the page.**
 
-**Emotion target:** composed, unhurried, expensive. The viewer should feel the
-studio has nothing to prove.
-
-## 2 · Visual mood
-
-Swiss grid discipline · Kinfolk/Monocle pacing · Aesop restraint ·
-gallery-catalogue image treatment. Warm paper rather than white, warm
-near-black rather than pure black — the whole surface sits slightly toward
-the yellow end so it reads as printed matter, not as screen.
-
-## 3 · Layout blueprint
+## 2 · Colour
 
 ```
-Grid        max 1240 · gutter clamp(20 → 64) · 8px baseline
-Section     clamp(88 → 140) vertical
-Rhythm      statement → numbers → alternating spreads → index →
-            steps → portrait → list → questions → closing spread → dark coda
-Radius      3px. one value. barely present.
-Rules       1px. never 2px. never a box.
-Elevation   none, except floating hero mockups
+midnight (default)   bg #08090A   panel #0E1011   edge #1D2023
+graphite             bg #111315   panel #181A1D   edge #282C30
+daylight             bg #FBFBFC   panel #FFFFFF   edge #E3E5E9
+
+accent  #F93E06   the studio orange, carried through every rebuild
+ok      #3ECF8E   functional only — live status dots and badges
 ```
 
-**Pacing** — the page alternates deliberately: a full-width statement, a
-four-numeral band, seven image spreads with the image side flipping each
-row, a typographic services index, a numbered method list, a founder
-portrait block, a quiet stack list, an FAQ table of contents, a two-column
-closing spread, then a dark footer as the final chord.
+Cool greys, not warm. The accent appears on the primary button, the headline's
+last clause, the kicker square, and live-status marks — nowhere else.
 
-## 4 · Typography
+## 3 · Type
 
-| Role | Face | Treatment |
-| --- | --- | --- |
-| Display | **Instrument Serif** 400 + italic | 42–150px, leading .94–1.05, tracking −.015 to −.025em, sentence case |
-| UI / body | **Instrument Sans** 400/500 | 15–19px, leading 1.6 |
-| Spec | **JetBrains Mono** 400/500 | 10–11px, tracking .14–.16em, uppercase — kickers, figure numbers, labels |
-| RTL | **IBM Plex Sans Arabic** | never inherits italic or negative tracking; leading opens to 1.3+ |
+| Role | Face |
+| --- | --- |
+| Interface & headings | **Geist** 400/500/600, tight tracking (−.028em on headings) |
+| Code, labels, data | **Geist Mono** 400/500 — domains, statuses, figures, versions, terminal |
+| RTL | **IBM Plex Sans Arabic**, tracking reset to 0 |
 
-Scale contrast is the point: a 150px headline sitting above an 11px mono
-label, with nothing in between, is what makes the page feel edited.
+Monospace is not decoration here — it marks the things a developer would
+actually read as data: domains, durations, counts, build indices.
 
-## 5 · Colour
+## 4 · The artifacts
+
+**The terminal** in the hero is the real deploy sequence for this repository —
+checkout, configure-pages, upload-artifact, deploy, 18s, live. It replaces the
+fake terminal removed earlier (which showed a domain that does not exist).
+
+**Project cards** carry the real domain in a browser chrome bar, a build index
+(`03/07`), and an honest status pill — green *Live* or a plain *Bientôt* for
+the two that have not shipped.
+
+**The grid** behind the page is a 64px engineering grid, masked so it fades
+before the fold.
+
+## 5 · Construction
 
 ```
-paper   #F7F4EF  ground        ink     #16130F  type
-tint    #EFEAE2  pacing band   ink-70  #4A453D  secondary
-rule    #DDD6CB  hairline      ink-45  #7A736A  captions
-FLARE   #F93E06  the accent — display size only
+Grid     max 1200 · gutter clamp(20 → 40)
+Space    8 / 16 / 24 / 32 / 48 / 72 / 112 / 160
+Radius   6 / 10 / 16
+Borders  1px, always var(--edge)
+Motion   180ms interface, 450ms reveal, 10px rise. no bounce.
 ```
 
-Two accent values, deliberately. **`--accent`** (#F93E06) is used at display
-sizes where 3:1 is the WCAG bar. **`--accent-ink`** (#B0300A) carries every
-accent string below 24px, where the bar is 4.5:1 — measured, not assumed.
+## 6 · Measured
 
-**Three palettes only:** Paper (default), Ink (dark), Sand (warm). No rainbow.
+| Check | Result |
+| --- | --- |
+| Body contrast (midnight / graphite / daylight) | 17.3 / 16.6 / 18.7 : 1 |
+| Lede | 7.8 / 8.4 / 6.8 : 1 |
+| Card copy on panel | 7.5 / 7.9 / 7.0 : 1 |
+| Horizontal overflow, 1440 / 390 | none |
+| Project images loaded | 5 / 5 |
+| JS errors | none |
 
-Measured contrast: body 16.9:1 (paper), 15.7:1 (ink), 13.6:1 (sand);
-accent captions 5.9 / 7.5 / 6.2:1; secondary copy 8.7 / 8.5 / 6.5:1.
+## 7 · The logo
 
-## 6 · Image treatment
-
-Client screenshots are the only photography, so they are treated as plates:
-4:3 crops, top-anchored, 3px radius, no border, no browser chrome. Each
-spread carries a mono figure number — `FIG. 03/07` — set above the row.
-The image column stays the wide one on both alternations; the columns swap
-with the order so the picture never lands in the narrow half.
-
-The hero deck is the one licensed exception to the no-shadow rule: three
-floating mockups with a long soft shadow, because floating objects need
-ground shadow to be legible as objects.
-
-## 7 · Motion
-
-Slow and quiet: a 14px rise and a fade over 700ms on
-`cubic-bezier(.22,1,.36,1)`. Numerals ease to their value and stop.
-Nav underlines wipe from the left. Nothing bounces, nothing parallaxes.
-`prefers-reduced-motion` removes all of it.
-
-## 8 · The logo
-
-The delivered mark drops into one place, marked in `index.html`:
+Swap point in `index.html`:
 
 ```html
 <a class="logo" href="#top">
   <!-- SWAP POINT: replace .brick with the delivered mark -->
-  Num<i>idea</i> Labs<span class="brick">DZ</span>
+  <span class="brick">N</span>numidea<i>labs</i>
 </a>
 ```
 
-Currently the wordmark is set in Instrument Serif with *idea* italic and a
-small mono `DZ` tag. Replace `.brick` with an inline `<svg>`; the lockup,
-spacing and dark-footer inversion are already handled. One edit propagates
-to navbar, footer and 404.
+Interim mark is an accent square with `N`. Replace `.brick` with an inline
+`<svg>`; the lockup, gap and dark/light inversion already work.
 
-## 9 · Quality audit
+## 8 · Open
 
-| Check | Result |
-| --- | --- |
-| Body contrast, all three palettes | 13.6–16.9:1 |
-| Accent-as-small-text | 5.9–7.5:1 after introducing `--accent-ink` |
-| Horizontal overflow, 1440 / 1024 / 390 | none |
-| RTL (Arabic) | mirrors; serif italic and negative tracking suppressed |
-| JS errors | none |
-| Reduced motion | all transforms and transitions removed |
-
-## 10 · Open
-
-- **The logo** — you're drawing it. Swap point above.
-- **Photography** — there is none. Real founder portrait and any
-  environmental/product shots would lift this further than any CSS change.
+- **The logo** — you're drawing it.
+- **Founder portrait** — still a monogram placeholder.
 - **Case-study depth** — the explorer supports per-project
   problem/approach/outcome in three languages; only scaffolding exists.
-- **Page length** — ~16 desktop screens. Air is deliberate, but if it reads
-  as slow, the lever is the work-spread gap (`--s6`) and `--section`.

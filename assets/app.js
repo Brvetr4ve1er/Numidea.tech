@@ -494,9 +494,9 @@
     // theme switcher
     // the five approved brand pairings — no other combination exists
     // three curated palettes — paper, ink, sand
-    var THEMES = ['paper', 'ink', 'sand'];
+    var THEMES = ['midnight', 'graphite', 'daylight'];
     function applyTheme(t) {
-      if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'ink' : 'paper';
+      if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'daylight' : 'midnight';
       document.documentElement.setAttribute('data-theme', t);
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
@@ -504,7 +504,7 @@
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
     }
     // the pre-paint script already resolved and applied this; mirror it here
-    var defaultTheme = VARIANT === 'b' ? 'ink' : 'paper';
+    var defaultTheme = VARIANT === 'b' ? 'daylight' : 'midnight';
     var savedTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
     applyTheme(savedTheme);
     var themeBtn = document.querySelector('.theme-btn');

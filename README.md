@@ -109,17 +109,16 @@ but a server is recommended so fonts and relative paths resolve cleanly.)
 
 ### Design system — see [BRAND.md](BRAND.md)
 
-**Quiet ground. Loud type. One accent, used once.**
+**Cool near-black. Technical sans. Monospace as texture. Real artifacts.**
 
-- **Colour:** warm paper `#F7F4EF` and warm near-black `#16130F`; Flare
-  `#F93E06` is the only colour and covers ~2% of any screen. Three palettes:
-  Paper, Ink, Sand.
-- **Type:** Instrument Serif for display (sentence case, 42–150px), Instrument
-  Sans for UI, JetBrains Mono for figure numbers and labels, IBM Plex Sans
-  Arabic for RTL.
-- **Construction:** hairlines not boxes, one 3px radius, 8px baseline, no
-  shadows except the floating hero mockups.
-- **Logo:** swap point marked in `index.html`. Full rules in BRAND.md §8.
+- **Colour:** three surfaces — Midnight `#08090A` (default), Graphite, Daylight.
+  Accent `#F93E06` on the primary button, the headline's last clause and live
+  status; `#3ECF8E` for live dots only.
+- **Type:** Geist for interface and headings, Geist Mono for every domain,
+  status, duration and index, IBM Plex Sans Arabic for RTL.
+- **Artifacts:** the hero terminal shows this repo's real deploy output; project
+  cards carry real domains, build indices and honest statuses.
+- **Logo:** swap point marked in `index.html`. Full rules in BRAND.md §7.
 
 ### Features
 
