@@ -1,102 +1,71 @@
-# Numidea Labs — Engineering Surface
+# Numidea Labs — Themes
 
-> **Cool near-black. Technical sans. Monospace as texture. Real artifacts.**
-
-Register: Linear · Vercel · Resend · Raycast. Not a magazine, not signage —
-a tool that happens to be well made.
+The site ships **Arcanum** (arcane-blue + brass, Cinzel display) as its identity.
+Five palette variants and one full alternate design system sit behind the theme
+switcher.
 
 ---
 
-## 1 · Why this and not the last two
+## How themes work here
 
-Two earlier directions were built and rejected, and both failures were
-informative:
+Five of the six are **token swaps**: `[data-theme]` remaps the colour custom
+properties in `assets/styles.css`, and every rule that reads `var(--token)`
+reskins for free.
 
-| Direction | Why it failed |
+| Theme | Character |
 | --- | --- |
-| **Industrial signage** — screaming orange field, 45% coverage, uppercase | Loud, not beautiful. Orange at field scale reads cheap on screen. |
-| **Editorial serif** — Instrument Serif on warm cream, huge whitespace | Beautiful, wrong category. Serif + warm paper is the uniform of specialty coffee and skincare — it read as a food brand, not a software studio. |
+| **Arcanum** *(default)* | Arcane-blue ground, brass flourish, engraved Cinzel display |
+| **Neon Noir** | The `:root` base palette — navy, crimson, teal |
+| **Daylight** | Light surface, same structure |
+| **Monochrome** | Near-black with a single warm accent |
+| **Alt-neon** | Amber + violet on the noir ground |
 
-The category signal for a developer studio is not typography restraint. It's
-**cool near-black, a technical sans, monospace used as texture, and real
-build artifacts on the page.**
-
-## 2 · Colour
-
-```
-midnight (default)   bg #08090A   panel #0E1011   edge #1D2023
-graphite             bg #111315   panel #181A1D   edge #282C30
-daylight             bg #FBFBFC   panel #FFFFFF   edge #E3E5E9
-
-accent  #F93E06   the studio orange, carried through every rebuild
-ok      #3ECF8E   functional only — live status dots and badges
-```
-
-Cool greys, not warm. The accent appears on the primary button, the headline's
-last clause, the kicker square, and live-status marks — nowhere else.
-
-## 3 · Type
-
-| Role | Face |
-| --- | --- |
-| Interface & headings | **Geist** 400/500/600, tight tracking (−.028em on headings) |
-| Code, labels, data | **Geist Mono** 400/500 — domains, statuses, figures, versions, terminal |
-| RTL | **IBM Plex Sans Arabic**, tracking reset to 0 |
-
-Monospace is not decoration here — it marks the things a developer would
-actually read as data: domains, durations, counts, build indices.
-
-## 4 · The artifacts
-
-**The terminal** in the hero is the real deploy sequence for this repository —
-checkout, configure-pages, upload-artifact, deploy, 18s, live. It replaces the
-fake terminal removed earlier (which showed a domain that does not exist).
-
-**Project cards** carry the real domain in a browser chrome bar, a build index
-(`03/07`), and an honest status pill — green *Live* or a plain *Bientôt* for
-the two that have not shipped.
-
-**The grid** behind the page is a 64px engineering grid, masked so it fades
-before the fold.
-
-## 5 · Construction
+**Engineering** is different: it is a *complete design system*, not a palette —
+cool near-black, Geist + Geist Mono, monospace as texture, a deploy terminal and
+build indices. It cannot be expressed as token values, so it ships as an
+**alternate stylesheet**:
 
 ```
-Grid     max 1200 · gutter clamp(20 → 40)
-Space    8 / 16 / 24 / 32 / 48 / 72 / 112 / 160
-Radius   6 / 10 / 16
-Borders  1px, always var(--edge)
-Motion   180ms interface, 450ms reveal, 10px rise. no bounce.
+assets/theme-engineering.css      loaded with media="not all"
+app.js                            flips media to "all" for data-theme="engineering"
+index.html <head>                 the pre-paint resolver does the same, so the
+                                  theme never flashes the base skin first
 ```
 
-## 6 · Measured
+Because both sheets stay in the document, `theme-engineering.css` opens with a
+**reset block** that neutralises everything the base sheet paints and this system
+does not use — the brass dividers, the full-bleed band tints, the gradient-clipped
+headings, the fanned hero deck, the arcane texture layers. It loads second, so
+matching specificity is enough; there is no `!important` in the file.
 
-| Check | Result |
-| --- | --- |
-| Body contrast (midnight / graphite / daylight) | 17.3 / 16.6 / 18.7 : 1 |
-| Lede | 7.8 / 8.4 / 6.8 : 1 |
-| Card copy on panel | 7.5 / 7.9 / 7.0 : 1 |
-| Horizontal overflow, 1440 / 390 | none |
-| Project images loaded | 5 / 5 |
-| JS errors | none |
+A computed-style audit walks every visible element in the Engineering theme and
+fails on any base-palette colour still being painted. It currently reports zero.
 
-## 7 · The logo
+## Engineering-only markup
 
-Swap point in `index.html`:
+Three elements live in `index.html` for that theme and are hidden by the base
+sheet (`.term, .logo .brick { display:none }`):
+
+- `.term` — the hero deploy terminal, showing this repository's real GitHub
+  Pages run: checkout, configure-pages, upload-artifact, deploy, 18s, live.
+- `.logo .brick` — the accent monogram square.
+- `data-idx="0n/07"` on each project card — the build index badge.
+
+## The logo
+
+Swap point in `index.html`, and it serves both systems:
 
 ```html
 <a class="logo" href="#top">
-  <!-- SWAP POINT: replace .brick with the delivered mark -->
-  <span class="brick">N</span>numidea<i>labs</i>
+  <span class="brick">N</span>Num<i>idea</i> Labs<span class="cursor"></span>
 </a>
 ```
 
-Interim mark is an accent square with `N`. Replace `.brick` with an inline
-`<svg>`; the lockup, gap and dark/light inversion already work.
+`.brick` is the Engineering mark, `.cursor` is the Arcanum blinking block. Replace
+either (or both) with the delivered artwork.
 
-## 8 · Open
+## Adding another full design system
 
-- **The logo** — you're drawing it.
-- **Founder portrait** — still a monogram placeholder.
-- **Case-study depth** — the explorer supports per-project
-  problem/approach/outcome in three languages; only scaffolding exists.
+Copy the pattern: a self-contained sheet, a reset block at the top, one entry in
+`THEMES` in `app.js`, one `<link media="not all">`, one line in the pre-paint
+resolver, and a button in the theme menu.

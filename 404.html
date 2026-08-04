@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr" data-theme="midnight">
+<html lang="fr" dir="ltr" data-theme="arcanum">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404 — Cette page a pris la route · Numidea Labs</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#08090A">
+<meta name="theme-color" content="#0A1420">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202608040826">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cinzel+Decorative:wght@400;700;900&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=202608040929">
+<style>
+  .e404{min-height:100vh;display:grid;place-items:center;text-align:center;padding:var(--s-9) 0}
+  .e404 .mark{font-family:var(--font-display);font-weight:500;font-size:clamp(96px,22vw,260px);line-height:.9;letter-spacing:-.03em;
+    background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .e404 .lines{max-width:34ch;margin:var(--s-6) auto 0;color:var(--muted);font-size:clamp(16px,1.8vw,20px);line-height:1.6}
+  .e404 .lines .fr{color:var(--ice)}
+  .e404 .lines .ar{font-family:var(--font-ar-body);direction:rtl;display:block;margin-top:8px}
+  .e404 .cta{margin-top:var(--s-7);display:inline-flex}
+  .e404 .brand{position:fixed;top:var(--s-6);left:50%;transform:translateX(-50%)}
+</style>
 <script>
 /* GitHub Pages serves this page for ANY missing URL, at any depth — relative
    hrefs would then resolve wrong. Recompute the site root (repo subpath on
@@ -33,15 +43,15 @@
 </head>
 <body>
 <div class="wrap e404">
-  <a class="logo brand" href="index.html"><span class="brick" aria-hidden="true">N</span>numidea<i>labs</i></a>
+  <a class="logo brand" href="index.html">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
   <div>
     <div class="mark">404</div>
     <p class="lines">
-      <span class="fr">Rien ici. Ça arrive.</span><br>
-      Nothing here. That's fine.
-      <span class="ar">لا شيء هنا. لا بأس.</span>
+      <span class="fr">Cette page a pris la route.</span><br>
+      This one took the road.
+      <span class="ar">هذه الصفحة سلكت الطريق.</span>
     </p>
-    <a class="btn btn-primary cta" href="index.html">Retour à l'accueil</a>
+    <a class="btn btn-primary cta" href="index.html">Retour à l'accueil →</a>
   </div>
 </div>
 </body>

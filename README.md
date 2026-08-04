@@ -38,6 +38,7 @@ index.html            # the landing page
 404.html              # designed not-found page (host-aware paths)
 assets/
   styles.css          # design tokens (Arcanum + 4 alt themes) + layout
+  theme-engineering.css # "Engineering" — a full alternate design system
   app.js              # i18n, nav, count-ups, reveal, project explorer, form
   previews/*.webp     # committed screenshots of the live client sites
   favicon.svg         # gradient signature mark
@@ -109,16 +110,15 @@ but a server is recommended so fonts and relative paths resolve cleanly.)
 
 ### Design system — see [BRAND.md](BRAND.md)
 
-**Cool near-black. Technical sans. Monospace as texture. Real artifacts.**
+**Arcanum** is the identity: arcane-blue ground, brass flourish, engraved Cinzel
+display, electric teal as rationed neon. Five palette variants ship in the theme
+switcher (Arcanum, Neon Noir, Daylight, Monochrome, Alt-neon) — each is a token
+swap, so every `var(--token)` rule reskins for free.
 
-- **Colour:** three surfaces — Midnight `#08090A` (default), Graphite, Daylight.
-  Accent `#F93E06` on the primary button, the headline's last clause and live
-  status; `#3ECF8E` for live dots only.
-- **Type:** Geist for interface and headings, Geist Mono for every domain,
-  status, duration and index, IBM Plex Sans Arabic for RTL.
-- **Artifacts:** the hero terminal shows this repo's real deploy output; project
-  cards carry real domains, build indices and honest statuses.
-- **Logo:** swap point marked in `index.html`. Full rules in BRAND.md §7.
+**Engineering** is a sixth entry and works differently: a complete alternate
+design system (cool near-black, Geist + Geist Mono, deploy terminal, build
+indices) shipped as `assets/theme-engineering.css` and toggled by flipping the
+link's `media` attribute. Details and the reset-block rationale in BRAND.md.
 
 ### Features
 
