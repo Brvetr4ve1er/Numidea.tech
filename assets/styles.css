@@ -941,7 +941,13 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
 
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr}
-  .hero-deck{max-width:440px;margin:0 auto}
+  /* Explicit width, not max-width + auto margins. Every child of the deck
+     is absolutely positioned, so it has no in-flow content — and auto
+     inline margins on a grid item suppress the default stretch, dropping
+     it to a fit-content width of ZERO. The deck then vanished on mobile
+     and its caption pill, still absolutely positioned, landed on top of
+     the hero buttons. */
+  .hero-deck{width:min(100%,440px);margin-inline:auto}
   .work-grid{grid-template-columns:1fr}
   .work-grid>.proj:last-child:nth-child(odd){max-width:none;margin-inline:0}
   .proof-grid{grid-template-columns:repeat(2,1fr);gap:var(--s-7)}

@@ -120,3 +120,25 @@ either (or both) with the delivered artwork.
 Copy the pattern: a self-contained sheet, a reset block at the top, one entry in
 `THEMES` in `app.js`, one `<link media="not all">`, one line in the pre-paint
 resolver, and a button in the theme menu.
+
+## CSS traps this codebase has actually hit
+
+Each of these shipped at least once and was found by measuring, not by looking.
+Check for them before trusting a visual pass.
+
+- **A grid item with auto inline margins collapses to zero if all its children
+  are absolutely positioned.** Auto margins suppress grid's default `stretch`,
+  so the item falls back to fit-content width — and absolute children
+  contribute nothing to that. `.hero-deck` had `max-width:440px;margin:0 auto`
+  under 960px and rendered 0×0 on every phone, while its caption pill, still
+  absolutely positioned, landed on top of the hero buttons. Use an explicit
+  `width:min(100%,<max>)` with `margin-inline:auto` instead.
+- **A zero-size box passes every overlap test.** The bug above survived an
+  automated sibling-overlap scan because a 0×0 rect intersects nothing. Any
+  layout assertion needs a companion "is this element actually non-zero" check.
+- **HTML `width`/`height` attributes beat `aspect-ratio`** unless `height:auto`
+  is also set. Cost us 363×800 hero images twice, in two different rebuilds.
+- **A later `padding` shorthand silently clobbers an earlier `padding-inline`.**
+  Use `padding-block` when the inline padding is doing full-bleed work.
+- **Reading an element's rect while animating it feeds your own offset back
+  into the next measurement.** See the ambient layer notes above.
