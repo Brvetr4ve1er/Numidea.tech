@@ -41,6 +41,57 @@ matching specificity is enough; there is no `!important` in the file.
 A computed-style audit walks every visible element in the Engineering theme and
 fails on any base-palette colour still being painted. It currently reports zero.
 
+## The ambient layer — parallax, aurora, reveal
+
+Three cooperating pieces, tuned for calm rather than spectacle. All of it is
+decoration: it is `aria-hidden`, it sits at `z-index:0` beneath the content,
+and `prefers-reduced-motion` removes it completely.
+
+**Parallax rides the `translate` property, never `transform`.** This is
+load-bearing. `translate`, `rotate` and `transform` are independent CSS
+properties, so one element can be parallaxed *and* run a reveal transform, a
+hover scale and a spin animation at once without any of them clobbering the
+others. Add depth by putting `data-parallax="<k>"` on an element — negative
+moves against the scroll, positive with it, roughly −0.2…+0.2. `app.js` writes
+only the CSS variables `--px`, `--py` and `--sy`; the stylesheet composes them.
+
+Two rules that were each learned by watching the page misbehave:
+
+- **Layout positions are cached, never re-read while scrolling.** A rect read
+  back already contains the translate just applied, so measuring per-scroll
+  makes each frame feed on the last and the element creeps away from where it
+  belongs. Worse, a *rotating* element's bounding box grows and shrinks as it
+  spins — the hero ring's box swings ~20px per revolution — which pumps that
+  wobble straight into its own parallax target. Caching makes the target a
+  pure function of scroll position. Re-cache on resize, on load, and on
+  `numidea:relayout` (dispatched by `applyTheme`, because Engineering reveals
+  the terminal, which is `display:none` and therefore cached at zero
+  everywhere else).
+- **The easing is time-based, not per-frame.** A fixed per-frame lerp settles
+  twice as fast on a 120Hz display as on a 60Hz one, and "unhurried" cannot be
+  a property of the user's monitor.
+
+**Aurora** — three slow colour fields fixed behind the whole page, inked from
+palette tokens via `color-mix`, never from literals, so they reskin with every
+theme. Light palettes get lower opacity or they turn muddy. Engineering
+re-inks them to a single cold instrument glow, because that surface doesn't
+own crimson/teal/plum.
+
+**Floaters** — hand-drawn SVG geometry in the hero, no raster assets. They
+live strictly in the hero's negative space (the bands above and below the
+deck) and never behind the headline, lede or CTA; decoration drifting behind a
+button reads as a rendering fault, not atmosphere. Each carries a ~40px motion
+envelope (bob ±11px plus parallax travel), so clearances are sized for that,
+not for the static position. Below 960px the hero collapses to one column and
+that negative space disappears, so they are dropped rather than shuffled into
+the copy.
+
+**Reveal** — batched on the next animation frame and staggered 70ms apart
+(capped at 490ms) so a row assembles as a wave. The flush is scheduled on rAF,
+*not* a resettable timeout: a fast scroll fires the observer faster than any
+debounce window, so a re-armed timer can be starved indefinitely and strand
+cards invisible.
+
 ## Engineering-only markup
 
 Three elements live in `index.html` for that theme and are hidden by the base

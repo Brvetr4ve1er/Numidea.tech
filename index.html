@@ -31,10 +31,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cinzel+Decorative:wght@700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202608040929">
+<link rel="stylesheet" href="assets/styles.css?v=202608101724">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. media is flipped to "all" by the resolver below / app.js. -->
-<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608040929">
+<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608101724">
 <script>
   /* Resolve variant + theme BEFORE first paint. Runs after the links so it can
      enable the alternate sheet without a flash of the base theme. */
@@ -64,6 +64,10 @@
 
 <a class="skip" href="#main">Aller au contenu · Skip to content</a>
 <div class="progress" aria-hidden="true"></div>
+
+<!-- Ambient depth: three slow colour fields under the whole page. Inked
+     from palette tokens, so they reskin with the theme. Decoration only. -->
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 
 <!-- ================= NAV ================= -->
 <header class="navbar">
@@ -123,7 +127,13 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-mesh" aria-hidden="true"><span class="m1"></span><span class="m2"></span></div>
+    <div class="hero-mesh" data-parallax="-.04" aria-hidden="true"><span class="m1"></span><span class="m2"></span></div>
+    <div class="floaters" aria-hidden="true">
+      <svg class="fl-ring" data-parallax="-.16" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="33" stroke-dasharray="3 7"/></svg>
+      <svg class="fl-tri" data-parallax=".13" viewBox="0 0 100 100"><path d="M50 9 91 85H9Z"/></svg>
+      <svg class="fl-cross" data-parallax="-.09" viewBox="0 0 100 100"><path d="M50 8v84M8 50h84"/><circle cx="50" cy="50" r="15"/></svg>
+      <svg class="fl-dot" data-parallax=".19" viewBox="0 0 100 100"><circle cx="50" cy="50" r="6"/><circle cx="50" cy="50" r="27" stroke-dasharray="2 8"/></svg>
+    </div>
     <div class="hero-grid">
       <div>
         <span class="eyebrow" data-i18n="hero.eyebrow">Atelier d'ingénierie · Bordj Bou Arréridj · DZ</span>
@@ -134,7 +144,7 @@
           <a class="btn btn-teal" href="#work" data-i18n="hero.cta2">Voir les preuves</a>
         </div>
       </div>
-      <div class="term reveal" role="img" aria-label="Dernier déploiement : GitHub Pages, 18 secondes, en ligne">
+      <div class="term reveal" data-parallax=".045" role="img" aria-label="Dernier déploiement : GitHub Pages, 18 secondes, en ligne">
         <div class="term-bar"><i></i><i></i><i></i><span>numidea — deploy</span></div>
         <div class="term-body">
           <span class="l"><span class="p">$</span> git push origin claude/numidea-labs-landing</span>
@@ -151,7 +161,7 @@
           <div><b>3</b><span>langues</span></div>
         </div>
       </div>
-      <a class="hero-deck reveal" href="#work" aria-label="5 sites clients en ligne">
+      <a class="hero-deck reveal" data-parallax="-.055" href="#work" aria-label="5 sites clients en ligne">
         <img src="assets/previews/glaive.webp" alt="" width="1280" height="800" decoding="async">
         <img src="assets/previews/alliancetravel.webp" alt="" width="1280" height="800" decoding="async">
         <img src="assets/previews/bordjsteel.webp" alt="" width="1280" height="800" decoding="async">
@@ -176,7 +186,7 @@
   <!-- ================= PROOF ================= -->
   <section class="proof reveal" aria-labelledby="proof-h">
     <span class="kicker" id="proof-h" data-i18n="proof.kicker">01 — Preuves</span>
-    <div class="proof-grid">
+    <div class="proof-grid" data-parallax=".035">
       <div><div class="stat" data-count="5" data-suffix="">5</div><div class="stat-label" data-i18n="proof.s1">projets livrés</div></div>
       <div><div class="stat" data-count="4">4</div><div class="stat-label" data-i18n="proof.s2">spécialistes</div></div>
       <div><div class="stat" data-count="3">3</div><div class="stat-label" data-i18n="proof.s3">langues</div></div>
@@ -668,7 +678,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608040929" defer></script>
+<script src="assets/app.js?v=202608101724" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

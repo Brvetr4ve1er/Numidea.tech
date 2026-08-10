@@ -43,7 +43,10 @@ orphans.length ? bad('orphan data-i18n refs: ' + orphans.join(', ')) : ok('no or
 const pages = { 'index.html': '.', '404.html': '.', 'hub/index.html': 'hub', 'scene/index.html': 'scene' };
 const missing = [];
 for (const [f, base] of Object.entries(pages)) {
-  for (const m of read(f).matchAll(/(?:src|href)="([^"#][^"]*)"/g)) {
+  // strip HTML comments first: commented-out markup (e.g. slots waiting on
+  // artwork) references files that legitimately don't exist yet
+  const src = read(f).replace(/<!--[\s\S]*?-->/g, '');
+  for (const m of src.matchAll(/(?:src|href)="([^"#][^"]*)"/g)) {
     const u = m[1].split('?')[0];
     if (/^(https?:|mailto:|data:|\/\/)/.test(u) || u === '') continue;
     if (!existsSync(join(ROOT, base, u)) && !existsSync(join(ROOT, base, u.replace(/\/$/, '')))) {
@@ -52,6 +55,18 @@ for (const [f, base] of Object.entries(pages)) {
   }
 }
 missing.length ? bad('missing assets: ' + missing.join(', ')) : ok('all local asset references resolve');
+
+/* 3b — parallax depths parse. A typo'd data-parallax silently coerces to 0,
+   which looks like "the effect just isn't working" and is miserable to find. */
+const badDepth = [];
+for (const f of ['index.html', 'hub/index.html']) {
+  for (const m of read(f).replace(/<!--[\s\S]*?-->/g, '').matchAll(/data-parallax="([^"]*)"/g)) {
+    if (!Number.isFinite(parseFloat(m[1])) || parseFloat(m[1]) === 0) badDepth.push(`${f} → "${m[1]}"`);
+  }
+}
+badDepth.length
+  ? bad('unparseable data-parallax depths: ' + badDepth.join(', '))
+  : ok('parallax depths all parse to a non-zero number');
 
 /* 4 — cache stamps identical everywhere */
 const stamps = new Set();

@@ -502,6 +502,10 @@
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
       });
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
+      // Themes change what is on the page, not just its colours: Engineering
+      // reveals the deploy terminal, which is display:none everywhere else
+      // and therefore cached at position zero. Re-measure after the swap.
+      document.dispatchEvent(new CustomEvent('numidea:relayout'));
     }
     // the pre-paint script already resolved and applied this; mirror it here
     var defaultTheme = VARIANT === 'b' ? 'daylight' : 'arcanum';
@@ -546,27 +550,157 @@
     }
     var revealEls = document.querySelectorAll('.reveal, [data-count]');
     if ('IntersectionObserver' in window) {
+      // Entries that cross together are revealed as one batch, delayed in
+      // sequence, so a row of cards assembles as a wave rather than a
+      // flashbulb. The flush is scheduled on the next animation frame, not
+      // on a resettable timer: a fast scroll fires the observer faster than
+      // any debounce window, so a re-armed timeout can be starved
+      // indefinitely and strand cards invisible. A frame always arrives.
+      var batch = [], flushQueued = false;
+      function queue(el) {
+        if (el.classList.contains('in') || batch.indexOf(el) >= 0) return;
+        batch.push(el);
+        if (flushQueued) return;
+        flushQueued = true;
+        requestAnimationFrame(flush);
+      }
+      function flush() {
+        var items = batch;
+        batch = [];
+        flushQueued = false;
+        items.forEach(function (el, i) {
+          // stagger the wave, but never make the last card wait too long
+          el.style.setProperty('--rd', Math.min(i * 70, 490) + 'ms');
+          try { revealNow(el); } catch (e) { el.classList.add('in'); }
+        });
+      }
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           if (!en.isIntersecting) return;
-          revealNow(en.target);
           io.unobserve(en.target);
+          queue(en.target);
         });
       }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
       revealEls.forEach(function (el) { io.observe(el); });
       // Safety net: never leave on-screen content stuck invisible if the
-      // observer is slow/janky — reveal anything in (or near) the viewport now.
-      function revealInView() {
+      // observer is slow/janky — reveal anything in (or near) the viewport.
+      // `direct` skips the stagger queue: on `load` correctness beats grace.
+      function revealInView(direct) {
         var h = window.innerHeight || document.documentElement.clientHeight;
         revealEls.forEach(function (el) {
           var r = el.getBoundingClientRect();
-          if (r.top < h * 0.92 && r.bottom > 0) revealNow(el);
+          if (r.top >= h * 0.92 || r.bottom <= 0) return;
+          if (direct) return revealNow(el);
+          io.unobserve(el);
+          queue(el);
         });
       }
-      revealInView();
-      window.addEventListener('load', revealInView);
+      revealInView(false);   // first screen still arrives as a wave
+      window.addEventListener('load', function () { revealInView(true); });
     } else {
       revealEls.forEach(revealNow);
+    }
+
+    /* ---------- ambient parallax ----------
+       Two independent sources — the pointer and the scroll position —
+       each write their own CSS variable; styles.css composes both into a
+       single `translate`. Neither can clobber the other, and because
+       `translate` is its own property it never fights the reveal
+       transform or a hover scale.
+
+       Every value is eased toward its target rather than tracked
+       directly. That lag is the whole point: the page settles instead of
+       snapping, which is what reads as calm. */
+    var paraEls = [].slice.call(document.querySelectorAll('[data-parallax]')).map(function (el) {
+      return { el: el, k: parseFloat(el.getAttribute('data-parallax')) || 0, sy: 0, ty: 0, docTop: 0, h: 0 };
+    });
+    var finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+    if (paraEls.length && !reduceMotion) {
+      var pxT = 0, pyT = 0, pxC = 0, pyC = 0, running = false;
+
+      /* Layout positions are cached, never re-read while scrolling. Two
+         reasons, both learned the hard way: a rect read back includes the
+         translate we just applied (so each measurement feeds on the last
+         and the element creeps), and a rotating element's bounding box
+         grows and shrinks as it spins — the ring's box swings by 20px per
+         revolution, which would pump that wobble straight into its own
+         parallax target. Caching makes the target a pure function of
+         scroll position: no feedback, no wobble. */
+      function cache() {
+        var y = window.scrollY || window.pageYOffset || 0;
+        for (var i = 0; i < paraEls.length; i++) {
+          var p = paraEls[i];
+          p.el.style.setProperty('--px', '0px');
+          p.el.style.setProperty('--py', '0px');
+          p.el.style.setProperty('--sy', '0px');
+        }
+        for (var j = 0; j < paraEls.length; j++) {
+          var q = paraEls[j], r = q.el.getBoundingClientRect();
+          q.docTop = r.top + y;
+          q.h = r.height;
+        }
+        aim();
+      }
+
+      function aim() {
+        var vh = window.innerHeight, y = window.scrollY || window.pageYOffset || 0;
+        for (var i = 0; i < paraEls.length; i++) {
+          var p = paraEls[i];
+          // a hidden element (the terminal outside Engineering) has no
+          // position worth chasing — leave it at rest until it is shown
+          if (!p.h) { p.ty = 0; continue; }
+          // how far the element's centre sits from the viewport centre
+          p.ty = (p.docTop - y + p.h / 2 - vh / 2) * p.k;
+        }
+        if (!running) { running = true; requestAnimationFrame(frame); }
+      }
+
+      /* The easing is time-based, not per-frame. A fixed per-frame factor
+         would settle twice as fast on a 120Hz display as on a 60Hz one —
+         and "unhurried" is the entire brief, so it can't be a property of
+         the user's monitor. dt is expressed in 60fps frames and clamped so
+         a background tab returning doesn't snap everything at once. */
+      var lastTs = 0;
+      function frame(ts) {
+        var dt = lastTs ? Math.min((ts - lastTs) / 16.667, 4) : 1;
+        lastTs = ts;
+        var ep = 1 - Math.pow(0.96, dt);    // pointer follow — the calm lives here
+        var es = 1 - Math.pow(0.93, dt);    // scroll follow
+        pxC += (pxT - pxC) * ep;
+        pyC += (pyT - pyC) * ep;
+        var settled = Math.abs(pxT - pxC) < 0.02 && Math.abs(pyT - pyC) < 0.02;
+        for (var i = 0; i < paraEls.length; i++) {
+          var p = paraEls[i], d = Math.abs(p.k) * 90;
+          p.sy += (p.ty - p.sy) * es;
+          if (Math.abs(p.ty - p.sy) < 0.05) p.sy = p.ty; else settled = false;
+          p.el.style.setProperty('--px', (pxC * d).toFixed(2) + 'px');
+          p.el.style.setProperty('--py', (pyC * d * 0.55).toFixed(2) + 'px');
+          p.el.style.setProperty('--sy', p.sy.toFixed(2) + 'px');
+        }
+        if (settled) { running = false; lastTs = 0; } else requestAnimationFrame(frame);
+      }
+
+      var pending = false;
+      function onParaScroll() {
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(function () { aim(); pending = false; });
+      }
+      window.addEventListener('scroll', onParaScroll, { passive: true });
+      window.addEventListener('resize', cache);
+      // reveal transitions and late fonts move things: re-cache once settled
+      window.addEventListener('load', function () { setTimeout(cache, 260); });
+      document.addEventListener('numidea:relayout', function () { setTimeout(cache, 60); });
+
+      if (finePointer) {
+        window.addEventListener('pointermove', function (e) {
+          pxT = (e.clientX / window.innerWidth - 0.5) * 2;
+          pyT = (e.clientY / window.innerHeight - 0.5) * 2;
+          if (!running) { running = true; requestAnimationFrame(frame); }
+        }, { passive: true });
+      }
+      cache();
     }
 
     // mobile menu

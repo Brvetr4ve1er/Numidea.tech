@@ -637,8 +637,21 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
    MOTION
    ============================================================ */
 .reveal{opacity:0;transform:translateY(10px);
-  transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);
+  transition-delay:var(--rd,0ms)}
 .reveal.in{opacity:1;transform:none}
+
+/* Ambient layer. The base sheet's aurora is inked from Arcanum's crimson,
+   teal and plum tokens, which this surface doesn't own — left alone it
+   would bleed the old palette straight through. Re-ink it here as a
+   single cold instrument glow instead of killing it outright, so the
+   parallax still has something to move. Floaters go: this room is drawn
+   with rules and readouts, not orbiting geometry. */
+.aurora{filter:blur(90px);opacity:.5}
+.aurora .a1{background:radial-gradient(circle,color-mix(in srgb,var(--accent) 26%,transparent),transparent 66%)}
+.aurora .a2{background:radial-gradient(circle,color-mix(in srgb,var(--fg) 8%,transparent),transparent 68%)}
+.aurora .a3{background:radial-gradient(circle,color-mix(in srgb,var(--panel-2) 90%,transparent),transparent 70%)}
+.floaters{display:none}
 
 /* ============================================================
    404

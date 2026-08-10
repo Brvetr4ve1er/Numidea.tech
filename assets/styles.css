@@ -867,6 +867,71 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .ob-cta{width:100%;justify-content:center}
 }
 
+/* ============================================================
+   AMBIENT DEPTH — parallax · aurora · staggered reveal
+   Motion here is deliberately slower than it feels natural to write:
+   the point is a page that settles rather than reacts.
+
+   Parallax rides the `translate` PROPERTY, not `transform`. That is
+   load-bearing — `translate`, `rotate` and `transform` are independent
+   properties, so an element can be parallaxed while it still runs a
+   reveal transform, a hover scale or a spin animation, and none of
+   them clobber the others. app.js only ever writes the CSS variables.
+   ============================================================ */
+[data-parallax]{translate:var(--px,0px) calc(var(--py,0px) + var(--sy,0px));will-change:translate}
+
+/* aurora — three slow colour fields beneath the whole page. Inked from
+   palette tokens (never literals), so it reskins with every theme
+   instead of pinning Arcanum's crimson into Daylight and Mono. */
+.aurora{position:fixed;inset:-30%;z-index:0;pointer-events:none;overflow:hidden;filter:blur(60px);opacity:.34}
+.aurora i{position:absolute;display:block;border-radius:50%}
+.aurora .a1{width:46vw;height:46vw;top:4%;left:-4%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--crimson) 62%,transparent),transparent 68%);
+  animation:au-a 54s ease-in-out infinite alternate}
+.aurora .a2{width:40vw;height:40vw;top:36%;right:-6%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--teal) 46%,transparent),transparent 68%);
+  animation:au-b 67s ease-in-out infinite alternate}
+.aurora .a3{width:52vw;height:52vw;bottom:-8%;left:24%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--plum) 85%,transparent),transparent 70%);
+  animation:au-c 79s ease-in-out infinite alternate}
+@keyframes au-a{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(7vw,5vh,0) scale(1.18)}}
+@keyframes au-b{from{transform:translate3d(0,0,0) scale(1.1)}to{transform:translate3d(-6vw,-7vh,0) scale(.92)}}
+@keyframes au-c{from{transform:translate3d(0,0,0) scale(.95)}to{transform:translate3d(5vw,-4vh,0) scale(1.14)}}
+/* light palettes need far less of it before the page turns muddy */
+[data-theme="daylight"] .aurora{opacity:.20}
+[data-theme="mono"] .aurora{opacity:.16}
+
+/* drifting geometry in the hero — hand-drawn SVG, no raster assets.
+   `rotate` spins, `transform` bobs, `translate` parallaxes: three
+   properties, three owners, zero collisions. */
+.floaters{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.floaters svg{position:absolute;fill:none;stroke:currentColor;stroke-width:1;opacity:.2}
+/* Placed in the hero's real negative space — the band above the deck and
+   the band below it — never over the headline, lede or CTA. Decoration
+   drifting behind a button reads as a rendering fault, not atmosphere.
+   Each one carries a ~40px motion envelope (bob ±11px plus its parallax
+   travel), so the clearances below are deliberately generous. */
+.fl-ring{color:var(--teal);width:170px;height:170px;top:2%;inset-inline-end:4%;
+  animation:fl-spin 71s linear infinite,fl-bob 14s ease-in-out infinite alternate}
+.fl-dot{color:var(--crimson-hi);width:56px;height:56px;top:6%;inset-inline-end:31%;
+  animation:fl-bob 9s ease-in-out infinite alternate}
+.fl-tri{color:var(--crimson-hi);width:96px;height:96px;top:77%;inset-inline-end:30%;
+  animation:fl-spin-r 56s linear infinite,fl-bob 11s ease-in-out infinite alternate}
+.fl-cross{color:var(--teal);width:70px;height:70px;top:80%;inset-inline-end:7%;
+  animation:fl-spin 47s linear infinite,fl-bob 17s ease-in-out infinite alternate}
+@keyframes fl-spin{to{rotate:360deg}}
+@keyframes fl-spin-r{to{rotate:-360deg}}
+@keyframes fl-bob{from{transform:translateY(-11px)}to{transform:translateY(11px)}}
+/* Below 960 the hero collapses to one column: the deck stacks under the
+   copy and the negative space these live in disappears entirely. Rather
+   than shuffle them into the headline, drop them — the aurora still
+   carries the atmosphere on small screens. */
+@media(max-width:960px){.floaters{display:none}}
+
+/* staggered reveal — siblings entering together are delayed in sequence
+   (--rd, set by app.js) so a row assembles as a wave, not a flashbulb. */
+.reveal{transition-delay:var(--rd,0ms)}
+
 /* ---------- responsive ---------- */
 @media(min-width:1100px){
   .work-grid{grid-template-columns:repeat(3,1fr)}
@@ -917,6 +982,10 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .hero-mesh span{animation:none}
   .mobile-menu a,.mobile-menu .lang{opacity:1;transform:none}
   .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dashoffset:0}
+  /* the ambient layer is decoration, not content — flatten it entirely */
+  [data-parallax]{translate:none!important}
+  .floaters{display:none}
+  .aurora i{transform:none}
 }
 
 /* ---------- elements owned by the "Engineering" alternate theme ----------
