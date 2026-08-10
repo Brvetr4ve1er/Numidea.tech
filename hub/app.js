@@ -81,16 +81,22 @@
     }, 5400);
   }
 
-  /* ---------------- 3 · mouse parallax + aberration ---------------- */
+  /* ---------------- 3 · parallax engine (pointer + scroll) ----------------
+     Both sources write CSS variables; the stylesheet composes them into one
+     transform, so neither can clobber the other. Everything is lerped toward
+     its target, which is what makes the motion feel unhurried rather than
+     twitchy — the page settles instead of tracking. */
   var depthEls = [].slice.call(document.querySelectorAll('[data-depth]'));
+  var paraEls = [].slice.call(document.querySelectorAll('[data-parallax]')).map(function (el) {
+    return { el: el, k: parseFloat(el.getAttribute('data-parallax')) || 0, sy: 0, target: 0 };
+  });
   var ghost = document.querySelector('.ghost');
-  var tx = 0, ty = 0, cx = 0, cy = 0, active = false;
+  var tx = 0, ty = 0, cx = 0, cy = 0;
 
   function onMove(e) {
     tx = (e.clientX / innerWidth - 0.5) * 2;
     ty = (e.clientY / innerHeight - 0.5) * 2;
-    active = true;
-    if (reticle) { reticle.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)'; }
+    if (reticle) reticle.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
   }
   if (finePointer && !reduce) window.addEventListener('pointermove', onMove, { passive: true });
 
@@ -100,16 +106,32 @@
       if (e.gamma == null) return;
       tx = Math.max(-1, Math.min(1, e.gamma / 30));
       ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30));
-      active = true;
     }, true);
   }
 
+  function measureScroll() {
+    var vh = innerHeight, y = window.scrollY || pageYOffset || 0;
+    for (var i = 0; i < paraEls.length; i++) {
+      var p = paraEls[i], r = p.el.getBoundingClientRect();
+      // distance of the element's centre from the viewport centre, in px
+      var centre = r.top + y + r.height / 2 - (y + vh / 2);
+      p.target = centre * p.k;
+    }
+  }
+
   function frame() {
-    cx += (tx - cx) * 0.08;
-    cy += (ty - cy) * 0.08;
+    cx += (tx - cx) * 0.045;          // slow follow — the calm comes from here
+    cy += (ty - cy) * 0.045;
     for (var i = 0; i < depthEls.length; i++) {
       var el = depthEls[i], d = parseFloat(el.getAttribute('data-depth')) || 0;
-      el.style.transform = 'translate3d(' + (-cx * d) + 'px,' + (-cy * d) + 'px,0)';
+      el.style.setProperty('--px', (-cx * d) + 'px');
+      el.style.setProperty('--py', (-cy * d) + 'px');
+    }
+    for (var j = 0; j < paraEls.length; j++) {
+      var p = paraEls[j];
+      p.sy += (p.target - p.sy) * 0.075;
+      if (Math.abs(p.target - p.sy) < 0.05) p.sy = p.target;
+      p.el.style.setProperty('--sy', p.sy.toFixed(2) + 'px');
     }
     if (ghost) {
       ghost.style.setProperty('--gx', (-cx * 26) + 'px');
@@ -119,7 +141,47 @@
     }
     requestAnimationFrame(frame);
   }
-  if (!reduce) requestAnimationFrame(frame);
+  if (!reduce) {
+    measureScroll();
+    addEventListener('scroll', measureScroll, { passive: true });
+    addEventListener('resize', measureScroll);
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------------- 3b · staggered scroll reveal ----------------
+     Siblings entering together are delayed in sequence so the archive
+     assembles itself in a wave rather than all at once. */
+  var revealEls = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (revealEls.length) {
+    if (reduce || !('IntersectionObserver' in window)) {
+      revealEls.forEach(function (el) { el.classList.add('seen'); });
+    } else {
+      var batch = [], flushTimer = null;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          io.unobserve(en.target);
+          batch.push(en.target);
+          clearTimeout(flushTimer);
+          flushTimer = setTimeout(function () {
+            batch.forEach(function (el, i) {
+              el.style.setProperty('--rd', Math.min(i * 70, 560) + 'ms');
+              el.classList.add('seen');
+            });
+            batch = [];
+          }, 40);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+      revealEls.forEach(function (el) { io.observe(el); });
+      // safety net: anything already on screen should never stay hidden
+      addEventListener('load', function () {
+        revealEls.forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (r.top < innerHeight && r.bottom > 0) el.classList.add('seen');
+        });
+      });
+    }
+  }
 
   /* ---------------- 4 · reticle cursor ---------------- */
   var reticle = document.getElementById('reticle');
@@ -152,7 +214,8 @@
   if (toTop) toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
 
   /* ---------------- 7 · scroll-driven pose shift ---------------- */
-  var POSES = 4, heroEl = document.getElementById('hero'), curPose = -1, ticking = false;
+  var POSES = Math.max(1, (document.querySelectorAll('#portrait .pose').length || 4));
+  var heroEl = document.getElementById('hero'), curPose = -1, ticking = false;
   function poseFromScroll() {
     var h = (heroEl ? heroEl.offsetHeight : innerHeight) * 0.82;
     var prog = Math.min(1, Math.max(0, (window.scrollY || window.pageYOffset || 0) / h));
