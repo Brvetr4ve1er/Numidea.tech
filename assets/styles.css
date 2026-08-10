@@ -966,16 +966,44 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .work-grid>.proj p{font-size:12.5px;line-height:1.45;min-height:0;margin-bottom:10px;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .work-grid>.proj .pills{display:none}
-  .work-grid>.proj .actions a{padding:9px 14px;min-height:40px;font-size:11px}
+  .work-grid>.proj .actions a{padding:9px 14px;min-height:44px;font-size:11px}
+  /* Touch targets: everything tappable gets to 44px. These were 18–33px —
+     fine with a mouse, a coin-toss with a thumb. Grown with padding and
+     min-height so nothing reflows around them. */
+  .theme-btn{min-width:44px;min-height:44px;display:grid;place-items:center}
+  .footer nav a{min-height:44px;display:inline-flex;align-items:center;padding:0}
+  .contact .ch dd a{min-height:44px;display:inline-flex;align-items:center}
   .work-grid>.proj .thumb--art .cover{display:none}   /* the name is right beside it */
   .work-grid>.proj .thumb--art .art-glyph{width:38px;height:38px}
   .nav-links{display:none}
   .menu-toggle{display:grid;place-items:center}
   .nav-right .lang{display:none}
   .navbar .bar{padding:14px var(--gutter)}
-  .hero{padding:calc(var(--s-9) + 40px) 0 var(--s-8)}
-  .svc-row,.preview{grid-template-columns:1fr}
-  .svc-row .glyph,.preview .glyph{margin-bottom:var(--s-2)}
+  /* Rhythm built for a 1440px canvas costs ~2 viewports of dead space on a
+     phone: 96px of padding on both sides of every section stacks into a
+     192px void between each one. Halved here — still generous at this
+     width. padding-block, not the shorthand, so the full-bleed inline
+     padding set elsewhere survives. */
+  section{padding-block:52px}
+  .hero{padding-block:calc(var(--s-8) + 34px) var(--s-7)}
+  .footer{padding-block:var(--s-6) var(--s-5)}
+  /* Keep the glyph beside the copy as it is on desktop, rather than
+     stacking it onto its own line — that row cost ~54px in every one of
+     the five service cards. */
+  .preview{grid-template-columns:1fr}
+  .preview .glyph{margin-bottom:var(--s-2)}
+  .svc-row{grid-template-columns:40px 1fr;gap:var(--s-4);padding:22px}
+  .svc-row .glyph{width:40px;height:40px}
+  .svc-row + .svc-row{margin-top:var(--s-4)}
+  .preview{padding:26px;margin-bottom:var(--s-6)}
+  /* Section headers were spending ~266px before a single word of content,
+     nine times over. Tighten the kicker → title → lead rhythm; the type
+     scale already shrinks here, so the desktop spacing reads as a gap
+     rather than as breathing room. */
+  .kicker{margin-bottom:var(--s-4)}
+  h2.sec{margin-bottom:var(--s-5)}
+  .sec-lead,.svc-lead{margin-bottom:var(--s-6)}
+  .capabilities{margin-top:var(--s-6)}
   /* mobile overlay: bring the language + close controls up to a 44px touch target */
   .mobile-menu .lang button{padding:12px 16px;font-size:14px;min-height:44px}
   .mobile-menu .close{width:44px;height:44px;display:grid;place-items:center;top:14px;right:14px;line-height:1}
