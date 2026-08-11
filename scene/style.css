@@ -179,4 +179,52 @@ html[dir="rtl"] .cue{left:auto;right:clamp(38px,6vw,64px)}
   .sheet-border{inset:12px}
   .dim-w{bottom:-24px}
 }
+/* ---- short viewports: the plate was sized by WIDTH alone ----
+   .plate is aspect-ratio:16/10, so at ≤900px its height is 0.525 × the
+   viewport width with nothing capping it against viewport HEIGHT. On a
+   Fold-open (717×512) that produced a 376px-tall plate in a 512px-tall
+   window, and the callout — anchored bottom:132px — printed its heading,
+   paragraph and button straight over the welder photograph. Constrain
+   the plate by height as well, and lift the furniture. */
+/* Short PORTRAIT phones: the stacked plate ended 3px above the callout.
+   Lift it; the callout is anchored to the bottom and cannot move. */
+@media(max-width:900px) and (orientation:portrait) and (max-height:700px){
+  .platewrap{top:28%;width:min(72vw,calc((100svh - 320px) * 1.6))}
+  .callout{bottom:calc(118px + env(safe-area-inset-bottom))}
+}
+
+/* Landscape phones: DON'T stack — go back to the side-by-side layout.
+   Stacking needs hud(63) + plate + callout(133) + titleblock(80) + rail
+   plus gaps: 432px of budget in a 390px-tall viewport. It cannot fit at
+   any plate size, so shrinking the plate only trades one overlap for
+   another. Landscape has width to spare and no height, which is exactly
+   what the desktop arrangement is built for — so undo the stack and
+   size the plate against height instead. */
+@media(max-width:1100px) and (orientation:landscape) and (max-height:620px){
+  .platewrap{left:53%;top:52%;width:min(40vw,calc((100svh - 150px) * 1.6))}
+  .callout{left:clamp(14px,3vw,28px);right:auto;top:50%;bottom:auto;
+    max-width:min(26vw,230px);padding:0;transform:translateY(-50%);
+    text-align:start;justify-content:flex-start}
+  html[dir="rtl"] .callout{left:auto;right:clamp(14px,3vw,28px)}
+  .rail{flex-direction:column;left:auto;right:clamp(10px,2vw,20px);top:50%;bottom:auto;
+    transform:translateY(-50%);gap:8px}
+  html[dir="rtl"] .rail{right:auto;left:clamp(10px,2vw,20px)}
+  .titleblock{left:clamp(14px,3vw,28px);right:auto;max-width:44vw;
+    bottom:calc(8px + env(safe-area-inset-bottom))}
+  .tb-row:nth-child(2),.tb-row:nth-child(4){display:none}
+  .hud{padding-block:10px}
+  .dim-w,.dim-h{display:none}
+}
+/* ---- 901–1360px: the side callout and the centred plate overlap ----
+   plate left edge = 0.25 × w; callout right edge = 0.05w + 0.26w = 0.31w.
+   0.31w > 0.25w at EVERY width, so the two never clear each other until
+   the plate hits its 700px cap around 1400px. Cap the plate against the
+   space the callout actually occupies instead. */
+@media(min-width:901px) and (max-width:1360px){
+  .platewrap{width:min(700px,calc(100vw - 2*(clamp(22px,5vw,60px) + min(280px,26vw)) - 64px))}
+}
+/* the page paints edge to edge under viewport-fit=cover */
+.titleblock{padding-bottom:env(safe-area-inset-bottom)}
+.hud{padding-top:max(20px,env(safe-area-inset-top))}
+
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}

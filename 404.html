@@ -10,16 +10,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cinzel+Decorative:wght@400;700;900&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202608102036">
+<link rel="stylesheet" href="assets/styles.css?v=202608111048">
 <style>
-  .e404{min-height:100vh;display:grid;place-items:center;text-align:center;padding:var(--s-9) 0}
+  /* svh, not vh: with viewport-fit=cover, 100vh is the tallest the viewport
+     ever gets, so the page overflows by the height of the browser chrome
+     even when the content fits. */
+  .e404{min-height:100svh;display:grid;place-items:center;text-align:center;
+        padding:calc(var(--s-9) + env(safe-area-inset-top)) var(--gutter) calc(var(--s-7) + env(safe-area-inset-bottom))}
   .e404 .mark{font-family:var(--font-display);font-weight:500;font-size:clamp(96px,22vw,260px);line-height:.9;letter-spacing:-.03em;
     background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
   .e404 .lines{max-width:34ch;margin:var(--s-6) auto 0;color:var(--muted);font-size:clamp(16px,1.8vw,20px);line-height:1.6}
   .e404 .lines .fr{color:var(--ice)}
   .e404 .lines .ar{font-family:var(--font-ar-body);direction:rtl;display:block;margin-top:8px}
   .e404 .cta{margin-top:var(--s-7);display:inline-flex}
-  .e404 .brand{position:fixed;top:var(--s-6);left:50%;transform:translateX(-50%)}
+  .e404 .brand{position:fixed;top:calc(var(--s-6) + env(safe-area-inset-top));left:50%;transform:translateX(-50%)}
+  /* On a short viewport the fixed brand is out of flow, so centred content
+     scrolled straight underneath it — the 404 numeral vanished behind the
+     wordmark at 844x390. Put the brand back in the flow and stop centring. */
+  @media (max-height:620px){
+    .e404{min-height:auto;place-items:start center;padding-block:24px 32px}
+    .e404 .brand{position:static;transform:none;margin-bottom:var(--s-5)}
+    .e404 .mark{font-size:clamp(64px,16vw,120px)}
+    .e404 .lines{margin-top:var(--s-4)}
+    .e404 .cta{margin-top:var(--s-5)}
+  }
 </style>
 <script>
 /* GitHub Pages serves this page for ANY missing URL, at any depth — relative

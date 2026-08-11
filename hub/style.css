@@ -259,9 +259,23 @@ a{color:inherit;text-decoration:none}
 @media (max-width:860px){
   .hero-grid{grid-template-columns:1fr;gap:clamp(28px,6vh,44px);padding-top:8px}
   .avatar{order:-1;width:min(78%,320px)}
+  /* safe-area: the hero runs full-bleed under viewport-fit=cover */
+  .hero{padding-left:max(var(--gut),env(safe-area-inset-left));
+        padding-right:max(var(--gut),env(safe-area-inset-right))}
   .ghost{font-size:44vw;top:38%}
   body{cursor:auto}
   .reticle{display:none}
+}
+/* Stacking the portrait above the copy costs a whole screen when the
+   screen is short: at 717x512 the avatar alone ran y76→460 of a 512px
+   viewport, so the name, roles and status were all below the fold and
+   the first thing a visitor saw was an empty image frame. Sit them side
+   by side instead when there is width to spare but no height. */
+@media (max-width:860px) and (max-height:620px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);align-items:center;gap:clamp(16px,4vw,32px)}
+  .avatar{order:0;width:min(100%,240px)}
+  .hero{min-height:auto;padding-block:clamp(12px,3vh,20px) clamp(16px,4vh,28px)}
+  .ghost{font-size:34vw}
 }
 @media (max-width:520px){
   .meta li{grid-template-columns:56px 1fr;gap:10px}
@@ -323,7 +337,8 @@ a{color:inherit;text-decoration:none}
   display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:clamp(20px,3vw,32px)}
 .foot-col h4{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
 .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.foot-col a{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--paper-dim);transition:.2s var(--ease);width:fit-content}
+.foot-col a{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--paper-dim);transition:.2s var(--ease);width:fit-content;
+  min-height:44px;display:inline-flex;align-items:center}   /* 16px tall was a thumb-sized coin toss */
 .foot-col a:hover{color:var(--acc-text);transform:translateX(3px)}
 /* footer rows with no verified URL yet — match the grid's pending idiom */
 .foot-col a.pending{opacity:.45;cursor:default}

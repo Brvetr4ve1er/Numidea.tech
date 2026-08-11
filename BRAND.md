@@ -142,3 +142,45 @@ Check for them before trusting a visual pass.
   Use `padding-block` when the inline padding is doing full-bleed work.
 - **Reading an element's rect while animating it feeds your own offset back
   into the next measurement.** See the ambient layer notes above.
+- **A bare `1fr` grid track carries `min-width:auto`**, so it inflates to the
+  longest unbreakable word instead of shrinking. `AlmaFlowClim` and
+  `applications` pushed card bodies ~30px outside their own cards at 280px,
+  where `overflow:hidden` amputated them. Use `minmax(0,1fr)` in any grid that
+  has to survive a narrow screen.
+- **`justify-content:center` on an overflowing flex column pushes content out
+  of BOTH ends**, and the overflowing top is unreachable — `scrollTop` stays
+  pinned at 0. The mobile menu lost two links and the language switcher this
+  way in landscape. Use `safe center`, and always pair a full-screen overlay
+  with `overflow-y:auto`.
+- **`overflow:hidden` nullifies a flex item's automatic minimum size**, so it
+  becomes the one item that absorbs all the shrink. The language pill
+  collapsed from 46px to a 2px sliver with its 44px buttons clipped inside it.
+- **A `z-index` on an ancestor caps every descendant.** `.wrap{z-index:1}` and
+  `section{z-index:1}` meant the explorer dialog's `z-index:300` lost to the
+  navbar's `100` — and the nav links intercepted clicks *through* the open
+  modal. Overlays belong as direct children of `<body>`.
+- **A `clamp()` whose `vw` coefficient is small never engages on a phone.**
+  All 25 fluid declarations here sat at their minimum from 280px to ~700px,
+  because the floors were written as desktop minimums — a 42px headline on a
+  280px screen. Anchor the ramp between two real viewport widths (360→1440)
+  so it interpolates across the range you actually ship to.
+- **Width is the wrong query for touch.** An iPad in landscape is 1024px wide
+  and correctly gets the desktop nav, but it is still driven by a finger.
+  `@media (pointer:coarse)` catches it; no width query ever will.
+
+## Breakpoints
+
+`960px` is the mobile boundary — the structural collapse and the mobile pass
+fire together. They used to be split (960 and 720), leaving a 240px band that
+got single-column *desktop-sized* components: measured 14292px tall at 721px
+against 9255px at 719px, so crossing the breakpoint upward made the page 55%
+**taller**. That band is iPad portrait, iPad Air, and every large phone in
+landscape.
+
+Height matters as much as width. A phone in landscape is ~390px *tall*, so
+`@media (max-height:560px)` carries the short-viewport rhythm, and `scene/`
+abandons its stacked layout entirely in landscape — the stack needs 432px of
+budget in a 390px viewport and no plate size can rescue it.
+
+`--nav-h` is the measured navbar height. Hero top padding and
+`scroll-padding-top` both derive from it, so the three can never drift apart.

@@ -45,6 +45,10 @@
   --ease-out:cubic-bezier(.16,1,.3,1);
   --dur-fast:.2s;--dur-base:.3s;--dur-slow:.7s;
   --max:1200px;--gutter:48px;
+  /* Measured height of the fixed navbar. Everything that must clear it —
+     hero top padding, anchor scroll offset — derives from this, so the
+     three values can never drift apart again. */
+  --nav-h:88px;
 }
 
 /* ============================================================
@@ -127,7 +131,7 @@ html[data-theme="arcanum"][dir="ltr"] .hero-h,
 html[data-theme="arcanum"][dir="ltr"] h2.sec,
 html[data-theme="arcanum"][dir="ltr"] .contact h2,
 html[data-theme="arcanum"][dir="ltr"] .mobile-menu a{font-family:var(--font-deco);font-weight:700;letter-spacing:.01em}
-html[data-theme="arcanum"][dir="ltr"] .hero-h{line-height:1.04;font-size:clamp(34px,5vw,70px)}
+html[data-theme="arcanum"][dir="ltr"] .hero-h{line-height:1.04;font-size:clamp(27px, 12.67px + 3.98vw, 70px)}
 html[data-theme="arcanum"][dir="ltr"] .hero-h .swash,
 html[data-theme="arcanum"][dir="ltr"] .contact h2 em{font-family:var(--font-deco-dec);font-weight:700;padding-right:.06em}
 html[data-theme="arcanum"][dir="ltr"] .logo{font-family:var(--font-deco);font-weight:700;letter-spacing:.04em}
@@ -159,7 +163,7 @@ html[dir="rtl"] .theme-menu button{text-align:right}
 .theme-menu .dot.altneon{background:linear-gradient(135deg,#F59E0B,#A78BFA)}
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:88px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 15px)}
 body{
   background:var(--void);color:var(--ice);
   font-family:var(--font-body);font-size:16px;line-height:1.6;
@@ -198,7 +202,7 @@ img{max-width:100%;display:block}
 .kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--crimson);display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-5)}
 .kicker::before{content:"";width:28px;height:1px;background:var(--crimson)}
 html[dir="rtl"] .kicker::before{order:2}
-h2.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(32px,4.4vw,56px);letter-spacing:-.02em;line-height:1.04;margin-bottom:var(--s-7);max-width:18ch}
+h2.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(25px, 14.67px + 2.87vw, 56px);letter-spacing:-.02em;line-height:1.04;margin-bottom:var(--s-7);max-width:18ch}
 /* section-head emphasis kept quiet — the flourish is reserved for hero + contact */
 h2.sec em{font-family:inherit;font-style:normal;color:inherit}
 
@@ -229,7 +233,20 @@ html[dir="rtl"] .progress{left:auto;right:0}
 .menu-toggle{display:none;background:transparent;border:1px solid var(--hairline-2);border-radius:var(--r-sm);color:var(--ice);width:44px;height:44px;cursor:pointer;font-size:18px}
 
 /* mobile full-screen menu */
-.mobile-menu{position:fixed;inset:0;z-index:150;background:var(--grad-noir);display:flex;flex-direction:column;justify-content:center;gap:var(--s-5);padding:var(--gutter);transform:translateX(100%);transition:transform var(--dur-base) var(--ease-out);visibility:hidden}
+/* `justify-content:safe center` + overflow-y, not plain `center`.
+   Plain centring distributes surplus out of BOTH ends, so once the links
+   exceeded the viewport the first two sat at negative offsets and no
+   amount of scrolling could reach them (scrollTop stayed pinned at 0).
+   In landscape that made two nav items and the language switcher
+   permanently unreachable. `safe` collapses the overflowing side instead. */
+.mobile-menu{position:fixed;inset:0;z-index:150;background:var(--grad-noir);display:flex;flex-direction:column;justify-content:safe center;gap:var(--s-5);
+  padding:calc(var(--gutter) + env(safe-area-inset-top)) calc(var(--gutter) + env(safe-area-inset-right)) calc(var(--gutter) + env(safe-area-inset-bottom)) calc(var(--gutter) + env(safe-area-inset-left));
+  overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  transform:translateX(100%);transition:transform var(--dur-base) var(--ease-out);visibility:hidden}
+/* The pill carries overflow:hidden, which nullifies its automatic minimum
+   size — as a flex item it was the only one able to shrink, and collapsed
+   to a 2px sliver while its 44px buttons were clipped away inside it. */
+.mobile-menu .lang{flex:none;align-self:flex-start}
 .mobile-menu.open{transform:translateX(0);visibility:visible}
 .mobile-menu a{font-family:var(--font-display);font-weight:600;font-size:40px;color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
 .mobile-menu .lang{opacity:0}
@@ -255,7 +272,7 @@ html[dir="rtl"] .mobile-menu .close{right:auto;left:24px}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(40px,30px) scale(1.12)}}
 .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr .75fr;gap:var(--s-8);align-items:center}
 .eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:var(--s-5)}
-.hero-h{font-family:var(--font-display);font-weight:600;font-size:clamp(42px,5.8vw,84px);line-height:.96;letter-spacing:-.02em}
+.hero-h{font-family:var(--font-display);font-weight:600;font-size:clamp(31px, 13.33px + 4.91vw, 84px);line-height:.96;letter-spacing:-.02em}
 .hero-h .swash{font-family:var(--font-swash);font-style:normal;font-weight:600;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
 html[dir="rtl"] .hero-h{font-family:var(--font-ar-display);line-height:1.3}
 html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:normal;padding:0 .08em}
@@ -296,7 +313,7 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
 /* ---------- proof bar ---------- */
 .proof{background:var(--navy);border-radius:0}
 .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-6);text-align:center}
-.stat{font-family:var(--font-display);font-weight:600;font-size:clamp(40px,5vw,64px);line-height:1;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat{font-family:var(--font-display);font-weight:600;font-size:clamp(29px, 17.33px + 3.24vw, 64px);line-height:1;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:var(--s-3)}
 .proof-line{text-align:center;color:var(--muted);margin-top:var(--s-7);font-size:15px}
 
@@ -313,7 +330,7 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
 .proj .browser{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:5px;padding:9px 12px;background:rgba(13,26,47,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .proj .browser i{width:8px;height:8px;border-radius:50%;background:rgba(234,242,244,.45)}
 .proj .browser span{font-family:var(--font-mono);font-size:10px;color:rgba(234,242,244,.85);margin-left:8px;letter-spacing:.03em}
-.proj .cover{position:relative;font-family:var(--font-display);font-weight:600;font-size:clamp(24px,3.4vw,38px);color:var(--ice);letter-spacing:-.02em;text-align:center;padding:0 18px;transform:rotateX(8deg) rotateY(-6deg);transition:transform var(--dur-slow) var(--ease-out);text-shadow:0 14px 40px rgba(0,0,0,.5)}
+.proj .cover{position:relative;font-family:var(--font-display);font-weight:600;font-size:clamp(20px, 14px + 1.67vw, 38px);color:var(--ice);letter-spacing:-.02em;text-align:center;padding:0 18px;transform:rotateX(8deg) rotateY(-6deg);transition:transform var(--dur-slow) var(--ease-out);text-shadow:0 14px 40px rgba(0,0,0,.5)}
 html[dir="rtl"] .proj .browser span{margin-left:0;margin-right:8px}
 .proj:hover .cover{transform:rotateX(0) rotateY(0) scale(1.03)}
 .proj .body{padding:var(--s-5)}
@@ -367,16 +384,16 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 
 /* ---------- founder ---------- */
 .founder-card{background:var(--navy);border:1px solid var(--hairline-2);border-radius:var(--r-lg);
-  padding:clamp(22px,3.5vw,40px);max-width:940px;position:relative;overflow:hidden;
+  padding:clamp(17px, 9.33px + 2.13vw, 40px);max-width:940px;position:relative;overflow:hidden;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 34px 70px -40px rgba(0,0,0,.85)}
 .founder-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,transparent,rgba(230,180,80,.7),transparent)}
 .fd-top{display:flex;gap:clamp(16px,3vw,26px);align-items:center;margin-bottom:var(--s-5)}
-.fd-photo{width:clamp(76px,10vw,100px);height:clamp(76px,10vw,100px);flex:none;border-radius:50%;
+.fd-photo{width:clamp(59.3px, 45.73px + 3.77vw, 100px);height:clamp(59.3px, 45.73px + 3.77vw, 100px);flex:none;border-radius:50%;
   display:grid;place-items:center;background:var(--grad-noir);border:2px solid rgba(230,180,80,.5);position:relative;overflow:hidden}
 .fd-photo::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%,rgba(230,180,80,.22),transparent 60%)}
-.fd-photo .mono{font-family:var(--font-display);font-weight:700;font-size:clamp(34px,5vw,46px);color:var(--crimson-hi);position:relative;z-index:1}
-.fd-id h3{font-family:var(--font-display);font-weight:600;font-size:clamp(21px,3vw,30px);letter-spacing:.01em}
+.fd-photo .mono{font-family:var(--font-display);font-weight:700;font-size:clamp(26px, 19.33px + 1.85vw, 46px);color:var(--crimson-hi);position:relative;z-index:1}
+.fd-id h3{font-family:var(--font-display);font-weight:600;font-size:clamp(16.4px, 11.87px + 1.26vw, 30px);letter-spacing:.01em}
 .fd-role{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:6px 0 12px}
 .fd-pills{display:flex;flex-wrap:wrap;gap:6px}
 .fd-pills .pill{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;padding:4px 10px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted)}
@@ -385,7 +402,7 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 /* résumé accordion */
 .cv-panel{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-out),opacity .3s;opacity:.4}
 .cv-panel.open{max-height:1600px;opacity:1}
-.cv-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,4vw,44px);
+.cv-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(15px, 5.33px + 2.69vw, 44px);
   border-top:1px solid var(--hairline);margin-top:var(--s-6);padding-top:var(--s-6)}
 .cv-col h4{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
 .timeline{list-style:none;display:grid;gap:15px}
@@ -420,11 +437,11 @@ html[dir="rtl"] .timeline li{grid-template-columns:78px 1fr}
    glyphs overhang their box and were getting clipped at the left edge. */
 .contact{position:relative}
 .contact::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(9,216,199,.16),transparent 65%);top:-120px;left:50%;transform:translateX(-50%);filter:blur(30px);pointer-events:none}
-.contact h2{position:relative;font-family:var(--font-display);font-weight:600;font-size:clamp(40px,6vw,84px);letter-spacing:-.02em;line-height:1.04;margin-bottom:var(--s-8);max-width:none}
+.contact h2{position:relative;font-family:var(--font-display);font-weight:600;font-size:clamp(29px, 10.67px + 5.09vw, 84px);letter-spacing:-.02em;line-height:1.04;margin-bottom:var(--s-8);max-width:none}
 .contact h2 em{font-family:var(--font-swash);font-style:normal;color:var(--teal)}
 html[dir="rtl"] .contact h2{font-family:var(--font-ar-display);line-height:1.3}
 html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:normal}
-.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(300px,.85fr) 1.15fr;gap:var(--s-6) clamp(48px,9vw,140px);align-items:start}
+.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(300px,.85fr) 1.15fr;gap:var(--s-6) clamp(26px, -12px + 10.56vw, 140px);align-items:start}
 .contact .sub{color:var(--body-strong);max-width:44ch;line-height:1.65;font-size:16.5px}
 /* direct channels — aligned rows, shared hairlines with the form side */
 .channels{margin-top:var(--s-6);display:grid}
@@ -454,7 +471,12 @@ html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
 @media(max-width:560px){.form-row{grid-template-columns:1fr}}
 
 /* ---------- footer ---------- */
-.footer{padding:var(--s-8) 0 var(--s-7);border-top:1px solid var(--hairline)}
+/* The inline value MUST be the gutter, not 0. This rule sits after
+   .wrap{padding:0 var(--gutter)} at equal specificity, so a shorthand
+   with `0` silently wiped the footer's horizontal gutter — logo, nav and
+   copyright all sat flush against the screen edge on every phone. Second
+   time this exact trap has landed in this file; see BRAND.md. */
+.footer{padding:var(--s-8) var(--gutter) var(--s-7);border-top:1px solid var(--hairline)}
 .footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s-6);margin-bottom:var(--s-7)}
 .footer .logo{font-size:24px}
 .footer nav{display:flex;flex-wrap:wrap;gap:20px}
@@ -538,7 +560,7 @@ html[dir="rtl"] .preview .glow{right:auto;left:-60px}
 .preview .glyph{border-color:var(--crimson);color:var(--crimson)}
 .preview .body{position:relative}
 .preview .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--crimson)}
-.preview h3{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,3.2vw,38px);margin:var(--s-3) 0 6px}
+.preview h3{font-family:var(--font-display);font-weight:600;font-size:clamp(20.3px, 14.4px + 1.64vw, 38px);margin:var(--s-3) 0 6px}
 html[dir="rtl"] .preview h3{font-family:var(--font-ar-display)}
 .preview .promise{font-family:var(--font-swash);font-style:normal;font-size:23px;color:var(--teal);margin-bottom:var(--s-4)}
 html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:600}
@@ -586,7 +608,7 @@ html[dir="rtl"] .cap .promise{font-family:var(--font-ar-body);font-style:normal;
 .scene-banner:hover .sb-art i:nth-child(3){transform:rotateY(-4deg) translateZ(22px)}
 .sb-txt{display:flex;flex-direction:column;gap:5px;flex:1;min-width:0}
 .sb-kick{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--crimson)}
-.sb-txt b{font-family:var(--font-display);font-weight:600;font-size:clamp(17px,2.4vw,22px)}
+.sb-txt b{font-family:var(--font-display);font-weight:600;font-size:clamp(13.3px, 10.4px + 0.81vw, 22px)}
 html[data-theme="arcanum"][dir="ltr"] .sb-txt b{font-family:var(--font-deco);font-weight:700}
 html[dir="rtl"] .sb-txt b{font-family:var(--font-ar-display)}
 .sb-lead{font-size:13.5px;color:var(--muted);line-height:1.5}
@@ -630,10 +652,10 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
 .modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:var(--gutter)}
 .modal[hidden]{display:none}
 .modal-backdrop{position:absolute;inset:0;background:rgba(5,12,24,.74);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.modal-panel{position:relative;width:min(1040px,100%);max-height:88vh;overflow:auto;background:var(--grad-noir);border:1px solid var(--hairline-2);border-radius:var(--r-lg);padding:var(--s-7);box-shadow:0 40px 120px -30px rgba(0,0,0,.8);animation:modal-in var(--dur-base) var(--ease-out)}
+.modal-panel{position:relative;width:min(1040px,100%);max-height:88dvh;overflow:auto;background:var(--grad-noir);border:1px solid var(--hairline-2);border-radius:var(--r-lg);padding:var(--s-7);box-shadow:0 40px 120px -30px rgba(0,0,0,.8);animation:modal-in var(--dur-base) var(--ease-out)}
 @keyframes modal-in{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
 .modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s-5);margin-bottom:var(--s-6)}
-.modal-head h2{font-family:var(--font-display);font-weight:600;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1.02}
+.modal-head h2{font-family:var(--font-display);font-weight:600;font-size:clamp(21.8px, 14.4px + 2.06vw, 44px);letter-spacing:-.02em;line-height:1.02}
 .modal-head h2 em{font-family:var(--font-swash);font-style:normal;color:var(--teal)}
 html[dir="rtl"] .modal-head h2{font-family:var(--font-ar-display)}
 html[dir="rtl"] .modal-head h2 em{font-family:var(--font-ar-display);font-style:normal}
@@ -674,11 +696,11 @@ body.modal-open{overflow:hidden}
 .detail--brand .detail-shot-wrap .browser span{color:rgba(var(--accent),.96)}
 .detail-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:1}
 .detail-art{display:grid;place-items:center;background:var(--grad-noir)}
-.detail-art .cover{font-family:var(--font-display);font-weight:600;font-size:clamp(20px,3vw,30px);color:var(--ice)}
+.detail-art .cover{font-family:var(--font-display);font-weight:600;font-size:clamp(17px, 12.67px + 1.2vw, 30px);color:var(--ice)}
 html[dir="rtl"] .detail-art .cover{font-family:var(--font-ar-display)}
 .detail-info .cat{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:var(--s-3)}
 .detail--brand.detail-info .cat{color:rgb(var(--accent))}
-.detail-info h3{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;margin-bottom:var(--s-4);outline:none}
+.detail-info h3{font-family:var(--font-display);font-weight:600;font-size:clamp(22px, 16px + 1.67vw, 40px);letter-spacing:-.02em;margin-bottom:var(--s-4);outline:none}
 html[dir="rtl"] .detail-info h3{font-family:var(--font-ar-display)}
 .detail-overview{font-size:16px;color:var(--muted);line-height:1.65;max-width:56ch;margin-bottom:var(--s-4)}
 .detail-info .pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--s-5)}
@@ -747,8 +769,19 @@ section.band+section.band::after{background:rgba(19,40,62,.34)}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 34px 64px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(52,208,232,.22), 0 0 34px -8px rgba(52,208,232,.28)}
 
 /* 5 — sharper display type + a brass foil accent on the heading flourish */
-h2.sec{font-size:clamp(34px,4.8vw,62px);letter-spacing:-.025em}
-main.wrap>section h2.sec em{background:var(--grad-blood);-webkit-background-clip:text;background-clip:text;color:transparent;
+h2.sec{font-size:clamp(26px, 14px + 3.33vw, 62px);letter-spacing:-.025em}
+/* NOT --grad-blood. That ramp ends in #500A1F / #411E3A, which measure
+   1.16:1 and 1.22:1 against --void — and even its brightest stop is
+   2.68:1, under the 3:1 large-text floor. On desktop the dark tail falls
+   past the last glyph so nobody noticed; on a phone the <em> wraps onto
+   its own short line and the whole ramp compresses into two or three
+   words, which then disappear. Ramping toward --ice instead is
+   theme-safe by construction: --ice is the foreground colour, so the mix
+   always moves AWAY from the background — lighter on the dark themes,
+   darker on Daylight. Measured 3.6:1–11.7:1 across all five palettes. */
+main.wrap>section h2.sec em{
+  background:linear-gradient(135deg,var(--crimson-hi),color-mix(in srgb,var(--crimson-hi) 55%,var(--ice)));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
   -webkit-text-fill-color:transparent}
 /* kicker: glowing node + gradient tick */
 .kicker::before{width:32px;background:linear-gradient(90deg,var(--crimson),transparent)}
@@ -846,8 +879,8 @@ html[dir="rtl"] [data-variant="b"] .svc-row::before{transform-origin:right cente
 /* ---- VARIANT C — offer-first: the signature offer leads the page ----
    Hypothesis: a concrete, risk-free offer ("we build the demo before you
    pay") converts better than a craft-and-proof narrative.               */
-[data-variant="c"] .offer-band{display:flex;align-items:center;gap:clamp(18px,3vw,36px);
-  margin:0 0 var(--s-6);padding:clamp(20px,3vw,30px) clamp(22px,3.5vw,38px);
+[data-variant="c"] .offer-band{display:flex;align-items:center;gap:clamp(13px, 5.33px + 2.13vw, 36px);
+  margin:0 0 var(--s-6);padding:clamp(17px, 12.67px + 1.2vw, 30px) clamp(17px, 10px + 1.94vw, 38px);
   border:1px solid rgba(230,180,80,.4);border-radius:var(--r-lg);
   background:linear-gradient(120deg,color-mix(in srgb,var(--navy) 92%,transparent),color-mix(in srgb,var(--plum) 55%,transparent));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 60px -40px rgba(0,0,0,.9)}
@@ -855,7 +888,7 @@ html[dir="rtl"] [data-variant="b"] .svc-row::before{transform-origin:right cente
   border:1px solid rgba(230,180,80,.5);color:var(--crimson-hi);font-size:17px}
 .ob-txt{flex:1;min-width:0}
 .ob-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson)}
-.offer-band h2{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,3vw,30px);margin:6px 0 4px;letter-spacing:-.01em}
+.offer-band h2{font-family:var(--font-display);font-weight:600;font-size:clamp(19px, 15.33px + 1.02vw, 30px);margin:6px 0 4px;letter-spacing:-.01em}
 html[data-theme="arcanum"][dir="ltr"] .offer-band h2{font-family:var(--font-deco);font-weight:700}
 html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
 .ob-promise{font-size:17px;color:var(--teal);font-weight:600;margin-bottom:6px}
@@ -952,19 +985,43 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .work-grid>.proj:last-child:nth-child(odd){max-width:none;margin-inline:0}
   .proof-grid{grid-template-columns:repeat(2,1fr);gap:var(--s-7)}
 }
-@media(max-width:720px){
-  :root{--gutter:22px}
+/* ============================================================
+   THE MOBILE PASS — 960px, not 720px.
+   This file used to have two load-bearing blocks: "collapse to one
+   column" at 960 and "make it mobile" at 720, leaving a 240px band where
+   only the first had fired. Everything in it got single-column
+   DESKTOP-SIZED components — the worst available combination. Measured
+   across the old boundary: a 721px viewport rendered 14292px tall
+   against 9255px at 719px. Crossing the breakpoint upward made the page
+   55% TALLER and broke the navbar.
+
+   That band is not an edge case: iPad portrait (768), iPad Air (820),
+   and every large phone in landscape (844, 915, 932) live in it. The two
+   blocks now fire together.
+   ============================================================ */
+@media(max-width:960px){
+  /* Fluid rather than a hard 22px: at 960 a phone gutter looks like a
+     mistake, and at 360 a tablet gutter eats the content. */
+  :root{--gutter:clamp(20px,4.6vw,44px);--nav-h:73px}
   /* work cards become compact media-left rows: the 7-card stack drops from
      ~4.5 viewports to ~1.5 while keeping the real screenshots visible */
   .work-grid{gap:var(--s-4)}
-  .work-grid>.proj{display:grid;grid-template-columns:118px 1fr}
+  /* minmax(0,1fr), never a bare 1fr: a bare 1fr track carries
+     min-width:auto, so it inflates to the longest unbreakable word
+     ("AlmaFlowClim", "applications") instead of shrinking. At 280px that
+     pushed card bodies ~30px outside their own card, where overflow:hidden
+     amputated them. The thumb track is fluid so it doesn't eat half a
+     small screen for a decorative glyph, nor stay tiny on a tablet. */
+  .work-grid>.proj{display:grid;grid-template-columns:clamp(88px,26%,168px) minmax(0,1fr)}
   .work-grid>.proj .thumb{aspect-ratio:auto;height:100%;min-height:116px}
   .work-grid>.proj .browser{display:none}
-  .work-grid>.proj .body{padding:var(--s-4)}
-  .work-grid>.proj .cat{font-size:9.5px;letter-spacing:.14em;margin-bottom:6px}
-  .work-grid>.proj h3{font-size:17px;margin-bottom:6px}
-  .work-grid>.proj p{font-size:12.5px;line-height:1.45;min-height:0;margin-bottom:10px;
-    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .work-grid>.proj .body{padding:var(--s-4);min-width:0}
+  .work-grid>.proj .cat{font-size:11px;letter-spacing:.12em;margin-bottom:6px}
+  .work-grid>.proj h3{font-size:clamp(16px,4.2vw,19px);margin-bottom:6px;overflow-wrap:anywhere}
+  /* No line-clamp. Truncating to two lines discarded 50–86% of every
+     description — one card wanted 254px of copy and showed 36px. If the
+     card is too tall the answer is shorter copy, not hidden copy. */
+  .work-grid>.proj p{font-size:13px;line-height:1.5;min-height:0;margin-bottom:10px}
   .work-grid>.proj .pills{display:none}
   .work-grid>.proj .actions a{padding:9px 14px;min-height:44px;font-size:11px}
   /* Touch targets: everything tappable gets to 44px. These were 18–33px —
@@ -985,15 +1042,16 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
      width. padding-block, not the shorthand, so the full-bleed inline
      padding set elsewhere survives. */
   section{padding-block:52px}
-  .hero{padding-block:calc(var(--s-8) + 34px) var(--s-7)}
+  .hero{padding-block:calc(var(--nav-h) + var(--s-5)) var(--s-7)}
   .footer{padding-block:var(--s-6) var(--s-5)}
   /* Keep the glyph beside the copy as it is on desktop, rather than
      stacking it onto its own line — that row cost ~54px in every one of
      the five service cards. */
   .preview{grid-template-columns:1fr}
   .preview .glyph{margin-bottom:var(--s-2)}
-  .svc-row{grid-template-columns:40px 1fr;gap:var(--s-4);padding:22px}
+  .svc-row{grid-template-columns:40px minmax(0,1fr);gap:var(--s-4);padding:clamp(18px,4.5vw,28px)}
   .svc-row .glyph{width:40px;height:40px}
+  .svc-row h3{overflow-wrap:anywhere}
   .svc-row + .svc-row{margin-top:var(--s-4)}
   .preview{padding:26px;margin-bottom:var(--s-6)}
   /* Section headers were spending ~266px before a single word of content,
@@ -1008,8 +1066,99 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .mobile-menu .lang button{padding:12px 16px;font-size:14px;min-height:44px}
   .mobile-menu .close{width:44px;height:44px;display:grid;place-items:center;top:14px;right:14px;line-height:1}
   .footer nav{gap:var(--s-3) var(--s-5)}
-  .footer nav a{padding:6px 0;display:inline-block}
+  .footer nav a{padding-inline:6px;display:inline-flex}
+  /* the wordmark is a tap target too */
+  .logo{min-height:44px;display:inline-flex;align-items:center}
 }
+
+/* ============================================================
+   EDGE TO EDGE — safe-area insets
+   viewport-fit=cover (set in every page's <head>) lets the page paint
+   under the notch and the home indicator. That is what makes it read as
+   an app rather than a document in a frame — but it also means content
+   must be inset by hand, or it lands underneath the hardware.
+   max() so there is always a sane gutter on devices with no insets.
+   ============================================================ */
+@supports (padding:max(0px)){
+  .wrap{padding-inline:max(var(--gutter),env(safe-area-inset-left)) }
+  .wrap{padding-right:max(var(--gutter),env(safe-area-inset-right))}
+  .footer{padding-left:max(var(--gutter),env(safe-area-inset-left));
+          padding-right:max(var(--gutter),env(safe-area-inset-right));
+          padding-bottom:calc(var(--s-7) + env(safe-area-inset-bottom))}
+  .navbar .bar{padding-left:max(var(--gutter),env(safe-area-inset-left));
+               padding-right:max(var(--gutter),env(safe-area-inset-right))}
+}
+
+/* ============================================================
+   SHORT VIEWPORTS — a phone in landscape is ~390px TALL.
+   Nothing in this file used to key off height, so a rotated phone kept a
+   168px hero pad and a 40px menu type scale, and the hero alone ran 2.6
+   screens. Height-based, so it catches landscape phones and short
+   windows alike without guessing at widths.
+   ============================================================ */
+@media (max-height:560px) and (min-width:480px){
+  /* must clear the fixed navbar, not merely be small: a flat 50px here
+     put the eyebrow underneath a 73px bar */
+  .hero{padding-block:calc(var(--nav-h) + var(--s-3)) var(--s-6)}
+  section{padding-block:36px}
+  .hero-grid{gap:var(--s-5)}
+  .mobile-menu{gap:var(--s-3);justify-content:safe flex-start}
+  .mobile-menu a{font-size:clamp(20px,6.4vh,32px)}
+  .mobile-menu .close{top:10px;right:10px}
+  .modal{padding:var(--s-3)}
+  .modal-panel{max-height:94dvh;padding:var(--s-5)}
+}
+
+/* ============================================================
+   VERY NARROW — folded phones and the iPhone SE generation.
+   ============================================================ */
+@media(max-width:400px){
+  /* At 280px the bar needed 302px: a 176px rigid wordmark plus a 104px
+     control cluster inside a 236px content box. The hamburger ran clean
+     off the right edge, so the menu could not be opened at all. */
+  .logo{font-size:18px;min-width:0;overflow:hidden}
+  .footer .logo{font-size:20px}
+  .navbar .bar{gap:var(--s-3)}
+  .nav-right{gap:var(--s-3)}
+  /* a 96px label column is a third of a 280px screen, and forced
+     hello@numidealabs.com to break mid-domain */
+  .channels .ch{grid-template-columns:1fr;gap:6px}
+  .hero-cta{gap:var(--s-3)}
+  .hero-cta .btn{width:100%;justify-content:center}
+}
+@media(max-width:340px){
+  /* two 70px columns cannot hold "PROJETS LIVRÉS" — the stats stopped
+     sharing a baseline */
+  .proof-grid{grid-template-columns:1fr;gap:var(--s-5)}
+}
+
+/* Legibility floor. Nothing below 11px on a handset — several labels sat
+   at 9.5–10.5px, and the smallest also carried .14em tracking, which
+   makes a small size harder to read, not easier. */
+@media(max-width:960px){
+  .work-grid>.proj .cat,.sb-kick,.cap .fam,.fd-pills .pill,.pill,.tag,.flag{font-size:11px}
+}
+
+/* ============================================================
+   TOUCH INPUT, not screen width.
+   An iPad in landscape is 1024px wide and gets the desktop navigation —
+   correctly, there is room for it — but it is still driven by a finger,
+   and 21px links and a 34x30 theme button are a coin toss for a thumb.
+   Width is simply the wrong question here; pointer:coarse is the right
+   one, and it also covers touch laptops and TVs that no width query
+   would ever catch.
+   ============================================================ */
+@media (pointer:coarse){
+  .nav-links a{padding-block:12px}
+  .theme-btn{min-width:44px;min-height:44px;display:grid;place-items:center}
+  .lang button{min-height:40px;padding-inline:12px}
+  .footer nav a{min-height:44px;display:inline-flex;align-items:center;padding-inline:6px}
+  .contact .ch dd a{min-height:44px;display:inline-flex;align-items:center}
+  .logo{min-height:44px;display:inline-flex;align-items:center}
+  .filter-chip{min-height:36px}
+  .work-grid>.proj .cat,.sb-kick,.cap .fam,.fd-pills .pill,.pill,.tag,.flag{font-size:11px}
+}
+
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}

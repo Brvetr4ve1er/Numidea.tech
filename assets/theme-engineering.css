@@ -133,7 +133,16 @@ img{max-width:100%;display:block}
 h2.sec,.contact h2{font-family:var(--font-sans);font-weight:600;
   font-size:clamp(30px,3.6vw,46px);line-height:1.1;letter-spacing:-.028em;
   margin-bottom:var(--s3);max-width:20ch}
-h2.sec em,.contact h2 em{font-style:normal;color:var(--fg-3)}
+/* Must MATCH the base sheet's selector, not undercut it. The base rule is
+   `main.wrap>section h2.sec em` — specificity (0,0,2,4) against this
+   rule's (0,0,1,2) — and it paints with -webkit-text-fill-color, which
+   beats `color` outright. So the base crimson gradient was still being
+   painted here, leaking a palette this surface doesn't own. Reset the
+   fill explicitly, per the reset-block rule in BRAND.md: same
+   specificity, no !important. */
+h2.sec em,.contact h2 em{font-style:normal}
+main.wrap>section h2.sec em,.contact h2 em{
+  background:none;color:var(--fg-3);-webkit-text-fill-color:var(--fg-3)}
 html[dir="rtl"] h2.sec,html[dir="rtl"] .contact h2{font-family:var(--font-ar);line-height:1.4;letter-spacing:0}
 
 .sec-lead,.svc-lead{font-size:17px;line-height:1.6;color:var(--fg-2);max-width:56ch;margin:0 0 var(--s5)}
