@@ -3,5 +3,5 @@ node_modules/
 *.log
 
 # scratch: device-audit harness + its screenshot output (promoted to scripts/ if it earns it)
-_devaudit.mjs
+_*.mjs
 _shots_*/
