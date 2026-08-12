@@ -31,10 +31,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cinzel+Decorative:wght@700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202608111048">
+<link rel="stylesheet" href="assets/styles.css?v=202608121222">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. media is flipped to "all" by the resolver below / app.js. -->
-<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608111048">
+<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608121222">
 <script>
   /* Resolve variant + theme BEFORE first paint. Runs after the links so it can
      enable the alternate sheet without a flash of the base theme. */
@@ -127,12 +127,12 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-mesh" data-parallax="-.04" aria-hidden="true"><span class="m1"></span><span class="m2"></span></div>
+    <div class="hero-mesh" data-parallax="-.10" aria-hidden="true"><span class="m1"></span><span class="m2"></span></div>
     <div class="floaters" aria-hidden="true">
-      <svg class="fl-ring" data-parallax="-.16" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="33" stroke-dasharray="3 7"/></svg>
-      <svg class="fl-tri" data-parallax=".13" viewBox="0 0 100 100"><path d="M50 9 91 85H9Z"/></svg>
-      <svg class="fl-cross" data-parallax="-.09" viewBox="0 0 100 100"><path d="M50 8v84M8 50h84"/><circle cx="50" cy="50" r="15"/></svg>
-      <svg class="fl-dot" data-parallax=".19" viewBox="0 0 100 100"><circle cx="50" cy="50" r="6"/><circle cx="50" cy="50" r="27" stroke-dasharray="2 8"/></svg>
+      <svg class="fl-ring" data-parallax="-.30" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="33" stroke-dasharray="3 7"/></svg>
+      <svg class="fl-tri" data-parallax=".26" viewBox="0 0 100 100"><path d="M50 9 91 85H9Z"/></svg>
+      <svg class="fl-cross" data-parallax="-.20" viewBox="0 0 100 100"><path d="M50 8v84M8 50h84"/><circle cx="50" cy="50" r="15"/></svg>
+      <svg class="fl-dot" data-parallax=".34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="6"/><circle cx="50" cy="50" r="27" stroke-dasharray="2 8"/></svg>
     </div>
     <div class="hero-grid">
       <div>
@@ -144,7 +144,7 @@
           <a class="btn btn-teal" href="#work" data-i18n="hero.cta2">Voir les preuves</a>
         </div>
       </div>
-      <div class="term reveal" data-parallax=".045" role="img" aria-label="Dernier déploiement : GitHub Pages, 18 secondes, en ligne">
+      <div class="term reveal" data-parallax=".07" role="img" aria-label="Dernier déploiement : GitHub Pages, 18 secondes, en ligne">
         <div class="term-bar"><i></i><i></i><i></i><span>numidea — deploy</span></div>
         <div class="term-body">
           <span class="l"><span class="p">$</span> git push origin claude/numidea-labs-landing</span>
@@ -161,7 +161,7 @@
           <div><b>3</b><span>langues</span></div>
         </div>
       </div>
-      <a class="hero-deck reveal" data-parallax="-.055" href="#work" aria-label="5 sites clients en ligne">
+      <a class="hero-deck reveal" data-parallax="-.09" href="#work" aria-label="5 sites clients en ligne">
         <img src="assets/previews/glaive.webp" alt="" width="1280" height="800" decoding="async">
         <img src="assets/previews/alliancetravel.webp" alt="" width="1280" height="800" decoding="async">
         <img src="assets/previews/bordjsteel.webp" alt="" width="1280" height="800" decoding="async">
@@ -185,8 +185,8 @@
 
   <!-- ================= PROOF ================= -->
   <section class="proof reveal" aria-labelledby="proof-h">
-    <span class="kicker" id="proof-h" data-i18n="proof.kicker">01 — Preuves</span>
-    <div class="proof-grid" data-parallax=".035">
+    <span class="kicker" data-parallax=".035" id="proof-h" data-i18n="proof.kicker">01 — Preuves</span>
+    <div class="proof-grid" data-parallax=".06">
       <div><div class="stat" data-count="5" data-suffix="">5</div><div class="stat-label" data-i18n="proof.s1">projets livrés</div></div>
       <div><div class="stat" data-count="4">4</div><div class="stat-label" data-i18n="proof.s2">spécialistes</div></div>
       <div><div class="stat" data-count="3">3</div><div class="stat-label" data-i18n="proof.s3">langues</div></div>
@@ -198,13 +198,13 @@
 
   <!-- ================= SELECTED WORK ================= -->
   <section id="work" aria-labelledby="work-h">
-    <span class="kicker" data-i18n="work.kicker">02 — Réalisations</span>
+    <span class="kicker" data-parallax=".035" data-i18n="work.kicker">02 — Réalisations</span>
     <h2 class="sec font-swap-display" id="work-h" data-i18n="work.title">La preuve, <em>en direct.</em></h2>
     <p class="sec-lead" data-i18n="work.lead">Des sites réels, en ligne, qu'on peut cliquer — pas des maquettes.</p>
     <div class="work-grid">
 
       <article class="proj reveal" data-cat="health" data-idx="01/07">
-        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>doctorcherfia.dz</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" viewBox="0 0 24 24"><path d="M9.5 3.5h5v6H20.5v5h-6V20.5h-5v-6H3.5v-5h6z"/></svg></div><span class="cover" aria-hidden="true">Doctor Cherfia</span></div>
+        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>doctorcherfia.dz</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Doctor Cherfia</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj1.cat">Santé · Next.js</span>
           <h3>Doctor Cherfia Clinic</h3>
@@ -217,7 +217,7 @@
       </article>
 
       <article class="proj proj--brand reveal" data-cat="travel" style="--accent:95,214,134" data-idx="02/07">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" src="assets/previews/alliancetravel.webp" alt="Aperçu du site Alliance Travel" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="assets/previews/alliancetravel.webp" alt="Aperçu du site Alliance Travel" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
           <h3>Alliance Travel</h3>
@@ -230,7 +230,7 @@
       </article>
 
       <article class="proj proj--brand reveal" data-cat="industrial" style="--accent:59,164,224" data-idx="03/07">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" src="assets/previews/almaflowclim.webp" alt="Aperçu du site AlmaFlowClim" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="assets/previews/almaflowclim.webp" alt="Aperçu du site AlmaFlowClim" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Industrie · Web</span>
           <h3>AlmaFlowClim</h3>
@@ -243,7 +243,7 @@
       </article>
 
       <article class="proj proj--brand reveal" data-cat="industrial" style="--accent:214,55,48" data-idx="04/07">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
           <h3>Bordj Steel</h3>
@@ -256,7 +256,7 @@
       </article>
 
       <article class="proj reveal" data-cat="pwa" data-idx="05/07">
-        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>etoile-est.app</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" viewBox="0 0 24 24"><path d="M12 2.5v19M2.5 12h19M5.2 5.2l13.6 13.6M18.8 5.2L5.2 18.8"/></svg></div><span class="cover" aria-hidden="true">Étoile de l'Est</span></div>
+        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>etoile-est.app</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Étoile de l'Est</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj5.cat">PWA · Supabase</span>
           <h3>Étoile de l'Est</h3>
@@ -269,7 +269,7 @@
       </article>
 
       <article class="proj proj--brand reveal" data-cat="travel" style="--accent:34,180,104" data-idx="06/07">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
           <h3>Nomara Voyages</h3>
@@ -282,7 +282,7 @@
       </article>
 
       <article class="proj proj--brand reveal" data-cat="commerce" style="--accent:255,90,31" data-idx="07/07">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" src="assets/previews/glaive.webp" alt="Aperçu du site Glaive Store" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="assets/previews/glaive.webp" alt="Aperçu du site Glaive Store" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
           <h3>Glaive Store</h3>
@@ -319,14 +319,14 @@
 
   <!-- ================= SERVICES ================= -->
   <section id="services" class="band" aria-labelledby="svc-h">
-    <span class="kicker" data-i18n="svc.kicker">03 — Services</span>
+    <span class="kicker" data-parallax=".035" data-i18n="svc.kicker">03 — Services</span>
     <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">Ce qu'on <em>rend réel.</em></h2>
     <p class="svc-lead" data-i18n="svc.lead">Cinq offres en avant, cinq capacités en réserve — la profondeur attend ceux qui creusent.</p>
 
     <!-- SIGNATURE OFFER — pinned -->
     <article class="preview reveal">
       <div class="glow" aria-hidden="true"></div>
-      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="10" rx="1.5" pathLength="1"/><path d="M3 9 L12 4 L21 9" pathLength="1"/><line x1="12" y1="4" x2="12" y2="19" pathLength="1"/><path d="M10.5 12.5 l4 1.8 l-4 1.8 z" pathLength="1"/></svg></span>
+      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 19.8 7.5 19.8 16.5 12 21 4.2 16.5 4.2 7.5Z" pathLength="1"/><circle cx="12" cy="12" r="4.6" pathLength="1"/><line class="sweep" x1="12" y1="12" x2="12" y2="7.4" pathLength="1"/><path class="gem" d="M12 10.2 13.8 12 12 13.8 10.2 12Z" pathLength="1"/></svg></span>
       <div class="body">
         <span class="tag" data-i18n="prev.tag">Offre signature</span>
         <h3 data-i18n="prev.name">L'Aperçu</h3>
@@ -338,7 +338,7 @@
 
     <div class="svc-grid">
       <article class="svc-row reveal">
-        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="1.5" pathLength="1"/><line x1="3" y1="8.5" x2="21" y2="8.5" pathLength="1"/><circle cx="5.4" cy="6.5" r=".5" pathLength="1"/><circle cx="7.2" cy="6.5" r=".5" pathLength="1"/><path class="gem" d="M12 11 l2.3 2.6 l-2.3 2.6 l-2.3 -2.6 z" pathLength="1"/></svg></span>
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13.4" rx="1" pathLength="1"/><path d="M3 8.6H21M11.9 8.6V17.4" pathLength="1"/><path d="M3 20.6H21M3 19.4V21.8M21 19.4V21.8" pathLength="1"/><circle class="r2" cx="5.7" cy="6.3" r="1" pathLength="1"/></svg></span>
         <div>
           <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
           <h3 data-i18n="f1.name">Sites & applications web</h3>
@@ -349,7 +349,7 @@
       </article>
 
       <article class="svc-row reveal">
-        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle class="r3" cx="12" cy="12" r="9.5" pathLength="1"/><circle class="r2" cx="12" cy="12" r="6" pathLength="1"/><circle cx="12" cy="12" r="2.4" pathLength="1"/></svg></span>
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8.7" cy="9.8" r="5.5" pathLength="1"/><circle cx="15.3" cy="9.8" r="5.5" pathLength="1"/><circle class="r3" cx="12" cy="15.2" r="5.5" pathLength="1"/><path class="gem" d="M12 10.3 13.5 11.9 12 13.5 10.5 11.9Z" pathLength="1"/></svg></span>
         <div>
           <h3 data-i18n="f2.name">Identité & systèmes visuels</h3>
           <p class="promise" data-i18n="f2.promise">La confiance avant le premier mot.</p>
@@ -359,7 +359,7 @@
       </article>
 
       <article class="svc-row reveal">
-        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><g class="spin"><circle cx="12" cy="12" r="4.2" pathLength="1"/><path d="M12 3.4 V6.2 M12 17.8 v2.8 M3.4 12 H6.2 M17.8 12 h2.8 M6 6 l2 2 M16 16 l2 2 M18 6 l-2 2 M6 18 l2 -2" pathLength="1"/></g><circle cx="12" cy="12" r="1.3" pathLength="1"/></svg></span>
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.6 20 7.3 20 16.7 12 21.4 4 16.7 4 7.3Z" pathLength="1"/><g class="spin"><circle cx="12" cy="12" r="3.4" pathLength="1"/><path d="M12 5.8V8.3M12 15.7V18.2M6.1 8.7 8.3 10M15.7 14 17.9 15.3M17.9 8.7 15.7 10M6.1 15.3 8.3 14" pathLength="1"/></g></svg></span>
         <div>
           <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
           <h3 data-i18n="f3.name">Automatisation & pipelines</h3>
@@ -370,7 +370,7 @@
       </article>
 
       <article class="svc-row reveal">
-        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" pathLength="1"/><circle cx="12" cy="12" r="4.8" pathLength="1"/><line class="sweep" x1="12" y1="12" x2="12" y2="3" pathLength="1"/><circle cx="15.6" cy="8.4" r=".9" pathLength="1"/></svg></span>
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" pathLength="1"/><circle class="r2" cx="12" cy="12" r="5.2" pathLength="1"/><path d="M12 3V5.3M12 18.7V21M3 12H5.3M18.7 12H21" pathLength="1"/><line class="sweep" x1="12" y1="12" x2="17.8" y2="8.6" pathLength="1"/><circle cx="15.3" cy="9.5" r=".9" pathLength="1"/></svg></span>
         <div>
           <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
           <h3 data-i18n="f4.name">Intelligence marché & produit</h3>
@@ -381,7 +381,7 @@
       </article>
 
       <article class="svc-row reveal">
-        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19 V5 M4 19 H20" pathLength="1"/><path d="M5.5 16 L10 11 L13.5 13.5 L18.5 7" pathLength="1"/><path class="gem" d="M18.5 7 l1.7 1.7 l-1.7 1.7 l-1.7 -1.7 z" pathLength="1"/></svg></span>
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.6 20V4M3.6 20H21" pathLength="1"/><path d="M5.6 16.6 10 12.5 13.4 14.6 19.1 7.6" pathLength="1"/><path d="M15.6 7.6H19.4V11.2" pathLength="1"/><path class="gem" d="M19.1 5.9 20.8 7.6 19.1 9.3 17.4 7.6Z" pathLength="1"/></svg></span>
         <div>
           <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
           <h3 data-i18n="f5.name">Stratégie & conseil croissance</h3>
@@ -400,35 +400,35 @@
       </summary>
       <div class="cap-grid">
         <div class="cap">
-          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8 H19 L18 19 H6 Z" pathLength="1"/><path d="M8.5 8 V6.5 a3.5 3.5 0 0 1 7 0 V8" pathLength="1"/><path d="M9.5 13 l2 2 l3.5 -3.5" pathLength="1"/></svg></span>
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.4 4.8H20.6L14.1 12.5V19.6L9.9 21.4V12.5Z" pathLength="1"/><path d="M7.3 8.3H16.7" pathLength="1"/><circle class="r2" cx="12" cy="16.4" r="1.1" pathLength="1"/></svg></span>
           <span class="fam" data-i18n="c1.fam">Le Build</span>
           <h4 data-i18n="c1.name">Boutique & réservation</h4>
           <p class="promise" data-i18n="c1.promise">De la visite au paiement.</p>
           <p class="brief" data-i18n="c1.brief">Boutiques en ligne et systèmes de réservation pensés pour l'achat local — paiement WhatsApp, flux cash, Shopify headless si pertinent.</p>
         </div>
         <div class="cap">
-          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1" pathLength="1"/><rect x="13" y="3" width="7" height="7" rx="1" pathLength="1"/><rect x="3" y="13" width="7" height="7" rx="1" pathLength="1"/><rect x="14.5" y="14.5" width="7" height="7" rx="1" pathLength="1"/></svg></span>
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1" pathLength="1"/><path d="M9 4V20M15 4V20M3 9.3H21M3 14.7H21" pathLength="1"/><path class="gem" d="M9 9.3H15V14.7H9Z" pathLength="1"/></svg></span>
           <span class="fam" data-i18n="c2.fam">Le Build</span>
           <h4 data-i18n="c2.name">Design graphique & social</h4>
           <p class="promise" data-i18n="c2.promise">On scroll, on s'arrête.</p>
           <p class="brief" data-i18n="c2.brief">Packs social, carrousels, infographies, print — depuis un système visuel verrouillé, pour que tout vous ressemble.</p>
         </div>
         <div class="cap">
-          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20 V4 M3 20 H21" pathLength="1"/><path d="M4 17 C9 16 11 8 20 5" pathLength="1"/><circle cx="7" cy="15" r="0.8" pathLength="1"/><circle cx="12" cy="11" r="0.8" pathLength="1"/><circle cx="16" cy="8" r="0.8" pathLength="1"/></svg></span>
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.6 12.4 4.3 9.2 5.7 14.9 7.1 7.4 8.5 15.3 9.9 10.5" pathLength="1"/><path d="M9.9 10.5C13 10.5 14.3 12 21.4 12" pathLength="1"/><path d="M2.6 19.6H21.4M2.6 18.4V20.8M21.4 18.4V20.8" pathLength="1"/><circle class="r3" cx="21.4" cy="12" r="1.3" pathLength="1"/></svg></span>
           <span class="fam" data-i18n="c3.fam">L'Engine</span>
           <h4 data-i18n="c3.name">Data science & analytics</h4>
           <p class="promise" data-i18n="c3.promise">Du signal dans le bruit.</p>
           <p class="brief" data-i18n="c3.brief">Vrai travail statistique — modélisation économétrique, séries temporelles, prévision, dashboards. Analyse testée et défendable.</p>
         </div>
         <div class="cap">
-          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="1.6" pathLength="1"/><circle cx="18" cy="8" r="1.6" pathLength="1"/><circle cx="8" cy="18" r="1.6" pathLength="1"/><circle cx="16" cy="17" r="1.6" pathLength="1"/><path d="M6.4 7 L16.6 8 M6 7.4 L7.2 16.5 M9.3 17.6 L14.8 16.8 M17 9.4 L16.4 15.4" pathLength="1"/></svg></span>
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.8 19.6 7.2 19.6 16 12 20.4 4.4 16 4.4 7.2Z" pathLength="1"/><path d="M12 2.8V12M12 12 19.6 16M12 12 4.4 16" pathLength="1"/><circle class="r2" cx="12" cy="12" r="1.6" pathLength="1"/><circle cx="12" cy="2.8" r=".9" pathLength="1"/><circle cx="19.6" cy="16" r=".9" pathLength="1"/><circle cx="4.4" cy="16" r=".9" pathLength="1"/></svg></span>
           <span class="fam" data-i18n="c4.fam">L'Esprit</span>
           <h4 data-i18n="c4.name">Systèmes de connaissance</h4>
           <p class="promise" data-i18n="c4.promise">Une entreprise qui se souvient.</p>
           <p class="brief" data-i18n="c4.brief">Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes pour le RAG.</p>
         </div>
         <div class="cap">
-          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4 C6 4 8 11 4.5 12 C8 13 6 20 9 20" pathLength="1"/><path d="M15 4 C18 4 16 11 19.5 12 C16 13 18 20 15 20" pathLength="1"/><path d="M12 8 l-1.5 4 h3 l-1.5 4" pathLength="1"/></svg></span>
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.4 3.2C5.6 3.2 5.6 12 3.2 12 5.6 12 5.6 20.8 8.4 20.8" pathLength="1"/><path d="M15.6 3.2C18.4 3.2 18.4 12 20.8 12 18.4 12 18.4 20.8 15.6 20.8" pathLength="1"/><rect x="9.5" y="9.5" width="5" height="5" rx=".6" pathLength="1"/><path class="gem" d="M12 10.7 13.3 12 12 13.3 10.7 12Z" pathLength="1"/></svg></span>
           <span class="fam" data-i18n="c5.fam">L'Esprit</span>
           <h4 data-i18n="c5.name">Outils & skills IA sur mesure</h4>
           <p class="promise" data-i18n="c5.promise">Le logiciel qui construit votre logiciel.</p>
@@ -441,7 +441,7 @@
 
   <!-- ================= HOW WE WORK ================= -->
   <section id="how" aria-labelledby="how-h">
-    <span class="kicker" data-i18n="how.kicker">04 — Méthode</span>
+    <span class="kicker" data-parallax=".035" data-i18n="how.kicker">04 — Méthode</span>
     <h2 class="sec font-swap-display" id="how-h" data-i18n="how.title">Aucun <em>intermédiaire.</em></h2>
     <div class="steps">
       <div class="step reveal">
@@ -465,13 +465,13 @@
 
   <!-- ================= FOUNDER ================= -->
   <section id="founder" class="band" aria-labelledby="founder-h">
-    <span class="kicker" data-i18n="founder.kicker">05 — Équipe &amp; fondateur</span>
+    <span class="kicker" data-parallax=".035" data-i18n="founder.kicker">05 — Équipe &amp; fondateur</span>
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Le studio a un <em>visage.</em></h2>
     <p class="sec-lead" data-i18n="founder.lead">Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.</p>
 
     <div class="founder-card reveal">
       <div class="fd-top">
-        <div class="fd-photo"><span class="mono" aria-hidden="true">Y</span></div>
+        <div class="fd-photo" data-parallax="-.08"><span class="mono" aria-hidden="true">Y</span></div>
         <div class="fd-id">
           <h3>Yasser Hamisse</h3>
           <p class="fd-role" data-i18n="founder.role">Designer &amp; développeur · Fondateur</p>
@@ -519,7 +519,7 @@
 
   <!-- ================= STACK ================= -->
   <section id="stack" aria-labelledby="stack-h">
-    <span class="kicker" data-i18n="stack.kicker">06 — Stack</span>
+    <span class="kicker" data-parallax=".035" data-i18n="stack.kicker">06 — Stack</span>
     <h2 class="sec font-swap-display" id="stack-h" data-i18n="stack.title">Le flex <em>discret.</em></h2>
     <div class="stack-strip reveal">
       <span class="grp"><b>Front</b><span class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></span></span>
@@ -533,7 +533,7 @@
   <!-- ================= CONTACT ================= -->
   <!-- ================= FAQ ================= -->
   <section id="faq" aria-labelledby="faq-h">
-    <span class="kicker" data-i18n="faq.kicker">07 — FAQ</span>
+    <span class="kicker" data-parallax=".035" data-i18n="faq.kicker">07 — FAQ</span>
     <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
     <p class="sec-lead" data-i18n="faq.lead">Ce qu'on nous demande avant de se lancer — répondu franchement.</p>
     <div class="faq-list">
@@ -572,7 +572,7 @@
   </section>
 
   <section id="contact" class="contact band" aria-labelledby="contact-h">
-    <span class="kicker" data-i18n="contact.kicker">08 — Contact</span>
+    <span class="kicker" data-parallax=".035" data-i18n="contact.kicker">08 — Contact</span>
     <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">On le <em>rend réel ?</em></h2>
     <div class="contact-grid">
       <div class="contact-side">
@@ -644,7 +644,7 @@
       <div class="explorer" id="explorer-browse">
         <header class="modal-head">
           <div>
-            <span class="kicker" style="margin-bottom:6px" data-i18n="portfolio.kicker">Portfolio</span>
+            <span class="kicker" data-parallax=".035" style="margin-bottom:6px" data-i18n="portfolio.kicker">Portfolio</span>
             <h2 id="portfolio-title" class="font-swap-display" data-i18n="portfolio.title">Tout le <em>travail.</em></h2>
           </div>
           <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
@@ -685,7 +685,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608111048" defer></script>
+<script src="assets/app.js?v=202608121222" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

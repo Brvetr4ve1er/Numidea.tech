@@ -612,7 +612,19 @@
        directly. That lag is the whole point: the page settles instead of
        snapping, which is what reads as calm. */
     var paraEls = [].slice.call(document.querySelectorAll('[data-parallax]')).map(function (el) {
-      return { el: el, k: parseFloat(el.getAttribute('data-parallax')) || 0, sy: 0, ty: 0, docTop: 0, h: 0 };
+      return { el: el, k: parseFloat(el.getAttribute('data-parallax')) || 0,
+               // optional bound, in px. An element drifting INSIDE a clipped
+               // frame must never travel further than its own overscan, or a
+               // bare edge appears at the extremes of the scroll. Capping is
+               // self-adjusting; matching overscan percentages to card sizes
+               // by hand is not.
+               // Bounded by DEFAULT. Unbounded, offset grows with distance from
+               // the viewport: a kicker 8000px down the page computes ~261px of
+               // displacement. You never watch it drift there, but jump to that
+               // anchor and you land on visibly displaced content settling into
+               // place. 64px is past what reads as depth anyway.
+               cap: parseFloat(el.getAttribute('data-parallax-cap')) || 64,
+               sy: 0, ty: 0, docTop: 0, h: 0 };
     });
     var finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
@@ -652,6 +664,7 @@
           if (!p.h) { p.ty = 0; continue; }
           // how far the element's centre sits from the viewport centre
           p.ty = (p.docTop - y + p.h / 2 - vh / 2) * p.k;
+          if (p.cap) p.ty = Math.max(-p.cap, Math.min(p.cap, p.ty));
         }
         if (!running) { running = true; requestAnimationFrame(frame); }
       }
@@ -671,7 +684,7 @@
         pyC += (pyT - pyC) * ep;
         var settled = Math.abs(pxT - pxC) < 0.02 && Math.abs(pyT - pyC) < 0.02;
         for (var i = 0; i < paraEls.length; i++) {
-          var p = paraEls[i], d = Math.abs(p.k) * 90;
+          var p = paraEls[i], d = Math.abs(p.k) * 150;   // pointer travel, px at full deflection
           p.sy += (p.ty - p.sy) * es;
           if (Math.abs(p.ty - p.sy) < 0.05) p.sy = p.ty; else settled = false;
           p.el.style.setProperty('--px', (pxC * d).toFixed(2) + 'px');

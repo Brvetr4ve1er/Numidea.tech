@@ -168,6 +168,42 @@ Check for them before trusting a visual pass.
   and correctly gets the desktop nav, but it is still driven by a finger.
   `@media (pointer:coarse)` catches it; no width query ever will.
 
+## The desktop grid
+
+`main.wrap > section` is a **twelve-column grid** above 1100px, and everything
+snaps to it. Before, each block was left-flush with its own arbitrary
+`max-width`, so the right edge landed on six different values (725, 893, 928,
+1008, 1108, 1272px) — nothing shared a rhythm, which is exactly what reads as
+"stray components scattered about". Right edges now fall on grid lines.
+
+Section headers are two-column: title in columns 1–6 (1–5 above 1500px), lead
+paragraph in 8–12, bottom-aligned to the headline. That single change is what
+stops a wrapped headline sitting beside half a screen of void.
+
+`--max` is `min(1580px, 93vw)`, not 1200px. At 1920 the old value left **43%
+of the screen as empty margin**; it is now 24%. The cap stays, though — past
+about 1600px a text column stops being readable, so wide screens get margin by
+intent rather than by neglect.
+
+Content spans worth knowing: `.steps` runs three abreast with the rail turned
+horizontal (the node sits ABOVE its copy, or the rail strikes through the
+titles); `.faq-list` runs two columns; `.preview` splits identity-left /
+argument-right so the signature card doesn't repeat the page's own mistake at
+card scale.
+
+## Iconography
+
+The service marks are **geometric constructions on the hexagonal motif the
+page is already textured with** — an aperture, a compass vesica, an
+escapement, an astrolabe, a lattice — not stock pictograms. They were a house,
+a browser chrome, a gear and a shopping bag, which belonged to no identity at
+all.
+
+Every mark drives at least one animation hook, so the set has life rather than
+sitting inert: `.spin` (rotor), `.sweep` (radial arm), `.gem` (pulsing
+diamond), `.r2`/`.r3` (radiating rings). Keep `pathLength="1"` on every
+drawable element — the stroke-dasharray draw-on depends on it.
+
 ## Breakpoints
 
 `960px` is the mobile boundary — the structural collapse and the mobile pass

@@ -349,7 +349,11 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 
 /* ---------- project previews ---------- */
 /* committed screenshots (live sites) */
-.proj .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:1;display:block;transform:scale(1.002);transition:transform var(--dur-slow) var(--ease-out);filter:saturate(1.04)}
+/* Overscan, because the shot drifts inside its clipped frame (data-parallax).
+   Visible travel is (viewportHalf - cardHalf) x k ≈ ±18px at these depths, so
+   the extra 18% of height is what stops a bare edge appearing at the top or
+   bottom of the frame at the extremes of the drift. */
+.proj .shot{position:absolute;inset:0;top:-12%;width:100%;height:124%;object-fit:cover;object-position:top center;z-index:1;display:block;transform:scale(1.002);transition:transform var(--dur-slow) var(--ease-out);filter:saturate(1.04)}
 .proj:hover .shot{transform:scale(1.045)}
 .proj .thumb:has(.shot){background:var(--navy)}
 .proj .thumb:has(.shot) .cover{display:none}
@@ -964,6 +968,93 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
 /* staggered reveal — siblings entering together are delayed in sequence
    (--rd, set by app.js) so a row assembles as a wave, not a flashbulb. */
 .reveal{transition-delay:var(--rd,0ms)}
+
+/* ============================================================
+   THE EDITORIAL GRID — desktop layout
+   The page was a 1104px column parked in the middle of the screen: at
+   1920px that is 43% empty margin, at 2560px it is 57%. Worse, every
+   block was left-flush with an arbitrary max-width, so the right edge
+   landed on six different values (725, 893, 928, 1008, 1108, 1272px) —
+   nothing shared a rhythm, which is what reads as "stray components".
+
+   Fix: one twelve-column grid that everything snaps to. Right edges now
+   fall on grid lines instead of wherever a max-width happened to end,
+   and section headers become two-column so the width is USED rather
+   than left as void beside a wrapped headline.
+   ============================================================ */
+@media(min-width:1100px){
+  :root{--max:min(1580px,93vw);--gutter:clamp(40px,3.4vw,64px)}
+
+  main.wrap>section,.footer{
+    display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+    column-gap:clamp(20px,1.7vw,34px);align-content:start}
+  /* default span: nothing silently escapes the grid */
+  main.wrap>section>*{grid-column:1/-1}
+
+  /* — the two-column section header — */
+  main.wrap>section>.kicker{grid-column:1/-1;margin-bottom:var(--s-6)}
+  main.wrap>section>h2.sec{grid-column:1/span 6;max-width:none;margin-bottom:0;align-self:start}
+  main.wrap>section>.sec-lead,
+  main.wrap>section>.svc-lead{grid-column:8/-1;align-self:end;margin-bottom:0;
+    max-width:46ch;padding-bottom:.4em}
+  /* the content block below the header gets its own breathing room */
+  main.wrap>section>.kicker+h2.sec+.sec-lead+*,
+  main.wrap>section>.kicker+h2.sec+.svc-lead+*,
+  main.wrap>section>.kicker+h2.sec+*{margin-top:var(--s-8)}
+
+  /* — per-section content spans — */
+  .work-grid,.svc-grid,.stack-strip,.founder-card,.contact-grid,.proof-grid,.preview,.scene-banner{grid-column:1/-1}
+  /* three abreast: the process reads as a sequence instead of a column
+     with half the screen empty beside it */
+  .steps{grid-column:1/-1;max-width:none;grid-template-columns:repeat(3,1fr);gap:clamp(24px,2.4vw,48px)}
+  .steps::before{left:0;right:0;top:19px;bottom:auto;width:auto;height:2px;
+    background:linear-gradient(90deg,var(--crimson),color-mix(in srgb,var(--crimson) 8%,transparent))}
+  /* Node ABOVE the copy, not beside it. Turning the rail horizontal put it
+     at node-centre height — straight through the step titles, which sat on
+     the same line. Stacking clears a band for the rail to run through, and
+     the nodes (opaque, painted after) sit on it like beads. */
+  .steps .step{padding-left:0;padding-top:60px}
+  .steps .step .node{left:0;top:0}
+  .steps .step p{max-width:34ch}
+  /* two columns of questions rather than one tall stack */
+  .faq-list{grid-column:1/-1;max-width:none;grid-template-columns:1fr 1fr;gap:var(--s-4) clamp(20px,1.7vw,34px);align-content:start}
+
+  /* the hero gets the same footing as everything else */
+  .hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(20px,1.7vw,34px)}
+  .hero>.hero-mesh,.hero>.floaters{grid-column:1/-1;grid-row:1}
+  .hero-grid{grid-column:1/-1;grid-row:1;grid-template-columns:1.08fr .92fr;gap:clamp(40px,4vw,88px)}
+  .lede{max-width:52ch}
+
+  /* — breathing room. "Too tight" was measured too: 96px of section
+       padding on a 1580px canvas is the rhythm of a 1100px one. — */
+  main.wrap>section{padding-block:clamp(104px,8.5vw,152px)}
+  .footer{padding-block:var(--s-9) var(--s-8);row-gap:var(--s-6)}
+  .work-grid{gap:clamp(24px,2vw,40px)}
+  .svc-grid{gap:clamp(22px,1.8vw,34px)}
+
+  /* The signature card was reproducing the page's own problem one level
+     down: full-bleed box, copy crammed into the left 40%, dead space to
+     the right. Split it — identity left, argument right — so the card
+     uses the width it claims. */
+  .preview{grid-template-columns:46px minmax(0,.8fr) minmax(0,1.1fr);
+    column-gap:clamp(32px,3.4vw,72px);align-items:start;padding:clamp(34px,3vw,52px)}
+  .preview .body{display:contents}
+  .preview .tag{grid-column:2;align-self:end}
+  .preview h3{grid-column:2;margin-top:6px}
+  .preview .promise{grid-column:2;margin-bottom:0}
+  .preview .brief{grid-column:3;grid-row:1/span 2;max-width:52ch;align-self:start;margin:0}
+  .preview .outcome{grid-column:3;grid-row:3;align-self:start;margin-top:var(--s-4)}
+  .preview .glyph{grid-row:1/span 2}
+}
+
+@media(min-width:1500px){
+  /* at this width the header can afford a wider gutter between the two
+     halves without the lead drifting away from its headline */
+  main.wrap>section>h2.sec{grid-column:1/span 5}
+  main.wrap>section>.sec-lead,
+  main.wrap>section>.svc-lead{grid-column:7/span 5}
+  .faq-list{column-gap:clamp(34px,2.6vw,56px)}
+}
 
 /* ---------- responsive ---------- */
 @media(min-width:1100px){
