@@ -281,6 +281,88 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
 .hero-cta{display:flex;flex-wrap:wrap;gap:var(--s-4);margin-top:var(--s-7)}
 
 
+
+/* ---------- hero entrance ----------
+   The hero used to simply BE there. Staging it — brand line, then the
+   headline, then the argument, then the proof — is what makes it read as
+   authored rather than loaded. Opacity/transform only, so it composes
+   with the parallax translate underneath. */
+@media (prefers-reduced-motion:no-preference){
+  .hero .eyebrow,.hero-h,.hero .lede,.hero-cta,.plate-wrap{
+    animation:hero-rise .9s var(--ease-out) both}
+  .hero .eyebrow{animation-delay:.05s}
+  .hero-h{animation-delay:.14s}
+  .hero .lede{animation-delay:.26s}
+  .hero-cta{animation-delay:.36s}
+  .plate-wrap{animation-delay:.30s;animation-duration:1.1s}
+}
+@keyframes hero-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   THE HERO PLATE
+   One live client site at a time, at a size you can actually read.
+   Screenshots are WIPED, never cross-faded — a dissolve muddies two
+   flat UIs into a smear, while a hard edge keeps both razor sharp. That
+   is the same rule scene/ is built on.
+   ============================================================ */
+.plate-wrap{position:relative;display:grid;gap:var(--s-4);align-content:start}
+.plate{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:var(--r-md);
+  background:var(--navy);border:1px solid var(--hairline-2);
+  box-shadow:0 0 0 6px color-mix(in srgb,var(--void) 55%,transparent),
+             0 42px 84px -38px rgba(0,0,0,.92)}
+.plate .pl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
+  opacity:0;visibility:hidden}
+.plate .pl.on{opacity:1;visibility:visible}
+/* the leading edge of the wipe: a bright rule that crosses the plate */
+.pl-wipe{position:absolute;inset:0;z-index:3;pointer-events:none;background:var(--void);
+  transform:scaleX(var(--wipe,0));transform-origin:left center}
+html[dir="rtl"] .pl-wipe{transform-origin:right center}
+.pl-wipe::after{content:"";position:absolute;right:0;top:0;bottom:0;width:2px;
+  background:var(--crimson-hi);box-shadow:0 0 20px 2px color-mix(in srgb,var(--crimson-hi) 75%,transparent);
+  opacity:var(--wipeEdge,0)}
+html[dir="rtl"] .pl-wipe::after{right:auto;left:0}
+.pl-scan{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.18;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.5) 0 1px,transparent 1px 3px)}
+/* drafting corner ticks */
+.pk{position:absolute;width:14px;height:14px;z-index:4;border:1px solid var(--crimson)}
+.pk.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.pk.tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
+.pk.bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
+.pk.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+.plate-meta{display:flex;align-items:baseline;gap:var(--s-4);flex-wrap:wrap;min-height:34px}
+.pm-idx{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--faint);flex:none}
+.pm-idx b{font-weight:400;color:var(--crimson)}
+.pm-rot{position:relative;flex:1 1 auto;min-width:0;display:grid}
+.pm-item{grid-area:1/1;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  text-decoration:none;opacity:0;visibility:hidden;transform:translateY(5px);
+  transition:opacity .4s var(--ease-out),transform .4s var(--ease-out)}
+.pm-item.on{opacity:1;visibility:visible;transform:none}
+.pm-item b{font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--ice);letter-spacing:-.01em}
+html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
+.pm-item i{font-family:var(--font-mono);font-style:normal;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--teal)}
+.pm-item:hover b{color:var(--crimson-hi)}
+.pm-live{flex:none;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.pm-live i{width:6px;height:6px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 0 0 color-mix(in srgb,var(--teal) 60%,transparent);animation:pl-pulse 2.4s ease-out infinite}
+@keyframes pl-pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--teal) 55%,transparent)}
+  70%,100%{box-shadow:0 0 0 9px transparent}}
+
+.plate-rail{display:flex;gap:8px}
+.plate-rail button{flex:1;background:none;border:0;padding:9px 0 0;cursor:pointer;min-height:24px}
+.plate-rail button i{display:block;height:2px;border-radius:2px;background:var(--hairline-2);
+  transition:background var(--dur-base) var(--ease-out)}
+.plate-rail button[aria-selected="true"] i{background:var(--crimson)}
+.plate-rail button:hover i{background:var(--crimson-hi)}
+.plate-rail button:focus-visible i{outline:2px solid var(--teal);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+  .pl-wipe{display:none}
+  .pm-item{transition:none}
+  .pm-live i{animation:none}
+}
+
 /* hero deck — three REAL client sites, fanned; links to #work */
 .hero-deck{position:relative;display:block;aspect-ratio:16/12;perspective:900px;text-decoration:none}
 .hero-deck img{position:absolute;width:80%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center;
@@ -1022,8 +1104,14 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   /* the hero gets the same footing as everything else */
   .hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(20px,1.7vw,34px)}
   .hero>.hero-mesh,.hero>.floaters{grid-column:1/-1;grid-row:1}
-  .hero-grid{grid-column:1/-1;grid-row:1;grid-template-columns:1.08fr .92fr;gap:clamp(40px,4vw,88px)}
-  .lede{max-width:52ch}
+  .hero-grid{grid-column:1/-1;grid-row:1;grid-template-columns:1.02fr .98fr;gap:clamp(40px,4vw,80px)}
+  .lede{max-width:46ch;font-size:clamp(18px,1.35vw,21px)}
+  /* Display type sized for the canvas it actually sits on. 84px was a
+     1200px-page value; the identity is engraved Cinzel and it should
+     carry the screen. */
+  .hero-h{font-size:clamp(52px,5.6vw,104px);line-height:.98;letter-spacing:-.028em}
+  html[data-theme="arcanum"][dir="ltr"] .hero-h{font-size:clamp(46px,4.9vw,92px);line-height:1.02}
+  .hero .eyebrow{margin-bottom:var(--s-6)}
 
   /* — breathing room. "Too tight" was measured too: 96px of section
        padding on a 1580px canvas is the rhythm of a 1100px one. — */

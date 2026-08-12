@@ -191,6 +191,32 @@ titles); `.faq-list` runs two columns; `.preview` splits identity-left /
 argument-right so the signature card doesn't repeat the page's own mistake at
 card scale.
 
+## The hero plate
+
+The hero used to be the stock template: copy left, three static thumbnails
+fanned right. It showed 3 of 5 clients at a size where nothing was legible —
+the studio's strongest asset used as texture.
+
+It is now **one live client site at a time, big enough to read**, cycling all
+five with the real name, category and URL. Rules that matter:
+
+- **Wipe, never cross-fade.** Two flat UIs dissolving through each other is a
+  smear; a hard edge with a bright leading rule keeps both razor sharp. Same
+  principle `scene/` is built on. The image swaps at the midpoint, hidden
+  behind the bar.
+- **All five captions live in the DOM**, one shown at a time, each with its own
+  `data-i18n`. The rotator toggles a class and never touches translation, so
+  `applyLang` keeps working untouched and it degrades to a static first slide
+  with JS off.
+- **Pausing is a latch, not a timer state.** Clicking a rail tab re-arms the
+  interval — but the pointer is already inside the component at that moment, so
+  no fresh `pointerenter` will ever fire to pause it again, and it resumes
+  rotating under someone who just chose a slide. `held.hover/focus/hidden` is
+  consulted every time the timer is armed.
+- Engineering restyles the plate in full rather than letting it inherit;
+  otherwise the base sheet's crimson, rounded card and CRT scanlines leak into
+  a surface that owns none of them.
+
 ## Iconography
 
 The service marks are **geometric constructions on the hexagonal motif the

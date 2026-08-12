@@ -31,10 +31,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cinzel+Decorative:wght@700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202608121222">
+<link rel="stylesheet" href="assets/styles.css?v=202608121249">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. media is flipped to "all" by the resolver below / app.js. -->
-<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608121222">
+<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608121249">
 <script>
   /* Resolve variant + theme BEFORE first paint. Runs after the links so it can
      enable the alternate sheet without a flash of the base theme. */
@@ -161,12 +161,57 @@
           <div><b>3</b><span>langues</span></div>
         </div>
       </div>
-      <a class="hero-deck reveal" data-parallax="-.09" href="#work" aria-label="5 sites clients en ligne">
-        <img src="assets/previews/glaive.webp" alt="" width="1280" height="800" decoding="async">
-        <img src="assets/previews/alliancetravel.webp" alt="" width="1280" height="800" decoding="async">
-        <img src="assets/previews/bordjsteel.webp" alt="" width="1280" height="800" decoding="async">
-        <span class="hd-tag" data-i18n="hero.deckTag">5 sites clients en ligne — les voir →</span>
-      </a>
+      <!-- THE PLATE — the five live client sites, one at a time, at a size you
+           can actually read. This replaced a fan of three static thumbnails
+           that showed 3 of 5 clients and was too small to make out; the studio's
+           strongest asset was being used as texture. Wiped, never cross-faded:
+           screenshots stay flat and sharp, which is the scene/ idiom. -->
+      <div class="plate-wrap" data-parallax="-.06" data-parallax-cap="26">
+        <div class="plate">
+          <i class="pk tl" aria-hidden="true"></i><i class="pk tr" aria-hidden="true"></i>
+          <i class="pk bl" aria-hidden="true"></i><i class="pk br" aria-hidden="true"></i>
+        <img class="pl on" src="assets/previews/bordjsteel.webp" alt="Bordj Steel"
+             width="1280" height="800" decoding="async" fetchpriority="high">
+        <img class="pl" src="assets/previews/glaive.webp" alt="Glaive Store"
+             width="1280" height="800" decoding="async" loading="lazy">
+        <img class="pl" src="assets/previews/alliancetravel.webp" alt="Alliance Travel"
+             width="1280" height="800" decoding="async" loading="lazy">
+        <img class="pl" src="assets/previews/nomara.webp" alt="Nomara Voyages"
+             width="1280" height="800" decoding="async" loading="lazy">
+        <img class="pl" src="assets/previews/almaflowclim.webp" alt="AlmaFlowClim"
+             width="1280" height="800" decoding="async" loading="lazy">
+          <span class="pl-wipe" aria-hidden="true"></span>
+          <span class="pl-scan" aria-hidden="true"></span>
+        </div>
+        <div class="plate-meta">
+          <span class="pm-idx" aria-hidden="true"><b>01</b>/05</span>
+          <span class="pm-rot">
+        <a class="pm-item on" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>Bordj Steel</b><i data-i18n="proj4.cat">Industrie · B2B</i>
+        </a>
+        <a class="pm-item" href="https://glaivestore.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>Glaive Store</b><i data-i18n="proj7.cat">Commerce · Gaming</i>
+        </a>
+        <a class="pm-item" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>Alliance Travel</b><i data-i18n="proj2.cat">Voyage · Croissance</i>
+        </a>
+        <a class="pm-item" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>Nomara Voyages</b><i data-i18n="proj6.cat">Voyage · Omra</i>
+        </a>
+        <a class="pm-item" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>AlmaFlowClim</b><i data-i18n="proj3.cat">Industrie · Web</i>
+        </a>
+          </span>
+          <span class="pm-live"><i aria-hidden="true"></i><span data-i18n="hero.plateLive">en ligne</span></span>
+        </div>
+        <div class="plate-rail" role="tablist" aria-label="Projets">
+        <button type="button" role="tab" aria-selected="true" aria-label="Bordj Steel"><i></i></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="Glaive Store"><i></i></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="Alliance Travel"><i></i></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="Nomara Voyages"><i></i></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="AlmaFlowClim"><i></i></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -685,7 +730,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608121222" defer></script>
+<script src="assets/app.js?v=202608121249" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

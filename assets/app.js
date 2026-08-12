@@ -22,6 +22,7 @@
       'hero.lede': 'Quatre spécialistes qui conçoivent, codent et livrent toute la chaîne — du back-end au dernier pixel. Des systèmes puissants, rendus accessibles, et assumés quand ça casse.',
       'hero.cta1': 'Construisons →', 'hero.cta2': 'Voir les preuves',
       'hero.deckTag': '5 sites clients en ligne — les voir →',
+      'hero.plateLive': 'en ligne',
       'proof.kicker': '01 — Preuves',
       'proof.s1': 'projets livrés', 'proof.s2': 'spécialistes', 'proof.s3': 'langues', 'proof.s4': 'de réponse',
       'proof.line': 'De vrais clients. De vrais déploiements. Les preuves sont plus bas — ouvrez-les.',
@@ -97,6 +98,7 @@
       'hero.lede': 'Four specialists who design, build, and ship the whole chain — from the data layer to the last pixel. Powerful systems, made accessible, and answered for when they break.',
       'hero.cta1': 'Let\'s build it →', 'hero.cta2': 'See the proof',
       'hero.deckTag': '5 client sites live — see them →',
+      'hero.plateLive': 'live',
       'proof.kicker': '01 — Proof',
       'proof.s1': 'projects shipped', 'proof.s2': 'specialists', 'proof.s3': 'languages', 'proof.s4': 'response',
       'proof.line': 'Real clients. Real deployments. The receipts are below — open them.',
@@ -172,6 +174,7 @@
       'hero.lede': 'أربعة مختصّين يصمّمون ويبرمجون ويُطلقون السلسلة كاملةً — من الخادم إلى آخر بكسل. أنظمةٌ قوية، مُتاحةٌ للجميع، ونتحمّل مسؤوليتها حين تتعطّل.',
       'hero.cta1': 'لنبنِ →', 'hero.cta2': 'شاهد الإثبات',
       'hero.deckTag': '٥ مواقع عملاء مباشرة — شاهدها →',
+      'hero.plateLive': 'مباشر',
       'proof.kicker': '٠١ — الإثبات',
       'proof.s1': 'مشروعاً مُسلَّماً', 'proof.s2': 'مختصّين', 'proof.s3': 'لغات', 'proof.s4': 'زمن الردّ',
       'proof.line': 'عملاء حقيقيون. عمليات نشر حقيقية. الإثباتات في الأسفل — افتحها.',
@@ -715,6 +718,77 @@
       }
       cache();
     }
+
+
+    /* ---------- hero plate: the five live client sites ----------
+       Wipe, don't cross-fade. Two flat UIs dissolving through each other
+       is a smear; a hard edge keeps both razor sharp. The image swaps at
+       the midpoint, hidden behind the wipe bar. */
+    (function () {
+      var wrap = document.querySelector('.plate-wrap');
+      if (!wrap) return;
+      var plate = wrap.querySelector('.plate'),
+          wipe  = wrap.querySelector('.pl-wipe'),
+          slides = [].slice.call(wrap.querySelectorAll('.pl')),
+          items  = [].slice.call(wrap.querySelectorAll('.pm-item')),
+          tabs   = [].slice.call(wrap.querySelectorAll('.plate-rail button')),
+          idxEl  = wrap.querySelector('.pm-idx b');
+      if (slides.length < 2) return;
+      var cur = 0, busy = false, timer = null, HOLD = 5200;
+
+      function paint(n) {
+        slides.forEach(function (e, i) { e.classList.toggle('on', i === n); });
+        items.forEach(function (e, i) { e.classList.toggle('on', i === n); });
+        tabs.forEach(function (e, i) { e.setAttribute('aria-selected', i === n ? 'true' : 'false'); });
+        if (idxEl) idxEl.textContent = ('0' + (n + 1)).slice(-2);
+        cur = n;
+      }
+
+      function go(n) {
+        if (busy || n === cur) return;
+        if (reduceMotion || !wipe) { paint(n); return; }
+        busy = true;
+        var t0 = 0, DUR = 620, swapped = false;
+        function step(ts) {
+          if (!t0) t0 = ts;
+          var t = Math.min(1, (ts - t0) / DUR);
+          // out: bar sweeps across, covering the plate; in: it retreats
+          var half = t < .5 ? t * 2 : 1 - (t - .5) * 2;
+          var e = half < .5 ? 4 * half * half * half : 1 - Math.pow(-2 * half + 2, 3) / 2;
+          wipe.style.setProperty('--wipe', e.toFixed(3));
+          wipe.style.setProperty('--wipeEdge', (t > .96 ? 0 : 1).toString());
+          if (t >= .5 && !swapped) { paint(n); swapped = true; }   // swap behind the bar
+          if (t < 1) requestAnimationFrame(step);
+          else { wipe.style.setProperty('--wipe', '0'); wipe.style.setProperty('--wipeEdge', '0'); busy = false; }
+        }
+        requestAnimationFrame(step);
+      }
+
+      function next() { go((cur + 1) % slides.length); }
+      /* `held` is a latch, not a timer state. Clicking a rail tab re-arms —
+         but the pointer is already inside the component at that moment, so
+         no fresh pointerenter will ever fire to pause it again, and it
+         would resume rotating under someone who just chose a slide. */
+      var held = { hover: false, focus: false, hidden: false };
+      function halt() { clearInterval(timer); timer = null; }
+      function arm() {
+        clearInterval(timer); timer = null;
+        if (reduceMotion || held.hover || held.focus || held.hidden) return;
+        timer = setInterval(next, HOLD);
+      }
+      function hold(k, v) { held[k] = v; arm(); }
+
+      tabs.forEach(function (b, i) {
+        b.addEventListener('click', function () { go(i); arm(); });
+      });
+      // don't rotate under someone reading it, or when the tab is hidden
+      wrap.addEventListener('pointerenter', function () { hold('hover', true); });
+      wrap.addEventListener('pointerleave', function () { hold('hover', false); });
+      wrap.addEventListener('focusin',  function () { hold('focus', true); });
+      wrap.addEventListener('focusout', function () { hold('focus', false); });
+      document.addEventListener('visibilitychange', function () { hold('hidden', document.hidden); });
+      arm();
+    })();
 
     // mobile menu
     var toggle = document.querySelector('.menu-toggle');

@@ -74,12 +74,10 @@ section.band::after,section.band+section.band::after{display:none}  /* full-blee
 .sb-art i:nth-child(2){transform:translate(0,0);border-color:var(--accent)}
 .sb-art i:nth-child(3){transform:translate(5px,4px)}
 
-/* deck: base fans it with absolute positioning + rotation; here it is a row */
-.hero-deck{position:static;aspect-ratio:auto;perspective:none}
-.hero-deck img:nth-child(1),.hero-deck img:nth-child(2),.hero-deck img:nth-child(3),
-.hero-deck:hover img:nth-child(1),.hero-deck:hover img:nth-child(2),.hero-deck:hover img:nth-child(3){
-  position:static;transform:none;top:auto;inset-inline-start:auto;width:100%}
-.hd-tag{position:static;backdrop-filter:none;background:none;border:0;border-radius:0;padding:0}
+/* the plate: base gives it a rounded card, a soft shadow and a CRT scan —
+   none of which belong to this surface. Restyled in full further down. */
+.plate{border-radius:0;box-shadow:none}
+.pl-scan{display:none}
 
 /* ============================================================
    BASE
@@ -261,13 +259,26 @@ html[dir="rtl"] .hero-h{font-family:var(--font-ar);line-height:1.35;letter-spaci
 .term-foot span{font-family:var(--font-mono);font-size:10.5px;color:var(--fg-3)}
 
 /* ---- live-sites strip under the hero ---- */
-.hero-deck{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);
-  margin-top:var(--s4);text-decoration:none;position:relative}
-.hero-deck img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center;
-  border:1px solid var(--edge);border-radius:var(--r2);
-  filter:grayscale(.35);transition:filter var(--dur) var(--ease),border-color var(--dur) var(--ease)}
-.hero-deck:hover img{filter:grayscale(0);border-color:var(--edge-2)}
-.hd-tag{grid-column:1/-1;font-family:var(--font-mono);font-size:12px;color:var(--fg-3);margin-top:4px}
+/* THE PLATE — same component, this surface's language: square corners,
+   instrument orange, no glow. Restyled rather than left to inherit, or the
+   base sheet's Arcanum crimson and rounded card would leak straight in. */
+.plate-wrap{grid-column:1/-1;gap:var(--s3)}
+.plate{border:1px solid var(--edge);border-radius:0;background:var(--panel);
+  box-shadow:none;outline:1px solid transparent}
+.plate .pl{filter:grayscale(.15)}
+.pl-wipe{background:var(--bg)}
+.pl-wipe::after{background:var(--accent);box-shadow:0 0 16px 1px color-mix(in srgb,var(--accent) 65%,transparent)}
+.pk{border-color:var(--accent);width:10px;height:10px}
+.pm-idx{color:var(--fg-3)}
+.pm-idx b{color:var(--accent)}
+.pm-item b{font-family:var(--font-sans);font-weight:600;color:var(--fg)}
+.pm-item i{color:var(--fg-2);text-transform:none;letter-spacing:.04em}
+.pm-item:hover b{color:var(--accent)}
+.pm-live{color:var(--fg-3)}
+.pm-live i{background:var(--ok);animation:none;box-shadow:none}
+.plate-rail button i{background:var(--edge-2);height:1px;border-radius:0}
+.plate-rail button[aria-selected="true"] i{background:var(--accent);height:2px}
+.plate-rail button:hover i{background:var(--accent)}
 
 /* ============================================================
    CONTROLS
@@ -679,7 +690,7 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
    ============================================================ */
 @media(max-width:1000px){
   .hero-grid{grid-template-columns:1fr;gap:var(--s4)}
-  .hero-deck{grid-column:auto}
+  .plate-wrap{grid-column:auto}
   .work-grid,.svc-grid{grid-template-columns:1fr}
   .work-grid>.proj:last-child:nth-child(odd){max-width:none;margin-inline:0}
   .contact-grid,.detail-body,.cv-inner{grid-template-columns:1fr}
@@ -689,8 +700,7 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
   .nav-links,.nav-right .lang{display:none}
   .menu-toggle{display:grid;place-items:center}
   .preview{grid-template-columns:1fr}
-  .hero-deck{grid-template-columns:1fr 1fr}
-  .hero-deck img:nth-child(3){display:none}
+
   .stack-strip .grp{grid-template-columns:1fr;gap:8px;align-items:start}
   .channels .ch{grid-template-columns:1fr;gap:4px}
   .form-row{grid-template-columns:1fr}
