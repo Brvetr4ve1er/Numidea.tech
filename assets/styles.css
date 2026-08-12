@@ -125,7 +125,9 @@
   radial-gradient(55% 50% at 84% 6%, rgba(230,180,80,.16), transparent 70%),
   radial-gradient(50% 45% at 10% 22%, rgba(52,208,232,.14), transparent 72%),
   radial-gradient(80% 70% at 50% 112%, rgba(15,40,64,.6), transparent 70%);}
-[data-theme="arcanum"] body::after{opacity:1;background-size:56px 98px;background-image:url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2334D0E8' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l11 6.35 11-6.35V17.9l-11-6.35L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/svg%3E");}
+[data-theme="arcanum"] body::after{opacity:.07;background-size:64px 64px;
+  background-image:linear-gradient(rgba(230,180,80,.5) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(230,180,80,.5) 1px,transparent 1px)}
 /* engraved Deco display (LTR only — Arabic keeps its own face) */
 html[data-theme="arcanum"][dir="ltr"] .hero-h,
 html[data-theme="arcanum"][dir="ltr"] h2.sec,
@@ -181,10 +183,15 @@ body::before{
     radial-gradient(50% 45% at 8% 25%, rgba(9,216,199,.12), transparent 70%),
     radial-gradient(70% 60% at 50% 110%, rgba(65,30,58,.5), transparent 70%);
 }
+/* The construction grid — the drawing-sheet surface the title block sits on.
+   Fixed and masked so it establishes the sheet at the top of the viewport and
+   is gone by the fold: a full-height grid competes with body copy. */
 body::after{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
-  background-image:linear-gradient(var(--teal) 1px,transparent 1px),linear-gradient(90deg,var(--teal) 1px,transparent 1px);
-  background-size:80px 80px;
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.06;
+  background-image:linear-gradient(var(--muted) 1px,transparent 1px),linear-gradient(90deg,var(--muted) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:linear-gradient(#000,#000 32%,transparent 76%);
+  mask-image:linear-gradient(#000,#000 32%,transparent 76%);
 }
 .wrap{position:relative;z-index:1;max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
 section{padding:var(--s-9) 0;border-top:1px solid var(--hairline);position:relative;z-index:1}
@@ -270,7 +277,7 @@ html[dir="rtl"] .mobile-menu .close{right:auto;left:24px}
 .hero-mesh .m1{width:460px;height:460px;background:radial-gradient(circle,rgba(189,9,39,.5),transparent 65%);top:-120px;right:-60px}
 .hero-mesh .m2{width:420px;height:420px;background:radial-gradient(circle,rgba(9,216,199,.4),transparent 65%);bottom:-140px;left:-40px;animation-delay:-6s}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(40px,30px) scale(1.12)}}
-.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr .75fr;gap:var(--s-8);align-items:center}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:var(--s-8);align-items:center}
 .eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:var(--s-5)}
 .hero-h{font-family:var(--font-display);font-weight:600;font-size:clamp(31px, 13.33px + 4.91vw, 84px);line-height:.96;letter-spacing:-.02em}
 .hero-h .swash{font-family:var(--font-swash);font-style:normal;font-weight:600;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
@@ -337,7 +344,7 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
   .sheet-foot{gap:var(--s-4);font-size:9px}
 }
 @media(max-width:420px){
-  .titleblock{grid-template-columns:1fr}
+  .titleblock{grid-template-columns:minmax(0,1fr)}
   .tb-f{border-inline-end:0}
   .tb-f:nth-last-child(2){border-block-end:1px solid color-mix(in srgb,var(--muted) 18%,transparent)}
 }
@@ -458,14 +465,14 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 
 /* ---------- proof bar ---------- */
 .proof{background:var(--navy);border-radius:0}
-.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-6);text-align:center}
+.proof-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-6);text-align:center}
 .stat{font-family:var(--font-display);font-weight:600;font-size:clamp(29px, 17.33px + 3.24vw, 64px);line-height:1;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:var(--s-3)}
 .proof-line{text-align:center;color:var(--muted);margin-top:var(--s-7);font-size:15px}
 
 
 /* ---------- selected work ---------- */
-.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-6)}
+.work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-6)}
 /* odd card count: center the trailing card so it never orphans with a void beside it */
 .work-grid>.proj:last-child:nth-child(odd){grid-column:1 / -1;max-width:calc(50% - var(--s-6) / 2);margin-inline:auto}
 .proj{background:var(--navy);border:1px solid var(--hairline);border-radius:var(--r-md);overflow:hidden;transition:transform var(--dur-slow) var(--ease-out),box-shadow var(--dur-base)}
@@ -552,11 +559,11 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 /* résumé accordion */
 .cv-panel{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-out),opacity .3s;opacity:.4}
 .cv-panel.open{max-height:1600px;opacity:1}
-.cv-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(15px, 5.33px + 2.69vw, 44px);
+.cv-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(15px, 5.33px + 2.69vw, 44px);
   border-top:1px solid var(--hairline);margin-top:var(--s-6);padding-top:var(--s-6)}
 .cv-col h4{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
 .timeline{list-style:none;display:grid;gap:15px}
-.timeline li{display:grid;grid-template-columns:78px 1fr;gap:14px;align-items:baseline}
+.timeline li{display:grid;grid-template-columns:78px minmax(0,1fr);gap:14px;align-items:baseline}
 .tl-date{font-family:var(--font-mono);font-size:11px;color:var(--crimson);letter-spacing:.03em;white-space:nowrap}
 .timeline b{font-family:var(--font-display);font-weight:600;font-size:15px;display:block;margin-bottom:2px}
 .timeline i{font-style:normal;font-size:12.5px;color:var(--muted)}
@@ -566,10 +573,10 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 .fd-team{margin-top:var(--s-6);padding-top:var(--s-5);border-top:1px dashed var(--hairline);
   font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--faint)}
 .fd-team b{color:var(--teal);font-weight:400}
-html[dir="rtl"] .timeline li{grid-template-columns:78px 1fr}
+html[dir="rtl"] .timeline li{grid-template-columns:78px minmax(0,1fr)}
 @media (max-width:640px){
   .fd-top{flex-direction:column;text-align:center;align-items:center}
-  .cv-inner{grid-template-columns:1fr}
+  .cv-inner{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){.cv-panel{transition:none}}
 
@@ -591,18 +598,18 @@ html[dir="rtl"] .timeline li{grid-template-columns:78px 1fr}
 .contact h2 em{font-family:var(--font-swash);font-style:normal;color:var(--teal)}
 html[dir="rtl"] .contact h2{font-family:var(--font-ar-display);line-height:1.3}
 html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:normal}
-.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(300px,.85fr) 1.15fr;gap:var(--s-6) clamp(26px, -12px + 10.56vw, 140px);align-items:start}
+.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(300px,.85fr) minmax(0,1.15fr);gap:var(--s-6) clamp(26px, -12px + 10.56vw, 140px);align-items:start}
 .contact .sub{color:var(--body-strong);max-width:44ch;line-height:1.65;font-size:16.5px}
 /* direct channels — aligned rows, shared hairlines with the form side */
 .channels{margin-top:var(--s-6);display:grid}
-.channels .ch{display:grid;grid-template-columns:96px 1fr;gap:var(--s-4);align-items:baseline;padding:14px 0;border-top:1px solid var(--hairline)}
+.channels .ch{display:grid;grid-template-columns:96px minmax(0,1fr);gap:var(--s-4);align-items:baseline;padding:14px 0;border-top:1px solid var(--hairline)}
 .channels .ch:last-child{border-bottom:1px solid var(--hairline)}
 .channels dt{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
 .channels dd{font-size:15px;color:var(--ice);overflow-wrap:anywhere}
 .channels dd a{color:var(--crimson-hi);text-decoration:none}
 .channels dd a:hover{text-decoration:underline}
 /* the form sits directly on the band — no card box around it */
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0 var(--s-5)}
+.form-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 var(--s-5)}
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:var(--s-5)}
 .field label{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
 .field input,.field textarea{background:rgba(13,26,47,.6);border:1px solid var(--hairline-2);border-radius:var(--r-sm);padding:13px 16px;color:var(--ice);font-family:var(--font-body);font-size:15px;transition:all var(--dur-fast);width:100%;resize:vertical}
@@ -617,8 +624,8 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 .form-success .tick{width:64px;height:64px;margin-bottom:var(--s-5);border-radius:50%;border:2px solid var(--teal);display:grid;place-items:center;color:var(--teal);font-size:30px;box-shadow:var(--glow-teal)}
 .form-success p{font-family:var(--font-display);font-size:22px;color:var(--ice);max-width:44ch}
 html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
-@media(max-width:960px){.contact-grid{grid-template-columns:1fr}}
-@media(max-width:560px){.form-row{grid-template-columns:1fr}}
+@media(max-width:960px){.contact-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){.form-row{grid-template-columns:minmax(0,1fr)}}
 
 /* ---------- footer ---------- */
 /* The inline value MUST be the gutter, not 0. This rule sits after
@@ -674,13 +681,13 @@ details[open] .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dash
 .sec-lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:60ch;margin:0 0 var(--s-7);line-height:1.6}
 
 /* services grid — five compact offers; depth lives in the capabilities shelf */
-.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-5);align-items:stretch}
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-5);align-items:stretch}
 .svc-grid .svc-row+.svc-row{margin-top:0}
 .svc-grid .svc-row:last-child:nth-child(odd){grid-column:1/-1}
-@media(max-width:960px){.svc-grid{grid-template-columns:1fr}}
+@media(max-width:960px){.svc-grid{grid-template-columns:minmax(0,1fr)}}
 
 /* service row card */
-.svc-row{position:relative;display:grid;grid-template-columns:46px 1fr;gap:var(--s-5);padding:var(--s-6);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--navy);overflow:hidden;transition:transform var(--dur-slow) var(--ease-out)}
+.svc-row{position:relative;display:grid;grid-template-columns:46px minmax(0,1fr);gap:var(--s-5);padding:var(--s-6);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--navy);overflow:hidden;transition:transform var(--dur-slow) var(--ease-out)}
 .svc-row + .svc-row{margin-top:var(--s-5)}
 .svc-row::after{content:"";position:absolute;inset:0;border-radius:var(--r-md);padding:1px;background:var(--grad-teal);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity var(--dur-base)}
 .svc-row:hover{transform:translateY(-3px)}
@@ -704,7 +711,7 @@ html[dir="rtl"] .svc-row .proof b{margin-right:0;margin-left:8px}
 .svc-row .tags{display:flex;flex-wrap:wrap;gap:6px}
 
 /* signature offer — pinned */
-.preview{position:relative;border:1px solid var(--hairline-2);border-radius:var(--r-lg);padding:var(--s-7);margin-bottom:var(--s-8);overflow:hidden;background:var(--grad-noir);display:grid;grid-template-columns:46px 1fr;gap:var(--s-5)}
+.preview{position:relative;border:1px solid var(--hairline-2);border-radius:var(--r-lg);padding:var(--s-7);margin-bottom:var(--s-8);overflow:hidden;background:var(--grad-noir);display:grid;grid-template-columns:46px minmax(0,1fr);gap:var(--s-5)}
 .preview .glow{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(9,216,199,.22),transparent 65%);top:-140px;right:-60px;filter:blur(24px);pointer-events:none}
 html[dir="rtl"] .preview .glow{right:auto;left:-60px}
 .preview .glyph{border-color:var(--crimson);color:var(--crimson)}
@@ -837,7 +844,7 @@ body.modal-open{overflow:hidden}
 .detail-back{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--hairline-2);border-radius:var(--r-pill);
   color:var(--muted);font-family:var(--font-mono);font-size:12px;padding:8px 14px;cursor:pointer;transition:all var(--dur-fast)}
 .detail-back:hover{color:var(--ice);border-color:var(--teal)}
-.detail-body{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s-7);align-items:start}
+.detail-body{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:var(--s-7);align-items:start}
 .detail-shot-wrap{position:relative;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--hairline);aspect-ratio:16/10;background:var(--navy);
   box-shadow:0 30px 60px -34px rgba(0,0,0,.9)}
 .detail-shot-wrap .browser{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:5px;padding:9px 12px;background:rgba(13,26,47,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
@@ -860,7 +867,7 @@ html[dir="rtl"] .detail-info h3{font-family:var(--font-ar-display)}
 .detail-story{display:grid;gap:var(--s-5);border-top:1px solid var(--hairline);padding-top:var(--s-6)}
 .detail-sec h4{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);margin-bottom:8px}
 .detail-sec p{font-size:15px;color:var(--ice);line-height:1.6;max-width:60ch}
-.detail-nav{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);margin-top:var(--s-8);border-top:1px solid var(--hairline);padding-top:var(--s-6)}
+.detail-nav{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-4);margin-top:var(--s-8);border-top:1px solid var(--hairline);padding-top:var(--s-6)}
 .detail-prev,.detail-next{display:flex;flex-direction:column;gap:4px;background:var(--navy);border:1px solid var(--hairline);border-radius:var(--r-md);
   padding:var(--s-4) var(--s-5);cursor:pointer;transition:border-color var(--dur-base);text-align:left}
 .detail-next{text-align:right;align-items:flex-end}
@@ -870,8 +877,8 @@ html[dir="rtl"] .detail-info h3{font-family:var(--font-ar-display)}
 html[dir="rtl"] .detail-prev{text-align:right;align-items:flex-end}
 html[dir="rtl"] .detail-next{text-align:left;align-items:flex-start}
 @media(max-width:720px){
-  .detail-body{grid-template-columns:1fr;gap:var(--s-6)}
-  .detail-nav{grid-template-columns:1fr}
+  .detail-body{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
+  .detail-nav{grid-template-columns:minmax(0,1fr)}
   .detail-next{text-align:left;align-items:flex-start}
 }
 
@@ -886,16 +893,17 @@ html[dir="rtl"] .detail-next{text-align:left;align-items:flex-start}
    Remove this block to revert to the flat baseline.
    ============================================================ */
 
-/* 1 — tactile film grain over the whole void (premium dark texture) */
-html::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;mix-blend-mode:soft-light;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* 1 — no film grain. Noise laid over a page that is otherwise precise reads
+   as a rendering fault rather than as texture; the construction grid below
+   carries the surface instead. */
+html::after{display:none}
 
 /* deepen the atmosphere: add a brass crown-glow up top + a heavier floor vignette */
+/* Four overlapping colour fields muddied into one haze. Two: a brass crown so
+   the masthead is not floating on flat ground, and a deep floor. */
 body::before{background:
-  radial-gradient(46% 34% at 50% -8%, rgba(230,180,80,.13), transparent 72%),
-  radial-gradient(60% 50% at 85% 8%, rgba(189,9,39,.17), transparent 70%),
-  radial-gradient(50% 45% at 8% 25%, rgba(9,216,199,.12), transparent 70%),
-  radial-gradient(85% 70% at 50% 122%, rgba(8,16,28,.9), transparent 72%)}
+  radial-gradient(44% 30% at 50% -6%, rgba(230,180,80,.10), transparent 70%),
+  radial-gradient(85% 65% at 50% 120%, rgba(8,16,28,.85), transparent 72%)}
 
 /* 2 — editorial rhythm: drop the flat hairline, draw a fading brass→teal divider */
 main.wrap>section{border-top:none}
@@ -1066,7 +1074,7 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
 /* aurora — three slow colour fields beneath the whole page. Inked from
    palette tokens (never literals), so it reskins with every theme
    instead of pinning Arcanum's crimson into Daylight and Mono. */
-.aurora{position:fixed;inset:-30%;z-index:0;pointer-events:none;overflow:hidden;filter:blur(60px);opacity:.34}
+.aurora{position:fixed;inset:-30%;z-index:0;pointer-events:none;overflow:hidden;filter:blur(72px);opacity:.18}
 .aurora i{position:absolute;display:block;border-radius:50%}
 .aurora .a1{width:46vw;height:46vw;top:4%;left:-4%;
   background:radial-gradient(circle,color-mix(in srgb,var(--crimson) 62%,transparent),transparent 68%);
@@ -1134,8 +1142,12 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   main.wrap>section,.footer{
     display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
     column-gap:clamp(20px,1.7vw,34px);align-content:start}
-  /* default span: nothing silently escapes the grid */
-  main.wrap>section>*{grid-column:1/-1}
+  /* Default span: nothing silently escapes the grid. .footer MUST be in this
+     selector — it takes `display:grid` from the rule above, but the original
+     default only covered `main.wrap>section>*`, so every footer child landed
+     in a single 1/12 track: 72px wide holding 191px of content, at every
+     viewport over 1100px. */
+  main.wrap>section>*,.footer>*{grid-column:1/-1}
 
   /* — the two-column section header — */
   main.wrap>section>.kicker{grid-column:1/-1;margin-bottom:var(--s-6)}
@@ -1152,7 +1164,7 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .work-grid,.svc-grid,.stack-strip,.founder-card,.contact-grid,.proof-grid,.preview,.scene-banner{grid-column:1/-1}
   /* three abreast: the process reads as a sequence instead of a column
      with half the screen empty beside it */
-  .steps{grid-column:1/-1;max-width:none;grid-template-columns:repeat(3,1fr);gap:clamp(24px,2.4vw,48px)}
+  .steps{grid-column:1/-1;max-width:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,2.4vw,48px)}
   .steps::before{left:0;right:0;top:19px;bottom:auto;width:auto;height:2px;
     background:linear-gradient(90deg,var(--crimson),color-mix(in srgb,var(--crimson) 8%,transparent))}
   /* Node ABOVE the copy, not beside it. Turning the rail horizontal put it
@@ -1163,12 +1175,12 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .steps .step .node{left:0;top:0}
   .steps .step p{max-width:34ch}
   /* two columns of questions rather than one tall stack */
-  .faq-list{grid-column:1/-1;max-width:none;grid-template-columns:1fr 1fr;gap:var(--s-4) clamp(20px,1.7vw,34px);align-content:start}
+  .faq-list{grid-column:1/-1;max-width:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-4) clamp(20px,1.7vw,34px);align-content:start}
 
   /* the hero gets the same footing as everything else */
   .hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(20px,1.7vw,34px)}
   .hero>.hero-mesh,.hero>.floaters{grid-column:1/-1;grid-row:1}
-  .hero-grid{grid-column:1/-1;grid-row:1;grid-template-columns:1.02fr .98fr;gap:clamp(40px,4vw,80px)}
+  .hero-grid{grid-column:1/-1;grid-row:1;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(40px,4vw,80px)}
   .lede{max-width:46ch;font-size:clamp(18px,1.35vw,21px)}
   /* Display type sized for the canvas it actually sits on. 84px was a
      1200px-page value; the identity is engraved Cinzel and it should
@@ -1210,13 +1222,13 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
 
 /* ---------- responsive ---------- */
 @media(min-width:1100px){
-  .work-grid{grid-template-columns:repeat(3,1fr)}
+  .work-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .work-grid>.proj:last-child:nth-child(odd){grid-column:auto;max-width:none;margin-inline:0}
   .work-grid>.proj:last-child:nth-child(3n+1){grid-column:2}
 }
 
 @media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
   /* Explicit width, not max-width + auto margins. Every child of the deck
      is absolutely positioned, so it has no in-flow content — and auto
      inline margins on a grid item suppress the default stretch, dropping
@@ -1224,9 +1236,9 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
      and its caption pill, still absolutely positioned, landed on top of
      the hero buttons. */
   .hero-deck{width:min(100%,440px);margin-inline:auto}
-  .work-grid{grid-template-columns:1fr}
+  .work-grid{grid-template-columns:minmax(0,1fr)}
   .work-grid>.proj:last-child:nth-child(odd){max-width:none;margin-inline:0}
-  .proof-grid{grid-template-columns:repeat(2,1fr);gap:var(--s-7)}
+  .proof-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-7)}
 }
 /* ============================================================
    THE MOBILE PASS — 960px, not 720px.
@@ -1255,8 +1267,13 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
      pushed card bodies ~30px outside their own card, where overflow:hidden
      amputated them. The thumb track is fluid so it doesn't eat half a
      small screen for a decorative glyph, nor stay tiny on a tablet. */
-  .work-grid>.proj{display:grid;grid-template-columns:clamp(88px,26%,168px) minmax(0,1fr)}
+  .work-grid>.proj{display:grid;grid-template-columns:clamp(104px,32%,232px) minmax(0,1fr)}
   .work-grid>.proj .thumb{aspect-ratio:auto;height:100%;min-height:116px}
+  /* A 16:10 screenshot cropped into a narrow portrait box shows a meaningless
+     vertical slice of its middle — at 820px the Bordj Steel card rendered as
+     "R L'AVENIR, ENSE". Anchor the crop to the top-left, which is the part
+     that identifies a site: its logo, nav and headline. */
+  .work-grid>.proj .shot{object-position:top left}
   .work-grid>.proj .browser{display:none}
   .work-grid>.proj .body{padding:var(--s-4);min-width:0}
   .work-grid>.proj .cat{font-size:11px;letter-spacing:.12em;margin-bottom:6px}
@@ -1290,7 +1307,7 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   /* Keep the glyph beside the copy as it is on desktop, rather than
      stacking it onto its own line — that row cost ~54px in every one of
      the five service cards. */
-  .preview{grid-template-columns:1fr}
+  .preview{grid-template-columns:minmax(0,1fr)}
   .preview .glyph{margin-bottom:var(--s-2)}
   .svc-row{grid-template-columns:40px minmax(0,1fr);gap:var(--s-4);padding:clamp(18px,4.5vw,28px)}
   .svc-row .glyph{width:40px;height:40px}
@@ -1365,14 +1382,14 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .nav-right{gap:var(--s-3)}
   /* a 96px label column is a third of a 280px screen, and forced
      hello@numidealabs.com to break mid-domain */
-  .channels .ch{grid-template-columns:1fr;gap:6px}
+  .channels .ch{grid-template-columns:minmax(0,1fr);gap:6px}
   .hero-cta{gap:var(--s-3)}
   .hero-cta .btn{width:100%;justify-content:center}
 }
 @media(max-width:340px){
   /* two 70px columns cannot hold "PROJETS LIVRÉS" — the stats stopped
      sharing a baseline */
-  .proof-grid{grid-template-columns:1fr;gap:var(--s-5)}
+  .proof-grid{grid-template-columns:minmax(0,1fr);gap:var(--s-5)}
 }
 
 /* Legibility floor. Nothing below 11px on a handset — several labels sat

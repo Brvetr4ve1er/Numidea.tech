@@ -137,6 +137,41 @@ Copy the pattern: a self-contained sheet, a reset block at the top, one entry in
 `THEMES` in `app.js`, one `<link media="not all">`, one line in the pre-paint
 resolver, and a button in the theme menu.
 
+## Framing: the sweep
+
+Every `grid-template-columns` in both stylesheets uses `minmax(0,<n>fr)`. A bare
+`fr` track carries `min-width:auto` and inflates to its longest unbreakable
+word instead of shrinking — 59 grids carried that fault. `repeat(auto-fill,
+minmax(180px,1fr))` is correct as written and must be left alone: the `1fr`
+there is already inside a `minmax`.
+
+**The 12-column desktop grid needs an explicit default span.** At ≥1100 both
+`main.wrap>section` and `.footer` become 12-column grids, but the default-span
+rule read `main.wrap>section>*` — so no footer child had a span, and each one
+landed in a single 1/12 track: 72px wide holding 191px of content, at every
+width above 1100. Any element given `display:grid` by that block must also
+appear in the default-span selector.
+
+**Crops need an anchor.** A 16:10 screenshot cropped into a narrow portrait box
+shows a meaningless slice of its middle — at 820px the Bordj Steel card read
+"R L'AVENIR, ENSE". `object-position:top left` keeps the part that identifies a
+site: its logo, nav and headline.
+
+**An audit that ignores clipping ancestors reports mostly noise.** The first
+sweep returned 12 faults; 9 were decoration correctly clipped by `.hero`,
+`.preview` or an `overflow:hidden` parent, or elements with `display:contents`
+whose rect is always zero. Any overflow assertion must walk the ancestor chain
+for a clipping context and skip `display:contents` before it reports anything.
+
+## The background
+
+A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%
+of the viewport height, so the sheet is established at the top and gone behind
+body copy. It replaced a honeycomb tile and a soft-light film grain: noise over
+a page that is otherwise precise reads as a rendering fault rather than texture.
+The atmosphere behind it is two radial gradients (a brass crown, a deep floor),
+down from four that overlapped into a single haze, and the aurora sits at .18.
+
 ## CSS traps this codebase has actually hit
 
 Each of these shipped at least once and was found by measuring, not by looking.
