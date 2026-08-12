@@ -92,6 +92,22 @@ the copy.
 debounce window, so a re-armed timer can be starved indefinitely and strand
 cards invisible.
 
+## The Engineering hero
+
+Both media live in the **right column**, terminal above plate, with the copy
+centred against them across both rows. The plate used to span `1/-1` into a
+full-width second row, where its 16:9 image alone is ~630px — that one line
+made the hero 1957px tall, a full screen of dead space between the fold and
+the title block. Stacked, the plate is the same ~550px it is in every other
+theme and the hero is ~1200px.
+
+Parallax is retired on both once the grid collapses to one column. Stacked,
+they drift toward each other — the terminal carries the default 64px envelope,
+the plate is capped at 26 — and closed a 32px gap into a 42px overlap. Two
+columns gave that motion somewhere to happen; one column does not. Same rule as
+the floaters: **clearance is sized for the motion envelope, never the static
+position.**
+
 ## Engineering-only markup
 
 Three elements live in `index.html` for that theme and are hidden by the base
