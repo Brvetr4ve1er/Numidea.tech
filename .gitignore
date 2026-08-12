@@ -4,4 +4,4 @@ node_modules/
 
 # scratch: device-audit harness + its screenshot output (promoted to scripts/ if it earns it)
 _*.mjs
-_shots_*/
+_shots*/
