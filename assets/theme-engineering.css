@@ -714,3 +714,24 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* ============================================================
+   THE SHEET — this surface's version
+   The title block is native to this design system, so it is not
+   neutralised, it is re-inked: square, hairline, instrument orange.
+   ============================================================ */
+.sheet-frame{border-color:var(--edge)}
+.sheet-frame .sf{border-color:var(--accent);opacity:1}
+.dim-line i{background:var(--edge-2)}
+.dim-line i::before,.dim-line i::after{background:var(--edge-2)}
+.dim-line b{color:var(--fg-3);letter-spacing:.12em}
+.titleblock{border-color:var(--edge);background:color-mix(in srgb,var(--panel) 82%,transparent);
+  backdrop-filter:none;-webkit-backdrop-filter:none}
+.tb-f{border-inline-end-color:var(--edge)}
+.titleblock dt{color:var(--fg-3);letter-spacing:.14em}
+.titleblock dd{color:var(--fg);font-size:13px}
+.titleblock dd i{color:var(--fg-2);letter-spacing:.1em}
+.tb-live{background:var(--ok);animation:none;box-shadow:none}
+.sheet-foot{color:var(--fg-3);letter-spacing:.14em}
+.sheet-foot .sf-mark{color:var(--accent)}
+@media(max-width:960px){.tb-f{border-block-end-color:var(--edge)}}

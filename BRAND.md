@@ -191,6 +191,25 @@ titles); `.faq-list` runs two columns; `.preview` splits identity-left /
 argument-right so the signature card doesn't repeat the page's own mistake at
 card scale.
 
+## The hero as a drafting sheet
+
+The hero is a **title block** in the `scene/` dialect, not a marketing header:
+a sheet frame with corner L-brackets, a dimension line under the headline
+annotated with the workshop's real coordinates (36°04′N · 4°46′E), and a
+five-field block along the bottom edge carrying values that are all true and
+checkable — 0 dependencies, no build step, FR·EN·AR with native RTL, an 18s
+GitHub Actions deploy, 5 of 7 projects live.
+
+Real drawing sheets put the title block as a strip along the bottom, not a
+corner box; on a hero-width canvas a corner box would simply be lost. It
+reflows 5 → 2 → 1 columns.
+
+`--nav-h` must be MEASURED, not assumed. It read 88px while the navbar was
+actually 72px at desktop, so the sheet frame's top edge and both upper corner
+brackets — the entire point of the frame — were painted underneath the navbar
+and never seen. The token exists precisely to stop that drift; it only works if
+someone checks it against the rendered box.
+
 ## The hero plate
 
 The hero used to be the stock template: copy left, three static thumbnails
