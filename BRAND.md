@@ -163,6 +163,38 @@ sweep returned 12 faults; 9 were decoration correctly clipped by `.hero`,
 whose rect is always zero. Any overflow assertion must walk the ancestor chain
 for a clipping context and skip `display:contents` before it reports anything.
 
+## The icon set
+
+Eleven hand-authored SVGs, one per service. No icon library and no raster
+assets — the same rule the floaters follow. The system:
+
+```
+viewBox="0 0 24 24"   stroke 1.5, currentColor, fill:none
+straight runs, true circles, 45° diagonals — no freehand curves
+every mark inside the 24x24 frame (asserted, not assumed)
+```
+
+They draw themselves via `stroke-dashoffset` on reveal, so each shape must be a
+stroked path — a filled shape will not animate. `.glyph svg{overflow:visible}`
+means a path outside the viewBox will still paint rather than clip, which hides
+the mistake; the check asserts `getBBox()` sits inside 0–24 in both axes.
+
+Each is specific to what it labels: a registration mark for L'Aperçu, a viewport
+for web, three plates in register for identity, a two-into-one route for
+pipelines, a scope with an off-centre reading for market intelligence, steps and
+a vector for growth, a drilled tag for commerce, a ruled artboard for design,
+axes and a series for data, a hub-and-four graph for knowledge systems, a pinned
+die for AI tooling.
+
+## Enclosure
+
+Every child sits inside its container's **padding** box, verified at nine widths
+from 320 to 1600. The one flagged exception — a 60px decorative glyph reaching
+6px past `.art` — is clipped by `.thumb`'s `overflow:hidden`, so it is enclosed
+in what actually paints. Any enclosure assertion must resolve the nearest
+clipping ancestor before it reports; the check that does not will report
+decoration that the design already frames.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%
