@@ -38,11 +38,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cinzel-700-latin.woff2">
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202608190025">
-<link rel="stylesheet" href="assets/styles.css?v=202608190025">
+<link rel="stylesheet" href="assets/fonts.css?v=202608190828">
+<link rel="stylesheet" href="assets/styles.css?v=202608190828">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. media is flipped to "all" by the resolver below / app.js. -->
-<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608190025">
+<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608190828">
 <script>
   /* Resolve variant + theme BEFORE first paint. Runs after the links so it can
      enable the alternate sheet without a flash of the base theme. */
@@ -60,8 +60,42 @@
     d.setAttribute('data-theme', t);
     var alt = document.getElementById('theme-eng');
     if (alt) alt.media = (t === 'engineering') ? 'all' : 'not all';
+
+    /* Language, also before first paint. The markup is baked in French, so for a
+       visitor whose saved language is EN or AR the deferred applyLang() rewrites
+       194 nodes and flips `dir` AFTER the page has painted — measured at CLS
+       0.63, the largest shift on the site. Setting lang/dir here costs nothing
+       and removes the direction flip.
+
+       The text itself cannot be swapped this early: the dictionary lives in
+       app.js and none of those 194 elements have been parsed yet. So when the
+       baked language is not the one we are about to show, hold paint with
+       `data-i18n-pending` and let app.js release it once the swap is done.
+       A visitor on French — the default — never takes this path and paints
+       exactly as before. */
+    var BAKED = 'fr', lang = BAKED;
+    try { lang = localStorage.getItem('numidea-lang') || BAKED; } catch (e) {}
+    if (['fr', 'en', 'ar'].indexOf(lang) === -1) lang = BAKED;
+    d.setAttribute('lang', lang);
+    d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    if (lang !== BAKED) {
+      d.setAttribute('data-i18n-pending', '');
+      /* Never let a broken or missing app.js leave the page invisible. Deferred
+         scripts run BEFORE DOMContentLoaded, so if app.js executed at all it has
+         already released the hold by the time this fires — which bounds the worst
+         case to parse time rather than to a timer. The timeout is only for the
+         case where that event has somehow already gone by. */
+      var release = function () { d.removeAttribute('data-i18n-pending'); };
+      document.addEventListener('DOMContentLoaded', release);
+      setTimeout(release, 1500);
+    }
   })();
 </script>
+<style>
+  /* Paired with data-i18n-pending above. Inline and in <head> so it is in effect
+     before the first paint it exists to suppress. */
+  html[data-i18n-pending] body{visibility:hidden}
+</style>
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -772,7 +806,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608190025" defer></script>
+<script src="assets/app.js?v=202608190828" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

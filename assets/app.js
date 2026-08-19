@@ -496,6 +496,9 @@
     var saved = DEFAULT_LANG;
     try { saved = localStorage.getItem('numidea-lang') || DEFAULT_LANG; } catch (e) {}
     applyLang(saved);
+    // The head bootstrap held paint for a non-French visitor so the 194-node
+    // swap above could not be seen happening. It is done — release it.
+    document.documentElement.removeAttribute('data-i18n-pending');
 
     // language switch
     document.querySelectorAll('.lang button').forEach(function (b) {

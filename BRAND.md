@@ -248,6 +248,33 @@ Fallbacks narrow the gap; only preload + `optional` closes it.
 `optional` those two loads legitimately differ — that is the feature, not a bug —
 and a geometric diff reports it as a 152px failure.
 
+## The language is resolved before first paint
+
+The markup is baked in French. For a visitor whose saved language is EN or AR the
+deferred `applyLang()` rewrote 194 nodes and flipped `dir` *after* the page had
+painted — measured at CLS 0.63, the largest shift on the site.
+
+`lang` and `dir` are now set in the head bootstrap, alongside variant and theme.
+The text cannot be swapped that early — the dictionary is in app.js and none of
+those 194 elements have been parsed yet — so when the baked language is not the
+one about to be shown, the bootstrap sets `data-i18n-pending` and an inline
+`<head>` style holds `body{visibility:hidden}` until app.js has done the swap.
+A French visitor never takes that path and paints exactly as before.
+
+Two rules for touching this:
+
+- **The guard style must stay inline in `<head>`.** Moved to an external sheet it
+  applies after the paint it exists to suppress.
+- **The release must stay failsafe.** `DOMContentLoaded` fires after deferred
+  scripts, so if app.js executed at all it has already released the hold; that
+  event bounds the worst case to parse time instead of a timer. Verified with
+  app.js blocked entirely: the page reveals, degraded to the baked French copy,
+  rather than staying blank. With JS off the bootstrap never runs, so nothing is
+  ever hidden.
+
+The cost is honest: an EN or AR visitor pays roughly 100–200ms of FCP for this.
+A French visitor pays nothing.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%
