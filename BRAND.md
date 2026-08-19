@@ -195,6 +195,30 @@ in what actually paints. Any enclosure assertion must resolve the nearest
 clipping ancestor before it reports; the check that does not will report
 decoration that the design already frames.
 
+## Fonts are self-hosted
+
+`assets/fonts/` holds the woff2 binaries; `assets/fonts.css` holds the
+`@font-face` rules. Nothing on the critical path touches a third-party host —
+that is what "0 dépendance" has to mean if the title block is going to print it.
+
+Trimmed to the subsets this site actually sets type in — **latin, latin-ext,
+arabic**. Cyrillic, cyrillic-ext and vietnamese were dropped: 24 faces nothing
+here is typeset in. `unicode-range` is preserved, so loading is usage-driven —
+a French reader fetches 7 files, and the Arabic binaries are fetched only when
+`lang=ar` actually renders Arabic glyphs. 543 KB on disk; no visitor pays that.
+
+Regenerate by fetching the CSS2 API with a modern User-Agent (an old UA gets
+you TTF instead of woff2), keeping only those three subsets, downloading each
+url() and rewriting it to `fonts/`. Fonts are OFL-1.1; the license ships in
+`assets/fonts/OFL.txt` and must stay there.
+
+**Every screenshot taken in a sandbox that blocks fonts.googleapis.com was
+lying.** The arcanum h1 is Cinzel, but with the webfont blocked it painted in
+the Georgia fallback, and the h1 box measures 256px against Cinzel's 320px.
+Judging type or vertical rhythm from a run where the faces never loaded means
+judging a different design. Check `document.fonts.check()` before trusting a
+screenshot of type.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%
