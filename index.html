@@ -38,11 +38,16 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cinzel-700-latin.woff2">
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202608190828">
-<link rel="stylesheet" href="assets/styles.css?v=202608190828">
+<link rel="stylesheet" href="assets/fonts.css?v=202608190842">
+<link rel="stylesheet" href="assets/styles.css?v=202608190842">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
-     an alternate sheet. media is flipped to "all" by the resolver below / app.js. -->
-<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608190828">
+     an alternate sheet. href is EMPTY on purpose and is set by the resolver below
+     only when that theme is active. A `media="not all"` sheet is still downloaded
+     (at low priority) but is NOT render-blocking, so the page painted in base
+     styles and then restyled when it applied — .wrap jumped 1190px to 1200px,
+     CLS 0.0768 in half of loads. Assigning href from a head script, with no
+     media attribute in the way, makes it render-blocking: that theme paints
+     correctly the first time. The other five never download it at all. -->
 <script>
   /* Resolve variant + theme BEFORE first paint. Runs after the links so it can
      enable the alternate sheet without a flash of the base theme. */
@@ -58,8 +63,17 @@
     var def = v === 'b' ? 'daylight' : 'arcanum', t = def;
     try { t = localStorage.getItem('numidea-theme') || def; } catch (e) {}
     d.setAttribute('data-theme', t);
-    var alt = document.getElementById('theme-eng');
-    if (alt) alt.media = (t === 'engineering') ? 'all' : 'not all';
+    /* The alternate sheet has to be PARSER-inserted to block rendering. Assigning
+       href from script makes it a dynamic stylesheet, which never blocks — not
+       with media removed, not with blocking="render" — so the page painted in
+       base styles and restyled when it applied. document.write here is
+       deliberate and safe: it runs while the head is still parsing, so the
+       parser inserts the link itself and rendering waits for it. Only the theme
+       actually in use is written, so nobody else downloads or waits on 46KB. */
+    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202608190842';
+    if (t === 'engineering') {
+      document.write('<link rel="stylesheet" id="theme-eng" href="' + window.NUMIDEA_ENG_CSS + '">');
+    }
 
     /* Language, also before first paint. The markup is baked in French, so for a
        visitor whose saved language is EN or AR the deferred applyLang() rewrites
@@ -806,7 +820,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608190828" defer></script>
+<script src="assets/app.js?v=202608190842" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

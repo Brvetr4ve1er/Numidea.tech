@@ -275,6 +275,37 @@ Two rules for touching this:
 The cost is honest: an EN or AR visitor pays roughly 100–200ms of FCP for this.
 A French visitor pays nothing.
 
+## The alternate sheet must be parser-inserted
+
+Engineering ships as a whole alternate stylesheet. Loaded the usual way — a
+`<link media="not all">` flipped by script — it is **not render-blocking**, so
+the page painted in base styles and restyled when it applied: `.wrap` jumped
+1190px to 1200px, CLS 0.0768 in about half of loads.
+
+Three things do NOT make a script-chosen stylesheet render-blocking, all tested
+by delaying the sheet 900ms and checking whether first-paint waited:
+
+- removing `media="not all"` — necessary, nowhere near sufficient
+- assigning `href` from a head script — this is what makes it *dynamic*, and a
+  dynamic stylesheet never blocks
+- adding `blocking="render"` — applies to parser-inserted elements only
+
+What works is `document.write` of the `<link>` from the head bootstrap. It runs
+while the head is still parsing, so the **parser** inserts it and rendering
+waits. That is the legitimate use of `document.write`; the thing to avoid is
+calling it after load. Only the theme actually in use is written, so the other
+five neither download nor wait on 46KB — which they previously downloaded and
+never used, because `media="not all"` still fetches.
+
+**Layout-critical tokens belong in the render-blocking sheet.** `--max` and
+`--gutter` for Engineering now live in `styles.css` under
+`html[data-theme="engineering"]`, because `data-theme` is set before first paint
+and that sheet always blocks. Colour and component styling can arrive whenever.
+
+A theme switch made by clicking is user-initiated, so its restyle is excluded
+from CLS by `hadRecentInput` — appending the link dynamically is fine there. Only
+the boot path needs to block.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%

@@ -511,8 +511,19 @@
     function applyTheme(t) {
       if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'daylight' : 'arcanum';
       document.documentElement.setAttribute('data-theme', t);
+      // The boot path parser-inserts this sheet (see index.html) so it is
+      // render-blocking for a visitor who arrives on Engineering. A switch made
+      // here is user-initiated, so its restyle is excluded from CLS and a
+      // dynamically appended link is fine.
       var alt = document.getElementById('theme-eng');
-      if (alt) alt.media = (t === 'engineering') ? 'all' : 'not all';
+      if (t === 'engineering') {
+        if (!alt) {
+          alt = document.createElement('link');
+          alt.rel = 'stylesheet'; alt.id = 'theme-eng';
+          alt.href = window.NUMIDEA_ENG_CSS;
+          document.head.appendChild(alt);
+        } else { alt.media = 'all'; }
+      } else if (alt) { alt.media = 'not all'; }
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
       });

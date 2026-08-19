@@ -1138,6 +1138,14 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
    ============================================================ */
 @media(min-width:1100px){
   :root{--max:min(1580px,93vw);--gutter:clamp(40px,3.4vw,64px)}
+  /* Engineering sets a different measure (--max 1200 against 93vw = 1190 here).
+     That token has to live in THIS sheet, not in theme-engineering.css: this one
+     is render-blocking and data-theme is set before first paint, so the first
+     layout is already correct. Loaded from the alternate sheet it arrived after
+     a layout had happened and .wrap jumped 1190px -> 1200px — CLS 0.0768, in
+     roughly half of loads. Layout-critical tokens belong in the blocking sheet;
+     colour and component styling can follow whenever it likes. */
+  html[data-theme="engineering"]{--max:1200px;--gutter:clamp(20px,4vw,40px)}
 
   main.wrap>section,.footer{
     display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
