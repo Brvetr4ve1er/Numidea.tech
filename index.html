@@ -28,13 +28,21 @@
   window.NUMIDEA_VARIANT = "";
 </script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<!-- Preload only the faces that paint above the fold. Same-origin, so they land
+     well inside the font-display:optional deadline and the page paints in its
+     real type with no swap — which is what actually removes the shift. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-600-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-700-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-mono-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cinzel-700-latin.woff2">
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202608190010">
-<link rel="stylesheet" href="assets/styles.css?v=202608190010">
+<link rel="stylesheet" href="assets/fonts.css?v=202608190025">
+<link rel="stylesheet" href="assets/styles.css?v=202608190025">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. media is flipped to "all" by the resolver below / app.js. -->
-<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608190010">
+<link rel="stylesheet" id="theme-eng" media="not all" href="assets/theme-engineering.css?v=202608190025">
 <script>
   /* Resolve variant + theme BEFORE first paint. Runs after the links so it can
      enable the alternate sheet without a flash of the base theme. */
@@ -764,7 +772,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608190010" defer></script>
+<script src="assets/app.js?v=202608190025" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

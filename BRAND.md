@@ -219,6 +219,35 @@ Judging type or vertical rhythm from a run where the faces never loaded means
 judging a different design. Check `document.fonts.check()` before trusting a
 screenshot of type.
 
+## The font swap must not move the page
+
+`font-display:optional`, not `swap`, and the above-the-fold faces are preloaded.
+That pairing is what actually removes the shift: preloaded same-origin files
+almost always make the deadline so the page paints in its real type, and when one
+misses, `optional` keeps the fallback for the whole load instead of reflowing
+mid-read. `swap` guarantees a reflow every time a face lands after first paint.
+
+Metric-matched fallback faces back this up for the rare miss — `size-adjust` plus
+ascent/descent/line-gap overrides, computed from the woff2 with fontTools and
+calibrated against an **unadjusted twin** of the same `local()` list. Calibrating
+against a generic stack instead is wrong: `system-ui` and `local("Arial")` resolve
+to different files, which put Geist 12% out and left the hero lede a line short.
+
+**`ch` is a font metric, so it is not a layout unit.** `1ch` is the advance of
+"0", and Geist's "0" is 19.21% wider than the fallback's while its average glyph
+is only 1.92% wider — a 17pp spread one `size-adjust` scalar cannot satisfy. All
+34 `max-width:Nch` are now `em`, computed from the intended face's own "0", so
+the measure is identical once the face loads and independent of which face
+resolves. Do not reintroduce `ch` for layout width.
+
+Know the limit: a single `size-adjust` cannot make *every* string wrap
+identically, because it matches one number against a whole width distribution.
+Fallbacks narrow the gap; only preload + `optional` closes it.
+
+**Measure CLS with the layout-shift API, not by diffing two page loads.** Under
+`optional` those two loads legitimately differ — that is the feature, not a bug —
+and a geometric diff reports it as a 152px failure.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%

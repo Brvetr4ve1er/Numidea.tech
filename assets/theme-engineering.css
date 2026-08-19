@@ -11,9 +11,9 @@
 :root{
   --accent:#F93E06;      /* the studio orange, carried across every rebuild */
   --ok:#3ECF8E;          /* functional only: live status */
-  --font-sans:"Geist", "Inter", system-ui, -apple-system, sans-serif;
-  --font-mono:"Geist Mono", ui-monospace, "SF Mono", monospace;
-  --font-ar:"IBM Plex Sans Arabic", sans-serif;
+  --font-sans:"Geist", "Geist Fallback", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono:"Geist Mono", "Geist Mono Fallback", ui-monospace, "SF Mono", monospace;
+  --font-ar:"IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", sans-serif;
 
   --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px;
   --s6:72px; --s7:112px; --s8:160px;
@@ -130,7 +130,7 @@ img{max-width:100%;display:block}
 
 h2.sec,.contact h2{font-family:var(--font-sans);font-weight:600;
   font-size:clamp(30px,3.6vw,46px);line-height:1.1;letter-spacing:-.028em;
-  margin-bottom:var(--s3);max-width:20ch}
+  margin-bottom:var(--s3);max-width:13.26em}
 /* Must MATCH the base sheet's selector, not undercut it. The base rule is
    `main.wrap>section h2.sec em` — specificity (0,0,2,4) against this
    rule's (0,0,1,2) — and it paints with -webkit-text-fill-color, which
@@ -143,7 +143,7 @@ main.wrap>section h2.sec em,.contact h2 em{
   background:none;color:var(--fg-3);-webkit-text-fill-color:var(--fg-3)}
 html[dir="rtl"] h2.sec,html[dir="rtl"] .contact h2{font-family:var(--font-ar);line-height:1.4;letter-spacing:0}
 
-.sec-lead,.svc-lead{font-size:17px;line-height:1.6;color:var(--fg-2);max-width:56ch;margin:0 0 var(--s5)}
+.sec-lead,.svc-lead{font-size:17px;line-height:1.6;color:var(--fg-2);max-width:37.128em;margin:0 0 var(--s5)}
 
 .progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:200}
 html[dir="rtl"] .progress{left:auto;right:0}
@@ -240,10 +240,10 @@ html[dir="rtl"] .mobile-menu .close{right:auto;left:18px}
   border-radius:999px;padding:6px 13px;margin-bottom:var(--s3)}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);
   box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 22%,transparent)}
-.hero-h{font-weight:600;font-size:clamp(38px,5.4vw,68px);line-height:1.04;letter-spacing:-.035em;max-width:15ch}
+.hero-h{font-weight:600;font-size:clamp(38px,5.4vw,68px);line-height:1.04;letter-spacing:-.035em;max-width:9.945em}
 .hero-h .swash{color:var(--accent)}
 html[dir="rtl"] .hero-h{font-family:var(--font-ar);line-height:1.35;letter-spacing:0}
-.lede{font-size:17.5px;line-height:1.62;color:var(--fg-2);max-width:48ch;margin-top:var(--s3)}
+.lede{font-size:17.5px;line-height:1.62;color:var(--fg-2);max-width:31.824em;margin-top:var(--s3)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--s4)}
 
 /* ---- the terminal: real deploy output, not a prop ---- */
@@ -401,9 +401,9 @@ html[dir="rtl"] .sb-txt b{font-family:var(--font-ar);letter-spacing:0}
 .preview h3{font-weight:600;font-size:clamp(24px,3vw,32px);letter-spacing:-.03em;margin:10px 0 6px}
 html[dir="rtl"] .preview h3{font-family:var(--font-ar);letter-spacing:0}
 .preview .promise{font-size:17px;color:var(--fg);margin-bottom:var(--s2)}
-.preview .brief{font-size:15px;line-height:1.65;color:var(--fg-2);max-width:60ch;margin-bottom:var(--s3)}
+.preview .brief{font-size:15px;line-height:1.65;color:var(--fg-2);max-width:39.78em;margin-bottom:var(--s3)}
 .preview .outcome{font-size:14px;color:var(--fg-2);padding-inline-start:12px;
-  border-inline-start:2px solid var(--accent);max-width:56ch}
+  border-inline-start:2px solid var(--accent);max-width:37.128em}
 .preview .outcome b{display:block;font-family:var(--font-mono);font-size:10.5px;font-weight:400;
   color:var(--fg-3);margin-bottom:4px}
 
@@ -458,7 +458,7 @@ html[dir="rtl"] .cap h4{font-family:var(--font-ar);letter-spacing:0}
   font-family:var(--font-mono);font-size:12px;color:var(--fg-2)}
 .step h3{font-weight:600;font-size:17px;letter-spacing:-.02em;margin-bottom:6px}
 html[dir="rtl"] .step h3{font-family:var(--font-ar);letter-spacing:0}
-.step p{font-size:15px;color:var(--fg-2);max-width:58ch}
+.step p{font-size:15px;color:var(--fg-2);max-width:38.454em}
 
 /* ============================================================
    FOUNDER
@@ -472,7 +472,7 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar);letter-spacing:0}
 .fd-id h3{font-weight:600;font-size:clamp(20px,2.4vw,26px);letter-spacing:-.03em}
 .fd-role{font-family:var(--font-mono);font-size:11.5px;color:var(--fg-3);margin:5px 0 10px}
 .fd-pills{display:flex;flex-wrap:wrap;gap:6px}
-.fd-bio{font-size:15.5px;line-height:1.65;color:var(--fg-2);max-width:64ch;margin-bottom:var(--s3)}
+.fd-bio{font-size:15.5px;line-height:1.65;color:var(--fg-2);max-width:42.432em;margin-bottom:var(--s3)}
 .fd-actions{display:flex;flex-wrap:wrap;gap:10px}
 .cv-panel{max-height:0;overflow:hidden;transition:max-height var(--dur) var(--ease)}
 .cv-panel.open{max-height:1600px}
@@ -522,14 +522,14 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar);letter-spacing:0}
 .faq-mark::after{left:50%;top:0;bottom:0;width:1.5px;transform:translateX(-50%)}
 .faq-item[open] .faq-mark::after{transform:translateX(-50%) scaleY(0)}
 .faq-a{padding:0 var(--s3) var(--s3);color:var(--fg-2);font-size:15px;line-height:1.65}
-.faq-a p{max-width:64ch}
+.faq-a p{max-width:42.432em}
 
 /* ============================================================
    CONTACT
    ============================================================ */
 .contact::before{display:none}
 .contact-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:var(--s5) var(--s7);align-items:start}
-.contact .sub{font-size:16.5px;line-height:1.65;color:var(--fg-2);max-width:44ch}
+.contact .sub{font-size:16.5px;line-height:1.65;color:var(--fg-2);max-width:29.172em}
 .channels{margin-top:var(--s4);display:grid;gap:1px;background:var(--edge);
   border:1px solid var(--edge);border-radius:var(--r2);overflow:hidden}
 .channels .ch{display:grid;grid-template-columns:96px minmax(0,1fr);gap:var(--s2);align-items:center;
@@ -556,7 +556,7 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar);letter-spacing:0}
 .form-success .tick{width:38px;height:38px;display:grid;place-items:center;margin-bottom:var(--s2);
   border-radius:var(--r1);background:color-mix(in srgb,var(--ok) 16%,transparent);
   border:1px solid color-mix(in srgb,var(--ok) 40%,transparent);color:var(--ok);font-size:17px}
-.form-success p{font-size:16px;color:var(--fg-2);max-width:44ch}
+.form-success p{font-size:16px;color:var(--fg-2);max-width:29.172em}
 
 /* ============================================================
    FOOTER
@@ -567,7 +567,7 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar);letter-spacing:0}
 .footer nav a{font-family:var(--font-mono);font-size:12.5px;color:var(--fg-3);text-decoration:none;
   overflow-wrap:anywhere;transition:color var(--fast) var(--ease)}
 .footer nav a:hover{color:var(--accent)}
-.footer .signoff{font-family:var(--font-mono);font-size:13px;color:var(--fg-3);max-width:44ch}
+.footer .signoff{font-family:var(--font-mono);font-size:13px;color:var(--fg-3);max-width:26.4em}
 .footer .meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:var(--s5);
   padding-top:var(--s3);border-top:1px solid var(--edge);
   font-family:var(--font-mono);font-size:11.5px;color:var(--fg-3)}
@@ -624,13 +624,13 @@ html[dir="rtl"] .modal-head h2{font-family:var(--font-ar);letter-spacing:0}
 .detail-info .cat{display:block;font-family:var(--font-mono);font-size:11.5px;color:var(--fg-3);margin-bottom:10px}
 .detail-info h3{font-weight:600;font-size:clamp(22px,3vw,32px);letter-spacing:-.03em;margin-bottom:var(--s2);outline:none}
 html[dir="rtl"] .detail-info h3{font-family:var(--font-ar);letter-spacing:0}
-.detail-overview{font-size:15.5px;line-height:1.65;color:var(--fg-2);max-width:52ch;margin-bottom:var(--s2)}
+.detail-overview{font-size:15.5px;line-height:1.65;color:var(--fg-2);max-width:34.476em;margin-bottom:var(--s2)}
 .detail-info .pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--s3)}
 .detail-actions{margin-bottom:var(--s3)}
 .detail-soon{font-family:var(--font-mono);font-size:12.5px;color:var(--fg-3)}
 .detail-story{display:grid;gap:var(--s3);border-top:1px solid var(--edge);padding-top:var(--s3)}
 .detail-sec h4{font-family:var(--font-mono);font-size:11px;color:var(--accent);margin-bottom:6px}
-.detail-sec p{font-size:14.5px;color:var(--fg-2);max-width:58ch}
+.detail-sec p{font-size:14.5px;color:var(--fg-2);max-width:38.454em}
 .detail-nav{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s2);margin-top:var(--s4);
   border-top:1px solid var(--edge);padding-top:var(--s3)}
 .detail-prev,.detail-next{display:flex;flex-direction:column;gap:4px;background:var(--panel);
@@ -655,7 +655,7 @@ html[dir="rtl"] .detail-next{align-items:flex-start}
 .offer-band h2{font-weight:600;font-size:clamp(19px,2.4vw,24px);letter-spacing:-.03em;margin:6px 0 4px}
 html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
 .ob-promise{font-size:15px;color:var(--accent);margin-bottom:6px}
-.ob-brief{font-size:14px;color:var(--fg-2);max-width:64ch;line-height:1.6}
+.ob-brief{font-size:14px;color:var(--fg-2);max-width:42.432em;line-height:1.6}
 @media(max-width:900px){
   [data-variant="c"] .offer-band{grid-template-columns:minmax(0,1fr)}
   .ob-cta{justify-self:start}
@@ -687,7 +687,7 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
 .e404{min-height:100vh;display:grid;place-items:center;text-align:center;padding-block:var(--s6)}
 .e404 .mark{font-family:var(--font-mono);font-weight:500;font-size:clamp(72px,16vw,160px);
   line-height:1;letter-spacing:-.04em;color:var(--fg)}
-.e404 .lines{max-width:36ch;margin:var(--s3) auto 0;color:var(--fg-2);font-size:16px}
+.e404 .lines{max-width:23.868em;margin:var(--s3) auto 0;color:var(--fg-2);font-size:16px}
 .e404 .lines .fr{color:var(--fg)}
 .e404 .lines .ar{font-family:var(--font-ar);direction:rtl;display:block;margin-top:6px}
 .e404 .cta{margin-top:var(--s4);display:inline-flex}
