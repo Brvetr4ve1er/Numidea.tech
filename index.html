@@ -38,8 +38,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cinzel-700-latin.woff2">
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202608190842">
-<link rel="stylesheet" href="assets/styles.css?v=202608190842">
+<link rel="stylesheet" href="assets/fonts.css?v=202608311859">
+<link rel="stylesheet" href="assets/styles.css?v=202608311859">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -70,7 +70,7 @@
        deliberate and safe: it runs while the head is still parsing, so the
        parser inserts the link itself and rendering waits for it. Only the theme
        actually in use is written, so nobody else downloads or waits on 46KB. */
-    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202608190842';
+    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202608311859';
     if (t === 'engineering') {
       document.write('<link rel="stylesheet" id="theme-eng" href="' + window.NUMIDEA_ENG_CSS + '">');
     }
@@ -760,7 +760,7 @@
       <a href="#founder" data-i18n="nav.team">Équipe</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
-      <a href="mailto:hello@numidealabs.com">hello@numidealabs.com</a>
+      <a href="mailto:Hamissemohamedyasser@gmail.com">Hamissemohamedyasser@gmail.com</a>
     </nav>
   </div>
   <p class="signoff" data-i18n="footer.signoff">Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.</p>
@@ -820,7 +820,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608190842" defer></script>
+<script src="assets/app.js?v=202608311859" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
