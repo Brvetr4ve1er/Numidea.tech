@@ -160,7 +160,7 @@ git-ignored — only the lightweight `.webp` outputs are committed.
 
 ## Contact
 
-**hello@numidealabs.com** · Bordj Bou Arréridj, DZ · response in under 24h
+**Hamissemohamedyasser@gmail.com** · Bordj Bou Arréridj, DZ · response in under 24h
 (in French, English, or Arabic).
 
 ---

@@ -1111,11 +1111,11 @@
         }
 
         // Static site, no backend: hand the lead off to the visitor's mail client,
-        // pre-filled to hello@numidealabs.com. Only show success after the handoff.
+        // pre-filled to Hamissemohamedyasser@gmail.com. Only show success after the handoff.
         var subject = 'Numidea Labs · ' + name;
         var body = name + ' <' + email + '>\n\n' + msg
           + '\n\n--\nnumidealabs · ' + VARIANT + ' · ' + (document.documentElement.getAttribute('lang') || 'fr');
-        window.location.href = 'mailto:hello@numidealabs.com'
+        window.location.href = 'mailto:Hamissemohamedyasser@gmail.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);
         form.style.display = 'none';

@@ -33,7 +33,7 @@ flourish per screen, then discipline."
 
 ## KB-07-004 · Operational risks (verified/inferred)
 - ✅ **Contact form lead delivery — FIXED 2026-06-22** (was: silently lost). Now hands
-  off via `mailto:` to `hello@numidealabs.com` on valid submit (see KB-14-001).
+  off via `mailto:` to `Hamissemohamedyasser@gmail.com` on valid submit (see KB-14-001).
   Residual: depends on the visitor's mail client; no server capture/analytics yet —
   upgrade to Web3Forms/Formspree when warranted. `confidence: verified`.
 - **Bus factor / capacity:** 4 people own everything; single points of failure per

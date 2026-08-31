@@ -15,7 +15,7 @@ tags: [sales, partnerships, business-development]
 - **Core sales mechanic:** **The Preview** — a real working demo built up front,
   shown live, converting to "the easiest yes you'll give — because you've already
   seen it." This *is* the sales process.
-- **Channels of contact:** email `hello@numidealabs.com`, the (currently non-
+- **Channels of contact:** email `Hamissemohamedyasser@gmail.com`, the (currently non-
   delivering) contact form.
 
 ## KB-09-002 · Evidence of client relationships (verified)

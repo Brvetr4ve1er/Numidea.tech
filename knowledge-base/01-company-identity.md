@@ -19,7 +19,7 @@ tags: [identity, mission, vision, values, culture, positioning, history]
 | **Team size** | 4 people (small senior team) |
 | **Languages** | French (default), English, Arabic — natively trilingual incl. RTL |
 | **Response SLA (marketing claim)** | < 24 hours |
-| **Contact** | hello@numidealabs.com |
+| **Contact** | Hamissemohamedyasser@gmail.com |
 | **Primary domain** | numidealabs.com *(intended; site currently served via GitHub Pages)* |
 | **Tagline** | "Rooted in Numidia · built on ideas" |
 | **Founded** | 🔴 GAP — founding date not in any artifact |
