@@ -575,6 +575,21 @@
       if (el.hasAttribute('data-count')) countUp(el);
     }
     var revealEls = document.querySelectorAll('.reveal, [data-count]');
+    // Progressive enhancement: CSS only hides .reveal under html.js-ready, so a
+    // visitor whose app.js never arrives sees everything. If the page has
+    // ALREADY painted by the time this runs (slow network, deferred script
+    // landing late), reveal what is on screen in the same style pass that
+    // arms the gate, so nothing that was visible blinks off.
+    var painted = false;
+    try { painted = performance.getEntriesByType('paint').length > 0; } catch (e) {}
+    if (painted) {
+      var vh0 = window.innerHeight || document.documentElement.clientHeight;
+      revealEls.forEach(function (el) {
+        var r0 = el.getBoundingClientRect();
+        if (r0.top < vh0 * 0.92 && r0.bottom > 0) revealNow(el);
+      });
+    }
+    document.documentElement.classList.add('js-ready');
     if ('IntersectionObserver' in window) {
       // Entries that cross together are revealed as one batch, delayed in
       // sequence, so a row of cards assembles as a wave rather than a
@@ -787,16 +802,39 @@
         requestAnimationFrame(step);
       }
 
-      function next() { go((cur + 1) % slides.length); }
+      function next() {
+        var n = (cur + 1) % slides.length;
+        // Never wipe onto an image that has not arrived. On a slow link the
+        // low-priority slides land seconds after the first; advancing anyway
+        // showed a blank plate and re-elected LCP onto whichever image came
+        // last. The interval simply tries again next tick.
+        if (!(slides[n].complete && slides[n].naturalWidth > 0)) return;
+        go(n);
+      }
       /* `held` is a latch, not a timer state. Clicking a rail tab re-arms —
          but the pointer is already inside the component at that moment, so
          no fresh pointerenter will ever fire to pause it again, and it
          would resume rotating under someone who just chose a slide. */
-      var held = { hover: false, focus: false, hidden: false };
+      // `idle` holds rotation until the visitor has done anything at all. LCP
+      // is finalised at the first interaction, and every rotation before that
+      // re-elected it onto the new slide: measured on Slow 3G, an LCP of 3.6s
+      // reported as 10.8s because the deck turned at 10.8s. A visitor who has
+      // not moved yet sees the first, high-priority slide, which is the point.
+      var held = { hover: false, focus: false, hidden: false, idle: true };
+      var wake = function () {
+        if (!held.idle) return;
+        held.idle = false; arm();
+        ['pointermove', 'pointerdown', 'keydown', 'scroll', 'touchstart', 'wheel'].forEach(function (ev) {
+          window.removeEventListener(ev, wake, true);
+        });
+      };
+      ['pointermove', 'pointerdown', 'keydown', 'scroll', 'touchstart', 'wheel'].forEach(function (ev) {
+        window.addEventListener(ev, wake, { capture: true, passive: true });
+      });
       function halt() { clearInterval(timer); timer = null; }
       function arm() {
         clearInterval(timer); timer = null;
-        if (reduceMotion || held.hover || held.focus || held.hidden) return;
+        if (reduceMotion || held.hover || held.focus || held.hidden || held.idle) return;
         timer = setInterval(next, HOLD);
       }
       function hold(k, v) { held[k] = v; arm(); }
@@ -994,10 +1032,14 @@
         lastFocus = document.activeElement;
         buildFilters(); renderGrid();
         modal.hidden = false; document.body.classList.add('modal-open'); modalOpen = true;
+        // aria-modal is not honoured everywhere; inert is. Nothing behind the
+        // dialog is reachable by Tab or a screen reader while it is open.
+        document.querySelectorAll('main, .navbar, .footer').forEach(function (el) { el.inert = true; });
       }
       function closeModal() {
         if (!modalOpen) return;
         modal.hidden = true; document.body.classList.remove('modal-open'); modalOpen = false;
+        document.querySelectorAll('main, .navbar, .footer').forEach(function (el) { el.inert = false; });
         showBrowse();
         if (location.hash.indexOf('#/work') === 0) history.replaceState(null, '', location.pathname + location.search);
         if (lastFocus && lastFocus.focus) lastFocus.focus();

@@ -306,6 +306,77 @@ A theme switch made by clicking is user-initiated, so its restyle is excluded
 from CLS by `hadRecentInput` — appending the link dynamically is fine there. Only
 the boot path needs to block.
 
+## Stress test
+
+What the page does past normal conditions, measured rather than assumed. The
+harness pushed it through 280–3440px viewports, Slow/Fast 3G with CPU 4–6×,
+resource failures, keyboard-only use, axe across all six themes × three
+languages, 190 rapid interactions, forced-colours, reduced-motion and print.
+
+**Never fade the LCP element in.** The hero plate — the largest thing above the
+fold — rose from `opacity:0` with the rest of the entrance choreography. Its
+image was downloaded, `opacity:1` and visible at 3.6s on Slow 3G, but the
+browser did not credit it as painted until 7.5s; with the fade removed, 3.7s.
+The headline, lede and plate now rise with `transform` only (`hero-rise-solid`)
+and are never transparent. The smaller elements keep the fade.
+
+**Auto-rotation is an LCP hazard.** Every deck turn before the visitor's first
+interaction re-elected LCP onto the new slide — a 3.6s LCP reported as 10.8s
+because the deck turned at 10.8s. Rotation now waits for any interaction
+(`held.idle`); LCP is finalised at that moment, so a rotation after it is free.
+A visitor who has not moved sees the first, high-priority slide.
+
+**`filter:blur` on a fixed full-viewport layer with animating children is
+re-rasterised every frame.** The aurora cost 83ms/frame *at rest* under CPU 4×
+— 12fps with nothing happening — and 17ms with it gone. The softness now lives
+in the gradient stops; the fields animate on the compositor. Engineering's own
+`blur(90px)` override went with it. Every theme: 0% dropped frames, resting or
+scrolling.
+
+**A hidden-until-JS reveal must be gated on JS having run, not on JS being
+enabled.** `.reveal{opacity:0}` was unconditional and the only thing that
+un-hid it lived in `app.js`; with that file blocked — a 404, a content
+blocker, a corporate proxy — 27/27 sections stayed invisible. `<noscript>`
+covers JS being *disabled*, not JS failing to load. Now `html.js-ready`, set
+by app.js as its first act, is the only thing that hides anything; if the page
+has already painted when the script lands, on-screen content is revealed in the
+same style pass that arms the gate, so nothing blinks off.
+
+**Preload only what paints above the fold.** Five font preloads (125KB) ahead
+of `styles.css` held first paint to 4.2s on a 400kbps link. Four now (96KB):
+body, mono, the display serif, and Geist 600 — the headline weight in the themes
+that do not use Cinzel. Dropping 600 too measured CLS 0.02 on daylight and mono:
+the face landed ~170ms after layout and the hero reflowed. The preloads stay
+*ahead* of the stylesheets; moving them behind produced the same shift.
+
+**A harness that scrolls a `scroll-behavior:smooth` document lies.** Each
+`scrollTo` restarts a smooth animation, so a tight loop never actually passes
+anything, and a final `scrollTo(0,0)` cancels the last one — "26 of 27 sections
+never revealed" was the harness, verified by instrumenting rAF and scrollY. Set
+`scrollBehavior='auto'` before programmatic scrolling.
+
+**`--faint` was decoration by name and text by use.** Title-block labels,
+indices and the sheet footer set type in it at 2.3–3.3:1. Raised per theme to
+≥5:1 against every panel colour, with `--crimson-text`/`--teal-text` tokens for
+accents used as text (crimson on noir was 1.9:1). Engineering's `--fg-3` and its
+white-on-orange buttons likewise. Nothing on the page is set below 11px.
+
+**Measure contrast on a settled page.** The reveal fade is 0.9s plus stagger;
+axe run at 0.7s reads text mid-fade and reports the blended colour. Three
+themes "failed" that way on tokens that pass.
+
+**Engineering's `.step` grid needed explicit placement.** Three auto-placed
+children in a `36px 1fr` grid put the heading in the marker column — 36px wide
+holding 105px of text, wrapping one letter per line. The framing audit had only
+ever run on the default theme.
+
+Also: `<main tabindex="-1">` so the skip link actually moves focus; the page
+behind the portfolio dialog is `inert` while it is open; a print stylesheet
+(ink-safe palette, decoration off, gradient type as solid ink); the validator's
+15 findings cleared. Slow 3G FCP 4.2s→3.6s, LCP 10.1s→3.8s; Fast 3G LCP
+3.0s→1.4s; 190 rapid theme/language/modal/resize interactions: +0.0MB heap,
++0 listeners.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%

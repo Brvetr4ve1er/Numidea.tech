@@ -28,18 +28,22 @@
   window.NUMIDEA_VARIANT = "";
 </script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<!-- Preload only the faces that paint above the fold. Same-origin, so they land
-     well inside the font-display:optional deadline and the page paints in its
-     real type with no swap — which is what actually removes the shift. -->
+<!-- Preload only the faces that paint above the fold, three of them, not five:
+     on a 400kbps link 125KB of preloads ahead of the render-blocking CSS held
+     first paint to 4.2s. Body, mono, the display serif, and Geist 600 — the headline weight in the
+     themes that do not use Cinzel; without it that face landed ~170ms after
+     layout and the hero reflowed (CLS 0.02 on daylight/mono). 700 arrives on
+     demand, and font-display:optional means a late face is simply not used on
+     that load. They stay AHEAD of the stylesheets on purpose — behind them, the
+     faces landed ~170ms after first layout and the swap measured CLS 0.02. -->
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-400-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-600-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-700-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-mono-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-600-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cinzel-700-latin.woff2">
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202608312242">
-<link rel="stylesheet" href="assets/styles.css?v=202608312242">
+<link rel="stylesheet" href="assets/fonts.css?v=202609021920">
+<link rel="stylesheet" href="assets/styles.css?v=202609021920">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -70,7 +74,7 @@
        deliberate and safe: it runs while the head is still parsing, so the
        parser inserts the link itself and rendering waits for it. Only the theme
        actually in use is written, so nobody else downloads or waits on 46KB. */
-    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202608312242';
+    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202609021920';
     if (t === 'engineering') {
       document.write('<link rel="stylesheet" id="theme-eng" href="' + window.NUMIDEA_ENG_CSS + '">');
     }
@@ -155,7 +159,7 @@
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
           <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
         </div>
-        <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+        <button type="button" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
       </div>
     </div>
   </div>
@@ -163,7 +167,7 @@
 
 <!-- mobile overlay menu -->
 <div class="mobile-menu" id="mobile-menu">
-  <button class="close" aria-label="Close">×</button>
+  <button type="button" class="close" aria-label="Close">×</button>
   <a href="#how" data-i18n="nav.about">À propos</a>
   <a href="#services" data-i18n="nav.services">Services</a>
   <a href="#work" data-i18n="nav.work">Projets</a>
@@ -179,7 +183,7 @@
 
 
 <span id="top"></span>
-<main id="main" class="wrap">
+<main id="main" class="wrap" tabindex="-1">
 
   <!-- ================= HERO ================= -->
   <section class="hero" aria-labelledby="hero-title">
@@ -233,13 +237,13 @@
         <img class="pl on" src="assets/previews/bordjsteel.webp" alt="Bordj Steel"
              width="1280" height="800" decoding="async" fetchpriority="high">
         <img class="pl" src="assets/previews/glaive.webp" alt="Glaive Store"
-             width="1280" height="800" decoding="async" loading="lazy">
+             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
         <img class="pl" src="assets/previews/alliancetravel.webp" alt="Alliance Travel"
-             width="1280" height="800" decoding="async" loading="lazy">
+             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
         <img class="pl" src="assets/previews/nomara.webp" alt="Nomara Voyages"
-             width="1280" height="800" decoding="async" loading="lazy">
+             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
         <img class="pl" src="assets/previews/almaflowclim.webp" alt="AlmaFlowClim"
-             width="1280" height="800" decoding="async" loading="lazy">
+             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
           <span class="pl-wipe" aria-hidden="true"></span>
           <span class="pl-scan" aria-hidden="true"></span>
         </div>
@@ -476,7 +480,7 @@
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16"/><path d="M2.5 8.6h19"/><path d="M5.4 6.3h1.5M8.4 6.3h1.5"/><path d="M5.8 12.2h7.4M5.8 15.8h11.6"/></svg></span>
         <div>
           <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
-          <h3 data-i18n="f1.name">Sites & applications web</h3>
+          <h3 data-i18n="f1.name">Sites &amp; applications web</h3>
           <p class="promise" data-i18n="f1.promise">Le choix évident.</p>
           <p class="brief" data-i18n="f1.brief">Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel.</p>
           <div class="tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">Tailwind</span><span class="pill">Vercel</span></div>
@@ -486,7 +490,7 @@
       <article class="svc-row reveal">
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9.2" cy="9.8" r="4.7"/><circle cx="14.8" cy="9.8" r="4.7"/><circle cx="12" cy="15" r="4.7"/></svg></span>
         <div>
-          <h3 data-i18n="f2.name">Identité & systèmes visuels</h3>
+          <h3 data-i18n="f2.name">Identité &amp; systèmes visuels</h3>
           <p class="promise" data-i18n="f2.promise">La confiance avant le premier mot.</p>
           <p class="brief" data-i18n="f2.brief">Logos, couleur, typo, motion et le kit design-system complet — tokens primitifs → sémantiques → composants, documentés.</p>
           <div class="tags"><span class="pill">Identity</span><span class="pill">Design systems</span><span class="pill">Motion</span></div>
@@ -497,7 +501,7 @@
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="5.6" r="2.3"/><circle cx="19" cy="5.6" r="2.3"/><circle cx="12" cy="18.4" r="2.3"/><path d="M5 7.9v4.3a2 2 0 0 0 2 2h2.9M19 7.9v4.3a2 2 0 0 1-2 2h-2.9"/></svg></span>
         <div>
           <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
-          <h3 data-i18n="f3.name">Automatisation & pipelines</h3>
+          <h3 data-i18n="f3.name">Automatisation &amp; pipelines</h3>
           <p class="promise" data-i18n="f3.promise">Supprimez la corvée.</p>
           <p class="brief" data-i18n="f3.brief">Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif qui dévore vos heures — on le fait tourner seul à 3h du matin. Python · Playwright · APIs · Claude.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill">APIs</span><span class="pill">Claude</span></div>
@@ -508,7 +512,7 @@
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.9"/><path d="M12 1.6v2.6M12 19.8v2.6M1.6 12h2.6M19.8 12h2.6"/><circle cx="14.7" cy="9.3" r="1.15"/></svg></span>
         <div>
           <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
-          <h3 data-i18n="f4.name">Intelligence marché & produit</h3>
+          <h3 data-i18n="f4.name">Intelligence marché &amp; produit</h3>
           <p class="promise" data-i18n="f4.promise">Voir le marché clairement.</p>
           <p class="brief" data-i18n="f4.brief">Transformez le web ouvert en base de données. Veille concurrentielle, intelligence prix/produit, enrichissement de leads sur Maps, Facebook, Ouedkniss, Jumia, Instagram — structuré, scoré, requêtable.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill">Maps</span><span class="pill">Scoring</span></div>
@@ -519,7 +523,7 @@
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.2 20.6h17.6"/><path d="M3.2 16.4 8 11.9l3.7 2.9 6.1-7"/><path d="M14.3 7.8h4.4v4.4"/></svg></span>
         <div>
           <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
-          <h3 data-i18n="f5.name">Stratégie & conseil croissance</h3>
+          <h3 data-i18n="f5.name">Stratégie &amp; conseil croissance</h3>
           <p class="promise" data-i18n="f5.promise">De la donnée, pas des impressions.</p>
           <p class="brief" data-i18n="f5.brief">Audits marketing complets, analyse de funnels, positionnement concurrentiel, feuilles de route — honnêtes, ROI d'abord, par phases. On fait les devoirs sur votre secteur avant l'appel.</p>
           <div class="tags"><span class="pill">Strategy</span><span class="pill">Funnels</span><span class="pill">Audits</span></div>
@@ -537,21 +541,21 @@
         <div class="cap">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.4 11.4V4.6a1.2 1.2 0 0 1 1.2-1.2h6.8l9.2 9.2-7.8 7.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/><path d="M12.4 13.2l2.2 2.2 3.6-3.6"/></svg></span>
           <span class="fam" data-i18n="c1.fam">Le Build</span>
-          <h4 data-i18n="c1.name">Boutique & réservation</h4>
+          <h4 data-i18n="c1.name">Boutique &amp; réservation</h4>
           <p class="promise" data-i18n="c1.promise">De la visite au paiement.</p>
           <p class="brief" data-i18n="c1.brief">Boutiques en ligne et systèmes de réservation pensés pour l'achat local — paiement WhatsApp, flux cash, Shopify headless si pertinent.</p>
         </div>
         <div class="cap">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M3 9.1h18M8.2 20V9.1"/><path d="M11.4 16.6 14.6 13.4l3.4 3.4"/><circle cx="12.1" cy="11.7" r="1"/></svg></span>
           <span class="fam" data-i18n="c2.fam">Le Build</span>
-          <h4 data-i18n="c2.name">Design graphique & social</h4>
+          <h4 data-i18n="c2.name">Design graphique &amp; social</h4>
           <p class="promise" data-i18n="c2.promise">On scroll, on s'arrête.</p>
           <p class="brief" data-i18n="c2.brief">Packs social, carrousels, infographies, print — depuis un système visuel verrouillé, pour que tout vous ressemble.</p>
         </div>
         <div class="cap">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.6 3.4v17h17"/><path d="M6.6 16.6 10.2 12l3.6 2.6 6.2-8.2"/><circle cx="10.2" cy="12" r="1.15"/><circle cx="13.8" cy="14.6" r="1.15"/></svg></span>
           <span class="fam" data-i18n="c3.fam">L'Engine</span>
-          <h4 data-i18n="c3.name">Data science & analytics</h4>
+          <h4 data-i18n="c3.name">Data science &amp; analytics</h4>
           <p class="promise" data-i18n="c3.promise">Du signal dans le bruit.</p>
           <p class="brief" data-i18n="c3.brief">Vrai travail statistique — modélisation économétrique, séries temporelles, prévision, dashboards. Analyse testée et défendable.</p>
         </div>
@@ -565,7 +569,7 @@
         <div class="cap">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7.1" y="7.1" width="9.8" height="9.8"/><rect x="10.7" y="10.7" width="2.6" height="2.6"/><path d="M10.4 3.4v3.7M13.6 3.4v3.7M10.4 16.9v3.7M13.6 16.9v3.7"/><path d="M3.4 10.4h3.7M3.4 13.6h3.7M16.9 10.4h3.7M16.9 13.6h3.7"/></svg></span>
           <span class="fam" data-i18n="c5.fam">L'Esprit</span>
-          <h4 data-i18n="c5.name">Outils & skills IA sur mesure</h4>
+          <h4 data-i18n="c5.name">Outils &amp; skills IA sur mesure</h4>
           <p class="promise" data-i18n="c5.promise">Le logiciel qui construit votre logiciel.</p>
           <p class="brief" data-i18n="c5.brief">Outils internes, générateurs et skills sur mesure propulsés par Claude — une tâche répétitive devient une usine en un clic.</p>
         </div>
@@ -777,13 +781,13 @@
 
       <!-- browse view -->
       <div class="explorer" id="explorer-browse">
-        <header class="modal-head">
+        <div class="modal-head">
           <div>
-            <span class="kicker" data-parallax=".035" style="margin-bottom:6px" data-i18n="portfolio.kicker">Portfolio</span>
+            <span class="kicker" data-parallax=".035" data-i18n="portfolio.kicker">Portfolio</span>
             <h2 id="portfolio-title" class="font-swap-display" data-i18n="portfolio.title">Tout le <em>travail.</em></h2>
           </div>
           <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
-        </header>
+        </div>
         <div class="modal-controls">
           <label class="modal-search">
             <span class="sr-only" data-i18n="portfolio.searchLabel">Rechercher un projet</span>
@@ -802,7 +806,7 @@
           <button type="button" class="detail-back" id="detail-back"><span aria-hidden="true">←</span> <span data-i18n="portfolio.back">Tous les projets</span></button>
           <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
         </div>
-        <div class="detail-body" id="detail-body" aria-labelledby="detail-title"></div>
+        <div class="detail-body" id="detail-body"></div>
         <nav class="detail-nav" aria-label="Projets">
           <button type="button" class="detail-prev" id="detail-prev"></button>
           <button type="button" class="detail-next" id="detail-next"></button>
@@ -820,7 +824,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202608312242" defer></script>
+<script src="assets/app.js?v=202609021920" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
