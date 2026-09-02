@@ -755,3 +755,10 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
 .sheet-foot{color:var(--fg-3);letter-spacing:.14em}
 .sheet-foot .sf-mark{color:var(--accent)}
 @media(max-width:960px){.tb-f{border-block-end-color:var(--edge)}}
+
+/* Same rule as the base sheet, restated here because this sheet loads after it
+   and its own `transition` shorthands reset transition-property to `all` —
+   which animates the focus outline in from 0 (0.18s with no ring, measured at
+   the instant of focus). Durations and easings unchanged; outline excluded. */
+.theme-btn,.theme-menu button,.lang button,.btn,.proj .actions a,.field input,.field textarea,.modal-close,.modal-search input,.filter-chip{
+  transition-property:color,background-color,border-color,box-shadow,transform,opacity,filter}

@@ -928,7 +928,7 @@
         var d = dict();
         var cat = d[p.catKey] || p.cat, desc = d[p.descKey] || '';
         var brand = p.accent ? ' proj--brand' : '';
-        var style = p.accent ? ' style="--accent:' + p.accent + '"' : '';
+        var style = p.accent ? ' style="--brand:' + p.accent + '"' : '';
         var thumb = p.shot
           ? '<div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>' + esc(domainOf(p)) + '</span></div>'
             + '<img class="shot" src="' + p.shot + '" alt="" loading="lazy" decoding="async" width="1280" height="800"></div>'
@@ -980,7 +980,7 @@
         var d = dict(), lang = document.documentElement.getAttribute('lang');
         var cat = d[p.catKey] || p.cat, desc = d[p.descKey] || '';
         var brand = p.accent ? ' detail--brand' : '';
-        var style = p.accent ? ' style="--accent:' + p.accent + '"' : '';
+        var style = p.accent ? ' style="--brand:' + p.accent + '"' : '';
         var hero = p.shot
           ? '<div class="detail-shot-wrap"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>' + esc(domainOf(p)) + '</span></div>'
             + '<img class="detail-shot" src="' + p.shot + '" alt="' + esc(p.name) + '" width="1280" height="800"></div>'

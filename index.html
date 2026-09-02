@@ -28,22 +28,34 @@
   window.NUMIDEA_VARIANT = "";
 </script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<!-- Preload only the faces that paint above the fold, three of them, not five:
-     on a 400kbps link 125KB of preloads ahead of the render-blocking CSS held
-     first paint to 4.2s. Body, mono, the display serif, and Geist 600 — the headline weight in the
-     themes that do not use Cinzel; without it that face landed ~170ms after
-     layout and the hero reflowed (CLS 0.02 on daylight/mono). 700 arrives on
-     demand, and font-display:optional means a late face is simply not used on
-     that load. They stay AHEAD of the stylesheets on purpose — behind them, the
-     faces landed ~170ms after first layout and the swap measured CLS 0.02. -->
-<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-400-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-mono-400-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-600-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cinzel-700-latin.woff2">
+<!-- Font preloads are written by the script below rather than as static tags:
+     the preload scanner requests static <link rel=preload> before any script
+     runs, so an Arabic visitor's faces would always queue behind the Latin ones
+     and arrive inside font-display:optional's window (CLS 0.08 at 1024px).
+     Written here, each visitor gets exactly the four faces their hero is set
+     in, first. Only what paints above the fold: on a 400kbps link 125KB of
+     preloads ahead of the CSS held first paint to 4.2s. 700 arrives on demand;
+     a late face is simply not used on that load. -->
+<script>
+  (function () {
+    var l = 'fr'; try { l = localStorage.getItem('numidea-lang') || 'fr'; } catch (e) {}
+    var faces = l === 'ar'
+      ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-600-arabic', 'ibm-plex-sans-arabic-600-latin', 'geist-mono-400-latin', 'geist-600-latin']
+      /* The Arabic hero also sets Latin glyphs — project names in Plex Arabic 600's
+         latin subset, the logo in Geist 600. Leave either out and it renders in a
+         fallback first and widens when the file lands: with the body held until
+         app.js, that file is not even discovered until release, which puts the
+         swap inside font-display:optional's window (CLS 0.03 at 1024px). */
+      : ['geist-400-latin', 'geist-mono-400-latin', 'geist-600-latin', 'cinzel-700-latin'];
+    document.write(faces.map(function (f) {
+      return '<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/' + f + '.woff2">';
+    }).join(''));
+  })();
+</script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202609021920">
-<link rel="stylesheet" href="assets/styles.css?v=202609021920">
+<link rel="stylesheet" href="assets/fonts.css?v=202609021948">
+<link rel="stylesheet" href="assets/styles.css?v=202609021948">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -74,7 +86,7 @@
        deliberate and safe: it runs while the head is still parsing, so the
        parser inserts the link itself and rendering waits for it. Only the theme
        actually in use is written, so nobody else downloads or waits on 46KB. */
-    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202609021920';
+    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202609021948';
     if (t === 'engineering') {
       document.write('<link rel="stylesheet" id="theme-eng" href="' + window.NUMIDEA_ENG_CSS + '">');
     }
@@ -112,7 +124,13 @@
 <style>
   /* Paired with data-i18n-pending above. Inline and in <head> so it is in effect
      before the first paint it exists to suppress. */
-  html[data-i18n-pending] body{visibility:hidden}
+  /* display:none, not visibility or opacity. Chrome scores a layout shift for a
+     box that existed before the swap and moved after it, whether or not it was
+     visible: visibility:hidden measured CLS 0.03 at 1024px in Arabic (the hero
+     plate re-declares visibility:visible and painted through), and opacity:0
+     measured the same. With no box at all before the swap there is nothing to
+     have moved — the page lays out once, in the right language. */
+  html[data-i18n-pending] body{display:none}
 </style>
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
@@ -355,7 +373,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="travel" style="--accent:95,214,134" data-idx="02/07">
+      <article class="proj proj--brand reveal" data-cat="travel" style="--brand:95,214,134" data-idx="02/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="assets/previews/alliancetravel.webp" alt="Aperçu du site Alliance Travel" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
@@ -368,7 +386,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="industrial" style="--accent:59,164,224" data-idx="03/07">
+      <article class="proj proj--brand reveal" data-cat="industrial" style="--brand:59,164,224" data-idx="03/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="assets/previews/almaflowclim.webp" alt="Aperçu du site AlmaFlowClim" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Industrie · Web</span>
@@ -381,7 +399,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="industrial" style="--accent:214,55,48" data-idx="04/07">
+      <article class="proj proj--brand reveal" data-cat="industrial" style="--brand:214,55,48" data-idx="04/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
@@ -407,7 +425,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="travel" style="--accent:34,180,104" data-idx="06/07">
+      <article class="proj proj--brand reveal" data-cat="travel" style="--brand:34,180,104" data-idx="06/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
@@ -420,7 +438,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="commerce" style="--accent:255,90,31" data-idx="07/07">
+      <article class="proj proj--brand reveal" data-cat="commerce" style="--brand:255,90,31" data-idx="07/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="assets/previews/glaive.webp" alt="Aperçu du site Glaive Store" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
@@ -824,7 +842,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202609021920" defer></script>
+<script src="assets/app.js?v=202609021948" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

@@ -370,12 +370,44 @@ children in a `36px 1fr` grid put the heading in the marker column — 36px wide
 holding 105px of text, wrapping one letter per line. The framing audit had only
 ever run on the default theme.
 
+**`transition:all` animates the focus ring.** Nine interactive rules used it, so
+on keyboard focus the 2px outline grew from 0 over 200–300ms — instant is the
+requirement, and a probe at the instant of focus saw no ring at all. Those rules
+now list their transition properties; outline is not among them.
+
 Also: `<main tabindex="-1">` so the skip link actually moves focus; the page
 behind the portfolio dialog is `inert` while it is open; a print stylesheet
 (ink-safe palette, decoration off, gradient type as solid ink); the validator's
 15 findings cleared. Slow 3G FCP 4.2s→3.6s, LCP 10.1s→3.8s; Fast 3G LCP
 3.0s→1.4s; 190 rapid theme/language/modal/resize interactions: +0.0MB heap,
 +0 listeners.
+
+## Second full audit — what it still found
+
+**`transition:all` and the focus ring.** Nine interactive rules animated the
+outline in from 0 over 200–300ms. A `transition-property` list now excludes it —
+placed at the *end* of each sheet, because any later `transition` shorthand
+resets the property list back to `all` (the first attempt, placed early, changed
+nothing). Engineering restates it for the same reason.
+
+**A token name that means two things.** Project cards set an inline RGB triplet
+for `rgb(var(--…))` fills; Engineering uses the same name, `--accent`, as a whole
+colour, including in its `:focus-visible` outline. Inside a card that outline
+became `2px solid 95,214,134` — invalid — and the project links had no focus
+ring at all. The card triplet is now `--brand`. A custom property is a global
+name; two sheets may not use one for two types.
+
+**Preloads are language-aware and script-written.** The preload scanner requests
+static `<link rel=preload>` before any script runs, so document order cannot put
+an Arabic visitor's faces ahead of the Latin ones. All four are now written by
+an early inline script from the saved language. Latin text on an Arabic page is
+the logo and the project names, set in Geist 600 — leave that out and the logo
+widens 6px when it lands (CLS 0.03 at 1024px).
+
+**Chrome scores a shift for a box that existed and moved, visible or not.** The
+language hold as `visibility:hidden` and as `opacity:0` both measured the same
+CLS through the text swap. `display:none` gives the page no box to have moved:
+it lays out once, in the right language.
 
 ## The background
 
