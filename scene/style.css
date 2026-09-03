@@ -1,0 +1,230 @@
+/* ============================================================
+   NUMIDEA LABS — the work as an engineering drawing.
+   No simulated lighting: screenshots stay FLAT and razor sharp,
+   and every bit of depth is drawn as line art — the one thing
+   CSS/SVG render perfectly. Trilingual, RTL-aware, themeable.
+   ============================================================ */
+:root{
+  --void:#0A1420;--navy:#0F1E30;--plum:#13283E;
+  --crimson:#E6B450;--crimson-hi:#F4D27A;--teal:#34D0E8;
+  --ice:#EAF1F8;--muted:#9DB2C6;--faint:#62788E;--hairline:#1C3550;--hairline-2:#27496B;
+  --acc:230,180,80;
+  --font-disp:"Cinzel",Georgia,serif;--font-body:"Geist",system-ui,sans-serif;
+  --font-mono:"Geist Mono",ui-monospace,monospace;--font-ar:"IBM Plex Sans Arabic",sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+[data-theme="daylight"]{--void:#EEF1F5;--navy:#FFF;--plum:#E4EAF0;--crimson:#C20A26;--crimson-hi:#E11537;--teal:#0A9C8E;--ice:#0D1A2F;--muted:#51606E;--faint:#8496A4;--hairline:#D7DEE6;--hairline-2:#C2CDD8}
+[data-theme="mono"]{--void:#0B0B0C;--navy:#161619;--plum:#1C1C20;--crimson:#E5533D;--crimson-hi:#F2674F;--teal:#D9D4C6;--ice:#ECECEC;--muted:#9A9AA2;--faint:#62626A;--hairline:#2A2A30;--hairline-2:#3A3A42}
+[data-theme="altneon"]{--crimson:#F59E0B;--crimson-hi:#FBBF24;--teal:#A78BFA}
+[data-theme="noir"]{--void:#0D1A2F;--navy:#17364F;--plum:#411E3A;--crimson:#BD0927;--crimson-hi:#E11537;--teal:#09D8C7;--ice:#EAF2F4;--muted:#8FA1AE;--faint:#5A6B79;--hairline:#243B52;--hairline-2:#33506C}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--void);color:var(--ice);font-family:var(--font-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html[dir="rtl"] body{font-family:var(--font-ar)}
+a{color:var(--crimson-hi);text-decoration:none}
+img{display:block;max-width:100%}
+.sp{flex:1}
+.runway{height:800vh}
+.sheet{position:fixed;inset:0;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 40%, color-mix(in srgb,var(--navy) 55%,transparent), transparent 70%), var(--void)}
+
+/* ---- drafting paper ---- */
+.grid-fine,.grid-coarse{position:absolute;inset:-12%;pointer-events:none}
+.grid-fine{opacity:.5;background-image:
+  linear-gradient(color-mix(in srgb,var(--hairline-2) 55%,transparent) 1px,transparent 1px),
+  linear-gradient(90deg,color-mix(in srgb,var(--hairline-2) 55%,transparent) 1px,transparent 1px);
+  background-size:22px 22px}
+.grid-coarse{opacity:.55;background-image:
+  linear-gradient(color-mix(in srgb,var(--hairline-2) 90%,transparent) 1px,transparent 1px),
+  linear-gradient(90deg,color-mix(in srgb,var(--hairline-2) 90%,transparent) 1px,transparent 1px);
+  background-size:110px 110px;transition:transform .2s linear}
+.sheet-border{position:absolute;inset:26px;pointer-events:none;border:1px solid color-mix(in srgb,var(--muted) 28%,transparent)}
+.sheet-border::before,.sheet-border::after{content:"";position:absolute;width:16px;height:16px;border:1px solid rgba(var(--acc),.55)}
+.sheet-border::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.sheet-border::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+/* ---- axonometric wireframe ---- */
+.scaffold{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.scaffold .ax{transition:transform .25s var(--ease)}
+.scaffold path{fill:none;vector-effect:non-scaling-stroke}
+.ax-box{stroke:color-mix(in srgb,var(--muted) 32%,transparent);stroke-width:1;transition:stroke .35s}
+.ax-box.on{stroke:rgba(var(--acc),.85);stroke-width:1.4}
+.ax-hidden{stroke:color-mix(in srgb,var(--muted) 17%,transparent);stroke-width:1;stroke-dasharray:4 5}
+
+/* ---- the flat plate ---- */
+.platewrap{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%) translateY(var(--pY,0px));
+  width:min(700px,50vw);transition:transform .2s linear}
+.plate{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--navy);
+  border:1px solid rgba(var(--acc),.55);
+  box-shadow:0 0 0 6px color-mix(in srgb,var(--void) 70%,transparent), 0 40px 80px -40px #000}
+.plate img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.plate img[hidden]{display:none}
+
+/* sheets with no screenshot yet get a proper drafting idiom, not a fake image */
+.inprep{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  background:var(--navy);border:1px dashed color-mix(in srgb,var(--muted) 45%,transparent);margin:10px}
+.inprep[hidden]{display:none}
+.inprep .hatch{position:absolute;inset:0;opacity:.5;
+  background:repeating-linear-gradient(45deg,transparent 0 9px,color-mix(in srgb,var(--muted) 16%,transparent) 9px 10px)}
+.inprep .stamp{position:relative;font-family:var(--font-mono);font-size:clamp(10px,1.3vw,13px);letter-spacing:.24em;
+  color:rgb(var(--acc));border:1px solid rgba(var(--acc),.55);padding:8px 16px;transform:rotate(-4deg);
+  background:color-mix(in srgb,var(--void) 80%,transparent);text-align:center}
+.inprep .stamp-sub{position:relative;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;color:var(--faint);text-align:center;padding:0 16px}
+
+/* hard wipe — no cross-blending, ever */
+.plate-wipe{position:absolute;inset:0;z-index:3;pointer-events:none;background:var(--void);
+  transform:scaleX(var(--wipe,0));transform-origin:left center}
+html[dir="rtl"] .plate-wipe{transform-origin:right center}
+.plate-wipe::after{content:"";position:absolute;right:0;top:0;bottom:0;width:2px;background:rgb(var(--acc));
+  box-shadow:0 0 18px rgba(var(--acc),.9);opacity:var(--wipeEdge,0)}
+html[dir="rtl"] .plate-wipe::after{right:auto;left:0}
+.plate-scan{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.3;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 1px,transparent 1px 3px)}
+.tick{position:absolute;width:13px;height:13px;border:1px solid rgb(var(--acc));z-index:4}
+.tick.tl{top:-7px;left:-7px;border-right:0;border-bottom:0}
+.tick.tr{top:-7px;right:-7px;border-left:0;border-bottom:0}
+.tick.bl{bottom:-7px;left:-7px;border-right:0;border-top:0}
+.tick.br{bottom:-7px;right:-7px;border-left:0;border-top:0}
+
+/* dimension lines */
+.dim{position:absolute;display:flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;color:var(--muted)}
+.dim .ln{flex:1;height:1px;background:color-mix(in srgb,var(--muted) 45%,transparent);position:relative}
+.dim .ln::before,.dim .ln::after{content:"";position:absolute;top:-3px;width:1px;height:7px;background:color-mix(in srgb,var(--muted) 60%,transparent)}
+.dim .ln::before{left:0}.dim .ln::after{right:0}
+.dim-w{left:0;right:0;bottom:-30px}
+.dim-h{flex-direction:column;top:0;bottom:0;right:-42px;width:14px}
+html[dir="rtl"] .dim-h{right:auto;left:-42px}
+.dim-h .ln{width:1px;height:auto;flex:1}
+.dim-h .ln::before,.dim-h .ln::after{top:auto;left:-3px;width:7px;height:1px}
+.dim-h .ln::before{top:0}.dim-h .ln::after{bottom:0}
+.dim-h .lbl{writing-mode:vertical-rl}
+
+/* ---- callout ---- */
+.callout{position:absolute;left:clamp(22px,5vw,60px);top:50%;
+  transform:translateY(-50%) translateY(var(--cY,0px));
+  max-width:min(280px,26vw);display:flex;gap:12px;z-index:5;transition:transform .2s linear}
+.callout::after{content:"";position:absolute;right:-30px;top:50%;width:26px;height:1px;background:rgba(var(--acc),.6)}
+html[dir="rtl"] .callout{left:auto;right:clamp(22px,5vw,60px)}
+html[dir="rtl"] .callout::after{right:auto;left:-30px}
+.cnum{flex:none;width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(var(--acc),.7);
+  border-radius:50%;font-family:var(--font-mono);font-size:11px;color:rgb(var(--acc))}
+.ckick{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;color:rgb(var(--acc))}
+.cname{font-family:var(--font-disp);font-weight:700;font-size:clamp(19px,2.6vw,27px);margin-top:8px;line-height:1.15}
+html[dir="rtl"] .cname{font-family:var(--font-ar)}
+.ccopy{font-size:13px;line-height:1.65;color:var(--muted);margin-top:8px}
+.clink{display:inline-block;margin-top:12px;font-family:var(--font-mono);font-size:10.5px;
+  border:1px solid rgba(var(--acc),.5);border-radius:4px;padding:6px 11px;color:rgb(var(--acc))}
+.clink:hover{background:rgba(var(--acc),.14)}
+.clink[hidden]{display:none}
+
+/* ---- header ---- */
+.hud{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:16px;
+  padding:38px clamp(38px,6vw,64px);z-index:6}
+.hud-logo{font-family:var(--font-disp);font-weight:700;font-size:14px;letter-spacing:.12em;color:var(--ice)}
+.hud-logo .d{color:var(--crimson)}
+.hud-tag{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;color:var(--faint)}
+.lang{display:flex;gap:2px;border:1px solid var(--hairline-2);border-radius:4px;overflow:hidden}
+.lang button{background:transparent;border:0;cursor:pointer;color:var(--muted);
+  font-family:var(--font-mono);font-size:10px;padding:5px 9px;transition:.2s}
+.lang button:hover{color:var(--ice)}
+.lang button[aria-pressed="true"]{background:rgb(var(--acc));color:var(--void);font-weight:700}
+
+/* ---- sheet index rail ---- */
+.rail{position:absolute;right:clamp(20px,4vw,44px);top:50%;transform:translateY(-50%);z-index:6;
+  display:flex;flex-direction:column;gap:2px}
+html[dir="rtl"] .rail{right:auto;left:clamp(20px,4vw,44px)}
+.rail button{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:9.5px;color:var(--faint);padding:4px 0;transition:.25s}
+.rail button .bar{width:16px;height:1px;background:currentColor;transition:.25s}
+.rail button:hover{color:var(--muted)}
+.rail button.on{color:rgb(var(--acc))}
+.rail button.on .bar{width:30px;height:1.5px}
+
+/* ---- title block ---- */
+.titleblock{position:absolute;right:38px;bottom:38px;z-index:6;min-width:252px;
+  border:1px solid color-mix(in srgb,var(--muted) 34%,transparent);
+  background:color-mix(in srgb,var(--void) 88%,transparent);backdrop-filter:blur(4px);
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.1em}
+html[dir="rtl"] .titleblock{right:auto;left:38px}
+.tb-row{display:flex;justify-content:space-between;gap:16px;padding:7px 11px;
+  border-bottom:1px solid color-mix(in srgb,var(--muted) 20%,transparent)}
+.tb-row:last-child{border-bottom:0}
+.tb-row span{color:var(--faint)}
+.tb-row b{color:var(--ice);font-weight:400;text-align:end}
+.tb-row b.live{color:var(--teal)}
+.tb-row b.soon{color:rgb(var(--acc))}
+.cue{position:absolute;left:clamp(38px,6vw,64px);bottom:42px;z-index:6;
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;color:var(--faint);transition:opacity .4s}
+html[dir="rtl"] .cue{left:auto;right:clamp(38px,6vw,64px)}
+
+/* ---- responsive ---- */
+@media(max-width:1100px){ .dim-h{display:none} }
+@media(max-width:900px){
+  .platewrap{width:84vw;top:38%}
+  .callout{left:0;right:0;top:auto;bottom:132px;max-width:none;padding:0 22px;transform:none;
+    text-align:start;justify-content:flex-start}
+  html[dir="rtl"] .callout{left:0;right:0}
+  .callout::after{display:none}
+  .rail{flex-direction:row;right:auto;left:50%;top:auto;bottom:96px;transform:translateX(-50%);gap:10px}
+  html[dir="rtl"] .rail{right:auto;left:50%}
+  .rail button .bar{width:10px}
+  .rail button.on .bar{width:18px}
+  .rail button .n{display:none}
+  .titleblock{left:14px;right:14px;bottom:14px;min-width:0}
+  html[dir="rtl"] .titleblock{left:14px;right:14px}
+  .tb-row:nth-child(3),.tb-row:nth-child(5){display:none}
+  .hud{padding:20px 22px}
+  .hud-tag,.cue{display:none}
+  .sheet-border{inset:12px}
+  .dim-w{bottom:-24px}
+}
+/* ---- short viewports: the plate was sized by WIDTH alone ----
+   .plate is aspect-ratio:16/10, so at ≤900px its height is 0.525 × the
+   viewport width with nothing capping it against viewport HEIGHT. On a
+   Fold-open (717×512) that produced a 376px-tall plate in a 512px-tall
+   window, and the callout — anchored bottom:132px — printed its heading,
+   paragraph and button straight over the welder photograph. Constrain
+   the plate by height as well, and lift the furniture. */
+/* Short PORTRAIT phones: the stacked plate ended 3px above the callout.
+   Lift it; the callout is anchored to the bottom and cannot move. */
+@media(max-width:900px) and (orientation:portrait) and (max-height:700px){
+  .platewrap{top:28%;width:min(72vw,calc((100svh - 320px) * 1.6))}
+  .callout{bottom:calc(118px + env(safe-area-inset-bottom))}
+}
+
+/* Landscape phones: DON'T stack — go back to the side-by-side layout.
+   Stacking needs hud(63) + plate + callout(133) + titleblock(80) + rail
+   plus gaps: 432px of budget in a 390px-tall viewport. It cannot fit at
+   any plate size, so shrinking the plate only trades one overlap for
+   another. Landscape has width to spare and no height, which is exactly
+   what the desktop arrangement is built for — so undo the stack and
+   size the plate against height instead. */
+@media(max-width:1100px) and (orientation:landscape) and (max-height:620px){
+  .platewrap{left:53%;top:52%;width:min(40vw,calc((100svh - 150px) * 1.6))}
+  .callout{left:clamp(14px,3vw,28px);right:auto;top:50%;bottom:auto;
+    max-width:min(26vw,230px);padding:0;transform:translateY(-50%);
+    text-align:start;justify-content:flex-start}
+  html[dir="rtl"] .callout{left:auto;right:clamp(14px,3vw,28px)}
+  .rail{flex-direction:column;left:auto;right:clamp(10px,2vw,20px);top:50%;bottom:auto;
+    transform:translateY(-50%);gap:8px}
+  html[dir="rtl"] .rail{right:auto;left:clamp(10px,2vw,20px)}
+  .titleblock{left:clamp(14px,3vw,28px);right:auto;max-width:44vw;
+    bottom:calc(8px + env(safe-area-inset-bottom))}
+  .tb-row:nth-child(2),.tb-row:nth-child(4){display:none}
+  .hud{padding-block:10px}
+  .dim-w,.dim-h{display:none}
+}
+/* ---- 901–1360px: the side callout and the centred plate overlap ----
+   plate left edge = 0.25 × w; callout right edge = 0.05w + 0.26w = 0.31w.
+   0.31w > 0.25w at EVERY width, so the two never clear each other until
+   the plate hits its 700px cap around 1400px. Cap the plate against the
+   space the callout actually occupies instead. */
+@media(min-width:901px) and (max-width:1360px){
+  .platewrap{width:min(700px,calc(100vw - 2*(clamp(22px,5vw,60px) + min(280px,26vw)) - 64px))}
+}
+/* the page paints edge to edge under viewport-fit=cover */
+.titleblock{padding-bottom:env(safe-area-inset-bottom)}
+.hud{padding-top:max(20px,env(safe-area-inset-top))}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}

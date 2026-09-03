@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="arcanum">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>404 — Cette page a pris la route · Numidea Labs</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A1420">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<!-- Self-hosted, same as index.html. This was a render-blocking third-party
+     stylesheet: with fonts.googleapis.com unreachable it held first paint for
+     the full connection timeout (13s measured on index.html before the same
+     fix). Every family this page asks for is already in assets/fonts/. -->
+<link rel="stylesheet" href="assets/fonts.css?v=202609031901">
+<link rel="stylesheet" href="assets/styles.css?v=202609031901">
+<style>
+  /* svh, not vh: with viewport-fit=cover, 100vh is the tallest the viewport
+     ever gets, so the page overflows by the height of the browser chrome
+     even when the content fits. */
+  .e404{min-height:100svh;display:grid;place-items:center;text-align:center;
+        padding:calc(var(--s-9) + env(safe-area-inset-top)) var(--gutter) calc(var(--s-7) + env(safe-area-inset-bottom))}
+  .e404 .mark{font-family:var(--font-display);font-weight:500;font-size:clamp(96px,22vw,260px);line-height:.9;letter-spacing:-.03em;
+    background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .e404 .lines{max-width:34ch;margin:var(--s-6) auto 0;color:var(--muted);font-size:clamp(16px,1.8vw,20px);line-height:1.6}
+  .e404 .lines .fr{color:var(--ice)}
+  .e404 .lines .ar{font-family:var(--font-ar-body);direction:rtl;display:block;margin-top:8px}
+  .e404 .cta{margin-top:var(--s-7);display:inline-flex}
+  .e404 .brand{position:fixed;top:calc(var(--s-6) + env(safe-area-inset-top));left:50%;transform:translateX(-50%)}
+  /* On a short viewport the fixed brand is out of flow, so centred content
+     scrolled straight underneath it — the 404 numeral vanished behind the
+     wordmark at 844x390. Put the brand back in the flow and stop centring. */
+  @media (max-height:620px){
+    .e404{min-height:auto;place-items:start center;padding-block:24px 32px}
+    .e404 .brand{position:static;transform:none;margin-bottom:var(--s-5)}
+    .e404 .mark{font-size:clamp(64px,16vw,120px)}
+    .e404 .lines{margin-top:var(--s-4)}
+    .e404 .cta{margin-top:var(--s-5)}
+  }
+</style>
+<script>
+/* GitHub Pages serves this page for ANY missing URL, at any depth — relative
+   hrefs would then resolve wrong. Recompute the site root (repo subpath on
+   *.github.io, "/" everywhere else) and rewrite the few refs this page has. */
+(function () {
+  if (location.protocol.indexOf('http') !== 0) return; // keep relative for file:// preview
+  var seg = location.pathname.split('/').filter(Boolean);
+  var root = location.hostname.slice(-10) === '.github.io' && seg.length ? '/' + seg[0] + '/' : '/';
+  // <link> tags sit above this script — fix them now, before first paint
+  document.querySelectorAll('link[href^="assets/"]').forEach(function (el) {
+    el.setAttribute('href', root + el.getAttribute('href'));
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('a[href="index.html"]').forEach(function (el) {
+      el.setAttribute('href', root);
+    });
+  });
+})();
+</script>
+</head>
+<body>
+<div class="wrap e404">
+  <a class="logo brand" href="index.html">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+  <main>
+    <!-- The big 404 is this page's heading, so it is one: a page with no h1 and
+         no landmark leaves a screen-reader user nothing to navigate by. The
+         visible glyph carries the number; the sr-only span carries the sentence
+         that makes it a heading rather than a bare figure. -->
+    <h1 class="mark">404<span class="sr-only"> — page introuvable · page not found</span></h1>
+    <p class="lines">
+      <span class="fr">Cette page a pris la route.</span><br>
+      This one took the road.
+      <span class="ar">هذه الصفحة سلكت الطريق.</span>
+    </p>
+    <a class="btn btn-primary cta" href="index.html">Retour à l'accueil →</a>
+  </main>
+</div>
+</body>
+</html>

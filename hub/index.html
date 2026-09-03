@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>b4vetrave1er.exe // VOIDSPLUNKER.std</title>
+<meta name="description" content="Hamisse Mohamed Yasser — polymath developer & designer. VOIDSPLUNKER.std × Numidea Labs. The archive: every door into the work.">
+<meta name="theme-color" content="#0a0b0d">
+<meta property="og:title" content="b4vetrave1er.exe // VOIDSPLUNKER.std">
+<meta property="og:description" content="Polymath developer & designer. Design, code, and everything between.">
+<meta name="color-scheme" content="dark light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Syne and Space Mono are not in assets/fonts/, so this stays third-party —
+     but never render-blocking: media="print" keeps it off the critical path and
+     onload promotes it. display=swap is already in the URL, so text paints in
+     the fallback and swaps on arrival instead of holding the page. -->
+<!-- Without this the browser falls back to /favicon.ico, which does not
+     exist: a 404 in every visitor's console on this page. -->
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap"></noscript>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('void-theme')||'dark';}catch(e){document.documentElement.dataset.theme='dark';}</script>
+<link rel="stylesheet" href="style.css?v=202609031901">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<div class="noise" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+<div class="reticle" id="reticle" aria-hidden="true"></div>
+
+<!-- ============================= HERO ============================= -->
+<header class="hero" id="hero">
+  <div class="ghost" data-parallax="-.22" aria-hidden="true"><span data-txt="VOID">VOID</span></div>
+  <div class="dotgrid" data-depth="5" data-parallax="-.06" aria-hidden="true"></div>
+
+  <!-- drifting geometry — hand-authored SVG, no raster assets needed -->
+  <div class="floaters" aria-hidden="true">
+    <svg class="fl-ring" data-parallax="-.18" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="34" stroke-dasharray="3 7"/></svg>
+    <svg class="fl-tri" data-parallax=".14" viewBox="0 0 100 100"><path d="M50 8 92 86H8Z"/></svg>
+    <svg class="fl-sq" data-parallax="-.1" viewBox="0 0 100 100"><rect x="12" y="12" width="76" height="76" rx="6"/><rect x="30" y="30" width="40" height="40" rx="3" stroke-dasharray="4 5"/></svg>
+    <svg class="fl-dot" data-parallax=".2" viewBox="0 0 100 100"><circle cx="50" cy="50" r="7"/><circle cx="50" cy="50" r="26" stroke-dasharray="2 8"/></svg>
+  </div>
+
+  <nav class="topbar" aria-label="Raccourcis">
+    <span class="brandtag">VOIDSPLUNKER<span class="acc">.std</span></span>
+    <span class="spacer"></span>
+    <span class="mono dim">EST — MMXXV</span>
+    <span class="bars" aria-hidden="true"></span>
+  </nav>
+
+  <div class="hero-grid">
+
+    <!-- IDENTITY -->
+    <section class="identity" data-depth="3" data-parallax=".05" aria-labelledby="id-title">
+      <p class="eyebrow"><i class="blip"></i> SYSTEM ONLINE <span class="dim">// IDENTITY.load()</span></p>
+
+      <h1 class="cycler" id="id-title">
+        <span class="cy-line"><span class="cy-text" id="cyText">b4vetrave1er.exe</span><span class="cy-caret" aria-hidden="true"></span></span>
+      </h1>
+
+      <p class="role" data-depth="2">
+        <span class="chip">polymath developer</span>
+        <span class="chip">designer</span>
+        <span class="chip">founder</span>
+      </p>
+
+      <p class="philo" id="philo">form is a function of obsession.</p>
+
+      <ul class="meta mono">
+        <li><b>NAME</b><span>Hamisse Mohamed Yasser</span></li>
+        <li><b>STUDIO</b><span>VOIDSPLUNKER.std &nbsp;×&nbsp; Numidea Labs</span></li>
+        <li><b>STATUS</b><span class="ok">// available for the impossible</span></li>
+      </ul>
+    </section>
+
+    <!-- AVATAR -->
+    <section class="avatar" data-depth="10" data-parallax="-.09" aria-label="portrait">
+      <div class="frame" id="avatarFrame">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <!-- POSE SLOTS — drop the four frames in and delete nothing else; the
+             drawn placeholder hides itself automatically once a .pose exists.
+             <img class="pose on" src="poses/pose-0.webp" alt="" width="840" height="1008" decoding="async">
+             <img class="pose"    src="poses/pose-1.webp" alt="" width="840" height="1008" decoding="async" loading="lazy">
+             <img class="pose"    src="poses/pose-2.webp" alt="" width="840" height="1008" decoding="async" loading="lazy">
+             <img class="pose"    src="poses/pose-3.webp" alt="" width="840" height="1008" decoding="async" loading="lazy"> -->
+        <div class="portrait" id="portrait" data-pose="0">
+          <svg class="bust" viewBox="0 0 200 240" aria-hidden="true">
+            <path d="M100 40a38 38 0 0 1 38 38v6a38 38 0 0 1-76 0v-6a38 38 0 0 1 38-38zM40 240c0-46 27-74 60-74s60 28 60 74z"/>
+          </svg>
+          <span class="halftone" aria-hidden="true"></span>
+          <span class="glitchbar" aria-hidden="true"></span>
+        </div>
+        <span class="frame-cap mono">IMG_FRAME_00.PNG <i class="await">// awaiting upload</i></span>
+      </div>
+      <span class="plus px1" data-depth="24" aria-hidden="true">+</span>
+      <span class="plus px2" data-depth="16" aria-hidden="true">+</span>
+      <span class="tape" aria-hidden="true">created in 2025</span>
+    </section>
+
+  </div>
+
+  <a class="scrollcue mono" href="#links">
+    <span>SCROLL</span><span class="arr">↓</span><span class="dim">ENTER THE ARCHIVE</span>
+  </a>
+</header>
+
+<!-- ============================= LINKS ============================= -->
+<main class="links" id="links">
+  <div class="links-head" data-reveal>
+    <p class="eyebrow"><i class="blip"></i> THE ARCHIVE <span class="dim">// every_door.map()</span></p>
+    <h2>ONE HANDLE.<br><span class="acc">EVERY&nbsp;WORLD.</span></h2>
+    <p class="links-sub">design, code, and everything between — pick a door.</p>
+  </div>
+
+  <div class="links-grid" id="linksGrid">
+    <!-- Handles verified from the Behance profile's own declared social links.
+         Rows still marked data-pending have no URL on record yet. -->
+    <!-- DESIGN -->
+    <a class="link" data-reveal data-brand="behance" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener"><span class="mono badge">Bē</span><span class="ltxt"><b>Behance</b><i>@br4vetr4aveler1</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="deviantart" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener"><span class="mono badge">DA</span><span class="ltxt"><b>DeviantArt</b><i>br4vetr4veler5</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="pinterest" href="https://www.pinterest.com/VOID.DESIGNER/" target="_blank" rel="noopener"><span class="mono badge">P</span><span class="ltxt"><b>Pinterest</b><i>VOID.DESIGNER</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="tumblr" href="https://delicateexpertsstuff.tumblr.com" target="_blank" rel="noopener"><span class="mono badge">tb</span><span class="ltxt"><b>Tumblr</b><i>delicateexpertsstuff</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="dribbble" data-pending aria-disabled="true"><span class="mono badge">dr</span><span class="ltxt"><b>Dribbble</b><i>handle needed</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="artstation" data-pending aria-disabled="true"><span class="mono badge">AS</span><span class="ltxt"><b>ArtStation</b><i>—</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="arena" data-pending aria-disabled="true"><span class="mono badge">are</span><span class="ltxt"><b>Are.na</b><i>—</i></span><span class="go">↗</span></a>
+    <!-- DEV -->
+    <a class="link" data-reveal data-brand="numidea" href="../"><span class="mono badge">NL</span><span class="ltxt"><b>Numidea Labs</b><i>the dev studio ›</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="github" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener"><span class="mono badge">GH</span><span class="ltxt"><b>GitHub</b><i>@Brvetr4ve1er</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="linkedin" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener"><span class="mono badge">in</span><span class="ltxt"><b>LinkedIn</b><i>Mohamed Yasser Hamisse</i></span><span class="go">↗</span></a>
+    <!-- SOCIAL -->
+    <a class="link" data-reveal data-brand="instagram" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener"><span class="mono badge">IG</span><span class="ltxt"><b>Instagram</b><i>@stick_itty</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="x" href="https://x.com/br4vetr4veler" target="_blank" rel="noopener"><span class="mono badge">X</span><span class="ltxt"><b>X / Twitter</b><i>@br4vetr4veler</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="youtube" href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener"><span class="mono badge">YT</span><span class="ltxt"><b>YouTube</b><i>@br4vetr4aveler</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="telegram" href="https://t.me/nobodysamsa" target="_blank" rel="noopener"><span class="mono badge">tg</span><span class="ltxt"><b>Telegram</b><i>@nobodysamsa</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="tiktok" data-pending aria-disabled="true"><span class="mono badge">tt</span><span class="ltxt"><b>TikTok</b><i>—</i></span><span class="go">↗</span></a>
+    <!-- SHOP / CONTACT -->
+    <a class="link" data-reveal data-brand="etsy" href="https://www.etsy.com/shop/Bl7nksStudio" target="_blank" rel="noopener"><span class="mono badge">et</span><span class="ltxt"><b>Etsy</b><i>Bl7nksStudio</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="gumroad" data-pending aria-disabled="true"><span class="mono badge">$</span><span class="ltxt"><b>Gumroad</b><i>—</i></span><span class="go">↗</span></a>
+    <a class="link" data-reveal data-brand="email" href="mailto:hamissemohamedyasser@gmail.com"><span class="mono badge">@</span><span class="ltxt"><b>Email</b><i>hamissemohamedyasser</i></span><span class="go">↗</span></a>
+  </div>
+
+</main>
+
+<!-- ============================= FOOTER ============================= -->
+<footer class="site-foot" id="foot">
+  <div class="foot-top" data-reveal>
+    <span class="foot-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 2 22 12 12 22 2 12Z"/><circle cx="12" cy="12" r="3.4"/></svg>
+    </span>
+    <p class="foot-bio">
+      <b>VOIDSPLUNKER.std</b> is an agency of one. Design meets code; obsession meets output —
+      you work directly with me, <b>Hamisse Mohamed Yasser</b>, a <span class="acc">polymath developer &amp; designer</span>.
+      I build brand identities, immersive web, and the systems humming underneath. I believe design can tell
+      stories, evoke, and connect — and that a single mind, fully committed, beats a committee. Quality over quantity, always.
+    </p>
+  </div>
+
+  <nav class="foot-nav" data-reveal aria-label="Footer">
+    <!-- same verified URLs as the archive grid; unverified handles stay
+         visibly pending (never a fake link that jumps to the top) -->
+    <div class="foot-col"><h4>Design</h4><ul>
+      <li><a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">Behance</a></li>
+      <li><a class="pending" aria-disabled="true">Dribbble</a></li>
+      <li><a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">DeviantArt</a></li>
+      <li><a class="pending" aria-disabled="true">ArtStation</a></li>
+      <li><a href="https://www.pinterest.com/VOID.DESIGNER/" target="_blank" rel="noopener">Pinterest</a></li>
+    </ul></div>
+    <div class="foot-col"><h4>Dev</h4><ul>
+      <li><a href="../">Numidea Labs</a></li>
+      <li><a href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul></div>
+    <div class="foot-col"><h4>Social</h4><ul>
+      <li><a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://x.com/br4vetr4veler" target="_blank" rel="noopener">X / Twitter</a></li>
+      <li><a href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://delicateexpertsstuff.tumblr.com" target="_blank" rel="noopener">Tumblr</a></li>
+      <li><a href="https://t.me/nobodysamsa" target="_blank" rel="noopener">Telegram</a></li>
+    </ul></div>
+    <div class="foot-col"><h4>Studio</h4><ul>
+      <li><a href="#links">The Archive</a></li><li><a href="../">Numidea Labs</a></li>
+      <li><a href="https://www.etsy.com/shop/Bl7nksStudio" target="_blank" rel="noopener">Etsy</a></li>
+      <li><a href="mailto:hamissemohamedyasser@gmail.com">Contact</a></li>
+    </ul></div>
+  </nav>
+
+  <div class="foot-mid">
+    <div class="foot-socials">
+      <a class="soc" href="mailto:hamissemohamedyasser@gmail.com" aria-label="Email">@</a>
+      <a class="soc" href="https://x.com/br4vetr4veler" target="_blank" rel="noopener" aria-label="X / Twitter">X</a>
+      <a class="soc" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+      <a class="soc" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener" aria-label="Behance">Bē</a>
+      <a class="soc" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+      <a class="soc" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+      <a class="soc" href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+    </div>
+
+    <div class="theme-pill" role="group" aria-label="Theme &amp; scroll">
+      <button type="button" class="tp-sun" id="tpSun" aria-label="Light theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M19.1 4.9l-2.1 2.1M7 16.9l-2.1 2.1"/></svg></button>
+      <button type="button" class="tp-top" id="tpTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+      <button type="button" class="tp-moon" id="tpMoon" aria-label="Dark theme"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg></button>
+    </div>
+  </div>
+
+  <div class="foot-legal">
+    <span>©</span><span id="year">2025</span><span>— made in the void with</span>
+    <span class="heart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.3l-1.5-1.4C5 15 2 12.3 2 8.9 2 6.1 4.1 4 6.9 4c1.6 0 3.1.7 4.1 1.9C12 4.7 13.5 4 15.1 4 17.9 4 20 6.1 20 8.9c0 3.4-3 6.1-8.5 11z"/></svg></span>
+    <span>by</span> <b>b4vetrave1er.exe</b> <span class="dim">· VOIDSPLUNKER.std · DZ</span>
+  </div>
+</footer>
+
+<script src="app.js?v=202609031901" defer></script>
+</body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="arcanum">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Numidea Labs — On construit le logiciel que votre entreprise attend</title>
+<meta name="description" content="Studio de développement à Bordj Bou Arréridj. On conçoit, on code, on livre et on répond quand ça casse. Sans intermédiaire.">
+<meta name="theme-color" content="#0A1420">
+<meta name="author" content="Numidea Labs">
+
+<!-- Open Graph / social — scrapers require ABSOLUTE urls and refuse SVG images;
+     og.png is rasterized from og.svg (regenerate together). Update the host here
+     if the site moves to a custom domain. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Numidea Labs">
+<meta property="og:url" content="https://brvetr4ve1er.github.io/Numidea.tech/">
+<meta property="og:title" content="Numidea Labs — Rooted in Numidia, built on ideas">
+<meta property="og:description" content="A studio out of Bordj Bou Arréridj that designs, builds, ships and maintains digital products — and answers when they break.">
+<meta property="og:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Numidea Labs">
+<meta name="twitter:description" content="We build the software your business has been waiting for.">
+<meta name="twitter:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.png">
+
+<script>
+  window.NUMIDEA_VARIANT = "";
+</script>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<!-- Font preloads are written by the script below rather than as static tags:
+     the preload scanner requests static <link rel=preload> before any script
+     runs, so an Arabic visitor's faces would always queue behind the Latin ones
+     and arrive inside font-display:optional's window (CLS 0.08 at 1024px).
+     Written here, each visitor gets exactly the four faces their hero is set
+     in, first. Only what paints above the fold: on a 400kbps link 125KB of
+     preloads ahead of the CSS held first paint to 4.2s. 700 arrives on demand;
+     a late face is simply not used on that load. -->
+<script>
+  (function () {
+    var l = 'fr'; try { l = localStorage.getItem('numidea-lang') || 'fr'; } catch (e) {}
+    var faces = l === 'ar'
+      ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-600-arabic', 'ibm-plex-sans-arabic-600-latin', 'geist-mono-400-latin', 'geist-600-latin']
+      /* The Arabic hero also sets Latin glyphs — project names in Plex Arabic 600's
+         latin subset, the logo in Geist 600. Leave either out and it renders in a
+         fallback first and widens when the file lands: with the body held until
+         app.js, that file is not even discovered until release, which puts the
+         swap inside font-display:optional's window (CLS 0.03 at 1024px). */
+      : ['geist-400-latin', 'geist-mono-400-latin', 'geist-600-latin', 'cinzel-700-latin'];
+    document.write(faces.map(function (f) {
+      return '<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/' + f + '.woff2">';
+    }).join(''));
+  })();
+</script>
+<!-- Self-hosted. No third-party request on the critical path, which is what
+     "0 dependence" has to mean if it is going to be printed on the page. -->
+<link rel="stylesheet" href="assets/fonts.css?v=202609031901">
+<link rel="stylesheet" href="assets/styles.css?v=202609031901">
+<!-- "Engineering" is a whole design system rather than a palette, so it ships as
+     an alternate sheet. href is EMPTY on purpose and is set by the resolver below
+     only when that theme is active. A `media="not all"` sheet is still downloaded
+     (at low priority) but is NOT render-blocking, so the page painted in base
+     styles and then restyled when it applied — .wrap jumped 1190px to 1200px,
+     CLS 0.0768 in half of loads. Assigning href from a head script, with no
+     media attribute in the way, makes it render-blocking: that theme paints
+     correctly the first time. The other five never download it at all. -->
+<script>
+  /* Resolve variant + theme BEFORE first paint. Runs after the links so it can
+     enable the alternate sheet without a flash of the base theme. */
+  (function () {
+    var d = document.documentElement, v = '';
+    try { v = new URLSearchParams(location.search).get('variant') || ''; } catch (e) {}
+    if (!/^[abc]$/.test(v)) v = window.NUMIDEA_VARIANT || '';
+    if (!/^[abc]$/.test(v)) {
+      var h = location.hostname;
+      v = h.indexOf('netlify') !== -1 ? 'c' : h.indexOf('vercel') !== -1 ? 'b' : 'a';
+    }
+    d.setAttribute('data-variant', v);
+    var def = v === 'b' ? 'daylight' : 'arcanum', t = def;
+    try { t = localStorage.getItem('numidea-theme') || def; } catch (e) {}
+    d.setAttribute('data-theme', t);
+    /* The alternate sheet has to be PARSER-inserted to block rendering. Assigning
+       href from script makes it a dynamic stylesheet, which never blocks — not
+       with media removed, not with blocking="render" — so the page painted in
+       base styles and restyled when it applied. document.write here is
+       deliberate and safe: it runs while the head is still parsing, so the
+       parser inserts the link itself and rendering waits for it. Only the theme
+       actually in use is written, so nobody else downloads or waits on 46KB. */
+    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202609031901';
+    if (t === 'engineering') {
+      document.write('<link rel="stylesheet" id="theme-eng" href="' + window.NUMIDEA_ENG_CSS + '">');
+    }
+
+    /* Language, also before first paint. The markup is baked in French, so for a
+       visitor whose saved language is EN or AR the deferred applyLang() rewrites
+       194 nodes and flips `dir` AFTER the page has painted — measured at CLS
+       0.63, the largest shift on the site. Setting lang/dir here costs nothing
+       and removes the direction flip.
+
+       The text itself cannot be swapped this early: the dictionary lives in
+       app.js and none of those 194 elements have been parsed yet. So when the
+       baked language is not the one we are about to show, hold paint with
+       `data-i18n-pending` and let app.js release it once the swap is done.
+       A visitor on French — the default — never takes this path and paints
+       exactly as before. */
+    var BAKED = 'fr', lang = BAKED;
+    try { lang = localStorage.getItem('numidea-lang') || BAKED; } catch (e) {}
+    if (['fr', 'en', 'ar'].indexOf(lang) === -1) lang = BAKED;
+    d.setAttribute('lang', lang);
+    d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    if (lang !== BAKED) {
+      d.setAttribute('data-i18n-pending', '');
+      /* Never let a broken or missing app.js leave the page invisible. Deferred
+         scripts run BEFORE DOMContentLoaded, so if app.js executed at all it has
+         already released the hold by the time this fires — which bounds the worst
+         case to parse time rather than to a timer. The timeout is only for the
+         case where that event has somehow already gone by. */
+      var release = function () { d.removeAttribute('data-i18n-pending'); };
+      document.addEventListener('DOMContentLoaded', release);
+      setTimeout(release, 1500);
+    }
+  })();
+</script>
+<style>
+  /* Paired with data-i18n-pending above. Inline and in <head> so it is in effect
+     before the first paint it exists to suppress. */
+  /* display:none, not visibility or opacity. Chrome scores a layout shift for a
+     box that existed before the swap and moved after it, whether or not it was
+     visible: visibility:hidden measured CLS 0.03 at 1024px in Arabic (the hero
+     plate re-declares visibility:visible and painted through), and opacity:0
+     measured the same. With no box at all before the swap there is nothing to
+     have moved — the page lays out once, in the right language. */
+  html[data-i18n-pending] body{display:none}
+</style>
+<noscript><style>
+  /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
+  .reveal{opacity:1!important;transform:none!important}
+  .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dashoffset:0!important}
+</style></noscript>
+</head>
+<body>
+
+<a class="skip" href="#main">Aller au contenu · Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
+
+<!-- Ambient depth: three slow colour fields under the whole page. Inked
+     from palette tokens, so they reskin with the theme. Decoration only. -->
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+
+<!-- ================= NAV ================= -->
+<header class="navbar">
+  <div class="nav-inner">
+    <div class="bar">
+      <a class="logo" href="#top"><span class="brick" aria-hidden="true">N</span>Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#how" data-i18n="nav.about">À propos</a>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#work" data-i18n="nav.work">Projets</a>
+        <a href="#founder" data-i18n="nav.team">Équipe</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <div class="theme-switch">
+          <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="Theme"><span class="ic" aria-hidden="true"></span></button>
+          <div class="theme-menu" role="menu" aria-label="Theme">
+            <button type="button" role="menuitemradio" data-theme-val="arcanum" aria-checked="true"><span class="dot arcanum" aria-hidden="true"></span>Arcanum</button>
+            <button type="button" role="menuitemradio" data-theme-val="noir" aria-checked="false"><span class="dot noir" aria-hidden="true"></span>Neon Noir</button>
+            <button type="button" role="menuitemradio" data-theme-val="daylight" aria-checked="false"><span class="dot daylight" aria-hidden="true"></span>Daylight</button>
+            <button type="button" role="menuitemradio" data-theme-val="mono" aria-checked="false"><span class="dot mono" aria-hidden="true"></span>Monochrome</button>
+            <button type="button" role="menuitemradio" data-theme-val="altneon" aria-checked="false"><span class="dot altneon" aria-hidden="true"></span>Alt-neon</button>
+            <button type="button" role="menuitemradio" data-theme-val="engineering" aria-checked="false"><span class="dot engineering" aria-hidden="true"></span>Engineering</button>
+          </div>
+        </div>
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+        </div>
+        <button type="button" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- mobile overlay menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <button type="button" class="close" aria-label="Close">×</button>
+  <a href="#how" data-i18n="nav.about">À propos</a>
+  <a href="#services" data-i18n="nav.services">Services</a>
+  <a href="#work" data-i18n="nav.work">Projets</a>
+  <a href="#founder" data-i18n="nav.team">Équipe</a>
+  <a href="#faq" data-i18n="nav.faq">FAQ</a>
+  <a href="#contact" data-i18n="nav.contact">Contact</a>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+  </div>
+</div>
+
+
+<span id="top"></span>
+<main id="main" class="wrap" tabindex="-1">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-mesh" data-parallax="-.10" aria-hidden="true"><span class="m1"></span><span class="m2"></span></div>
+    <div class="floaters" aria-hidden="true">
+      <svg class="fl-ring" data-parallax="-.30" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="33" stroke-dasharray="3 7"/></svg>
+      <svg class="fl-tri" data-parallax=".26" viewBox="0 0 100 100"><path d="M50 9 91 85H9Z"/></svg>
+      <svg class="fl-cross" data-parallax="-.20" viewBox="0 0 100 100"><path d="M50 8v84M8 50h84"/><circle cx="50" cy="50" r="15"/></svg>
+      <svg class="fl-dot" data-parallax=".34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="6"/><circle cx="50" cy="50" r="27" stroke-dasharray="2 8"/></svg>
+    </div>
+    <div class="sheet-frame" aria-hidden="true">
+      <i class="sf tl"></i><i class="sf tr"></i><i class="sf bl"></i><i class="sf br"></i>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow" data-i18n="hero.eyebrow">Atelier d'ingénierie · Bordj Bou Arréridj · DZ</span>
+        <h1 class="hero-h" id="hero-title" data-i18n="hero.title">Une ingénierie qui tient de la magie. <span class="swash">La rigueur qui la livre.</span></h1>
+        <div class="dim-line" aria-hidden="true"><i></i><b>36°04′N · 4°46′E</b><i></i></div>
+        <p class="lede" data-i18n="hero.lede">Quatre spécialistes qui conçoivent, codent et livrent toute la chaîne — du back-end au dernier pixel. Des systèmes puissants, rendus accessibles, et assumés quand ça casse.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Construisons →</a>
+          <a class="btn btn-teal" href="#work" data-i18n="hero.cta2">Voir les preuves</a>
+        </div>
+      </div>
+      <div class="term reveal" data-parallax=".07" role="img" aria-label="Dernier déploiement : GitHub Pages, 18 secondes, en ligne">
+        <div class="term-bar"><i></i><i></i><i></i><span>numidea — deploy</span></div>
+        <div class="term-body">
+          <span class="l"><span class="p">$</span> git push origin claude/numidea-labs-landing</span>
+          <span class="l d">› Deploy to GitHub Pages · workflow run</span>
+          <span class="l"><span class="ok">✓</span> checkout <span class="d">2s</span></span>
+          <span class="l"><span class="ok">✓</span> configure-pages <span class="d">1s</span></span>
+          <span class="l"><span class="ok">✓</span> upload-artifact <span class="d">4s</span></span>
+          <span class="l"><span class="ok">✓</span> deploy <span class="d">11s</span></span>
+          <span class="l"><span class="ok">●</span> <span class="w">live</span> <span class="d">brvetr4ve1er.github.io/Numidea.tech</span></span>
+        </div>
+        <div class="term-foot">
+          <div><b>18s</b><span>build</span></div>
+          <div><b>0</b><span>deps</span></div>
+          <div><b>3</b><span>langues</span></div>
+        </div>
+      </div>
+      <!-- THE PLATE — the five live client sites, one at a time, at a size you
+           can actually read. This replaced a fan of three static thumbnails
+           that showed 3 of 5 clients and was too small to make out; the studio's
+           strongest asset was being used as texture. Wiped, never cross-faded:
+           screenshots stay flat and sharp, which is the scene/ idiom. -->
+      <div class="plate-wrap" data-parallax="-.06" data-parallax-cap="26">
+        <div class="plate">
+          <i class="pk tl" aria-hidden="true"></i><i class="pk tr" aria-hidden="true"></i>
+          <i class="pk bl" aria-hidden="true"></i><i class="pk br" aria-hidden="true"></i>
+        <img class="pl on" src="assets/previews/bordjsteel.webp" alt="Bordj Steel"
+             width="1280" height="800" decoding="async" fetchpriority="high">
+        <img class="pl" src="assets/previews/glaive.webp" alt="Glaive Store"
+             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
+        <img class="pl" src="assets/previews/alliancetravel.webp" alt="Alliance Travel"
+             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
+        <img class="pl" src="assets/previews/nomara.webp" alt="Nomara Voyages"
+             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
+        <img class="pl" src="assets/previews/almaflowclim.webp" alt="AlmaFlowClim"
+             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
+          <span class="pl-wipe" aria-hidden="true"></span>
+          <span class="pl-scan" aria-hidden="true"></span>
+        </div>
+        <div class="plate-meta">
+          <span class="pm-idx" aria-hidden="true"><b>01</b>/05</span>
+          <span class="pm-rot">
+        <a class="pm-item on" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>Bordj Steel</b><i data-i18n="proj4.cat">Industrie · B2B</i>
+        </a>
+        <a class="pm-item" href="https://glaivestore.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>Glaive Store</b><i data-i18n="proj7.cat">Commerce · Gaming</i>
+        </a>
+        <a class="pm-item" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>Alliance Travel</b><i data-i18n="proj2.cat">Voyage · Croissance</i>
+        </a>
+        <a class="pm-item" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>Nomara Voyages</b><i data-i18n="proj6.cat">Voyage · Omra</i>
+        </a>
+        <a class="pm-item" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer">
+          <b>AlmaFlowClim</b><i data-i18n="proj3.cat">Industrie · Web</i>
+        </a>
+          </span>
+          <span class="pm-live"><i aria-hidden="true"></i><span data-i18n="hero.plateLive">en ligne</span></span>
+        </div>
+        <div class="plate-rail" role="tablist" aria-label="Projets">
+        <button type="button" role="tab" aria-selected="true" aria-label="Bordj Steel"><i></i></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="Glaive Store"><i></i></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="Alliance Travel"><i></i></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="Nomara Voyages"><i></i></button>
+        <button type="button" role="tab" aria-selected="false" aria-label="AlmaFlowClim"><i></i></button>
+        </div>
+      </div>
+    </div>
+
+    <dl class="titleblock">
+      <div class="tb-f">
+        <dt data-i18n="tb.project">Projet</dt>
+        <dd>Numidea Labs<i>BBA · DZ</i></dd>
+      </div>
+      <div class="tb-f">
+        <dt data-i18n="tb.stack">Pile</dt>
+        <dd>0<i data-i18n="tb.stackV">dépendance · sans build</i></dd>
+      </div>
+      <div class="tb-f">
+        <dt data-i18n="tb.lang">Langues</dt>
+        <dd>FR · EN · AR<i>RTL</i></dd>
+      </div>
+      <div class="tb-f">
+        <dt data-i18n="tb.deploy">Déploiement</dt>
+        <dd data-i18n="tb.deployV">18 s · Actions</dd>
+      </div>
+      <div class="tb-f">
+        <dt data-i18n="tb.status">État</dt>
+        <dd><span class="tb-live" aria-hidden="true"></span>5 / 7<i data-i18n="hero.plateLive">en ligne</i></dd>
+      </div>
+    </dl>
+    <div class="sheet-foot" aria-hidden="true">
+      <span data-i18n="sheet.scale">Éch. 1:1</span>
+      <span data-i18n="sheet.rev">Rév. 2026-08</span>
+      <span class="sf-mark">◆</span>
+      <span data-i18n="sheet.sheet">Feuille 01</span>
+    </div>
+
+  </section>
+
+  <!-- Variant C only (offer-first): the signature offer promoted above the fold.
+       Hidden by CSS on a/b — no JS required, works with scripts disabled. -->
+  <aside class="offer-band" data-variant-only="c" aria-labelledby="offer-h">
+    <div class="ob-mark" aria-hidden="true">◆</div>
+    <div class="ob-txt">
+      <span class="ob-tag" data-i18n="prev.tag">Offre signature</span>
+      <h2 id="offer-h" data-i18n="prev.name">L'Aperçu</h2>
+      <p class="ob-promise" data-i18n="prev.promise">Zéro risque. Juste la preuve.</p>
+      <p class="ob-brief" data-i18n="prev.brief">On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.</p>
+    </div>
+    <a class="btn btn-primary ob-cta" href="#contact" data-i18n="hero.cta1">Demander ma démo gratuite →</a>
+  </aside>
+
+  <!-- ================= PROOF ================= -->
+  <section class="proof reveal" aria-labelledby="proof-h">
+    <span class="kicker" data-parallax=".035" id="proof-h" data-i18n="proof.kicker">01 — Preuves</span>
+    <div class="proof-grid" data-parallax=".06">
+      <div><div class="stat" data-count="5" data-suffix="">5</div><div class="stat-label" data-i18n="proof.s1">projets livrés</div></div>
+      <div><div class="stat" data-count="4">4</div><div class="stat-label" data-i18n="proof.s2">spécialistes</div></div>
+      <div><div class="stat" data-count="3">3</div><div class="stat-label" data-i18n="proof.s3">langues</div></div>
+      <div><div class="stat" data-count="24" data-prefix="&lt;" data-suffix="h">&lt;24h</div><div class="stat-label" data-i18n="proof.s4">de réponse</div></div>
+    </div>
+    <p class="proof-line" data-i18n="proof.line">De vrais clients. De vrais déploiements. Les preuves sont plus bas — ouvrez-les.</p>
+  </section>
+
+
+  <!-- ================= SELECTED WORK ================= -->
+  <section id="work" aria-labelledby="work-h">
+    <span class="kicker" data-parallax=".035" data-i18n="work.kicker">02 — Réalisations</span>
+    <h2 class="sec font-swap-display" id="work-h" data-i18n="work.title">La preuve, <em>en direct.</em></h2>
+    <p class="sec-lead" data-i18n="work.lead">Des sites réels, en ligne, qu'on peut cliquer — pas des maquettes.</p>
+    <div class="work-grid">
+
+      <article class="proj reveal" data-cat="health" data-idx="01/07">
+        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>doctorcherfia.dz</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Doctor Cherfia</span></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj1.cat">Santé · Next.js</span>
+          <h3>Doctor Cherfia Clinic</h3>
+          <p data-i18n="proj1.desc">Une plateforme calme, prête à la prise de rendez-vous, qui donne à un petit cabinet une allure établie.</p>
+          <div class="pills"><span class="pill">Next.js</span><span class="pill">Booking</span><span class="pill soon" data-i18n="work.soon">Bientôt</span></div>
+          <div class="actions">
+            <span class="soon" data-i18n="work.soon">Bientôt</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj proj--brand reveal" data-cat="travel" style="--brand:95,214,134" data-idx="02/07">
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="assets/previews/alliancetravel.webp" alt="Aperçu du site Alliance Travel" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
+          <h3>Alliance Travel</h3>
+          <p data-i18n="proj2.desc">Marque, funnel et stratégie de marché pour une agence de BBA dans la bataille des visas Schengen.</p>
+          <div class="pills"><span class="pill">Brand</span><span class="pill">Funnel</span><span class="pill live">Live</span></div>
+          <div class="actions">
+            <a href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj proj--brand reveal" data-cat="industrial" style="--brand:59,164,224" data-idx="03/07">
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="assets/previews/almaflowclim.webp" alt="Aperçu du site AlmaFlowClim" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj3.cat">Industrie · Web</span>
+          <h3>AlmaFlowClim</h3>
+          <p data-i18n="proj3.desc">Une présence statique nette, conçue pour convertir les demandes de devis.</p>
+          <div class="pills"><span class="pill">Static</span><span class="pill">SEO</span><span class="pill live">Live</span></div>
+          <div class="actions">
+            <a href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj proj--brand reveal" data-cat="industrial" style="--brand:214,55,48" data-idx="04/07">
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
+          <h3>Bordj Steel</h3>
+          <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, leader de la construction métallique en Algérie — catalogue produits, références et espace recrutement.</p>
+          <div class="pills"><span class="pill">B2B</span><span class="pill">Corporate</span><span class="pill live">Live</span></div>
+          <div class="actions">
+            <a href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj reveal" data-cat="pwa" data-idx="05/07">
+        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>etoile-est.app</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Étoile de l'Est</span></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj5.cat">PWA · Supabase</span>
+          <h3>Étoile de l'Est</h3>
+          <p data-i18n="proj5.desc">Une application web progressive offline-first, avec une vraie ingénierie en dessous.</p>
+          <div class="pills"><span class="pill">PWA</span><span class="pill">Supabase</span><span class="pill">Offline</span></div>
+          <div class="actions">
+            <span class="soon" data-i18n="work.soon">Bientôt</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj proj--brand reveal" data-cat="travel" style="--brand:34,180,104" data-idx="06/07">
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
+          <h3>Nomara Voyages</h3>
+          <p data-i18n="proj6.desc">Une vitrine bilingue pour des voyages organisés et l'Omra au départ de Constantine.</p>
+          <div class="pills"><span class="pill">Bilingue</span><span class="pill">SEO</span><span class="pill live">Live</span></div>
+          <div class="actions">
+            <a href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj proj--brand reveal" data-cat="commerce" style="--brand:255,90,31" data-idx="07/07">
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="assets/previews/glaive.webp" alt="Aperçu du site Glaive Store" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
+          <h3>Glaive Store</h3>
+          <p data-i18n="proj7.desc">Une boutique de matériel gaming au branding affûté, pensée pour la conversion.</p>
+          <div class="pills"><span class="pill">Commerce</span><span class="pill">Brand</span><span class="pill live">Live</span></div>
+          <div class="actions">
+            <a href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <a class="scene-banner reveal" href="scene/">
+      <span class="sb-art" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="sb-txt">
+        <span class="sb-kick" data-i18n="scene.kicker">◆ SCROLL-BUILT · SCENE BY SCENE</span>
+        <b data-i18n="scene.title">Les projets, en 3D.</b>
+        <span class="sb-lead" data-i18n="scene.lead">Une scène 3D pilotée au scroll : nos déploiements réels, rendus un par un.</span>
+      </span>
+      <span class="sb-go" data-i18n="scene.cta">Entrer dans la scène →</span>
+    </a>
+
+    <div class="work-foot">
+      <button type="button" class="btn btn-ghost" id="portfolio-open" data-i18n="work.all" aria-haspopup="dialog">Voir tout le portfolio →</button>
+    </div>
+  </section>
+
+  <!-- ================= PROJECT EXPLORER ================= -->
+  <!-- The portfolio explorer used to live here, inside <section id="work">.
+       Both .wrap and section carry z-index:1, which caps every descendant's
+       stacking — so the dialog's z-index:300 lost to the navbar's 100 and the
+       nav links intercepted clicks through it. Overlays must be body children. -->
+
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services" class="band" aria-labelledby="svc-h">
+    <span class="kicker" data-parallax=".035" data-i18n="svc.kicker">03 — Services</span>
+    <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">Ce qu'on <em>rend réel.</em></h2>
+    <p class="svc-lead" data-i18n="svc.lead">Cinq offres en avant, cinq capacités en réserve — la profondeur attend ceux qui creusent.</p>
+
+    <!-- SIGNATURE OFFER — pinned -->
+    <article class="preview reveal">
+      <div class="glow" aria-hidden="true"></div>
+      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7.5V3h4.5M16.5 3H21v4.5M21 16.5V21h-4.5M7.5 21H3v-4.5"/><circle cx="12" cy="12" r="3.4"/><path d="M12 6.2v2.4M12 15.4v2.4M6.2 12h2.4M15.4 12h2.4"/></svg></span>
+      <div class="body">
+        <span class="tag" data-i18n="prev.tag">Offre signature</span>
+        <h3 data-i18n="prev.name">L'Aperçu</h3>
+        <p class="promise" data-i18n="prev.promise">Zéro risque. Juste la preuve.</p>
+        <p class="brief" data-i18n="prev.brief">On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.</p>
+        <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="prev.outcome">Le « oui » le plus facile que vous donnerez — parce que vous l'avez déjà vu.</span></p>
+      </div>
+    </article>
+
+    <div class="svc-grid">
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16"/><path d="M2.5 8.6h19"/><path d="M5.4 6.3h1.5M8.4 6.3h1.5"/><path d="M5.8 12.2h7.4M5.8 15.8h11.6"/></svg></span>
+        <div>
+          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <h3 data-i18n="f1.name">Sites &amp; applications web</h3>
+          <p class="promise" data-i18n="f1.promise">Le choix évident.</p>
+          <p class="brief" data-i18n="f1.brief">Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel.</p>
+          <div class="tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">Tailwind</span><span class="pill">Vercel</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9.2" cy="9.8" r="4.7"/><circle cx="14.8" cy="9.8" r="4.7"/><circle cx="12" cy="15" r="4.7"/></svg></span>
+        <div>
+          <h3 data-i18n="f2.name">Identité &amp; systèmes visuels</h3>
+          <p class="promise" data-i18n="f2.promise">La confiance avant le premier mot.</p>
+          <p class="brief" data-i18n="f2.brief">Logos, couleur, typo, motion et le kit design-system complet — tokens primitifs → sémantiques → composants, documentés.</p>
+          <div class="tags"><span class="pill">Identity</span><span class="pill">Design systems</span><span class="pill">Motion</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="5.6" r="2.3"/><circle cx="19" cy="5.6" r="2.3"/><circle cx="12" cy="18.4" r="2.3"/><path d="M5 7.9v4.3a2 2 0 0 0 2 2h2.9M19 7.9v4.3a2 2 0 0 1-2 2h-2.9"/></svg></span>
+        <div>
+          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <h3 data-i18n="f3.name">Automatisation &amp; pipelines</h3>
+          <p class="promise" data-i18n="f3.promise">Supprimez la corvée.</p>
+          <p class="brief" data-i18n="f3.brief">Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif qui dévore vos heures — on le fait tourner seul à 3h du matin. Python · Playwright · APIs · Claude.</p>
+          <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill">APIs</span><span class="pill">Claude</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.9"/><path d="M12 1.6v2.6M12 19.8v2.6M1.6 12h2.6M19.8 12h2.6"/><circle cx="14.7" cy="9.3" r="1.15"/></svg></span>
+        <div>
+          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <h3 data-i18n="f4.name">Intelligence marché &amp; produit</h3>
+          <p class="promise" data-i18n="f4.promise">Voir le marché clairement.</p>
+          <p class="brief" data-i18n="f4.brief">Transformez le web ouvert en base de données. Veille concurrentielle, intelligence prix/produit, enrichissement de leads sur Maps, Facebook, Ouedkniss, Jumia, Instagram — structuré, scoré, requêtable.</p>
+          <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill">Maps</span><span class="pill">Scoring</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.2 20.6h17.6"/><path d="M3.2 16.4 8 11.9l3.7 2.9 6.1-7"/><path d="M14.3 7.8h4.4v4.4"/></svg></span>
+        <div>
+          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <h3 data-i18n="f5.name">Stratégie &amp; conseil croissance</h3>
+          <p class="promise" data-i18n="f5.promise">De la donnée, pas des impressions.</p>
+          <p class="brief" data-i18n="f5.brief">Audits marketing complets, analyse de funnels, positionnement concurrentiel, feuilles de route — honnêtes, ROI d'abord, par phases. On fait les devoirs sur votre secteur avant l'appel.</p>
+          <div class="tags"><span class="pill">Strategy</span><span class="pill">Funnels</span><span class="pill">Audits</span></div>
+        </div>
+      </article>
+    </div>
+
+    <details class="capabilities">
+      <summary>
+        <span data-i18n="cap.summary">Voir toutes les capacités →</span>
+        <span class="hint" data-i18n="cap.hint">5 capacités de plus, pour qui creuse.</span>
+        <span class="chev" aria-hidden="true">›</span>
+      </summary>
+      <div class="cap-grid">
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.4 11.4V4.6a1.2 1.2 0 0 1 1.2-1.2h6.8l9.2 9.2-7.8 7.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/><path d="M12.4 13.2l2.2 2.2 3.6-3.6"/></svg></span>
+          <span class="fam" data-i18n="c1.fam">Le Build</span>
+          <h4 data-i18n="c1.name">Boutique &amp; réservation</h4>
+          <p class="promise" data-i18n="c1.promise">De la visite au paiement.</p>
+          <p class="brief" data-i18n="c1.brief">Boutiques en ligne et systèmes de réservation pensés pour l'achat local — paiement WhatsApp, flux cash, Shopify headless si pertinent.</p>
+        </div>
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M3 9.1h18M8.2 20V9.1"/><path d="M11.4 16.6 14.6 13.4l3.4 3.4"/><circle cx="12.1" cy="11.7" r="1"/></svg></span>
+          <span class="fam" data-i18n="c2.fam">Le Build</span>
+          <h4 data-i18n="c2.name">Design graphique &amp; social</h4>
+          <p class="promise" data-i18n="c2.promise">On scroll, on s'arrête.</p>
+          <p class="brief" data-i18n="c2.brief">Packs social, carrousels, infographies, print — depuis un système visuel verrouillé, pour que tout vous ressemble.</p>
+        </div>
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.6 3.4v17h17"/><path d="M6.6 16.6 10.2 12l3.6 2.6 6.2-8.2"/><circle cx="10.2" cy="12" r="1.15"/><circle cx="13.8" cy="14.6" r="1.15"/></svg></span>
+          <span class="fam" data-i18n="c3.fam">L'Engine</span>
+          <h4 data-i18n="c3.name">Data science &amp; analytics</h4>
+          <p class="promise" data-i18n="c3.promise">Du signal dans le bruit.</p>
+          <p class="brief" data-i18n="c3.brief">Vrai travail statistique — modélisation économétrique, séries temporelles, prévision, dashboards. Analyse testée et défendable.</p>
+        </div>
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.7"/><circle cx="4.9" cy="5.4" r="1.9"/><circle cx="19.1" cy="5.4" r="1.9"/><circle cx="19.1" cy="18.6" r="1.9"/><circle cx="4.9" cy="18.6" r="1.9"/><path d="M6.4 6.8 10 10.2M17.6 6.8 14 10.2M17.6 17.2 14 13.8M6.4 17.2 10 13.8"/></svg></span>
+          <span class="fam" data-i18n="c4.fam">L'Esprit</span>
+          <h4 data-i18n="c4.name">Systèmes de connaissance</h4>
+          <p class="promise" data-i18n="c4.promise">Une entreprise qui se souvient.</p>
+          <p class="brief" data-i18n="c4.brief">Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes pour le RAG.</p>
+        </div>
+        <div class="cap">
+          <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7.1" y="7.1" width="9.8" height="9.8"/><rect x="10.7" y="10.7" width="2.6" height="2.6"/><path d="M10.4 3.4v3.7M13.6 3.4v3.7M10.4 16.9v3.7M13.6 16.9v3.7"/><path d="M3.4 10.4h3.7M3.4 13.6h3.7M16.9 10.4h3.7M16.9 13.6h3.7"/></svg></span>
+          <span class="fam" data-i18n="c5.fam">L'Esprit</span>
+          <h4 data-i18n="c5.name">Outils &amp; skills IA sur mesure</h4>
+          <p class="promise" data-i18n="c5.promise">Le logiciel qui construit votre logiciel.</p>
+          <p class="brief" data-i18n="c5.brief">Outils internes, générateurs et skills sur mesure propulsés par Claude — une tâche répétitive devient une usine en un clic.</p>
+        </div>
+      </div>
+    </details>
+
+  </section>
+
+  <!-- ================= HOW WE WORK ================= -->
+  <section id="how" aria-labelledby="how-h">
+    <span class="kicker" data-parallax=".035" data-i18n="how.kicker">04 — Méthode</span>
+    <h2 class="sec font-swap-display" id="how-h" data-i18n="how.title">Aucun <em>intermédiaire.</em></h2>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="node">1</div>
+        <h3 data-i18n="how1.h">Vous parlez au constructeur.</h3>
+        <p data-i18n="how1.p">Pas de chef de projet, pas de téléphone arabe. Celui qui cadre, c'est celui qui livre.</p>
+      </div>
+      <div class="step reveal">
+        <div class="node">2</div>
+        <h3 data-i18n="how2.h">Une équipe possède toute la chaîne.</h3>
+        <p data-i18n="how2.p">Design → code → déploiement. Rien ne se perd dans un transfert qui n'a jamais lieu.</p>
+      </div>
+      <div class="step reveal">
+        <div class="node">3</div>
+        <h3 data-i18n="how3.h">On répond quand ça casse.</h3>
+        <p data-i18n="how3.p">Délais tenus, réponse en moins de 24h. Après le lancement, toujours là.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= FOUNDER ================= -->
+  <section id="founder" class="band" aria-labelledby="founder-h">
+    <span class="kicker" data-parallax=".035" data-i18n="founder.kicker">05 — Équipe &amp; fondateur</span>
+    <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Le studio a un <em>visage.</em></h2>
+    <p class="sec-lead" data-i18n="founder.lead">Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.</p>
+
+    <div class="founder-card reveal">
+      <div class="fd-top">
+        <div class="fd-photo" data-parallax="-.08"><span class="mono" aria-hidden="true">Y</span></div>
+        <div class="fd-id">
+          <h3>Yasser Hamisse</h3>
+          <p class="fd-role" data-i18n="founder.role">Designer &amp; développeur · Fondateur</p>
+          <div class="fd-pills">
+            <span class="pill">FR C2</span><span class="pill">EN C1</span><span class="pill">AR native</span>
+            <span class="pill" data-i18n="founder.years">6 ans</span><span class="pill">Bordj Bou Arréridj</span>
+          </div>
+        </div>
+      </div>
+      <p class="fd-bio" data-i18n="founder.bio">Six ans à concevoir des identités, coder des interfaces et livrer des produits — de la marque au front-end au cloud. Je transforme le brief en build, et je reste quand c'est en ligne.</p>
+      <div class="fd-actions">
+        <button type="button" class="btn btn-teal" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">Voir le parcours ↴</button>
+        <a class="btn btn-ghost" href="hub/" target="_blank" rel="noopener" data-i18n="founder.portfolio">Portfolio personnel ↗</a>
+      </div>
+
+      <div class="cv-panel" id="cv-panel">
+        <div class="cv-inner">
+          <div class="cv-col cv-exp">
+            <h4 data-i18n="founder.expLabel">Parcours</h4>
+            <ul class="timeline">
+              <li><span class="tl-date">2026 —</span><div><b>Heetch International</b><i data-i18n="fx1">Graphiste</i></div></li>
+              <li><span class="tl-date">2019 —</span><div><b>Grafil Studio · tr4veler.designs</b><i data-i18n="fx2">Designer freelance</i></div></li>
+              <li><span class="tl-date">2026</span><div><b>Alliance Travel</b><i data-i18n="fx3">Web &amp; social</i></div></li>
+              <li><span class="tl-date">2025–26</span><div><b>SPA Bordj Steel</b><i data-i18n="fx4">Identité &amp; web</i></div></li>
+              <li><span class="tl-date">2024</span><div><b>Artiland.Studio</b><i data-i18n="fx5">Contenu &amp; vidéo</i></div></li>
+            </ul>
+          </div>
+          <div class="cv-col cv-side">
+            <div class="cv-block">
+              <h4 data-i18n="founder.skillsLabel">Compétences</h4>
+              <p data-i18n="founder.skills">Design &amp; identité · Web &amp; front-end · Stratégie &amp; contenu. Production ~20 % plus rapide grâce à l'IA.</p>
+            </div>
+            <div class="cv-block">
+              <h4 data-i18n="founder.eduLabel">Formation</h4>
+              <p data-i18n="founder.edu">Informatique — Université Mohamed El Bachir El Ibrahimi · 2018–2024</p>
+            </div>
+            <a class="btn btn-primary cv-dl" href="assets/cv_yasser_hamisse_2026.pdf" target="_blank" rel="noopener" data-i18n="founder.download">Télécharger le CV (PDF) ↓</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="fd-team" data-i18n="founder.teamRow">Avec lui : <b>D</b> — données &amp; pipelines · <b>S</b> — ventes &amp; partenariats · <b>T</b> — représentant technique</p>
+    </div>
+  </section>
+
+  <!-- ================= STACK ================= -->
+  <section id="stack" aria-labelledby="stack-h">
+    <span class="kicker" data-parallax=".035" data-i18n="stack.kicker">06 — Stack</span>
+    <h2 class="sec font-swap-display" id="stack-h" data-i18n="stack.title">Le flex <em>discret.</em></h2>
+    <div class="stack-strip reveal">
+      <span class="grp"><b>Front</b><span class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></span></span>
+      <span class="grp"><b>Back</b><span class="pills"><span class="pill">Node</span><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span></span></span>
+      <span class="grp"><b>Cloud</b><span class="pills"><span class="pill">Vercel</span><span class="pill">Docker</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span></span></span>
+      <span class="grp"><b>Data</b><span class="pills"><span class="pill">Playwright</span><span class="pill">Pandas</span><span class="pill">Supabase</span><span class="pill">REST · APIs</span></span></span>
+      <span class="grp"><b>Mobile</b><span class="pills"><span class="pill">PWA</span><span class="pill">React Native</span><span class="pill">Expo</span></span></span>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <!-- ================= FAQ ================= -->
+  <section id="faq" aria-labelledby="faq-h">
+    <span class="kicker" data-parallax=".035" data-i18n="faq.kicker">07 — FAQ</span>
+    <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
+    <p class="sec-lead" data-i18n="faq.lead">Ce qu'on nous demande avant de se lancer — répondu franchement.</p>
+    <div class="faq-list">
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq1.q">Combien de temps pour livrer ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq1.a">Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu'on a cadré le projet ensemble.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq2.q">C'est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq2.a">Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq3.q">Vous travaillez en quelles langues ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq3.a">Français, arabe et anglais — à l'oral, à l'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq4.q">Et après le lancement ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq4.a">On reste. On maintient ce qu'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq5.q">Travaillez-vous à distance ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq5.a">Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l'accès direct au builder.</p></div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary><span class="q" data-i18n="faq6.q">Qu'est-ce qui vous différencie d'une agence ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <div class="faq-a"><p data-i18n="faq6.a">Pas d'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer.</p></div>
+      </details>
+
+    </div>
+  </section>
+
+  <section id="contact" class="contact band" aria-labelledby="contact-h">
+    <span class="kicker" data-parallax=".035" data-i18n="contact.kicker">08 — Contact</span>
+    <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">On le <em>rend réel ?</em></h2>
+    <div class="contact-grid">
+      <div class="contact-side">
+        <p class="sub" data-i18n="contact.sub">Dites-nous ce que vous cherchez à concrétiser — l'urgent, le cassé, l'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.</p>
+        <dl class="channels">
+          <div class="ch"><dt data-i18n="form.email">Email</dt><dd><a href="mailto:Hamissemohamedyasser@gmail.com">Hamissemohamedyasser@gmail.com</a></dd></div>
+          <div class="ch"><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
+          <div class="ch"><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">&lt; 24 heures · FR · EN · ع</dd></div>
+        </dl>
+      </div>
+      <div class="contact-main">
+        <form class="form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-name" data-i18n="form.name">Nom</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" data-i18n-ph="form.namePh" placeholder="Votre nom">
+              <span class="err" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="f-email" data-i18n="form.email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" data-i18n-ph="form.emailPh" placeholder="vous@entreprise.com">
+              <span class="err" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-message" data-i18n="form.message">Message</label>
+            <textarea id="f-message" name="message" rows="5" data-i18n-ph="form.messagePh" placeholder="Qu'est-ce qu'on construit ?"></textarea>
+            <span class="err" aria-live="polite"></span>
+          </div>
+          <button type="submit" class="btn btn-primary" data-i18n="form.send">Démarrer un projet →</button>
+        </form>
+        <div class="form-success" role="status" aria-live="polite">
+          <div class="tick" aria-hidden="true">✓</div>
+          <p data-i18n="form.success">Votre email est prêt dans votre messagerie — envoyez-le et on revient sous 24h.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer wrap">
+  <div class="footer-top">
+    <a class="logo" href="#top"><span class="brick" aria-hidden="true">N</span>Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+    <nav aria-label="Footer">
+      <a href="#how" data-i18n="nav.about">À propos</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#work" data-i18n="nav.work">Projets</a>
+      <a href="#founder" data-i18n="nav.team">Équipe</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <a href="mailto:Hamissemohamedyasser@gmail.com">Hamissemohamedyasser@gmail.com</a>
+    </nav>
+  </div>
+  <p class="signoff" data-i18n="footer.signoff">Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.</p>
+  <div class="meta">
+    <span data-i18n="footer.rights">© 2026 Numidea Labs · Tous droits réservés</span>
+    <span data-i18n="footer.tag">Rooted in Numidia · built on ideas</span>
+  </div>
+</footer>
+
+<!-- ===== PORTFOLIO EXPLORER (body-level overlay: see note in #work) ===== -->
+<div class="modal" id="portfolio-modal" role="dialog" aria-modal="true" aria-labelledby="portfolio-title" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="document">
+
+      <!-- browse view -->
+      <div class="explorer" id="explorer-browse">
+        <div class="modal-head">
+          <div>
+            <span class="kicker" data-parallax=".035" data-i18n="portfolio.kicker">Portfolio</span>
+            <h2 id="portfolio-title" class="font-swap-display" data-i18n="portfolio.title">Tout le <em>travail.</em></h2>
+          </div>
+          <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
+        </div>
+        <div class="modal-controls">
+          <label class="modal-search">
+            <span class="sr-only" data-i18n="portfolio.searchLabel">Rechercher un projet</span>
+            <input type="search" id="portfolio-search" data-i18n-ph="portfolio.searchPh" placeholder="Rechercher…" autocomplete="off">
+          </label>
+          <div class="modal-filters" id="portfolio-filters" role="group" aria-label="Catégories"></div>
+        </div>
+        <p class="explorer-count" id="explorer-count" aria-live="polite"></p>
+        <div class="modal-grid" id="portfolio-grid"></div>
+        <p class="modal-empty" id="portfolio-empty" hidden data-i18n="portfolio.empty">Aucun projet ne correspond — essayez un autre terme.</p>
+      </div>
+
+      <!-- detail (case study) view -->
+      <div class="explorer-detail" id="explorer-detail" hidden>
+        <div class="detail-head">
+          <button type="button" class="detail-back" id="detail-back"><span aria-hidden="true">←</span> <span data-i18n="portfolio.back">Tous les projets</span></button>
+          <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
+        </div>
+        <div class="detail-body" id="detail-body"></div>
+        <nav class="detail-nav" aria-label="Projets">
+          <button type="button" class="detail-prev" id="detail-prev"></button>
+          <button type="button" class="detail-next" id="detail-next"></button>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+
+<!-- Lead-capture config (Supabase). Empty until the project exists — the
+     form falls back to mailto-only until these are filled in. Only the
+     publishable/anon key ever goes here: it's designed to be public, and
+     row-level security restricts it to insert-only, never read. -->
+<script>
+  window.NUMIDEA_SUPABASE_URL = "";
+  window.NUMIDEA_SUPABASE_KEY = "";
+</script>
+<script src="assets/app.js?v=202609031901" defer></script>
+<!-- FAQ structured data (rich results); mirrors the French default render -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Combien de temps pour livrer ?","acceptedAnswer":{"@type":"Answer","text":"Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu'on a cadré le projet ensemble."}},
+{"@type":"Question","name":"C'est combien ?","acceptedAnswer":{"@type":"Answer","text":"Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez."}},
+{"@type":"Question","name":"Vous travaillez en quelles langues ?","acceptedAnswer":{"@type":"Answer","text":"Français, arabe et anglais — à l'oral, à l'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement."}},
+{"@type":"Question","name":"Et après le lancement ?","acceptedAnswer":{"@type":"Answer","text":"On reste. On maintient ce qu'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne."}},
+{"@type":"Question","name":"Travaillez-vous à distance ?","acceptedAnswer":{"@type":"Answer","text":"Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l'accès direct au builder."}},
+{"@type":"Question","name":"Qu'est-ce qui vous différencie d'une agence ?","acceptedAnswer":{"@type":"Answer","text":"Pas d'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer."}}
+]}
+</script>
+</body>
+</html>

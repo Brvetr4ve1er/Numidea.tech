@@ -1,0 +1,18 @@
+# Netlify — variant C of the A/B/C deployment set (see assets/app.js VARIANT).
+# Static site, no build step: publish the repo root as-is.
+[build]
+  publish = "."
+
+# Mirror of vercel.json: immutable fingerprinted assets + security headers.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
