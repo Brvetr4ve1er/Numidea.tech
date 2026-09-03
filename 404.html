@@ -7,10 +7,12 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A1420">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cinzel+Decorative:wght@400;700;900&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=202609021948">
+<!-- Self-hosted, same as index.html. This was a render-blocking third-party
+     stylesheet: with fonts.googleapis.com unreachable it held first paint for
+     the full connection timeout (13s measured on index.html before the same
+     fix). Every family this page asks for is already in assets/fonts/. -->
+<link rel="stylesheet" href="assets/fonts.css?v=202609031901">
+<link rel="stylesheet" href="assets/styles.css?v=202609031901">
 <style>
   /* svh, not vh: with viewport-fit=cover, 100vh is the tallest the viewport
      ever gets, so the page overflows by the height of the browser chrome
@@ -58,15 +60,19 @@
 <body>
 <div class="wrap e404">
   <a class="logo brand" href="index.html">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
-  <div>
-    <div class="mark">404</div>
+  <main>
+    <!-- The big 404 is this page's heading, so it is one: a page with no h1 and
+         no landmark leaves a screen-reader user nothing to navigate by. The
+         visible glyph carries the number; the sr-only span carries the sentence
+         that makes it a heading rather than a bare figure. -->
+    <h1 class="mark">404<span class="sr-only"> — page introuvable · page not found</span></h1>
     <p class="lines">
       <span class="fr">Cette page a pris la route.</span><br>
       This one took the road.
       <span class="ar">هذه الصفحة سلكت الطريق.</span>
     </p>
     <a class="btn btn-primary cta" href="index.html">Retour à l'accueil →</a>
-  </div>
+  </main>
 </div>
 </body>
 </html>

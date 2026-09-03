@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr" dir="ltr" data-theme="arcanum">
 <head>
 <meta charset="utf-8">
@@ -8,10 +8,15 @@
 <meta name="theme-color" content="#0A1420">
 <meta name="color-scheme" content="dark light">
 <script>try{var d=document.documentElement;d.dataset.theme=localStorage.getItem('numidea-theme')||'arcanum';var l=localStorage.getItem('numidea-lang')||'fr';d.lang=l;d.dir=l==='ar'?'rtl':'ltr';}catch(e){}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=202609021948">
+<!-- Self-hosted, same as index.html. This was a render-blocking third-party
+     stylesheet: with fonts.googleapis.com unreachable it held first paint for
+     the full connection timeout (13s measured on index.html before the same
+     fix). Every family this page asks for is already in assets/fonts/. -->
+<!-- Without this the browser falls back to /favicon.ico, which does not
+     exist: a 404 in every visitor's console on this page. -->
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/fonts.css?v=202609031901">
+<link rel="stylesheet" href="style.css?v=202609031901">
 </head>
 <body>
 <div class="runway" id="runway"></div>
@@ -50,10 +55,15 @@
   <div class="callout" id="callout">
     <span class="cnum" id="cNum">01</span>
     <div class="cbody">
-      <div class="ckick" id="cKick"></div>
-      <h1 class="cname" id="cName"></h1>
+      <!-- Seeded with the first card, then rewritten by app.js on every change.
+           Empty, these were an <h1> with no text and a link with no name and
+           href="#": with JS off the page carried 64 characters in total and a
+           screen reader had nothing to announce. Same approach as index.html,
+           which is baked in French and swapped at runtime. -->
+      <div class="ckick" id="cKick">ACIER · B2B · ALGÉRIE</div>
+      <h1 class="cname" id="cName">Bordj Steel</h1>
       <p class="ccopy" id="cCopy"></p>
-      <a class="clink" id="cLink" href="#" target="_blank" rel="noopener"></a>
+      <a class="clink" id="cLink" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener">voir le site ↗</a>
     </div>
   </div>
 
@@ -84,6 +94,6 @@
   <p class="cue" id="cue"></p>
 </div>
 
-<script src="app.js?v=202609021948" defer></script>
+<script src="app.js?v=202609031901" defer></script>
 </body>
 </html>

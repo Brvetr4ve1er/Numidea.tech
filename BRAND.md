@@ -409,6 +409,25 @@ language hold as `visibility:hidden` and as `opacity:0` both measured the same
 CLS through the text swap. `display:none` gives the page no box to have moved:
 it lays out once, in the right language.
 
+## The other three pages
+
+`index.html` is not the site. An error scan across all four pages found the
+render-blocking third-party font link — the one whose removal from `index.html`
+took first paint from 13s to 0.3s when the host is unreachable — still present
+on `404.html`, `hub/` and `scene/`. Every family `404.html` and `scene/` asked
+for was already in `assets/fonts/`, so both now use the local sheet. `hub/` uses
+Syne and Space Mono, which are not self-hosted, so its link stays third-party
+but is loaded `media="print"` + `onload` and can no longer hold the page.
+
+Also found there: `scene/` had an `<h1>` and a link that only JavaScript ever
+filled, so with JS off the page carried 64 characters and a screen reader had
+nothing to announce (both are seeded from the first card now, then rewritten at
+runtime); `404.html` had no heading and no landmark at all; and `hub/` and
+`scene/` declared no favicon, so every visit logged a 404 for `/favicon.ico`.
+
+**Whatever is verified for the main page is not thereby verified for the
+others.** Run the checks against all four.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%

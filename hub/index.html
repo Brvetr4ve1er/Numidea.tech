@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
@@ -11,9 +11,17 @@
 <meta name="color-scheme" content="dark light">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!-- Syne and Space Mono are not in assets/fonts/, so this stays third-party —
+     but never render-blocking: media="print" keeps it off the critical path and
+     onload promotes it. display=swap is already in the URL, so text paints in
+     the fallback and swaps on arrival instead of holding the page. -->
+<!-- Without this the browser falls back to /favicon.ico, which does not
+     exist: a 404 in every visitor's console on this page. -->
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap"></noscript>
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('void-theme')||'dark';}catch(e){document.documentElement.dataset.theme='dark';}</script>
-<link rel="stylesheet" href="style.css?v=202609021948">
+<link rel="stylesheet" href="style.css?v=202609031901">
 </head>
 <body>
 <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
@@ -34,7 +42,7 @@
     <svg class="fl-dot" data-parallax=".2" viewBox="0 0 100 100"><circle cx="50" cy="50" r="7"/><circle cx="50" cy="50" r="26" stroke-dasharray="2 8"/></svg>
   </div>
 
-  <nav class="topbar">
+  <nav class="topbar" aria-label="Raccourcis">
     <span class="brandtag">VOIDSPLUNKER<span class="acc">.std</span></span>
     <span class="spacer"></span>
     <span class="mono dim">EST — MMXXV</span>
@@ -203,6 +211,6 @@
   </div>
 </footer>
 
-<script src="app.js?v=202609021948" defer></script>
+<script src="app.js?v=202609031901" defer></script>
 </body>
 </html>
