@@ -20,8 +20,7 @@
   --mono:"Space Mono", ui-monospace, monospace;
   --disp:"Syne", system-ui, sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
-  --gut:clamp(18px,4vw,64px);
-}
+  --gut:clamp(18px,4vw,64px)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
@@ -31,8 +30,7 @@ body{
   background-image:
     radial-gradient(120% 90% at 80% -10%, rgba(182,255,46,.10), transparent 60%),
     radial-gradient(90% 80% at 10% 110%, rgba(77,226,255,.06), transparent 60%);
-  background-attachment:fixed;
-}
+  background-attachment:fixed}
 a{color:inherit;text-decoration:none}
 .mono{font-family:var(--mono)}
 .acc{color:var(--acc-text)}
@@ -68,33 +66,26 @@ a{color:inherit;text-decoration:none}
 .aurora{position:fixed;inset:-20%;z-index:0;pointer-events:none;overflow:hidden;filter:blur(60px);opacity:.5}
 .aurora i{position:absolute;display:block;border-radius:50%;mix-blend-mode:screen}
 .aurora .a1{width:52vw;height:52vw;left:-8vw;top:-6vw;
-  background:radial-gradient(circle,rgba(182,255,46,.20),transparent 68%);
-  animation:drift-a 46s ease-in-out infinite alternate}
+  background:radial-gradient(circle,rgba(182,255,46,.20),transparent 68%)}
 .aurora .a2{width:44vw;height:44vw;right:-6vw;top:22vh;
-  background:radial-gradient(circle,rgba(77,226,255,.16),transparent 68%);
-  animation:drift-b 58s ease-in-out infinite alternate}
+  background:radial-gradient(circle,rgba(77,226,255,.16),transparent 68%)}
 .aurora .a3{width:38vw;height:38vw;left:28vw;bottom:-12vw;
-  background:radial-gradient(circle,rgba(255,46,151,.10),transparent 68%);
-  animation:drift-c 64s ease-in-out infinite alternate}
-@keyframes drift-a{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vw,4vh,0) scale(1.12)}}
-@keyframes drift-b{from{transform:translate3d(0,0,0) scale(1.08)}to{transform:translate3d(-5vw,-3vh,0) scale(1)}}
-@keyframes drift-c{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(4vw,-5vh,0) scale(1.1)}}
+  background:radial-gradient(circle,rgba(255,46,151,.10),transparent 68%)}
+
+
+
 :root[data-theme="light"] .aurora{opacity:.4;mix-blend-mode:multiply}
 
 /* ---- drifting geometry: hand-drawn SVG, slow rotation ---- */
 .floaters{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .floaters svg{position:absolute;fill:none;stroke:currentColor;stroke-width:1;opacity:.22}
-.fl-ring{color:var(--acid);width:190px;height:190px;top:8%;right:6%;
-  animation:spin 68s linear infinite,bobf 13s ease-in-out infinite alternate}
-.fl-tri{color:var(--cyan);width:110px;height:110px;bottom:16%;left:4%;
-  animation:spin-r 52s linear infinite,bobf 11s ease-in-out infinite alternate}
-.fl-sq{color:var(--magenta);width:74px;height:74px;top:56%;right:22%;
-  animation:spin 44s linear infinite,bobf 16s ease-in-out infinite alternate}
-.fl-dot{color:var(--acid);width:52px;height:52px;top:26%;left:14%;
-  animation:bobf 9s ease-in-out infinite alternate}
-@keyframes spin{to{rotate:360deg}}
-@keyframes spin-r{to{rotate:-360deg}}
-@keyframes bobf{from{translate:0 -10px}to{translate:0 10px}}
+.fl-ring{color:var(--acid);width:190px;height:190px;top:8%;right:6%}
+.fl-tri{color:var(--cyan);width:110px;height:110px;bottom:16%;left:4%}
+.fl-sq{color:var(--magenta);width:74px;height:74px;top:56%;right:22%}
+.fl-dot{color:var(--acid);width:52px;height:52px;top:26%;left:14%}
+
+
+
 
 /* ---- gentle scroll reveal: rise + fade, staggered by JS ---- */
 [data-reveal]{opacity:0;transform:translate3d(0,18px,0);
@@ -131,23 +122,29 @@ a{color:inherit;text-decoration:none}
 .bars{width:64px;height:22px;background:repeating-linear-gradient(90deg,var(--paper) 0 2px,transparent 2px 4px,var(--paper) 4px 5px,transparent 5px 9px);opacity:.7}
 
 /* hero layout */
-.hero-grid{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1.05fr .95fr;
+.hero-grid{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
   gap:clamp(24px,5vw,64px);align-items:center;padding-bottom:clamp(40px,8vh,80px)}
 
 /* ---- identity ---- */
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc-text);
   display:flex;align-items:center;gap:10px;margin-bottom:clamp(16px,3vh,28px)}
-.blip{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid);animation:blip 1.6s steps(1) infinite}
-@keyframes blip{0%,60%{opacity:1}61%,100%{opacity:.25}}
+.blip{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid)}
+
 
 .cycler{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.94;
   font-size:clamp(38px,7vw,92px);margin-bottom:clamp(14px,2.4vh,22px)}
+/* The heading reserves two lines. Measured across widths, the five identities
+   render as either one line or two — never more — so two lines of the heading's
+   own line-height is the exact reservation that lets the text swap without ever
+   changing the box, and everything below it stays put. Reserving WIDTH instead
+   (min-width:20ch) was the wrong axis: it blew the box out to 1247px and left
+   the shift in place, because the wrap count was what actually varied.
+   The caret went with it — a flex child after the text, it slid on every swap. */
+.cycler{min-height:1.88em}   /* 2 × the .94 line-height above */
 .cy-line{display:inline-flex;align-items:baseline;gap:.08em;flex-wrap:wrap}
-.cy-text{background:linear-gradient(180deg,var(--paper),#b9b6a9);-webkit-background-clip:text;background-clip:text;color:transparent;
-  word-break:break-word}
-.cy-text .rand{color:var(--acid);opacity:.9;-webkit-text-fill-color:var(--acid)}
-.cy-caret{display:inline-block;width:.5em;height:.92em;background:var(--acid);box-shadow:0 0 16px var(--acid);
-  transform:translateY(.06em);animation:caret 1.05s steps(1) infinite}
+.cy-text{transition:opacity .26s ease}
+.cy-text.swapping{opacity:0}
+.cy-text{color:var(--paper)}
 @keyframes caret{0%,50%{opacity:1}51%,100%{opacity:0}}
 
 .role{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(18px,3vh,26px)}
@@ -160,7 +157,7 @@ a{color:inherit;text-decoration:none}
   border-left:2px solid var(--acid);padding-left:14px;transition:opacity .4s}
 
 .meta{list-style:none;display:grid;gap:9px;font-size:12.5px;max-width:44ch}
-.meta li{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:baseline;
+.meta li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:baseline;
   border-bottom:1px dashed var(--line);padding-bottom:9px}
 .meta b{color:var(--faint);font-weight:400;letter-spacing:.18em;font-size:10px}
 .meta span{color:var(--paper-dim)}
@@ -179,9 +176,10 @@ a{color:inherit;text-decoration:none}
 .bust{width:76%;height:auto;fill:rgba(182,255,46,.16);filter:drop-shadow(0 0 30px rgba(182,255,46,.12))}
 .halftone{position:absolute;inset:0;opacity:.5;mix-blend-mode:screen;
   background-image:radial-gradient(rgba(236,233,221,.5) 22%,transparent 23%);background-size:6px 6px}
-.glitchbar{position:absolute;left:0;right:0;height:12%;top:20%;background:linear-gradient(90deg,transparent,rgba(77,226,255,.18),rgba(255,46,151,.18),transparent);
-  mix-blend-mode:screen;animation:sweep 5.5s var(--ease) infinite}
-@keyframes sweep{0%{top:-15%;opacity:0}12%{opacity:1}50%{top:100%;opacity:.6}52%,100%{opacity:0}}
+/* The glitchbar is gone. It swept a coloured bar down the portrait forever by
+   animating `top` — a layout property, so every frame of it was a layout shift
+   on a page that never stopped animating. Decoration that cost the page its
+   stability, and the loudest piece of the "glitch" vocabulary on it. */
 .frame-cap{position:absolute;left:10px;bottom:10px;z-index:3;font-size:10px;letter-spacing:.12em;
   color:var(--paper-dim);background:rgba(10,11,13,.7);padding:4px 7px;border:1px solid var(--line)}
 .frame-cap .await{color:var(--faint);font-style:normal}
@@ -193,8 +191,8 @@ a{color:inherit;text-decoration:none}
 /* scroll cue */
 .scrollcue{position:relative;z-index:3;display:flex;align-items:center;gap:12px;justify-content:center;
   padding:clamp(14px,3vh,22px) 0;font-size:11px;letter-spacing:.2em;color:var(--paper-dim);border-top:1px solid var(--line)}
-.scrollcue .arr{color:var(--acc-text);animation:bob 1.8s var(--ease) infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.scrollcue .arr{color:var(--acc-text)}
+
 .scrollcue:hover{color:var(--acid)}
 
 /* ============================= LINKS ============================= */
@@ -257,7 +255,7 @@ a{color:inherit;text-decoration:none}
 
 /* ============================= RESPONSIVE ============================= */
 @media (max-width:860px){
-  .hero-grid{grid-template-columns:1fr;gap:clamp(28px,6vh,44px);padding-top:8px}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:clamp(28px,6vh,44px);padding-top:8px}
   .avatar{order:-1;width:min(78%,320px)}
   /* safe-area: the hero runs full-bleed under viewport-fit=cover */
   .hero{padding-left:max(var(--gut),env(safe-area-inset-left));
@@ -278,8 +276,8 @@ a{color:inherit;text-decoration:none}
   .ghost{font-size:34vw}
 }
 @media (max-width:520px){
-  .meta li{grid-template-columns:56px 1fr;gap:10px}
-  .links-grid{grid-template-columns:1fr}
+  .meta li{grid-template-columns:56px minmax(0,1fr);gap:10px}
+  .links-grid{grid-template-columns:minmax(0,1fr)}
 }
 
 /* ============================= LIGHT THEME ============================= */
@@ -288,8 +286,7 @@ a{color:inherit;text-decoration:none}
   --paper:#14160f;--paper-dim:#494c40;--faint:#8a8d7e;
   --acid:#8fd600;--acid-dim:#6aa300;--acc-text:#3c7800;
   --cyan:#0aa8cc;--magenta:#e01d80;
-  --line:#cccabd;--line-2:#adab9c;
-}
+  --line:#cccabd;--line-2:#adab9c}
 :root[data-theme="light"] body{
   background-image:radial-gradient(120% 90% at 80% -10%,rgba(143,214,0,.16),transparent 60%),
                    radial-gradient(90% 80% at 10% 110%,rgba(10,168,204,.08),transparent 60%)}
@@ -297,7 +294,6 @@ a{color:inherit;text-decoration:none}
 :root[data-theme="light"] .scanlines{opacity:.2}
 :root[data-theme="light"] .ghost{-webkit-text-stroke-color:rgba(20,22,15,.09)}
 :root[data-theme="light"] .dotgrid{background-image:radial-gradient(rgba(20,22,15,.12) 1px,transparent 1px)}
-:root[data-theme="light"] .cy-text{background:linear-gradient(180deg,var(--paper),#3a3d31);-webkit-background-clip:text;background-clip:text}
 :root[data-theme="light"] .frame{background:linear-gradient(180deg,rgba(143,214,0,.08),transparent 40%),var(--ink-2)}
 :root[data-theme="light"] .frame-cap{background:rgba(233,231,221,.82)}
 :root[data-theme="light"] .badge{background:var(--ink-2)}
@@ -325,7 +321,7 @@ a{color:inherit;text-decoration:none}
 
 /* ============================= FOOTER ============================= */
 .site-foot{position:relative;z-index:2;border-top:1px solid var(--line);padding:clamp(40px,7vh,72px) var(--gut) clamp(28px,5vh,44px)}
-.foot-top{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,44px);align-items:start;max-width:1200px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:start;max-width:1200px;margin:0 auto}
 .foot-mark{width:52px;height:52px;display:grid;place-items:center;border:1px dashed var(--line-2);border-radius:50%;flex:none}
 .foot-mark svg{width:26px;height:26px;fill:none;stroke:var(--acid);stroke-width:1.5}
 .foot-bio{font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--paper-dim);max-width:70ch}
@@ -372,11 +368,11 @@ html[dir="rtl"] .foot-col a:hover{transform:translateX(-3px)}
 
 .foot-legal{max-width:1200px;margin:clamp(26px,4vh,40px) auto 0;display:flex;align-items:center;justify-content:center;gap:6px;
   font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--faint);flex-wrap:wrap}
-.foot-legal .heart{color:#ff3b6b;display:inline-flex;animation:pulse 1.4s ease-in-out infinite}
+.foot-legal .heart{color:#ff3b6b;display:inline-flex}
 .foot-legal b{color:var(--paper);font-weight:700}
 .foot-legal a{color:var(--acc-text)}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.25);opacity:1}}
-@media (max-width:640px){ .foot-top{grid-template-columns:1fr} .foot-mid{flex-direction:column} }
+
+@media (max-width:640px){ .foot-top{grid-template-columns:minmax(0,1fr)} .foot-mid{flex-direction:column} }
 
 /* ============================= MOTION-SAFE ============================= */
 @media (prefers-reduced-motion:reduce){

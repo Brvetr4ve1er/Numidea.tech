@@ -128,6 +128,10 @@
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.innerHTML = '<span class="bar"></span><span class="n">' + pad(k + 1) + '</span>';
+    // The number is the only text in here and the narrow layout hides it, which
+    // left seven buttons with no accessible name at all. The label does not
+    // depend on what is visible.
+    btn.setAttribute('aria-label', 'Feuille ' + pad(k + 1) + ' — ' + sh.name);
     btn.addEventListener('click', function () { goTo(k); });
     el.rail.appendChild(btn); railBtns.push(btn);
   });

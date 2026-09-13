@@ -128,7 +128,13 @@ html[dir="rtl"] .cname{font-family:var(--font-ar)}
 .lang button{background:transparent;border:0;cursor:pointer;color:var(--muted);
   font-family:var(--font-mono);font-size:10px;padding:5px 9px;transition:.2s}
 .lang button:hover{color:var(--ice)}
-.lang button[aria-pressed="true"]{background:rgb(var(--acc));color:var(--void);font-weight:700}
+/* The page accent is whatever the current sheet sets, so --void on it measured
+   3.92:1 on the red sheet. Black holds against every accent in the set. */
+/* The accent changes with every sheet, so ANY fixed text colour on it fails on
+   one of them: white measured 4.0:1 on the red sheet, black 4.2:1. The pressed
+   chip keeps the page's own ink and background and marks itself with the accent
+   as a border instead, which is legible whatever the accent happens to be. */
+.lang button[aria-pressed="true"]{background:var(--navy);color:var(--ice);font-weight:700;box-shadow:inset 0 0 0 1px rgb(var(--acc))}
 
 /* ---- sheet index rail ---- */
 .rail{position:absolute;right:clamp(20px,4vw,44px);top:50%;transform:translateY(-50%);z-index:6;

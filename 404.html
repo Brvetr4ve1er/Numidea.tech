@@ -11,8 +11,8 @@
      stylesheet: with fonts.googleapis.com unreachable it held first paint for
      the full connection timeout (13s measured on index.html before the same
      fix). Every family this page asks for is already in assets/fonts/. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202609031901">
-<link rel="stylesheet" href="assets/styles.css?v=202609031901">
+<link rel="stylesheet" href="assets/fonts.css?v=202609131639">
+<link rel="stylesheet" href="assets/styles.css?v=202609131639">
 <style>
   /* svh, not vh: with viewport-fit=cover, 100vh is the tallest the viewport
      ever gets, so the page overflows by the height of the browser chrome
@@ -59,7 +59,9 @@
 </head>
 <body>
 <div class="wrap e404">
-  <a class="logo brand" href="index.html">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+  <header>
+    <a class="logo brand" href="index.html">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+  </header>
   <main>
     <!-- The big 404 is this page's heading, so it is one: a page with no h1 and
          no landmark leaves a screen-reader user nothing to navigate by. The

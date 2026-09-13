@@ -15,10 +15,14 @@
 <!-- Without this the browser falls back to /favicon.ico, which does not
      exist: a 404 in every visitor's console on this page. -->
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<link rel="stylesheet" href="../assets/fonts.css?v=202609031901">
-<link rel="stylesheet" href="style.css?v=202609031901">
+<link rel="stylesheet" href="../assets/fonts.css?v=202609131639">
+<link rel="stylesheet" href="style.css?v=202609131639">
 </head>
 <body>
+
+<!-- Everything on this page sat outside any landmark, so a screen reader had
+     no region to navigate by: 21 nodes reported. -->
+<main>
 <div class="runway" id="runway"></div>
 
 <div class="sheet">
@@ -94,6 +98,8 @@
   <p class="cue" id="cue"></p>
 </div>
 
-<script src="app.js?v=202609031901" defer></script>
+<script src="app.js?v=202609131639" defer></script>
+</main>
+
 </body>
 </html>

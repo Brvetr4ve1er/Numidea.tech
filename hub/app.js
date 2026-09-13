@@ -10,7 +10,16 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-  /* ---------------- 1 · scramble identity cycler ---------------- */
+  /* ---------------- 1 · identity cycler ----------------
+     Was a per-character glyph scramble. Two problems, both measured: the line's
+     width changed on every animation frame, so the page's own <h1> emitted a
+     layout shift continuously for the life of the tab (14 shifts >0.01 in six
+     seconds, CLS 1.16 over a longer run) — and for roughly a third of the cycle
+     the heading read as random glyphs where a name should be, including in the
+     accessible name a screen reader announces.
+
+     Now it crossfades. The box is reserved from the longest identity, so the
+     swap cannot move anything, and the text is only ever a real identity. */
   var IDENTITIES = [
     'b4vetrave1er.exe',
     'VOIDSPLUNKER.std',
@@ -18,44 +27,20 @@
     'POLYMATH DEVELOPER',
     'DESIGNER / DEVELOPER'
   ];
-  var GLYPHS = '!<>-_\\/[]{}=+*^?#01xX%&$§▓▒░ﾊﾐｼﾅﾋｦﾂ';
   var cyText = document.getElementById('cyText');
 
-  function scrambleTo(el, next, done) {
-    var prev = el.getAttribute('data-cur') || '';
-    var len = Math.max(prev.length, next.length);
-    var q = [];
-    for (var i = 0; i < len; i++) {
-      var start = Math.floor(Math.random() * 24);
-      q.push({ from: prev[i] || '', to: next[i] || '', start: start, end: start + 12 + Math.floor(Math.random() * 26), ch: null });
-    }
-    var frame = 0, raf;
-    function tick() {
-      var out = '', done_ = 0;
-      for (var i = 0; i < q.length; i++) {
-        var it = q[i];
-        if (frame >= it.end) { done_++; out += it.to; }
-        else if (frame >= it.start) {
-          if (!it.ch || Math.random() < 0.3) it.ch = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-          out += '<span class="rand">' + it.ch + '</span>';
-        } else out += it.from;
-      }
-      el.innerHTML = out;
-      if (done_ === q.length) { el.setAttribute('data-cur', next); if (done) done(); }
-      else { frame++; raf = requestAnimationFrame(tick); }
-    }
-    tick();
-  }
-
   if (cyText) {
-    cyText.setAttribute('data-cur', IDENTITIES[0]);
+    cyText.textContent = IDENTITIES[0];
     if (!reduce) {
       var idx = 0;
-      var loop = function () {
+      setInterval(function () {
         idx = (idx + 1) % IDENTITIES.length;
-        scrambleTo(cyText, IDENTITIES[idx], function () { setTimeout(loop, 2200); });
-      };
-      setTimeout(loop, 2100);
+        cyText.classList.add('swapping');
+        setTimeout(function () {
+          cyText.textContent = IDENTITIES[idx];
+          cyText.classList.remove('swapping');
+        }, 260);
+      }, 3400);
     }
   }
 

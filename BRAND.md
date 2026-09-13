@@ -428,6 +428,46 @@ runtime); `404.html` had no heading and no landmark at all; and `hub/` and
 **Whatever is verified for the main page is not thereby verified for the
 others.** Run the checks against all four.
 
+## The anti-slop sweep
+
+The generic layer came off all four pages. What stays is the drafting identity —
+the construction grid, the title block, dimension lines, the real client
+screenshots, the hand-drawn icon set. What went was the vocabulary any generated
+page arrives with:
+
+- **Gradient-filled text.** Five uses, including the primary headline. Not only
+  the loudest "generated" tell in the set — `--grad-text`'s own stops measure
+  **2.7:1 on noir and 3.1:1 on daylight**, under the 4.5 floor, on the largest
+  text on the page. **axe reported zero contrast violations the whole time**:
+  gradient-filled text computes as `color:transparent`, so the rule skips the
+  node. A clean axe run does not mean the type is legible.
+- **Perpetual motion.** 31 infinite animations across the four pages — drifting
+  colour fields, bobbing geometry, spinning icons, pulsing dots, blinking
+  carets, a sweeping "glitch" bar. Now **zero**: nothing on any page animates
+  forever. Two of them were also layout bugs: the hub's identity scramble
+  reflowed its own `<h1>` every frame (**CLS 1.16**), and the glitchbar animated
+  `top`, a layout property.
+- **The aurora**, three colour fields under every page, and the neon bloom on
+  buttons and chrome (a 32–40px glow became a hairline ring).
+
+**Flattening a gradient changes what the text sits on.** Dropping
+`--grad-blood` from the primary button left near-white on arcanum's gold at
+**1.67:1** — the gradient's dark end had been carrying the label. Each palette
+now states its own `--on-crimson`, because there is no single answer: ice on
+noir's red is 5.73:1 and 2.68:1 on arcanum's gold.
+
+**Regex is the wrong tool for CSS.** Two sweeps here damaged the stylesheet —
+`[^}]*\}` stops at the first inner brace of an `@keyframes` block, which left
+nine orphaned closing braces the first time and a fragment that silently killed
+the next rule the second (`.frame-cap` lost `position:absolute` and climbed to
+the top of the portrait). Remove rules by matching braces, and check the balance
+before believing the result.
+
+**Reserve the axis that actually varies.** The hub's cycling heading was fixed
+by `min-width:20ch` — wrong axis. It blew the box to 1247px and left the shift,
+because what varied was the *wrap count*. Two lines of its own line-height was
+the fix.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%
