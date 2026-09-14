@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="arcanum">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Numidea Labs — Les projets, planche par planche</title>
+<meta name="description" content="Le travail de Numidea Labs présenté comme un plan d'ingénierie : planches, cotes, et statuts honnêtes.">
+<meta name="theme-color" content="#0A1420">
+<meta name="color-scheme" content="dark light">
+<script>try{var d=document.documentElement;d.dataset.theme=localStorage.getItem('numidea-theme')||'arcanum';var l=localStorage.getItem('numidea-lang')||'fr';d.lang=l;d.dir=l==='ar'?'rtl':'ltr';}catch(e){}</script>
+<!-- Self-hosted, same as index.html. This was a render-blocking third-party
+     stylesheet: with fonts.googleapis.com unreachable it held first paint for
+     the full connection timeout (13s measured on index.html before the same
+     fix). Every family this page asks for is already in assets/fonts/. -->
+<!-- Without this the browser falls back to /favicon.ico, which does not
+     exist: a 404 in every visitor's console on this page. -->
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<!-- No preloads here either: all four faces arrived after first paint and the
+     swap resized the callout and the HUD (clink 26px→28px, hud-tag 11px→13px).
+     These are exactly the faces this page paints in. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cinzel-700-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-700-latin.woff2">
+<link rel="stylesheet" href="../assets/fonts.css?v=202609142335">
+<link rel="stylesheet" href="style.css?v=202609142335">
+</head>
+<body>
+
+<!-- Everything on this page sat outside any landmark, so a screen reader had
+     no region to navigate by: 21 nodes reported. -->
+<main>
+<div class="runway" id="runway"></div>
+
+<div class="sheet">
+  <!-- drafting paper -->
+  <div class="grid-fine" aria-hidden="true"></div>
+  <div class="grid-coarse" id="gridCoarse" aria-hidden="true"></div>
+  <div class="sheet-border" aria-hidden="true"></div>
+
+  <!-- axonometric wireframe scaffolding — pure line art -->
+  <svg class="scaffold" id="scaffold" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g class="ax" id="axGroup"></g>
+  </svg>
+
+  <!-- the plate: a FLAT screenshot, never rotated, so it stays razor sharp -->
+  <div class="platewrap" id="platewrap">
+    <div class="plate" id="plate">
+      <span class="tick tl"></span><span class="tick tr"></span>
+      <span class="tick bl"></span><span class="tick br"></span>
+      <img id="shot" src="../assets/previews/bordjsteel.webp" alt="">
+      <!-- shown instead of a screenshot when a sheet is still in preparation -->
+      <div class="inprep" id="inprep" hidden>
+        <span class="hatch" aria-hidden="true"></span>
+        <span class="stamp" id="stampTxt">PLANCHE EN PRÉPARATION</span>
+        <span class="stamp-sub" id="stampSub">aucune capture — le statut reste honnête</span>
+      </div>
+      <span class="plate-wipe" id="wipe"></span>
+      <span class="plate-scan" aria-hidden="true"></span>
+    </div>
+    <div class="dim dim-w"><span class="ln"></span><span class="lbl">1280 px</span><span class="ln"></span></div>
+    <div class="dim dim-h"><span class="ln"></span><span class="lbl">800</span><span class="ln"></span></div>
+  </div>
+
+  <!-- callout on a leader line -->
+  <div class="callout" id="callout">
+    <span class="cnum" id="cNum">01</span>
+    <div class="cbody">
+      <!-- Seeded with the first card, then rewritten by app.js on every change.
+           Empty, these were an <h1> with no text and a link with no name and
+           href="#": with JS off the page carried 64 characters in total and a
+           screen reader had nothing to announce. Same approach as index.html,
+           which is baked in French and swapped at runtime. -->
+      <div class="ckick" id="cKick">ACIER · B2B · ALGÉRIE</div>
+      <h1 class="cname" id="cName">Bordj Steel</h1>
+      <p class="ccopy" id="cCopy"></p>
+      <a class="clink" id="cLink" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener">voir le site ↗</a>
+    </div>
+  </div>
+
+  <!-- header -->
+  <nav class="hud">
+    <a href="../" class="hud-logo"><span class="d">◆</span> NUMIDEA LABS</a>
+    <span class="hud-tag" id="hudTag"></span>
+    <span class="sp"></span>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+    </div>
+  </nav>
+
+  <!-- sheet index rail -->
+  <div class="rail" id="rail" role="group" aria-label="Sheets"></div>
+
+  <!-- engineering title block -->
+  <!-- Seeded with the French labels and the first sheet, then rewritten by
+       app.js on every change. Empty, these rows were shorter until the script
+       filled them and the block grew 102px to 141px after first paint — the
+       page's last shift. Same approach as the callout above. -->
+  <div class="titleblock">
+    <div class="tb-row"><span id="lblProject">PROJET</span><b id="tbName">BORDJ STEEL</b></div>
+    <div class="tb-row"><span id="lblSheet">PLANCHE</span><b><span id="tbN">01</span> / <span id="tbT">7</span></b></div>
+    <div class="tb-row"><span id="lblSector">SECTEUR</span><b id="tbSector">ACIER · B2B</b></div>
+    <div class="tb-row"><span id="lblStatus">STATUT</span><b id="tbStatus">EN LIGNE</b></div>
+    <div class="tb-row"><span id="lblDrawn">DESSINÉ</span><b>NUMIDEA LABS · BBA</b></div>
+  </div>
+
+  <p class="cue" id="cue"></p>
+</div>
+
+<script src="app.js?v=202609142335" defer></script>
+</main>
+
+</body>
+</html>
