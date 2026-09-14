@@ -9,19 +9,18 @@
 <meta property="og:title" content="b4vetrave1er.exe // VOIDSPLUNKER.std">
 <meta property="og:description" content="Polymath developer & designer. Design, code, and everything between.">
 <meta name="color-scheme" content="dark light">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Syne and Space Mono are not in assets/fonts/, so this stays third-party —
-     but never render-blocking: media="print" keeps it off the critical path and
-     onload promotes it. display=swap is already in the URL, so text paints in
-     the fallback and swaps on arrival instead of holding the page. -->
 <!-- Without this the browser falls back to /favicon.ico, which does not
      exist: a 404 in every visitor's console on this page. -->
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap" media="print" onload="this.media='all';this.onload=null">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Mono:wght@400;700&display=swap"></noscript>
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('void-theme')||'dark';}catch(e){document.documentElement.dataset.theme='dark';}</script>
-<link rel="stylesheet" href="style.css?v=202609141821">
+<!-- Syne and Space Mono are self-hosted now, so this is render-blocking like
+     any first-party sheet — no request on this page reaches a third party. It
+     was a Google link held off the critical path with media="print", which was
+     the last such dependency on the site. -->
+<link rel="stylesheet" href="../assets/fonts-hub.css?v=202609141845">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/syne-800-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/space-mono-400-latin.woff2">
+<link rel="stylesheet" href="style.css?v=202609141845">
 </head>
 <body>
 <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
@@ -210,6 +209,6 @@
   </div>
 </footer>
 
-<script src="app.js?v=202609141821" defer></script>
+<script src="app.js?v=202609141845" defer></script>
 </body>
 </html>

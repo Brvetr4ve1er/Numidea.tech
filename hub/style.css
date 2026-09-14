@@ -97,6 +97,9 @@ a{color:inherit;text-decoration:none}
 @keyframes breathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
 
 /* ============================= HERO ============================= */
+/* .hero already clips (overflow:hidden below): the giant .ghost word hangs past
+   the viewport by design and is framed by it. A bounding-rect overflow check
+   reports it anyway — it has to resolve the clipping ancestor first. */
 .hero{position:relative;min-height:100svh;padding:clamp(16px,3vw,28px) var(--gut) 0;
   display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
 
@@ -126,13 +129,22 @@ a{color:inherit;text-decoration:none}
   gap:clamp(24px,5vw,64px);align-items:center;padding-bottom:clamp(40px,8vh,80px)}
 
 /* ---- identity ---- */
+.identity{container-type:inline-size}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc-text);
   display:flex;align-items:center;gap:10px;margin-bottom:clamp(16px,3vh,28px)}
 .blip{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid)}
 
 
+/* Sized from the COLUMN, not the viewport. Syne 800 runs roughly twice the
+   width of the fallback this clamp was tuned against, so the real face
+   overflowed everywhere — "VOIDSPLUNKER.std" wanted 1465px in a 739px column
+   and was clipped behind the portrait, with 132-223px of horizontal overflow on
+   the page. A vw clamp cannot express it either: the column is NARROWER at 1280
+   (585px, two-up with the portrait) than at 768 (707px), so viewport width and
+   available width do not move together. cqw tracks the column itself, and these
+   identities are unbreakable tokens with nowhere to wrap. */
 .cycler{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.94;
-  font-size:clamp(38px,7vw,92px);margin-bottom:clamp(14px,2.4vh,22px)}
+  font-size:clamp(17px,6.2cqw,58px);margin-bottom:clamp(14px,2.4vh,22px)}
 /* The heading reserves two lines. Measured across widths, the five identities
    render as either one line or two — never more — so two lines of the heading's
    own line-height is the exact reservation that lets the text swap without ever
@@ -200,8 +212,12 @@ a{color:inherit;text-decoration:none}
 /* ============================= LINKS ============================= */
 .links{position:relative;z-index:2;padding:clamp(48px,10vh,110px) var(--gut) clamp(28px,6vh,60px);border-top:1px solid var(--line);isolation:isolate}
 .links-head{margin-bottom:clamp(28px,5vh,52px)}
+/* Sized from its own column, like the identity heading. "EVERY&nbsp;WORLD." is
+   one unbreakable token and was the page's real horizontal overflow once Syne
+   replaced the narrower fallback the vw clamp had been tuned against. */
+.links-head{container-type:inline-size}
 .links-head h2{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;
-  font-size:clamp(40px,9vw,120px);margin:10px 0 14px}
+  font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px}
 .links-sub{font-family:var(--mono);font-size:13px;color:var(--paper-dim)}
 .links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 

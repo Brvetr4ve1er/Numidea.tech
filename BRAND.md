@@ -495,6 +495,29 @@ still held the last gradient-filled string on the site and a `34ch` width, both
 of which the pass existed to remove. `hub/` kept four `ch` widths for the same
 reason. Grep every stylesheet *and* every inline block.
 
+## Syne and Space Mono are self-hosted too
+
+`assets/fonts-hub.css` holds them; `hub/` loads it render-blocking, like any
+first-party sheet. **No page on this site now makes a third-party request.**
+Trimmed to latin and latin-ext (hub sets no Greek or Vietnamese), 208KB, all ten
+faces `font-display:optional`.
+
+**A fallback font hides how wide the real one is.** Every size on hub had been
+tuned against the metrics of whatever the system substituted for Syne. The real
+face runs roughly twice as wide, so both display headings overflowed the moment
+it loaded: the identity wanted 1465px in a 739px column and was clipped behind
+the portrait, and the section heading put 223px of horizontal scroll on the page.
+Nothing was wrong with the CSS — it had simply never been measured against the
+font it names.
+
+**Viewport units cannot size a column that does not track the viewport.** The
+identity column is *narrower* at 1280 (585px, two-up with the portrait) than at
+768 (707px), so no `vw` clamp fits both. Both headings size from their own column
+with `cqw` (`container-type:inline-size` on the parent), which is exact at every
+width and needs no breakpoints. It also matters that these identities are
+unbreakable tokens — `VOIDSPLUNKER.std`, `EVERY&nbsp;WORLD.` — with nowhere to
+wrap, so the type must fit or it overflows.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%
