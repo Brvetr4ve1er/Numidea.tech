@@ -54,8 +54,8 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202609141845">
-<link rel="stylesheet" href="assets/styles.css?v=202609141845">
+<link rel="stylesheet" href="assets/fonts.css?v=202609142335">
+<link rel="stylesheet" href="assets/styles.css?v=202609142335">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -86,7 +86,7 @@
        deliberate and safe: it runs while the head is still parsing, so the
        parser inserts the link itself and rendering waits for it. Only the theme
        actually in use is written, so nobody else downloads or waits on 46KB. */
-    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202609141845';
+    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202609142335';
     if (t === 'engineering') {
       document.write('<link rel="stylesheet" id="theme-eng" href="' + window.NUMIDEA_ENG_CSS + '">');
     }
@@ -662,7 +662,7 @@
               <h4 data-i18n="founder.eduLabel">Formation</h4>
               <p data-i18n="founder.edu">Informatique — Université Mohamed El Bachir El Ibrahimi · 2018–2024</p>
             </div>
-            <a class="btn btn-primary cv-dl" href="assets/cv_yasser_hamisse_2026.pdf" target="_blank" rel="noopener" data-i18n="founder.download">Télécharger le CV (PDF) ↓</a>
+            <a class="btn btn-primary cv-dl" href="assets/cv_yasser_hamisse_2026.pdf" download target="_blank" rel="noopener" data-i18n="founder.download">Télécharger le CV (PDF) ↓</a>
           </div>
         </div>
       </div>
@@ -758,9 +758,16 @@
           </div>
           <button type="submit" class="btn btn-primary" data-i18n="form.send">Démarrer un projet →</button>
         </form>
+        <!-- The handoff is a mailto:, and a visitor with no mail client configured
+             gets nothing — yet this panel used to show a tick and claim success
+             regardless, on the studio's only conversion path. The copy no longer
+             asserts that anything was sent, and the address is here in plain
+             sight so a failed handoff still leaves the visitor a way through. -->
         <div class="form-success" role="status" aria-live="polite">
           <div class="tick" aria-hidden="true">✓</div>
-          <p data-i18n="form.success">Votre email est prêt dans votre messagerie — envoyez-le et on revient sous 24h.</p>
+          <p data-i18n="form.success">Votre messagerie devrait s'ouvrir avec le message prêt — il ne reste qu'à l'envoyer.</p>
+          <p class="fallback"><span data-i18n="form.successAlt">Rien ne s'est ouvert ? Écrivez-nous directement :</span>
+            <a href="mailto:Hamissemohamedyasser@gmail.com">Hamissemohamedyasser@gmail.com</a></p>
         </div>
       </div>
     </div>
@@ -839,7 +846,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202609141845" defer></script>
+<script src="assets/app.js?v=202609142335" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

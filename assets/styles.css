@@ -448,20 +448,16 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 }
 
 /* hero deck — three REAL client sites, fanned; links to #work */
-.hero-deck{position:relative;display:block;aspect-ratio:16/12;perspective:900px;text-decoration:none}
-.hero-deck img{position:absolute;width:80%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center;
-  border-radius:var(--r-md);border:1px solid var(--hairline-2);
-  box-shadow:0 30px 60px -28px rgba(0,0,0,.85);transition:transform var(--dur-slow) var(--ease-out)}
-.hero-deck img:nth-child(1){top:0;inset-inline-start:0;transform:rotate(-4deg)}
-.hero-deck img:nth-child(2){top:11%;inset-inline-start:10%;transform:rotate(2.5deg)}
-.hero-deck img:nth-child(3){top:23%;inset-inline-start:20%;transform:rotate(-1deg);border-color:rgba(230,180,80,.45)}
-.hero-deck:hover img:nth-child(1){transform:rotate(-6deg) translateY(-8px)}
-.hero-deck:hover img:nth-child(2){transform:rotate(4deg) translateY(-4px)}
-.hero-deck:hover img:nth-child(3){transform:rotate(0) translateY(-10px)}
-.hd-tag{position:absolute;bottom:0;inset-inline-start:20%;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;
-  color:var(--crimson-hi);background:color-mix(in srgb,var(--void) 82%,transparent);
-  border:1px solid rgba(230,180,80,.45);border-radius:var(--r-pill);padding:8px 14px;backdrop-filter:blur(6px)}
-.hero-deck:hover .hd-tag{background:rgba(230,180,80,.14)}
+
+
+
+
+
+
+
+
+
+
 @media(prefers-reduced-motion:reduce){.hero-deck img{transition:none}}
 
 /* ---------- buttons / pills (from system) ---------- */
@@ -638,6 +634,8 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 .form-success{display:none;padding:var(--s-7) 0}
 .form-success.show{display:block;animation:stagger .5s var(--ease-out)}
 .form-success .tick{width:64px;height:64px;margin-bottom:var(--s-5);border-radius:50%;border:2px solid var(--teal);display:grid;place-items:center;color:var(--teal);font-size:30px;box-shadow:var(--glow-teal)}
+.form-success .fallback{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-top:var(--s-3)}
+.form-success .fallback a{color:var(--teal-text);text-decoration:underline}
 .form-success p{font-family:var(--font-display);font-size:22px;color:var(--ice);max-width:29.172em}
 html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
 @media(max-width:960px){.contact-grid{grid-template-columns:minmax(0,1fr)}}
@@ -902,6 +900,10 @@ html[dir="rtl"] .detail-next{text-align:left;align-items:flex-start}
   .detail-body{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
   .detail-nav{grid-template-columns:minmax(0,1fr)}
   .detail-next{text-align:left;align-items:flex-start}
+  /* ...but not in Arabic: this rule sits after the [dir=rtl] pair above, so it
+     was flipping "next" back against the reading direction on RTL mobile. */
+  html[dir="rtl"] .detail-next{text-align:right;align-items:flex-end}
+  html[dir="rtl"] .detail-prev{text-align:left;align-items:flex-start}
 }
 
 /* ---------- reveal-on-scroll ---------- */
@@ -1053,7 +1055,7 @@ html[dir="rtl"] [data-variant="b"] .svc-row::before{transform-origin:right cente
   background:linear-gradient(90deg,transparent,var(--hairline-2) 20%,var(--hairline-2) 80%,transparent)}
 [data-variant="b"] section.band::after{background:color-mix(in srgb,var(--teal) 4%,transparent);
   box-shadow:0 0 0 100vmax color-mix(in srgb,var(--teal) 4%,transparent)}
-[data-variant="b"] .hero-deck img{box-shadow:0 20px 44px -26px color-mix(in srgb,var(--hairline-2) 95%,transparent)}
+
 [data-variant="b"] .contact::before{opacity:.6}
 [data-variant="b"] .channels .ch{border-color:var(--hairline-2)}
 @media(prefers-reduced-motion:reduce){[data-variant="b"] .svc-row::before{transition:none}}

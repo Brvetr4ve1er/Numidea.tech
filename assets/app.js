@@ -21,7 +21,6 @@
       'hero.title': 'Une ingénierie qui tient de la magie. <span class="swash">La rigueur qui la livre.</span>',
       'hero.lede': 'Quatre spécialistes qui conçoivent, codent et livrent toute la chaîne — du back-end au dernier pixel. Des systèmes puissants, rendus accessibles, et assumés quand ça casse.',
       'hero.cta1': 'Construisons →', 'hero.cta2': 'Voir les preuves',
-      'hero.deckTag': '5 sites clients en ligne — les voir →',
       'hero.plateLive': 'en ligne',
       'tb.project': 'Projet', 'tb.stack': 'Pile', 'tb.lang': 'Langues', 'tb.deploy': 'Déploiement', 'tb.status': 'État',
       'tb.stackV': 'dépendance · sans build', 'tb.deployV': '18 s · Actions',
@@ -85,7 +84,8 @@
       'form.errEmail': 'Ajoutez un email pour qu\'on puisse répondre.',
       'form.errEmailValid': 'Cet email a l\'air incomplet — vérifiez-le.',
       'form.errMsg': 'Dites-nous une ligne sur le projet.',
-      'form.success': 'Votre email est prêt dans votre messagerie — envoyez-le et on revient sous 24h.',
+      'form.success': 'Votre messagerie devrait s\'ouvrir avec le message prêt — il ne reste qu\'à l\'envoyer.',
+      'form.successAlt': 'Rien ne s\'est ouvert ? Écrivez-nous directement :',
       'footer.signoff': 'Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.',
       'footer.rights': '© 2026 Numidea Labs · Tous droits réservés',
       'footer.tag': 'Rooted in Numidia · built on ideas'
@@ -98,9 +98,8 @@
       'nav.team': 'Team', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
       'hero.eyebrow': 'Engineering workshop · Bordj Bou Arréridj · DZ',
       'hero.title': 'Engineering that feels like magic. <span class="swash">Discipline that ships it.</span>',
-      'hero.lede': 'Four specialists who design, build, and ship the whole chain — from the data layer to the last pixel. Powerful systems, made accessible, and answered for when they break.',
+      'hero.lede': 'Four specialists who design, build, and ship the whole chain — from the back-end to the last pixel. Powerful systems, made accessible, and answered for when they break.',
       'hero.cta1': 'Let\'s build it →', 'hero.cta2': 'See the proof',
-      'hero.deckTag': '5 client sites live — see them →',
       'hero.plateLive': 'live',
       'tb.project': 'Project', 'tb.stack': 'Stack', 'tb.lang': 'Languages', 'tb.deploy': 'Deploy', 'tb.status': 'Status',
       'tb.stackV': 'dependency · no build step', 'tb.deployV': '18 s · Actions',
@@ -164,7 +163,8 @@
       'form.errEmail': 'Add an email so we can reply.',
       'form.errEmailValid': 'That email looks incomplete — check it.',
       'form.errMsg': 'Give us one line about the project.',
-      'form.success': 'Your email is ready in your mail app — hit send and we\'ll reply within 24h.',
+      'form.success': 'Your mail app should open with the message ready — all that is left is to send it.',
+      'form.successAlt': 'Nothing opened? Write to us directly:',
       'footer.signoff': 'Built in Bordj Bou Arréridj, with black coffee and TypeScript.',
       'footer.rights': '© 2026 Numidea Labs · All rights reserved',
       'footer.tag': 'Rooted in Numidia · built on ideas'
@@ -177,9 +177,8 @@
       'nav.team': 'الفريق', 'nav.faq': 'الأسئلة', 'nav.contact': 'تواصل',
       'hero.eyebrow': 'ورشة هندسة · برج بوعريريج · الجزائر',
       'hero.title': 'هندسةٌ تكاد تكون سحراً. <span class="swash">وانضباطٌ يُسلّمها.</span>',
-      'hero.lede': 'أربعة مختصّين يصمّمون ويبرمجون ويُطلقون السلسلة كاملةً — من الخادم إلى آخر بكسل. أنظمةٌ قوية، مُتاحةٌ للجميع، ونتحمّل مسؤوليتها حين تتعطّل.',
+      'hero.lede': 'أربعة مختصّين يصمّمون ويبرمجون ويُطلقون السلسلة كاملةً — من الواجهة الخلفية إلى آخر بكسل. أنظمةٌ قوية، مُتاحةٌ للجميع، ونتحمّل مسؤوليتها حين تتعطّل.',
       'hero.cta1': 'لنبنِ →', 'hero.cta2': 'شاهد الإثبات',
-      'hero.deckTag': '٥ مواقع عملاء مباشرة — شاهدها →',
       'hero.plateLive': 'مباشر',
       'tb.project': 'المشروع', 'tb.stack': 'التقنيات', 'tb.lang': 'اللغات', 'tb.deploy': 'النشر', 'tb.status': 'الحالة',
       'tb.stackV': 'اعتمادية · بلا بناء', 'tb.deployV': '١٨ ث · Actions',
@@ -243,7 +242,8 @@
       'form.errEmail': 'أضف بريداً لنتمكّن من الردّ.',
       'form.errEmailValid': 'يبدو هذا البريد ناقصاً — تحقّق منه.',
       'form.errMsg': 'أخبرنا بسطر عن المشروع.',
-      'form.success': 'بريدك جاهز في تطبيق البريد — أرسله وسنعود إليك خلال ٢٤ ساعة.',
+      'form.success': 'من المفترض أن يفتح تطبيق البريد والرسالة جاهزة — لم يبقَ سوى إرسالها.',
+      'form.successAlt': 'لم يفتح شيء؟ راسلنا مباشرة:',
       'footer.signoff': 'بُني في برج بوعريريج، بقهوة سوداء و TypeScript.',
       'footer.rights': '© ٢٠٢٦ نوميديا لابز · كل الحقوق محفوظة',
       'footer.tag': 'جذورها في نوميديا · مبنيّة على الأفكار'
@@ -1089,8 +1089,15 @@
     // founder — résumé accordion (max-height expand + label swap)
     var cvBtn = document.querySelector('#cv-toggle'), cvPanel = document.querySelector('#cv-panel');
     if (cvBtn && cvPanel) {
+      // The panel ships closed, so it starts inert too — setting this only on
+      // toggle left the initial (closed) state still holding a focusable link.
+      cvPanel.inert = !cvPanel.classList.contains('open');
       cvBtn.addEventListener('click', function () {
         var open = cvPanel.classList.toggle('open');
+        // Closed, the panel is only collapsed by max-height:0 — it still held a
+        // focusable download link, so a keyboard user tabbed into an invisible
+        // panel with nothing on screen to explain where focus had gone.
+        cvPanel.inert = !open;
         cvBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
         var d = I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG];
         cvBtn.textContent = open ? (d['founder.cvClose'] || 'Close ↑') : (d['founder.cvBtn'] || 'View résumé ↴');
