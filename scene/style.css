@@ -110,13 +110,25 @@ html[dir="rtl"] .callout::after{right:auto;left:-30px}
 .cnum{flex:none;width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(var(--acc),.7);
   border-radius:50%;font-family:var(--font-mono);font-size:11px;color:rgb(var(--acc))}
 .ckick{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;color:rgb(var(--acc))}
-.cname{font-family:var(--font-disp);font-weight:700;font-size:clamp(19px,2.6vw,27px);margin-top:8px;line-height:1.15}
+/* Two lines reserved: "Nomara Voyages" wraps where the other four do not, and
+   the callout is centred on its own height, so that one sheet moved the whole
+   block by 31px every time it came round. */
+.cname{font-family:var(--font-disp);font-weight:700;font-size:clamp(19px,2.6vw,27px);margin-top:8px;line-height:1.15;min-height:2.3em}
 html[dir="rtl"] .cname{font-family:var(--font-ar)}
-.ccopy{font-size:13px;line-height:1.65;color:var(--muted);margin-top:8px}
+/* Reserved for the longest copy in the set. The five sheets carry 43-86px of
+   text, and the callout is centred on its own height, so every sheet change
+   moved it and everything measured against it — the page's whole residual CLS.
+   4 lines x 1.65 line-height is the tallest of the five. */
+.ccopy{font-size:13px;line-height:1.65;color:var(--muted);margin-top:8px;min-height:6.6em}
 .clink{display:inline-block;margin-top:12px;font-family:var(--font-mono);font-size:10.5px;
   border:1px solid rgba(var(--acc),.5);border-radius:4px;padding:6px 11px;color:rgb(var(--acc))}
 .clink:hover{background:rgba(var(--acc),.14)}
-.clink[hidden]{display:none}
+/* visibility, not display. One sheet in the set has no live URL, so the link is
+   hidden on it — and with display:none its box left the flow, shrinking the
+   callout by ~40px and moving it every time that sheet came round (the page's
+   last remaining shift). Hidden but still occupying its space, nothing moves.
+   [hidden] still keeps it out of the accessibility tree and off the tab order. */
+.clink[hidden]{visibility:hidden;display:inline-block}
 
 /* ---- header ---- */
 .hud{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:16px;

@@ -468,6 +468,33 @@ by `min-width:20ch` — wrong axis. It blew the box to 1247px and left the shift
 because what varied was the *wrap count*. Two lines of its own line-height was
 the fix.
 
+## Every page needs its own preloads
+
+`index.html` had them; `404.html` and `scene/` had none at all, so every face
+arrived after first paint and the swap resized the centred content — 404's
+`<main>` jumped 420px to 474px. Each page now preloads exactly the faces it
+paints in, and the paths are relative to the page (`../assets/fonts/` from
+`scene/`, which one missing `../` turned into a 404 the run caught).
+
+**Content that JavaScript fills must be seeded in the markup.** Scene's title
+block shipped five empty label spans and grew 102px to 141px when the script
+filled them; its callout link used `[hidden]{display:none}`, so on the one sheet
+with no live URL the box left the flow and moved the callout ~40px every time
+that sheet came round. Labels are seeded now and the hidden link keeps its box
+(`visibility:hidden`) — `[hidden]` still keeps it out of the a11y tree and the
+tab order.
+
+**Reserve for the longest case, on the axis that varies.** Scene's callout
+needed three: the copy (43–86px across sheets), the project name (one sheet
+wraps to two lines), and the link. Reserving one and re-measuring found the
+next.
+
+**A sweep is only as wide as the files it reads.** The anti-slop pass covered
+`assets/styles.css` and missed the `<style>` block inline in `404.html` — which
+still held the last gradient-filled string on the site and a `34ch` width, both
+of which the pass existed to remove. `hub/` kept four `ch` widths for the same
+reason. Grep every stylesheet *and* every inline block.
+
 ## The background
 
 A construction grid, not a pattern. 64px hairlines masked to fade out by ~76%

@@ -11,17 +11,34 @@
      stylesheet: with fonts.googleapis.com unreachable it held first paint for
      the full connection timeout (13s measured on index.html before the same
      fix). Every family this page asks for is already in assets/fonts/. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202609131639">
-<link rel="stylesheet" href="assets/styles.css?v=202609131639">
+<!-- This page had no preloads at all, so every face arrived after first paint
+     and the swap resized the centred content: <main> jumped 420px to 474px
+     (CLS 0.0063). These are the four it actually paints in — the numeral, the
+     wordmark, the copy and the button. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-500-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cinzel-700-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-mono-700-latin.woff2">
+<link rel="stylesheet" href="assets/fonts.css?v=202609141821">
+<link rel="stylesheet" href="assets/styles.css?v=202609141821">
 <style>
   /* svh, not vh: with viewport-fit=cover, 100vh is the tallest the viewport
      ever gets, so the page overflows by the height of the browser chrome
      even when the content fits. */
+  /* The centred item is full width, so a font swap changing the numeral's
+     width can no longer resize it. */
+  .e404>main{width:100%}
   .e404{min-height:100svh;display:grid;place-items:center;text-align:center;
         padding:calc(var(--s-9) + env(safe-area-inset-top)) var(--gutter) calc(var(--s-7) + env(safe-area-inset-bottom))}
+  /* Solid ink. This block is inline in the page, so it escaped both passes over
+     assets/styles.css — the numeral was still the one gradient-filled string
+     left on the site, with the same contrast blind spot (axe skips
+     color:transparent) as the headline it was swept out of. */
   .e404 .mark{font-family:var(--font-display);font-weight:500;font-size:clamp(96px,22vw,260px);line-height:.9;letter-spacing:-.03em;
-    background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .e404 .lines{max-width:34ch;margin:var(--s-6) auto 0;color:var(--muted);font-size:clamp(16px,1.8vw,20px);line-height:1.6}
+    color:var(--ice)}
+  /* em, not ch: 34ch measured 22.53em in Geist, and ch is a font metric — it
+     changed when the webfont landed and widened <main> by 54px (CLS 0.0063). */
+  .e404 .lines{max-width:22.53em;margin:var(--s-6) auto 0;color:var(--muted);font-size:clamp(16px,1.8vw,20px);line-height:1.6}
   .e404 .lines .fr{color:var(--ice)}
   .e404 .lines .ar{font-family:var(--font-ar-body);direction:rtl;display:block;margin-top:8px}
   .e404 .cta{margin-top:var(--s-7);display:inline-flex}

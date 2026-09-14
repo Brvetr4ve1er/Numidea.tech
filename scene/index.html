@@ -15,8 +15,15 @@
 <!-- Without this the browser falls back to /favicon.ico, which does not
      exist: a 404 in every visitor's console on this page. -->
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<link rel="stylesheet" href="../assets/fonts.css?v=202609131639">
-<link rel="stylesheet" href="style.css?v=202609131639">
+<!-- No preloads here either: all four faces arrived after first paint and the
+     swap resized the callout and the HUD (clink 26px→28px, hud-tag 11px→13px).
+     These are exactly the faces this page paints in. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cinzel-700-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-700-latin.woff2">
+<link rel="stylesheet" href="../assets/fonts.css?v=202609141821">
+<link rel="stylesheet" href="style.css?v=202609141821">
 </head>
 <body>
 
@@ -87,18 +94,22 @@
   <div class="rail" id="rail" role="group" aria-label="Sheets"></div>
 
   <!-- engineering title block -->
+  <!-- Seeded with the French labels and the first sheet, then rewritten by
+       app.js on every change. Empty, these rows were shorter until the script
+       filled them and the block grew 102px to 141px after first paint — the
+       page's last shift. Same approach as the callout above. -->
   <div class="titleblock">
-    <div class="tb-row"><span id="lblProject"></span><b id="tbName"></b></div>
-    <div class="tb-row"><span id="lblSheet"></span><b><span id="tbN">01</span> / <span id="tbT">7</span></b></div>
-    <div class="tb-row"><span id="lblSector"></span><b id="tbSector"></b></div>
-    <div class="tb-row"><span id="lblStatus"></span><b id="tbStatus"></b></div>
-    <div class="tb-row"><span id="lblDrawn"></span><b>NUMIDEA LABS · BBA</b></div>
+    <div class="tb-row"><span id="lblProject">PROJET</span><b id="tbName">BORDJ STEEL</b></div>
+    <div class="tb-row"><span id="lblSheet">PLANCHE</span><b><span id="tbN">01</span> / <span id="tbT">7</span></b></div>
+    <div class="tb-row"><span id="lblSector">SECTEUR</span><b id="tbSector">ACIER · B2B</b></div>
+    <div class="tb-row"><span id="lblStatus">STATUT</span><b id="tbStatus">EN LIGNE</b></div>
+    <div class="tb-row"><span id="lblDrawn">DESSINÉ</span><b>NUMIDEA LABS · BBA</b></div>
   </div>
 
   <p class="cue" id="cue"></p>
 </div>
 
-<script src="app.js?v=202609131639" defer></script>
+<script src="app.js?v=202609141821" defer></script>
 </main>
 
 </body>
