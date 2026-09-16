@@ -451,7 +451,8 @@ html[dir="rtl"] .cap h4{font-family:var(--font-ar);letter-spacing:0}
    METHOD
    ============================================================ */
 .steps{display:grid;gap:var(--s2);max-width:820px}
-.step{display:grid;grid-template-columns:36px minmax(0,1fr);gap:var(--s3);align-items:start;
+.step{display:grid;grid-template-columns:36px minmax(0,1fr) auto;
+  grid-template-areas:"node body fig";gap:var(--s3);align-items:center;
   padding:var(--s3);background:var(--panel);border:1px solid var(--edge);border-radius:var(--r2)}
 .step .node{width:30px;height:30px;display:grid;place-items:center;border-radius:var(--r1);
   background:var(--panel-2);border:1px solid var(--edge);
@@ -459,8 +460,14 @@ html[dir="rtl"] .cap h4{font-family:var(--font-ar);letter-spacing:0}
 /* Explicit placement. With three auto-placed children in a 36px + 1fr grid the
    heading was landing in the 36px marker column — measured clientWidth 36px
    against 105px of text — and wrapping one letter per line. */
-.step .node{grid-column:1;grid-row:1/span 2}
-.step h3,.step p{grid-column:2}
+.step .node{position:static;grid-area:node}
+.step-body{grid-area:body;min-width:0}
+/* the base sheet's figure tile is built from arcanum tokens; restate it
+   in this system's own panel/edge/accent so it does not import a
+   midnight-navy square onto the paper theme */
+.step-fig{grid-area:fig;width:112px;height:112px;padding:12px;
+  background:var(--panel-2);border:1px solid var(--edge);border-radius:var(--r1);
+  color:var(--accent);box-shadow:none}
 .step h3{font-weight:600;font-size:17px;letter-spacing:-.02em;margin-bottom:6px}
 html[dir="rtl"] .step h3{font-family:var(--font-ar);letter-spacing:0}
 .step p{font-size:15px;color:var(--fg-2);max-width:38.454em}
@@ -526,7 +533,10 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar);letter-spacing:0}
 .faq-mark::before{top:50%;left:0;right:0;height:1.5px;transform:translateY(-50%)}
 .faq-mark::after{left:50%;top:0;bottom:0;width:1.5px;transform:translateX(-50%)}
 .faq-item[open] .faq-mark::after{transform:translateX(-50%) scaleY(0)}
-.faq-a{padding:0 var(--s3) var(--s3);color:var(--fg-2);font-size:15px;line-height:1.65}
+.faq-a{padding:0 var(--s3) var(--s3);color:var(--fg-2);font-size:15px;line-height:1.65;
+  display:flex;gap:var(--s3);align-items:flex-start}
+.faq-fig{width:88px;height:88px;padding:8px;background:var(--panel-2);border:1px solid var(--edge);
+  border-radius:var(--r1);color:var(--accent)}
 .faq-a p{max-width:42.432em}
 
 /* ============================================================
@@ -728,7 +738,8 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
   .modal-panel{padding:var(--s3)}
   .detail-nav{grid-template-columns:minmax(0,1fr)}
   .detail-next{text-align:start;align-items:flex-start}
-  .step{grid-template-columns:minmax(0,1fr);gap:var(--s2)}
+  .step{grid-template-columns:36px minmax(0,1fr);grid-template-areas:"node body";gap:var(--s2)}
+  .step-fig{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -762,3 +773,10 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
    the instant of focus). Durations and easings unchanged; outline excluded. */
 .theme-btn,.theme-menu button,.lang button,.btn,.proj .actions a,.field input,.field textarea,.modal-close,.modal-search input,.filter-chip{
   transition-property:color,background-color,border-color,box-shadow,transform,opacity,filter}
+
+/* ---- 3-up steps: the base sheet's min-width:1100 rule assumes an
+   absolutely positioned node, which this system does not use ---- */
+@media(min-width:1100px){
+  .steps .step{padding:var(--s3);grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"node" "fig" "body";justify-items:start;align-content:start;gap:var(--s3)}
+}

@@ -671,3 +671,62 @@ budget in a 390px viewport and no plate size can rescue it.
 
 `--nav-h` is the measured navbar height. Hero top padding and
 `scroll-padding-top` both derive from it, so the three can never drift apart.
+
+## Generated illustrations
+
+`assets/illus/` holds 13 monochrome rasters (248K total) drawn as white line
+art on pure black. They are applied as **CSS luminance masks over
+`currentColor`**, never as `<img>`:
+
+```css
+.ill{background:currentColor;
+  -webkit-mask-image:url(illus/x.png);mask-image:url(illus/x.png);
+  -webkit-mask-size:contain;mask-size:contain;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-source-type:luminance;mask-mode:luminance}
+```
+
+One asset therefore re-tints itself across all six palettes — teal on
+arcanum, orange on engineering — instead of shipping six copies. Keep both
+the `-webkit-mask-source-type` and `mask-mode` lines; older WebKit only
+honours the first.
+
+**Size is the whole problem.** These are detailed technical renderings, not
+glyphs. Below roughly 90px they collapse into illegible smudges. Three
+placements were built and torn out again before this landed:
+
+- FAQ summary rows (34px) — unreadable. The figure moved into `.faq-a`, the
+  open answer panel, at 92px, where it also belongs semantically: it
+  illustrates the answer, not the question.
+- hub footer column headings (18px) — unreadable, and there was no room to
+  grow. The four hub marks became `.lgroup` headers in the archive grid at
+  60px, which also gave that flat 18-tile list the grouping its source
+  comments had always described.
+- `#how` step tiles beside the copy (86px) — legible but cramped at the 3-up
+  breakpoint. The tile now sits *above* the text there via
+  `grid-template-areas`, at 124px.
+
+Regenerate rather than shrink-to-fit: `faq3`, `hub-design`, `hub-dev` and
+`hub-studio` were re-prompted for "large simple readable silhouette" after
+the first pass produced scenes too busy to survive downscaling.
+
+Pipeline: `sharp().resize(512).greyscale().linear(1.9,-38).png({palette:true,
+colours:16})`. **Check polarity after every batch** — one render came back
+inverted (mean luminance 242/255) and masked to a solid block. Assert the
+output mean is low before writing.
+
+Every figure lives in a fixed-size box, so a late-decoding PNG has nothing to
+reflow: measured CLS stays 0.0000 on index. They are `aria-hidden` throughout,
+and `@media print` drops them — the mask's backdrop is a `background`, which
+printers discard, leaving an empty bordered box.
+
+### Two traps this cost time on
+
+`file://` blocks masks exactly as it blocks fonts (`net::ERR_FAILED`, no
+console error). Any harness checking mask rendering **must** serve over HTTP
+or it will report a working mask as broken.
+
+Wrapping step copy in `.step-body` broke the engineering sheet silently: it
+placed `.step h3,.step p` with `grid-column:2`, and those were no longer grid
+children. When a component's children are re-parented, grep every stylesheet
+for rules that place them — `grid-column`, `grid-area`, `:nth-child`.

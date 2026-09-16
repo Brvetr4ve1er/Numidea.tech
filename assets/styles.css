@@ -551,6 +551,40 @@ html[dir="rtl"] .step .node{left:auto;right:0}
 html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 .step p{color:var(--muted);font-size:15px;line-height:1.6;max-width:34.476em}
 
+/* Each step keeps its numbered node; the drawing is a bounded tile in a
+   named area so the copy measure is untouched. These are detailed
+   technical renderings, not glyphs — below roughly 100px they collapse
+   into noise, so the tile is sized for legibility, not for decoration,
+   and it is dropped outright where that size will not fit. */
+.step{display:grid;grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:"body fig";gap:var(--s-5);align-items:center}
+.step-body{grid-area:body;min-width:0}
+.step-fig{grid-area:fig;width:124px;height:124px;display:grid;place-items:center;padding:14px;
+  border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--navy);
+  color:var(--teal);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+@media (max-width:760px){.step{display:block}.step-fig{display:none}}
+
+/* ---------- generated illustrations ----------
+   Monochrome white-on-black rasters used as luminance masks over
+   `currentColor`, so one asset re-tints itself in all six palettes
+   instead of shipping six copies. Every figure sits in a bounded,
+   fixed-size box: the mask never participates in intrinsic sizing,
+   so there is nothing for a late-decoding PNG to shift. */
+.ill{display:block;width:100%;height:100%;background:currentColor;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:contain;mask-size:contain;
+  -webkit-mask-source-type:luminance;mask-mode:luminance}
+.ill-how1{-webkit-mask-image:url(illus/how1.png);mask-image:url(illus/how1.png)}
+.ill-how2{-webkit-mask-image:url(illus/how2.png);mask-image:url(illus/how2.png)}
+.ill-how3{-webkit-mask-image:url(illus/how3.png);mask-image:url(illus/how3.png)}
+.ill-faq1{-webkit-mask-image:url(illus/faq1.png);mask-image:url(illus/faq1.png)}
+.ill-faq2{-webkit-mask-image:url(illus/faq2.png);mask-image:url(illus/faq2.png)}
+.ill-faq3{-webkit-mask-image:url(illus/faq3.png);mask-image:url(illus/faq3.png)}
+.ill-faq4{-webkit-mask-image:url(illus/faq4.png);mask-image:url(illus/faq4.png)}
+.ill-faq5{-webkit-mask-image:url(illus/faq5.png);mask-image:url(illus/faq5.png)}
+.ill-faq6{-webkit-mask-image:url(illus/faq6.png);mask-image:url(illus/faq6.png)}
+
 /* ---------- founder ---------- */
 .founder-card{background:var(--navy);border:1px solid var(--hairline-2);border-radius:var(--r-lg);
   padding:clamp(17px, 9.33px + 2.13vw, 40px);max-width:940px;position:relative;overflow:hidden;
@@ -808,6 +842,7 @@ html[dir="rtl"] .sb-txt b{font-family:var(--font-ar-display)}
 .faq-item summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:var(--r-sm)}
 html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
 .faq-item .q{flex:1}
+
 /* plus-mark that morphs to a minus when open */
 .faq-mark{position:relative;flex:none;width:18px;height:18px}
 .faq-mark::before,.faq-mark::after{content:"";position:absolute;background:var(--teal);border-radius:2px;
@@ -816,7 +851,14 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
 .faq-mark::after{left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%)}
 .faq-item[open] .faq-mark::after{transform:translateX(-50%) scaleY(0);opacity:0}
 .faq-item[open] summary{color:var(--teal)}
-.faq-a{padding:0 var(--s-5) var(--s-5);color:var(--muted);font-size:15px;line-height:1.65}
+.faq-a{padding:0 var(--s-5) var(--s-5);color:var(--muted);font-size:15px;line-height:1.65;
+  display:flex;gap:var(--s-5);align-items:flex-start}
+/* The summary row is 34px tall — far too small for these drawings to
+   survive. The open panel has the room, and the figure belongs with the
+   answer it illustrates rather than with the question. */
+.faq-fig{flex:none;width:92px;height:92px;display:grid;place-items:center;padding:8px;
+  border:1px solid var(--hairline);border-radius:var(--r-sm);background:var(--void);color:var(--teal)}
+@media (max-width:560px){.faq-fig{display:none}}
 .faq-a p{max-width:42.432em}
 @media (prefers-reduced-motion:reduce){.faq-mark::before,.faq-mark::after{transition:none}}
 
@@ -1195,7 +1237,11 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
      at node-centre height — straight through the step titles, which sat on
      the same line. Stacking clears a band for the rail to run through, and
      the nodes (opaque, painted after) sit on it like beads. */
-  .steps .step{padding-left:0;padding-top:60px}
+  /* align-content:start, or the two rows stretch to the tallest step and
+     each column's heading lands at a different height */
+  .steps .step{padding-left:0;padding-top:60px;
+    grid-template-columns:minmax(0,1fr);grid-template-areas:"fig" "body";
+    justify-items:start;align-content:start;gap:var(--s-5)}
   .steps .step .node{left:0;top:0}
   .steps .step p{max-width:22.542em}
   /* two columns of questions rather than one tall stack */
@@ -1485,6 +1531,7 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   :root{--void:#fff;--navy:#fff;--plum:#fff;--ice:#000;--body-strong:#111;--muted:#333;--faint:#555;--hairline:#bbb;--hairline-2:#888}
   body{background:#fff!important;color:#000!important}
   body::before,body::after,html::after,.floaters,.hero-mesh,.progress,.skip,.nav-right,.theme-menu,.mobile-menu,.menu-toggle,.modal,.sheet-frame,.browser{display:none!important}
+  .step-fig,.faq-fig{display:none!important}
   *{box-shadow:none!important;text-shadow:none!important;backdrop-filter:none!important;animation:none!important;transition:none!important}
   .reveal,.js-ready .reveal{opacity:1!important;transform:none!important}
   .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dashoffset:0!important}
