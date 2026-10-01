@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Numidea Labs landing page — static site + project-preview capture pipeline.",
+  "description": "Numidea Labs landing page \u2014 static site + project-preview capture pipeline.",
   "scripts": {
     "shots": "node scripts/shots.mjs",
     "check": "node scripts/check.mjs",
-    "bump": "node scripts/bump.mjs"
+    "bump": "node scripts/bump.mjs",
+    "sweep": "node scripts/sweep.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",

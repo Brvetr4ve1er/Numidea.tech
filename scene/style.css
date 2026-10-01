@@ -7,16 +7,16 @@
 :root{
   --void:#0A1420;--navy:#0F1E30;--plum:#13283E;
   --crimson:#E6B450;--crimson-hi:#F4D27A;--teal:#34D0E8;
-  --ice:#EAF1F8;--muted:#9DB2C6;--faint:#62788E;--hairline:#1C3550;--hairline-2:#27496B;
+  --ice:#EAF1F8;--muted:#9DB2C6;--faint:#6C839A;--hairline:#1C3550;--hairline-2:#27496B;
   --acc:230,180,80;
   --font-disp:"Cinzel",Georgia,serif;--font-body:"Geist",system-ui,sans-serif;
   --font-mono:"Geist Mono",ui-monospace,monospace;--font-ar:"IBM Plex Sans Arabic",sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
 }
-[data-theme="daylight"]{--void:#EEF1F5;--navy:#FFF;--plum:#E4EAF0;--crimson:#C20A26;--crimson-hi:#E11537;--teal:#0A9C8E;--ice:#0D1A2F;--muted:#51606E;--faint:#8496A4;--hairline:#D7DEE6;--hairline-2:#C2CDD8}
-[data-theme="mono"]{--void:#0B0B0C;--navy:#161619;--plum:#1C1C20;--crimson:#E5533D;--crimson-hi:#F2674F;--teal:#D9D4C6;--ice:#ECECEC;--muted:#9A9AA2;--faint:#62626A;--hairline:#2A2A30;--hairline-2:#3A3A42}
+[data-theme="daylight"]{--void:#EEF1F5;--navy:#FFF;--plum:#E4EAF0;--crimson:#C20A26;--crimson-hi:#E11537;--teal:#0A9C8E;--ice:#0D1A2F;--muted:#51606E;--faint:#5B6D7B;--hairline:#D7DEE6;--hairline-2:#C2CDD8}
+[data-theme="mono"]{--void:#0B0B0C;--navy:#161619;--plum:#1C1C20;--crimson:#E5533D;--crimson-hi:#F2674F;--teal:#D9D4C6;--ice:#ECECEC;--muted:#9A9AA2;--faint:#7B7B85;--hairline:#2A2A30;--hairline-2:#3A3A42}
 [data-theme="altneon"]{--crimson:#F59E0B;--crimson-hi:#FBBF24;--teal:#A78BFA}
-[data-theme="noir"]{--void:#0D1A2F;--navy:#17364F;--plum:#411E3A;--crimson:#BD0927;--crimson-hi:#E11537;--teal:#09D8C7;--ice:#EAF2F4;--muted:#8FA1AE;--faint:#5A6B79;--hairline:#243B52;--hairline-2:#33506C}
+[data-theme="noir"]{--void:#0D1A2F;--navy:#17364F;--plum:#411E3A;--crimson:#BD0927;--crimson-hi:#E11537;--teal:#09D8C7;--ice:#EAF2F4;--muted:#8FA1AE;--faint:#748797;--hairline:#243B52;--hairline-2:#33506C}
 
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--void);color:var(--ice);font-family:var(--font-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -108,8 +108,8 @@ html[dir="rtl"] .dim-h{right:auto;left:-42px}
 html[dir="rtl"] .callout{left:auto;right:clamp(22px,5vw,60px)}
 html[dir="rtl"] .callout::after{right:auto;left:-30px}
 .cnum{flex:none;width:30px;height:30px;display:grid;place-items:center;border:1px solid rgba(var(--acc),.7);
-  border-radius:50%;font-family:var(--font-mono);font-size:11px;color:rgb(var(--acc))}
-.ckick{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;color:rgb(var(--acc))}
+  border-radius:50%;font-family:var(--font-mono);font-size:11px;color:color-mix(in srgb,rgb(var(--acc)) 60%,var(--ice))}
+.ckick{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.2em;color:color-mix(in srgb,rgb(var(--acc)) 60%,var(--ice))}
 /* Two lines reserved: "Nomara Voyages" wraps where the other four do not, and
    the callout is centred on its own height, so that one sheet moved the whole
    block by 31px every time it came round. */
@@ -121,7 +121,7 @@ html[dir="rtl"] .cname{font-family:var(--font-ar)}
    4 lines x 1.65 line-height is the tallest of the five. */
 .ccopy{font-size:13px;line-height:1.65;color:var(--muted);margin-top:8px;min-height:6.6em}
 .clink{display:inline-block;margin-top:12px;font-family:var(--font-mono);font-size:10.5px;
-  border:1px solid rgba(var(--acc),.5);border-radius:4px;padding:6px 11px;color:rgb(var(--acc))}
+  border:1px solid rgba(var(--acc),.5);border-radius:4px;padding:6px 11px;color:color-mix(in srgb,rgb(var(--acc)) 60%,var(--ice))}
 .clink:hover{background:rgba(var(--acc),.14)}
 /* visibility, not display. One sheet in the set has no live URL, so the link is
    hidden on it — and with display:none its box left the flow, shrinking the
@@ -156,7 +156,7 @@ html[dir="rtl"] .rail{right:auto;left:clamp(20px,4vw,44px)}
   font-family:var(--font-mono);font-size:9.5px;color:var(--faint);padding:4px 0;transition:.25s}
 .rail button .bar{width:16px;height:1px;background:currentColor;transition:.25s}
 .rail button:hover{color:var(--muted)}
-.rail button.on{color:rgb(var(--acc))}
+.rail button.on{color:color-mix(in srgb,rgb(var(--acc)) 60%,var(--ice))}
 .rail button.on .bar{width:30px;height:1.5px}
 
 /* ---- title block ---- */

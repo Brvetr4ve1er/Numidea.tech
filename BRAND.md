@@ -730,3 +730,94 @@ Wrapping step copy in `.step-body` broke the engineering sheet silently: it
 placed `.step h3,.step p` with `grid-column:2`, and those were no longer grid
 children. When a component's children are re-parented, grep every stylesheet
 for rules that place them — `grid-column`, `grid-area`, `:nth-child`.
+
+## Text tokens vs fill tokens
+
+Every palette defines two versions of its accents: `--teal` / `--crimson` are
+**fills** (borders, glows, icon strokes, chips) and `--teal-text` /
+`--crimson-text` are **text**. Never set `color:` from a fill token.
+
+The bug hides in opposite directions, which is why it survived so long:
+
+- `--teal` as text looks fine on every dark palette (where `--teal-text` *is*
+  `--teal`) and fails on Daylight (`#0A9C8E` on white, ~3.4:1).
+- `--crimson` as text looks fine on Daylight and fails on the dark palettes —
+  `.tl-date` measured **1.05:1** on Noir. `--crimson-hi` is a hover highlight
+  and is never text either.
+
+49 rules were corrected in one pass with a lookbehind that matches a bare
+`color:` property and leaves `border-color` / `background-color` alone.
+
+**Per-project colour as text** (`--brand` on the index, `--acc` on scene/)
+cannot be guaranteed legible on an arbitrary palette. Mix it toward the
+palette's own ink: `color-mix(in srgb, rgb(var(--brand)) 55%, var(--ice))`.
+`--ice` is the foreground in every theme — light on dark palettes, dark on
+Daylight — so the hue stays the client's and the contrast becomes the theme's.
+
+## No literal palette colours in shared rules
+
+A shared rule that hard-codes a colour is a rule that is correct in exactly one
+palette. Three of these were found by the sweep, each now a token:
+
+- `--band` — the wash behind every `.band` section was literal navy at 34%,
+  turning Daylight's white page mid-grey-blue under teal text (1.55:1). It had
+  been patched once before, but only for `[data-variant="b"]`.
+- `--shade` / `--shade-k` — every card shadow was literal black at .8–.92.
+  Invisible on a dark ground; a grey smear under every card on a light one, and
+  the hero plate's shadow fell across its own caption (2.95:1). Shadows keep
+  their individual strengths: `rgb(var(--shade) / calc(.85 * var(--shade-k)))`.
+- The estimator readout and service tiles used literal arcanum navy.
+
+Hub and Scene each carry their own palettes and had never received the
+`--faint` fix the main sheet got long ago (2.83:1 and ~3.2–4.0:1).
+
+## RTL
+
+The ambient glows in `body::before` are placed for the LTR layout. In Arabic
+the layout mirrors and the glows did not, so the text column and logo sat on
+the warm glow. `html[dir="rtl"] body::before{transform:scaleX(-1)}` mirrors all
+six palettes at once; the layer is a fixed field of gradients with nothing
+directional in it, so the flip is exact.
+
+Letter-spacing on Arabic: Chromium renders tracked and untracked Arabic
+identically (it suppresses tracking on cursive scripts, per the CSS spec), so
+the 38 widely-tracked label rules are not broken there. **Firefox is
+unverified** — if it applies the tracking, connected letters will pull apart.
+
+## Thumbnails
+
+`.proj .shot` is overscanned to 124% height for its parallax drift, so
+`object-fit:cover` crops ~42px off each side. Centred, that cut every
+left-aligned headline mid-word ("e monde, uidé et rganisé"). The anchor is
+**per site** — wherever its logo and headline actually sit: top-left by
+default, top-right for Nomara (RTL), top-centre for Bordj Steel (centred).
+
+Do not put `data-parallax` on an element inside a tight `overflow:hidden` card.
+The founder avatar drifted upward and was sliced off by its own card's top edge.
+
+## `npm run sweep`
+
+Measures what is actually painted. It renders each page twice — once to
+collect every text run, once with all text transparent — and samples the real
+background under each run from the second render. That sees gradients,
+textures, translucent panels and parallax fields; a declared-colour check sees
+none of them. It self-hosts, covers all six themes × FR/AR plus hub/, scene/
+and 404, and exits non-zero on any failure.
+
+It took 549 flagged → 0, but **most of the first 549 were the harness, not the
+site**. Every one of these produced confident, wrong results before it was
+caught — verify before you fix:
+
+- `color-mix()` serialises as `color(srgb r g b)` with **0–1** channels.
+  Parsed as 0–255 it reads as near-black, and correct labels "fail" at 1.2:1.
+- Text clipped by an `overflow` ancestor is laid out but never painted, so the
+  sampler reads whatever lies underneath. The collapsed CV panel produced ~21
+  false failures per theme; it is now audited open, as people read it.
+- Lazy images race the screenshot. Thumbnails "went blank" in five themes in a
+  pattern that changed from run to run — random is the tell. Force
+  `img.decode()` before capturing.
+- `pkill -f <pattern>` matches the shell command that contains the pattern and
+  kills itself (exit 144).
+
+When two tools disagree, look. axe caught one failure the sweep missed (the
+retainer line, at 4.49:1); the sweep caught hundreds axe's sampling did not.
