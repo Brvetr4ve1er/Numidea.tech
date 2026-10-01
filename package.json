@@ -1,0 +1,20 @@
+{
+  "name": "numidea-labs-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Numidea Labs landing page \u2014 static site + project-preview capture pipeline.",
+  "scripts": {
+    "shots": "node scripts/shots.mjs",
+    "check": "node scripts/check.mjs",
+    "bump": "node scripts/bump.mjs",
+    "sweep": "node scripts/sweep.mjs",
+    "audit": "node scripts/audit.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "^4.13.0",
+    "html-validate": "^11.16.1",
+    "playwright": "^1.49.0",
+    "sharp": "^0.33.5"
+  }
+}
