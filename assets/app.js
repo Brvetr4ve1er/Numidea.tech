@@ -256,7 +256,6 @@
       'price.waSoonSuffix': ' · bientôt',
       'nav.pricing': 'Tarifs',
       'wa.hello': "Bonjour Numidea Labs — j'aimerais parler d'un projet.",
-      'contact.waPending': 'Numéro bientôt en ligne',
       'footer.wa': 'WhatsApp',
       'price.kicker': '04 — Tarifs', 'price.title': 'Un prix <em>avant le devis.</em>',
       'price.lead': "Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre, voyez l'estimation bouger — puis recevez un prix ferme sous 24 heures.",
@@ -342,7 +341,6 @@
       'price.waSoonSuffix': ' · soon',
       'nav.pricing': 'Pricing',
       'wa.hello': 'Hello Numidea Labs — I would like to talk about a project.',
-      'contact.waPending': 'Number coming soon',
       'footer.wa': 'WhatsApp',
       'price.kicker': '04 — Pricing', 'price.title': 'A price <em>before the quote.</em>',
       'price.lead': 'The real Algerian market ranges, published. Set the scope, watch the estimate move — then get a firm price within 24 hours.',
@@ -428,7 +426,6 @@
       'price.waSoonSuffix': ' · قريباً',
       'nav.pricing': 'الأسعار',
       'wa.hello': 'مرحباً نوميديا لابز — أودّ الحديث عن مشروع.',
-      'contact.waPending': 'الرقم قريباً',
       'footer.wa': 'واتساب',
       'price.kicker': '٠٤ — الأسعار', 'price.title': 'سعر <em>قبل عرض السعر.</em>',
       'price.lead': 'نطاقات السوق الجزائري الحقيقية، معلنة. اضبط نطاق العمل، وشاهد التقدير يتحرّك — ثم استلم سعراً نهائياً خلال ٢٤ ساعة.',
@@ -1476,7 +1473,8 @@
        stays visibly pending rather than linking somewhere wrong — the same
        idiom hub/ uses for handles with no verified URL. */
     var WA = (window.NUMIDEA_WA || '').replace(/[^0-9]/g, '');
-    document.querySelectorAll('.wa-link').forEach(function (a) {
+    // Rebuilt on a language swap, so the pre-filled greeting follows the page.
+    var wireWA = function () { document.querySelectorAll('.wa-link').forEach(function (a) {
       if (WA) {
         a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t('wa.hello'));
         a.target = '_blank';
@@ -1491,7 +1489,9 @@
         // a hard-coded CSS `content` string could not follow the language.
         a.setAttribute('data-soon', t('price.waSoonSuffix'));
       }
-    });
+    }); };
+    wireWA();
+    document.addEventListener('numidea:lang', wireWA);
 
    } catch (e) {
     // Never let an init error leave content stuck behind scroll-reveal.
