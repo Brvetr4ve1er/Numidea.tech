@@ -780,3 +780,82 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
   .steps .step{padding:var(--s3);grid-template-columns:minmax(0,1fr);
     grid-template-areas:"node" "fig" "body";justify-items:start;align-content:start;gap:var(--s3)}
 }
+
+/* ================= PRICING ================= */
+/* The base sheet builds this section from arcanum tokens — midnight navy,
+   teal, deep shadow. Restated here in this system's own paper-and-ink
+   palette so none of that leaks onto the Engineering theme. */
+.price-free{background:var(--panel);border:1px solid var(--edge);border-radius:var(--r2);
+  box-shadow:none;padding:var(--s3);gap:var(--s3);margin-bottom:var(--s5)}
+.price-free::before{background:var(--accent);opacity:1;height:1px}
+.pf-mark{width:56px;height:56px;color:var(--accent)}
+.price-free h3{font-size:19px;letter-spacing:-.02em;color:var(--fg)}
+.price-free p{color:var(--fg-2)}
+
+.tiers{gap:var(--s2);margin-bottom:var(--s3)}
+.tier{background:var(--panel);border:1px solid var(--edge);border-radius:var(--r2);
+  box-shadow:none;padding:var(--s4) var(--s3) var(--s3)}
+.tier:hover{border-color:var(--edge-2);transform:none}
+.tier-pop{border-color:var(--accent);box-shadow:none}
+.t-pop{background:var(--accent);color:var(--bg);border-radius:var(--r1);inset-inline-start:var(--s3)}
+.tier .t-fam{color:var(--accent)}
+.tier h3{font-size:clamp(20px,2.4vw,26px);color:var(--fg)}
+.t-for{color:var(--fg-2)}
+.t-range{color:var(--fg);font-size:clamp(18px,2vw,23px)}
+.t-range .cur,.eo-range .cur{color:var(--accent)}
+.t-time{color:var(--fg-3);border-bottom:1px solid var(--edge);
+  padding-bottom:var(--s3);margin-bottom:var(--s3)}
+.t-list li{color:var(--fg-2)}
+.t-list li::before{border-color:var(--accent)}
+.price-note{color:var(--fg-3);margin-bottom:var(--s5)}
+
+.estimator{background:var(--panel);border:1px solid var(--edge);border-radius:var(--r2);
+  box-shadow:none;margin-bottom:var(--s5)}
+.est-head{padding:var(--s3);border-bottom:1px solid var(--edge)}
+.est-head h3{font-size:19px;color:var(--fg)}
+.est-head p,.eo-fine{color:var(--fg-2)}
+.est-controls{padding:var(--s3);gap:var(--s4)}
+.est-field legend,.est-field>label,.est-hint,.eo-k,.eo-time{color:var(--fg-3)}
+.est-sizev{color:var(--accent)}
+.echip,.eopt{background:var(--panel-2);border:1px solid var(--edge);border-radius:var(--r1);color:var(--fg-2)}
+.echip:hover,.eopt:hover{border-color:var(--accent);color:var(--fg)}
+.echip:has(input:checked){background:var(--glow);border-color:var(--accent);color:var(--fg)}
+.eopt:has(input:checked){border-color:var(--accent);color:var(--fg)}
+.eopt::before{border-color:var(--edge-2);border-radius:3px}
+.eopt:has(input:checked)::before{border-color:var(--accent);background:var(--accent);
+  background-image:linear-gradient(45deg,transparent 42%,var(--bg) 42%,var(--bg) 56%,transparent 56%),
+                   linear-gradient(-45deg,transparent 56%,var(--bg) 56%,var(--bg) 70%,transparent 70%)}
+.echip:has(input:focus-visible),.eopt:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:3px}
+.est-field input[type="range"]::-webkit-slider-runnable-track{background:linear-gradient(90deg,var(--accent),var(--edge-2))}
+.est-field input[type="range"]::-moz-range-track{background:linear-gradient(90deg,var(--accent),var(--edge-2))}
+.est-field input[type="range"]::-webkit-slider-thumb{background:var(--bg);border-color:var(--accent);box-shadow:none}
+.est-field input[type="range"]::-moz-range-thumb{background:var(--bg);border-color:var(--accent);box-shadow:none}
+.est-field input[type="range"]:focus-visible{outline-color:var(--accent)}
+.est-out{background:var(--panel-2);border-top:1px solid var(--edge);padding:var(--s3)}
+.eo-k{color:var(--accent)}
+.eo-range{color:var(--fg);font-size:clamp(22px,3vw,34px)}
+.eo-dash{color:var(--fg-3)}
+.eo-sum li{border:1px solid var(--edge-2);border-radius:var(--r1);color:var(--fg-2)}
+.eo-sum .eo-head{border-color:var(--accent);color:var(--accent)}
+
+.onboard{background:var(--panel);border:1px solid var(--edge);border-radius:var(--r2);
+  box-shadow:none;padding:var(--s4) var(--s3)}
+.ob-head h3{font-size:19px;color:var(--fg)}
+.ob-head p{color:var(--fg-2);margin-bottom:var(--s4)}
+.ob-steps{gap:var(--s3);margin-bottom:var(--s4)}
+.ob-n{border:1px solid var(--accent);color:var(--accent);background:var(--panel-2);border-radius:var(--r1)}
+.ob-steps li b{color:var(--fg);font-size:15px}
+.ob-steps li span:not(.ob-n){color:var(--fg-2)}
+
+/* service marks + parallax fields */
+.svc-fig{border:1px solid var(--edge);border-radius:var(--r1);background:var(--panel-2);
+  color:var(--accent);opacity:1}
+.svc-row:hover .svc-fig{border-color:var(--edge-2)}
+/* On near-black paper the texture needs less, not more: the same opacity that
+   reads as a faint blueprint on arcanum reads as dirt here. */
+.px-field{color:var(--accent);opacity:.05}
+#pricing .px-field,#contact .px-field{color:var(--accent);opacity:.05}
+
+@media(min-width:1100px){
+  .est-out{border-top:0;border-inline-start:1px solid var(--edge)}
+}

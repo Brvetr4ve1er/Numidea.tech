@@ -42,7 +42,7 @@
       'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'Une boutique de matériel gaming au branding affûté, pensée pour la conversion.',
       'work.lead': 'Des sites réels, en ligne, qu\'on peut cliquer — pas des maquettes.',
       'work.live': 'Démo →', 'work.soon': 'Bientôt', 'work.all': 'Voir tout le portfolio →',
-      'how.kicker': '04 — Méthode',
+      'how.kicker': '05 — Méthode',
       'how.title': 'Aucun <em>intermédiaire.</em>',
       'how1.h': 'Vous parlez au constructeur.', 'how1.p': 'Pas de chef de projet, pas de téléphone arabe. Celui qui cadre, c\'est celui qui livre.',
       'how2.h': 'Une équipe possède toute la chaîne.', 'how2.p': 'Design → code → déploiement. Rien ne se perd dans un transfert qui n\'a jamais lieu.',
@@ -50,7 +50,7 @@
       'scene.kicker': '◆ PLAN D\'ATELIER · PLANCHE PAR PLANCHE', 'scene.title': 'Les projets, comme un plan.',
       'scene.lead': 'Chaque projet dessiné comme une planche d\'ingénierie : cotes, statuts honnêtes, et le site en vrai.',
       'scene.cta': 'Ouvrir les planches →',
-      'founder.kicker': '05 — Équipe & fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
+      'founder.kicker': '06 — Équipe & fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
       'founder.lead': 'Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.',
       'founder.role': 'Designer & développeur · Fondateur', 'founder.years': '6 ans',
       'founder.bio': 'Six ans à concevoir des identités, coder des interfaces et livrer des produits — de la marque au front-end au cloud. Je transforme le brief en build, et je reste quand c\'est en ligne.',
@@ -61,9 +61,9 @@
       'founder.download': 'Télécharger le CV (PDF) ↓',
       'founder.teamRow': 'Avec lui : <b>D</b> — données & pipelines · <b>S</b> — ventes & partenariats · <b>T</b> — représentant technique',
       'fx1': 'Graphiste', 'fx2': 'Designer freelance', 'fx3': 'Web & social', 'fx4': 'Identité & web', 'fx5': 'Contenu & vidéo',
-      'stack.kicker': '06 — Stack',
+      'stack.kicker': '07 — Stack',
       'stack.title': 'Le flex <em>discret.</em>',
-      'faq.kicker': '07 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
+      'faq.kicker': '08 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
       'faq.lead': 'Ce qu\'on nous demande avant de se lancer — répondu franchement.',
       'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu\'on a cadré le projet ensemble.',
       'faq2.q': 'C\'est combien ?', 'faq2.a': 'Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez.',
@@ -71,7 +71,7 @@
       'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. On maintient ce qu\'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne.',
       'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l\'accès direct au builder.',
       'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer.',
-      'contact.kicker': '08 — Contact',
+      'contact.kicker': '09 — Contact',
       'contact.title': 'On le <em>rend réel ?</em>',
       'contact.sub': 'Dites-nous ce que vous cherchez à concrétiser — l\'urgent, le cassé, l\'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Réponse',
@@ -121,7 +121,7 @@
       'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'A sharp-branded gaming-gear store, built to convert.',
       'work.lead': 'Real sites, live and clickable — not mockups.',
       'work.live': 'Live demo →', 'work.soon': 'Soon', 'work.all': 'See the full portfolio →',
-      'how.kicker': '04 — How we work',
+      'how.kicker': '05 — How we work',
       'how.title': 'No <em>middlemen.</em>',
       'how1.h': 'You talk to the builder.', 'how1.p': 'No account manager, no telephone game. Whoever scopes it, ships it.',
       'how2.h': 'One team owns the whole chain.', 'how2.p': 'Design → code → deploy. Nothing gets lost in a handoff that never happens.',
@@ -129,7 +129,7 @@
       'scene.kicker': '◆ ATELIER DRAWING · SHEET BY SHEET', 'scene.title': 'The work, as a drawing.',
       'scene.lead': 'Every project drawn as an engineering sheet: dimensions, honest statuses, and the real site.',
       'scene.cta': 'Open the sheets →',
-      'founder.kicker': '05 — Team & founder', 'founder.title': 'The studio has a <em>face.</em>',
+      'founder.kicker': '06 — Team & founder', 'founder.title': 'The studio has a <em>face.</em>',
       'founder.lead': 'Behind Numidea: a designer-developer who conceives, codes and ships — no middleman.',
       'founder.role': 'Designer & developer · Founder', 'founder.years': '6 yrs',
       'founder.bio': 'Six years designing identities, coding interfaces and shipping products — brand to front-end to cloud. I turn the brief into the build, and I stay once it\'s live.',
@@ -140,9 +140,9 @@
       'founder.download': 'Download résumé (PDF) ↓',
       'founder.teamRow': 'Alongside him: <b>D</b> — data & pipelines · <b>S</b> — sales & partnerships · <b>T</b> — technical rep',
       'fx1': 'Graphic Designer', 'fx2': 'Freelance Designer', 'fx3': 'Web & social', 'fx4': 'Identity & web', 'fx5': 'Content & video',
-      'stack.kicker': '06 — Stack',
+      'stack.kicker': '07 — Stack',
       'stack.title': 'The quiet <em>flex.</em>',
-      'faq.kicker': '07 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
+      'faq.kicker': '08 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
       'faq.lead': 'What people ask before they start — answered straight.',
       'faq1.q': 'How long does it take to ship?', 'faq1.a': 'It depends on scope — but we don\'t keep you waiting. Most sites ship in a few weeks, and you get a firm timeline the moment we\'ve scoped the project together.',
       'faq2.q': 'What does it cost?', 'faq2.a': 'Per project, never a copy-paste template. We quote once the scope is clear — a fixed price, no surprise fees. And we often build a working demo before you commit a dinar.',
@@ -150,7 +150,7 @@
       'faq4.q': 'What happens after launch?', 'faq4.a': 'We stay. We maintain what we ship and we answer when it breaks — in under 24 hours. No "good luck" on launch day.',
       'faq5.q': 'Do you work remotely?', 'faq5.a': 'Yes. We\'re based in Bordj Bou Arréridj but we deliver anywhere — including clients in France. Distance doesn\'t change your direct line to the builder.',
       'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman. The person who scopes your project is the one who codes and ships it — one team, design to deploy. And often, you see a real demo before you pay.',
-      'contact.kicker': '08 — Contact',
+      'contact.kicker': '09 — Contact',
       'contact.title': 'Let\'s make it <em>real.</em>',
       'contact.sub': 'Tell us what you\'re trying to make real — what\'s urgent, what\'s broken, what\'s due. We reply in under 24 hours, in French, English, or Arabic.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Reply',
@@ -200,7 +200,7 @@
       'proj7.cat': 'تجارة · ألعاب', 'proj7.desc': 'متجر لعتاد الألعاب بهوية حادّة، مبنيٌّ للتحويل.',
       'work.lead': 'مواقع حقيقية، منشورة وقابلة للنقر — لا نماذج.',
       'work.live': 'عرض حيّ →', 'work.soon': 'قريباً', 'work.all': 'شاهد كل الأعمال →',
-      'how.kicker': '٠٤ — كيف نعمل',
+      'how.kicker': '٠٥ — كيف نعمل',
       'how.title': 'بلا <em>وسطاء.</em>',
       'how1.h': 'تتحدّث إلى من يبني.', 'how1.p': 'لا مدير حساب، ولا هاتف مكسور. من يضع النطاق هو من يُسلّم.',
       'how2.h': 'فريق واحد يملك السلسلة كاملة.', 'how2.p': 'تصميم ← كود ← نشر. لا شيء يضيع في تسليم لا يحدث أبداً.',
@@ -208,7 +208,7 @@
       'scene.kicker': '◆ مخطط الورشة · لوحةً بلوحة', 'scene.title': 'الأعمال، كمخطط.',
       'scene.lead': 'كل مشروع مرسوم كلوحة هندسية: أبعاد، وحالات صادقة، والموقع الحقيقي.',
       'scene.cta': 'افتح اللوحات →',
-      'founder.kicker': '٠٥ — الفريق والمؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
+      'founder.kicker': '٠٦ — الفريق والمؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
       'founder.lead': 'خلف Numidea: مصمّم-مطوّر يتصوّر ويبرمج ويُسلّم — دون وسيط.',
       'founder.role': 'مصمّم ومطوّر · المؤسّس', 'founder.years': '٦ سنوات',
       'founder.bio': 'ستّ سنوات في تصميم الهويّات وبرمجة الواجهات وتسليم المنتجات — من العلامة إلى الواجهة إلى السحابة. أحوّل الفكرة إلى منتج، وأبقى بعد الإطلاق.',
@@ -219,9 +219,9 @@
       'founder.download': 'تحميل السيرة (PDF) ↓',
       'founder.teamRow': 'إلى جانبه: <b>D</b> — البيانات والأنابيب · <b>S</b> — المبيعات والشراكات · <b>T</b> — الممثّل التقني',
       'fx1': 'مصمّم غرافيك', 'fx2': 'مصمّم مستقل', 'fx3': 'ويب واجتماعي', 'fx4': 'هويّة وويب', 'fx5': 'محتوى وفيديو',
-      'stack.kicker': '٠٦ — التقنيات',
+      'stack.kicker': '٠٧ — التقنيات',
       'stack.title': 'التباهي <em>الهادئ.</em>',
-      'faq.kicker': '٠٧ — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
+      'faq.kicker': '٠٨ — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
       'faq.lead': 'ما يُسأل قبل البدء — بإجابات صريحة.',
       'faq1.q': 'كم يستغرق الإنجاز؟', 'faq1.a': 'يعتمد على حجم المشروع — لكنّنا لا نُبقيك تنتظر. معظم المواقع تنطلق خلال أسابيع، وتحصل على موعد نهائي واضح بمجرّد أن نحدّد نطاق العمل معاً.',
       'faq2.q': 'كم التكلفة؟', 'faq2.a': 'حسب المشروع، لا قوالب جاهزة. نُسعّر بعد توضيح النطاق — سعر ثابت دون مفاجآت. وغالباً نبني نموذجاً يعمل قبل أن تلتزم.',
@@ -229,7 +229,7 @@
       'faq4.q': 'وماذا بعد الإطلاق؟', 'faq4.a': 'نبقى معك. نصون ما نُسلّمه ونردّ حين يتعطّل شيء — في أقل من ٢٤ ساعة. لا « حظّاً موفقاً » يوم الإطلاق.',
       'faq5.q': 'هل تعملون عن بُعد؟', 'faq5.a': 'نعم. مقرّنا في برج بوعريريج لكنّنا نُسلّم في كل مكان — بما في ذلك عملاء في فرنسا. البُعد لا يغيّر تواصلك المباشر مع من يبني.',
       'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط. من يحدّد نطاق مشروعك هو من يبرمجه ويُسلّمه — فريق واحد من التصميم إلى النشر. وغالباً ترى نموذجاً حقيقياً قبل أن تدفع.',
-      'contact.kicker': '٠٨ — تواصل',
+      'contact.kicker': '٠٩ — تواصل',
       'contact.title': '<em>نجعله حقيقة؟</em>',
       'contact.sub': 'أخبرنا بما تسعى إلى تحقيقه — العاجل، المتعطّل، المستحقّ. نردّ في أقل من ٢٤ ساعة، بالفرنسية أو الإنجليزية أو العربية.',
       'contact.chStudio': 'الاستوديو', 'contact.chReply': 'الردّ',
@@ -253,8 +253,58 @@
   /* ---- Services Catalog + Trust strip strings (merged into I18N) ---- */
   var EXTRA = {
     fr: {
+      'price.waSoonSuffix': ' · bientôt',
+      'nav.pricing': 'Tarifs',
+      'wa.hello': "Bonjour Numidea Labs — j'aimerais parler d'un projet.",
+      'contact.waPending': 'Numéro bientôt en ligne',
+      'footer.wa': 'WhatsApp',
+      'price.kicker': '04 — Tarifs', 'price.title': 'Un prix <em>avant le devis.</em>',
+      'price.lead': "Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre, voyez l'estimation bouger — puis recevez un prix ferme sous 24 heures.",
+      'price.cur': 'DA',
+      'price.freeH': "L'Aperçu reste gratuit.",
+      'price.freeP': "Avant le moindre dinar, on construit une démo réelle et fonctionnelle de votre projet. Vous la voyez tourner, puis vous décidez. Rien de ce qui suit ne s'engage sans ça.",
+      'price.popular': 'Le plus choisi',
+      'price.t1fam': 'Le Build', 'price.t1name': 'Essentiel', 'price.t1for': 'Une présence crédible, vite en ligne.', 'price.t1time': '2 à 4 semaines',
+      'price.t1a': 'Vitrine ou landing, 1 à 5 pages',
+      'price.t1b': 'Design sur mesure — jamais un template rethémé',
+      'price.t1c': 'Responsive, performance et SEO de base',
+      'price.t1d': 'Mise en ligne, domaine et certificat configurés',
+      'price.t1e': '1 mois de support inclus',
+      'price.t2fam': 'Le Build', 'price.t2name': 'Studio', 'price.t2for': "Le site qui porte vraiment l'entreprise.", 'price.t2time': '3 à 7 semaines',
+      'price.t2a': 'Site sur mesure, 6 à 15 pages',
+      'price.t2b': 'Trilingue FR / EN / AR, avec un arabe RTL pensé nativement',
+      'price.t2c': 'Design system documenté — tokens, composants, le kit complet',
+      'price.t2d': 'CMS ou back-office pour gérer le contenu vous-même',
+      'price.t2e': 'SEO technique, Core Web Vitals, accessibilité',
+      'price.t2f': '3 mois de support inclus',
+      'price.t3fam': 'Le Moteur', 'price.t3name': 'Moteur', 'price.t3for': "La machinerie que presque personne ne construit ici.", 'price.t3time': '8 à 16 semaines',
+      'price.t3a': "E-commerce, application web ou pipeline d'automatisation",
+      'price.t3b': 'Paiement, comptes utilisateurs, tableaux de bord',
+      'price.t3c': 'Scraping et intelligence marché — le web ouvert en base de données',
+      'price.t3d': 'Intégrations API et outils internes',
+      'price.t3e': '6 mois de support inclus',
+      'price.retainer': 'Maintenance après livraison, si vous la voulez : 18 000 – 60 000 DA par mois. Sans engagement de durée.',
+      'price.estH': 'Estimez votre projet',
+      'price.estP': 'Réglez ce dont vous avez besoin. La fourchette se recalcule en direct, sur les mêmes chiffres que les paliers ci-dessus.',
+      'price.qType': 'Quel type de projet ?', 'price.qSize': 'Ampleur', 'price.qOpts': "Ce qu'il vous faut en plus", 'price.qPace': 'Délai',
+      'price.tyVitrine': 'Vitrine', 'price.tyCustom': 'Site sur mesure', 'price.tyShop': 'E-commerce',
+      'price.tyApp': 'Application web', 'price.tyAuto': 'Automatisation', 'price.tyBrand': 'Identité visuelle',
+      'price.oI18n': 'Trilingue FR / EN / AR + RTL', 'price.oCms': 'CMS / back-office', 'price.oPay': 'Paiement en ligne',
+      'price.oDs': 'Design system complet', 'price.oSeo': 'SEO avancé & performance', 'price.oApi': 'Intégrations API',
+      'price.paceStd': 'Standard', 'price.paceRush': 'Accéléré',
+      'price.uPages': 'pages', 'price.uScreens': 'écrans', 'price.uProducts': 'produits', 'price.uFlows': 'flux', 'price.uSupports': 'supports',
+      'price.estimate': 'Estimation', 'price.weeks': 'semaines',
+      'price.estFine': "Fourchette indicative, pas un devis. Le prix ferme arrive sous 24 heures, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.",
+      'price.estCta': 'Obtenir le prix ferme →',
+      'price.obH': 'Comment on démarre', 'price.obP': 'Quatre étapes. Vous ne payez rien avant la troisième.',
+      'price.ob1h': 'Vous décrivez le projet', 'price.ob1p': 'Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.',
+      'price.ob2h': 'On revient sous 24 heures', 'price.ob2p': 'Avec un périmètre écrit et un prix ferme. Pas une fourchette, un chiffre.',
+      'price.ob3h': "On construit L'Aperçu — gratuit", 'price.ob3p': 'Une démo réelle de votre projet, avant paiement. Vous la voyez tourner en direct.',
+      'price.ob4h': 'Vous décidez', 'price.ob4p': "Si c'est non, vous ne devez rien. Si c'est oui, on est déjà à mi-chemin.",
+      'price.obCta1': 'Décrire mon projet →', 'price.obCta2': 'WhatsApp',
+      'price.waSoon': 'WhatsApp — bientôt',
+      'svc.famBuild': 'Le Build', 'svc.famEngine': 'Le Moteur', 'svc.famMind': "L'Esprit",
       'svc.lead': 'Cinq offres en avant, cinq capacités en réserve — la profondeur attend ceux qui creusent.',
-      'svc.flagship': '★ Flagship',
       'prev.tag': 'Offre signature', 'prev.name': "L'Aperçu", 'prev.promise': 'Zéro risque. Juste la preuve.',
       'prev.brief': 'On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.',
       'prev.outcome': 'Le « oui » le plus facile que vous donnerez — parce que vous l\'avez déjà vu.',
@@ -289,8 +339,58 @@
       'cat.health': 'Santé', 'cat.travel': 'Voyage', 'cat.industrial': 'Industrie', 'cat.commerce': 'Commerce', 'cat.pwa': 'PWA'
     },
     en: {
+      'price.waSoonSuffix': ' · soon',
+      'nav.pricing': 'Pricing',
+      'wa.hello': 'Hello Numidea Labs — I would like to talk about a project.',
+      'contact.waPending': 'Number coming soon',
+      'footer.wa': 'WhatsApp',
+      'price.kicker': '04 — Pricing', 'price.title': 'A price <em>before the quote.</em>',
+      'price.lead': 'The real Algerian market ranges, published. Set the scope, watch the estimate move — then get a firm price within 24 hours.',
+      'price.cur': 'DZD',
+      'price.freeH': 'The Preview stays free.',
+      'price.freeP': 'Before a single dinar, we build a real, working demo of your project. You watch it run, then you decide. Nothing below commits you without that.',
+      'price.popular': 'Most chosen',
+      'price.t1fam': 'The Build', 'price.t1name': 'Essential', 'price.t1for': 'A credible presence, live quickly.', 'price.t1time': '2 to 4 weeks',
+      'price.t1a': 'Showcase or landing site, 1 to 5 pages',
+      'price.t1b': 'Custom design — never a re-themed template',
+      'price.t1c': 'Responsive, fast, with foundational SEO',
+      'price.t1d': 'Deployment, domain and certificate configured',
+      'price.t1e': '1 month of support included',
+      'price.t2fam': 'The Build', 'price.t2name': 'Studio', 'price.t2for': 'The site that actually carries the business.', 'price.t2time': '3 to 7 weeks',
+      'price.t2a': 'Custom site, 6 to 15 pages',
+      'price.t2b': 'Trilingual FR / EN / AR, with Arabic RTL built natively',
+      'price.t2c': 'Documented design system — tokens, components, the full kit',
+      'price.t2d': 'CMS or back-office so you manage the content yourself',
+      'price.t2e': 'Technical SEO, Core Web Vitals, accessibility',
+      'price.t2f': '3 months of support included',
+      'price.t3fam': 'The Engine', 'price.t3name': 'Engine', 'price.t3for': 'The machinery almost nobody here builds.', 'price.t3time': '8 to 16 weeks',
+      'price.t3a': 'E-commerce, web application or automation pipeline',
+      'price.t3b': 'Payments, user accounts, dashboards',
+      'price.t3c': 'Scraping and market intelligence — the open web as a database',
+      'price.t3d': 'API integrations and internal tools',
+      'price.t3e': '6 months of support included',
+      'price.retainer': 'Maintenance after launch, if you want it: 18,000 – 60,000 DZD per month. No lock-in.',
+      'price.estH': 'Estimate your project',
+      'price.estP': 'Set what you need. The range recalculates live, on the same numbers the tiers above quote.',
+      'price.qType': 'What kind of project?', 'price.qSize': 'Scale', 'price.qOpts': 'What else you need', 'price.qPace': 'Timeline',
+      'price.tyVitrine': 'Showcase site', 'price.tyCustom': 'Custom site', 'price.tyShop': 'E-commerce',
+      'price.tyApp': 'Web application', 'price.tyAuto': 'Automation', 'price.tyBrand': 'Visual identity',
+      'price.oI18n': 'Trilingual FR / EN / AR + RTL', 'price.oCms': 'CMS / back-office', 'price.oPay': 'Online payments',
+      'price.oDs': 'Full design system', 'price.oSeo': 'Advanced SEO & performance', 'price.oApi': 'API integrations',
+      'price.paceStd': 'Standard', 'price.paceRush': 'Accelerated',
+      'price.uPages': 'pages', 'price.uScreens': 'screens', 'price.uProducts': 'products', 'price.uFlows': 'flows', 'price.uSupports': 'deliverables',
+      'price.estimate': 'Estimate', 'price.weeks': 'weeks',
+      'price.estFine': 'An indicative range, not a quote. The firm price arrives within 24 hours once we have scoped it together — and it does not move after that.',
+      'price.estCta': 'Get the firm price →',
+      'price.obH': 'How we start', 'price.obP': 'Four steps. You pay nothing before the third.',
+      'price.ob1h': 'You describe the project', 'price.ob1p': 'Two minutes, in writing or out loud. In French, English or Arabic.',
+      'price.ob2h': 'We come back within 24 hours', 'price.ob2p': 'With a written scope and a firm price. Not a range — a number.',
+      'price.ob3h': 'We build the Preview — free', 'price.ob3p': 'A real demo of your project, before payment. You watch it run live.',
+      'price.ob4h': 'You decide', 'price.ob4p': 'If it is no, you owe nothing. If it is yes, we are already halfway.',
+      'price.obCta1': 'Describe my project →', 'price.obCta2': 'WhatsApp',
+      'price.waSoon': 'WhatsApp — soon',
+      'svc.famBuild': 'The Build', 'svc.famEngine': 'The Engine', 'svc.famMind': 'The Mind',
       'svc.lead': 'Five offers up front, five more in reserve — the depth waits for whoever digs.',
-      'svc.flagship': '★ Flagship',
       'prev.tag': 'Signature offer', 'prev.name': 'The Preview', 'prev.promise': 'Zero risk. Just proof.',
       'prev.brief': 'We build a real, working demo of your site up front. Walk into the meeting, see it live, then decide.',
       'prev.outcome': 'The easiest yes you\'ll ever give — because you\'ve already seen it.',
@@ -325,8 +425,58 @@
       'cat.health': 'Healthcare', 'cat.travel': 'Travel', 'cat.industrial': 'Industrial', 'cat.commerce': 'Commerce', 'cat.pwa': 'PWA'
     },
     ar: {
+      'price.waSoonSuffix': ' · قريباً',
+      'nav.pricing': 'الأسعار',
+      'wa.hello': 'مرحباً نوميديا لابز — أودّ الحديث عن مشروع.',
+      'contact.waPending': 'الرقم قريباً',
+      'footer.wa': 'واتساب',
+      'price.kicker': '٠٤ — الأسعار', 'price.title': 'سعر <em>قبل عرض السعر.</em>',
+      'price.lead': 'نطاقات السوق الجزائري الحقيقية، معلنة. اضبط نطاق العمل، وشاهد التقدير يتحرّك — ثم استلم سعراً نهائياً خلال ٢٤ ساعة.',
+      'price.cur': 'دج',
+      'price.freeH': 'النموذج المبدئي يبقى مجّانياً.',
+      'price.freeP': 'قبل أيّ دينار، نبني نموذجاً حقيقياً وعاملاً لمشروعك. تراه يشتغل، ثم تقرّر. لا شيء ممّا يلي يُلزمك قبل ذلك.',
+      'price.popular': 'الأكثر اختياراً',
+      'price.t1fam': 'البناء', 'price.t1name': 'الأساسي', 'price.t1for': 'حضور موثوق، على الإنترنت بسرعة.', 'price.t1time': 'من ٢ إلى ٤ أسابيع',
+      'price.t1a': 'موقع تعريفي أو صفحة هبوط، من ١ إلى ٥ صفحات',
+      'price.t1b': 'تصميم مخصّص — لا قالب معاد تلوينه أبداً',
+      'price.t1c': 'متجاوب وسريع، مع تهيئة أساسية لمحرّكات البحث',
+      'price.t1d': 'النشر والنطاق والشهادة — كلّها مُعدّة',
+      'price.t1e': 'شهر دعم مشمول',
+      'price.t2fam': 'البناء', 'price.t2name': 'الاستوديو', 'price.t2for': 'الموقع الذي يحمل الشركة فعلاً.', 'price.t2time': 'من ٣ إلى ٧ أسابيع',
+      'price.t2a': 'موقع مخصّص، من ٦ إلى ١٥ صفحة',
+      'price.t2b': 'ثلاثي اللغة فرنسي / إنجليزي / عربي، بعربية من اليمين إلى اليسار مبنيّة أصلاً',
+      'price.t2c': 'نظام تصميم موثّق — الرموز والمكوّنات والعدّة كاملة',
+      'price.t2d': 'نظام إدارة محتوى أو لوحة تحكّم لتديروا المحتوى بأنفسكم',
+      'price.t2e': 'تهيئة تقنية لمحرّكات البحث، ومؤشّرات الأداء، وإتاحة الوصول',
+      'price.t2f': 'ثلاثة أشهر دعم مشمولة',
+      'price.t3fam': 'المحرّك', 'price.t3name': 'المحرّك', 'price.t3for': 'الآلة التي لا يبنيها هنا أحد تقريباً.', 'price.t3time': 'من ٨ إلى ١٦ أسبوعاً',
+      'price.t3a': 'متجر إلكتروني أو تطبيق ويب أو خطّ أتمتة',
+      'price.t3b': 'الدفع وحسابات المستخدمين ولوحات المتابعة',
+      'price.t3c': 'استخراج البيانات وذكاء السوق — الويب المفتوح كقاعدة بيانات',
+      'price.t3d': 'تكاملات واجهات برمجية وأدوات داخلية',
+      'price.t3e': 'ستّة أشهر دعم مشمولة',
+      'price.retainer': 'الصيانة بعد التسليم، إن أردتموها: من ١٨٬٠٠٠ إلى ٦٠٬٠٠٠ دج شهرياً. دون ارتباط بمدّة.',
+      'price.estH': 'قدّر مشروعك',
+      'price.estP': 'اضبط ما تحتاجه. يُعاد حساب النطاق مباشرة، بالأرقام نفسها المعلنة في الباقات أعلاه.',
+      'price.qType': 'أيّ نوع من المشاريع؟', 'price.qSize': 'الحجم', 'price.qOpts': 'ما تحتاجه إضافةً إلى ذلك', 'price.qPace': 'المهلة',
+      'price.tyVitrine': 'موقع تعريفي', 'price.tyCustom': 'موقع مخصّص', 'price.tyShop': 'متجر إلكتروني',
+      'price.tyApp': 'تطبيق ويب', 'price.tyAuto': 'أتمتة', 'price.tyBrand': 'هوية بصرية',
+      'price.oI18n': 'ثلاثي اللغة فرنسي / إنجليزي / عربي + اتجاه RTL', 'price.oCms': 'نظام إدارة محتوى / لوحة تحكّم', 'price.oPay': 'الدفع الإلكتروني',
+      'price.oDs': 'نظام تصميم كامل', 'price.oSeo': 'تهيئة متقدّمة وأداء', 'price.oApi': 'تكاملات واجهات برمجية',
+      'price.paceStd': 'عادي', 'price.paceRush': 'مستعجل',
+      'price.uPages': 'صفحات', 'price.uScreens': 'شاشات', 'price.uProducts': 'منتجات', 'price.uFlows': 'مسارات', 'price.uSupports': 'مخرجات',
+      'price.estimate': 'التقدير', 'price.weeks': 'أسابيع',
+      'price.estFine': 'نطاق استرشادي، لا عرض سعر. السعر النهائي يصل خلال ٢٤ ساعة بعد تحديد نطاق العمل معاً — ولا يتغيّر بعدها.',
+      'price.estCta': 'احصل على السعر النهائي →',
+      'price.obH': 'كيف نبدأ', 'price.obP': 'أربع خطوات. لا تدفع شيئاً قبل الثالثة.',
+      'price.ob1h': 'تصف المشروع', 'price.ob1p': 'دقيقتان، كتابةً أو مشافهة. بالفرنسية أو الإنجليزية أو العربية.',
+      'price.ob2h': 'نعود إليك خلال ٢٤ ساعة', 'price.ob2p': 'بنطاق عمل مكتوب وسعر نهائي. لا فورقة — رقم واحد.',
+      'price.ob3h': 'نبني النموذج المبدئي — مجّاناً', 'price.ob3p': 'نموذج حقيقي لمشروعك، قبل الدفع. تراه يشتغل مباشرة.',
+      'price.ob4h': 'أنت تقرّر', 'price.ob4p': 'إن كان الجواب لا، فلا شيء عليك. وإن كان نعم، فنحن في منتصف الطريق أصلاً.',
+      'price.obCta1': 'صف مشروعي →', 'price.obCta2': 'واتساب',
+      'price.waSoon': 'واتساب — قريباً',
+      'svc.famBuild': 'البناء', 'svc.famEngine': 'المحرّك', 'svc.famMind': 'العقل',
       'svc.lead': 'خمسة عروض في المقدّمة وخمس قدرات في الاحتياط — والعمق ينتظر من يبحث.',
-      'svc.flagship': '★ الرائد',
       'prev.tag': 'عرض مميّز', 'prev.name': 'المعاينة', 'prev.promise': 'بلا مخاطرة. مجرّد إثبات.',
       'prev.brief': 'نبني نسخة تجريبية حقيقية وعاملة من موقعك مسبقاً. تدخل الاجتماع، تراها حيّة، ثم تقرّر.',
       'prev.outcome': 'أسهل «نعم» ستقولها — لأنّك رأيتها بالفعل.',
@@ -461,6 +611,9 @@
 
     try { localStorage.setItem('numidea-lang', lang); } catch (e) {}
     if (typeof explorerRerender === 'function') explorerRerender();
+    // Anything that builds translated strings in JS (the estimator's unit and
+    // option labels) has no data-i18n node to re-read and must rebuild itself.
+    document.dispatchEvent(new CustomEvent('numidea:lang', { detail: { lang: lang } }));
   }
 
   /* ---------------- count-up ---------------- */
@@ -1171,6 +1324,175 @@
         if (success) success.classList.add('show');
       });
     }
+
+    /* ---------------- 12 · project estimator ----------------
+       Ranges are anchored to the Onyxlab Baromètre 2026 Algerian freelance
+       grid and the 2026 DZ agency surveys, positioned between that grid's
+       "Confirmé" and "Agence" columns — a four-person studio carries neither
+       a junior's inexperience nor an agency's overhead. The tier cards in the
+       markup quote the same figures this model produces for their midpoints;
+       if one moves, move the other. Every number is DZD. */
+    var PRICE_MODEL = {
+      vitrine:   { base: [60000, 120000],   unit: [6000, 12000],  min: 1,  max: 10,  def: 3,  step: 1,  u: 'price.uPages',    base_u: 3,  weeks: [2, 4] },
+      surmesure: { base: [160000, 320000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 8,  weeks: [3, 7] },
+      ecommerce: { base: [220000, 550000],  unit: [900, 2200],    min: 10, max: 400, def: 60, step: 10, u: 'price.uProducts', base_u: 60, weeks: [5, 10] },
+      app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16] },
+      auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6] },
+      identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5] }
+    };
+    var PRICE_OPTS = {
+      i18n: { add: [22000, 55000],  weeks: [1, 2], k: 'price.oI18n' },
+      cms:  { add: [35000, 90000],  weeks: [1, 2], k: 'price.oCms' },
+      pay:  { add: [45000, 110000], weeks: [1, 2], k: 'price.oPay' },
+      ds:   { add: [60000, 140000], weeks: [1, 3], k: 'price.oDs' },
+      seo:  { add: [20000, 45000],  weeks: [0, 1], k: 'price.oSeo' },
+      api:  { add: [30000, 80000],  weeks: [1, 2], k: 'price.oApi' }
+    };
+    /* Rushing does not make the work smaller, it makes it more expensive and
+       compresses the calendar — never below two thirds, which is the floor
+       where review still happens. */
+    var RUSH_PRICE = 1.25, RUSH_WEEKS = 0.7;
+
+    /* The explorer's `t` is local to its own closure; this is the same
+       lookup, hoisted to where the estimator can reach it. */
+    function t(k, fb) {
+      var d = I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG];
+      return d && d[k] != null ? d[k] : (fb || k);
+    }
+
+    var est = document.getElementById('estimator');
+    if (est) {
+      var eSize   = document.getElementById('est-size'),
+          eSizeV  = document.getElementById('est-size-v'),
+          eSizeH  = document.getElementById('est-size-h'),
+          eLo     = document.getElementById('est-lo'),
+          eHi     = document.getElementById('est-hi'),
+          eWeeks  = document.getElementById('est-weeks'),
+          eSum    = document.getElementById('est-summary'),
+          eCta    = document.getElementById('est-cta');
+
+      /* Round to a figure a human would actually say out loud. Quoting
+         "186 400" implies a precision this model does not have. */
+      var roundTo = function (n) {
+        var g = n >= 500000 ? 50000 : n >= 150000 ? 10000 : 5000;
+        return Math.round(n / g) * g;
+      };
+      /* Thin no-break space between groups: a normal space lets the number
+         wrap mid-figure, and a comma reads as a decimal point in DZ. */
+      var money = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+
+      var typeOf = function () {
+        var r = est.querySelector('input[name="est-type"]:checked');
+        return r ? r.value : 'surmesure';
+      };
+
+      var syncSize = function (keepValue) {
+        var m = PRICE_MODEL[typeOf()];
+        var prev = parseInt(eSize.value, 10);
+        eSize.min = m.min; eSize.max = m.max; eSize.step = m.step;
+        eSize.value = keepValue && prev >= m.min && prev <= m.max ? prev : m.def;
+        if (eSizeH) eSizeH.textContent = t(m.u);
+      };
+
+      var compute = function () {
+        var key = typeOf(), m = PRICE_MODEL[key];
+        var n = parseInt(eSize.value, 10) || m.def;
+        var over = Math.max(0, n - m.base_u);
+        var lo = m.base[0] + over * m.unit[0];
+        var hi = m.base[1] + over * m.unit[1];
+        var wLo = m.weeks[0], wHi = m.weeks[1];
+        var picked = [];
+
+        est.querySelectorAll('input[data-opt]:checked').forEach(function (c) {
+          var o = PRICE_OPTS[c.getAttribute('data-opt')];
+          if (!o) return;
+          lo += o.add[0]; hi += o.add[1];
+          wLo += o.weeks[0]; wHi += o.weeks[1];
+          picked.push(t(o.k));
+        });
+
+        var rush = est.querySelector('input[name="est-pace"]:checked');
+        if (rush && rush.value === 'rush') {
+          lo *= RUSH_PRICE; hi *= RUSH_PRICE;
+          wLo = Math.max(1, Math.round(wLo * RUSH_WEEKS));
+          wHi = Math.max(2, Math.round(wHi * RUSH_WEEKS));
+          picked.push(t('price.paceRush'));
+        }
+
+        lo = roundTo(lo); hi = roundTo(hi);
+        eLo.textContent = money(lo);
+        eHi.textContent = money(hi);
+        eWeeks.textContent = wLo + ' – ' + wHi;
+
+        if (eSizeV) eSizeV.textContent = n;
+        if (eSum) {
+          eSum.textContent = '';
+          var head = document.createElement('li');
+          head.className = 'eo-head';
+          head.textContent = t('price.ty' + ({ vitrine: 'Vitrine', surmesure: 'Custom', ecommerce: 'Shop',
+                                               app: 'App', auto: 'Auto', identite: 'Brand' }[key]))
+                           + ' · ' + n + ' ' + t(m.u);
+          eSum.appendChild(head);
+          picked.forEach(function (label) {
+            var li = document.createElement('li');
+            li.textContent = label;
+            eSum.appendChild(li);
+          });
+        }
+
+        /* Carry the configured scope into the contact form, so the visitor
+           does not have to retype what they just clicked. */
+        if (eCta) {
+          eCta.dataset.scope = (eSum && eSum.textContent ? eSum.innerText.replace(/\n+/g, ' · ') : '')
+            + ' — ' + money(lo) + '–' + money(hi) + ' ' + t('price.cur');
+        }
+      };
+
+      est.addEventListener('change', function (ev) {
+        if (ev.target.name === 'est-type') syncSize(false);
+        compute();
+      });
+      eSize.addEventListener('input', compute);
+
+      /* Hand the scope to the message field rather than losing it on the jump. */
+      if (eCta) {
+        eCta.addEventListener('click', function () {
+          var msg = document.getElementById('f-message');
+          if (msg && !msg.value.trim() && eCta.dataset.scope) {
+            msg.value = eCta.dataset.scope;
+          }
+        });
+      }
+
+      /* Units and option labels are translated, so rebuild on language change. */
+      document.addEventListener('numidea:lang', function () { syncSize(true); compute(); });
+      syncSize(true);
+      compute();
+    }
+
+    /* ---------------- 13 · WhatsApp ----------------
+       NUMIDEA_WA is the studio's number in full international form, digits
+       only (e.g. '213XXXXXXXXX'). While it is empty every WhatsApp control
+       stays visibly pending rather than linking somewhere wrong — the same
+       idiom hub/ uses for handles with no verified URL. */
+    var WA = (window.NUMIDEA_WA || '').replace(/[^0-9]/g, '');
+    document.querySelectorAll('.wa-link').forEach(function (a) {
+      if (WA) {
+        a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t('wa.hello'));
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.removeAttribute('data-wa-pending');
+        a.removeAttribute('aria-disabled');
+      } else {
+        a.removeAttribute('href');
+        a.setAttribute('data-wa-pending', '');
+        a.setAttribute('aria-disabled', 'true');
+        // The suffix is rendered from this attribute so it stays translatable;
+        // a hard-coded CSS `content` string could not follow the language.
+        a.setAttribute('data-soon', t('price.waSoonSuffix'));
+      }
+    });
+
    } catch (e) {
     // Never let an init error leave content stuck behind scroll-reveal.
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });

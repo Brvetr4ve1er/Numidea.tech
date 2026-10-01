@@ -1507,6 +1507,229 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
 .term,.logo .brick{display:none}
 .theme-menu .dot.engineering{background:linear-gradient(135deg,#08090A 48%,#F93E06 52%)}
 
+/* ================= PRICING ================= */
+/* The whole section is built from the panel idiom the rest of the page uses —
+   navy ground, hairline edge, inset top highlight — so it reads as part of the
+   same system rather than a bolted-on price table. */
+
+.price-free{display:flex;gap:var(--s-5);align-items:flex-start;max-width:940px;
+  margin:0 0 var(--s-7);padding:var(--s-5);border-radius:var(--r-lg);
+  background:var(--grad-noir);border:1px solid var(--hairline-2);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 28px 60px -40px rgba(0,0,0,.85);position:relative;overflow:hidden}
+.price-free::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--teal),transparent);opacity:.7}
+.pf-mark{flex:none;width:64px;height:64px;display:grid;place-items:center;color:var(--teal)}
+.price-free h3{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,2.2vw,24px);
+  letter-spacing:-.01em;margin-bottom:var(--s-2);color:var(--ice)}
+html[dir="rtl"] .price-free h3{font-family:var(--font-ar-display)}
+.price-free p{color:var(--muted);font-size:15px;line-height:1.65;max-width:52em}
+@media (max-width:560px){.pf-mark{display:none}}
+
+/* ---------- tiers ---------- */
+.tiers{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5);margin-bottom:var(--s-5)}
+.tier{position:relative;display:flex;flex-direction:column;padding:var(--s-6) var(--s-5) var(--s-5);
+  border:1px solid var(--hairline);border-radius:var(--r-lg);background:var(--navy);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 42%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgba(0,0,0,.85);
+  transition:border-color var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
+.tier:hover{border-color:var(--hairline-2);transform:translateY(-3px)}
+/* The chosen tier earns a ring and a label, not a different size — a scaled
+   card would change the row height and shift the two beside it. */
+.tier-pop{border-color:color-mix(in srgb,var(--teal) 45%,transparent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),
+  0 0 0 1px color-mix(in srgb,var(--teal) 18%,transparent),0 28px 60px -36px rgba(0,0,0,.9)}
+.t-pop{position:absolute;top:0;inset-inline-start:var(--s-5);transform:translateY(-50%);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--void);background:var(--teal);padding:4px 10px;border-radius:var(--r-pill)}
+.tier .t-fam{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal);display:block;margin-bottom:var(--s-3)}
+.tier h3{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.6vw,30px);
+  letter-spacing:-.02em;color:var(--ice);margin-bottom:6px}
+html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
+.t-for{color:var(--muted);font-size:14px;line-height:1.55;margin-bottom:var(--s-5);min-height:2.8em}
+.t-range{font-family:var(--font-display);font-size:clamp(19px,2.2vw,25px);letter-spacing:-.02em;
+  color:var(--ice);margin-bottom:4px}
+.t-range b{font-weight:700}
+.t-range .cur,.eo-range .cur{font-family:var(--font-mono);font-size:.62em;letter-spacing:.08em;
+  color:var(--teal);margin-inline-start:4px}
+.t-time{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);padding-bottom:var(--s-5);margin-bottom:var(--s-5);border-bottom:1px solid var(--hairline)}
+.t-list{list-style:none;display:grid;gap:var(--s-3);margin-top:auto}
+.t-list li{position:relative;padding-inline-start:22px;color:var(--body-strong);font-size:14px;line-height:1.55}
+.t-list li::before{content:"";position:absolute;inset-inline-start:0;top:.52em;width:9px;height:9px;
+  border-inline-start:1.5px solid var(--teal);border-bottom:1.5px solid var(--teal);
+  transform:rotate(-45deg) translateY(-1px)}
+html[dir="rtl"] .t-list li::before{transform:rotate(45deg) translateY(-1px) scaleX(-1)}
+
+.price-note{color:var(--faint);font-size:14px;line-height:1.6;max-width:52em;margin-bottom:var(--s-8)}
+
+/* ---------- estimator ---------- */
+.estimator{border:1px solid var(--hairline-2);border-radius:var(--r-lg);overflow:hidden;
+  background:var(--grad-noir);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 30px 70px -44px rgba(0,0,0,.9);
+  margin-bottom:var(--s-8)}
+.est-head{padding:var(--s-5);border-bottom:1px solid var(--hairline)}
+.est-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,2.2vw,24px);
+  letter-spacing:-.01em;color:var(--ice);margin-bottom:6px}
+html[dir="rtl"] .est-head h3{font-family:var(--font-ar-display)}
+.est-head p{color:var(--muted);font-size:14px;line-height:1.6;max-width:56em}
+.est-grid{display:grid;grid-template-columns:minmax(0,1fr)}
+.est-controls{padding:var(--s-5);display:grid;gap:var(--s-6)}
+.est-field{border:0;padding:0;margin:0;min-width:0}
+.est-field legend,.est-field>label,.est-lab{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:var(--s-3);padding:0;display:flex;
+  align-items:baseline;gap:var(--s-3)}
+.est-sizev{font-family:var(--font-display);font-size:17px;letter-spacing:-.01em;color:var(--teal);font-weight:600}
+.est-hint{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faint);display:block;margin-top:var(--s-3)}
+
+.est-chips,.est-opts{display:flex;flex-wrap:wrap;gap:var(--s-3)}
+.est-opts{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-3)}
+.echip,.eopt{position:relative;display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  border:1px solid var(--hairline-2);border-radius:var(--r-sm);background:rgba(255,255,255,.02);
+  color:var(--body-strong);font-size:14px;line-height:1.3;padding:11px 14px;min-height:44px;
+  transition:border-color var(--dur-fast),background var(--dur-fast),color var(--dur-fast)}
+.echip input,.eopt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.echip:hover,.eopt:hover{border-color:var(--teal);color:var(--ice)}
+.echip:has(input:checked){border-color:var(--teal);
+  background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--ice)}
+.eopt::before{content:"";flex:none;width:17px;height:17px;border:1.5px solid var(--hairline-2);
+  border-radius:4px;transition:border-color var(--dur-fast),background var(--dur-fast)}
+.eopt:has(input:checked){border-color:var(--teal);color:var(--ice)}
+.eopt:has(input:checked)::before{border-color:var(--teal);background:var(--teal);
+  background-image:linear-gradient(45deg,transparent 42%,var(--void) 42%,var(--void) 56%,transparent 56%),
+                   linear-gradient(-45deg,transparent 56%,var(--void) 56%,var(--void) 70%,transparent 70%)}
+/* The ring has to live on the label — the real input is visually hidden,
+   so its own focus ring would be invisible. */
+.echip:has(input:focus-visible),.eopt:has(input:focus-visible){outline:2px solid var(--teal);outline-offset:3px}
+
+.est-field input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:30px;
+  background:transparent;cursor:pointer;display:block}
+.est-field input[type="range"]::-webkit-slider-runnable-track{height:4px;border-radius:2px;
+  background:linear-gradient(90deg,var(--teal),var(--hairline-2))}
+.est-field input[type="range"]::-moz-range-track{height:4px;border-radius:2px;
+  background:linear-gradient(90deg,var(--teal),var(--hairline-2))}
+.est-field input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+  width:22px;height:22px;border-radius:50%;background:var(--void);border:2px solid var(--teal);
+  margin-top:-9px;box-shadow:0 0 12px color-mix(in srgb,var(--teal) 45%,transparent)}
+.est-field input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;
+  background:var(--void);border:2px solid var(--teal);
+  box-shadow:0 0 12px color-mix(in srgb,var(--teal) 45%,transparent)}
+.est-field input[type="range"]:focus-visible{outline:2px solid var(--teal);outline-offset:4px;border-radius:var(--r-sm)}
+
+.est-out{padding:var(--s-5);border-top:1px solid var(--hairline);
+  background:color-mix(in srgb,var(--void) 55%,transparent);
+  display:flex;flex-direction:column;gap:var(--s-3)}
+.eo-k{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
+/* tabular figures, or the range jitters sideways on every slider step */
+.eo-range{font-family:var(--font-display);font-weight:700;font-variant-numeric:tabular-nums;
+  font-size:clamp(23px,3.4vw,38px);letter-spacing:-.025em;color:var(--ice);line-height:1.05}
+.eo-dash{color:var(--faint);margin:0 .22em;font-weight:400}
+.eo-time{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);font-variant-numeric:tabular-nums}
+.eo-sum{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:var(--s-2) 0}
+.eo-sum li{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--body-strong);
+  border:1px solid var(--hairline-2);border-radius:var(--r-pill);padding:4px 9px}
+.eo-sum .eo-head{border-color:var(--teal);color:var(--teal)}
+.eo-fine{color:var(--faint);font-size:13px;line-height:1.6;max-width:46em}
+.est-out .btn{align-self:flex-start;margin-top:var(--s-2)}
+
+/* ---------- onboarding ---------- */
+.onboard{border:1px solid var(--hairline);border-radius:var(--r-lg);padding:var(--s-6) var(--s-5);
+  background:var(--navy);background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 40%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgba(0,0,0,.85)}
+.ob-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(19px,2.4vw,26px);
+  letter-spacing:-.015em;color:var(--ice);margin-bottom:6px}
+html[dir="rtl"] .ob-head h3{font-family:var(--font-ar-display)}
+.ob-head p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:var(--s-6)}
+.ob-steps{list-style:none;counter-reset:ob;display:grid;grid-template-columns:minmax(0,1fr);
+  gap:var(--s-5);margin-bottom:var(--s-6)}
+.ob-steps li{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-areas:"n h" "n p";
+  column-gap:var(--s-4);row-gap:4px;align-items:start}
+.ob-n{grid-area:n;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid var(--teal);color:var(--teal);background:var(--void);
+  font-family:var(--font-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.ob-steps li b{grid-area:h;font-family:var(--font-display);font-weight:600;font-size:16px;
+  letter-spacing:-.01em;color:var(--ice);align-self:center}
+html[dir="rtl"] .ob-steps li b{font-family:var(--font-ar-display)}
+.ob-steps li span:not(.ob-n){grid-area:p;color:var(--muted);font-size:14px;line-height:1.6}
+.ob-cta{display:flex;flex-wrap:wrap;gap:var(--s-3)}
+
+/* ---------- WhatsApp ---------- */
+.wa-link{display:inline-flex;align-items:center;gap:9px}
+.wa-i{flex:none;width:19px;height:19px;display:block}
+.wa-i svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round}
+/* No number configured yet: the control stays legible and plainly not-live,
+   rather than linking somewhere wrong. Same idiom as hub/'s pending handles. */
+.wa-link[data-wa-pending]{opacity:.5;cursor:default;pointer-events:none}
+.wa-link[data-wa-pending]::after{content:attr(data-soon);font-family:var(--font-mono);
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;white-space:pre}
+a.wa-link[data-wa-pending]{text-decoration:none}
+
+@media (min-width:720px){
+  .tiers{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.6vw,24px)}
+  .est-opts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ob-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-6) var(--s-5)}
+}
+@media (min-width:1100px){
+  #pricing>*{grid-column:1/-1}
+  .est-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}
+  .est-out{border-top:0;border-inline-start:1px solid var(--hairline);justify-content:center}
+  .ob-steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+/* ---------- parallax fields ----------
+   A wide technical texture drifting behind three otherwise empty sections.
+   Same luminance-mask-over-currentColor trick as the illustrations, so one
+   asset re-tints itself in all six palettes; the opacity is deliberately low
+   enough that body copy never has to compete with it.
+
+   Stacking: the section takes `isolation:isolate` and the wrap sits at z-index
+   0, so every sibling needs an explicit layer above it — a static child would
+   otherwise paint *below* a positioned one and vanish behind the texture. */
+#services,#pricing,#contact{position:relative;isolation:isolate}
+#services>:not(.px-wrap),#pricing>:not(.px-wrap),#contact>:not(.px-wrap){position:relative;z-index:1}
+.px-wrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+/* Overscan: the field is taller than its frame so the drift never exposes an
+   edge. data-parallax-cap bounds the travel to less than this margin. */
+.px-field{position:absolute;inset:-14% 0;display:block;background:currentColor;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:cover;mask-size:cover;
+  -webkit-mask-source-type:luminance;mask-mode:luminance;
+  color:var(--teal);opacity:.12;will-change:transform}
+#pricing .px-field{color:var(--crimson-hi);opacity:.1}
+#contact .px-field{color:var(--teal);opacity:.1}
+.px-plan{-webkit-mask-image:url(illus/px-plan.png);mask-image:url(illus/px-plan.png)}
+.px-contour{-webkit-mask-image:url(illus/px-contour.png);mask-image:url(illus/px-contour.png)}
+.px-stars{-webkit-mask-image:url(illus/px-stars.png);mask-image:url(illus/px-stars.png)}
+/* Decoration only: it costs a repaint on every frame and says nothing. */
+@media (prefers-reduced-motion:reduce){.px-field{will-change:auto}}
+@media (max-width:640px){.px-wrap{display:none}}
+html[data-theme="daylight"] .px-field,html[data-theme="mono"] .px-field{opacity:.055}
+
+/* ---------- service marks ---------- */
+/* The rows carried a small stroked glyph; these sit beside it at a size the
+   generated drawings survive, and only where there is width to spare. */
+.svc-fig{display:none}
+.ill-free{-webkit-mask-image:url(illus/free.png);mask-image:url(illus/free.png)}
+.ill-f1{-webkit-mask-image:url(illus/svc-f1.png);mask-image:url(illus/svc-f1.png)}
+.ill-f2{-webkit-mask-image:url(illus/svc-f2.png);mask-image:url(illus/svc-f2.png)}
+.ill-f3{-webkit-mask-image:url(illus/svc-f3.png);mask-image:url(illus/svc-f3.png)}
+.ill-f4{-webkit-mask-image:url(illus/svc-f4.png);mask-image:url(illus/svc-f4.png)}
+.ill-f5{-webkit-mask-image:url(illus/svc-f5.png);mask-image:url(illus/svc-f5.png)}
+@media (min-width:900px){
+  .svc-row{position:relative}
+  .svc-fig{display:grid;place-items:center;position:absolute;inset-block-start:var(--s-5);
+    inset-inline-end:var(--s-5);width:104px;height:104px;padding:12px;color:var(--teal);
+    border:1px solid var(--hairline);border-radius:var(--r-md);
+    background:color-mix(in srgb,var(--void) 50%,transparent);
+    opacity:.85;transition:opacity var(--dur-base) var(--ease-out),border-color var(--dur-base)}
+  .svc-row:hover .svc-fig{opacity:1;border-color:var(--hairline-2)}
+  /* keep the copy clear of the mark rather than letting it run underneath */
+  .svc-row>div{padding-inline-end:132px}
+}
+
 /* Nine interactive rules above use `transition:all`, which animates the outline
    too: on keyboard focus the ring grew from 0 to 2px over 200-300ms, and a
    probe reading the style at the instant of focus saw no ring at all. A focus

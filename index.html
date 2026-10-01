@@ -87,6 +87,10 @@
        parser inserts the link itself and rendering waits for it. Only the theme
        actually in use is written, so nobody else downloads or waits on 46KB. */
     window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202609142335';
+    /* The studio's WhatsApp number, full international form, digits only
+       (e.g. '213XXXXXXXXX'). While this is empty every WhatsApp control on the
+       page stays visibly pending instead of linking somewhere wrong. */
+    window.NUMIDEA_WA = '';
     if (t === 'engineering') {
       document.write('<link rel="stylesheet" id="theme-eng" href="' + window.NUMIDEA_ENG_CSS + '">');
     }
@@ -152,6 +156,7 @@
       <nav class="nav-links" aria-label="Primary">
         <a href="#how" data-i18n="nav.about">À propos</a>
         <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
         <a href="#work" data-i18n="nav.work">Projets</a>
         <a href="#founder" data-i18n="nav.team">Équipe</a>
         <a href="#faq" data-i18n="nav.faq">FAQ</a>
@@ -185,6 +190,7 @@
   <button type="button" class="close" aria-label="Close">×</button>
   <a href="#how" data-i18n="nav.about">À propos</a>
   <a href="#services" data-i18n="nav.services">Services</a>
+  <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
   <a href="#work" data-i18n="nav.work">Projets</a>
   <a href="#founder" data-i18n="nav.team">Équipe</a>
   <a href="#faq" data-i18n="nav.faq">FAQ</a>
@@ -473,6 +479,7 @@
 
   <!-- ================= SERVICES ================= -->
   <section id="services" class="band" aria-labelledby="svc-h">
+    <span class="px-wrap" aria-hidden="true"><span class="px-field px-plan" data-parallax="-.05" data-parallax-cap="90"></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="svc.kicker">03 — Services</span>
     <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">Ce qu'on <em>rend réel.</em></h2>
     <p class="svc-lead" data-i18n="svc.lead">Cinq offres en avant, cinq capacités en réserve — la profondeur attend ceux qui creusent.</p>
@@ -492,9 +499,10 @@
 
     <div class="svc-grid">
       <article class="svc-row reveal">
+        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f1"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16"/><path d="M2.5 8.6h19"/><path d="M5.4 6.3h1.5M8.4 6.3h1.5"/><path d="M5.8 12.2h7.4M5.8 15.8h11.6"/></svg></span>
         <div>
-          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <span class="fam" data-i18n="svc.famBuild">Le Build</span>
           <h3 data-i18n="f1.name">Sites &amp; applications web</h3>
           <p class="promise" data-i18n="f1.promise">Le choix évident.</p>
           <p class="brief" data-i18n="f1.brief">Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel.</p>
@@ -503,8 +511,10 @@
       </article>
 
       <article class="svc-row reveal">
+        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f2"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9.2" cy="9.8" r="4.7"/><circle cx="14.8" cy="9.8" r="4.7"/><circle cx="12" cy="15" r="4.7"/></svg></span>
         <div>
+          <span class="fam" data-i18n="svc.famBuild">Le Build</span>
           <h3 data-i18n="f2.name">Identité &amp; systèmes visuels</h3>
           <p class="promise" data-i18n="f2.promise">La confiance avant le premier mot.</p>
           <p class="brief" data-i18n="f2.brief">Logos, couleur, typo, motion et le kit design-system complet — tokens primitifs → sémantiques → composants, documentés.</p>
@@ -513,9 +523,10 @@
       </article>
 
       <article class="svc-row reveal">
+        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f3"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="5.6" r="2.3"/><circle cx="19" cy="5.6" r="2.3"/><circle cx="12" cy="18.4" r="2.3"/><path d="M5 7.9v4.3a2 2 0 0 0 2 2h2.9M19 7.9v4.3a2 2 0 0 1-2 2h-2.9"/></svg></span>
         <div>
-          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <span class="fam" data-i18n="svc.famEngine">Le Moteur</span>
           <h3 data-i18n="f3.name">Automatisation &amp; pipelines</h3>
           <p class="promise" data-i18n="f3.promise">Supprimez la corvée.</p>
           <p class="brief" data-i18n="f3.brief">Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif qui dévore vos heures — on le fait tourner seul à 3h du matin. Python · Playwright · APIs · Claude.</p>
@@ -524,9 +535,10 @@
       </article>
 
       <article class="svc-row reveal">
+        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f4"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.9"/><path d="M12 1.6v2.6M12 19.8v2.6M1.6 12h2.6M19.8 12h2.6"/><circle cx="14.7" cy="9.3" r="1.15"/></svg></span>
         <div>
-          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <span class="fam" data-i18n="svc.famEngine">Le Moteur</span>
           <h3 data-i18n="f4.name">Intelligence marché &amp; produit</h3>
           <p class="promise" data-i18n="f4.promise">Voir le marché clairement.</p>
           <p class="brief" data-i18n="f4.brief">Transformez le web ouvert en base de données. Veille concurrentielle, intelligence prix/produit, enrichissement de leads sur Maps, Facebook, Ouedkniss, Jumia, Instagram — structuré, scoré, requêtable.</p>
@@ -535,9 +547,10 @@
       </article>
 
       <article class="svc-row reveal">
+        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f5"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.2 20.6h17.6"/><path d="M3.2 16.4 8 11.9l3.7 2.9 6.1-7"/><path d="M14.3 7.8h4.4v4.4"/></svg></span>
         <div>
-          <span class="flag" data-i18n="svc.flagship">★ Flagship</span>
+          <span class="fam" data-i18n="svc.famMind">L'Esprit</span>
           <h3 data-i18n="f5.name">Stratégie &amp; conseil croissance</h3>
           <p class="promise" data-i18n="f5.promise">De la donnée, pas des impressions.</p>
           <p class="brief" data-i18n="f5.brief">Audits marketing complets, analyse de funnels, positionnement concurrentiel, feuilles de route — honnêtes, ROI d'abord, par phases. On fait les devoirs sur votre secteur avant l'appel.</p>
@@ -594,8 +607,166 @@
   </section>
 
   <!-- ================= HOW WE WORK ================= -->
+  <!-- ================= PRICING ================= -->
+  <!-- Ranges are anchored to the Onyxlab Baromètre 2026 Algerian freelance
+       grid and the 2026 DZ agency surveys, positioned between its "Confirmé"
+       and "Agence" columns: a four-person studio carries neither a junior's
+       inexperience nor an agency's overhead. The estimator applies the same
+       numbers the tiers quote — PRICE_MODEL in app.js is the single source. -->
+  <section id="pricing" aria-labelledby="pricing-h">
+    <span class="px-wrap" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span></span>
+    <span class="kicker" data-parallax=".035" data-i18n="price.kicker">04 — Tarifs</span>
+    <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
+    <p class="sec-lead" data-i18n="price.lead">Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre, voyez l'estimation bouger — puis recevez un prix ferme sous 24 heures.</p>
+
+    <div class="price-free reveal">
+      <span class="pf-mark" aria-hidden="true"><span class="ill ill-free"></span></span>
+      <div>
+        <h3 data-i18n="price.freeH">L'Aperçu reste gratuit.</h3>
+        <p data-i18n="price.freeP">Avant le moindre dinar, on construit une démo réelle et fonctionnelle de votre projet. Vous la voyez tourner, puis vous décidez. Rien de ce qui suit ne s'engage sans ça.</p>
+      </div>
+    </div>
+
+    <div class="tiers">
+      <article class="tier reveal">
+        <span class="t-fam" data-i18n="price.t1fam">Le Build</span>
+        <h3 data-i18n="price.t1name">Essentiel</h3>
+        <p class="t-for" data-i18n="price.t1for">Une présence crédible, vite en ligne.</p>
+        <p class="t-range"><b>90 000 – 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
+        <p class="t-time" data-i18n="price.t1time">2 à 4 semaines</p>
+        <ul class="t-list">
+          <li data-i18n="price.t1a">Vitrine ou landing, 1 à 5 pages</li>
+          <li data-i18n="price.t1b">Design sur mesure — jamais un template rethémé</li>
+          <li data-i18n="price.t1c">Responsive, performance et SEO de base</li>
+          <li data-i18n="price.t1d">Mise en ligne, domaine et certificat configurés</li>
+          <li data-i18n="price.t1e">1 mois de support inclus</li>
+        </ul>
+      </article>
+
+      <article class="tier tier-pop reveal">
+        <span class="t-pop" data-i18n="price.popular">Le plus choisi</span>
+        <span class="t-fam" data-i18n="price.t2fam">Le Build</span>
+        <h3 data-i18n="price.t2name">Studio</h3>
+        <p class="t-for" data-i18n="price.t2for">Le site qui porte vraiment l'entreprise.</p>
+        <p class="t-range"><b>180 000 – 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
+        <p class="t-time" data-i18n="price.t2time">3 à 7 semaines</p>
+        <ul class="t-list">
+          <li data-i18n="price.t2a">Site sur mesure, 6 à 15 pages</li>
+          <li data-i18n="price.t2b">Trilingue FR / EN / AR, avec un arabe RTL pensé nativement</li>
+          <li data-i18n="price.t2c">Design system documenté — tokens, composants, le kit complet</li>
+          <li data-i18n="price.t2d">CMS ou back-office pour gérer le contenu vous-même</li>
+          <li data-i18n="price.t2e">SEO technique, Core Web Vitals, accessibilité</li>
+          <li data-i18n="price.t2f">3 mois de support inclus</li>
+        </ul>
+      </article>
+
+      <article class="tier reveal">
+        <span class="t-fam" data-i18n="price.t3fam">Le Moteur</span>
+        <h3 data-i18n="price.t3name">Moteur</h3>
+        <p class="t-for" data-i18n="price.t3for">La machinerie que presque personne ne construit ici.</p>
+        <p class="t-range"><b>450 000 – 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
+        <p class="t-time" data-i18n="price.t3time">8 à 16 semaines</p>
+        <ul class="t-list">
+          <li data-i18n="price.t3a">E-commerce, application web ou pipeline d'automatisation</li>
+          <li data-i18n="price.t3b">Paiement, comptes utilisateurs, tableaux de bord</li>
+          <li data-i18n="price.t3c">Scraping et intelligence marché — le web ouvert en base de données</li>
+          <li data-i18n="price.t3d">Intégrations API et outils internes</li>
+          <li data-i18n="price.t3e">6 mois de support inclus</li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="price-note reveal">
+      <span data-i18n="price.retainer">Maintenance après livraison, si vous la voulez : 18 000 – 60 000 DA par mois. Sans engagement de durée.</span>
+    </p>
+
+    <!-- ---------------- estimator ---------------- -->
+    <div class="estimator reveal" id="estimator">
+      <div class="est-head">
+        <h3 data-i18n="price.estH">Estimez votre projet</h3>
+        <p data-i18n="price.estP">Réglez ce dont vous avez besoin. La fourchette se recalcule en direct, sur les mêmes chiffres que les paliers ci-dessus.</p>
+      </div>
+
+      <div class="est-grid">
+        <div class="est-controls">
+          <fieldset class="est-field">
+            <legend data-i18n="price.qType">Quel type de projet ?</legend>
+            <div class="est-chips" role="radiogroup" aria-labelledby="est-type-l">
+              <label class="echip"><input type="radio" name="est-type" value="vitrine"><span data-i18n="price.tyVitrine">Vitrine</span></label>
+              <label class="echip"><input type="radio" name="est-type" value="surmesure" checked><span data-i18n="price.tyCustom">Site sur mesure</span></label>
+              <label class="echip"><input type="radio" name="est-type" value="ecommerce"><span data-i18n="price.tyShop">E-commerce</span></label>
+              <label class="echip"><input type="radio" name="est-type" value="app"><span data-i18n="price.tyApp">Application web</span></label>
+              <label class="echip"><input type="radio" name="est-type" value="auto"><span data-i18n="price.tyAuto">Automatisation</span></label>
+              <label class="echip"><input type="radio" name="est-type" value="identite"><span data-i18n="price.tyBrand">Identité visuelle</span></label>
+            </div>
+          </fieldset>
+
+          <div class="est-field">
+            <div class="est-lab"><label for="est-size" data-i18n="price.qSize">Ampleur</label>
+              <output class="est-sizev" id="est-size-v" for="est-size">8</output></div>
+            <input type="range" id="est-size" min="1" max="25" value="8" step="1">
+            <span class="est-hint" id="est-size-h" data-i18n="price.uPages">pages</span>
+          </div>
+
+          <fieldset class="est-field">
+            <legend data-i18n="price.qOpts">Ce qu'il vous faut en plus</legend>
+            <div class="est-opts">
+              <label class="eopt"><input type="checkbox" name="est-opt-i18n" data-opt="i18n"><span data-i18n="price.oI18n">Trilingue FR / EN / AR + RTL</span></label>
+              <label class="eopt"><input type="checkbox" name="est-opt-cms" data-opt="cms"><span data-i18n="price.oCms">CMS / back-office</span></label>
+              <label class="eopt"><input type="checkbox" name="est-opt-pay" data-opt="pay"><span data-i18n="price.oPay">Paiement en ligne</span></label>
+              <label class="eopt"><input type="checkbox" name="est-opt-ds" data-opt="ds"><span data-i18n="price.oDs">Design system complet</span></label>
+              <label class="eopt"><input type="checkbox" name="est-opt-seo" data-opt="seo"><span data-i18n="price.oSeo">SEO avancé &amp; performance</span></label>
+              <label class="eopt"><input type="checkbox" name="est-opt-api" data-opt="api"><span data-i18n="price.oApi">Intégrations API</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="est-field">
+            <legend data-i18n="price.qPace">Délai</legend>
+            <div class="est-chips">
+              <label class="echip"><input type="radio" name="est-pace" value="std" checked><span data-i18n="price.paceStd">Standard</span></label>
+              <label class="echip"><input type="radio" name="est-pace" value="rush"><span data-i18n="price.paceRush">Accéléré</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="est-out">
+          <span class="eo-k" data-i18n="price.estimate">Estimation</span>
+          <p class="eo-range" id="est-range" role="status" aria-live="polite">
+            <b id="est-lo">180 000</b><span class="eo-dash">–</span><b id="est-hi">420 000</b>
+            <span class="cur" data-i18n="price.cur">DA</span>
+          </p>
+          <p class="eo-time"><span id="est-weeks">3 – 7</span> <span data-i18n="price.weeks">semaines</span></p>
+          <ul class="eo-sum" id="est-summary"></ul>
+          <p class="eo-fine" data-i18n="price.estFine">Fourchette indicative, pas un devis. Le prix ferme arrive sous 24 heures, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.</p>
+          <a class="btn btn-primary" id="est-cta" href="#contact" data-i18n="price.estCta">Obtenir le prix ferme →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------------- onboarding ---------------- -->
+    <div class="onboard reveal" id="onboard">
+      <div class="ob-head">
+        <h3 data-i18n="price.obH">Comment on démarre</h3>
+        <p data-i18n="price.obP">Quatre étapes. Vous ne payez rien avant la troisième.</p>
+      </div>
+      <ol class="ob-steps">
+        <li><span class="ob-n" aria-hidden="true">1</span><b data-i18n="price.ob1h">Vous décrivez le projet</b><span data-i18n="price.ob1p">Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.</span></li>
+        <li><span class="ob-n" aria-hidden="true">2</span><b data-i18n="price.ob2h">On revient sous 24 heures</b><span data-i18n="price.ob2p">Avec un périmètre écrit et un prix ferme. Pas une fourchette, un chiffre.</span></li>
+        <li><span class="ob-n" aria-hidden="true">3</span><b data-i18n="price.ob3h">On construit L'Aperçu — gratuit</b><span data-i18n="price.ob3p">Une démo réelle de votre projet, avant paiement. Vous la voyez tourner en direct.</span></li>
+        <li><span class="ob-n" aria-hidden="true">4</span><b data-i18n="price.ob4h">Vous décidez</b><span data-i18n="price.ob4p">Si c'est non, vous ne devez rien. Si c'est oui, on est déjà à mi-chemin.</span></li>
+      </ol>
+      <div class="ob-cta">
+        <a class="btn btn-primary" href="#contact" data-i18n="price.obCta1">Décrire mon projet →</a>
+        <a class="btn btn-ghost wa-link" data-wa-pending aria-disabled="true">
+          <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+          <span data-i18n="price.obCta2">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="how" aria-labelledby="how-h">
-    <span class="kicker" data-parallax=".035" data-i18n="how.kicker">04 — Méthode</span>
+    <span class="kicker" data-parallax=".035" data-i18n="how.kicker">05 — Méthode</span>
     <h2 class="sec font-swap-display" id="how-h" data-i18n="how.title">Aucun <em>intermédiaire.</em></h2>
     <div class="steps">
       <div class="step reveal">
@@ -628,7 +799,7 @@
 
   <!-- ================= FOUNDER ================= -->
   <section id="founder" class="band" aria-labelledby="founder-h">
-    <span class="kicker" data-parallax=".035" data-i18n="founder.kicker">05 — Équipe &amp; fondateur</span>
+    <span class="kicker" data-parallax=".035" data-i18n="founder.kicker">06 — Équipe &amp; fondateur</span>
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Le studio a un <em>visage.</em></h2>
     <p class="sec-lead" data-i18n="founder.lead">Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.</p>
 
@@ -682,7 +853,7 @@
 
   <!-- ================= STACK ================= -->
   <section id="stack" aria-labelledby="stack-h">
-    <span class="kicker" data-parallax=".035" data-i18n="stack.kicker">06 — Stack</span>
+    <span class="kicker" data-parallax=".035" data-i18n="stack.kicker">07 — Stack</span>
     <h2 class="sec font-swap-display" id="stack-h" data-i18n="stack.title">Le flex <em>discret.</em></h2>
     <div class="stack-strip reveal">
       <span class="grp"><b>Front</b><span class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></span></span>
@@ -696,7 +867,7 @@
   <!-- ================= CONTACT ================= -->
   <!-- ================= FAQ ================= -->
   <section id="faq" aria-labelledby="faq-h">
-    <span class="kicker" data-parallax=".035" data-i18n="faq.kicker">07 — FAQ</span>
+    <span class="kicker" data-parallax=".035" data-i18n="faq.kicker">08 — FAQ</span>
     <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
     <p class="sec-lead" data-i18n="faq.lead">Ce qu'on nous demande avant de se lancer — répondu franchement.</p>
     <div class="faq-list">
@@ -735,13 +906,15 @@
   </section>
 
   <section id="contact" class="contact band" aria-labelledby="contact-h">
-    <span class="kicker" data-parallax=".035" data-i18n="contact.kicker">08 — Contact</span>
+    <span class="px-wrap" aria-hidden="true"><span class="px-field px-stars" data-parallax="-.04" data-parallax-cap="90"></span></span>
+    <span class="kicker" data-parallax=".035" data-i18n="contact.kicker">09 — Contact</span>
     <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">On le <em>rend réel ?</em></h2>
     <div class="contact-grid">
       <div class="contact-side">
         <p class="sub" data-i18n="contact.sub">Dites-nous ce que vous cherchez à concrétiser — l'urgent, le cassé, l'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.</p>
         <dl class="channels">
           <div class="ch"><dt data-i18n="form.email">Email</dt><dd><a href="mailto:Hamissemohamedyasser@gmail.com">Hamissemohamedyasser@gmail.com</a></dd></div>
+          <div class="ch"><dt>WhatsApp</dt><dd><a class="wa-link" data-wa-pending aria-disabled="true" data-i18n="contact.waPending">Numéro bientôt en ligne</a></dd></div>
           <div class="ch"><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
           <div class="ch"><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">&lt; 24 heures · FR · EN · ع</dd></div>
         </dl>
@@ -791,11 +964,13 @@
     <nav aria-label="Footer">
       <a href="#how" data-i18n="nav.about">À propos</a>
       <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
       <a href="#work" data-i18n="nav.work">Projets</a>
       <a href="#founder" data-i18n="nav.team">Équipe</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
       <a href="mailto:Hamissemohamedyasser@gmail.com">Hamissemohamedyasser@gmail.com</a>
+      <a class="wa-link" data-wa-pending aria-disabled="true" data-i18n="footer.wa">WhatsApp</a>
     </nav>
   </div>
   <p class="signoff" data-i18n="footer.signoff">Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.</p>
