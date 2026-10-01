@@ -859,3 +859,10 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
 @media(min-width:1100px){
   .est-out{border-top:0;border-inline-start:1px solid var(--edge)}
 }
+
+/* Narrow screens: wrap the deploy log rather than scroll it sideways. A
+   scrollable region with nothing focusable inside fails keyboard access. */
+@media(max-width:600px){
+  .term-body{overflow-x:hidden}
+  .term-body .l{white-space:pre-wrap;overflow-wrap:anywhere}
+}

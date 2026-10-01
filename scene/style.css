@@ -153,7 +153,7 @@ html[dir="rtl"] .cname{font-family:var(--font-ar)}
   display:flex;flex-direction:column;gap:2px}
 html[dir="rtl"] .rail{right:auto;left:clamp(20px,4vw,44px)}
 .rail button{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:8px;
-  font-family:var(--font-mono);font-size:9.5px;color:var(--faint);padding:4px 0;transition:.25s}
+  font-family:var(--font-mono);font-size:9.5px;color:var(--faint);padding:4px 0;min-height:24px;transition:.25s}
 .rail button .bar{width:16px;height:1px;background:currentColor;transition:.25s}
 .rail button:hover{color:var(--muted)}
 .rail button.on{color:color-mix(in srgb,rgb(var(--acc)) 60%,var(--ice))}
@@ -189,6 +189,11 @@ html[dir="rtl"] .cue{left:auto;right:clamp(38px,6vw,64px)}
   .rail button .bar{width:10px}
   .rail button.on .bar{width:18px}
   .rail button .n{display:none}
+  /* With the numbers hidden each button collapsed to its 10px bar, 20px apart —
+     too small for a finger and inside WCAG 2.5.8's 24px clear zone. The hit
+     area grows; the bar it draws does not. */
+  .rail{gap:4px}
+  .rail button{min-width:32px;min-height:32px;justify-content:center}
   .titleblock{left:14px;right:14px;bottom:14px;min-width:0}
   html[dir="rtl"] .titleblock{left:14px;right:14px}
   .tb-row:nth-child(3),.tb-row:nth-child(5){display:none}

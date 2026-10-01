@@ -49,8 +49,23 @@ for (const [f, base] of Object.entries(pages)) {
   for (const m of src.matchAll(/(?:src|href)="([^"#][^"]*)"/g)) {
     const u = m[1].split('?')[0];
     if (/^(https?:|mailto:|data:|\/\/)/.test(u) || u === '') continue;
+    // An inline script assembling a tag by concatenation ("href=\"' + x + '\"")
+    // is code, not a path. Its real targets are checked below from the literals.
+    if (u.includes("'")) continue;
     if (!existsSync(join(ROOT, base, u)) && !existsSync(join(ROOT, base, u.replace(/\/$/, '')))) {
       missing.push(`${f} → ${m[1]}`);
+    }
+  }
+  // Paths that only exist inside inline scripts: quoted 'assets/...' literals
+  // (e.g. NUMIDEA_ENG_CSS) and the preloaded font names, which are listed as
+  // bare names and joined onto 'assets/fonts/' + f + '.woff2' at runtime.
+  for (const m of src.matchAll(/'((?:\.\.\/)*assets\/[^'?\s]+)/g)) {
+    if (m[1].endsWith('/')) continue;                      // a prefix, not a file
+    if (!existsSync(join(ROOT, base, m[1]))) missing.push(`${f} → ${m[1]} (script)`);
+  }
+  if (/assets\/fonts\/' \+ \w+ \+ '\.woff2/.test(src)) {
+    for (const m of src.matchAll(/'([a-z0-9]+(?:-[a-z0-9]+)*-(?:latin|arabic|latin-ext))'/g)) {
+      if (!existsSync(join(ROOT, base, 'assets/fonts', m[1] + '.woff2'))) missing.push(`${f} → assets/fonts/${m[1]}.woff2 (preload)`);
     }
   }
 }

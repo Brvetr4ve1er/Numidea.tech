@@ -8,7 +8,8 @@
     "shots": "node scripts/shots.mjs",
     "check": "node scripts/check.mjs",
     "bump": "node scripts/bump.mjs",
-    "sweep": "node scripts/sweep.mjs"
+    "sweep": "node scripts/sweep.mjs",
+    "audit": "node scripts/audit.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",

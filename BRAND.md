@@ -821,3 +821,26 @@ caught — verify before you fix:
 
 When two tools disagree, look. axe caught one failure the sweep missed (the
 retainer line, at 4.49:1); the sweep caught hundreds axe's sampling did not.
+
+## Three commands, all green
+
+- `npm run check` — repo invariants (i18n balance, asset references, stamps).
+- `npm run sweep` — painted contrast, six themes × FR/AR plus hub/scene/404.
+- `npm run audit` — 30 browser runs, desktop and touch: CLS, LCP, axe,
+  overflow, reveals, tap targets, images, animations, JS, network.
+
+`check` had shown the same ✗ on every run for weeks — it read a `document.write`
+string concatenation as a file path. It was waved through as a "known false
+positive" each time, which is precisely how a check stops being read. It now
+skips concatenation fragments **and verifies their real targets** from the
+literals (the Engineering stylesheet constant and each preloaded font name);
+a deliberately misnamed font is caught. A permanently red check is worse than
+no check.
+
+Audit traps, on top of the sweep's list:
+- A tap-target check without WCAG 2.5.8's spacing exception flags the whole
+  desktop nav. axe applies the exception; match it.
+- Reveals run 1s plus a stagger delay — sample sooner and you measure a fade.
+- The Engineering deploy log scrolled sideways on phones only once the typing
+  animation reached its longest line, so the axe failure came and went. It now
+  wraps below 600px.
