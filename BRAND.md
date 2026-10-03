@@ -896,3 +896,29 @@ French uses a space as the thousands separator, so every space in
 
 All pricing strings in the dictionaries and the static markup carry these. A
 browser test confirmed no range splits at 1280/1024/768/390 in FR/EN/AR.
+
+## hub/ — a portfolio that shows work
+
+The hub was a link-in-bio page: an empty silhouette as its centrepiece, 18
+profile links, and the same 18 links again in the footer columns. It now leads
+with the work.
+
+- **Hero frame:** until the pose photos exist, `#portrait` holds a contact sheet
+  of four live sites. The existing scroll-driven pose index (0-3) lights one
+  strip at a time, so it needs no script of its own, and
+  `.portrait:has(.pose) .sheet{display:none}` retires it when the photos are
+  dropped in. Update `.frame-cap` at the same time.
+- **Selected Work:** the five live sites, reusing the Numidea site's categories
+  and one-liners. Projects marked "soon" there are not listed until they ship.
+  `npm run check` now includes hub/ in its URL sync, so a project that gains a
+  URL in `app.js` fails the check until the hub shows it.
+- **Lead card is horizontal, never tall.** A 16:10 screenshot forced into a
+  two-row-tall box lost a quarter of its width per side, logo and headline
+  included. Every shot keeps its 16:10 frame.
+- **Crop anchors are per site, everywhere** a screenshot is cropped: top-left by
+  default, top-right for Nomara (RTL), top-centre for Bordj Steel (centred
+  headline). The hero strips show only ~44% of each shot's height, so Glaive
+  and AlmaFlowClim are aimed lower, at their headlines.
+- The footer's link columns were removed: the archive grid is the one list.
+  Handles with no verified URL are a single "coming soon" line rather than five
+  dead tiles.

@@ -7,7 +7,7 @@
  *   2. i18n coverage  — every data-i18n* attribute resolves to a key
  *   3. assets         — every local src/href on every page exists on disk
  *   4. stamp sync     — all ?v= cache-bust stamps are identical across pages
- *   5. URL sync       — the project URLs agree across app.js / scene / shots
+ *   5. URL sync       — the project URLs agree across app.js / scene / shots / hub
  *
  * Exits non-zero on any failure. No dependencies.
  */
@@ -90,11 +90,14 @@ stamps.size > 1
   ? bad('cache-bust stamps diverge: ' + [...stamps].join(' vs ') + '  (run: npm run bump)')
   : ok(`cache-bust stamp uniform (${[...stamps][0] || 'none'})`);
 
-/* 5 — project URLs agree across the three JS sources */
+/* 5 — project URLs agree across every source. hub/ lists the live sites in
+   its Selected Work, so a project that ships (gains a URL in app.js) fails
+   here until the hub shows it too. */
 const urlsOf = (s) => new Set([...s.matchAll(/https:\/\/[a-z0-9.-]+\.netlify\.app/g)].map((m) => m[0]));
 const a = urlsOf(app), b = urlsOf(read('scene/app.js')), c = urlsOf(read('scripts/shots.mjs'));
-const union = new Set([...a, ...b, ...c]);
-const drift = [...union].filter((u) => !(a.has(u) && b.has(u) && c.has(u)));
-drift.length ? bad('project URL drift across app.js/scene/shots: ' + drift.join(', ')) : ok('project URLs in sync across all sources');
+const d = urlsOf(read('hub/index.html').replace(/<!--[\s\S]*?-->/g, ''));
+const union = new Set([...a, ...b, ...c, ...d]);
+const drift = [...union].filter((u) => !(a.has(u) && b.has(u) && c.has(u) && d.has(u)));
+drift.length ? bad('project URL drift across app.js/scene/shots/hub: ' + drift.join(', ')) : ok('project URLs in sync across all sources (incl. hub)');
 
 process.exit(fail);
