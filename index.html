@@ -913,51 +913,77 @@
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Le studio a un <em>visage.</em></h2>
     <p class="sec-lead" data-i18n="founder.lead">Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.</p>
 
+    <!-- Everything below is taken from assets/cv_yasser_hamisse_2026.pdf, the
+         source of truth: dates, titles and one-liners. Order follows the CV:
+         current roles first, then past work newest first. The team is
+         anonymized by design (knowledge-base 12-organization) — initials only,
+         with the responsibilities the KB marks verified. -->
     <div class="founder-card reveal">
       <div class="fd-top">
         <div class="fd-photo"><span class="mono" aria-hidden="true">Y</span></div>
         <div class="fd-id">
           <h3>Yasser Hamisse</h3>
-          <p class="fd-role" data-i18n="founder.role">Designer &amp; développeur · Fondateur</p>
+          <p class="fd-role" data-i18n="founder.role">Designer graphique &amp; développeur web · Fondateur</p>
           <div class="fd-pills">
-            <span class="pill">FR C2</span><span class="pill">EN C1</span><span class="pill">AR native</span>
+            <span class="pill">FR C2</span><span class="pill">EN C1</span><span class="pill" data-i18n="founder.arPill">AR langue maternelle</span>
             <span class="pill" data-i18n="founder.years">6 ans</span><span class="pill">Bordj Bou Arréridj</span>
           </div>
         </div>
       </div>
       <p class="fd-bio" data-i18n="founder.bio">Six ans à concevoir des identités, coder des interfaces et livrer des produits — de la marque au front-end au cloud. Je transforme le brief en build, et je reste quand c'est en ligne.</p>
+
+      <ul class="fd-links" data-i18n-aria="founder.linksAria" aria-label="Profils du fondateur">
+        <li><a href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener"><span class="fl-b" aria-hidden="true">in</span>LinkedIn</a></li>
+        <li><a href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener"><span class="fl-b" aria-hidden="true">GH</span>GitHub</a></li>
+        <li><a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener"><span class="fl-b" aria-hidden="true">Bē</span>Behance</a></li>
+        <li><a href="mailto:Hamissemohamedyasser@gmail.com"><span class="fl-b" aria-hidden="true">@</span>Email</a></li>
+      </ul>
+
       <div class="fd-actions">
         <button type="button" class="btn btn-teal" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">Voir le parcours ↴</button>
         <a class="btn btn-ghost" href="hub/" target="_blank" rel="noopener" data-i18n="founder.portfolio">Portfolio personnel ↗</a>
       </div>
 
       <div class="cv-panel" id="cv-panel">
-        <div class="cv-inner">
+        <div class="cv-clip"><div class="cv-inner">
           <div class="cv-col cv-exp">
             <h4 data-i18n="founder.expLabel">Parcours</h4>
-            <ul class="timeline">
-              <li><span class="tl-date">2026 —</span><div><b>Heetch International</b><i data-i18n="fx1">Graphiste</i></div></li>
-              <li><span class="tl-date">2019 —</span><div><b>Grafil Studio · tr4veler.designs</b><i data-i18n="fx2">Designer freelance</i></div></li>
-              <li><span class="tl-date">2026</span><div><b>Alliance Travel</b><i data-i18n="fx3">Web &amp; social</i></div></li>
-              <li><span class="tl-date">2025–26</span><div><b>SPA Bordj Steel</b><i data-i18n="fx4">Identité &amp; web</i></div></li>
-              <li><span class="tl-date">2024</span><div><b>Artiland.Studio</b><i data-i18n="fx5">Contenu &amp; vidéo</i></div></li>
-            </ul>
+            <ol class="timeline">
+              <li class="tl-now"><span class="tl-date" data-i18n="fx1.when">Mai 2026 — aujourd'hui</span><b>Heetch</b><i data-i18n="fx1">Designer graphique</i><p data-i18n="fx1.what">Visuels et supports de communication pour une plateforme internationale de mobilité ; déclinaison de l'identité sur les campagnes et les réseaux.</p></li>
+              <li class="tl-now"><span class="tl-date" data-i18n="fx2.when">2019 — aujourd'hui</span><b>Grafil Studio · tr4veler.designs</b><i data-i18n="fx2">Designer graphique &amp; développeur web, en freelance</i><p data-i18n="fx2.what">Sites vitrines et landing pages orientés conversion ; identités visuelles, affiches et pochettes ; direction artistique de campagnes NFT et de branding musical.</p></li>
+              <li><span class="tl-date" data-i18n="fx3.when">Fév. – mai 2026</span><b>Alliance Travel</b><i data-i18n="fx3">Développeur web &amp; social media</i><p data-i18n="fx3.what">Le site complet de l'agence, la refonte visuelle de la marque et sa stratégie réseaux sociaux.</p></li>
+              <li><span class="tl-date" data-i18n="fx4.when">Août 2025 – fév. 2026</span><b>SPA Bordj Steel</b><i data-i18n="fx4">Designer graphique &amp; web</i><p data-i18n="fx4.what">Refonte de l'identité (logo, charte) et des supports print, puis un site responsive livré de A à Z.</p></li>
+              <li><span class="tl-date" data-i18n="fx5.when">Mars – juil. 2024</span><b>Artiland.Studio</b><i data-i18n="fx5">Créateur de contenu &amp; vidéo</i><p data-i18n="fx5.what">Vidéos courtes pour des événements et des campagnes communautaires ; animation d'ateliers créatifs.</p></li>
+            </ol>
           </div>
           <div class="cv-col cv-side">
             <div class="cv-block">
               <h4 data-i18n="founder.skillsLabel">Compétences</h4>
-              <p data-i18n="founder.skills">Design &amp; identité · Web &amp; front-end · Stratégie &amp; contenu. Production ~20 % plus rapide grâce à l'IA.</p>
+              <dl class="skills">
+                <div><dt data-i18n="fs1.h">Design &amp; identité</dt><dd data-i18n="fs1">Branding · identité visuelle · illustration · direction artistique UI/UX · photo &amp; retouche</dd></div>
+                <div><dt data-i18n="fs2.h">Web &amp; front-end</dt><dd data-i18n="fs2">HTML / CSS / JS · React · sites vitrines · landing pages · CMS · SEO · responsive</dd></div>
+                <div><dt data-i18n="fs3.h">Stratégie &amp; contenu</dt><dd data-i18n="fs3">Réseaux sociaux · rédaction créative · intégration IA · automatisation · gestion de projet</dd></div>
+              </dl>
+              <p class="cv-note" data-i18n="founder.skillsNote">Production environ 20 % plus rapide grâce à l'IA. En cours d'apprentissage : motion design et montage vidéo.</p>
             </div>
             <div class="cv-block">
               <h4 data-i18n="founder.eduLabel">Formation</h4>
               <p data-i18n="founder.edu">Informatique — Université Mohamed El Bachir El Ibrahimi · 2018–2024</p>
+              <p class="cv-note" data-i18n="founder.certs">Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D</p>
             </div>
             <a class="btn btn-primary cv-dl" href="assets/cv_yasser_hamisse_2026.pdf" download target="_blank" rel="noopener" data-i18n="founder.download">Télécharger le CV (PDF) ↓</a>
           </div>
-        </div>
+        </div></div>
       </div>
+    </div>
 
-      <p class="fd-team" data-i18n="founder.teamRow">Avec lui : <b>D</b> — données &amp; pipelines · <b>S</b> — ventes &amp; partenariats · <b>T</b> — représentant technique</p>
+    <div class="team reveal">
+      <h3 class="team-h" data-i18n="team.h">Avec lui, l'équipe</h3>
+      <ul class="team-grid">
+        <li class="tm"><span class="tm-i">D</span><b data-i18n="team.dFn">Spécialiste données</b><span data-i18n="team.dDo">Pipelines, scraping et la couche d'intelligence.</span></li>
+        <li class="tm"><span class="tm-i">S</span><b data-i18n="team.sFn">Ventes &amp; partenariats</b><span data-i18n="team.sDo">Premier contact : traduit l'idée en périmètre.</span></li>
+        <li class="tm"><span class="tm-i">T</span><b data-i18n="team.tFn">Représentant technique</b><span data-i18n="team.tDo">Garde le build honnête et le client informé.</span></li>
+      </ul>
     </div>
   </section>
 

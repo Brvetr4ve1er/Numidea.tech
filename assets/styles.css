@@ -613,24 +613,70 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 .fd-pills .pill{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;padding:4px 10px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted)}
 .fd-bio{color:var(--body-strong);line-height:1.65;max-width:43.758em;margin-bottom:var(--s-5)}
 .fd-actions{display:flex;flex-wrap:wrap;gap:12px}
-/* résumé accordion */
-.cv-panel{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-out),opacity .3s;opacity:.4}
-.cv-panel.open{max-height:1600px;opacity:1}
+
+/* verified profiles — the same URLs the hub's archive uses */
+.fd-links{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 var(--s-5)}
+.fd-links a{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:0 14px 0 6px;
+  border:1px solid var(--hairline-2);border-radius:var(--r-sm);color:var(--body-strong);font-size:14px;
+  text-decoration:none;transition:border-color var(--dur-fast),color var(--dur-fast)}
+.fd-links a:hover{border-color:var(--teal);color:var(--ice)}
+.fd-links a:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.fl-b{display:grid;place-items:center;width:30px;height:30px;border-radius:6px;font-family:var(--font-mono);
+  font-size:11px;font-weight:700;color:var(--teal-text);background:color-mix(in srgb,var(--teal) 10%,transparent)}
+
+/* résumé accordion. It animated to max-height:1600px, which silently clips
+   anything taller — and the richer timeline is taller on a phone. A
+   0fr -> 1fr grid row animates to the content's real height instead. */
+.cv-panel{display:grid;grid-template-rows:0fr;opacity:.4;
+  transition:grid-template-rows .45s var(--ease-out),opacity .3s}
+.cv-panel.open{grid-template-rows:1fr;opacity:1}
+/* the collapsing row must carry no padding or border, or it cannot reach 0 */
+.cv-clip{min-height:0;overflow:hidden}
 .cv-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(15px, 5.33px + 2.69vw, 44px);
   border-top:1px solid var(--hairline);margin-top:var(--s-6);padding-top:var(--s-6)}
 .cv-col h4{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
-.timeline{list-style:none;display:grid;gap:15px}
-.timeline li{display:grid;grid-template-columns:78px minmax(0,1fr);gap:14px;align-items:baseline}
-.tl-date{font-family:var(--font-mono);font-size:11px;color:var(--crimson-text);letter-spacing:.03em;white-space:nowrap}
-.timeline b{font-family:var(--font-display);font-weight:600;font-size:15px;display:block;margin-bottom:2px}
-.timeline i{font-style:normal;font-size:12.5px;color:var(--muted)}
+
+/* The date sits on its own line: the CV's dates carry months ("Août 2025 –
+   fév. 2026") and no fixed column fits them in every language. A rail with a
+   node per role; current roles get a filled node, so "ongoing" reads at a
+   glance instead of being implied by a trailing dash. */
+.timeline{list-style:none;display:grid;gap:var(--s-5);position:relative;padding-inline-start:22px}
+.timeline::before{content:"";position:absolute;inset-block:6px;inset-inline-start:5px;width:1px;background:var(--hairline-2)}
+.timeline li{position:relative;display:grid;gap:3px}
+.timeline li::before{content:"";position:absolute;inset-inline-start:-22px;top:4px;width:11px;height:11px;border-radius:50%;
+  border:1.5px solid var(--hairline-2);background:var(--navy)}
+.timeline li.tl-now::before{border-color:var(--teal);background:var(--teal)}
+.tl-date{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--crimson-text)}
+.tl-now .tl-date{color:var(--teal-text)}
+.timeline b{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ice)}
+html[dir="rtl"] .timeline b{font-family:var(--font-ar-display)}
+.timeline i{font-style:normal;font-size:13px;color:var(--body-strong)}
+.timeline p{font-size:13.5px;line-height:1.6;color:var(--muted);margin-top:2px}
+
 .cv-block{margin-bottom:var(--s-5)}
 .cv-block p{color:var(--muted);font-size:13.5px;line-height:1.6}
+.skills{display:grid;gap:var(--s-3);margin-bottom:var(--s-3)}
+.skills dt{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ice);margin-bottom:2px}
+html[dir="rtl"] .skills dt{font-family:var(--font-ar-display)}
+.skills dd{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.cv-block .cv-note{font-size:12.5px;color:var(--faint);margin-top:var(--s-2)}
 .cv-dl{margin-top:6px}
-.fd-team{margin-top:var(--s-6);padding-top:var(--s-5);border-top:1px dashed var(--hairline);
-  font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--faint)}
-.fd-team b{color:var(--teal-text);font-weight:400}
-html[dir="rtl"] .timeline li{grid-template-columns:78px minmax(0,1fr)}
+
+/* the team: anonymized by design, so the initial is the name */
+.team{margin-top:var(--s-6);max-width:940px}
+.team-h{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);
+  font-weight:500;margin-bottom:var(--s-4)}
+.team-grid{list-style:none;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-3)}
+.tm{display:grid;grid-template-columns:44px minmax(0,1fr);grid-template-areas:"i fn" "i do";column-gap:var(--s-4);row-gap:2px;
+  align-items:center;padding:var(--s-4);border:1px solid var(--hairline);border-radius:var(--r-md);
+  background:color-mix(in srgb,var(--navy) 70%,transparent)}
+.tm-i{grid-area:i;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--teal-text);
+  border:1.5px solid color-mix(in srgb,var(--teal) 55%,transparent);background:var(--void)}
+.tm b{grid-area:fn;font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ice)}
+html[dir="rtl"] .tm b{font-family:var(--font-ar-display)}
+.tm span:not(.tm-i){grid-area:do;font-size:13.5px;line-height:1.5;color:var(--muted)}
+@media (min-width:720px){.team-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){
   .fd-top{flex-direction:column;text-align:center;align-items:center}
   .cv-inner{grid-template-columns:minmax(0,1fr)}

@@ -922,3 +922,34 @@ with the work.
 - The footer's link columns were removed: the archive grid is the one list.
   Handles with no verified URL are a single "coming soon" line rather than five
   dead tiles.
+
+## Founder section — the CV is the source of truth
+
+Every date, title and one-liner in the founder card comes from
+`assets/cv_yasser_hamisse_2026.pdf`. The PDF is vector text over an empty
+image overlay, so extract it with pdf.js (`pdfjs-dist`, legacy build);
+pypdf breaks on this machine's cryptography binding. Edit the CV and the site
+together.
+
+- **Timeline order is the CV's:** current roles first, then past work newest
+  first. It read as scrambled only because the site dropped the months and the
+  "present" marker; ongoing roles now carry `.tl-now` (a filled rail node).
+  Dates sit on their own line, because "Août 2025 – fév. 2026" fits no fixed
+  column in every language. Arabic dates use the Maghreb month names
+  (فيفري، أوت، جويلية).
+- **The team is anonymized by design** (knowledge-base 12-organization): initials
+  only, with the KB's verified responsibilities. No names or genders are
+  documented, so the copy uses no pronouns for D, S and T (noun forms in
+  Arabic, where verbs are gendered).
+- **The CV panel animates a `0fr -> 1fr` grid row**, not `max-height`. The
+  1600px cap it replaced was already within 100px of the French content on a
+  390px phone. The row that collapses (`.cv-clip`) must carry no padding or
+  border, or it cannot reach 0 and the closed panel shows a stray rule.
+
+### French punctuation
+
+French puts a space before `;` `:` `!` `?` and inside « », and an ordinary
+space there lets a line begin with the mark ("; animation d'ateliers"). The
+French dictionaries now use U+202F before `; ! ?` and U+00A0 before `:` and
+inside guillemets (27 strings, URLs untouched). New French copy should follow
+suit.
