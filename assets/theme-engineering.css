@@ -866,3 +866,33 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
   .term-body{overflow-x:hidden}
   .term-body .l{white-space:pre-wrap;overflow-wrap:anywhere}
 }
+
+/* ---- market comparison + pricing models, in this system's own tokens ---- */
+.market,.models{background:var(--panel);border:1px solid var(--edge);border-radius:var(--r2);
+  box-shadow:none;padding:var(--s4) var(--s3);margin-bottom:var(--s5)}
+.mk-head h3{font-size:19px;color:var(--fg)}
+.mk-head p{color:var(--fg-2)}
+.mk-scroll{background:var(--panel-2);border:1px solid var(--edge);border-radius:var(--r1)}
+.mk-scroll:focus-visible{outline-color:var(--accent)}
+.mk-table th,.mk-table td{border-bottom:1px solid var(--edge)}
+.mk-table caption,.mk-table thead th,.mk-table .cur{color:var(--fg-3)}
+.mk-table tbody th{color:var(--fg)}
+.mk-table td{color:var(--fg-2)}
+.mk-table th:first-child{background:var(--panel-2)}
+.mk-table thead th.mk-nl,.mk-table td.mk-nl .cur{color:var(--accent)}
+.mk-table td.mk-nl{color:var(--fg);background:var(--glow)}
+.mk-day{border-inline-start-color:var(--accent);background:var(--glow);color:var(--fg-2);border-radius:var(--r1)}
+.mk-num{color:var(--fg)}
+.mk-note,.mk-src p,.mk-src li{color:var(--fg-3)}
+.mk-src li b{color:var(--fg-2)}
+.mk-src summary,.mk-src a{color:var(--accent)}
+.mk-src summary:focus-visible{outline-color:var(--accent)}
+.md-card{background:var(--panel-2);border:1px solid var(--edge);border-radius:var(--r1)}
+.md-ours{border-color:var(--accent)}
+.md-tag{background:var(--accent);color:var(--bg);border-radius:var(--r1)}
+.md-card h4,.md-drivers b{color:var(--fg)}
+.md-card p{color:var(--fg-2)}
+.md-card .md-where{border-top-color:var(--edge);color:var(--fg-3)}
+.md-sub{color:var(--fg-3)}
+.md-drivers li{border-inline-start-color:var(--edge-2)}
+.md-drivers span{color:var(--fg-3)}

@@ -253,6 +253,35 @@
   /* ---- Services Catalog + Trust strip strings (merged into I18N) ---- */
   var EXTRA = {
     fr: {
+      'mk.h': 'Ici et ailleurs',
+      'mk.p': "Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.",
+      'mk.curL': 'Afficher en', 'mk.curNative': "Devise d'origine",
+      'mk.cap': 'Fourchettes de prix courantes par type de projet',
+      'mk.colType': 'Projet', 'mk.colDz': 'Algérie', 'mk.colNl': 'Numidea', 'mk.colFr': 'France', 'mk.colUs': 'États-Unis',
+      'mk.day1': 'Une journée de développeur confirmé en France',
+      'mk.day2': "au taux officiel — l'ordre de prix d'un site vitrine entier sur le marché algérien.",
+      'mk.note': "Conversions au taux officiel de la Banque d'Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec le même stack que les studios européens et américains : React, Next.js, Vercel.",
+      'mk.srcSum': 'Sources et méthode',
+      'mk.method': "Chaque case va du bas de la fourchette d'un freelance confirmé au haut de celle d'une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l'estimateur ci-dessus, au périmètre type de chaque projet.",
+      'mk.srcDz': 'Algérie', 'mk.srcFr': 'France', 'mk.srcUs': 'États-Unis', 'mk.srcFx': 'Change',
+      'md.h': 'Comment un projet est chiffré',
+      'md.p': 'Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.',
+      'md.ours': 'Notre modèle',
+      'md.fH': 'Au forfait', 'md.fP': "Un prix fixe pour un périmètre écrit. Si le travail déborde, c'est le prestataire qui absorbe l'écart.",
+      'md.fW': "La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C'est ainsi que nous chiffrons chaque projet.",
+      'md.tH': 'Au temps passé', 'md.tP': "Facturé au jour ou à l'heure. Souple quand le périmètre bouge, difficile à budgéter d'avance.",
+      'md.tW': "La norme en France (480 –⁠ 650 € par jour pour un développeur confirmé) et aux États-Unis (100 –⁠ 149 $ de l'heure en agence).",
+      'md.aH': "À l'abonnement", 'md.aP': 'Un montant mensuel pour un service continu : maintenance, évolutions, contenu.',
+      'md.aW': 'Courant partout après le lancement. C\'est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.',
+      'md.vH': 'À la valeur', 'md.vP': "Le prix suit ce que le projet rapporte, pas le temps qu'il demande.",
+      'md.vW': "Plus rare, surtout en conseil et en stratégie, là où l'enjeu se mesure.",
+      'md.drH': 'Ce qui fait bouger un devis',
+      'md.d1h': 'Le périmètre', 'md.d1p': "Le nombre de pages, de produits ou d'écrans.",
+      'md.d2h': 'Le design', 'md.d2p': "Sur mesure, ou adapté d'un modèle existant.",
+      'md.d3h': 'Les langues', 'md.d3p': "Chaque langue ajoute du contenu ; l'arabe ajoute une mise en page de droite à gauche.",
+      'md.d4h': 'Les intégrations', 'md.d4p': 'Paiement, comptes utilisateurs, outils et API tiers.',
+      'md.d5h': 'Le contenu', 'md.d5p': 'Textes, photos et vidéos : fournis par vous, ou à produire.',
+      'md.d6h': 'Le délai', 'md.d6p': 'Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.',
       'price.waSoonSuffix': ' · bientôt',
       'nav.pricing': 'Tarifs',
       'wa.hello': "Bonjour Numidea Labs — j'aimerais parler d'un projet.",
@@ -282,7 +311,7 @@
       'price.t3c': 'Scraping et intelligence marché — le web ouvert en base de données',
       'price.t3d': 'Intégrations API et outils internes',
       'price.t3e': '6 mois de support inclus',
-      'price.retainer': 'Maintenance après livraison, si vous la voulez : 18 000 – 60 000 DA par mois. Sans engagement de durée.',
+      'price.retainer': 'Maintenance après livraison, si vous la voulez : 18 000 –⁠ 60 000 DA par mois. Sans engagement de durée.',
       'price.estH': 'Estimez votre projet',
       'price.estP': 'Réglez ce dont vous avez besoin. La fourchette se recalcule en direct, sur les mêmes chiffres que les paliers ci-dessus.',
       'price.qType': 'Quel type de projet ?', 'price.qSize': 'Ampleur', 'price.qOpts': "Ce qu'il vous faut en plus", 'price.qPace': 'Délai',
@@ -338,6 +367,35 @@
       'cat.health': 'Santé', 'cat.travel': 'Voyage', 'cat.industrial': 'Industrie', 'cat.commerce': 'Commerce', 'cat.pwa': 'PWA'
     },
     en: {
+      'mk.h': 'Here and elsewhere',
+      'mk.p': 'The same project, priced in three markets. Typical 2026 ranges, from an experienced freelancer to an agency — excluding tax.',
+      'mk.curL': 'Show in', 'mk.curNative': 'Original currency',
+      'mk.cap': 'Typical price ranges by project type',
+      'mk.colType': 'Project', 'mk.colDz': 'Algeria', 'mk.colNl': 'Numidea', 'mk.colFr': 'France', 'mk.colUs': 'United States',
+      'mk.day1': 'One day of an experienced developer in France',
+      'mk.day2': 'at the official rate — roughly the price of an entire showcase site on the Algerian market.',
+      'mk.note': "Converted at the Bank of Algeria's official rate, early October 2026: €1 ≈ 151 DZD, $1 ≈ 134 DZD. The gap comes from cost of living and exchange rates, not tools — we ship on the same stack as European and American studios: React, Next.js, Vercel.",
+      'mk.srcSum': 'Sources and method',
+      'mk.method': "Each cell runs from the low end of an experienced freelancer's range to the high end of an agency's; \u201c+\u201d marks an open upper bound. Extremes — €300 sites or $250,000 builds — are left out. The Numidea column is computed by the estimator above, at each project's typical scope.",
+      'mk.srcDz': 'Algeria', 'mk.srcFr': 'France', 'mk.srcUs': 'United States', 'mk.srcFx': 'Exchange rate',
+      'md.h': 'How a project is priced',
+      'md.p': 'There are four ways to bill a project. Each one is the norm somewhere.',
+      'md.ours': 'Our model',
+      'md.fH': 'Fixed price', 'md.fP': 'One fixed price for a written scope. If the work overruns, the provider absorbs the difference.',
+      'md.fW': "The norm in Algeria: the Onyxlab barometer prices all development as a fixed fee. It's how we price every project.",
+      'md.tH': 'Time and materials', 'md.tP': 'Billed by the day or the hour. Flexible when the scope moves, hard to budget in advance.',
+      'md.tW': 'The norm in France (€480–650 a day for an experienced developer) and the US ($100–149 an hour at agencies).',
+      'md.aH': 'Retainer', 'md.aP': 'A monthly fee for an ongoing service: maintenance, improvements, content.',
+      'md.aW': "Common everywhere after launch. It's how our maintenance works: 18,000–60,000 DZD a month.",
+      'md.vH': 'Value-based', 'md.vP': 'The price follows what the project earns, not the time it takes.',
+      'md.vW': 'Rarer, mostly in consulting and strategy, where the stakes can be measured.',
+      'md.drH': 'What moves a quote',
+      'md.d1h': 'Scope', 'md.d1p': 'The number of pages, products or screens.',
+      'md.d2h': 'Design', 'md.d2p': 'Fully custom, or adapted from an existing template.',
+      'md.d3h': 'Languages', 'md.d3p': 'Each language adds content; Arabic adds a right-to-left layout.',
+      'md.d4h': 'Integrations', 'md.d4p': 'Payments, user accounts, third-party tools and APIs.',
+      'md.d5h': 'Content', 'md.d5p': 'Copy, photos and video: supplied by you, or produced.',
+      'md.d6h': 'Timeline', 'md.d6p': 'A compressed schedule costs more: +25% in our estimator.',
       'price.waSoonSuffix': ' · soon',
       'nav.pricing': 'Pricing',
       'wa.hello': 'Hello Numidea Labs — I would like to talk about a project.',
@@ -367,7 +425,7 @@
       'price.t3c': 'Scraping and market intelligence — the open web as a database',
       'price.t3d': 'API integrations and internal tools',
       'price.t3e': '6 months of support included',
-      'price.retainer': 'Maintenance after launch, if you want it: 18,000 – 60,000 DZD per month. No lock-in.',
+      'price.retainer': 'Maintenance after launch, if you want it: 18,000 –⁠ 60,000 DZD per month. No lock-in.',
       'price.estH': 'Estimate your project',
       'price.estP': 'Set what you need. The range recalculates live, on the same numbers the tiers above quote.',
       'price.qType': 'What kind of project?', 'price.qSize': 'Scale', 'price.qOpts': 'What else you need', 'price.qPace': 'Timeline',
@@ -423,6 +481,35 @@
       'cat.health': 'Healthcare', 'cat.travel': 'Travel', 'cat.industrial': 'Industrial', 'cat.commerce': 'Commerce', 'cat.pwa': 'PWA'
     },
     ar: {
+      'mk.h': 'هنا وفي الخارج',
+      'mk.p': 'المشروع نفسه، مسعّراً في ثلاثة أسواق. النطاقات الشائعة لعام ٢٠٢٦، من المستقل المتمرّس إلى الوكالة — دون احتساب الضرائب.',
+      'mk.curL': 'العرض بـ', 'mk.curNative': 'العملة الأصلية',
+      'mk.cap': 'نطاقات الأسعار الشائعة حسب نوع المشروع',
+      'mk.colType': 'المشروع', 'mk.colDz': 'الجزائر', 'mk.colNl': 'نوميديا', 'mk.colFr': 'فرنسا', 'mk.colUs': 'الولايات المتحدة',
+      'mk.day1': 'يوم عمل واحد لمطوّر متمرّس في فرنسا',
+      'mk.day2': 'بالسعر الرسمي — أي ما يقارب سعر موقع تعريفي كامل في السوق الجزائرية.',
+      'mk.note': 'التحويلات بالسعر الرسمي لبنك الجزائر، مطلع أكتوبر ٢٠٢٦: ١ € ≈ ١٥١ دج، ١ $ ≈ ١٣٤ دج. الفارق سببه تكلفة المعيشة وسعر الصرف لا الأدوات — فنحن نسلّم بالتقنيات نفسها التي تعتمدها الاستوديوهات الأوروبية والأمريكية: React وNext.js وVercel.',
+      'mk.srcSum': 'المصادر والمنهجية',
+      'mk.method': 'تمتدّ كل خانة من أدنى نطاق المستقل المتمرّس إلى أعلى نطاق الوكالة، وتدلّ علامة «+» على حدّ أعلى مفتوح. استُبعدت الحالات القصوى — مواقع بـ٣٠٠ € أو مشاريع بـ٢٥٠٬٠٠٠ $. أمّا عمود نوميديا فيحسبه المقدِّر أعلاه، بالنطاق المعتاد لكل مشروع.',
+      'mk.srcDz': 'الجزائر', 'mk.srcFr': 'فرنسا', 'mk.srcUs': 'الولايات المتحدة', 'mk.srcFx': 'الصرف',
+      'md.h': 'كيف يُسعَّر المشروع',
+      'md.p': 'هناك أربع طرق لفوترة مشروع، ولكلٍّ منها سوقٌ تسود فيه.',
+      'md.ours': 'نموذجنا',
+      'md.fH': 'بسعر جزافي', 'md.fP': 'سعر ثابت لنطاق عمل مكتوب. إن تجاوز العمل ما اتُّفق عليه، يتحمّل مقدّم الخدمة الفارق.',
+      'md.fW': 'هو السائد في الجزائر: مقياس Onyxlab يسعّر كل أعمال التطوير جزافياً. وهكذا نسعّر كل مشروع.',
+      'md.tH': 'حسب الوقت', 'md.tP': 'يُفوتَر باليوم أو بالساعة. مرنٌ حين يتغيّر النطاق، لكن يصعب تقدير ميزانيته مسبقاً.',
+      'md.tW': 'هو السائد في فرنسا (٤٨٠ –⁠ ٦٥٠ € يومياً لمطوّر متمرّس) وفي الولايات المتحدة (١٠٠ –⁠ ١٤٩ $ للساعة في الوكالات).',
+      'md.aH': 'بالاشتراك', 'md.aP': 'مبلغ شهري مقابل خدمة مستمرّة: صيانة وتطوير ومحتوى.',
+      'md.aW': 'شائع في كل مكان بعد الإطلاق، وهو نموذج صيانتنا: من ١٨٬٠٠٠ إلى ٦٠٬٠٠٠ دج شهرياً.',
+      'md.vH': 'حسب القيمة', 'md.vP': 'يتبع السعر ما يحقّقه المشروع، لا الوقت الذي يستغرقه.',
+      'md.vW': 'أندر، وأكثر ما يكون في الاستشارة والاستراتيجية، حيث يمكن قياس الرهان.',
+      'md.drH': 'ما الذي يغيّر عرض السعر',
+      'md.d1h': 'النطاق', 'md.d1p': 'عدد الصفحات أو المنتجات أو الشاشات.',
+      'md.d2h': 'التصميم', 'md.d2p': 'مخصّص بالكامل، أو مقتبس من قالب موجود.',
+      'md.d3h': 'اللغات', 'md.d3p': 'كل لغة تضيف محتوى، والعربية تضيف تخطيطاً من اليمين إلى اليسار.',
+      'md.d4h': 'التكاملات', 'md.d4p': 'الدفع وحسابات المستخدمين والأدوات والواجهات البرمجية الخارجية.',
+      'md.d5h': 'المحتوى', 'md.d5p': 'النصوص والصور والفيديو: تقدّمونها أنتم أو ننتجها نحن.',
+      'md.d6h': 'المهلة', 'md.d6p': 'الجدول المضغوط أعلى تكلفة: ‎+٢٥٪ في مقدِّرنا.',
       'price.waSoonSuffix': ' · قريباً',
       'nav.pricing': 'الأسعار',
       'wa.hello': 'مرحباً نوميديا لابز — أودّ الحديث عن مشروع.',
@@ -452,7 +539,7 @@
       'price.t3c': 'استخراج البيانات وذكاء السوق — الويب المفتوح كقاعدة بيانات',
       'price.t3d': 'تكاملات واجهات برمجية وأدوات داخلية',
       'price.t3e': 'ستّة أشهر دعم مشمولة',
-      'price.retainer': 'الصيانة بعد التسليم، إن أردتموها: من ١٨٬٠٠٠ إلى ٦٠٬٠٠٠ دج شهرياً. دون ارتباط بمدّة.',
+      'price.retainer': 'الصيانة بعد التسليم، إن أردتموها: من ١٨٬٠٠٠ إلى ٦٠٬٠٠٠ دج شهرياً. دون ارتباط بمدّة.',
       'price.estH': 'قدّر مشروعك',
       'price.estP': 'اضبط ما تحتاجه. يُعاد حساب النطاق مباشرة، بالأرقام نفسها المعلنة في الباقات أعلاه.',
       'price.qType': 'أيّ نوع من المشاريع؟', 'price.qSize': 'الحجم', 'price.qOpts': 'ما تحتاجه إضافةً إلى ذلك', 'price.qPace': 'المهلة',
@@ -1326,12 +1413,17 @@
        Ranges are anchored to the Onyxlab Baromètre 2026 Algerian freelance
        grid and the 2026 DZ agency surveys, positioned between that grid's
        "Confirmé" and "Agence" columns — a four-person studio carries neither
-       a junior's inexperience nor an agency's overhead. The tier cards in the
-       markup quote the same figures this model produces for their midpoints;
-       if one moves, move the other. Every number is DZD. */
+       a junior's inexperience nor an agency's overhead. Every number is DZD.
+
+       The tier cards quote exactly what this model returns across each tier's
+       stated scope: Essentiel = vitrine at 1-5 pages (base_u 5), Studio =
+       surmesure at 6-15 pages (base_u 15), Moteur = app at its default. An
+       earlier version claimed this and was wrong — the defaults sat 30-60k
+       below the cards. The market table (section 14) reads its Numidea column
+       from here too, so if a tier moves, move it here and nowhere else. */
     var PRICE_MODEL = {
-      vitrine:   { base: [60000, 120000],   unit: [6000, 12000],  min: 1,  max: 10,  def: 3,  step: 1,  u: 'price.uPages',    base_u: 3,  weeks: [2, 4] },
-      surmesure: { base: [160000, 320000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 8,  weeks: [3, 7] },
+      vitrine:   { base: [90000, 160000],   unit: [6000, 12000],  min: 1,  max: 10,  def: 3,  step: 1,  u: 'price.uPages',    base_u: 5,  weeks: [2, 4] },
+      surmesure: { base: [180000, 420000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 15, weeks: [3, 7] },
       ecommerce: { base: [220000, 550000],  unit: [900, 2200],    min: 10, max: 400, def: 60, step: 10, u: 'price.uProducts', base_u: 60, weeks: [5, 10] },
       app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16] },
       auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6] },
@@ -1492,6 +1584,66 @@
     }); };
     wireWA();
     document.addEventListener('numidea:lang', wireWA);
+
+    /* ---------------- 14 · market comparison ----------------
+       Native figures live in the markup, so the table reads correctly with JS
+       off. This converts them on request and computes the Numidea column from
+       PRICE_MODEL — the table cannot quote a Numidea price the tier cards and
+       the estimator disagree with.
+       FX: Bank of Algeria official rate, early October 2026 (1 Oct: 1 € =
+       151.06, 1 $ = 133.66; an independent page agreed within 0.3%). Rounded,
+       because the comparison is about orders of magnitude, not centimes. */
+    var FX = { DZD: 1, EUR: 151, USD: 134 };
+    var MARKET = {   // [low, high, openEnded] — freelance confirmé low → agency high
+      vitrine:   { dz: [50000, 100000],   fr: [1500, 6000],     us: [1500, 12000] },
+      surmesure: { dz: [180000, 400000],  fr: [6000, 10000, 1], us: [6000, 20000] },
+      ecommerce: { dz: [150000, 1000000], fr: [2000, 20000],    us: [5000, 30000] },
+      app:       { dz: [200000, 2000000], fr: [10000, 50000],   us: [20000, 60000, 1] },
+      identite:  { dz: [80000, 150000],   fr: [1200, 5000, 1],  us: [500, 30000] }
+    };
+    var NATIVE = { dz: 'DZD', nl: 'DZD', fr: 'EUR', us: 'USD' };
+    var mkt = document.getElementById('market');
+    if (mkt) {
+      var grp = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+      // a converted figure is rounded to what a person would actually quote
+      var tidy = function (n, cur) {
+        var g = cur === 'DZD' ? (n >= 1e6 ? 50000 : n >= 150000 ? 10000 : 5000)
+                              : (n >= 10000 ? 500 : n >= 1000 ? 100 : 10);
+        return Math.max(g, Math.round(n / g) * g);
+      };
+      var sym = function (cur) { return cur === 'DZD' ? t('price.cur') : cur === 'EUR' ? '€' : '$'; };
+      var nlRange = function (key) {
+        var m = PRICE_MODEL[key], over = Math.max(0, m.def - m.base_u);
+        return [m.base[0] + over * m.unit[0], m.base[1] + over * m.unit[1]];
+      };
+      var fill = function (td, range, from, to) {
+        var lo = range[0], hi = range[1], approx = '';
+        if (to !== from) {
+          lo = tidy(lo * FX[from] / FX[to], to); hi = tidy(hi * FX[from] / FX[to], to);
+          approx = '≈ ';
+        }
+        td.textContent = '';
+        td.appendChild(document.createTextNode(approx + grp(lo) + ' – ' + grp(hi) + (range[2] ? '+' : '') + ' '));
+        var c = document.createElement('span'); c.className = 'cur'; c.textContent = sym(to);
+        td.appendChild(c);
+      };
+      var renderMarket = function () {
+        var sel = mkt.querySelector('input[name="mk-cur"]:checked');
+        var want = sel ? sel.value : 'native';
+        mkt.querySelectorAll('tbody tr[data-row]').forEach(function (tr) {
+          var key = tr.getAttribute('data-row');
+          tr.querySelectorAll('td[data-mk]').forEach(function (td) {
+            var col = td.getAttribute('data-mk'), from = NATIVE[col];
+            fill(td, col === 'nl' ? nlRange(key) : MARKET[key][col], from, want === 'native' ? from : want);
+          });
+        });
+        var day = document.getElementById('mk-day-dz');
+        if (day) day.textContent = grp(tidy(480 * FX.EUR, 'DZD')) + ' – ' + grp(tidy(650 * FX.EUR, 'DZD')) + ' ' + t('price.cur');
+      };
+      mkt.addEventListener('change', renderMarket);
+      document.addEventListener('numidea:lang', renderMarket);
+      renderMarket();
+    }
 
    } catch (e) {
     // Never let an init error leave content stuck behind scroll-reveal.
