@@ -844,3 +844,55 @@ Audit traps, on top of the sweep's list:
 - The Engineering deploy log scrolled sideways on phones only once the typing
   animation reached its longest line, so the axe failure came and went. It now
   wraps below 600px.
+
+## Market comparison ("Ici et ailleurs") and pricing models
+
+The pricing section compares each project type across Algeria, Numidea,
+France and the US, then explains the four billing models and what moves a
+quote. Every external figure was read at its source, not taken from a search
+summary:
+
+| Market | Source |
+|---|---|
+| Algeria | Onyxlab Baromètre 2026 — Confirmé → Agence columns |
+| France | Tandem Studio (sites), Les Créavores (103-price dataset, June 2026), HeySimon (identity), Malt day rates via LeFreelance |
+| USA | Pitchsite (sites, apps, hourly), 8GNC (branding), Clutch (agency hourly, Sept 2026) |
+| FX | Bank of Algeria official rate, 1 Oct 2026: €1 = 151.06, $1 = 133.66 DZD |
+
+Each cell runs from the low end of an experienced freelancer's range to the
+high end of an agency's; `+` marks an open upper bound. The Bank of Algeria
+site serves an incomplete certificate chain, so the rate was cross-checked
+against an independent page (agreed within 0.3%) rather than fetched with
+verification disabled. The parallel-market rate (~275 DZD/€) is deliberately
+not used: an international client pays through official channels.
+
+**Where the numbers live — update all of them together:**
+- market ranges: `MARKET` in `app.js` §14 **and** the static cells in
+  `index.html` (the static values are the JS-off fallback)
+- exchange rate: `FX` in `app.js` §14, the `mk.note` string ×3, and the
+  static callout figure
+- Numidea's column: nowhere — it is computed from `PRICE_MODEL`
+
+**The estimator now matches the tier cards.** It didn't before, despite a
+comment claiming it did: at defaults it quoted a showcase site at 60–120k
+against Essentiel's 90–160k, and a custom site at 160–320k against Studio's
+180–420k. The table would have put those side by side. `base_u` now spans
+each tier's stated scope (Essentiel 1–5 pages, Studio 6–15), so the cards,
+the estimator and the table agree to the dinar.
+
+**The Numidea column comes first.** The table keeps its columns on a phone and
+scrolls inside its own frame. With Algeria first, Numidea's own prices started
+off-screen with nothing to say they were there.
+
+### Ranges must not wrap apart
+
+French uses a space as the thousands separator, so every space in
+"18 000 – 60 000 DA" was a line break, and the retainer line rendered as
+"18 000 – 60" / "000 DA". Three characters fix it:
+- U+202F narrow no-break space inside a number (`18 000`)
+- U+00A0 no-break space before a currency (`000 DA`)
+- U+2060 word joiner after the en dash. The dash is Unicode class BA
+  ("break after"), and a no-break space after it does **not** cancel that.
+
+All pricing strings in the dictionaries and the static markup carry these. A
+browser test confirmed no range splits at 1280/1024/768/390 in FR/EN/AR.

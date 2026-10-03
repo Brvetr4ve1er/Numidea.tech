@@ -632,7 +632,7 @@
         <span class="t-fam" data-i18n="price.t1fam">Le Build</span>
         <h3 data-i18n="price.t1name">Essentiel</h3>
         <p class="t-for" data-i18n="price.t1for">Une présence crédible, vite en ligne.</p>
-        <p class="t-range"><b>90 000 – 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
+        <p class="t-range"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t1time">2 à 4 semaines</p>
         <ul class="t-list">
           <li data-i18n="price.t1a">Vitrine ou landing, 1 à 5 pages</li>
@@ -648,7 +648,7 @@
         <span class="t-fam" data-i18n="price.t2fam">Le Build</span>
         <h3 data-i18n="price.t2name">Studio</h3>
         <p class="t-for" data-i18n="price.t2for">Le site qui porte vraiment l'entreprise.</p>
-        <p class="t-range"><b>180 000 – 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
+        <p class="t-range"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t2time">3 à 7 semaines</p>
         <ul class="t-list">
           <li data-i18n="price.t2a">Site sur mesure, 6 à 15 pages</li>
@@ -664,7 +664,7 @@
         <span class="t-fam" data-i18n="price.t3fam">Le Moteur</span>
         <h3 data-i18n="price.t3name">Moteur</h3>
         <p class="t-for" data-i18n="price.t3for">La machinerie que presque personne ne construit ici.</p>
-        <p class="t-range"><b>450 000 – 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
+        <p class="t-range"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t3time">8 à 16 semaines</p>
         <ul class="t-list">
           <li data-i18n="price.t3a">E-commerce, application web ou pipeline d'automatisation</li>
@@ -677,7 +677,7 @@
     </div>
 
     <p class="price-note reveal">
-      <span data-i18n="price.retainer">Maintenance après livraison, si vous la voulez : 18 000 – 60 000 DA par mois. Sans engagement de durée.</span>
+      <span data-i18n="price.retainer">Maintenance après livraison, si vous la voulez : 18 000 –⁠ 60 000 DA par mois. Sans engagement de durée.</span>
     </p>
 
     <!-- ---------------- estimator ---------------- -->
@@ -732,15 +732,125 @@
         <div class="est-out">
           <span class="eo-k" data-i18n="price.estimate">Estimation</span>
           <p class="eo-range" id="est-range" role="status" aria-live="polite">
-            <b id="est-lo">180 000</b><span class="eo-dash">–</span><b id="est-hi">420 000</b>
+            <b id="est-lo">180 000</b><span class="eo-dash">–</span><b id="est-hi">420 000</b>
             <span class="cur" data-i18n="price.cur">DA</span>
           </p>
-          <p class="eo-time"><span id="est-weeks">3 – 7</span> <span data-i18n="price.weeks">semaines</span></p>
+          <p class="eo-time"><span id="est-weeks">3 –⁠ 7</span> <span data-i18n="price.weeks">semaines</span></p>
           <ul class="eo-sum" id="est-summary"></ul>
           <p class="eo-fine" data-i18n="price.estFine">Fourchette indicative, pas un devis. Le prix ferme arrive sous 24 heures, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.</p>
           <a class="btn btn-primary" id="est-cta" href="#contact" data-i18n="price.estCta">Obtenir le prix ferme →</a>
         </div>
       </div>
+    </div>
+
+    <!-- ---------------- market comparison ----------------
+         Each cell runs from the low end of an experienced freelancer's range
+         to the high end of an agency's, per the sources listed below. Static
+         values are the native currency, so the table reads correctly with
+         JS off; app.js (section 14) converts on request and computes the
+         Numidea column from PRICE_MODEL. -->
+    <div class="market reveal" id="market">
+      <div class="mk-head">
+        <h3 data-i18n="mk.h">Ici et ailleurs</h3>
+        <p data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.</p>
+      </div>
+
+      <fieldset class="mk-cur est-field">
+        <legend data-i18n="mk.curL">Afficher en</legend>
+        <div class="est-chips">
+          <label class="echip"><input type="radio" name="mk-cur" value="native" checked><span data-i18n="mk.curNative">Devise d'origine</span></label>
+          <label class="echip"><input type="radio" name="mk-cur" value="DZD"><span data-i18n="price.cur">DA</span></label>
+          <label class="echip"><input type="radio" name="mk-cur" value="EUR"><span>€</span></label>
+          <label class="echip"><input type="radio" name="mk-cur" value="USD"><span>$</span></label>
+        </div>
+      </fieldset>
+
+      <section class="mk-scroll" tabindex="0" aria-labelledby="mk-cap">
+        <table class="mk-table">
+          <caption id="mk-cap" data-i18n="mk.cap">Fourchettes de prix courantes par type de projet</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="mk.colType">Projet</th>
+              <th scope="col" class="mk-nl" data-i18n="mk.colNl">Numidea</th>
+              <th scope="col" data-i18n="mk.colDz">Algérie</th>
+              <th scope="col" data-i18n="mk.colFr">France</th>
+              <th scope="col" data-i18n="mk.colUs">États-Unis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">Vitrine</th>
+              <td data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
+            <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">Site sur mesure</th>
+              <td data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
+            <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">E-commerce</th>
+              <td data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
+            <tr data-row="app"><th scope="row" data-i18n="price.tyApp">Application web</th>
+              <td data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
+            <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">Identité visuelle</th>
+              <td data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <p class="mk-day">
+        <span data-i18n="mk.day1">Une journée de développeur confirmé en France</span>
+        <b class="mk-num" dir="ltr">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz" dir="ltr">70 000 –⁠ 100 000 DA</b>
+        <span data-i18n="mk.day2">au taux officiel — l'ordre de prix d'un site vitrine entier sur le marché algérien.</span>
+      </p>
+      <p class="mk-note" data-i18n="mk.note">Conversions au taux officiel de la Banque d'Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec le même stack que les studios européens et américains : React, Next.js, Vercel.</p>
+
+      <details class="mk-src">
+        <summary data-i18n="mk.srcSum">Sources et méthode</summary>
+        <p data-i18n="mk.method">Chaque case va du bas de la fourchette d'un freelance confirmé au haut de celle d'une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l'estimateur ci-dessus, au périmètre type de chaque projet.</p>
+        <ul>
+          <li><b data-i18n="mk.srcDz">Algérie</b> — <a href="https://barometre.onyxlab.dz/" target="_blank" rel="noopener">Onyxlab, Baromètre des tarifs freelance 2026</a> (Confirmé → Agence)</li>
+          <li><b data-i18n="mk.srcFr">France</b> — <a href="https://www.tandem-studio.fr/prix-creation-site-internet/" target="_blank" rel="noopener">Tandem Studio, prix création site 2026</a> · <a href="https://lescreavores.fr/prix-creation-site-internet/" target="_blank" rel="noopener">Les Créavores, baromètre de 103 prix (juin 2026)</a> · <a href="https://www.heysimon.fr/articles/prix-logo-identite-visuelle-2026" target="_blank" rel="noopener">HeySimon, identité visuelle 2026</a> · <a href="https://lefreelance.fr/articles/tjm-developpeur-freelance/" target="_blank" rel="noopener">TJM d'après Malt (LeFreelance)</a></li>
+          <li><b data-i18n="mk.srcUs">États-Unis</b> — <a href="https://pitchsite.io/guides/web-design-pricing" target="_blank" rel="noopener">Pitchsite, Web Design Pricing Guide 2026</a> · <a href="https://8gnc.io/blog/how-much-does-branding-cost" target="_blank" rel="noopener">8GNC, branding cost 2026</a> · <a href="https://clutch.co/web-developers/pricing" target="_blank" rel="noopener">Clutch, web development pricing (sept. 2026)</a></li>
+          <li><b data-i18n="mk.srcFx">Change</b> — <a href="https://www.bank-of-algeria.dz/taux-de-change-journalier/" target="_blank" rel="noopener">Banque d'Algérie, taux de change journalier</a></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- ---------------- pricing models ---------------- -->
+    <div class="models reveal" id="models">
+      <div class="mk-head">
+        <h3 data-i18n="md.h">Comment un projet est chiffré</h3>
+        <p data-i18n="md.p">Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.</p>
+      </div>
+      <div class="md-grid">
+        <article class="md-card md-ours">
+          <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
+          <h4 data-i18n="md.fH">Au forfait</h4>
+          <p data-i18n="md.fP">Un prix fixe pour un périmètre écrit. Si le travail déborde, c'est le prestataire qui absorbe l'écart.</p>
+          <p class="md-where" data-i18n="md.fW">La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C'est ainsi que nous chiffrons chaque projet.</p>
+        </article>
+        <article class="md-card">
+          <h4 data-i18n="md.tH">Au temps passé</h4>
+          <p data-i18n="md.tP">Facturé au jour ou à l'heure. Souple quand le périmètre bouge, difficile à budgéter d'avance.</p>
+          <p class="md-where" data-i18n="md.tW">La norme en France (480 –⁠ 650 € par jour pour un développeur confirmé) et aux États-Unis (100 –⁠ 149 $ de l'heure en agence).</p>
+        </article>
+        <article class="md-card md-ours">
+          <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
+          <h4 data-i18n="md.aH">À l'abonnement</h4>
+          <p data-i18n="md.aP">Un montant mensuel pour un service continu : maintenance, évolutions, contenu.</p>
+          <p class="md-where" data-i18n="md.aW">Courant partout après le lancement. C'est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.</p>
+        </article>
+        <article class="md-card">
+          <h4 data-i18n="md.vH">À la valeur</h4>
+          <p data-i18n="md.vP">Le prix suit ce que le projet rapporte, pas le temps qu'il demande.</p>
+          <p class="md-where" data-i18n="md.vW">Plus rare, surtout en conseil et en stratégie, là où l'enjeu se mesure.</p>
+        </article>
+      </div>
+
+      <h4 class="md-sub" data-i18n="md.drH">Ce qui fait bouger un devis</h4>
+      <ul class="md-drivers">
+        <li><b data-i18n="md.d1h">Le périmètre</b><span data-i18n="md.d1p">Le nombre de pages, de produits ou d'écrans.</span></li>
+        <li><b data-i18n="md.d2h">Le design</b><span data-i18n="md.d2p">Sur mesure, ou adapté d'un modèle existant.</span></li>
+        <li><b data-i18n="md.d3h">Les langues</b><span data-i18n="md.d3p">Chaque langue ajoute du contenu ; l'arabe ajoute une mise en page de droite à gauche.</span></li>
+        <li><b data-i18n="md.d4h">Les intégrations</b><span data-i18n="md.d4p">Paiement, comptes utilisateurs, outils et API tiers.</span></li>
+        <li><b data-i18n="md.d5h">Le contenu</b><span data-i18n="md.d5p">Textes, photos et vidéos : fournis par vous, ou à produire.</span></li>
+        <li><b data-i18n="md.d6h">Le délai</b><span data-i18n="md.d6p">Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.</span></li>
+      </ul>
     </div>
 
     <!-- ---------------- onboarding ---------------- -->

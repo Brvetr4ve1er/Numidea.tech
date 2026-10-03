@@ -1670,6 +1670,83 @@ html[dir="rtl"] .ob-steps li b{font-family:var(--font-ar-display)}
 .ob-steps li span:not(.ob-n){grid-area:p;color:var(--muted);font-size:14px;line-height:1.6}
 .ob-cta{display:flex;flex-wrap:wrap;gap:var(--s-3)}
 
+/* ---------- market comparison + pricing models ----------
+   Same panel idiom as the estimator and onboarding blocks, and token-driven
+   throughout: a literal colour here would be right in one palette only. */
+.market,.models{border:1px solid var(--hairline);border-radius:var(--r-lg);padding:var(--s-6) var(--s-5);
+  background:var(--navy);background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 40%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgb(var(--shade) / calc(.85 * var(--shade-k)));
+  margin-bottom:var(--s-8)}
+.mk-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(19px,2.4vw,26px);
+  letter-spacing:-.015em;color:var(--ice);margin-bottom:6px}
+html[dir="rtl"] .mk-head h3{font-family:var(--font-ar-display)}
+.mk-head p{color:var(--body-strong);font-size:14px;line-height:1.6;max-width:56em;margin-bottom:var(--s-5)}
+.mk-cur{margin-bottom:var(--s-5)}
+.mk-cur legend{color:var(--body-strong)}
+
+/* The table keeps its columns on a phone and scrolls sideways inside its own
+   frame; the frame is focusable and labelled, so a keyboard can reach it. */
+.mk-scroll{overflow-x:auto;border:1px solid var(--hairline);border-radius:var(--r-md);
+  background:color-mix(in srgb,var(--void) 40%,transparent)}
+.mk-scroll:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.mk-table{width:100%;min-width:640px;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.mk-table caption{caption-side:top;text-align:start;padding:var(--s-4) var(--s-4) var(--s-2);
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.mk-table th,.mk-table td{padding:13px var(--s-4);text-align:start;border-bottom:1px solid var(--hairline);vertical-align:middle}
+.mk-table tbody tr:last-child>*{border-bottom:0}
+.mk-table thead th{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);font-weight:500}
+.mk-table tbody th{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ice);white-space:nowrap}
+html[dir="rtl"] .mk-table tbody th{font-family:var(--font-ar-display)}
+.mk-table td{font-size:14px;color:var(--body-strong);white-space:nowrap}
+.mk-table .cur{font-family:var(--font-mono);font-size:.78em;letter-spacing:.06em;color:var(--faint)}
+/* the row label stays put while the figures scroll beneath it */
+.mk-table th:first-child{position:sticky;inset-inline-start:0;z-index:1;background:var(--navy)}
+.mk-table thead th.mk-nl{color:var(--teal-text)}
+.mk-table td.mk-nl{color:var(--ice);font-weight:600;background:color-mix(in srgb,var(--teal) 9%,transparent)}
+.mk-table td.mk-nl .cur{color:var(--teal-text)}
+
+.mk-day{margin:var(--s-5) 0 var(--s-3);padding:var(--s-4) var(--s-5);border-inline-start:2px solid var(--teal);
+  border-radius:var(--r-sm);background:color-mix(in srgb,var(--teal) 7%,transparent);
+  color:var(--body-strong);font-size:15px;line-height:1.6}
+.mk-num{font-family:var(--font-display);font-weight:700;color:var(--ice);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mk-note{color:var(--muted);font-size:13px;line-height:1.65;max-width:62em;margin-bottom:var(--s-4)}
+.mk-src summary{cursor:pointer;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal-text);display:inline-flex;align-items:center;min-height:44px}
+.mk-src summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:var(--r-sm)}
+.mk-src p,.mk-src li{color:var(--muted);font-size:13px;line-height:1.65}
+.mk-src p{margin:var(--s-2) 0 var(--s-3);max-width:62em}
+.mk-src ul{list-style:none;display:grid;gap:var(--s-2)}
+.mk-src li b{color:var(--body-strong);font-weight:600}
+.mk-src a{color:var(--teal-text);text-decoration:underline;text-underline-offset:2px}
+
+.md-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4);margin-bottom:var(--s-7)}
+.md-card{display:flex;flex-direction:column;gap:var(--s-2);padding:var(--s-5);border:1px solid var(--hairline);
+  border-radius:var(--r-md);background:color-mix(in srgb,var(--void) 35%,transparent)}
+.md-ours{border-color:color-mix(in srgb,var(--teal) 45%,transparent)}
+.md-tag{align-self:flex-start;font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--void);background:var(--teal-text);padding:3px 9px;border-radius:var(--r-pill);margin-bottom:var(--s-2)}
+.md-card h4{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--ice)}
+html[dir="rtl"] .md-card h4{font-family:var(--font-ar-display)}
+.md-card p{color:var(--body-strong);font-size:14px;line-height:1.6}
+.md-card .md-where{margin-top:auto;padding-top:var(--s-3);border-top:1px solid var(--hairline);color:var(--muted);font-size:13px}
+.md-sub{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+  margin-bottom:var(--s-4)}
+.md-drivers{list-style:none;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4) var(--s-5)}
+.md-drivers li{display:flex;flex-direction:column;gap:4px;padding-inline-start:var(--s-4);border-inline-start:2px solid var(--hairline-2)}
+.md-drivers b{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ice)}
+html[dir="rtl"] .md-drivers b{font-family:var(--font-ar-display)}
+.md-drivers span{color:var(--muted);font-size:14px;line-height:1.55}
+@media (min-width:720px){
+  .md-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .md-drivers{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:1100px){
+  .md-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .md-drivers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .mk-table{min-width:0}
+}
+
 /* ---------- WhatsApp ---------- */
 .wa-link{display:inline-flex;align-items:center;gap:9px}
 .wa-i{flex:none;width:19px;height:19px;display:block}
