@@ -17,10 +17,10 @@
      any first-party sheet — no request on this page reaches a third party. It
      was a Google link held off the critical path with media="print", which was
      the last such dependency on the site. -->
-<link rel="stylesheet" href="../assets/fonts-hub.css?v=202610041100">
+<link rel="stylesheet" href="../assets/fonts-hub.css?v=202610041241">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/syne-800-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/space-mono-400-latin.woff2">
-<link rel="stylesheet" href="style.css?v=202610041100">
+<link rel="stylesheet" href="style.css?v=202610041241">
 </head>
 <body>
 <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
@@ -84,19 +84,19 @@
              <img class="pose"    src="poses/pose-1.webp" alt="" width="840" height="1008" decoding="async" loading="lazy">
              <img class="pose"    src="poses/pose-2.webp" alt="" width="840" height="1008" decoding="async" loading="lazy">
              <img class="pose"    src="poses/pose-3.webp" alt="" width="840" height="1008" decoding="async" loading="lazy"> -->
-        <!-- Until the poses exist the frame holds the work itself: four live
-             sites as a contact sheet. The scroll-driven pose index (0-3) lights
+        <!-- Until the poses exist the frame holds the art itself: four pieces
+             from the collection as a contact sheet. The scroll-driven pose index (0-3) lights
              one strip at a time; .portrait:has(.pose) hides the sheet, so the
              photos replace it with no other edit. Update .frame-cap then too. -->
         <div class="portrait" id="portrait" data-pose="0">
           <div class="sheet" aria-hidden="true">
-            <img class="strip" src="../assets/previews/bordjsteel.webp" alt="" width="1280" height="800" decoding="async">
-            <img class="strip" src="../assets/previews/nomara.webp" alt="" width="1280" height="800" decoding="async">
-            <img class="strip" src="../assets/previews/glaive.webp" alt="" width="1280" height="800" decoding="async">
-            <img class="strip" src="../assets/previews/almaflowclim.webp" alt="" width="1280" height="800" decoding="async">
+            <img class="strip" src="art/da-16-l.webp" alt="" width="736" height="959" decoding="async">
+            <img class="strip" src="art/da-30-l.webp" alt="" width="936" height="854" decoding="async">
+            <img class="strip" src="art/da-21-l.webp" alt="" width="1032" height="774" decoding="async">
+            <img class="strip" src="art/da-34-l.webp" alt="" width="807" height="990" decoding="async">
           </div>
         </div>
-        <span class="frame-cap mono">WORK.INDEX <i class="await">// 05 sites live</i></span>
+        <span class="frame-cap mono">ART.INDEX <i class="await">// 28 pieces</i></span>
       </div>
       <span class="plus px1" data-depth="24" aria-hidden="true">+</span>
       <span class="plus px2" data-depth="16" aria-hidden="true">+</span>
@@ -105,75 +105,300 @@
 
   </div>
 
-  <a class="scrollcue mono" href="#work">
-    <span>SCROLL</span><span class="arr">↓</span><span class="dim">SEE THE WORK</span>
+  <a class="scrollcue mono" href="#collection">
+    <span>SCROLL</span><span class="arr">↓</span><span class="dim">SEE THE ART</span>
   </a>
 </header>
 
 
-<!-- ============================= WORK ==============================
-     The five live sites, with the same categories and one-liners the
-     Numidea site uses for them. Only shipped work: the two projects
-     marked "soon" there are not listed here until they launch. -->
-<section class="work" id="work" aria-labelledby="work-h">
-  <div class="work-head" data-reveal>
-    <p class="eyebrow"><i class="blip"></i> SELECTED WORK <span class="dim">// ship_log.read()</span></p>
-    <h2 id="work-h">BUILT. SHIPPED.<br><span class="acc">LIVE.</span></h2>
-    <p class="links-sub">five sites in production — designed, coded and deployed end to end.</p>
+<!-- ============================= THE COLLECTION ==========================
+     The art, from the DeviantArt gallery (br4vetr4veler5), self-hosted so the
+     page makes no third-party requests. Each piece links to its DeviantArt
+     page; with scripts on, it opens in the viewer instead. Client websites
+     live on the Numidea Labs page, not here — this page is the artist's. -->
+<section class="coll" id="collection" aria-labelledby="coll-h">
+  <div class="coll-head" data-reveal>
+    <p class="eyebrow"><i class="blip"></i> THE COLLECTION <span class="dim">// gallery.open()</span></p>
+    <h2 id="coll-h">MADE FOR<br><span class="acc">NO&nbsp;CLIENT.</span></h2>
+    <p class="coll-sub">ink, cover art and skies — 28 pieces, 2024 to now. tap one to open it.</p>
   </div>
-  <div class="work-grid">
-    <a class="wcard wcard--lead" data-reveal data-shot="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener">
-      <span class="wshot"><img src="../assets/previews/bordjsteel.webp" alt="" width="1280" height="800" loading="lazy" decoding="async"></span>
-      <span class="wmeta">
-        <span class="wnum mono">01</span>
-        <span class="wcat mono">Industrial · B2B</span>
-        <b class="wname">Bordj Steel</b>
-        <span class="wdesc">The B2B corporate site for Bordj Steel SPA, Algeria's structural-steel leader — product catalogue, references and a careers space.</span>
-        <span class="wdom mono">bordjsteelb2b.netlify.app <span class="go" aria-hidden="true">↗</span></span>
-      </span>
+  <div class="coll-filter mono" role="group" aria-label="Filter the collection" data-reveal>
+    <button type="button" aria-pressed="true" data-f="all">All <span>28</span></button>
+    <button type="button" aria-pressed="false" data-f="ink">Ink <span>12</span></button>
+    <button type="button" aria-pressed="false" data-f="covers">Covers <span>8</span></button>
+    <button type="button" aria-pressed="false" data-f="skies">Skies <span>8</span></button>
+  </div>
+  <ul class="coll-grid" id="collGrid">
+    <li class="piece" data-cat="skies" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/CLOUD-1184916814" target="_blank" rel="noopener" data-full="art/da-08-l.webp" data-w="894" data-h="894" data-title="CLOUD" data-meta="Skies · 2025">
+        <img src="art/da-08-s.webp" alt="CLOUD" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>CLOUD</b><i class="mono">Skies · 2025</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="covers" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/many-of-one-1184914134" target="_blank" rel="noopener" data-full="art/da-10-l.webp" data-w="894" data-h="894" data-title="many of one" data-meta="Covers · 2025">
+        <img src="art/da-10-s.webp" alt="many of one" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>many of one</b><i class="mono">Covers · 2025</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="skies" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/can%27t-wake-up-1184913176" target="_blank" rel="noopener" data-full="art/da-12-l.webp" data-w="731" data-h="1094" data-title="can&#x27;t wake up" data-meta="Skies · 2025">
+        <img src="art/da-12-s.webp" alt="can&#x27;t wake up" width="480" height="718" loading="lazy" decoding="async">
+        <span class="pcap"><b>can&#x27;t wake up</b><i class="mono">Skies · 2025</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="skies" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/BOY-1184912606" target="_blank" rel="noopener" data-full="art/da-13-l.webp" data-w="894" data-h="894" data-title="BOY" data-meta="Skies · 2025">
+        <img src="art/da-13-s.webp" alt="BOY" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>BOY</b><i class="mono">Skies · 2025</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="covers" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/YUNGe-falling-boy-1184911531" target="_blank" rel="noopener" data-full="art/da-14-l.webp" data-w="894" data-h="894" data-title="YUNGe — falling boy" data-meta="Covers · 2025">
+        <img src="art/da-14-s.webp" alt="YUNGe — falling boy" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>YUNGe — falling boy</b><i class="mono">Covers · 2025</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="covers" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/BREAK-1stuck-in-the-sound1-1026714931" target="_blank" rel="noopener" data-full="art/da-15-l.webp" data-w="894" data-h="894" data-title="BREAK — stuck in the sound" data-meta="Covers · 2024">
+        <img src="art/da-15-s.webp" alt="BREAK — stuck in the sound" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>BREAK — stuck in the sound</b><i class="mono">Covers · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/Reema-1036726040" target="_blank" rel="noopener" data-full="art/da-16-l.webp" data-w="736" data-h="959" data-title="Reema" data-meta="Ink · 2024">
+        <img src="art/da-16-s.webp" alt="Reema" width="480" height="625" loading="lazy" decoding="async">
+        <span class="pcap"><b>Reema</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="covers" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/ORANGE-butterfly-ALT-1025344222" target="_blank" rel="noopener" data-full="art/da-17-l.webp" data-w="894" data-h="894" data-title="ORANGE butterfly" data-meta="Covers · 2024">
+        <img src="art/da-17-s.webp" alt="ORANGE butterfly" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>ORANGE butterfly</b><i class="mono">Covers · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="skies" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/self-portrait-1028140868" target="_blank" rel="noopener" data-full="art/da-18-l.webp" data-w="618" data-h="1100" data-title="self portrait" data-meta="Skies · 2024">
+        <img src="art/da-18-s.webp" alt="self portrait" width="480" height="854" loading="lazy" decoding="async">
+        <span class="pcap"><b>self portrait</b><i class="mono">Skies · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="covers" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/DAMN-1119614534" target="_blank" rel="noopener" data-full="art/da-19-l.webp" data-w="618" data-h="1100" data-title="DAMN" data-meta="Covers · 2024">
+        <img src="art/da-19-s.webp" alt="DAMN" width="480" height="854" loading="lazy" decoding="async">
+        <span class="pcap"><b>DAMN</b><i class="mono">Covers · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="skies" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/tears-falling-down-at-the-party-1119614662" target="_blank" rel="noopener" data-full="art/da-20-l.webp" data-w="618" data-h="1100" data-title="tears falling down at the party" data-meta="Skies · 2024">
+        <img src="art/da-20-s.webp" alt="tears falling down at the party" width="480" height="854" loading="lazy" decoding="async">
+        <span class="pcap"><b>tears falling down at the party</b><i class="mono">Skies · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="skies" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/I-shal-name-this-SPOT.-ELYSIUM-1104492957" target="_blank" rel="noopener" data-full="art/da-21-l.webp" data-w="1032" data-h="774" data-title="ELYSIUM" data-meta="Skies · 2024">
+        <img src="art/da-21-s.webp" alt="ELYSIUM" width="480" height="360" loading="lazy" decoding="async">
+        <span class="pcap"><b>ELYSIUM</b><i class="mono">Skies · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="covers" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/PAY-NO-MIND.-.-.-.Song%3A-MADD-pay-no-mind-1104492026" target="_blank" rel="noopener" data-full="art/da-22-l.webp" data-w="1042" data-h="767" data-title="PAY NO MIND" data-meta="Covers · 2024">
+        <img src="art/da-22-s.webp" alt="PAY NO MIND" width="480" height="353" loading="lazy" decoding="async">
+        <span class="pcap"><b>PAY NO MIND</b><i class="mono">Covers · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/FLCL-CHARACTER-CONCEPT-1104490797" target="_blank" rel="noopener" data-full="art/da-23-l.webp" data-w="894" data-h="894" data-title="FLCL CHARACTER CONCEPT" data-meta="Ink · 2024">
+        <img src="art/da-23-s.webp" alt="FLCL CHARACTER CONCEPT" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>FLCL CHARACTER CONCEPT</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/Kira-the-death-note-1104489180" target="_blank" rel="noopener" data-full="art/da-24-l.webp" data-w="894" data-h="894" data-title="Kira the death note" data-meta="Ink · 2024">
+        <img src="art/da-24-s.webp" alt="Kira the death note" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>Kira the death note</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/Ukio-E%3D-imposter-1104488235" target="_blank" rel="noopener" data-full="art/da-25-l.webp" data-w="940" data-h="850" data-title="Ukio E= imposter" data-meta="Ink · 2024">
+        <img src="art/da-25-s.webp" alt="Ukio E= imposter" width="480" height="434" loading="lazy" decoding="async">
+        <span class="pcap"><b>Ukio E= imposter</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="skies" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/Sky-Junge-1028348649" target="_blank" rel="noopener" data-full="art/da-26-l.webp" data-w="751" data-h="1063" data-title="Sky Junge" data-meta="Skies · 2024">
+        <img src="art/da-26-s.webp" alt="Sky Junge" width="480" height="679" loading="lazy" decoding="async">
+        <span class="pcap"><b>Sky Junge</b><i class="mono">Skies · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="covers" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/delusions-of-03-23-1027514649" target="_blank" rel="noopener" data-full="art/da-27-l.webp" data-w="607" data-h="1100" data-title="delusions of 03-23" data-meta="Covers · 2024">
+        <img src="art/da-27-s.webp" alt="delusions of 03-23" width="480" height="870" loading="lazy" decoding="async">
+        <span class="pcap"><b>delusions of 03-23</b><i class="mono">Covers · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="skies" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/Pic.Art-04.02.21-1026716358" target="_blank" rel="noopener" data-full="art/da-28-l.webp" data-w="737" data-h="1085" data-title="Pic.Art 04.02.21" data-meta="Skies · 2024">
+        <img src="art/da-28-s.webp" alt="Pic.Art 04.02.21" width="480" height="707" loading="lazy" decoding="async">
+        <span class="pcap"><b>Pic.Art 04.02.21</b><i class="mono">Skies · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="covers" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/Design-i-made-for-my-phone-background-1025462444" target="_blank" rel="noopener" data-full="art/da-29-l.webp" data-w="619" data-h="1100" data-title="Phone background" data-meta="Covers · 2024">
+        <img src="art/da-29-s.webp" alt="Phone background" width="480" height="853" loading="lazy" decoding="async">
+        <span class="pcap"><b>Phone background</b><i class="mono">Covers · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/sekiro-character-fanart-1020907143" target="_blank" rel="noopener" data-full="art/da-30-l.webp" data-w="936" data-h="854" data-title="sekiro character fanart" data-meta="Ink · 2024">
+        <img src="art/da-30-s.webp" alt="sekiro character fanart" width="480" height="438" loading="lazy" decoding="async">
+        <span class="pcap"><b>sekiro character fanart</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/Cutscene-Broken-Sword-1019481928" target="_blank" rel="noopener" data-full="art/da-31-l.webp" data-w="720" data-h="720" data-title="Cutscene Broken Sword" data-meta="Ink · 2024">
+        <img src="art/da-31-s.webp" alt="Cutscene Broken Sword" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>Cutscene Broken Sword</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/ego-disintegration-1018718019" target="_blank" rel="noopener" data-full="art/da-33-l.webp" data-w="640" data-h="640" data-title="ego disintegration" data-meta="Ink · 2024">
+        <img src="art/da-33-s.webp" alt="ego disintegration" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>ego disintegration</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/lonely-island-1018715329" target="_blank" rel="noopener" data-full="art/da-34-l.webp" data-w="807" data-h="990" data-title="lonely island" data-meta="Ink · 2024">
+        <img src="art/da-34-s.webp" alt="lonely island" width="480" height="589" loading="lazy" decoding="async">
+        <span class="pcap"><b>lonely island</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/break-free-by-init-19-1017844306" target="_blank" rel="noopener" data-full="art/da-35-l.webp" data-w="894" data-h="894" data-title="break free by init 19" data-meta="Ink · 2024">
+        <img src="art/da-35-s.webp" alt="break free by init 19" width="480" height="480" loading="lazy" decoding="async">
+        <span class="pcap"><b>break free by init 19</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/Alistor-30-1017843211" target="_blank" rel="noopener" data-full="art/da-36-l.webp" data-w="1000" data-h="800" data-title="Alistor 30" data-meta="Ink · 2024">
+        <img src="art/da-36-s.webp" alt="Alistor 30" width="480" height="384" loading="lazy" decoding="async">
+        <span class="pcap"><b>Alistor 30</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/Eye-Ballzz-1017700087" target="_blank" rel="noopener" data-full="art/da-37-l.webp" data-w="903" data-h="885" data-title="Eye Ballzz" data-meta="Ink · 2024">
+        <img src="art/da-37-s.webp" alt="Eye Ballzz" width="480" height="470" loading="lazy" decoding="async">
+        <span class="pcap"><b>Eye Ballzz</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+    <li class="piece" data-cat="ink" data-reveal>
+      <a href="https://www.deviantart.com/br4vetr4veler5/art/ALASTOR-cute-1017590148" target="_blank" rel="noopener" data-full="art/da-38-l.webp" data-w="1000" data-h="800" data-title="ALASTOR cute" data-meta="Ink · 2024">
+        <img src="art/da-38-s.webp" alt="ALASTOR cute" width="480" height="384" loading="lazy" decoding="async">
+        <span class="pcap"><b>ALASTOR cute</b><i class="mono">Ink · 2024</i></span>
+      </a>
+    </li>
+  </ul>
+  <p class="coll-more mono" data-reveal><a href="https://www.deviantart.com/br4vetr4veler5/gallery" target="_blank" rel="noopener">the full gallery on DeviantArt <span class="acc">↗</span></a></p>
+</section>
+
+<dialog class="lb" id="lb" aria-labelledby="lbTitle">
+  <figure class="lb-fig">
+    <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+    <figcaption><b id="lbTitle"></b><i class="mono" id="lbMeta"></i><a class="mono" id="lbLink" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">view on DeviantArt ↗</a></figcaption>
+  </figure>
+  <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous piece">←</button>
+  <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next piece">→</button>
+  <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+</dialog>
+
+<!-- ============================= DESIGN ================================
+     Identity, social and print work as published on Behance. View counts
+     read from the profile page; refresh them with the stats below. -->
+<section class="design" id="design" aria-labelledby="design-h">
+  <div class="coll-head" data-reveal>
+    <p class="eyebrow"><i class="blip"></i> DESIGN <span class="dim">// behance.fetch()</span></p>
+    <h2 id="design-h">IDENTITY.<br><span class="acc">POSTERS. PRINT.</span></h2>
+  </div>
+  <div class="design-grid">
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/254889197/HEETCH-ENTRY-TEST" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-00.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>HEETCH ENTRY TEST</b><i class="mono">4 views <span class="go" aria-hidden="true">↗</span></i></span>
     </a>
-    <a class="wcard" data-reveal data-shot="alliancetravel" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener">
-      <span class="wshot"><img src="../assets/previews/alliancetravel.webp" alt="" width="1280" height="800" loading="lazy" decoding="async"></span>
-      <span class="wmeta">
-        <span class="wnum mono">02</span>
-        <span class="wcat mono">Travel · Growth</span>
-        <b class="wname">Alliance Travel</b>
-        <span class="wdesc">Brand, funnel and market strategy for a BBA agency in the Schengen-visa fight.</span>
-        <span class="wdom mono">alliancetravel34.netlify.app <span class="go" aria-hidden="true">↗</span></span>
-      </span>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/253834245/MINIMAL-INDUSTRIAL-SOCIAL-MEDIA-CREATIVES" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-01.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>MINIMAL INDUSTRIAL SOCIAL MEDIA CREATIVES</b><i class="mono">9 views <span class="go" aria-hidden="true">↗</span></i></span>
     </a>
-    <a class="wcard" data-reveal data-shot="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener">
-      <span class="wshot"><img src="../assets/previews/nomara.webp" alt="" width="1280" height="800" loading="lazy" decoding="async"></span>
-      <span class="wmeta">
-        <span class="wnum mono">03</span>
-        <span class="wcat mono">Travel · Umrah</span>
-        <b class="wname">Nomara Voyages</b>
-        <span class="wdesc">A bilingual storefront for organized trips and Umrah departing from Constantine.</span>
-        <span class="wdom mono">nomaravoyages.netlify.app <span class="go" aria-hidden="true">↗</span></span>
-      </span>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/253721505/SURFBOARD-DESIGN-FOR-BEACH-POSM" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-02.webp" alt="" width="554" height="434" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>SURFBOARD DESIGN FOR BEACH POSM</b><i class="mono">10 views <span class="go" aria-hidden="true">↗</span></i></span>
     </a>
-    <a class="wcard" data-reveal data-shot="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener">
-      <span class="wshot"><img src="../assets/previews/glaive.webp" alt="" width="1280" height="800" loading="lazy" decoding="async"></span>
-      <span class="wmeta">
-        <span class="wnum mono">04</span>
-        <span class="wcat mono">Commerce · Gaming</span>
-        <b class="wname">Glaive Store</b>
-        <span class="wdesc">A sharp-branded gaming-gear store, built to convert.</span>
-        <span class="wdom mono">glaivestore.netlify.app <span class="go" aria-hidden="true">↗</span></span>
-      </span>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/252840169/summer-creative-social-media" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-03.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>summer. creative. social media</b><i class="mono">15 views <span class="go" aria-hidden="true">↗</span></i></span>
     </a>
-    <a class="wcard" data-reveal data-shot="almaflowclim" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener">
-      <span class="wshot"><img src="../assets/previews/almaflowclim.webp" alt="" width="1280" height="800" loading="lazy" decoding="async"></span>
-      <span class="wmeta">
-        <span class="wnum mono">05</span>
-        <span class="wcat mono">Industrial · Web</span>
-        <b class="wname">AlmaFlowClim</b>
-        <span class="wdesc">A sharp static presence engineered to convert quote requests.</span>
-        <span class="wdom mono">almaflowclim.netlify.app <span class="go" aria-hidden="true">↗</span></span>
-      </span>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/252522281/amanatcom-brand-guidelines" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-04.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>amanatcom brand guidelines</b><i class="mono">10 views <span class="go" aria-hidden="true">↗</span></i></span>
+    </a>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/250754909/FIRST-MONTH-AT-HEETCH-DZ" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-05.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>FIRST MONTH AT HEETCH. DZ</b><i class="mono">23 views <span class="go" aria-hidden="true">↗</span></i></span>
+    </a>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/241516627/SANDIWCH-INSULATING-PANNELS-GRAPHIC-ASSETS" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-06.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>SANDIWCH INSULATING PANNELS GRAPHIC ASSETS</b><i class="mono">15 views · 2 appreciated <span class="go" aria-hidden="true">↗</span></i></span>
+    </a>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/241515403/BILLBOARD-URBAIN-BORDJ-STEEL-SPA" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-07.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>BILLBOARD URBAIN BORDJ STEEL SPA</b><i class="mono">28 views · 1 appreciated <span class="go" aria-hidden="true">↗</span></i></span>
+    </a>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/235033549/TYLER-DURDAIN-HALFTONE-POSTER" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-08.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>TYLER DURDAIN HALFTONE POSTER</b><i class="mono">9 views <span class="go" aria-hidden="true">↗</span></i></span>
+    </a>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-09.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>BORDJ STEEL BRANDING PROJECT</b><i class="mono">40 views · 1 appreciated <span class="go" aria-hidden="true">↗</span></i></span>
+    </a>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/233152047/STAR-BORN-ALGERIANSERIES" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-10.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>STAR BORN ALGERIANSERIES</b><i class="mono">13 views <span class="go" aria-hidden="true">↗</span></i></span>
+    </a>
+    <a class="dcard" data-reveal href="https://www.behance.net/gallery/232008435/ALAN-IS-AWAKE-MANGA-CONCEPT" target="_blank" rel="noopener">
+      <span class="dshot"><img src="art/be-11.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
+      <span class="dmeta"><b>ALAN IS AWAKE MANGA CONCEPT</b><i class="mono">36 views · 3 appreciated <span class="go" aria-hidden="true">↗</span></i></span>
     </a>
   </div>
-  <p class="work-more mono" data-reveal><a href="../scene/">open the full drawing set <span class="acc">→</span></a></p>
+</section>
+
+<!-- ============================= SOCIAL HIGHLIGHTS =======================
+     Numbers as each public profile showed them in October 2026 — update by
+     hand; nothing here is fetched at runtime. Instagram exposes no public
+     count without signing in, so it gets no number rather than a guess. -->
+<section class="social" id="social" aria-labelledby="social-h">
+  <div class="coll-head" data-reveal>
+    <p class="eyebrow"><i class="blip"></i> SOCIAL HIGHLIGHTS <span class="dim">// signal.read()</span></p>
+    <h2 id="social-h">SEEN. SAVED.<br><span class="acc">SHARED.</span></h2>
+  </div>
+  <div class="social-grid">
+    <a class="scard" data-reveal data-brand="behance" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">
+      <span class="sc-top mono"><span class="badge">Bē</span>Behance <i>@br4vetr4aveler1</i><span class="go" aria-hidden="true">↗</span></span>
+      <span class="sc-big"><b>453</b><i class="mono">project views</i></span>
+      <span class="sc-row mono"><span><b>28</b> appreciations</span><span><b>18</b> followers</span></span>
+      <span class="sc-thumbs" aria-hidden="true"><img src="art/be-00.webp" alt="" width="640" height="501" loading="lazy" decoding="async"><img src="art/be-01.webp" alt="" width="640" height="501" loading="lazy" decoding="async"><img src="art/be-02.webp" alt="" width="554" height="434" loading="lazy" decoding="async"></span>
+    </a>
+    <a class="scard" data-reveal data-brand="deviantart" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">
+      <span class="sc-top mono"><span class="badge">DA</span>DeviantArt <i>br4vetr4veler5</i><span class="go" aria-hidden="true">↗</span></span>
+      <span class="sc-big"><b>39</b><i class="mono">pieces posted</i></span>
+      <span class="sc-row mono"><span>since <b>Feb 2024</b></span><span>latest <b>Apr 2025</b></span></span>
+      <span class="sc-thumbs" aria-hidden="true"><img src="art/da-08-s.webp" alt="" width="480" height="480" loading="lazy" decoding="async"><img src="art/da-10-s.webp" alt="" width="480" height="480" loading="lazy" decoding="async"><img src="art/da-12-s.webp" alt="" width="480" height="718" loading="lazy" decoding="async"></span>
+    </a>
+    <a class="scard sc-ig" data-reveal data-brand="instagram" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">
+      <span class="sc-top mono"><span class="badge">IG</span>Instagram <i>@stick_itty</i><span class="go" aria-hidden="true">↗</span></span>
+      <span class="sc-big"><b class="sc-word">the process,</b><i class="mono">posted as it happens</i></span>
+      <span class="sc-row mono"><span>sketches</span><span>drafts</span><span>finals</span></span>
+    </a>
+  </div>
 </section>
 
 <!-- ============================= LINKS ============================= -->
@@ -194,8 +419,7 @@
     <a class="link" data-reveal data-brand="pinterest" href="https://www.pinterest.com/VOID.DESIGNER/" target="_blank" rel="noopener"><span class="mono badge">P</span><span class="ltxt"><b>Pinterest</b><i>VOID.DESIGNER</i></span><span class="go">↗</span></a>
     <a class="link" data-reveal data-brand="tumblr" href="https://delicateexpertsstuff.tumblr.com" target="_blank" rel="noopener"><span class="mono badge">tb</span><span class="ltxt"><b>Tumblr</b><i>delicateexpertsstuff</i></span><span class="go">↗</span></a>
     <!-- DEV -->
-    <h3 class="lgroup" data-reveal><span class="ill ill-dev" aria-hidden="true"></span><span class="lgroup-t">Dev<i>the studio, the source, the professional record</i></span></h3>
-    <a class="link" data-reveal data-brand="numidea" href="../"><span class="mono badge">NL</span><span class="ltxt"><b>Numidea Labs</b><i>the dev studio ›</i></span><span class="go">↗</span></a>
+    <h3 class="lgroup" data-reveal><span class="ill ill-dev" aria-hidden="true"></span><span class="lgroup-t">Dev<i>the source and the professional record</i></span></h3>
     <a class="link" data-reveal data-brand="github" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener"><span class="mono badge">GH</span><span class="ltxt"><b>GitHub</b><i>@Brvetr4ve1er</i></span><span class="go">↗</span></a>
     <a class="link" data-reveal data-brand="linkedin" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener"><span class="mono badge">in</span><span class="ltxt"><b>LinkedIn</b><i>Mohamed Yasser Hamisse</i></span><span class="go">↗</span></a>
     <!-- SOCIAL -->
@@ -254,6 +478,6 @@
   </div>
 </footer>
 
-<script src="app.js?v=202610041100" defer></script>
+<script src="app.js?v=202610041241" defer></script>
 </body>
 </html>

@@ -388,72 +388,118 @@ a{color:inherit;text-decoration:none}
 }
 
 /* ============================= HERO CONTACT SHEET =============================
-   Until the pose photos exist, the portrait frame holds the work: four live
-   sites as strips. The existing scroll-driven pose index (0-3) lights one strip
-   at a time, so this needs no script of its own; :has(.pose) retires it the
-   moment real frames are dropped in. Each strip is anchored where its site
-   keeps its identity — left by default, right for the RTL site, centre for the
-   centred headline. */
+   Until the pose photos exist, the portrait frame holds the art: four pieces
+   from the collection as strips. The existing scroll-driven pose index (0-3)
+   lights one strip at a time, so this needs no script of its own; :has(.pose)
+   retires it the moment real frames are dropped in. */
 .sheet{position:absolute;inset:0;display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:6px;padding:10px 10px 46px}   /* clears the frame caption */
 .strip{display:block;width:100%;height:100%;min-height:0;object-fit:cover;object-position:top left;
   border:1px solid var(--line-2);opacity:.34;filter:saturate(.5) brightness(.85);
   transition:opacity .55s var(--ease),filter .55s var(--ease),border-color .55s var(--ease)}
-.strip:nth-child(1){object-position:top center}
-.strip:nth-child(2){object-position:top right}
-.strip:nth-child(3){object-position:left 60%}
-.strip:nth-child(4){object-position:left 38%}
+.strip{object-position:center 35%}
 .portrait[data-pose="0"] .strip:nth-child(1),.portrait[data-pose="1"] .strip:nth-child(2),
 .portrait[data-pose="2"] .strip:nth-child(3),.portrait[data-pose="3"] .strip:nth-child(4){
   opacity:1;filter:none;border-color:var(--acid)}
 .portrait:has(.pose) .sheet{display:none}
 @media (prefers-reduced-motion:reduce){.strip{transition:none}}
 
-/* ============================= SELECTED WORK ============================= */
-.work{position:relative;z-index:2;padding:clamp(48px,10vh,110px) var(--gut) clamp(28px,6vh,60px);
-  border-top:1px solid var(--line);isolation:isolate}
-.work-head{margin-bottom:clamp(28px,5vh,52px);container-type:inline-size}
-.work-head h2{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;
-  font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px}
-/* One lead card across the top, four beneath: five items, no orphan in any
-   layout. The lead is a horizontal card rather than a tall one — a 16:10
-   screenshot forced into a two-row-tall box lost a quarter of its width on
-   each side, logo and headline included. Every shot keeps its 16:10 frame. */
-.work-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
-.wcard{display:flex;flex-direction:column;min-width:0;border:1px solid var(--line-2);color:inherit;
-  background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);overflow:hidden;
-  transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
-.wcard:hover{transform:translateY(-3px);border-color:var(--acid);
-  box-shadow:0 18px 40px -26px rgba(0,0,0,.9),0 0 0 1px color-mix(in srgb,var(--acid) 30%,transparent)}
-.wcard:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
-.wshot{display:block;aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--line-2);background:var(--ink-2)}
-.wshot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left;
-  transition:transform .6s var(--ease)}
-.wcard:hover .wshot img{transform:scale(1.03)}
-.wcard[data-shot="nomara"] .wshot img{object-position:top right}
-.wcard[data-shot="bordjsteel"] .wshot img{object-position:top center}
-.wmeta{position:relative;display:grid;gap:6px;padding:16px 18px 18px}
-.wnum{position:absolute;inset-block-start:16px;inset-inline-end:18px;font-size:11px;color:var(--faint)}
-.wcat{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc-text)}
-.wname{font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:-.01em;color:var(--paper)}
-.wdesc{font-size:14px;line-height:1.55;color:var(--paper-dim)}
-.wdom{font-size:11px;color:var(--faint);margin-top:6px}
-.wdom .go{transition:color .3s,transform .3s var(--ease);display:inline-block}
-.wcard:hover .wdom .go{color:var(--acc-text);transform:translate(2px,-2px)}
-.work-more{margin-top:22px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-.work-more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--paper-dim);transition:color .2s}
-.work-more a:hover{color:var(--acc-text)}
 .links-soon{margin-top:18px;font-size:11px;letter-spacing:.12em;color:var(--faint)}
-@media (min-width:720px){
-  .work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .wcard--lead{grid-column:1/-1}
+
+/* ============================= THE COLLECTION =============================
+   The artist's own work, not the studio's. A masonry of columns so every
+   piece keeps its own aspect — covers square, skies tall — instead of being
+   cropped into a uniform grid. Captions sit under each piece, always visible:
+   a hover-only title is invisible on touch. */
+.coll,.design,.social{position:relative;z-index:2;padding:clamp(48px,10vh,110px) var(--gut) clamp(28px,6vh,60px);
+  border-top:1px solid var(--line);isolation:isolate}
+.coll-head{margin-bottom:clamp(22px,4vh,40px);container-type:inline-size}
+.coll-head h2{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;
+  font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px}
+.coll-sub{font-family:var(--mono);font-size:13px;color:var(--paper-dim);max-width:46ch}
+.coll-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.coll-filter button{font:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+  min-height:40px;padding:0 16px;border:1px solid var(--line-2);background:transparent;color:var(--paper-dim);
+  transition:border-color .2s,color .2s,background .2s}
+.coll-filter button span{color:var(--faint);margin-inline-start:6px}
+.coll-filter button:hover{color:var(--paper);border-color:var(--paper-dim)}
+.coll-filter button[aria-pressed="true"]{background:var(--acid);border-color:var(--acid);color:var(--ink)}
+.coll-filter button[aria-pressed="true"] span{color:var(--ink)}
+.coll-filter button:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+.coll-grid{list-style:none;columns:2 160px;column-gap:12px}
+.piece{break-inside:avoid;margin-bottom:12px}
+.piece[hidden]{display:none}
+.piece a{display:block;color:inherit;border:1px solid var(--line-2);background:var(--ink-2);
+  transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
+.piece img{display:block;width:100%;height:auto;background:var(--panel)}
+.pcap{display:grid;gap:2px;padding:10px 12px 12px}
+.pcap b{font-weight:700;font-size:14px;line-height:1.3;color:var(--paper);overflow-wrap:anywhere}
+.pcap i{font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.piece a:hover{border-color:var(--acid);transform:translateY(-3px);
+  box-shadow:0 18px 40px -26px rgba(0,0,0,.9),0 0 0 1px color-mix(in srgb,var(--acid) 30%,transparent)}
+.piece a:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+.coll-more{margin-top:18px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.coll-more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--paper-dim);transition:color .2s}
+.coll-more a:hover{color:var(--acc-text)}
+@media (min-width:720px){.coll-grid{columns:3}}
+@media (min-width:1100px){.coll-grid{columns:4;column-gap:16px}.piece{margin-bottom:16px}}
+
+/* the viewer — a native <dialog>: focus is trapped and Esc closes it for free */
+.lb{margin:auto;width:min(1100px,94vw);max-height:94vh;padding:0;border:1px solid var(--line-2);
+  background:var(--ink);color:var(--paper);overflow:visible}
+.lb::backdrop{background:rgba(5,6,8,.88);backdrop-filter:blur(4px)}
+.lb-fig{display:grid;grid-template-rows:minmax(0,1fr) auto;max-height:94vh}
+.lb-fig img{display:block;width:100%;height:100%;max-height:calc(94vh - 72px);object-fit:contain;background:var(--ink-2)}
+.lb-fig figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;padding:14px 18px;border-top:1px solid var(--line-2)}
+.lb-fig figcaption b{font-size:16px}
+.lb-fig figcaption i{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.lb-fig figcaption a{margin-inline-start:auto;font-size:12px;color:var(--acc-text);min-height:24px;display:inline-flex;align-items:center}
+.lb-btn{position:absolute;width:44px;height:44px;display:grid;place-items:center;cursor:pointer;
+  font:16px var(--mono);color:var(--paper);background:var(--ink);border:1px solid var(--line-2);transition:border-color .2s,color .2s}
+.lb-btn:hover{border-color:var(--acid);color:var(--acc-text)}
+.lb-btn:focus-visible{outline:2px solid var(--acid);outline-offset:2px}
+.lb-close{top:-1px;inset-inline-end:-1px}
+.lb-prev{top:40%;inset-inline-start:-1px}
+.lb-next{top:40%;inset-inline-end:-1px}
+html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
+
+/* ============================= DESIGN ============================= */
+.design-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:14px}
+.dcard{display:flex;flex-direction:column;min-width:0;color:inherit;border:1px solid var(--line-2);
+  background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);overflow:hidden;
+  transition:transform .3s var(--ease),border-color .3s}
+.dshot{display:block;aspect-ratio:808/632;overflow:hidden;border-bottom:1px solid var(--line-2);background:var(--ink-2)}
+.dshot img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.dmeta{display:grid;gap:6px;padding:14px 16px 16px}
+.dmeta b{font-size:15px;line-height:1.3;color:var(--paper);text-transform:capitalize}
+.dmeta i{font-style:normal;font-size:11px;color:var(--faint)}
+.dcard:hover{transform:translateY(-3px);border-color:var(--acid)}
+.dcard:hover .dshot img{transform:scale(1.04)}
+.dcard:hover .go{color:var(--acc-text)}
+.dcard:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+
+/* ============================= SOCIAL HIGHLIGHTS ============================= */
+.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
+.scard{display:flex;flex-direction:column;gap:18px;padding:20px;color:inherit;border:1px solid var(--line-2);
+  background:linear-gradient(160deg,color-mix(in srgb,var(--acid) 6%,transparent),transparent 55%);
+  transition:transform .3s var(--ease),border-color .3s}
+.scard:hover{transform:translateY(-3px);border-color:var(--acid)}
+.scard:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+.sc-top{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.08em;color:var(--paper)}
+.sc-top i{font-style:normal;color:var(--paper-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sc-top .go{margin-inline-start:auto}
+.scard:hover .go{color:var(--acc-text)}
+.sc-big{display:grid;gap:4px}
+.sc-big b{font-family:var(--disp);font-weight:800;font-size:clamp(48px,6vw,84px);line-height:.9;letter-spacing:-.04em;color:var(--acc-text)}
+.sc-big .sc-word{font-size:clamp(34px,4vw,54px);letter-spacing:-.03em}
+.sc-big i{font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-dim)}
+.sc-row{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--paper-dim)}
+.sc-row b{color:var(--paper);font-weight:700}
+.sc-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:auto}
+.sc-thumbs img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border:1px solid var(--line-2)}
+.sc-ig .sc-row span{padding:4px 10px;border:1px dashed var(--line-2)}
+@media (prefers-reduced-motion:reduce){
+  .piece a,.dcard,.dshot img,.scard,.lb-btn{transition:none}
+  .piece a:hover,.dcard:hover,.scard:hover{transform:none}.dcard:hover .dshot img{transform:none}
 }
-@media (min-width:1100px){
-  .work-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .wcard--lead{grid-column:1/-1;flex-direction:row}
-  .wcard--lead .wshot{flex:none;width:58%;border-bottom:0;border-inline-end:1px solid var(--line-2)}
-  .wcard--lead .wmeta{flex:1;align-content:center;gap:10px;padding:clamp(24px,3vw,44px)}
-  .wcard--lead .wnum{inset-block-start:clamp(24px,3vw,44px);inset-inline-end:clamp(24px,3vw,44px)}
-  .wcard--lead .wname{font-size:clamp(26px,2.6vw,40px)}
-  .wcard--lead .wdesc{font-size:15px;max-width:34em}
-}
-@media (prefers-reduced-motion:reduce){.wcard,.wshot img,.wdom .go{transition:none}.wcard:hover{transform:none}}
+:root[data-theme="light"] .lb::backdrop{background:rgba(233,231,221,.9)}
+

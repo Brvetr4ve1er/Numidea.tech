@@ -215,4 +215,62 @@
 
   /* ---------------- 8 · year ---------------- */
   var yEl = document.getElementById('year'); if (yEl) yEl.textContent = new Date().getFullYear();
+
+  /* ---------------- 8 · the collection: filter + viewer ----------------
+     Filters hide pieces with [hidden]; the viewer is a native <dialog>, so
+     focus trapping and Esc come from the browser. Without scripts every piece
+     is a plain link to its DeviantArt page — the viewer only intercepts a
+     plain click (no modifier keys), so cmd/ctrl-click still opens a tab. */
+  var grid = document.getElementById('collGrid');
+  if (grid) {
+    var pieces = [].slice.call(grid.querySelectorAll('.piece'));
+    var fbtns = [].slice.call(document.querySelectorAll('.coll-filter button'));
+    fbtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-f');
+        fbtns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+        pieces.forEach(function (p) {
+          var show = f === 'all' || p.getAttribute('data-cat') === f;
+          p.hidden = !show;
+          if (show) p.classList.add('seen');
+        });
+      });
+    });
+
+    var lb = document.getElementById('lb');
+    if (lb && typeof lb.showModal === 'function') {
+      var img = document.getElementById('lbImg'), ttl = document.getElementById('lbTitle'),
+          meta = document.getElementById('lbMeta'), link = document.getElementById('lbLink'), cur = -1, opener = null;
+      var visible = function () { return pieces.filter(function (p) { return !p.hidden; }); };
+      var show = function (i) {
+        var list = visible(); if (!list.length) return;
+        cur = (i + list.length) % list.length;
+        var a = list[cur].querySelector('a');
+        img.src = a.getAttribute('data-full');
+        img.width = +a.getAttribute('data-w'); img.height = +a.getAttribute('data-h');
+        img.alt = a.getAttribute('data-title');
+        ttl.textContent = a.getAttribute('data-title');
+        meta.textContent = a.getAttribute('data-meta');
+        link.href = a.href;
+      };
+      grid.addEventListener('click', function (e) {
+        var a = e.target.closest('.piece a');
+        if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        opener = a;
+        show(visible().indexOf(a.parentNode));
+        lb.showModal();
+      });
+      document.getElementById('lbPrev').addEventListener('click', function () { show(cur - 1); });
+      document.getElementById('lbNext').addEventListener('click', function () { show(cur + 1); });
+      document.getElementById('lbClose').addEventListener('click', function () { lb.close(); });
+      lb.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') show(cur - 1);
+        else if (e.key === 'ArrowRight') show(cur + 1);
+      });
+      // a click on the backdrop (the dialog box itself, outside the figure) closes
+      lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+      lb.addEventListener('close', function () { if (opener) opener.focus(); });
+    }
+  }
 })();
