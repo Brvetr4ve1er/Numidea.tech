@@ -906,21 +906,28 @@ his design work, his social presence. **Client websites do not belong here**
 sites was added once and removed at the owner's request; `npm run check` now
 fails if any project URL appears in hub/.
 
-- **Hero frame:** until the pose photos exist, `#portrait` holds four pieces
-  from the collection as a contact sheet. The scroll-driven pose index (0-3)
-  lights one strip at a time; `.portrait:has(.pose) .sheet{display:none}`
-  retires it when the photos are dropped in. Update `.frame-cap` then too.
-- **The Collection:** 28 pieces from the DeviantArt gallery (br4vetr4veler5),
-  self-hosted in `hub/art/` (`-s` 480w for the grid, `-l` ≤1100px for the
-  viewer) because the audit fails any third-party request. Filed as Ink /
-  Covers / Skies. A CSS-columns masonry keeps every piece at its own aspect;
-  captions are always visible (hover-only titles vanish on touch). Left out:
-  the two adult-rated pieces, a duplicate, and the April 2025 series whose
-  titles are image-generation prompts — ask before adding those back.
+- **Hero frame:** the four Traveler portraits (Yasser's own self-portrait
+  series) fill the pose slots, ordered calm to scream — violet, cobalt,
+  vermilion, acid — so the scroll-driven pose index escalates as you read.
+- **The Series — BR4VETR4VELER, a story in 33 posters.** The DeviantArt
+  gallery was remade with Magnific (Nano Banana Pro; Seedream 5 Pro where
+  Nano's safety filter falsely blocked a piece) into one poster series, each
+  piece re-drawn from its original with one of Yasser's portraits as the style
+  reference: hand-inked manga line, riso halftone, cream paper, a broken halo
+  ring. It reads as a story:
+  - Prologue, *The Traveler* — the four portraits.
+  - I *The Sky* (cobalt/yellow), II *The Noise* (vermilion/orange),
+    III *The Ink* (violet/acid) — one palette per chapter.
+  - Epilogue, *The Power of Imagination* — his Neville Goddard poster.
+  Poster typography (BR4VETR4VELER, N° xx/33, title, chapter) is HTML on a
+  cream card, never baked into the image: AI lettering garbles, and real text
+  stays sharp and consistent. Every chapter poster links to its original.
+  Files: `hub/art/pNN-{s,l}.webp` (NN = the DeviantArt item), `tv0-3-*`
+  (portraits), `imagination-*`; Magnific project "br4vetr4veler posters".
 - **The viewer** is a native `<dialog>` (focus trap and Esc for free). It only
-  intercepts a plain click, so cmd/ctrl-click still opens the DeviantArt page,
-  and with scripts off every piece is just that link. Its placeholder `src` is
-  a real 1×1 GIF: `data:,` counts as a broken image in the audit.
+  intercepts a plain click, so cmd/ctrl-click still opens the original, and
+  with scripts off every poster is just that link. Its placeholder `src` is a
+  real 1×1 GIF: `data:,` counts as a broken image in the audit.
 - **Design:** the 12 Behance projects on the profile's first page, covers
   self-hosted, view counts as read from the profile.
 - **Social highlights:** Behance and DeviantArt figures as the public profiles

@@ -1,5 +1,8 @@
 # Portrait pose frames
 
+In use: the four Traveler portraits, `pose-0` (violet, calm) to `pose-3`
+(acid, scream). The scroll-driven pose index steps through them in order.
+
 Drop 1–4 images here, then uncomment the `<img class="pose">` block in
 `hub/index.html` (search for `POSE SLOTS`).
 

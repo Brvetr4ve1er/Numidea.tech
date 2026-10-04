@@ -266,6 +266,7 @@
         ttl.textContent = a.getAttribute('data-title');
         meta.textContent = a.getAttribute('data-meta');
         link.href = a.href;
+        link.textContent = a.getAttribute('data-link-label') || link.textContent;
       };
       grid.addEventListener('click', function (e) {
         var a = e.target.closest('.piece a');
