@@ -486,22 +486,34 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar);letter-spacing:0}
 .fd-pills{display:flex;flex-wrap:wrap;gap:6px}
 .fd-bio{font-size:15.5px;line-height:1.65;color:var(--fg-2);max-width:42.432em;margin-bottom:var(--s3)}
 .fd-actions{display:flex;flex-wrap:wrap;gap:10px}
-.cv-panel{max-height:0;overflow:hidden;transition:max-height var(--dur) var(--ease)}
-.cv-panel.open{max-height:1600px}
+/* same 0fr -> 1fr panel as the base sheet: no height cap to clip a long CV */
+.cv-panel{display:grid;grid-template-rows:0fr;opacity:1;transition:grid-template-rows var(--dur) var(--ease)}
+.cv-panel.open{grid-template-rows:1fr}
 .cv-inner{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:var(--s4);
   border-top:1px solid var(--edge);margin-top:var(--s3);padding-top:var(--s3)}
 .cv-col h4{font-family:var(--font-mono);font-size:11px;color:var(--fg-3);margin-bottom:var(--s2)}
-.timeline{list-style:none;display:grid;gap:var(--s2)}
-.timeline li{display:grid;grid-template-columns:84px minmax(0,1fr);gap:var(--s2);align-items:baseline}
-.tl-date{font-family:var(--font-mono);font-size:11.5px;color:var(--accent);
-  font-variant-numeric:tabular-nums;white-space:nowrap}
-.timeline b{font-weight:600;font-size:14.5px;display:block;letter-spacing:-.015em}
-.timeline i{font-style:normal;font-size:13px;color:var(--fg-3)}
+.timeline{gap:var(--s3)}
+.timeline::before{background:var(--edge-2)}
+.timeline li::before{border-color:var(--edge-2);background:var(--panel)}
+.timeline li.tl-now::before{border-color:var(--accent);background:var(--accent)}
+.tl-date,.tl-now .tl-date{font-family:var(--font-mono);font-size:11.5px;color:var(--accent);font-variant-numeric:tabular-nums}
+.timeline b{font-weight:600;font-size:14.5px;letter-spacing:-.015em;color:var(--fg)}
+.timeline i{font-size:13px;color:var(--fg-2)}
+.timeline p{color:var(--fg-3)}
 .cv-block{margin-bottom:var(--s3)}
 .cv-block p{font-size:14px;color:var(--fg-2)}
-.fd-team{margin-top:var(--s3);padding-top:var(--s2);border-top:1px solid var(--edge);
-  font-family:var(--font-mono);font-size:11.5px;color:var(--fg-3)}
-.fd-team b{color:var(--fg-2);font-weight:400}
+.skills dt{color:var(--fg)}
+.skills dd,.cv-block .cv-note{color:var(--fg-3)}
+.fd-links a{border:1px solid var(--edge);border-radius:var(--r1);color:var(--fg-2)}
+.fd-links a:hover{border-color:var(--accent);color:var(--fg)}
+.fd-links a:focus-visible{outline-color:var(--accent)}
+.fl-b{color:var(--accent);background:var(--glow);border-radius:var(--r1)}
+.team{max-width:900px}
+.team-h{color:var(--fg-3)}
+.tm{background:var(--panel);border:1px solid var(--edge);border-radius:var(--r2)}
+.tm-i{color:var(--accent);border:1px solid var(--edge-2);background:var(--panel-2);border-radius:var(--r1)}
+.tm b{color:var(--fg)}
+.tm span:not(.tm-i){color:var(--fg-3)}
 
 /* ============================================================
    STACK — a dependency list
@@ -896,3 +908,27 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
 .md-sub{color:var(--fg-3)}
 .md-drivers li{border-inline-start-color:var(--edge-2)}
 .md-drivers span{color:var(--fg-3)}
+
+/* ---- the atlas plates and animated icons, re-inked for the instrument surface ----
+   One cold accent, no brass: plates go to the panel greys, the moving parts
+   (beam, core sample, lantern, coins) take the studio orange. */
+.v-fill{background:var(--bg)}
+.v-far .v-fill{background:color-mix(in srgb,var(--panel-2) 70%,var(--bg))}
+.v-mid .v-fill{background:color-mix(in srgb,var(--panel) 60%,var(--bg))}
+.v-far .v-ink,.v-mid .v-ink,.v-near .v-ink{color:var(--fg-3)}
+.v-mid .v-ink{color:var(--accent);opacity:.3}
+.v-sky,.pl-cap{color:var(--fg-3)}
+.v-sky .v-moon,.v-sky .v-const-s{fill:var(--accent)}
+.v-sky .v-const{stroke:var(--accent)}
+.pi-arch,.pi-bench,.pi-strata,.pi-light{color:var(--fg-3)}
+.pc,.pi-lantern,.fd-ink{color:var(--accent)}
+.pi-strata .core{background:linear-gradient(transparent,var(--accent),transparent)}
+.pi-light .beam{background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 28%,transparent),transparent 70%)}
+.pi-lantern .glow{background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 26%,transparent),transparent)}
+.foot-dunes::after{background:linear-gradient(transparent,var(--bg))}
+.ai{color:var(--fg-2)}
+.ai-stat,.tier-pop .ai-corner,.faq-item[open] .ai-faq,.faq-item summary:hover .ai-faq{color:var(--accent)}
+/* the channel column is narrow here: icon beside a stacked label/value pair */
+.channels .ch-ic{grid-template-columns:18px minmax(0,1fr);column-gap:var(--s2);row-gap:4px}
+.channels .ch-ic .ai-ch{grid-row:1/span 2;width:18px;height:18px}
+.pl-cap{background:var(--bg)}

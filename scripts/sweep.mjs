@@ -134,6 +134,7 @@ const by={};for(const r of report){(by[key(r)]=by[key(r)]||[]).push(r)}
 for(const k of Object.keys(by).sort()){
   const rs=by[k].filter(r=>!r.note);
   console.log(`\n== ${k}  (${rs.length} real, ${by[k].length-rs.length} pending/decorative)`);
+  if(process.env.SWEEP_ALL)for(const r of by[k].filter(r=>r.note))console.log(`   (${r.note}) ${r.med}:1 ${r.sel} "${r.text}"`);
   for(const r of rs.sort((a,b)=>a.med-b.med).slice(0,14))
     console.log(`   ${String(r.med).padStart(5)}:1 (need ${r.need})  ${r.where.padEnd(12)} ${r.sel.padEnd(30)} "${r.text}"`);
 }

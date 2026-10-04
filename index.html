@@ -54,8 +54,8 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202609142335">
-<link rel="stylesheet" href="assets/styles.css?v=202609142335">
+<link rel="stylesheet" href="assets/fonts.css?v=202610041100">
+<link rel="stylesheet" href="assets/styles.css?v=202610041100">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -76,6 +76,9 @@
       v = h.indexOf('netlify') !== -1 ? 'c' : h.indexOf('vercel') !== -1 ? 'b' : 'a';
     }
     d.setAttribute('data-variant', v);
+    /* illustration masks load lazily (app.js adds .lz-on near the viewport);
+       without this attribute — scripts off — they load eagerly instead */
+    d.setAttribute('data-lz', '');
     var def = v === 'b' ? 'daylight' : 'arcanum', t = def;
     try { t = localStorage.getItem('numidea-theme') || def; } catch (e) {}
     d.setAttribute('data-theme', t);
@@ -86,7 +89,7 @@
        deliberate and safe: it runs while the head is still parsing, so the
        parser inserts the link itself and rendering waits for it. Only the theme
        actually in use is written, so nobody else downloads or waits on 46KB. */
-    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202609142335';
+    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202610041100';
     /* The studio's WhatsApp number, full international form, digits only
        (e.g. '213XXXXXXXXX'). While this is empty every WhatsApp control on the
        page stays visibly pending instead of linking somewhere wrong. */
@@ -330,6 +333,18 @@
 
   </section>
 
+
+  <!-- PLATE I — the landscape the studio sits in, engraved. Three depth
+       layers: each is a fill clipped to its own skyline (so nearer ground
+       hides farther ground) plus a luminance-masked ink layer. -->
+  <div class="vista lz lv" aria-hidden="true">
+    <svg class="v-sky" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMin slice"><circle class="tw tw0" cx="392" cy="32" r="0.7"/><circle class="tw tw1" cx="95" cy="92" r="0.9"/><circle class="tw tw2" cx="698" cy="151" r="0.8"/><circle class="tw tw3" cx="54" cy="76" r="0.7"/><circle class="tw tw0" cx="294" cy="95" r="0.7"/><circle class="tw tw2" cx="273" cy="107" r="0.7"/><circle class="tw tw3" cx="691" cy="70" r="0.8"/><circle class="tw tw0" cx="65" cy="143" r="0.9"/><circle class="tw tw1" cx="505" cy="93" r="1.4"/><circle class="tw tw2" cx="374" cy="136" r="0.8"/><circle class="tw tw3" cx="132" cy="98" r="0.8"/><circle class="tw tw0" cx="449" cy="94" r="0.7"/><circle class="tw tw1" cx="676" cy="105" r="1.1"/><circle class="tw tw2" cx="813" cy="75" r="0.9"/><circle class="tw tw3" cx="559" cy="153" r="0.9"/><circle class="tw tw0" cx="364" cy="133" r="0.8"/><circle class="tw tw1" cx="107" cy="55" r="1.1"/><circle class="tw tw2" cx="1043" cy="123" r="0.9"/><circle class="tw tw3" cx="729" cy="19" r="1.4"/><circle class="tw tw0" cx="503" cy="127" r="0.8"/><circle class="tw tw1" cx="1111" cy="74" r="0.7"/><circle class="tw tw2" cx="912" cy="98" r="0.9"/><circle class="tw tw3" cx="411" cy="63" r="1.1"/><circle class="tw tw0" cx="694" cy="80" r="0.7"/><circle class="tw tw1" cx="1125" cy="82" r="0.7"/><circle class="tw tw2" cx="82" cy="118" r="1.4"/><circle class="tw tw3" cx="1182" cy="137" r="0.9"/><circle class="tw tw0" cx="856" cy="147" r="0.9"/><circle class="tw tw1" cx="37" cy="80" r="0.8"/><circle class="tw tw2" cx="731" cy="86" r="0.8"/><circle class="tw tw3" cx="917" cy="28" r="0.8"/><circle class="tw tw0" cx="480" cy="152" r="1.1"/><circle class="tw tw1" cx="105" cy="79" r="1.4"/><circle class="tw tw2" cx="338" cy="29" r="1.1"/><circle class="tw tw0" cx="500" cy="64" r="1.1"/><circle class="tw tw1" cx="1140" cy="32" r="0.8"/><circle class="tw tw2" cx="189" cy="111" r="0.7"/><circle class="tw tw3" cx="582" cy="100" r="0.9"/><circle class="tw tw0" cx="343" cy="31" r="1.4"/><circle class="tw tw1" cx="446" cy="97" r="0.8"/><circle class="tw tw2" cx="825" cy="89" r="1.4"/><circle class="tw tw3" cx="783" cy="124" r="1.1"/><circle class="tw tw0" cx="1071" cy="130" r="1.4"/><circle class="tw tw1" cx="473" cy="71" r="0.7"/><circle class="tw tw2" cx="578" cy="71" r="0.8"/><circle class="tw tw3" cx="89" cy="41" r="0.8"/><circle class="tw tw0" cx="140" cy="102" r="0.7"/><circle class="tw tw1" cx="10" cy="32" r="0.7"/><circle class="tw tw2" cx="1130" cy="104" r="0.7"/><circle class="tw tw0" cx="185" cy="48" r="0.9"/><circle class="tw tw1" cx="721" cy="82" r="0.7"/><path class="v-moon" d="M1012 34a26 26 0 1 0 0 52a21 21 0 1 1 0-52Z"/><path class="v-const" pathLength="1" d="M160 52 214 34 262 61 318 48 352 92M262 61 248 112"/><g class="v-const-s"><circle cx="160" cy="52" r="2"/><circle cx="214" cy="34" r="2.4"/><circle cx="262" cy="61" r="2"/><circle cx="318" cy="48" r="2.2"/><circle cx="352" cy="92" r="1.8"/><circle cx="248" cy="112" r="1.8"/></g></svg>
+    <span class="v-l v-far" data-parallax="-.09" data-parallax-cap="56"><i class="v-fill"></i><i class="v-ink"></i></span>
+    <span class="v-l v-mid" data-parallax="-.045" data-parallax-cap="40"><i class="v-fill"></i><i class="v-ink"></i></span>
+    <span class="v-l v-near" data-parallax=".02" data-parallax-cap="24"><i class="v-fill"></i><i class="v-ink"></i></span>
+    <span class="v-cap pl-cap" data-i18n="pl.vista">Pl. I — Les Bibans · Bordj Bou Arréridj</span>
+  </div>
+
   <!-- Variant C only (offer-first): the signature offer promoted above the fold.
        Hidden by CSS on a/b — no JS required, works with scripts disabled. -->
   <aside class="offer-band" data-variant-only="c" aria-labelledby="offer-h">
@@ -347,10 +362,10 @@
   <section class="proof reveal" aria-labelledby="proof-h">
     <span class="kicker" data-parallax=".035" id="proof-h" data-i18n="proof.kicker">01 — Preuves</span>
     <div class="proof-grid" data-parallax=".06">
-      <div><div class="stat" data-count="5" data-suffix="">5</div><div class="stat-label" data-i18n="proof.s1">projets livrés</div></div>
-      <div><div class="stat" data-count="4">4</div><div class="stat-label" data-i18n="proof.s2">spécialistes</div></div>
-      <div><div class="stat" data-count="3">3</div><div class="stat-label" data-i18n="proof.s3">langues</div></div>
-      <div><div class="stat" data-count="24" data-prefix="&lt;" data-suffix="h">&lt;24h</div><div class="stat-label" data-i18n="proof.s4">de réponse</div></div>
+      <div><svg class="ai ai-stat" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><path class="p a-redraw" pathLength="1" d="m8.6 12.2 2.4 2.4 4.6-5"/></svg><div class="stat" data-count="5" data-suffix="">5</div><div class="stat-label" data-i18n="proof.s1">projets livrés</div></div>
+      <div><svg class="ai ai-stat" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:16s"><circle class="p" pathLength="1" cx="12" cy="4.5" r="2"/><circle class="p" pathLength="1" cx="19.5" cy="12" r="2"/><circle class="p" pathLength="1" cx="12" cy="19.5" r="2"/><circle class="p" pathLength="1" cx="4.5" cy="12" r="2"/><path class="p" pathLength="1" d="M13.4 5.9 18.1 10.6M18.1 13.4 13.4 18.1M10.6 18.1 5.9 13.4M5.9 10.6 10.6 5.9"/></g></svg><div class="stat" data-count="4">4</div><div class="stat-label" data-i18n="proof.s2">spécialistes</div></div>
+      <div><svg class="ai ai-stat" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="9"/><ellipse class="p a-globe" pathLength="1" cx="12" cy="12" rx="4" ry="9"/><path class="p" pathLength="1" d="M3 12h18M4.6 7.5h14.8M4.6 16.5h14.8"/></svg><div class="stat" data-count="3">3</div><div class="stat-label" data-i18n="proof.s3">langues</div></div>
+      <div><svg class="ai ai-stat" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="13" r="8"/><path class="p" pathLength="1" d="M10 2.8h4M12 2.8V5M18.4 6.6l1.3-1.3"/><path class="p a-hand" style="--o:12px 13px;--t:6s" pathLength="1" d="M12 13V8.5"/></svg><div class="stat" data-count="24" data-prefix="&lt;" data-suffix="h">&lt;24h</div><div class="stat-label" data-i18n="proof.s4">de réponse</div></div>
     </div>
     <p class="proof-line" data-i18n="proof.line">De vrais clients. De vrais déploiements. Les preuves sont plus bas — ouvrez-les.</p>
   </section>
@@ -358,6 +373,7 @@
 
   <!-- ================= SELECTED WORK ================= -->
   <section id="work" aria-labelledby="work-h">
+    <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-arch" data-parallax="-.07" data-parallax-cap="50"><i></i><span class="pl-cap" data-i18n="pl.arch">Pl. II — Arc de Trajan · Timgad</span></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="work.kicker">02 — Réalisations</span>
     <h2 class="sec font-swap-display" id="work-h" data-i18n="work.title">La preuve, <em>en direct.</em></h2>
     <p class="sec-lead" data-i18n="work.lead">Des sites réels, en ligne, qu'on peut cliquer — pas des maquettes.</p>
@@ -479,7 +495,7 @@
 
   <!-- ================= SERVICES ================= -->
   <section id="services" class="band" aria-labelledby="svc-h">
-    <span class="px-wrap" aria-hidden="true"><span class="px-field px-plan" data-parallax="-.05" data-parallax-cap="90"></span></span>
+    <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-plan" data-parallax="-.05" data-parallax-cap="90"></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="svc.kicker">03 — Services</span>
     <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">Ce qu'on <em>rend réel.</em></h2>
     <p class="svc-lead" data-i18n="svc.lead">Cinq offres en avant, cinq capacités en réserve — la profondeur attend ceux qui creusent.</p>
@@ -614,7 +630,7 @@
        inexperience nor an agency's overhead. The estimator applies the same
        numbers the tiers quote — PRICE_MODEL in app.js is the single source. -->
   <section id="pricing" aria-labelledby="pricing-h">
-    <span class="px-wrap" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span></span>
+    <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span><span class="pi-coins lv"><span class="pi pc pc-king" data-parallax="-.16" data-parallax-cap="60"><i></i></span><span class="pi pc pc-horse" data-parallax="-.08" data-parallax-cap="50"><i></i></span><span class="pi pc pc-palm" data-parallax="-.22" data-parallax-cap="70"><i></i></span><span class="pl-cap" data-i18n="pl.coins">Pl. III — Monnaies numides</span></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="price.kicker">04 — Tarifs</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
     <p class="sec-lead" data-i18n="price.lead">Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre, voyez l'estimation bouger — puis recevez un prix ferme sous 24 heures.</p>
@@ -629,7 +645,7 @@
 
     <div class="tiers">
       <article class="tier reveal">
-        <span class="t-fam" data-i18n="price.t1fam">Le Build</span>
+        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg><span class="t-fam" data-i18n="price.t1fam">Le Build</span>
         <h3 data-i18n="price.t1name">Essentiel</h3>
         <p class="t-for" data-i18n="price.t1for">Une présence crédible, vite en ligne.</p>
         <p class="t-range"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
@@ -645,7 +661,7 @@
 
       <article class="tier tier-pop reveal">
         <span class="t-pop" data-i18n="price.popular">Le plus choisi</span>
-        <span class="t-fam" data-i18n="price.t2fam">Le Build</span>
+        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:12px 4.4px"><circle class="p" pathLength="1" cx="12" cy="4.4" r="1.7"/><path class="p" pathLength="1" d="M11.2 6 6.2 19.8M12.8 6l5 13.8M8.2 14.3h7.6"/></g><path class="p" pathLength="1" d="M4 20.6a14 14 0 0 0 16 0"/></svg><span class="t-fam" data-i18n="price.t2fam">Le Build</span>
         <h3 data-i18n="price.t2name">Studio</h3>
         <p class="t-for" data-i18n="price.t2for">Le site qui porte vraiment l'entreprise.</p>
         <p class="t-range"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
@@ -661,7 +677,7 @@
       </article>
 
       <article class="tier reveal">
-        <span class="t-fam" data-i18n="price.t3fam">Le Moteur</span>
+        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:10s"><circle class="p" pathLength="1" cx="12" cy="12" r="6"/><path class="p" pathLength="1" d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></g><circle class="p" pathLength="1" cx="12" cy="12" r="2.2"/></svg><span class="t-fam" data-i18n="price.t3fam">Le Moteur</span>
         <h3 data-i18n="price.t3name">Moteur</h3>
         <p class="t-for" data-i18n="price.t3for">La machinerie que presque personne ne construit ici.</p>
         <p class="t-range"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
@@ -683,6 +699,7 @@
     <!-- ---------------- estimator ---------------- -->
     <div class="estimator reveal" id="estimator">
       <div class="est-head">
+        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/><circle class="f a-sl" style="--i:0" cx="8.5" cy="6.5" r="2"/><circle class="f a-sl" style="--i:1" cx="15" cy="12" r="2"/><circle class="f a-sl" style="--i:2" cx="7" cy="17.5" r="2"/></svg>
         <h3 data-i18n="price.estH">Estimez votre projet</h3>
         <p data-i18n="price.estP">Réglez ce dont vous avez besoin. La fourchette se recalcule en direct, sur les mêmes chiffres que les paliers ci-dessus.</p>
       </div>
@@ -751,6 +768,7 @@
          Numidea column from PRICE_MODEL. -->
     <div class="market reveal" id="market">
       <div class="mk-head">
+        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 4v16.5M8 20.5h8"/><g class="a-tilt" style="--o:12px 6px"><path class="p" pathLength="1" d="M4.5 6h15M4.5 6 2.5 12h4ZM19.5 6l-2 6h4Z"/></g></svg>
         <h3 data-i18n="mk.h">Ici et ailleurs</h3>
         <p data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.</p>
       </div>
@@ -820,23 +838,23 @@
       <div class="md-grid">
         <article class="md-card md-ours">
           <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
-          <h4 data-i18n="md.fH">Au forfait</h4>
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M7.5 10V7.5a4.5 4.5 0 0 1 9 0V10"/><rect class="p" pathLength="1" x="5" y="10" width="14" height="10.5" rx="1.6"/><path class="p a-bob" pathLength="1" d="M12 13.8v3"/></svg><h4 data-i18n="md.fH">Au forfait</h4>
           <p data-i18n="md.fP">Un prix fixe pour un périmètre écrit. Si le travail déborde, c'est le prestataire qui absorbe l'écart.</p>
           <p class="md-where" data-i18n="md.fW">La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C'est ainsi que nous chiffrons chaque projet.</p>
         </article>
         <article class="md-card">
-          <h4 data-i18n="md.tH">Au temps passé</h4>
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><path class="p a-hand" style="--o:12px 12px;--t:2.4s" pathLength="1" d="M12 12V6.8"/><path class="p a-hand" style="--o:12px 12px;--t:28.8s" pathLength="1" d="M12 12h3.4"/></svg><h4 data-i18n="md.tH">Au temps passé</h4>
           <p data-i18n="md.tP">Facturé au jour ou à l'heure. Souple quand le périmètre bouge, difficile à budgéter d'avance.</p>
           <p class="md-where" data-i18n="md.tW">La norme en France (480 –⁠ 650 € par jour pour un développeur confirmé) et aux États-Unis (100 –⁠ 149 $ de l'heure en agence).</p>
         </article>
         <article class="md-card md-ours">
           <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
-          <h4 data-i18n="md.aH">À l'abonnement</h4>
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:7s"><path class="p" pathLength="1" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path class="p" pathLength="1" d="M17.3 3.4v3.3H14M6.7 20.6v-3.3H10"/></g></svg><h4 data-i18n="md.aH">À l'abonnement</h4>
           <p data-i18n="md.aP">Un montant mensuel pour un service continu : maintenance, évolutions, contenu.</p>
           <p class="md-where" data-i18n="md.aW">Courant partout après le lancement. C'est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.</p>
         </article>
         <article class="md-card">
-          <h4 data-i18n="md.vH">À la valeur</h4>
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M6 4h12l3.5 5L12 20.5 2.5 9Z"/><path class="p" pathLength="1" d="M2.5 9h19M9.5 4 8 9l4 11.5L16 9l-1.5-5"/><path class="a-twinkle" d="M20.6 1.4v2.6M19.3 2.7h2.6"/></svg><h4 data-i18n="md.vH">À la valeur</h4>
           <p data-i18n="md.vP">Le prix suit ce que le projet rapporte, pas le temps qu'il demande.</p>
           <p class="md-where" data-i18n="md.vW">Plus rare, surtout en conseil et en stratégie, là où l'enjeu se mesure.</p>
         </article>
@@ -860,10 +878,10 @@
         <p data-i18n="price.obP">Quatre étapes. Vous ne payez rien avant la troisième.</p>
       </div>
       <ol class="ob-steps">
-        <li><span class="ob-n" aria-hidden="true">1</span><b data-i18n="price.ob1h">Vous décrivez le projet</b><span data-i18n="price.ob1p">Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.</span></li>
-        <li><span class="ob-n" aria-hidden="true">2</span><b data-i18n="price.ob2h">On revient sous 24 heures</b><span data-i18n="price.ob2p">Avec un périmètre écrit et un prix ferme. Pas une fourchette, un chiffre.</span></li>
-        <li><span class="ob-n" aria-hidden="true">3</span><b data-i18n="price.ob3h">On construit L'Aperçu — gratuit</b><span data-i18n="price.ob3p">Une démo réelle de votre projet, avant paiement. Vous la voyez tourner en direct.</span></li>
-        <li><span class="ob-n" aria-hidden="true">4</span><b data-i18n="price.ob4h">Vous décidez</b><span data-i18n="price.ob4p">Si c'est non, vous ne devez rien. Si c'est oui, on est déjà à mi-chemin.</span></li>
+        <li><svg class="ai ai-ob" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3.5" y="3" width="12.5" height="17.5" rx="1.5"/><path class="p" pathLength="1" d="M7 8h5.5M7 11.5h5.5M7 15h2.5"/><path class="p a-bob" pathLength="1" d="m13.6 19.6 6.6-6.6 1.6 1.6-6.6 6.6h-1.6Z"/></svg><span class="ob-n" aria-hidden="true">1</span><b data-i18n="price.ob1h">Vous décrivez le projet</b><span data-i18n="price.ob1p">Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.</span></li>
+        <li><svg class="ai ai-ob" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M21 3 3 10.5l7 2.5 2.5 7Z"/><path class="p" pathLength="1" d="m10 13 4.6-4.6"/></g></svg><span class="ob-n" aria-hidden="true">2</span><b data-i18n="price.ob2h">On revient sous 24 heures</b><span data-i18n="price.ob2p">Avec un périmètre écrit et un prix ferme. Pas une fourchette, un chiffre.</span></li>
+        <li><svg class="ai ai-ob" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle class="p a-look" pathLength="1" cx="12" cy="12" r="3"/></svg><span class="ob-n" aria-hidden="true">3</span><b data-i18n="price.ob3h">On construit L'Aperçu — gratuit</b><span data-i18n="price.ob3p">Une démo réelle de votre projet, avant paiement. Vous la voyez tourner en direct.</span></li>
+        <li><svg class="ai ai-ob" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="9"/><path class="p a-redraw" pathLength="1" d="m8 12.3 2.7 2.7 5.5-5.5"/></svg><span class="ob-n" aria-hidden="true">4</span><b data-i18n="price.ob4h">Vous décidez</b><span data-i18n="price.ob4p">Si c'est non, vous ne devez rien. Si c'est oui, on est déjà à mi-chemin.</span></li>
       </ol>
       <div class="ob-cta">
         <a class="btn btn-primary" href="#contact" data-i18n="price.obCta1">Décrire mon projet →</a>
@@ -909,106 +927,135 @@
 
   <!-- ================= FOUNDER ================= -->
   <section id="founder" class="band" aria-labelledby="founder-h">
+    <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-bench" data-parallax="-.06" data-parallax-cap="50"><i></i></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="founder.kicker">06 — Équipe &amp; fondateur</span>
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Le studio a un <em>visage.</em></h2>
     <p class="sec-lead" data-i18n="founder.lead">Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.</p>
 
+    <!-- Everything below is taken from assets/cv_yasser_hamisse_2026.pdf, the
+         source of truth: dates, titles and one-liners. Order follows the CV:
+         current roles first, then past work newest first. The team is
+         anonymized by design (knowledge-base 12-organization) — initials only,
+         with the responsibilities the KB marks verified. -->
     <div class="founder-card reveal">
       <div class="fd-top">
         <div class="fd-photo"><span class="mono" aria-hidden="true">Y</span></div>
         <div class="fd-id">
           <h3>Yasser Hamisse</h3>
-          <p class="fd-role" data-i18n="founder.role">Designer &amp; développeur · Fondateur</p>
+          <p class="fd-role" data-i18n="founder.role">Designer graphique &amp; développeur web · Fondateur</p>
           <div class="fd-pills">
-            <span class="pill">FR C2</span><span class="pill">EN C1</span><span class="pill">AR native</span>
+            <span class="pill">FR C2</span><span class="pill">EN C1</span><span class="pill" data-i18n="founder.arPill">AR langue maternelle</span>
             <span class="pill" data-i18n="founder.years">6 ans</span><span class="pill">Bordj Bou Arréridj</span>
           </div>
         </div>
       </div>
       <p class="fd-bio" data-i18n="founder.bio">Six ans à concevoir des identités, coder des interfaces et livrer des produits — de la marque au front-end au cloud. Je transforme le brief en build, et je reste quand c'est en ligne.</p>
+
+      <ul class="fd-links" data-i18n-aria="founder.linksAria" aria-label="Profils du fondateur">
+        <li><a href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener"><span class="fl-b" aria-hidden="true">in</span>LinkedIn</a></li>
+        <li><a href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener"><span class="fl-b" aria-hidden="true">GH</span>GitHub</a></li>
+        <li><a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener"><span class="fl-b" aria-hidden="true">Bē</span>Behance</a></li>
+        <li><a href="mailto:Hamissemohamedyasser@gmail.com"><span class="fl-b" aria-hidden="true">@</span>Email</a></li>
+      </ul>
+
       <div class="fd-actions">
         <button type="button" class="btn btn-teal" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">Voir le parcours ↴</button>
         <a class="btn btn-ghost" href="hub/" target="_blank" rel="noopener" data-i18n="founder.portfolio">Portfolio personnel ↗</a>
       </div>
 
       <div class="cv-panel" id="cv-panel">
-        <div class="cv-inner">
+        <div class="cv-clip"><div class="cv-inner">
           <div class="cv-col cv-exp">
             <h4 data-i18n="founder.expLabel">Parcours</h4>
-            <ul class="timeline">
-              <li><span class="tl-date">2026 —</span><div><b>Heetch International</b><i data-i18n="fx1">Graphiste</i></div></li>
-              <li><span class="tl-date">2019 —</span><div><b>Grafil Studio · tr4veler.designs</b><i data-i18n="fx2">Designer freelance</i></div></li>
-              <li><span class="tl-date">2026</span><div><b>Alliance Travel</b><i data-i18n="fx3">Web &amp; social</i></div></li>
-              <li><span class="tl-date">2025–26</span><div><b>SPA Bordj Steel</b><i data-i18n="fx4">Identité &amp; web</i></div></li>
-              <li><span class="tl-date">2024</span><div><b>Artiland.Studio</b><i data-i18n="fx5">Contenu &amp; vidéo</i></div></li>
-            </ul>
+            <ol class="timeline">
+              <li class="tl-now"><span class="tl-date" data-i18n="fx1.when">Mai 2026 — aujourd'hui</span><b>Heetch</b><i data-i18n="fx1">Designer graphique</i><p data-i18n="fx1.what">Visuels et supports de communication pour une plateforme internationale de mobilité ; déclinaison de l'identité sur les campagnes et les réseaux.</p></li>
+              <li class="tl-now"><span class="tl-date" data-i18n="fx2.when">2019 — aujourd'hui</span><b>Grafil Studio · tr4veler.designs</b><i data-i18n="fx2">Designer graphique &amp; développeur web, en freelance</i><p data-i18n="fx2.what">Sites vitrines et landing pages orientés conversion ; identités visuelles, affiches et pochettes ; direction artistique de campagnes NFT et de branding musical.</p></li>
+              <li><span class="tl-date" data-i18n="fx3.when">Fév. – mai 2026</span><b>Alliance Travel</b><i data-i18n="fx3">Développeur web &amp; social media</i><p data-i18n="fx3.what">Le site complet de l'agence, la refonte visuelle de la marque et sa stratégie réseaux sociaux.</p></li>
+              <li><span class="tl-date" data-i18n="fx4.when">Août 2025 – fév. 2026</span><b>SPA Bordj Steel</b><i data-i18n="fx4">Designer graphique &amp; web</i><p data-i18n="fx4.what">Refonte de l'identité (logo, charte) et des supports print, puis un site responsive livré de A à Z.</p></li>
+              <li><span class="tl-date" data-i18n="fx5.when">Mars – juil. 2024</span><b>Artiland.Studio</b><i data-i18n="fx5">Créateur de contenu &amp; vidéo</i><p data-i18n="fx5.what">Vidéos courtes pour des événements et des campagnes communautaires ; animation d'ateliers créatifs.</p></li>
+            </ol>
           </div>
           <div class="cv-col cv-side">
             <div class="cv-block">
               <h4 data-i18n="founder.skillsLabel">Compétences</h4>
-              <p data-i18n="founder.skills">Design &amp; identité · Web &amp; front-end · Stratégie &amp; contenu. Production ~20 % plus rapide grâce à l'IA.</p>
+              <dl class="skills">
+                <div><dt data-i18n="fs1.h">Design &amp; identité</dt><dd data-i18n="fs1">Branding · identité visuelle · illustration · direction artistique UI/UX · photo &amp; retouche</dd></div>
+                <div><dt data-i18n="fs2.h">Web &amp; front-end</dt><dd data-i18n="fs2">HTML / CSS / JS · React · sites vitrines · landing pages · CMS · SEO · responsive</dd></div>
+                <div><dt data-i18n="fs3.h">Stratégie &amp; contenu</dt><dd data-i18n="fs3">Réseaux sociaux · rédaction créative · intégration IA · automatisation · gestion de projet</dd></div>
+              </dl>
+              <p class="cv-note" data-i18n="founder.skillsNote">Production environ 20 % plus rapide grâce à l'IA. En cours d'apprentissage : motion design et montage vidéo.</p>
             </div>
             <div class="cv-block">
               <h4 data-i18n="founder.eduLabel">Formation</h4>
               <p data-i18n="founder.edu">Informatique — Université Mohamed El Bachir El Ibrahimi · 2018–2024</p>
+              <p class="cv-note" data-i18n="founder.certs">Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D</p>
             </div>
             <a class="btn btn-primary cv-dl" href="assets/cv_yasser_hamisse_2026.pdf" download target="_blank" rel="noopener" data-i18n="founder.download">Télécharger le CV (PDF) ↓</a>
           </div>
-        </div>
+        </div></div>
       </div>
+    </div>
 
-      <p class="fd-team" data-i18n="founder.teamRow">Avec lui : <b>D</b> — données &amp; pipelines · <b>S</b> — ventes &amp; partenariats · <b>T</b> — représentant technique</p>
+    <div class="team reveal">
+      <h3 class="team-h" data-i18n="team.h">Avec lui, l'équipe</h3>
+      <ul class="team-grid">
+        <li class="tm"><span class="tm-i">D</span><b data-i18n="team.dFn">Spécialiste données</b><span data-i18n="team.dDo">Pipelines, scraping et la couche d'intelligence.</span></li>
+        <li class="tm"><span class="tm-i">S</span><b data-i18n="team.sFn">Ventes &amp; partenariats</b><span data-i18n="team.sDo">Premier contact : traduit l'idée en périmètre.</span></li>
+        <li class="tm"><span class="tm-i">T</span><b data-i18n="team.tFn">Représentant technique</b><span data-i18n="team.tDo">Garde le build honnête et le client informé.</span></li>
+      </ul>
     </div>
   </section>
 
   <!-- ================= STACK ================= -->
   <section id="stack" aria-labelledby="stack-h">
+    <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-strata lv" data-parallax="-.05" data-parallax-cap="40"><i></i><b class="core"></b><span class="pl-cap" data-i18n="pl.strata">Pl. IV — Coupe des couches</span></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="stack.kicker">07 — Stack</span>
     <h2 class="sec font-swap-display" id="stack-h" data-i18n="stack.title">Le flex <em>discret.</em></h2>
     <div class="stack-strip reveal">
-      <span class="grp"><b>Front</b><span class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></span></span>
-      <span class="grp"><b>Back</b><span class="pills"><span class="pill">Node</span><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span></span></span>
-      <span class="grp"><b>Cloud</b><span class="pills"><span class="pill">Vercel</span><span class="pill">Docker</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span></span></span>
-      <span class="grp"><b>Data</b><span class="pills"><span class="pill">Playwright</span><span class="pill">Pandas</span><span class="pill">Supabase</span><span class="pill">REST · APIs</span></span></span>
-      <span class="grp"><b>Mobile</b><span class="pills"><span class="pill">PWA</span><span class="pill">React Native</span><span class="pill">Expo</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="2.8" y="4.5" width="18.4" height="15" rx="1.5"/><path class="p" pathLength="1" d="M2.8 8.5h18.4M7.5 12.2 5.5 14.2l2 2M11 12.2l2 2-2 2"/><path class="a-blink" d="M15.5 16.2h3"/></svg>Front</b><span class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3.5" y="4" width="17" height="6.5" rx="1.2"/><rect class="p" pathLength="1" x="3.5" y="13.5" width="17" height="6.5" rx="1.2"/><circle class="f a-led" style="--i:0" cx="7" cy="7.25" r=".95"/><circle class="f a-led" style="--i:1" cx="7" cy="16.75" r=".95"/><path class="p" pathLength="1" d="M11 7.25h6M11 16.75h6"/></svg>Back</b><span class="pills"><span class="pill">Node</span><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10Z"/><path class="p a-up" pathLength="1" d="M12 17.5v-6M9.6 13.8 12 11.4l2.4 2.4"/></svg>Cloud</b><span class="pills"><span class="pill">Vercel</span><span class="pill">Docker</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><ellipse class="p" pathLength="1" cx="12" cy="5.5" rx="7.5" ry="2.8"/><path class="p" pathLength="1" d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13"/><path class="p a-scan" pathLength="1" d="M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>Data</b><span class="pills"><span class="pill">Playwright</span><span class="pill">Pandas</span><span class="pill">Supabase</span><span class="pill">REST · APIs</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="4.5" y="3" width="10" height="18" rx="2"/><path class="p" pathLength="1" d="M8.5 18h2"/><path class="a-wave" style="--i:0" d="M17 8.5a5 5 0 0 1 0 7"/><path class="a-wave" style="--i:1" d="M19.5 6.5a8 8 0 0 1 0 11"/></svg>Mobile</b><span class="pills"><span class="pill">PWA</span><span class="pill">React Native</span><span class="pill">Expo</span></span></span>
     </div>
   </section>
 
   <!-- ================= CONTACT ================= -->
   <!-- ================= FAQ ================= -->
   <section id="faq" aria-labelledby="faq-h">
+    <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-lantern lv"><b class="glow"></b><i></i></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="faq.kicker">08 — FAQ</span>
     <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
     <p class="sec-lead" data-i18n="faq.lead">Ce qu'on nous demande avant de se lancer — répondu franchement.</p>
     <div class="faq-list">
 
       <details class="faq-item reveal">
-        <summary><span class="q" data-i18n="faq1.q">Combien de temps pour livrer ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-flip"><path class="p" pathLength="1" d="M6.5 3h11M6.5 21h11M7.5 3c0 5 4.5 6 4.5 9s-4.5 4-4.5 9M16.5 3c0 5-4.5 6-4.5 9s4.5 4 4.5 9"/><path class="f" d="M9.6 19.6h4.8L12 16.6Z"/></g></svg><span class="q" data-i18n="faq1.q">Combien de temps pour livrer ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq1"></span></span><p data-i18n="faq1.a">Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu'on a cadré le projet ensemble.</p></div>
       </details>
 
       <details class="faq-item reveal">
-        <summary><span class="q" data-i18n="faq2.q">C'est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:7.5px 7.5px"><path class="p" pathLength="1" d="M3.5 3.5h8.2l8.8 8.8a1.5 1.5 0 0 1 0 2.1l-6.1 6.1a1.5 1.5 0 0 1-2.1 0L3.5 11.7Z"/><circle class="p" pathLength="1" cx="7.5" cy="7.5" r="1.4"/></g></svg><span class="q" data-i18n="faq2.q">C'est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq2"></span></span><p data-i18n="faq2.a">Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez.</p></div>
       </details>
 
       <details class="faq-item reveal">
-        <summary><span class="q" data-i18n="faq3.q">Vous travaillez en quelles langues ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p a-alt" style="--i:0" pathLength="1" d="M3 4.5h11v7.5H8.2L5 14.6V12H3Z"/><path class="p a-alt" style="--i:1" pathLength="1" d="M10 15v2.5h5.8L19 20v-2.5h2V10h-4"/></svg><span class="q" data-i18n="faq3.q">Vous travaillez en quelles langues ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq3"></span></span><p data-i18n="faq3.a">Français, arabe et anglais — à l'oral, à l'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.</p></div>
       </details>
 
       <details class="faq-item reveal">
-        <summary><span class="q" data-i18n="faq4.q">Et après le lancement ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 3 19.5 6v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6Z"/><path class="p a-ekg" pathLength="1" d="M6.5 12.5h3l1.3-3 2.4 6 1.3-3h3"/></svg><span class="q" data-i18n="faq4.q">Et après le lancement ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq4"></span></span><p data-i18n="faq4.a">On reste. On maintient ce qu'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne.</p></div>
       </details>
 
       <details class="faq-item reveal">
-        <summary><span class="q" data-i18n="faq5.q">Travaillez-vous à distance ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="orb" cx="12" cy="12" r="9.5"/><circle class="p" pathLength="1" cx="12" cy="12" r="6"/><path class="p" pathLength="1" d="M6 12h12M12 6c1.9 1.9 1.9 10.1 0 12M12 6c-1.9 1.9-1.9 10.1 0 12"/><g class="a-orbit" style="--o:12px 12px"><circle class="f" cx="21.5" cy="12" r="1.15"/></g></svg><span class="q" data-i18n="faq5.q">Travaillez-vous à distance ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq5"></span></span><p data-i18n="faq5.a">Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l'accès direct au builder.</p></div>
       </details>
 
       <details class="faq-item reveal">
-        <summary><span class="q" data-i18n="faq6.q">Qu'est-ce qui vous différencie d'une agence ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+        <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="4.8" cy="12" r="2.6"/><circle class="p" pathLength="1" cx="19.2" cy="12" r="2.6"/><path class="p" pathLength="1" d="M7.4 12h9.2"/><circle class="f a-travel" cx="8.6" cy="12" r="1.05"/></svg><span class="q" data-i18n="faq6.q">Qu'est-ce qui vous différencie d'une agence ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
         <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq6"></span></span><p data-i18n="faq6.a">Pas d'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer.</p></div>
       </details>
 
@@ -1016,17 +1063,17 @@
   </section>
 
   <section id="contact" class="contact band" aria-labelledby="contact-h">
-    <span class="px-wrap" aria-hidden="true"><span class="px-field px-stars" data-parallax="-.04" data-parallax-cap="90"></span></span>
+    <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-stars" data-parallax="-.04" data-parallax-cap="90"></span><span class="pi pi-light lv" data-parallax="-.05" data-parallax-cap="40"><b class="beam"></b><i></i><span class="pl-cap" data-i18n="pl.light">Pl. V — Cap Carbon · Béjaïa</span></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="contact.kicker">09 — Contact</span>
     <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">On le <em>rend réel ?</em></h2>
     <div class="contact-grid">
       <div class="contact-side">
         <p class="sub" data-i18n="contact.sub">Dites-nous ce que vous cherchez à concrétiser — l'urgent, le cassé, l'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.</p>
         <dl class="channels">
-          <div class="ch"><dt data-i18n="form.email">Email</dt><dd><a href="mailto:Hamissemohamedyasser@gmail.com">Hamissemohamedyasser@gmail.com</a></dd></div>
-          <div class="ch"><dt>WhatsApp</dt><dd><a class="wa-link" data-wa-pending aria-disabled="true" dir="ltr">+213 672 41 25 78</a></dd></div>
-          <div class="ch"><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
-          <div class="ch"><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">&lt; 24 heures · FR · EN · ع</dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg><dt data-i18n="form.email">Email</dt><dd><a href="mailto:Hamissemohamedyasser@gmail.com">Hamissemohamedyasser@gmail.com</a></dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M4 20 5.3 15.7A8 8 0 1 1 8.3 18.7Z"/><circle class="f a-dt" style="--i:0" cx="8.7" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:1" cx="12" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:2" cx="15.3" cy="11.8" r=".95"/></svg><dt>WhatsApp</dt><dd><a class="wa-link" data-wa-pending aria-disabled="true" dir="ltr">+213 672 41 25 78</a></dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M12 20s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z"/><circle class="p" pathLength="1" cx="12" cy="9" r="2.3"/></g><path class="a-shadow" d="M9.5 22h5"/></svg><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="13.5" r="7.5"/><path class="p" pathLength="1" d="M12 3.5V6M10 3.5h4"/><path class="p a-hand" style="--o:12px 13.5px;--t:3s" pathLength="1" d="M12 13.5 15 10.5"/></svg><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">&lt; 24 heures · FR · EN · ع</dd></div>
         </dl>
       </div>
       <div class="contact-main">
@@ -1066,6 +1113,9 @@
   </section>
 
 </main>
+
+<!-- PLATE VI — the erg closes the page. -->
+<div class="foot-dunes lz" aria-hidden="true"><span class="fd-ink" data-parallax="-.05" data-parallax-cap="30"></span><span class="pl-cap" data-i18n="pl.dunes">Pl. VI — Le Grand Erg</span></div>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer wrap">
@@ -1140,7 +1190,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202609142335" defer></script>
+<script src="assets/app.js?v=202610041100" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

@@ -48,44 +48,59 @@
       'how2.h': 'Une équipe possède toute la chaîne.', 'how2.p': 'Design → code → déploiement. Rien ne se perd dans un transfert qui n\'a jamais lieu.',
       'how3.h': 'On répond quand ça casse.', 'how3.p': 'Délais tenus, réponse en moins de 24h. Après le lancement, toujours là.',
       'scene.kicker': '◆ PLAN D\'ATELIER · PLANCHE PAR PLANCHE', 'scene.title': 'Les projets, comme un plan.',
-      'scene.lead': 'Chaque projet dessiné comme une planche d\'ingénierie : cotes, statuts honnêtes, et le site en vrai.',
+      'scene.lead': 'Chaque projet dessiné comme une planche d\'ingénierie : cotes, statuts honnêtes, et le site en vrai.',
       'scene.cta': 'Ouvrir les planches →',
       'founder.kicker': '06 — Équipe & fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
-      'founder.lead': 'Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.',
-      'founder.role': 'Designer & développeur · Fondateur', 'founder.years': '6 ans',
+      'founder.lead': 'Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.',
+      'founder.role': 'Designer graphique & développeur web · Fondateur', 'founder.years': '6 ans',
       'founder.bio': 'Six ans à concevoir des identités, coder des interfaces et livrer des produits — de la marque au front-end au cloud. Je transforme le brief en build, et je reste quand c\'est en ligne.',
       'founder.cvBtn': 'Voir le parcours ↴', 'founder.cvClose': 'Masquer le parcours ↑', 'founder.portfolio': 'Portfolio personnel ↗',
       'founder.expLabel': 'Parcours', 'founder.skillsLabel': 'Compétences', 'founder.eduLabel': 'Formation',
-      'founder.skills': 'Design & identité · Web & front-end · Stratégie & contenu. Production ~20 % plus rapide grâce à l\'IA.',
       'founder.edu': 'Informatique — Université Mohamed El Bachir El Ibrahimi · 2018–2024',
       'founder.download': 'Télécharger le CV (PDF) ↓',
-      'founder.teamRow': 'Avec lui : <b>D</b> — données & pipelines · <b>S</b> — ventes & partenariats · <b>T</b> — représentant technique',
-      'fx1': 'Graphiste', 'fx2': 'Designer freelance', 'fx3': 'Web & social', 'fx4': 'Identité & web', 'fx5': 'Contenu & vidéo',
+      'fx1': 'Designer graphique', 'fx2': 'Designer graphique & développeur web, en freelance', 'fx3': 'Développeur web & social media', 'fx4': 'Designer graphique & web', 'fx5': 'Créateur de contenu & vidéo',
+      'fx1.when': "Mai 2026 — aujourd'hui", 'fx2.when': "2019 — aujourd'hui", 'fx3.when': 'Fév. – mai 2026', 'fx4.when': 'Août 2025 – fév. 2026', 'fx5.when': 'Mars – juil. 2024',
+      'fx1.what': "Visuels et supports de communication pour une plateforme internationale de mobilité ; déclinaison de l'identité sur les campagnes et les réseaux.",
+      'fx2.what': 'Sites vitrines et landing pages orientés conversion ; identités visuelles, affiches et pochettes ; direction artistique de campagnes NFT et de branding musical.',
+      'fx3.what': "Le site complet de l'agence, la refonte visuelle de la marque et sa stratégie réseaux sociaux.",
+      'fx4.what': "Refonte de l'identité (logo, charte) et des supports print, puis un site responsive livré de A à Z.",
+      'fx5.what': "Vidéos courtes pour des événements et des campagnes communautaires ; animation d'ateliers créatifs.",
+      'fs1.h': 'Design & identité', 'fs1': 'Branding · identité visuelle · illustration · direction artistique UI/UX · photo & retouche',
+      'fs2.h': 'Web & front-end', 'fs2': 'HTML / CSS / JS · React · sites vitrines · landing pages · CMS · SEO · responsive',
+      'fs3.h': 'Stratégie & contenu', 'fs3': 'Réseaux sociaux · rédaction créative · intégration IA · automatisation · gestion de projet',
+      'founder.skillsNote': "Production environ 20 % plus rapide grâce à l'IA. En cours d'apprentissage : motion design et montage vidéo.",
+      'founder.certs': 'Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D',
+      'pl.vista': 'Pl.\u00a0I — Les Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arc de Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Monnaies numides', 'pl.strata': 'Pl.\u00a0IV — Coupe des couches', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — Le Grand Erg',
+      'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
+      'team.h': "Avec lui, l'équipe",
+      'team.dFn': 'Spécialiste données', 'team.dDo': "Pipelines, scraping et la couche d'intelligence.",
+      'team.sFn': 'Ventes & partenariats', 'team.sDo': "Premier contact : traduit l'idée en périmètre.",
+      'team.tFn': 'Représentant technique', 'team.tDo': 'Garde le build honnête et le client informé.',
       'stack.kicker': '07 — Stack',
       'stack.title': 'Le flex <em>discret.</em>',
       'faq.kicker': '08 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
       'faq.lead': 'Ce qu\'on nous demande avant de se lancer — répondu franchement.',
-      'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu\'on a cadré le projet ensemble.',
-      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez.',
-      'faq3.q': 'Vous travaillez en quelles langues ?', 'faq3.a': 'Français, arabe et anglais — à l\'oral, à l\'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.',
-      'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. On maintient ce qu\'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne.',
-      'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l\'accès direct au builder.',
-      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer.',
+      'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu\'on a cadré le projet ensemble.',
+      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez.',
+      'faq3.q': 'Vous travaillez en quelles langues ?', 'faq3.a': 'Français, arabe et anglais — à l\'oral, à l\'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.',
+      'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. On maintient ce qu\'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne.',
+      'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l\'accès direct au builder.',
+      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer.',
       'contact.kicker': '09 — Contact',
-      'contact.title': 'On le <em>rend réel ?</em>',
+      'contact.title': 'On le <em>rend réel ?</em>',
       'contact.sub': 'Dites-nous ce que vous cherchez à concrétiser — l\'urgent, le cassé, l\'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Réponse',
       'contact.vStudio': 'Bordj Bou Arréridj · Algérie', 'contact.vReply': '< 24 heures · FR · EN · ع',
       'form.name': 'Nom', 'form.namePh': 'Votre nom',
       'form.email': 'Email', 'form.emailPh': 'vous@entreprise.com',
-      'form.message': 'Message', 'form.messagePh': 'Qu\'est-ce qu\'on construit ?',
+      'form.message': 'Message', 'form.messagePh': 'Qu\'est-ce qu\'on construit ?',
       'form.send': 'Démarrer un projet →',
       'form.errName': 'Ajoutez un nom pour qu\'on sache à qui parler.',
       'form.errEmail': 'Ajoutez un email pour qu\'on puisse répondre.',
       'form.errEmailValid': 'Cet email a l\'air incomplet — vérifiez-le.',
       'form.errMsg': 'Dites-nous une ligne sur le projet.',
       'form.success': 'Votre messagerie devrait s\'ouvrir avec le message prêt — il ne reste qu\'à l\'envoyer.',
-      'form.successAlt': 'Rien ne s\'est ouvert ? Écrivez-nous directement :',
+      'form.successAlt': 'Rien ne s\'est ouvert ? Écrivez-nous directement :',
       'footer.signoff': 'Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.',
       'footer.rights': '© 2026 Numidea Labs · Tous droits réservés',
       'footer.tag': 'Rooted in Numidia · built on ideas'
@@ -131,15 +146,30 @@
       'scene.cta': 'Open the sheets →',
       'founder.kicker': '06 — Team & founder', 'founder.title': 'The studio has a <em>face.</em>',
       'founder.lead': 'Behind Numidea: a designer-developer who conceives, codes and ships — no middleman.',
-      'founder.role': 'Designer & developer · Founder', 'founder.years': '6 yrs',
+      'founder.role': 'Graphic designer & web developer · Founder', 'founder.years': '6 yrs',
       'founder.bio': 'Six years designing identities, coding interfaces and shipping products — brand to front-end to cloud. I turn the brief into the build, and I stay once it\'s live.',
       'founder.cvBtn': 'View the track record ↴', 'founder.cvClose': 'Hide the track record ↑', 'founder.portfolio': 'Personal portfolio ↗',
       'founder.expLabel': 'Experience', 'founder.skillsLabel': 'Skills', 'founder.eduLabel': 'Education',
-      'founder.skills': 'Design & identity · Web & front-end · Strategy & content. Production ~20% faster with AI.',
       'founder.edu': 'Computer Science — Univ. Mohamed El Bachir El Ibrahimi · 2018–2024',
       'founder.download': 'Download résumé (PDF) ↓',
-      'founder.teamRow': 'Alongside him: <b>D</b> — data & pipelines · <b>S</b> — sales & partnerships · <b>T</b> — technical rep',
-      'fx1': 'Graphic Designer', 'fx2': 'Freelance Designer', 'fx3': 'Web & social', 'fx4': 'Identity & web', 'fx5': 'Content & video',
+      'fx1': 'Graphic designer', 'fx2': 'Freelance graphic designer & web developer', 'fx3': 'Web developer & social media manager', 'fx4': 'Graphic & web designer', 'fx5': 'Content & video creator',
+      'fx1.when': 'May 2026 — present', 'fx2.when': '2019 — present', 'fx3.when': 'Feb – May 2026', 'fx4.when': 'Aug 2025 – Feb 2026', 'fx5.when': 'Mar – Jul 2024',
+      'fx1.what': 'Visuals and communication material for an international mobility platform; carrying the brand identity across campaigns and social.',
+      'fx2.what': 'Conversion-focused showcase sites and landing pages; visual identities, posters and album covers; art direction for NFT campaigns and musician branding.',
+      'fx3.what': "The agency's full website, a visual refresh of the brand and its social media strategy.",
+      'fx4.what': 'A redesigned identity (logo, guidelines) and print collateral, then a responsive website delivered end to end.',
+      'fx5.what': 'Short-form video for events and community campaigns; running creative workshops.',
+      'fs1.h': 'Design & identity', 'fs1': 'Branding · visual identity · illustration · UI/UX art direction · photo & retouching',
+      'fs2.h': 'Web & front-end', 'fs2': 'HTML / CSS / JS · React · showcase sites · landing pages · CMS · SEO · responsive',
+      'fs3.h': 'Strategy & content', 'fs3': 'Social media · creative writing · AI integration · automation · project management',
+      'founder.skillsNote': 'Production about 20% faster with AI. Currently learning: motion design and video editing.',
+      'founder.certs': 'Certifications: Duolingo English Test · Digital design (Artiland.Studio) · 3D motion design',
+      'pl.vista': 'Pl.\u00a0I — The Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arch of Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Numidian coins', 'pl.strata': 'Pl.\u00a0IV — Section through the strata', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — The Grand Erg',
+      'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
+      'team.h': 'Alongside him, the team',
+      'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
+      'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
+      'team.tFn': 'Technical representative', 'team.tDo': 'Keeps the build honest and the client informed.',
       'stack.kicker': '07 — Stack',
       'stack.title': 'The quiet <em>flex.</em>',
       'faq.kicker': '08 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
@@ -210,15 +240,30 @@
       'scene.cta': 'افتح اللوحات →',
       'founder.kicker': '٠٦ — الفريق والمؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
       'founder.lead': 'خلف Numidea: مصمّم-مطوّر يتصوّر ويبرمج ويُسلّم — دون وسيط.',
-      'founder.role': 'مصمّم ومطوّر · المؤسّس', 'founder.years': '٦ سنوات',
+      'founder.role': 'مصمّم غرافيك ومطوّر ويب · المؤسّس', 'founder.years': '٦ سنوات',
       'founder.bio': 'ستّ سنوات في تصميم الهويّات وبرمجة الواجهات وتسليم المنتجات — من العلامة إلى الواجهة إلى السحابة. أحوّل الفكرة إلى منتج، وأبقى بعد الإطلاق.',
       'founder.cvBtn': 'عرض المسار ↴', 'founder.cvClose': 'إخفاء المسار ↑', 'founder.portfolio': 'المعرض الشخصي ↗',
       'founder.expLabel': 'المسار', 'founder.skillsLabel': 'المهارات', 'founder.eduLabel': 'التعليم',
-      'founder.skills': 'تصميم وهويّة · ويب وواجهات · استراتيجية ومحتوى. إنتاج أسرع بنحو ٢٠٪ بفضل الذكاء الاصطناعي.',
       'founder.edu': 'علوم الحاسوب — جامعة محمد البشير الإبراهيمي · ٢٠١٨–٢٠٢٤',
       'founder.download': 'تحميل السيرة (PDF) ↓',
-      'founder.teamRow': 'إلى جانبه: <b>D</b> — البيانات والأنابيب · <b>S</b> — المبيعات والشراكات · <b>T</b> — الممثّل التقني',
-      'fx1': 'مصمّم غرافيك', 'fx2': 'مصمّم مستقل', 'fx3': 'ويب واجتماعي', 'fx4': 'هويّة وويب', 'fx5': 'محتوى وفيديو',
+      'fx1': 'مصمّم غرافيك', 'fx2': 'مصمّم غرافيك ومطوّر ويب، مستقل', 'fx3': 'مطوّر ويب ومسيّر شبكات التواصل', 'fx4': 'مصمّم غرافيك وويب', 'fx5': 'صانع محتوى وفيديو',
+      'fx1.when': 'ماي ٢٠٢٦ — حالياً', 'fx2.when': '٢٠١٩ — حالياً', 'fx3.when': 'فيفري – ماي ٢٠٢٦', 'fx4.when': 'أوت ٢٠٢٥ – فيفري ٢٠٢٦', 'fx5.when': 'مارس – جويلية ٢٠٢٤',
+      'fx1.what': 'تصاميم ومواد تواصل لمنصّة تنقّل دولية، وتطبيق هويّة العلامة على الحملات وشبكات التواصل.',
+      'fx2.what': 'مواقع تعريفية وصفحات هبوط موجّهة للتحويل؛ هويّات بصرية وملصقات وأغلفة ألبومات؛ إدارة فنية لحملات NFT ولعلامات موسيقيين.',
+      'fx3.what': 'الموقع الكامل للوكالة، وتجديد الهويّة البصرية للعلامة واستراتيجيتها على شبكات التواصل.',
+      'fx4.what': 'إعادة تصميم الهويّة (الشعار والميثاق) والمطبوعات، ثم موقع متجاوب سُلِّم من الألف إلى الياء.',
+      'fx5.what': 'فيديوهات قصيرة للفعاليات والحملات المجتمعية، وتنشيط ورشات إبداعية.',
+      'fs1.h': 'التصميم والهويّة', 'fs1': 'العلامة التجارية · الهويّة البصرية · الرسم الرقمي · الإدارة الفنية لواجهات المستخدم · التصوير والمعالجة',
+      'fs2.h': 'الويب والواجهات', 'fs2': 'HTML / CSS / JS · React · مواقع تعريفية · صفحات هبوط · أنظمة إدارة المحتوى · SEO · تصميم متجاوب',
+      'fs3.h': 'الاستراتيجية والمحتوى', 'fs3': 'شبكات التواصل · الكتابة الإبداعية · دمج الذكاء الاصطناعي · الأتمتة · إدارة المشاريع',
+      'founder.skillsNote': 'إنتاج أسرع بنحو ٢٠٪ بفضل الذكاء الاصطناعي. قيد التعلّم: التصميم الحركي والمونتاج.',
+      'founder.certs': 'الشهادات: Duolingo English Test · التصميم الرقمي (Artiland.Studio) · التصميم الحركي ثلاثي الأبعاد',
+      'pl.vista': 'لوحة ١ — جبال البيبان · برج بوعريريج', 'pl.arch': 'لوحة ٢ — قوس تراجان · تيمقاد', 'pl.coins': 'لوحة ٣ — نقود نوميدية', 'pl.strata': 'لوحة ٤ — مقطع في طبقات الأرض', 'pl.light': 'لوحة ٥ — رأس كاربون · بجاية', 'pl.dunes': 'لوحة ٦ — العرق الكبير',
+      'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
+      'team.h': 'وإلى جانبه، الفريق',
+      'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
+      'team.sFn': 'المبيعات والشراكات', 'team.sDo': 'أول تواصل: ترجمة الفكرة إلى نطاق عمل.',
+      'team.tFn': 'الممثّل التقني', 'team.tDo': 'إبقاء التنفيذ صادقاً والعميل على اطّلاع.',
       'stack.kicker': '٠٧ — التقنيات',
       'stack.title': 'التباهي <em>الهادئ.</em>',
       'faq.kicker': '٠٨ — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
@@ -260,28 +305,28 @@
       'mk.colType': 'Projet', 'mk.colDz': 'Algérie', 'mk.colNl': 'Numidea', 'mk.colFr': 'France', 'mk.colUs': 'États-Unis',
       'mk.day1': 'Une journée de développeur confirmé en France',
       'mk.day2': "au taux officiel — l'ordre de prix d'un site vitrine entier sur le marché algérien.",
-      'mk.note': "Conversions au taux officiel de la Banque d'Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec le même stack que les studios européens et américains : React, Next.js, Vercel.",
+      'mk.note': "Conversions au taux officiel de la Banque d'Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec le même stack que les studios européens et américains : React, Next.js, Vercel.",
       'mk.srcSum': 'Sources et méthode',
-      'mk.method': "Chaque case va du bas de la fourchette d'un freelance confirmé au haut de celle d'une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l'estimateur ci-dessus, au périmètre type de chaque projet.",
+      'mk.method': "Chaque case va du bas de la fourchette d'un freelance confirmé au haut de celle d'une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l'estimateur ci-dessus, au périmètre type de chaque projet.",
       'mk.srcDz': 'Algérie', 'mk.srcFr': 'France', 'mk.srcUs': 'États-Unis', 'mk.srcFx': 'Change',
       'md.h': 'Comment un projet est chiffré',
       'md.p': 'Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.',
       'md.ours': 'Notre modèle',
       'md.fH': 'Au forfait', 'md.fP': "Un prix fixe pour un périmètre écrit. Si le travail déborde, c'est le prestataire qui absorbe l'écart.",
-      'md.fW': "La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C'est ainsi que nous chiffrons chaque projet.",
+      'md.fW': "La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C'est ainsi que nous chiffrons chaque projet.",
       'md.tH': 'Au temps passé', 'md.tP': "Facturé au jour ou à l'heure. Souple quand le périmètre bouge, difficile à budgéter d'avance.",
       'md.tW': "La norme en France (480 –⁠ 650 € par jour pour un développeur confirmé) et aux États-Unis (100 –⁠ 149 $ de l'heure en agence).",
-      'md.aH': "À l'abonnement", 'md.aP': 'Un montant mensuel pour un service continu : maintenance, évolutions, contenu.',
-      'md.aW': 'Courant partout après le lancement. C\'est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.',
+      'md.aH': "À l'abonnement", 'md.aP': 'Un montant mensuel pour un service continu : maintenance, évolutions, contenu.',
+      'md.aW': 'Courant partout après le lancement. C\'est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.',
       'md.vH': 'À la valeur', 'md.vP': "Le prix suit ce que le projet rapporte, pas le temps qu'il demande.",
       'md.vW': "Plus rare, surtout en conseil et en stratégie, là où l'enjeu se mesure.",
       'md.drH': 'Ce qui fait bouger un devis',
       'md.d1h': 'Le périmètre', 'md.d1p': "Le nombre de pages, de produits ou d'écrans.",
       'md.d2h': 'Le design', 'md.d2p': "Sur mesure, ou adapté d'un modèle existant.",
-      'md.d3h': 'Les langues', 'md.d3p': "Chaque langue ajoute du contenu ; l'arabe ajoute une mise en page de droite à gauche.",
+      'md.d3h': 'Les langues', 'md.d3p': "Chaque langue ajoute du contenu ; l'arabe ajoute une mise en page de droite à gauche.",
       'md.d4h': 'Les intégrations', 'md.d4p': 'Paiement, comptes utilisateurs, outils et API tiers.',
-      'md.d5h': 'Le contenu', 'md.d5p': 'Textes, photos et vidéos : fournis par vous, ou à produire.',
-      'md.d6h': 'Le délai', 'md.d6p': 'Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.',
+      'md.d5h': 'Le contenu', 'md.d5p': 'Textes, photos et vidéos : fournis par vous, ou à produire.',
+      'md.d6h': 'Le délai', 'md.d6p': 'Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.',
       'price.waSoonSuffix': ' · bientôt',
       'nav.pricing': 'Tarifs',
       'wa.hello': "Bonjour Numidea Labs — j'aimerais parler d'un projet.",
@@ -311,10 +356,10 @@
       'price.t3c': 'Scraping et intelligence marché — le web ouvert en base de données',
       'price.t3d': 'Intégrations API et outils internes',
       'price.t3e': '6 mois de support inclus',
-      'price.retainer': 'Maintenance après livraison, si vous la voulez : 18 000 –⁠ 60 000 DA par mois. Sans engagement de durée.',
+      'price.retainer': 'Maintenance après livraison, si vous la voulez : 18 000 –⁠ 60 000 DA par mois. Sans engagement de durée.',
       'price.estH': 'Estimez votre projet',
       'price.estP': 'Réglez ce dont vous avez besoin. La fourchette se recalcule en direct, sur les mêmes chiffres que les paliers ci-dessus.',
-      'price.qType': 'Quel type de projet ?', 'price.qSize': 'Ampleur', 'price.qOpts': "Ce qu'il vous faut en plus", 'price.qPace': 'Délai',
+      'price.qType': 'Quel type de projet ?', 'price.qSize': 'Ampleur', 'price.qOpts': "Ce qu'il vous faut en plus", 'price.qPace': 'Délai',
       'price.tyVitrine': 'Vitrine', 'price.tyCustom': 'Site sur mesure', 'price.tyShop': 'E-commerce',
       'price.tyApp': 'Application web', 'price.tyAuto': 'Automatisation', 'price.tyBrand': 'Identité visuelle',
       'price.oI18n': 'Trilingue FR / EN / AR + RTL', 'price.oCms': 'CMS / back-office', 'price.oPay': 'Paiement en ligne',
@@ -335,9 +380,9 @@
       'svc.lead': 'Cinq offres en avant, cinq capacités en réserve — la profondeur attend ceux qui creusent.',
       'prev.tag': 'Offre signature', 'prev.name': "L'Aperçu", 'prev.promise': 'Zéro risque. Juste la preuve.',
       'prev.brief': 'On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.',
-      'prev.outcome': 'Le « oui » le plus facile que vous donnerez — parce que vous l\'avez déjà vu.',
+      'prev.outcome': 'Le « oui » le plus facile que vous donnerez — parce que vous l\'avez déjà vu.',
       'f1.name': 'Sites & applications web', 'f1.promise': 'Le choix évident.',
-      'f1.brief': 'Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel. On ne thème pas un template ; on construit un design system fin et on possède chaque token.',
+      'f1.brief': 'Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel. On ne thème pas un template ; on construit un design system fin et on possède chaque token.',
       'f2.name': 'Identité & systèmes visuels', 'f2.promise': 'La confiance avant le premier mot.',
       'f2.brief': 'Logos, couleur, typo, motion et le kit design-system complet — tokens primitifs → sémantiques → composants, documentés. Ce qui fait passer un studio de quatre pour un de quarante.',
       'f3.name': 'Automatisation & pipelines', 'f3.promise': 'Supprimez la corvée.',
@@ -1645,9 +1690,46 @@
       renderMarket();
     }
 
+    /* ---------- 15. illustrations and animated icons ----------
+       Plates (.lz) only fetch their mask images once they come within a
+       screen or so of the viewport — about 1MB of engraving would otherwise
+       load with the first paint. Icons (.ai) draw themselves in once, the
+       first time they are seen, and run their idle loop (.live) only while
+       on screen, so off-screen icons cost nothing. */
+    (function () {
+      var lz = [].slice.call(document.querySelectorAll('.lz'));
+      var ai = [].slice.call(document.querySelectorAll('.ai'));
+      if (!('IntersectionObserver' in window)) {
+        lz.forEach(function (el) { el.classList.add('lz-on'); });
+        ai.forEach(function (el) { el.classList.add('on', 'live'); });
+        [].forEach.call(document.querySelectorAll('.lv'), function (el) { el.classList.add('live'); });
+        return;
+      }
+      var lio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('lz-on'); lio.unobserve(e.target); }
+        });
+      }, { rootMargin: '900px 0px' });
+      lz.forEach(function (el) { lio.observe(el); });
+      var aio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) e.target.classList.add('on');
+          e.target.classList.toggle('live', e.isIntersecting);
+        });
+      }, { threshold: 0.35 });
+      ai.forEach(function (el) { aio.observe(el); });
+      // plates with motion (.lv) likewise only move while they are on screen
+      var vio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { e.target.classList.toggle('live', e.isIntersecting); });
+      }, { threshold: 0.15 });
+      [].forEach.call(document.querySelectorAll('.lv'), function (el) { vio.observe(el); });
+    })();
+
    } catch (e) {
     // Never let an init error leave content stuck behind scroll-reveal.
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    document.querySelectorAll('.lz').forEach(function (el) { el.classList.add('lz-on'); });
+    document.querySelectorAll('.ai').forEach(function (el) { el.classList.add('on'); });
     if (window.console && console.error) console.error(e);
    }
   });
