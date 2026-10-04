@@ -897,31 +897,37 @@ French uses a space as the thousands separator, so every space in
 All pricing strings in the dictionaries and the static markup carry these. A
 browser test confirmed no range splits at 1280/1024/768/390 in FR/EN/AR.
 
-## hub/ — a portfolio that shows work
+## hub/ — the artist's page, not the studio's
 
-The hub was a link-in-bio page: an empty silhouette as its centrepiece, 18
-profile links, and the same 18 links again in the footer columns. It now leads
-with the work.
+The hub is Yasser's own page (b4vetrave1er / VOIDSPLUNKER.std): his art,
+his design work, his social presence. **Client websites do not belong here**
+— they live on the Numidea page. A "Selected Work" section of the five client
+sites was added once and removed at the owner's request; `npm run check` now
+fails if any project URL appears in hub/.
 
-- **Hero frame:** until the pose photos exist, `#portrait` holds a contact sheet
-  of four live sites. The existing scroll-driven pose index (0-3) lights one
-  strip at a time, so it needs no script of its own, and
-  `.portrait:has(.pose) .sheet{display:none}` retires it when the photos are
-  dropped in. Update `.frame-cap` at the same time.
-- **Selected Work:** the five live sites, reusing the Numidea site's categories
-  and one-liners. Projects marked "soon" there are not listed until they ship.
-  `npm run check` now includes hub/ in its URL sync, so a project that gains a
-  URL in `app.js` fails the check until the hub shows it.
-- **Lead card is horizontal, never tall.** A 16:10 screenshot forced into a
-  two-row-tall box lost a quarter of its width per side, logo and headline
-  included. Every shot keeps its 16:10 frame.
-- **Crop anchors are per site, everywhere** a screenshot is cropped: top-left by
-  default, top-right for Nomara (RTL), top-centre for Bordj Steel (centred
-  headline). The hero strips show only ~44% of each shot's height, so Glaive
-  and AlmaFlowClim are aimed lower, at their headlines.
+- **Hero frame:** until the pose photos exist, `#portrait` holds four pieces
+  from the collection as a contact sheet. The scroll-driven pose index (0-3)
+  lights one strip at a time; `.portrait:has(.pose) .sheet{display:none}`
+  retires it when the photos are dropped in. Update `.frame-cap` then too.
+- **The Collection:** 28 pieces from the DeviantArt gallery (br4vetr4veler5),
+  self-hosted in `hub/art/` (`-s` 480w for the grid, `-l` ≤1100px for the
+  viewer) because the audit fails any third-party request. Filed as Ink /
+  Covers / Skies. A CSS-columns masonry keeps every piece at its own aspect;
+  captions are always visible (hover-only titles vanish on touch). Left out:
+  the two adult-rated pieces, a duplicate, and the April 2025 series whose
+  titles are image-generation prompts — ask before adding those back.
+- **The viewer** is a native `<dialog>` (focus trap and Esc for free). It only
+  intercepts a plain click, so cmd/ctrl-click still opens the DeviantArt page,
+  and with scripts off every piece is just that link. Its placeholder `src` is
+  a real 1×1 GIF: `data:,` counts as a broken image in the audit.
+- **Design:** the 12 Behance projects on the profile's first page, covers
+  self-hosted, view counts as read from the profile.
+- **Social highlights:** Behance and DeviantArt figures as the public profiles
+  showed them in October 2026 (hand-updated, never fetched at runtime).
+  Instagram shows no public count without signing in, so its card carries no
+  number rather than a guess.
 - The footer's link columns were removed: the archive grid is the one list.
-  Handles with no verified URL are a single "coming soon" line rather than five
-  dead tiles.
+  Handles with no verified URL are a single "coming soon" line.
 
 ## Founder section — the CV is the source of truth
 
