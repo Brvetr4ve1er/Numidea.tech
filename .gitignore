@@ -9,3 +9,4 @@ _shots*/
 # python bytecode from scratch tooling
 __pycache__/
 *.pyc
+.tmp/

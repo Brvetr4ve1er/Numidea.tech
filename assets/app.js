@@ -70,6 +70,7 @@
       'fs3.h': 'Stratégie & contenu', 'fs3': 'Réseaux sociaux · rédaction créative · intégration IA · automatisation · gestion de projet',
       'founder.skillsNote': "Production environ 20 % plus rapide grâce à l'IA. En cours d'apprentissage : motion design et montage vidéo.",
       'founder.certs': 'Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D',
+      'pl.vista': 'Pl.\u00a0I — Les Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arc de Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Monnaies numides', 'pl.strata': 'Pl.\u00a0IV — Coupe des couches', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — Le Grand Erg',
       'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
       'team.h': "Avec lui, l'équipe",
       'team.dFn': 'Spécialiste données', 'team.dDo': "Pipelines, scraping et la couche d'intelligence.",
@@ -163,6 +164,7 @@
       'fs3.h': 'Strategy & content', 'fs3': 'Social media · creative writing · AI integration · automation · project management',
       'founder.skillsNote': 'Production about 20% faster with AI. Currently learning: motion design and video editing.',
       'founder.certs': 'Certifications: Duolingo English Test · Digital design (Artiland.Studio) · 3D motion design',
+      'pl.vista': 'Pl.\u00a0I — The Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arch of Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Numidian coins', 'pl.strata': 'Pl.\u00a0IV — Section through the strata', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — The Grand Erg',
       'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
       'team.h': 'Alongside him, the team',
       'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
@@ -256,6 +258,7 @@
       'fs3.h': 'الاستراتيجية والمحتوى', 'fs3': 'شبكات التواصل · الكتابة الإبداعية · دمج الذكاء الاصطناعي · الأتمتة · إدارة المشاريع',
       'founder.skillsNote': 'إنتاج أسرع بنحو ٢٠٪ بفضل الذكاء الاصطناعي. قيد التعلّم: التصميم الحركي والمونتاج.',
       'founder.certs': 'الشهادات: Duolingo English Test · التصميم الرقمي (Artiland.Studio) · التصميم الحركي ثلاثي الأبعاد',
+      'pl.vista': 'لوحة ١ — جبال البيبان · برج بوعريريج', 'pl.arch': 'لوحة ٢ — قوس تراجان · تيمقاد', 'pl.coins': 'لوحة ٣ — نقود نوميدية', 'pl.strata': 'لوحة ٤ — مقطع في طبقات الأرض', 'pl.light': 'لوحة ٥ — رأس كاربون · بجاية', 'pl.dunes': 'لوحة ٦ — العرق الكبير',
       'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
       'team.h': 'وإلى جانبه، الفريق',
       'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
@@ -1687,9 +1690,46 @@
       renderMarket();
     }
 
+    /* ---------- 15. illustrations and animated icons ----------
+       Plates (.lz) only fetch their mask images once they come within a
+       screen or so of the viewport — about 1MB of engraving would otherwise
+       load with the first paint. Icons (.ai) draw themselves in once, the
+       first time they are seen, and run their idle loop (.live) only while
+       on screen, so off-screen icons cost nothing. */
+    (function () {
+      var lz = [].slice.call(document.querySelectorAll('.lz'));
+      var ai = [].slice.call(document.querySelectorAll('.ai'));
+      if (!('IntersectionObserver' in window)) {
+        lz.forEach(function (el) { el.classList.add('lz-on'); });
+        ai.forEach(function (el) { el.classList.add('on', 'live'); });
+        [].forEach.call(document.querySelectorAll('.lv'), function (el) { el.classList.add('live'); });
+        return;
+      }
+      var lio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('lz-on'); lio.unobserve(e.target); }
+        });
+      }, { rootMargin: '900px 0px' });
+      lz.forEach(function (el) { lio.observe(el); });
+      var aio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) e.target.classList.add('on');
+          e.target.classList.toggle('live', e.isIntersecting);
+        });
+      }, { threshold: 0.35 });
+      ai.forEach(function (el) { aio.observe(el); });
+      // plates with motion (.lv) likewise only move while they are on screen
+      var vio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { e.target.classList.toggle('live', e.isIntersecting); });
+      }, { threshold: 0.15 });
+      [].forEach.call(document.querySelectorAll('.lv'), function (el) { vio.observe(el); });
+    })();
+
    } catch (e) {
     // Never let an init error leave content stuck behind scroll-reveal.
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    document.querySelectorAll('.lz').forEach(function (el) { el.classList.add('lz-on'); });
+    document.querySelectorAll('.ai').forEach(function (el) { el.classList.add('on'); });
     if (window.console && console.error) console.error(e);
    }
   });

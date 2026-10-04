@@ -953,3 +953,79 @@ space there lets a line begin with the mark ("; animation d'ateliers"). The
 French dictionaries now use U+202F before `; ! ?` and U+00A0 before `:` and
 inside guillemets (27 strings, URLs untouched). New French copy should follow
 suit.
+
+## The atlas — engraved plates and animated icons
+
+The creative direction is the footer's own line, *rooted in Numidia*: the page
+reads as an engraved atlas of the region the studio works from. Six numbered
+plates, each a generated engraving (white line art on black) used as a
+luminance mask over `currentColor` — the `.ill` rule, so every plate re-inks
+itself in all six palettes from one file:
+
+| Plate | Where | File | Motion |
+|---|---|---|---|
+| I — Les Bibans | `.vista`, full-bleed under the hero | `vista-far/mid/near.webp` | 3-layer parallax, twinkling sky, a constellation that draws itself |
+| II — Arc de Trajan, Timgad | behind the `#work` header | `arch.webp` | parallax |
+| III — Monnaies numides | beside the `#pricing` header (≥1100px) | `coin-*.webp` | three coins, three depths, each turns on its own axis |
+| IV — Coupe des couches | behind `#stack` — the stack as strata | `strata.webp` | a core sample drilling across |
+| V — Cap Carbon, Béjaïa | behind the contact channels | `lighthouse.webp` | the beam sweeps |
+| VI — Le Grand Erg | between `</main>` and the footer | `dunes.webp` | parallax |
+
+Plus two uncaptioned figures: a lantern (fanous) hanging in the `#faq` gutter
+(≥1280px, swings), and the founder's workbench behind the founder card. The
+mid layer of plate I is a generic round tomb, **not** the Medracen — the
+generation came back looking Greek, so it is never captioned as Medracen.
+
+**Depth needs occlusion, and masks cannot occlude.** Each vista layer is two
+boxes: a fill (`--void`-family colour) clipped to that layer's skyline, then the
+ink. The skyline polygons are traced from the engravings by
+`scripts/plates.mjs` (first bright pixel per column, 160 columns) and live in
+the stylesheet. Fills get darker toward the viewer — aerial perspective — so
+the near palms read as standing in front of the ridge, not printed over it.
+Layers are wider than the viewport and hang below the frame by more than their
+parallax cap, so no drift bares an edge.
+
+**Masks load lazily.** ~1MB of engraving would otherwise arrive with first
+paint. Mask URLs are only assigned under `.lz-on`, which app.js §15 adds a
+screen ahead of the viewport. The head script sets `data-lz` on `<html>`; with
+scripts off it is absent and `html:not([data-lz]) .lz` loads them eagerly.
+
+**Captions are solid chips.** 10px type on hatching measured 4.0–4.4:1 under
+axe wherever the line work is dense; each `.pl-cap` sits on `--void`.
+
+**Nothing loops forever — still.** The anti-slop rule stands and
+`npm run audit` fails on any infinite animation. Every loop (icon or plate)
+plays a few cycles (`--n`, default 3) and settles; `.live`, toggled by an
+IntersectionObserver, removes and re-adds the animation, so it replays each
+time the element comes back on screen. Off-screen, nothing runs.
+
+### Animated icons (`.ai`)
+
+32 inline icons on the 24×24 / 1.5-stroke grammar: proof stats, tiers,
+pricing models, estimator, market, onboarding steps, stack groups, FAQ
+questions, contact channels. Drawable parts carry **class `.p`** and
+`pathLength="1"`; they draw in once (`.on`), then the idle loop runs (`.live`).
+
+**Never select drawable parts as `[pathLength]`.** Chromium does not invalidate
+a camelCase SVG attribute selector when an ancestor's class changes:
+`.ai.on [pathLength]` matched in DevTools, yet the computed style stayed stale
+at `stroke-dashoffset:1`. Icons elsewhere only drew because an ancestor's
+`.reveal` happened to restyle their subtree; the contact channels have no such
+ancestor, so their icons never appeared. Selecting by class fixed it.
+
+Icons go *beside* `data-i18n` elements, never inside: `applyLang` sets
+`innerHTML`, which would delete them.
+
+### Stock vs generated
+
+Magnific stock icons cost **300 credits each** to download, and the
+"animated icons" in stock are 600-credit video clips on coloured squares that
+cannot follow the palette. Plates were generated instead (60 credits each);
+icons are hand-drawn SVG, which costs nothing and re-inks per theme.
+
+### `.mk-scroll` is a `<section>`
+
+It became one so the validator would accept its accessible name — and so it
+inherited the page's `section{padding:96px 0}`, putting 96px of empty frame
+above and below the market table. It now sets `padding:0`. Any element turned
+into a `<section>` for semantics must shed the section rhythm.

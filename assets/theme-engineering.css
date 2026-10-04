@@ -908,3 +908,27 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
 .md-sub{color:var(--fg-3)}
 .md-drivers li{border-inline-start-color:var(--edge-2)}
 .md-drivers span{color:var(--fg-3)}
+
+/* ---- the atlas plates and animated icons, re-inked for the instrument surface ----
+   One cold accent, no brass: plates go to the panel greys, the moving parts
+   (beam, core sample, lantern, coins) take the studio orange. */
+.v-fill{background:var(--bg)}
+.v-far .v-fill{background:color-mix(in srgb,var(--panel-2) 70%,var(--bg))}
+.v-mid .v-fill{background:color-mix(in srgb,var(--panel) 60%,var(--bg))}
+.v-far .v-ink,.v-mid .v-ink,.v-near .v-ink{color:var(--fg-3)}
+.v-mid .v-ink{color:var(--accent);opacity:.3}
+.v-sky,.pl-cap{color:var(--fg-3)}
+.v-sky .v-moon,.v-sky .v-const-s{fill:var(--accent)}
+.v-sky .v-const{stroke:var(--accent)}
+.pi-arch,.pi-bench,.pi-strata,.pi-light{color:var(--fg-3)}
+.pc,.pi-lantern,.fd-ink{color:var(--accent)}
+.pi-strata .core{background:linear-gradient(transparent,var(--accent),transparent)}
+.pi-light .beam{background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 28%,transparent),transparent 70%)}
+.pi-lantern .glow{background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 26%,transparent),transparent)}
+.foot-dunes::after{background:linear-gradient(transparent,var(--bg))}
+.ai{color:var(--fg-2)}
+.ai-stat,.tier-pop .ai-corner,.faq-item[open] .ai-faq,.faq-item summary:hover .ai-faq{color:var(--accent)}
+/* the channel column is narrow here: icon beside a stacked label/value pair */
+.channels .ch-ic{grid-template-columns:18px minmax(0,1fr);column-gap:var(--s2);row-gap:4px}
+.channels .ch-ic .ai-ch{grid-row:1/span 2;width:18px;height:18px}
+.pl-cap{background:var(--bg)}
