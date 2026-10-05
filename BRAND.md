@@ -1226,3 +1226,36 @@ purpose.
   pages have a canonical URL. `sitemap.xml` and `robots.txt` live at the root
   (on GitHub Pages project sites crawlers only read the domain-root
   robots.txt — submit the sitemap in Search Console instead).
+
+## Page structure and design system (home page)
+
+**Order:** hero, proof, work, services, method, pricing, team, stack, FAQ,
+contact. Each idea is said once:
+- The free demo (L'Aperçu) is the services lead card and step 3 of the method.
+- The process is the four-step method. There is no second process in pricing.
+- Pricing reads tiers, then the estimator, and stops. The market comparison,
+  billing models and cost drivers sit in the "Comment on chiffre" disclosure.
+- Work ends on one call to action, the planches banner. The project explorer
+  stays reachable at `#/work` and `#/work/<slug>`.
+
+**Design system:** the `DESIGN SYSTEM` block at the end of `styles.css` is the
+source of truth. Engineering keeps its own system in `theme-engineering.css`.
+- Seven text sizes below the display headings:
+  - `--t-label` 11, mono uppercase at `--ls-label`;
+  - `--t-small` 13;
+  - `--t-ui` 14;
+  - `--t-body` 15;
+  - `--t-lead` 18;
+  - `--t-title` 22, every card title;
+  - `--t-feature` 30, featured titles and price figures. Price figures are
+    fluid down to 19px, because a figure like "1 200 000" cannot wrap.
+- Corner radii: 4 / 8 / 14. Panels use the card radius.
+- Section headers: every section has a kicker, a heading and a lead. Every
+  section heading is one display size with one accent colour, contact included.
+- Section rhythm:
+  - `--sec-pad` from 961px up;
+  - bands fade in and out over `--band-fade` instead of ending on a hard edge.
+- Cards show one marker each, a number or an icon. Never both, and no
+  decorative drawing beside the icon.
+- Anything inside a closed `<details>` must not carry `.reveal`: the scroll
+  observer never sees it, so it stays invisible.

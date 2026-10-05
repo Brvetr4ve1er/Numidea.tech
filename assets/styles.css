@@ -521,7 +521,6 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .proj .actions .soon{font-family:var(--font-mono);font-size:11px;padding:6px 12px;border:1px dashed var(--hairline-2);border-radius:var(--r-pill);color:var(--faint);display:inline-flex;align-items:center;gap:7px}
 .proj .actions .soon::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--faint)}
 .pill.soon{color:var(--faint);border-style:dashed}
-.work-foot{margin-top:var(--s-7);text-align:center}
 
 /* ---------- project previews ---------- */
 /* committed screenshots (live sites) */
@@ -562,18 +561,6 @@ html[dir="rtl"] .step .node{left:auto;right:0}
 html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 .step p{color:var(--muted);font-size:15px;line-height:1.6;max-width:34.476em}
 
-/* Each step keeps its numbered node; the drawing is a bounded tile in a
-   named area so the copy measure is untouched. These are detailed
-   technical renderings, not glyphs — below roughly 100px they collapse
-   into noise, so the tile is sized for legibility, not for decoration,
-   and it is dropped outright where that size will not fit. */
-.step{display:grid;grid-template-columns:minmax(0,1fr) auto;
-  grid-template-areas:"body fig";gap:var(--s-5);align-items:center}
-.step-body{grid-area:body;min-width:0}
-.step-fig{grid-area:fig;width:124px;height:124px;display:grid;place-items:center;padding:14px;
-  border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--navy);
-  color:var(--teal-text);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
-@media (max-width:760px){.step{display:block}.step-fig{display:none}}
 
 /* ---------- generated illustrations ----------
    Monochrome white-on-black rasters used as luminance masks over
@@ -586,9 +573,6 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
   -webkit-mask-position:center;mask-position:center;
   -webkit-mask-size:contain;mask-size:contain;
   -webkit-mask-source-type:luminance;mask-mode:luminance}
-.ill-how1{-webkit-mask-image:url(illus/how1.png);mask-image:url(illus/how1.png)}
-.ill-how2{-webkit-mask-image:url(illus/how2.png);mask-image:url(illus/how2.png)}
-.ill-how3{-webkit-mask-image:url(illus/how3.png);mask-image:url(illus/how3.png)}
 .ill-faq1{-webkit-mask-image:url(illus/faq1.png);mask-image:url(illus/faq1.png)}
 .ill-faq2{-webkit-mask-image:url(illus/faq2.png);mask-image:url(illus/faq2.png)}
 .ill-faq3{-webkit-mask-image:url(illus/faq3.png);mask-image:url(illus/faq3.png)}
@@ -1303,7 +1287,7 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   /* align-content:start, or the two rows stretch to the tallest step and
      each column's heading lands at a different height */
   .steps .step{padding-left:0;padding-top:60px;
-    grid-template-columns:minmax(0,1fr);grid-template-areas:"fig" "body";
+    grid-template-columns:minmax(0,1fr);
     justify-items:start;align-content:start;gap:var(--s-5)}
   .steps .step .node{left:0;top:0}
   .steps .step p{max-width:22.542em}
@@ -1574,18 +1558,6 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
    navy ground, hairline edge, inset top highlight — so it reads as part of the
    same system rather than a bolted-on price table. */
 
-.price-free{display:flex;gap:var(--s-5);align-items:flex-start;max-width:940px;
-  margin:0 0 var(--s-7);padding:var(--s-5);border-radius:var(--r-lg);
-  background:var(--grad-noir);border:1px solid var(--hairline-2);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 28px 60px -40px rgb(var(--shade) / calc(.85 * var(--shade-k)));position:relative;overflow:hidden}
-.price-free::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--teal),transparent);opacity:.7}
-.pf-mark{flex:none;width:64px;height:64px;display:grid;place-items:center;color:var(--teal-text)}
-.price-free h3{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,2.2vw,24px);
-  letter-spacing:-.01em;margin-bottom:var(--s-2);color:var(--ice)}
-html[dir="rtl"] .price-free h3{font-family:var(--font-ar-display)}
-.price-free p{color:var(--muted);font-size:15px;line-height:1.65;max-width:52em}
-@media (max-width:560px){.pf-mark{display:none}}
 
 /* ---------- tiers ---------- */
 .tiers{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5);margin-bottom:var(--s-5)}
@@ -1603,8 +1575,6 @@ html[dir="rtl"] .price-free h3{font-family:var(--font-ar-display)}
 .t-pop{position:absolute;top:0;inset-inline-start:var(--s-5);transform:translateY(-50%);
   font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--void);background:var(--teal-text);padding:4px 10px;border-radius:var(--r-pill)}
-.tier .t-fam{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--teal-text);display:block;margin-bottom:var(--s-3)}
 .tier h3{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.6vw,30px);
   letter-spacing:-.02em;color:var(--ice);margin-bottom:6px}
 html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
@@ -1695,29 +1665,11 @@ html[dir="rtl"] .est-head h3{font-family:var(--font-ar-display)}
 .eo-fine{color:var(--faint);font-size:13px;line-height:1.6;max-width:46em}
 .est-out .btn{align-self:flex-start;margin-top:var(--s-2)}
 
-/* ---------- onboarding ---------- */
-.onboard{border:1px solid var(--hairline);border-radius:var(--r-lg);padding:var(--s-6) var(--s-5);
-  background:var(--navy);background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 40%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgb(var(--shade) / calc(.85 * var(--shade-k)))}
-.ob-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(19px,2.4vw,26px);
-  letter-spacing:-.015em;color:var(--ice);margin-bottom:6px}
-html[dir="rtl"] .ob-head h3{font-family:var(--font-ar-display)}
-.ob-head p{color:var(--body-strong);font-size:14px;line-height:1.6;margin-bottom:var(--s-6)}
-.ob-steps{list-style:none;counter-reset:ob;display:grid;grid-template-columns:minmax(0,1fr);
-  gap:var(--s-5);margin-bottom:var(--s-6)}
-.ob-steps li{display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-areas:"n h" "n p";
-  column-gap:var(--s-4);row-gap:4px;align-items:start}
-.ob-n{grid-area:n;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
-  border:1.5px solid var(--teal);color:var(--teal-text);background:var(--void);
-  font-family:var(--font-mono);font-size:13px;font-variant-numeric:tabular-nums}
-.ob-steps li b{grid-area:h;font-family:var(--font-display);font-weight:600;font-size:16px;
-  letter-spacing:-.01em;color:var(--ice);align-self:center}
-html[dir="rtl"] .ob-steps li b{font-family:var(--font-ar-display)}
-.ob-steps li span:not(.ob-n){grid-area:p;color:var(--muted);font-size:14px;line-height:1.6}
-.ob-cta{display:flex;flex-wrap:wrap;gap:var(--s-3)}
+/* ---------- method: call to action under the four steps ---------- */
+.how-cta{display:flex;flex-wrap:wrap;gap:var(--s-3)}
 
 /* ---------- market comparison + pricing models ----------
-   Same panel idiom as the estimator and onboarding blocks, and token-driven
+   Same panel idiom as the estimator, and token-driven
    throughout: a literal colour here would be right in one palette only. */
 .market,.models{border:1px solid var(--hairline);border-radius:var(--r-lg);padding:var(--s-6) var(--s-5);
   background:var(--navy);background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 40%);
@@ -1810,13 +1762,11 @@ a.wa-link[data-wa-pending]{text-decoration:none}
 @media (min-width:720px){
   .tiers{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.6vw,24px)}
   .est-opts{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ob-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-6) var(--s-5)}
 }
 @media (min-width:1100px){
   #pricing>*{grid-column:1/-1}
   .est-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}
   .est-out{border-top:0;border-inline-start:1px solid var(--hairline);justify-content:center}
-  .ob-steps{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 
 /* ---------- parallax fields ----------
@@ -1852,28 +1802,6 @@ html[data-theme="daylight"] .px-field,html[data-theme="mono"] .px-field{opacity:
    the pricing kicker measured 4.3:1 at .1 */
 html[data-theme="mono"] #pricing .px-field{opacity:.06}
 
-/* ---------- service marks ---------- */
-/* The rows carried a small stroked glyph; these sit beside it at a size the
-   generated drawings survive, and only where there is width to spare. */
-.svc-fig{display:none}
-.ill-free{-webkit-mask-image:url(illus/free.png);mask-image:url(illus/free.png)}
-.ill-f1{-webkit-mask-image:url(illus/svc-f1.png);mask-image:url(illus/svc-f1.png)}
-.ill-f2{-webkit-mask-image:url(illus/svc-f2.png);mask-image:url(illus/svc-f2.png)}
-.ill-f3{-webkit-mask-image:url(illus/svc-f3.png);mask-image:url(illus/svc-f3.png)}
-.ill-f4{-webkit-mask-image:url(illus/svc-f4.png);mask-image:url(illus/svc-f4.png)}
-.ill-f5{-webkit-mask-image:url(illus/svc-f5.png);mask-image:url(illus/svc-f5.png)}
-@media (min-width:900px){
-  .svc-row{position:relative}
-  .svc-fig{display:grid;place-items:center;position:absolute;inset-block-start:var(--s-5);
-    inset-inline-end:var(--s-5);width:104px;height:104px;padding:12px;color:var(--teal-text);
-    border:1px solid var(--hairline);border-radius:var(--r-md);
-    background:color-mix(in srgb,var(--void) 50%,transparent);
-    opacity:.85;transition:opacity var(--dur-base) var(--ease-out),border-color var(--dur-base)}
-  .svc-row:hover .svc-fig{opacity:1;border-color:var(--hairline-2)}
-  /* keep the copy clear of the mark rather than letting it run underneath */
-  .svc-row>div{padding-inline-end:132px}
-}
-
 /* The ambient glows are placed for the LTR layout — warm light top-right behind
    the plate, cool light top-left behind the copy. In Arabic the layout mirrors
    but the glows did not, so the text column and the logo sat directly on the
@@ -1906,7 +1834,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
   :root{--void:#fff;--navy:#fff;--plum:#fff;--ice:#000;--body-strong:#111;--muted:#333;--faint:#555;--hairline:#bbb;--hairline-2:#888}
   body{background:#fff!important;color:#000!important}
   body::before,body::after,html::after,.floaters,.hero-mesh,.progress,.skip,.nav-right,.theme-menu,.mobile-menu,.menu-toggle,.modal,.sheet-frame,.browser{display:none!important}
-  .step-fig,.faq-fig{display:none!important}
+  .faq-fig{display:none!important}
   *{box-shadow:none!important;text-shadow:none!important;backdrop-filter:none!important;animation:none!important;transition:none!important}
   .reveal,.js-ready .reveal{opacity:1!important;transform:none!important}
   .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dashoffset:0!important}
@@ -2159,8 +2087,6 @@ html[data-theme="daylight"] .pc>i,html[data-theme="mono"] .pc>i,html[data-theme=
 .est-head,.mk-head{position:relative}
 .est-head .ai-corner,.mk-head .ai-corner{top:var(--s-5);inset-inline-end:var(--s-5)}
 .est-head h3,.mk-head h3,.est-head p,.mk-head p{padding-inline-end:44px}
-.ob-steps li{grid-template-areas:"i i" "n h" "n p"}
-.ai-ob{grid-area:i;width:28px;height:28px;margin-bottom:var(--s-3);color:var(--crimson-text)}
 .md-card .ai-corner{top:var(--s-5);inset-inline-end:var(--s-5);width:24px;height:24px}
 .tier-pop .ai-corner{color:var(--crimson-text)}
 .stack-strip .grp>b{display:inline-flex;align-items:center;gap:8px}
@@ -2304,7 +2230,6 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 }
 
 /* ---- Pricing: the free-preview banner spans the tier grid it introduces ---- */
-.price-free{max-width:none}
 
 /* ---- Founder: the card and the team share the row ----
    The card left ~25% of the row empty beside it; the team now fills it. */
@@ -2363,23 +2288,148 @@ html[dir="rtl"] .crumb{letter-spacing:0}
 .to-top:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media print{.to-top,.crumb{display:none!important}}
-/* three-across offers are a third of the row: icon and drawing share a top
-   row, the copy gets the full width beneath (it was wrapping word by word
-   beside the drawing and running into it) */
+/* Service cards: the icon sits above the copy at every width, so a narrow
+   card gives its text the full width. Rows hold their content height and the
+   spare height goes to the bottom, so eyebrows line up across a row. */
+.svc-grid>.svc-row{grid-template-columns:minmax(0,1fr);row-gap:var(--s-4);align-content:start}
+
+/* ═══════════════════════════ DESIGN SYSTEM ═══════════════════════════
+   One scale, applied last so it wins over the per-section sizes that had
+   piled up: the page was rendering 36 font sizes, 41 letter-spacings and
+   seven different card-title sizes. Seven text steps below the display
+   headings, three corner radii, one section rhythm. Engineering keeps its
+   own system in theme-engineering.css. */
+:root{
+  --t-label:11px;    /* mono caps: kickers, eyebrows, captions, column heads */
+  --t-small:13px;    /* fine print, notes, sources */
+  --t-ui:14px;       /* buttons, chips, form controls */
+  --t-body:15px;     /* card copy */
+  --t-lead:18px;     /* section intros, promises, bios, questions */
+  --t-title:22px;    /* every card title */
+  --t-feature:30px;  /* featured titles and price figures */
+  --ls-label:.14em;
+  --r-lg:var(--r-md);   /* panels share the card radius: 4 / 8 / 14 */
+  --sec-pad:clamp(72px,7vw,112px);
+  --band-fade:clamp(56px,8vw,120px);
+}
+[data-variant="b"]{--r-lg:var(--r-md)}
+
+/* labels */
+.kicker,.eyebrow,.tag,.svc-row .fam,.cap .fam,.t-pop,.md-tag,.md-sub,.eo-k,.est-hint,
+.stat-label,.pl-cap,.v-cap,.sb-kick,.proj .cat,.titleblock dt,.channels dt,.field label,
+.est-field legend,.est-field>label,.est-lab,.mk-table caption,.mk-table thead th,.team-h,
+.t-time,.eo-time,.fd-role,.outcome b,.stack-strip .grp>b{
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);
+  text-transform:uppercase;font-weight:400}
+.pill{font-size:var(--t-label);letter-spacing:.02em}
+/* the service family was a sentence-case white line here: it is the same
+   eyebrow as everywhere else now. Not the kicker's accent: at 11px on a card
+   surface the accent fell under 4.5:1 in Noir and Mono. */
+.svc-row .fam,.cap .fam{display:block;color:var(--body-strong);margin-bottom:8px}
+.t-time{color:var(--muted)}
+
+/* small */
+.eo-fine,.mk-note,.md-where,.mk-src p,.mk-src li,.sb-lead,.cv-note,.capabilities>summary .hint{font-size:var(--t-small);line-height:1.6}
+/* the disclosure hints sat on --faint, 4.44:1 on the pricing surface */
+.capabilities>summary .hint{color:var(--muted)}
+
+/* body */
+.proj .body p,.svc-row .brief,.preview .brief,.cap .brief,.step p,.t-for,.t-list li,.est-head p,
+.mk-head p,.price-note,.md-card p:not(.md-where),.proof-line,.mk-day,.outcome span,
+.faq-item .a,.faq-item p{font-size:var(--t-body);line-height:1.6}
+
+/* lead */
+.sec-lead,.svc-lead,.contact .sub,.hero .lede,.fd-bio,.faq-item summary .q,
+.svc-row .promise,.preview .promise,.cap .promise,.est-sizev{font-size:var(--t-lead);line-height:1.5}
+.svc-row .promise,.preview .promise,.cap .promise{margin:4px 0 var(--s-3)}
+
+/* titles */
+.proj h3,.work-grid>.proj h3,.svc-row h3,.step h3,.steps .step h3,.cap h4,.md-card h4,
+.scene-banner b{font-size:var(--t-title);line-height:1.2;letter-spacing:-.01em}
+.preview h3,.tier h3,.fd-id h3,.est-head h3,.mk-head h3,
+.work-grid>.proj--wide h3{font-size:var(--t-feature);line-height:1.15;letter-spacing:-.015em}
+/* price figures cannot wrap ("1 200 000" is one unit), so they scale down to
+   fit three tiers abreast on a tablet and reach the feature size on desktop */
+.t-range b,.eo-range b,.eo-range .eo-dash{font-size:clamp(19px,2.2vw + 2px,var(--t-feature));letter-spacing:-.02em}
+.t-range .cur,.eo-range .cur,.mk-table .cur{font-size:var(--t-small);letter-spacing:.06em}
+
+/* one display size for every section heading, contact included, and one
+   accent colour for the emphasised words */
+.contact h2{font-size:clamp(26px, 14px + 3.33vw, 62px);margin-bottom:var(--s-7)}
+.contact h2 em{color:var(--crimson-text)}
+
+/* ---- rhythm: one section padding, one header-to-content gap ---- */
 @media (min-width:961px){
-  .svc-grid>.svc-row:nth-child(n+3){grid-template-columns:46px minmax(0,1fr);grid-template-areas:"glyph fig" "body body";row-gap:var(--s-4)}
-  .svc-grid>.svc-row:nth-child(n+3) .glyph{grid-area:glyph}
-  .svc-grid>.svc-row:nth-child(n+3) .svc-fig{grid-area:fig;position:static;justify-self:end;align-self:start;width:84px;height:84px;padding:10px}
-  .svc-grid>.svc-row:nth-child(n+3)>div{grid-area:body;padding-inline-end:0}
-  /* rows in a card hold their content height; the card's spare height
-     goes to the bottom, so eyebrows line up across a row */
-  .svc-grid>.svc-row{align-content:start}
+  main.wrap>section{padding-block:var(--sec-pad)}
+  main.wrap>section>.kicker+h2.sec+.sec-lead+*,
+  main.wrap>section>.kicker+h2.sec+.svc-lead+*,
+  main.wrap>section>.kicker+h2.sec+*{margin-top:var(--s-7)}
 }
-/* the two large offers are only ~440px wide until 1280: the 132px drawing
-   gutter squeezed their copy to ~180px. Same two-row anatomy there. */
-@media (min-width:961px) and (max-width:1279px){
-  .svc-grid>.svc-row:nth-child(-n+2){grid-template-columns:46px minmax(0,1fr);grid-template-areas:"glyph fig" "body body";row-gap:var(--s-4)}
-  .svc-grid>.svc-row:nth-child(-n+2) .glyph{grid-area:glyph}
-  .svc-grid>.svc-row:nth-child(-n+2) .svc-fig{grid-area:fig;position:static;justify-self:end;align-self:start;width:84px;height:84px;padding:10px}
-  .svc-grid>.svc-row:nth-child(-n+2)>div{grid-area:body;padding-inline-end:0}
+
+/* ---- surfaces: bands fade in and out instead of ending on a hard edge ----
+   The old wash was a 100vmax box-shadow, which cannot carry a gradient, so
+   every band started and stopped on a ruler-straight line. */
+section.band::after,section.band+section.band::after{
+  inset:0 calc(50% - 50vw);box-shadow:none;clip-path:none;
+  background:linear-gradient(180deg,transparent,var(--band) var(--band-fade),
+    var(--band) calc(100% - var(--band-fade)),transparent)}
+/* the proof strip was the only navy slab inside the page width. It takes the
+   page colour instead: invisible as a box, but still opaque, so the landscape
+   plate's parallax layers never slide under its kicker */
+.proof{background:var(--void)}
+
+/* ---- hero: the landscape plate and the footer dunes were ~440px and ~360px
+   of pure picture between content; both are now an interlude, not a stop */
+.vista{height:clamp(160px,22vw,320px)}
+.foot-dunes{height:clamp(110px,14vw,210px)}
+@media (max-width:600px){.titleblock{display:none}}
+
+/* ---- work ---- */
+/* the placeholder art repeated the card title right above it */
+.proj .thumb--art .cover,.work-grid>.proj .thumb--art .cover{display:none}
+/* the wide banner crop: 2:1 from the centre keeps Bordj's headline whole */
+@media (min-width:961px){
+  .work-grid>.proj--wide .thumb,.work-grid>.proj--wide:first-child .thumb{aspect-ratio:2/1}
+  .work-grid>.proj--wide .thumb img{object-position:50% 55%}
 }
+/* the address bar was half-transparent over bright screenshots (Nomara) */
+.proj .browser{background:color-mix(in srgb,var(--void) 88%,transparent)}
+
+/* ---- pricing ---- */
+/* "8" and its unit were split by the slider; they read as one value now */
+.est-lab{display:flex;align-items:baseline;gap:8px}
+.est-lab label{margin-inline-end:auto}
+.est-lab .est-hint{margin:0;color:var(--muted)}
+/* the estimate sits at the top of its panel, not floating mid-height */
+@media (min-width:900px){.est-out{justify-content:flex-start}}
+/* "Notre modèle" pushed two of the four titles down: it is a badge on the
+   card edge now, like "Le plus choisi" on the tiers */
+.md-card{position:relative;padding-top:var(--s-6)}
+.md-tag{position:absolute;top:-10px;inset-inline-start:var(--s-5);margin:0}
+.price-more{margin-top:var(--s-7)}
+.price-more .pm-body{padding:0 var(--s-5) var(--s-5);display:grid;gap:var(--s-5)}
+.price-more .market,.price-more .models{margin:0}
+
+/* ---- method ---- */
+ol.steps{list-style:none;margin:0;padding:0}
+@media (min-width:1100px){.steps--4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.how-cta{margin-top:var(--s-7)}
+@media (min-width:1100px){.how-cta{grid-column:1/-1}}
+
+/* ---- phone ---- */
+/* a flex logo drops the space before "Labs" ("NUMideaLABS") */
+.logo{white-space:pre}
+@media (max-width:479px){.crumb{display:none}}
+/* the round button covered copy on nearly every phone screen */
+@media (max-width:720px){.to-top{display:none}}
+
+/* ---- stack + contact plates ---- */
+/* the strata caption hung below its plate, inside the BACK tile: it sits on
+   the plate's top edge now, clear of the tiles */
+.pi-strata .pl-cap{top:8px}
+/* tiles in a row share a top and a height (row two started at three heights) */
+.stack-strip{align-items:stretch}
+.stack-strip .grp{justify-content:flex-start}
+/* the lighthouse plate ended on a hard vertical edge beside the form */
+.pi-light{-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent)}
+html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,transparent);mask-image:linear-gradient(270deg,#000 55%,transparent)}
