@@ -919,15 +919,31 @@ fails if any project URL appears in hub/.
   - I *The Sky* (cobalt/yellow), II *The Noise* (vermilion/orange),
     III *The Ink* (violet/acid) — one palette per chapter.
   - Epilogue, *The Power of Imagination* — his Neville Goddard poster.
-  Poster typography (BR4VETR4VELER, N° xx/33, title, chapter) is HTML on a
-  cream card, never baked into the image: AI lettering garbles, and real text
-  stays sharp and consistent. Every chapter poster links to its original.
+  Titles are HTML labels, never baked into the image: AI lettering garbles. Every chapter poster links to its original.
   DAMN (p19) and DEJA VU (p29, formerly "Phone background") were redone: the
   first pass put DAMN on a dark ground and turned the DEJA VU collage into two
   clean skulls. The DAMN redo keeps the face in shadow on purpose — the other
   candidate came out as a recognisable likeness of a real person.
   Files: `hub/art/pNN-{s,l}.webp` (NN = the DeviantArt item), `tv0-3-*`
   (portraits), `imagination-*`; Magnific project "br4vetr4veler posters".
+- **Bento layout.** Every gallery grid runs on square units (row height =
+  column width, from `100cqw`), so a tile spanning C×R has shape C:R and each
+  piece gets its own shape: posters 2x3/4x6, portraits 2x2/4x4, the Goddard
+  poster 4x7. Measured crop is ≤0.2% at every width 320–1600. Tile ORDER is
+  part of the layout: with dense auto-flow it is what closes each chapter
+  flush at 6 columns and at 4 (per chapter: big + head + 7 small; head + big +
+  7 small; head + quote + big + 11 small; tall head + big + 3 small;
+  poster + text). Change a chapter's count and the hole check
+  (`.tmp/holes.mjs`-style: cells covered vs cols × rows) must be rerun.
+  Text tiles are their own containers and size type from their own width —
+  sized from the chapter, "TRAVELER" broke mid-word in a 2-column tile.
+  Labels sit on the image, hidden until hover/focus on a pointer and always
+  shown on touch. Images fade in once decoded; the viewer eases open and
+  closed (`@starting-style`).
+- **Clutter removed:** grain, scanlines, the custom cursor, the giant VOID
+  word, the dot grid, the floating geometry, the aurora, corner marks, tape,
+  the cycling handle and philosophy line, the code-comment eyebrows, the
+  poster card chrome and the chapter nav.
 - **The viewer** is a native `<dialog>` (focus trap and Esc for free). It only
   intercepts a plain click, so cmd/ctrl-click still opens the original, and
   with scripts off every poster is just that link. Its placeholder `src` is a

@@ -26,7 +26,7 @@ html{scroll-behavior:smooth}
 body{
   background:var(--ink);color:var(--paper);
   font-family:var(--disp);line-height:1.5;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;cursor:crosshair}
+  -webkit-font-smoothing:antialiased;}
 /* The page glow lives on its own fixed layer. It was background-attachment:
    fixed on <body>, which Chrome cannot composite: the whole viewport was
    repainted on every scroll frame. A fixed pseudo-element is composited once
@@ -43,18 +43,6 @@ a{color:inherit;text-decoration:none}
 /* ---- global grain + scanlines ---- */
 /* grain without a blend mode: an overlay-blended layer over the whole
    viewport made the GPU re-blend every pixel of every scroll frame */
-.noise{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.scanlines{position:fixed;inset:0;z-index:59;pointer-events:none;opacity:.5;
-  background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px)}
-
-/* ---- custom reticle cursor (pointer devices) ---- */
-.reticle{position:fixed;top:0;left:0;z-index:70;width:26px;height:26px;margin:-13px 0 0 -13px;pointer-events:none;
-  border:1px solid var(--acid);border-radius:50%;mix-blend-mode:difference;opacity:0;
-  transition:width .18s var(--ease),height .18s var(--ease),opacity .3s,background .18s}
-.reticle::before{content:"";position:absolute;inset:50% auto auto 50%;width:3px;height:3px;margin:-1.5px;background:var(--acid);border-radius:50%}
-.reticle.hot{width:52px;height:52px;margin:-26px 0 0 -26px;background:rgba(182,255,46,.08)}
-@media (hover:hover) and (pointer:fine){ .reticle{opacity:1} }
 
 /* ============================================================
    AMBIENT + PARALLAX SYSTEM
@@ -68,33 +56,11 @@ a{color:inherit;text-decoration:none}
   transform:translate3d(var(--px,0px),calc(var(--py,0px) + var(--sy,0px)),0);
   will-change:transform}
 
-/* ---- aurora: two enormous, very slow drifting fields ---- */
 /* No filter:blur — a 60px blur over a layer 140% of the viewport was
    re-applied by the compositor on every frame, and the fields are already
    soft radial gradients. No blend mode either, for the same reason. */
-.aurora{position:fixed;inset:-20%;z-index:0;pointer-events:none;overflow:hidden;opacity:.5}
-.aurora i{position:absolute;display:block;border-radius:50%}
-.aurora .a1{width:52vw;height:52vw;left:-8vw;top:-6vw;
-  background:radial-gradient(circle,rgba(182,255,46,.20),transparent 68%)}
-.aurora .a2{width:44vw;height:44vw;right:-6vw;top:22vh;
-  background:radial-gradient(circle,rgba(77,226,255,.16),transparent 68%)}
-.aurora .a3{width:38vw;height:38vw;left:28vw;bottom:-12vw;
-  background:radial-gradient(circle,rgba(255,46,151,.10),transparent 68%)}
-
-
-
-:root[data-theme="light"] .aurora{opacity:.4}
 
 /* ---- drifting geometry: hand-drawn SVG, slow rotation ---- */
-.floaters{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.floaters svg{position:absolute;fill:none;stroke:currentColor;stroke-width:1;opacity:.22}
-.fl-ring{color:var(--acid);width:190px;height:190px;top:8%;right:6%}
-.fl-tri{color:var(--cyan);width:110px;height:110px;bottom:16%;left:4%}
-.fl-sq{color:var(--magenta);width:74px;height:74px;top:56%;right:22%}
-.fl-dot{color:var(--acid);width:52px;height:52px;top:26%;left:14%}
-
-
-
 
 /* ---- gentle scroll reveal: rise + fade, staggered by JS ---- */
 [data-reveal]{opacity:0;transform:translate3d(0,18px,0);
@@ -112,19 +78,6 @@ a{color:inherit;text-decoration:none}
 .hero{position:relative;min-height:100svh;padding:clamp(16px,3vw,28px) var(--gut) 0;
   display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
 
-/* giant ghost word w/ chromatic aberration */
-.ghost{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%) translate(var(--gx,0px),var(--gy,0px));z-index:0;pointer-events:none;
-  font-family:var(--disp);font-weight:800;font-size:clamp(160px,34vw,520px);line-height:.8;letter-spacing:-.04em;
-  color:transparent;-webkit-text-stroke:1px rgba(236,233,221,.06);white-space:nowrap}
-.ghost span{position:relative;display:inline-block}
-.ghost span::before,.ghost span::after{content:attr(data-txt);position:absolute;inset:0;-webkit-text-stroke:1px;opacity:.5}
-.ghost span::before{-webkit-text-stroke-color:rgba(255,46,151,.14);transform:translate(var(--abx,-6px),0)}
-.ghost span::after{-webkit-text-stroke-color:rgba(77,226,255,.14);transform:translate(calc(var(--abx,-6px) * -1),0)}
-
-.dotgrid{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
-  background-image:radial-gradient(rgba(236,233,221,.10) 1px,transparent 1px);background-size:26px 26px;
-  mask-image:radial-gradient(80% 70% at 60% 40%,#000,transparent 78%);-webkit-mask-image:radial-gradient(80% 70% at 60% 40%,#000,transparent 78%)}
-
 /* top bar */
 .topbar{position:relative;z-index:3;display:flex;align-items:center;gap:16px;
   padding-bottom:clamp(20px,5vh,56px)}
@@ -132,7 +85,6 @@ a{color:inherit;text-decoration:none}
 .topbar .spacer{flex:1}
 .topbar .mono{font-size:11px;letter-spacing:.2em;white-space:nowrap}   /* "EST — MMXXV" split in two on phones */
 .topbar .dim{color:var(--paper-dim)}   /* --faint over the hero art measured 4.24:1 */
-.bars{width:64px;height:22px;background:repeating-linear-gradient(90deg,var(--paper) 0 2px,transparent 2px 4px,var(--paper) 4px 5px,transparent 5px 9px);opacity:.7}
 
 /* hero layout */
 .hero-grid{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
@@ -143,7 +95,6 @@ a{color:inherit;text-decoration:none}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc-text);
   display:flex;align-items:center;gap:10px;margin-bottom:clamp(16px,3vh,28px)}
 .blip{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid)}
-
 
 /* Sized from the COLUMN, not the viewport. Syne 800 runs roughly twice the
    width of the fallback this clamp was tuned against, so the real face
@@ -169,11 +120,6 @@ a{color:inherit;text-decoration:none}
 .cy-text{color:var(--paper)}
 @keyframes caret{0%,50%{opacity:1}51%,100%{opacity:0}}
 
-.role{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(18px,3vh,26px)}
-.chip{font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:5px 11px;border:1px solid var(--line-2);
-  border-radius:2px;color:var(--paper-dim);background:rgba(255,255,255,.02);transition:.25s var(--ease)}
-.chip:hover{color:var(--ink);background:var(--acid);border-color:var(--acid)}
-
 /* em, not ch. ch is a font metric: these are Google-hosted faces, so on a
    blocked or slow network the measure changed when they landed. */
 .philo{font-family:var(--disp);font-weight:600;font-style:italic;font-size:clamp(16px,2vw,22px);
@@ -191,11 +137,7 @@ a{color:inherit;text-decoration:none}
 .avatar{position:relative;justify-self:center;width:min(100%,420px);aspect-ratio:5/6}
 .frame{position:absolute;inset:0;border:1px solid var(--line-2);background:
   linear-gradient(180deg,rgba(182,255,46,.04),transparent 40%),var(--ink-2);overflow:hidden}
-.corner{position:absolute;width:16px;height:16px;border:2px solid var(--acid);z-index:3}
-.corner.tl{top:8px;left:8px;border-right:0;border-bottom:0}
-.corner.tr{top:8px;right:8px;border-left:0;border-bottom:0}
-.corner.bl{bottom:8px;left:8px;border-right:0;border-top:0}
-.corner.br{bottom:8px;right:8px;border-left:0;border-top:0}
+
 .portrait{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
 /* The glitchbar is gone. It swept a coloured bar down the portrait forever by
    animating `top` — a layout property, so every frame of it was a layout shift
@@ -204,10 +146,6 @@ a{color:inherit;text-decoration:none}
 .frame-cap{position:absolute;left:10px;bottom:10px;z-index:3;font-size:10px;letter-spacing:.12em;
   color:var(--paper-dim);background:rgba(10,11,13,.7);padding:4px 7px;border:1px solid var(--line)}
 .frame-cap .await{color:var(--faint);font-style:normal}
-.plus{position:absolute;font-family:var(--mono);color:var(--acc-text);font-size:20px;opacity:.8;z-index:4}
-.px1{top:-14px;right:8%}.px2{bottom:6%;left:-14px;color:var(--cyan)}
-.tape{position:absolute;top:14px;right:-8px;z-index:4;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
-  color:var(--ink);background:var(--acid);padding:4px 9px;transform:rotate(4deg);font-weight:700}
 
 /* scroll cue */
 .scrollcue{position:relative;z-index:3;display:flex;align-items:center;gap:12px;justify-content:center;
@@ -267,7 +205,6 @@ a{color:inherit;text-decoration:none}
 .go{font-family:var(--mono);color:var(--faint);transition:.3s var(--ease)}
 .link:hover .go{color:var(--b,var(--acid));transform:translate(2px,-2px)}
 
-
 /* per-brand accents */
 .link[data-brand="behance"]{--b:#3b7bff}
 .link[data-brand="dribbble"]{--b:#ea4c89}
@@ -288,7 +225,6 @@ a{color:inherit;text-decoration:none}
 .link[data-brand="telegram"]{--b:#3fa9e8}
 .link[data-brand="etsy"]{--b:#f1641e}
 
-
 /* ============================= RESPONSIVE ============================= */
 @media (max-width:860px){
   .hero-grid{grid-template-columns:minmax(0,1fr);gap:clamp(28px,6vh,44px);padding-top:8px}
@@ -296,9 +232,9 @@ a{color:inherit;text-decoration:none}
   /* safe-area: the hero runs full-bleed under viewport-fit=cover */
   .hero{padding-left:max(var(--gut),env(safe-area-inset-left));
         padding-right:max(var(--gut),env(safe-area-inset-right))}
-  .ghost{font-size:44vw;top:38%}
+  
   body{cursor:auto}
-  .reticle{display:none}
+  
 }
 /* Stacking the portrait above the copy costs a whole screen when the
    screen is short: at 717x512 the avatar alone ran y76→460 of a 512px
@@ -309,7 +245,7 @@ a{color:inherit;text-decoration:none}
   .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);align-items:center;gap:clamp(16px,4vw,32px)}
   .avatar{order:0;width:min(100%,240px)}
   .hero{min-height:auto;padding-block:clamp(12px,3vh,20px) clamp(16px,4vh,28px)}
-  .ghost{font-size:34vw}
+  
 }
 @media (max-width:520px){
   .meta li{grid-template-columns:56px minmax(0,1fr);gap:10px}
@@ -326,10 +262,7 @@ a{color:inherit;text-decoration:none}
 :root[data-theme="light"] body::before{
   background-image:radial-gradient(120% 90% at 80% -10%,rgba(143,214,0,.16),transparent 60%),
                    radial-gradient(90% 80% at 10% 110%,rgba(10,168,204,.08),transparent 60%)}
-:root[data-theme="light"] .noise{opacity:.03}
-:root[data-theme="light"] .scanlines{opacity:.2}
-:root[data-theme="light"] .ghost{-webkit-text-stroke-color:rgba(20,22,15,.09)}
-:root[data-theme="light"] .dotgrid{background-image:radial-gradient(rgba(20,22,15,.12) 1px,transparent 1px)}
+
 :root[data-theme="light"] .frame{background:linear-gradient(180deg,rgba(143,214,0,.08),transparent 40%),var(--ink-2)}
 :root[data-theme="light"] .frame-cap{background:rgba(233,231,221,.82)}
 :root[data-theme="light"] .badge{background:var(--ink-2)}
@@ -393,24 +326,18 @@ a{color:inherit;text-decoration:none}
   .cy-caret{opacity:1}
   [data-reveal]{opacity:1;transform:none;transition:none}
   [data-depth],[data-parallax]{transform:none}
-  .aurora{opacity:.28}
+  
 }
-
-
 
 .links-soon{margin-top:18px;font-size:11px;letter-spacing:.12em;color:var(--faint)}
 
-/* ============================= THE SERIES =============================
-   BR4VETR4VELER as one poster series: prologue, three chapters, epilogue.
-   Each poster is a cream paper card — the series' own stock — with the
-   typography set in HTML around the art, never baked into the image, so it
-   stays sharp, selectable and consistent across all 33. */
+/* ============================= SECTIONS ============================= */
 .coll,.design,.social{position:relative;z-index:2;padding:clamp(48px,10vh,110px) var(--gut) clamp(28px,6vh,60px);
   border-top:1px solid var(--line);isolation:isolate}
 .coll-head{margin-bottom:clamp(22px,4vh,40px);container-type:inline-size}
 .coll-head h2{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;
   font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px}
-.coll-sub{font-family:var(--mono);font-size:13px;color:var(--paper-dim);max-width:46ch}
+
 .coll-more{margin-top:18px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 .coll-more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--paper-dim);transition:color .2s}
 .coll-more a:hover{color:var(--acc-text)}
@@ -418,7 +345,7 @@ a{color:inherit;text-decoration:none}
 /* the viewer — a native <dialog>: focus is trapped and Esc closes it for free */
 .lb{margin:auto;width:min(1100px,94vw);max-height:94vh;padding:0;border:1px solid var(--line-2);
   background:var(--ink);color:var(--paper);overflow:visible}
-.lb::backdrop{background:rgba(5,6,8,.88);backdrop-filter:blur(4px)}
+
 .lb-fig{display:grid;grid-template-rows:minmax(0,1fr) auto;max-height:94vh}
 .lb-fig img{display:block;width:100%;height:100%;max-height:calc(94vh - 72px);object-fit:contain;background:var(--ink-2)}
 .lb-fig figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;padding:14px 18px;border-top:1px solid var(--line-2)}
@@ -435,19 +362,6 @@ a{color:inherit;text-decoration:none}
 html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
 
 /* ============================= DESIGN ============================= */
-.design-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:14px}
-.dcard{display:flex;flex-direction:column;min-width:0;color:inherit;border:1px solid var(--line-2);
-  background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);overflow:hidden;
-  transition:transform .3s var(--ease),border-color .3s}
-.dshot{display:block;aspect-ratio:808/632;overflow:hidden;border-bottom:1px solid var(--line-2);background:var(--ink-2)}
-.dshot img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.dmeta{display:grid;gap:6px;padding:14px 16px 16px}
-.dmeta b{font-size:15px;line-height:1.3;color:var(--paper);text-transform:capitalize}
-.dmeta i{font-style:normal;font-size:11px;color:var(--faint)}
-.dcard:hover{transform:translateY(-3px);border-color:var(--acid)}
-.dcard:hover .dshot img{transform:scale(1.04)}
-.dcard:hover .go{color:var(--acc-text)}
-.dcard:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
 
 /* ============================= SOCIAL HIGHLIGHTS ============================= */
 .social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
@@ -470,76 +384,155 @@ html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
 .sc-thumbs img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border:1px solid var(--line-2)}
 .sc-ig .sc-row span{padding:4px 10px;border:1px dashed var(--line-2)}
 @media (prefers-reduced-motion:reduce){
-  .piece a,.dcard,.dshot img,.scard,.lb-btn{transition:none}
-  .piece a:hover,.dcard:hover,.scard:hover{transform:none}.dcard:hover .dshot img{transform:none}
+  .scard,
+.lb-btn{transition:none}
+  .scard:hover{transform:none}
 }
-:root[data-theme="light"] .lb::backdrop{background:rgba(233,231,221,.9)}
+:root[data-theme="light"] .lb[open]::backdrop{background:rgba(233,231,221,.9)}
 
-
-/* ---- chapters ---- */
-.ch-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(30px,6vh,64px)}
-.ch-nav a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--paper-dim);border:1px solid var(--line-2);transition:border-color .2s,color .2s}
-.ch-nav a b{color:var(--acc-text);font-weight:700}
-.ch-nav a:hover{color:var(--paper);border-color:var(--paper-dim)}
-.ch-nav a:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
 .chapter{--c1:var(--acid);--c2:var(--paper-dim);scroll-margin-top:24px;margin-bottom:clamp(48px,9vh,110px)}
 .chapter[data-ch="traveler"]{--c1:#8a7dff;--c2:#b6ff2e}
 .chapter[data-ch="sky"]{--c1:#2f6fd8;--c2:#f2d43c}
 .chapter[data-ch="noise"]{--c1:#ec3b1e;--c2:#f6a21a}
 .chapter[data-ch="ink"]{--c1:#7a4dd8;--c2:#b6ff2e}
 .chapter[data-ch="imagination"]{--c1:#ec3b1e;--c2:#f2d43c}
-.ch-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(14px,2.4vw,34px);align-items:end;
-  padding-bottom:18px;margin-bottom:22px;border-bottom:1px solid var(--line-2);position:relative}
-.ch-head::after{content:"";position:absolute;left:0;bottom:-1px;width:min(220px,40%);height:3px;
-  background:linear-gradient(90deg,var(--c1) 0 50%,var(--c2) 50% 100%)}
-.ch-num{font-family:var(--disp);font-weight:800;line-height:.8;font-size:clamp(64px,10vw,150px);letter-spacing:-.04em;
-  color:transparent;-webkit-text-stroke:1.5px var(--c1)}
-.ch-kick{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
-.ch-head h3{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.6vw,64px);line-height:.92;letter-spacing:-.03em;color:var(--paper)}
-.ch-line{margin-top:10px;max-width:52ch;font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--paper-dim)}
 
-/* ---- the poster card ---- */
-.ch-grid{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-@media (min-width:760px){.ch-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
-@media (min-width:1100px){.ch-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}}
-.ch-grid--ep{grid-template-columns:minmax(0,min(100%,420px))}
-.poster a{display:flex;flex-direction:column;height:100%;color:#17150f;background:#efe8d6;padding:10px 10px 0;
-  box-shadow:0 1px 0 rgba(0,0,0,.25),0 18px 40px -28px rgba(0,0,0,.9);
-  transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
-.poster img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;background:#e2dac4}
-.poster--sq img{aspect-ratio:1}
-.poster--ep img{aspect-ratio:941/1672}
-.pt-top{display:flex;justify-content:space-between;gap:8px;font-size:9px;letter-spacing:.2em;padding:0 2px 8px;color:#3d392e}
-.pt-top b{font-weight:700}
-.pt-top i{font-style:normal}
-.pt-foot{display:grid;gap:3px;padding:10px 2px 12px;border-top:2px solid #17150f;margin-top:10px;position:relative}
-.pt-foot::before{content:"";position:absolute;right:2px;top:-7px;width:22px;height:12px;
-  background:linear-gradient(90deg,var(--c1) 0 50%,var(--c2) 50% 100%)}
-.pt-foot b{font-family:var(--disp);font-weight:800;font-size:clamp(14px,1.35vw,18px);line-height:1.1;letter-spacing:-.01em;
-  text-transform:uppercase;overflow-wrap:anywhere}
-.pt-foot i{font-style:normal;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#4a453a}
-.poster a:hover{transform:translateY(-4px) rotate(-.4deg);box-shadow:0 1px 0 rgba(0,0,0,.25),0 28px 50px -26px rgba(0,0,0,.95),0 0 0 2px var(--c1)}
-.poster a:focus-visible{outline:2px solid var(--acid);outline-offset:4px}
-:root[data-theme="light"] .poster a{box-shadow:0 0 0 1px #cfc6ad,0 18px 40px -30px rgba(0,0,0,.5)}
-@media (prefers-reduced-motion:reduce){.poster a{transition:none}.poster a:hover{transform:none}}
-@media (max-width:520px){.pt-top i{display:none}}
 /* 13 characters of Syne 800 overflowed the column at the shared 7.5cqw */
 .series .coll-head h2{font-size:clamp(20px,6.3cqw,104px)}
-/* the epilogue is one poster: set it beside its text rather than alone in a 4-up grid */
-@media (min-width:900px){
-  .chapter--ep{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
-  .chapter--ep .ch-head{order:2;grid-template-columns:minmax(0,1fr);margin:0}
-  .chapter--ep .ch-num{font-size:clamp(90px,12vw,180px)}
-  .chapter--ep .ch-line{font-size:15px;max-width:40ch}
-  .chapter--ep .ch-grid--ep{order:1;grid-template-columns:minmax(0,1fr)}
-}
-/* phones: the numeral stacks above the title, or IMAGINATION runs off the edge */
-@media (max-width:600px){
-  .ch-head{grid-template-columns:minmax(0,1fr);gap:6px}
-  .ch-num{font-size:56px}
-  .ch-head h3{font-size:clamp(22px,7vw,40px)}
-}
-.ch-head h3{overflow-wrap:anywhere}
+
 /* 320px phones: both long display headings need a smaller floor */
 @media (max-width:360px){.series .coll-head h2,.links-head h2{font-size:6.1vw}}
+
+/* ============================= BENTO =============================
+   One system for the whole gallery. Every grid runs on SQUARE units —
+   grid-auto-rows equals the column width, computed from the container
+   (100cqw) — so a tile spanning C columns and R rows has the shape C:R, and
+   each piece gets a tile of its own shape: posters 2:3 (2x3, 4x6), portraits
+   1:1 (2x2, 4x4), the Goddard poster 4x7 (its 941x1672 is 0.563; 4x7 is
+   0.571). object-fit:cover then crops at most a few px of gap.
+   Tile ORDER in the markup is part of the layout: with dense auto-flow it is
+   what makes each chapter close flush at 6 columns and at 4 — see BRAND.md
+   before reordering. */
+.coll,.design,.social{padding-inline:max(var(--gut),calc((100% - 1080px) / 2))}
+.chapter{container-type:inline-size;margin-bottom:var(--g,14px)}
+.series{--g:clamp(8px,1.2vw,14px)}
+.bento{--cols:6;--u:calc((100cqw - (var(--cols) - 1) * var(--g)) / var(--cols));
+  display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));grid-auto-rows:var(--u);
+  grid-auto-flow:dense;gap:var(--g)}
+.t-big{grid-column:span 4;grid-row:span 6}
+.t-sm,.t-head{grid-column:span 2;grid-row:span 3}
+.t-quote{grid-column:span 4;grid-row:span 3}
+.t-phead{grid-column:span 2;grid-row:span 4}
+.t-pbig{grid-column:span 4;grid-row:span 4}
+.t-psm{grid-column:span 2;grid-row:span 2}
+.t-ep{grid-column:span 4;grid-row:span 7}
+.t-eptext{grid-column:span 2;grid-row:span 7}
+@media (max-width:719px){
+  .bento{--cols:4}
+  .t-phead{grid-row:span 2}
+  .t-eptext{grid-column:span 4;grid-row:span 3}
+}
+
+/* ---- tiles ---- */
+.tile{position:relative;display:block;min-width:0;border-radius:14px;overflow:hidden;background:var(--panel);
+  isolation:isolate}
+.tile--img{color:inherit;box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 22px 44px -30px rgba(0,0,0,.9)}
+.tile--img img{display:block;width:100%;height:100%;object-fit:cover;
+  transition:transform .9s var(--ease),opacity .6s ease}
+body.fi .tile img{opacity:0}
+body.fi .tile img.ld{opacity:1}
+.tile--img:hover img{transform:scale(1.03)}
+.tile--img:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+/* the label: quiet until asked for on a pointer, always there on touch */
+.tl{position:absolute;left:10px;bottom:10px;max-width:calc(100% - 20px);display:grid;gap:2px;
+  padding:8px 11px 9px;border-radius:9px;background:rgba(10,11,13,.8);color:#ece9dd;
+  opacity:0;transform:translateY(6px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.tl b{font-weight:700;font-size:13px;line-height:1.25;overflow-wrap:anywhere}
+.tl i{font-style:normal;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#a9ad9f}
+.tile--img:hover .tl,.tile--img:focus-visible .tl{opacity:1;transform:none}
+@media (hover:none){.tl{opacity:1;transform:none}}
+
+/* text tiles carry the chapter's two inks as a soft wash */
+.chapter{--c1:var(--acid);--c2:var(--paper-dim)}
+.tile--text{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:clamp(14px,2.2cqw,26px);
+  background:
+    radial-gradient(120% 80% at 0% 0%,color-mix(in srgb,var(--c1) 22%,transparent),transparent 60%),
+    radial-gradient(90% 70% at 100% 100%,color-mix(in srgb,var(--c2) 12%,transparent),transparent 60%),
+    var(--ink-2);
+  border:1px solid var(--line)}
+.tt-num{margin-bottom:auto;font-family:var(--disp);font-weight:800;line-height:.8;letter-spacing:-.04em;
+  font-size:clamp(40px,9cqw,104px);color:transparent;-webkit-text-stroke:1.5px var(--c1)}
+.tt-kick{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-dim)}
+.tile--text h3{font-family:var(--disp);font-weight:800;font-size:clamp(20px,3.6cqw,40px);line-height:.95;letter-spacing:-.025em;
+  text-transform:uppercase;color:var(--paper);overflow-wrap:anywhere}
+.tt-line{font-family:var(--mono);font-size:clamp(11px,1.25cqw,13px);line-height:1.55;color:var(--paper-dim)}
+.tile--quote{justify-content:center}
+.tt-quote{font-family:var(--disp);font-weight:800;font-size:clamp(17px,2.8cqw,32px);line-height:1.15;letter-spacing:-.015em;
+  color:var(--paper);max-width:24ch}
+.tt-quote::before{content:"“";display:block;font-size:2.2em;line-height:.6;color:var(--c1)}
+.t-eptext .tt-line{font-size:clamp(12px,1.5cqw,15px)}
+@media (max-width:719px){
+  .t-phead{padding:12px}
+  .t-phead .tt-num{font-size:34px}
+  .t-phead h3{font-size:18px}
+  .t-phead .tt-line{font-size:10.5px;line-height:1.4}
+}
+:root[data-theme="light"] .tile--text{background:
+    radial-gradient(120% 80% at 0% 0%,color-mix(in srgb,var(--c1) 16%,transparent),transparent 60%),var(--ink-2)}
+
+/* ---- design: the same tiles on units shaped like the Behance covers ---- */
+.design{container-type:inline-size;--g:clamp(8px,1.2vw,14px)}
+.design-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g);grid-auto-flow:dense;
+  grid-auto-rows:calc((100cqw - 2 * var(--g)) / 3 / 1.2785)}
+.dtile--lead{grid-column:span 2;grid-row:span 2}
+@media (max-width:719px){
+  .design-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:calc((100cqw - var(--g)) / 2 / 1.2785)}
+  .dtile--lead{grid-column:span 2;grid-row:span 2}
+  /* 12 tiles with one 2x2 lead is 15 cells: odd, so one hole at 2 columns.
+     A second 2x2 at the end closes it. */
+  .dtile:last-child{grid-column:span 2;grid-row:span 2}
+}
+
+/* ---- the viewer eases in and out instead of snapping ---- */
+.lb{border-radius:14px;opacity:0;transform:translateY(10px) scale(.985);
+  transition:opacity .3s var(--ease),transform .3s var(--ease),overlay .3s allow-discrete,display .3s allow-discrete}
+.lb[open]{opacity:1;transform:none}
+@starting-style{.lb[open]{opacity:0;transform:translateY(10px) scale(.985)}}
+.lb::backdrop{background:rgba(5,6,8,0);backdrop-filter:none;
+  transition:background-color .3s,overlay .3s allow-discrete,display .3s allow-discrete}
+.lb[open]::backdrop{background:rgba(5,6,8,.9)}
+@starting-style{.lb[open]::backdrop{background:rgba(5,6,8,0)}}
+.lb-fig{border-radius:14px;overflow:hidden}
+.lb-fig img{opacity:0;transition:opacity .35s ease}
+.lb-fig img.ld{opacity:1}
+.lb-btn{border-radius:10px}
+@media (prefers-reduced-motion:reduce){
+  .tile--img img,.tl,.lb,.lb::backdrop,.lb-fig img{transition:none}
+  .tile--img:hover img{transform:none}
+}
+
+/* the handle is short now that it no longer cycles: let it be the headline */
+.cycler{font-size:clamp(30px,10.5cqw,92px)}
+/* text tiles size their type from THEIR OWN width: a 2-column tile and a
+   4-column one are different measures, and a chapter-wide cqw broke
+   "TRAVELER" across lines in the narrow tile */
+.tile--text{container-type:inline-size;padding:clamp(12px,8cqw,26px)}
+.tt-num{font-size:clamp(34px,30cqw,104px)}
+.tile--text h3{font-size:clamp(15px,11.5cqw,40px)}
+.tt-line{font-size:clamp(10.5px,5.4cqw,13px)}
+.tt-quote{font-size:clamp(15px,6.4cqw,32px)}
+.t-eptext .tt-line{font-size:clamp(11px,6cqw,15px)}
+.cycler{font-size:clamp(26px,9cqw,92px)}
+@media (max-width:719px){.t-phead{padding:10px}.t-phead .tt-num{font-size:30cqw}.t-phead h3{font-size:12cqw}.t-phead .tt-line{font-size:clamp(10px,5.6cqw,12px)}}
+/* Syne 800 capitals run ~1.1em a glyph: TRAVELER needs <=9cqw, IMAGINATION <=7.6cqw */
+.tile--text h3{font-size:clamp(14px,8.6cqw,40px)}
+.t-eptext h3{font-size:clamp(14px,7.4cqw,40px)}
+@media (max-width:719px){.t-phead h3{font-size:8.6cqw}}
+/* one corner language for the page: the social cards and archive links join the bento */
+.scard{border-radius:14px;--g:clamp(8px,1.2vw,14px)}
+.social-grid{gap:clamp(8px,1.2vw,14px)}
+.link{border-radius:12px}
+.sc-thumbs img{border-radius:8px}
+.sc-big .sc-word{font-size:clamp(26px,2.9vw,42px);overflow-wrap:anywhere}
+/* the archive sits on the same centred column as the rest of the page */
+.links{padding-inline:max(var(--gut),calc((100% - 1080px) / 2))}

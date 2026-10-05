@@ -17,54 +17,32 @@
      any first-party sheet — no request on this page reaches a third party. It
      was a Google link held off the critical path with media="print", which was
      the last such dependency on the site. -->
-<link rel="stylesheet" href="../assets/fonts-hub.css?v=202610050833">
+<link rel="stylesheet" href="../assets/fonts-hub.css?v=202610050846">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/syne-800-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/space-mono-400-latin.woff2">
-<link rel="stylesheet" href="style.css?v=202610050833">
+<link rel="stylesheet" href="style.css?v=202610050846">
 </head>
 <body>
-<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
-<div class="noise" aria-hidden="true"></div>
-<div class="scanlines" aria-hidden="true"></div>
-<div class="reticle" id="reticle" aria-hidden="true"></div>
 
 <!-- ============================= HERO ============================= -->
 <header class="hero" id="hero">
-  <div class="ghost" data-parallax="-.22" aria-hidden="true"><span data-txt="VOID">VOID</span></div>
-  <div class="dotgrid" data-depth="5" data-parallax="-.06" aria-hidden="true"></div>
-
-  <!-- drifting geometry — hand-authored SVG, no raster assets needed -->
-  <div class="floaters" aria-hidden="true">
-    <svg class="fl-ring" data-parallax="-.18" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="34" stroke-dasharray="3 7"/></svg>
-    <svg class="fl-tri" data-parallax=".14" viewBox="0 0 100 100"><path d="M50 8 92 86H8Z"/></svg>
-    <svg class="fl-sq" data-parallax="-.1" viewBox="0 0 100 100"><rect x="12" y="12" width="76" height="76" rx="6"/><rect x="30" y="30" width="40" height="40" rx="3" stroke-dasharray="4 5"/></svg>
-    <svg class="fl-dot" data-parallax=".2" viewBox="0 0 100 100"><circle cx="50" cy="50" r="7"/><circle cx="50" cy="50" r="26" stroke-dasharray="2 8"/></svg>
-  </div>
-
   <nav class="topbar" aria-label="Raccourcis">
     <span class="brandtag">VOIDSPLUNKER<span class="acc">.std</span></span>
     <span class="spacer"></span>
-    <span class="mono dim">EST — MMXXV</span>
-    <span class="bars" aria-hidden="true"></span>
   </nav>
 
   <div class="hero-grid">
 
     <!-- IDENTITY -->
-    <section class="identity" data-depth="3" data-parallax=".05" aria-labelledby="id-title">
-      <p class="eyebrow"><i class="blip"></i> SYSTEM ONLINE <span class="dim">// IDENTITY.load()</span></p>
+    <section class="identity" aria-labelledby="id-title">
+      <p class="eyebrow"><i class="blip"></i> ARTIST · DESIGNER · DEVELOPER</p>
 
       <h1 class="cycler" id="id-title">
-        <span class="cy-line"><span class="cy-text" id="cyText">b4vetrave1er.exe</span></span>
+        <span class="cy-line"><span class="cy-text">br4vetr4veler</span></span>
       </h1>
 
-      <p class="role" data-depth="2">
-        <span class="chip">polymath developer</span>
-        <span class="chip">designer</span>
-        <span class="chip">founder</span>
-      </p>
 
-      <p class="philo" id="philo">form is a function of obsession.</p>
+      <p class="philo">form is a function of obsession.</p>
 
       <ul class="meta mono">
         <li><b>NAME</b><span>Hamisse Mohamed Yasser</span></li>
@@ -74,10 +52,8 @@
     </section>
 
     <!-- AVATAR -->
-    <section class="avatar" data-depth="10" data-parallax="-.09" aria-label="portrait">
+    <section class="avatar" data-parallax="-.05" aria-label="portrait">
       <div class="frame" id="avatarFrame">
-        <span class="corner tl"></span><span class="corner tr"></span>
-        <span class="corner bl"></span><span class="corner br"></span>
         <!-- POSE SLOTS — the four Traveler portraits, calm to scream; the
              scroll-driven pose index steps through them. -->
         <div class="portrait" id="portrait" data-pose="0">
@@ -88,315 +64,213 @@
         </div>
         <span class="frame-cap mono">THE TRAVELER <i class="await">// four weathers</i></span>
       </div>
-      <span class="plus px1" data-depth="24" aria-hidden="true">+</span>
-      <span class="plus px2" data-depth="16" aria-hidden="true">+</span>
-      <span class="tape" aria-hidden="true">created in 2025</span>
     </section>
 
   </div>
 
   <a class="scrollcue mono" href="#collection">
-    <span>SCROLL</span><span class="arr">↓</span><span class="dim">SEE THE ART</span>
+    <span>the series</span><span class="arr">↓</span>
   </a>
 </header>
 
 
 <!-- ============================= THE SERIES ==============================
-     BR4VETR4VELER — the gallery remade as one poster series that reads as a
-     story: a prologue (the traveler, four portraits), three chapters each in
-     its own riso palette (sky: cobalt/yellow, noise: vermilion/orange, ink:
-     violet/acid), and an epilogue. The chapter posters were re-drawn with
-     Magnific from the DeviantArt originals, using Yasser's own portraits as the
-     style reference; each links back to its original. Typography is real HTML
-     over the art, never baked into the image. -->
+     BR4VETR4VELER: the gallery remade as one poster series that reads as a
+     story — prologue, three chapters (one riso palette each), epilogue.
+     Laid out as bento grids on square units, so every tile has the exact
+     shape of its piece: posters 2:3 (2x3 / 4x6), portraits 1:1, the epilogue
+     4x7. Spans per tile are in style.css; tile order is chosen so dense
+     auto-placement leaves no holes at 6 columns or at 4. -->
 <section class="coll series" id="collection" aria-labelledby="coll-h">
   <div class="coll-head" data-reveal>
-    <p class="eyebrow"><i class="blip"></i> THE SERIES <span class="dim">// br4vetr4veler.read()</span></p>
+    <p class="eyebrow"><i class="blip"></i> THE SERIES</p>
     <h2 id="coll-h">BR4VETR4VELER<br><span class="acc">A&nbsp;STORY IN 33&nbsp;POSTERS.</span></h2>
-    <p class="coll-sub">a prologue, three chapters and an epilogue. tap any poster to open it.</p>
   </div>
-  <nav class="ch-nav mono" aria-label="Chapters" data-reveal>
-    <a href="#ch-0"><b>0</b> The Traveler</a><a href="#ch-i"><b>I</b> The Sky</a><a href="#ch-ii"><b>II</b> The Noise</a><a href="#ch-iii"><b>III</b> The Ink</a><a href="#ch-ep"><b>∞</b> Imagination</a>
-  </nav>
-  <div id="collGrid">
   <section class="chapter" id="ch-0" data-ch="traveler" aria-labelledby="ch-0-h">
-    <header class="ch-head" data-reveal>
-      <span class="ch-num" aria-hidden="true">0</span>
-      <div><p class="ch-kick mono">Prologue</p><h3 id="ch-0-h">THE TRAVELER</h3>
-      <p class="ch-line">one face, four weathers. this is who walks through everything that follows.</p></div>
-    </header>
-    <ul class="ch-grid ch-grid--4">
-      <li class="piece poster poster--sq" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv0-l.webp" data-w="900" data-h="900" data-title="The Traveler — violet" data-meta="0 · The Traveler · N° 01" data-link-label="br4vetr4veler on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 01/33</i></span>
-          <img src="art/tv0-s.webp" alt="The Traveler — violet" width="420" height="420" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>The Traveler — violet</b><i class="mono">0 — The Traveler · 2026</i></span>
-        </a>
-      </li>
-      <li class="piece poster poster--sq" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv1-l.webp" data-w="900" data-h="900" data-title="The Traveler — cobalt" data-meta="0 · The Traveler · N° 02" data-link-label="br4vetr4veler on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 02/33</i></span>
-          <img src="art/tv1-s.webp" alt="The Traveler — cobalt" width="420" height="420" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>The Traveler — cobalt</b><i class="mono">0 — The Traveler · 2026</i></span>
-        </a>
-      </li>
-      <li class="piece poster poster--sq" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv2-l.webp" data-w="900" data-h="900" data-title="The Traveler — vermilion" data-meta="0 · The Traveler · N° 03" data-link-label="br4vetr4veler on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 03/33</i></span>
-          <img src="art/tv2-s.webp" alt="The Traveler — vermilion" width="420" height="420" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>The Traveler — vermilion</b><i class="mono">0 — The Traveler · 2026</i></span>
-        </a>
-      </li>
-      <li class="piece poster poster--sq" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv3-l.webp" data-w="900" data-h="900" data-title="The Traveler — acid" data-meta="0 · The Traveler · N° 04" data-link-label="br4vetr4veler on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 04/33</i></span>
-          <img src="art/tv3-s.webp" alt="The Traveler — acid" width="420" height="420" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>The Traveler — acid</b><i class="mono">0 — The Traveler · 2026</i></span>
-        </a>
-      </li>
-    </ul>
+    <div class="bento bento--traveler">
+      <div class="tile tile--text t-phead">
+        <span class="tt-num" aria-hidden="true">0</span>
+        <p class="tt-kick mono">Prologue</p>
+        <h3 id="ch-0-h">The Traveler</h3>
+        <p class="tt-line">one face, four weathers. this is who walks through everything that follows.</p>
+      </div>
+      <a class="tile tile--img t-pbig" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv3-l.webp" data-w="900" data-h="900" data-title="The Traveler — acid" data-meta="Prologue · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
+        <img src="art/tv3-l.webp" alt="The Traveler — acid" width="900" height="900" loading="lazy" decoding="async">
+        <span class="tl"><b>The Traveler — acid</b><i class="mono">Prologue · 2026</i></span>
+      </a>
+      <a class="tile tile--img t-psm" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv0-l.webp" data-w="900" data-h="900" data-title="The Traveler — violet" data-meta="Prologue · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
+        <img src="art/tv0-s.webp" alt="The Traveler — violet" width="420" height="420" loading="lazy" decoding="async">
+        <span class="tl"><b>The Traveler — violet</b><i class="mono">Prologue · 2026</i></span>
+      </a>
+      <a class="tile tile--img t-psm" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv1-l.webp" data-w="900" data-h="900" data-title="The Traveler — cobalt" data-meta="Prologue · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
+        <img src="art/tv1-s.webp" alt="The Traveler — cobalt" width="420" height="420" loading="lazy" decoding="async">
+        <span class="tl"><b>The Traveler — cobalt</b><i class="mono">Prologue · 2026</i></span>
+      </a>
+      <a class="tile tile--img t-psm" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv2-l.webp" data-w="900" data-h="900" data-title="The Traveler — vermilion" data-meta="Prologue · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
+        <img src="art/tv2-s.webp" alt="The Traveler — vermilion" width="420" height="420" loading="lazy" decoding="async">
+        <span class="tl"><b>The Traveler — vermilion</b><i class="mono">Prologue · 2026</i></span>
+      </a>
+    </div>
   </section>
   <section class="chapter" id="ch-i" data-ch="sky" aria-labelledby="ch-i-h">
-    <header class="ch-head" data-reveal>
-      <span class="ch-num" aria-hidden="true">I</span>
-      <div><p class="ch-kick mono">Chapter I · 8 posters</p><h3 id="ch-i-h">THE SKY</h3>
-      <p class="ch-line">before anything, the sky. clouds you could stand on, a moon close enough to reach.</p></div>
-    </header>
-    <ul class="ch-grid">
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/CLOUD-1184916814" target="_blank" rel="noopener" data-full="art/p08-l.webp" data-w="900" data-h="1342" data-title="CLOUD" data-meta="I · The Sky · N° 05" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 05/33</i></span>
-          <img src="art/p08-s.webp" alt="CLOUD" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>CLOUD</b><i class="mono">I — The Sky · 2025</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/BOY-1184912606" target="_blank" rel="noopener" data-full="art/p13-l.webp" data-w="900" data-h="1350" data-title="BOY" data-meta="I · The Sky · N° 06" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 06/33</i></span>
-          <img src="art/p13-s.webp" alt="BOY" width="420" height="630" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>BOY</b><i class="mono">I — The Sky · 2025</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/can%27t-wake-up-1184913176" target="_blank" rel="noopener" data-full="art/p12-l.webp" data-w="900" data-h="1342" data-title="can&#x27;t wake up" data-meta="I · The Sky · N° 07" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 07/33</i></span>
-          <img src="art/p12-s.webp" alt="can&#x27;t wake up" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>can&#x27;t wake up</b><i class="mono">I — The Sky · 2025</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/Sky-Junge-1028348649" target="_blank" rel="noopener" data-full="art/p26-l.webp" data-w="900" data-h="1342" data-title="Sky Junge" data-meta="I · The Sky · N° 08" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 08/33</i></span>
-          <img src="art/p26-s.webp" alt="Sky Junge" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>Sky Junge</b><i class="mono">I — The Sky · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/self-portrait-1028140868" target="_blank" rel="noopener" data-full="art/p18-l.webp" data-w="900" data-h="1342" data-title="self portrait" data-meta="I · The Sky · N° 09" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 09/33</i></span>
-          <img src="art/p18-s.webp" alt="self portrait" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>self portrait</b><i class="mono">I — The Sky · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/tears-falling-down-at-the-party-1119614662" target="_blank" rel="noopener" data-full="art/p20-l.webp" data-w="900" data-h="1342" data-title="tears falling down at the party" data-meta="I · The Sky · N° 10" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 10/33</i></span>
-          <img src="art/p20-s.webp" alt="tears falling down at the party" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>tears falling down at the party</b><i class="mono">I — The Sky · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/I-shal-name-this-SPOT.-ELYSIUM-1104492957" target="_blank" rel="noopener" data-full="art/p21-l.webp" data-w="900" data-h="1350" data-title="ELYSIUM" data-meta="I · The Sky · N° 11" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 11/33</i></span>
-          <img src="art/p21-s.webp" alt="ELYSIUM" width="420" height="630" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>ELYSIUM</b><i class="mono">I — The Sky · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/Pic.Art-04.02.21-1026716358" target="_blank" rel="noopener" data-full="art/p28-l.webp" data-w="900" data-h="1350" data-title="Pic.Art 04.02.21" data-meta="I · The Sky · N° 12" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 12/33</i></span>
-          <img src="art/p28-s.webp" alt="Pic.Art 04.02.21" width="420" height="630" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>Pic.Art 04.02.21</b><i class="mono">I — The Sky · 2024</i></span>
-        </a>
-      </li>
-    </ul>
+    <div class="bento bento--sky">
+      <a class="tile tile--img t-big" href="https://www.deviantart.com/br4vetr4veler5/art/BOY-1184912606" target="_blank" rel="noopener" data-full="art/p13-l.webp" data-w="900" data-h="1350" data-title="BOY" data-meta="I · The Sky · 2025" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p13-l.webp" alt="BOY" width="900" height="1350" loading="lazy" decoding="async">
+        <span class="tl"><b>BOY</b><i class="mono">I · The Sky · 2025</i></span>
+      </a>
+      <div class="tile tile--text t-head">
+        <span class="tt-num" aria-hidden="true">I</span>
+        <p class="tt-kick mono">Chapter I · 8 posters</p>
+        <h3 id="ch-i-h">The Sky</h3>
+        <p class="tt-line">before anything, the sky. clouds you could stand on, a moon close enough to reach.</p>
+      </div>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/CLOUD-1184916814" target="_blank" rel="noopener" data-full="art/p08-l.webp" data-w="900" data-h="1342" data-title="CLOUD" data-meta="I · The Sky · 2025" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p08-s.webp" alt="CLOUD" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>CLOUD</b><i class="mono">I · The Sky · 2025</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/can%27t-wake-up-1184913176" target="_blank" rel="noopener" data-full="art/p12-l.webp" data-w="900" data-h="1342" data-title="can&#x27;t wake up" data-meta="I · The Sky · 2025" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p12-s.webp" alt="can&#x27;t wake up" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>can&#x27;t wake up</b><i class="mono">I · The Sky · 2025</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Sky-Junge-1028348649" target="_blank" rel="noopener" data-full="art/p26-l.webp" data-w="900" data-h="1342" data-title="Sky Junge" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p26-s.webp" alt="Sky Junge" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>Sky Junge</b><i class="mono">I · The Sky · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/self-portrait-1028140868" target="_blank" rel="noopener" data-full="art/p18-l.webp" data-w="900" data-h="1342" data-title="self portrait" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p18-s.webp" alt="self portrait" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>self portrait</b><i class="mono">I · The Sky · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/tears-falling-down-at-the-party-1119614662" target="_blank" rel="noopener" data-full="art/p20-l.webp" data-w="900" data-h="1342" data-title="tears falling down at the party" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p20-s.webp" alt="tears falling down at the party" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>tears falling down at the party</b><i class="mono">I · The Sky · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/I-shal-name-this-SPOT.-ELYSIUM-1104492957" target="_blank" rel="noopener" data-full="art/p21-l.webp" data-w="900" data-h="1350" data-title="ELYSIUM" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p21-s.webp" alt="ELYSIUM" width="420" height="630" loading="lazy" decoding="async">
+        <span class="tl"><b>ELYSIUM</b><i class="mono">I · The Sky · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Pic.Art-04.02.21-1026716358" target="_blank" rel="noopener" data-full="art/p28-l.webp" data-w="900" data-h="1350" data-title="Pic.Art 04.02.21" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p28-s.webp" alt="Pic.Art 04.02.21" width="420" height="630" loading="lazy" decoding="async">
+        <span class="tl"><b>Pic.Art 04.02.21</b><i class="mono">I · The Sky · 2024</i></span>
+      </a>
+    </div>
   </section>
   <section class="chapter" id="ch-ii" data-ch="noise" aria-labelledby="ch-ii-h">
-    <header class="ch-head" data-reveal>
-      <span class="ch-num" aria-hidden="true">II</span>
-      <div><p class="ch-kick mono">Chapter II · 8 posters</p><h3 id="ch-ii-h">THE NOISE</h3>
-      <p class="ch-line">then the noise — covers, crowds, songs on repeat, the city at three in the morning.</p></div>
-    </header>
-    <ul class="ch-grid">
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/YUNGe-falling-boy-1184911531" target="_blank" rel="noopener" data-full="art/p14-l.webp" data-w="900" data-h="1342" data-title="YUNGe — falling boy" data-meta="II · The Noise · N° 13" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 13/33</i></span>
-          <img src="art/p14-s.webp" alt="YUNGe — falling boy" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>YUNGe — falling boy</b><i class="mono">II — The Noise · 2025</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/many-of-one-1184914134" target="_blank" rel="noopener" data-full="art/p10-l.webp" data-w="900" data-h="1350" data-title="many of one" data-meta="II · The Noise · N° 14" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 14/33</i></span>
-          <img src="art/p10-s.webp" alt="many of one" width="420" height="630" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>many of one</b><i class="mono">II — The Noise · 2025</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/BREAK-1stuck-in-the-sound1-1026714931" target="_blank" rel="noopener" data-full="art/p15-l.webp" data-w="900" data-h="1342" data-title="BREAK — stuck in the sound" data-meta="II · The Noise · N° 15" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 15/33</i></span>
-          <img src="art/p15-s.webp" alt="BREAK — stuck in the sound" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>BREAK — stuck in the sound</b><i class="mono">II — The Noise · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/PAY-NO-MIND.-.-.-.Song%3A-MADD-pay-no-mind-1104492026" target="_blank" rel="noopener" data-full="art/p22-l.webp" data-w="900" data-h="1342" data-title="PAY NO MIND" data-meta="II · The Noise · N° 16" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 16/33</i></span>
-          <img src="art/p22-s.webp" alt="PAY NO MIND" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>PAY NO MIND</b><i class="mono">II — The Noise · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/DAMN-1119614534" target="_blank" rel="noopener" data-full="art/p19-l.webp" data-w="900" data-h="1342" data-title="DAMN" data-meta="II · The Noise · N° 17" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 17/33</i></span>
-          <img src="art/p19-s.webp" alt="DAMN" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>DAMN</b><i class="mono">II — The Noise · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/delusions-of-03-23-1027514649" target="_blank" rel="noopener" data-full="art/p27-l.webp" data-w="900" data-h="1342" data-title="delusions of 03-23" data-meta="II · The Noise · N° 18" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 18/33</i></span>
-          <img src="art/p27-s.webp" alt="delusions of 03-23" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>delusions of 03-23</b><i class="mono">II — The Noise · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/Design-i-made-for-my-phone-background-1025462444" target="_blank" rel="noopener" data-full="art/p29-l.webp" data-w="900" data-h="1342" data-title="DEJA VU" data-meta="II · The Noise · N° 19" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 19/33</i></span>
-          <img src="art/p29-s.webp" alt="DEJA VU" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>DEJA VU</b><i class="mono">II — The Noise · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/ORANGE-butterfly-ALT-1025344222" target="_blank" rel="noopener" data-full="art/p17-l.webp" data-w="900" data-h="1342" data-title="ORANGE butterfly" data-meta="II · The Noise · N° 20" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 20/33</i></span>
-          <img src="art/p17-s.webp" alt="ORANGE butterfly" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>ORANGE butterfly</b><i class="mono">II — The Noise · 2024</i></span>
-        </a>
-      </li>
-    </ul>
+    <div class="bento bento--noise">
+      <div class="tile tile--text t-head">
+        <span class="tt-num" aria-hidden="true">II</span>
+        <p class="tt-kick mono">Chapter II · 8 posters</p>
+        <h3 id="ch-ii-h">The Noise</h3>
+        <p class="tt-line">then the noise — covers, crowds, songs on repeat, the city at three in the morning.</p>
+      </div>
+      <a class="tile tile--img t-big" href="https://www.deviantart.com/br4vetr4veler5/art/BREAK-1stuck-in-the-sound1-1026714931" target="_blank" rel="noopener" data-full="art/p15-l.webp" data-w="900" data-h="1342" data-title="BREAK — stuck in the sound" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p15-l.webp" alt="BREAK — stuck in the sound" width="900" height="1342" loading="lazy" decoding="async">
+        <span class="tl"><b>BREAK — stuck in the sound</b><i class="mono">II · The Noise · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/YUNGe-falling-boy-1184911531" target="_blank" rel="noopener" data-full="art/p14-l.webp" data-w="900" data-h="1342" data-title="YUNGe — falling boy" data-meta="II · The Noise · 2025" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p14-s.webp" alt="YUNGe — falling boy" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>YUNGe — falling boy</b><i class="mono">II · The Noise · 2025</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/many-of-one-1184914134" target="_blank" rel="noopener" data-full="art/p10-l.webp" data-w="900" data-h="1350" data-title="many of one" data-meta="II · The Noise · 2025" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p10-s.webp" alt="many of one" width="420" height="630" loading="lazy" decoding="async">
+        <span class="tl"><b>many of one</b><i class="mono">II · The Noise · 2025</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/PAY-NO-MIND.-.-.-.Song%3A-MADD-pay-no-mind-1104492026" target="_blank" rel="noopener" data-full="art/p22-l.webp" data-w="900" data-h="1342" data-title="PAY NO MIND" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p22-s.webp" alt="PAY NO MIND" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>PAY NO MIND</b><i class="mono">II · The Noise · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/DAMN-1119614534" target="_blank" rel="noopener" data-full="art/p19-l.webp" data-w="900" data-h="1342" data-title="DAMN" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p19-s.webp" alt="DAMN" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>DAMN</b><i class="mono">II · The Noise · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/delusions-of-03-23-1027514649" target="_blank" rel="noopener" data-full="art/p27-l.webp" data-w="900" data-h="1342" data-title="delusions of 03-23" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p27-s.webp" alt="delusions of 03-23" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>delusions of 03-23</b><i class="mono">II · The Noise · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Design-i-made-for-my-phone-background-1025462444" target="_blank" rel="noopener" data-full="art/p29-l.webp" data-w="900" data-h="1342" data-title="DEJA VU" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p29-s.webp" alt="DEJA VU" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>DEJA VU</b><i class="mono">II · The Noise · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/ORANGE-butterfly-ALT-1025344222" target="_blank" rel="noopener" data-full="art/p17-l.webp" data-w="900" data-h="1342" data-title="ORANGE butterfly" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p17-s.webp" alt="ORANGE butterfly" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>ORANGE butterfly</b><i class="mono">II · The Noise · 2024</i></span>
+      </a>
+    </div>
   </section>
   <section class="chapter" id="ch-iii" data-ch="ink" aria-labelledby="ch-iii-h">
-    <header class="ch-head" data-reveal>
-      <span class="ch-num" aria-hidden="true">III</span>
-      <div><p class="ch-kick mono">Chapter III · 12 posters</p><h3 id="ch-iii-h">THE INK</h3>
-      <p class="ch-line">when the noise stops, the ink is what is left. every demon here was drawn so it could be beaten.</p></div>
-    </header>
-    <ul class="ch-grid">
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/ego-disintegration-1018718019" target="_blank" rel="noopener" data-full="art/p33-l.webp" data-w="900" data-h="1342" data-title="ego disintegration" data-meta="III · The Ink · N° 21" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 21/33</i></span>
-          <img src="art/p33-s.webp" alt="ego disintegration" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>ego disintegration</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/break-free-by-init-19-1017844306" target="_blank" rel="noopener" data-full="art/p35-l.webp" data-w="900" data-h="1342" data-title="break free by init 19" data-meta="III · The Ink · N° 22" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 22/33</i></span>
-          <img src="art/p35-s.webp" alt="break free by init 19" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>break free by init 19</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/FLCL-CHARACTER-CONCEPT-1104490797" target="_blank" rel="noopener" data-full="art/p23-l.webp" data-w="900" data-h="1342" data-title="FLCL CHARACTER CONCEPT" data-meta="III · The Ink · N° 23" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 23/33</i></span>
-          <img src="art/p23-s.webp" alt="FLCL CHARACTER CONCEPT" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>FLCL CHARACTER CONCEPT</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/Kira-the-death-note-1104489180" target="_blank" rel="noopener" data-full="art/p24-l.webp" data-w="900" data-h="1342" data-title="Kira the death note" data-meta="III · The Ink · N° 24" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 24/33</i></span>
-          <img src="art/p24-s.webp" alt="Kira the death note" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>Kira the death note</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/Ukio-E%3D-imposter-1104488235" target="_blank" rel="noopener" data-full="art/p25-l.webp" data-w="900" data-h="1342" data-title="Ukio E= imposter" data-meta="III · The Ink · N° 25" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 25/33</i></span>
-          <img src="art/p25-s.webp" alt="Ukio E= imposter" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>Ukio E= imposter</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/sekiro-character-fanart-1020907143" target="_blank" rel="noopener" data-full="art/p30-l.webp" data-w="900" data-h="1342" data-title="sekiro character fanart" data-meta="III · The Ink · N° 26" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 26/33</i></span>
-          <img src="art/p30-s.webp" alt="sekiro character fanart" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>sekiro character fanart</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/Cutscene-Broken-Sword-1019481928" target="_blank" rel="noopener" data-full="art/p31-l.webp" data-w="900" data-h="1342" data-title="Cutscene Broken Sword" data-meta="III · The Ink · N° 27" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 27/33</i></span>
-          <img src="art/p31-s.webp" alt="Cutscene Broken Sword" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>Cutscene Broken Sword</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/Reema-1036726040" target="_blank" rel="noopener" data-full="art/p16-l.webp" data-w="900" data-h="1350" data-title="Reema" data-meta="III · The Ink · N° 28" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 28/33</i></span>
-          <img src="art/p16-s.webp" alt="Reema" width="420" height="630" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>Reema</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/Alistor-30-1017843211" target="_blank" rel="noopener" data-full="art/p36-l.webp" data-w="900" data-h="1342" data-title="Alistor 30" data-meta="III · The Ink · N° 29" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 29/33</i></span>
-          <img src="art/p36-s.webp" alt="Alistor 30" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>Alistor 30</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/Eye-Ballzz-1017700087" target="_blank" rel="noopener" data-full="art/p37-l.webp" data-w="900" data-h="1342" data-title="Eye Ballzz" data-meta="III · The Ink · N° 30" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 30/33</i></span>
-          <img src="art/p37-s.webp" alt="Eye Ballzz" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>Eye Ballzz</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/ALASTOR-cute-1017590148" target="_blank" rel="noopener" data-full="art/p38-l.webp" data-w="900" data-h="1342" data-title="ALASTOR cute" data-meta="III · The Ink · N° 31" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 31/33</i></span>
-          <img src="art/p38-s.webp" alt="ALASTOR cute" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>ALASTOR cute</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-      <li class="piece poster" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5/art/lonely-island-1018715329" target="_blank" rel="noopener" data-full="art/p34-l.webp" data-w="900" data-h="1342" data-title="lonely island" data-meta="III · The Ink · N° 32" data-link-label="the original on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 32/33</i></span>
-          <img src="art/p34-s.webp" alt="lonely island" width="420" height="626" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>lonely island</b><i class="mono">III — The Ink · 2024</i></span>
-        </a>
-      </li>
-    </ul>
+    <div class="bento bento--ink">
+      <div class="tile tile--text t-head">
+        <span class="tt-num" aria-hidden="true">III</span>
+        <p class="tt-kick mono">Chapter III · 12 posters</p>
+        <h3 id="ch-iii-h">The Ink</h3>
+      </div>
+      <div class="tile tile--text tile--quote t-quote">
+        <p class="tt-quote">when the noise stops, the ink is what is left. every demon here was drawn so it could be beaten.</p>
+      </div>
+      <a class="tile tile--img t-big" href="https://www.deviantart.com/br4vetr4veler5/art/sekiro-character-fanart-1020907143" target="_blank" rel="noopener" data-full="art/p30-l.webp" data-w="900" data-h="1342" data-title="sekiro character fanart" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p30-l.webp" alt="sekiro character fanart" width="900" height="1342" loading="lazy" decoding="async">
+        <span class="tl"><b>sekiro character fanart</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/ego-disintegration-1018718019" target="_blank" rel="noopener" data-full="art/p33-l.webp" data-w="900" data-h="1342" data-title="ego disintegration" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p33-s.webp" alt="ego disintegration" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>ego disintegration</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/break-free-by-init-19-1017844306" target="_blank" rel="noopener" data-full="art/p35-l.webp" data-w="900" data-h="1342" data-title="break free by init 19" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p35-s.webp" alt="break free by init 19" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>break free by init 19</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/FLCL-CHARACTER-CONCEPT-1104490797" target="_blank" rel="noopener" data-full="art/p23-l.webp" data-w="900" data-h="1342" data-title="FLCL CHARACTER CONCEPT" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p23-s.webp" alt="FLCL CHARACTER CONCEPT" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>FLCL CHARACTER CONCEPT</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Kira-the-death-note-1104489180" target="_blank" rel="noopener" data-full="art/p24-l.webp" data-w="900" data-h="1342" data-title="Kira the death note" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p24-s.webp" alt="Kira the death note" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>Kira the death note</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Ukio-E%3D-imposter-1104488235" target="_blank" rel="noopener" data-full="art/p25-l.webp" data-w="900" data-h="1342" data-title="Ukio E= imposter" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p25-s.webp" alt="Ukio E= imposter" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>Ukio E= imposter</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Cutscene-Broken-Sword-1019481928" target="_blank" rel="noopener" data-full="art/p31-l.webp" data-w="900" data-h="1342" data-title="Cutscene Broken Sword" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p31-s.webp" alt="Cutscene Broken Sword" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>Cutscene Broken Sword</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Reema-1036726040" target="_blank" rel="noopener" data-full="art/p16-l.webp" data-w="900" data-h="1350" data-title="Reema" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p16-s.webp" alt="Reema" width="420" height="630" loading="lazy" decoding="async">
+        <span class="tl"><b>Reema</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Alistor-30-1017843211" target="_blank" rel="noopener" data-full="art/p36-l.webp" data-w="900" data-h="1342" data-title="Alistor 30" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p36-s.webp" alt="Alistor 30" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>Alistor 30</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Eye-Ballzz-1017700087" target="_blank" rel="noopener" data-full="art/p37-l.webp" data-w="900" data-h="1342" data-title="Eye Ballzz" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p37-s.webp" alt="Eye Ballzz" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>Eye Ballzz</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/ALASTOR-cute-1017590148" target="_blank" rel="noopener" data-full="art/p38-l.webp" data-w="900" data-h="1342" data-title="ALASTOR cute" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p38-s.webp" alt="ALASTOR cute" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>ALASTOR cute</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/lonely-island-1018715329" target="_blank" rel="noopener" data-full="art/p34-l.webp" data-w="900" data-h="1342" data-title="lonely island" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
+        <img src="art/p34-s.webp" alt="lonely island" width="420" height="626" loading="lazy" decoding="async">
+        <span class="tl"><b>lonely island</b><i class="mono">III · The Ink · 2024</i></span>
+      </a>
+    </div>
   </section>
-  <section class="chapter chapter--ep" id="ch-ep" data-ch="imagination" aria-labelledby="ch-ep-h">
-    <header class="ch-head" data-reveal>
-      <span class="ch-num" aria-hidden="true">∞</span>
-      <div><p class="ch-kick mono">Epilogue · after Neville Goddard</p><h3 id="ch-ep-h">THE POWER OF IMAGINATION</h3>
-      <p class="ch-line">assume the feeling of the wish fulfilled. the traveler never left the room — he imagined the road, and walked it.</p></div>
-    </header>
-    <ul class="ch-grid ch-grid--ep">
-      <li class="piece poster poster--ep" data-reveal>
-        <a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/imagination-l.webp" data-w="732" data-h="1300" data-title="The Power of Imagination" data-meta="∞ · Epilogue · N° 33" data-link-label="br4vetr4veler on DeviantArt ↗">
-          <span class="pt-top mono" aria-hidden="true"><b>BR4VETR4VELER</b><i>N° 33/33</i></span>
-          <img src="art/imagination-s.webp" alt="The Power of Imagination" width="560" height="995" loading="lazy" decoding="async">
-          <span class="pt-foot"><b>The Power of Imagination</b><i class="mono">∞ — Epilogue · 2026</i></span>
-        </a>
-      </li>
-    </ul>
+  <section class="chapter" id="ch-ep" data-ch="imagination" aria-labelledby="ch-ep-h">
+    <div class="bento bento--imagination">
+      <a class="tile tile--img t-ep" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/imagination-l.webp" data-w="732" data-h="1300" data-title="The Power of Imagination" data-meta="Epilogue · after Neville Goddard · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
+        <img src="art/imagination-l.webp" alt="The Power of Imagination" width="732" height="1300" loading="lazy" decoding="async">
+        <span class="tl"><b>The Power of Imagination</b><i class="mono">Epilogue · after Neville Goddard · 2026</i></span>
+      </a>
+      <div class="tile tile--text t-eptext">
+        <span class="tt-num" aria-hidden="true">∞</span>
+        <p class="tt-kick mono">Epilogue · after Neville Goddard</p>
+        <h3 id="ch-ep-h">The Power of Imagination</h3>
+        <p class="tt-line">assume the feeling of the wish fulfilled. the traveler never left the room — he imagined the road, and walked it.</p>
+      </div>
+    </div>
   </section>
-  </div>
-  <p class="coll-more mono" data-reveal><a href="https://www.deviantart.com/br4vetr4veler5/gallery" target="_blank" rel="noopener">the originals on DeviantArt <span class="acc">↗</span></a></p>
+  <p class="coll-more mono"><a href="https://www.deviantart.com/br4vetr4veler5/gallery" target="_blank" rel="noopener">the originals on DeviantArt <span class="acc">↗</span></a></p>
 </section>
 
 <dialog class="lb" id="lb" aria-labelledby="lbTitle">
@@ -414,57 +288,57 @@
      read from the profile page; refresh them with the stats below. -->
 <section class="design" id="design" aria-labelledby="design-h">
   <div class="coll-head" data-reveal>
-    <p class="eyebrow"><i class="blip"></i> DESIGN <span class="dim">// behance.fetch()</span></p>
+    <p class="eyebrow"><i class="blip"></i> DESIGN</p>
     <h2 id="design-h">IDENTITY.<br><span class="acc">POSTERS. PRINT.</span></h2>
   </div>
   <div class="design-grid">
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/254889197/HEETCH-ENTRY-TEST" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-00.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>HEETCH ENTRY TEST</b><i class="mono">4 views <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile dtile--lead" href="https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT" target="_blank" rel="noopener">
+      <img src="art/be-09.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Bordj Steel Branding Project</b><i class="mono">40 views · 1 appreciated</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/253834245/MINIMAL-INDUSTRIAL-SOCIAL-MEDIA-CREATIVES" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-01.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>MINIMAL INDUSTRIAL SOCIAL MEDIA CREATIVES</b><i class="mono">9 views <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/254889197/HEETCH-ENTRY-TEST" target="_blank" rel="noopener">
+      <img src="art/be-00.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Heetch Entry Test</b><i class="mono">4 views</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/253721505/SURFBOARD-DESIGN-FOR-BEACH-POSM" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-02.webp" alt="" width="554" height="434" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>SURFBOARD DESIGN FOR BEACH POSM</b><i class="mono">10 views <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/253834245/MINIMAL-INDUSTRIAL-SOCIAL-MEDIA-CREATIVES" target="_blank" rel="noopener">
+      <img src="art/be-01.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Minimal Industrial Social Media Creatives</b><i class="mono">9 views</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/252840169/summer-creative-social-media" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-03.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>summer. creative. social media</b><i class="mono">15 views <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/253721505/SURFBOARD-DESIGN-FOR-BEACH-POSM" target="_blank" rel="noopener">
+      <img src="art/be-02.webp" alt="" width="554" height="434" loading="lazy" decoding="async">
+      <span class="tl"><b>Surfboard Design For Beach Posm</b><i class="mono">10 views</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/252522281/amanatcom-brand-guidelines" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-04.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>amanatcom brand guidelines</b><i class="mono">10 views <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/252840169/summer-creative-social-media" target="_blank" rel="noopener">
+      <img src="art/be-03.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Summer. Creative. Social Media</b><i class="mono">15 views</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/250754909/FIRST-MONTH-AT-HEETCH-DZ" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-05.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>FIRST MONTH AT HEETCH. DZ</b><i class="mono">23 views <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/252522281/amanatcom-brand-guidelines" target="_blank" rel="noopener">
+      <img src="art/be-04.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Amanatcom Brand Guidelines</b><i class="mono">10 views</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/241516627/SANDIWCH-INSULATING-PANNELS-GRAPHIC-ASSETS" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-06.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>SANDIWCH INSULATING PANNELS GRAPHIC ASSETS</b><i class="mono">15 views · 2 appreciated <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/250754909/FIRST-MONTH-AT-HEETCH-DZ" target="_blank" rel="noopener">
+      <img src="art/be-05.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>First Month At Heetch. Dz</b><i class="mono">23 views</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/241515403/BILLBOARD-URBAIN-BORDJ-STEEL-SPA" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-07.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>BILLBOARD URBAIN BORDJ STEEL SPA</b><i class="mono">28 views · 1 appreciated <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/241516627/SANDIWCH-INSULATING-PANNELS-GRAPHIC-ASSETS" target="_blank" rel="noopener">
+      <img src="art/be-06.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Sandiwch Insulating Pannels Graphic Assets</b><i class="mono">15 views · 2 appreciated</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/235033549/TYLER-DURDAIN-HALFTONE-POSTER" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-08.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>TYLER DURDAIN HALFTONE POSTER</b><i class="mono">9 views <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/241515403/BILLBOARD-URBAIN-BORDJ-STEEL-SPA" target="_blank" rel="noopener">
+      <img src="art/be-07.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Billboard Urbain Bordj Steel Spa</b><i class="mono">28 views · 1 appreciated</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-09.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>BORDJ STEEL BRANDING PROJECT</b><i class="mono">40 views · 1 appreciated <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/235033549/TYLER-DURDAIN-HALFTONE-POSTER" target="_blank" rel="noopener">
+      <img src="art/be-08.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Tyler Durdain Halftone Poster</b><i class="mono">9 views</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/233152047/STAR-BORN-ALGERIANSERIES" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-10.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>STAR BORN ALGERIANSERIES</b><i class="mono">13 views <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/233152047/STAR-BORN-ALGERIANSERIES" target="_blank" rel="noopener">
+      <img src="art/be-10.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Star Born Algerianseries</b><i class="mono">13 views</i></span>
     </a>
-    <a class="dcard" data-reveal href="https://www.behance.net/gallery/232008435/ALAN-IS-AWAKE-MANGA-CONCEPT" target="_blank" rel="noopener">
-      <span class="dshot"><img src="art/be-11.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span>
-      <span class="dmeta"><b>ALAN IS AWAKE MANGA CONCEPT</b><i class="mono">36 views · 3 appreciated <span class="go" aria-hidden="true">↗</span></i></span>
+    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/232008435/ALAN-IS-AWAKE-MANGA-CONCEPT" target="_blank" rel="noopener">
+      <img src="art/be-11.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
+      <span class="tl"><b>Alan Is Awake Manga Concept</b><i class="mono">36 views · 3 appreciated</i></span>
     </a>
   </div>
 </section>
@@ -475,7 +349,7 @@
      count without signing in, so it gets no number rather than a guess. -->
 <section class="social" id="social" aria-labelledby="social-h">
   <div class="coll-head" data-reveal>
-    <p class="eyebrow"><i class="blip"></i> SOCIAL HIGHLIGHTS <span class="dim">// signal.read()</span></p>
+    <p class="eyebrow"><i class="blip"></i> SOCIAL HIGHLIGHTS</p>
     <h2 id="social-h">SEEN. SAVED.<br><span class="acc">SHARED.</span></h2>
   </div>
   <div class="social-grid">
@@ -502,7 +376,7 @@
 <!-- ============================= LINKS ============================= -->
 <main class="links" id="links">
   <div class="links-head" data-reveal>
-    <p class="eyebrow"><i class="blip"></i> THE ARCHIVE <span class="dim">// every_door.map()</span></p>
+    <p class="eyebrow"><i class="blip"></i> THE ARCHIVE</p>
     <h2>ONE HANDLE.<br><span class="acc">EVERY&nbsp;WORLD.</span></h2>
     <p class="links-sub">design, code, and everything between — pick a door.</p>
   </div>
@@ -576,6 +450,6 @@
   </div>
 </footer>
 
-<script src="app.js?v=202610050833" defer></script>
+<script src="app.js?v=202610050846" defer></script>
 </body>
 </html>

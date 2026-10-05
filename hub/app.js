@@ -235,32 +235,23 @@
      focus trapping and Esc come from the browser. Without scripts every piece
      is a plain link to its DeviantArt page — the viewer only intercepts a
      plain click (no modifier keys), so cmd/ctrl-click still opens a tab. */
-  var grid = document.getElementById('collGrid');
+  var grid = document.getElementById('collection');
   if (grid) {
-    var pieces = [].slice.call(grid.querySelectorAll('.piece'));
-    var fbtns = [].slice.call(document.querySelectorAll('.coll-filter button'));
-    fbtns.forEach(function (b) {
-      b.addEventListener('click', function () {
-        var f = b.getAttribute('data-f');
-        fbtns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
-        pieces.forEach(function (p) {
-          var show = f === 'all' || p.getAttribute('data-cat') === f;
-          p.hidden = !show;
-          if (show) p.classList.add('seen');
-        });
-      });
-    });
+    var pieces = [].slice.call(grid.querySelectorAll('.tile--img'));
 
     var lb = document.getElementById('lb');
     if (lb && typeof lb.showModal === 'function') {
       var img = document.getElementById('lbImg'), ttl = document.getElementById('lbTitle'),
           meta = document.getElementById('lbMeta'), link = document.getElementById('lbLink'), cur = -1, opener = null;
-      var visible = function () { return pieces.filter(function (p) { return !p.hidden; }); };
+      var visible = function () { return pieces; };
       var show = function (i) {
         var list = visible(); if (!list.length) return;
         cur = (i + list.length) % list.length;
-        var a = list[cur].querySelector('a');
+        var a = list[cur];
+        img.classList.remove('ld');
+        img.onload = function () { img.classList.add('ld'); };
         img.src = a.getAttribute('data-full');
+        if (img.complete) img.classList.add('ld');
         img.width = +a.getAttribute('data-w'); img.height = +a.getAttribute('data-h');
         img.alt = a.getAttribute('data-title');
         ttl.textContent = a.getAttribute('data-title');
@@ -269,11 +260,11 @@
         link.textContent = a.getAttribute('data-link-label') || link.textContent;
       };
       grid.addEventListener('click', function (e) {
-        var a = e.target.closest('.piece a');
+        var a = e.target.closest('.tile--img');
         if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
         e.preventDefault();
         opener = a;
-        show(visible().indexOf(a.parentNode));
+        show(visible().indexOf(a));
         lb.showModal();
       });
       document.getElementById('lbPrev').addEventListener('click', function () { show(cur - 1); });
@@ -288,4 +279,16 @@
       lb.addEventListener('close', function () { if (opener) opener.focus(); });
     }
   }
+
+  /* ---------------- 9 · images arrive, they don't pop ----------------
+     Tiles hold their exact shape from the first paint (width/height on every
+     <img>, aspect from the bento spans), so nothing moves; each picture just
+     fades in once decoded. body.fi gates it, so with scripts off images are
+     simply visible. */
+  document.body.classList.add('fi');
+  [].forEach.call(document.querySelectorAll('.tile img'), function (im) {
+    var done = function () { im.classList.add('ld'); };
+    if (im.complete && im.naturalWidth) done();
+    else { im.addEventListener('load', done); im.addEventListener('error', done); }
+  });
 })();
