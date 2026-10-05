@@ -922,6 +922,10 @@ fails if any project URL appears in hub/.
   Poster typography (BR4VETR4VELER, N° xx/33, title, chapter) is HTML on a
   cream card, never baked into the image: AI lettering garbles, and real text
   stays sharp and consistent. Every chapter poster links to its original.
+  DAMN (p19) and DEJA VU (p29, formerly "Phone background") were redone: the
+  first pass put DAMN on a dark ground and turned the DEJA VU collage into two
+  clean skulls. The DAMN redo keeps the face in shadow on purpose — the other
+  candidate came out as a recognisable likeness of a real person.
   Files: `hub/art/pNN-{s,l}.webp` (NN = the DeviantArt item), `tv0-3-*`
   (portraits), `imagination-*`; Magnific project "br4vetr4veler posters".
 - **The viewer** is a native `<dialog>` (focus trap and Esc for free). It only
