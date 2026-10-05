@@ -1,0 +1,58 @@
+/* WorkspaceHQ — COLOR TOKENS (ARCADE, the default console theme).
+   The arcade theme is the base :root. Alternate themes (okami / numidea / ops /
+   nightfall) rebind these same custom properties; see tokens/themes.css.
+   Semantics: --active/--divider are ROLE tokens themes must remap; the phosphor
+   palette (--cyan … --pink) is the raw CRT glow set. */
+
+:root {
+  /* ---- surfaces (deep-space navy → violet stack) ---- */
+  --bg:       #07060f;   /* app background — near-black indigo */
+  --bg2:      #0c0a1e;   /* secondary background wash */
+  --panel:    #100d24;   /* raised surface: rails, columns, drawer */
+  --card:     #14102b;   /* card body */
+  --card-hi:  #1a1538;   /* card gradient top / hover surface */
+  --ink:      #050409;   /* the "black gap" of every NES window frame */
+  --frame:    #322a5e;   /* default window frame (violet) */
+  --frame-hi: #5a4ea8;   /* frame on hover/focus */
+
+  /* ---- text ---- */
+  --text:  #e8e6ff;   /* primary parchment-white */
+  --muted: #9a93c9;   /* secondary lavender-grey */
+  --faint: #5e588a;   /* tertiary / metadata */
+
+  /* ---- phosphor palette (raw CRT glow set) ---- */
+  --cyan:    #00f0ff;   /* info / spell accents / section headings */
+  --magenta: #ff2bd6;   /* stage-select / special */
+  --gold:    #ffd23f;   /* THE money colour — XP, coins, active */
+  --gold-2:  #ffe27a;   /* gold highlight / big numbers */
+  --green:   #3aff6e;   /* success / done / build-green */
+  --red:     #ff4757;   /* danger / red quests / errors */
+  --orange:  #ffa502;   /* warning / stale / streak flame */
+  --yellow:  #ffe14d;   /* low-tier quests */
+  --blue:    #4d9fff;   /* neutral series / links */
+  --purple:  #b14aff;   /* epic tier / familiars */
+  --pink:    #ff6bcb;   /* accent */
+
+  /* ---- semantic ROLE tokens (decoupled from raw palette) ---- */
+  --active:       var(--gold);   /* active tab, KPI accent, unlocked glow */
+  --active-arrow: var(--gold);   /* the ▶ selection arrow */
+  --divider:      var(--frame);  /* KPI dividers, section separators */
+
+  /* ---- tier / status aliases (semantic naming over palette) ---- */
+  --tier-red:    var(--red);      /* Night Hunt / critical quest */
+  --tier-orange: var(--orange);   /* Blood Hunt / stale */
+  --tier-yellow: var(--yellow);   /* Ember Hunt / low */
+  --tier-done:   var(--green);    /* completed */
+
+  --success: var(--green);
+  --warning: var(--orange);
+  --danger:  var(--red);
+  --info:    var(--cyan);
+
+  /* link colours (consumers add <a> later) */
+  --link:       var(--cyan);
+  --link-hover: var(--gold-2);
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); }

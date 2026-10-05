@@ -1,0 +1,11 @@
+/* WorkspaceHQ Design System — global entry point.
+   Consumers link THIS one file. It is a manifest of @imports only; every token,
+   font-face and theme in the closure ships to consumers. Load order matters:
+   fonts first, then base palette (ARCADE default), scales, then alternate themes
+   (they must win over the base :root). */
+
+@import "tokens/fonts.css";
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/themes.css";

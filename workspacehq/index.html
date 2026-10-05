@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorkspaceHQ v3 — your codebase, now playable</title>
+<meta name="description" content="WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests and puts one clear next move on top. A Claude-powered terminal console with a pixel sidekick called Bit.">
+<meta name="theme-color" content="#07060f">
+<meta property="og:title" content="WorkspaceHQ v3 — your codebase, now playable">
+<meta property="og:description" content="An arcade cabinet for your codebase. Open source on GitHub.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/VT323.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PressStart2P.woff2">
+<link rel="stylesheet" href="style.css?v=202610050914">
+</head>
+<body>
+<!-- WorkspaceHQ v3 launch site. Implemented from the Claude Design file
+     "WorkspaceHQ v3 Launch Site.dc.html" as a native page: the design-system
+     components it imported (Button, Tag, ProgressBar, Kpi, Achievement,
+     SectionHeading) are rebuilt in style.css, the logic in app.js. The three
+     embedded experiences (reel, walkthrough, live console) are the design's own
+     React pages, self-hosted under embed/. -->
+<a class="skip" href="#top">Skip to content</a>
+
+<div class="fx-aurora" aria-hidden="true"></div>
+<div class="fx-grid" aria-hidden="true"></div>
+<div class="fx-cursor" id="cursorGlow" aria-hidden="true"></div>
+<div class="fx-scan" aria-hidden="true"></div>
+<div class="fx-vignette" aria-hidden="true"></div>
+<div class="prog" aria-hidden="true"><i id="prog"></i></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top">WORKSPACE<span>HQ</span></a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#reel">REEL</a><a href="#features">FEATURES</a><a href="#walkthrough">WALKTHROUGH</a><a href="#demo">DEMO</a><a href="#bit">BIT</a><a href="#v3">WHAT'S NEW</a><a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn--primary btn--sm" href="#install">▶ INSTALL</a>
+</header>
+
+<main id="top">
+
+  <!-- ============ 01 HERO ============ -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="hero-kick">PERSONAL OPS CONSOLE · v3 · <span class="blink">[ INSERT COIN ]</span></p>
+      <h1>Your codebase,<br>now <span class="glitch" data-text="playable.">playable.</span></h1>
+      <p class="hero-lede">WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests, and puts one clear next move on top. A Claude-powered terminal console, with a pixel sidekick who notices when you do good work.</p>
+      <div class="hero-cta">
+        <div class="term term--hero">
+          <div class="term-bar">
+            <span class="term-tag">OPEN SOURCE</span>
+            <span class="term-os">CLONE · README · PLAY</span>
+          </div>
+          <div class="term-line">
+            <span class="term-dollar" aria-hidden="true">$</span>
+            <code class="term-cmd" data-cmd>git clone https://github.com/Brvetr4ve1er/workspace-HQ.git</code>
+            <button type="button" class="btn btn--primary btn--sm" data-copy>COPY</button>
+          </div>
+        </div>
+        <a class="btn btn--outline btn--lg" href="#reel">▶ WATCH THE REEL</a>
+      </div>
+    </div>
+
+    <div class="hero-bit" data-reveal="2">
+      <button type="button" class="bit-btn bit-btn--small" data-feed aria-label="Pet Bit (feeds him XP)"><span class="bit" data-bit="7"></span></button>
+      <div class="pops pops--hero" aria-live="polite"></div>
+      <div class="scan-card">
+        <div class="scan-row"><span class="dot-live" aria-hidden="true"></span>hq scan → ~/code</div>
+        <div class="scan-row scan-row--between"><span class="t-text">12 repos · 3 need you</span><span class="t-green">✓ 2.1s</span></div>
+        <div class="scan-row scan-row--between scan-row--base"><span class="px-label">HEALTH</span><span class="scan-num">86</span></div>
+        <div class="pbar pbar--gold pbar--12" role="img" aria-label="Health 86 out of 100"><i class="w-86"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <!-- ============ 02 REEL ============ -->
+  <section id="reel" class="sec">
+    <div class="sec-head sec-head--split" data-reveal="0">
+      <div>
+        <p class="sh">THE REEL · 30 SECONDS</p>
+        <h2>Press <em>start.</em></h2>
+      </div>
+      <p class="sec-aside">Click inside the screen once for sound. The score and every click and chime were made for this cut.</p>
+    </div>
+    <div class="screen" data-reveal="1">
+      <div class="screen-bar">
+        <span><span class="t-red">■</span> <span class="t-gold">■</span> <span class="t-green">■</span>&nbsp;&nbsp; LAUNCH TRAILER</span>
+        <span class="t-magenta blink">● REC</span>
+      </div>
+      <iframe class="screen-169" src="embed/trailer.html" loading="lazy" title="WorkspaceHQ v3 launch trailer" allow="autoplay"></iframe>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>HQ SCAN</span><b>✦</b><span>SINCE LAST VISIT</span><b>✦</b><span>NEXT MOVE</span><b>✦</b><span>SECRET GUARD</span><b>✦</b><span>COMMIT DIFFS</span><b>✦</b><span>ASK CLAUDE</span><b>✦</b><span>LIVING MAP</span><b>✦</b><span>BIT LEVELS UP</span><b>✦</b>
+      <span>HQ SCAN</span><b>✦</b><span>SINCE LAST VISIT</span><b>✦</b><span>NEXT MOVE</span><b>✦</b><span>SECRET GUARD</span><b>✦</b><span>COMMIT DIFFS</span><b>✦</b><span>ASK CLAUDE</span><b>✦</b><span>LIVING MAP</span><b>✦</b><span>BIT LEVELS UP</span><b>✦</b>
+    </div>
+  </div>
+
+  <!-- ============ 03 FEATURES ============ -->
+  <section id="features" class="sec">
+    <div data-reveal="0">
+      <p class="sh">FEATURES · WHAT IT DOES</p>
+      <h2 class="h2-gap">Eight ways to <em>win.</em></h2>
+    </div>
+    <div class="feat-grid">
+      <article class="feat" data-reveal="0">
+        <span class="feat-n">01</span><h3>HQ Scan</h3><p class="feat-sub">see it all</p>
+        <p class="feat-p">Reads git state, builds and risk across every repo on your machine in about two seconds.</p>
+        <p class="tags"><span class="tag">git</span><span class="tag">builds</span><span class="tag">risk</span></p>
+      </article>
+      <article class="feat" data-reveal="1">
+        <span class="feat-n">02</span><h3>Since last visit</h3><p class="feat-sub">pick up instantly</p>
+        <p class="feat-p">A digest of everything that moved while you were away: pushes, breaks, stale branches.</p>
+        <p class="tags"><span class="tag">digest</span><span class="tag">history</span></p>
+      </article>
+      <article class="feat" data-reveal="2">
+        <span class="feat-n">03</span><h3>Next move</h3><p class="feat-sub">one clear action</p>
+        <p class="feat-p">HQ ranks what needs you and puts a single, doable quest on top. Press enter. Done.</p>
+        <p class="tags"><span class="tag tag--gold">quests</span><span class="tag">focus</span></p>
+      </article>
+      <article class="feat feat--red" data-reveal="3">
+        <span class="feat-n">04</span><h3>Secret guard</h3><p class="feat-sub">nothing leaks</p>
+        <p class="feat-p">Live keys in plain sight get flagged before they ship. Bit stays nervous until they're vaulted.</p>
+        <p class="tags"><span class="tag tag--red">secrets</span><span class="tag">.env</span></p>
+      </article>
+      <article class="feat" data-reveal="0">
+        <span class="feat-n">05</span><h3>Commit diffs</h3><p class="feat-sub">read before you merge</p>
+        <p class="feat-p">Inline diffs for every project, without leaving the console.</p>
+        <p class="tags"><span class="tag tag--green">+4</span><span class="tag tag--red">−1</span></p>
+      </article>
+      <article class="feat feat--cyan" data-reveal="1">
+        <span class="feat-n">06</span><h3>Ask Claude</h3><p class="feat-sub">just ask</p>
+        <p class="feat-p">Type a question in the prompt bar. Claude answers from your actual repos, not a guess.</p>
+        <p class="tags"><span class="tag tag--blue">claude</span><span class="tag">prompt</span></p>
+      </article>
+      <article class="feat feat--orange" data-reveal="2">
+        <span class="feat-n">07</span><h3>Living map</h3><p class="feat-sub">watch it breathe</p>
+        <p class="feat-p">Your workspace as a pixel city. Lit windows for activity, smoke where risk is building.</p>
+        <p class="tags"><span class="tag tag--orange">live</span><span class="tag">map</span></p>
+      </article>
+      <article class="feat feat--magenta" data-reveal="3">
+        <span class="feat-n">08</span><h3>Bit</h3><p class="feat-sub">good work, noticed</p>
+        <p class="feat-p">Your sidekick reacts to the state of your code, and levels up as you keep it clean.</p>
+        <p class="tags"><span class="tag tag--gold">xp</span><span class="tag">moods</span></p>
+      </article>
+    </div>
+  </section>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <!-- ============ 04 WALKTHROUGH ============ -->
+  <section id="walkthrough" class="sec">
+    <div data-reveal="0">
+      <p class="sh">WALKTHROUGH · 60 SECONDS</p>
+      <h2 class="h2-gap">Watch it <em>work.</em></h2>
+    </div>
+    <div class="walk">
+      <div class="chapters" data-reveal="0">
+        <p class="px-label px-label--gap" id="chap-l">JUMP TO A CHAPTER</p>
+        <div class="chap-list" role="group" aria-labelledby="chap-l" id="chapters"></div>
+      </div>
+      <div class="screen walk-screen" data-reveal="1">
+        <div class="screen-bar"><span>UTILITY WALKTHROUGH</span><span>CLICK INSIDE FOR SOUND</span></div>
+        <iframe class="screen-169" id="walkFrame" src="embed/walkthrough.html" loading="lazy" title="WorkspaceHQ v3 utility walkthrough" allow="autoplay"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 LIVE DEMO ============ -->
+  <section id="demo" class="sec sec--demo">
+    <div class="sec-head sec-head--split" data-reveal="0">
+      <div>
+        <p class="sh">LIVE DEMO · THE REAL CONSOLE</p>
+        <h2>Don't trust the <em>trailer.</em></h2>
+      </div>
+      <p class="sec-aside">This is the actual v3 console, running on sample repos. Try typing <span class="t-gold2">bit</span> or <span class="t-gold2">dance</span> in the prompt bar.</p>
+    </div>
+    <div class="screen" data-reveal="1">
+      <div class="screen-bar">
+        <span><span class="t-red">■</span> <span class="t-gold">■</span> <span class="t-green">■</span>&nbsp;&nbsp; ~/code · WORKSPACEHQ v3</span>
+        <span class="demo-status" id="demoStatus">○ STANDBY</span>
+      </div>
+      <div class="demo-stage" id="demoStage">
+        <div class="demo-coin">
+          <p class="demo-big">▶ INSERT <em>COIN</em></p>
+          <p class="px-label blink">PRESS START TO BOOT THE CONSOLE</p>
+          <button type="button" class="btn btn--primary btn--lg" id="bootDemo">▶ BOOT THE CONSOLE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule rule--magenta" aria-hidden="true"></div>
+
+  <!-- ============ 06 MEET BIT ============ -->
+  <section id="bit" class="sec">
+    <div data-reveal="0">
+      <p class="sh">MEET BIT · YOUR SIDEKICK</p>
+      <h2 class="h2-gap">Small. Pixel. <em>Loyal.</em></h2>
+    </div>
+    <div class="bit-wrap">
+      <div class="bit-card" data-reveal="0">
+        <p class="px-label px-label--row"><span>CLICK BIT TO FEED XP</span><span class="t-gold">LV <span data-lv>4</span></span></p>
+        <div class="bit-floor">
+          <button type="button" class="bit-btn bit-btn--big" data-feed aria-label="Pet Bit (feeds him XP)"><span class="bit" data-bit="18"></span></button>
+          <span class="zz zz--1" aria-hidden="true">z</span><span class="zz zz--2" aria-hidden="true">z</span>
+          <div class="pops pops--big" aria-live="polite"></div>
+        </div>
+        <p class="mood-line" id="moodLine" aria-live="polite">All clear. Bit is just vibing on the Next card.</p>
+        <div class="moods" role="group" aria-label="Bit's mood" id="moods"></div>
+        <div class="xp">
+          <p class="xp-row"><span>xp <span id="xpLabel">1,240</span> / 1,500</span><span class="t-gold2" id="nextUnlock">next: crown at LV 5</span></p>
+          <div class="pbar pbar--gold pbar--14" role="img" aria-label="Experience toward the next level" id="xpBarWrap"><i id="xpBar" class="w-83"></i></div>
+        </div>
+      </div>
+      <div class="bit-side" data-reveal="1">
+        <p class="bit-blurb">Bit lives in the console and reads the room. Nervous when a secret shows up, busy while a scan runs, asleep once every quest is cleared. Clean commits make him throw coins.</p>
+        <div class="kpis">
+          <div class="kpi kpi--gold"><b data-lv>4</b><span>Level</span></div>
+          <div class="kpi kpi--orange"><b id="coins">0</b><span>Coins</span></div>
+          <div class="kpi kpi--green"><b>5</b><span>Streak</span></div>
+        </div>
+        <div class="achs">
+          <div class="ach" data-ach="coin"><span class="ach-star" aria-hidden="true">★</span><span class="ach-i" aria-hidden="true">🪙</span><b>FIRST COIN</b><span>Feed Bit once</span></div>
+          <div class="ach" data-ach="crown"><span class="ach-star" aria-hidden="true">★</span><span class="ach-i" aria-hidden="true">👑</span><b>CROWNED</b><span>Reach level 5</span></div>
+          <div class="ach" data-ach="cape"><span class="ach-star" aria-hidden="true">★</span><span class="ach-i" aria-hidden="true">🦸</span><b>CAPED</b><span>Reach level 7</span></div>
+          <div class="ach" data-ach="moods"><span class="ach-star" aria-hidden="true">★</span><span class="ach-i" aria-hidden="true">🕺</span><b>DANCE FLOOR</b><span>Try every mood</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <!-- ============ 07 WHAT'S NEW ============ -->
+  <section id="v3" class="sec">
+    <div data-reveal="0">
+      <p class="sh">CHANGELOG · v3.0</p>
+      <h2 class="h2-gap">What's new in <em>v3.</em></h2>
+    </div>
+    <ul class="log">
+      <li data-reveal="0"><span class="tag tag--gold">NEW</span><b>Claude Code–style console</b><span>Rebuilt from scratch: one mono face, rounded terminal panels, ASCII headers, text that types itself in.</span></li>
+      <li data-reveal="0"><span class="tag tag--gold">NEW</span><b>Bit, the reactive sidekick</b><span>Nervous on secrets, busy during scans, sleepy when you're done. Crown at level 5, cape at level 7.</span></li>
+      <li data-reveal="0"><span class="tag tag--gold">NEW</span><b>Since last visit</b><span>A digest of everything that moved while you were away, ranked by what needs you.</span></li>
+      <li data-reveal="0"><span class="tag tag--gold">NEW</span><b>Prompt bar + Ask Claude</b><span>Hints commands as you type. Questions get answered from your real repos.</span></li>
+      <li data-reveal="0"><span class="tag tag--gold">NEW</span><b>Living map</b><span>Your projects as a pixel skyline. Windows flicker with activity, smoke rises on risk.</span></li>
+      <li data-reveal="0"><span class="tag tag--blue">IMPROVED</span><b>Inline commit diffs</b><span>Read every change per project without switching windows.</span></li>
+      <li data-reveal="0"><span class="tag tag--blue">IMPROVED</span><b>Calmer notifications</b><span>Fewer pings. Each one comes with the action that clears it.</span></li>
+      <li data-reveal="0"><span class="tag tag--green">FIXED</span><b>Every breakpoint</b><span>The layout redraws cleanly when you resize, from a laptop split to an ultrawide.</span></li>
+      <li data-reveal="0"><span class="tag tag--red">SECRET</span><b>Easter eggs</b><span>Type <span class="t-gold2">bit</span> or <span class="t-gold2">dance</span> in the prompt bar. We won't spoil it.</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ 08 FAQ ============ -->
+  <section id="faq" class="sec sec--narrow">
+    <div data-reveal="0">
+      <p class="sh">FAQ</p>
+      <h2 class="h2-gap">Questions, <em>answered.</em></h2>
+    </div>
+    <div class="faq">
+      <details name="faq" open data-reveal="0"><summary><span>What does WorkspaceHQ actually scan?</span><i aria-hidden="true"></i></summary><p>Git status, branches, unpushed and uncommitted work, build and test state, and secrets sitting in plain text, across every folder you point it at.</p></details>
+      <details name="faq" data-reveal="0"><summary><span>Do I have to play the game part?</span><i aria-hidden="true"></i></summary><p>The game is a lens over real work. Every quest maps to a real fix in a real repo, and XP only moves when your workspace actually gets healthier.</p></details>
+      <details name="faq" data-reveal="0"><summary><span>Where does my code go?</span><i aria-hidden="true"></i></summary><p>Scans run on your machine. When you ask Claude something, only the question and the repo context it needs are sent.</p></details>
+      <details name="faq" data-reveal="0"><summary><span>What is Bit, really?</span><i aria-hidden="true"></i></summary><p>A status light with a personality. His mood mirrors your workspace at a glance, so you can tell how things are without reading a single number.</p></details>
+      <details name="faq" data-reveal="0"><summary><span>How do I start?</span><i aria-hidden="true"></i></summary><p>Clone the repo from GitHub and follow its README. Run a scan and your first quest shows up on top. That's it.</p></details>
+    </div>
+  </section>
+
+  <!-- ============ 09 INSTALL ============ -->
+  <section id="install" class="sec install">
+    <p class="px-label t-magenta blink" data-reveal="0">▶ PLAYER 1, READY</p>
+    <h2 class="install-h" data-reveal="1">Insert <em>coin.</em></h2>
+    <p class="install-p" data-reveal="2">It's open source. Clone it, follow the README, and your first quest shows up in about two seconds.</p>
+    <div class="term term--install" data-reveal="3">
+      <div class="term-bar">
+        <span class="term-tag">GITHUB</span>
+        <span class="term-os">BRVETR4VE1ER / WORKSPACE-HQ</span>
+      </div>
+      <div class="term-line">
+        <span class="term-dollar" aria-hidden="true">$</span>
+        <code class="term-cmd" data-cmd>git clone https://github.com/Brvetr4ve1er/workspace-HQ.git</code>
+        <button type="button" class="btn btn--primary btn--sm" data-copy>COPY</button>
+      </div>
+      <div class="term-line term-line--2"><span class="term-dollar" aria-hidden="true">$</span><code class="term-cmd term-cmd--muted">cd workspace-HQ</code></div>
+    </div>
+    <a class="btn btn--outline btn--lg" href="https://github.com/Brvetr4ve1er/workspace-HQ" rel="noopener" data-reveal="3">★ OPEN ON GITHUB</a>
+  </section>
+
+  <section class="sig" aria-label="WorkspaceHQ">
+    <p class="sig-word" data-reveal="0">WORKSPACE<span>HQ</span></p>
+    <p class="px-label sig-sub" data-reveal="1">AN ARCADE CABINET FOR YOUR CODEBASE</p>
+  </section>
+
+  <footer class="foot">
+    <span>WORKSPACEHQ · v3.0 · OCTOBER 2026</span>
+    <span>BUILT WITH CLAUDE CODE AND TOO MANY SIDE PROJECTS</span>
+    <span>BY <a href="../hub/">BR4VETR4VELER</a> · <a href="../">NUMIDEA LABS</a></span>
+  </footer>
+</main>
+
+<script src="app.js?v=202610050914" defer></script>
+</body>
+</html>

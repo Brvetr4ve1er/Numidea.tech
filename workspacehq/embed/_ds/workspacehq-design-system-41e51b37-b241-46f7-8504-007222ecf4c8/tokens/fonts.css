@@ -1,0 +1,19 @@
+/* WorkspaceHQ webfonts — the two faces the arcade console ships with.
+   Press Start 2P = pixel display/labels (--px). VT323 = phosphor terminal
+   body & numbers (--term / --mono). Both copied verbatim from the app repo. */
+
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("../assets/fonts/PressStart2P.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "VT323";
+  src: url("../assets/fonts/VT323.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

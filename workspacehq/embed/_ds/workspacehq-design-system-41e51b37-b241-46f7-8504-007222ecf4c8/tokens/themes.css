@@ -1,0 +1,65 @@
+/* WorkspaceHQ — ALTERNATE THEMES.
+   The console ships five skins. ARCADE (tokens/colors.css :root) is the default.
+   The four below rebind the SAME custom properties on :root[data-theme="…"], so
+   every component rides each skin automatically. Values are transcribed verbatim
+   from the app. Themes MUST remap the role tokens (--active/--active-arrow/
+   --divider) and their own type faces, not just the raw palette.
+
+   Load a theme by setting  <html data-theme="okami">.  */
+
+/* ---- OKAMI — monochrome ink-wash, white pill buttons, Anton display ---- */
+:root[data-theme="okami"] {
+  --bg: #1E1623; --bg2: #0A050D; --panel: #1a1520; --card: #251f2b; --card-hi: #2a2533;
+  --ink: #0A050D; --frame: rgba(255,255,255,0.10); --frame-hi: rgba(255,255,255,0.20);
+  --text: #ffffff; --muted: rgba(255,255,255,0.55); --faint: rgba(255,255,255,0.30);
+  --active: #FFD23F; --active-arrow: #FFFFFF; --divider: rgba(255,255,255,0.25);
+  --cyan: #C4E9FF; --magenta: #AC4BFF; --gold: #F59E0B; --gold-2: #FFD23F;
+  --green: #00C758; --red: #FB2C36; --orange: #FE6E00; --yellow: #F59E0B;
+  --blue: #3080FF; --purple: #AC4BFF; --pink: #FB2C36;
+  --px: "Anton", "Bebas Neue", Impact, sans-serif; /* @kind font */
+  --term: "Space Grotesk", "Inter", system-ui, sans-serif; /* @kind font */
+  --mono: "Space Mono", "Courier New", monospace; /* @kind font */
+}
+
+/* ---- NUMIDEA — teal + blood on midnight blue, Abril Fatface display ---- */
+:root[data-theme="numidea"] {
+  --bg: #0D1A2F; --bg2: #0A1626; --panel: #17364F; --card: #17364F; --card-hi: #1E4260;
+  --ink: #0D1A2F; --frame: #243B52; --frame-hi: #33506C;
+  --text: #EAF2F4; --muted: #8FA1AE; --faint: #5A6B79;
+  --active: #09D8C7; --active-arrow: #EAF2F4; --divider: #33506C;
+  --cyan: #09D8C7; --magenta: #BD0927; --gold: #F5B73D; --gold-2: #09D8C7;
+  --green: #09D8C7; --red: #BD0927; --orange: #F5B73D; --yellow: #EAF2F4;
+  --blue: #09D8C7; --purple: #411E3A; --pink: #BD0927;
+  --px: "Abril Fatface", Georgia, serif; /* @kind font */
+  --term: "Space Grotesk", system-ui, sans-serif; /* @kind font */
+  --mono: "Space Mono", "Courier New", monospace; /* @kind font */
+}
+
+/* ---- OPS DESK — warm graphite + amber, inbox-zero utility, Bebas display ---- */
+:root[data-theme="ops"] {
+  --bg: #0e0e0c; --bg2: #161614; --panel: #161614; --card: #1e1e1b; --card-hi: #26251f;
+  --ink: #0e0e0c; --frame: rgba(242,234,216,0.10); --frame-hi: rgba(242,234,216,0.20);
+  --text: #f2ead8; --muted: rgba(242,234,216,0.60); --faint: rgba(242,234,216,0.30);
+  --active: #e8a41a; --active-arrow: #f2ead8; --divider: rgba(242,234,216,0.30);
+  --cyan: #4a9eff; --magenta: #e8521a; --gold: #e8a41a; --gold-2: #e8521a;
+  --green: #4caf7d; --red: #e05555; --orange: #e8521a; --yellow: #e8a41a;
+  --blue: #4a9eff; --purple: #e8521a; --pink: #e05555;
+  --px: "Bebas Neue", "Anton", Impact, sans-serif; /* @kind font */
+  --term: "Syne", system-ui, sans-serif; /* @kind font */
+  --mono: "Space Mono", "Courier New", monospace; /* @kind font */
+}
+
+/* ---- NIGHTFALL — THE CANON. Gothic umber, lantern gold, Cinzel display.
+   FromSoftware-inspired display layer (see README / docs CANON). ---- */
+:root[data-theme="nightfall"] {
+  --bg: #0e0b09; --bg2: #0a0806; --panel: #171210; --card: #1e1814; --card-hi: #262019;
+  --ink: #0a0806; --frame: #3a2f22; --frame-hi: #5c4a33;
+  --text: #d8cfba; --muted: #8f8577; --faint: #5f584c;
+  --active: #c78b3c; --active-arrow: #d4af6a; --divider: #3a2f22;
+  --cyan: #7c93a8; --magenta: #a62c2b; --gold: #c78b3c; --gold-2: #d4af6a;
+  --green: #b7c4b0; --red: #a62c2b; --orange: #c78b3c; --yellow: #d4af6a;
+  --blue: #7c93a8; --purple: #6d5a7a; --pink: #a67c9a;
+  --px: "Cinzel", Georgia, serif; /* @kind font */
+  --term: "IM Fell English", "VT323", Georgia, serif; /* @kind font */
+  --mono: "Space Mono", "Courier New", monospace; /* @kind font */
+}

@@ -9,7 +9,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const PAGES = ['index.html', '404.html', 'hub/index.html', 'scene/index.html'];
+const PAGES = ['index.html', '404.html', 'hub/index.html', 'scene/index.html', 'workspacehq/index.html'];
 const stamp = new Date().toISOString().replace(/[-:TZ]/g, '').slice(0, 12);
 
 for (const f of PAGES) {

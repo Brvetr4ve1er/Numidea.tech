@@ -54,8 +54,8 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202610042310">
-<link rel="stylesheet" href="assets/styles.css?v=202610042310">
+<link rel="stylesheet" href="assets/fonts.css?v=202610050914">
+<link rel="stylesheet" href="assets/styles.css?v=202610050914">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -89,7 +89,7 @@
        deliberate and safe: it runs while the head is still parsing, so the
        parser inserts the link itself and rendering waits for it. Only the theme
        actually in use is written, so nobody else downloads or waits on 46KB. */
-    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202610042310';
+    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202610050914';
     /* The studio's WhatsApp number, full international form, digits only
        (e.g. '213XXXXXXXXX'). While this is empty every WhatsApp control on the
        page stays visibly pending instead of linking somewhere wrong. */
@@ -1134,6 +1134,8 @@
     </nav>
   </div>
   <p class="signoff" data-i18n="footer.signoff">Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.</p>
+  <!-- WorkspaceHQ: the founder's own product, as a little cartridge -->
+  <a class="whq-cart" href="workspacehq/"><span class="whq-bit"><svg viewBox="0 0 12 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="3" y="0" width="6" height="1" fill="#d97757"/><rect x="2" y="1" width="1" height="1" fill="#d97757"/><rect x="3" y="1" width="1" height="1" fill="#f2a27e"/><rect x="4" y="1" width="6" height="1" fill="#d97757"/><rect x="1" y="2" width="1" height="1" fill="#d97757"/><rect x="2" y="2" width="1" height="1" fill="#f2a27e"/><rect x="3" y="2" width="8" height="1" fill="#d97757"/><rect x="1" y="3" width="10" height="1" fill="#d97757"/><rect x="1" y="4" width="10" height="1" fill="#d97757"/><rect x="0" y="5" width="12" height="1" fill="#d97757"/><rect x="1" y="6" width="10" height="1" fill="#d97757"/><rect x="1" y="7" width="10" height="1" fill="#a5543a"/><rect x="2" y="8" width="1" height="1" fill="#a5543a"/><rect x="4" y="8" width="1" height="1" fill="#a5543a"/><rect x="7" y="8" width="1" height="1" fill="#a5543a"/><rect x="9" y="8" width="1" height="1" fill="#a5543a"/><g class="whq-eyes"><rect x="3" y="3" width="1" height="1" fill="#1b1430"/><rect x="8" y="3" width="1" height="1" fill="#1b1430"/><rect x="3" y="4" width="1" height="1" fill="#1b1430"/><rect x="8" y="4" width="1" height="1" fill="#1b1430"/></g></svg></span><span class="whq-txt"><span class="whq-kick" data-i18n="whq.kick">Le projet préféré du fondateur</span><b class="whq-name">WORKSPACE<i>HQ</i> <em>v3</em></b><span class="whq-sub" data-i18n="whq.sub">WorkspaceHQ v3 est sorti — votre code, en jeu d'arcade</span></span><span class="whq-start" aria-hidden="true">▶ PRESS START</span><span class="whq-xp" aria-hidden="true">+1 XP</span></a>
   <div class="meta">
     <span data-i18n="footer.rights">© 2026 Numidea Labs · Tous droits réservés</span>
     <span data-i18n="footer.tag">Rooted in Numidia · built on ideas</span>
@@ -1190,7 +1192,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202610042310" defer></script>
+<script src="assets/app.js?v=202610050914" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
