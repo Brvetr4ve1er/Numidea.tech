@@ -932,3 +932,11 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
 .channels .ch-ic{grid-template-columns:18px minmax(0,1fr);column-gap:var(--s2);row-gap:4px}
 .channels .ch-ic .ai-ch{grid-row:1/span 2;width:18px;height:18px}
 .pl-cap{background:var(--bg)}
+
+/* ---- visual pass ---- */
+/* Scrolled, the bar inherited the base sheet's navy rgba(13,26,47,.72): a blue
+   strip across a black instrument surface. */
+.navbar.scrolled{background:color-mix(in srgb,var(--bg) 86%,transparent)}
+/* The base desktop grid splits the method into three columns; this sheet's
+   820px list cap then squeezed all three into the left 70% of the row. */
+@media (min-width:961px){.steps{max-width:none}}

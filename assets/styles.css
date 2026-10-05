@@ -2226,6 +2226,46 @@ html[dir="rtl"] .whq-cart::after{right:auto;left:-2px;background:linear-gradient
 html[dir="rtl"] .whq-kick{font-family:var(--font-ar-body,system-ui),sans-serif;font-size:12px;letter-spacing:0}
 html[dir="rtl"] .whq-start{right:auto;left:12px}
 @media (prefers-reduced-motion:reduce){.whq-cart,.whq-bit svg{transition:none}.whq-cart *{animation:none!important}.whq-cart:hover{transform:none}}
-.footer .whq-cart{margin:0 0 var(--s-6)}
+.footer .whq-cart{margin:var(--s-4) 0 var(--s-6)}
 .whq-cart{--whq-page:var(--void)}
 html[data-theme="engineering"] .whq-cart{--whq-page:var(--bg)}
+
+/* ═══ visual pass, Oct 2026 ═══ */
+/* The proof band is a compact strip, not a chapter: it inherited the full
+   section padding (109px a side at 1280) and read as an empty box. */
+main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
+
+/* The scene banner's three plates were blank cards that read as a missing
+   image. They now carry the real client screenshots, fanned like a stack of
+   drawing sheets. */
+.sb-art i{background-size:cover;background-position:top left}
+.sb-art i:nth-child(1){background-image:url(previews/nomara.webp)}
+.sb-art i:nth-child(2){background-image:url(previews/glaive.webp)}
+.sb-art i:nth-child(3){background-image:url(previews/bordjsteel.webp)}
+.sb-art{width:92px;height:62px}
+
+/* Footer links: WhatsApp is a flex item (icon slot) and centred its label in
+   the 39px row while the others sat at the top — 10px lower. One rule for all. */
+.footer nav a{display:inline-flex;align-items:center}
+
+@media (max-width:599px){
+  /* Work cards on phones: a 16:10 screenshot squeezed into a narrow strip
+     beside the text cut every headline mid-word ("VENIR, E", "BUILT FO").
+     Stacked, each shot keeps its real shape. Tablets keep the side layout,
+     where the strip is wide enough to read. */
+  .work-grid>.proj{display:block}
+  .work-grid>.proj .thumb{aspect-ratio:16/10;height:auto;min-height:0}
+  .work-grid>.proj .thumb--art .cover{display:block}
+  .work-grid>.proj .thumb--art .art-glyph{width:52px;height:52px}
+  /* "Voir toutes les capacités": the label was squeezed to three lines beside
+     its hint. The hint drops to its own line. */
+  .capabilities>summary{flex-wrap:wrap;row-gap:6px}
+  .capabilities>summary .hint{order:3;flex-basis:100%}
+}
+
+/* RTL: the wordmark is three runs (Num · idea · Labs) plus the brick; in an
+   Arabic paragraph the bidi algorithm reordered them to "Labs idea Num".
+   A brand name has one direction. */
+.logo{direction:ltr;unicode-bidi:isolate}
+/* "<24h": the "<" is a neutral, so in RTL it migrated to the far end ("24h>") */
+.stat{direction:ltr;unicode-bidi:isolate}

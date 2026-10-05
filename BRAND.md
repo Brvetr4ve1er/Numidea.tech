@@ -1170,3 +1170,36 @@ The live console logs `<polyline> attribute points: Expected number,
 "{{ … }}"` while booting: the browser parses the design runtime's template
 before binding it. Harmless (the same happens in Claude Design) and inside the
 design's own runtime, so left alone.
+
+## Visual pass — what the automated checks could not see
+
+Every gate was green (check, validator, sweep, 32-run audit) and the page still
+had visual bugs, found by walking it viewport by viewport at 1280 and 390 in
+arcanum/fr, engineering/en and daylight/ar:
+
+- **RTL wordmark.** "Num · idea · Labs" is three runs; in an Arabic paragraph
+  the bidi algorithm laid them out as "Labs idea Num". `.logo` is now
+  `direction:ltr; unicode-bidi:isolate` — a brand name has one direction.
+- **RTL "<24h"** rendered "24h>" (the "<" is a neutral). `.stat` is isolated LTR.
+- **Engineering navbar** turned navy when scrolled (the base sheet's
+  rgba(13,26,47,.72)); now the instrument black.
+- **Engineering method steps** were squeezed into the left 70% of the row:
+  the base desktop grid makes three columns, this theme capped the list at
+  820px. The cap is lifted on desktop.
+- **Proof band** carried full section padding (109px a side) and read as an
+  empty box; it is a compact strip now.
+- **Scene banner** art was three blank plates that read as a missing image;
+  they now carry real client screenshots.
+- **Footer WhatsApp** sat 10px low (flex-centred in a 39px row while its
+  siblings sat at the top).
+- **Phones (<600px):** work cards showed a narrow slice of each 16:10
+  screenshot, cutting every headline mid-word; they now stack with the shot
+  at its real shape. The "see every capability" summary drops its hint to its
+  own line instead of squeezing the label into three. The WorkspaceHQ
+  cartridge gets air above it.
+
+`.tmp/vbugs.mjs` (not committed) scans 7 widths x 4 theme/lang pairs for
+overlapping text, text escaping its card, clipped text, stretched images and
+horizontal scroll. It needs two exclusions to be honest: content of closed
+`<details>` keeps stale layout boxes, and decorative clipped glows overflow on
+purpose.
