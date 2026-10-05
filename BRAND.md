@@ -1109,3 +1109,49 @@ other plate.
 Rules: never animate through inherited custom properties; never read layout
 (`scrollY`, `getBoundingClientRect`, `scrollHeight`) after a style write in the
 same frame; every rAF loop must have a stop condition.
+
+## workspacehq/ — the WorkspaceHQ v3 launch page
+
+Implemented from the Claude Design project ("WorkspaceHQ v3 Launch Site.dc.html")
+for the product's public v3 launch. Two halves, built differently on purpose:
+
+- **The page itself is native** — `workspacehq/index.html`, `style.css`,
+  `app.js`, no React. The design-system components the design imported
+  (Button, Tag, ProgressBar, Kpi, Achievement, SectionHeading) are rebuilt in
+  CSS with the bundle's exact values; the DCLogic class (Bit's sprite and moods,
+  feeding/levels/achievements, copy, chapter seek, demo boot, progress, nav,
+  reveal) is ported to plain JS. Tokens are the DS ARCADE theme verbatim, with
+  one change: `--faint` is lifted from #5e588a (~3:1) to #8a83bd, because the
+  page uses it as text.
+- **The three embedded experiences stay the design's own React pages** —
+  `embed/trailer.html`, `embed/walkthrough.html`, `embed/console.html`, on the
+  Claude Design runtime (`embed/support.js`). Made self-contained:
+  React 18.3.1 UMD is self-hosted in `embed/vendor/` and loaded BEFORE
+  support.js (the runtime only fetches React when `window.React` is missing);
+  the `.jsx` sources were compiled ahead of time with esbuild
+  (`--loader=tsx --jsx=transform`), so the runtime never fetches Babel (it
+  picks Babel only for `.jsx`/`.tsx` URLs); IBM Plex Mono is self-hosted
+  (`embed/fonts/`); the CDN fallback URLs in support.js point at the local
+  copies. Net: zero third-party requests, as everywhere else on the site.
+  To update an embed from a new design export, repeat those four steps.
+
+**Install = GitHub.** The design said `brew install workspacehq` /
+`npm i -g workspacehq`; neither package exists (both registries 404), and an
+install command for an unclaimed name invites someone else to claim it. The
+page points at `github.com/Brvetr4ve1er/workspace-HQ` until the packages are
+published — then restore the BREW/NPM tabs from the design.
+
+**Loops are allowed here.** INSERT COIN blinking, the glitching headline, the
+marquee and Bit floating ARE this product's identity, so the audit runs this
+page with `allowLoops`. They pause when their section is off screen (`.off`),
+the cursor glow's rAF stops once it catches the pointer, and reduced motion
+turns all of it off.
+
+**The cartridge.** WorkspaceHQ is the founder's favourite build, so it is
+linked as a little NES cartridge with Bit on the label: in the hub hero, in the
+hub's Dev links, and in the Numidea footer (i18n keys `whq.kick` / `whq.sub`).
+It wears WorkspaceHQ's palette in every theme, and only moves on hover/focus
+(Bit hops and blinks, +1 XP rises, PRESS START flashes) — still at rest, so
+those pages keep their no-endless-animation rule. The cut corner is drawn with
+`::after` in the page colour (`--whq-page`), not `clip-path`, which would clip
+the hover ring.

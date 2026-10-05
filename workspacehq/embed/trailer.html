@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!-- React is self-hosted and loaded before the runtime, so support.js never
+     reaches for the CDN; the JSX was compiled ahead of time (.jsx -> .js), so
+     Babel is never fetched either. -->
+<script src="vendor/react.production.min.js"></script>
+<script src="vendor/react-dom.production.min.js"></script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="fonts/plex.css">
+<style>html,body{margin:0;height:100%;background:#0d0d0f;overflow:hidden} a{color:#d97757} a:hover{color:#f2a27e}</style>
+<script src="hq-audio.js"></script>
+<script>window.OM_SCENES = '[{"name":"Boot","dur":3,"desc":"A cursor wakes and types hq --wake"},{"name":"Chaos","dur":4,"desc":"Hard cuts of workspace-mess stats"},{"name":"Decode","dur":3.5,"desc":"WORKSPACE HQ decodes from glyphs"},{"name":"Scan","dur":4.5,"desc":"Scan panel rises and resolves each repo"},{"name":"Bit","dur":4,"desc":"Bit lands, panics at a secret, celebrates the fix"},{"name":"Ship","dur":4,"desc":"Clean commit; the project name explodes"},{"name":"Level","dur":3,"desc":"Bit levels up and gets a crown"},{"name":"Outro","dur":4,"desc":"Wordmark, tagline, v3 out now"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
+<script>window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{"motionEditor":true,"scanlines":true,"sound":true}/*EDITMODE-END*/;</script>
+</helmet>
+<x-import component-from-global-scope="HQTrailer" from="./animations-v3.js ./tweaks-panel.js ./hq-trailer.js" style="position:fixed;inset:0" hint-size="100%,100%"></x-import>
+</x-dc>
+</body>
+</html>

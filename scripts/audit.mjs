@@ -2,7 +2,7 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 30 runs: hub/, scene/, 404 and index.html in all six themes x FR/EN/AR at
+ * 32 runs: hub/, scene/, 404, workspacehq/ and index.html in all six themes x FR/EN/AR at
  * 1280x900, plus a 390x844 touch pass. Each run scrolls the whole page, then
  * checks: layout shift (CLS > 0.01), LCP, axe (all default rules), horizontal
  * overflow (honouring clipping ancestors), reveals that never fired, tap
@@ -28,7 +28,7 @@ const B='http://127.0.0.1:'+srv.address().port;
 const AXE=readFileSync('node_modules/axe-core/axe.min.js','utf8');
 const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
 let fails=0;const rows=[];
-const run=async(label,path,{theme,lang,w=1280,h=900}={})=>{
+const run=async(label,path,{theme,lang,w=1280,h=900,allowLoops=false}={})=>{
   const p=await b.newPage({viewport:{width:w,height:h},hasTouch:w<600,isMobile:w<600});
   const errs=[],bad=[];
   p.on('pageerror',e=>errs.push(String(e).slice(0,80)));
@@ -69,7 +69,7 @@ const run=async(label,path,{theme,lang,w=1280,h=900}={})=>{
   const third=await p.evaluate(o=>performance.getEntriesByType('resource').filter(r=>!r.name.startsWith(o)).length,B);
   const issues=[];
   if(m.cls>0.01)issues.push('cls');if(ax.length)issues.push('axe');if(m.of.length||m.hscroll)issues.push('overflow');
-  if(anim)issues.push('anim');if(errs.length)issues.push('js');if(bad.length)issues.push('net');if(third)issues.push('3p');
+  if(anim&&!allowLoops)issues.push('anim');if(errs.length)issues.push('js');if(bad.length)issues.push('net');if(third)issues.push('3p');
   if(m.hidden)issues.push('unrevealed');if(m.imgs)issues.push('img');if(m.small)issues.push('tap');
   if(issues.length)fails++;
   rows.push({label,...m,anim,ax,errs,bad,third,issues});
@@ -81,10 +81,15 @@ const run=async(label,path,{theme,lang,w=1280,h=900}={})=>{
 };
 console.log('— desktop 1280×900 —');
 for(const [n,path] of [['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html']]) await run(n,path);
+// WorkspaceHQ is a different product with its own arcade identity: blinking
+// INSERT COIN, the glitching headline and the marquee ARE the design, so the
+// no-endless-loop rule is waived there (its loops pause when off screen).
+await run('workspacehq','/workspacehq/index.html',{allowLoops:true});
 for(const t of ['arcanum','noir','daylight','mono','altneon','engineering'])
   for(const l of ['fr','en','ar']) await run(`index ${t}/${l}`,'/index.html',{theme:t,lang:l});
 console.log('— mobile 390×844 —');
 for(const [n,path] of [['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html']]) await run(n+' m',path,{w:390,h:844});
+await run('workspacehq m','/workspacehq/index.html',{w:390,h:844,allowLoops:true});
 for(const t of ['arcanum','daylight','engineering'])
   for(const l of ['fr','ar']) await run(`index ${t}/${l} m`,'/index.html',{theme:t,lang:l,w:390,h:844});
 await b.close();srv.close();

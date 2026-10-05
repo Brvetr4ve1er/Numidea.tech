@@ -1,0 +1,58 @@
+/* WorkspaceHQ — SPACING, RADIUS, BORDER & SHADOW TOKENS.
+   The arcade look is HARD-EDGED: radius is 0 almost everywhere (NES windows),
+   and depth comes from stacked box-shadows (black gap + coloured frame + faint
+   glow), never from soft blur. Chunky buttons use a hard 0 3px 0 drop. */
+
+:root {
+  /* ---- spacing scale (px; the app lives on ~7/10/14/16 rhythm) ---- */
+  --sp-1:  4px;
+  --sp-2:  7px;
+  --sp-3:  10px;
+  --sp-4:  12px;
+  --sp-5:  14px;
+  --sp-6:  16px;
+  --sp-7:  18px;
+  --sp-8:  24px;
+  --sp-10: 30px;
+
+  /* card & control interior padding (matches source) */
+  --pad-card:   15px 16px;
+  --pad-quest:  11px;
+  --pad-btn:    6px 12px;
+  --pad-chip:   7px 10px;
+
+  /* grid gaps */
+  --gap-grid:  16px;
+  --gap-tight: 10px;
+
+  /* ---- radius (arcade = square; alternate themes soften) ---- */
+  --r-0:    0;      /* @kind radius */
+  --r-sm:   3px;    /* chips / small pills */
+  --r-pill: 999px;  /* segmented capsule labels */
+
+  /* ---- borders ---- */
+  --bd:       2px solid var(--ink);    /* the black window edge */
+  --bd-frame: 2px solid var(--frame);  /* coloured frame edge */
+  --bd-dash:  1px dashed var(--frame); /* inner dividers */
+
+  /* ---- shadow system: NES frame = ink border + frame ring + faint glow ---- */
+  --shadow-frame:  0 0 0 2px var(--frame), 0 0 14px -6px rgba(90,78,168,.55);
+  --shadow-frame-hi: 0 0 0 2px var(--frame-hi), 0 8px 26px -10px rgba(0,0,0,.9);
+  --shadow-glow-gold: 0 0 22px -8px rgba(255,210,63,.9);
+  --shadow-glow-cyan: 0 0 16px -6px rgba(0,240,255,.6);
+
+  /* chunky button drop (hard, no blur) — pressed = translateY + kill shadow */
+  --btn-drop:      0 3px 0; /* @kind shadow */
+  --btn-drop-gold: 0 3px 0 #8a6200;
+  --btn-drop-green:0 3px 0 #1f9e4b;
+
+  /* text glow helpers (as raw shadows) */
+  --glow-gold:    0 0 7px rgba(255,210,63,.65);
+  --glow-cyan:    0 0 7px rgba(0,240,255,.6);
+  --glow-magenta: 0 0 8px rgba(255,43,214,.6);
+
+  /* motion — short, mechanical, snappy; hover = translateY(-2/-3px) */
+  --ease-pop: cubic-bezier(.22,1,.36,1); /* @kind other */
+  --t-fast: .12s; /* @kind other */
+  --t-base: .15s; /* @kind other */
+}

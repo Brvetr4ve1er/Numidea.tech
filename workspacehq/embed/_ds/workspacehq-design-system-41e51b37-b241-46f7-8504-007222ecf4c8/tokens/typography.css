@@ -1,0 +1,39 @@
+/* WorkspaceHQ — TYPOGRAPHY TOKENS.
+   Two faces do all the work: a pixel display face and a phosphor terminal face.
+   Rule of thumb from the source app: --px for LABELS/headings (small, tracked,
+   uppercase-feeling), --term for BODY and every NUMBER (big, legible). Never set
+   Press Start 2P above ~14px — it is a caps-lock pixel face, meant to be tiny. */
+
+:root {
+  /* families */
+  --px:   "Press Start 2P", "Courier New", monospace;    /* @kind font */
+  --term: "VT323", "Cascadia Code", Consolas, monospace; /* @kind font */
+  --mono: "VT323", "Cascadia Code", Consolas, monospace; /* @kind font */
+
+  --font-display: var(--px);
+  --font-body:    var(--term);
+  --font-mono:    var(--mono);
+
+  /* ---- pixel display scale (Press Start 2P) — LABELS ONLY ----
+     tiny sizes on purpose; letter-spacing gives them the arcade cadence */
+  --px-6:   6px;    /* micro labels (KPI keys, tier tags) */
+  --px-7:   7px;    /* chip / button labels */
+  --px-8:   8px;    /* card names, section eyebrows */
+  --px-9:   9px;    /* prominent labels */
+  --px-10: 10px;    /* section headings (h2.sec) */
+  --px-12: 12px;    /* drawer titles */
+  --px-track: 1px;  /* default label tracking (use 1–2px) */
+
+  /* ---- terminal body scale (VT323) — BODY & NUMBERS ---- */
+  --term-13: 13px;  /* fine print / metadata */
+  --term-15: 15px;  /* secondary body */
+  --term-17: 17px;  /* base body / quest titles */
+  --term-21: 21px;  /* emphasised body */
+  --term-27: 27px;  /* card big-percent */
+  --term-34: 34px;  /* KPI value / hero number */
+
+  /* line-heights */
+  --lh-tight: 1.1;  /* @kind other */
+  --lh-body:  1.25; /* @kind other */
+  --lh-loose: 1.4;  /* @kind other */
+}

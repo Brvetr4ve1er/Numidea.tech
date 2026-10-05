@@ -40,7 +40,9 @@ const orphans = [...refs].filter((k) => !counts[k]);
 orphans.length ? bad('orphan data-i18n refs: ' + orphans.join(', ')) : ok('no orphan data-i18n references');
 
 /* 3 — assets exist */
-const pages = { 'index.html': '.', '404.html': '.', 'hub/index.html': 'hub', 'scene/index.html': 'scene' };
+const pages = { 'index.html': '.', '404.html': '.', 'hub/index.html': 'hub', 'scene/index.html': 'scene', 'workspacehq/index.html': 'workspacehq',
+  // the embedded WorkspaceHQ pages are checked for their own references too
+  'workspacehq/embed/trailer.html': 'workspacehq/embed', 'workspacehq/embed/walkthrough.html': 'workspacehq/embed', 'workspacehq/embed/console.html': 'workspacehq/embed' };
 const missing = [];
 for (const [f, base] of Object.entries(pages)) {
   // strip HTML comments first: commented-out markup (e.g. slots waiting on
@@ -49,6 +51,9 @@ for (const [f, base] of Object.entries(pages)) {
   for (const m of src.matchAll(/(?:src|href)="([^"#][^"]*)"/g)) {
     const u = m[1].split('?')[0];
     if (/^(https?:|mailto:|data:|\/\/)/.test(u) || u === '') continue;
+    // template bindings ({{ x }}) and app-internal schemes (model:rocket) in the
+    // WorkspaceHQ console are resolved by its runtime, not by the server
+    if (u.includes('{{') || /^[a-z][a-z0-9+.-]*:/i.test(u)) continue;
     // An inline script assembling a tag by concatenation ("href=\"' + x + '\"")
     // is code, not a path. Its real targets are checked below from the literals.
     if (u.includes("'")) continue;
