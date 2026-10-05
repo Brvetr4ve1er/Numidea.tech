@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brvetr4ve1er.github.io/Numidea.tech/sitemap.xml

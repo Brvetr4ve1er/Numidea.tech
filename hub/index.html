@@ -11,23 +11,29 @@
 <meta name="color-scheme" content="dark light">
 <!-- Without this the browser falls back to /favicon.ico, which does not
      exist: a 404 in every visitor's console on this page. -->
+<link rel="canonical" href="https://brvetr4ve1er.github.io/Numidea.tech/hub/">
+<meta property="og:url" content="https://brvetr4ve1er.github.io/Numidea.tech/hub/">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('void-theme')||'dark';}catch(e){document.documentElement.dataset.theme='dark';}</script>
 <!-- Syne and Space Mono are self-hosted now, so this is render-blocking like
      any first-party sheet — no request on this page reaches a third party. It
      was a Google link held off the critical path with media="print", which was
      the last such dependency on the site. -->
-<link rel="stylesheet" href="../assets/fonts-hub.css?v=202610051056">
+<link rel="stylesheet" href="../assets/fonts-hub.css?v=202610051127">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/syne-800-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/space-mono-400-latin.woff2">
-<link rel="stylesheet" href="style.css?v=202610051056">
+<link rel="stylesheet" href="style.css?v=202610051127">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://brvetr4ve1er.github.io/Numidea.tech/"},{"@type":"ListItem","position":2,"name":"br4vetr4veler","item":"https://brvetr4ve1er.github.io/Numidea.tech/hub/"}]}</script>
 </head>
 <body>
 
 <!-- ============================= HERO ============================= -->
 <header class="hero" id="hero">
-  <nav class="topbar" aria-label="Raccourcis">
-    <span class="brandtag">VOIDSPLUNKER<span class="acc">.std</span></span>
+  <nav class="topbar" aria-label="Breadcrumb">
+    <ol class="bc">
+      <li><a href="../">Numidea Labs</a></li>
+      <li aria-current="page"><span class="brandtag">VOIDSPLUNKER<span class="acc">.std</span></span></li>
+    </ol>
     <span class="spacer"></span>
   </nav>
 
@@ -453,6 +459,6 @@
   </div>
 </footer>
 
-<script src="app.js?v=202610051056" defer></script>
+<script src="app.js?v=202610051127" defer></script>
 </body>
 </html>

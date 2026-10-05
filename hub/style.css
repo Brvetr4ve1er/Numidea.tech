@@ -583,3 +583,10 @@ html[dir="rtl"] .whq-start{right:auto;left:12px}
 .link--whq{border-color:color-mix(in srgb,#ffd23f 45%,var(--line-2))}
 .link--whq .badge{color:#ffd23f}
 .whq-cart{--whq-page:var(--ink)}
+
+/* breadcrumb: Numidea Labs / VOIDSPLUNKER.std */
+.topbar .bc{display:flex;align-items:center;gap:10px;margin:0;padding:0;list-style:none;min-width:0}
+.topbar .bc li{display:flex;align-items:center;gap:10px}
+.topbar .bc li+li::before{content:"/";font-family:var(--mono);font-size:11px;opacity:.45}
+.topbar .bc a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;transition:opacity .2s}
+.topbar .bc a:hover,.topbar .bc a:focus-visible{opacity:1}

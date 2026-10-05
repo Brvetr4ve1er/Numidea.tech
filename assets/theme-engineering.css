@@ -940,3 +940,16 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
 /* The base desktop grid splits the method into three columns; this sheet's
    820px list cap then squeezed all three into the left 70% of the row. */
 @media (min-width:961px){.steps{max-width:none}}
+.nav-links a[aria-current="true"]{color:var(--fg)}
+.nav-links a[aria-current="true"]::after{background:var(--accent)}
+.crumb b{color:var(--accent)}
+.stack-strip{gap:1px}
+.stack-strip .grp{display:flex;flex-direction:column;align-items:flex-start;gap:12px;
+  background:var(--bg);border:0;border-radius:0;padding:var(--s3)}
+.to-top{background:var(--panel);color:var(--fg);border-color:var(--edge-2)}
+/* this sheet re-declares the work grid at two columns with no desktop step,
+   so the bento's second wide card (Nomara) left Étoile alone in its row */
+@media (min-width:1100px){.work-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* same for the services bento: this sheet's two-column grid loads after the
+   base six-column one, and the 3/2 spans then spilled into implicit tracks */
+@media (min-width:961px){.svc-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}

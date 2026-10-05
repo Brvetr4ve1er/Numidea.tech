@@ -14,6 +14,8 @@
      fix). Every family this page asks for is already in assets/fonts/. -->
 <!-- Without this the browser falls back to /favicon.ico, which does not
      exist: a 404 in every visitor's console on this page. -->
+<link rel="canonical" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/">
+<meta property="og:url" content="https://brvetr4ve1er.github.io/Numidea.tech/scene/">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- No preloads here either: all four faces arrived after first paint and the
      swap resized the callout and the HUD (clink 26px→28px, hud-tag 11px→13px).
@@ -22,8 +24,9 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cinzel-700-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-400-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-700-latin.woff2">
-<link rel="stylesheet" href="../assets/fonts.css?v=202610051056">
-<link rel="stylesheet" href="style.css?v=202610051056">
+<link rel="stylesheet" href="../assets/fonts.css?v=202610051127">
+<link rel="stylesheet" href="style.css?v=202610051127">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://brvetr4ve1er.github.io/Numidea.tech/"},{"@type":"ListItem","position":2,"name":"Projets","item":"https://brvetr4ve1er.github.io/Numidea.tech/scene/"}]}</script>
 </head>
 <body>
 
@@ -79,16 +82,18 @@
   </div>
 
   <!-- header -->
-  <nav class="hud">
-    <a href="../" class="hud-logo"><span class="d">◆</span> NUMIDEA LABS</a>
-    <span class="hud-tag" id="hudTag"></span>
+  <div class="hud">
+    <nav class="bc" aria-label="Breadcrumb"><ol>
+      <li><a href="../" class="hud-logo"><span class="d">◆</span> NUMIDEA LABS</a></li>
+      <li aria-current="page"><span class="hud-tag" id="hudTag"></span></li>
+    </ol></nav>
     <span class="sp"></span>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="fr" aria-pressed="true">FR</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
       <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
     </div>
-  </nav>
+  </div>
 
   <!-- sheet index rail -->
   <div class="rail" id="rail" role="group" aria-label="Sheets"></div>
@@ -109,7 +114,7 @@
   <p class="cue" id="cue"></p>
 </div>
 
-<script src="app.js?v=202610051056" defer></script>
+<script src="app.js?v=202610051127" defer></script>
 </main>
 
 </body>

@@ -72,7 +72,7 @@
       'founder.certs': 'Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D',
       'pl.vista': 'Pl.\u00a0I — Les Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arc de Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Monnaies numides', 'pl.strata': 'Pl.\u00a0IV — Coupe des couches', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — Le Grand Erg',
       'whq.kick': 'Le projet préféré du fondateur', 'whq.sub': 'WorkspaceHQ v3 est sorti — votre code, en jeu d\'arcade',
-      'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
+      'ui.top': 'Haut de page', 'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
       'team.h': "Avec lui, l'équipe",
       'team.dFn': 'Spécialiste données', 'team.dDo': "Pipelines, scraping et la couche d'intelligence.",
       'team.sFn': 'Ventes & partenariats', 'team.sDo': "Premier contact : traduit l'idée en périmètre.",
@@ -167,7 +167,7 @@
       'founder.certs': 'Certifications: Duolingo English Test · Digital design (Artiland.Studio) · 3D motion design',
       'pl.vista': 'Pl.\u00a0I — The Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arch of Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Numidian coins', 'pl.strata': 'Pl.\u00a0IV — Section through the strata', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — The Grand Erg',
       'whq.kick': "The founder's favourite project", 'whq.sub': 'WorkspaceHQ v3 is out — your codebase, now playable',
-      'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
+      'ui.top': 'Back to top', 'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
       'team.h': 'Alongside him, the team',
       'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
       'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
@@ -262,7 +262,7 @@
       'founder.certs': 'الشهادات: Duolingo English Test · التصميم الرقمي (Artiland.Studio) · التصميم الحركي ثلاثي الأبعاد',
       'pl.vista': 'لوحة ١ — جبال البيبان · برج بوعريريج', 'pl.arch': 'لوحة ٢ — قوس تراجان · تيمقاد', 'pl.coins': 'لوحة ٣ — نقود نوميدية', 'pl.strata': 'لوحة ٤ — مقطع في طبقات الأرض', 'pl.light': 'لوحة ٥ — رأس كاربون · بجاية', 'pl.dunes': 'لوحة ٦ — العرق الكبير',
       'whq.kick': 'المشروع المفضّل لدى المؤسس', 'whq.sub': 'صدر WorkspaceHQ v3 — شيفرتك، لعبة أركيد',
-      'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
+      'ui.top': 'إلى الأعلى', 'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
       'team.h': 'وإلى جانبه، الفريق',
       'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
       'team.sFn': 'المبيعات والشراكات', 'team.sDo': 'أول تواصل: ترجمة الفكرة إلى نطاق عمل.',
@@ -1746,6 +1746,62 @@
         es.forEach(function (e) { e.target.classList.toggle('live', e.isIntersecting); });
       }, { threshold: 0.15 });
       [].forEach.call(document.querySelectorAll('.lv'), function (el) { vio.observe(el); });
+    })();
+
+
+    /* ---------- 16. skeletons, wayfinding, back to top ---------- */
+    // Skeleton: a picture's box shimmers until the picture has decoded. Only
+    // images not yet complete get one, so cached loads never flash it.
+    [].forEach.call(document.querySelectorAll('.proj .thumb img.shot, .plate img.pl, .fd-photo img'), function (img) {
+      var box = img.closest('.thumb, .plate, .fd-photo'); if (!box || (img.complete && img.naturalWidth)) return;
+      box.classList.add('sk');
+      var done = function () { box.classList.add('sk-done'); };
+      img.addEventListener('load', done, { once: true }); img.addEventListener('error', done, { once: true });
+    });
+
+    // Scroll-spy: the nav marks the section you are in (aria-current), and on
+    // phones — where the links are folded into the menu — a breadcrumb names it.
+    (function () {
+      var links = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+      var crumb = document.getElementById('crumb'), now = document.getElementById('crumbNow');
+      var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+      var cur = -1, tops = [];
+      // section tops are measured once (and on resize/reflow), never per
+      // scroll frame: the scroll handler only compares numbers
+      var measure = function () {
+        var y = window.scrollY || window.pageYOffset || 0;
+        tops = secs.map(function (el) { return el ? el.getBoundingClientRect().top + y : Infinity; });
+      };
+      var pick = function () {
+        var line = (window.scrollY || window.pageYOffset || 0) + innerHeight * 0.35, i = -1;
+        for (var k = 0; k < tops.length; k++) { if (tops[k] <= line) i = k; }
+        // the order of the links is the order of the page, so the last section
+        // whose top has passed the reading line is the one being read
+        if (i === cur) return; cur = i;
+        links.forEach(function (a, k) { if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+        if (crumb && now) { now.textContent = i >= 0 ? links[i].textContent : ''; crumb.classList.toggle('on', i >= 0); }
+      };
+      var tick = false;
+      addEventListener('scroll', function () { if (tick) return; tick = true; requestAnimationFrame(function () { pick(); tick = false; }); }, { passive: true });
+      var re = function () { measure(); cur = -2; pick(); };
+      document.addEventListener('numidea:lang', function () { setTimeout(re, 60); });
+      addEventListener('resize', re); addEventListener('load', re);
+      if ('ResizeObserver' in window) new ResizeObserver(re).observe(document.body);
+      re();
+    })();
+
+    // Back to top: appears after a screen and a half of reading.
+    (function () {
+      var b = document.getElementById('toTop'); if (!b) return;
+      var on = false;
+      addEventListener('scroll', function () {
+        var v = (window.scrollY || window.pageYOffset) > innerHeight * 1.5;
+        if (v !== on) { on = v; b.classList.toggle('on', v); }
+      }, { passive: true });
+      b.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+        var logo = document.querySelector('.navbar .logo'); if (logo) logo.focus({ preventScroll: true });
+      });
     })();
 
    } catch (e) {

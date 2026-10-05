@@ -1203,3 +1203,26 @@ overlapping text, text escaping its card, clipped text, stretched images and
 horizontal scroll. It needs two exclusions to be honest: content of closed
 `<details>` keeps stale layout boxes, and decorative clipped glows overflow on
 purpose.
+
+## Bento, loading states and wayfinding
+
+- **Work** is a 3-column bento at ≥1100px: wide(2)+1 / 1+wide(2) / 1+1+1, so
+  the card order in `index.html` is part of the layout. At 961–1099px only the
+  first card stays wide (2+6). Below 961px cards are rows (≥600) or stacked
+  (<600); no span applies there, or it creates an implicit second column.
+- **Services**: 6-column grid, 3+3 over 2+2+2. Narrow cards (and the two large
+  ones below 1280px) put icon and drawing on one row with the copy full-width
+  beneath; `align-content:start` keeps eyebrows aligned across a row.
+- **Stack** tiles: 6 columns, 3+3 over 2+2+2, single column under 720px.
+- **Founder** card spans 8 of 12 columns, the team the other 4.
+- `theme-engineering.css` re-declares the work, services and stack grids, so
+  every bento rule needs its counterpart there (it loads last and wins).
+- **Skeletons**: images still loading get `.sk` (finite 8-cycle shimmer), then
+  `.sk-done`. Every `<img>` declares `loading`.
+- **Wayfinding**: scroll-spy marks the current nav link with `aria-current`
+  (section tops cached, never measured per scroll frame); a crumb shows the
+  section on ≤960px; a back-to-top button appears after 1.5 viewports.
+- **Sub-pages** carry a visible breadcrumb and `BreadcrumbList` JSON-LD; all
+  pages have a canonical URL. `sitemap.xml` and `robots.txt` live at the root
+  (on GitHub Pages project sites crawlers only read the domain-root
+  robots.txt — submit the sitemap in Search Console instead).

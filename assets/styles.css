@@ -2269,3 +2269,117 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 .logo{direction:ltr;unicode-bidi:isolate}
 /* "<24h": the "<" is a neutral, so in RTL it migrated to the far end ("24h>") */
 .stat{direction:ltr;unicode-bidi:isolate}
+
+/* ═══════════════════════════ BENTO + LOADING + WAYFINDING ═══════════════════════════ */
+
+/* ---- Work: two featured wide cards; the grid closes flush ----
+   3 cols: wide(2)+1 / 1+wide(2) / 1+1+1 = 9 cells. 2 cols (961–1099): only the first
+   stays wide, 2+6 = 8. The old orphan rules (centre the odd last card) are
+   neutralised: the bento has no orphan. A wide card keeps the stacked card
+   anatomy with a 21:9 banner shot: side-by-side made the image box taller
+   than wide and cropped every headline ("L'AVENIR, ENS"); 21:9 across two
+   columns shows each site's whole top band and lands within ~30px of its
+   neighbour's height. */
+.work-grid>.proj:last-child{grid-column:auto!important;max-width:none!important;margin-inline:0!important}
+@media (min-width:961px){
+  .work-grid>.proj--wide:first-child{grid-column:span 2!important}
+  .work-grid>.proj--wide:first-child .thumb{aspect-ratio:21/9}
+}
+@media (min-width:1100px){
+  .work-grid>.proj--wide{grid-column:span 2!important}
+  .work-grid>.proj--wide .thumb{aspect-ratio:21/9}
+  .work-grid>.proj--wide h3{font-size:clamp(22px,2vw,28px)}
+  .work-grid>.proj--wide p{min-height:0}
+}
+/* every card in a row ends on the same line: actions pinned to the bottom */
+.proj{display:flex;flex-direction:column}
+.proj .body{flex:1;display:flex;flex-direction:column}
+.proj .actions{margin-top:auto}
+
+/* ---- Services: 6-col bento, two large offers over three ---- */
+@media (min-width:961px){
+  .svc-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .svc-grid>.svc-row{grid-column:span 2!important}
+  .svc-grid>.svc-row:nth-child(-n+2){grid-column:span 3!important}
+}
+
+/* ---- Pricing: the free-preview banner spans the tier grid it introduces ---- */
+.price-free{max-width:none}
+
+/* ---- Founder: the card and the team share the row ----
+   The card left ~25% of the row empty beside it; the team now fills it. */
+@media (min-width:1100px){
+  #founder>.founder-card{grid-column:1/span 8;max-width:none;align-self:start}
+  #founder>.team{grid-column:9/-1;max-width:none;margin-top:0;align-self:start}
+  #founder .team-grid{grid-template-columns:minmax(0,1fr)!important}
+  #founder>.kicker+h2.sec+.sec-lead+.founder-card+.team{margin-top:var(--s-8)}
+}
+
+/* ---- Stack: groups become tiles (3+3 / 2+2+2) ---- */
+.stack-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
+.stack-strip .grp{grid-column:span 2;display:flex;flex-direction:column;align-items:flex-start;gap:12px;
+  padding:clamp(16px,1.8vw,22px);background:color-mix(in srgb,var(--navy) 88%,transparent);border:1px solid var(--hairline);border-radius:var(--r-md)}
+.stack-strip .grp:nth-child(-n+2){grid-column:span 3}
+@media (max-width:719px){
+  .stack-strip{grid-template-columns:minmax(0,1fr)}
+  .stack-strip .grp,.stack-strip .grp:nth-child(-n+2){grid-column:auto}
+}
+
+/* ---- Skeletons: a picture's box shimmers until the picture has decoded ----
+   Boxes already have their final size (width/height + aspect-ratio), so
+   nothing moves; the shimmer runs a bounded number of times — the page's
+   no-endless-animation rule holds even on a slow network. */
+.sk{position:relative}
+.sk::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:1;transition:opacity .45s ease;
+  background:linear-gradient(100deg,transparent 30%,color-mix(in srgb,var(--ice) 7%,transparent) 50%,transparent 70%) var(--navy);
+  background-size:220% 100%;animation:sk-shine 1.3s ease-in-out 8}
+.sk.sk-done::after{opacity:0}
+@keyframes sk-shine{from{background-position:120% 0}to{background-position:-120% 0}}
+@media (prefers-reduced-motion:reduce){.sk::after{animation:none}}
+.proj .thumb.sk::after{z-index:2}
+.proj .thumb .browser{z-index:3}
+
+/* ---- Wayfinding: the section you are in ---- */
+.nav-links a[aria-current="true"]{color:var(--ice)}
+.nav-links a{position:relative}
+.nav-links a[aria-current="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--crimson)}
+/* phones: the links are folded into the menu, so a breadcrumb names the section */
+.crumb{display:none;align-items:center;gap:6px;min-width:0;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  opacity:0;transition:opacity .25s}
+.crumb i{font-style:normal;color:var(--faint)}
+.crumb b{font-weight:400;color:var(--crimson-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crumb.on{opacity:1}
+@media (max-width:960px){.crumb{display:inline-flex;flex:1 1 auto;margin-inline-start:12px}}
+@media (max-width:359px){.crumb{display:none}}
+html[dir="rtl"] .crumb{letter-spacing:0}
+
+/* ---- Back to top ---- */
+.to-top{position:fixed;inset-inline-end:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:90;
+  width:44px;height:44px;display:grid;place-items:center;border-radius:50%;cursor:pointer;
+  background:var(--navy);color:var(--ice);border:1px solid var(--hairline-2);box-shadow:0 12px 30px -14px rgb(var(--shade) / calc(.9 * var(--shade-k)));
+  opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s var(--ease-out),border-color .2s}
+.to-top.on{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{border-color:var(--teal)}
+.to-top:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media print{.to-top,.crumb{display:none!important}}
+/* three-across offers are a third of the row: icon and drawing share a top
+   row, the copy gets the full width beneath (it was wrapping word by word
+   beside the drawing and running into it) */
+@media (min-width:961px){
+  .svc-grid>.svc-row:nth-child(n+3){grid-template-columns:46px minmax(0,1fr);grid-template-areas:"glyph fig" "body body";row-gap:var(--s-4)}
+  .svc-grid>.svc-row:nth-child(n+3) .glyph{grid-area:glyph}
+  .svc-grid>.svc-row:nth-child(n+3) .svc-fig{grid-area:fig;position:static;justify-self:end;align-self:start;width:84px;height:84px;padding:10px}
+  .svc-grid>.svc-row:nth-child(n+3)>div{grid-area:body;padding-inline-end:0}
+  /* rows in a card hold their content height; the card's spare height
+     goes to the bottom, so eyebrows line up across a row */
+  .svc-grid>.svc-row{align-content:start}
+}
+/* the two large offers are only ~440px wide until 1280: the 132px drawing
+   gutter squeezed their copy to ~180px. Same two-row anatomy there. */
+@media (min-width:961px) and (max-width:1279px){
+  .svc-grid>.svc-row:nth-child(-n+2){grid-template-columns:46px minmax(0,1fr);grid-template-areas:"glyph fig" "body body";row-gap:var(--s-4)}
+  .svc-grid>.svc-row:nth-child(-n+2) .glyph{grid-area:glyph}
+  .svc-grid>.svc-row:nth-child(-n+2) .svc-fig{grid-area:fig;position:static;justify-self:end;align-self:start;width:84px;height:84px;padding:10px}
+  .svc-grid>.svc-row:nth-child(-n+2)>div{grid-area:body;padding-inline-end:0}
+}
