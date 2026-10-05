@@ -53,7 +53,8 @@ properties, so one element can be parallaxed *and* run a reveal transform, a
 hover scale and a spin animation at once without any of them clobbering the
 others. Add depth by putting `data-parallax="<k>"` on an element — negative
 moves against the scroll, positive with it, roughly −0.2…+0.2. `app.js` writes
-only the CSS variables `--px`, `--py` and `--sy`; the stylesheet composes them.
+one inline `translate` per element (pointer and scroll offsets summed) — never
+inherited custom properties; see "Performance" below.
 
 Two rules that were each learned by watching the page misbehave:
 
@@ -905,21 +906,28 @@ his design work, his social presence. **Client websites do not belong here**
 sites was added once and removed at the owner's request; `npm run check` now
 fails if any project URL appears in hub/.
 
-- **Hero frame:** until the pose photos exist, `#portrait` holds four pieces
-  from the collection as a contact sheet. The scroll-driven pose index (0-3)
-  lights one strip at a time; `.portrait:has(.pose) .sheet{display:none}`
-  retires it when the photos are dropped in. Update `.frame-cap` then too.
-- **The Collection:** 28 pieces from the DeviantArt gallery (br4vetr4veler5),
-  self-hosted in `hub/art/` (`-s` 480w for the grid, `-l` ≤1100px for the
-  viewer) because the audit fails any third-party request. Filed as Ink /
-  Covers / Skies. A CSS-columns masonry keeps every piece at its own aspect;
-  captions are always visible (hover-only titles vanish on touch). Left out:
-  the two adult-rated pieces, a duplicate, and the April 2025 series whose
-  titles are image-generation prompts — ask before adding those back.
+- **Hero frame:** the four Traveler portraits (Yasser's own self-portrait
+  series) fill the pose slots, ordered calm to scream — violet, cobalt,
+  vermilion, acid — so the scroll-driven pose index escalates as you read.
+- **The Series — BR4VETR4VELER, a story in 33 posters.** The DeviantArt
+  gallery was remade with Magnific (Nano Banana Pro; Seedream 5 Pro where
+  Nano's safety filter falsely blocked a piece) into one poster series, each
+  piece re-drawn from its original with one of Yasser's portraits as the style
+  reference: hand-inked manga line, riso halftone, cream paper, a broken halo
+  ring. It reads as a story:
+  - Prologue, *The Traveler* — the four portraits.
+  - I *The Sky* (cobalt/yellow), II *The Noise* (vermilion/orange),
+    III *The Ink* (violet/acid) — one palette per chapter.
+  - Epilogue, *The Power of Imagination* — his Neville Goddard poster.
+  Poster typography (BR4VETR4VELER, N° xx/33, title, chapter) is HTML on a
+  cream card, never baked into the image: AI lettering garbles, and real text
+  stays sharp and consistent. Every chapter poster links to its original.
+  Files: `hub/art/pNN-{s,l}.webp` (NN = the DeviantArt item), `tv0-3-*`
+  (portraits), `imagination-*`; Magnific project "br4vetr4veler posters".
 - **The viewer** is a native `<dialog>` (focus trap and Esc for free). It only
-  intercepts a plain click, so cmd/ctrl-click still opens the DeviantArt page,
-  and with scripts off every piece is just that link. Its placeholder `src` is
-  a real 1×1 GIF: `data:,` counts as a broken image in the audit.
+  intercepts a plain click, so cmd/ctrl-click still opens the original, and
+  with scripts off every poster is just that link. Its placeholder `src` is a
+  real 1×1 GIF: `data:,` counts as a broken image in the audit.
 - **Design:** the 12 Behance projects on the profile's first page, covers
   self-hosted, view counts as read from the profile.
 - **Social highlights:** Behance and DeviantArt figures as the public profiles
@@ -1035,3 +1043,49 @@ It became one so the validator would accept its accessible name — and so it
 inherited the page's `section{padding:96px 0}`, putting 96px of empty frame
 above and below the market table. It now sets `padding:0`. Any element turned
 into a `<section>` for semantics must shed the section rhythm.
+
+## Performance — what made scrolling slow
+
+Measured with a Chrome trace while wheel-scrolling, CPU throttled 4×:
+
+| | style recalc | script | idle (3s, untouched) |
+|---|---|---|---|
+| index, before | 4.5s | 2.0s | 0 |
+| index, after | 0.95s | 0.5s | 0 |
+| hub, before | 2.3s | 0.74s | 181 animation frames |
+| hub, after | 0.69s | 0.41s | 0 |
+
+**1. Parallax wrote inherited custom properties.** Both engines moved elements
+by setting `--px/--py/--sy` on them every frame. Custom properties inherit, so
+each write restyled the element's entire subtree — ~166 elements per pass for
+39 moving ones. Now each element gets one plain `translate` (index) or
+`transform` (hub) — not inherited, so only that element restyles — and only
+when the value changed and the element is within 300px of the viewport.
+
+**2. A forced synchronous style recalc per frame.** `aim()` read `scrollY`
+inside the rAF callback, right after `frame()` had written styles: 45ms per
+frame on the throttled CPU. The scroll position is now read in the scroll
+event and cached.
+
+**3. The hub's loop never stopped.** `requestAnimationFrame(frame)` ran
+unconditionally, 60 times a second, for the life of the tab — and its scroll
+handler called `getBoundingClientRect()` on every moving element per event
+(layout thrash). Positions are now cached (on load and resize), and the loop
+runs only while something is still easing.
+
+**4. GPU work the headless numbers under-report.** On the hub:
+`background-attachment:fixed` (Chrome repaints the whole viewport every scroll
+frame — the glow now sits on a fixed `body::before`), a full-viewport noise
+layer with `mix-blend-mode:overlay` over everything, and `filter:blur(60px)` on
+a layer 140% of the viewport. Blend and blur are gone; the gradients were
+already soft.
+
+**5. Smaller ones.** The progress bar animated `width` (a layout per scroll
+event) and read `scrollHeight` per event; it is now `transform:scaleX` with the
+height cached via ResizeObserver. The three remaining PNG textures
+(`px-*`, 562KB) are WebP (319KB) and lazy-loaded behind `.lz-on` like every
+other plate.
+
+Rules: never animate through inherited custom properties; never read layout
+(`scrollY`, `getBoundingClientRect`, `scrollHeight`) after a style write in the
+same frame; every rAF loop must have a stop condition.

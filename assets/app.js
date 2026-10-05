@@ -838,14 +838,21 @@
     // navbar scroll state + progress bar
     var navbar = document.querySelector('.navbar');
     var progress = document.querySelector('.progress');
+    /* The bar scales instead of changing width (a width change is a layout),
+       and the scrollable height is cached rather than read on every scroll
+       event: reading scrollHeight there forced a layout per event. */
+    var scrollMax = 1, wasScrolled = null;
+    function measureMax() { scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight); }
     function onScroll() {
       var y = window.scrollY || window.pageYOffset;
-      if (navbar) navbar.classList.toggle('scrolled', y > 24);
-      if (progress) {
-        var h = document.documentElement.scrollHeight - window.innerHeight;
-        progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
-      }
+      var sc = y > 24;
+      if (navbar && sc !== wasScrolled) { navbar.classList.toggle('scrolled', sc); wasScrolled = sc; }
+      if (progress) progress.style.transform = 'scaleX(' + Math.min(1, y / scrollMax).toFixed(4) + ')';
     }
+    measureMax();
+    window.addEventListener('resize', measureMax);
+    window.addEventListener('load', measureMax);
+    if ('ResizeObserver' in window) new ResizeObserver(measureMax).observe(document.body);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
@@ -965,21 +972,26 @@
       function cache() {
         var y = window.scrollY || window.pageYOffset || 0;
         for (var i = 0; i < paraEls.length; i++) {
-          var p = paraEls[i];
-          p.el.style.setProperty('--px', '0px');
-          p.el.style.setProperty('--py', '0px');
-          p.el.style.setProperty('--sy', '0px');
+          paraEls[i].el.style.translate = '';
+          paraEls[i].last = '';
         }
         for (var j = 0; j < paraEls.length; j++) {
           var q = paraEls[j], r = q.el.getBoundingClientRect();
           q.docTop = r.top + y;
           q.h = r.height;
         }
+        vh = window.innerHeight;
+        sy0 = y;
         aim();
       }
 
+      /* The scroll position is read in the scroll event and cached, never in
+         the rAF callback: by then frame() has written this frame's translates,
+         and reading scrollY after a style write forces a synchronous style
+         recalculation — measured at 45ms a frame on a 4x-throttled CPU. */
+      var vh = window.innerHeight, sy0 = window.scrollY || window.pageYOffset || 0;
       function aim() {
-        var vh = window.innerHeight, y = window.scrollY || window.pageYOffset || 0;
+        var y = sy0;
         for (var i = 0; i < paraEls.length; i++) {
           var p = paraEls[i];
           // a hidden element (the terminal outside Engineering) has no
@@ -1010,21 +1022,29 @@
           var p = paraEls[i], d = Math.abs(p.k) * 150;   // pointer travel, px at full deflection
           p.sy += (p.ty - p.sy) * es;
           if (Math.abs(p.ty - p.sy) < 0.05) p.sy = p.ty; else settled = false;
-          p.el.style.setProperty('--px', (pxC * d).toFixed(2) + 'px');
-          p.el.style.setProperty('--py', (pyC * d * 0.55).toFixed(2) + 'px');
-          p.el.style.setProperty('--sy', p.sy.toFixed(2) + 'px');
+          // Off-screen elements keep easing in JS but are not written: a
+          // write costs a style recalc, and nobody can see them move.
+          if (p.docTop + p.h < sy0 - 300 || p.docTop > sy0 + vh + 300) continue;
+          // One plain `translate` write per element. These were three CSS
+          // custom properties — and custom properties INHERIT, so every write
+          // restyled the element's whole subtree: ~166 elements per frame for
+          // 39 moving ones. `translate` is not inherited, so only the element
+          // itself is restyled, and an unchanged value is not written at all.
+          var v = (pxC * d).toFixed(1) + 'px ' + (pyC * d * 0.55 + p.sy).toFixed(1) + 'px';
+          if (v !== p.last) { p.el.style.translate = v; p.last = v; }
         }
         if (settled) { running = false; lastTs = 0; } else requestAnimationFrame(frame);
       }
 
       var pending = false;
       function onParaScroll() {
+        sy0 = window.scrollY || window.pageYOffset || 0;
         if (pending) return;
         pending = true;
         requestAnimationFrame(function () { aim(); pending = false; });
       }
       window.addEventListener('scroll', onParaScroll, { passive: true });
-      window.addEventListener('resize', cache);
+      window.addEventListener('resize', function () { vh = window.innerHeight; cache(); });
       // reveal transitions and late fonts move things: re-cache once settled
       window.addEventListener('load', function () { setTimeout(cache, 260); });
       document.addEventListener('numidea:relayout', function () { setTimeout(cache, 60); });

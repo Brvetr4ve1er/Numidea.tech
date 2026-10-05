@@ -224,8 +224,8 @@ h2.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(25px, 14.
 h2.sec em{font-family:inherit;font-style:normal;color:inherit}
 
 /* ---------- scroll progress ---------- */
-.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad-blood);box-shadow:0 0 10px rgba(189,9,39,.6);z-index:200}
-html[dir="rtl"] .progress{left:auto;right:0}
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--grad-blood);box-shadow:0 0 10px rgba(189,9,39,.6);z-index:200;will-change:transform}
+html[dir="rtl"] .progress{transform-origin:100% 50%}
 
 /* ---------- navbar ---------- */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:100;transition:background var(--dur-slow) var(--ease-out),backdrop-filter var(--dur-slow),border-color var(--dur-slow)}
@@ -1841,13 +1841,16 @@ a.wa-link[data-wa-pending]{text-decoration:none}
   color:var(--teal-text);opacity:.12;will-change:transform}
 #pricing .px-field{color:var(--crimson-hi);opacity:.1}
 #contact .px-field{color:var(--teal-text);opacity:.1}
-.px-plan{-webkit-mask-image:url(illus/px-plan.png);mask-image:url(illus/px-plan.png)}
-.px-contour{-webkit-mask-image:url(illus/px-contour.png);mask-image:url(illus/px-contour.png)}
-.px-stars{-webkit-mask-image:url(illus/px-stars.png);mask-image:url(illus/px-stars.png)}
+:is(.lz-on,html:not([data-lz]) .lz) .px-plan{-webkit-mask-image:url(illus/px-plan.webp);mask-image:url(illus/px-plan.webp)}
+:is(.lz-on,html:not([data-lz]) .lz) .px-contour{-webkit-mask-image:url(illus/px-contour.webp);mask-image:url(illus/px-contour.webp)}
+:is(.lz-on,html:not([data-lz]) .lz) .px-stars{-webkit-mask-image:url(illus/px-stars.webp);mask-image:url(illus/px-stars.webp)}
 /* Decoration only: it costs a repaint on every frame and says nothing. */
 @media (prefers-reduced-motion:reduce){.px-field{will-change:auto}}
 @media (max-width:640px){.px-wrap{display:none}}
 html[data-theme="daylight"] .px-field,html[data-theme="mono"] .px-field{opacity:.055}
+/* the id-scoped opacities above out-rank that rule; mono's red ink behind
+   the pricing kicker measured 4.3:1 at .1 */
+html[data-theme="mono"] #pricing .px-field{opacity:.06}
 
 /* ---------- service marks ---------- */
 /* The rows carried a small stroked glyph; these sit beside it at a size the

@@ -26,18 +26,24 @@ html{scroll-behavior:smooth}
 body{
   background:var(--ink);color:var(--paper);
   font-family:var(--disp);line-height:1.5;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;cursor:crosshair;
+  -webkit-font-smoothing:antialiased;cursor:crosshair}
+/* The page glow lives on its own fixed layer. It was background-attachment:
+   fixed on <body>, which Chrome cannot composite: the whole viewport was
+   repainted on every scroll frame. A fixed pseudo-element is composited once
+   and simply stays put. */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background-image:
     radial-gradient(120% 90% at 80% -10%, rgba(182,255,46,.10), transparent 60%),
-    radial-gradient(90% 80% at 10% 110%, rgba(77,226,255,.06), transparent 60%);
-  background-attachment:fixed}
+    radial-gradient(90% 80% at 10% 110%, rgba(77,226,255,.06), transparent 60%)}
 a{color:inherit;text-decoration:none}
 .mono{font-family:var(--mono)}
 .acc{color:var(--acc-text)}
 .dim{color:var(--faint)}
 
 /* ---- global grain + scanlines ---- */
-.noise{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+/* grain without a blend mode: an overlay-blended layer over the whole
+   viewport made the GPU re-blend every pixel of every scroll frame */
+.noise{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .scanlines{position:fixed;inset:0;z-index:59;pointer-events:none;opacity:.5;
   background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px)}
@@ -63,8 +69,11 @@ a{color:inherit;text-decoration:none}
   will-change:transform}
 
 /* ---- aurora: two enormous, very slow drifting fields ---- */
-.aurora{position:fixed;inset:-20%;z-index:0;pointer-events:none;overflow:hidden;filter:blur(60px);opacity:.5}
-.aurora i{position:absolute;display:block;border-radius:50%;mix-blend-mode:screen}
+/* No filter:blur — a 60px blur over a layer 140% of the viewport was
+   re-applied by the compositor on every frame, and the fields are already
+   soft radial gradients. No blend mode either, for the same reason. */
+.aurora{position:fixed;inset:-20%;z-index:0;pointer-events:none;overflow:hidden;opacity:.5}
+.aurora i{position:absolute;display:block;border-radius:50%}
 .aurora .a1{width:52vw;height:52vw;left:-8vw;top:-6vw;
   background:radial-gradient(circle,rgba(182,255,46,.20),transparent 68%)}
 .aurora .a2{width:44vw;height:44vw;right:-6vw;top:22vh;
@@ -74,7 +83,7 @@ a{color:inherit;text-decoration:none}
 
 
 
-:root[data-theme="light"] .aurora{opacity:.4;mix-blend-mode:multiply}
+:root[data-theme="light"] .aurora{opacity:.4}
 
 /* ---- drifting geometry: hand-drawn SVG, slow rotation ---- */
 .floaters{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
@@ -314,10 +323,10 @@ a{color:inherit;text-decoration:none}
   --acid:#8fd600;--acid-dim:#6aa300;--acc-text:#3c7800;
   --cyan:#0aa8cc;--magenta:#e01d80;
   --line:#cccabd;--line-2:#adab9c}
-:root[data-theme="light"] body{
+:root[data-theme="light"] body::before{
   background-image:radial-gradient(120% 90% at 80% -10%,rgba(143,214,0,.16),transparent 60%),
                    radial-gradient(90% 80% at 10% 110%,rgba(10,168,204,.08),transparent 60%)}
-:root[data-theme="light"] .noise{opacity:.05;mix-blend-mode:multiply}
+:root[data-theme="light"] .noise{opacity:.03}
 :root[data-theme="light"] .scanlines{opacity:.2}
 :root[data-theme="light"] .ghost{-webkit-text-stroke-color:rgba(20,22,15,.09)}
 :root[data-theme="light"] .dotgrid{background-image:radial-gradient(rgba(20,22,15,.12) 1px,transparent 1px)}
@@ -387,61 +396,24 @@ a{color:inherit;text-decoration:none}
   .aurora{opacity:.28}
 }
 
-/* ============================= HERO CONTACT SHEET =============================
-   Until the pose photos exist, the portrait frame holds the art: four pieces
-   from the collection as strips. The existing scroll-driven pose index (0-3)
-   lights one strip at a time, so this needs no script of its own; :has(.pose)
-   retires it the moment real frames are dropped in. */
-.sheet{position:absolute;inset:0;display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:6px;padding:10px 10px 46px}   /* clears the frame caption */
-.strip{display:block;width:100%;height:100%;min-height:0;object-fit:cover;object-position:top left;
-  border:1px solid var(--line-2);opacity:.34;filter:saturate(.5) brightness(.85);
-  transition:opacity .55s var(--ease),filter .55s var(--ease),border-color .55s var(--ease)}
-.strip{object-position:center 35%}
-.portrait[data-pose="0"] .strip:nth-child(1),.portrait[data-pose="1"] .strip:nth-child(2),
-.portrait[data-pose="2"] .strip:nth-child(3),.portrait[data-pose="3"] .strip:nth-child(4){
-  opacity:1;filter:none;border-color:var(--acid)}
-.portrait:has(.pose) .sheet{display:none}
-@media (prefers-reduced-motion:reduce){.strip{transition:none}}
+
 
 .links-soon{margin-top:18px;font-size:11px;letter-spacing:.12em;color:var(--faint)}
 
-/* ============================= THE COLLECTION =============================
-   The artist's own work, not the studio's. A masonry of columns so every
-   piece keeps its own aspect — covers square, skies tall — instead of being
-   cropped into a uniform grid. Captions sit under each piece, always visible:
-   a hover-only title is invisible on touch. */
+/* ============================= THE SERIES =============================
+   BR4VETR4VELER as one poster series: prologue, three chapters, epilogue.
+   Each poster is a cream paper card — the series' own stock — with the
+   typography set in HTML around the art, never baked into the image, so it
+   stays sharp, selectable and consistent across all 33. */
 .coll,.design,.social{position:relative;z-index:2;padding:clamp(48px,10vh,110px) var(--gut) clamp(28px,6vh,60px);
   border-top:1px solid var(--line);isolation:isolate}
 .coll-head{margin-bottom:clamp(22px,4vh,40px);container-type:inline-size}
 .coll-head h2{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;
   font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px}
 .coll-sub{font-family:var(--mono);font-size:13px;color:var(--paper-dim);max-width:46ch}
-.coll-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-.coll-filter button{font:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
-  min-height:40px;padding:0 16px;border:1px solid var(--line-2);background:transparent;color:var(--paper-dim);
-  transition:border-color .2s,color .2s,background .2s}
-.coll-filter button span{color:var(--faint);margin-inline-start:6px}
-.coll-filter button:hover{color:var(--paper);border-color:var(--paper-dim)}
-.coll-filter button[aria-pressed="true"]{background:var(--acid);border-color:var(--acid);color:var(--ink)}
-.coll-filter button[aria-pressed="true"] span{color:var(--ink)}
-.coll-filter button:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
-.coll-grid{list-style:none;columns:2 160px;column-gap:12px}
-.piece{break-inside:avoid;margin-bottom:12px}
-.piece[hidden]{display:none}
-.piece a{display:block;color:inherit;border:1px solid var(--line-2);background:var(--ink-2);
-  transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
-.piece img{display:block;width:100%;height:auto;background:var(--panel)}
-.pcap{display:grid;gap:2px;padding:10px 12px 12px}
-.pcap b{font-weight:700;font-size:14px;line-height:1.3;color:var(--paper);overflow-wrap:anywhere}
-.pcap i{font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
-.piece a:hover{border-color:var(--acid);transform:translateY(-3px);
-  box-shadow:0 18px 40px -26px rgba(0,0,0,.9),0 0 0 1px color-mix(in srgb,var(--acid) 30%,transparent)}
-.piece a:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
 .coll-more{margin-top:18px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 .coll-more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--paper-dim);transition:color .2s}
 .coll-more a:hover{color:var(--acc-text)}
-@media (min-width:720px){.coll-grid{columns:3}}
-@media (min-width:1100px){.coll-grid{columns:4;column-gap:16px}.piece{margin-bottom:16px}}
 
 /* the viewer — a native <dialog>: focus is trapped and Esc closes it for free */
 .lb{margin:auto;width:min(1100px,94vw);max-height:94vh;padding:0;border:1px solid var(--line-2);
@@ -503,3 +475,71 @@ html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
 }
 :root[data-theme="light"] .lb::backdrop{background:rgba(233,231,221,.9)}
 
+
+/* ---- chapters ---- */
+.ch-nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(30px,6vh,64px)}
+.ch-nav a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--paper-dim);border:1px solid var(--line-2);transition:border-color .2s,color .2s}
+.ch-nav a b{color:var(--acc-text);font-weight:700}
+.ch-nav a:hover{color:var(--paper);border-color:var(--paper-dim)}
+.ch-nav a:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
+.chapter{--c1:var(--acid);--c2:var(--paper-dim);scroll-margin-top:24px;margin-bottom:clamp(48px,9vh,110px)}
+.chapter[data-ch="traveler"]{--c1:#8a7dff;--c2:#b6ff2e}
+.chapter[data-ch="sky"]{--c1:#2f6fd8;--c2:#f2d43c}
+.chapter[data-ch="noise"]{--c1:#ec3b1e;--c2:#f6a21a}
+.chapter[data-ch="ink"]{--c1:#7a4dd8;--c2:#b6ff2e}
+.chapter[data-ch="imagination"]{--c1:#ec3b1e;--c2:#f2d43c}
+.ch-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(14px,2.4vw,34px);align-items:end;
+  padding-bottom:18px;margin-bottom:22px;border-bottom:1px solid var(--line-2);position:relative}
+.ch-head::after{content:"";position:absolute;left:0;bottom:-1px;width:min(220px,40%);height:3px;
+  background:linear-gradient(90deg,var(--c1) 0 50%,var(--c2) 50% 100%)}
+.ch-num{font-family:var(--disp);font-weight:800;line-height:.8;font-size:clamp(64px,10vw,150px);letter-spacing:-.04em;
+  color:transparent;-webkit-text-stroke:1.5px var(--c1)}
+.ch-kick{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+.ch-head h3{font-family:var(--disp);font-weight:800;font-size:clamp(28px,4.6vw,64px);line-height:.92;letter-spacing:-.03em;color:var(--paper)}
+.ch-line{margin-top:10px;max-width:52ch;font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--paper-dim)}
+
+/* ---- the poster card ---- */
+.ch-grid{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (min-width:760px){.ch-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
+@media (min-width:1100px){.ch-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}}
+.ch-grid--ep{grid-template-columns:minmax(0,min(100%,420px))}
+.poster a{display:flex;flex-direction:column;height:100%;color:#17150f;background:#efe8d6;padding:10px 10px 0;
+  box-shadow:0 1px 0 rgba(0,0,0,.25),0 18px 40px -28px rgba(0,0,0,.9);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.poster img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;background:#e2dac4}
+.poster--sq img{aspect-ratio:1}
+.poster--ep img{aspect-ratio:941/1672}
+.pt-top{display:flex;justify-content:space-between;gap:8px;font-size:9px;letter-spacing:.2em;padding:0 2px 8px;color:#3d392e}
+.pt-top b{font-weight:700}
+.pt-top i{font-style:normal}
+.pt-foot{display:grid;gap:3px;padding:10px 2px 12px;border-top:2px solid #17150f;margin-top:10px;position:relative}
+.pt-foot::before{content:"";position:absolute;right:2px;top:-7px;width:22px;height:12px;
+  background:linear-gradient(90deg,var(--c1) 0 50%,var(--c2) 50% 100%)}
+.pt-foot b{font-family:var(--disp);font-weight:800;font-size:clamp(14px,1.35vw,18px);line-height:1.1;letter-spacing:-.01em;
+  text-transform:uppercase;overflow-wrap:anywhere}
+.pt-foot i{font-style:normal;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#4a453a}
+.poster a:hover{transform:translateY(-4px) rotate(-.4deg);box-shadow:0 1px 0 rgba(0,0,0,.25),0 28px 50px -26px rgba(0,0,0,.95),0 0 0 2px var(--c1)}
+.poster a:focus-visible{outline:2px solid var(--acid);outline-offset:4px}
+:root[data-theme="light"] .poster a{box-shadow:0 0 0 1px #cfc6ad,0 18px 40px -30px rgba(0,0,0,.5)}
+@media (prefers-reduced-motion:reduce){.poster a{transition:none}.poster a:hover{transform:none}}
+@media (max-width:520px){.pt-top i{display:none}}
+/* 13 characters of Syne 800 overflowed the column at the shared 7.5cqw */
+.series .coll-head h2{font-size:clamp(20px,6.3cqw,104px)}
+/* the epilogue is one poster: set it beside its text rather than alone in a 4-up grid */
+@media (min-width:900px){
+  .chapter--ep{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
+  .chapter--ep .ch-head{order:2;grid-template-columns:minmax(0,1fr);margin:0}
+  .chapter--ep .ch-num{font-size:clamp(90px,12vw,180px)}
+  .chapter--ep .ch-line{font-size:15px;max-width:40ch}
+  .chapter--ep .ch-grid--ep{order:1;grid-template-columns:minmax(0,1fr)}
+}
+/* phones: the numeral stacks above the title, or IMAGINATION runs off the edge */
+@media (max-width:600px){
+  .ch-head{grid-template-columns:minmax(0,1fr);gap:6px}
+  .ch-num{font-size:56px}
+  .ch-head h3{font-size:clamp(22px,7vw,40px)}
+}
+.ch-head h3{overflow-wrap:anywhere}
+/* 320px phones: both long display headings need a smaller floor */
+@media (max-width:360px){.series .coll-head h2,.links-head h2{font-size:6.1vw}}

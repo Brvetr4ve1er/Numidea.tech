@@ -71,17 +71,27 @@
      transform, so neither can clobber the other. Everything is lerped toward
      its target, which is what makes the motion feel unhurried rather than
      twitchy — the page settles instead of tracking. */
-  var depthEls = [].slice.call(document.querySelectorAll('[data-depth]'));
-  var paraEls = [].slice.call(document.querySelectorAll('[data-parallax]')).map(function (el) {
-    return { el: el, k: parseFloat(el.getAttribute('data-parallax')) || 0, sy: 0, target: 0 };
+  /* One list of moving elements: an element can carry data-depth (pointer),
+     data-parallax (scroll) or both, and gets ONE inline transform. These used
+     to be inherited CSS variables (--px/--py/--sy) rewritten on every element
+     every frame, forever — each write restyled the whole subtree, and the loop
+     never stopped, so the page burned a frame of style work 60 times a second
+     even while nobody touched it. Now: positions are cached, the loop runs
+     only while something is still easing, and only on-screen elements are
+     written. */
+  var movers = [].slice.call(document.querySelectorAll('[data-depth],[data-parallax]')).map(function (el) {
+    return { el: el, d: parseFloat(el.getAttribute('data-depth')) || 0,
+             k: parseFloat(el.getAttribute('data-parallax')) || 0, sy: 0, target: 0, top: 0, h: 0, last: '' };
   });
-  var ghost = document.querySelector('.ghost');
-  var tx = 0, ty = 0, cx = 0, cy = 0;
+  var ghost = document.querySelector('.ghost'), ghostSpan = ghost && ghost.querySelector('span');
+  var tx = 0, ty = 0, cx = 0, cy = 0, vh = innerHeight, sy0 = scrollY || pageYOffset || 0, running = false;
 
+  function kick() { if (!running && !reduce) { running = true; requestAnimationFrame(frame); } }
   function onMove(e) {
     tx = (e.clientX / innerWidth - 0.5) * 2;
     ty = (e.clientY / innerHeight - 0.5) * 2;
     if (reticle) reticle.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+    kick();
   }
   if (finePointer && !reduce) window.addEventListener('pointermove', onMove, { passive: true });
 
@@ -91,46 +101,50 @@
       if (e.gamma == null) return;
       tx = Math.max(-1, Math.min(1, e.gamma / 30));
       ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30));
+      kick();
     }, true);
   }
 
-  function measureScroll() {
-    var vh = innerHeight, y = window.scrollY || pageYOffset || 0;
-    for (var i = 0; i < paraEls.length; i++) {
-      var p = paraEls[i], r = p.el.getBoundingClientRect();
-      // distance of the element's centre from the viewport centre, in px
-      var centre = r.top + y + r.height / 2 - (y + vh / 2);
-      p.target = centre * p.k;
+  // layout is measured once (and on resize/load), never while scrolling
+  function cache() {
+    var y = scrollY || pageYOffset || 0;
+    vh = innerHeight;
+    movers.forEach(function (m) { m.el.style.transform = ''; m.last = ''; });
+    movers.forEach(function (m) { var r = m.el.getBoundingClientRect(); m.top = r.top + y; m.h = r.height; });
+    aim();
+  }
+  function aim() {
+    for (var i = 0; i < movers.length; i++) {
+      var m = movers[i];
+      m.target = m.k ? (m.top + m.h / 2 - (sy0 + vh / 2)) * m.k : 0;
     }
+    kick();
   }
 
   function frame() {
     cx += (tx - cx) * 0.045;          // slow follow — the calm comes from here
     cy += (ty - cy) * 0.045;
-    for (var i = 0; i < depthEls.length; i++) {
-      var el = depthEls[i], d = parseFloat(el.getAttribute('data-depth')) || 0;
-      el.style.setProperty('--px', (-cx * d) + 'px');
-      el.style.setProperty('--py', (-cy * d) + 'px');
-    }
-    for (var j = 0; j < paraEls.length; j++) {
-      var p = paraEls[j];
-      p.sy += (p.target - p.sy) * 0.075;
-      if (Math.abs(p.target - p.sy) < 0.05) p.sy = p.target;
-      p.el.style.setProperty('--sy', p.sy.toFixed(2) + 'px');
+    var settled = Math.abs(tx - cx) < 0.002 && Math.abs(ty - cy) < 0.002;
+    for (var i = 0; i < movers.length; i++) {
+      var m = movers[i];
+      m.sy += (m.target - m.sy) * 0.075;
+      if (Math.abs(m.target - m.sy) < 0.05) m.sy = m.target; else settled = false;
+      if (m.top + m.h < sy0 - 300 || m.top > sy0 + vh + 300) continue;
+      var v = 'translate3d(' + (-cx * m.d).toFixed(1) + 'px,' + (-cy * m.d + m.sy).toFixed(1) + 'px,0)';
+      if (v !== m.last) { m.el.style.transform = v; m.last = v; }
     }
     if (ghost) {
-      ghost.style.setProperty('--gx', (-cx * 26) + 'px');
-      ghost.style.setProperty('--gy', (-cy * 26) + 'px');
-      var sp = ghost.querySelector('span');
-      if (sp) sp.style.setProperty('--abx', (cx * 12 - 4) + 'px');
+      ghost.style.setProperty('--gx', (-cx * 26).toFixed(1) + 'px');
+      ghost.style.setProperty('--gy', (-cy * 26).toFixed(1) + 'px');
+      if (ghostSpan) ghostSpan.style.setProperty('--abx', (cx * 12 - 4).toFixed(1) + 'px');
     }
-    requestAnimationFrame(frame);
+    if (settled) running = false; else requestAnimationFrame(frame);
   }
   if (!reduce) {
-    measureScroll();
-    addEventListener('scroll', measureScroll, { passive: true });
-    addEventListener('resize', measureScroll);
-    requestAnimationFrame(frame);
+    cache();
+    addEventListener('scroll', function () { sy0 = scrollY || pageYOffset || 0; aim(); }, { passive: true });
+    addEventListener('resize', cache);
+    addEventListener('load', function () { setTimeout(cache, 300); });
   }
 
   /* ---------------- 3b · staggered scroll reveal ----------------
@@ -252,6 +266,7 @@
         ttl.textContent = a.getAttribute('data-title');
         meta.textContent = a.getAttribute('data-meta');
         link.href = a.href;
+        link.textContent = a.getAttribute('data-link-label') || link.textContent;
       };
       grid.addEventListener('click', function (e) {
         var a = e.target.closest('.piece a');
