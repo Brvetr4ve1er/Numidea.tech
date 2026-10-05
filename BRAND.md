@@ -1155,3 +1155,18 @@ It wears WorkspaceHQ's palette in every theme, and only moves on hover/focus
 those pages keep their no-endless-animation rule. The cut corner is drawn with
 `::after` in the page colour (`--whq-page`), not `clip-path`, which would clip
 the hover ring.
+
+### Audit pass after launch
+
+`npm run sweep` now covers workspacehq/ too. Its first run there found what
+axe had passed: locked achievements dimmed to opacity .55 (text at 2.8:1 —
+now only the icon greys out), and the nav's INSTALL button under the vignette
+and scanline layers (3.6:1 at the screen edge — the nav now sits above them,
+z 75). The sweep also learned to skip text above the top of the document: a
+parked skip link was being measured against nothing, and light-on-dark skip
+links had only been passing by luck.
+
+The live console logs `<polyline> attribute points: Expected number,
+"{{ … }}"` while booting: the browser parses the design runtime's template
+before binding it. Harmless (the same happens in Claude Design) and inside the
+design's own runtime, so left alone.

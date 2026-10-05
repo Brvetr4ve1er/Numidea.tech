@@ -31,8 +31,9 @@ a:hover{color:var(--link-hover)}
 ::selection{background:#ffd23f;color:#3a2a00}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 h1,h2,h3,p{margin:0}
-.skip{position:absolute;left:12px;top:-60px;z-index:200;padding:10px 14px;background:var(--gold);color:#3a2a00;font-family:var(--px);font-size:9px}
-.skip:focus{top:12px}
+.skip{position:fixed;left:12px;top:8px;z-index:200;padding:10px 14px;background:var(--gold);color:#3a2a00;font-family:var(--px);font-size:9px;
+  transform:translateY(-200%);transition:transform .15s}
+.skip:focus{transform:none}
 
 /* ---------- colour utilities ---------- */
 .t-red{color:var(--red)}.t-gold{color:var(--gold)}.t-gold2{color:var(--gold-2)}.t-green{color:var(--green)}
@@ -69,7 +70,9 @@ h1,h2,h3,p{margin:0}
   background:repeating-linear-gradient(90deg,#ffd23f 0 10px,transparent 10px 12px);box-shadow:0 0 12px rgba(255,210,63,.7)}
 
 /* ---------- nav ---------- */
-.nav{position:fixed;top:4px;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:24px;
+/* the nav sits ABOVE the scanline and vignette layers (z 70): under them the
+   vignette darkened the INSTALL button to 3.6:1 at the screen edge */
+.nav{position:fixed;top:4px;left:0;right:0;z-index:75;display:flex;align-items:center;justify-content:space-between;gap:24px;
   padding:16px var(--pad);border-bottom:2px solid transparent;transition:background .6s,border-color .6s}
 .nav.stuck{background:rgba(7,6,15,.9);border-bottom-color:var(--frame)}
 .brand{font-family:var(--px);font-size:12px;letter-spacing:1px;color:var(--text);white-space:nowrap}
@@ -253,9 +256,14 @@ main{position:relative;z-index:3}
 
 /* DS: Achievement */
 .achs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+/* Locked: the DS dims the whole card to .55 opacity, which took its text to
+   2.8:1. Here only the icon greys out and the name drops to --muted; the
+   text stays legible, and unlocking still lights the gold ring. */
 .ach{position:relative;text-align:center;padding:16px 14px;background:linear-gradient(165deg,var(--card-hi),var(--card));border:2px solid var(--ink);
-  box-shadow:var(--shadow-frame);opacity:.55;filter:saturate(.4);transition:opacity .4s,filter .4s,box-shadow .4s}
-.ach.on{opacity:1;filter:none;box-shadow:0 0 0 2px var(--gold),0 0 22px -8px rgba(255,210,63,.9)}
+  box-shadow:var(--shadow-frame);transition:box-shadow .4s}
+.ach b{color:var(--muted)}
+.ach.on{box-shadow:0 0 0 2px var(--gold),0 0 22px -8px rgba(255,210,63,.9)}
+.ach.on b{color:var(--text)}
 .ach-star{position:absolute;top:8px;right:10px;color:var(--gold-2);font-size:15px;text-shadow:0 0 8px rgba(255,210,63,.8);display:none}
 .ach.on .ach-star{display:block}
 .ach-i{display:block;font-size:34px;filter:grayscale(1) opacity(.45)}

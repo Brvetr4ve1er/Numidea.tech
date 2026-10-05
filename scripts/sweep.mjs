@@ -9,7 +9,7 @@
  * gradients, textures, translucent panels and parallax fields, which a
  * declared-colour check cannot see.
  *
- * Covers index.html in all six themes x FR/AR, plus hub/, scene/ and 404.
+ * Covers index.html in all six themes x FR/AR, plus hub/, scene/, 404 and workspacehq/.
  * Exits non-zero on any failure. Optional arg: a single theme name.
  *
  * Traps this script already guards against (each produced false results once):
@@ -32,7 +32,7 @@ const srv=createServer(async(q,r)=>{let p=decodeURIComponent(q.url.split('?')[0]
 await new Promise(r=>srv.on('listening',r));
 const B='http://127.0.0.1:'+srv.address().port;
 
-const PAGES=[['index','/index.html'],['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html']];
+const PAGES=[['index','/index.html'],['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html'],['workspacehq','/workspacehq/index.html']];
 const THEMES=['arcanum','noir','daylight','mono','altneon','engineering'];
 const ONLY=process.argv[2];        // optional: restrict to one theme
 const lum=([r,g,b])=>{const f=v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(r)+.7152*f(g)+.0722*f(b)};
@@ -70,6 +70,10 @@ for(const theme of THEMES){ if(ONLY&&theme!==ONLY)continue;
        if(rect.width<2||rect.height<2)continue;
        // skip off-screen/clipped-away (skip-link etc.)
        if(rect.right<0||rect.left>document.documentElement.clientWidth)continue;
+       // ...and above the top of the document: a skip link parked at
+       // translateY(-200%) is never painted until focused, so sampling 'behind'
+       // it measures the page against nothing (light skip links only passed by luck)
+       if(rect.bottom+sy<=0)continue;
        // text clipped away by an overflow ancestor is laid out but never painted
        let clipped=false,c=el.parentElement;
        while(c&&c!==document.body){const cc=getComputedStyle(c);
