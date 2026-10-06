@@ -2165,7 +2165,7 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
    image. They now carry the real client screenshots, fanned like a stack of
    drawing sheets. */
 .sb-art i{background-size:cover;background-position:top left}
-.sb-art i:nth-child(1){background-image:url(previews/nomara.webp)}
+.sb-art i:nth-child(1){background-image:url(work/alliance/d1.webp)}
 .sb-art i:nth-child(2){background-image:url(previews/glaive.webp)}
 .sb-art i:nth-child(3){background-image:url(previews/bordjsteel.webp)}
 .sb-art{width:92px;height:62px}
