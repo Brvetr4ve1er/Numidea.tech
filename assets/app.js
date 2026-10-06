@@ -781,32 +781,17 @@
       b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
     });
 
-    // theme switcher
-    // 'engineering' is an alternate stylesheet, not a token swap
+    // theme switcher — every theme is a token block in themes.css, so a switch
+    // is one attribute; nothing loads, nothing re-lays out
     var THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon', 'engineering'];
     function applyTheme(t) {
       if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'daylight' : 'arcanum';
       document.documentElement.setAttribute('data-theme', t);
-      // The boot path parser-inserts this sheet (see index.html) so it is
-      // render-blocking for a visitor who arrives on Engineering. A switch made
-      // here is user-initiated, so its restyle is excluded from CLS and a
-      // dynamically appended link is fine.
-      var alt = document.getElementById('theme-eng');
-      if (t === 'engineering') {
-        if (!alt) {
-          alt = document.createElement('link');
-          alt.rel = 'stylesheet'; alt.id = 'theme-eng';
-          alt.href = window.NUMIDEA_ENG_CSS;
-          document.head.appendChild(alt);
-        } else { alt.media = 'all'; }
-      } else if (alt) { alt.media = 'not all'; }
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
       });
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
-      // Themes change what is on the page, not just its colours: Engineering
-      // reveals the deploy terminal, which is display:none everywhere else
-      // and therefore cached at position zero. Re-measure after the swap.
+      // type tokens change line lengths, so cached section tops are re-measured
       document.dispatchEvent(new CustomEvent('numidea:relayout'));
     }
     // the pre-paint script already resolved and applied this; mirror it here

@@ -6,7 +6,7 @@
   "description": "Numidea Labs landing page \u2014 static site + project-preview capture pipeline.",
   "scripts": {
     "shots": "node scripts/shots.mjs",
-    "check": "node scripts/check.mjs",
+    "check": "node scripts/check.mjs && node scripts/themes-check.mjs",
     "bump": "node scripts/bump.mjs",
     "sweep": "node scripts/sweep.mjs",
     "audit": "node scripts/audit.mjs",

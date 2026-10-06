@@ -1,0 +1,176 @@
+/* ============================================================
+   NUMIDEA LABS — THEMES
+   Every theme is ONE block that sets the SAME tokens, and nothing else.
+   No selectors, no layout, no exceptions: styles.css reads only these
+   tokens, so a theme can change how the page looks but cannot break it.
+
+   The contract (token list, contrast pairs) lives in
+   scripts/themes-check.mjs and runs with `npm run check`:
+     - a theme that misses a token, or adds one, fails
+     - text/surface pairs below WCAG AA (4.5:1) fail
+     - any [data-theme] selector in styles.css fails
+   To add a theme: copy a block, change the values, add its name to the
+   switcher and to THEMES in scripts/themes-check.mjs.
+
+   Roles behind the historical names:
+     --void page ground · --navy card surface · --plum raised surface
+     --ice primary text · --body-strong long copy · --muted/--faint secondary
+     --crimson primary accent (buttons, rules) · --teal secondary accent
+     --*-text accent as text · --on-crimson/--on-teal text on those fills
+   ============================================================ */
+
+/* ----- ARCANUM — arcane blue and brass, engraved Cinzel (primary) ----- */
+:root[data-theme="arcanum"]{
+  --void:#0A1420; --navy:#0F1E30; --plum:#13283E;
+  --ice:#EAF1F8; --body-strong:#C7D5E2; --muted:#9DB2C6; --faint:#7D92A6;
+  --crimson:#E6B450; --crimson-hi:#F4D27A; --on-crimson:#0A1420; --crimson-text:#E6B450;
+  --teal:#34D0E8; --teal-text:#34D0E8; --on-teal:#0A1420;
+  --hairline:#1C3550; --hairline-2:#27496B;
+  --band:rgba(19,40,62,.34); --shade:0 0 0; --shade-k:1;
+  --grad-blood:linear-gradient(135deg,#F4D27A 0%,#B07E2A 52%,#13283E 110%);
+  --grad-noir:radial-gradient(120% 120% at 20% 0%,#15293F 0%,#0F1E30 45%,#0A1420 100%);
+  --grad-teal:linear-gradient(120deg,#34D0E8 0%,#1FA8C4 50%,#0F1E30 120%);
+  --grad-text:linear-gradient(92deg,#34D0E8 0%,#EAF1F8 46%,#E6B450 100%);
+  --glow-teal:0 0 0 1px rgba(52,208,232,.4);
+  --glow-crimson:0 0 0 1px rgba(230,180,80,.45),0 0 34px rgba(230,180,80,.26);
+  --btn-glow:var(--glow-crimson);
+  --atmos:radial-gradient(55% 50% at 84% 6%,rgba(230,180,80,.16),transparent 70%),
+    radial-gradient(50% 45% at 10% 22%,rgba(52,208,232,.14),transparent 72%),
+    radial-gradient(80% 70% at 50% 112%,rgba(15,40,64,.6),transparent 70%);
+  --grid-color:rgba(230,180,80,.5); --grid-opacity:.07; --grid-size:64px; --ink-k:1;
+  --nav-glass:rgba(10,20,32,.78); --glass:rgba(23,54,79,.35); --field-bg:rgba(10,20,32,.6);
+  --scrim:rgba(5,12,24,.74); --cover-shadow:0 14px 40px rgba(0,0,0,.5);
+  --font-head:var(--font-deco); --font-head-em:var(--font-deco-dec); --head-weight:700; --head-tracking:.01em;
+  --font-logo:var(--font-deco); --logo-weight:700; --logo-tracking:.04em;
+  --hero-fs:clamp(27px,12.67px + 3.98vw,70px); --hero-fs-wide:clamp(46px,4.9vw,92px); --hero-lh:1.03;
+  --r-sm:8px; --r-md:14px; --kicker-node:6px;
+}
+
+/* ----- NOIR — cinematic black, signal red, steel ----- */
+:root[data-theme="noir"]{
+  --void:#0B0B0E; --navy:#141418; --plum:#1B1B21;
+  --ice:#F2F2F4; --body-strong:#D2D2D9; --muted:#A2A2AE; --faint:#9696A2;
+  --crimson:#E5484D; --crimson-hi:#FF6369; --on-crimson:#0B0B0E; --crimson-text:#FF6B6F;
+  --teal:#C9CED6; --teal-text:#C9CED6; --on-teal:#0B0B0E;
+  --hairline:#24242C; --hairline-2:#36363F;
+  --band:rgba(255,255,255,.025); --shade:0 0 0; --shade-k:1;
+  --grad-blood:linear-gradient(135deg,#FF6369 0%,#E5484D 45%,#5A1418 100%);
+  --grad-noir:radial-gradient(120% 120% at 20% 0%,#1D1D23 0%,#141418 45%,#0B0B0E 100%);
+  --grad-teal:linear-gradient(120deg,#C9CED6 0%,#8B919B 50%,#141418 120%);
+  --grad-text:linear-gradient(92deg,#F2F2F4 0%,#C9CED6 50%,#E5484D 100%);
+  --glow-teal:0 0 0 1px rgba(201,206,214,.35);
+  --glow-crimson:0 0 0 1px rgba(229,72,77,.5),0 0 30px rgba(229,72,77,.25);
+  --btn-glow:0 12px 32px -14px rgba(229,72,77,.65);
+  --atmos:radial-gradient(48% 38% at 84% -2%,rgba(229,72,77,.16),transparent 70%),
+    radial-gradient(90% 70% at 50% 115%,rgba(0,0,0,.75),transparent 70%);
+  --grid-color:var(--muted); --grid-opacity:.035; --grid-size:64px; --ink-k:.85;
+  --nav-glass:rgba(11,11,14,.8); --glass:rgba(20,20,24,.6); --field-bg:rgba(11,11,14,.7);
+  --scrim:rgba(0,0,0,.78); --cover-shadow:0 14px 40px rgba(0,0,0,.6);
+  --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:700; --head-tracking:-.035em;
+  --font-logo:var(--font-display); --logo-weight:700; --logo-tracking:-.02em;
+  --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.97;
+  --r-sm:6px; --r-md:10px; --kicker-node:0px;
+}
+
+/* ----- DAYLIGHT — warm paper, ink, ochre and deep teal ----- */
+:root[data-theme="daylight"]{
+  --void:#F6F3EC; --navy:#FFFFFF; --plum:#EFEADF;
+  --ice:#15181D; --body-strong:#2B3038; --muted:#4F5562; --faint:#5A606C;
+  --crimson:#8C5E0A; --crimson-hi:#A8741A; --on-crimson:#FFFFFF; --crimson-text:#7A5208;
+  --teal:#0E6E78; --teal-text:#0B5F68; --on-teal:#FFFFFF;
+  --hairline:#E4DED2; --hairline-2:#D2C9B8;
+  --band:rgba(140,94,10,.045); --shade:60 45 20; --shade-k:.28;
+  --grad-blood:linear-gradient(135deg,#A8741A 0%,#8C5E0A 55%,#5C3D06 100%);
+  --grad-noir:radial-gradient(120% 120% at 20% 0%,#FFFFFF 0%,#FBF9F4 50%,#F1ECE1 100%);
+  --grad-teal:linear-gradient(120deg,#138A96 0%,#0E6E78 50%,#D8E6E5 120%);
+  --grad-text:linear-gradient(92deg,#0E6E78 0%,#15181D 45%,#8C5E0A 100%);
+  --glow-teal:0 0 0 1px rgba(14,110,120,.35);
+  --glow-crimson:0 0 0 1px rgba(140,94,10,.35);
+  --btn-glow:0 10px 24px -14px rgba(92,61,6,.55);
+  --atmos:radial-gradient(60% 45% at 82% 0%,rgba(168,116,26,.10),transparent 70%),
+    radial-gradient(50% 40% at 0% 28%,rgba(14,110,120,.07),transparent 70%);
+  --grid-color:var(--ice); --grid-opacity:.045; --grid-size:64px; --ink-k:.6;
+  --nav-glass:rgba(246,243,236,.82); --glass:rgba(255,255,255,.6); --field-bg:rgba(255,255,255,.9);
+  --scrim:rgba(21,24,29,.45); --cover-shadow:none;
+  --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:600; --head-tracking:-.03em;
+  --font-logo:var(--font-display); --logo-weight:600; --logo-tracking:-.015em;
+  --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.98;
+  --r-sm:10px; --r-md:16px; --kicker-node:0px;
+}
+
+/* ----- MONO — true black and white, sharp, no colour ----- */
+:root[data-theme="mono"]{
+  --void:#0A0A0A; --navy:#141414; --plum:#1C1C1C;
+  --ice:#F5F5F5; --body-strong:#D4D4D4; --muted:#A3A3A3; --faint:#999999;
+  --crimson:#F5F5F5; --crimson-hi:#FFFFFF; --on-crimson:#0A0A0A; --crimson-text:#F5F5F5;
+  --teal:#BDBDBD; --teal-text:#D4D4D4; --on-teal:#0A0A0A;
+  --hairline:#262626; --hairline-2:#3A3A3A;
+  --band:rgba(255,255,255,.03); --shade:0 0 0; --shade-k:.9;
+  --grad-blood:linear-gradient(135deg,#FFFFFF 0%,#BDBDBD 55%,#3A3A3A 100%);
+  --grad-noir:radial-gradient(120% 120% at 20% 0%,#1C1C1C 0%,#141414 45%,#0A0A0A 100%);
+  --grad-teal:linear-gradient(120deg,#E5E5E5 0%,#9E9E9E 50%,#1C1C1C 120%);
+  --grad-text:linear-gradient(92deg,#FFFFFF 0%,#BDBDBD 50%,#FFFFFF 100%);
+  --glow-teal:0 0 0 1px rgba(255,255,255,.3);
+  --glow-crimson:0 0 0 1px rgba(255,255,255,.4);
+  --btn-glow:none;
+  --atmos:radial-gradient(60% 40% at 50% -10%,rgba(255,255,255,.06),transparent 70%);
+  --grid-color:var(--ice); --grid-opacity:.04; --grid-size:64px; --ink-k:.55;
+  --nav-glass:rgba(10,10,10,.82); --glass:rgba(20,20,20,.6); --field-bg:rgba(10,10,10,.7);
+  --scrim:rgba(0,0,0,.8); --cover-shadow:0 14px 40px rgba(0,0,0,.6);
+  --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:500; --head-tracking:-.035em;
+  --font-logo:var(--font-display); --logo-weight:600; --logo-tracking:-.02em;
+  --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.97;
+  --r-sm:2px; --r-md:4px; --kicker-node:0px;
+}
+
+/* ----- ALT-NEON — synthwave violet, magenta and cyan ----- */
+:root[data-theme="altneon"]{
+  --void:#0C0716; --navy:#150D26; --plum:#1E1236;
+  --ice:#F4EEFF; --body-strong:#D8CEF0; --muted:#AC9FCB; --faint:#A193C2;
+  --crimson:#FF3EA5; --crimson-hi:#FF6CBC; --on-crimson:#0C0716; --crimson-text:#FF62B5;
+  --teal:#3EE6FF; --teal-text:#3EE6FF; --on-teal:#0C0716;
+  --hairline:#2A1C45; --hairline-2:#3D2A63;
+  --band:rgba(62,20,110,.22); --shade:0 0 0; --shade-k:1;
+  --grad-blood:linear-gradient(135deg,#FF6CBC 0%,#FF3EA5 45%,#5B1E8C 100%);
+  --grad-noir:radial-gradient(120% 120% at 20% 0%,#241544 0%,#150D26 45%,#0C0716 100%);
+  --grad-teal:linear-gradient(120deg,#3EE6FF 0%,#1FB5E0 50%,#150D26 120%);
+  --grad-text:linear-gradient(92deg,#3EE6FF 0%,#F4EEFF 45%,#FF3EA5 100%);
+  --glow-teal:0 0 0 1px rgba(62,230,255,.45),0 0 24px rgba(62,230,255,.2);
+  --glow-crimson:0 0 0 1px rgba(255,62,165,.55),0 0 40px rgba(255,62,165,.35);
+  --btn-glow:var(--glow-crimson);
+  --atmos:radial-gradient(55% 45% at 85% 4%,rgba(255,62,165,.18),transparent 70%),
+    radial-gradient(50% 45% at 5% 25%,rgba(62,230,255,.12),transparent 72%),
+    radial-gradient(80% 60% at 50% 115%,rgba(40,15,80,.75),transparent 70%);
+  --grid-color:rgba(62,230,255,.7); --grid-opacity:.06; --grid-size:48px; --ink-k:1;
+  --nav-glass:rgba(12,7,22,.8); --glass:rgba(30,18,54,.55); --field-bg:rgba(12,7,22,.65);
+  --scrim:rgba(6,3,12,.8); --cover-shadow:0 14px 40px rgba(0,0,0,.55);
+  --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:700; --head-tracking:-.025em;
+  --font-logo:var(--font-display); --logo-weight:700; --logo-tracking:-.01em;
+  --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.97;
+  --r-sm:10px; --r-md:18px; --kicker-node:0px;
+}
+
+/* ----- ENGINEERING — graphite, safety orange, drafting grid ----- */
+:root[data-theme="engineering"]{
+  --void:#0E1012; --navy:#15181B; --plum:#1B1F23;
+  --ice:#ECEFF1; --body-strong:#C9CFD4; --muted:#9CA5AD; --faint:#929BA3;
+  --crimson:#FF5B1F; --crimson-hi:#FF7A45; --on-crimson:#0E1012; --crimson-text:#FF7A45;
+  --teal:#8EC5E8; --teal-text:#8EC5E8; --on-teal:#0E1012;
+  --hairline:#23282D; --hairline-2:#323A42;
+  --band:rgba(255,255,255,.02); --shade:0 0 0; --shade-k:.9;
+  --grad-blood:linear-gradient(90deg,#FF7A45 0%,#FF5B1F 100%);
+  --grad-noir:linear-gradient(180deg,#171A1E 0%,#121417 100%);
+  --grad-teal:linear-gradient(120deg,#8EC5E8 0%,#5E95B8 50%,#15181B 120%);
+  --grad-text:linear-gradient(92deg,#ECEFF1 0%,#ECEFF1 60%,#FF5B1F 100%);
+  --glow-teal:0 0 0 1px rgba(142,197,232,.35);
+  --glow-crimson:0 0 0 1px rgba(255,91,31,.5);
+  --btn-glow:none;
+  --atmos:radial-gradient(50% 35% at 50% -5%,rgba(255,91,31,.07),transparent 70%);
+  --grid-color:var(--muted); --grid-opacity:.09; --grid-size:32px; --ink-k:.8;
+  --nav-glass:rgba(14,16,18,.86); --glass:rgba(21,24,27,.7); --field-bg:rgba(14,16,18,.75);
+  --scrim:rgba(0,0,0,.78); --cover-shadow:0 14px 40px rgba(0,0,0,.55);
+  --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:600; --head-tracking:-.03em;
+  --font-logo:var(--font-display); --logo-weight:600; --logo-tracking:-.02em;
+  --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.97;
+  --r-sm:2px; --r-md:4px; --kicker-node:0px;
+}
