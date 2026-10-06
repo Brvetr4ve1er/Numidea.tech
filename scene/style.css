@@ -251,3 +251,9 @@ html[dir="rtl"] .cue{left:auto;right:clamp(38px,6vw,64px)}
 .hud{padding-top:max(20px,env(safe-area-inset-top))}
 
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- breadcrumb: Numidea Labs / the work ---- */
+.bc ol{display:flex;align-items:center;gap:10px;margin:0;padding:0;list-style:none}
+.bc li{display:flex;align-items:center;gap:10px}
+.bc li+li::before{content:"/";font-family:var(--font-mono);font-size:11px;color:var(--faint)}
+@media (max-width:900px){.bc li+li{display:none}}   /* the tag hides there too */

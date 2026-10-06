@@ -1170,3 +1170,92 @@ The live console logs `<polyline> attribute points: Expected number,
 "{{ … }}"` while booting: the browser parses the design runtime's template
 before binding it. Harmless (the same happens in Claude Design) and inside the
 design's own runtime, so left alone.
+
+## Visual pass — what the automated checks could not see
+
+Every gate was green (check, validator, sweep, 32-run audit) and the page still
+had visual bugs, found by walking it viewport by viewport at 1280 and 390 in
+arcanum/fr, engineering/en and daylight/ar:
+
+- **RTL wordmark.** "Num · idea · Labs" is three runs; in an Arabic paragraph
+  the bidi algorithm laid them out as "Labs idea Num". `.logo` is now
+  `direction:ltr; unicode-bidi:isolate` — a brand name has one direction.
+- **RTL "<24h"** rendered "24h>" (the "<" is a neutral). `.stat` is isolated LTR.
+- **Engineering navbar** turned navy when scrolled (the base sheet's
+  rgba(13,26,47,.72)); now the instrument black.
+- **Engineering method steps** were squeezed into the left 70% of the row:
+  the base desktop grid makes three columns, this theme capped the list at
+  820px. The cap is lifted on desktop.
+- **Proof band** carried full section padding (109px a side) and read as an
+  empty box; it is a compact strip now.
+- **Scene banner** art was three blank plates that read as a missing image;
+  they now carry real client screenshots.
+- **Footer WhatsApp** sat 10px low (flex-centred in a 39px row while its
+  siblings sat at the top).
+- **Phones (<600px):** work cards showed a narrow slice of each 16:10
+  screenshot, cutting every headline mid-word; they now stack with the shot
+  at its real shape. The "see every capability" summary drops its hint to its
+  own line instead of squeezing the label into three. The WorkspaceHQ
+  cartridge gets air above it.
+
+`.tmp/vbugs.mjs` (not committed) scans 7 widths x 4 theme/lang pairs for
+overlapping text, text escaping its card, clipped text, stretched images and
+horizontal scroll. It needs two exclusions to be honest: content of closed
+`<details>` keeps stale layout boxes, and decorative clipped glows overflow on
+purpose.
+
+## Bento, loading states and wayfinding
+
+- **Work** is a 3-column bento at ≥1100px: wide(2)+1 / 1+wide(2) / 1+1+1, so
+  the card order in `index.html` is part of the layout. At 961–1099px only the
+  first card stays wide (2+6). Below 961px cards are rows (≥600) or stacked
+  (<600); no span applies there, or it creates an implicit second column.
+- **Services**: 6-column grid, 3+3 over 2+2+2. Narrow cards (and the two large
+  ones below 1280px) put icon and drawing on one row with the copy full-width
+  beneath; `align-content:start` keeps eyebrows aligned across a row.
+- **Stack** tiles: 6 columns, 3+3 over 2+2+2, single column under 720px.
+- **Founder** card spans 8 of 12 columns, the team the other 4.
+- `theme-engineering.css` re-declares the work, services and stack grids, so
+  every bento rule needs its counterpart there (it loads last and wins).
+- **Skeletons**: images still loading get `.sk` (finite 8-cycle shimmer), then
+  `.sk-done`. Every `<img>` declares `loading`.
+- **Wayfinding**: scroll-spy marks the current nav link with `aria-current`
+  (section tops cached, never measured per scroll frame); a crumb shows the
+  section on ≤960px; a back-to-top button appears after 1.5 viewports.
+- **Sub-pages** carry a visible breadcrumb and `BreadcrumbList` JSON-LD; all
+  pages have a canonical URL. `sitemap.xml` and `robots.txt` live at the root
+  (on GitHub Pages project sites crawlers only read the domain-root
+  robots.txt — submit the sitemap in Search Console instead).
+
+## Page structure and design system (home page)
+
+**Order:** hero, proof, work, services, method, pricing, team, stack, FAQ,
+contact. Each idea is said once:
+- The free demo (L'Aperçu) is the services lead card and step 3 of the method.
+- The process is the four-step method. There is no second process in pricing.
+- Pricing reads tiers, then the estimator, and stops. The market comparison,
+  billing models and cost drivers sit in the "Comment on chiffre" disclosure.
+- Work ends on one call to action, the planches banner. The project explorer
+  stays reachable at `#/work` and `#/work/<slug>`.
+
+**Design system:** the `DESIGN SYSTEM` block at the end of `styles.css` is the
+source of truth. Engineering keeps its own system in `theme-engineering.css`.
+- Seven text sizes below the display headings:
+  - `--t-label` 11, mono uppercase at `--ls-label`;
+  - `--t-small` 13;
+  - `--t-ui` 14;
+  - `--t-body` 15;
+  - `--t-lead` 18;
+  - `--t-title` 22, every card title;
+  - `--t-feature` 30, featured titles and price figures. Price figures are
+    fluid down to 19px, because a figure like "1 200 000" cannot wrap.
+- Corner radii: 4 / 8 / 14. Panels use the card radius.
+- Section headers: every section has a kicker, a heading and a lead. Every
+  section heading is one display size with one accent colour, contact included.
+- Section rhythm:
+  - `--sec-pad` from 961px up;
+  - bands fade in and out over `--band-fade` instead of ending on a hard edge.
+- Cards show one marker each, a number or an icon. Never both, and no
+  decorative drawing beside the icon.
+- Anything inside a closed `<details>` must not carry `.reveal`: the scroll
+  observer never sees it, so it stays invisible.

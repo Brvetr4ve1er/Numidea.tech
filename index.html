@@ -13,6 +13,7 @@
      if the site moves to a custom domain. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Numidea Labs">
+<link rel="canonical" href="https://brvetr4ve1er.github.io/Numidea.tech/">
 <meta property="og:url" content="https://brvetr4ve1er.github.io/Numidea.tech/">
 <meta property="og:title" content="Numidea Labs — Rooted in Numidia, built on ideas">
 <meta property="og:description" content="A studio out of Bordj Bou Arréridj that designs, builds, ships and maintains digital products — and answers when they break.">
@@ -54,8 +55,8 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202610050936">
-<link rel="stylesheet" href="assets/styles.css?v=202610050936">
+<link rel="stylesheet" href="assets/fonts.css?v=202610052011">
+<link rel="stylesheet" href="assets/styles.css?v=202610052011">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -89,7 +90,7 @@
        deliberate and safe: it runs while the head is still parsing, so the
        parser inserts the link itself and rendering waits for it. Only the theme
        actually in use is written, so nobody else downloads or waits on 46KB. */
-    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202610050936';
+    window.NUMIDEA_ENG_CSS = 'assets/theme-engineering.css?v=202610052011';
     /* The studio's WhatsApp number, full international form, digits only
        (e.g. '213XXXXXXXXX'). While this is empty every WhatsApp control on the
        page stays visibly pending instead of linking somewhere wrong. */
@@ -156,11 +157,13 @@
   <div class="nav-inner">
     <div class="bar">
       <a class="logo" href="#top"><span class="brick" aria-hidden="true">N</span>Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+      <!-- phones fold the links into the menu; this names the section you are in -->
+      <span class="crumb" id="crumb" aria-hidden="true"><i>/</i><b id="crumbNow"></b></span>
       <nav class="nav-links" aria-label="Primary">
-        <a href="#how" data-i18n="nav.about">À propos</a>
-        <a href="#services" data-i18n="nav.services">Services</a>
-        <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
         <a href="#work" data-i18n="nav.work">Projets</a>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#how" data-i18n="nav.about">Méthode</a>
+        <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
         <a href="#founder" data-i18n="nav.team">Équipe</a>
         <a href="#faq" data-i18n="nav.faq">FAQ</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
@@ -191,10 +194,10 @@
 <!-- mobile overlay menu -->
 <div class="mobile-menu" id="mobile-menu">
   <button type="button" class="close" aria-label="Close">×</button>
-  <a href="#how" data-i18n="nav.about">À propos</a>
-  <a href="#services" data-i18n="nav.services">Services</a>
-  <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
   <a href="#work" data-i18n="nav.work">Projets</a>
+  <a href="#services" data-i18n="nav.services">Services</a>
+  <a href="#how" data-i18n="nav.about">Méthode</a>
+  <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
   <a href="#founder" data-i18n="nav.team">Équipe</a>
   <a href="#faq" data-i18n="nav.faq">FAQ</a>
   <a href="#contact" data-i18n="nav.contact">Contact</a>
@@ -324,12 +327,6 @@
         <dd><span class="tb-live" aria-hidden="true"></span>5 / 7<i data-i18n="hero.plateLive">en ligne</i></dd>
       </div>
     </dl>
-    <div class="sheet-foot" aria-hidden="true">
-      <span data-i18n="sheet.scale">Éch. 1:1</span>
-      <span data-i18n="sheet.rev">Rév. 2026-08</span>
-      <span class="sf-mark">◆</span>
-      <span data-i18n="sheet.sheet">Feuille 01</span>
-    </div>
 
   </section>
 
@@ -361,7 +358,7 @@
   <!-- ================= PROOF ================= -->
   <section class="proof reveal" aria-labelledby="proof-h">
     <span class="kicker" data-parallax=".035" id="proof-h" data-i18n="proof.kicker">01 — Preuves</span>
-    <div class="proof-grid" data-parallax=".06">
+    <div class="proof-grid">
       <div><svg class="ai ai-stat" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><path class="p a-redraw" pathLength="1" d="m8.6 12.2 2.4 2.4 4.6-5"/></svg><div class="stat" data-count="5" data-suffix="">5</div><div class="stat-label" data-i18n="proof.s1">projets livrés</div></div>
       <div><svg class="ai ai-stat" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:16s"><circle class="p" pathLength="1" cx="12" cy="4.5" r="2"/><circle class="p" pathLength="1" cx="19.5" cy="12" r="2"/><circle class="p" pathLength="1" cx="12" cy="19.5" r="2"/><circle class="p" pathLength="1" cx="4.5" cy="12" r="2"/><path class="p" pathLength="1" d="M13.4 5.9 18.1 10.6M18.1 13.4 13.4 18.1M10.6 18.1 5.9 13.4M5.9 10.6 10.6 5.9"/></g></svg><div class="stat" data-count="4">4</div><div class="stat-label" data-i18n="proof.s2">spécialistes</div></div>
       <div><svg class="ai ai-stat" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="9"/><ellipse class="p a-globe" pathLength="1" cx="12" cy="12" rx="4" ry="9"/><path class="p" pathLength="1" d="M3 12h18M4.6 7.5h14.8M4.6 16.5h14.8"/></svg><div class="stat" data-count="3">3</div><div class="stat-label" data-i18n="proof.s3">langues</div></div>
@@ -379,15 +376,18 @@
     <p class="sec-lead" data-i18n="work.lead">Des sites réels, en ligne, qu'on peut cliquer — pas des maquettes.</p>
     <div class="work-grid">
 
-      <article class="proj reveal" data-cat="health" data-idx="01/07">
-        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>doctorcherfia.dz</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Doctor Cherfia</span></div>
+      <!-- Bento: live sites first, two featured as wide cards. At 3 columns
+           wide(2)+1 / 1+wide(2) / 1+1+1 closes flush; at 2 columns only the
+           first stays wide (2+6 = 8 cells). The order is part of the layout. -->
+      <article class="proj proj--wide proj--brand reveal" data-cat="industrial" style="--brand:214,55,48" data-idx="01/07">
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
-          <span class="cat" data-i18n="proj1.cat">Santé · Next.js</span>
-          <h3>Doctor Cherfia Clinic</h3>
-          <p data-i18n="proj1.desc">Une plateforme calme, prête à la prise de rendez-vous, qui donne à un petit cabinet une allure établie.</p>
-          <div class="pills"><span class="pill">Next.js</span><span class="pill">Booking</span><span class="pill soon" data-i18n="work.soon">Bientôt</span></div>
+          <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
+          <h3>Bordj Steel</h3>
+          <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, leader de la construction métallique en Algérie — catalogue produits, références et espace recrutement.</p>
+          <div class="pills"><span class="pill">B2B</span><span class="pill">Corporate</span><span class="pill live">Live</span></div>
           <div class="actions">
-            <span class="soon" data-i18n="work.soon">Bientôt</span>
+            <a href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
           </div>
         </div>
       </article>
@@ -418,33 +418,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="industrial" style="--brand:214,55,48" data-idx="04/07">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" loading="lazy" decoding="async" width="1280" height="800"></div>
-        <div class="body">
-          <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
-          <h3>Bordj Steel</h3>
-          <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, leader de la construction métallique en Algérie — catalogue produits, références et espace recrutement.</p>
-          <div class="pills"><span class="pill">B2B</span><span class="pill">Corporate</span><span class="pill live">Live</span></div>
-          <div class="actions">
-            <a href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="proj reveal" data-cat="pwa" data-idx="05/07">
-        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>etoile-est.app</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Étoile de l'Est</span></div>
-        <div class="body">
-          <span class="cat" data-i18n="proj5.cat">PWA · Supabase</span>
-          <h3>Étoile de l'Est</h3>
-          <p data-i18n="proj5.desc">Une application web progressive offline-first, avec une vraie ingénierie en dessous.</p>
-          <div class="pills"><span class="pill">PWA</span><span class="pill">Supabase</span><span class="pill">Offline</span></div>
-          <div class="actions">
-            <span class="soon" data-i18n="work.soon">Bientôt</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="proj proj--brand reveal" data-cat="travel" style="--brand:34,180,104" data-idx="06/07">
+      <article class="proj proj--wide proj--brand reveal" data-cat="travel" style="--brand:34,180,104" data-idx="04/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
@@ -457,7 +431,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="commerce" style="--brand:255,90,31" data-idx="07/07">
+      <article class="proj proj--brand reveal" data-cat="commerce" style="--brand:255,90,31" data-idx="05/07">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="assets/previews/glaive.webp" alt="Aperçu du site Glaive Store" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
@@ -466,6 +440,32 @@
           <div class="pills"><span class="pill">Commerce</span><span class="pill">Brand</span><span class="pill live">Live</span></div>
           <div class="actions">
             <a href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj reveal" data-cat="health" data-idx="06/07">
+        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>doctorcherfia.dz</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Doctor Cherfia</span></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj1.cat">Santé · Next.js</span>
+          <h3>Doctor Cherfia Clinic</h3>
+          <p data-i18n="proj1.desc">Une plateforme calme, prête à la prise de rendez-vous, qui donne à un petit cabinet une allure établie.</p>
+          <div class="pills"><span class="pill">Next.js</span><span class="pill">Booking</span></div>
+          <div class="actions">
+            <span class="soon" data-i18n="work.soon">Bientôt</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj reveal" data-cat="pwa" data-idx="07/07">
+        <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>etoile-est.app</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Étoile de l'Est</span></div>
+        <div class="body">
+          <span class="cat" data-i18n="proj5.cat">PWA · Supabase</span>
+          <h3>Étoile de l'Est</h3>
+          <p data-i18n="proj5.desc">Une application web progressive offline-first, avec une vraie ingénierie en dessous.</p>
+          <div class="pills"><span class="pill">PWA</span><span class="pill">Supabase</span><span class="pill">Offline</span></div>
+          <div class="actions">
+            <span class="soon" data-i18n="work.soon">Bientôt</span>
           </div>
         </div>
       </article>
@@ -481,9 +481,6 @@
       <span class="sb-go" data-i18n="scene.cta">Entrer dans la scène →</span>
     </a>
 
-    <div class="work-foot">
-      <button type="button" class="btn btn-ghost" id="portfolio-open" data-i18n="work.all" aria-haspopup="dialog">Voir tout le portfolio →</button>
-    </div>
   </section>
 
   <!-- ================= PROJECT EXPLORER ================= -->
@@ -515,7 +512,6 @@
 
     <div class="svc-grid">
       <article class="svc-row reveal">
-        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f1"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16"/><path d="M2.5 8.6h19"/><path d="M5.4 6.3h1.5M8.4 6.3h1.5"/><path d="M5.8 12.2h7.4M5.8 15.8h11.6"/></svg></span>
         <div>
           <span class="fam" data-i18n="svc.famBuild">Le Build</span>
@@ -527,7 +523,6 @@
       </article>
 
       <article class="svc-row reveal">
-        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f2"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9.2" cy="9.8" r="4.7"/><circle cx="14.8" cy="9.8" r="4.7"/><circle cx="12" cy="15" r="4.7"/></svg></span>
         <div>
           <span class="fam" data-i18n="svc.famBuild">Le Build</span>
@@ -539,7 +534,6 @@
       </article>
 
       <article class="svc-row reveal">
-        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f3"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="5.6" r="2.3"/><circle cx="19" cy="5.6" r="2.3"/><circle cx="12" cy="18.4" r="2.3"/><path d="M5 7.9v4.3a2 2 0 0 0 2 2h2.9M19 7.9v4.3a2 2 0 0 1-2 2h-2.9"/></svg></span>
         <div>
           <span class="fam" data-i18n="svc.famEngine">Le Moteur</span>
@@ -551,7 +545,6 @@
       </article>
 
       <article class="svc-row reveal">
-        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f4"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.9"/><path d="M12 1.6v2.6M12 19.8v2.6M1.6 12h2.6M19.8 12h2.6"/><circle cx="14.7" cy="9.3" r="1.15"/></svg></span>
         <div>
           <span class="fam" data-i18n="svc.famEngine">Le Moteur</span>
@@ -563,7 +556,6 @@
       </article>
 
       <article class="svc-row reveal">
-        <span class="svc-fig" aria-hidden="true"><span class="ill ill-f5"></span></span>
         <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.2 20.6h17.6"/><path d="M3.2 16.4 8 11.9l3.7 2.9 6.1-7"/><path d="M14.3 7.8h4.4v4.4"/></svg></span>
         <div>
           <span class="fam" data-i18n="svc.famMind">L'Esprit</span>
@@ -622,7 +614,52 @@
 
   </section>
 
-  <!-- ================= HOW WE WORK ================= -->
+  <!-- ================= METHOD ================= -->
+  <!-- The one process on the page. It used to be told twice: three principles
+       here and four onboarding steps inside pricing. -->
+  <section id="how" aria-labelledby="how-h">
+    <span class="kicker" data-parallax=".035" data-i18n="how.kicker">04 — Méthode</span>
+    <h2 class="sec font-swap-display" id="how-h" data-i18n="how.title">Quatre étapes. <em>Zéro surprise.</em></h2>
+    <p class="sec-lead" data-i18n="how.lead">Vous ne payez rien avant la troisième.</p>
+    <ol class="steps steps--4">
+      <li class="step reveal">
+        <div class="node">1</div>
+        <div class="step-body">
+          <h3 data-i18n="price.ob1h">Vous décrivez le projet</h3>
+          <p data-i18n="price.ob1p">Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <div class="node">2</div>
+        <div class="step-body">
+          <h3 data-i18n="price.ob2h">On revient sous 24 heures</h3>
+          <p data-i18n="price.ob2p">Avec un périmètre écrit et un prix ferme. Pas une fourchette, un chiffre.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <div class="node">3</div>
+        <div class="step-body">
+          <h3 data-i18n="price.ob3h">On construit L'Aperçu — gratuit</h3>
+          <p data-i18n="price.ob3p">Une démo réelle de votre projet, avant paiement. Vous la voyez tourner en direct.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <div class="node">4</div>
+        <div class="step-body">
+          <h3 data-i18n="price.ob4h">Vous décidez</h3>
+          <p data-i18n="price.ob4p">Si c'est non, vous ne devez rien. Si c'est oui, on est déjà à mi-chemin.</p>
+        </div>
+      </li>
+    </ol>
+    <div class="how-cta">
+      <a class="btn btn-primary" href="#contact" data-i18n="price.obCta1">Décrire mon projet →</a>
+      <a class="btn btn-ghost wa-link" data-wa-pending aria-disabled="true">
+        <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+        <span data-i18n="price.obCta2">WhatsApp</span>
+      </a>
+    </div>
+  </section>
+
   <!-- ================= PRICING ================= -->
   <!-- Ranges are anchored to the Onyxlab Baromètre 2026 Algerian freelance
        grid and the 2026 DZ agency surveys, positioned between its "Confirmé"
@@ -631,21 +668,14 @@
        numbers the tiers quote — PRICE_MODEL in app.js is the single source. -->
   <section id="pricing" aria-labelledby="pricing-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span><span class="pi-coins lv"><span class="pi pc pc-king" data-parallax="-.16" data-parallax-cap="60"><i></i></span><span class="pi pc pc-horse" data-parallax="-.08" data-parallax-cap="50"><i></i></span><span class="pi pc pc-palm" data-parallax="-.22" data-parallax-cap="70"><i></i></span><span class="pl-cap" data-i18n="pl.coins">Pl. III — Monnaies numides</span></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="price.kicker">04 — Tarifs</span>
+    <span class="kicker" data-parallax=".035" data-i18n="price.kicker">05 — Tarifs</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
-    <p class="sec-lead" data-i18n="price.lead">Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre, voyez l'estimation bouger — puis recevez un prix ferme sous 24 heures.</p>
+    <p class="sec-lead" data-i18n="price.lead">Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre et voyez l'estimation bouger.</p>
 
-    <div class="price-free reveal">
-      <span class="pf-mark" aria-hidden="true"><span class="ill ill-free"></span></span>
-      <div>
-        <h3 data-i18n="price.freeH">L'Aperçu reste gratuit.</h3>
-        <p data-i18n="price.freeP">Avant le moindre dinar, on construit une démo réelle et fonctionnelle de votre projet. Vous la voyez tourner, puis vous décidez. Rien de ce qui suit ne s'engage sans ça.</p>
-      </div>
-    </div>
 
     <div class="tiers">
       <article class="tier reveal">
-        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg><span class="t-fam" data-i18n="price.t1fam">Le Build</span>
+        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg>
         <h3 data-i18n="price.t1name">Essentiel</h3>
         <p class="t-for" data-i18n="price.t1for">Une présence crédible, vite en ligne.</p>
         <p class="t-range"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
@@ -661,7 +691,7 @@
 
       <article class="tier tier-pop reveal">
         <span class="t-pop" data-i18n="price.popular">Le plus choisi</span>
-        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:12px 4.4px"><circle class="p" pathLength="1" cx="12" cy="4.4" r="1.7"/><path class="p" pathLength="1" d="M11.2 6 6.2 19.8M12.8 6l5 13.8M8.2 14.3h7.6"/></g><path class="p" pathLength="1" d="M4 20.6a14 14 0 0 0 16 0"/></svg><span class="t-fam" data-i18n="price.t2fam">Le Build</span>
+        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:12px 4.4px"><circle class="p" pathLength="1" cx="12" cy="4.4" r="1.7"/><path class="p" pathLength="1" d="M11.2 6 6.2 19.8M12.8 6l5 13.8M8.2 14.3h7.6"/></g><path class="p" pathLength="1" d="M4 20.6a14 14 0 0 0 16 0"/></svg>
         <h3 data-i18n="price.t2name">Studio</h3>
         <p class="t-for" data-i18n="price.t2for">Le site qui porte vraiment l'entreprise.</p>
         <p class="t-range"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
@@ -677,7 +707,7 @@
       </article>
 
       <article class="tier reveal">
-        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:10s"><circle class="p" pathLength="1" cx="12" cy="12" r="6"/><path class="p" pathLength="1" d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></g><circle class="p" pathLength="1" cx="12" cy="12" r="2.2"/></svg><span class="t-fam" data-i18n="price.t3fam">Le Moteur</span>
+        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:10s"><circle class="p" pathLength="1" cx="12" cy="12" r="6"/><path class="p" pathLength="1" d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></g><circle class="p" pathLength="1" cx="12" cy="12" r="2.2"/></svg>
         <h3 data-i18n="price.t3name">Moteur</h3>
         <p class="t-for" data-i18n="price.t3for">La machinerie que presque personne ne construit ici.</p>
         <p class="t-range"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
@@ -720,9 +750,9 @@
 
           <div class="est-field">
             <div class="est-lab"><label for="est-size" data-i18n="price.qSize">Ampleur</label>
-              <output class="est-sizev" id="est-size-v" for="est-size">8</output></div>
+              <output class="est-sizev" id="est-size-v" for="est-size">8</output>
+              <span class="est-hint" id="est-size-h" data-i18n="price.uPages">pages</span></div>
             <input type="range" id="est-size" min="1" max="25" value="8" step="1">
-            <span class="est-hint" id="est-size-h" data-i18n="price.uPages">pages</span>
           </div>
 
           <fieldset class="est-field">
@@ -754,175 +784,137 @@
           </p>
           <p class="eo-time"><span id="est-weeks">3 –⁠ 7</span> <span data-i18n="price.weeks">semaines</span></p>
           <ul class="eo-sum" id="est-summary"></ul>
-          <p class="eo-fine" data-i18n="price.estFine">Fourchette indicative, pas un devis. Le prix ferme arrive sous 24 heures, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.</p>
+          <p class="eo-fine" data-i18n="price.estFine">Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.</p>
           <a class="btn btn-primary" id="est-cta" href="#contact" data-i18n="price.estCta">Obtenir le prix ferme →</a>
         </div>
       </div>
     </div>
 
-    <!-- ---------------- market comparison ----------------
-         Each cell runs from the low end of an experienced freelancer's range
-         to the high end of an agency's, per the sources listed below. Static
-         values are the native currency, so the table reads correctly with
-         JS off; app.js (section 14) converts on request and computes the
-         Numidea column from PRICE_MODEL. -->
-    <div class="market reveal" id="market">
-      <div class="mk-head">
-        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 4v16.5M8 20.5h8"/><g class="a-tilt" style="--o:12px 6px"><path class="p" pathLength="1" d="M4.5 6h15M4.5 6 2.5 12h4ZM19.5 6l-2 6h4Z"/></g></svg>
-        <h3 data-i18n="mk.h">Ici et ailleurs</h3>
-        <p data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.</p>
+    <!-- Reference material: market comparison, billing models, cost drivers.
+         Kept for whoever wants to check the numbers; folded so the section
+         reads tiers -> estimator and stops. -->
+    <details class="capabilities price-more">
+      <summary>
+        <span data-i18n="price.moreSum">Comment on chiffre</span>
+        <span class="hint" data-i18n="price.moreHint">Le marché, les modèles de facturation, ce qui fait bouger un devis.</span>
+        <span class="chev" aria-hidden="true">›</span>
+      </summary>
+      <div class="pm-body">
+      <!-- ---------------- market comparison ----------------
+           Each cell runs from the low end of an experienced freelancer's range
+           to the high end of an agency's, per the sources listed below. Static
+           values are the native currency, so the table reads correctly with
+           JS off; app.js (section 14) converts on request and computes the
+           Numidea column from PRICE_MODEL. -->
+      <div class="market" id="market">
+        <div class="mk-head">
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 4v16.5M8 20.5h8"/><g class="a-tilt" style="--o:12px 6px"><path class="p" pathLength="1" d="M4.5 6h15M4.5 6 2.5 12h4ZM19.5 6l-2 6h4Z"/></g></svg>
+          <h3 data-i18n="mk.h">Ici et ailleurs</h3>
+          <p data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.</p>
+        </div>
+
+        <fieldset class="mk-cur est-field">
+          <legend data-i18n="mk.curL">Afficher en</legend>
+          <div class="est-chips">
+            <label class="echip"><input type="radio" name="mk-cur" value="native" checked><span data-i18n="mk.curNative">Devise d'origine</span></label>
+            <label class="echip"><input type="radio" name="mk-cur" value="DZD"><span data-i18n="price.cur">DA</span></label>
+            <label class="echip"><input type="radio" name="mk-cur" value="EUR"><span>€</span></label>
+            <label class="echip"><input type="radio" name="mk-cur" value="USD"><span>$</span></label>
+          </div>
+        </fieldset>
+
+        <section class="mk-scroll" tabindex="0" aria-labelledby="mk-cap">
+          <table class="mk-table">
+            <caption id="mk-cap" data-i18n="mk.cap">Fourchettes de prix courantes par type de projet</caption>
+            <thead>
+              <tr>
+                <th scope="col" data-i18n="mk.colType">Projet</th>
+                <th scope="col" class="mk-nl" data-i18n="mk.colNl">Numidea</th>
+                <th scope="col" data-i18n="mk.colDz">Algérie</th>
+                <th scope="col" data-i18n="mk.colFr">France</th>
+                <th scope="col" data-i18n="mk.colUs">États-Unis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">Vitrine</th>
+                <td data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
+              <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">Site sur mesure</th>
+                <td data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
+              <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">E-commerce</th>
+                <td data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
+              <tr data-row="app"><th scope="row" data-i18n="price.tyApp">Application web</th>
+                <td data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
+              <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">Identité visuelle</th>
+                <td data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <p class="mk-day">
+          <span data-i18n="mk.day1">Une journée de développeur confirmé en France</span>
+          <b class="mk-num" dir="ltr">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz" dir="ltr">70 000 –⁠ 100 000 DA</b>
+          <span data-i18n="mk.day2">au taux officiel — l'ordre de prix d'un site vitrine entier sur le marché algérien.</span>
+        </p>
+        <p class="mk-note" data-i18n="mk.note">Conversions au taux officiel de la Banque d'Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec le même stack que les studios européens et américains : React, Next.js, Vercel.</p>
+
+        <details class="mk-src">
+          <summary data-i18n="mk.srcSum">Sources et méthode</summary>
+          <p data-i18n="mk.method">Chaque case va du bas de la fourchette d'un freelance confirmé au haut de celle d'une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l'estimateur ci-dessus, au périmètre type de chaque projet.</p>
+          <ul>
+            <li><b data-i18n="mk.srcDz">Algérie</b> — <a href="https://barometre.onyxlab.dz/" target="_blank" rel="noopener">Onyxlab, Baromètre des tarifs freelance 2026</a> (Confirmé → Agence)</li>
+            <li><b data-i18n="mk.srcFr">France</b> — <a href="https://www.tandem-studio.fr/prix-creation-site-internet/" target="_blank" rel="noopener">Tandem Studio, prix création site 2026</a> · <a href="https://lescreavores.fr/prix-creation-site-internet/" target="_blank" rel="noopener">Les Créavores, baromètre de 103 prix (juin 2026)</a> · <a href="https://www.heysimon.fr/articles/prix-logo-identite-visuelle-2026" target="_blank" rel="noopener">HeySimon, identité visuelle 2026</a> · <a href="https://lefreelance.fr/articles/tjm-developpeur-freelance/" target="_blank" rel="noopener">TJM d'après Malt (LeFreelance)</a></li>
+            <li><b data-i18n="mk.srcUs">États-Unis</b> — <a href="https://pitchsite.io/guides/web-design-pricing" target="_blank" rel="noopener">Pitchsite, Web Design Pricing Guide 2026</a> · <a href="https://8gnc.io/blog/how-much-does-branding-cost" target="_blank" rel="noopener">8GNC, branding cost 2026</a> · <a href="https://clutch.co/web-developers/pricing" target="_blank" rel="noopener">Clutch, web development pricing (sept. 2026)</a></li>
+            <li><b data-i18n="mk.srcFx">Change</b> — <a href="https://www.bank-of-algeria.dz/taux-de-change-journalier/" target="_blank" rel="noopener">Banque d'Algérie, taux de change journalier</a></li>
+          </ul>
+        </details>
       </div>
 
-      <fieldset class="mk-cur est-field">
-        <legend data-i18n="mk.curL">Afficher en</legend>
-        <div class="est-chips">
-          <label class="echip"><input type="radio" name="mk-cur" value="native" checked><span data-i18n="mk.curNative">Devise d'origine</span></label>
-          <label class="echip"><input type="radio" name="mk-cur" value="DZD"><span data-i18n="price.cur">DA</span></label>
-          <label class="echip"><input type="radio" name="mk-cur" value="EUR"><span>€</span></label>
-          <label class="echip"><input type="radio" name="mk-cur" value="USD"><span>$</span></label>
+      <!-- ---------------- pricing models ---------------- -->
+      <div class="models" id="models">
+        <div class="mk-head">
+          <h3 data-i18n="md.h">Comment un projet est chiffré</h3>
+          <p data-i18n="md.p">Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.</p>
         </div>
-      </fieldset>
+        <div class="md-grid">
+          <article class="md-card md-ours">
+            <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
+            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M7.5 10V7.5a4.5 4.5 0 0 1 9 0V10"/><rect class="p" pathLength="1" x="5" y="10" width="14" height="10.5" rx="1.6"/><path class="p a-bob" pathLength="1" d="M12 13.8v3"/></svg><h4 data-i18n="md.fH">Au forfait</h4>
+            <p data-i18n="md.fP">Un prix fixe pour un périmètre écrit. Si le travail déborde, c'est le prestataire qui absorbe l'écart.</p>
+            <p class="md-where" data-i18n="md.fW">La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C'est ainsi que nous chiffrons chaque projet.</p>
+          </article>
+          <article class="md-card">
+            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><path class="p a-hand" style="--o:12px 12px;--t:2.4s" pathLength="1" d="M12 12V6.8"/><path class="p a-hand" style="--o:12px 12px;--t:28.8s" pathLength="1" d="M12 12h3.4"/></svg><h4 data-i18n="md.tH">Au temps passé</h4>
+            <p data-i18n="md.tP">Facturé au jour ou à l'heure. Souple quand le périmètre bouge, difficile à budgéter d'avance.</p>
+            <p class="md-where" data-i18n="md.tW">La norme en France (480 –⁠ 650 € par jour pour un développeur confirmé) et aux États-Unis (100 –⁠ 149 $ de l'heure en agence).</p>
+          </article>
+          <article class="md-card md-ours">
+            <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
+            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:7s"><path class="p" pathLength="1" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path class="p" pathLength="1" d="M17.3 3.4v3.3H14M6.7 20.6v-3.3H10"/></g></svg><h4 data-i18n="md.aH">À l'abonnement</h4>
+            <p data-i18n="md.aP">Un montant mensuel pour un service continu : maintenance, évolutions, contenu.</p>
+            <p class="md-where" data-i18n="md.aW">Courant partout après le lancement. C'est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.</p>
+          </article>
+          <article class="md-card">
+            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M6 4h12l3.5 5L12 20.5 2.5 9Z"/><path class="p" pathLength="1" d="M2.5 9h19M9.5 4 8 9l4 11.5L16 9l-1.5-5"/><path class="a-twinkle" d="M20.6 1.4v2.6M19.3 2.7h2.6"/></svg><h4 data-i18n="md.vH">À la valeur</h4>
+            <p data-i18n="md.vP">Le prix suit ce que le projet rapporte, pas le temps qu'il demande.</p>
+            <p class="md-where" data-i18n="md.vW">Plus rare, surtout en conseil et en stratégie, là où l'enjeu se mesure.</p>
+          </article>
+        </div>
 
-      <section class="mk-scroll" tabindex="0" aria-labelledby="mk-cap">
-        <table class="mk-table">
-          <caption id="mk-cap" data-i18n="mk.cap">Fourchettes de prix courantes par type de projet</caption>
-          <thead>
-            <tr>
-              <th scope="col" data-i18n="mk.colType">Projet</th>
-              <th scope="col" class="mk-nl" data-i18n="mk.colNl">Numidea</th>
-              <th scope="col" data-i18n="mk.colDz">Algérie</th>
-              <th scope="col" data-i18n="mk.colFr">France</th>
-              <th scope="col" data-i18n="mk.colUs">États-Unis</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">Vitrine</th>
-              <td data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
-            <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">Site sur mesure</th>
-              <td data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
-            <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">E-commerce</th>
-              <td data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
-            <tr data-row="app"><th scope="row" data-i18n="price.tyApp">Application web</th>
-              <td data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
-            <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">Identité visuelle</th>
-              <td data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <p class="mk-day">
-        <span data-i18n="mk.day1">Une journée de développeur confirmé en France</span>
-        <b class="mk-num" dir="ltr">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz" dir="ltr">70 000 –⁠ 100 000 DA</b>
-        <span data-i18n="mk.day2">au taux officiel — l'ordre de prix d'un site vitrine entier sur le marché algérien.</span>
-      </p>
-      <p class="mk-note" data-i18n="mk.note">Conversions au taux officiel de la Banque d'Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec le même stack que les studios européens et américains : React, Next.js, Vercel.</p>
-
-      <details class="mk-src">
-        <summary data-i18n="mk.srcSum">Sources et méthode</summary>
-        <p data-i18n="mk.method">Chaque case va du bas de la fourchette d'un freelance confirmé au haut de celle d'une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l'estimateur ci-dessus, au périmètre type de chaque projet.</p>
-        <ul>
-          <li><b data-i18n="mk.srcDz">Algérie</b> — <a href="https://barometre.onyxlab.dz/" target="_blank" rel="noopener">Onyxlab, Baromètre des tarifs freelance 2026</a> (Confirmé → Agence)</li>
-          <li><b data-i18n="mk.srcFr">France</b> — <a href="https://www.tandem-studio.fr/prix-creation-site-internet/" target="_blank" rel="noopener">Tandem Studio, prix création site 2026</a> · <a href="https://lescreavores.fr/prix-creation-site-internet/" target="_blank" rel="noopener">Les Créavores, baromètre de 103 prix (juin 2026)</a> · <a href="https://www.heysimon.fr/articles/prix-logo-identite-visuelle-2026" target="_blank" rel="noopener">HeySimon, identité visuelle 2026</a> · <a href="https://lefreelance.fr/articles/tjm-developpeur-freelance/" target="_blank" rel="noopener">TJM d'après Malt (LeFreelance)</a></li>
-          <li><b data-i18n="mk.srcUs">États-Unis</b> — <a href="https://pitchsite.io/guides/web-design-pricing" target="_blank" rel="noopener">Pitchsite, Web Design Pricing Guide 2026</a> · <a href="https://8gnc.io/blog/how-much-does-branding-cost" target="_blank" rel="noopener">8GNC, branding cost 2026</a> · <a href="https://clutch.co/web-developers/pricing" target="_blank" rel="noopener">Clutch, web development pricing (sept. 2026)</a></li>
-          <li><b data-i18n="mk.srcFx">Change</b> — <a href="https://www.bank-of-algeria.dz/taux-de-change-journalier/" target="_blank" rel="noopener">Banque d'Algérie, taux de change journalier</a></li>
+        <h4 class="md-sub" data-i18n="md.drH">Ce qui fait bouger un devis</h4>
+        <ul class="md-drivers">
+          <li><b data-i18n="md.d1h">Le périmètre</b><span data-i18n="md.d1p">Le nombre de pages, de produits ou d'écrans.</span></li>
+          <li><b data-i18n="md.d2h">Le design</b><span data-i18n="md.d2p">Sur mesure, ou adapté d'un modèle existant.</span></li>
+          <li><b data-i18n="md.d3h">Les langues</b><span data-i18n="md.d3p">Chaque langue ajoute du contenu ; l'arabe ajoute une mise en page de droite à gauche.</span></li>
+          <li><b data-i18n="md.d4h">Les intégrations</b><span data-i18n="md.d4p">Paiement, comptes utilisateurs, outils et API tiers.</span></li>
+          <li><b data-i18n="md.d5h">Le contenu</b><span data-i18n="md.d5p">Textes, photos et vidéos : fournis par vous, ou à produire.</span></li>
+          <li><b data-i18n="md.d6h">Le délai</b><span data-i18n="md.d6p">Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.</span></li>
         </ul>
-      </details>
-    </div>
-
-    <!-- ---------------- pricing models ---------------- -->
-    <div class="models reveal" id="models">
-      <div class="mk-head">
-        <h3 data-i18n="md.h">Comment un projet est chiffré</h3>
-        <p data-i18n="md.p">Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.</p>
-      </div>
-      <div class="md-grid">
-        <article class="md-card md-ours">
-          <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
-          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M7.5 10V7.5a4.5 4.5 0 0 1 9 0V10"/><rect class="p" pathLength="1" x="5" y="10" width="14" height="10.5" rx="1.6"/><path class="p a-bob" pathLength="1" d="M12 13.8v3"/></svg><h4 data-i18n="md.fH">Au forfait</h4>
-          <p data-i18n="md.fP">Un prix fixe pour un périmètre écrit. Si le travail déborde, c'est le prestataire qui absorbe l'écart.</p>
-          <p class="md-where" data-i18n="md.fW">La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C'est ainsi que nous chiffrons chaque projet.</p>
-        </article>
-        <article class="md-card">
-          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><path class="p a-hand" style="--o:12px 12px;--t:2.4s" pathLength="1" d="M12 12V6.8"/><path class="p a-hand" style="--o:12px 12px;--t:28.8s" pathLength="1" d="M12 12h3.4"/></svg><h4 data-i18n="md.tH">Au temps passé</h4>
-          <p data-i18n="md.tP">Facturé au jour ou à l'heure. Souple quand le périmètre bouge, difficile à budgéter d'avance.</p>
-          <p class="md-where" data-i18n="md.tW">La norme en France (480 –⁠ 650 € par jour pour un développeur confirmé) et aux États-Unis (100 –⁠ 149 $ de l'heure en agence).</p>
-        </article>
-        <article class="md-card md-ours">
-          <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
-          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:7s"><path class="p" pathLength="1" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path class="p" pathLength="1" d="M17.3 3.4v3.3H14M6.7 20.6v-3.3H10"/></g></svg><h4 data-i18n="md.aH">À l'abonnement</h4>
-          <p data-i18n="md.aP">Un montant mensuel pour un service continu : maintenance, évolutions, contenu.</p>
-          <p class="md-where" data-i18n="md.aW">Courant partout après le lancement. C'est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.</p>
-        </article>
-        <article class="md-card">
-          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M6 4h12l3.5 5L12 20.5 2.5 9Z"/><path class="p" pathLength="1" d="M2.5 9h19M9.5 4 8 9l4 11.5L16 9l-1.5-5"/><path class="a-twinkle" d="M20.6 1.4v2.6M19.3 2.7h2.6"/></svg><h4 data-i18n="md.vH">À la valeur</h4>
-          <p data-i18n="md.vP">Le prix suit ce que le projet rapporte, pas le temps qu'il demande.</p>
-          <p class="md-where" data-i18n="md.vW">Plus rare, surtout en conseil et en stratégie, là où l'enjeu se mesure.</p>
-        </article>
       </div>
 
-      <h4 class="md-sub" data-i18n="md.drH">Ce qui fait bouger un devis</h4>
-      <ul class="md-drivers">
-        <li><b data-i18n="md.d1h">Le périmètre</b><span data-i18n="md.d1p">Le nombre de pages, de produits ou d'écrans.</span></li>
-        <li><b data-i18n="md.d2h">Le design</b><span data-i18n="md.d2p">Sur mesure, ou adapté d'un modèle existant.</span></li>
-        <li><b data-i18n="md.d3h">Les langues</b><span data-i18n="md.d3p">Chaque langue ajoute du contenu ; l'arabe ajoute une mise en page de droite à gauche.</span></li>
-        <li><b data-i18n="md.d4h">Les intégrations</b><span data-i18n="md.d4p">Paiement, comptes utilisateurs, outils et API tiers.</span></li>
-        <li><b data-i18n="md.d5h">Le contenu</b><span data-i18n="md.d5p">Textes, photos et vidéos : fournis par vous, ou à produire.</span></li>
-        <li><b data-i18n="md.d6h">Le délai</b><span data-i18n="md.d6p">Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.</span></li>
-      </ul>
-    </div>
-
-    <!-- ---------------- onboarding ---------------- -->
-    <div class="onboard reveal" id="onboard">
-      <div class="ob-head">
-        <h3 data-i18n="price.obH">Comment on démarre</h3>
-        <p data-i18n="price.obP">Quatre étapes. Vous ne payez rien avant la troisième.</p>
       </div>
-      <ol class="ob-steps">
-        <li><svg class="ai ai-ob" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3.5" y="3" width="12.5" height="17.5" rx="1.5"/><path class="p" pathLength="1" d="M7 8h5.5M7 11.5h5.5M7 15h2.5"/><path class="p a-bob" pathLength="1" d="m13.6 19.6 6.6-6.6 1.6 1.6-6.6 6.6h-1.6Z"/></svg><span class="ob-n" aria-hidden="true">1</span><b data-i18n="price.ob1h">Vous décrivez le projet</b><span data-i18n="price.ob1p">Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.</span></li>
-        <li><svg class="ai ai-ob" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M21 3 3 10.5l7 2.5 2.5 7Z"/><path class="p" pathLength="1" d="m10 13 4.6-4.6"/></g></svg><span class="ob-n" aria-hidden="true">2</span><b data-i18n="price.ob2h">On revient sous 24 heures</b><span data-i18n="price.ob2p">Avec un périmètre écrit et un prix ferme. Pas une fourchette, un chiffre.</span></li>
-        <li><svg class="ai ai-ob" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle class="p a-look" pathLength="1" cx="12" cy="12" r="3"/></svg><span class="ob-n" aria-hidden="true">3</span><b data-i18n="price.ob3h">On construit L'Aperçu — gratuit</b><span data-i18n="price.ob3p">Une démo réelle de votre projet, avant paiement. Vous la voyez tourner en direct.</span></li>
-        <li><svg class="ai ai-ob" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="9"/><path class="p a-redraw" pathLength="1" d="m8 12.3 2.7 2.7 5.5-5.5"/></svg><span class="ob-n" aria-hidden="true">4</span><b data-i18n="price.ob4h">Vous décidez</b><span data-i18n="price.ob4p">Si c'est non, vous ne devez rien. Si c'est oui, on est déjà à mi-chemin.</span></li>
-      </ol>
-      <div class="ob-cta">
-        <a class="btn btn-primary" href="#contact" data-i18n="price.obCta1">Décrire mon projet →</a>
-        <a class="btn btn-ghost wa-link" data-wa-pending aria-disabled="true">
-          <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
-          <span data-i18n="price.obCta2">WhatsApp</span>
-        </a>
-      </div>
-    </div>
+    </details>
   </section>
 
-  <section id="how" aria-labelledby="how-h">
-    <span class="kicker" data-parallax=".035" data-i18n="how.kicker">05 — Méthode</span>
-    <h2 class="sec font-swap-display" id="how-h" data-i18n="how.title">Aucun <em>intermédiaire.</em></h2>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="node">1</div>
-        <div class="step-body">
-          <h3 data-i18n="how1.h">Vous parlez au constructeur.</h3>
-          <p data-i18n="how1.p">Pas de chef de projet, pas de téléphone arabe. Celui qui cadre, c'est celui qui livre.</p>
-        </div>
-        <div class="step-fig" aria-hidden="true"><span class="ill ill-how1"></span></div>
-      </div>
-      <div class="step reveal">
-        <div class="node">2</div>
-        <div class="step-body">
-          <h3 data-i18n="how2.h">Une équipe possède toute la chaîne.</h3>
-          <p data-i18n="how2.p">Design → code → déploiement. Rien ne se perd dans un transfert qui n'a jamais lieu.</p>
-        </div>
-        <div class="step-fig" aria-hidden="true"><span class="ill ill-how2"></span></div>
-      </div>
-      <div class="step reveal">
-        <div class="node">3</div>
-        <div class="step-body">
-          <h3 data-i18n="how3.h">On répond quand ça casse.</h3>
-          <p data-i18n="how3.p">Délais tenus, réponse en moins de 24h. Après le lancement, toujours là.</p>
-        </div>
-        <div class="step-fig" aria-hidden="true"><span class="ill ill-how3"></span></div>
-      </div>
-    </div>
-  </section>
 
 
   <!-- ================= FOUNDER ================= -->
@@ -930,7 +922,7 @@
     <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-bench" data-parallax="-.06" data-parallax-cap="50"><i></i></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="founder.kicker">06 — Équipe &amp; fondateur</span>
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Le studio a un <em>visage.</em></h2>
-    <p class="sec-lead" data-i18n="founder.lead">Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.</p>
+    <p class="sec-lead" data-i18n="founder.lead">Derrière Numidea : un fondateur qui conçoit, code et livre, et trois spécialistes autour de lui.</p>
 
     <!-- Everything below is taken from assets/cv_yasser_hamisse_2026.pdf, the
          source of truth: dates, titles and one-liners. Order follows the CV:
@@ -1011,6 +1003,7 @@
     <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-strata lv" data-parallax="-.05" data-parallax-cap="40"><i></i><b class="core"></b><span class="pl-cap" data-i18n="pl.strata">Pl. IV — Coupe des couches</span></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="stack.kicker">07 — Stack</span>
     <h2 class="sec font-swap-display" id="stack-h" data-i18n="stack.title">Le flex <em>discret.</em></h2>
+    <p class="sec-lead" data-i18n="stack.lead">Les outils derrière ce qu'on livre — choisis pour durer, pas pour la mode.</p>
     <div class="stack-strip reveal">
       <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="2.8" y="4.5" width="18.4" height="15" rx="1.5"/><path class="p" pathLength="1" d="M2.8 8.5h18.4M7.5 12.2 5.5 14.2l2 2M11 12.2l2 2-2 2"/><path class="a-blink" d="M15.5 16.2h3"/></svg>Front</b><span class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></span></span>
       <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3.5" y="4" width="17" height="6.5" rx="1.2"/><rect class="p" pathLength="1" x="3.5" y="13.5" width="17" height="6.5" rx="1.2"/><circle class="f a-led" style="--i:0" cx="7" cy="7.25" r=".95"/><circle class="f a-led" style="--i:1" cx="7" cy="16.75" r=".95"/><path class="p" pathLength="1" d="M11 7.25h6M11 16.75h6"/></svg>Back</b><span class="pills"><span class="pill">Node</span><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span></span></span>
@@ -1068,7 +1061,7 @@
     <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">On le <em>rend réel ?</em></h2>
     <div class="contact-grid">
       <div class="contact-side">
-        <p class="sub" data-i18n="contact.sub">Dites-nous ce que vous cherchez à concrétiser — l'urgent, le cassé, l'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.</p>
+        <p class="sub" data-i18n="contact.sub">Dites-nous ce que vous cherchez à concrétiser — l'urgent, le cassé, l'échéance. En français, anglais ou arabe.</p>
         <dl class="channels">
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg><dt data-i18n="form.email">Email</dt><dd><a href="mailto:Hamissemohamedyasser@gmail.com">Hamissemohamedyasser@gmail.com</a></dd></div>
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M4 20 5.3 15.7A8 8 0 1 1 8.3 18.7Z"/><circle class="f a-dt" style="--i:0" cx="8.7" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:1" cx="12" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:2" cx="15.3" cy="11.8" r=".95"/></svg><dt>WhatsApp</dt><dd><a class="wa-link" data-wa-pending aria-disabled="true" dir="ltr">+213 672 41 25 78</a></dd></div>
@@ -1117,15 +1110,17 @@
 <!-- PLATE VI — the erg closes the page. -->
 <div class="foot-dunes lz" aria-hidden="true"><span class="fd-ink" data-parallax="-.05" data-parallax-cap="30"></span><span class="pl-cap" data-i18n="pl.dunes">Pl. VI — Le Grand Erg</span></div>
 
+<button type="button" class="to-top" id="toTop" data-i18n-aria="ui.top" aria-label="Haut de page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+
 <!-- ================= FOOTER ================= -->
 <footer class="footer wrap">
   <div class="footer-top">
     <a class="logo" href="#top"><span class="brick" aria-hidden="true">N</span>Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
     <nav aria-label="Footer">
-      <a href="#how" data-i18n="nav.about">À propos</a>
-      <a href="#services" data-i18n="nav.services">Services</a>
-      <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
       <a href="#work" data-i18n="nav.work">Projets</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#how" data-i18n="nav.about">Méthode</a>
+      <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
       <a href="#founder" data-i18n="nav.team">Équipe</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
@@ -1192,7 +1187,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202610050936" defer></script>
+<script src="assets/app.js?v=202610052011" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

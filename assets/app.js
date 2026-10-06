@@ -15,7 +15,7 @@
       dir: 'ltr',
       title: 'Numidea Labs — On construit le logiciel que votre entreprise attend',
       'meta.desc': 'Studio de développement à Bordj Bou Arréridj. On conçoit, on code, on livre et on répond quand ça casse. Sans intermédiaire.',
-      'nav.about': 'À propos', 'nav.services': 'Services', 'nav.work': 'Projets',
+      'nav.about': 'Méthode', 'nav.services': 'Services', 'nav.work': 'Projets',
       'nav.team': 'Équipe', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
       'hero.eyebrow': 'Atelier d\'ingénierie · Bordj Bou Arréridj · DZ',
       'hero.title': 'Une ingénierie qui tient de la magie. <span class="swash">La rigueur qui la livre.</span>',
@@ -41,17 +41,15 @@
       'proj6.cat': 'Voyage · Omra', 'proj6.desc': 'Une vitrine bilingue pour des voyages organisés et l\'Omra au départ de Constantine.',
       'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'Une boutique de matériel gaming au branding affûté, pensée pour la conversion.',
       'work.lead': 'Des sites réels, en ligne, qu\'on peut cliquer — pas des maquettes.',
-      'work.live': 'Démo →', 'work.soon': 'Bientôt', 'work.all': 'Voir tout le portfolio →',
-      'how.kicker': '05 — Méthode',
-      'how.title': 'Aucun <em>intermédiaire.</em>',
-      'how1.h': 'Vous parlez au constructeur.', 'how1.p': 'Pas de chef de projet, pas de téléphone arabe. Celui qui cadre, c\'est celui qui livre.',
-      'how2.h': 'Une équipe possède toute la chaîne.', 'how2.p': 'Design → code → déploiement. Rien ne se perd dans un transfert qui n\'a jamais lieu.',
-      'how3.h': 'On répond quand ça casse.', 'how3.p': 'Délais tenus, réponse en moins de 24h. Après le lancement, toujours là.',
+      'work.live': 'Démo →', 'work.soon': 'Bientôt',
+      'how.kicker': '04 — Méthode',
+      'how.title': 'Quatre étapes. <em>Zéro surprise.</em>',
+      'how.lead': 'Vous ne payez rien avant la troisième.',
       'scene.kicker': '◆ PLAN D\'ATELIER · PLANCHE PAR PLANCHE', 'scene.title': 'Les projets, comme un plan.',
       'scene.lead': 'Chaque projet dessiné comme une planche d\'ingénierie : cotes, statuts honnêtes, et le site en vrai.',
       'scene.cta': 'Ouvrir les planches →',
       'founder.kicker': '06 — Équipe & fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
-      'founder.lead': 'Derrière Numidea : un designer-développeur qui conçoit, code et livre — sans intermédiaire.',
+      'founder.lead': 'Derrière Numidea : un fondateur qui conçoit, code et livre, et trois spécialistes autour de lui.',
       'founder.role': 'Designer graphique & développeur web · Fondateur', 'founder.years': '6 ans',
       'founder.bio': 'Six ans à concevoir des identités, coder des interfaces et livrer des produits — de la marque au front-end au cloud. Je transforme le brief en build, et je reste quand c\'est en ligne.',
       'founder.cvBtn': 'Voir le parcours ↴', 'founder.cvClose': 'Masquer le parcours ↑', 'founder.portfolio': 'Portfolio personnel ↗',
@@ -72,13 +70,14 @@
       'founder.certs': 'Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D',
       'pl.vista': 'Pl.\u00a0I — Les Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arc de Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Monnaies numides', 'pl.strata': 'Pl.\u00a0IV — Coupe des couches', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — Le Grand Erg',
       'whq.kick': 'Le projet préféré du fondateur', 'whq.sub': 'WorkspaceHQ v3 est sorti — votre code, en jeu d\'arcade',
-      'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
+      'ui.top': 'Haut de page', 'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
       'team.h': "Avec lui, l'équipe",
       'team.dFn': 'Spécialiste données', 'team.dDo': "Pipelines, scraping et la couche d'intelligence.",
       'team.sFn': 'Ventes & partenariats', 'team.sDo': "Premier contact : traduit l'idée en périmètre.",
       'team.tFn': 'Représentant technique', 'team.tDo': 'Garde le build honnête et le client informé.',
       'stack.kicker': '07 — Stack',
       'stack.title': 'Le flex <em>discret.</em>',
+      'stack.lead': 'Les outils derrière ce qu\'on livre — choisis pour durer, pas pour la mode.',
       'faq.kicker': '08 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
       'faq.lead': 'Ce qu\'on nous demande avant de se lancer — répondu franchement.',
       'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu\'on a cadré le projet ensemble.',
@@ -89,7 +88,7 @@
       'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer.',
       'contact.kicker': '09 — Contact',
       'contact.title': 'On le <em>rend réel ?</em>',
-      'contact.sub': 'Dites-nous ce que vous cherchez à concrétiser — l\'urgent, le cassé, l\'échéance. On répond en moins de 24 heures, en français, anglais ou arabe.',
+      'contact.sub': 'Dites-nous ce que vous cherchez à concrétiser — l\'urgent, le cassé, l\'échéance. En français, anglais ou arabe.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Réponse',
       'contact.vStudio': 'Bordj Bou Arréridj · Algérie', 'contact.vReply': '< 24 heures · FR · EN · ع',
       'form.name': 'Nom', 'form.namePh': 'Votre nom',
@@ -110,7 +109,7 @@
       dir: 'ltr',
       title: 'Numidea Labs — We build the software your business has been waiting for',
       'meta.desc': 'A development studio in Bordj Bou Arréridj. We design, build, ship and answer when it breaks. No middlemen.',
-      'nav.about': 'About', 'nav.services': 'Services', 'nav.work': 'Work',
+      'nav.about': 'Process', 'nav.services': 'Services', 'nav.work': 'Work',
       'nav.team': 'Team', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
       'hero.eyebrow': 'Engineering workshop · Bordj Bou Arréridj · DZ',
       'hero.title': 'Engineering that feels like magic. <span class="swash">Discipline that ships it.</span>',
@@ -136,17 +135,15 @@
       'proj6.cat': 'Travel · Umrah', 'proj6.desc': 'A bilingual storefront for organized trips and Umrah departing from Constantine.',
       'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'A sharp-branded gaming-gear store, built to convert.',
       'work.lead': 'Real sites, live and clickable — not mockups.',
-      'work.live': 'Live demo →', 'work.soon': 'Soon', 'work.all': 'See the full portfolio →',
-      'how.kicker': '05 — How we work',
-      'how.title': 'No <em>middlemen.</em>',
-      'how1.h': 'You talk to the builder.', 'how1.p': 'No account manager, no telephone game. Whoever scopes it, ships it.',
-      'how2.h': 'One team owns the whole chain.', 'how2.p': 'Design → code → deploy. Nothing gets lost in a handoff that never happens.',
-      'how3.h': 'We answer when it breaks.', 'how3.p': 'Deadlines kept, replies in under 24h. After launch, still here.',
+      'work.live': 'Live demo →', 'work.soon': 'Soon',
+      'how.kicker': '04 — Process',
+      'how.title': 'Four steps. <em>No surprises.</em>',
+      'how.lead': 'You pay nothing before the third.',
       'scene.kicker': '◆ ATELIER DRAWING · SHEET BY SHEET', 'scene.title': 'The work, as a drawing.',
       'scene.lead': 'Every project drawn as an engineering sheet: dimensions, honest statuses, and the real site.',
       'scene.cta': 'Open the sheets →',
       'founder.kicker': '06 — Team & founder', 'founder.title': 'The studio has a <em>face.</em>',
-      'founder.lead': 'Behind Numidea: a designer-developer who conceives, codes and ships — no middleman.',
+      'founder.lead': 'Behind Numidea: a founder who designs, codes and ships, with three specialists around him.',
       'founder.role': 'Graphic designer & web developer · Founder', 'founder.years': '6 yrs',
       'founder.bio': 'Six years designing identities, coding interfaces and shipping products — brand to front-end to cloud. I turn the brief into the build, and I stay once it\'s live.',
       'founder.cvBtn': 'View the track record ↴', 'founder.cvClose': 'Hide the track record ↑', 'founder.portfolio': 'Personal portfolio ↗',
@@ -167,13 +164,14 @@
       'founder.certs': 'Certifications: Duolingo English Test · Digital design (Artiland.Studio) · 3D motion design',
       'pl.vista': 'Pl.\u00a0I — The Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arch of Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Numidian coins', 'pl.strata': 'Pl.\u00a0IV — Section through the strata', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — The Grand Erg',
       'whq.kick': "The founder's favourite project", 'whq.sub': 'WorkspaceHQ v3 is out — your codebase, now playable',
-      'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
+      'ui.top': 'Back to top', 'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
       'team.h': 'Alongside him, the team',
       'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
       'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
       'team.tFn': 'Technical representative', 'team.tDo': 'Keeps the build honest and the client informed.',
       'stack.kicker': '07 — Stack',
       'stack.title': 'The quiet <em>flex.</em>',
+      'stack.lead': 'The tools behind what we ship — chosen to last, not to trend.',
       'faq.kicker': '08 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
       'faq.lead': 'What people ask before they start — answered straight.',
       'faq1.q': 'How long does it take to ship?', 'faq1.a': 'It depends on scope — but we don\'t keep you waiting. Most sites ship in a few weeks, and you get a firm timeline the moment we\'ve scoped the project together.',
@@ -184,7 +182,7 @@
       'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman. The person who scopes your project is the one who codes and ships it — one team, design to deploy. And often, you see a real demo before you pay.',
       'contact.kicker': '09 — Contact',
       'contact.title': 'Let\'s make it <em>real.</em>',
-      'contact.sub': 'Tell us what you\'re trying to make real — what\'s urgent, what\'s broken, what\'s due. We reply in under 24 hours, in French, English, or Arabic.',
+      'contact.sub': 'Tell us what you\'re trying to make real — what\'s urgent, what\'s broken, what\'s due. In French, English, or Arabic.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Reply',
       'contact.vStudio': 'Bordj Bou Arréridj · Algeria', 'contact.vReply': '< 24 hours · FR · EN · AR',
       'form.name': 'Name', 'form.namePh': 'Your name',
@@ -205,7 +203,7 @@
       dir: 'rtl',
       title: 'نوميديا لابز — نبني البرمجيات التي ينتظرها عملك',
       'meta.desc': 'استوديو تطوير في برج بوعريريج. نصمّم ونبرمج ونطلق ونردّ حين يتعطّل شيء. دون وسطاء.',
-      'nav.about': 'من نحن', 'nav.services': 'الخدمات', 'nav.work': 'الأعمال',
+      'nav.about': 'المنهج', 'nav.services': 'الخدمات', 'nav.work': 'الأعمال',
       'nav.team': 'الفريق', 'nav.faq': 'الأسئلة', 'nav.contact': 'تواصل',
       'hero.eyebrow': 'ورشة هندسة · برج بوعريريج · الجزائر',
       'hero.title': 'هندسةٌ تكاد تكون سحراً. <span class="swash">وانضباطٌ يُسلّمها.</span>',
@@ -231,17 +229,15 @@
       'proj6.cat': 'سفر · عمرة', 'proj6.desc': 'واجهة ثنائية اللغة لرحلات منظَّمة والعمرة انطلاقاً من قسنطينة.',
       'proj7.cat': 'تجارة · ألعاب', 'proj7.desc': 'متجر لعتاد الألعاب بهوية حادّة، مبنيٌّ للتحويل.',
       'work.lead': 'مواقع حقيقية، منشورة وقابلة للنقر — لا نماذج.',
-      'work.live': 'عرض حيّ →', 'work.soon': 'قريباً', 'work.all': 'شاهد كل الأعمال →',
-      'how.kicker': '٠٥ — كيف نعمل',
-      'how.title': 'بلا <em>وسطاء.</em>',
-      'how1.h': 'تتحدّث إلى من يبني.', 'how1.p': 'لا مدير حساب، ولا هاتف مكسور. من يضع النطاق هو من يُسلّم.',
-      'how2.h': 'فريق واحد يملك السلسلة كاملة.', 'how2.p': 'تصميم ← كود ← نشر. لا شيء يضيع في تسليم لا يحدث أبداً.',
-      'how3.h': 'نردّ حين يتعطّل شيء.', 'how3.p': 'مواعيد محترمة، وردّ في أقل من ٢٤ ساعة. بعد الإطلاق، ما زلنا هنا.',
+      'work.live': 'عرض حيّ →', 'work.soon': 'قريباً',
+      'how.kicker': '٠٤ — المنهج',
+      'how.title': 'أربع خطوات. <em>بلا مفاجآت.</em>',
+      'how.lead': 'لا تدفع شيئاً قبل الثالثة.',
       'scene.kicker': '◆ مخطط الورشة · لوحةً بلوحة', 'scene.title': 'الأعمال، كمخطط.',
       'scene.lead': 'كل مشروع مرسوم كلوحة هندسية: أبعاد، وحالات صادقة، والموقع الحقيقي.',
       'scene.cta': 'افتح اللوحات →',
       'founder.kicker': '٠٦ — الفريق والمؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
-      'founder.lead': 'خلف Numidea: مصمّم-مطوّر يتصوّر ويبرمج ويُسلّم — دون وسيط.',
+      'founder.lead': 'خلف Numidea: مؤسّس يصمّم ويبرمج ويُسلّم، ومعه ثلاثة متخصّصين.',
       'founder.role': 'مصمّم غرافيك ومطوّر ويب · المؤسّس', 'founder.years': '٦ سنوات',
       'founder.bio': 'ستّ سنوات في تصميم الهويّات وبرمجة الواجهات وتسليم المنتجات — من العلامة إلى الواجهة إلى السحابة. أحوّل الفكرة إلى منتج، وأبقى بعد الإطلاق.',
       'founder.cvBtn': 'عرض المسار ↴', 'founder.cvClose': 'إخفاء المسار ↑', 'founder.portfolio': 'المعرض الشخصي ↗',
@@ -262,13 +258,14 @@
       'founder.certs': 'الشهادات: Duolingo English Test · التصميم الرقمي (Artiland.Studio) · التصميم الحركي ثلاثي الأبعاد',
       'pl.vista': 'لوحة ١ — جبال البيبان · برج بوعريريج', 'pl.arch': 'لوحة ٢ — قوس تراجان · تيمقاد', 'pl.coins': 'لوحة ٣ — نقود نوميدية', 'pl.strata': 'لوحة ٤ — مقطع في طبقات الأرض', 'pl.light': 'لوحة ٥ — رأس كاربون · بجاية', 'pl.dunes': 'لوحة ٦ — العرق الكبير',
       'whq.kick': 'المشروع المفضّل لدى المؤسس', 'whq.sub': 'صدر WorkspaceHQ v3 — شيفرتك، لعبة أركيد',
-      'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
+      'ui.top': 'إلى الأعلى', 'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
       'team.h': 'وإلى جانبه، الفريق',
       'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
       'team.sFn': 'المبيعات والشراكات', 'team.sDo': 'أول تواصل: ترجمة الفكرة إلى نطاق عمل.',
       'team.tFn': 'الممثّل التقني', 'team.tDo': 'إبقاء التنفيذ صادقاً والعميل على اطّلاع.',
       'stack.kicker': '٠٧ — التقنيات',
       'stack.title': 'التباهي <em>الهادئ.</em>',
+      'stack.lead': 'الأدوات وراء ما نُسلّمه — مختارة لتدوم، لا لتتبع الموضة.',
       'faq.kicker': '٠٨ — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
       'faq.lead': 'ما يُسأل قبل البدء — بإجابات صريحة.',
       'faq1.q': 'كم يستغرق الإنجاز؟', 'faq1.a': 'يعتمد على حجم المشروع — لكنّنا لا نُبقيك تنتظر. معظم المواقع تنطلق خلال أسابيع، وتحصل على موعد نهائي واضح بمجرّد أن نحدّد نطاق العمل معاً.',
@@ -279,7 +276,7 @@
       'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط. من يحدّد نطاق مشروعك هو من يبرمجه ويُسلّمه — فريق واحد من التصميم إلى النشر. وغالباً ترى نموذجاً حقيقياً قبل أن تدفع.',
       'contact.kicker': '٠٩ — تواصل',
       'contact.title': '<em>نجعله حقيقة؟</em>',
-      'contact.sub': 'أخبرنا بما تسعى إلى تحقيقه — العاجل، المتعطّل، المستحقّ. نردّ في أقل من ٢٤ ساعة، بالفرنسية أو الإنجليزية أو العربية.',
+      'contact.sub': 'أخبرنا بما تسعى إلى تحقيقه — العاجل، المتعطّل، المستحقّ. بالفرنسية أو الإنجليزية أو العربية.',
       'contact.chStudio': 'الاستوديو', 'contact.chReply': 'الردّ',
       'contact.vStudio': 'برج بوعريريج · الجزائر', 'contact.vReply': 'أقل من ٢٤ ساعة · FR · EN · ع',
       'form.name': 'الاسم', 'form.namePh': 'اسمك',
@@ -334,26 +331,24 @@
       'nav.pricing': 'Tarifs',
       'wa.hello': "Bonjour Numidea Labs — j'aimerais parler d'un projet.",
       'footer.wa': 'WhatsApp',
-      'price.kicker': '04 — Tarifs', 'price.title': 'Un prix <em>avant le devis.</em>',
-      'price.lead': "Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre, voyez l'estimation bouger — puis recevez un prix ferme sous 24 heures.",
+      'price.kicker': '05 — Tarifs', 'price.title': 'Un prix <em>avant le devis.</em>',
+      'price.lead': 'Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre et voyez l\'estimation bouger.',
       'price.cur': 'DA',
-      'price.freeH': "L'Aperçu reste gratuit.",
-      'price.freeP': "Avant le moindre dinar, on construit une démo réelle et fonctionnelle de votre projet. Vous la voyez tourner, puis vous décidez. Rien de ce qui suit ne s'engage sans ça.",
       'price.popular': 'Le plus choisi',
-      'price.t1fam': 'Le Build', 'price.t1name': 'Essentiel', 'price.t1for': 'Une présence crédible, vite en ligne.', 'price.t1time': '2 à 4 semaines',
+      'price.t1name': 'Essentiel', 'price.t1for': 'Une présence crédible, vite en ligne.', 'price.t1time': '2 à 4 semaines',
       'price.t1a': 'Vitrine ou landing, 1 à 5 pages',
       'price.t1b': 'Design sur mesure — jamais un template rethémé',
       'price.t1c': 'Responsive, performance et SEO de base',
       'price.t1d': 'Mise en ligne, domaine et certificat configurés',
       'price.t1e': '1 mois de support inclus',
-      'price.t2fam': 'Le Build', 'price.t2name': 'Studio', 'price.t2for': "Le site qui porte vraiment l'entreprise.", 'price.t2time': '3 à 7 semaines',
+      'price.t2name': 'Studio', 'price.t2for': "Le site qui porte vraiment l'entreprise.", 'price.t2time': '3 à 7 semaines',
       'price.t2a': 'Site sur mesure, 6 à 15 pages',
       'price.t2b': 'Trilingue FR / EN / AR, avec un arabe RTL pensé nativement',
       'price.t2c': 'Design system documenté — tokens, composants, le kit complet',
       'price.t2d': 'CMS ou back-office pour gérer le contenu vous-même',
       'price.t2e': 'SEO technique, Core Web Vitals, accessibilité',
       'price.t2f': '3 mois de support inclus',
-      'price.t3fam': 'Le Moteur', 'price.t3name': 'Moteur', 'price.t3for': "La machinerie que presque personne ne construit ici.", 'price.t3time': '8 à 16 semaines',
+      'price.t3name': 'Moteur', 'price.t3for': "La machinerie que presque personne ne construit ici.", 'price.t3time': '8 à 16 semaines',
       'price.t3a': "E-commerce, application web ou pipeline d'automatisation",
       'price.t3b': 'Paiement, comptes utilisateurs, tableaux de bord',
       'price.t3c': 'Scraping et intelligence marché — le web ouvert en base de données',
@@ -370,9 +365,9 @@
       'price.paceStd': 'Standard', 'price.paceRush': 'Accéléré',
       'price.uPages': 'pages', 'price.uScreens': 'écrans', 'price.uProducts': 'produits', 'price.uFlows': 'flux', 'price.uSupports': 'supports',
       'price.estimate': 'Estimation', 'price.weeks': 'semaines',
-      'price.estFine': "Fourchette indicative, pas un devis. Le prix ferme arrive sous 24 heures, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.",
+      'price.estFine': "Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.",
       'price.estCta': 'Obtenir le prix ferme →',
-      'price.obH': 'Comment on démarre', 'price.obP': 'Quatre étapes. Vous ne payez rien avant la troisième.',
+      'price.moreSum': 'Comment on chiffre', 'price.moreHint': 'Le marché, les modèles de facturation, ce qui fait bouger un devis.',
       'price.ob1h': 'Vous décrivez le projet', 'price.ob1p': 'Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.',
       'price.ob2h': 'On revient sous 24 heures', 'price.ob2p': 'Avec un périmètre écrit et un prix ferme. Pas une fourchette, un chiffre.',
       'price.ob3h': "On construit L'Aperçu — gratuit", 'price.ob3p': 'Une démo réelle de votre projet, avant paiement. Vous la voyez tourner en direct.',
@@ -448,26 +443,24 @@
       'nav.pricing': 'Pricing',
       'wa.hello': 'Hello Numidea Labs — I would like to talk about a project.',
       'footer.wa': 'WhatsApp',
-      'price.kicker': '04 — Pricing', 'price.title': 'A price <em>before the quote.</em>',
-      'price.lead': 'The real Algerian market ranges, published. Set the scope, watch the estimate move — then get a firm price within 24 hours.',
+      'price.kicker': '05 — Pricing', 'price.title': 'A price <em>before the quote.</em>',
+      'price.lead': 'The real Algerian market ranges, published. Set the scope and watch the estimate move.',
       'price.cur': 'DZD',
-      'price.freeH': 'The Preview stays free.',
-      'price.freeP': 'Before a single dinar, we build a real, working demo of your project. You watch it run, then you decide. Nothing below commits you without that.',
       'price.popular': 'Most chosen',
-      'price.t1fam': 'The Build', 'price.t1name': 'Essential', 'price.t1for': 'A credible presence, live quickly.', 'price.t1time': '2 to 4 weeks',
+      'price.t1name': 'Essential', 'price.t1for': 'A credible presence, live quickly.', 'price.t1time': '2 to 4 weeks',
       'price.t1a': 'Showcase or landing site, 1 to 5 pages',
       'price.t1b': 'Custom design — never a re-themed template',
       'price.t1c': 'Responsive, fast, with foundational SEO',
       'price.t1d': 'Deployment, domain and certificate configured',
       'price.t1e': '1 month of support included',
-      'price.t2fam': 'The Build', 'price.t2name': 'Studio', 'price.t2for': 'The site that actually carries the business.', 'price.t2time': '3 to 7 weeks',
+      'price.t2name': 'Studio', 'price.t2for': 'The site that actually carries the business.', 'price.t2time': '3 to 7 weeks',
       'price.t2a': 'Custom site, 6 to 15 pages',
       'price.t2b': 'Trilingual FR / EN / AR, with Arabic RTL built natively',
       'price.t2c': 'Documented design system — tokens, components, the full kit',
       'price.t2d': 'CMS or back-office so you manage the content yourself',
       'price.t2e': 'Technical SEO, Core Web Vitals, accessibility',
       'price.t2f': '3 months of support included',
-      'price.t3fam': 'The Engine', 'price.t3name': 'Engine', 'price.t3for': 'The machinery almost nobody here builds.', 'price.t3time': '8 to 16 weeks',
+      'price.t3name': 'Engine', 'price.t3for': 'The machinery almost nobody here builds.', 'price.t3time': '8 to 16 weeks',
       'price.t3a': 'E-commerce, web application or automation pipeline',
       'price.t3b': 'Payments, user accounts, dashboards',
       'price.t3c': 'Scraping and market intelligence — the open web as a database',
@@ -484,9 +477,9 @@
       'price.paceStd': 'Standard', 'price.paceRush': 'Accelerated',
       'price.uPages': 'pages', 'price.uScreens': 'screens', 'price.uProducts': 'products', 'price.uFlows': 'flows', 'price.uSupports': 'deliverables',
       'price.estimate': 'Estimate', 'price.weeks': 'weeks',
-      'price.estFine': 'An indicative range, not a quote. The firm price arrives within 24 hours once we have scoped it together — and it does not move after that.',
+      'price.estFine': 'An indicative range, not a quote. The firm price follows once we have scoped it together — and it does not move after that.',
       'price.estCta': 'Get the firm price →',
-      'price.obH': 'How we start', 'price.obP': 'Four steps. You pay nothing before the third.',
+      'price.moreSum': 'How we price', 'price.moreHint': 'The market, billing models, what moves a quote.',
       'price.ob1h': 'You describe the project', 'price.ob1p': 'Two minutes, in writing or out loud. In French, English or Arabic.',
       'price.ob2h': 'We come back within 24 hours', 'price.ob2p': 'With a written scope and a firm price. Not a range — a number.',
       'price.ob3h': 'We build the Preview — free', 'price.ob3p': 'A real demo of your project, before payment. You watch it run live.',
@@ -562,26 +555,24 @@
       'nav.pricing': 'الأسعار',
       'wa.hello': 'مرحباً نوميديا لابز — أودّ الحديث عن مشروع.',
       'footer.wa': 'واتساب',
-      'price.kicker': '٠٤ — الأسعار', 'price.title': 'سعر <em>قبل عرض السعر.</em>',
-      'price.lead': 'نطاقات السوق الجزائري الحقيقية، معلنة. اضبط نطاق العمل، وشاهد التقدير يتحرّك — ثم استلم سعراً نهائياً خلال ٢٤ ساعة.',
+      'price.kicker': '٠٥ — الأسعار', 'price.title': 'سعر <em>قبل عرض السعر.</em>',
+      'price.lead': 'نطاقات السوق الجزائري الحقيقية، معلنة. اضبط نطاق العمل وشاهد التقدير يتحرّك.',
       'price.cur': 'دج',
-      'price.freeH': 'النموذج المبدئي يبقى مجّانياً.',
-      'price.freeP': 'قبل أيّ دينار، نبني نموذجاً حقيقياً وعاملاً لمشروعك. تراه يشتغل، ثم تقرّر. لا شيء ممّا يلي يُلزمك قبل ذلك.',
       'price.popular': 'الأكثر اختياراً',
-      'price.t1fam': 'البناء', 'price.t1name': 'الأساسي', 'price.t1for': 'حضور موثوق، على الإنترنت بسرعة.', 'price.t1time': 'من ٢ إلى ٤ أسابيع',
+      'price.t1name': 'الأساسي', 'price.t1for': 'حضور موثوق، على الإنترنت بسرعة.', 'price.t1time': 'من ٢ إلى ٤ أسابيع',
       'price.t1a': 'موقع تعريفي أو صفحة هبوط، من ١ إلى ٥ صفحات',
       'price.t1b': 'تصميم مخصّص — لا قالب معاد تلوينه أبداً',
       'price.t1c': 'متجاوب وسريع، مع تهيئة أساسية لمحرّكات البحث',
       'price.t1d': 'النشر والنطاق والشهادة — كلّها مُعدّة',
       'price.t1e': 'شهر دعم مشمول',
-      'price.t2fam': 'البناء', 'price.t2name': 'الاستوديو', 'price.t2for': 'الموقع الذي يحمل الشركة فعلاً.', 'price.t2time': 'من ٣ إلى ٧ أسابيع',
+      'price.t2name': 'الاستوديو', 'price.t2for': 'الموقع الذي يحمل الشركة فعلاً.', 'price.t2time': 'من ٣ إلى ٧ أسابيع',
       'price.t2a': 'موقع مخصّص، من ٦ إلى ١٥ صفحة',
       'price.t2b': 'ثلاثي اللغة فرنسي / إنجليزي / عربي، بعربية من اليمين إلى اليسار مبنيّة أصلاً',
       'price.t2c': 'نظام تصميم موثّق — الرموز والمكوّنات والعدّة كاملة',
       'price.t2d': 'نظام إدارة محتوى أو لوحة تحكّم لتديروا المحتوى بأنفسكم',
       'price.t2e': 'تهيئة تقنية لمحرّكات البحث، ومؤشّرات الأداء، وإتاحة الوصول',
       'price.t2f': 'ثلاثة أشهر دعم مشمولة',
-      'price.t3fam': 'المحرّك', 'price.t3name': 'المحرّك', 'price.t3for': 'الآلة التي لا يبنيها هنا أحد تقريباً.', 'price.t3time': 'من ٨ إلى ١٦ أسبوعاً',
+      'price.t3name': 'المحرّك', 'price.t3for': 'الآلة التي لا يبنيها هنا أحد تقريباً.', 'price.t3time': 'من ٨ إلى ١٦ أسبوعاً',
       'price.t3a': 'متجر إلكتروني أو تطبيق ويب أو خطّ أتمتة',
       'price.t3b': 'الدفع وحسابات المستخدمين ولوحات المتابعة',
       'price.t3c': 'استخراج البيانات وذكاء السوق — الويب المفتوح كقاعدة بيانات',
@@ -598,9 +589,9 @@
       'price.paceStd': 'عادي', 'price.paceRush': 'مستعجل',
       'price.uPages': 'صفحات', 'price.uScreens': 'شاشات', 'price.uProducts': 'منتجات', 'price.uFlows': 'مسارات', 'price.uSupports': 'مخرجات',
       'price.estimate': 'التقدير', 'price.weeks': 'أسابيع',
-      'price.estFine': 'نطاق استرشادي، لا عرض سعر. السعر النهائي يصل خلال ٢٤ ساعة بعد تحديد نطاق العمل معاً — ولا يتغيّر بعدها.',
+      'price.estFine': 'نطاق استرشادي، لا عرض سعر. السعر النهائي يأتي بعد تحديد نطاق العمل معاً — ولا يتغيّر بعدها.',
       'price.estCta': 'احصل على السعر النهائي →',
-      'price.obH': 'كيف نبدأ', 'price.obP': 'أربع خطوات. لا تدفع شيئاً قبل الثالثة.',
+      'price.moreSum': 'كيف نسعّر', 'price.moreHint': 'السوق، نماذج الفوترة، وما يغيّر عرض السعر.',
       'price.ob1h': 'تصف المشروع', 'price.ob1p': 'دقيقتان، كتابةً أو مشافهة. بالفرنسية أو الإنجليزية أو العربية.',
       'price.ob2h': 'نعود إليك خلال ٢٤ ساعة', 'price.ob2p': 'بنطاق عمل مكتوب وسعر نهائي. لا فورقة — رقم واحد.',
       'price.ob3h': 'نبني النموذج المبدئي — مجّاناً', 'price.ob3p': 'نموذج حقيقي لمشروعك، قبل الدفع. تراه يشتغل مباشرة.',
@@ -1206,7 +1197,7 @@
 
     var pOpen = document.querySelector('#portfolio-open');
     var modal = document.querySelector('#portfolio-modal');
-    if (pOpen && modal) {
+    if (modal) {
       var browseEl = modal.querySelector('#explorer-browse');
       var detailEl = modal.querySelector('#explorer-detail');
       var grid = modal.querySelector('#portfolio-grid');
@@ -1361,7 +1352,7 @@
       }
       window.addEventListener('hashchange', route);
 
-      pOpen.addEventListener('click', function (e) { e.preventDefault(); location.hash = '#/work'; });
+      if (pOpen) pOpen.addEventListener('click', function (e) { e.preventDefault(); location.hash = '#/work'; });
       var backBtn = modal.querySelector('#detail-back');
       if (backBtn) backBtn.addEventListener('click', function () { location.hash = '#/work'; });
       modal.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', closeModal); });
@@ -1746,6 +1737,62 @@
         es.forEach(function (e) { e.target.classList.toggle('live', e.isIntersecting); });
       }, { threshold: 0.15 });
       [].forEach.call(document.querySelectorAll('.lv'), function (el) { vio.observe(el); });
+    })();
+
+
+    /* ---------- 16. skeletons, wayfinding, back to top ---------- */
+    // Skeleton: a picture's box shimmers until the picture has decoded. Only
+    // images not yet complete get one, so cached loads never flash it.
+    [].forEach.call(document.querySelectorAll('.proj .thumb img.shot, .plate img.pl, .fd-photo img'), function (img) {
+      var box = img.closest('.thumb, .plate, .fd-photo'); if (!box || (img.complete && img.naturalWidth)) return;
+      box.classList.add('sk');
+      var done = function () { box.classList.add('sk-done'); };
+      img.addEventListener('load', done, { once: true }); img.addEventListener('error', done, { once: true });
+    });
+
+    // Scroll-spy: the nav marks the section you are in (aria-current), and on
+    // phones — where the links are folded into the menu — a breadcrumb names it.
+    (function () {
+      var links = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+      var crumb = document.getElementById('crumb'), now = document.getElementById('crumbNow');
+      var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+      var cur = -1, tops = [];
+      // section tops are measured once (and on resize/reflow), never per
+      // scroll frame: the scroll handler only compares numbers
+      var measure = function () {
+        var y = window.scrollY || window.pageYOffset || 0;
+        tops = secs.map(function (el) { return el ? el.getBoundingClientRect().top + y : Infinity; });
+      };
+      var pick = function () {
+        var line = (window.scrollY || window.pageYOffset || 0) + innerHeight * 0.35, i = -1;
+        for (var k = 0; k < tops.length; k++) { if (tops[k] <= line) i = k; }
+        // the order of the links is the order of the page, so the last section
+        // whose top has passed the reading line is the one being read
+        if (i === cur) return; cur = i;
+        links.forEach(function (a, k) { if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+        if (crumb && now) { now.textContent = i >= 0 ? links[i].textContent : ''; crumb.classList.toggle('on', i >= 0); }
+      };
+      var tick = false;
+      addEventListener('scroll', function () { if (tick) return; tick = true; requestAnimationFrame(function () { pick(); tick = false; }); }, { passive: true });
+      var re = function () { measure(); cur = -2; pick(); };
+      document.addEventListener('numidea:lang', function () { setTimeout(re, 60); });
+      addEventListener('resize', re); addEventListener('load', re);
+      if ('ResizeObserver' in window) new ResizeObserver(re).observe(document.body);
+      re();
+    })();
+
+    // Back to top: appears after a screen and a half of reading.
+    (function () {
+      var b = document.getElementById('toTop'); if (!b) return;
+      var on = false;
+      addEventListener('scroll', function () {
+        var v = (window.scrollY || window.pageYOffset) > innerHeight * 1.5;
+        if (v !== on) { on = v; b.classList.toggle('on', v); }
+      }, { passive: true });
+      b.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+        var logo = document.querySelector('.navbar .logo'); if (logo) logo.focus({ preventScroll: true });
+      });
     })();
 
    } catch (e) {

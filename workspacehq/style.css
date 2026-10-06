@@ -318,3 +318,12 @@ main{position:relative;z-index:3}
   .term-cmd{flex-basis:calc(100% - 44px);white-space:normal;overflow-wrap:anywhere;font-size:22px}
   .hero{padding-top:120px}
 }
+
+/* breadcrumb: Numidea Labs / br4vetr4veler / WorkspaceHQ */
+.bc ol{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 18px;padding:0;list-style:none;
+  font-family:var(--px);font-size:7px;letter-spacing:1px;line-height:1.8;color:var(--muted)}
+.bc li{display:flex;align-items:center;gap:8px}
+.bc li+li::before{content:"›";color:var(--gold)}
+.bc a{color:var(--muted)}
+.bc a:hover,.bc a:focus-visible{color:var(--text)}
+.bc [aria-current]{color:var(--text)}
