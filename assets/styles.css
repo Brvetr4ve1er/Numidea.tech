@@ -2349,8 +2349,10 @@ html[dir="rtl"] .crumb{letter-spacing:0}
 .preview h3,.tier h3,.fd-id h3,.est-head h3,.mk-head h3,
 .work-grid>.proj--wide h3{font-size:var(--t-feature);line-height:1.15;letter-spacing:-.015em}
 /* price figures cannot wrap ("1 200 000" is one unit), so they scale down to
-   fit three tiers abreast on a tablet and reach the feature size on desktop */
-.t-range b,.eo-range b,.eo-range .eo-dash{font-size:clamp(19px,2.2vw + 2px,var(--t-feature));letter-spacing:-.02em}
+   fit three tiers abreast on a tablet, currency included: at 2.2vw the "DA"
+   dropped to its own line on two tiers of three and their lists started at
+   different heights */
+.t-range b,.eo-range b,.eo-range .eo-dash{font-size:clamp(19px,1.9vw,var(--t-feature));letter-spacing:-.02em}
 .t-range .cur,.eo-range .cur,.mk-table .cur{font-size:var(--t-small);letter-spacing:.06em}
 
 /* one display size for every section heading, contact included, and one
@@ -2433,3 +2435,24 @@ ol.steps{list-style:none;margin:0;padding:0}
 /* the lighthouse plate ended on a hard vertical edge beside the form */
 .pi-light{-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent)}
 html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,transparent);mask-image:linear-gradient(270deg,#000 55%,transparent)}
+
+/* ---- tablet + estimator (third audit) ---- */
+/* FAQ: one 620px column beside an empty half from 900 to 1099px */
+@media (min-width:900px) and (max-width:1099px){
+  .faq-list{max-width:none;grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* contact rows: the side column is ~300px until 1280, so the email address
+   broke mid-word ("@g / mail.com"); the label sits above its value there */
+@media (min-width:961px) and (max-width:1279px){
+  .channels .ch-ic{grid-template-columns:22px minmax(0,1fr);row-gap:2px}
+  .channels .ch .ai-ch{grid-row:1/span 2}
+  .channels dd a[href^="mailto"]{overflow-wrap:normal;word-break:normal}
+}
+/* the estimate follows the controls down instead of leaving an empty column
+   under its button. overflow:clip, not hidden: hidden makes the panel a
+   scroll container and pins the sticky column to it. */
+@media (min-width:1100px){
+  .estimator{overflow:clip}
+  .est-controls{border-inline-end:1px solid var(--hairline)}
+  .est-out{position:sticky;top:96px;align-self:start;border-inline-start:0}
+}

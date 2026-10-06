@@ -934,3 +934,9 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar);letter-spacing:0}
    strip; the strip is opaque in the page colour so they never pass under
    its kicker */
 .proof{background:var(--bg)}
+/* the estimate column is sticky from 1100px (styles.css): the divider moves
+   to the controls so it still runs the full height */
+@media (min-width:1100px){
+  .est-controls{border-inline-end:1px solid var(--edge)}
+  .est-out{border-inline-start:0}
+}
