@@ -37,15 +37,16 @@ and vanilla JavaScript, no framework, no build step. Open `index.html` and it ru
 index.html            # the landing page
 404.html              # designed not-found page (host-aware paths)
 assets/
-  styles.css          # design tokens (Arcanum + 4 alt themes) + layout
-  theme-engineering.css # "Engineering" — a full alternate design system
+  themes.css          # the six themes: one token block each, nothing else
+  styles.css          # layout and components; reads theme tokens only
+  work/<slug>/*.webp  # project-sheet captures (npm run work:capture)
   app.js              # i18n, nav, count-ups, reveal, project explorer, form
   previews/*.webp     # committed screenshots of the live client sites
   favicon.svg         # gradient signature mark
   og.svg / og.png     # social share image (SVG source → rasterized PNG)
   cv_*.pdf            # founder résumé (linked from the founder section)
 hub/                  # VOIDSPLUNKER.std — personal portfolio subsite (own CSS/JS)
-scene/                # "engineering drawing" project showcase (own CSS/JS)
+scene/                # project sheets, generated from scripts/scene-data.mjs (npm run scene)
 scripts/
   shots.mjs           # capture live-site screenshots  → npm run shots
   check.mjs           # repo invariant checks          → npm run check
@@ -111,14 +112,11 @@ but a server is recommended so fonts and relative paths resolve cleanly.)
 ### Design system — see [BRAND.md](BRAND.md)
 
 **Arcanum** is the identity: arcane-blue ground, brass flourish, engraved Cinzel
-display, electric teal as rationed neon. Five palette variants ship in the theme
-switcher (Arcanum, Neon Noir, Daylight, Monochrome, Alt-neon) — each is a token
-swap, so every `var(--token)` rule reskins for free.
-
-**Engineering** is a sixth entry and works differently: a complete alternate
-design system (cool near-black, Geist + Geist Mono, deploy terminal, build
-indices) shipped as `assets/theme-engineering.css` and toggled by flipping the
-link's `media` attribute. Details and the reset-block rationale in BRAND.md.
+display, electric teal as rationed neon. Six themes ship in the switcher
+(Arcanum, Noir, Daylight, Mono, Alt-neon, Engineering). Each is one block of
+the same 49 tokens in `assets/themes.css`; `npm run check` fails if a theme
+misses a token, breaks a contrast pair, or if `styles.css` special-cases a
+theme. Details in BRAND.md ("Theme contract").
 
 ### Features
 

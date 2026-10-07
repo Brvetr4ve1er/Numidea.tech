@@ -7,7 +7,7 @@
  *   2. i18n coverage  — every data-i18n* attribute resolves to a key
  *   3. assets         — every local src/href on every page exists on disk
  *   4. stamp sync     — all ?v= cache-bust stamps are identical across pages
- *   5. URL sync       — the project URLs agree across app.js / scene / shots; none on hub/
+ *   5. URL sync       — project URLs agree across app.js / shots; the showcase uses only those; none on hub/
  *
  * Exits non-zero on any failure. No dependencies.
  */
@@ -49,7 +49,7 @@ for (const [f, base] of Object.entries(pages)) {
   // artwork) references files that legitimately don't exist yet
   const src = read(f).replace(/<!--[\s\S]*?-->/g, '');
   for (const m of src.matchAll(/(?:src|href)="([^"#][^"]*)"/g)) {
-    const u = m[1].split('?')[0];
+    const u = m[1].split('#')[0].split('?')[0];
     if (/^(https?:|mailto:|data:|\/\/)/.test(u) || u === '') continue;
     // template bindings ({{ x }}) and app-internal schemes (model:rocket) in the
     // WorkspaceHQ console are resolved by its runtime, not by the server
@@ -99,11 +99,14 @@ stamps.size > 1
    and deliberately lists NO client sites (they live on the Numidea page), so
    it is checked for the opposite: any project URL appearing there fails. */
 const urlsOf = (s) => new Set([...s.matchAll(/https:\/\/[a-z0-9.-]+\.netlify\.app/g)].map((m) => m[0]));
-const a = urlsOf(app), b = urlsOf(read('scene/app.js')), c = urlsOf(read('scripts/shots.mjs'));
+const a = urlsOf(app), c = urlsOf(read('scripts/shots.mjs'));
+// the showcase is a selection: every URL it uses must be one the main page knows
+const b = urlsOf(read('scripts/scene-data.mjs'));
 const d = urlsOf(read('hub/index.html').replace(/<!--[\s\S]*?-->/g, ''));
-const union = new Set([...a, ...b, ...c]);
-const drift = [...union].filter((u) => !(a.has(u) && b.has(u) && c.has(u)));
-drift.length ? bad('project URL drift across app.js/scene/shots: ' + drift.join(', ')) : ok('project URLs in sync across app.js/scene/shots');
+const drift = [...new Set([...a, ...c])].filter((u) => !(a.has(u) && c.has(u)));
+const stray = [...b].filter((u) => !a.has(u));
+drift.length ? bad('project URL drift across app.js/shots: ' + drift.join(', ')) : ok('project URLs in sync across app.js/shots');
+stray.length ? bad('showcase uses URLs the main page does not list: ' + stray.join(', ')) : ok('showcase URLs all listed on the main page');
 d.size ? bad('client sites listed on the hub (it is the artist\'s page): ' + [...d].join(', ')) : ok('hub lists no client sites');
 
 process.exit(fail);

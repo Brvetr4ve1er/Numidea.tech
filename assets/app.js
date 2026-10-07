@@ -41,12 +41,12 @@
       'proj6.cat': 'Voyage · Omra', 'proj6.desc': 'Une vitrine bilingue pour des voyages organisés et l\'Omra au départ de Constantine.',
       'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'Une boutique de matériel gaming au branding affûté, pensée pour la conversion.',
       'work.lead': 'Des sites réels, en ligne, qu\'on peut cliquer — pas des maquettes.',
-      'work.live': 'Démo →', 'work.soon': 'Bientôt',
+      'work.live': 'Démo →', 'work.soon': 'Bientôt', 'work.concept': 'Démo portfolio',
       'how.kicker': '04 — Méthode',
       'how.title': 'Quatre étapes. <em>Zéro surprise.</em>',
       'how.lead': 'Vous ne payez rien avant la troisième.',
-      'scene.kicker': '◆ PLAN D\'ATELIER · PLANCHE PAR PLANCHE', 'scene.title': 'Les projets, comme un plan.',
-      'scene.lead': 'Chaque projet dessiné comme une planche d\'ingénierie : cotes, statuts honnêtes, et le site en vrai.',
+      'scene.kicker': '◆ PLANCHES · LIVRABLE PAR LIVRABLE', 'scene.title': 'Tout ce qui a été livré, projet par projet.',
+      'scene.lead': 'Les pages, le mobile et le système visuel de chaque projet, capturés sur les sites en ligne.',
       'scene.cta': 'Ouvrir les planches →',
       'founder.kicker': '06 — Équipe & fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
       'founder.lead': 'Derrière Numidea : un fondateur qui conçoit, code et livre, et trois spécialistes autour de lui.',
@@ -135,12 +135,12 @@
       'proj6.cat': 'Travel · Umrah', 'proj6.desc': 'A bilingual storefront for organized trips and Umrah departing from Constantine.',
       'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'A sharp-branded gaming-gear store, built to convert.',
       'work.lead': 'Real sites, live and clickable — not mockups.',
-      'work.live': 'Live demo →', 'work.soon': 'Soon',
+      'work.live': 'Live demo →', 'work.soon': 'Soon', 'work.concept': 'Portfolio demo',
       'how.kicker': '04 — Process',
       'how.title': 'Four steps. <em>No surprises.</em>',
       'how.lead': 'You pay nothing before the third.',
-      'scene.kicker': '◆ ATELIER DRAWING · SHEET BY SHEET', 'scene.title': 'The work, as a drawing.',
-      'scene.lead': 'Every project drawn as an engineering sheet: dimensions, honest statuses, and the real site.',
+      'scene.kicker': '◆ SHEETS · DELIVERABLE BY DELIVERABLE', 'scene.title': 'Everything delivered, project by project.',
+      'scene.lead': 'The pages, mobile views and visual system of every project, captured from the live sites.',
       'scene.cta': 'Open the sheets →',
       'founder.kicker': '06 — Team & founder', 'founder.title': 'The studio has a <em>face.</em>',
       'founder.lead': 'Behind Numidea: a founder who designs, codes and ships, with three specialists around him.',
@@ -229,12 +229,12 @@
       'proj6.cat': 'سفر · عمرة', 'proj6.desc': 'واجهة ثنائية اللغة لرحلات منظَّمة والعمرة انطلاقاً من قسنطينة.',
       'proj7.cat': 'تجارة · ألعاب', 'proj7.desc': 'متجر لعتاد الألعاب بهوية حادّة، مبنيٌّ للتحويل.',
       'work.lead': 'مواقع حقيقية، منشورة وقابلة للنقر — لا نماذج.',
-      'work.live': 'عرض حيّ →', 'work.soon': 'قريباً',
+      'work.live': 'عرض حيّ →', 'work.soon': 'قريباً', 'work.concept': 'نموذج عرض',
       'how.kicker': '٠٤ — المنهج',
       'how.title': 'أربع خطوات. <em>بلا مفاجآت.</em>',
       'how.lead': 'لا تدفع شيئاً قبل الثالثة.',
-      'scene.kicker': '◆ مخطط الورشة · لوحةً بلوحة', 'scene.title': 'الأعمال، كمخطط.',
-      'scene.lead': 'كل مشروع مرسوم كلوحة هندسية: أبعاد، وحالات صادقة، والموقع الحقيقي.',
+      'scene.kicker': '◆ اللوحات · مُخرَجاً بمُخرَج', 'scene.title': 'كل ما سُلِّم، مشروعاً بمشروع.',
+      'scene.lead': 'الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع الحيّة.',
       'scene.cta': 'افتح اللوحات →',
       'founder.kicker': '٠٦ — الفريق والمؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
       'founder.lead': 'خلف Numidea: مؤسّس يصمّم ويبرمج ويُسلّم، ومعه ثلاثة متخصّصين.',
@@ -781,32 +781,17 @@
       b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
     });
 
-    // theme switcher
-    // 'engineering' is an alternate stylesheet, not a token swap
+    // theme switcher — every theme is a token block in themes.css, so a switch
+    // is one attribute; nothing loads, nothing re-lays out
     var THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon', 'engineering'];
     function applyTheme(t) {
       if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'daylight' : 'arcanum';
       document.documentElement.setAttribute('data-theme', t);
-      // The boot path parser-inserts this sheet (see index.html) so it is
-      // render-blocking for a visitor who arrives on Engineering. A switch made
-      // here is user-initiated, so its restyle is excluded from CLS and a
-      // dynamically appended link is fine.
-      var alt = document.getElementById('theme-eng');
-      if (t === 'engineering') {
-        if (!alt) {
-          alt = document.createElement('link');
-          alt.rel = 'stylesheet'; alt.id = 'theme-eng';
-          alt.href = window.NUMIDEA_ENG_CSS;
-          document.head.appendChild(alt);
-        } else { alt.media = 'all'; }
-      } else if (alt) { alt.media = 'not all'; }
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
       });
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
-      // Themes change what is on the page, not just its colours: Engineering
-      // reveals the deploy terminal, which is display:none everywhere else
-      // and therefore cached at position zero. Re-measure after the swap.
+      // type tokens change line lengths, so cached section tops are re-measured
       document.dispatchEvent(new CustomEvent('numidea:relayout'));
     }
     // the pre-paint script already resolved and applied this; mirror it here

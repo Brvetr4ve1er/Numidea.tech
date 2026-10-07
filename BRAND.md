@@ -1259,3 +1259,47 @@ source of truth. Engineering keeps its own system in `theme-engineering.css`.
   decorative drawing beside the icon.
 - Anything inside a closed `<details>` must not carry `.reveal`: the scroll
   observer never sees it, so it stays invisible.
+
+
+## Theme contract (replaces the Engineering alternate stylesheet)
+
+The themes broke whenever the layout changed because they were not only
+palettes: ~40 rules in `styles.css` special-cased a theme, ~40 colours were
+written as literals that could not re-skin, and Engineering was a separate
+59KB stylesheet that re-laid out the page. All three are gone.
+
+- `assets/themes.css` holds one block per theme, `:root[data-theme="name"]`,
+  setting exactly the 49 contract tokens (colour, effects, atmosphere,
+  surfaces, heading type, radii, kicker node) and nothing else. It loads
+  before `styles.css`.
+- `styles.css` reads tokens only. Theme-coloured literals are written as
+  `color-mix(in srgb,var(--token) N%,transparent)`.
+- `scripts/themes-check.mjs` (part of `npm run check`) fails when a theme
+  misses or adds a token, when a text/surface pair drops under 4.5:1 (7:1 for
+  `--ice`), when `styles.css` gains a `[data-theme]` selector or a theme
+  colour literal, or when a theme's heading face is not the one index.html
+  preloads for it (`HEAD` map — a late face shifts the hero).
+- Illustration strength is `--ink-k`, a multiplier on each plate's opacity.
+- Engineering is now a token theme like the others. The old reset-block notes
+  above describe a file that no longer exists.
+
+To add a theme: copy a block in `themes.css`, change the values, add the name
+to the switcher, to `THEMES` in `themes-check.mjs` and app.js, and to the `HEAD`
+map in index.html.
+
+## Project sheets (scene/)
+
+`scene/index.html` is generated: edit `scripts/scene-data.mjs`, run
+`npm run scene`. Captures are refreshed with `npm run work:capture [slug]`
+(needs the local server for WorkspaceHQ).
+
+Client material appears without code changes:
+- `assets/work/<slug>/before/<name>.webp` + `after/<name>.webp` (same name) →
+  a before/after pair
+- `assets/work/<slug>/brand/<name>.webp|png|jpg|svg` → delivered brand assets
+
+The file name is the caption. Slugs: bordjsteel, alliance, glaive,
+workspacehq, almaflow. Run `npm run scene` after adding files.
+
+Every statement on the sheets was read off the live sites on 2026-10-06.
+Glaive is labelled a portfolio demo because its own site says so.
