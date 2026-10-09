@@ -21,7 +21,8 @@ let fail = 0;
 const bad = (m) => { console.error('✗ ' + m); fail = 1; };
 const ok = (m) => console.log('✓ ' + m);
 
-export const THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon', 'engineering'];
+import { THEMES } from './site.mjs';
+export { THEMES };
 export const CONTRACT = [
   // colour
   'void', 'navy', 'plum', 'ice', 'body-strong', 'muted', 'faint',

@@ -1,7 +1,10 @@
 name: Deploy to GitHub Pages
 
 # Publishes the static site to GitHub Pages on every push to the working
-# branch. No build step — the site is plain HTML/CSS/JS at the repo root.
+# branch. The site is plain HTML/CSS/JS; the only "build" is staging the
+# publishable files (scripts/site.mjs DEPLOY) into _site/, so internal folders
+# (knowledge-base/, audit/, scripts/, BRAND.md…) are never served. The
+# repository invariants run first: a failing check blocks the deploy.
 
 on:
   push:
@@ -28,6 +31,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check repository invariants
+        run: node scripts/check.mjs && node scripts/themes-check.mjs
+
+      - name: Stage publishable files into _site/
+        run: node scripts/stage-site.mjs
+
       - name: Configure Pages (auto-enable with Actions as the source)
         uses: actions/configure-pages@v5
         with:
@@ -36,7 +50,7 @@ jobs:
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: "_site"
 
       - name: Deploy to GitHub Pages
         id: deployment

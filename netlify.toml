@@ -1,7 +1,13 @@
-# Netlify — variant C of the A/B/C deployment set (see assets/app.js VARIANT).
-# Static site, no build step: publish the repo root as-is.
+# Netlify — optional mirror of the GitHub Pages build.
+# The "build" only stages the publishable files (scripts/site.mjs DEPLOY) into
+# _site/, so internal folders (knowledge-base/, audit/, scripts/…) are never
+# served. No dependencies are installed for it.
 [build]
-  publish = "."
+  command = "node scripts/stage-site.mjs"
+  publish = "_site"
+
+[build.environment]
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
 # Mirror of vercel.json: immutable fingerprinted assets + security headers.
 [[headers]]
@@ -13,6 +19,6 @@
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
+    X-Frame-Options = "SAMEORIGIN"   # workspacehq/ embeds its own same-origin pages
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"

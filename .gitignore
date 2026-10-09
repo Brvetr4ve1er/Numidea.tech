@@ -10,3 +10,7 @@ _shots*/
 __pycache__/
 *.pyc
 .tmp/
+
+# staged deploy output (scripts/stage-site.mjs) and the unpublished legal preview
+_site/
+legal-preview/

@@ -11,7 +11,8 @@
     "sweep": "node scripts/sweep.mjs",
     "audit": "node scripts/audit.mjs",
     "scene": "node scripts/build-scene.mjs",
-    "work:capture": "node scripts/work-capture.mjs"
+    "work:capture": "node scripts/work-capture.mjs",
+    "stage": "node scripts/stage-site.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",
