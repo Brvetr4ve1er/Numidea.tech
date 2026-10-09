@@ -70,7 +70,7 @@
       'founder.certs': 'Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D',
       'pl.vista': 'Pl.\u00a0I — Les Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arc de Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Monnaies numides', 'pl.strata': 'Pl.\u00a0IV — Coupe des couches', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — Le Grand Erg',
       'whq.kick': 'Le projet préféré du fondateur', 'whq.sub': 'WorkspaceHQ v3 est sorti — votre code, en jeu d\'arcade',
-      'ui.top': 'Haut de page', 'ui.menu': 'Menu', 'ui.close': 'Fermer', 'ui.sections': 'Sections', 'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
+      'ui.top': 'Haut de page', 'ui.skip': 'Aller au contenu', 'ui.navPrimary': 'Navigation principale', 'ui.theme': 'Thème', 'ui.lang': 'Langue', 'footer.navAria': 'Pied de page', 'hero.plateRail': "Projets à l'écran", 'hero.platePause': 'Mettre la rotation en pause', 'work.livePill': 'En ligne', 'work.bilingual': 'Bilingue', 'proj4.alt': 'Aperçu du site Bordj Steel', 'proj2.alt': 'Aperçu du site Alliance Travel', 'proj3.alt': 'Aperçu du site AlmaFlowClim', 'proj6.alt': 'Aperçu du site Nomara Voyages', 'proj7.alt': 'Aperçu du site Glaive Store', 'ui.menu': 'Menu', 'ui.close': 'Fermer', 'ui.sections': 'Sections', 'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
       'team.h': "Avec lui, l'équipe",
       'team.dFn': 'Spécialiste données', 'team.dDo': "Pipelines, scraping et la couche d'intelligence.",
       'team.sFn': 'Ventes & partenariats', 'team.sDo': "Premier contact : traduit l'idée en périmètre.",
@@ -164,7 +164,7 @@
       'founder.certs': 'Certifications: Duolingo English Test · Digital design (Artiland.Studio) · 3D motion design',
       'pl.vista': 'Pl.\u00a0I — The Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arch of Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Numidian coins', 'pl.strata': 'Pl.\u00a0IV — Section through the strata', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — The Grand Erg',
       'whq.kick': "The founder's favourite project", 'whq.sub': 'WorkspaceHQ v3 is out — your codebase, now playable',
-      'ui.top': 'Back to top', 'ui.menu': 'Menu', 'ui.close': 'Close', 'ui.sections': 'Sections', 'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
+      'ui.top': 'Back to top', 'ui.skip': 'Skip to content', 'ui.navPrimary': 'Main navigation', 'ui.theme': 'Theme', 'ui.lang': 'Language', 'footer.navAria': 'Footer', 'hero.plateRail': 'Projects on the plate', 'hero.platePause': 'Pause the rotation', 'work.livePill': 'Live', 'work.bilingual': 'Bilingual', 'proj4.alt': 'Bordj Steel website preview', 'proj2.alt': 'Alliance Travel website preview', 'proj3.alt': 'AlmaFlowClim website preview', 'proj6.alt': 'Nomara Voyages website preview', 'proj7.alt': 'Glaive Store website preview', 'ui.menu': 'Menu', 'ui.close': 'Close', 'ui.sections': 'Sections', 'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
       'team.h': 'Alongside him, the team',
       'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
       'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
@@ -258,7 +258,7 @@
       'founder.certs': 'الشهادات: Duolingo English Test · التصميم الرقمي (Artiland.Studio) · التصميم الحركي ثلاثي الأبعاد',
       'pl.vista': 'لوحة ١ — جبال البيبان · برج بوعريريج', 'pl.arch': 'لوحة ٢ — قوس تراجان · تيمقاد', 'pl.coins': 'لوحة ٣ — نقود نوميدية', 'pl.strata': 'لوحة ٤ — مقطع في طبقات الأرض', 'pl.light': 'لوحة ٥ — رأس كاربون · بجاية', 'pl.dunes': 'لوحة ٦ — العرق الكبير',
       'whq.kick': 'المشروع المفضّل لدى المؤسس', 'whq.sub': 'صدر WorkspaceHQ v3 — شيفرتك، لعبة أركيد',
-      'ui.top': 'إلى الأعلى', 'ui.menu': 'القائمة', 'ui.close': 'إغلاق', 'ui.sections': 'الأقسام', 'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
+      'ui.top': 'إلى الأعلى', 'ui.skip': 'انتقل إلى المحتوى', 'ui.navPrimary': 'التنقّل الرئيسي', 'ui.theme': 'المظهر', 'ui.lang': 'اللغة', 'footer.navAria': 'تذييل الصفحة', 'hero.plateRail': 'المشاريع المعروضة', 'hero.platePause': 'إيقاف التدوير مؤقتاً', 'work.livePill': 'مباشر', 'work.bilingual': 'ثنائي اللغة', 'proj4.alt': 'معاينة موقع Bordj Steel', 'proj2.alt': 'معاينة موقع Alliance Travel', 'proj3.alt': 'معاينة موقع AlmaFlowClim', 'proj6.alt': 'معاينة موقع Nomara Voyages', 'proj7.alt': 'معاينة موقع Glaive Store', 'ui.menu': 'القائمة', 'ui.close': 'إغلاق', 'ui.sections': 'الأقسام', 'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
       'team.h': 'وإلى جانبه، الفريق',
       'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
       'team.sFn': 'المبيعات والشراكات', 'team.sDo': 'أول تواصل: ترجمة الفكرة إلى نطاق عمل.',
@@ -643,6 +643,11 @@
       var key = el.getAttribute('data-i18n-aria');
       if (dict[key] != null) el.setAttribute('aria-label', dict[key]);
     });
+    // image alternatives
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-alt');
+      if (dict[key] != null) el.alt = dict[key];
+    });
 
     // language buttons pressed-state
     document.querySelectorAll('.lang button').forEach(function (b) {
@@ -973,7 +978,7 @@
       function paint(n) {
         slides.forEach(function (e, i) { e.classList.toggle('on', i === n); });
         items.forEach(function (e, i) { e.classList.toggle('on', i === n); });
-        tabs.forEach(function (e, i) { e.setAttribute('aria-selected', i === n ? 'true' : 'false'); });
+        tabs.forEach(function (e, i) { if (i === n) e.setAttribute('aria-current', 'true'); else e.removeAttribute('aria-current'); });
         if (idxEl) idxEl.textContent = ('0' + (n + 1)).slice(-2);
         cur = n;
       }
@@ -1016,7 +1021,8 @@
       // re-elected it onto the new slide: measured on Slow 3G, an LCP of 3.6s
       // reported as 10.8s because the deck turned at 10.8s. A visitor who has
       // not moved yet sees the first, high-priority slide, which is the point.
-      var held = { hover: false, focus: false, hidden: false, idle: true };
+      // `user` is the pause button: a latch only the button releases
+      var held = { hover: false, focus: false, hidden: false, idle: true, user: false };
       var wake = function () {
         if (!held.idle) return;
         held.idle = false; arm();
@@ -1030,7 +1036,7 @@
       function halt() { clearInterval(timer); timer = null; }
       function arm() {
         clearInterval(timer); timer = null;
-        if (reduceMotion || held.hover || held.focus || held.hidden || held.idle) return;
+        if (reduceMotion || held.hover || held.focus || held.hidden || held.idle || held.user) return;
         timer = setInterval(next, HOLD);
       }
       function hold(k, v) { held[k] = v; arm(); }
@@ -1038,10 +1044,22 @@
       tabs.forEach(function (b, i) {
         b.addEventListener('click', function () { go(i); arm(); });
       });
+      // WCAG 2.2.2: anything that moves on its own for more than 5s can be paused
+      var pauseBtn = wrap.querySelector('.pl-pause');
+      if (pauseBtn) {
+        if (reduceMotion) pauseBtn.hidden = true;     // nothing rotates, nothing to pause
+        pauseBtn.addEventListener('click', function () {
+          var on = pauseBtn.getAttribute('aria-pressed') !== 'true';
+          pauseBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+          hold('user', on);
+        });
+      }
       // don't rotate under someone reading it, or when the tab is hidden
       wrap.addEventListener('pointerenter', function () { hold('hover', true); });
       wrap.addEventListener('pointerleave', function () { hold('hover', false); });
-      wrap.addEventListener('focusin',  function () { hold('focus', true); });
+      // focus on the pause button itself is not reading: it would freeze the
+      // rotation that button just resumed
+      wrap.addEventListener('focusin',  function (e) { hold('focus', e.target !== pauseBtn); });
       wrap.addEventListener('focusout', function () { hold('focus', false); });
       document.addEventListener('visibilitychange', function () { hold('hidden', document.hidden); });
       arm();

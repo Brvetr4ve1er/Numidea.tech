@@ -108,7 +108,7 @@
 </head>
 <body>
 
-<a class="skip" href="#main">Aller au contenu · Skip to content</a>
+<a class="skip" href="#main" data-i18n="ui.skip">Aller au contenu</a>
 <div class="progress" aria-hidden="true"></div>
 
 
@@ -119,7 +119,7 @@
       <a class="logo" href="#top">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
       <!-- phones fold the links into the menu; this names the section you are in -->
       <span class="crumb" id="crumb" aria-hidden="true"><i>/</i><b id="crumbNow"></b></span>
-      <nav class="nav-links" aria-label="Primary">
+      <nav class="nav-links" aria-label="Navigation principale" data-i18n-aria="ui.navPrimary">
         <a href="#work" data-i18n="nav.work">Projets</a>
         <a href="#services" data-i18n="nav.services">Services</a>
         <a href="#how" data-i18n="nav.about">Méthode</a>
@@ -130,22 +130,22 @@
       </nav>
       <div class="nav-right">
         <div class="theme-switch">
-          <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="Theme"><span class="ic" aria-hidden="true"></span></button>
-          <div class="theme-menu" role="menu" aria-label="Theme">
+          <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="Thème" data-i18n-aria="ui.theme"><span class="ic" aria-hidden="true"></span></button>
+          <div class="theme-menu" role="menu" aria-label="Thème" data-i18n-aria="ui.theme">
             <button type="button" role="menuitemradio" data-theme-val="arcanum" aria-checked="true"><span class="dot arcanum" aria-hidden="true"></span>Arcanum</button>
-            <button type="button" role="menuitemradio" data-theme-val="noir" aria-checked="false"><span class="dot noir" aria-hidden="true"></span>Neon Noir</button>
+            <button type="button" role="menuitemradio" data-theme-val="noir" aria-checked="false"><span class="dot noir" aria-hidden="true"></span>Noir</button>
             <button type="button" role="menuitemradio" data-theme-val="daylight" aria-checked="false"><span class="dot daylight" aria-hidden="true"></span>Daylight</button>
             <button type="button" role="menuitemradio" data-theme-val="mono" aria-checked="false"><span class="dot mono" aria-hidden="true"></span>Monochrome</button>
             <button type="button" role="menuitemradio" data-theme-val="altneon" aria-checked="false"><span class="dot altneon" aria-hidden="true"></span>Alt-neon</button>
             <button type="button" role="menuitemradio" data-theme-val="engineering" aria-checked="false"><span class="dot engineering" aria-hidden="true"></span>Engineering</button>
           </div>
         </div>
-        <div class="lang" role="group" aria-label="Language">
+        <div class="lang" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
           <button type="button" data-lang="fr" aria-pressed="true">FR</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
           <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
         </div>
-        <button type="button" class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+        <button type="button" class="menu-toggle" aria-label="Menu" data-i18n-aria="ui.menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
       </div>
     </div>
   </div>
@@ -163,7 +163,7 @@
   <a href="#faq" data-i18n="nav.faq">FAQ</a>
   <a href="#contact" data-i18n="nav.contact">Contact</a>
   </nav>
-  <div class="lang" role="group" aria-label="Language">
+  <div class="lang" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
     <button type="button" data-lang="fr" aria-pressed="true">FR</button>
     <button type="button" data-lang="en" aria-pressed="false">EN</button>
     <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
@@ -240,12 +240,15 @@
           </span>
           <span class="pm-live"><i aria-hidden="true"></i><span data-i18n="hero.plateLive">en ligne</span></span>
         </div>
-        <div class="plate-rail" role="tablist" aria-label="Projets">
-        <button type="button" role="tab" aria-selected="true" aria-label="Bordj Steel"><i></i></button>
-        <button type="button" role="tab" aria-selected="false" aria-label="Glaive Store"><i></i></button>
-        <button type="button" role="tab" aria-selected="false" aria-label="Alliance Travel"><i></i></button>
-        <button type="button" role="tab" aria-selected="false" aria-label="Nomara Voyages"><i></i></button>
-        <button type="button" role="tab" aria-selected="false" aria-label="AlmaFlowClim"><i></i></button>
+        <div class="plate-ctl">
+        <button type="button" class="pl-pause" aria-pressed="false" aria-label="Mettre la rotation en pause" data-i18n-aria="hero.platePause"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="ic-pause" d="M3.5 2v8M8.5 2v8"/><path class="ic-play" d="M3 1.8v8.4L10 6z"/></svg></button>
+        <div class="plate-rail" role="group" aria-label="Projets à l'écran" data-i18n-aria="hero.plateRail">
+        <button type="button" aria-current="true" aria-label="Bordj Steel"><i></i></button>
+        <button type="button" aria-label="Glaive Store"><i></i></button>
+        <button type="button" aria-label="Alliance Travel"><i></i></button>
+        <button type="button" aria-label="Nomara Voyages"><i></i></button>
+        <button type="button" aria-label="AlmaFlowClim"><i></i></button>
+        </div>
         </div>
       </div>
     </div>
@@ -312,12 +315,12 @@
            wide(2)+1 / 1+wide(2) / 1+1+1 closes flush; at 2 columns only the
            first stays wide (2+6 = 8 cells). The order is part of the layout. -->
       <article class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
           <h3>Bordj Steel</h3>
           <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, leader de la construction métallique en Algérie — catalogue produits, références et espace recrutement.</p>
-          <div class="pills"><span class="pill">B2B</span><span class="pill">Corporate</span><span class="pill live">Live</span></div>
+          <div class="pills"><span class="pill">B2B</span><span class="pill">Corporate</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
             <a href="scene/#bordjsteel" data-i18n="work.sheet">Planche →</a>
@@ -326,12 +329,12 @@
       </article>
 
       <article class="proj proj--brand reveal" style="--brand:95,214,134">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="assets/previews/alliancetravel.webp" alt="Aperçu du site Alliance Travel" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="assets/previews/alliancetravel.webp" alt="Aperçu du site Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
           <h3>Alliance Travel</h3>
           <p data-i18n="proj2.desc">Marque, funnel et stratégie de marché pour une agence de BBA dans la bataille des visas Schengen.</p>
-          <div class="pills"><span class="pill">Brand</span><span class="pill">Funnel</span><span class="pill live">Live</span></div>
+          <div class="pills"><span class="pill">Brand</span><span class="pill">Funnel</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
             <a href="scene/#alliance" data-i18n="work.sheet">Planche →</a>
@@ -340,12 +343,12 @@
       </article>
 
       <article class="proj proj--brand reveal" style="--brand:59,164,224">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="assets/previews/almaflowclim.webp" alt="Aperçu du site AlmaFlowClim" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="assets/previews/almaflowclim.webp" alt="Aperçu du site AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Industrie · Web</span>
           <h3>AlmaFlowClim</h3>
           <p data-i18n="proj3.desc">Une présence statique nette, conçue pour convertir les demandes de devis.</p>
-          <div class="pills"><span class="pill">Static</span><span class="pill">SEO</span><span class="pill live">Live</span></div>
+          <div class="pills"><span class="pill">Static</span><span class="pill">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
             <a href="scene/#almaflow" data-i18n="work.sheet">Planche →</a>
@@ -354,12 +357,12 @@
       </article>
 
       <article class="proj proj--wide proj--brand reveal" style="--brand:34,180,104">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
           <h3>Nomara Voyages</h3>
           <p data-i18n="proj6.desc">Une vitrine bilingue pour des voyages organisés et l'Omra au départ de Constantine.</p>
-          <div class="pills"><span class="pill">Bilingue</span><span class="pill">SEO</span><span class="pill live">Live</span></div>
+          <div class="pills"><span class="pill" data-i18n="work.bilingual">Bilingue</span><span class="pill">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
           </div>
@@ -367,7 +370,7 @@
       </article>
 
       <article class="proj proj--brand reveal" style="--brand:255,90,31">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="assets/previews/glaive.webp" alt="Aperçu du site Glaive Store" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="assets/previews/glaive.webp" alt="Aperçu du site Glaive Store" data-i18n-alt="proj7.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
           <h3>Glaive Store</h3>
@@ -1045,7 +1048,7 @@
 <footer class="footer wrap">
   <div class="footer-top">
     <a class="logo" href="#top">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
-    <nav aria-label="Footer">
+    <nav aria-label="Pied de page" data-i18n-aria="footer.navAria">
       <a href="#work" data-i18n="nav.work">Projets</a>
       <a href="#services" data-i18n="nav.services">Services</a>
       <a href="#how" data-i18n="nav.about">Méthode</a>

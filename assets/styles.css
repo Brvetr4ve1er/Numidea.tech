@@ -328,13 +328,23 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
   box-shadow:0 0 0 0 color-mix(in srgb,var(--teal) 60%,transparent)}
 
 
-.plate-rail{display:flex;gap:8px}
+.plate-ctl{display:flex;align-items:center;gap:10px}
+.plate-rail{display:flex;gap:8px;flex:1}
 .plate-rail button{flex:1;background:none;border:0;padding:9px 0 0;cursor:pointer;min-height:24px}
 .plate-rail button i{display:block;height:2px;border-radius:2px;background:var(--hairline-2);
   transition:background var(--dur-base) var(--ease-out)}
-.plate-rail button[aria-selected="true"] i{background:var(--crimson)}
+.plate-rail button[aria-current="true"] i{background:var(--crimson)}
 .plate-rail button:hover i{background:var(--crimson-hi)}
 .plate-rail button:focus-visible i{outline:2px solid var(--teal);outline-offset:3px}
+/* pause/play: pressed = paused, so the icon shows what a press will do next */
+.pl-pause{flex:none;width:24px;height:24px;display:grid;place-items:center;padding:0;background:none;cursor:pointer;
+  border:1px solid var(--hairline-2);border-radius:50%;color:var(--muted)}
+.pl-pause:hover{color:var(--ice);border-color:var(--crimson-hi)}
+.pl-pause:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.pl-pause svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.pl-pause .ic-play{fill:currentColor;stroke:none;display:none}
+.pl-pause[aria-pressed="true"] .ic-play{display:inline}
+.pl-pause[aria-pressed="true"] .ic-pause{display:none}
 @media(prefers-reduced-motion:reduce){
   .pl-wipe{display:none}
   .pm-item{transition:none}
@@ -1485,7 +1495,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
    controls measured that way. A system-coloured border gives every control a
    boundary; ButtonText/LinkText are the palette the user chose. */
 @media (forced-colors:active){
-  button,.btn,a.btn,.theme-btn,.lang button,.plate-rail button{border:1px solid ButtonText!important}
+  button,.btn,a.btn,.theme-btn,.lang button,.plate-rail button,.pl-pause{border:1px solid ButtonText!important}
   a:not(.btn){text-decoration:underline}
   .proj,.svc-row,.faq-item,.step,.titleblock,.capabilities{border:1px solid CanvasText!important}
 }
