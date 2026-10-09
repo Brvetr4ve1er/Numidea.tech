@@ -433,12 +433,13 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 
 /* ---------- how we work ---------- */
 .steps{position:relative;display:grid;gap:var(--s-7);max-width:760px}
-.steps::before{content:"";position:absolute;left:19px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--crimson),color-mix(in srgb,var(--crimson) 10%,transparent))}
-html[dir="rtl"] .steps::before{left:auto;right:19px}
-.step{position:relative;padding-left:60px}
-html[dir="rtl"] .step{padding-left:0;padding-right:60px}
-.step .node{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;border:2px solid var(--teal);background:var(--void);display:grid;place-items:center;font-family:var(--font-mono);font-size:14px;color:var(--teal-text);box-shadow:0 0 14px color-mix(in srgb,var(--teal) 40%,transparent)}
-html[dir="rtl"] .step .node{left:auto;right:0}
+/* Logical properties only: the old physical left/right rules plus their
+   html[dir=rtl] overrides out-specified the wide layout below, so in Arabic
+   at >=1100px the rail collapsed to zero width and every step kept a 60px
+   inline indent. */
+.steps::before{content:"";position:absolute;inset-inline-start:19px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--crimson),color-mix(in srgb,var(--crimson) 10%,transparent))}
+.step{position:relative;padding-inline-start:60px}
+.step .node{position:absolute;inset-inline-start:0;top:0;width:40px;height:40px;border-radius:50%;border:2px solid var(--teal);background:var(--void);display:grid;place-items:center;font-family:var(--font-mono);font-size:14px;color:var(--teal-text);box-shadow:0 0 14px color-mix(in srgb,var(--teal) 40%,transparent)}
 .step h3{font-family:var(--font-display);font-weight:600;font-size:22px;margin-bottom:var(--s-3)}
 html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 .step p{color:var(--muted);font-size:15px;line-height:1.6;max-width:34.476em}
@@ -956,18 +957,20 @@ main.wrap>section h2.sec em{color:var(--crimson-text)}
   /* three abreast: the process reads as a sequence instead of a column
      with half the screen empty beside it */
   .steps{grid-column:1/-1;max-width:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,2.4vw,48px)}
-  .steps::before{left:0;right:0;top:19px;bottom:auto;width:auto;height:2px;
+  .steps::before{inset-inline:0;top:19px;bottom:auto;width:auto;height:2px;
     background:linear-gradient(90deg,var(--crimson),color-mix(in srgb,var(--crimson) 8%,transparent))}
+  /* the rail fades toward the end of the sequence, which is the left in Arabic */
+  html[dir="rtl"] .steps::before{background:linear-gradient(270deg,var(--crimson),color-mix(in srgb,var(--crimson) 8%,transparent))}
   /* Node ABOVE the copy, not beside it. Turning the rail horizontal put it
      at node-centre height — straight through the step titles, which sat on
      the same line. Stacking clears a band for the rail to run through, and
      the nodes (opaque, painted after) sit on it like beads. */
   /* align-content:start, or the two rows stretch to the tallest step and
      each column's heading lands at a different height */
-  .steps .step{padding-left:0;padding-top:60px;
+  .steps .step{padding-inline-start:0;padding-top:60px;
     grid-template-columns:minmax(0,1fr);
     justify-items:start;align-content:start;gap:var(--s-5)}
-  .steps .step .node{left:0;top:0}
+  .steps .step .node{inset-inline-start:0;top:0}
   .steps .step p{max-width:22.542em}
   /* two columns of questions rather than one tall stack */
   .faq-list{grid-column:1/-1;max-width:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-4) clamp(20px,1.7vw,34px);align-content:start}
@@ -1936,8 +1939,11 @@ html[dir="rtl"] .crumb{letter-spacing:0}
 .to-top{position:fixed;inset-inline-end:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:90;
   width:44px;height:44px;display:grid;place-items:center;border-radius:50%;cursor:pointer;
   background:var(--navy);color:var(--ice);border:1px solid var(--hairline-2);box-shadow:0 12px 30px -14px rgb(var(--shade) / calc(.9 * var(--shade-k)));
-  opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s var(--ease-out),border-color .2s}
-.to-top.on{opacity:1;transform:none;pointer-events:auto}
+  opacity:0;transform:translateY(12px);pointer-events:none;
+  /* hidden, not just transparent: an invisible button still took Tab focus.
+     visibility flips after the fade out and at once on the way in. */
+  visibility:hidden;transition:opacity .3s,transform .3s var(--ease-out),border-color .2s,visibility 0s .3s}
+.to-top.on{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity .3s,transform .3s var(--ease-out),border-color .2s,visibility 0s}
 .to-top:hover{border-color:var(--teal)}
 .to-top:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
