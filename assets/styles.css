@@ -366,6 +366,8 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 .btn-ghost:hover{border-color:var(--ice)}
 .pill{font-family:var(--font-mono);font-size:11px;padding:5px 11px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted);background:var(--navy);display:inline-block}
 .pill.live{color:var(--teal-text);border-color:var(--teal)}
+/* a portfolio piece, not client work: dashed, and never hidden (see the phone rule) */
+.pill.concept{border-style:dashed}
 .pill.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:7px;box-shadow:0 0 8px var(--teal);vertical-align:middle}
 
 /* ---------- proof bar ---------- */
@@ -397,7 +399,7 @@ html[dir="rtl"] .proj .browser span{margin-left:0;margin-right:8px}
 html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .proj p{font-size:14px;color:var(--muted);line-height:1.5;margin-bottom:var(--s-4);min-height:calc(1.5em * 3)}
 .proj .pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--s-4)}
-.proj .actions{display:flex;gap:8px}
+.proj .actions{display:flex;flex-wrap:wrap;gap:8px}
 .proj .actions a{font-family:var(--font-mono);font-size:12px;font-weight:700;padding:9px 16px;min-height:38px;display:inline-flex;align-items:center;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--ice);text-decoration:none;transition:all var(--dur-fast)}
 .proj .actions a:hover{border-color:var(--teal);color:var(--teal-text)}
 .proj .actions .soon{font-family:var(--font-mono);font-size:11px;padding:6px 12px;border:1px dashed var(--hairline-2);border-radius:var(--r-pill);color:var(--faint);display:inline-flex;align-items:center;gap:7px}
@@ -1067,7 +1069,8 @@ main.wrap>section h2.sec em{color:var(--crimson-text)}
      description — one card wanted 254px of copy and showed 36px. If the
      card is too tall the answer is shorter copy, not hidden copy. */
   .work-grid>.proj p{font-size:13px;line-height:1.5;min-height:0;margin-bottom:10px}
-  .work-grid>.proj .pills{display:none}
+  /* tags fold away on phones — except "Démo portfolio", which is a claim, not decoration */
+  .work-grid>.proj .pills:not(:has(.concept)),.work-grid>.proj .pill:not(.concept){display:none}
   .work-grid>.proj .actions a{padding:9px 14px;min-height:44px;font-size:11px}
   /* Touch targets: everything tappable gets to 44px. These were 18–33px —
      fine with a mouse, a coin-toss with a thumb. Grown with padding and
@@ -2055,7 +2058,7 @@ section.band::after,section.band+section.band::after{
 /* the estimate sits at the top of its panel, not floating mid-height */
 @media (min-width:900px){.est-out{justify-content:flex-start}}
 /* "Notre modèle" pushed two of the four titles down: it is a badge on the
-   card edge now, like "Le plus choisi" on the tiers */
+   card edge now, like "Recommandé" on the tiers */
 .md-card{position:relative;padding-top:var(--s-6)}
 .md-tag{position:absolute;top:-10px;inset-inline-start:var(--s-5);margin:0}
 .price-more{margin-top:var(--s-7)}

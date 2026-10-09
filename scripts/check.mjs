@@ -13,6 +13,8 @@
  *   6. deploy coverage — the published set (scripts/site.mjs DEPLOY) exists, every
  *                        page folder is classified, and deployed pages link only to
  *                        deployed files (nothing points into knowledge-base/, scripts/…)
+ *   8. anchors + claims — every #fragment link lands on an id in its target page, and
+ *                        copy the owner retired as unsupported does not come back
  *
  * Exits non-zero on any failure. No dependencies.
  */
@@ -174,5 +176,30 @@ for (const f of PAGES) {
   }
 }
 dictGaps.length ? bad('inline dictionaries incomplete: ' + [...new Set(dictGaps)].join(', ')) : ok('inline dictionaries cover every key in fr/en/ar');
+
+/* 8 — anchors and retired claims */
+const ids = (f) => new Set([...read(f).matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
+const deadAnchors = [];
+for (const f of PAGES) {
+  const src = read(f).replace(/<!--[\s\S]*?-->/g, '');
+  for (const m of src.matchAll(/\bhref="([^"]*)#([^"/]+)"/g)) {
+    const [, path, frag] = m;
+    if (/^(https?:|mailto:|\/\/)/.test(path) || path.includes("'") || frag.includes("'")) continue;
+    let target = path ? normalize(join(dirname(f), path)).replace(/\\/g, '/') : f;
+    if (target === '.' || target.endsWith('/') || existsSync(join(ROOT, target)) && statSync(join(ROOT, target)).isDirectory()) target = join(target, 'index.html').replace(/\\/g, '/');
+    if (!existsSync(join(ROOT, target))) continue;            // check 3 reports missing files
+    if (!ids(target).has(frag)) deadAnchors.push(`${f} → ${m[1]}#${frag}`);
+  }
+}
+deadAnchors.length ? bad('links to ids that do not exist: ' + deadAnchors.join(', ')) : ok('every #fragment link lands on an id');
+// Owner decision: Glaive is a portfolio demo (4 live client sites, not 5), the
+// "most chosen" tier claim has no data behind it, and client sites are not demos.
+const RETIRED = ['Le plus choisi', 'Most chosen', 'الأكثر اختياراً', 'Démo →', 'Live demo →', 'عرض حيّ', '5 / 7'];
+const back = [];
+for (const f of [...PAGES, 'assets/app.js', 'scripts/scene-data.mjs']) {
+  const src = read(f);
+  for (const s of RETIRED) if (src.includes(s)) back.push(`${f}: "${s}"`);
+}
+back.length ? bad('retired claims are back: ' + back.join(', ')) : ok('retired claims stay retired');
 
 process.exit(fail);

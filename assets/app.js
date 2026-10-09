@@ -41,7 +41,7 @@
       'proj6.cat': 'Voyage · Omra', 'proj6.desc': 'Une vitrine bilingue pour des voyages organisés et l\'Omra au départ de Constantine.',
       'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'Une boutique de matériel gaming au branding affûté, pensée pour la conversion.',
       'work.lead': 'Des sites réels, en ligne, qu\'on peut cliquer — pas des maquettes.',
-      'work.live': 'Démo →', 'work.soon': 'Bientôt', 'work.concept': 'Démo portfolio',
+      'work.live': 'Voir le site →', 'work.soon': 'Bientôt', 'work.sheet': 'Planche →', 'work.concept': 'Démo portfolio',
       'how.kicker': '04 — Méthode',
       'how.title': 'Quatre étapes. <em>Zéro surprise.</em>',
       'how.lead': 'Vous ne payez rien avant la troisième.',
@@ -135,7 +135,7 @@
       'proj6.cat': 'Travel · Umrah', 'proj6.desc': 'A bilingual storefront for organized trips and Umrah departing from Constantine.',
       'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'A sharp-branded gaming-gear store, built to convert.',
       'work.lead': 'Real sites, live and clickable — not mockups.',
-      'work.live': 'Live demo →', 'work.soon': 'Soon', 'work.concept': 'Portfolio demo',
+      'work.live': 'Visit the site →', 'work.soon': 'Soon', 'work.sheet': 'Project sheet →', 'work.concept': 'Portfolio demo',
       'how.kicker': '04 — Process',
       'how.title': 'Four steps. <em>No surprises.</em>',
       'how.lead': 'You pay nothing before the third.',
@@ -214,7 +214,7 @@
       'tb.stackV': 'اعتمادية · بلا بناء', 'tb.deployV': '١٨ ث · Actions',
       'sheet.scale': 'مقياس ١:١', 'sheet.rev': 'مراجعة ٢٠٢٦-٠٨', 'sheet.sheet': 'لوحة ٠١',
       'proof.kicker': '٠١ — الإثبات',
-      'proof.s1': 'مشروعاً مُسلَّماً', 'proof.s2': 'مختصّين', 'proof.s3': 'لغات', 'proof.s4': 'زمن الردّ',
+      'proof.s1': 'مشاريع مُسلَّمة', 'proof.s2': 'مختصّين', 'proof.s3': 'لغات', 'proof.s4': 'زمن الردّ',
       'proof.line': 'عملاء حقيقيون. عمليات نشر حقيقية. الإثباتات في الأسفل — افتحها.',
       'svc.kicker': '٠٣ — الخدمات',
       'svc.title': 'ما الذي <em>نجعله حقيقة.</em>',
@@ -229,7 +229,7 @@
       'proj6.cat': 'سفر · عمرة', 'proj6.desc': 'واجهة ثنائية اللغة لرحلات منظَّمة والعمرة انطلاقاً من قسنطينة.',
       'proj7.cat': 'تجارة · ألعاب', 'proj7.desc': 'متجر لعتاد الألعاب بهوية حادّة، مبنيٌّ للتحويل.',
       'work.lead': 'مواقع حقيقية، منشورة وقابلة للنقر — لا نماذج.',
-      'work.live': 'عرض حيّ →', 'work.soon': 'قريباً', 'work.concept': 'نموذج عرض',
+      'work.live': 'زيارة الموقع ←', 'work.soon': 'قريباً', 'work.sheet': 'لوحة المشروع ←', 'work.concept': 'نموذج عرض',
       'how.kicker': '٠٤ — المنهج',
       'how.title': 'أربع خطوات. <em>بلا مفاجآت.</em>',
       'how.lead': 'لا تدفع شيئاً قبل الثالثة.',
@@ -334,7 +334,7 @@
       'price.kicker': '05 — Tarifs', 'price.title': 'Un prix <em>avant le devis.</em>',
       'price.lead': 'Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre et voyez l\'estimation bouger.',
       'price.cur': 'DA',
-      'price.popular': 'Le plus choisi',
+      'price.popular': 'Recommandé',
       'price.t1name': 'Essentiel', 'price.t1for': 'Une présence crédible, vite en ligne.', 'price.t1time': '2 à 4 semaines',
       'price.t1a': 'Vitrine ou landing, 1 à 5 pages',
       'price.t1b': 'Design sur mesure — jamais un template rethémé',
@@ -438,7 +438,7 @@
       'price.kicker': '05 — Pricing', 'price.title': 'A price <em>before the quote.</em>',
       'price.lead': 'The real Algerian market ranges, published. Set the scope and watch the estimate move.',
       'price.cur': 'DZD',
-      'price.popular': 'Most chosen',
+      'price.popular': 'Recommended',
       'price.t1name': 'Essential', 'price.t1for': 'A credible presence, live quickly.', 'price.t1time': '2 to 4 weeks',
       'price.t1a': 'Showcase or landing site, 1 to 5 pages',
       'price.t1b': 'Custom design — never a re-themed template',
@@ -542,7 +542,7 @@
       'price.kicker': '٠٥ — الأسعار', 'price.title': 'سعر <em>قبل عرض السعر.</em>',
       'price.lead': 'نطاقات السوق الجزائري الحقيقية، معلنة. اضبط نطاق العمل وشاهد التقدير يتحرّك.',
       'price.cur': 'دج',
-      'price.popular': 'الأكثر اختياراً',
+      'price.popular': 'الموصى به',
       'price.t1name': 'الأساسي', 'price.t1for': 'حضور موثوق، على الإنترنت بسرعة.', 'price.t1time': 'من ٢ إلى ٤ أسابيع',
       'price.t1a': 'موقع تعريفي أو صفحة هبوط، من ١ إلى ٥ صفحات',
       'price.t1b': 'تصميم مخصّص — لا قالب معاد تلوينه أبداً',
@@ -954,7 +954,7 @@
     }
 
 
-    /* ---------- hero plate: the five live client sites ----------
+    /* ---------- hero plate: four live client sites + the Glaive demo ----------
        Wipe, don't cross-fade. Two flat UIs dissolving through each other
        is a smear; a hard edge keeps both razor sharp. The image swaps at
        the midpoint, hidden behind the wipe bar. */
