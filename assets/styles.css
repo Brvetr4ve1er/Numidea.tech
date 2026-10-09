@@ -2144,3 +2144,19 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
   .est-controls{border-inline-end:1px solid var(--hairline)}
   .est-out{position:sticky;top:96px;align-self:start;border-inline-start:0}
 }
+
+/* ---- Phone contact bar (assets/app.js toggles .on) ----
+   Hidden means visibility:hidden too, so the two links leave the Tab order;
+   the footer reserves the bar's height so it never covers the last line. */
+.m-contact{display:none}
+@media (max-width:720px){
+  .m-contact{position:fixed;inset-inline:0;bottom:0;z-index:80;display:flex;gap:10px;
+    padding:10px max(var(--gutter),env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-left));
+    background:color-mix(in srgb,var(--void) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--hairline);
+    transform:translateY(110%);visibility:hidden;transition:transform .3s var(--ease-out),visibility 0s .3s}
+  .m-contact.on{transform:none;visibility:visible;transition:transform .3s var(--ease-out),visibility 0s}
+  .m-contact .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 14px;font-size:13px;text-align:center}
+  .footer{padding-bottom:calc(var(--s-5) + 70px + env(safe-area-inset-bottom))}
+}
+@media (prefers-reduced-motion:reduce){.m-contact,.m-contact.on{transition:none}}
+@media print{.m-contact{display:none!important}}
