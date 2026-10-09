@@ -152,8 +152,9 @@
 </header>
 
 <!-- mobile overlay menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <button type="button" class="close" aria-label="Close">×</button>
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" data-i18n-aria="ui.menu">
+  <button type="button" class="close" aria-label="Fermer" data-i18n-aria="ui.close">×</button>
+  <nav aria-label="Sections" data-i18n-aria="ui.sections">
   <a href="#work" data-i18n="nav.work">Projets</a>
   <a href="#services" data-i18n="nav.services">Services</a>
   <a href="#how" data-i18n="nav.about">Méthode</a>
@@ -161,6 +162,7 @@
   <a href="#founder" data-i18n="nav.team">Équipe</a>
   <a href="#faq" data-i18n="nav.faq">FAQ</a>
   <a href="#contact" data-i18n="nav.contact">Contact</a>
+  </nav>
   <div class="lang" role="group" aria-label="Language">
     <button type="button" data-lang="fr" aria-pressed="true">FR</button>
     <button type="button" data-lang="en" aria-pressed="false">EN</button>

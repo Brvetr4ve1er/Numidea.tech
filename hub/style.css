@@ -256,7 +256,7 @@ a{color:inherit;text-decoration:none}
 :root[data-theme="light"]{
   --ink:#e9e7dd;--ink-2:#e0ded3;--panel:#d4d2c5;
   --paper:#14160f;--paper-dim:#494c40;--faint:#63665a;
-  --acid:#8fd600;--acid-dim:#6aa300;--acc-text:#3c7800;
+  --acid:#8fd600;--acid-dim:#6aa300;--acc-text:#357000;
   --cyan:#0aa8cc;--magenta:#e01d80;
   --line:#cccabd;--line-2:#adab9c}
 :root[data-theme="light"] body::before{
@@ -265,7 +265,16 @@ a{color:inherit;text-decoration:none}
 
 :root[data-theme="light"] .frame{background:linear-gradient(180deg,rgba(143,214,0,.08),transparent 40%),var(--ink-2)}
 :root[data-theme="light"] .frame-cap{background:rgba(233,231,221,.82)}
+/* the caption sits over the portrait; --faint drops to ~3.2:1 there */
+:root[data-theme="light"] .frame-cap .await{color:var(--paper-dim)}
 :root[data-theme="light"] .badge{background:var(--ink-2)}
+/* Brand colours are tuned for the dark page; on paper they fall to ~1.1–2.6:1.
+   Text keeps a third of the brand hue over the ink colour (≥4.5:1 for every
+   brand, including near-white GitHub/X); on hover the brand fills the badge
+   and dark ink sits on it. */
+:root[data-theme="light"] .badge{color:color-mix(in srgb,var(--b,var(--acid)) 30%,var(--paper))}
+:root[data-theme="light"] .link--whq .badge{color:color-mix(in srgb,#ffd23f 30%,var(--paper))}
+:root[data-theme="light"] .link:hover .badge{color:var(--paper)}
 :root[data-theme="light"] .link{background:linear-gradient(180deg,rgba(0,0,0,.02),transparent)}
 :root[data-theme="light"] .link:hover{background:rgba(0,0,0,.04)}
 
@@ -590,3 +599,6 @@ html[dir="rtl"] .whq-start{right:auto;left:12px}
 .topbar .bc li+li::before{content:"/";font-family:var(--mono);font-size:11px;opacity:.45}
 .topbar .bc a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;transition:opacity .2s}
 .topbar .bc a:hover,.topbar .bc a:focus-visible{opacity:1}
+/* .6 of the ink lands at 4.4:1 on paper */
+:root[data-theme="light"] .topbar .bc a{opacity:.72}
+:root[data-theme="light"] .topbar .bc a:is(:hover,:focus-visible){opacity:1}

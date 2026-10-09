@@ -70,7 +70,7 @@
       'founder.certs': 'Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D',
       'pl.vista': 'Pl.\u00a0I — Les Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arc de Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Monnaies numides', 'pl.strata': 'Pl.\u00a0IV — Coupe des couches', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — Le Grand Erg',
       'whq.kick': 'Le projet préféré du fondateur', 'whq.sub': 'WorkspaceHQ v3 est sorti — votre code, en jeu d\'arcade',
-      'ui.top': 'Haut de page', 'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
+      'ui.top': 'Haut de page', 'ui.menu': 'Menu', 'ui.close': 'Fermer', 'ui.sections': 'Sections', 'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
       'team.h': "Avec lui, l'équipe",
       'team.dFn': 'Spécialiste données', 'team.dDo': "Pipelines, scraping et la couche d'intelligence.",
       'team.sFn': 'Ventes & partenariats', 'team.sDo': "Premier contact : traduit l'idée en périmètre.",
@@ -164,7 +164,7 @@
       'founder.certs': 'Certifications: Duolingo English Test · Digital design (Artiland.Studio) · 3D motion design',
       'pl.vista': 'Pl.\u00a0I — The Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arch of Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Numidian coins', 'pl.strata': 'Pl.\u00a0IV — Section through the strata', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — The Grand Erg',
       'whq.kick': "The founder's favourite project", 'whq.sub': 'WorkspaceHQ v3 is out — your codebase, now playable',
-      'ui.top': 'Back to top', 'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
+      'ui.top': 'Back to top', 'ui.menu': 'Menu', 'ui.close': 'Close', 'ui.sections': 'Sections', 'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
       'team.h': 'Alongside him, the team',
       'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
       'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
@@ -258,7 +258,7 @@
       'founder.certs': 'الشهادات: Duolingo English Test · التصميم الرقمي (Artiland.Studio) · التصميم الحركي ثلاثي الأبعاد',
       'pl.vista': 'لوحة ١ — جبال البيبان · برج بوعريريج', 'pl.arch': 'لوحة ٢ — قوس تراجان · تيمقاد', 'pl.coins': 'لوحة ٣ — نقود نوميدية', 'pl.strata': 'لوحة ٤ — مقطع في طبقات الأرض', 'pl.light': 'لوحة ٥ — رأس كاربون · بجاية', 'pl.dunes': 'لوحة ٦ — العرق الكبير',
       'whq.kick': 'المشروع المفضّل لدى المؤسس', 'whq.sub': 'صدر WorkspaceHQ v3 — شيفرتك، لعبة أركيد',
-      'ui.top': 'إلى الأعلى', 'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
+      'ui.top': 'إلى الأعلى', 'ui.menu': 'القائمة', 'ui.close': 'إغلاق', 'ui.sections': 'الأقسام', 'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
       'team.h': 'وإلى جانبه، الفريق',
       'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
       'team.sFn': 'المبيعات والشراكات', 'team.sDo': 'أول تواصل: ترجمة الفكرة إلى نطاق عمل.',
@@ -1051,16 +1051,32 @@
     var toggle = document.querySelector('.menu-toggle');
     var menu = document.querySelector('.mobile-menu');
     var closeBtn = menu ? menu.querySelector('.close') : null;
-    function setMenu(open) {
-      if (!menu) return;
+    // A modal dialog: while open, everything behind it is inert (aria-modal is
+    // not honoured everywhere; inert is), Tab stays inside, and closing returns
+    // focus to the toggle unless a link click is taking the reader elsewhere.
+    function setMenu(open, keepFocus) {
+      if (!menu || open === menu.classList.contains('open')) return;
       menu.classList.toggle('open', open);
       if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
+      document.querySelectorAll('main, .navbar, .footer').forEach(function (el) { el.inert = open; });
+      if (open) { var first = menu.querySelector('a'); if (first) first.focus(); }
+      else if (!keepFocus && toggle) toggle.focus();
     }
     if (toggle) toggle.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
     if (closeBtn) closeBtn.addEventListener('click', function () { setMenu(false); });
-    if (menu) menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+    if (menu) menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false, true); }); });
+    document.addEventListener('keydown', function (e) {
+      if (!menu || !menu.classList.contains('open')) return;
+      if (e.key === 'Escape') { setMenu(false); return; }
+      if (e.key !== 'Tab') return;
+      var f = Array.prototype.filter.call(menu.querySelectorAll('a[href],button:not([disabled])'),
+        function (el) { return el.offsetParent !== null; });
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
 
     // Legacy deep links from the retired project explorer (#/work, #/work/<slug>)
     // land on the project sheets instead of a dead hash.

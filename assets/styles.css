@@ -152,6 +152,8 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
    size — as a flex item it was the only one able to shrink, and collapsed
    to a 2px sliver while its 44px buttons were clipped away inside it. */
 .mobile-menu .lang{flex:none;align-self:flex-start}
+/* the links sit in a <nav> landmark inside the dialog; it stacks like the dialog did */
+.mobile-menu nav{display:flex;flex-direction:column;gap:inherit}
 .mobile-menu.open{transform:translateX(0);visibility:visible}
 .mobile-menu a{font-family:var(--font-display);font-weight:600;font-size:40px;color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
 .mobile-menu .lang{opacity:0}
@@ -162,7 +164,8 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 .mobile-menu.open a:nth-of-type(4){animation-delay:.2s}
 .mobile-menu.open a:nth-of-type(5){animation-delay:.25s}
 .mobile-menu.open a:nth-of-type(6){animation-delay:.3s}
-.mobile-menu.open .lang{animation-delay:.35s}
+.mobile-menu.open a:nth-of-type(7){animation-delay:.35s}
+.mobile-menu.open .lang{animation-delay:.4s}
 @keyframes stagger{to{opacity:1;transform:translateY(0)}}
 .mobile-menu .lang{margin-top:var(--s-4);align-self:flex-start}
 .mobile-menu .close{position:absolute;top:20px;right:24px;background:transparent;border:none;color:var(--ice);font-size:34px;cursor:pointer}
