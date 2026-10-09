@@ -117,17 +117,33 @@ absent.length && bad('themes with no block in themes.css: ' + absent.join(', '))
   variants ? bad(`styles.css has ${variants} [data-variant] selector(s): there is one site, not variants`) : ok('no variant selectors');
 }
 
-/* the heading face each theme uses must be preloaded for it (index.html HEAD
-   map), or it swaps in after first paint and shifts the hero */
+/* Every list of theme names agrees with site.mjs THEMES, and the faces each
+   theme paints first are the ones preloaded for it: index.html HEAD (heading
+   face) and 404.html LOGO (wordmark face). A face that is not preloaded swaps
+   in after first paint and shifts the page; a name missing from a resolver
+   is treated as unknown and silently falls back to Arcanum. */
 const idx = read('index.html');
-const headMap = Object.fromEntries([...(/var HEAD = \{([^}]*)\}/.exec(idx) || [, ''])[1].matchAll(/(\w+):\s*'([\w-]+)'/g)].map((m) => [m[1], m[2]]));
+const mapOf = (src, name) => Object.fromEntries([...(new RegExp('var ' + name + ' = \\{([^}]*)\\}').exec(src) || [, ''])[1].matchAll(/(\w+):\s*'([\w-]+)'/g)].map((m) => [m[1], m[2]]));
+const headMap = mapOf(idx, 'HEAD'), logoMap = mapOf(read('404.html'), 'LOGO');
+const sameSet = (a, b) => a.length === b.length && a.every((x) => b.includes(x));
+const lists = {
+  'index.html HEAD': Object.keys(headMap),
+  '404.html LOGO': Object.keys(logoMap),
+  'app.js THEMES': ((/var THEMES = \[([^\]]*)\]/.exec(read('assets/app.js')) || [, ''])[1].match(/'([a-z]+)'/g) || []).map((s) => s.slice(1, -1)),
+  'theme menu': [...idx.matchAll(/data-theme-val="([a-z]+)"/g)].map((m) => m[1]),
+};
+const listDrift = Object.entries(lists).filter(([, l]) => !sameSet(l, THEMES)).map(([k, l]) => `${k} [${l.join(', ')}]`);
+listDrift.length ? bad('theme lists out of step with site.mjs THEMES: ' + listDrift.join('; ')) : ok('every theme list matches site.mjs THEMES');
+const faceDrift = [];
 for (const { sel, body } of blocks) {
   const name = (/data-theme="([a-z]+)"/.exec(sel) || [])[1]; if (!name) continue;
   const v = (k) => ((new RegExp('--' + k + ':\\s*([^;]+)').exec(body) || [])[1] || '').trim();
-  const face = v('font-head').includes('font-deco') ? 'cinzel-' + v('head-weight') + '-latin' : 'geist-' + v('head-weight') + '-latin';
-  headMap[name] === face ? null : bad(`${name}: heading face ${face} is not the one index.html preloads (${headMap[name] || 'none'})`);
+  const face = (fam, w) => (fam.includes('font-deco') ? 'cinzel-' : fam.includes('font-mono') ? 'geist-mono-' : 'geist-') + w + '-latin';
+  const head = face(v('font-head'), v('head-weight')), logo = face(v('font-logo'), v('logo-weight'));
+  if (headMap[name] !== head) faceDrift.push(`${name}: heading face ${head}, index.html preloads ${headMap[name] || 'none'}`);
+  if (logoMap[name] !== logo) faceDrift.push(`${name}: wordmark face ${logo}, 404.html preloads ${logoMap[name] || 'none'}`);
 }
-Object.keys(headMap).length && ok('every theme preloads its own heading face');
+faceDrift.length ? bad(faceDrift.join('; ')) : ok('every theme preloads its own heading and wordmark faces');
 
 /* styles.css: no theme special cases, no theme colour literals */
 const styles = read('assets/styles.css').replace(/\/\*[\s\S]*?\*\//g, '');

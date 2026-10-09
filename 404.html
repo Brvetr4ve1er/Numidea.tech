@@ -19,10 +19,12 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-400-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/cinzel-700-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-mono-700-latin.woff2">
-<link rel="stylesheet" href="assets/fonts.css?v=202610091345">
+<!-- "idea" in the wordmark is Geist 600 in every theme -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/geist-600-latin.woff2">
+<link rel="stylesheet" href="assets/fonts.css?v=202610091352">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="assets/themes.css?v=202610091345">
-<link rel="stylesheet" href="assets/styles.css?v=202610091345">
+<link rel="stylesheet" href="assets/themes.css?v=202610091352">
+<link rel="stylesheet" href="assets/styles.css?v=202610091352">
 <style>
   /* svh, not vh: with viewport-fit=cover, 100vh is the tallest the viewport
      ever gets, so the page overflows by the height of the browser chrome
@@ -44,6 +46,9 @@
   .e404 .lines .fr{color:var(--ice)}
   .e404 .lines .ar{font-family:var(--font-ar-body);direction:rtl;display:block;margin-top:8px}
   .e404 .cta{margin-top:var(--s-7);display:inline-flex}
+  /* one label per language, chosen by html[lang] (set before paint) */
+  .e404 .cta>[lang]{display:none}
+  html[lang="fr"] .e404 .cta>[lang="fr"],html[lang="en"] .e404 .cta>[lang="en"],html[lang="ar"] .e404 .cta>[lang="ar"]{display:inline}
   .e404 .brand{position:fixed;top:calc(var(--s-6) + env(safe-area-inset-top));left:50%;transform:translateX(-50%)}
   /* On a short viewport the fixed brand is out of flow, so centred content
      scrolled straight underneath it — the 404 numeral vanished behind the
@@ -59,20 +64,44 @@
 <script>
 /* GitHub Pages serves this page for ANY missing URL, at any depth — relative
    hrefs would then resolve wrong. Recompute the site root (repo subpath on
-   *.github.io, "/" everywhere else) and rewrite the few refs this page has. */
+   *.github.io, "/" everywhere else) and rewrite the few refs this page has.
+   Then follow the visitor: their theme (validated — an unknown name would
+   leave every token undefined) and their language. All three languages are
+   always on the page; html[lang] decides which button label shows, so no
+   text is swapped after paint. LOGO is each theme's wordmark face
+   (themes.css --font-logo + --logo-weight), kept in step by themes-check. */
 (function () {
-  if (location.protocol.indexOf('http') !== 0) return; // keep relative for file:// preview
-  var seg = location.pathname.split('/').filter(Boolean);
-  var root = location.hostname.slice(-10) === '.github.io' && seg.length ? '/' + seg[0] + '/' : '/';
-  // <link> tags sit above this script — fix them now, before first paint
-  document.querySelectorAll('link[href^="assets/"]').forEach(function (el) {
-    el.setAttribute('href', root + el.getAttribute('href'));
-  });
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('a[href="index.html"]').forEach(function (el) {
-      el.setAttribute('href', root);
+  var d = document.documentElement;
+  var LOGO = { arcanum: 'cinzel-700-latin', noir: 'geist-700-latin', daylight: 'geist-600-latin',
+               mono: 'geist-600-latin', altneon: 'geist-700-latin', engineering: 'geist-600-latin' };
+  var TITLE = { fr: '404 — Cette page a pris la route · Numidea Labs',
+                en: '404 — This page took the road · Numidea Labs',
+                ar: '404 — هذه الصفحة سلكت الطريق · Numidea Labs' };
+  var th = 'arcanum', lang = 'fr';
+  try { th = localStorage.getItem('numidea-theme') || th; lang = localStorage.getItem('numidea-lang') || lang; } catch (e) {}
+  if (!Object.prototype.hasOwnProperty.call(LOGO, th)) th = 'arcanum';
+  if (!Object.prototype.hasOwnProperty.call(TITLE, lang)) lang = 'fr';
+  d.setAttribute('data-theme', th);
+  d.setAttribute('lang', lang);
+  d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  document.title = TITLE[lang];
+
+  var root = 'assets/';
+  if (location.protocol.indexOf('http') === 0) {   // keep relative for file:// preview
+    var seg = location.pathname.split('/').filter(Boolean);
+    var base = location.hostname.slice(-10) === '.github.io' && seg.length ? '/' + seg[0] + '/' : '/';
+    root = base + 'assets/';
+    // <link> tags sit above this script — fix them now, before first paint
+    document.querySelectorAll('link[href^="assets/"]').forEach(function (el) {
+      el.setAttribute('href', base + el.getAttribute('href'));
     });
-  });
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href="index.html"]').forEach(function (el) { el.setAttribute('href', base); });
+    });
+  }
+  if (LOGO[th] !== 'cinzel-700-latin' && LOGO[th] !== 'geist-600-latin') {
+    document.write('<link rel="preload" as="font" type="font/woff2" crossorigin href="' + root + 'fonts/' + LOGO[th] + '.woff2">');
+  }
 })();
 </script>
 </head>
@@ -88,11 +117,11 @@
          that makes it a heading rather than a bare figure. -->
     <h1 class="mark">404<span class="sr-only"> — page introuvable · page not found</span></h1>
     <p class="lines">
-      <span class="fr">Cette page a pris la route.</span><br>
-      This one took the road.
-      <span class="ar">هذه الصفحة سلكت الطريق.</span>
+      <span class="fr" lang="fr">Cette page a pris la route.</span><br>
+      <span lang="en">This one took the road.</span>
+      <span class="ar" lang="ar">هذه الصفحة سلكت الطريق.</span>
     </p>
-    <a class="btn btn-primary cta" href="index.html">Retour à l'accueil →</a>
+    <a class="btn btn-primary cta" href="index.html"><span lang="fr">Retour à l'accueil →</span><span lang="en">Back to the home page →</span><span lang="ar">العودة إلى الرئيسية ←</span></a>
   </main>
 </div>
 </body>

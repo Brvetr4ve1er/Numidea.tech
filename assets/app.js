@@ -684,10 +684,9 @@
   /* ---------------- DOM ready ---------------- */
   document.addEventListener('DOMContentLoaded', function () {
    try {
-    // restore language
-    var saved = DEFAULT_LANG;
-    try { saved = localStorage.getItem('numidea-lang') || DEFAULT_LANG; } catch (e) {}
-    applyLang(saved);
+    // the head resolver already chose the language (?lang=, then storage,
+    // validated) and set it on <html>; apply its text
+    applyLang(document.documentElement.getAttribute('lang') || DEFAULT_LANG);
     // The head bootstrap held paint for a non-French visitor so the 194-node
     // swap above could not be seen happening. It is done — release it.
     document.documentElement.removeAttribute('data-i18n-pending');

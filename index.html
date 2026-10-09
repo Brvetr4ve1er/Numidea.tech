@@ -26,31 +26,58 @@
 <meta name="twitter:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.png">
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<!-- Font preloads are written by the script below rather than as static tags:
-     the preload scanner requests static <link rel=preload> before any script
-     runs, so an Arabic visitor's faces would always queue behind the Latin ones
-     and arrive inside font-display:optional's window (CLS 0.08 at 1024px).
-     Written here, each visitor gets exactly the four faces their hero is set
-     in, first. Only what paints above the fold: on a 400kbps link 125KB of
-     preloads ahead of the CSS held first paint to 4.2s. 700 arrives on demand;
-     a late face is simply not used on that load. -->
+<!-- Resolve theme, language and fonts BEFORE first paint — one script, ahead of
+     the stylesheets, so the first frame is already the right theme in the right
+     language with the right faces on their way.
+
+     Theme: only a known name is applied. A stored name from a retired theme
+     would otherwise leave every colour and type token undefined (the theme
+     blocks are the only place they are set) until app.js ran.
+     Language: ?lang= (a shared link) wins over the stored preference. The
+     markup is baked in French; for EN/AR the deferred applyLang() rewrites the
+     text, so paint is held with data-i18n-pending until it has (display:none —
+     a hidden-but-laid-out box still scores a layout shift when it moves).
+     Fonts are preloaded here rather than as static tags: the preload scanner
+     would otherwise queue an Arabic visitor's faces behind the Latin ones and
+     land them inside font-display:optional's window. Each visitor gets exactly
+     the faces their hero paints in; HEAD is each theme's heading face
+     (themes.css --font-head + --head-weight), kept in step by themes-check. -->
 <script>
   (function () {
-    var l = 'fr', th = 'arcanum';
-    try { l = localStorage.getItem('numidea-lang') || 'fr'; th = localStorage.getItem('numidea-theme') || 'arcanum'; } catch (e) {}
-    /* each theme's heading face (themes.css --font-head + --head-weight); a face
-       that is not preloaded swaps in late and shifts the hero. Kept in step
-       with themes.css by scripts/themes-check.mjs. */
+    var d = document.documentElement;
     var HEAD = { arcanum: 'cinzel-700-latin', noir: 'geist-700-latin', daylight: 'geist-600-latin',
                  mono: 'geist-500-latin', altneon: 'geist-700-latin', engineering: 'geist-600-latin' };
-    var faces = l === 'ar'
+    var LANGS = ['fr', 'en', 'ar'], BAKED = 'fr', th = 'arcanum', lang = BAKED, q = null;
+    try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+    try { th = localStorage.getItem('numidea-theme') || th; lang = localStorage.getItem('numidea-lang') || lang; } catch (e) {}
+    if (q && LANGS.indexOf(q) !== -1) lang = q;
+    if (!Object.prototype.hasOwnProperty.call(HEAD, th)) th = 'arcanum';
+    if (LANGS.indexOf(lang) === -1) lang = BAKED;
+
+    d.setAttribute('data-theme', th);
+    d.setAttribute('lang', lang);
+    d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    /* illustration masks load lazily (app.js adds .lz-on near the viewport);
+       without this attribute — scripts off — they load eagerly instead */
+    d.setAttribute('data-lz', '');
+    /* The studio's WhatsApp number, full international form, digits only.
+       While empty, every WhatsApp control stays visibly pending. */
+    window.NUMIDEA_WA = '213672412578';
+
+    if (lang !== BAKED) {
+      d.setAttribute('data-i18n-pending', '');
+      /* never leave the page invisible: deferred app.js runs before
+         DOMContentLoaded and releases the hold itself; this is the backstop */
+      var release = function () { d.removeAttribute('data-i18n-pending'); };
+      document.addEventListener('DOMContentLoaded', release);
+      setTimeout(release, 1500);
+    }
+
+    /* The Arabic hero also sets Latin glyphs (project names in Plex Arabic 600's
+       latin subset, the logo in Geist 600) — leave either out and it widens late. */
+    var faces = lang === 'ar'
       ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-600-arabic', 'ibm-plex-sans-arabic-600-latin', 'geist-mono-400-latin', 'geist-600-latin']
-      /* The Arabic hero also sets Latin glyphs — project names in Plex Arabic 600's
-         latin subset, the logo in Geist 600. Leave either out and it renders in a
-         fallback first and widens when the file lands: with the body held until
-         app.js, that file is not even discovered until release, which puts the
-         swap inside font-display:optional's window (CLS 0.03 at 1024px). */
-      : ['geist-400-latin', 'geist-mono-400-latin', 'geist-600-latin'].concat(HEAD[th] && HEAD[th] !== 'geist-600-latin' ? [HEAD[th]] : []);
+      : ['geist-400-latin', 'geist-mono-400-latin', 'geist-600-latin'].concat(HEAD[th] !== 'geist-600-latin' ? [HEAD[th]] : []);
     document.write(faces.map(function (f) {
       return '<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/' + f + '.woff2">';
     }).join(''));
@@ -58,63 +85,10 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202610091345">
+<link rel="stylesheet" href="assets/fonts.css?v=202610091352">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="assets/themes.css?v=202610091345">
-<link rel="stylesheet" href="assets/styles.css?v=202610091345">
-<!-- "Engineering" is a whole design system rather than a palette, so it ships as
-     an alternate sheet. href is EMPTY on purpose and is set by the resolver below
-     only when that theme is active. A `media="not all"` sheet is still downloaded
-     (at low priority) but is NOT render-blocking, so the page painted in base
-     styles and then restyled when it applied — .wrap jumped 1190px to 1200px,
-     CLS 0.0768 in half of loads. Assigning href from a head script, with no
-     media attribute in the way, makes it render-blocking: that theme paints
-     correctly the first time. The other five never download it at all. -->
-<script>
-  /* Resolve the theme BEFORE first paint. */
-  (function () {
-    var d = document.documentElement;
-    /* illustration masks load lazily (app.js adds .lz-on near the viewport);
-       without this attribute — scripts off — they load eagerly instead */
-    d.setAttribute('data-lz', '');
-    var def = 'arcanum', t = def;
-    try { t = localStorage.getItem('numidea-theme') || def; } catch (e) {}
-    d.setAttribute('data-theme', t);
-    /* The studio's WhatsApp number, full international form, digits only
-       (e.g. '213XXXXXXXXX'). While this is empty every WhatsApp control on the
-       page stays visibly pending instead of linking somewhere wrong. */
-    window.NUMIDEA_WA = '213672412578';
-
-    /* Language, also before first paint. The markup is baked in French, so for a
-       visitor whose saved language is EN or AR the deferred applyLang() rewrites
-       194 nodes and flips `dir` AFTER the page has painted — measured at CLS
-       0.63, the largest shift on the site. Setting lang/dir here costs nothing
-       and removes the direction flip.
-
-       The text itself cannot be swapped this early: the dictionary lives in
-       app.js and none of those 194 elements have been parsed yet. So when the
-       baked language is not the one we are about to show, hold paint with
-       `data-i18n-pending` and let app.js release it once the swap is done.
-       A visitor on French — the default — never takes this path and paints
-       exactly as before. */
-    var BAKED = 'fr', lang = BAKED;
-    try { lang = localStorage.getItem('numidea-lang') || BAKED; } catch (e) {}
-    if (['fr', 'en', 'ar'].indexOf(lang) === -1) lang = BAKED;
-    d.setAttribute('lang', lang);
-    d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-    if (lang !== BAKED) {
-      d.setAttribute('data-i18n-pending', '');
-      /* Never let a broken or missing app.js leave the page invisible. Deferred
-         scripts run BEFORE DOMContentLoaded, so if app.js executed at all it has
-         already released the hold by the time this fires — which bounds the worst
-         case to parse time rather than to a timer. The timeout is only for the
-         case where that event has somehow already gone by. */
-      var release = function () { d.removeAttribute('data-i18n-pending'); };
-      document.addEventListener('DOMContentLoaded', release);
-      setTimeout(release, 1500);
-    }
-  })();
-</script>
+<link rel="stylesheet" href="assets/themes.css?v=202610091352">
+<link rel="stylesheet" href="assets/styles.css?v=202610091352">
 <style>
   /* Paired with data-i18n-pending above. Inline and in <head> so it is in effect
      before the first paint it exists to suppress. */
@@ -1094,7 +1068,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202610091345" defer></script>
+<script src="assets/app.js?v=202610091352" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
