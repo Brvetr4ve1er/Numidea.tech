@@ -70,7 +70,7 @@
       'founder.certs': 'Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D',
       'pl.vista': 'Pl.\u00a0I — Les Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arc de Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Monnaies numides', 'pl.strata': 'Pl.\u00a0IV — Coupe des couches', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — Le Grand Erg',
       'whq.kick': 'Le projet préféré du fondateur', 'whq.sub': 'WorkspaceHQ v3 est sorti — votre code, en jeu d\'arcade',
-      'ui.top': 'Haut de page', 'ui.skip': 'Aller au contenu', 'ui.navPrimary': 'Navigation principale', 'ui.theme': 'Thème', 'ui.lang': 'Langue', 'footer.navAria': 'Pied de page', 'hero.plateRail': "Projets à l'écran", 'hero.platePause': 'Mettre la rotation en pause', 'work.livePill': 'En ligne', 'work.bilingual': 'Bilingue', 'proj4.alt': 'Aperçu du site Bordj Steel', 'proj2.alt': 'Aperçu du site Alliance Travel', 'proj3.alt': 'Aperçu du site AlmaFlowClim', 'proj6.alt': 'Aperçu du site Nomara Voyages', 'proj7.alt': 'Aperçu du site Glaive Store', 'ui.menu': 'Menu', 'ui.close': 'Fermer', 'ui.sections': 'Sections', 'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
+      'ui.top': 'Haut de page', 'form.note': 'Envoyer ouvre votre messagerie avec le message prêt. Ce site ne conserve pas votre message.', 'ui.skip': 'Aller au contenu', 'ui.navPrimary': 'Navigation principale', 'ui.theme': 'Thème', 'ui.lang': 'Langue', 'footer.navAria': 'Pied de page', 'hero.plateRail': "Projets à l'écran", 'hero.platePause': 'Mettre la rotation en pause', 'work.livePill': 'En ligne', 'work.bilingual': 'Bilingue', 'proj4.alt': 'Aperçu du site Bordj Steel', 'proj2.alt': 'Aperçu du site Alliance Travel', 'proj3.alt': 'Aperçu du site AlmaFlowClim', 'proj6.alt': 'Aperçu du site Nomara Voyages', 'proj7.alt': 'Aperçu du site Glaive Store', 'ui.menu': 'Menu', 'ui.close': 'Fermer', 'ui.sections': 'Sections', 'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
       'team.h': "Avec lui, l'équipe",
       'team.dFn': 'Spécialiste données', 'team.dDo': "Pipelines, scraping et la couche d'intelligence.",
       'team.sFn': 'Ventes & partenariats', 'team.sDo': "Premier contact : traduit l'idée en périmètre.",
@@ -164,7 +164,7 @@
       'founder.certs': 'Certifications: Duolingo English Test · Digital design (Artiland.Studio) · 3D motion design',
       'pl.vista': 'Pl.\u00a0I — The Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arch of Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Numidian coins', 'pl.strata': 'Pl.\u00a0IV — Section through the strata', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — The Grand Erg',
       'whq.kick': "The founder's favourite project", 'whq.sub': 'WorkspaceHQ v3 is out — your codebase, now playable',
-      'ui.top': 'Back to top', 'ui.skip': 'Skip to content', 'ui.navPrimary': 'Main navigation', 'ui.theme': 'Theme', 'ui.lang': 'Language', 'footer.navAria': 'Footer', 'hero.plateRail': 'Projects on the plate', 'hero.platePause': 'Pause the rotation', 'work.livePill': 'Live', 'work.bilingual': 'Bilingual', 'proj4.alt': 'Bordj Steel website preview', 'proj2.alt': 'Alliance Travel website preview', 'proj3.alt': 'AlmaFlowClim website preview', 'proj6.alt': 'Nomara Voyages website preview', 'proj7.alt': 'Glaive Store website preview', 'ui.menu': 'Menu', 'ui.close': 'Close', 'ui.sections': 'Sections', 'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
+      'ui.top': 'Back to top', 'form.note': 'Sending opens your mail app with the message ready. This site does not keep your message.', 'ui.skip': 'Skip to content', 'ui.navPrimary': 'Main navigation', 'ui.theme': 'Theme', 'ui.lang': 'Language', 'footer.navAria': 'Footer', 'hero.plateRail': 'Projects on the plate', 'hero.platePause': 'Pause the rotation', 'work.livePill': 'Live', 'work.bilingual': 'Bilingual', 'proj4.alt': 'Bordj Steel website preview', 'proj2.alt': 'Alliance Travel website preview', 'proj3.alt': 'AlmaFlowClim website preview', 'proj6.alt': 'Nomara Voyages website preview', 'proj7.alt': 'Glaive Store website preview', 'ui.menu': 'Menu', 'ui.close': 'Close', 'ui.sections': 'Sections', 'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
       'team.h': 'Alongside him, the team',
       'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
       'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
@@ -258,7 +258,7 @@
       'founder.certs': 'الشهادات: Duolingo English Test · التصميم الرقمي (Artiland.Studio) · التصميم الحركي ثلاثي الأبعاد',
       'pl.vista': 'لوحة ١ — جبال البيبان · برج بوعريريج', 'pl.arch': 'لوحة ٢ — قوس تراجان · تيمقاد', 'pl.coins': 'لوحة ٣ — نقود نوميدية', 'pl.strata': 'لوحة ٤ — مقطع في طبقات الأرض', 'pl.light': 'لوحة ٥ — رأس كاربون · بجاية', 'pl.dunes': 'لوحة ٦ — العرق الكبير',
       'whq.kick': 'المشروع المفضّل لدى المؤسس', 'whq.sub': 'صدر WorkspaceHQ v3 — شيفرتك، لعبة أركيد',
-      'ui.top': 'إلى الأعلى', 'ui.skip': 'انتقل إلى المحتوى', 'ui.navPrimary': 'التنقّل الرئيسي', 'ui.theme': 'المظهر', 'ui.lang': 'اللغة', 'footer.navAria': 'تذييل الصفحة', 'hero.plateRail': 'المشاريع المعروضة', 'hero.platePause': 'إيقاف التدوير مؤقتاً', 'work.livePill': 'مباشر', 'work.bilingual': 'ثنائي اللغة', 'proj4.alt': 'معاينة موقع Bordj Steel', 'proj2.alt': 'معاينة موقع Alliance Travel', 'proj3.alt': 'معاينة موقع AlmaFlowClim', 'proj6.alt': 'معاينة موقع Nomara Voyages', 'proj7.alt': 'معاينة موقع Glaive Store', 'ui.menu': 'القائمة', 'ui.close': 'إغلاق', 'ui.sections': 'الأقسام', 'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
+      'ui.top': 'إلى الأعلى', 'form.note': 'يفتح الإرسال تطبيق البريد لديك والرسالة جاهزة. لا يحتفظ هذا الموقع برسالتك.', 'ui.skip': 'انتقل إلى المحتوى', 'ui.navPrimary': 'التنقّل الرئيسي', 'ui.theme': 'المظهر', 'ui.lang': 'اللغة', 'footer.navAria': 'تذييل الصفحة', 'hero.plateRail': 'المشاريع المعروضة', 'hero.platePause': 'إيقاف التدوير مؤقتاً', 'work.livePill': 'مباشر', 'work.bilingual': 'ثنائي اللغة', 'proj4.alt': 'معاينة موقع Bordj Steel', 'proj2.alt': 'معاينة موقع Alliance Travel', 'proj3.alt': 'معاينة موقع AlmaFlowClim', 'proj6.alt': 'معاينة موقع Nomara Voyages', 'proj7.alt': 'معاينة موقع Glaive Store', 'ui.menu': 'القائمة', 'ui.close': 'إغلاق', 'ui.sections': 'الأقسام', 'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
       'team.h': 'وإلى جانبه، الفريق',
       'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
       'team.sFn': 'المبيعات والشراكات', 'team.sDo': 'أول تواصل: ترجمة الفكرة إلى نطاق عمل.',
@@ -1134,11 +1134,13 @@
         var dict = I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG];
         f.classList.add('invalid');
         f.querySelector('.err').textContent = key ? dict[key] : '';
+        f.querySelector('input,textarea').setAttribute('aria-invalid', 'true');
       }
       function clear(id) {
         var f = field(id);
         f.classList.remove('invalid');
         f.querySelector('.err').textContent = '';
+        f.querySelector('input,textarea').removeAttribute('aria-invalid');
       }
       ['name', 'email', 'message'].forEach(function (id) {
         form.querySelector('[name="' + id + '"]').addEventListener('input', function () { clear(id); });
@@ -1153,7 +1155,8 @@
         if (!email) { err('email', 'form.errEmail'); ok = false; }
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err('email', 'form.errEmailValid'); ok = false; }
         if (!msg) { err('message', 'form.errMsg'); ok = false; }
-        if (!ok) return;
+        // focus the first field to fix; its error is read through aria-describedby
+        if (!ok) { var bad = form.querySelector('[aria-invalid="true"]'); if (bad) bad.focus(); return; }
 
         // Durable capture: best-effort insert into Supabase so the lead survives
         // even when the visitor has no mail client configured (the mailto handoff
@@ -1187,7 +1190,8 @@
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);
         form.style.display = 'none';
-        if (success) success.classList.add('show');
+        // the form just vanished from under the focus; land it on the outcome
+        if (success) { success.classList.add('show'); success.focus(); }
       });
     }
 

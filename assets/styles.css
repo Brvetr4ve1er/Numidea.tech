@@ -597,6 +597,8 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 .field input::placeholder,.field textarea::placeholder{color:var(--faint)}
 .field .err{font-family:var(--font-mono);font-size:11px;color:var(--crimson-hi);min-height:14px}
 .field.invalid input,.field.invalid textarea{border-color:var(--crimson)}
+.form-note{font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--muted);margin-top:var(--s-4);max-width:52ch}
+.form-success:focus{outline:none}
 .form .btn{padding:15px 40px}
 .form-success{display:none;padding:var(--s-7) 0}
 .form-success.show{display:block;animation:stagger .5s var(--ease-out)}

@@ -1006,28 +1006,33 @@
           <div class="form-row">
             <div class="field">
               <label for="f-name" data-i18n="form.name">Nom</label>
-              <input id="f-name" name="name" type="text" autocomplete="name" data-i18n-ph="form.namePh" placeholder="Votre nom">
-              <span class="err" aria-live="polite"></span>
+              <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err" data-i18n-ph="form.namePh" placeholder="Votre nom">
+              <span class="err" id="f-name-err"></span>
             </div>
             <div class="field">
               <label for="f-email" data-i18n="form.email">Email</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" data-i18n-ph="form.emailPh" placeholder="vous@entreprise.com">
-              <span class="err" aria-live="polite"></span>
+              <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err" data-i18n-ph="form.emailPh" placeholder="vous@entreprise.com">
+              <span class="err" id="f-email-err"></span>
             </div>
           </div>
           <div class="field">
             <label for="f-message" data-i18n="form.message">Message</label>
-            <textarea id="f-message" name="message" rows="5" data-i18n-ph="form.messagePh" placeholder="Qu'est-ce qu'on construit ?"></textarea>
-            <span class="err" aria-live="polite"></span>
+            <textarea id="f-message" name="message" rows="5" required aria-describedby="f-message-err" data-i18n-ph="form.messagePh" placeholder="Qu'est-ce qu'on construit ?"></textarea>
+            <span class="err" id="f-message-err"></span>
           </div>
           <button type="submit" class="btn btn-primary" data-i18n="form.send">Démarrer un projet →</button>
+          <!-- What happens to the message, stated plainly. If the Supabase store is
+               ever switched on this sentence stops being true: check.mjs then
+               requires the legal page and a new note. The privacy link goes after
+               the sentence once legal/ is published (scripts/build-legal.mjs). -->
+          <p class="form-note"><span data-i18n="form.note">Envoyer ouvre votre messagerie avec le message prêt. Ce site ne conserve pas votre message.</span><!-- LEGAL:form --><!-- /LEGAL:form --></p>
         </form>
         <!-- The handoff is a mailto:, and a visitor with no mail client configured
              gets nothing — yet this panel used to show a tick and claim success
              regardless, on the studio's only conversion path. The copy no longer
              asserts that anything was sent, and the address is here in plain
              sight so a failed handoff still leaves the visitor a way through. -->
-        <div class="form-success" role="status" aria-live="polite">
+        <div class="form-success" role="status" aria-live="polite" tabindex="-1">
           <div class="tick" aria-hidden="true">✓</div>
           <p data-i18n="form.success">Votre messagerie devrait s'ouvrir avec le message prêt — il ne reste qu'à l'envoyer.</p>
           <p class="fallback"><span data-i18n="form.successAlt">Rien ne s'est ouvert ? Écrivez-nous directement :</span>

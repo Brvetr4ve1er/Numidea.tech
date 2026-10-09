@@ -218,7 +218,7 @@ d.setAttribute('data-theme',th);d.lang=l;d.dir=l==='ar'?'rtl':'ltr';})();</scrip
 
 /* the links index.html carries once the page is published */
 export const MARKERS = {
-  footer: { fr: '', html: '<a href="legal/#mentions" data-i18n="footer.legal">Mentions légales</a><a href="legal/#confidentialite" data-i18n="footer.privacy">Confidentialité</a>' },
+  footer: { html: '<a href="legal/#mentions" data-i18n="footer.legal">Mentions légales</a><a href="legal/#confidentialite" data-i18n="footer.privacy">Confidentialité</a>' },
   form: { html: ' <a href="legal/#confidentialite" data-i18n="footer.privacy">Confidentialité</a>' },
 };
 export function markerRegions(html, published) {

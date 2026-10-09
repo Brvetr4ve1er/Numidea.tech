@@ -200,6 +200,18 @@ for (const f of PAGES) {
     for (const id of m[2].split(/\s+/)) if (id && !id.includes("'") && !own.has(id)) deadRefs.push(`${f}: ${m[1]}="${id}"`);
   }
 }
+// The form note promises the site keeps nothing. Turning the Supabase lead
+// store on breaks that promise: it needs the published legal page, the store's
+// region in scripts/legal-data.mjs, and new form.note copy.
+const supa = (/NUMIDEA_SUPABASE_URL\s*=\s*"([^"]*)"/.exec(html) || [])[1];
+if (supa) {
+  const { LEGAL } = await import('./legal-data.mjs');
+  const { LEGAL_PUBLISHED } = await import('./site.mjs');
+  const note = /'form\.note':\s*'([^']*)'/.exec(app)?.[1] || '';
+  if (!LEGAL_PUBLISHED || !LEGAL.privacy.supabaseRegion || /ne conserve pas/.test(note))
+    bad('the Supabase lead store is on: publish legal/, set privacy.supabaseRegion in scripts/legal-data.mjs, and rewrite form.note');
+  else ok('Supabase store on, with the legal page, its region and an honest form note');
+} else ok('form store off; form.note ("the site keeps nothing") holds');
 deadRefs.length ? bad('attributes point at ids that do not exist: ' + deadRefs.join(', ')) : ok('every aria-labelledby/describedby/controls and label for= resolves');
 // Owner decision: Glaive is a portfolio demo (4 live client sites, not 5), the
 // "most chosen" tier claim has no data behind it, and client sites are not demos.
