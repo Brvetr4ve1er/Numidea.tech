@@ -8,6 +8,8 @@
  *   3. assets         — every local src/href on every page exists on disk
  *   4. stamp sync     — all ?v= cache-bust stamps are identical across pages
  *   5. client links   — data-client links agree (plate, card, browser bar, shots, showcase); none on hub/
+ *   7. generated pages — scene/index.html equals its generator's output, and every
+ *                        page with an inline dictionary resolves its keys in fr/en/ar
  *   6. deploy coverage — the published set (scripts/site.mjs DEPLOY) exists, every
  *                        page folder is classified, and deployed pages link only to
  *                        deployed files (nothing points into knowledge-base/, scripts/…)
@@ -16,7 +18,8 @@
  */
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, normalize, basename } from 'node:path';
-import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, DEPLOY_SKIP, NOT_DEPLOYED, BASE } from './site.mjs';
+import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, DEPLOY_SKIP, NOT_DEPLOYED, BASE, LANGS } from './site.mjs';
+import { SCENE_HTML } from './build-scene.mjs';
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 let fail = 0;
@@ -155,5 +158,21 @@ const problems = [
   sitemapLeaks.length && 'sitemap lists unpublished URLs: ' + sitemapLeaks.join(', '),
 ].filter(Boolean);
 problems.length ? problems.forEach(bad) : ok(`deploy set covers every page and link (${DEPLOY.length} entries)`);
+
+/* 7 — generated pages */
+read('scene/index.html') === SCENE_HTML
+  ? ok('scene/index.html matches scripts/build-scene.mjs')
+  : bad('scene/index.html differs from its generator (edit scripts/scene-data.mjs, then npm run scene)');
+const dictGaps = [];
+for (const f of PAGES) {
+  const src = read(f);
+  const m = /<script type="application\/json" id="i18n">([\s\S]*?)<\/script>/.exec(src);
+  if (!m) continue;
+  let dict; try { dict = JSON.parse(m[1]); } catch (e) { dictGaps.push(`${f}: dictionary is not valid JSON`); continue; }
+  for (const r of src.matchAll(/data-i18n(?:-[a-z]+)?="([^"]+)"/g)) {
+    for (const l of LANGS) if (!dict[l] || dict[l][r[1]] == null) dictGaps.push(`${f}: ${r[1]} missing in ${l}`);
+  }
+}
+dictGaps.length ? bad('inline dictionaries incomplete: ' + [...new Set(dictGaps)].join(', ')) : ok('inline dictionaries cover every key in fr/en/ar');
 
 process.exit(fail);

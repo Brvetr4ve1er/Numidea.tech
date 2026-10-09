@@ -12,7 +12,8 @@
     "audit": "node scripts/audit.mjs",
     "scene": "node scripts/build-scene.mjs",
     "work:capture": "node scripts/work-capture.mjs",
-    "stage": "node scripts/stage-site.mjs"
+    "stage": "node scripts/stage-site.mjs",
+    "build": "node scripts/build-scene.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",

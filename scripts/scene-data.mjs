@@ -263,6 +263,7 @@ export const UI = {
     palette: 'Couleurs', type: 'Typographie', before: 'Avant / après', beforeL: 'Avant', afterL: 'Après', brand: 'Éléments de marque livrés',
     status: { live: 'En ligne', concept: 'Démo de portfolio', product: 'Produit maison' },
     role: { accent: 'Accent', ink: 'Texte', muted: 'Secondaire', surface: 'Surface', ground: 'Fond', highlight: 'Relief', night: 'Mode sombre', cta: 'Action' },
+    viewer: 'Capture agrandie', close: 'Fermer',
     captured: 'Captures du site en ligne', back: '← Retour à Numidea Labs', contact: 'Un projet à poser sur la table ?', contactCta: 'Parlons-en →',
   },
   en: {
@@ -277,6 +278,7 @@ export const UI = {
     palette: 'Colour', type: 'Type', before: 'Before / after', beforeL: 'Before', afterL: 'After', brand: 'Brand assets delivered',
     status: { live: 'Live', concept: 'Portfolio demo', product: 'Our product' },
     role: { accent: 'Accent', ink: 'Text', muted: 'Secondary', surface: 'Surface', ground: 'Ground', highlight: 'Highlight', night: 'Dark mode', cta: 'Action' },
+    viewer: 'Enlarged capture', close: 'Close',
     captured: 'Captured from the live site', back: '← Back to Numidea Labs', contact: 'A project to put on the table?', contactCta: "Let's talk →",
   },
   ar: {
@@ -291,6 +293,7 @@ export const UI = {
     palette: 'الألوان', type: 'الخطوط', before: 'قبل / بعد', beforeL: 'قبل', afterL: 'بعد', brand: 'عناصر الهوية المسلّمة',
     status: { live: 'على الإنترنت', concept: 'نموذج عرض', product: 'منتجنا' },
     role: { accent: 'لون مميّز', ink: 'النص', muted: 'ثانوي', surface: 'سطح', ground: 'خلفية', highlight: 'إبراز', night: 'الوضع الداكن', cta: 'إجراء' },
+    viewer: 'لقطة مكبّرة', close: 'إغلاق',
     captured: 'لقطات من الموقع الحيّ', back: '→ العودة إلى Numidea Labs', contact: 'مشروع تريد وضعه على الطاولة؟', contactCta: 'لنتحدّث ←',
   },
 };
