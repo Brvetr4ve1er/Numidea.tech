@@ -30,7 +30,6 @@
   --grad-blood:linear-gradient(135deg,#F4D27A 0%,#B07E2A 52%,#13283E 110%);
   --grad-noir:radial-gradient(120% 120% at 20% 0%,#15293F 0%,#0F1E30 45%,#0A1420 100%);
   --grad-teal:linear-gradient(120deg,#34D0E8 0%,#1FA8C4 50%,#0F1E30 120%);
-  --grad-text:linear-gradient(92deg,#34D0E8 0%,#EAF1F8 46%,#E6B450 100%);
   --glow-teal:0 0 0 1px rgba(52,208,232,.4);
   --glow-crimson:0 0 0 1px rgba(230,180,80,.45),0 0 34px rgba(230,180,80,.26);
   --btn-glow:var(--glow-crimson);
@@ -57,7 +56,6 @@
   --grad-blood:linear-gradient(135deg,#FF6369 0%,#E5484D 45%,#5A1418 100%);
   --grad-noir:radial-gradient(120% 120% at 20% 0%,#1D1D23 0%,#141418 45%,#0B0B0E 100%);
   --grad-teal:linear-gradient(120deg,#C9CED6 0%,#8B919B 50%,#141418 120%);
-  --grad-text:linear-gradient(92deg,#F2F2F4 0%,#C9CED6 50%,#E5484D 100%);
   --glow-teal:0 0 0 1px rgba(201,206,214,.35);
   --glow-crimson:0 0 0 1px rgba(229,72,77,.5),0 0 30px rgba(229,72,77,.25);
   --btn-glow:0 12px 32px -14px rgba(229,72,77,.65);
@@ -83,7 +81,6 @@
   --grad-blood:linear-gradient(135deg,#A8741A 0%,#8C5E0A 55%,#5C3D06 100%);
   --grad-noir:radial-gradient(120% 120% at 20% 0%,#FFFFFF 0%,#FBF9F4 50%,#F1ECE1 100%);
   --grad-teal:linear-gradient(120deg,#138A96 0%,#0E6E78 50%,#D8E6E5 120%);
-  --grad-text:linear-gradient(92deg,#0E6E78 0%,#15181D 45%,#8C5E0A 100%);
   --glow-teal:0 0 0 1px rgba(14,110,120,.35);
   --glow-crimson:0 0 0 1px rgba(140,94,10,.35);
   --btn-glow:0 10px 24px -14px rgba(92,61,6,.55);
@@ -109,7 +106,6 @@
   --grad-blood:linear-gradient(135deg,#FFFFFF 0%,#BDBDBD 55%,#3A3A3A 100%);
   --grad-noir:radial-gradient(120% 120% at 20% 0%,#1C1C1C 0%,#141414 45%,#0A0A0A 100%);
   --grad-teal:linear-gradient(120deg,#E5E5E5 0%,#9E9E9E 50%,#1C1C1C 120%);
-  --grad-text:linear-gradient(92deg,#FFFFFF 0%,#BDBDBD 50%,#FFFFFF 100%);
   --glow-teal:0 0 0 1px rgba(255,255,255,.3);
   --glow-crimson:0 0 0 1px rgba(255,255,255,.4);
   --btn-glow:none;
@@ -134,7 +130,6 @@
   --grad-blood:linear-gradient(135deg,#FF6CBC 0%,#FF3EA5 45%,#5B1E8C 100%);
   --grad-noir:radial-gradient(120% 120% at 20% 0%,#241544 0%,#150D26 45%,#0C0716 100%);
   --grad-teal:linear-gradient(120deg,#3EE6FF 0%,#1FB5E0 50%,#150D26 120%);
-  --grad-text:linear-gradient(92deg,#3EE6FF 0%,#F4EEFF 45%,#FF3EA5 100%);
   --glow-teal:0 0 0 1px rgba(62,230,255,.45),0 0 24px rgba(62,230,255,.2);
   --glow-crimson:0 0 0 1px rgba(255,62,165,.55),0 0 40px rgba(255,62,165,.35);
   --btn-glow:var(--glow-crimson);
@@ -161,7 +156,6 @@
   --grad-blood:linear-gradient(90deg,#FF7A45 0%,#FF5B1F 100%);
   --grad-noir:linear-gradient(180deg,#171A1E 0%,#121417 100%);
   --grad-teal:linear-gradient(120deg,#8EC5E8 0%,#5E95B8 50%,#15181B 120%);
-  --grad-text:linear-gradient(92deg,#ECEFF1 0%,#ECEFF1 60%,#FF5B1F 100%);
   --glow-teal:0 0 0 1px rgba(142,197,232,.35);
   --glow-crimson:0 0 0 1px rgba(255,91,31,.5);
   --btn-glow:none;

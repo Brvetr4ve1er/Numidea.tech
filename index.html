@@ -58,10 +58,10 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202610091339">
+<link rel="stylesheet" href="assets/fonts.css?v=202610091345">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="assets/themes.css?v=202610091339">
-<link rel="stylesheet" href="assets/styles.css?v=202610091339">
+<link rel="stylesheet" href="assets/themes.css?v=202610091345">
+<link rel="stylesheet" href="assets/styles.css?v=202610091345">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -142,7 +142,7 @@
 <header class="navbar">
   <div class="nav-inner">
     <div class="bar">
-      <a class="logo" href="#top"><span class="brick" aria-hidden="true">N</span>Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+      <a class="logo" href="#top">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
       <!-- phones fold the links into the menu; this names the section you are in -->
       <span class="crumb" id="crumb" aria-hidden="true"><i>/</i><b id="crumbNow"></b></span>
       <nav class="nav-links" aria-label="Primary">
@@ -219,23 +219,6 @@
         <div class="hero-cta">
           <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Construisons →</a>
           <a class="btn btn-teal" href="#work" data-i18n="hero.cta2">Voir les preuves</a>
-        </div>
-      </div>
-      <div class="term reveal" data-parallax=".07" role="img" aria-label="Dernier déploiement : GitHub Pages, 18 secondes, en ligne">
-        <div class="term-bar"><i></i><i></i><i></i><span>numidea — deploy</span></div>
-        <div class="term-body">
-          <span class="l"><span class="p">$</span> git push origin claude/numidea-labs-landing</span>
-          <span class="l d">› Deploy to GitHub Pages · workflow run</span>
-          <span class="l"><span class="ok">✓</span> checkout <span class="d">2s</span></span>
-          <span class="l"><span class="ok">✓</span> configure-pages <span class="d">1s</span></span>
-          <span class="l"><span class="ok">✓</span> upload-artifact <span class="d">4s</span></span>
-          <span class="l"><span class="ok">✓</span> deploy <span class="d">11s</span></span>
-          <span class="l"><span class="ok">●</span> <span class="w">live</span> <span class="d">brvetr4ve1er.github.io/Numidea.tech</span></span>
-        </div>
-        <div class="term-foot">
-          <div><b>18s</b><span>build</span></div>
-          <div><b>0</b><span>deps</span></div>
-          <div><b>3</b><span>langues</span></div>
         </div>
       </div>
       <!-- THE PLATE — the five live client sites, one at a time, at a size you
@@ -352,7 +335,7 @@
       <!-- Bento: live sites first, two featured as wide cards. At 3 columns
            wide(2)+1 / 1+wide(2) / 1+1+1 closes flush; at 2 columns only the
            first stays wide (2+6 = 8 cells). The order is part of the layout. -->
-      <article class="proj proj--wide proj--brand reveal" data-cat="industrial" style="--brand:214,55,48" data-idx="01/07">
+      <article class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
@@ -365,7 +348,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="travel" style="--brand:95,214,134" data-idx="02/07">
+      <article class="proj proj--brand reveal" style="--brand:95,214,134">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="assets/previews/alliancetravel.webp" alt="Aperçu du site Alliance Travel" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
@@ -378,7 +361,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="industrial" style="--brand:59,164,224" data-idx="03/07">
+      <article class="proj proj--brand reveal" style="--brand:59,164,224">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="assets/previews/almaflowclim.webp" alt="Aperçu du site AlmaFlowClim" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Industrie · Web</span>
@@ -391,7 +374,7 @@
         </div>
       </article>
 
-      <article class="proj proj--wide proj--brand reveal" data-cat="travel" style="--brand:34,180,104" data-idx="04/07">
+      <article class="proj proj--wide proj--brand reveal" style="--brand:34,180,104">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
@@ -404,7 +387,7 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" data-cat="commerce" style="--brand:255,90,31" data-idx="05/07">
+      <article class="proj proj--brand reveal" style="--brand:255,90,31">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="assets/previews/glaive.webp" alt="Aperçu du site Glaive Store" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
@@ -417,7 +400,7 @@
         </div>
       </article>
 
-      <article class="proj reveal" data-cat="health" data-idx="06/07">
+      <article class="proj reveal">
         <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>doctorcherfia.dz</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Doctor Cherfia</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj1.cat">Santé · Next.js</span>
@@ -430,7 +413,7 @@
         </div>
       </article>
 
-      <article class="proj reveal" data-cat="pwa" data-idx="07/07">
+      <article class="proj reveal">
         <div class="thumb thumb--art"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>etoile-est.app</span></div><div class="art" aria-hidden="true"><svg class="art-glyph" data-parallax="-.12" viewBox="0 0 24 24"><path d="M12 2.4 20.3 7.2 20.3 16.8 12 21.6 3.7 16.8 3.7 7.2Z"/><path d="M12 7.2 16.2 9.6 16.2 14.4 12 16.8 7.8 14.4 7.8 9.6Z"/><path d="M12 2.4V7.2M20.3 7.2 16.2 9.6M20.3 16.8 16.2 14.4M12 21.6V16.8M3.7 16.8 7.8 14.4M3.7 7.2 7.8 9.6"/></svg></div><span class="cover" aria-hidden="true">Étoile de l'Est</span></div>
         <div class="body">
           <span class="cat" data-i18n="proj5.cat">PWA · Supabase</span>
@@ -1081,7 +1064,7 @@
 <!-- ================= FOOTER ================= -->
 <footer class="footer wrap">
   <div class="footer-top">
-    <a class="logo" href="#top"><span class="brick" aria-hidden="true">N</span>Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+    <a class="logo" href="#top">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
     <nav aria-label="Footer">
       <a href="#work" data-i18n="nav.work">Projets</a>
       <a href="#services" data-i18n="nav.services">Services</a>
@@ -1111,7 +1094,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202610091339" defer></script>
+<script src="assets/app.js?v=202610091345" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

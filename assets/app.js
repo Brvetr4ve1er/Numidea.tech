@@ -889,8 +889,8 @@
         var y = sy0;
         for (var i = 0; i < paraEls.length; i++) {
           var p = paraEls[i];
-          // a hidden element (the terminal outside Engineering) has no
-          // position worth chasing — leave it at rest until it is shown
+          // a hidden element has no position worth chasing — leave it at
+          // rest until it is shown
           if (!p.h) { p.ty = 0; continue; }
           // how far the element's centre sits from the viewport centre
           p.ty = (p.docTop - y + p.h / 2 - vh / 2) * p.k;
