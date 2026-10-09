@@ -1,0 +1,6 @@
+[
+  {
+    "prefix": "HCLIP hero section.hero",
+    "reason": "the hero clips its own decorative .m1/.m2 glow fields (overflow:hidden on purpose); no text is clipped"
+  }
+]

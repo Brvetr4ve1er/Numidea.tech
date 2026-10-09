@@ -9,7 +9,9 @@
  * gradients, textures, translucent panels and parallax fields, which a
  * declared-colour check cannot see.
  *
- * Covers index.html in all six themes x FR/AR, plus hub/, scene/, 404 and workspacehq/.
+ * Covers index.html in all six themes x FR/AR, plus hub/, scene/, 404 and workspacehq/,
+ * and a second pass at other sizes and states: phones in the dark themes, tablets,
+ * short landscape, scene/ in Arabic, 404 in other themes, hub/ in its light palette.
  * Exits non-zero on any failure. Optional arg: a single theme name.
  *
  * Traps this script already guards against (each produced false results once):
@@ -17,35 +19,43 @@
  *  - text clipped by an overflow ancestor is laid out but never painted
  *  - the CV panel is collapsed by default; it is audited open, as read
  */
-import {chromium} from 'playwright';
 import sharp from 'sharp';
-import {createServer} from 'node:http';
-import {readFile} from 'node:fs/promises';
-import {join, extname, dirname} from 'node:path';
-import {fileURLToPath} from 'node:url';
-const ROOT=join(dirname(fileURLToPath(import.meta.url)),'..');
-const TYPES={'.html':'text/html','.css':'text/css','.js':'text/javascript','.png':'image/png','.webp':'image/webp',
-  '.woff2':'font/woff2','.svg':'image/svg+xml','.json':'application/json','.jpg':'image/jpeg','.ico':'image/x-icon'};
-const srv=createServer(async(q,r)=>{let p=decodeURIComponent(q.url.split('?')[0]);if(p.endsWith('/'))p+='index.html';
-  try{const b=await readFile(join(ROOT,p));r.writeHead(200,{'content-type':TYPES[extname(p)]||'application/octet-stream'});r.end(b)}
-  catch{r.writeHead(404);r.end()}}).listen(0);
-await new Promise(r=>srv.on('listening',r));
-const B='http://127.0.0.1:'+srv.address().port;
+import {existsSync} from 'node:fs';
+import {join} from 'node:path';
+import {serve,launch} from './lib/serve.mjs';
+import {ROOT,THEMES} from './site.mjs';
+const srv=await serve();
+const B=srv.base;
 
 const PAGES=[['index','/index.html'],['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html'],['workspacehq','/workspacehq/index.html']];
-const THEMES=['arcanum','noir','daylight','mono','altneon','engineering'];
 const ONLY=process.argv[2];        // optional: restrict to one theme
 const lum=([r,g,b])=>{const f=v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(r)+.7152*f(g)+.0722*f(b)};
 const cr=(a,b)=>{const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
-const br=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const br=await launch();
 const report=[];
-for(const theme of THEMES){ if(ONLY&&theme!==ONLY)continue;
- for(const [pname,path] of PAGES){
-  // hub/scene/404 have their own palettes; only index honours the 6 themes
+const RUNS=[];
+for(const theme of THEMES) for(const [pname,path] of PAGES){
+  // hub/scene have their own palettes; only index (and 404) honour the 6 themes
   if(pname!=='index' && theme!=='arcanum') continue;
-  for(const lang of (pname==='index'?['fr','ar']:['fr'])){
-   const p=await br.newPage({viewport:{width:1280,height:900}});
-   await p.addInitScript(([t,l])=>{try{localStorage.setItem('numidea-theme',t);localStorage.setItem('numidea-lang',l)}catch(e){}},[theme,lang]);
+  for(const lang of (pname==='index'?['fr','ar']:['fr'])) RUNS.push({theme,pname,path,lang,w:1280,h:900});
+}
+if(existsSync(join(ROOT,'legal-preview/index.html'))) RUNS.push({theme:'arcanum',pname:'legal-preview',path:'/legal-preview/index.html',lang:'fr',w:1280,h:900});
+if(existsSync(join(ROOT,'legal/index.html'))) RUNS.push({theme:'arcanum',pname:'legal',path:'/legal/index.html',lang:'fr',w:1280,h:900});
+// second pass: sizes and states the desktop pass never paints
+for(const t of ['noir','mono','altneon']) for(const l of ['fr','ar']) RUNS.push({theme:t,pname:'index@390',path:'/index.html',lang:l,w:390,h:844});
+RUNS.push({theme:'arcanum',pname:'index@768',path:'/index.html',lang:'fr',w:768,h:1024});
+RUNS.push({theme:'daylight',pname:'index@768',path:'/index.html',lang:'ar',w:768,h:1024});
+RUNS.push({theme:'noir',pname:'index@1024',path:'/index.html',lang:'fr',w:1024,h:768});
+RUNS.push({theme:'arcanum',pname:'index@844x390',path:'/index.html',lang:'fr',w:844,h:390});
+RUNS.push({theme:'arcanum',pname:'scene',path:'/scene/index.html',lang:'ar',w:1280,h:900});
+RUNS.push({theme:'arcanum',pname:'scene@390',path:'/scene/index.html',lang:'ar',w:390,h:844});
+RUNS.push({theme:'daylight',pname:'404@390',path:'/404.html',lang:'ar',w:390,h:844});
+RUNS.push({theme:'noir',pname:'404',path:'/404.html',lang:'ar',w:1280,h:900});
+RUNS.push({theme:'arcanum',pname:'hub-light',path:'/hub/index.html',lang:'fr',w:1280,h:900,init:{'void-theme':'light'}});
+for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)continue;
+  {
+   const p=await br.newPage({viewport:{width:w,height:h},isMobile:w<600,hasTouch:w<600});
+   await p.addInitScript(([t,l,init])=>{try{localStorage.setItem('numidea-theme',t);localStorage.setItem('numidea-lang',l);for(const k in init)localStorage.setItem(k,init[k])}catch(e){}},[theme,lang,init]);
    await p.goto(B+path,{waitUntil:'networkidle'});
    await p.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}'});
    await p.evaluate(()=>{document.querySelectorAll('.reveal,[data-reveal]').forEach(e=>e.classList.add('in','seen'));
@@ -128,7 +138,6 @@ for(const theme of THEMES){ if(ONLY&&theme!==ONLY)continue;
    }
    await p.close();
   }
- }
 }
 await br.close();
 

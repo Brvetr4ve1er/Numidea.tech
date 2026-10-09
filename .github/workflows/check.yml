@@ -1,0 +1,41 @@
+name: Check
+
+# Repository invariants on every push and pull request. These need no
+# dependencies and no browser, so they run in seconds. html-validate needs
+# node_modules (browser download skipped). The browser gates (audit, sweep,
+# vbugs) are heavier and run on demand: Actions → Check → Run workflow.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: "Also run the browser gates (audit, sweep, vbugs)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Invariants (check + theme contract)
+        run: node scripts/check.mjs && node scripts/themes-check.mjs
+      - name: Install (no browser download)
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      - name: HTML validation
+        run: npm run validate
+      - name: Browser gates
+        if: github.event_name == 'workflow_dispatch' && inputs.browser
+        run: |
+          npx playwright install --with-deps chromium
+          npm run audit && npm run sweep && npm run vbugs

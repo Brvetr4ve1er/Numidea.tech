@@ -2,8 +2,12 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 32 runs: hub/, scene/, 404, workspacehq/ and index.html in all six themes x FR/EN/AR at
- * 1280x900, plus a 390x844 touch pass. Each run scrolls the whole page, then
+ * ~55 runs over every page (site.mjs PAGES): index.html in all six themes x
+ * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; scene/ in each
+ * language on desktop and phone; 404 in two themes in Arabic; hub/ in both of
+ * its palettes; tablet (768x1024, 1024x768) and short landscape (844x390);
+ * one run with the phone menu open; the legal preview when it exists. Each
+ * run scrolls the whole page, then
  * checks: layout shift (CLS > 0.01), LCP, axe (all default rules), horizontal
  * overflow (honouring clipping ancestors), reveals that never fired, tap
  * targets under 24px, broken images, infinite animations, JS errors, failed
@@ -13,33 +17,33 @@
  * versions produced confident false failures:
  *  - tap targets apply the 2.5.8 spacing exception: under 24px fails only if
  *    its 24px clear zone collides with another target's
- *  - "unrevealed" skips display:none (the Engineering-only terminal) and waits
- *    1.8s, since reveals run 1s plus a stagger delay
+ *  - "unrevealed" skips display:none and waits 1.8s, since reveals run 1s
+ *    plus a stagger delay
+ * axe "incomplete" results (things axe could not decide, e.g. an unresolved
+ * aria-labelledby) are printed as warnings: they need a look, not a failure.
  */
-import {chromium} from 'playwright';
-import {readFileSync} from 'node:fs';
-import {createServer} from 'node:http';
-import {readFile} from 'node:fs/promises';
-import {join,extname} from 'node:path';
-const T={'.html':'text/html','.css':'text/css','.js':'text/javascript','.woff2':'font/woff2','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml','.json':'application/json','.ico':'image/x-icon','.pdf':'application/pdf','.txt':'text/plain'};
-const srv=createServer(async(q,r)=>{let p=decodeURIComponent(q.url.split('?')[0]);if(p.endsWith('/'))p+='index.html';try{const b=await readFile(join(process.cwd(),p));r.writeHead(200,{'content-type':T[extname(p)]||'application/octet-stream'});r.end(b)}catch{r.writeHead(404);r.end()}}).listen(0);
-await new Promise(r=>srv.on('listening',r));
-const B='http://127.0.0.1:'+srv.address().port;
-const AXE=readFileSync('node_modules/axe-core/axe.min.js','utf8');
-const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
-let fails=0;const rows=[];
-const run=async(label,path,{theme,lang,w=1280,h=900,allowLoops=false}={})=>{
-  const p=await b.newPage({viewport:{width:w,height:h},hasTouch:w<600,isMobile:w<600});
+import {readFileSync,existsSync} from 'node:fs';
+import {join} from 'node:path';
+import {serve,launch} from './lib/serve.mjs';
+import {ROOT,THEMES} from './site.mjs';
+const srv=await serve();
+const B=srv.base;
+const AXE=readFileSync(join(ROOT,'node_modules/axe-core/axe.min.js'),'utf8');
+const b=await launch();
+let fails=0;const rows=[],warnings=[];
+const run=async(label,path,{theme,lang,w=1280,h=900,allowLoops=false,touch=w<600,init={},click=null}={})=>{
+  const p=await b.newPage({viewport:{width:w,height:h},hasTouch:touch,isMobile:touch});
   const errs=[],bad=[];
   p.on('pageerror',e=>errs.push(String(e).slice(0,80)));
   p.on('console',m=>{if(m.type()==='error')errs.push(m.text().slice(0,80))});
   p.on('response',r=>{if(r.status()>=400)bad.push(r.status()+' '+r.url().replace(B,''))});
   p.on('requestfailed',r=>bad.push('FAIL '+r.url().replace(B,'')));
-  await p.addInitScript(([t,l])=>{if(t)localStorage.setItem('numidea-theme',t);if(l)localStorage.setItem('numidea-lang',l);
+  await p.addInitScript(([t,l,init])=>{if(t)localStorage.setItem('numidea-theme',t);if(l)localStorage.setItem('numidea-lang',l);for(const k in init)localStorage.setItem(k,init[k]);
     window.__cls=0;window.__lcp=0;
     new PerformanceObserver(x=>{for(const e of x.getEntries())if(!e.hadRecentInput)window.__cls+=e.value}).observe({type:'layout-shift',buffered:true});
-    new PerformanceObserver(x=>{for(const e of x.getEntries())window.__lcp=e.startTime}).observe({type:'largest-contentful-paint',buffered:true});},[theme,lang]);
+    new PerformanceObserver(x=>{for(const e of x.getEntries())window.__lcp=e.startTime}).observe({type:'largest-contentful-paint',buffered:true});},[theme,lang,init]);
   await p.goto(B+path,{waitUntil:'networkidle'});
+  if(click){await p.click(click);await p.waitForTimeout(500);}
   await p.evaluate(()=>{document.documentElement.style.scrollBehavior='auto'});
   await p.evaluate(async()=>{const H=document.body.scrollHeight;for(let y=0;y<H;y+=innerHeight/2){scrollTo(0,y);await new Promise(r=>setTimeout(r,45))}scrollTo(0,0)});
   await p.waitForTimeout(1800);   // reveals run 1s plus a stagger delay
@@ -65,7 +69,9 @@ const run=async(label,path,{theme,lang,w=1280,h=900,allowLoops=false}={})=>{
     return {cls:window.__cls,lcp:window.__lcp,of:[...new Set(of)],hidden,small,imgs,hscroll:document.documentElement.scrollWidth>dw+1};});
   const anim=await p.evaluate(()=>document.getAnimations().filter(a=>a.playState==='running'&&a.effect?.getComputedTiming().iterations===Infinity).length);
   await p.evaluate(AXE);
-  const ax=await p.evaluate(async()=>(await axe.run(document,{resultTypes:['violations']})).violations.map(v=>v.id+'('+v.nodes.length+')'));
+  const axr=await p.evaluate(async()=>{const r=await axe.run(document,{resultTypes:['violations','incomplete']});
+    return {v:r.violations.map(v=>v.id+'('+v.nodes.length+')'),i:r.incomplete.filter(v=>v.id!=='color-contrast').map(v=>v.id+'('+v.nodes.length+')')}});
+  const ax=axr.v;if(axr.i.length)warnings.push(label+': '+axr.i.join(', '));
   const third=await p.evaluate(o=>performance.getEntriesByType('resource').filter(r=>!r.name.startsWith(o)).length,B);
   const issues=[];
   if(m.cls>0.01)issues.push('cls');if(ax.length)issues.push('axe');if(m.of.length||m.hscroll)issues.push('overflow');
@@ -80,18 +86,37 @@ const run=async(label,path,{theme,lang,w=1280,h=900,allowLoops=false}={})=>{
   await p.close();
 };
 console.log('— desktop 1280×900 —');
-for(const [n,path] of [['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html']]) await run(n,path);
+await run('hub','/hub/index.html');
+for(const l of ['fr','en','ar']) await run('scene '+l,'/scene/index.html',{lang:l});
+await run('404','/404.html');
+await run('404 noir/ar','/404.html',{theme:'noir',lang:'ar'});
 // WorkspaceHQ is a different product with its own arcade identity: blinking
 // INSERT COIN, the glitching headline and the marquee ARE the design, so the
 // no-endless-loop rule is waived there (its loops pause when off screen).
 await run('workspacehq','/workspacehq/index.html',{allowLoops:true});
-for(const t of ['arcanum','noir','daylight','mono','altneon','engineering'])
+if(existsSync(join(ROOT,'legal-preview/index.html'))) await run('legal preview','/legal-preview/index.html');
+if(existsSync(join(ROOT,'legal/index.html'))) await run('legal','/legal/index.html');
+for(const t of THEMES)
   for(const l of ['fr','en','ar']) await run(`index ${t}/${l}`,'/index.html',{theme:t,lang:l});
-console.log('— mobile 390×844 —');
-for(const [n,path] of [['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html']]) await run(n+' m',path,{w:390,h:844});
+console.log('— phone 390×844 —');
+await run('hub m','/hub/index.html',{w:390,h:844});
+await run('hub light m','/hub/index.html',{w:390,h:844,init:{'void-theme':'light'}});
+for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});
+await run('404 m','/404.html',{w:390,h:844});
+await run('404 daylight/ar m','/404.html',{theme:'daylight',lang:'ar',w:390,h:844});
 await run('workspacehq m','/workspacehq/index.html',{w:390,h:844,allowLoops:true});
-for(const t of ['arcanum','daylight','engineering'])
+for(const t of THEMES)
   for(const l of ['fr','ar']) await run(`index ${t}/${l} m`,'/index.html',{theme:t,lang:l,w:390,h:844});
+await run('index menu open ar m','/index.html',{lang:'ar',w:390,h:844,click:'.menu-toggle'});
+console.log('— tablet and landscape —');
+await run('index arcanum/fr 768','/index.html',{theme:'arcanum',lang:'fr',w:768,h:1024,touch:true});
+await run('index daylight/ar 768','/index.html',{theme:'daylight',lang:'ar',w:768,h:1024,touch:true});
+await run('index noir/fr 1024','/index.html',{theme:'noir',lang:'fr',w:1024,h:768,touch:true});
+await run('index arcanum/ar 1024','/index.html',{theme:'arcanum',lang:'ar',w:1024,h:768,touch:true});
+await run('index arcanum/fr 844×390','/index.html',{theme:'arcanum',lang:'fr',w:844,h:390,touch:true});
+await run('index arcanum/ar 844×390','/index.html',{theme:'arcanum',lang:'ar',w:844,h:390,touch:true});
+await run('404 844×390','/404.html',{w:844,h:390,touch:true});
 await b.close();srv.close();
+if(warnings.length){console.log('\naxe incomplete (review, not failing):');for(const w of warnings)console.log('  '+w)}
 console.log(fails?`\nFAILURES: ${fails} of ${rows.length}`:`\nALL CLEAN (${rows.length} runs)`);
 process.exit(fails?1:0);
