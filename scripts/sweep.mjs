@@ -57,6 +57,13 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
    const p=await br.newPage({viewport:{width:w,height:h},isMobile:w<600,hasTouch:w<600});
    await p.addInitScript(([t,l,init])=>{try{localStorage.setItem('numidea-theme',t);localStorage.setItem('numidea-lang',l);for(const k in init)localStorage.setItem(k,init[k])}catch(e){}},[theme,lang,init]);
    await p.goto(B+path,{waitUntil:'networkidle'});
+   // Chromium's beyond-viewport capture (the fullPage screenshot below) drops
+   // touch emulation while it runs, so (pointer:coarse) rules un-apply and text
+   // moves out from under the positions measured here: the footer language pill
+   // was sampled against the page behind it (1:1). Measure and capture under the
+   // same fine pointer. Colours do not depend on the pointer, and axe in
+   // audit.mjs still checks contrast on the real coarse-pointer layout.
+   if(w<600)await (await p.context().newCDPSession(p)).send('Emulation.setTouchEmulationEnabled',{enabled:false});
    await p.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}'});
    await p.evaluate(()=>{document.querySelectorAll('.reveal,[data-reveal]').forEach(e=>e.classList.add('in','seen'));
      document.querySelectorAll('details').forEach(d=>d.open=true);
