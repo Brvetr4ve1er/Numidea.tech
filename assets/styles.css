@@ -100,7 +100,7 @@ img{max-width:100%;display:block}
 /* visually-hidden helper for skip link / a11y */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 #main:focus{outline:none}
-.skip{position:fixed;top:8px;left:8px;z-index:1000;background:var(--navy);color:var(--ice);padding:10px 16px;border-radius:var(--r-sm);border:1px solid var(--teal);transform:translateY(-150%);transition:transform var(--dur-base)}
+.skip{position:fixed;top:8px;inset-inline-start:8px;z-index:1000;background:var(--navy);color:var(--ice);padding:10px 16px;border-radius:var(--r-sm);border:1px solid var(--teal);transform:translateY(-150%);transition:transform var(--dur-base)}
 .skip:focus{transform:translateY(0)}
 
 /* shared section heads */
@@ -626,6 +626,23 @@ html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
 .footer .meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s-3);font-family:var(--font-mono);font-size:12px;color:var(--faint);padding-top:var(--s-5);border-top:1px solid var(--hairline)}
 .footer .meta span{overflow-wrap:anywhere}
 .footer .signoff{font-family:var(--font-swash);font-style:normal;font-size:16px;color:var(--muted)}
+/* three short columns: who, how to reach, where to follow */
+.footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:var(--s-6);margin-bottom:var(--s-6)}
+.fc{min-width:0;display:grid;gap:var(--s-3);align-content:start}
+.fc-h{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin:0}
+html[dir="rtl"] .fc-h{letter-spacing:0;font-family:var(--font-ar-body)}
+.fc p,.fc li{color:var(--muted);font-size:14px;line-height:1.6}
+.fc ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.fc a{font-family:var(--font-mono);font-size:13px;color:var(--muted);text-decoration:none;overflow-wrap:anywhere;display:inline-flex;align-items:center;min-height:32px}
+.fc a:hover{color:var(--teal-text)}
+.footer .meta-legal{display:inline-flex;flex-wrap:wrap;gap:var(--s-4)}
+.footer .meta-legal:empty{display:none}
+.footer .meta-legal a,.footer .meta-top{color:var(--muted);text-decoration:none}
+.footer .meta-legal a:hover,.footer .meta-top:hover{color:var(--teal-text)}
+.footer .meta-end{display:inline-flex;align-items:center;flex-wrap:wrap;gap:var(--s-4)}
+.footer .meta-top{display:inline-flex;align-items:center;gap:6px;min-height:32px}
+/* the mono face has no Arabic: the fallback spaced every letter apart */
+html[dir="rtl"] :is(.footer nav a,.fc a,.footer .meta){font-family:var(--font-ar-body)}
 html[dir="rtl"] .footer .signoff{font-family:var(--font-ar-body);font-style:normal}
 
 /* ---------- services: line-glyph ---------- */
@@ -1841,7 +1858,7 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 
 /* Footer links: WhatsApp is a flex item (icon slot) and centred its label in
    the 39px row while the others sat at the top — 10px lower. One rule for all. */
-.footer nav a{display:inline-flex;align-items:center}
+.footer nav a{display:inline-flex;align-items:center;justify-content:center;min-width:24px;min-height:24px}
 
 @media (max-width:599px){
   /* Work cards on phones: a 16:10 screenshot squeezed into a narrow strip
