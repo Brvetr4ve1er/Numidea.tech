@@ -25,9 +25,6 @@
 <meta name="twitter:description" content="We build the software your business has been waiting for.">
 <meta name="twitter:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.png">
 
-<script>
-  window.NUMIDEA_VARIANT = "";
-</script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <!-- Font preloads are written by the script below rather than as static tags:
      the preload scanner requests static <link rel=preload> before any script
@@ -61,10 +58,10 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202610091332">
+<link rel="stylesheet" href="assets/fonts.css?v=202610091339">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="assets/themes.css?v=202610091332">
-<link rel="stylesheet" href="assets/styles.css?v=202610091332">
+<link rel="stylesheet" href="assets/themes.css?v=202610091339">
+<link rel="stylesheet" href="assets/styles.css?v=202610091339">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -74,21 +71,13 @@
      media attribute in the way, makes it render-blocking: that theme paints
      correctly the first time. The other five never download it at all. -->
 <script>
-  /* Resolve variant + theme BEFORE first paint. Runs after the links so it can
-     enable the alternate sheet without a flash of the base theme. */
+  /* Resolve the theme BEFORE first paint. */
   (function () {
-    var d = document.documentElement, v = '';
-    try { v = new URLSearchParams(location.search).get('variant') || ''; } catch (e) {}
-    if (!/^[abc]$/.test(v)) v = window.NUMIDEA_VARIANT || '';
-    if (!/^[abc]$/.test(v)) {
-      var h = location.hostname;
-      v = h.indexOf('netlify') !== -1 ? 'c' : h.indexOf('vercel') !== -1 ? 'b' : 'a';
-    }
-    d.setAttribute('data-variant', v);
+    var d = document.documentElement;
     /* illustration masks load lazily (app.js adds .lz-on near the viewport);
        without this attribute — scripts off — they load eagerly instead */
     d.setAttribute('data-lz', '');
-    var def = v === 'b' ? 'daylight' : 'arcanum', t = def;
+    var def = 'arcanum', t = def;
     try { t = localStorage.getItem('numidea-theme') || def; } catch (e) {}
     d.setAttribute('data-theme', t);
     /* The studio's WhatsApp number, full international form, digits only
@@ -338,19 +327,6 @@
     <span class="v-l v-near" data-parallax=".02" data-parallax-cap="24"><i class="v-fill"></i><i class="v-ink"></i></span>
     <span class="v-cap pl-cap" data-i18n="pl.vista">Pl. I — Les Bibans · Bordj Bou Arréridj</span>
   </div>
-
-  <!-- Variant C only (offer-first): the signature offer promoted above the fold.
-       Hidden by CSS on a/b — no JS required, works with scripts disabled. -->
-  <aside class="offer-band" data-variant-only="c" aria-labelledby="offer-h">
-    <div class="ob-mark" aria-hidden="true">◆</div>
-    <div class="ob-txt">
-      <span class="ob-tag" data-i18n="prev.tag">Offre signature</span>
-      <h2 id="offer-h" data-i18n="prev.name">L'Aperçu</h2>
-      <p class="ob-promise" data-i18n="prev.promise">Zéro risque. Juste la preuve.</p>
-      <p class="ob-brief" data-i18n="prev.brief">On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.</p>
-    </div>
-    <a class="btn btn-primary ob-cta" href="#contact" data-i18n="hero.cta1">Demander ma démo gratuite →</a>
-  </aside>
 
   <!-- ================= PROOF ================= -->
   <section class="proof reveal" aria-labelledby="proof-h">
@@ -1135,7 +1111,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202610091332" defer></script>
+<script src="assets/app.js?v=202610091339" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

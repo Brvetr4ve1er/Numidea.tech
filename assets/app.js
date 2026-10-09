@@ -614,64 +614,6 @@
     for (var k in EXTRA[l]) { if (EXTRA[l].hasOwnProperty(k)) I18N[l][k] = EXTRA[l][k]; }
   });
 
-  /* ---------------- A/B/C variant (one codebase, three deployments) ----------
-     a — GitHub Pages : control — proof-first atelier, dark Arcanum
-     b — Vercel       : light corporate — Daylight default, decoration stripped
-     c — Netlify      : offer-first — demo-before-you-pay leads the page
-     The variant is resolved before first paint by the inline script in <head>
-     (which also picks the default theme); read it back here. Variant-only
-     markup lives in the HTML behind [data-variant-only], so it works with
-     JS disabled and never needs DOM injection. */
-  var VARIANT = document.documentElement.getAttribute('data-variant') || 'a';
-
-  /* Per-variant copy overrides. Each block supplies whole fr/en/ar sets, so the
-     dictionary stays balanced (npm run check enforces multiples of 3). */
-  var COPY = {
-    b: {
-      fr: {
-        'hero.title': 'Le studio qui construit, livre et <span class="swash">reste.</span>',
-        'hero.lede': 'Numidea Labs conçoit, développe et maintient sites, applications et systèmes de données pour les entreprises algériennes. Une seule équipe, du premier pixel à la mise en production.',
-        'hero.cta1': 'Parler de votre projet →'
-      },
-      en: {
-        'hero.title': 'The studio that builds, ships and <span class="swash">stays.</span>',
-        'hero.lede': 'Numidea Labs designs, develops and maintains websites, applications and data systems for Algerian businesses. One team, from the first pixel to production.',
-        'hero.cta1': 'Discuss your project →'
-      },
-      ar: {
-        'hero.title': 'الاستوديو الذي يبني ويُسلّم <span class="swash">ويبقى.</span>',
-        'hero.lede': 'نوميديا لابز تصمّم وتطوّر وتصون المواقع والتطبيقات وأنظمة البيانات للشركات الجزائرية. فريق واحد، من أول بكسل إلى الإطلاق.',
-        'hero.cta1': 'تحدّث عن مشروعك →'
-      }
-    },
-    c: {
-      fr: {
-        'hero.title': 'Votre site, construit <span class="swash">avant que vous ne payiez.</span>',
-        'hero.lede': 'On construit une démo réelle et fonctionnelle de votre site. Vous la voyez en direct, vous décidez ensuite. Cinq sites clients déjà en ligne — le vôtre peut être le prochain.',
-        'hero.cta1': 'Demander ma démo gratuite →',
-        'hero.cta2': 'Voir les 5 sites en ligne'
-      },
-      en: {
-        'hero.title': 'Your site, built <span class="swash">before you pay for it.</span>',
-        'hero.lede': 'We build a real, working demo of your site up front. You see it live, then you decide. Five client sites already live — yours can be next.',
-        'hero.cta1': 'Get my free demo →',
-        'hero.cta2': 'See the 5 live sites'
-      },
-      ar: {
-        'hero.title': 'موقعك، مبنيٌّ <span class="swash">قبل أن تدفع.</span>',
-        'hero.lede': 'نبني نسخة تجريبية حقيقية وعاملة من موقعك مسبقاً. تراها حيّة، ثم تقرّر. خمسة مواقع عملاء مباشرة بالفعل — وموقعك قد يكون التالي.',
-        'hero.cta1': 'اطلب تجربتك المجانية →',
-        'hero.cta2': 'شاهد المواقع الخمسة'
-      }
-    }
-  };
-  if (COPY[VARIANT]) {
-    Object.keys(COPY[VARIANT]).forEach(function (l) {
-      var set = COPY[VARIANT][l];
-      for (var k in set) { if (set.hasOwnProperty(k)) I18N[l][k] = set[k]; }
-    });
-  }
-
   var SUPPORTED = ['fr', 'en', 'ar'];
   var DEFAULT_LANG = 'fr';
 
@@ -759,7 +701,7 @@
     // is one attribute; nothing loads, nothing re-lays out
     var THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon', 'engineering'];
     function applyTheme(t) {
-      if (THEMES.indexOf(t) === -1) t = VARIANT === 'b' ? 'daylight' : 'arcanum';
+      if (THEMES.indexOf(t) === -1) t = 'arcanum';
       document.documentElement.setAttribute('data-theme', t);
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
@@ -769,7 +711,7 @@
       document.dispatchEvent(new CustomEvent('numidea:relayout'));
     }
     // the pre-paint script already resolved and applied this; mirror it here
-    var defaultTheme = VARIANT === 'b' ? 'daylight' : 'arcanum';
+    var defaultTheme = 'arcanum';
     var savedTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
     applyTheme(savedTheme);
     var themeBtn = document.querySelector('.theme-btn');
@@ -1197,8 +1139,7 @@
               },
               body: JSON.stringify({
                 name: name, contact: email, message: msg,
-                lang: document.documentElement.getAttribute('lang') || 'fr',
-                variant: VARIANT
+                lang: document.documentElement.getAttribute('lang') || 'fr'
               })
             }).catch(function () {}); // best-effort — never blocks the visitor
           } catch (e2) {}
@@ -1208,7 +1149,7 @@
         // pre-filled to Hamissemohamedyasser@gmail.com. Only show success after the handoff.
         var subject = 'Numidea Labs · ' + name;
         var body = name + ' <' + email + '>\n\n' + msg
-          + '\n\n--\nnumidealabs · ' + VARIANT + ' · ' + (document.documentElement.getAttribute('lang') || 'fr');
+          + '\n\n--\nnumidealabs · ' + (document.documentElement.getAttribute('lang') || 'fr');
         window.location.href = 'mailto:Hamissemohamedyasser@gmail.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);

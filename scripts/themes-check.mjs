@@ -86,6 +86,29 @@ for (const { sel, body } of blocks) {
 const absent = THEMES.filter((t) => !seen.has(t));
 absent.length && bad('themes with no block in themes.css: ' + absent.join(', '));
 
+/* styles.css may not re-declare a contract token: that is how variant B
+   silently overrode every theme's radii. The one exception is the print
+   palette, which must use !important to beat the (0,2,0) theme blocks. */
+{
+  const raw = read('assets/styles.css').replace(/\/\*[\s\S]*?\*\//g, '');
+  const prints = [];
+  let rest = '', i = 0;
+  for (const m of raw.matchAll(/@media\s+print\s*\{/g)) {
+    if (m.index < i) continue;
+    let depth = 0, j = m.index + m[0].length - 1;
+    for (; j < raw.length; j++) { if (raw[j] === '{') depth++; else if (raw[j] === '}' && --depth === 0) break; }
+    rest += raw.slice(i, m.index); prints.push(raw.slice(m.index, j + 1)); i = j + 1;
+  }
+  rest += raw.slice(i);
+  const tokenRe = new RegExp('(?:^|[;{\\s])--(' + CONTRACT.join('|') + ')\\s*:([^;}]*)', 'g');
+  const outside = [...rest.matchAll(tokenRe)].map((m) => '--' + m[1]);
+  const weakPrint = prints.flatMap((b) => [...b.matchAll(tokenRe)].filter((m) => !/!important/.test(m[2])).map((m) => '--' + m[1]));
+  const variants = (raw.match(/\[data-variant/g) || []).length;
+  outside.length ? bad('styles.css re-declares contract tokens (set them in themes.css): ' + [...new Set(outside)].join(', ')) : ok('styles.css declares no contract token');
+  weakPrint.length ? bad('print palette tokens without !important lose to the theme blocks: ' + [...new Set(weakPrint)].join(', ')) : ok('print palette overrides the themes');
+  variants ? bad(`styles.css has ${variants} [data-variant] selector(s): there is one site, not variants`) : ok('no variant selectors');
+}
+
 /* the heading face each theme uses must be preloaded for it (index.html HEAD
    map), or it swaps in after first paint and shifts the hero */
 const idx = read('index.html');

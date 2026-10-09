@@ -36,7 +36,7 @@
    rules are where the per-theme type, glow and kicker node are read;
    nothing in this file names a theme.
    ============================================================ */
-html[dir="ltr"] :is(.hero-h,h2.sec,.contact h2,.mobile-menu a,.sb-txt b,.offer-band h2){
+html[dir="ltr"] :is(.hero-h,h2.sec,.contact h2,.mobile-menu a,.sb-txt b){
   font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking)}
 html[dir="ltr"] .hero-h{font-size:var(--hero-fs);line-height:var(--hero-lh)}
 html[dir="ltr"] :is(.hero-h .swash,.contact h2 em){font-family:var(--font-head-em);font-weight:var(--head-weight);padding-right:.06em}
@@ -870,100 +870,6 @@ main.wrap>section h2.sec em{color:var(--crimson-text)}
 
 
 /* ============================================================
-   A/B/C VARIANTS — one stylesheet, three deployments.
-   [data-variant] is set on <html> before first paint by the inline
-   script in index.html (a=Pages, b=Vercel, c=Netlify).
-   ============================================================ */
-
-/* variant-gated markup: present in the HTML, shown only on its variant,
-   so it survives JS being disabled and needs no DOM injection */
-[data-variant-only]{display:none}
-
-/* ---- VARIANT B — editorial light ----
-   Hypothesis: a bright, conventional, "serious company" surface reads as
-   more trustworthy to local businesses than a dark atmospheric one.
-   Light and orderly, but not bare: the murky dark-room texture (film grain,
-   honeycomb) comes off and is replaced by architectural structure — a drafting
-   grid, brand-tinted washes, accent rules and colour-tinted elevation.      */
-:root[data-variant="b"]{--r-sm:8px;--r-md:12px;--r-lg:16px}
-[data-variant="b"] html::after{display:none}              /* film grain: off */
-
-/* drafting grid instead of the honeycomb — architectural, fades toward the fold */
-[data-variant="b"] body::after{opacity:1;background-size:104px 104px;
-  background-image:linear-gradient(color-mix(in srgb,var(--hairline-2) 55%,transparent) 1px,transparent 1px),
-    linear-gradient(90deg,color-mix(in srgb,var(--hairline-2) 55%,transparent) 1px,transparent 1px);
-  -webkit-mask-image:linear-gradient(180deg,#000 0,transparent 62%);
-  mask-image:linear-gradient(180deg,#000 0,transparent 62%)}
-[data-variant="b"] body::before{opacity:.75}
-
-/* hero keeps a wash, re-tinted to the brand and calmed for a light surface */
-[data-variant="b"] .hero-mesh{display:block;opacity:.55}
-[data-variant="b"] .hero-mesh .m1{background:radial-gradient(circle,color-mix(in srgb,var(--crimson) 26%,transparent),transparent 66%)}
-[data-variant="b"] .hero-mesh .m2{background:radial-gradient(circle,color-mix(in srgb,var(--teal) 26%,transparent),transparent 66%)}
-
-/* section labels become tinted pills; headings get an accent rule */
-[data-variant="b"] .kicker{display:inline-flex;align-items:center;gap:0;padding:6px 13px;border-radius:100px;
-  background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal-text);letter-spacing:.14em}
-[data-variant="b"] .kicker::before,[data-variant="b"] .kicker::after{display:none}
-[data-variant="b"] h2.sec,[data-variant="b"] .contact h2{position:relative;padding-bottom:20px}
-[data-variant="b"] h2.sec::after,[data-variant="b"] .contact h2::after{content:"";position:absolute;bottom:0;
-  inset-inline-start:0;width:76px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--teal),var(--crimson))}
-
-/* elevation: colour-tinted and soft, the way light surfaces actually shade */
-[data-variant="b"] .proj,[data-variant="b"] .svc-row,[data-variant="b"] .preview,
-[data-variant="b"] .faq-item,[data-variant="b"] .founder-card{background-image:none;
-  box-shadow:0 1px 2px color-mix(in srgb,var(--hairline-2) 40%,transparent),
-             0 16px 32px -24px color-mix(in srgb,var(--hairline-2) 90%,transparent)}
-[data-variant="b"] .proj:hover,[data-variant="b"] .svc-row:hover{
-  border-color:color-mix(in srgb,var(--teal) 55%,transparent);
-  box-shadow:0 2px 4px color-mix(in srgb,var(--hairline-2) 45%,transparent),
-             0 26px 48px -26px color-mix(in srgb,var(--teal) 55%,transparent)}
-
-/* service cards get a brand edge that lights up on hover */
-[data-variant="b"] .svc-row{position:relative;overflow:hidden}
-[data-variant="b"] .svc-row::before{content:"";position:absolute;top:0;inset-inline-start:0;width:100%;height:3px;
-  background:linear-gradient(90deg,var(--teal),color-mix(in srgb,var(--crimson) 70%,transparent));
-  transform:scaleX(0);transform-origin:left center;transition:transform var(--dur-base) var(--ease-out)}
-html[dir="rtl"] [data-variant="b"] .svc-row::before{transform-origin:right center}
-[data-variant="b"] .svc-row:hover::before{transform:scaleX(1)}
-[data-variant="b"] .svc-row:hover::after{opacity:0}   /* the dark-theme glow border stays off */
-[data-variant="b"] .glyph{border-color:color-mix(in srgb,var(--teal) 40%,transparent);
-  background:color-mix(in srgb,var(--teal) 7%,transparent)}
-
-/* separators + bands: quiet structure rather than a glowing seam */
-[data-variant="b"] main.wrap>section+section::before{
-  background:linear-gradient(90deg,transparent,var(--hairline-2) 20%,var(--hairline-2) 80%,transparent)}
-[data-variant="b"] section.band::after{background:color-mix(in srgb,var(--teal) 4%,transparent);
-  box-shadow:0 0 0 100vmax color-mix(in srgb,var(--teal) 4%,transparent)}
-
-[data-variant="b"] .contact::before{opacity:.6}
-[data-variant="b"] .channels .ch{border-color:var(--hairline-2)}
-@media(prefers-reduced-motion:reduce){[data-variant="b"] .svc-row::before{transition:none}}
-
-/* ---- VARIANT C — offer-first: the signature offer leads the page ----
-   Hypothesis: a concrete, risk-free offer ("we build the demo before you
-   pay") converts better than a craft-and-proof narrative.               */
-[data-variant="c"] .offer-band{display:flex;align-items:center;gap:clamp(13px, 5.33px + 2.13vw, 36px);
-  margin:0 0 var(--s-6);padding:clamp(17px, 12.67px + 1.2vw, 30px) clamp(17px, 10px + 1.94vw, 38px);
-  border:1px solid color-mix(in srgb,var(--crimson) 40%,transparent);border-radius:var(--r-lg);
-  background:linear-gradient(120deg,color-mix(in srgb,var(--navy) 92%,transparent),color-mix(in srgb,var(--plum) 55%,transparent));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 60px -40px rgb(var(--shade) / calc(.9 * var(--shade-k)))}
-.ob-mark{flex:none;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;
-  border:1px solid color-mix(in srgb,var(--crimson) 50%,transparent);color:var(--crimson-hi);font-size:17px}
-.ob-txt{flex:1;min-width:0}
-.ob-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson-text)}
-.offer-band h2{font-family:var(--font-display);font-weight:600;font-size:clamp(19px, 15.33px + 1.02vw, 30px);margin:6px 0 4px;letter-spacing:-.01em}
-html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
-.ob-promise{font-size:17px;color:var(--teal-text);font-weight:600;margin-bottom:6px}
-.ob-brief{font-size:14px;color:var(--muted);line-height:1.55;max-width:42.432em}
-.ob-cta{flex:none;white-space:nowrap}
-[data-variant="c"] .offer-band + section{padding-top:var(--s-7)}
-@media(max-width:820px){
-  [data-variant="c"] .offer-band{flex-direction:column;align-items:flex-start}
-  .ob-cta{width:100%;justify-content:center}
-}
-
-/* ============================================================
    AMBIENT DEPTH — parallax · staggered reveal
    Motion here is deliberately slower than it feels natural to write:
    the point is a page that settles rather than reacts.
@@ -1613,7 +1519,9 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
 /* ═══ print ═══ Someone printing a quote or the contact block should not get
    nine pages of navy. Decoration off, ink-safe palette, everything revealed. */
 @media print{
-  :root{--void:#fff;--navy:#fff;--plum:#fff;--ice:#000;--body-strong:#111;--muted:#333;--faint:#555;--hairline:#bbb;--hairline-2:#888}
+  /* !important: the theme blocks are :root[data-theme] (0,2,0) and would win */
+  :root{--void:#fff!important;--navy:#fff!important;--plum:#fff!important;--ice:#000!important;--body-strong:#111!important;
+    --muted:#333!important;--faint:#555!important;--hairline:#bbb!important;--hairline-2:#888!important}
   body{background:#fff!important;color:#000!important}
   body::before,body::after,html::after,.floaters,.hero-mesh,.progress,.skip,.nav-right,.theme-menu,.mobile-menu,.menu-toggle,.sheet-frame,.browser{display:none!important}
   .faq-fig{display:none!important}
@@ -2089,7 +1997,6 @@ html[dir="rtl"] .crumb{letter-spacing:0}
   --sec-pad:clamp(72px,7vw,112px);
   --band-fade:clamp(56px,8vw,120px);
 }
-[data-variant="b"]{--r-lg:var(--r-md)}
 
 /* labels */
 .kicker,.eyebrow,.tag,.svc-row .fam,.cap .fam,.t-pop,.md-tag,.md-sub,.eo-k,.est-hint,
