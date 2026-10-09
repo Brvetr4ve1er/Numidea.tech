@@ -34,7 +34,7 @@ export const CONTRACT = [
   // atmosphere
   'atmos', 'grid-color', 'grid-opacity', 'grid-size', 'ink-k',
   // surfaces
-  'nav-glass', 'glass', 'field-bg', 'scrim', 'cover-shadow',
+  'nav-glass', 'glass', 'field-bg', 'cover-shadow',
   // type
   'font-head', 'font-head-em', 'head-weight', 'head-tracking',
   'font-logo', 'logo-weight', 'logo-tracking', 'hero-fs', 'hero-fs-wide', 'hero-lh',

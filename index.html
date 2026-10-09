@@ -61,10 +61,10 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202610091330">
+<link rel="stylesheet" href="assets/fonts.css?v=202610091332">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="assets/themes.css?v=202610091330">
-<link rel="stylesheet" href="assets/styles.css?v=202610091330">
+<link rel="stylesheet" href="assets/themes.css?v=202610091332">
+<link rel="stylesheet" href="assets/styles.css?v=202610091332">
 <!-- "Engineering" is a whole design system rather than a palette, so it ships as
      an alternate sheet. href is EMPTY on purpose and is set by the resolver below
      only when that theme is active. A `media="not all"` sheet is still downloaded
@@ -274,19 +274,19 @@
         <div class="plate-meta">
           <span class="pm-idx" aria-hidden="true"><b>01</b>/05</span>
           <span class="pm-rot">
-        <a class="pm-item on" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer">
+        <a class="pm-item on" data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>Bordj Steel</b><i data-i18n="proj4.cat">Industrie · B2B</i>
         </a>
-        <a class="pm-item" href="https://glaivestore.netlify.app" target="_blank" rel="noopener noreferrer">
+        <a class="pm-item" data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>Glaive Store</b><i data-i18n="proj7.cat">Commerce · Gaming</i>
         </a>
-        <a class="pm-item" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer">
+        <a class="pm-item" data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>Alliance Travel</b><i data-i18n="proj2.cat">Voyage · Croissance</i>
         </a>
-        <a class="pm-item" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer">
+        <a class="pm-item" data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>Nomara Voyages</b><i data-i18n="proj6.cat">Voyage · Omra</i>
         </a>
-        <a class="pm-item" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer">
+        <a class="pm-item" data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>AlmaFlowClim</b><i data-i18n="proj3.cat">Industrie · Web</i>
         </a>
           </span>
@@ -384,7 +384,7 @@
           <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, leader de la construction métallique en Algérie — catalogue produits, références et espace recrutement.</p>
           <div class="pills"><span class="pill">B2B</span><span class="pill">Corporate</span><span class="pill live">Live</span></div>
           <div class="actions">
-            <a href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+            <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
           </div>
         </div>
       </article>
@@ -397,7 +397,7 @@
           <p data-i18n="proj2.desc">Marque, funnel et stratégie de marché pour une agence de BBA dans la bataille des visas Schengen.</p>
           <div class="pills"><span class="pill">Brand</span><span class="pill">Funnel</span><span class="pill live">Live</span></div>
           <div class="actions">
-            <a href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+            <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
           </div>
         </div>
       </article>
@@ -410,7 +410,7 @@
           <p data-i18n="proj3.desc">Une présence statique nette, conçue pour convertir les demandes de devis.</p>
           <div class="pills"><span class="pill">Static</span><span class="pill">SEO</span><span class="pill live">Live</span></div>
           <div class="actions">
-            <a href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+            <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
           </div>
         </div>
       </article>
@@ -423,7 +423,7 @@
           <p data-i18n="proj6.desc">Une vitrine bilingue pour des voyages organisés et l'Omra au départ de Constantine.</p>
           <div class="pills"><span class="pill">Bilingue</span><span class="pill">SEO</span><span class="pill live">Live</span></div>
           <div class="actions">
-            <a href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+            <a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
           </div>
         </div>
       </article>
@@ -436,7 +436,7 @@
           <p data-i18n="proj7.desc">Une boutique de matériel gaming au branding affûté, pensée pour la conversion.</p>
           <div class="pills"><span class="pill">Commerce</span><span class="pill">Brand</span><span class="pill" data-i18n="work.concept">Démo portfolio</span></div>
           <div class="actions">
-            <a href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
+            <a data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Démo →</a>
           </div>
         </div>
       </article>
@@ -479,13 +479,6 @@
     </a>
 
   </section>
-
-  <!-- ================= PROJECT EXPLORER ================= -->
-  <!-- The portfolio explorer used to live here, inside <section id="work">.
-       Both .wrap and section carry z-index:1, which caps every descendant's
-       stacking — so the dialog's z-index:300 lost to the navbar's 100 and the
-       nav links intercepted clicks through it. Overlays must be body children. -->
-
 
   <!-- ================= SERVICES ================= -->
   <section id="services" class="band" aria-labelledby="svc-h">
@@ -1134,48 +1127,6 @@
   </div>
 </footer>
 
-<!-- ===== PORTFOLIO EXPLORER (body-level overlay: see note in #work) ===== -->
-<div class="modal" id="portfolio-modal" role="dialog" aria-modal="true" aria-labelledby="portfolio-title" hidden>
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-panel" role="document">
-
-      <!-- browse view -->
-      <div class="explorer" id="explorer-browse">
-        <div class="modal-head">
-          <div>
-            <span class="kicker" data-parallax=".035" data-i18n="portfolio.kicker">Portfolio</span>
-            <h2 id="portfolio-title" class="font-swap-display" data-i18n="portfolio.title">Tout le <em>travail.</em></h2>
-          </div>
-          <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
-        </div>
-        <div class="modal-controls">
-          <label class="modal-search">
-            <span class="sr-only" data-i18n="portfolio.searchLabel">Rechercher un projet</span>
-            <input type="search" id="portfolio-search" data-i18n-ph="portfolio.searchPh" placeholder="Rechercher…" autocomplete="off">
-          </label>
-          <div class="modal-filters" id="portfolio-filters" role="group" aria-label="Catégories"></div>
-        </div>
-        <p class="explorer-count" id="explorer-count" aria-live="polite"></p>
-        <div class="modal-grid" id="portfolio-grid"></div>
-        <p class="modal-empty" id="portfolio-empty" hidden data-i18n="portfolio.empty">Aucun projet ne correspond — essayez un autre terme.</p>
-      </div>
-
-      <!-- detail (case study) view -->
-      <div class="explorer-detail" id="explorer-detail" hidden>
-        <div class="detail-head">
-          <button type="button" class="detail-back" id="detail-back"><span aria-hidden="true">←</span> <span data-i18n="portfolio.back">Tous les projets</span></button>
-          <button type="button" class="modal-close" data-close data-i18n-aria="portfolio.close" aria-label="Fermer">×</button>
-        </div>
-        <div class="detail-body" id="detail-body"></div>
-        <nav class="detail-nav" aria-label="Projets">
-          <button type="button" class="detail-prev" id="detail-prev"></button>
-          <button type="button" class="detail-next" id="detail-next"></button>
-        </nav>
-      </div>
-
-    </div>
-  </div>
-
 <!-- Lead-capture config (Supabase). Empty until the project exists — the
      form falls back to mailto-only until these are filled in. Only the
      publishable/anon key ever goes here: it's designed to be public, and
@@ -1184,7 +1135,7 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202610091330" defer></script>
+<script src="assets/app.js?v=202610091332" defer></script>
 <!-- FAQ structured data (rich results); mirrors the French default render -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

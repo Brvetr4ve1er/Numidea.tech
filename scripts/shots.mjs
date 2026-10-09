@@ -24,15 +24,15 @@ import { dirname, join } from 'node:path';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'assets', 'previews');
 
-// slug → live URL (null = not live yet → keep the abstract cover)
+// preview file → { capture: URL screenshotted, client: data-client slug on the
+// main page (the plate and card links carry it; check.mjs keeps them in step) }.
+// capture stays on the netlify build even if a card links a production domain.
 const PROJECTS = {
-  bordjsteel:     'https://bordjsteelb2b.netlify.app',
-  almaflowclim:   'https://almaflowclim.netlify.app',
-  alliancetravel: 'https://alliancetravel34.netlify.app',
-  nomara:         'https://nomaravoyages.netlify.app',
-  glaive:         'https://glaivestore.netlify.app',
-  doctorcherfia:  null, // not deployed yet
-  etoileest:      null, // not deployed yet
+  bordjsteel:     { capture: 'https://bordjsteelb2b.netlify.app',    client: 'bordjsteel' },
+  almaflowclim:   { capture: 'https://almaflowclim.netlify.app',     client: 'almaflow' },
+  alliancetravel: { capture: 'https://alliancetravel34.netlify.app', client: 'alliance' },
+  nomara:         { capture: 'https://nomaravoyages.netlify.app',    client: 'nomara' },
+  glaive:         { capture: 'https://glaivestore.netlify.app',      client: 'glaive' },
 };
 
 const W = 1280, H = 800; // 16:10, matches .proj .thumb aspect-ratio
@@ -42,7 +42,8 @@ const only = process.argv[2];
 async function run() {
   await mkdir(OUT, { recursive: true });
   const targets = Object.entries(PROJECTS)
-    .filter(([slug, url]) => url && (!only || slug === only));
+    .filter(([slug]) => !only || slug === only)
+    .map(([slug, p]) => [slug, p.capture]);
 
   if (!targets.length) { console.log('Nothing to capture (no live URLs match).'); return; }
 
@@ -54,7 +55,6 @@ async function run() {
     viewport: { width: W, height: H },
     deviceScaleFactor: 2,            // retina capture, downscaled on output
     colorScheme: 'light',
-    ignoreHTTPSErrors: !!process.env.HTTPS_PROXY,
   });
 
   for (const [slug, url] of targets) {

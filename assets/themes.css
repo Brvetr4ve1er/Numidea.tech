@@ -39,7 +39,7 @@
     radial-gradient(80% 70% at 50% 112%,rgba(15,40,64,.6),transparent 70%);
   --grid-color:rgba(230,180,80,.5); --grid-opacity:.07; --grid-size:64px; --ink-k:1;
   --nav-glass:rgba(10,20,32,.78); --glass:rgba(23,54,79,.35); --field-bg:rgba(10,20,32,.6);
-  --scrim:rgba(5,12,24,.74); --cover-shadow:0 14px 40px rgba(0,0,0,.5);
+  --cover-shadow:0 14px 40px rgba(0,0,0,.5);
   --font-head:var(--font-deco); --font-head-em:var(--font-deco-dec); --head-weight:700; --head-tracking:.01em;
   --font-logo:var(--font-deco); --logo-weight:700; --logo-tracking:.04em;
   --hero-fs:clamp(27px,12.67px + 3.98vw,70px); --hero-fs-wide:clamp(46px,4.9vw,92px); --hero-lh:1.03;
@@ -65,7 +65,7 @@
     radial-gradient(90% 70% at 50% 115%,rgba(0,0,0,.75),transparent 70%);
   --grid-color:var(--muted); --grid-opacity:.035; --grid-size:64px; --ink-k:.85;
   --nav-glass:rgba(11,11,14,.8); --glass:rgba(20,20,24,.6); --field-bg:rgba(11,11,14,.7);
-  --scrim:rgba(0,0,0,.78); --cover-shadow:0 14px 40px rgba(0,0,0,.6);
+  --cover-shadow:0 14px 40px rgba(0,0,0,.6);
   --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:700; --head-tracking:-.035em;
   --font-logo:var(--font-display); --logo-weight:700; --logo-tracking:-.02em;
   --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.97;
@@ -91,7 +91,7 @@
     radial-gradient(50% 40% at 0% 28%,rgba(14,110,120,.07),transparent 70%);
   --grid-color:var(--ice); --grid-opacity:.045; --grid-size:64px; --ink-k:.6;
   --nav-glass:rgba(246,243,236,.82); --glass:rgba(255,255,255,.6); --field-bg:rgba(255,255,255,.9);
-  --scrim:rgba(21,24,29,.45); --cover-shadow:none;
+  --cover-shadow:none;
   --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:600; --head-tracking:-.03em;
   --font-logo:var(--font-display); --logo-weight:600; --logo-tracking:-.015em;
   --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.98;
@@ -116,7 +116,7 @@
   --atmos:radial-gradient(60% 40% at 50% -10%,rgba(255,255,255,.06),transparent 70%);
   --grid-color:var(--ice); --grid-opacity:.04; --grid-size:64px; --ink-k:.55;
   --nav-glass:rgba(10,10,10,.82); --glass:rgba(20,20,20,.6); --field-bg:rgba(10,10,10,.7);
-  --scrim:rgba(0,0,0,.8); --cover-shadow:0 14px 40px rgba(0,0,0,.6);
+  --cover-shadow:0 14px 40px rgba(0,0,0,.6);
   --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:500; --head-tracking:-.035em;
   --font-logo:var(--font-display); --logo-weight:600; --logo-tracking:-.02em;
   --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.97;
@@ -143,7 +143,7 @@
     radial-gradient(80% 60% at 50% 115%,rgba(40,15,80,.75),transparent 70%);
   --grid-color:rgba(62,230,255,.7); --grid-opacity:.06; --grid-size:48px; --ink-k:1;
   --nav-glass:rgba(12,7,22,.8); --glass:rgba(30,18,54,.55); --field-bg:rgba(12,7,22,.65);
-  --scrim:rgba(6,3,12,.8); --cover-shadow:0 14px 40px rgba(0,0,0,.55);
+  --cover-shadow:0 14px 40px rgba(0,0,0,.55);
   --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:700; --head-tracking:-.025em;
   --font-logo:var(--font-display); --logo-weight:700; --logo-tracking:-.01em;
   --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.97;
@@ -168,7 +168,7 @@
   --atmos:radial-gradient(50% 35% at 50% -5%,rgba(255,91,31,.07),transparent 70%);
   --grid-color:var(--muted); --grid-opacity:.09; --grid-size:32px; --ink-k:.8;
   --nav-glass:rgba(14,16,18,.86); --glass:rgba(21,24,27,.7); --field-bg:rgba(14,16,18,.75);
-  --scrim:rgba(0,0,0,.78); --cover-shadow:0 14px 40px rgba(0,0,0,.55);
+  --cover-shadow:0 14px 40px rgba(0,0,0,.55);
   --font-head:var(--font-display); --font-head-em:var(--font-display); --head-weight:600; --head-tracking:-.03em;
   --font-logo:var(--font-display); --logo-weight:600; --logo-tracking:-.02em;
   --hero-fs:clamp(31px,13.33px + 4.91vw,84px); --hero-fs-wide:clamp(52px,5.6vw,104px); --hero-lh:.97;

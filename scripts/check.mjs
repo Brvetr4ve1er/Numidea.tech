@@ -7,7 +7,7 @@
  *   2. i18n coverage  — every data-i18n* attribute resolves to a key
  *   3. assets         — every local src/href on every page exists on disk
  *   4. stamp sync     — all ?v= cache-bust stamps are identical across pages
- *   5. URL sync       — project URLs agree across app.js / shots; the showcase uses only those; none on hub/
+ *   5. client links   — data-client links agree (plate, card, browser bar, shots, showcase); none on hub/
  *   6. deploy coverage — the published set (scripts/site.mjs DEPLOY) exists, every
  *                        page folder is classified, and deployed pages link only to
  *                        deployed files (nothing points into knowledge-base/, scripts/…)
@@ -96,19 +96,36 @@ stamps.size > 1
   ? bad('cache-bust stamps diverge: ' + [...stamps].join(' vs ') + '  (run: npm run bump)')
   : ok(`cache-bust stamp uniform (${[...stamps][0] || 'none'})`);
 
-/* 5 — project URLs agree across every source. The hub is the artist's page
-   and deliberately lists NO client sites (they live on the Numidea page), so
-   it is checked for the opposite: any project URL appearing there fails. */
-const urlsOf = (s) => new Set([...s.matchAll(/https:\/\/[a-z0-9.-]+\.netlify\.app/g)].map((m) => m[0]));
-const a = urlsOf(app), c = urlsOf(read('scripts/shots.mjs'));
-// the showcase is a selection: every URL it uses must be one the main page knows
-const b = urlsOf(read('scripts/scene-data.mjs'));
-const d = urlsOf(read('hub/index.html').replace(/<!--[\s\S]*?-->/g, ''));
-const drift = [...new Set([...a, ...c])].filter((u) => !(a.has(u) && c.has(u)));
-const stray = [...b].filter((u) => !a.has(u));
-drift.length ? bad('project URL drift across app.js/shots: ' + drift.join(', ')) : ok('project URLs in sync across app.js/shots');
-stray.length ? bad('showcase uses URLs the main page does not list: ' + stray.join(', ')) : ok('showcase URLs all listed on the main page');
-d.size ? bad('client sites listed on the hub (it is the artist\'s page): ' + [...d].join(', ')) : ok('hub lists no client sites');
+/* 5 — client links agree everywhere. index.html is the source: every link to
+   a client site carries data-client="<slug>" (hero plate + work card). The plate
+   and the card must point at the same URL, the card's fake browser bar must name
+   that host, scripts/shots.mjs must cover the same clients, the showcase may
+   only use those URLs, and the hub (the artist's page) lists none of them. */
+const clientHref = {};
+const tagDrift = [];
+for (const m of html.matchAll(/<a\b[^>]*\bdata-client="([a-z0-9-]+)"[^>]*>/g)) {
+  const href = (/\bhref="([^"]+)"/.exec(m[0]) || [])[1];
+  if (!href) { tagDrift.push(`${m[1]}: link without href`); continue; }
+  if (clientHref[m[1]] && clientHref[m[1]] !== href) tagDrift.push(`${m[1]}: ${clientHref[m[1]]} vs ${href}`);
+  clientHref[m[1]] ||= href;
+}
+for (const art of html.split(/<article\b/).slice(1)) {
+  const bar = (/class="browser"[^>]*>(?:<i><\/i>)*<span>([^<]+)<\/span>/.exec(art) || [])[1];
+  const link = /<a\b[^>]*\bdata-client="([a-z0-9-]+)"/.exec(art);
+  if (bar && link && new URL(clientHref[link[1]]).host !== bar) tagDrift.push(`${link[1]}: browser bar "${bar}" vs ${clientHref[link[1]]}`);
+}
+const shotClients = new Set([...read('scripts/shots.mjs').matchAll(/client:\s*'([a-z0-9-]+)'/g)].map((m) => m[1]));
+const pageClients = new Set(Object.keys(clientHref));
+const shotDrift = [...new Set([...shotClients, ...pageClients])].filter((c) => !(shotClients.has(c) && pageClients.has(c)));
+const known = new Set(Object.values(clientHref));
+const stray = [...read('scripts/scene-data.mjs').matchAll(/url:\s*'(https:[^']+)'/g)].map((m) => m[1]).filter((u) => !known.has(u));
+const captureHosts = [...read('scripts/shots.mjs').matchAll(/capture:\s*'https:\/\/([^'/]+)/g)].map((m) => m[1]);
+const hub = read('hub/index.html').replace(/<!--[\s\S]*?-->/g, '');
+const onHub = [...new Set([...Object.values(clientHref).map((u) => new URL(u).host), ...captureHosts])].filter((h) => hub.includes(h));
+tagDrift.length ? bad('client links disagree: ' + tagDrift.join('; ')) : ok(`client links agree across plate, cards and browser bars (${pageClients.size} clients)`);
+shotDrift.length ? bad('scripts/shots.mjs and the page cover different clients: ' + shotDrift.join(', ')) : ok('screenshot pipeline covers exactly the linked clients');
+stray.length ? bad('showcase uses URLs the main page does not link: ' + stray.join(', ')) : ok('showcase URLs all linked from the main page');
+onHub.length ? bad("client sites listed on the hub (it is the artist's page): " + onHub.join(', ')) : ok('hub lists no client sites');
 
 /* 6 — deploy coverage */
 const deployMissing = DEPLOY.filter((e) => !existsSync(join(ROOT, e)));

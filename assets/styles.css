@@ -405,7 +405,6 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .proj .actions a:hover{border-color:var(--teal);color:var(--teal-text)}
 .proj .actions .soon{font-family:var(--font-mono);font-size:11px;padding:6px 12px;border:1px dashed var(--hairline-2);border-radius:var(--r-pill);color:var(--faint);display:inline-flex;align-items:center;gap:7px}
 .proj .actions .soon::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--faint)}
-.pill.soon{color:var(--faint);border-style:dashed}
 
 /* ---------- project previews ---------- */
 /* committed screenshots (live sites) */
@@ -785,97 +784,13 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
 .faq-a p{max-width:42.432em}
 @media (prefers-reduced-motion:reduce){.faq-mark::before,.faq-mark::after{transition:none}}
 
-/* ---------- portfolio modal ---------- */
-.modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:var(--gutter)}
-.modal[hidden]{display:none}
-.modal-backdrop{position:absolute;inset:0;background:var(--scrim);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.modal-panel{position:relative;width:min(1040px,100%);max-height:88dvh;overflow:auto;background:var(--grad-noir);border:1px solid var(--hairline-2);border-radius:var(--r-lg);padding:var(--s-7);box-shadow:0 40px 120px -30px rgb(var(--shade) / calc(.8 * var(--shade-k)));animation:modal-in var(--dur-base) var(--ease-out)}
-@keyframes modal-in{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
-.modal-head .kicker{margin-bottom:6px}
-.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s-5);margin-bottom:var(--s-6)}
-.modal-head h2{font-family:var(--font-display);font-weight:600;font-size:clamp(21.8px, 14.4px + 2.06vw, 44px);letter-spacing:-.02em;line-height:1.02}
-.modal-head h2 em{font-family:var(--font-swash);font-style:normal;color:var(--teal-text)}
-html[dir="rtl"] .modal-head h2{font-family:var(--font-ar-display)}
-html[dir="rtl"] .modal-head h2 em{font-family:var(--font-ar-display);font-style:normal}
-.modal-close{flex:none;width:42px;height:42px;border-radius:var(--r-sm);border:1px solid var(--hairline-2);background:transparent;color:var(--ice);font-size:24px;line-height:1;cursor:pointer;transition:all var(--dur-fast)}
-.modal-close:hover{border-color:var(--crimson);color:var(--crimson-hi)}
-.modal-controls{display:flex;flex-wrap:wrap;gap:var(--s-4);align-items:center;margin-bottom:var(--s-6)}
-.modal-search{flex:1 1 240px}
-.modal-search input{width:100%;background:var(--field-bg);border:1px solid var(--hairline-2);border-radius:var(--r-sm);padding:11px 16px;color:var(--ice);font-family:var(--font-body);font-size:15px;transition:all var(--dur-fast)}
-.modal-search input:focus{outline:none;border-color:var(--teal);box-shadow:var(--glow-teal)}
-.modal-search input::placeholder{color:var(--faint)}
-.modal-filters{display:flex;flex-wrap:wrap;gap:8px}
-.filter-chip{font-family:var(--font-mono);font-size:11px;padding:6px 12px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted);background:var(--navy);cursor:pointer;transition:all var(--dur-fast)}
-.filter-chip:hover{color:var(--ice);border-color:var(--hairline-2)}
-.filter-chip[aria-pressed="true"]{color:var(--on-teal);background:var(--teal);border-color:var(--teal)}
-.filter-chip .ct{opacity:.6;margin-left:6px}
-html[dir="rtl"] .filter-chip .ct{margin-left:0;margin-right:6px}
-.modal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--s-5)}
-.modal-grid .proj{opacity:1;transform:none}
-/* explorer cards are anchors (whole card links to the case-study view) */
-.modal-grid a.proj{text-decoration:none;color:inherit;cursor:pointer;display:block}
-.proj-cta{display:inline-block;margin-top:var(--s-3);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--teal-text)}
-/* --brand is an RGB triplet set inline per card (rgb(var(--brand))). It used
-   to be called --accent, which collided with Engineering's whole-colour --accent:
-   inside a card its :focus-visible outline became `2px solid 95,214,134` —
-   invalid — and the project links had no focus ring at all. */
-.proj--brand .proj-cta{color:rgb(var(--brand))}
-.modal-empty{text-align:center;color:var(--muted);font-family:var(--font-mono);font-size:13px;padding:var(--s-8) 0}
-.explorer-count{font-family:var(--font-mono);font-size:12px;color:var(--faint);margin:0 0 var(--s-5)}
-body.modal-open{overflow:hidden}
-
-/* ---------- explorer: case-study detail view ---------- */
-.detail-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);margin-bottom:var(--s-6)}
-.detail-back{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid var(--hairline-2);border-radius:var(--r-pill);
-  color:var(--muted);font-family:var(--font-mono);font-size:12px;padding:8px 14px;cursor:pointer;transition:all var(--dur-fast)}
-.detail-back:hover{color:var(--ice);border-color:var(--teal)}
-.detail-body{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:var(--s-7);align-items:start}
-.detail-shot-wrap{position:relative;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--hairline);aspect-ratio:16/10;background:var(--navy);
-  box-shadow:0 30px 60px -34px rgb(var(--shade) / calc(.9 * var(--shade-k)))}
-.detail-shot-wrap .browser{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:5px;padding:9px 12px;background:color-mix(in srgb,var(--void) 50%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
-.detail-shot-wrap .browser i{width:8px;height:8px;border-radius:50%;background:color-mix(in srgb,var(--ice) 45%,transparent)}
-.detail-shot-wrap .browser span{font-family:var(--font-mono);font-size:11px;color:color-mix(in srgb,var(--ice) 85%,transparent);margin-left:8px;letter-spacing:.03em}
-.detail--brand .detail-shot-wrap .browser span{color:rgba(var(--brand),.96)}
+/* ---------- work thumbnails: crop anchors ---------- */
 /* The thumbnail is overscanned to 124% for the parallax drift, so cover crops
    ~42px off each side. Centred, that cut every left-aligned headline mid-word
    ("e monde, uidé et rganisé"); anchored to where a site's logo and headline
    live, the whole crop lands on empty space. The RTL site anchors right. */
 .proj .shot[src*="nomara"]{object-position:top right}
 .proj .shot[src*="bordjsteel"]{object-position:top center}   /* its headline is centred */
-.detail-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:1}
-.detail-art{display:grid;place-items:center;background:var(--grad-noir)}
-.detail-art .cover{font-family:var(--font-display);font-weight:600;font-size:clamp(17px, 12.67px + 1.2vw, 30px);color:var(--ice)}
-html[dir="rtl"] .detail-art .cover{font-family:var(--font-ar-display)}
-.detail-info .cat{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-text);display:block;margin-bottom:var(--s-3)}
-.detail--brand.detail-info .cat{color:color-mix(in srgb,rgb(var(--brand)) 55%,var(--ice))}
-.detail-info h3{font-family:var(--font-display);font-weight:600;font-size:clamp(22px, 16px + 1.67vw, 40px);letter-spacing:-.02em;margin-bottom:var(--s-4);outline:none}
-html[dir="rtl"] .detail-info h3{font-family:var(--font-ar-display)}
-.detail-overview{font-size:16px;color:var(--muted);line-height:1.65;max-width:37.128em;margin-bottom:var(--s-4)}
-.detail-info .pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--s-5)}
-.detail-actions{margin-bottom:var(--s-6)}
-.detail-soon{font-family:var(--font-mono);font-size:12px;color:var(--faint);border:1px dashed var(--hairline-2);border-radius:var(--r-pill);padding:10px 16px;display:inline-flex;align-items:center;gap:8px}
-.detail-soon::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--faint)}
-.detail-story{display:grid;gap:var(--s-5);border-top:1px solid var(--hairline);padding-top:var(--s-6)}
-.detail-sec h4{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson-text);margin-bottom:8px}
-.detail-sec p{font-size:15px;color:var(--ice);line-height:1.6;max-width:39.78em}
-.detail-nav{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-4);margin-top:var(--s-8);border-top:1px solid var(--hairline);padding-top:var(--s-6)}
-.detail-prev,.detail-next{display:flex;flex-direction:column;gap:4px;background:var(--navy);border:1px solid var(--hairline);border-radius:var(--r-md);
-  padding:var(--s-4) var(--s-5);cursor:pointer;transition:border-color var(--dur-base);text-align:left}
-.detail-next{text-align:right;align-items:flex-end}
-.detail-prev:hover,.detail-next:hover{border-color:var(--teal)}
-.detail-nav .dn-dir{font-family:var(--font-mono);font-size:11px;color:var(--faint);letter-spacing:.06em}
-.detail-nav .dn-name{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ice)}
-html[dir="rtl"] .detail-prev{text-align:right;align-items:flex-end}
-html[dir="rtl"] .detail-next{text-align:left;align-items:flex-start}
-@media(max-width:720px){
-  .detail-body{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
-  .detail-nav{grid-template-columns:minmax(0,1fr)}
-  .detail-next{text-align:left;align-items:flex-start}
-  /* ...but not in Arabic: this rule sits after the [dir=rtl] pair above, so it
-     was flipping "next" back against the reading direction on RTL mobile. */
-  html[dir="rtl"] .detail-next{text-align:right;align-items:flex-end}
-  html[dir="rtl"] .detail-prev{text-align:left;align-items:flex-start}
-}
 
 /* ---------- reveal-on-scroll ---------- */
 .svc-row .promise,.preview .promise,.cap .promise{font-weight:600;letter-spacing:-.01em}
@@ -1355,8 +1270,6 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .mobile-menu{gap:var(--s-3);justify-content:safe flex-start}
   .mobile-menu a{font-size:clamp(20px,6.4vh,32px)}
   .mobile-menu .close{top:10px;right:10px}
-  .modal{padding:var(--s-3)}
-  .modal-panel{max-height:94dvh;padding:var(--s-5)}
 }
 
 /* ============================================================
@@ -1405,7 +1318,6 @@ html[dir="rtl"] .offer-band h2{font-family:var(--font-ar-display)}
   .footer nav a{min-height:44px;display:inline-flex;align-items:center;padding-inline:6px}
   .contact .ch dd a{min-height:44px;display:inline-flex;align-items:center}
   .logo{min-height:44px;display:inline-flex;align-items:center}
-  .filter-chip{min-height:36px}
   .work-grid>.proj .cat,.sb-kick,.cap .fam,.fd-pills .pill,.pill,.tag,.flag{font-size:11px}
 }
 
@@ -1685,7 +1597,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
    probe reading the style at the instant of focus saw no ring at all. A focus
    indicator must be instant. Same durations and easings; outline excluded. Lives at the END of the sheet
    on purpose: a later `transition:all` shorthand would reset the property list. */
-.theme-btn,.theme-menu button,.lang button,.btn,.proj .actions a,.field input,.field textarea,.modal-close,.modal-search input,.filter-chip{
+.theme-btn,.theme-menu button,.lang button,.btn,.proj .actions a,.field input,.field textarea{
   transition-property:color,background-color,border-color,box-shadow,transform,opacity,filter}
 
 /* ═══ forced colours (Windows High Contrast) ═══ Backgrounds are discarded, so a
@@ -1693,7 +1605,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
    controls measured that way. A system-coloured border gives every control a
    boundary; ButtonText/LinkText are the palette the user chose. */
 @media (forced-colors:active){
-  button,.btn,a.btn,.filter-chip,.theme-btn,.lang button,.plate-rail button{border:1px solid ButtonText!important}
+  button,.btn,a.btn,.theme-btn,.lang button,.plate-rail button{border:1px solid ButtonText!important}
   a:not(.btn){text-decoration:underline}
   .proj,.svc-row,.faq-item,.step,.titleblock,.capabilities{border:1px solid CanvasText!important}
 }
@@ -1703,7 +1615,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
 @media print{
   :root{--void:#fff;--navy:#fff;--plum:#fff;--ice:#000;--body-strong:#111;--muted:#333;--faint:#555;--hairline:#bbb;--hairline-2:#888}
   body{background:#fff!important;color:#000!important}
-  body::before,body::after,html::after,.floaters,.hero-mesh,.progress,.skip,.nav-right,.theme-menu,.mobile-menu,.menu-toggle,.modal,.sheet-frame,.browser{display:none!important}
+  body::before,body::after,html::after,.floaters,.hero-mesh,.progress,.skip,.nav-right,.theme-menu,.mobile-menu,.menu-toggle,.sheet-frame,.browser{display:none!important}
   .faq-fig{display:none!important}
   *{box-shadow:none!important;text-shadow:none!important;backdrop-filter:none!important;animation:none!important;transition:none!important}
   .reveal,.js-ready .reveal{opacity:1!important;transform:none!important}
