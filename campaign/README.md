@@ -570,3 +570,7 @@ Every screen in these images shows a real capture of a delivered site or the neu
 ⛔ = needs the client's written permission before it runs in a paid ad (launch gate 4.1). Without it, run the carousel with the remaining cards or use the single-image ads only.
 
 Re-render one ad: `node scripts/build-creative.mjs FR-3`. Texts and layout live in `campaign/creative-data.mjs`.
+
+## Lead log
+
+Log every chat, email reply and Malt/LinkedIn lead in the **Numidea Lead Log**: https://claude.ai/artifact/BmYA8UaGScZRPu2L49vcdC (private to you). Enter each ad set's spend from Ads Manager once a day; each ad set's card applies the rules above (swap the creative after $25 with no qualified lead, stop above $40 per qualified lead; both editable). It stores the business and the stage only: names and phone numbers stay in WhatsApp.
