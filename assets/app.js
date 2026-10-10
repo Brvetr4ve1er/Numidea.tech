@@ -707,7 +707,15 @@
 
     // language switch
     document.querySelectorAll('.lang button').forEach(function (b) {
-      b.addEventListener('click', function () { applyLang(b.getAttribute('data-lang')); });
+      b.addEventListener('click', function () {
+        var l = b.getAttribute('data-lang');
+        applyLang(l);
+        // keep a shared ?lang= link truthful after a switch (as page-i18n.js does)
+        try {
+          var u = new URL(location.href);
+          if (u.searchParams.has('lang')) { u.searchParams.set('lang', l); history.replaceState(null, '', u); }
+        } catch (e) {}
+      });
     });
 
     // theme switcher — every theme is a token block in themes.css, so a switch

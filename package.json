@@ -13,7 +13,8 @@
     "scene": "node scripts/build-scene.mjs",
     "work:capture": "node scripts/work-capture.mjs",
     "stage": "node scripts/stage-site.mjs",
-    "build": "node scripts/build-scene.mjs",
+    "build": "node scripts/build-scene.mjs && node scripts/build-sitemap.mjs",
+    "og": "node scripts/og-capture.mjs && node scripts/build-og.mjs",
     "validate": "node scripts/validate.mjs",
     "vbugs": "node scripts/vbugs.mjs",
     "verify": "node scripts/verify.mjs"

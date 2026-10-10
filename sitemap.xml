@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://brvetr4ve1er.github.io/Numidea.tech/</loc><lastmod>2026-10-05</lastmod><priority>1.0</priority></url>
-  <url><loc>https://brvetr4ve1er.github.io/Numidea.tech/workspacehq/</loc><lastmod>2026-10-05</lastmod><priority>0.8</priority></url>
-  <url><loc>https://brvetr4ve1er.github.io/Numidea.tech/scene/</loc><lastmod>2026-10-05</lastmod><priority>0.6</priority></url>
-  <url><loc>https://brvetr4ve1er.github.io/Numidea.tech/hub/</loc><lastmod>2026-10-05</lastmod><priority>0.6</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://brvetr4ve1er.github.io/Numidea.tech/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brvetr4ve1er.github.io/Numidea.tech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brvetr4ve1er.github.io/Numidea.tech/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://brvetr4ve1er.github.io/Numidea.tech/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brvetr4ve1er.github.io/Numidea.tech/"/>
+  </url>
+  <url>
+    <loc>https://brvetr4ve1er.github.io/Numidea.tech/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brvetr4ve1er.github.io/Numidea.tech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brvetr4ve1er.github.io/Numidea.tech/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://brvetr4ve1er.github.io/Numidea.tech/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brvetr4ve1er.github.io/Numidea.tech/"/>
+  </url>
+  <url>
+    <loc>https://brvetr4ve1er.github.io/Numidea.tech/?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brvetr4ve1er.github.io/Numidea.tech/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brvetr4ve1er.github.io/Numidea.tech/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://brvetr4ve1er.github.io/Numidea.tech/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brvetr4ve1er.github.io/Numidea.tech/"/>
+  </url>
+  <url><loc>https://brvetr4ve1er.github.io/Numidea.tech/hub/</loc></url>
+  <url>
+    <loc>https://brvetr4ve1er.github.io/Numidea.tech/scene/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/"/>
+  </url>
+  <url>
+    <loc>https://brvetr4ve1er.github.io/Numidea.tech/scene/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/"/>
+  </url>
+  <url>
+    <loc>https://brvetr4ve1er.github.io/Numidea.tech/scene/?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brvetr4ve1er.github.io/Numidea.tech/scene/"/>
+  </url>
+  <url><loc>https://brvetr4ve1er.github.io/Numidea.tech/workspacehq/</loc></url>
 </urlset>

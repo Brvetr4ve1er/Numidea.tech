@@ -22,6 +22,7 @@ import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, normalize, basename } from 'node:path';
 import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, DEPLOY_SKIP, NOT_DEPLOYED, BASE, LANGS } from './site.mjs';
 import { SCENE_HTML } from './build-scene.mjs';
+import { renderSitemap } from './build-sitemap.mjs';
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 let fail = 0;
@@ -150,7 +151,8 @@ for (const f of PAGES) {
 }
 const sitemapLeaks = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).filter((u) => {
   if (!u.startsWith(BASE)) return true;
-  const rel = u.slice(BASE.length).replace(/\/$/, '');
+  // ?lang= alternates are the same published page
+  const rel = u.slice(BASE.length).split('?')[0].replace(/\/$/, '');
   return rel !== '' && !DEPLOY.includes(rel.split('/')[0]);
 });
 const problems = [
@@ -159,7 +161,16 @@ const problems = [
   leaks.length && 'deployed pages link to files that are not published: ' + leaks.join(', '),
   sitemapLeaks.length && 'sitemap lists unpublished URLs: ' + sitemapLeaks.join(', '),
 ].filter(Boolean);
-problems.length ? problems.forEach(bad) : ok(`deploy set covers every page and link (${DEPLOY.length} entries)`);
+// absolute links to this site (og:image, canonical, hreflang) are deploy links too
+for (const f of PAGES) {
+  for (const m of read(f).matchAll(new RegExp('"' + BASE.replace(/[.]/g, '\\.') + '([^"?#]*)', 'g'))) {
+    const rel = m[1].replace(/\/$/, '') || 'index.html';
+    const file = existsSync(join(ROOT, rel)) && statSync(join(ROOT, rel)).isDirectory() ? join(rel, 'index.html') : rel;
+    if (!existsSync(join(ROOT, file)) || !DEPLOY.includes(rel.split('/')[0])) problems.push(`${f} names ${BASE}${m[1]}, which is not published`);
+  }
+}
+if (read('sitemap.xml') !== renderSitemap()) problems.push('sitemap.xml is stale (run: npm run build)');
+problems.length ? problems.forEach(bad) : ok(`deploy set covers every page and link (${DEPLOY.length} entries); sitemap current`);
 
 /* 7 — generated pages */
 read('scene/index.html') === SCENE_HTML
@@ -234,6 +245,15 @@ const typed = [...ownPrices.replace(/<!--[\s\S]*?-->/g, '').matchAll(/(?:€|\$)
   .map((m) => m[0]).filter((x) => !/^\$\{/.test(x));
 if (typed.length) priceErr.push('hard-coded €/$ amounts in index.html: ' + typed.slice(0, 5).join(' | '));
 priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts');
+// structured data parses, and states the same phone and email as the page
+const ldErr = [];
+for (const f of PAGES) for (const m of read(f).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+  let d; try { d = JSON.parse(m[1]); } catch (e) { ldErr.push(`${f}: JSON-LD does not parse`); continue; }
+  const wa = (/NUMIDEA_WA = '(\d+)'/.exec(read(f)) || [])[1];
+  if (d.telephone && wa && d.telephone.replace(/\D/g, '') !== wa) ldErr.push(`${f}: JSON-LD telephone ${d.telephone} ≠ NUMIDEA_WA ${wa}`);
+  if (d.email && !read(f).includes('mailto:' + d.email)) ldErr.push(`${f}: JSON-LD email ${d.email} is not the page's mailto`);
+}
+ldErr.length ? bad(ldErr.join(', ')) : ok('structured data parses and matches the page');
 deadRefs.length ? bad('attributes point at ids that do not exist: ' + deadRefs.join(', ')) : ok('every aria-labelledby/describedby/controls and label for= resolves');
 // Owner decision: Glaive is a portfolio demo (4 live client sites, not 5), the
 // "most chosen" tier claim has no data behind it, and client sites are not demos.

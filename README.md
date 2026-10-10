@@ -43,7 +43,7 @@ assets/
   app.js              # i18n, nav, count-ups, reveal, project explorer, form
   previews/*.webp     # committed screenshots of the live client sites
   favicon.svg         # gradient signature mark
-  og.svg / og.png     # social share image (SVG source → rasterized PNG)
+  og.jpg             # link-preview card (French), rendered by scripts/build-og.mjs
   cv_*.pdf            # founder résumé (linked from the founder section)
 hub/                  # VOIDSPLUNKER.std — personal portfolio subsite (own CSS/JS)
 scene/                # project sheets, generated from scripts/scene-data.mjs (npm run scene)
