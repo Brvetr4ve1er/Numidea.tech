@@ -549,3 +549,24 @@ This manual is an operating guide. **It is not legal, tax or financial advice.**
 - Meta and WhatsApp Business policies.
 
 **Verify each point with a lawyer and an accountant** (Algerian, and French where French clients are concerned) before you act on it. Check the current versions of the Meta and WhatsApp policies before launch. All prices are approximate conversions excluding tax. Confirm all fees and thresholds with the relevant body.
+
+---
+
+## Creative files (rendered by `node scripts/build-creative.mjs` → `campaign/out/`)
+
+Every screen in these images shows a real capture of a delivered site or the neutral "Votre logo / Your logo / شعارك هنا" demo homepage; no interface or lettering is AI-drawn. Texts are verbatim from the copy files above; prices come from the site's PRICE_MODEL (re-render after a price change). One photographic scene was generated with Magnific (75 credits); the other images are flat cards in the site's own style.
+
+| Ad set | Ad | Files | Use |
+|---|---|---|---|
+| France | FR-1 L'Aperçu | `FR-1_9x16.jpg`, `FR-1_4x5.jpg` | Stories/Reels + Feed |
+| France | FR-2 carousel | `FR-2-1_1x1` Bordj Steel ⛔, `FR-2-2_1x1` Alliance Travel ⛔, `FR-2-3_1x1` Glaive (démo), `FR-2-4_1x1` L'Aperçu | Carousel, in this order |
+| France | FR-3 price | `FR-3_9x16.jpg`, `FR-3_4x5.jpg` | Stories/Reels + Feed |
+| Gulf | GU-EN-1 Preview | `GU-EN-1_9x16`, `GU-EN-1_4x5` | |
+| Gulf | GU-EN-2 carousel | `GU-EN-2-1` ⛔, `GU-EN-2-2` ⛔, `GU-EN-2-3` (demo), `GU-EN-2-4` | |
+| Gulf | GU-EN-3 price | `GU-EN-3_9x16`, `GU-EN-3_4x5` | |
+| Gulf | GU-AR-1 المعاينة | `GU-AR-1_9x16`, `GU-AR-1_4x5` | |
+| Gulf | GU-AR-2 carousel | `GU-AR-2-1` ⛔, `GU-AR-2-2` ⛔, `GU-AR-2-3` (نموذج تجريبي), `GU-AR-2-4` | |
+
+⛔ = needs the client's written permission before it runs in a paid ad (launch gate 4.1). Without it, run the carousel with the remaining cards or use the single-image ads only.
+
+Re-render one ad: `node scripts/build-creative.mjs FR-3`. Texts and layout live in `campaign/creative-data.mjs`.

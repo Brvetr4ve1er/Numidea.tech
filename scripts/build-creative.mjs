@@ -108,6 +108,61 @@ h1{margin-top:22px;font-weight:700;font-size:${headPx}px;line-height:1.08;letter
 </body></html>`;
 };
 
+/* a flat ad: the site's own Arcanum ground, a device drawn in CSS around the
+   real capture (or the demo page), text above. Used where no photo scene was
+   generated; the device is sized by an inline script to the space left
+   under the text, so nothing overlaps at any ratio. */
+const flatHtml = (base, ad, size, capUri, device, host) => {
+  const [W, H] = SIZES[size];
+  const rtl = ad.lang === 'ar';
+  const face = rtl ? '"IBM Plex Sans Arabic"' : '"Geist"';
+  const pad = 64, top = size === '9x16' ? Math.round(H * 0.14) + 24 : 56;
+  const bottom = size === '9x16' ? Math.round(H * 0.17) : 52;
+  const headPx = size === '1x1' ? 50 : size === '4x5' ? 58 : 66;
+  const ratio = device === 'phone' ? 390 / 844 : 1440 / 900;
+  const badge = ad.badge ? `<div class="badge">${esc(ad.badge)}</div>` : '';
+  const banner = ad.banner ? `<div class="banner">${esc(ad.banner)}</div>` : '';
+  const frame = device === 'phone'
+    ? `<div class="dev phone"><div class="glass"><img src="${capUri}" alt="">${badge}${banner}<i class="notch"></i></div></div>`
+    : `<div class="dev browser"><div class="bar"><i></i><i></i><i></i><span dir="ltr">${esc(host || '')}</span></div><div class="glass"><img src="${capUri}" alt="">${badge}${banner}</div></div>`;
+  return `<!doctype html><html lang="${ad.lang}" dir="${rtl ? 'rtl' : 'ltr'}"><head><meta charset="utf-8"><base href="${base}/">${FONTS}
+<style>*{box-sizing:border-box;margin:0}
+html,body{width:${W}px;height:${H}px;overflow:hidden}
+body{display:flex;flex-direction:column;padding:${top}px ${pad}px ${bottom}px;color:#F4F7FA;font-family:${face};
+  background:radial-gradient(55% 45% at 86% 4%,rgba(230,180,80,.20),transparent 70%),radial-gradient(50% 40% at 6% 30%,rgba(52,208,232,.14),transparent 72%),
+  radial-gradient(120% 120% at 20% 0%,#15293F 0%,#0F1E30 45%,#0A1420 100%)}
+body::before{content:"";position:absolute;inset:0;opacity:.06;pointer-events:none;
+  background-image:linear-gradient(rgba(230,180,80,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(230,180,80,.6) 1px,transparent 1px);background-size:64px 64px}
+.txt{position:relative}
+.brand{font:700 26px "Cinzel",serif;letter-spacing:.04em;direction:ltr;${rtl ? 'text-align:right;' : ''}}
+.brand i{font-style:normal;color:#34D0E8}
+h1{margin-top:22px;font-weight:700;font-size:${headPx}px;line-height:1.08;letter-spacing:${rtl ? 0 : '-.015em'};text-wrap:balance}
+.sub{margin-top:16px;font-size:${Math.round(headPx * 0.48)}px;line-height:1.35;color:#E6EDF3;text-wrap:balance}
+.small{margin-top:14px;font-size:${size === '1x1' ? 20 : 22}px;line-height:1.4;color:#C9D6E2}
+.wrap{position:relative;flex:1;min-height:0;margin-top:${size === '1x1' ? 30 : 40}px;display:flex;align-items:center;justify-content:center}
+.dev{position:relative;flex:none}
+.phone{padding:14px;border-radius:58px;background:linear-gradient(145deg,#2A3646,#0E141C);box-shadow:0 0 0 2px #3A4A5E inset,0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(230,180,80,.25)}
+.phone .glass{position:relative;width:100%;height:100%;border-radius:44px;overflow:hidden;background:#fff}
+.phone .notch{position:absolute;top:12px;left:50%;width:30%;height:26px;margin-left:-15%;border-radius:16px;background:#0B1016}
+.browser{border-radius:16px;overflow:hidden;background:#0F1E30;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px #27496B}
+.browser .bar{height:44px;display:flex;align-items:center;gap:9px;padding:0 16px;border-bottom:1px solid #1C3550;direction:ltr}
+.browser .bar i{width:12px;height:12px;border-radius:50%;background:#27496B}
+.browser .bar span{margin-left:14px;font:500 17px "Geist Mono",monospace;color:#9DB2C6}
+.browser .glass{position:relative;height:calc(100% - 44px);overflow:hidden;background:#fff}
+.glass img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.badge{position:absolute;top:4%;inset-inline-end:4%;background:#E6B450;color:#0A1420;font:700 26px "Geist Mono",monospace;padding:.3em .7em;border-radius:8px}
+.banner{position:absolute;left:0;right:0;top:0;background:#E6B450;color:#0A1420;text-align:center;
+  font:700 ${rtl ? 24 : 22}px ${rtl ? '"IBM Plex Sans Arabic"' : '"Geist Mono",monospace'};padding:.5em .5em;letter-spacing:${rtl ? 0 : '.04em'}}
+</style></head><body>
+<div class="txt"><div class="brand">Num<i>idea</i> Labs</div><h1>${esc(fill(ad.head))}</h1>${ad.sub ? `<div class="sub">${esc(fill(ad.sub))}</div>` : ''}${ad.small ? `<div class="small">${esc(fill(ad.small))}</div>` : ''}</div>
+<div class="wrap">${frame}</div>
+<script>(function(){var w=document.querySelector('.wrap').getBoundingClientRect(),d=document.querySelector('.dev');
+var phone=d.classList.contains('phone'),r=${ratio},extraW=phone?28:0,extraH=phone?28:44;
+var h=w.height,wd=(h-extraH)*r+extraW;if(wd>w.width){wd=w.width;h=(wd-extraW)/r+extraH;}
+d.style.width=Math.floor(wd)+'px';d.style.height=Math.floor(h)+'px';})();</script>
+</body></html>`;
+};
+
 const only = new Set(process.argv.slice(2));
 const ads = ADS.filter((a) => !only.size || only.has(a.id));
 mkdirSync(OUT, { recursive: true });
@@ -125,31 +180,20 @@ const ready = async () => {
   });
 };
 const sceneCache = new Map(), mockCache = new Map();
+// the address shown in a browser frame: the live build each capture comes from
+const HOSTS = { bordjsteel: 'bordjsteelb2b.netlify.app', alliance: 'alliancetravel34.netlify.app', glaive: 'glaivestore.netlify.app' };
 let made = 0;
 try {
   for (const ad of ads) {
-    const [file, device] = SCENES[ad.scene];
-    const scenePath = join(ROOT, 'campaign/scenes', file);
-    if (!existsSync(scenePath)) { console.log(`· ${ad.id}: scene ${file} not generated yet, skipped`); continue; }
-    if (!sceneCache.has(ad.scene)) {
-      const scr = await findScreen(scenePath);
-      sceneCache.set(ad.scene, { scr, maskUri: 'data:image/png;base64,' + (await maskPng(scr)).toString('base64'),
-        sceneUri: 'data:image/jpeg;base64,' + (await despill(scenePath, scr)).toString('base64') });
-    }
-    const { scr, maskUri, sceneUri } = sceneCache.get(ad.scene);
     // what goes on the screen, as a data URI
     let capUri, capAspect;
     if (ad.screen.startsWith('mock:')) {
       const lang = ad.screen.slice(5);
       if (!mockCache.has(lang)) {
-        const mp = await ctx.newPage(); await mp.setViewportSize({ width: 390, height: 844 });
-        await mp.goto(base + '/404.html'); await mp.setContent(mockHtml(base, MOCK[lang]), { waitUntil: 'networkidle' });
-        await mp.evaluate(() => document.fonts.ready);
         const shot = await (await b.newContext({ deviceScaleFactor: 2, viewport: { width: 390, height: 844 } })).newPage()
           .then(async (p2) => { await p2.goto(base + '/404.html'); await p2.setContent(mockHtml(base, MOCK[lang]), { waitUntil: 'networkidle' });
             await p2.evaluate(async () => { await document.fonts.load('700 30px Geist', 'A'); await document.fonts.load('700 30px "IBM Plex Sans Arabic"', 'ع'); await document.fonts.ready; });
             const buf = await p2.screenshot({ type: 'png' }); await p2.close(); return buf; });
-        await mp.close();
         mockCache.set(lang, 'data:image/png;base64,' + shot.toString('base64'));
       }
       capUri = mockCache.get(lang); capAspect = 390 / 844;
@@ -158,6 +202,29 @@ try {
       const meta = await sharp(buf).metadata();
       capUri = 'data:image/png;base64,' + buf.toString('base64'); capAspect = meta.width / meta.height;
     }
+    if (!ad.scene) {
+      // flat: CSS device around the capture
+      const host = ad.screen.startsWith('mock:') ? '' : (HOSTS[ad.screen.split('/')[2]] || '');
+      for (const size of ad.sizes) {
+        const [W, H] = SIZES[size];
+        await page.setViewportSize({ width: W, height: H });
+        await page.setContent(flatHtml(base, ad, size, capUri, ad.device, host), { waitUntil: 'networkidle' });
+        await ready();
+        await page.screenshot({ path: join(OUT, `${ad.id}_${size}.jpg`), type: 'jpeg', quality: 90 });
+        made++;
+        console.log(`✓ ${ad.id}_${size}.jpg  (flat ${ad.device})${ad.gate ? `  (gate: ${ad.gate})` : ''}`);
+      }
+      continue;
+    }
+    const [file] = SCENES[ad.scene];
+    const scenePath = join(ROOT, 'campaign/scenes', file);
+    if (!existsSync(scenePath)) { console.log(`· ${ad.id}: scene ${file} missing, skipped`); continue; }
+    if (!sceneCache.has(ad.scene)) {
+      const scr = await findScreen(scenePath);
+      sceneCache.set(ad.scene, { scr, maskUri: 'data:image/png;base64,' + (await maskPng(scr)).toString('base64'),
+        sceneUri: 'data:image/jpeg;base64,' + (await despill(scenePath, scr)).toString('base64') });
+    }
+    const { scr, maskUri, sceneUri } = sceneCache.get(ad.scene);
     // screen rectangle in its own proportions: average opposite sides of the quad
     const q = scr.corners, d = (a, b2) => Math.hypot(a[0] - b2[0], a[1] - b2[1]);
     const qw = (d(q[0], q[1]) + d(q[3], q[2])) / 2, qh = (d(q[0], q[3]) + d(q[1], q[2])) / 2;
