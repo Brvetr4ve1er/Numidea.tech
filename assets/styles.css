@@ -596,6 +596,7 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 .channels dd{font-size:15px;color:var(--ice);overflow-wrap:anywhere}
 .channels dd a{color:var(--crimson-text);text-decoration:none}
 .channels dd a:hover{text-decoration:underline}
+.channels .ch-note{font-size:12px;color:var(--muted)}
 /* the form sits directly on the band — no card box around it */
 .form-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 var(--s-5)}
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:var(--s-5)}
@@ -715,6 +716,11 @@ html[dir="rtl"] .preview h3{font-family:var(--font-ar-display)}
 .preview .promise{font-family:var(--font-swash);font-style:normal;font-size:23px;color:var(--teal-text);margin-bottom:var(--s-4)}
 html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:600}
 .preview .brief{font-size:15px;color:var(--muted);line-height:1.6;max-width:41.106em;margin-bottom:var(--s-4)}
+/* the offer's terms and its two ways in: the form, or WhatsApp */
+.preview .prev-terms{font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--body-strong);max-width:52em;margin-bottom:var(--s-5)}
+.preview .prev-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3) var(--s-5);margin-bottom:var(--s-5)}
+.preview .prev-wa{font-family:var(--font-mono);font-size:13px;color:var(--teal-text);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
+.preview .prev-wa[data-wa-pending]{color:var(--muted);text-decoration:none}
 .preview .outcome{font-size:14px;color:var(--ice);padding-left:14px;border-left:2px solid var(--crimson)}
 html[dir="rtl"] .preview .outcome{padding-left:0;padding-right:14px;border-left:none;border-right:2px solid var(--crimson)}
 .preview .outcome b{display:block;font-family:var(--font-mono);font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-text);margin-bottom:5px}
@@ -1042,7 +1048,11 @@ main.wrap>section h2.sec em{color:var(--crimson-text)}
   .preview h3{grid-column:2;margin-top:6px}
   .preview .promise{grid-column:2;margin-bottom:0}
   .preview .brief{grid-column:3;grid-row:1/span 2;max-width:34.476em;align-self:start;margin:0}
-  .preview .outcome{grid-column:3;grid-row:3;align-self:start;margin-top:var(--s-4)}
+  /* the offer's terms sit between the pitch and the outcome; its two ways in
+     sit under the promise, where the eye lands after the name */
+  .preview .prev-terms{grid-column:3;grid-row:3;align-self:start;margin:var(--s-4) 0 0}
+  .preview .outcome{grid-column:3;grid-row:4;align-self:start;margin-top:var(--s-4)}
+  .preview .prev-actions{grid-column:2;grid-row:4;align-self:start;margin:var(--s-4) 0 0}
   .preview .glyph{grid-row:1/span 2}
 }
 

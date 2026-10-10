@@ -44,7 +44,7 @@
       'work.live': 'Voir le site →', 'work.soon': 'Bientôt', 'work.sheet': 'Planche →', 'work.concept': 'Démo portfolio',
       'how.kicker': '04 — Méthode',
       'how.title': 'Quatre étapes. <em>Zéro surprise.</em>',
-      'how.lead': 'Vous ne payez rien avant la troisième.',
+      'how.lead': 'Vous ne payez rien avant d\'avoir vu votre site tourner.',
       'scene.kicker': '◆ PLANCHES · LIVRABLE PAR LIVRABLE', 'scene.title': 'Tout ce qui a été livré, projet par projet.',
       'scene.lead': 'Les pages, le mobile et le système visuel de chaque projet, capturés sur les sites en ligne.',
       'scene.cta': 'Ouvrir les planches →',
@@ -81,16 +81,16 @@
       'faq.kicker': '08 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
       'faq.lead': 'Ce qu\'on nous demande avant de se lancer — répondu franchement.',
       'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu\'on a cadré le projet ensemble.',
-      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et souvent, on construit une démo fonctionnelle avant que vous ne vous engagiez.',
+      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et pour une entreprise immatriculée, on construit d\'abord votre page d\'accueil, gratuitement : L\'Aperçu.',
       'faq3.q': 'Vous travaillez en quelles langues ?', 'faq3.a': 'Français, arabe et anglais — à l\'oral, à l\'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.',
       'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. On maintient ce qu\'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne.',
       'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l\'accès direct au builder.',
-      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et souvent, vous voyez une démo réelle avant de payer.',
+      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et vous voyez votre page d\'accueil tourner avant de payer quoi que ce soit.',
       'contact.kicker': '09 — Contact',
       'contact.title': 'On le <em>rend réel ?</em>',
       'contact.sub': 'Dites-nous ce que vous cherchez à concrétiser — l\'urgent, le cassé, l\'échéance. En français, anglais ou arabe.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Réponse',
-      'contact.vStudio': 'Bordj Bou Arréridj · Algérie', 'contact.vReply': '< 24 heures · FR · EN · ع',
+      'contact.vStudio': 'Bordj Bou Arréridj · Algérie', 'contact.vReply': '< 24 h ouvrées · FR · EN · ع',
       'form.name': 'Nom', 'form.namePh': 'Votre nom',
       'form.email': 'Email', 'form.emailPh': 'vous@entreprise.com',
       'form.message': 'Message', 'form.messagePh': 'Qu\'est-ce qu\'on construit ?',
@@ -103,7 +103,7 @@
       'form.successAlt': 'Rien ne s\'est ouvert ? Écrivez-nous directement :',
       'footer.signoff': 'Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.',
       'footer.rights': '© 2026 Numidea Labs · Tous droits réservés',
-      'footer.tag': 'Rooted in Numidia · built on ideas'
+      'footer.tag': 'Enraciné en Numidie · bâti sur des idées'
     },
     en: {
       dir: 'ltr',
@@ -138,7 +138,7 @@
       'work.live': 'Visit the site →', 'work.soon': 'Soon', 'work.sheet': 'Project sheet →', 'work.concept': 'Portfolio demo',
       'how.kicker': '04 — Process',
       'how.title': 'Four steps. <em>No surprises.</em>',
-      'how.lead': 'You pay nothing before the third.',
+      'how.lead': 'You pay nothing until you have seen your site running.',
       'scene.kicker': '◆ SHEETS · DELIVERABLE BY DELIVERABLE', 'scene.title': 'Everything delivered, project by project.',
       'scene.lead': 'The pages, mobile views and visual system of every project, captured from the live sites.',
       'scene.cta': 'Open the sheets →',
@@ -175,16 +175,16 @@
       'faq.kicker': '08 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
       'faq.lead': 'What people ask before they start — answered straight.',
       'faq1.q': 'How long does it take to ship?', 'faq1.a': 'It depends on scope — but we don\'t keep you waiting. Most sites ship in a few weeks, and you get a firm timeline the moment we\'ve scoped the project together.',
-      'faq2.q': 'What does it cost?', 'faq2.a': 'Per project, never a copy-paste template. We quote once the scope is clear — a fixed price, no surprise fees. And we often build a working demo before you commit a dinar.',
+      'faq2.q': 'What does it cost?', 'faq2.a': 'Per project, never a copy-paste template. We quote once the scope is clear — a fixed price, no surprise fees. And for a registered business, we build your homepage first, for free: the Preview.',
       'faq3.q': 'What languages do you work in?', 'faq3.a': 'French, Arabic and English — spoken, written, and in what we ship. This very site is trilingual, with a natively mirrored Arabic (RTL) experience.',
       'faq4.q': 'What happens after launch?', 'faq4.a': 'We stay. We maintain what we ship and we answer when it breaks — in under 24 hours. No "good luck" on launch day.',
       'faq5.q': 'Do you work remotely?', 'faq5.a': 'Yes. We\'re based in Bordj Bou Arréridj but we deliver anywhere — including clients in France. Distance doesn\'t change your direct line to the builder.',
-      'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman. The person who scopes your project is the one who codes and ships it — one team, design to deploy. And often, you see a real demo before you pay.',
+      'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman. The person who scopes your project is the one who codes and ships it — one team, design to deploy. And you see your homepage running before you pay anything.',
       'contact.kicker': '09 — Contact',
       'contact.title': 'Let\'s make it <em>real.</em>',
       'contact.sub': 'Tell us what you\'re trying to make real — what\'s urgent, what\'s broken, what\'s due. In French, English, or Arabic.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Reply',
-      'contact.vStudio': 'Bordj Bou Arréridj · Algeria', 'contact.vReply': '< 24 hours · FR · EN · AR',
+      'contact.vStudio': 'Bordj Bou Arréridj · Algeria', 'contact.vReply': '< 24 working hours · FR · EN · AR',
       'form.name': 'Name', 'form.namePh': 'Your name',
       'form.email': 'Email', 'form.emailPh': 'you@company.com',
       'form.message': 'Message', 'form.messagePh': 'What are we building?',
@@ -232,7 +232,7 @@
       'work.live': 'زيارة الموقع ←', 'work.soon': 'قريباً', 'work.sheet': 'لوحة المشروع ←', 'work.concept': 'نموذج عرض',
       'how.kicker': '٠٤ — المنهج',
       'how.title': 'أربع خطوات. <em>بلا مفاجآت.</em>',
-      'how.lead': 'لا تدفع شيئاً قبل الثالثة.',
+      'how.lead': 'لا تدفع شيئاً قبل أن ترى موقعك يعمل.',
       'scene.kicker': '◆ اللوحات · مُخرَجاً بمُخرَج', 'scene.title': 'كل ما سُلِّم، مشروعاً بمشروع.',
       'scene.lead': 'الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع الحيّة.',
       'scene.cta': 'افتح اللوحات →',
@@ -269,16 +269,16 @@
       'faq.kicker': '٠٨ — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
       'faq.lead': 'ما يُسأل قبل البدء — بإجابات صريحة.',
       'faq1.q': 'كم يستغرق الإنجاز؟', 'faq1.a': 'يعتمد على حجم المشروع — لكنّنا لا نُبقيك تنتظر. معظم المواقع تنطلق خلال أسابيع، وتحصل على موعد نهائي واضح بمجرّد أن نحدّد نطاق العمل معاً.',
-      'faq2.q': 'كم التكلفة؟', 'faq2.a': 'حسب المشروع، لا قوالب جاهزة. نُسعّر بعد توضيح النطاق — سعر ثابت دون مفاجآت. وغالباً نبني نموذجاً يعمل قبل أن تلتزم.',
+      'faq2.q': 'كم التكلفة؟', 'faq2.a': 'حسب المشروع، لا قوالب جاهزة. نُسعّر بعد توضيح النطاق — سعر ثابت دون مفاجآت. وللشركات المسجّلة نبني الصفحة الرئيسية أولاً، مجّاناً: المعاينة.',
       'faq3.q': 'بأي لغات تعملون؟', 'faq3.a': 'الفرنسية والعربية والإنجليزية — حديثاً وكتابةً وفي المنتَج المُسلَّم. هذا الموقع نفسه ثلاثي اللغات، بتجربة عربية (RTL) مصمّمة أصلاً.',
       'faq4.q': 'وماذا بعد الإطلاق؟', 'faq4.a': 'نبقى معك. نصون ما نُسلّمه ونردّ حين يتعطّل شيء — في أقل من ٢٤ ساعة. لا « حظّاً موفقاً » يوم الإطلاق.',
       'faq5.q': 'هل تعملون عن بُعد؟', 'faq5.a': 'نعم. مقرّنا في برج بوعريريج لكنّنا نُسلّم في كل مكان — بما في ذلك عملاء في فرنسا. البُعد لا يغيّر تواصلك المباشر مع من يبني.',
-      'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط. من يحدّد نطاق مشروعك هو من يبرمجه ويُسلّمه — فريق واحد من التصميم إلى النشر. وغالباً ترى نموذجاً حقيقياً قبل أن تدفع.',
+      'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط. من يحدّد نطاق مشروعك هو من يبرمجه ويُسلّمه — فريق واحد من التصميم إلى النشر. وترى صفحتك الرئيسية تعمل قبل أن تدفع أيّ شيء.',
       'contact.kicker': '٠٩ — تواصل',
       'contact.title': '<em>نجعله حقيقة؟</em>',
       'contact.sub': 'أخبرنا بما تسعى إلى تحقيقه — العاجل، المتعطّل، المستحقّ. بالفرنسية أو الإنجليزية أو العربية.',
       'contact.chStudio': 'الاستوديو', 'contact.chReply': 'الردّ',
-      'contact.vStudio': 'برج بوعريريج · الجزائر', 'contact.vReply': 'أقل من ٢٤ ساعة · FR · EN · ع',
+      'contact.vStudio': 'برج بوعريريج · الجزائر', 'contact.vReply': 'أقل من ٢٤ ساعة عمل · FR · EN · ع',
       'form.name': 'الاسم', 'form.namePh': 'اسمك',
       'form.email': 'البريد', 'form.emailPh': 'you@company.com',
       'form.message': 'الرسالة', 'form.messagePh': 'ماذا سنبني؟',
@@ -380,7 +380,7 @@
       'svc.famBuild': 'Le Build', 'svc.famEngine': 'Le Moteur', 'svc.famMind': "L'Esprit",
       'svc.lead': 'Cinq offres en avant, cinq capacités en réserve — la profondeur attend ceux qui creusent.',
       'prev.tag': 'Offre signature', 'prev.name': "L'Aperçu", 'prev.promise': 'Zéro risque. Juste la preuve.',
-      'prev.brief': 'On construit une démo réelle et fonctionnelle de votre site, en amont. Vous arrivez en réunion, vous la voyez en direct, puis vous décidez.',
+      'prev.brief': 'Avant tout paiement, on construit la page d\'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. On vous la présente en visio (30 min). Si vous dites non, vous ne devez rien.', 'prev.terms': 'Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum.', 'prev.cta': 'Demander mon Aperçu →', 'prev.wa': 'ou par WhatsApp', 'prev.msg': 'Bonjour, je souhaite voir l\'Aperçu gratuit de mon futur site.\nEntreprise : \nSite actuel (s\'il existe) : \nCe dont j\'ai besoin : ', 'prev.waText': 'Bonjour Numidea Labs, je souhaite voir l\'Aperçu gratuit de mon futur site.', 'form.source': 'Source', 'contact.chTz': 'Fuseau', 'contact.vTz': 'UTC+1 · l\'heure de Paris en hiver, 1 h de moins en été', 'contact.waNote': 'message gratuit via l\'appli',
       'prev.outcome': 'Le « oui » le plus facile que vous donnerez — parce que vous l\'avez déjà vu.',
       'f1.name': 'Sites & applications web', 'f1.promise': 'Le choix évident.',
       'f1.brief': 'Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel. On ne thème pas un template ; on construit un design system fin et on possède chaque token.',
@@ -389,7 +389,7 @@
       'f3.name': 'Automatisation & pipelines', 'f3.promise': 'Supprimez la corvée.',
       'f3.brief': 'Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif et fragile qui dévore vos heures — on le fait tourner seul à 3h du matin. Python · Playwright · APIs · Claude.',
       'f4.name': 'Intelligence marché & produit', 'f4.promise': 'Voir le marché clairement.',
-      'f4.brief': 'Transformez le web ouvert en base de données. Veille concurrentielle, intelligence prix/produit, enrichissement de leads sur Maps, Facebook, Ouedkniss, Jumia, Instagram — structuré, scoré, requêtable.',
+      'f4.brief': 'Transformez les données publiques du web en base exploitable : veille concurrentielle, suivi des prix et des catalogues — collectées dans le respect des conditions de chaque site et du RGPD, structurées, interrogeables.',
       'f5.name': 'Stratégie & conseil croissance', 'f5.promise': 'De la donnée, pas des impressions.',
       'f5.brief': 'Audits marketing complets, analyse de funnels, positionnement concurrentiel, feuilles de route — honnêtes, ROI d\'abord, par phases. On fait les devoirs sur votre secteur avant l\'appel.',
       'cap.summary': 'Voir toutes les capacités →', 'cap.hint': '5 capacités de plus, pour qui creuse.',
@@ -487,7 +487,7 @@
       'svc.famBuild': 'The Build', 'svc.famEngine': 'The Engine', 'svc.famMind': 'The Mind',
       'svc.lead': 'Five offers up front, five more in reserve — the depth waits for whoever digs.',
       'prev.tag': 'Signature offer', 'prev.name': 'The Preview', 'prev.promise': 'Zero risk. Just proof.',
-      'prev.brief': 'We build a real, working demo of your site up front. Walk into the meeting, see it live, then decide.',
+      'prev.brief': 'Before any payment, we build your new site\'s homepage with your own content, in 5 working days, and walk you through it on a 30-minute video call. If you say no, you owe nothing.', 'prev.terms': 'Free, no obligation · registered businesses only · at most 4 Previews a month.', 'prev.cta': 'Request my Preview →', 'prev.wa': 'or on WhatsApp', 'prev.msg': 'Hello, I would like to see a free Preview of my new website.\nCompany: \nCurrent site (if any): \nWhat I need: ', 'prev.waText': 'Hello Numidea Labs, I would like to see a free Preview of my new website.', 'form.source': 'Source', 'contact.chTz': 'Time zone', 'contact.vTz': 'UTC+1 · Paris time in winter, 1 h behind in summer', 'contact.waNote': 'free message in the app',
       'prev.outcome': 'The easiest yes you\'ll ever give — because you\'ve already seen it.',
       'f1.name': 'Sites & web applications', 'f1.promise': 'The obvious choice.',
       'f1.brief': 'Bespoke websites and web apps — fast, ranked, conversion-built, front-end to cloud. React · Next.js · Vite · Tailwind on Vercel. We don\'t theme a template; we build a thin design system and own every token.',
@@ -496,7 +496,7 @@
       'f3.name': 'Automation & pipelines', 'f3.promise': 'Delete the busywork.',
       'f3.brief': 'Scrapers, data pipelines, lead engines, workflow automations, internal tools. The repetitive, error-prone work quietly eating hours — we make it run itself at 3am. Python · Playwright · APIs · Claude.',
       'f4.name': 'Market & product intelligence', 'f4.promise': 'See the market clearly.',
-      'f4.brief': 'Turn the open web into a database. Competitor monitoring, price/product intelligence, lead enrichment across Maps, Facebook, Ouedkniss, Jumia, Instagram — structured, scored, queryable.',
+      'f4.brief': 'Turn public web data into a usable database: competitor monitoring, price and catalogue tracking — collected within each site\'s terms and the GDPR, structured and queryable.',
       'f5.name': 'Strategy & growth consulting', 'f5.promise': 'Data, not vibes.',
       'f5.brief': 'Full marketing audits, funnel analysis, competitive positioning, growth roadmaps — brutally honest, ROI-first, phased. We do the sector homework before the call.',
       'cap.summary': 'See every capability →', 'cap.hint': '5 more capabilities, for whoever digs.',
@@ -594,7 +594,7 @@
       'svc.famBuild': 'البناء', 'svc.famEngine': 'المحرّك', 'svc.famMind': 'العقل',
       'svc.lead': 'خمسة عروض في المقدّمة وخمس قدرات في الاحتياط — والعمق ينتظر من يبحث.',
       'prev.tag': 'عرض مميّز', 'prev.name': 'المعاينة', 'prev.promise': 'بلا مخاطرة. مجرّد إثبات.',
-      'prev.brief': 'نبني نسخة تجريبية حقيقية وعاملة من موقعك مسبقاً. تدخل الاجتماع، تراها حيّة، ثم تقرّر.',
+      'prev.brief': 'قبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك أنت، خلال ٥ أيام عمل، ونعرضها عليك في مكالمة فيديو مدّتها ٣٠ دقيقة. إن قلت لا، فلا شيء عليك.', 'prev.terms': 'مجّاناً ودون التزام · للشركات المسجّلة فقط · ٤ معاينات في الشهر كحدّ أقصى.', 'prev.cta': 'اطلب معاينتك ←', 'prev.wa': 'أو عبر واتساب', 'prev.msg': 'مرحباً، أرغب في الاطّلاع على معاينة مجانية لموقعي الجديد.\nالشركة: \nالموقع الحالي (إن وُجد): \nما أحتاجه: ', 'prev.waText': 'مرحباً نوميديا لابز، أرغب في الاطّلاع على معاينة مجانية لموقعي الجديد.', 'form.source': 'المصدر', 'contact.chTz': 'التوقيت', 'contact.vTz': 'UTC+1 · توقيت باريس شتاءً، وأقلّ منه بساعة صيفاً', 'contact.waNote': 'رسالة مجانية عبر التطبيق',
       'prev.outcome': 'أسهل «نعم» ستقولها — لأنّك رأيتها بالفعل.',
       'f1.name': 'مواقع وتطبيقات ويب', 'f1.promise': 'الخيار البديهي.',
       'f1.brief': 'مواقع وتطبيقات ويب مخصّصة — سريعة، مُحسّنة للبحث، مبنية للتحويل، من الواجهة إلى السحابة. React · Next.js · Vite · Tailwind على Vercel. لا نُلبِس قالباً جاهزاً؛ نبني نظام تصميم رفيعاً ونملك كل token.',
@@ -603,7 +603,7 @@
       'f3.name': 'الأتمتة والأنابيب', 'f3.promise': 'احذف العمل الممل.',
       'f3.brief': 'كاشطات، أنابيب بيانات، محرّكات عملاء، أتمتة سير العمل، أدوات داخلية. العمل المتكرّر الهشّ الذي يلتهم ساعاتك — نجعله يعمل وحده عند الثالثة فجراً. بايثون · Playwright · واجهات · Claude.',
       'f4.name': 'استخبارات السوق والمنتج', 'f4.promise': 'رؤية السوق بوضوح.',
-      'f4.brief': 'حوّل الويب المفتوح إلى قاعدة بيانات. مراقبة المنافسين، استخبارات الأسعار والمنتجات، إثراء العملاء عبر Maps وFacebook وOuedkniss وJumia وInstagram — مهيكلة، مُقيَّمة، قابلة للاستعلام.',
+      'f4.brief': 'حوّل البيانات العامة على الويب إلى قاعدة بيانات قابلة للاستخدام: مراقبة المنافسين، وتتبّع الأسعار والكتالوجات — تُجمع وفق شروط كل موقع وقوانين حماية البيانات، مهيكلة وقابلة للاستعلام.',
       'f5.name': 'الاستراتيجية واستشارات النمو', 'f5.promise': 'بيانات، لا انطباعات.',
       'f5.brief': 'تدقيقات تسويقية كاملة، تحليل قمع، تموضع تنافسي، خرائط نمو — صريحة، تضع العائد أولاً، على مراحل. ننجز واجب القطاع قبل المكالمة.',
       'cap.summary': 'اعرض كل القدرات →', 'cap.hint': '٥ قدرات أخرى، لمن يبحث.',
@@ -1134,6 +1134,14 @@
       });
     }
 
+    // L'Aperçu: the button hands its request to the message field (only if the
+    // visitor has not started writing), then the normal #contact jump happens
+    var prevCta = document.getElementById('prev-cta');
+    if (prevCta) prevCta.addEventListener('click', function () {
+      var msg = document.getElementById('f-message');
+      if (msg && !msg.value.trim()) msg.value = t('prev.msg');
+    });
+
     // contact form — designed validation + success
     var form = document.querySelector('#contact-form');
     if (form) {
@@ -1194,8 +1202,11 @@
         // Static site, no backend: hand the lead off to the visitor's mail client,
         // pre-filled to Hamissemohamedyasser@gmail.com. Only show success after the handoff.
         var subject = 'Numidea Labs · ' + name;
+        var src = leadSource();
         var body = name + ' <' + email + '>\n\n' + msg
-          + '\n\n--\nnumidealabs · ' + (document.documentElement.getAttribute('lang') || 'fr');
+          + '\n\n--\nnumidealabs · ' + (document.documentElement.getAttribute('lang') || 'fr')
+          // French sets a space before the colon; English and Arabic do not
+          + (src ? '\n' + t('form.source') + (document.documentElement.getAttribute('lang') === 'fr' ? ' : ' : ': ') + src : '');
         window.location.href = 'mailto:Hamissemohamedyasser@gmail.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);
@@ -1425,10 +1436,30 @@
        stays visibly pending rather than linking somewhere wrong — the same
        idiom hub/ uses for handles with no verified URL. */
     var WA = (window.NUMIDEA_WA || '').replace(/[^0-9]/g, '');
+    /* Where a lead came from, read at the moment it is sent: ?ref= (each ad
+       and email carries its own code), utm_* and whether Meta or Google added
+       a click id. Nothing is stored or sent anywhere else: it rides in the
+       mailto body and the WhatsApp text the visitor sends themselves. On this
+       one-page site the query string survives every #anchor jump. */
+    var leadSource = function () {
+      var q; try { q = new URLSearchParams(location.search); } catch (e) { return ''; }
+      var clean = function (v) { return (v || '').replace(/[^\w .:\/-]/g, '').slice(0, 40); };
+      var parts = [q.get('utm_source'), q.get('utm_medium'), q.get('utm_campaign'), q.get('utm_content'), q.get('ref')]
+        .map(clean).filter(Boolean);
+      if (q.has('fbclid')) parts.push('fbclid');
+      if (q.has('gclid')) parts.push('gclid');
+      return parts.join(' · ');
+    };
+    var refTag = function () {
+      var r = ''; try { r = new URLSearchParams(location.search).get('ref') || ''; } catch (e) {}
+      r = r.replace(/[^\w-]/g, '').slice(0, 20);
+      return r ? ' [' + r + ']' : '';
+    };
     // Rebuilt on a language swap, so the pre-filled greeting follows the page.
     var wireWA = function () { document.querySelectorAll('.wa-link').forEach(function (a) {
       if (WA) {
-        a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t('wa.hello'));
+        // a link may carry its own opening line (the Aperçu one does)
+        a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t(a.getAttribute('data-wa-text') || 'wa.hello') + refTag());
         a.target = '_blank';
         a.rel = 'noopener';
         a.removeAttribute('data-wa-pending');
