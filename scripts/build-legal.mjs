@@ -44,6 +44,8 @@ const UI = {
 
 function body(lang, d, preview) {
   const v = (x, p) => val(x, p, preview);
+  // inside an attribute a gap marker would be markup in href=""; preview gets an inert placeholder
+  const a = (x, p) => (x === null || x === undefined) && preview ? 'a-completer' : val(x, p, preview);
   const pub = d.publisher, reg = d.registration;
   const hosts = d.hosts.map((h) => {
     const c = d.hostCatalogue[h];
@@ -56,13 +58,14 @@ function body(lang, d, preview) {
   const supa = d.privacy.supabaseRegion;
   const anpdp = d.privacy.anpdp === false ? '' : d.privacy.anpdp === null ? v(null, 'privacy.anpdp') : esc(d.privacy.anpdp);
   const rights = v(d.privacy.rightsEmail, 'privacy.rightsEmail');
+  const rightsHref = a(d.privacy.rightsEmail, 'privacy.rightsEmail');
 
   if (lang === 'fr') return `
   <section id="mentions" aria-labelledby="mentions-h-fr"><h2 id="mentions-h-fr">Mentions légales</h2>
     <h3>Éditeur</h3>
     <p>${v(pub.name, 'publisher.name')} — ${v(pub.legalForm, 'publisher.legalForm')}${capital ? `, capital ${capital}` : ''}<br>
     ${v(pub.address, 'publisher.address')}<br>
-    <a href="mailto:${v(pub.email, 'publisher.email')}">${v(pub.email, 'publisher.email')}</a> · <span dir="ltr">${v(pub.phone, 'publisher.phone')}</span>${regLine ? `<br>${regLine}` : ''}</p>
+    <a href="mailto:${a(pub.email, 'publisher.email')}">${v(pub.email, 'publisher.email')}</a> · <span dir="ltr">${v(pub.phone, 'publisher.phone')}</span>${regLine ? `<br>${regLine}` : ''}</p>
     <h3>Directeur de la publication</h3><p>${v(d.director, 'director')}</p>
     <h3>Hébergement</h3><ul>${hosts}</ul>
     <h3>Propriété intellectuelle</h3>
@@ -73,7 +76,7 @@ function body(lang, d, preview) {
     <h3>Polices</h3><p>Cinzel, Geist, Geist Mono et IBM Plex Sans Arabic, sous licence SIL Open Font License 1.1, servies depuis ce site.</p>
   </section>
   <section id="confidentialite" aria-labelledby="privacy-h-fr"><h2 id="privacy-h-fr">Confidentialité</h2>
-    <h3>Responsable du traitement</h3><p>${v(pub.name, 'publisher.name')} — pour toute question : <a href="mailto:${rights}">${rights}</a>.</p>
+    <h3>Responsable du traitement</h3><p>${v(pub.name, 'publisher.name')} — pour toute question : <a href="mailto:${rightsHref}">${rights}</a>.</p>
     <h3>Le formulaire de contact</h3>
     <p>Il demande votre nom, votre e-mail et votre message (qui peut contenir l'estimation préparée avec l'estimateur, et la langue de la page). <strong>Le site ne transmet rien lui-même</strong> : « Démarrer un projet » ouvre votre messagerie avec un e-mail pré-rempli adressé au studio, et c'est votre messagerie qui l'envoie. Il est reçu sur une boîte Gmail (Google).${supa ? ` Le message est aussi enregistré dans une base de données Supabase (région ${esc(supa)}).` : ''}</p>
     <p>Si vous écrivez sur WhatsApp, l'échange passe par WhatsApp (Meta).</p>
@@ -82,7 +85,7 @@ function body(lang, d, preview) {
     <h3>Combien de temps</h3><p>${v(d.privacy.retention, 'privacy.retention')}</p>
     <h3>Qui y a accès</h3><p>Le studio. Ses prestataires techniques traitent les données nécessaires à leur service : Google (messagerie), Meta (WhatsApp, si vous l'utilisez, et les publicités) et l'hébergeur du site, qui conserve des journaux de connexion techniques (dont l'adresse IP) selon ses propres règles. Ces prestataires peuvent traiter des données hors de l'Union européenne et de l'Algérie, notamment aux États-Unis.</p>
     <h3>Sur votre appareil</h3><p>Aucun cookie, aucune mesure d'audience, aucune requête vers un service tiers. Le site garde dans le stockage local de votre navigateur : <code>numidea-lang</code> (langue), <code>numidea-theme</code> (thème), <code>numidea-cur</code> (devise d'affichage des prix), <code>void-theme</code> (thème de la page de l'artiste) et l'état de la démo WorkspaceHQ (<code>animstage-v3:t</code>, et <code>whq3-place</code> le temps de la session). Aucune de ces valeurs ne vous identifie ; vous pouvez les effacer depuis votre navigateur.</p>
-    <h3>Vos droits</h3><p>Accès, rectification, effacement, limitation et opposition : écrivez à <a href="mailto:${rights}">${rights}</a>. Vous pouvez aussi saisir la CNIL (France, <a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>) ou l'ANPDP (Algérie)${anpdp ? ` — ${anpdp}` : ''}.</p>
+    <h3>Vos droits</h3><p>Accès, rectification, effacement, limitation et opposition : écrivez à <a href="mailto:${rightsHref}">${rights}</a>. Vous pouvez aussi saisir la CNIL (France, <a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>) ou l'ANPDP (Algérie)${anpdp ? ` — ${anpdp}` : ''}.</p>
   </section>`;
 
   if (lang === 'en') return `
@@ -90,7 +93,7 @@ function body(lang, d, preview) {
     <h3>Publisher</h3>
     <p>${v(pub.name, 'publisher.name')} — ${v(pub.legalForm, 'publisher.legalForm')}${capital ? `, share capital ${capital}` : ''}<br>
     ${v(pub.address, 'publisher.address')}<br>
-    <a href="mailto:${v(pub.email, 'publisher.email')}">${v(pub.email, 'publisher.email')}</a> · <span dir="ltr">${v(pub.phone, 'publisher.phone')}</span>${regLine ? `<br>${regLine}` : ''}</p>
+    <a href="mailto:${a(pub.email, 'publisher.email')}">${v(pub.email, 'publisher.email')}</a> · <span dir="ltr">${v(pub.phone, 'publisher.phone')}</span>${regLine ? `<br>${regLine}` : ''}</p>
     <h3>Publication director</h3><p>${v(d.director, 'director')}</p>
     <h3>Hosting</h3><ul>${hosts}</ul>
     <h3>Intellectual property</h3>
@@ -101,7 +104,7 @@ function body(lang, d, preview) {
     <h3>Fonts</h3><p>Cinzel, Geist, Geist Mono and IBM Plex Sans Arabic, under the SIL Open Font License 1.1, served from this site.</p>
   </section>
   <section id="privacy-en" aria-labelledby="privacy-h-en"><h2 id="privacy-h-en">Privacy</h2>
-    <h3>Controller</h3><p>${v(pub.name, 'publisher.name')} — any question: <a href="mailto:${rights}">${rights}</a>.</p>
+    <h3>Controller</h3><p>${v(pub.name, 'publisher.name')} — any question: <a href="mailto:${rightsHref}">${rights}</a>.</p>
     <h3>The contact form</h3>
     <p>It asks for your name, your email and your message (which may include the estimate prepared with the estimator, and the page language). <strong>The site sends nothing itself</strong>: "Start a project" opens your email app with a pre-filled email to the studio, and your email app sends it. It is received in a Gmail (Google) mailbox.${supa ? ` The message is also stored in a Supabase database (region ${esc(supa)}).` : ''}</p>
     <p>If you write on WhatsApp, the conversation goes through WhatsApp (Meta).</p>
@@ -110,7 +113,7 @@ function body(lang, d, preview) {
     <h3>How long</h3><p>${v(d.privacy.retention, 'privacy.retention')}</p>
     <h3>Who has access</h3><p>The studio. Its technical providers process what their service needs: Google (email), Meta (WhatsApp, if you use it, and the ads) and the site's host, which keeps technical connection logs (including IP addresses) under its own rules. These providers may process data outside the European Union and Algeria, notably in the United States.</p>
     <h3>On your device</h3><p>No cookies, no analytics, no requests to third-party services. The site keeps in your browser's local storage: <code>numidea-lang</code> (language), <code>numidea-theme</code> (theme), <code>numidea-cur</code> (the currency prices are shown in), <code>void-theme</code> (the artist page's theme) and the WorkspaceHQ demo's state (<code>animstage-v3:t</code>, and <code>whq3-place</code> for the session). None of these identifies you; you can clear them from your browser.</p>
-    <h3>Your rights</h3><p>Access, rectification, erasure, restriction and objection: write to <a href="mailto:${rights}">${rights}</a>. You can also complain to the CNIL (France, <a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>) or the ANPDP (Algeria)${anpdp ? ` — ${anpdp}` : ''}.</p>
+    <h3>Your rights</h3><p>Access, rectification, erasure, restriction and objection: write to <a href="mailto:${rightsHref}">${rights}</a>. You can also complain to the CNIL (France, <a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>) or the ANPDP (Algeria)${anpdp ? ` — ${anpdp}` : ''}.</p>
   </section>`;
 
   return `
@@ -118,7 +121,7 @@ function body(lang, d, preview) {
     <h3>الناشر</h3>
     <p>${v(pub.name, 'publisher.name')} — ${v(pub.legalForm, 'publisher.legalForm')}${capital ? `، رأس المال ${capital}` : ''}<br>
     ${v(pub.address, 'publisher.address')}<br>
-    <a href="mailto:${v(pub.email, 'publisher.email')}" dir="ltr">${v(pub.email, 'publisher.email')}</a> · <span dir="ltr">${v(pub.phone, 'publisher.phone')}</span>${regLine ? `<br>${regLine}` : ''}</p>
+    <a href="mailto:${a(pub.email, 'publisher.email')}" dir="ltr">${v(pub.email, 'publisher.email')}</a> · <span dir="ltr">${v(pub.phone, 'publisher.phone')}</span>${regLine ? `<br>${regLine}` : ''}</p>
     <h3>مدير النشر</h3><p>${v(d.director, 'director')}</p>
     <h3>الاستضافة</h3><ul>${hosts}</ul>
     <h3>الملكية الفكرية</h3>
@@ -129,7 +132,7 @@ function body(lang, d, preview) {
     <h3>الخطوط</h3><p>Cinzel وGeist وGeist Mono وIBM Plex Sans Arabic، بترخيص SIL Open Font License 1.1، تُخدَم من هذا الموقع.</p>
   </section>
   <section id="privacy-ar" aria-labelledby="privacy-h-ar"><h2 id="privacy-h-ar">الخصوصية</h2>
-    <h3>المسؤول عن المعالجة</h3><p>${v(pub.name, 'publisher.name')} — لأي سؤال: <a href="mailto:${rights}" dir="ltr">${rights}</a>.</p>
+    <h3>المسؤول عن المعالجة</h3><p>${v(pub.name, 'publisher.name')} — لأي سؤال: <a href="mailto:${rightsHref}" dir="ltr">${rights}</a>.</p>
     <h3>استمارة الاتصال</h3>
     <p>تطلب اسمك وبريدك الإلكتروني ورسالتك (وقد تتضمّن التقدير المُعدّ بالحاسبة، ولغة الصفحة). <strong>الموقع لا يُرسل شيئاً بنفسه</strong>: زر «ابدأ مشروعاً» يفتح تطبيق بريدك برسالة جاهزة موجّهة إلى الاستوديو، وتطبيق بريدك هو من يُرسلها. تصل إلى صندوق Gmail ‏(Google).${supa ? ` وتُحفظ الرسالة أيضاً في قاعدة بيانات Supabase (المنطقة ${esc(supa)}).` : ''}</p>
     <p>إن راسلتنا عبر واتساب، فالمحادثة تمرّ عبر واتساب (Meta).</p>
@@ -138,7 +141,7 @@ function body(lang, d, preview) {
     <h3>إلى متى</h3><p>${v(d.privacy.retention, 'privacy.retention')}</p>
     <h3>من يطّلع عليها</h3><p>الاستوديو. ويعالج مزوّدوه التقنيون ما تحتاجه خدمتهم: Google (البريد)، وMeta (واتساب إن استعملته، والإعلانات)، ومستضيف الموقع الذي يحتفظ بسجلّات اتصال تقنية (منها عنوان IP) وفق قواعده. قد يعالج هؤلاء المزوّدون بيانات خارج الاتحاد الأوروبي والجزائر، ولا سيما في الولايات المتحدة.</p>
     <h3>على جهازك</h3><p>لا ملفات تعريف ارتباط، ولا قياس للزيارات، ولا طلبات إلى خدمات خارجية. يحفظ الموقع في التخزين المحلي لمتصفّحك: <code>numidea-lang</code> (اللغة)، <code>numidea-theme</code> (المظهر)، <code>numidea-cur</code> (عملة عرض الأسعار)، <code>void-theme</code> (مظهر صفحة الفنان) وحالة عرض WorkspaceHQ (<code>animstage-v3:t</code>، و<code>whq3-place</code> طوال الجلسة). لا شيء منها يُعرّف بك، ويمكنك حذفها من متصفّحك.</p>
-    <h3>حقوقك</h3><p>الاطّلاع والتصحيح والمحو والتقييد والاعتراض: راسل <a href="mailto:${rights}" dir="ltr">${rights}</a>. ويمكنك أيضاً تقديم شكوى إلى CNIL (فرنسا، <a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>) أو ANPDP (الجزائر)${anpdp ? ` — ${anpdp}` : ''}.</p>
+    <h3>حقوقك</h3><p>الاطّلاع والتصحيح والمحو والتقييد والاعتراض: راسل <a href="mailto:${rightsHref}" dir="ltr">${rights}</a>. ويمكنك أيضاً تقديم شكوى إلى CNIL (فرنسا، <a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>) أو ANPDP (الجزائر)${anpdp ? ` — ${anpdp}` : ''}.</p>
   </section>`;
 }
 
@@ -150,7 +153,7 @@ export function renderLegal(data = LEGAL, { preview = false } = {}) {
 <div class="lg" lang="${l}"${l === 'ar' ? ' dir="rtl"' : ''}>
   <h1>${UI[l].h1}</h1>
   <nav class="lg-toc" aria-label="${esc(UI[l].mentions)} · ${esc(UI[l].privacy)}"><a href="#${l === 'fr' ? 'mentions' : 'mentions-' + l}">${esc(UI[l].mentions)}</a><a href="#${l === 'fr' ? 'confidentialite' : 'privacy-' + l}">${esc(UI[l].privacy)}</a></nav>
-  ${body(l, data, preview)}
+  ${body(l, data, preview).trim()}
   <p class="lg-upd">${esc(UI[l].updated)} : <span dir="ltr">${updated}</span></p>
   <a class="lg-back" href="../">${esc(UI[l].back)}</a>
 </div>`).join('\n');
