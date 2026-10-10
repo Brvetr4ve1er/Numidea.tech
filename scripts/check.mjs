@@ -212,6 +212,28 @@ if (supa) {
     bad('the Supabase lead store is on: publish legal/, set privacy.supabaseRegion in scripts/legal-data.mjs, and rewrite form.note');
   else ok('Supabase store on, with the legal page, its region and an honest form note');
 } else ok('form store off; form.note ("the site keeps nothing") holds');
+// Prices have one source. The tier cards and the maintenance line carry their
+// dinar figures in the markup (scripts off); they must equal PRICE_MODEL and
+// RETAINER in app.js, and no € or $ amount may be typed into the page: the
+// converted views are computed at runtime from the same numbers.
+const priceErr = [];
+const digits = (x) => Number(String(x).replace(/\D/g, ''));
+const base = (key) => { const m = new RegExp(key + ":\\s*\\{\\s*base:\\s*\\[(\\d+),\\s*(\\d+)\\]").exec(app); return m && [Number(m[1]), Number(m[2])]; };
+for (const m of html.matchAll(/<p class="t-range" data-tier="([a-z]+)"><b>([^<]+)<\/b>/g)) {
+  const want = base(m[1]); const got = m[2].split('–').map(digits);
+  if (!want || got[0] !== want[0] || got[1] !== want[1]) priceErr.push(`tier ${m[1]}: markup ${m[2]} vs PRICE_MODEL ${want}`);
+}
+const ret = (/RETAINER = \[(\d+), (\d+)\]/.exec(app) || []).slice(1).map(Number);
+const retHtml = (/<b id="pr-ret">([^<]+)<\/b>/.exec(html) || [])[1] || '';
+if (retHtml.split('–').map(digits).join() !== ret.join()) priceErr.push(`maintenance: markup ${retHtml} vs RETAINER ${ret}`);
+if ((html.match(/class="t-range"/g) || []).length !== (html.match(/class="t-range" data-tier=/g) || []).length) priceErr.push('a tier range without data-tier is not converted');
+// only Numidea's own prices: the market table quotes other markets on purpose
+const ownPrices = html.slice(html.indexOf('<div class="tiers">'), html.indexOf('<div class="market"'));
+if (!ownPrices) priceErr.push('could not find the tiers-to-market region');
+const typed = [...ownPrices.replace(/<!--[\s\S]*?-->/g, '').matchAll(/(?:€|\$)\s?\d[\d\s  .,]*|\d[\d  .,]*\s?(?:€|\$)/g)]
+  .map((m) => m[0]).filter((x) => !/^\$\{/.test(x));
+if (typed.length) priceErr.push('hard-coded €/$ amounts in index.html: ' + typed.slice(0, 5).join(' | '));
+priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts');
 deadRefs.length ? bad('attributes point at ids that do not exist: ' + deadRefs.join(', ')) : ok('every aria-labelledby/describedby/controls and label for= resolves');
 // Owner decision: Glaive is a portfolio demo (4 live client sites, not 5), the
 // "most chosen" tier claim has no data behind it, and client sites are not demos.

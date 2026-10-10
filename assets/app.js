@@ -354,7 +354,10 @@
       'price.t3c': 'Scraping et intelligence marché — le web ouvert en base de données',
       'price.t3d': 'Intégrations API et outils internes',
       'price.t3e': '6 mois de support inclus',
-      'price.retainer': 'Maintenance après livraison, si vous la voulez : 18 000 –⁠ 60 000 DA par mois. Sans engagement de durée.',
+      'price.retainerA': 'Maintenance après livraison, si vous la voulez :', 'price.retainerB': 'par mois. Sans engagement de durée.',
+      'price.curL': 'Afficher les prix en', 'price.exTax': 'HT',
+      'price.curNoteEUR': "≈ Conversion au taux officiel de la Banque d'Algérie (1 € ≈ 151 DA, octobre 2026), arrondie. Prix HT. Entreprise française : facture sans TVA, autoliquidée par vos soins (art. 283-2 du CGI).",
+      'price.curNoteUSD': "≈ Conversion au taux officiel de la Banque d'Algérie (1 $ ≈ 134 DA, octobre 2026), arrondie. Prix hors taxes.",
       'price.estH': 'Estimez votre projet',
       'price.estP': 'Réglez ce dont vous avez besoin. La fourchette se recalcule en direct, sur les mêmes chiffres que les paliers ci-dessus.',
       'price.qType': 'Quel type de projet ?', 'price.qSize': 'Ampleur', 'price.qOpts': "Ce qu'il vous faut en plus", 'price.qPace': 'Délai',
@@ -458,7 +461,10 @@
       'price.t3c': 'Scraping and market intelligence — the open web as a database',
       'price.t3d': 'API integrations and internal tools',
       'price.t3e': '6 months of support included',
-      'price.retainer': 'Maintenance after launch, if you want it: 18,000 –⁠ 60,000 DZD per month. No lock-in.',
+      'price.retainerA': 'Maintenance after launch, if you want it:', 'price.retainerB': 'per month. No lock-in.',
+      'price.curL': 'Show prices in', 'price.exTax': 'excl. tax',
+      'price.curNoteEUR': '≈ Converted at the Bank of Algeria official rate (€1 ≈ 151 DZD, October 2026), rounded. Prices exclude VAT. French businesses: invoiced without VAT, which you self-assess (reverse charge, art. 283-2 CGI).',
+      'price.curNoteUSD': '≈ Converted at the Bank of Algeria official rate ($1 ≈ 134 DZD, October 2026), rounded. Prices exclude taxes.',
       'price.estH': 'Estimate your project',
       'price.estP': 'Set what you need. The range recalculates live, on the same numbers the tiers above quote.',
       'price.qType': 'What kind of project?', 'price.qSize': 'Scale', 'price.qOpts': 'What else you need', 'price.qPace': 'Timeline',
@@ -562,7 +568,10 @@
       'price.t3c': 'استخراج البيانات وذكاء السوق — الويب المفتوح كقاعدة بيانات',
       'price.t3d': 'تكاملات واجهات برمجية وأدوات داخلية',
       'price.t3e': 'ستّة أشهر دعم مشمولة',
-      'price.retainer': 'الصيانة بعد التسليم، إن أردتموها: من ١٨٬٠٠٠ إلى ٦٠٬٠٠٠ دج شهرياً. دون ارتباط بمدّة.',
+      'price.retainerA': 'الصيانة بعد التسليم، إن أردتموها:', 'price.retainerB': 'شهرياً. دون ارتباط بمدّة.',
+      'price.curL': 'عرض الأسعار بـ', 'price.exTax': 'دون رسوم',
+      'price.curNoteEUR': '≈ تحويل بالسعر الرسمي لبنك الجزائر (١ € ≈ ١٥١ دج، أكتوبر ٢٠٢٦)، مع التقريب. الأسعار دون رسوم. للشركات الفرنسية: فاتورة دون ضريبة القيمة المضافة، يصرّح بها العميل ذاتياً (المادة 283-2 من القانون العام للضرائب الفرنسي).',
+      'price.curNoteUSD': '≈ تحويل بالسعر الرسمي لبنك الجزائر (١ $ ≈ ١٣٤ دج، أكتوبر ٢٠٢٦)، مع التقريب. الأسعار دون ضرائب.',
       'price.estH': 'قدّر مشروعك',
       'price.estP': 'اضبط ما تحتاجه. يُعاد حساب النطاق مباشرة، بالأرقام نفسها المعلنة في الباقات أعلاه.',
       'price.qType': 'أيّ نوع من المشاريع؟', 'price.qSize': 'الحجم', 'price.qOpts': 'ما تحتاجه إضافةً إلى ذلك', 'price.qPace': 'المهلة',
@@ -1235,6 +1244,71 @@
       return d && d[k] != null ? d[k] : (fb || k);
     }
 
+    /* ---------------- 12a · display currency ----------------
+       Every price is set in dinars (PRICE_MODEL, RETAINER) and only converted
+       for display, at the Bank of Algeria official rate of early October 2026
+       (1 Oct: 1 € = 151.06 DA, 1 $ = 133.66 DA; an independent page agreed
+       within 0.3%), rounded to what a person would actually quote. The tier
+       cards, the maintenance line, the estimator and the market table all go
+       through this one place, so no two figures on the page can disagree.
+       ?cur= (an ad or a shared link) wins over the stored choice; dinars
+       otherwise, which is also what the markup says with scripts off. */
+    var FX = { DZD: 1, EUR: 151, USD: 134 };
+    var CURS = ['DZD', 'EUR', 'USD'];
+    var RETAINER = [18000, 60000];   // per month
+    // narrow no-break space between groups: a normal space lets a figure wrap,
+    // and a comma reads as a decimal point in DZ
+    var grp = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+    var tidy = function (n, c) {
+      var g = c === 'DZD' ? (n >= 1e6 ? 50000 : n >= 150000 ? 10000 : 5000)
+                          : (n >= 10000 ? 500 : n >= 1000 ? 100 : 10);
+      return Math.max(g, Math.round(n / g) * g);
+    };
+    var sym = function (c) { return c === 'DZD' ? t('price.cur') : c === 'EUR' ? '€' : '$'; };
+    // a dinar figure as shown in currency c (dinars pass through unrounded)
+    var shown = function (dzd, c) { return c === 'DZD' ? dzd : tidy(dzd / FX[c], c); };
+    var rangeText = function (lo, hi, c) {
+      return (c === 'DZD' ? '' : '≈ ') + grp(shown(lo, c)) + ' –⁠ ' + grp(shown(hi, c));
+    };
+    var CUR = (function () {
+      var q = '', s = '';
+      try { q = (new URLSearchParams(location.search).get('cur') || '').toUpperCase(); } catch (e) {}
+      try { s = localStorage.getItem('numidea-cur') || ''; } catch (e) {}
+      return CURS.indexOf(q) !== -1 ? q : CURS.indexOf(s) !== -1 ? s : 'DZD';
+    })();
+    var renderPrices = function () {
+      document.querySelectorAll('.t-range[data-tier]').forEach(function (p) {
+        var m = PRICE_MODEL[p.getAttribute('data-tier')];
+        p.querySelector('b').textContent = rangeText(m.base[0], m.base[1], CUR);
+        p.querySelector('.cur').textContent = sym(CUR);
+      });
+      var ret = document.getElementById('pr-ret');
+      if (ret) {
+        ret.textContent = rangeText(RETAINER[0], RETAINER[1], CUR);
+        ret.parentNode.querySelector('.cur').textContent = sym(CUR);
+      }
+      var note = document.getElementById('pr-cur-note');
+      if (note) { note.hidden = CUR === 'DZD'; note.textContent = CUR === 'DZD' ? '' : t('price.curNote' + CUR); }
+      document.querySelectorAll('input[name="pr-cur"]').forEach(function (r) { r.checked = r.value === CUR; });
+    };
+    var setCur = function (c) {
+      if (CURS.indexOf(c) === -1) return;
+      CUR = c;
+      try { localStorage.setItem('numidea-cur', c); } catch (e) {}
+      // keep a shared ?cur= link truthful after a switch, as ?lang= is
+      try {
+        var u = new URL(location.href);
+        if (u.searchParams.has('cur')) { u.searchParams.set('cur', c.toLowerCase()); history.replaceState(null, '', u); }
+      } catch (e) {}
+      renderPrices();
+      document.dispatchEvent(new CustomEvent('numidea:cur', { detail: { cur: c } }));
+    };
+    document.querySelectorAll('input[name="pr-cur"]').forEach(function (r) {
+      r.addEventListener('change', function () { if (r.checked) setCur(r.value); });
+    });
+    document.addEventListener('numidea:lang', renderPrices);
+    renderPrices();
+
     var est = document.getElementById('estimator');
     if (est) {
       var eSize   = document.getElementById('est-size'),
@@ -1252,9 +1326,6 @@
         var g = n >= 500000 ? 50000 : n >= 150000 ? 10000 : 5000;
         return Math.round(n / g) * g;
       };
-      /* Thin no-break space between groups: a normal space lets the number
-         wrap mid-figure, and a comma reads as a decimal point in DZ. */
-      var money = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
 
       var typeOf = function () {
         var r = est.querySelector('input[name="est-type"]:checked');
@@ -1295,8 +1366,10 @@
         }
 
         lo = roundTo(lo); hi = roundTo(hi);
-        eLo.textContent = money(lo);
-        eHi.textContent = money(hi);
+        eLo.textContent = (CUR === 'DZD' ? '' : '≈\u00a0') + grp(shown(lo, CUR));
+        eHi.textContent = grp(shown(hi, CUR));
+        var eCur = eLo.parentNode.querySelector('.cur');
+        if (eCur) eCur.textContent = sym(CUR);
         eWeeks.textContent = wLo + ' – ' + wHi;
 
         if (eSizeV) eSizeV.textContent = n;
@@ -1319,7 +1392,7 @@
            does not have to retype what they just clicked. */
         if (eCta) {
           eCta.dataset.scope = (eSum && eSum.textContent ? eSum.innerText.replace(/\n+/g, ' · ') : '')
-            + ' — ' + money(lo) + '–' + money(hi) + ' ' + t('price.cur');
+            + ' — ' + rangeText(lo, hi, CUR) + ' ' + sym(CUR) + (CUR === 'DZD' ? '' : ' ' + t('price.exTax'));
         }
       };
 
@@ -1341,6 +1414,7 @@
 
       /* Units and option labels are translated, so rebuild on language change. */
       document.addEventListener('numidea:lang', function () { syncSize(true); compute(); });
+      document.addEventListener('numidea:cur', compute);
       syncSize(true);
       compute();
     }
@@ -1405,7 +1479,6 @@
        FX: Bank of Algeria official rate, early October 2026 (1 Oct: 1 € =
        151.06, 1 $ = 133.66; an independent page agreed within 0.3%). Rounded,
        because the comparison is about orders of magnitude, not centimes. */
-    var FX = { DZD: 1, EUR: 151, USD: 134 };
     var MARKET = {   // [low, high, openEnded] — freelance confirmé low → agency high
       vitrine:   { dz: [50000, 100000],   fr: [1500, 6000],     us: [1500, 12000] },
       surmesure: { dz: [180000, 400000],  fr: [6000, 10000, 1], us: [6000, 20000] },
@@ -1416,14 +1489,6 @@
     var NATIVE = { dz: 'DZD', nl: 'DZD', fr: 'EUR', us: 'USD' };
     var mkt = document.getElementById('market');
     if (mkt) {
-      var grp = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
-      // a converted figure is rounded to what a person would actually quote
-      var tidy = function (n, cur) {
-        var g = cur === 'DZD' ? (n >= 1e6 ? 50000 : n >= 150000 ? 10000 : 5000)
-                              : (n >= 10000 ? 500 : n >= 1000 ? 100 : 10);
-        return Math.max(g, Math.round(n / g) * g);
-      };
-      var sym = function (cur) { return cur === 'DZD' ? t('price.cur') : cur === 'EUR' ? '€' : '$'; };
       var nlRange = function (key) {
         var m = PRICE_MODEL[key], over = Math.max(0, m.def - m.base_u);
         return [m.base[0] + over * m.unit[0], m.base[1] + over * m.unit[1]];
@@ -1452,6 +1517,14 @@
         var day = document.getElementById('mk-day-dz');
         if (day) day.textContent = grp(tidy(480 * FX.EUR, 'DZD')) + ' – ' + grp(tidy(650 * FX.EUR, 'DZD')) + ' ' + t('price.cur');
       };
+      // a visitor who chose € or $ for the prices sees the comparison in it too
+      var follow = function () {
+        if (CUR === 'DZD') return;
+        var r = mkt.querySelector('input[name="mk-cur"][value="' + CUR + '"]');
+        if (r) r.checked = true;
+      };
+      follow();
+      document.addEventListener('numidea:cur', function () { follow(); renderMarket(); });
       mkt.addEventListener('change', renderMarket);
       document.addEventListener('numidea:lang', renderMarket);
       renderMarket();

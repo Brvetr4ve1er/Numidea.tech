@@ -604,13 +604,25 @@
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
     <p class="sec-lead" data-i18n="price.lead">Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre et voyez l'estimation bouger.</p>
 
+    <!-- Display currency for the tiers, the maintenance line and the
+         estimator. Prices are set in dinars (PRICE_MODEL) and converted for
+         display only; ?cur=eur|usd|dzd in a shared link picks the view. -->
+    <fieldset class="pr-cur est-field">
+      <legend data-i18n="price.curL">Afficher les prix en</legend>
+      <div class="est-chips">
+        <label class="echip"><input type="radio" name="pr-cur" value="DZD" checked><span data-i18n="price.cur">DA</span></label>
+        <label class="echip"><input type="radio" name="pr-cur" value="EUR"><span>€</span></label>
+        <label class="echip"><input type="radio" name="pr-cur" value="USD"><span>$</span></label>
+      </div>
+    </fieldset>
+    <p class="pr-cur-note" id="pr-cur-note" hidden></p>
 
     <div class="tiers">
       <article class="tier reveal">
         <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg>
         <h3 data-i18n="price.t1name">Essentiel</h3>
         <p class="t-for" data-i18n="price.t1for">Une présence crédible, vite en ligne.</p>
-        <p class="t-range"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
+        <p class="t-range" data-tier="vitrine"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t1time">2 à 4 semaines</p>
         <ul class="t-list">
           <li data-i18n="price.t1a">Vitrine ou landing, 1 à 5 pages</li>
@@ -626,7 +638,7 @@
         <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:12px 4.4px"><circle class="p" pathLength="1" cx="12" cy="4.4" r="1.7"/><path class="p" pathLength="1" d="M11.2 6 6.2 19.8M12.8 6l5 13.8M8.2 14.3h7.6"/></g><path class="p" pathLength="1" d="M4 20.6a14 14 0 0 0 16 0"/></svg>
         <h3 data-i18n="price.t2name">Studio</h3>
         <p class="t-for" data-i18n="price.t2for">Le site qui porte vraiment l'entreprise.</p>
-        <p class="t-range"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
+        <p class="t-range" data-tier="surmesure"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t2time">3 à 7 semaines</p>
         <ul class="t-list">
           <li data-i18n="price.t2a">Site sur mesure, 6 à 15 pages</li>
@@ -642,7 +654,7 @@
         <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:10s"><circle class="p" pathLength="1" cx="12" cy="12" r="6"/><path class="p" pathLength="1" d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></g><circle class="p" pathLength="1" cx="12" cy="12" r="2.2"/></svg>
         <h3 data-i18n="price.t3name">Moteur</h3>
         <p class="t-for" data-i18n="price.t3for">La machinerie que presque personne ne construit ici.</p>
-        <p class="t-range"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
+        <p class="t-range" data-tier="app"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t3time">8 à 16 semaines</p>
         <ul class="t-list">
           <li data-i18n="price.t3a">E-commerce, application web ou pipeline d'automatisation</li>
@@ -655,7 +667,9 @@
     </div>
 
     <p class="price-note reveal">
-      <span data-i18n="price.retainer">Maintenance après livraison, si vous la voulez : 18 000 –⁠ 60 000 DA par mois. Sans engagement de durée.</span>
+      <span data-i18n="price.retainerA">Maintenance après livraison, si vous la voulez :</span>
+      <span class="pr-ret"><b id="pr-ret">18 000 –⁠ 60 000</b> <span class="cur" data-i18n="price.cur">DA</span></span>
+      <span data-i18n="price.retainerB">par mois. Sans engagement de durée.</span>
     </p>
 
     <!-- ---------------- estimator ---------------- -->

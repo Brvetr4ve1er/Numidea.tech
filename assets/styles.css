@@ -77,6 +77,14 @@ body{
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 /* Arabic switches the whole document's type families */
 html[dir="rtl"] body{font-family:var(--font-ar-body)}
+/* Arabic never goes through the mono face. Geist Mono has no Arabic glyphs, so
+   every mono label (kickers, buttons, legends, durations) fell back to a
+   system monospace and set Arabic letters one cell apart; listing Plex Arabic
+   right after Geist Mono hands Arabic glyphs to it while Latin and digits keep
+   the mono face. Tracking breaks the joins of a cursive script outright, so
+   it is off for the whole Arabic page (the Latin logo keeps its own). */
+html[dir="rtl"]{--font-mono:"Geist Mono", "IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", "Geist Mono Fallback", ui-monospace, monospace}
+html[dir="rtl"] body :not(.logo, .logo *){letter-spacing:0!important}
 html[dir="rtl"] .font-swap-display{font-family:var(--font-ar-display)}
 
 /* layered gradient atmosphere */
@@ -1376,6 +1384,12 @@ html[dir="rtl"] .mk-head h3{font-family:var(--font-ar-display)}
 .mk-head p{color:var(--body-strong);font-size:14px;line-height:1.6;max-width:56em;margin-bottom:var(--s-5)}
 .mk-cur{margin-bottom:var(--s-5)}
 .mk-cur legend{color:var(--body-strong)}
+/* the price currency switch: the same chips, above the tiers */
+.pr-cur{margin-bottom:var(--s-4)}
+.pr-cur legend{color:var(--body-strong)}
+.pr-cur-note{color:var(--muted);font-size:13px;line-height:1.6;max-width:56em;margin:0 0 var(--s-5)}
+.pr-cur-note[hidden]{display:none}
+.price-note .pr-ret{white-space:nowrap}
 
 /* The table keeps its columns on a phone and scrolls sideways inside its own
    frame; the frame is focusable and labelled, so a keyboard can reach it. */
