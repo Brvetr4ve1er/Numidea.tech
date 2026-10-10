@@ -14,3 +14,6 @@ __pycache__/
 # staged deploy output (scripts/stage-site.mjs) and the unpublished legal preview
 _site/
 legal-preview/
+
+# rendered ad creative (scripts/build-creative.mjs); sent to the owner, not committed
+campaign/out/

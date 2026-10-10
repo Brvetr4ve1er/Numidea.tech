@@ -135,7 +135,9 @@ onHub.length ? bad("client sites listed on the hub (it is the artist's page): " 
 
 /* 6 — deploy coverage */
 const deployMissing = DEPLOY.filter((e) => !existsSync(join(ROOT, e)));
-const rootDirs = readdirSync(ROOT).filter((e) => statSync(join(ROOT, e)).isDirectory() && existsSync(join(ROOT, e, 'index.html')));
+// every root folder, page or not: a new folder (campaign/, drafts…) must be
+// declared published or private before it can reach a deploy by accident
+const rootDirs = readdirSync(ROOT).filter((e) => statSync(join(ROOT, e)).isDirectory());
 const unclassified = rootDirs.filter((d) => !DEPLOY.includes(d) && !NOT_DEPLOYED.includes(d));
 const leaks = [];
 for (const f of PAGES) {
@@ -157,7 +159,7 @@ const sitemapLeaks = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].m
 });
 const problems = [
   deployMissing.length && 'deploy list names missing paths: ' + deployMissing.join(', '),
-  unclassified.length && 'page folders neither deployed nor excluded (add to scripts/site.mjs): ' + unclassified.join(', '),
+  unclassified.length && 'root folders neither deployed nor excluded (add to scripts/site.mjs): ' + unclassified.join(', '),
   leaks.length && 'deployed pages link to files that are not published: ' + leaks.join(', '),
   sitemapLeaks.length && 'sitemap lists unpublished URLs: ' + sitemapLeaks.join(', '),
 ].filter(Boolean);

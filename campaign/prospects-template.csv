@@ -1,0 +1,2 @@
+company,siret_or_licence,vat_number,website,source_url,source_type,email_company_domain,contact_role,collected_on,first_email_on,notice_in_first_email,followup_on,status,opt_out,opt_out_on,notes
+Exemple SARL,12345678900012,FR00123456789,https://exemple.fr,https://exemple.fr/mentions-legales,mentions legales (site de l'entreprise),contact@exemple.fr,gérant,2026-10-20,2026-10-21,yes,,sent,no,,"ligne exemple : à supprimer"

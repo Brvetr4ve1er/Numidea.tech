@@ -30,6 +30,6 @@ export const DEPLOY = ['index.html', '404.html', 'robots.txt', 'sitemap.xml', 'a
   .concat(LEGAL_PUBLISHED ? ['legal'] : []);
 // file names never published even inside a deployed folder
 export const DEPLOY_SKIP = ['README.md', '.DS_Store'];
-export const NOT_DEPLOYED = ['.git', '.github', '.tmp', 'node_modules', '_site', 'audit', 'knowledge-base', 'scripts',
+export const NOT_DEPLOYED = ['.git', '.github', '.tmp', 'node_modules', '_site', 'audit', 'campaign', 'knowledge-base', 'scripts',
   'legal-preview', 'legal', 'BRAND.md', 'README.md', 'LICENSE', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
   'netlify.toml', 'vercel.json', '.gitignore'];
