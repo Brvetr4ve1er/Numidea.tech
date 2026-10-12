@@ -1,3 +1,5 @@
+> **Historical snapshot (2026-07-31).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Executive Summary — full codebase audit
 
 *2026-07-31 · commit `a9fd6da` · every file read; every claim verified by
@@ -23,12 +25,16 @@ and zero layout overflow across 14 page/viewport/theme/language combinations.
   60 lines up, plus a listing for a dead service. **Fixed.**
 - **Sharing was silently broken**: relative-URL SVG `og:image` — no social
   platform renders it. **Fixed** (absolute 1200×630 PNG).
+  [2026-10: the share image is now `assets/og.jpg`, rendered by
+  `scripts/build-og.mjs`; `og.svg`/`og.png` removed.]
 - **404 page broke for nested URLs** on GitHub Pages. **Fixed** (host-aware).
 - Small: 6th mobile-menu link skipped the stagger; scene arrow keys ignored
   RTL. **Fixed.**
 - **1 owner decision flagged, untouched**: the internal `knowledge-base/`
   (market intel, decision history, failure log) is publicly deployed —
   see `Security_Privacy.md` S-01.
+  [2026-10: resolved — `knowledge-base/`, `audit/` and `scripts/` are never deployed;
+  only the `scripts/site.mjs` DEPLOY paths are published.]
 
 ## What changed structurally
 

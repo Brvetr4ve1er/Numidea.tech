@@ -7,6 +7,8 @@ sources: [index.html, assets/app.js (i18n + EXTRA), README.md, scripts/shots.mjs
 tags: [services, products, projects, portfolio, tech-stack, architecture]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 5 — Product Knowledge
 
 Numidea Labs sells **services** (productized into a catalog), not a SaaS product.
@@ -17,7 +19,7 @@ The "product portfolio" is the **service catalog** + the **client project portfo
 ### Family I — **The Build** ("What you open, click, and buy through")
 | Code | Service | Promise | Stack / proof |
 | --- | --- | --- | --- |
-| f1 ★ | **Sites & web apps** (flagship) | "The obvious choice." | React · Next.js · Vite · Tailwind · Vercel. Proof: Doctor Cherfia, almaflowclim, Étoile de l'Est |
+| f1 ★ | **Sites & web apps** (flagship) | "The obvious choice." | React · Next.js · Vite · Tailwind · Vercel. Proof: Doctor Cherfia, almaflowclim, Étoile de l'Est [2026-10: see the KB-05-003 note] |
 | f2 | **Identity & visual systems** | "Trust before the first word." | Logos, color, type, motion, full design-system kit |
 | c1 | Store & booking (capability) | "From visit to checkout." | WhatsApp pay, cash flows, headless Shopify |
 | c2 | Graphic & social design (capability) | "You scroll, you stop." | Social packs, carousels, infographics, print |
@@ -65,6 +67,11 @@ The "product portfolio" is the **service catalog** + the **client project portfo
 | 4 | **Hamma Sat IPTV** | Streaming · Commerce | hammasat.tv | ❌ Soon | Streaming storefront w/ WhatsApp checkout, Algerian buyer |
 | 5 | **Étoile de l'Est** | PWA · Supabase | etoile-est.app | ❌ Soon | Offline-first progressive web app |
 
+[2026-10: delivered client sites are four — Bordj Steel, Alliance Travel,
+AlmaFlowClim, Nomara Voyages; Glaive Store is a portfolio demo (never a client) and
+WorkspaceHQ is the studio's own product. The proof stat counts 4 delivered projects
+and the hero reads "4 / 7 en ligne".]
+
 > 🔴 GAP: Client contacts, contract values, project dates, outcomes/metrics, and
 > testimonials are undocumented. The "projects shipped" proof-stat count is not
 > pinned to a number in the artifacts.
@@ -87,6 +94,11 @@ The "product portfolio" is the **service catalog** + the **client project portfo
 build**: hand-written HTML/CSS/vanilla JS, no framework, no build step. Auto-deploys
 to GitHub Pages via `.github/workflows/pages.yml` on push. Screenshot tooling
 (`scripts/shots.mjs`) uses Playwright + sharp, dev-only (`node_modules` git-ignored).
+[2026-10: `pages.yml` runs `check` and `themes-check`, stages only the
+`scripts/site.mjs` DEPLOY paths into `_site/` with `scripts/stage-site.mjs`, and
+uploads `_site`; GitHub Pages (https://brvetr4ve1er.github.io/Numidea.tech/) is
+canonical, and Netlify and Vercel are mirrors that build the same `_site/`.
+`knowledge-base/`, `audit/` and `scripts/` are never deployed.]
 
 ---
 
@@ -105,5 +117,6 @@ per-service micro-animations**.
 - WCAG AA contrast audit on the Arcanum brass-on-navy palette.
 - **Wire the contact form to actually deliver leads** (currently a front-end demo —
   see Domain 7 / 14, this is the highest-priority functional gap).
+  [2026-10: done — `mailto:` handoff with the lead source attached; see KB-14-001.]
 
 > 🔴 GAP: No formal product roadmap or prioritization framework exists.

@@ -7,6 +7,8 @@ sources: [code audit, git history, session 2026-06-22]
 tags: [failures, mistakes, lessons, never-again, bugs, debt]
 ---
 
+> **Historical snapshot (2026-06-28).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 14 — Knowledge of Failures & Lessons
 
 > The "never rediscover this" list. Captures real, verified defects and corrected
@@ -22,6 +24,8 @@ tags: [failures, mistakes, lessons, never-again, bugs, debt]
   and the success copy was rewritten to be honest ("your email is ready — hit send").
   Chosen because the site is a static GitHub Pages build with no backend and the
   owner opted for zero-signup delivery.
+  [2026-10: the address has since changed to `hamissemohamedyasser@gmail.com` (one
+  address site-wide), and the mailto now also carries the lead source.]
 - **Residual limitation:** Delivery depends on the visitor having a configured mail
   client; it is **not** a server-side capture, and there is still **no analytics on
   conversion**. For guaranteed background capture, upgrade to Web3Forms/Formspree
@@ -45,6 +49,7 @@ tags: [failures, mistakes, lessons, never-again, bugs, debt]
 - **Fix:** Rewrote the README design-system section to Arcanum-primary (+ 4 alt
   themes) with the real Geist/Cinzel/IBM Plex Arabic type stack; the `styles.css`
   header comments were corrected in the same pass.
+  [2026-10: six themes now, on one 47-token contract in `assets/themes.css`.]
 - **Lesson:** Update docs in the same change as the thing they describe.
 - `confidence: verified`. Status: **RESOLVED**.
 

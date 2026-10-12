@@ -7,6 +7,8 @@ sources: [index.html, README.md, assets/app.js (i18n), assets/styles.css]
 tags: [identity, mission, vision, values, culture, positioning, history]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 1 — Company Identity
 
 ## KB-01-001 · Company facts (verified)
@@ -19,8 +21,8 @@ tags: [identity, mission, vision, values, culture, positioning, history]
 | **Team size** | 4 people (small senior team) |
 | **Languages** | French (default), English, Arabic — natively trilingual incl. RTL |
 | **Response SLA (marketing claim)** | < 24 hours |
-| **Contact** | Hamissemohamedyasser@gmail.com |
-| **Primary domain** | numidealabs.com *(intended; site currently served via GitHub Pages)* |
+| **Contact** | hamissemohamedyasser@gmail.com |
+| **Primary domain** | numidealabs.com *(intended; site currently served via GitHub Pages)* [2026-10: the canonical site is https://brvetr4ve1er.github.io/Numidea.tech/ on GitHub Pages.] |
 | **Tagline** | "Rooted in Numidia · built on ideas" |
 | **Founded** | 🔴 GAP — founding date not in any artifact |
 
@@ -116,7 +118,7 @@ Known timeline (`confidence: verified` for the 2026-06-22 entries; earlier histo
 | Date | Event |
 | --- | --- |
 | (unknown) | Numidea Labs founded in Bordj Bou Arréridj |
-| (unknown) | First client projects delivered (see Domain 5: Doctor Cherfia, Alliance Travel, almaflowclim, Hamma Sat, Étoile de l'Est) |
+| (unknown) | First client projects delivered (see Domain 5: Doctor Cherfia, Alliance Travel, almaflowclim, Hamma Sat, Étoile de l'Est) [2026-10: delivered client sites are Bordj Steel, Alliance Travel, AlmaFlowClim and Nomara Voyages; Glaive Store is a portfolio demo (never a client) and WorkspaceHQ is the studio's own product.] |
 | 2026-06-18 | Landing page repo established; Neon Noir v1/v2 design system |
 | 2026-06-22 | Full **"Arcanum" rebrand**, multi-theme system, Magician brand voice, project-preview infrastructure (Domain 13) |
 

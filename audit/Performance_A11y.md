@@ -1,3 +1,5 @@
+> **Historical snapshot (2026-07-31).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Performance & Accessibility Report
 
 ## Verified by measurement (headless Chromium, this audit)
@@ -26,10 +28,14 @@ Arabic. Options: accept (simplest, current); or load the Arabic css2 request
 lazily on first `applyLang('ar')` (saves ~90 KB for LTR visitors, one-line
 dynamic `<link>`). Cinzel Decorative is used for exactly two flourishes — the
 cheapest trim if one is ever needed.
+[2026-10: fonts are now self-hosted in `assets/fonts`; there is no Google Fonts
+request, so the preconnect and css2 notes in this report are historical.]
 
 **P-02 · Hosting headers.** GitHub Pages can't set `Cache-Control`; every visit
 revalidates. `vercel.json` already encodes immutable asset caching — completing
 the Vercel import is the single biggest real-world performance lever available.
+[2026-10: GitHub Pages remains canonical; Netlify and Vercel serve mirrors built from
+`_site/`.]
 
 **P-03 · Non-issues, on the record:** CSS 68 KB / JS 72 KB uncompressed
 (≈13–15 KB each gzipped) is far below any budget worth enforcing; minification
@@ -46,6 +52,7 @@ capabilities; `prefers-reduced-motion` honored in all four stylesheets
 (verified) including a global kill-switch; `<noscript>` neutralizes
 scroll-reveal so content is never hidden without JS; RTL is mirrored per-rule,
 not just flipped.
+[2026-10: the portfolio modal has since been removed.]
 
 **Gaps:**
 - **A-01 = F-01/02/03** — the Daylight contrast failures are the only WCAG-level

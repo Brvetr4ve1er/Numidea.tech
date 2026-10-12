@@ -7,6 +7,8 @@ sources: [index.html, assets/app.js, project portfolio, inference]
 tags: [customers, segments, personas, journey, pain-points, faq]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 4 — Customer Knowledge
 
 ## KB-04-001 · Customer segments (inferred from portfolio)
@@ -14,6 +16,9 @@ tags: [customers, segments, personas, journey, pain-points, faq]
    travel agencies (e.g. Doctor Cherfia, almaflowclim, Alliance Travel).
 2. **Local commerce/retail needing storefronts** — IPTV/streaming, PWA shops with
    WhatsApp checkout (Hamma Sat, Étoile de l'Est).
+   [2026-10: delivered client sites are Bordj Steel, Alliance Travel, AlmaFlowClim
+   and Nomara Voyages; Glaive Store is a portfolio demo (never a client) and
+   WorkspaceHQ is the studio's own product.]
 3. **Businesses needing automation / market intelligence** — lead pipelines,
    competitive/price intelligence, internal tools (the high-moat segment).
 4. **Businesses needing strategy/growth** — audits, funnels, roadmaps.
@@ -49,6 +54,8 @@ breaks"). Advocacy/referral loop: `unknown`.
 - **Retention:** post-launch responsiveness, full-chain ownership, direct relationship.
 - **Churn risk:** small team capacity limits; the contact form currently **doesn't
   deliver leads** (Domain 7/14) — silent top-of-funnel loss.
+  [2026-10: fixed — the form hands off by `mailto:` to hamissemohamedyasser@gmail.com
+  with the lead source attached; see KB-14-001.]
 
 > 🔴 GAP: No CRM, no real FAQ log, no NPS/testimonials, no churn data. **Owner
 > questions:** Who were the first 5 customers and why did they buy? What objections

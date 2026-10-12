@@ -2,7 +2,7 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * ~55 runs over every page (site.mjs PAGES): index.html in all six themes x
+ * ~54 runs over every page (site.mjs PAGES): index.html in all six themes x
  * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; scene/ in each
  * language on desktop and phone; 404 in two themes in Arabic; hub/ in both of
  * its palettes; tablet (768x1024, 1024x768) and short landscape (844x390);

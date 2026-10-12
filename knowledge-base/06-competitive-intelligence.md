@@ -7,6 +7,8 @@ sources: [inference from positioning]
 tags: [competitors, positioning, differentiation]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 6 — Competitive Intelligence
 
 > 🔴 SCAFFOLD: No competitor research exists in the artifacts. Below is the

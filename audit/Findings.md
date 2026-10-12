@@ -1,3 +1,5 @@
+> **Historical snapshot (2026-07-31).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Findings — bugs, defects & inconsistencies
 
 *Every finding verified against the code at commit `a9fd6da`; nothing speculative.*
@@ -65,6 +67,9 @@ LinkedIn and X all refuse for preview images. Sharing the site currently
 produces a text-only card. **Fix:** export a 1200×630 PNG/WebP of the OG art,
 reference it with an absolute URL, add `og:url` + `og:image:width/height`.
 (Needs the final production hostname — decide Vercel vs Pages first.)
+[2026-10: the share image is now `assets/og.jpg`, rendered by `scripts/build-og.mjs`;
+`og.svg`/`og.png` removed. The canonical host is GitHub Pages,
+https://brvetr4ve1er.github.io/Numidea.tech/, with Netlify and Vercel as mirrors.]
 
 ## P3
 
@@ -73,6 +78,8 @@ The domain isn't registered/live. It's a decorative prop, but the site's whole
 positioning is "honest statuses". Consider the real Pages/Vercel URL, or buy the
 domain. Same section shows `99.9% uptime · 38ms TTFB · 100 Lighthouse` —
 unverifiable-as-stated; keep only if you're comfortable defending them.
+[2026-10: the hero deploy terminal has been removed; the canonical site is
+https://brvetr4ve1er.github.io/Numidea.tech/.]
 
 ### F-10 · Scene page arrow keys ignore RTL
 `scene/app.js:229` — `ArrowRight` always advances. In Arabic (RTL) the spatial
@@ -82,6 +89,7 @@ metaphor is reversed; `ArrowLeft` should advance. One-line swap keyed off `dir`.
 The portfolio modal traps focus correctly; the full-screen mobile menu does not
 (Tab can reach content behind the overlay). Low impact (mobile + keyboard is a
 narrow intersection) but inconsistent with the modal's standard.
+[2026-10: the portfolio modal has since been removed.]
 
 ### F-12 · `hub/` has no `og:image` and hard-codes `EST — MMXXV` / tape "created in 2025"
 Fine if intentional (archival flavour); listed so it's a decision, not an oversight.

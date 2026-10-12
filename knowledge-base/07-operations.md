@@ -7,6 +7,8 @@ sources: [index.html, README.md, assets/app.js, .github/workflows/pages.yml, scr
 tags: [operations, delivery, sop, deploy, support, incident, risk]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 7 — Operations
 
 ## KB-07-001 · Delivery model (verified)
@@ -20,6 +22,11 @@ work ships it. Post-launch support is a promise ("we answer when it breaks," rep
 - **CI/CD:** `.github/workflows/pages.yml` auto-deploys to **GitHub Pages** on push.
   Live URL: `https://brvetr4ve1er.github.io/Numidea.tech/`. One-time setup: repo
   Settings → Pages → Source: GitHub Actions.
+  [2026-10: `pages.yml` runs `check` and `themes-check`, stages only the
+  `scripts/site.mjs` DEPLOY paths into `_site/` with `scripts/stage-site.mjs`, and
+  uploads `_site`; GitHub Pages (https://brvetr4ve1er.github.io/Numidea.tech/) is
+  canonical, and Netlify and Vercel are mirrors that build the same `_site/`.
+  `knowledge-base/`, `audit/` and `scripts/` are never deployed.]
 - **Deploy verification:** check the latest `pages.yml` workflow run is
   `completed/success` before declaring a change live (standard practice this session).
 - **Asset pipeline:** `npm run shots` (Playwright + sharp) captures project
@@ -33,14 +40,16 @@ flourish per screen, then discipline."
 
 ## KB-07-004 · Operational risks (verified/inferred)
 - ✅ **Contact form lead delivery — FIXED 2026-06-22** (was: silently lost). Now hands
-  off via `mailto:` to `Hamissemohamedyasser@gmail.com` on valid submit (see KB-14-001).
+  off via `mailto:` to `hamissemohamedyasser@gmail.com` on valid submit (see KB-14-001).
   Residual: depends on the visitor's mail client; no server capture/analytics yet —
   upgrade to Web3Forms/Formspree when warranted. `confidence: verified`.
+  [2026-10: the mailto now also carries the lead source.]
 - **Bus factor / capacity:** 4 people own everything; single points of failure per
   function. `confidence: inferred`.
 - **Scraping dependency:** intelligence products depend on third-party sites
   (Maps/Facebook/Instagram/Ouedkniss/Jumia) whose structure/ToS can change.
 - **Doc drift:** README still describes "Neon Noir" post-Arcanum (Domain 2).
+  [2026-10: resolved on 2026-06-28; see KB-14-003.]
 
 ## KB-07-005 · SOPs / playbooks
 > 🔴 GAP: No written SOPs for client onboarding, incident management, escalation,

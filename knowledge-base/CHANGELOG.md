@@ -1,3 +1,5 @@
+> **Historical snapshot (2026-06-28).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Knowledge Base — Changelog
 
 All notable changes to the Numidea Labs knowledge base. Newest first.
@@ -6,16 +8,22 @@ Format: `vMAJOR.MINOR — YYYY-MM-DD`.
 ## v0.3 — 2026-06-28 — Codebase optimization pass
 - **Resolved KB-14-003 / KB-02-005 doc-drift**: README + `styles.css` header now
   describe Arcanum-primary (+ 4 alt themes) and the real Geist/Cinzel font stack.
+  [2026-10: six themes now — arcanum, noir, daylight, mono, altneon, engineering — on
+  one 47-token contract in `assets/themes.css`.]
 - Dead-code sweep across `styles.css` / `app.js`: removed an unused rule (`.note`),
   two unreferenced color tokens (`--maroon`, `--teal-dim`), and three orphan i18n
   keys (`nav.cta`, `ship.status`, `work.code`) — verified by usage analysis.
 - Perf: trimmed the Google Fonts request to only the weights in use (Cinzel 6→1,
   Cinzel Decorative 3→1, Geist Mono →2, IBM Plex Arabic 4→3).
+  [2026-10: fonts are now self-hosted in `assets/fonts`; there is no Google Fonts
+  request.]
 
 ## v0.2 — 2026-06-22 — Contact form fixed
 - **Resolved KB-14-001** (critical): the contact form now delivers leads via a
   `mailto:` handoff to `hello@numidealabs.com` instead of silently dropping them;
   success copy rewritten to be honest. Updated Domains 7, 8, 10, 14 accordingly.
+  [2026-10: the address has since changed to `hamissemohamedyasser@gmail.com` (one
+  address site-wide), and the mailto now also carries the lead source.]
 - Residual/open: no server-side capture, no conversion analytics (upgrade path:
   Web3Forms/Formspree). README still has Neon Noir doc-drift.
 

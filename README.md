@@ -83,7 +83,7 @@ OWNER-CONTENT.md      # everything only the owner can supply, and its status
 | `npm run build` | Regenerates scene/, the client-voices region, the legal page (only when complete) and sitemap.xml |
 | `npm run check` | Repo invariants: i18n ×3, assets, cache stamps, client links, deploy coverage, generated pages in sync, anchors, retired claims, prices = PRICE_MODEL, one contact address, Western digits in Arabic, legal gating; plus `themes-check` |
 | `npm run validate` | html-validate on every page |
-| `npm run audit` | Browser audit (~53 runs): axe, layout shift, LCP, overflow, tap targets, in three languages, six themes and five viewport sizes |
+| `npm run audit` | Browser audit (~54 runs): axe, layout shift, LCP, overflow, tap targets, in three languages, six themes and five viewport sizes |
 | `npm run sweep` | Contrast sweep over the rendered pixels |
 | `npm run vbugs` | Visual bug scan (allowlist with reasons in `scripts/vbugs-allow.json`) |
 | `npm run verify` | All of the above; push only when it is green |

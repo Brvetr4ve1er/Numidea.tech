@@ -1,3 +1,5 @@
+> **Historical snapshot (2026-07-31).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Security & Privacy Report
 
 ## S-01 · The internal knowledge base is published on the public site — decision needed
@@ -21,6 +23,9 @@ read. Options, cheapest first:
    leaving it as an unlisted-but-crawlable directory.
 
 No action was taken in this audit — this is an owner decision.
+[2026-10: resolved — `knowledge-base/`, `audit/` and `scripts/` are never deployed;
+`pages.yml` uploads only the `scripts/site.mjs` DEPLOY paths, staged into `_site/` by
+`scripts/stage-site.mjs`.]
 
 ## S-02 · What's healthy (verified)
 
@@ -32,12 +37,15 @@ No action was taken in this audit — this is an owner decision.
 - All user-influenced rendering in the explorer goes through `esc()`
   (HTML-entity escaping); dictionary `innerHTML` writes use only static,
   first-party strings. No XSS surface found.
+  [2026-10: the explorer has since been removed.]
 - External links consistently use `rel="noopener"`.
 - `vercel.json` sets `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`,
   `Permissions-Policy`. (GitHub Pages cannot set custom headers — one more
   reason the Vercel import is worth finishing.)
 - No analytics/trackers, no third-party JS. The only third-party requests are
   Google Fonts (see Performance P-02).
+  [2026-10: fonts are now self-hosted in `assets/fonts`; there is no Google Fonts
+  request.]
 
 ## S-03 · Residual notes
 
@@ -47,3 +55,5 @@ No action was taken in this audit — this is an owner decision.
   hosting moves to Vercel (`default-src 'self'; font-src fonts.gstatic.com;
   style-src 'self' 'unsafe-inline' fonts.googleapis.com` + the Supabase origin
   when live). Not possible on Pages.
+  [2026-10: GitHub Pages remains canonical, with Netlify and Vercel as mirrors, and
+  fonts are now self-hosted in `assets/fonts` (no Google Fonts request).]

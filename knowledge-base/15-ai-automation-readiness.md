@@ -7,6 +7,8 @@ sources: [this knowledge base, repo structure]
 tags: [ai, rag, retrieval, metadata, semantic-search, agents]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 15 — AI & Automation Readiness
 
 This KB is built to be consumed by **RAG systems, chatbots, semantic search, and
@@ -49,6 +51,7 @@ ai, rag, retrieval, metadata.`
 - **Honesty value (KB-01-004)** → **"Live"-label fix (KB-13-006 / KB-14-002)**.
 - **Contact-form defect (KB-14-001)** blocks **marketing (KB-08-003)**, **sales
   (KB-09-001)**, and **analytics (KB-10-002)** — a single fix unblocks three domains.
+  [2026-10: fixed — `mailto:` handoff with the lead source attached.]
 
 ## KB-15-004 · Example agent guardrails
 - For "who are the founders / what's revenue / what do you charge?" → answer

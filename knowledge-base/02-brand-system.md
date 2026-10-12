@@ -7,6 +7,8 @@ sources: [assets/styles.css, index.html, assets/app.js, README.md, session 2026-
 tags: [brand, visual-identity, verbal-identity, voice, color, typography, assets, archetype]
 ---
 
+> **Historical snapshot (2026-06-28).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 2 — Brand System
 
 > The brand was substantially **redesigned on 2026-06-22** from "Neon Noir" to
@@ -42,6 +44,9 @@ tags: [brand, visual-identity, verbal-identity, voice, color, typography, assets
 | `--ice` | `#EAF1F8` | Text |
 | `--muted` | `#9DB2C6` | Secondary text |
 
+[2026-10: the tokens now live in `assets/themes.css`, one 47-token contract for all
+six themes; read current values there.]
+
 - **Motif:** the **hexagon/honeycomb** as atmosphere (SVG grid, gem-glow fields) +
   **diamond/gem** accents for framing. *Note:* hexagon is a world/atmosphere motif,
   not the literal UI grid (see Domain 13 research correction).
@@ -58,6 +63,8 @@ tags: [brand, visual-identity, verbal-identity, voice, color, typography, assets
 | Arabic / RTL | **IBM Plex Sans Arabic** | Cinzel has no Arabic glyphs; RTL keeps Plex. |
 
 All via Google Fonts (OFL, commercial-safe).
+[2026-10: fonts are now self-hosted in `assets/fonts`; there is no Google Fonts
+request.]
 
 ## KB-02-004 · Theme system
 
@@ -65,6 +72,9 @@ Token-driven multi-theme switcher (persisted to `localStorage` key
 `numidea-theme`). Themes: **Arcanum (default)**, Neon Noir, Daylight (light),
 Monochrome, Alt-neon. Switching any theme re-skins the whole site via CSS custom
 properties.
+[2026-10: six themes — arcanum, noir (formerly Neon Noir), daylight, mono, altneon,
+engineering — on one 47-token contract in `assets/themes.css`;
+`scripts/themes-check.mjs` enforces the contract.]
 
 ---
 
@@ -72,10 +82,11 @@ properties.
 
 Deep navy/maroon (`--void #0D1A2F`), crimson shout (`#BD0927`), teal rationed neon
 (`#09D8C7`); Space Grotesk + IBM Plex (historical). Still selectable as the "Neon
-Noir" theme. `confidence: verified`.
+Noir" theme [2026-10: now named `noir`]. `confidence: verified`.
 
 > ✅ DOC-DRIFT RESOLVED (2026-06-28): `README.md` and the `styles.css` header now
 > describe Arcanum as the primary theme with Neon Noir as one of four alternates.
+> [2026-10: five alternates now; see KB-02-004.]
 
 ---
 
@@ -119,11 +130,11 @@ local warmth.
 | Asset | Path | Notes |
 | --- | --- | --- |
 | Favicon | `assets/favicon.svg` | Gradient signature mark |
-| OG / social share image | `assets/og.svg` | Built from the gradient signature |
+| OG / social share image | `assets/og.jpg` | Rendered by `scripts/build-og.mjs` from the theme tokens [2026-10: replaces `assets/og.svg`, which was built from the gradient signature; `og.svg`/`og.png` removed] |
 | Project preview screenshots | `assets/previews/*.webp` | Committed, ~10 KB each (currently: `almaflowclim.webp`) |
 | Arcanum abstract covers | inline SVG in `index.html` | Fallback covers for not-live projects |
 | Service glyph set | inline SVG in `index.html` | Arcane line-art, motion-ready (gear/radar/sonar/gem) |
-| Design tokens | `assets/styles.css` `:root` + `[data-theme]` | The machine-readable brand source |
+| Design tokens | `assets/themes.css` | The machine-readable brand source [2026-10: one 47-token contract for six themes; was `assets/styles.css` `:root` + `[data-theme]`, and `styles.css` now holds no `[data-theme]` selectors] |
 
 > 🔴 GAP: No logo lockup files (SVG/PNG variants), no brand guidelines PDF, no
 > photography library, no illustration set, no motion-design spec beyond CSS.

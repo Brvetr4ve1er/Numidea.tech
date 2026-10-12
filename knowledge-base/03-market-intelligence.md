@@ -7,6 +7,8 @@ sources: [index.html, assets/app.js, inference]
 tags: [market, geography, algeria, bba, regulation, opportunity, threat]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 3 — Market Intelligence
 
 ## KB-03-001 · Primary market (verified)
@@ -16,6 +18,9 @@ tags: [market, geography, algeria, bba, regulation, opportunity, threat]
 - **Served languages/markets:** Francophone + Arabic (Algeria/Maghreb) primarily;
   English-capable for wider reach. Project evidence spans **healthcare, travel
   (Schengen-visa), industrial/HVAC, IPTV/streaming commerce, PWA retail**.
+  [2026-10: delivered client sites are Bordj Steel, Alliance Travel, AlmaFlowClim and
+  Nomara Voyages; Glaive Store is a portfolio demo (never a client) and WorkspaceHQ is
+  the studio's own product.]
 - **Cross-border signal:** `almaflowclim.fr` (.fr domain) and Schengen-visa funnel
   work suggest **Algeria↔Europe (France)** flows are a live opportunity.
 

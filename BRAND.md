@@ -1,45 +1,57 @@
 # Numidea Labs — Themes
 
 The site ships **Arcanum** (arcane-blue + brass, Cinzel display) as its identity.
-Five palette variants and one full alternate design system sit behind the theme
-switcher.
+Five more themes sit behind the theme switcher. All six are token themes on one
+contract; none of them is a separate stylesheet.
 
 ---
 
 ## How themes work here
 
-Five of the six are **token swaps**: `[data-theme]` remaps the colour custom
-properties in `assets/styles.css`, and every rule that reads `var(--token)`
-reskins for free.
+All six are **token swaps**: `assets/themes.css` holds one
+`:root[data-theme="name"]` block per theme, each setting exactly the same **47
+contract tokens**, and every rule in `assets/styles.css` that reads
+`var(--token)` reskins for free. `styles.css` may not contain a `[data-theme]`
+selector. `scripts/themes-check.mjs` (part of `npm run check`) enforces that, the
+token contract, the WCAG contrast pairs, and that every list of theme names
+agrees with `THEMES` in `scripts/site.mjs`. Details under "Theme contract" below.
 
 | Theme | Character |
 | --- | --- |
-| **Arcanum** *(default)* | Arcane-blue ground, brass flourish, engraved Cinzel display |
-| **Neon Noir** | The `:root` base palette — navy, crimson, teal |
-| **Daylight** | Light surface, same structure |
-| **Monochrome** | Near-black with a single warm accent |
-| **Alt-neon** | Amber + violet on the noir ground |
+| **arcanum** *(default)* | Arcane blue and brass, engraved Cinzel display |
+| **noir** *(formerly "Neon Noir")* | Cinematic black, signal red, steel |
+| **daylight** | Warm paper, ink, ochre and deep teal |
+| **mono** | True black and white, sharp, no colour |
+| **altneon** | Synthwave violet, magenta and cyan |
+| **engineering** | Graphite, safety orange, drafting grid |
 
-**Engineering** is different: it is a *complete design system*, not a palette —
+### History (removed features): Engineering as an alternate stylesheet
+
+*Removed in the 2026-10 cleanup; kept as a lesson.* Engineering is
+now a token theme like the other five; what follows describes the file it used
+to be.
+
+**Engineering** was different: a *complete design system*, not a palette —
 cool near-black, Geist + Geist Mono, monospace as texture, a deploy terminal and
-build indices. It cannot be expressed as token values, so it ships as an
+build indices. It could not be expressed as token values, so it shipped as an
 **alternate stylesheet**:
 
 ```
 assets/theme-engineering.css      loaded with media="not all"
-app.js                            flips media to "all" for data-theme="engineering"
-index.html <head>                 the pre-paint resolver does the same, so the
-                                  theme never flashes the base skin first
+app.js                            flipped media to "all" for data-theme="engineering"
+index.html <head>                 the pre-paint resolver did the same, so the
+                                  theme never flashed the base skin first
 ```
 
-Because both sheets stay in the document, `theme-engineering.css` opens with a
-**reset block** that neutralises everything the base sheet paints and this system
-does not use — the brass dividers, the full-bleed band tints, the gradient-clipped
-headings, the fanned hero deck, the arcane texture layers. It loads second, so
-matching specificity is enough; there is no `!important` in the file.
+Because both sheets stayed in the document, `theme-engineering.css` opened with a
+**reset block** that neutralised everything the base sheet painted and that
+system did not use — the brass dividers, the full-bleed band tints, the
+gradient-clipped headings, the fanned hero deck, the arcane texture layers. It
+loaded second, so matching specificity was enough; there was no `!important` in
+the file.
 
-A computed-style audit walks every visible element in the Engineering theme and
-fails on any base-palette colour still being painted. It currently reports zero.
+A computed-style audit walked every visible element in the Engineering theme and
+failed on any base-palette colour still being painted. It reported zero.
 
 ## The ambient layer — parallax, aurora, reveal
 
@@ -65,18 +77,20 @@ Two rules that were each learned by watching the page misbehave:
   spins — the hero ring's box swings ~20px per revolution — which pumps that
   wobble straight into its own parallax target. Caching makes the target a
   pure function of scroll position. Re-cache on resize, on load, and on
-  `numidea:relayout` (dispatched by `applyTheme`, because Engineering reveals
-  the terminal, which is `display:none` and therefore cached at zero
-  everywhere else).
+  `numidea:relayout` (dispatched by `applyTheme`, because a theme's type
+  tokens change line lengths). It was first added because the old Engineering
+  sheet revealed a `display:none` hero terminal, cached at zero everywhere
+  else; that terminal went in the 2026-10 cleanup.
 - **The easing is time-based, not per-frame.** A fixed per-frame lerp settles
   twice as fast on a 120Hz display as on a 60Hz one, and "unhurried" cannot be
   a property of the user's monitor.
 
-**Aurora** — three slow colour fields fixed behind the whole page, inked from
-palette tokens via `color-mix`, never from literals, so they reskin with every
-theme. Light palettes get lower opacity or they turn muddy. Engineering
-re-inks them to a single cold instrument glow, because that surface doesn't
-own crimson/teal/plum.
+**Aurora** — *removed in the anti-slop sweep (below); kept as a lesson.* Three
+slow colour fields fixed behind the whole page, inked from palette tokens via
+`color-mix`, never from literals, so they reskinned with every theme. Light
+palettes got lower opacity or they turned muddy. (The old
+Engineering sheet re-inked them to a single cold instrument glow; that sheet
+was removed in the 2026-10 cleanup.)
 
 **Floaters** — hand-drawn SVG geometry in the hero, no raster assets. They
 live strictly in the hero's negative space (the bands above and below the
@@ -93,9 +107,12 @@ the copy.
 debounce window, so a re-armed timer can be starved indefinitely and strand
 cards invisible.
 
-## The Engineering hero
+## History (removed features): the Engineering hero
 
-Both media live in the **right column**, terminal above plate, with the copy
+*Removed in the 2026-10 cleanup; kept as a lesson.* The hero
+terminal no longer exists; the plate is the same in every theme.
+
+Both media lived in the **right column**, terminal above plate, with the copy
 centred against them across both rows. The plate used to span `1/-1` into a
 full-width second row, where its 16:9 image alone is ~630px — that one line
 made the hero 1957px tall, a full screen of dead space between the fold and
@@ -109,9 +126,12 @@ columns gave that motion somewhere to happen; one column does not. Same rule as
 the floaters: **clearance is sized for the motion envelope, never the static
 position.**
 
-## Engineering-only markup
+## History (removed features): Engineering-only markup
 
-Three elements live in `index.html` for that theme and are hidden by the base
+*Removed in the 2026-10 cleanup; kept as a lesson.* None of these
+elements is in `index.html` any more.
+
+Three elements lived in `index.html` for that theme and were hidden by the base
 sheet (`.term, .logo .brick { display:none }`):
 
 - `.term` — the hero deploy terminal, showing this repository's real GitHub
@@ -121,26 +141,30 @@ sheet (`.term, .logo .brick { display:none }`):
 
 ## The logo
 
-Swap point in `index.html`, and it serves both systems:
+Swap point in `index.html` (the navbar and the footer carry the same markup):
 
 ```html
-<a class="logo" href="#top">
-  <span class="brick">N</span>Num<i>idea</i> Labs<span class="cursor"></span>
-</a>
+<a class="logo" href="#top">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
 ```
 
-`.brick` is the Engineering mark, `.cursor` is the Arcanum blinking block. Replace
-either (or both) with the delivered artwork.
+`.cursor` is the solid block after the wordmark; it no longer blinks (see "The
+anti-slop sweep"). Replace it with the delivered artwork. (The
+Engineering `.brick` monogram that used to sit before "Num" was removed in the
+2026-10 cleanup.)
 
-## Adding another full design system
+## History (removed features): adding another full design system
 
-Copy the pattern: a self-contained sheet, a reset block at the top, one entry in
+*Removed in the 2026-10 cleanup; kept as a lesson.* There are no
+alternate sheets now; a new theme is a token block (see "Theme contract").
+
+The pattern was: a self-contained sheet, a reset block at the top, one entry in
 `THEMES` in `app.js`, one `<link media="not all">`, one line in the pre-paint
 resolver, and a button in the theme menu.
 
 ## Framing: the sweep
 
-Every `grid-template-columns` in both stylesheets uses `minmax(0,<n>fr)`. A bare
+Every `grid-template-columns` in `styles.css` (and, at the time, the
+since-removed Engineering sheet) uses `minmax(0,<n>fr)`. A bare
 `fr` track carries `min-width:auto` and inflates to its longest unbreakable
 word instead of shrinking — 59 grids carried that fault. `repeat(auto-fill,
 minmax(180px,1fr))` is correct as written and must be left alone: the `1fr`
@@ -255,7 +279,7 @@ The markup is baked in French. For a visitor whose saved language is EN or AR th
 deferred `applyLang()` rewrote 194 nodes and flipped `dir` *after* the page had
 painted — measured at CLS 0.63, the largest shift on the site.
 
-`lang` and `dir` are now set in the head bootstrap, alongside variant and theme.
+`lang` and `dir` are now set in the head bootstrap, alongside the theme.
 The text cannot be swapped that early — the dictionary is in app.js and none of
 those 194 elements have been parsed yet — so when the baked language is not the
 one about to be shown, the bootstrap sets `data-i18n-pending` and an inline
@@ -276,9 +300,13 @@ Two rules for touching this:
 The cost is honest: an EN or AR visitor pays roughly 100–200ms of FCP for this.
 A French visitor pays nothing.
 
-## The alternate sheet must be parser-inserted
+## History (removed features): the alternate sheet must be parser-inserted
 
-Engineering ships as a whole alternate stylesheet. Loaded the usual way — a
+*Removed in the 2026-10 cleanup; kept as a lesson.* No theme loads
+a stylesheet now, and `styles.css` holds no `html[data-theme="engineering"]`
+rule; the `document.write` lesson still applies to any script-chosen sheet.
+
+Engineering shipped as a whole alternate stylesheet. Loaded the usual way — a
 `<link media="not all">` flipped by script — it is **not render-blocking**, so
 the page painted in base styles and restyled when it applied: `.wrap` jumped
 1190px to 1200px, CLS 0.0768 in about half of loads.
@@ -299,7 +327,7 @@ five neither download nor wait on 46KB — which they previously downloaded and
 never used, because `media="not all"` still fetches.
 
 **Layout-critical tokens belong in the render-blocking sheet.** `--max` and
-`--gutter` for Engineering now live in `styles.css` under
+`--gutter` for Engineering then lived in `styles.css` under
 `html[data-theme="engineering"]`, because `data-theme` is set before first paint
 and that sheet always blocks. Colour and component styling can arrive whenever.
 
@@ -377,7 +405,8 @@ requirement, and a probe at the instant of focus saw no ring at all. Those rules
 now list their transition properties; outline is not among them.
 
 Also: `<main tabindex="-1">` so the skip link actually moves focus; the page
-behind the portfolio dialog is `inert` while it is open; a print stylesheet
+behind the portfolio dialog was `inert` while it was open (that dialog, the
+project explorer, was removed in the 2026-10 cleanup); a print stylesheet
 (ink-safe palette, decoration off, gradient type as solid ink); the validator's
 15 findings cleared. Slow 3G FCP 4.2s→3.6s, LCP 10.1s→3.8s; Fast 3G LCP
 3.0s→1.4s; 190 rapid theme/language/modal/resize interactions: +0.0MB heap,
@@ -389,11 +418,12 @@ behind the portfolio dialog is `inert` while it is open; a print stylesheet
 outline in from 0 over 200–300ms. A `transition-property` list now excludes it —
 placed at the *end* of each sheet, because any later `transition` shorthand
 resets the property list back to `all` (the first attempt, placed early, changed
-nothing). Engineering restates it for the same reason.
+nothing). The old Engineering sheet restated it for the same reason.
 
 **A token name that means two things.** Project cards set an inline RGB triplet
-for `rgb(var(--…))` fills; Engineering uses the same name, `--accent`, as a whole
-colour, including in its `:focus-visible` outline. Inside a card that outline
+for `rgb(var(--…))` fills; the old Engineering sheet (removed in the 2026-10
+cleanup) used the same name, `--accent`, as a whole colour, including in its
+`:focus-visible` outline. Inside a card that outline
 became `2px solid 95,214,134` — invalid — and the project links had no focus
 ring at all. The card triplet is now `--brand`. A custom property is a global
 name; two sheets may not use one for two types.
@@ -526,7 +556,8 @@ of the viewport height, so the sheet is established at the top and gone behind
 body copy. It replaced a honeycomb tile and a soft-light film grain: noise over
 a page that is otherwise precise reads as a rendering fault rather than texture.
 The atmosphere behind it is two radial gradients (a brass crown, a deep floor),
-down from four that overlapped into a single haze, and the aurora sits at .18.
+down from four that overlapped into a single haze, and the aurora sat at .18
+(it was later removed in the anti-slop sweep).
 
 ## CSS traps this codebase has actually hit
 
@@ -565,7 +596,8 @@ Check for them before trusting a visual pass.
 - **A `z-index` on an ancestor caps every descendant.** `.wrap{z-index:1}` and
   `section{z-index:1}` meant the explorer dialog's `z-index:300` lost to the
   navbar's `100` — and the nav links intercepted clicks *through* the open
-  modal. Overlays belong as direct children of `<body>`.
+  modal. Overlays belong as direct children of `<body>`. (The explorer was
+  removed in the 2026-10 cleanup; the rule stands.)
 - **A `clamp()` whose `vw` coefficient is small never engages on a phone.**
   All 25 fluid declarations here sat at their minimum from 280px to ~700px,
   because the floors were written as desktop minimums — a 42px headline on a
@@ -605,7 +637,7 @@ a sheet frame with corner L-brackets, a dimension line under the headline
 annotated with the workshop's real coordinates (36°04′N · 4°46′E), and a
 five-field block along the bottom edge carrying values that are all true and
 checkable — 0 dependencies, no build step, FR·EN·AR with native RTL, an 18s
-GitHub Actions deploy, 5 of 7 projects live.
+GitHub Actions deploy, and a status field that reads "4 / 7 en ligne".
 
 Real drawing sheets put the title block as a strip along the bottom, not a
 corner box; on a hero-width canvas a corner box would simply be lost. It
@@ -620,11 +652,14 @@ someone checks it against the rendered box.
 ## The hero plate
 
 The hero used to be the stock template: copy left, three static thumbnails
-fanned right. It showed 3 of 5 clients at a size where nothing was legible —
-the studio's strongest asset used as texture.
+fanned right. It showed three of the sites at a size where nothing was
+legible — the studio's strongest asset used as texture.
 
-It is now **one live client site at a time, big enough to read**, cycling all
-five with the real name, category and URL. Rules that matter:
+It is now **one live site at a time, big enough to read**, cycling five: the
+four delivered client sites (Bordj Steel, Alliance Travel, Nomara Voyages,
+AlmaFlowClim) and the Glaive Store portfolio demo, which is captioned "Démo
+portfolio" and is never presented as a client. Each slide carries the real
+name, category and URL. Rules that matter:
 
 - **Wipe, never cross-fade.** Two flat UIs dissolving through each other is a
   smear; a hard edge with a bright leading rule keeps both razor sharp. Same
@@ -639,9 +674,11 @@ five with the real name, category and URL. Rules that matter:
   no fresh `pointerenter` will ever fire to pause it again, and it resumes
   rotating under someone who just chose a slide. `held.hover/focus/hidden` is
   consulted every time the timer is armed.
-- Engineering restyles the plate in full rather than letting it inherit;
-  otherwise the base sheet's crimson, rounded card and CRT scanlines leak into
-  a surface that owns none of them.
+- *Removed in the 2026-10 cleanup; kept as a lesson:* the old
+  Engineering sheet restyled the plate in full rather than letting it
+  inherit; otherwise the base sheet's crimson, rounded card and CRT scanlines
+  leaked into a surface that owned none of them. Now the plate reads tokens
+  and every theme gets it for free.
 
 ## Iconography
 
@@ -727,7 +764,8 @@ printers discard, leaving an empty bordered box.
 console error). Any harness checking mask rendering **must** serve over HTTP
 or it will report a working mask as broken.
 
-Wrapping step copy in `.step-body` broke the engineering sheet silently: it
+Wrapping step copy in `.step-body` broke the old engineering sheet (since
+removed) silently: it
 placed `.step h3,.step p` with `grid-column:2`, and those were no longer grid
 children. When a component's children are re-parented, grep every stylesheet
 for rules that place them — `grid-column`, `grid-area`, `:nth-child`.
@@ -762,7 +800,9 @@ palette. Three of these were found by the sweep, each now a token:
 
 - `--band` — the wash behind every `.band` section was literal navy at 34%,
   turning Daylight's white page mid-grey-blue under teal text (1.55:1). It had
-  been patched once before, but only for `[data-variant="b"]`.
+  been patched once before, but only for `[data-variant="b"]`. (The A/B/C
+  variants were removed in the 2026-10 cleanup; `themes-check`
+  now fails on any `[data-variant` selector in `styles.css`.)
 - `--shade` / `--shade-k` — every card shadow was literal black at .8–.92.
   Invisible on a dark ground; a grey smear under every card on a light one, and
   the hero plate's shadow fell across its own caption (2.95:1). Shadows keep
@@ -781,9 +821,11 @@ six palettes at once; the layer is a fixed field of gradients with nothing
 directional in it, so the flip is exact.
 
 Letter-spacing on Arabic: Chromium renders tracked and untracked Arabic
-identically (it suppresses tracking on cursive scripts, per the CSS spec), so
-the 38 widely-tracked label rules are not broken there. **Firefox is
-unverified** — if it applies the tracking, connected letters will pull apart.
+identically (it suppresses tracking on cursive scripts, per the CSS spec), but
+Firefox was never verified, and if it applied the tracking, connected letters
+would pull apart. Settled now: Arabic sets no letter-spacing outside the Latin
+logo (`html[dir="rtl"] body :not(.logo, .logo *){letter-spacing:0!important}`). See
+"Arabic conventions" below.
 
 ## Thumbnails
 
@@ -823,28 +865,45 @@ caught — verify before you fix:
 When two tools disagree, look. axe caught one failure the sweep missed (the
 retainer line, at 4.49:1); the sweep caught hundreds axe's sampling did not.
 
-## Three commands, all green
+## The gates
 
-- `npm run check` — repo invariants (i18n balance, asset references, stamps).
-- `npm run sweep` — painted contrast, six themes × FR/AR plus hub/scene/404.
-- `npm run audit` — 30 browser runs, desktop and touch: CLS, LCP, axe,
-  overflow, reveals, tap targets, images, animations, JS, network.
+Six commands, all green before a push:
+
+- `npm run check` — `scripts/check.mjs` (repo invariants: i18n balance, asset
+  references, stamps, the deploy set and sitemap, prices against
+  `PRICE_MODEL`, legal gating, one contact address) plus
+  `scripts/themes-check.mjs` (the theme contract).
+- `npm run validate` — html-validate on every page in `scripts/site.mjs`.
+- `npm run audit` — the browser audit, ~54 runs, desktop and touch: axe, CLS,
+  LCP, overflow, reveals, tap targets, images, animations, JS, network.
+- `npm run sweep` — the painted-contrast sweep (above).
+- `npm run vbugs` — the visual bug scan, `scripts/vbugs.mjs` (see "Visual
+  pass" below); accepted issues live in `scripts/vbugs-allow.json`, each with
+  its reason.
+- `npm run verify` — runs all of the above and does not stop at the first
+  failure, so one run shows everything that is wrong.
+
+CI is `.github/workflows/check.yml`: check, themes-check and validate on every
+push and pull request; the browser gates (audit, sweep, vbugs) on demand from
+Actions → Check → Run workflow. The deploy, `.github/workflows/pages.yml`, runs
+check + themes-check before it stages and uploads `_site/`.
 
 `check` had shown the same ✗ on every run for weeks — it read a `document.write`
 string concatenation as a file path. It was waved through as a "known false
 positive" each time, which is precisely how a check stops being read. It now
 skips concatenation fragments **and verifies their real targets** from the
-literals (the Engineering stylesheet constant and each preloaded font name);
-a deliberately misnamed font is caught. A permanently red check is worse than
-no check.
+literals (each preloaded font name, and at the time the Engineering stylesheet
+constant, since removed); a deliberately misnamed font is caught. A
+permanently red check is worse than no check.
 
 Audit traps, on top of the sweep's list:
 - A tap-target check without WCAG 2.5.8's spacing exception flags the whole
   desktop nav. axe applies the exception; match it.
 - Reveals run 1s plus a stagger delay — sample sooner and you measure a fade.
-- The Engineering deploy log scrolled sideways on phones only once the typing
-  animation reached its longest line, so the axe failure came and went. It now
-  wraps below 600px.
+- *Removed in the 2026-10 cleanup; kept as a lesson:* the
+  Engineering deploy log scrolled sideways on phones only once the typing
+  animation reached its longest line, so the axe failure came and went. The
+  fix was to wrap it below 600px.
 
 ## Market comparison ("Ici et ailleurs") and pricing models
 
@@ -870,8 +929,9 @@ not used: an international client pays through official channels.
 **Where the numbers live — update all of them together:**
 - market ranges: `MARKET` in `app.js` §14 **and** the static cells in
   `index.html` (the static values are the JS-off fallback)
-- exchange rate: `FX` in `app.js` §14, the `mk.note` string ×3, and the
-  static callout figure
+- exchange rate: `FX` in `app.js` §12a (the one display-currency table, see
+  "Prices: set in dinars, converted for display"), the `mk.note` string ×3,
+  the `price.curNote*` strings, and the static callout figure
 - Numidea's column: nowhere — it is computed from `PRICE_MODEL`
 
 **The estimator now matches the tier cards.** It didn't before, despite a
@@ -902,7 +962,7 @@ browser test confirmed no range splits at 1280/1024/768/390 in FR/EN/AR.
 
 The hub is Yasser's own page (b4vetrave1er / VOIDSPLUNKER.std): his art,
 his design work, his social presence. **Client websites do not belong here**
-— they live on the Numidea page. A "Selected Work" section of the five client
+— they live on the Numidea page. A "Selected Work" section of the studio's
 sites was added once and removed at the owner's request; `npm run check` now
 fails if any project URL appears in hub/.
 
@@ -1182,10 +1242,12 @@ arcanum/fr, engineering/en and daylight/ar:
   `direction:ltr; unicode-bidi:isolate` — a brand name has one direction.
 - **RTL "<24h"** rendered "24h>" (the "<" is a neutral). `.stat` is isolated LTR.
 - **Engineering navbar** turned navy when scrolled (the base sheet's
-  rgba(13,26,47,.72)); now the instrument black.
+  rgba(13,26,47,.72)); fixed then to the instrument black. *(Old Engineering
+  sheet, removed in the 2026-10 cleanup; kept as a lesson.)*
 - **Engineering method steps** were squeezed into the left 70% of the row:
-  the base desktop grid makes three columns, this theme capped the list at
-  820px. The cap is lifted on desktop.
+  the base desktop grid makes three columns, that theme's sheet capped the
+  list at 820px. The cap was lifted on desktop. *(Same: old sheet, kept as a
+  lesson.)*
 - **Proof band** carried full section padding (109px a side) and read as an
   empty box; it is a compact strip now.
 - **Scene banner** art was three blank plates that read as a missing image;
@@ -1198,11 +1260,12 @@ arcanum/fr, engineering/en and daylight/ar:
   own line instead of squeezing the label into three. The WorkspaceHQ
   cartridge gets air above it.
 
-`.tmp/vbugs.mjs` (not committed) scans 7 widths x 4 theme/lang pairs for
-overlapping text, text escaping its card, clipped text, stretched images and
-horizontal scroll. It needs two exclusions to be honest: content of closed
-`<details>` keeps stale layout boxes, and decorative clipped glows overflow on
-purpose.
+`scripts/vbugs.mjs` (`npm run vbugs`, part of `npm run verify`) scans 7 widths
+x 4 theme/lang pairs for overlapping text, text escaping its card, clipped
+text, stretched images and horizontal scroll. Content of closed `<details>` is
+skipped, because it keeps stale layout boxes. Anything else that is acceptable
+on purpose (decorative clipped glows, for instance) must be listed in
+`scripts/vbugs-allow.json` with its reason; any other finding exits non-zero.
 
 ## Bento, loading states and wayfinding
 
@@ -1215,8 +1278,10 @@ purpose.
   beneath; `align-content:start` keeps eyebrows aligned across a row.
 - **Stack** tiles: 6 columns, 3+3 over 2+2+2, single column under 720px.
 - **Founder** card spans 8 of 12 columns, the team the other 4.
-- `theme-engineering.css` re-declares the work, services and stack grids, so
-  every bento rule needs its counterpart there (it loads last and wins).
+- *Removed in the 2026-10 cleanup; kept as a lesson:*
+  `theme-engineering.css` re-declared the work, services and stack grids, so
+  every bento rule needed its counterpart there (it loaded last and won). A
+  theme now sets tokens only, so a layout rule lives in `styles.css` once.
 - **Skeletons**: images still loading get `.sk` (finite 8-cycle shimmer), then
   `.sk-done`. Every `<img>` declares `loading`.
 - **Wayfinding**: scroll-spy marks the current nav link with `aria-current`
@@ -1236,10 +1301,14 @@ contact. Each idea is said once:
 - Pricing reads tiers, then the estimator, and stops. The market comparison,
   billing models and cost drivers sit in the "Comment on chiffre" disclosure.
 - Work ends on one call to action, the planches banner. The project explorer
-  stays reachable at `#/work` and `#/work/<slug>`.
+  modal was removed in the 2026-10 cleanup; an old
+  `#/work/<slug>` link now redirects to the matching project sheet,
+  `scene/#<sheet slug>` (the `SHEET` map in `app.js`), and anything else under
+  `#/work` lands on `#work`.
 
 **Design system:** the `DESIGN SYSTEM` block at the end of `styles.css` is the
-source of truth. Engineering keeps its own system in `theme-engineering.css`.
+source of truth for every theme, Engineering included (its separate
+`theme-engineering.css` was removed in the same cleanup).
 - Seven text sizes below the display headings:
   - `--t-label` 11, mono uppercase at `--ls-label`;
   - `--t-small` 13;
@@ -1269,23 +1338,26 @@ written as literals that could not re-skin, and Engineering was a separate
 59KB stylesheet that re-laid out the page. All three are gone.
 
 - `assets/themes.css` holds one block per theme, `:root[data-theme="name"]`,
-  setting exactly the 49 contract tokens (colour, effects, atmosphere,
+  setting exactly the 47 contract tokens (colour, effects, atmosphere,
   surfaces, heading type, radii, kicker node) and nothing else. It loads
   before `styles.css`.
 - `styles.css` reads tokens only. Theme-coloured literals are written as
   `color-mix(in srgb,var(--token) N%,transparent)`.
 - `scripts/themes-check.mjs` (part of `npm run check`) fails when a theme
   misses or adds a token, when a text/surface pair drops under 4.5:1 (7:1 for
-  `--ice`), when `styles.css` gains a `[data-theme]` selector or a theme
-  colour literal, or when a theme's heading face is not the one index.html
-  preloads for it (`HEAD` map — a late face shifts the hero).
+  `--ice`), when `styles.css` gains a `[data-theme]` or `[data-variant]`
+  selector or a theme colour literal, when any list of theme names drifts
+  from `THEMES` in `scripts/site.mjs`, or when a theme's heading face is not
+  the one index.html preloads for it (`HEAD` map — a late face shifts the
+  hero; 404.html's `LOGO` map does the same for the wordmark).
 - Illustration strength is `--ink-k`, a multiplier on each plate's opacity.
-- Engineering is now a token theme like the others. The old reset-block notes
-  above describe a file that no longer exists.
+- Engineering is now a token theme like the others. The sections marked
+  "History (removed features)" above describe a file that no longer exists.
 
-To add a theme: copy a block in `themes.css`, change the values, add the name
-to the switcher, to `THEMES` in `themes-check.mjs` and app.js, and to the `HEAD`
-map in index.html.
+To add a theme: copy a block in `themes.css`, change the values, and add the
+name to `THEMES` in `scripts/site.mjs`, to `THEMES` in app.js, to the theme
+menu, to the `HEAD` map in index.html and to the `LOGO` map in 404.html.
+`themes-check` fails until every list agrees.
 
 ## Project sheets (scene/)
 
@@ -1302,4 +1374,116 @@ The file name is the caption. Slugs: bordjsteel, alliance, glaive,
 workspacehq, almaflow. Run `npm run scene` after adding files.
 
 Every statement on the sheets was read off the live sites on 2026-10-06.
-Glaive is labelled a portfolio demo because its own site says so.
+Glaive is labelled a portfolio demo because its own site says so; it was never
+a client.
+
+`npm run build` runs the page generators in one go: `build-scene`,
+`build-voices`, `build-legal`, `build-sitemap` (the share images are separate,
+`npm run og`). A sheet shows a client quote
+only when a consented voice exists for it (see "Client voices and photo
+slots").
+
+## Prices: set in dinars, converted for display
+
+Every price is set in DZD: `PRICE_MODEL` (the tier and estimator figures) and
+`RETAINER` (the monthly maintenance line) in `assets/app.js`. They are
+converted for display only, in §12a: `FX` holds 151 DA/EUR and 134 DA/USD (the
+Bank of Algeria official rate, early October 2026), and `tidy()` rounds each
+converted figure to what a person would actually quote. Tier cards, the
+maintenance line, the estimator and the market table all go through that one
+place, so no two figures can disagree. `?cur=eur|usd|dzd` (an ad or a shared
+link) wins over the stored choice; dinars otherwise, which is also what the
+markup says with scripts off. EUR is shown HT, with the French B2B
+reverse-charge note (`price.curNoteEUR`). `check.mjs` requires the dinar
+figures in the tier and maintenance markup to equal `PRICE_MODEL`/`RETAINER`,
+and fails on any € or $ amount typed into the studio's own prices.
+
+## Lead source
+
+Where a lead came from is read at the moment it is sent, and nothing is
+stored. `leadSource()` in `app.js` §13 takes `?ref=` (each ad and email
+carries its own code), the `utm_*` parameters and whether `fbclid` or `gclid`
+is present, and writes them into the "Source" line of the mailto body.
+WhatsApp links append only the ref code, as `[ref]`, to the pre-filled text.
+It rides in the message the visitor sends themselves and goes nowhere else.
+On this one-page site the query string survives every `#anchor` jump. There
+is one contact address site-wide; `check.mjs` fails if any mailto or JSON-LD
+email differs.
+
+## Legal notice and privacy — generated, unpublished until complete
+
+`scripts/build-legal.mjs` renders the legal notice and privacy policy (all
+three languages in one page) from `scripts/legal-data.mjs`, as part of
+`npm run build`. While any owner field is still empty it writes nothing,
+keeps the legal marker regions in `index.html` empty and lists what is
+missing; `--preview` writes `legal-preview/index.html` with the gaps marked
+(never deployed). Once every field is filled it writes `legal/index.html` and
+fills the footer and contact-form links. `check.mjs` gates both states:
+before publication any link to `legal/` fails; after, the published page must
+equal the generator's output.
+
+## The link-preview card
+
+Scrapers (WhatsApp, LinkedIn, Facebook, X) read `og:image` without running
+scripts, so one static card serves every language. `scripts/build-og.mjs`
+renders `assets/og.jpg`, in French, from the Arcanum tokens in `themes.css`
+and the self-hosted faces, so it cannot drift from the brand; its only image
+is a real capture of a delivered site. `hub/og.jpg` and `workspacehq/og.jpg`
+are 1200×630 renders of those pages' own first screen
+(`scripts/og-capture.mjs`). `npm run og` runs both; re-run after a theme or
+copy change. (The old `og.svg`/`og.png` went in the 2026-10 cleanup.)
+
+## Sitemap
+
+`scripts/build-sitemap.mjs` writes `sitemap.xml` from the page list in
+`scripts/site.mjs`, as part of `npm run build`. Pages whose language follows
+`?lang=` (the landing page, the project sheets and, once published, `legal/`)
+carry `hreflang` alternates for fr/en/ar plus `x-default`, the French
+original. No `lastmod`: a date nobody maintains is worse than none.
+`check.mjs` fails when the committed file differs from the generator's output
+or lists an unpublished URL.
+
+## Client voices and photo slots
+
+Nothing on the page claims content it does not have.
+
+- **Voices.** `scripts/voices-data.mjs` holds client quotes and stays empty
+  until a client agrees to an exact text (each entry records `consentDate`
+  and `consentRef`). Only the four delivered clients can carry one, never the
+  Glaive demo or WorkspaceHQ. `scripts/build-voices.mjs` fills the
+  `<!-- SLOT:voices -->` region in `#work`, and the client's project sheet
+  shows the same quotes (Nomara Voyages has no sheet). With no voices nothing
+  renders: no heading, no placeholder.
+  Each quote stays in the language it was given in.
+- **Photos.** The founder card and the team grid carry commented-out `<img>`
+  slots in `index.html`. Until a real photo is added (for the founder, never
+  a generated one), the monogram and the initials stay.
+
+## Arabic conventions
+
+- **Western digits everywhere** (owner decision). `check.mjs` fails on any
+  Arabic-Indic digit in a page, the dictionaries or a generator.
+- **Forward arrows are `←`**, because Arabic reads right to left.
+- **Logical CSS properties** (`margin-inline`, `padding-inline`, …), so one
+  rule serves both directions.
+- **Mono labels fall back to IBM Plex Sans Arabic.** Geist Mono has no Arabic
+  glyphs, so in RTL `--font-mono` lists Plex Arabic right after it; Latin and
+  digits keep the mono face, and Arabic is no longer set one monospace cell
+  apart.
+- **No letter-spacing in Arabic**: tracking breaks the joins of a cursive
+  script, so it is off for the whole Arabic page (the Latin logo keeps its
+  own).
+- The Arabic copy is still pending a native speaker's review.
+
+## Deploy scope
+
+Only what `DEPLOY` in `scripts/site.mjs` names is published: `index.html`,
+`404.html`, `robots.txt`, `sitemap.xml`, `assets/`, `scene/`, `hub/`,
+`workspacehq/`, and `legal/` once it is complete. `scripts/stage-site.mjs`
+(`npm run stage`) copies exactly that into `_site/`, and a missing entry fails
+the stage. Every host builds from `_site/`: GitHub Pages is canonical
+(https://brvetr4ve1er.github.io/Numidea.tech/, via
+`.github/workflows/pages.yml`), and Netlify and Vercel are mirrors.
+`NOT_DEPLOYED` lists what must never be served, including `knowledge-base/`,
+`audit/`, `scripts/`, `legal-preview/` and this file. `campaign/` is kept
+outside the repository altogether.

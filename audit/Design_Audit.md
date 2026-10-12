@@ -1,3 +1,5 @@
+> **Historical snapshot (2026-07-31).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Design Audit — look & structure
 
 *2026-07-31 · full-page captures at 1440×900 and 390×844, all reveals forced,
@@ -33,6 +35,9 @@ showing a domain that doesn't exist and metrics that were never measured —
 on a site whose core positioning is "honest statuses, real proof." Meanwhile
 the real proof (five live client sites with real screenshots) sits 7
 viewports down. The strongest material is buried under the weakest.
+[2026-10: there are four delivered client sites — Bordj Steel, Alliance Travel,
+AlmaFlowClim, Nomara Voyages; Glaive Store is a portfolio demo (never a client) and
+WorkspaceHQ is the studio's own product.]
 
 **D4 · The anonymous team undercuts credibility.** Four cards with giant
 single letters (N / D / S / T) read as unfinished placeholders. Directly below
@@ -47,6 +52,8 @@ five proof gestures before any actual proof. Each repetition weakens the next.
 **D6 · Redundant exits.** Work grid → explorer modal → scene page → "voir tout
 le portfolio" all present the same 7 projects. Choice paralysis instead of one
 confident showcase.
+[2026-10: the explorer modal has since been removed; `#/work` now redirects to
+`scene/#slug`.]
 
 ## What is genuinely good (keep)
 
@@ -72,6 +79,7 @@ plus all of A's structural cuts. Bigger visual change, same structure work.
 **C — Work-first restructure.** The projects open the page (near full-bleed,
 hub-style confidence); pitch, method and founder trail the work. Most
 dramatic; portfolio-site energy more than company-site.
+[2026-10: no A/B/C variants remain on the site.]
 
 ## Outcome — Direction A applied
 

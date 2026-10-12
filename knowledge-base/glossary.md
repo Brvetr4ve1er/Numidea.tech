@@ -7,6 +7,8 @@ sources: [index.html, assets/app.js, assets/styles.css, session 2026-06-22]
 tags: [glossary, internal-language, terminology]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Glossary — Internal Language & Terminology
 
 | Term | Meaning | Source |
@@ -21,12 +23,12 @@ tags: [glossary, internal-language, terminology]
 | **No middlemen** | Core promise: the client talks directly to the builder; whoever scopes it ships it. | How we work |
 | **Answer when it breaks** | Post-launch support promise; replies < 24h. | How we work |
 | **Arcanum** | The current default brand theme/identity: Art-Deco arcane-engineering, arcane-blue + brass-gold over deep navy. Original & IP-safe. | Brand (2026-06-22) |
-| **Neon Noir** | Previous design system (navy/crimson/teal); retained as an alternate theme. | Brand |
+| **Neon Noir** | Previous design system (navy/crimson/teal); retained as an alternate theme. [2026-10: now the `noir` theme, one of six — arcanum, noir, daylight, mono, altneon, engineering.] | Brand |
 | **Magician + Creator + Sage** | The brand archetype blend driving tone of voice. | Brand research |
 | **The Preview pipeline** | Playwright→Claude automation: scrape → FR/AR enrich → demo-gen → per-company ZIP. Powers The Preview at scale. | Services (f3 proof) |
 | **Soon (vs Live)** | Honest project-card state for not-yet-shipped sites; "Live" reserved for genuinely live URLs. | Decision KB-13-006 |
 | **`numidea-theme`** | localStorage key persisting the user's selected theme. | app.js |
-| **Design tokens** | CSS custom properties (`--void`, `--teal`, `--crimson`, …) that drive all theming. | styles.css |
+| **Design tokens** | CSS custom properties (`--void`, `--teal`, `--crimson`, …) that drive all theming. [2026-10: one 47-token contract shared by all six themes, defined in `assets/themes.css`.] | styles.css |
 | **BBA** | Bordj Bou Arréridj — the company's home city in Algeria. | Identity |
 | **Ouedkniss / Jumia** | Algerian classifieds / e-commerce platforms the intelligence products target. | Services (f4) |
 | **WhatsApp checkout** | Local commerce pattern (pay/confirm via WhatsApp) the studio builds storefronts around. | Projects |

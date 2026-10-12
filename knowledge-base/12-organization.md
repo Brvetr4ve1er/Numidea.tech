@@ -7,6 +7,8 @@ sources: [index.html (team), assets/app.js, README.md]
 tags: [org, roles, responsibilities, onboarding, decision-making]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 12 — Organizational Knowledge
 
 ## KB-12-001 · Org structure (verified roles, anonymized)
@@ -41,5 +43,8 @@ decisions → `glossary`. Beyond that:
 ## KB-12-005 · Internal documentation map
 - Public/product truth: this repo (`index.html`, `assets/*`).
 - Institutional truth: `knowledge-base/` (this folder).
+  [2026-10: `knowledge-base/`, `audit/` and `scripts/` are never deployed; only the
+  `scripts/site.mjs` DEPLOY paths are published. The campaign kit (`campaign/`) is
+  kept outside the public repository.]
 - 🔴 GAP: No private ops wiki, no shared drive index, no credential/secrets inventory
   documented (and **must not** be committed to git — track location only).

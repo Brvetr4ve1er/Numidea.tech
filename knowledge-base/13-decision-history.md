@@ -7,6 +7,8 @@ sources: [git history, session 2026-06-22, deep-research reports]
 tags: [decisions, rationale, reasoning, history, design, brand]
 ---
 
+> **Historical snapshot (2026-06-22).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Domain 13 — Decision History
 
 The most valuable institutional asset: *why* things are the way they are. Each entry
@@ -28,6 +30,9 @@ follows **Situation · Decision · Alternatives · Reasoning · Outcome · Lesso
   and lets the owner A/B looks live with zero rebuild — de-risks bigger changes.
 - **Outcome:** ✅ Shipped (`7390c67`). Made the later Arcanum rebrand a low-risk
   additive change rather than a rewrite.
+  [2026-10: now six themes — arcanum, noir (formerly Neon Noir), daylight, mono,
+  altneon, engineering — on one 47-token contract in `assets/themes.css`; `styles.css`
+  holds no `[data-theme]` selectors.]
 - **Lessons:** Invest in tokens early; it turns "rebrand" from a project into a diff.
 
 ## KB-13-002 · Type system → Geist / Geist Mono

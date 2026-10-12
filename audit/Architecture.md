@@ -1,3 +1,5 @@
+> **Historical snapshot (2026-07-31).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+
 # Architecture & Repository Map
 
 *Audited 2026-07-31 · commit `a9fd6da` · branch `claude/numidea-labs-landing-c4jokc`*
@@ -14,6 +16,11 @@ screenshot-capture pipeline, never shipped to the browser.
 root to GitHub Pages via `.github/workflows/pages.yml` (~60–90 s).
 `vercel.json` additionally makes the repo import-ready for Vercel (clean URLs,
 immutable asset caching, security headers) — not yet connected.
+[2026-10: `pages.yml` runs `check` and `themes-check`, stages only the
+`scripts/site.mjs` DEPLOY paths into `_site/` with `scripts/stage-site.mjs`, and
+uploads `_site`; GitHub Pages (https://brvetr4ve1er.github.io/Numidea.tech/) is
+canonical, and Netlify and Vercel are mirrors that build the same `_site/`.
+`knowledge-base/`, `audit/` and `scripts/` are never deployed.]
 
 ## Repository map
 
@@ -34,6 +41,13 @@ immutable asset caching, security headers) — not yet connected.
 | `vercel.json` | Vercel-ready hosting config | Ignored by GitHub Pages (harmless) |
 | `package.json` / `package-lock.json` | Screenshot pipeline deps only | Lockfile committed *and* gitignored — see D-04 |
 
+[2026-10: several rows above are out of date: the project-explorer modal is gone
+(`#/work` redirects to `scene/#slug`); themes are now six — arcanum, noir, daylight,
+mono, altneon, engineering — on one 47-token contract in `assets/themes.css`, and
+`styles.css` holds no `[data-theme]` selectors; the share image is `assets/og.jpg`,
+rendered by `scripts/build-og.mjs` (`og.svg`/`og.png` removed); `knowledge-base/` is
+never deployed.]
+
 ## Data flow & critical paths
 
 ```
@@ -48,6 +62,10 @@ visitor → index.html
   ├─ hub/   (isolated: own CSS/JS/theme key void-theme)
   └─ scene/ (reads numidea-* keys; own CSS/JS)
 ```
+
+[2026-10: historical — there is no explorer modal any more (`#/work` redirects to
+`scene/#slug`), and the contact form hands off by `mailto:` with the lead source
+attached; nothing is stored.]
 
 **Conventions that must hold** (verified in this audit, enforce on every change):
 
