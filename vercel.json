@@ -1,14 +1,13 @@
 {
   "installCommand": "echo skip",
-  "buildCommand": "node scripts/stage-site.mjs",
+  "buildCommand": "node scripts/check.mjs && node scripts/themes-check.mjs && node scripts/stage-site.mjs",
   "outputDirectory": "_site",
-  "cleanUrls": true,
   "trailingSlash": true,
   "headers": [
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
       ]
     },
     {

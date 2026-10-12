@@ -16,7 +16,7 @@ import { ROOT } from './site.mjs';
 const CARD = {
   kicker: "L'Aperçu · offre signature",
   title: 'Voyez votre nouveau site avant de payer.',
-  sub: "Votre page d'accueil, avec votre contenu, en 5 jours ouvrés. Gratuit et sans engagement.",
+  sub: "Votre page d'accueil, avec votre contenu, en 5 jours ouvrés. Gratuit, pour les entreprises immatriculées.",
   foot: 'Studio web · Bordj Bou Arréridj · FR · EN · ',
   shot: 'assets/previews/bordjsteel.webp',
   shotCap: 'Bordj Steel — site livré',

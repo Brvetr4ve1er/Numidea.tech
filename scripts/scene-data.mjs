@@ -254,7 +254,7 @@ export const UI = {
   fr: {
     dir: 'ltr', title: 'Planches — le travail, livrable par livrable · Numidea Labs',
     desc: "Chaque projet de Numidea Labs posé comme une planche : les pages livrées, le mobile, le système visuel, et le site en vrai.",
-    crumb: 'Planches', kicker: 'Planches de projet',
+    crumb: 'Planches', crumbNav: "Fil d'Ariane", langs: 'Langue', kicker: 'Planches de projet',
     h1: 'Le travail, <em>livrable par livrable.</em>',
     lead: "Chaque planche montre ce qui a été livré, tel qu'il est en ligne aujourd'hui : les pages, le mobile, le système visuel. Les captures viennent des sites eux-mêmes.",
     index: 'Sommaire des planches', sheet: 'Pl.', visit: 'Voir le site', open: 'Ouvrir',
@@ -269,7 +269,7 @@ export const UI = {
   en: {
     dir: 'ltr', title: 'Sheets — the work, deliverable by deliverable · Numidea Labs',
     desc: 'Every Numidea Labs project laid out as a sheet: the pages delivered, mobile, the visual system, and the live site.',
-    crumb: 'Sheets', kicker: 'Project sheets',
+    crumb: 'Sheets', crumbNav: 'Breadcrumb', langs: 'Language', kicker: 'Project sheets',
     h1: 'The work, <em>deliverable by deliverable.</em>',
     lead: 'Each sheet shows what was delivered, as it is live today: the pages, mobile, the visual system. The captures come from the sites themselves.',
     index: 'Sheet index', sheet: 'Sh.', visit: 'Visit the site', open: 'Open',
@@ -284,7 +284,7 @@ export const UI = {
   ar: {
     dir: 'rtl', title: 'اللوحات — الأعمال، مُخرَجاً بمُخرَج · Numidea Labs',
     desc: 'كل مشروع من Numidea Labs معروض كلوحة: الصفحات المسلّمة، والهاتف، والنظام البصري، والموقع الحيّ.',
-    crumb: 'اللوحات', kicker: 'لوحات المشاريع',
+    crumb: 'اللوحات', crumbNav: 'مسار التنقّل', langs: 'اللغة', kicker: 'لوحات المشاريع',
     h1: 'الأعمال، <em>مُخرَجاً بمُخرَج.</em>',
     lead: 'كل لوحة تعرض ما سُلِّم كما هو على الإنترنت اليوم: الصفحات، والهاتف، والنظام البصري. اللقطات مأخوذة من المواقع نفسها.',
     index: 'فهرس اللوحات', sheet: 'لوحة', visit: 'زيارة الموقع', open: 'فتح',

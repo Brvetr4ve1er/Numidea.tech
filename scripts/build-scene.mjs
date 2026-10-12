@@ -189,7 +189,6 @@ const html = `<!DOCTYPE html>
 <meta name="description" content="${esc(ui('desc'))}">
 <meta name="theme-color" content="#0A1420">
 <meta name="color-scheme" content="dark">
-<link rel="canonical" href="${BASE}scene/">
 <meta property="og:url" content="${BASE}scene/">
 <link rel="alternate" hreflang="fr" href="${BASE}scene/">
 <link rel="alternate" hreflang="en" href="${BASE}scene/?lang=en">
@@ -210,12 +209,14 @@ const html = `<!DOCTYPE html>
 <!-- Language before first paint: ?lang= (a shared link), then the shared
      'numidea-lang' key, validated. The text is baked in French; for EN/AR
      paint is held until ../assets/page-i18n.js has applied the dictionary,
-     so nobody sees the French sheets first. -->
+     so nobody sees the French sheets first. The canonical is set here too:
+     each ?lang= version names itself, and the served HTML names no other. -->
 <script>(function(){var d=document.documentElement,L=['fr','en','ar'],l='fr',q=null;
 try{q=new URLSearchParams(location.search).get('lang');}catch(e){}
 try{l=localStorage.getItem('numidea-lang')||l;}catch(e){}
 if(q&&L.indexOf(q)!==-1)l=q;if(L.indexOf(l)===-1)l='fr';
 d.lang=l;d.dir=l==='ar'?'rtl':'ltr';
+var h='${BASE}scene/',c=document.createElement('link');c.rel='canonical';c.href=q===l&&l!=='fr'?h+'?lang='+l:h;document.head.appendChild(c);
 if(l==='ar')document.write('<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/ibm-plex-sans-arabic-700-arabic.woff2">');
 if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){d.removeAttribute('data-i18n-pending');};document.addEventListener('DOMContentLoaded',r);setTimeout(r,1500);}})();</script>
 <style>html[data-i18n-pending] body{display:none}</style>
@@ -231,11 +232,11 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){d.removeAtt
 <a class="skip" href="#sheets" ${T('ui.skip')}>${esc(ui('skip'))}</a>
 
 <header class="hud">
-  <nav class="bc" aria-label="Breadcrumb"><ol>
+  <nav class="bc" aria-label="${esc(ui('crumbNav'))}" ${T('ui.crumbNav', '-aria')}><ol>
     <li><a href="../" class="hud-logo"><span class="d" aria-hidden="true">◆</span> NUMIDEA LABS</a></li>
     <li aria-current="page"><span ${T('ui.crumb')}>${esc(ui('crumb'))}</span></li>
   </ol></nav>
-  <div class="lang" role="group" aria-label="Language">
+  <div class="lang" role="group" aria-label="${esc(ui('langs'))}" ${T('ui.langs', '-aria')}>
     <button type="button" data-lang="fr" aria-pressed="true">FR</button>
     <button type="button" data-lang="en" aria-pressed="false">EN</button>
     <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>

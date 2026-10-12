@@ -14,6 +14,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT } from './site.mjs';
 import { VOICES, VOICE_CLIENTS, validate } from './voices-data.mjs';
+import { loadDicts, toMarkup } from './lib/i18n.mjs';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const RE = /(<!-- SLOT:voices -->)[\s\S]*?(<!-- \/SLOT:voices -->)/;
@@ -27,7 +28,7 @@ export function renderVoices(list = VOICES) {
       </figure>`).join('');
   return `
     <div class="voices reveal">
-      <h3 class="voices-h" data-i18n="work.voicesH">Ce qu'en disent nos clients</h3>
+      <h3 class="voices-h" data-i18n="work.voicesH">${toMarkup(loadDicts().fr['work.voicesH'])}</h3>
       <div class="voices-grid">${figs}
       </div>
     </div>

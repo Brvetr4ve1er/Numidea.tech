@@ -8,8 +8,10 @@
  *   3. assets         — every local src/href on every page exists on disk
  *   4. stamp sync     — all ?v= cache-bust stamps are identical across pages
  *   5. client links   — data-client links agree (plate, card, browser bar, shots, showcase); none on hub/
- *   7. generated pages — scene/index.html equals its generator's output, and every
- *                        page with an inline dictionary resolves its keys in fr/en/ar
+ *   7. generated pages — scene/index.html, the voices region and the French baked
+ *                        into index.html (with its FAQ structured data) equal their
+ *                        generators' output, and every page with an inline
+ *                        dictionary resolves its keys in fr/en/ar
  *   6. deploy coverage — the published set (scripts/site.mjs DEPLOY) exists, every
  *                        page folder is classified, and deployed pages link only to
  *                        deployed files (nothing points into knowledge-base/, scripts/…)
@@ -27,6 +29,8 @@ import { applyVoices } from './build-voices.mjs';
 import { renderLegal, markerRegions } from './build-legal.mjs';
 import { LEGAL, missing as legalMissing } from './legal-data.mjs';
 import { validate as validateVoices } from './voices-data.mjs';
+import { bakeFr } from './build-fr.mjs';
+import { loadDicts } from './lib/i18n.mjs';
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 let fail = 0;
@@ -35,6 +39,7 @@ const ok = (msg) => console.log('✓ ' + msg);
 
 /* 1 + 2 — i18n */
 const app = read('assets/app.js');
+const DICT = loadDicts(app);
 const counts = {};
 for (const m of app.matchAll(/'([a-z0-9]+(?:\.[A-Za-z0-9_.]+)?)'\s*:/g)) {
   counts[m[1]] = (counts[m[1]] || 0) + 1;
@@ -219,14 +224,19 @@ for (const f of PAGES) {
 }
 // The form note promises the site keeps nothing. Turning the Supabase lead
 // store on breaks that promise: it needs the published legal page, the store's
-// region in scripts/legal-data.mjs, and new form.note copy.
-const supa = (/NUMIDEA_SUPABASE_URL\s*=\s*"([^"]*)"/.exec(html) || [])[1];
-if (supa) {
-  const { LEGAL } = await import('./legal-data.mjs');
-  const { LEGAL_PUBLISHED } = await import('./site.mjs');
-  const note = /'form\.note':\s*'([^']*)'/.exec(app)?.[1] || '';
-  if (!LEGAL_PUBLISHED || !LEGAL.privacy.supabaseRegion || /ne conserve pas/.test(note))
-    bad('the Supabase lead store is on: publish legal/, set privacy.supabaseRegion in scripts/legal-data.mjs, and rewrite form.note');
+// region in scripts/legal-data.mjs, and new form.note copy in every language
+// and in the French baked into index.html. "On" is anything but an empty
+// string literal, in any quote style (app.js only tests truthiness).
+const cfgOn = (name) => {
+  const m = new RegExp(`${name}\\s*=\\s*([^;\\n]+)`).exec(html.replace(/<!--[\s\S]*?-->/g, ''));
+  return !!m && !/^(["'`])\1$/.test(m[1].trim());
+};
+if (cfgOn('NUMIDEA_SUPABASE_URL') || cfgOn('NUMIDEA_SUPABASE_KEY')) {
+  const KEEPS_NOTHING = /ne conserve pas|does not keep|keeps nothing|لا يحتفظ|لا يحفظ/;
+  const notes = ['fr', 'en', 'ar'].map((l) => DICT[l]['form.note'] || '');
+  notes.push((/data-i18n="form\.note">([^<]*)</.exec(html) || [])[1] || '');
+  if (!LEGAL_PUBLISHED || !LEGAL.privacy.supabaseRegion || notes.some((n) => KEEPS_NOTHING.test(n)))
+    bad('the Supabase lead store is on: publish legal/, set privacy.supabaseRegion in scripts/legal-data.mjs, and rewrite form.note in fr, en and ar');
   else ok('Supabase store on, with the legal page, its region and an honest form note');
 } else ok('form store off; form.note ("the site keeps nothing") holds');
 // Prices have one source. The tier cards and the maintenance line carry their
@@ -256,17 +266,28 @@ priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) :
 // in index.html stay empty; once it exists, every owner field must be filled,
 // the page must equal fresh generator output and both links must be in place.
 const legalErr = [];
+const regions = (published) => { try { return markerRegions(html, published); } catch (e) { legalErr.push(e.message); return html; } };
 if (!LEGAL_PUBLISHED) {
   for (const f of PAGES) if (/["'(=](?:\.\.\/|\.\/)?legal\//.test(read(f))) legalErr.push(`${f} points at legal/, which is not published`);
-  if (markerRegions(html, false) !== html) legalErr.push('index.html legal link regions must stay empty until legal/ is published');
+  if (regions(false) !== html) legalErr.push('index.html legal link regions must stay empty until legal/ is published');
 } else {
   const gaps = legalMissing(LEGAL);
   if (gaps.length) legalErr.push('legal/ exists but scripts/legal-data.mjs still misses ' + gaps.join(', '));
   else if (read('legal/index.html') !== renderLegal(LEGAL)) legalErr.push('legal/index.html differs from scripts/build-legal.mjs (run: npm run build)');
-  if (markerRegions(html, true) !== html) legalErr.push('index.html lacks the legal and privacy links (run: npm run build)');
+  if (regions(true) !== html) legalErr.push('index.html lacks the legal and privacy links (run: npm run build)');
+  for (const h of ['legal/#mentions', 'legal/#confidentialite'])
+    if (!html.includes(`href="${h}"`)) legalErr.push(`index.html has no link to ${h}`);
 }
 legalErr.length ? bad('legal page: ' + legalErr.join('; '))
   : ok(LEGAL_PUBLISHED ? 'legal page complete, current and linked' : 'legal page unpublished and nothing points at it');
+// The French baked into index.html (text, translated attributes, title,
+// description, FAQ structured data) equals I18N.fr: app.js re-applies the
+// dictionary on load, so any drift shows as copy changing after paint, and
+// no-JS readers and the FAQ rich result would read an older offer.
+let frStale = '';
+try { frStale = bakeFr(html, DICT.fr) !== html ? 'differs' : ''; } catch (e) { frStale = e.message; }
+frStale ? bad('index.html French: ' + (frStale === 'differs' ? 'differs from I18N.fr (run: npm run build)' : frStale))
+  : ok('index.html French and its FAQ structured data equal I18N.fr');
 // Client voices: valid (consent recorded, delivered clients only) and the
 // index.html region equals what scripts/build-voices.mjs writes from them.
 const voiceErr = validateVoices();

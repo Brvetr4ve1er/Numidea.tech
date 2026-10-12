@@ -20,6 +20,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, BASE, THEMES } from './site.mjs';
 import { LEGAL, missing } from './legal-data.mjs';
+import { loadDicts, toMarkup } from './lib/i18n.mjs';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const stamp = () => (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
@@ -35,11 +36,14 @@ function val(v, path, preview) {
 
 const UI = {
   fr: { title: 'Mentions légales et confidentialité · Numidea Labs', h1: 'Mentions légales <em>et confidentialité</em>',
-        mentions: 'Mentions légales', privacy: 'Confidentialité', back: '← Retour à Numidea Labs', updated: 'Dernière mise à jour' },
+        mentions: 'Mentions légales', privacy: 'Confidentialité', back: '← Retour à Numidea Labs', updated: 'Dernière mise à jour',
+        skip: 'Aller au contenu', lang: 'Langue' },
   en: { title: 'Legal notice and privacy · Numidea Labs', h1: 'Legal notice <em>and privacy</em>',
-        mentions: 'Legal notice', privacy: 'Privacy', back: '← Back to Numidea Labs', updated: 'Last updated' },
+        mentions: 'Legal notice', privacy: 'Privacy', back: '← Back to Numidea Labs', updated: 'Last updated',
+        skip: 'Skip to content', lang: 'Language' },
   ar: { title: 'الإشعار القانوني والخصوصية · Numidea Labs', h1: 'الإشعار القانوني <em>والخصوصية</em>',
-        mentions: 'الإشعار القانوني', privacy: 'الخصوصية', back: '→ العودة إلى Numidea Labs', updated: 'آخر تحديث' },
+        mentions: 'الإشعار القانوني', privacy: 'الخصوصية', back: '→ العودة إلى Numidea Labs', updated: 'آخر تحديث',
+        skip: 'انتقل إلى المحتوى', lang: 'اللغة' },
 };
 
 function body(lang, d, preview) {
@@ -80,7 +84,7 @@ function body(lang, d, preview) {
     <h3>Le formulaire de contact</h3>
     <p>Il demande votre nom, votre e-mail et votre message (qui peut contenir l'estimation préparée avec l'estimateur, et la langue de la page). <strong>Le site ne transmet rien lui-même</strong> : « Démarrer un projet » ouvre votre messagerie avec un e-mail pré-rempli adressé au studio, et c'est votre messagerie qui l'envoie. Il est reçu sur une boîte Gmail (Google).${supa ? ` Le message est aussi enregistré dans une base de données Supabase (région ${esc(supa)}).` : ''}</p>
     <p>Si vous écrivez sur WhatsApp, l'échange passe par WhatsApp (Meta).</p>
-    <h3>Si vous arrivez par une publicité</h3><p>Le studio diffuse des publicités sur Facebook et Instagram (Meta). Meta traite les données liées à leur affichage selon sa propre politique ; ce site n'a ni pixel ni traceur. Le lien d'une publicité peut contenir un code de campagne (<code>ref</code>, <code>utm_*</code>) et un identifiant de clic ajouté par Meta (<code>fbclid</code>) : le site ne les lit qu'au moment où vous envoyez le formulaire ou ouvrez WhatsApp, et les ajoute à votre message (« Source : … ») pour savoir quelle annonce vous a amené. Il ne les enregistre nulle part. Une conversation WhatsApp démarrée depuis une annonce arrive dans l'application WhatsApp Business du studio.</p>
+    <h3>Si vous arrivez par une publicité</h3><p>Le studio diffuse des publicités sur Facebook et Instagram (Meta). Meta traite les données liées à leur affichage selon sa propre politique ; ce site n'a ni pixel ni traceur. Le lien d'une publicité peut contenir un code de campagne (<code>ref</code>, <code>utm_*</code>) et un identifiant de clic ajouté par Meta (<code>fbclid</code>) ou Google (<code>gclid</code>). Le code <code>ref</code> est placé dans le texte pré-rempli des liens WhatsApp dès l'ouverture de la page (« [code] »). L'e-mail préparé par le formulaire porte une ligne « Source : … » avec ce code, les paramètres <code>utm_*</code> et la seule mention qu'un identifiant de clic était présent, jamais sa valeur. Ces paramètres restent dans l'adresse quand vous passez d'une page du site à l'autre. Ils servent à savoir quelle annonce vous a amené ; le site ne les enregistre nulle part et ils ne partent qu'avec le message que vous envoyez vous-même. Une conversation WhatsApp démarrée depuis une annonce arrive dans l'application WhatsApp Business du studio.</p>
     <h3>Pourquoi</h3><p>Uniquement pour répondre à votre demande et préparer un devis : mesures précontractuelles prises à votre demande. Rien n'est revendu, et vos données ne servent pas à cibler de la publicité.</p>
     <h3>Combien de temps</h3><p>${v(d.privacy.retention, 'privacy.retention')}</p>
     <h3>Qui y a accès</h3><p>Le studio. Ses prestataires techniques traitent les données nécessaires à leur service : Google (messagerie), Meta (WhatsApp, si vous l'utilisez, et les publicités) et l'hébergeur du site, qui conserve des journaux de connexion techniques (dont l'adresse IP) selon ses propres règles. Ces prestataires peuvent traiter des données hors de l'Union européenne et de l'Algérie, notamment aux États-Unis.</p>
@@ -108,7 +112,7 @@ function body(lang, d, preview) {
     <h3>The contact form</h3>
     <p>It asks for your name, your email and your message (which may include the estimate prepared with the estimator, and the page language). <strong>The site sends nothing itself</strong>: "Start a project" opens your email app with a pre-filled email to the studio, and your email app sends it. It is received in a Gmail (Google) mailbox.${supa ? ` The message is also stored in a Supabase database (region ${esc(supa)}).` : ''}</p>
     <p>If you write on WhatsApp, the conversation goes through WhatsApp (Meta).</p>
-    <h3>If you arrive from an ad</h3><p>The studio runs ads on Facebook and Instagram (Meta). Meta processes the data tied to showing them under its own policy; this site has no pixel or tracker. An ad's link may carry a campaign code (<code>ref</code>, <code>utm_*</code>) and a click identifier added by Meta (<code>fbclid</code>): the site reads them only when you send the form or open WhatsApp, and adds them to your message ("Source: …") so the studio knows which ad brought you. It stores them nowhere. A WhatsApp conversation started from an ad arrives in the studio's WhatsApp Business app.</p>
+    <h3>If you arrive from an ad</h3><p>The studio runs ads on Facebook and Instagram (Meta). Meta processes the data tied to showing them under its own policy; this site has no pixel or tracker. An ad's link may carry a campaign code (<code>ref</code>, <code>utm_*</code>) and a click identifier added by Meta (<code>fbclid</code>) or Google (<code>gclid</code>). The <code>ref</code> code is placed in the pre-filled text of the WhatsApp links as soon as the page opens ("[code]"). The email the form prepares carries a "Source: …" line with that code, the <code>utm_*</code> parameters and only the fact that a click identifier was present, never its value. These parameters stay in the address as you move between the site's pages. They tell the studio which ad brought you; the site stores them nowhere and they leave only with the message you send yourself. A WhatsApp conversation started from an ad arrives in the studio's WhatsApp Business app.</p>
     <h3>Why</h3><p>Only to answer your request and prepare a quote: pre-contractual steps taken at your request. Nothing is sold, and your data is not used to target advertising.</p>
     <h3>How long</h3><p>${v(d.privacy.retention, 'privacy.retention')}</p>
     <h3>Who has access</h3><p>The studio. Its technical providers process what their service needs: Google (email), Meta (WhatsApp, if you use it, and the ads) and the site's host, which keeps technical connection logs (including IP addresses) under its own rules. These providers may process data outside the European Union and Algeria, notably in the United States.</p>
@@ -136,7 +140,7 @@ function body(lang, d, preview) {
     <h3>استمارة الاتصال</h3>
     <p>تطلب اسمك وبريدك الإلكتروني ورسالتك (وقد تتضمّن التقدير المُعدّ بالحاسبة، ولغة الصفحة). <strong>الموقع لا يُرسل شيئاً بنفسه</strong>: زر «ابدأ مشروعاً» يفتح تطبيق بريدك برسالة جاهزة موجّهة إلى الاستوديو، وتطبيق بريدك هو من يُرسلها. تصل إلى صندوق Gmail ‏(Google).${supa ? ` وتُحفظ الرسالة أيضاً في قاعدة بيانات Supabase (المنطقة ${esc(supa)}).` : ''}</p>
     <p>إن راسلتنا عبر واتساب، فالمحادثة تمرّ عبر واتساب (Meta).</p>
-    <h3>إن وصلت عبر إعلان</h3><p>ينشر الاستوديو إعلانات على Facebook وInstagram ‏(Meta). تعالج Meta البيانات المرتبطة بعرضها وفق سياستها الخاصة، ولا يحتوي هذا الموقع على أي بكسل أو أداة تتبّع. قد يحمل رابط الإعلان رمز حملة (<code>ref</code>، <code>utm_*</code>) ومعرّف نقرة تضيفه Meta ‏(<code>fbclid</code>): لا يقرؤها الموقع إلا عند إرسالك الاستمارة أو فتحك واتساب، فيضيفها إلى رسالتك («المصدر: …») ليعرف الاستوديو الإعلان الذي أوصلك. ولا يحفظها في أي مكان. وتصل محادثة واتساب التي تبدأ من إعلان إلى تطبيق WhatsApp Business الخاص بالاستوديو.</p>
+    <h3>إن وصلت عبر إعلان</h3><p>ينشر الاستوديو إعلانات على Facebook وInstagram ‏(Meta). تعالج Meta البيانات المرتبطة بعرضها وفق سياستها الخاصة، ولا يحتوي هذا الموقع على أي بكسل أو أداة تتبّع. قد يحمل رابط الإعلان رمز حملة (<code>ref</code>، <code>utm_*</code>) ومعرّف نقرة تضيفه Meta ‏(<code>fbclid</code>) أو Google ‏(<code>gclid</code>). يُوضع الرمز <code>ref</code> في النص المُعدّ مسبقاً لروابط واتساب منذ فتح الصفحة («[الرمز]»). ويحمل البريد الذي تُعدّه الاستمارة سطر «المصدر: …» فيه هذا الرمز ومعاملات <code>utm_*</code> ومجرّد الإشارة إلى وجود معرّف نقرة، لا قيمته أبداً. وتبقى هذه المعاملات في العنوان حين تنتقل بين صفحات الموقع. الغرض منها معرفة الإعلان الذي أوصلك؛ لا يحفظها الموقع في أي مكان، ولا تخرج إلا مع الرسالة التي ترسلها أنت. وتصل محادثة واتساب التي تبدأ من إعلان إلى تطبيق WhatsApp Business الخاص بالاستوديو.</p>
     <h3>لماذا</h3><p>للردّ على طلبك وإعداد عرض سعر فقط: إجراءات سابقة للتعاقد بطلب منك. لا يُباع شيء، ولا تُستخدم بياناتك لاستهداف الإعلانات.</p>
     <h3>إلى متى</h3><p>${v(d.privacy.retention, 'privacy.retention')}</p>
     <h3>من يطّلع عليها</h3><p>الاستوديو. ويعالج مزوّدوه التقنيون ما تحتاجه خدمتهم: Google (البريد)، وMeta (واتساب إن استعملته، والإعلانات)، ومستضيف الموقع الذي يحتفظ بسجلّات اتصال تقنية (منها عنوان IP) وفق قواعده. قد يعالج هؤلاء المزوّدون بيانات خارج الاتحاد الأوروبي والجزائر، ولا سيما في الولايات المتحدة.</p>
@@ -147,7 +151,7 @@ function body(lang, d, preview) {
 
 export function renderLegal(data = LEGAL, { preview = false } = {}) {
   const st = stamp();
-  const dict = Object.fromEntries(Object.entries(UI).map(([l, u]) => [l, { 'ui.title': u.title }]));
+  const dict = Object.fromEntries(Object.entries(UI).map(([l, u]) => [l, { 'ui.title': u.title, 'ui.skip': u.skip, 'ui.lang': u.lang }]));
   const updated = data.lastUpdated === null ? val(null, 'lastUpdated', preview) : esc(data.lastUpdated);
   const blocks = ['fr', 'en', 'ar'].map((l) => `
 <div class="lg" lang="${l}"${l === 'ar' ? ' dir="rtl"' : ''}>
@@ -165,14 +169,20 @@ export function renderLegal(data = LEGAL, { preview = false } = {}) {
 <title>${esc(UI.fr.title)}</title>
 <meta name="description" content="Éditeur, hébergement, propriété intellectuelle et données personnelles de Numidea Labs.">
 <meta name="theme-color" content="#0A1420">
-${preview ? '<meta name="robots" content="noindex">\n' : ''}<link rel="canonical" href="${BASE}legal/">
+${preview ? '<meta name="robots" content="noindex">\n' : ''}<link rel="alternate" hreflang="fr" href="${BASE}legal/">
+<link rel="alternate" hreflang="en" href="${BASE}legal/?lang=en">
+<link rel="alternate" hreflang="ar" href="${BASE}legal/?lang=ar">
+<link rel="alternate" hreflang="x-default" href="${BASE}legal/">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <!-- GENERATED by scripts/build-legal.mjs from scripts/legal-data.mjs. Edit the data, then: npm run build -->
 <script>(function(){var d=document.documentElement,T=${JSON.stringify(THEMES)},L=['fr','en','ar'],th='arcanum',l='fr',q=null;
 try{q=new URLSearchParams(location.search).get('lang');}catch(e){}
 try{th=localStorage.getItem('numidea-theme')||th;l=localStorage.getItem('numidea-lang')||l;}catch(e){}
 if(q&&L.indexOf(q)!==-1)l=q;if(T.indexOf(th)===-1)th='arcanum';if(L.indexOf(l)===-1)l='fr';
-d.setAttribute('data-theme',th);d.lang=l;d.dir=l==='ar'?'rtl':'ltr';})();</script>
+d.setAttribute('data-theme',th);d.lang=l;d.dir=l==='ar'?'rtl':'ltr';
+var h='${BASE}legal/',c=document.createElement('link');c.rel='canonical';c.href=q===l&&l!=='fr'?h+'?lang='+l:h;document.head.appendChild(c);
+var A={en:{mentions:'mentions-en',confidentialite:'privacy-en'},ar:{mentions:'mentions-ar',confidentialite:'privacy-ar'}},x=location.hash.slice(1);
+if(A[l]&&A[l][x])history.replaceState(null,'','#'+A[l][x]);})();</script>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-400-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-600-latin.woff2">
 <link rel="stylesheet" href="../assets/fonts.css?v=${st}">
@@ -202,11 +212,11 @@ d.setAttribute('data-theme',th);d.lang=l;d.dir=l==='ar'?'rtl':'ltr';})();</scrip
 </style>
 </head>
 <body>
-<a class="skip" href="#lg-main">Aller au contenu · Skip to content</a>
+<a class="skip" href="#lg-main" data-i18n="ui.skip">${esc(UI.fr.skip)}</a>
 <div class="lg-page">
   <header class="lg-top">
     <a class="logo" href="../">Num<i>idea</i> Labs</a>
-    <div class="lang" role="group" aria-label="Language">
+    <div class="lang" role="group" aria-label="${esc(UI.fr.lang)}" data-i18n-aria="ui.lang">
       <button type="button" data-lang="fr" aria-pressed="true">FR</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
       <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
@@ -222,16 +232,22 @@ d.setAttribute('data-theme',th);d.lang=l;d.dir=l==='ar'?'rtl':'ltr';})();</scrip
 `;
 }
 
-/* the links index.html carries once the page is published */
+/* the links index.html carries once the page is published; the French text
+   is I18N.fr's, as build-fr.mjs bakes every other data-i18n node */
+const FR = loadDicts().fr;
 export const MARKERS = {
-  footer: { html: '<a href="legal/#mentions" data-i18n="footer.legal">Mentions légales</a><a href="legal/#confidentialite" data-i18n="footer.privacy">Confidentialité</a>' },
-  form: { html: ' <a href="legal/#confidentialite" data-i18n="footer.privacy">Confidentialité</a>' },
+  footer: { html: `<a href="legal/#mentions" data-i18n="footer.legal">${toMarkup(FR['footer.legal'])}</a><a href="legal/#confidentialite" data-i18n="footer.privacy">${toMarkup(FR['footer.privacy'])}</a>` },
+  form: { html: ` <a href="legal/#confidentialite" data-i18n="footer.privacy">${toMarkup(FR['footer.privacy'])}</a>` },
 };
+/* Each marker pair must be in index.html exactly once: without it the page
+   would publish with nothing linking to it, and every gate would still pass. */
 export function markerRegions(html, published) {
   let out = html;
   for (const [name, m] of Object.entries(MARKERS)) {
-    const re = new RegExp(`(<!-- LEGAL:${name} -->)[\\s\\S]*?(<!-- /LEGAL:${name} -->)`);
-    if (re.test(out)) out = out.replace(re, `$1${published ? m.html : ''}$2`);
+    const re = new RegExp(`(<!-- LEGAL:${name} -->)[\\s\\S]*?(<!-- /LEGAL:${name} -->)`, 'g');
+    const n = (out.match(re) || []).length;
+    if (n !== 1) throw new Error(`index.html must hold the <!-- LEGAL:${name} --> … <!-- /LEGAL:${name} --> markers exactly once (found ${n})`);
+    out = out.replace(re, `$1${published ? m.html : ''}$2`);
   }
   return out;
 }

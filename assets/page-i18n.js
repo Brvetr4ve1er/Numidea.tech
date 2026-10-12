@@ -38,9 +38,30 @@
     } catch (e) {}
   }
 
+  // Applied and kept, as app.js does: a visitor who arrives on
+  // scene/?lang=ar and follows a link home stays in Arabic.
   var start = root.getAttribute('lang') || 'fr';
-  if (start !== 'fr') setLang(start, false);
+  if (start !== 'fr') setLang(start);
+  else if (/[?&]lang=fr\b/.test(location.search)) { try { localStorage.setItem('numidea-lang', 'fr'); } catch (e) {} }
   root.removeAttribute('data-i18n-pending');
+
+  // Links to the site's other pages carry the ad parameters (see app.js).
+  (function carryAd() {
+    var keep = [];
+    try {
+      new URLSearchParams(location.search).forEach(function (v, k) {
+        if (k === 'ref' || k === 'fbclid' || k === 'gclid' || /^utm_/.test(k)) keep.push([k, v]);
+      });
+    } catch (e) { return; }
+    if (!keep.length) return;
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      var u; try { u = new URL(a.getAttribute('href'), location.href); } catch (e) { return; }
+      if (u.origin !== location.origin || u.pathname === location.pathname) return;
+      if (!/(\/|\.html)$/.test(u.pathname)) return;
+      keep.forEach(function (p) { if (!u.searchParams.has(p[0])) u.searchParams.set(p[0], p[1]); });
+      a.href = u.href;
+    });
+  })();
   document.querySelectorAll('.lang button').forEach(function (b) {
     b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
   });

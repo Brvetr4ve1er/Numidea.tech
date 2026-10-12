@@ -1,19 +1,23 @@
 # Netlify — optional mirror of the GitHub Pages build.
-# The "build" only stages the publishable files (scripts/site.mjs DEPLOY) into
-# _site/, so internal folders (knowledge-base/, audit/, scripts/…) are never
-# served. No dependencies are installed for it.
+# The build runs the same invariants as pages.yml (check + themes-check; a
+# failure stops the deploy), then stages only the publishable files
+# (scripts/site.mjs DEPLOY) into _site/, so internal folders (knowledge-base/,
+# audit/, scripts/…) are never served. No dependencies are installed for it.
 [build]
-  command = "node scripts/stage-site.mjs"
+  command = "node scripts/check.mjs && node scripts/themes-check.mjs && node scripts/stage-site.mjs"
   publish = "_site"
 
 [build.environment]
+  NODE_VERSION = "22"
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
-# Mirror of vercel.json: immutable fingerprinted assets + security headers.
+# Mirror of vercel.json. Assets are cached for a day, not "immutable": only
+# the CSS/JS links carry ?v= stamps, and images, the CV and og.jpg are
+# regenerated under the same names (npm run shots, og). Plus security headers.
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=86400"
 
 [[headers]]
   for = "/*"

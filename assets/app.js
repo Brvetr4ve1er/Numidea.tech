@@ -26,7 +26,7 @@
       'tb.stackV': 'dépendance · sans build', 'tb.deployV': '18 s · Actions',
       'sheet.scale': 'Éch. 1:1', 'sheet.rev': 'Rév. 2026-08', 'sheet.sheet': 'Feuille 01',
       'proof.kicker': '01 — Preuves',
-      'proof.s1': 'projets livrés', 'proof.s2': 'spécialistes', 'proof.s3': 'langues', 'proof.s4': 'de réponse',
+      'proof.s1': 'projets livrés', 'proof.s2': 'spécialistes', 'proof.s3': 'langues', 'proof.s4': 'de réponse, en heures ouvrées',
       'proof.line': 'De vrais clients. De vrais déploiements. Les preuves sont plus bas — ouvrez-les.',
       'svc.kicker': '03 — Services',
       'svc.title': 'Ce qu\'on <em>rend réel.</em>',
@@ -44,7 +44,7 @@
       'work.live': 'Voir le site →', 'work.soon': 'Bientôt', 'work.sheet': 'Planche →', 'work.concept': 'Démo portfolio',
       'how.kicker': '04 — Méthode',
       'how.title': 'Quatre étapes. <em>Zéro surprise.</em>',
-      'how.lead': 'Vous ne payez rien avant d\'avoir vu votre site tourner.',
+      'how.lead': 'Entreprise immatriculée ? Vous ne payez rien avant d\'avoir vu votre site tourner.',
       'scene.kicker': '◆ PLANCHES · LIVRABLE PAR LIVRABLE', 'scene.title': 'Tout ce qui a été livré, projet par projet.',
       'scene.lead': 'Les pages, le mobile et le système visuel de chaque projet, capturés sur les sites en ligne.',
       'scene.cta': 'Ouvrir les planches →',
@@ -83,9 +83,9 @@
       'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu\'on a cadré le projet ensemble.',
       'faq2.q': 'C\'est combien ?', 'faq2.a': 'Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et pour une entreprise immatriculée, on construit d\'abord votre page d\'accueil, gratuitement : L\'Aperçu.',
       'faq3.q': 'Vous travaillez en quelles langues ?', 'faq3.a': 'Français, arabe et anglais — à l\'oral, à l\'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.',
-      'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. On maintient ce qu\'on livre et on répond quand ça casse — en moins de 24 heures. Pas de « bonne chance » le jour de la mise en ligne.',
+      'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. On maintient ce qu\'on livre et on répond quand ça casse — sous 24 h ouvrées. Pas de « bonne chance » le jour de la mise en ligne.',
       'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l\'accès direct au builder.',
-      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire. La personne qui cadre votre projet est celle qui le code et le livre — une seule équipe, du design au déploiement. Et vous voyez votre page d\'accueil tourner avant de payer quoi que ce soit.',
+      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d\'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois.',
       'contact.kicker': '09 — Contact',
       'contact.title': 'On le <em>rend réel ?</em>',
       'contact.sub': 'Dites-nous ce que vous cherchez à concrétiser — l\'urgent, le cassé, l\'échéance. En français, anglais ou arabe.',
@@ -102,7 +102,7 @@
       'form.success': 'Votre messagerie devrait s\'ouvrir avec le message prêt — il ne reste qu\'à l\'envoyer.',
       'form.successAlt': 'Rien ne s\'est ouvert ? Écrivez-nous directement :',
       'footer.signoff': 'Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.',
-      'footer.rights': '© 2026 Numidea Labs · Tous droits réservés',
+      'footer.rights': '© 2026 Numidea Labs',
       'footer.tag': 'Enraciné en Numidie · bâti sur des idées'
     },
     en: {
@@ -120,7 +120,7 @@
       'tb.stackV': 'dependency · no build step', 'tb.deployV': '18 s · Actions',
       'sheet.scale': 'Scale 1:1', 'sheet.rev': 'Rev. 2026-08', 'sheet.sheet': 'Sheet 01',
       'proof.kicker': '01 — Proof',
-      'proof.s1': 'projects shipped', 'proof.s2': 'specialists', 'proof.s3': 'languages', 'proof.s4': 'response',
+      'proof.s1': 'projects shipped', 'proof.s2': 'specialists', 'proof.s3': 'languages', 'proof.s4': 'response, in working hours',
       'proof.line': 'Real clients. Real deployments. The receipts are below — open them.',
       'svc.kicker': '03 — Services',
       'svc.title': 'What we <em>make real.</em>',
@@ -138,7 +138,7 @@
       'work.live': 'Visit the site →', 'work.soon': 'Soon', 'work.sheet': 'Project sheet →', 'work.concept': 'Portfolio demo',
       'how.kicker': '04 — Process',
       'how.title': 'Four steps. <em>No surprises.</em>',
-      'how.lead': 'You pay nothing until you have seen your site running.',
+      'how.lead': 'Registered business? You pay nothing until you have seen your site running.',
       'scene.kicker': '◆ SHEETS · DELIVERABLE BY DELIVERABLE', 'scene.title': 'Everything delivered, project by project.',
       'scene.lead': 'The pages, mobile views and visual system of every project, captured from the live sites.',
       'scene.cta': 'Open the sheets →',
@@ -177,9 +177,9 @@
       'faq1.q': 'How long does it take to ship?', 'faq1.a': 'It depends on scope — but we don\'t keep you waiting. Most sites ship in a few weeks, and you get a firm timeline the moment we\'ve scoped the project together.',
       'faq2.q': 'What does it cost?', 'faq2.a': 'Per project, never a copy-paste template. We quote once the scope is clear — a fixed price, no surprise fees. And for a registered business, we build your homepage first, for free: the Preview.',
       'faq3.q': 'What languages do you work in?', 'faq3.a': 'French, Arabic and English — spoken, written, and in what we ship. This very site is trilingual, with a natively mirrored Arabic (RTL) experience.',
-      'faq4.q': 'What happens after launch?', 'faq4.a': 'We stay. We maintain what we ship and we answer when it breaks — in under 24 hours. No "good luck" on launch day.',
+      'faq4.q': 'What happens after launch?', 'faq4.a': 'We stay. We maintain what we ship and we answer when it breaks — within 24 working hours. No "good luck" on launch day.',
       'faq5.q': 'Do you work remotely?', 'faq5.a': 'Yes. We\'re based in Bordj Bou Arréridj but we deliver anywhere — including clients in France. Distance doesn\'t change your direct line to the builder.',
-      'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman. The person who scopes your project is the one who codes and ships it — one team, design to deploy. And you see your homepage running before you pay anything.',
+      'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman: one team scopes, codes and ships your project, design to deploy. And for a registered business, you see your homepage running before you pay anything — up to 4 Previews a month.',
       'contact.kicker': '09 — Contact',
       'contact.title': 'Let\'s make it <em>real.</em>',
       'contact.sub': 'Tell us what you\'re trying to make real — what\'s urgent, what\'s broken, what\'s due. In French, English, or Arabic.',
@@ -196,7 +196,7 @@
       'form.success': 'Your mail app should open with the message ready — all that is left is to send it.',
       'form.successAlt': 'Nothing opened? Write to us directly:',
       'footer.signoff': 'Built in Bordj Bou Arréridj, with black coffee and TypeScript.',
-      'footer.rights': '© 2026 Numidea Labs · All rights reserved',
+      'footer.rights': '© 2026 Numidea Labs',
       'footer.tag': 'Rooted in Numidia · built on ideas'
     },
     /* Arabic: written for this site, pending a native speaker's review (see
@@ -217,7 +217,7 @@
       'tb.stackV': 'اعتمادية · بلا بناء', 'tb.deployV': '18 ث · Actions',
       'sheet.scale': 'مقياس 1:1', 'sheet.rev': 'مراجعة 2026-08', 'sheet.sheet': 'لوحة 01',
       'proof.kicker': '01 — الإثبات',
-      'proof.s1': 'مشاريع مُسلَّمة', 'proof.s2': 'مختصّين', 'proof.s3': 'لغات', 'proof.s4': 'زمن الردّ',
+      'proof.s1': 'مشاريع مُسلَّمة', 'proof.s2': 'مختصّين', 'proof.s3': 'لغات', 'proof.s4': 'زمن الردّ، بساعات العمل',
       'proof.line': 'عملاء حقيقيون. عمليات نشر حقيقية. الإثباتات في الأسفل — افتحها.',
       'svc.kicker': '03 — الخدمات',
       'svc.title': 'ما الذي <em>نجعله حقيقة.</em>',
@@ -235,7 +235,7 @@
       'work.live': 'زيارة الموقع ←', 'work.soon': 'قريباً', 'work.sheet': 'لوحة المشروع ←', 'work.concept': 'نموذج عرض',
       'how.kicker': '04 — المنهج',
       'how.title': 'أربع خطوات. <em>بلا مفاجآت.</em>',
-      'how.lead': 'لا تدفع شيئاً قبل أن ترى موقعك يعمل.',
+      'how.lead': 'شركة مسجّلة؟ لا تدفع شيئاً قبل أن ترى موقعك يعمل.',
       'scene.kicker': '◆ اللوحات · مُخرَجاً بمُخرَج', 'scene.title': 'كل ما سُلِّم، مشروعاً بمشروع.',
       'scene.lead': 'الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع الحيّة.',
       'scene.cta': 'افتح اللوحات ←',
@@ -243,7 +243,7 @@
       'founder.lead': 'خلف نوميديا: مؤسّس يصمّم ويبرمج ويُسلّم، ومعه ثلاثة متخصّصين.',
       'founder.role': 'مصمّم غرافيك ومطوّر ويب · المؤسّس', 'founder.years': '6 سنوات',
       'founder.bio': 'ستّ سنوات في تصميم الهويّات وبرمجة الواجهات وتسليم المنتجات — من العلامة إلى الواجهة إلى السحابة. أحوّل الفكرة إلى منتج، وأبقى بعد الإطلاق.',
-      'founder.cvBtn': 'عرض المسار ↴', 'founder.cvClose': 'إخفاء المسار ↑', 'founder.portfolio': 'المعرض الشخصي ↗',
+      'founder.cvBtn': 'عرض المسار <span class="arr">↴</span>', 'founder.cvClose': 'إخفاء المسار ↑', 'founder.portfolio': 'المعرض الشخصي <span class="arr">↗</span>',
       'founder.expLabel': 'المسار', 'founder.skillsLabel': 'المهارات', 'founder.eduLabel': 'التعليم',
       'founder.edu': 'علوم الحاسوب — جامعة محمد البشير الإبراهيمي · 2018–2024',
       'founder.download': 'تحميل السيرة (PDF) ↓',
@@ -274,9 +274,9 @@
       'faq1.q': 'كم يستغرق الإنجاز؟', 'faq1.a': 'يعتمد على حجم المشروع — لكنّنا لا نُبقيك تنتظر. معظم المواقع تنطلق خلال أسابيع، وتحصل على موعد نهائي واضح بمجرّد أن نحدّد نطاق العمل معاً.',
       'faq2.q': 'كم التكلفة؟', 'faq2.a': 'حسب المشروع، لا قوالب جاهزة. نُسعّر بعد توضيح النطاق — سعر ثابت دون مفاجآت. وللشركات المسجّلة نبني الصفحة الرئيسية أولاً، مجّاناً: المعاينة.',
       'faq3.q': 'بأي لغات تعملون؟', 'faq3.a': 'الفرنسية والعربية والإنجليزية — حديثاً وكتابةً وفي المنتَج المُسلَّم. هذا الموقع نفسه ثلاثي اللغات، بتجربة عربية (RTL) مصمّمة أصلاً.',
-      'faq4.q': 'وماذا بعد الإطلاق؟', 'faq4.a': 'نبقى معك. نصون ما نُسلّمه ونردّ حين يتعطّل شيء — في أقل من 24 ساعة. لا «حظّاً موفقاً» يوم الإطلاق.',
+      'faq4.q': 'وماذا بعد الإطلاق؟', 'faq4.a': 'نبقى معك. نصون ما نُسلّمه ونردّ حين يتعطّل شيء — خلال 24 ساعة عمل. لا «حظّاً موفقاً» يوم الإطلاق.',
       'faq5.q': 'هل تعملون عن بُعد؟', 'faq5.a': 'نعم. مقرّنا في برج بوعريريج لكنّنا نُسلّم في كل مكان — بما في ذلك عملاء في فرنسا. البُعد لا يغيّر تواصلك المباشر مع من يبني.',
-      'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط. من يحدّد نطاق مشروعك هو من يبرمجه ويُسلّمه — فريق واحد من التصميم إلى النشر. وترى صفحتك الرئيسية تعمل قبل أن تدفع أيّ شيء.',
+      'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط: فريق واحد يحدّد نطاق مشروعك ويبرمجه ويُسلّمه، من التصميم إلى النشر. وللشركات المسجّلة، ترى صفحتك الرئيسية تعمل قبل أن تدفع أيّ شيء — في حدود 4 معاينات في الشهر.',
       'contact.kicker': '09 — تواصل',
       'contact.title': '<em>نجعله حقيقة؟</em>',
       'contact.sub': 'أخبرنا بما تسعى إلى تحقيقه — العاجل، المتعطّل، المستحقّ. بالفرنسية أو الإنجليزية أو العربية.',
@@ -293,7 +293,7 @@
       'form.success': 'من المفترض أن يفتح تطبيق البريد والرسالة جاهزة — لم يبقَ سوى إرسالها.',
       'form.successAlt': 'لم يفتح شيء؟ راسلنا مباشرة:',
       'footer.signoff': 'بُني في برج بوعريريج، بقهوة سوداء و TypeScript.',
-      'footer.rights': '© 2026 نوميديا لابز · كل الحقوق محفوظة',
+      'footer.rights': '© 2026 نوميديا لابز',
       'footer.tag': 'جذورها في نوميديا · مبنيّة على الأفكار'
     }
   };
@@ -352,7 +352,7 @@
       'price.t2e': 'SEO technique, Core Web Vitals, accessibilité',
       'price.t2f': '3 mois de support inclus',
       'price.t3name': 'Moteur', 'price.t3for': "La machinerie que presque personne ne construit ici.", 'price.t3time': '8 à 16 semaines',
-      'price.t3a': "E-commerce, application web ou pipeline d'automatisation",
+      'price.t3a': 'Application web sur mesure : plateforme, portail ou outil métier',
       'price.t3b': 'Paiement, comptes utilisateurs, tableaux de bord',
       'price.t3c': 'Scraping et intelligence marché — le web ouvert en base de données',
       'price.t3d': 'Intégrations API et outils internes',
@@ -367,16 +367,16 @@
       'price.tyVitrine': 'Vitrine', 'price.tyCustom': 'Site sur mesure', 'price.tyShop': 'E-commerce',
       'price.tyApp': 'Application web', 'price.tyAuto': 'Automatisation', 'price.tyBrand': 'Identité visuelle',
       'price.oI18n': 'Trilingue FR / EN / AR + RTL', 'price.oCms': 'CMS / back-office', 'price.oPay': 'Paiement en ligne',
-      'price.oDs': 'Design system complet', 'price.oSeo': 'SEO avancé & performance', 'price.oApi': 'Intégrations API',
+      'price.oDs': 'Design system complet', 'price.oSeo': 'SEO avancé & performance', 'price.oApi': 'Intégrations API', 'price.incl': 'inclus',
       'price.paceStd': 'Standard', 'price.paceRush': 'Accéléré',
-      'price.uPages': 'pages', 'price.uScreens': 'écrans', 'price.uProducts': 'produits', 'price.uFlows': 'flux', 'price.uSupports': 'supports',
-      'price.estimate': 'Estimation', 'price.weeks': 'semaines',
+      'price.uPages': 'pages', 'price.uPages.n': 'page|pages', 'price.uScreens': 'écrans', 'price.uScreens.n': 'écran|écrans', 'price.uProducts': 'produits', 'price.uProducts.n': 'produit|produits', 'price.uFlows': 'flux', 'price.uFlows.n': 'flux|flux', 'price.uSupports': 'supports', 'price.uSupports.n': 'support|supports',
+      'price.estimate': 'Estimation', 'price.weeks': 'semaines', 'price.weeks.n': 'semaine|semaines',
       'price.estFine': "Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.",
       'price.estCta': 'Obtenir le prix ferme →',
       'price.moreSum': 'Comment on chiffre', 'price.moreHint': 'Le marché, les modèles de facturation, ce qui fait bouger un devis.',
       'price.ob1h': 'Vous décrivez le projet', 'price.ob1p': 'Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.',
-      'price.ob2h': 'On revient sous 24 heures', 'price.ob2p': 'Avec un périmètre écrit et un prix ferme. Pas une fourchette, un chiffre.',
-      'price.ob3h': "On construit L'Aperçu — gratuit", 'price.ob3p': 'Une démo réelle de votre projet, avant paiement. Vous la voyez tourner en direct.',
+      'price.ob2h': 'On revient sous 24 h ouvrées', 'price.ob2p': 'Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.',
+      'price.ob3h': "On construit L'Aperçu — gratuit", 'price.ob3p': 'La page d\'accueil de votre site, avec votre contenu, avant tout paiement. Pour les entreprises immatriculées, 4 par mois.',
       'price.ob4h': 'Vous décidez', 'price.ob4p': "Si c'est non, vous ne devez rien. Si c'est oui, on est déjà à mi-chemin.",
       'price.obCta1': 'Décrire mon projet →', 'price.obCta2': 'WhatsApp',
       'price.waSoon': 'WhatsApp — bientôt',
@@ -395,7 +395,7 @@
       'f4.brief': 'Transformez les données publiques du web en base exploitable : veille concurrentielle, suivi des prix et des catalogues — collectées dans le respect des conditions de chaque site et du RGPD, structurées, interrogeables.',
       'f5.name': 'Stratégie & conseil croissance', 'f5.promise': 'De la donnée, pas des impressions.',
       'f5.brief': 'Audits marketing complets, analyse de funnels, positionnement concurrentiel, feuilles de route — honnêtes, ROI d\'abord, par phases. On fait les devoirs sur votre secteur avant l\'appel.',
-      'cap.summary': 'Voir toutes les capacités', 'cap.hint': '5 capacités de plus, pour qui creuse.',
+      'cap.summary': 'Voir toutes les capacités', 'cap.hint': '5 capacités de plus, pour qui creuse.', 'cap.h': 'Toutes les capacités',
       'c1.name': 'Boutique & réservation', 'c1.promise': 'De la visite au paiement.',
       'c1.brief': 'Boutiques en ligne et systèmes de réservation pensés pour l\'achat local — paiement WhatsApp, flux cash, Shopify headless si pertinent.', 'c1.fam': 'Le Build',
       'c2.name': 'Design graphique & social', 'c2.promise': 'On scroll, on s\'arrête.',
@@ -459,7 +459,7 @@
       'price.t2e': 'Technical SEO, Core Web Vitals, accessibility',
       'price.t2f': '3 months of support included',
       'price.t3name': 'Engine', 'price.t3for': 'The machinery almost nobody here builds.', 'price.t3time': '8 to 16 weeks',
-      'price.t3a': 'E-commerce, web application or automation pipeline',
+      'price.t3a': 'Custom web application: platform, portal or business tool',
       'price.t3b': 'Payments, user accounts, dashboards',
       'price.t3c': 'Scraping and market intelligence — the open web as a database',
       'price.t3d': 'API integrations and internal tools',
@@ -474,16 +474,16 @@
       'price.tyVitrine': 'Showcase site', 'price.tyCustom': 'Custom site', 'price.tyShop': 'E-commerce',
       'price.tyApp': 'Web application', 'price.tyAuto': 'Automation', 'price.tyBrand': 'Visual identity',
       'price.oI18n': 'Trilingual FR / EN / AR + RTL', 'price.oCms': 'CMS / back-office', 'price.oPay': 'Online payments',
-      'price.oDs': 'Full design system', 'price.oSeo': 'Advanced SEO & performance', 'price.oApi': 'API integrations',
+      'price.oDs': 'Full design system', 'price.oSeo': 'Advanced SEO & performance', 'price.oApi': 'API integrations', 'price.incl': 'included',
       'price.paceStd': 'Standard', 'price.paceRush': 'Accelerated',
-      'price.uPages': 'pages', 'price.uScreens': 'screens', 'price.uProducts': 'products', 'price.uFlows': 'flows', 'price.uSupports': 'deliverables',
-      'price.estimate': 'Estimate', 'price.weeks': 'weeks',
+      'price.uPages': 'pages', 'price.uPages.n': 'page|pages', 'price.uScreens': 'screens', 'price.uScreens.n': 'screen|screens', 'price.uProducts': 'products', 'price.uProducts.n': 'product|products', 'price.uFlows': 'flows', 'price.uFlows.n': 'flow|flows', 'price.uSupports': 'deliverables', 'price.uSupports.n': 'deliverable|deliverables',
+      'price.estimate': 'Estimate', 'price.weeks': 'weeks', 'price.weeks.n': 'week|weeks',
       'price.estFine': 'An indicative range, not a quote. The firm price follows once we have scoped it together — and it does not move after that.',
       'price.estCta': 'Get the firm price →',
       'price.moreSum': 'How we price', 'price.moreHint': 'The market, billing models, what moves a quote.',
       'price.ob1h': 'You describe the project', 'price.ob1p': 'Two minutes, in writing or out loud. In French, English or Arabic.',
-      'price.ob2h': 'We come back within 24 hours', 'price.ob2p': 'With a written scope and a firm price. Not a range — a number.',
-      'price.ob3h': 'We build the Preview — free', 'price.ob3p': 'A real demo of your project, before payment. You watch it run live.',
+      'price.ob2h': 'We come back within 24 working hours', 'price.ob2p': 'With our questions, then a written scope and a firm price as soon as we have agreed the scope together. Not a range — a number.',
+      'price.ob3h': 'We build the Preview — free', 'price.ob3p': 'Your site\'s homepage, with your own content, before any payment. For registered businesses, 4 a month.',
       'price.ob4h': 'You decide', 'price.ob4p': 'If it is no, you owe nothing. If it is yes, we are already halfway.',
       'price.obCta1': 'Describe my project →', 'price.obCta2': 'WhatsApp',
       'price.waSoon': 'WhatsApp — soon',
@@ -502,7 +502,7 @@
       'f4.brief': 'Turn public web data into a usable database: competitor monitoring, price and catalogue tracking — collected within each site\'s terms and the GDPR, structured and queryable.',
       'f5.name': 'Strategy & growth consulting', 'f5.promise': 'Data, not vibes.',
       'f5.brief': 'Full marketing audits, funnel analysis, competitive positioning, growth roadmaps — brutally honest, ROI-first, phased. We do the sector homework before the call.',
-      'cap.summary': 'See every capability', 'cap.hint': '5 more capabilities, for whoever digs.',
+      'cap.summary': 'See every capability', 'cap.hint': '5 more capabilities, for whoever digs.', 'cap.h': 'All capabilities',
       'c1.name': 'E-commerce & booking', 'c1.promise': 'From browse to paid.',
       'c1.brief': 'Online stores and booking systems tuned for how people buy locally — WhatsApp checkout, cash-economy flows, headless Shopify when it fits.', 'c1.fam': 'The Build',
       'c2.name': 'Graphic & social design', 'c2.promise': 'Scroll-stopping, on brand.',
@@ -569,7 +569,7 @@
       'price.t2e': 'تهيئة تقنية لمحرّكات البحث، ومؤشّرات الأداء، وإتاحة الوصول',
       'price.t2f': 'ثلاثة أشهر دعم مشمولة',
       'price.t3name': 'المحرّك', 'price.t3for': 'الآلة التي لا يبنيها هنا أحد تقريباً.', 'price.t3time': 'من 8 إلى 16 أسبوعاً',
-      'price.t3a': 'متجر إلكتروني أو تطبيق ويب أو خطّ أتمتة',
+      'price.t3a': 'تطبيق ويب مخصّص: منصّة أو بوابة أو أداة عمل',
       'price.t3b': 'الدفع وحسابات المستخدمين ولوحات المتابعة',
       'price.t3c': 'استخراج البيانات وذكاء السوق — الويب المفتوح كقاعدة بيانات',
       'price.t3d': 'تكاملات واجهات برمجية وأدوات داخلية',
@@ -584,16 +584,16 @@
       'price.tyVitrine': 'موقع تعريفي', 'price.tyCustom': 'موقع مخصّص', 'price.tyShop': 'متجر إلكتروني',
       'price.tyApp': 'تطبيق ويب', 'price.tyAuto': 'أتمتة', 'price.tyBrand': 'هوية بصرية',
       'price.oI18n': 'ثلاثي اللغة فرنسي / إنجليزي / عربي + اتجاه RTL', 'price.oCms': 'نظام إدارة محتوى / لوحة تحكّم', 'price.oPay': 'الدفع الإلكتروني',
-      'price.oDs': 'نظام تصميم كامل', 'price.oSeo': 'تهيئة متقدّمة وأداء', 'price.oApi': 'تكاملات واجهات برمجية',
+      'price.oDs': 'نظام تصميم كامل', 'price.oSeo': 'تهيئة متقدّمة وأداء', 'price.oApi': 'تكاملات واجهات برمجية', 'price.incl': 'مشمول',
       'price.paceStd': 'عادي', 'price.paceRush': 'مستعجل',
-      'price.uPages': 'صفحات', 'price.uScreens': 'شاشات', 'price.uProducts': 'منتجات', 'price.uFlows': 'مسارات', 'price.uSupports': 'مخرجات',
-      'price.estimate': 'التقدير', 'price.weeks': 'أسابيع',
+      'price.uPages': 'صفحات', 'price.uPages.n': 'صفحة|صفحتان|صفحات|صفحة|صفحة', 'price.uScreens': 'شاشات', 'price.uScreens.n': 'شاشة|شاشتان|شاشات|شاشة|شاشة', 'price.uProducts': 'منتجات', 'price.uProducts.n': 'منتج|منتجان|منتجات|منتجاً|منتج', 'price.uFlows': 'مسارات', 'price.uFlows.n': 'مسار|مساران|مسارات|مساراً|مسار', 'price.uSupports': 'مخرجات', 'price.uSupports.n': 'مخرج|مخرجان|مخرجات|مخرجاً|مخرج',
+      'price.estimate': 'التقدير', 'price.weeks': 'أسابيع', 'price.weeks.n': 'أسبوع|أسبوعان|أسابيع|أسبوعاً|أسبوع',
       'price.estFine': 'نطاق استرشادي، لا عرض سعر. السعر النهائي يأتي بعد تحديد نطاق العمل معاً — ولا يتغيّر بعدها.',
       'price.estCta': 'احصل على السعر النهائي ←',
       'price.moreSum': 'كيف نسعّر', 'price.moreHint': 'السوق، نماذج الفوترة، وما يغيّر عرض السعر.',
       'price.ob1h': 'تصف المشروع', 'price.ob1p': 'دقيقتان، كتابةً أو مشافهة. بالفرنسية أو الإنجليزية أو العربية.',
-      'price.ob2h': 'نعود إليك خلال 24 ساعة', 'price.ob2p': 'بنطاق عمل مكتوب وسعر نهائي. ليس هامشاً تقديرياً، بل رقماً واحداً.',
-      'price.ob3h': 'نبني المعاينة — مجّاناً', 'price.ob3p': 'نموذج حقيقي لمشروعك، قبل الدفع. تراه يشتغل مباشرة.',
+      'price.ob2h': 'نعود إليك خلال 24 ساعة عمل', 'price.ob2p': 'بأسئلتنا، ثم نطاق عمل مكتوب وسعر نهائي فور الاتفاق على النطاق معاً. ليس هامشاً تقديرياً، بل رقماً واحداً.',
+      'price.ob3h': 'نبني المعاينة — مجّاناً', 'price.ob3p': 'الصفحة الرئيسية لموقعك بمحتواك، قبل أيّ دفع. للشركات المسجّلة، 4 في الشهر.',
       'price.ob4h': 'أنت تقرّر', 'price.ob4p': 'إن كان الجواب لا، فلا شيء عليك. وإن كان نعم، فنحن في منتصف الطريق أصلاً.',
       'price.obCta1': 'صف مشروعي ←', 'price.obCta2': 'واتساب',
       'price.waSoon': 'واتساب — قريباً',
@@ -612,7 +612,7 @@
       'f4.brief': 'حوّل البيانات العامة على الويب إلى قاعدة بيانات قابلة للاستخدام: مراقبة المنافسين، وتتبّع الأسعار والكتالوجات — تُجمع وفق شروط كل موقع وقوانين حماية البيانات، مهيكلة وقابلة للاستعلام.',
       'f5.name': 'الاستراتيجية واستشارات النمو', 'f5.promise': 'بيانات، لا انطباعات.',
       'f5.brief': 'تدقيقات تسويقية كاملة، تحليل قمع، تموضع تنافسي، خرائط نمو — صريحة، تضع العائد أولاً، على مراحل. ننجز واجب القطاع قبل المكالمة.',
-      'cap.summary': 'اعرض كل القدرات', 'cap.hint': '5 قدرات أخرى، لمن يبحث.',
+      'cap.summary': 'اعرض كل القدرات', 'cap.hint': '5 قدرات أخرى، لمن يبحث.', 'cap.h': 'كل القدرات',
       'c1.name': 'متجر وحجز', 'c1.promise': 'من التصفّح إلى الدفع.',
       'c1.brief': 'متاجر إلكترونية وأنظمة حجز مضبوطة على طريقة الشراء المحلّية — دفع واتساب، تدفّقات نقدية، Shopify بواجهة مستقلة (headless) عند الحاجة.', 'c1.fam': 'البناء',
       'c2.name': 'تصميم جرافيكي واجتماعي', 'c2.promise': 'يوقف التمرير، على الهوية.',
@@ -642,6 +642,24 @@
 
     var meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', dict['meta.desc']);
+
+    /* The FAQ structured data says what the visible FAQ says, in the same
+       language (scripts/lib/i18n.mjs faqLd builds the French one baked into
+       index.html the same way). */
+    var ld = document.getElementById('ld-faq');
+    if (ld) {
+      var plain = function (s) {
+        var d = document.createElement('div');
+        d.innerHTML = s;
+        return d.textContent.replace(/[ \t\r\n]+/g, ' ').trim();
+      };
+      var qs = [];
+      for (var qi = 1; dict['faq' + qi + '.q'] != null; qi++) {
+        qs.push({ '@type': 'Question', name: plain(dict['faq' + qi + '.q']),
+                  acceptedAnswer: { '@type': 'Answer', text: plain(dict['faq' + qi + '.a']) } });
+      }
+      ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: qs });
+    }
 
     // text / inline-html content
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
@@ -683,25 +701,34 @@
     catch (e) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
   }
 
+  /* The suffix and number format are read at every write, so a language
+     switch mid-count, or after it, shows the current language's unit. */
+  function statText(el, v) {
+    var lang = document.documentElement.getAttribute('lang') || 'fr';
+    var suffix = el.getAttribute('data-suffix-' + lang);
+    if (suffix == null) suffix = el.getAttribute('data-suffix') || '';
+    return (el.getAttribute('data-prefix') || '') + group(v) + suffix;
+  }
   function countUp(el) {
     if (el.getAttribute('data-counted') === '1') return;
     el.setAttribute('data-counted', '1');
     var target = parseFloat(el.getAttribute('data-count'));
-    var lang = document.documentElement.getAttribute('lang') || 'fr';
-    var suffix = el.getAttribute('data-suffix-' + lang) || el.getAttribute('data-suffix') || '';
-    var prefix = el.getAttribute('data-prefix') || '';
-    if (reduceMotion) { el.textContent = prefix + group(target) + suffix; return; }
+    if (reduceMotion) { el.textContent = statText(el, target); return; }
     var dur = 1200, start = null;
     function frame(t) {
       if (!start) start = t;
       var p = Math.min((t - start) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = prefix + group(Math.round(target * eased)) + suffix;
+      el.textContent = statText(el, p < 1 ? Math.round(target * eased) : target);
       if (p < 1) requestAnimationFrame(frame);
-      else el.textContent = prefix + group(target) + suffix;
     }
     requestAnimationFrame(frame);
   }
+  document.addEventListener('numidea:lang', function () {
+    document.querySelectorAll('[data-count][data-counted="1"]').forEach(function (el) {
+      el.textContent = statText(el, parseFloat(el.getAttribute('data-count')));
+    });
+  });
 
   /* ---------------- DOM ready ---------------- */
   document.addEventListener('DOMContentLoaded', function () {
@@ -746,17 +773,54 @@
     var themeBtn = document.querySelector('.theme-btn');
     var themeMenu = document.querySelector('.theme-menu');
     if (themeBtn && themeMenu) {
-      function closeTheme() { themeMenu.classList.remove('open'); themeBtn.setAttribute('aria-expanded', 'false'); }
+      /* An ARIA menu, so it keeps the menu's keyboard contract: opening moves
+         focus to the checked theme, arrows/Home/End move between themes,
+         choosing one or Escape closes and returns focus to the button, and
+         Tab or a click elsewhere closes it. Items stay out of the Tab order. */
+      var items = Array.prototype.slice.call(themeMenu.querySelectorAll('[role="menuitemradio"]'));
+      var isOpen = function () { return themeMenu.classList.contains('open'); };
+      var closeTheme = function (refocus) {
+        if (!isOpen()) return;
+        themeMenu.classList.remove('open');
+        themeBtn.setAttribute('aria-expanded', 'false');
+        if (refocus) themeBtn.focus();
+      };
+      var openTheme = function (which) {
+        themeMenu.classList.add('open');
+        themeBtn.setAttribute('aria-expanded', 'true');
+        var i = which === 'last' ? items.length - 1 : which === 'first' ? 0
+              : Math.max(0, items.findIndex(function (b) { return b.getAttribute('aria-checked') === 'true'; }));
+        if (items[i]) items[i].focus();
+      };
       themeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        var open = themeMenu.classList.toggle('open');
-        themeBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (isOpen()) closeTheme(false); else openTheme();
       });
-      themeMenu.querySelectorAll('button').forEach(function (b) {
-        b.addEventListener('click', function () { applyTheme(b.getAttribute('data-theme-val')); closeTheme(); });
+      themeBtn.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); openTheme(e.key === 'ArrowUp' ? 'last' : null); }
       });
-      document.addEventListener('click', closeTheme);
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeTheme(); });
+      items.forEach(function (b, i) {
+        b.addEventListener('click', function (e) {
+          e.stopPropagation();
+          applyTheme(b.getAttribute('data-theme-val'));
+          closeTheme(true);
+        });
+        b.addEventListener('keydown', function (e) {
+          var n = items.length, to = null;
+          if (e.key === 'ArrowDown') to = (i + 1) % n;
+          else if (e.key === 'ArrowUp') to = (i - 1 + n) % n;
+          else if (e.key === 'Home') to = 0;
+          else if (e.key === 'End') to = n - 1;
+          else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeTheme(true); return; }
+          else if (e.key === 'Tab') { closeTheme(false); return; }
+          if (to !== null) { e.preventDefault(); items[to].focus(); }
+        });
+      });
+      themeMenu.addEventListener('focusout', function (e) {
+        if (e.relatedTarget && !themeMenu.contains(e.relatedTarget) && e.relatedTarget !== themeBtn) closeTheme(false);
+      });
+      document.addEventListener('click', function () { closeTheme(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeTheme(themeMenu.contains(document.activeElement)); });
     }
 
     // navbar scroll state + progress bar
@@ -1102,7 +1166,9 @@
       menu.classList.toggle('open', open);
       if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
-      document.querySelectorAll('main, .navbar, .footer, .m-contact').forEach(function (el) { el.inert = open; });
+      Array.prototype.forEach.call(document.body.children, function (el) {
+        if (el !== menu && !el.contains(menu) && el.tagName !== 'SCRIPT') el.inert = open;
+      });
       document.dispatchEvent(new CustomEvent('numidea:menu', { detail: open }));
       if (open) { var first = menu.querySelector('a'); if (first) first.focus(); }
       else if (!keepFocus && toggle) toggle.focus();
@@ -1138,6 +1204,13 @@
       // The panel ships closed, so it starts inert too — setting this only on
       // toggle left the initial (closed) state still holding a focusable link.
       cvPanel.inert = !cvPanel.classList.contains('open');
+      // The label is derived from the state, so a language switch with the
+      // panel open does not reset it to "view" (applyLang writes data-i18n).
+      var cvLabel = function () {
+        var k = ['founder.cvBtn', 'founder.cvClose'][cvPanel.classList.contains('open') ? 1 : 0];
+        cvBtn.setAttribute('data-i18n', k);
+        cvBtn.innerHTML = t(k);
+      };
       cvBtn.addEventListener('click', function () {
         var open = cvPanel.classList.toggle('open');
         // Closed, the panel is only collapsed by max-height:0 — it still held a
@@ -1145,8 +1218,7 @@
         // panel with nothing on screen to explain where focus had gone.
         cvPanel.inert = !open;
         cvBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        var d = I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG];
-        cvBtn.textContent = open ? (d['founder.cvClose'] || 'Close ↑') : (d['founder.cvBtn'] || 'View résumé ↴');
+        cvLabel();
       });
     }
 
@@ -1167,13 +1239,20 @@
         var f = field(id);
         var dict = I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG];
         f.classList.add('invalid');
-        f.querySelector('.err').textContent = key ? dict[key] : '';
+        var e = f.querySelector('.err');
+        e.textContent = key ? dict[key] : '';
+        if (key) e.setAttribute('data-err-key', key); else e.removeAttribute('data-err-key');
         f.querySelector('input,textarea').setAttribute('aria-invalid', 'true');
       }
+      // A language switch re-translates the labels; the messages follow.
+      document.addEventListener('numidea:lang', function () {
+        form.querySelectorAll('.err[data-err-key]').forEach(function (e) { e.textContent = t(e.getAttribute('data-err-key')); });
+      });
       function clear(id) {
         var f = field(id);
         f.classList.remove('invalid');
         f.querySelector('.err').textContent = '';
+        f.querySelector('.err').removeAttribute('data-err-key');
         f.querySelector('input,textarea').removeAttribute('aria-invalid');
       }
       ['name', 'email', 'message'].forEach(function (id) {
@@ -1240,15 +1319,17 @@
 
        The tier cards quote exactly what this model returns across each tier's
        stated scope: Essentiel = vitrine at 1-5 pages (base_u 5), Studio =
-       surmesure at 6-15 pages (base_u 15), Moteur = app at its default. An
+       surmesure at 6-15 pages (base_u 15), Moteur = app at its default. What a
+       card lists as part of the tier is in its base price (incl): the
+       estimator shows those options as included and adds nothing for them. An
        earlier version claimed this and was wrong — the defaults sat 30-60k
        below the cards. The market table (section 14) reads its Numidea column
        from here too, so if a tier moves, move it here and nowhere else. */
     var PRICE_MODEL = {
       vitrine:   { base: [90000, 160000],   unit: [6000, 12000],  min: 1,  max: 10,  def: 3,  step: 1,  u: 'price.uPages',    base_u: 5,  weeks: [2, 4] },
-      surmesure: { base: [180000, 420000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 15, weeks: [3, 7] },
+      surmesure: { base: [180000, 420000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 15, weeks: [3, 7],  incl: ['i18n', 'cms', 'ds', 'seo'] },
       ecommerce: { base: [220000, 550000],  unit: [900, 2200],    min: 10, max: 400, def: 60, step: 10, u: 'price.uProducts', base_u: 60, weeks: [5, 10] },
-      app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16] },
+      app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16], incl: ['pay', 'api'] },
       auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6] },
       identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5] }
     };
@@ -1264,6 +1345,19 @@
        compresses the calendar — never below two thirds, which is the floor
        where review still happens. */
     var RUSH_PRICE = 1.25, RUSH_WEEKS = 0.7;
+
+    /* A counted unit in the page's language: "1 page", "3 pages"; in Arabic
+       the noun follows the number (one|two|few|many|other, e.g. 16 أسبوعاً).
+       Forms live in the dictionary as '<key>.n', split on '|'. */
+    function unit(k, n) {
+      var lang = document.documentElement.getAttribute('lang') || DEFAULT_LANG;
+      var d = I18N[lang] || I18N[DEFAULT_LANG], forms = d[k + '.n'];
+      if (!forms) return d[k] || k;
+      var f = forms.split('|'), cat = 'other';
+      try { cat = new Intl.PluralRules(lang).select(n); } catch (e) {}
+      var i = (f.length === 5 ? ['one', 'two', 'few', 'many', 'other'] : ['one', 'other']).indexOf(cat);
+      return f[i > -1 ? i : f.length - 1];
+    }
 
     /* dictionary lookup for strings built in JS (estimator, WhatsApp text) */
     function t(k, fb) {
@@ -1301,7 +1395,10 @@
       var q = '', s = '';
       try { q = (new URLSearchParams(location.search).get('cur') || '').toUpperCase(); } catch (e) {}
       try { s = localStorage.getItem('numidea-cur') || ''; } catch (e) {}
-      return CURS.indexOf(q) !== -1 ? q : CURS.indexOf(s) !== -1 ? s : 'DZD';
+      // An ad's ?cur= is kept like ?lang= is, so the visitor's choice of
+      // currency survives a visit to another page and the way back.
+      if (CURS.indexOf(q) !== -1) { try { localStorage.setItem('numidea-cur', q); } catch (e) {} return q; }
+      return CURS.indexOf(s) !== -1 ? s : 'DZD';
     })();
     var renderPrices = function () {
       document.querySelectorAll('.t-range[data-tier]').forEach(function (p) {
@@ -1365,6 +1462,23 @@
         eSize.min = m.min; eSize.max = m.max; eSize.step = m.step;
         eSize.value = keepValue && prev >= m.min && prev <= m.max ? prev : m.def;
         if (eSizeH) eSizeH.textContent = t(m.u);
+        /* Options the tier already includes are shown ticked and locked,
+           labelled as included; leaving that type frees them again. */
+        est.querySelectorAll('input[data-opt]').forEach(function (c) {
+          var inc = (m.incl || []).indexOf(c.getAttribute('data-opt')) > -1;
+          var lab = c.closest('label'), tag = lab && lab.querySelector('.eo-incl');
+          if (inc) { c.checked = true; c.disabled = true; }
+          else if (c.disabled) { c.checked = false; c.disabled = false; }
+          if (inc && lab && !tag) {
+            tag = document.createElement('small');
+            tag.className = 'eo-incl';
+            lab.appendChild(tag);
+          }
+          if (tag) {
+            if (inc) tag.textContent = t('price.incl');
+            else tag.remove();
+          }
+        });
       };
 
       var compute = function () {
@@ -1379,6 +1493,10 @@
         est.querySelectorAll('input[data-opt]:checked').forEach(function (c) {
           var o = PRICE_OPTS[c.getAttribute('data-opt')];
           if (!o) return;
+          if ((m.incl || []).indexOf(c.getAttribute('data-opt')) > -1) {
+            picked.push(t(o.k) + ' (' + t('price.incl') + ')');
+            return;
+          }
           lo += o.add[0]; hi += o.add[1];
           wLo += o.weeks[0]; wHi += o.weeks[1];
           picked.push(t(o.k));
@@ -1398,6 +1516,9 @@
         var eCur = eLo.parentNode.querySelector('.cur');
         if (eCur) eCur.textContent = sym(CUR);
         eWeeks.textContent = wLo + ' – ' + wHi;
+        var wUnit = eWeeks.parentNode.querySelector('[data-i18n="price.weeks"]');
+        if (wUnit) wUnit.textContent = unit('price.weeks', wHi);
+        if (eSizeH) eSizeH.textContent = unit(m.u, n);
 
         if (eSizeV) eSizeV.textContent = n;
         if (eSum) {
@@ -1406,7 +1527,7 @@
           head.className = 'eo-head';
           head.textContent = t('price.ty' + ({ vitrine: 'Vitrine', surmesure: 'Custom', ecommerce: 'Shop',
                                                app: 'App', auto: 'Auto', identite: 'Brand' }[key]))
-                           + ' · ' + n + ' ' + t(m.u);
+                           + ' · ' + n + ' ' + unit(m.u, n);
           eSum.appendChild(head);
           picked.forEach(function (label) {
             var li = document.createElement('li');
@@ -1455,8 +1576,9 @@
     /* Where a lead came from, read at the moment it is sent: ?ref= (each ad
        and email carries its own code), utm_* and whether Meta or Google added
        a click id. Nothing is stored or sent anywhere else: it rides in the
-       mailto body and the WhatsApp text the visitor sends themselves. On this
-       one-page site the query string survives every #anchor jump. */
+       mailto body and the WhatsApp text the visitor sends themselves. The
+       query string survives every #anchor jump, and links to the site's
+       other pages carry these parameters along (carryAd, below). */
     var leadSource = function () {
       var q; try { q = new URLSearchParams(location.search); } catch (e) { return ''; }
       var clean = function (v) { return (v || '').replace(/[^\w .:\/-]/g, '').slice(0, 40); };
@@ -1491,6 +1613,27 @@
     }); };
     wireWA();
     document.addEventListener('numidea:lang', wireWA);
+
+    /* Links to the site's other pages (the project sheets and back) carry the
+       ad parameters, so the Source line and the [ref] tag survive the round
+       trip. They stay in the URL, as they arrived; nothing is stored.
+       page-i18n.js does the same on the generated pages. */
+    (function carryAd() {
+      var keep = [];
+      try {
+        new URLSearchParams(location.search).forEach(function (v, k) {
+          if (k === 'ref' || k === 'fbclid' || k === 'gclid' || /^utm_/.test(k)) keep.push([k, v]);
+        });
+      } catch (e) { return; }
+      if (!keep.length) return;
+      document.querySelectorAll('a[href]').forEach(function (a) {
+        var u; try { u = new URL(a.getAttribute('href'), location.href); } catch (e) { return; }
+        if (u.origin !== location.origin || u.pathname === location.pathname) return;
+        if (!/(\/|\.html)$/.test(u.pathname)) return;   // pages only, not files
+        keep.forEach(function (p) { if (!u.searchParams.has(p[0])) u.searchParams.set(p[0], p[1]); });
+        a.href = u.href;
+      });
+    })();
 
     /* ---------------- phone contact bar ----------------
        Phones only (the CSS hides it above 720px). Shown once the visitor is

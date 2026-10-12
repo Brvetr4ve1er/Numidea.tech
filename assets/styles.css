@@ -329,7 +329,7 @@ html[dir="rtl"] .pl-wipe::after{right:auto;left:0}
 html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 .pm-item i{font-family:var(--font-mono);font-style:normal;font-size:11px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--teal-text)}
-.pm-item:hover b{color:var(--crimson-hi)}
+.pm-item:hover b{color:var(--crimson-text)}
 .pm-live{flex:none;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);
   font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .pm-live i{width:6px;height:6px;border-radius:50%;background:var(--teal);
@@ -604,7 +604,7 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 .field input,.field textarea{background:var(--field-bg);border:1px solid var(--hairline-2);border-radius:var(--r-sm);padding:13px 16px;color:var(--ice);font-family:var(--font-body);font-size:15px;transition:all var(--dur-fast);width:100%;resize:vertical}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:var(--glow-teal)}
 .field input::placeholder,.field textarea::placeholder{color:var(--faint)}
-.field .err{font-family:var(--font-mono);font-size:11px;color:var(--crimson-hi);min-height:14px}
+.field .err{font-family:var(--font-mono);font-size:11px;color:var(--crimson-text);min-height:14px}
 .field.invalid input,.field.invalid textarea{border-color:var(--crimson)}
 .form-note{font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--muted);margin-top:var(--s-4);max-width:52ch}
 .form-success:focus{outline:none}
@@ -790,7 +790,13 @@ html[dir="rtl"] .sb-txt b{font-family:var(--font-ar-display)}
   letter-spacing:-.01em;color:var(--ice);transition:color var(--dur-fast)}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-item summary:hover{color:var(--teal-text)}
-.faq-item summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:var(--r-sm)}
+.faq-item summary:focus-visible{outline:2px solid var(--teal);outline-offset:-3px;border-radius:var(--r-sm)}
+/* .faq-item, .capabilities and .lang clip their overflow, so an outside ring
+   would be cut away entirely: these controls draw it inside. */
+.capabilities>summary:focus-visible,.lang button:focus-visible{outline-offset:-3px}
+.lang button[aria-pressed="true"]:focus-visible{outline-color:var(--on-teal)}
+/* a directional arrow inside translated copy (founder buttons) turns with the reading direction */
+html[dir="rtl"] .arr{display:inline-block;transform:scaleX(-1)}
 html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
 .faq-item .q{flex:1}
 
@@ -897,7 +903,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
 /* hover lifts into the brand colour instead of the global teal */
 .proj--brand:hover{border-color:rgba(var(--brand),.45);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 34px 64px -30px rgb(var(--shade) / calc(.9 * var(--shade-k))), 0 0 0 1px rgba(var(--brand),.32), 0 0 38px -8px rgba(var(--brand),.4)}
-.proj--brand .actions a:hover{border-color:rgb(var(--brand));color:rgb(var(--brand))}
+.proj--brand .actions a:hover{border-color:rgb(var(--brand));color:var(--ice)}
 
 
 /* ============================================================
@@ -1308,7 +1314,7 @@ html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
 .t-list li::before{content:"";position:absolute;inset-inline-start:0;top:.52em;width:9px;height:9px;
   border-inline-start:1.5px solid var(--teal);border-bottom:1.5px solid var(--teal);
   transform:rotate(-45deg) translateY(-1px)}
-html[dir="rtl"] .t-list li::before{transform:rotate(45deg) translateY(-1px) scaleX(-1)}
+html[dir="rtl"] .t-list li::before{transform:rotate(45deg) translateY(-1px)}
 
 .price-note{color:var(--muted);font-size:14px;line-height:1.6;max-width:52em;margin-bottom:var(--s-8)}
 
@@ -1350,6 +1356,12 @@ html[dir="rtl"] .est-head h3{font-family:var(--font-ar-display)}
 /* The ring has to live on the label — the real input is visually hidden,
    so its own focus ring would be invisible. */
 .echip:has(input:focus-visible),.eopt:has(input:focus-visible){outline:2px solid var(--teal);outline-offset:3px}
+/* An option the chosen tier already includes: ticked, locked, labelled. */
+.eopt:has(input:disabled){cursor:default}
+.eopt:has(input:disabled):hover{border-color:var(--teal)}
+.eo-incl{margin-inline-start:auto;font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--teal-text)}
+html[dir="rtl"] .eo-incl{letter-spacing:0}
 
 .est-field input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:30px;
   background:transparent;cursor:pointer;display:block}
@@ -2129,7 +2141,7 @@ section.band::after,section.band+section.band::after{
 .md-card{position:relative;padding-top:var(--s-6)}
 .md-tag{position:absolute;top:-10px;inset-inline-start:var(--s-5);margin:0}
 .price-more{margin-top:var(--s-7)}
-.price-more .pm-body{padding:0 var(--s-5) var(--s-5);display:grid;gap:var(--s-5)}
+.price-more .pm-body{padding:0 var(--s-5) var(--s-5);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5)}
 .price-more .market,.price-more .models{margin:0}
 
 /* ---- method ---- */
@@ -2189,6 +2201,8 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
   .m-contact.on{transform:none;visibility:visible;transition:transform .3s var(--ease-out),visibility 0s}
   .m-contact .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 14px;font-size:13px;text-align:center}
   .footer{padding-bottom:calc(var(--s-5) + 70px + env(safe-area-inset-bottom))}
+  /* the fixed bar is ~70px; a control focused under it is scrolled clear */
+  html{scroll-padding-bottom:calc(78px + env(safe-area-inset-bottom))}
 }
 @media (prefers-reduced-motion:reduce){.m-contact,.m-contact.on{transition:none}}
 @media print{.m-contact{display:none!important}}
