@@ -15,5 +15,7 @@ __pycache__/
 _site/
 legal-preview/
 
-# rendered ad creative (scripts/build-creative.mjs); sent to the owner, not committed
-campaign/out/
+# the campaign kit is the owner's private material (strategy, budget, client
+# permissions); it is never committed to this public repository. Tools that
+# read it: scripts/build-creative.mjs (CAMPAIGN_DIR or ./campaign).
+campaign/

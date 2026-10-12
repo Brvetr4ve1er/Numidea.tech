@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 /**
- * Ad creative — `node scripts/build-creative.mjs [ad-id …]` → campaign/out/
+ * Ad creative — `node scripts/build-creative.mjs [ad-id …]` → <kit>/out/
+ *
+ * The campaign kit (creative-data.mjs, scenes/) is the owner's private
+ * material and is not in this public repository. Put the kit folder at
+ * ./campaign (git-ignored) or point CAMPAIGN_DIR at it.
  *
  * Each image is a photographic scene (campaign/scenes, generated once with a
  * flat chroma-green device screen) with a real capture, or the neutral demo
@@ -16,14 +20,20 @@
  * 1080×1080 (carousel cards).
  */
 import { readFileSync, mkdirSync, existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import sharp from 'sharp';
 import { serve, launch } from './lib/serve.mjs';
 import { findScreen, maskPng, matrix3d, despill } from './lib/screen-quad.mjs';
 import { ROOT } from './site.mjs';
-import { SCENES, ADS, MOCK } from '../campaign/creative-data.mjs';
+const KIT = resolve(process.env.CAMPAIGN_DIR || join(ROOT, 'campaign'));
+if (!existsSync(join(KIT, 'creative-data.mjs'))) {
+  console.error(`✗ campaign kit not found at ${KIT}: put the kit folder there or set CAMPAIGN_DIR`);
+  process.exit(1);
+}
+const { SCENES, ADS, MOCK } = await import(pathToFileURL(join(KIT, 'creative-data.mjs')).href);
 
-const OUT = join(ROOT, 'campaign/out');
+const OUT = join(KIT, 'out');
 const SIZES = { '9x16': [1080, 1920], '4x5': [1080, 1350], '1x1': [1080, 1080] };
 
 // prices: the Essentiel floor as the site shows it (same FX and tidy() as app.js 12a)
@@ -217,7 +227,7 @@ try {
       continue;
     }
     const [file] = SCENES[ad.scene];
-    const scenePath = join(ROOT, 'campaign/scenes', file);
+    const scenePath = join(KIT, 'scenes', file);
     if (!existsSync(scenePath)) { console.log(`· ${ad.id}: scene ${file} missing, skipped`); continue; }
     if (!sceneCache.has(ad.scene)) {
       const scr = await findScreen(scenePath);
@@ -254,4 +264,4 @@ try {
     }
   }
 } finally { await b.close(); close(); }
-console.log(`${made} images in campaign/out/`);
+console.log(`${made} images in ${OUT}`);
