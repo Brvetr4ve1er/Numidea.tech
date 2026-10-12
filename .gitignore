@@ -19,3 +19,6 @@ legal-preview/
 # permissions); it is never committed to this public repository. Tools that
 # read it: scripts/build-creative.mjs (CAMPAIGN_DIR or ./campaign).
 campaign/
+
+# local Claude Code settings
+.claude/settings.local.json
