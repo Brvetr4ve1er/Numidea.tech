@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "description": "Numidea Labs landing page \u2014 static site + project-preview capture pipeline.",
+  "engines": {
+    "node": ">=22.22"
+  },
   "scripts": {
     "shots": "node scripts/shots.mjs",
     "check": "node scripts/check.mjs && node scripts/themes-check.mjs",

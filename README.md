@@ -93,8 +93,9 @@ OWNER-CONTENT.md      # everything only the owner can supply, and its status
 | `npm run og` | Re-render the share images (hub, workspacehq, assets/og.jpg) |
 | `npm run shots` / `work:capture` | Re-capture the client-site screenshots |
 
-The browser gates need `npm install` (Playwright, axe-core, html-validate, sharp).
-In CI the static gates run on every push; the browser gates run on demand.
+Node 22.22 or later. `validate` and the browser gates need `npm install` (Playwright,
+axe-core, html-validate, sharp). In CI (`check.yml`) the invariants and `validate` run
+on every push; the browser gates run on demand.
 
 ### What only the owner can supply
 
