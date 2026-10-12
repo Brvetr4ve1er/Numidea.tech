@@ -14,6 +14,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname, extname, basename } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PROJECTS, UI } from './scene-data.mjs';
+import { VOICES, VOICE_CLIENTS } from './voices-data.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const stamp = (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
@@ -100,6 +101,17 @@ function sheet(p, i) {
         </ul>
       </section>` : '';
 
+  // the client's own words, in the language they gave them (scripts/voices-data.mjs)
+  const voices = VOICES.filter((v) => v.client === p.slug);
+  const vq = voices.length ? `
+      <section class="sh-block" aria-labelledby="vq-${p.slug} h-${p.slug}">
+        <h3 class="sh-h" id="vq-${p.slug}" ${T('ui.voice')}>${esc(ui('voice'))}</h3>
+        ${voices.map((v) => `<figure class="voice" lang="${v.lang}" dir="${v.lang === 'ar' ? 'rtl' : 'ltr'}">
+          <blockquote><p>${esc(v.quote)}</p></blockquote>
+          <figcaption>${v.name ? `<b>${esc(v.name)}</b>, ` : ''}${esc(v.role)} · ${esc(VOICE_CLIENTS[v.client])}</figcaption>
+        </figure>`).join('\n        ')}
+      </section>` : '';
+
   return `
     <!-- ===================== ${p.name} ===================== -->
     <article class="sheet" id="${p.slug}" aria-labelledby="h-${p.slug}">
@@ -161,7 +173,7 @@ function sheet(p, i) {
             </div>
           </div>
         </section>
-      </div>${ba}${br}
+      </div>${ba}${br}${vq}
     </article>`;
 }
 

@@ -23,6 +23,8 @@ import { join, dirname, normalize, basename } from 'node:path';
 import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, DEPLOY_SKIP, NOT_DEPLOYED, BASE, LANGS } from './site.mjs';
 import { SCENE_HTML } from './build-scene.mjs';
 import { renderSitemap } from './build-sitemap.mjs';
+import { applyVoices } from './build-voices.mjs';
+import { validate as validateVoices } from './voices-data.mjs';
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 let fail = 0;
@@ -247,6 +249,24 @@ const typed = [...ownPrices.replace(/<!--[\s\S]*?-->/g, '').matchAll(/(?:€|\$)
   .map((m) => m[0]).filter((x) => !/^\$\{/.test(x));
 if (typed.length) priceErr.push('hard-coded €/$ amounts in index.html: ' + typed.slice(0, 5).join(' | '));
 priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts');
+// Client voices: valid (consent recorded, delivered clients only) and the
+// index.html region equals what scripts/build-voices.mjs writes from them.
+const voiceErr = validateVoices();
+let voiceStale = false;
+try { voiceStale = applyVoices(html) !== html; } catch (e) { voiceErr.push(String(e.message)); }
+voiceErr.length ? bad('client voices: ' + voiceErr.join('; '))
+  : voiceStale ? bad('voices region in index.html is stale (run: npm run build)')
+  : ok('client voices valid and in step with index.html');
+// One contact address everywhere: every mailto on every page, the form's
+// mailto in app.js and the structured-data email are the same string.
+const mails = new Map();
+for (const f of [...PAGES, 'assets/app.js']) {
+  const src = read(f).replace(/<!--[\s\S]*?-->/g, '');
+  for (const m of src.matchAll(/mailto:([^"'?\s<>$]+)/g)) mails.set(m[1], (mails.get(m[1]) || []).concat(f));
+  for (const m of src.matchAll(/"email"\s*:\s*"([^"]+)"/g)) mails.set(m[1], (mails.get(m[1]) || []).concat(f + ' (JSON-LD)'));
+}
+mails.size === 1 ? ok(`one contact address across the site (${[...mails.keys()][0]})`)
+  : bad('contact addresses differ: ' + [...mails].map(([a, fs]) => `${a} in ${[...new Set(fs)].join(', ')}`).join(' | '));
 // structured data parses, and states the same phone and email as the page
 const ldErr = [];
 for (const f of PAGES) for (const m of read(f).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
@@ -261,7 +281,7 @@ deadRefs.length ? bad('attributes point at ids that do not exist: ' + deadRefs.j
 // "most chosen" tier claim has no data behind it, and client sites are not demos.
 const RETIRED = ['Le plus choisi', 'Most chosen', 'الأكثر اختياراً', 'Démo →', 'Live demo →', 'عرض حيّ', '5 / 7'];
 const back = [];
-for (const f of [...PAGES, 'assets/app.js', 'scripts/scene-data.mjs']) {
+for (const f of [...PAGES, 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/voices-data.mjs']) {
   const src = read(f);
   for (const s of RETIRED) if (src.includes(s)) back.push(`${f}: "${s}"`);
 }

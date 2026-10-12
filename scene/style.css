@@ -196,3 +196,9 @@ html[dir="rtl"] :is(.kicker,.sh-no,.chip,.sh-h,.tblock dt,.system h4,.bc li,.ba-
   font-family:var(--ar);letter-spacing:0;text-transform:none}
 html[dir="rtl"] .sh-h,html[dir="rtl"] .kicker{font-size:13px;font-weight:600}
 .dim-w,.chrome span,code{direction:ltr;unicode-bidi:isolate}
+
+/* client voices (scripts/voices-data.mjs), in the language they were given */
+.voice{margin:0 0 16px;padding:20px 22px;border:1px solid var(--line-2);background:var(--panel);max-width:720px}
+.voice blockquote{margin:0;font-size:17px;line-height:1.6;color:var(--ink)}
+.voice figcaption{margin-top:12px;font:500 12px/1.4 var(--mono);letter-spacing:.06em;color:var(--muted)}
+.voice figcaption b{color:var(--ink)}

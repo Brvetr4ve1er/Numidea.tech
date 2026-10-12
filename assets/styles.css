@@ -996,7 +996,7 @@ main.wrap>section h2.sec em{color:var(--crimson-text)}
   main.wrap>section>.kicker+h2.sec+*{margin-top:var(--s-8)}
 
   /* — per-section content spans — */
-  .work-grid,.svc-grid,.stack-strip,.founder-card,.contact-grid,.proof-grid,.preview,.scene-banner{grid-column:1/-1}
+  .work-grid,.svc-grid,.stack-strip,.founder-card,.contact-grid,.proof-grid,.preview,.scene-banner,.voices{grid-column:1/-1}
   /* three abreast: the process reads as a sequence instead of a column
      with half the screen empty beside it */
   .steps{grid-column:1/-1;max-width:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,2.4vw,48px)}
@@ -2184,3 +2184,22 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
 }
 @media (prefers-reduced-motion:reduce){.m-contact,.m-contact.on{transition:none}}
 @media print{.m-contact{display:none!important}}
+
+/* ---- Client voices (scripts/build-voices.mjs; absent until a real quote exists) ---- */
+.voices{margin-top:var(--s-7);display:grid;gap:var(--s-5)}
+.voices-h{font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-text);font-weight:600}
+.voices-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:var(--s-5)}
+.voice{margin:0;padding:var(--s-5);border:1px solid var(--hairline-2);border-radius:var(--r-lg);background:var(--navy);display:grid;gap:var(--s-4);align-content:start}
+.voice blockquote{margin:0;font-size:17px;line-height:1.55;color:var(--ice)}
+.voice blockquote p::before{content:"« "}.voice blockquote p::after{content:" »"}
+.voice[lang="en"] blockquote p::before{content:"\201C"}.voice[lang="en"] blockquote p::after{content:"\201D"}
+.voice[lang="ar"] blockquote p::before{content:"«"}.voice[lang="ar"] blockquote p::after{content:"»"}
+.voice[lang="ar"]{font-family:var(--font-ar-body)}
+.voice figcaption{font-size:13px;color:var(--muted)}
+.voice figcaption b{color:var(--body-strong);font-weight:600}
+
+/* ---- Photo slots: a real <img> replaces the monogram or the initial ---- */
+.fd-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.fd-photo:has(img) .mono{visibility:hidden}
+.tm-i img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
+.tm-i:has(img){font-size:0;overflow:hidden}
