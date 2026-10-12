@@ -18,148 +18,143 @@ between you and the people typing the code.
 | **Automation & data** | Scrapers, lead pipelines, market-intelligence systems, internal tools, integrations. |
 | **Brand & design systems** | Logos, visual identity, design systems, motion — the full kit. |
 | **Strategy & consulting** | Market audits, funnel analysis, competitive intelligence, growth roadmaps. |
-| **The Preview** *(signature)* | A real, working demo of your project — up front, before you pay for it. |
+| **L'Aperçu / The Preview** *(signature)* | Before any payment, the homepage of your new site with your own content, in 5 working days, shown on a 30-minute video call. Free, no obligation; registered businesses; at most 4 a month. |
 
 ## How we work
 
 1. **You talk to the builder.** Whoever scopes it, ships it.
 2. **One team owns the whole chain.** Design → code → deploy.
-3. **We answer when it breaks.** Deadlines kept, replies in under 24h.
+3. **We answer when it breaks.** Deadlines kept, replies within 24 working hours.
 
 ---
 
 ## This repository — the landing page
 
-The marketing site is a **zero-dependency static build**: hand-written HTML, CSS
-and vanilla JavaScript, no framework, no build step. Open `index.html` and it runs.
+A **static site**: hand-written HTML, CSS and vanilla JavaScript, no framework and
+no runtime dependency. Open `index.html` and it runs. A few pages and files are
+**generated** by small Node scripts (below), and every deploy publishes only the
+files listed in `scripts/site.mjs`.
 
 ```
-index.html            # the landing page
-404.html              # designed not-found page (host-aware paths)
+index.html            # the landing page (French baked in; EN/AR swapped by app.js)
+404.html              # not-found page (host-aware paths, three languages)
 assets/
-  themes.css          # the six themes: one token block each, nothing else
+  themes.css          # the six themes: one block of the 47 contract tokens each
   styles.css          # layout and components; reads theme tokens only
+  app.js              # i18n (fr/en/ar), nav, menu dialog, prices in DA/€/$,
+                      #   estimator, lead source, contact form, WhatsApp links
+  page-i18n.js        # language switch for the generated pages
+  fonts/              # self-hosted faces (no third-party requests)
+  previews/*.webp     # screenshots of the live client sites (hero plate, cards)
   work/<slug>/*.webp  # project-sheet captures (npm run work:capture)
-  app.js              # i18n, nav, count-ups, reveal, project explorer, form
-  previews/*.webp     # committed screenshots of the live client sites
-  favicon.svg         # gradient signature mark
-  og.jpg             # link-preview card (French), rendered by scripts/build-og.mjs
-  cv_*.pdf            # founder résumé (linked from the founder section)
-hub/                  # VOIDSPLUNKER.std — personal portfolio subsite (own CSS/JS)
-scene/                # project sheets, generated from scripts/scene-data.mjs (npm run scene)
-scripts/
-  shots.mjs           # capture live-site screenshots  → npm run shots
-  check.mjs           # repo invariant checks          → npm run check
-  bump.mjs            # bump all ?v= cache stamps      → npm run bump
-knowledge-base/       # internal institutional memory (markdown)
-audit/                # full codebase audit — start at Executive_Summary.md
-vercel.json           # Vercel-ready hosting config (headers, clean URLs)
+  og.jpg              # link-preview card (French), rendered by scripts/build-og.mjs
+scene/                # project sheets, generated from scripts/scene-data.mjs
+hub/                  # VOIDSPLUNKER.std — the founder's personal page (own CSS/JS)
+workspacehq/          # WorkspaceHQ v3, the studio's own product page
+sitemap.xml           # generated with hreflang alternates
+scripts/              # generators, gates and tools (never deployed)
+knowledge-base/       # internal memory, dated snapshot (never deployed)
+audit/                # 2026-07 code audit, dated snapshot (never deployed)
+OWNER-CONTENT.md      # everything only the owner can supply, and its status
 .github/workflows/
-  pages.yml           # auto-deploys the site to GitHub Pages on push
+  check.yml           # the static gates on every push and pull request
+  pages.yml           # gates, then stages and publishes to GitHub Pages
 ```
 
-## A/B/C deployments
+### Deploy
 
-One codebase, three hosts, three variants — detected at runtime from the
-hostname (override with `?variant=b` or `window.NUMIDEA_VARIANT`):
+- **GitHub Pages is canonical:** <https://brvetr4ve1er.github.io/Numidea.tech/>.
+  Every push to the working branch runs `check` and `themes-check`, then
+  `scripts/stage-site.mjs` copies only `DEPLOY` from `scripts/site.mjs` into
+  `_site/`, which is published.
+- **Netlify and Vercel are mirrors.** `netlify.toml` and `vercel.json` run the
+  same staging and publish `_site/`.
+- **Never published:** `scripts/`, `knowledge-base/`, `audit/`, `legal-preview/`
+  and anything in `NOT_DEPLOYED`. `check.mjs` fails if a root folder is
+  unclassified or a deployed page links to an unpublished file.
+- The marketing campaign kit is kept **outside this public repository**.
+  `scripts/build-creative.mjs` renders the ad images from it (`CAMPAIGN_DIR`,
+  default `./campaign`, git-ignored).
 
-| Variant | Host | Hypothesis under test | What differs |
-| --- | --- | --- | --- |
-| **a** | GitHub Pages | control | Proof-first atelier, dark Arcanum |
-| **b** | Vercel | a different colour pairing changes perceived trust | Signal pairing by default + plain-spoken hero |
-| **c** | Netlify | a concrete risk-free offer converts better than a craft narrative | Offer-first hero ("built before you pay") + the signature Preview offer promoted above the fold |
+### Commands
 
-The variant is resolved **before first paint** by an inline script in
-`index.html` (so B never flashes dark), then read back by `app.js`.
-Variant-only markup lives in the HTML behind `[data-variant-only]`, so it
-works with JS disabled and needs no DOM injection. Per-variant copy is
-supplied as whole fr/en/ar sets in the `COPY` map.
+| Command | What it does |
+| --- | --- |
+| `npm run build` | Regenerates scene/, the client-voices region, the legal page (only when complete) and sitemap.xml |
+| `npm run check` | Repo invariants: i18n ×3, assets, cache stamps, client links, deploy coverage, generated pages in sync, anchors, retired claims, prices = PRICE_MODEL, one contact address, Western digits in Arabic, legal gating; plus `themes-check` |
+| `npm run validate` | html-validate on every page |
+| `npm run audit` | Browser audit (~53 runs): axe, layout shift, LCP, overflow, tap targets, in three languages, six themes and five viewport sizes |
+| `npm run sweep` | Contrast sweep over the rendered pixels |
+| `npm run vbugs` | Visual bug scan (allowlist with reasons in `scripts/vbugs-allow.json`) |
+| `npm run verify` | All of the above; push only when it is green |
+| `npm run bump` | Refresh the `?v=` cache stamps after a CSS/JS change |
+| `npm run stage` | Copy the deploy set into `_site/` |
+| `npm run scene` | Regenerate scene/ only |
+| `npm run og` | Re-render the share images (hub, workspacehq, assets/og.jpg) |
+| `npm run shots` / `work:capture` | Re-capture the client-site screenshots |
 
-Every contact-form handoff carries `variant` in the mailto body, so leads
-stay attributable with no backend at all. Config: `vercel.json` and
-`netlify.toml` mirror each other (no build, security headers, immutable
-assets).
+The browser gates need `npm install` (Playwright, axe-core, html-validate, sharp).
+In CI the static gates run on every push; the browser gates run on demand.
 
-**Before committing:** `npm run check` validates the i18n dictionary (every key
-×3), asset references, cache-stamp uniformity and project-URL sync. After any
-CSS/JS change, `npm run bump` refreshes the cache-bust stamps on every page.
+### What only the owner can supply
 
-### Live preview (GitHub Pages)
-
-Every push to the working branch auto-publishes to GitHub Pages via
-`.github/workflows/pages.yml`. The live URL:
-
-```
-https://brvetr4ve1er.github.io/Numidea.tech/
-```
-
-One-time setup (required once — the workflow's token cannot enable Pages
-itself): repo **Settings → Pages → Build and deployment → Source:
-GitHub Actions**. After that, the URL refreshes ~1 minute after each push.
+See [OWNER-CONTENT.md](OWNER-CONTENT.md). The page leaves room for these and
+renders them only once they exist: the legal notice and privacy page, client
+quotes (with consent), a founder photo, team photos.
 
 ### Run it locally
 
 ```bash
-# any static server works — pick one
-python3 -m http.server 8000
-#   or
-npx serve .
+python3 -m http.server 8000      # any static server works
 ```
 
-Then open <http://localhost:8000>. (Opening `index.html` directly works too,
-but a server is recommended so fonts and relative paths resolve cleanly.)
+Then open <http://localhost:8000>. Useful links: `?lang=en`, `?lang=ar`,
+`?cur=eur`, `?cur=usd`.
 
 ### Design system — see [BRAND.md](BRAND.md)
 
 **Arcanum** is the identity: arcane-blue ground, brass flourish, engraved Cinzel
 display, electric teal as rationed neon. Six themes ship in the switcher
 (Arcanum, Noir, Daylight, Mono, Alt-neon, Engineering). Each is one block of
-the same 49 tokens in `assets/themes.css`; `npm run check` fails if a theme
-misses a token, breaks a contrast pair, or if `styles.css` special-cases a
-theme. Details in BRAND.md ("Theme contract").
+the same 47 tokens in `assets/themes.css`; `themes-check` fails if a theme
+misses a token, breaks a contrast pair, or if `styles.css` special-cases a theme.
 
 ### Features
 
-- **Trilingual** — French (default), English, Arabic — with a natively **mirrored
-  RTL** experience, not a translated afterthought.
-- **Accessible** — skip link, visible teal focus rings, full keyboard tab order,
-  semantic landmarks, `prefers-reduced-motion` honored on every animation.
-- **Crafted states** — designed form validation in the interface's voice, a
-  success state, count-up stats, scroll-reveal, glass navbar with a crimson
-  scroll-progress line.
-- **Custom favicon + OG share image** built from the gradient signature.
+- **Trilingual** — French (default), English and Arabic with a mirrored RTL layout
+  (logical CSS properties, Western digits, forward arrows that follow the
+  reading direction). `?lang=` links set the language and the canonical URL.
+- **Prices in DA, € or $** — one price source (`PRICE_MODEL` in app.js), converted
+  for display at the Bank of Algeria official rate; € shown HT with the French
+  reverse-charge note.
+- **Lead source without tracking** — a `?ref=` code, `utm_*` and the presence of a
+  Meta/Google click id ride in the email or WhatsApp message the visitor sends;
+  nothing is stored, no cookies, no analytics.
+- **Accessible** — skip link, visible focus, a modal menu that keeps focus, a
+  pause control on the rotating hero, `prefers-reduced-motion` honoured.
 
 ---
 
 ## Project previews
 
-Each project card shows a **committed screenshot** of the live site
-(`assets/previews/<slug>.webp`, ~10 KB each). Projects that aren't live yet
-fall back automatically to an **Arcanum abstract cover** (inline SVG, brass +
-arcane-blue) — so a card is never broken or empty.
-
-To (re)generate screenshots as sites ship or change:
+Each project card shows a committed screenshot of the live site
+(`assets/previews/<slug>.webp`). To refresh them after a site changes:
 
 ```bash
 npm install
-npx playwright install chromium   # one-time browser download
 npm run shots                     # capture all live URLs
 npm run shots -- almaflowclim     # or a single project
 ```
 
-Live URLs live in the `PROJECTS` map at the top of
-[`scripts/shots.mjs`](scripts/shots.mjs). When a site goes live, set its URL
-there (and swap that card's `.thumb--art` cover for an `<img class="shot">` in
-`index.html`), run `npm run shots`, and commit the new `.webp`. Captures are
-taken at 1280×800 (16:10), retina, then optimised to WebP. `node_modules` is
-git-ignored — only the lightweight `.webp` outputs are committed.
+Live URLs and their `client:` slugs are in `scripts/shots.mjs`; `check.mjs`
+keeps them in step with the links on the page.
 
 ---
 
 ## Contact
 
-**Hamissemohamedyasser@gmail.com** · Bordj Bou Arréridj, DZ · response in under 24h
-(in French, English, or Arabic).
+**hamissemohamedyasser@gmail.com** · WhatsApp +213 672 41 25 78 · Bordj Bou Arréridj, DZ
+· replies within 24 working hours, in French, English or Arabic.
 
 ---
 

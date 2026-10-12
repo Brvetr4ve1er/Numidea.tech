@@ -1,0 +1,122 @@
+# What only the owner can supply
+
+The site leaves a place for each item below and shows nothing until the real
+thing exists: no placeholders, no invented content. This file is not deployed.
+Status as of 2026-10-12.
+
+| # | Item | Status | Where it goes |
+|---|---|---|---|
+| 1 | Legal notice + privacy details | **Missing (14 fields)** | `scripts/legal-data.mjs` |
+| 2 | Client quotes, with consent | None yet | `scripts/voices-data.mjs` |
+| 3 | Founder photo | None (monogram "Y" shows) | `assets/founder.webp` |
+| 4 | Team names and photos; the team-size claim | Initials D, S, T; "four specialists" claimed | `index.html` #founder, `assets/app.js` |
+| 5 | A studio email on its own domain | Personal Gmail in use | everywhere one address appears |
+| 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
+| 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid |
+| 8 | Arabic native review | Pending | `assets/app.js`, `scripts/scene-data.mjs`, `404.html` |
+| 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
+| 10 | Hub fan art: rights | Open question | `hub/` |
+| 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
+| 12 | Campaign kit and git history | Kit with the owner | outside this repo |
+
+## 1. Legal notice + privacy page
+Fill every `null` in `scripts/legal-data.mjs`. `false` means "does not apply"
+and is accepted. Then run `npm run build`: it writes `legal/`, adds the
+"Mentions légales / Confidentialité" links to the footer and the contact form,
+and the page joins the deploy, the sitemap and every gate. Until the last field
+is filled, nothing is published and `check.mjs` refuses any link to `legal/`.
+
+Fields: legal name, legal form (e.g. auto-entrepreneur), capital (or `false`),
+postal address, contact email, registration label and number (ANAE card / NIF),
+publication director, GitHub's postal address (public, in GitHub's terms),
+retention period for enquiries, the email for privacy requests, the ANPDP
+declaration status (or `false`), the licence for the site's text and images
+(`cc0` keeps the current LICENSE; `reserved` reserves them), and the date of the
+review. Preview with the gaps marked: `node scripts/build-legal.mjs --preview`
+→ `legal-preview/` (never deployed).
+
+## 2. Client quotes (voices)
+Add an entry to `VOICES` in `scripts/voices-data.mjs`, then `npm run build`.
+The quote appears under the work grid and on that client's project sheet, in
+the language the client gave it. The build refuses an entry without a past
+consent date and a note of where the consent is kept, a quote over 280
+characters, or a client that is not a delivered one (never the Glaive demo or
+WorkspaceHQ). Only Bordj Steel, Alliance Travel, AlmaFlowClim and Nomara
+Voyages can be quoted. Get written agreement to the exact text.
+
+## 3. Founder photo
+A real photo, never a generated face: square, at least 400 px, saved as
+`assets/founder.webp`. In `index.html` (#founder, `.fd-photo`), uncomment the
+`<img>` line; the monogram steps aside. Run `npm run bump`.
+
+## 4. Team
+The three specialists show initials only. To show a person, replace their
+initial with `<img src="assets/team/<x>.webp" alt="" width="88" height="88">`
+inside `.tm-i` (comment above the team list). **Confirm the claim**: the site
+says "four specialists" (hero, proof stat, "three specialists around him",
+"a four-person studio" in the brand-identity service). If that is no longer
+true, say so and the copy changes in all three languages.
+
+## 5. Studio email on its own domain
+Today every contact point uses `hamissemohamedyasser@gmail.com`. Once a domain
+mailbox exists, replace the address in `index.html` (links, text and the
+JSON-LD), `assets/app.js` (the form's mailto) and `hub/index.html`, then
+`npm run check`. It fails until all of them match. The domain also gives a
+stable address for the legal page and for cold email (SPF, DKIM, DMARC).
+
+## 6. Clients' permission for paid ads
+The Bordj Steel and Alliance Travel ad cards (campaign kit) need each client's
+written permission before they run in paid ads. An email or WhatsApp message
+is enough; keep it.
+
+## 7. Nomara Voyages
+Shown as delivered work. Confirm it is a real client with permission to show
+the site; otherwise it comes off the work grid, the hero plate and the counts.
+
+## 8. Arabic native review
+The Arabic copy was written for this site and needs a native speaker's pass.
+Conventions to keep: Western digits, forward arrows `←`, singular "you", brand
+names in Latin script except نوميديا in prose. Points worth a second look:
+- the services title (`svc.title`) reads as a question but ends with a period;
+- "Shopify بواجهة مستقلة (headless)";
+- the tag pills;
+- the Gulf versus Maghreb word choices in the campaign kit.
+
+Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
+project `ar` texts in `scripts/scene-data.mjs`, and the `lang="ar"` lines in
+`404.html`.
+
+## 9. Clients' own domains
+The cards link the Netlify builds, because none of the clients' domains serves
+the delivered site:
+- `bordj-steel.com`, `alliance-travel.dz` and `nomaravoyages.com` do not resolve
+  (NXDOMAIN);
+- `almaflowclim.fr` serves a different Hostinger site;
+- the browser bars on two cards show placeholder hostnames (`doctorcherfia.dz`,
+  `etoile-est.app`).
+
+When a client points a domain at the build, run `node scripts/verify-domains.mjs`.
+It reports a domain as switchable only when it serves the same site. Then the
+link changes in one place per client (`check.mjs` keeps the plate, card,
+browser bar and project sheet in step).
+
+## 10. Hub fan art
+`hub/` (the founder's personal page) shows fan art. Confirm the rights to show
+it, or take it down.
+
+## 11. Supabase lead store
+It is off: the keys in `index.html` are empty. Switching it on needs:
+- the legal page published;
+- the database region set in `scripts/legal-data.mjs` (`privacy.supabaseRegion`);
+- a new `form.note`, because the current one promises the site keeps nothing.
+
+`check.mjs` enforces all three.
+
+## 12. Campaign kit and this repository
+This repository is **public**. The campaign kit (strategy, budget, client
+permissions) was removed from it on 2026-10-12 and is now with the owner as a
+zip. It is still in the git history of earlier commits. Removing it from
+history needs a force-push rewrite (e.g. `git filter-repo --path campaign
+--invert-paths`, then `git push --force`), which also rewrites every later
+commit. That is the owner's call, best done when no pull request is open.
+`knowledge-base/` and `audit/` are also readable on GitHub (never on the site).
