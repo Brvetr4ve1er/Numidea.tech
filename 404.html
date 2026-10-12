@@ -47,8 +47,8 @@
   .e404 .lines .ar{font-family:var(--font-ar-body);direction:rtl;display:block;margin-top:8px}
   .e404 .cta{margin-top:var(--s-7);display:inline-flex}
   /* one label per language, chosen by html[lang] (set before paint) */
-  .e404 .cta>[lang]{display:none}
-  html[lang="fr"] .e404 .cta>[lang="fr"],html[lang="en"] .e404 .cta>[lang="en"],html[lang="ar"] .e404 .cta>[lang="ar"]{display:inline}
+  .e404 .cta>[lang],.e404 .sr-only>[lang]{display:none}
+  html[lang="fr"] .e404 :is(.cta,.sr-only)>[lang="fr"],html[lang="en"] .e404 :is(.cta,.sr-only)>[lang="en"],html[lang="ar"] .e404 :is(.cta,.sr-only)>[lang="ar"]{display:inline}
   .e404 .brand{position:fixed;top:calc(var(--s-6) + env(safe-area-inset-top));left:50%;transform:translateX(-50%)}
   /* On a short viewport the fixed brand is out of flow, so centred content
      scrolled straight underneath it — the 404 numeral vanished behind the
@@ -115,13 +115,13 @@
          no landmark leaves a screen-reader user nothing to navigate by. The
          visible glyph carries the number; the sr-only span carries the sentence
          that makes it a heading rather than a bare figure. -->
-    <h1 class="mark">404<span class="sr-only"> — page introuvable · page not found</span></h1>
+    <h1 class="mark">404<span class="sr-only"> — <span lang="fr">page introuvable</span><span lang="en">page not found</span><span lang="ar">الصفحة غير موجودة</span></span></h1>
     <p class="lines">
       <span class="fr" lang="fr">Cette page a pris la route.</span><br>
       <span lang="en">This one took the road.</span>
       <span class="ar" lang="ar">هذه الصفحة سلكت الطريق.</span>
     </p>
-    <a class="btn btn-primary cta" href="index.html"><span lang="fr">Retour à l'accueil →</span><span lang="en">Back to the home page →</span><span lang="ar">العودة إلى الرئيسية ←</span></a>
+    <a class="btn btn-primary cta" href="index.html"><span lang="fr">← Retour à l'accueil</span><span lang="en">← Back to the home page</span><span lang="ar">→ العودة إلى الرئيسية</span></a>
   </main>
 </div>
 </body>

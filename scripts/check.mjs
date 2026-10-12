@@ -275,6 +275,14 @@ try { voiceStale = applyVoices(html) !== html; } catch (e) { voiceErr.push(Strin
 voiceErr.length ? bad('client voices: ' + voiceErr.join('; '))
   : voiceStale ? bad('voices region in index.html is stale (run: npm run build)')
   : ok('client voices valid and in step with index.html');
+// Arabic uses Western digits on this site (owner decision): no Arabic-Indic
+// digits in any shipped page, dictionary or generator.
+const indic = [];
+for (const f of [...PAGES, 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/build-legal.mjs', 'scripts/voices-data.mjs']) {
+  const hits = (read(f).match(/[٠-٩۰-۹٫٬]/g) || []).length;
+  if (hits) indic.push(`${f} (${hits})`);
+}
+indic.length ? bad('Arabic-Indic digits (use 0-9): ' + indic.join(', ')) : ok('Arabic uses Western digits everywhere');
 // One contact address everywhere: every mailto on every page, the form's
 // mailto in app.js and the structured-data email are the same string.
 const mails = new Map();

@@ -202,3 +202,5 @@ html[dir="rtl"] .sh-h,html[dir="rtl"] .kicker{font-size:13px;font-weight:600}
 .voice blockquote{margin:0;font-size:17px;line-height:1.6;color:var(--ink)}
 .voice figcaption{margin-top:12px;font:500 12px/1.4 var(--mono);letter-spacing:.06em;color:var(--muted)}
 .voice figcaption b{color:var(--ink)}
+/* forward arrows point the reading way: mirrored in Arabic */
+html[dir="rtl"] .visit .arr{display:inline-block;transform:scaleX(-1)}

@@ -121,7 +121,7 @@ function sheet(p, i) {
         <span class="sh-no"><span ${T('ui.sheet')}>${esc(ui('sheet'))}</span> ${n}</span>
         <h2 id="h-${p.slug}" dir="ltr">${esc(p.name)}</h2>
         <span class="chip is-${p.status}" ${T(`${k}.status`)}>${esc(statusTxt)}</span>
-        <a class="visit" href="${esc(p.url)}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> <span aria-hidden="true">${ext ? '↗' : '→'}</span></a>
+        <a class="visit" href="${esc(p.url)}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> <span class="arr" aria-hidden="true">${ext ? '↗' : '→'}</span></a>
       </header>
 
       <div class="sh-body">
@@ -228,7 +228,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){d.removeAtt
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"${BASE}"},{"@type":"ListItem","position":2,"name":"Planches","item":"${BASE}scene/"}]}</script>
 </head>
 <body>
-<a class="skip" href="#sheets">Aller aux planches · Skip to the sheets</a>
+<a class="skip" href="#sheets" ${T('ui.skip')}>${esc(ui('skip'))}</a>
 
 <header class="hud">
   <nav class="bc" aria-label="Breadcrumb"><ol>

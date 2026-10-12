@@ -114,7 +114,6 @@ img{max-width:100%;display:block}
 /* shared section heads */
 .kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--crimson-text);display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-5)}
 .kicker::before{content:"";width:28px;height:1px;background:var(--crimson)}
-html[dir="rtl"] .kicker::before{order:2}
 h2.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(25px, 14.67px + 2.87vw, 56px);letter-spacing:-.02em;line-height:1.04;margin-bottom:var(--s-7);max-width:11.934em}
 /* section-head emphasis kept quiet — the flourish is reserved for hero + contact */
 h2.sec em{font-family:inherit;font-style:normal;color:inherit}
@@ -163,6 +162,8 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 /* the links sit in a <nav> landmark inside the dialog; it stacks like the dialog did */
 .mobile-menu nav{display:flex;flex-direction:column;gap:inherit}
 .mobile-menu.open{transform:translateX(0);visibility:visible}
+/* in Arabic the menu slides in from the reading start (the left) */
+html[dir="rtl"] .mobile-menu:not(.open){transform:translateX(-100%)}
 .mobile-menu a{font-family:var(--font-display);font-weight:600;font-size:40px;color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
 .mobile-menu .lang{opacity:0}
 .mobile-menu.open a,.mobile-menu.open .lang{animation:stagger .5s var(--ease-out) forwards}
@@ -176,15 +177,14 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 .mobile-menu.open .lang{animation-delay:.4s}
 @keyframes stagger{to{opacity:1;transform:translateY(0)}}
 .mobile-menu .lang{margin-top:var(--s-4);align-self:flex-start}
-.mobile-menu .close{position:absolute;top:20px;right:24px;background:transparent;border:none;color:var(--ice);font-size:34px;cursor:pointer}
-html[dir="rtl"] .mobile-menu .close{right:auto;left:24px}
+.mobile-menu .close{position:absolute;top:20px;inset-inline-end:24px;background:transparent;border:none;color:var(--ice);font-size:34px;cursor:pointer}
 
 /* ---------- hero ---------- */
 .hero{padding:calc(var(--s-10) + 40px) 0 var(--s-9);position:relative;overflow:hidden}
 .hero-mesh{position:absolute;inset:0;z-index:0;pointer-events:none}
 .hero-mesh span{position:absolute;border-radius:50%;filter:blur(40px);opacity:.55}
-.hero-mesh .m1{width:460px;height:460px;background:radial-gradient(circle,color-mix(in srgb,var(--crimson) 50%,transparent),transparent 65%);top:-120px;right:-60px}
-.hero-mesh .m2{width:420px;height:420px;background:radial-gradient(circle,color-mix(in srgb,var(--teal) 40%,transparent),transparent 65%);bottom:-140px;left:-40px;animation-delay:-6s}
+.hero-mesh .m1{width:460px;height:460px;background:radial-gradient(circle,color-mix(in srgb,var(--crimson) 50%,transparent),transparent 65%);top:-120px;inset-inline-end:-60px}
+.hero-mesh .m2{width:420px;height:420px;background:radial-gradient(circle,color-mix(in srgb,var(--teal) 40%,transparent),transparent 65%);bottom:-140px;inset-inline-start:-40px;animation-delay:-6s}
 
 .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:var(--s-8);align-items:center}
 .eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-text);display:block;margin-bottom:var(--s-5)}
@@ -386,7 +386,7 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 .pill.live{color:var(--teal-text);border-color:var(--teal)}
 /* a portfolio piece, not client work: dashed, and never hidden (see the phone rule) */
 .pill.concept{border-style:dashed}
-.pill.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:7px;box-shadow:0 0 8px var(--teal);vertical-align:middle}
+.pill.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-inline-end:7px;box-shadow:0 0 8px var(--teal);vertical-align:middle}
 
 /* ---------- proof bar ---------- */
 .proof{background:var(--navy);border-radius:0}
@@ -441,7 +441,7 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .proj[data-cat="travel"] .thumb--art,.proj[data-cat="pwa"] .thumb--art{--plate:230,180,80}
 .proj .thumb--art .art{position:absolute;inset:0;z-index:1;display:grid;place-items:center;background:radial-gradient(70% 80% at 50% 40%,rgba(var(--plate),.22),transparent 70%),url("data:image/svg+xml,%3Csvg width='28' height='49' viewBox='0 0 28 49' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23E6B450' fill-opacity='0.06' fill-rule='evenodd'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l11 6.35 11-6.35V17.9l-11-6.35L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/svg%3E");background-size:auto,42px 73px}
 .proj .thumb--art .art::before{content:"";position:absolute;inset:16px;border:1px solid color-mix(in srgb,var(--crimson) 16%,transparent)}
-.proj .thumb--art .art::after{content:"";position:absolute;width:10px;height:10px;top:20px;left:20px;border-top:1.5px solid color-mix(in srgb,var(--teal) 50%,transparent);border-left:1.5px solid color-mix(in srgb,var(--teal) 50%,transparent)}
+.proj .thumb--art .art::after{content:"";position:absolute;width:10px;height:10px;top:20px;inset-inline-start:20px;border-top:1.5px solid color-mix(in srgb,var(--teal) 50%,transparent);border-inline-start:1.5px solid color-mix(in srgb,var(--teal) 50%,transparent)}
 .proj .thumb--art .art-glyph{width:60px;height:60px;fill:none;stroke:rgba(var(--plate),.95);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 12px rgba(var(--plate),.55));transition:transform var(--dur-slow) var(--ease-out)}
 .proj:hover .thumb--art .art-glyph{transform:scale(1.08) rotate(-3deg)}
 .proj .thumb--art .cover{position:absolute;z-index:2;top:auto;bottom:16px;left:0;right:0;padding:0 16px;transform:none;font-size:clamp(15px,2vw,19px);letter-spacing:.01em;color:var(--ice);text-shadow:0 2px 12px rgba(0,0,0,.55)}
@@ -501,7 +501,7 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 
 /* verified profiles — the same URLs the hub's archive uses */
 .fd-links{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 var(--s-5)}
-.fd-links a{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:0 14px 0 6px;
+.fd-links a{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding-block:0;padding-inline:6px 14px;
   border:1px solid var(--hairline-2);border-radius:var(--r-sm);color:var(--body-strong);font-size:14px;
   text-decoration:none;transition:border-color var(--dur-fast),color var(--dur-fast)}
 .fd-links a:hover{border-color:var(--teal);color:var(--ice)}
@@ -733,6 +733,8 @@ html[dir="rtl"] .preview .outcome{padding-left:0;padding-right:14px;border-left:
 .capabilities>summary .chev{margin-left:auto;color:var(--teal-text);transition:transform var(--dur-base)}
 html[dir="rtl"] .capabilities>summary .chev{margin-left:0;margin-right:auto}
 .capabilities[open]>summary .chev{transform:rotate(90deg)}
+/* RTL mirrors › into ‹: turn it the other way so open still points down */
+html[dir="rtl"] .capabilities[open]>summary .chev{transform:rotate(-90deg)}
 .capabilities>summary .hint{color:var(--faint);text-transform:none;letter-spacing:.02em;font-size:12px}
 .cap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--s-5);padding:0 var(--s-6) var(--s-6)}
 .cap{display:flex;flex-direction:column;gap:var(--s-3);padding-top:var(--s-5);border-top:1px solid var(--hairline)}
@@ -876,6 +878,8 @@ h2.sec{font-size:clamp(26px, 14px + 3.33vw, 62px);letter-spacing:-.025em}
 main.wrap>section h2.sec em{color:var(--crimson-text)}
 /* kicker: glowing node + gradient tick */
 .kicker::before{width:32px;background:linear-gradient(90deg,var(--crimson),transparent)}
+/* the tick stays at the start and fades toward the text, in either direction */
+html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson),transparent)}
 .kicker{gap:var(--s-2)}
 
 /* 6 — per-project brand accent: each live card echoes its own site's identity
@@ -1162,7 +1166,7 @@ main.wrap>section h2.sec em{color:var(--crimson-text)}
   .capabilities{margin-top:var(--s-6)}
   /* mobile overlay: bring the language + close controls up to a 44px touch target */
   .mobile-menu .lang button{padding:12px 16px;font-size:14px;min-height:44px}
-  .mobile-menu .close{width:44px;height:44px;display:grid;place-items:center;top:14px;right:14px;line-height:1}
+  .mobile-menu .close{width:44px;height:44px;display:grid;place-items:center;top:14px;inset-inline-end:14px;line-height:1}
   .footer nav{gap:var(--s-3) var(--s-5)}
   .footer nav a{padding-inline:6px;display:inline-flex}
   /* the wordmark is a tap target too */
@@ -1202,7 +1206,7 @@ main.wrap>section h2.sec em{color:var(--crimson-text)}
   .hero-grid{gap:var(--s-5)}
   .mobile-menu{gap:var(--s-3);justify-content:safe flex-start}
   .mobile-menu a{font-size:clamp(20px,6.4vh,32px)}
-  .mobile-menu .close{top:10px;right:10px}
+  .mobile-menu .close{top:10px;inset-inline-end:10px}
 }
 
 /* ============================================================
@@ -1353,6 +1357,10 @@ html[dir="rtl"] .est-head h3{font-family:var(--font-ar-display)}
   background:linear-gradient(90deg,var(--teal),var(--hairline-2))}
 .est-field input[type="range"]::-moz-range-track{height:4px;border-radius:2px;
   background:linear-gradient(90deg,var(--teal),var(--hairline-2))}
+/* in Arabic the slider runs right to left: the filled end follows the minimum */
+/* (two rules: a selector list mixing -webkit- and -moz- pseudo-elements is dropped whole) */
+html[dir="rtl"] .est-field input[type="range"]::-webkit-slider-runnable-track{background:linear-gradient(270deg,var(--teal),var(--hairline-2))}
+html[dir="rtl"] .est-field input[type="range"]::-moz-range-track{background:linear-gradient(270deg,var(--teal),var(--hairline-2))}
 .est-field input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
   width:22px;height:22px;border-radius:50%;background:var(--void);border:2px solid var(--teal);
   margin-top:-9px;box-shadow:0 0 12px color-mix(in srgb,var(--teal) 45%,transparent)}
@@ -1847,7 +1855,7 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 .whq-name em{font-style:normal;font-size:9px;color:#ff2bd6}
 .whq-sub{font-size:12px;line-height:1.35;color:#b3add9}
 .whq-start{position:absolute;right:12px;bottom:7px;font-family:"Press Start 2P",monospace;font-size:6px;letter-spacing:1px;color:var(--g2);opacity:0}
-.whq-xp{position:absolute;left:34px;top:4px;font-family:"Press Start 2P",monospace;font-size:7px;color:var(--g);text-shadow:0 0 8px rgba(255,210,63,.8);opacity:0;pointer-events:none}
+.whq-xp{position:absolute;inset-inline-start:34px;top:4px;font-family:"Press Start 2P",monospace;font-size:7px;color:var(--g);text-shadow:0 0 8px rgba(255,210,63,.8);opacity:0;pointer-events:none}
 .whq-cart:hover,.whq-cart:focus-visible{transform:translateY(-3px);border-color:var(--g);box-shadow:0 5px 0 #8a6200,0 0 28px -6px rgba(255,210,63,.75)}
 .whq-cart:focus-visible{outline:2px solid var(--g);outline-offset:4px}
 .whq-cart:hover .whq-bit svg,.whq-cart:focus-visible .whq-bit svg{animation:whq-hop .55s steps(4) 2}
