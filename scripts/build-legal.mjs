@@ -163,7 +163,7 @@ export function renderLegal(data = LEGAL, { preview = false } = {}) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>${esc(UI.fr.title)}</title>
-<meta name="description" content="Éditeur, hébergement, propriété intellectuelle et données personnelles de numidea labs.">
+<meta name="description" content="Éditeur, hébergement, propriété intellectuelle et données personnelles de Numidea Labs.">
 <meta name="theme-color" content="#0A1420">
 ${preview ? '<meta name="robots" content="noindex">\n' : ''}<link rel="canonical" href="${BASE}legal/">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">

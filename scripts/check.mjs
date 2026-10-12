@@ -20,10 +20,12 @@
  */
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, normalize, basename } from 'node:path';
-import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, DEPLOY_SKIP, NOT_DEPLOYED, BASE, LANGS } from './site.mjs';
+import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, DEPLOY_SKIP, NOT_DEPLOYED, BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
 import { SCENE_HTML } from './build-scene.mjs';
 import { renderSitemap } from './build-sitemap.mjs';
 import { applyVoices } from './build-voices.mjs';
+import { renderLegal, markerRegions } from './build-legal.mjs';
+import { LEGAL, missing as legalMissing } from './legal-data.mjs';
 import { validate as validateVoices } from './voices-data.mjs';
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
@@ -249,6 +251,22 @@ const typed = [...ownPrices.replace(/<!--[\s\S]*?-->/g, '').matchAll(/(?:€|\$)
   .map((m) => m[0]).filter((x) => !/^\$\{/.test(x));
 if (typed.length) priceErr.push('hard-coded €/$ amounts in index.html: ' + typed.slice(0, 5).join(' | '));
 priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts');
+// Legal notice + privacy: published only when complete. While legal/ does not
+// exist, nothing may point at it (comments included) and the two link regions
+// in index.html stay empty; once it exists, every owner field must be filled,
+// the page must equal fresh generator output and both links must be in place.
+const legalErr = [];
+if (!LEGAL_PUBLISHED) {
+  for (const f of PAGES) if (/["'(=](?:\.\.\/|\.\/)?legal\//.test(read(f))) legalErr.push(`${f} points at legal/, which is not published`);
+  if (markerRegions(html, false) !== html) legalErr.push('index.html legal link regions must stay empty until legal/ is published');
+} else {
+  const gaps = legalMissing(LEGAL);
+  if (gaps.length) legalErr.push('legal/ exists but scripts/legal-data.mjs still misses ' + gaps.join(', '));
+  else if (read('legal/index.html') !== renderLegal(LEGAL)) legalErr.push('legal/index.html differs from scripts/build-legal.mjs (run: npm run build)');
+  if (markerRegions(html, true) !== html) legalErr.push('index.html lacks the legal and privacy links (run: npm run build)');
+}
+legalErr.length ? bad('legal page: ' + legalErr.join('; '))
+  : ok(LEGAL_PUBLISHED ? 'legal page complete, current and linked' : 'legal page unpublished and nothing points at it');
 // Client voices: valid (consent recorded, delivered clients only) and the
 // index.html region equals what scripts/build-voices.mjs writes from them.
 const voiceErr = validateVoices();
