@@ -1377,9 +1377,13 @@ Every statement on the sheets was read off the live sites on 2026-10-06.
 Glaive is labelled a portfolio demo because its own site says so; it was never
 a client.
 
-`npm run build` runs the page generators in one go: `build-scene`,
-`build-voices`, `build-legal`, `build-sitemap` (the share images are separate,
-`npm run og`). A sheet shows a client quote
+`npm run build` runs the page generators in one go: `build-fr` (writes
+`I18N.fr` into the French baked into `index.html`, its title, description and
+FAQ structured data), `build-scene`, `build-voices`, `build-legal`,
+`build-sitemap` (the share images are separate, `npm run og`). `check.mjs`
+fails when the baked French differs from the dictionary: app.js re-applies it
+on load, so drift shows as copy changing after paint, and readers without
+scripts (and the FAQ rich result) would see an older offer. A sheet shows a client quote
 only when a consented voice exists for it (see "Client voices and photo
 slots").
 
@@ -1406,8 +1410,10 @@ carries its own code), the `utm_*` parameters and whether `fbclid` or `gclid`
 is present, and writes them into the "Source" line of the mailto body.
 WhatsApp links append only the ref code, as `[ref]`, to the pre-filled text.
 It rides in the message the visitor sends themselves and goes nowhere else.
-On this one-page site the query string survives every `#anchor` jump. There
-is one contact address site-wide; `check.mjs` fails if any mailto or JSON-LD
+The query string survives every `#anchor` jump, and links to the site's
+other pages (the project sheets and back) carry `ref`, `utm_*`, `fbclid` and
+`gclid` along, in the URL. A `?cur=` or `?lang=` arrival is kept in local
+storage like a choice made on the page. There is one contact address site-wide; `check.mjs` fails if any mailto or JSON-LD
 email differs.
 
 ## Legal notice and privacy — generated, unpublished until complete

@@ -2,7 +2,7 @@
 
 The site leaves a place for each item below and shows nothing until the real
 thing exists: no placeholders, no invented content. This file is not deployed.
-Status as of 2026-10-12.
+Status as of 2026-10-12 (updated after the review round).
 
 | # | Item | Status | Where it goes |
 |---|---|---|---|
@@ -35,6 +35,12 @@ declaration status (or `false`), the licence for the site's text and images
 review. Preview with the gaps marked: `node scripts/build-legal.mjs --preview`
 → `legal-preview/` (never deployed).
 
+The footer shows only "© 2026 Numidea Labs". It used to add "Tous droits
+réservés", but the repository's LICENSE is CC0 (public domain), and the two
+contradicted each other. Choose with `ip.licence`: `cc0` keeps the LICENSE as
+it is; `reserved` means changing the LICENSE (for example to cover the code
+only) before the footer says "all rights reserved" again.
+
 ## 2. Client quotes (voices)
 Add an entry to `VOICES` in `scripts/voices-data.mjs`, then `npm run build`.
 The quote appears under the work grid and on that client's project sheet, in
@@ -56,6 +62,12 @@ inside `.tm-i` (comment above the team list). **Confirm the claim**: the site
 says "four specialists" (hero, proof stat, "three specialists around him",
 "a four-person studio" in the brand-identity service). If that is no longer
 true, say so and the copy changes in all three languages.
+
+The team card gives first contact and "turning the idea into scope" to S
+(sales and partnerships). FAQ 6 therefore no longer says "the person who
+scopes your project is the one who codes it"; it says one team scopes, codes
+and ships. If the builder is in fact on every scoping call, that stronger
+line can come back.
 
 ## 5. Studio email on its own domain
 Today every contact point uses `hamissemohamedyasser@gmail.com`. Once a domain
@@ -80,6 +92,9 @@ names in Latin script except نوميديا in prose. Points worth a second look
 - the services title (`svc.title`) reads as a question but ends with a period;
 - "Shopify بواجهة مستقلة (headless)";
 - the tag pills;
+- the estimator's counted nouns (`price.*.n` in app.js: one, two, 3–10, 11–99,
+  100+, e.g. «60 منتجاً», «16 أسبوعاً»);
+- the privacy paragraph on ad parameters (`scripts/build-legal.mjs`);
 - the Gulf versus Maghreb word choices in the campaign kit.
 
 Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
