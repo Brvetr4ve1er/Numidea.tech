@@ -227,6 +227,7 @@ if(A[l]&&A[l][x])history.replaceState(null,'','#'+A[l][x]);})();</script>
 </div>
 <script type="application/json" id="i18n">${JSON.stringify(dict).replace(/</g, '\\u003c')}</script>
 <script src="../assets/page-i18n.js?v=${st}" defer></script>
+<script src="../assets/carry.js?v=${st}" defer></script>
 </body>
 </html>
 `;

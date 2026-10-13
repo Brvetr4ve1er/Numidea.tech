@@ -269,6 +269,7 @@ ${sheets}
 
 <script type="application/json" id="i18n">${JSON.stringify(DICT).replace(/</g, '\\u003c')}</script>
 <script src="../assets/page-i18n.js?v=${stamp}" defer></script>
+<script src="../assets/carry.js?v=${stamp}" defer></script>
 <script src="app.js?v=${stamp}" defer></script>
 </body>
 </html>

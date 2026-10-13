@@ -1578,7 +1578,7 @@
        a click id. Nothing is stored or sent anywhere else: it rides in the
        mailto body and the WhatsApp text the visitor sends themselves. The
        query string survives every #anchor jump, and links to the site's
-       other pages carry these parameters along (carryAd, below). */
+       other pages carry these parameters along (assets/carry.js). */
     var leadSource = function () {
       var q; try { q = new URLSearchParams(location.search); } catch (e) { return ''; }
       var clean = function (v) { return (v || '').replace(/[^\w .:\/-]/g, '').slice(0, 40); };
@@ -1614,26 +1614,6 @@
     wireWA();
     document.addEventListener('numidea:lang', wireWA);
 
-    /* Links to the site's other pages (the project sheets and back) carry the
-       ad parameters, so the Source line and the [ref] tag survive the round
-       trip. They stay in the URL, as they arrived; nothing is stored.
-       page-i18n.js does the same on the generated pages. */
-    (function carryAd() {
-      var keep = [];
-      try {
-        new URLSearchParams(location.search).forEach(function (v, k) {
-          if (k === 'ref' || k === 'fbclid' || k === 'gclid' || /^utm_/.test(k)) keep.push([k, v]);
-        });
-      } catch (e) { return; }
-      if (!keep.length) return;
-      document.querySelectorAll('a[href]').forEach(function (a) {
-        var u; try { u = new URL(a.getAttribute('href'), location.href); } catch (e) { return; }
-        if (u.origin !== location.origin || u.pathname === location.pathname) return;
-        if (!/(\/|\.html)$/.test(u.pathname)) return;   // pages only, not files
-        keep.forEach(function (p) { if (!u.searchParams.has(p[0])) u.searchParams.set(p[0], p[1]); });
-        a.href = u.href;
-      });
-    })();
 
     /* ---------------- phone contact bar ----------------
        Phones only (the CSS hides it above 720px). Shown once the visitor is
