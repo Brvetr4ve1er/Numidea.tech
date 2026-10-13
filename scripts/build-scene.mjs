@@ -15,12 +15,16 @@ import { join, dirname, extname, basename } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PROJECTS, UI } from './scene-data.mjs';
 import { VOICES, VOICE_CLIENTS } from './voices-data.mjs';
+import { BASE } from './site.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const stamp = (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
 const LANGS = ['fr', 'en', 'ar'];
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const BASE = 'https://brvetr4ve1er.github.io/Numidea.tech/';
+// The address a sheet's browser bar shows. Our own product is a page of this
+// site: its relative link resolves against the published BASE, never an
+// invented host.
+const shownHost = (url) => new URL(url, BASE + 'scene/').href.replace(/^https?:\/\//, '').replace(/^([^/]+)\/$/, '$1');
 
 /* every translatable string gets a key; the dictionary ships inline */
 const DICT = { fr: {}, en: {}, ar: {} };
@@ -82,12 +86,14 @@ function sheet(p, i) {
   // before/after pairs: a "before" file needs an "after" file of the same name
   const befores = files(p.slug, 'before'), afters = new Set(files(p.slug, 'after'));
   const pairs = befores.filter((f) => afters.has(f));
+  // their alts name the side in the visitor's language, like the page captures
+  const baAlt = (f, j, side, lbl) => put(`${k}.ba${j}${side}`, Object.fromEntries(LANGS.map((l) => [l, `${p.name} — ${caption(f)} (${UI[l][lbl]})`])));
   const ba = pairs.length ? `
       <section class="sh-block" aria-labelledby="ba-${p.slug} h-${p.slug}">
         <h3 class="sh-h" id="ba-${p.slug}" ${T('ui.before')}>${esc(ui('before'))}</h3>
-        ${pairs.map((f) => `<figure class="ba">
-          <div><span class="ba-tag" ${T('ui.beforeL')}>${esc(ui('beforeL'))}</span><a class="zoom frame" href="../assets/work/${p.slug}/before/${f}"><img src="../assets/work/${p.slug}/before/${f}" alt="${esc(p.name)} — ${esc(caption(f))} (${esc(UI.fr.beforeL)})" loading="lazy" decoding="async"></a></div>
-          <div><span class="ba-tag is-after" ${T('ui.afterL')}>${esc(ui('afterL'))}</span><a class="zoom frame" href="../assets/work/${p.slug}/after/${f}"><img src="../assets/work/${p.slug}/after/${f}" alt="${esc(p.name)} — ${esc(caption(f))} (${esc(UI.fr.afterL)})" loading="lazy" decoding="async"></a></div>
+        ${pairs.map((f, j) => `<figure class="ba">
+          <div><span class="ba-tag" ${T('ui.beforeL')}>${esc(ui('beforeL'))}</span><a class="zoom frame" href="../assets/work/${p.slug}/before/${f}"><img src="../assets/work/${p.slug}/before/${f}" ${T(`${k}.ba${j}b`, '-alt')} alt="${esc(baAlt(f, j, 'b', 'beforeL'))}" loading="lazy" decoding="async"></a></div>
+          <div><span class="ba-tag is-after" ${T('ui.afterL')}>${esc(ui('afterL'))}</span><a class="zoom frame" href="../assets/work/${p.slug}/after/${f}"><img src="../assets/work/${p.slug}/after/${f}" ${T(`${k}.ba${j}a`, '-alt')} alt="${esc(baAlt(f, j, 'a', 'afterL'))}" loading="lazy" decoding="async"></a></div>
           <figcaption>${esc(caption(f))}</figcaption>
         </figure>`).join('\n        ')}
       </section>` : '';
@@ -136,9 +142,9 @@ function sheet(p, i) {
           </ul>
         </div>
         <figure class="sh-main">
-          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(p.url.replace(/^https?:\/\//, '').replace(/^\.\.\//, 'numidea.labs/'))}${esc(main.path === '/' ? '' : main.path)}</span></div>
+          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(shownHost(p.url))}${esc(main.path === '/' ? '' : main.path)}</span></div>
           ${shot(p.slug, main.file, mainAlt, 'frame', 1440, 900, i === 0).replace('alt=', `${T(`${k}.pga0`, '-alt')} alt=`)}
-          <figcaption class="dims" aria-hidden="true"><span class="dim-w">1440 px</span><span class="dim-h">900</span></figcaption>
+          <figcaption class="dims" aria-hidden="true"><span class="dim-w">1440&nbsp;px</span><span class="dim-h">900</span></figcaption>
         </figure>
       </div>
 
@@ -210,15 +216,21 @@ const html = `<!DOCTYPE html>
      'numidea-lang' key, validated. The text is baked in French; for EN/AR
      paint is held until ../assets/page-i18n.js has applied the dictionary,
      so nobody sees the French sheets first. The canonical is set here too:
-     each ?lang= version names itself, and the served HTML names no other. -->
+     each ?lang= version names itself, and the served HTML names no other;
+     og:url and og:locale follow it, as on the home page. ?lang= is read
+     case-insensitively (?lang=AR is Arabic). If the hold is released before
+     the dictionary was applied (slow network: the 1.5 s backstop), the baked
+     French is shown left to right; lang keeps the chosen language, so
+     page-i18n.js still applies it when it arrives. -->
 <script>(function(){var d=document.documentElement,L=['fr','en','ar'],l='fr',q=null;
-try{q=new URLSearchParams(location.search).get('lang');}catch(e){}
+try{q=(new URLSearchParams(location.search).get('lang')||'').toLowerCase()||null;}catch(e){}
 try{l=localStorage.getItem('numidea-lang')||l;}catch(e){}
 if(q&&L.indexOf(q)!==-1)l=q;if(L.indexOf(l)===-1)l='fr';
 d.lang=l;d.dir=l==='ar'?'rtl':'ltr';
 var h='${BASE}scene/',c=document.createElement('link');c.rel='canonical';c.href=q===l&&l!=='fr'?h+'?lang='+l:h;document.head.appendChild(c);
+if(c.href!==h){var m=function(p,v){var e=document.querySelector('meta[property="og:'+p+'"]');if(e)e.setAttribute('content',v);};m('url',c.href);m('locale',l==='ar'?'ar_DZ':'en_US');}
 if(l==='ar')document.write('<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/ibm-plex-sans-arabic-700-arabic.woff2">');
-if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){d.removeAttribute('data-i18n-pending');};document.addEventListener('DOMContentLoaded',r);setTimeout(r,1500);}})();</script>
+if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.dir='ltr';}};document.addEventListener('DOMContentLoaded',r);setTimeout(r,1500);}})();</script>
 <style>html[data-i18n-pending] body{display:none}</style>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cinzel-700-latin.woff2">
@@ -237,9 +249,9 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){d.removeAtt
     <li aria-current="page"><span ${T('ui.crumb')}>${esc(ui('crumb'))}</span></li>
   </ol></nav>
   <div class="lang" role="group" aria-label="${esc(ui('langs'))}" ${T('ui.langs', '-aria')}>
-    <button type="button" data-lang="fr" aria-pressed="true">FR</button>
-    <button type="button" data-lang="en" aria-pressed="false">EN</button>
-    <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+    <button type="button" data-lang="fr" aria-pressed="true" lang="fr" aria-label="Français (FR)">FR</button>
+    <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English (EN)">EN</button>
+    <button type="button" data-lang="ar" aria-pressed="false" lang="ar" aria-label="العربية (ع)">ع</button>
   </div>
 </header>
 

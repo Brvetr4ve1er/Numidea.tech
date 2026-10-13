@@ -15,9 +15,23 @@
   --mono:'Geist Mono','Geist Mono Fallback',ui-monospace,monospace;
   --ar:'IBM Plex Sans Arabic','IBM Plex Sans Arabic Fallback',system-ui,sans-serif;
   --r:10px; --gut:clamp(16px,4vw,48px); --max:1240px;
+  /* the sticky .hud: 14px padding ×2, the 38px language group, 1px rule */
+  --hud-h:67px;
 }
+/* Arabic never goes through the Latin faces (as on the main site). Geist and
+   Geist Mono have no Arabic glyphs, so everything set in var(--body) or
+   var(--mono) (skip link, visit and contact buttons, phone captions, the
+   back link, the ع button) fell back to a system face. In Arabic the body
+   stack is the Arabic one, and Plex Arabic follows Geist Mono so Latin and
+   digits keep the mono face. A client voice given in Arabic gets the same on
+   a French or English page. */
+html[dir="rtl"],.voice[lang="ar"]{
+  --body:var(--ar);
+  --mono:'Geist Mono','IBM Plex Sans Arabic','IBM Plex Sans Arabic Fallback','Geist Mono Fallback',ui-monospace,monospace}
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+/* anchor jumps and focus scrolling stop below the sticky header, so Shift+Tab
+   never parks a focused link under it */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--hud-h) + 16px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
@@ -27,15 +41,15 @@ body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--b
     linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),
     linear-gradient(rgba(150,196,230,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(150,196,230,.08) 1px,transparent 1px);
   background-size:24px 24px,24px 24px,120px 120px,120px 120px;background-attachment:fixed}
-html[dir="rtl"] body{font-family:var(--ar)}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 h1,h2,h3,h4,p,ol,ul,dl,dd,figure{margin:0}
 ol,ul{padding:0;list-style:none}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 /* parked above the page, not at left:-9999px: in RTL that offset lies in the
-   scrollable direction and made the page 11 000px wide (and blank) */
-.skip{position:absolute;top:0;inset-inline-start:8px;z-index:20;background:var(--gold);color:#0A1420;padding:8px 14px;border-radius:0 0 6px 6px;
+   scrollable direction and made the page 11 000px wide (and blank). It shows
+   8px down so the focus ring around it stays inside the viewport. */
+.skip{position:absolute;top:8px;inset-inline-start:8px;z-index:20;background:var(--gold);color:#0A1420;padding:8px 14px;border-radius:6px;
   font:600 14px var(--body);transform:translateY(-200%);white-space:nowrap}
 .skip:focus{transform:none}
 
@@ -43,16 +57,23 @@ ol,ul{padding:0;list-style:none}
 .hud{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;
   padding:14px var(--gut);background:color-mix(in srgb,var(--paper) 88%,transparent);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bc{min-width:0}
 .bc ol{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .bc li{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .bc li+li::before{content:"/";color:var(--faint)}
 .hud-logo{font:700 14px/1 var(--display);letter-spacing:.12em;text-decoration:none;color:var(--ink)}
 .hud-logo .d{color:var(--gold)}
-.lang{display:flex;border:1px solid var(--line-2);border-radius:8px;overflow:hidden}
+/* flex:none: as a flex item with overflow:hidden it could shrink to nothing,
+   and at 320-360px it clipped the ع button off */
+.lang{display:flex;flex:none;border:1px solid var(--line-2);border-radius:8px;overflow:hidden}
 .lang button{min-width:40px;min-height:36px;background:transparent;border:0;color:var(--muted);font:500 12px var(--mono);cursor:pointer}
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .lang button:hover{color:var(--ink)}
 .lang button[aria-pressed="true"]:hover{color:var(--paper)}
+/* .lang clips its overflow, so an outside ring would be cut to stray bars:
+   the ring is drawn inside, in the paper colour on the pressed (light) button */
+.lang button:focus-visible{outline-offset:-3px}
+.lang button[aria-pressed="true"]:focus-visible{outline-color:var(--paper)}
 
 main{max-width:calc(var(--max) + 2 * var(--gut));margin:0 auto;padding:0 var(--gut)}
 main:focus{outline:none}
@@ -74,7 +95,7 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 
 /* ---- a sheet ---- */
 .sheet{position:relative;margin:0 0 clamp(56px,7vw,96px);padding:clamp(20px,3vw,40px);
-  border:1px solid var(--line-2);border-radius:4px;background:color-mix(in srgb,var(--paper-2) 82%,transparent);scroll-margin-top:80px}
+  border:1px solid var(--line-2);border-radius:4px;background:color-mix(in srgb,var(--paper-2) 82%,transparent)}
 /* registration ticks at the corners, like a plotted sheet */
 .tick{position:absolute;width:14px;height:14px;border-color:var(--gold);border-style:solid;border-width:0}
 .tick.tl{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px}
@@ -94,7 +115,10 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
   border-radius:8px;border:1px solid var(--line-2);text-decoration:none;font:500 14px var(--body);transition:border-color .2s,background-color .2s}
 .visit:hover{border-color:var(--gold);background:var(--panel)}
 
-.sh-body{display:grid;gap:clamp(20px,3vw,40px)}
+/* every grid gets an explicit minmax(0,1fr) column: an implicit (auto)
+   column grew to the nowrap browser-bar URL and pushed the sheet 17-57px past
+   the viewport at 320-376px */
+.sh-body{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(20px,3vw,40px)}
 @media (min-width:1000px){.sh-body{grid-template-columns:minmax(0,4fr) minmax(0,8fr);align-items:start}}
 .sh-sum{font-size:17px;line-height:1.6;color:var(--ink)}
 .tblock{margin:24px 0;border:1px solid var(--line-2);border-radius:6px}
@@ -127,17 +151,19 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .dim-h{display:none}
 
 .sh-block{margin-top:clamp(28px,3.6vw,48px)}
-.pages{display:grid;gap:clamp(12px,1.6vw,20px)}
+.pages{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(12px,1.6vw,20px)}
 @media (min-width:700px){.pages{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .pg .frame{border-radius:6px}
 .pg figcaption{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;margin-top:10px}
 .pg b{font-weight:600;font-size:15px}
 .pg code,.ph figcaption,.faces,.swatches code{font:400 12px var(--mono);color:var(--muted)}
 
-.sh-pair{display:grid;gap:0 clamp(20px,3vw,40px)}
+.sh-pair{display:grid;grid-template-columns:minmax(0,1fr);gap:0 clamp(20px,3vw,40px)}
 @media (min-width:1000px){.sh-pair{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
 .phones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2vw,24px);max-width:440px}
-.phone{border-radius:20px;border-width:6px;border-color:var(--panel);outline:1px solid var(--line-2)}
+/* the bezel's hairline is a shadow, not an outline: an outline here has the
+   same specificity as :focus-visible and came later, so it replaced the ring */
+.phone{border-radius:20px;border-width:6px;border-color:var(--panel);box-shadow:0 0 0 1px var(--line-2)}
 .ph figcaption{margin-top:10px;text-align:center}
 
 .system{display:grid;gap:24px;padding:clamp(16px,2vw,24px);border:1px solid var(--line-2);border-radius:var(--r);background:var(--paper)}
@@ -150,7 +176,7 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .faces li{padding:8px 12px;border:1px solid var(--line-2);border-radius:6px;font-size:14px;color:var(--ink)}
 
 /* optional client material */
-.ba{display:grid;gap:12px;margin-bottom:24px}
+.ba{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-bottom:24px}
 @media (min-width:700px){.ba{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ba>div{position:relative}
 .ba-tag{position:absolute;top:10px;inset-inline-start:10px;z-index:1;font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;
@@ -187,6 +213,16 @@ html[dir="rtl"] .outro p{font-family:var(--ar)}
   .tblock div{grid-template-columns:minmax(0,1fr);gap:2px}
 }
 @media print{.hud,.viewer,.skip{display:none}body{background:#fff;color:#000}}
+/* Forced colours (Windows contrast themes) replace backgrounds with Canvas:
+   the pressed language would look like the others, the contact button would
+   lose its shape and the palette swatches (content, not decoration) their
+   colour. */
+@media (forced-colors:active){
+  .lang button[aria-pressed="true"],.lang button[aria-pressed="true"]:hover{forced-color-adjust:none;background:Highlight;color:HighlightText}
+  .lang button[aria-pressed="true"]:focus-visible{outline-color:HighlightText}
+  .cta,.skip{border:1px solid ButtonText}
+  .swatches i{forced-color-adjust:none}
+}
 
 /* ---- Arabic ----
    The mono labels are tracked out (.12–.18em); letter-spacing pulls Arabic
@@ -201,6 +237,8 @@ html[dir="rtl"] .sh-h,html[dir="rtl"] .kicker{font-size:13px;font-weight:600}
 .voice{margin:0 0 16px;padding:20px 22px;border:1px solid var(--line-2);background:var(--panel);max-width:720px}
 .voice blockquote{margin:0;font-size:17px;line-height:1.6;color:var(--ink)}
 .voice figcaption{margin-top:12px;font:500 12px/1.4 var(--mono);letter-spacing:.06em;color:var(--muted)}
+.voice[lang="ar"]{font-family:var(--ar)}
+html[dir="rtl"] .voice figcaption,.voice[lang="ar"] figcaption{letter-spacing:0}
 .voice figcaption b{color:var(--ink)}
 /* forward arrows point the reading way: mirrored in Arabic */
 html[dir="rtl"] .visit .arr{display:inline-block;transform:scaleX(-1)}

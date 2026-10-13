@@ -45,8 +45,8 @@ export const PROJECTS = [
       fr: {
         sector: 'Construction métallique · B2B · Algérie',
         scope: 'Site corporate B2B',
-        summary: "La présence en ligne d'un fabricant de charpente métallique et de panneaux sandwich : un catalogue par métier, des références chiffrées, un media center et un espace recrutement.",
-        deliverables: ['Site corporate, 12 pages', 'Catalogue produits : 4 fiches métier', 'Références et chiffres clés', 'Media center (blog)', 'Contact et recrutement', 'Pages légales'],
+        summary: "La présence en ligne d'un fabricant de charpente métallique et de panneaux sandwich\u202f: un catalogue par métier, des références chiffrées, un media center et un espace recrutement.",
+        deliverables: ['Site corporate, 12 pages', 'Catalogue produits\u202f: 4 fiches métier', 'Références et chiffres clés', 'Media center (blog)', 'Contact et recrutement', 'Pages légales'],
       },
       en: {
         sector: 'Structural steel · B2B · Algeria',
@@ -91,7 +91,7 @@ export const PROJECTS = [
       fr: {
         sector: 'Agence de voyage · Bordj Bou Arréridj',
         scope: 'Identité, site et parcours de réservation',
-        summary: "Une agence de voyages organisés : chaque destination a sa page, son prix « à partir de » et un calculateur qui envoie le devis sur WhatsApp. Trilingue, arabe en RTL, en mode clair et sombre.",
+        summary: "Une agence de voyages organisés\u202f: chaque destination a sa page, son prix «\u202fà partir de\u202f» et un calculateur qui envoie le devis sur WhatsApp. Trilingue, arabe en RTL, en mode clair et sombre.",
         deliverables: ['Identité de marque', 'Site trilingue FR · EN · AR, arabe en RTL', '7 pages destination', 'Calculateur de devis vers WhatsApp', 'Service de rendez-vous visa', 'Mode clair et mode sombre'],
       },
       en: {
@@ -118,7 +118,7 @@ export const PROJECTS = [
       { file: 'd1', path: '/', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
       { file: 'd2', path: '/shop.html', label: { fr: 'Boutique', en: 'Shop', ar: 'المتجر' } },
       { file: 'd3', path: '/product.html', label: { fr: 'Fiche produit', en: 'Product page', ar: 'صفحة منتج' } },
-      { file: 'd4', path: '/quiz.html', label: { fr: 'Quiz « Find your gear »', en: '"Find your gear" quiz', ar: 'اختبار «Find your gear»' } },
+      { file: 'd4', path: '/quiz.html', label: { fr: 'Quiz «\u202fFind your gear\u202f»', en: '"Find your gear" quiz', ar: 'اختبار «Find your gear»' } },
     ],
     phones: [
       { file: 'm1', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
@@ -138,7 +138,7 @@ export const PROJECTS = [
       fr: {
         sector: 'E-commerce · Matériel gaming',
         scope: 'Marque fictive et boutique complète',
-        summary: "Une démo de portfolio, annoncée comme telle sur le site : une marque de matériel gaming inventée de A à Z, avec boutique filtrable, fiches produit et un quiz qui recommande le bon équipement.",
+        summary: "Une démo de portfolio, annoncée comme telle sur le site\u202f: une marque de matériel gaming inventée de A à Z, avec boutique filtrable, fiches produit et un quiz qui recommande le bon équipement.",
         deliverables: ['Identité de marque fictive', 'Boutique filtrable par catégorie', 'Fiches produit', 'Quiz de recommandation', 'Page logiciel', 'Liste de favoris'],
       },
       en: {
@@ -182,22 +182,22 @@ export const PROJECTS = [
     type: ['Press Start 2P', 'VT323'],
     t: {
       fr: {
-        sector: 'Outil développeur · Open source',
+        sector: 'Outil développeur',
         scope: 'Produit, site de lancement et personnage',
-        summary: "Notre propre produit : une console qui scanne chaque dépôt de la machine et transforme l'hygiène git en quêtes. Livré avec son site de lancement, une démo jouable et Bit, son compagnon en pixel art.",
-        deliverables: ['Console CLI, open source sur GitHub', 'Site de lancement', 'Vidéo et démonstration guidée', 'Démo interactive dans le navigateur', 'Personnage Bit en pixel art'],
+        summary: "Notre propre produit\u202f: une console qui scanne chaque dépôt de la machine et transforme l'hygiène git en quêtes. Livré avec son site de lancement, une démo jouable et Bit, son compagnon en pixel art.",
+        deliverables: ['Console de bureau (Electron), code public sur GitHub', 'Site de lancement', 'Vidéo et démonstration guidée', 'Démo interactive dans le navigateur', 'Personnage Bit en pixel art'],
       },
       en: {
-        sector: 'Developer tool · Open source',
+        sector: 'Developer tool',
         scope: 'Product, launch site and character',
         summary: 'Our own product: a console that scans every repo on the machine and turns git hygiene into quests. Shipped with its launch site, a playable demo and Bit, its pixel-art sidekick.',
-        deliverables: ['CLI console, open source on GitHub', 'Launch site', 'Reel and guided walkthrough', 'Interactive in-browser demo', 'Bit, a pixel-art character'],
+        deliverables: ['Desktop console (Electron), code public on GitHub', 'Launch site', 'Reel and guided walkthrough', 'Interactive in-browser demo', 'Bit, a pixel-art character'],
       },
       ar: {
-        sector: 'أداة للمطوّرين · مفتوحة المصدر',
+        sector: 'أداة للمطوّرين',
         scope: 'المنتج وموقع الإطلاق والشخصية',
         summary: 'منتجنا الخاص: وحدة تحكّم تفحص كل مستودع على الجهاز وتحوّل نظافة git إلى مهام. يأتي مع موقع إطلاقه وعرض تفاعلي وBit، رفيقه بفنّ البكسل.',
-        deliverables: ['وحدة تحكّم CLI مفتوحة المصدر على GitHub', 'موقع الإطلاق', 'فيديو وجولة إرشادية', 'عرض تفاعلي في المتصفّح', 'شخصية Bit بفنّ البكسل'],
+        deliverables: ['وحدة تحكّم لسطح المكتب (Electron)، شيفرتها منشورة على GitHub', 'موقع الإطلاق', 'فيديو وجولة إرشادية', 'عرض تفاعلي في المتصفّح', 'شخصية Bit بفنّ البكسل'],
       },
     },
   },
@@ -230,7 +230,7 @@ export const PROJECTS = [
       fr: {
         sector: 'Climatisation, chauffage, plomberie · Île-de-France',
         scope: 'Site vitrine et demande de devis',
-        summary: "Un artisan de Gennevilliers qui installe et dépanne climatisation, chauffage et plomberie : une page par métier, une galerie de chantiers filtrable et un devis en un formulaire, pensés pour les recherches locales.",
+        summary: "Un artisan de Gennevilliers qui installe et dépanne climatisation, chauffage et plomberie\u202f: une page par métier, une galerie de chantiers filtrable et un devis en un formulaire, pensés pour les recherches locales.",
         deliverables: ['Site vitrine, 7 pages', '3 pages métier', 'Galerie de réalisations filtrable', 'Formulaire de devis', 'SEO local par ville desservie', 'Mentions légales'],
       },
       en: {
@@ -253,10 +253,10 @@ export const PROJECTS = [
 export const UI = {
   fr: {
     dir: 'ltr', title: 'Planches — le travail, livrable par livrable · Numidea Labs',
-    desc: "Chaque projet de Numidea Labs posé comme une planche : les pages livrées, le mobile, le système visuel, et le site en vrai.",
+    desc: "Chaque projet de Numidea Labs posé comme une planche\u202f: les pages livrées, le mobile, le système visuel, et le site en vrai.",
     crumb: 'Planches', crumbNav: "Fil d'Ariane", langs: 'Langue', kicker: 'Planches de projet',
     h1: 'Le travail, <em>livrable par livrable.</em>',
-    lead: "Chaque planche montre ce qui a été livré, tel qu'il est en ligne aujourd'hui : les pages, le mobile, le système visuel. Les captures viennent des sites eux-mêmes.",
+    lead: "Chaque planche montre ce qui a été livré, tel qu'il est en ligne aujourd'hui\u202f: les pages, le mobile, le système visuel. Les captures viennent des sites eux-mêmes.",
     index: 'Sommaire des planches', sheet: 'Pl.', visit: 'Voir le site', open: 'Ouvrir',
     sector: 'Secteur', scope: 'Périmètre', pagesL: 'Pages', langsL: 'Langues', statusL: 'Statut',
     deliverables: 'Livrables', pages: 'Pages livrées', mobile: 'Sur mobile', system: 'Système visuel',
@@ -264,7 +264,7 @@ export const UI = {
     status: { live: 'En ligne', concept: 'Démo de portfolio', product: 'Produit maison' },
     role: { accent: 'Accent', ink: 'Texte', muted: 'Secondaire', surface: 'Surface', ground: 'Fond', highlight: 'Relief', night: 'Mode sombre', cta: 'Action' },
     viewer: 'Capture agrandie', close: 'Fermer',
-    captured: 'Captures du site en ligne', back: '← Retour à Numidea Labs', contact: 'Un projet à poser sur la table ?', contactCta: 'Parlons-en →',
+    captured: 'Captures du site en ligne', back: '← Retour à Numidea Labs', contact: 'Un projet à poser sur la table\u202f?', contactCta: 'Parlons-en →',
   },
   en: {
     dir: 'ltr', title: 'Sheets — the work, deliverable by deliverable · Numidea Labs',
