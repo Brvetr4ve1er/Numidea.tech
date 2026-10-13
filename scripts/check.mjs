@@ -13,10 +13,13 @@
  *                        generators' output, and every page with an inline
  *                        dictionary resolves its keys in fr/en/ar
  *   6. deploy coverage — the published set (scripts/site.mjs DEPLOY) exists, every
- *                        page folder is classified, and deployed pages link only to
- *                        deployed files (nothing points into knowledge-base/, scripts/…)
- *   8. anchors + claims — every #fragment link lands on an id in its target page, and
- *                        copy the owner retired as unsupported does not come back
+ *                        page folder is classified, deployed pages link only to
+ *                        deployed files (nothing points into knowledge-base/, scripts/…),
+ *                        and every page names one canonical, from its markup or its
+ *                        head script but never both
+ *   8. anchors + claims — every #fragment link lands on an id in its target page,
+ *                        copy the owner retired as unsupported does not come back, and
+ *                        French copy keeps its no-break spaces before ? ! ; : » etc.
  *
  * Exits non-zero on any failure. No dependencies.
  */
@@ -30,7 +33,8 @@ import { renderLegal, markerRegions } from './build-legal.mjs';
 import { LEGAL, missing as legalMissing } from './legal-data.mjs';
 import { validate as validateVoices } from './voices-data.mjs';
 import { bakeFr } from './build-fr.mjs';
-import { loadDicts } from './lib/i18n.mjs';
+import { loadDicts, norm } from './lib/i18n.mjs';
+import { UI as SCENE_UI, PROJECTS as SCENE_PROJECTS } from './scene-data.mjs';
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 let fail = 0;
@@ -182,6 +186,30 @@ for (const f of PAGES) {
 }
 if (read('sitemap.xml') !== renderSitemap()) problems.push('sitemap.xml is stale (run: npm run build)');
 problems.length ? problems.forEach(bad) : ok(`deploy set covers every page and link (${DEPLOY.length} entries); sitemap current`);
+// One canonical per page, from one place. index.html, scene/ and legal/ set
+// theirs in the head script, because each language version names itself
+// (?lang=en is its own URL); a static <link rel="canonical"> back in their
+// markup would give them two, the static one naming the French page on every
+// language view, and search engines then fold the versions together. hub/
+// and workspacehq/ carry a static one naming themselves; 404.html has none.
+const canonErr = [];
+let canonStatic = 0, canonScripted = 0;
+for (const f of PAGES) {
+  const src = read(f).replace(/<!--[\s\S]*?-->/g, '');
+  const inline = [...src.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)].map((m) => m[1]).join('\n');
+  const scripted = /\.rel\s*=\s*(['"])canonical\1|setAttribute\(\s*(['"])rel\2\s*,\s*(['"])canonical\3/.test(inline) ? 1 : 0;
+  const links = src.replace(/<script\b[\s\S]*?<\/script>/gi, '').match(/<link\b[^>]*\brel\s*=\s*["']?[^"'>]*\bcanonical\b[^>]*>/gi) || [];
+  const want = f === '404.html' ? 0 : 1, self = BASE + (dirname(f) === '.' ? '' : dirname(f) + '/');
+  if (scripted && links.length) canonErr.push(`${f} has a static canonical and sets one in its head script (remove the <link>)`);
+  else if (links.length + scripted !== want) canonErr.push(`${f} names ${links.length + scripted} canonical URLs (want ${want})`);
+  for (const l of links) {
+    const href = (/\bhref\s*=\s*["']?([^"'\s>]+)/.exec(l) || [])[1];
+    if (href !== self) canonErr.push(`${f}: static canonical ${href} is not the page's own URL ${self}`);
+  }
+  canonStatic += links.length; canonScripted += scripted;
+}
+canonErr.length ? bad('canonical: ' + canonErr.join('; '))
+  : ok(`one canonical per page (${canonStatic} static, ${canonScripted} set by the head script, none on 404.html)`);
 
 /* 7 — generated pages */
 read('scene/index.html') === SCENE_HTML
@@ -225,13 +253,27 @@ for (const f of PAGES) {
 // The form note promises the site keeps nothing. Turning the Supabase lead
 // store on breaks that promise: it needs the published legal page, the store's
 // region in scripts/legal-data.mjs, and new form.note copy in every language
-// and in the French baked into index.html. "On" is anything but an empty
-// string literal, in any quote style (app.js only tests truthiness).
-const cfgOn = (name) => {
-  const m = new RegExp(`${name}\\s*=\\s*([^;\\n]+)`).exec(html.replace(/<!--[\s\S]*?-->/g, ''));
-  return !!m && !/^(["'`])\1$/.test(m[1].trim());
-};
-if (cfgOn('NUMIDEA_SUPABASE_URL') || cfgOn('NUMIDEA_SUPABASE_KEY')) {
+// and in the French baked into index.html. app.js only tests truthiness, so
+// "on" is any assignment whose value is truthy: a non-empty string literal in
+// any quote style, or any other expression except null, undefined, false, 0,
+// NaN and void 0. A trailing // comment is not part of the value, and lines
+// commented out (// or /* */ at the start of a line) assign nothing. Every
+// assignment counts; when in doubt the store reads as on.
+function cfgOn(src, name) {
+  src = src.replace(/<!--[\s\S]*?-->/g, '').replace(/^[ \t]*\/\*[\s\S]*?\*\//gm, '').replace(/^[ \t]*\/\/.*$/gm, '');
+  // the rest of the statement, comments dropped
+  const upTo = (s) => s.split(/[;,\n]/)[0].replace(/\/\*.*?\*\/|\/\/.*$/g, '').trim();
+  for (const m of src.matchAll(new RegExp(`\\b${name}\\s*=(?!=)\\s*`, 'g'))) {
+    const rest = src.slice(m.index + m[0].length);
+    const str = /^(["'`])((?:\\[\s\S]|(?!\1)[^\\])*)\1/.exec(rest);
+    if (str) {
+      // "" on its own is off; "" + something is an expression: on
+      if (str[2] !== '' || !/^[)}]?$/.test(upTo(rest.slice(str[0].length)))) return true;
+    } else if (!/^(?:null|undefined|false|0|NaN|void 0)$/.test(upTo(rest))) return true;
+  }
+  return false;
+}
+if (cfgOn(html, 'NUMIDEA_SUPABASE_URL') || cfgOn(html, 'NUMIDEA_SUPABASE_KEY')) {
   const KEEPS_NOTHING = /ne conserve pas|does not keep|keeps nothing|لا يحتفظ|لا يحفظ/;
   const notes = ['fr', 'en', 'ar'].map((l) => DICT[l]['form.note'] || '');
   notes.push((/data-i18n="form\.note">([^<]*)</.exec(html) || [])[1] || '');
@@ -304,6 +346,33 @@ for (const f of [...PAGES, 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/b
   if (hits) indic.push(`${f} (${hits})`);
 }
 indic.length ? bad('Arabic-Indic digits (use 0-9): ' + indic.join(', ')) : ok('Arabic uses Western digits everywhere');
+// French typography: no breakable space before ? ! ; : » or after «, nor
+// between a number and % or h (U+202F narrow no-break space, or U+00A0, holds
+// them together). Otherwise the browser may break the line there and strand
+// the mark or the unit on its own. Every French string the pages show:
+// I18N.fr (EXTRA merged), scene-data UI.fr and each project's French.
+const frStrings = [];
+const collect = (v, at) => {
+  if (typeof v === 'string') frStrings.push([at, v]);
+  else if (Array.isArray(v)) v.forEach((x, i) => collect(x, `${at}[${i}]`));
+  else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) collect(x, `${at}.${k}`);
+};
+const collectFr = (v, at) => {                 // only what sits under a `fr` key
+  if (Array.isArray(v)) v.forEach((x, i) => collectFr(x, `${at}[${i}]`));
+  else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) (k === 'fr' ? collect : collectFr)(x, `${at}.${k}`);
+};
+collect(DICT.fr, 'I18N.fr');
+collect(SCENE_UI.fr, 'scene UI.fr');
+SCENE_PROJECTS.forEach((p) => collectFr(p, `scene ${p.slug}`));
+const FR_SPACE = /[ \t\r\n](?=[?!;:»])|«[ \t\r\n]|\d[ \t\r\n](?=(?:%|h)(?!\p{L}))/gu;
+const frTypo = [];
+for (const [at, s] of frStrings) {
+  const t = norm(s.replace(/<[^>]*>/g, ''));   // as rendered: tags out, entities decoded
+  const hits = [...t.matchAll(FR_SPACE)].map((m) => `"…${t.slice(Math.max(0, m.index - 12), m.index + 4)}…"`);
+  if (hits.length) frTypo.push(`${at} ${hits.join(' ')}`);
+}
+frTypo.length ? bad(`French typography (U+202F before ? ! ; : », after «, and between a number and % or h; ${frTypo.length} strings): ` + frTypo.join(', '))
+  : ok(`French typography holds in ${frStrings.length} strings (no breakable space before ? ! ; : », after «, or before % and h)`);
 // One contact address everywhere: every mailto on every page, the form's
 // mailto in app.js and the structured-data email are the same string.
 const mails = new Map();
@@ -315,8 +384,9 @@ for (const f of [...PAGES, 'assets/app.js']) {
 mails.size === 1 ? ok(`one contact address across the site (${[...mails.keys()][0]})`)
   : bad('contact addresses differ: ' + [...mails].map(([a, fs]) => `${a} in ${[...new Set(fs)].join(', ')}`).join(' | '));
 // structured data parses, and states the same phone and email as the page
+// (every ld+json block, whatever other attributes it carries: id="ld-faq"…)
 const ldErr = [];
-for (const f of PAGES) for (const m of read(f).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+for (const f of PAGES) for (const m of read(f).replace(/<!--[\s\S]*?-->/g, '').matchAll(/<script\b[^>]*\btype=["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/gi)) {
   let d; try { d = JSON.parse(m[1]); } catch (e) { ldErr.push(`${f}: JSON-LD does not parse`); continue; }
   const wa = (/NUMIDEA_WA = '(\d+)'/.exec(read(f)) || [])[1];
   if (d.telephone && wa && d.telephone.replace(/\D/g, '') !== wa) ldErr.push(`${f}: JSON-LD telephone ${d.telephone} ≠ NUMIDEA_WA ${wa}`);

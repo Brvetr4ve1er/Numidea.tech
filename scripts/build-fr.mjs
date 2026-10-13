@@ -24,6 +24,11 @@ import { loadDicts, i18nNodes, toMarkup, faqLd } from './lib/i18n.mjs';
 const ATTR = { ph: 'placeholder', aria: 'aria-label', alt: 'alt' };
 const attrEsc = (s) => toMarkup(s).replace(/"/g, '&quot;');
 const LD = /(<script type="application\/ld\+json" id="ld-faq">)[\s\S]*?(<\/script>)/;
+/* Put `text` between the two groups `re` captures, literally. A string
+   replacement would expand $&, $', $` and $1 found in the copy (a price in
+   "US$1 000", say) into pieces of the page; a replacer function inserts the
+   text as it is. */
+const between = (s, re, text) => s.replace(re, (_, open, close) => open + text + close);
 
 export function ldText(dict) {
   const o = faqLd(dict);
@@ -43,13 +48,13 @@ export function bakeFr(html, fr = loadDicts().fr) {
     html = html.replace(new RegExp(`<[^>]*\\sdata-i18n-${suffix}="([^"]+)"[^>]*>`, 'g'), (tag, key) => {
       if (fr[key] == null) { missing.push(key); return tag; }
       const re = new RegExp(`(\\s${attr}=")[^"]*(")`);
-      return re.test(tag) ? tag.replace(re, `$1${attrEsc(fr[key])}$2`) : tag;
+      return re.test(tag) ? between(tag, re, attrEsc(fr[key])) : tag;
     });
   }
-  html = html.replace(/(<title>)[^<]*(<\/title>)/, `$1${toMarkup(fr.title)}$2`);
-  html = html.replace(/(<meta name="description" content=")[^"]*(")/, `$1${attrEsc(fr['meta.desc'])}$2`);
+  html = between(html, /(<title>)[^<]*(<\/title>)/, toMarkup(fr.title));
+  html = between(html, /(<meta name="description" content=")[^"]*(")/, attrEsc(fr['meta.desc']));
   if (!LD.test(html)) throw new Error('index.html has no <script type="application/ld+json" id="ld-faq">');
-  html = html.replace(LD, `$1${ldText(fr)}$2`);
+  html = between(html, LD, ldText(fr));
   if (missing.length) throw new Error('keys missing from I18N.fr: ' + [...new Set(missing)].join(', '));
   return html;
 }

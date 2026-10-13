@@ -9,7 +9,7 @@ import { chromium } from 'playwright';
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { join, extname } from 'node:path';
+import { join, extname, resolve, sep } from 'node:path';
 import { ROOT } from '../site.mjs';
 
 const TYPES = {
@@ -19,12 +19,20 @@ const TYPES = {
 };
 
 export async function serve(root = ROOT) {
+  const top = resolve(root);
   const srv = createServer(async (q, r) => {
-    let p = decodeURIComponent(q.url.split('?')[0]);
-    if (p.endsWith('/')) p += 'index.html';
+    // only files under root: join() resolves ../ (sent raw or as %2e%2e/%2f),
+    // so the resolved path is what gets tested; a malformed %-escape is a 400
+    let file;
     try {
-      const b = await readFile(join(root, p));
-      r.writeHead(200, { 'content-type': TYPES[extname(p)] || 'application/octet-stream' });
+      let p = decodeURIComponent(q.url.split('?')[0]);
+      if (p.endsWith('/')) p += 'index.html';
+      file = join(top, p);
+    } catch { r.writeHead(400); r.end(); return; }
+    if (!file.startsWith(top + sep)) { r.writeHead(403); r.end(); return; }
+    try {
+      const b = await readFile(file);
+      r.writeHead(200, { 'content-type': TYPES[extname(file)] || 'application/octet-stream' });
       r.end(b);
     } catch { r.writeHead(404); r.end(); }
   }).listen(0, '127.0.0.1');

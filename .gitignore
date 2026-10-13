@@ -1,4 +1,6 @@
-node_modules/
+# no trailing slash: a node_modules symlink (a worktree sharing the main
+# checkout's install) is ignored as well as the folder
+node_modules
 .DS_Store
 *.log
 
@@ -14,6 +16,11 @@ __pycache__/
 # staged deploy output (scripts/stage-site.mjs) and the unpublished legal preview
 _site/
 legal-preview/
+
+# mirror CLI state: `netlify link` writes .netlify/, `vercel pull` writes
+# .vercel/ (project ids; listed in scripts/site.mjs NOT_DEPLOYED)
+.netlify/
+.vercel/
 
 # the campaign kit is the owner's private material (strategy, budget, client
 # permissions); it is never committed to this public repository. Tools that

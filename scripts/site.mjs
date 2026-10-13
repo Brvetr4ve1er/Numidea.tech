@@ -7,7 +7,10 @@
  *  EXTRA_PAGES  pages that are checked for references but are not entries
  *  DEPLOY       exactly what is published (GitHub Pages, Netlify, Vercel all
  *               build _site/ from this list with scripts/stage-site.mjs)
- *  NOT_DEPLOYED repository folders that must never be published
+ *  NOT_DEPLOYED repository folders that must never be published, local tool
+ *               state included: .netlify/ (`netlify link`) and .vercel/
+ *               (`vercel pull`, which `vercel build` needs) exist where the
+ *               mirrors build, so check.mjs must accept them
  */
 import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -30,6 +33,6 @@ export const DEPLOY = ['index.html', '404.html', 'robots.txt', 'sitemap.xml', 'a
   .concat(LEGAL_PUBLISHED ? ['legal'] : []);
 // file names never published even inside a deployed folder
 export const DEPLOY_SKIP = ['README.md', '.DS_Store'];
-export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', 'node_modules', '_site', 'audit', 'campaign', 'knowledge-base', 'scripts',
+export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '.vercel', 'node_modules', '_site', 'audit', 'campaign', 'knowledge-base', 'scripts',
   'legal-preview', 'legal', 'BRAND.md', 'README.md', 'LICENSE', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
   'netlify.toml', 'vercel.json', '.gitignore'];

@@ -16,10 +16,12 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment; newer pushes cancel in-flight ones.
+# One deployment at a time. A run already deploying is never cancelled (a
+# Pages deploy cut off mid-flight can fail or leave the release half-done);
+# newer pushes wait, and of those only the latest queued one runs.
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:

@@ -31,7 +31,9 @@ export function validate(list = VOICES, today = new Date().toISOString().slice(0
   list.forEach((v, i) => {
     const at = `voice #${i + 1}${v && v.client ? ` (${v.client})` : ''}`;
     if (!v || typeof v !== 'object') { errs.push(`${at}: not an object`); return; }
-    if (!(v.client in VOICE_CLIENTS)) errs.push(`${at}: client must be one of ${Object.keys(VOICE_CLIENTS).join(', ')}`);
+    // own keys only: `in` would also accept inherited ones ('constructor',
+    // 'toString') and the page would then print a function as the client name
+    if (typeof v.client !== 'string' || !Object.hasOwn(VOICE_CLIENTS, v.client)) errs.push(`${at}: client must be one of ${Object.keys(VOICE_CLIENTS).join(', ')}`);
     if (!['fr', 'en', 'ar'].includes(v.lang)) errs.push(`${at}: lang must be fr, en or ar`);
     if (typeof v.quote !== 'string' || !v.quote.trim()) errs.push(`${at}: quote is empty`);
     else if (v.quote.length > 280) errs.push(`${at}: quote is ${v.quote.length} characters (max 280)`);

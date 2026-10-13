@@ -2,7 +2,11 @@
 # The build runs the same invariants as pages.yml (check + themes-check; a
 # failure stops the deploy), then stages only the publishable files
 # (scripts/site.mjs DEPLOY) into _site/, so internal folders (knowledge-base/,
-# audit/, scripts/…) are never served. No dependencies are installed for it.
+# audit/, scripts/…) are never served. The build command itself needs no
+# packages, but Netlify installs package.json's dependencies (devDependencies
+# included) before running it, as it does for any repository with a
+# package.json; PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD keeps the browser download
+# out of that install.
 [build]
   command = "node scripts/check.mjs && node scripts/themes-check.mjs && node scripts/stage-site.mjs"
   publish = "_site"
