@@ -61,6 +61,11 @@ html[dir="rtl"] .theme-menu{right:auto;left:0}
 html[dir="rtl"] .theme-menu button{text-align:right}
 .theme-menu button:hover{background:rgba(127,127,127,.10);color:var(--ice)}
 .theme-menu button[aria-checked="true"]{color:var(--teal-text)}
+/* the current theme is marked by a shape, not by its colour alone (1.18:1 from
+   its neighbours in Arcanum). aria-checked already names it, so the mark is
+   kept out of the accessible name where the alt-text syntax is understood. */
+.theme-menu button::after{content:"";flex:none;width:1em;margin-inline-start:auto}
+.theme-menu button[aria-checked="true"]::after{content:"✓";content:"✓" / "";text-align:center;font-weight:700}
 .theme-menu .dot{width:15px;height:15px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(127,127,127,.4)}
 .theme-menu .dot.arcanum{background:linear-gradient(135deg,#34D0E8,#E6B450)}
 .theme-menu .dot.noir{background:linear-gradient(135deg,#E5484D,#0B0B0E)}
@@ -86,6 +91,9 @@ html[dir="rtl"] body{font-family:var(--font-ar-body)}
 html[dir="rtl"]{--font-mono:"Geist Mono", "IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", "Geist Mono Fallback", ui-monospace, monospace}
 html[dir="rtl"] body :not(.logo, .logo *){letter-spacing:0!important}
 html[dir="rtl"] .font-swap-display{font-family:var(--font-ar-display)}
+/* An Arabic run on a French or English page (the ع language button, anything
+   marked lang="ar") takes the Arabic face too, not whatever the system has. */
+html[dir="ltr"] [lang="ar"]{font-family:var(--font-ar-body);letter-spacing:0}
 
 /* layered gradient atmosphere */
 body::before{
@@ -165,6 +173,7 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 /* in Arabic the menu slides in from the reading start (the left) */
 html[dir="rtl"] .mobile-menu:not(.open){transform:translateX(-100%)}
 .mobile-menu a{font-family:var(--font-display);font-weight:600;font-size:40px;color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
+html[dir="rtl"] .mobile-menu a{font-family:var(--font-ar-display)}
 .mobile-menu .lang{opacity:0}
 .mobile-menu.open a,.mobile-menu.open .lang{animation:stagger .5s var(--ease-out) forwards}
 .mobile-menu.open a:nth-of-type(1){animation-delay:.05s}
@@ -180,7 +189,13 @@ html[dir="rtl"] .mobile-menu:not(.open){transform:translateX(-100%)}
 .mobile-menu .close{position:absolute;top:20px;inset-inline-end:24px;background:transparent;border:none;color:var(--ice);font-size:34px;cursor:pointer}
 
 /* ---------- hero ---------- */
-.hero{padding:calc(var(--s-10) + 40px) 0 var(--s-9);position:relative;overflow:hidden}
+/* overflow:hidden is for the glows, but the hero has no inline padding, so it
+   also cut the focus ring (2px at 3px offset) off every control flush with its
+   edge: the CTAs, the pause button, the last rail tab. --ring-room widens the
+   clip into the page gutter by the ring's reach and pads the content back, so
+   nothing moves and a whole ring always fits inside the clip. */
+.hero{--ring-room:6px;padding:calc(var(--s-10) + 40px) var(--ring-room) var(--s-9);margin-inline:calc(-1 * var(--ring-room));
+  position:relative;overflow:hidden}
 .hero-mesh{position:absolute;inset:0;z-index:0;pointer-events:none}
 .hero-mesh span{position:absolute;border-radius:50%;filter:blur(40px);opacity:.55}
 .hero-mesh .m1{width:460px;height:460px;background:radial-gradient(circle,color-mix(in srgb,var(--crimson) 50%,transparent),transparent 65%);top:-120px;inset-inline-end:-60px}
@@ -213,8 +228,11 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
    ============================================================ */
 /* The top edge must clear the fixed navbar or the corner brackets — the whole
    point of the frame — are painted underneath it and never seen. */
-.sheet-frame{position:absolute;inset:calc(var(--nav-h) + 10px) 0 var(--s-4);z-index:0;pointer-events:none;
+.sheet-frame{position:absolute;inset:calc(var(--nav-h) + 10px) var(--ring-room) var(--s-4);z-index:0;pointer-events:none;
   border:1px solid color-mix(in srgb,var(--muted) 15%,transparent)}
+/* not placed in the wide layout's 12-column grid: its box is always the
+   hero's padding box, so the inset above holds at every width */
+.hero>.sheet-frame{grid-column:auto}
 .sheet-frame .sf{position:absolute;width:15px;height:15px;border:1px solid var(--crimson);opacity:.75}
 .sheet-frame .sf.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
 .sheet-frame .sf.tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
@@ -515,10 +533,14 @@ html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
 .cv-panel{display:grid;grid-template-rows:0fr;opacity:.4;
   transition:grid-template-rows .45s var(--ease-out),opacity .3s}
 .cv-panel.open{grid-template-rows:1fr;opacity:1}
-/* the collapsing row must carry no padding or border, or it cannot reach 0 */
-.cv-clip{min-height:0;overflow:hidden}
+/* the collapsing row must carry no block padding or border, or it cannot reach
+   0. Inline padding is free: the clip reaches 6px into the card's own padding
+   and the content is padded back, and the inner block keeps 6px at its foot,
+   so a focus ring (5px) on a control at the edge — the download button on a
+   phone — is drawn whole instead of losing two sides to the clip. */
+.cv-clip{min-height:0;overflow:hidden;margin-inline:-6px;padding-inline:6px}
 .cv-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(15px, 5.33px + 2.69vw, 44px);
-  border-top:1px solid var(--hairline);margin-top:var(--s-6);padding-top:var(--s-6)}
+  border-top:1px solid var(--hairline);margin-top:var(--s-6);padding-top:var(--s-6);padding-bottom:6px}
 .cv-col h4{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
 
 /* The date sits on its own line: the CV's dates carry months ("Août 2025 –
@@ -602,10 +624,17 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:var(--s-5)}
 .field label{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
 .field input,.field textarea{background:var(--field-bg);border:1px solid var(--hairline-2);border-radius:var(--r-sm);padding:13px 16px;color:var(--ice);font-family:var(--font-body);font-size:15px;transition:all var(--dur-fast);width:100%;resize:vertical}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:var(--glow-teal)}
+/* A real ring, outside the border. The border alone could not show focus on a
+   field in error: the error border comes later at the same specificity and
+   won, so after an empty submit the focused field looked like the other two,
+   bar a faint 1px glow. The ring is a shape the error state never touches, so
+   the field keeps its error colour and still reads as the focused one. */
+.field input:focus,.field textarea:focus{outline:2px solid var(--teal);outline-offset:2px;border-color:var(--teal);box-shadow:var(--glow-teal)}
 .field input::placeholder,.field textarea::placeholder{color:var(--faint)}
 .field .err{font-family:var(--font-mono);font-size:11px;color:var(--crimson-text);min-height:14px}
 .field.invalid input,.field.invalid textarea{border-color:var(--crimson)}
+/* Arabic in the fields (placeholders, typed text) gets the Arabic face, not a system fallback */
+html[dir="rtl"] .field :is(input,textarea){font-family:var(--font-ar-body)}
 .form-note{font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--muted);margin-top:var(--s-4);max-width:52ch}
 .form-success:focus{outline:none}
 .form .btn{padding:15px 40px}
@@ -836,6 +865,13 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
    <noscript> only covers JS being *disabled*, not JS failing to load. */
 .js-ready .reveal{opacity:0;transform:translateY(24px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out)}
 .reveal.in{opacity:1;transform:none}
+/* No JavaScript (the head script marks <html class="js"> before first paint):
+   controls that only app.js can drive — theme, menu, language, plate rail,
+   pause, the career toggle — are taken away rather than left doing nothing,
+   and the career panel they would have opened is simply open. The panel also
+   honours .js-ready, so it is never stuck open on a page where app.js ran. */
+html:not(.js) .js-only{display:none!important}
+html:not(.js):not(.js-ready) .cv-panel{grid-template-rows:1fr;opacity:1}
 
 /* ============================================================
    PREMIUM PASS — atmosphere · depth · editorial rhythm
@@ -891,7 +927,11 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
 /* 6 — per-project brand accent: each live card echoes its own site's identity
    (accent RGB triplet is set inline on the card: style="--brand:R,G,B") */
 .proj--brand .cat{color:color-mix(in srgb,rgb(var(--brand)) 55%,var(--ice))}
-.proj--brand .browser span{color:rgba(var(--brand),.96)}
+/* The address is real text (the card's host), not decoration: the raw brand
+   colour put it at 1.35:1 on Daylight's cream bar. Mixed 40/60 toward --ice it
+   keeps the brand's hue and clears 4.5:1 in every theme, for every brand, even
+   with the 12% of screenshot that shows through the bar (worst: 4.7:1). */
+.proj--brand .browser span{color:color-mix(in srgb,rgb(var(--brand)) 40%,var(--ice))}
 .proj--brand .pill.live{color:color-mix(in srgb,rgb(var(--brand)) 55%,var(--ice));border-color:rgba(var(--brand),.6)}
 .proj--brand .pill.live::before{background:rgb(var(--brand));box-shadow:0 0 8px rgb(var(--brand))}
 /* tint the screenshot's overlay sheen + a brand seam under the preview */
@@ -1350,16 +1390,23 @@ html[dir="rtl"] .est-head h3{font-family:var(--font-ar-display)}
 .eopt::before{content:"";flex:none;width:17px;height:17px;border:1.5px solid var(--hairline-2);
   border-radius:4px;transition:border-color var(--dur-fast),background var(--dur-fast)}
 .eopt:has(input:checked){border-color:var(--teal);color:var(--ice)}
-.eopt:has(input:checked)::before{border-color:var(--teal);background:var(--teal);
-  background-image:linear-gradient(45deg,transparent 42%,var(--void) 42%,var(--void) 56%,transparent 56%),
-                   linear-gradient(-45deg,transparent 56%,var(--void) 56%,var(--void) 70%,transparent 70%)}
+.eopt:has(input:checked)::before{border-color:var(--teal);background:var(--teal)}
+/* The tick is an L turned -45deg, the mark the tier lists use (and, like
+   theirs, mirrored in Arabic). The two crossed gradient bands it replaces drew
+   an X — "not included" — right beside the INCLUS tags. It sits centred on the
+   20px box above, which starts after the label's 14px inline padding. */
+.eopt:has(input:checked)::after{content:"";position:absolute;top:50%;inset-inline-start:18px;box-sizing:border-box;
+  width:12px;height:7px;margin-top:-4.5px;border-inline-start:2px solid var(--on-teal);border-bottom:2px solid var(--on-teal);
+  transform:rotate(-45deg);pointer-events:none}
+html[dir="rtl"] .eopt:has(input:checked)::after{transform:rotate(45deg)}
 /* The ring has to live on the label — the real input is visually hidden,
    so its own focus ring would be invisible. */
 .echip:has(input:focus-visible),.eopt:has(input:focus-visible){outline:2px solid var(--teal);outline-offset:3px}
 /* An option the chosen tier already includes: ticked, locked, labelled. */
 .eopt:has(input:disabled){cursor:default}
 .eopt:has(input:disabled):hover{border-color:var(--teal)}
-.eo-incl{margin-inline-start:auto;font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;
+/* 11px, the page's floor for labels (it sat at 10px with tracking) */
+.eo-incl{margin-inline-start:auto;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;
   text-transform:uppercase;color:var(--teal-text)}
 html[dir="rtl"] .eo-incl{letter-spacing:0}
 
@@ -1392,7 +1439,7 @@ html[dir="rtl"] .est-field input[type="range"]::-moz-range-track{background:line
 .eo-time{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--faint);font-variant-numeric:tabular-nums}
 .eo-sum{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:var(--s-2) 0}
-.eo-sum li{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--body-strong);
+.eo-sum li{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.06em;color:var(--body-strong);
   border:1px solid var(--hairline-2);border-radius:var(--r-pill);padding:4px 9px}
 .eo-sum .eo-head{border-color:var(--teal);color:var(--teal-text)}
 .eo-fine{color:var(--faint);font-size:13px;line-height:1.6;max-width:46em}
@@ -1495,7 +1542,7 @@ html[dir="rtl"] .md-drivers b{font-family:var(--font-ar-display)}
    rather than linking somewhere wrong. Same idiom as hub/'s pending handles. */
 .wa-link[data-wa-pending]{opacity:.5;cursor:default;pointer-events:none}
 .wa-link[data-wa-pending]::after{content:attr(data-soon);font-family:var(--font-mono);
-  font-size:10px;letter-spacing:.1em;text-transform:uppercase;white-space:pre}
+  font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;white-space:pre}
 a.wa-link[data-wa-pending]{text-decoration:none}
 
 @media (min-width:720px){
@@ -1561,6 +1608,38 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
   button,.btn,a.btn,.theme-btn,.lang button,.plate-rail button,.pl-pause{border:1px solid ButtonText!important}
   a:not(.btn){text-decoration:underline}
   .proj,.svc-row,.faq-item,.step,.titleblock,.capabilities{border:1px solid CanvasText!important}
+  /* Every selected, pressed or current state on the page was drawn with a
+     background colour or a gradient, and forced colours replace the first with
+     Canvas and drop the second: the checked estimator chip, the option ticks,
+     the pressed language, the current plate and section all looked like their
+     neighbours. These states are redrawn in the user's own Highlight pair, with
+     forced-color-adjust:none so the system colours are used as written. */
+  .echip:has(input:checked),.lang button[aria-pressed="true"]{forced-color-adjust:none;
+    background:Highlight;color:HighlightText;border-color:Highlight!important}
+  .eopt::before{border-color:ButtonText}
+  /* the ticked box: Highlight, with the tick in HighlightText */
+  .eopt:has(input:checked)::before{forced-color-adjust:none;border-color:Highlight;background:Highlight}
+  .eopt:has(input:checked)::after{forced-color-adjust:none;border-color:HighlightText}
+  .eopt:has(input:checked){border-color:Highlight!important}
+  /* the plate rail: every bar is drawn, the current one thicker and in Highlight */
+  .plate-rail button i{forced-color-adjust:none;background:CanvasText}
+  .plate-rail button[aria-current="true"] i{background:Highlight;height:4px;margin-top:-1px}
+  .nav-links a[aria-current="true"]::after,.timeline li.tl-now::before{forced-color-adjust:none;background:Highlight;border-color:Highlight}
+  .faq-mark::before,.faq-mark::after{forced-color-adjust:none;background:CanvasText}
+  /* the theme button's icon was a conic gradient, so the button was an empty
+     square: a half-filled disc keeps a recognisable mark */
+  .theme-btn .ic{forced-color-adjust:none;background:none;box-shadow:inset 7.5px 0 ButtonText,inset 0 0 0 1px ButtonText}
+  .est-field input[type="range"]{forced-color-adjust:none}
+  .est-field input[type="range"]::-webkit-slider-runnable-track{background:CanvasText}
+  .est-field input[type="range"]::-moz-range-track{background:CanvasText}
+  .est-field input[type="range"]::-webkit-slider-thumb{background:Canvas;border-color:Highlight}
+  .est-field input[type="range"]::-moz-range-thumb{background:Canvas;border-color:Highlight}
+  /* badges set in --void on an accent fill would be bare words without a box */
+  .t-pop,.md-tag{border:1px solid CanvasText}
+  /* focus rings on the parts that opted out above would keep the theme's teal */
+  .lang button[aria-pressed="true"]:focus-visible{outline-color:HighlightText}
+  .echip:has(input:focus-visible),.eopt:has(input:focus-visible),.plate-rail button:focus-visible i,
+  .est-field input[type="range"]:focus-visible{outline-color:CanvasText}
 }
 
 /* ═══ print ═══ Someone printing a quote or the contact block should not get
@@ -1568,7 +1647,21 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
 @media print{
   /* !important: the theme blocks are :root[data-theme] (0,2,0) and would win */
   :root{--void:#fff!important;--navy:#fff!important;--plum:#fff!important;--ice:#000!important;--body-strong:#111!important;
-    --muted:#333!important;--faint:#555!important;--hairline:#bbb!important;--hairline-2:#888!important}
+    --muted:#333!important;--faint:#555!important;--hairline:#bbb!important;--hairline-2:#888!important;
+    /* the accents too: left to the theme, Arcanum's cyan and brass printed the
+       email, the WhatsApp number, every kicker and label at ~1.9:1 on paper.
+       Daylight's ink accents (7:1 on white) stand in for every theme. Fills do
+       not print by default, so text that sat on a fill turns to ink. */
+    --teal:#0E6E78!important;--teal-text:#0B5F68!important;--crimson:#8C5E0A!important;--crimson-hi:#A8741A!important;
+    --crimson-text:#7A5208!important;--on-teal:#000!important;--on-crimson:#000!important}
+  /* the "Recommandé" and "Notre modèle" badges were --void on a fill: white on
+     white once the fill is dropped. Ink and an outline instead. */
+  .t-pop,.md-tag{color:#000!important;background:none!important;border:1px solid #000}
+  /* closed disclosures (the FAQ answers, the capabilities, how prices are
+     made) print open, where the browser lets CSS reach their content */
+  details::details-content{content-visibility:visible!important}
+  /* the WorkspaceHQ cartridge is light type on its own dark box: print the box */
+  .whq-cart{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   body{background:#fff!important;color:#000!important}
   body::before,body::after,html::after,.floaters,.hero-mesh,.progress,.skip,.nav-right,.theme-menu,.mobile-menu,.menu-toggle,.sheet-frame,.browser{display:none!important}
   .faq-fig{display:none!important}
@@ -1884,6 +1977,9 @@ html[dir="rtl"] .whq-kick{font-family:var(--font-ar-body,system-ui),sans-serif;f
 html[dir="rtl"] .whq-start{right:auto;left:12px}
 @media (prefers-reduced-motion:reduce){.whq-cart,.whq-bit svg{transition:none}.whq-cart *{animation:none!important}.whq-cart:hover{transform:none}}
 .footer .whq-cart{margin:var(--s-4) 0 var(--s-6)}
+/* "WORKSPACEHQ v3" is one unbreakable line of a 1em-wide pixel face: at 13px it
+   ran 12px past a 280px screen, pushing the label and the sub-line with it */
+@media (max-width:340px){.whq-name{font-size:10px}}
 .whq-cart{--whq-page:var(--void)}
 
 /* ═══ visual pass, Oct 2026 ═══ */
@@ -1925,6 +2021,14 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 .logo{direction:ltr;unicode-bidi:isolate}
 /* "<24h": the "<" is a neutral, so in RTL it migrated to the far end ("24h>") */
 .stat{direction:ltr;unicode-bidi:isolate}
+/* In Arabic the figure carries an Arabic unit ("<24 س"), and a forced-LTR box
+   put the unit in front of the number for a right-to-left reader. There the
+   box takes its direction from its own text (plaintext): app.js isolates "<24"
+   (U+2066…U+2069), so the Arabic unit is the first strong letter, the line is
+   RTL and the unit lands after the figure, on the left; the baked "<24h" that
+   shows before the count-up has a Latin unit, so it stays LTR and whole. Geist
+   keeps the digits, Plex Arabic takes the unit. */
+html[dir="rtl"] .stat{unicode-bidi:plaintext;font-family:"Geist", var(--font-ar-display)}
 
 /* ═══════════════════════════ BENTO + LOADING + WAYFINDING ═══════════════════════════ */
 
@@ -1999,7 +2103,7 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 .nav-links a{position:relative}
 .nav-links a[aria-current="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--crimson)}
 /* phones: the links are folded into the menu, so a breadcrumb names the section */
-.crumb{display:none;align-items:center;gap:6px;min-width:0;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+.crumb{display:none;align-items:center;gap:6px;min-width:0;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
   opacity:0;transition:opacity .25s}
 .crumb i{font-style:normal;color:var(--faint)}
 .crumb b{font-weight:400;color:var(--crimson-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -2017,6 +2121,8 @@ html[dir="rtl"] .crumb{letter-spacing:0}
      visibility flips after the fade out and at once on the way in. */
   visibility:hidden;transition:opacity .3s,transform .3s var(--ease-out),border-color .2s,visibility 0s .3s}
 .to-top.on{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity .3s,transform .3s var(--ease-out),border-color .2s,visibility 0s}
+/* the inline end is the left in Arabic, so it clears the left inset (a notch in landscape) */
+html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
 .to-top:hover{border-color:var(--teal)}
 .to-top:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -2199,10 +2305,17 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
     background:color-mix(in srgb,var(--void) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--hairline);
     transform:translateY(110%);visibility:hidden;transition:transform .3s var(--ease-out),visibility 0s .3s}
   .m-contact.on{transform:none;visibility:visible;transition:transform .3s var(--ease-out),visibility 0s}
-  .m-contact .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 14px;font-size:13px;text-align:center}
+  /* One height whatever the label does. "Démarrer un projet" wraps to two
+     lines at 390px and below (and "Start a project" at 320), and with 12px
+     padding and the body's 1.6 leading that grew the buttons to 68px and the
+     bar to 89px, 11px more than the page reserved for it. At 1.2 leading and
+     6px padding two lines (43px) sit inside the 48px minimum, so the bar is
+     10 + 48 + 10 + 1 = 69px from 280px up, in every language. */
+  .m-contact .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:6px 12px;font-size:13px;line-height:1.2;text-align:center}
   .footer{padding-bottom:calc(var(--s-5) + 70px + env(safe-area-inset-bottom))}
-  /* the fixed bar is ~70px; a control focused under it is scrolled clear */
-  html{scroll-padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+  /* a control focused under the bar is scrolled clear of it, ring included:
+     the bar's 69px plus 9px for the 5px focus ring and some air */
+  html{scroll-padding-bottom:calc(69px + 9px + env(safe-area-inset-bottom))}
 }
 @media (prefers-reduced-motion:reduce){.m-contact,.m-contact.on{transition:none}}
 @media print{.m-contact{display:none!important}}
