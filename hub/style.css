@@ -62,11 +62,19 @@ a{color:inherit;text-decoration:none}
 
 /* ---- drifting geometry: hand-drawn SVG, slow rotation ---- */
 
-/* ---- gentle scroll reveal: rise + fade, staggered by JS ---- */
-[data-reveal]{opacity:0;transform:translate3d(0,18px,0);
+/* ---- gentle scroll reveal: rise + fade, staggered by JS ----
+   Gated on html.reveal-armed, which app.js sets only once its observer is
+   running. Without that script (disabled, blocked, a 404, an error first)
+   nothing is hidden: the old rule hid every block unconditionally, and with
+   scripts off 26 blocks — 16 of them focusable links — stayed invisible. */
+.reveal-armed [data-reveal]{opacity:0;transform:translate3d(0,18px,0);
   transition:opacity 1s var(--ease),transform 1.1s var(--ease);
   transition-delay:var(--rd,0ms)}
-[data-reveal].seen{opacity:1;transform:none}
+.reveal-armed [data-reveal].seen{opacity:1;transform:none}
+
+/* text that only screen readers and voice control need */
+.vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;border:0;
+  overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 
 /* ---- breathing accents: barely-there pulse on live marks ---- */
 @keyframes breathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
@@ -114,7 +122,12 @@ a{color:inherit;text-decoration:none}
    the shift in place, because the wrap count was what actually varied.
    The caret went with it — a flex child after the text, it slid on every swap. */
 .cycler{min-height:1.88em}   /* 2 × the .94 line-height above */
-.cy-line{display:inline-flex;align-items:baseline;gap:.08em;flex-wrap:wrap}
+.cy-line{display:inline-flex;align-items:baseline;gap:.08em;flex-wrap:wrap;max-width:100%}
+/* The handle is one unbreakable token sized to fit its column. With a
+   reader's own text spacing (WCAG 1.4.12: letter-spacing .12em) it no longer
+   fits, and the hero's overflow:hidden cut 19-42px off it; it may now wrap
+   rather than be clipped. At normal spacing it fits, so nothing changes. */
+.cy-text{min-width:0;overflow-wrap:anywhere}
 .cy-text{transition:opacity .26s ease}
 .cy-text.swapping{opacity:0}
 .cy-text{color:var(--paper)}
@@ -153,6 +166,9 @@ a{color:inherit;text-decoration:none}
 .scrollcue .arr{color:var(--acc-text)}
 
 .scrollcue:hover{color:var(--acid)}
+/* inset: the cue is the last thing in the hero, whose overflow:hidden cut the
+   bottom of an outside ring */
+.scrollcue:focus-visible{outline:2px solid var(--acc-text);outline-offset:-4px}
 
 /* ============================= LINKS ============================= */
 .links{position:relative;z-index:2;padding:clamp(48px,10vh,110px) var(--gut) clamp(28px,6vh,60px);border-top:1px solid var(--line);isolation:isolate}
@@ -162,7 +178,7 @@ a{color:inherit;text-decoration:none}
    replaced the narrower fallback the vw clamp had been tuned against. */
 .links-head{container-type:inline-size}
 .links-head h2{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;
-  font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px}
+  font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px;overflow-wrap:break-word}
 .links-sub{font-family:var(--mono);font-size:13px;color:var(--paper-dim)}
 .links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
 
@@ -201,7 +217,10 @@ a{color:inherit;text-decoration:none}
 .badge{transition:transform .5s var(--ease),background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
 .ltxt{display:flex;flex-direction:column;min-width:0;flex:1}
 .ltxt b{font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:-.01em}
-.ltxt i{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* wraps rather than truncating with an ellipsis: in the 269px cards at 600px,
+   and under a reader's own text spacing, the line lost its end ("my favourite
+   build — out n…") */
+.ltxt i{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--faint);overflow-wrap:anywhere}
 .go{font-family:var(--mono);color:var(--faint);transition:.3s var(--ease)}
 .link:hover .go{color:var(--b,var(--acid));transform:translate(2px,-2px)}
 
@@ -320,6 +339,13 @@ a{color:inherit;text-decoration:none}
 :root[data-theme="dark"] .theme-pill .tp-moon{background:rgba(255,255,255,.06);color:var(--paper)}
 :root[data-theme="dark"] .theme-pill .tp-sun{background:transparent;color:var(--paper-dim)}
 :root[data-theme="dark"] .theme-pill .tp-sun:hover{color:var(--acid)}
+/* Forced colours drop the backgrounds above, which were the only sign of the
+   current theme; the pressed button (aria-pressed, kept by app.js) gets a
+   system-colour ring instead. */
+@media (forced-colors:active){.theme-pill button[aria-pressed="true"]{border:2px solid Highlight}}
+/* Without scripts these three buttons do nothing (the head script that sets
+   data-theme has not run either), so they are not offered. */
+html:not([data-theme]) .theme-pill{display:none}
 
 .foot-legal{max-width:1200px;margin:clamp(26px,4vh,40px) auto 0;display:flex;align-items:center;justify-content:center;gap:6px;
   font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--faint);flex-wrap:wrap}
@@ -333,7 +359,7 @@ a{color:inherit;text-decoration:none}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto}
   .cy-caret{opacity:1}
-  [data-reveal]{opacity:1;transform:none;transition:none}
+  [data-reveal],.reveal-armed [data-reveal]{opacity:1;transform:none;transition:none}
   [data-depth],[data-parallax]{transform:none}
   
 }
@@ -345,7 +371,7 @@ a{color:inherit;text-decoration:none}
   border-top:1px solid var(--line);isolation:isolate}
 .coll-head{margin-bottom:clamp(22px,4vh,40px);container-type:inline-size}
 .coll-head h2{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;
-  font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px}
+  font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px;overflow-wrap:break-word}
 
 .coll-more{margin-top:18px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 .coll-more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--paper-dim);transition:color .2s}
@@ -361,7 +387,9 @@ a{color:inherit;text-decoration:none}
 .lb-fig figcaption b{font-size:16px}
 .lb-fig figcaption i{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
 .lb-fig figcaption a{margin-inline-start:auto;font-size:12px;color:var(--acc-text);min-height:24px;display:inline-flex;align-items:center}
-.lb-btn{position:absolute;width:44px;height:44px;display:grid;place-items:center;cursor:pointer;
+/* z-index: the buttons come before the figure in the source (Close first, for
+   focus), and the picture fading in would otherwise paint over them */
+.lb-btn{position:absolute;z-index:2;width:44px;height:44px;display:grid;place-items:center;cursor:pointer;
   font:16px var(--mono);color:var(--paper);background:var(--ink);border:1px solid var(--line-2);transition:border-color .2s,color .2s}
 .lb-btn:hover{border-color:var(--acid);color:var(--acc-text)}
 .lb-btn:focus-visible{outline:2px solid var(--acid);outline-offset:2px}
@@ -380,7 +408,9 @@ html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
 .scard:hover{transform:translateY(-3px);border-color:var(--acid)}
 .scard:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
 .sc-top{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.08em;color:var(--paper)}
-.sc-top i{font-style:normal;color:var(--paper-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* the handle wraps rather than ending in an ellipsis (at 320px all three were
+   cut: "@br4vetr4ave…") */
+.sc-top i{font-style:normal;color:var(--paper-dim);min-width:0;overflow-wrap:anywhere}
 .sc-top .go{margin-inline-start:auto}
 .scard:hover .go{color:var(--acc-text)}
 .sc-big{display:grid;gap:4px}
@@ -390,7 +420,10 @@ html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
 .sc-row{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--paper-dim)}
 .sc-row b{color:var(--paper);font-weight:700}
 .sc-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:auto}
-.sc-thumbs img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border:1px solid var(--line-2)}
+/* height:auto — the width/height attributes (there for layout stability) set
+   a fixed 501-630px height that overrode aspect-ratio, so the "squares" were
+   tall strips the full height of each source picture */
+.sc-thumbs img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border:1px solid var(--line-2)}
 .sc-ig .sc-row span{padding:4px 10px;border:1px dashed var(--line-2)}
 @media (prefers-reduced-motion:reduce){
   .scard,
@@ -425,9 +458,18 @@ html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
 .coll,.design,.social{padding-inline:max(var(--gut),calc((100% - 1080px) / 2))}
 .chapter{container-type:inline-size;margin-bottom:var(--g,14px)}
 .series{--g:clamp(8px,1.2vw,14px)}
+/* Rows are square units that may GROW, never shrink: minmax(unit, auto).
+   Wherever a text tile fits its span (every width above ~420px at normal
+   text spacing) the grid is exactly the square one. Where it did not, the
+   tile clipped: at 320px the chapter tiles cut 24-62px off their top (the
+   numeral and the "Chapter I · 8 posters" line), and under a reader's own
+   spacing (WCAG 1.4.12) the Ink quote lost 27-35px. Now those rows grow and
+   the pictures beside them crop a little more. Picture tiles are size-
+   contained so their images never push a row — they fill what the grid gives. */
 .bento{--cols:6;--u:calc((100cqw - (var(--cols) - 1) * var(--g)) / var(--cols));
-  display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));grid-auto-rows:var(--u);
+  display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));grid-auto-rows:minmax(var(--u),auto);
   grid-auto-flow:dense;gap:var(--g)}
+.bento .tile--img{contain:size}
 .t-big{grid-column:span 4;grid-row:span 6}
 .t-sm,.t-head{grid-column:span 2;grid-row:span 3}
 .t-quote{grid-column:span 4;grid-row:span 3}
@@ -602,3 +644,20 @@ html[dir="rtl"] .whq-start{right:auto;left:12px}
 /* .6 of the ink lands at 4.4:1 on paper */
 :root[data-theme="light"] .topbar .bc a{opacity:.72}
 :root[data-theme="light"] .topbar .bc a:is(:hover,:focus-visible){opacity:1}
+
+/* ============================= PRINT =============================
+   Paper is white and browsers leave backgrounds out, so print takes the
+   light theme's inks whatever the screen theme (the dark theme's #ece9dd text
+   printed nearly white on white), shows every reveal block (only what had
+   been scrolled past used to print), and lets the few labels that are light
+   on their own dark ground keep that ground. */
+@media print{
+  :root,:root[data-theme]{--ink:#fff;--ink-2:#fff;--panel:#fff;
+    --paper:#14160f;--paper-dim:#494c40;--faint:#63665a;--acc-text:#357000;
+    --line:#cccabd;--line-2:#adab9c}
+  .reveal-armed [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
+  [data-depth],[data-parallax]{transform:none!important}
+  .badge{color:var(--paper)!important}
+  .whq-cart,.tl{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .theme-pill{display:none}
+}

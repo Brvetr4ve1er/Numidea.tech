@@ -9,8 +9,6 @@
 <meta property="og:title" content="b4vetrave1er.exe // VOIDSPLUNKER.std">
 <meta property="og:description" content="Polymath developer & designer. Design, code, and everything between.">
 <meta name="color-scheme" content="dark light">
-<!-- Without this the browser falls back to /favicon.ico, which does not
-     exist: a 404 in every visitor's console on this page. -->
 <link rel="canonical" href="https://brvetr4ve1er.github.io/Numidea.tech/hub/">
 <meta property="og:url" content="https://brvetr4ve1er.github.io/Numidea.tech/hub/">
 <meta property="og:type" content="website">
@@ -20,8 +18,11 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<!-- Without this the browser falls back to /favicon.ico, which does not
+     exist: a 404 in every visitor's console on this page. -->
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<script>try{document.documentElement.dataset.theme=localStorage.getItem('void-theme')||'dark';}catch(e){document.documentElement.dataset.theme='dark';}</script>
+<!-- only the two themes this page has: anything else in storage reads as dark -->
+<script>(function(){var t;try{t=localStorage.getItem('void-theme');}catch(e){}document.documentElement.dataset.theme=t==='light'?'light':'dark';})();</script>
 <!-- Syne and Space Mono are self-hosted now, so this is render-blocking like
      any first-party sheet — no request on this page reaches a third party. It
      was a Google link held off the critical path with media="print", which was
@@ -33,6 +34,11 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://brvetr4ve1er.github.io/Numidea.tech/"},{"@type":"ListItem","position":2,"name":"br4vetr4veler","item":"https://brvetr4ve1er.github.io/Numidea.tech/hub/"}]}</script>
 </head>
 <body>
+
+<!-- One main landmark for the whole page — the hero with the page's <h1>, the
+     series, design, social and the archive. It used to wrap the archive only,
+     which left most of the page outside it. -->
+<main id="main">
 
 <!-- ============================= HERO ============================= -->
 <header class="hero" id="hero">
@@ -66,8 +72,9 @@
       <a class="whq-cart" href="../workspacehq/"><span class="whq-bit"><svg viewBox="0 0 12 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="3" y="0" width="6" height="1" fill="#d97757"/><rect x="2" y="1" width="1" height="1" fill="#d97757"/><rect x="3" y="1" width="1" height="1" fill="#f2a27e"/><rect x="4" y="1" width="6" height="1" fill="#d97757"/><rect x="1" y="2" width="1" height="1" fill="#d97757"/><rect x="2" y="2" width="1" height="1" fill="#f2a27e"/><rect x="3" y="2" width="8" height="1" fill="#d97757"/><rect x="1" y="3" width="10" height="1" fill="#d97757"/><rect x="1" y="4" width="10" height="1" fill="#d97757"/><rect x="0" y="5" width="12" height="1" fill="#d97757"/><rect x="1" y="6" width="10" height="1" fill="#d97757"/><rect x="1" y="7" width="10" height="1" fill="#a5543a"/><rect x="2" y="8" width="1" height="1" fill="#a5543a"/><rect x="4" y="8" width="1" height="1" fill="#a5543a"/><rect x="7" y="8" width="1" height="1" fill="#a5543a"/><rect x="9" y="8" width="1" height="1" fill="#a5543a"/><g class="whq-eyes"><rect x="3" y="3" width="1" height="1" fill="#1b1430"/><rect x="8" y="3" width="1" height="1" fill="#1b1430"/><rect x="3" y="4" width="1" height="1" fill="#1b1430"/><rect x="8" y="4" width="1" height="1" fill="#1b1430"/></g></svg></span><span class="whq-txt"><span class="whq-kick">NOW PLAYING · MY FAVOURITE BUILD</span><b class="whq-name">WORKSPACE<i>HQ</i> <em>v3</em></b><span class="whq-sub">an arcade cabinet for your codebase</span></span><span class="whq-start" aria-hidden="true">▶ PRESS START</span><span class="whq-xp" aria-hidden="true">+1 XP</span></a>
     </section>
 
-    <!-- AVATAR -->
-    <section class="avatar" data-parallax="-.05" aria-label="portrait">
+    <!-- AVATAR — decorative (the four portraits are alt=""), so a plain box, not
+         a named region landmark with nothing in it to read -->
+    <div class="avatar" data-parallax="-.05">
       <div class="frame" id="avatarFrame">
         <!-- POSE SLOTS — the four Traveler portraits, calm to scream; the
              scroll-driven pose index steps through them. -->
@@ -79,7 +86,7 @@
         </div>
         <span class="frame-cap mono">THE TRAVELER <i class="await">// four weathers</i></span>
       </div>
-    </section>
+    </div>
 
   </div>
 
@@ -288,14 +295,20 @@
   <p class="coll-more mono"><a href="https://www.deviantart.com/br4vetr4veler5/gallery" target="_blank" rel="noopener">the originals on DeviantArt <span class="acc">↗</span></a></p>
 </section>
 
+<!-- The viewer. Close comes first in the source: a modal dialog focuses its
+     first focusable element on open, and that used to be the external
+     DeviantArt link — one Enter away from leaving the site. The buttons are
+     positioned, so the order changes nothing on screen. Previous/Next speak
+     the new piece through the status line at the end. -->
 <dialog class="lb" id="lb" aria-labelledby="lbTitle">
+  <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous piece">←</button>
+  <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next piece">→</button>
   <figure class="lb-fig">
     <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
     <figcaption><b id="lbTitle"></b><i class="mono" id="lbMeta"></i><a class="mono" id="lbLink" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">the original on DeviantArt ↗</a></figcaption>
   </figure>
-  <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous piece">←</button>
-  <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next piece">→</button>
-  <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+  <p class="vh" id="lbLive" role="status"></p>
 </dialog>
 
 <!-- ============================= DESIGN ================================
@@ -389,10 +402,10 @@
 </section>
 
 <!-- ============================= LINKS ============================= -->
-<main class="links" id="links">
+<section class="links" id="links" aria-labelledby="links-h">
   <div class="links-head" data-reveal>
     <p class="eyebrow"><i class="blip"></i> THE ARCHIVE</p>
-    <h2>ONE HANDLE.<br><span class="acc">EVERY&nbsp;WORLD.</span></h2>
+    <h2 id="links-h">ONE HANDLE.<br><span class="acc">EVERY&nbsp;WORLD.</span></h2>
     <p class="links-sub">design, code, and everything between — pick a door.</p>
   </div>
 
@@ -424,6 +437,8 @@
   <!-- handles with no verified URL yet: listed once, not as dead tiles -->
   <p class="links-soon mono" data-reveal>// coming soon — Dribbble · ArtStation · Are.na · TikTok · Gumroad</p>
 
+</section>
+
 </main>
 
 <!-- ============================= FOOTER ============================= -->
@@ -442,20 +457,26 @@
 
 
   <div class="foot-mid">
+    <!-- Each name starts with the letters on the button and then says what
+         they stand for (WCAG 2.5.3): "click IG" works by voice, and a screen
+         reader still hears "Instagram". The @ is a symbol, so Email keeps its
+         plain label. -->
     <div class="foot-socials">
       <a class="soc" href="mailto:hamissemohamedyasser@gmail.com" aria-label="Email">@</a>
-      <a class="soc" href="https://x.com/br4vetr4veler" target="_blank" rel="noopener" aria-label="X / Twitter">X</a>
-      <a class="soc" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-      <a class="soc" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener" aria-label="Behance">Bē</a>
-      <a class="soc" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
-      <a class="soc" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
-      <a class="soc" href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+      <a class="soc" href="https://x.com/br4vetr4veler" target="_blank" rel="noopener">X<span class="vh"> / Twitter</span></a>
+      <a class="soc" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">IG<span class="vh"> Instagram</span></a>
+      <a class="soc" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">Bē<span class="vh"> Behance</span></a>
+      <a class="soc" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener">GH<span class="vh"> GitHub</span></a>
+      <a class="soc" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener">in<span class="vh"> LinkedIn</span></a>
+      <a class="soc" href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener">YT<span class="vh"> YouTube</span></a>
     </div>
 
+    <!-- aria-pressed says which theme is on; app.js keeps it in step with
+         data-theme (the markup holds the default, dark) -->
     <div class="theme-pill" role="group" aria-label="Theme &amp; scroll">
-      <button type="button" class="tp-sun" id="tpSun" aria-label="Light theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M19.1 4.9l-2.1 2.1M7 16.9l-2.1 2.1"/></svg></button>
+      <button type="button" class="tp-sun" id="tpSun" aria-label="Light theme" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M19.1 4.9l-2.1 2.1M7 16.9l-2.1 2.1"/></svg></button>
       <button type="button" class="tp-top" id="tpTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
-      <button type="button" class="tp-moon" id="tpMoon" aria-label="Dark theme"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg></button>
+      <button type="button" class="tp-moon" id="tpMoon" aria-label="Dark theme" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg></button>
     </div>
   </div>
 

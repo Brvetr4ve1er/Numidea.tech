@@ -149,12 +149,24 @@
 
   /* ---------------- 3b · staggered scroll reveal ----------------
      Siblings entering together are delayed in sequence so the archive
-     assembles itself in a wave rather than all at once. */
+     assembles itself in a wave rather than all at once.
+
+     Progressive enhancement, as on the home page: the stylesheet only hides
+     [data-reveal] under html.reveal-armed, and this is the one place that
+     sets it — so with scripts off, blocked, or failing before this point,
+     everything is simply visible (it used to be 26 invisible blocks, 16 of
+     them focusable links). Anything already painted on screen is revealed in
+     the same pass that arms the gate, so nothing visible blinks off.
+
+     The observer line sits a fixed 40px above the bottom edge. It was 8% of
+     the viewport: on a screen taller than ~975px that band is deeper than an
+     archive link (78px), so a link that Tab scrolled to the bottom edge was
+     never revealed and kept focus invisible. Focus now reveals its block
+     outright, too, whatever the observer thinks. */
   var revealEls = [].slice.call(document.querySelectorAll('[data-reveal]'));
-  if (revealEls.length) {
-    if (reduce || !('IntersectionObserver' in window)) {
-      revealEls.forEach(function (el) { el.classList.add('seen'); });
-    } else {
+  var revealAll = function () { revealEls.forEach(function (el) { el.classList.add('seen'); }); };
+  if (revealEls.length && !reduce && 'IntersectionObserver' in window) {
+    try {
       var batch = [], flushTimer = null;
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
@@ -163,15 +175,31 @@
           batch.push(en.target);
           clearTimeout(flushTimer);
           flushTimer = setTimeout(function () {
-            batch.forEach(function (el, i) {
+            batch.filter(function (el) { return !el.classList.contains('seen'); }).forEach(function (el, i) {
               el.style.setProperty('--rd', Math.min(i * 70, 560) + 'ms');
               el.classList.add('seen');
             });
             batch = [];
           }, 40);
         });
-      }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
-      revealEls.forEach(function (el) { io.observe(el); });
+      }, { rootMargin: '0px 0px -40px 0px', threshold: 0 });
+      var painted = false;
+      try { painted = performance.getEntriesByType('paint').length > 0; } catch (e) {}
+      if (painted) {
+        revealEls.forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (r.top < innerHeight && r.bottom > 0) el.classList.add('seen');
+        });
+      }
+      revealEls.forEach(function (el) { if (!el.classList.contains('seen')) io.observe(el); });
+      document.addEventListener('focusin', function (e) {
+        var r = e.target.closest && e.target.closest('[data-reveal]');
+        if (!r || r.classList.contains('seen')) return;
+        io.unobserve(r);
+        r.style.setProperty('--rd', '0ms');
+        r.classList.add('seen');
+      });
+      document.documentElement.classList.add('reveal-armed');
       // safety net: anything already on screen should never stay hidden
       addEventListener('load', function () {
         revealEls.forEach(function (el) {
@@ -179,7 +207,12 @@
           if (r.top < innerHeight && r.bottom > 0) el.classList.add('seen');
         });
       });
+    } catch (e) {
+      document.documentElement.classList.remove('reveal-armed');
+      revealAll();
     }
+  } else {
+    revealAll();
   }
 
   /* ---------------- 4 · reticle cursor ---------------- */
@@ -204,10 +237,22 @@
     for (var i = 0; i < poses.length; i++) poses[i].classList.toggle('on', i === n);
   };
 
-  /* ---------------- 6 · theme toggle (footer pill) ---------------- */
+  /* ---------------- 6 · theme toggle (footer pill) ----------------
+     aria-pressed on both buttons is the state a screen reader hears (and
+     what forced-colours mode draws); it follows data-theme at load and on
+     every switch. */
   var htmlEl = document.documentElement;
-  function setTheme(t) { htmlEl.setAttribute('data-theme', t); try { localStorage.setItem('void-theme', t); } catch (e) {} }
   var sun = document.getElementById('tpSun'), moon = document.getElementById('tpMoon'), toTop = document.getElementById('tpTop');
+  function showTheme(t) {
+    if (sun) sun.setAttribute('aria-pressed', String(t === 'light'));
+    if (moon) moon.setAttribute('aria-pressed', String(t !== 'light'));
+  }
+  function setTheme(t) {
+    htmlEl.setAttribute('data-theme', t);
+    showTheme(t);
+    try { localStorage.setItem('void-theme', t); } catch (e) {}
+  }
+  showTheme(htmlEl.getAttribute('data-theme'));
   if (sun) sun.addEventListener('click', function () { setTheme('light'); });
   if (moon) moon.addEventListener('click', function () { setTheme('dark'); });
   if (toTop) toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
@@ -242,8 +287,16 @@
     var lb = document.getElementById('lb');
     if (lb && typeof lb.showModal === 'function') {
       var img = document.getElementById('lbImg'), ttl = document.getElementById('lbTitle'),
-          meta = document.getElementById('lbMeta'), link = document.getElementById('lbLink'), cur = -1, opener = null;
+          meta = document.getElementById('lbMeta'), link = document.getElementById('lbLink'),
+          live = document.getElementById('lbLive'), cur = -1, opener = null;
       var visible = function () { return pieces; };
+      // Previous/Next: the dialog's name changes silently, so the new piece is
+      // also written to the polite status line (not on open — opening a
+      // dialog already announces its name).
+      var step = function (d) {
+        show(cur + d);
+        if (live) live.textContent = ttl.textContent + ', ' + (cur + 1) + ' of ' + visible().length;
+      };
       var show = function (i) {
         var list = visible(); if (!list.length) return;
         cur = (i + list.length) % list.length;
@@ -264,19 +317,25 @@
         if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
         e.preventDefault();
         opener = a;
+        if (live) live.textContent = '';
         show(visible().indexOf(a));
         lb.showModal();
       });
-      document.getElementById('lbPrev').addEventListener('click', function () { show(cur - 1); });
-      document.getElementById('lbNext').addEventListener('click', function () { show(cur + 1); });
+      document.getElementById('lbPrev').addEventListener('click', function () { step(-1); });
+      document.getElementById('lbNext').addEventListener('click', function () { step(1); });
       document.getElementById('lbClose').addEventListener('click', function () { lb.close(); });
       lb.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowLeft') show(cur - 1);
-        else if (e.key === 'ArrowRight') show(cur + 1);
+        if (e.key === 'ArrowLeft') step(-1);
+        else if (e.key === 'ArrowRight') step(1);
       });
       // a click on the backdrop (the dialog box itself, outside the figure) closes
       lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
-      lb.addEventListener('close', function () { if (opener) opener.focus(); });
+      // focus returns to the piece on screen when the viewer closes, not the one
+      // it was opened on: after paging through, the visitor keeps their place
+      lb.addEventListener('close', function () {
+        var back = visible()[cur] || opener;
+        if (back) back.focus();
+      });
     }
   }
 
