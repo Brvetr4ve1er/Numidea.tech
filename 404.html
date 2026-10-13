@@ -66,25 +66,38 @@
    hrefs would then resolve wrong. Recompute the site root (repo subpath on
    *.github.io, "/" everywhere else) and rewrite the few refs this page has.
    Then follow the visitor: their theme (validated — an unknown name would
-   leave every token undefined) and their language. All three languages are
-   always on the page; html[lang] decides which button label shows, so no
-   text is swapped after paint. LOGO is each theme's wordmark face
-   (themes.css --font-logo + --logo-weight), kept in step by themes-check. */
+   leave every token undefined) and their language: ?lang= in the link
+   first, as on every other page, then the stored choice. All three
+   languages are always on the page; html[lang] decides which button label
+   shows, so no text is swapped after paint. LOGO is each theme's wordmark
+   face (themes.css --font-logo + --logo-weight), kept in step by
+   themes-check; VOID is each theme's page colour (themes.css --void), for
+   the browser's own bar. */
 (function () {
   var d = document.documentElement;
   var LOGO = { arcanum: 'cinzel-700-latin', noir: 'geist-700-latin', daylight: 'geist-600-latin',
                mono: 'geist-600-latin', altneon: 'geist-700-latin', engineering: 'geist-600-latin' };
+  var VOID = { arcanum: '#0A1420', noir: '#0B0B0E', daylight: '#F6F3EC',
+               mono: '#0A0A0A', altneon: '#0C0716', engineering: '#0E1012' };
   var TITLE = { fr: '404 — Cette page a pris la route · Numidea Labs',
                 en: '404 — This page took the road · Numidea Labs',
                 ar: '404 — هذه الصفحة سلكت الطريق · Numidea Labs' };
-  var th = 'arcanum', lang = 'fr';
+  var th = 'arcanum', lang = 'fr', q = '';
+  try { q = (new URLSearchParams(location.search).get('lang') || '').toLowerCase(); } catch (e) {}
   try { th = localStorage.getItem('numidea-theme') || th; lang = localStorage.getItem('numidea-lang') || lang; } catch (e) {}
+  if (Object.prototype.hasOwnProperty.call(TITLE, q)) {
+    lang = q;
+    // kept, as the other pages keep it: the way home stays in this language
+    try { localStorage.setItem('numidea-lang', q); } catch (e) {}
+  }
   if (!Object.prototype.hasOwnProperty.call(LOGO, th)) th = 'arcanum';
   if (!Object.prototype.hasOwnProperty.call(TITLE, lang)) lang = 'fr';
   d.setAttribute('data-theme', th);
   d.setAttribute('lang', lang);
   d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
   document.title = TITLE[lang];
+  var bar = document.querySelector('meta[name="theme-color"]');
+  if (bar) bar.setAttribute('content', VOID[th]);
 
   var root = 'assets/';
   if (location.protocol.indexOf('http') === 0) {   // keep relative for file:// preview

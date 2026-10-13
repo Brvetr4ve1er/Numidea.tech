@@ -22,15 +22,15 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:locale:alternate" content="ar_DZ">
-<meta property="og:title" content="Numidea Labs — Voyez votre nouveau site avant de payer">
-<meta property="og:description" content="Studio web à Bordj Bou Arréridj. Pour une entreprise immatriculée, avant tout paiement, on construit la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. Sites en français, anglais et arabe.">
+<meta property="og:title" content="Numidea Labs — Voyez votre page d'accueil avant de payer">
+<meta property="og:description" content="Studio web à Bordj Bou Arréridj. Pour une entreprise immatriculée, avant tout paiement, on construit la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés — 4 par mois au maximum. Sites en français, anglais et arabe.">
 <meta property="og:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.jpg">
-<meta property="og:image:alt" content="Numidea Labs — L'Aperçu : votre page d'accueil avant de payer, à côté du site livré pour Bordj Steel">
+<meta property="og:image:alt" content="Numidea Labs — L'Aperçu : votre page d'accueil avant de payer, à côté du site livré pour Bordj Steel">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Numidea Labs — Voyez votre nouveau site avant de payer">
-<meta name="twitter:description" content="Votre page d'accueil, avec votre contenu, en 5 jours ouvrés. Gratuit et sans engagement, pour les entreprises immatriculées.">
+<meta name="twitter:title" content="Numidea Labs — Voyez votre page d'accueil avant de payer">
+<meta name="twitter:description" content="Votre page d'accueil, avec votre contenu, en 5 jours ouvrés. Gratuit et sans engagement, pour les entreprises immatriculées, 4 par mois au maximum.">
 <meta name="twitter:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.jpg">
 <!-- Structured data: only facts the page itself states (check.mjs compares the
      phone and email with the page). The profiles are the founder's own. -->
@@ -42,7 +42,7 @@
  "url": "https://brvetr4ve1er.github.io/Numidea.tech/",
  "image": "https://brvetr4ve1er.github.io/Numidea.tech/assets/og.jpg",
  "logo": "https://brvetr4ve1er.github.io/Numidea.tech/assets/favicon.svg",
- "description": "Studio de développement à Bordj Bou Arréridj. On conçoit, on code, on livre et on répond quand ça casse.",
+ "description": "Studio de développement à Bordj Bou Arréridj. On conçoit, on code, on livre et on répond quand ça casse. Sans intermédiaire.",
  "email": "hamissemohamedyasser@gmail.com",
  "telephone": "+213672412578",
  "address": {
@@ -90,7 +90,11 @@
     var HEAD = { arcanum: 'cinzel-700-latin', noir: 'geist-700-latin', daylight: 'geist-600-latin',
                  mono: 'geist-500-latin', altneon: 'geist-700-latin', engineering: 'geist-600-latin' };
     var LANGS = ['fr', 'en', 'ar'], BAKED = 'fr', th = 'arcanum', lang = BAKED, q = null;
-    try { q = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+    /* each theme's page colour (themes.css --void), for the browser's own
+       bar until app.js reads it from the tokens */
+    var VOID = { arcanum: '#0A1420', noir: '#0B0B0E', daylight: '#F6F3EC',
+                 mono: '#0A0A0A', altneon: '#0C0716', engineering: '#0E1012' };
+    try { q = (new URLSearchParams(location.search).get('lang') || '').toLowerCase() || null; } catch (e) {}
     try { th = localStorage.getItem('numidea-theme') || th; lang = localStorage.getItem('numidea-lang') || lang; } catch (e) {}
     if (q && LANGS.indexOf(q) !== -1) lang = q;
     if (!Object.prototype.hasOwnProperty.call(HEAD, th)) th = 'arcanum';
@@ -99,35 +103,55 @@
     d.setAttribute('data-theme', th);
     d.setAttribute('lang', lang);
     d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    // scripts run: controls that only work with them may show (styles.css .js-only)
+    d.classList.add('js');
+    var bar = document.querySelector('meta[name="theme-color"]');
+    if (bar) bar.setAttribute('content', VOID[th]);
     /* Canonical: each language version names itself. It is set here, not in
        the markup, so the served HTML never names a different URL than the
        rendered page does (search engines read that as a conflict and fold
        the EN/AR versions into the French one). A shared ?lang= link is its
        own version (the hreflang alternates above name it); og:url and
-       og:locale follow. */
-    var home = document.querySelector('link[hreflang="x-default"]').getAttribute('href');
-    var self = q === lang && q !== BAKED ? home + '?lang=' + q : home;
-    var canon = document.createElement('link');
-    canon.rel = 'canonical'; canon.href = self;
-    document.head.appendChild(canon);
-    if (self !== home) {
+       og:locale follow. app.js calls this again when a language switch
+       rewrites ?lang=, so they keep naming the version the address shows. */
+    var canon = function (l) {
+      var home = document.querySelector('link[hreflang="x-default"]').getAttribute('href');
+      var own = l && l !== BAKED && LANGS.indexOf(l) !== -1 ? l : BAKED;
+      var self = own === BAKED ? home : home + '?lang=' + own;
+      var c = document.querySelector('link[rel="canonical"]');
+      if (!c) { c = document.createElement('link'); c.rel = 'canonical'; document.head.appendChild(c); }
+      c.href = self;
       var ogu = document.querySelector('meta[property="og:url"]'), ogl = document.querySelector('meta[property="og:locale"]');
       if (ogu) ogu.setAttribute('content', self);
-      if (ogl) ogl.setAttribute('content', q === 'ar' ? 'ar_DZ' : 'en_US');
-    }
+      if (ogl) ogl.setAttribute('content', { fr: 'fr_FR', en: 'en_US', ar: 'ar_DZ' }[own]);
+    };
+    canon(q);
+    window.NUMIDEA_CANON = canon;
     /* illustration masks load lazily (app.js adds .lz-on near the viewport);
        without this attribute — scripts off — they load eagerly instead */
     d.setAttribute('data-lz', '');
     /* The studio's WhatsApp number, full international form, digits only.
        While empty, every WhatsApp control stays visibly pending. */
     window.NUMIDEA_WA = '213672412578';
+    // the visitor's language, for app.js (the backstop below may reset <html>)
+    window.NUMIDEA_LANG = lang;
 
     if (lang !== BAKED) {
       d.setAttribute('data-i18n-pending', '');
-      /* never leave the page invisible: deferred app.js runs before
-         DOMContentLoaded and releases the hold itself; this is the backstop */
-      var release = function () { d.removeAttribute('data-i18n-pending'); };
-      document.addEventListener('DOMContentLoaded', release);
+      /* Never leave the page invisible. Deferred app.js runs before
+         DOMContentLoaded ends, applies the language and releases the hold
+         itself; this is the backstop, for an app.js that is late (1.5 s) or
+         never comes. What is then on the page is the baked French, so it is
+         laid out as French (left to right) until app.js applies the
+         visitor's language. */
+      var release = function () {
+        if (!d.hasAttribute('data-i18n-pending')) return;
+        d.setAttribute('lang', BAKED);
+        d.setAttribute('dir', 'ltr');
+        d.removeAttribute('data-i18n-pending');
+      };
+      // after every DOMContentLoaded listener, app.js's included
+      document.addEventListener('DOMContentLoaded', function () { setTimeout(release, 0); });
       setTimeout(release, 1500);
     }
 
@@ -187,7 +211,7 @@
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
       <div class="nav-right">
-        <div class="theme-switch">
+        <div class="theme-switch js-only">
           <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="Thème" data-i18n-aria="ui.theme"><span class="ic" aria-hidden="true"></span></button>
           <div class="theme-menu" role="menu" aria-label="Thème" data-i18n-aria="ui.theme">
             <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="arcanum" aria-checked="true"><span class="dot arcanum" aria-hidden="true"></span>Arcanum</button>
@@ -198,12 +222,12 @@
             <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="engineering" aria-checked="false"><span class="dot engineering" aria-hidden="true"></span>Engineering</button>
           </div>
         </div>
-        <div class="lang" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
-          <button type="button" data-lang="fr" aria-pressed="true">FR</button>
-          <button type="button" data-lang="en" aria-pressed="false">EN</button>
-          <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+        <div class="lang js-only" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
+          <button type="button" data-lang="fr" aria-pressed="true" lang="fr" aria-label="Français (FR)">FR</button>
+          <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English (EN)">EN</button>
+          <button type="button" data-lang="ar" aria-pressed="false" lang="ar" aria-label="العربية (ع)">ع</button>
         </div>
-        <button type="button" class="menu-toggle" aria-label="Menu" data-i18n-aria="ui.menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+        <button type="button" class="menu-toggle js-only" aria-label="Menu" data-i18n-aria="ui.menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
       </div>
     </div>
   </div>
@@ -221,10 +245,10 @@
   <a href="#faq" data-i18n="nav.faq">FAQ</a>
   <a href="#contact" data-i18n="nav.contact">Contact</a>
   </nav>
-  <div class="lang" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
-    <button type="button" data-lang="fr" aria-pressed="true">FR</button>
-    <button type="button" data-lang="en" aria-pressed="false">EN</button>
-    <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+  <div class="lang js-only" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
+    <button type="button" data-lang="fr" aria-pressed="true" lang="fr" aria-label="Français (FR)">FR</button>
+    <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English (EN)">EN</button>
+    <button type="button" data-lang="ar" aria-pressed="false" lang="ar" aria-label="العربية (ع)">ع</button>
   </div>
 </div>
 
@@ -298,7 +322,7 @@
           </span>
           <span class="pm-live"><i aria-hidden="true"></i><span data-i18n="hero.plateLive">en ligne</span></span>
         </div>
-        <div class="plate-ctl">
+        <div class="plate-ctl js-only">
         <button type="button" class="pl-pause" aria-pressed="false" aria-label="Mettre la rotation en pause" data-i18n-aria="hero.platePause"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="ic-pause" d="M3.5 2v8M8.5 2v8"/><path class="ic-play" d="M3 1.8v8.4L10 6z"/></svg></button>
         <div class="plate-rail" role="group" aria-label="Projets à l'écran" data-i18n-aria="hero.plateRail">
         <button type="button" aria-current="true" aria-label="Bordj Steel"><i></i></button>
@@ -318,7 +342,7 @@
       </div>
       <div class="tb-f">
         <dt data-i18n="tb.stack">Pile</dt>
-        <dd>0<i data-i18n="tb.stackV">dépendance · sans build</i></dd>
+        <dd data-i18n="tb.stackV">Aucune dépendance à l'exécution</dd>
       </div>
       <div class="tb-f">
         <dt data-i18n="tb.lang">Langues</dt>
@@ -326,7 +350,7 @@
       </div>
       <div class="tb-f">
         <dt data-i18n="tb.deploy">Déploiement</dt>
-        <dd data-i18n="tb.deployV">18 s · Actions</dd>
+        <dd data-i18n="tb.deployV">≈ 25 s · Actions</dd>
       </div>
       <div class="tb-f">
         <dt data-i18n="tb.status">État</dt>
@@ -498,7 +522,7 @@
         <span class="tag" data-i18n="prev.tag">Offre signature</span>
         <h3 data-i18n="prev.name">L'Aperçu</h3>
         <p class="promise" data-i18n="prev.promise">Zéro risque. Juste la preuve.</p>
-        <p class="brief" data-i18n="prev.brief">Avant tout paiement, on construit la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. On vous la présente en visio (30 min). Si vous dites non, vous ne devez rien.</p>
+        <p class="brief" data-i18n="prev.brief">Avant tout paiement, on construit la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. On vous la présente en visio (30 min). Si vous dites non, vous ne devez rien.</p>
         <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum.</p>
         <p class="prev-actions">
           <a class="btn btn-primary" id="prev-cta" href="#contact" data-i18n="prev.cta">Demander mon Aperçu →</a>
@@ -537,7 +561,7 @@
           <span class="fam" data-i18n="svc.famEngine">Le Moteur</span>
           <h3 data-i18n="f3.name">Automatisation &amp; pipelines</h3>
           <p class="promise" data-i18n="f3.promise">Supprimez la corvée.</p>
-          <p class="brief" data-i18n="f3.brief">Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif et fragile qui dévore vos heures — on le fait tourner seul à 3h du matin. Python · Playwright · APIs · Claude.</p>
+          <p class="brief" data-i18n="f3.brief">Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif et fragile qui dévore vos heures — on le fait tourner seul à 3 h du matin. Python · Playwright · APIs · Claude.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.apis">API</span><span class="pill">Claude</span></div>
         </div>
       </article>
@@ -548,7 +572,7 @@
           <span class="fam" data-i18n="svc.famEngine">Le Moteur</span>
           <h3 data-i18n="f4.name">Intelligence marché &amp; produit</h3>
           <p class="promise" data-i18n="f4.promise">Voir le marché clairement.</p>
-          <p class="brief" data-i18n="f4.brief">Transformez les données publiques du web en base exploitable : veille concurrentielle, suivi des prix et des catalogues — collectées dans le respect des conditions de chaque site et du RGPD, structurées, interrogeables.</p>
+          <p class="brief" data-i18n="f4.brief">Transformez les données publiques du web en base exploitable : veille concurrentielle, suivi des prix et des catalogues — collectées dans le respect des conditions de chaque site et du RGPD, structurées, interrogeables.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.maps">Cartes</span><span class="pill" data-i18n="tag.scoring">Scoring</span></div>
         </div>
       </article>
@@ -589,7 +613,7 @@
         </div>
         <div class="cap">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.6 3.4v17h17"/><path d="M6.6 16.6 10.2 12l3.6 2.6 6.2-8.2"/><circle cx="10.2" cy="12" r="1.15"/><circle cx="13.8" cy="14.6" r="1.15"/></svg></span>
-          <span class="fam" data-i18n="c3.fam">L'Engine</span>
+          <span class="fam" data-i18n="c3.fam">Le Moteur</span>
           <h4 data-i18n="c3.name">Data science &amp; analytics</h4>
           <p class="promise" data-i18n="c3.promise">Du signal dans le bruit.</p>
           <p class="brief" data-i18n="c3.brief">Vrai travail statistique — modélisation économétrique, séries temporelles, prévision, dashboards. Analyse testée et défendable.</p>
@@ -619,7 +643,7 @@
   <section id="how" aria-labelledby="how-h">
     <span class="kicker" data-parallax=".035" data-i18n="how.kicker">04 — Méthode</span>
     <h2 class="sec font-swap-display" id="how-h" data-i18n="how.title">Quatre étapes. <em>Zéro surprise.</em></h2>
-    <p class="sec-lead" data-i18n="how.lead">Entreprise immatriculée ? Vous ne payez rien avant d'avoir vu votre site tourner.</p>
+    <p class="sec-lead" data-i18n="how.lead">Entreprise immatriculée ? Vous ne payez rien avant d'avoir vu votre page d'accueil tourner.</p>
     <ol class="steps steps--4">
       <li class="step reveal">
         <div class="node">1</div>
@@ -631,7 +655,7 @@
       <li class="step reveal">
         <div class="node">2</div>
         <div class="step-body">
-          <h3 data-i18n="price.ob2h">On revient sous 24 h ouvrées</h3>
+          <h3 data-i18n="price.ob2h">On revient sous 24 h ouvrées</h3>
           <p data-i18n="price.ob2p">Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.</p>
         </div>
       </li>
@@ -660,16 +684,16 @@
   </section>
 
   <!-- ================= PRICING ================= -->
-  <!-- Ranges are anchored to the Onyxlab Baromètre 2026 Algerian freelance
-       grid and the 2026 DZ agency surveys, positioned between its "Confirmé"
-       and "Agence" columns: a four-person studio carries neither a junior's
-       inexperience nor an agency's overhead. The estimator applies the same
-       numbers the tiers quote — PRICE_MODEL in app.js is the single source. -->
+  <!-- Numidea's own prices, in dinars. The market table further down puts the
+       Algerian market beside them (Onyxlab Baromètre 2026 grid and the 2026 DZ
+       agency surveys, freelance confirmé to agency); some tiers sit inside that
+       range and some above its top. The estimator applies the same numbers the
+       tiers quote — PRICE_MODEL in app.js (ESTIMATE) is the single source. -->
   <section id="pricing" aria-labelledby="pricing-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span><span class="pi-coins lv"><span class="pi pc pc-king" data-parallax="-.16" data-parallax-cap="60"><i></i></span><span class="pi pc pc-horse" data-parallax="-.08" data-parallax-cap="50"><i></i></span><span class="pi pc pc-palm" data-parallax="-.22" data-parallax-cap="70"><i></i></span><span class="pl-cap" data-i18n="pl.coins">Pl. III — Monnaies numides</span></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="price.kicker">05 — Tarifs</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
-    <p class="sec-lead" data-i18n="price.lead">Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre et voyez l'estimation bouger.</p>
+    <p class="sec-lead" data-i18n="price.lead">Nos prix, publiés — et le marché algérien à côté. Réglez le périmètre et voyez l'estimation bouger.</p>
 
     <!-- Display currency for the tiers, the maintenance line and the
          estimator. Prices are set in dinars (PRICE_MODEL) and converted for
@@ -724,9 +748,9 @@
         <p class="t-range" data-tier="app"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t3time">8 à 16 semaines</p>
         <ul class="t-list">
-          <li data-i18n="price.t3a">Application web sur mesure : plateforme, portail ou outil métier</li>
+          <li data-i18n="price.t3a">Application web sur mesure : plateforme, portail ou outil métier</li>
           <li data-i18n="price.t3b">Paiement, comptes utilisateurs, tableaux de bord</li>
-          <li data-i18n="price.t3c">Scraping et intelligence marché — le web ouvert en base de données</li>
+          <li data-i18n="price.t3c">Scraping et intelligence marché, intégrés à l'application</li>
           <li data-i18n="price.t3d">Intégrations API et outils internes</li>
           <li data-i18n="price.t3e">6 mois de support inclus</li>
         </ul>
@@ -734,7 +758,7 @@
     </div>
 
     <p class="price-note reveal">
-      <span data-i18n="price.retainerA">Maintenance après livraison, si vous la voulez :</span>
+      <span data-i18n="price.retainerA">Maintenance après livraison, si vous la voulez :</span>
       <span class="pr-ret"><b id="pr-ret">18 000 –⁠ 60 000</b> <span class="cur" data-i18n="price.cur">DA</span></span>
       <span data-i18n="price.retainerB">par mois. Sans engagement de durée.</span>
     </p>
@@ -763,9 +787,9 @@
 
           <div class="est-field">
             <div class="est-lab"><label for="est-size" data-i18n="price.qSize">Ampleur</label>
-              <output class="est-sizev" id="est-size-v" for="est-size">8</output>
-              <span class="est-hint" id="est-size-h" data-i18n="price.uPages">pages</span></div>
-            <input type="range" id="est-size" min="1" max="25" value="8" step="1">
+              <span class="est-sizev" id="est-size-v" aria-hidden="true">8</span>
+              <span class="est-hint" id="est-size-h" aria-hidden="true" data-i18n="price.uPages">pages</span></div>
+            <input type="range" id="est-size" min="1" max="25" value="8" step="1" aria-valuetext="8 pages">
           </div>
 
           <fieldset class="est-field">
@@ -795,7 +819,7 @@
             <b id="est-lo">180 000</b><span class="eo-dash">–</span><b id="est-hi">420 000</b>
             <span class="cur" data-i18n="price.cur">DA</span>
           </p>
-          <p class="eo-time"><span id="est-weeks">3 –⁠ 7</span> <span data-i18n="price.weeks">semaines</span></p>
+          <p class="eo-time" role="status"><span id="est-weeks">3 –⁠ 7</span> <span data-i18n="price.weeks">semaines</span></p>
           <ul class="eo-sum" id="est-summary"></ul>
           <p class="eo-fine" data-i18n="price.estFine">Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.</p>
           <a class="btn btn-primary" id="est-cta" href="#contact" data-i18n="price.estCta">Obtenir le prix ferme →</a>
@@ -865,7 +889,7 @@
 
         <p class="mk-day">
           <span data-i18n="mk.day1">Une journée de développeur confirmé en France</span>
-          <b class="mk-num" dir="ltr">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz" dir="ltr">70 000 –⁠ 100 000 DA</b>
+          <b class="mk-num">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz">70 000 –⁠ 100 000 DA</b>
           <span data-i18n="mk.day2">au taux officiel — l'ordre de prix d'un site vitrine entier sur le marché algérien.</span>
         </p>
         <p class="mk-note" data-i18n="mk.note">Conversions au taux officiel de la Banque d'Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec le même stack que les studios européens et américains : React, Next.js, Vercel.</p>
@@ -874,10 +898,10 @@
           <summary data-i18n="mk.srcSum">Sources et méthode</summary>
           <p data-i18n="mk.method">Chaque case va du bas de la fourchette d'un freelance confirmé au haut de celle d'une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l'estimateur ci-dessus, au périmètre type de chaque projet.</p>
           <ul>
-            <li><b data-i18n="mk.srcDz">Algérie</b> — <a href="https://barometre.onyxlab.dz/" target="_blank" rel="noopener">Onyxlab, Baromètre des tarifs freelance 2026</a> <span data-i18n="mk.srcRange">(Confirmé → Agence)</span></li>
-            <li><b data-i18n="mk.srcFr">France</b> — <a href="https://www.tandem-studio.fr/prix-creation-site-internet/" target="_blank" rel="noopener">Tandem Studio, prix création site 2026</a> · <a href="https://lescreavores.fr/prix-creation-site-internet/" target="_blank" rel="noopener">Les Créavores, baromètre de 103 prix (juin 2026)</a> · <a href="https://www.heysimon.fr/articles/prix-logo-identite-visuelle-2026" target="_blank" rel="noopener">HeySimon, identité visuelle 2026</a> · <a href="https://lefreelance.fr/articles/tjm-developpeur-freelance/" target="_blank" rel="noopener">TJM d'après Malt (LeFreelance)</a></li>
-            <li><b data-i18n="mk.srcUs">États-Unis</b> — <a href="https://pitchsite.io/guides/web-design-pricing" target="_blank" rel="noopener">Pitchsite, Web Design Pricing Guide 2026</a> · <a href="https://8gnc.io/blog/how-much-does-branding-cost" target="_blank" rel="noopener">8GNC, branding cost 2026</a> · <a href="https://clutch.co/web-developers/pricing" target="_blank" rel="noopener">Clutch, web development pricing (sept. 2026)</a></li>
-            <li><b data-i18n="mk.srcFx">Change</b> — <a href="https://www.bank-of-algeria.dz/taux-de-change-journalier/" target="_blank" rel="noopener">Banque d'Algérie, taux de change journalier</a></li>
+            <li><b data-i18n="mk.srcDz">Algérie</b> — <a href="https://barometre.onyxlab.dz/" target="_blank" rel="noopener" lang="fr">Onyxlab, Baromètre des tarifs freelance 2026</a> <span data-i18n="mk.srcRange">(Confirmé → Agence)</span></li>
+            <li><b data-i18n="mk.srcFr">France</b> — <a href="https://www.tandem-studio.fr/prix-creation-site-internet/" target="_blank" rel="noopener" lang="fr">Tandem Studio, prix création site 2026</a> · <a href="https://lescreavores.fr/prix-creation-site-internet/" target="_blank" rel="noopener" lang="fr">Les Créavores, baromètre de 103 prix (juin 2026)</a> · <a href="https://www.heysimon.fr/articles/prix-logo-identite-visuelle-2026" target="_blank" rel="noopener" lang="fr">HeySimon, identité visuelle 2026</a> · <a href="https://lefreelance.fr/articles/tjm-developpeur-freelance/" target="_blank" rel="noopener" lang="fr">TJM d'après Malt (LeFreelance)</a></li>
+            <li><b data-i18n="mk.srcUs">États-Unis</b> — <a href="https://pitchsite.io/guides/web-design-pricing" target="_blank" rel="noopener" lang="en">Pitchsite, Web Design Pricing Guide 2026</a> · <a href="https://8gnc.io/blog/how-much-does-branding-cost" target="_blank" rel="noopener" lang="en">8GNC, branding cost 2026</a> · <a href="https://clutch.co/web-developers/pricing" target="_blank" rel="noopener" lang="en">Clutch, web development pricing (Sept. 2026)</a></li>
+            <li><b data-i18n="mk.srcFx">Change</b> — <a href="https://www.bank-of-algeria.dz/taux-de-change-journalier/" target="_blank" rel="noopener" lang="fr">Banque d'Algérie, taux de change journalier</a></li>
           </ul>
         </details>
       </div>
@@ -916,7 +940,7 @@
         <h4 class="md-sub" data-i18n="md.drH">Ce qui fait bouger un devis</h4>
         <ul class="md-drivers">
           <li><b data-i18n="md.d1h">Le périmètre</b><span data-i18n="md.d1p">Le nombre de pages, de produits ou d'écrans.</span></li>
-          <li><b data-i18n="md.d2h">Le design</b><span data-i18n="md.d2p">Sur mesure, ou adapté d'un modèle existant.</span></li>
+          <li><b data-i18n="md.d2h">Le design</b><span data-i18n="md.d2p">Entièrement sur mesure, ou à partir de votre charte et de vos maquettes existantes.</span></li>
           <li><b data-i18n="md.d3h">Les langues</b><span data-i18n="md.d3p">Chaque langue ajoute du contenu ; l'arabe ajoute une mise en page de droite à gauche.</span></li>
           <li><b data-i18n="md.d4h">Les intégrations</b><span data-i18n="md.d4p">Paiement, comptes utilisateurs, outils et API tiers.</span></li>
           <li><b data-i18n="md.d5h">Le contenu</b><span data-i18n="md.d5p">Textes, photos et vidéos : fournis par vous, ou à produire.</span></li>
@@ -954,7 +978,7 @@
           <p class="fd-role" data-i18n="founder.role">Designer graphique &amp; développeur web · Fondateur</p>
           <div class="fd-pills">
             <span class="pill">FR C2</span><span class="pill">EN C1</span><span class="pill" data-i18n="founder.arPill">AR langue maternelle</span>
-            <span class="pill" data-i18n="founder.years">6 ans</span><span class="pill">Bordj Bou Arréridj</span>
+            <span class="pill" data-i18n="founder.years">6 ans</span><span class="pill" data-i18n="founder.city">Bordj Bou Arréridj</span>
           </div>
         </div>
       </div>
@@ -968,7 +992,7 @@
       </ul>
 
       <div class="fd-actions">
-        <button type="button" class="btn btn-teal" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">Voir le parcours ↴</button>
+        <button type="button" class="btn btn-teal js-only" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">Voir le parcours ↴</button>
         <a class="btn btn-ghost" href="hub/" target="_blank" rel="noopener" data-i18n="founder.portfolio">Portfolio personnel ↗</a>
       </div>
 
@@ -992,7 +1016,7 @@
                 <div><dt data-i18n="fs2.h">Web &amp; front-end</dt><dd data-i18n="fs2">HTML / CSS / JS · React · sites vitrines · landing pages · CMS · SEO · responsive</dd></div>
                 <div><dt data-i18n="fs3.h">Stratégie &amp; contenu</dt><dd data-i18n="fs3">Réseaux sociaux · rédaction créative · intégration IA · automatisation · gestion de projet</dd></div>
               </dl>
-              <p class="cv-note" data-i18n="founder.skillsNote">Production environ 20 % plus rapide grâce à l'IA. En cours d'apprentissage : motion design et montage vidéo.</p>
+              <p class="cv-note" data-i18n="founder.skillsNote">Production environ 20 % plus rapide grâce à l'IA. En cours d'apprentissage : motion design et montage vidéo.</p>
             </div>
             <div class="cv-block">
               <h4 data-i18n="founder.eduLabel">Formation</h4>
@@ -1025,11 +1049,11 @@
     <h2 class="sec font-swap-display" id="stack-h" data-i18n="stack.title">Le flex <em>discret.</em></h2>
     <p class="sec-lead" data-i18n="stack.lead">Les outils derrière ce qu'on livre — choisis pour durer, pas pour la mode.</p>
     <div class="stack-strip reveal">
-      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="2.8" y="4.5" width="18.4" height="15" rx="1.5"/><path class="p" pathLength="1" d="M2.8 8.5h18.4M7.5 12.2 5.5 14.2l2 2M11 12.2l2 2-2 2"/><path class="a-blink" d="M15.5 16.2h3"/></svg>Front</b><span class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></span></span>
-      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3.5" y="4" width="17" height="6.5" rx="1.2"/><rect class="p" pathLength="1" x="3.5" y="13.5" width="17" height="6.5" rx="1.2"/><circle class="f a-led" style="--i:0" cx="7" cy="7.25" r=".95"/><circle class="f a-led" style="--i:1" cx="7" cy="16.75" r=".95"/><path class="p" pathLength="1" d="M11 7.25h6M11 16.75h6"/></svg>Back</b><span class="pills"><span class="pill">Node</span><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span></span></span>
-      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10Z"/><path class="p a-up" pathLength="1" d="M12 17.5v-6M9.6 13.8 12 11.4l2.4 2.4"/></svg>Cloud</b><span class="pills"><span class="pill">Vercel</span><span class="pill">Docker</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span></span></span>
-      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><ellipse class="p" pathLength="1" cx="12" cy="5.5" rx="7.5" ry="2.8"/><path class="p" pathLength="1" d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13"/><path class="p a-scan" pathLength="1" d="M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>Data</b><span class="pills"><span class="pill">Playwright</span><span class="pill">Pandas</span><span class="pill">Supabase</span><span class="pill">REST · APIs</span></span></span>
-      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="4.5" y="3" width="10" height="18" rx="2"/><path class="p" pathLength="1" d="M8.5 18h2"/><path class="a-wave" style="--i:0" d="M17 8.5a5 5 0 0 1 0 7"/><path class="a-wave" style="--i:1" d="M19.5 6.5a8 8 0 0 1 0 11"/></svg>Mobile</b><span class="pills"><span class="pill">PWA</span><span class="pill">React Native</span><span class="pill">Expo</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="2.8" y="4.5" width="18.4" height="15" rx="1.5"/><path class="p" pathLength="1" d="M2.8 8.5h18.4M7.5 12.2 5.5 14.2l2 2M11 12.2l2 2-2 2"/><path class="a-blink" d="M15.5 16.2h3"/></svg><span data-i18n="stack.gFront">Front</span></b><span class="pills"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">TypeScript</span><span class="pill">Tailwind</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3.5" y="4" width="17" height="6.5" rx="1.2"/><rect class="p" pathLength="1" x="3.5" y="13.5" width="17" height="6.5" rx="1.2"/><circle class="f a-led" style="--i:0" cx="7" cy="7.25" r=".95"/><circle class="f a-led" style="--i:1" cx="7" cy="16.75" r=".95"/><path class="p" pathLength="1" d="M11 7.25h6M11 16.75h6"/></svg><span data-i18n="stack.gBack">Back</span></b><span class="pills"><span class="pill">Node</span><span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">PostgreSQL</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10Z"/><path class="p a-up" pathLength="1" d="M12 17.5v-6M9.6 13.8 12 11.4l2.4 2.4"/></svg><span data-i18n="stack.gCloud">Cloud</span></b><span class="pills"><span class="pill">Vercel</span><span class="pill">Docker</span><span class="pill">Cloudflare</span><span class="pill">GitHub Actions</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><ellipse class="p" pathLength="1" cx="12" cy="5.5" rx="7.5" ry="2.8"/><path class="p" pathLength="1" d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13"/><path class="p a-scan" pathLength="1" d="M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg><span data-i18n="stack.gData">Data</span></b><span class="pills"><span class="pill">Playwright</span><span class="pill">Pandas</span><span class="pill">Supabase</span><span class="pill">REST · APIs</span></span></span>
+      <span class="grp"><b><svg class="ai ai-grp" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="4.5" y="3" width="10" height="18" rx="2"/><path class="p" pathLength="1" d="M8.5 18h2"/><path class="a-wave" style="--i:0" d="M17 8.5a5 5 0 0 1 0 7"/><path class="a-wave" style="--i:1" d="M19.5 6.5a8 8 0 0 1 0 11"/></svg><span data-i18n="stack.gMobile">Mobile</span></b><span class="pills"><span class="pill">PWA</span><span class="pill">React Native</span><span class="pill">Expo</span></span></span>
     </div>
   </section>
 
@@ -1049,7 +1073,7 @@
 
       <details class="faq-item reveal">
         <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:7.5px 7.5px"><path class="p" pathLength="1" d="M3.5 3.5h8.2l8.8 8.8a1.5 1.5 0 0 1 0 2.1l-6.1 6.1a1.5 1.5 0 0 1-2.1 0L3.5 11.7Z"/><circle class="p" pathLength="1" cx="7.5" cy="7.5" r="1.4"/></g></svg><span class="q" data-i18n="faq2.q">C'est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-        <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq2"></span></span><p data-i18n="faq2.a">Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et pour une entreprise immatriculée, on construit d'abord votre page d'accueil, gratuitement : L'Aperçu.</p></div>
+        <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq2"></span></span><p data-i18n="faq2.a">Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et pour une entreprise immatriculée, on construit d'abord votre page d'accueil, gratuitement, dans la limite de 4 par mois : L'Aperçu.</p></div>
       </details>
 
       <details class="faq-item reveal">
@@ -1059,7 +1083,7 @@
 
       <details class="faq-item reveal">
         <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 3 19.5 6v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6Z"/><path class="p a-ekg" pathLength="1" d="M6.5 12.5h3l1.3-3 2.4 6 1.3-3h3"/></svg><span class="q" data-i18n="faq4.q">Et après le lancement ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-        <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq4"></span></span><p data-i18n="faq4.a">On reste. On maintient ce qu'on livre et on répond quand ça casse — sous 24 h ouvrées. Pas de « bonne chance » le jour de la mise en ligne.</p></div>
+        <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq4"></span></span><p data-i18n="faq4.a">On reste. On maintient ce qu'on livre et on répond quand ça casse — sous 24 h ouvrées. Pas de « bonne chance » le jour de la mise en ligne.</p></div>
       </details>
 
       <details class="faq-item reveal">
@@ -1069,7 +1093,7 @@
 
       <details class="faq-item reveal">
         <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="4.8" cy="12" r="2.6"/><circle class="p" pathLength="1" cx="19.2" cy="12" r="2.6"/><path class="p" pathLength="1" d="M7.4 12h9.2"/><circle class="f a-travel" cx="8.6" cy="12" r="1.05"/></svg><span class="q" data-i18n="faq6.q">Qu'est-ce qui vous différencie d'une agence ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-        <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq6"></span></span><p data-i18n="faq6.a">Pas d'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois.</p></div>
+        <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq6"></span></span><p data-i18n="faq6.a">Pas d'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois.</p></div>
       </details>
 
     </div>
@@ -1086,12 +1110,12 @@
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg><dt data-i18n="form.email">Email</dt><dd><a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@gmail.com</a></dd></div>
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M4 20 5.3 15.7A8 8 0 1 1 8.3 18.7Z"/><circle class="f a-dt" style="--i:0" cx="8.7" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:1" cx="12" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:2" cx="15.3" cy="11.8" r=".95"/></svg><dt data-i18n="footer.wa">WhatsApp</dt><dd><a class="wa-link" data-wa-pending aria-disabled="true" dir="ltr">+213 672 41 25 78</a> <span class="ch-note" data-i18n="contact.waNote">message gratuit via l'appli</span></dd></div>
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M12 20s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z"/><circle class="p" pathLength="1" cx="12" cy="9" r="2.3"/></g><path class="a-shadow" d="M9.5 22h5"/></svg><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
-          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="13.5" r="7.5"/><path class="p" pathLength="1" d="M12 3.5V6M10 3.5h4"/><path class="p a-hand" style="--o:12px 13.5px;--t:3s" pathLength="1" d="M12 13.5 15 10.5"/></svg><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">&lt; 24 h ouvrées · FR · EN · ع</dd></div>
-          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><ellipse class="p a-globe" pathLength="1" cx="12" cy="12" rx="3.6" ry="8.5"/><path class="p" pathLength="1" d="M3.5 12h17"/></svg><dt data-i18n="contact.chTz">Fuseau</dt><dd data-i18n="contact.vTz">UTC+1 · l'heure de Paris en hiver, 1 h de moins en été</dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="13.5" r="7.5"/><path class="p" pathLength="1" d="M12 3.5V6M10 3.5h4"/><path class="p a-hand" style="--o:12px 13.5px;--t:3s" pathLength="1" d="M12 13.5 15 10.5"/></svg><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">&lt; 24 h ouvrées · FR · EN · <span lang="ar">ع</span></dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><ellipse class="p a-globe" pathLength="1" cx="12" cy="12" rx="3.6" ry="8.5"/><path class="p" pathLength="1" d="M3.5 12h17"/></svg><dt data-i18n="contact.chTz">Fuseau</dt><dd data-i18n="contact.vTz">UTC+1 · l'heure de Paris en hiver, 1 h de moins en été</dd></div>
         </dl>
       </div>
       <div class="contact-main">
-        <form class="form" id="contact-form" novalidate>
+        <form class="form" id="contact-form" action="mailto:hamissemohamedyasser@gmail.com" method="post" enctype="text/plain">
           <div class="form-row">
             <div class="field">
               <label for="f-name" data-i18n="form.name">Nom</label>
@@ -1126,6 +1150,7 @@
           <p data-i18n="form.success">Votre messagerie devrait s'ouvrir avec le message prêt — il ne reste qu'à l'envoyer.</p>
           <p class="fallback"><span data-i18n="form.successAlt">Rien ne s'est ouvert ? Écrivez-nous directement :</span>
             <a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@gmail.com</a></p>
+          <p class="fallback"><button type="button" class="btn btn-ghost" id="form-edit" data-i18n="form.edit">Revoir mon message</button></p>
         </div>
       </div>
     </div>
@@ -1163,7 +1188,7 @@
       <ul>
         <li><a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@gmail.com</a></li>
         <li><a class="wa-link" data-wa-pending aria-disabled="true" data-i18n="footer.wa">WhatsApp</a></li>
-        <li data-i18n="contact.vReply">&lt; 24 h ouvrées · FR · EN · ع</li>
+        <li data-i18n="contact.vReply">&lt; 24 h ouvrées · FR · EN · <span lang="ar">ع</span></li>
       </ul>
     </div>
     <div class="fc">
@@ -1184,10 +1209,10 @@
     <!-- legal notice + privacy links, written by scripts/build-legal.mjs once legal/ is published -->
     <span class="meta-legal"><!-- LEGAL:footer --><!-- /LEGAL:footer --></span>
     <span class="meta-end">
-      <span class="lang" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
-        <button type="button" data-lang="fr" aria-pressed="true">FR</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
-        <button type="button" data-lang="ar" aria-pressed="false" lang="ar">ع</button>
+      <span class="lang js-only" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
+        <button type="button" data-lang="fr" aria-pressed="true" lang="fr" aria-label="Français (FR)">FR</button>
+        <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English (EN)">EN</button>
+        <button type="button" data-lang="ar" aria-pressed="false" lang="ar" aria-label="العربية (ع)">ع</button>
       </span>
       <a class="meta-top" href="#top"><span data-i18n="ui.top">Haut de page</span> <span aria-hidden="true">↑</span></a>
     </span>
@@ -1216,11 +1241,11 @@
 <script type="application/ld+json" id="ld-faq">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Combien de temps pour livrer ?","acceptedAnswer":{"@type":"Answer","text":"Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu'on a cadré le projet ensemble."}},
-{"@type":"Question","name":"C'est combien ?","acceptedAnswer":{"@type":"Answer","text":"Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et pour une entreprise immatriculée, on construit d'abord votre page d'accueil, gratuitement : L'Aperçu."}},
+{"@type":"Question","name":"C'est combien ?","acceptedAnswer":{"@type":"Answer","text":"Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et pour une entreprise immatriculée, on construit d'abord votre page d'accueil, gratuitement, dans la limite de 4 par mois : L'Aperçu."}},
 {"@type":"Question","name":"Vous travaillez en quelles langues ?","acceptedAnswer":{"@type":"Answer","text":"Français, arabe et anglais — à l'oral, à l'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement."}},
-{"@type":"Question","name":"Et après le lancement ?","acceptedAnswer":{"@type":"Answer","text":"On reste. On maintient ce qu'on livre et on répond quand ça casse — sous 24 h ouvrées. Pas de « bonne chance » le jour de la mise en ligne."}},
+{"@type":"Question","name":"Et après le lancement ?","acceptedAnswer":{"@type":"Answer","text":"On reste. On maintient ce qu'on livre et on répond quand ça casse — sous 24 h ouvrées. Pas de « bonne chance » le jour de la mise en ligne."}},
 {"@type":"Question","name":"Travaillez-vous à distance ?","acceptedAnswer":{"@type":"Answer","text":"Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l'accès direct au builder."}},
-{"@type":"Question","name":"Qu'est-ce qui vous différencie d'une agence ?","acceptedAnswer":{"@type":"Answer","text":"Pas d'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois."}}
+{"@type":"Question","name":"Qu'est-ce qui vous différencie d'une agence ?","acceptedAnswer":{"@type":"Answer","text":"Pas d'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois."}}
 ]}
 </script>
 </body>

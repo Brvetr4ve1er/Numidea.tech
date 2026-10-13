@@ -23,7 +23,7 @@
       'hero.cta1': 'Construisons →', 'hero.cta2': 'Voir les preuves',
       'hero.plateLive': 'en ligne',
       'tb.project': 'Projet', 'tb.stack': 'Pile', 'tb.lang': 'Langues', 'tb.deploy': 'Déploiement', 'tb.status': 'État',
-      'tb.stackV': 'dépendance · sans build', 'tb.deployV': '18 s · Actions',
+      'tb.stackV': 'Aucune dépendance à l\'exécution', 'tb.deployV': '≈ 25 s · Actions',
       'sheet.scale': 'Éch. 1:1', 'sheet.rev': 'Rév. 2026-08', 'sheet.sheet': 'Feuille 01',
       'proof.kicker': '01 — Preuves',
       'proof.s1': 'projets livrés', 'proof.s2': 'spécialistes', 'proof.s3': 'langues', 'proof.s4': 'de réponse, en heures ouvrées',
@@ -44,13 +44,13 @@
       'work.live': 'Voir le site →', 'work.soon': 'Bientôt', 'work.sheet': 'Planche →', 'work.concept': 'Démo portfolio',
       'how.kicker': '04 — Méthode',
       'how.title': 'Quatre étapes. <em>Zéro surprise.</em>',
-      'how.lead': 'Entreprise immatriculée ? Vous ne payez rien avant d\'avoir vu votre site tourner.',
+      'how.lead': 'Entreprise immatriculée ? Vous ne payez rien avant d\'avoir vu votre page d\'accueil tourner.',
       'scene.kicker': '◆ PLANCHES · LIVRABLE PAR LIVRABLE', 'scene.title': 'Tout ce qui a été livré, projet par projet.',
       'scene.lead': 'Les pages, le mobile et le système visuel de chaque projet, capturés sur les sites en ligne.',
       'scene.cta': 'Ouvrir les planches →',
       'founder.kicker': '06 — Équipe & fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
       'founder.lead': 'Derrière Numidea : un fondateur qui conçoit, code et livre, et trois spécialistes autour de lui.',
-      'founder.role': 'Designer graphique & développeur web · Fondateur', 'founder.years': '6 ans',
+      'founder.role': 'Designer graphique & développeur web · Fondateur', 'founder.years': '6 ans', 'founder.city': 'Bordj Bou Arréridj',
       'founder.bio': 'Six ans à concevoir des identités, coder des interfaces et livrer des produits — de la marque au front-end au cloud. Je transforme le brief en build, et je reste quand c\'est en ligne.',
       'founder.cvBtn': 'Voir le parcours ↴', 'founder.cvClose': 'Masquer le parcours ↑', 'founder.portfolio': 'Portfolio personnel ↗',
       'founder.expLabel': 'Parcours', 'founder.skillsLabel': 'Compétences', 'founder.eduLabel': 'Formation',
@@ -66,7 +66,7 @@
       'fs1.h': 'Design & identité', 'fs1': 'Branding · identité visuelle · illustration · direction artistique UI/UX · photo & retouche',
       'fs2.h': 'Web & front-end', 'fs2': 'HTML / CSS / JS · React · sites vitrines · landing pages · CMS · SEO · responsive',
       'fs3.h': 'Stratégie & contenu', 'fs3': 'Réseaux sociaux · rédaction créative · intégration IA · automatisation · gestion de projet',
-      'founder.skillsNote': "Production environ 20 % plus rapide grâce à l'IA. En cours d'apprentissage : motion design et montage vidéo.",
+      'founder.skillsNote': "Production environ 20 % plus rapide grâce à l'IA. En cours d'apprentissage : motion design et montage vidéo.",
       'founder.certs': 'Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D',
       'pl.vista': 'Pl.\u00a0I — Les Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arc de Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Monnaies numides', 'pl.strata': 'Pl.\u00a0IV — Coupe des couches', 'pl.light': 'Pl.\u00a0V — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0VI — Le Grand Erg',
       'whq.kick': 'Le projet préféré du fondateur', 'whq.sub': 'WorkspaceHQ v3 est sorti — votre code, en jeu d\'arcade',
@@ -78,19 +78,20 @@
       'stack.kicker': '07 — Stack',
       'stack.title': 'Le flex <em>discret.</em>',
       'stack.lead': 'Les outils derrière ce qu\'on livre — choisis pour durer, pas pour la mode.',
+      'stack.gFront': 'Front', 'stack.gBack': 'Back', 'stack.gCloud': 'Cloud', 'stack.gData': 'Data', 'stack.gMobile': 'Mobile',
       'faq.kicker': '08 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
       'faq.lead': 'Ce qu\'on nous demande avant de se lancer — répondu franchement.',
       'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Ça dépend du périmètre — mais on ne vous fait pas attendre. La plupart des sites partent en quelques semaines, et vous repartez avec un délai ferme dès qu\'on a cadré le projet ensemble.',
-      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et pour une entreprise immatriculée, on construit d\'abord votre page d\'accueil, gratuitement : L\'Aperçu.',
+      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Au projet, jamais au modèle copié-collé. On chiffre une fois le périmètre clair — un prix fixe, sans frais surprise. Et pour une entreprise immatriculée, on construit d\'abord votre page d\'accueil, gratuitement, dans la limite de 4 par mois : L\'Aperçu.',
       'faq3.q': 'Vous travaillez en quelles langues ?', 'faq3.a': 'Français, arabe et anglais — à l\'oral, à l\'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.',
-      'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. On maintient ce qu\'on livre et on répond quand ça casse — sous 24 h ouvrées. Pas de « bonne chance » le jour de la mise en ligne.',
+      'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. On maintient ce qu\'on livre et on répond quand ça casse — sous 24 h ouvrées. Pas de « bonne chance » le jour de la mise en ligne.',
       'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien à l\'accès direct au builder.',
-      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d\'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois.',
+      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d\'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois.',
       'contact.kicker': '09 — Contact',
       'contact.title': 'On le <em>rend réel ?</em>',
       'contact.sub': 'Dites-nous ce que vous cherchez à concrétiser — l\'urgent, le cassé, l\'échéance. En français, anglais ou arabe.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Réponse',
-      'contact.vStudio': 'Bordj Bou Arréridj · Algérie', 'contact.vReply': '< 24 h ouvrées · FR · EN · ع',
+      'contact.vStudio': 'Bordj Bou Arréridj · Algérie', 'contact.vReply': '< 24 h ouvrées · FR · EN · <span lang="ar">ع</span>',
       'form.name': 'Nom', 'form.namePh': 'Votre nom',
       'form.email': 'Email', 'form.emailPh': 'vous@entreprise.com',
       'form.message': 'Message', 'form.messagePh': 'Qu\'est-ce qu\'on construit ?',
@@ -101,6 +102,7 @@
       'form.errMsg': 'Dites-nous une ligne sur le projet.',
       'form.success': 'Votre messagerie devrait s\'ouvrir avec le message prêt — il ne reste qu\'à l\'envoyer.',
       'form.successAlt': 'Rien ne s\'est ouvert ? Écrivez-nous directement :',
+      'form.edit': 'Revoir mon message',
       'footer.signoff': 'Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.',
       'footer.rights': '© 2026 Numidea Labs',
       'footer.tag': 'Enraciné en Numidie · bâti sur des idées'
@@ -117,7 +119,7 @@
       'hero.cta1': 'Let\'s build it →', 'hero.cta2': 'See the proof',
       'hero.plateLive': 'live',
       'tb.project': 'Project', 'tb.stack': 'Stack', 'tb.lang': 'Languages', 'tb.deploy': 'Deploy', 'tb.status': 'Status',
-      'tb.stackV': 'dependency · no build step', 'tb.deployV': '18 s · Actions',
+      'tb.stackV': 'No runtime dependencies', 'tb.deployV': '≈ 25 s · Actions',
       'sheet.scale': 'Scale 1:1', 'sheet.rev': 'Rev. 2026-08', 'sheet.sheet': 'Sheet 01',
       'proof.kicker': '01 — Proof',
       'proof.s1': 'projects shipped', 'proof.s2': 'specialists', 'proof.s3': 'languages', 'proof.s4': 'response, in working hours',
@@ -138,13 +140,13 @@
       'work.live': 'Visit the site →', 'work.soon': 'Soon', 'work.sheet': 'Project sheet →', 'work.concept': 'Portfolio demo',
       'how.kicker': '04 — Process',
       'how.title': 'Four steps. <em>No surprises.</em>',
-      'how.lead': 'Registered business? You pay nothing until you have seen your site running.',
+      'how.lead': 'Registered business? You pay nothing until you have seen your homepage running.',
       'scene.kicker': '◆ SHEETS · DELIVERABLE BY DELIVERABLE', 'scene.title': 'Everything delivered, project by project.',
       'scene.lead': 'The pages, mobile views and visual system of every project, captured from the live sites.',
       'scene.cta': 'Open the sheets →',
       'founder.kicker': '06 — Team & founder', 'founder.title': 'The studio has a <em>face.</em>',
       'founder.lead': 'Behind Numidea: a founder who designs, codes and ships, with three specialists around him.',
-      'founder.role': 'Graphic designer & web developer · Founder', 'founder.years': '6 yrs',
+      'founder.role': 'Graphic designer & web developer · Founder', 'founder.years': '6 yrs', 'founder.city': 'Bordj Bou Arréridj',
       'founder.bio': 'Six years designing identities, coding interfaces and shipping products — brand to front-end to cloud. I turn the brief into the build, and I stay once it\'s live.',
       'founder.cvBtn': 'View the track record ↴', 'founder.cvClose': 'Hide the track record ↑', 'founder.portfolio': 'Personal portfolio ↗',
       'founder.expLabel': 'Experience', 'founder.skillsLabel': 'Skills', 'founder.eduLabel': 'Education',
@@ -172,10 +174,11 @@
       'stack.kicker': '07 — Stack',
       'stack.title': 'The quiet <em>flex.</em>',
       'stack.lead': 'The tools behind what we ship — chosen to last, not to trend.',
+      'stack.gFront': 'Front', 'stack.gBack': 'Back', 'stack.gCloud': 'Cloud', 'stack.gData': 'Data', 'stack.gMobile': 'Mobile',
       'faq.kicker': '08 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
       'faq.lead': 'What people ask before they start — answered straight.',
       'faq1.q': 'How long does it take to ship?', 'faq1.a': 'It depends on scope — but we don\'t keep you waiting. Most sites ship in a few weeks, and you get a firm timeline the moment we\'ve scoped the project together.',
-      'faq2.q': 'What does it cost?', 'faq2.a': 'Per project, never a copy-paste template. We quote once the scope is clear — a fixed price, no surprise fees. And for a registered business, we build your homepage first, for free: the Preview.',
+      'faq2.q': 'What does it cost?', 'faq2.a': 'Per project, never a copy-paste template. We quote once the scope is clear — a fixed price, no surprise fees. And for a registered business, we build your homepage first, for free, up to 4 a month: the Preview.',
       'faq3.q': 'What languages do you work in?', 'faq3.a': 'French, Arabic and English — spoken, written, and in what we ship. This very site is trilingual, with a natively mirrored Arabic (RTL) experience.',
       'faq4.q': 'What happens after launch?', 'faq4.a': 'We stay. We maintain what we ship and we answer when it breaks — within 24 working hours. No "good luck" on launch day.',
       'faq5.q': 'Do you work remotely?', 'faq5.a': 'Yes. We\'re based in Bordj Bou Arréridj but we deliver anywhere — including clients in France. Distance doesn\'t change your direct line to the builder.',
@@ -195,6 +198,7 @@
       'form.errMsg': 'Give us one line about the project.',
       'form.success': 'Your mail app should open with the message ready — all that is left is to send it.',
       'form.successAlt': 'Nothing opened? Write to us directly:',
+      'form.edit': 'Back to my message',
       'footer.signoff': 'Built in Bordj Bou Arréridj, with black coffee and TypeScript.',
       'footer.rights': '© 2026 Numidea Labs',
       'footer.tag': 'Rooted in Numidia · built on ideas'
@@ -214,7 +218,7 @@
       'hero.cta1': 'لنبنِ ←', 'hero.cta2': 'شاهد الإثبات',
       'hero.plateLive': 'مباشر',
       'tb.project': 'المشروع', 'tb.stack': 'التقنيات', 'tb.lang': 'اللغات', 'tb.deploy': 'النشر', 'tb.status': 'الحالة',
-      'tb.stackV': 'اعتمادية · بلا بناء', 'tb.deployV': '18 ث · Actions',
+      'tb.stackV': 'بلا اعتماديات وقت التشغيل', 'tb.deployV': '≈ 25 ث · Actions',
       'sheet.scale': 'مقياس 1:1', 'sheet.rev': 'مراجعة 2026-08', 'sheet.sheet': 'لوحة 01',
       'proof.kicker': '01 — الإثبات',
       'proof.s1': 'مشاريع مُسلَّمة', 'proof.s2': 'مختصّين', 'proof.s3': 'لغات', 'proof.s4': 'زمن الردّ، بساعات العمل',
@@ -235,13 +239,13 @@
       'work.live': 'زيارة الموقع ←', 'work.soon': 'قريباً', 'work.sheet': 'لوحة المشروع ←', 'work.concept': 'نموذج عرض',
       'how.kicker': '04 — المنهج',
       'how.title': 'أربع خطوات. <em>بلا مفاجآت.</em>',
-      'how.lead': 'شركة مسجّلة؟ لا تدفع شيئاً قبل أن ترى موقعك يعمل.',
+      'how.lead': 'شركة مسجّلة؟ لا تدفع شيئاً قبل أن ترى صفحتك الرئيسية تعمل.',
       'scene.kicker': '◆ اللوحات · مُخرَجاً بمُخرَج', 'scene.title': 'كل ما سُلِّم، مشروعاً بمشروع.',
       'scene.lead': 'الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع الحيّة.',
       'scene.cta': 'افتح اللوحات ←',
       'founder.kicker': '06 — الفريق والمؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
       'founder.lead': 'خلف نوميديا: مؤسّس يصمّم ويبرمج ويُسلّم، ومعه ثلاثة متخصّصين.',
-      'founder.role': 'مصمّم غرافيك ومطوّر ويب · المؤسّس', 'founder.years': '6 سنوات',
+      'founder.role': 'مصمّم غرافيك ومطوّر ويب · المؤسّس', 'founder.years': '6 سنوات', 'founder.city': 'برج بوعريريج',
       'founder.bio': 'ستّ سنوات في تصميم الهويّات وبرمجة الواجهات وتسليم المنتجات — من العلامة إلى الواجهة إلى السحابة. أحوّل الفكرة إلى منتج، وأبقى بعد الإطلاق.',
       'founder.cvBtn': 'عرض المسار <span class="arr">↴</span>', 'founder.cvClose': 'إخفاء المسار ↑', 'founder.portfolio': 'المعرض الشخصي <span class="arr">↗</span>',
       'founder.expLabel': 'المسار', 'founder.skillsLabel': 'المهارات', 'founder.eduLabel': 'التعليم',
@@ -269,10 +273,11 @@
       'stack.kicker': '07 — التقنيات',
       'stack.title': 'التباهي <em>الهادئ.</em>',
       'stack.lead': 'الأدوات وراء ما نُسلّمه — مختارة لتدوم، لا لتتبع الموضة.',
+      'stack.gFront': 'الواجهة', 'stack.gBack': 'الخادم', 'stack.gCloud': 'السحابة', 'stack.gData': 'البيانات', 'stack.gMobile': 'الهاتف',
       'faq.kicker': '08 — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
       'faq.lead': 'ما يُسأل قبل البدء — بإجابات صريحة.',
       'faq1.q': 'كم يستغرق الإنجاز؟', 'faq1.a': 'يعتمد على حجم المشروع — لكنّنا لا نُبقيك تنتظر. معظم المواقع تنطلق خلال أسابيع، وتحصل على موعد نهائي واضح بمجرّد أن نحدّد نطاق العمل معاً.',
-      'faq2.q': 'كم التكلفة؟', 'faq2.a': 'حسب المشروع، لا قوالب جاهزة. نُسعّر بعد توضيح النطاق — سعر ثابت دون مفاجآت. وللشركات المسجّلة نبني الصفحة الرئيسية أولاً، مجّاناً: المعاينة.',
+      'faq2.q': 'كم التكلفة؟', 'faq2.a': 'حسب المشروع، لا قوالب جاهزة. نُسعّر بعد توضيح النطاق — سعر ثابت دون مفاجآت. وللشركات المسجّلة نبني الصفحة الرئيسية أولاً، مجّاناً، في حدود 4 في الشهر: المعاينة.',
       'faq3.q': 'بأي لغات تعملون؟', 'faq3.a': 'الفرنسية والعربية والإنجليزية — حديثاً وكتابةً وفي المنتَج المُسلَّم. هذا الموقع نفسه ثلاثي اللغات، بتجربة عربية (RTL) مصمّمة أصلاً.',
       'faq4.q': 'وماذا بعد الإطلاق؟', 'faq4.a': 'نبقى معك. نصون ما نُسلّمه ونردّ حين يتعطّل شيء — خلال 24 ساعة عمل. لا «حظّاً موفقاً» يوم الإطلاق.',
       'faq5.q': 'هل تعملون عن بُعد؟', 'faq5.a': 'نعم. مقرّنا في برج بوعريريج لكنّنا نُسلّم في كل مكان — بما في ذلك عملاء في فرنسا. البُعد لا يغيّر تواصلك المباشر مع من يبني.',
@@ -292,6 +297,7 @@
       'form.errMsg': 'أخبرنا بسطر عن المشروع.',
       'form.success': 'من المفترض أن يفتح تطبيق البريد والرسالة جاهزة — لم يبقَ سوى إرسالها.',
       'form.successAlt': 'لم يفتح شيء؟ راسلنا مباشرة:',
+      'form.edit': 'العودة إلى رسالتي',
       'footer.signoff': 'بُني في برج بوعريريج، بقهوة سوداء و TypeScript.',
       'footer.rights': '© 2026 نوميديا لابز',
       'footer.tag': 'جذورها في نوميديا · مبنيّة على الأفكار'
@@ -325,7 +331,7 @@
       'md.vW': "Plus rare, surtout en conseil et en stratégie, là où l'enjeu se mesure.",
       'md.drH': 'Ce qui fait bouger un devis',
       'md.d1h': 'Le périmètre', 'md.d1p': "Le nombre de pages, de produits ou d'écrans.",
-      'md.d2h': 'Le design', 'md.d2p': "Sur mesure, ou adapté d'un modèle existant.",
+      'md.d2h': 'Le design', 'md.d2p': "Entièrement sur mesure, ou à partir de votre charte et de vos maquettes existantes.",
       'md.d3h': 'Les langues', 'md.d3p': "Chaque langue ajoute du contenu ; l'arabe ajoute une mise en page de droite à gauche.",
       'md.d4h': 'Les intégrations', 'md.d4p': 'Paiement, comptes utilisateurs, outils et API tiers.',
       'md.d5h': 'Le contenu', 'md.d5p': 'Textes, photos et vidéos : fournis par vous, ou à produire.',
@@ -335,7 +341,7 @@
       'wa.hello': "Bonjour Numidea Labs — j'aimerais parler d'un projet.",
       'footer.wa': 'WhatsApp',
       'price.kicker': '05 — Tarifs', 'price.title': 'Un prix <em>avant le devis.</em>',
-      'price.lead': 'Les fourchettes réelles du marché algérien, publiées. Réglez le périmètre et voyez l\'estimation bouger.',
+      'price.lead': 'Nos prix, publiés — et le marché algérien à côté. Réglez le périmètre et voyez l\'estimation bouger.',
       'price.cur': 'DA',
       'price.popular': 'Recommandé',
       'price.t1name': 'Essentiel', 'price.t1for': 'Une présence crédible, vite en ligne.', 'price.t1time': '2 à 4 semaines',
@@ -352,22 +358,23 @@
       'price.t2e': 'SEO technique, Core Web Vitals, accessibilité',
       'price.t2f': '3 mois de support inclus',
       'price.t3name': 'Moteur', 'price.t3for': "La machinerie que presque personne ne construit ici.", 'price.t3time': '8 à 16 semaines',
-      'price.t3a': 'Application web sur mesure : plateforme, portail ou outil métier',
+      'price.t3a': 'Application web sur mesure : plateforme, portail ou outil métier',
       'price.t3b': 'Paiement, comptes utilisateurs, tableaux de bord',
-      'price.t3c': 'Scraping et intelligence marché — le web ouvert en base de données',
+      'price.t3c': 'Scraping et intelligence marché, intégrés à l\'application',
       'price.t3d': 'Intégrations API et outils internes',
       'price.t3e': '6 mois de support inclus',
-      'price.retainerA': 'Maintenance après livraison, si vous la voulez :', 'price.retainerB': 'par mois. Sans engagement de durée.',
+      'price.retainerA': 'Maintenance après livraison, si vous la voulez :', 'price.retainerB': 'par mois. Sans engagement de durée.',
       'price.curL': 'Afficher les prix en', 'price.exTax': 'HT',
-      'price.curNoteEUR': "≈ Conversion au taux officiel de la Banque d'Algérie (1 € ≈ 151 DA, octobre 2026), arrondie. Prix HT. Entreprise française : facture sans TVA, autoliquidée par vos soins (art. 283-2 du CGI).",
-      'price.curNoteUSD': "≈ Conversion au taux officiel de la Banque d'Algérie (1 $ ≈ 134 DA, octobre 2026), arrondie. Prix hors taxes.",
+      'price.curNoteEUR': "≈ Conversion au taux officiel de la Banque d'Algérie (1 € ≈ 151 DA, octobre 2026), arrondie. Prix HT. Entreprise française : facture sans TVA, autoliquidée par vos soins (art. 283-2 du CGI).",
+      'price.curNoteUSD': "≈ Conversion au taux officiel de la Banque d'Algérie (1 $ ≈ 134 DA, octobre 2026), arrondie. Prix hors taxes.",
       'price.estH': 'Estimez votre projet',
       'price.estP': 'Réglez ce dont vous avez besoin. La fourchette se recalcule en direct, sur les mêmes chiffres que les paliers ci-dessus.',
       'price.qType': 'Quel type de projet ?', 'price.qSize': 'Ampleur', 'price.qOpts': "Ce qu'il vous faut en plus", 'price.qPace': 'Délai',
       'price.tyVitrine': 'Vitrine', 'price.tyCustom': 'Site sur mesure', 'price.tyShop': 'E-commerce',
       'price.tyApp': 'Application web', 'price.tyAuto': 'Automatisation', 'price.tyBrand': 'Identité visuelle',
       'price.oI18n': 'Trilingue FR / EN / AR + RTL', 'price.oCms': 'CMS / back-office', 'price.oPay': 'Paiement en ligne',
-      'price.oDs': 'Design system complet', 'price.oSeo': 'SEO avancé & performance', 'price.oApi': 'Intégrations API', 'price.incl': 'inclus',
+      'price.oDs': 'Design system complet', 'price.oSeo': 'SEO avancé & performance', 'price.oApi': 'Intégrations API', 'price.incl': 'dans le palier',
+      'price.studioBetter': 'Le palier Studio comprend déjà ces options',
       'price.paceStd': 'Standard', 'price.paceRush': 'Accéléré',
       'price.uPages': 'pages', 'price.uPages.n': 'page|pages', 'price.uScreens': 'écrans', 'price.uScreens.n': 'écran|écrans', 'price.uProducts': 'produits', 'price.uProducts.n': 'produit|produits', 'price.uFlows': 'flux', 'price.uFlows.n': 'flux|flux', 'price.uSupports': 'supports', 'price.uSupports.n': 'support|supports',
       'price.estimate': 'Estimation', 'price.weeks': 'semaines', 'price.weeks.n': 'semaine|semaines',
@@ -375,7 +382,7 @@
       'price.estCta': 'Obtenir le prix ferme →',
       'price.moreSum': 'Comment on chiffre', 'price.moreHint': 'Le marché, les modèles de facturation, ce qui fait bouger un devis.',
       'price.ob1h': 'Vous décrivez le projet', 'price.ob1p': 'Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.',
-      'price.ob2h': 'On revient sous 24 h ouvrées', 'price.ob2p': 'Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.',
+      'price.ob2h': 'On revient sous 24 h ouvrées', 'price.ob2p': 'Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.',
       'price.ob3h': "On construit L'Aperçu — gratuit", 'price.ob3p': 'La page d\'accueil de votre site, avec votre contenu, avant tout paiement. Pour les entreprises immatriculées, 4 par mois.',
       'price.ob4h': 'Vous décidez', 'price.ob4p': "Si c'est non, vous ne devez rien. Si c'est oui, on est déjà à mi-chemin.",
       'price.obCta1': 'Décrire mon projet →', 'price.obCta2': 'WhatsApp',
@@ -383,16 +390,16 @@
       'svc.famBuild': 'Le Build', 'svc.famEngine': 'Le Moteur', 'svc.famMind': "L'Esprit",
       'svc.lead': 'Cinq offres en avant, cinq capacités en réserve — la profondeur attend ceux qui creusent.',
       'prev.tag': 'Offre signature', 'prev.name': "L'Aperçu", 'prev.promise': 'Zéro risque. Juste la preuve.',
-      'prev.brief': 'Avant tout paiement, on construit la page d\'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. On vous la présente en visio (30 min). Si vous dites non, vous ne devez rien.', 'prev.terms': 'Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum.', 'prev.cta': 'Demander mon Aperçu →', 'prev.wa': 'ou par WhatsApp', 'prev.msg': 'Bonjour, je souhaite voir l\'Aperçu gratuit de mon futur site.\nEntreprise : \nSite actuel (s\'il existe) : \nCe dont j\'ai besoin : ', 'prev.waText': 'Bonjour Numidea Labs, je souhaite voir l\'Aperçu gratuit de mon futur site.', 'form.source': 'Source', 'contact.chTz': 'Fuseau', 'contact.vTz': 'UTC+1 · l\'heure de Paris en hiver, 1 h de moins en été', 'contact.waNote': 'message gratuit via l\'appli',
+      'prev.brief': 'Avant tout paiement, on construit la page d\'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. On vous la présente en visio (30 min). Si vous dites non, vous ne devez rien.', 'prev.terms': 'Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum.', 'prev.cta': 'Demander mon Aperçu →', 'prev.wa': 'ou par WhatsApp', 'prev.msg': 'Bonjour, je souhaite voir l\'Aperçu gratuit de mon futur site.\nEntreprise : \nSite actuel (s\'il existe) : \nCe dont j\'ai besoin : ', 'prev.waText': 'Bonjour Numidea Labs, je souhaite voir l\'Aperçu gratuit de mon futur site.', 'form.source': 'Source', 'contact.chTz': 'Fuseau', 'contact.vTz': 'UTC+1 · l\'heure de Paris en hiver, 1 h de moins en été', 'contact.waNote': 'message gratuit via l\'appli',
       'prev.outcome': 'Le « oui » le plus facile que vous donnerez — parce que vous l\'avez déjà vu.',
       'f1.name': 'Sites & applications web', 'f1.promise': 'Le choix évident.',
       'f1.brief': 'Sites et applications web sur mesure — rapides, référencés, pensés pour convertir, du front-end au cloud. React · Next.js · Vite · Tailwind sur Vercel. On ne thème pas un template ; on construit un design system fin et on possède chaque token.',
       'f2.name': 'Identité & systèmes visuels', 'f2.promise': 'La confiance avant le premier mot.',
       'f2.brief': 'Logos, couleur, typo, motion et le kit design-system complet — tokens primitifs → sémantiques → composants, documentés. Ce qui fait passer un studio de quatre pour un de quarante.',
       'f3.name': 'Automatisation & pipelines', 'f3.promise': 'Supprimez la corvée.',
-      'f3.brief': 'Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif et fragile qui dévore vos heures — on le fait tourner seul à 3h du matin. Python · Playwright · APIs · Claude.',
+      'f3.brief': 'Scrapers, pipelines de données, moteurs de leads, automatisations, outils internes. Le travail répétitif et fragile qui dévore vos heures — on le fait tourner seul à 3 h du matin. Python · Playwright · APIs · Claude.',
       'f4.name': 'Intelligence marché & produit', 'f4.promise': 'Voir le marché clairement.',
-      'f4.brief': 'Transformez les données publiques du web en base exploitable : veille concurrentielle, suivi des prix et des catalogues — collectées dans le respect des conditions de chaque site et du RGPD, structurées, interrogeables.',
+      'f4.brief': 'Transformez les données publiques du web en base exploitable : veille concurrentielle, suivi des prix et des catalogues — collectées dans le respect des conditions de chaque site et du RGPD, structurées, interrogeables.',
       'f5.name': 'Stratégie & conseil croissance', 'f5.promise': 'De la donnée, pas des impressions.',
       'f5.brief': 'Audits marketing complets, analyse de funnels, positionnement concurrentiel, feuilles de route — honnêtes, ROI d\'abord, par phases. On fait les devoirs sur votre secteur avant l\'appel.',
       'cap.summary': 'Voir toutes les capacités', 'cap.hint': '5 capacités de plus, pour qui creuse.', 'cap.h': 'Toutes les capacités',
@@ -401,7 +408,7 @@
       'c2.name': 'Design graphique & social', 'c2.promise': 'On scroll, on s\'arrête.',
       'c2.brief': 'Packs social, carrousels, infographies, print — depuis un système visuel verrouillé, pour que tout vous ressemble.', 'c2.fam': 'Le Build',
       'c3.name': 'Data science & analytics', 'c3.promise': 'Du signal dans le bruit.',
-      'c3.brief': 'Vrai travail statistique — modélisation économétrique, séries temporelles, prévision, dashboards. Analyse testée et défendable.', 'c3.fam': "L'Engine",
+      'c3.brief': 'Vrai travail statistique — modélisation économétrique, séries temporelles, prévision, dashboards. Analyse testée et défendable.', 'c3.fam': 'Le Moteur',
       'c4.name': 'Systèmes de connaissance', 'c4.promise': 'Une entreprise qui se souvient.',
       'c4.brief': 'Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes pour le RAG. Des structures qui s\'entretiennent seules.', 'c4.fam': "L'Esprit",
       'c5.name': 'Outils & skills IA sur mesure', 'c5.promise': 'Le logiciel qui construit votre logiciel.',
@@ -432,7 +439,7 @@
       'md.vW': 'Rarer, mostly in consulting and strategy, where the stakes can be measured.',
       'md.drH': 'What moves a quote',
       'md.d1h': 'Scope', 'md.d1p': 'The number of pages, products or screens.',
-      'md.d2h': 'Design', 'md.d2p': 'Fully custom, or adapted from an existing template.',
+      'md.d2h': 'Design', 'md.d2p': 'Fully custom, or built from your existing brand guidelines and mockups.',
       'md.d3h': 'Languages', 'md.d3p': 'Each language adds content; Arabic adds a right-to-left layout.',
       'md.d4h': 'Integrations', 'md.d4p': 'Payments, user accounts, third-party tools and APIs.',
       'md.d5h': 'Content', 'md.d5p': 'Copy, photos and video: supplied by you, or produced.',
@@ -442,7 +449,7 @@
       'wa.hello': 'Hello Numidea Labs — I would like to talk about a project.',
       'footer.wa': 'WhatsApp',
       'price.kicker': '05 — Pricing', 'price.title': 'A price <em>before the quote.</em>',
-      'price.lead': 'The real Algerian market ranges, published. Set the scope and watch the estimate move.',
+      'price.lead': 'Our prices, published — with the Algerian market beside them. Set the scope and watch the estimate move.',
       'price.cur': 'DZD',
       'price.popular': 'Recommended',
       'price.t1name': 'Essential', 'price.t1for': 'A credible presence, live quickly.', 'price.t1time': '2 to 4 weeks',
@@ -461,7 +468,7 @@
       'price.t3name': 'Engine', 'price.t3for': 'The machinery almost nobody here builds.', 'price.t3time': '8 to 16 weeks',
       'price.t3a': 'Custom web application: platform, portal or business tool',
       'price.t3b': 'Payments, user accounts, dashboards',
-      'price.t3c': 'Scraping and market intelligence — the open web as a database',
+      'price.t3c': 'Scraping and market intelligence, built into the application',
       'price.t3d': 'API integrations and internal tools',
       'price.t3e': '6 months of support included',
       'price.retainerA': 'Maintenance after launch, if you want it:', 'price.retainerB': 'per month. No lock-in.',
@@ -474,7 +481,8 @@
       'price.tyVitrine': 'Showcase site', 'price.tyCustom': 'Custom site', 'price.tyShop': 'E-commerce',
       'price.tyApp': 'Web application', 'price.tyAuto': 'Automation', 'price.tyBrand': 'Visual identity',
       'price.oI18n': 'Trilingual FR / EN / AR + RTL', 'price.oCms': 'CMS / back-office', 'price.oPay': 'Online payments',
-      'price.oDs': 'Full design system', 'price.oSeo': 'Advanced SEO & performance', 'price.oApi': 'API integrations', 'price.incl': 'included',
+      'price.oDs': 'Full design system', 'price.oSeo': 'Advanced SEO & performance', 'price.oApi': 'API integrations', 'price.incl': 'in the tier',
+      'price.studioBetter': 'The Studio tier already includes these options',
       'price.paceStd': 'Standard', 'price.paceRush': 'Accelerated',
       'price.uPages': 'pages', 'price.uPages.n': 'page|pages', 'price.uScreens': 'screens', 'price.uScreens.n': 'screen|screens', 'price.uProducts': 'products', 'price.uProducts.n': 'product|products', 'price.uFlows': 'flows', 'price.uFlows.n': 'flow|flows', 'price.uSupports': 'deliverables', 'price.uSupports.n': 'deliverable|deliverables',
       'price.estimate': 'Estimate', 'price.weeks': 'weeks', 'price.weeks.n': 'week|weeks',
@@ -542,7 +550,7 @@
       'md.vW': 'أندر، وأكثر ما يكون في الاستشارة والاستراتيجية، حيث يمكن قياس الرهان.',
       'md.drH': 'ما الذي يغيّر عرض السعر',
       'md.d1h': 'النطاق', 'md.d1p': 'عدد الصفحات أو المنتجات أو الشاشات.',
-      'md.d2h': 'التصميم', 'md.d2p': 'مخصّص بالكامل، أو مقتبس من قالب موجود.',
+      'md.d2h': 'التصميم', 'md.d2p': 'مخصّص بالكامل، أو انطلاقاً من دليل هويتك البصرية ونماذج تصميمك الموجودة.',
       'md.d3h': 'اللغات', 'md.d3p': 'كل لغة تضيف محتوى، والعربية تضيف تخطيطاً من اليمين إلى اليسار.',
       'md.d4h': 'التكاملات', 'md.d4p': 'الدفع وحسابات المستخدمين والأدوات والواجهات البرمجية الخارجية.',
       'md.d5h': 'المحتوى', 'md.d5p': 'النصوص والصور والفيديو: تقدّمها أنت أو ننتجها نحن.',
@@ -552,7 +560,7 @@
       'wa.hello': 'مرحباً نوميديا لابز — أودّ الحديث عن مشروع.',
       'footer.wa': 'واتساب',
       'price.kicker': '05 — الأسعار', 'price.title': 'سعر <em>قبل عرض السعر.</em>',
-      'price.lead': 'نطاقات السوق الجزائري الحقيقية، معلنة. اضبط نطاق العمل وشاهد التقدير يتحرّك.',
+      'price.lead': 'أسعارنا منشورة — وإلى جانبها أسعار السوق الجزائرية. اضبط نطاق العمل وشاهد التقدير يتحرّك.',
       'price.cur': 'دج',
       'price.popular': 'الموصى به',
       'price.t1name': 'الأساسي', 'price.t1for': 'حضور موثوق، على الإنترنت بسرعة.', 'price.t1time': 'من 2 إلى 4 أسابيع',
@@ -571,7 +579,7 @@
       'price.t3name': 'المحرّك', 'price.t3for': 'الآلة التي لا يبنيها هنا أحد تقريباً.', 'price.t3time': 'من 8 إلى 16 أسبوعاً',
       'price.t3a': 'تطبيق ويب مخصّص: منصّة أو بوابة أو أداة عمل',
       'price.t3b': 'الدفع وحسابات المستخدمين ولوحات المتابعة',
-      'price.t3c': 'استخراج البيانات وذكاء السوق — الويب المفتوح كقاعدة بيانات',
+      'price.t3c': 'استخراج البيانات وذكاء السوق، مدمجان في التطبيق',
       'price.t3d': 'تكاملات واجهات برمجية وأدوات داخلية',
       'price.t3e': 'ستّة أشهر دعم مشمولة',
       'price.retainerA': 'الصيانة بعد التسليم، إن أردتها:', 'price.retainerB': 'شهرياً. دون ارتباط بمدّة.',
@@ -584,7 +592,8 @@
       'price.tyVitrine': 'موقع تعريفي', 'price.tyCustom': 'موقع مخصّص', 'price.tyShop': 'متجر إلكتروني',
       'price.tyApp': 'تطبيق ويب', 'price.tyAuto': 'أتمتة', 'price.tyBrand': 'هوية بصرية',
       'price.oI18n': 'ثلاثي اللغة فرنسي / إنجليزي / عربي + اتجاه RTL', 'price.oCms': 'نظام إدارة محتوى / لوحة تحكّم', 'price.oPay': 'الدفع الإلكتروني',
-      'price.oDs': 'نظام تصميم كامل', 'price.oSeo': 'تهيئة متقدّمة وأداء', 'price.oApi': 'تكاملات واجهات برمجية', 'price.incl': 'مشمول',
+      'price.oDs': 'نظام تصميم كامل', 'price.oSeo': 'تهيئة متقدّمة لمحرّكات البحث والأداء', 'price.oApi': 'تكاملات واجهات برمجية', 'price.incl': 'ضمن الباقة',
+      'price.studioBetter': 'باقة Studio تشمل هذه الخيارات أصلاً',
       'price.paceStd': 'عادي', 'price.paceRush': 'مستعجل',
       'price.uPages': 'صفحات', 'price.uPages.n': 'صفحة|صفحتان|صفحات|صفحة|صفحة', 'price.uScreens': 'شاشات', 'price.uScreens.n': 'شاشة|شاشتان|شاشات|شاشة|شاشة', 'price.uProducts': 'منتجات', 'price.uProducts.n': 'منتج|منتجان|منتجات|منتجاً|منتج', 'price.uFlows': 'مسارات', 'price.uFlows.n': 'مسار|مساران|مسارات|مساراً|مسار', 'price.uSupports': 'مخرجات', 'price.uSupports.n': 'مخرج|مخرجان|مخرجات|مخرجاً|مخرج',
       'price.estimate': 'التقدير', 'price.weeks': 'أسابيع', 'price.weeks.n': 'أسبوع|أسبوعان|أسابيع|أسبوعاً|أسبوع',
@@ -629,6 +638,100 @@
     for (var k in EXTRA[l]) { if (EXTRA[l].hasOwnProperty(k)) I18N[l][k] = EXTRA[l][k]; }
   });
 
+  /* ---------------- estimator model ----------------
+     Pure: figures and arithmetic only, no DOM and no dictionary, so a script
+     can evaluate this block on its own and test it: everything from the
+     ESTIMATE declaration below to the first line that is two spaces and
+     the closing of that function call.
+
+     Numidea's own prices, set in dinars. The market table (section 14) puts
+     the Algerian market beside them (Onyxlab Baromètre 2026 grid and the
+     2026 DZ agency surveys, from freelance confirmé to agency): some tiers
+     sit inside that range and some above its top, and the page says so.
+
+     The tier cards quote exactly what this model returns across each tier's
+     stated scope: Essentiel = vitrine at 1-5 pages (base_u 5), Studio =
+     surmesure at 6-15 pages (base_u 15), Moteur = app at its default. What a
+     card lists as part of the tier is in its base price (incl): the
+     estimator shows those options as included and adds nothing for them. An
+     earlier version claimed this and was wrong — the defaults sat 30-60k
+     below the cards. The market table reads its Numidea column from here
+     too, so if a tier moves, move it here and nowhere else. */
+  var ESTIMATE = (function () {
+    var PRICE_MODEL = {
+      vitrine:   { base: [90000, 160000],   unit: [6000, 12000],  min: 1,  max: 10,  def: 3,  step: 1,  u: 'price.uPages',    base_u: 5,  weeks: [2, 4] },
+      surmesure: { base: [180000, 420000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 15, weeks: [3, 7],  incl: ['i18n', 'cms', 'ds', 'seo'] },
+      ecommerce: { base: [220000, 550000],  unit: [900, 2200],    min: 10, max: 400, def: 60, step: 10, u: 'price.uProducts', base_u: 60, weeks: [5, 10] },
+      app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16], incl: ['pay', 'api'] },
+      auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6] },
+      identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5] }
+    };
+    var PRICE_OPTS = {
+      i18n: { add: [22000, 55000],  weeks: [1, 2], k: 'price.oI18n' },
+      cms:  { add: [35000, 90000],  weeks: [1, 2], k: 'price.oCms' },
+      pay:  { add: [45000, 110000], weeks: [1, 2], k: 'price.oPay' },
+      ds:   { add: [60000, 140000], weeks: [1, 3], k: 'price.oDs' },
+      seo:  { add: [20000, 45000],  weeks: [0, 1], k: 'price.oSeo' },
+      api:  { add: [30000, 80000],  weeks: [1, 2], k: 'price.oApi' }
+    };
+    /* Rushing does not make the work smaller, it makes it more expensive and
+       compresses the calendar — never below two thirds, which is the floor
+       where review still happens (a 2-week minimum stays 2 weeks). */
+    var RUSH_PRICE = 1.25, RUSH_WEEKS = 0.7;
+    var rushWeeks = function (w) { return Math.max(Math.ceil(w * 2 / 3), Math.round(w * RUSH_WEEKS)); };
+
+    /* Round to a figure a human would actually say out loud. Quoting
+       "186 400" implies a precision this model does not have. */
+    var roundTo = function (n) {
+      var g = n >= 500000 ? 50000 : n >= 150000 ? 10000 : 5000;
+      return Math.round(n / g) * g;
+    };
+
+    // one tier, n units, the ticked options: what it adds up to, unrounded
+    var tally = function (key, n, opts) {
+      var m = PRICE_MODEL[key], over = Math.max(0, n - m.base_u), incl = m.incl || [];
+      var q = { lo: m.base[0] + over * m.unit[0], hi: m.base[1] + over * m.unit[1],
+                wLo: m.weeks[0], wHi: m.weeks[1], incl: [] };
+      opts.forEach(function (o) {
+        var p = PRICE_OPTS[o];
+        if (!p) return;
+        if (incl.indexOf(o) > -1) { q.incl.push(o); return; }   // in the tier's base price
+        q.lo += p.add[0]; q.hi += p.add[1];
+        q.wLo += p.weeks[0]; q.wHi += p.weeks[1];
+      });
+      return q;
+    };
+
+    /* The estimate for a tier (key), a size (n), the ticked option keys and
+       the pace. Returns { lo, hi } in dinars, rounded, { wLo, wHi } in weeks,
+       incl (ticked options already in the quoted tier's price), rush, and
+       studio: true when a Vitrine was quoted as the Studio tier.
+
+       A Vitrine is never quoted above the Studio tier for the same pages:
+       Studio includes multilingual, CMS, design system and SEO at no extra
+       cost, so a Vitrine whose options take either bound past Studio's is
+       quoted at the Studio figure and weeks (studio: true), and a Vitrine
+       is never given more weeks than Studio would take. */
+    function quote(key, n, opts, rush) {
+      var q = tally(key, n, opts || []);
+      q.studio = false;
+      if (key === 'vitrine') {
+        var s = tally('surmesure', n, opts || []);
+        if (q.lo > s.lo || q.hi > s.hi) { q = s; q.studio = true; }
+        else { q.wLo = Math.min(q.wLo, s.wLo); q.wHi = Math.min(q.wHi, s.wHi); }
+      }
+      q.rush = !!rush;
+      if (rush) {
+        q.lo *= RUSH_PRICE; q.hi *= RUSH_PRICE;
+        q.wLo = rushWeeks(q.wLo); q.wHi = rushWeeks(q.wHi);
+      }
+      q.lo = roundTo(q.lo); q.hi = roundTo(q.hi);
+      return q;
+    }
+
+    return { PRICE_MODEL: PRICE_MODEL, PRICE_OPTS: PRICE_OPTS, quote: quote };
+  })();
+
   var SUPPORTED = ['fr', 'en', 'ar'];
   var DEFAULT_LANG = 'fr';
 
@@ -642,6 +745,18 @@
 
     var meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', dict['meta.desc']);
+
+    /* The studio's own structured data describes it in the page's language
+       too: its description is the meta description (the baked French one in
+       index.html is I18N.fr's). */
+    document.querySelectorAll('script[type="application/ld+json"]:not([id])').forEach(function (s) {
+      try {
+        var o = JSON.parse(s.textContent);
+        if (o['@type'] !== 'ProfessionalService' || o.description === dict['meta.desc']) return;
+        o.description = dict['meta.desc'];
+        s.textContent = JSON.stringify(o, null, 1);
+      } catch (e) {}
+    });
 
     /* The FAQ structured data says what the visible FAQ says, in the same
        language (scripts/lib/i18n.mjs faqLd builds the French one baked into
@@ -707,7 +822,11 @@
     var lang = document.documentElement.getAttribute('lang') || 'fr';
     var suffix = el.getAttribute('data-suffix-' + lang);
     if (suffix == null) suffix = el.getAttribute('data-suffix') || '';
-    return (el.getAttribute('data-prefix') || '') + group(v) + suffix;
+    var fig = (el.getAttribute('data-prefix') || '') + group(v);
+    // Arabic reads the counter right to left ('<24' then the unit 'س'): the
+    // comparison and the figure stay one left-to-right unit (LRI … PDI) and
+    // the unit follows it in the reading order (styles.css sets RTL on .stat)
+    return (lang === 'ar' ? '⁦' + fig + '⁩' : fig) + suffix;
   }
   function countUp(el) {
     if (el.getAttribute('data-counted') === '1') return;
@@ -734,23 +853,31 @@
   document.addEventListener('DOMContentLoaded', function () {
    try {
     // the head resolver already chose the language (?lang=, then storage,
-    // validated) and set it on <html>; apply its text
-    applyLang(document.documentElement.getAttribute('lang') || DEFAULT_LANG);
+    // validated) and set it on <html>, and kept it in NUMIDEA_LANG: its
+    // paint backstop puts <html> back to the baked French if this script is
+    // late, and the visitor's language is applied here all the same
+    applyLang(window.NUMIDEA_LANG || document.documentElement.getAttribute('lang') || DEFAULT_LANG);
     // The head bootstrap held paint for a non-French visitor so the 194-node
     // swap above could not be seen happening. It is done — release it.
     document.documentElement.removeAttribute('data-i18n-pending');
 
     // language switch
+    function switchLang(l) {
+      applyLang(l);
+      // keep a shared ?lang= link truthful after a switch (as page-i18n.js
+      // does), and the canonical, og:url and og:locale with it: they name the
+      // version the address bar now shows (the head script's NUMIDEA_CANON)
+      try {
+        var u = new URL(location.href);
+        if (u.searchParams.has('lang')) {
+          u.searchParams.set('lang', l);
+          history.replaceState(history.state, '', u);
+          if (window.NUMIDEA_CANON) window.NUMIDEA_CANON(l);
+        }
+      } catch (e) {}
+    }
     document.querySelectorAll('.lang button').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var l = b.getAttribute('data-lang');
-        applyLang(l);
-        // keep a shared ?lang= link truthful after a switch (as page-i18n.js does)
-        try {
-          var u = new URL(location.href);
-          if (u.searchParams.has('lang')) { u.searchParams.set('lang', l); history.replaceState(null, '', u); }
-        } catch (e) {}
-      });
+      b.addEventListener('click', function () { switchLang(b.getAttribute('data-lang')); });
     });
 
     // theme switcher — every theme is a token block in themes.css, so a switch
@@ -759,6 +886,11 @@
     function applyTheme(t) {
       if (THEMES.indexOf(t) === -1) t = 'arcanum';
       document.documentElement.setAttribute('data-theme', t);
+      // the browser's own bar takes the page colour (Daylight is light): read
+      // from the theme's tokens, so it cannot drift from themes.css
+      var bar = document.querySelector('meta[name="theme-color"]');
+      var bg = getComputedStyle(document.documentElement).getPropertyValue('--void').trim();
+      if (bar && bg) bar.setAttribute('content', bg);
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
       });
@@ -1072,8 +1204,32 @@
         cur = n;
       }
 
+      // a slide's image has arrived, has failed for good, or is on its way
+      function ready(i) { return slides[i].complete && slides[i].naturalWidth > 0; }
+      function failed(i) { return slides[i].complete && !slides[i].naturalWidth; }
+
+      /* The latest pick wins. A rail press during a wipe is kept and played
+         when the wipe ends, not dropped (the plate stayed on the earlier
+         slide under someone who had chosen another). A picked slide whose
+         image has not arrived is asked for at once and waited for, so the
+         wipe never uncovers a blank plate; one that failed is shown anyway:
+         the visitor chose it, and the caption still names the client. */
+      var want = -1, waiting = -1;
       function go(n) {
-        if (busy || n === cur) return;
+        want = n;
+        if (busy) return;
+        if (n === cur) { want = -1; return; }
+        if (!ready(n) && !failed(n)) {
+          if (waiting !== n) {
+            waiting = n;
+            var again = function () { if (waiting !== n) return; waiting = -1; if (want === n) go(n); };
+            slides[n].addEventListener('load', again, { once: true });
+            slides[n].addEventListener('error', again, { once: true });
+            slides[n].loading = 'eager';
+          }
+          return;
+        }
+        want = -1; waiting = -1;
         if (reduceMotion || !wipe) { paint(n); return; }
         busy = true;
         var t0 = 0, DUR = 620, swapped = false;
@@ -1086,20 +1242,26 @@
           wipe.style.setProperty('--wipe', e.toFixed(3));
           wipe.style.setProperty('--wipeEdge', (t > .96 ? 0 : 1).toString());
           if (t >= .5 && !swapped) { paint(n); swapped = true; }   // swap behind the bar
-          if (t < 1) requestAnimationFrame(step);
-          else { wipe.style.setProperty('--wipe', '0'); wipe.style.setProperty('--wipeEdge', '0'); busy = false; }
+          if (t < 1) { requestAnimationFrame(step); return; }
+          wipe.style.setProperty('--wipe', '0'); wipe.style.setProperty('--wipeEdge', '0'); busy = false;
+          if (want > -1) go(want);   // a pick made while this one ran
         }
         requestAnimationFrame(step);
       }
 
       function next() {
-        var n = (cur + 1) % slides.length;
         // Never wipe onto an image that has not arrived. On a slow link the
         // low-priority slides land seconds after the first; advancing anyway
         // showed a blank plate and re-elected LCP onto whichever image came
-        // last. The interval simply tries again next tick.
-        if (!(slides[n].complete && slides[n].naturalWidth > 0)) return;
-        go(n);
+        // last. The interval simply tries again next tick. An image that
+        // failed (complete, but no pixels) never arrives: skip that slide,
+        // or one bad request stops the deck for good.
+        for (var k = 1; k < slides.length; k++) {
+          var n = (cur + k) % slides.length;
+          if (failed(n)) continue;
+          if (ready(n)) go(n);
+          return;
+        }
       }
       /* `held` is a latch, not a timer state. Clicking a rail tab re-arms —
          but the pointer is already inside the component at that moment, so
@@ -1194,7 +1356,8 @@
       var m = /^#\/work(?:\/([\w-]+))?/.exec(location.hash);
       if (!m) return;
       var SHEET = { 'bordj-steel': 'bordjsteel', 'alliance-travel': 'alliance', 'almaflowclim': 'almaflow', 'glaive-store': 'glaive' };
-      if (m[1] && SHEET[m[1]]) location.replace('scene/#' + SHEET[m[1]]);
+      // the query (?lang=, ?ref=, utm_*) goes along, as it does on every link
+      if (m[1] && SHEET[m[1]]) location.replace('scene/' + location.search + '#' + SHEET[m[1]]);
       else history.replaceState(null, '', location.pathname + location.search + '#work');
     })();
 
@@ -1222,17 +1385,38 @@
       });
     }
 
-    // L'Aperçu: the button hands its request to the message field (only if the
-    // visitor has not started writing), then the normal #contact jump happens
+    /* Text the page writes into the message field for the visitor: the
+       Aperçu request (prev) or the estimator's scope (est). It is written
+       only while the field is empty or still holds exactly what the page
+       last wrote there, so the visitor's own words are never overwritten,
+       but an untouched prefill follows a later CTA click, a language or
+       currency switch and a re-configured estimate instead of going stale. */
+    var msgBox = document.getElementById('f-message');
+    var prefill = { kind: '', text: '' };
+    function untouched() { return !msgBox.value.trim() || msgBox.value === prefill.text; }
+    function prefillWith(kind, text) {
+      if (!msgBox || !text || !untouched()) return;
+      msgBox.value = text;
+      prefill.kind = kind; prefill.text = msgBox.value;
+    }
+    // follow the page, but only a prefill of that kind still untouched
+    function refill(kind, text) {
+      if (msgBox && prefill.kind === kind && prefill.text && msgBox.value === prefill.text) prefillWith(kind, text);
+    }
+    document.addEventListener('numidea:lang', function () { refill('prev', t('prev.msg')); });
+
+    // L'Aperçu: the button hands its request to the message field, then the
+    // normal #contact jump happens
     var prevCta = document.getElementById('prev-cta');
-    if (prevCta) prevCta.addEventListener('click', function () {
-      var msg = document.getElementById('f-message');
-      if (msg && !msg.value.trim()) msg.value = t('prev.msg');
-    });
+    if (prevCta) prevCta.addEventListener('click', function () { prefillWith('prev', t('prev.msg')); });
 
     // contact form — designed validation + success
     var form = document.querySelector('#contact-form');
     if (form) {
+      // Without this script the form posts to a mailto: (its action) and the
+      // browser checks the required fields; with it, the designed messages
+      // below take over and the submit is handled here.
+      form.noValidate = true;
       var success = document.querySelector('.form-success');
       function field(id) { return form.querySelector('[name="' + id + '"]').closest('.field'); }
       function err(id, key) {
@@ -1300,8 +1484,8 @@
         var src = leadSource();
         var body = name + ' <' + email + '>\n\n' + msg
           + '\n\n--\nnumidealabs · ' + (document.documentElement.getAttribute('lang') || 'fr')
-          // French sets a space before the colon; English and Arabic do not
-          + (src ? '\n' + t('form.source') + (document.documentElement.getAttribute('lang') === 'fr' ? ' : ' : ': ') + src : '');
+          // French sets a narrow no-break space before the colon; English and Arabic none
+          + (src ? '\n' + t('form.source') + (document.documentElement.getAttribute('lang') === 'fr' ? ' : ' : ': ') + src : '');
         window.location.href = 'mailto:hamissemohamedyasser@gmail.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);
@@ -1309,43 +1493,32 @@
         // the form just vanished from under the focus; land it on the outcome
         if (success) { success.classList.add('show'); success.focus(); }
       });
+      /* When no mail app opened, the visitor's text is not lost: the form
+         (still filled in) comes back, to copy from or to send again. */
+      var editBtn = document.getElementById('form-edit');
+      if (editBtn && success) editBtn.addEventListener('click', function () {
+        success.classList.remove('show');
+        form.style.display = '';
+        if (msgBox) msgBox.focus();
+      });
     }
 
     /* ---------------- 12 · project estimator ----------------
-       Ranges are anchored to the Onyxlab Baromètre 2026 Algerian freelance
-       grid and the 2026 DZ agency surveys, positioned between that grid's
-       "Confirmé" and "Agence" columns — a four-person studio carries neither
-       a junior's inexperience nor an agency's overhead. Every number is DZD.
+       The figures and the arithmetic are ESTIMATE (top of this file, pure);
+       this section only reads the controls and writes the result. */
+    var PRICE_MODEL = ESTIMATE.PRICE_MODEL, PRICE_OPTS = ESTIMATE.PRICE_OPTS;
 
-       The tier cards quote exactly what this model returns across each tier's
-       stated scope: Essentiel = vitrine at 1-5 pages (base_u 5), Studio =
-       surmesure at 6-15 pages (base_u 15), Moteur = app at its default. What a
-       card lists as part of the tier is in its base price (incl): the
-       estimator shows those options as included and adds nothing for them. An
-       earlier version claimed this and was wrong — the defaults sat 30-60k
-       below the cards. The market table (section 14) reads its Numidea column
-       from here too, so if a tier moves, move it here and nowhere else. */
-    var PRICE_MODEL = {
-      vitrine:   { base: [90000, 160000],   unit: [6000, 12000],  min: 1,  max: 10,  def: 3,  step: 1,  u: 'price.uPages',    base_u: 5,  weeks: [2, 4] },
-      surmesure: { base: [180000, 420000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 15, weeks: [3, 7],  incl: ['i18n', 'cms', 'ds', 'seo'] },
-      ecommerce: { base: [220000, 550000],  unit: [900, 2200],    min: 10, max: 400, def: 60, step: 10, u: 'price.uProducts', base_u: 60, weeks: [5, 10] },
-      app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16], incl: ['pay', 'api'] },
-      auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6] },
-      identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5] }
-    };
-    var PRICE_OPTS = {
-      i18n: { add: [22000, 55000],  weeks: [1, 2], k: 'price.oI18n' },
-      cms:  { add: [35000, 90000],  weeks: [1, 2], k: 'price.oCms' },
-      pay:  { add: [45000, 110000], weeks: [1, 2], k: 'price.oPay' },
-      ds:   { add: [60000, 140000], weeks: [1, 3], k: 'price.oDs' },
-      seo:  { add: [20000, 45000],  weeks: [0, 1], k: 'price.oSeo' },
-      api:  { add: [30000, 80000],  weeks: [1, 2], k: 'price.oApi' }
-    };
-    /* Rushing does not make the work smaller, it makes it more expensive and
-       compresses the calendar — never below two thirds, which is the floor
-       where review still happens. */
-    var RUSH_PRICE = 1.25, RUSH_WEEKS = 0.7;
-
+    /* The plural category of n in the page's language. Without
+       Intl.PluralRules, 1 is still "one" (and 2 the Arabic dual). */
+    function plural(lang, n) {
+      try { return new Intl.PluralRules(lang).select(n); } catch (e) {}
+      if (n === 1) return 'one';
+      if (lang === 'ar') {
+        var h = n % 100;
+        return n === 2 ? 'two' : h >= 3 && h <= 10 ? 'few' : h >= 11 ? 'many' : 'other';
+      }
+      return 'other';
+    }
     /* A counted unit in the page's language: "1 page", "3 pages"; in Arabic
        the noun follows the number (one|two|few|many|other, e.g. 16 أسبوعاً).
        Forms live in the dictionary as '<key>.n', split on '|'. */
@@ -1353,11 +1526,18 @@
       var lang = document.documentElement.getAttribute('lang') || DEFAULT_LANG;
       var d = I18N[lang] || I18N[DEFAULT_LANG], forms = d[k + '.n'];
       if (!forms) return d[k] || k;
-      var f = forms.split('|'), cat = 'other';
-      try { cat = new Intl.PluralRules(lang).select(n); } catch (e) {}
-      var i = (f.length === 5 ? ['one', 'two', 'few', 'many', 'other'] : ['one', 'other']).indexOf(cat);
+      var f = forms.split('|');
+      var i = (f.length === 5 ? ['one', 'two', 'few', 'many', 'other'] : ['one', 'other']).indexOf(plural(lang, n));
       return f[i > -1 ? i : f.length - 1];
     }
+    /* The Arabic dual already says "two" (صفحتان is "two pages"): it stands
+       without the numeral, which would read "2 two-pages". */
+    function dual(n) {
+      var lang = document.documentElement.getAttribute('lang');
+      return lang === 'ar' && plural(lang, n) === 'two';
+    }
+    // "8 pages", "60 منتجاً", "صفحتان"
+    function counted(k, n) { return dual(n) ? unit(k, n) : n + ' ' + unit(k, n); }
 
     /* dictionary lookup for strings built in JS (estimator, WhatsApp text) */
     function t(k, fb) {
@@ -1380,6 +1560,9 @@
     // narrow no-break space between groups: a normal space lets a figure wrap,
     // and a comma reads as a decimal point in DZ
     var grp = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+    // the dash inside a range, as the markup writes it: no-break space, en
+    // dash, word joiner, no-break space; a range never breaks across lines
+    var DASH = '\u00a0–\u2060\u00a0';
     var tidy = function (n, c) {
       var g = c === 'DZD' ? (n >= 1e6 ? 50000 : n >= 150000 ? 10000 : 5000)
                           : (n >= 10000 ? 500 : n >= 1000 ? 100 : 10);
@@ -1444,17 +1627,18 @@
           eSum    = document.getElementById('est-summary'),
           eCta    = document.getElementById('est-cta');
 
-      /* Round to a figure a human would actually say out loud. Quoting
-         "186 400" implies a precision this model does not have. */
-      var roundTo = function (n) {
-        var g = n >= 500000 ? 50000 : n >= 150000 ? 10000 : 5000;
-        return Math.round(n / g) * g;
-      };
-
       var typeOf = function () {
         var r = est.querySelector('input[name="est-type"]:checked');
         return r ? r.value : 'surmesure';
       };
+
+      /* What the visitor ticked is theirs. A tier that includes an option
+         shows it ticked and locked; leaving that tier gives the box back as
+         the visitor had left it (data-user), not unticked: a paid option
+         chosen on Vitrine survives a look at Studio and back. */
+      est.querySelectorAll('input[data-opt]').forEach(function (c) {
+        c.addEventListener('change', function () { if (!c.disabled) c.dataset.user = c.checked ? '1' : ''; });
+      });
 
       var syncSize = function (keepValue) {
         var m = PRICE_MODEL[typeOf()];
@@ -1467,8 +1651,12 @@
         est.querySelectorAll('input[data-opt]').forEach(function (c) {
           var inc = (m.incl || []).indexOf(c.getAttribute('data-opt')) > -1;
           var lab = c.closest('label'), tag = lab && lab.querySelector('.eo-incl');
-          if (inc) { c.checked = true; c.disabled = true; }
-          else if (c.disabled) { c.checked = false; c.disabled = false; }
+          if (inc) {
+            if (!c.disabled) c.dataset.user = c.checked ? '1' : '';
+            c.checked = true; c.disabled = true;
+          } else if (c.disabled) {
+            c.checked = c.dataset.user === '1'; c.disabled = false;
+          }
           if (inc && lab && !tag) {
             tag = document.createElement('small');
             tag.className = 'eo-incl';
@@ -1484,50 +1672,37 @@
       var compute = function () {
         var key = typeOf(), m = PRICE_MODEL[key];
         var n = parseInt(eSize.value, 10) || m.def;
-        var over = Math.max(0, n - m.base_u);
-        var lo = m.base[0] + over * m.unit[0];
-        var hi = m.base[1] + over * m.unit[1];
-        var wLo = m.weeks[0], wHi = m.weeks[1];
-        var picked = [];
-
-        est.querySelectorAll('input[data-opt]:checked').forEach(function (c) {
-          var o = PRICE_OPTS[c.getAttribute('data-opt')];
-          if (!o) return;
-          if ((m.incl || []).indexOf(c.getAttribute('data-opt')) > -1) {
-            picked.push(t(o.k) + ' (' + t('price.incl') + ')');
-            return;
-          }
-          lo += o.add[0]; hi += o.add[1];
-          wLo += o.weeks[0]; wHi += o.weeks[1];
-          picked.push(t(o.k));
-        });
-
+        var opts = [].map.call(est.querySelectorAll('input[data-opt]:checked'), function (c) { return c.getAttribute('data-opt'); });
         var rush = est.querySelector('input[name="est-pace"]:checked');
-        if (rush && rush.value === 'rush') {
-          lo *= RUSH_PRICE; hi *= RUSH_PRICE;
-          wLo = Math.max(1, Math.round(wLo * RUSH_WEEKS));
-          wHi = Math.max(2, Math.round(wHi * RUSH_WEEKS));
-          picked.push(t('price.paceRush'));
-        }
+        var q = ESTIMATE.quote(key, n, opts, !!(rush && rush.value === 'rush'));
+        var picked = opts.filter(function (o) { return PRICE_OPTS[o]; }).map(function (o) {
+          return q.incl.indexOf(o) > -1 ? t(PRICE_OPTS[o].k) + ' (' + t('price.incl') + ')' : t(PRICE_OPTS[o].k);
+        });
+        if (q.rush) picked.push(t('price.paceRush'));
+        // a Vitrine that would cost more than the Studio tier is quoted as Studio
+        if (q.studio) picked.push(t('price.studioBetter'));
 
-        lo = roundTo(lo); hi = roundTo(hi);
-        eLo.textContent = (CUR === 'DZD' ? '' : '≈\u00a0') + grp(shown(lo, CUR));
-        eHi.textContent = grp(shown(hi, CUR));
+        eLo.textContent = (CUR === 'DZD' ? '' : '≈ ') + grp(shown(q.lo, CUR));
+        eHi.textContent = grp(shown(q.hi, CUR));
         var eCur = eLo.parentNode.querySelector('.cur');
         if (eCur) eCur.textContent = sym(CUR);
-        eWeeks.textContent = wLo + ' – ' + wHi;
+        eWeeks.textContent = q.wLo + DASH + q.wHi;
         var wUnit = eWeeks.parentNode.querySelector('[data-i18n="price.weeks"]');
-        if (wUnit) wUnit.textContent = unit('price.weeks', wHi);
-        if (eSizeH) eSizeH.textContent = unit(m.u, n);
+        if (wUnit) wUnit.textContent = unit('price.weeks', q.wHi);
 
-        if (eSizeV) eSizeV.textContent = n;
+        // the size readout and the slider's spoken value carry the unit, which
+        // changes meaning with the type (pages, products, screens…)
+        var two = dual(n);
+        if (eSizeV) { eSizeV.textContent = n; eSizeV.hidden = two; }
+        if (eSizeH) eSizeH.textContent = unit(m.u, n);
+        eSize.setAttribute('aria-valuetext', counted(m.u, n));
         if (eSum) {
           eSum.textContent = '';
           var head = document.createElement('li');
           head.className = 'eo-head';
           head.textContent = t('price.ty' + ({ vitrine: 'Vitrine', surmesure: 'Custom', ecommerce: 'Shop',
                                                app: 'App', auto: 'Auto', identite: 'Brand' }[key]))
-                           + ' · ' + n + ' ' + unit(m.u, n);
+                           + ' · ' + counted(m.u, n);
           eSum.appendChild(head);
           picked.forEach(function (label) {
             var li = document.createElement('li');
@@ -1540,7 +1715,9 @@
            does not have to retype what they just clicked. */
         if (eCta) {
           eCta.dataset.scope = (eSum && eSum.textContent ? eSum.innerText.replace(/\n+/g, ' · ') : '')
-            + ' — ' + rangeText(lo, hi, CUR) + ' ' + sym(CUR) + (CUR === 'DZD' ? '' : ' ' + t('price.exTax'));
+            + ' — ' + rangeText(q.lo, q.hi, CUR) + ' ' + sym(CUR) + (CUR === 'DZD' ? '' : ' ' + t('price.exTax'));
+          // a scope already handed to the message, untouched, follows this one
+          refill('est', eCta.dataset.scope);
         }
       };
 
@@ -1552,12 +1729,7 @@
 
       /* Hand the scope to the message field rather than losing it on the jump. */
       if (eCta) {
-        eCta.addEventListener('click', function () {
-          var msg = document.getElementById('f-message');
-          if (msg && !msg.value.trim() && eCta.dataset.scope) {
-            msg.value = eCta.dataset.scope;
-          }
-        });
+        eCta.addEventListener('click', function () { prefillWith('est', eCta.dataset.scope); });
       }
 
       /* Units and option labels are translated, so rebuild on language change. */
@@ -1578,21 +1750,36 @@
        a click id. Nothing is stored or sent anywhere else: it rides in the
        mailto body and the WhatsApp text the visitor sends themselves. The
        query string survives every #anchor jump, and links to the site's
-       other pages carry these parameters along (assets/carry.js). */
-    var leadSource = function () {
+       other pages carry these parameters along (assets/carry.js).
+       Declarations, not expressions: the form's submit handler (above) calls
+       leadSource(), and a hoisted declaration exists even if something
+       between there and here threw during start-up. */
+    function leadSource() {
       var q; try { q = new URLSearchParams(location.search); } catch (e) { return ''; }
       var clean = function (v) { return (v || '').replace(/[^\w .:\/-]/g, '').slice(0, 40); };
-      var parts = [q.get('utm_source'), q.get('utm_medium'), q.get('utm_campaign'), q.get('utm_content'), q.get('ref')]
-        .map(clean).filter(Boolean);
+      // the four usual utm_* first, as values; any other utm_* (term, id…)
+      // named, so no campaign parameter is lost; then the ad's own ?ref=
+      var MAIN = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+      var utm = {}, extra = [];    // first value of each utm_* key, any case
+      q.forEach(function (v, k) {
+        k = k.toLowerCase();
+        if (k.indexOf('utm_') !== 0 || Object.prototype.hasOwnProperty.call(utm, k)) return;
+        utm[k] = v;
+        if (MAIN.indexOf(k) === -1) extra.push(k);
+      });
+      var parts = MAIN.map(function (k) { return clean(utm[k]); });
+      extra.forEach(function (k) { if (clean(utm[k])) parts.push(clean(k.slice(4)) + ':' + clean(utm[k])); });
+      parts.push(clean(q.get('ref')));
+      parts = parts.filter(Boolean);
       if (q.has('fbclid')) parts.push('fbclid');
       if (q.has('gclid')) parts.push('gclid');
       return parts.join(' · ');
-    };
-    var refTag = function () {
+    }
+    function refTag() {
       var r = ''; try { r = new URLSearchParams(location.search).get('ref') || ''; } catch (e) {}
       r = r.replace(/[^\w-]/g, '').slice(0, 20);
       return r ? ' [' + r + ']' : '';
-    };
+    }
     // Rebuilt on a language swap, so the pre-filled greeting follows the page.
     var wireWA = function () { document.querySelectorAll('.wa-link').forEach(function (a) {
       if (WA) {
@@ -1670,7 +1857,7 @@
           approx = '≈ ';
         }
         td.textContent = '';
-        td.appendChild(document.createTextNode(approx + grp(lo) + ' – ' + grp(hi) + (range[2] ? '+' : '') + ' '));
+        td.appendChild(document.createTextNode(approx + grp(lo) + DASH + grp(hi) + (range[2] ? '+' : '') + ' '));
         var c = document.createElement('span'); c.className = 'cur'; c.textContent = sym(to);
         td.appendChild(c);
       };
@@ -1685,7 +1872,7 @@
           });
         });
         var day = document.getElementById('mk-day-dz');
-        if (day) day.textContent = grp(tidy(480 * FX.EUR, 'DZD')) + ' – ' + grp(tidy(650 * FX.EUR, 'DZD')) + ' ' + t('price.cur');
+        if (day) day.textContent = grp(tidy(480 * FX.EUR, 'DZD')) + DASH + grp(tidy(650 * FX.EUR, 'DZD')) + ' ' + t('price.cur');
       };
       // a visitor who chose € or $ for the prices sees the comparison in it too
       var follow = function () {
@@ -1790,6 +1977,39 @@
         var logo = document.querySelector('.navbar .logo'); if (logo) logo.focus({ preventScroll: true });
       });
     })();
+
+    // The market table's frame is a keyboard stop (tabindex=0 in the markup,
+    // so it can be scrolled from the keyboard) only while it actually
+    // scrolls: where the whole table fits, it would be a Tab for nothing.
+    (function () {
+      var box = document.querySelector('.mk-scroll');
+      if (!box || !('ResizeObserver' in window)) return;
+      var fit = function () {
+        if (!box.clientWidth) return;            // folded away: decide when shown
+        if (box.scrollWidth > box.clientWidth + 1) box.setAttribute('tabindex', '0');
+        else box.removeAttribute('tabindex');
+      };
+      var ro = new ResizeObserver(fit);
+      ro.observe(box);
+      if (box.firstElementChild) ro.observe(box.firstElementChild);
+    })();
+
+    /* Back/Forward can bring this page back from the browser's cache exactly
+       as it was left, after the visitor chose another language (or theme, or
+       currency) on another page. Take up the stored choice again, as a
+       fresh load would. */
+    window.addEventListener('pageshow', function (e) {
+      if (!e.persisted) return;
+      var l = null, th = null, c = null;
+      try {
+        l = localStorage.getItem('numidea-lang');
+        th = localStorage.getItem('numidea-theme');
+        c = localStorage.getItem('numidea-cur');
+      } catch (x) {}
+      if (SUPPORTED.indexOf(l) > -1 && l !== document.documentElement.getAttribute('lang')) switchLang(l);
+      if (THEMES.indexOf(th) > -1 && th !== document.documentElement.getAttribute('data-theme')) applyTheme(th);
+      if (CURS.indexOf(c) > -1 && c !== CUR) setCur(c);
+    });
 
    } catch (e) {
     // Never let an init error leave content stuck behind scroll-reveal.
