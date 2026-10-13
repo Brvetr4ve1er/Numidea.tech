@@ -1,16 +1,22 @@
 // HQ trailer audio: WebAudio sampler that follows the composition clock, plus offline WAV mixdown.
-window.HQAudio = (function () {
+// Numidea site: the 16 sounds (2.7 MB) are fetched on first use, when a click
+// or key press in the frame unlocks audio, not when the frame loads: scrolling
+// past the reel and the walkthrough no longer downloads them. The script is
+// also run twice per frame (once by the page, once by support.js's helmet), so
+// the second run keeps the first instance instead of fetching everything again.
+window.HQAudio = window.HQAudio || (function () {
   const BASE = 'assets/audio/';
   const NAMES = ['music1', 'music2', 'type', 'pop', 'tick', 'whoosh', 'hit', 'glitch', 'chime', 'alert', 'coins', 'burst', 'levelup', 'boop', 'scan', 'riser'];
   let ctx = null, bus = null, comp = null;
   const raw = {}, bufs = {};
-  const fetchAll = Promise.all(NAMES.map(n => fetch(BASE + n + '.mp3').then(r => r.arrayBuffer()).then(b => { raw[n] = b; }).catch(e => console.warn('[HQAudio]', n, e))));
+  let fetching = null;
+  const fetchAll = () => fetching || (fetching = Promise.all(NAMES.map(n => fetch(BASE + n + '.mp3').then(r => r.arrayBuffer()).then(b => { raw[n] = b; }).catch(e => console.warn('[HQAudio]', n, e)))));
   function ensure() {
     if (ctx) return ctx;
     ctx = new (window.AudioContext || window.webkitAudioContext)();
     comp = ctx.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 3; comp.attack.value = .005; comp.release.value = .2;
     bus = ctx.createGain(); bus.gain.value = .9; bus.connect(comp); comp.connect(ctx.destination);
-    fetchAll.then(() => NAMES.forEach(n => { if (raw[n] && !bufs[n]) ctx.decodeAudioData(raw[n].slice(0)).then(b => { bufs[n] = b; }); }));
+    fetchAll().then(() => NAMES.forEach(n => { if (raw[n] && !bufs[n]) ctx.decodeAudioData(raw[n].slice(0)).then(b => { bufs[n] = b; }); }));
     return ctx;
   }
   const unlock = () => { ensure(); if (ctx.state !== 'running') ctx.resume(); };
@@ -54,7 +60,7 @@ window.HQAudio = (function () {
   }
 
   async function renderWav(cues, music, total, musicGain = .5, name = 'soundtrack') {
-    await fetchAll;
+    await fetchAll();
     const sr = 48000, oc = new OfflineAudioContext(2, Math.ceil(sr * total), sr);
     const dec = {}; await Promise.all(NAMES.map(async n => { if (raw[n]) dec[n] = await oc.decodeAudioData(raw[n].slice(0)); }));
     const cp = oc.createDynamicsCompressor(); cp.threshold.value = -14; cp.ratio.value = 3; cp.attack.value = .005; cp.release.value = .2;

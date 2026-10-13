@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorkspaceHQ v3 — live console</title>
+<!-- shown only inside ../index.html (the LIVE DEMO frame): kept out of search results -->
+<meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <!-- React is self-hosted and loaded before the runtime, so support.js never
      reaches for the CDN; the JSX was compiled ahead of time (.jsx -> .js), so
@@ -1188,7 +1191,7 @@ class Component extends DCLogic {
       tab: saved.tab || this.props.startTab || 'home',
       sub: Object.assign({ projects: 'grid', tasks: 'ranked', automations: 'runnable', claude: 'sessions', history: 'trends', system: 'machine', life: 'screen' }, saved.sub || {}),
       route: saved.route || null, snapOffset: saved.snapOffset || 0,
-      themePref: this.props.theme || 'dark', sound: true, petOn: this.props.pet !== false, ambientPref: true, reduceMotion: false, notifyMeasured: true,
+      themePref: this.props.theme || 'dark', sound: true, petOn: this.props.pet !== false, ambientPref: true, reduceMotion: this.hqStill(), notifyMeasured: true,
       vw: window.innerWidth, completed: [], recentDone: [], dismissed: [], xp: 842, displayXp: 842, committed: {}, archived: ['i'], devRunning: { a: true }, trusted: [],
       pinned: ['scan', 'rebuild', 'secret'],
       scrubOpen: false, paletteOpen: false, paletteMode: 'go', paletteQuery: '', paletteSel: 0, askOpen: false, askHistory: [], askDraft: '',
@@ -1201,8 +1204,24 @@ class Component extends DCLogic {
     };
   }
 
+  // Numidea site: the console's own "Reduce motion" setting starts from the
+  // launch page's PAUSE MOTION switch (html.motion-off / motion-on, set by
+  // workspacehq/app.js) or, opened on its own, from prefers-reduced-motion;
+  // it then follows the page's 'hq-motion' event. Its pulses and spins are
+  // endless WAAPI loops, which the CSS reduced-motion rule never reached.
+  hqStill() {
+    try {
+      const h = window.parent !== window && window.parent.document.documentElement;
+      if (h && h.classList.contains('motion-off')) return true;
+      if (h && h.classList.contains('motion-on')) return false;
+    } catch (e) {}
+    try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; }
+  }
+
   componentDidMount() {
     this._prev = Object.assign({}, this.state, { sub: Object.assign({}, this.state.sub) }); this._prevProps = Object.assign({}, this.props);
+    this._onMotion = e => this.setState({ reduceMotion: !!(e.detail && e.detail.paused) });
+    window.addEventListener('hq-motion', this._onMotion);
     this._onKey = e => this.onKey(e);
     this._onResize = () => this.forceUpdate();
     window.addEventListener('keydown', this._onKey);
@@ -1218,6 +1237,7 @@ class Component extends DCLogic {
     this._focusT = setInterval(() => { if (this.state.focus) this.setState({ now: Date.now() }); }, 1000);
   }
   componentWillUnmount() {
+    window.removeEventListener('hq-motion', this._onMotion);
     window.removeEventListener('keydown', this._onKey); window.removeEventListener('resize', this._onResize); if (this._ro) this._ro.disconnect(); clearInterval(this._wT); (this._mq || []).forEach(([m, h]) => m.removeEventListener('change', h));
     clearInterval(this._runT); clearInterval(this._focusT); FX().destroy();
   }

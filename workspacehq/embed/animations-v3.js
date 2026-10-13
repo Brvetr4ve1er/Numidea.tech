@@ -147,6 +147,23 @@ function useInlineFontsInto(svgRef) {
     };
   }, []);
 }
+// Numidea site (WorkspaceHQ launch page): should a stage hold still at start?
+// Inside the launch page, its PAUSE MOTION switch decides (html.motion-off /
+// html.motion-on, set by workspacehq/app.js); opened on its own,
+// prefers-reduced-motion does.
+function hqHoldStill() {
+  try {
+    const host = window.parent !== window && window.parent.document.documentElement;
+    if (host && host.classList.contains("motion-off")) return true;
+    if (host && host.classList.contains("motion-on")) return false;
+  } catch {
+  }
+  try {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  } catch {
+    return false;
+  }
+}
 function Stage({
   width = 1280,
   height = 720,
@@ -178,7 +195,30 @@ function Stage({
       return 0;
     }
   });
-  const [playing, setPlaying] = React.useState(autoplay);
+  // held: autoplay was held back (reduced motion, or the host page's motion
+  // switch is off). The host's 'hq-motion' event pauses a playing stage and
+  // marks it held; resuming plays only a held stage, never one the viewer
+  // paused with the stage's own button.
+  const heldRef = React.useRef(null);
+  if (heldRef.current === null) heldRef.current = !!autoplay && hqHoldStill();
+  const [playing, setPlaying] = React.useState(() => !!autoplay && !heldRef.current);
+  const playingRef = React.useRef(playing);
+  playingRef.current = playing;
+  React.useEffect(() => {
+    const onMotion = (e) => {
+      if (e.detail && e.detail.paused) {
+        if (playingRef.current) {
+          heldRef.current = true;
+          setPlaying(false);
+        }
+      } else if (heldRef.current) {
+        heldRef.current = false;
+        setPlaying(true);
+      }
+    };
+    window.addEventListener("hq-motion", onMotion);
+    return () => window.removeEventListener("hq-motion", onMotion);
+  }, []);
   const [extPlay, setExtPlay] = React.useState(false);
   const extPlayTimerRef = React.useRef(null);
   const [hoverTime, setHoverTime] = React.useState(null);
@@ -187,12 +227,19 @@ function Stage({
   const canvasRef = React.useRef(null);
   const rafRef = React.useRef(null);
   const lastTsRef = React.useRef(null);
+  // Numidea site: the playhead is saved at most once a second while playing
+  // (it was written on every frame, 60 times a second), and on every change
+  // while paused or scrubbing.
+  const savedAtRef = React.useRef(0);
   React.useEffect(() => {
+    const now = Date.now();
+    if (playing && now - savedAtRef.current < 1e3) return;
+    savedAtRef.current = now;
     try {
       localStorage.setItem(persistKey + ":t", String(time));
     } catch {
     }
-  }, [time, persistKey]);
+  }, [time, persistKey, playing]);
   React.useEffect(() => {
     if (!stageRef.current) return;
     const el = stageRef.current;
@@ -835,7 +882,10 @@ function CompositionStage(props) {
       background: bg,
       autoplay,
       loop,
-      playback: pb
+      playback: pb,
+      // Numidea site: one saved playhead per page. With the shared default
+      // key the trailer and the walkthrough overwrote each other's position.
+      persistKey: props.persistKey || "animstage-v3:" + location.pathname
     },
     /* @__PURE__ */ React.createElement(SceneSync, { raw, onUpdate: setRaw }),
     typeof praw === "string" && praw !== "" && /* @__PURE__ */ React.createElement(PlaybackSync, { raw: praw, onUpdate: setPraw }),

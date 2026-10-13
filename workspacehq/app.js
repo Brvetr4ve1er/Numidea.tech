@@ -9,6 +9,52 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
 
+  /* ---------------- motion: one switch for every loop (WCAG 2.2.2) ----------------
+     The nav's PAUSE MOTION button. Pressed, html.motion-off stops the CSS loops
+     (style.css), Bit stops blinking, and the embedded players hold still:
+     frameMotion() tells the trailer/walkthrough stages (animations-v3.js listens
+     for 'hq-motion') and the live console (its own data-hq-reduce switch).
+     prefers-reduced-motion starts the page pressed; a choice that differs from
+     that default is remembered for the next visit. */
+  var root = document.documentElement, motionBtn = $('#motionBtn'), MKEY = 'whq-motion';
+  var stored = null;
+  try { stored = localStorage.getItem(MKEY); } catch (e) { /* storage blocked */ }
+  var motionOff = stored === 'off' ? true : stored === 'on' ? false : reduce;
+  var heldAnims = [];
+  function frameMotion(f, off) {
+    try {
+      var w = f.contentWindow, d = w && w.document;
+      if (!d || !d.documentElement) return;
+      w.dispatchEvent(new w.CustomEvent('hq-motion', { detail: { paused: off } }));
+      if (off) d.documentElement.setAttribute('data-hq-reduce', '1'); else d.documentElement.removeAttribute('data-hq-reduce');
+      if (off && d.getAnimations) {
+        d.getAnimations().forEach(function (a) { if (a.playState === 'running') { a.pause(); heldAnims.push(a); } });
+      } else if (!off) {
+        heldAnims = heldAnims.filter(function (a) {
+          if (a.effect && a.effect.target && a.effect.target.ownerDocument === d) { try { a.play(); } catch (e) { /* gone */ } return false; }
+          return true;
+        });
+      }
+    } catch (e) { /* the frame has not booted yet: its stage reads the switch when it mounts */ }
+  }
+  function setMotion(off, save) {
+    motionOff = off;
+    root.classList.toggle('motion-off', off);
+    root.classList.toggle('motion-on', !off && reduce);
+    if (motionBtn) motionBtn.setAttribute('aria-pressed', off ? 'true' : 'false');
+    $$('iframe').forEach(function (f) { frameMotion(f, off); });
+    if (save) {
+      try { if (off === reduce) localStorage.removeItem(MKEY); else localStorage.setItem(MKEY, off ? 'off' : 'on'); } catch (e) { /* storage blocked */ }
+    }
+  }
+  setMotion(motionOff, false);
+  if (motionBtn) {
+    motionBtn.hidden = false;
+    motionBtn.addEventListener('click', function () { setMotion(!motionOff, true); });
+  }
+  // a player that loads later picks up the current state
+  $$('iframe').forEach(function (f) { f.addEventListener('load', function () { frameMotion(f, motionOff); }); });
+
   /* ---------------- Bit ---------------- */
   var BITPAL = { o: '#d97757', h: '#f2a27e', d: '#a5543a', e: '#1b1430', y: '#ffd23f', s: '#9fd0e8', c: '#ff2bd6', k: '#a01d8a' };
   var PB = ['...oooooo...', '..ohoooooo..', '.ohoooooooo.', '.ooeooooeoo.', '.ooeooooeoo.', 'oooooooooooo', '.oooooooooo.', '.dddddddddd.', '..d.d..d.d..'];
@@ -94,24 +140,41 @@
   $$('[data-feed]').forEach(function (b) { b.addEventListener('click', feed); });
   render();
 
-  // Bit blinks every few seconds while calm — only while he can be seen
+  // Bit blinks every few seconds while calm — only while he can be seen, and
+  // never while motion is paused
   var bitVisible = false;
   setInterval(function () {
-    if (!bitVisible || document.hidden || reduce || st.mood !== 'idle') return;
+    if (!bitVisible || document.hidden || motionOff || st.mood !== 'idle') return;
     st.blink = true; drawBits();
     setTimeout(function () { st.blink = false; drawBits(); }, 140);
   }, 3200);
 
-  /* ---------------- install: copy ---------------- */
+  /* ---------------- install: copy ----------------
+     The result is announced through #copyStatus (role=status). A refused
+     clipboard no longer reads "COPIED": the command is selected instead, so
+     the visitor can copy it with the keyboard. */
+  var copyStatus = $('#copyStatus'), copyT = 0;
   $$('[data-copy]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var cmd = btn.parentNode.querySelector('[data-cmd]').textContent.trim();
-      var done = function () {
-        $$('[data-copy]').forEach(function (b) { b.textContent = 'COPIED ✓'; });
-        clearTimeout(btn._t);
-        btn._t = setTimeout(function () { $$('[data-copy]').forEach(function (b) { b.textContent = 'COPY'; }); }, 1600);
+      var code = btn.parentNode.querySelector('[data-cmd]'), cmd = code.textContent.trim();
+      var show = function (label, msg) {
+        $$('[data-copy]').forEach(function (b) { b.textContent = label; });
+        if (copyStatus) {   // emptied first, so the same message is read again on a second press
+          copyStatus.textContent = '';
+          setTimeout(function () { copyStatus.textContent = msg; }, 60);
+        }
+        clearTimeout(copyT);
+        copyT = setTimeout(function () { $$('[data-copy]').forEach(function (b) { b.textContent = 'COPY'; }); }, 1600);
       };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(cmd).then(done, done); else done();
+      var copied = function () { show('COPIED ✓', 'Command copied to the clipboard.'); };
+      var refused = function () {
+        try {
+          var r = document.createRange(); r.selectNodeContents(code);
+          var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        } catch (e) { /* no selection API */ }
+        show('SELECTED', 'The clipboard is not available. The command is selected: copy it with Ctrl+C, or Cmd+C on a Mac.');
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(cmd).then(copied, refused); else refused();
     });
   });
 
@@ -142,6 +205,7 @@
   $('#bootDemo').addEventListener('click', function () {
     var f = document.createElement('iframe');
     f.src = 'embed/console.html'; f.title = 'WorkspaceHQ v3 live console';
+    f.addEventListener('load', function () { frameMotion(f, motionOff); });
     var stage = $('#demoStage'); stage.replaceChildren(f);
     var s = $('#demoStatus'); s.textContent = '● LIVE'; s.classList.add('live');
     f.focus();
@@ -158,6 +222,21 @@
   measure(); onScroll();
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', measure);
+
+  // The section links share one 24px row (style.css clips the rest). A link
+  // that wraps onto the clipped row is hidden outright, which also takes it out
+  // of the tab order: keyboard focus never lands on a link nobody can see.
+  var navLinks = $('.nav-links');
+  var fitNav = function () {
+    if (!navLinks) return;
+    var links = $$('a', navLinks);
+    links.forEach(function (a) { a.style.visibility = ''; });
+    var top = navLinks.getBoundingClientRect().top;
+    links.forEach(function (a) { if (a.getBoundingClientRect().top - top > 4) a.style.visibility = 'hidden'; });
+  };
+  fitNav();
+  addEventListener('resize', fitNav);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitNav);
   if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
 
   // the glow eases after the pointer and STOPS once it has caught up

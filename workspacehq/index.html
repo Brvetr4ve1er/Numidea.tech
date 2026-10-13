@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WorkspaceHQ v3 — your codebase, now playable</title>
-<meta name="description" content="WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests and puts one clear next move on top. A Claude-powered terminal console with a pixel sidekick called Bit.">
+<meta name="description" content="WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests and puts one clear next move on top. A Claude-powered desktop console (Electron) with a pixel sidekick called Bit.">
 <meta name="theme-color" content="#07060f">
 <meta property="og:title" content="WorkspaceHQ v3 — your codebase, now playable">
-<meta property="og:description" content="An arcade cabinet for your codebase. Open source on GitHub.">
+<meta property="og:description" content="An arcade cabinet for your codebase: a desktop console (Electron) whose code is public on GitHub.">
 <link rel="canonical" href="https://brvetr4ve1er.github.io/Numidea.tech/workspacehq/">
 <meta property="og:url" content="https://brvetr4ve1er.github.io/Numidea.tech/workspacehq/">
 <meta property="og:type" content="website">
@@ -44,7 +44,12 @@
   <nav class="nav-links" aria-label="Sections">
     <a href="#reel">REEL</a><a href="#features">FEATURES</a><a href="#walkthrough">WALKTHROUGH</a><a href="#demo">DEMO</a><a href="#bit">BIT</a><a href="#v3">WHAT'S NEW</a><a href="#faq">FAQ</a>
   </nav>
-  <a class="btn btn--primary btn--sm" href="#install">▶ INSTALL</a>
+  <div class="nav-end">
+    <!-- stops every loop on the page and in the players (WCAG 2.2.2); app.js
+         wires it and shows it, prefers-reduced-motion starts it pressed -->
+    <button type="button" class="btn btn--ghost btn--sm motion-btn" id="motionBtn" aria-pressed="false" hidden><svg viewBox="0 0 10 10" aria-hidden="true"><path class="ic-pause" d="M2 1h2v8H2zM6 1h2v8H6z"/><path class="ic-play" d="M2 1v8l7-4z"/></svg><span class="motion-tx">PAUSE MOTION</span></button>
+    <a class="btn btn--primary btn--sm" href="#install">▶ INSTALL</a>
+  </div>
 </header>
 
 <main id="top">
@@ -58,13 +63,15 @@
         <li aria-current="page">WORKSPACEHQ</li>
       </ol></nav>
       <p class="hero-kick">PERSONAL OPS CONSOLE · v3 · <span class="blink">[ INSERT COIN ]</span></p>
-      <h1>Your codebase,<br>now <span class="glitch" data-text="playable.">playable.</span></h1>
-      <p class="hero-lede">WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests, and puts one clear next move on top. A Claude-powered terminal console, with a pixel sidekick who notices when you do good work.</p>
+      <!-- the glitch's two coloured copies are drawn by an aria-hidden layer, so
+           the heading's accessible name stays "Your codebase, now playable." -->
+      <h1>Your codebase,<br>now <span class="glitch">playable.<span class="glitch-fx" data-text="playable." aria-hidden="true"></span></span></h1>
+      <p class="hero-lede">WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests, and puts one clear next move on top. A Claude-powered desktop console (Electron), with a pixel sidekick who notices when you do good work.</p>
       <div class="hero-cta">
         <div class="term term--hero">
           <div class="term-bar">
-            <span class="term-tag">OPEN SOURCE</span>
-            <span class="term-os">CLONE · README · PLAY</span>
+            <span class="term-tag">CODE ON GITHUB</span>
+            <span class="term-os">DESKTOP CONSOLE · ELECTRON</span>
           </div>
           <div class="term-line">
             <span class="term-dollar" aria-hidden="true">$</span>
@@ -281,7 +288,7 @@
       <details name="faq" data-reveal="0"><summary><span>Do I have to play the game part?</span><i aria-hidden="true"></i></summary><p>The game is a lens over real work. Every quest maps to a real fix in a real repo, and XP only moves when your workspace actually gets healthier.</p></details>
       <details name="faq" data-reveal="0"><summary><span>Where does my code go?</span><i aria-hidden="true"></i></summary><p>Scans run on your machine. When you ask Claude something, only the question and the repo context it needs are sent.</p></details>
       <details name="faq" data-reveal="0"><summary><span>What is Bit, really?</span><i aria-hidden="true"></i></summary><p>A status light with a personality. His mood mirrors your workspace at a glance, so you can tell how things are without reading a single number.</p></details>
-      <details name="faq" data-reveal="0"><summary><span>How do I start?</span><i aria-hidden="true"></i></summary><p>Clone the repo from GitHub and follow its README. Run a scan and your first quest shows up on top. That's it.</p></details>
+      <details name="faq" data-reveal="0"><summary><span>How do I start?</span><i aria-hidden="true"></i></summary><p>Clone the repo from GitHub: the code is public there. WorkspaceHQ is a desktop console built on Electron. Once it runs, a scan puts your first quest on top.</p></details>
     </div>
   </section>
 
@@ -289,7 +296,7 @@
   <section id="install" class="sec install">
     <p class="px-label t-magenta blink" data-reveal="0">▶ PLAYER 1, READY</p>
     <h2 class="install-h" data-reveal="1">Insert <em>coin.</em></h2>
-    <p class="install-p" data-reveal="2">It's open source. Clone it, follow the README, and your first quest shows up in about two seconds.</p>
+    <p class="install-p" data-reveal="2">The code is public on GitHub: a desktop console built on Electron. Once it runs, a scan takes about two seconds and your first quest shows up on top.</p>
     <div class="term term--install" data-reveal="3">
       <div class="term-bar">
         <span class="term-tag">GITHUB</span>
@@ -310,12 +317,15 @@
     <p class="px-label sig-sub" data-reveal="1">AN ARCADE CABINET FOR YOUR CODEBASE</p>
   </section>
 
-  <footer class="foot">
-    <span>WORKSPACEHQ · v3.0 · OCTOBER 2026</span>
-    <span>BUILT WITH CLAUDE CODE AND TOO MANY SIDE PROJECTS</span>
-    <span>BY <a href="../hub/">BR4VETR4VELER</a> · <a href="../">NUMIDEA LABS</a></span>
-  </footer>
+  <!-- announces the COPY buttons' result (app.js) -->
+  <p class="sr-only" role="status" id="copyStatus"></p>
 </main>
+
+<footer class="foot">
+  <span>WORKSPACEHQ · v3.0 · OCTOBER 2026</span>
+  <span>BUILT WITH CLAUDE CODE AND TOO MANY SIDE PROJECTS</span>
+  <span>BY <a href="../hub/">BR4VETR4VELER</a> · <a href="../">NUMIDEA LABS</a></span>
+</footer>
 
 <script src="app.js?v=202610122329" defer></script>
 <script src="../assets/carry.js?v=202610122329" defer></script>
