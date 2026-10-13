@@ -18,6 +18,8 @@ Status as of 2026-10-12 (updated after the review round).
 | 10 | Hub fan art: rights | Open question | `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
 | 12 | Campaign kit and git history | Kit with the owner | outside this repo |
+| 13 | WorkspaceHQ: open source or not | Claim removed (no licence, no README) | `Brvetr4ve1er/workspace-HQ`, then `workspacehq/`, `scripts/scene-data.mjs` |
+| 14 | Claims only the owner can confirm | 8 open | see section 14 |
 
 ## 1. Legal notice + privacy page
 Fill every `null` in `scripts/legal-data.mjs`. `false` means "does not apply"
@@ -135,3 +137,36 @@ history needs a force-push rewrite (e.g. `git filter-repo --path campaign
 --invert-paths`, then `git push --force`), which also rewrites every later
 commit. That is the owner's call, best done when no pull request is open.
 `knowledge-base/` and `audit/` are also readable on GitHub (never on the site).
+
+## 13. WorkspaceHQ: open source
+The site called WorkspaceHQ "open source" and told visitors to "follow the
+README". On 2026-10-13 the repository `Brvetr4ve1er/workspace-HQ` had no
+licence file and no README, and `dashboard/package.json` is `"private": true`
+with `"start": "electron ."`: public code without a licence is not open source,
+and it is a desktop (Electron) app, not a CLI. The pages now say the code is
+public on GitHub and describe a desktop console. To say "open source" again,
+add a LICENSE (for example MIT) and a root README with the start steps to
+that repository, then restore the wording in `workspacehq/index.html` and
+`scripts/scene-data.mjs` (`npm run scene`).
+
+## 14. Claims only the owner can confirm
+Each is on the site today. None is proven false; none could be verified.
+Confirm it, or say what is true and the copy changes in all three languages.
+- **"6 ans" of experience** (founder card) next to freelance work "2019 —
+  aujourd'hui", which is about 7 years in October 2026.
+- **"des clients en France"** (FAQ 5, plural): the portfolio shows one French
+  client (AlmaFlowClim).
+- **"nous livrons avec … React, Next.js, Vercel"** (market note): every
+  delivered build linked from the site is served by Netlify, and only Bordj
+  Steel shows Next.js.
+- **Essentiel: "Mise en ligne, domaine et certificat configurés"**: no
+  delivered client site is served from its own domain yet (see 9).
+- **The stack section** lists React Native, Expo, Docker and Cloudflare as
+  "les outils derrière ce qu'on livre"; no delivered project shows them.
+- **AlmaFlowClim labelled "Industrie"**: its own site presents a residential
+  heating, air-conditioning and plumbing business.
+- **"Si c'est oui, on est déjà à mi-chemin"** (method, step 4) after a
+  one-page Aperçu, for projects of up to 16 weeks.
+- **hub/: "VOIDSPLUNKER.std is an agency of one"** while the home page
+  presents a studio of four specialists.
+
