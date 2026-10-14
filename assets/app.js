@@ -709,16 +709,20 @@
 
        A Vitrine is never quoted above the Studio tier for the same pages:
        Studio includes multilingual, CMS, design system and SEO at no extra
-       cost, so a Vitrine whose options take either bound past Studio's is
-       quoted at the Studio figure and weeks (studio: true), and a Vitrine
-       is never given more weeks than Studio would take. */
+       cost, so each bound (price and weeks) is the lower of the Vitrine's own
+       sum and the Studio figure. Bound by bound, never the whole Studio
+       range: taking it whole when only the low end was cheaper would raise
+       the top above what the Vitrine itself adds up to. studio: true when
+       the Studio figure set either price bound. check.mjs tests every size,
+       option set and pace. */
     function quote(key, n, opts, rush) {
       var q = tally(key, n, opts || []);
       q.studio = false;
       if (key === 'vitrine') {
         var s = tally('surmesure', n, opts || []);
-        if (q.lo > s.lo || q.hi > s.hi) { q = s; q.studio = true; }
-        else { q.wLo = Math.min(q.wLo, s.wLo); q.wHi = Math.min(q.wHi, s.wHi); }
+        q.studio = s.lo < q.lo || s.hi < q.hi;
+        q.lo = Math.min(q.lo, s.lo); q.hi = Math.min(q.hi, s.hi);
+        q.wLo = Math.min(q.wLo, s.wLo); q.wHi = Math.min(q.wHi, s.wHi);
       }
       q.rush = !!rush;
       if (rush) {
@@ -729,7 +733,7 @@
       return q;
     }
 
-    return { PRICE_MODEL: PRICE_MODEL, PRICE_OPTS: PRICE_OPTS, quote: quote };
+    return { PRICE_MODEL: PRICE_MODEL, PRICE_OPTS: PRICE_OPTS, quote: quote, tally: tally, roundTo: roundTo, RUSH_PRICE: RUSH_PRICE };
   })();
 
   var SUPPORTED = ['fr', 'en', 'ar'];
@@ -1220,6 +1224,8 @@
         if (busy) return;
         if (n === cur) { want = -1; return; }
         if (!ready(n) && !failed(n)) {
+          // the rail answers at once; the plate follows when the image lands
+          tabs.forEach(function (e, i) { if (i === n) e.setAttribute('aria-current', 'true'); else e.removeAttribute('aria-current'); });
           if (waiting !== n) {
             waiting = n;
             var again = function () { if (waiting !== n) return; waiting = -1; if (want === n) go(n); };
@@ -1250,6 +1256,8 @@
       }
 
       function next() {
+        // A pick still waiting for its image wins over the rotation.
+        if (waiting > -1) return;
         // Never wipe onto an image that has not arrived. On a slow link the
         // low-priority slides land seconds after the first; advancing anyway
         // showed a blank plate and re-elected LCP onto whichever image came
@@ -1686,9 +1694,11 @@
         eHi.textContent = grp(shown(q.hi, CUR));
         var eCur = eLo.parentNode.querySelector('.cur');
         if (eCur) eCur.textContent = sym(CUR);
-        eWeeks.textContent = q.wLo + DASH + q.wHi;
-        var wUnit = eWeeks.parentNode.querySelector('[data-i18n="price.weeks"]');
-        if (wUnit) wUnit.textContent = unit('price.weeks', q.wHi);
+        // .eo-time is a status region: write only what changed, or every
+        // slider step re-announces an unchanged delivery time
+        var setText = function (el, v) { if (el && el.textContent !== v) el.textContent = v; };
+        setText(eWeeks, q.wLo + DASH + q.wHi);
+        setText(eWeeks.parentNode.querySelector('[data-i18n="price.weeks"]'), unit('price.weeks', q.wHi));
 
         // the size readout and the slider's spoken value carry the unit, which
         // changes meaning with the type (pages, products, screens…)
@@ -1999,6 +2009,10 @@
        currency) on another page. Take up the stored choice again, as a
        fresh load would. */
     window.addEventListener('pageshow', function (e) {
+      // A plain Back (no cache) restores form controls after this script
+      // ran: the currency radio could come back unchecked from what the
+      // prices show. The prices are right; put the radio back in step.
+      document.querySelectorAll('input[name="pr-cur"]').forEach(function (r) { r.checked = r.value === CUR; });
       if (!e.persisted) return;
       var l = null, th = null, c = null;
       try {

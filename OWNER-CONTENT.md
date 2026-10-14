@@ -6,7 +6,7 @@ Status as of 2026-10-12 (updated after the review round).
 
 | # | Item | Status | Where it goes |
 |---|---|---|---|
-| 1 | Legal notice + privacy details | **Missing (14 fields)** | `scripts/legal-data.mjs` |
+| 1 | Legal notice + privacy details | **Missing (14 fields; 5 in three languages)** | `scripts/legal-data.mjs` |
 | 2 | Client quotes, with consent | None yet | `scripts/voices-data.mjs` |
 | 3 | Founder photo | None (monogram "Y" shows) | `assets/founder.webp` |
 | 4 | Team names and photos; the team-size claim | Initials D, S, T; "four specialists" claimed | `index.html` #founder, `assets/app.js` |
@@ -36,6 +36,19 @@ declaration status (or `false`), the licence for the site's text and images
 (`cc0` keeps the current LICENSE; `reserved` reserves them), and the date of the
 review. Preview with the gaps marked: `node scripts/build-legal.mjs --preview`
 → `legal-preview/` (never deployed).
+
+Five of those are text that changes with the language, so each takes one
+value per language, `{ fr, en, ar }`: the legal form, the capital, the
+registration label, the retention period and the ANPDP status (for example
+`retention: { fr: '3 ans après le dernier échange', en: '3 years after the
+last exchange', ar: '3 سنوات بعد آخر تواصل' }`). A plain string there counts
+as missing in all three languages. Names, numbers, addresses and emails take
+one value. The build counts 14 fields; a translated field with gaps counts
+once per missing language.
+
+The hosts list names GitHub only. If the Netlify or Vercel mirror is public,
+add `'netlify'` / `'vercel'` to `hosts` so the privacy page names every host
+that serves the site.
 
 The footer shows only "© 2026 Numidea Labs". It used to add "Tous droits
 réservés", but the repository's LICENSE is CC0 (public domain), and the two

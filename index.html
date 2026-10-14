@@ -167,10 +167,10 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202610122329">
+<link rel="stylesheet" href="assets/fonts.css?v=202610140044">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="assets/themes.css?v=202610122329">
-<link rel="stylesheet" href="assets/styles.css?v=202610122329">
+<link rel="stylesheet" href="assets/themes.css?v=202610140044">
+<link rel="stylesheet" href="assets/styles.css?v=202610140044">
 <style>
   /* Paired with data-i18n-pending above. Inline and in <head> so it is in effect
      before the first paint it exists to suppress. */
@@ -789,7 +789,7 @@
             <div class="est-lab"><label for="est-size" data-i18n="price.qSize">Ampleur</label>
               <span class="est-sizev" id="est-size-v" aria-hidden="true">8</span>
               <span class="est-hint" id="est-size-h" aria-hidden="true" data-i18n="price.uPages">pages</span></div>
-            <input type="range" id="est-size" min="1" max="25" value="8" step="1" aria-valuetext="8 pages">
+            <input type="range" id="est-size" min="1" max="25" value="8" step="1">
           </div>
 
           <fieldset class="est-field">
@@ -1234,8 +1234,8 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202610122329" defer></script>
-<script src="assets/carry.js?v=202610122329" defer></script>
+<script src="assets/app.js?v=202610140044" defer></script>
+<script src="assets/carry.js?v=202610140044" defer></script>
 <!-- FAQ structured data, written from I18N.fr by scripts/build-fr.mjs;
      applyLang() rewrites it for the visitor's language. -->
 <script type="application/ld+json" id="ld-faq">

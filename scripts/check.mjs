@@ -24,6 +24,7 @@
  * Exits non-zero on any failure. No dependencies.
  */
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 import { join, dirname, normalize, basename } from 'node:path';
 import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, DEPLOY_SKIP, NOT_DEPLOYED, BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
 import { SCENE_HTML } from './build-scene.mjs';
@@ -200,7 +201,13 @@ for (const f of PAGES) {
   const scripted = /\.rel\s*=\s*(['"])canonical\1|setAttribute\(\s*(['"])rel\2\s*,\s*(['"])canonical\3/.test(inline) ? 1 : 0;
   const links = src.replace(/<script\b[\s\S]*?<\/script>/gi, '').match(/<link\b[^>]*\brel\s*=\s*["']?[^"'>]*\bcanonical\b[^>]*>/gi) || [];
   const want = f === '404.html' ? 0 : 1, self = BASE + (dirname(f) === '.' ? '' : dirname(f) + '/');
-  if (scripted && links.length) canonErr.push(`${f} has a static canonical and sets one in its head script (remove the <link>)`);
+  // a page with language versions (hreflang alternates) must name itself from
+  // the head script, whatever else changes: a static canonical alone would
+  // name the French page on every ?lang= view
+  const multi = /<link\b[^>]*\bhreflang\s*=/i.test(src);
+  if (multi && !scripted) canonErr.push(`${f} has language versions but its head script sets no canonical`);
+  if (multi && links.length) canonErr.push(`${f} has language versions and a static canonical (remove the <link>)`);
+  else if (scripted && links.length) canonErr.push(`${f} has a static canonical and sets one in its head script (remove the <link>)`);
   else if (links.length + scripted !== want) canonErr.push(`${f} names ${links.length + scripted} canonical URLs (want ${want})`);
   for (const l of links) {
     const href = (/\bhref\s*=\s*["']?([^"'\s>]+)/.exec(l) || [])[1];
@@ -253,27 +260,23 @@ for (const f of PAGES) {
 // The form note promises the site keeps nothing. Turning the Supabase lead
 // store on breaks that promise: it needs the published legal page, the store's
 // region in scripts/legal-data.mjs, and new form.note copy in every language
-// and in the French baked into index.html. app.js only tests truthiness, so
-// "on" is any assignment whose value is truthy: a non-empty string literal in
-// any quote style, or any other expression except null, undefined, false, 0,
-// NaN and void 0. A trailing // comment is not part of the value, and lines
-// commented out (// or /* */ at the start of a line) assign nothing. Every
-// assignment counts; when in doubt the store reads as on.
-function cfgOn(src, name) {
-  src = src.replace(/<!--[\s\S]*?-->/g, '').replace(/^[ \t]*\/\*[\s\S]*?\*\//gm, '').replace(/^[ \t]*\/\/.*$/gm, '');
-  // the rest of the statement, comments dropped
-  const upTo = (s) => s.split(/[;,\n]/)[0].replace(/\/\*.*?\*\/|\/\/.*$/g, '').trim();
-  for (const m of src.matchAll(new RegExp(`\\b${name}\\s*=(?!=)\\s*`, 'g'))) {
-    const rest = src.slice(m.index + m[0].length);
-    const str = /^(["'`])((?:\\[\s\S]|(?!\1)[^\\])*)\1/.exec(rest);
-    if (str) {
-      // "" on its own is off; "" + something is an expression: on
-      if (str[2] !== '' || !/^[)}]?$/.test(upTo(rest.slice(str[0].length)))) return true;
-    } else if (!/^(?:null|undefined|false|0|NaN|void 0)$/.test(upTo(rest))) return true;
+// and in the French baked into index.html. Whether it is on is decided the way
+// the browser decides it: the inline script that sets the two values is run
+// in a sandbox with a bare window, and either value being truthy counts as on
+// (app.js needs both; the guard is stricter). A script that cannot run counts
+// as on too: fail safe.
+let supaOn = false;
+{
+  const cfg = [...html.replace(/<!--[\s\S]*?-->/g, '').matchAll(/<script\b(?![^>]*\bsrc=)(?![^>]*type="application\/ld\+json")[^>]*>([\s\S]*?)<\/script>/gi)]
+    .map((m) => m[1]).filter((t) => /NUMIDEA_SUPABASE_(URL|KEY)/.test(t));
+  for (const code of cfg) {
+    const win = {};
+    try { runInNewContext(code, { window: win }, { timeout: 200 }); }
+    catch (e) { supaOn = true; continue; }
+    if (win.NUMIDEA_SUPABASE_URL || win.NUMIDEA_SUPABASE_KEY) supaOn = true;
   }
-  return false;
 }
-if (cfgOn(html, 'NUMIDEA_SUPABASE_URL') || cfgOn(html, 'NUMIDEA_SUPABASE_KEY')) {
+if (supaOn) {
   const KEEPS_NOTHING = /ne conserve pas|does not keep|keeps nothing|لا يحتفظ|لا يحفظ/;
   const notes = ['fr', 'en', 'ar'].map((l) => DICT[l]['form.note'] || '');
   notes.push((/data-i18n="form\.note">([^<]*)</.exec(html) || [])[1] || '');
@@ -302,7 +305,41 @@ if (!ownPrices) priceErr.push('could not find the tiers-to-market region');
 const typed = [...ownPrices.replace(/<!--[\s\S]*?-->/g, '').matchAll(/(?:€|\$)\s?\d[\d\s  .,]*|\d[\d  .,]*\s?(?:€|\$)/g)]
   .map((m) => m[0]).filter((x) => !/^\$\{/.test(x));
 if (typed.length) priceErr.push('hard-coded €/$ amounts in index.html: ' + typed.slice(0, 5).join(' | '));
-priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts');
+// The estimator's arithmetic (ESTIMATE in app.js, a pure block) is tested on
+// every size, option set and pace: a quote is a real range, a Vitrine is never
+// quoted above the Studio tier for the same pages, and no tier charges for an
+// option it includes.
+{
+  const at = app.indexOf('  var ESTIMATE = (function () {');
+  const end = at < 0 ? -1 : app.indexOf('\n  })();', at);
+  if (at < 0 || end < 0) priceErr.push('could not find the ESTIMATE block in app.js');
+  else {
+    const E = new Function(`${app.slice(at, end + 7)}\nreturn ESTIMATE;`)();
+    const keys = Object.keys(E.PRICE_OPTS), subsets = [];
+    for (let m = 0; m < 1 << keys.length; m++) subsets.push(keys.filter((_, b) => m >> b & 1));
+    const bad = [];
+    for (const [key, M] of Object.entries(E.PRICE_MODEL)) {
+      for (let n = M.min; n <= M.max; n += M.step) for (const o of subsets) for (const rush of [false, true]) {
+        const q = E.quote(key, n, o, rush);
+        if (!(q.lo > 0 && q.lo <= q.hi && q.wLo >= 1 && q.wLo <= q.wHi)) bad.push(`${key} n=${n} [${o}] ${rush ? 'rush' : ''}: ${q.lo}-${q.hi}, ${q.wLo}-${q.wHi} wk`);
+        // never above what the tier itself adds up to
+        const t = E.tally(key, n, o), k = rush ? E.RUSH_PRICE : 1;
+        if (q.lo > E.roundTo(t.lo * k) || q.hi > E.roundTo(t.hi * k)) bad.push(`${key} n=${n} [${o}] ${rush ? 'rush' : ''} above its own sum`);
+        if (key === 'vitrine') {
+          const s = E.quote('surmesure', n, o, rush);
+          if (q.lo > s.lo || q.hi > s.hi || q.wHi > s.wHi) bad.push(`vitrine n=${n} [${o}] ${rush ? 'rush' : ''} above Studio (${q.lo}-${q.hi} vs ${s.lo}-${s.hi})`);
+        }
+        const incl = M.incl || [];
+        if (incl.length) {
+          const without = E.quote(key, n, o.filter((x) => !incl.includes(x)), rush);
+          if (without.lo !== q.lo || without.hi !== q.hi) bad.push(`${key} charges for an included option [${o}]`);
+        }
+      }
+    }
+    if (bad.length) priceErr.push(`estimator: ${bad.length} bad quotes, e.g. ` + bad.slice(0, 3).join('; '));
+  }
+}
+priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts; estimator sound on every size, option set and pace');
 // Legal notice + privacy: published only when complete. While legal/ does not
 // exist, nothing may point at it (comments included) and the two link regions
 // in index.html stay empty; once it exists, every owner field must be filled,
@@ -364,7 +401,9 @@ const collectFr = (v, at) => {                 // only what sits under a `fr` ke
 collect(DICT.fr, 'I18N.fr');
 collect(SCENE_UI.fr, 'scene UI.fr');
 SCENE_PROJECTS.forEach((p) => collectFr(p, `scene ${p.slug}`));
-const FR_SPACE = /[ \t\r\n](?=[?!;:»])|«[ \t\r\n]|\d[ \t\r\n](?=(?:%|h)(?!\p{L}))/gu;
+// breakable: any white space but the no-break ones (U+00A0, U+202F, U+2007);
+// a thin space U+2009 looks like U+202F but breaks
+const FR_SPACE = /[^\S\u00a0\u202f\u2007](?=[?!;:»])|«[^\S\u00a0\u202f\u2007]|\d[^\S\u00a0\u202f\u2007](?=(?:%|h)(?!\p{L}))/gu;
 const frTypo = [];
 for (const [at, s] of frStrings) {
   const t = norm(s.replace(/<[^>]*>/g, ''));   // as rendered: tags out, entities decoded

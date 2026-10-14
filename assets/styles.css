@@ -1630,8 +1630,9 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
      square: a half-filled disc keeps a recognisable mark */
   .theme-btn .ic{forced-color-adjust:none;background:none;box-shadow:inset 7.5px 0 ButtonText,inset 0 0 0 1px ButtonText}
   .est-field input[type="range"]{forced-color-adjust:none}
-  .est-field input[type="range"]::-webkit-slider-runnable-track{background:CanvasText}
-  .est-field input[type="range"]::-moz-range-track{background:CanvasText}
+  /* html[dir] matches both directions and outranks the RTL gradient rule */
+  html[dir] .est-field input[type="range"]::-webkit-slider-runnable-track{background:CanvasText}
+  html[dir] .est-field input[type="range"]::-moz-range-track{background:CanvasText}
   .est-field input[type="range"]::-webkit-slider-thumb{background:Canvas;border-color:Highlight}
   .est-field input[type="range"]::-moz-range-thumb{background:Canvas;border-color:Highlight}
   /* badges set in --void on an accent fill would be bare words without a box */

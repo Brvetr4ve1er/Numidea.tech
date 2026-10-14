@@ -219,6 +219,12 @@ function Stage({
     window.addEventListener("hq-motion", onMotion);
     return () => window.removeEventListener("hq-motion", onMotion);
   }, []);
+  // Once the stage plays, by any means, it is no longer held: if the viewer
+  // then pauses it with the stage's own controls, resuming the host's
+  // motion switch must not start it again.
+  React.useEffect(() => {
+    if (playing) heldRef.current = false;
+  }, [playing]);
   const [extPlay, setExtPlay] = React.useState(false);
   const extPlayTimerRef = React.useRef(null);
   const [hoverTime, setHoverTime] = React.useState(null);

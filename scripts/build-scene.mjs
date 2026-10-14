@@ -230,7 +230,8 @@ d.lang=l;d.dir=l==='ar'?'rtl':'ltr';
 var h='${BASE}scene/',c=document.createElement('link');c.rel='canonical';c.href=q===l&&l!=='fr'?h+'?lang='+l:h;document.head.appendChild(c);
 if(c.href!==h){var m=function(p,v){var e=document.querySelector('meta[property="og:'+p+'"]');if(e)e.setAttribute('content',v);};m('url',c.href);m('locale',l==='ar'?'ar_DZ':'en_US');}
 if(l==='ar')document.write('<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/ibm-plex-sans-arabic-700-arabic.woff2">');
-if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.dir='ltr';}};document.addEventListener('DOMContentLoaded',r);setTimeout(r,1500);}})();</script>
+window.NUMIDEA_LANG=l;
+if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};document.addEventListener('DOMContentLoaded',r);setTimeout(r,1500);}})();</script>
 <style>html[data-i18n-pending] body{display:none}</style>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cinzel-700-latin.woff2">

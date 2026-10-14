@@ -5,8 +5,9 @@
 # audit/, scripts/…) are never served. The build command itself needs no
 # packages, but Netlify installs package.json's dependencies (devDependencies
 # included) before running it, as it does for any repository with a
-# package.json; PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD keeps the browser download
-# out of that install.
+# package.json. None of them downloads a browser on install today (Playwright
+# fetches browsers only through `npx playwright install`);
+# PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD stays as a guard should a version add one.
 [build]
   command = "node scripts/check.mjs && node scripts/themes-check.mjs && node scripts/stage-site.mjs"
   publish = "_site"

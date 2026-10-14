@@ -50,7 +50,8 @@ export function i18nNodes(html) {
 /* Compare markup with dictionary text as a browser would render it:
    entities decoded, runs of ordinary whitespace collapsed (NBSP and the
    narrow no-break space are significant and kept). */
-const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' };
+const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0',
+  thinsp: '\u2009', ensp: '\u2002', emsp: '\u2003', hairsp: '\u200a', numsp: '\u2007', puncsp: '\u2008' };
 export const norm = (s) => String(s)
   .replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (e, n) => n[0] === '#'
     ? String.fromCodePoint(n[1].toLowerCase() === 'x' ? parseInt(n.slice(2), 16) : parseInt(n.slice(1), 10))

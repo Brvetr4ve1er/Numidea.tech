@@ -36,20 +36,27 @@ function val(v, path, preview) {
 
 /* French typography on the French block's text (never inside tags): a narrow
    no-break space before : ; ? ! » and after «. The prose below already has
-   it; this also covers the owner's French values. */
+   it; this also covers the owner's French values.
+   A number and the word after it are joined by a no-break space (3 ans,
+   24 h), and «quotes» typed without spaces get them. */
 const frTypo = (html) => html.replace(/(^|>)([^<]+)/g, (m, gt, text) =>
-  gt + text.replace(/[ \u00a0]+([:;?!»])/g, '\u202f$1').replace(/«[ \u00a0]+/g, '«\u202f'));
+  gt + text.replace(/[ \u00a0]+([:;?!»])/g, '\u202f$1').replace(/«[ \u00a0]+/g, '«\u202f')
+    .replace(/«(?=\S)/g, '«\u202f').replace(/(\S)»/g, '$1\u202f»')
+    .replace(/(\d) (?=\p{L}|%)/gu, '$1\u00a0'));
 
 const UI = {
   fr: { title: 'Mentions légales et confidentialité · Numidea Labs', h1: 'Mentions légales <em>et confidentialité</em>',
         mentions: 'Mentions légales', privacy: 'Confidentialité', back: '← Retour à Numidea Labs', updated: 'Dernière mise à jour',
-        skip: 'Aller au contenu', lang: 'Langue', sep: '\u202f: ', and: ' et ' },
+        skip: 'Aller au contenu', lang: 'Langue', sep: '\u202f: ', and: ' et ',
+        desc: 'Éditeur, hébergement, propriété intellectuelle et données personnelles de Numidea Labs.' },
   en: { title: 'Legal notice and privacy · Numidea Labs', h1: 'Legal notice <em>and privacy</em>',
         mentions: 'Legal notice', privacy: 'Privacy', back: '← Back to Numidea Labs', updated: 'Last updated',
-        skip: 'Skip to content', lang: 'Language', sep: ': ', and: ' and ' },
+        skip: 'Skip to content', lang: 'Language', sep: ': ', and: ' and ',
+        desc: 'Publisher, hosting, intellectual property and personal data of Numidea Labs.' },
   ar: { title: 'الإشعار القانوني والخصوصية · Numidea Labs', h1: 'الإشعار القانوني <em>والخصوصية</em>',
         mentions: 'الإشعار القانوني', privacy: 'الخصوصية', back: '→ العودة إلى Numidea Labs', updated: 'آخر تحديث',
-        skip: 'انتقل إلى المحتوى', lang: 'اللغة', sep: ': ', and: ' و' },
+        skip: 'انتقل إلى المحتوى', lang: 'اللغة', sep: ': ', and: ' و',
+        desc: 'الناشر والاستضافة والملكية الفكرية والبيانات الشخصية لـ Numidea Labs.' },
 };
 
 /* The language buttons are named by their endonym, and the name keeps the
@@ -110,7 +117,13 @@ function fontList(lang, preview, served) {
 }
 
 function body(lang, d, preview, served) {
-  const v = (x, p) => val(x, p, preview);
+  // In the Arabic block an owner value (often Latin: an address, a number, a
+  // name) sits in right-to-left text: <bdi> keeps its own direction, so
+  // "12 rue …" is not reordered.
+  const v = (x, p) => {
+    const out = val(x, p, preview);
+    return lang === 'ar' && x !== null && x !== undefined && x !== false ? `<bdi>${out}</bdi>` : out;
+  };
   // a free-text field ({ fr, en, ar }): this language's value, or its gap
   const tr = (x, p) => v(x !== null && typeof x === 'object' ? x[lang] : null, p + '.' + lang);
   // inside an attribute a gap marker would be markup in href=""; preview gets an inert placeholder
@@ -230,7 +243,7 @@ function body(lang, d, preview, served) {
 
 export function renderLegal(data = LEGAL, { preview = false } = {}) {
   const st = stamp();
-  const dict = Object.fromEntries(Object.entries(UI).map(([l, u]) => [l, { 'ui.title': u.title, 'ui.skip': u.skip, 'ui.lang': u.lang }]));
+  const dict = Object.fromEntries(Object.entries(UI).map(([l, u]) => [l, { 'ui.title': u.title, 'ui.desc': u.desc, 'ui.skip': u.skip, 'ui.lang': u.lang }]));
   const updated = data.lastUpdated === null ? val(null, 'lastUpdated', preview) : esc(data.lastUpdated);
   const served = servedFonts();
   const blocks = LANGS.map((l) => {
@@ -250,7 +263,7 @@ export function renderLegal(data = LEGAL, { preview = false } = {}) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>${esc(UI.fr.title)}</title>
-<meta name="description" content="Éditeur, hébergement, propriété intellectuelle et données personnelles de Numidea Labs.">
+<meta name="description" content="${esc(UI.fr.desc)}">
 <meta name="theme-color" content="#0A1420">
 ${preview ? '<meta name="robots" content="noindex">\n' : ''}<link rel="alternate" hreflang="fr" href="${BASE}legal/">
 <link rel="alternate" hreflang="en" href="${BASE}legal/?lang=en">
@@ -329,7 +342,7 @@ export function markerRegions(html, published) {
     const re = new RegExp(`(<!-- LEGAL:${name} -->)[\\s\\S]*?(<!-- /LEGAL:${name} -->)`, 'g');
     const n = (out.match(re) || []).length;
     if (n !== 1) throw new Error(`index.html must hold the <!-- LEGAL:${name} --> … <!-- /LEGAL:${name} --> markers exactly once (found ${n})`);
-    out = out.replace(re, `$1${published ? m.html : ''}$2`);
+    out = out.replace(re, (_, open, close) => open + (published ? m.html : '') + close);
   }
   return out;
 }
@@ -358,7 +371,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     writeFileSync(outPath, renderLegal());
     console.log('✓ legal/index.html published; footer and form link to it');
   } else {
-    console.log(`· legal page not published: ${gaps.length} owner fields missing in scripts/legal-data.mjs`);
+    const fields = new Set(gaps.map((g) => g.replace(/\.(fr|en|ar)$/, ''))).size;
+    console.log(`· legal page not published: ${fields} owner fields missing in scripts/legal-data.mjs (${gaps.length} values, counting each language)`);
     console.log('  ' + gaps.join(', '));
   }
 }

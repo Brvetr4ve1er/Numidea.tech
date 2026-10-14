@@ -19,7 +19,10 @@ window.HQAudio = window.HQAudio || (function () {
     fetchAll().then(() => NAMES.forEach(n => { if (raw[n] && !bufs[n]) ctx.decodeAudioData(raw[n].slice(0)).then(b => { bufs[n] = b; }); }));
     return ctx;
   }
-  const unlock = () => { ensure(); if (ctx.state !== 'running') ctx.resume(); };
+  // Only a real gesture in this frame unlocks sound (and fetches it): the
+  // host page drives chapters by dispatching synthetic Space presses, which
+  // must not download the sounds for a visitor who never clicked in here.
+  const unlock = (e) => { if (e && e.isTrusted === false) return; ensure(); if (ctx.state !== 'running') ctx.resume(); };
   ['pointerdown', 'keydown'].forEach(ev => window.addEventListener(ev, unlock, { capture: true }));
 
   // cue: {t, s, g=1, off=0, dur, rate=1}

@@ -37,7 +37,9 @@ export function renderVoices(list = VOICES) {
 
 export function applyVoices(html, list = VOICES) {
   if (!RE.test(html)) throw new Error('index.html has no <!-- SLOT:voices --> region');
-  return html.replace(RE, `$1${renderVoices(list)}$2`);
+  // a replacer function: a quote holding $& or $1 is inserted as written
+  const body = renderVoices(list);
+  return html.replace(RE, (_, open, close) => open + body + close);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

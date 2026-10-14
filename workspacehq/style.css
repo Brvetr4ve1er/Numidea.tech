@@ -59,6 +59,9 @@ h1,h2,h3,p{margin:0}
    everything, with no JS needed, unless the visitor pressed the button to
    play (html.motion-on). */
 .motion-off *:not(.pops>span),.motion-off *::before,.motion-off *::after{animation:none!important}
+/* Without JS there is no switch to pause them, so the loops do not run at all
+   (index.html's head script adds html.js when scripts run). */
+html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{animation:none!important}
 @media (prefers-reduced-motion:reduce){
   html:not(.motion-on) *,html:not(.motion-on) *::before,html:not(.motion-on) *::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
@@ -337,6 +340,13 @@ main{position:relative;z-index:3}
 /* ---------- reveal (app.js arms it only below the fold) ---------- */
 .rv{opacity:0;translate:0 46px;transition:opacity .9s var(--ease),translate .9s var(--ease),transform .5s var(--ease),box-shadow .3s,background .2s}
 .rv.in{opacity:1;translate:0 0}
+
+/* The motion switch shows only its icon (its name stays for assistive tech)
+   wherever its label would push section links off the one-row nav. */
+@media (max-width:1279px){
+  .motion-tx{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .motion-btn{min-width:34px}
+}
 
 /* ---------- small screens ---------- */
 @media (max-width:720px){

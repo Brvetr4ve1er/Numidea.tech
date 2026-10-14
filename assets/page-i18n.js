@@ -100,8 +100,10 @@
   }
 
   // Applied and kept, as app.js does: a visitor who arrives on
-  // scene/?lang=ar and follows a link home stays in Arabic.
-  var start = root.getAttribute('lang') || 'fr';
+  // scene/?lang=ar and follows a link home stays in Arabic. The head script
+  // keeps the chosen language in NUMIDEA_LANG: if its paint backstop fired
+  // first, <html> was put back to the baked French (lang and dir) meanwhile.
+  var start = window.NUMIDEA_LANG || root.getAttribute('lang') || 'fr';
   if (start !== 'fr') setLang(start);
   else if (/[?&]lang=fr(?:&|#|$)/i.test(location.search)) { try { localStorage.setItem('numidea-lang', 'fr'); } catch (e) {} }
   root.removeAttribute('data-i18n-pending');

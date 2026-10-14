@@ -16,7 +16,7 @@
   --ar:'IBM Plex Sans Arabic','IBM Plex Sans Arabic Fallback',system-ui,sans-serif;
   --r:10px; --gut:clamp(16px,4vw,48px); --max:1240px;
   /* the sticky .hud: 14px padding ×2, the 38px language group, 1px rule */
-  --hud-h:67px;
+  --hud-h:67px;   /* header height; the crumb wraps below 320px (see the media query) */
 }
 /* Arabic never goes through the Latin faces (as on the main site). Geist and
    Geist Mono have no Arabic glyphs, so everything set in var(--body) or
@@ -138,8 +138,8 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .sh-main{position:relative;padding:0 0 30px;margin:0}
 .sh-main .chrome{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid var(--line-2);border-bottom:0;
   border-radius:8px 8px 0 0;background:var(--panel)}
-.chrome i{width:8px;height:8px;border-radius:50%;background:var(--line-2)}
-.chrome span{margin-inline-start:10px;font:400 12px var(--mono);color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.chrome i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--line-2)}
+.chrome span{min-width:0;margin-inline-start:10px;font:400 12px var(--mono);color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .sh-main .frame{border-radius:0 0 8px 8px}
 /* dimension lines: width under the plate, height beside it */
 .dims{position:absolute;inset:30px 0 0;pointer-events:none}
@@ -242,3 +242,9 @@ html[dir="rtl"] .voice figcaption,.voice[lang="ar"] figcaption{letter-spacing:0}
 .voice figcaption b{color:var(--ink)}
 /* forward arrows point the reading way: mirrored in Arabic */
 html[dir="rtl"] .visit .arr{display:inline-block;transform:scaleX(-1)}
+/* Below 320px the crumb wraps and the header grows (79px at 280-300, 93px at
+   260): reserve that height, so focus is never scrolled under it. */
+@media (max-width:319px){:root{--hud-h:96px}}
+/* Arabic inside a French or English page (the ع language button) is set in
+   the Arabic face, as on the home page, not a system fallback. */
+html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
