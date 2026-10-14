@@ -21,9 +21,7 @@
       'hero.title': 'Une ingénierie qui tient de la magie. <span class="swash">La rigueur qui la livre.</span>',
       'hero.lede': 'Quatre spécialistes qui conçoivent, codent et livrent toute la chaîne — du back-end au dernier pixel. Des systèmes puissants, rendus accessibles, et assumés quand ça casse.',
       'hero.cta1': 'Construisons →', 'hero.cta2': 'Voir les preuves',
-      'hero.plateLive': 'en ligne',
-      'tb.project': 'Projet', 'tb.stack': 'Pile', 'tb.lang': 'Langues', 'tb.deploy': 'Déploiement', 'tb.status': 'État',
-      'tb.stackV': 'Aucune dépendance à l\'exécution', 'tb.deployV': '≈ 25 s · Actions',
+      'hero.plateLive': 'en ligne', 'tb.lang': 'Langues', 'tb.liveV': '4 sites clients', 'tb.live': 'En ligne', 'tb.previewV': 'Gratuit · 5 jours ouvrés', 'tb.preview': 'Aperçu', 'tb.replyV': '< 24 h ouvrées', 'tb.reply': 'Réponse', 'tb.langV': 'FR · EN · AR', 'tb.place': 'Bordj Bou Arréridj, Algérie', 'tb.studio': 'Studio',
       'sheet.scale': 'Éch. 1:1', 'sheet.rev': 'Rév. 2026-08', 'sheet.sheet': 'Feuille 01',
       'proof.kicker': '01 — Preuves',
       'proof.s1': 'projets livrés', 'proof.s2': 'spécialistes', 'proof.s3': 'langues', 'proof.s4': 'de réponse, en heures ouvrées',
@@ -117,9 +115,7 @@
       'hero.title': 'Engineering that feels like magic. <span class="swash">Discipline that ships it.</span>',
       'hero.lede': 'Four specialists who design, build, and ship the whole chain — from the back-end to the last pixel. Powerful systems, made accessible, and answered for when they break.',
       'hero.cta1': 'Let\'s build it →', 'hero.cta2': 'See the proof',
-      'hero.plateLive': 'live',
-      'tb.project': 'Project', 'tb.stack': 'Stack', 'tb.lang': 'Languages', 'tb.deploy': 'Deploy', 'tb.status': 'Status',
-      'tb.stackV': 'No runtime dependencies', 'tb.deployV': '≈ 25 s · Actions',
+      'hero.plateLive': 'live', 'tb.lang': 'Languages', 'tb.liveV': '4 client sites', 'tb.live': 'Live', 'tb.previewV': 'Free · 5 working days', 'tb.preview': 'Preview', 'tb.replyV': '< 24 working hours', 'tb.reply': 'Reply', 'tb.langV': 'EN · FR · AR', 'tb.place': 'Bordj Bou Arréridj, Algeria', 'tb.studio': 'Studio',
       'sheet.scale': 'Scale 1:1', 'sheet.rev': 'Rev. 2026-08', 'sheet.sheet': 'Sheet 01',
       'proof.kicker': '01 — Proof',
       'proof.s1': 'projects shipped', 'proof.s2': 'specialists', 'proof.s3': 'languages', 'proof.s4': 'response, in working hours',
@@ -216,9 +212,7 @@
       'hero.title': 'هندسةٌ تكاد تكون سحراً. <span class="swash">وانضباطٌ يُسلّمها.</span>',
       'hero.lede': 'أربعة مختصّين يصمّمون ويبرمجون ويُطلقون السلسلة كاملةً — من الواجهة الخلفية إلى آخر بكسل. أنظمةٌ قوية، مُتاحةٌ للجميع، ونتحمّل مسؤوليتها حين تتعطّل.',
       'hero.cta1': 'لنبنِ ←', 'hero.cta2': 'شاهد الإثبات',
-      'hero.plateLive': 'مباشر',
-      'tb.project': 'المشروع', 'tb.stack': 'التقنيات', 'tb.lang': 'اللغات', 'tb.deploy': 'النشر', 'tb.status': 'الحالة',
-      'tb.stackV': 'بلا اعتماديات وقت التشغيل', 'tb.deployV': '≈ 25 ث · Actions',
+      'hero.plateLive': 'مباشر', 'tb.lang': 'اللغات', 'tb.liveV': '4 مواقع لعملائنا', 'tb.live': 'على الإنترنت', 'tb.previewV': 'مجّانية · 5 أيام عمل', 'tb.preview': 'المعاينة', 'tb.replyV': 'أقل من 24 ساعة عمل', 'tb.reply': 'الردّ', 'tb.langV': 'العربية · الفرنسية · الإنجليزية', 'tb.place': 'برج بوعريريج، الجزائر', 'tb.studio': 'الاستوديو',
       'sheet.scale': 'مقياس 1:1', 'sheet.rev': 'مراجعة 2026-08', 'sheet.sheet': 'لوحة 01',
       'proof.kicker': '01 — الإثبات',
       'proof.s1': 'مشاريع مُسلَّمة', 'proof.s2': 'مختصّين', 'proof.s3': 'لغات', 'proof.s4': 'زمن الردّ، بساعات العمل',
@@ -1567,20 +1561,27 @@
     var RETAINER = [18000, 60000];   // per month
     // narrow no-break space between groups: a normal space lets a figure wrap,
     // and a comma reads as a decimal point in DZ
-    var grp = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
-    // the dash inside a range, as the markup writes it: no-break space, en
-    // dash, word joiner, no-break space; a range never breaks across lines
-    var DASH = '\u00a0–\u2060\u00a0';
+    /* Numbers as each language writes them. French and Arabic group thousands
+       with a narrow no-break space and put the currency after the figure
+       (90 000 – 160 000 DA, 1 500 – 6 000 €); English groups with commas,
+       closes up the range dash and puts € or $ before the figure
+       (€1,500–6,000; 90,000–160,000 DZD). A range never breaks across lines:
+       the dash is held by no-break spaces or word joiners. */
+    var isEn = function () { return document.documentElement.getAttribute('lang') === 'en'; };
+    var grp = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, isEn() ? ',' : ' '); };
+    var dash = function () { return isEn() ? '\u2060–\u2060' : '\u00a0–\u2060\u00a0'; };
     var tidy = function (n, c) {
       var g = c === 'DZD' ? (n >= 1e6 ? 50000 : n >= 150000 ? 10000 : 5000)
                           : (n >= 10000 ? 500 : n >= 1000 ? 100 : 10);
       return Math.max(g, Math.round(n / g) * g);
     };
     var sym = function (c) { return c === 'DZD' ? t('price.cur') : c === 'EUR' ? '€' : '$'; };
+    var pre = function (c) { return isEn() && c !== 'DZD' ? sym(c) : ''; };   // sign before the figure
+    var post = function (c) { return pre(c) ? '' : sym(c); };                 // or after it
     // a dinar figure as shown in currency c (dinars pass through unrounded)
     var shown = function (dzd, c) { return c === 'DZD' ? dzd : tidy(dzd / FX[c], c); };
     var rangeText = function (lo, hi, c) {
-      return (c === 'DZD' ? '' : '≈ ') + grp(shown(lo, c)) + ' –⁠ ' + grp(shown(hi, c));
+      return (c === 'DZD' ? '' : '≈ ') + pre(c) + grp(shown(lo, c)) + dash() + grp(shown(hi, c));
     };
     var CUR = (function () {
       var q = '', s = '';
@@ -1595,12 +1596,12 @@
       document.querySelectorAll('.t-range[data-tier]').forEach(function (p) {
         var m = PRICE_MODEL[p.getAttribute('data-tier')];
         p.querySelector('b').textContent = rangeText(m.base[0], m.base[1], CUR);
-        p.querySelector('.cur').textContent = sym(CUR);
+        p.querySelector('.cur').textContent = post(CUR);
       });
       var ret = document.getElementById('pr-ret');
       if (ret) {
         ret.textContent = rangeText(RETAINER[0], RETAINER[1], CUR);
-        ret.parentNode.querySelector('.cur').textContent = sym(CUR);
+        ret.parentNode.querySelector('.cur').textContent = post(CUR);
       }
       var note = document.getElementById('pr-cur-note');
       if (note) { note.hidden = CUR === 'DZD'; note.textContent = CUR === 'DZD' ? '' : t('price.curNote' + CUR); }
@@ -1690,14 +1691,14 @@
         // a Vitrine that would cost more than the Studio tier is quoted as Studio
         if (q.studio) picked.push(t('price.studioBetter'));
 
-        eLo.textContent = (CUR === 'DZD' ? '' : '≈ ') + grp(shown(q.lo, CUR));
+        eLo.textContent = (CUR === 'DZD' ? '' : '≈ ') + pre(CUR) + grp(shown(q.lo, CUR));
         eHi.textContent = grp(shown(q.hi, CUR));
         var eCur = eLo.parentNode.querySelector('.cur');
-        if (eCur) eCur.textContent = sym(CUR);
+        if (eCur) eCur.textContent = post(CUR);
         // .eo-time is a status region: write only what changed, or every
         // slider step re-announces an unchanged delivery time
         var setText = function (el, v) { if (el && el.textContent !== v) el.textContent = v; };
-        setText(eWeeks, q.wLo + DASH + q.wHi);
+        setText(eWeeks, q.wLo + dash() + q.wHi);
         setText(eWeeks.parentNode.querySelector('[data-i18n="price.weeks"]'), unit('price.weeks', q.wHi));
 
         // the size readout and the slider's spoken value carry the unit, which
@@ -1725,7 +1726,7 @@
            does not have to retype what they just clicked. */
         if (eCta) {
           eCta.dataset.scope = (eSum && eSum.textContent ? eSum.innerText.replace(/\n+/g, ' · ') : '')
-            + ' — ' + rangeText(q.lo, q.hi, CUR) + ' ' + sym(CUR) + (CUR === 'DZD' ? '' : ' ' + t('price.exTax'));
+            + ' — ' + rangeText(q.lo, q.hi, CUR) + (post(CUR) ? ' ' + post(CUR) : '') + (CUR === 'DZD' ? '' : ' ' + t('price.exTax'));
           // a scope already handed to the message, untouched, follows this one
           refill('est', eCta.dataset.scope);
         }
@@ -1867,8 +1868,8 @@
           approx = '≈ ';
         }
         td.textContent = '';
-        td.appendChild(document.createTextNode(approx + grp(lo) + DASH + grp(hi) + (range[2] ? '+' : '') + ' '));
-        var c = document.createElement('span'); c.className = 'cur'; c.textContent = sym(to);
+        td.appendChild(document.createTextNode(approx + pre(to) + grp(lo) + dash() + grp(hi) + (range[2] ? '+' : '') + (post(to) ? ' ' : '')));
+        var c = document.createElement('span'); c.className = 'cur'; c.textContent = post(to);
         td.appendChild(c);
       };
       var renderMarket = function () {
@@ -1882,7 +1883,7 @@
           });
         });
         var day = document.getElementById('mk-day-dz');
-        if (day) day.textContent = grp(tidy(480 * FX.EUR, 'DZD')) + DASH + grp(tidy(650 * FX.EUR, 'DZD')) + ' ' + t('price.cur');
+        if (day) day.textContent = grp(tidy(480 * FX.EUR, 'DZD')) + dash() + grp(tidy(650 * FX.EUR, 'DZD')) + ' ' + t('price.cur');
       };
       // a visitor who chose € or $ for the prices sees the comparison in it too
       var follow = function () {
