@@ -31,6 +31,7 @@ const DICT = { fr: {}, en: {}, ar: {} };
 const put = (key, byLang) => { for (const l of LANGS) DICT[l][key] = byLang[l]; return byLang.fr; };
 const ui = (k) => put('ui.' + k, Object.fromEntries(LANGS.map((l) => [l, UI[l][k]])));
 const T = (key, attr = '') => `data-i18n${attr}="${key}"`;
+const AR_LANG = { FR: 'الفرنسية', EN: 'الإنجليزية', AR: 'العربية' };
 
 const files = (slug, sub, exts = ['.webp', '.png', '.jpg', '.jpeg', '.svg']) => {
   const d = join(ROOT, 'assets/work', slug, sub);
@@ -56,7 +57,8 @@ function sheet(p, i) {
     ['sector', t('sector'), `${k}.sector`],
     ['scope', t('scope'), `${k}.scope`],
     p.pageCount ? ['pagesL', String(p.pageCount), null] : null,
-    ['langsL', p.langs, null],
+    // the languages as each page names them: codes in Latin, words in Arabic
+    ['langsL', put(`${k}.langs`, { fr: p.langs, en: p.langs, ar: p.langs.split(' · ').map((c) => AR_LANG[c] || c).join('، ') }), `${k}.langs`],
   ].filter(Boolean).map(([lbl, val, key]) =>
     `<div><dt ${T('ui.' + lbl)}>${esc(ui(lbl))}</dt><dd${key ? ' ' + T(key) : ''}>${esc(val)}</dd></div>`).join('\n          ');
 
