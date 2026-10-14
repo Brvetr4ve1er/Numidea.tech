@@ -1411,10 +1411,13 @@ is present, and writes them into the "Source" line of the mailto body.
 WhatsApp links append only the ref code, as `[ref]`, to the pre-filled text.
 It rides in the message the visitor sends themselves and goes nowhere else.
 The query string survives every `#anchor` jump, and links to the site's
-other pages (the project sheets and back) carry `ref`, `utm_*`, `fbclid` and
-`gclid` along, in the URL. A `?cur=` or `?lang=` arrival is kept in local
-storage like a choice made on the page. There is one contact address site-wide; `check.mjs` fails if any mailto or JSON-LD
-email differs.
+other pages (the project sheets, hub/, WorkspaceHQ and back) carry `ref`,
+`utm_*`, `fbclid`, `gclid` and an explicit `?lang=` along: `assets/carry.js`,
+loaded on every page, adds them from the address at the moment a link is
+followed, so a language switch and links added after load are covered. A
+`?cur=` or `?lang=` arrival is kept in local storage like a choice made on
+the page. There is one contact address site-wide; `check.mjs` fails if any
+mailto or JSON-LD email differs.
 
 ## Legal notice and privacy — generated, unpublished until complete
 

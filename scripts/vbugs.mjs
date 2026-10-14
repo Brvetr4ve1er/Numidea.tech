@@ -42,7 +42,13 @@ for(const [w,t,l] of combos){
     if(tx.x<L-2||tx.x+tx.w>R+2||tx.y<T-2||tx.y+tx.h>B+2)out.push('ESCAPES '+sel(tx.el)+' "'+tx.t+'" from '+sel(c))}
   // 3 clipped text (overflow hidden, content wider/taller), excluding ellipsis
   for(const e of document.querySelectorAll('body *')){if(!vis(e)||e.closest('[aria-hidden="true"]'))continue;const cs=getComputedStyle(e);if(cs.overflowX==='visible'&&cs.overflowY==='visible')continue;if(cs.textOverflow==='ellipsis')continue;
-    if(!e.textContent.trim())continue;{const dd=e.closest('details');if(dd&&!dd.open&&!e.closest('summary'))continue;}if(e.scrollWidth>e.clientWidth+2&&cs.overflowX!=='auto'&&cs.overflowX!=='scroll'&&e.clientWidth>0)out.push('HCLIP '+sel(e)+' '+e.scrollWidth+'>'+e.clientWidth)}
+    if(!e.textContent.trim())continue;{const dd=e.closest('details');if(dd&&!dd.open&&!e.closest('summary'))continue;}if(e.scrollWidth>e.clientWidth+2&&cs.overflowX!=='auto'&&cs.overflowX!=='scroll'&&e.clientWidth>0){
+      // what is cut off: text (HCLIP, always an issue unless allowed by name) or only decoration
+      // (HCLIP-DECOR: nothing rendered past the box carries text of its own; an element
+      // under a display:none parent has a zero box and is not rendered)
+      const r=e.getBoundingClientRect(),own=(n)=>[...n.childNodes].some((c)=>c.nodeType===3&&c.textContent.trim());
+      const cut=(own(e)&&e.children.length===0)?e:[...e.querySelectorAll('*')].find((d)=>{if(!own(d)||d.closest('[aria-hidden="true"]')||!vis(d))return false;const q=d.getBoundingClientRect();return q.width>0&&q.height>0&&(q.left<r.left-2||q.right>r.right+2)});
+      out.push(cut?'HCLIP '+sel(e)+' '+e.scrollWidth+'>'+e.clientWidth+' cuts '+sel(cut)+' "'+cut.textContent.trim().slice(0,30)+'"':'HCLIP-DECOR '+sel(e)+' '+e.scrollWidth+'>'+e.clientWidth)}}
   // 4 images whose box aspect differs from intrinsic with object-fit fill (stretch)
   for(const im of document.images){if(!vis(im)||!im.naturalWidth)continue;const r=im.getBoundingClientRect();if(r.width<10)continue;const cs=getComputedStyle(im);if(cs.objectFit!=='fill')continue;const d=Math.abs((r.width/r.height)/(im.naturalWidth/im.naturalHeight)-1);if(d>.03)out.push('STRETCH '+sel(im)+' '+(d*100).toFixed(0)+'%')}
   // 5 element wider than viewport

@@ -81,7 +81,7 @@ OWNER-CONTENT.md      # everything only the owner can supply, and its status
 | Command | What it does |
 | --- | --- |
 | `npm run build` | Regenerates the French baked into index.html (from `I18N.fr`), scene/, the client-voices region, the legal page (only when complete) and sitemap.xml |
-| `npm run check` | Repo invariants: i18n ×3, assets, cache stamps, client links, deploy coverage, generated pages in sync, anchors, retired claims, prices = PRICE_MODEL, baked French = `I18N.fr`, one contact address, Western digits in Arabic, legal gating; plus `themes-check` |
+| `npm run check` | Repo invariants: i18n ×3, assets, cache stamps, client links, deploy coverage, generated pages in sync, anchors, retired claims, prices = PRICE_MODEL, the estimator tested on every size, option set and pace, baked French = `I18N.fr`, French typography (no breakable space before ? ! ; : »), one canonical per page (language versions set theirs in the head script), one contact address, Western digits in Arabic, legal gating, the Supabase switch; plus `themes-check` |
 | `npm run validate` | html-validate on every page |
 | `npm run audit` | Browser audit (~54 runs): axe, layout shift, LCP, overflow, tap targets, in three languages, six themes and five viewport sizes |
 | `npm run sweep` | Contrast sweep over the rendered pixels |
@@ -130,8 +130,8 @@ misses a token, breaks a contrast pair, or if `styles.css` special-cases a theme
   reverse-charge note.
 - **Lead source without tracking** — a `?ref=` code, `utm_*` and the presence of a
   Meta/Google click id ride in the email (and the ref code in the WhatsApp text)
-  the visitor sends; links between the site's pages carry them in the URL.
-  Nothing is stored, no cookies, no analytics.
+  the visitor sends; links between the site's pages carry them in the URL
+  (`assets/carry.js`, on every page). Nothing is stored, no cookies, no analytics.
 - **Accessible** — skip link, visible focus, a modal menu that keeps focus, a
   pause control on the rotating hero, `prefers-reduced-motion` honoured.
 

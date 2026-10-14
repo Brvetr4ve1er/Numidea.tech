@@ -1,6 +1,6 @@
 [
   {
-    "prefix": "HCLIP hero section.hero",
-    "reason": "the hero clips its own decorative .m1/.m2 glow fields (overflow:hidden on purpose); no text is clipped"
+    "prefix": "HCLIP-DECOR hero section.hero",
+    "reason": "the hero clips its own decorative .m1/.m2 glow fields (overflow:hidden on purpose); vbugs reports HCLIP-DECOR only when nothing cut off carries text, so a clipped word in the hero still fails"
   }
 ]
