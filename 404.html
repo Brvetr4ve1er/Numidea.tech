@@ -80,8 +80,8 @@
   var VOID = { arcanum: '#0A1420', noir: '#0B0B0E', daylight: '#F6F3EC',
                mono: '#0A0A0A', altneon: '#0C0716', engineering: '#0E1012' };
   var TITLE = { fr: '404 — Cette page a pris la route · Numidea Labs',
-                en: '404 — This page took the road · Numidea Labs',
-                ar: '404 — هذه الصفحة سلكت الطريق · Numidea Labs' };
+                en: '404 — This page hit the road · Numidea Labs',
+                ar: '404 — هذه الصفحة شدّت الرحال · Numidea Labs' };
   var th = 'arcanum', lang = 'fr', q = '';
   try { q = (new URLSearchParams(location.search).get('lang') || '').toLowerCase(); } catch (e) {}
   try { th = localStorage.getItem('numidea-theme') || th; lang = localStorage.getItem('numidea-lang') || lang; } catch (e) {}
@@ -131,8 +131,8 @@
     <h1 class="mark">404<span class="sr-only"> — <span lang="fr">page introuvable</span><span lang="en">page not found</span><span lang="ar">الصفحة غير موجودة</span></span></h1>
     <p class="lines">
       <span class="fr" lang="fr" dir="ltr">Cette page a pris la route.</span><br>
-      <span lang="en" dir="ltr">This one took the road.</span>
-      <span class="ar" lang="ar" dir="rtl">هذه الصفحة سلكت الطريق.</span>
+      <span lang="en" dir="ltr">This one hit the road.</span>
+      <span class="ar" lang="ar" dir="rtl">هذه الصفحة شدّت الرحال.</span>
     </p>
     <a class="btn btn-primary cta" href="index.html"><span lang="fr">← Retour à l'accueil</span><span lang="en">← Back to the home page</span><span lang="ar">→ العودة إلى الرئيسية</span></a>
   </main>
