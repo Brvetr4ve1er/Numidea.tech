@@ -26,10 +26,12 @@ for(const [w,t,l] of combos){
  await p.waitForTimeout(100);
  const r=await p.evaluate(()=>{
   const out=[];const vis=e=>{const cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden')return false;let a=e;while(a){if(parseFloat(getComputedStyle(a).opacity)<.1)return false;a=a.parentElement}return true};
+  // visually hidden on purpose (.sr-only: a 1px box clipped to nothing): screen-reader text, never a visual bug
+  const srOnly=e=>{for(let a=e;a;a=a.parentElement){const c=getComputedStyle(a);if(c.clip==='rect(0px, 0px, 0px, 0px)'&&a.clientWidth<=1)return true}return false};
   const sel=e=>{let s=e.tagName.toLowerCase();if(e.id)s+='#'+e.id;else if(e.classList.length)s+='.'+[...e.classList].slice(0,2).join('.');const sec=e.closest('section,header,footer,aside,.vista');return (sec?(sec.id||sec.className.split(' ')[0]):'body')+' '+s};
   // text leaf boxes
   const texts=[];const tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
-  while(n=tw.nextNode()){if(!n.textContent.trim())continue;const el=n.parentElement;if(!el||el.closest('[aria-hidden="true"],script,style,noscript,.modal:not(.open),dialog:not([open]),.cv-panel:not(.open)'))continue;const dd=el.closest('details');if(dd&&!dd.open&&!el.closest('summary'))continue;if(!vis(el))continue;
+  while(n=tw.nextNode()){if(!n.textContent.trim())continue;const el=n.parentElement;if(!el||el.closest('[aria-hidden="true"],script,style,noscript,.modal:not(.open),dialog:not([open]),.cv-panel:not(.open)'))continue;const dd=el.closest('details');if(dd&&!dd.open&&!el.closest('summary'))continue;if(!vis(el)||srOnly(el))continue;
    const rg=document.createRange();rg.selectNodeContents(n);for(const rc of rg.getClientRects()){if(rc.width<3||rc.height<3)continue;texts.push({el,x:rc.left,y:rc.top+scrollY,w:rc.width,h:rc.height,t:n.textContent.trim().slice(0,24)})}}
   // 1 overlapping text from different elements
   texts.sort((a,b)=>a.y-b.y);
@@ -42,8 +44,7 @@ for(const [w,t,l] of combos){
     if(tx.x<L-2||tx.x+tx.w>R+2||tx.y<T-2||tx.y+tx.h>B+2)out.push('ESCAPES '+sel(tx.el)+' "'+tx.t+'" from '+sel(c))}
   // 3 clipped text (overflow hidden, content wider/taller), excluding ellipsis
   for(const e of document.querySelectorAll('body *')){if(!vis(e)||e.closest('[aria-hidden="true"]'))continue;const cs=getComputedStyle(e);if(cs.overflowX==='visible'&&cs.overflowY==='visible')continue;if(cs.textOverflow==='ellipsis')continue;
-    // visually hidden on purpose (.sr-only: a 1px box clipped to nothing) is screen-reader text, not a clip
-    if(cs.clip==='rect(0px, 0px, 0px, 0px)'&&e.clientWidth<=1)continue;
+    if(srOnly(e))continue;
     if(!e.textContent.trim())continue;{const dd=e.closest('details');if(dd&&!dd.open&&!e.closest('summary'))continue;}if(e.scrollWidth>e.clientWidth+2&&cs.overflowX!=='auto'&&cs.overflowX!=='scroll'&&e.clientWidth>0){
       // what is cut off: text (HCLIP, always an issue unless allowed by name) or only decoration
       // (HCLIP-DECOR: nothing rendered past the box carries text of its own; an element
