@@ -2252,7 +2252,8 @@
          holds it ("Comment on chiffre"): most visitors never do, so the
          page load pays nothing for it. The summary's click comes before the
          panel opens, so the chart is there in the first frame of the open
-         panel; 'toggle' covers a panel opened another way (find in page).
+         panel; 'toggle' covers a panel opened another way (find in page),
+         and an arrival on a fragment inside the panel builds it at once.
          MARKET and nlRange are declared in section 14 below, so even an
          open panel waits until the handler is done. */
       var drawMarket = function () {
@@ -2420,9 +2421,33 @@
       Promise.resolve().then(function () {
         var fig = mkt && mkt.querySelector('.mkv'), shut = fig && fig.closest('details');
         if (!fig) return;
-        if (!shut || shut.open) { drawMarket(); return; }
+        /* The chart is 700-1000px tall and goes in above the table. Built in
+           a panel that is already open on screen, it would push the table
+           (and whatever the browser just scrolled to in it) down by that
+           much: the table is held where it was. */
+        var keep = function () {
+          var below = mkt.querySelector('.mk-scroll'), t0 = below ? below.getBoundingClientRect().top : 0;
+          drawMarket();
+          var d = below ? below.getBoundingClientRect().top - t0 : 0;
+          if (d > 0 && t0 < innerHeight) window.scrollBy({ top: d, behavior: 'instant' });
+        };
+        if (!shut || shut.open) { keep(); return; }
+        /* Arriving on a fragment inside the folded panel (#mk-cap, or a
+           #:~:text= link from a search result): the browser opens the panel
+           itself and fixes where it will scroll at load, which can come
+           before 'toggle' reaches this script; the chart, built then, landed
+           between the start and the target and left the target a chart's
+           height below the screen. So it is built now, before load. The text
+           directive is not in location.hash; the navigation entry keeps it. */
+        var arrival = '', tgt = null;
+        try { arrival = performance.getEntriesByType('navigation')[0].name || ''; } catch (e3) {}
+        try { tgt = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (e4) {}
+        if ((tgt && shut.contains(tgt)) || arrival.indexOf(':~:') > -1) { drawMarket(); return; }
+        // a summary click comes before the panel opens: the chart is simply
+        // there in its first frame; any other opening (find in page) holds
+        // the table in place
         var done = false;
-        var once = function () { if (!done) { done = true; drawMarket(); } };
+        var once = function (ev) { if (!done) { done = true; if (ev && ev.type === 'toggle') keep(); else drawMarket(); } };
         var sum = shut.querySelector('summary');
         if (sum) sum.addEventListener('click', once);
         shut.addEventListener('toggle', once);
