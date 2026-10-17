@@ -42,6 +42,8 @@ for(const [w,t,l] of combos){
     if(tx.x<L-2||tx.x+tx.w>R+2||tx.y<T-2||tx.y+tx.h>B+2)out.push('ESCAPES '+sel(tx.el)+' "'+tx.t+'" from '+sel(c))}
   // 3 clipped text (overflow hidden, content wider/taller), excluding ellipsis
   for(const e of document.querySelectorAll('body *')){if(!vis(e)||e.closest('[aria-hidden="true"]'))continue;const cs=getComputedStyle(e);if(cs.overflowX==='visible'&&cs.overflowY==='visible')continue;if(cs.textOverflow==='ellipsis')continue;
+    // visually hidden on purpose (.sr-only: a 1px box clipped to nothing) is screen-reader text, not a clip
+    if(cs.clip==='rect(0px, 0px, 0px, 0px)'&&e.clientWidth<=1)continue;
     if(!e.textContent.trim())continue;{const dd=e.closest('details');if(dd&&!dd.open&&!e.closest('summary'))continue;}if(e.scrollWidth>e.clientWidth+2&&cs.overflowX!=='auto'&&cs.overflowX!=='scroll'&&e.clientWidth>0){
       // what is cut off: text (HCLIP, always an issue unless allowed by name) or only decoration
       // (HCLIP-DECOR: nothing rendered past the box carries text of its own; an element
