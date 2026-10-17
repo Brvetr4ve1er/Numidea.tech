@@ -849,6 +849,14 @@ textures, translucent panels and parallax fields; a declared-colour check sees
 none of them. It self-hosts, covers all six themes × FR/AR plus hub/, scene/
 and 404, and exits non-zero on any failure.
 
+Visible text counts whatever its accessibility-tree state. The pictures
+(charts, the Aperçu timeline, the estimator) are `aria-hidden` beside their
+text equivalents, but their labels are still read by eye, so they must meet
+4.5:1 like any other text; until r3 the sweep reported them as notes and
+could not fail on them. Only an element marked `data-decorative` is exempt.
+Pages render with reduced motion, so a picture app.js would hold back for
+its entrance (`.vz-arm`, some of it at opacity 0) is measured as drawn.
+
 It took 549 flagged → 0, but **most of the first 549 were the harness, not the
 site**. Every one of these produced confident, wrong results before it was
 caught — verify before you fix:

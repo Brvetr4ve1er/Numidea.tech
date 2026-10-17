@@ -14,6 +14,14 @@
  * short landscape, scene/ in Arabic, 404 in other themes, hub/ in its light palette.
  * Exits non-zero on any failure. Optional arg: a single theme name.
  *
+ * Visible text must meet 1.4.3 whatever its accessibility-tree state: text
+ * inside an aria-hidden picture (the charts, the Aperçu timeline, the
+ * estimator's package names) is still read by eye, so it counts like any
+ * other. Only an element marked data-decorative (a glyph that is pure
+ * ornament) is reported as a note instead of a failure. Pages are rendered
+ * with reduced motion, so the pictures app.js would hold back for their
+ * entrance (.vz-arm, some at opacity 0) are measured as drawn.
+ *
  * Traps this script already guards against (each produced false results once):
  *  - color-mix() serialises as color(srgb r g b) with 0-1 channels, not 0-255
  *  - text clipped by an overflow ancestor is laid out but never painted
@@ -54,7 +62,8 @@ RUNS.push({theme:'noir',pname:'404',path:'/404.html',lang:'ar',w:1280,h:900});
 RUNS.push({theme:'arcanum',pname:'hub-light',path:'/hub/index.html',lang:'fr',w:1280,h:900,init:{'void-theme':'light'}});
 for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)continue;
   {
-   const p=await br.newPage({viewport:{width:w,height:h},isMobile:w<600,hasTouch:w<600});
+   // reduced motion: every picture is drawn at once, never held at opacity 0
+   const p=await br.newPage({viewport:{width:w,height:h},isMobile:w<600,hasTouch:w<600,reducedMotion:'reduce'});
    await p.addInitScript(([t,l,init])=>{try{localStorage.setItem('numidea-theme',t);localStorage.setItem('numidea-lang',l);for(const k in init)localStorage.setItem(k,init[k])}catch(e){}},[theme,lang,init]);
    await p.goto(B+path,{waitUntil:'networkidle'});
    // Chromium's beyond-viewport capture (the fullPage screenshot below) drops
@@ -109,7 +118,7 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
        const where=sec?(sec.id||sec.className.toString().split(' ')[0]||sec.tagName):'body';
        out.push({sel,where,text:n.textContent.trim().slice(0,40),color:cs.color,op,
          x:rect.left,y:rect.top+sy,w:rect.width,h:rect.height,large,gradText,
-         ariaHidden:!!el.closest('[aria-hidden="true"]'),disabled:!!el.closest('[aria-disabled="true"],[data-pending],[data-wa-pending]')});
+         decorative:!!el.closest('[data-decorative]'),disabled:!!el.closest('[aria-disabled="true"],[data-pending],[data-wa-pending]')});
      }
      return out;});
    // background-only render
@@ -140,7 +149,7 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
      const need=it.large?3:4.5;
      if(med<need){
        report.push({theme,page:pname,lang,where:it.where,sel:it.sel,text:it.text,med:+med.toFixed(2),worst:+worst.toFixed(2),need,
-         note:it.disabled?'pending/disabled':it.ariaHidden?'aria-hidden':''});
+         note:it.disabled?'pending/disabled':it.decorative?'decorative':''});
      }
    }
    await p.close();
