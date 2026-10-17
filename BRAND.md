@@ -1708,7 +1708,10 @@ equivalent (so the picture itself is `aria-hidden`):
   indicator), and buttons and estimator chips give a little under a press
   (`scale(.97)`, motion allowed only).
 - Numidea is the accent (`--teal`, thicker); the markets share one neutral
-  (`--muted` at 62%). Text keeps the text tokens. Lane names are always
+  (`--muted` at 62%). An open range ("+", no ceiling) is drawn solid up to
+  its stated top like any other, then fades out over the next half of its
+  value: the fade says "and up" and never shortens the range the table
+  states. Text keeps the text tokens. Lane names are always
   written out, never coded: under a 440px chart (a phone) each name takes
   its own line above its bar, so the bars keep the whole width.
 - The Aperçu timeline, the estimator and the market chart lay themselves

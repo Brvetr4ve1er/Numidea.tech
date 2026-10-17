@@ -1771,9 +1771,11 @@ html[dir="rtl"] .mkv-ty{font-family:var(--font-ar-display)}
 .mkv-bar{position:absolute;top:50%;height:6px;margin-top:-3px;border-radius:min(var(--r-sm),3px);
   background:color-mix(in srgb,var(--muted) 62%,transparent);transform-origin:0 50%;transition:opacity var(--dur-fast)}
 .mkv-ln.nl .mkv-bar{height:9px;margin-top:-4.5px;background:var(--teal)}
-/* "+": no ceiling, so the bar fades out instead of ending */
-.mkv-bar.open{-webkit-mask-image:linear-gradient(90deg,#000 50%,transparent);mask-image:linear-gradient(90deg,#000 50%,transparent)}
-html[dir="rtl"] .mkv-bar.open{-webkit-mask-image:linear-gradient(270deg,#000 50%,transparent);mask-image:linear-gradient(270deg,#000 50%,transparent)}
+/* "+": no ceiling, so the bar fades out instead of ending. It is solid up
+   to the range's stated top (--solid, its share of the bar, set by the
+   script) and fades only past it, so the fade never shortens the range */
+.mkv-bar.open{-webkit-mask-image:linear-gradient(90deg,#000 var(--solid,50%),transparent);mask-image:linear-gradient(90deg,#000 var(--solid,50%),transparent)}
+html[dir="rtl"] .mkv-bar.open{-webkit-mask-image:linear-gradient(270deg,#000 var(--solid,50%),transparent);mask-image:linear-gradient(270deg,#000 var(--solid,50%),transparent)}
 html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
 /* hover (a mouse): the lane under the pointer stays, the rest step back */
 .mkv-plot.hov .mkv-ln:not(.hl) .mkv-bar{opacity:.4}

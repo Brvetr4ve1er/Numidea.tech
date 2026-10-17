@@ -2263,13 +2263,18 @@
           var TY = { vitrine: 'price.tyVitrine', surmesure: 'price.tyCustom', ecommerce: 'price.tyShop', app: 'price.tyApp', identite: 'price.tyBrand' };
           var LANES = [['nl', 'mk.colNl'], ['dz', 'mk.colDz'], ['fr', 'mk.colFr'], ['us', 'mk.colUs']];
           var rangeOf = function (row, lane) { return lane === 'nl' ? nlRange(row) : MARKET[row][lane]; };
-          var V0 = 40000, V1 = 10000000;
+          /* An open range ("+", no ceiling) is solid up to its stated top,
+             like any other, then fades out over the next half of its value
+             (top x OPEN): the fade says "and up", and eats nothing of the
+             range the table states. */
+          var V0 = 40000, V1 = 10000000, OPEN = 1.5;
           Object.keys(TY).forEach(function (row) {
             if (!MARKET[row]) return;
             LANES.forEach(function (ln) {
               var r = rangeOf(row, ln[0]), f = FX[NATIVE[ln[0]]];
               V0 = Math.min(V0, r[0] * f / 1.2);
-              V1 = Math.max(V1, r[1] * f * 1.1);
+              // an open range ("+") fades out past its top: room for the fade
+              V1 = Math.max(V1, r[1] * f * (r[2] ? OPEN : 1.1));
             });
           });
           var at = function (dzd) { return logAt(dzd, V0, V1); };
@@ -2308,7 +2313,11 @@
               lane.style.gridRow = String(i + 2);
               lane.appendChild(el('span', 'mkv-lab', ln[1]));
               bar.style.insetInlineStart = pc(lo);
-              bar.style.inlineSize = pc(Math.max(hi - lo, 0.008));
+              if (r[2]) {
+                var tail = at(r[1] * FX[from] * OPEN);
+                bar.style.inlineSize = pc(tail - lo);
+                bar.style.setProperty('--solid', ((hi - lo) / (tail - lo) * 100).toFixed(2) + '%');
+              } else bar.style.inlineSize = pc(Math.max(hi - lo, 0.008));
               bar.style.setProperty('--d', (g * 80 + i * 40) + 'ms');
               trk.appendChild(bar);
               lane.appendChild(trk);
