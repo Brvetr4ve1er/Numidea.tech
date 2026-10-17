@@ -1709,7 +1709,8 @@ equivalent (so the picture itself is `aria-hidden`):
   indicator), and buttons and estimator chips give a little under a press
   (`scale(.97)`, motion allowed only).
 - Numidea is the accent (`--teal`, thicker); the markets share one neutral
-  (`--muted` at 62%). An open range ("+", no ceiling) is drawn solid up to
+  (`--muted` at 75%, at least 3:1 against the ground in every theme; the
+  estimator's unlit package bands keep a light fill with a `--muted` edge). An open range ("+", no ceiling) is drawn solid up to
   its stated top like any other, then fades out over the next half of its
   value: the fade says "and up" and never shortens the range the table
   states. Text keeps the text tokens. Lane names are always
