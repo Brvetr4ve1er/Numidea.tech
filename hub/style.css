@@ -262,8 +262,11 @@ a{color:inherit;text-decoration:none}
    screen is short: at 717x512 the avatar alone ran y76→460 of a 512px
    viewport, so the name, roles and status were all below the fold and
    the first thing a visitor saw was an empty image frame. Sit them side
-   by side instead when there is width to spare but no height. */
-@media (max-width:860px) and (max-height:620px){
+   by side instead when there is width to spare but no height. Not on a
+   small portrait phone (320x568 matched this too): there is no width to
+   spare, and the copy column, 140px wide, broke the name mid-word
+   ("br4vetr / 4veler") and the studio line under the portrait (r3/a). */
+@media (max-width:860px) and (max-height:620px) and (min-width:480px){
   .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);align-items:center;gap:clamp(16px,4vw,32px)}
   .avatar{order:0;width:min(100%,240px)}
   .hero{min-height:auto;padding-block:clamp(12px,3vh,20px) clamp(16px,4vh,28px)}
@@ -664,4 +667,38 @@ html[dir="rtl"] .whq-start{right:auto;left:12px}
   .whq-cart,.tl{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .tl{opacity:1!important;transform:none!important}   /* hover-only labels print */
   .theme-pill{display:none}
+}
+
+/* ===== r3/a: mobile audit ===== */
+/* Safe-area insets. viewport-fit=cover, but only the hero was inset, and
+   only under 860px: in landscape on a notched phone (~47px insets a side,
+   emulated at 844x390) the poster tiles, the social cards, the archive and
+   the footer ran under the notch, from x=34 to x=810 of 844. */
+@supports (padding:max(0px)){
+  .hero,.site-foot{padding-left:max(var(--gut),env(safe-area-inset-left));padding-right:max(var(--gut),env(safe-area-inset-right))}
+  .coll,.design,.social,.links{padding-left:max(var(--gut),calc((100% - 1080px) / 2),env(safe-area-inset-left));
+    padding-right:max(var(--gut),calc((100% - 1080px) / 2),env(safe-area-inset-right))}
+}
+/* The lightbox: 94vh is the LARGE viewport on iOS, taller than what shows
+   while the toolbars are out, so the caption bar sat under them. */
+@supports (height:1dvh){
+  .lb,.lb-fig{max-height:94dvh}
+  .lb-fig img{max-height:calc(94dvh - 72px)}
+}
+/* A social card's handle broke one letter from its end at 320 ("@stick_itt
+   / y", "@br4vetr4ave / ler1"): it shared one row with the badge, the name
+   and the arrow. The row may wrap, so the handle moves down whole. The arrow
+   is pinned in the card corner, centred on the badge (44px) row, outside the
+   wrapping row: in the row it was the item that wrapped at 700 and 960-1024px,
+   alone on a second line, and made those cards 22px taller. */
+.scard{position:relative}
+.sc-top{flex-wrap:wrap;row-gap:4px;padding-inline-end:18px}
+.sc-top .go{position:absolute;top:20px;inset-inline-end:20px;height:44px;display:grid;place-items:center;margin:0}
+/* Tile labels on a 320-400px phone: a design tile is 138x108px there, and
+   "Sandwich Insulating Panels Graphic Assets" ran five lines, taller than the
+   tile, which clipped its first word; "ego disintegration" broke one letter
+   from its end. A tighter label and 11.5px type keep every title whole. */
+@media (max-width:400px){
+  .tl{left:6px;bottom:6px;max-width:calc(100% - 12px);padding:6px 8px 7px}
+  .tl b{font-size:11.5px}
 }

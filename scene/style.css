@@ -34,13 +34,16 @@ html[dir="rtl"],.voice[lang="ar"]{
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--hud-h) + 16px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  /* drafting paper: fine 24px grid under a 120px major grid, fixed so long
-     pages do not repaint it */
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* drafting paper: fine 24px grid under a 120px major grid, fixed to the
+   viewport. On its own fixed layer, not background-attachment:fixed: that
+   made Chrome repaint and re-raster the whole viewport on every scroll frame
+   (traced at 1280, ten wheel scrolls: raster 7.2s, now 0.13s) (r3/a) */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background-image:
     linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),
     linear-gradient(rgba(150,196,230,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(150,196,230,.08) 1px,transparent 1px);
-  background-size:24px 24px,24px 24px,120px 120px,120px 120px;background-attachment:fixed}
+  background-size:24px 24px,24px 24px,120px 120px,120px 120px}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 h1,h2,h3,h4,p,ol,ul,dl,dd,figure{margin:0}
@@ -236,7 +239,7 @@ html[dir="rtl"] .outro p{font-family:var(--ar)}
   .visit{margin-inline-start:0;width:100%;justify-content:center}
   .tblock div{grid-template-columns:minmax(0,1fr);gap:2px}
 }
-@media print{.hud,.viewer,.skip{display:none}body{background:#fff;color:#000}}
+@media print{.hud,.viewer,.skip,body::before{display:none}body{background:#fff;color:#000}}
 /* Forced colours (Windows contrast themes) replace backgrounds with Canvas:
    the pressed language would look like the others, the contact button would
    lose its shape and the palette swatches (content, not decoration) their
@@ -272,3 +275,17 @@ html[dir="rtl"] .visit .arr{display:inline-block;transform:scaleX(-1)}
 /* Arabic inside a French or English page (the ع language button) is set in
    the Arabic face, as on the home page, not a system fallback. */
 html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
+
+/* ===== r3/a: mobile audit ===== */
+/* Safe-area insets. The page asks for viewport-fit=cover (it paints under
+   the notch) but nothing was inset: in landscape on a notched phone, with
+   ~47px insets a side, the wordmark, the language switch and the sheets'
+   text ran under the notch (emulated at 844x390: the ع button at x=35, the
+   wordmark to x=810 of 844). */
+@supports (padding:max(0px)){
+  .hud,main{padding-left:max(var(--gut),env(safe-area-inset-left));padding-right:max(var(--gut),env(safe-area-inset-right))}
+}
+/* The capture viewer: 94vh is the LARGE viewport on iOS, taller than what
+   shows while the toolbars are out, so the foot of a tall capture sat under
+   them. 94dvh is what is on screen. */
+@supports (height:1dvh){.viewer{max-height:94dvh}}

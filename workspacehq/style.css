@@ -388,3 +388,16 @@ main{position:relative;z-index:3}
 .bc a{color:var(--muted)}
 .bc a:hover,.bc a:focus-visible{color:var(--text)}
 .bc [aria-current]{color:var(--text)}
+
+/* ===== r3/a: mobile audit ===== */
+/* Finger-sized hit areas for the small pixel-font links, without moving a
+   thing: the wordmark was a 12px-tall target, the breadcrumb links 13px and
+   the footer links 7px (measured at 320-844px). Padding grows the target;
+   the negative margin (or the inline box) keeps the layout where it was. */
+.brand{padding-block:12px;margin-block:-12px}
+.bc a{padding-block:8px;margin-block:-8px}
+.foot a{padding-block:9px}
+/* The hero centres its copy in a screen-tall box: 100vh is the LARGE
+   viewport on iOS, so with the toolbars out the copy sat low and the box ran
+   under them. svh is the screen as first seen. */
+@supports (height:1svh){@media screen{.hero{min-height:100svh}}}   /* print keeps min-height:0 */

@@ -977,24 +977,61 @@
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeTheme(themeMenu.contains(document.activeElement)); });
     }
 
+    /* One read of the scroll position per scroll event, shared by everything
+       scroll-linked below (navbar, progress, parallax, phone bar, scroll-spy,
+       back to top). Reading scrollY forces a style recalculation whenever a
+       style is dirty, and the handlers used to read it one after another
+       around their own writes: traced on a phone (CPU 4x), over two thousand
+       forced recalculations in one scroll of the page (the measured figures
+       are in BRAND.md, "Scroll comfort (round 3)"). This listener is
+       registered first, reads once, writes nothing; the others read
+       `scrollPos`/`viewH` and only write. */
+    var scrollPos = window.scrollY || window.pageYOffset || 0, viewH = window.innerHeight;
+    window.addEventListener('scroll', function () { scrollPos = window.scrollY || window.pageYOffset || 0; }, { passive: true });
+    window.addEventListener('resize', function () { viewH = window.innerHeight; scrollPos = window.scrollY || window.pageYOffset || 0; });
+
     // navbar scroll state + progress bar
     var navbar = document.querySelector('.navbar');
     var progress = document.querySelector('.progress');
     /* The bar scales instead of changing width (a width change is a layout),
        and the scrollable height is cached rather than read on every scroll
-       event: reading scrollHeight there forced a layout per event. */
-    var scrollMax = 1, wasScrolled = null;
+       event: reading scrollHeight there forced a layout per event. Where the
+       browser runs scroll-driven animations (styles.css, .progress), the bar
+       follows the scroll on the compositor and this writes nothing; under
+       reduced motion that animation is switched off, so the script draws it. */
+    var scrollTimelines = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline', 'scroll()'));
+    var cssProgress = !reduceMotion && scrollTimelines;
+    var scrollMax = 1, wasScrolled = null, maxWired = false;
     function measureMax() { scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight); }
+    function wireMax() {
+      if (maxWired) return;
+      maxWired = true;
+      measureMax();
+      window.addEventListener('resize', measureMax);
+      window.addEventListener('load', measureMax);
+      if ('ResizeObserver' in window) new ResizeObserver(measureMax).observe(document.body);
+    }
     function onScroll() {
-      var y = window.scrollY || window.pageYOffset;
+      var y = scrollPos;
       var sc = y > 24;
       if (navbar && sc !== wasScrolled) { navbar.classList.toggle('scrolled', sc); wasScrolled = sc; }
-      if (progress) progress.style.transform = 'scaleX(' + Math.min(1, y / scrollMax).toFixed(4) + ')';
+      if (progress && !cssProgress) progress.style.transform = 'scaleX(' + Math.min(1, y / scrollMax).toFixed(4) + ')';
     }
-    measureMax();
-    window.addEventListener('resize', measureMax);
-    window.addEventListener('load', measureMax);
-    if ('ResizeObserver' in window) new ResizeObserver(measureMax).observe(document.body);
+    if (!cssProgress) wireMax();
+    /* The CSS animation runs only under no-preference, so a visitor who turns
+       reduced motion on (or off) during the visit hands the bar over: without
+       this it fell back to scaleX(0) and stayed empty for the rest of the visit. */
+    var rmq = scrollTimelines && window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (rmq) {
+      var onMotionPref = function () {
+        cssProgress = !rmq.matches;
+        if (cssProgress) { if (progress) progress.style.transform = ''; }
+        else wireMax();
+        onScroll();
+      };
+      if (rmq.addEventListener) rmq.addEventListener('change', onMotionPref);
+      else if (rmq.addListener) rmq.addListener(onMotionPref);
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
@@ -1041,8 +1078,10 @@
         batch = [];
         flushQueued = false;
         items.forEach(function (el, i) {
-          // stagger the wave, but never make the last card wait too long
-          el.style.setProperty('--rd', Math.min(i * 70, 490) + 'ms');
+          // stagger the wave, but never make the last card wait too long:
+          // a fling lands on a dozen at once, and at 490ms the last of them
+          // was still blank while the reader was already looking at it
+          el.style.setProperty('--rd', Math.min(i * 70, 210) + 'ms');
           try { revealNow(el); } catch (e) { el.classList.add('in'); }
         });
       }
@@ -1052,7 +1091,12 @@
           io.unobserve(en.target);
           queue(en.target);
         });
-      }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+      // Starts a little BELOW the fold (+8%), not 8% inside it: content
+      // used to enter blank and only begin to appear once well on screen,
+      // up to 600ms after entering on a phone (before/after figures in
+      // BRAND.md, "Scroll comfort (round 3)"). Now the wave is under way as
+      // it comes into view.
+      }, { threshold: 0, rootMargin: '0px 0px 8% 0px' });
       revealEls.forEach(function (el) { io.observe(el); });
       // Safety net: never leave on-screen content stuck invisible if the
       // observer is slow/janky — reveal anything in (or near) the viewport.
@@ -1083,7 +1127,18 @@
        Every value is eased toward its target rather than tracked
        directly. That lag is the whole point: the page settles instead of
        snapping, which is what reads as calm. */
-    var paraEls = [].slice.call(document.querySelectorAll('[data-parallax]')).map(function (el) {
+    var finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+    /* On a touch screen, content that is read (the kickers, the hero plate,
+       the project screenshots) stays put; only decoration (aria-hidden) keeps
+       its depth. A finger scroll runs on the compositor while this runs on the
+       main thread, a frame or more behind and eased on purpose, so text that
+       drifted with it read as the page swimming under the finger. .px-still
+       also drops the element's will-change layer (styles.css, r3/a block). */
+    var paraEls = [].slice.call(document.querySelectorAll('[data-parallax]')).filter(function (el) {
+      if (finePointer || el.closest('[aria-hidden="true"]')) return true;
+      el.classList.add('px-still');
+      return false;
+    }).map(function (el) {
       return { el: el, k: parseFloat(el.getAttribute('data-parallax')) || 0,
                // optional bound, in px. An element drifting INSIDE a clipped
                // frame must never travel further than its own overscan, or a
@@ -1095,12 +1150,61 @@
                // displacement. You never watch it drift there, but jump to that
                // anchor and you land on visibly displaced content settling into
                // place. 64px is past what reads as depth anyway.
-               cap: parseFloat(el.getAttribute('data-parallax-cap')) || 64,
+               // Content that is read (a kicker over its heading) is bounded
+               // at 12px: it sits 32px above its heading, and in a fast wheel
+               // scroll the eased lag carried it 36px down, onto the heading
+               // (measured at 1280: gap -4px). In view its target never
+               // passes ~14px, so at rest the depth is the same.
+               cap: parseFloat(el.getAttribute('data-parallax-cap')) || (el.closest('[aria-hidden="true"]') ? 64 : 12),
                sy: 0, ty: 0, docTop: 0, h: 0 };
     });
-    var finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-    if (paraEls.length && !reduceMotion) {
+    /* On a touch screen the decoration that keeps its depth is driven by the
+       scroll itself, on the compositor: one scroll-linked animation per
+       element (a ScrollTimeline over the page), its keyframes the same
+       formula as below, sampled at the points where the cap starts and
+       stops clamping, so the piecewise-linear curve is exact. It moves in
+       step with the finger, not a main-thread frame behind it, and costs
+       no script per frame: traced on a phone (CPU 4x), the eased loop below
+       was ~1.3s of script in one scroll of the page and over a third of the
+       frames dropped. Without ScrollTimeline the touch screen keeps the loop. */
+    var linked = !finePointer && !reduceMotion && typeof window.ScrollTimeline === 'function' && !!document.documentElement.animate;
+    if (paraEls.length && linked) {
+      (function () {
+        var root = document.scrollingElement || document.documentElement;
+        var tl = new ScrollTimeline({ source: root, axis: 'block' });
+        var queued = false;
+        function bind() {
+          queued = false;
+          var y = window.scrollY || window.pageYOffset || 0, vh = window.innerHeight;
+          var max = Math.max(1, root.scrollHeight - root.clientHeight);
+          // cancel first: a rect read back must not include our own translate
+          paraEls.forEach(function (p) { if (p.anim) { p.anim.cancel(); p.anim = null; } });
+          paraEls.forEach(function (p) {
+            var r = p.el.getBoundingClientRect();
+            if (!r.height || !p.k) return;           // hidden: nothing to drive
+            // the scroll position that puts the element's centre at the
+            // viewport's centre; the offset there is 0 and grows by k per px
+            var c = r.top + y + r.height / 2 - vh / 2, span = p.cap / Math.abs(p.k);
+            var at = function (s) { return Math.max(-p.cap, Math.min(p.cap, (c - s) * p.k)); };
+            var pts = [0, max];
+            [c - span, c + span].forEach(function (s) { if (s > 0 && s < max) pts.push(s); });
+            pts.sort(function (a, b) { return a - b; });
+            p.anim = p.el.animate(pts.map(function (s) {
+              return { offset: s / max, translate: '0px ' + at(s).toFixed(1) + 'px' };
+            }), { timeline: tl, fill: 'both', easing: 'linear' });
+          });
+        }
+        function rebind() { if (!queued) { queued = true; requestAnimationFrame(bind); } }
+        bind();
+        // the page's height and every element's place move the curve: the
+        // viewport, fonts and late images (load), a theme's type, a FAQ answer
+        window.addEventListener('resize', rebind);
+        window.addEventListener('load', function () { setTimeout(rebind, 260); });
+        document.addEventListener('numidea:relayout', function () { setTimeout(rebind, 60); });
+        if ('ResizeObserver' in window) new ResizeObserver(rebind).observe(document.body);
+      })();
+    } else if (paraEls.length && !reduceMotion) {
       var pxT = 0, pyT = 0, pxC = 0, pyC = 0, running = false;
 
       /* Layout positions are cached, never re-read while scrolling. Two
@@ -1180,7 +1284,7 @@
 
       var pending = false;
       function onParaScroll() {
-        sy0 = window.scrollY || window.pageYOffset || 0;
+        sy0 = scrollPos;   // read once, by the first scroll listener
         if (pending) return;
         pending = true;
         requestAnimationFrame(function () { aim(); pending = false; });
@@ -1299,7 +1403,8 @@
       // reported as 10.8s because the deck turned at 10.8s. A visitor who has
       // not moved yet sees the first, high-priority slide, which is the point.
       // `user` is the pause button: a latch only the button releases
-      var held = { hover: false, focus: false, hidden: false, idle: true, user: false };
+      // `picked` is a rail tap by a finger (below)
+      var held = { hover: false, focus: false, hidden: false, idle: true, user: false, picked: false };
       var wake = function () {
         if (!held.idle) return;
         held.idle = false; arm();
@@ -1313,13 +1418,28 @@
       function halt() { clearInterval(timer); timer = null; }
       function arm() {
         clearInterval(timer); timer = null;
-        if (reduceMotion || held.hover || held.focus || held.hidden || held.idle || held.user) return;
+        if (reduceMotion || held.hover || held.focus || held.hidden || held.idle || held.user || held.picked) return;
         timer = setInterval(next, HOLD);
       }
       function hold(k, v) { held[k] = v; arm(); }
 
+      /* A finger has no hover, and in Safari a tapped button takes no focus,
+         so neither latch held the deck after a rail pick on a phone: with
+         the tap's focus dropped, as Safari does, it moved off the chosen
+         slide 5.2s later. A touch pick holds it until the next touch
+         outside the plate. */
+      var lastPointer = '';
+      wrap.addEventListener('pointerdown', function (e) { lastPointer = e.pointerType; }, { passive: true });
+      wrap.addEventListener('keydown', function () { lastPointer = ''; });   // Enter/Space is not a finger
+      document.addEventListener('pointerdown', function (e) {
+        if (held.picked && !wrap.contains(e.target)) hold('picked', false);
+      }, { passive: true });
       tabs.forEach(function (b, i) {
-        b.addEventListener('click', function () { go(i); arm(); });
+        b.addEventListener('click', function () {
+          if (lastPointer === 'touch') held.picked = true;
+          lastPointer = '';
+          go(i); arm();
+        });
       });
       // WCAG 2.2.2: anything that moves on its own for more than 5s can be paused
       var pauseBtn = wrap.querySelector('.pl-pause');
@@ -1761,6 +1881,20 @@
         compute();
       });
       eSize.addEventListener('input', compute);
+      /* A finger that lands on the slider to scroll the page past it must
+         not change the estimate. Chrome on Android moves the thumb to the
+         touch point on pointerdown, then hands a vertical gesture to the
+         page (pointercancel): measured at 320-844px, a swipe up from the
+         track set 22 pages to 9 while the page scrolled 176px. When the
+         browser takes the gesture as a scroll the value is put back; a
+         sideways drag stays the slider's (no pointercancel). */
+      var touchFrom = null;
+      eSize.addEventListener('pointerdown', function (e) { touchFrom = e.pointerType === 'touch' ? eSize.value : null; });
+      eSize.addEventListener('pointerup', function () { touchFrom = null; });
+      eSize.addEventListener('pointercancel', function () {
+        if (touchFrom !== null && eSize.value !== touchFrom) { eSize.value = touchFrom; compute(); }
+        touchFrom = null;
+      });
 
       /* Hand the scope to the message field rather than losing it on the jump. */
       if (eCta) {
@@ -1840,15 +1974,31 @@
     /* ---------------- phone contact bar ----------------
        Phones only (the CSS hides it above 720px). Shown once the visitor is
        1.5 screens down, hidden again while #contact or the footer is on screen
-       (both already offer the same two actions) and while the menu is open. */
+       (both already offer the same two actions) and while the menu is open.
+       It also steps aside while the reader scrolls down: with the navbar it
+       covered 142px of a 320x568 screen (25%) the whole way down. It slides
+       back on a scroll up, or once the page has been still for 600ms, and
+       stays while focus is inside it. */
     (function () {
       var bar = document.querySelector('.m-contact');
       if (!bar) return;
-      var mq = window.matchMedia('(max-width: 720px)');
+      // as in styles.css: phones, but not a phone on its side (short and at
+      // least 480px wide), where the bar would cover a third of the screen
+      var mq = window.matchMedia('(max-width: 720px) and (min-height: 561px), (max-width: 479px)');
       var inView = { contact: false, footer: false }, menuOpen = false;
+      var lastY = scrollPos, goingDown = false, restT = 0;
       function update() {
         bar.classList.toggle('on', mq.matches && !menuOpen && !inView.contact && !inView.footer
-          && window.scrollY > window.innerHeight * 1.5);
+          && scrollPos > viewH * 1.5 && (!goingDown || bar.contains(document.activeElement)));
+      }
+      function rest() { goingDown = false; lastY = scrollPos; update(); }
+      function onBarScroll() {
+        var dy = scrollPos - lastY;
+        // a few pixels either way (a settling fling, rubber-banding) change nothing
+        if (dy > 6 || dy < -6) { goingDown = dy > 0; lastY = scrollPos; }
+        clearTimeout(restT);
+        if (goingDown) restT = setTimeout(rest, 600);
+        update();
       }
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (es) {
@@ -1858,7 +2008,7 @@
         ['#contact', '.footer'].forEach(function (s) { var el = document.querySelector(s); if (el) io.observe(el); });
       }
       document.addEventListener('numidea:menu', function (e) { menuOpen = !!e.detail; update(); });
-      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('scroll', onBarScroll, { passive: true });
       if (mq.addEventListener) mq.addEventListener('change', update); else if (mq.addListener) mq.addListener(update);
       update();
     })();
@@ -2373,10 +2523,20 @@
     /* ---------- 16. skeletons, wayfinding, back to top ---------- */
     // Skeleton: a picture's box shimmers until the picture has decoded. Only
     // images not yet complete get one, so cached loads never flash it.
+    // The shimmer runs only while its box is on screen (.sk-run) and stops
+    // for good once the picture is in. It animates a background, which the
+    // compositor cannot take over, so every running copy cost a style
+    // recalculation and a repaint per frame: traced on a phone (CPU 4x),
+    // ~1,900 recalcs in fourteen swipes, nearly all for boxes off screen
+    // whose 8 cycles had started with the page.
+    var skio = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.target.classList.toggle('sk-run', e.isIntersecting && !e.target.classList.contains('sk-done')); });
+    }) : null;
     [].forEach.call(document.querySelectorAll('.proj .thumb img.shot, .plate img.pl, .fd-photo img'), function (img) {
       var box = img.closest('.thumb, .plate, .fd-photo'); if (!box || (img.complete && img.naturalWidth)) return;
       box.classList.add('sk');
-      var done = function () { box.classList.add('sk-done'); };
+      if (skio) skio.observe(box); else box.classList.add('sk-run');
+      var done = function () { box.classList.add('sk-done'); box.classList.remove('sk-run'); if (skio) skio.unobserve(box); };
       img.addEventListener('load', done, { once: true }); img.addEventListener('error', done, { once: true });
     });
 
@@ -2393,8 +2553,10 @@
         var y = window.scrollY || window.pageYOffset || 0;
         tops = secs.map(function (el) { return el ? el.getBoundingClientRect().top + y : Infinity; });
       };
+      // runs in a frame after the parallax has written its translates, so it
+      // reads the cached position: reading scrollY here forced a style recalc
       var pick = function () {
-        var line = (window.scrollY || window.pageYOffset || 0) + innerHeight * 0.35, i = -1;
+        var line = scrollPos + viewH * 0.35, i = -1;
         for (var k = 0; k < tops.length; k++) { if (tops[k] <= line) i = k; }
         // the order of the links is the order of the page, so the last section
         // whose top has passed the reading line is the one being read
@@ -2404,7 +2566,7 @@
       };
       var tick = false;
       addEventListener('scroll', function () { if (tick) return; tick = true; requestAnimationFrame(function () { pick(); tick = false; }); }, { passive: true });
-      var re = function () { measure(); cur = -2; pick(); };
+      var re = function () { scrollPos = window.scrollY || window.pageYOffset || 0; measure(); cur = -2; pick(); };
       document.addEventListener('numidea:lang', function () { setTimeout(re, 60); });
       addEventListener('resize', re); addEventListener('load', re);
       if ('ResizeObserver' in window) new ResizeObserver(re).observe(document.body);
@@ -2416,7 +2578,7 @@
       var b = document.getElementById('toTop'); if (!b) return;
       var on = false;
       addEventListener('scroll', function () {
-        var v = (window.scrollY || window.pageYOffset) > innerHeight * 1.5;
+        var v = scrollPos > viewH * 1.5;
         if (v !== on) { on = v; b.classList.toggle('on', v); }
       }, { passive: true });
       b.addEventListener('click', function () {

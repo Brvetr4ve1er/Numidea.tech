@@ -102,7 +102,9 @@ that negative space disappears, so they are dropped rather than shuffled into
 the copy.
 
 **Reveal** — batched on the next animation frame and staggered 70ms apart
-(capped at 490ms) so a row assembles as a wave. The flush is scheduled on rAF,
+(capped at 210ms) so a row assembles as a wave. It rises 12px and starts 8% of
+a screen *below* the fold, so content arrives already under way rather than
+entering blank (see "Scroll comfort" below). The flush is scheduled on rAF,
 *not* a resettable timeout: a fast scroll fires the observer faster than any
 debounce window, so a re-armed timer can be starved indefinitely and strand
 cards invisible.
@@ -1170,6 +1172,116 @@ Rules: never animate through inherited custom properties; never read layout
 (`scrollY`, `getBoundingClientRect`, `scrollHeight`) after a style write in the
 same frame; every rAF loop must have a stop condition.
 
+### Scroll comfort (round 3)
+
+Measured by real input, not `scrollTo`: wheel gestures at 1280×800, and touch
+swipes (`Input.dispatchTouchEvent`; `synthesizeScrollGesture`'s touch source
+does nothing in headless Chromium) at 390×844 with the CPU throttled 4×, top to
+bottom of index.html. A plain page scrolled the same way drops 0 frames at 1280
+and ~1% on the phone, so the page's own numbers are its own.
+
+- **One read of the scroll position per event.** Six scroll listeners each
+  read `scrollY`, around each other's writes, so each read forced a style
+  recalculation: 2,198 forced recalcs (1.9s) in one phone scroll. A first
+  listener now reads it once into `scrollPos`; the others only write.
+- **Read content stays put on a touch screen.** A finger drags the page on
+  the compositor; a main-thread translate is a frame or more behind it, eased
+  on purpose, and text drifting against the finger read as the page swimming.
+  Kickers, the hero plate and the card screenshots are `.px-still` there.
+- **Touch decoration is scroll-linked, not scripted.** The layers that keep
+  their depth on a touch screen (vista, hero mesh, glyphs, footer ink) run
+  one `ScrollTimeline` animation each, its keyframes the parallax formula
+  sampled where the cap starts and stops clamping. Same resting positions as
+  the eased loop, in step with the finger, no work per frame. The loop stays
+  for a fine pointer (where its lag is the point) and for browsers without
+  ScrollTimeline.
+- **Read content is bounded at 12px** by default (decoration keeps 64): in a
+  fast wheel scroll the eased lag carried a kicker 36px down onto its heading,
+  32px below it at rest.
+- **The progress bar is a scroll-driven CSS animation** where supported, so it
+  is drawn on the compositor; app.js draws it otherwise and under reduced
+  motion.
+- **Skeleton shimmers pause off screen** (`.sk-run`): they animate a
+  background, which restyles and repaints every frame wherever the box is.
+- **scene/ had the hub's old problem**: its drafting-paper grid was
+  `background-attachment:fixed` on body, meant to spare repaints; in Chrome
+  it forces them. Ten wheel scrolls at 1280 cost 7.2s of raster
+  (the whole viewport, every frame) and 431 paints; the grid now sits on a
+  fixed `body::before` layer, identical on screen: 0.13s and 33 paints.
+  Text over it may lose LCD subpixel antialiasing on low-DPI screens, as on
+  index.html, which has used fixed layers all along.
+- What is *not* the problem: every scroll and touch listener is passive, there
+  is no scroll-snap, no `background-attachment:fixed` on index.html, no
+  layout shift while scrolling (CLS 0), and anchor jumps land the heading
+  clear of the navbar. Backdrop blur (navbar, card bars, title block) is most
+  of what the 1280 run drops in headless software raster, but removing it
+  changed nothing on the throttled phone, whose limit is the main thread.
+
+| index.html, one scroll top to bottom (median of 3) | before round 3 | after |
+|---|---|---|
+| phone: frames over 25ms | 514 of 3,008 (17%) | 268 of 2,676 (10%) |
+| phone: style recalculation | 4,065 (4.9s) | 2,528 (2.6s) |
+| phone: script | 3.5s | 1.4s |
+| phone: main thread busy | 32.9s | 20.5s |
+| phone: read content moving against the finger | up to 30px | 0 |
+| phone: reveal start after entering view, p50 / p90 / max | 167 / 258 / 600ms | −115 / −79 / 0ms |
+| 1280: closest kicker to its heading while scrolling | −4px (overlap) | 20px |
+
+Taken on a shared 4-CPU machine at load 2–4. The 1280 run drops the same
+~18% of frames before and after: that is software raster of the backdrop
+blur in headless Chromium, not the main thread.
+
+What is left on the phone is the icons drawing themselves in (`ai-draw`, a
+stroke animation the compositor cannot run): with it switched off the same
+scroll drops ~140 frames instead of ~270 and the main thread does ~5s less.
+It is left as designed: it does not touch the scroll itself, which runs on
+the compositor with nothing that moves with it left on the main thread.
+
+### Mobile audit (round 3)
+
+Every page (index, scene/, hub/, workspacehq/, 404) at 320×568, 360×740,
+375×667, 390×844, 414×896, 430×932 and in landscape at 667×375 and 844×390,
+in fr/en/ar where the page has them, with touch emulation (`hasTouch`,
+`isMobile`: coarse pointer, no hover). Real taps and swipes
+(`Input.dispatchTouchEvent`), notch insets emulated with
+`Emulation.setSafeAreaInsetsOverride` (47px a side and 21px below in
+landscape, 34px below in portrait). What was found and changed:
+
+| Where | Found | Now |
+|---|---|---|
+| Phone menu | the × hit-tested as the first link at 320×568, 360×740 en, 667×375 (links paint later, carry a transform, stretched full width) | × on top, links as wide as their words |
+| Phone menu | list 719px tall on a 568px screen, 477–504px in landscape: Contact and/or the language switch below the fold of the dialog | type follows the height on short portrait phones; two columns in landscape; fits everywhere |
+| Phone menu | × inside the 47px notch inset in landscape | inset by `env(safe-area-inset-*)` |
+| Landscape 667×375 | navbar 73px + contact bar 69px = 38% of the screen | bar gives way on a short screen (as it already did at 844×390), back-to-top returns, navbar 57px: 15% |
+| Contact form | fields at 15px: iOS zooms into them on focus | 16px under 960px and on a coarse pointer |
+| Estimator slider | a vertical swipe starting on the track scrolled the page AND set the size (22 → 9 pages): Chrome on Android jumps the thumb on pointerdown | value restored on `pointercancel`; sideways drags unchanged |
+| Estimator options | an option tapped off kept the ticked look (sticky `:hover`) | option, chip, plate-rail and "how we price" hovers behind `(hover:hover)` |
+| Estimator options | "already in the plan" squeezed its label to 69px at 320 | its own line under 480px, tick on the box |
+| Plate rail | a finger has no hover and Safari gives a tapped button no focus, so the deck left the slide just chosen 5.2s later (reproduced by dropping the tap's focus) | a touch pick holds the deck until the next touch outside the plate; a scroll that starts on the plate does not |
+| Market table | scroll frame 178px at 320 with a 140px sticky label column: 38px of figures | frame 252px, label 112px, ~140px of figures |
+| Contact email | broke as "…gmail.co / m" at 320 | breaks after the @ (`<wbr>`) |
+| Vista caption | ran off the screen at 320 in French, cut at "ARRÉR" | may wrap on a narrow screen |
+| scene/, hub/ | `viewport-fit=cover` but not inset: text and controls under the notch in landscape (x 34–810 of 844) | inset; all content 47–797 |
+| scene/, hub/ viewers | `max-height:94vh`, the LARGE viewport on iOS | `94dvh` |
+| hub/ 320×568 | matched the landscape side-by-side hero: name broken mid-word | stacks like every other phone |
+| hub/ tiles and cards | a 5-line label taller than its 138×108 tile lost its first word; handles broke one letter from the end | tighter labels under 400px; a card's handle moves under the badge whole, the ↗ stays pinned in the card corner (it never wraps alone) |
+| workspacehq/ | wordmark, breadcrumb and footer links 12, 13 and 7px tall | padded hit areas, no layout change; hero `100svh` |
+| Phone contact bar | with the navbar it covered 142px of a portrait phone the whole way down (25% at 320×568, 15% at 430×932); the bar alone is 69px (12% / 7%) | steps aside while the reader scrolls down; back on a scroll up, after 600ms still, or while focus is in it. Touch swipes at 320×568 and 430×932: shown in 0 of 32 samples while swiping down (was 32 of 32 at 320×568), back 600ms after the last swipe |
+| workspacehq/ console embed | its fields are 13–14px inline styles: iOS zooms on focus, and from the frame the whole page zooms | 16px on a coarse pointer (`embed/console.html` style block; mouse unchanged) |
+
+Checked and found sound: no horizontal overflow on any page, size,
+orientation or language; no stretched or broken image; theme menu (opens,
+fits, closes on an outside tap, every size, RTL); language switch from the
+menu; anchor jumps land 85–101px below the navbar; the market table swipes
+sideways without moving the page; the plate rail's tabs are 24px+ apart
+targets; 404 already used `svh` (workspacehq/'s hero now does too: it was
+`100vh`).
+
+Left as is: the navbar stays (73px; 13% at 320×568, 8% at 430×932); the
+market table's caption scrolls away with the figures (it is part of the
+table); the WorkspaceHQ demo stage keeps its 560px minimum in landscape,
+taller than the screen, because the console inside it needs that height.
+
 ## workspacehq/ — the WorkspaceHQ v3 launch page
 
 Implemented from the Claude Design project ("WorkspaceHQ v3 Launch Site.dc.html")
@@ -1193,7 +1305,9 @@ for the product's public v3 launch. Two halves, built differently on purpose:
   picks Babel only for `.jsx`/`.tsx` URLs); IBM Plex Mono is self-hosted
   (`embed/fonts/`); the CDN fallback URLs in support.js point at the local
   copies. Net: zero third-party requests, as everywhere else on the site.
-  To update an embed from a new design export, repeat those four steps.
+  To update an embed from a new design export, repeat those four steps,
+  and keep the one rule added to `console.html`'s style block (fields at
+  16px on a coarse pointer, so iOS does not zoom on focus).
 
 **Install = GitHub.** The design said `brew install workspacehq` /
 `npm i -g workspacehq`; neither package exists (both registries 404), and an

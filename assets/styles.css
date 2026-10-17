@@ -360,7 +360,7 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 .plate-rail button i{display:block;height:2px;border-radius:2px;background:var(--hairline-2);
   transition:background var(--dur-base) var(--ease-out)}
 .plate-rail button[aria-current="true"] i{background:var(--crimson)}
-.plate-rail button:hover i{background:var(--crimson-hi)}
+@media (hover:hover){.plate-rail button:hover i{background:var(--crimson-hi)}}   /* a tapped tab kept it after the deck moved on (r3/a) */
 .plate-rail button:focus-visible i{outline:2px solid var(--teal);outline-offset:3px}
 /* pause/play: pressed = paused, so the icon shows what a press will do next */
 .pl-pause{flex:none;width:24px;height:24px;display:grid;place-items:center;padding:0;background:none;cursor:pointer;
@@ -853,7 +853,7 @@ html[dir="rtl"] .preview .outcome{padding-left:0;padding-right:14px;border-left:
 .capabilities{margin-top:var(--s-8);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--glass);overflow:hidden}
 .capabilities>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s-4);padding:var(--s-5) var(--s-6);font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ice);transition:background var(--dur-base)}
 .capabilities>summary::-webkit-details-marker{display:none}
-.capabilities>summary:hover{background:color-mix(in srgb,var(--teal) 5%,transparent)}
+@media (hover:hover){.capabilities>summary:hover{background:color-mix(in srgb,var(--teal) 5%,transparent)}}
 .capabilities>summary .chev{margin-left:auto;color:var(--teal-text);transition:transform var(--dur-base)}
 html[dir="rtl"] .capabilities>summary .chev{margin-left:0;margin-right:auto}
 .capabilities[open]>summary .chev{transform:rotate(90deg)}
@@ -913,7 +913,10 @@ html[dir="rtl"] .sb-txt b{font-family:var(--font-ar-display)}
   padding:var(--s-5);font-family:var(--font-display);font-weight:600;font-size:clamp(16px,1.9vw,19px);
   letter-spacing:-.01em;color:var(--ice);transition:color var(--dur-fast)}
 .faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary:hover{color:var(--teal-text)}
+/* hover only where there is a pointer that hovers: a phone keeps :hover on
+   the last thing tapped, and this is the open colour, so a question tapped
+   shut went on looking open (r3/a) */
+@media (hover:hover){.faq-item summary:hover{color:var(--teal-text)}}
 .faq-item summary:focus-visible{outline:2px solid var(--teal);outline-offset:-3px;border-radius:var(--r-sm)}
 /* .faq-item, .capabilities and .lang clip their overflow, so an outside ring
    would be cut away entirely: these controls draw it inside. */
@@ -958,7 +961,9 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
    old form hid everything unconditionally and relied on the same script to
    un-hide it: measured with app.js blocked, 27/27 sections stayed invisible.
    <noscript> only covers JS being *disabled*, not JS failing to load. */
-.js-ready .reveal{opacity:0;transform:translateY(24px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out)}
+/* 12px of rise, not 24: the reveal moved text upward faster than the finger
+   scrolling it, and twice the travel read as the page jumping (r3/a) */
+.js-ready .reveal{opacity:0;transform:translateY(12px);transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out)}
 .reveal.in{opacity:1;transform:none}
 /* No JavaScript (the head script marks <html class="js"> before first paint):
    controls that only app.js can drive — theme, menu, language, plate rail,
@@ -1479,7 +1484,10 @@ html[dir="rtl"] .est-head h3{font-family:var(--font-ar-display)}
   color:var(--body-strong);font-size:14px;line-height:1.3;padding:11px 14px;min-height:44px;
   transition:border-color var(--dur-fast),background var(--dur-fast),color var(--dur-fast)}
 .echip input,.eopt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
-.echip:hover,.eopt:hover{border-color:var(--teal);color:var(--ice)}
+/* hover only for a pointer that hovers: a phone keeps :hover on the last
+   option tapped, and this is the ticked look, so an option tapped OFF went on
+   looking ticked (measured: border teal, text ice, box empty) (r3/a) */
+@media (hover:hover){.echip:hover,.eopt:hover{border-color:var(--teal);color:var(--ice)}}
 .echip:has(input:checked){border-color:var(--teal);
   background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--ice)}
 .eopt::before{content:"";flex:none;width:17px;height:17px;border:1.5px solid var(--hairline-2);
@@ -2319,7 +2327,8 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 .stack-strip .grp>b{display:inline-flex;align-items:center;gap:8px}
 .ai-grp{width:20px;height:20px}
 .ai-faq{width:24px;height:24px}
-.faq-item[open] .ai-faq,.faq-item summary:hover .ai-faq{color:var(--crimson-text)}
+.faq-item[open] .ai-faq{color:var(--crimson-text)}
+@media (hover:hover){.faq-item summary:hover .ai-faq{color:var(--crimson-text)}}
 .channels .ch-ic{grid-template-columns:22px 96px minmax(0,1fr)}
 .ai-ch{width:20px;height:20px;align-self:center}
 @media (max-width:400px){
@@ -2741,3 +2750,133 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
 .fd-photo:has(img) .mono{visibility:hidden}
 .tm-i img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
 .tm-i:has(img){font-size:0;overflow:hidden}
+
+/* ===== r3/a: FAQ columns, scroll comfort, mobile ===== */
+/* FAQ: two independent columns (questions 1-3 and 4-6), not one grid of
+   shared rows. In a row-based grid the open answer set the row's height and
+   the closed question beside it stretched to match (197px against 77px), so
+   one click looked like two drawers opening. Each column is now its own
+   stack: opening a question moves only what sits below it in its own column.
+   DOM, tab and reading order stay 1 to 6; on one column the two stacks simply
+   follow each other with the same gap. align-content:start keeps a column
+   that is shorter than its neighbour from stretching its own rows. */
+.faq-list{align-items:start}
+.faq-col{display:grid;gap:var(--s-4);align-content:start;min-width:0}
+
+/* Scroll comfort. The reading-progress bar follows the scroll on the
+   compositor where the browser runs scroll-driven animations; app.js then
+   stops writing it on every scroll event (and still draws it elsewhere, and
+   under reduced motion, where this animation is switched off). */
+@keyframes r3a-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .progress{animation:r3a-progress linear both;animation-timeline:scroll(root block)}
+  }
+}
+/* Parallax that app.js leaves still (read content on a touch screen) or that
+   reduced motion flattens keeps no compositor layer of its own. */
+.px-still{will-change:auto}
+@media (prefers-reduced-motion:reduce){[data-parallax]{will-change:auto}}
+/* A skeleton shimmers only while its box is on screen: app.js marks it
+   .sk-run from an IntersectionObserver and drops the mark once the picture is
+   in. It animates a background, which the compositor cannot take over, so
+   every running copy restyled and repainted each frame, off screen too. Paused,
+   it keeps its place in its 8 cycles and resumes when the box comes back. */
+.sk:not(.sk-run)::after{animation-play-state:paused}
+
+/* ---- Mobile audit (r3/a): every page at 320-430px and 667/844 landscape,
+   fr/en/ar, touch emulation. Each fix below names what was measured. ---- */
+
+/* Phone menu. The close button sat UNDER the first link: the links come
+   later in the DOM and carry a transform (their stagger), so they painted
+   over it, and a flex column stretched each one across the whole width.
+   Wherever the list is taller than the screen it starts level with the
+   button, and a tap on x followed "Projets" instead (hit-tested at 320x568
+   fr/ar, 360x740 en, 667x375). The button now paints on top and each link is
+   as wide as its words. It also clears the notch: in landscape on a notched
+   phone the safe-area inset is ~47px a side and the button sat inside it. */
+.mobile-menu .close{z-index:2}
+.mobile-menu nav a{align-self:flex-start}
+@media (max-width:960px){
+  .mobile-menu .close{top:calc(14px + env(safe-area-inset-top));inset-inline-end:calc(14px + env(safe-area-inset-right))}
+  html[dir="rtl"] .mobile-menu .close{inset-inline-end:calc(14px + env(safe-area-inset-left))}
+}
+/* A short portrait phone: seven links at 40px ran 719px on a 568px screen,
+   so Contact and the language switch were below the fold of the menu and
+   had to be found by scrolling a dialog. Type and rhythm follow the height
+   there (5.4% of it, 26-36px); 390x844 and taller keep the 40px list. */
+@media (max-width:479px) and (max-height:719px){
+  .mobile-menu{gap:clamp(10px,2.2vh,24px);gap:clamp(10px,2.2svh,24px)}
+  .mobile-menu a{font-size:clamp(26px,5.4vh,36px);font-size:clamp(26px,5.4svh,36px);line-height:1.4}
+}
+/* A phone on its side: the list ran 477px on a 375px screen (504 on 390),
+   so the language switch needed a scroll. Two columns of four rows (DOM and
+   reading order unchanged, down the first column then the second), and the
+   button clears the notch at its smaller landscape offset. */
+@media (max-height:560px) and (min-width:480px){
+  /* svh: the short-viewport block above sizes this type in vh, the LARGE
+     viewport on iOS, taller than the screen while the toolbars show */
+  .mobile-menu a{font-size:clamp(20px,6.4svh,32px)}
+  .mobile-menu nav{display:grid;grid-template-rows:repeat(4,auto);grid-auto-flow:column;justify-content:start;column-gap:clamp(32px,8vw,80px)}
+  .mobile-menu .close{top:calc(10px + env(safe-area-inset-top));inset-inline-end:calc(10px + env(safe-area-inset-right))}
+  html[dir="rtl"] .mobile-menu .close{inset-inline-end:calc(10px + env(safe-area-inset-left))}
+}
+
+/* Landscape phones: the fixed navbar (73px) and the phone contact bar (69px)
+   covered 142px of a 667x375 screen, 38%, leaving 233px to read in. The bar
+   now gives way on a short screen, as it already did at 844x390 (wider than
+   its 720px breakpoint), and the back-to-top button it replaces returns; the
+   navbar drops its vertical padding to 6px around its 44px controls (57px,
+   the same tap targets). */
+@media (max-height:560px) and (min-width:480px) and (max-width:960px){
+  :root{--nav-h:57px}
+  .navbar .bar{padding-block:6px}
+}
+@media (max-width:720px) and (max-height:560px) and (min-width:480px){
+  .m-contact{display:none}
+  .to-top{display:grid}
+  .footer{padding-bottom:calc(var(--s-7) + env(safe-area-inset-bottom))}
+  html{scroll-padding-bottom:auto}
+}
+
+/* Form fields at 16px wherever a finger types. iOS Safari zooms the page
+   into any field under 16px when it takes focus, and leaves it zoomed after;
+   the contact fields were 15px at every width. */
+@media (max-width:960px),(pointer:coarse){
+  .field input,.field textarea{font-size:16px}
+}
+
+/* Estimator options. The "already in the plan" tag sat in its own column
+   beside the label: at 320 it squeezed the label to 69px ("CMS / back- /
+   office") and itself to three stacked words, and French needs ~150px for
+   it. Under 480px it drops to its own line, aligned with the label text
+   (the 17px box and the 10px gap before it); the box and its tick stay on
+   the first line (the tick was centred on the whole two-line label). */
+@media (max-width:479px){
+  .eopt:has(.eo-incl){flex-wrap:wrap;row-gap:2px;align-items:flex-start}
+  .eopt:has(.eo-incl)>span:not(.eo-incl){flex:1 1 0;min-width:0}
+  .eopt .eo-incl{flex:1 0 calc(100% - 27px);margin-inline-start:27px}
+  .eopt:has(.eo-incl):has(input:checked)::after{top:19.5px}
+}
+
+/* The market table on a phone. "How we price" nests it in two framed panels
+   (the folded card, then the market panel), each padded 24px a side: at 320
+   the table's scroll frame was 178px wide and its sticky first column 140px,
+   so 38px of figures showed, a sliver of "DA" (218px at 360, 248 at 390).
+   Under 600px the panels pad 12px, the frame runs to the panel's edges, and
+   the row label may wrap between words, so the label column is 112px and
+   the figures get the rest (140px at 320, 210 at 390). */
+@media (max-width:599px){
+  .price-more .pm-body{padding-inline:var(--s-3)}
+  .price-more .market,.price-more .models{padding-inline:var(--s-3)}
+  .price-more .mk-scroll{margin-inline:calc(-1 * var(--s-3));border-inline:0;border-radius:0}
+  .mk-table th,.mk-table td{padding-inline:12px}
+  .mk-table tbody th{white-space:normal;width:8em;min-width:8em}   /* "E-commerce", the longest word, is 85px */
+}
+
+/* The vista's engraved caption is one unbreakable chip: at 320 French
+   ("PL. I — LES BIBANS · BORDJ BOU ARRÉRIDJ") ran past the screen edge and
+   the vista's clip cut it at "ARRÉR". On a narrow screen it may wrap. */
+@media (max-width:479px){
+  .v-cap{white-space:normal;max-width:calc(100% - 2 * var(--gutter))}
+}
