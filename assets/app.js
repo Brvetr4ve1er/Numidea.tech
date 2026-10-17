@@ -2504,14 +2504,29 @@
         if (day) day.textContent = grp(tidy(480 * FX.EUR, 'DZD')) + dash() + grp(tidy(650 * FX.EUR, 'DZD')) + ' ' + t('price.cur');
       };
       // a visitor who chose € or $ for the prices sees the comparison in it too
+      // and back: a switch to DA undoes what this set (the table and the
+      // chart, which reads the same radio, would otherwise stay in € or $
+      // under DA prices); a currency the visitor picked in the table stays.
+      // Setting .checked from script fires no 'change', so the flag holds.
+      var followed = false;
       var follow = function () {
-        if (CUR === 'DZD') return;
-        var r = mkt.querySelector('input[name="mk-cur"][value="' + CUR + '"]');
-        if (r) r.checked = true;
+        var r;
+        if (CUR === 'DZD') {
+          if (!followed) return;
+          r = mkt.querySelector('input[name="mk-cur"][value="native"]');
+          if (r) r.checked = true;
+          followed = false;
+          return;
+        }
+        r = mkt.querySelector('input[name="mk-cur"][value="' + CUR + '"]');
+        if (r) { r.checked = true; followed = true; }
       };
       follow();
       document.addEventListener('numidea:cur', function () { follow(); renderMarket(); });
-      mkt.addEventListener('change', renderMarket);
+      mkt.addEventListener('change', function (e) {
+        if (e.target && e.target.name === 'mk-cur') followed = false;
+        renderMarket();
+      });
       document.addEventListener('numidea:lang', renderMarket);
       renderMarket();
     }
