@@ -481,7 +481,11 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
    reveal's rise (its translateY, 12px), and the browser scrolls to that
    box: after the reveal the card ended that much higher than the scroll
    padding allows, its top against the fixed nav. A targeted card is shown
-   at once, so the jump measures the box where it stays. */
+   at once, so the jump measures the box where it stays. The same holds for
+   every reveal that is itself an anchor target (the hero's #apercu, the
+   #estimator): transition-property, not the transition shorthand, so the
+   card's rule below keeps the 0.7s durations for its outline. */
+.js-ready .reveal:target{opacity:1;transform:none;transition-property:none}
 .js-ready .proj.reveal:target{opacity:1;transform:none;transition-property:border-color,box-shadow}
 .proj:target,.proj:target:hover{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
 .proj--brand:target,.proj--brand:target:hover{border-color:rgb(var(--brand));box-shadow:0 0 0 1px rgb(var(--brand))}
