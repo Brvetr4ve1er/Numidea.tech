@@ -2034,7 +2034,8 @@
        .vz-lit to play it, so with scripts off, with reduced motion, or for a
        picture already on screen when this runs, nothing waits. Pictures
        whose marks this places keep their room from the first paint and are
-       shown (.vz-on) once placed. Printing plays whatever is still held back.
+       shown (.vz-on) once placed. Printing, or reduced motion turned on
+       during the visit, finishes whatever is still held back.
        Its own try: a fault here must not stop the sections after it. */
     try {
       var vzMove = !reduceMotion && 'IntersectionObserver' in window;
@@ -2055,7 +2056,15 @@
         vzPrint.push(finish || function () { el.classList.remove('vz-arm'); });
         return true;
       };
-      window.addEventListener('beforeprint', function () { vzPrint.forEach(function (f) { f(); }); vzPrint = []; });
+      var vzFinish = function () { vzPrint.forEach(function (f) { f(); }); vzPrint = []; };
+      window.addEventListener('beforeprint', vzFinish);
+      /* Reduced motion turned on during the visit: every picture still held
+         back is finished at once, as it would have been from the start, and
+         none is held back after (vzMove). */
+      var vzRmq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var vzOnRm = function () { if (vzRmq.matches) { vzMove = false; vzFinish(); } };
+      if (vzRmq.addEventListener) vzRmq.addEventListener('change', vzOnRm);
+      else if (vzRmq.addListener) vzRmq.addListener(vzOnRm);
       // fn(el) the first time el is `share` on screen (only ever called on armed pictures)
       var vzOnce = function (els, share, fn) {
         if (!els.length) return;
@@ -2083,6 +2092,9 @@
         if (!vzArm(list, function () {
           list.style.setProperty('--rail', '1');
           steps.forEach(function (s) { s.classList.add('vz-lit'); });
+          // and the steps still queued do not light one by one after it
+          queue.length = 0; lit = steps.length;
+          if (io) io.disconnect();
         })) return;
         /* The share of the rail's length up to node k's centre, read from
            the rail's own box (.steps::before) and layout offsets, which a

@@ -1837,8 +1837,12 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
   .eopt:has(input:disabled):active{transform:none}
 }
 /* The page-wide reduced-motion rule (*{transition:none}) does not reach
-   pseudo-elements: the one mark here that fades on its own gets it too. */
-@media (prefers-reduced-motion:reduce){.esc-band::after{transition:none}}
+   pseudo-elements: the marks here that move on their own get it too (the
+   lit band's fade, the method's rail, the Aperçu's segments). It matters
+   for a visitor who turns reduced motion on during the visit, with a
+   picture already held back; !important beats the specificity of the
+   .ptl.vz-arm.vz-go … ::after rule. */
+@media (prefers-reduced-motion:reduce){.esc-band::after,.steps.vz-arm::before,.ptl .ptl-s::after{transition:none!important}}
 
 /* -- forced colours: backgrounds become Canvas, which would erase every
    mark; the marks are redrawn in the user's own system colours -- */
