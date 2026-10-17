@@ -1561,3 +1561,49 @@ the stage. Every host builds from `_site/`: GitHub Pages is canonical
 `NOT_DEPLOYED` lists what must never be served, including `knowledge-base/`,
 `audit/`, `scripts/`, `legal-preview/` and this file. `campaign/` is kept
 outside the repository altogether.
+
+## Visualisations (r3/c)
+
+Five pictures, each of figures the page already states, each beside its text
+equivalent (so the picture itself is `aria-hidden`):
+
+| Picture | Where | Drawn from | Text equivalent |
+|---|---|---|---|
+| The section's own rail grows node to node, ending as the static rail | `#how` | the four steps | the steps |
+| Send → 5 working days → call → decide, `0 DA` paid | `#apercu` | `prev.brief`'s terms | `prev.brief` |
+| The delivery window, shortest to longest, on one 0–16-week ruler with both ends labelled | each tier card | `PRICE_MODEL.weeks` | `.t-time` |
+| Estimate as a dimension line over the three packages | estimator | `ESTIMATE.quote`, `PRICE_MODEL.base` | the status line |
+| Every range on one price scale | `#market` | `MARKET`, `nlRange`, `FX` | the table |
+
+- **Scales are logarithmic** where the ranges span two orders of magnitude,
+  and the market caption says so. Their bounds come from the data, so a
+  price change never pushes a bar off its scale: the estimator's from the
+  extreme quotes `ESTIMATE` can give (today 90 000–2 700 000 DA, drawn from
+  72 000 to 2 970 000), the market's from `MARKET` and Numidea's ranges,
+  never narrower than 40 000–10 000 000 DA.
+- **The bars never move with the currency.** Converting is a constant factor,
+  which on a log scale only slides the tick labels.
+- **The drawn state is the default.** app.js adds `.vz-arm` to hold a picture
+  back and `.vz-go` / `.vz-lit` (the rail: `--rail`) to play it, only when motion is
+  allowed and the picture is not already on screen; reduced motion and
+  scripts-off get the finished picture at once. Entrance only, started by
+  IntersectionObserver, on transform and opacity: no scroll handler. A
+  picture held back never dims text below its contrast: the method's
+  numbered nodes wait small, not faded, until the rail reaches them.
+- **Buttons answer focus as they answer hover** (the ring stays the focus
+  indicator), and buttons and estimator chips give a little under a press
+  (`scale(.97)`, motion allowed only).
+- Numidea is the accent (`--teal`, thicker); the markets share one neutral
+  (`--muted` at 62%). Text keeps the text tokens. Lane names are always
+  written out, never coded: under a 440px chart (a phone) each name takes
+  its own line above its bar, so the bars keep the whole width.
+- The Aperçu timeline, the estimator and the market chart lay themselves
+  out by **container query**: the box's own width decides, not the screen's.
+- **A floating label is pinned on its inline-start side** (`inset-inline-start`,
+  the right in Arabic) and moved only by its transform. Pinned by its other
+  edge, every new text width moves its start corner, and Chrome counts that
+  as a layout shift even on hover or scroll (neither is an input).
+- **The market chart is built on first open** of the folded "Comment on
+  chiffre" panel (on the summary's click, before the panel opens, so it is
+  there in the panel's first frame): the page load pays nothing for a
+  picture most visitors never unfold.

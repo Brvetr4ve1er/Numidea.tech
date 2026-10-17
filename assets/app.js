@@ -314,6 +314,10 @@
   var EXTRA = {
     fr: {
       'mk.h': 'Algérie, France, États-Unis : un projet, trois marchés',
+      'mk.vizCap': "Échelle logarithmique : chaque grande graduation vaut dix fois la précédente. Entre les deux lignes en tirets, la fourchette de Numidea, prolongée sur les trois marchés ; une barre qui s'estompe n'a pas de plafond. Montants convertis au taux officiel, chiffres exacts dans le tableau ci-dessous.",
+      'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
+      'prev.tl1': 'Vous envoyez votre contenu', 'prev.tl2': "On construit votre page d'accueil", 'prev.tl2d': '5 jours ouvrés',
+      'prev.tl3': 'On vous la présente', 'prev.tl3d': 'visio de 30 min', 'prev.tl4': 'Vous décidez', 'prev.tl4d': "Payé jusqu'ici :",
       'mk.p': "Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.",
       'mk.curL': 'Afficher en', 'mk.curNative': "Devise d'origine",
       'mk.cap': 'Fourchettes de prix courantes par type de projet',
@@ -422,6 +426,10 @@
     },
     en: {
       'mk.h': 'Algeria, France, United States: one project, three markets',
+      'mk.vizCap': "Logarithmic scale: each major gridline is ten times the one before. Between the two dashed lines, Numidea's range, carried across the three markets; a bar that fades out has no upper limit. Amounts converted at the official rate; exact figures in the table below.",
+      'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
+      'prev.tl1': 'You send your content', 'prev.tl2': 'We build your homepage', 'prev.tl2d': '5 working days',
+      'prev.tl3': 'We walk you through it', 'prev.tl3d': '30-minute video call', 'prev.tl4': 'You decide', 'prev.tl4d': 'Paid so far:',
       'mk.p': 'The same project, priced in three markets. Typical 2026 ranges, from an experienced freelancer to an agency — excluding tax.',
       'mk.curL': 'Show in', 'mk.curNative': 'Original currency',
       'mk.cap': 'Typical price ranges by project type',
@@ -533,6 +541,10 @@
        singular "you", brand names in Latin script except نوميديا in prose. */
     ar: {
       'mk.h': 'الجزائر وفرنسا والولايات المتحدة: مشروع واحد، ثلاثة أسواق',
+      'mk.vizCap': 'مقياس لوغاريتمي: كلّ تدريجة رئيسية تساوي عشرة أضعاف التي قبلها. بين الخطّين المتقطّعين يمتدّ نطاق أسعارنا عبر الأسواق الثلاثة، والشريط الذي يتلاشى لا حدّ أعلى له. المبالغ محوّلة بالسعر الرسمي، والأرقام الدقيقة في الجدول أدناه.',
+      'mk.k': 'ألف', 'mk.M': 'مليون', 'mk.k.n': 'ألف|ألفان|آلاف|ألفاً|ألف', 'mk.M.n': 'مليون|مليونان|ملايين|مليوناً|مليون',
+      'prev.tl1': 'ترسل إلينا محتواك', 'prev.tl2': 'نبني صفحتك الرئيسية', 'prev.tl2d': '5 أيام عمل',
+      'prev.tl3': 'نعرضها عليك', 'prev.tl3d': 'في مكالمة فيديو من 30 دقيقة', 'prev.tl4': 'أنت تقرّر', 'prev.tl4d': 'المدفوع حتى الآن:',
       'mk.p': 'المشروع نفسه، مسعّراً في ثلاثة أسواق. الأسعار الشائعة لعام 2026، من المستقل المتمرّس إلى الوكالة — دون احتساب الضرائب.',
       'mk.curL': 'العملة', 'mk.curNative': 'العملة الأصلية',
       'mk.cap': 'الأسعار الشائعة حسب نوع المشروع',
@@ -1850,6 +1862,415 @@
       if (mq.addEventListener) mq.addEventListener('change', update); else if (mq.addListener) mq.addListener(update);
       update();
     })();
+
+    /* ---------------- 13b · visualisations (r3/c) ----------------
+       Pictures of numbers the page already states, drawn from the same
+       sources and never from new ones: the method's four steps, the Aperçu's
+       terms (prev.brief), PRICE_MODEL (each tier's weeks; the estimate against
+       the three packages) and MARKET (section 14). Each one sits beside its
+       text equivalent — the steps, the brief, the tier's own line, the
+       estimator's status line, the market table — so the pictures themselves
+       are aria-hidden.
+       Motion is entrance only, started by IntersectionObserver (never a
+       scroll handler), on transform and opacity. The drawn state is the
+       default: the script adds .vz-arm to hold a picture back and .vz-go /
+       .vz-lit to play it, so with scripts off, with reduced motion, or for a
+       picture already on screen when this runs, nothing waits. Pictures
+       whose marks this places keep their room from the first paint and are
+       shown (.vz-on) once placed. Printing plays whatever is still held back.
+       Its own try: a fault here must not stop the sections after it. */
+    try {
+      var vzMove = !reduceMotion && 'IntersectionObserver' in window;
+      var vzPainted = false;
+      try { vzPainted = performance.getEntriesByType('paint').length > 0; } catch (e) {}
+      var vzRtl = function () { return document.documentElement.getAttribute('dir') === 'rtl'; };
+      var vzPrint = [];   // how to finish each picture still held back, for print
+      /* Hold el back for its entrance, unless motion is off or the visitor
+         is already looking at it (a page opened on #pricing): a picture that
+         blinked out and redrew itself in front of them would read as a fault. */
+      var vzArm = function (el, finish) {
+        if (!vzMove) return false;
+        if (vzPainted) {
+          var r = el.getBoundingClientRect();
+          if (r.width && r.bottom > 0 && r.top < (window.innerHeight || 0)) return false;
+        }
+        el.classList.add('vz-arm');
+        vzPrint.push(finish || function () { el.classList.remove('vz-arm'); });
+        return true;
+      };
+      window.addEventListener('beforeprint', function () { vzPrint.forEach(function (f) { f(); }); vzPrint = []; });
+      // fn(el) the first time el is `share` on screen (only ever called on armed pictures)
+      var vzOnce = function (els, share, fn) {
+        if (!els.length) return;
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); fn(e.target); } });
+        }, { threshold: share, rootMargin: '0px 0px -8% 0px' });
+        els.forEach(function (el) { io.observe(el); });
+      };
+      // a share of a scale as a CSS percentage
+      var pc = function (x) { return (x * 100).toFixed(3) + '%'; };
+      // where v sits on a logarithmic scale from v0 to v1, clamped to 0..1
+      var logAt = function (v, v0, v1) {
+        return Math.max(0, Math.min(1, (Math.log(v) - Math.log(v0)) / (Math.log(v1) - Math.log(v0))));
+      };
+
+      /* -- the method: the line from node to node draws itself as the steps
+         come into view, one segment at a time, then the node it reaches
+         opens out to its size (it waits small, never faded: its number is
+         text). Steps light in order, one every 420ms, so a jump down the
+         page still draws the line node by node instead of all at once. */
+      (function () {
+        var list = document.querySelector('#how .steps');
+        if (!list) return;
+        var steps = [].slice.call(list.querySelectorAll('.step'));
+        if (!vzArm(list, function () {
+          list.style.setProperty('--rail', '1');
+          steps.forEach(function (s) { s.classList.add('vz-lit'); });
+        })) return;
+        /* The share of the rail's length up to node k's centre, read from
+           the rail's own box (.steps::before) and layout offsets, which a
+           step's reveal transform does not move; the last node takes the
+           whole rail, which runs on past it. */
+        var reach = function (k) {
+          if (k >= steps.length - 1) return 1;
+          var r = getComputedStyle(list, '::before'), node = steps[k].querySelector('.node');
+          var w = parseFloat(r.width), h = parseFloat(r.height);
+          if (!node || !(w > 0) || !(h > 0)) return 1;
+          var cx = steps[k].offsetLeft + node.offsetLeft + node.offsetWidth / 2;
+          var cy = steps[k].offsetTop + node.offsetTop + node.offsetHeight / 2;
+          var f = w > h ? (cx - parseFloat(r.left)) / w : (cy - parseFloat(r.top)) / h;
+          if (w > h && vzRtl()) f = 1 - f;
+          return Math.max(0, Math.min(1, f));
+        };
+        var lit = 0, queue = [], busy = false;
+        var pump = function () {
+          if (!queue.length) { busy = false; return; }
+          busy = true;
+          var k = queue.shift();
+          list.style.setProperty('--rail', reach(k).toFixed(4));   // the line reaches node k
+          steps[k].classList.add('vz-lit');                          // which opens out (styles.css delays it)
+          setTimeout(pump, 420);
+        };
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            for (var i = steps.indexOf(e.target); lit <= i; lit++) { queue.push(lit); io.unobserve(steps[lit]); }
+          });
+          if (!busy) pump();
+        }, { threshold: 0.5, rootMargin: '0px 0px -10% 0px' });
+        steps.forEach(function (s) { io.observe(s); });
+      })();
+
+      /* -- the Aperçu: you send, five working days, the call, you decide.
+         The amount paid at the decision is the one figure in it; it follows
+         the currency switch like every price on the page. */
+      (function () {
+        var tl = document.querySelector('#apercu .ptl');
+        if (!tl) return;
+        var zero = tl.querySelector('.ptl-zero');
+        var paint = function () {
+          if (!zero || !zero.firstChild) return;
+          zero.firstChild.nodeValue = pre(CUR) + '0' + (post(CUR) ? ' ' : '');
+          var c = zero.querySelector('.cur');
+          if (c) c.textContent = post(CUR);
+        };
+        document.addEventListener('numidea:cur', paint);
+        document.addEventListener('numidea:lang', paint);
+        paint();
+        if (vzArm(tl, function () { tl.classList.add('vz-go'); })) {
+          vzOnce([tl], 0.6, function (el) { el.classList.add('vz-go'); });
+        }
+      })();
+
+      /* -- tiers: each tier's delivery window, shortest to longest, on one
+         ruler shared by the three cards (0 to the longest tier's top, 16
+         weeks), its ends labelled, so the windows compare at a glance. The
+         line of text above stays the statement. */
+      (function () {
+        var cards = [].slice.call(document.querySelectorAll('.tier')).map(function (card) {
+          var r = card.querySelector('.t-range[data-tier]'), w = card.querySelector('.t-weeks');
+          var m = r && PRICE_MODEL[r.getAttribute('data-tier')];
+          return m && w ? { w: w, m: m } : null;
+        }).filter(Boolean);
+        if (!cards.length) return;
+        var n = Math.max.apply(null, cards.map(function (c) { return c.m.weeks[1]; }));
+        var armed = [];
+        // the ruler's far end, "16 semaines" / "16 weeks" / "16 أسبوعاً"
+        var ends = function () {
+          var far = n + '\u00a0' + unit('price.weeks', n);
+          cards.forEach(function (c) { var e = c.w.querySelector('.t-wk-n span:last-child'); if (e) e.textContent = far; });
+        };
+        cards.forEach(function (c) {
+          var b = c.w.querySelector('.t-wk b');
+          c.w.style.setProperty('--wn', n);
+          b.style.insetInlineStart = pc(c.m.weeks[0] / n);
+          b.style.inlineSize = pc((c.m.weeks[1] - c.m.weeks[0]) / n);
+        });
+        ends();
+        document.addEventListener('numidea:lang', ends);
+        cards.forEach(function (c) {
+          c.w.classList.add('vz-on');
+          if (vzArm(c.w, function () { c.w.classList.add('vz-go'); })) armed.push(c.w);
+        });
+        vzOnce(armed, 0.9, function (el) { el.classList.add('vz-go'); });
+      })();
+
+      /* -- estimator: the live estimate as a dimension line over the three
+         packages' price bands, on a logarithmic scale that holds every quote
+         the estimator can give (worked out from PRICE_MODEL below: today
+         90 000 to 2 700 000 DA, drawn from 72 000 to 2 970 000). It moves
+         with the controls (transform transitions). The band of the package
+         the chosen type belongs to is picked out — Studio's for a Vitrine the
+         estimator quotes as Studio. The figures above are the statement and
+         the status line. */
+      (function () {
+        var box = document.querySelector('#estimator .esc');
+        if (!box || !est) return;
+        /* The extremes: every type at its smallest size with nothing added,
+           and at its largest with every option and the rush pace (a quote
+           only grows with size, options and pace). */
+        var all = Object.keys(PRICE_OPTS), qLo = Infinity, qHi = 0;
+        Object.keys(PRICE_MODEL).forEach(function (k) {
+          var m = PRICE_MODEL[k];
+          qLo = Math.min(qLo, ESTIMATE.quote(k, m.min, [], false).lo);
+          qHi = Math.max(qHi, ESTIMATE.quote(k, m.max, all, true).hi);
+        });
+        var V0 = qLo / 1.25, V1 = qHi * 1.1;
+        var at = function (v) { return logAt(v, V0, V1); };
+        var bar = box.querySelector('.esc-bar'), caps = box.querySelectorAll('.esc-cap');
+        var bands = [].slice.call(box.querySelectorAll('.esc-band'));
+        var names = [].slice.call(box.querySelectorAll('.esc-nm [data-tier]'));
+        var span = {};
+        bands.forEach(function (b) {
+          var k = b.getAttribute('data-tier'), m = PRICE_MODEL[k];
+          span[k] = [at(m.base[0]), at(m.base[1])];
+          b.style.insetInlineStart = pc(span[k][0]);
+          b.style.inlineSize = pc(span[k][1] - span[k][0]);
+        });
+        names.forEach(function (el) {
+          var s = span[el.getAttribute('data-tier')];
+          if (s) el.style.insetInlineStart = pc((s[0] + s[1]) / 2);
+        });
+        // held back, the line is a point at the estimate's middle; shown, it opens out
+        var shown = true;
+        var size = document.getElementById('est-size');
+        var place = function () {
+          var r = est.querySelector('input[name="est-type"]:checked');
+          var key = r ? r.value : 'surmesure', m = PRICE_MODEL[key];
+          var n = parseInt(size && size.value, 10) || m.def;
+          var opts = [].map.call(est.querySelectorAll('input[data-opt]:checked'), function (c) { return c.getAttribute('data-opt'); });
+          var pace = est.querySelector('input[name="est-pace"]:checked');
+          var q = ESTIMATE.quote(key, n, opts, !!(pace && pace.value === 'rush'));
+          var a = at(q.lo), z = at(q.hi), s = vzRtl() ? -1 : 1;
+          if (!shown) a = z = (a + z) / 2;
+          // a translate in % is a share of the element's own width, which is the track's
+          bar.style.transform = 'translateX(' + (s * a * 100).toFixed(3) + '%) scaleX(' + Math.max(z - a, 0.002).toFixed(4) + ')';
+          caps[0].style.transform = 'translateX(' + (s * a * 100).toFixed(3) + '%)';
+          caps[1].style.transform = 'translateX(' + (s * z * 100).toFixed(3) + '%)';
+          var tier = key === 'vitrine' && q.studio ? 'surmesure' : key;
+          bands.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-tier') === tier); });
+          names.forEach(function (el) { el.classList.toggle('on', el.getAttribute('data-tier') === tier); });
+        };
+        var go = function () { shown = true; box.classList.add('vz-go'); place(); };
+        shown = !vzArm(box, go);
+        est.addEventListener('change', place);
+        if (size) size.addEventListener('input', place);
+        // Arabic mirrors the scale, and with it the sign of the move
+        document.addEventListener('numidea:lang', place);
+        place();
+        box.classList.add('vz-on');
+        if (!shown) vzOnce([box], 0.9, go);
+      })();
+
+      /* -- market: every range in the table as a bar on one logarithmic price
+         scale (from 40 000 to 10 000 000 DA, widened if a figure ever falls
+         outside; a € or $ range sits where it converts to at the official
+         rate, FX), Numidea first and in the accent, the three markets in one
+         neutral, and Numidea's range carried down through each group as a
+         band: the point is where Numidea sits among them, for every kind of
+         project. The bars never move with the currency (converting
+         multiplies by a constant, which on a log scale only slides the
+         labels); the gridlines and their labels do.
+         It is built the first time the visitor opens the folded panel that
+         holds it ("Comment on chiffre"): most visitors never do, so the
+         page load pays nothing for it. The summary's click comes before the
+         panel opens, so the chart is there in the first frame of the open
+         panel; 'toggle' covers a panel opened another way (find in page).
+         MARKET and nlRange are declared in section 14 below, so even an
+         open panel waits until the handler is done. */
+      var drawMarket = function () {
+        try {
+          var fig = mkt && mkt.querySelector('.mkv'), plot = fig && fig.querySelector('.mkv-plot');
+          if (!plot || !MARKET || typeof nlRange !== 'function') return;
+          var TY = { vitrine: 'price.tyVitrine', surmesure: 'price.tyCustom', ecommerce: 'price.tyShop', app: 'price.tyApp', identite: 'price.tyBrand' };
+          var LANES = [['nl', 'mk.colNl'], ['dz', 'mk.colDz'], ['fr', 'mk.colFr'], ['us', 'mk.colUs']];
+          var rangeOf = function (row, lane) { return lane === 'nl' ? nlRange(row) : MARKET[row][lane]; };
+          var V0 = 40000, V1 = 10000000;
+          Object.keys(TY).forEach(function (row) {
+            if (!MARKET[row]) return;
+            LANES.forEach(function (ln) {
+              var r = rangeOf(row, ln[0]), f = FX[NATIVE[ln[0]]];
+              V0 = Math.min(V0, r[0] * f / 1.2);
+              V1 = Math.max(V1, r[1] * f * 1.1);
+            });
+          });
+          var at = function (dzd) { return logAt(dzd, V0, V1); };
+          var el = function (tag, cls, key) {
+            var e = document.createElement(tag);
+            if (cls) e.className = cls;
+            if (key) { e.setAttribute('data-i18n', key); e.textContent = t(key); }
+            return e;
+          };
+          // the scale's labels, above the first group and again under the last
+          var axes = ['', ' bot'].map(function (pos) {
+            var ax = el('div', 'mkv-ax' + pos), u = el('span', 'mkv-unit'), tk = el('span', 'mkv-tk');
+            ax.appendChild(u); ax.appendChild(tk);
+            return { ax: ax, unit: u, tk: tk };
+          });
+          plot.appendChild(axes[0].ax);
+          var grids = [], vals = [], lanes = [];
+          Object.keys(TY).forEach(function (row, g) {
+            if (!MARKET[row]) return;
+            var box = el('div', 'mkv-g'), head = el('div', 'mkv-hd'), gl = el('span', 'mkv-gl');
+            var nv = el('span', 'mkv-nv'), nr = nlRange(row);
+            head.appendChild(el('span', 'mkv-ty', TY[row]));
+            head.appendChild(nv);
+            box.appendChild(head);
+            box.appendChild(gl);
+            // Numidea's range, carried down through the group's lanes
+            var nb = el('b', 'mkv-nb');
+            nb.style.insetInlineStart = pc(at(nr[0]));
+            nb.style.inlineSize = pc(at(nr[1]) - at(nr[0]));
+            grids.push({ gl: gl, nb: nb });
+            LANES.forEach(function (ln, i) {
+              var nl = ln[0] === 'nl', r = rangeOf(row, ln[0]);
+              var from = NATIVE[ln[0]], lo = at(r[0] * FX[from]), hi = at(r[1] * FX[from]);
+              var lane = el('div', 'mkv-ln' + (nl ? ' nl' : ''));
+              var trk = el('span', 'mkv-trk'), bar = el('i', 'mkv-bar' + (r[2] ? ' open' : ''));
+              lane.style.gridRow = String(i + 2);
+              lane.appendChild(el('span', 'mkv-lab', ln[1]));
+              bar.style.insetInlineStart = pc(lo);
+              bar.style.inlineSize = pc(Math.max(hi - lo, 0.008));
+              bar.style.setProperty('--d', (g * 80 + i * 40) + 'ms');
+              trk.appendChild(bar);
+              lane.appendChild(trk);
+              box.appendChild(lane);
+              lanes.push(lane);
+              vals.push({ r: r, from: from, row: row, lane: ln[1], head: nl ? nv : null, bar: bar });
+            });
+            plot.appendChild(box);
+          });
+          plot.appendChild(axes[1].ax);
+          /* Tick labels in the chart's currency: 1, 2 and 5 times a power of
+             ten, shortened the way each language shortens them (100 k with a
+             no-break space, 100k, 100 ألف; the Arabic dual stands without
+             its numeral). */
+          var KM = [[1e6, 'mk.M'], [1e3, 'mk.k']];
+          var label = function (v) {
+            var lang = document.documentElement.getAttribute('lang') || DEFAULT_LANG;
+            for (var i = 0; i < KM.length; i++) {
+              if (v < KM[i][0]) continue;
+              var n = v / KM[i][0], k = KM[i][1];
+              if (lang === 'ar') return dual(n) ? unit(k, n) : n + ' ' + unit(k, n);
+              return n + (lang === 'en' ? '' : ' ') + t(k);
+            }
+            return grp(v);
+          };
+          // the table's currency choice, or the page's when it shows each market's own
+          var chartCur = function () {
+            var sel = mkt.querySelector('input[name="mk-cur"]:checked');
+            return sel && sel.value !== 'native' ? sel.value : CUR;
+          };
+          var text = function (o, c) {
+            var lo = o.r[0], hi = o.r[1], ap = '';
+            if (c !== o.from) { lo = tidy(lo * FX[o.from] / FX[c], c); hi = tidy(hi * FX[o.from] / FX[c], c); ap = '≈\u00a0'; }
+            // a range is one unit, never split over two lines: no-break spaces throughout
+            return ap + pre(c) + grp(lo) + dash() + grp(hi) + (o.r[2] ? '+' : '') + (post(c) ? ' ' + post(c) : '');
+          };
+          var render = function () {
+            var c = chartCur(), ticks = [];
+            for (var e = 1; e <= 8; e++) [1, 2, 5].forEach(function (m) {
+              var v = m * Math.pow(10, e), p = (Math.log(v * FX[c]) - Math.log(V0)) / (Math.log(V1) - Math.log(V0));
+              if (p > 0.015 && p < 0.985) ticks.push({ v: v, p: p, major: m === 1 });
+            });
+            axes.forEach(function (a) {
+              a.unit.textContent = sym(c);
+              a.tk.textContent = '';
+              ticks.forEach(function (tk) {
+                var s = el('span', tk.major ? 'mj' : 'mn');
+                s.textContent = label(tk.v);
+                s.style.insetInlineStart = pc(tk.p);
+                a.tk.appendChild(s);
+              });
+            });
+            grids.forEach(function (g) {
+              g.gl.textContent = '';
+              ticks.forEach(function (tk) {
+                var s = el('i', tk.major ? 'mj' : 'mn');
+                s.style.insetInlineStart = pc(tk.p);
+                g.gl.appendChild(s);
+              });
+              g.gl.appendChild(g.nb);
+            });
+            // Numidea's own range is written out in each group's heading; the
+            // markets' are one hover away, and all of them are in the table
+            vals.forEach(function (o) { if (o.head) o.head.textContent = text(o, c); });
+          };
+          /* Hover (a mouse only; touch and keyboard read the table): the
+             lane's range in its own currency and, converted, in the chart's.
+             One floating label, pinned on its inline-start side and moved
+             with a transform, so it never shifts the layout. */
+          var tip = el('div', 'mkv-tip');
+          plot.appendChild(tip);
+          var show = function (i) {
+            var o = vals[i], c = chartCur();
+            tip.textContent = '';
+            tip.appendChild(el('b', '')).textContent = t(TY[o.row]) + ' · ' + t(o.lane);
+            tip.appendChild(el('span', '')).textContent = text(o, o.from);
+            if (c !== o.from) tip.appendChild(el('span', '')).textContent = text(o, c);
+            /* Centred over the bar, kept inside the plot: where its left edge
+               should be, less where it already is. The label is pinned on its
+               inline-start side (the plot's right edge in Arabic) so a new
+               width never moves its start corner; offsetLeft reads that pinned
+               place in either direction, untouched by the transform. */
+            var pr = plot.getBoundingClientRect(), br = o.bar.getBoundingClientRect();
+            var w = tip.offsetWidth, x = br.left + br.width / 2 - pr.left - w / 2;
+            x = Math.max(0, Math.min(pr.width - w, x)) - tip.offsetLeft;
+            tip.style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(br.top - pr.top - tip.offsetHeight - 10) + 'px)';
+            lanes.forEach(function (ln, k) { ln.classList.toggle('hl', k === i); });
+            plot.classList.add('hov');
+            tip.classList.add('on');
+          };
+          var hide = function () {
+            tip.classList.remove('on');
+            plot.classList.remove('hov');
+            lanes.forEach(function (ln) { ln.classList.remove('hl'); });
+          };
+          lanes.forEach(function (ln, i) {
+            ln.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') show(i); });
+          });
+          plot.addEventListener('pointerleave', hide);
+          document.addEventListener('numidea:cur', render);
+          document.addEventListener('numidea:lang', function () { hide(); render(); });
+          mkt.addEventListener('change', function () { hide(); render(); });
+          render();
+          fig.hidden = false;
+          if (vzArm(fig, function () { fig.classList.add('vz-go'); })) {
+            vzOnce([plot], 0.15, function () { fig.classList.add('vz-go'); });
+          }
+        } catch (e2) { if (window.console && console.error) console.error(e2); }
+      };
+      Promise.resolve().then(function () {
+        var fig = mkt && mkt.querySelector('.mkv'), shut = fig && fig.closest('details');
+        if (!fig) return;
+        if (!shut || shut.open) { drawMarket(); return; }
+        var done = false;
+        var once = function () { if (!done) { done = true; drawMarket(); } };
+        var sum = shut.querySelector('summary');
+        if (sum) sum.addEventListener('click', once);
+        shut.addEventListener('toggle', once);
+      });
+    } catch (e) { if (window.console && console.error) console.error(e); }
 
     /* ---------------- 14 · market comparison ----------------
        Native figures live in the markup, so the table reads correctly with JS

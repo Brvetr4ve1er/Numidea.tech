@@ -1543,6 +1543,313 @@ html[dir="rtl"] .est-field input[type="range"]::-moz-range-track{background:line
 /* ---------- method: call to action under the four steps ---------- */
 .how-cta{display:flex;flex-wrap:wrap;gap:var(--s-3)}
 
+/* ===== r3/c: visualisations and motion =====
+   Pictures of figures the page already states (app.js 13b builds and arms
+   them): the method's rail, the Aperçu's five days, each tier's weeks, the
+   estimate against the three packages, the market ranges on one price
+   scale. Each is aria-hidden beside its text equivalent. Tokens only; the
+   marks are thin and the text keeps the text tokens, never a series colour.
+   Motion is entrance only, on transform and opacity: .vz-arm holds a
+   picture back, .vz-go / .vz-lit (and the rail's --rail) play it. Without those classes
+   (scripts off, reduced motion, print) every picture is simply drawn.
+   Pictures whose marks are placed by app.js keep their room from the first
+   paint and stay invisible until placed (.vz-on): no layout shift, and
+   nothing half-drawn if the script never arrives. */
+
+/* -- method: the rail draws itself, node to node --
+   The rail is the section's own (.steps::before, untouched). Held back, it
+   is scaled to nothing from its start, and app.js grows it to each node in
+   turn (--rail, the share of its length the line has reached), so its end
+   state is the static rail exactly: what reduced motion and scripts-off
+   show at once. A node waits small, not faded (its number is text, and a
+   faded number would be unreadable, 2.8:1, until the line reached it),
+   then opens out to its size when the line arrives. */
+.steps.vz-arm::before{transform:scaleY(var(--rail,0));transform-origin:50% 0;
+  transition:transform .42s var(--ease-out)}
+@media (min-width:1100px){
+  .steps.vz-arm::before{transform:scaleX(var(--rail,0));transform-origin:0 50%}
+  html[dir="rtl"] .steps.vz-arm::before{transform-origin:100% 50%}
+}
+.steps.vz-arm .step .node{z-index:1;transform:scale(.7);
+  transition:transform .5s cubic-bezier(.34,1.56,.64,1) .3s}
+.steps.vz-arm .step:first-child .node{transition-delay:0s}
+.steps.vz-arm .step.vz-lit .node{transform:none}
+
+/* -- the Aperçu: send, five working days, the call, the decision --
+   A vertical rail by default; laid along a line once its box is wide
+   enough (a container query, so the card's own width decides, not the
+   screen's): from 420px, which the split card's column always is (435px
+   at 1100), the four columns about 80-120px wide. Segments sit behind opaque markers. The one figure, what has
+   been paid when the visitor decides, is set as a figure. */
+.ptl-w{container-type:inline-size;margin:0 0 var(--s-5)}
+.ptl{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-4)}
+.ptl-s{position:relative;display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:var(--s-3);align-content:start}
+.ptl-s:not(:last-child)::after{content:"";position:absolute;z-index:0;inset-inline-start:11px;top:10px;
+  width:2px;height:calc(100% + var(--s-4));background:color-mix(in srgb,var(--teal) 45%,transparent);
+  transform-origin:50% 0}
+.ptl-m{position:relative;z-index:1;grid-row:1/span 2;justify-self:center;margin-top:4px;
+  width:12px;height:12px;border:2px solid var(--teal);border-radius:50%;background:var(--void)}
+/* the five working days, one cell each */
+.ptl-build .ptl-m{margin-top:0;width:8px;height:auto;border:0;border-radius:0;background:none;
+  display:grid;grid-template-rows:repeat(5,6px);gap:2px}
+.ptl-build .ptl-m i{display:block;border-radius:1px;background:var(--teal)}
+/* the decision is the visitor's, in the page's primary accent */
+.ptl-dec .ptl-m{border:0;border-radius:2px;background:var(--crimson);transform:rotate(45deg) scale(.86)}
+.ptl-t{grid-column:2;font-size:var(--t-small);line-height:1.4;color:var(--body-strong)}
+.ptl-d{grid-column:2;font-family:var(--font-mono);font-size:var(--t-label);line-height:1.5;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+html[dir="rtl"] .ptl-d{letter-spacing:0}
+.ptl-zero{grid-column:2;justify-self:start;margin-top:2px;font-family:var(--font-display);font-weight:700;
+  font-size:var(--t-title);line-height:1.15;letter-spacing:-.01em;color:var(--ice);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.ptl-zero .cur{font-family:var(--font-mono);font-size:var(--t-small);font-weight:400;letter-spacing:.06em;color:var(--teal-text)}
+html[dir="rtl"] .ptl-zero,html[dir="rtl"] .ptl-zero .cur{letter-spacing:0}
+@container (min-width:420px){
+  .ptl{grid-template-columns:minmax(0,.95fr) minmax(0,1.4fr) minmax(0,.95fr) minmax(0,1.2fr);gap:0 var(--s-4)}
+  .ptl-s{grid-template-columns:minmax(0,1fr);grid-template-rows:24px auto auto;row-gap:0}
+  .ptl-s:not(:last-child)::after{top:11px;inset-inline-start:6px;width:calc(100% + var(--s-4));height:2px;
+    transform-origin:0 50%}
+  html[dir="rtl"] .ptl-s:not(:last-child)::after{transform-origin:100% 50%}
+  .ptl-m{grid-row:1;justify-self:start;margin-top:6px}
+  .ptl-build .ptl-m{justify-self:stretch;width:auto;height:8px;margin-top:8px;
+    grid-template-rows:none;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+  .ptl-dec .ptl-m{margin-inline-start:1px}
+  .ptl-t,.ptl-d,.ptl-zero{grid-column:1}
+  .ptl-t{margin-top:6px}
+  .ptl-zero{margin-top:4px}
+}
+/* entrance: each moment in turn — the line out of it draws once it has
+   appeared, the five days fill one by one, the decision lands last */
+.ptl.vz-arm .ptl-s:not(:last-child)::after{transform:scale(0)}
+.ptl.vz-arm :is(.ptl-s>.ptl-m,.ptl-build .ptl-m i,.ptl-t,.ptl-d,.ptl-zero){opacity:0}
+.ptl.vz-arm :is(.ptl-s:not(.ptl-build)>.ptl-m,.ptl-build .ptl-m i){transform:scale(.4)}
+.ptl.vz-arm .ptl-s.ptl-dec>.ptl-m{transform:rotate(45deg) scale(.3)}
+.ptl.vz-arm :is(.ptl-t,.ptl-d,.ptl-zero){transform:translateY(4px)}
+.ptl.vz-arm.vz-go :is(.ptl-s>.ptl-m,.ptl-build .ptl-m i,.ptl-t,.ptl-d,.ptl-zero){
+  opacity:1;transform:none;transition:opacity .35s var(--ease-out) var(--pd,0s),transform .45s cubic-bezier(.34,1.4,.64,1) var(--pd,0s)}
+.ptl.vz-arm.vz-go .ptl-s.ptl-dec>.ptl-m{transform:rotate(45deg) scale(.86)}
+.ptl.vz-arm.vz-go .ptl-s:not(:last-child)::after{transform:none;transition:transform .4s var(--ease-out) var(--sd,0s)}
+/* the whole picture is in place by about 1.8s: a timeline that keeps the
+   reader waiting for its last step reads as unfinished */
+.ptl-s:nth-child(1){--pd:0s;--sd:.1s}
+.ptl-s:nth-child(2){--pd:.3s;--sd:.75s}
+.ptl-build .ptl-m i:nth-child(1){--pd:.35s}.ptl-build .ptl-m i:nth-child(2){--pd:.43s}
+.ptl-build .ptl-m i:nth-child(3){--pd:.51s}.ptl-build .ptl-m i:nth-child(4){--pd:.59s}
+.ptl-build .ptl-m i:nth-child(5){--pd:.67s}
+.ptl-s:nth-child(3){--pd:.95s;--sd:1.05s}
+.ptl-s:nth-child(4){--pd:1.25s}
+.ptl-dec .ptl-zero{--pd:1.4s}
+@media (min-width:1100px){
+  /* In the split card it reads under the brief it draws, beside the promise
+     and the call to action. It spans the promise's row and the button's, so
+     the button still starts where the promise ends, as it did before the
+     timeline: its height never pushes the button down. The promise is placed
+     by row so the button's rows can never displace it. */
+  .preview .promise{grid-row:3}
+  .preview .ptl-w{grid-column:3;grid-row:3/span 2;align-self:start;margin:var(--s-5) 0 0}
+  .preview .prev-actions{grid-row:4/span 3}
+  .preview .prev-terms{grid-row:5}
+  .preview .outcome{grid-row:6}
+}
+
+/* -- tiers: the delivery window on one ruler shared by the three cards --
+   The bar runs from the tier's shortest delivery to its longest, on a ruler
+   from 0 to the longest of all (16 weeks), one tick a week and both ends
+   labelled: it reads "2 to 4 weeks", never as a share done. Its room is kept
+   from first paint when scripts run (html.js), so the card never grows when
+   the widths and the end label arrive. */
+.t-weeks{display:none}
+html.js .tier .t-time{padding-bottom:var(--s-3);margin-bottom:0;border-bottom:0}
+html.js .t-weeks{display:block;padding-bottom:var(--s-4);margin-bottom:var(--s-5);border-bottom:1px solid var(--hairline)}
+.t-weeks:not(.vz-on) :is(.t-wk,.t-wk-n){visibility:hidden}
+.t-wk{position:relative;display:block;height:5px;border-radius:min(var(--r-sm),3px);
+  background:color-mix(in srgb,var(--hairline-2) 70%,transparent)}
+/* week ticks under the bar, one per week; both ends closed, so the ruler
+   is the same either way round */
+.t-wk::after{content:"";position:absolute;inset-inline:0;top:8px;height:4px;
+  border-inline:1px solid var(--hairline-2);
+  background:repeating-linear-gradient(90deg,var(--hairline-2) 0 1px,transparent 1px calc(100% / var(--wn,16)))}
+.t-wk b{position:absolute;inset-block:0;inset-inline-start:0;border-radius:inherit;background:var(--teal);
+  transform-origin:0 50%}
+html[dir="rtl"] .t-wk b{transform-origin:100% 50%}
+/* the ruler's two ends, under its ticks: 0 and the longest delivery */
+.t-wk-n{display:flex;justify-content:space-between;gap:var(--s-3);height:16px;margin-top:12px;
+  font-family:var(--font-mono);font-size:var(--t-label);line-height:16px;letter-spacing:.06em;
+  color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+html[dir="rtl"] .t-wk-n{letter-spacing:0}
+/* entrance: the window opens from its first week to its last */
+.t-weeks.vz-arm .t-wk b{transform:scaleX(0)}
+.t-weeks.vz-arm.vz-go .t-wk b{transform:none;transition:transform .7s var(--ease-out) .3s}
+
+/* -- estimator: the estimate as a dimension line over the packages --
+   The track clips: the line and its two end marks are track-wide boxes
+   moved and scaled by app.js (a translate in % is a share of the box's own
+   width), and only their visible part may show. The package the chosen
+   type belongs to lights by opacity, not by a colour transition. */
+.esc{display:none}
+html.js .esc{display:block;container-type:inline-size;margin:var(--s-2) 0 var(--s-1)}
+.esc:not(.vz-on){visibility:hidden}
+.esc-trk{position:relative;display:block;height:30px;overflow:hidden}
+.esc-band{position:absolute;bottom:0;height:8px;border-radius:min(var(--r-sm),3px);
+  background:color-mix(in srgb,var(--muted) 30%,transparent);
+  transition:opacity .5s var(--ease-out) var(--bd,0s)}
+.esc-band::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:color-mix(in srgb,var(--teal) 55%,transparent);opacity:0;transition:opacity var(--dur-base) var(--ease-out)}
+.esc-band.on::after{opacity:1}
+.esc-bar{position:absolute;inset-inline:0;top:7px;height:3px;background:var(--teal);transform-origin:0 50%;
+  transition:transform .45s var(--ease-out),opacity .3s var(--ease-out)}
+.esc-cap{position:absolute;inset:0;transition:transform .45s var(--ease-out),opacity .3s var(--ease-out)}
+.esc-cap::before{content:"";position:absolute;inset-inline-start:-1px;top:2px;bottom:0;width:2px;
+  background:linear-gradient(var(--teal) 0 14px,color-mix(in srgb,var(--teal) 45%,transparent) 14px)}
+html[dir="rtl"] .esc-bar{transform-origin:100% 50%}
+.esc-nm{position:relative;display:block;height:16px;margin-top:6px}
+.esc-nm span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap;font-family:var(--font-mono);
+  font-size:var(--t-label);line-height:16px;color:var(--muted);transition:opacity .5s var(--ease-out) var(--bd,0s)}
+html[dir="rtl"] .esc-nm span{transform:translateX(50%)}
+.esc-nm span.on{color:var(--ice)}
+.esc [data-tier="surmesure"]{--bd:.1s}.esc [data-tier="app"]{--bd:.2s}
+/* under ~270px (a 320-360px phone) three names do not fit on one line */
+@container (max-width:270px){
+  .esc-nm{height:32px}
+  .esc-nm [data-tier="surmesure"]{top:16px}
+}
+.esc.vz-arm:not(.vz-go) :is(.esc-band,.esc-bar,.esc-cap,.esc-nm span){opacity:0}
+
+/* -- market: every range on one price scale, Numidea first --
+   One grid for the whole plot: the lane labels share a column sized by the
+   longest (subgrid), the tracks share the rest. Gridlines belong to each
+   group, so a group's heading never has a line struck through it. Numidea's
+   range is carried down through the group as a band between two extension
+   lines, so where each market meets it reads without a ruler. */
+.mkv{margin:0 0 var(--s-6);container-type:inline-size}
+.mkv[hidden]{display:none}
+.mkv-plot{position:relative;display:grid;grid-template-columns:max-content minmax(0,1fr);
+  column-gap:var(--s-3);row-gap:var(--s-4)}
+.mkv-ax,.mkv-g,.mkv-ln{grid-column:1/-1;display:grid;
+  grid-template-columns:7.5em minmax(0,1fr);grid-template-columns:subgrid}
+.mkv-ax{align-items:end}
+/* the same scale again under the last group, so the lower rows read
+   without a trip back to the top */
+.mkv-ax.bot{align-items:start;margin-top:calc(-1 * var(--s-2))}
+.mkv-ax.bot .mkv-tk span{bottom:auto;top:0}
+.mkv-unit{font-family:var(--font-mono);font-size:var(--t-label);line-height:16px;color:var(--muted)}
+.mkv-tk{position:relative;display:block;height:16px}
+.mkv-tk span{position:absolute;bottom:0;transform:translateX(-50%);white-space:nowrap;
+  font-family:var(--font-mono);font-size:var(--t-label);line-height:16px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* the powers of ten are the graduations the caption counts in */
+.mkv-tk .mj{color:var(--body-strong)}
+html[dir="rtl"] .mkv-tk span{transform:translateX(50%)}
+.mkv-tk .mn{display:none}
+.mkv-g{grid-template-rows:auto repeat(4,17px)}
+.mkv-hd{grid-column:1/-1;grid-row:1;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:2px var(--s-3);padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid var(--hairline)}
+.mkv-ty{font-family:var(--font-display);font-weight:600;font-size:var(--t-ui);color:var(--ice)}
+html[dir="rtl"] .mkv-ty{font-family:var(--font-ar-display)}
+.mkv-nv{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:var(--t-small);
+  font-weight:600;color:var(--ice);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mkv-nv::before{content:"";flex:none;width:12px;height:8px;border-radius:min(var(--r-sm),2px);background:var(--teal)}
+/* decoration under the lanes, never the pointer's target: on a phone-width
+   chart it spans the name lines too, and would swallow their hover */
+.mkv-gl{grid-column:2;grid-row:2/-1;position:relative;pointer-events:none}
+.mkv-gl i{position:absolute;top:0;bottom:0;width:1px;background:var(--hairline)}
+.mkv-gl i.mj{background:var(--hairline-2)}
+.mkv-gl .mkv-nb{position:absolute;top:-3px;bottom:-3px;box-sizing:border-box;
+  border-inline:1px dashed color-mix(in srgb,var(--teal) 60%,transparent);
+  background:color-mix(in srgb,var(--teal) 8%,transparent)}
+.mkv-ln{align-items:center}
+.mkv-lab{font-family:var(--font-mono);font-size:var(--t-label);line-height:17px;color:var(--muted);white-space:nowrap}
+.mkv-ln.nl .mkv-lab{color:var(--ice)}
+.mkv-trk{position:relative;display:block;height:17px}
+.mkv-bar{position:absolute;top:50%;height:6px;margin-top:-3px;border-radius:min(var(--r-sm),3px);
+  background:color-mix(in srgb,var(--muted) 62%,transparent);transform-origin:0 50%;transition:opacity var(--dur-fast)}
+.mkv-ln.nl .mkv-bar{height:9px;margin-top:-4.5px;background:var(--teal)}
+/* "+": no ceiling, so the bar fades out instead of ending */
+.mkv-bar.open{-webkit-mask-image:linear-gradient(90deg,#000 50%,transparent);mask-image:linear-gradient(90deg,#000 50%,transparent)}
+html[dir="rtl"] .mkv-bar.open{-webkit-mask-image:linear-gradient(270deg,#000 50%,transparent);mask-image:linear-gradient(270deg,#000 50%,transparent)}
+html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
+/* hover (a mouse): the lane under the pointer stays, the rest step back */
+.mkv-plot.hov .mkv-ln:not(.hl) .mkv-bar{opacity:.4}
+.mkv-ln.hl .mkv-lab{color:var(--ice)}
+/* Pinned on its inline-start side (the right in Arabic) and moved only by
+   its transform: a new label is a new width, and a box pinned by its other
+   edge would move its start corner with every change of text, which Chrome
+   counts as a layout shift (a mouse move or a scroll is not an input). */
+.mkv-tip{position:absolute;top:0;inset-inline-start:0;z-index:3;display:grid;gap:2px;padding:8px 11px;pointer-events:none;
+  opacity:0;transition:opacity var(--dur-fast);border:1px solid var(--hairline-2);border-radius:var(--r-sm);
+  background:var(--plum);box-shadow:0 12px 30px -14px rgb(var(--shade) / calc(.8 * var(--shade-k)));
+  font-family:var(--font-display);font-size:var(--t-small);line-height:1.5;color:var(--body-strong);
+  font-variant-numeric:tabular-nums}
+/* no wider than the plot: on a 320px chart the heading wraps at its spaces,
+   and each range holds together (no-break spaces) */
+.mkv-tip b{font-weight:600;color:var(--ice)}
+.mkv-tip.on{opacity:1}
+.mkv-cap{margin-top:var(--s-4);max-width:62em;color:var(--muted);font-size:var(--t-small);line-height:1.6}
+@container (min-width:520px){.mkv-tk .mn{display:block}}
+/* A narrow chart (a phone: 180-290px) gives the names a line of their own
+   above each bar instead of a column beside it, so the bars keep the whole
+   width: beside a 66px name column a 320px phone had 100px of scale, and the
+   Arabic "100 ألف" and "1 مليون" touched. The gridlines and Numidea's band
+   are masked off the name lines, so no name has a line struck through it. */
+@container (max-width:440px){
+  .mkv-plot{grid-template-columns:minmax(0,1fr)}
+  .mkv-ax>*{grid-row:1;grid-column:1}
+  .mkv-unit{justify-self:end}
+  .mkv-g{grid-template-rows:auto repeat(4,28px)}
+  .mkv-gl{grid-column:1;
+    -webkit-mask-image:repeating-linear-gradient(transparent 0 15px,#000 15px 28px);
+    mask-image:repeating-linear-gradient(transparent 0 15px,#000 15px 28px)}
+  .mkv-ln{grid-template-rows:15px 13px;align-items:stretch}
+  .mkv-lab{grid-row:1;line-height:15px}
+  .mkv-trk{grid-row:2;height:13px}
+  /* the hover label in the label size, so its longest range fits a 180px plot */
+  .mkv-tip{padding:6px 8px;font-size:var(--t-label)}
+}
+/* entrance: the gridlines and Numidea's band settle, then each range draws
+   from its low end, group by group */
+.mkv.vz-arm .mkv-gl{opacity:0}
+.mkv.vz-arm .mkv-bar{transform:scaleX(0)}
+.mkv.vz-arm.vz-go .mkv-gl{opacity:1;transition:opacity .5s var(--ease-out)}
+.mkv.vz-arm.vz-go .mkv-bar{transform:none;transition:transform .7s var(--ease-out) var(--d,0s),opacity var(--dur-fast)}
+
+/* -- focus: a keyboard reaches a button with the same answer a pointer gets
+   on hover (the ring stays the focus indicator; this is the response) -- */
+.btn-primary:focus-visible{box-shadow:var(--glow-crimson);transform:translateY(-2px)}
+.btn-teal:focus-visible{box-shadow:var(--glow-teal);background:color-mix(in srgb,var(--teal) 8%,transparent)}
+.btn-ghost:focus-visible{border-color:var(--ice)}
+
+/* -- press: buttons and chips answer the finger (hover lifts were already
+   there; this is the moment of the press) -- */
+@media (prefers-reduced-motion:no-preference){
+  .btn:active{transform:translateY(0) scale(.97);transition-duration:.08s}
+  .echip,.eopt{transition:border-color var(--dur-fast),background var(--dur-fast),color var(--dur-fast),
+    transform var(--dur-fast) var(--ease-out)}
+  .echip:active,.eopt:active{transform:scale(.97)}
+  .eopt:has(input:disabled):active{transform:none}
+}
+/* The page-wide reduced-motion rule (*{transition:none}) does not reach
+   pseudo-elements: the one mark here that fades on its own gets it too. */
+@media (prefers-reduced-motion:reduce){.esc-band::after{transition:none}}
+
+/* -- forced colours: backgrounds become Canvas, which would erase every
+   mark; the marks are redrawn in the user's own system colours -- */
+@media (forced-colors:active){
+  :is(.mkv-bar,.esc-band,.ptl-build .ptl-m i,.ptl-dec .ptl-m,.mkv-nv::before){
+    forced-color-adjust:none;background:GrayText}
+  :is(.mkv-ln.nl .mkv-bar,.esc-band.on::after,.esc-bar,.t-wk b){forced-color-adjust:none;background:Highlight}
+  /* the weeks ruler is an outline, so its empty part never takes the
+     colour of the delivery window */
+  .t-wk{forced-color-adjust:none;background:Canvas;box-shadow:inset 0 0 0 1px GrayText}
+  /* gridlines stay quieter than the bars they measure */
+  .mkv-gl i{forced-color-adjust:none;background:GrayText;opacity:.35}
+  .mkv-gl i.mj{opacity:.6}
+  .esc-cap::before{forced-color-adjust:none;background:CanvasText}
+  .ptl-s:not(:last-child)::after{forced-color-adjust:none;background:CanvasText}
+  .mkv-gl .mkv-nb{forced-color-adjust:none;background:none;border-color:Highlight}
+  /* the method's rail is a gradient, which forced colours drop: drawn flat */
+  #how .steps::before{forced-color-adjust:none;background:CanvasText}
+}
+/* ===== end r3/c ===== */
+
 /* ---------- market comparison + pricing models ----------
    Same panel idiom as the estimator, and token-driven
    throughout: a literal colour here would be right in one palette only. */

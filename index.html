@@ -540,6 +540,19 @@
         <h3 id="prev-h" data-i18n="prev.name">L'Aperçu</h3>
         <p class="promise" data-i18n="prev.promise">Zéro risque. Juste la preuve.</p>
         <p class="brief" data-i18n="prev.brief">Avant tout paiement, on construit la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. On vous la présente en visio (30 min). Si vous dites non, vous ne devez rien.</p>
+        <!-- The brief above, drawn: its four moments and nothing else (5
+             working days, a 30-minute call, nothing paid before you decide).
+             The brief is the text equivalent, so this is aria-hidden; still a
+             list, so it reads in order with styles off. app.js 13b writes the
+             amount in the visitor's currency and draws it in. -->
+        <div class="ptl-w" aria-hidden="true">
+          <ol class="ptl">
+            <li class="ptl-s"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl1">Vous envoyez votre contenu</span></li>
+            <li class="ptl-s ptl-build"><span class="ptl-m"><i></i><i></i><i></i><i></i><i></i></span><span class="ptl-t" data-i18n="prev.tl2">On construit votre page d'accueil</span><span class="ptl-d" data-i18n="prev.tl2d">5 jours ouvrés</span></li>
+            <li class="ptl-s ptl-call"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl3">On vous la présente</span><span class="ptl-d" data-i18n="prev.tl3d">visio de 30 min</span></li>
+            <li class="ptl-s ptl-dec"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl4">Vous décidez</span><span class="ptl-d" data-i18n="prev.tl4d">Payé jusqu'ici :</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">DA</span></b></li>
+          </ol>
+        </div>
         <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.</p>
         <p class="prev-actions">
           <a class="btn btn-primary" id="prev-cta" href="#contact" data-i18n="prev.cta">Demander mon Aperçu →</a>
@@ -732,6 +745,7 @@
         <p class="t-for" data-i18n="price.t1for">Une présence crédible, vite en ligne.</p>
         <p class="t-range" data-tier="vitrine"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t1time">2 à 4 semaines</p>
+        <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
         <ul class="t-list">
           <li data-i18n="price.t1a">Vitrine ou landing, 1 à 5 pages</li>
           <li data-i18n="price.t1b">Design sur mesure — jamais un modèle tout fait repeint à vos couleurs</li>
@@ -748,6 +762,7 @@
         <p class="t-for" data-i18n="price.t2for">Le site qui porte vraiment l'entreprise.</p>
         <p class="t-range" data-tier="surmesure"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t2time">3 à 7 semaines</p>
+        <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
         <ul class="t-list">
           <li data-i18n="price.t2a">Site sur mesure, 6 à 15 pages</li>
           <li data-i18n="price.t2b">Trilingue FR / EN / AR, avec un arabe RTL pensé nativement</li>
@@ -764,6 +779,7 @@
         <p class="t-for" data-i18n="price.t3for">Quand il vous faut un outil métier, pas seulement un site.</p>
         <p class="t-range" data-tier="app"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t3time">8 à 16 semaines</p>
+        <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
         <ul class="t-list">
           <li data-i18n="price.t3a">Application web sur mesure : plateforme, portail ou outil métier</li>
           <li data-i18n="price.t3b">Paiement, comptes utilisateurs, tableaux de bord</li>
@@ -837,6 +853,14 @@
             <span class="cur" data-i18n="price.cur">DA</span>
           </p>
           <p class="eo-time" role="status"><span id="est-weeks">3 –⁠ 7</span> <span data-i18n="price.weeks">semaines</span></p>
+          <!-- The estimate placed against the three packages on one price
+               scale (logarithmic, so a 90 000 and a 1 200 000 DA range both
+               read). Drawn from PRICE_MODEL by app.js 13b; decoration over the
+               figures above, which the status line already announces. -->
+          <div class="esc" aria-hidden="true">
+            <div class="esc-trk"><span class="esc-band" data-tier="vitrine"></span><span class="esc-band" data-tier="surmesure"></span><span class="esc-band" data-tier="app"></span><span class="esc-bar"></span><span class="esc-cap"></span><span class="esc-cap"></span></div>
+            <div class="esc-nm"><span data-tier="vitrine" data-i18n="price.t1name">Essentiel</span><span data-tier="surmesure" data-i18n="price.t2name">Studio</span><span data-tier="app" data-i18n="price.t3name">Moteur</span></div>
+          </div>
           <ul class="eo-sum" id="est-summary"></ul>
           <p class="eo-fine" data-i18n="price.estFine">Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.</p>
           <a class="btn btn-primary" id="est-cta" href="#contact" data-i18n="price.estCta">Obtenir le prix ferme →</a>
@@ -876,6 +900,17 @@
             <label class="echip"><input type="radio" name="mk-cur" value="USD"><span>$</span></label>
           </div>
         </fieldset>
+
+        <!-- The table, drawn: each range as a bar on one price scale, so the
+             gap between the markets reads before any figure does. Built by
+             app.js 13b from MARKET and PRICE_MODEL (the same numbers as the
+             table, which stays the exact and accessible version, so the
+             picture and its reading note are aria-hidden); hidden until
+             then, so it never shows half-built or with scripts off. -->
+        <figure class="mkv" aria-hidden="true" hidden>
+          <div class="mkv-plot"></div>
+          <figcaption class="mkv-cap" data-i18n="mk.vizCap">Échelle logarithmique : chaque grande graduation vaut dix fois la précédente. Entre les deux lignes en tirets, la fourchette de Numidea, prolongée sur les trois marchés ; une barre qui s'estompe n'a pas de plafond. Montants convertis au taux officiel, chiffres exacts dans le tableau ci-dessous.</figcaption>
+        </figure>
 
         <section class="mk-scroll" tabindex="0" aria-labelledby="mk-cap">
           <table class="mk-table">
