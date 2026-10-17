@@ -1985,7 +1985,13 @@
        It also steps aside while the reader scrolls down: with the navbar it
        covered 142px of a 320x568 screen (25%) the whole way down. It slides
        back on a scroll up, or once the page has been still for 600ms, and
-       stays while focus is inside it. */
+       stays while focus is inside it. A same-page jump (a client logo to its
+       card, a menu link) is reading too: the bar stays aside until the
+       visitor moves the page themselves. Coming back 600ms after a logo's
+       jump, it covered the benefit line the logo leads to on a 320x568
+       phone. Caught on the click, not on hashchange, which a second tap on
+       the same logo never fires; a touch, the wheel or a key clears it
+       (each comes before the click it may lead to). */
     (function () {
       var bar = document.querySelector('.m-contact');
       if (!bar) return;
@@ -1993,10 +1999,10 @@
       // least 480px wide), where the bar would cover a third of the screen
       var mq = window.matchMedia('(max-width: 720px) and (min-height: 561px), (max-width: 479px)');
       var inView = { contact: false, footer: false }, menuOpen = false;
-      var lastY = scrollPos, goingDown = false, restT = 0;
+      var lastY = scrollPos, goingDown = false, restT = 0, jumped = false;
       function update() {
         bar.classList.toggle('on', mq.matches && !menuOpen && !inView.contact && !inView.footer
-          && scrollPos > viewH * 1.5 && (!goingDown || bar.contains(document.activeElement)));
+          && scrollPos > viewH * 1.5 && !jumped && (!goingDown || bar.contains(document.activeElement)));
       }
       function rest() { goingDown = false; lastY = scrollPos; update(); }
       function onBarScroll() {
@@ -2015,6 +2021,14 @@
         ['#contact', '.footer'].forEach(function (s) { var el = document.querySelector(s); if (el) io.observe(el); });
       }
       document.addEventListener('numidea:menu', function (e) { menuOpen = !!e.detail; update(); });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="#"]');
+        if (!a || a.getAttribute('href').length < 2) return;
+        jumped = true; clearTimeout(restT); update();
+      });
+      ['touchstart', 'wheel', 'keydown'].forEach(function (t) {
+        window.addEventListener(t, function () { jumped = false; }, { passive: true });
+      });
       window.addEventListener('scroll', onBarScroll, { passive: true });
       if (mq.addEventListener) mq.addEventListener('change', update); else if (mq.addListener) mq.addListener(update);
       update();
