@@ -1720,4 +1720,10 @@ equivalent (so the picture itself is `aria-hidden`):
 - **The market chart is built on first open** of the folded "Comment on
   chiffre" panel (on the summary's click, before the panel opens, so it is
   there in the panel's first frame): the page load pays nothing for a
-  picture most visitors never unfold.
+  picture most visitors never unfold. Two exceptions keep a target in
+  place: an arrival on a fragment inside the panel (`#mk-cap`, or a
+  `#:~:text=` link, which only the navigation entry still carries) builds
+  it before load, because the browser fixes its scroll target at load and
+  a chart built after it left the target a chart's height below the
+  screen; and any other opening (find in page) holds the table where it
+  was while the chart goes in above it.
