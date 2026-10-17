@@ -1448,6 +1448,10 @@
         pauseBtn.addEventListener('click', function () {
           var on = pauseBtn.getAttribute('aria-pressed') !== 'true';
           pauseBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+          // an explicit pause or play overrides a finger's rail pick: the
+          // button sits inside the plate, so its tap never clears `picked`,
+          // and play would otherwise report a rotation that does not run
+          held.picked = false;
           hold('user', on);
         });
       }
