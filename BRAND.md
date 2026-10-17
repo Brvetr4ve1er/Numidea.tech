@@ -1640,8 +1640,9 @@ recoloured on disk.
   (Chromium before 120) get the file as it is, in grey, on a dark chip
   (`rgb(var(--shade))`), never the solid block an alpha mask would paint.
 - **Each logo links to its own work card** (`#w-<slug>`), never off-site.
-  The targeted card is shown at once (the reveal would have it 24px low
-  and the jump would end under the nav) and outlined in the client's colour.
+  The targeted card is shown at once (the reveal would have it low by its
+  12px rise, so the jump would land that much short of the scroll padding,
+  its top against the nav) and outlined in the client's colour.
 - **Layout.** One row from 725px up (it never wraps; an orphaned fourth logo
   at 601-680px was the bug), two by two at or below 720px.
 - `check.mjs` holds the rules: only the four delivered clients, each its own

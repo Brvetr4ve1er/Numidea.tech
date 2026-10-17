@@ -477,10 +477,11 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 }
 /* A logo lands on its card, and the card says so in the client's colour.
    The pointer is still over the card after the jump, so the mark must beat
-   :hover too. A card the reveal has not reached yet sits 24px low
-   (translateY), and the browser scrolls to that box: after the reveal it
-   ended 10px under the fixed nav. A targeted card is shown at once, so the
-   jump measures the box where it stays. */
+   :hover too. A card the reveal has not reached yet sits low by the
+   reveal's rise (its translateY, 12px), and the browser scrolls to that
+   box: after the reveal the card ended that much higher than the scroll
+   padding allows, its top against the fixed nav. A targeted card is shown
+   at once, so the jump measures the box where it stays. */
 .js-ready .proj.reveal:target{opacity:1;transform:none;transition-property:border-color,box-shadow}
 .proj:target,.proj:target:hover{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
 .proj--brand:target,.proj--brand:target:hover{border-color:rgb(var(--brand));box-shadow:0 0 0 1px rgb(var(--brand))}
