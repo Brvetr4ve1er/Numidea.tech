@@ -1887,12 +1887,15 @@
          page (pointercancel): measured at 320-844px, a swipe up from the
          track set 22 pages to 9 while the page scrolled 176px. When the
          browser takes the gesture as a scroll the value is put back; a
-         sideways drag stays the slider's (no pointercancel). */
+         sideways drag stays the slider's (no pointercancel). It is put back
+         through the 'input' event, not a direct compute(): setting .value
+         fires nothing, and every view of the estimate (the figures here, the
+         range bar in 13b) listens to 'input', so all of them follow. */
       var touchFrom = null;
       eSize.addEventListener('pointerdown', function (e) { touchFrom = e.pointerType === 'touch' ? eSize.value : null; });
       eSize.addEventListener('pointerup', function () { touchFrom = null; });
       eSize.addEventListener('pointercancel', function () {
-        if (touchFrom !== null && eSize.value !== touchFrom) { eSize.value = touchFrom; compute(); }
+        if (touchFrom !== null && eSize.value !== touchFrom) { eSize.value = touchFrom; eSize.dispatchEvent(new Event('input')); }
         touchFrom = null;
       });
 
