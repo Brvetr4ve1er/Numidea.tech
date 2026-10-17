@@ -46,6 +46,7 @@ assets/
   page-i18n.js        # language switch for the generated pages
   fonts/              # self-hosted faces (no third-party requests)
   previews/*.webp     # screenshots of the live client sites (hero plate, cards)
+  clients/            # the four delivered clients' own logos (npm run logos)
   work/<slug>/*.webp  # project-sheet captures (npm run work:capture)
   og.jpg              # link-preview card (French), rendered by scripts/build-og.mjs
 scene/                # project sheets, generated from scripts/scene-data.mjs
@@ -92,6 +93,7 @@ OWNER-CONTENT.md      # everything only the owner can supply, and its status
 | `npm run scene` | Regenerate scene/ only |
 | `npm run og` | Re-render the share images (hub, workspacehq, assets/og.jpg) |
 | `npm run shots` / `work:capture` | Re-capture the client-site screenshots |
+| `npm run logos` | Re-take the four client logos from their live sites' headers (checks each is still the header logo) |
 
 Node 22.22 or later. `validate` and the browser gates need `npm install` (Playwright,
 axe-core, html-validate, sharp). In CI (`check.yml`) the invariants and `validate` run

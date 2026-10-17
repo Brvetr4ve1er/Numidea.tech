@@ -9,6 +9,7 @@
   },
   "scripts": {
     "shots": "node scripts/shots.mjs",
+    "logos": "node scripts/client-logos.mjs",
     "check": "node scripts/check.mjs && node scripts/themes-check.mjs",
     "bump": "node scripts/bump.mjs",
     "sweep": "node scripts/sweep.mjs",

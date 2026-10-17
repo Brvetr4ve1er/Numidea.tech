@@ -1377,6 +1377,32 @@ Every statement on the sheets was read off the live sites on 2026-10-06.
 Glaive is labelled a portfolio demo because its own site says so; it was never
 a client.
 
+**What each project gives the client.** After its title block every sheet
+says, in one sentence, who the client is (`context`), then lists 3 to 5
+things a visitor can do on the live site today (`gains`), each printed with
+the page that shows it (`at`). The heading follows the status: "Ce que le
+site apporte au client", "Ce que la démo montre" (Glaive), "Ce que l'outil
+apporte à ses utilisateurs" (WorkspaceHQ). They were read off the live sites
+on 2026-10-17, clicking through what each one claims (a calculator, a filter,
+a copy button) rather than trusting its labels. A benefit is what the client
+or their customers can now do, never a result: `check.mjs` (5c) refuses any
+digit, %, or word like increased, boosted or conversion in them and in the
+home cards' one-line versions (`proj*.gain`, keys after `proj7.desc`). Each
+client card links its line to its sheet's block (`scene/#gv-<slug>`), and a
+visually hidden `work.gainMore` ("— le détail sur la planche") ends the
+link's name, so a screen reader hears where it goes (the arrow is CSS with an
+empty alt); Nomara has no sheet, so its line is plain text.
+
+Two claims went while doing this. AlmaFlowClim's /realisations is nine
+text cards (trade, town, what was done): its filter buttons do nothing on the
+live site (no script, no categories on the cards) and the only images on it
+are the logo. So it is no longer "filterable", no longer a "galerie" /
+"gallery" / "معرض", and the French card no longer says "ses chantiers en
+photos": the copy says "ses réalisations chantier par chantier", "a page of
+past jobs", and the deliverable is "Page de réalisations". Its footer links to `/#zones`
+are dead too (the section is `#zones-title`). Fixing the client's site is
+the studio's call; the word can come back after.
+
 `npm run build` runs the page generators in one go: `build-fr` (writes
 `I18N.fr` into the French baked into `index.html`, its title, description and
 FAQ structured data), `build-scene`, `build-voices`, `build-legal`,
@@ -1467,6 +1493,45 @@ Nothing on the page claims content it does not have.
 - **Photos.** The founder card and the team grid carry commented-out `<img>`
   slots in `index.html`. Until a real photo is added (for the founder, never
   a generated one), the monogram and the initials stay.
+
+## Client logo strip
+
+Under the proof line, "Ils nous ont confié leur site" shows the four
+delivered clients (Bordj Steel, Alliance Travel, AlmaFlowClim, Nomara
+Voyages), never the Glaive demo or WorkspaceHQ. Each logo is the file the
+client's live site shows in its header, taken by `npm run logos`
+(`scripts/client-logos.mjs`, which refuses a file that is no longer the
+header logo): two SVGs as served (path data to 2 decimals), two PNGs as
+WebP 96px tall, every file cropped to its ink. Nothing is redrawn or
+recoloured on disk.
+
+- **One colour, every theme.** The page paints each logo in `--muted`
+  (`--ice` on hover and focus) through a CSS mask of its own file; the
+  `<img>` keeps the alt and its own pixels are pushed out of its box.
+  `crossorigin` on the `<img>` makes it the same CORS request as the mask:
+  4 requests instead of 8 (measured).
+- **Not lazy, so small.** The CSS mask is fetched as soon as the strip is
+  styled, so the four files load with the page, scrolled or not, whatever
+  `loading="lazy"` on the `<img>` says (about 0.2 s after navigation at 390
+  and 1280). `npm run logos` therefore writes SVG path data to 2 decimals
+  and the WebPs at quality 75, alpha 70 (the masks match the lossless-alpha
+  files to the eye): 51 KB raw, about 24 KB gzipped in all (was 73 KB /
+  39 KB). On a throttled phone (390×844, 1.6 Mbps, 150 ms RTT, CPU 4×,
+  local server without gzip) the load event moves about 0.3 s against the
+  page without the strip (was 0.44 s); LCP does not move.
+- **Nomara is masked by brightness**, from the light-ink file its own site
+  shows on a dark ground: its mark is a dark tile with a light glyph, which
+  as a shape would be a blank square. The glyph and the wordmark carry the
+  colour; the tile stays a faint ground. Browsers without a luminance mask
+  (Chromium before 120) get the file as it is, in grey, on a dark chip
+  (`rgb(var(--shade))`), never the solid block an alpha mask would paint.
+- **Each logo links to its own work card** (`#w-<slug>`), never off-site.
+  The targeted card is shown at once (the reveal would have it 24px low
+  and the jump would end under the nav) and outlined in the client's colour.
+- **Layout.** One row from 725px up (it never wraps; an orphaned fourth logo
+  at 601-680px was the bug), two by two at or below 720px.
+- `check.mjs` holds the rules: only the four delivered clients, each its own
+  file, alt, intrinsic width/height and mask, linked to its own card.
 
 ## Arabic conventions
 

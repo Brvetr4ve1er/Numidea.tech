@@ -382,6 +382,19 @@
       <div><svg class="ai ai-stat" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="13" r="8"/><path class="p" pathLength="1" d="M10 2.8h4M12 2.8V5M18.4 6.6l1.3-1.3"/><path class="p a-hand" style="--o:12px 13px;--t:6s" pathLength="1" d="M12 13V8.5"/></svg><div class="stat" data-count="24" data-prefix="&lt;" data-suffix="h" data-suffix-ar=" س">&lt;24h</div><div class="stat-label" data-i18n="proof.s4">de réponse, en heures ouvrées</div></div>
     </div>
     <p class="proof-line" data-i18n="proof.line">Quatre sites clients sont en ligne aujourd'hui — ouvrez-les ci-dessous.</p>
+    <!-- The four delivered client sites, each logo the client's own file
+         (scripts/client-logos.mjs), painted in one theme colour by styles.css
+         ("r3/b: client logos") and linked to its work card below. Never the
+         Glaive demo or WorkspaceHQ: they are not clients. -->
+    <div class="clients">
+      <h2 class="cl-h" data-i18n="clients.h">Ils nous ont confié leur site</h2>
+      <ul class="cl-row">
+        <li><a class="cl cl-bordjsteel" href="#w-bordjsteel"><img src="assets/clients/bordjsteel.svg" alt="Bordj Steel" width="859" height="712" loading="lazy" decoding="async" crossorigin="anonymous"></a></li>
+        <li><a class="cl cl-alliance" href="#w-alliance"><img src="assets/clients/alliance.svg" alt="Alliance Travel" width="427" height="150" loading="lazy" decoding="async" crossorigin="anonymous"></a></li>
+        <li><a class="cl cl-almaflow" href="#w-almaflow"><img src="assets/clients/almaflow.webp" alt="AlmaFlowClim" width="324" height="96" loading="lazy" decoding="async" crossorigin="anonymous"></a></li>
+        <li><a class="cl cl-nomara" href="#w-nomara"><img src="assets/clients/nomara.webp" alt="Nomara Voyages" width="357" height="96" loading="lazy" decoding="async" crossorigin="anonymous"></a></li>
+      </ul>
+    </div>
   </section>
 
 
@@ -396,12 +409,13 @@
       <!-- Bento: live sites first, two featured as wide cards. At 3 columns
            wide(2)+1 / 1+wide(2) / 1+1+1 closes flush; at 2 columns only the
            first stays wide (2+6 = 8 cells). The order is part of the layout. -->
-      <article class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
+      <article id="w-bordjsteel" class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" alt="Aperçu du site Bordj Steel" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
           <h3>Bordj Steel</h3>
           <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, leader de la construction métallique en Algérie — catalogue produits, références et espace recrutement.</p>
+          <a class="gain" href="scene/#gv-bordjsteel"><span data-i18n="proj4.gain">Un acheteur trouve la bonne gamme et ses caractéristiques techniques sans appeler.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="pills"><span class="pill">B2B</span><span class="pill" data-i18n="tag.corporate">Institutionnel</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
@@ -410,12 +424,13 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" style="--brand:95,214,134">
+      <article id="w-alliance" class="proj proj--brand reveal" style="--brand:95,214,134">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="assets/previews/alliancetravel.webp" alt="Aperçu du site Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
           <h3>Alliance Travel</h3>
           <p data-i18n="proj2.desc">Identité, site trilingue et prise de rendez-vous visa pour une agence de voyages de Bordj Bou Arréridj.</p>
+          <a class="gain" href="scene/#gv-alliance"><span data-i18n="proj2.gain">Un voyageur estime son budget et envoie une demande complète sur WhatsApp.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="pills"><span class="pill" data-i18n="tag.brand">Marque</span><span class="pill" data-i18n="tag.funnel">Tunnel de vente</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
@@ -424,12 +439,13 @@
         </div>
       </article>
 
-      <article class="proj proj--brand reveal" style="--brand:59,164,224">
+      <article id="w-almaflow" class="proj proj--brand reveal" style="--brand:59,164,224">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="assets/previews/almaflowclim.webp" alt="Aperçu du site AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Artisan · Île-de-France</span>
           <h3>AlmaFlowClim</h3>
-          <p data-i18n="proj3.desc">Le site d'un artisan de Gennevilliers en climatisation, chauffage et plomberie : une page par métier, ses chantiers en photos et une demande de devis en un seul formulaire.</p>
+          <p data-i18n="proj3.desc">Le site d'un artisan de Gennevilliers en climatisation, chauffage et plomberie : une page par métier, ses réalisations chantier par chantier et une demande de devis en un seul formulaire.</p>
+          <a class="gain" href="scene/#gv-almaflow"><span data-i18n="proj3.gain">En cas de panne, un client appelle d'un simple appui depuis la page du métier.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="pills"><span class="pill" data-i18n="tag.static">Site vitrine</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
@@ -438,12 +454,13 @@
         </div>
       </article>
 
-      <article class="proj proj--wide proj--brand reveal" style="--brand:34,180,104">
+      <article id="w-nomara" class="proj proj--wide proj--brand reveal" style="--brand:34,180,104">
         <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" alt="Aperçu du site Nomara Voyages" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
           <h3>Nomara Voyages</h3>
           <p data-i18n="proj6.desc">Une vitrine bilingue pour des voyages organisés et l'Omra au départ de Constantine.</p>
+          <p class="gain" data-i18n="proj6.gain">Un pèlerin compare les forfaits Omra par prix et distance du Haram, puis écrit sur WhatsApp.</p>
           <div class="pills"><span class="pill" data-i18n="work.bilingual">Bilingue</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>

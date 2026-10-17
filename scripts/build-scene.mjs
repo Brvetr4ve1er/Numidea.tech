@@ -109,6 +109,23 @@ function sheet(p, i) {
         </ul>
       </section>` : '';
 
+  // What the work gives the client (for the demo: what it shows; for our
+  // product: what it gives its users). The client's context in one sentence,
+  // then 3-5 things a visitor can do on the live site today, each with the
+  // page that shows it. The home page's work cards link here (#gv-<slug>).
+  const gainT = put('ui.gain.' + p.status, Object.fromEntries(LANGS.map((l) => [l, UI[l].gain[p.status]])));
+  const ctxL = put('ui.ctxL.' + p.status, Object.fromEntries(LANGS.map((l) => [l, UI[l].ctxL[p.status]])));
+  const gv = `
+      <section class="sh-block gv" aria-labelledby="gv-${p.slug} h-${p.slug}">
+        <h3 class="sh-h" id="gv-${p.slug}" ${T('ui.gain.' + p.status)}>${esc(gainT)}</h3>
+        <div class="gv-body">
+          <p class="gv-ctx"><b ${T('ui.ctxL.' + p.status)}>${esc(ctxL)}</b><span ${T(`${k}.ctx`)}>${esc(put(`${k}.ctx`, p.context))}</span></p>
+          <ol class="gv-list">
+            ${p.gains.map((g, j) => `<li><span class="gv-n" aria-hidden="true">${pad(j + 1)}</span><p ${T(`${k}.g${j}`)}>${esc(put(`${k}.g${j}`, g))}</p><code>${esc(g.at)}</code></li>`).join('\n            ')}
+          </ol>
+        </div>
+      </section>`;
+
   // the client's own words, in the language they gave them (scripts/voices-data.mjs)
   const voices = VOICES.filter((v) => v.client === p.slug);
   const vq = voices.length ? `
@@ -149,6 +166,7 @@ function sheet(p, i) {
           <figcaption class="dims" aria-hidden="true"><span class="dim-w">1440&nbsp;px</span><span class="dim-h">900</span></figcaption>
         </figure>
       </div>
+${gv}
 
       <section class="sh-block" aria-labelledby="pg-${p.slug} h-${p.slug}">
         <h3 class="sh-h" id="pg-${p.slug}" ${T('ui.pages')}>${esc(ui('pages'))}</h3>

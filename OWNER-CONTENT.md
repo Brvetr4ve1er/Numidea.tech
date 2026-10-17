@@ -12,7 +12,7 @@ Status as of 2026-10-12 (updated after the review round).
 | 4 | Team names and photos; the team-size claim | Initials D, S, T; "four specialists" claimed | `index.html` #founder, `assets/app.js` |
 | 5 | A studio email on its own domain | Personal Gmail in use | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
-| 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid |
+| 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
 | 8 | Arabic native review | Pending | `assets/app.js`, `scripts/scene-data.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art: rights | Open question | `hub/` |
@@ -98,7 +98,17 @@ is enough; keep it.
 
 ## 7. Nomara Voyages
 Shown as delivered work. Confirm it is a real client with permission to show
-the site; otherwise it comes off the work grid, the hero plate and the counts.
+the site; otherwise it comes off the work grid, the hero plate, the counts and
+the client logo strip (its `<li>` in index.html, `assets/clients/nomara.webp`,
+its rule in styles.css and its block in `scripts/client-logos.mjs`), and its
+card's benefit line (`proj6.gain` in app.js); `nomara` then leaves
+`VOICE_CLIENTS` in `scripts/voices-data.mjs`, the list `check.mjs` holds the
+strip and the benefit lines to.
+
+The logo strip ("Ils nous ont confié leur site") shows each client's own
+logo, in one theme colour. Using a client's logo on the studio's site is
+usually agreed with the client; the same email or WhatsApp message as for
+item 6 can cover it.
 
 ## 8. Arabic native review
 The Arabic copy was written for this site and needs a native speaker's pass.

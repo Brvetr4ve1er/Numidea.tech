@@ -8,6 +8,11 @@
  *   3. assets         — every local src/href on every page exists on disk
  *   4. stamp sync     — all ?v= cache-bust stamps are identical across pages
  *   5. client links   — data-client links agree (plate, card, browser bar, shots, showcase); none on hub/
+ *  5b. client logos   — the proof band's logo strip: the four delivered clients only, each
+ *                        logo its own file, alt, intrinsic size and mask, linked to its card
+ *  5c. client benefits — each project sheet: the client's context and 3-5 benefits
+ *                        (fr/en/ar, each with its live page); each client work card: one
+ *                        benefit line linked to its sheet; no figures or results anywhere
  *   7. generated pages — scene/index.html, the voices region and the French baked
  *                        into index.html (with its FAQ structured data) equal their
  *                        generators' output, and every page with an inline
@@ -32,7 +37,7 @@ import { renderSitemap } from './build-sitemap.mjs';
 import { applyVoices } from './build-voices.mjs';
 import { renderLegal, markerRegions } from './build-legal.mjs';
 import { LEGAL, missing as legalMissing } from './legal-data.mjs';
-import { validate as validateVoices } from './voices-data.mjs';
+import { validate as validateVoices, VOICE_CLIENTS } from './voices-data.mjs';
 import { bakeFr } from './build-fr.mjs';
 import { loadDicts, norm } from './lib/i18n.mjs';
 import { UI as SCENE_UI, PROJECTS as SCENE_PROJECTS } from './scene-data.mjs';
@@ -146,6 +151,87 @@ tagDrift.length ? bad('client links disagree: ' + tagDrift.join('; ')) : ok(`cli
 shotDrift.length ? bad('scripts/shots.mjs and the page cover different clients: ' + shotDrift.join(', ')) : ok('screenshot pipeline covers exactly the linked clients');
 stray.length ? bad('showcase uses URLs the main page does not link: ' + stray.join(', ')) : ok('showcase URLs all linked from the main page');
 onHub.length ? bad("client sites listed on the hub (it is the artist's page): " + onHub.join(', ')) : ok('hub lists no client sites');
+
+/* 5b — the client logo strip in the proof band ("Ils nous ont confié leur
+   site"): exactly the four delivered clients (VOICE_CLIENTS: never the Glaive
+   demo or WorkspaceHQ), each logo a file in assets/clients/ with the client's
+   name as its alt, width/height equal to the file's own size (the box is
+   reserved before the file arrives), the same file as its styles.css
+   mask, and a link to that client's own work card. scripts/client-logos.mjs
+   takes the files from the live sites. */
+const logoErr = [];
+const strip = (/<ul class="cl-row">([\s\S]*?)<\/ul>/.exec(html) || [])[1];
+const fileSize = (f) => {
+  const b = readFileSync(join(ROOT, f));
+  if (f.endsWith('.svg')) {
+    const tag = /<svg\b[^>]*>/.exec(b.toString('utf8'))?.[0] || '';
+    return [Number(/\swidth="([\d.]+)"/.exec(tag)?.[1]), Number(/\sheight="([\d.]+)"/.exec(tag)?.[1])];
+  }
+  const kind = b.toString('latin1', 12, 16);
+  if (kind === 'VP8X') return [b.readUIntLE(24, 3) + 1, b.readUIntLE(27, 3) + 1];
+  if (kind === 'VP8L') { const v = b.readUInt32LE(21); return [(v & 0x3fff) + 1, ((v >> 14) & 0x3fff) + 1]; }
+  if (kind === 'VP8 ') return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+  return [NaN, NaN];
+};
+const css = read('assets/styles.css');
+const seen = [];
+if (!strip) logoErr.push('no <ul class="cl-row"> in index.html');
+else for (const li of strip.match(/<li>[\s\S]*?<\/li>/g) || []) {
+  const slug = (/class="cl cl-([a-z0-9-]+)"/.exec(li) || [])[1];
+  const at = (k) => (new RegExp(`\\s${k}="([^"]*)"`).exec(li) || [])[1];
+  if (!slug || !Object.hasOwn(VOICE_CLIENTS, slug)) { logoErr.push(`${slug || '?'}: not a delivered client`); continue; }
+  seen.push(slug);
+  const [href, src, alt] = [at('href'), at('src'), at('alt')];
+  if (alt !== VOICE_CLIENTS[slug]) logoErr.push(`${slug}: alt "${alt}" ≠ "${VOICE_CLIENTS[slug]}"`);
+  const card = html.split(/<article\b/).slice(1).find((a) => a.startsWith(` id="w-${slug}"`));
+  if (href !== `#w-${slug}` || !card || !card.includes(`data-client="${slug}"`)) logoErr.push(`${slug}: must link to its own work card, <article id="w-${slug}"> with data-client="${slug}"`);
+  if (!/^assets\/clients\/[a-z0-9-]+\.(svg|webp)$/.test(src || '') || !existsSync(join(ROOT, src))) { logoErr.push(`${slug}: logo file ${src} missing`); continue; }
+  const [w, h] = fileSize(src);
+  if (Number(at('width')) !== Math.round(w) || Number(at('height')) !== Math.round(h)) logoErr.push(`${slug}: width/height ${at('width')}×${at('height')} ≠ ${src} ${Math.round(w)}×${Math.round(h)}`);
+  const masks = [...css.matchAll(new RegExp(`\\.cl-${slug} img\\{[^}]*?mask-image:url\\(([^)]+)\\)`, 'g'))].map((m) => m[1]);
+  if (!masks.length || masks.some((m) => 'assets/' + m !== src)) logoErr.push(`${slug}: styles.css mask (${masks.join(', ') || 'none'}) is not ${src}`);
+}
+const absent = Object.keys(VOICE_CLIENTS).filter((c) => !seen.includes(c));
+if (strip && absent.length) logoErr.push('missing: ' + absent.join(', '));
+const unused = readdirSync(join(ROOT, 'assets/clients')).filter((f) => !(strip || '').includes(`assets/clients/${f}"`));
+if (unused.length) logoErr.push('assets/clients/ files not on the strip: ' + unused.join(', '));
+logoErr.length ? bad('client logo strip: ' + logoErr.join('; ')) : ok(`client logo strip: the ${seen.length} delivered clients, each its own file, alt, size and work card`);
+
+/* 5c — what each project gives the client: every project sheet carries the
+   client's context and 3-5 benefits in fr/en/ar, each with the live page
+   that shows it (`at`); every delivered client's work card carries one
+   benefit line (<slug-key>.gain, linked to its sheet's #gv-<slug> when it
+   has one, the link named "… — le détail sur la planche" by a visually
+   hidden work.gainMore so it says where it goes). Benefits say what someone can now do, never a result: no
+   figures at all, no %, no "increased"/"boosted"/"conversion" and the like. */
+const gainErr = [];
+const RESULT = /[0-9٠-٩۰-۹%]|\b(augment|hausse|boost|doubl|tripl|record|increas|grow|conversion|ranking|classement|r[ée]sultat|result|ROI|leader)|زياد|ارتفاع|ضاعف|نسبة|نتائج|الأول في/i;
+const say = (where, s) => { if (typeof s !== 'string' || !s.trim()) gainErr.push(`${where}: empty`); else if (RESULT.test(s)) gainErr.push(`${where}: reads as a metric or result ("${s.match(RESULT)[0]}")`); };
+for (const p of SCENE_PROJECTS) {
+  for (const l of LANGS) say(`${p.slug} context.${l}`, p.context?.[l]);
+  const g = p.gains || [];
+  if (g.length < 3 || g.length > 5) gainErr.push(`${p.slug}: ${g.length} benefits (3 to 5)`);
+  g.forEach((x, i) => {
+    if (!/^\/\S*$/.test(x.at || '')) gainErr.push(`${p.slug} gains[${i}]: \`at\` must be the live page that shows it ("/…")`);
+    for (const l of LANGS) say(`${p.slug} gains[${i}].${l}`, x[l]);
+  });
+}
+const sheets = new Set(SCENE_PROJECTS.map((p) => p.slug));
+for (const slug of Object.keys(VOICE_CLIENTS)) {
+  const card = html.split(/<article\b/).slice(1).find((a) => a.startsWith(` id="w-${slug}"`)) || '';
+  // a link: the sentence in its own span, then a visually hidden suffix
+  // (work.gainMore) so its name says it opens the sheet; plain text: <p>
+  const a = /<a class="gain" href="([^"]*)"><span data-i18n="([^"]+)">[^<]*<\/span><span class="sr-only" data-i18n="work\.gainMore">[^<]*<\/span><\/a>/.exec(card);
+  const p = /<p class="gain" data-i18n="([^"]+)">/.exec(card);
+  if (!a && !p) { gainErr.push(`${slug}: work card has no benefit line (<a class="gain"><span data-i18n>…</span><span class="sr-only" data-i18n="work.gainMore">…</span></a>, or <p class="gain" data-i18n>)`); continue; }
+  const [href, key] = a ? [a[1], a[2]] : [undefined, p[1]];
+  const want = sheets.has(slug) ? `scene/#gv-${slug}` : undefined;
+  if (href !== want) gainErr.push(`${slug}: benefit line ${want ? 'must link to ' + want : 'has no sheet, so it links nowhere'} (found ${href || 'no link'})`);
+  for (const l of LANGS) say(`${key} (${l})`, DICT[l]?.[key]);
+}
+for (const l of LANGS) say(`work.gainMore (${l})`, DICT[l]?.['work.gainMore']);
+gainErr.length ? bad('client benefits: ' + gainErr.join('; '))
+  : ok(`client benefits: ${SCENE_PROJECTS.length} sheets with context and 3-5 benefits each, ${Object.keys(VOICE_CLIENTS).length} work cards with a line, no figures or results`);
 
 /* 6 — deploy coverage */
 const deployMissing = DEPLOY.filter((e) => !existsSync(join(ROOT, e)));

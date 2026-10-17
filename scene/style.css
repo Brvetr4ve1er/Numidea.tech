@@ -188,6 +188,30 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .assets img{max-height:100%;object-fit:contain}
 .assets span{display:block;margin-top:8px;font:400 12px var(--mono);color:var(--muted);text-transform:capitalize}
 
+/* ===== r3/b: what the work gives the client ===== */
+/* Under each sheet's title block: the client's context in one sentence (a
+   framed note, like the spec table), then numbered rows, each a thing a
+   visitor can do on the live site today with the page that shows it
+   (scripts/scene-data.mjs `gains`). From 1000px the note and the rows share
+   the title block's 4/8 split; the page path sits at the row's end from
+   700px and under the sentence below. Nothing moves. */
+.gv-body{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+@media (min-width:1000px){.gv-body{grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(20px,3vw,40px);align-items:start}}
+.gv-ctx{padding:14px 16px;border:1px solid var(--line-2);border-radius:6px;background:var(--paper);font-size:15px;line-height:1.6;color:var(--ink)}
+.gv-ctx b{display:block;margin-bottom:6px;font:500 11px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.gv-list{border-top:1px solid var(--line)}
+.gv-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.gv-n{grid-row:span 2;font:500 12px/25px var(--mono);letter-spacing:.08em;color:var(--gold)}
+.gv-list p{font-size:15px;line-height:25px;color:var(--ink)}
+.gv-list code{justify-self:start;max-width:100%;font:400 12px/1.6 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+@media (min-width:700px){
+  .gv-list li{grid-template-columns:auto minmax(0,1fr) auto;align-items:baseline}
+  .gv-n{grid-row:auto}
+  .gv-list code{justify-self:end;max-width:16em;text-align:end}
+}
+html[dir="rtl"] .gv-ctx b{font-family:var(--ar);font-size:13px;font-weight:600;letter-spacing:0;text-transform:none}
+html[dir="rtl"] .gv-n{letter-spacing:0}
+
 /* ---- closing ---- */
 .outro{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;padding:clamp(40px,6vw,72px) 0 clamp(56px,8vw,96px);border-top:1px solid var(--line)}
 .outro p{font:700 clamp(22px,2.6vw,30px)/1.2 var(--display);flex-basis:100%}

@@ -415,6 +415,101 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 
 
 /* ---------- selected work ---------- */
+/* ===== r3/b: client logos, the work cards' benefit line ===== */
+/* "Ils nous ont confié leur site": the four delivered client sites, under the
+   proof line. Each logo is the client's own file, as its site serves it
+   (scripts/client-logos.mjs), and the page paints all four in ONE theme
+   colour through a mask: no recoloured copies, and the row reskins with the
+   six themes. The <img> carries the mask and keeps its alt; its own pixels
+   are pushed out of its box (object-position) so only the theme colour
+   shows through the silhouette. crossorigin on the <img> makes its request
+   the same CORS request as the mask's, so each file downloads once. The
+   mask is fetched as soon as the strip is styled, so the four files load
+   with the page whatever loading="lazy" says (24 KB gzipped in all): keep
+   them small (scripts/client-logos.mjs).
+   Three logos are masked by their shape (alpha). Nomara's mark is a dark
+   tile with a light glyph inside: as a shape it would be a blank square, so
+   it is masked by its brightness, from the light-ink file its own site shows
+   on a dark ground: glyph and wordmark take the colour, the tile stays a
+   faint ground behind the glyph.
+   Widths share one visual weight (width ~ aspect^0.65); Bordj Steel's solid
+   block reads heavier than the wordmarks, so it sits a little under that.
+   Four abreast never wraps (an orphan fourth logo at 601-680px did); below
+   720px the row turns two by two. */
+.clients{margin-top:var(--s-7);display:grid;justify-items:center;gap:var(--s-4)}
+.cl-h{display:flex;align-items:center;gap:var(--s-4);margin:0;font-family:var(--font-mono);font-size:var(--t-label);
+  font-weight:400;letter-spacing:var(--ls-label);text-transform:uppercase;line-height:1.4;color:var(--muted);text-align:center;
+  text-wrap:balance}
+.cl-h::before,.cl-h::after{content:"";flex:none;width:clamp(20px,5vw,64px);border-top:1px solid var(--hairline-2)}
+.cl-row{list-style:none;margin:0;padding:0;display:flex;justify-content:center;align-items:center;max-width:100%;
+  gap:var(--s-2) clamp(12px,3vw,44px)}
+.cl-row li{display:flex;justify-content:center;min-width:0}
+.cl{display:flex;align-items:center;justify-content:center;min-height:68px;padding:8px 12px;border-radius:var(--r-sm);
+  color:var(--muted);transition:color var(--dur-fast)}
+.cl:hover,.cl:focus-visible{color:var(--ice)}
+.cl img{--cl-s:1;display:block;width:calc(var(--w) * var(--cl-s));max-width:100%;height:auto;
+  background:currentColor;object-position:-9999px 0;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:contain;mask-size:contain}
+.cl-bordjsteel img{--w:56px;-webkit-mask-image:url(clients/bordjsteel.svg);mask-image:url(clients/bordjsteel.svg)}
+.cl-alliance img{--w:110px;-webkit-mask-image:url(clients/alliance.svg);mask-image:url(clients/alliance.svg)}
+.cl-almaflow img{--w:124px;-webkit-mask-image:url(clients/almaflow.webp);mask-image:url(clients/almaflow.webp)}
+.cl-nomara img{--w:136px}
+/* Nomara needs a luminance mask (Chromium 120+, Firefox, WebKit's prefixed
+   form). Where neither exists, an alpha mask would paint the opaque tile as
+   a solid block and lose the glyph, so the file is shown as it is instead,
+   in grey, on the dark ground its own site gives it (--shade is dark in
+   every theme). */
+@supports (mask-mode:luminance) or (-webkit-mask-source-type:luminance){
+  .cl-nomara img{-webkit-mask-image:url(clients/nomara.webp);mask-image:url(clients/nomara.webp);
+    -webkit-mask-source-type:luminance;mask-mode:luminance}
+}
+@supports not ((mask-mode:luminance) or (-webkit-mask-source-type:luminance)){
+  .cl-nomara img{object-position:center;background:rgb(var(--shade));box-shadow:0 0 0 6px rgb(var(--shade));
+    border-radius:2px;filter:grayscale(1)}
+}
+/* phones and small tablets: two by two, a little smaller, every cell the
+   same width, and the pairs kept close enough to read as one group */
+@media (max-width:720px){
+  .cl-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:min(100%,440px);gap:var(--s-2) var(--s-4)}
+  .cl{min-height:60px;width:100%}
+  .cl img{--cl-s:.86}
+}
+/* A logo lands on its card, and the card says so in the client's colour.
+   The pointer is still over the card after the jump, so the mark must beat
+   :hover too. A card the reveal has not reached yet sits 24px low
+   (translateY), and the browser scrolls to that box: after the reveal it
+   ended 10px under the fixed nav. A targeted card is shown at once, so the
+   jump measures the box where it stays. */
+.js-ready .proj.reveal:target{opacity:1;transform:none;transition-property:border-color,box-shadow}
+.proj:target,.proj:target:hover{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
+.proj--brand:target,.proj--brand:target:hover{border-color:rgb(var(--brand));box-shadow:0 0 0 1px rgb(var(--brand))}
+/* print keeps the silhouettes (backgrounds are dropped by default) */
+@media print{.cl img{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+/* forced colours replace backgrounds with Canvas: the silhouettes take the
+   text colour instead, so they stay visible (the heading's rules are borders,
+   which forced colours keep) */
+@media (forced-colors:active){
+  .cl img{forced-color-adjust:none;background:CanvasText}
+  .cl:hover img,.cl:focus-visible img{background:LinkText}
+}
+
+/* What the client gets, in one line under the card's description. It links
+   to the full list on the project sheet (scene/, "Ce que le site apporte");
+   Nomara has no sheet, so its line is plain text. A diamond marks the line
+   as an outcome, like the deliverables on the sheets; the arrow points the
+   reading way. */
+.proj .body .gain{position:relative;display:block;min-height:0;margin:0 0 var(--s-4);padding:var(--s-3) 0 0;padding-inline-start:20px;
+  border-top:1px solid var(--hairline);font-size:var(--t-small);line-height:1.55;color:var(--body-strong);text-decoration:none}
+.proj .body .gain::before{content:"";position:absolute;inset-inline-start:2px;top:calc(var(--s-3) + .5em);width:7px;height:7px;
+  border:1.5px solid var(--teal);transform:rotate(45deg)}
+.proj .body a.gain::after{content:"→" / "";display:inline-block;margin-inline-start:.4em;color:var(--teal-text);transition:translate var(--dur-fast)}
+html[dir="rtl"] .proj .body a.gain::after{content:"←" / ""}
+.proj .body a.gain:hover{color:var(--ice)}
+.proj .body a.gain:hover::after{translate:3px 0}
+html[dir="rtl"] .proj .body a.gain:hover::after{translate:-3px 0}
+@media (prefers-reduced-motion:reduce){.proj .body a.gain::after{transition:none}.proj .body a.gain:hover::after{translate:none}}
+
 .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-6)}
 /* odd card count: center the trailing card so it never orphans with a void beside it */
 .work-grid>.proj:last-child:nth-child(odd){grid-column:1 / -1;max-width:calc(50% - var(--s-6) / 2);margin-inline:auto}
