@@ -138,7 +138,7 @@
       'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'A fictional gaming-gear brand and online store, designed end to end as a portfolio demo.',
       'clients.h': 'They trusted us with their websites',
       'proj4.gain': 'A buyer finds the right product line and its technical data without calling.', 'proj2.gain': 'A traveller gets an estimate for their trip and sends a complete request on WhatsApp.',
-      'proj3.gain': 'With a breakdown, a customer calls in one tap from the page for that trade.', 'proj6.gain': 'A pilgrim compares Umrah packages by price and distance from the Haram, then messages on WhatsApp.',
+      'proj3.gain': 'If something breaks down, a customer calls in one tap from the page for that trade.', 'proj6.gain': 'A pilgrim compares Umrah packages by price and distance from the Haram, then messages on WhatsApp.',
       'work.gainMore': ' — more on the project sheet',
       'work.lead': 'Our clients\' sites, to open yourself — plus a portfolio demo and two projects on the way.',
       'work.live': 'Visit the site →', 'work.soon': 'In progress', 'work.sheet': 'See the sheet →', 'work.concept': 'Portfolio demo',

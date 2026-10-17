@@ -346,7 +346,7 @@ export const PROJECTS = [
     gains: [
       { at: "/climatisation",
         fr: "En cas de panne, un client appelle d'un simple appui depuis la page du métier concerné\u202f: le numéro est en tête de page.",
-        en: "With a breakdown, a customer calls in one tap from the page for that trade: the number sits at the top.",
+        en: "If something breaks down, a customer calls in one tap from the page for that trade: the number sits at the top.",
         ar: "عند العطل، يتصل العميل بلمسة واحدة من صفحة التخصّص المعني: الرقم في أعلى الصفحة." },
       { at: "/contact",
         fr: "Pour un projet, il choisit sa prestation dans le formulaire de devis — installation, entretien, dépannage, chauffe-eau, salle de bain — et la demande arrive avec son type de travaux.",
