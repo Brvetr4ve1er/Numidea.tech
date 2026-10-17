@@ -446,7 +446,10 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 .cl-row li{display:flex;justify-content:center;min-width:0}
 .cl{display:flex;align-items:center;justify-content:center;min-height:68px;padding:8px 12px;border-radius:var(--r-sm);
   color:var(--muted);transition:color var(--dur-fast)}
-.cl:hover,.cl:focus-visible{color:var(--ice)}
+.cl:focus-visible{color:var(--ice)}
+/* a phone keeps :hover on the last thing tapped: a tapped logo stayed lit
+   among the grey ones, as if selected, when the visitor came back */
+@media (hover:hover){.cl:hover{color:var(--ice)}}
 .cl img{--cl-s:1;display:block;width:calc(var(--w) * var(--cl-s));max-width:100%;height:auto;
   background:currentColor;object-position:-9999px 0;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;
@@ -496,8 +499,9 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
    which forced colours keep) */
 @media (forced-colors:active){
   .cl img{forced-color-adjust:none;background:CanvasText}
-  .cl:hover img,.cl:focus-visible img{background:LinkText}
+  .cl:focus-visible img{background:LinkText}
 }
+@media (forced-colors:active) and (hover:hover){.cl:hover img{background:LinkText}}
 
 /* What the client gets, in one line under the card's description. It links
    to the full list on the project sheet (scene/, "Ce que le site apporte");
@@ -510,9 +514,11 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
   border:1.5px solid var(--teal);transform:rotate(45deg)}
 .proj .body a.gain::after{content:"→" / "";display:inline-block;margin-inline-start:.4em;color:var(--teal-text);transition:translate var(--dur-fast)}
 html[dir="rtl"] .proj .body a.gain::after{content:"←" / ""}
-.proj .body a.gain:hover{color:var(--ice)}
-.proj .body a.gain:hover::after{translate:3px 0}
-html[dir="rtl"] .proj .body a.gain:hover::after{translate:-3px 0}
+@media (hover:hover){
+  .proj .body a.gain:hover{color:var(--ice)}
+  .proj .body a.gain:hover::after{translate:3px 0}
+  html[dir="rtl"] .proj .body a.gain:hover::after{translate:-3px 0}
+}
 @media (prefers-reduced-motion:reduce){.proj .body a.gain::after{transition:none}.proj .body a.gain:hover::after{translate:none}}
 
 .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-6)}
