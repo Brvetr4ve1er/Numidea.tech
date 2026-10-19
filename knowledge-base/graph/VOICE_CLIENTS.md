@@ -1,0 +1,22 @@
+---
+source_file: "scripts/voices-data.mjs"
+type: "code"
+community: "Client Voices Builder"
+location: "L24"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Client_Voices_Builder
+---
+
+# VOICE_CLIENTS
+
+## Connections
+- [[Delivered clients (quotable)]] - `references` [INFERRED]
+- [[Nomara Voyages (unconfirmed client)]] - `references` [EXTRACTED]
+- [[build-scene.mjs]] - `imports` [EXTRACTED]
+- [[build-voices.mjs]] - `imports` [EXTRACTED]
+- [[check.mjs]] - `imports` [EXTRACTED]
+- [[voices-data.mjs]] - `contains` [EXTRACTED]
+
+#graphify/code #graphify/EXTRACTED #community/Client_Voices_Builder

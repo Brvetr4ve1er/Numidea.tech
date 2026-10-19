@@ -1,0 +1,9 @@
+{
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "Maps",
+  "showUnsupportedFiles": false,
+  "userIgnoreFilters": [
+    "graphify/graph.json"
+  ]
+}

@@ -1,0 +1,19 @@
+---
+source_file: "audit/Findings.md"
+type: "concept"
+community: "Audit Findings (Daylight, Hub)"
+location: "L48"
+tags:
+  - graphify/concept
+  - graphify/EXTRACTED
+  - community/Audit_Findings_Daylight_Hub
+---
+
+# F-06 - Mobile menu stagger skips the 6th link
+
+## Connections
+- [[Executive Summary - full codebase audit (2026-07-31, commit a9fd6da)]] - `references` [INFERRED]
+- [[Findings - bugs, defects & inconsistencies (12 verified)]] - `references` [EXTRACTED]
+- [[Fixes applied in the audit pass (9 items)]] - `references` [EXTRACTED]
+
+#graphify/concept #graphify/EXTRACTED #community/Audit_Findings_Daylight_Hub
