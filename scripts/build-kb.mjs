@@ -28,6 +28,7 @@ import { execFileSync } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT } from './site.mjs';
+import { fitGraphInVault } from './lib/kb-vault.mjs';
 
 const KB = join(ROOT, 'knowledge-base');
 const OUT = join(ROOT, 'graphify-out');
@@ -65,6 +66,8 @@ if (existsSync(gObs)) {
   rmSync(join(KB, 'graph', '.obsidian'), { recursive: true, force: true });
 }
 rmSync(join(KB, 'graph', '.graphify_obsidian_manifest.json'), { force: true });
+// graph notes named like a map, wiki page or archived file are renamed "(graph)"; the canvas gains graph/
+const { renamed } = fitGraphInVault(KB);
 
 // the graph is built from a checkout: no machine path may stay in what is committed
 const walk = (d) => readdirSync(d).flatMap((e) => (statSync(join(d, e)).isDirectory() ? walk(join(d, e)) : [join(d, e)]));
@@ -75,4 +78,4 @@ for (const f of walk(KB).filter((p) => /\.(md|json|canvas|html)$/.test(p) && !p.
   if (clean !== src) { writeFileSync(f, clean); scrubbed++; }
 }
 const notes = readdirSync(join(KB, 'graph')).filter((f) => f.endsWith('.md')).length;
-console.log(`✓ knowledge-base/: ${notes} graph notes, wiki and graph exported (${scrubbed} files had a machine path removed)`);
+console.log(`✓ knowledge-base/: ${notes} graph notes, wiki and graph exported (${renamed} renamed to avoid a name clash, ${scrubbed} files had a machine path removed)`);
