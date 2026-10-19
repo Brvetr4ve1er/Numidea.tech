@@ -12,6 +12,6 @@ tags:
 # description
 
 ## Connections
-- [[package.json]] - `contains` [EXTRACTED]
+- [[package.json (graph)]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/packagejson

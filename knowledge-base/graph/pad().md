@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[build-scene.mjs]] - `contains` [EXTRACTED]
-- [[index]] - `calls` [EXTRACTED]
+- [[index (graph)]] - `calls` [EXTRACTED]
 - [[sheet()]] - `calls` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/Project_Sheets_Generator

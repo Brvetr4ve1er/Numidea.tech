@@ -15,7 +15,7 @@ members: 22
 - [[LANGS]] - code - scripts/build-scene.mjs
 - [[OUT]] - code - scripts/build-scene.mjs
 - [[PROJECTS]] - code - scripts/scene-data.mjs
-- [[ROOT]] - code - scripts/build-scene.mjs
+- [[ROOT (graph)]] - code - scripts/build-scene.mjs
 - [[SCENE_HTML]] - code - scripts/build-scene.mjs
 - [[T()]] - code - scripts/build-scene.mjs
 - [[UI]] - code - scripts/scene-data.mjs
@@ -23,7 +23,7 @@ members: 22
 - [[caption()]] - code - scripts/build-scene.mjs
 - [[esc()]] - code - scripts/build-scene.mjs
 - [[files()]] - code - scripts/build-scene.mjs
-- [[index]] - code - scripts/build-scene.mjs
+- [[index (graph)]] - code - scripts/build-scene.mjs
 - [[pad()]] - code - scripts/build-scene.mjs
 - [[put()]] - code - scripts/build-scene.mjs
 - [[scene-data.mjs]] - code - scripts/scene-data.mjs

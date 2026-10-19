@@ -19,8 +19,9 @@
  *     no model) before exporting.
  * Then this script exports graphify-out/ into the vault: the Obsidian notes and
  * canvas (graph/), the community articles (wiki/), and graph.json,
- * GRAPH_REPORT.md and graph.html (graphify/), so `graphify query --graph
- * knowledge-base/graphify/graph.json "…"` works on a fresh clone.
+ * GRAPH_REPORT.md and graph.html (graphify/), so `graphify query "…" --graph
+ * knowledge-base/graphify/graph.json` works on a fresh clone (--graph after the
+ * question: graphify 0.9.92 ignores it when it comes first).
  * Nothing in knowledge-base/ is deployed (scripts/site.mjs NOT_DEPLOYED), and
  * check.mjs refuses anything from the private vault in it.
  */

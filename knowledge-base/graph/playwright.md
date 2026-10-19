@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[Offline screenshot-capture pipeline (Playwright + sharp)]] - `references` [EXTRACTED]
 - [[Zero-dependency trilingual static marketing site]] - `references` [EXTRACTED]
-- [[package.json]] - `imports` [EXTRACTED]
+- [[package.json (graph)]] - `imports` [EXTRACTED]
 - [[serve.mjs]] - `imports_from` [EXTRACTED]
 - [[shots.mjs]] - `imports_from` [EXTRACTED]
 - [[work-capture.mjs]] - `imports_from` [EXTRACTED]

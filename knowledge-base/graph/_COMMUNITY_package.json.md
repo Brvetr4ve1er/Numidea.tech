@@ -16,7 +16,7 @@ members: 10
 - [[html-validate]] - concept - package.json
 - [[name]] - code - package.json
 - [[node]] - code - package.json
-- [[package.json]] - code - package.json
+- [[package.json (graph)]] - code - package.json
 - [[private]] - code - package.json
 - [[type]] - code - package.json
 - [[version]] - code - package.json
@@ -35,4 +35,4 @@ SORT file.name ASC
 - 1 edge to [[_COMMUNITY_Dev Dependencies]]
 
 ## Top bridge nodes
-- [[package.json]] - degree 14, connects to 4 communities
+- [[package.json (graph)]] - degree 14, connects to 4 communities

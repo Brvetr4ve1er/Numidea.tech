@@ -16,7 +16,7 @@ tags:
 - [[Zero-dependency trilingual static marketing site]] - `references` [EXTRACTED]
 - [[build-creative.mjs]] - `imports_from` [EXTRACTED]
 - [[client-logos.mjs]] - `imports_from` [EXTRACTED]
-- [[package.json]] - `imports` [EXTRACTED]
+- [[package.json (graph)]] - `imports` [EXTRACTED]
 - [[plates.mjs]] - `imports_from` [EXTRACTED]
 - [[screen-quad.mjs]] - `imports_from` [EXTRACTED]
 - [[shots.mjs]] - `imports_from` [EXTRACTED]

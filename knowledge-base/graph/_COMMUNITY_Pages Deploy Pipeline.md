@@ -12,7 +12,7 @@ members: 15
 ## Members
 - [[Check repository invariants step]] - code - .github/workflows/pages.yml
 - [[Configure, upload and deploy Pages artifact]] - code - .github/workflows/pages.yml
-- [[DEPLOY]] - code - scripts/site.mjs
+- [[DEPLOY (graph)]] - code - scripts/site.mjs
 - [[DEPLOY_SKIP]] - code - scripts/site.mjs
 - [[Deploy to GitHub Pages workflow]] - code - .github/workflows/pages.yml
 - [[GitHub Pages canonical deploy]] - rationale - README.md
@@ -48,7 +48,7 @@ SORT file.name ASC
 
 ## Top bridge nodes
 - [[stage-site.mjs]] - degree 15, connects to 4 communities
-- [[DEPLOY]] - degree 8, connects to 4 communities
+- [[DEPLOY (graph)]] - degree 8, connects to 4 communities
 - [[GitHub Pages canonical deploy]] - degree 9, connects to 3 communities
 - [[DEPLOY_SKIP]] - degree 4, connects to 3 communities
 - [[Check repository invariants step]] - degree 4, connects to 2 communities

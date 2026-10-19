@@ -12,7 +12,7 @@ tags:
 # GitHub Pages canonical deploy
 
 ## Connections
-- [[DEPLOY]] - `references` [EXTRACTED]
+- [[DEPLOY (graph)]] - `references` [EXTRACTED]
 - [[Deploy to GitHub Pages workflow]] - `implements` [INFERRED]
 - [[Netlify and Vercel mirrors]] - `conceptually_related_to` [EXTRACTED]
 - [[Repository invariants (npm run check)]] - `conceptually_related_to` [EXTRACTED]

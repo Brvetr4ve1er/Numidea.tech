@@ -15,7 +15,7 @@ tags:
 - [[Arabic native review]] - `references` [EXTRACTED]
 - [[BASE]] - `imports` [EXTRACTED]
 - [[Contact Form (mailto handoff)]] - `references` [EXTRACTED]
-- [[DEPLOY]] - `imports` [EXTRACTED]
+- [[DEPLOY (graph)]] - `imports` [EXTRACTED]
 - [[DEPLOY_SKIP]] - `imports` [EXTRACTED]
 - [[Footer]] - `references` [EXTRACTED]
 - [[LANGS_1]] - `imports` [EXTRACTED]

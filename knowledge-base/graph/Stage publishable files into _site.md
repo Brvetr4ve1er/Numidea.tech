@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[Check repository invariants step]] - `conceptually_related_to` [EXTRACTED]
-- [[DEPLOY]] - `references` [EXTRACTED]
+- [[DEPLOY (graph)]] - `references` [EXTRACTED]
 - [[Deploy to GitHub Pages workflow]] - `conceptually_related_to` [EXTRACTED]
 - [[_site (staged deploy folder)]] - `references` [EXTRACTED]
 - [[stage-site.mjs]] - `calls` [EXTRACTED]

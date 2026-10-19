@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[build-scene.mjs]] - `contains` [EXTRACTED]
-- [[index]] - `calls` [EXTRACTED]
+- [[index (graph)]] - `calls` [EXTRACTED]
 - [[sheet()]] - `calls` [EXTRACTED]
 - [[shot()]] - `calls` [EXTRACTED]
 

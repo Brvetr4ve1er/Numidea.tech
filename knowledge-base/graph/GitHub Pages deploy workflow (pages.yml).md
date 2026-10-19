@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[Architecture & Repository Map (audit 2026-07-31)]] - `references` [EXTRACTED]
-- [[DEPLOY]] - `references` [EXTRACTED]
+- [[DEPLOY (graph)]] - `references` [EXTRACTED]
 - [[Hosting topology GitHub Pages canonical, NetlifyVercel mirrors]] - `conceptually_related_to` [EXTRACTED]
 - [[P-02 - Hosting headers (GitHub Pages cannot set Cache-Control)]] - `conceptually_related_to` [EXTRACTED]
 - [[S-01 - Internal knowledge base published on the public site]] - `conceptually_related_to` [EXTRACTED]

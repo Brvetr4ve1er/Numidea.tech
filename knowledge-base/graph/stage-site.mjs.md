@@ -12,7 +12,7 @@ tags:
 # stage-site.mjs
 
 ## Connections
-- [[DEPLOY]] - `imports` [EXTRACTED]
+- [[DEPLOY (graph)]] - `imports` [EXTRACTED]
 - [[DEPLOY_SKIP]] - `imports` [EXTRACTED]
 - [[Decision finish the Vercel import]] - `references` [EXTRACTED]
 - [[GitHub Pages CICD (pages.yml → _site)]] - `references` [EXTRACTED]

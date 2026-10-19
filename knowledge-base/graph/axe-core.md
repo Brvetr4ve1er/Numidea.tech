@@ -12,6 +12,6 @@ tags:
 # axe-core
 
 ## Connections
-- [[package.json]] - `imports` [EXTRACTED]
+- [[package.json (graph)]] - `imports` [EXTRACTED]
 
 #graphify/concept #graphify/EXTRACTED #community/packagejson

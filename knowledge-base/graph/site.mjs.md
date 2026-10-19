@@ -13,7 +13,7 @@ tags:
 
 ## Connections
 - [[BASE]] - `contains` [EXTRACTED]
-- [[DEPLOY]] - `contains` [EXTRACTED]
+- [[DEPLOY (graph)]] - `contains` [EXTRACTED]
 - [[DEPLOY_SKIP]] - `contains` [EXTRACTED]
 - [[EXTRA_PAGES]] - `contains` [EXTRACTED]
 - [[GitHub Pages CICD (pages.yml → _site)]] - `references` [EXTRACTED]

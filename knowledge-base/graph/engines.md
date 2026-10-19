@@ -13,6 +13,6 @@ tags:
 
 ## Connections
 - [[node]] - `contains` [EXTRACTED]
-- [[package.json]] - `contains` [EXTRACTED]
+- [[package.json (graph)]] - `contains` [EXTRACTED]
 
 #graphify/code #graphify/EXTRACTED #community/packagejson

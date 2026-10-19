@@ -1041,7 +1041,7 @@ together.
   Dates sit on their own line, because "Août 2025 – fév. 2026" fits no fixed
   column in every language. Arabic dates use the Maghreb month names
   (فيفري، أوت، جويلية).
-- **The team is anonymized by design** (knowledge-base 12-organization): initials
+- **The team is anonymized by design** (knowledge-base/archive/2026-06-snapshot/12-organization.md): initials
   only, with the KB's verified responsibilities. No names or genders are
   documented, so the copy uses no pronouns for D, S and T (noun forms in
   Arabic, where verbs are gendered).

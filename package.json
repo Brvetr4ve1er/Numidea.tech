@@ -21,7 +21,8 @@
     "og": "node scripts/og-capture.mjs && node scripts/build-og.mjs",
     "validate": "node scripts/validate.mjs",
     "vbugs": "node scripts/vbugs.mjs",
-    "verify": "node scripts/verify.mjs"
+    "verify": "node scripts/verify.mjs",
+    "kb": "node scripts/build-kb.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",

@@ -12,7 +12,7 @@ tags:
 # S-01 - Internal knowledge base published on the public site
 
 ## Connections
-- [[DEPLOY]] - `references` [EXTRACTED]
+- [[DEPLOY (graph)]] - `references` [EXTRACTED]
 - [[Executive Summary - full codebase audit (2026-07-31, commit a9fd6da)]] - `references` [EXTRACTED]
 - [[GitHub Pages deploy workflow (pages.yml)]] - `conceptually_related_to` [EXTRACTED]
 - [[Improvement Roadmap (audit 2026-07-31)]] - `references` [EXTRACTED]

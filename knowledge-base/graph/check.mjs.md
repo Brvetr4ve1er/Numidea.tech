@@ -21,7 +21,7 @@ tags:
 - [[D-01 - Conventions enforced by discipline, not tooling]] - `references` [EXTRACTED]
 - [[D-02 - Project data is quadruplicated]] - `references` [EXTRACTED]
 - [[D-08 - No test suite]] - `references` [EXTRACTED]
-- [[DEPLOY]] - `imports` [EXTRACTED]
+- [[DEPLOY (graph)]] - `imports` [EXTRACTED]
 - [[DEPLOY_SKIP]] - `imports` [EXTRACTED]
 - [[DICT]] - `contains` [EXTRACTED]
 - [[EXTRA_PAGES]] - `imports` [EXTRACTED]

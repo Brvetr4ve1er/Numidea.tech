@@ -14,7 +14,7 @@ tags:
 ## Connections
 - [[axe-core_1]] - `contains` [EXTRACTED]
 - [[html-validate_1]] - `contains` [EXTRACTED]
-- [[package.json]] - `contains` [EXTRACTED]
+- [[package.json (graph)]] - `contains` [EXTRACTED]
 - [[playwright_1]] - `contains` [EXTRACTED]
 - [[sharp_1]] - `contains` [EXTRACTED]
 

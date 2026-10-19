@@ -19,7 +19,7 @@ tags:
 - [[logos]] - `contains` [EXTRACTED]
 - [[npm commands table]] - `references` [EXTRACTED]
 - [[og]] - `contains` [EXTRACTED]
-- [[package.json]] - `contains` [EXTRACTED]
+- [[package.json (graph)]] - `contains` [EXTRACTED]
 - [[scene]] - `contains` [EXTRACTED]
 - [[shots]] - `contains` [EXTRACTED]
 - [[stage]] - `contains` [EXTRACTED]
