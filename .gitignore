@@ -32,3 +32,4 @@ campaign/
 
 # graphify working output (the committed graph lives in knowledge-base/graphify/)
 graphify-out/
+knowledge-base/graphify/cache/
