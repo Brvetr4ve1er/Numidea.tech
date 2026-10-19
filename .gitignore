@@ -29,3 +29,6 @@ campaign/
 
 # local Claude Code settings
 .claude/settings.local.json
+
+# graphify working output (the committed graph lives in knowledge-base/graphify/)
+graphify-out/

@@ -1,0 +1,35 @@
+# What graphify reads when the knowledge graph is built (`/graphify .` in
+# Claude Code, or `npm run kb -- --code`). .gitignore is read first; this file
+# only excludes more. See knowledge-base/Home.md.
+
+# images, fonts, audio, 3D: not text, and they would be sent for vision extraction
+*.webp
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.woff2
+*.mp3
+*.obj
+*.pdf
+
+# vendor bundles and generated or licence files
+workspacehq/embed/
+package-lock.json
+sitemap.xml
+robots.txt
+**/OFL.txt
+LICENSE
+
+# the vault's own generated layers and the curated layer that sits on top of them
+knowledge-base/graph/
+knowledge-base/wiki/
+knowledge-base/graphify/
+knowledge-base/Maps/
+knowledge-base/Home.md
+knowledge-base/.obsidian/
+graphify-out/
+.claude/
+_site/

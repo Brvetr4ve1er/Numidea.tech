@@ -529,4 +529,22 @@ for (const f of [...PAGES, 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/v
 }
 back.length ? bad('retired claims are back: ' + back.join(', ')) : ok('retired claims stay retired');
 
+/* 15 — the knowledge base stays public */
+// knowledge-base/ sits in the public repository (never deployed). The full
+// vault — competitor research, the campaign kit, the owner's decision log —
+// is kept privately; nothing from it, and no machine path, may land here.
+const kbErr = [];
+const KB_PRIVATE = [/\/tmp\//, /scratchpad/i, /claude\.ai\/(?:code\/)?artifact/, /copy-gulf-(?:ar|en)|outreach-fr|prospects-template/,
+  /^type:\s*(?:competitor|market|decision-log|self-audit|design-direction|review|timeline)\s*$/m];
+const KB_EMAILS = new Set(['hamissemohamedyasser@gmail.com', 'hello@numidealabs.com']);   // the contact; the archive's old placeholder
+const kbWalk = (d) => readdirSync(join(ROOT, d)).flatMap((e) => (statSync(join(ROOT, d, e)).isDirectory() ? kbWalk(d + '/' + e) : [d + '/' + e]));
+if (existsSync(join(ROOT, 'knowledge-base'))) {
+  for (const f of kbWalk('knowledge-base').filter((p) => /\.(md|json|canvas|html|txt)$/.test(p))) {
+    const src = read(f);
+    for (const re of KB_PRIVATE) if (re.test(src)) kbErr.push(`${f} (${re.source.slice(0, 24)})`);
+    for (const m of src.matchAll(/[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[a-z]{2,}\b/g)) if (!KB_EMAILS.has(m[0].toLowerCase())) kbErr.push(`${f} (e-mail ${m[0]})`);
+  }
+}
+kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbErr)].slice(0, 8).join(', ')) : ok('knowledge-base/ holds nothing from the private vault');
+
 process.exit(fail);
