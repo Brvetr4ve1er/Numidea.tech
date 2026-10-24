@@ -74,7 +74,7 @@ Graph: [[carry()]], [[numidea-lang shared language preference]].
 
 | Rule | Where it lives or is enforced |
 |---|---|
-| Western digits everywhere (owner decision) | `check.mjs` fails on any Arabic-Indic digit in a page, `app.js`, `scene-data.mjs`, `build-legal.mjs` or `voices-data.mjs` (BRAND.md › Arabic conventions; scripts/check.mjs › 464) |
+| Western digits everywhere (owner decision) | `check.mjs` fails on any Arabic-Indic digit in a page, `app.js`, `scene-data.mjs`, `build-legal.mjs` or `voices-data.mjs` (BRAND.md › Arabic conventions; scripts/check.mjs › 476) |
 | Forward arrows are `←`; a back link uses `→` | BRAND.md › Arabic conventions; the RTL benefit-line arrow (assets/styles.css › 516); "back" labels in Arabic (scripts/scene-data.mjs › UI.ar; 404.html › 137) |
 | Logical CSS properties, so one rule serves both directions | BRAND.md › Arabic conventions |
 | The whole document switches to IBM Plex Sans Arabic in RTL | assets/styles.css › 20, 84 |
@@ -89,7 +89,7 @@ Graph: [[Arabic conventions]], [[RTL layout mirroring]], [[IBM Plex Sans Arabic 
 
 ## French typography
 
-French copy keeps a no-break space (U+202F or U+00A0) before `? ! ; : »`, after `«`, and between a number and `%` or `h`; `check.mjs` reads every French string in `I18N.fr`, the scene interface and each project's French text and fails on a breakable space there (scripts/check.mjs › 472). The contact form's French colon uses a narrow no-break space (assets/app.js › contact form). Graph: [[French punctuation spacing]].
+French copy keeps a no-break space (U+202F or U+00A0) before `? ! ; : »`, after `«`, and between a number and `%` or `h`; `check.mjs` reads every French string in `I18N.fr`, the scene interface and each project's French text and fails on a breakable space there (scripts/check.mjs › 484). The contact form's French colon uses a narrow no-break space (assets/app.js › contact form). Graph: [[French punctuation spacing]].
 
 ## Gates that guard the languages
 
@@ -99,7 +99,7 @@ French copy keeps a no-break space (U+202F or U+00A0) before `? ! ; : »`, after
 | 2 · i18n coverage | A `data-i18n*` attribute with no key (scripts/check.mjs › header) |
 | 7 · generated pages | Baked French or the scene page out of step with their generators; a page with an inline dictionary whose keys do not resolve in fr, en and ar (scripts/check.mjs › header) |
 | 6 · canonicals | A page that names its canonical in both markup and head script, or names none (scripts/check.mjs › header) |
-| Arabic digits, French typography | As above (scripts/check.mjs › 464, 472) |
+| Arabic digits, French typography | As above (scripts/check.mjs › 476, 484) |
 
 More in [[Build and gates]]. Graph: [[Convention every i18n key appears exactly 3x in app.js (frenar)]].
 

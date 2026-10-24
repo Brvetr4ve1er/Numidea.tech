@@ -76,8 +76,8 @@ Sources: audit/Design_Audit.md › Measurements, Outcome — Direction A applied
 
 | Item | Rank | The audit's call | Today |
 |---|---|---|---|
-| D-01 Conventions kept by discipline, not tooling | High | Cured: `npm run check` | `check` still holds them (scripts/check.mjs › 1–28) |
-| D-02 Project data in four places | High | Accepted for now | The explorer is gone; sheets are generated from `scripts/scene-data.mjs` (audit/Technical_Debt.md › D-02 note), and `check` keeps client links in step (scripts/check.mjs › 1–28, block 5) |
+| D-01 Conventions kept by discipline, not tooling | High | Cured: `npm run check` | `check` still holds them (scripts/check.mjs › 1–32) |
+| D-02 Project data in four places | High | Accepted for now | The explorer is gone; sheets are generated from `scripts/scene-data.mjs` (audit/Technical_Debt.md › D-02 note), and `check` keeps client links in step (scripts/check.mjs › 1–32, block 5) |
 | D-03 Manual cache-bust stamps | Medium | Cured: `npm run bump` | `npm run bump` still rewrites every stamp (package.json › scripts; scripts/bump.mjs › header); see [[Build and gates]] |
 | D-04 `package-lock.json` was git-ignored | Medium | Fixed: lockfile committed | Tracked today (package-lock.json) |
 | D-05 README structure drift | Medium | Fixed | README lists the current layout (README.md › This repository — the landing page) |
@@ -120,7 +120,7 @@ Sources: audit/Performance_A11y.md, each item. Graph: [[P-01 - Font payload is 5
 
 Source: audit/Improvement_Roadmap.md › Needs your decision (nothing done). Graph: [[Decision finish the Vercel import]]. The Supabase store is still off on purpose (OWNER-CONTENT.md › 11); see [[Open owner items]].
 
-- The "later" list also proposed renaming the `claude/` working branch to `main` (audit/Improvement_Roadmap.md › Later); the deploy workflow still triggers on the `claude/` branch (.github/workflows/pages.yml › 11). It also proposed an `Organization` or `LocalBusiness` JSON-LD (audit/Improvement_Roadmap.md › Later); the page today carries a `ProfessionalService` block (index.html › 40).
+- The "later" list also proposed renaming the `claude/` working branch to `main` (audit/Improvement_Roadmap.md › Later); the deploy workflow still triggers on the `claude/` branch (.github/workflows/pages.yml › 22). It also proposed an `Organization` or `LocalBusiness` JSON-LD (audit/Improvement_Roadmap.md › Later); the page today carries a `ProfessionalService` block (index.html › 40).
 
 ## Later audits
 

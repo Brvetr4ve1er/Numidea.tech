@@ -1,12 +1,12 @@
 ---
 type: map
-updated: 2026-10-19
-sources: [package.json, README.md, BRAND.md, netlify.toml, vercel.json, .github/workflows/pages.yml, scripts/check.mjs, scripts/themes-check.mjs, scripts/validate.mjs, scripts/audit.mjs, scripts/sweep.mjs, scripts/vbugs.mjs, scripts/vbugs-allow.json, scripts/verify.mjs, scripts/bump.mjs, scripts/site.mjs, scripts/lib/serve.mjs, scripts/build-fr.mjs, scripts/build-scene.mjs, scripts/build-voices.mjs, scripts/build-legal.mjs, scripts/build-sitemap.mjs, scripts/build-og.mjs, scripts/og-capture.mjs, scripts/shots.mjs, scripts/work-capture.mjs, scripts/client-logos.mjs, scripts/verify-domains.mjs, scripts/build-kb.mjs, scripts/stage-site.mjs, scripts/legal-data.mjs, scripts/lib/i18n.mjs, scripts/build-creative.mjs, .github/workflows/check.yml, index.html, OWNER-CONTENT.md, audit/Technical_Debt.md, audit/Architecture.md, package-lock.json, knowledge-base/graphify/GRAPH_REPORT.md]
+updated: 2026-10-24
+sources: [package.json, README.md, BRAND.md, netlify.toml, vercel.json, .github/workflows/pages.yml, scripts/check.mjs, scripts/themes-check.mjs, scripts/validate.mjs, scripts/audit.mjs, scripts/sweep.mjs, scripts/vbugs.mjs, scripts/vbugs-allow.json, scripts/verify.mjs, scripts/bump.mjs, scripts/site.mjs, scripts/lib/serve.mjs, scripts/build-fr.mjs, scripts/build-scene.mjs, scripts/build-voices.mjs, scripts/build-legal.mjs, scripts/build-sitemap.mjs, scripts/build-og.mjs, scripts/og-capture.mjs, scripts/shots.mjs, scripts/work-capture.mjs, scripts/client-logos.mjs, scripts/verify-domains.mjs, scripts/build-kb.mjs, scripts/stage-site.mjs, scripts/legal-data.mjs, scripts/lib/i18n.mjs, scripts/build-creative.mjs, .github/workflows/check.yml, .github/workflows/monitor.yml, RELEASE.md, index.html, OWNER-CONTENT.md, audit/Technical_Debt.md, audit/Architecture.md, package-lock.json, knowledge-base/graphify/GRAPH_REPORT.md]
 ---
 
 # Build and gates
 
-The site has no framework and no runtime dependency, and the only deploy-time "build" is staging the publishable files; a few Node scripts generate pages and regions of pages, and a set of "gates" must pass before a push (README.md › This repository — the landing page; .github/workflows/pages.yml › 3–7; BRAND.md › The gates). Start with the commands table; `npm run verify` runs every gate in one go, and the block-by-block table of `scripts/check.mjs` tells you what a red line means. Publishing is in [[Deploy]]; the theme contract in [[Themes and tokens]].
+The site has no framework and no runtime dependency, and the only deploy-time "build" is staging the publishable files; a few Node scripts generate pages and regions of pages, and a set of "gates" must pass before a push (README.md › This repository — the landing page; .github/workflows/pages.yml › 3–15; BRAND.md › The gates). Start with the commands table; `npm run verify` runs every gate in one go, and the block-by-block table of `scripts/check.mjs` tells you what a red line means. Publishing is in [[Deploy]]; the theme contract in [[Themes and tokens]].
 
 ## Commands
 
@@ -27,7 +27,7 @@ The site has no framework and no runtime dependency, and the only deploy-time "b
 | `npm run work:capture` | `work-capture.mjs` | Project-sheet captures into `assets/work/<slug>/` | Playwright, sharp, network |
 | `npm run logos` | `client-logos.mjs` | The client logos, taken from each live site's header | Playwright, sharp, network |
 
-Sources: package.json › scripts; README.md › Commands; scripts/check.mjs › 29; scripts/lib/serve.mjs › header; scripts/audit.mjs › 31; scripts/sweep.mjs › 30; scripts/shots.mjs › header; scripts/work-capture.mjs › header; scripts/client-logos.mjs › header; the `Needs` column also follows each script's own `import` lines.
+Sources: package.json › scripts; README.md › Commands; scripts/check.mjs › 33; scripts/lib/serve.mjs › header; scripts/audit.mjs › 31; scripts/sweep.mjs › 30; scripts/shots.mjs › header; scripts/work-capture.mjs › header; scripts/client-logos.mjs › header; the `Needs` column also follows each script's own `import` lines.
 
 - Node 22.22 or later; the dev dependencies are axe-core, html-validate, Playwright and sharp (package.json › engines, devDependencies).
 - The browser gates find Chromium through `CHROMIUM_PATH`, else a pre-installed build, else Playwright's own (scripts/lib/serve.mjs › header).
@@ -53,10 +53,10 @@ Sources: package.json › scripts; README.md › Commands; scripts/check.mjs ›
 | `NOT_DEPLOYED` | Folders and files that must never be published, local tool state included | `check` |
 | `LEGAL_PUBLISHED` | Whether `legal/index.html` exists; it extends `PAGES` and `DEPLOY` | `check` |
 
-Sources: scripts/site.mjs › 1–38; the `import` line of each script, for example scripts/check.mjs › 34, scripts/stage-site.mjs › 11, scripts/build-sitemap.mjs › 16 and scripts/lib/serve.mjs › 13.
+Sources: scripts/site.mjs › 1–38; the `import` line of each script, for example scripts/check.mjs › 39, scripts/stage-site.mjs › 11, scripts/build-sitemap.mjs › 16 and scripts/lib/serve.mjs › 13.
 
 - `scripts/shots.mjs` works out its own root, and `scripts/work-capture.mjs` and `scripts/plates.mjs` write to paths relative to where they are run; none of the three imports `site.mjs` (their import lines).
-- A new root folder must be added to `DEPLOY` or `NOT_DEPLOYED` before `check` passes (scripts/check.mjs › 236–242); what that means for publishing is in [[Deploy]].
+- A new root folder must be added to `DEPLOY` or `NOT_DEPLOYED` before `check` passes (scripts/check.mjs › 248–254); what that means for publishing is in [[Deploy]].
 - A new theme name goes into `THEMES` here and in `app.js`, among other places, or `themes-check` fails (BRAND.md › Theme contract (replaces the Engineering alternate stylesheet)); see [[Themes and tokens]].
 - In the graph the shared constant is [[ROOT_1|ROOT]], a god node with 19 edges (knowledge-base/graphify/GRAPH_REPORT.md › God Nodes); the note named plain `ROOT` is the constant inside `build-scene.mjs`. Wiki [[wiki/ROOT|ROOT]]; nodes [[site.mjs]], [[BASE]], [[THEMES]], [[PAGES_3]], [[EXTRA_PAGES]], [[DEPLOY]], [[NOT_DEPLOYED]], [[LEGAL_PUBLISHED]].
 
@@ -64,11 +64,11 @@ Sources: scripts/site.mjs › 1–38; the `import` line of each script, for exam
 
 | Generator | Writes | From | Kept in step by |
 |---|---|---|---|
-| `build-fr.mjs` | Every `data-i18n` text and attribute in `index.html`, its title, meta description and FAQ JSON-LD | `I18N.fr` in `assets/app.js` | `check` (scripts/check.mjs › 448–455) |
-| `build-scene.mjs` | `scene/index.html` | `scripts/scene-data.mjs` | `check` block 7 (scripts/check.mjs › 307–310) |
-| `build-voices.mjs` | The `SLOT:voices` region of `index.html`; empty while there are no voices | `scripts/voices-data.mjs` | `check` (scripts/check.mjs › 456–463) |
-| `build-legal.mjs` | `legal/index.html` and the legal link regions, only when every owner field is set; otherwise nothing, and the regions stay empty | `scripts/legal-data.mjs` | `check` (scripts/check.mjs › 429–447) |
-| `build-sitemap.mjs` | `sitemap.xml`, with `fr`/`en`/`ar` alternates for `index.html`, `scene/` and, once published, `legal/` | `PAGES` in `scripts/site.mjs` | `check` block 6 (scripts/check.mjs › 274) |
+| `build-fr.mjs` | Every `data-i18n` text and attribute in `index.html`, its title, meta description and FAQ JSON-LD | `I18N.fr` in `assets/app.js` | `check` (scripts/check.mjs › 460–467) |
+| `build-scene.mjs` | `scene/index.html` | `scripts/scene-data.mjs` | `check` block 7 (scripts/check.mjs › 319–322) |
+| `build-voices.mjs` | The `SLOT:voices` region of `index.html`; empty while there are no voices | `scripts/voices-data.mjs` | `check` (scripts/check.mjs › 468–475) |
+| `build-legal.mjs` | `legal/index.html` and the legal link regions, only when every owner field is set; otherwise nothing, and the regions stay empty | `scripts/legal-data.mjs` | `check` (scripts/check.mjs › 441–459) |
+| `build-sitemap.mjs` | `sitemap.xml`, with `fr`/`en`/`ar` alternates for `index.html`, `scene/` and, once published, `legal/` | `PAGES` in `scripts/site.mjs` | `check` block 6 (scripts/check.mjs › 286) |
 
 Sources: the generators' headers (scripts/build-fr.mjs, scripts/build-scene.mjs, scripts/build-voices.mjs, scripts/build-legal.mjs, scripts/build-sitemap.mjs › header comments).
 
@@ -86,43 +86,46 @@ Sources: the generators' headers (scripts/build-fr.mjs, scripts/build-scene.mjs,
 |---|---|---|---|
 | check | `scripts/check.mjs` | Repository invariants, table below | `verify`, CI on every push and pull request, every deploy |
 | themes | `scripts/themes-check.mjs` | The 47-token contract, contrast pairs, theme lists, preloaded faces | `verify`, CI on every push and pull request, every deploy |
-| validate | `scripts/validate.mjs` | html-validate on every entry page in `PAGES`, plus `legal-preview/` when it exists | `verify`, CI on every push and pull request |
-| audit | `scripts/audit.mjs` | Layout shift over 0.01, axe violations, horizontal overflow, reveals that never fired, tap targets under 24px, broken images, endless animations, JS errors, failed and third-party requests; LCP is measured and printed but does not fail a run | `verify`, CI on demand |
-| sweep | `scripts/sweep.mjs` | Text under 4.5:1 (3:1 for large text) against the background actually painted | `verify`, CI on demand |
-| vbugs | `scripts/vbugs.mjs` | Overlapping text, text escaping its box, clipped text, stretched images, horizontal scroll | `verify`, CI on demand |
+| validate | `scripts/validate.mjs` | html-validate on every entry page in `PAGES`, plus `legal-preview/` when it exists | `verify`, CI on every push and pull request, every Pages deploy |
+| audit | `scripts/audit.mjs` | Layout shift over 0.01, axe violations, horizontal overflow, reveals that never fired, tap targets under 24px, broken images, endless animations, JS errors, failed and third-party requests; LCP is measured and printed but does not fail a run | `verify`, the nightly CI job, every Pages deploy |
+| sweep | `scripts/sweep.mjs` | Text under 4.5:1 (3:1 for large text) against the background actually painted | `verify`, the nightly CI job, every Pages deploy |
+| vbugs | `scripts/vbugs.mjs` | Overlapping text, text escaping its box, clipped text, stretched images, horizontal scroll | `verify`, the nightly CI job, every Pages deploy |
 
-Sources: scripts/verify.mjs › STEPS; scripts/validate.mjs › header; scripts/audit.mjs › header, 76–79; scripts/sweep.mjs › header, 115, 149; scripts/vbugs.mjs › header; .github/workflows/check.yml › 29–41; the deploy runs in .github/workflows/pages.yml › 41–42, netlify.toml › 12 and vercel.json › 3 (more in [[Deploy]]).
+Sources: scripts/verify.mjs › STEPS; scripts/validate.mjs › header; scripts/audit.mjs › header, 76–79; scripts/sweep.mjs › header, 115, 149; scripts/vbugs.mjs › header; .github/workflows/check.yml › 38–111; every gate in this table runs before a Pages deploy (.github/workflows/pages.yml › 51–102), while the mirrors run only check and themes (netlify.toml › 12; vercel.json › 3) (more in [[Deploy]]).
 
 - `npm run verify` runs the six steps in order, does not stop at the first failure, prints a summary with each step's time, and exits non-zero if any failed (scripts/verify.mjs › header, 24–33).
-- In CI the browser gates run only from Actions, Check, Run workflow (the `browser` input defaults to true), after `npx playwright install --with-deps chromium`; there they are chained with `&&`, so the first failure stops the rest (.github/workflows/check.yml › 12–16, 37–41).
-- CI installs with `npm ci` and `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` before `validate`, on Node 22 (.github/workflows/check.yml › 26–36).
+- In CI the browser gates run in two places, each after `npx playwright install --with-deps chromium`. One is the Check workflow's `nightly` job, every night and from Actions, Check, Run workflow (the `browser` input defaults to true), through `npm run verify`. The other is the `gates` job before every Pages deploy, one step per gate. In both, every gate runs even after one failed, so one run lists every failure (.github/workflows/check.yml › 13–16, 22–32, 80–105; .github/workflows/pages.yml › 6–9, 83–102).
+- CI installs with `npm ci` and `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` before `validate`, on Node 22 (.github/workflows/check.yml › 44–57).
+- The `check` job, on every push and pull request, also runs `npm run build` and fails when the build changes or adds a file, then `npm audit --omit=dev` (.github/workflows/check.yml › 61–78). The `nightly` job also runs `npm run links` and the full `npm audit` (.github/workflows/check.yml › 106–111). Which command proves which release step is in RELEASE.md › 2.
 - The rule is "six commands, all green before a push" (BRAND.md › The gates).
 - Graph: [[The gates (pre-push commands)]], [[Verify gates (npm run verify)]], [[STEPS]], [[Check workflow (CI)]], [[Browser gates step (on demand)]], [[npm ci without browser download]].
 
 ## check.mjs, block by block
 
-The header lists blocks 1 to 8 with 5b and 5c; the body also has 3b and 15 (scripts/check.mjs › 1–28, 105, 532). The rows marked 8 below are the checks that run after the block 8 comment; the header files the French and voices checks under 7 (scripts/check.mjs › 16–19, 323).
+The header lists blocks 1 to 8 with 5b and 5c, then 15b and 15c; the body also has 3b and 15 (scripts/check.mjs › 1–32, 117, 544). The rows marked 8 below are the checks that run after the block 8 comment; the header files the French and voices checks under 7 (scripts/check.mjs › 16–20, 335).
 
 | Block | Fails when | Lines |
 |---|---|---|
-| 1 + 2 i18n | A dictionary key in `app.js` does not appear a multiple of 3 times, or a `data-i18n*` attribute names no key | 50–67 |
-| 3 assets | A local `src`/`href` on any page or WorkspaceHQ embed is missing, including asset paths in inline scripts and preloaded font names | 69–103 |
-| 3b parallax | A `data-parallax` depth does not parse to a non-zero number | 105–115 |
-| 4 stamps | The `?v=` stamps differ between pages (fix: `npm run bump`) | 117–122 |
-| 5 client links | A client's plate, card and browser bar disagree; `shots.mjs` covers other clients; the sheets use a URL the page does not link; `hub/` lists a client site | 124–153 |
-| 5b client logos | The logo strip is not exactly the delivered clients, each with its own file, alt, intrinsic size, mask and card link | 155–198 |
-| 5c client benefits | A sheet lacks its context or 3 to 5 benefits in three languages with a live page each; a work card lacks its benefit line; any benefit reads as a figure or a result | 200–234 |
-| 6 deploy coverage | A `DEPLOY` path is missing; a root folder is neither deployed nor excluded; a deployed page links to an unpublished file; the sitemap is stale or lists unpublished URLs; a page does not name exactly one canonical (none on `404.html`) | 236–305 |
-| 7 generated pages | `scene/index.html` differs from its generator; an inline dictionary misses a key in `fr`, `en` or `ar` | 307–321 |
-| 8 anchors | A `#fragment` link lands on no id; an `aria-labelledby`/`describedby`/`controls` or `label for` names no id | 323–345, 521 |
-| 8 Supabase switch | The lead store is switched on without the published legal page, its region and a rewritten form note | 346–372 |
-| 8 prices | Tier and maintenance figures differ from `PRICE_MODEL`/`RETAINER`; a € or $ amount is typed into the studio's own prices; the estimator gives a bad quote on any size, option set or pace | 373–428 |
-| 8 legal gating | Anything links to `legal/` before it is published, or the published page is incomplete or stale | 429–447 |
-| 8 French and voices | The baked French or the voices region differs from its source | 448–463 |
-| 8 digits and typography | Arabic-Indic digits appear; French copy has a breakable space before `? ! ; : »`, after `«`, or between a number and `%` or `h` | 464–500 |
-| 8 contact and data | More than one contact address across the pages; JSON-LD does not parse, or its phone or e-mail disagrees with the page | 501–520 |
-| 8 retired claims | Copy the owner retired as unsupported comes back (`RETIRED`) | 522–530 |
-| 15 knowledge base | Anything under `knowledge-base/` holds a machine path, a private-vault marker, or an e-mail address other than the two it allows | 532–548 |
+| 1 + 2 i18n | A dictionary key in `app.js` does not appear a multiple of 3 times, or a `data-i18n*` attribute names no key | 62–79 |
+| 3 assets | A local `src`/`href` on any page or WorkspaceHQ embed is missing, including asset paths in inline scripts and preloaded font names | 81–115 |
+| 3b parallax | A `data-parallax` depth does not parse to a non-zero number | 117–127 |
+| 4 stamps | The `?v=` stamps differ between pages (fix: `npm run bump`) | 129–134 |
+| 5 client links | A client's plate, card and browser bar disagree; `shots.mjs` covers other clients; the sheets use a URL the page does not link; `hub/` lists a client site | 136–165 |
+| 5b client logos | The logo strip is not exactly the delivered clients, each with its own file, alt, intrinsic size, mask and card link | 167–210 |
+| 5c client benefits | A sheet lacks its context or 3 to 5 benefits in three languages with a live page each; a work card lacks its benefit line; any benefit reads as a figure or a result | 212–246 |
+| 6 deploy coverage | A `DEPLOY` path is missing; a root folder is neither deployed nor excluded; a deployed page links to an unpublished file; the sitemap is stale or lists unpublished URLs; a page does not name exactly one canonical (none on `404.html`) | 248–317 |
+| 7 generated pages | `scene/index.html` differs from its generator; an inline dictionary misses a key in `fr`, `en` or `ar` | 319–333 |
+| 8 anchors | A `#fragment` link lands on no id; an `aria-labelledby`/`describedby`/`controls` or `label for` names no id | 335–357, 533 |
+| 8 Supabase switch | The lead store is switched on without the published legal page, its region and a rewritten form note | 358–384 |
+| 8 prices | Tier and maintenance figures differ from `PRICE_MODEL`/`RETAINER`; a € or $ amount is typed into the studio's own prices; the estimator gives a bad quote on any size, option set or pace | 385–440 |
+| 8 legal gating | Anything links to `legal/` before it is published, or the published page is incomplete or stale | 441–459 |
+| 8 French and voices | The baked French or the voices region differs from its source | 460–475 |
+| 8 digits and typography | Arabic-Indic digits appear; French copy has a breakable space before `? ! ; : »`, after `«`, or between a number and `%` or `h` | 476–512 |
+| 8 contact and data | More than one contact address across the pages; JSON-LD does not parse, or its phone or e-mail disagrees with the page | 513–532 |
+| 8 retired claims | Copy the owner retired as unsupported comes back (`RETIRED`) | 534–542 |
+| 15 knowledge base | Anything under `knowledge-base/` holds a machine path, a private-vault marker, or an e-mail address other than the two it allows | 544–560 |
+| 15b line endings | `.gitattributes` does not start with `* text=auto eol=lf`, a binary file's type is not marked binary there, a tracked text file holds a CR, or a `.gitignore` or `.gitattributes` pattern uses syntax the check cannot read; without git it walks the files `.gitignore` keeps | 562–621 |
+| 15c no runtime dependency | `package.json` declares a runtime dependency (`dependencies`, optional, peer or bundled); the site has none, and every package is a tool for the scripts | 623–633 |
 
 Every row cites scripts/check.mjs at the lines shown. The prices behind the price check are in [[Pricing and market]]; the clients behind blocks 5 to 5c in [[Clients and projects]].
 

@@ -20,7 +20,7 @@ How the home page moves and what it draws with: the ambient layer (parallax, her
 | Aurora | Removed in the anti-slop sweep; kept as a lesson | BRAND.md › same section |
 
 - Parallax rides the `translate` property, never `transform`, so one element can be parallaxed and still run a reveal, a hover scale and a spin without one clobbering another (BRAND.md › The ambient layer — parallax, aurora, reveal).
-- `check` block 3b fails when a `data-parallax` depth does not parse to a non-zero number (scripts/check.mjs › 105–115).
+- `check` block 3b fails when a `data-parallax` depth does not parse to a non-zero number (scripts/check.mjs › 117–127).
 - Only `html.js-ready`, set by `app.js` as its first act, hides anything, so a blocked script never leaves sections invisible (BRAND.md › Stress test).
 - The hero headline, lede and plate rise with `transform` only and are never transparent: with the fade, the browser credited the hero plate as painted at 7.5s on Slow 3G, and at 3.7s without it (BRAND.md › Stress test).
 - Graph: [[Ambient layer (parallax, aurora, reveal)]], [[Parallax via CSS translate property]], [[Cached layout positions (numidearelayout)]], [[Reveal entrance (rAF-batched stagger)]], [[Hero floaters (hand-drawn SVG geometry)]], [[Never fade the LCP element (hero-rise-solid)]], [[Stress test harness]].
