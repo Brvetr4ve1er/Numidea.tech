@@ -1,17 +1,31 @@
 name: Check
 
-# Repository invariants on every push and pull request. These need no
-# dependencies and no browser, so they run in seconds. html-validate needs
-# node_modules (browser download skipped). The browser gates (audit, sweep,
-# vbugs) are heavier and run on demand: Actions → Check → Run workflow.
+# Two jobs.
+#
+# check — every push and pull request, about a minute, no browser: the
+#   repository invariants, html-validate, "the build leaves no change" and the
+#   audit of the runtime dependencies (there are none today; this keeps it so).
+#   Every step runs even when an earlier one failed, so one run shows
+#   everything that is wrong (as npm run verify does).
+#
+# nightly — every night and on demand (Actions → Check → Run workflow): the
+#   browser gates (npm run verify, keys, links) and the full npm audit,
+#   development dependencies included. A new advisory against a dev-only tool
+#   turns this red without blocking every push.
+#
+# The deploy (pages.yml) runs its own gates; it does not wait for this file.
+# Every action is pinned to a commit SHA, its version in the comment;
+# Dependabot (.github/dependabot.yml) proposes the updates.
 
 on:
   push:
   pull_request:
+  schedule:
+    - cron: "17 3 * * *"     # 03:17 UTC every night (scheduled runs use the default branch)
   workflow_dispatch:
     inputs:
       browser:
-        description: "Also run the browser gates (audit, sweep, vbugs)"
+        description: "Also run the nightly job (verify, keys, links, full npm audit)"
         type: boolean
         default: true
 
@@ -20,22 +34,77 @@ permissions:
 
 jobs:
   check:
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
+          package-manager-cache: false
       - name: Invariants (check + theme contract)
         run: node scripts/check.mjs && node scripts/themes-check.mjs
       - name: Install (no browser download)
+        id: install
+        if: ${{ !cancelled() }}
         run: npm ci
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
       - name: HTML validation
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: npm run validate
-      - name: Browser gates
-        if: github.event_name == 'workflow_dispatch' && inputs.browser
+      - name: The build leaves no change (npm run build && git diff --exit-code)
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
         run: |
-          npx playwright install --with-deps chromium
-          npm run audit && npm run sweep && npm run vbugs
+          npm run build
+          if ! git diff --exit-code --stat; then
+            git --no-pager diff | head -n 200 || true   # a long diff: head closes the pipe early
+            echo "::error::npm run build changed committed files. Run it locally and commit the result."
+            exit 1
+          fi
+          new=$(git ls-files --others --exclude-standard)
+          if [ -n "$new" ]; then
+            echo "$new"
+            echo "::error::npm run build wrote files that are not committed (listed above)."
+            exit 1
+          fi
+      - name: Runtime dependency audit (npm audit --omit=dev)
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm audit --omit=dev
+
+  nightly:
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.browser)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Install
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      # the Chromium build that the locked Playwright version expects, with its
+      # system libraries and fonts (scripts/lib/serve.mjs uses it in CI)
+      - name: Install Chromium
+        id: browser
+        run: npx playwright install --with-deps chromium
+      - name: Every gate (npm run verify)
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: npm run verify
+      - name: Keyboard, motion and RTL paths (npm run keys)
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: npm run keys
+      - name: External links (npm run links)
+        if: ${{ !cancelled() }}
+        run: npm run links
+      - name: Full dependency audit (npm audit, dev included)
+        if: ${{ !cancelled() }}
+        run: npm audit
