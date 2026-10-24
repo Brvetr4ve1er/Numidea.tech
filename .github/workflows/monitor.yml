@@ -8,9 +8,11 @@ name: Live monitor
 #      unknown path answers 404 with the site's 404 page, sitemap.xml,
 #      robots.txt and assets/og.jpg answer 200, and every page carries the
 #      ?v= stamp of the branch head, as does every stamped asset it loads
-#      (each of those must answer 200 too). A stamp that differs while a Pages
-#      deploy is queued or running is only a warning; otherwise it means the
-#      last deploy did not publish (its gates were red, or it failed).
+#      (each of those must answer 200 too). And the last finished Pages run
+#      on the default branch (Actions API) must have succeeded: most commits
+#      keep the stamp, so this is what catches a deploy whose gates were red
+#      while the old site stays live. A stale stamp or a failed run is only a
+#      warning while a newer Pages run is queued or running.
 #   2. npm run links: the external links (scripts/links.mjs).
 #   3. Lighthouse, pinned below, on the live index in French and Arabic,
 #      mobile and desktop, three runs each. The median of each metric must
@@ -45,7 +47,7 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: read
-      actions: read            # is a Pages deploy running? (stamp check)
+      actions: read            # the Pages runs: did the last deploy succeed, is one on its way?
     env:
       LIGHTHOUSE: "13.5.0"     # exact version, run with npx
       # medians of three runs. Desktop: the target.
@@ -97,13 +99,13 @@ jobs:
           const rows = [];
           const note = (ok, what, url, detail, stale = false) => {
             rows.push({ ok, what, url, detail, stale });
-            console.log(`${ok ? '✓' : '✗'} ${what} — ${detail}`);
+            console.log(`${ok ? '✓' : stale ? '~' : '✗'} ${what} — ${detail}`);   // ~: may only be waiting for a deploy
           };
 
-          async function get(url) {
+          async function get(url, headers = {}) {
             for (let i = 1; ; i++) {
               try {
-                const r = await fetch(url, { signal: AbortSignal.timeout(20000), headers: { 'user-agent': 'numidea-live-monitor' } });
+                const r = await fetch(url, { signal: AbortSignal.timeout(20000), headers: { 'user-agent': 'numidea-live-monitor', ...headers } });
                 if (r.status >= 500 && i < 3) throw new Error('HTTP ' + r.status);
                 return { status: r.status, type: r.headers.get('content-type') || '', body: Buffer.from(await r.arrayBuffer()) };
               } catch (e) {
@@ -143,26 +145,62 @@ jobs:
               p, BASE + p, `${r.status || r.error} ${r.type.split(';')[0]}, ${r.body.length} bytes`);
           }
 
-          // a stamp behind the branch is expected while a deploy is on its way
-          const bad = rows.filter((r) => !r.ok);
+          // The Pages workflow's own record, read on every run: the latest
+          // finished run on the default branch, and any newer one still queued
+          // or running. Most commits keep the ?v= stamp, so the stamp alone
+          // cannot tell that the last deploy was refused (a red gate) and the
+          // old site is still live; this row can.
           let busy = null, why = '';
-          if (bad.length && bad.every((r) => r.stale) && process.env.GITHUB_TOKEN && process.env.GITHUB_REPOSITORY) {
-            const api = `${process.env.GITHUB_API_URL || 'https://api.github.com'}/repos/${process.env.GITHUB_REPOSITORY}/actions/workflows/pages.yml/runs?per_page=10`;
-            const r = await fetch(api, { headers: { authorization: `Bearer ${process.env.GITHUB_TOKEN}`, accept: 'application/vnd.github+json' } }).catch(() => null);
-            const runs = r?.ok ? (await r.json()).workflow_runs : [];
-            busy = runs.find((w) => w.status !== 'completed') || null;
-            if (!busy && runs[0]) why = ` No deploy is running; the last Pages run ended "${runs[0].conclusion}": ${runs[0].html_url}`;
+          if (process.env.GITHUB_TOKEN && process.env.GITHUB_REPOSITORY) {
+            const API = `${process.env.GITHUB_API_URL || 'https://api.github.com'}/repos/${process.env.GITHUB_REPOSITORY}`;
+            const auth = { authorization: `Bearer ${process.env.GITHUB_TOKEN}`, accept: 'application/vnd.github+json' };
+            const json = async (url) => {
+              const r = await get(url, auth);
+              if (r.status !== 200) throw new Error(`${r.status || r.error} from GET ${url.slice(url.indexOf('/repos/'))}`);
+              return JSON.parse(r.body.toString('utf8'));
+            };
+            const what = 'last Pages deploy (pages.yml)';
+            try {
+              const branch = (await json(API)).default_branch;
+              const list = `${API}/actions/workflows/pages.yml/runs?branch=${encodeURIComponent(branch)}&per_page=20`;
+              const runs = (await json(list)).workflow_runs || [];
+              const k = runs.findIndex((w) => w.status === 'completed');   // newest first
+              const last = runs[k];
+              busy = runs.slice(0, k < 0 ? runs.length : k).find((w) => w.status !== 'completed') || null;
+              if (!last) {
+                console.log(`::warning::no finished Pages run on ${branch} yet${busy ? '; one is ' + busy.status : ''}`);
+              } else {
+                const ok = last.conclusion === 'success';
+                note(ok, what, last.html_url,
+                  `run ${last.run_number} on ${branch} (${last.head_sha.slice(0, 7)}, ${last.event}) ended "${last.conclusion}"`
+                    + (ok ? '' : busy ? `; a newer run is ${busy.status}` : '; no newer run is queued or running, so that commit is not live'),
+                  !ok && !!busy);
+                why = ` No newer deploy is queued or running; the last Pages run ended "${last.conclusion}": ${last.html_url}`;
+              }
+            } catch (e) {
+              note(false, what, API + '/actions/workflows/pages.yml/runs', `could not be read: ${e.message}`);
+            }
+          } else {
+            console.log('no GITHUB_TOKEN: the Pages deploy check is skipped (it runs in Actions)');
           }
-          for (const r of bad) console.log(`::${busy ? 'warning' : 'error'}::${r.what} — ${r.detail} (${r.url})`);
-          if (busy) console.log(`::warning::the live stamp is behind the branch while a Pages deploy is ${busy.status} (${busy.html_url}); not a failure`);
+
+          // a stamp behind the branch, or a refused deploy, is expected while
+          // a newer deploy is on its way: when those are the only failures,
+          // they are warnings
+          const bad = rows.filter((r) => !r.ok);
+          const stale = bad.filter((r) => r.stale);
+          const waiting = busy && bad.length > 0 && stale.length === bad.length ? busy : null;
+          if (busy || !stale.length) why = '';   // it says that no deploy is on its way
+          for (const r of bad) console.log(`::${waiting ? 'warning' : 'error'}::${r.what} — ${r.detail} (${r.url})`);
+          if (waiting) console.log(`::warning::the live site is behind the branch while a Pages deploy is ${waiting.status} (${waiting.html_url}); not a failure`);
           else if (why) console.log(`::error::the live site does not carry the branch's stamp.${why}`);
-          const failed = busy ? 0 : bad.length;
+          const failed = waiting ? 0 : bad.length;
           const head = ['| | check | URL | result |', '| --- | --- | --- | --- |'];
-          const line = (r) => `| ${r.ok ? '✓' : busy ? '~' : '✗'} | ${r.what} | ${r.url} | ${r.detail} |`;
+          const line = (r) => `| ${r.ok ? '✓' : waiting ? '~' : '✗'} | ${r.what} | ${r.url} | ${r.detail} |`;
           const table = [...head, ...rows.map(line)].join('\n');
           if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `### Live pages and assets\n\n${table}\n\n`);
           if (failed && process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `failures<<LIVE_TABLE\n${[...head, ...bad.map(line)].join('\n')}${why ? '\n\n' + why.trim() : ''}\nLIVE_TABLE\n`);
-          console.log(failed ? `✗ ${failed} live check(s) failed` : `✓ ${rows.length - bad.length} of ${rows.length} live checks passed${busy ? ' (the rest wait for the running deploy)' : ''}`);
+          console.log(failed ? `✗ ${failed} live check(s) failed` : `✓ ${rows.length - bad.length} of ${rows.length} live checks passed${waiting ? ' (the rest wait for the running deploy)' : ''}`);
           process.exit(failed ? 1 : 0);
           EOF
 

@@ -208,9 +208,13 @@ earlier one failed:
      stylesheet and script it loads answers 200.
    - `sitemap.xml`, `robots.txt` and `assets/og.jpg` answer 200 with the
      right type.
-   - A stamp behind the branch is only a warning while a Pages deploy is
-     queued or running. Otherwise the error names the last Pages run and how
-     it ended.
+   - The last finished Pages run on the default branch succeeded (read
+     through the Actions API). Most commits keep the stamp, so this is what
+     catches a deploy whose gates were red: the old site stays live, and the
+     stamp alone would not show it.
+   - A stamp behind the branch, or a failed last run, is only a warning while
+     a newer Pages run is queued or running. Otherwise the error names the
+     last Pages run and how it ended.
 2. **External links:** `npm run links`.
 3. **Lighthouse.** The version is pinned in the file. It runs on the live
    index, in French and in Arabic, on mobile and desktop, three runs each.
