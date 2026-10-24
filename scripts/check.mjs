@@ -556,7 +556,10 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
 // ui.desc), og:title, og:description, og:image, og:url (the page's own URL),
 // og:type, twitter:card and twitter:image, with og:image:width/height equal
 // to the image file's own size (read from its header). Every page has
-// exactly one <h1>. robots.txt names BASE/sitemap.xml and disallows no
+// exactly one <h1>; legal/, which carries its three languages in the body,
+// one per language block. legal/ is checked from its template
+// (renderLegal) while it is unpublished, so publishing it cannot turn this
+// red. robots.txt names BASE/sitemap.xml and disallows no
 // indexable page, whether served at the host root (the mirrors) or under
 // BASE's path (Pages). The hreflang alternates in a page's head equal its
 // sitemap entry's. The studio's ProfessionalService JSON-LD states name,
@@ -596,29 +599,44 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     if (b.toString('latin1', 1, 4) === 'PNG') return [b.readUInt32BE(16), b.readUInt32BE(20)];
     return fileSize(file);
   };
-  // the sitemap's entries: loc → its alternates, in altsOf's form
+  // a sitemap's entries: loc → its alternates, in altsOf's form
   const unXml = (s) => s.replace(/&amp;/g, '&');
-  const smap = new Map([...read('sitemap.xml').matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => [
+  const sitemapOf = (xml) => new Map([...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => [
     unXml((/<loc>([^<]+)<\/loc>/.exec(m[1]) || [])[1] || ''),
     [...m[1].matchAll(/<xhtml:link\b[^>]*>/g)].map((x) => attrs(x[0])).map((a) => `${a.hreflang} ${unXml(a.href)}`).sort().join(' | '),
   ]));
+  const smap = sitemapOf(read('sitemap.xml'));
   const NOINDEX = /\b(noindex|none)\b/i;
+  // <h1>: one per page. A page that carries every language in its body (one
+  // <div lang> block per language, html[lang] shows one: legal/) has one per
+  // block and none outside them; the last block runs to </main>.
+  const h1Gaps = (body) => {
+    const n = (s) => (s.match(/<h1\b/gi) || []).length;
+    const at = [...body.matchAll(/<div\b[^>]*\slang="([a-z]{2})"[^>]*>/gi)];
+    if (at.length !== LANGS.length || !LANGS.every((l) => at.some((m) => m[1] === l))) return n(body) === 1 ? [] : [`${n(body)} <h1> (want exactly one)`];
+    const stop = body.search(/<\/main>/i), last = stop < 0 ? body.length : stop;
+    const out = at.map((m, i) => [m[1], n(body.slice(m.index, i + 1 < at.length ? at[i + 1].index : last))])
+      .filter(([, c]) => c !== 1).map(([l, c]) => `${c} <h1> in its [lang="${l}"] block (want exactly one per language)`);
+    const outside = n(body.slice(0, at[0].index)) + n(body.slice(last));
+    return outside ? out.concat(`${outside} <h1> outside its language blocks`) : out;
+  };
   const indexable = [];
-  for (const f of PAGES) {
-    const src = read(f).replace(/<!--[\s\S]*?-->/g, '');
+  // f: the page's path (its URL, its sitemap entry); label: how errors name it
+  const seoPage = (f, raw, map, label = f) => {
+    const err = (_, msg) => seoErr.push(`${label}: ${msg}`);
+    const src = raw.replace(/<!--[\s\S]*?-->/g, '');
     const end = src.search(/<\/head>/i), head = end < 0 ? '' : src.slice(0, end);
     const meta = metasOf(head), url = BASE + f.replace(/index\.html$/, '');
     const titles = [...head.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title>/gi)];
     if (titles.length !== 1 || !norm(titles[0][1])) err(f, `${titles.length} <title> in the head (want one, not empty)`);
-    const h1 = (src.replace(/<script\b[\s\S]*?<\/script>/gi, '').match(/<h1\b/gi) || []).length;
-    if (h1 !== 1) err(f, `${h1} <h1> (want exactly one)`);
+    for (const g of h1Gaps(src.replace(/<script\b[\s\S]*?<\/script>/gi, ''))) err(f, g);
     const noindex = (meta.robots || []).some((r) => NOINDEX.test(r));
     if (f === '404.html') {
       if (!noindex) err(f, 'is served for every missing URL: it needs <meta name="robots" content="noindex">');
-      if (smap.has(url)) err(f, 'is noindex but listed in sitemap.xml');
-      continue;
+      if (map.has(url)) err(f, 'is noindex but listed in sitemap.xml');
+      return;
     }
-    if (noindex) { err(f, 'is noindex, yet it is published and in the sitemap'); continue; }
+    if (noindex) { err(f, 'is noindex, yet it is published and in the sitemap'); return; }
     indexable.push(f);
     const desc = meta.description || [];
     if (desc.length !== 1 || !descOk(desc[0])) err(f, `meta description ${desc.length === 1 ? len(desc[0]) + ' characters' : '×' + desc.length} (want one, 50-160 characters)`);
@@ -650,8 +668,18 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     // hreflang: the head and the page's sitemap entry name the same set (the
     // entries of its ?lang= versions repeat it: renderSitemap, check 6)
     const alts = altsOf(head);
-    if (!smap.has(url)) err(f, `not in sitemap.xml (${url})`);
-    else if (smap.get(url) !== alts) err(f, `hreflang in the head [${alts || 'none'}] ≠ sitemap.xml [${smap.get(url) || 'none'}]`);
+    if (!map.has(url)) err(f, `not in sitemap.xml (${url})`);
+    else if (map.get(url) !== alts) err(f, `hreflang in the head [${alts || 'none'}] ≠ sitemap.xml [${map.get(url) || 'none'}]`);
+  };
+  for (const f of PAGES) seoPage(f, read(f), smap);
+  // legal/ is held back until the owner's fields are in (LEGAL_PUBLISHED), so
+  // its template is checked now: the preview render without the preview's
+  // noindex, against the sitemap the published set would have
+  if (!LEGAL_PUBLISHED) {
+    const tpl = renderLegal(LEGAL, { preview: true });
+    const live = tpl.replace(/<meta name="robots" content="noindex">\n/, '');
+    if (live === tpl) seoErr.push('legal template: the preview no longer adds <meta name="robots" content="noindex"> as this check expects');
+    seoPage('legal/index.html', live, sitemapOf(renderSitemap([...PAGES, 'legal/index.html'])), 'legal template (scripts/build-legal.mjs)');
   }
   // robots.txt: the sitemap line, and no indexable page disallowed for any
   // user agent (longest matching rule wins, Allow on a tie, as Google reads it)
@@ -699,7 +727,7 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     if ([...langs].sort().join() !== [...LANGS].sort().join()) err('index.html', `WebSite inLanguage [${langs}] ≠ the site's languages [${LANGS}]`);
   }
   seoErr.length ? bad('SEO: ' + seoErr.join('; '))
-    : ok(`SEO: ${indexable.length} indexable pages with title, 50-160 character descriptions, og/twitter tags, image sizes and one h1; 404 noindex; robots.txt, hreflang and JSON-LD hold`);
+    : ok(`SEO: ${indexable.length} indexable pages${LEGAL_PUBLISHED ? '' : ' (legal/ from its template, until it is published)'} with title, 50-160 character descriptions, og/twitter tags, image sizes and one h1 (per language block on legal/); 404 noindex; robots.txt, hreflang and JSON-LD hold`);
 }
 
 process.exit(fail);
