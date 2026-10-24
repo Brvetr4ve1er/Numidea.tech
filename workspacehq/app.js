@@ -217,10 +217,21 @@
      the same frame does scroll), so focus sat on a play button below the
      fold where nobody could see it (npm run keys). Focus moving into a frame
      blurs this window with the frame as the active element: bring the frame
-     on screen then. */
+     on screen then, but only when a Tab press moved it. A click or a tap
+     into a partly visible player must not scroll the page, or what is under
+     the pointer slides away as the visitor presses play. The press happens
+     in this document (the pointer's press happens in the frame's, which is
+     why a pointerdown flag here could not tell them apart), and the blur it
+     causes comes in the same task, so the flag lives until the next one. */
+  var tabbing = false;
+  addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    tabbing = true;
+    setTimeout(function () { tabbing = false; }, 0);
+  }, true);
   addEventListener('blur', function () {
     var a = document.activeElement;
-    if (a && a.tagName === 'IFRAME') a.scrollIntoView({ block: 'nearest' });
+    if (tabbing && a && a.tagName === 'IFRAME') a.scrollIntoView({ block: 'nearest' });
   });
 
   /* ---------------- nav, progress, cursor glow ---------------- */

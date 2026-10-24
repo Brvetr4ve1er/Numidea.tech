@@ -35,6 +35,11 @@
  *                 reading direction (forward is ArrowLeft when it is RTL).
  *                 scene/'s viewer shows one capture and has no arrow keys
  *                 (the 2026-07 audit's A-04 was about arrows it no longer has)
+ *  embeds         (workspacehq/) Tab from the stop before the trailer or the
+ *                 walkthrough, with the frame below the fold, lands in it and
+ *                 its focused control is on screen; a click (a tap on the
+ *                 phone) into one that is only 35% on screen does not scroll
+ *                 the page
  *  reduced motion prefers-reduced-motion: reduce emulated, the site's own
  *                 handling only (nothing injected, nothing killed): nothing
  *                 that reveals on scroll is hidden at load; once the network
@@ -74,7 +79,7 @@ const SPEC = {
   'index.html': { langs: ['fr', 'ar'], tests: ['theme', 'menu', 'cv', 'form'] },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
   'hub/index.html': { langs: ['en'], tests: ['lightbox'], only: "English only (the founder's own page)" },
-  'workspacehq/index.html': { langs: ['en'], tests: [], only: 'English only (the product page)' },
+  'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
   '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the logo and one link' },
   'legal/index.html': { langs: ['fr', 'ar'], tests: [] },
 };
@@ -398,6 +403,64 @@ async function dialog(p, kind) {
   return { bad, note: kind + arrows };
 }
 
+/* workspacehq/'s trailer and walkthrough: Tab into one that is below the fold
+   brings it on screen (the page does that: the player runtime does not), and
+   a click or tap into one that is partly on screen leaves the page where it
+   is, so what is under the pointer does not slide away. Each starts with focus
+   in the host page, on the Tab stop before the frame, as a visitor's would be. */
+async function embeds(p, w, h) {
+  const bad = [];
+  const touch = w < 600;
+  await p.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+  // focus (without scrolling) on the last Tab stop of the host page before the frame
+  const focusBefore = (sel) => p.evaluate((sel) => {
+    const f = document.querySelector(sel);
+    const stops = [...document.querySelectorAll('a[href],button,input,select,textarea,summary,iframe,[tabindex]')].filter((e) => e.tabIndex >= 0 && !e.disabled
+      && !e.closest('[inert],[hidden]') && e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden'
+      && (e.compareDocumentPosition(f) & Node.DOCUMENT_POSITION_FOLLOWING));
+    const a = stops[stops.length - 1];
+    if (!a) return null;
+    a.focus({ preventScroll: true });
+    return document.activeElement === a ? __d(a) : null;
+  }, sel);
+  const frameAt = (sel) => p.evaluate((sel) => { const r = document.querySelector(sel).getBoundingClientRect(); return { y: r.top + scrollY, top: r.top, bottom: r.bottom, l: r.left, w: r.width, h: r.height, vh: innerHeight }; }, sel);
+  for (const [sel, what] of [['#reel iframe', 'trailer'], ['#walkFrame', 'walkthrough']]) {
+    const el = p.locator(sel);
+    await el.scrollIntoViewIfNeeded();                     // the frames are lazy
+    const fr = await (await el.elementHandle()).contentFrame();
+    try { await fr.waitForLoadState('load', { timeout: 30000 }); } catch { bad.push('the ' + what + ' did not load'); continue; }
+    await wait(1500);
+    const prev = await focusBefore(sel);
+    if (!prev) { bad.push('no Tab stop before the ' + what + ' to start from'); continue; }
+    // pointer: the frame's top 35% at the bottom of the viewport, a click near its top edge
+    let f = await frameAt(sel);
+    await p.evaluate((y) => scrollTo(0, y), Math.max(0, Math.round(f.y - h + f.h * 0.35)));
+    await wait(600);
+    const y0 = await p.evaluate(() => scrollY);
+    f = await frameAt(sel);
+    if (touch) await p.touchscreen.tap(f.l + f.w / 2, Math.min(h - 10, f.top + 30)); else await p.mouse.click(f.l + f.w / 2, Math.min(h - 10, f.top + 30));
+    await wait(800);
+    const y1 = await p.evaluate(() => scrollY);
+    if (Math.abs(y1 - y0) > 1) bad.push(`a ${touch ? 'tap' : 'click'} into the partly visible ${what} scrolls the page (${y0} → ${y1})`);
+    // keyboard: back on the stop before it, the frame's top 40px below the fold, then Tab
+    await focusBefore(sel);
+    await p.evaluate((y) => scrollTo(0, y), Math.max(0, Math.round(f.y - h - 40)));
+    await wait(300);
+    const below = (await frameAt(sel)).top >= h;
+    await p.keyboard.press('Tab');
+    await wait(500);
+    const inFrame = await p.evaluate((sel) => document.activeElement === document.querySelector(sel), sel);
+    if (!inFrame) { bad.push('Tab from ' + prev + ' goes to ' + (await p.evaluate(() => __d(document.activeElement))) + ', not into the ' + what); continue; }
+    // the control that took focus inside the frame, in page coordinates
+    f = await frameAt(sel);
+    const inner = await fr.evaluate(() => { const a = document.activeElement, r = a.getBoundingClientRect(); return { body: a === document.body, top: r.top, bottom: r.bottom, d: __d(a) }; });
+    const t = inner.body ? f.top : f.top + inner.top, bt = inner.body ? f.bottom : f.top + inner.bottom;
+    if (!below) bad.push('could not put the ' + what + ' below the fold to test Tab');
+    else if (!(t >= 0 && bt <= f.vh)) bad.push(`Tab into the ${what} leaves its focus off screen (${inner.d} at ${Math.round(t)}–${Math.round(bt)}, viewport ${f.vh})`);
+  }
+  return { bad, note: 'embeds' };
+}
+
 async function direction(p, spec, lang, when) {
   const d = await p.evaluate(() => ({ dir: document.documentElement.getAttribute('dir') || 'ltr', lang: document.documentElement.getAttribute('lang'), css: getComputedStyle(document.body).direction }));
   const has = spec.langs.includes(lang);
@@ -432,6 +495,7 @@ for (const f of pages) {
       else if (t === 'menu') out.push(await phoneMenu(p, w));
       else if (t === 'cv') out.push(await cvPanel(p));
       else if (t === 'form') out.push(await contactForm(p, lang));
+      else if (t === 'embeds') out.push(await embeds(p, w, h));
       else out.push(await dialog(p, t));
     }
     out.push({ bad: await direction(p, spec, lang, 'after the tests'), note: 'dir ' + (lang === 'ar' ? 'rtl' : 'ltr') });
