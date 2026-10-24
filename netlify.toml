@@ -37,4 +37,4 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
-    Strict-Transport-Security = "max-age=31536000"
+    Strict-Transport-Security = "max-age=63072000"

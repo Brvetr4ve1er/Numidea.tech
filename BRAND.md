@@ -1775,7 +1775,16 @@ which check.mjs 16 keeps identical):
   object-src 'none'`: frame-ancestors is the part a meta cannot carry. The
   browser enforces this policy on top of each page's meta, so it holds no
   fetch directive, which would block what the meta allows.
-- `Strict-Transport-Security: max-age=31536000`.
+- `Strict-Transport-Security: max-age=63072000` (two years). Vercel already
+  sends `max-age=63072000; includeSubDomains; preload` on every
+  `*.vercel.app` deployment, and Netlify sends `max-age=31536000;
+  includeSubDomains; preload` on `*.netlify.app` (both read with
+  `curl -sI`, October 2026). A custom header most likely replaces the
+  platform's, so ours uses Vercel's two years rather than shorten it there.
+  check.mjs 16 accepts a year or more. `includeSubDomains` and `preload` are
+  left out: they bind every subdomain of a custom domain, which is the
+  owner's decision. After a deploy, `curl -sI` on each mirror shows the
+  header actually sent.
 - `X-Frame-Options: SAMEORIGIN`, for older browsers.
 
 On the mirrors, another site that frames any page of this one is refused
