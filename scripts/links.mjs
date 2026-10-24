@@ -129,7 +129,8 @@ for (const f of published) {
   for (const m of src.matchAll(/https:\/\/[^\s"'<>`\\)\]}|]+/g)) {
     const u = m[0].replace(/\$\{.*$/, '').replace(/&amp;/g, '&').replace(/[.,;:!?]+$/, '');
     if (/@context["']?\s*:\s*["']$/.test(src.slice(Math.max(0, m.index - 16), m.index))) continue;
-    if (/^['"]\s*\+/.test(src.slice(m.index + m[0].length, m.index + m[0].length + 4))) {
+    // built at runtime: 'https://…' + x, or a template literal's `https://…${x}`
+    if (m[0].includes('${') || /^['"]\s*\+/.test(src.slice(m.index + m[0].length, m.index + m[0].length + 4))) {
       if (!PREFIXES[u]) { unknownPrefix.push(`${f}: '${u}' + …`); continue; }
       const full = PREFIXES[u]();
       if (full) add(full, `${f} ('${u}' + …, completed)`);
@@ -161,6 +162,7 @@ if (left.length) console.log(`  LEFT OUT by LINKS_SKIP ${skipRe} (not checked, n
 
 if (LIST) {
   for (const u of todo) console.log(`${kind(u).padEnd(7)} ${u}\n        ${[...links.get(u)].join(' · ')}`);
+  for (const p of unknownPrefix) console.error(`✗ a link built from a prefix links.mjs cannot complete (add it to PREFIXES): ${p}`);
   process.exit(unknownPrefix.length ? 1 : 0);
 }
 
@@ -218,6 +220,6 @@ if (warns.size) {
   for (const [g, lines] of warns) { nw += lines.length; console.log(`⚠ ${g}\n` + lines.map((l) => '    ' + l).join('\n')); }
 }
 if (fails.length) console.error('\n— dead —\n' + fails.join('\n'));
-console.log(fails.length ? `\nFAILURES: ${fails.length} of ${todo.length} links`
+console.log(fails.length ? `\nFAILURES: ${fails.length} (${todo.length} links checked)`
   : `\nALL LINKS ANSWER (${todo.length - nw} passed, ${nw} warned${left.length ? `, ${left.length} left out by LINKS_SKIP` : ''})`);
 process.exit(fails.length ? 1 : 0);
