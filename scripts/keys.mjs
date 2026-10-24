@@ -48,7 +48,13 @@
  *                 is idle and a key has woken the page, no script writes
  *                 styles, classes or text for 6s (rotations, cyclers,
  *                 parallax, counters), and then no infinite or long (>1s
- *                 left) animation is running
+ *                 left) animation is running. Then the page is scrolled
+ *                 through a viewport at a time, each held 400ms: nothing is
+ *                 written after the first 150ms of a hold (what a scroll
+ *                 handler writes at once is the page following the scroll),
+ *                 no frame (the embeds included) has such an animation
+ *                 running afterwards, and each embedded player, on screen
+ *                 and loaded, does not advance its playhead in 2s
  *  direction      ?lang=ar gives html dir="rtl" lang="ar" on every page that
  *                 has Arabic, and still does after the language hold's 1.5s
  *                 fallback; the English-only pages stay ltr
@@ -521,6 +527,12 @@ for (const f of pages) {
   }
 }
 
+// running animations in a frame that are infinite or have over 1s left
+const running = (fr) => fr.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').map((a) => {
+  const t = a.effect.getComputedTiming();
+  return { what: (a.animationName || a.transitionProperty || 'script') + ' on ' + __d(a.effect.target), inf: t.iterations === Infinity, left: t.endTime - (a.currentTime || 0) };
+}).filter((x) => x.inf || x.left > 1000).map((a) => a.what + (a.inf ? ' (infinite)' : ` (${Math.round(a.left)}ms left)`))).catch(() => []);
+
 console.log('— reduced motion (the site\'s own handling) —');
 for (const f of pages) {
   const spec = SPEC[f]; if (!spec) continue;
@@ -546,16 +558,55 @@ for (const f of pages) {
     await p.keyboard.press('Shift');
     await p.evaluate(() => { window.__mut = {}; });
     await wait(6000);
-    const anim = await p.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').map((a) => {
-      const t = a.effect.getComputedTiming();
-      return { what: (a.animationName || a.transitionProperty || 'script') + ' on ' + __d(a.effect.target), inf: t.iterations === Infinity, left: t.endTime - (a.currentTime || 0) };
-    }).filter((x) => x.inf || x.left > 1000));
+    const anim = await running(p.mainFrame());
     const mut = Object.entries(await p.evaluate(() => __mut));
     const bad = [];
     if (rv.hidden.length) bad.push('hidden at load: ' + rv.hidden.slice(0, 6).join(', ') + (rv.hidden.length > 6 ? ' +' + (rv.hidden.length - 6) : ''));
-    for (const a of anim) bad.push('still running: ' + a.what + (a.inf ? ' (infinite)' : ` (${Math.round(a.left)}ms left)`));
-    if (mut.length) bad.push('script still moving things: ' + mut.slice(0, 5).map(([k, n]) => k + ' ×' + n).join(', ') + (mut.length > 5 ? ' +' + (mut.length - 5) : ''));
-    report(`${name(f)} ${lang} ${w} rm`, [{ bad, note: `reveals ${rv.n - rv.hidden.length}/${rv.n} shown  anim ${anim.length}  moved ${mut.length}` }], errs, csp);
+    for (const a of anim) bad.push('still running: ' + a);
+    const moved = (what, list) => { if (list.length) bad.push(what + list.slice(0, 5).map(([k, n]) => k + ' ×' + n).join(', ') + (list.length > 5 ? ' +' + (list.length - 5) : '')); };
+    moved('script still moving things: ', mut);
+    // Then the rest of the page, which only a scroll reaches (count-ups,
+    // parallax, reveals and lazy players start there): one viewport at a
+    // time, each held 400ms. What a scroll handler writes in the first 150ms
+    // after a jump is the page following the scroll (a sticky bar, a
+    // progress line); what is written after that moves on its own.
+    const sc = await p.evaluate(async () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+      const out = {}; let jump = performance.now();
+      const mo = new MutationObserver((list) => { if (performance.now() - jump < 150) return;
+        for (const r of list) { const k = __d(r.target.nodeType === 1 ? r.target : r.target.parentElement) + ' ' + (r.attributeName || r.type); out[k] = (out[k] || 0) + 1; } });
+      mo.observe(document.body, { subtree: true, attributes: true, characterData: true, childList: true });
+      let n = 0;
+      for (let y = innerHeight; y < document.documentElement.scrollHeight; y += innerHeight) {
+        scrollTo(0, y); jump = performance.now(); n++;
+        await new Promise((r) => setTimeout(r, 400));
+      }
+      mo.disconnect();
+      return { n, moved: Object.entries(out) };
+    });
+    moved('moving after a scroll settles: ', sc.moved);
+    // every frame's animations once the whole page has been on screen
+    const fanim = [];
+    for (const fr of p.frames()) fanim.push(...(await running(fr)).map((a) => (fr === p.mainFrame() ? '' : fr.url().replace(B, '').split(/[?#]/)[0] + ' › ') + a));
+    for (const a of fanim) bad.push('running after the scroll: ' + a);
+    // players (workspacehq/'s trailer and walkthrough) hold still: on screen
+    // and loaded, their playheads (animations-v3.js keeps them in
+    // localStorage) do not advance in 2s
+    const players = await p.$$('iframe');
+    let held = 0;
+    for (const el of players) {
+      await el.scrollIntoViewIfNeeded();
+      const fr = await el.contentFrame();
+      try { await fr.waitForLoadState('load', { timeout: 20000 }); } catch { bad.push('a player did not load: ' + (await el.getAttribute('src'))); continue; }
+      const file = ((await el.getAttribute('src')) || '').split(/[?#]/)[0].split('/').pop();
+      const heads = () => p.evaluate((file) => Object.fromEntries(Object.keys(localStorage).filter((k) => k.startsWith('animstage-v3:') && k.endsWith('/' + file + ':t')).map((k) => [file, parseFloat(localStorage.getItem(k))])), file);
+      await wait(500);
+      const t0 = await heads(); await wait(2000); const t1 = await heads();
+      const adv = Object.keys(t1).filter((k) => t1[k] > (t0[k] || 0));
+      if (adv.length) bad.push('a player is playing with reduced motion on: ' + adv.map((k) => `${k} ${t0[k] || 0} → ${t1[k]}`).join(', '));
+      else held++;
+    }
+    report(`${name(f)} ${lang} ${w} rm`, [{ bad, note: `reveals ${rv.n - rv.hidden.length}/${rv.n} shown  anim ${anim.length}  moved ${mut.length}  scrolled ${sc.n}×vh: moved ${sc.moved.length}, anim ${fanim.length} in ${p.frames().length} frame(s)` + (players.length ? `  players held ${held}/${players.length}` : '') }], errs, csp);
     await close();
   }
 }
