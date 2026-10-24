@@ -36,6 +36,14 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
     radial-gradient(120% 90% at 80% -10%, rgba(182,255,46,.10), transparent 60%),
     radial-gradient(90% 80% at 10% 110%, rgba(77,226,255,.06), transparent 60%)}
 a{color:inherit;text-decoration:none}
+/* skip link: off screen until it takes focus; the ink is fixed because
+   --ink turns light in the light theme and --acid stays a light green */
+.skip{position:fixed;top:8px;inset-inline-start:8px;z-index:30;padding:10px 16px;border-radius:8px;
+  background:var(--acid);color:#0a0b0d;font-family:var(--mono);font-size:13px;font-weight:700;
+  transform:translateY(-150%);transition:transform .2s var(--ease)}
+.skip:focus{transform:none;outline:2px solid var(--paper);outline-offset:2px}
+main:focus{outline:none}
+@media (prefers-reduced-motion:reduce){.skip{transition:none}}
 .mono{font-family:var(--mono)}
 .acc{color:var(--acc-text)}
 .dim{color:var(--faint)}
@@ -666,7 +674,7 @@ html[dir="rtl"] .whq-start{right:auto;left:12px}
   .badge{color:var(--paper)!important}
   .whq-cart,.tl{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .tl{opacity:1!important;transform:none!important}   /* hover-only labels print */
-  .theme-pill{display:none}
+  .theme-pill,.skip{display:none}
 }
 
 /* ===== r3/a: mobile audit ===== */

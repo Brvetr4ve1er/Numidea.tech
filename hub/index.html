@@ -35,10 +35,16 @@
 </head>
 <body>
 
+<!-- Skip link: the first Tab stop on every page of the site (npm run keys).
+     Here <main> starts with the hero, so it bypasses little more than
+     itself; it keeps that first stop the same everywhere. English only,
+     like the rest of hub/. -->
+<a class="skip" href="#main">Skip to content</a>
+
 <!-- One main landmark for the whole page — the hero with the page's <h1>, the
      series, design, social and the archive. It used to wrap the archive only,
      which left most of the page outside it. -->
-<main id="main">
+<main id="main" tabindex="-1">
 
 <!-- ============================= HERO ============================= -->
 <header class="hero" id="hero">

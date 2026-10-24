@@ -211,6 +211,18 @@
     f.focus();
   });
 
+  /* ---------------- focus entering an embed ----------------
+     Tab into the trailer's or the walkthrough's player controls scrolled
+     nothing (something in the exported player runtime: a plain document in
+     the same frame does scroll), so focus sat on a play button below the
+     fold where nobody could see it (npm run keys). Focus moving into a frame
+     blurs this window with the frame as the active element: bring the frame
+     on screen then. */
+  addEventListener('blur', function () {
+    var a = document.activeElement;
+    if (a && a.tagName === 'IFRAME') a.scrollIntoView({ block: 'nearest' });
+  });
+
   /* ---------------- nav, progress, cursor glow ---------------- */
   var nav = $('#nav'), prog = $('#prog'), max = 1, stuck = null;
   var measure = function () { max = Math.max(1, document.documentElement.scrollHeight - innerHeight); };

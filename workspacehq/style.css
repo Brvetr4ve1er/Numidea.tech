@@ -145,6 +145,7 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 
 /* ---------- layout ---------- */
 main{position:relative;z-index:3}
+main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a control */
 .sec{max-width:1320px;margin:0 auto;padding:clamp(80px,11vw,140px) var(--pad)}
 .sec--narrow{max-width:1100px;padding-block:clamp(60px,8vw,110px)}
 .sec--demo{padding-top:clamp(40px,6vw,80px)}
