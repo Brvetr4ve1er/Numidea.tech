@@ -10,7 +10,9 @@
  * the page it focuses that control first, then carries on with keys only.
  *
  *  skip link      the first Tab stop; on screen and on top once focused;
- *                 Enter moves focus to the page's <main> (404 is exempt: it
+ *                 it points at the page's <main> or a block inside it,
+ *                 Enter moves focus there, and the next Tab lands past the
+ *                 stop that follows the skip link anyway (404 is exempt: it
  *                 is one short block)
  *  focus ring     each of the first 25 Tab stops shows a ring when focused
  *                 (a non-empty outline, or a box-shadow other than its
@@ -150,7 +152,7 @@ async function skipAndRing(p, spec) {
       const a = document.activeElement, href = a && a.getAttribute('href');
       if (!a || a.tagName !== 'A' || !href || href[0] !== '#') return { err: 'first Tab stop is ' + __d(a) + ', not a skip link' };
       const tgt = document.getElementById(href.slice(1));
-      if (!tgt || !tgt.matches('main,[role="main"]')) return { err: 'skip link points at ' + href + ', which is not <main>' };
+      if (!tgt || !tgt.closest('main,[role="main"]')) return { err: 'skip link points at ' + href + ', which is not <main> or inside it' };
       const r = a.getBoundingClientRect(), top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
       const onScreen = r.width > 0 && r.top >= 0 && r.left >= 0 && r.bottom <= innerHeight && r.right <= innerWidth;
       return { onScreen, onTop: !!top && (top === a || a.contains(top)), text: a.textContent.trim(), op: __op(a) };
@@ -203,14 +205,20 @@ async function skipAndRing(p, spec) {
     if (!x.shown) bad.push('focus lands on something not visible: ' + x.d);
   }
   const n = seen.length;
-  // Enter on the skip link moves focus to <main>
+  // Enter on the skip link moves focus to its target
   if (n && !spec.noSkip && !bad.some((m) => m.startsWith('first Tab') || m.startsWith('skip link points'))) {
     await p.evaluate(() => scrollTo(0, 0));
     await seen[0].h.evaluate((a) => a.focus());
     await p.keyboard.press('Enter');
     await wait(300);
-    const m = await p.evaluate(() => { const a = document.activeElement; return { ok: !!a && a.matches('main,[role="main"]'), d: __d(a) }; });
-    if (!m.ok) bad.push('Enter on the skip link leaves focus on ' + m.d + ', not <main>');
+    const m = await p.evaluate((a) => { const t = document.getElementById(a.getAttribute('href').slice(1)), f = document.activeElement; return { ok: !!f && f === t, d: __d(f), want: __d(t) }; }, seen[0].h);
+    if (!m.ok) bad.push('Enter on the skip link leaves focus on ' + m.d + ', not on its target ' + m.want);
+    // and it skips something: the next Tab is not the stop that follows the skip link anyway
+    else if (seen[1]) {
+      await p.keyboard.press('Tab'); await wait(60);
+      const same = await p.evaluate((b) => document.activeElement === b, seen[1].frame || seen[1].h);
+      if (same) bad.push('the skip link skips nothing: after Enter, Tab lands on ' + seen[1].d + ', the next stop without it');
+    }
   }
   for (const x of seen) { await x.h.dispose(); if (x.frame) await x.frame.dispose(); }
   return { bad, note: `ring ${n}` + (byShadow || frames ? ` (${[byShadow && byShadow + ' by glow', frames && frames + ' in an embed'].filter(Boolean).join(', ')})` : '') };
