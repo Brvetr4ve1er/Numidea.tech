@@ -893,10 +893,16 @@ Six commands, all green before a push:
 - `npm run verify` — runs all of the above and does not stop at the first
   failure, so one run shows everything that is wrong.
 
-CI is `.github/workflows/check.yml`: check, themes-check and validate on every
-push and pull request; the browser gates (audit, sweep, vbugs) on demand from
-Actions → Check → Run workflow. The deploy, `.github/workflows/pages.yml`, runs
-check + themes-check before it stages and uploads `_site/`.
+CI is in `.github/workflows/` (README → CI has the table, RELEASE.md maps each
+gate to the release checklist):
+- `check.yml` job `check`, on every push and pull request, no browser: check,
+  themes-check, validate, "the build leaves no change", `npm audit --omit=dev`;
+- `check.yml` job `nightly`, every night and from Actions → Check → Run
+  workflow: the browser gates (`npm run verify`), `npm run links` and the full
+  `npm audit`;
+- `pages.yml`: job `gates` runs the static gates, then audit, sweep, vbugs and
+  keys; job `deploy` stages and publishes `_site/` only once `gates` is green;
+- `monitor.yml`, every six hours: the live site; a failure opens one issue.
 
 `check` had shown the same ✗ on every run for weeks — it read a `document.write`
 string concatenation as a file path. It was waved through as a "known false
