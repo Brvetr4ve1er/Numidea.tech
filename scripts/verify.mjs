@@ -12,6 +12,10 @@
  *   sweep      painted-contrast sweep
  *   vbugs      layout scanner
  *   keys       keyboard paths, focus rings, dialogs, reduced motion, RTL
+ *
+ * Not here: `npm run links` (every external link answers), because it needs
+ * the network and the answer depends on other people's servers; CI runs it
+ * nightly and the live monitor every 6 hours.
  */
 import { spawnSync } from 'node:child_process';
 import { ROOT } from './site.mjs';
