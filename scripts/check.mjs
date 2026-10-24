@@ -547,4 +547,159 @@ if (existsSync(join(ROOT, 'knowledge-base'))) {
 }
 kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbErr)].slice(0, 8).join(', ')) : ok('knowledge-base/ holds nothing from the private vault');
 
+/* 18 — SEO and structured data */
+// What a search engine and a link preview read, page by page (PAGES).
+// 404.html is served for every missing URL, so it must be noindex and stay
+// out of the sitemap; every other page is indexable and carries one <title>,
+// one meta description of 50-160 characters (in every language the page
+// switches to: index.html's I18N meta.desc, a generated page's inline
+// ui.desc), og:title, og:description, og:image, og:url (the page's own URL),
+// og:type, twitter:card and twitter:image, with og:image:width/height equal
+// to the image file's own size (read from its header). Every page has
+// exactly one <h1>. robots.txt names BASE/sitemap.xml and disallows no
+// indexable page, whether served at the host root (the mirrors) or under
+// BASE's path (Pages). The hreflang alternates in a page's head equal its
+// sitemap entry's. The studio's ProfessionalService JSON-LD states name,
+// url, locality, country and telephone, and index.html describes the site
+// itself in a WebSite object (name = og:site_name, url, the three languages).
+{
+  const seoErr = [];
+  const err = (f, msg) => seoErr.push(`${f}: ${msg}`);
+  const attrs = (tag) => Object.fromEntries([...tag.matchAll(/\s([a-zA-Z:-]+)\s*=\s*"([^"]*)"/g)].map((m) => [m[1].toLowerCase(), norm(m[2])]));
+  const metasOf = (head) => {
+    const out = {};
+    for (const m of head.matchAll(/<meta\b[^>]*>/gi)) {
+      const a = attrs(m[0]), k = a.name || a.property;
+      if (k && a.content != null) (out[k.toLowerCase()] ||= []).push(a.content);
+    }
+    return out;
+  };
+  const altsOf = (head) => [...head.matchAll(/<link\b[^>]*>/gi)].map((m) => attrs(m[0]))
+    .filter((a) => /\balternate\b/i.test(a.rel || '') && a.hreflang).map((a) => `${a.hreflang} ${a.href}`).sort().join(' | ');
+  const len = (s) => [...norm(s)].length;
+  const descOk = (s) => typeof s === 'string' && len(s) >= 50 && len(s) <= 160;
+  // width × height from the file's header: JPEG (the first SOFn segment),
+  // PNG (IHDR), WebP and SVG (fileSize, check 5b)
+  const imgSize = (file) => {
+    const b = readFileSync(join(ROOT, file));
+    if (b[0] === 0xff && b[1] === 0xd8) {
+      for (let i = 2; i + 9 < b.length;) {
+        if (b[i] !== 0xff) break;
+        const mk = b[i + 1];
+        if (mk === 0xff) { i++; continue; }                                   // fill byte
+        if (mk === 0x01 || (mk >= 0xd0 && mk <= 0xd8)) { i += 2; continue; }  // no length
+        if (mk >= 0xc0 && mk <= 0xcf && mk !== 0xc4 && mk !== 0xc8 && mk !== 0xcc) return [b.readUInt16BE(i + 7), b.readUInt16BE(i + 5)];
+        i += 2 + b.readUInt16BE(i + 2);
+      }
+      return [NaN, NaN];
+    }
+    if (b.toString('latin1', 1, 4) === 'PNG') return [b.readUInt32BE(16), b.readUInt32BE(20)];
+    return fileSize(file);
+  };
+  // the sitemap's entries: loc → its alternates, in altsOf's form
+  const unXml = (s) => s.replace(/&amp;/g, '&');
+  const smap = new Map([...read('sitemap.xml').matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => [
+    unXml((/<loc>([^<]+)<\/loc>/.exec(m[1]) || [])[1] || ''),
+    [...m[1].matchAll(/<xhtml:link\b[^>]*>/g)].map((x) => attrs(x[0])).map((a) => `${a.hreflang} ${unXml(a.href)}`).sort().join(' | '),
+  ]));
+  const NOINDEX = /\b(noindex|none)\b/i;
+  const indexable = [];
+  for (const f of PAGES) {
+    const src = read(f).replace(/<!--[\s\S]*?-->/g, '');
+    const end = src.search(/<\/head>/i), head = end < 0 ? '' : src.slice(0, end);
+    const meta = metasOf(head), url = BASE + f.replace(/index\.html$/, '');
+    const titles = [...head.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title>/gi)];
+    if (titles.length !== 1 || !norm(titles[0][1])) err(f, `${titles.length} <title> in the head (want one, not empty)`);
+    const h1 = (src.replace(/<script\b[\s\S]*?<\/script>/gi, '').match(/<h1\b/gi) || []).length;
+    if (h1 !== 1) err(f, `${h1} <h1> (want exactly one)`);
+    const noindex = (meta.robots || []).some((r) => NOINDEX.test(r));
+    if (f === '404.html') {
+      if (!noindex) err(f, 'is served for every missing URL: it needs <meta name="robots" content="noindex">');
+      if (smap.has(url)) err(f, 'is noindex but listed in sitemap.xml');
+      continue;
+    }
+    if (noindex) { err(f, 'is noindex, yet it is published and in the sitemap'); continue; }
+    indexable.push(f);
+    const desc = meta.description || [];
+    if (desc.length !== 1 || !descOk(desc[0])) err(f, `meta description ${desc.length === 1 ? len(desc[0]) + ' characters' : '×' + desc.length} (want one, 50-160 characters)`);
+    // the descriptions the page's own language switch puts in its place
+    const own = f === 'index.html' ? DICT : (() => {
+      const m = /<script type="application\/json" id="i18n">([\s\S]*?)<\/script>/.exec(src);
+      try { return m ? JSON.parse(m[1]) : null; } catch { return null; }        // check 7 reports bad JSON
+    })();
+    const dkey = f === 'index.html' ? 'meta.desc' : 'ui.desc', tkey = f === 'index.html' ? 'title' : 'ui.title';
+    if (own) for (const l of LANGS) {
+      const d = own[l]?.[dkey], t = own[l]?.[tkey];
+      if (d != null && !descOk(d)) err(f, `${dkey} (${l}) is ${len(d)} characters (want 50-160)`);
+      if (t != null && !norm(t)) err(f, `${tkey} (${l}) is empty`);
+    }
+    for (const k of ['og:title', 'og:description', 'og:image', 'og:url', 'og:type', 'twitter:card', 'twitter:image']) {
+      const v = meta[k] || [];
+      if (v.length !== 1 || !v[0]) err(f, `${k} ${v.length ? '×' + v.length : 'missing'} (want one, not empty)`);
+    }
+    if (meta['og:url']?.[0] && meta['og:url'][0] !== url) err(f, `og:url ${meta['og:url'][0]} is not the page's own URL ${url}`);
+    for (const k of ['og:image', 'twitter:image']) {
+      const v = meta[k]?.[0];
+      if (!v) continue;
+      if (!v.startsWith(BASE) || !existsSync(join(ROOT, v.slice(BASE.length).split(/[?#]/)[0]))) { err(f, `${k} ${v} is not a published file under ${BASE}`); continue; }
+      if (k !== 'og:image') continue;
+      const [w, h] = imgSize(v.slice(BASE.length).split(/[?#]/)[0]);
+      const [mw, mh] = [meta['og:image:width']?.[0], meta['og:image:height']?.[0]];
+      if (Number(mw) !== w || Number(mh) !== h) err(f, `og:image:width/height ${mw ?? 'missing'}×${mh ?? 'missing'} ≠ the file's ${w}×${h}`);
+    }
+    // hreflang: the head and the page's sitemap entry name the same set (the
+    // entries of its ?lang= versions repeat it: renderSitemap, check 6)
+    const alts = altsOf(head);
+    if (!smap.has(url)) err(f, `not in sitemap.xml (${url})`);
+    else if (smap.get(url) !== alts) err(f, `hreflang in the head [${alts || 'none'}] ≠ sitemap.xml [${smap.get(url) || 'none'}]`);
+  }
+  // robots.txt: the sitemap line, and no indexable page disallowed for any
+  // user agent (longest matching rule wins, Allow on a tie, as Google reads it)
+  const robots = read('robots.txt');
+  if (![...robots.matchAll(/^\s*sitemap\s*:\s*(\S+)\s*$/gim)].some((m) => m[1] === BASE + 'sitemap.xml')) seoErr.push(`robots.txt: no "Sitemap: ${BASE}sitemap.xml" line`);
+  const groups = [];
+  let group = null, agentLine = false;
+  for (const raw of robots.split(/\r?\n/)) {
+    const m = /^\s*([a-z-]+)\s*:\s*(.*?)\s*$/i.exec(raw.replace(/#.*/, ''));
+    if (!m) continue;
+    const k = m[1].toLowerCase();
+    if (k === 'user-agent') { if (!agentLine) groups.push(group = { agents: [], rules: [] }); group.agents.push(m[2]); agentLine = true; continue; }
+    agentLine = false;
+    if ((k === 'allow' || k === 'disallow') && group && m[2]) group.rules.push({ allow: k === 'allow', path: m[2] });
+  }
+  const robotsRe = (p) => new RegExp('^' + p.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\\\$$/, '$'));
+  const sub = new URL(BASE).pathname;
+  for (const f of indexable) {
+    const rel = f.replace(/index\.html$/, '');
+    for (const path of ['/' + rel, sub + rel]) for (const g of groups) {
+      const hit = g.rules.filter((r) => robotsRe(r.path).test(path)).sort((a, b) => b.path.length - a.path.length || b.allow - a.allow)[0];
+      if (hit && !hit.allow) seoErr.push(`robots.txt: "Disallow: ${hit.path}" (User-agent: ${g.agents.join(', ')}) blocks ${path} (${f})`);
+    }
+  }
+  // JSON-LD: the studio's required properties; the WebSite object on index.html
+  const ldOf = (f) => [...read(f).replace(/<!--[\s\S]*?-->/g, '').matchAll(/<script\b[^>]*\btype=["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/gi)]
+    .flatMap((m) => { try { const d = JSON.parse(m[1]); return [].concat(d['@graph'] || d); } catch { return []; } });   // parse errors: the check above
+  const isType = (o, t) => [].concat(o?.['@type']).includes(t);
+  const filled = (v) => typeof v === 'string' && v.trim() !== '';
+  for (const f of PAGES) for (const o of ldOf(f).filter((x) => isType(x, 'ProfessionalService'))) {
+    const need = { name: o.name, url: o.url, 'address.addressLocality': o.address?.addressLocality, 'address.addressCountry': o.address?.addressCountry, telephone: o.telephone };
+    const gaps = Object.entries(need).filter(([, v]) => !filled(v)).map(([k]) => k);
+    if (gaps.length) err(f, 'ProfessionalService JSON-LD lacks ' + gaps.join(', '));
+    if (filled(o.url) && o.url !== BASE) err(f, `ProfessionalService url ${o.url} is not ${BASE}`);
+  }
+  const home = ldOf('index.html');
+  if (home.filter((x) => isType(x, 'ProfessionalService')).length !== 1) err('index.html', 'needs one ProfessionalService JSON-LD object');
+  const site = home.filter((x) => isType(x, 'WebSite'));
+  const siteName = metasOf(read('index.html'))['og:site_name']?.[0];
+  if (site.length !== 1) err('index.html', `${site.length} WebSite JSON-LD objects (want one)`);
+  else {
+    const s = site[0], langs = [].concat(s.inLanguage || []);
+    if (!filled(s.name) || s.name !== siteName) err('index.html', `WebSite name "${s.name ?? ''}" ≠ og:site_name "${siteName ?? ''}"`);
+    if (s.url !== BASE) err('index.html', `WebSite url ${s.url ?? 'missing'} is not ${BASE}`);
+    if ([...langs].sort().join() !== [...LANGS].sort().join()) err('index.html', `WebSite inLanguage [${langs}] ≠ the site's languages [${LANGS}]`);
+  }
+  seoErr.length ? bad('SEO: ' + seoErr.join('; '))
+    : ok(`SEO: ${indexable.length} indexable pages with title, 50-160 character descriptions, og/twitter tags, image sizes and one h1; 404 noindex; robots.txt, hreflang and JSON-LD hold`);
+}
+
 process.exit(fail);
