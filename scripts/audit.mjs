@@ -62,6 +62,7 @@
 import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {serve,launch} from './lib/serve.mjs';
+import {watchCsp} from './lib/csp-watch.mjs';
 import {ROOT,THEMES,LEGAL_PUBLISHED} from './site.mjs';
 const REMOTE=(process.env.AUDIT_BASE||'').trim().replace(/\/+$/,'');
 const ONLY=process.env.AUDIT_ONLY?new RegExp(process.env.AUDIT_ONLY):null;
@@ -84,8 +85,9 @@ const short=u=>u.replace(B,'').split(/[?#]/)[0]||'/';
 const WAIVED=[[/\/workspacehq\/embed\/console\.html$/,/^Error: <\w+> attribute [\w:-]+: Expected (number|length), "\{\{/]];
 
 /* Listeners shared by every run: JS errors, failed requests and CSP
-   violations, the last from every frame (the binding and the init script
-   reach each frame as it is created). w.off is set before the harness
+   violations, the last from every frame (lib/csp-watch.mjs, which keys.mjs
+   shares: keys holds the CSP proof for the lightbox, the viewer and the
+   form, which only it drives). w.off is set before the harness
    injects axe, which is not the page: its CSSOM preload fetches a
    stylesheet's @import against the document instead of the sheet (the
    console's design-system tokens came back 404 that way). */
@@ -98,9 +100,7 @@ const watch=async p=>{
     w.errs.push(t.slice(0,80))});
   p.on('response',r=>{if(!w.off&&r.status()>=400)w.bad.push(r.status()+' '+short(r.url()))});
   p.on('requestfailed',r=>{if(!w.off)w.bad.push('FAIL '+short(r.url()))});
-  await p.exposeBinding('__auditCsp',(src,v)=>{if(!w.off)w.csp.push(short(src.frame.url())+': '+v)});
-  await p.addInitScript(()=>addEventListener('securitypolicyviolation',e=>{
-    try{window.__auditCsp(e.violatedDirective+' '+(e.blockedURI||'?')+(e.sourceFile?' ('+e.sourceFile.split('/').pop().split('?')[0]+':'+e.lineNumber+')':''))}catch{}},true));
+  await watchCsp(p,(u,v)=>{if(!w.off)w.csp.push(short(u)+': '+v)});
   return w;
 };
 

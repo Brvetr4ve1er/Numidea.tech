@@ -50,8 +50,14 @@
  *  direction      ?lang=ar gives html dir="rtl" lang="ar" on every page that
  *                 has Arabic, and still does after the language hold's 1.5s
  *                 fallback; the English-only pages stay ltr
- * A JS error during a run fails it. Optional arg: only the pages whose name
- * contains it (`npm run keys -- hub`; the home page is `index`).
+ * A JS error during a run fails it, and so does any Content-Security-Policy
+ * violation, from any frame (lib/csp-watch.mjs, shared with audit.mjs). This
+ * gate holds the CSP proof for what only it drives: the theme menu, the
+ * contact form submitted, hub's lightbox, scene/'s viewer and the embeds
+ * taking focus; audit.mjs holds it for page loads, the CV panel, the phone
+ * menu, the booted WorkspaceHQ console and the throttled phone's FAQ,
+ * estimator, currency and language switches. Optional arg: only the pages
+ * whose name contains it (`npm run keys -- hub`; the home page is `index`).
  *
  * Traps the checks are built around (the reveal and the image ones each
  * produced false failures while this was written):
@@ -71,6 +77,7 @@
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { serve, launch } from './lib/serve.mjs';
+import { watchCsp } from './lib/csp-watch.mjs';
 import { ROOT, PAGES } from './site.mjs';
 
 /* langs: the languages a page has (`only`: why it has just one); tests: its
@@ -123,11 +130,12 @@ async function open(w, h, opts = {}) {
   const touch = w < 600;
   const ctx = await b.newContext({ viewport: { width: w, height: h }, hasTouch: touch, isMobile: touch, ...opts });
   const p = await ctx.newPage();
-  const errs = [];
+  const errs = [], csp = [];
   p.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
   p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text().slice(0, 120)); });
+  await watchCsp(p, (u, v) => csp.push((u.replace(B, '').split(/[?#]/)[0] || '/') + ': ' + v));
   await p.addInitScript(HELPERS);
-  return { p, errs, close: () => ctx.close() };
+  return { p, errs, csp, close: () => ctx.close() };
 }
 
 /* ---------- the tests: each returns a list of problems ([] = pass) ---------- */
@@ -472,10 +480,11 @@ async function direction(p, spec, lang, when) {
 }
 
 /* ---------- the runs ---------- */
-const report = (label, results, errs) => {
+const report = (label, results, errs, csp) => {
   runs++;
   const bad = results.flatMap((r) => r.bad);
   if (errs.length) bad.push('js: ' + errs.join(' | '));
+  if (csp.length) bad.push('csp: ' + [...new Set(csp)].join(' | '));
   if (bad.length) fails++;
   console.log((bad.length ? 'FAIL ' : '  ok ') + label.padEnd(24) + results.map((r) => r.note).filter(Boolean).join('  '));
   for (const m of bad) console.log('       ' + m);
@@ -485,7 +494,7 @@ console.log('— keyboard —');
 for (const f of pages) {
   const spec = SPEC[f]; if (!spec) continue;
   for (const lang of spec.langs) for (const [w, h] of SIZES) {
-    const { p, errs, close } = await open(w, h);
+    const { p, errs, csp, close } = await open(w, h);
     await p.goto(url(f, lang), { waitUntil: 'networkidle' });
     const out = [{ bad: await direction(p, spec, lang, 'at load'), note: '' }];
     out.push(await skipAndRing(p, spec));
@@ -499,7 +508,7 @@ for (const f of pages) {
       else out.push(await dialog(p, t));
     }
     out.push({ bad: await direction(p, spec, lang, 'after the tests'), note: 'dir ' + (lang === 'ar' ? 'rtl' : 'ltr') });
-    report(`${name(f)} ${lang} ${w}`, out, errs);
+    report(`${name(f)} ${lang} ${w}`, out, errs, csp);
     await close();
   }
 }
@@ -508,7 +517,7 @@ console.log('— reduced motion (the site\'s own handling) —');
 for (const f of pages) {
   const spec = SPEC[f]; if (!spec) continue;
   for (const lang of spec.langs) for (const [w, h] of SIZES) {
-    const { p, errs, close } = await open(w, h, { reducedMotion: 'reduce' });
+    const { p, errs, csp, close } = await open(w, h, { reducedMotion: 'reduce' });
     await p.goto(url(f, lang), { waitUntil: 'load' });
     const rv = await p.evaluate(() => {
       const all = [...document.querySelectorAll('.reveal,[data-reveal]')];
@@ -538,7 +547,7 @@ for (const f of pages) {
     if (rv.hidden.length) bad.push('hidden at load: ' + rv.hidden.slice(0, 6).join(', ') + (rv.hidden.length > 6 ? ' +' + (rv.hidden.length - 6) : ''));
     for (const a of anim) bad.push('still running: ' + a.what + (a.inf ? ' (infinite)' : ` (${Math.round(a.left)}ms left)`));
     if (mut.length) bad.push('script still moving things: ' + mut.slice(0, 5).map(([k, n]) => k + ' ×' + n).join(', ') + (mut.length > 5 ? ' +' + (mut.length - 5) : ''));
-    report(`${name(f)} ${lang} ${w} rm`, [{ bad, note: `reveals ${rv.n - rv.hidden.length}/${rv.n} shown  anim ${anim.length}  moved ${mut.length}` }], errs);
+    report(`${name(f)} ${lang} ${w} rm`, [{ bad, note: `reveals ${rv.n - rv.hidden.length}/${rv.n} shown  anim ${anim.length}  moved ${mut.length}` }], errs, csp);
     await close();
   }
 }
@@ -546,11 +555,11 @@ for (const f of pages) {
 console.log('— direction: ?lang=ar on every page —');
 for (const f of pages) {
   const spec = SPEC[f]; if (!spec) continue;
-  const { p, errs, close } = await open(1280, 900);
+  const { p, errs, csp, close } = await open(1280, 900);
   await p.goto(B + '/' + f.replace(/index\.html$/, '') + '?lang=ar', { waitUntil: 'load' });
   await wait(1700);                 // past the generated pages' 1.5s hold fallback
   const bad = await direction(p, spec, 'ar', '?lang=ar');
-  report(`${name(f)} ?lang=ar`, [{ bad, note: spec.langs.includes('ar') ? 'rtl' : 'ltr, ' + spec.only }], errs);
+  report(`${name(f)} ?lang=ar`, [{ bad, note: spec.langs.includes('ar') ? 'rtl' : 'ltr, ' + spec.only }], errs, csp);
   await close();
 }
 
