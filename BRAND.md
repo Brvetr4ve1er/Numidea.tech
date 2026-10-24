@@ -1764,8 +1764,9 @@ which check.mjs 16 keeps identical):
 - `Strict-Transport-Security: max-age=31536000`.
 - `X-Frame-Options: SAMEORIGIN`, for older browsers.
 
-On the mirrors, another site that frames an embed is refused. On GitHub
-Pages it is not, and only a header could change that.
+On the mirrors, another site that frames any page of this one is refused
+(tested with an embed). On GitHub Pages it is not, and only a header could
+change that.
 
 **Proved in a real browser** (October 2026, Chromium, Playwright, no
 `bypassCSP`):
