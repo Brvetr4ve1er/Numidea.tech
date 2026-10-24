@@ -9,7 +9,7 @@ name: Check
 #   everything that is wrong (as npm run verify does).
 #
 # nightly — every night and on demand (Actions → Check → Run workflow): the
-#   browser gates (npm run verify, keys, links) and the full npm audit,
+#   browser gates (npm run verify, keys included), links and the full npm audit,
 #   development dependencies included. A new advisory against a dev-only tool
 #   turns this red without blocking every push.
 #
@@ -25,7 +25,7 @@ on:
   workflow_dispatch:
     inputs:
       browser:
-        description: "Also run the nightly job (verify, keys, links, full npm audit)"
+        description: "Also run the nightly job (verify with the browser gates, links, full npm audit)"
         type: boolean
         default: true
 
@@ -96,12 +96,11 @@ jobs:
       - name: Install Chromium
         id: browser
         run: npx playwright install --with-deps chromium
+      # verify runs check, themes, validate, audit, sweep, vbugs and keys
+      # (scripts/verify.mjs STEPS), so keys is not run again on its own
       - name: Every gate (npm run verify)
         if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
         run: npm run verify
-      - name: Keyboard, motion and RTL paths (npm run keys)
-        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
-        run: npm run keys
       - name: External links (npm run links)
         if: ${{ !cancelled() }}
         run: npm run links

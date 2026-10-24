@@ -184,7 +184,7 @@ and it opens the monitor issue.
 | What | When | Watches | How a failure arrives |
 | --- | --- | --- | --- |
 | `check.yml` job `check` | every push and pull request | steps 2–6 of the checklist | a red run on the commit (and on the pull request) |
-| `check.yml` job `nightly` | 03:17 UTC every night, and Actions → Check → Run workflow | `npm run verify`, `keys`, `links`, the full `npm audit`: a new advisory against a dev tool turns it red without blocking pushes | a red scheduled run |
+| `check.yml` job `nightly` | 03:17 UTC every night, and Actions → Check → Run workflow | `npm run verify` (every gate, `keys` included), `links`, the full `npm audit`: a new advisory against a dev tool turns it red without blocking pushes | a red scheduled run |
 | `monitor.yml` job `live` | 00:41, 06:41, 12:41, 18:41 UTC, and Actions → Live monitor → Run workflow | the live site, below | one issue, "Live monitor failed" |
 | Dependabot (`.github/dependabot.yml`) | Mondays 05:00 Africa/Algiers | npm dev dependencies and the pinned actions | pull requests against the working branch, each running `check` |
 
