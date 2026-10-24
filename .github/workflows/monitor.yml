@@ -1,0 +1,312 @@
+name: Live monitor
+
+# Watches the published site (GitHub Pages, the canonical host) every six
+# hours and on demand (Actions → Live monitor → Run workflow).
+#
+# live — read-only. Four checks, each run even when an earlier one failed:
+#   1. pages and assets: every page in scripts/site.mjs PAGES answers 200, an
+#      unknown path answers 404 with the site's 404 page, sitemap.xml,
+#      robots.txt and assets/og.jpg answer 200, and every page carries the
+#      ?v= stamp of the branch head, as does every stamped asset it loads
+#      (each of those must answer 200 too). A stamp that differs while a Pages
+#      deploy is queued or running is only a warning; otherwise it means the
+#      last deploy did not publish (its gates were red, or it failed).
+#   2. npm run links: the external links (scripts/links.mjs).
+#   3. Lighthouse, pinned below, on the live index in French and Arabic,
+#      mobile and desktop, three runs each. The median of each metric must
+#      stay within the budgets below. Every report is kept as an artifact.
+# report — opens ONE issue, "Live monitor failed", when the live job fails,
+#   and comments on it (reopening it if it was closed) on every later failure,
+#   mentioning the repository owner so a notification arrives. When the
+#   monitor is green again it comments and closes the issue. Only this job
+#   can write issues.
+#
+# Every action is pinned to a commit SHA, its version in the comment;
+# Dependabot (.github/dependabot.yml) proposes the updates.
+
+on:
+  schedule:
+    - cron: "41 */6 * * *"   # 00:41, 06:41, 12:41, 18:41 UTC (scheduled runs use the default branch)
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: "monitor"
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      actions: read            # is a Pages deploy running? (stamp check)
+    env:
+      LIGHTHOUSE: "13.5.0"     # exact version, run with npx
+      LCP_MS: "2500"           # largest contentful paint, median of three runs
+      CLS: "0.1"               # cumulative layout shift
+      TBT_MS: "200"            # total blocking time
+    outputs:
+      live: ${{ steps.live.outcome }}
+      links: ${{ steps.links.outcome }}
+      lighthouse: ${{ steps.lighthouse.outcome }}
+      budgets: ${{ steps.budgets.outcome }}
+      failures: ${{ steps.live.outputs.failures }}
+      table: ${{ steps.budgets.outputs.table }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          package-manager-cache: false
+
+      - name: Site address (scripts/site.mjs BASE)
+        id: site
+        run: echo "base=$(node --input-type=module -e "import { BASE } from './scripts/site.mjs'; console.log(BASE)")" >> "$GITHUB_OUTPUT"
+
+      - name: Live pages, assets and stamp
+        id: live
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'EOF'
+          import { readFileSync, appendFileSync } from 'node:fs';
+          import { BASE, PAGES } from './scripts/site.mjs';
+
+          const run = process.env.GITHUB_RUN_ID || String(Date.now());
+          // the HTML is fetched past the CDN cache: a deploy from minutes ago counts
+          const fresh = (u) => u + (u.includes('?') ? '&' : '?') + 'monitor=' + run;
+          // check.mjs 4 keeps every stamp in the repository identical
+          const want = (readFileSync('index.html', 'utf8').match(/\?v=(\d+)/) || [])[1];
+          const rows = [];
+          const note = (ok, what, url, detail, stale = false) => {
+            rows.push({ ok, what, url, detail, stale });
+            console.log(`${ok ? '✓' : '✗'} ${what} — ${detail}`);
+          };
+
+          async function get(url) {
+            for (let i = 1; ; i++) {
+              try {
+                const r = await fetch(url, { signal: AbortSignal.timeout(20000), headers: { 'user-agent': 'numidea-live-monitor' } });
+                if (r.status >= 500 && i < 3) throw new Error('HTTP ' + r.status);
+                return { status: r.status, type: r.headers.get('content-type') || '', body: Buffer.from(await r.arrayBuffer()) };
+              } catch (e) {
+                if (i >= 3) return { status: 0, type: '', body: Buffer.alloc(0), error: e.cause?.code || e.message };
+                await new Promise((res) => setTimeout(res, 3000 * i));
+              }
+            }
+          }
+
+          const pages = PAGES.map((p) => p === '404.html'
+            ? { what: 'unknown path → 404 page', url: BASE + 'monitor-no-such-page-' + run, status: 404 }
+            : { what: p, url: BASE + p.replace(/index\.html$/, ''), status: 200 });
+          const assets = new Set();   // every stamped stylesheet and script the live pages load
+          for (const pg of pages) {
+            const r = await get(fresh(pg.url));
+            const html = r.body.toString('utf8');
+            const stamps = [...new Set([...html.matchAll(/\?v=(\d+)/g)].map((m) => m[1]))];
+            const okStatus = r.status === pg.status && r.type.startsWith('text/html');
+            const okStamp = stamps.length === 1 && stamps[0] === want;
+            note(okStatus && okStamp, pg.what, pg.url,
+              `${r.status || r.error} ${r.type.split(';')[0]}, stamp ${stamps.join(' + ') || 'none'} (branch ${want})`,
+              okStatus && !okStamp && stamps.length === 1);
+            for (const m of html.matchAll(/(?:href|src)="([^"]+\?v=\d+)"/g)) assets.add(new URL(m[1], pg.url).href);
+          }
+          for (const url of assets) {
+            const r = await get(url);
+            note(r.status === 200 && r.body.length > 0, url.slice(BASE.length).split('?')[0], url, `${r.status || r.error}, ${r.body.length} bytes`);
+          }
+          const files = [
+            ['sitemap.xml', 'xml', (b) => b.includes(`<loc>${BASE}</loc>`)],
+            ['robots.txt', 'text/plain', (b) => /^User-agent:/im.test(b)],
+            ['assets/og.jpg', 'image/jpeg', (b) => b.length > 1000],
+          ];
+          for (const [p, type, body] of files) {
+            const r = await get(fresh(BASE + p));
+            note(r.status === 200 && r.type.includes(type) && body(type.startsWith('image') ? r.body : r.body.toString('utf8')),
+              p, BASE + p, `${r.status || r.error} ${r.type.split(';')[0]}, ${r.body.length} bytes`);
+          }
+
+          // a stamp behind the branch is expected while a deploy is on its way
+          const bad = rows.filter((r) => !r.ok);
+          let busy = null, why = '';
+          if (bad.length && bad.every((r) => r.stale) && process.env.GITHUB_TOKEN && process.env.GITHUB_REPOSITORY) {
+            const api = `${process.env.GITHUB_API_URL || 'https://api.github.com'}/repos/${process.env.GITHUB_REPOSITORY}/actions/workflows/pages.yml/runs?per_page=10`;
+            const r = await fetch(api, { headers: { authorization: `Bearer ${process.env.GITHUB_TOKEN}`, accept: 'application/vnd.github+json' } }).catch(() => null);
+            const runs = r?.ok ? (await r.json()).workflow_runs : [];
+            busy = runs.find((w) => w.status !== 'completed') || null;
+            if (!busy && runs[0]) why = ` No deploy is running; the last Pages run ended "${runs[0].conclusion}": ${runs[0].html_url}`;
+          }
+          for (const r of bad) console.log(`::${busy ? 'warning' : 'error'}::${r.what} — ${r.detail} (${r.url})`);
+          if (busy) console.log(`::warning::the live stamp is behind the branch while a Pages deploy is ${busy.status} (${busy.html_url}); not a failure`);
+          else if (why) console.log(`::error::the live site does not carry the branch's stamp.${why}`);
+          const failed = busy ? 0 : bad.length;
+          const head = ['| | check | URL | result |', '| --- | --- | --- | --- |'];
+          const line = (r) => `| ${r.ok ? '✓' : busy ? '~' : '✗'} | ${r.what} | ${r.url} | ${r.detail} |`;
+          const table = [...head, ...rows.map(line)].join('\n');
+          if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `### Live pages and assets\n\n${table}\n\n`);
+          if (failed && process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `failures<<LIVE_TABLE\n${[...head, ...bad.map(line)].join('\n')}${why ? '\n\n' + why.trim() : ''}\nLIVE_TABLE\n`);
+          console.log(failed ? `✗ ${failed} live check(s) failed` : `✓ ${rows.length - bad.length} of ${rows.length} live checks passed${busy ? ' (the rest wait for the running deploy)' : ''}`);
+          process.exit(failed ? 1 : 0);
+          EOF
+
+      - name: Install
+        id: install
+        if: ${{ !cancelled() }}
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+
+      - name: External links (npm run links)
+        id: links
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm run links
+
+      # Google Chrome is part of the hosted runner image; the Lighthouse
+      # version is pinned above, and each report names the Chrome it used.
+      - name: Lighthouse (index fr and ar, mobile and desktop, three runs each)
+        id: lighthouse
+        if: ${{ !cancelled() && steps.site.outcome == 'success' }}
+        env:
+          SITE: ${{ steps.site.outputs.base }}
+        run: |
+          mkdir -p lighthouse
+          status=0
+          for lang in fr ar; do
+            url="$SITE"
+            if [ "$lang" != fr ]; then url="$SITE?lang=$lang"; fi
+            for form in mobile desktop; do
+              preset=()
+              if [ "$form" = desktop ]; then preset=(--preset=desktop); fi
+              for n in 1 2 3; do
+                if ! npx --yes "lighthouse@$LIGHTHOUSE" "$url" "${preset[@]}" --only-categories=performance \
+                    --output=json --output=html --output-path="lighthouse/$form-$lang-$n" \
+                    --chrome-flags="--headless=new --no-sandbox" --quiet; then
+                  echo "::error::Lighthouse could not measure $url ($form, run $n)"
+                  status=1
+                fi
+              done
+            done
+          done
+          exit "$status"
+
+      - name: Lighthouse budgets (LCP, CLS, TBT; median of three)
+        id: budgets
+        if: ${{ !cancelled() && steps.lighthouse.outcome != 'skipped' }}
+        run: |
+          node --input-type=module <<'EOF'
+          import { readFileSync, readdirSync, appendFileSync, existsSync } from 'node:fs';
+
+          const budget = { lcp: +process.env.LCP_MS, cls: +process.env.CLS, tbt: +process.env.TBT_MS };
+          const median = (a) => { const s = [...a].sort((x, y) => x - y); return s.length ? s[(s.length - 1) >> 1] : NaN; };
+          const reports = existsSync('lighthouse') ? readdirSync('lighthouse').filter((f) => f.endsWith('.report.json')) : [];
+          const rows = [];
+          let failed = 0;
+          for (const form of ['mobile', 'desktop']) for (const lang of ['fr', 'ar']) {
+            const runs = reports.filter((f) => f.startsWith(`${form}-${lang}-`))
+              .map((f) => JSON.parse(readFileSync('lighthouse/' + f, 'utf8')))
+              .filter((j) => !j.runtimeError && j.audits?.['largest-contentful-paint']?.numericValue != null);
+            const m = {
+              lcp: median(runs.map((j) => j.audits['largest-contentful-paint'].numericValue)),
+              cls: median(runs.map((j) => j.audits['cumulative-layout-shift'].numericValue)),
+              tbt: median(runs.map((j) => j.audits['total-blocking-time'].numericValue)),
+              score: median(runs.map((j) => j.categories.performance.score)),
+            };
+            const over = runs.length === 0 ? ['no successful run'] : [
+              m.lcp > budget.lcp && `LCP ${(m.lcp / 1000).toFixed(2)} s > ${budget.lcp / 1000} s`,
+              m.cls > budget.cls && `CLS ${m.cls.toFixed(4)} > ${budget.cls}`,
+              m.tbt > budget.tbt && `TBT ${Math.round(m.tbt)} ms > ${budget.tbt} ms`,
+            ].filter(Boolean);
+            if (over.length) { failed++; console.log(`::error::Lighthouse ${form} ${lang}: ${over.join(', ')}`); }
+            const v = (x, f) => (Number.isFinite(x) ? f(x) : '–');
+            rows.push(`| ${over.length ? '✗' : '✓'} | ${form} | ${lang} | ${runs.length} | ${v(m.lcp, (x) => (x / 1000).toFixed(2) + ' s')} | ${v(m.cls, (x) => x.toFixed(4))} | ${v(m.tbt, (x) => Math.round(x) + ' ms')} | ${v(m.score, (x) => Math.round(x * 100))} |`);
+          }
+          const table = [`| | form | lang | runs | LCP ≤ ${budget.lcp / 1000} s | CLS ≤ ${budget.cls} | TBT ≤ ${budget.tbt} ms | score |`,
+            '| --- | --- | --- | --- | --- | --- | --- | --- |', ...rows].join('\n');
+          console.log(table);
+          if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `### Lighthouse (median of three runs)\n\n${table}\n\n`);
+          if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `table<<LH_TABLE\n${table}\nLH_TABLE\n`);
+          process.exit(failed ? 1 : 0);
+          EOF
+
+      - name: Keep the Lighthouse reports
+        if: ${{ !cancelled() && steps.lighthouse.outcome != 'skipped' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lighthouse-${{ github.run_id }}
+          path: lighthouse/
+          retention-days: 14
+          if-no-files-found: warn
+
+  report:
+    needs: live
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - name: Open, update or close the "Live monitor failed" issue
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          RESULT: ${{ needs.live.result }}
+          LIVE: ${{ needs.live.outputs.live }}
+          LINKS: ${{ needs.live.outputs.links }}
+          LIGHTHOUSE: ${{ needs.live.outputs.lighthouse }}
+          BUDGETS: ${{ needs.live.outputs.budgets }}
+          FAILURES: ${{ needs.live.outputs.failures }}
+          TABLE: ${{ needs.live.outputs.table }}
+        with:
+          script: |
+            // One issue, ever: it is opened on the first failure, refreshed by
+            // every failing run, commented on (which notifies) when it is
+            // reopened or when the set of failing checks changes, and closed
+            // by the first green run. The owner is mentioned when it opens or
+            // reopens, which subscribes them to the thread.
+            const TITLE = 'Live monitor failed';
+            const env = process.env;
+            const run = `[run ${context.runId}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`;
+            const when = new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+            const failed = env.RESULT !== 'success';
+            const steps = [['LIVE', 'live pages, assets and ?v= stamp'], ['LINKS', 'external links (npm run links)'],
+              ['LIGHTHOUSE', 'Lighthouse runs'], ['BUDGETS', 'Lighthouse budgets (LCP, CLS, TBT)']];
+            const mark = (o) => (o === 'success' ? '✓' : o === 'failure' ? '✗' : `– (${o || 'not run'})`);
+            const marker = `<!-- monitor-state: ${env.RESULT} ${steps.map(([k]) => `${k}=${env[k] || 'none'}`).join(' ')} -->`;
+            const status = [
+              ...steps.map(([k, label]) => `- ${mark(env[k])} ${label}`),
+              ...(env.FAILURES ? ['', env.FAILURES] : []),
+              ...(env.TABLE ? ['', env.TABLE] : []),
+              '',
+              "Each check is in the run's summary; the Lighthouse reports are the run's artifact. RELEASE.md says what each check means and how to roll back.",
+            ].join('\n');
+            const issueBody = [
+              `@${context.repo.owner} the live-site monitor is failing. This issue stays open until a run is green; every failing run refreshes it, and it gets a comment when the failing checks change.`,
+              '', `### Latest failing run: ${when}, ${run}`, '', status, '', marker,
+            ].join('\n');
+
+            const all = await github.paginate(github.rest.issues.listForRepo,
+              { ...context.repo, state: 'all', sort: 'created', direction: 'desc', per_page: 100 });
+            const issue = all.find((i) => !i.pull_request && i.title === TITLE && i.user?.login === 'github-actions[bot]');
+            const n = issue && { ...context.repo, issue_number: issue.number };
+
+            if (failed && !issue) {
+              const { data } = await github.rest.issues.create({ ...context.repo, title: TITLE, body: issueBody });
+              core.notice(`opened ${data.html_url}`);
+            } else if (failed) {
+              const reopened = issue.state === 'closed';
+              const changed = !(issue.body || '').includes(marker);
+              await github.rest.issues.update({ ...n, state: 'open', body: issueBody });
+              if (reopened) await github.rest.issues.createComment({ ...n, body: `@${context.repo.owner} failing again, ${when}: ${run}\n\n${status}` });
+              else if (changed) await github.rest.issues.createComment({ ...n, body: `The failing checks changed, ${when}: ${run}\n\n${status}` });
+              core.notice(`${reopened ? 'reopened' : changed ? 'commented on' : 'refreshed (same failure, no comment)'} ${issue.html_url}`);
+            } else if (issue?.state === 'open') {
+              await github.rest.issues.createComment({ ...n, body: `Green again, ${when}: ${run}\n\n${status}` });
+              await github.rest.issues.update({ ...n, state: 'closed', state_reason: 'completed' });
+              core.notice(`closed ${issue.html_url}`);
+            } else {
+              core.info('green; no open monitor issue');
+            }
