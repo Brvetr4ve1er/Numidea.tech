@@ -35,4 +35,4 @@ export const DEPLOY = ['index.html', '404.html', 'robots.txt', 'sitemap.xml', 'a
 export const DEPLOY_SKIP = ['README.md', '.DS_Store'];
 export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '.vercel', 'node_modules', '_site', 'audit', 'campaign', 'knowledge-base', 'scripts',
   'legal-preview', 'legal', 'BRAND.md', 'README.md', 'LICENSE', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
-  'netlify.toml', 'vercel.json', '.gitignore', '.graphifyignore', 'graphify-out'];
+  'netlify.toml', 'vercel.json', '.gitattributes', '.gitignore', '.graphifyignore', 'graphify-out'];

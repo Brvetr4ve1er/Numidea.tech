@@ -1,0 +1,20 @@
+# Line endings. Every text file is stored and checked out with LF on every
+# platform, a Windows clone with core.autocrlf=true included. Without this,
+# such a clone turns LF into CRLF, and the files check.mjs compares with their
+# generators (sitemap.xml, scene/index.html, the French baked into index.html)
+# stop matching although nothing changed. check.mjs block 15b fails if this
+# line is missing or if a tracked text file holds a CR.
+* text=auto eol=lf
+
+# Binary: never converted, diffed or merged as text. check.mjs block 15b fails
+# when a tracked file holds a NUL byte and its type is not listed here.
+*.webp  binary
+*.png   binary
+*.jpg   binary
+*.woff2 binary
+*.mp3   binary
+*.pdf   binary
+# The WorkspaceHQ model (workspacehq/embed/assets/computer-icon.obj) is
+# Wavefront text, but it is a 1.3 MB Blender export: a text diff of it says
+# nothing, and it stays byte for byte as exported.
+*.obj   binary

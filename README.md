@@ -57,6 +57,7 @@ scripts/              # generators, gates and tools (never deployed)
 knowledge-base/       # Obsidian vault: knowledge graph + maps (never deployed; see below)
 audit/                # 2026-07 code audit, dated snapshot (never deployed)
 OWNER-CONTENT.md      # everything only the owner can supply, and its status
+.gitattributes        # LF line endings in every checkout; binary types marked
 .github/workflows/
   check.yml           # the static gates on every push and pull request
   pages.yml           # gates, then stages and publishes to GitHub Pages
@@ -82,7 +83,7 @@ OWNER-CONTENT.md      # everything only the owner can supply, and its status
 | Command | What it does |
 | --- | --- |
 | `npm run build` | Regenerates the French baked into index.html (from `I18N.fr`), scene/, the client-voices region, the legal page (only when complete) and sitemap.xml |
-| `npm run check` | Repo invariants: i18n ×3, assets, cache stamps, client links, deploy coverage, generated pages in sync, anchors, retired claims, prices = PRICE_MODEL, the estimator tested on every size, option set and pace, baked French = `I18N.fr`, French typography (no breakable space before ? ! ; : »), one canonical per page (language versions set theirs in the head script), one contact address, Western digits in Arabic, legal gating, the Supabase switch; plus `themes-check` |
+| `npm run check` | Repo invariants: i18n ×3, assets, cache stamps, client links, deploy coverage, generated pages in sync, anchors, retired claims, prices = PRICE_MODEL, the estimator tested on every size, option set and pace, baked French = `I18N.fr`, French typography (no breakable space before ? ! ; : »), one canonical per page (language versions set theirs in the head script), one contact address, Western digits in Arabic, legal gating, the Supabase switch, LF line endings in every tracked text file (`.gitattributes` pins LF for every checkout, Windows included; the generator comparisons ignore line endings); plus `themes-check` |
 | `npm run validate` | html-validate on every page |
 | `npm run audit` | Browser audit (~54 runs): axe, layout shift, LCP, overflow, tap targets, in three languages, six themes and five viewport sizes |
 | `npm run sweep` | Contrast sweep over the rendered pixels |
