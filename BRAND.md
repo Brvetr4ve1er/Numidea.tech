@@ -1718,7 +1718,11 @@ JSON-LD, the scene/legal dictionaries (`application/json`) and the embeds'
 `text/x-dc` templates are data blocks. The browser never runs them, so they
 are not hashed and their content can change without a rebuild. No tag may
 carry an inline handler (`onclick=…`) or a `javascript:` URL, because no hash
-can allow either one. Attach listeners from a script file instead.
+can allow either one. Attach listeners from a script file instead. No
+`<script>` may sit inside an inline `<svg>` or `<math>` either: there the
+browser decodes `&lt;` and CDATA in the script's text before hashing it, so
+the hash taken from the source would not match. `csp.mjs` stops the build on
+one, and check.mjs 16 fails; load that code from a script file.
 
 **The embed exception** (`workspacehq/embed/*.html`, which run on the Claude
 Design runtime) uses the same policy plus:

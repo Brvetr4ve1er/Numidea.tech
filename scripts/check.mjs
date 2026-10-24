@@ -579,10 +579,14 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
   const DATA = new Set(['application/ld+json', 'application/json', 'text/x-dc']);
   // the markup as the tokenizer reads it, left to right: a comment, a script
   // (its attributes and text), a raw-text element (its name and attributes;
-  // its content is text, not tags), or any other start tag
+  // its content is text, not tags), any other start tag, or the end of an
+  // <svg> or <math>. Inside those two (foreign content) the browser decodes
+  // "&…;" and CDATA in a script's text before hashing it, so no inline script
+  // may sit there (csp.mjs refuses one too)
   const Q = `(?:"[^"]*"|'[^']*'|[^'">])*`;               // a tag's attributes, quoted ">" included
   const TOKEN = new RegExp(`<!--[\\s\\S]*?(?:-->|$)|<script\\b(${Q})>([\\s\\S]*?)</script[\\s/>]`
-    + `|<(style|textarea|title|noscript|xmp|iframe|noembed|noframes)\\b(${Q})>[\\s\\S]*?</\\3[\\s/>]|<([a-zA-Z][^\\s/>]*)(${Q})>`, 'gi');
+    + `|<(style|textarea|title|noscript|xmp|iframe|noembed|noframes)\\b(${Q})>[\\s\\S]*?</\\3[\\s/>]|<([a-zA-Z][^\\s/>]*)(${Q})>`
+    + `|</(svg|math)(?=[\\s/>])[^>]*>`, 'gi');
   const attrsOf = (s) => Object.fromEntries([...s.matchAll(/([^\s"'>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g)]
     .map((m) => [m[1].toLowerCase(), m[2] ?? m[3] ?? m[4] ?? '']).reverse());   // the first of a repeated attribute wins
   const URL_ATTRS = ['href', 'src', 'action', 'formaction', 'data', 'xlink:href', 'poster'];
@@ -601,10 +605,15 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     nPages++;
     const scriptSrc = directiveMap(policy)['script-src'] || [];   // the first, as the browser enforces it
     const need = new Set(), handlers = [];
-    let metaAt = -1, governedAt = -1, metas = 0;
+    let metaAt = -1, governedAt = -1, metas = 0, foreign = 0;
     for (const t of src.matchAll(TOKEN)) {
-      const [whole, sAttrs, sText, raw, rAttrs, tag, tAttrs] = t;
+      const [whole, sAttrs, sText, raw, rAttrs, tag, tAttrs, foreignEnd] = t;
       if (whole.startsWith('<!--')) continue;
+      if (foreignEnd !== undefined) { if (foreign) foreign--; continue; }
+      if (foreign && (sAttrs !== undefined || (raw && /<script[\s/>]/i.test(whole))))
+        cspErr.push(`${f}: a <script> inside <svg> or <math>, where the browser hashes its text after decoding "&…;" and CDATA: move the code to a script file`);
+      // <svg/> closes at once; <svg a=b/> does not (the "/" is the value's)
+      if (tag && /^(svg|math)$/i.test(tag) && !/(?:^|[\s"'])\/$/.test(tAttrs)) foreign++;
       const name = (sAttrs !== undefined ? 'script' : raw || tag).toLowerCase();
       const a = attrsOf(sAttrs ?? rAttrs ?? tAttrs);
       if (governedAt < 0 && ['script', 'style', 'link', 'base'].includes(name)) governedAt = t.index;

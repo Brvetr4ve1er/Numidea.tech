@@ -57,6 +57,9 @@ const JS_MIME = new Set(['application/ecmascript', 'application/javascript', 'ap
 const OTHER_INLINE = new Set(['importmap', 'speculationrules']);
 // elements whose content is raw text: a "<script" inside one is not a tag
 const RAW_TEXT = new Set(['style', 'textarea', 'title', 'xmp', 'iframe', 'noembed', 'noframes', 'noscript']);
+// foreign content: inside these, nothing is raw text and a <script> is parsed
+// as markup (character references and CDATA decoded) before it is hashed
+const FOREIGN = new Set(['svg', 'math']);
 const WS = /[\t\n\f\r ]/;
 
 /** The script type the HTML standard derives from a script element's attributes. */
@@ -74,13 +77,16 @@ export function scriptType(attrs) {
 }
 
 /* a start tag's attributes from `i` (just past the tag name) to its '>'.
-   Quoted values may hold '>' and '<'; names are lower-cased as the parser does. */
+   Quoted values may hold '>' and '<'; names are lower-cased as the parser does.
+   selfClosing: the tag ends "/>" with that "/" outside any value (<svg a=b/>
+   is not self-closing: the "/" belongs to the unquoted value). */
 function readAttrs(html, i) {
   const attrs = {};
   for (;;) {
+    const from = i;
     while (i < html.length && (WS.test(html[i]) || html[i] === '/')) i++;
-    if (i >= html.length) return { attrs, end: html.length };
-    if (html[i] === '>') return { attrs, end: i + 1 };
+    if (i >= html.length) return { attrs, end: html.length, selfClosing: false };
+    if (html[i] === '>') return { attrs, end: i + 1, selfClosing: i > from && html[i - 1] === '/' };
     let n = i;
     while (n < html.length && !WS.test(html[n]) && !'/>='.includes(html[n])) n++;
     const name = html.slice(i, n).toLowerCase();
@@ -120,14 +126,23 @@ function contentEnd(html, from, name) {
  * Every <script> element in document order, as the HTML tokenizer sees it:
  * comments, doctype and raw-text elements (style, textarea, title…) are
  * skipped, quoted attribute values are honoured.
+ * A <script> inside <svg> or <math> (foreign content) is refused: there the
+ * parser decodes character references ("&lt;") and CDATA in the script's
+ * text, and the browser hashes the decoded text, which the raw text taken
+ * here is not. Such a script goes in a file, loaded from the page.
  * Returns [{ attrs, type, src, text, executable, start, end }].
  */
 export function scripts(html) {
   const out = [];
-  let i = 0;
+  let i = 0, foreign = 0;                                        // how many <svg>/<math> are open
   while (i < html.length) {
     const lt = html.indexOf('<', i);
     if (lt < 0) break;
+    if (foreign && html.startsWith('<![CDATA[', lt)) {           // a CDATA section, in foreign content only
+      const c = html.indexOf(']]>', lt + 9);
+      i = c < 0 ? html.length : c + 3;
+      continue;
+    }
     if (html.startsWith('<!--', lt)) {
       // <!--> and <!---> close at once; otherwise at the first --> (or --!>)
       if (html.startsWith('<!-->', lt)) { i = lt + 5; continue; }
@@ -143,6 +158,8 @@ export function scripts(html) {
       continue;
     }
     if (html[lt + 1] === '/') {                                  // an end tag
+      const en = /^<\/([A-Za-z][^\t\n\f\r />]*)/.exec(html.slice(lt, lt + 64));
+      if (en && foreign && FOREIGN.has(en[1].toLowerCase())) foreign--;
       const gt = html.indexOf('>', lt);
       i = gt < 0 ? html.length : gt + 1;
       continue;
@@ -150,8 +167,14 @@ export function scripts(html) {
     const nm = /^<([A-Za-z][^\t\n\f\r />]*)/.exec(html.slice(lt, lt + 64));
     if (!nm) { i = lt + 1; continue; }                           // a bare "<" in text
     const name = nm[1].toLowerCase();
-    const { attrs, end } = readAttrs(html, lt + nm[0].length);
-    if (name === 'script') {
+    const { attrs, end, selfClosing } = readAttrs(html, lt + nm[0].length);
+    if (name === 'script' && foreign) {
+      throw new Error('a <script> inside <svg> or <math>: there the browser decodes "&…;" and CDATA in its text before hashing it, so its hash cannot be taken from the source (move the code to a script file loaded from the page)');
+    }
+    if (FOREIGN.has(name)) {
+      if (!selfClosing) foreign++;
+      i = end;
+    } else if (name === 'script') {
       const close = contentEnd(html, end, 'script');
       const text = html.slice(end, close);
       // "<!--" then "<script" inside a script switches the tokenizer into its
@@ -165,9 +188,9 @@ export function scripts(html) {
       out.push({ attrs, type, src, text, executable: !src && type !== 'data' && text !== '', start: lt, end: close });
       const gt = html.indexOf('>', close);
       i = gt < 0 ? html.length : gt + 1;
-    } else if (RAW_TEXT.has(name)) {
+    } else if (RAW_TEXT.has(name) && !foreign) {
       i = contentEnd(html, end, name);
-    } else if (name === 'plaintext') {
+    } else if (name === 'plaintext' && !foreign) {
       break;
     } else {
       i = end;

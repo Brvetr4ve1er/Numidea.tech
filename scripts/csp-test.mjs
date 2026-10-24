@@ -11,6 +11,8 @@
  * both policies stand on it, and each way of loosening them (script-src-elem,
  * script-src-attr, 'unsafe-inline', 'unsafe-hashes', 'strict-dynamic',
  * wildcards, schemes, hosts, a repeated or unknown directive…) is refused.
+ * Last, a <script> inside <svg> or <math> is refused (the browser decodes its
+ * text before hashing it), while scripts around inline SVG are hashed as usual.
  * The hashes are recomputed here with
  * node:crypto, independently of hashSource(). The browser side (that Chrome
  * hashes the same text) is proven in the browser: every page loaded under its
@@ -200,12 +202,37 @@ export function fixtureErrors() {
   expect(throws(() => withCsp(FIX, 'strict')), 'an unknown kind must throw');
   expect(throws(() => withCsp(FIX.replace('<meta name="viewport"', '<script>early()</script>\n<meta name="viewport"'))), 'a script before the viewport meta must throw');
   expect(throws(() => scriptHashes(FIX.replace('boot()', 'var s = "<!--<script>"; boot()'))), '"<!--" then "<script" inside a script must throw');
+  // a script in foreign content (<svg>, <math>) is hashed by the browser after
+  // "&…;" and CDATA are decoded, so it is refused; markup around it is not
+  const inBody = (m) => FIX.replace('</body>', `${m}\n</body>`);
+  for (const [what, m] of [['in <svg>', '<svg><script>window.__r = (1 &lt; 2) ? "ran" : "no"</script></svg>'],
+    ['in <svg>, upper case', '<SVG viewBox="0 0 1 1"><g><SCRIPT>x()</SCRIPT></g></SVG>'],
+    ['in an <svg> <style> (not raw text there)', '<svg><style>.a{}</style><style><script>x()</script></style></svg>'],
+    ['in an <svg> <title>', '<svg><title><script>x()</script></title></svg>'],
+    ['in <math>', '<math><mi>x</mi><script>x()</script></math>'],
+    ['in a nested <svg>, after the inner one closes', '<svg><svg></svg><script>x()</script></svg>'],
+    ['after <svg a=b/> (the "/" is the value\'s, so it is not self-closing)', '<svg a=b/><script>x()</script></svg>'],
+    ['external, in <svg>', '<svg><script href="a.js"/></svg>']]) {
+    expect(throws(() => scriptHashes(inBody(m))), `a <script> ${what} must throw`);
+  }
+  for (const [what, m] of [['after a closed <svg>', '<svg><path d="M0 0"/></svg><script>after()</script>'],
+    ['after a self-closing <svg/>', '<svg/><script>after()</script>'],
+    ['after a <math>', '<math><mi>x</mi></math><script>after()</script>']]) {
+    let h = null;
+    try { h = scriptHashes(inBody(m)); } catch (e) { /* h stays null */ }
+    expect(h && h.at(-1) === sha('after()'), `a <script> ${what} is an ordinary script and must be hashed`);
+  }
+  expect(JSON.stringify(scriptHashes(inBody('<svg><![CDATA[ a > b <script>x()</script> ]]></svg>'))) === JSON.stringify(want), 'CDATA in <svg> is text: the "<script>" in it is no script');
+  expect(JSON.stringify(scriptHashes(inBody('<svg><title>a &lt;script&gt;</title><desc>d</desc></svg>'))) === JSON.stringify(want), 'an <svg> <title> without a script must pass');
 
   // every real page: withCsp is a fixed point of what is committed or generated
   for (const f of [...PAGES, ...EXTRA_PAGES]) {
     if (!existsSync(join(ROOT, f))) continue;
-    const html = readFileSync(join(ROOT, f), 'utf8'), once = withCsp(html, cspKind(f));
-    expect(withCsp(once, cspKind(f)) === once, `${f}: withCsp is not idempotent`);
+    const html = readFileSync(join(ROOT, f), 'utf8');
+    try {
+      const once = withCsp(html, cspKind(f));
+      expect(withCsp(once, cspKind(f)) === once, `${f}: withCsp is not idempotent`);
+    } catch (e) { errs.push(`${f}: ${e.message}`); }   // reported, not thrown: check.mjs 16 lists it with the rest
   }
   return errs;
 }
@@ -213,5 +240,5 @@ export function fixtureErrors() {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const errs = fixtureErrors();
   if (errs.length) { for (const e of errs) console.error('✗ ' + e); process.exit(1); }
-  console.log('✓ withCsp fixtures: script kinds, placement, idempotence, data blocks ignored, one-byte edits, CR LF, both policies, the floor (and each way of loosening it), the Supabase switch, refusals');
+  console.log('✓ withCsp fixtures: script kinds, placement, idempotence, data blocks ignored, one-byte edits, CR LF, both policies, the floor (and each way of loosening it), the Supabase switch, refusals (scripts in <svg>/<math> among them)');
 }
