@@ -1,0 +1,51 @@
+# Weekly dependency updates, as pull requests against the working branch
+# (which is also the default branch; every push to it deploys once the gates
+# in pages.yml are green). Each pull request runs the Check workflow.
+#
+# npm — there are only development dependencies (Playwright, axe-core,
+#   html-validate, sharp); the site itself loads none. Minor and patch updates
+#   arrive as one grouped pull request; a major version comes on its own.
+#   Playwright: scripts/lib/serve.mjs prefers a pre-installed Chromium where
+#   one exists; CI installs the browser that matches the locked version.
+# github-actions — every action is pinned to a commit SHA with its version in
+#   a comment; Dependabot moves both.
+#
+# A release must be a week old before it is proposed (cooldown), so a
+# hijacked package version is usually caught and pulled before it reaches
+# this repository. Security updates are not delayed.
+
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    target-branch: "claude/numidea-labs-landing-c4jokc"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: "Africa/Algiers"
+    cooldown:
+      default-days: 7
+    groups:
+      dev-dependencies:
+        dependency-type: development
+        update-types: [minor, patch]
+    commit-message:
+      prefix: "deps"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    target-branch: "claude/numidea-labs-landing-c4jokc"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: "Africa/Algiers"
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns: ["*"]
+        update-types: [minor, patch]
+    commit-message:
+      prefix: "ci"
