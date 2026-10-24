@@ -547,4 +547,51 @@ if (existsSync(join(ROOT, 'knowledge-base'))) {
 }
 kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbErr)].slice(0, 8).join(', ')) : ok('knowledge-base/ holds nothing from the private vault');
 
+/* 17 — asset budgets */
+// Regression ceilings in bytes (kB = 1000 bytes), on the files the hosts
+// publish (DEPLOY, walked as stage-site.mjs copies it). Each folder's ceiling
+// is the largest file it held on 2026-10-24 plus 10%, rounded up to the kB,
+// and no file in it, at any depth, may be larger. Every published og.jpg (the
+// share cards) stays under 300 kB. The whole published set stays under its
+// size on 2026-10-24 plus 10%, rounded up to 0.1 MB. A miss fails: make the
+// file smaller (previews: scripts/shots.mjs, work: work-capture.mjs, illus:
+// plates.mjs, clients: client-logos.mjs, the home share card: build-og.mjs;
+// hub/art and hub/poses are exported by hand) or raise the number here on
+// purpose. The owner can tighten any of them.
+{
+  const { deployFiles } = await import('./lib/deploy-files.mjs');
+  const kB = 1000;
+  const BUDGET = {
+    'assets/previews': 53 * kB,   // 48,016 then (nomara.webp)
+    'assets/work': 129 * kB,      // 117,246 (alliance/d1.webp)
+    'assets/illus': 203 * kB,     // 183,670 (vista-near.webp)
+    'assets/clients': 22 * kB,    // 19,320 (bordjsteel.svg)
+    'hub/art': 367 * kB,          // 333,302 (p21-l.webp)
+    'hub/poses': 264 * kB,        // 239,336 (pose-3.webp)
+  };
+  const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
+  const TOTAL = 20.9e6;           // 18,981,960 then, 262 files
+  const size = (f) => statSync(join(ROOT, f)).size;
+  const fmt = (n) => (n >= 1e6 ? (n / 1e6).toFixed(2) + ' MB' : (n / kB).toFixed(1) + ' kB');
+  const bytes = (n) => n.toLocaleString('en') + ' bytes';
+  const files = deployFiles().map((f) => [f, size(f)]);
+  const budgetErr = [], largest = [];
+  for (const [dir, cap] of Object.entries(BUDGET)) {
+    const own = files.filter(([f]) => f.startsWith(dir + '/'));
+    if (!own.length) { budgetErr.push(`${dir} publishes no files (moved? update block 17)`); continue; }
+    for (const [f, n] of own) if (n > cap) budgetErr.push(`${f} is ${bytes(n)}, over the ${dir} ceiling of ${bytes(cap)}`);
+    largest.push(`${dir} ${fmt(Math.max(...own.map(([, n]) => n)))}/${fmt(cap)}`);
+  }
+  const cards = files.filter(([f]) => /(^|\/)og\.jpg$/.test(f));
+  if (!cards.length) budgetErr.push('no published og.jpg');
+  for (const [f, n] of cards) if (n > OG) budgetErr.push(`${f} is ${bytes(n)}, over the share-card ceiling of ${bytes(OG)}`);
+  const total = files.reduce((a, [, n]) => a + n, 0);
+  if (total > TOTAL) {
+    const top = [...files].sort((a, b) => b[1] - a[1]).slice(0, 5).map(([f, n]) => `${f} ${fmt(n)}`).join(', ');
+    budgetErr.push(`the published set is ${bytes(total)} in ${files.length} files, over its ceiling of ${bytes(TOTAL)} (largest: ${top})`);
+  }
+  budgetErr.length ? bad('asset budgets: ' + budgetErr.join('; '))
+    : ok(`asset budgets: largest file per folder ${largest.join(', ')}; ${cards.length} share cards ≤ ${fmt(OG)}; published ${fmt(total)} of ${fmt(TOTAL)}`);
+}
+
 process.exit(fail);
