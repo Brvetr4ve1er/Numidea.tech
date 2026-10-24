@@ -559,9 +559,10 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
 // exactly one <h1>; legal/, which carries its three languages in the body,
 // one per language block. legal/ is checked from its template
 // (renderLegal) while it is unpublished, so publishing it cannot turn this
-// red. robots.txt names BASE/sitemap.xml and disallows no
-// indexable page, whether served at the host root (the mirrors) or under
-// BASE's path (Pages). The hreflang alternates in a page's head equal its
+// red. robots.txt names BASE/sitemap.xml and disallows none of the
+// sitemap's URLs (?lang= versions included) for a search engine ('*',
+// Googlebot, Bingbot), whether served at the host root (the mirrors) or
+// under BASE's path (Pages). The hreflang alternates in a page's head equal its
 // sitemap entry's. The studio's ProfessionalService JSON-LD states name,
 // url, locality, country and telephone, and index.html describes the site
 // itself in a WebSite object (name = og:site_name, url, the three languages).
@@ -681,8 +682,14 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     if (live === tpl) seoErr.push('legal template: the preview no longer adds <meta name="robots" content="noindex"> as this check expects');
     seoPage('legal/index.html', live, sitemapOf(renderSitemap([...PAGES, 'legal/index.html'])), 'legal template (scripts/build-legal.mjs)');
   }
-  // robots.txt: the sitemap line, and no indexable page disallowed for any
-  // user agent (longest matching rule wins, Allow on a tie, as Google reads it)
+  // robots.txt: the sitemap line, and no published URL disallowed for a
+  // search engine. Every sitemap <loc>, its ?lang= versions included (and
+  // legal/'s while it is held back), is tested as the mirrors serve it (at the
+  // host root) and as Pages serves it (under BASE's path). A crawler obeys
+  // the groups that name it, else the '*' group; '*' (every engine without a
+  // group of its own), Googlebot and Bingbot are evaluated, so a group for
+  // another crawler (User-agent: GPTBot / Disallow: /) is the owner's call.
+  // The longest matching rule wins, Allow on a tie, as Google reads it.
   const robots = read('robots.txt');
   if (![...robots.matchAll(/^\s*sitemap\s*:\s*(\S+)\s*$/gim)].some((m) => m[1] === BASE + 'sitemap.xml')) seoErr.push(`robots.txt: no "Sitemap: ${BASE}sitemap.xml" line`);
   const groups = [];
@@ -691,18 +698,34 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     const m = /^\s*([a-z-]+)\s*:\s*(.*?)\s*$/i.exec(raw.replace(/#.*/, ''));
     if (!m) continue;
     const k = m[1].toLowerCase();
-    if (k === 'user-agent') { if (!agentLine) groups.push(group = { agents: [], rules: [] }); group.agents.push(m[2]); agentLine = true; continue; }
+    if (k === 'user-agent') {
+      if (!agentLine) groups.push(group = { agents: [], tokens: [], rules: [] });
+      group.agents.push(m[2]); group.tokens.push((/^[\w*-]+/.exec(m[2]) || [''])[0].toLowerCase()); agentLine = true; continue;
+    }
     agentLine = false;
-    if ((k === 'allow' || k === 'disallow') && group && m[2]) group.rules.push({ allow: k === 'allow', path: m[2] });
+    if ((k === 'allow' || k === 'disallow') && group && m[2]) group.rules.push({ allow: k === 'allow', path: m[2], agents: group.agents });
   }
+  const rulesOf = (bot) => {
+    const named = groups.filter((g) => g.tokens.includes(bot));
+    return (named.length ? named : groups.filter((g) => g.tokens.includes('*'))).flatMap((g) => g.rules);
+  };
   const robotsRe = (p) => new RegExp('^' + p.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\\\$$/, '$'));
   const sub = new URL(BASE).pathname;
-  for (const f of indexable) {
-    const rel = f.replace(/index\.html$/, '');
-    for (const path of ['/' + rel, sub + rel]) for (const g of groups) {
-      const hit = g.rules.filter((r) => robotsRe(r.path).test(path)).sort((a, b) => b.path.length - a.path.length || b.allow - a.allow)[0];
-      if (hit && !hit.allow) seoErr.push(`robots.txt: "Disallow: ${hit.path}" (User-agent: ${g.agents.join(', ')}) blocks ${path} (${f})`);
+  const locs = [...(LEGAL_PUBLISHED ? smap : sitemapOf(renderSitemap([...PAGES, 'legal/index.html']))).keys()];
+  const blocked = new Map();
+  for (const loc of locs) {
+    const u = new URL(loc), full = u.pathname + u.search;
+    for (const path of new Set([full, full.startsWith(sub) ? '/' + full.slice(sub.length) : full])) for (const bot of ['*', 'googlebot', 'bingbot']) {
+      const hit = rulesOf(bot).filter((r) => robotsRe(r.path).test(path)).sort((a, b) => b.path.length - a.path.length || b.allow - a.allow)[0];
+      if (!hit || hit.allow) continue;
+      const k = `"Disallow: ${hit.path}" (User-agent: ${hit.agents.join(', ')})`;
+      if (!blocked.has(k)) blocked.set(k, { paths: new Set(), bots: new Set() });
+      blocked.get(k).paths.add(path); blocked.get(k).bots.add(bot === '*' ? 'any engine without its own group' : bot);
     }
+  }
+  for (const [k, { paths, bots }] of blocked) {
+    const p = [...paths];
+    seoErr.push(`robots.txt: ${k} blocks ${p.slice(0, 4).join(', ')}${p.length > 4 ? ` and ${p.length - 4} more published URLs` : ''} for ${[...bots].join(', ')}`);
   }
   // JSON-LD: the studio's required properties; the WebSite object on index.html
   const ldOf = (f) => [...read(f).replace(/<!--[\s\S]*?-->/g, '').matchAll(/<script\b[^>]*\btype=["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/gi)]
