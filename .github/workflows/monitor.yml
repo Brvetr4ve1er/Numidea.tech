@@ -311,9 +311,16 @@ jobs:
               '', `### Latest failing run: ${when}, ${run}`, '', status, '', marker,
             ].join('\n');
 
-            const all = await github.paginate(github.rest.issues.listForRepo,
-              { ...context.repo, state: 'all', sort: 'created', direction: 'desc', per_page: 100 });
-            const issue = all.find((i) => !i.pull_request && i.title === TITLE && i.user?.login === 'github-actions[bot]');
+            // Only the issues this workflow's token opened (creator), not every
+            // issue and pull request in the repository. Before opening a new
+            // issue, the whole list is read once more, so a creator filter that
+            // matched nothing could never open a second one.
+            const BOT = 'github-actions[bot]';
+            const mine = (i) => !i.pull_request && i.title === TITLE && i.user?.login === BOT;
+            const list = (extra) => github.paginate(github.rest.issues.listForRepo,
+              { ...context.repo, state: 'all', sort: 'created', direction: 'desc', per_page: 100, ...extra });
+            let issue = (await list({ creator: BOT })).find(mine);
+            if (!issue && failed) issue = (await list({})).find(mine);
             const n = issue && { ...context.repo, issue_number: issue.number };
 
             if (failed && !issue) {
