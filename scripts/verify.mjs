@@ -9,6 +9,7 @@
  *   audit      browser audit: axe, CLS, LCP, overflow, taps, images, loops, network
  *   sweep      painted-contrast sweep
  *   vbugs      layout scanner
+ *   keys       keyboard paths, focus rings, dialogs, reduced motion, RTL
  */
 import { spawnSync } from 'node:child_process';
 import { ROOT } from './site.mjs';
@@ -20,6 +21,7 @@ const STEPS = [
   ['audit', ['scripts/audit.mjs']],
   ['sweep', ['scripts/sweep.mjs']],
   ['vbugs', ['scripts/vbugs.mjs']],
+  ['keys', ['scripts/keys.mjs']],
 ];
 const results = [];
 for (const [name, args] of STEPS) {
