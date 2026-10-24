@@ -70,12 +70,12 @@ const short=u=>u.replace(B,'').split(/[?#]/)[0]||'/';
    only, and counted on the row. */
 const WAIVED=[[/\/workspacehq\/embed\/console\.html$/,/^Error: <\w+> attribute [\w:-]+: Expected (number|length), "\{\{/]];
 
-/* listeners shared by every run: JS errors, failed requests and CSP
+/* Listeners shared by every run: JS errors, failed requests and CSP
    violations, the last from every frame (the binding and the init script
-   reach each frame as it is created) */
-// w.off: set before the harness injects axe, which is not the page: its CSSOM
-// preload fetches a stylesheet's @import against the document, not the
-// sheet (the console's design-system tokens came back 404 that way)
+   reach each frame as it is created). w.off is set before the harness
+   injects axe, which is not the page: its CSSOM preload fetches a
+   stylesheet's @import against the document instead of the sheet (the
+   console's design-system tokens came back 404 that way). */
 const watch=async p=>{
   const w={errs:[],bad:[],csp:[],waived:0,off:false};
   p.on('pageerror',e=>{if(!w.off)w.errs.push(String(e).slice(0,80))});
@@ -104,7 +104,8 @@ const run=async(label,path,o={})=>{
   // LCP at load, before a click or the scroll below can add a candidate
   const lcp=await p.evaluate(()=>window.__lcp);
   if(click){await p.click(click);await p.waitForTimeout(500);}
-  const broke=act?await act(p):[];
+  // a control the act needs that is missing (an older deploy, a renamed id) is a failure, not a crash
+  const broke=act?await act(p).catch(e=>['stopped: '+e.message.split('\n')[0].slice(0,120)]):[];
   await p.evaluate(()=>{document.documentElement.style.scrollBehavior='auto'});
   await p.evaluate(async()=>{const H=document.body.scrollHeight;for(let y=0;y<H;y+=innerHeight/2){scrollTo(0,y);await new Promise(r=>setTimeout(r,45))}scrollTo(0,0)});
   await p.waitForTimeout(1800);   // reveals run 1s plus a stagger delay
@@ -223,19 +224,21 @@ const phone=async(label,path,{lang,to},again=false)=>{
   };
   const settle=async sel=>{await p.locator(sel).first().scrollIntoViewIfNeeded();await p.waitForTimeout(1500)};
   const menuOpen=()=>document.querySelector('.mobile-menu').classList.contains('open');
-  await time('menu open',()=>p.tap('.menu-toggle'),menuOpen);
-  await time('menu close',()=>p.tap('.mobile-menu .close'),()=>!document.querySelector('.mobile-menu').classList.contains('open'));
-  await settle('.faq-item summary');
-  await time('FAQ',()=>p.locator('.faq-item summary').first().tap(),()=>document.querySelector('.faq-item').open);
-  await settle('#est-size');
-  const v0=await p.inputValue('#est-size');
-  await time('estimator',async()=>{const r=await p.locator('#est-size').boundingBox();await p.touchscreen.tap(r.x+r.width*0.8,r.y+r.height/2)},
-    v0=>document.querySelector('#est-size').value!==v0,v0);
-  await settle('.pr-cur');
-  await time('currency',()=>p.tap('.pr-cur label.echip:has(input[value="EUR"])'),()=>document.querySelector('.pr-cur input[value="EUR"]').checked);
-  await p.evaluate(()=>scrollTo(0,0));await p.waitForTimeout(800);
-  await p.tap('.menu-toggle');await p.waitForTimeout(1000);
-  await time('language',()=>p.tap(`.mobile-menu .lang button[data-lang="${to}"]`),to=>document.documentElement.lang===to,to);
+  try{
+    await time('menu open',()=>p.tap('.menu-toggle'),menuOpen);
+    await time('menu close',()=>p.tap('.mobile-menu .close'),()=>!document.querySelector('.mobile-menu').classList.contains('open'));
+    await settle('.faq-item summary');
+    await time('FAQ',()=>p.locator('.faq-item summary').first().tap(),()=>document.querySelector('.faq-item').open);
+    await settle('#est-size');
+    const v0=await p.inputValue('#est-size');
+    await time('estimator',async()=>{const r=await p.locator('#est-size').boundingBox();await p.touchscreen.tap(r.x+r.width*0.8,r.y+r.height/2)},
+      v0=>document.querySelector('#est-size').value!==v0,v0);
+    await settle('.pr-cur');
+    await time('currency',()=>p.tap('.pr-cur label.echip:has(input[value="EUR"])'),()=>document.querySelector('.pr-cur input[value="EUR"]').checked);
+    await p.evaluate(()=>scrollTo(0,0));await p.waitForTimeout(800);
+    await p.tap('.menu-toggle');await p.waitForTimeout(1000);
+    await time('language',()=>p.tap(`.mobile-menu .lang button[data-lang="${to}"]`),to=>document.documentElement.lang===to,to);
+  }catch(e){acts.push({name:'stopped: '+e.message.split('\n')[0].slice(0,120),d:0,ok:false})}
   await ctx.close();
   const worst=acts.reduce((a,x)=>x.d>a.d?x:a,{d:0,name:'-'});
   const issues=[];
