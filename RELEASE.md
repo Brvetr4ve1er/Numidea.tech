@@ -59,6 +59,10 @@ and keys in one go, and does not stop at the first failure
 | 11 | No dead owned or client link | `npm run links` (needs the network) | `nightly`; `monitor.yml` |
 | 12 | No known advisory in any dependency, dev tools included | `npm audit` reports 0 | `nightly` |
 
+Rows 7 to 12 run on a GitHub runner, without deploying, when the Check
+workflow is run by hand on the branch. Do that before the working branch
+moves ([section 3](#3-how-a-change-reaches-the-live-site), step 3).
+
 | # | After the push | Proved by |
 | --- | --- | --- |
 | 13 | The gated deploy is green | Actions → "Deploy to GitHub Pages": the `gates` job and then `deploy` (`pages.yml`). The workflow file puts the gates at about twelve minutes. A red gate leaves the live site as it was |
@@ -97,15 +101,30 @@ and the domain in [section 6](#6-domain-and-dns).
 
 1. Commit on a branch and push it. `check.yml` runs its `check` job on every
    push to every branch, in about a minute (no browser).
-2. Run `npm run verify` and `npm run links` locally, or rely on step 4.
-3. When the branch is green, fast-forward the working branch to it and push.
-4. `pages.yml` runs `gates`: the invariants, validate, build-no-diff, then
+2. Run `npm run verify` and `npm run links` locally.
+3. Run the browser gates on a GitHub runner, on that branch, before anything
+   deploys: Actions → Check → Run workflow, choose the branch, and leave "Also
+   run the nightly job" ticked (`browser: true`, the default). Through the
+   API, `POST /repos/Brvetr4ve1er/Numidea.tech/actions/workflows/check.yml/dispatches`
+   with `{"ref": "<branch>"}` does the same.
+   - That run's `check` and `nightly` jobs cover every gate of `pages.yml`
+     (the static gates, build-no-diff, then audit, sweep, vbugs and keys
+     inside `npm run verify`), plus `links` and the full `npm audit`. They
+     deploy nothing.
+   - The timing gates (the throttled phone, desktop LCP) were set on a local
+     machine. A runner can be slower, and if one of them fails there, step 5
+     refuses every deploy until it is fixed. Here that failure costs nothing.
+   - Re-run a timing gate that fails once before treating it as real (Re-run
+     failed jobs).
+4. Only when both jobs are green, fast-forward the working branch to that
+   branch and push.
+5. `pages.yml` runs `gates`: the invariants, validate, build-no-diff, then
    audit, sweep, vbugs and keys on Playwright's Chromium. Every gate runs even
    after one fails, so a red run lists everything that is wrong. `deploy`
    runs only when `gates` passed (`needs: gates`). It stages `_site/` and
    publishes it, and it is the only job with Pages write and OIDC token
    permissions.
-5. Deploys run one at a time (`concurrency: pages`, never cancelled
+6. Deploys run one at a time (`concurrency: pages`, never cancelled
    mid-flight). Newer pushes wait, and of those only the latest queued one
    runs.
 
