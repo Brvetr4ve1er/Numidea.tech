@@ -49,7 +49,7 @@
 </helmet>
 <div data-hq-theme="{{ themeName }}" style="position:relative;height:100vh;width:100%;overflow:hidden;display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:var(--term);font-size:13px;line-height:1.25">
   <x-import component-from-global-scope="hq-ascii-bg" style="position:absolute;inset:0" hint-size="100%,100%"></x-import>
-  <header style="flex:0 0 auto;height:58px;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--panel);border-bottom:1px solid var(--frame);backdrop-filter:blur(10px);position:relative;z-index:30">
+  <header aria-label="Console bar" style="flex:0 0 auto;height:58px;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--panel);border-bottom:1px solid var(--frame);backdrop-filter:blur(10px);position:relative;z-index:30">
     <button onClick="{{ goHome }}" title="Home" style="background:none;border:0;padding:4px 6px 4px 2px;cursor:pointer;font-family:var(--term);font-size:11px;letter-spacing:.02em;text-transform:lowercase;font-weight:500;color:var(--text);display:flex;white-space:nowrap;flex:0 0 auto">
       <span style="color:var(--gold);font-size:18px;margin-right:6px;text-transform:none">✻</span><sc-if value="{{ L.wordmark }}" hint-placeholder-val="{{ true }}"><span style="font-size:14px;font-weight:600;color:var(--text);text-transform:none">workspace-hq</span><span style="font-size:12px;color:var(--faint);margin-left:6px;text-transform:none">v3</span></sc-if>
     </button>
@@ -77,7 +77,7 @@
       <sc-if value="{{ hasRunning }}" hint-placeholder-val="{{ false }}"><span ref="{{ pulse }}" style="width:7px;height:7px;background:var(--gold)"></span></sc-if>
       <x-import component-from-global-scope="hq-icon" name="activity" size="16" hint-size="16px,16px"></x-import><span style="color:var(--text)">{{ running }}</span>
     </button>
-    <button onClick="{{ openPalette }}" title="Search &amp; commands · Ctrl K or /" style="height:34px;min-width:34px;padding:0 9px;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--ink);border:1px solid var(--frame);border-radius:8px;color:var(--muted);font-family:var(--term);font-size:13px;cursor:pointer;white-space:nowrap;flex:0 0 auto" style-hover="border-color:var(--gold);color:var(--text)"><x-import component-from-global-scope="hq-icon" name="search" size="16" hint-size="16px,16px"></x-import><sc-if value="{{ L.searchText }}" hint-placeholder-val="{{ true }}"><span>Search</span><span style="font-family:var(--term);font-size:11px;letter-spacing:.02em;text-transform:lowercase;font-weight:500;color:var(--faint);margin-left:4px">Ctrl K</span></sc-if></button>
+    <button onClick="{{ openPalette }}" title="Search &amp; commands · Ctrl K or /" style="height:34px;min-width:34px;padding:0 9px;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--ink);border:1px solid var(--frame);border-radius:8px;color:var(--muted);font-family:var(--term);font-size:13px;cursor:pointer;white-space:nowrap;flex:0 0 auto" style-hover="border-color:var(--gold);color:var(--text)"><x-import component-from-global-scope="hq-icon" name="search" size="16" hint-size="16px,16px"></x-import><sc-if value="{{ L.searchText }}" hint-placeholder-val="{{ true }}"><span>Search</span><span style="font-family:var(--term);font-size:11px;letter-spacing:.02em;text-transform:lowercase;font-weight:500;color:var(--muted);margin-left:4px">Ctrl K</span></sc-if></button>
     <sc-if value="{{ L.extras }}" hint-placeholder-val="{{ true }}">
       <button onClick="{{ toggleFocus }}" title="Focus · F" style="height:34px;min-width:34px;padding:0 9px;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--ink);border:1px solid var(--frame);border-radius:8px;color:var(--muted);font-family:var(--term);font-size:13px;cursor:pointer;white-space:nowrap;flex:0 0 auto" style-hover="border-color:var(--gold);color:var(--text)"><x-import component-from-global-scope="hq-icon" name="focus" size="16" hint-size="16px,16px"></x-import><sc-if value="{{ L.searchText }}" hint-placeholder-val="{{ true }}"><span>Focus</span></sc-if></button>
     </sc-if>
@@ -129,7 +129,7 @@
       </nav>
     </sc-if>
 
-    <main ref="{{ mainRef }}" style="flex:1 1 auto;min-width:0;overflow-y:auto;overflow-x:hidden;position:relative">
+    <main aria-label="Live console" ref="{{ mainRef }}" style="flex:1 1 auto;min-width:0;overflow-y:auto;overflow-x:hidden;position:relative">
       <div style="max-width:1160px;margin:0 auto;padding:24px clamp(9px,2.2vw,23px) 120px">
         <sc-if value="{{ v.loading }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;flex-direction:column;gap:20px">
