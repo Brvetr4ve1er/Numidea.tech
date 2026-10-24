@@ -28,6 +28,7 @@
  *                        French copy keeps its no-break spaces before ? ! ; : » etc.
  *  15b. line endings  — .gitattributes pins LF, every binary type is listed there,
  *                        and no tracked text file holds a CR
+ *  15c. no runtime dependency — package.json lists tools only (devDependencies)
  *
  * Exits non-zero on any failure. No dependencies (git is used when present).
  */
@@ -618,5 +619,17 @@ if (crFiles.length) eolErr.push(`CR in ${crFiles.length} tracked text files; sav
   + crFiles.slice(0, 20).join(', ') + (crFiles.length > 20 ? `, … and ${crFiles.length - 20} more` : ''));
 eolErr.length ? bad('line endings: ' + eolErr.join('; '))
   : ok(`LF line endings in all ${textCount} tracked text files; ${binCount} binary files, every type marked in .gitattributes (${how})`);
+
+/* 15c — no runtime dependency */
+// The site loads no npm package; every package here is a tool for scripts/.
+// npm audit --omit=dev (CI's check job) audits runtime dependencies only, so
+// on its own it passes whatever is added. This makes the rule a gate: a first
+// runtime dependency is the owner's call, and it means changing this block.
+const pkg = JSON.parse(read('package.json'));
+const runtimeDeps = ['dependencies', 'optionalDependencies', 'peerDependencies', 'bundleDependencies', 'bundledDependencies']
+  .flatMap((k) => (Array.isArray(pkg[k]) ? pkg[k] : Object.keys(pkg[k] || {})).map((n) => `${n} (${k})`));
+runtimeDeps.length
+  ? bad('package.json declares a runtime dependency; the site has none, tools go in devDependencies: ' + runtimeDeps.join(', '))
+  : ok(`no runtime dependency in package.json (${Object.keys(pkg.devDependencies || {}).length} dev tools only)`);
 
 process.exit(fail);

@@ -3,10 +3,12 @@ name: Check
 # Two jobs.
 #
 # check — every push and pull request, about a minute, no browser: the
-#   repository invariants, html-validate, "the build leaves no change" and the
-#   audit of the runtime dependencies (there are none today; this keeps it so).
-#   Every step runs even when an earlier one failed, so one run shows
-#   everything that is wrong (as npm run verify does).
+#   repository invariants, html-validate, "the build leaves no change" and
+#   npm audit --omit=dev. That audit reads runtime dependencies only. There
+#   are none, so today it cannot fail; it starts to count the day one is
+#   allowed. What keeps them at none is check.mjs 15c, which fails when
+#   package.json declares one. Every step runs even when an earlier one
+#   failed, so one run shows everything that is wrong (as npm run verify does).
 #
 # nightly — every night and on demand (Actions → Check → Run workflow): the
 #   browser gates (npm run verify, keys included), links and the full npm audit,
