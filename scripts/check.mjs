@@ -550,7 +550,10 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
 /* 18 — SEO and structured data */
 // What a search engine and a link preview read, page by page (PAGES).
 // 404.html is served for every missing URL, so it must be noindex and stay
-// out of the sitemap; every other page is indexable and carries one <title>,
+// out of the sitemap, as do the WorkspaceHQ embeds (EXTRA_PAGES), which
+// robots.txt must leave crawlable so the noindex is read; noindex counts in
+// any robots meta (robots, googlebot, bingbot…); every other page is
+// indexable and carries one <title>,
 // one meta description of 50-160 characters (in every language the page
 // switches to: index.html's I18N meta.desc, a generated page's inline
 // ui.desc), og:title, og:description, og:image, og:url (the page's own URL),
@@ -607,7 +610,10 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     [...m[1].matchAll(/<xhtml:link\b[^>]*>/g)].map((x) => attrs(x[0])).map((a) => `${a.hreflang} ${unXml(a.href)}`).sort().join(' | '),
   ]));
   const smap = sitemapOf(read('sitemap.xml'));
+  // noindex in any robots directive meta: robots, or one crawler's
+  // (googlebot, bingbot, googlebot-news…), which removes the page as surely
   const NOINDEX = /\b(noindex|none)\b/i;
+  const noindexOf = (meta) => Object.entries(meta).some(([k, v]) => /^robots$|bot/i.test(k) && v.some((r) => NOINDEX.test(r)));
   // <h1>: one per page. A page that carries every language in its body (one
   // <div lang> block per language, html[lang] shows one: legal/) has one per
   // block and none outside them; the last block runs to </main>.
@@ -631,7 +637,7 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     const titles = [...head.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title>/gi)];
     if (titles.length !== 1 || !norm(titles[0][1])) err(f, `${titles.length} <title> in the head (want one, not empty)`);
     for (const g of h1Gaps(src.replace(/<script\b[\s\S]*?<\/script>/gi, ''))) err(f, g);
-    const noindex = (meta.robots || []).some((r) => NOINDEX.test(r));
+    const noindex = noindexOf(meta);
     if (f === '404.html') {
       if (!noindex) err(f, 'is served for every missing URL: it needs <meta name="robots" content="noindex">');
       if (map.has(url)) err(f, 'is noindex but listed in sitemap.xml');
@@ -682,6 +688,14 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     if (live === tpl) seoErr.push('legal template: the preview no longer adds <meta name="robots" content="noindex"> as this check expects');
     seoPage('legal/index.html', live, sitemapOf(renderSitemap([...PAGES, 'legal/index.html'])), 'legal template (scripts/build-legal.mjs)');
   }
+  // the WorkspaceHQ embeds (EXTRA_PAGES) are published but only framed by
+  // its page: each keeps its noindex and stays out of the sitemap (and
+  // crawlable, below, or a crawler never reads that noindex)
+  for (const f of EXTRA_PAGES) {
+    const src = read(f).replace(/<!--[\s\S]*?-->/g, ''), end = src.search(/<\/head>/i);
+    if (!noindexOf(metasOf(end < 0 ? '' : src.slice(0, end)))) seoErr.push(`${f}: is only framed by workspacehq/, so it needs <meta name="robots" content="noindex">`);
+    if ([BASE + f, BASE + f.replace(/\.html$/, '')].some((u) => smap.has(u))) seoErr.push(`${f}: is noindex but listed in sitemap.xml`);
+  }
   // robots.txt: the sitemap line, and no published URL disallowed for a
   // search engine. Every sitemap <loc>, its ?lang= versions included (and
   // legal/'s while it is held back), is tested as the mirrors serve it (at the
@@ -711,21 +725,22 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
   };
   const robotsRe = (p) => new RegExp('^' + p.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\\\$$/, '$'));
   const sub = new URL(BASE).pathname;
-  const locs = [...(LEGAL_PUBLISHED ? smap : sitemapOf(renderSitemap([...PAGES, 'legal/index.html']))).keys()];
+  const locs = [...(LEGAL_PUBLISHED ? smap : sitemapOf(renderSitemap([...PAGES, 'legal/index.html']))).keys()].map((u) => [u, 'published URLs'])
+    .concat(EXTRA_PAGES.map((f) => [BASE + f, 'noindex embeds (a blocked page\'s noindex is never read)']));
   const blocked = new Map();
-  for (const loc of locs) {
+  for (const [loc, kind] of locs) {
     const u = new URL(loc), full = u.pathname + u.search;
     for (const path of new Set([full, full.startsWith(sub) ? '/' + full.slice(sub.length) : full])) for (const bot of ['*', 'googlebot', 'bingbot']) {
       const hit = rulesOf(bot).filter((r) => robotsRe(r.path).test(path)).sort((a, b) => b.path.length - a.path.length || b.allow - a.allow)[0];
       if (!hit || hit.allow) continue;
-      const k = `"Disallow: ${hit.path}" (User-agent: ${hit.agents.join(', ')})`;
+      const k = `"Disallow: ${hit.path}" (User-agent: ${hit.agents.join(', ')})\u0000${kind}`;
       if (!blocked.has(k)) blocked.set(k, { paths: new Set(), bots: new Set() });
       blocked.get(k).paths.add(path); blocked.get(k).bots.add(bot === '*' ? 'any engine without its own group' : bot);
     }
   }
-  for (const [k, { paths, bots }] of blocked) {
-    const p = [...paths];
-    seoErr.push(`robots.txt: ${k} blocks ${p.slice(0, 4).join(', ')}${p.length > 4 ? ` and ${p.length - 4} more published URLs` : ''} for ${[...bots].join(', ')}`);
+  for (const [key, { paths, bots }] of blocked) {
+    const [k, kind] = key.split('\u0000'), p = [...paths];
+    seoErr.push(`robots.txt: ${k} blocks ${p.length} ${kind}: ${p.slice(0, 4).join(', ')}${p.length > 4 ? ' …' : ''} for ${[...bots].join(', ')}`);
   }
   // JSON-LD: the studio's required properties; the WebSite object on index.html
   const ldOf = (f) => [...read(f).replace(/<!--[\s\S]*?-->/g, '').matchAll(/<script\b[^>]*\btype=["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/gi)]
