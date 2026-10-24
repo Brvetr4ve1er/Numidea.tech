@@ -6,7 +6,9 @@
  *
  *   check      repository invariants (check.mjs + themes-check.mjs)
  *   validate   html-validate on every page
- *   audit      browser audit: axe, CLS, LCP, overflow, taps, images, loops, network
+ *   audit      browser audit: axe, CLS, LCP, overflow, taps, images, loops, network,
+ *              CSP violations, the WorkspaceHQ embeds and console, a throttled phone
+ *              (LCP, long tasks, interaction latency)
  *   sweep      painted-contrast sweep
  *   vbugs      layout scanner
  *   keys       keyboard paths, focus rings, dialogs, reduced motion, RTL

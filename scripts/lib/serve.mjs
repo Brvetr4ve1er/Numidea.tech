@@ -9,6 +9,7 @@ import { chromium } from 'playwright';
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
 import { join, extname, resolve, sep } from 'node:path';
 import { ROOT } from '../site.mjs';
 
@@ -18,7 +19,12 @@ const TYPES = {
   '.ico': 'image/x-icon', '.pdf': 'application/pdf', '.txt': 'text/plain', '.xml': 'application/xml',
 };
 
-export async function serve(root = ROOT) {
+// gzip like the hosts do (GitHub Pages gzips every text type): the audit's
+// throttled phone profile measures transfer time, and uncompressed text would
+// take about 3.5 times as long to arrive as it does in production
+const TEXT = new Set(['.html', '.css', '.js', '.mjs', '.json', '.svg', '.txt', '.xml']);
+
+export async function serve(root = ROOT, { compress = false } = {}) {
   const top = resolve(root);
   const srv = createServer(async (q, r) => {
     // only files under root: join() resolves ../ (sent raw or as %2e%2e/%2f),
@@ -32,7 +38,13 @@ export async function serve(root = ROOT) {
     if (!file.startsWith(top + sep)) { r.writeHead(403); r.end(); return; }
     try {
       const b = await readFile(file);
-      r.writeHead(200, { 'content-type': TYPES[extname(file)] || 'application/octet-stream' });
+      const head = { 'content-type': TYPES[extname(file)] || 'application/octet-stream' };
+      if (compress && TEXT.has(extname(file)) && /\bgzip\b/.test(q.headers['accept-encoding'] || '')) {
+        r.writeHead(200, { ...head, 'content-encoding': 'gzip', vary: 'accept-encoding' });
+        r.end(gzipSync(b));
+        return;
+      }
+      r.writeHead(200, head);
       r.end(b);
     } catch { r.writeHead(404); r.end(); }
   }).listen(0, '127.0.0.1');
