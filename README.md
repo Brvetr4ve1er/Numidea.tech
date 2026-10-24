@@ -127,7 +127,8 @@ GitHub Actions, in `.github/workflows/`:
   everything that is wrong.
 - Every action is pinned to a commit SHA, its version in a comment.
   `.github/dependabot.yml` proposes the updates, on Mondays: npm dev
-  dependencies (minor and patch in one pull request) and the actions. A
+  dependencies (minor and patch in one pull request, except Playwright,
+  which brings a new Chromium and so comes in its own) and the actions. A
   release must be seven days old before it is proposed.
 - The workflows hold read-only permissions, except the Pages deploy job
   (`pages`, `id-token`) and the monitor's issue job (`issues`).
