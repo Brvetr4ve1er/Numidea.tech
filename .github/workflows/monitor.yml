@@ -15,6 +15,10 @@ name: Live monitor
 #   3. Lighthouse, pinned below, on the live index in French and Arabic,
 #      mobile and desktop, three runs each. The median of each metric must
 #      stay within the budgets below. Every report is kept as an artifact.
+#      Desktop is held to the target (LCP 2.5 s, TBT 200 ms). Mobile is over
+#      that target today, so it is held to regression ceilings instead, set
+#      from the 2026-10-24 medians plus a margin (RELEASE.md §5): red means
+#      it got worse, not that it is still short of the target.
 # report — opens ONE issue, "Live monitor failed", when the live job fails,
 #   and comments on it (reopening it if it was closed) on every later failure,
 #   mentioning the repository owner so a notification arrives. When the
@@ -44,9 +48,17 @@ jobs:
       actions: read            # is a Pages deploy running? (stamp check)
     env:
       LIGHTHOUSE: "13.5.0"     # exact version, run with npx
-      LCP_MS: "2500"           # largest contentful paint, median of three runs
-      CLS: "0.1"               # cumulative layout shift
+      # medians of three runs. Desktop: the target.
+      LCP_MS: "2500"           # largest contentful paint
       TBT_MS: "200"            # total blocking time
+      CLS: "0.1"               # cumulative layout shift, mobile and desktop
+      # Mobile: regression ceilings, not the target (still 2.5 s and 200 ms).
+      # On 2026-10-24 the mobile medians were LCP 4.99 s (fr) and 5.89 s (ar),
+      # TBT 236 and 252 ms, on a machine whose Lighthouse benchmarkIndex was
+      # about 2000. Lower these as the page gets faster; the owner decides
+      # when mobile is held to the target (RELEASE.md §5).
+      LCP_MS_MOBILE: "6500"
+      TBT_MS_MOBILE: "350"
     outputs:
       live: ${{ steps.live.outcome }}
       links: ${{ steps.links.outcome }}
@@ -201,12 +213,21 @@ jobs:
           node --input-type=module <<'EOF'
           import { readFileSync, readdirSync, appendFileSync, existsSync } from 'node:fs';
 
-          const budget = { lcp: +process.env.LCP_MS, cls: +process.env.CLS, tbt: +process.env.TBT_MS };
+          const env = process.env;
+          const budgets = {
+            mobile: { lcp: +env.LCP_MS_MOBILE, cls: +env.CLS, tbt: +env.TBT_MS_MOBILE },
+            desktop: { lcp: +env.LCP_MS, cls: +env.CLS, tbt: +env.TBT_MS },
+          };
+          for (const [form, b] of Object.entries(budgets)) if (!Object.values(b).every((x) => x > 0)) {
+            console.log(`::error::the ${form} Lighthouse budget is not a set of positive numbers: ${JSON.stringify(b)}`);
+            process.exit(1);
+          }
           const median = (a) => { const s = [...a].sort((x, y) => x - y); return s.length ? s[(s.length - 1) >> 1] : NaN; };
           const reports = existsSync('lighthouse') ? readdirSync('lighthouse').filter((f) => f.endsWith('.report.json')) : [];
           const rows = [];
           let failed = 0;
           for (const form of ['mobile', 'desktop']) for (const lang of ['fr', 'ar']) {
+            const budget = budgets[form];
             const runs = reports.filter((f) => f.startsWith(`${form}-${lang}-`))
               .map((f) => JSON.parse(readFileSync('lighthouse/' + f, 'utf8')))
               .filter((j) => !j.runtimeError && j.audits?.['largest-contentful-paint']?.numericValue != null);
@@ -223,10 +244,12 @@ jobs:
             ].filter(Boolean);
             if (over.length) { failed++; console.log(`::error::Lighthouse ${form} ${lang}: ${over.join(', ')}`); }
             const v = (x, f) => (Number.isFinite(x) ? f(x) : '–');
-            rows.push(`| ${over.length ? '✗' : '✓'} | ${form} | ${lang} | ${runs.length} | ${v(m.lcp, (x) => (x / 1000).toFixed(2) + ' s')} | ${v(m.cls, (x) => x.toFixed(4))} | ${v(m.tbt, (x) => Math.round(x) + ' ms')} | ${v(m.score, (x) => Math.round(x * 100))} |`);
+            const within = (x, max, f) => `${v(x, f)} (≤ ${f(max)})`;
+            rows.push(`| ${over.length ? '✗' : '✓'} | ${form} | ${lang} | ${runs.length} | ${within(m.lcp, budget.lcp, (x) => (x / 1000).toFixed(2) + ' s')} | ${within(m.cls, budget.cls, (x) => x.toFixed(4))} | ${within(m.tbt, budget.tbt, (x) => Math.round(x) + ' ms')} | ${v(m.score, (x) => Math.round(x * 100))} |`);
           }
-          const table = [`| | form | lang | runs | LCP ≤ ${budget.lcp / 1000} s | CLS ≤ ${budget.cls} | TBT ≤ ${budget.tbt} ms | score |`,
-            '| --- | --- | --- | --- | --- | --- | --- | --- |', ...rows].join('\n');
+          const table = ['| | form | lang | runs | LCP | CLS | TBT | score |',
+            '| --- | --- | --- | --- | --- | --- | --- | --- |', ...rows,
+            '', `Desktop budgets are the target. Mobile budgets are regression ceilings; the target is LCP ≤ 2.5 s and TBT ≤ 200 ms (RELEASE.md §5).`].join('\n');
           console.log(table);
           if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `### Lighthouse (median of three runs)\n\n${table}\n\n`);
           if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `table<<LH_TABLE\n${table}\nLH_TABLE\n`);

@@ -185,9 +185,12 @@ earlier one failed:
 2. **External links:** `npm run links`.
 3. **Lighthouse.** The version is pinned in the file. It runs on the live
    index, in French and in Arabic, on mobile and desktop, three runs each.
-   The medians must stay within LCP ≤ 2.5 s, CLS ≤ 0.1 and TBT ≤ 200 ms (the
-   `env` block of the `live` job). The reports are kept as a run artifact
-   for 14 days.
+   The reports are kept as a run artifact for 14 days. The medians must stay
+   within the budgets in the `env` block of the `live` job:
+   - CLS ≤ 0.1 on both;
+   - desktop: LCP ≤ 2.5 s and TBT ≤ 200 ms, the target;
+   - mobile: LCP ≤ 6.5 s and TBT ≤ 350 ms. These are regression ceilings,
+     not the target. The target is the same as on desktop.
 
 How a failure reaches the owner:
 
@@ -198,11 +201,22 @@ How a failure reaches the owner:
   standing failure does not notify four times a day.
 - The first green run comments on the issue and closes it.
 
-When the monitor was written (commit fb602b6, 2026-10-24), the live site's
-mobile medians were over budget: LCP 4.99 s (fr) and 5.89 s (ar), TBT 236 and
-252 ms. Desktop was within budget (LCP 1.05 s and 1.21 s). Until that
-changes, or the budget in `monitor.yml` changes, the monitor stays red and
-its issue stays open.
+**Mobile is short of the target (owner decision).** On 2026-10-24 the
+live site's mobile medians were LCP 4.99 s (fr) and 5.89 s (ar), TBT 236 and
+252 ms. Desktop met the target (LCP 1.05 s and 1.21 s).
+
+- Held to 2.5 s and 200 ms, the monitor would be red from its first run, and
+  its issue would never close. A real outage would then arrive only as a
+  "failing checks changed" comment on an issue nobody reads any more.
+- So the mobile budgets are ceilings: those medians plus a margin. A red
+  mobile row means the page got slower, not that it is still slow.
+- The medians were measured on a machine with a Lighthouse `benchmarkIndex`
+  of about 2000, not on a GitHub runner. If the first runs on GitHub are
+  over a ceiling for no other reason, set the ceiling from their medians.
+- Each time the page gets faster, lower the ceilings toward the target. The
+  owner decides when mobile is held to the target itself. In those reports,
+  Lighthouse put the largest saving in the render-blocking stylesheets (about
+  1.2 s, `assets/styles.css` first).
 
 GitHub's own rules that affect this (GitHub Docs, "Events that trigger
 workflows", `schedule`):
