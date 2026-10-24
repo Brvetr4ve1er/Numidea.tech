@@ -15,10 +15,10 @@ Two published pages sit beside the studio's landing page with their own CSS and 
 | What it is | Yasser's own page: his art, design work and social presence (BRAND.md › hub/ — the artist's page, not the studio's) | Launch page for WorkspaceHQ v3, "your codebase, now playable" (workspacehq/index.html › 6) |
 | Title | `b4vetrave1er.exe // VOIDSPLUNKER.std` (hub/index.html › 6) | `WorkspaceHQ v3 — your codebase, now playable` (workspacehq/index.html › 6) |
 | Language | English (hub/index.html › 2) | English (workspacehq/index.html › 2) |
-| Themes | Its own dark and light, stored under `void-theme`; anything else reads as dark (hub/index.html › 25) | One look: the WorkspaceHQ design system's ARCADE tokens (workspacehq/style.css › 1) |
-| Fonts | Syne and Space Mono, self-hosted through `assets/fonts-hub.css` (hub/index.html › 30) | Press Start 2P and VT323, self-hosted in `workspacehq/fonts/` (workspacehq/style.css › 11) |
-| Scripts | `hub/app.js`, `assets/carry.js` (hub/index.html › 490) | `workspacehq/app.js`, `assets/carry.js` (workspacehq/index.html › 332) |
-| Reached from | The home page's founder section, "Portfolio personnel ↗" (index.html › 1048); the WorkspaceHQ footer (workspacehq/index.html › 326) | The cartridge in the home footer and in the hub (index.html › 1265; hub/index.html › 72, 423); project sheet 04 (scripts/scene-data.mjs › PROJECTS) |
+| Themes | Its own dark and light, stored under `void-theme`; anything else reads as dark (hub/index.html › 26) | One look: the WorkspaceHQ design system's ARCADE tokens (workspacehq/style.css › 1) |
+| Fonts | Syne and Space Mono, self-hosted through `assets/fonts-hub.css` (hub/index.html › 31) | Press Start 2P and VT323, self-hosted in `workspacehq/fonts/` (workspacehq/style.css › 11) |
+| Scripts | `hub/app.js`, `assets/carry.js` (hub/index.html › 491) | `workspacehq/app.js`, `assets/carry.js` (workspacehq/index.html › 333) |
+| Reached from | The home page's founder section, "Portfolio personnel ↗" (index.html › 1066); the WorkspaceHQ footer (workspacehq/index.html › 327) | The cartridge in the home footer and in the hub (index.html › 1283; hub/index.html › 73, 424); project sheet 04 (scripts/scene-data.mjs › PROJECTS) |
 | Sitemap | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) |
 
 Both pages load `assets/carry.js`, so a link back to the home page keeps any `ref`, `utm_*`, `fbclid`, `gclid` or `lang` parameter the visitor arrived with (assets/carry.js › 1).
@@ -31,7 +31,7 @@ Both pages load `assets/carry.js`, so a link back to the home page keeps any `re
 |---|---|---|
 | Hero | `#hero` | Name, "ARTIST · DESIGNER · DEVELOPER", the WorkspaceHQ cartridge, and the avatar whose four Traveler portraits step from calm to scream as you scroll (hub/index.html › HERO; BRAND.md › hub/) |
 | The Series | `#collection` | BR4VETR4VELER, "a story in 33 posters": Prologue *The Traveler*, I *The Sky*, II *The Noise*, III *The Ink*, Epilogue *The Power of Imagination* (hub/index.html › THE SERIES; BRAND.md › hub/) |
-| Viewer | `#lb` | A native `<dialog>`; Close comes first so the external DeviantArt link is not focused on open (hub/index.html › 303) |
+| Viewer | `#lb` | A native `<dialog>`; Close comes first so the external DeviantArt link is not focused on open (hub/index.html › 304) |
 | Design | `#design` | Twelve Behance projects from the profile's first page, covers self-hosted (BRAND.md › hub/; hub/index.html › DESIGN) |
 | Social highlights | `#social` | Behance and DeviantArt figures as the public profiles showed them in October 2026, updated by hand and never fetched; Instagram shows no number (hub/index.html › SOCIAL HIGHLIGHTS) |
 | The Archive | `#links` | Links grouped as Design, Dev, Social, Shop & contact; handles with no verified URL sit on one "coming soon" line (hub/index.html › LINKS) |
@@ -54,7 +54,7 @@ Communities and wiki: [[_COMMUNITY_Hub Page Script]], [[_COMMUNITY_Founder Poste
 
 ### The product, as the page describes it
 
-- WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests and puts one clear next move on top; it is a Claude-powered desktop console built on Electron, with a pixel sidekick called Bit (workspacehq/index.html › 7).
+- WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests and puts one clear next move on top; it is a Claude-powered desktop console built on Electron, with a pixel sidekick called Bit (workspacehq/index.html › 01 HERO, 06 MEET BIT).
 - Scans run on your machine; when you ask Claude something, only the question and the repo context it needs are sent (workspacehq/index.html › 08 FAQ).
 - The code is public on GitHub at `Brvetr4ve1er/workspace-HQ`, and the install step is `git clone` (workspacehq/index.html › 09 INSTALL).
 - The design said `brew install workspacehq` and `npm i -g workspacehq`, but neither package exists, so the page points at GitHub until they are published (BRAND.md › workspacehq/ — the WorkspaceHQ v3 launch page).
@@ -73,7 +73,7 @@ Communities and wiki: [[_COMMUNITY_Hub Page Script]], [[_COMMUNITY_Founder Poste
 | 08 | `#faq` | Five questions |
 | 09 | `#install` | Clone command and "Open on GitHub" |
 
-Source: workspacehq/index.html › 01 HERO to 09 INSTALL; the demo's lazy boot (workspacehq/app.js › live demo). The footer reads "WORKSPACEHQ · v3.0 · OCTOBER 2026" and links to the hub and to Numidea Labs (workspacehq/index.html › 326).
+Source: workspacehq/index.html › 01 HERO to 09 INSTALL; the demo's lazy boot (workspacehq/app.js › live demo). The footer reads "WORKSPACEHQ · v3.0 · OCTOBER 2026" and links to the hub and to Numidea Labs (workspacehq/index.html › 327).
 
 ### How it is built
 

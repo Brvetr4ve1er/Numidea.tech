@@ -12,7 +12,7 @@ The site is trilingual: French is the default and is baked into the HTML, Englis
 
 | Page | Languages | Where the strings live | How the language is applied |
 |---|---|---|---|
-| `index.html` | FR, EN, AR | `I18N` and `EXTRA` in `assets/app.js` (assets/app.js › i18n dictionary, EXTRA) | Head script picks it, `applyLang()` swaps the text (index.html › 87; assets/app.js › applyLang) |
+| `index.html` | FR, EN, AR | `I18N` and `EXTRA` in `assets/app.js` (assets/app.js › i18n dictionary, EXTRA) | Head script picks it, `applyLang()` swaps the text (index.html › 105; assets/app.js › applyLang) |
 | `scene/` | FR, EN, AR | Inline `<script type="application/json" id="i18n">` written by `build-scene.mjs` (scripts/build-scene.mjs › 303) | Head script picks it, `assets/page-i18n.js` swaps the text (assets/page-i18n.js › 1) |
 | `legal/` (once published) | FR, EN, AR | One section per language; `html[lang]` hides the others (assets/page-i18n.js › followHash) | `assets/page-i18n.js` |
 | `404.html` | FR, EN, AR | All three in the markup; the title comes from a `TITLE` map (404.html › 82) | `html[lang]` picks which label shows, so nothing is swapped after paint (404.html › 64) |
@@ -23,14 +23,14 @@ Each language version of `index.html` and `scene/` is a URL of its own (`?lang=e
 
 ## Choosing the language before first paint
 
-The order, in the inline head script of `index.html` (index.html › 87):
+The order, in the inline head script of `index.html` (index.html › 105):
 
 1. `?lang=` in the address wins over the stored `numidea-lang` preference; an unknown `?lang=` value is ignored, and an unknown stored value falls back to the baked French.
 2. `lang` and `dir` are set on `<html>` right away (`rtl` for Arabic), with the theme.
 3. The canonical link, `og:url` and `og:locale` name the version the address shows; `window.NUMIDEA_CANON` lets `app.js` redo this after a switch. See [[NUMIDEA_CANON (canonical setter)]].
 4. Font preloads are written per language: an Arabic visitor gets IBM Plex Sans Arabic 400 and 600 plus the Latin faces the Arabic hero still uses. See [[Language-aware script-written preloads]].
-5. For an English or Arabic visitor the script sets `data-i18n-pending`, and an inline head style hides the body with `display:none` until `app.js` has swapped the text (index.html › 183). The comment there records that `visibility:hidden` and `opacity:0` still measured a layout shift, so the hold uses `display:none` (index.html › 175).
-6. If `app.js` has not released the hold, a backstop does, right after `DOMContentLoaded` or at 1.5 s; the page then shows the baked French, left to right, until `app.js` applies the language (index.html › 87).
+5. For an English or Arabic visitor the script sets `data-i18n-pending`, and an inline head style hides the body with `display:none` until `app.js` has swapped the text (index.html › 201). The comment there records that `visibility:hidden` and `opacity:0` still measured a layout shift, so the hold uses `display:none` (index.html › 193).
+6. If `app.js` has not released the hold, a backstop does, right after `DOMContentLoaded` or at 1.5 s; the page then shows the baked French, left to right, until `app.js` applies the language (index.html › 105).
 
 Why: before this, the deferred swap rewrote 194 nodes and flipped `dir` after paint, measured at CLS 0.63; a French visitor never takes the hold, and an English or Arabic visitor pays roughly 100–200 ms of first paint (BRAND.md › The language is resolved before first paint). `scene/` repeats the same pattern in its own head script, with `?lang=` read case-insensitively (scripts/build-scene.mjs › 235).
 

@@ -82,7 +82,7 @@ Graph: [[Project sheet (planche) structure]], [[What the site brings the client 
 
 - Each delivered client's card that has a sheet (Bordj Steel, Alliance Travel, AlmaFlowClim) links its benefit line to `scene/#gv-<slug>`, and a visually hidden "— le détail sur la planche" (`work.gainMore`) ends the link's name so a screen reader hears where it goes (BRAND.md › Project sheets (scene/); index.html › SELECTED WORK; scripts/check.mjs › 5c).
 - Cards with a sheet also carry "Voir la planche →" to `scene/#<slug>`; Nomara Voyages has no sheet, so its benefit line is plain text (index.html › SELECTED WORK; BRAND.md › Project sheets (scene/)).
-- The work section ends on the planches banner, "Ouvrir les planches →" (index.html › 515). See [[Project Plates Banner (Planches)]].
+- The work section ends on the planches banner, "Ouvrir les planches →" (index.html › 533). See [[Project Plates Banner (Planches)]].
 - Old `#/work/<slug>` links from the retired project explorer are redirected to the matching sheet through the `SHEET` map: `bordj-steel` → `bordjsteel`, `alliance-travel` → `alliance`, `almaflowclim` → `almaflow`, `glaive-store` → `glaive`, keeping the query string (assets/app.js › DOM ready, legacy deep links).
 - The sheet page's footer links back to `../#contact` and `../#work` (scripts/build-scene.mjs › 292).
 

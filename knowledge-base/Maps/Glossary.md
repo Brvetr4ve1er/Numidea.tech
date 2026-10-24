@@ -20,7 +20,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | `#apercu` | The L'Aperçu card that opens the services section; the offer is also step 3 of the method | BRAND.md › Page structure and design system (home page) | [[_COMMUNITY_L'Aperçu and Method]] |
 | Method | The one four-step process on the page, in `#how` | BRAND.md › Page structure and design system (home page) | [[Method Section (four steps)]] |
 | Essentiel | First package: a showcase or landing site of 1 to 5 pages, 2 to 4 weeks, 1 month of support, 90 000–160 000 DA | assets/app.js › price.t1*, PRICE_MODEL.vitrine | [[Essentiel Package]] |
-| Studio (package) | Second package, marked "Recommandé": a custom site of 6 to 15 pages, trilingual, documented design system, CMS, technical SEO; 3 to 7 weeks, 3 months of support, 180 000–420 000 DA | assets/app.js › price.t2*, PRICE_MODEL.surmesure; index.html › 759 | [[Studio Package (recommended)]] |
+| Studio (package) | Second package, marked "Recommandé": a custom site of 6 to 15 pages, trilingual, documented design system, CMS, technical SEO; 3 to 7 weeks, 3 months of support, 180 000–420 000 DA | assets/app.js › price.t2*, PRICE_MODEL.surmesure; index.html › 777 | [[Studio Package (recommended)]] |
 | Moteur | Third package: a custom web application with payment, accounts, dashboards, scraping and API integrations; 8 to 16 weeks, 6 months of support, 450 000–1 200 000 DA | assets/app.js › price.t3*, PRICE_MODEL.app | [[Moteur Package]] |
 | Maintenance | Optional monthly upkeep after delivery, 18 000–60 000 DA a month, no fixed term | assets/app.js › RETAINER, price.retainerA, price.retainerB | [[Maintenance Retainer]] |
 | Delivered clients | The four client sites the page shows as delivered: Bordj Steel, Alliance Travel, AlmaFlowClim, Nomara Voyages | BRAND.md › Client logo strip | [[Delivered clients (quotable)]] |
@@ -46,7 +46,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | HT / reverse charge | The € view is shown before tax, with the French B2B reverse-charge note | BRAND.md › Prices: set in dinars, converted for display | — |
 | Market comparison ("Ici et ailleurs") | Each project type priced across Algeria, Numidea, France and the US, from an experienced freelancer's low end to an agency's high end | BRAND.md › Market comparison ("Ici et ailleurs") and pricing models | [[Market comparison ('Ici et ailleurs')]] |
 | `MARKET` | The market ranges in app.js §14, mirrored by static cells in index.html for readers without scripts | BRAND.md › Market comparison ("Ici et ailleurs") and pricing models | [[MARKET (app.js section 14)]] |
-| "Comment on chiffre" | The folded disclosure under the estimator that holds the market comparison, billing models and cost drivers | BRAND.md › Page structure and design system (home page); index.html › 876 | [[Pricing Section (Tarifs)]] |
+| "Comment on chiffre" | The folded disclosure under the estimator that holds the market comparison, billing models and cost drivers | BRAND.md › Page structure and design system (home page); index.html › 894 | [[Pricing Section (Tarifs)]] |
 
 - The conversion rate is the Bank of Algeria official rate of early October 2026 (BRAND.md › Prices: set in dinars, converted for display); see [[Bank of Algeria official FX rate]].
 - Numidea's own column in the market table is computed from `PRICE_MODEL`, never typed (BRAND.md › Market comparison ("Ici et ailleurs") and pricing models).
@@ -62,7 +62,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | Tokens | CSS custom properties set per theme in `themes.css`; `styles.css` reads theme values only through `var(--token)` and may not contain a `[data-theme]` selector, so a theme is a swap of values | BRAND.md › How themes work here; README.md › This repository — the landing page | [[Design-token system (every rule reads var(--token))]] |
 | The contract | The 47 tokens every theme block in `assets/themes.css` sets, exactly and nothing else | BRAND.md › Theme contract; README.md › Design system | [[Theme contract (47 tokens)]] |
 | `themes-check` | The gate on the contract: a missing or extra token, a text/surface pair under 4.5:1 (7:1 for `--ice`), a theme selector or colour literal in `styles.css`, a drifting theme list, an unpreloaded heading face | BRAND.md › Theme contract (replaces the Engineering alternate stylesheet) | [[themes-check gate]] |
-| `HEAD` / `LOGO` maps | Each theme's heading face that index.html preloads (`HEAD`) and each theme's wordmark face on the 404 page (`LOGO`) | index.html › 90; 404.html › 78; BRAND.md › Theme contract | [[headMap]] |
+| `HEAD` / `LOGO` maps | Each theme's heading face that index.html preloads (`HEAD`) and each theme's wordmark face on the 404 page (`LOGO`) | index.html › 108; 404.html › 78; BRAND.md › Theme contract | [[headMap]] |
 | Fill vs text tokens | `--teal` and `--crimson` are fills; `--teal-text` and `--crimson-text` are for text; `color:` is never set from a fill | BRAND.md › Text tokens vs fill tokens | [[Text tokens vs fill tokens]] |
 | `--ice` | The foreground colour in every theme, light on dark palettes and dark on Daylight | BRAND.md › Text tokens vs fill tokens | [[--ice foreground token]] |
 | `--ink-k` | Illustration strength, a multiplier on each plate's opacity | BRAND.md › Theme contract | [[CSS luminance mask over currentColor (.ill)]] |
@@ -76,7 +76,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 
 | Term | Meaning | Source | Graph |
 |---|---|---|---|
-| The plate (hero plate) | The hero's rotator: one live site at a time, five slides (the four client sites shown as delivered and the Glaive demo), changed by a wipe, never a cross-fade, with a pause button | index.html › 282; BRAND.md › The hero plate; README.md › Features | [[Hero plate (one live site at a time)]] |
+| The plate (hero plate) | The hero's rotator: one live site at a time, five slides (the four client sites shown as delivered and the Glaive demo), changed by a wipe, never a cross-fade, with a pause button | index.html › 300; BRAND.md › The hero plate; README.md › Features | [[Hero plate (one live site at a time)]] |
 | The atlas, plates I–VI | Six numbered generated engravings of the region, used as luminance masks over `currentColor`, so each re-inks in every theme | BRAND.md › The atlas — engraved plates and animated icons | [[The atlas - six engraved plates]] |
 | `plates.mjs` | Turns the generated engravings into the masks in `assets/illus/` and the skyline polygons that clip each vista layer | scripts/plates.mjs › header | [[plates.mjs]] |
 | `.lz` / `.ai` | Plate masks that load a screen ahead of the viewport; hand-drawn animated line icons that draw in once and settle | BRAND.md › The atlas — engraved plates and animated icons | [[Animated icons (.ai)]] |
@@ -84,7 +84,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | Scene sheets | The same sheets by folder name: `scene/index.html` is generated, so changes go into `scripts/scene-data.mjs`, then `npm run scene` | BRAND.md › Project sheets (scene/) | [[Project sheet (planche) structure]] |
 | Sheet slugs | bordjsteel, alliance, glaive, workspacehq, almaflow | BRAND.md › Project sheets (scene/) | [[scriptsscene-data.mjs (project sheet data)]] |
 | `context` / `gains` / `at` | A sheet's "what it gives the client" block: who the client is, 3 to 5 things a visitor can do on the live site, and the page that shows each; no figures or results | scripts/scene-data.mjs › header; scripts/check.mjs › 5c | [[Project benefits (context  gains  at)]] |
-| Planches banner | The one call to action that ends `#work`, "Ouvrir les planches →" | index.html › 522; BRAND.md › Page structure and design system (home page) | [[Project Plates Banner (Planches)]] |
+| Planches banner | The one call to action that ends `#work`, "Ouvrir les planches →" | index.html › 540; BRAND.md › Page structure and design system (home page) | [[Project Plates Banner (Planches)]] |
 | Title block | The hero drawn as a drafting sheet, with a strip of checkable fields along its bottom edge | BRAND.md › The hero as a drafting sheet | [[Hero as drafting-sheet title block]] |
 | Visualisations | Five pictures of figures the page already states, each beside its text equivalent and `aria-hidden` | BRAND.md › Visualisations (r3/c) | [[Visualisations (r3c)]] |
 | Client logo strip | "Ils nous ont confié leur site": the own logos of the four clients shown as delivered, in one theme colour, each linked to its work card | BRAND.md › Client logo strip | [[Client logo strip ('Ils nous ont confié leur site')]] |
@@ -114,11 +114,11 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | Lead source | Where a lead came from, read when it is sent and written into the email's "Source" line; nothing is stored | BRAND.md › Lead source | [[Lead source without tracking]] |
 | Ref code | The `?ref=` code each ad and email carries; WhatsApp links append it to the text as `[ref]` | BRAND.md › Lead source; assets/app.js › refTag | [[refTag()]] |
 | Carry | `assets/carry.js`, on every page: links between the site's pages carry `ref`, `utm_*`, `fbclid`, `gclid` and `lang`, read at click time | assets/carry.js › header | [[assetscarry.js (shared cross-page script)]] |
-| `NUMIDEA_WA` | The WhatsApp number, set by the head script and used to build `wa.me` links | index.html › 135; assets/app.js › 13 · WhatsApp | [[WhatsApp Channel (NUMIDEA_WA)]] |
+| `NUMIDEA_WA` | The WhatsApp number, set by the head script and used to build `wa.me` links | index.html › 153; assets/app.js › 13 · WhatsApp | [[WhatsApp Channel (NUMIDEA_WA)]] |
 | Supabase switch | The lead store, off on purpose; turning it on needs the published legal page, the store's region and a new form note, and `check.mjs` enforces all three | OWNER-CONTENT.md › 11; scripts/check.mjs › 346 | [[Supabase lead store (off on purpose)]] |
 | Voices | Client quotes, published only with consent; `VOICES` is empty and nothing renders until an entry exists | scripts/voices-data.mjs › header | [[Client voices (scriptsvoices-data.mjs)]] |
 | `VOICE_CLIENTS` | The four clients shown as delivered who may carry a voice (Nomara Voyages unconfirmed, OWNER-CONTENT.md › 7); never the Glaive demo or WorkspaceHQ | scripts/voices-data.mjs › VOICE_CLIENTS | [[VOICE_CLIENTS]] |
-| `SLOT:voices` | The marked region in `#work` that `build-voices` fills | index.html › 514 | [[Client Voices Slot]] |
+| `SLOT:voices` | The marked region in `#work` that `build-voices` fills | index.html › 532 | [[Client Voices Slot]] |
 | Legal gating | The legal page is generated only once every owner field is filled; until then nothing may link to it | BRAND.md › Legal notice and privacy — generated, unpublished until complete | [[Legal notice + privacy page (generated, unpublished)]] |
 | `legal-preview/` | `--preview` output with the gaps marked, never deployed | BRAND.md › Legal notice and privacy — generated, unpublished until complete | [[legal-preview (build-legal --preview)]] |
 | `LEGAL_PUBLISHED` | True only when `legal/index.html` exists; it adds the page to the page and deploy lists | scripts/site.mjs › LEGAL_PUBLISHED | [[LEGAL_PUBLISHED]] |
@@ -153,7 +153,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | hub/, VOIDSPLUNKER.std | The founder's personal page; client websites do not belong there | README.md › This repository — the landing page; BRAND.md › hub/ — the artist's page, not the studio's | [[hub (VOIDSPLUNKER.std founder page)]] |
 | BR4VETR4VELER | The hub's gallery, remade as a series of 33 posters that reads as a story | BRAND.md › hub/ — the artist's page, not the studio's | [[BR4VETR4VELER poster series (33 posters)]] |
 | WorkspaceHQ | WorkspaceHQ v3 and its launch page in `workspacehq/`, which the README calls "the studio's own product page" | README.md › This repository — the landing page; BRAND.md › workspacehq/ — the WorkspaceHQ v3 launch page | [[WorkspaceHQ v3 launch site]] |
-| The cartridge | The footer's small WorkspaceHQ link, described in the markup as "the founder's own product, as a little cartridge" | index.html › 1264 | [[WorkspaceHQ Cartridge]] |
+| The cartridge | The footer's small WorkspaceHQ link, described in the markup as "the founder's own product, as a little cartridge" | index.html › 1282 | [[WorkspaceHQ Cartridge]] |
 | The vault | `knowledge-base/`, an Obsidian vault: Home.md and Maps/ written by people (and Claude), graph/, wiki/ and graphify/ generated from the graphify graph, archive/ kept as history | scripts/build-kb.mjs › header | [[knowledge-base (internal memory snapshot)]] |
 | Check 15 | `check.mjs` keeps `knowledge-base/` public-safe: it fails on a temporary-folder machine path, an artifact link, a campaign-kit file name, a private note type or an e-mail address outside its allowlist | scripts/check.mjs › 15 | [[scriptscheck.mjs (npm run check)]] |
 

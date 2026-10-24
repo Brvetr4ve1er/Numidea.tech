@@ -105,7 +105,7 @@ Sources: audit/Performance_A11y.md, each item. Graph: [[P-01 - Font payload is 5
 ## Security and privacy
 
 - **S-01.** The internal knowledge base was served on the public site, because `pages.yml` uploaded the whole repository; the audit left it to the owner (audit/Security_Privacy.md › S-01). Resolved: only the `DEPLOY` paths are staged into `_site/` and published (.github/workflows/pages.yml › 44–55; scripts/site.mjs › DEPLOY). `knowledge-base/` and `audit/` stay readable on GitHub, never on the site (OWNER-CONTENT.md › 12). Graph: [[S-01 - Internal knowledge base published on the public site]].
-- **S-02, verified healthy.** No secrets committed (the Supabase values are empty strings), the form's Supabase call config-gated and unable to block the visitor, `rel="noopener"` on external links, no analytics or third-party JS (audit/Security_Privacy.md › S-02). The Supabase values are still empty today (index.html › 1294). Graph: [[S-02 - Verified-healthy security posture]].
+- **S-02, verified healthy.** No secrets committed (the Supabase values are empty strings), the form's Supabase call config-gated and unable to block the visitor, `rel="noopener"` on external links, no analytics or third-party JS (audit/Security_Privacy.md › S-02). The Supabase values are still empty today (index.html › 1312). Graph: [[S-02 - Verified-healthy security posture]].
 - **CSP.** The audit suggested a `Content-Security-Policy` header once hosting moved to Vercel (audit/Security_Privacy.md › S-03). Neither mirror sets one today; their headers are listed in [[Deploy]] (netlify.toml › 22–33; vercel.json › headers). Graph: [[Content-Security-Policy header recommendation]].
 - Graph: [[_COMMUNITY_Hosting and Security]], wiki [[Hosting_and_Security]].
 

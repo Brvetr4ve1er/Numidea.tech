@@ -92,7 +92,7 @@ Sources: netlify.toml › 22–33; vercel.json › headers. The two files set th
 ## Addresses on every host
 
 - `BASE` in `scripts/site.mjs` is the GitHub Pages address; the sitemap, the canonical checks and the absolute-link checks all use it (scripts/site.mjs › BASE; scripts/build-sitemap.mjs › url; scripts/check.mjs › 254–305).
-- The home page names its canonical from its `x-default` alternate, which is the GitHub Pages address, so a mirror serving the same file names the GitHub Pages URL as canonical (index.html › 21, 117–121).
+- The home page names its canonical from its `x-default` alternate, which is the GitHub Pages address, so a mirror serving the same file names the GitHub Pages URL as canonical (index.html › 21, 135–139).
 - `404.html` works out the site root in its head script: on a `*.github.io` host it uses the first path segment (the repository subpath), elsewhere `/`; it rewrites its asset links before first paint and its home link once the page is parsed; opened from disk it stays relative (404.html › 102–114). See [[Site-root recomputation for the GitHub Pages 404]] and [[Site architecture]].
 - Graph: [[BASE]], [[_COMMUNITY_404 Page and Hosting]], [[_COMMUNITY_Sitemap and Site Scope]].
 
