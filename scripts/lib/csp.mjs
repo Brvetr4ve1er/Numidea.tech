@@ -41,6 +41,10 @@
  *
  * withCsp is idempotent, and an existing CSP meta (stale or misplaced) is
  * replaced, so every generator and build-csp.mjs can apply it unconditionally.
+ *
+ * The most each directive may allow is stated apart from this file, in
+ * csp-floor.mjs, and check.mjs 16 holds every page to it: a change here that
+ * loosens the policy fails there until the floor is changed too.
  */
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';

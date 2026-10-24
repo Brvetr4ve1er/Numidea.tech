@@ -1755,6 +1755,7 @@ The browser refuses it, `html.js` is never set, and every `js-only` control
 - a page's meta is not `withCsp(page)`;
 - an inline script has no hash, or a hash no longer names a script;
 - a page has an inline handler or a `javascript:` URL;
+- an inline `<script>` sits inside an `<svg>` or `<math>`;
 - something the policy governs comes before the meta;
 - the policy drops below its floor. The floor is written down apart from
   the code that builds the policy, in `scripts/lib/csp-floor.mjs`, so that
