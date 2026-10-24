@@ -8,7 +8,8 @@
  *   validate   html-validate on every page
  *   audit      browser audit: axe, CLS, LCP, overflow, taps, images, loops, network,
  *              CSP violations, the WorkspaceHQ embeds and console, a throttled phone
- *              (LCP, long tasks, interaction latency)
+ *              (LCP, long tasks, interaction latency: report-only targets until the
+ *              home page meets them; AUDIT_PHONE_STRICT=1 npm run verify fails on them)
  *   sweep      painted-contrast sweep
  *   vbugs      layout scanner
  *   keys       keyboard paths, focus rings, dialogs, reduced motion, RTL
