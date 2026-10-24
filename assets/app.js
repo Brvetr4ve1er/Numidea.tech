@@ -14,7 +14,7 @@
     fr: {
       dir: 'ltr',
       title: 'Numidea Labs — Sites web sur mesure en français, anglais et arabe',
-      'meta.desc': 'Studio web et logiciel à Bordj Bou Arréridj, Algérie. On conçoit, on code, on livre et on assure le suivi de vos sites et applications, en français, anglais et arabe.',
+      'meta.desc': 'Studio web et logiciel à Bordj Bou Arréridj, Algérie. On conçoit, on code, on livre et on suit vos sites et applications, en français, anglais et arabe.',
       'nav.about': 'Méthode', 'nav.services': 'Services', 'nav.work': 'Projets',
       'nav.team': 'Équipe', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
       'hero.eyebrow': 'Studio web & logiciel · Bordj Bou Arréridj, Algérie',
