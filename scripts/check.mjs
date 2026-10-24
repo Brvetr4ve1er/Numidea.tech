@@ -558,20 +558,23 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
 // scan of the markup: every inline script that is not a known data block has
 // its hash in script-src (and script-src names no script that is gone), no
 // tag carries an inline handler (onclick=…) or a javascript: URL, which no
-// hash can allow, nothing the policy governs comes before the meta, and the
-// policy keeps its floor (script-src only 'self' and hashes, 'unsafe-eval' on
-// the WorkspaceHQ embeds alone; object-src 'none'; base-uri 'self'). The
-// fixtures of scripts/csp-test.mjs run too. Last, the mirrors' headers: the
-// policy parts a meta cannot carry (frame-ancestors) and HSTS, the same on
-// Netlify and Vercel.
+// hash can allow, and nothing the policy governs comes before the meta.
+// The policy itself is held to its floor, stated apart from csp.mjs in
+// scripts/lib/csp-floor.mjs so that loosening csp.mjs cannot pass on its own:
+// every directive known and given once, each value on its directive's list
+// (script-src only 'self' and hashes, 'unsafe-eval' on the WorkspaceHQ embeds
+// alone; no script-src-elem or script-src-attr; default-src 'self';
+// object-src 'none'; base-uri 'self'). The fixtures of scripts/csp-test.mjs
+// run too. Last, the mirrors' headers: the policy parts a meta cannot carry
+// (frame-ancestors) and HSTS, the same on Netlify and Vercel.
 {
   const { withCsp, cspKind, cspOf } = await import('./lib/csp.mjs');
+  const { directiveMap, policyErrors, headerPolicyErrors } = await import('./lib/csp-floor.mjs');
   const { fixtureErrors } = await import('./csp-test.mjs');
   const { createHash } = await import('node:crypto');
   const cspErr = [];
   // the parser turns CR LF and CR into LF before the browser hashes
   const sha = (t) => `'sha256-${createHash('sha256').update(t.replace(/\r\n?/g, '\n'), 'utf8').digest('base64')}'`;
-  const directives = (p) => Object.fromEntries(p.split(';').map((d) => d.trim().split(/\s+/)).filter((d) => d[0]).map(([n, ...v]) => [n.toLowerCase(), v]));
   // script types the browser never runs; any other inline script must be hashed
   const DATA = new Set(['application/ld+json', 'application/json', 'text/x-dc']);
   // the markup as the tokenizer reads it, left to right: a comment, a script
@@ -596,7 +599,7 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     const policy = cspOf(src);
     if (policy == null) { cspErr.push(`${f}: wants exactly one Content-Security-Policy meta`); continue; }
     nPages++;
-    const dir = directives(policy), scriptSrc = dir['script-src'] || [];
+    const scriptSrc = directiveMap(policy)['script-src'] || [];   // the first, as the browser enforces it
     const need = new Set(), handlers = [];
     let metaAt = -1, governedAt = -1, metas = 0;
     for (const t of src.matchAll(TOKEN)) {
@@ -624,14 +627,9 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
     if (metas !== 1) cspErr.push(`${f}: ${metas} Content-Security-Policy metas (want 1)`);
     if (governedAt >= 0 && metaAt > governedAt) cspErr.push(`${f}: a script, style, link or base comes before the CSP meta, which then does not govern it`);
     for (const h of scriptSrc.filter((s) => /^'sha256-/.test(s))) if (!need.has(h)) cspErr.push(`${f}: script-src names ${h}, which is no script on the page (npm run build)`);
-    if (!(dir['default-src'] || []).length) cspErr.push(`${f}: the policy has no default-src`);
-    if (!scriptSrc.length) cspErr.push(`${f}: the policy has no script-src`);
-    for (const s of scriptSrc) {
-      if (!(s === "'self'" || /^'sha256-[A-Za-z0-9+/]{43}='$/.test(s) || (s === "'unsafe-eval'" && kind === 'embed')))
-        cspErr.push(`${f}: script-src allows ${s} (only 'self' and hashes${kind === 'embed' ? ", plus 'unsafe-eval' on an embed" : ''})`);
-    }
-    if ((dir['object-src'] || []).join(' ') !== "'none'") cspErr.push(`${f}: object-src is "${(dir['object-src'] || []).join(' ')}" (want 'none')`);
-    if ((dir['base-uri'] || []).join(' ') !== "'self'") cspErr.push(`${f}: base-uri is "${(dir['base-uri'] || []).join(' ')}" (want 'self')`);
+    // the floor: connect-src may add one https origin on index.html alone,
+    // and only while block 7 reads the lead-store switch as on
+    for (const e of policyErrors(policy, { kind, connect: f === 'index.html' && supaOn })) cspErr.push(`${f}: ${e}`);
   }
   for (const e of fixtureErrors()) cspErr.push(`withCsp fixtures (node scripts/csp-test.mjs): ${e}`);
   // The mirrors send the headers on every path. A second policy in a header is
@@ -655,18 +653,12 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
   for (const [host, h] of [['netlify.toml', netlify], ['vercel.json', vercel]]) {
     for (const k of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Permissions-Policy', 'Content-Security-Policy', 'Strict-Transport-Security'])
       if (!h[k]) cspErr.push(`${host}: no ${k} header on every path`);
-    if (h['Content-Security-Policy']) {
-      const d = directives(h['Content-Security-Policy']);
-      const extra = Object.keys(d).filter((n) => !['frame-ancestors', 'base-uri', 'object-src', 'upgrade-insecure-requests', 'report-uri', 'report-to'].includes(n));
-      if (extra.length) cspErr.push(`${host}: the header policy holds ${extra.join(', ')}, enforced on top of each page's meta (keep fetch directives in the meta)`);
-      for (const [n, v] of [['frame-ancestors', "'self'"], ['base-uri', "'self'"], ['object-src', "'none'"]])
-        if ((d[n] || []).join(' ') !== v) cspErr.push(`${host}: the header policy's ${n} is "${(d[n] || []).join(' ')}" (want ${v})`);
-    }
+    if (h['Content-Security-Policy']) for (const e of headerPolicyErrors(h['Content-Security-Policy'])) cspErr.push(`${host}: the header policy: ${e}`);
     const age = Number((/\bmax-age=(\d+)/.exec(h['Strict-Transport-Security'] || '') || [])[1] || 0);
     if (h['Strict-Transport-Security'] && age < 31536000) cspErr.push(`${host}: Strict-Transport-Security max-age=${age} (want at least 31536000)`);
   }
   cspErr.length ? bad('content security policy: ' + cspErr.join('; '))
-    : ok(`content security policy: ${nPages} pages equal withCsp, ${nScripts} inline scripts all hashed, no inline handlers, object-src 'none', base-uri 'self'; mirrors send frame-ancestors and HSTS`);
+    : ok(`content security policy: ${nPages} pages equal withCsp, ${nScripts} inline scripts all hashed, no inline handlers, every policy on its floor (directives known and given once, script-src 'self' and hashes only, object-src 'none', base-uri 'self'); mirrors send frame-ancestors and HSTS`);
 }
 
 process.exit(fail);

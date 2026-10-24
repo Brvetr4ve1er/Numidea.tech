@@ -1752,8 +1752,18 @@ The browser refuses it, `html.js` is never set, and every `js-only` control
 - an inline script has no hash, or a hash no longer names a script;
 - a page has an inline handler or a `javascript:` URL;
 - something the policy governs comes before the meta;
-- the policy drops below its floor: script-src limited to `'self'` and
-  hashes, `object-src 'none'`, `base-uri 'self'`.
+- the policy drops below its floor. The floor is written down apart from
+  the code that builds the policy, in `scripts/lib/csp-floor.mjs`, so that
+  loosening `csp.mjs` does not pass on its own: every directive must be one
+  the floor knows, given once (the browser enforces the first of a repeated
+  directive and ignores the rest), with each value on that directive's list.
+  script-src is limited to `'self'` and hashes (plus `'unsafe-eval'` on the
+  embeds), default-src is `'self'`, `object-src 'none'`, `base-uri 'self'`.
+  `script-src-elem` and `script-src-attr` are refused outright, because they
+  override script-src for `<script>` elements and inline handlers. So are
+  `'unsafe-inline'`, `'unsafe-hashes'`, `'strict-dynamic'`, nonces,
+  wildcards, schemes and hosts in any script directive or default-src.
+  Loosening the policy on purpose takes an edit to both files.
 
 **Headers on the mirrors** (`netlify.toml` "/*" and `vercel.json` "/(.*)",
 which check.mjs 16 keeps identical):

@@ -7,7 +7,11 @@
  * classic, module, JavaScript MIME types in any case, a MIME type with
  * parameters (a data block), language="…", importmap, JSON-LD, JSON, x-dc,
  * external, empty, commented out, inside raw-text elements, with quoted ">"
- * in an attribute, duplicated. The hashes are recomputed here with
+ * in an attribute, duplicated. Then the floor of scripts/lib/csp-floor.mjs:
+ * both policies stand on it, and each way of loosening them (script-src-elem,
+ * script-src-attr, 'unsafe-inline', 'unsafe-hashes', 'strict-dynamic',
+ * wildcards, schemes, hosts, a repeated or unknown directive…) is refused.
+ * The hashes are recomputed here with
  * node:crypto, independently of hashSource(). The browser side (that Chrome
  * hashes the same text) is proven in the browser: every page loaded under its
  * policy fires no securitypolicyviolation event.
@@ -18,6 +22,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, PAGES, EXTRA_PAGES } from './site.mjs';
 import { withCsp, cspPolicy, cspKind, cspOf, scriptHashes, supabaseOrigin } from './lib/csp.mjs';
+import { policyErrors, headerPolicyErrors, directiveMap } from './lib/csp-floor.mjs';
 
 const sha = (t) => `'sha256-${createHash('sha256').update(t).digest('base64')}'`;
 const head = (extra = '') => `<!DOCTYPE html>
@@ -120,6 +125,69 @@ export function fixtureErrors() {
   expect(page.endsWith('form-action mailto:'), 'form-action mailto: must stay last (check.mjs reads "mailto:;" as a contact address)');
   expect(cspKind('workspacehq/embed/console.html') === 'embed' && cspKind('workspacehq/index.html') === 'page' && cspKind('index.html') === 'page', 'cspKind maps the wrong files to embed');
 
+  // the floor (scripts/lib/csp-floor.mjs, which check.mjs 16 applies to every
+  // page): both policies csp.mjs builds stand on it…
+  const onSwitch = cspPolicy(SWITCH('https://abcd.supabase.co'), 'page');
+  for (const [name, p, ctx] of [['a page', page, { kind: 'page' }], ['an embed', embed, { kind: 'embed' }], ['index with the switch on', onSwitch, { kind: 'page', connect: true }]]) {
+    const e = policyErrors(p, ctx);
+    expect(!e.length, `the policy csp.mjs builds for ${name} is below the floor (scripts/lib/csp-floor.mjs): ${e.join('; ')}`);
+  }
+  // …and each way of loosening it is refused. A case is [what, policy, ctx].
+  const H = `'sha256-${'A'.repeat(43)}='`;
+  const swap = (p, name, value) => p.split('; ').map((d) => (d.split(' ')[0] === name ? `${name} ${value}` : d)).join('; ');
+  const LOOSE = [
+    ["script-src-elem 'unsafe-inline'", `${page}; script-src-elem 'unsafe-inline'`],
+    ["script-src-attr 'unsafe-inline'", `${page}; script-src-attr 'unsafe-inline'`],
+    ['script-src-elem that only repeats script-src', `${page}; script-src-elem 'self' ${H}`],
+    ["script-src 'unsafe-inline'", swap(page, 'script-src', `'self' 'unsafe-inline' ${H}`)],
+    ["script-src 'UNSAFE-INLINE' (keywords match in any case)", swap(page, 'script-src', `'self' 'UNSAFE-INLINE'`)],
+    ["script-src 'unsafe-hashes'", swap(page, 'script-src', `'self' 'unsafe-hashes' ${H}`)],
+    ["script-src 'strict-dynamic'", swap(page, 'script-src', `'self' 'strict-dynamic' ${H}`)],
+    ['script-src a nonce', swap(page, 'script-src', `'self' 'nonce-abc'`)],
+    ['script-src *', swap(page, 'script-src', `'self' *`)],
+    ['script-src https:', swap(page, 'script-src', `'self' https:`)],
+    ['script-src data:', swap(page, 'script-src', `'self' data:`)],
+    ['script-src a host', swap(page, 'script-src', `'self' cdn.example.com`)],
+    ['script-src an https origin', swap(page, 'script-src', `'self' https://cdn.example.com`)],
+    ['script-src a sha384 hash', swap(page, 'script-src', `'self' 'sha384-${'A'.repeat(64)}'`)],
+    ["'unsafe-eval' on a page", swap(page, 'script-src', `'self' 'unsafe-eval'`)],
+    ["'unsafe-eval' in an embed's default-src", swap(embed, 'default-src', `'self' 'unsafe-eval'`), { kind: 'embed' }],
+    ['default-src *', swap(page, 'default-src', '*')],
+    ["default-src 'unsafe-inline'", swap(page, 'default-src', `'self' 'unsafe-inline'`)],
+    ['default-src https:', swap(page, 'default-src', `'self' https:`)],
+    ['default-src a host', swap(page, 'default-src', `'self' cdn.example.com`)],
+    ['no default-src', page.split('; ').filter((d) => !d.startsWith('default-src ')).join('; ')],
+    ['no script-src', page.split('; ').filter((d) => !d.startsWith('script-src ')).join('; ')],
+    ['a loose script-src before the real one', `script-src 'self' 'unsafe-inline'; ${page}`],
+    ['a repeated directive, even with the same value', `${page}; base-uri 'self'`],
+    ['a repeat in another case', `SCRIPT-SRC 'self'; ${page}`],
+    ['an unknown directive', `${page}; child-src *`],
+    ['a directive the floor does not list', `${page}; manifest-src 'self'`],
+    ["object-src 'none' with a source beside it", swap(page, 'object-src', `'none' https:`)],
+    ["base-uri *", swap(page, 'base-uri', '*')],
+    ['connect-src *', swap(page, 'connect-src', `'self' *`)],
+    ['connect-src an origin with the switch off', swap(page, 'connect-src', `'self' https://abcd.supabase.co`)],
+    ['connect-src two origins', swap(onSwitch, 'connect-src', `'self' https://abcd.supabase.co https://evil.example`), { kind: 'page', connect: true }],
+    ['connect-src an origin with a path', swap(onSwitch, 'connect-src', `'self' https://abcd.supabase.co/rest`), { kind: 'page', connect: true }],
+    ['img-src blob: on a page', swap(page, 'img-src', `'self' data: blob:`)],
+    ['font-src data: on a page', swap(page, 'font-src', `'self' data:`)],
+    ['frame-src *', swap(page, 'frame-src', `'self' *`)],
+    ['form-action https:', swap(page, 'form-action', 'mailto: https:')],
+  ];
+  for (const [what, p, ctx = { kind: 'page' }] of LOOSE) {
+    expect(p !== page && p !== embed && p !== onSwitch, `floor fixture "${what}" did not change the policy`);
+    expect(policyErrors(p, ctx).length > 0, `the floor lets through ${what}`);
+  }
+  // a repeated directive is read as the browser reads it: the first one counts
+  expect(directiveMap(`script-src 'self' 'unsafe-inline'; script-src 'self'`)['script-src'].join(' ') === "'self' 'unsafe-inline'", 'a repeated directive must read as its first');
+  // the mirrors' header policy
+  const HDR = "frame-ancestors 'self'; base-uri 'self'; object-src 'none'";
+  expect(!headerPolicyErrors(HDR).length, `the header policy is below its floor: ${headerPolicyErrors(HDR).join('; ')}`);
+  for (const [what, p] of [['frame-ancestors * before the real one', `frame-ancestors *; ${HDR}`], ['a fetch directive', `${HDR}; script-src 'self'`],
+    ['frame-ancestors *', HDR.replace("frame-ancestors 'self'", 'frame-ancestors *')], ['no object-src', "frame-ancestors 'self'; base-uri 'self'"]]) {
+    expect(headerPolicyErrors(p).length > 0, `the header floor lets through ${what}`);
+  }
+
   // the Supabase switch, read in a sandbox
   expect(directive(cspPolicy(SWITCH('')), 'connect-src').join(' ') === "'self'", 'switch off: connect-src must be self only');
   expect(directive(cspPolicy(SWITCH('https://abcd.supabase.co/')), 'connect-src').join(' ') === "'self' https://abcd.supabase.co", 'switch on: connect-src must add the origin');
@@ -145,5 +213,5 @@ export function fixtureErrors() {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const errs = fixtureErrors();
   if (errs.length) { for (const e of errs) console.error('✗ ' + e); process.exit(1); }
-  console.log('✓ withCsp fixtures: script kinds, placement, idempotence, data blocks ignored, one-byte edits, CR LF, both policies, the Supabase switch, refusals');
+  console.log('✓ withCsp fixtures: script kinds, placement, idempotence, data blocks ignored, one-byte edits, CR LF, both policies, the floor (and each way of loosening it), the Supabase switch, refusals');
 }
