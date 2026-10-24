@@ -90,6 +90,7 @@ mailbox exists, replace the address in `index.html` (links, text and the
 JSON-LD), `assets/app.js` (the form's mailto) and `hub/index.html`, then
 `npm run check`. It fails until all of them match. The domain also gives a
 stable address for the legal page and for cold email (SPF, DKIM, DMARC).
+Pointing the site itself at the domain is in [RELEASE.md](RELEASE.md#6-domain-and-dns).
 
 ## 6. Clients' permission for paid ads
 The Bordj Steel and Alliance Travel ad cards (campaign kit) need each client's
@@ -160,6 +161,9 @@ history needs a force-push rewrite (e.g. `git filter-repo --path campaign
 --invert-paths`, then `git push --force`), which also rewrites every later
 commit. That is the owner's call, best done when no pull request is open.
 `knowledge-base/` and `audit/` are also readable on GitHub (never on the site).
+[RELEASE.md](RELEASE.md#8-the-git-history) has the facts for the decision:
+which refs hold the kit today, what GitHub Support will and will not remove,
+and why the rewrite is cleanest before Dependabot's first pull request.
 
 ## 13. WorkspaceHQ: open source
 The site called WorkspaceHQ "open source" and told visitors to "follow the
