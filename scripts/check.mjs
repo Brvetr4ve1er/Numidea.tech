@@ -568,7 +568,9 @@ kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbEr
 // binary) must have its type marked binary there, and no other tracked file
 // may hold a CR. Tracked means `git ls-files` when ROOT is the top of a git
 // work tree; without git (an export, a mirror's build) it means every file
-// that .gitignore does not exclude.
+// that .gitignore does not exclude. The .gitignore patterns are read on every
+// run, git or not, so a pattern this check cannot read fails in CI too, not
+// only in the next build without git.
 const eolErr = [];
 // a .gitignore or .gitattributes pattern as a RegExp on the repo-relative
 // path, for the syntax those files use here: '*' inside a name, no slash =
@@ -583,6 +585,7 @@ const attrRules = rules('.gitattributes');
 if (!/^\*\s+text=auto\s+eol=lf$/.test(attrRules[0] || '')) eolErr.push('the first rule in .gitattributes must be "* text=auto eol=lf" (LF in every checkout)');
 const binary = attrRules.map((l) => l.split(/\s+/)).filter(([, ...a]) => a.includes('binary') || a.includes('-text'))
   .map(([p]) => glob('.gitattributes', p)).filter(Boolean);
+const ignored = rules('.gitignore').map((p) => glob('.gitignore', p)).filter(Boolean);
 let tracked, how;
 try {
   const git = (...args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 64 << 20 });
@@ -590,7 +593,6 @@ try {
   tracked = git('ls-files', '-z').split('\0').filter(Boolean);
   how = 'git ls-files';
 } catch {
-  const ignored = rules('.gitignore').map((p) => glob('.gitignore', p)).filter(Boolean);
   const walk = (d) => readdirSync(join(ROOT, d), { withFileTypes: true }).flatMap((e) => {
     const p = d ? d + '/' + e.name : e.name;
     if (e.name === '.git' || e.isSymbolicLink() || ignored.some((g) => g.re.test(p) && (!g.dir || e.isDirectory()))) return [];
