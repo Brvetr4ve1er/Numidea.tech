@@ -107,9 +107,10 @@ const clientHosts = new Set([
 
 /* collect: url → Set of where it appears */
 const links = new Map();
+const malformed = [];
 const add = (u, where) => {
-  let url; try { url = new URL(u); } catch { url = null; }
-  url = url ? (url.hash = '', url.href) : u;     // https://host and https://host/ are one link
+  let url; try { url = new URL(u); } catch { malformed.push(`${where}: "${u}"`); return; }
+  url.hash = ''; url = url.href;                 // https://host and https://host/ are one link
   if (!links.has(url)) links.set(url, new Set());
   links.get(url).add(where);
 };
@@ -163,7 +164,8 @@ if (left.length) console.log(`  LEFT OUT by LINKS_SKIP ${skipRe} (not checked, n
 if (LIST) {
   for (const u of todo) console.log(`${kind(u).padEnd(7)} ${u}\n        ${[...links.get(u)].join(' · ')}`);
   for (const p of unknownPrefix) console.error(`✗ a link built from a prefix links.mjs cannot complete (add it to PREFIXES): ${p}`);
-  process.exit(unknownPrefix.length ? 1 : 0);
+  for (const p of malformed) console.error(`✗ not a URL: ${p}`);
+  process.exit(unknownPrefix.length + malformed.length ? 1 : 0);
 }
 
 /* check: at most PER_HOST requests at a time per host, POOL in all */
@@ -193,7 +195,8 @@ const localFile = (u) => {
   return publishedSet.has(rel) ? rel : '';
 };
 
-const fails = unknownPrefix.map((p) => `✗ a link built from a prefix links.mjs cannot complete (add it to PREFIXES): ${p}`);
+const fails = unknownPrefix.map((p) => `✗ a link built from a prefix links.mjs cannot complete (add it to PREFIXES): ${p}`)
+  .concat(malformed.map((p) => `✗ not a URL: ${p}`));
 const warns = new Map();
 const warn = (group, line) => warns.set(group, (warns.get(group) || []).concat(line));
 const answer = (r, u) => (r.status ? String(r.status) : r.error) + (r.status && r.url !== u ? ` at ${r.url}` : '');
