@@ -1786,6 +1786,15 @@ Pages it is not, and only a header could change that.
   cross-origin framing on the mirrors, and the Supabase switch flipped
   without a rebuild.
 
+Google's CSP Evaluator (npm `csp_evaluator` 1.1.8) has two findings on the
+page policies, both MEDIUM_MAYBE:
+- `'self'` in script-src. This matters only on a site that hosts JSONP,
+  AngularJS or user uploads, and this one hosts none of them.
+- `'unsafe-eval'`, on the embeds only.
+It reports "script-src missing" on the mirrors' header policy alone. That is
+expected: the header only adds frame-ancestors, and each page's meta, which
+the browser enforces alongside it, carries script-src.
+
 A browser check of the policy must count `securitypolicyviolation` events
 from every frame and the console messages that name "Content Security
 Policy". A frame-ancestors refusal reaches only the console, not the page.
