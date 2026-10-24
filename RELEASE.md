@@ -111,9 +111,10 @@ and the domain in [section 6](#6-domain-and-dns).
      (the static gates, build-no-diff, then audit, sweep, vbugs and keys
      inside `npm run verify`), plus `links` and the full `npm audit`. They
      deploy nothing.
-   - The timing gates (the throttled phone, desktop LCP) were set on a local
-     machine. A runner can be slower, and if one of them fails there, step 5
-     refuses every deploy until it is fixed. Here that failure costs nothing.
+   - The timing gates (the throttled phone, desktop LCP) have so far run only
+     on a local machine. A runner can be slower, and if one of them fails
+     there, step 5 refuses every deploy until it is fixed. Here that failure
+     costs nothing.
    - Re-run a timing gate that fails once before treating it as real (Re-run
      failed jobs).
 4. Only when both jobs are green, fast-forward the working branch to that
