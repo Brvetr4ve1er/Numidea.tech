@@ -134,9 +134,19 @@ already passed `check`.
 
 ## 4. Rollback
 
-The site stores nothing: no cookies, no analytics, and the Supabase store is
-off (README, `OWNER-CONTENT.md` §11). A rollback therefore only changes which
-files are served.
+The site keeps nothing on a server and sets no cookies or analytics, and the
+Supabase store is off (README, `OWNER-CONTENT.md` §11). The browser only
+remembers display preferences in `localStorage`, and a rollback leaves them
+in place:
+
+- the language, theme and currency (`numidea-lang`, `numidea-theme`,
+  `numidea-cur`; `assets/app.js`, `assets/page-i18n.js`);
+- hub/'s theme (`void-theme`, `hub/app.js`);
+- WorkspaceHQ's motion switch (`whq-motion`, `workspacehq/app.js`) and the
+  embeds' playback position (`animstage-v3…`,
+  `workspacehq/embed/animations-v3.js`).
+
+A rollback therefore only changes which files are served.
 
 **A. Revert and push: permanent, and the default choice.**
 
