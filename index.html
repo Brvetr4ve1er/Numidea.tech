@@ -66,8 +66,11 @@
  }
 }
 </script>
-<!-- The site itself, for the site name search results show: the og:site_name,
-     the home URL and the three languages the page switches between. -->
+<!-- The site itself: its name (= og:site_name), the home URL and the three
+     languages the page switches between. Search engines take a site name
+     only from a domain's or subdomain's home page, not from a subdirectory
+     like /Numidea.tech/, so this names the site in results once it has its
+     own domain. -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
