@@ -47,7 +47,7 @@ and keys in one go, and does not stop at the first failure
 | # | Before the push | Proved by | In CI |
 | --- | --- | --- | --- |
 | 1 | A CSS or JS change has a new `?v=` stamp | `npm run bump`. No gate can tell that a stamp is due; `check.mjs` block 4 only keeps all stamps identical | after the deploy, `monitor.yml` checks that the live stamp equals the branch's |
-| 2 | Repository invariants hold: i18n ×3, assets, links, deploy coverage, generated pages, French typography, legal gating, the Supabase switch, LF line endings, the CSP meta (block 16), SEO and structured data (block 18) | `npm run check` (`check.mjs` + `themes-check.mjs`) | `check.yml` job `check` (every push and pull request); `pages.yml` job `gates` |
+| 2 | Repository invariants hold: i18n ×3, assets, links, deploy coverage, generated pages, French typography, legal gating, the Supabase switch, LF line endings, the CSP meta (block 16), asset byte budgets per folder and for the whole published set (block 17), SEO and structured data (block 18) | `npm run check` (`check.mjs` + `themes-check.mjs`) | `check.yml` job `check` (every push and pull request); `pages.yml` job `gates` |
 | 3 | Every page is valid HTML | `npm run validate` | `check` job; `gates` job |
 | 4 | The build leaves no change: generated files are committed as the generators write them | `npm run build && git diff --exit-code` | `check` job; `gates` job |
 | 5 | The CSP meta matches each page's inline scripts | `npm run csp` (rewrites it); `check.mjs` block 16 fails when it is stale | within 2 and 4 |
