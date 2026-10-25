@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [audit/Executive_Summary.md, audit/Architecture.md, audit/Findings.md, audit/Design_Audit.md, audit/Technical_Debt.md, audit/Improvement_Roadmap.md, audit/Performance_A11y.md, audit/Security_Privacy.md, README.md, BRAND.md, OWNER-CONTENT.md, package.json, package-lock.json, index.html, hub/index.html, 404.html, assets/app.js, scripts/site.mjs, scripts/check.mjs, scripts/verify.mjs, scripts/bump.mjs, scripts/build-og.mjs, .github/workflows/pages.yml, netlify.toml, vercel.json, git log]
 ---
 
@@ -42,12 +42,12 @@ Severity in the audit: P1 breaks a user-visible promise, P2 is a visible flaw in
 | F-04 | P1 | The services proof line still cited `almaflowclim.fr` in all three languages | Replaced with `almaflowclim.netlify.app` (audit/Improvement_Roadmap.md › Applied, 2) |
 | F-05 | P2 | 20 dead `href="#"` links in the hub footer, and a dead service still listed | Wired to the verified URLs (audit/Improvement_Roadmap.md › Applied, 3); the footer link columns were later removed (BRAND.md › hub/ — the artist's page, not the studio's) |
 | F-06 | P2 | The mobile menu's entrance stagger skipped the sixth link | Fixed (audit/Improvement_Roadmap.md › Applied, 4) |
-| F-07 | P2 | `404.html` broke for nested paths on GitHub Pages | Host-aware paths (audit/Improvement_Roadmap.md › Applied, 5); the head script still recomputes the site root before first paint (404.html › 102–114) |
+| F-07 | P2 | `404.html` broke for nested paths on GitHub Pages | Host-aware paths (audit/Improvement_Roadmap.md › Applied, 5); today the first head script writes the page's links from the site root before first paint and the second points the home links there (404.html › 19–38, 119–127), staging gives the JavaScript-off copy the same root (scripts/lib/stage-404.mjs › header), and the browser audit opens the page two folders down (scripts/audit.mjs › header) |
 | F-08 | P2 | The `og:image` was a relative SVG, which share previews do not render | Fixed in the audit; the share image is now `assets/og.jpg`, rendered by `scripts/build-og.mjs` (audit/Findings.md › F-08; scripts/build-og.mjs › header) |
 | F-09 | P3 | A decorative hero terminal showed an unregistered domain and unmeasured metrics | Left to the owner then (audit/Improvement_Roadmap.md › Needs your decision, 2); the terminal has since been removed (audit/Findings.md › F-09) |
 | F-10 | P3 | `scene/` arrow keys ignored RTL | Fixed (audit/Improvement_Roadmap.md › Applied, 7); `scene/` was later rebuilt as a blueprint showcase (git log, commit 84155af) |
 | F-11 | P3 | The mobile overlay menu did not trap focus | Listed as "later" (audit/Improvement_Roadmap.md › Later); today the menu is a modal dialog: everything behind it is inert and Tab stays inside (assets/app.js › mobile menu) |
-| F-12 | P3 | `hub/` had no `og:image` | Listed as a decision, not an oversight (audit/Findings.md › F-12); today `hub/` declares `hub/og.jpg` (hub/index.html › 17) |
+| F-12 | P3 | `hub/` had no `og:image` | Listed as a decision, not an oversight (audit/Findings.md › F-12); today `hub/` declares `hub/og.jpg` (hub/index.html › 18) |
 
 - The audit's applied list has nine items: the fixes above plus the new `npm run check` and `npm run bump`, and the lockfile and README fixes (audit/Improvement_Roadmap.md › Applied in this audit pass). Graph: [[Fixes applied in the audit pass (9 items)]].
 - The Daylight failures were the only WCAG-level defects found (audit/Performance_A11y.md › A-01).
@@ -76,14 +76,14 @@ Sources: audit/Design_Audit.md › Measurements, Outcome — Direction A applied
 
 | Item | Rank | The audit's call | Today |
 |---|---|---|---|
-| D-01 Conventions kept by discipline, not tooling | High | Cured: `npm run check` | `check` still holds them (scripts/check.mjs › 1–32) |
-| D-02 Project data in four places | High | Accepted for now | The explorer is gone; sheets are generated from `scripts/scene-data.mjs` (audit/Technical_Debt.md › D-02 note), and `check` keeps client links in step (scripts/check.mjs › 1–32, block 5) |
+| D-01 Conventions kept by discipline, not tooling | High | Cured: `npm run check` | `check` still holds them (scripts/check.mjs › header) |
+| D-02 Project data in four places | High | Accepted for now | The explorer is gone; sheets are generated from `scripts/scene-data.mjs` (audit/Technical_Debt.md › D-02 note), and `check` keeps client links in step (scripts/check.mjs › block 5) |
 | D-03 Manual cache-bust stamps | Medium | Cured: `npm run bump` | `npm run bump` still rewrites every stamp (package.json › scripts; scripts/bump.mjs › header); see [[Build and gates]] |
 | D-04 `package-lock.json` was git-ignored | Medium | Fixed: lockfile committed | Tracked today (package-lock.json) |
 | D-05 README structure drift | Medium | Fixed | README lists the current layout (README.md › This repository — the landing page) |
 | D-06 Intentional CSS layering | Low, accepted | Leave | — |
 | D-07 Decorative hero terminal metrics | Low, accepted | Owner call | Terminal removed (audit/Technical_Debt.md › D-07 note) |
-| D-08 No test suite | Low, accepted | The browser audit plus `check` are the right-sized substitute | The gates are now six steps run by `npm run verify` (scripts/verify.mjs › STEPS) |
+| D-08 No test suite | Low, accepted | The browser audit plus `check` are the right-sized substitute | The gates are now seven steps run by `npm run verify`: check, themes, validate, audit, sweep, vbugs, keys (scripts/verify.mjs › STEPS) |
 
 Sources: audit/Technical_Debt.md, each item. Graph: [[Conventions enforced by tooling (npm run check  npm run bump)]], [[D-02 - Project data is quadruplicated]], [[D-08 - No test suite]], [[_COMMUNITY_Technical Debt Register]], wiki [[Technical_Debt_Register]]; the D-01 and D-03 cures in [[_COMMUNITY_Conventions Enforced by Tooling]], wiki [[Conventions_Enforced_by_Tooling]].
 
@@ -94,7 +94,7 @@ Sources: audit/Technical_Debt.md, each item. Graph: [[Conventions enforced by to
 | Item | The audit | Today |
 |---|---|---|
 | P-01 Five font families, Arabic loaded for every visitor | Accept, or load Arabic on first switch | Fonts are self-hosted (README.md › This repository — the landing page), and the preloads are written by an early script from the saved language (BRAND.md › Second full audit — what it still found) |
-| P-02 GitHub Pages cannot set `Cache-Control` | Finish the Vercel import | Pages stays canonical; the Netlify and Vercel mirrors cache assets for a day (netlify.toml › 19–25) |
+| P-02 GitHub Pages cannot set `Cache-Control` | Finish the Vercel import | Pages stays canonical; the Netlify and Vercel mirrors cache assets for a day (netlify.toml › 20–22, 27–30) |
 | P-03 CSS 68 KB and JS 72 KB uncompressed | A non-issue; minification not recommended | — |
 | A-02 Mobile menu without a focus trap (= F-11) | Later | Inert background, Tab kept inside (assets/app.js › mobile menu) |
 | A-03 Theme menu `role="menu"` without arrow keys | Add arrow keys or downgrade the role | Arrow Up and Down, Home, End and Escape are handled (assets/app.js › 954–970) |
@@ -104,9 +104,9 @@ Sources: audit/Performance_A11y.md, each item. Graph: [[P-01 - Font payload is 5
 
 ## Security and privacy
 
-- **S-01.** The internal knowledge base was served on the public site, because `pages.yml` uploaded the whole repository; the audit left it to the owner (audit/Security_Privacy.md › S-01). Resolved: only the `DEPLOY` paths are staged into `_site/` and published (.github/workflows/pages.yml › 44–55; scripts/site.mjs › DEPLOY). `knowledge-base/` and `audit/` stay readable on GitHub, never on the site (OWNER-CONTENT.md › 12). Graph: [[S-01 - Internal knowledge base published on the public site]].
-- **S-02, verified healthy.** No secrets committed (the Supabase values are empty strings), the form's Supabase call config-gated and unable to block the visitor, `rel="noopener"` on external links, no analytics or third-party JS (audit/Security_Privacy.md › S-02). The Supabase values are still empty today (index.html › 1312). Graph: [[S-02 - Verified-healthy security posture]].
-- **CSP.** The audit suggested a `Content-Security-Policy` header once hosting moved to Vercel (audit/Security_Privacy.md › S-03). Neither mirror sets one today; their headers are listed in [[Deploy]] (netlify.toml › 22–33; vercel.json › headers). Graph: [[Content-Security-Policy header recommendation]].
+- **S-01.** The internal knowledge base was served on the public site, because `pages.yml` uploaded the whole repository; the audit left it to the owner (audit/Security_Privacy.md › S-01). Resolved: only the `DEPLOY` paths are staged into `_site/` and published (.github/workflows/pages.yml › 127–140; scripts/site.mjs › DEPLOY). `knowledge-base/` and `audit/` stay readable on GitHub, never on the site (OWNER-CONTENT.md › 12). Graph: [[S-01 - Internal knowledge base published on the public site]].
+- **S-02, verified healthy.** No secrets committed (the Supabase values are empty strings), the form's Supabase call config-gated and unable to block the visitor, `rel="noopener"` on external links, no analytics or third-party JS (audit/Security_Privacy.md › S-02). The Supabase values are still empty today (index.html › 1317). Graph: [[S-02 - Verified-healthy security posture]].
+- **CSP.** The audit suggested a `Content-Security-Policy` header once hosting moved to Vercel (audit/Security_Privacy.md › S-03). Resolved 2026-10: every page carries a hash-based CSP meta, so GitHub Pages, which sends no headers, has a policy too (scripts/lib/csp.mjs › header; scripts/check.mjs › block 16). Both mirrors also send `frame-ancestors 'self'; base-uri 'self'; object-src 'none'` and `Strict-Transport-Security: max-age=63072000` (netlify.toml › 39–40; vercel.json › headers "/(.*)"). See BRAND.md › Content-Security-Policy and the audit's own 2026-10-24 correction (audit/Security_Privacy.md › S-03); the headers are listed in [[Deploy]]. Graph: [[Content-Security-Policy header recommendation]].
 - Graph: [[_COMMUNITY_Hosting and Security]], wiki [[Hosting_and_Security]].
 
 ## Decisions the audit left to the owner
@@ -120,7 +120,7 @@ Sources: audit/Performance_A11y.md, each item. Graph: [[P-01 - Font payload is 5
 
 Source: audit/Improvement_Roadmap.md › Needs your decision (nothing done). Graph: [[Decision finish the Vercel import]]. The Supabase store is still off on purpose (OWNER-CONTENT.md › 11); see [[Open owner items]].
 
-- The "later" list also proposed renaming the `claude/` working branch to `main` (audit/Improvement_Roadmap.md › Later); the deploy workflow still triggers on the `claude/` branch (.github/workflows/pages.yml › 22). It also proposed an `Organization` or `LocalBusiness` JSON-LD (audit/Improvement_Roadmap.md › Later); the page today carries a `ProfessionalService` block (index.html › 40).
+- The "later" list also proposed renaming the `claude/` working branch to `main` (audit/Improvement_Roadmap.md › Later); the deploy workflow still triggers on the `claude/` branch (.github/workflows/pages.yml › 22). It also proposed an `Organization` or `LocalBusiness` JSON-LD (audit/Improvement_Roadmap.md › Later); the page today carries a `ProfessionalService` block (index.html › 41).
 
 ## Later audits
 

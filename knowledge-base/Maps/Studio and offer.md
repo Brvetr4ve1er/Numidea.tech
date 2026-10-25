@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [README.md, index.html, assets/app.js, OWNER-CONTENT.md, scripts/check.mjs, BRAND.md]
 ---
 
@@ -20,7 +20,7 @@ Numidea Labs is a development studio in Bordj Bou Arréridj, Algeria, that desig
 | Contact | hamissemohamedyasser@gmail.com, WhatsApp +213 672 41 25 78 | README.md › Contact |
 
 - The contact address is a personal Gmail; a mailbox on the studio's own domain is an open owner item (OWNER-CONTENT.md › 5).
-- `check.mjs` fails if any mailto or JSON-LD email on the site differs from the one contact address (README.md › Commands; scripts/check.mjs › "One contact address everywhere").
+- `check.mjs` fails if any mailto or JSON-LD email on the site differs from the one contact address (README.md › Commands; scripts/check.mjs › block 8g, "One contact address everywhere").
 
 ## What the studio sells
 

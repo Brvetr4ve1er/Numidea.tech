@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [OWNER-CONTENT.md, README.md, index.html, assets/app.js, hub/index.html, scripts/legal-data.mjs, scripts/voices-data.mjs, scripts/verify-domains.mjs, scripts/site.mjs, scripts/check.mjs]
 ---
 
@@ -40,7 +40,7 @@ Source: OWNER-CONTENT.md › table and sections 1–14. The README points to the
 - **6, paid ads.** The Bordj Steel and Alliance Travel ad cards need each client's written permission before they run (OWNER-CONTENT.md › 6). The same message can cover the use of each client's logo on the site (OWNER-CONTENT.md › 7).
 - **8, Arabic.** Points to recheck include the services title punctuation, "Shopify بواجهة مستقلة (headless)", the tag pills and the estimator's counted nouns; conventions to keep are Western digits, forward arrows `←`, singular "you" (OWNER-CONTENT.md › 8). See [[Languages and RTL]].
 - **9, domains.** `bordj-steel.com`, `alliance-travel.dz` and `nomaravoyages.com` do not resolve; `almaflowclim.fr` serves a different Hostinger site (OWNER-CONTENT.md › 9). See [[Clients and projects]].
-- **11, Supabase.** The keys in `index.html` are empty strings today (index.html › NUMIDEA_SUPABASE_URL, NUMIDEA_SUPABASE_KEY). `check.mjs` refuses the store being on without the published legal page, `privacy.supabaseRegion` and a rewritten form note in three languages (scripts/check.mjs › Supabase guard).
+- **11, Supabase.** The keys in `index.html` are empty strings today (index.html › NUMIDEA_SUPABASE_URL, NUMIDEA_SUPABASE_KEY). `check.mjs` refuses the store being on without the published legal page, `privacy.supabaseRegion` and a rewritten form note in three languages (scripts/check.mjs › block 8b, Supabase guard).
 - **12, git history.** The kit was removed from the repository on 2026-10-12 but is still in the history of earlier commits; removing it means a force-push rewrite of every later commit, best done when no pull request is open (OWNER-CONTENT.md › 12). `knowledge-base/` and `audit/` are readable on GitHub but never on the site (OWNER-CONTENT.md › 12; scripts/site.mjs › NOT_DEPLOYED).
 - **13, WorkspaceHQ.** On 2026-10-13 the product repository had no licence file and no README, and its `dashboard/package.json` is marked `"private": true` and starts Electron; the pages now say the code is public on GitHub and describe a desktop console (OWNER-CONTENT.md › 13). See [[WorkspaceHQ and hub]].
 
@@ -66,9 +66,9 @@ Claim sources: OWNER-CONTENT.md › 14. Two rows (AlmaFlowClim, method step 4) d
 | Guard | Effect | Source |
 |---|---|---|
 | Legal gating | Until the last legal field is filled nothing is published, and no page may link to `legal/` | OWNER-CONTENT.md › 1; scripts/site.mjs › LEGAL_PUBLISHED |
-| Supabase guard | The form store cannot be switched on while the form note promises the site keeps nothing | scripts/check.mjs › Supabase guard |
+| Supabase guard | The form store cannot be switched on while the form note promises the site keeps nothing | scripts/check.mjs › block 8b, Supabase guard |
 | Voices validation | A quote without a past consent date, a consent note, or from a non-delivered client is refused | scripts/voices-data.mjs › validate |
-| One contact address | Every mailto and the JSON-LD email must be the same string | scripts/check.mjs › "One contact address everywhere" |
+| One contact address | Every mailto and the JSON-LD email must be the same string | scripts/check.mjs › block 8g, "One contact address everywhere" |
 | Photo slots | Founder and team photos are commented-out `<img>` slots; the monogram and initials stay until real photos exist | index.html › #founder, .team |
 
 ## How an item closes

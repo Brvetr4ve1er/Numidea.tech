@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [README.md, BRAND.md, OWNER-CONTENT.md, index.html, 404.html, scene/index.html, assets/app.js, assets/carry.js, assets/styles.css, scripts/site.mjs, scripts/check.mjs, scripts/build-fr.mjs, scripts/bump.mjs, scripts/plates.mjs, scripts/scene-data.mjs, scripts/stage-site.mjs, scripts/voices-data.mjs, scripts/build-kb.mjs, git log, knowledge-base/archive/2026-06-snapshot/glossary.md]
 ---
 
@@ -20,7 +20,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | `#apercu` | The L'Aperçu card that opens the services section; the offer is also step 3 of the method | BRAND.md › Page structure and design system (home page) | [[_COMMUNITY_L'Aperçu and Method]] |
 | Method | The one four-step process on the page, in `#how` | BRAND.md › Page structure and design system (home page) | [[Method Section (four steps)]] |
 | Essentiel | First package: a showcase or landing site of 1 to 5 pages, 2 to 4 weeks, 1 month of support, 90 000–160 000 DA | assets/app.js › price.t1*, PRICE_MODEL.vitrine | [[Essentiel Package]] |
-| Studio (package) | Second package, marked "Recommandé": a custom site of 6 to 15 pages, trilingual, documented design system, CMS, technical SEO; 3 to 7 weeks, 3 months of support, 180 000–420 000 DA | assets/app.js › price.t2*, PRICE_MODEL.surmesure; index.html › 777 | [[Studio Package (recommended)]] |
+| Studio (package) | Second package, marked "Recommandé": a custom site of 6 to 15 pages, trilingual, documented design system, CMS, technical SEO; 3 to 7 weeks, 3 months of support, 180 000–420 000 DA | assets/app.js › price.t2*, PRICE_MODEL.surmesure; index.html › 782 | [[Studio Package (recommended)]] |
 | Moteur | Third package: a custom web application with payment, accounts, dashboards, scraping and API integrations; 8 to 16 weeks, 6 months of support, 450 000–1 200 000 DA | assets/app.js › price.t3*, PRICE_MODEL.app | [[Moteur Package]] |
 | Maintenance | Optional monthly upkeep after delivery, 18 000–60 000 DA a month, no fixed term | assets/app.js › RETAINER, price.retainerA, price.retainerB | [[Maintenance Retainer]] |
 | Delivered clients | The four client sites the page shows as delivered: Bordj Steel, Alliance Travel, AlmaFlowClim, Nomara Voyages | BRAND.md › Client logo strip | [[Delivered clients (quotable)]] |
@@ -46,7 +46,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | HT / reverse charge | The € view is shown before tax, with the French B2B reverse-charge note | BRAND.md › Prices: set in dinars, converted for display | — |
 | Market comparison ("Ici et ailleurs") | Each project type priced across Algeria, Numidea, France and the US, from an experienced freelancer's low end to an agency's high end | BRAND.md › Market comparison ("Ici et ailleurs") and pricing models | [[Market comparison ('Ici et ailleurs')]] |
 | `MARKET` | The market ranges in app.js §14, mirrored by static cells in index.html for readers without scripts | BRAND.md › Market comparison ("Ici et ailleurs") and pricing models | [[MARKET (app.js section 14)]] |
-| "Comment on chiffre" | The folded disclosure under the estimator that holds the market comparison, billing models and cost drivers | BRAND.md › Page structure and design system (home page); index.html › 894 | [[Pricing Section (Tarifs)]] |
+| "Comment on chiffre" | The folded disclosure under the estimator that holds the market comparison, billing models and cost drivers | BRAND.md › Page structure and design system (home page); index.html › 899 | [[Pricing Section (Tarifs)]] |
 
 - The conversion rate is the Bank of Algeria official rate of early October 2026 (BRAND.md › Prices: set in dinars, converted for display); see [[Bank of Algeria official FX rate]].
 - Numidea's own column in the market table is computed from `PRICE_MODEL`, never typed (BRAND.md › Market comparison ("Ici et ailleurs") and pricing models).
@@ -62,7 +62,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | Tokens | CSS custom properties set per theme in `themes.css`; `styles.css` reads theme values only through `var(--token)` and may not contain a `[data-theme]` selector, so a theme is a swap of values | BRAND.md › How themes work here; README.md › This repository — the landing page | [[Design-token system (every rule reads var(--token))]] |
 | The contract | The 47 tokens every theme block in `assets/themes.css` sets, exactly and nothing else | BRAND.md › Theme contract; README.md › Design system | [[Theme contract (47 tokens)]] |
 | `themes-check` | The gate on the contract: a missing or extra token, a text/surface pair under 4.5:1 (7:1 for `--ice`), a theme selector or colour literal in `styles.css`, a drifting theme list, an unpreloaded heading face | BRAND.md › Theme contract (replaces the Engineering alternate stylesheet) | [[themes-check gate]] |
-| `HEAD` / `LOGO` maps | Each theme's heading face that index.html preloads (`HEAD`) and each theme's wordmark face on the 404 page (`LOGO`) | index.html › 108; 404.html › 78; BRAND.md › Theme contract | [[headMap]] |
+| `HEAD` / `LOGO` maps | Each theme's heading face that index.html preloads (`HEAD`) and each theme's wordmark face on the 404 page (`LOGO`) | index.html › 109; 404.html › 95; BRAND.md › Theme contract | [[headMap]] |
 | Fill vs text tokens | `--teal` and `--crimson` are fills; `--teal-text` and `--crimson-text` are for text; `color:` is never set from a fill | BRAND.md › Text tokens vs fill tokens | [[Text tokens vs fill tokens]] |
 | `--ice` | The foreground colour in every theme, light on dark palettes and dark on Daylight | BRAND.md › Text tokens vs fill tokens | [[--ice foreground token]] |
 | `--ink-k` | Illustration strength, a multiplier on each plate's opacity | BRAND.md › Theme contract | [[CSS luminance mask over currentColor (.ill)]] |
@@ -76,15 +76,15 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 
 | Term | Meaning | Source | Graph |
 |---|---|---|---|
-| The plate (hero plate) | The hero's rotator: one live site at a time, five slides (the four client sites shown as delivered and the Glaive demo), changed by a wipe, never a cross-fade, with a pause button | index.html › 300; BRAND.md › The hero plate; README.md › Features | [[Hero plate (one live site at a time)]] |
+| The plate (hero plate) | The hero's rotator: one live site at a time, five slides (the four client sites shown as delivered and the Glaive demo), changed by a wipe, never a cross-fade, with a pause button | index.html › 305; BRAND.md › The hero plate; README.md › Features | [[Hero plate (one live site at a time)]] |
 | The atlas, plates I–VI | Six numbered generated engravings of the region, used as luminance masks over `currentColor`, so each re-inks in every theme | BRAND.md › The atlas — engraved plates and animated icons | [[The atlas - six engraved plates]] |
 | `plates.mjs` | Turns the generated engravings into the masks in `assets/illus/` and the skyline polygons that clip each vista layer | scripts/plates.mjs › header | [[plates.mjs]] |
 | `.lz` / `.ai` | Plate masks that load a screen ahead of the viewport; hand-drawn animated line icons that draw in once and settle | BRAND.md › The atlas — engraved plates and animated icons | [[Animated icons (.ai)]] |
-| Planches (project sheets) | `scene/`, "Planches — le travail, livrable par livrable": one sheet per project with its pages, phones and visual system | scene/index.html › 6, 7; BRAND.md › Project sheets (scene/) | [[Planches project sheets page (work, deliverable by deliverable)]] |
+| Planches (project sheets) | `scene/`, "Planches — le travail, livrable par livrable": one sheet per project with its pages, phones and visual system | scene/index.html › 7, 8; BRAND.md › Project sheets (scene/) | [[Planches project sheets page (work, deliverable by deliverable)]] |
 | Scene sheets | The same sheets by folder name: `scene/index.html` is generated, so changes go into `scripts/scene-data.mjs`, then `npm run scene` | BRAND.md › Project sheets (scene/) | [[Project sheet (planche) structure]] |
 | Sheet slugs | bordjsteel, alliance, glaive, workspacehq, almaflow | BRAND.md › Project sheets (scene/) | [[scriptsscene-data.mjs (project sheet data)]] |
 | `context` / `gains` / `at` | A sheet's "what it gives the client" block: who the client is, 3 to 5 things a visitor can do on the live site, and the page that shows each; no figures or results | scripts/scene-data.mjs › header; scripts/check.mjs › 5c | [[Project benefits (context  gains  at)]] |
-| Planches banner | The one call to action that ends `#work`, "Ouvrir les planches →" | index.html › 540; BRAND.md › Page structure and design system (home page) | [[Project Plates Banner (Planches)]] |
+| Planches banner | The one call to action that ends `#work`, "Ouvrir les planches →" | index.html › 545; BRAND.md › Page structure and design system (home page) | [[Project Plates Banner (Planches)]] |
 | Title block | The hero drawn as a drafting sheet, with a strip of checkable fields along its bottom edge | BRAND.md › The hero as a drafting sheet | [[Hero as drafting-sheet title block]] |
 | Visualisations | Five pictures of figures the page already states, each beside its text equivalent and `aria-hidden` | BRAND.md › Visualisations (r3/c) | [[Visualisations (r3c)]] |
 | Client logo strip | "Ils nous ont confié leur site": the own logos of the four clients shown as delivered, in one theme colour, each linked to its work card | BRAND.md › Client logo strip | [[Client logo strip ('Ils nous ont confié leur site')]] |
@@ -102,7 +102,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | `?lang=` | A link parameter that sets the language and the canonical URL | README.md › Features | [[Trilingual FRENAR with mirrored RTL]] |
 | `page-i18n.js` | The language switch for the generated pages | README.md › This repository — the landing page | [[assetspage-i18n.js (applies the i18n dictionary)]] |
 | Western digits | Owner decision: Western digits everywhere; `check.mjs` fails on any Arabic-Indic digit in a page, the dictionaries or a generator | BRAND.md › Arabic conventions | [[Arabic conventions]] |
-| French typography rule | No breakable space before ? ! ; : » in French copy | scripts/check.mjs › header (8); README.md › Commands | [[Repository invariants (npm run check)]] |
+| French typography rule | No breakable space before ? ! ; : » in French copy | scripts/check.mjs › block 8f; README.md › Commands | [[Repository invariants (npm run check)]] |
 
 - The Arabic copy is still pending a native speaker's review (BRAND.md › Arabic conventions; OWNER-CONTENT.md › 8).
 - More in [[Languages and RTL]] and [[_COMMUNITY_Arabic RTL and Head Boot]].
@@ -114,11 +114,11 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | Lead source | Where a lead came from, read when it is sent and written into the email's "Source" line; nothing is stored | BRAND.md › Lead source | [[Lead source without tracking]] |
 | Ref code | The `?ref=` code each ad and email carries; WhatsApp links append it to the text as `[ref]` | BRAND.md › Lead source; assets/app.js › refTag | [[refTag()]] |
 | Carry | `assets/carry.js`, on every page: links between the site's pages carry `ref`, `utm_*`, `fbclid`, `gclid` and `lang`, read at click time | assets/carry.js › header | [[assetscarry.js (shared cross-page script)]] |
-| `NUMIDEA_WA` | The WhatsApp number, set by the head script and used to build `wa.me` links | index.html › 153; assets/app.js › 13 · WhatsApp | [[WhatsApp Channel (NUMIDEA_WA)]] |
-| Supabase switch | The lead store, off on purpose; turning it on needs the published legal page, the store's region and a new form note, and `check.mjs` enforces all three | OWNER-CONTENT.md › 11; scripts/check.mjs › 346 | [[Supabase lead store (off on purpose)]] |
+| `NUMIDEA_WA` | The WhatsApp number, set by the head script and used to build `wa.me` links | index.html › 154; assets/app.js › 13 · WhatsApp | [[WhatsApp Channel (NUMIDEA_WA)]] |
+| Supabase switch | The lead store, off on purpose; turning it on needs the published legal page, the store's region and a new form note, and `check.mjs` enforces all three | OWNER-CONTENT.md › 11; scripts/check.mjs › block 8b | [[Supabase lead store (off on purpose)]] |
 | Voices | Client quotes, published only with consent; `VOICES` is empty and nothing renders until an entry exists | scripts/voices-data.mjs › header | [[Client voices (scriptsvoices-data.mjs)]] |
 | `VOICE_CLIENTS` | The four clients shown as delivered who may carry a voice (Nomara Voyages unconfirmed, OWNER-CONTENT.md › 7); never the Glaive demo or WorkspaceHQ | scripts/voices-data.mjs › VOICE_CLIENTS | [[VOICE_CLIENTS]] |
-| `SLOT:voices` | The marked region in `#work` that `build-voices` fills | index.html › 532 | [[Client Voices Slot]] |
+| `SLOT:voices` | The marked region in `#work` that `build-voices` fills | index.html › 537 | [[Client Voices Slot]] |
 | Legal gating | The legal page is generated only once every owner field is filled; until then nothing may link to it | BRAND.md › Legal notice and privacy — generated, unpublished until complete | [[Legal notice + privacy page (generated, unpublished)]] |
 | `legal-preview/` | `--preview` output with the gaps marked, never deployed | BRAND.md › Legal notice and privacy — generated, unpublished until complete | [[legal-preview (build-legal --preview)]] |
 | `LEGAL_PUBLISHED` | True only when `legal/index.html` exists; it adds the page to the page and deploy lists | scripts/site.mjs › LEGAL_PUBLISHED | [[LEGAL_PUBLISHED]] |
@@ -129,18 +129,23 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 
 | Term | Meaning | Source | Graph |
 |---|---|---|---|
-| `npm run build` | The page generators in one go: build-fr, build-scene, build-voices, build-legal, build-sitemap | BRAND.md › Project sheets (scene/) | [[npm run build (generated pages)]] |
-| Gates | Six commands, all green before a push: check, validate, audit, sweep, vbugs, verify | BRAND.md › The gates | [[The gates (pre-push commands)]] |
-| `check` | Repository invariants: i18n ×3, assets, stamps, client links, deploy coverage, generated pages, anchors and retired claims, plus `themes-check` | scripts/check.mjs › header; README.md › Commands | [[Repository invariants (npm run check)]] |
+| `npm run build` | The page generators in one go: build-fr, build-scene, build-voices, build-legal, build-sitemap, then build-csp last (the CSP meta of the hand-written pages) | package.json › scripts; README.md › Commands | [[npm run build (generated pages)]] |
+| Gates | Seven commands, all green before a push: check, validate, audit, sweep, vbugs, keys, verify | BRAND.md › The gates | [[The gates (pre-push commands)]] |
+| `check` | Repository invariants: i18n ×3, assets, stamps, client links, deploy coverage, generated pages, anchors and retired claims, the Content-Security-Policy meta (block 16), asset byte budgets (block 17), SEO and structured data (block 18), plus `themes-check` | scripts/check.mjs › header; README.md › Commands | [[Repository invariants (npm run check)]] |
 | `validate` | html-validate on every page | README.md › Commands | [[HTML validation (npm run validate)]] |
-| `audit` | The browser audit, about 54 runs: axe, layout shift, LCP, overflow, tap targets | README.md › Commands | [[Browser audit (npm run audit)]] |
+| `audit` | The browser audit, 64 runs: axe, layout shift, overflow, tap targets, CSP violations, desktop LCP ≤ 1.5 s (fails), the WorkspaceHQ embeds and booted console, 404 two folders down; then a throttled phone, report-only until `AUDIT_PHONE_STRICT=1` | scripts/audit.mjs › header; README.md › Commands | [[Browser audit (npm run audit)]] |
+| `keys` | The keyboard, reduced-motion and direction gate, in French and Arabic, on desktop and a phone | scripts/keys.mjs › header; README.md › Commands | — |
+| `links` | Every external link the published site carries answers; needs the network, so it runs nightly and in the monitor, not in `verify` | scripts/links.mjs › header | — |
+| `csp`, CSP meta | `npm run csp` writes each hand-written page's Content-Security-Policy meta, with the sha256 of every inline script; `npm run build` ends with it and check block 16 fails when it is stale | scripts/build-csp.mjs › header; BRAND.md › Content-Security-Policy | — |
+| Live monitor | `.github/workflows/monitor.yml`, every six hours: the live pages, stamps, links and Lighthouse; a failure opens one issue, "Live monitor failed" | .github/workflows/monitor.yml › header; RELEASE.md › 5. Monitoring | — |
+| RELEASE.md | The owner's release checklist: each step and the command or CI job that proves it, rollback, monitoring, domain and the settings only the owner can change | RELEASE.md › 2, 4, 5, 6, 7 | — |
 | `sweep` | The contrast sweep over rendered pixels; only an element marked `data-decorative` is exempt | BRAND.md › `npm run sweep` | [[Contrast sweep (npm run sweep)]] |
 | `vbugs` | The visual bug scan; accepted issues sit in `scripts/vbugs-allow.json`, each with its reason | README.md › Commands | [[Visual bug scan (npm run vbugs)]] |
-| `verify` | Runs every gate and does not stop at the first failure | BRAND.md › The gates | [[Verify gates (npm run verify)]] |
+| `verify` | Runs every gate (check, themes, validate, audit, sweep, vbugs, keys) and does not stop at the first failure | BRAND.md › The gates; scripts/verify.mjs › STEPS | [[Verify gates (npm run verify)]] |
 | Cache stamps | The `?v=` stamps on asset links; `npm run bump` rewrites them across all pages after a CSS or JS change | scripts/bump.mjs › header | [[v= cache stamps (npm run bump)]] |
 | `DEPLOY` | Exactly what is published: index.html, 404.html, robots.txt, sitemap.xml, assets/, scene/, hub/, workspacehq/, and legal/ once it exists | scripts/site.mjs › DEPLOY | [[DEPLOY]] |
 | `NOT_DEPLOYED` | Folders and files that must never be served, among them scripts/, knowledge-base/, audit/, campaign/, legal-preview/, BRAND.md and README.md | scripts/site.mjs › NOT_DEPLOYED | [[NOT_DEPLOYED]] |
-| `_site/` and stage | `npm run stage` copies the deploy set into `_site/`; every host builds from it, and a missing entry fails | scripts/stage-site.mjs › header | [[_site (staged deploy folder)]] |
+| `_site/` and stage | `npm run stage` copies the deploy set into `_site/` and points `404.html`'s JavaScript-off links at the site root; every host builds from it, and a missing entry fails | scripts/stage-site.mjs › header; scripts/lib/stage-404.mjs › header | [[_site (staged deploy folder)]] |
 | Canonical and mirrors | GitHub Pages is the canonical host; Netlify and Vercel are mirrors that publish the same `_site/` | README.md › Deploy | [[GitHub Pages canonical deploy]] |
 | r3/a, r3/b, r3/c | The three strands of round 3: FAQ columns, scroll comfort and mobile; client logos and benefit lines; visualisations and motion | assets/styles.css › 2775, 418, 1565 | [[Scroll comfort (round 3)]] |
 
@@ -153,9 +158,9 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | hub/, VOIDSPLUNKER.std | The founder's personal page; client websites do not belong there | README.md › This repository — the landing page; BRAND.md › hub/ — the artist's page, not the studio's | [[hub (VOIDSPLUNKER.std founder page)]] |
 | BR4VETR4VELER | The hub's gallery, remade as a series of 33 posters that reads as a story | BRAND.md › hub/ — the artist's page, not the studio's | [[BR4VETR4VELER poster series (33 posters)]] |
 | WorkspaceHQ | WorkspaceHQ v3 and its launch page in `workspacehq/`, which the README calls "the studio's own product page" | README.md › This repository — the landing page; BRAND.md › workspacehq/ — the WorkspaceHQ v3 launch page | [[WorkspaceHQ v3 launch site]] |
-| The cartridge | The footer's small WorkspaceHQ link, described in the markup as "the founder's own product, as a little cartridge" | index.html › 1282 | [[WorkspaceHQ Cartridge]] |
+| The cartridge | The footer's small WorkspaceHQ link, described in the markup as "the founder's own product, as a little cartridge" | index.html › 1287 | [[WorkspaceHQ Cartridge]] |
 | The vault | `knowledge-base/`, an Obsidian vault: Home.md and Maps/ written by people (and Claude), graph/, wiki/ and graphify/ generated from the graphify graph, archive/ kept as history | scripts/build-kb.mjs › header | [[knowledge-base (internal memory snapshot)]] |
-| Check 15 | `check.mjs` keeps `knowledge-base/` public-safe: it fails on a temporary-folder machine path, an artifact link, a campaign-kit file name, a private note type or an e-mail address outside its allowlist | scripts/check.mjs › 15 | [[scriptscheck.mjs (npm run check)]] |
+| Check 15 | `check.mjs` keeps `knowledge-base/` public-safe: it fails on a temporary-folder machine path, an artifact link, a campaign-kit file name, a private note type or an e-mail address outside its allowlist | scripts/check.mjs › block 15 | [[scriptscheck.mjs (npm run check)]] |
 
 - The site no longer calls WorkspaceHQ open source: on 2026-10-13 its repository had no licence and no README, and restoring the wording is an owner item (OWNER-CONTENT.md › 13). More in [[WorkspaceHQ and hub]].
 

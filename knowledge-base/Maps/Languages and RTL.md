@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [README.md, BRAND.md, OWNER-CONTENT.md, index.html, 404.html, assets/app.js, assets/page-i18n.js, assets/carry.js, assets/styles.css, scene/style.css, hub/index.html, workspacehq/index.html, scripts/build-fr.mjs, scripts/lib/i18n.mjs, scripts/build-scene.mjs, scripts/scene-data.mjs, scripts/build-sitemap.mjs, scripts/check.mjs, package.json]
 ---
 
@@ -12,10 +12,10 @@ The site is trilingual: French is the default and is baked into the HTML, Englis
 
 | Page | Languages | Where the strings live | How the language is applied |
 |---|---|---|---|
-| `index.html` | FR, EN, AR | `I18N` and `EXTRA` in `assets/app.js` (assets/app.js › i18n dictionary, EXTRA) | Head script picks it, `applyLang()` swaps the text (index.html › 105; assets/app.js › applyLang) |
-| `scene/` | FR, EN, AR | Inline `<script type="application/json" id="i18n">` written by `build-scene.mjs` (scripts/build-scene.mjs › 303) | Head script picks it, `assets/page-i18n.js` swaps the text (assets/page-i18n.js › 1) |
+| `index.html` | FR, EN, AR | `I18N` and `EXTRA` in `assets/app.js` (assets/app.js › i18n dictionary, EXTRA) | Head script picks it, `applyLang()` swaps the text (index.html › 106–190; assets/app.js › applyLang) |
+| `scene/` | FR, EN, AR | Inline `<script type="application/json" id="i18n">` written by `build-scene.mjs` (scripts/build-scene.mjs › 306) | Head script picks it, `assets/page-i18n.js` swaps the text (assets/page-i18n.js › 1) |
 | `legal/` (once published) | FR, EN, AR | One section per language; `html[lang]` hides the others (assets/page-i18n.js › followHash) | `assets/page-i18n.js` |
-| `404.html` | FR, EN, AR | All three in the markup; the title comes from a `TITLE` map (404.html › 82) | `html[lang]` picks which label shows, so nothing is swapped after paint (404.html › 64) |
+| `404.html` | FR, EN, AR | All three in the markup; the title comes from a `TITLE` map (404.html › 99) | `html[lang]` picks which label shows, so nothing is swapped after paint (404.html › 66–67, 113–114) |
 | `hub/` | English | — | `<html lang="en">` (hub/index.html › 2) |
 | `workspacehq/` | English | — | `<html lang="en">` (workspacehq/index.html › 2) |
 
@@ -23,16 +23,16 @@ Each language version of `index.html` and `scene/` is a URL of its own (`?lang=e
 
 ## Choosing the language before first paint
 
-The order, in the inline head script of `index.html` (index.html › 105):
+The order, in the inline head script of `index.html` (index.html › 106–190):
 
 1. `?lang=` in the address wins over the stored `numidea-lang` preference; an unknown `?lang=` value is ignored, and an unknown stored value falls back to the baked French.
 2. `lang` and `dir` are set on `<html>` right away (`rtl` for Arabic), with the theme.
 3. The canonical link, `og:url` and `og:locale` name the version the address shows; `window.NUMIDEA_CANON` lets `app.js` redo this after a switch. See [[NUMIDEA_CANON (canonical setter)]].
 4. Font preloads are written per language: an Arabic visitor gets IBM Plex Sans Arabic 400 and 600 plus the Latin faces the Arabic hero still uses. See [[Language-aware script-written preloads]].
-5. For an English or Arabic visitor the script sets `data-i18n-pending`, and an inline head style hides the body with `display:none` until `app.js` has swapped the text (index.html › 201). The comment there records that `visibility:hidden` and `opacity:0` still measured a layout shift, so the hold uses `display:none` (index.html › 193).
-6. If `app.js` has not released the hold, a backstop does, right after `DOMContentLoaded` or at 1.5 s; the page then shows the baked French, left to right, until `app.js` applies the language (index.html › 105).
+5. For an English or Arabic visitor the script sets `data-i18n-pending`, and an inline head style hides the body with `display:none` until `app.js` has swapped the text (index.html › 206). The comment there records that `visibility:hidden` and `opacity:0` still measured a layout shift, so the hold uses `display:none` (index.html › 198).
+6. If `app.js` has not released the hold, a backstop does, right after `DOMContentLoaded` or at 1.5 s; the page then shows the baked French, left to right, until `app.js` applies the language (index.html › 166–174).
 
-Why: before this, the deferred swap rewrote 194 nodes and flipped `dir` after paint, measured at CLS 0.63; a French visitor never takes the hold, and an English or Arabic visitor pays roughly 100–200 ms of first paint (BRAND.md › The language is resolved before first paint). `scene/` repeats the same pattern in its own head script, with `?lang=` read case-insensitively (scripts/build-scene.mjs › 235).
+Why: before this, the deferred swap rewrote 194 nodes and flipped `dir` after paint, measured at CLS 0.63; a French visitor never takes the hold, and an English or Arabic visitor pays roughly 100–200 ms of first paint (BRAND.md › The language is resolved before first paint). `scene/` repeats the same pattern in its own head script, with `?lang=` read case-insensitively (scripts/build-scene.mjs › 238).
 
 Graph: [[Language resolved before first paint]], [[Head bootstrap  pre-paint resolver]], [[data-i18n-pending Paint Hold]], [[_COMMUNITY_Arabic RTL and Head Boot]], wiki [[Arabic_RTL_and_Head_Boot]].
 
@@ -58,7 +58,7 @@ Graph: [[applyLang()]], [[switchLang()]], [[FRENAR Language Switch]], [[page-i18
 Helpers live in `scripts/lib/i18n.mjs`: `loadDicts()` reads the `I18N` and `EXTRA` literals out of `app.js` without running the page, `i18nNodes()` finds each `data-i18n` element and the span of its inner HTML, `norm()` compares text as a browser renders it, `toMarkup()` escapes bare `&` and `<`, and `faqLd()` builds the FAQ object (scripts/lib/i18n.mjs › loadDicts, i18nNodes, norm, toMarkup, faqLd).
 
 - Run it with `npm run build`; `--check` exits 1 when `index.html` differs (scripts/build-fr.mjs › 1; package.json › scripts).
-- `check.mjs` fails when the baked French differs from the dictionary, because drift would show as copy changing after paint and no-script readers would see an older offer (BRAND.md › Project sheets (scene/); scripts/check.mjs › 7).
+- `check.mjs` fails when the baked French differs from the dictionary, because drift would show as copy changing after paint and no-script readers would see an older offer; the studio's JSON-LD description is baked too (BRAND.md › Project sheets (scene/); scripts/build-fr.mjs › header; scripts/check.mjs › block 8e).
 
 Graph: [[Baked French copy (I18N.fr) in index.html]], [[build-fr.mjs]], [[bakeFr()]], [[i18n.mjs]], [[faqLd()]], [[_COMMUNITY_French Baking (build-fr)]], wiki [[French_Baking_build-fr]].
 
@@ -66,7 +66,7 @@ Graph: [[Baked French copy (I18N.fr) in index.html]], [[build-fr.mjs]], [[bakeFr
 
 - `assets/carry.js` adds an explicit `?lang=` (and `ref`, `utm_*`, `fbclid`, `gclid`) from the current address to any link to another page of the site, at the moment it is followed, so a language switch is covered (assets/carry.js › 1).
 - A visitor who arrives on `scene/?lang=ar` and follows a link home stays in Arabic, because the choice is stored under the shared `numidea-lang` key (assets/page-i18n.js › 102).
-- `404.html` stores a `?lang=` arrival too, so the way home stays in that language (404.html › 88).
+- `404.html` stores a `?lang=` arrival too, so the way home stays in that language (404.html › 105).
 
 Graph: [[carry()]], [[numidea-lang shared language preference]].
 
@@ -74,8 +74,8 @@ Graph: [[carry()]], [[numidea-lang shared language preference]].
 
 | Rule | Where it lives or is enforced |
 |---|---|
-| Western digits everywhere (owner decision) | `check.mjs` fails on any Arabic-Indic digit in a page, `app.js`, `scene-data.mjs`, `build-legal.mjs` or `voices-data.mjs` (BRAND.md › Arabic conventions; scripts/check.mjs › 476) |
-| Forward arrows are `←`; a back link uses `→` | BRAND.md › Arabic conventions; the RTL benefit-line arrow (assets/styles.css › 516); "back" labels in Arabic (scripts/scene-data.mjs › UI.ar; 404.html › 137) |
+| Western digits everywhere (owner decision) | `check.mjs` fails on any Arabic-Indic digit in a page, `app.js`, `scene-data.mjs`, `build-legal.mjs` or `voices-data.mjs` (BRAND.md › Arabic conventions; scripts/check.mjs › block 8f) |
+| Forward arrows are `←`; a back link uses `→` | BRAND.md › Arabic conventions; the RTL benefit-line arrow (assets/styles.css › 516); "back" labels in Arabic (scripts/scene-data.mjs › UI.ar; 404.html › 150) |
 | Logical CSS properties, so one rule serves both directions | BRAND.md › Arabic conventions |
 | The whole document switches to IBM Plex Sans Arabic in RTL | assets/styles.css › 20, 84 |
 | Mono labels fall back to IBM Plex Sans Arabic (Geist Mono has no Arabic glyphs) | assets/styles.css › 91; scene/style.css › 28 |
@@ -89,17 +89,21 @@ Graph: [[Arabic conventions]], [[RTL layout mirroring]], [[IBM Plex Sans Arabic 
 
 ## French typography
 
-French copy keeps a no-break space (U+202F or U+00A0) before `? ! ; : »`, after `«`, and between a number and `%` or `h`; `check.mjs` reads every French string in `I18N.fr`, the scene interface and each project's French text and fails on a breakable space there (scripts/check.mjs › 484). The contact form's French colon uses a narrow no-break space (assets/app.js › contact form). Graph: [[French punctuation spacing]].
+French copy keeps a no-break space (U+202F or U+00A0) before `? ! ; : »`, after `«`, and between a number and `%` or `h`; `check.mjs` reads every French string in `I18N.fr`, the scene interface and each project's French text and fails on a breakable space there (scripts/check.mjs › block 8f). The contact form's French colon uses a narrow no-break space (assets/app.js › contact form). Graph: [[French punctuation spacing]].
 
 ## Gates that guard the languages
 
 | Check | What fails |
 |---|---|
 | 1 · i18n balance | A dictionary key whose count in `app.js` is not a multiple of three, that is, not once per language for each copy set (scripts/check.mjs › 1 + 2) |
-| 2 · i18n coverage | A `data-i18n*` attribute with no key (scripts/check.mjs › header) |
-| 7 · generated pages | Baked French or the scene page out of step with their generators; a page with an inline dictionary whose keys do not resolve in fr, en and ar (scripts/check.mjs › header) |
-| 6 · canonicals | A page that names its canonical in both markup and head script, or names none (scripts/check.mjs › header) |
-| Arabic digits, French typography | As above (scripts/check.mjs › 476, 484) |
+| 2 · i18n coverage | A `data-i18n*` attribute with no key (scripts/check.mjs › 1 + 2) |
+| 7 · generated pages | The scene page out of step with its generator; a page with an inline dictionary whose keys do not resolve in fr, en and ar (scripts/check.mjs › block 7) |
+| 8e · baked French | The French baked into `index.html` (text, attributes, title, description, the studio's and the FAQ's JSON-LD) out of step with `I18N.fr` (scripts/check.mjs › block 8e) |
+| 6 · canonicals | A page that names its canonical in both markup and head script, or names none (scripts/check.mjs › block 6) |
+| Arabic digits, French typography | As above (scripts/check.mjs › block 8f) |
+| 18 · descriptions and alternates | A meta description outside 50 to 160 characters in any language the page switches to (`meta.desc` in `app.js`, `ui.desc` in a generated page's dictionary); hreflang alternates in a page's head that differ from the sitemap's (scripts/check.mjs › block 18) |
+| keys · direction | `?lang=ar` must give `dir="rtl" lang="ar"` on every page that has Arabic, also after the language hold's 1.5 s fallback, and the English-only pages stay left to right; hub's lightbox arrows follow the reading direction (scripts/keys.mjs › header) |
+| keys · form errors | The contact form's error messages must be in the page's language (scripts/keys.mjs › contactForm) |
 
 More in [[Build and gates]]. Graph: [[Convention every i18n key appears exactly 3x in app.js (frenar)]].
 

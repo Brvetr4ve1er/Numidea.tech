@@ -1,7 +1,7 @@
 ---
 type: map
-updated: 2026-10-19
-sources: [README.md, BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, assets/carry.js, assets/styles.css, hub/index.html, hub/app.js, hub/poses/README.md, workspacehq/index.html, workspacehq/app.js, workspacehq/style.css, workspacehq/embed/trailer.html, scripts/site.mjs, scripts/scene-data.mjs, scripts/build-sitemap.mjs, scripts/check.mjs, scripts/audit.mjs]
+updated: 2026-10-25
+sources: [README.md, BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, assets/carry.js, assets/styles.css, hub/index.html, hub/app.js, hub/poses/README.md, workspacehq/index.html, workspacehq/app.js, workspacehq/style.css, workspacehq/embed/trailer.html, scripts/site.mjs, scripts/scene-data.mjs, scripts/build-sitemap.mjs, scripts/check.mjs, scripts/audit.mjs, scripts/keys.mjs, scripts/lib/csp.mjs, workspacehq/embed/hq-fx.js]
 ---
 
 # WorkspaceHQ and hub
@@ -12,26 +12,26 @@ Two published pages sit beside the studio's landing page with their own CSS and 
 
 | | `hub/` | `workspacehq/` |
 |---|---|---|
-| What it is | Yasser's own page: his art, design work and social presence (BRAND.md › hub/ — the artist's page, not the studio's) | Launch page for WorkspaceHQ v3, "your codebase, now playable" (workspacehq/index.html › 6) |
-| Title | `b4vetrave1er.exe // VOIDSPLUNKER.std` (hub/index.html › 6) | `WorkspaceHQ v3 — your codebase, now playable` (workspacehq/index.html › 6) |
+| What it is | Yasser's own page: his art, design work and social presence (BRAND.md › hub/ — the artist's page, not the studio's) | Launch page for WorkspaceHQ v3, "your codebase, now playable" (workspacehq/index.html › 7) |
+| Title | `b4vetrave1er.exe // VOIDSPLUNKER.std` (hub/index.html › 7) | `WorkspaceHQ v3 — your codebase, now playable` (workspacehq/index.html › 7) |
 | Language | English (hub/index.html › 2) | English (workspacehq/index.html › 2) |
-| Themes | Its own dark and light, stored under `void-theme`; anything else reads as dark (hub/index.html › 26) | One look: the WorkspaceHQ design system's ARCADE tokens (workspacehq/style.css › 1) |
-| Fonts | Syne and Space Mono, self-hosted through `assets/fonts-hub.css` (hub/index.html › 31) | Press Start 2P and VT323, self-hosted in `workspacehq/fonts/` (workspacehq/style.css › 11) |
-| Scripts | `hub/app.js`, `assets/carry.js` (hub/index.html › 491) | `workspacehq/app.js`, `assets/carry.js` (workspacehq/index.html › 333) |
-| Reached from | The home page's founder section, "Portfolio personnel ↗" (index.html › 1066); the WorkspaceHQ footer (workspacehq/index.html › 327) | The cartridge in the home footer and in the hub (index.html › 1283; hub/index.html › 73, 424); project sheet 04 (scripts/scene-data.mjs › PROJECTS) |
+| Themes | Its own dark and light, stored under `void-theme`; anything else reads as dark (hub/index.html › 27) | One look: the WorkspaceHQ design system's ARCADE tokens (workspacehq/style.css › 1) |
+| Fonts | Syne and Space Mono, self-hosted through `assets/fonts-hub.css` (hub/index.html › 32) | Press Start 2P and VT323, self-hosted in `workspacehq/fonts/` (workspacehq/style.css › 11) |
+| Scripts | `hub/app.js`, `assets/carry.js` (hub/index.html › 499) | `workspacehq/app.js`, `assets/carry.js` (workspacehq/index.html › 334) |
+| Reached from | The home page's founder section, "Portfolio personnel ↗" (index.html › 1071); the WorkspaceHQ footer (workspacehq/index.html › 328) | The cartridge in the home footer and in the hub (index.html › 1288; hub/index.html › 81, 432); project sheet 04 (scripts/scene-data.mjs › PROJECTS) |
 | Sitemap | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) |
 
 Both pages load `assets/carry.js`, so a link back to the home page keeps any `ref`, `utm_*`, `fbclid`, `gclid` or `lang` parameter the visitor arrived with (assets/carry.js › 1).
 
 ## hub/ — the artist's page
 
-**Rule:** client websites do not belong here; a "Selected Work" section was added once and removed at the owner's request, and `npm run check` fails if the host of any project site linked from the home page appears in `hub/` (BRAND.md › hub/ — the artist's page, not the studio's; scripts/check.mjs › header, 5).
+**Rule:** client websites do not belong here; a "Selected Work" section was added once and removed at the owner's request, and `npm run check` fails if the host of any project site linked from the home page appears in `hub/` (BRAND.md › hub/ — the artist's page, not the studio's; scripts/check.mjs › block 5).
 
 | Section | Anchor | What it holds |
 |---|---|---|
 | Hero | `#hero` | Name, "ARTIST · DESIGNER · DEVELOPER", the WorkspaceHQ cartridge, and the avatar whose four Traveler portraits step from calm to scream as you scroll (hub/index.html › HERO; BRAND.md › hub/) |
 | The Series | `#collection` | BR4VETR4VELER, "a story in 33 posters": Prologue *The Traveler*, I *The Sky*, II *The Noise*, III *The Ink*, Epilogue *The Power of Imagination* (hub/index.html › THE SERIES; BRAND.md › hub/) |
-| Viewer | `#lb` | A native `<dialog>`; Close comes first so the external DeviantArt link is not focused on open (hub/index.html › 304) |
+| Viewer | `#lb` | A native `<dialog>`; Close comes first so the external DeviantArt link is not focused on open (hub/index.html › 312) |
 | Design | `#design` | Twelve Behance projects from the profile's first page, covers self-hosted (BRAND.md › hub/; hub/index.html › DESIGN) |
 | Social highlights | `#social` | Behance and DeviantArt figures as the public profiles showed them in October 2026, updated by hand and never fetched; Instagram shows no number (hub/index.html › SOCIAL HIGHLIGHTS) |
 | The Archive | `#links` | Links grouped as Design, Dev, Social, Shop & contact; handles with no verified URL sit on one "coming soon" line (hub/index.html › LINKS) |
@@ -39,6 +39,8 @@ Both pages load `assets/carry.js`, so a link back to the home page keeps any `re
 
 How it is built:
 
+- The first Tab stop is a skip link, "Skip to the series", to `#collection`, past the hero; `npm run keys` requires a skip link that points inside `<main>` and skips something (hub/index.html › 45; scripts/keys.mjs › header).
+- With reduced motion on, the page scrolls without easing, the skip link and the hero's scroll cue included: its reduced-motion block sets `html{scroll-behavior:auto}` by name, since the universal rule lost to `html{scroll-behavior:smooth}` (hub/style.css › MOTION-SAFE; scripts/keys.mjs › header).
 - Every gallery grid uses square units (row height equals column width), so a tile spanning C×R has the shape C:R; tile order is chosen so dense auto-placement leaves no holes at 6 and at 4 columns, and a change to a chapter's count needs the hole check rerun (BRAND.md › hub/; hub/index.html › THE SERIES).
 - Poster titles are HTML labels, never baked into the image, because AI lettering garbles (BRAND.md › hub/).
 - Without scripts, every poster is a plain link to DeviantArt; the viewer only intercepts a plain click (hub/app.js › 8 · the collection).
@@ -55,8 +57,8 @@ Communities and wiki: [[_COMMUNITY_Hub Page Script]], [[_COMMUNITY_Founder Poste
 ### The product, as the page describes it
 
 - WorkspaceHQ v3 scans every repo on your machine, turns git hygiene into quests and puts one clear next move on top; it is a Claude-powered desktop console built on Electron, with a pixel sidekick called Bit (workspacehq/index.html › 01 HERO, 06 MEET BIT).
-- Scans run on your machine; when you ask Claude something, only the question and the repo context it needs are sent (workspacehq/index.html › 08 FAQ).
-- The code is public on GitHub at `Brvetr4ve1er/workspace-HQ`, and the install step is `git clone` (workspacehq/index.html › 09 INSTALL).
+- Scans run on your machine; when you ask Claude something, only the question and the repo context it needs are sent (workspacehq/index.html › 9 FAQ).
+- The code is public on GitHub at `Brvetr4ve1er/workspace-HQ`, and the install step is `git clone` (workspacehq/index.html › 10 INSTALL).
 - The design said `brew install workspacehq` and `npm i -g workspacehq`, but neither package exists, so the page points at GitHub until they are published (BRAND.md › workspacehq/ — the WorkspaceHQ v3 launch page).
 
 ### Page sections
@@ -73,16 +75,18 @@ Communities and wiki: [[_COMMUNITY_Hub Page Script]], [[_COMMUNITY_Founder Poste
 | 08 | `#faq` | Five questions |
 | 09 | `#install` | Clone command and "Open on GitHub" |
 
-Source: workspacehq/index.html › 01 HERO to 09 INSTALL; the demo's lazy boot (workspacehq/app.js › live demo). The footer reads "WORKSPACEHQ · v3.0 · OCTOBER 2026" and links to the hub and to Numidea Labs (workspacehq/index.html › 327).
+Source: workspacehq/index.html › 01 HERO to 09 INSTALL; the demo's lazy boot (workspacehq/app.js › live demo). The footer reads "WORKSPACEHQ · v3.0 · OCTOBER 2026" and links to the hub and to Numidea Labs (workspacehq/index.html › 328).
 
 ### How it is built
 
 - The page is native HTML, CSS and JS with no React, implemented from the Claude Design file "WorkspaceHQ v3 Launch Site.dc.html": the imported components (Button, Tag, ProgressBar, Kpi, Achievement, SectionHeading) are rebuilt in CSS with the bundle's exact values, and the design's DCLogic class is ported to plain JS (BRAND.md › workspacehq/; workspacehq/app.js › 1).
 - Tokens are the design system's ARCADE theme verbatim, except `--faint`, lifted from `#5e588a` (about 3:1) to `#8a83bd` because the page sets it as text (workspacehq/style.css › 1; BRAND.md › workspacehq/).
-- The three embedded experiences stay the design's own React pages on the Claude Design runtime (`embed/support.js`); React 18.3.1 UMD is self-hosted in `embed/vendor/` and loaded before `support.js`, the `.jsx` sources were precompiled with esbuild, and IBM Plex Mono is self-hosted, so the page makes zero third-party requests (BRAND.md › workspacehq/; workspacehq/embed/trailer.html › 13).
-- To update an embed from a new design export, repeat those steps and keep the rule in `console.html` that sets fields at 16px on a coarse pointer, so iOS does not zoom (BRAND.md › workspacehq/).
-- Loops (INSERT COIN blinking, the glitching headline, the marquee, Bit floating) are part of the product's identity, so the browser audit runs this page with `allowLoops` (BRAND.md › workspacehq/; scripts/audit.mjs › 96).
+- The three embedded experiences stay the design's own React pages on the Claude Design runtime (`embed/support.js`); React 18.3.1 UMD is self-hosted in `embed/vendor/` and loaded before `support.js`, the `.jsx` sources were precompiled with esbuild, and IBM Plex Mono is self-hosted, so the page makes zero third-party requests (BRAND.md › workspacehq/; workspacehq/embed/trailer.html › 14).
+- To update an embed from a new design export, repeat those steps, keep the rule in `console.html` that sets fields at 16px on a coarse pointer (so iOS does not zoom), then run `npm run csp` (or `npm run build`): an export comes without its Content-Security-Policy meta, and this writes it and hashes any inline script; then `npm run check` and open the embed through `workspacehq/` (BRAND.md › workspacehq/; BRAND.md › Content-Security-Policy, Re-exporting an embed).
+- The embeds alone carry a looser policy than the other pages: `'unsafe-eval'` (`support.js` runs component code with `new Function`), `font-src data:` (the stage inlines its `@font-face` files) and `img-src blob:` (the runtime's bundled-resource mode); check block 16 refuses `'unsafe-eval'` on any other page (BRAND.md › Content-Security-Policy, The embed exception; scripts/lib/csp.mjs › cspPolicy; scripts/check.mjs › block 16).
+- Loops (INSERT COIN blinking, the glitching headline, the marquee, Bit floating) are part of the product's identity, so the browser audit runs this page with `allowLoops` (BRAND.md › workspacehq/; scripts/audit.mjs › the comment above the `workspacehq` run).
 - A "pause motion" button stops every loop on the page and inside the players (WCAG 2.2.2); `prefers-reduced-motion` starts it pressed, and a choice that differs from that default is stored under `whq-motion` (workspacehq/app.js › motion). Loops also pause when their section is off screen (workspacehq/app.js › reveal + pause).
+- In the booted console, motion off (either way) also stops Bit walking on his own: he switches between idle and look, and only a drag moves him (workspacehq/embed/hq-fx.js › tick). `npm run keys` boots the console with reduced motion, and again with PAUSE MOTION pressed, and fails if Bit moves within 8 s (scripts/keys.mjs › bitHolds).
 - The embeds are listed as extra pages that `check.mjs` reads for references but that are not entry pages (scripts/site.mjs › EXTRA_PAGES).
 
 Graph: [[WorkspaceHQ v3 launch site]], [[WorkspaceHQ v3 (personal ops console)]], [[WorkspaceHQ v3 Launch Site.dc.html (Claude Design file)]], [[Claude Design runtime (embedsupport.js)]], [[Rebuilt design-system components (Button, Tag, ProgressBar, Kpi, Achievement, SectionHeading)]], [[--faint token contrast fix]], [[Bit (pixel sidekick)]], [[Pause-motion control (WCAG 2.2.2)]], [[setMotion()]], [[Live in-browser demo console (sample repos)]], [[GitHub repo Brvetr4ve1erworkspace-HQ]].

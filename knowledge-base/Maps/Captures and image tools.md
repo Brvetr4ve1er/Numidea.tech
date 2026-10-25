@@ -1,12 +1,12 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [package.json, README.md, BRAND.md, OWNER-CONTENT.md, .gitignore, audit/Architecture.md, scripts/shots.mjs, scripts/work-capture.mjs, scripts/client-logos.mjs, scripts/og-capture.mjs, scripts/build-og.mjs, scripts/plates.mjs, scripts/build-creative.mjs, scripts/lib/screen-quad.mjs, scripts/lib/serve.mjs, scripts/verify.mjs, scripts/check.mjs, .github/workflows/pages.yml]
 ---
 
 # Captures and image tools
 
-Seven Node scripts make the site's pictures offline with Playwright and sharp: screenshots of the live client sites, project-sheet captures, the client logos, the share images, the atlas masks and the ad creatives (package.json › scripts, devDependencies; each script's header). None of them is one of the gates, and none runs in CI or before a deploy (scripts/verify.mjs › STEPS; .github/workflows/check.yml › 38–111; .github/workflows/pages.yml › 36–142). The images they write are committed with the site (README.md › This repository — the landing page; scripts/shots.mjs › header), except the ad images, which are written into the private campaign kit (scripts/build-creative.mjs › header). Start with the table, then read the section for the tool you are about to run; the gates themselves are in [[Build and gates]].
+Seven Node scripts make the site's pictures offline with Playwright and sharp: screenshots of the live client sites, project-sheet captures, the client logos, the share images, the atlas masks and the ad creatives (package.json › scripts, devDependencies; each script's header). None of them is one of the gates, and none runs in CI or before a deploy (scripts/verify.mjs › STEPS; .github/workflows/check.yml › 38–111; .github/workflows/pages.yml › 36–144). The images they write are committed with the site (README.md › This repository — the landing page; scripts/shots.mjs › header), except the ad images, which are written into the private campaign kit (scripts/build-creative.mjs › header). Start with the table, then read the section for the tool you are about to run; the gates themselves are in [[Build and gates]].
 
 ## The tools
 
@@ -31,7 +31,7 @@ Sources: package.json › scripts; the header of each script; scripts/shots.mjs 
 - Captures each live project at a fixed 16:10 viewport, 1280×800, which matches the work card's thumbnail ratio; renders at 2× and writes a WebP at quality 80 (scripts/shots.mjs › header, W, H, run).
 - Five entries: Bordj Steel, AlmaFlowClim, Alliance Travel, Nomara Voyages and the Glaive demo, each captured from its Netlify build even when a card links a production domain (scripts/shots.mjs › PROJECTS).
 - A failed capture keeps the existing file (scripts/shots.mjs › run).
-- `check` fails when `shots.mjs` and the page cover different clients (scripts/check.mjs › 154–163).
+- `check` fails when `shots.mjs` and the page cover different clients (scripts/check.mjs › block 5).
 - Graph: [[shots.mjs]], [[_COMMUNITY_Project Screenshot Capture]], wiki [[Project_Screenshot_Capture]]. Where the pictures appear: [[Clients and projects]].
 
 ## Project-sheet captures: work-capture.mjs
@@ -48,7 +48,7 @@ Sources: package.json › scripts; the header of each script; scripts/shots.mjs 
 - Colour stays as served, because the page paints every logo in one theme colour through a CSS mask; each file is cropped to its drawing; SVG path data is written to 2 decimals; rasters are at most 96 px tall and saved as WebP at quality 75 (scripts/client-logos.mjs › header, RASTER_H).
 - An SVG logo carrying scripts, `foreignObject`, embedded images, event handlers or `javascript:` links is refused (scripts/client-logos.mjs › ACTIVE).
 - Only the four delivered client sites have a logo; Glaive Store and WorkspaceHQ are not clients (scripts/client-logos.mjs › header). If Nomara Voyages turns out not to be a client, its logo comes out of this script too (OWNER-CONTENT.md › 7); see [[Open owner items]].
-- `check` block 5b requires the logo strip to be exactly the delivered clients, each with its own file, alt, intrinsic size and mask (scripts/check.mjs › 10–11).
+- `check` block 5b requires the logo strip to be exactly the delivered clients, each with its own file, alt, intrinsic size and mask (scripts/check.mjs › block 5b).
 - Graph: [[client-logos.mjs]], [[Client logo strip (scriptsclient-logos.mjs)]], [[_COMMUNITY_Client Logo Extraction]], wiki [[Client_Logo_Extraction]].
 
 ## Share images: og-capture.mjs and build-og.mjs

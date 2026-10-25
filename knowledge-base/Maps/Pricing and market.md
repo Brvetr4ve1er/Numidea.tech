@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [assets/app.js, index.html, README.md, BRAND.md, OWNER-CONTENT.md, scripts/check.mjs]
 ---
 
@@ -12,7 +12,7 @@ The studio publishes its prices in dinars before any quote, beside the going rat
 
 - `PRICE_MODEL` (tiers and estimator) and `RETAINER` (monthly maintenance) are set in dinars and only converted for display (assets/app.js › 12a display currency; [[PRICE_MODEL]], [[ESTIMATE]]).
 - `ESTIMATE` is a pure block, figures and arithmetic only, with no DOM, so a script can test it on its own (assets/app.js › ESTIMATE, comment).
-- `check.mjs` requires the dinar figures in the tier and maintenance markup to equal `PRICE_MODEL` and `RETAINER`, refuses any € or $ amount typed into the studio's own prices, and tests the estimator on every size, option set and pace (scripts/check.mjs › priceErr; [[priceErr]]).
+- `check.mjs` requires the dinar figures in the tier and maintenance markup to equal `PRICE_MODEL` and `RETAINER`, refuses any € or $ amount typed into the studio's own prices, and tests the estimator on every size, option set and pace (scripts/check.mjs › block 8c, priceErr; [[priceErr]]).
 - If a tier moves, it moves in `PRICE_MODEL` and nowhere else (assets/app.js › ESTIMATE, comment).
 
 ## The three packages

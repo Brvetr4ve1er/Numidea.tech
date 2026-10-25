@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, scene/app.js, scene/style.css, scripts/scene-data.mjs, scripts/build-scene.mjs, scripts/work-capture.mjs, scripts/voices-data.mjs, scripts/check.mjs, package.json]
 ---
 
@@ -17,7 +17,7 @@ sources: [BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, scene/app.js, s
 | 3. Build | `npm run scene` (or `npm run build`) | Writes `scene/index.html` with French baked in and the dictionary inline (scripts/build-scene.mjs › 1; package.json › scripts) |
 | 4. Gate | `check.mjs` | Fails when `scene/index.html` differs from the generator's output, and checks the benefit blocks (scripts/check.mjs › header, 5c, 7) |
 
-- `build-scene.mjs --check` reports whether the page matches its generator (scripts/build-scene.mjs › 312).
+- `build-scene.mjs --check` reports whether the page matches its generator (scripts/build-scene.mjs › 315).
 - A missing capture stops the build with "missing capture" (scripts/build-scene.mjs › shot()).
 - The page lists in `work-capture.mjs` must match `scene-data.mjs` (scripts/work-capture.mjs › 1).
 
@@ -82,16 +82,16 @@ Graph: [[Project sheet (planche) structure]], [[What the site brings the client 
 
 - Each delivered client's card that has a sheet (Bordj Steel, Alliance Travel, AlmaFlowClim) links its benefit line to `scene/#gv-<slug>`, and a visually hidden "— le détail sur la planche" (`work.gainMore`) ends the link's name so a screen reader hears where it goes (BRAND.md › Project sheets (scene/); index.html › SELECTED WORK; scripts/check.mjs › 5c).
 - Cards with a sheet also carry "Voir la planche →" to `scene/#<slug>`; Nomara Voyages has no sheet, so its benefit line is plain text (index.html › SELECTED WORK; BRAND.md › Project sheets (scene/)).
-- The work section ends on the planches banner, "Ouvrir les planches →" (index.html › 533). See [[Project Plates Banner (Planches)]].
+- The work section ends on the planches banner, "Ouvrir les planches →" (index.html › 538). See [[Project Plates Banner (Planches)]].
 - Old `#/work/<slug>` links from the retired project explorer are redirected to the matching sheet through the `SHEET` map: `bordj-steel` → `bordjsteel`, `alliance-travel` → `alliance`, `almaflowclim` → `almaflow`, `glaive-store` → `glaive`, keeping the query string (assets/app.js › DOM ready, legacy deep links).
-- The sheet page's footer links back to `../#contact` and `../#work` (scripts/build-scene.mjs › 292).
+- The sheet page's footer links back to `../#contact` and `../#work` (scripts/build-scene.mjs › 295).
 
 ## The page itself
 
 - Static HTML with French baked in, so it reads fully with JavaScript off (scripts/build-scene.mjs › 1). `scene/app.js` only adds the image viewer, and language is handled by `assets/page-i18n.js` (scene/app.js › 1); the header comment of `build-scene.mjs` still says `scene/app.js` swaps the language, which the current file does not do.
 - The viewer is a `<dialog>`; a click with Cmd, Ctrl or Shift still opens the image file itself, and without JavaScript every capture is a plain link (scene/app.js › 8).
-- The page has its own stylesheet and tokens, "a drawing office, not a light show": a static drafting grid, hairline frames, and nothing that moves on its own (scene/style.css › 1). It is dark only and does not use the six site themes: it declares a dark colour scheme and loads only `fonts.css` and its own `style.css`, not `themes.css` (scripts/build-scene.mjs › 217, 260–261).
-- Languages: FR, EN and AR from an inline dictionary; Arabic flips the layout (scripts/build-scene.mjs › 249, 303); details in [[Languages and RTL]].
+- The page has its own stylesheet and tokens, "a drawing office, not a light show": a static drafting grid, hairline frames, and nothing that moves on its own (scene/style.css › 1). It is dark only and does not use the six site themes: it declares a dark colour scheme and loads only `fonts.css` and its own `style.css`, not `themes.css` (scripts/build-scene.mjs › 220, 263–264).
+- Languages: FR, EN and AR from an inline dictionary; Arabic flips the layout (scripts/build-scene.mjs › 252, 306); details in [[Languages and RTL]].
 
 Graph: [[sceneapp.js]], [[Enlarged screenshot viewer dialog]], [[Planches project sheets page (work, deliverable by deliverable)]], [[_COMMUNITY_Menu and Scene Accessibility]].
 

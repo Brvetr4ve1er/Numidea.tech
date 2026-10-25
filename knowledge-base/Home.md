@@ -1,6 +1,6 @@
 ---
 type: home
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [scripts/build-kb.mjs, .graphifyignore, scripts/check.mjs, scripts/site.mjs, package.json, knowledge-base/.obsidian/app.json, knowledge-base/graphify/GRAPH_REPORT.md, knowledge-base/wiki/index.md, OWNER-CONTENT.md]
 ---
 
@@ -40,7 +40,7 @@ Sources: scripts/build-kb.mjs › header and export steps; knowledge-base/wiki/i
 4. The export also merges graphify's community colours into `.obsidian/graph.json` (scripts/build-kb.mjs › "one vault, one .obsidian/"). Commit `graph/`, `wiki/`, `graphify/` and that file: the committed `graphify/graph.json` is what lets `graphify query` work on a fresh clone (scripts/build-kb.mjs › header).
 
 - What graphify reads is set by `.gitignore` first and then `.graphifyignore`, which leaves out images, fonts, audio, 3D files and PDFs, vendor bundles such as `workspacehq/embed/`, the lock file, sitemap, robots and licence files, and the vault's own generated layers plus `Maps/` and `Home.md` (.graphifyignore).
-- `npm run check` fails if `knowledge-base/` holds a temporary machine path, an artifact link, a campaign-kit file name, a private note type, or an e-mail address other than the site's contact and the archive's old placeholder (scripts/check.mjs › 15).
+- `npm run check` fails if `knowledge-base/` holds a temporary machine path, an artifact link, a campaign-kit file name, a private note type, or an e-mail address other than the site's contact and the archive's old placeholder (scripts/check.mjs › block 15).
 
 ## Query the graph from a terminal
 
@@ -65,6 +65,7 @@ graphify explain "Owner-supplied content register" --graph knowledge-base/graphi
 - Where a source says something is pending, unconfirmed, an owner decision or a placeholder, the map says so; the register of those items is `OWNER-CONTENT.md` (OWNER-CONTENT.md › intro) and its map is [[Open owner items]].
 - Only tracked, public files are used: the vault sits in a public repository (OWNER-CONTENT.md › 12).
 - When a source changes, the map that cites it is updated by hand and its `updated:` date moves.
+- Cite `scripts/check.mjs` by its block label (1 to 8, 3b, 5b, 5c, 8b to 8h, 15, 15b, 15c, 16, 17, 18) or a named check (`RETIRED`), never by line number: blocks merged from other work move the lines (scripts/check.mjs › header). For a page, prefer a stable locator (an id, a variable such as `HEAD`, a marker comment such as `SLOT:voices`) where one exists, since every insert into a `<head>` moves the lines below it.
 
 ## The maps
 

@@ -1,7 +1,7 @@
 ---
 type: map
-updated: 2026-10-19
-sources: [BRAND.md, assets/app.js, assets/illus/, scripts/plates.mjs, scripts/check.mjs]
+updated: 2026-10-25
+sources: [BRAND.md, assets/app.js, assets/illus/, scripts/plates.mjs, scripts/check.mjs, scripts/keys.mjs, hub/style.css, workspacehq/embed/hq-fx.js]
 ---
 
 # Motion and illustration
@@ -20,7 +20,9 @@ How the home page moves and what it draws with: the ambient layer (parallax, her
 | Aurora | Removed in the anti-slop sweep; kept as a lesson | BRAND.md › same section |
 
 - Parallax rides the `translate` property, never `transform`, so one element can be parallaxed and still run a reveal, a hover scale and a spin without one clobbering another (BRAND.md › The ambient layer — parallax, aurora, reveal).
-- `check` block 3b fails when a `data-parallax` depth does not parse to a non-zero number (scripts/check.mjs › 117–127).
+- `check` block 3b fails when a `data-parallax` depth does not parse to a non-zero number (scripts/check.mjs › block 3b).
+- `npm run keys` holds the site's own reduced-motion handling, with `prefers-reduced-motion: reduce` emulated and nothing injected: nothing that reveals on scroll is hidden at load; once the network is idle and a key has woken the page, no script writes styles, classes or text for 6 s; no infinite or long animation runs, in any frame; each embedded player holds its playhead; `html` and `body` are not `scroll-behavior: smooth` and the skip link's jump lands in one step; and WorkspaceHQ's booted console keeps Bit still, with the OS setting and with the page's PAUSE MOTION button (scripts/keys.mjs › header).
+- hub/'s reduced-motion block names `html` for `scroll-behavior:auto`: its universal rule lost to `html{scroll-behavior:smooth}` on specificity (hub/style.css › MOTION-SAFE). With motion off, Bit no longer walks on his own; a drag still moves him (workspacehq/embed/hq-fx.js › tick).
 - Only `html.js-ready`, set by `app.js` as its first act, hides anything, so a blocked script never leaves sections invisible (BRAND.md › Stress test).
 - The hero headline, lede and plate rise with `transform` only and are never transparent: with the fade, the browser credited the hero plate as painted at 7.5s on Slow 3G, and at 3.7s without it (BRAND.md › Stress test).
 - Graph: [[Ambient layer (parallax, aurora, reveal)]], [[Parallax via CSS translate property]], [[Cached layout positions (numidearelayout)]], [[Reveal entrance (rAF-batched stagger)]], [[Hero floaters (hand-drawn SVG geometry)]], [[Never fade the LCP element (hero-rise-solid)]], [[Stress test harness]].
