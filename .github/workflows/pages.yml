@@ -125,7 +125,9 @@ jobs:
           package-manager-cache: false
 
       - name: Stage publishable files into _site/
-        run: node scripts/stage-site.mjs
+        # --pages: _site/404.html gets its JavaScript-off links from the
+        # repository subpath (the path of BASE in scripts/site.mjs)
+        run: node scripts/stage-site.mjs --pages
 
       - name: Configure Pages (auto-enable with Actions as the source)
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0

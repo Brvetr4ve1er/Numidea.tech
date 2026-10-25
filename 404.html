@@ -11,8 +11,11 @@
      relative assets/ link would first be fetched from the wrong folder (the
      browser's preload scanner does that before any script runs). This
      script writes the page's links from the site root (the repository
-     subpath on *.github.io, "/" everywhere else) before first paint; the
-     <noscript> copy keeps the page styled with JavaScript off. -->
+     subpath on *.github.io, "/" everywhere else) before first paint. The
+     <noscript> copy, for JavaScript off, is relative here so the file
+     previews from disk; staging rewrites it and the two home links to the
+     site root (scripts/lib/stage-404.mjs), so the published page is styled
+     with JavaScript off at any depth too. -->
 <script>
 (function () {
   var b = 'assets/';   // stays relative for a file:// preview

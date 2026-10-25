@@ -2,7 +2,7 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * ~60 runs over every page (site.mjs PAGES): index.html in all six themes x
+ * 64 runs over every page (site.mjs PAGES): index.html in all six themes x
  * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; scene/ in each
  * language on desktop and phone; 404 in two themes in Arabic; hub/ in both of
  * its palettes; tablet (768x1024, 1024x768) and short landscape (844x390);
@@ -17,6 +17,14 @@
  * Content-Security-Policy violation (securitypolicyviolation events, counted
  * in every frame). Desktop page runs fail when LCP, read at load before
  * anything is touched, is over 1.5 s.
+ *
+ * Then 404.html two folders down, where a relative link would resolve
+ * against the missing folder (the local server answers a missing URL with
+ * 404.html, as the hosts do): here, and on an emulated GitHub Pages under its
+ * repository subpath with JavaScript on and off (the published 404.html, as
+ * scripts/lib/stage-404.mjs stages it). Its three stylesheets must come from
+ * the site root, nothing may be requested under the missing folder, every
+ * link must lead to the site root, and the theme's tokens must apply.
  *
  * Then a throttled phone: index.html in French and in Arabic on Lighthouse's
  * mobile profile (412x823 at 1.75x, CPU 4x, Slow 4G as DevTools applies it:
@@ -63,10 +71,13 @@ import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {serve,launch} from './lib/serve.mjs';
 import {watchCsp} from './lib/csp-watch.mjs';
-import {ROOT,THEMES,LEGAL_PUBLISHED} from './site.mjs';
+import {deployFiles} from './lib/deploy-files.mjs';
+import {stage404} from './lib/stage-404.mjs';
+import {ROOT,BASE,THEMES,LEGAL_PUBLISHED} from './site.mjs';
 const REMOTE=(process.env.AUDIT_BASE||'').trim().replace(/\/+$/,'');
 const ONLY=process.env.AUDIT_ONLY?new RegExp(process.env.AUDIT_ONLY):null;
-const srv=REMOTE?null:await serve(ROOT,{compress:true});
+// a missing URL gets 404.html with status 404, as on every host
+const srv=REMOTE?null:await serve(ROOT,{compress:true,fallback404:true});
 const B=REMOTE||srv.base;
 const AXE=readFileSync(join(ROOT,'node_modules/axe-core/axe.min.js'),'utf8');
 const b=await launch();
@@ -205,6 +216,68 @@ const bootConsole=async p=>{
   return broke;
 };
 
+/* ---------------- 404 at a nested missing URL ----------------
+   The hosts answer a missing URL at any depth with 404.html, so its links
+   must come from the site root: the head script writes them so (the
+   repository subpath on *.github.io, "/" elsewhere), and staging points the
+   JavaScript-off copy and the home links there (lib/stage-404.mjs). At
+   /404.html, where the runs above open it, a relative link and a root one
+   land on the same file, so these runs open it two folders down: here (this
+   server answers with 404.html, as the hosts do) and on an emulated GitHub
+   Pages under its repository subpath (BASE's host routed to this checkout:
+   the published files, the staged 404.html with status 404 for anything
+   else), with JavaScript on and off. Each must load the three stylesheets
+   from <root>assets/, request nothing under the missing folder, have every
+   link lead to <root>, and paint with the theme's tokens. The page's own
+   404 is the one failed request expected. */
+const PUBLISHED=new Set(deployFiles());
+const pagesRoot=new URL(BASE).pathname;
+const nested404=async(label,{site,path,js=true,theme,lang})=>{
+  if(ONLY&&!ONLY.test(label))return;
+  const emulate=site.startsWith(BASE);
+  const ctx=await b.newContext({viewport:{width:1280,height:900},javaScriptEnabled:js});
+  if(emulate){
+    const staged=stage404(readFileSync(join(ROOT,'404.html'),'utf8'),pagesRoot);
+    await ctx.route(()=>true,r=>{
+      const u=new URL(r.request().url());
+      if(u.origin!==new URL(BASE).origin)return r.abort();
+      if(!u.pathname.startsWith(pagesRoot))return r.fulfill({status:404,body:''});
+      let rel=decodeURIComponent(u.pathname.slice(pagesRoot.length));
+      if(rel===''||rel.endsWith('/'))rel+='index.html';
+      return PUBLISHED.has(rel)?r.fulfill({status:200,path:join(ROOT,rel)}):r.fulfill({status:404,contentType:'text/html',body:staged});
+    });
+  }
+  const p=await ctx.newPage();
+  const W=await watch(p);
+  const reqs=[];p.on('request',r=>reqs.push(r.url()));
+  if(theme||lang)await p.addInitScript(([t,l])=>{if(t)localStorage.setItem('numidea-theme',t);if(l)localStorage.setItem('numidea-lang',l)},[theme,lang]);
+  const doc=site+path;
+  await p.goto(doc,{waitUntil:'networkidle'});
+  const m=await p.evaluate(()=>({sheets:[...document.styleSheets].map(s=>s.href).filter(Boolean),links:[...document.querySelectorAll('a[href]')].map(a=>a.href),
+    ice:getComputedStyle(document.documentElement).getPropertyValue('--ice').trim(),font:getComputedStyle(document.querySelector('.mark')).fontFamily}));
+  await ctx.close();
+  const root=site;   // each run's site is its root
+  const folder=new URL('.',doc).href;
+  const issues=[],act=[];
+  if(m.sheets.length!==3||m.sheets.some(h=>!h.startsWith(root+'assets/')))act.push('stylesheets '+JSON.stringify(m.sheets.map(h=>h.replace(/\?.*/,''))));
+  const under=reqs.filter(u=>u.startsWith(folder)&&u.split(/[?#]/)[0]!==doc.split(/[?#]/)[0]);
+  if(under.length)act.push('requested under the missing folder: '+[...new Set(under.map(u=>u.replace(folder,'')))].join(', '));
+  const off=m.links.filter(h=>h!==root);if(off.length||!m.links.length)act.push('links '+JSON.stringify(m.links));
+  if(!m.ice)act.push('no theme tokens (unstyled; .mark in '+m.font+')');
+  // the document's own 404 is expected; any other failed request is not (and
+  // the console line each 404 adds is already counted as a request)
+  const bad=W.bad.filter(x=>x!=='404 '+short(doc));
+  const errs=W.errs.filter(t=>!/^Failed to load resource: the server responded with a status of 404/.test(t));
+  if(act.length)issues.push('act');if(bad.length)issues.push('net');if(errs.length)issues.push('js');if(W.csp.length)issues.push('csp');
+  if(issues.length)fails++;
+  rows.push({label,issues});
+  console.log((issues.length?'FAIL ':'  ok ')+label.padEnd(26),`root ${root.replace(/^https?:\/\/[^/]+/,'')}  sheets ${m.sheets.length}  links ${m.links.length}  requests under the folder ${under.length}  js ${errs.length}  net ${bad.length}  csp ${js?W.csp.length:'n/a (no JS)'}`);
+  if(act.length)console.log('      act:',act.join(' | '));
+  if(bad.length)console.log('      net:',bad.join(' | '));
+  if(errs.length)console.log('       js:',errs.join(' | '));
+  if(W.csp.length)console.log('      csp:',W.csp.join(' | '));
+};
+
 /* ---------------- the throttled phone ---------------- */
 // Lighthouse's mobile emulation and its DevTools-applied "Slow 4G"
 const SLOW4G={offline:false,latency:562.5,downloadThroughput:1474.56*1024/8,uploadThroughput:675*1024/8};
@@ -321,6 +394,12 @@ await run('index arcanum/ar 1024','/index.html',{theme:'arcanum',lang:'ar',w:102
 await run('index arcanum/fr 844×390','/index.html',{theme:'arcanum',lang:'fr',w:844,h:390,touch:true});
 await run('index arcanum/ar 844×390','/index.html',{theme:'arcanum',lang:'ar',w:844,h:390,touch:true});
 await run('404 844×390','/404.html',{w:844,h:390,touch:true});
+console.log('— 404 two folders down —');
+await nested404('404 nested noir/ar',{site:B+'/',path:'a/b/missing?lang=ar',theme:'noir'});
+if(!REMOTE){
+  await nested404('404 pages nested fr',{site:BASE,path:'a/b/missing?lang=fr'});
+  await nested404('404 pages nested no-JS',{site:BASE,path:'a/b/c/nope.html',js:false});
+}
 console.log(`— throttled phone: 412×823, CPU 4×, Slow 4G, cold cache (timing targets ${PHONE_STRICT?'strict':'report-only'}) —`);
 await phone('throttled index fr','/index.html',{lang:'fr',to:'ar'});
 await phone('throttled index ar','/index.html',{lang:'ar',to:'fr'});

@@ -285,6 +285,27 @@ for (const f of PAGES) {
 }
 if (lf(read('sitemap.xml')) !== lf(renderSitemap())) problems.push('sitemap.xml is stale (run: npm run build)');
 problems.length ? problems.forEach(bad) : ok(`deploy set covers every page and link (${DEPLOY.length} entries); sitemap current`);
+// 404.html is served at any depth. Staging gives the published copy its
+// JavaScript-off links (the <noscript> copy, the home links) from the site
+// root (scripts/lib/stage-404.mjs): that must still find what it rewrites,
+// leave nothing relative outside the scripts, and change no script, or the
+// CSP hashes would stop matching on the host.
+{
+  const { stage404 } = await import('./lib/stage-404.mjs');
+  const { scripts } = await import('./lib/csp.mjs');
+  const src = read('404.html'), code = (h) => scripts(h).map((x) => x.text).join('\0');
+  const markup = (h) => h.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<!--[\s\S]*?-->/g, '');
+  const errs = [];
+  for (const root of [...new Set([new URL(BASE).pathname, '/'])]) {
+    let out;
+    try { out = stage404(src, root); } catch (e) { errs.push(e.message); continue; }
+    if (code(out) !== code(src)) errs.push(`staging for ${root} changes an inline script`);
+    const rel = [...markup(out).matchAll(/\bhref="(?!https?:|\/|#|mailto:)([^"]*)"/g)].map((m) => m[1]);
+    if (rel.length) errs.push(`staged for ${root}, 404.html still has relative links: ${rel.join(', ')}`);
+  }
+  errs.length ? bad('404.html staging: ' + errs.join('; '))
+    : ok(`404.html stages with its JavaScript-off links from the site root (${new URL(BASE).pathname} on Pages, / on the mirrors)`);
+}
 // One canonical per page, from one place. index.html, scene/ and legal/ set
 // theirs in the head script, because each language version names itself
 // (?lang=en is its own URL); a static <link rel="canonical"> back in their
