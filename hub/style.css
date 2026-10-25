@@ -372,6 +372,10 @@ html:not([data-theme]) .theme-pill{display:none}
 /* ============================= MOTION-SAFE ============================= */
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto}
+  /* html by name: the html{scroll-behavior:smooth} rule above outranks the
+     universal selector, and the viewport scrolls the way html says (the skip
+     link, the hero's scroll cue and focus scrolling all glided) */
+  html{scroll-behavior:auto}
   .cy-caret{opacity:1}
   [data-reveal],.reveal-armed [data-reveal]{opacity:1;transform:none;transition:none}
   [data-depth],[data-parallax]{transform:none}

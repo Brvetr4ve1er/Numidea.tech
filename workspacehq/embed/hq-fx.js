@@ -122,6 +122,10 @@ window.HQFx = (function () {
     if (!opts.pet) return;
     const dt = Math.min(50, t - (pet.last || t)); pet.last = t;
     const W = innerWidth, floor = opts.floor();
+    // reduced motion (the OS setting, or the page's PAUSE MOTION) stops Bit
+    // walking on his own, a walk already under way included; a drag still
+    // moves him, since the visitor does that
+    if (pet.mode === 'walk' && opts.reduce) { pet.mode = 'idle'; pet.target = null; pet.until = t + 1500; }
     if (pet.mode === 'walk') {
       pet.x += pet.dir * .04 * dt;
       if (pet.x < 10) { pet.x = 10; pet.dir = 1; } if (pet.x > W - 50) { pet.x = W - 50; pet.dir = -1; }
@@ -131,6 +135,7 @@ window.HQFx = (function () {
     } else if (pet.mode === 'idle') {
       if (t > pet.until) {
         if (t - lastInteract > 40000) { pet.mode = 'sleep'; }
+        else if (opts.reduce) { if (Math.random() < .3) { pet.mode = 'look'; pet.until = t + 1600; } else pet.until = t + 1500 + Math.random() * 3500; }
         else { const r = Math.random(); if (r < .3 && px > 0) { pet.mode = 'walk'; pet.target = px - 18; pet.dir = pet.target > pet.x ? 1 : -1; pet.until = t + 6000; if (Math.random() < .4) say(['Hi!', 'What are we doing?', 'Ooh.', '♪'][Math.floor(Math.random() * 4)], 1400); } else if (r < .45) { pet.mode = 'look'; pet.until = t + 1600; } else { pet.mode = 'walk'; pet.target = null; pet.dir = Math.random() < .5 ? -1 : 1; pet.until = t + 2000 + Math.random() * 5000; } }
       }
     } else if (pet.mode === 'cheer') {
@@ -163,7 +168,7 @@ window.HQFx = (function () {
     if (opts.mood === 'nervous' && t > pet.nextSweat && !opts.reduce) { pet.nextSweat = t + 2600 + Math.random() * 2000; pet.drop.animate([{ opacity: 0, transform: 'translateY(0)' }, { opacity: 1, offset: .2 }, { opacity: 0, transform: 'translateY(10px)' }], { duration: 1100, easing: 'ease-in' }); pet.body.animate([{ translate: '0 0' }, { translate: '1px 0' }, { translate: '-1px 0' }, { translate: '0 0' }], { duration: 240, iterations: 2 }); }
     if (opts.mood === 'sleepy' && pet.mode === 'idle' && t - lastInteract > 12000) pet.mode = 'sleep';
     pet.cape.style.display = (opts.level || 0) >= 7 ? 'block' : 'none';
-    pet.z.style.opacity = pet.mode === 'sleep' ? (.5 + .5 * Math.sin(t / 420)) : 0;
+    pet.z.style.opacity = pet.mode === 'sleep' ? (opts.reduce ? .8 : .5 + .5 * Math.sin(t / 420)) : 0;
   }
   addEventListener('pointermove', e => { px = e.clientX; });
   function onDown(e) {

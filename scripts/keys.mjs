@@ -54,7 +54,13 @@
  *                 handler writes at once is the page following the scroll),
  *                 no frame (the embeds included) has such an animation
  *                 running afterwards, and each embedded player, on screen
- *                 and loaded, does not advance its playhead in 2s
+ *                 and loaded, does not advance its playhead in 2s. A jump
+ *                 lands at once: html and body are not scroll-behavior:
+ *                 smooth, and Enter on the skip link moves scrollY in one
+ *                 step. On workspacehq/ (desktop) the live console is booted
+ *                 and its sidekick Bit stays where he is for 8s; one more run
+ *                 does the same with no OS preference and the page's PAUSE
+ *                 MOTION button pressed
  *  direction      ?lang=ar gives html dir="rtl" lang="ar" on every page that
  *                 has Arabic, and still does after the language hold's 1.5s
  *                 fallback; the English-only pages stay ltr
@@ -134,13 +140,23 @@ const HELPERS = () => {
   };
 };
 
+/* The booted console's template (embed/console.html, as the design tool
+   exports it) holds SVG attributes like points="{{ t.pts }}" that its runtime
+   fills in; Chrome logs each one as an error first. Waived for that file and
+   that message only, as audit.mjs waives them. */
+const WAIVED = [[/\/workspacehq\/embed\/console\.html$/, /^Error: <\w+> attribute [\w:-]+: Expected (number|length), "\{\{/]];
+
 async function open(w, h, opts = {}) {
   const touch = w < 600;
   const ctx = await b.newContext({ viewport: { width: w, height: h }, hasTouch: touch, isMobile: touch, ...opts });
   const p = await ctx.newPage();
   const errs = [], csp = [];
   p.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
-  p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text().slice(0, 120)); });
+  p.on('console', (m) => {
+    if (m.type() !== 'error') return;
+    const at = (m.location().url || '').split(/[?#]/)[0];
+    if (!WAIVED.some(([f, r]) => f.test(at) && r.test(m.text()))) errs.push(m.text().slice(0, 120));
+  });
   await watchCsp(p, (u, v) => csp.push((u.replace(B, '').split(/[?#]/)[0] || '/') + ': ' + v));
   await p.addInitScript(HELPERS);
   return { p, errs, csp, close: () => ctx.close() };
@@ -483,6 +499,34 @@ async function embeds(p, w, h) {
   return { bad, note: 'embeds' };
 }
 
+/* workspacehq/'s live console, booted: its sidekick Bit (embed/hq-fx.js)
+   holds still while motion is off, whether by the OS setting or by the
+   page's PAUSE MOTION button. He is moved by script, which no CSS rule
+   reaches, and once walked the screen on his own with both. The pointer is
+   kept outside the frame, so nothing invites him to follow it. */
+async function bitHolds(p) {
+  await p.locator('#bootDemo').scrollIntoViewIfNeeded();
+  await p.click('#bootDemo');
+  let f;
+  try {
+    f = await (await p.waitForSelector('#demoStage iframe', { timeout: 5000 })).contentFrame();
+    await f.waitForLoadState('load', { timeout: 30000 });
+    await f.waitForFunction(() => /workspace-hq/.test(document.body.innerText) && !/\{\{/.test(document.body.innerText), null, { timeout: 20000 });
+  } catch { return { bad: ['the console did not boot'], note: 'bit ?' }; }
+  await p.mouse.move(2, 2);
+  // Bit's next move is a random draw; these draws would each send him walking
+  // if nothing held him, so the watch decides the same way every run
+  await f.evaluate(() => { const seq = [0.9, 0.6, 0.75, 0.95, 0.5]; let i = 0; Math.random = () => seq[i++ % seq.length]; });
+  const at = [];
+  for (let i = 0; i < 32; i++) {
+    at.push(await f.evaluate(() => { const e = document.querySelector('[title="Bit · click or drag me"]'); return e ? e.style.transform || 'none' : null; }));
+    await wait(250);
+  }
+  if (at.includes(null)) return { bad: ['Bit is not in the booted console'], note: 'bit ?' };
+  const seen = [...new Set(at)];
+  return { bad: seen.length > 1 ? [`Bit moves with motion off: ${seen.slice(0, 4).join(' → ')}${seen.length > 4 ? ' …' : ''} in 8s`] : [], note: `bit held ${seen.length === 1 ? 'still' : 'NOT'}` };
+}
+
 async function direction(p, spec, lang, when) {
   const d = await p.evaluate(() => ({ dir: document.documentElement.getAttribute('dir') || 'ltr', lang: document.documentElement.getAttribute('lang'), css: getComputedStyle(document.body).direction }));
   const has = spec.langs.includes(lang);
@@ -565,6 +609,25 @@ for (const f of pages) {
     for (const a of anim) bad.push('still running: ' + a);
     const moved = (what, list) => { if (list.length) bad.push(what + list.slice(0, 5).map(([k, n]) => k + ' ×' + n).join(', ') + (list.length > 5 ? ' +' + (list.length - 5) : '')); };
     moved('script still moving things: ', mut);
+    // A jump the page asks for lands at once. The viewport scrolls the way
+    // html's scroll-behavior says, so 'smooth' there glides the skip link,
+    // every #anchor and focus scrolling (hub/'s reduced-motion rule once lost
+    // to its own html{scroll-behavior:smooth} on specificity). Read, then
+    // tried: Enter on the skip link, scrollY sampled every frame.
+    const sb = await p.evaluate(() => [document.documentElement, document.body].map((e) => getComputedStyle(e).scrollBehavior));
+    if (sb.includes('smooth')) bad.push(`scroll-behavior is smooth with reduced motion on (html ${sb[0]}, body ${sb[1]})`);
+    let jump = '';
+    if (!spec.noSkip) {
+      await p.keyboard.press('Tab'); await wait(100);
+      const skip = await p.evaluate(() => { const a = document.activeElement; return !!a && a.tagName === 'A' && (a.getAttribute('href') || '')[0] === '#'; });
+      if (skip) {
+        await p.keyboard.press('Enter');
+        const ys = await p.evaluate(() => new Promise((res) => { const ys = [Math.round(scrollY)]; const f = () => { ys.push(Math.round(scrollY)); if (ys.length < 40) requestAnimationFrame(f); else res(ys); }; requestAnimationFrame(f); }));
+        const n = new Set(ys).size;
+        if (n > 2) bad.push(`the skip link glides: scrollY took ${n} values in ${ys.length} frames (${ys.slice(0, 5).join(', ')} … ${ys[ys.length - 1]})`);
+        jump = `  skip jump ${n > 2 ? 'glides' : 'at once'} (to ${ys[ys.length - 1]})`;
+      }
+    }
     // Then the rest of the page, which only a scroll reaches (count-ups,
     // parallax, reveals and lazy players start there): one viewport at a
     // time, each held 400ms. What a scroll handler writes in the first 150ms
@@ -606,7 +669,12 @@ for (const f of pages) {
       if (adv.length) bad.push('a player is playing with reduced motion on: ' + adv.map((k) => `${k} ${t0[k] || 0} → ${t1[k]}`).join(', '));
       else held++;
     }
-    report(`${name(f)} ${lang} ${w} rm`, [{ bad, note: `reveals ${rv.n - rv.hidden.length}/${rv.n} shown  anim ${anim.length}  moved ${mut.length}  scrolled ${sc.n}×vh: moved ${sc.moved.length}, anim ${fanim.length} in ${p.frames().length} frame(s)` + (players.length ? `  players held ${held}/${players.length}` : '') }], errs, csp);
+    const nPlayers = players.length;
+    // workspacehq/: the live console booted, Bit holds still (on desktop: the
+    // console is the same script at every width)
+    const bit = spec.tests.includes('embeds') && w > 600 ? await bitHolds(p) : null;
+    if (bit) bad.push(...bit.bad);
+    report(`${name(f)} ${lang} ${w} rm`, [{ bad, note: `reveals ${rv.n - rv.hidden.length}/${rv.n} shown  anim ${anim.length}  moved ${mut.length}${jump}  scrolled ${sc.n}×vh: moved ${sc.moved.length}, anim ${fanim.length} in ${p.frames().length} frame(s)` + (nPlayers ? `  players held ${held}/${nPlayers}` : '') + (bit ? '  ' + bit.note : '') }], errs, csp);
     await close();
   }
 }
@@ -619,6 +687,17 @@ for (const f of pages) {
   await wait(1700);                 // past the generated pages' 1.5s hold fallback
   const bad = await direction(p, spec, 'ar', '?lang=ar');
   report(`${name(f)} ?lang=ar`, [{ bad, note: spec.langs.includes('ar') ? 'rtl' : 'ltr, ' + spec.only }], errs, csp);
+  await close();
+}
+// workspacehq/'s own PAUSE MOTION button, with no OS preference: the same hold
+if (pages.includes('workspacehq/index.html')) {
+  const { p, errs, csp, close } = await open(1280, 900);
+  await p.goto(url('workspacehq/index.html', 'en'), { waitUntil: 'networkidle' });
+  await p.click('#motionBtn');
+  const pressed = await p.evaluate(() => document.querySelector('#motionBtn').getAttribute('aria-pressed') === 'true');
+  const bit = await bitHolds(p);
+  if (!pressed) bit.bad.unshift('PAUSE MOTION is not pressed after a click');
+  report('workspacehq/ 1280 pause', [bit], errs, csp);
   await close();
 }
 
