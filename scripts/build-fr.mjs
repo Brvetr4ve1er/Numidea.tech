@@ -12,6 +12,8 @@
  *   - every data-i18n element's inner HTML,
  *   - every data-i18n-ph / -aria / -alt attribute's placeholder / aria-label / alt,
  *   - <title> and the meta description,
+ *   - the studio's ProfessionalService JSON-LD description (= meta.desc, as
+ *     applyLang() sets it for the visitor's language),
  *   - the FAQPage JSON-LD (script#ld-faq), built by faqLd() exactly as
  *     applyLang() rebuilds it for the visitor's language.
  */
@@ -53,6 +55,17 @@ export function bakeFr(html, fr = loadDicts().fr) {
   }
   html = between(html, /(<title>)[^<]*(<\/title>)/, toMarkup(fr.title));
   html = between(html, /(<meta name="description" content=")[^"]*(")/, attrEsc(fr['meta.desc']));
+  // the studio's structured data: only its description, written in place
+  let studio = 0;
+  html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g, (all, open, body, close) => {
+    let o; try { o = JSON.parse(body); } catch { return all; }
+    if (o['@type'] !== 'ProfessionalService') return all;
+    studio++;
+    const re = /("description":\s*)"(?:[^"\\]|\\.)*"/;
+    if (!re.test(body)) throw new Error('the ProfessionalService JSON-LD in index.html has no "description"');
+    return open + body.replace(re, (_, key) => key + JSON.stringify(fr['meta.desc'])) + close;
+  });
+  if (studio !== 1) throw new Error(`index.html has ${studio} ProfessionalService JSON-LD blocks (want one)`);
   if (!LD.test(html)) throw new Error('index.html has no <script type="application/ld+json" id="ld-faq">');
   html = between(html, LD, ldText(fr));
   if (missing.length) throw new Error('keys missing from I18N.fr: ' + [...new Set(missing)].join(', '));

@@ -485,7 +485,7 @@ legalErr.length ? bad('legal page: ' + legalErr.join('; '))
 let frStale = '';
 try { frStale = lf(bakeFr(lf(html), DICT.fr)) !== lf(html) ? 'differs' : ''; } catch (e) { frStale = e.message; }
 frStale ? bad('index.html French: ' + (frStale === 'differs' ? 'differs from I18N.fr (run: npm run build)' : frStale))
-  : ok('index.html French and its FAQ structured data equal I18N.fr');
+  : ok("index.html French, its FAQ structured data and the studio's JSON-LD description equal I18N.fr");
 // Client voices: valid (consent recorded, delivered clients only) and the
 // index.html region equals what scripts/build-voices.mjs writes from them.
 const voiceErr = validateVoices();
