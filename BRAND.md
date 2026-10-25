@@ -877,21 +877,46 @@ retainer line, at 4.49:1); the sweep caught hundreds axe's sampling did not.
 
 ## The gates
 
-Six commands, all green before a push:
+Seven commands, all green before a push:
 
 - `npm run check` — `scripts/check.mjs` (repo invariants: i18n balance, asset
   references, stamps, the deploy set and sitemap, prices against
-  `PRICE_MODEL`, legal gating, one contact address) plus
+  `PRICE_MODEL`, legal gating, one contact address; the Content-Security-Policy
+  meta, asset byte budgets, SEO and structured data, blocks 16 to 18) plus
   `scripts/themes-check.mjs` (the theme contract).
 - `npm run validate` — html-validate on every page in `scripts/site.mjs`.
-- `npm run audit` — the browser audit, ~54 runs, desktop and touch: axe, CLS,
-  LCP, overflow, reveals, tap targets, images, animations, JS, network.
+- `npm run audit` — the browser audit, 64 runs on desktop, phone, tablet and
+  landscape: axe, CLS, overflow, reveals, tap targets, images, animations, JS
+  errors, failed and third-party requests, and every Content-Security-Policy
+  violation in every frame. It includes the WorkspaceHQ embeds on their own,
+  a run that boots the live console, and 404.html two folders down (here and
+  on an emulated GitHub Pages, JavaScript on and off). Desktop page runs fail
+  when LCP is over 1.5 s. Last comes a throttled phone (Slow 4G, CPU 4×),
+  whose LCP, long-task and interaction targets are report-only until
+  `AUDIT_PHONE_STRICT=1`.
 - `npm run sweep` — the painted-contrast sweep (above).
 - `npm run vbugs` — the visual bug scan, `scripts/vbugs.mjs` (see "Visual
   pass" below); accepted issues live in `scripts/vbugs-allow.json`, each with
   its reason.
-- `npm run verify` — runs all of the above and does not stop at the first
-  failure, so one run shows everything that is wrong.
+- `npm run keys` — `scripts/keys.mjs`, the keyboard, reduced-motion and
+  direction gate, in French and Arabic, on desktop and a phone: skip link,
+  focus rings, the phone and theme menus, the CV panel, the contact form
+  (errors, the mail hand-off, the lead store's POST with its switch on), the
+  dialogs, nothing moving under reduced motion (smooth scrolling and the
+  booted console's Bit included), and `dir="rtl"` with `?lang=ar`.
+- `npm run verify` — runs all of the above (check, themes, validate, audit,
+  sweep, vbugs, keys) and does not stop at the first failure, so one run
+  shows everything that is wrong.
+
+Two more commands are not gates:
+
+- `npm run csp` — rewrites the CSP meta of the hand-written pages
+  (`scripts/build-csp.mjs`; `-- --check` only reports). It is also the last
+  step of `npm run build`, and check block 16 fails when a page's meta is
+  stale.
+- `npm run links` — every external link answers. It needs the network and
+  depends on other people's servers, so it is not in verify; it runs in the
+  nightly CI job and in `monitor.yml`.
 
 CI is in `.github/workflows/` (README → CI has the table, RELEASE.md maps each
 gate to the release checklist):

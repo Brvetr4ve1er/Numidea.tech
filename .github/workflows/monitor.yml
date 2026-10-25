@@ -21,11 +21,12 @@ name: Live monitor
 #      that target today, so it is held to regression ceilings instead, set
 #      from the 2026-10-24 medians plus a margin (RELEASE.md §5): red means
 #      it got worse, not that it is still short of the target.
-# report — opens ONE issue, "Live monitor failed", when the live job fails,
-#   and comments on it (reopening it if it was closed) on every later failure,
-#   mentioning the repository owner so a notification arrives. When the
-#   monitor is green again it comments and closes the issue. Only this job
-#   can write issues.
+# report — opens ONE issue, "Live monitor failed", mentioning the repository
+#   owner, when the live job fails. Every later failure refreshes its body; it
+#   comments (mentioning the owner) when it reopens a closed issue, and
+#   comments when the set of failing checks changes, so a standing failure
+#   does not notify every six hours. When the monitor is green again it
+#   comments and closes the issue. Only this job can write issues.
 #
 # Every action is pinned to a commit SHA, its version in the comment;
 # Dependabot (.github/dependabot.yml) proposes the updates.
