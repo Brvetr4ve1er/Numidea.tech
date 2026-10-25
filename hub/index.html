@@ -36,6 +36,13 @@
 </head>
 <body>
 
+<!-- Skip link: the first Tab stop on every page of the site (npm run keys).
+     <main> starts with the hero, whose first stop is the breadcrumb, the
+     same stop as without a skip link, so it goes past the hero to the series
+     and says so, as scene/'s goes to its sheets. English only, like the rest
+     of hub/. -->
+<a class="skip" href="#collection">Skip to the series</a>
+
 <!-- One main landmark for the whole page — the hero with the page's <h1>, the
      series, design, social and the archive. It used to wrap the archive only,
      which left most of the page outside it. -->
@@ -104,7 +111,7 @@
      shape of its piece: posters 2:3 (2x3 / 4x6), portraits 1:1, the epilogue
      4x7. Spans per tile are in style.css; tile order is chosen so dense
      auto-placement leaves no holes at 6 columns or at 4. -->
-<section class="coll series" id="collection" aria-labelledby="coll-h">
+<section class="coll series" id="collection" aria-labelledby="coll-h" tabindex="-1">
   <div class="coll-head" data-reveal>
     <p class="eyebrow"><i class="blip"></i> THE SERIES</p>
     <h2 id="coll-h">BR4VETR4VELER<br><span class="acc">A&nbsp;STORY IN 33&nbsp;POSTERS.</span></h2>

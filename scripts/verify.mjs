@@ -6,9 +6,17 @@
  *
  *   check      repository invariants (check.mjs + themes-check.mjs)
  *   validate   html-validate on every page
- *   audit      browser audit: axe, CLS, LCP, overflow, taps, images, loops, network
+ *   audit      browser audit: axe, CLS, LCP, overflow, taps, images, loops, network,
+ *              CSP violations, the WorkspaceHQ embeds and console, a throttled phone
+ *              (LCP, long tasks, interaction latency: report-only targets until the
+ *              home page meets them; AUDIT_PHONE_STRICT=1 npm run verify fails on them)
  *   sweep      painted-contrast sweep
  *   vbugs      layout scanner
+ *   keys       keyboard paths, focus rings, dialogs, reduced motion, RTL
+ *
+ * Not here: `npm run links` (every external link answers), because it needs
+ * the network and the answer depends on other people's servers; CI runs it
+ * nightly and the live monitor every 6 hours.
  */
 import { spawnSync } from 'node:child_process';
 import { ROOT } from './site.mjs';
@@ -20,6 +28,7 @@ const STEPS = [
   ['audit', ['scripts/audit.mjs']],
   ['sweep', ['scripts/sweep.mjs']],
   ['vbugs', ['scripts/vbugs.mjs']],
+  ['keys', ['scripts/keys.mjs']],
 ];
 const results = [];
 for (const [name, args] of STEPS) {

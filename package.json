@@ -23,6 +23,8 @@
     "validate": "node scripts/validate.mjs",
     "vbugs": "node scripts/vbugs.mjs",
     "verify": "node scripts/verify.mjs",
+    "keys": "node scripts/keys.mjs",
+    "links": "node scripts/links.mjs",
     "kb": "node scripts/build-kb.mjs"
   },
   "devDependencies": {

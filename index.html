@@ -1181,18 +1181,18 @@
             <div class="field">
               <label for="f-name" data-i18n="form.name">Nom</label>
               <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err" data-i18n-ph="form.namePh" placeholder="Votre nom">
-              <span class="err" id="f-name-err"></span>
+              <span class="err" id="f-name-err" aria-live="polite"></span>
             </div>
             <div class="field">
               <label for="f-email" data-i18n="form.email">Email</label>
               <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err" data-i18n-ph="form.emailPh" placeholder="vous@entreprise.com">
-              <span class="err" id="f-email-err"></span>
+              <span class="err" id="f-email-err" aria-live="polite"></span>
             </div>
           </div>
           <div class="field">
             <label for="f-message" data-i18n="form.message">Message</label>
             <textarea id="f-message" name="message" rows="5" required aria-describedby="f-message-err" data-i18n-ph="form.messagePh" placeholder="Qu'est-ce qu'on construit ?"></textarea>
-            <span class="err" id="f-message-err"></span>
+            <span class="err" id="f-message-err" aria-live="polite"></span>
           </div>
           <button type="submit" class="btn btn-primary" data-i18n="form.send">Démarrer un projet →</button>
           <!-- What happens to the message, stated plainly. If the Supabase store is
