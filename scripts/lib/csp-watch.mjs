@@ -9,8 +9,9 @@
  * WorkspaceHQ trailer, walkthrough and booted console, the CV panel, the
  * phone menu, and on the throttled phone the FAQ, estimator, currency and
  * language switches) and keys.mjs (the theme menu, the contact form
- * submitted, hub's lightbox, scene/'s viewer and the embeds, all driven from
- * the keyboard). Each fails a run on any violation.
+ * submitted empty, malformed and valid, the lead store's POST with its switch
+ * on, hub's lightbox, scene/'s viewer and the embeds, all driven from the
+ * keyboard). Each fails a run on any violation.
  *
  *   await watchCsp(page, (frameUrl, what) => list.push(frameUrl + ': ' + what));
  *

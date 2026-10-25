@@ -30,7 +30,16 @@
  *  contact form   (index) submitted empty: every field aria-invalid, focus
  *                 on the first, each field's aria-describedby names a polite
  *                 live error with text in the page's language; typing clears
- *                 a field's error; a malformed email gets its own message
+ *                 a field's error; a malformed email gets its own message.
+ *                 Then submitted valid: the browser is asked to open a
+ *                 mailto: URL to the form's own address, with the subject and
+ *                 a body ending in the page's language; the form gives way
+ *                 to the success panel, which takes focus; its "edit" button
+ *                 brings the form back, still filled in, focus in the message
+ *  lead store     (index, one run) the Supabase switch turned on in a copy of
+ *                 index.html served in its place, its policy rebuilt by
+ *                 withCsp: connect-src names the store, and a valid submit
+ *                 sends one POST to /rest/v1/leads with no CSP violation
  *  dialogs        hub's lightbox and scene/'s capture viewer open with Enter,
  *                 close with Escape and give focus back; Tab never leaves
  *                 them for the page behind; the lightbox's arrows follow the
@@ -67,8 +76,9 @@
  * A JS error during a run fails it, and so does any Content-Security-Policy
  * violation, from any frame (lib/csp-watch.mjs, shared with audit.mjs). This
  * gate holds the CSP proof for what only it drives: the theme menu, the
- * contact form submitted, hub's lightbox, scene/'s viewer and the embeds
- * taking focus; audit.mjs holds it for page loads, the CV panel, the phone
+ * contact form submitted (its validation, the mail hand-off and, with the
+ * switch on, the lead store's POST), hub's lightbox, scene/'s viewer and the
+ * embeds taking focus; audit.mjs holds it for page loads, the CV panel, the phone
  * menu, the booted WorkspaceHQ console and the throttled phone's FAQ,
  * estimator, currency and language switches. Optional arg: only the pages
  * whose name contains it (`npm run keys -- hub`; the home page is `index`).
@@ -88,10 +98,11 @@
  *  - images that finish loading after `load` add a class: the reduced-motion
  *    watch starts once the network is idle, or that reads as motion
  */
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { serve, launch } from './lib/serve.mjs';
 import { watchCsp } from './lib/csp-watch.mjs';
+import { withCsp } from './lib/csp.mjs';
 import { ROOT, PAGES } from './site.mjs';
 
 /* langs: the languages a page has (`only`: why it has just one); tests: its
@@ -399,7 +410,45 @@ async function contactForm(p, lang) {
   if (!s[1].focused) bad.push('with only the email wrong-ish, focus is not on f-email (on ' + s[1].a + ')');
   if (s[1].inv !== 'true' || !s[1].text || s[1].text === emptyEmail) bad.push('a malformed email does not get its own error');
   if (s[2].inv !== 'true') bad.push('the empty message is no longer flagged');
-  return { bad, note: 'form' };
+  // A valid submit: the lead goes to the visitor's mail app (the page asks the
+  // browser to open a mailto: URL to the form's own address, which a test
+  // browser refuses; CDP still reports the request), the form gives way to
+  // the success panel, which takes focus, and "Revoir mon message" brings the
+  // form back, still filled in, with focus in the message.
+  const to = await p.evaluate(() => (document.getElementById('contact-form').getAttribute('action') || '').replace(/^mailto:/, ''));
+  const cdp = await p.context().newCDPSession(p);
+  await cdp.send('Page.enable');
+  const navs = [];
+  cdp.on('Page.frameRequestedNavigation', (e) => navs.push(e.url));
+  await p.fill('#f-email', 'ada@example.com');
+  await p.focus('#f-message'); await p.keyboard.type('Bonjour');
+  await submit(); await wait(400);
+  const ok = await p.evaluate(() => {
+    const f = document.getElementById('contact-form'), s = document.querySelector('.form-success');
+    return { gone: getComputedStyle(f).display === 'none', show: !!s && s.classList.contains('show') && s.getClientRects().length > 0,
+      focused: !!s && document.activeElement === s, a: __d(document.activeElement) };
+  });
+  if (!ok.gone) bad.push('a valid submit leaves the form on screen');
+  if (!ok.show) bad.push('a valid submit does not show the success panel');
+  if (!ok.focused) bad.push('after a valid submit focus is on ' + ok.a + ', not on the success panel');
+  const mail = navs.find((u) => u.startsWith('mailto:'));
+  if (!to.includes('@')) bad.push('the form has no mailto: action to compare the hand-off with');
+  else if (!mail) bad.push('a valid submit does not hand the lead to a mail app (no mailto: navigation)');
+  else {
+    const m = new URL(mail), subject = m.searchParams.get('subject') || '', body = m.searchParams.get('body') || '';
+    if (decodeURIComponent(m.pathname) !== to) bad.push('the hand-off goes to ' + m.pathname + ', not to the form\'s address');
+    if (subject !== 'Numidea Labs · Test') bad.push('the hand-off\'s subject is "' + subject + '"');
+    if (!body.startsWith('Test <ada@example.com>') || !body.includes('Bonjour') || !body.includes('numidealabs · ' + lang)) bad.push('the hand-off\'s body is "' + body.slice(0, 80).replace(/\n/g, '⏎') + '"');
+  }
+  await cdp.detach();
+  if (ok.show) {
+    await p.focus('#form-edit'); await p.keyboard.press('Enter'); await wait(150);
+    const back = await p.evaluate(() => ({ shown: getComputedStyle(document.getElementById('contact-form')).display !== 'none',
+      onMsg: document.activeElement === document.getElementById('f-message'), a: __d(document.activeElement), kept: document.getElementById('f-message').value }));
+    if (!back.shown || !back.onMsg) bad.push('"edit" does not bring the form back with focus in the message (focus on ' + back.a + ')');
+    if (back.kept !== 'Bonjour') bad.push('the form comes back without the message typed');
+  }
+  return { bad, note: 'form' + (mail ? ' → mailto' : '') };
 }
 
 async function dialog(p, kind) {
@@ -571,6 +620,38 @@ for (const f of pages) {
   }
 }
 
+/* The lead store (window.NUMIDEA_SUPABASE_URL in index.html; off on the site
+   today). With the switch on, lib/csp.mjs adds that one origin to
+   connect-src, and a valid submit POSTs the lead there before the mail
+   hand-off. Proven on a copy of index.html served in its place, with the
+   switch on and the policy rebuilt by withCsp, the store answered here. */
+const STORE = 'https://abcdefghijklmnop.supabase.co';
+if (pages.includes('index.html')) {
+  const src = readFileSync(join(ROOT, 'index.html'), 'utf8');
+  const on = src.replace('window.NUMIDEA_SUPABASE_URL = "";', `window.NUMIDEA_SUPABASE_URL = "${STORE}";`)
+    .replace('window.NUMIDEA_SUPABASE_KEY = "";', 'window.NUMIDEA_SUPABASE_KEY = "test-key";');
+  const bad = [];
+  if (!on.includes(STORE) || !on.includes('"test-key"')) bad.push('the lead-store switch (window.NUMIDEA_SUPABASE_URL = "", _KEY = "") was not found in index.html');
+  const html = withCsp(on, 'page');
+  const { p, errs, csp, close } = await open(1280, 900);
+  const posts = [];
+  const cors = { 'access-control-allow-origin': B, 'access-control-allow-methods': 'POST', 'access-control-allow-headers': 'content-type, apikey, authorization' };
+  await p.route((u) => u.origin === B && (u.pathname === '/' || u.pathname === '/index.html'), (r) => r.fulfill({ status: 200, contentType: 'text/html', body: html }));
+  await p.route(STORE + '/**', (r) => {
+    if (r.request().method() === 'POST') posts.push(r.request().url().replace(STORE, ''));
+    return r.fulfill({ status: r.request().method() === 'POST' ? 201 : 204, headers: cors, body: '' });
+  });
+  await p.goto(url('index.html', 'fr'), { waitUntil: 'networkidle' });
+  const policy = await p.evaluate(() => (document.querySelector('meta[http-equiv="Content-Security-Policy"]') || {}).content || '');
+  if (!policy.includes(`connect-src 'self' ${STORE};`)) bad.push('the policy served does not open connect-src to the store');
+  await p.fill('#f-name', 'Test'); await p.fill('#f-email', 'ada@example.com'); await p.fill('#f-message', 'Bonjour');
+  await p.focus('#contact-form [type="submit"]'); await p.keyboard.press('Enter');
+  for (let t = 0; t < 20 && !posts.length; t++) await wait(100);
+  if (posts.length !== 1 || posts[0] !== '/rest/v1/leads') bad.push('a valid submit sent ' + (posts.length ? posts.join(', ') : 'no POST') + ' to the store, not one POST to /rest/v1/leads');
+  report('index lead store', [{ bad, note: `store POST ${posts.length}` }], errs, csp);
+  await close();
+}
+
 // running animations in a frame that are infinite or have over 1s left
 const running = (fr) => fr.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running').map((a) => {
   const t = a.effect.getComputedTiming();
@@ -678,17 +759,6 @@ for (const f of pages) {
     await close();
   }
 }
-
-console.log('— direction: ?lang=ar on every page —');
-for (const f of pages) {
-  const spec = SPEC[f]; if (!spec) continue;
-  const { p, errs, csp, close } = await open(1280, 900);
-  await p.goto(B + '/' + f.replace(/index\.html$/, '') + '?lang=ar', { waitUntil: 'load' });
-  await wait(1700);                 // past the generated pages' 1.5s hold fallback
-  const bad = await direction(p, spec, 'ar', '?lang=ar');
-  report(`${name(f)} ?lang=ar`, [{ bad, note: spec.langs.includes('ar') ? 'rtl' : 'ltr, ' + spec.only }], errs, csp);
-  await close();
-}
 // workspacehq/'s own PAUSE MOTION button, with no OS preference: the same hold
 if (pages.includes('workspacehq/index.html')) {
   const { p, errs, csp, close } = await open(1280, 900);
@@ -698,6 +768,17 @@ if (pages.includes('workspacehq/index.html')) {
   const bit = await bitHolds(p);
   if (!pressed) bit.bad.unshift('PAUSE MOTION is not pressed after a click');
   report('workspacehq/ 1280 pause', [bit], errs, csp);
+  await close();
+}
+
+console.log('— direction: ?lang=ar on every page —');
+for (const f of pages) {
+  const spec = SPEC[f]; if (!spec) continue;
+  const { p, errs, csp, close } = await open(1280, 900);
+  await p.goto(B + '/' + f.replace(/index\.html$/, '') + '?lang=ar', { waitUntil: 'load' });
+  await wait(1700);                 // past the generated pages' 1.5s hold fallback
+  const bad = await direction(p, spec, 'ar', '?lang=ar');
+  report(`${name(f)} ?lang=ar`, [{ bad, note: spec.langs.includes('ar') ? 'rtl' : 'ltr, ' + spec.only }], errs, csp);
   await close();
 }
 
