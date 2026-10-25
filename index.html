@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-iL/oT87UXWjhA/IJHP9+anLP2YRWMvNe+cT7XVC2aBM=' 'sha256-3WBywRlZXeBx2txIhlv+QB17s6KxacD1amoKZfrk7Js='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-SbHkbq4lOsxXGH0szow9D+PPYC1l6hzp6xB0KWnu5M8=' 'sha256-3WBywRlZXeBx2txIhlv+QB17s6KxacD1amoKZfrk7Js='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Numidea Labs — Sites web sur mesure en français, anglais et arabe</title>
 <meta name="description" content="Studio web et logiciel à Bordj Bou Arréridj, Algérie. On conçoit, on code, on livre et on suit vos sites et applications, en français, anglais et arabe.">
 <meta name="theme-color" content="#0A1420">
@@ -179,8 +179,12 @@
     var faces = lang === 'ar'
       ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-600-arabic', 'ibm-plex-sans-arabic-600-latin', 'geist-mono-400-latin', 'geist-600-latin']
       : ['geist-400-latin', 'geist-mono-400-latin', 'geist-600-latin'].concat(HEAD[th] !== 'geist-600-latin' ? [HEAD[th]] : []);
+    /* \x3c, not a literal "<": on a slow phone Chrome's parser sometimes
+       read the raw '<link … href="…' + f + '…">' string in this script as a
+       tag and fetched that URL unevaluated (a 404 that failed the throttled
+       audit run) */
     document.write(faces.map(function (f) {
-      return '<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/' + f + '.woff2">';
+      return '\x3clink rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/' + f + '.woff2">';
     }).join(''));
   })();
 </script>
