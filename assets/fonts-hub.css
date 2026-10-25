@@ -2,8 +2,10 @@
    the site. Loaded render-blocking here because they are same-origin now;
    as a Google link this had to be media="print" to avoid holding the page.
    Trimmed to latin and latin-ext: hub sets no Greek or Vietnamese.
-   font-display:optional, same as the main sheet — a face that misses its
-   deadline is simply not used on that load, so it can never reflow the page.
+   font-display:optional — a face that misses its deadline is simply not used
+   on that load, so it can never reflow the page. (The main sheet swaps: its
+   theme and language switches ask for faces after load, which optional would
+   never show.)
    OFL-1.1, see assets/fonts/OFL.txt. */
 
 /* Space Mono 400 — latin-ext */

@@ -2,7 +2,7 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 64 runs over every page (site.mjs PAGES): index.html in all six themes x
+ * 76 runs over every page (site.mjs PAGES): index.html in all six themes x
  * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; scene/ in each
  * language on desktop and phone; 404 in two themes in Arabic; hub/ in both of
  * its palettes; tablet (768x1024, 1024x768) and short landscape (844x390);
@@ -25,6 +25,13 @@
  * scripts/lib/stage-404.mjs stages it). Its three stylesheets must come from
  * the site root, nothing may be requested under the missing folder, every
  * link must lead to the site root, and the theme's tokens must apply.
+ *
+ * Then the first screen in fallback type: index.html in every theme, in
+ * French and in English, loaded once with every webfont file refused and once
+ * with the faces, at seven widths from 360 to 1600. A text block in the first
+ * screen that is taller or shorter in one than in the other fails: on a real
+ * connection that is the reflow a visitor sees when the face lands, which a
+ * local run's CLS cannot (the faces arrive before the first paint here).
  *
  * Then a throttled phone: index.html in French and in Arabic on Lighthouse's
  * mobile profile (412x823 at 1.75x, CPU 4x, Slow 4G as DevTools applies it:
@@ -279,6 +286,45 @@ const nested404=async(label,{site,path,js=true,theme,lang,emulate=false})=>{
   if(W.csp.length)console.log('      csp:',W.csp.join(' | '));
 };
 
+/* ---------------- the first paint in fallback type ----------------
+   On a real connection a webfont can land after the first paint, and the text
+   then reflows from the metric-matched fallback (fonts.css) to the face. Served
+   from this checkout the faces arrive at once, so the CLS above never sees it:
+   Alt-neon's French hero passed here at 0 and failed live at 0.02. So each
+   theme loads twice, once with every webfont file refused (the fallback, as a
+   slow visitor sees it) and once with the faces, and every text block in the
+   first screen must be as tall in both, at seven widths. Arabic is left out:
+   Liberation Sans has no Arabic, so on Linux its fallback is DejaVu Sans and
+   says nothing about Arial on a visitor's machine. */
+const FB_WIDTHS=[360,390,768,1024,1280,1440,1600];
+const fallbackType=async(label,{theme,lang})=>{
+  if(ONLY&&!ONLY.test(label))return;
+  const blocks=async refuse=>{
+    const ctx=await b.newContext({viewport:{width:FB_WIDTHS[0],height:900},reducedMotion:'reduce'});
+    await ctx.addInitScript(([t,l])=>{localStorage.setItem('numidea-theme',t);localStorage.setItem('numidea-lang',l)},[theme,lang]);
+    if(refuse)await ctx.route(/\/assets\/fonts\/[^/?]+\.woff2/,r=>r.abort());
+    const p=await ctx.newPage();
+    await p.goto(B+'/index.html',{waitUntil:'networkidle'});
+    await p.evaluate(()=>document.fonts.ready);
+    const out={};
+    for(const w of FB_WIDTHS){
+      await p.setViewportSize({width:w,height:900});
+      out[w]=await p.evaluate(async()=>{await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+        return [...document.querySelectorAll('body *')].map(e=>{
+          if(![...e.childNodes].some(n=>n.nodeType===3&&n.nodeValue.trim())||getComputedStyle(e).display==='inline'||!e.offsetHeight)return null;
+          return [e.tagName.toLowerCase()+(typeof e.className==='string'&&e.className?'.'+e.className.split(' ')[0]:''),e.offsetHeight,e.getBoundingClientRect().top+scrollY<innerHeight];})});
+    }
+    await ctx.close();return out;
+  };
+  const [fb,face]=[await blocks(true),await blocks(false)];
+  const moved=[];
+  for(const w of FB_WIDTHS)face[w].forEach((y,i)=>{const x=fb[w][i];if(y&&x&&y[2]&&Math.abs(x[1]-y[1])>1)moved.push(`${w}px ${y[0]} ${x[1]}→${y[1]}`)});
+  if(moved.length)fails++;
+  rows.push({label,issues:moved.length?['fallback']:[]});
+  console.log((moved.length?'FAIL ':'  ok ')+label.padEnd(26),`first-screen text blocks that change height when the face lands: ${moved.length} (widths ${FB_WIDTHS.join(', ')})`);
+  if(moved.length)console.log('    moved:',moved.join(' | '));
+};
+
 /* ---------------- the throttled phone ---------------- */
 // Lighthouse's mobile emulation and its DevTools-applied "Slow 4G"
 const SLOW4G={offline:false,latency:562.5,downloadThroughput:1474.56*1024/8,uploadThroughput:675*1024/8};
@@ -401,6 +447,8 @@ if(!REMOTE){
   await nested404('404 pages nested fr',{site:BASE,path:'a/b/missing?lang=fr',emulate:true});
   await nested404('404 pages nested no-JS',{site:BASE,path:'a/b/c/nope.html',js:false,emulate:true});
 }
+console.log('— first paint in fallback type: webfonts refused vs loaded, 360-1600 —');
+for(const t of THEMES)for(const l of ['fr','en'])await fallbackType(`fallback type ${t}/${l}`,{theme:t,lang:l});
 console.log(`— throttled phone: 412×823, CPU 4×, Slow 4G, cold cache (timing targets ${PHONE_STRICT?'strict':'report-only'}) —`);
 await phone('throttled index fr','/index.html',{lang:'fr',to:'ar'});
 await phone('throttled index ar','/index.html',{lang:'ar',to:'fr'});

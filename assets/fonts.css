@@ -1,16 +1,20 @@
-/* font-display is OPTIONAL, not swap. swap guarantees a reflow whenever the face
-   arrives after first paint; optional tells the browser to use the fallback for
-   the entire load if the face misses its deadline, so the page never reflows
-   mid-read. With the files preloaded from the same origin they almost always
-   make the deadline, so this costs nothing in practice.
+/* font-display is SWAP, on purpose. optional would never move the page, but it
+   never swaps a face in after its first ~100 ms either, and this page asks
+   for faces long after load: pick Arcanum from the theme menu and Cinzel is
+   requested then, switch to Arabic and Plex is. Measured 2026-10-25: under
+   optional, a face first used two seconds after load stayed in its fallback
+   for good. So the faces swap, and what keeps the first paint still is the
+   preload in index.html's boot script plus the per-weight metric-matched
+   fallbacks at the end of this file (audit.mjs's fallback-type runs prove it).
+   hub/ has no such switches, so assets/fonts-hub.css stays optional.
 
    Self-hosted webfonts — no third-party request on the critical path.
    Generated from the Google Fonts CSS2 API, then trimmed to the subsets this
    site actually sets type in: latin, latin-ext and arabic. Cyrillic and
    vietnamese were dropped — nothing here is typeset in them.
    unicode-range is preserved, so a visitor reading French never fetches the
-   Arabic files and vice versa. font-display:optional is preserved too: text paints
-   in the fallback immediately and swaps when the face arrives.
+   Arabic files and vice versa. Text paints in the fallback at once and swaps
+   when the face arrives.
    Fonts are OFL-1.1 (see assets/fonts/OFL.txt). */
 
 /* Cinzel 700 — latin-ext */
@@ -303,9 +307,36 @@
    satisfy both, so every `max-width:Nch` moved when the face swapped. Those are
    now em, computed from the intended face's own "0" advance, so the measure is
    identical once Geist loads and no longer depends on which face is resolved.
-   Do not reintroduce `ch` for layout width here. */
-@font-face{font-family:"Cinzel Fallback";src:local("Georgia"), local("Times New Roman"), local("Liberation Serif"), local("DejaVu Serif");size-adjust:134.06%;ascent-override:72.80%;descent-override:27.75%;line-gap-override:0.00%}
-@font-face{font-family:"Cinzel Decorative Fallback";src:local("Georgia"), local("Times New Roman"), local("Liberation Serif"), local("DejaVu Serif");size-adjust:145.66%;ascent-override:67.00%;descent-override:25.54%;line-gap-override:0.00%}
+   Do not reintroduce `ch` for layout width here.
+
+   One fallback face per weight the site sets (2026-10-25). A bold heading
+   drawn from a regular face gets synthetic bold, which keeps the regular
+   advances, and Geist is ~7% wider at 700 than at 400: Alt-neon's French hero
+   wrapped to 4 lines before Geist 700 arrived and 5 after, a 0.02 layout shift
+   on the live site. So Geist 500 has its own regular face, 600 and 700 the
+   real bold of the same local() list, and Cinzel, set only at 700, bold
+   faces only.
+   - Calibrated on the copy set at that weight, against Liberation Sans and
+     Liberation Serif, which have Arial's and Times New Roman's metrics. The
+     two that carry the hero use the hero title's own ratio instead: Geist 700
+     at 101.70% (its other copy is mostly prices, whose digits run 110% and
+     made Noir's hero a line too tall), Cinzel 129.87% and Cinzel Decorative
+     145.63% (the French title's; English runs 125.5% and 139.3%).
+   - Each list holds faces of ONE metric family. The Cinzel list used to start
+     with Georgia, but its size was measured on a machine without Georgia
+     (against Liberation Serif), and Georgia is wider than Times: on Windows
+     and macOS the fallback came out too wide.
+   - Margins, from audit.mjs's fallback-type runs (all six themes, French and
+     English, 360 to 1600 wide, first screen): the hero broke in the same
+     places at every value tried from 101.2% to 102.2% for Geist 700, and from
+     128.4/144.1% to 131.4/147.1% for Cinzel (127.7/142.5% failed). Re-run
+     them after any change to the hero copy or its sizes.
+   Vertical metrics are each face's own, the same at every weight. */
+@font-face{font-family:"Cinzel Fallback";font-weight:700;src:local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Liberation Serif Bold"), local("LiberationSerif-Bold"), local("Tinos Bold"), local("Tinos-Bold");size-adjust:129.87%;ascent-override:75.15%;descent-override:28.64%;line-gap-override:0.00%}
+@font-face{font-family:"Cinzel Decorative Fallback";font-weight:700;src:local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Liberation Serif Bold"), local("LiberationSerif-Bold"), local("Tinos Bold"), local("Tinos-Bold");size-adjust:145.63%;ascent-override:67.02%;descent-override:25.54%;line-gap-override:0.00%}
 @font-face{font-family:"Geist Fallback";src:local("Arial"), local("Helvetica Neue"), local("Liberation Sans"), local("DejaVu Sans");size-adjust:101.92%;ascent-override:98.61%;descent-override:28.94%;line-gap-override:0.00%}
+@font-face{font-family:"Geist Fallback";font-weight:500;src:local("Arial"), local("Helvetica Neue"), local("Liberation Sans"), local("DejaVu Sans");size-adjust:103.95%;ascent-override:96.68%;descent-override:28.37%;line-gap-override:0.00%}
+@font-face{font-family:"Geist Fallback";font-weight:600;src:local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("DejaVu Sans Bold"), local("DejaVuSans-Bold");size-adjust:99.92%;ascent-override:100.58%;descent-override:29.52%;line-gap-override:0.00%}
+@font-face{font-family:"Geist Fallback";font-weight:700;src:local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("DejaVu Sans Bold"), local("DejaVuSans-Bold");size-adjust:101.70%;ascent-override:98.82%;descent-override:29.00%;line-gap-override:0.00%}
 @font-face{font-family:"Geist Mono Fallback";src:local("Courier New"), local("Liberation Mono"), local("DejaVu Sans Mono");size-adjust:99.98%;ascent-override:100.52%;descent-override:29.50%;line-gap-override:0.00%}
 @font-face{font-family:"IBM Plex Sans Arabic Fallback";src:local("Arial"), local("Helvetica Neue"), local("Liberation Sans"), local("DejaVu Sans");size-adjust:89.86%;ascent-override:120.74%;descent-override:46.18%;line-gap-override:0.00%}

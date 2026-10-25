@@ -248,17 +248,35 @@ screenshot of type.
 
 ## The font swap must not move the page
 
-`font-display:optional`, not `swap`, and the above-the-fold faces are preloaded.
-That pairing is what actually removes the shift: preloaded same-origin files
-almost always make the deadline so the page paints in its real type, and when one
-misses, `optional` keeps the fallback for the whole load instead of reflowing
-mid-read. `swap` guarantees a reflow every time a face lands after first paint.
+The main sheet is `font-display:swap`, the faces a visitor's first screen sets
+are preloaded by the boot script, and every weight has a metric-matched
+fallback face. Together they make the swap land without moving anything.
 
-Metric-matched fallback faces back this up for the rare miss — `size-adjust` plus
-ascent/descent/line-gap overrides, computed from the woff2 with fontTools and
-calibrated against an **unadjusted twin** of the same `local()` list. Calibrating
-against a generic stack instead is wrong: `system-ui` and `local("Arial")` resolve
-to different files, which put Geist 12% out and left the hero lede a line short.
+**Why not `optional`.** It would never move the page, but it never swaps a face
+in after its first ~100 ms either, and this page asks for faces long after
+load: the theme menu requests Cinzel when someone picks Arcanum, and the
+language switch requests Plex Arabic. Measured on 2026-10-25, a face first used
+two seconds after load stayed in its fallback for the rest of the visit. Until
+that day this file said the faces were `optional`, but the `@font-face` rules
+had always said `swap`. The claim was never true, and the live audit caught
+the shift it hid. `hub/` has no such switches, so `fonts-hub.css` is `optional`.
+
+**Fallback faces, one per weight.** Each is `size-adjust` plus ascent, descent and
+line-gap overrides, calibrated against an **unadjusted twin** of the same
+`local()` list. Calibrating against a generic stack instead is wrong:
+`system-ui` and `local("Arial")` resolve to different files, which put Geist
+12% out and left the hero lede a line short. Three rules came from the
+2026-10-25 failure (fonts.css has the numbers):
+- **A bold heading needs a bold fallback.** A 700 heading drawn from a regular face
+  gets synthetic bold, which keeps the regular advances. Geist is ~7% wider at
+  700 than at 400, so Alt-neon's French hero wrapped to 4 lines in the
+  fallback and 5 in Geist: a 0.02 layout shift on the live site.
+- **One metric family per `local()` list.** The Cinzel list started with
+  Georgia, but its size had been measured on a machine without Georgia
+  (against Liberation Serif). On Windows and macOS it came out too wide.
+- **The faces that carry the hero use the hero title's own ratio.** Most of
+  Geist 700's copy is prices; their digits run 110% and would have made Noir's
+  hero a line too tall.
 
 **`ch` is a font metric, so it is not a layout unit.** `1ch` is the advance of
 "0", and Geist's "0" is 19.21% wider than the fallback's while its average glyph
@@ -268,12 +286,24 @@ the measure is identical once the face loads and independent of which face
 resolves. Do not reintroduce `ch` for layout width.
 
 Know the limit: a single `size-adjust` cannot make *every* string wrap
-identically, because it matches one number against a whole width distribution.
-Fallbacks narrow the gap; only preload + `optional` closes it.
+identically, because it matches one number against a whole width
+distribution. The first screen is what matters (a shift below it is not
+seen), and `npm run audit` proves it. Its fallback-type runs load each
+theme in French and English twice, once with every webfont file refused and
+once with the faces, at seven widths from 360 to 1600. Every text block in
+the first screen must be equally tall in both loads. Arabic is left out:
+Linux has no Arabic in Liberation Sans, so there the measurement would say
+nothing about a visitor's Arial. **After editing the hero copy or its sizes,
+run `AUDIT_ONLY='^fallback type' npm run audit`.**
 
-**Measure CLS with the layout-shift API, not by diffing two page loads.** Under
-`optional` those two loads legitimately differ — that is the feature, not a bug —
-and a geometric diff reports it as a 152px failure.
+**A local audit cannot see a font swap.** Served from the checkout, the faces
+arrive before the first paint, so its CLS stays 0 whatever the fallbacks
+do. The fallback-type runs exist for that. `AUDIT_BASE=<live site>` shows the
+real swap.
+
+**Measure CLS with the layout-shift API, not by diffing two page loads.** A load
+whose faces missed their deadline (hub's `optional` faces) legitimately differs
+from one whose faces made it, and a geometric diff reports that as a failure.
 
 ## The language is resolved before first paint
 
@@ -885,13 +915,15 @@ Seven commands, all green before a push:
   meta, asset byte budgets, SEO and structured data, blocks 16 to 18) plus
   `scripts/themes-check.mjs` (the theme contract).
 - `npm run validate` — html-validate on every page in `scripts/site.mjs`.
-- `npm run audit` — the browser audit, 64 runs on desktop, phone, tablet and
+- `npm run audit` — the browser audit, 76 runs on desktop, phone, tablet and
   landscape: axe, CLS, overflow, reveals, tap targets, images, animations, JS
   errors, failed and third-party requests, and every Content-Security-Policy
   violation in every frame. It includes the WorkspaceHQ embeds on their own,
   a run that boots the live console, and 404.html two folders down (here and
   on an emulated GitHub Pages, JavaScript on and off). Desktop page runs fail
-  when LCP is over 1.5 s. Last comes a throttled phone (Slow 4G, CPU 4×),
+  when LCP is over 1.5 s. Then the first screen in fallback type (each theme
+  in French and English, webfonts refused vs loaded, 360 to 1600 wide; see
+  "The font swap must not move the page"). Last comes a throttled phone (Slow 4G, CPU 4×),
   whose LCP, long-task and interaction targets are report-only until
   `AUDIT_PHONE_STRICT=1`.
 - `npm run sweep` — the painted-contrast sweep (above).

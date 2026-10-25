@@ -100,7 +100,8 @@
      a hidden-but-laid-out box still scores a layout shift when it moves).
      Fonts are preloaded here rather than as static tags: the preload scanner
      would otherwise queue an Arabic visitor's faces behind the Latin ones and
-     land them inside font-display:optional's window. Each visitor gets exactly
+     land them after the first paint, where the swap moves the hero (fonts.css
+     says why it is swap). Each visitor gets exactly
      the faces their hero paints in; HEAD is each theme's heading face
      (themes.css --font-head + --head-weight), kept in step by themes-check. -->
 <script>
@@ -190,10 +191,10 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202610251516">
+<link rel="stylesheet" href="assets/fonts.css?v=202610251625">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="assets/themes.css?v=202610251516">
-<link rel="stylesheet" href="assets/styles.css?v=202610251516">
+<link rel="stylesheet" href="assets/themes.css?v=202610251625">
+<link rel="stylesheet" href="assets/styles.css?v=202610251625">
 <style>
   /* Paired with data-i18n-pending above. Inline and in <head> so it is in effect
      before the first paint it exists to suppress. */
@@ -1317,8 +1318,8 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202610251516" defer></script>
-<script src="assets/carry.js?v=202610251516" defer></script>
+<script src="assets/app.js?v=202610251625" defer></script>
+<script src="assets/carry.js?v=202610251625" defer></script>
 <!-- FAQ structured data, written from I18N.fr by scripts/build-fr.mjs;
      applyLang() rewrites it for the visitor's language. -->
 <script type="application/ld+json" id="ld-faq">
