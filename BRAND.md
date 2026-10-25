@@ -1749,7 +1749,7 @@ after stamping.
 | `style-src` | `'self' 'unsafe-inline'` | the pages' own `<style>` blocks and `style="--x:…"` custom properties. Without it, index logs 29 refusals and scene 26. Writing `el.style.x` from a script is not governed either way. The risk accepted is CSS injection only, and the site shows no user content |
 | `img-src` | `'self' data:` | the hub lightbox's placeholder is a `data:` GIF, plus `data:` URIs in CSS |
 | `font-src` | `'self'` | every font is self-hosted |
-| `connect-src` | `'self'` (+ the Supabase origin) | the origin is added only on index.html, only when its lead-store switch is on. It is read by running the switch script in a sandbox, as check.mjs 7 reads it. A switch that cannot be read, or a non-https URL, stops the build |
+| `connect-src` | `'self'` (+ the Supabase origin) | the origin is added only on index.html, only when its lead-store switch is on. It is read by running the switch script in a sandbox, as check.mjs block 8b reads it. A switch that cannot be read, or a non-https URL, stops the build |
 | `media-src`, `frame-src` | `'self'` | workspacehq/ frames its own three embeds |
 | `worker-src`, `object-src` | `'none'` | neither is used |
 | `base-uri` | `'self'` | |

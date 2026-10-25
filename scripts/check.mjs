@@ -2,10 +2,13 @@
 /**
  * Repo invariant check — run before every commit (`npm run check`).
  *
- * Enforces the conventions the site depends on but that break silently:
+ * Enforces the conventions the site depends on but that break silently. The
+ * labels below are the ones on the blocks in the body (cite a check by its
+ * label, never by line: blocks merged from other work move the lines):
  *   1. i18n balance   — every dictionary key appears exactly 3× (fr/en/ar)
  *   2. i18n coverage  — every data-i18n* attribute resolves to a key
  *   3. assets         — every local src/href on every page exists on disk
+ *  3b. parallax depths — every data-parallax / data-depth value parses
  *   4. stamp sync     — all ?v= cache-bust stamps are identical across pages
  *   5. client links   — data-client links agree (plate, card, browser bar, shots, showcase); none on hub/
  *  5b. client logos   — the proof band's logo strip: the four delivered clients only, each
@@ -13,22 +16,47 @@
  *  5c. client benefits — each project sheet: the client's context and 3-5 benefits
  *                        (fr/en/ar, each with its live page); each client work card: one
  *                        benefit line linked to its sheet; no figures or results anywhere
- *   7. generated pages — scene/index.html, the voices region and the French baked
- *                        into index.html (with its FAQ structured data) equal their
- *                        generators' output (line endings ignored, as in every
- *                        generator comparison), and every page with an inline
- *                        dictionary resolves its keys in fr/en/ar
  *   6. deploy coverage — the published set (scripts/site.mjs DEPLOY) exists, every
  *                        page folder is classified, deployed pages link only to
  *                        deployed files (nothing points into knowledge-base/, scripts/…),
- *                        and every page names one canonical, from its markup or its
- *                        head script but never both
- *   8. anchors + claims — every #fragment link lands on an id in its target page,
- *                        copy the owner retired as unsupported does not come back, and
- *                        French copy keeps its no-break spaces before ? ! ; : » etc.
+ *                        the sitemap is current, 404.html stages with its JavaScript-off
+ *                        links from the site root, and every page names one canonical,
+ *                        from its markup or its head script but never both
+ *   7. generated pages — scene/index.html equals its generator's output (line endings
+ *                        ignored, as in every generator comparison), and every page with
+ *                        an inline dictionary resolves its keys in fr/en/ar
+ *   8. anchors        — every #fragment link lands on an id in its target page, and every
+ *                        aria-labelledby/describedby/controls and label for= names one
+ *  8b. Supabase switch — the lead store stays off until the legal page, its region and
+ *                        an honest form note exist (read by running the switch script)
+ *  8c. prices         — tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed
+ *                        € or $ amount; the estimator's arithmetic holds
+ *  8d. legal gating   — legal/ is published only complete and current; until then nothing
+ *                        points at it
+ *  8e. baked French and voices — the French baked into index.html (text, attributes,
+ *                        title, description, the studio's and the FAQ's structured data)
+ *                        and the voices region equal their generators' output
+ *  8f. digits and French typography — Western digits in Arabic; no breakable space
+ *                        before ? ! ; : » or after «, nor before % and h
+ *  8g. contact and JSON-LD — one contact address everywhere; structured data parses and
+ *                        states the page's phone and email
+ *  8h. retired claims — copy the owner retired as unsupported does not come back
+ *  15. knowledge base — knowledge-base/ holds nothing from the private vault and no
+ *                        machine path
  *  15b. line endings  — .gitattributes pins LF, every binary type is listed there,
  *                        and no tracked text file holds a CR
  *  15c. no runtime dependency — package.json lists tools only (devDependencies)
+ *  16. content security policy — every page equals withCsp(page) (scripts/lib/csp.mjs);
+ *                        no unhashed inline script, inline handler or javascript: URL;
+ *                        both policies stand on scripts/lib/csp-floor.mjs; the mirrors
+ *                        send the same headers, with frame-ancestors and HSTS
+ *  17. asset budgets  — each published folder under its byte ceiling, og.jpg ≤ 300 kB,
+ *                        the whole published set under its total
+ *  18. SEO and structured data — title, 50-160 character descriptions per language,
+ *                        og/twitter tags, og:image size, one h1, 404 and embeds noindex,
+ *                        robots.txt against the sitemap, hreflang = sitemap, the
+ *                        ProfessionalService and WebSite JSON-LD, every JSON-LD site URL
+ *                        under BASE
  *
  * Exits non-zero on any failure. No dependencies (git is used when present).
  */
@@ -353,7 +381,8 @@ for (const f of PAGES) {
 }
 dictGaps.length ? bad('inline dictionaries incomplete: ' + [...new Set(dictGaps)].join(', ')) : ok('inline dictionaries cover every key in fr/en/ar');
 
-/* 8 — anchors and retired claims */
+/* 8 — anchors (8b-8h follow: the Supabase switch, prices, legal gating, baked
+   French and voices, digits and typography, contact and JSON-LD, retired claims) */
 const ids = (f) => new Set([...read(f).matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
 const deadAnchors = [];
 for (const f of PAGES) {
@@ -376,6 +405,7 @@ for (const f of PAGES) {
     for (const id of m[2].split(/\s+/)) if (id && !id.includes("'") && !own.has(id)) deadRefs.push(`${f}: ${m[1]}="${id}"`);
   }
 }
+/* 8b — Supabase switch */
 // The form note promises the site keeps nothing. Turning the Supabase lead
 // store on breaks that promise: it needs the published legal page, the store's
 // region in scripts/legal-data.mjs, and new form.note copy in every language
@@ -403,6 +433,7 @@ if (supaOn) {
     bad('the Supabase lead store is on: publish legal/, set privacy.supabaseRegion in scripts/legal-data.mjs, and rewrite form.note in fr, en and ar');
   else ok('Supabase store on, with the legal page, its region and an honest form note');
 } else ok('form store off; form.note ("the site keeps nothing") holds');
+/* 8c — prices */
 // Prices have one source. The tier cards and the maintenance line carry their
 // dinar figures in the markup (scripts off); they must equal PRICE_MODEL and
 // RETAINER in app.js, and no € or $ amount may be typed into the page: the
@@ -459,6 +490,7 @@ if (typed.length) priceErr.push('hard-coded €/$ amounts in index.html: ' + typ
   }
 }
 priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts; estimator sound on every size, option set and pace');
+/* 8d — legal gating */
 // Legal notice + privacy: published only when complete. While legal/ does not
 // exist, nothing may point at it (comments included) and the two link regions
 // in index.html stay empty; once it exists, every owner field must be filled,
@@ -478,6 +510,7 @@ if (!LEGAL_PUBLISHED) {
 }
 legalErr.length ? bad('legal page: ' + legalErr.join('; '))
   : ok(LEGAL_PUBLISHED ? 'legal page complete, current and linked' : 'legal page unpublished and nothing points at it');
+/* 8e — baked French and voices */
 // The French baked into index.html (text, translated attributes, title,
 // description, FAQ structured data) equals I18N.fr: app.js re-applies the
 // dictionary on load, so any drift shows as copy changing after paint, and
@@ -494,6 +527,7 @@ try { voiceStale = lf(applyVoices(lf(html))) !== lf(html); } catch (e) { voiceEr
 voiceErr.length ? bad('client voices: ' + voiceErr.join('; '))
   : voiceStale ? bad('voices region in index.html is stale (run: npm run build)')
   : ok('client voices valid and in step with index.html');
+/* 8f — digits and French typography */
 // Arabic uses Western digits on this site (owner decision): no Arabic-Indic
 // digits in any shipped page, dictionary or generator.
 const indic = [];
@@ -531,6 +565,7 @@ for (const [at, s] of frStrings) {
 }
 frTypo.length ? bad(`French typography (U+202F before ? ! ; : », after «, and between a number and % or h; ${frTypo.length} strings): ` + frTypo.join(', '))
   : ok(`French typography holds in ${frStrings.length} strings (no breakable space before ? ! ; : », after «, or before % and h)`);
+/* 8g — contact and JSON-LD */
 // One contact address everywhere: every mailto on every page, the form's
 // mailto in app.js and the structured-data email are the same string.
 const mails = new Map();
@@ -551,7 +586,9 @@ for (const f of PAGES) for (const m of read(f).replace(/<!--[\s\S]*?-->/g, '').m
   if (d.email && !read(f).includes('mailto:' + d.email)) ldErr.push(`${f}: JSON-LD email ${d.email} is not the page's mailto`);
 }
 ldErr.length ? bad(ldErr.join(', ')) : ok('structured data parses and matches the page');
+// (8's id references, reported here with the other attribute checks)
 deadRefs.length ? bad('attributes point at ids that do not exist: ' + deadRefs.join(', ')) : ok('every aria-labelledby/describedby/controls and label for= resolves');
+/* 8h — retired claims */
 // Owner decision: Glaive is a portfolio demo (4 live client sites, not 5), the
 // "most chosen" tier claim has no data behind it, and client sites are not demos.
 const RETIRED = ['Le plus choisi', 'Most chosen', 'الأكثر اختياراً', 'Démo →', 'Live demo →', 'عرض حيّ', '5 / 7'];
@@ -743,7 +780,7 @@ runtimeDeps.length
     if (governedAt >= 0 && metaAt > governedAt) cspErr.push(`${f}: a script, style, link or base comes before the CSP meta, which then does not govern it`);
     for (const h of scriptSrc.filter((s) => /^'sha256-/.test(s))) if (!need.has(h)) cspErr.push(`${f}: script-src names ${h}, which is no script on the page (npm run build)`);
     // the floor: connect-src may add one https origin on index.html alone,
-    // and only while block 7 reads the lead-store switch as on
+    // and only while block 8b reads the lead-store switch as on
     for (const e of policyErrors(policy, { kind, connect: f === 'index.html' && supaOn })) cspErr.push(`${f}: ${e}`);
   }
   for (const e of fixtureErrors()) cspErr.push(`withCsp fixtures (node scripts/csp-test.mjs): ${e}`);
@@ -926,7 +963,7 @@ runtimeDeps.length
     // the descriptions the page's own language switch puts in its place
     const own = f === 'index.html' ? DICT : (() => {
       const m = /<script type="application\/json" id="i18n">([\s\S]*?)<\/script>/.exec(src);
-      try { return m ? JSON.parse(m[1]) : null; } catch { return null; }        // check 7 reports bad JSON
+      try { return m ? JSON.parse(m[1]) : null; } catch { return null; }        // block 7 reports bad JSON
     })();
     const dkey = f === 'index.html' ? 'meta.desc' : 'ui.desc', tkey = f === 'index.html' ? 'title' : 'ui.title';
     if (own) for (const l of LANGS) {
