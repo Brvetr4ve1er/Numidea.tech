@@ -1040,8 +1040,20 @@ runtimeDeps.length
     if (s.url !== BASE) err('index.html', `WebSite url ${s.url ?? 'missing'} is not ${BASE}`);
     if ([...langs].sort().join() !== [...LANGS].sort().join()) err('index.html', `WebSite inLanguage [${langs}] ≠ the site's languages [${LANGS}]`);
   }
+  // Every site URL in any page's JSON-LD (url, image, logo, the
+  // BreadcrumbList items…) is under BASE, so that after a BASE change this
+  // names each one still pointing at the old address. Other hosts stay where
+  // they belong (sameAs, @context), which these keys never hold.
+  const SITE_KEYS = new Set(['url', 'image', 'logo', 'item', '@id', 'mainEntityOfPage', 'contentUrl', 'thumbnailUrl']);
+  let ldUrls = 0;
+  const walk = (f, v, k) => {
+    if (Array.isArray(v)) v.forEach((x) => walk(f, x, k));
+    else if (v && typeof v === 'object') Object.entries(v).forEach(([kk, x]) => walk(f, x, kk));
+    else if (typeof v === 'string' && SITE_KEYS.has(k) && /^https?:\/\//i.test(v)) { ldUrls++; if (!v.startsWith(BASE)) err(f, `JSON-LD ${k} ${v} is not under ${BASE}`); }
+  };
+  for (const f of PAGES) for (const o of ldOf(f)) walk(f, o, '');
   seoErr.length ? bad('SEO: ' + seoErr.join('; '))
-    : ok(`SEO: ${indexable.length} indexable pages${LEGAL_PUBLISHED ? '' : ' (legal/ from its template, until it is published)'} with title, 50-160 character descriptions, og/twitter tags, image sizes and one h1 (per language block on legal/); 404 noindex; robots.txt, hreflang and JSON-LD hold`);
+    : ok(`SEO: ${indexable.length} indexable pages${LEGAL_PUBLISHED ? '' : ' (legal/ from its template, until it is published)'} with title, 50-160 character descriptions, og/twitter tags, image sizes and one h1 (per language block on legal/); 404 noindex; robots.txt, hreflang and JSON-LD hold (${ldUrls} JSON-LD site URLs, all under BASE)`);
 }
 
 process.exit(fail);

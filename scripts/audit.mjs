@@ -35,9 +35,9 @@
  * read from the Event Timing API (the INP proxy). The local server gzips text
  * the way the hosts do, so transfer times match.
  *
- * The home page does not meet those targets yet (measured 2026-10-24 on an
- * idle 4-CPU machine: LCP 2.9-3.1 s, long tasks 1.8-3.2 s, language switch
- * 0.5-0.8 s), so they are REPORT-ONLY by default: printed on every run, listed
+ * The home page does not meet those targets yet (measured 2026-10-24 and 25
+ * on a 4-CPU machine: LCP 2.8-3.7 s, long tasks 1.3-3.6 s, language switch
+ * 0.4-0.9 s; RELEASE.md quotes the same), so they are REPORT-ONLY by default: printed on every run, listed
  * as warnings at the end, and not failing. AUDIT_PHONE_STRICT=1 makes them
  * fail, for the performance pass that brings the page under them (critical
  * CSS, later fonts, a cheaper language switch) and for CI once it has. What

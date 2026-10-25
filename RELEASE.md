@@ -52,10 +52,10 @@ and keys in one go, and does not stop at the first failure
 | 4 | The build leaves no change: generated files are committed as the generators write them | `npm run build && git diff --exit-code` | `check` job; `gates` job |
 | 5 | The CSP meta matches each page's inline scripts | `npm run csp` (rewrites it); `check.mjs` block 16 fails when it is stale | within 2 and 4 |
 | 6 | The site has no runtime npm dependency | `check.mjs` block 15c fails when `package.json` declares one. `npm audit --omit=dev` audits runtime dependencies only: with none, it cannot fail, and it would audit the first one the owner allows | `check` job (both); `gates` job (15c) |
-| 7 | Browser audit: axe, layout shift, desktop LCP, overflow, tap targets, CSP violations; the throttled phone's targets are warnings until the phone-speed pass (below) | `npm run audit` (`AUDIT_PHONE_STRICT=1` to enforce the phone targets) | `gates` job; `check.yml` job `nightly` (inside `verify`) |
+| 7 | Browser audit: axe, layout shift, desktop LCP, overflow, tap targets, CSP violations, 404.html two folders down (here and on an emulated GitHub Pages, JavaScript on and off); the throttled phone's targets are warnings until the phone-speed pass (below) | `npm run audit` (`AUDIT_PHONE_STRICT=1` to enforce the phone targets) | `gates` job; `check.yml` job `nightly` (inside `verify`) |
 | 8 | Painted contrast in every theme | `npm run sweep` | `gates`; `nightly` |
 | 9 | No visual layout bug outside the allowlist (`scripts/vbugs-allow.json`) | `npm run vbugs` | `gates`; `nightly` |
-| 10 | Keyboard paths, focus rings, dialogs, reduced motion, RTL | `npm run keys` | `gates`; `nightly` |
+| 10 | Keyboard paths, focus rings, dialogs, the contact form (errors, the mail hand-off, the lead store's POST with its switch on), reduced motion (WorkspaceHQ's booted console included), RTL | `npm run keys` | `gates`; `nightly` |
 | 11 | No dead owned or client link | `npm run links` (needs the network) | `nightly`; `monitor.yml` |
 | 12 | No known advisory in any dependency, dev tools included | `npm audit` reports 0 | `nightly` |
 
@@ -99,7 +99,7 @@ and the domain in [section 6](#6-domain-and-dns).
 
 ### Phone speed: not met yet
 
-The phone targets are LCP ≤ 2.5 s, long tasks ≤ 300 ms and the slowest interaction ≤ 200 ms on a throttled phone (`scripts/audit.mjs`, `PHONE`), and LCP ≤ 2.5 s, TBT ≤ 200 ms in Lighthouse mobile. The site misses them today: on 2026-10-24 the throttled phone showed LCP around 5–6 s with 1.2–2.8 s of long tasks, and Lighthouse mobile on the live site gave median LCP 4.99 s (fr) and 5.89 s (ar), TBT 236–252 ms. Gating deploys on them would block every deploy, so for now:
+The phone targets are LCP ≤ 2.5 s, long tasks ≤ 300 ms and the slowest interaction ≤ 200 ms on a throttled phone (`scripts/audit.mjs`, `PHONE`), and LCP ≤ 2.5 s, TBT ≤ 200 ms in Lighthouse mobile. The site misses them today. The throttled phone in `npm run audit` measured LCP 2.8–3.7 s, 1.3–3.6 s of long tasks, and the language switch, its slowest interaction, at 0.4–0.9 s against 200 ms (2026-10-24 and 25, a 4-CPU machine, French faster than Arabic). Lighthouse mobile on the live site, a different measurement, gave median LCP 4.99 s (fr) and 5.89 s (ar), TBT 236–252 ms. Gating deploys on them would block every deploy, so for now:
 
 - `npm run audit` reports the phone targets as warnings; `AUDIT_PHONE_STRICT=1` makes them fail.
 - `monitor.yml` holds Lighthouse mobile to regression ceilings at today's level (`LCP_MS_MOBILE` 6500, `TBT_MS_MOBILE` 350), so the phone cannot get slower unnoticed; desktop and layout shift are held to the targets.
@@ -131,9 +131,10 @@ A speed pass comes next (fonts, the weight of `assets/app.js` and `assets/styles
 5. `pages.yml` runs `gates`: the invariants, validate, build-no-diff, then
    audit, sweep, vbugs and keys on Playwright's Chromium. Every gate runs even
    after one fails, so a red run lists everything that is wrong. `deploy`
-   runs only when `gates` passed (`needs: gates`). It stages `_site/` and
-   publishes it, and it is the only job with Pages write and OIDC token
-   permissions.
+   runs only when `gates` passed (`needs: gates`). It stages `_site/`
+   (`stage-site.mjs --pages`, which also points `404.html`'s JavaScript-off
+   links at the repository subpath) and publishes it, and it is the only job
+   with Pages write and OIDC token permissions.
 6. Deploys run one at a time (`concurrency: pages`, never cancelled
    mid-flight). Newer pushes wait, and of those only the latest queued one
    runs.
@@ -307,9 +308,14 @@ When a domain exists:
    - `npm run check` names what still points at the old address: block 6
      checks the static canonicals; block 18 checks the `og:` URLs, the
      hreflang alternates against the sitemap, the `Sitemap:` line in
-     `robots.txt` and the JSON-LD URLs.
-   - `monitor.yml` reads the new address from `BASE`. `AUDIT_BASE` is given
-     by hand.
+     `robots.txt` and every site URL in the JSON-LD (`url`, `image`, `logo`,
+     the BreadcrumbList items).
+   - As a last look, `grep -rn '<old host>' index.html 404.html hub
+     workspacehq scene robots.txt sitemap.xml` returns nothing.
+   - `monitor.yml` reads the new address from `BASE`, and so does the Pages
+     staging step (`stage-site.mjs --pages`: `404.html`'s JavaScript-off links
+     go to the path of `BASE`, `/` on a domain of its own). `AUDIT_BASE` is
+     given by hand.
 4. **Mail:** a mailbox on the domain needs SPF, DKIM and DMARC
    (`OWNER-CONTENT.md` §5).
 
