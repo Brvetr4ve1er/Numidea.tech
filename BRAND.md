@@ -1877,6 +1877,14 @@ change that.
   cross-origin framing on the mirrors, and the Supabase switch flipped
   without a rebuild.
 
+The gates now repeat most of this on every run, each failing on any
+violation in any frame: `npm run audit` (every page loaded and scrolled, the
+CV panel, the phone menu, the booted console, 404 two folders down here and
+on an emulated Pages, the throttled phone's FAQ, estimator, currency and
+language switches) and `npm run keys` (the theme menu, the form through its
+`mailto:` hand-off, the lead store's POST with the switch on in a rebuilt
+copy, the dialogs, the embeds taking focus).
+
 Google's CSP Evaluator (npm `csp_evaluator` 1.1.8) has two findings on the
 page policies, both MEDIUM_MAYBE:
 - `'self'` in script-src. This matters only on a site that hosts JSONP,
