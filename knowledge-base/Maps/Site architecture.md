@@ -19,7 +19,7 @@ The studio's website is a static site of hand-written HTML, CSS and vanilla Java
 | `workspacehq/index.html` | WorkspaceHQ v3 launch page | English | `workspacehq/app.js`, `assets/carry.js` | Hand-written; three embedded pages under `workspacehq/embed/` |
 | `legal/index.html` | Legal notice and privacy | Three, one section per language | `assets/page-i18n.js`, `assets/carry.js` | Generated, and only exists once every owner field is supplied |
 
-Sources for the table: the page list and the legal gate (scripts/site.mjs › PAGES, LEGAL_PUBLISHED), the embeds (scripts/site.mjs › EXTRA_PAGES), the script tags (index.html › 1297; scene/index.html › 630; hub/index.html › 490; workspacehq/index.html › 332; scripts/build-legal.mjs › 323), the languages (README.md › Features; hub/index.html › 2; workspacehq/index.html › 2; 404.html › 49), and the legal page's per-language sections (assets/page-i18n.js › followHash).
+Sources for the table: the page list and the legal gate (scripts/site.mjs › PAGES, LEGAL_PUBLISHED), the embeds (scripts/site.mjs › EXTRA_PAGES), the script tags (index.html › 1315; scene/index.html › 630; hub/index.html › 491; workspacehq/index.html › 333; scripts/build-legal.mjs › 338), the languages (README.md › Features; hub/index.html › 2; workspacehq/index.html › 2; 404.html › 49), and the legal page's per-language sections (assets/page-i18n.js › followHash).
 
 - The deploy set is exactly `index.html`, `404.html`, `robots.txt`, `sitemap.xml`, `assets/`, `scene/`, `hub/`, `workspacehq/`, plus `legal/` once it exists (scripts/site.mjs › DEPLOY).
 - `scripts/`, `knowledge-base/`, `audit/`, `legal-preview/`, `BRAND.md`, `README.md` and the other names in `NOT_DEPLOYED` are never served (scripts/site.mjs › NOT_DEPLOYED). The full deploy path is in [[Deploy]].
@@ -30,15 +30,15 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 
 ### Head
 
-- One inline script runs before the stylesheets: it picks the theme and the language, sets `data-theme`, `lang` and `dir` on `<html>`, sets the canonical URL, writes the font preloads and exposes `NUMIDEA_WA` (the WhatsApp number) and `NUMIDEA_LANG` (index.html › 87). This is the [[Head bootstrap  pre-paint resolver]].
-- Then three stylesheets in a fixed order: `fonts.css`, `themes.css` (the theme blocks), `styles.css` (layout and components, which only reads the tokens) (index.html › 170). Themes are covered in [[Themes and tokens]].
-- One JSON-LD block describes the studio as a `ProfessionalService` (index.html › 37). A second one, the FAQ as a `FAQPage`, is not in the head but at the end of the body, and `scripts/build-fr.mjs` writes it from `I18N.fr` (index.html › 1299–1301). See [[Studio Structured Data (ProfessionalService JSON-LD)]] and [[FAQ Structured Data (ld-faq)]].
+- One inline script runs before the stylesheets: it picks the theme and the language, sets `data-theme`, `lang` and `dir` on `<html>`, sets the canonical URL, writes the font preloads and exposes `NUMIDEA_WA` (the WhatsApp number) and `NUMIDEA_LANG` (index.html › 105). This is the [[Head bootstrap  pre-paint resolver]].
+- Then three stylesheets in a fixed order: `fonts.css`, `themes.css` (the theme blocks), `styles.css` (layout and components, which only reads the tokens) (index.html › 188). Themes are covered in [[Themes and tokens]].
+- Two JSON-LD blocks sit in the head: the studio as a `ProfessionalService` (index.html › 37) and the site itself as a `WebSite`, with its name (the `og:site_name`), home URL and three languages (index.html › 74). A third one, the FAQ as a `FAQPage`, is not in the head but at the end of the body, and `scripts/build-fr.mjs` writes it from `I18N.fr` (index.html › 1317–1319). See [[Studio Structured Data (ProfessionalService JSON-LD)]] and [[FAQ Structured Data (ld-faq)]].
 
 ### Body, top to bottom
 
 | Part | Anchor | Notes |
 |---|---|---|
-| Skip link, progress bar | `#main` | (index.html › 193) |
+| Skip link, progress bar | `#main` | (index.html › 211) |
 | [[Navbar]] | — | Seven section links, theme menu, FR / EN / ع buttons, menu toggle (index.html › NAV) |
 | [[Mobile Overlay Menu]] | `#mobile-menu` | A modal dialog: everything behind it is inert and Tab stays inside (assets/app.js › mobile menu) |
 | Hero | — | Headline, the free Aperçu call to action and the rotating [[Hero plate (one live site at a time)]] (index.html › HERO) |
@@ -47,7 +47,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | Services | `#services` | Opens with the L'Aperçu card `#apercu` (index.html › SERVICES) |
 | Method | `#how` | (index.html › METHOD) |
 | Pricing | `#pricing` | Tiers, estimator, then the market comparison inside a disclosure (BRAND.md › Page structure and design system (home page)) |
-| Founder and team | `#founder` | Links to `hub/` as "Portfolio personnel" (index.html › 1048) |
+| Founder and team | `#founder` | Links to `hub/` as "Portfolio personnel" (index.html › 1066) |
 | Stack | `#stack` | (index.html › STACK) |
 | FAQ | `#faq` | (index.html › FAQ) |
 | Contact | `#contact` | Form, WhatsApp, email (index.html › CONTACT) |
@@ -56,7 +56,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 
 - The order and the "each idea is said once" rule are set in BRAND.md (BRAND.md › Page structure and design system (home page)).
 - The project explorer modal was removed in the 2026-10 cleanup; an old `#/work/<slug>` link is redirected to the matching sheet in `scene/` through the `SHEET` map, and any other `#/work` hash lands on `#work` (assets/app.js › DOM ready, legacy deep links). History: [[Project-explorer modal (workslug hash router)]].
-- The work section ends on one call to action, the [[Project Plates Banner (Planches)]] (index.html › 515).
+- The work section ends on one call to action, the [[Project Plates Banner (Planches)]] (index.html › 533).
 
 ## assets/app.js, part by part
 
@@ -67,7 +67,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | `I18N` | i18n dictionary | The `fr`, `en` and `ar` dictionaries; `ar` sets `dir: 'rtl'` (assets/app.js › i18n dictionary) |
 | `EXTRA` | Services Catalog + Trust strip strings | More strings, merged into `I18N` per language (assets/app.js › EXTRA) |
 | `ESTIMATE` | estimator model | Pure figures and arithmetic, including `PRICE_MODEL`, so a script can test it without a page (assets/app.js › estimator model). Prices are in [[Pricing and market]] |
-| `applyLang()` | after `ESTIMATE` | Swaps every translated node and attribute, the title, meta description and both JSON-LD blocks (assets/app.js › applyLang) |
+| `applyLang()` | after `ESTIMATE` | Swaps every translated node and attribute, the title and meta description, the `ProfessionalService` description and the FAQ JSON-LD; the `WebSite` block is the same in every language and is left alone (assets/app.js › applyLang) |
 | count-up | count-up | The animated counters (assets/app.js › count-up) |
 | DOM ready | DOM ready | Language switch, theme switcher, scroll progress, reveal-on-scroll, ambient parallax, hero plate, mobile menu, legacy `#/work` redirect, founder résumé accordion, contact form (assets/app.js › DOM ready) |
 | 12 | project estimator | Reads the estimator's controls and writes the result; plural forms per language (assets/app.js › 12 · project estimator) |
@@ -86,7 +86,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 ## Contact and lead flow
 
 1. With JavaScript off, the form posts to a `mailto:` and the browser checks required fields; with it, `app.js` validates and shows its own messages (assets/app.js › contact form).
-2. If `NUMIDEA_SUPABASE_URL` and `NUMIDEA_SUPABASE_KEY` are set, the lead is also sent, best effort, to a Supabase `leads` table (assets/app.js › contact form). Both are empty strings today, so this step does nothing (index.html › 1294). The owner keeps it off on purpose (OWNER-CONTENT.md › 11).
+2. If `NUMIDEA_SUPABASE_URL` and `NUMIDEA_SUPABASE_KEY` are set, the lead is also sent, best effort, to a Supabase `leads` table (assets/app.js › contact form). Both are empty strings today, so this step does nothing (index.html › 1312). The owner keeps it off on purpose (OWNER-CONTENT.md › 11).
 3. The mail client opens pre-filled to the site's one address, with a "Source" line from `leadSource()` (`?ref=`, `utm_*`, and whether `fbclid` or `gclid` is present) (assets/app.js › contact form; BRAND.md › Lead source).
 4. WhatsApp links append only the `ref` code, as `[ref]` (assets/app.js › 13 · WhatsApp).
 
@@ -98,9 +98,9 @@ Nothing is stored and there are no cookies or analytics (README.md › Features)
 |---|---|---|
 | `assets/carry.js` | At click time, adds `ref`, `utm_*`, `fbclid`, `gclid` and `lang` from the current address to links to another page of the same site; nothing is stored (assets/carry.js › 1) | index, scene, hub, workspacehq, and legal once published (assets/carry.js › 4) |
 | `assets/page-i18n.js` | Applies the inline dictionary of a generated page and runs its FR / EN / ع buttons (assets/page-i18n.js › 1) | scene, legal |
-| `numidea-lang` | Stored language, read by the head scripts of index, scene and 404 (index.html › 87; scripts/build-scene.mjs › 245; 404.html › 87) | index, scene, 404 |
-| `numidea-theme` | Stored theme for the six-theme pages (index.html › 87; 404.html › 87) | index, 404 |
-| `void-theme` | The hub's own dark or light choice (hub/index.html › 25) | hub |
+| `numidea-lang` | Stored language, read by the head scripts of index, scene and 404 (index.html › 105; scripts/build-scene.mjs › 245; 404.html › 87) | index, scene, 404 |
+| `numidea-theme` | Stored theme for the six-theme pages (index.html › 105; 404.html › 87) | index, 404 |
+| `void-theme` | The hub's own dark or light choice (hub/index.html › 26) | hub |
 | `whq-motion` | WorkspaceHQ's pause-motion choice (workspacehq/app.js › motion) | workspacehq |
 
 See [[carry.js]], [[page-i18n.js]] and [[numidea-lang shared language preference]].

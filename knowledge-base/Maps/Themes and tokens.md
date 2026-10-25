@@ -21,12 +21,12 @@ Arcanum is the studio's identity and the default; the other five sit behind the 
 | `altneon` | Alt-neon | Synthwave violet, magenta and cyan | `#0C0716` | `#FF3EA5` | `#3EE6FF` | Geist 700 | 10px / 18px |
 | `engineering` | Engineering | Graphite, safety orange, drafting grid | `#0E1012` | `#FF5B1F` | `#8EC5E8` | Geist 600 | 2px / 4px |
 
-Sources for the table: the six blocks (assets/themes.css › ARCANUM, NOIR, DAYLIGHT, MONO, ALT-NEON, ENGINEERING), the menu labels (index.html › 217–222), the heading faces (index.html › 90 `HEAD`; assets/styles.css › 13–17 `--font-display`, `--font-deco`), the default (index.html › 2), Daylight being light (assets/app.js › 911).
+Sources for the table: the six blocks (assets/themes.css › ARCANUM, NOIR, DAYLIGHT, MONO, ALT-NEON, ENGINEERING), the menu labels (index.html › 235–240), the heading faces (index.html › 108 `HEAD`; assets/styles.css › 13–17 `--font-display`, `--font-deco`), the default (index.html › 2), Daylight being light (assets/app.js › 911).
 
 - The theme names live once in `THEMES` in `scripts/site.mjs`: `arcanum`, `noir`, `daylight`, `mono`, `altneon`, `engineering` (scripts/site.mjs › THEMES).
 - Noir was formerly called "Neon Noir" (BRAND.md › How themes work here).
 - Of the published pages, only `index.html` and `404.html` follow the six themes; `hub/` and `scene/` carry their own palettes (scripts/sweep.mjs › 46; BRAND.md › No literal palette colours in shared rules). `hub/` and `workspacehq/` are in [[WorkspaceHQ and hub]], `scene/` in [[Project sheets]].
-- The generated legal page, unpublished until the owner's fields are complete, loads `themes.css` and resolves the stored theme from the same `THEMES` list (scripts/build-legal.mjs › 274, 285). The link-preview card is drawn with the Arcanum tokens (scripts/build-og.mjs › header).
+- The generated legal page, unpublished until the owner's fields are complete, loads `themes.css` and resolves the stored theme from the same `THEMES` list (scripts/build-legal.mjs › 288, 300). The link-preview card is drawn with the Arcanum tokens (scripts/build-og.mjs › header).
 - Graph: [[Arcanum theme (default)]], [[Noir theme]], [[Daylight theme]], [[Mono theme]], [[Altneon theme]], [[Engineering theme]], [[THEMES]].
 
 ## The 47-token contract
@@ -77,8 +77,8 @@ The token list is `CONTRACT` in `scripts/themes-check.mjs`, in six groups (scrip
 
 ## How a theme is applied
 
-1. `index.html` loads `fonts.css`, then `themes.css`, then `styles.css` (index.html › 168–173).
-2. Before first paint, an inline head script reads `numidea-theme` from `localStorage`, falls back to `arcanum` for an unknown name, sets `data-theme` on `<html>` and colours the browser bar from its `VOID` map (index.html › 87–109). `404.html` does the same with its `LOGO` map and writes a preload for a wordmark face it does not already preload (404.html › 76–116). See [[Pre-paint Boot Script]] and [[Languages and RTL]].
+1. `index.html` loads `fonts.css`, then `themes.css`, then `styles.css` (index.html › 186–191).
+2. Before first paint, an inline head script reads `numidea-theme` from `localStorage`, falls back to `arcanum` for an unknown name, sets `data-theme` on `<html>` and colours the browser bar from its `VOID` map (index.html › 105–127). `404.html` does the same with its `LOGO` map and writes a preload for a wordmark face it does not already preload (404.html › 76–116). See [[Pre-paint Boot Script]] and [[Languages and RTL]].
 3. A click in the switcher calls `applyTheme()`: it sets one attribute, reads `--void` back from the tokens for the browser bar, stores the choice and fires `numidea:relayout` because type tokens change line lengths (assets/app.js › 905–921, 959). No stylesheet is loaded on a switch (assets/app.js › 905–906).
 4. When a page comes back from the back/forward cache, the stored theme is re-applied if it changed (assets/app.js › 2692–2705).
 
@@ -90,7 +90,7 @@ Graph: [[applyTheme()]], [[Theme Switch Menu]], [[numidea-theme localStorage key
 2. Add the name to `THEMES` in `scripts/site.mjs`, to `THEMES` in `assets/app.js`, to the theme menu in `index.html`, to the `HEAD` map in `index.html` and to the `LOGO` map in `404.html` (BRAND.md › Theme contract).
 3. Run `npm run check`; `themes-check` fails until every list agrees and every contrast pair passes (BRAND.md › Theme contract; scripts/themes-check.mjs › 120–136).
 
-Each item in the theme menu also carries a swatch, `.dot.<name>`, coloured in `styles.css` (index.html › 217–222; assets/styles.css › 69–75).
+Each item in the theme menu also carries a swatch, `.dot.<name>`, coloured in `styles.css` (index.html › 235–240; assets/styles.css › 69–75).
 
 ## History
 

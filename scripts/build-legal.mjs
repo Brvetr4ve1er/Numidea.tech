@@ -14,6 +14,9 @@
  *
  * The three languages are all in the page; html[lang] (set before paint by
  * the head resolver) shows one, so no text is swapped after paint.
+ * The head carries the share tags every published page has (og:*, twitter:*,
+ * check.mjs 18, which checks this template before the page is published);
+ * og:url and og:locale follow ?lang= as the canonical does.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
@@ -267,6 +270,17 @@ export function renderLegal(data = LEGAL, { preview = false } = {}) {
 <title>${esc(UI.fr.title)}</title>
 <meta name="description" content="${esc(UI.fr.desc)}">
 <meta name="theme-color" content="#0A1420">
+<meta property="og:url" content="${BASE}legal/">
+<meta property="og:title" content="${esc(UI.fr.title)}">
+<meta property="og:description" content="${esc(UI.fr.desc)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Numidea Labs">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="${BASE}assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${BASE}assets/og.jpg">
 ${preview ? '<meta name="robots" content="noindex">\n' : ''}<link rel="alternate" hreflang="fr" href="${BASE}legal/">
 <link rel="alternate" hreflang="en" href="${BASE}legal/?lang=en">
 <link rel="alternate" hreflang="ar" href="${BASE}legal/?lang=ar">
@@ -279,6 +293,7 @@ try{th=localStorage.getItem('numidea-theme')||th;l=localStorage.getItem('numidea
 if(q&&L.indexOf(q)!==-1)l=q;if(T.indexOf(th)===-1)th='arcanum';if(L.indexOf(l)===-1)l='fr';
 d.setAttribute('data-theme',th);d.lang=l;d.dir=l==='ar'?'rtl':'ltr';
 var h='${BASE}legal/',c=document.createElement('link');c.rel='canonical';c.href=q===l&&l!=='fr'?h+'?lang='+l:h;document.head.appendChild(c);
+if(c.href!==h){var m=function(p,v){var e=document.querySelector('meta[property="og:'+p+'"]');if(e)e.setAttribute('content',v);};m('url',c.href);m('locale',l==='ar'?'ar_DZ':'en_US');}
 var S=${JSON.stringify(SECTIONS)},x=location.hash.slice(1),k,j;
 for(k in S)for(j in S[k])if(S[k][j]===x&&S[k][l]!==x)history.replaceState(null,'','#'+S[k][l]);})();</script>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-400-latin.woff2">

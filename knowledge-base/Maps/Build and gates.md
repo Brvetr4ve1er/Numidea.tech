@@ -144,7 +144,7 @@ Graph: [[check.mjs]], [[Repository invariants (npm run check)]], [[RETIRED]], [[
 
 - The CSS and JS links carry `?v=<stamp>` (netlify.toml › 19–21); `npm run bump` rewrites every stamp in every page in `PAGES` with a new one built from the current UTC time to the minute (scripts/bump.mjs › header, 13–19).
 - Run it after any CSS, JS or content change and before committing; a stale stamp is how "the website didn't update" happens (scripts/bump.mjs › header).
-- `check` fails while stamps differ (scripts/check.mjs › 117–122). The current stamp is `202610171206` (index.html › 170).
+- `check` fails while stamps differ (scripts/check.mjs › 117–122). The current stamp is `202610171206` (index.html › 188).
 - `scene/` is generated with the stamp read from `index.html` (scripts/build-scene.mjs › stamp).
 - Graph: [[v= cache stamps (npm run bump)]], [[bump.mjs]], [[_COMMUNITY_Conventions Enforced by Tooling]], wiki [[Conventions_Enforced_by_Tooling]].
 

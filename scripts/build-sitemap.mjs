@@ -19,8 +19,10 @@ import { ROOT, BASE, LANGS, PAGES } from './site.mjs';
 const MULTILINGUAL = new Set(['index.html', 'scene/index.html', 'legal/index.html']);
 
 const url = (page) => BASE + page.replace(/index\.html$/, '');
-export function renderSitemap() {
-  const rows = PAGES.filter((p) => p !== '404.html').map((p) => {
+// pages: the published set; check.mjs passes PAGES plus legal/ to check the
+// legal page's entry before it is published
+export function renderSitemap(pages = PAGES) {
+  const rows = pages.filter((p) => p !== '404.html').map((p) => {
     const loc = url(p);
     if (!MULTILINGUAL.has(p)) return `  <url><loc>${loc}</loc></url>`;
     const alt = LANGS.map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${l === 'fr' ? loc : loc + '?lang=' + l}"/>`)

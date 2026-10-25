@@ -1608,6 +1608,41 @@ original. No `lastmod`: a date nobody maintains is worse than none.
 `check.mjs` fails when the committed file differs from the generator's output
 or lists an unpublished URL.
 
+**What search engines and link previews read** is gated too (`check.mjs`
+block 18). The rules cover the pages in `PAGES`: `index.html`, `hub/`,
+`scene/`, `workspacehq/` and `legal/`. Until `legal/` is published it is
+checked from its template (`renderLegal`), so publishing it cannot turn the
+check red. Each of these pages carries one `<title>`, a meta description of
+50 to 160 characters (each language's: `meta.desc` in `app.js`, `ui.desc` in
+a generated page's dictionary), `og:title`, `og:description`, `og:image`,
+`og:url` (its own URL), `og:type`, `twitter:card` and `twitter:image`, and
+`og:image:width`/`height` equal to the image file's real size. Re-rendering a
+share image at another size fails the check until its tags follow. Each has
+exactly one `<h1>`; `legal/`, which carries its three languages in the body
+(`html[lang]` shows one), has one per language block.
+
+`404.html` is served for every missing URL, so it stays `noindex` and out of
+the sitemap. The WorkspaceHQ embeds (`workspacehq/embed/*.html`,
+`EXTRA_PAGES`) are deployed but only framed by their page, so the rules above
+do not apply to them: they keep their `noindex`, stay out of the sitemap, and
+`robots.txt` leaves them crawlable (a crawler never reads the `noindex` of a
+page it may not fetch). A `noindex` counts in any robots meta (`robots`,
+`googlebot`, `bingbot`…), and no other page may carry one.
+
+`robots.txt` names the sitemap and disallows none of the sitemap's URLs,
+`?lang=` versions included, for a search engine: the `*` group, and the
+groups Googlebot and Bingbot obey. A group for another crawler (an AI-crawler
+opt-out such as `User-agent: GPTBot` / `Disallow: /`) is the owner's call and
+passes. A page's `hreflang` alternates equal its sitemap entry.
+
+The studio's `ProfessionalService` JSON-LD states name, URL, town, country
+and phone. A `WebSite` object gives the site name (the `og:site_name`), the
+home URL and the three languages. Search engines take a site name only from a
+domain's or subdomain's home page, not from a subdirectory such as
+`/Numidea.tech/`, so it names the site in results once the site has its own
+domain. Legal fields (legal name, registration number…) join the structured
+data only once the owner supplies them (`OWNER-CONTENT.md` §1).
+
 ## Client voices and photo slots
 
 Nothing on the page claims content it does not have.
