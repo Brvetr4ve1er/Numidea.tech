@@ -9,6 +9,15 @@
  *
  * Chromium: CHROMIUM_PATH if set; else this environment's pre-installed
  * build if it exists; else Playwright's own (CI, a contributor's machine).
+ * Always with --font-render-hinting=none. Without it, the binary decides
+ * where text wraps: Playwright's default headless shell (what CI gets)
+ * forces full hinting, which rounds glyph advances to whole pixels, while the
+ * full build follows fontconfig (slight, so fractional advances, as on
+ * phones and Macs). Arcanum's French hero at 360px ends a line 0.6px inside
+ * its box in one and wraps it in the other, so the audit's fallback-type
+ * runs passed here and fail on CI's binary (reproduced with it). With hinting
+ * off, the full build and the headless shell, both 141 and 149, give the
+ * same 12 results.
  */
 import { chromium } from 'playwright';
 import { createServer } from 'node:http';
@@ -66,5 +75,5 @@ export async function serve(root = ROOT, { compress = false, fallback404 = false
 const LOCAL_CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 export function launch(opts = {}) {
   const executablePath = process.env.CHROMIUM_PATH || (existsSync(LOCAL_CHROME) ? LOCAL_CHROME : undefined);
-  return chromium.launch({ executablePath, ...opts });
+  return chromium.launch({ executablePath, ...opts, args: ['--font-render-hinting=none', ...(opts.args || [])] });
 }

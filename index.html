@@ -101,9 +101,12 @@
      Fonts are preloaded here rather than as static tags: the preload scanner
      would otherwise queue an Arabic visitor's faces behind the Latin ones and
      land them after the first paint, where the swap moves the hero (fonts.css
-     says why it is swap). Each visitor gets exactly
-     the faces their hero paints in; HEAD is each theme's heading face
-     (themes.css --font-head + --head-weight), kept in step by themes-check. -->
+     says why it is swap). Each visitor gets the faces that set most of their
+     hero; HEAD is each theme's heading face (themes.css --font-head +
+     --head-weight), kept in step by themes-check. The rest (Arcanum's
+     Cinzel Decorative swash, the call-to-action's Geist Mono 700) rely on
+     their metric-matched fallbacks, which audit.mjs's fallback-type runs
+     check. -->
 <script>
   (function () {
     var d = document.documentElement;
@@ -191,10 +194,10 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="assets/fonts.css?v=202610251625">
+<link rel="stylesheet" href="assets/fonts.css?v=202610251721">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="assets/themes.css?v=202610251625">
-<link rel="stylesheet" href="assets/styles.css?v=202610251625">
+<link rel="stylesheet" href="assets/themes.css?v=202610251721">
+<link rel="stylesheet" href="assets/styles.css?v=202610251721">
 <style>
   /* Paired with data-i18n-pending above. Inline and in <head> so it is in effect
      before the first paint it exists to suppress. */
@@ -1318,8 +1321,8 @@
   window.NUMIDEA_SUPABASE_URL = "";
   window.NUMIDEA_SUPABASE_KEY = "";
 </script>
-<script src="assets/app.js?v=202610251625" defer></script>
-<script src="assets/carry.js?v=202610251625" defer></script>
+<script src="assets/app.js?v=202610251721" defer></script>
+<script src="assets/carry.js?v=202610251721" defer></script>
 <!-- FAQ structured data, written from I18N.fr by scripts/build-fr.mjs;
      applyLang() rewrites it for the visitor's language. -->
 <script type="application/ld+json" id="ld-faq">

@@ -248,20 +248,27 @@ screenshot of type.
 
 ## The font swap must not move the page
 
-The main sheet is `font-display:swap`, the faces a visitor's first screen sets
-are preloaded by the boot script, and every weight has a metric-matched
-fallback face. Together they make the swap land without moving anything.
+The main sheet is `font-display:swap`. The boot script preloads the faces
+that set most of a visitor's first screen: in French and English, Geist 400,
+Geist Mono 400, Geist 600 and the theme's heading face; in Arabic, Plex
+Arabic 400 and 600, Plex Arabic 600 latin, Geist Mono 400 and Geist 600. The
+rest of the first screen is not preloaded: Arcanum's Cinzel Decorative swash,
+the call-to-action's Geist Mono 700, and the ع button's Plex for Latin
+visitors. Those rely on their metric-matched fallback faces, which the
+fallback-type runs check in French and English.
 
-**Why not `optional`.** It would never move the page, but it never swaps a face
-in after its first ~100 ms either, and this page asks for faces long after
-load: the theme menu requests Cinzel when someone picks Arcanum, and the
-language switch requests Plex Arabic. Measured on 2026-10-25, a face first used
-two seconds after load stayed in its fallback for the rest of the visit. Until
+**Why not `optional`.** It would never move the page, but Chromium never shows
+an optional face first requested after the page has rendered, however fast it
+arrives, and this page asks for faces long after load: the theme menu
+requests Cinzel when someone picks Arcanum, and the language switch requests
+Plex Arabic. Measured on 2026-10-25, a face requested 1.5 s after load and
+delivered within milliseconds stayed in its fallback for the rest of the
+visit. Until
 that day this file said the faces were `optional`, but the `@font-face` rules
 had always said `swap`. The claim was never true, and the live audit caught
 the shift it hid. `hub/` has no such switches, so `fonts-hub.css` is `optional`.
 
-**Fallback faces, one per weight.** Each is `size-adjust` plus ascent, descent and
+**Fallback faces.** Each is `size-adjust` plus ascent, descent and
 line-gap overrides, calibrated against an **unadjusted twin** of the same
 `local()` list. Calibrating against a generic stack instead is wrong:
 `system-ui` and `local("Arial")` resolve to different files, which put Geist
@@ -271,12 +278,24 @@ line-gap overrides, calibrated against an **unadjusted twin** of the same
   gets synthetic bold, which keeps the regular advances. Geist is ~7% wider at
   700 than at 400, so Alt-neon's French hero wrapped to 4 lines in the
   fallback and 5 in Geist: a 0.02 layout shift on the live site.
-- **One metric family per `local()` list.** The Cinzel list started with
+  Geist and Cinzel now have a face for every weight the site sets. Geist Mono
+  needs only one (its advances are the same at every weight). Plex Arabic has
+  one 400 face, uncalibrated, because Linux has no Arabic Arial to measure
+  against.
+- **Each `local()` list starts with one metric family.** That family is
+  Arial / Liberation Sans / Arimo, Times New Roman / Liberation Serif / Tinos,
+  or Courier New / Liberation Mono / Cousine. The Cinzel list started with
   Georgia, but its size had been measured on a machine without Georgia
-  (against Liberation Serif). On Windows and macOS it came out too wide.
-- **The faces that carry the hero use the hero title's own ratio.** Most of
-  Geist 700's copy is prices; their digits run 110% and would have made Noir's
-  hero a line too tall.
+  (against Liberation Serif), so on Windows and macOS it came out too wide.
+  The Geist lists end with Helvetica Neue and DejaVu Sans, unmatched last
+  resorts.
+- **Geist 700 and Cinzel use the hero title's own ratio.** Geist 700's other
+  copy (headings and nav in Noir and Alt-neon, prices elsewhere) would have
+  made Noir's hero a line too tall. Geist 500 and 600 also carry heroes
+  (Mono's, Daylight's and Engineering's) and pass on their copy ratio.
+- **Android ships none of these faces.** There no fallback resolves, and the
+  stacks fall through to the system fonts unadjusted. Calibrating for it
+  needs a device; RELEASE.md lists it with the phone-speed work.
 
 **`ch` is a font metric, so it is not a layout unit.** `1ch` is the advance of
 "0", and Geist's "0" is 19.21% wider than the fallback's while its average glyph
@@ -300,6 +319,14 @@ run `AUDIT_ONLY='^fallback type' npm run audit`.**
 arrive before the first paint, so its CLS stays 0 whatever the fallbacks
 do. The fallback-type runs exist for that. `AUDIT_BASE=<live site>` shows the
 real swap.
+
+**The browser gates lay text out without hinting.** `scripts/lib/serve.mjs`
+launches Chromium with `--font-render-hinting=none`, the way phones and Macs
+lay text out. Without that switch, the binary decides where a line wraps.
+Playwright's default headless shell, the one CI gets, rounds glyph advances
+to whole pixels, while the full build does not. Arcanum's French hero at
+360px ends a line 0.6px inside its box in one and wraps it in the other, so
+the fallback-type runs passed locally and failed on CI's binary.
 
 **Measure CLS with the layout-shift API, not by diffing two page loads.** A load
 whose faces missed their deadline (hub's `optional` faces) legitimately differs

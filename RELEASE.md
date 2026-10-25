@@ -52,7 +52,7 @@ and keys in one go, and does not stop at the first failure
 | 4 | The build leaves no change: generated files are committed as the generators write them | `npm run build && git diff --exit-code` | `check` job; `gates` job |
 | 5 | The CSP meta matches each page's inline scripts | `npm run csp` (rewrites it); `check.mjs` block 16 fails when it is stale | within 2 and 4 |
 | 6 | The site has no runtime npm dependency | `check.mjs` block 15c fails when `package.json` declares one. `npm audit --omit=dev` audits runtime dependencies only: with none, it cannot fail, and it would audit the first one the owner allows | `check` job (both); `gates` job (15c) |
-| 7 | Browser audit: axe, layout shift, desktop LCP, overflow, tap targets, CSP violations, 404.html two folders down (here and on an emulated GitHub Pages, JavaScript on and off); the throttled phone's targets are warnings until the phone-speed pass (below) | `npm run audit` (`AUDIT_PHONE_STRICT=1` to enforce the phone targets) | `gates` job; `check.yml` job `nightly` (inside `verify`) |
+| 7 | Browser audit: axe, layout shift, desktop LCP, overflow, tap targets, CSP violations, 404.html two folders down (here and on an emulated GitHub Pages, JavaScript on and off), the first screen in fallback type (each theme in French and English, webfonts refused vs loaded, 360 to 1600 wide); the throttled phone's targets are warnings until the phone-speed pass (below) | `npm run audit` (`AUDIT_PHONE_STRICT=1` to enforce the phone targets) | `gates` job; `check.yml` job `nightly` (inside `verify`) |
 | 8 | Painted contrast in every theme | `npm run sweep` | `gates`; `nightly` |
 | 9 | No visual layout bug outside the allowlist (`scripts/vbugs-allow.json`) | `npm run vbugs` | `gates`; `nightly` |
 | 10 | Keyboard paths, focus rings, dialogs, the contact form (errors, the mail hand-off, the lead store's POST with its switch on), reduced motion (WorkspaceHQ's booted console included), RTL | `npm run keys` | `gates`; `nightly` |
@@ -104,7 +104,7 @@ The phone targets are LCP ≤ 2.5 s, long tasks ≤ 300 ms and the slowest inter
 - `npm run audit` reports the phone targets as warnings; `AUDIT_PHONE_STRICT=1` makes them fail.
 - `monitor.yml` holds Lighthouse mobile to regression ceilings at today's level (`LCP_MS_MOBILE` 6500, `TBT_MS_MOBILE` 350), so the phone cannot get slower unnoticed; desktop and layout shift are held to the targets.
 
-A speed pass comes next (fonts, the weight of `assets/app.js` and `assets/styles.css`, the language paint-hold, the hero image, main-thread work at start). When the phone meets the targets, set `AUDIT_PHONE_STRICT=1` in `pages.yml` and `check.yml`, and lower `LCP_MS_MOBILE` and `TBT_MS_MOBILE` in `monitor.yml` to 2500 and 200.
+A speed pass comes next (fonts, the weight of `assets/app.js` and `assets/styles.css`, the language paint-hold, the hero image, main-thread work at start). Its font work includes Android. None of the faces in `assets/fonts.css`'s fallback lists ships there, so on Android a late webfont swaps from unadjusted system fonts and can still move the hero. Calibrating fallbacks for Android's own fonts needs a real device to confirm how Chrome there resolves `local()` names. When the phone meets the targets, set `AUDIT_PHONE_STRICT=1` in `pages.yml` and `check.yml`, and lower `LCP_MS_MOBILE` and `TBT_MS_MOBILE` in `monitor.yml` to 2500 and 200.
 
 ## 3. How a change reaches the live site
 
