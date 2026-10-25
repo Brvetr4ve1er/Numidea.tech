@@ -37,10 +37,11 @@
  *
  * The home page does not meet those targets yet (measured 2026-10-24 and 25
  * on a 4-CPU machine: LCP 2.8-3.7 s, long tasks 1.3-3.6 s, language switch
- * 0.4-0.9 s; RELEASE.md quotes the same), so they are REPORT-ONLY by default: printed on every run, listed
- * as warnings at the end, and not failing. AUDIT_PHONE_STRICT=1 makes them
- * fail, for the performance pass that brings the page under them (critical
- * CSS, later fonts, a cheaper language switch) and for CI once it has. What
+ * 0.4-0.9 s; RELEASE.md quotes the same), so they are REPORT-ONLY by
+ * default: printed on every run, listed as warnings at the end, and not
+ * failing. AUDIT_PHONE_STRICT=1 makes them fail, for the performance pass
+ * that brings the page under them (critical CSS, later fonts, a cheaper
+ * language switch) and for CI once it has. What
  * fails those two runs in every mode: an interaction that did not do its job
  * (its timing would mean nothing), a JS error, a failed request and any CSP
  * violation, since these runs are the CSP proof for the language switch, the
@@ -232,9 +233,9 @@ const bootConsole=async p=>{
    404 is the one failed request expected. */
 const PUBLISHED=new Set(deployFiles());
 const pagesRoot=new URL(BASE).pathname;
-const nested404=async(label,{site,path,js=true,theme,lang})=>{
+// emulate: answer BASE's host from this checkout instead of the network
+const nested404=async(label,{site,path,js=true,theme,lang,emulate=false})=>{
   if(ONLY&&!ONLY.test(label))return;
-  const emulate=site.startsWith(BASE);
   const ctx=await b.newContext({viewport:{width:1280,height:900},javaScriptEnabled:js});
   if(emulate){
     const staged=stage404(readFileSync(join(ROOT,'404.html'),'utf8'),pagesRoot);
@@ -397,8 +398,8 @@ await run('404 844×390','/404.html',{w:844,h:390,touch:true});
 console.log('— 404 two folders down —');
 await nested404('404 nested noir/ar',{site:B+'/',path:'a/b/missing?lang=ar',theme:'noir'});
 if(!REMOTE){
-  await nested404('404 pages nested fr',{site:BASE,path:'a/b/missing?lang=fr'});
-  await nested404('404 pages nested no-JS',{site:BASE,path:'a/b/c/nope.html',js:false});
+  await nested404('404 pages nested fr',{site:BASE,path:'a/b/missing?lang=fr',emulate:true});
+  await nested404('404 pages nested no-JS',{site:BASE,path:'a/b/c/nope.html',js:false,emulate:true});
 }
 console.log(`— throttled phone: 412×823, CPU 4×, Slow 4G, cold cache (timing targets ${PHONE_STRICT?'strict':'report-only'}) —`);
 await phone('throttled index fr','/index.html',{lang:'fr',to:'ar'});
