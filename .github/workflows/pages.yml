@@ -1,10 +1,21 @@
 name: Deploy to GitHub Pages
 
 # Publishes the static site to GitHub Pages on every push to the working
-# branch. The site is plain HTML/CSS/JS; the only "build" is staging the
-# publishable files (scripts/site.mjs DEPLOY) into _site/, so internal folders
-# (knowledge-base/, audit/, scripts/, BRAND.md…) are never served. The
-# repository invariants run first: a failing check blocks the deploy.
+# branch, but only once every gate is green.
+#
+# gates — read-only. The repository invariants, html-validate, "the build
+#   leaves no change", then the browser gates (audit, sweep, vbugs, keys) on
+#   Playwright's Chromium. About twelve minutes. Every gate runs even when an
+#   earlier one failed, so a red run lists everything that is wrong.
+# deploy — runs only when gates passed (needs: gates); any red gate means the
+#   live site stays as it is. It installs no npm package: it stages the
+#   publishable files (scripts/site.mjs DEPLOY, copied by
+#   scripts/stage-site.mjs into _site/, so knowledge-base/, audit/, scripts/,
+#   BRAND.md… are never served) and hands them to Pages. Only this job holds
+#   the Pages and OIDC token permissions.
+#
+# Every action is pinned to a commit SHA, its version in the comment;
+# Dependabot (.github/dependabot.yml) proposes the updates.
 
 on:
   push:
@@ -13,8 +24,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 # One deployment at a time. A run already deploying is never cancelled (a
 # Pages deploy cut off mid-flight can fail or leave the release half-done);
@@ -24,36 +33,110 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  gates:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          package-manager-cache: false
+
+      - name: Check repository invariants
+        run: node scripts/check.mjs && node scripts/themes-check.mjs
+
+      - name: Install
+        id: install
+        if: ${{ !cancelled() }}
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+
+      - name: HTML validation
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm run validate
+
+      - name: The build leaves no change (npm run build && git diff --exit-code)
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: |
+          npm run build
+          if ! git diff --exit-code --stat; then
+            git --no-pager diff | head -n 200 || true   # a long diff: head closes the pipe early
+            echo "::error::npm run build changed committed files. Run it locally and commit the result."
+            exit 1
+          fi
+          new=$(git ls-files --others --exclude-standard)
+          if [ -n "$new" ]; then
+            echo "$new"
+            echo "::error::npm run build wrote files that are not committed (listed above)."
+            exit 1
+          fi
+
+      # the Chromium build that the locked Playwright version expects, with its
+      # system libraries and fonts (scripts/lib/serve.mjs uses it in CI)
+      - name: Install Chromium
+        id: browser
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser audit (npm run audit)
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: npm run audit
+
+      - name: Contrast sweep (npm run sweep)
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: npm run sweep
+
+      - name: Visual bug scan (npm run vbugs)
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: npm run vbugs
+
+      - name: Keyboard, motion and RTL paths (npm run keys)
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: npm run keys
+
+  deploy:
+    needs: gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
-
-      - name: Check repository invariants
-        run: node scripts/check.mjs && node scripts/themes-check.mjs
+          package-manager-cache: false
 
       - name: Stage publishable files into _site/
         run: node scripts/stage-site.mjs
 
       - name: Configure Pages (auto-enable with Actions as the source)
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
         with:
           enablement: true
 
       - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: "_site"
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

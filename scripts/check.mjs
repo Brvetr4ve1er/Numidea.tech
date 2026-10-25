@@ -15,7 +15,8 @@
  *                        benefit line linked to its sheet; no figures or results anywhere
  *   7. generated pages — scene/index.html, the voices region and the French baked
  *                        into index.html (with its FAQ structured data) equal their
- *                        generators' output, and every page with an inline
+ *                        generators' output (line endings ignored, as in every
+ *                        generator comparison), and every page with an inline
  *                        dictionary resolves its keys in fr/en/ar
  *   6. deploy coverage — the published set (scripts/site.mjs DEPLOY) exists, every
  *                        page folder is classified, deployed pages link only to
@@ -25,12 +26,16 @@
  *   8. anchors + claims — every #fragment link lands on an id in its target page,
  *                        copy the owner retired as unsupported does not come back, and
  *                        French copy keeps its no-break spaces before ? ! ; : » etc.
+ *  15b. line endings  — .gitattributes pins LF, every binary type is listed there,
+ *                        and no tracked text file holds a CR
+ *  15c. no runtime dependency — package.json lists tools only (devDependencies)
  *
- * Exits non-zero on any failure. No dependencies.
+ * Exits non-zero on any failure. No dependencies (git is used when present).
  */
-import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, statSync, lstatSync, realpathSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { runInNewContext } from 'node:vm';
-import { join, dirname, normalize, basename } from 'node:path';
+import { join, dirname, normalize, basename, extname } from 'node:path';
 import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, DEPLOY_SKIP, NOT_DEPLOYED, BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
 import { SCENE_HTML } from './build-scene.mjs';
 import { renderSitemap } from './build-sitemap.mjs';
@@ -46,6 +51,13 @@ const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 let fail = 0;
 const bad = (msg) => { console.error('✗ ' + msg); fail = 1; };
 const ok = (msg) => console.log('✓ ' + msg);
+// Line endings never count when a committed file is compared with what its
+// generator writes: both sides are read the way HTML and XML parsers read
+// them, CRLF and a lone CR as LF, and the generator gets the LF text git
+// stores. A Windows clone with core.autocrlf=true used to fail the sitemap,
+// scene and baked-French comparisons on identical content. Keeping CR out of
+// the repository is block 15b's job.
+const lf = (s) => s.replace(/\r\n?/g, '\n');
 
 /* 1 + 2 — i18n */
 const app = read('assets/app.js');
@@ -271,7 +283,7 @@ for (const f of PAGES) {
     if (!existsSync(join(ROOT, file)) || !DEPLOY.includes(rel.split('/')[0])) problems.push(`${f} names ${BASE}${m[1]}, which is not published`);
   }
 }
-if (read('sitemap.xml') !== renderSitemap()) problems.push('sitemap.xml is stale (run: npm run build)');
+if (lf(read('sitemap.xml')) !== lf(renderSitemap())) problems.push('sitemap.xml is stale (run: npm run build)');
 problems.length ? problems.forEach(bad) : ok(`deploy set covers every page and link (${DEPLOY.length} entries); sitemap current`);
 // One canonical per page, from one place. index.html, scene/ and legal/ set
 // theirs in the head script, because each language version names itself
@@ -305,7 +317,7 @@ canonErr.length ? bad('canonical: ' + canonErr.join('; '))
   : ok(`one canonical per page (${canonStatic} static, ${canonScripted} set by the head script, none on 404.html)`);
 
 /* 7 — generated pages */
-read('scene/index.html') === SCENE_HTML
+lf(read('scene/index.html')) === lf(SCENE_HTML)
   ? ok('scene/index.html matches scripts/build-scene.mjs')
   : bad('scene/index.html differs from its generator (edit scripts/scene-data.mjs, then npm run scene)');
 const dictGaps = [];
@@ -431,15 +443,15 @@ priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) :
 // in index.html stay empty; once it exists, every owner field must be filled,
 // the page must equal fresh generator output and both links must be in place.
 const legalErr = [];
-const regions = (published) => { try { return markerRegions(html, published); } catch (e) { legalErr.push(e.message); return html; } };
+const regions = (published) => { try { return lf(markerRegions(lf(html), published)); } catch (e) { legalErr.push(e.message); return lf(html); } };
 if (!LEGAL_PUBLISHED) {
   for (const f of PAGES) if (/["'(=](?:\.\.\/|\.\/)?legal\//.test(read(f))) legalErr.push(`${f} points at legal/, which is not published`);
-  if (regions(false) !== html) legalErr.push('index.html legal link regions must stay empty until legal/ is published');
+  if (regions(false) !== lf(html)) legalErr.push('index.html legal link regions must stay empty until legal/ is published');
 } else {
   const gaps = legalMissing(LEGAL);
   if (gaps.length) legalErr.push('legal/ exists but scripts/legal-data.mjs still misses ' + gaps.join(', '));
-  else if (read('legal/index.html') !== renderLegal(LEGAL)) legalErr.push('legal/index.html differs from scripts/build-legal.mjs (run: npm run build)');
-  if (regions(true) !== html) legalErr.push('index.html lacks the legal and privacy links (run: npm run build)');
+  else if (lf(read('legal/index.html')) !== lf(renderLegal(LEGAL))) legalErr.push('legal/index.html differs from scripts/build-legal.mjs (run: npm run build)');
+  if (regions(true) !== lf(html)) legalErr.push('index.html lacks the legal and privacy links (run: npm run build)');
   for (const h of ['legal/#mentions', 'legal/#confidentialite'])
     if (!html.includes(`href="${h}"`)) legalErr.push(`index.html has no link to ${h}`);
 }
@@ -450,14 +462,14 @@ legalErr.length ? bad('legal page: ' + legalErr.join('; '))
 // dictionary on load, so any drift shows as copy changing after paint, and
 // no-JS readers and the FAQ rich result would read an older offer.
 let frStale = '';
-try { frStale = bakeFr(html, DICT.fr) !== html ? 'differs' : ''; } catch (e) { frStale = e.message; }
+try { frStale = lf(bakeFr(lf(html), DICT.fr)) !== lf(html) ? 'differs' : ''; } catch (e) { frStale = e.message; }
 frStale ? bad('index.html French: ' + (frStale === 'differs' ? 'differs from I18N.fr (run: npm run build)' : frStale))
   : ok('index.html French and its FAQ structured data equal I18N.fr');
 // Client voices: valid (consent recorded, delivered clients only) and the
 // index.html region equals what scripts/build-voices.mjs writes from them.
 const voiceErr = validateVoices();
 let voiceStale = false;
-try { voiceStale = applyVoices(html) !== html; } catch (e) { voiceErr.push(String(e.message)); }
+try { voiceStale = lf(applyVoices(lf(html))) !== lf(html); } catch (e) { voiceErr.push(String(e.message)); }
 voiceErr.length ? bad('client voices: ' + voiceErr.join('; '))
   : voiceStale ? bad('voices region in index.html is stale (run: npm run build)')
   : ok('client voices valid and in step with index.html');
@@ -546,5 +558,78 @@ if (existsSync(join(ROOT, 'knowledge-base'))) {
   }
 }
 kbErr.length ? bad('knowledge-base/ holds private material: ' + [...new Set(kbErr)].slice(0, 8).join(', ')) : ok('knowledge-base/ holds nothing from the private vault');
+
+/* 15b — line endings: LF in every tracked text file */
+// .gitattributes stores and checks out every text file with LF, so a Windows
+// clone no longer gets CRLF, and the generator comparisons ignore CR anyway
+// (lf, at the top). A CR can still come in another way: an editor saving
+// CRLF, a file committed before .gitattributes existed, an unpacked export.
+// So the LF rule must be the first rule in .gitattributes (later lines may
+// mark types binary), every tracked file with a NUL byte (git's own test for
+// binary) must have its type marked binary there, and no other tracked file
+// may hold a CR. Tracked means `git ls-files` when ROOT is the top of a git
+// work tree; without git (an export, a mirror's build) it means every file
+// that .gitignore does not exclude. The .gitignore patterns are read on every
+// run, git or not, so a pattern this check cannot read fails in CI too, not
+// only in the next build without git.
+const eolErr = [];
+// a .gitignore or .gitattributes pattern as a RegExp on the repo-relative
+// path, for the syntax those files use here: '*' inside a name, no slash =
+// any depth, a slash = from the root, a trailing '/' = folders only
+const glob = (from, p) => {
+  if (/[?[\\]|\*\*|^!/.test(p)) { eolErr.push(`${from}: "${p}" uses pattern syntax this check does not read (only *)`); return null; }
+  const body = p.replace(/^\/|\/$/g, '').split('*').map((s) => s.replace(/[.+^${}()|\]]/g, '\\$&')).join('[^/]*');
+  return { dir: p.endsWith('/'), re: new RegExp((p.replace(/\/$/, '').includes('/') ? '^' : '(?:^|/)') + body + '$') };
+};
+const rules = (f) => (existsSync(join(ROOT, f)) ? lf(read(f)).split('\n') : []).map((l) => l.trim()).filter((l) => l && !l.startsWith('#'));
+const attrRules = rules('.gitattributes');
+if (!/^\*\s+text=auto\s+eol=lf$/.test(attrRules[0] || '')) eolErr.push('the first rule in .gitattributes must be "* text=auto eol=lf" (LF in every checkout)');
+const binary = attrRules.map((l) => l.split(/\s+/)).filter(([, ...a]) => a.includes('binary') || a.includes('-text'))
+  .map(([p]) => glob('.gitattributes', p)).filter(Boolean);
+const ignored = rules('.gitignore').map((p) => glob('.gitignore', p)).filter(Boolean);
+let tracked, how;
+try {
+  const git = (...args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 64 << 20 });
+  if (realpathSync(git('rev-parse', '--show-toplevel').trim()) !== realpathSync(ROOT)) throw new Error('not the top of a work tree');
+  tracked = git('ls-files', '-z').split('\0').filter(Boolean);
+  how = 'git ls-files';
+} catch {
+  const walk = (d) => readdirSync(join(ROOT, d), { withFileTypes: true }).flatMap((e) => {
+    const p = d ? d + '/' + e.name : e.name;
+    if (e.name === '.git' || e.isSymbolicLink() || ignored.some((g) => g.re.test(p) && (!g.dir || e.isDirectory()))) return [];
+    return e.isDirectory() ? walk(p) : e.isFile() ? [p] : [];
+  });
+  tracked = walk('');
+  how = 'no git work tree, so every file .gitignore keeps';
+}
+const crFiles = [], untyped = new Map();
+let textCount = 0, binCount = 0;
+for (const f of tracked) {
+  let buf;
+  try { if (!lstatSync(join(ROOT, f)).isFile()) continue; buf = readFileSync(join(ROOT, f)); } catch { continue; }   // deleted, or a symlink
+  if (binary.some((g) => g.re.test(f))) { binCount++; continue; }
+  if (buf.includes(0)) { const t = extname(f) ? '*' + extname(f) : f; if (!untyped.has(t)) untyped.set(t, f); continue; }
+  textCount++;
+  let n = 0;
+  for (let i = buf.indexOf(13); i >= 0; i = buf.indexOf(13, i + 1)) n++;
+  if (n) crFiles.push(`${f} (${n})`);
+}
+if (untyped.size) eolErr.push('binary files whose type .gitattributes does not mark binary: ' + [...untyped].map(([t, f]) => `${t} (${f})`).join(', '));
+if (crFiles.length) eolErr.push(`CR in ${crFiles.length} tracked text files; save them with LF (a clone made before .gitattributes: commit your work, then git rm -rq --cached . && git reset --hard): `
+  + crFiles.slice(0, 20).join(', ') + (crFiles.length > 20 ? `, … and ${crFiles.length - 20} more` : ''));
+eolErr.length ? bad('line endings: ' + eolErr.join('; '))
+  : ok(`LF line endings in all ${textCount} tracked text files; ${binCount} binary files, every type marked in .gitattributes (${how})`);
+
+/* 15c — no runtime dependency */
+// The site loads no npm package; every package here is a tool for scripts/.
+// npm audit --omit=dev (CI's check job) audits runtime dependencies only, so
+// on its own it passes whatever is added. This makes the rule a gate: a first
+// runtime dependency is the owner's call, and it means changing this block.
+const pkg = JSON.parse(read('package.json'));
+const runtimeDeps = ['dependencies', 'optionalDependencies', 'peerDependencies', 'bundleDependencies', 'bundledDependencies']
+  .flatMap((k) => (Array.isArray(pkg[k]) ? pkg[k] : Object.keys(pkg[k] || {})).map((n) => `${n} (${k})`));
+runtimeDeps.length
+  ? bad('package.json declares a runtime dependency; the site has none, tools go in devDependencies: ' + runtimeDeps.join(', '))
+  : ok(`no runtime dependency in package.json (${Object.keys(pkg.devDependencies || {}).length} dev tools only)`);
 
 process.exit(fail);

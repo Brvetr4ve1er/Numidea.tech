@@ -6,7 +6,7 @@ sources: [package.json, README.md, BRAND.md, OWNER-CONTENT.md, .gitignore, audit
 
 # Captures and image tools
 
-Seven Node scripts make the site's pictures offline with Playwright and sharp: screenshots of the live client sites, project-sheet captures, the client logos, the share images, the atlas masks and the ad creatives (package.json › scripts, devDependencies; each script's header). None of them is one of the six gates and none runs at deploy (scripts/verify.mjs › STEPS; .github/workflows/pages.yml › 41–45). The images they write are committed with the site (README.md › This repository — the landing page; scripts/shots.mjs › header), except the ad images, which are written into the private campaign kit (scripts/build-creative.mjs › header). Start with the table, then read the section for the tool you are about to run; the gates themselves are in [[Build and gates]].
+Seven Node scripts make the site's pictures offline with Playwright and sharp: screenshots of the live client sites, project-sheet captures, the client logos, the share images, the atlas masks and the ad creatives (package.json › scripts, devDependencies; each script's header). None of them is one of the gates, and none runs in CI or before a deploy (scripts/verify.mjs › STEPS; .github/workflows/check.yml › 38–111; .github/workflows/pages.yml › 36–142). The images they write are committed with the site (README.md › This repository — the landing page; scripts/shots.mjs › header), except the ad images, which are written into the private campaign kit (scripts/build-creative.mjs › header). Start with the table, then read the section for the tool you are about to run; the gates themselves are in [[Build and gates]].
 
 ## The tools
 
@@ -31,7 +31,7 @@ Sources: package.json › scripts; the header of each script; scripts/shots.mjs 
 - Captures each live project at a fixed 16:10 viewport, 1280×800, which matches the work card's thumbnail ratio; renders at 2× and writes a WebP at quality 80 (scripts/shots.mjs › header, W, H, run).
 - Five entries: Bordj Steel, AlmaFlowClim, Alliance Travel, Nomara Voyages and the Glaive demo, each captured from its Netlify build even when a card links a production domain (scripts/shots.mjs › PROJECTS).
 - A failed capture keeps the existing file (scripts/shots.mjs › run).
-- `check` fails when `shots.mjs` and the page cover different clients (scripts/check.mjs › 142–151).
+- `check` fails when `shots.mjs` and the page cover different clients (scripts/check.mjs › 154–163).
 - Graph: [[shots.mjs]], [[_COMMUNITY_Project Screenshot Capture]], wiki [[Project_Screenshot_Capture]]. Where the pictures appear: [[Clients and projects]].
 
 ## Project-sheet captures: work-capture.mjs

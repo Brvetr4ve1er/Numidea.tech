@@ -71,7 +71,7 @@ The token list is `CONTRACT` in `scripts/themes-check.mjs`, in six groups (scrip
 | No theme selectors | `styles.css` contains `[data-theme` | scripts/themes-check.mjs › 148–151 |
 | No palette literals | `styles.css` writes one of the listed theme colours as an `rgb()`/`rgba()` literal outside the switcher swatches | scripts/themes-check.mjs › 152–160 |
 
-- It runs locally through `npm run check` (package.json › scripts.check), in CI on every push and pull request, and before every deploy (.github/workflows/check.yml › 29–30; .github/workflows/pages.yml › 41–42; netlify.toml › 12; vercel.json › 3); see [[Build and gates]] and [[Deploy]].
+- It runs locally through `npm run check` (package.json › scripts.check), in CI on every push and pull request, and before every deploy (.github/workflows/check.yml › 50–51; .github/workflows/pages.yml › 51–52; netlify.toml › 12; vercel.json › 3); see [[Build and gates]] and [[Deploy]].
 - The painted result is measured separately: the browser audit and the contrast sweep iterate `THEMES`, so a new theme is covered without editing them (scripts/audit.mjs › 99; scripts/sweep.mjs › 45).
 - Graph: [[themes-check.mjs]], [[PAIRS]].
 
