@@ -15,7 +15,7 @@ sources: [BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, scene/app.js, s
 | 1. Data | `scripts/scene-data.mjs` | `PROJECTS` (one entry per sheet) and `UI` (interface copy in fr, en, ar) (scripts/scene-data.mjs › PROJECTS, UI) |
 | 2. Captures | `npm run work:capture [slug]` | Four desktop pages at 1440×900 and two phone screens at 390×844 @2x per project, from the live sites, into `assets/work/<slug>/{d1..d4,m1,m2}.webp`; WorkspaceHQ needs the local server (scripts/work-capture.mjs › 1) |
 | 3. Build | `npm run scene` (or `npm run build`) | Writes `scene/index.html` with French baked in and the dictionary inline (scripts/build-scene.mjs › 1; package.json › scripts) |
-| 4. Gate | `check.mjs` | Fails when `scene/index.html` differs from the generator's output, and checks the benefit blocks (scripts/check.mjs › header, 5c, 7) |
+| 4. Gate | `check.mjs` | Fails when `scene/index.html` differs from the generator's output, and checks the benefit blocks (scripts/check.mjs › header, blocks 5c and 7) |
 
 - `build-scene.mjs --check` reports whether the page matches its generator (scripts/build-scene.mjs › 315).
 - A missing capture stops the build with "missing capture" (scripts/build-scene.mjs › shot()).
@@ -75,12 +75,12 @@ Graph: [[Project sheet (planche) structure]], [[What the site brings the client 
 
 - Every fact in `scene-data.mjs` was read off the live site or the repository on 2026-10-06: page lists from navigation, colours from CSS custom properties and pixels, typefaces from computed styles; nothing is estimated (scripts/scene-data.mjs › 1).
 - `context` and `gains` were read off the live sites on 2026-10-17 by clicking through what each one claims (BRAND.md › Project sheets (scene/)).
-- A benefit says what the client or their customers can now do, never a result: `check.mjs` (5c) refuses any digit, `%`, or words such as increased, boosted or conversion, in all three languages, and requires 3 to 5 benefits per sheet, each with an `at` page starting with `/` (scripts/check.mjs › 5c).
+- A benefit says what the client or their customers can now do, never a result: `check.mjs` (5c) refuses any digit, `%`, or words such as increased, boosted or conversion, in all three languages, and requires 3 to 5 benefits per sheet, each with an `at` page starting with `/` (scripts/check.mjs › block 5c).
 - Two claims were removed this way: AlmaFlowClim's `/realisations` is nine text cards whose filter buttons do nothing on the live site, so it is no longer called filterable or a gallery (BRAND.md › Project sheets (scene/)).
 
 ## Links into the sheets
 
-- Each delivered client's card that has a sheet (Bordj Steel, Alliance Travel, AlmaFlowClim) links its benefit line to `scene/#gv-<slug>`, and a visually hidden "— le détail sur la planche" (`work.gainMore`) ends the link's name so a screen reader hears where it goes (BRAND.md › Project sheets (scene/); index.html › SELECTED WORK; scripts/check.mjs › 5c).
+- Each delivered client's card that has a sheet (Bordj Steel, Alliance Travel, AlmaFlowClim) links its benefit line to `scene/#gv-<slug>`, and a visually hidden "— le détail sur la planche" (`work.gainMore`) ends the link's name so a screen reader hears where it goes (BRAND.md › Project sheets (scene/); index.html › SELECTED WORK; scripts/check.mjs › block 5c).
 - Cards with a sheet also carry "Voir la planche →" to `scene/#<slug>`; Nomara Voyages has no sheet, so its benefit line is plain text (index.html › SELECTED WORK; BRAND.md › Project sheets (scene/)).
 - The work section ends on the planches banner, "Ouvrir les planches →" (index.html › 538). See [[Project Plates Banner (Planches)]].
 - Old `#/work/<slug>` links from the retired project explorer are redirected to the matching sheet through the `SHEET` map: `bordj-steel` → `bordjsteel`, `alliance-travel` → `alliance`, `almaflowclim` → `almaflow`, `glaive-store` → `glaive`, keeping the query string (assets/app.js › DOM ready, legacy deep links).

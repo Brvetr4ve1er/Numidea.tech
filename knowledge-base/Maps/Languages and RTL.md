@@ -95,8 +95,8 @@ French copy keeps a no-break space (U+202F or U+00A0) before `? ! ; : »`, after
 
 | Check | What fails |
 |---|---|
-| 1 · i18n balance | A dictionary key whose count in `app.js` is not a multiple of three, that is, not once per language for each copy set (scripts/check.mjs › 1 + 2) |
-| 2 · i18n coverage | A `data-i18n*` attribute with no key (scripts/check.mjs › 1 + 2) |
+| 1 · i18n balance | A dictionary key whose count in `app.js` is not a multiple of three, that is, not once per language for each copy set (scripts/check.mjs › block 1 + 2) |
+| 2 · i18n coverage | A `data-i18n*` attribute with no key (scripts/check.mjs › block 1 + 2) |
 | 7 · generated pages | The scene page out of step with its generator; a page with an inline dictionary whose keys do not resolve in fr, en and ar (scripts/check.mjs › block 7) |
 | 8e · baked French | The French baked into `index.html` (text, attributes, title, description, the studio's and the FAQ's JSON-LD) out of step with `I18N.fr` (scripts/check.mjs › block 8e) |
 | 6 · canonicals | A page that names its canonical in both markup and head script, or names none (scripts/check.mjs › block 6) |

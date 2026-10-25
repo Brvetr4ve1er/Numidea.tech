@@ -1,12 +1,12 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-25
 sources: [index.html, assets/app.js, scripts/scene-data.mjs, scripts/voices-data.mjs, scripts/check.mjs, scripts/shots.mjs, scripts/verify-domains.mjs, OWNER-CONTENT.md, README.md, BRAND.md]
 ---
 
 # Clients and projects
 
-The work grid shows four live client sites, one portfolio demo and two projects in progress, and only those four clients appear in the logo strip or can carry a quote (index.html › #work, work.lead, .titleblock; scripts/voices-data.mjs › VOICE_CLIENTS; scripts/check.mjs › 5b). One of the four, Nomara Voyages, is shown as delivered but the owner has not confirmed it is a client (OWNER-CONTENT.md › 7). The studio's own product, WorkspaceHQ v3, has a project sheet and a footer link but no card in the grid (scripts/scene-data.mjs › workspacehq; index.html › footer .whq-cart). Start with the roster, then the rules the code enforces, then the owner flags in [[Open owner items]].
+The work grid shows four live client sites, one portfolio demo and two projects in progress, and only those four clients appear in the logo strip or can carry a quote (index.html › #work, work.lead, .titleblock; scripts/voices-data.mjs › VOICE_CLIENTS; scripts/check.mjs › block 5b). One of the four, Nomara Voyages, is shown as delivered but the owner has not confirmed it is a client (OWNER-CONTENT.md › 7). The studio's own product, WorkspaceHQ v3, has a project sheet and a footer link but no card in the grid (scripts/scene-data.mjs › workspacehq; index.html › footer .whq-cart). Start with the roster, then the rules the code enforces, then the owner flags in [[Open owner items]].
 
 ## Roster
 
@@ -52,7 +52,7 @@ Sources: index.html › #work (cards, categories, links, "En cours"); assets/app
 ### Nomara Voyages
 - Shown as delivered work, but the owner has not confirmed it is a real client with permission to show the site (OWNER-CONTENT.md › 7).
 - If it is not, it comes off the work grid, the hero plate, the counts, the logo strip, `client-logos.mjs`, `proj6.gain` and `VOICE_CLIENTS` (OWNER-CONTENT.md › 7).
-- It has no project sheet (BRAND.md › Client voices and photo slots), so its benefit line on the card links nowhere (scripts/check.mjs › 5c).
+- It has no project sheet (BRAND.md › Client voices and photo slots), so its benefit line on the card links nowhere (scripts/check.mjs › block 5c).
 - Graph: [[Nomara Voyages (unconfirmed client)]].
 
 ### Glaive Store and WorkspaceHQ
@@ -63,12 +63,12 @@ Sources: index.html › #work (cards, categories, links, "En cours"); assets/app
 
 | Rule | Where |
 |---|---|
-| The logo strip "Ils nous ont confié leur site" shows exactly the four delivered clients, each logo the client's own file, linked to its own work card; never Glaive or WorkspaceHQ | scripts/check.mjs › 5b; BRAND.md › Client logo strip |
+| The logo strip "Ils nous ont confié leur site" shows exactly the four delivered clients, each logo the client's own file, linked to its own work card; never Glaive or WorkspaceHQ | scripts/check.mjs › block 5b; BRAND.md › Client logo strip |
 | Client logos are taken from the live sites' headers by `npm run logos`, which checks each is still the header logo | README.md › Commands |
-| Each project sheet carries the client's context and 3 to 5 benefits in three languages, each with the live page that shows it; no figures, %, or result words | scripts/check.mjs › 5c; scripts/scene-data.mjs › header |
-| Each delivered client's card carries one benefit line, linked to its sheet when it has one | scripts/check.mjs › 5c |
+| Each project sheet carries the client's context and 3 to 5 benefits in three languages, each with the live page that shows it; no figures, %, or result words | scripts/check.mjs › block 5c; scripts/scene-data.mjs › header |
+| Each delivered client's card carries one benefit line, linked to its sheet when it has one | scripts/check.mjs › block 5c |
 | Client quotes: only the four delivered clients, at most 280 characters, a past consent date and a note of where the consent is kept; the list is empty today | scripts/voices-data.mjs › VOICES, validate |
-| Plate, card, browser bar, screenshots and showcase links agree per client; the hub lists no client sites | scripts/check.mjs › 5 |
+| Plate, card, browser bar, screenshots and showcase links agree per client; the hub lists no client sites | scripts/check.mjs › block 5 |
 | Card screenshots are committed 1280×800 WebP captures of the live builds (`npm run shots`) | scripts/shots.mjs; README.md › Project previews |
 
 - Graph: [[VOICE_CLIENTS]], [[VOICES]], [[Delivered clients (quotable)]], [[Client logo strip ('Ils nous ont confié leur site')]], [[What the site brings the client (benefits) section]], [[Committed client-site preview screenshots (assetspreviews.webp)]].
