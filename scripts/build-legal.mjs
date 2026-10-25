@@ -21,6 +21,7 @@ import { pathToFileURL } from 'node:url';
 import { ROOT, BASE, THEMES, LANGS, DEPLOY, DEPLOY_SKIP } from './site.mjs';
 import { LEGAL, missing } from './legal-data.mjs';
 import { loadDicts, toMarkup } from './lib/i18n.mjs';
+import { withCsp } from './lib/csp.mjs';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const stamp = () => (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
@@ -257,7 +258,8 @@ export function renderLegal(data = LEGAL, { preview = false } = {}) {
 </div>`;
     return l === 'fr' ? frTypo(block) : block;
   }).join('\n');
-  return `<!DOCTYPE html>
+  // the policy meta after the viewport meta, hashing the head script (scripts/lib/csp.mjs)
+  return withCsp(`<!DOCTYPE html>
 <html lang="fr" dir="ltr" data-theme="arcanum">
 <head>
 <meta charset="UTF-8">
@@ -324,7 +326,7 @@ for(k in S)for(j in S[k])if(S[k][j]===x&&S[k][l]!==x)history.replaceState(null,'
 <script src="../assets/carry.js?v=${st}" defer></script>
 </body>
 </html>
-`;
+`, 'page');
 }
 
 /* the links index.html carries once the page is published; the French text

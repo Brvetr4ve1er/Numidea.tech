@@ -57,3 +57,11 @@ No action was taken in this audit — this is an owner decision.
   when live). Not possible on Pages.
   [2026-10: GitHub Pages remains canonical, with Netlify and Vercel as mirrors, and
   fonts are now self-hosted in `assets/fonts` (no Google Fonts request).]
+  [2026-10-24 correction: there is now a CSP on every host, as a meta tag on every
+  page. Each inline script is allowed by its sha256 hash, with no `'unsafe-inline'`
+  for scripts. No third-party source is allowed, except the Supabase origin, which
+  is added to connect-src only once the lead store is switched on. The mirrors add `frame-ancestors 'self'`
+  and HSTS in headers, and `X-Frame-Options` is `SAMEORIGIN`, not `DENY`, because
+  workspacehq/ frames its own embeds. The policy and its one exception
+  (`'unsafe-eval'` on the WorkspaceHQ embeds) are explained in BRAND.md,
+  "Content-Security-Policy".]

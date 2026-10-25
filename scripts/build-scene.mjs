@@ -16,6 +16,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PROJECTS, UI } from './scene-data.mjs';
 import { VOICES, VOICE_CLIENTS } from './voices-data.mjs';
 import { BASE } from './site.mjs';
+import { withCsp } from './lib/csp.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const stamp = (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
@@ -206,7 +207,9 @@ ${gv}
 const sheets = PROJECTS.map(sheet).join('\n');
 const index = PROJECTS.map((p, i) => `<li><a href="#${p.slug}"><span class="ix-n">${pad(i + 1)}</span><span class="ix-name" dir="ltr">${esc(p.name)}</span></a></li>`).join('\n        ');
 
-const html = `<!DOCTYPE html>
+// withCsp: the policy meta after the viewport meta, hashing the head script
+// (scripts/lib/csp.mjs); a data block like the dictionary is not hashed
+const html = withCsp(`<!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
 <meta charset="utf-8">
@@ -306,7 +309,7 @@ ${sheets}
 <script src="app.js?v=${stamp}" defer></script>
 </body>
 </html>
-`;
+`, 'page');
 export const SCENE_HTML = html;
 const OUT = join(ROOT, 'scene/index.html');
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

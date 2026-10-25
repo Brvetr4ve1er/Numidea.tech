@@ -1321,7 +1321,9 @@ for the product's public v3 launch. Two halves, built differently on purpose:
   copies. Net: zero third-party requests, as everywhere else on the site.
   To update an embed from a new design export, repeat those four steps,
   and keep the one rule added to `console.html`'s style block (fields at
-  16px on a coarse pointer, so iOS does not zoom on focus).
+  16px on a coarse pointer, so iOS does not zoom on focus). Keep its
+  Content-Security-Policy meta too: an export comes without it, and
+  `npm run csp` writes it back (see "Content-Security-Policy" below).
 
 **Install = GitHub.** The design said `brew install workspacehq` /
 `npm i -g workspacehq`; neither package exists (both registries 404), and an
@@ -1690,6 +1692,144 @@ the stage. Every host builds from `_site/`: GitHub Pages is canonical
 `NOT_DEPLOYED` lists what must never be served, including `knowledge-base/`,
 `audit/`, `scripts/`, `legal-preview/` and this file. `campaign/` is kept
 outside the repository altogether.
+
+## Content-Security-Policy
+
+Every page carries its policy as `<meta http-equiv="Content-Security-Policy">`,
+written right after the viewport meta, because GitHub Pages (the canonical
+host) cannot send headers. A meta policy governs only what comes after it, so
+nothing it covers (script, style, link, base) may come first; check.mjs 16
+holds that. `scripts/lib/csp.mjs` (`withCsp(html, kind)`) computes the policy
+from the page's own markup. `npm run build` applies it: `build-csp.mjs` runs
+last over the hand-written pages and the three embeds, `build-scene` and
+`build-legal` apply it to their own output, and `bump.mjs` applies it again
+after stamping.
+
+**The page policy** (index, 404, hub, scene, workspacehq, legal):
+
+| Directive | Value | Why |
+|---|---|---|
+| `default-src` | `'self'` | the site makes no third-party request, and anything not listed below falls back to this |
+| `script-src` | `'self'` + one `sha256-…` per inline script | the inline boot scripts (language and theme before paint, the Supabase switch) are allowed by hash. No `'unsafe-inline'`, and no nonces: a static host cannot mint one per response |
+| `style-src` | `'self' 'unsafe-inline'` | the pages' own `<style>` blocks and `style="--x:…"` custom properties. Without it, index logs 29 refusals and scene 26. Writing `el.style.x` from a script is not governed either way. The risk accepted is CSS injection only, and the site shows no user content |
+| `img-src` | `'self' data:` | the hub lightbox's placeholder is a `data:` GIF, plus `data:` URIs in CSS |
+| `font-src` | `'self'` | every font is self-hosted |
+| `connect-src` | `'self'` (+ the Supabase origin) | the origin is added only on index.html, only when its lead-store switch is on. It is read by running the switch script in a sandbox, as check.mjs 7 reads it. A switch that cannot be read, or a non-https URL, stops the build |
+| `media-src`, `frame-src` | `'self'` | workspacehq/ frames its own three embeds |
+| `worker-src`, `object-src` | `'none'` | neither is used |
+| `base-uri` | `'self'` | |
+| `form-action` | `mailto:` | without scripts, the contact form posts to its `mailto:` action. With scripts, app.js opens a `mailto:` address itself, and form-action does not govern that |
+
+JSON-LD, the scene/legal dictionaries (`application/json`) and the embeds'
+`text/x-dc` templates are data blocks. The browser never runs them, so they
+are not hashed and their content can change without a rebuild. No tag may
+carry an inline handler (`onclick=…`) or a `javascript:` URL, because no hash
+can allow either one. Attach listeners from a script file instead. No
+`<script>` may sit inside an inline `<svg>` or `<math>` either: there the
+browser decodes `&lt;` and CDATA in the script's text before hashing it, so
+the hash taken from the source would not match. `csp.mjs` stops the build on
+one, and check.mjs 16 fails; load that code from a script file.
+
+**The embed exception** (`workspacehq/embed/*.html`, which run on the Claude
+Design runtime) uses the same policy plus:
+- `'unsafe-eval'`: `support.js` runs each component's code with
+  `new Function`, and without this the console does not boot. It stays
+  contained: the embeds are same-origin frames that run only first-party
+  static code, the page that frames them keeps a strict script-src, and
+  check.mjs 16 refuses `'unsafe-eval'` on any page that is not an embed.
+- `font-src data:`: the stage inlines its `@font-face` files as `data:`
+  URLs. Without it, the trailer and the walkthrough each log 3 refusals.
+- `img-src blob:`: this is for the runtime's bundled-resource mode
+  (`window.__resourceBlobs`). Today's exports do not use it, so dropping it
+  changes nothing measurable. It is kept so that a re-export using that
+  mode still works.
+The runtime re-creates each helmet `<script>` with the same text, so the
+hashes match both times it runs. The template's `onClick="{{ … }}"`
+attributes are bindings that the runtime turns into React listeners, not
+code. check.mjs 16 exempts them only on the embeds.
+
+**Re-exporting an embed.** A new Claude Design export comes without the
+meta. Run `npm run csp` (or `npm run build`), which writes the meta and
+hashes any inline script the export carries. Then `npm run check`, and open
+the embed through workspacehq/. Do this together with the self-containment
+steps and the 16px rule in the WorkspaceHQ section above.
+
+**Keeping hashes fresh.** Edit an inline script, then run `npm run build`
+(or `npm run csp`). A page shipped with a stale hash loses its boot script.
+The browser refuses it, `html.js` is never set, and every `js-only` control
+(theme button, language switch, menu) stays hidden. check.mjs 16 fails when:
+- a page's meta is not `withCsp(page)`;
+- an inline script has no hash, or a hash no longer names a script;
+- a page has an inline handler or a `javascript:` URL;
+- an inline `<script>` sits inside an `<svg>` or `<math>`;
+- something the policy governs comes before the meta;
+- the policy drops below its floor. The floor is written down apart from
+  the code that builds the policy, in `scripts/lib/csp-floor.mjs`, so that
+  loosening `csp.mjs` does not pass on its own: every directive must be one
+  the floor knows, given once (the browser enforces the first of a repeated
+  directive and ignores the rest), with each value on that directive's list.
+  script-src is limited to `'self'` and hashes (plus `'unsafe-eval'` on the
+  embeds), default-src is `'self'`, `object-src 'none'`, `base-uri 'self'`.
+  `script-src-elem` and `script-src-attr` are refused outright, because they
+  override script-src for `<script>` elements and inline handlers. So are
+  `'unsafe-inline'`, `'unsafe-hashes'`, `'strict-dynamic'`, nonces,
+  wildcards, schemes and hosts in any script directive or default-src.
+  Loosening the policy on purpose takes an edit to both files.
+
+**Headers on the mirrors** (`netlify.toml` "/*" and `vercel.json` "/(.*)",
+which check.mjs 16 keeps identical):
+- `Content-Security-Policy: frame-ancestors 'self'; base-uri 'self';
+  object-src 'none'`: frame-ancestors is the part a meta cannot carry. The
+  browser enforces this policy on top of each page's meta, so it holds no
+  fetch directive, which would block what the meta allows.
+- `Strict-Transport-Security: max-age=63072000` (two years). Vercel already
+  sends `max-age=63072000; includeSubDomains; preload` on every
+  `*.vercel.app` deployment, and Netlify sends `max-age=31536000;
+  includeSubDomains; preload` on `*.netlify.app` (both read with
+  `curl -sI`, October 2026). A custom header most likely replaces the
+  platform's, so ours uses Vercel's two years rather than shorten it there.
+  check.mjs 16 accepts a year or more. `includeSubDomains` and `preload` are
+  left out: they bind every subdomain of a custom domain, which is the
+  owner's decision. After a deploy, `curl -sI` on each mirror shows the
+  header actually sent.
+- `X-Frame-Options: SAMEORIGIN`, for older browsers.
+
+On the mirrors, another site that frames any page of this one is refused
+(tested with an embed). On GitHub Pages it is not, and only a header could
+change that.
+
+**Proved in a real browser** (October 2026, Chromium, Playwright, no
+`bypassCSP`):
+- Zero violations on every page and frame, under the meta alone (Pages) and
+  under the meta plus the mirrors' headers.
+- index in fr/en/ar: the language switch, the theme menu, currency, the
+  estimator, the FAQ, the pricing panels, the CV panel, and the form through
+  to its `mailto:` handoff.
+- scene's viewer, the hub lightbox, 404 at a nested path (also on an
+  emulated `https://brvetr4ve1er.github.io/Numidea.tech/`), and the legal
+  page's preview.
+- workspacehq/ with the trailer and walkthrough playing and the console
+  booted from "Boot the console" and clicked through, plus each embed
+  opened directly.
+- Each negative case is seen refused: a planted script on each of the 8
+  pages, an edited boot script, an inline handler, a third-party image, the
+  console without `'unsafe-eval'`, the trailer without `font-src data:`,
+  cross-origin framing on the mirrors, and the Supabase switch flipped
+  without a rebuild.
+
+Google's CSP Evaluator (npm `csp_evaluator` 1.1.8) has two findings on the
+page policies, both MEDIUM_MAYBE:
+- `'self'` in script-src. This matters only on a site that hosts JSONP,
+  AngularJS or user uploads, and this one hosts none of them.
+- `'unsafe-eval'`, on the embeds only.
+It reports "script-src missing" on the mirrors' header policy alone. That is
+expected: the header only adds frame-ancestors, and each page's meta, which
+the browser enforces alongside it, carries script-src.
+
+A browser check of the policy must count `securitypolicyviolation` events
+from every frame and the console messages that name "Content Security
+Policy". A frame-ancestors refusal reaches only the console, not the page.
+A blocked request also shows as a failed request (`csp`).
 
 ## Visualisations (r3/c)
 

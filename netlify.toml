@@ -16,9 +16,14 @@
   NODE_VERSION = "22"
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
-# Mirror of vercel.json. Assets are cached for a day, not "immutable": only
-# the CSS/JS links carry ?v= stamps, and images, the CV and og.jpg are
-# regenerated under the same names (npm run shots, og). Plus security headers.
+# Mirror of vercel.json (check.mjs 16 holds the two to the same headers).
+# Assets are cached for a day, not "immutable": only the CSS/JS links carry
+# ?v= stamps, and images, the CV and og.jpg are regenerated under the same
+# names (npm run shots, og). Plus security headers. Each page carries its own
+# Content-Security-Policy meta (scripts/lib/csp.mjs); the header policy adds
+# only what a meta cannot carry (frame-ancestors) and repeats its floor
+# (base-uri, object-src). The browser enforces both policies, so a fetch
+# directive here would block what the page's meta allows.
 [[headers]]
   for = "/assets/*"
   [headers.values]
@@ -31,3 +36,5 @@
     X-Frame-Options = "SAMEORIGIN"   # workspacehq/ embeds its own same-origin pages
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+    Strict-Transport-Security = "max-age=63072000"

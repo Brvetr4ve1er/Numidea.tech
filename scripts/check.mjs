@@ -632,4 +632,127 @@ runtimeDeps.length
   ? bad('package.json declares a runtime dependency; the site has none, tools go in devDependencies: ' + runtimeDeps.join(', '))
   : ok(`no runtime dependency in package.json (${Object.keys(pkg.devDependencies || {}).length} dev tools only)`);
 
+/* 16 — content security policy */
+// Every page carries the policy scripts/lib/csp.mjs computes for it: one meta
+// right after the viewport meta, script-src naming the sha256 of each inline
+// script. npm run build writes it (build-csp.mjs last; build-scene and
+// build-legal on their own output). A script edited without the build keeps
+// its old hash, and the browser refuses it: the page would ship without its
+// boot script. So the committed page must equal withCsp(page).
+// What withCsp decides is then checked a second way, with this block's own
+// scan of the markup: every inline script that is not a known data block has
+// its hash in script-src (and script-src names no script that is gone), no
+// tag carries an inline handler (onclick=…) or a javascript: URL, which no
+// hash can allow, and nothing the policy governs comes before the meta.
+// The policy itself is held to its floor, stated apart from csp.mjs in
+// scripts/lib/csp-floor.mjs so that loosening csp.mjs cannot pass on its own:
+// every directive known and given once, each value on its directive's list
+// (script-src only 'self' and hashes, 'unsafe-eval' on the WorkspaceHQ embeds
+// alone; no script-src-elem or script-src-attr; default-src 'self';
+// object-src 'none'; base-uri 'self'). The fixtures of scripts/csp-test.mjs
+// run too. Last, the mirrors' headers: the policy parts a meta cannot carry
+// (frame-ancestors) and HSTS, the same on Netlify and Vercel.
+{
+  const { withCsp, cspKind, cspOf } = await import('./lib/csp.mjs');
+  const { directiveMap, policyErrors, headerPolicyErrors } = await import('./lib/csp-floor.mjs');
+  const { fixtureErrors } = await import('./csp-test.mjs');
+  const { createHash } = await import('node:crypto');
+  const cspErr = [];
+  // the parser turns CR LF and CR into LF before the browser hashes
+  const sha = (t) => `'sha256-${createHash('sha256').update(t.replace(/\r\n?/g, '\n'), 'utf8').digest('base64')}'`;
+  // script types the browser never runs; any other inline script must be hashed
+  const DATA = new Set(['application/ld+json', 'application/json', 'text/x-dc']);
+  // the markup as the tokenizer reads it, left to right: a comment, a script
+  // (its attributes and text), a raw-text element (its name and attributes;
+  // its content is text, not tags), any other start tag, or the end of an
+  // <svg> or <math>. Inside those two (foreign content) the browser decodes
+  // "&…;" and CDATA in a script's text before hashing it, so no inline script
+  // may sit there (csp.mjs refuses one too)
+  const Q = `(?:"[^"]*"|'[^']*'|[^'">])*`;               // a tag's attributes, quoted ">" included
+  const TOKEN = new RegExp(`<!--[\\s\\S]*?(?:-->|$)|<script\\b(${Q})>([\\s\\S]*?)</script[\\s/>]`
+    + `|<(style|textarea|title|noscript|xmp|iframe|noembed|noframes)\\b(${Q})>[\\s\\S]*?</\\3[\\s/>]|<([a-zA-Z][^\\s/>]*)(${Q})>`
+    + `|</(svg|math)(?=[\\s/>])[^>]*>`, 'gi');
+  const attrsOf = (s) => Object.fromEntries([...s.matchAll(/([^\s"'>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g)]
+    .map((m) => [m[1].toLowerCase(), m[2] ?? m[3] ?? m[4] ?? '']).reverse());   // the first of a repeated attribute wins
+  const URL_ATTRS = ['href', 'src', 'action', 'formaction', 'data', 'xlink:href', 'poster'];
+  // a URL attribute as the URL parser sees it: character references decoded,
+  // tabs and newlines dropped, leading control characters and spaces trimmed
+  const urlOf = (v) => v.replace(/&#x([0-9a-f]+);?/gi, (_, h) => String.fromCodePoint(parseInt(h, 16) || 0xfffd))
+    .replace(/&#(\d+);?/g, (_, n) => String.fromCodePoint(Number(n) || 0xfffd)).replace(/&colon;/gi, ':').replace(/&(?:tab|newline);/gi, '')
+    .replace(/[\t\n\r]/g, '').replace(/^[\x00-\x20]+/, '');
+  let nScripts = 0, nPages = 0;
+  for (const f of [...PAGES, ...EXTRA_PAGES]) {
+    const src = read(f), kind = cspKind(f);
+    try { if (withCsp(src, kind) !== src) cspErr.push(`${f}: its CSP meta is stale or missing (run: npm run build)`); }
+    catch (e) { cspErr.push(`${f}: ${e.message}`); }
+    const policy = cspOf(src);
+    if (policy == null) { cspErr.push(`${f}: wants exactly one Content-Security-Policy meta`); continue; }
+    nPages++;
+    const scriptSrc = directiveMap(policy)['script-src'] || [];   // the first, as the browser enforces it
+    const need = new Set(), handlers = [];
+    let metaAt = -1, governedAt = -1, metas = 0, foreign = 0;
+    for (const t of src.matchAll(TOKEN)) {
+      const [whole, sAttrs, sText, raw, rAttrs, tag, tAttrs, foreignEnd] = t;
+      if (whole.startsWith('<!--')) continue;
+      if (foreignEnd !== undefined) { if (foreign) foreign--; continue; }
+      if (foreign && (sAttrs !== undefined || (raw && /<script[\s/>]/i.test(whole))))
+        cspErr.push(`${f}: a <script> inside <svg> or <math>, where the browser hashes its text after decoding "&…;" and CDATA: move the code to a script file`);
+      // <svg/> closes at once; <svg a=b/> does not (the "/" is the value's)
+      if (tag && /^(svg|math)$/i.test(tag) && !/(?:^|[\s"'])\/$/.test(tAttrs)) foreign++;
+      const name = (sAttrs !== undefined ? 'script' : raw || tag).toLowerCase();
+      const a = attrsOf(sAttrs ?? rAttrs ?? tAttrs);
+      if (governedAt < 0 && ['script', 'style', 'link', 'base'].includes(name)) governedAt = t.index;
+      if (name === 'meta' && (a['http-equiv'] || '').toLowerCase() === 'content-security-policy') { metas++; if (metaAt < 0) metaAt = t.index; }
+      for (const [k, v] of Object.entries(a)) {
+        // the embeds are Claude Design templates: onClick="{{ goHome }}" is a
+        // binding the runtime (support.js) renders as a React listener, not code
+        if (/^on/.test(k) && !(kind === 'embed' && /^\s*\{\{[^{}]*\}\}\s*$/.test(v))) handlers.push(`<${name} ${k}>`);
+        if (URL_ATTRS.includes(k) && /^javascript:/i.test(urlOf(v))) cspErr.push(`${f}: <${name} ${k}="javascript:…"> runs inline code, which script-src refuses`);
+      }
+      if (sAttrs === undefined) continue;                  // not a script, or one left unclosed
+      const type = (a.type ?? '').trim().toLowerCase();
+      if ('src' in a || sText === '' || DATA.has(type)) continue;
+      nScripts++;
+      const h = sha(sText);
+      need.add(h);
+      if (!scriptSrc.includes(h)) cspErr.push(`${f}: inline <script${a.type != null ? ` type="${a.type}"` : ''}> "${sText.trim().replace(/\s+/g, ' ').slice(0, 40)}…" is not in script-src (npm run build hashes it; a data block the browser never runs needs its type in check.mjs 16)`);
+    }
+    if (handlers.length) cspErr.push(`${f}: ${handlers.length} inline handler${handlers.length === 1 ? '' : 's'} (${[...new Set(handlers)].slice(0, 4).join(', ')}), which script-src refuses: attach ${handlers.length === 1 ? 'it' : 'them'} from a script file`);
+    if (metas !== 1) cspErr.push(`${f}: ${metas} Content-Security-Policy metas (want 1)`);
+    if (governedAt >= 0 && metaAt > governedAt) cspErr.push(`${f}: a script, style, link or base comes before the CSP meta, which then does not govern it`);
+    for (const h of scriptSrc.filter((s) => /^'sha256-/.test(s))) if (!need.has(h)) cspErr.push(`${f}: script-src names ${h}, which is no script on the page (npm run build)`);
+    // the floor: connect-src may add one https origin on index.html alone,
+    // and only while block 7 reads the lead-store switch as on
+    for (const e of policyErrors(policy, { kind, connect: f === 'index.html' && supaOn })) cspErr.push(`${f}: ${e}`);
+  }
+  for (const e of fixtureErrors()) cspErr.push(`withCsp fixtures (node scripts/csp-test.mjs): ${e}`);
+  // The mirrors send the headers on every path. A second policy in a header is
+  // enforced on top of the meta, so it may only add what a meta cannot carry
+  // (frame-ancestors) or repeat the meta's floor: a fetch directive there
+  // would block what the meta allows. HSTS: a year at least.
+  const netlify = {};
+  for (const b of read('netlify.toml').split(/^[ \t]*\[\[headers\]\][ \t]*(?:#.*)?$/m).slice(1)) {
+    if ((/^\s*for\s*=\s*"([^"]*)"/m.exec(b) || [])[1] !== '/*') continue;
+    const values = (b.split(/^[ \t]*\[headers\.values\][ \t]*(?:#.*)?$/m)[1] || '').split(/^[ \t]*\[/m)[0];
+    for (const m of values.matchAll(/^[ \t]*([A-Za-z0-9-]+)[ \t]*=[ \t]*"((?:[^"\\]|\\.)*)"[ \t]*(?:#.*)?$/gm)) netlify[m[1]] = m[2];
+  }
+  let vercel = {};
+  try {
+    const all = (JSON.parse(read('vercel.json')).headers || []).find((h) => h.source === '/(.*)');
+    vercel = Object.fromEntries(((all && all.headers) || []).map((h) => [h.key, h.value]));
+  } catch (e) { cspErr.push(`vercel.json does not parse: ${e.message}`); }
+  const differ = [...new Set([...Object.keys(netlify), ...Object.keys(vercel)])].filter((k) => netlify[k] !== vercel[k]).sort();
+  if (differ.length) cspErr.push('netlify.toml ("/*") and vercel.json ("/(.*)") send different headers: '
+    + differ.map((k) => `${k} ${JSON.stringify(netlify[k] ?? null)} vs ${JSON.stringify(vercel[k] ?? null)}`).join(', '));
+  for (const [host, h] of [['netlify.toml', netlify], ['vercel.json', vercel]]) {
+    for (const k of ['X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Permissions-Policy', 'Content-Security-Policy', 'Strict-Transport-Security'])
+      if (!h[k]) cspErr.push(`${host}: no ${k} header on every path`);
+    if (h['Content-Security-Policy']) for (const e of headerPolicyErrors(h['Content-Security-Policy'])) cspErr.push(`${host}: the header policy: ${e}`);
+    const age = Number((/\bmax-age=(\d+)/.exec(h['Strict-Transport-Security'] || '') || [])[1] || 0);
+    if (h['Strict-Transport-Security'] && age < 31536000) cspErr.push(`${host}: Strict-Transport-Security max-age=${age} (want at least 31536000)`);
+  }
+  cspErr.length ? bad('content security policy: ' + cspErr.join('; '))
+    : ok(`content security policy: ${nPages} pages equal withCsp, ${nScripts} inline scripts all hashed, no inline handlers, every policy on its floor (directives known and given once, script-src 'self' and hashes only, object-src 'none', base-uri 'self'); mirrors send frame-ancestors and HSTS`);
+}
+
 process.exit(fail);
