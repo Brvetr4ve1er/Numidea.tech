@@ -1175,7 +1175,7 @@ itself in all six palettes from one file:
 
 | Plate | Where | File | Motion |
 |---|---|---|---|
-| I — Les Bibans | `.vista`, full-bleed under the hero | `vista-far/mid/near.webp` | 3-layer parallax, twinkling sky, a constellation that draws itself |
+| I — Les Bibans | `.vista`, full-bleed under the hero (above 960px only) | `vista-far/mid/near.webp` | 3-layer parallax, twinkling sky, a constellation that draws itself |
 | II — Arc de Trajan, Timgad | behind the `#work` header | `arch.webp` | parallax |
 | III — Monnaies numides | beside the `#pricing` header (≥1100px) | `coin-*.webp` | three coins, three depths, each turns on its own axis |
 | IV — Coupe des couches | behind `#stack` — the stack as strata | `strata.webp` | a core sample drilling across |
@@ -1200,6 +1200,19 @@ parallax cap, so no drift bares an edge.
 paint. Mask URLs are only assigned under `.lz-on`, which app.js §15 adds a
 screen ahead of the viewport. The head script sets `data-lz` on `<html>`; with
 scripts off it is absent and `html:not([data-lz]) .lz` loads them eagerly.
+
+**Plate I is not lazy, so phones do without it.** It starts about 1,075px down
+on a 1280×900 desktop, inside the loader's 900px lookahead, so its three masks
+(416 KB) arrive with the first screen: 33% of a phone visit in the 2026-10-26
+audit, before any scroll. At 960px and below the vista is `display:none`
+(owner decision, 2026-10-26): the observer never reports it, `.lz-on` is never
+set, and with scripts off nothing under it is fetched either. At 640px and
+below the in-section plates are hidden too, so a phone keeps plate VI only.
+Above 960px it still loads with the first screen; that costs no LCP, which is
+the hero text, painted before the masks are requested. Where the vista is
+gone, nothing covers the seam between the hero and the proof: the proof drops
+its opaque ground (it was there so the vista's layers never slid under its
+kicker) and the hero mesh fades out before the hero clips it.
 
 **Captions are solid chips.** 10px type on hatching measured 4.0–4.4:1 under
 axe wherever the line work is dense; each `.pl-cap` sits on `--void`.
@@ -1304,12 +1317,12 @@ and ~1% on the phone, so the page's own numbers are its own.
   on purpose, and text drifting against the finger read as the page swimming.
   Kickers, the hero plate and the card screenshots are `.px-still` there.
 - **Touch decoration is scroll-linked, not scripted.** The layers that keep
-  their depth on a touch screen (vista, hero mesh, glyphs, footer ink) run
-  one `ScrollTimeline` animation each, its keyframes the parallax formula
-  sampled where the cap starts and stops clamping. Same resting positions as
-  the eased loop, in step with the finger, no work per frame. The loop stays
-  for a fine pointer (where its lag is the point) and for browsers without
-  ScrollTimeline.
+  their depth on a touch screen (the vista above 960px, hero mesh, glyphs,
+  footer ink) run one `ScrollTimeline` animation each, its keyframes the
+  parallax formula sampled where the cap starts and stops clamping. Same
+  resting positions as the eased loop, in step with the finger, no work per
+  frame. The loop stays for a fine pointer (where its lag is the point) and
+  for browsers without ScrollTimeline.
 - **Read content is bounded at 12px** by default (decoration keeps 64): in a
   fast wheel scroll the eased lag carried a kicker 36px down onto its heading,
   32px below it at rest.
@@ -1375,7 +1388,7 @@ landscape, 34px below in portrait). What was found and changed:
 | Plate rail | a finger has no hover and Safari gives a tapped button no focus, so the deck left the slide just chosen 5.2s later (reproduced by dropping the tap's focus) | a touch pick holds the deck until the next touch outside the plate; a scroll that starts on the plate does not |
 | Market table | scroll frame 178px at 320 with a 140px sticky label column: 38px of figures | frame 252px, label 112px, ~140px of figures |
 | Contact email | broke as "…gmail.co / m" at 320 | breaks after the @ (`<wbr>`) |
-| Vista caption | ran off the screen at 320 in French, cut at "ARRÉR" | may wrap on a narrow screen |
+| Vista caption | ran off the screen at 320 in French, cut at "ARRÉR" | wrapped on a narrow screen; since 2026-10-26 the vista is not shown at 960px and below |
 | scene/, hub/ | `viewport-fit=cover` but not inset: text and controls under the notch in landscape (x 34–810 of 844) | inset; all content 47–797 |
 | scene/, hub/ viewers | `max-height:94vh`, the LARGE viewport on iOS | `94dvh` |
 | hub/ 320×568 | matched the landscape side-by-side hero: name broken mid-word | stacks like every other phone |

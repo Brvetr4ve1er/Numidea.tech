@@ -2180,7 +2180,13 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body);font-si
 .v-near .v-ink{color:var(--body-strong);opacity:calc(.26 * var(--ink-k))}
 .v-near{bottom:-150px}
 .v-cap{bottom:24%;inset-inline-start:max(var(--gutter),calc(50vw - var(--max) / 2 + var(--gutter)));z-index:2}
-@media (max-width:960px){.vista{margin-top:calc(-1 * var(--s-5))}}
+/* At 960px and below the vista is not shown (owner decision, 2026-10-26):
+   its three masks are 416 KB, and it sits inside the loader's lookahead, so
+   on a phone they arrived before any scroll. Under display:none the
+   observer never reports it, .lz-on is never set, and with scripts off the
+   masks are not fetched either. Phones keep plate VI, under the footer.
+   The seam it used to cover is handled with the proof, further down. */
+@media (max-width:960px){.vista{display:none}}
 
 /* ---------- shared: plates inside sections ---------- */
 #work,#founder,#stack,#faq{position:relative;isolation:isolate}
@@ -2368,10 +2374,6 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 @media print{
   .vista,.foot-dunes,.px-wrap{display:none!important}
   .ai .p{stroke-dashoffset:0!important}
-}
-@media (max-width:640px){
-  .v-mid{right:-150px}
-  .v-cap{bottom:14%}
 }
 
 /* ============ WorkspaceHQ cartridge ============
@@ -2658,6 +2660,17 @@ section.band::after,section.band+section.band::after{
    page colour instead: invisible as a box, but still opaque, so the landscape
    plate's parallax layers never slide under its kicker */
 .proof{background:var(--void)}
+/* At 960px and below there is no landscape plate (Plate I above), so
+   nothing slides under the kicker, and nothing covers the seam between the
+   hero and the proof any more. The proof lets the construction grid run on
+   instead of cutting it square, and the hero's glows fade out before the
+   hero clips them. The fade ends 64px short: the mesh's parallax cap, the
+   most it sits below its box once the hero's foot is on screen. */
+@media (max-width:960px){
+  .proof{background:none}
+  .hero-mesh{-webkit-mask-image:linear-gradient(#000 calc(100% - 240px),transparent calc(100% - 64px));
+    mask-image:linear-gradient(#000 calc(100% - 240px),transparent calc(100% - 64px))}
+}
 
 /* ---- hero: the landscape plate and the footer dunes were ~440px and ~360px
    of pure picture between content; both are now an interlude, not a stop */
@@ -2901,11 +2914,4 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
   .price-more .mk-scroll{margin-inline:calc(-1 * var(--s-3));border-inline:0;border-radius:0}
   .mk-table th,.mk-table td{padding-inline:12px}
   .mk-table tbody th{white-space:normal;width:8em;min-width:8em}   /* "E-commerce", the longest word, is 85px */
-}
-
-/* The vista's engraved caption is one unbreakable chip: at 320 French
-   ("PL. I — LES BIBANS · BORDJ BOU ARRÉRIDJ") ran past the screen edge and
-   the vista's clip cut it at "ARRÉR". On a narrow screen it may wrap. */
-@media (max-width:479px){
-  .v-cap{white-space:normal;max-width:calc(100% - 2 * var(--gutter))}
 }

@@ -70,7 +70,7 @@ The page reads as an engraved atlas of the region the studio works from, after t
 
 | Plate | Where | File | Motion |
 |---|---|---|---|
-| I — Les Bibans | Full-bleed under the hero | `vista-far/mid/near.webp` | Three-layer parallax, twinkling sky, a constellation that draws itself |
+| I — Les Bibans | Full-bleed under the hero, above 960px only | `vista-far/mid/near.webp` | Three-layer parallax, twinkling sky, a constellation that draws itself |
 | II — Arc de Trajan, Timgad | Behind the `#work` header | `arch.webp` | Parallax |
 | III — Monnaies numides | Beside the `#pricing` header, at 1100px and up | `coin-*.webp` | Three coins at three depths, each turning |
 | IV — Coupe des couches | Behind `#stack` | `strata.webp` | A core sample drilling across |
@@ -83,6 +83,7 @@ Source: BRAND.md › The atlas — engraved plates and animated icons.
 - The mid layer of plate I is a generic round tomb, not the Medracen, and is never captioned as such (BRAND.md › The atlas — engraved plates and animated icons).
 - Depth needs occlusion: each vista layer is a fill clipped to its skyline, then the ink; the skylines are traced by `scripts/plates.mjs` (BRAND.md › The atlas — engraved plates and animated icons; scripts/plates.mjs › skyline). The masks are made by the same script: [[Captures and image tools]].
 - Masks load lazily: their URLs apply only under `.lz-on`, which `app.js` §15 adds a screen ahead of the viewport (BRAND.md › The atlas — engraved plates and animated icons; assets/app.js › 15. illustrations and animated icons).
+- Plate I is the exception: it sits inside the loader's 900px lookahead, so its 416 KB of masks arrive with the first screen. At 960px and below it is `display:none` (owner decision, 2026-10-26), so a phone never fetches them and keeps plate VI only; there, the proof drops its opaque ground and the hero mesh fades out before the hero's edge (BRAND.md › The atlas — engraved plates and animated icons; assets/styles.css › Plate I and `.proof`).
 - Nothing loops forever: each loop plays a few cycles and settles, and replays when it comes back on screen; `npm run audit` fails on any infinite animation (BRAND.md › The atlas — engraved plates and animated icons).
 - Graph: [[The atlas - six engraved plates]], [[plates.mjs]].
 
