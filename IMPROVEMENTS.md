@@ -47,25 +47,25 @@ Ordered by priority (1 first). Ids: C cut, M merge, A add, F fix. Status values:
 | F4 | 7 | FIX | clear-cut | On a phone, the pre-fill buttons land above the form, so the buyer never sees the message they just created | index.html:585 (#prev-cta) and :893 (#est-cta); click handlers assets/app.js:1561 and :1908 (prefill at app.js:1544-1562); .contact-grid sta | done 2026-10-26 (adb4352) |
 | F5 | 8 | FIX | clear-cut | In French, the FAQ answer to 'C'est combien ?' gives no figure; English and Arabic say 'from 90 000 DA' | assets/app.js:87 (fr faq2.a), baked into index.html:1158 and the FAQ JSON-LD :1331 by scripts/build-fr.mjs; en app.js:185; ar app.js:286. | done 2026-10-26 (95b70d1) |
 | F7 | 9 | FIX | clear-cut | Invented hostnames in two browser bars, and a present-tense result for a site not yet delivered | index.html:513 ('doctorcherfia.dz') and :526 ('etoile-est.app'); proj1.desc at index.html:517 and app.js:34 (fr), :132 (en), :233 (ar). | done 2026-10-26 (a394231) |
-| M1 | 10 | MERGE | owner-decision | The first price and the site's real delivery time appear only at 13.3 phone screens | Hero lede index.html:303 (hero.lede app.js:22/120/221); tier figures :773-774; app.js currency code 13b; check.mjs block 8c; BRAND.md:1509-1 | waiting (owner decision) |
+| M1 | 10 | MERGE | owner-decision | The first price and the site's real delivery time appear only at 13.3 phone screens | Hero lede index.html:303 (hero.lede app.js:22/120/221); tier figures :773-774; app.js currency code 13b; check.mjs block 8c; BRAND.md:1509-1 | declined (owner, 2026-10-26) |
 | F6 | 11 | FIX | clear-cut | When no mail app opens, the contact panel shows a success tick and the same mailto that just failed | index.html:1230-1241 (.form-success; ✓ at :1236, styled as a glowing badge at styles.css:749); assets/app.js:1633-1653 (subject/body composi | done 2026-10-26 (8f1206b) |
 | F3 | 12 | FIX | clear-cut | One letter in the Behance badge pulls a 14.7 KB font file | index.html:1069 `<span class="fl-b" aria-hidden="true">Bē</span>`; styles.css:633-634 (Geist Mono 700); assets/fonts.css:187 (latin-ext). | done 2026-10-26 (47dc522) |
 | F8 | 13 | FIX | clear-cut | The Arabic stack lead still claims 'the tools behind what we deliver', which French and English dropped | assets/app.js:281 (ar stack.lead); compare fr :82 and en :180. | done 2026-10-26 (a7b9d9c) |
 | F9 | 14 | FIX | clear-cut | The founder's skills note misquotes his CV: '20 % plus rapide' instead of '20 % de temps de production en moins' | founder.skillsNote at assets/app.js:71 (fr), :169 (en), :270 (ar); baked index.html:1098. Source: assets/cv_yasser_hamisse_2026.pdf (BRAND.m | done 2026-10-26 (a7b9d9c) |
 | C7 | 15 | CUT | clear-cut | Two service briefs repeat, word for word, the tool pills printed directly under them | f1.brief app.js:406/518/633 (baked index.html:599) and f3.brief app.js:410/522/637 (baked :621); the pills at index.html:600 (React, Next.js | done 2026-10-26 (a7b9d9c) |
-| C4 | 16 | CUT | owner-decision | Plate I (the vista) downloads 416 KB of decoration on every visit, before any scroll | index.html:394-400 (div.vista; inline sky SVG about 3.0 KB); styles.css:2117-2119 and 2150-2175 (about 9 KB); app.js:2588 (lazy loader rootM | waiting (owner decision) |
-| M4 | 17 | MERGE | owner-decision | The estimator takes 2.1 phone screens and, at its default, repeats the Studio card | index.html:826-896 (#estimator in #pricing); app.js 1776-1915 (UI), 2201-2267, PRICE_MODEL 680-686; price.lead app.js:354/466/581; mk.method | waiting (owner decision) |
-| M3 | 18 | MERGE | owner-decision | The Aperçu and its conditions are stated six times, and its path is drawn twice | Offer and conditions at index.html:303, 583, 703, 723, 1158 (FAQ2), 1181 (FAQ6), plus og/twitter :27/:35 and JSON-LD :1331/:1335. Card timel | waiting (owner decision) |
-| M2 | 19 | MERGE | owner-decision | Ten services take 2.4 phone screens before the price, and the one a shop needs is folded away | #services index.html:592-693 (cards f1-f5 592-647; folded c1-c5 649-693, c1 at 660-662); svc.lead :559; cap.summary/cap.hint :651-652; app.j | waiting (owner decision) |
-| C1 | 20 | CUT | owner-decision | The two 'En cours' cards take a phone screen to show no screenshot and no link | index.html:512-537 (Doctor Cherfia 512-523, Étoile de l'Est 525-536); work.lead :433 / app.js:45/143/244; bento BRAND.md:1486-1490 and comme | waiting (owner decision) |
-| F10 | 21 | FIX | owner-decision | Writing a first message asks too much: no way to write on the first phone screen, three required fields and a mail app | Hero CTAs index.html:304-307; card WhatsApp link :586; phone bar :1311-1314 and app.js:1981-2036; form :1205-1229 (required :1209/1214/1220; | waiting (owner decision) |
+| C4 | 16 | CUT | owner-decision | Plate I (the vista) downloads 416 KB of decoration on every visit, before any scroll | index.html:394-400 (div.vista; inline sky SVG about 3.0 KB); styles.css:2117-2119 and 2150-2175 (about 9 KB); app.js:2588 (lazy loader rootM | open (owner approved 2026-10-26) |
+| M4 | 17 | MERGE | owner-decision | The estimator takes 2.1 phone screens and, at its default, repeats the Studio card | index.html:826-896 (#estimator in #pricing); app.js 1776-1915 (UI), 2201-2267, PRICE_MODEL 680-686; price.lead app.js:354/466/581; mk.method | open (owner approved 2026-10-26) |
+| M3 | 18 | MERGE | owner-decision | The Aperçu and its conditions are stated six times, and its path is drawn twice | Offer and conditions at index.html:303, 583, 703, 723, 1158 (FAQ2), 1181 (FAQ6), plus og/twitter :27/:35 and JSON-LD :1331/:1335. Card timel | open (owner approved 2026-10-26) |
+| M2 | 19 | MERGE | owner-decision | Ten services take 2.4 phone screens before the price, and the one a shop needs is folded away | #services index.html:592-693 (cards f1-f5 592-647; folded c1-c5 649-693, c1 at 660-662); svc.lead :559; cap.summary/cap.hint :651-652; app.j | declined (owner, 2026-10-26) |
+| C1 | 20 | CUT | owner-decision | The two 'En cours' cards take a phone screen to show no screenshot and no link | index.html:512-537 (Doctor Cherfia 512-523, Étoile de l'Est 525-536); work.lead :433 / app.js:45/143/244; bento BRAND.md:1486-1490 and comme | open (owner approved 2026-10-26) |
+| F10 | 21 | FIX | owner-decision | Writing a first message asks too much: no way to write on the first phone screen, three required fields and a mail app | Hero CTAs index.html:304-307; card WhatsApp link :586; phone bar :1311-1314 and app.js:1981-2036; form :1205-1229 (required :1209/1214/1220; | open (owner approved 2026-10-26) |
 | A5 | 22 | ADD | owner-facts | The Aperçu's own rules are open: who qualifies, when the 5 days start, what happens to the homepage after a no or a yes | index.html:303, :569 (prev.brief), :583 (prev.terms), :723, :730 ('Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le reste | waiting (owner facts) |
 | A6 | 23 | ADD | owner-facts | No number to call and no hours: the phone is presented as WhatsApp-only, and '24 h ouvrées' has no defined working days | index.html:1198 (+213 672 41 25 78, 'message gratuit via l'appli'), footer :1276-1277, phone bar :1313; JSON-LD :48; '< 24 h ouvrées' at :37 | waiting (owner facts) |
 | A8 | 24 | ADD | owner-decision | No real English or Arabic pages: every EN/AR link shared in WhatsApp unfurls a French preview card | index.html:2 (lang="fr"), :13-15, :18-35 (og/twitter in French, og:locale fr_FR), :133-152 (canonical set only by JS), :163/:210 (EN/AR body | waiting (owner decision) |
-| C2 | 25 | CUT | owner-decision | The Stack section: a full phone screen of tool names, repeated and partly unconfirmed | index.html:1124-1137 (#stack: 20 pills in 5 groups; plate IV strata.webp); styles.css 699-706, 2125-2134, 2206-2215, 2348-2349, 2511-2517, 2 | waiting (owner decision) |
+| C2 | 25 | CUT | owner-decision | The Stack section: a full phone screen of tool names, repeated and partly unconfirmed | index.html:1124-1137 (#stack: 20 pills in 5 groups; plate IV strata.webp); styles.css 699-706, 2125-2134, 2206-2215, 2348-2349, 2511-2517, 2 | open (owner approved 2026-10-26) |
 | F11 | 26 | FIX | owner-facts | The stated toolchain (Vercel, Vite, Docker, Cloudflare, React Native, Expo) does not match the delivered builds | mk.note index.html:974 / app.js:327/439/554 ('nous livrons avec … React, Next.js, Vercel'); service pills :600 (Vercel, Vite); stack pills : | waiting (owner facts) |
-| C3 | 27 | CUT | owner-decision | The proof band repeats the same '4' three times | index.html:405-410 (.proof-grid, 4 counters), line :411, logos :417-423; count-up app.js:833-873; proof.s1-s4 keys; .proof-grid/.stat/.stat- | waiting (owner decision) |
-| M5 | 28 | MERGE | owner-decision | On a phone the footer repeats the contact block above it, and its cartridge loads a font on every visit | index.html:1254-1307 (Studio column 1268-1272 with the signoff :1270; Contact 1273-1279; Le fondateur 1282-1288; WorkspaceHQ cartridge :1292 | waiting (owner decision) |
+| C3 | 27 | CUT | owner-decision | The proof band repeats the same '4' three times | index.html:405-410 (.proof-grid, 4 counters), line :411, logos :417-423; count-up app.js:833-873; proof.s1-s4 keys; .proof-grid/.stat/.stat- | open (owner approved 2026-10-26) |
+| M5 | 28 | MERGE | owner-decision | On a phone the footer repeats the contact block above it, and its cartridge loads a font on every visit | index.html:1254-1307 (Studio column 1268-1272 with the signoff :1270; Contact 1273-1279; Le fondateur 1282-1288; WorkspaceHQ cartridge :1292 | open (owner approved 2026-10-26) |
 | C5 | 29 | CUT | owner-decision | The founder card's 'Portfolio personnel' link leads to a second agency brand that contradicts the team claim | index.html:1075 (only home link to hub/; app.js:57/155/256); hub/index.html:7-16, :73-78, :334-378, :443, :447, :460-463; workspacehq/index. | waiting (owner decision) |
 | F12 | 30 | FIX | owner-facts | The unpublished privacy page states the studio runs Facebook/Instagram ads and uses WhatsApp Business, with no owner field to confirm either | scripts/build-legal.mjs:179/209/239 (ad section), :182/212/242 ('et les publicités' clause); scripts/legal-data.mjs (no field for either fac | waiting (owner facts) |
 | A9 | 31 | ADD | owner-decision | The project sheets page has one way to act, at the very bottom, and never mentions the Aperçu | scene/index.html:619-623 (the only CTA, 'Parlons-en →' to ../#contact), generated by scripts/build-scene.mjs:295-297; scene-data.mjs ui dict | waiting (owner decision) |
@@ -316,48 +316,48 @@ The owner-decision items as questions; the recommended option is listed first. W
     - Yes, with the full range: 'Dès 90 000 DA · de 2 à 16 semaines selon le projet': Same position gain, and it covers every tier. It is less concrete for the small-site buyer.
     - Move the whole pricing section above the services: The first figure lands at about 8 phone screens instead of under 1. The Aperçu button, today the first way to write, drops from 8.5 to about 13.6 screens. BRAND's section order changes.
     - Keep as is: The first price stays at 12.7 phone screens (13.3 for the tier figure) and 8 on desktop.
-    - Answer: (waiting)
+    - Answer: declined 2026-10-26: Keep as is.
 2. **Which services are full cards on the home page?** (M2)
     - Web, identity and 'Boutique & réservation'; the other six named in one line with a route to them (recommended): Saves 845 px fr / 886 px ar on a phone (about 1 screen before the price), and the shop offer (WhatsApp ordering, cash on delivery) becomes visible. It is worded as a service offered, not as delivered shops. The svc.lead, cap.* texts and the BRAND grid rule change. Desktop needs a 2+2+2 bento row.
     - Merge market intelligence into automation, and fold strategy: Cards: web, identity, automation, with the shop still folded. Saves about 757 px on a phone and 441 px on desktop with the 2+2+2 row. The README's 'Strategy & consulting' offer and the KB offer map are synced.
     - Keep the five cards and the folded five: 2.42 phone screens of services stay before any price.
-    - Answer: (waiting)
+    - Answer: declined 2026-10-26: Keep the five cards and the folded five.
 3. **How many times should the page state the Aperçu and draw its path?** (M3)
     - Once in the card: merge the Method steps into it as visible text, and turn FAQ2/FAQ6 into a pointer (recommended): About −1,050 px on a phone (−1.25 screens, an estimate) and −690 px on desktop. The first price moves about 1.2 screens earlier. Every How fact survives as visible text, and the conditions stay wherever the offer is promised (6 visible statements become 2). The 'Méthode' links point to #apercu, the animated step rail goes, and BRAND.md:1513 and the r3/c table change.
     - Remove only the card's drawn timeline: −229 px on a phone and −125 px on desktop. The Method section stays; BRAND's visualisations table is updated.
     - Text only: FAQ pointers and a benefit-first hero lede: 15-30 fewer visible words and a few dozen px. No BRAND change.
     - Keep as is: The conditions keep appearing in 6 places, 3 of them visible before the price.
-    - Answer: (waiting)
+    - Answer: approved 2026-10-26: Once in the card; the Method steps merge into it; FAQ points to it.
 4. **What should happen to the price estimator on the home page?** (M4)
     - Fold it in place behind a summary naming automation, e-commerce, identity, options and rush (recommended): −1,499 px on a phone and −651 px on desktop. The founder moves from 18.2 to 16.4 phone screens. Nothing is lost: the prefill still works and the extra prices are one tap away. The reason in BRAND.md:1515 changes.
     - Move it to a /tarifs/ page and show three static 'Autres projets' rows on the home page: A similar saving on the home page, plus a page that can rank. It needs a cross-page prefill, the new-page gates and M-L effort; the design proposal waits for the /fr/apercu/ test first.
     - Keep it unfolded: 2.1 phone screens stay between the tiers and the founder.
-    - Answer: (waiting)
+    - Answer: approved 2026-10-26: Fold it in place behind a summary.
 5. **Should the two 'En cours' cards (Doctor Cherfia, Étoile de l'Est) stay on the home page?** (C1)
     - Hide them until each site is live, and make Nomara a normal-width card (recommended): −850 px on a phone and −571 px on desktop, so the first price comes about 1 screen earlier. work.lead is rewritten in 3 languages, the dead keys and CSS go, and the BRAND bento rule changes. Glaive stays as the labelled demo.
     - Keep them, after confirming both are real commissions and the clinic agrees to be named: No length change. Needs the owner's facts. The invented hostnames are already blanked by F7.
     - Hide them and let Glaive span the third row: Saves 0 px on desktop and makes the portfolio demo the widest card. Not recommended.
-    - Answer: (waiting)
+    - Answer: approved 2026-10-26: Hide them until each site is live; Nomara a normal-width card.
 6. **What should happen to the 'Nos outils' (Stack) section?** (C2, F11)
     - Remove it and plate IV from the home page; list confirmed tools later on a studio page or the project sheets (recommended): −928 px on a phone, −661 px and −178,064 B on desktop, and 4 unconfirmed tools leave the page. Kickers and plate captions are renumbered, and BRAND's atlas table is updated.
     - Fold the list into the founder's 'Voir le parcours' panel: A similar length saving, with the list one tap away. Plate IV must be re-homed or dropped, and the four unconfirmed tools still need confirming.
     - Keep it, and confirm or drop React Native, Expo, Docker, Cloudflare and Vercel: No length saved. The tools that stay are ones the owner has confirmed.
-    - Answer: (waiting)
+    - Answer: approved 2026-10-26: Remove it (and plate IV) from the home page.
 7. **Should the four animated counters in the proof band go?** (C3)
     - Yes: keep one trust line '4 sites livrés · réponse < 24 h ouvrées · FR · EN · AR' and the logo strip (recommended): −334 px on a phone and −178 px on desktop; no fact is lost. The FR kicker 'Chiffres clés' is renamed. The '4' still depends on the Nomara and client answers.
     - Keep the counters: The same '4' is read three times within about half a phone screen. '4 personnes' stays until A3 is answered.
-    - Answer: (waiting)
+    - Answer: approved 2026-10-26: One trust line and the logo strip.
 8. **What should happen to plate I (the vista), which downloads 416 KB on every visit?** (C4)
     - Hide it at 960px and below (recommended): −416,292 B on every phone visit (33% of the phone page) and −160 px. Desktop keeps it. This reverses BRAND's touch-screen design for the vista, and phones keep plate VI only.
     - Remove it everywhere: −416,292 B on phone and desktop, −0.19/−0.31 screens. Captions II–VI are renumbered (or the atlas starts at II), and the only plate naming Bordj Bou Arréridj is lost.
     - Keep it, but load its masks after the page's load event: 0 bytes saved. The design is unchanged, the load event comes earlier, and fonts get the bandwidth first. No LCP gain.
     - Keep as is: 416 KB of decoration keeps arriving before any scroll.
-    - Answer: (waiting)
+    - Answer: approved 2026-10-26: Hide it at 960px and below.
 9. **Should the footer stop repeating the contact block, and drop the WorkspaceHQ cartridge?** (M5)
     - Remove the Contact and Le fondateur columns and the cartridge; keep logo, nav, tagline, ©, legal slot, language switch and 'Haut de page' (recommended): About −640 px on a phone and −314 px on desktop, and −12,512 B of font on every visit. WorkspaceHQ stays reachable from the hub, and BRAND.md:1424-1426 is updated.
     - Remove only the cartridge: Saves the 12,512 B font and about 150 px on a phone; the repeated contact links stay.
     - Keep as is: 1.26 phone screens of footer, about half of it repeated.
-    - Answer: (waiting)
+    - Answer: approved 2026-10-26: Remove the Contact and Le fondateur columns and the cartridge.
 10. **The footer signoff says 'avec du café noir et du TypeScript', but this site contains no TypeScript. What should it say?** (F14)
     - Replace 'TypeScript' with 'JavaScript' in fr/en/ar and in the README (recommended): True of this site; no new fact needed.
     - Keep it as the studio's motto: Only if client work really is built in TypeScript. Consider making the studio, not this page, the subject.
@@ -374,7 +374,7 @@ The owner-decision items as questions; the recommended option is listed first. W
     - Send the first button straight to the contact form with the Aperçu prefill: Saves a jump, but the buyer skips the card's 30-minute call and 'vous ne devez rien'.
     - Add an optional phone field, making email optional when a phone is given: The privacy text (3 languages), the dormant Supabase payload and the keys gate change. The mail app is still needed.
     - Show the phone bar from the first screen: Reverses BRAND.md:1367 (the bar plus the navbar covered 25% of a 320x568 screen) and must be re-measured.
-    - Answer: (waiting)
+    - Answer: approved 2026-10-26: Make the second hero button WhatsApp with the Aperçu message.
 13. **Where should the 'Comment on chiffre' market comparison live?** (M6)
     - Keep it folded on the home page until a /tarifs/ page exists for other reasons (recommended): Nothing changes now. About 17 KB gzip and 9 outbound links stay behind two closed panels.
     - Move it now to a /tarifs/ price guide: About −17 KB gzip per home visit once the code is split, and one currency switch and 9 outbound links leave the page. M-L effort: a new page with its own gates, price.lead rewritten, check.mjs 8c updated.
@@ -448,6 +448,7 @@ Newest first.
 
 | Date | What happened |
 |---|---|
+| 2026-10-26 | Owner decisions: approved F10 (WhatsApp hero button), M4 (fold the estimator), M3 (the Aperçu once), C2 (remove Stack), C1 (hide the En cours cards), M5 (trim the footer), C3 (one trust line), C4 (hide the vista on phones); declined M1 (price in the hero) and M2 (three service cards). |
 | 2026-10-26 | Share card (assets/og.jpg) replaced, by owner decision: it showed a client's site captioned « site livré » with no written permission. It now shows Plate II, the Arch of Trajan at Timgad, one of the site's own engravings; og:image:alt updated to match. 83 KB, 1200×630. |
 | 2026-10-26 | Clear-cut items F1–F9, C6 and C7 shipped to the branch: the phone page goes from 1,223 to 1,016 KB (−17%), desktop from 2,033 to 1,826 KB, 404 from 251 to 195 KB, with no visible change except the fixes named. Then a review of the combined diff (9 minor findings, all fixed: the hint colour, stricter keys checks, EN stack title, FR colon spacing, AR FAQ 2, the Arabic review queue in OWNER-CONTENT §8, and a check.mjs 17 guard against duplicate font files). Not deployed: GitHub Actions still fails every job within seconds (billing). |
 | 2026-10-26 | Full audit; this backlog created. `npm run metrics` added. Measured: the client domain almaflowclim.fr serves a different (Hostinger) site from the build the site links to (owner fact A4). GitHub Actions jobs have failed within seconds since 2026-10-25 16:42 UTC (account billing block). Commits 485bc0c, 79716a2 and 82603b0 are pushed but not deployed; the live site is still 202610251516. |
