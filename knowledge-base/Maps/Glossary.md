@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [README.md, BRAND.md, OWNER-CONTENT.md, index.html, 404.html, scene/index.html, assets/app.js, assets/carry.js, assets/styles.css, scripts/site.mjs, scripts/check.mjs, scripts/build-fr.mjs, scripts/bump.mjs, scripts/plates.mjs, scripts/scene-data.mjs, scripts/stage-site.mjs, scripts/voices-data.mjs, scripts/build-kb.mjs, git log, knowledge-base/archive/2026-06-snapshot/glossary.md]
 ---
 
@@ -60,7 +60,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | Arcanum | The identity and default theme: arcane-blue ground, brass flourish, engraved Cinzel display, electric teal as rationed neon | README.md › Design system; BRAND.md › How themes work here | [[Arcanum theme (default)]] |
 | The six themes | arcanum, noir, daylight, mono, altneon, engineering; the list is `THEMES` | scripts/site.mjs › THEMES; BRAND.md › How themes work here | [[Six themes (Arcanum, Noir, Daylight, Mono, Alt-neon, Engineering)]] |
 | Tokens | CSS custom properties set per theme in `themes.css`; `styles.css` reads theme values only through `var(--token)` and may not contain a `[data-theme]` selector, so a theme is a swap of values | BRAND.md › How themes work here; README.md › This repository — the landing page | [[Design-token system (every rule reads var(--token))]] |
-| The contract | The 47 tokens every theme block in `assets/themes.css` sets, exactly and nothing else | BRAND.md › Theme contract; README.md › Design system | [[Theme contract (47 tokens)]] |
+| The contract | The 46 tokens every theme block in `assets/themes.css` sets, exactly and nothing else | BRAND.md › Theme contract; README.md › Design system | [[Theme contract (47 tokens)]] |
 | `themes-check` | The gate on the contract: a missing or extra token, a text/surface pair under 4.5:1 (7:1 for `--ice`), a theme selector or colour literal in `styles.css`, a drifting theme list, an unpreloaded heading face | BRAND.md › Theme contract (replaces the Engineering alternate stylesheet) | [[themes-check gate]] |
 | `HEAD` / `LOGO` maps | Each theme's heading face that index.html preloads (`HEAD`) and each theme's wordmark face on the 404 page (`LOGO`) | index.html › 109; 404.html › 95; BRAND.md › Theme contract | [[headMap]] |
 | Fill vs text tokens | `--teal` and `--crimson` are fills; `--teal-text` and `--crimson-text` are for text; `color:` is never set from a fill | BRAND.md › Text tokens vs fill tokens | [[Text tokens vs fill tokens]] |

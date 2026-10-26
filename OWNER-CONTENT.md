@@ -126,8 +126,6 @@ names in Latin script except نوميديا in prose. Points worth a second look
 
 Written or changed in October 2026 (round 5), in `assets/app.js`; each says
 what its French and English counterparts say:
-- `proj1.desc`, the Doctor Cherfia card, now scope only:
-  «موقع هادئ لعيادة صغيرة، مع حجز المواعيد عبر الإنترنت.»
 - `founder.skillsNote`, the CV's "about 20 % less production time":
   «تقليص وقت الإنتاج بنحو 20٪ بفضل دمج أدوات الذكاء الاصطناعي.» (the
   "currently learning" half is unchanged);
@@ -151,6 +149,12 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   ouvrées · FR · EN · AR"). The languages are written out as in
   `contact.vReply`; the title block lists them Arabic first
   (`tb.langV`). Which order reads better here?
+- `work.lead`, the line under «أعمال مختارة.», now that the two cards in
+  progress are off the page: «مواقع عملائنا، تصفّحها بنفسك، إضافةً إلى عرض
+  تجريبي.» (French: "Les sites de nos clients, à visiter vous-même, et une
+  démo de portfolio."). The clause «ومشروعين قيد الإنجاز» was dropped; does
+  «عرض تجريبي» alone say "a portfolio demo" here, as it does on the card's
+  pill (`work.concept`)?
 
 Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
 project `ar` texts in `scripts/scene-data.mjs`, and the `lang="ar"` lines in
@@ -162,8 +166,9 @@ the delivered site:
 - `bordj-steel.com`, `alliance-travel.dz` and `nomaravoyages.com` do not resolve
   (NXDOMAIN);
 - `almaflowclim.fr` serves a different Hostinger site;
-- the browser bars on the two cards in progress (Doctor Cherfia, Étoile de
-  l'Est) are blank: neither site has a host yet.
+- the two projects in progress (Doctor Cherfia, Étoile de l'Est) have no
+  card on the page until each site is live (owner decision, 2026-10-26);
+  each then comes back with its own screenshot, link and browser bar.
 
 When a client points a domain at the build, run `node scripts/verify-domains.mjs`.
 It reports a domain as switchable only when it serves the same site. Then the

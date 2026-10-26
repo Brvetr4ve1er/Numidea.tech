@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-19
+updated: 2026-10-26
 sources: [knowledge-base/archive/2026-06-snapshot/README.md, knowledge-base/archive/2026-06-snapshot/CHANGELOG.md, knowledge-base/archive/2026-06-snapshot/02-brand-system.md, knowledge-base/archive/2026-06-snapshot/05-product-knowledge.md, knowledge-base/archive/2026-06-snapshot/07-operations.md, knowledge-base/archive/2026-06-snapshot/12-organization.md, knowledge-base/archive/2026-06-snapshot/13-decision-history.md, knowledge-base/archive/2026-06-snapshot/14-failures-and-lessons.md, knowledge-base/archive/2026-06-snapshot/15-ai-automation-readiness.md, knowledge-base/Home.md, README.md, BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, scripts/site.mjs, scripts/build-kb.mjs, scripts/client-logos.mjs, audit/Security_Privacy.md, knowledge-base/graphify/GRAPH_REPORT.md, git log]
 ---
 
@@ -60,7 +60,7 @@ The archive's own bracketed 2026-10 notes mark most of these.
 |---|---|---|
 | Projects | Five projects, one confirmed live (knowledge-base/archive/2026-06-snapshot/05-product-knowledge.md › KB-05-003) | Four delivered client sites, Glaive Store a portfolio demo, WorkspaceHQ the studio's own product (README.md › This repository — the landing page; scripts/client-logos.mjs › header); Nomara Voyages is still unconfirmed as a client (OWNER-CONTENT.md › 7). See [[Clients and projects]] |
 | Deploy | `pages.yml` auto-deployed on every push (knowledge-base/archive/2026-06-snapshot/07-operations.md › KB-07-002), uploading the whole repository (audit/Security_Privacy.md › S-01) | Only the `DEPLOY` paths are staged and published (scripts/site.mjs › DEPLOY); see [[Deploy]] |
-| Themes | Five themes, Arcanum the default (knowledge-base/archive/2026-06-snapshot/13-decision-history.md › KB-13-001, KB-13-003) | Six themes, each one block of the same 47 tokens (README.md › Design system — see BRAND.md) |
+| Themes | Five themes, Arcanum the default (knowledge-base/archive/2026-06-snapshot/13-decision-history.md › KB-13-001, KB-13-003) | Six themes, each one block of the same 46 tokens (README.md › Design system — see BRAND.md) |
 | Fonts | A Google Fonts request, trimmed to the weights in use (knowledge-base/archive/2026-06-snapshot/CHANGELOG.md › v0.3) | Self-hosted faces, no third-party requests (README.md › This repository — the landing page) |
 | Contact | The June form fix used an earlier address (knowledge-base/archive/2026-06-snapshot/CHANGELOG.md › v0.2) | One address across the pages, which `npm run check` enforces (README.md › Contact, Commands) |
 

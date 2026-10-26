@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [package.json, README.md, BRAND.md, netlify.toml, vercel.json, .github/workflows/pages.yml, scripts/check.mjs, scripts/themes-check.mjs, scripts/validate.mjs, scripts/audit.mjs, scripts/sweep.mjs, scripts/vbugs.mjs, scripts/vbugs-allow.json, scripts/verify.mjs, scripts/bump.mjs, scripts/site.mjs, scripts/lib/serve.mjs, scripts/build-fr.mjs, scripts/build-scene.mjs, scripts/build-voices.mjs, scripts/build-legal.mjs, scripts/build-sitemap.mjs, scripts/build-og.mjs, scripts/og-capture.mjs, scripts/shots.mjs, scripts/work-capture.mjs, scripts/client-logos.mjs, scripts/verify-domains.mjs, scripts/build-kb.mjs, scripts/stage-site.mjs, scripts/legal-data.mjs, scripts/lib/i18n.mjs, scripts/build-creative.mjs, scripts/build-csp.mjs, scripts/lib/csp.mjs, scripts/keys.mjs, scripts/links.mjs, scripts/lib/stage-404.mjs, .github/workflows/check.yml, .github/workflows/monitor.yml, RELEASE.md, index.html, OWNER-CONTENT.md, audit/Technical_Debt.md, audit/Architecture.md, package-lock.json, knowledge-base/graphify/GRAPH_REPORT.md]
 ---
 
@@ -90,7 +90,7 @@ Sources: the generators' headers (scripts/build-fr.mjs, scripts/build-scene.mjs,
 | Gate | Script | What it catches | Where it runs |
 |---|---|---|---|
 | check | `scripts/check.mjs` | Repository invariants, table below | `verify`, CI on every push and pull request, every deploy |
-| themes | `scripts/themes-check.mjs` | The 47-token contract, contrast pairs, theme lists, preloaded faces | `verify`, CI on every push and pull request, every deploy |
+| themes | `scripts/themes-check.mjs` | The 46-token contract, contrast pairs, theme lists, preloaded faces | `verify`, CI on every push and pull request, every deploy |
 | validate | `scripts/validate.mjs` | html-validate on every entry page in `PAGES`, plus `legal-preview/` when it exists | `verify`, CI on every push and pull request, every Pages deploy |
 | audit | `scripts/audit.mjs` | Layout shift over 0.01, axe violations, horizontal overflow, reveals that never fired, tap targets under 24px, broken images, endless animations, JS errors, failed and third-party requests, any CSP violation in any frame; desktop page runs fail when LCP at load is over 1.5 s; the three WorkspaceHQ embeds and the booted console; `404.html` two folders down, here and on an emulated GitHub Pages, with JavaScript on and off; the first screen in fallback type (every theme in French and English, webfonts refused vs loaded, 360 to 1600 wide: no text block may change height); then a throttled phone (LCP ≤ 2.5 s, long tasks ≤ 300 ms, interaction ≤ 200 ms), report-only unless `AUDIT_PHONE_STRICT=1` | `verify`, the nightly CI job, every Pages deploy |
 | sweep | `scripts/sweep.mjs` | Text under 4.5:1 (3:1 for large text) against the background actually painted | `verify`, the nightly CI job, every Pages deploy |

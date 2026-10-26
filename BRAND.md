@@ -9,7 +9,7 @@ contract; none of them is a separate stylesheet.
 ## How themes work here
 
 All six are **token swaps**: `assets/themes.css` holds one
-`:root[data-theme="name"]` block per theme, each setting exactly the same **47
+`:root[data-theme="name"]` block per theme, each setting exactly the same **46
 contract tokens**, and every rule in `assets/styles.css` that reads
 `var(--token)` reskins for free. `styles.css` may not contain a `[data-theme]`
 selector. `scripts/themes-check.mjs` (part of `npm run check`) enforces that, the
@@ -216,11 +216,12 @@ die for AI tooling.
 ## Enclosure
 
 Every child sits inside its container's **padding** box, verified at nine widths
-from 320 to 1600. The one flagged exception — a 60px decorative glyph reaching
-6px past `.art` — is clipped by `.thumb`'s `overflow:hidden`, so it is enclosed
-in what actually paints. Any enclosure assertion must resolve the nearest
-clipping ancestor before it reports; the check that does not will report
-decoration that the design already frames.
+from 320 to 1600. The one flagged exception was a 60px decorative glyph
+reaching 6px past `.art` on the work cards of sites not yet live (removed with
+those cards on 2026-10-26); `.thumb`'s `overflow:hidden` clipped it, so it was
+enclosed in what actually paints. Any enclosure assertion must resolve the
+nearest clipping ancestor before it reports; the check that does not will
+report decoration that the design already frames.
 
 ## Fonts are self-hosted
 
@@ -1514,10 +1515,15 @@ on purpose (decorative clipped glows, for instance) must be listed in
 
 ## Bento, loading states and wayfinding
 
-- **Work** is a 3-column bento at ≥1100px: wide(2)+1 / 1+wide(2) / 1+1+1, so
-  the card order in `index.html` is part of the layout. At 961–1099px only the
-  first card stays wide (2+6). Below 961px cards are rows (≥600) or stacked
-  (<600); no span applies there, or it creates an implicit second column.
+- **Work** is a 3-column bento at ≥1100px: wide(2)+1 / 1+1+1, so the card
+  order in `index.html` is part of the layout. Only the first card (Bordj
+  Steel) is wide; at 961–1099px it stays wide (2+2+2). Below 961px cards are
+  rows (≥600) or stacked (<600); no span applies there, or it creates an
+  implicit second column. Five cards: the four client sites and the Glaive
+  demo. A project in progress gets a card once its site is live: the two "En
+  cours" cards (Doctor Cherfia, Étoile de l'Est) had no screenshot and nothing
+  to open, and came off the page on 2026-10-26 (owner decision), when Nomara
+  became a normal-width card so the grid still closes flush.
 - **Services**: 6-column grid, 3+3 over 2+2+2. Narrow cards (and the two large
   ones below 1280px) put icon and drawing on one row with the copy full-width
   beneath; `align-content:start` keeps eyebrows aligned across a row.
@@ -1588,9 +1594,11 @@ written as literals that could not re-skin, and Engineering was a separate
 59KB stylesheet that re-laid out the page. All three are gone.
 
 - `assets/themes.css` holds one block per theme, `:root[data-theme="name"]`,
-  setting exactly the 47 contract tokens (colour, effects, atmosphere,
+  setting exactly the 46 contract tokens (colour, effects, atmosphere,
   surfaces, heading type, radii, kicker node) and nothing else. It loads
-  before `styles.css`.
+  before `styles.css`. `--cover-shadow` left the contract on 2026-10-26: its
+  one reader, the title on the covers of work cards not yet live, went with
+  those cards, and a token nothing reads fails `themes-check`.
 - `styles.css` reads tokens only. Theme-coloured literals are written as
   `color-mix(in srgb,var(--token) N%,transparent)`.
 - `scripts/themes-check.mjs` (part of `npm run check`) fails when a theme

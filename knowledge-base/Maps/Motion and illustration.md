@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [BRAND.md, assets/app.js, assets/illus/, scripts/plates.mjs, scripts/check.mjs, scripts/keys.mjs, hub/style.css, workspacehq/embed/hq-fx.js]
 ---
 
@@ -100,7 +100,7 @@ Source: BRAND.md › The atlas — engraved plates and animated icons.
 ## Ground, grids and wayfinding
 
 - **Background.** A construction grid of 64px hairlines that fades out by about 76% of the viewport height, over two radial gradients; it replaced a honeycomb tile and a film grain (BRAND.md › The background). Graph: [[Construction-grid background]].
-- **Bento.** Work is a 3-column bento at 1100px and up, where the card order in `index.html` is part of the layout; services and stack use 6 columns, 3+3 over 2+2+2 (BRAND.md › Bento, loading states and wayfinding). Graph: [[Home bento grids (work, services, stack, founder)]].
+- **Bento.** Work is a 3-column bento at 1100px and up, one wide card then a row of three, where the card order in `index.html` is part of the layout; services and stack use 6 columns, 3+3 over 2+2+2 (BRAND.md › Bento, loading states and wayfinding). Graph: [[Home bento grids (work, services, stack, founder)]].
 - **Loading.** Images still loading get a finite shimmer (`.sk`); every `<img>` declares `loading` (BRAND.md › Bento, loading states and wayfinding).
 - **Wayfinding.** Scroll-spy marks the current nav link with `aria-current`, a crumb shows the section at 960px and below, and a back-to-top button appears after 1.5 viewports (BRAND.md › Bento, loading states and wayfinding).
 

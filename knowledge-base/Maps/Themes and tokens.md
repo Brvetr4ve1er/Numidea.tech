@@ -1,12 +1,12 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [assets/themes.css, assets/styles.css, scripts/themes-check.mjs, scripts/site.mjs, index.html, 404.html, assets/app.js, scripts/build-legal.mjs, scripts/build-og.mjs, scripts/audit.mjs, scripts/sweep.mjs, package.json, .github/workflows/check.yml, .github/workflows/pages.yml, netlify.toml, vercel.json, README.md, BRAND.md, audit/Performance_A11y.md]
 ---
 
 # Themes and tokens
 
-The site ships six themes, and every one of them is a single block in `assets/themes.css` that sets the same 47 tokens and nothing else; `assets/styles.css` only reads those tokens, so a theme can change how the page looks but cannot break it (assets/themes.css › 1–13; scripts/themes-check.mjs › CONTRACT; scripts/site.mjs › THEMES). `scripts/themes-check.mjs` enforces that contract on every `npm run check` (package.json › scripts.check). Start with the theme table, then the token groups; the checks the contract runs are listed under "What themes-check enforces".
+The site ships six themes, and every one of them is a single block in `assets/themes.css` that sets the same 46 tokens and nothing else; `assets/styles.css` only reads those tokens, so a theme can change how the page looks but cannot break it (assets/themes.css › 1–13; scripts/themes-check.mjs › CONTRACT; scripts/site.mjs › THEMES). `scripts/themes-check.mjs` enforces that contract on every `npm run check` (package.json › scripts.check). Start with the theme table, then the token groups; the checks the contract runs are listed under "What themes-check enforces".
 
 ## The six themes
 
@@ -29,7 +29,7 @@ Sources for the table: the six blocks (assets/themes.css › ARCANUM, NOIR, DAYL
 - The generated legal page, unpublished until the owner's fields are complete, loads `themes.css` and resolves the stored theme from the same `THEMES` list (scripts/build-legal.mjs › 290, 302). The link-preview card is drawn with the Arcanum tokens (scripts/build-og.mjs › header).
 - Graph: [[Arcanum theme (default)]], [[Noir theme]], [[Daylight theme]], [[Mono theme]], [[Altneon theme]], [[Engineering theme]], [[THEMES]].
 
-## The 47-token contract
+## The 46-token contract
 
 The token list is `CONTRACT` in `scripts/themes-check.mjs`, in six groups (scripts/themes-check.mjs › CONTRACT). The names are historical: `--crimson` is the primary accent whatever its colour, which is why it is brass in Arcanum (assets/themes.css › 15–19, ARCANUM).
 
@@ -38,7 +38,7 @@ The token list is `CONTRACT` in `scripts/themes-check.mjs`, in six groups (scrip
 | Colour (16) | `--void` `--navy` `--plum` · `--ice` `--body-strong` `--muted` `--faint` · `--crimson` `--crimson-hi` `--on-crimson` `--crimson-text` · `--teal` `--teal-text` `--on-teal` · `--hairline` `--hairline-2` | Page ground, card surface, raised surface; primary text, long copy, secondary text; primary and secondary accents, each with a text version and a text-on-fill colour; hairline borders (assets/themes.css › 15–19; assets/styles.css › 864) |
 | Depth and effects (9) | `--band` `--shade` `--shade-k` `--grad-blood` `--grad-noir` `--grad-teal` `--glow-teal` `--glow-crimson` `--btn-glow` | The wash behind `.band` sections, shadow colour and strength, three gradients, glows, the primary button's glow (assets/styles.css › 1008, 611, 130, 162, 825, 44) |
 | Atmosphere (5) | `--atmos` `--grid-color` `--grid-opacity` `--grid-size` `--ink-k` | The glow fields behind the page, the construction grid, the strength of the illustration plates (assets/styles.css › 98–109, 2008; BRAND.md › Theme contract) |
-| Surfaces (4) | `--nav-glass` `--glass` `--field-bg` `--cover-shadow` | The scrolled navbar, glass panels, form fields, project covers (assets/styles.css › 137, 864, 732, 535) |
+| Surfaces (3) | `--nav-glass` `--glass` `--field-bg` | The scrolled navbar, glass panels, form fields (assets/styles.css › 137, 864, 732). `--cover-shadow` left on 2026-10-26 with the covers of the work cards not yet live, its only reader (BRAND.md › Theme contract) |
 | Type (10) | `--font-head` `--font-head-em` `--head-weight` `--head-tracking` `--font-logo` `--logo-weight` `--logo-tracking` `--hero-fs` `--hero-fs-wide` `--hero-lh` | Heading and wordmark faces, weights and tracking; hero size and line height (assets/styles.css › 37–43, 1191) |
 | Shape (3) | `--r-sm` `--r-md` `--kicker-node` | Corner radii and the size of the node after each kicker (assets/styles.css › 46) |
 

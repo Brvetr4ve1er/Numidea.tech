@@ -39,7 +39,7 @@ files listed in `scripts/site.mjs`.
 index.html            # the landing page (French baked in; EN/AR swapped by app.js)
 404.html              # not-found page (host-aware paths, three languages)
 assets/
-  themes.css          # the six themes: one block of the 47 contract tokens each
+  themes.css          # the six themes: one block of the 46 contract tokens each
   styles.css          # layout and components; reads theme tokens only
   app.js              # i18n (fr/en/ar), nav, menu dialog, prices in DA/€/$,
                       #   estimator, lead source, contact form, WhatsApp links
@@ -168,7 +168,7 @@ Then open <http://localhost:8000>. Useful links: `?lang=en`, `?lang=ar`,
 **Arcanum** is the identity: arcane-blue ground, brass flourish, engraved Cinzel
 display, electric teal as rationed neon. Six themes ship in the switcher
 (Arcanum, Noir, Daylight, Mono, Alt-neon, Engineering). Each is one block of
-the same 47 tokens in `assets/themes.css`; `themes-check` fails if a theme
+the same 46 tokens in `assets/themes.css`; `themes-check` fails if a theme
 misses a token, breaks a contrast pair, or if `styles.css` special-cases a theme.
 
 ### Features

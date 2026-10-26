@@ -6,7 +6,7 @@ sources: [index.html, assets/app.js, scripts/scene-data.mjs, scripts/voices-data
 
 # Clients and projects
 
-The work grid shows four live client sites, one portfolio demo and two projects in progress, and only those four clients appear in the logo strip or can carry a quote (index.html › #work, work.lead, .titleblock; scripts/voices-data.mjs › VOICE_CLIENTS; scripts/check.mjs › block 5b). One of the four, Nomara Voyages, is shown as delivered but the owner has not confirmed it is a client (OWNER-CONTENT.md › 7). The studio's own product, WorkspaceHQ v3, has a project sheet and a footer link but no card in the grid (scripts/scene-data.mjs › workspacehq; index.html › footer .whq-cart). Start with the roster, then the rules the code enforces, then the owner flags in [[Open owner items]].
+The work grid shows four live client sites and one portfolio demo, and only those four clients appear in the logo strip or can carry a quote (index.html › #work, work.lead, .titleblock; scripts/voices-data.mjs › VOICE_CLIENTS; scripts/check.mjs › block 5b). One of the four, Nomara Voyages, is shown as delivered but the owner has not confirmed it is a client (OWNER-CONTENT.md › 7). The studio's own product, WorkspaceHQ v3, has a project sheet and a footer link but no card in the grid (scripts/scene-data.mjs › workspacehq; index.html › footer .whq-cart). Two projects in progress, Doctor Cherfia Clinic and Étoile de l'Est, have no card until each site is live, an owner decision of 2026-10-26 (BRAND.md › Bento, loading states and wayfinding; OWNER-CONTENT.md › 9). Start with the roster, then the rules the code enforces, then the owner flags in [[Open owner items]].
 
 ## Roster
 
@@ -18,15 +18,15 @@ The work grid shows four live client sites, one portfolio demo and two projects 
 | [[Nomara Voyages]] | Shown as delivered, client status unconfirmed | Voyage · Omra | Bilingual storefront for package tours and Umrah trips from Constantine | nomaravoyages.netlify.app | No |
 | [[Glaive Store]] | Portfolio demo, not a client | Commerce · Gaming | Fictional gaming-gear brand and online store, labelled as a demo on every page | glaivestore.netlify.app | Yes: portfolio demo, EN |
 | WorkspaceHQ v3 | The studio's own product (no work card) | — | Desktop console (Electron) that shows the state of every git repository on a developer's machine in one scan; launch page in `workspacehq/` | `workspacehq/` | Yes: own product, EN |
-| [[Doctor Cherfia Clinic_1\|Doctor Cherfia Clinic]] | In progress ("En cours") | Santé · Next.js | Site with online booking for a small practice | none | No |
-| Étoile de l'Est | In progress ("En cours") | PWA · Supabase | Progressive web app built to work offline | none | No |
+| [[Doctor Cherfia Clinic_1\|Doctor Cherfia Clinic]] | In progress; no card until the site is live | — | Site with online booking for a small practice | none | No |
+| Étoile de l'Est | In progress; no card until the site is live | — | Progressive web app built to work offline | none | No |
 
-Sources: index.html › #work (cards, categories, links, "En cours"); assets/app.js › proj*.desc (English descriptions); scripts/scene-data.mjs › PROJECTS (pageCount, langs, status, context, gains); README.md › This repository (workspacehq/); OWNER-CONTENT.md › 7 (Nomara).
+Sources: index.html › #work (cards, categories, links); assets/app.js › proj*.desc (English descriptions); BRAND.md › Bento, loading states and wayfinding (the two projects in progress, whose cards and keys went on 2026-10-26); scripts/scene-data.mjs › PROJECTS (pageCount, langs, status, context, gains); README.md › This repository (workspacehq/); OWNER-CONTENT.md › 7 (Nomara).
 
 - The proof band's trust line says "4 sites livrés · réponse < 24 h ouvrées · FR · EN · AR"; the title block says "4 sites clients" (index.html › .proof, .titleblock; assets/app.js › proof.line). Its four counters went on 2026-10-26, an owner decision (BRAND.md › Page structure and design system (home page)).
 - The hero plate cycles the four client sites and the Glaive demo, one at a time, labelled `01/05` (index.html › .plate).
 - It is an owner decision that Glaive is a portfolio demo and that there are 4 live client sites, not 5; `check.mjs` keeps retired wording such as "5 / 7" and "Démo →" from coming back (scripts/check.mjs › RETIRED).
-- The two in-progress cards leave their browser bars blank, since neither site has a host yet (index.html › #work; OWNER-CONTENT.md › 9).
+- A project in progress gets a card only once its site is live, and then comes with its own screenshot, link and browser bar; the two "En cours" cards had no screenshot and nothing to open (BRAND.md › Bento, loading states and wayfinding; OWNER-CONTENT.md › 9).
 
 ## Per client
 
