@@ -834,8 +834,14 @@ runtimeDeps.length
 // plates.mjs, clients: client-logos.mjs, the home share card: build-og.mjs;
 // hub/art and hub/poses are exported by hand) or raise the number here on
 // purpose. The owner can tighten any of them.
+// No two published files in assets/fonts/ may hold the same bytes. Geist,
+// Geist Mono and Syne are variable fonts, and the Google Fonts API answers
+// every weight with one file: saved once per weight, the copies were each
+// downloaded again (14 of them until c16a131). One file per family and
+// subset; the @font-face rules give it its weights.
 {
   const { deployFiles } = await import('./lib/deploy-files.mjs');
+  const { createHash } = await import('node:crypto');
   const kB = 1000;
   const BUDGET = {
     'assets/previews': 53 * kB,   // 48,016 then (nomara.webp)
@@ -844,6 +850,7 @@ runtimeDeps.length
     'assets/clients': 22 * kB,    // 19,320 (bordjsteel.svg)
     'hub/art': 367 * kB,          // 333,302 (p21-l.webp)
     'hub/poses': 264 * kB,        // 239,336 (pose-3.webp)
+    'assets/fonts': 51 * kB,      // 45,688 on 2026-10-26 (ibm-plex-sans-arabic-600-arabic.woff2)
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
   const TOTAL = 20.9e6;           // 18,981,960 then, 262 files
@@ -858,6 +865,12 @@ runtimeDeps.length
     for (const [f, n] of own) if (n > cap) budgetErr.push(`${f} is ${bytes(n)}, over the ${dir} ceiling of ${bytes(cap)}`);
     largest.push(`${dir} ${fmt(Math.max(...own.map(([, n]) => n)))}/${fmt(cap)}`);
   }
+  const seen = new Map();
+  for (const [f] of files.filter(([f]) => f.startsWith('assets/fonts/'))) {
+    const h = createHash('sha256').update(readFileSync(join(ROOT, f))).digest('hex');
+    if (seen.has(h)) budgetErr.push(`${f} has the same bytes as ${seen.get(h)} (one file per family and subset; point the @font-face rules at it)`);
+    else seen.set(h, f);
+  }
   const cards = files.filter(([f]) => /(^|\/)og\.jpg$/.test(f));
   if (!cards.length) budgetErr.push('no published og.jpg');
   for (const [f, n] of cards) if (n > OG) budgetErr.push(`${f} is ${bytes(n)}, over the share-card ceiling of ${bytes(OG)}`);
@@ -867,7 +880,7 @@ runtimeDeps.length
     budgetErr.push(`the published set is ${bytes(total)} in ${files.length} files, over its ceiling of ${bytes(TOTAL)} (largest: ${top})`);
   }
   budgetErr.length ? bad('asset budgets: ' + budgetErr.join('; '))
-    : ok(`asset budgets: largest file per folder ${largest.join(', ')}; ${cards.length} share cards ≤ ${fmt(OG)}; published ${fmt(total)} of ${fmt(TOTAL)}`);
+    : ok(`asset budgets: largest file per folder ${largest.join(', ')}; ${seen.size} font files, no two alike; ${cards.length} share cards ≤ ${fmt(OG)}; published ${fmt(total)} of ${fmt(TOTAL)}`);
 }
 
 /* 18 — SEO and structured data */
