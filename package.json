@@ -25,7 +25,8 @@
     "verify": "node scripts/verify.mjs",
     "keys": "node scripts/keys.mjs",
     "links": "node scripts/links.mjs",
-    "kb": "node scripts/build-kb.mjs"
+    "kb": "node scripts/build-kb.mjs",
+    "metrics": "node scripts/metrics.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",
