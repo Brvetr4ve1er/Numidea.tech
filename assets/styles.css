@@ -2422,9 +2422,11 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 
 /* The scene banner's three plates were blank cards that read as a missing
    image. They now carry the real client screenshots, fanned like a stack of
-   drawing sheets. */
+   drawing sheets. Plate 1 lies wholly under plate 3, at rest and on hover,
+   so it reuses the Alliance preview the hero already loads: a CSS background
+   downloads at page start, and its own 117 KB capture was never seen. */
 .sb-art i{background-size:cover;background-position:top left}
-.sb-art i:nth-child(1){background-image:url(work/alliance/d1.webp)}
+.sb-art i:nth-child(1){background-image:url(previews/alliancetravel.webp)}
 .sb-art i:nth-child(2){background-image:url(previews/glaive.webp)}
 .sb-art i:nth-child(3){background-image:url(previews/bordjsteel.webp)}
 .sb-art{width:92px;height:62px}
