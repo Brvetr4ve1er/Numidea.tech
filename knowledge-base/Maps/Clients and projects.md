@@ -23,7 +23,7 @@ The work grid shows four live client sites, one portfolio demo and two projects 
 
 Sources: index.html › #work (cards, categories, links, "En cours"); assets/app.js › proj*.desc (English descriptions); scripts/scene-data.mjs › PROJECTS (pageCount, langs, status, context, gains); README.md › This repository (workspacehq/); OWNER-CONTENT.md › 7 (Nomara).
 
-- The proof band says 4 projects delivered and "Quatre sites clients sont en ligne aujourd'hui"; the title block says "4 sites clients" (index.html › .proof, .titleblock).
+- The proof band's trust line says "4 sites livrés · réponse < 24 h ouvrées · FR · EN · AR"; the title block says "4 sites clients" (index.html › .proof, .titleblock; assets/app.js › proof.line). Its four counters went on 2026-10-26, an owner decision (BRAND.md › Page structure and design system (home page)).
 - The hero plate cycles the four client sites and the Glaive demo, one at a time, labelled `01/05` (index.html › .plate).
 - It is an owner decision that Glaive is a portfolio demo and that there are 4 live client sites, not 5; `check.mjs` keeps retired wording such as "5 / 7" and "Démo →" from coming back (scripts/check.mjs › RETIRED).
 - The two in-progress cards leave their browser bars blank, since neither site has a host yet (index.html › #work; OWNER-CONTENT.md › 9).

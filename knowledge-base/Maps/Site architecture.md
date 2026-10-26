@@ -42,7 +42,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | [[Navbar]] | — | Seven section links, theme menu, FR / EN / ع buttons, menu toggle (index.html › NAV) |
 | [[Mobile Overlay Menu]] | `#mobile-menu` | A modal dialog: everything behind it is inert and Tab stays inside (assets/app.js › mobile menu) |
 | Hero | — | Headline, the free Aperçu call to action and the rotating [[Hero plate (one live site at a time)]] (index.html › HERO) |
-| Proof | — | Four counters and the client logo strip (index.html › PROOF) |
+| Proof | — | One trust line and the client logo strip (index.html › PROOF) |
 | Work | `#work` | Project cards, voices slot, then the planches banner to `scene/` (index.html › SELECTED WORK) |
 | Services | `#services` | Opens with the L'Aperçu card `#apercu` (index.html › SERVICES) |
 | Method | `#how` | (index.html › METHOD) |
@@ -68,7 +68,6 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | `EXTRA` | Services Catalog + Trust strip strings | More strings, merged into `I18N` per language (assets/app.js › EXTRA) |
 | `ESTIMATE` | estimator model | Pure figures and arithmetic, including `PRICE_MODEL`, so a script can test it without a page (assets/app.js › estimator model). Prices are in [[Pricing and market]] |
 | `applyLang()` | after `ESTIMATE` | Swaps every translated node and attribute, the title and meta description, the `ProfessionalService` description and the FAQ JSON-LD; the `WebSite` block is the same in every language and is left alone (assets/app.js › applyLang) |
-| count-up | count-up | The animated counters (assets/app.js › count-up) |
 | DOM ready | DOM ready | Language switch, theme switcher, scroll progress, reveal-on-scroll, ambient parallax, hero plate, mobile menu, legacy `#/work` redirect, founder résumé accordion, contact form (assets/app.js › DOM ready) |
 | 12 | project estimator | Reads the estimator's controls and writes the result; plural forms per language (assets/app.js › 12 · project estimator) |
 | 12a | display currency | Converts dinar prices to € or $ for display only (assets/app.js › 12a · display currency) |

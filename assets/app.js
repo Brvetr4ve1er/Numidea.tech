@@ -1,6 +1,6 @@
 /* ============================================================
    NUMIDEA LABS — interactions
-   i18n (FR · EN · AR/RTL), nav, scroll progress, count-ups,
+   i18n (FR · EN · AR/RTL), nav, scroll progress,
    reveal-on-scroll, mobile menu, contact form states.
    No dependencies. Respects prefers-reduced-motion.
    ============================================================ */
@@ -22,9 +22,8 @@
       'hero.lede': 'Entreprise immatriculée ? Avant tout paiement, on construit la page d\'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés (4 Aperçus par mois au maximum, tous clients confondus). Aux commandes : un fondateur designer-développeur et trois spécialistes, du back-end au dernier pixel. Après la mise en ligne, on assure le suivi.',
       'hero.cta1': 'Demander mon Aperçu gratuit →', 'hero.cta2': 'Voir nos réalisations',
       'hero.plateLive': 'en ligne', 'tb.lang': 'Langues', 'tb.liveV': '4 sites clients', 'tb.live': 'En ligne', 'tb.previewV': 'Gratuit · 5 jours ouvrés', 'tb.preview': 'Aperçu', 'tb.replyV': '< 24 h ouvrées', 'tb.reply': 'Réponse', 'tb.langV': 'FR · EN · AR', 'tb.place': 'Bordj Bou Arréridj, Algérie', 'tb.studio': 'Studio',
-      'proof.kicker': '01 — Chiffres clés',
-      'proof.s1': 'projets livrés', 'proof.s2': 'personnes dans l\'équipe', 'proof.s3': 'langues', 'proof.s4': 'de réponse, en heures ouvrées',
-      'proof.line': 'Quatre sites clients sont en ligne aujourd\'hui — ouvrez-les ci-dessous.',
+      'proof.kicker': '01 — Preuves',
+      'proof.line': '4 sites livrés · réponse < 24 h ouvrées · FR · EN · AR',
       'svc.kicker': '03 — Services',
       'svc.title': 'Ce qu\'on <em>construit pour vous.</em>',
       'svc.outcomeLabel': 'Résultat',
@@ -123,8 +122,7 @@
       'hero.cta1': 'Request my free Preview →', 'hero.cta2': 'See our work',
       'hero.plateLive': 'live', 'tb.lang': 'Languages', 'tb.liveV': '4 client sites', 'tb.live': 'Live', 'tb.previewV': 'Free · 5 working days', 'tb.preview': 'Preview', 'tb.replyV': '< 24 working hours', 'tb.reply': 'Reply', 'tb.langV': 'EN · FR · AR', 'tb.place': 'Bordj Bou Arréridj, Algeria', 'tb.studio': 'Studio',
       'proof.kicker': '01 — Proof',
-      'proof.s1': 'projects delivered', 'proof.s2': 'people on the team', 'proof.s3': 'languages', 'proof.s4': 'response, in working hours',
-      'proof.line': 'Four client sites are live today — open them below.',
+      'proof.line': '4 sites delivered · reply < 24 working hours · FR · EN · AR',
       'svc.kicker': '03 — Services',
       'svc.title': 'What we <em>build for you.</em>',
       'svc.outcomeLabel': 'Outcome',
@@ -226,8 +224,7 @@
       'hero.cta1': 'اطلب معاينتك المجانية ←', 'hero.cta2': 'شاهِد أعمالنا',
       'hero.plateLive': 'على الإنترنت', 'tb.lang': 'اللغات', 'tb.liveV': '4 مواقع لعملائنا', 'tb.live': 'على الإنترنت', 'tb.previewV': 'مجّانية · 5 أيام عمل', 'tb.preview': 'المعاينة', 'tb.replyV': 'أقل من 24 ساعة عمل', 'tb.reply': 'الردّ', 'tb.langV': 'العربية · الفرنسية · الإنجليزية', 'tb.place': 'برج بوعريريج، الجزائر', 'tb.studio': 'الاستوديو',
       'proof.kicker': '01 — الإثبات',
-      'proof.s1': 'مشاريع مُسلَّمة', 'proof.s2': 'أعضاء في الفريق', 'proof.s3': 'لغات', 'proof.s4': 'زمن الردّ، بساعات العمل',
-      'proof.line': 'أربعة مواقع لعملائنا تعمل اليوم على الإنترنت — تصفّحها أدناه.',
+      'proof.line': '4 مواقع مُسلَّمة · الردّ في أقل من 24 ساعة عمل · بالفرنسية والإنجليزية والعربية',
       'svc.kicker': '03 — الخدمات',
       'svc.title': 'ما <em>نبنيه لك.</em>',
       'svc.outcomeLabel': 'النتيجة',
@@ -833,47 +830,6 @@
     document.dispatchEvent(new CustomEvent('numidea:lang', { detail: { lang: lang } }));
   }
 
-  /* ---------------- count-up ---------------- */
-  function group(n) {
-    var lang = document.documentElement.getAttribute('lang') || 'fr';
-    // Arabic shows Western digits everywhere on this site (prices, counters, copy)
-    try { return new Intl.NumberFormat(lang === 'ar' ? 'ar-u-nu-latn' : lang).format(n); }
-    catch (e) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
-  }
-
-  /* The suffix and number format are read at every write, so a language
-     switch mid-count, or after it, shows the current language's unit. */
-  function statText(el, v) {
-    var lang = document.documentElement.getAttribute('lang') || 'fr';
-    var suffix = el.getAttribute('data-suffix-' + lang);
-    if (suffix == null) suffix = el.getAttribute('data-suffix') || '';
-    var fig = (el.getAttribute('data-prefix') || '') + group(v);
-    // Arabic reads the counter right to left ('<24' then the unit 'س'): the
-    // comparison and the figure stay one left-to-right unit (LRI … PDI) and
-    // the unit follows it in the reading order (styles.css sets RTL on .stat)
-    return (lang === 'ar' ? '⁦' + fig + '⁩' : fig) + suffix;
-  }
-  function countUp(el) {
-    if (el.getAttribute('data-counted') === '1') return;
-    el.setAttribute('data-counted', '1');
-    var target = parseFloat(el.getAttribute('data-count'));
-    if (reduceMotion) { el.textContent = statText(el, target); return; }
-    var dur = 1200, start = null;
-    function frame(t) {
-      if (!start) start = t;
-      var p = Math.min((t - start) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = statText(el, p < 1 ? Math.round(target * eased) : target);
-      if (p < 1) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  }
-  document.addEventListener('numidea:lang', function () {
-    document.querySelectorAll('[data-count][data-counted="1"]').forEach(function (el) {
-      el.textContent = statText(el, parseFloat(el.getAttribute('data-count')));
-    });
-  });
-
   /* ---------------- DOM ready ---------------- */
   document.addEventListener('DOMContentLoaded', function () {
    try {
@@ -1038,14 +994,12 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // reveal-on-scroll + count-up
+    // reveal-on-scroll
     function revealNow(el) {
       if (el.classList.contains('in')) return;
       el.classList.add('in');
-      el.querySelectorAll('[data-count]').forEach(countUp);
-      if (el.hasAttribute('data-count')) countUp(el);
     }
-    var revealEls = document.querySelectorAll('.reveal, [data-count]');
+    var revealEls = document.querySelectorAll('.reveal');
     // Progressive enhancement: CSS only hides .reveal under html.js-ready, so a
     // visitor whose app.js never arrives sees everything. If the page has
     // ALREADY painted by the time this runs (slow network, deferred script

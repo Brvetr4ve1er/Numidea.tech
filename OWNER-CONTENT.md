@@ -74,8 +74,9 @@ A real photo, never a generated face: square, at least 400 px, saved as
 The three specialists show initials only. To show a person, replace their
 initial with `<img src="assets/team/<x>.webp" alt="" width="88" height="88">`
 inside `.tm-i` (comment above the team list). **Confirm the claim**: the site
-says "four specialists" (hero, proof stat, "three specialists around him",
-"a four-person studio" in the brand-identity service). If that is no longer
+says "four specialists" (hero, "three specialists around him", "a
+four-person studio" in the brand-identity service; the proof band's "4
+personnes dans l'équipe" counter went on 2026-10-26). If that is no longer
 true, say so and the copy changes in all three languages.
 
 The team card gives first contact and "turning the idea into scope" to S
@@ -142,6 +143,14 @@ what its French and English counterparts say:
   «نسخ رسالتي», `form.copied`
   «نُسخت رسالتك. الصقها في بريد إلكتروني جديد إلى العنوان أعلاه.» and
   `form.copyFail` «تعذّر النسخ: رسالتك محدَّدة، انسخها بنفسك.»
+
+Written on 2026-10-26 (owner decisions), in `assets/app.js`:
+- `proof.line`, the trust line that replaced the four counters under
+  «01 — الإثبات»: «4 مواقع مُسلَّمة · الردّ في أقل من 24 ساعة عمل ·
+  بالفرنسية والإنجليزية والعربية» (French: "4 sites livrés · réponse < 24 h
+  ouvrées · FR · EN · AR"). The languages are written out as in
+  `contact.vReply`; the title block lists them Arabic first
+  (`tb.langV`). Which order reads better here?
 
 Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
 project `ar` texts in `scripts/scene-data.mjs`, and the `lang="ar"` lines in

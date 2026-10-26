@@ -408,10 +408,7 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 
 /* ---------- proof bar ---------- */
 .proof{background:var(--navy);border-radius:0}
-.proof-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-6);text-align:center}
-.stat{font-family:var(--font-display);font-weight:600;font-size:clamp(29px, 17.33px + 3.24vw, 64px);line-height:1;color:var(--ice)}
-.stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:var(--s-3)}
-.proof-line{text-align:center;color:var(--muted);margin-top:var(--s-7);font-size:15px}
+.proof-line{text-align:center;color:var(--muted);font-size:15px}
 
 
 /* ---------- selected work ---------- */
@@ -1165,7 +1162,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   main.wrap>section>.kicker+h2.sec+*{margin-top:var(--s-8)}
 
   /* — per-section content spans — */
-  .work-grid,.svc-grid,.stack-strip,.founder-card,.contact-grid,.proof-grid,.preview,.scene-banner,.voices{grid-column:1/-1}
+  .work-grid,.svc-grid,.stack-strip,.founder-card,.contact-grid,.preview,.scene-banner,.voices{grid-column:1/-1}
   /* three abreast: the process reads as a sequence instead of a column
      with half the screen empty beside it */
   .steps{grid-column:1/-1;max-width:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,2.4vw,48px)}
@@ -1245,7 +1242,6 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .hero-grid{grid-template-columns:minmax(0,1fr)}
   .work-grid{grid-template-columns:minmax(0,1fr)}
   .work-grid>.proj:last-child:nth-child(odd){max-width:none;margin-inline:0}
-  .proof-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-7)}
 }
 /* ============================================================
    THE MOBILE PASS — 960px, not 720px.
@@ -1390,11 +1386,6 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .channels .ch{grid-template-columns:minmax(0,1fr);gap:6px}
   .hero-cta{gap:var(--s-3)}
   .hero-cta .btn{width:100%;justify-content:center}
-}
-@media(max-width:340px){
-  /* two 70px columns cannot hold "PROJETS LIVRÉS" — the stats stopped
-     sharing a baseline */
-  .proof-grid{grid-template-columns:minmax(0,1fr);gap:var(--s-5)}
 }
 
 /* Legibility floor. Nothing below 11px on a handset — several labels sat
@@ -2112,7 +2103,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
   section,.proj,.svc-row,.faq-item{break-inside:avoid}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:.85em;color:#555}
   /* gradient-filled type falls back to solid ink: its pale middle stops vanish on paper */
-  .hero-h .swash,.logo i,.stat,main.wrap>section h2.sec em{background:none!important;-webkit-text-fill-color:#000!important;color:#000!important}
+  .hero-h .swash,.logo i,main.wrap>section h2.sec em{background:none!important;-webkit-text-fill-color:#000!important;color:#000!important}
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -2323,7 +2314,6 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
   .ai.live .a-pulse{animation:ai-pulse 2.6s ease-in-out var(--n,3)}
   .ai.live .a-bob{animation:ai-bob 2.8s ease-in-out var(--n,3)}
   .ai.live .a-twinkle{animation:ai-twinkle 2.4s ease-in-out var(--n,3)}
-  .ai.live .a-redraw{animation:ai-redraw 4.5s ease-in-out 1.6s var(--n,3)}
   .ai.live .a-sl{animation:ai-sl 3.6s ease-in-out calc(var(--i) * -1.2s) var(--n,3)}
   .ai.live .a-tilt{animation:ai-tilt 4.2s ease-in-out var(--n,3)}
 }
@@ -2348,10 +2338,8 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 @keyframes ai-twinkle{0%,100%{transform:scale(1) rotate(0);opacity:1}50%{transform:scale(.4) rotate(45deg);opacity:.4}}
 @keyframes ai-sl{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
 @keyframes ai-tilt{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
-@keyframes ai-redraw{0%,70%{stroke-dashoffset:0}80%{stroke-dashoffset:1}100%{stroke-dashoffset:0}}
 
 /* placements */
-.ai-stat{width:30px;height:30px;margin:0 auto var(--s-3);display:block;color:var(--crimson-text)}
 .ai-corner{position:absolute;top:var(--s-5);inset-inline-end:var(--s-5);width:28px;height:28px}
 .md-card{position:relative}
 .est-head,.mk-head{position:relative}
@@ -2464,16 +2452,6 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
    Arabic paragraph the bidi algorithm reordered them to "Labs idea Num".
    A brand name has one direction. */
 .logo{direction:ltr;unicode-bidi:isolate}
-/* "<24h": the "<" is a neutral, so in RTL it migrated to the far end ("24h>") */
-.stat{direction:ltr;unicode-bidi:isolate}
-/* In Arabic the figure carries an Arabic unit ("<24 س"), and a forced-LTR box
-   put the unit in front of the number for a right-to-left reader. There the
-   box takes its direction from its own text (plaintext): app.js isolates "<24"
-   (U+2066…U+2069), so the Arabic unit is the first strong letter, the line is
-   RTL and the unit lands after the figure, on the left; the baked "<24h" that
-   shows before the count-up has a Latin unit, so it stays LTR and whole. Geist
-   keeps the digits, Plex Arabic takes the unit. */
-html[dir="rtl"] .stat{unicode-bidi:plaintext;font-family:"Geist", var(--font-ar-display)}
 
 /* ═══════════════════════════ BENTO + LOADING + WAYFINDING ═══════════════════════════ */
 
@@ -2597,7 +2575,7 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
 
 /* labels */
 .kicker,.eyebrow,.tag,.svc-row .fam,.cap .fam,.t-pop,.md-tag,.md-sub,.eo-k,.est-hint,
-.stat-label,.pl-cap,.v-cap,.sb-kick,.proj .cat,.titleblock dt,.channels dt,.field label,
+.pl-cap,.v-cap,.sb-kick,.proj .cat,.titleblock dt,.channels dt,.field label,
 .est-field legend,.est-field>label,.est-lab,.mk-table caption,.mk-table thead th,.team-h,
 .t-time,.eo-time,.fd-role,.outcome b,.stack-strip .grp>b{
   font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);

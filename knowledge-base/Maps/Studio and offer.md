@@ -84,7 +84,7 @@ After launch, each package includes 1, 3 or 6 months of support, and maintenance
   - D, data specialist: pipelines, scraping and the intelligence layer.
   - S, sales and partnerships: first contact, turns the idea into scope.
   - T, technical lead: quality of what ships, keeps the client informed.
-- The page counts 4 people on the team and a founder with three specialists (index.html › .proof, .hero). That claim, the team photos and the founder photo are owner items (OWNER-CONTENT.md › 3, 4).
+- The hero presents a founder and three specialists (index.html › .hero; assets/app.js › hero.lede); the proof band's "4 personnes dans l'équipe" counter went on 2026-10-26. That claim, the team photos and the founder photo are owner items (OWNER-CONTENT.md › 3, 4).
 - The founder's personal page is `hub/` (VOIDSPLUNKER.std), with its own CSS and JS (README.md › This repository); see [[WorkspaceHQ and hub]].
 - The team is anonymized by design: initials only, no names or genders documented, so the copy uses no pronouns for D, S and T (BRAND.md › Founder section — the CV is the source of truth).
 - How the founder card is built (the CV as source of truth, the timeline order, the workbench plate behind it) is in [[Motion and illustration]].

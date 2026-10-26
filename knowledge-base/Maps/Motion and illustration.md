@@ -49,7 +49,7 @@ Source: BRAND.md › Performance — what made scrolling slow.
 - They draw themselves on reveal through `stroke-dashoffset`, so every shape must be a stroked path; a check asserts each mark's box stays inside 0–24 (BRAND.md › The icon set).
 - Each is specific to its label, for example a registration mark for L'Aperçu and a viewport for web (BRAND.md › The icon set).
 - A separate section, Iconography, describes the service marks differently, as geometric constructions on the page's hexagonal motif (an aperture, a compass vesica, an escapement, an astrolabe, a lattice), and names the animation hooks `.spin`, `.sweep`, `.gem`, `.r2` and `.r3`, with `pathLength="1"` on every drawable element (BRAND.md › Iconography). BRAND.md does not say which of the two descriptions is current.
-- **Animated icons (`.ai`).** 32 inline icons on the same grammar, from the proof stats to the contact channels; they draw in once, then an idle loop runs (BRAND.md › Animated icons (`.ai`)).
+- **Animated icons (`.ai`).** 26 inline icons on the same grammar, from the pricing tiers to the contact channels; they draw in once, then an idle loop runs (BRAND.md › Animated icons (`.ai`)).
 - Select drawable parts by class `.p`, never as `[pathLength]`: Chromium kept a stale style on the attribute selector and the contact icons never appeared (BRAND.md › Animated icons (`.ai`)).
 - Put icons beside `data-i18n` elements, never inside, because `applyLang` replaces their content (BRAND.md › Animated icons (`.ai`)).
 - Graph: [[Service icon set (11 hand-authored SVGs)]], [[Geometric service marks (hexagonal motif)]], [[pathLength=1 stroke draw-on]], [[Animated icons (.ai)]].

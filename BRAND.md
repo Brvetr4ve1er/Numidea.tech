@@ -1225,7 +1225,7 @@ time the element comes back on screen. Off-screen, nothing runs.
 
 ### Animated icons (`.ai`)
 
-32 inline icons on the 24×24 / 1.5-stroke grammar: proof stats, tiers,
+26 inline icons on the 24×24 / 1.5-stroke grammar: tiers,
 pricing models, estimator, market, onboarding steps, stack groups, FAQ
 questions, contact channels. Drawable parts carry **class `.p`** and
 `pathLength="1"`; they draw in once (`.on`), then the idle loop runs (`.live`).
@@ -1484,7 +1484,8 @@ arcanum/fr, engineering/en and daylight/ar:
 - **RTL wordmark.** "Num · idea · Labs" is three runs; in an Arabic paragraph
   the bidi algorithm laid them out as "Labs idea Num". `.logo` is now
   `direction:ltr; unicode-bidi:isolate` — a brand name has one direction.
-- **RTL "<24h"** rendered "24h>" (the "<" is a neutral). `.stat` is isolated LTR.
+- **RTL "<24h"** rendered "24h>" (the "<" is a neutral). `.stat` was isolated
+  LTR; the counters left the page on 2026-10-26 (owner decision).
 - **Engineering navbar** turned navy when scrolled (the base sheet's
   rgba(13,26,47,.72)); fixed then to the instrument black. *(Old Engineering
   sheet, removed in the 2026-10 cleanup; kept as a lesson.)*
@@ -1540,6 +1541,11 @@ on purpose (decorative clipped glows, for instance) must be listed in
 
 **Order:** hero, proof, work, services, method, pricing, team, stack, FAQ,
 contact. Each idea is said once:
+- The proof band is one trust line, "4 sites livrés · réponse < 24 h ouvrées
+  · FR · EN · AR", then the client logo strip. Its four animated counters
+  repeated the hero's title block and the line under them; they went on
+  2026-10-26 (owner decision). Each item of the line is held together by
+  no-break spaces, so a narrow screen breaks it only after a separator.
 - The free demo (L'Aperçu) is the services lead card and step 3 of the method.
 - The process is the four-step method. There is no second process in pricing.
 - Pricing reads tiers, then the estimator, and stops. The market comparison,
