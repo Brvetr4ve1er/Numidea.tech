@@ -1593,6 +1593,7 @@
         var dict = I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG];
         f.classList.add('invalid');
         var e = f.querySelector('.err');
+        e.classList.remove('hint');
         e.textContent = key ? dict[key] : '';
         if (key) e.setAttribute('data-err-key', key); else e.removeAttribute('data-err-key');
         f.querySelector('input,textarea').setAttribute('aria-invalid', 'true');
@@ -1606,6 +1607,7 @@
         f.classList.remove('invalid');
         f.querySelector('.err').textContent = '';
         f.querySelector('.err').removeAttribute('data-err-key');
+        f.querySelector('.err').classList.remove('hint');
         f.querySelector('input,textarea').removeAttribute('aria-invalid');
       }
       ['name', 'email', 'message'].forEach(function (id) {
@@ -1701,8 +1703,9 @@
       var copyBtn = document.getElementById('form-copy');
       if (copyBtn && success) copyBtn.addEventListener('click', function () {
         function fail() {
-          // a hint, not an error: the field stays valid; typing clears it
-          if (msgErr) { msgErr.textContent = t('form.copyFail'); msgErr.setAttribute('data-err-key', 'form.copyFail'); }
+          // a hint, not an error: the field stays valid and the line takes the
+          // neutral colour (.hint); typing clears it
+          if (msgErr) { msgErr.textContent = t('form.copyFail'); msgErr.setAttribute('data-err-key', 'form.copyFail'); msgErr.classList.add('hint'); }
           backToForm(true);
         }
         var cb = navigator.clipboard;

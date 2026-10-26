@@ -41,7 +41,8 @@
  *                 form back, still filled in, focus in the message. With the
  *                 clipboard refusing, then missing, "copy" brings the form
  *                 back with the whole message selected, focus in it, and a
- *                 line in the page's language under it (not an error)
+ *                 line in the page's language under it (a hint, not an
+ *                 error: no aria-invalid, not in the errors' colour)
  *  lead store     (index, one run) the Supabase switch turned on in a copy of
  *                 index.html served in its place, its policy rebuilt by
  *                 withCsp: connect-src names the store, and a valid submit
@@ -388,7 +389,7 @@ async function contactForm(p, lang) {
     const e = errs[0];
     return { id, inv: f.getAttribute('aria-invalid'), focused: document.activeElement === f, a: __d(document.activeElement),
       err: !!e, text: e ? e.textContent.trim() : '', live: e ? e.getAttribute('aria-live') : null,
-      rendered: !!e && e.getClientRects().length > 0 };
+      rendered: !!e && e.getClientRects().length > 0, color: e ? getComputedStyle(e).color : '' };
   }), F);
   const submit = () => p.focus('#contact-form [type="submit"]').then(() => p.keyboard.press('Enter')).then(() => wait(150));
   await submit();
@@ -405,7 +406,7 @@ async function contactForm(p, lang) {
     }
   }
   if (!s[0].focused) bad.push('focus is not on the first invalid field (on ' + s[0].a + ')');
-  const emptyEmail = s[1].text;
+  const emptyEmail = s[1].text, errColor = s[2].color;   // the message's error, for the hint below
   // typing clears that field; a malformed email gets its own message and focus
   await p.focus('#f-name'); await p.keyboard.type('Test');
   await p.focus('#f-email'); await p.keyboard.type('x@y');
@@ -491,12 +492,13 @@ async function contactForm(p, lang) {
           onMsg: document.activeElement === m, a: __d(document.activeElement),
           all: m.selectionStart === 0 && m.selectionEnd === m.value.length && m.value.length > 0,
           hint: e ? e.textContent.trim() : '', described: (m.getAttribute('aria-describedby') || '').split(/\s+/).includes('f-message-err'),
-          inv: m.getAttribute('aria-invalid') };
+          inv: m.getAttribute('aria-invalid'), color: e ? getComputedStyle(e).color : '' };
       });
       if (!nc.shown || nc.panel) bad.push('with the clipboard ' + how + ', "copy" does not bring the form back');
       if (!nc.onMsg || !nc.all) bad.push('with the clipboard ' + how + ', focus is not in the message with all of it selected (focus on ' + nc.a + ')');
       if (!inLang(nc.hint) || !nc.described) bad.push('with the clipboard ' + how + ', no line in the page\'s language under the message ("' + nc.hint.slice(0, 40) + '")');
       if (nc.inv) bad.push('with the clipboard ' + how + ', the message is marked aria-invalid');
+      if (errColor && nc.color === errColor) bad.push('with the clipboard ' + how + ', the line under the message is drawn in the error colour (' + errColor + ')');
     }
   }
   return { bad, note: 'form' + (mail ? ' → mailto' : '') + (copied ? ' + copy' : '') };

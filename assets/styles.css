@@ -738,6 +738,9 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 .field input:focus,.field textarea:focus{outline:2px solid var(--teal);outline-offset:2px;border-color:var(--teal);box-shadow:var(--glow-teal)}
 .field input::placeholder,.field textarea::placeholder{color:var(--faint)}
 .field .err{font-family:var(--font-mono);font-size:11px;color:var(--crimson-text);min-height:14px}
+/* the "copy it yourself" line after a refused copy is a hint, not an error:
+   the form's neutral note colour, not the error accent (app.js adds .hint) */
+.field .err.hint{color:var(--muted)}
 .field.invalid input,.field.invalid textarea{border-color:var(--crimson)}
 /* Arabic in the fields (placeholders, typed text) gets the Arabic face, not a system fallback */
 html[dir="rtl"] .field :is(input,textarea){font-family:var(--font-ar-body)}
