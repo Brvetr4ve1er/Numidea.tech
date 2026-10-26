@@ -448,6 +448,7 @@ Newest first.
 
 | Date | What happened |
 |---|---|
+| 2026-10-26 | Share card (assets/og.jpg) replaced, by owner decision: it showed a client's site captioned « site livré » with no written permission. It now shows Plate II, the Arch of Trajan at Timgad, one of the site's own engravings; og:image:alt updated to match. 83 KB, 1200×630. |
 | 2026-10-26 | Clear-cut items F1–F9, C6 and C7 shipped to the branch: the phone page goes from 1,223 to 1,016 KB (−17%), desktop from 2,033 to 1,826 KB, 404 from 251 to 195 KB, with no visible change except the fixes named. Then a review of the combined diff (9 minor findings, all fixed: the hint colour, stricter keys checks, EN stack title, FR colon spacing, AR FAQ 2, the Arabic review queue in OWNER-CONTENT §8, and a check.mjs 17 guard against duplicate font files). Not deployed: GitHub Actions still fails every job within seconds (billing). |
 | 2026-10-26 | Full audit; this backlog created. `npm run metrics` added. Measured: the client domain almaflowclim.fr serves a different (Hostinger) site from the build the site links to (owner fact A4). GitHub Actions jobs have failed within seconds since 2026-10-25 16:42 UTC (account billing block). Commits 485bc0c, 79716a2 and 82603b0 are pushed but not deployed; the live site is still 202610251516. |
 
