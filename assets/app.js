@@ -83,7 +83,7 @@
       'faq.kicker': '08 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
       'faq.lead': 'Ce qu\'on nous demande avant de se lancer, et nos réponses sans détour.',
       'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Cela dépend du périmètre : comptez 2 à 4 semaines pour un site vitrine, 3 à 7 pour un site sur mesure, 8 à 16 pour une application web. Le délai ferme est fixé dès que le projet est cadré ensemble.',
-      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Et pour une entreprise immatriculée, on construit d\'abord votre page d\'accueil, gratuitement : c\'est l\'Aperçu (4 par mois au maximum, tous clients confondus).',
+      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Et pour une entreprise immatriculée, on construit d\'abord votre page d\'accueil, gratuitement : c\'est l\'Aperçu (4 par mois au maximum, tous clients confondus).',
       'faq3.q': 'Vous travaillez en quelles langues ?', 'faq3.a': 'Français, arabe et anglais — à l\'oral, à l\'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.',
       'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. Chaque formule inclut 1, 3 ou 6 mois de support, et on vous répond sous 24 h ouvrées. Ensuite, la maintenance est en option : au mois, sans engagement de durée (voir les tarifs). Pas de « bonne chance » le jour de la mise en ligne.',
       'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre projet.',
@@ -106,7 +106,7 @@
       'form.edit': 'Revoir mon message',
       'form.copy': 'Copier mon message',
       'form.copied': 'Message copié. Collez-le dans un nouvel email, à l\'adresse ci-dessus.',
-      'form.copyFail': 'La copie n\'a pas fonctionné : votre message est sélectionné, copiez-le vous-même.',
+      'form.copyFail': 'La copie n\'a pas fonctionné : votre message est sélectionné, copiez-le vous-même.',
       'footer.signoff': 'Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.',
       'footer.rights': '© 2026 Numidea Labs',
       'footer.tag': 'Enraciné en Numidie · bâti sur des idées'
