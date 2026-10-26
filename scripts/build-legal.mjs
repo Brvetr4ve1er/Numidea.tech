@@ -296,8 +296,7 @@ var h='${BASE}legal/',c=document.createElement('link');c.rel='canonical';c.href=
 if(c.href!==h){var m=function(p,v){var e=document.querySelector('meta[property="og:'+p+'"]');if(e)e.setAttribute('content',v);};m('url',c.href);m('locale',l==='ar'?'ar_DZ':'en_US');}
 var S=${JSON.stringify(SECTIONS)},x=location.hash.slice(1),k,j;
 for(k in S)for(j in S[k])if(S[k][j]===x&&S[k][l]!==x)history.replaceState(null,'','#'+S[k][l]);})();</script>
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-400-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-600-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
 <link rel="stylesheet" href="../assets/fonts.css?v=${st}">
 <link rel="stylesheet" href="../assets/themes.css?v=${st}">
 <link rel="stylesheet" href="../assets/styles.css?v=${st}">

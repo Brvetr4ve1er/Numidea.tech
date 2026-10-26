@@ -258,8 +258,8 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAtt
 <style>html[data-i18n-pending] body{display:none}</style>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cinzel-700-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-400-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-latin.woff2">
 <link rel="stylesheet" href="../assets/fonts.css?v=${stamp}">
 <link rel="stylesheet" href="style.css?v=${stamp}">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"${BASE}"},{"@type":"ListItem","position":2,"name":"Planches","item":"${BASE}scene/"}]}</script>

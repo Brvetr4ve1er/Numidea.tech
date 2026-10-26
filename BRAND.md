@@ -231,12 +231,24 @@ that is what "0 dépendance" has to mean if the title block is going to print it
 Trimmed to the subsets this site actually sets type in — **latin, latin-ext,
 arabic**. Cyrillic, cyrillic-ext and vietnamese were dropped: 24 faces nothing
 here is typeset in. `unicode-range` is preserved, so loading is usage-driven —
-a French reader fetches 7 files, and the Arabic binaries are fetched only when
-`lang=ar` actually renders Arabic glyphs. 543 KB on disk; no visitor pays that.
+a French reader of the default theme fetches 5 files from it (Geist, Geist
+Mono, Cinzel, Cinzel Decorative, and Plex Arabic for the ع button), and the
+rest of the Arabic binaries are fetched only when `lang=ar` actually renders
+Arabic glyphs. 335 KB on disk; no visitor pays that.
+
+**One file per family and subset.** Geist, Geist Mono and Syne are variable
+fonts: the API answers every weight with the same file, and it had been saved
+once per weight, as byte-identical copies. The browser caches by URL, so each
+copy was downloaded again: 81,928 B of repeats on every first home visit, in
+all three languages. Each weight keeps its own `@font-face` rule (weight,
+`unicode-range`, `font-display` and fallbacks unchanged), and all of them
+point at `geist-latin.woff2`, `geist-mono-latin-ext.woff2` and so on.
 
 Regenerate by fetching the CSS2 API with a modern User-Agent (an old UA gets
 you TTF instead of woff2), keeping only those three subsets, downloading each
-url() and rewriting it to `fonts/`. Fonts are OFL-1.1; the license ships in
+distinct url() once, named by family and subset (by weight too only where the
+weights are different files, as Cinzel and Plex Arabic are), and rewriting
+every rule that uses it to `fonts/`. Fonts are OFL-1.1; the license ships in
 `assets/fonts/OFL.txt` and must stay there.
 
 **Every screenshot taken in a sandbox that blocks fonts.googleapis.com was
@@ -248,12 +260,13 @@ screenshot of type.
 
 ## The font swap must not move the page
 
-The main sheet is `font-display:swap`. The boot script preloads the faces
-that set most of a visitor's first screen: in French and English, Geist 400,
-Geist Mono 400, Geist 600 and the theme's heading face; in Arabic, Plex
-Arabic 400 and 600, Plex Arabic 600 latin, Geist Mono 400 and Geist 600. The
-rest of the first screen is not preloaded: Arcanum's Cinzel Decorative swash,
-the call-to-action's Geist Mono 700, and the ع button's Plex for Latin
+The main sheet is `font-display:swap`. The boot script preloads the files
+that set most of a visitor's first screen, each once: in French and English,
+Geist (one file for every weight: 400 body, 600 headline, and the heading in
+every theme but Arcanum), Geist Mono (the call-to-action's 700 included) and,
+in Arcanum, Cinzel; in Arabic, Plex Arabic 400 and 600, Plex Arabic 600
+latin, Geist Mono and Geist. The rest of the first screen is not preloaded:
+Arcanum's Cinzel Decorative swash and the ع button's Plex for Latin
 visitors. Those rely on their metric-matched fallback faces, which the
 fallback-type runs check in French and English.
 
@@ -436,6 +449,9 @@ body, mono, the display serif, and Geist 600 — the headline weight in the them
 that do not use Cinzel. Dropping 600 too measured CLS 0.02 on daylight and mono:
 the face landed ~170ms after layout and the hero reflowed. The preloads stay
 *ahead* of the stylesheets; moving them behind produced the same shift.
+(Geist 400 and 600 later turned out to be one variable file saved twice; it
+is now one file, preloaded once, so the 600 weight is still there before
+first paint.)
 
 **A harness that scrolls a `scroll-behavior:smooth` document lies.** Each
 `scrollTo` restarts a smooth animation, so a tight loop never actually passes
@@ -589,8 +605,9 @@ reason. Grep every stylesheet *and* every inline block.
 
 `assets/fonts-hub.css` holds them; `hub/` loads it render-blocking, like any
 first-party sheet. **No page on this site now makes a third-party request.**
-Trimmed to latin and latin-ext (hub sets no Greek or Vietnamese), 208KB, all ten
-faces `font-display:optional`.
+Trimmed to latin and latin-ext (hub sets no Greek or Vietnamese), all ten
+faces `font-display:optional`. Syne's three weights are one variable file per
+subset, so the six files are 112KB.
 
 **A fallback font hides how wide the real one is.** Every size on hub had been
 tuned against the metrics of whatever the system substituted for Syne. The real
@@ -1563,7 +1580,8 @@ written as literals that could not re-skin, and Engineering was a separate
   selector or a theme colour literal, when any list of theme names drifts
   from `THEMES` in `scripts/site.mjs`, or when a theme's heading face is not
   the one index.html preloads for it (`HEAD` map — a late face shifts the
-  hero; 404.html's `LOGO` map does the same for the wordmark).
+  hero; 404.html's `LOGO` map does the same for the wordmark). Any Geist or
+  Geist Mono weight is that family's one file.
 - Illustration strength is `--ink-k`, a multiplier on each plate's opacity.
 - Engineering is now a token theme like the others. The sections marked
   "History (removed features)" above describe a file that no longer exists.

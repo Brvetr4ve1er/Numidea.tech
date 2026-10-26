@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-SbHkbq4lOsxXGH0szow9D+PPYC1l6hzp6xB0KWnu5M8=' 'sha256-3WBywRlZXeBx2txIhlv+QB17s6KxacD1amoKZfrk7Js='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-lYiNI0KidkrOfbxABHXCeZBEFXzk85XyUJ5yMqfn84U=' 'sha256-3WBywRlZXeBx2txIhlv+QB17s6KxacD1amoKZfrk7Js='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Numidea Labs — Sites web sur mesure en français, anglais et arabe</title>
 <meta name="description" content="Studio web et logiciel à Bordj Bou Arréridj, Algérie. On conçoit, on code, on livre et on suit vos sites et applications, en français, anglais et arabe.">
 <meta name="theme-color" content="#0A1420">
@@ -102,16 +102,17 @@
      would otherwise queue an Arabic visitor's faces behind the Latin ones and
      land them after the first paint, where the swap moves the hero (fonts.css
      says why it is swap). Each visitor gets the faces that set most of their
-     hero; HEAD is each theme's heading face (themes.css --font-head +
-     --head-weight), kept in step by themes-check. The rest (Arcanum's
-     Cinzel Decorative swash, the call-to-action's Geist Mono 700) rely on
-     their metric-matched fallbacks, which audit.mjs's fallback-type runs
-     check. -->
+     hero, each file once; HEAD is each theme's heading face (themes.css
+     --font-head + --head-weight), kept in step by themes-check. Geist and
+     Geist Mono are variable, one file per subset for every weight, so a
+     theme whose heading is Geist adds nothing to the base preloads. The
+     rest (Arcanum's Cinzel Decorative swash) relies on its metric-matched
+     fallback, which audit.mjs's fallback-type runs check. -->
 <script>
   (function () {
     var d = document.documentElement;
-    var HEAD = { arcanum: 'cinzel-700-latin', noir: 'geist-700-latin', daylight: 'geist-600-latin',
-                 mono: 'geist-500-latin', altneon: 'geist-700-latin', engineering: 'geist-600-latin' };
+    var HEAD = { arcanum: 'cinzel-700-latin', noir: 'geist-latin', daylight: 'geist-latin',
+                 mono: 'geist-latin', altneon: 'geist-latin', engineering: 'geist-latin' };
     var LANGS = ['fr', 'en', 'ar'], BAKED = 'fr', th = 'arcanum', lang = BAKED, q = null;
     /* each theme's page colour (themes.css --void), for the browser's own
        bar until app.js reads it from the tokens */
@@ -181,8 +182,8 @@
     /* The Arabic hero also sets Latin glyphs (project names in Plex Arabic 600's
        latin subset, the logo in Geist 600) — leave either out and it widens late. */
     var faces = lang === 'ar'
-      ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-600-arabic', 'ibm-plex-sans-arabic-600-latin', 'geist-mono-400-latin', 'geist-600-latin']
-      : ['geist-400-latin', 'geist-mono-400-latin', 'geist-600-latin'].concat(HEAD[th] !== 'geist-600-latin' ? [HEAD[th]] : []);
+      ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-600-arabic', 'ibm-plex-sans-arabic-600-latin', 'geist-mono-latin', 'geist-latin']
+      : ['geist-latin', 'geist-mono-latin'].concat(HEAD[th] !== 'geist-latin' ? [HEAD[th]] : []);
     /* \x3c, not a literal "<": on a slow phone Chrome's parser sometimes
        read the raw '<link … href="…' + f + '…">' string in this script as a
        tag and fetched that URL unevaluated (a 404 that failed the throttled

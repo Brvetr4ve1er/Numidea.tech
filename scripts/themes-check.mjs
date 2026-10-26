@@ -138,7 +138,8 @@ const faceDrift = [];
 for (const { sel, body } of blocks) {
   const name = (/data-theme="([a-z]+)"/.exec(sel) || [])[1]; if (!name) continue;
   const v = (k) => ((new RegExp('--' + k + ':\\s*([^;]+)').exec(body) || [])[1] || '').trim();
-  const face = (fam, w) => (fam.includes('font-deco') ? 'cinzel-' : fam.includes('font-mono') ? 'geist-mono-' : 'geist-') + w + '-latin';
+  // Geist and Geist Mono are variable: every weight is the one file per subset
+  const face = (fam, w) => fam.includes('font-deco') ? 'cinzel-' + w + '-latin' : fam.includes('font-mono') ? 'geist-mono-latin' : 'geist-latin';
   const head = face(v('font-head'), v('head-weight')), logo = face(v('font-logo'), v('logo-weight'));
   if (headMap[name] !== head) faceDrift.push(`${name}: heading face ${head}, index.html preloads ${headMap[name] || 'none'}`);
   if (logoMap[name] !== logo) faceDrift.push(`${name}: wordmark face ${logo}, 404.html preloads ${logoMap[name] || 'none'}`);
