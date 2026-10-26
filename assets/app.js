@@ -177,7 +177,7 @@
       'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
       'team.tFn': 'Technical representative', 'team.tDo': 'Keeps the build honest and the client informed.',
       'stack.kicker': '07 — Tools',
-      'stack.title': 'The tools <em>we build with.</em>',
+      'stack.title': 'Our tools, <em>no showing off.</em>',
       'stack.lead': 'Chosen to last, not to follow trends.',
       'stack.gFront': 'Front', 'stack.gBack': 'Back', 'stack.gCloud': 'Cloud', 'stack.gData': 'Data', 'stack.gMobile': 'Mobile',
       'faq.kicker': '08 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',

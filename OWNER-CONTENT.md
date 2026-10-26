@@ -188,8 +188,11 @@ Confirm it, or say what is true and the copy changes in all three languages.
   Steel shows Next.js.
 - **Essentiel: "Mise en ligne, domaine et certificat configurés"**: no
   delivered client site is served from its own domain yet (see 9).
-- **The stack section** lists React Native, Expo, Docker and Cloudflare as
-  "les outils derrière ce qu'on livre"; no delivered project shows them.
+- **The stack section** lists React Native, Expo, Docker and Cloudflare
+  under "Nos outils" / "Our tools" (Arabic «أدوات متينة», "solid tools");
+  no delivered project shows them. The lines that called them the tools
+  behind what the studio delivers ("les outils derrière ce qu'on livre",
+  "the tools we build with") are gone from all three languages.
 - **AlmaFlowClim labelled "Industrie"**: its own site presents a residential
   heating, air-conditioning and plumbing business.
 - **"Si c'est oui, on est déjà à mi-chemin"** (method, step 4) after a
