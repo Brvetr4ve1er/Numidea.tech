@@ -1555,10 +1555,26 @@
     }
     document.addEventListener('numidea:lang', function () { refill('prev', t('prev.msg')); });
 
+    /* Where the prefill lands. Stacked (.contact-grid is one column at
+       ≤960px, styles.css), the five contact rows come before the form, so the
+       #contact jump stopped about a screen above the message just written
+       (390x844: the form 898px down, under an 844px screen). There, the frame
+       after the link's own jump, the form is brought to the top. The jump is
+       kept, so the URL, Back and where Tab continues from stay as on desktop
+       and without this script; with preventDefault, Tab went back up to the
+       button's own section. scrollIntoView() follows scroll-padding and
+       scroll-behavior, so reduced motion stays instant. Nothing is focused:
+       a phone's keyboard would cover the message. */
+    var stacked = window.matchMedia('(max-width: 960px)');
+    function toForm() {
+      var f = document.getElementById('contact-form');
+      if (f && stacked.matches) requestAnimationFrame(function () { f.scrollIntoView(); });
+    }
+
     // L'Aperçu: the button hands its request to the message field, then the
-    // normal #contact jump happens
+    // normal #contact jump happens (carried on to the form where it stacks)
     var prevCta = document.getElementById('prev-cta');
-    if (prevCta) prevCta.addEventListener('click', function () { prefillWith('prev', t('prev.msg')); });
+    if (prevCta) prevCta.addEventListener('click', function () { prefillWith('prev', t('prev.msg')); toForm(); });
 
     // contact form — designed validation + success
     var form = document.querySelector('#contact-form');
@@ -1905,7 +1921,7 @@
 
       /* Hand the scope to the message field rather than losing it on the jump. */
       if (eCta) {
-        eCta.addEventListener('click', function () { prefillWith('est', eCta.dataset.scope); });
+        eCta.addEventListener('click', function () { prefillWith('est', eCta.dataset.scope); toForm(); });
       }
 
       /* Units and option labels are translated, so rebuild on language change. */
