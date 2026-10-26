@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [index.html, assets/app.js, scripts/scene-data.mjs, scripts/voices-data.mjs, scripts/check.mjs, scripts/shots.mjs, scripts/verify-domains.mjs, OWNER-CONTENT.md, README.md, BRAND.md]
 ---
 
@@ -26,7 +26,7 @@ Sources: index.html › #work (cards, categories, links, "En cours"); assets/app
 - The proof band says 4 projects delivered and "Quatre sites clients sont en ligne aujourd'hui"; the title block says "4 sites clients" (index.html › .proof, .titleblock).
 - The hero plate cycles the four client sites and the Glaive demo, one at a time, labelled `01/05` (index.html › .plate).
 - It is an owner decision that Glaive is a portfolio demo and that there are 4 live client sites, not 5; `check.mjs` keeps retired wording such as "5 / 7" and "Démo →" from coming back (scripts/check.mjs › RETIRED).
-- The two in-progress cards show placeholder hostnames in their browser bars, `doctorcherfia.dz` and `etoile-est.app` (index.html › #work; OWNER-CONTENT.md › 9).
+- The two in-progress cards leave their browser bars blank, since neither site has a host yet (index.html › #work; OWNER-CONTENT.md › 9).
 
 ## Per client
 

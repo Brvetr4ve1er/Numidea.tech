@@ -133,8 +133,8 @@ the delivered site:
 - `bordj-steel.com`, `alliance-travel.dz` and `nomaravoyages.com` do not resolve
   (NXDOMAIN);
 - `almaflowclim.fr` serves a different Hostinger site;
-- the browser bars on two cards show placeholder hostnames (`doctorcherfia.dz`,
-  `etoile-est.app`).
+- the browser bars on the two cards in progress (Doctor Cherfia, Étoile de
+  l'Est) are blank: neither site has a host yet.
 
 When a client points a domain at the build, run `node scripts/verify-domains.mjs`.
 It reports a domain as switchable only when it serves the same site. Then the
