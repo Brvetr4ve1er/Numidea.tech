@@ -37,12 +37,13 @@
  *                 to the success panel, which takes focus; its "copy" button
  *                 puts that subject and body (and not the address) on the
  *                 clipboard, and a line inside the panel's role=status says
- *                 so in the page's language; its "edit" button brings the
+ *                 so (form.copied, the page language's dictionary string,
+ *                 compared whole); its "edit" button brings the
  *                 form back, still filled in, focus in the message. With the
  *                 clipboard refusing, then missing, "copy" brings the form
- *                 back with the whole message selected, focus in it, and a
- *                 line in the page's language under it (a hint, not an
- *                 error: no aria-invalid, not in the errors' colour)
+ *                 back with the whole message selected, focus in it, and
+ *                 form.copyFail in the page's language under it (a hint, not
+ *                 an error: no aria-invalid, not in the errors' colour)
  *  lead store     (index, one run) the Supabase switch turned on in a copy of
  *                 index.html served in its place, its policy rebuilt by
  *                 withCsp: connect-src names the store, and a valid submit
@@ -110,6 +111,7 @@ import { join } from 'node:path';
 import { serve, launch } from './lib/serve.mjs';
 import { watchCsp } from './lib/csp-watch.mjs';
 import { withCsp } from './lib/csp.mjs';
+import { loadDicts } from './lib/i18n.mjs';
 import { ROOT, PAGES } from './site.mjs';
 
 /* langs: the languages a page has (`only`: why it has just one); tests: its
@@ -129,6 +131,9 @@ if (existsSync(join(ROOT, 'legal-preview/index.html'))) { pages.push('legal-prev
 if (ONLY) pages.splice(0, pages.length, ...pages.filter((f) => name(f).includes(ONLY)));
 const SIZES = [[1280, 900], [390, 844]];
 const RING_N = 25;
+// index's dictionaries, as app.js holds them: the form's status lines are
+// compared with these strings, not merely with the script they are written in
+const DICT = loadDicts();
 
 const srv = await serve();
 const B = srv.base;
@@ -450,7 +455,9 @@ async function contactForm(p, lang) {
     if (!body.startsWith('Test <ada@example.com>') || !body.includes('Bonjour') || !body.includes('numidealabs · ' + lang)) bad.push('the hand-off\'s body is "' + body.slice(0, 80).replace(/\n/g, '⏎') + '"');
   }
   await cdp.detach();
-  const inLang = (s) => !!s && (lang === 'ar') === /[\u0600-\u06FF]/.test(s);
+  // the line says exactly the page language's dictionary string (a French
+  // line on the Arabic page, or an English one on the French page, fails)
+  const says = (s, key) => !!s && s === String((DICT[lang] || {})[key] || '').trim();
   let copied = false;
   if (ok.show) {
     // "Copier mon message", for a visitor whose mail app did not open: the
@@ -468,7 +475,7 @@ async function contactForm(p, lang) {
     if (cp.clip.includes(to)) bad.push('"copy" puts the address on the clipboard');
     if (!cp.shown) bad.push('"copy" closes the panel (focus on ' + cp.a + ')');
     if (!cp.inStatus) bad.push('the "copied" line is not inside the panel\'s polite role=status');
-    if (!inLang(cp.note)) bad.push('after "copy" the panel says "' + cp.note.slice(0, 40) + '", not a line in the page\'s language');
+    if (!says(cp.note, 'form.copied')) bad.push('after "copy" the panel says "' + cp.note.slice(0, 40) + '", not form.copied in ' + lang);
     copied = handed !== null && cp.clip === handed;
     await p.focus('#form-edit'); await p.keyboard.press('Enter'); await wait(150);
     const back = await p.evaluate(() => ({ shown: getComputedStyle(document.getElementById('contact-form')).display !== 'none',
@@ -496,7 +503,7 @@ async function contactForm(p, lang) {
       });
       if (!nc.shown || nc.panel) bad.push('with the clipboard ' + how + ', "copy" does not bring the form back');
       if (!nc.onMsg || !nc.all) bad.push('with the clipboard ' + how + ', focus is not in the message with all of it selected (focus on ' + nc.a + ')');
-      if (!inLang(nc.hint) || !nc.described) bad.push('with the clipboard ' + how + ', no line in the page\'s language under the message ("' + nc.hint.slice(0, 40) + '")');
+      if (!says(nc.hint, 'form.copyFail') || !nc.described) bad.push('with the clipboard ' + how + ', the line under the message is not form.copyFail in ' + lang + ' ("' + nc.hint.slice(0, 40) + '")');
       if (nc.inv) bad.push('with the clipboard ' + how + ', the message is marked aria-invalid');
       if (errColor && nc.color === errColor) bad.push('with the clipboard ' + how + ', the line under the message is drawn in the error colour (' + errColor + ')');
     }
