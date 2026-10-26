@@ -29,7 +29,7 @@
  *                        aria-labelledby/describedby/controls and label for= names one
  *  8b. Supabase switch — the lead store stays off until the legal page, its region and
  *                        an honest form note exist (read by running the switch script)
- *  8c. prices         — tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed
+ *  8c. prices         — tier, maintenance and FAQ figures equal PRICE_MODEL/RETAINER; no typed
  *                        € or $ amount; the estimator's arithmetic holds
  *  8d. legal gating   — legal/ is published only complete and current; until then nothing
  *                        points at it
@@ -449,6 +449,16 @@ const ret = (/RETAINER = \[(\d+), (\d+)\]/.exec(app) || []).slice(1).map(Number)
 const retHtml = (/<b id="pr-ret">([^<]+)<\/b>/.exec(html) || [])[1] || '';
 if (retHtml.split('–').map(digits).join() !== ret.join()) priceErr.push(`maintenance: markup ${retHtml} vs RETAINER ${ret}`);
 if ((html.match(/class="t-range"/g) || []).length !== (html.match(/class="t-range" data-tier=/g) || []).length) priceErr.push('a tier range without data-tier is not converted');
+// The FAQ's "what does it cost?" answer quotes the Essentiel floor in every
+// language, written so it cannot wrap apart (French once had no figure while
+// English and Arabic did).
+{
+  const floor = (base('vitrine') || [])[0];
+  const group = (n, sep) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep);
+  const want = { fr: `${group(floor, ' ')} DA`, en: `${group(floor, ',')} DZD`, ar: `${group(floor, ' ')} دج` };
+  for (const [lang, w] of Object.entries(want))
+    if (!String((DICT[lang] || {})['faq2.a'] || '').includes(w)) priceErr.push(`faq2.a (${lang}) does not quote the starting price as "${w}"`);
+}
 // only Numidea's own prices: the market table quotes other markets on purpose
 const ownPrices = html.slice(html.indexOf('<div class="tiers">'), html.indexOf('<div class="market"'));
 if (!ownPrices) priceErr.push('could not find the tiers-to-market region');
@@ -489,7 +499,7 @@ if (typed.length) priceErr.push('hard-coded €/$ amounts in index.html: ' + typ
     if (bad.length) priceErr.push(`estimator: ${bad.length} bad quotes, e.g. ` + bad.slice(0, 3).join('; '));
   }
 }
-priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier and maintenance figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts; estimator sound on every size, option set and pace');
+priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier, maintenance and FAQ figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts; estimator sound on every size, option set and pace');
 /* 8d — legal gating */
 // Legal notice + privacy: published only when complete. While legal/ does not
 // exist, nothing may point at it (comments included) and the two link regions
