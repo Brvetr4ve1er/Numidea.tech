@@ -29,8 +29,8 @@
     "metrics": "node scripts/metrics.mjs"
   },
   "devDependencies": {
-    "axe-core": "^4.13.0",
-    "html-validate": "^11.16.1",
+    "axe-core": "^4.14.0",
+    "html-validate": "^11.16.4",
     "playwright": "^1.49.0",
     "sharp": "^0.35.5"
   }
