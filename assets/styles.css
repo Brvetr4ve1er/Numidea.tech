@@ -2503,8 +2503,6 @@ html[dir="rtl"] .stat{unicode-bidi:plaintext;font-family:"Geist", var(--font-ar-
   .svc-grid>.svc-row:nth-child(-n+2){grid-column:span 3!important}
 }
 
-/* ---- Pricing: the free-preview banner spans the tier grid it introduces ---- */
-
 /* ---- Founder: the card and the team share the row ----
    The card left ~25% of the row empty beside it; the team now fills it. */
 @media (min-width:1100px){
