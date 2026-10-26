@@ -105,6 +105,9 @@
       'form.success': 'Votre messagerie devrait s\'ouvrir avec le message prêt — il ne reste qu\'à l\'envoyer.',
       'form.successAlt': 'Rien ne s\'est ouvert ? Écrivez-nous directement :',
       'form.edit': 'Revoir mon message',
+      'form.copy': 'Copier mon message',
+      'form.copied': 'Message copié. Collez-le dans un nouvel email, à l\'adresse ci-dessus.',
+      'form.copyFail': 'La copie n\'a pas fonctionné : votre message est sélectionné, copiez-le vous-même.',
       'footer.signoff': 'Construit à Bordj Bou Arréridj, avec du café noir et du TypeScript.',
       'footer.rights': '© 2026 Numidea Labs',
       'footer.tag': 'Enraciné en Numidie · bâti sur des idées'
@@ -203,6 +206,9 @@
       'form.success': 'Your mail app should open with the message ready — all that is left is to send it.',
       'form.successAlt': 'Nothing opened? Write to us directly:',
       'form.edit': 'Back to my message',
+      'form.copy': 'Copy my message',
+      'form.copied': 'Message copied. Paste it into a new email to the address above.',
+      'form.copyFail': 'Copying did not work: your message is selected, copy it yourself.',
       'footer.signoff': 'Built in Bordj Bou Arréridj, with black coffee and TypeScript.',
       'footer.rights': '© 2026 Numidea Labs',
       'footer.tag': 'Rooted in Numidia · built on ideas'
@@ -304,6 +310,9 @@
       'form.success': 'من المفترض أن يفتح تطبيق البريد والرسالة جاهزة — لم يبقَ سوى إرسالها.',
       'form.successAlt': 'لم يفتح شيء؟ راسلنا مباشرة:',
       'form.edit': 'العودة إلى رسالتي',
+      'form.copy': 'نسخ رسالتي',
+      'form.copied': 'نُسخت رسالتك. الصقها في بريد إلكتروني جديد إلى العنوان أعلاه.',
+      'form.copyFail': 'تعذّر النسخ: رسالتك محدَّدة، انسخها بنفسك.',
       'footer.signoff': 'بُني في برج بوعريريج، بقهوة سوداء و TypeScript.',
       'footer.rights': '© 2026 نوميديا لابز',
       'footer.tag': 'جذورها في نوميديا · مبنيّة على الأفكار'
@@ -1608,8 +1617,16 @@
       ['name', 'email', 'message'].forEach(function (id) {
         form.querySelector('[name="' + id + '"]').addEventListener('input', function () { clear(id); });
       });
+      // What the copy button puts on the clipboard: the subject and body the
+      // last valid submit handed to the mail app (not the address, which the
+      // panel shows as text)
+      var handoff = '';
+      var msgErr = form.querySelector('#f-message-err');
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        // a "copy it yourself" hint left under the message goes; errors are
+        // decided afresh below
+        if (msgErr && msgErr.getAttribute('data-err-key') === 'form.copyFail') clear('message');
         var ok = true;
         var name = form.querySelector('[name="name"]').value.trim();
         var email = form.querySelector('[name="email"]').value.trim();
@@ -1652,20 +1669,51 @@
           + '\n\n--\nnumidealabs · ' + (document.documentElement.getAttribute('lang') || 'fr')
           // French sets a narrow no-break space before the colon; English and Arabic none
           + (src ? '\n' + t('form.source') + (document.documentElement.getAttribute('lang') === 'fr' ? ' : ' : ': ') + src : '');
+        handoff = subject + '\n\n' + body;
         window.location.href = 'mailto:hamissemohamedyasser@gmail.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);
         form.style.display = 'none';
+        note('');
         // the form just vanished from under the focus; land it on the outcome
         if (success) { success.classList.add('show'); success.focus(); }
       });
-      /* When no mail app opened, the visitor's text is not lost: the form
-         (still filled in) comes back, to copy from or to send again. */
-      var editBtn = document.getElementById('form-edit');
-      if (editBtn && success) editBtn.addEventListener('click', function () {
+      /* When no mail app opened (webmail only, no mailto handler), the
+         visitor's text is not lost. "Copier mon message" puts the subject
+         and body on the clipboard, to paste into a webmail, and says so in
+         the panel's own role=status; "Revoir mon message" brings the form
+         back, still filled in, to copy from or to send again. Without a
+         clipboard (or when it refuses), the form comes back with the message
+         selected and a line under it saying so. */
+      var copyNote = document.getElementById('form-copied');
+      // The line under the buttons. Emptied first and written a moment later,
+      // so a second copy is announced again; data-i18n lets a language switch
+      // re-translate it.
+      function note(key) {
+        if (!copyNote) return;
+        copyNote.textContent = '';
+        if (!key) { copyNote.removeAttribute('data-i18n'); return; }
+        copyNote.setAttribute('data-i18n', key);
+        setTimeout(function () { if (copyNote.getAttribute('data-i18n') === key) copyNote.textContent = t(key); }, 80);
+      }
+      function backToForm(select) {
+        note('');
         success.classList.remove('show');
         form.style.display = '';
-        if (msgBox) msgBox.focus();
+        if (msgBox) { msgBox.focus(); if (select) msgBox.setSelectionRange(0, msgBox.value.length); }
+      }
+      var editBtn = document.getElementById('form-edit');
+      if (editBtn && success) editBtn.addEventListener('click', function () { backToForm(false); });
+      var copyBtn = document.getElementById('form-copy');
+      if (copyBtn && success) copyBtn.addEventListener('click', function () {
+        function fail() {
+          // a hint, not an error: the field stays valid; typing clears it
+          if (msgErr) { msgErr.textContent = t('form.copyFail'); msgErr.setAttribute('data-err-key', 'form.copyFail'); }
+          backToForm(true);
+        }
+        var cb = navigator.clipboard;
+        if (!cb || !cb.writeText) return fail();
+        try { cb.writeText(handoff).then(function () { note('form.copied'); }, fail); } catch (e3) { fail(); }
       });
     }
 

@@ -1232,14 +1232,19 @@
         <!-- The handoff is a mailto:, and a visitor with no mail client configured
              gets nothing — yet this panel used to show a tick and claim success
              regardless, on the studio's only conversion path. The copy no longer
-             asserts that anything was sent, and the address is here in plain
-             sight so a failed handoff still leaves the visitor a way through. -->
+             asserts that anything was sent, its mark is the channels' envelope
+             (mail, not done), and the address is here in plain sight so a
+             failed handoff still leaves the visitor a way through. "Copier mon
+             message" puts the subject and body on the clipboard for a webmail;
+             #form-copied, inside this role=status, says so (app.js). -->
         <div class="form-success" role="status" aria-live="polite" tabindex="-1">
-          <div class="tick" aria-hidden="true">✓</div>
+          <svg class="ai ai-mail" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg>
           <p data-i18n="form.success">Votre messagerie devrait s'ouvrir avec le message prêt — il ne reste qu'à l'envoyer.</p>
           <p class="fallback"><span data-i18n="form.successAlt">Rien ne s'est ouvert ? Écrivez-nous directement :</span>
             <a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></p>
-          <p class="fallback"><button type="button" class="btn btn-ghost" id="form-edit" data-i18n="form.edit">Revoir mon message</button></p>
+          <p class="fallback acts"><button type="button" class="btn btn-ghost" id="form-copy" data-i18n="form.copy">Copier mon message</button>
+            <button type="button" class="btn btn-ghost" id="form-edit" data-i18n="form.edit">Revoir mon message</button></p>
+          <p class="fallback" id="form-copied"></p>
         </div>
       </div>
     </div>

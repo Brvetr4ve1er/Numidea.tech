@@ -34,8 +34,14 @@
  *                 Then submitted valid: the browser is asked to open a
  *                 mailto: URL to the form's own address, with the subject and
  *                 a body ending in the page's language; the form gives way
- *                 to the success panel, which takes focus; its "edit" button
- *                 brings the form back, still filled in, focus in the message
+ *                 to the success panel, which takes focus; its "copy" button
+ *                 puts that subject and body (and not the address) on the
+ *                 clipboard, and a line inside the panel's role=status says
+ *                 so in the page's language; its "edit" button brings the
+ *                 form back, still filled in, focus in the message. With the
+ *                 clipboard refusing, then missing, "copy" brings the form
+ *                 back with the whole message selected, focus in it, and a
+ *                 line in the page's language under it (not an error)
  *  lead store     (index, one run) the Supabase switch turned on in a copy of
  *                 index.html served in its place, its policy rebuilt by
  *                 withCsp: connect-src names the store, and a valid submit
@@ -432,23 +438,68 @@ async function contactForm(p, lang) {
   if (!ok.show) bad.push('a valid submit does not show the success panel');
   if (!ok.focused) bad.push('after a valid submit focus is on ' + ok.a + ', not on the success panel');
   const mail = navs.find((u) => u.startsWith('mailto:'));
+  let handed = null;                // subject and body as the hand-off composed them
   if (!to.includes('@')) bad.push('the form has no mailto: action to compare the hand-off with');
   else if (!mail) bad.push('a valid submit does not hand the lead to a mail app (no mailto: navigation)');
   else {
     const m = new URL(mail), subject = m.searchParams.get('subject') || '', body = m.searchParams.get('body') || '';
+    handed = subject + '\n\n' + body;
     if (decodeURIComponent(m.pathname) !== to) bad.push('the hand-off goes to ' + m.pathname + ', not to the form\'s address');
     if (subject !== 'Numidea Labs · Test') bad.push('the hand-off\'s subject is "' + subject + '"');
     if (!body.startsWith('Test <ada@example.com>') || !body.includes('Bonjour') || !body.includes('numidealabs · ' + lang)) bad.push('the hand-off\'s body is "' + body.slice(0, 80).replace(/\n/g, '⏎') + '"');
   }
   await cdp.detach();
+  const inLang = (s) => !!s && (lang === 'ar') === /[\u0600-\u06FF]/.test(s);
+  let copied = false;
   if (ok.show) {
+    // "Copier mon message", for a visitor whose mail app did not open: the
+    // clipboard gets what the hand-off carried, the address stays out of it,
+    // the panel stays, and its role=status says it in the page's language
+    await p.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: B });
+    await p.focus('#form-copy'); await p.keyboard.press('Enter'); await wait(400);
+    const cp = await p.evaluate(async () => {
+      const n = document.getElementById('form-copied'), s = document.querySelector('.form-success');
+      return { clip: await navigator.clipboard.readText().catch((e) => 'readText failed: ' + e.message),
+        note: n ? n.textContent.trim() : '', inStatus: !!n && !!n.closest('[role="status"][aria-live="polite"]'),
+        shown: !!s && s.classList.contains('show'), a: __d(document.activeElement) };
+    });
+    if (handed !== null && cp.clip !== handed) bad.push('"copy" put "' + cp.clip.slice(0, 60).replace(/\n/g, '⏎') + '" on the clipboard, not the hand-off\'s subject and body');
+    if (cp.clip.includes(to)) bad.push('"copy" puts the address on the clipboard');
+    if (!cp.shown) bad.push('"copy" closes the panel (focus on ' + cp.a + ')');
+    if (!cp.inStatus) bad.push('the "copied" line is not inside the panel\'s polite role=status');
+    if (!inLang(cp.note)) bad.push('after "copy" the panel says "' + cp.note.slice(0, 40) + '", not a line in the page\'s language');
+    copied = handed !== null && cp.clip === handed;
     await p.focus('#form-edit'); await p.keyboard.press('Enter'); await wait(150);
     const back = await p.evaluate(() => ({ shown: getComputedStyle(document.getElementById('contact-form')).display !== 'none',
       onMsg: document.activeElement === document.getElementById('f-message'), a: __d(document.activeElement), kept: document.getElementById('f-message').value }));
     if (!back.shown || !back.onMsg) bad.push('"edit" does not bring the form back with focus in the message (focus on ' + back.a + ')');
     if (back.kept !== 'Bonjour') bad.push('the form comes back without the message typed');
+    // No clipboard to write to (it refuses, or the browser has none): the
+    // form comes back with the message selected, to copy by hand, and a
+    // line under it says so; a hint, so the field is not marked invalid
+    for (const how of ['refusing', 'missing']) {
+      await submit(); await wait(400);
+      await p.evaluate((how) => {
+        if (how === 'refusing') navigator.clipboard.writeText = () => Promise.reject(new DOMException('Write permission denied.', 'NotAllowedError'));
+        else Object.defineProperty(navigator, 'clipboard', { value: undefined, configurable: true });
+      }, how);
+      await p.focus('#form-copy'); await p.keyboard.press('Enter'); await wait(300);
+      const nc = await p.evaluate(() => {
+        const m = document.getElementById('f-message'), e = document.getElementById('f-message-err');
+        return { shown: getComputedStyle(document.getElementById('contact-form')).display !== 'none',
+          panel: document.querySelector('.form-success').classList.contains('show'),
+          onMsg: document.activeElement === m, a: __d(document.activeElement),
+          all: m.selectionStart === 0 && m.selectionEnd === m.value.length && m.value.length > 0,
+          hint: e ? e.textContent.trim() : '', described: (m.getAttribute('aria-describedby') || '').split(/\s+/).includes('f-message-err'),
+          inv: m.getAttribute('aria-invalid') };
+      });
+      if (!nc.shown || nc.panel) bad.push('with the clipboard ' + how + ', "copy" does not bring the form back');
+      if (!nc.onMsg || !nc.all) bad.push('with the clipboard ' + how + ', focus is not in the message with all of it selected (focus on ' + nc.a + ')');
+      if (!inLang(nc.hint) || !nc.described) bad.push('with the clipboard ' + how + ', no line in the page\'s language under the message ("' + nc.hint.slice(0, 40) + '")');
+      if (nc.inv) bad.push('with the clipboard ' + how + ', the message is marked aria-invalid');
+    }
   }
-  return { bad, note: 'form' + (mail ? ' → mailto' : '') };
+  return { bad, note: 'form' + (mail ? ' → mailto' : '') + (copied ? ' + copy' : '') };
 }
 
 async function dialog(p, kind) {

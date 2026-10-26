@@ -746,9 +746,14 @@ html[dir="rtl"] .field :is(input,textarea){font-family:var(--font-ar-body)}
 .form .btn{padding:15px 40px}
 .form-success{display:none;padding:var(--s-7) 0}
 .form-success.show{display:block;animation:stagger .5s var(--ease-out)}
-.form-success .tick{width:64px;height:64px;margin-bottom:var(--s-5);border-radius:50%;border:2px solid var(--teal);display:grid;place-items:center;color:var(--teal-text);font-size:30px;box-shadow:var(--glow-teal)}
+/* The channels' envelope, not a glowing tick: the panel cannot know the mail
+   left, so its mark says "mail", the way the Email row does */
+.form-success .ai-mail{width:36px;height:36px;display:block;margin-bottom:var(--s-5)}
 .form-success .fallback{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-top:var(--s-3)}
 .form-success .fallback a{color:var(--teal-text);text-decoration:underline}
+/* copy and back-to-the-form side by side when the panel has room (430px for
+   the French pair, 301px for the Arabic), one under the other otherwise */
+.form-success .acts{display:flex;flex-wrap:wrap;gap:var(--s-3);max-width:none}
 .form-success p{font-family:var(--font-display);font-size:22px;color:var(--ice);max-width:29.172em}
 html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
 @media(max-width:960px){.contact-grid{grid-template-columns:minmax(0,1fr)}}
