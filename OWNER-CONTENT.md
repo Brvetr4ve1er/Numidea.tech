@@ -123,6 +123,26 @@ names in Latin script except نوميديا in prose. Points worth a second look
 - the privacy paragraph on ad parameters (`scripts/build-legal.mjs`);
 - the Gulf versus Maghreb word choices in the campaign kit.
 
+Written or changed in October 2026 (round 5), in `assets/app.js`; each says
+what its French and English counterparts say:
+- `proj1.desc`, the Doctor Cherfia card, now scope only:
+  «موقع هادئ لعيادة صغيرة، مع حجز المواعيد عبر الإنترنت.»
+- `founder.skillsNote`, the CV's "about 20 % less production time":
+  «تقليص وقت الإنتاج بنحو 20٪ بفضل دمج أدوات الذكاء الاصطناعي.» (the
+  "currently learning" half is unchanged);
+- `stack.lead`, now «مختارة لتدوم، لا لتتبع الموضة.»: the adjective has no
+  noun of its own and leans on the title «أدوات متينة»; does it stand as a
+  sentence?
+- `f1.brief` and `f3.brief`, each one sentence shorter (their tool lists
+  went; the pills under them name the tools);
+- `faq2.a`: no-break spaces in «90 000 دج», and the new
+  «(وبالأورو والدولار في القسم نفسه)»: الأورو (Maghreb usage, like the
+  timeline's month names) or اليورو?
+- the contact form's copy button and its two lines: `form.copy`
+  «نسخ رسالتي», `form.copied`
+  «نُسخت رسالتك. الصقها في بريد إلكتروني جديد إلى العنوان أعلاه.» and
+  `form.copyFail` «تعذّر النسخ: رسالتك محدَّدة، انسخها بنفسك.»
+
 Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
 project `ar` texts in `scripts/scene-data.mjs`, and the `lang="ar"` lines in
 `404.html`.
