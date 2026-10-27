@@ -6,7 +6,7 @@
  * the sources live in the account's Personal project, not in this repo) into
  * the luminance masks in assets/illus/*.webp, and writes .tmp/poly.json — the
  * skyline polygons that clip each vista layer's fill (see BRAND.md, "The
- * atlas"). Expects far/mid/near/strata/dunes/light/arch/bench/lantern/coins.jpg.
+ * atlas"). Expects far/mid/near/dunes/light/arch/bench/lantern/coins.jpg.
  * Every output is checked for polarity: a mask that came back inverted would
  * paint as a solid block.
  */
@@ -40,19 +40,6 @@ await out('vista-far', j('far'), 1600);
 await out('vista-mid', j('mid'), 1600);
 await out('vista-near', j('near'), 1500, 110, 50);
 import fs from 'fs';fs.mkdirSync('.tmp',{recursive:true});fs.writeFileSync('.tmp/poly.json',JSON.stringify({far:await skyline(G+'/far.jpg'),mid:await skyline(G+'/mid.jpg'),near:await skyline(G+'/near.jpg')}));
-// strata: drop the frame and inpaint the numbered markers with a patch of the
-// same stratum taken from beside each one
-{
-  const base=j('strata');
-  const comps=[];
-  for(const y of [62,118,190,280,378,540]){
-    const R=24, src=await sharp(G+'/strata.jpg').extract({left:792-R-70,top:y-R,width:2*R,height:2*R}).ensureAlpha()
-      .composite([{input:Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${2*R}" height="${2*R}"><circle cx="${R}" cy="${R}" r="${R-1}" fill="#fff"/></svg>`),blend:'dest-in'}]).png().toBuffer();
-    comps.push({input:src,left:792-R,top:y-R});
-  }
-  const b=await base.composite(comps).toBuffer();
-  await out('strata', sharp(b).extract({left:26,top:14,width:1532,height:644}), 1100, 160, 38);
-}
 await out('dunes', j('dunes').extract({left:30,top:0,width:1540,height:612}), 1500, 110, 55);
 await out('lighthouse', j('light').extract({left:46,top:36,width:1286,height:696}), 1100, 110, 52);
 await out('arch', j('arch'), 1000, 110, 50);

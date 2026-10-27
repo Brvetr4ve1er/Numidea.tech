@@ -8,7 +8,7 @@ sources: [README.md, BRAND.md, OWNER-CONTENT.md, index.html, 404.html, scene/ind
 
 The words this studio and this codebase use for their own things: the offer and its packages, the design system, the pictures, the pages, the scripts and the checks. Each term has a one-line meaning, the file that defines it and, where one exists, its note in the graph. New readers start with "The studio and the offer"; anyone about to change code starts with "Build, gates and deploy".
 
-Several words look alike and mean different things: "plate" (the hero rotator), "plates" (the six engravings of the atlas) and "planches" (the project sheets in `scene/`). They are split out in "Plate, plates and planches" below.
+Several words look alike and mean different things: "plate" (the hero rotator), "plates" (the five engravings of the atlas) and "planches" (the project sheets in `scene/`). They are split out in "Plate, plates and planches" below.
 
 ## The studio and the offer
 
@@ -77,7 +77,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | Term | Meaning | Source | Graph |
 |---|---|---|---|
 | The plate (hero plate) | The hero's rotator: one live site at a time, five slides (the four client sites shown as delivered and the Glaive demo), changed by a wipe, never a cross-fade, with a pause button | index.html › 305; BRAND.md › The hero plate; README.md › Features | [[Hero plate (one live site at a time)]] |
-| The atlas, plates I–VI | Six numbered generated engravings of the region, used as luminance masks over `currentColor`, so each re-inks in every theme | BRAND.md › The atlas — engraved plates and animated icons | [[The atlas - six engraved plates]] |
+| The atlas, plates I–V | Five numbered generated engravings of the region, used as luminance masks over `currentColor`, so each re-inks in every theme | BRAND.md › The atlas — engraved plates and animated icons | [[The atlas - six engraved plates]] |
 | `plates.mjs` | Turns the generated engravings into the masks in `assets/illus/` and the skyline polygons that clip each vista layer | scripts/plates.mjs › header | [[plates.mjs]] |
 | `.lz` / `.ai` | Plate masks that load a screen ahead of the viewport; hand-drawn animated line icons that draw in once and settle | BRAND.md › The atlas — engraved plates and animated icons | [[Animated icons (.ai)]] |
 | Planches (project sheets) | `scene/`, "Planches — le travail, livrable par livrable": one sheet per project with its pages, phones and visual system | scene/index.html › 7, 8; BRAND.md › Project sheets (scene/) | [[Planches project sheets page (work, deliverable by deliverable)]] |

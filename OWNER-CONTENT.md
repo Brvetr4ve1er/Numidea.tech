@@ -129,9 +129,6 @@ what its French and English counterparts say:
 - `founder.skillsNote`, the CV's "about 20 % less production time":
   «تقليص وقت الإنتاج بنحو 20٪ بفضل دمج أدوات الذكاء الاصطناعي.» (the
   "currently learning" half is unchanged);
-- `stack.lead`, now «مختارة لتدوم، لا لتتبع الموضة.»: the adjective has no
-  noun of its own and leans on the title «أدوات متينة»; does it stand as a
-  sentence?
 - `f1.brief` and `f3.brief`, each one sentence shorter (their tool lists
   went; the pills under them name the tools);
 - `faq2.a`: no-break spaces in «90 000 دج», and the new
@@ -155,6 +152,11 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   démo de portfolio."). The clause «ومشروعين قيد الإنجاز» was dropped; does
   «عرض تجريبي» alone say "a portfolio demo" here, as it does on the card's
   pill (`work.concept`)?
+- renumbered when the tools section («أدوات متينة») and its plate left the
+  page; only the number changed in each: `faq.kicker` «07 — الأسئلة»,
+  `contact.kicker` «08 — تواصل», `pl.light` «لوحة 4 — رأس كاربون · بجاية»,
+  `pl.dunes` «لوحة 5 — العرق الكبير». The section's own strings (`stack.*`,
+  `pl.strata`) are gone and need no review.
 
 Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
 project `ar` texts in `scripts/scene-data.mjs`, and the `lang="ar"` lines in
@@ -222,11 +224,6 @@ Confirm it, or say what is true and the copy changes in all three languages.
   Steel shows Next.js.
 - **Essentiel: "Mise en ligne, domaine et certificat configurés"**: no
   delivered client site is served from its own domain yet (see 9).
-- **The stack section** lists React Native, Expo, Docker and Cloudflare
-  under "Nos outils" / "Our tools" (Arabic «أدوات متينة», "solid tools");
-  no delivered project shows them. The lines that called them the tools
-  behind what the studio delivers ("les outils derrière ce qu'on livre",
-  "the tools we build with") are gone from all three languages.
 - **AlmaFlowClim labelled "Industrie"**: its own site presents a residential
   heating, air-conditioning and plumbing business.
 - **"Si c'est oui, on est déjà à mi-chemin"** (method, step 4) after a

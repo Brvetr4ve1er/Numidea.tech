@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [README.md, BRAND.md, OWNER-CONTENT.md, index.html, 404.html, assets/app.js, assets/carry.js, assets/page-i18n.js, scene/index.html, hub/index.html, workspacehq/index.html, workspacehq/app.js, scripts/site.mjs, scripts/build-scene.mjs, scripts/build-sitemap.mjs, scripts/build-legal.mjs, scripts/legal-data.mjs, scripts/check.mjs, package.json, audit/Architecture.md]
 ---
 
@@ -48,13 +48,13 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | Method | `#how` | (index.html › METHOD) |
 | Pricing | `#pricing` | Tiers, estimator, then the market comparison inside a disclosure (BRAND.md › Page structure and design system (home page)) |
 | Founder and team | `#founder` | Links to `hub/` as "Portfolio personnel" (index.html › 1071) |
-| Stack | `#stack` | (index.html › STACK) |
 | FAQ | `#faq` | (index.html › FAQ) |
 | Contact | `#contact` | Form, WhatsApp, email (index.html › CONTACT) |
 | [[Footer]] | — | Studio, contact and founder columns, the WorkspaceHQ cartridge, legal markers, a third language switch (index.html › FOOTER) |
 | Phone contact bar | — | Phones only; steps aside near `#contact` and the footer (assets/app.js › phone contact bar) |
 
 - The order and the "each idea is said once" rule are set in BRAND.md (BRAND.md › Page structure and design system (home page)).
+- The tools section ("Nos outils", `#stack`) between the team and the FAQ left the page on 2026-10-26, an owner decision; the FAQ and contact kickers moved up to 07 and 08 (BRAND.md › Page structure and design system (home page); assets/app.js › faq.kicker, contact.kicker).
 - The project explorer modal was removed in the 2026-10 cleanup; an old `#/work/<slug>` link is redirected to the matching sheet in `scene/` through the `SHEET` map, and any other `#/work` hash lands on `#work` (assets/app.js › DOM ready, legacy deep links). History: [[Project-explorer modal (workslug hash router)]].
 - The work section ends on one call to action, the [[Project Plates Banner (Planches)]] (index.html › 538).
 

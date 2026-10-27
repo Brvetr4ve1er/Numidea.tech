@@ -6,7 +6,7 @@ sources: [BRAND.md, assets/app.js, assets/illus/, scripts/plates.mjs, scripts/ch
 
 # Motion and illustration
 
-How the home page moves and what it draws with: the ambient layer (parallax, hero floaters, reveal), the hand-drawn icons, the generated line-art illustrations, the six engraved plates of the atlas and the founder section, plus the scrolling rules learned while making all of it smooth (BRAND.md › The ambient layer — parallax, aurora, reveal; The icon set; Generated illustrations; The atlas — engraved plates and animated icons; Performance — what made scrolling slow). The ambient layer is pure decoration: `aria-hidden`, under the content at `z-index:0`, and removed completely by `prefers-reduced-motion` (BRAND.md › The ambient layer — parallax, aurora, reveal). Start with the ambient layer, then the atlas table; the colours every mask is inked in come from [[Themes and tokens]].
+How the home page moves and what it draws with: the ambient layer (parallax, hero floaters, reveal), the hand-drawn icons, the generated line-art illustrations, the five engraved plates of the atlas and the founder section, plus the scrolling rules learned while making all of it smooth (BRAND.md › The ambient layer — parallax, aurora, reveal; The icon set; Generated illustrations; The atlas — engraved plates and animated icons; Performance — what made scrolling slow). The ambient layer is pure decoration: `aria-hidden`, under the content at `z-index:0`, and removed completely by `prefers-reduced-motion` (BRAND.md › The ambient layer — parallax, aurora, reveal). Start with the ambient layer, then the atlas table; the colours every mask is inked in come from [[Themes and tokens]].
 
 ## The ambient layer
 
@@ -49,7 +49,7 @@ Source: BRAND.md › Performance — what made scrolling slow.
 - They draw themselves on reveal through `stroke-dashoffset`, so every shape must be a stroked path; a check asserts each mark's box stays inside 0–24 (BRAND.md › The icon set).
 - Each is specific to its label, for example a registration mark for L'Aperçu and a viewport for web (BRAND.md › The icon set).
 - A separate section, Iconography, describes the service marks differently, as geometric constructions on the page's hexagonal motif (an aperture, a compass vesica, an escapement, an astrolabe, a lattice), and names the animation hooks `.spin`, `.sweep`, `.gem`, `.r2` and `.r3`, with `pathLength="1"` on every drawable element (BRAND.md › Iconography). BRAND.md does not say which of the two descriptions is current.
-- **Animated icons (`.ai`).** 26 inline icons on the same grammar, from the pricing tiers to the contact channels; they draw in once, then an idle loop runs (BRAND.md › Animated icons (`.ai`)).
+- **Animated icons (`.ai`).** 21 inline icons on the same grammar, from the pricing tiers to the contact channels; they draw in once, then an idle loop runs (BRAND.md › Animated icons (`.ai`)).
 - Select drawable parts by class `.p`, never as `[pathLength]`: Chromium kept a stale style on the attribute selector and the contact icons never appeared (BRAND.md › Animated icons (`.ai`)).
 - Put icons beside `data-i18n` elements, never inside, because `applyLang` replaces their content (BRAND.md › Animated icons (`.ai`)).
 - Graph: [[Service icon set (11 hand-authored SVGs)]], [[Geometric service marks (hexagonal motif)]], [[pathLength=1 stroke draw-on]], [[Animated icons (.ai)]].
@@ -57,14 +57,14 @@ Source: BRAND.md › Performance — what made scrolling slow.
 ## Generated illustrations
 
 - Monochrome line art, white on black, applied as CSS luminance masks over `currentColor` and never as `<img>`, so one file re-tints itself in all six palettes (BRAND.md › Generated illustrations).
-- BRAND.md counts 13 such rasters (BRAND.md › Generated illustrations); `assets/illus/` today holds ten PNG figures for the FAQ and the hub, twelve WebP masks for the atlas plates, the lantern and the workbench, and three `px-*` WebP textures (assets/illus/).
+- BRAND.md counts 13 such rasters (BRAND.md › Generated illustrations); `assets/illus/` today holds ten PNG figures for the FAQ and the hub, eleven WebP masks for the atlas plates, the lantern and the workbench, and three `px-*` WebP textures (assets/illus/).
 - Below roughly 90px they collapse into smudges, so the FAQ figure sits in the open answer at 92px and the method tiles put it above the text at 124px (BRAND.md › Generated illustrations).
 - Check polarity after every batch: one render came back inverted and masked to a solid block (BRAND.md › Generated illustrations).
 - Every figure sits in a fixed-size box, so measured layout shift stays 0 on index; they are `aria-hidden`, and print drops them (BRAND.md › Generated illustrations).
 - A harness that checks masks must serve over HTTP: `file://` blocks masks without a console error (BRAND.md › Two traps this cost time on).
 - Graph: [[Generated illustrations (assetsillus)]], [[CSS luminance mask over currentColor (.ill)]].
 
-## The atlas: six engraved plates
+## The atlas: five engraved plates
 
 The page reads as an engraved atlas of the region the studio works from, after the footer line "rooted in Numidia" (BRAND.md › The atlas — engraved plates and animated icons).
 
@@ -73,17 +73,18 @@ The page reads as an engraved atlas of the region the studio works from, after t
 | I — Les Bibans | Full-bleed under the hero, above 960px only | `vista-far/mid/near.webp` | Three-layer parallax, twinkling sky, a constellation that draws itself |
 | II — Arc de Trajan, Timgad | Behind the `#work` header | `arch.webp` | Parallax |
 | III — Monnaies numides | Beside the `#pricing` header, at 1100px and up | `coin-*.webp` | Three coins at three depths, each turning |
-| IV — Coupe des couches | Behind `#stack` | `strata.webp` | A core sample drilling across |
-| V — Cap Carbon, Béjaïa | Behind the contact channels | `lighthouse.webp` | The beam sweeps |
-| VI — Le Grand Erg | Between `</main>` and the footer | `dunes.webp` | Parallax |
+| IV — Cap Carbon, Béjaïa | Behind the contact channels | `lighthouse.webp` | The beam sweeps |
+| V — Le Grand Erg | Between `</main>` and the footer | `dunes.webp` | Parallax |
 
 Source: BRAND.md › The atlas — engraved plates and animated icons.
+
+- A sixth plate, Coupe des couches (`strata.webp`, a core sample drilling across), stood behind the tools section; it left the page with that section on 2026-10-26, an owner decision, and the lighthouse and the erg moved up to IV and V (BRAND.md › The atlas — engraved plates and animated icons; Page structure and design system (home page)).
 
 - Two uncaptioned figures join them: a lantern in the `#faq` gutter and the founder's workbench behind the founder card (BRAND.md › The atlas — engraved plates and animated icons).
 - The mid layer of plate I is a generic round tomb, not the Medracen, and is never captioned as such (BRAND.md › The atlas — engraved plates and animated icons).
 - Depth needs occlusion: each vista layer is a fill clipped to its skyline, then the ink; the skylines are traced by `scripts/plates.mjs` (BRAND.md › The atlas — engraved plates and animated icons; scripts/plates.mjs › skyline). The masks are made by the same script: [[Captures and image tools]].
 - Masks load lazily: their URLs apply only under `.lz-on`, which `app.js` §15 adds a screen ahead of the viewport (BRAND.md › The atlas — engraved plates and animated icons; assets/app.js › 15. illustrations and animated icons).
-- Plate I is the exception: it sits inside the loader's 900px lookahead, so its 416 KB of masks arrive with the first screen. At 960px and below it is `display:none` (owner decision, 2026-10-26), so a phone never fetches them and keeps plate VI only; there, the proof drops its opaque ground and the hero mesh fades out before the hero's edge (BRAND.md › The atlas — engraved plates and animated icons; assets/styles.css › Plate I and `.proof`).
+- Plate I is the exception: it sits inside the loader's 900px lookahead, so its 416 KB of masks arrive with the first screen. At 960px and below it is `display:none` (owner decision, 2026-10-26), so a phone never fetches them and keeps plate V only; there, the proof drops its opaque ground and the hero mesh fades out before the hero's edge (BRAND.md › The atlas — engraved plates and animated icons; assets/styles.css › Plate I and `.proof`).
 - Nothing loops forever: each loop plays a few cycles and settles, and replays when it comes back on screen; `npm run audit` fails on any infinite animation (BRAND.md › The atlas — engraved plates and animated icons).
 - Graph: [[The atlas - six engraved plates]], [[plates.mjs]].
 
@@ -100,7 +101,7 @@ Source: BRAND.md › The atlas — engraved plates and animated icons.
 ## Ground, grids and wayfinding
 
 - **Background.** A construction grid of 64px hairlines that fades out by about 76% of the viewport height, over two radial gradients; it replaced a honeycomb tile and a film grain (BRAND.md › The background). Graph: [[Construction-grid background]].
-- **Bento.** Work is a 3-column bento at 1100px and up, one wide card then a row of three, where the card order in `index.html` is part of the layout; services and stack use 6 columns, 3+3 over 2+2+2 (BRAND.md › Bento, loading states and wayfinding). Graph: [[Home bento grids (work, services, stack, founder)]].
+- **Bento.** Work is a 3-column bento at 1100px and up, one wide card then a row of three, where the card order in `index.html` is part of the layout; services use 6 columns, 3+3 over 2+2+2 (BRAND.md › Bento, loading states and wayfinding). Graph: [[Home bento grids (work, services, stack, founder)]].
 - **Loading.** Images still loading get a finite shimmer (`.sk`); every `<img>` declares `loading` (BRAND.md › Bento, loading states and wayfinding).
 - **Wayfinding.** Scroll-spy marks the current nav link with `aria-current`, a crumb shows the section at 960px and below, and a back-to-top button appears after 1.5 viewports (BRAND.md › Bento, loading states and wayfinding).
 

@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [package.json, README.md, BRAND.md, OWNER-CONTENT.md, .gitignore, audit/Architecture.md, scripts/shots.mjs, scripts/work-capture.mjs, scripts/client-logos.mjs, scripts/og-capture.mjs, scripts/build-og.mjs, scripts/plates.mjs, scripts/build-creative.mjs, scripts/lib/screen-quad.mjs, scripts/lib/serve.mjs, scripts/verify.mjs, scripts/check.mjs, .github/workflows/pages.yml]
 ---
 
@@ -62,7 +62,7 @@ Sources: package.json › scripts; the header of each script; scripts/shots.mjs 
 - Turns the generated engravings (white line art on black; the sources live in the generation account's project, not in this repository) into the luminance masks in `assets/illus/*.webp` (scripts/plates.mjs › header).
 - Every output is checked for polarity: a mask that came back inverted would paint as a solid block, so a high mean luminance throws (scripts/plates.mjs › header, out()).
 - It traces the skyline polygons that clip each vista layer's fill, the first bright pixel per column across 160 columns, into `.tmp/poly.json`; `.tmp/` is git-ignored, and the polygons themselves live in the stylesheet (scripts/plates.mjs › skyline; .gitignore; BRAND.md › The atlas — engraved plates and animated icons).
-- Outputs: the three vista layers, strata, dunes, lighthouse, arch, bench, lantern and three coins (scripts/plates.mjs › 39–62).
+- Outputs: the three vista layers, dunes, lighthouse, arch, bench, lantern and three coins (scripts/plates.mjs › 39–49). The strata mask went with the tools section on 2026-10-26 (BRAND.md › The atlas — engraved plates and animated icons).
 - Graph: [[plates.mjs]]. What the plates are and where they sit: [[Motion and illustration]].
 
 ## Ad creatives: build-creative.mjs and lib/screen-quad.mjs

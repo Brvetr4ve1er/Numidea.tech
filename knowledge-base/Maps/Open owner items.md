@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [OWNER-CONTENT.md, README.md, index.html, assets/app.js, hub/index.html, scripts/legal-data.mjs, scripts/voices-data.mjs, scripts/verify-domains.mjs, scripts/site.mjs, scripts/check.mjs]
 ---
 
@@ -54,12 +54,11 @@ None is proven false and none could be verified (OWNER-CONTENT.md › 14).
 | "des clients en France" (plural) | The portfolio shows one French client, AlmaFlowClim | FAQ 5 still says it (index.html › #faq, faq5.a) |
 | "nous livrons avec … React, Next.js, Vercel" | Every delivered build linked from the site is served by Netlify; only Bordj Steel shows Next.js | Market note still says it (index.html › #market, mk.note) |
 | Essentiel: "domaine et certificat configurés" | No delivered client site is served from its own domain yet | Tier card still lists it (index.html › #pricing, price.t1d) |
-| Stack lists React Native, Expo, Docker, Cloudflare | No delivered project shows them | Still listed (index.html › #stack) |
 | AlmaFlowClim labelled "Industrie" | Its own site presents a residential heating, air-conditioning and plumbing business | The card now reads "Artisan · Île-de-France" (assets/app.js › proj3.cat); the register still counts the item |
 | "Si c'est oui, on est déjà à mi-chemin" (method step 4) | Said after a one-page Aperçu, for projects of up to 16 weeks | Step 4 now reads "Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le reste." (index.html › #how, price.ob4p); the register still counts the item |
 | hub/: "VOIDSPLUNKER.std is an agency of one" | The home page presents a studio of four specialists | Still in the hub footer (hub/index.html › .foot-bio) |
 
-Claim sources: OWNER-CONTENT.md › 14. Two rows (AlmaFlowClim, method step 4) differ between the register and the current copy; whether the owner considers them closed is not recorded in the repository.
+Claim sources: OWNER-CONTENT.md › 14. Two rows (AlmaFlowClim, method step 4) differ between the register and the current copy; whether the owner considers them closed is not recorded in the repository. The stack section's React Native, Expo, Docker and Cloudflare left the register when the section left the page on 2026-10-26, an owner decision (BRAND.md › Page structure and design system (home page)).
 
 ## What the code holds back meanwhile
 

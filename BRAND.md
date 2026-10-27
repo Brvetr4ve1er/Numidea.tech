@@ -1169,7 +1169,7 @@ suit.
 ## The atlas — engraved plates and animated icons
 
 The creative direction is the footer's own line, *rooted in Numidia*: the page
-reads as an engraved atlas of the region the studio works from. Six numbered
+reads as an engraved atlas of the region the studio works from. Five numbered
 plates, each a generated engraving (white line art on black) used as a
 luminance mask over `currentColor` — the `.ill` rule, so every plate re-inks
 itself in all six palettes from one file:
@@ -1179,9 +1179,13 @@ itself in all six palettes from one file:
 | I — Les Bibans | `.vista`, full-bleed under the hero (above 960px only) | `vista-far/mid/near.webp` | 3-layer parallax, twinkling sky, a constellation that draws itself |
 | II — Arc de Trajan, Timgad | behind the `#work` header | `arch.webp` | parallax |
 | III — Monnaies numides | beside the `#pricing` header (≥1100px) | `coin-*.webp` | three coins, three depths, each turns on its own axis |
-| IV — Coupe des couches | behind `#stack` — the stack as strata | `strata.webp` | a core sample drilling across |
-| V — Cap Carbon, Béjaïa | behind the contact channels | `lighthouse.webp` | the beam sweeps |
-| VI — Le Grand Erg | between `</main>` and the footer | `dunes.webp` | parallax |
+| IV — Cap Carbon, Béjaïa | behind the contact channels | `lighthouse.webp` | the beam sweeps |
+| V — Le Grand Erg | between `</main>` and the footer | `dunes.webp` | parallax |
+
+A sixth plate, *Coupe des couches* (`strata.webp`, a core sample drilling
+across), stood behind the tools section, "Nos outils". It left the page with
+that section on 2026-10-26 (owner decision, see Page structure), and the
+lighthouse and the erg moved up to IV and V.
 
 Plus two uncaptioned figures: a lantern (fanous) hanging in the `#faq` gutter
 (≥1280px, swings), and the founder's workbench behind the founder card. The
@@ -1208,7 +1212,7 @@ on a 1280×900 desktop, inside the loader's 900px lookahead, so its three masks
 audit, before any scroll. At 960px and below the vista is `display:none`
 (owner decision, 2026-10-26): the observer never reports it, `.lz-on` is never
 set, and with scripts off nothing under it is fetched either. At 640px and
-below the in-section plates are hidden too, so a phone keeps plate VI only.
+below the in-section plates are hidden too, so a phone keeps plate V only.
 Above 960px it still loads with the first screen; that costs no LCP, which is
 the hero text, painted before the masks are requested. Where the vista is
 gone, nothing covers the seam between the hero and the proof: the proof drops
@@ -1226,9 +1230,9 @@ time the element comes back on screen. Off-screen, nothing runs.
 
 ### Animated icons (`.ai`)
 
-26 inline icons on the 24×24 / 1.5-stroke grammar: tiers,
-pricing models, estimator, market, onboarding steps, stack groups, FAQ
-questions, contact channels. Drawable parts carry **class `.p`** and
+21 inline icons on the 24×24 / 1.5-stroke grammar: tiers,
+pricing models, estimator, market, onboarding steps, FAQ questions,
+contact channels. Drawable parts carry **class `.p`** and
 `pathLength="1"`; they draw in once (`.on`), then the idle loop runs (`.live`).
 
 **Never select drawable parts as `[pathLength]`.** Chromium does not invalidate
@@ -1527,7 +1531,6 @@ on purpose (decorative clipped glows, for instance) must be listed in
 - **Services**: 6-column grid, 3+3 over 2+2+2. Narrow cards (and the two large
   ones below 1280px) put icon and drawing on one row with the copy full-width
   beneath; `align-content:start` keeps eyebrows aligned across a row.
-- **Stack** tiles: 6 columns, 3+3 over 2+2+2, single column under 720px.
 - **Founder** card spans 8 of 12 columns, the team the other 4.
 - *Removed in the 2026-10 cleanup; kept as a lesson:*
   `theme-engineering.css` re-declared the work, services and stack grids, so
@@ -1545,8 +1548,15 @@ on purpose (decorative clipped glows, for instance) must be listed in
 
 ## Page structure and design system (home page)
 
-**Order:** hero, proof, work, services, method, pricing, team, stack, FAQ,
+**Order:** hero, proof, work, services, method, pricing, team, FAQ,
 contact. Each idea is said once:
+- There is no tools section. "Nos outils" (20 tools in five groups, with
+  the strata plate behind it) left the page on 2026-10-26 (owner decision): 8 of its
+  20 tools repeated the service cards' tags, four were not shown by any
+  delivered project, and it held the FAQ and the form a phone screen
+  further down. The service cards keep their tools; confirmed tools can be
+  listed later on a studio page or the project sheets. The kickers after it
+  moved up (07 FAQ, 08 Contact).
 - The proof band is one trust line, "4 sites livrés · réponse < 24 h ouvrées
   · FR · EN · AR", then the client logo strip. Its four animated counters
   repeated the hero's title block and the line under them; they went on

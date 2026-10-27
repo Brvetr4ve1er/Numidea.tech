@@ -676,15 +676,6 @@ html[dir="rtl"] .tm b{font-family:var(--font-ar-display)}
 }
 @media (prefers-reduced-motion:reduce){.cv-panel{transition:none}}
 
-/* ---------- stack ---------- */
-
-
-/* ---------- stack (one slim strip) ---------- */
-.stack-strip{display:flex;flex-wrap:wrap;gap:var(--s-4) var(--s-7);align-items:center}
-.stack-strip .grp{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap}
-.stack-strip .grp>b{font-family:var(--font-mono);font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-text)}
-.stack-strip .pills{display:inline-flex;flex-wrap:wrap;gap:6px}
-
 /* ---------- contact ---------- */
 /* Full-bleed closing band. No overflow:hidden here — the display face's swash
    glyphs overhang their box and were getting clipped at the left edge. */
@@ -798,7 +789,7 @@ details[open] .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dash
 
 /* ---------- services index ---------- */
 .svc-lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:39.78em;margin:0 0 var(--s-8);line-height:1.6}
-/* shared section intro — gives #work / #stack the same lead-in cadence as #services */
+/* shared section intro — gives #work, #founder, #faq the same lead-in cadence as #services */
 .sec-lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:39.78em;margin:0 0 var(--s-7);line-height:1.6}
 
 /* services grid — five compact offers; depth lives in the capabilities shelf */
@@ -1145,7 +1136,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   main.wrap>section>.kicker+h2.sec+*{margin-top:var(--s-8)}
 
   /* — per-section content spans — */
-  .work-grid,.svc-grid,.stack-strip,.founder-card,.contact-grid,.preview,.scene-banner,.voices{grid-column:1/-1}
+  .work-grid,.svc-grid,.founder-card,.contact-grid,.preview,.scene-banner,.voices{grid-column:1/-1}
   /* three abreast: the process reads as a sequence instead of a column
      with half the screen empty beside it */
   .steps{grid-column:1/-1;max-width:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,2.4vw,48px)}
@@ -2102,7 +2093,6 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
 :is(.lz-on,html:not([data-lz]) .lz) .pc-horse>i{-webkit-mask-image:url(illus/coin-horse.webp);mask-image:url(illus/coin-horse.webp)}
 :is(.lz-on,html:not([data-lz]) .lz) .pc-palm>i{-webkit-mask-image:url(illus/coin-palm.webp);mask-image:url(illus/coin-palm.webp)}
 :is(.lz-on,html:not([data-lz]) .lz) .pi-bench>i{-webkit-mask-image:url(illus/bench.webp);mask-image:url(illus/bench.webp)}
-:is(.lz-on,html:not([data-lz]) .lz) .pi-strata>i{-webkit-mask-image:url(illus/strata.webp),radial-gradient(closest-side,#000 55%,transparent);mask-image:url(illus/strata.webp),radial-gradient(closest-side,#000 55%,transparent)}
 :is(.lz-on,html:not([data-lz]) .lz) .pi-lantern>i{-webkit-mask-image:url(illus/lantern.webp);mask-image:url(illus/lantern.webp)}
 :is(.lz-on,html:not([data-lz]) .lz) .pi-light>i{-webkit-mask-image:url(illus/lighthouse.webp);mask-image:url(illus/lighthouse.webp)}
 :is(.lz-on,html:not([data-lz]) .lz) .fd-ink{-webkit-mask-image:url(illus/dunes.webp);mask-image:url(illus/dunes.webp)}
@@ -2111,8 +2101,6 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-size:100% 100%;mask-size:100% 100%;
   -webkit-mask-source-type:luminance;mask-mode:luminance}
-.pi-strata>i{-webkit-mask-source-type:luminance,alpha;mask-mode:luminance,alpha;
-  -webkit-mask-composite:source-in;mask-composite:intersect}
 
 /* the small engraved caption every plate carries */
 .pl-cap{position:absolute;font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
@@ -2161,8 +2149,8 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body);font-si
 @media (max-width:960px){.vista{display:none}}
 
 /* ---------- shared: plates inside sections ---------- */
-#work,#founder,#stack,#faq{position:relative;isolation:isolate}
-#work>:not(.px-wrap),#founder>:not(.px-wrap),#stack>:not(.px-wrap),#faq>:not(.px-wrap){position:relative;z-index:1}
+#work,#founder,#faq{position:relative;isolation:isolate}
+#work>:not(.px-wrap),#founder>:not(.px-wrap),#faq>:not(.px-wrap){position:relative;z-index:1}
 .pi{position:absolute;display:block}
 .pi>i{position:absolute;inset:0}
 .pi .pl-cap{inset-inline-start:0;top:calc(100% + 8px)}
@@ -2189,17 +2177,6 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body);font-si
 .pi-bench{top:16%;inset-inline-end:-4%;width:min(600px,46%);aspect-ratio:1100/614;color:var(--teal-text)}
 .pi-bench>i{opacity:calc(.1 * var(--ink-k))}
 
-/* Plate IV — the stack as strata, with a core sample being drawn */
-.pi-strata{top:4%;inset-inline-end:-2%;width:min(720px,62%);aspect-ratio:1100/463;color:var(--teal-text)}
-.pi-strata>i{opacity:calc(.16 * var(--ink-k))}
-.pi-strata .core{position:absolute;top:0;bottom:0;width:2px;inset-inline-start:62%;
-  background:linear-gradient(transparent,var(--crimson-text),transparent);opacity:.55;
-  opacity:0}
-.pi-strata.live .core{animation:core-drill 7s ease-in-out 3}
-.pi-strata .pl-cap{top:calc(100% - 8px);inset-inline-start:auto;inset-inline-end:8%}
-@keyframes core-drill{0%,100%{transform:translateX(-140px);opacity:0}15%,85%{opacity:.55}50%{transform:translateX(140px)}}
-html[dir="rtl"] .pi-strata>i{transform:scaleX(-1)}
-
 /* FAQ — a lantern hangs in the gutter between the heading and the lead */
 .pi-lantern{display:none;top:0;left:calc(50% - 64px);width:128px;aspect-ratio:560/835;
   transform-origin:50% 0;color:var(--crimson-text)}
@@ -2214,7 +2191,7 @@ html[dir="rtl"] .pi-strata>i{transform:scaleX(-1)}
 @keyframes lantern-glow{0%,100%{opacity:.55}50%{opacity:1}}
 @media (min-width:1280px){.pi-lantern{display:block}}
 
-/* Plate V — the lighthouse; its beam sweeps across the contact section */
+/* Plate IV — the lighthouse; its beam sweeps across the contact section */
 .pi-light{bottom:0;inset-inline-start:-3%;width:min(640px,54%);aspect-ratio:1100/595;color:var(--teal-text)}
 .pi-light>i{opacity:calc(.16 * var(--ink-k))}
 .pi-light .beam{position:absolute;left:79.6%;top:13%;width:150%;height:56%;translate:0 -50%;transform-origin:0 50%;
@@ -2226,7 +2203,7 @@ html[dir="rtl"] .pi-strata>i{transform:scaleX(-1)}
 html[dir="rtl"] .pi-light{transform:scaleX(-1)}
 html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 
-/* Plate VI — the erg under the footer */
+/* Plate V — the erg under the footer */
 .foot-dunes{position:relative;z-index:1;height:clamp(150px,22vw,330px);overflow:hidden;pointer-events:none;margin-top:var(--s-7)}
 .fd-ink{position:absolute;left:50%;bottom:-30px;width:max(calc(100% + 60px),900px);aspect-ratio:1500/596;
   margin-left:calc(max(calc(100% + 60px),900px) / -2);color:var(--crimson-text);opacity:.2}
@@ -2236,7 +2213,7 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 
 @media (max-width:640px){.pi-arch,.pi-bench{display:none}}
 @media (prefers-reduced-motion:reduce){
-  .pc>i,.pi-lantern,.pi-lantern .glow,.pi-strata .core,.pi-light .beam,.v-sky .tw{animation:none!important}
+  .pc>i,.pi-lantern,.pi-lantern .glow,.pi-light .beam,.v-sky .tw{animation:none!important}
   .v-sky .v-const{transition:none}
 }
 
@@ -2278,15 +2255,10 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
   .ai.live .a-hand{animation:ai-spin var(--t,6s) linear var(--n,3)}
   .ai.live .a-orbit{animation:ai-spin 7s linear var(--n,3)}
   .ai.live .a-globe{animation:ai-globe 5s ease-in-out var(--n,3)}
-  .ai.live .a-blink{animation:ai-blink 1.1s steps(2,jump-none) var(--n,3)}
   .ai.live .a-dt{animation:ai-dot 1.4s ease-in-out calc(var(--i) * .18s) var(--n,3)}
-  .ai.live .a-led{animation:ai-led 2.2s steps(2,jump-none) calc(var(--i) * -1.1s) var(--n,3)}
   .ai.live .a-hop{animation:ai-hop 2.6s cubic-bezier(.3,0,.3,1) var(--n,3)}
   .ai.live .a-shadow{animation:ai-shadow 2.6s cubic-bezier(.3,0,.3,1) var(--n,3)}
   .ai.live .a-flap{animation:ai-flap 3.6s ease-in-out 1.2s var(--n,3)}
-  .ai.live .a-up{animation:ai-up 2.4s ease-in-out var(--n,3)}
-  .ai.live .a-scan{animation:ai-scan 3s ease-in-out var(--n,3)}
-  .ai.live .a-wave{animation:ai-wave 2s ease-out calc(var(--i) * .3s) var(--n,3)}
   .ai.live .a-flip{animation:ai-flip 5s cubic-bezier(.7,0,.3,1) var(--n,3)}
   .ai.live .a-swing{animation:ai-swing 3.4s ease-in-out var(--n,3)}
   .ai.live .a-alt{animation:ai-alt 3.2s ease-in-out calc(var(--i) * -1.6s) var(--n,3)}
@@ -2300,15 +2272,10 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 }
 @keyframes ai-spin{to{transform:rotate(360deg)}}
 @keyframes ai-globe{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.12)}}
-@keyframes ai-blink{0%{opacity:1}100%{opacity:0}}
 @keyframes ai-dot{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-1.6px);opacity:1}}
-@keyframes ai-led{0%{opacity:1}100%{opacity:.25}}
 @keyframes ai-hop{0%,55%,100%{transform:translateY(0)}25%{transform:translateY(-2.4px)}}
 @keyframes ai-shadow{0%,55%,100%{transform:scaleX(1);opacity:.8}25%{transform:scaleX(.6);opacity:.35}}
 @keyframes ai-flap{0%,70%,100%{transform:scaleY(1)}80%{transform:scaleY(-.35)}90%{transform:scaleY(1)}}
-@keyframes ai-up{0%{transform:translateY(1.5px);opacity:0}30%{opacity:1}70%{opacity:1}100%{transform:translateY(-2.5px);opacity:0}}
-@keyframes ai-scan{0%,100%{transform:translateY(-4px)}50%{transform:translateY(4px)}}
-@keyframes ai-wave{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
 @keyframes ai-flip{0%,40%{transform:rotate(0)}60%,100%{transform:rotate(180deg)}}
 @keyframes ai-swing{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
 @keyframes ai-alt{0%,100%{opacity:1}50%{opacity:.3}}
@@ -2328,8 +2295,6 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 .est-head h3,.mk-head h3,.est-head p,.mk-head p{padding-inline-end:44px}
 .md-card .ai-corner{top:var(--s-5);inset-inline-end:var(--s-5);width:24px;height:24px}
 .tier-pop .ai-corner{color:var(--crimson-text)}
-.stack-strip .grp>b{display:inline-flex;align-items:center;gap:8px}
-.ai-grp{width:20px;height:20px}
 .ai-faq{width:24px;height:24px}
 .faq-item[open] .ai-faq{color:var(--crimson-text)}
 @media (hover:hover){.faq-item summary:hover .ai-faq{color:var(--crimson-text)}}
@@ -2474,16 +2439,6 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
   #founder>.kicker+h2.sec+.sec-lead+.founder-card+.team{margin-top:var(--s-8)}
 }
 
-/* ---- Stack: groups become tiles (3+3 / 2+2+2) ---- */
-.stack-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
-.stack-strip .grp{grid-column:span 2;display:flex;flex-direction:column;align-items:flex-start;gap:12px;
-  padding:clamp(16px,1.8vw,22px);background:color-mix(in srgb,var(--navy) 88%,transparent);border:1px solid var(--hairline);border-radius:var(--r-md)}
-.stack-strip .grp:nth-child(-n+2){grid-column:span 3}
-@media (max-width:719px){
-  .stack-strip{grid-template-columns:minmax(0,1fr)}
-  .stack-strip .grp,.stack-strip .grp:nth-child(-n+2){grid-column:auto}
-}
-
 /* ---- Skeletons: a picture's box shimmers until the picture has decoded ----
    Boxes already have their final size (width/height + aspect-ratio), so
    nothing moves; the shimmer runs a bounded number of times — the page's
@@ -2556,7 +2511,7 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
 .kicker,.eyebrow,.tag,.svc-row .fam,.cap .fam,.t-pop,.md-tag,.md-sub,.eo-k,.est-hint,
 .pl-cap,.v-cap,.sb-kick,.proj .cat,.titleblock dt,.channels dt,.field label,
 .est-field legend,.est-field>label,.est-lab,.mk-table caption,.mk-table thead th,.team-h,
-.t-time,.eo-time,.fd-role,.outcome b,.stack-strip .grp>b{
+.t-time,.eo-time,.fd-role,.outcome b{
   font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);
   text-transform:uppercase;font-weight:400}
 .pill{font-size:var(--t-label);letter-spacing:.02em}
@@ -2672,13 +2627,7 @@ ol.steps{list-style:none;margin:0;padding:0}
 /* the round button covered copy on nearly every phone screen */
 @media (max-width:720px){.to-top{display:none}}
 
-/* ---- stack + contact plates ---- */
-/* the strata caption hung below its plate, inside the BACK tile: it sits on
-   the plate's top edge now, clear of the tiles */
-.pi-strata .pl-cap{top:8px}
-/* tiles in a row share a top and a height (row two started at three heights) */
-.stack-strip{align-items:stretch}
-.stack-strip .grp{justify-content:flex-start}
+/* ---- contact plate ---- */
 /* the lighthouse plate ended on a hard vertical edge beside the form */
 .pi-light{-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent)}
 html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,transparent);mask-image:linear-gradient(270deg,#000 55%,transparent)}

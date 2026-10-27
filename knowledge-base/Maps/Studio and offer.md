@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [README.md, index.html, assets/app.js, OWNER-CONTENT.md, scripts/check.mjs, BRAND.md]
 ---
 
@@ -92,17 +92,9 @@ After launch, each package includes 1, 3 or 6 months of support, and maintenance
 
 ## Declared tools
 
-The [[Stack Section (Outils)]] lists (index.html › #stack):
-
-| Group | Tools |
-|---|---|
-| Front | React, Next.js, Vite, TypeScript, Tailwind |
-| Back | Node, Python, FastAPI, PostgreSQL |
-| Cloud | Vercel, Docker, Cloudflare, GitHub Actions |
-| Data | Playwright, Pandas, Supabase, REST APIs |
-| Mobile | PWA, React Native, Expo |
-
-- No delivered project shows React Native, Expo, Docker or Cloudflare; the owner has to confirm or correct this list (OWNER-CONTENT.md › 14).
+- The home page has no tools section. The [[Stack Section (Outils)]], 20 tools in five groups, left it on 2026-10-26, an owner decision: 8 of its 20 tools repeated the service cards' tags and four (React Native, Expo, Docker, Cloudflare) were not shown by any delivered project. Confirmed tools can be listed later on a studio page or the project sheets (BRAND.md › Page structure and design system (home page)).
+- The service cards keep their tool pills (index.html › #services).
+- The market note still says "nous livrons avec … React, Next.js, Vercel", a claim the owner has to confirm (OWNER-CONTENT.md › 14).
 - The studio site itself is hand-written HTML, CSS and vanilla JavaScript with no framework (README.md › This repository); see [[Site architecture]].
 
 ## How a lead reaches the studio
