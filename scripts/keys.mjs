@@ -27,6 +27,12 @@
  *                 refocuses the button; Tab closes it; Enter applies a theme
  *  CV panel       (index) Enter toggles aria-expanded; open, Tab reaches its
  *                 link and the link is visible; closed, it is inert
+ *  estimate       (index) Enter opens the folded estimator; Enter on its
+ *                 "prix ferme" link hands the scope to the message, type and
+ *                 size first (price.tyCustom · …), then the range; a type
+ *                 chosen with Space and handed again, then the estimator
+ *                 folded and the currency switched: the untouched message
+ *                 still starts with that type, now in €
  *  contact form   (index) submitted empty: every field aria-invalid, focus
  *                 on the first, each field's aria-describedby names a polite
  *                 live error with text in the page's language; typing clears
@@ -117,7 +123,7 @@ import { ROOT, PAGES } from './site.mjs';
 /* langs: the languages a page has (`only`: why it has just one); tests: its
    own keyboard paths; noSkip: why it has no skip link */
 const SPEC = {
-  'index.html': { langs: ['fr', 'ar'], tests: ['theme', 'menu', 'cv', 'form'] },
+  'index.html': { langs: ['fr', 'ar'], tests: ['theme', 'menu', 'cv', 'estimate', 'form'] },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
   'hub/index.html': { langs: ['en'], tests: ['lightbox'], only: "English only (the founder's own page)" },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
@@ -382,6 +388,38 @@ async function cvPanel(p) {
   s = await st();
   if (s.exp !== 'false' || !s.inert) bad.push('Enter does not close the panel again');
   return { bad, note: 'cv' };
+}
+
+/* The estimator's scope, handed to the message (M4 folded it in a closed
+   <details>, where its list is not rendered: the scope once came out as the
+   price range alone). Opened with Enter, nothing changed, "Obtenir le prix
+   ferme" gives the default type and size first (price.tyCustom · …), then
+   the range. Re-configured (E-commerce) and handed again, then folded and
+   the currency switched: the untouched message follows, type first, in €.
+   The message is emptied and the currency put back for the form test. */
+async function estimatePrefill(p, lang) {
+  const bad = [];
+  const D = DICT[lang] || {};
+  const msg = () => p.evaluate(() => document.getElementById('f-message').value);
+  const isOpen = () => p.evaluate(() => document.querySelector('.price-est').open);
+  const space = async (sel) => { await p.focus(sel); await p.keyboard.press('Space'); await wait(100); };
+  await p.focus('.price-est>summary'); await p.keyboard.press('Enter'); await wait(150);
+  if (!(await isOpen())) bad.push('Enter on the estimator\'s summary does not open it');
+  await p.focus('#est-cta'); await p.keyboard.press('Enter'); await wait(200);
+  let m = await msg();
+  if (!m.startsWith(D['price.tyCustom'] + ' · ') || !m.includes(' — ')) bad.push('the estimator\'s default scope hands "' + m.slice(0, 60) + '" to the message, not price.tyCustom · … — range');
+  await space('input[name="est-type"][value="ecommerce"]');
+  await p.focus('#est-cta'); await p.keyboard.press('Enter'); await wait(200);
+  m = await msg();
+  if (!m.startsWith(D['price.tyShop'] + ' · ')) bad.push('a re-configured estimate hands "' + m.slice(0, 60) + '" to the message, not price.tyShop · …');
+  await p.focus('.price-est>summary'); await p.keyboard.press('Enter'); await wait(150);
+  if (await isOpen()) bad.push('Enter on the estimator\'s summary does not fold it again');
+  await space('input[name="pr-cur"][value="EUR"]');
+  m = await msg();
+  if (!m.startsWith(D['price.tyShop'] + ' · ') || !m.includes('€')) bad.push('folded, a currency switch turns the untouched scope into "' + m.slice(0, 60) + '"');
+  await space('input[name="pr-cur"][value="DZD"]');
+  await p.fill('#f-message', '');
+  return { bad, note: 'estimate → message' };
 }
 
 async function contactForm(p, lang) {
@@ -670,6 +708,7 @@ for (const f of pages) {
       if (t === 'theme') out.push(await themeMenu(p));
       else if (t === 'menu') out.push(await phoneMenu(p, w));
       else if (t === 'cv') out.push(await cvPanel(p));
+      else if (t === 'estimate') out.push(await estimatePrefill(p, lang));
       else if (t === 'form') out.push(await contactForm(p, lang));
       else if (t === 'embeds') out.push(await embeds(p, w, h));
       else out.push(await dialog(p, t));

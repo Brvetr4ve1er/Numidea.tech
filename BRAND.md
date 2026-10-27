@@ -978,10 +978,11 @@ Seven commands, all green before a push:
   its reason.
 - `npm run keys` — `scripts/keys.mjs`, the keyboard, reduced-motion and
   direction gate, in French and Arabic, on desktop and a phone: skip link,
-  focus rings, the phone and theme menus, the CV panel, the contact form
-  (errors, the mail hand-off, the lead store's POST with its switch on), the
-  dialogs, nothing moving under reduced motion (smooth scrolling and the
-  booted console's Bit included), and `dir="rtl"` with `?lang=ar`.
+  focus rings, the phone and theme menus, the CV panel, the folded
+  estimator's scope handed to the message, the contact form (errors, the
+  mail hand-off, the lead store's POST with its switch on), the dialogs,
+  nothing moving under reduced motion (smooth scrolling and the booted
+  console's Bit included), and `dir="rtl"` with `?lang=ar`.
 - `npm run verify` — runs all of the above (check, themes, validate, audit,
   sweep, vbugs, keys) and does not stop at the first failure, so one run
   shows everything that is wrong.

@@ -1834,13 +1834,14 @@
         if (eSizeV) { eSizeV.textContent = n; eSizeV.hidden = two; }
         if (eSizeH) eSizeH.textContent = unit(m.u, n);
         eSize.setAttribute('aria-valuetext', counted(m.u, n));
+        var headText = t('price.ty' + ({ vitrine: 'Vitrine', surmesure: 'Custom', ecommerce: 'Shop',
+                                         app: 'App', auto: 'Auto', identite: 'Brand' }[key]))
+                     + ' · ' + counted(m.u, n);
         if (eSum) {
           eSum.textContent = '';
           var head = document.createElement('li');
           head.className = 'eo-head';
-          head.textContent = t('price.ty' + ({ vitrine: 'Vitrine', surmesure: 'Custom', ecommerce: 'Shop',
-                                               app: 'App', auto: 'Auto', identite: 'Brand' }[key]))
-                           + ' · ' + counted(m.u, n);
+          head.textContent = headText;
           eSum.appendChild(head);
           picked.forEach(function (label) {
             var li = document.createElement('li');
@@ -1850,9 +1851,14 @@
         }
 
         /* Carry the configured scope into the contact form, so the visitor
-           does not have to retype what they just clicked. */
+           does not have to retype what they just clicked. Built from the
+           same strings as the list, not read back from it: the estimator is
+           folded in a <details> (M4), and while it is closed the list is not
+           rendered, so its innerText is empty and the scope came out as the
+           range alone (at start-up, and on a currency or language switch
+           made with the panel closed). */
         if (eCta) {
-          eCta.dataset.scope = (eSum && eSum.textContent ? eSum.innerText.replace(/\n+/g, ' · ') : '')
+          eCta.dataset.scope = [headText].concat(picked).join(' · ')
             + ' — ' + rangeText(q.lo, q.hi, CUR) + (post(CUR) ? ' ' + post(CUR) : '') + (CUR === 'DZD' ? '' : ' ' + t('price.exTax'));
           // a scope already handed to the message, untouched, follows this one
           refill('est', eCta.dataset.scope);
