@@ -76,6 +76,7 @@ Ordered by priority (1 first). Ids: C cut, M merge, A add, F fix. Status values:
 | A10 | 36 | ADD | owner-decision | The hub shows 28 AI-remade posters captioned with their originals' 2024-2025 dates, and nothing visible says they were remade | hub/index.html:116-119 ('A STORY IN 33 POSTERS'), tile captions (data-meta and visible <i class="mono">), :304 and :318 ('the originals on D | waiting (owner decision) |
 | C6 | 37 | CUT | clear-cut | Unused dictionary keys and stale comments | assets/app.js:25/123/224 (sheet.scale, sheet.rev, sheet.sheet) and :399/511/626 (price.waSoon); index.html:697-698 and :1139; assets/styles. | done 2026-10-26 (c028a08) |
 | F14 | 38 | FIX | owner-decision | The footer signoff says the site is built with TypeScript; it contains none | index.html:1270; footer.signoff app.js:108 (fr), :206 (en), :307 (ar); README.md:214. | waiting (owner decision) |
+| F15 | 39 | FIX | clear-cut | On a desktop, plate II (86 KB) now arrives before any scroll | assets/app.js §15 lazy loader (rootMargin '900px 0px'); index.html .pi-arch in #work; BRAND.md 'Plate I is not lazy'. | open |
 
 ### Details
 
@@ -307,6 +308,12 @@ Ordered by priority (1 first). Ids: C cut, M merge, A add, F fix. Status values:
 - Evidence: git ls-files: 0 .ts/.tsx/tsconfig files, 61 .js/.mjs files; the package.json devDependencies are axe-core, html-validate, playwright and sharp.
 - Impact: One line in 3 languages plus the README, at the bottom of a 24.8-screen page.
 
+**F15: On a desktop, plate II (86 KB) now arrives before any scroll** (FIX, clear-cut, effort S; found by the review of 2026-10-27)
+- What: Narrow the lazy loader's lookahead for the in-section plates (for example about one screen instead of '900px 0px'), measured against pop-in: a plate must still be painted before it scrolls into view at a fast flick. Then update BRAND.md 'Plate I is not lazy'.
+- Why: C3 made the proof band 178 px shorter at 1280, which moved plate II (.pi-arch in #work) inside the 900 px lookahead on a desktop. Before any scroll a desktop now fetches arch.webp (86,364 B), which it did not before; the review measured the net change before scroll at +64,337 B on a desktop (the font, CSS, JS and HTML cuts save 22,027 B), against −438 KB on a phone.
+- Evidence: no-scroll probe (networkidle + 1.2 s, reduced motion), base 076c991 against the r6 branch: arch.webp loads at 1024×768, 1280×900, 1440×900 and 1920×1080 (its top 1,525–1,883 px down), not at 960×800 nor at 390×844. `npm run metrics` scrolls the whole page before counting, so its bytes do not show it (desktop −200,075 B after a full scroll).
+- Impact: −86 KB before scroll on a desktop; nothing on a phone.
+
 ## Decisions
 
 The owner-decision items as questions; the recommended option is listed first. When the owner answers, record the answer and the date here, then move the items to open.
@@ -448,6 +455,7 @@ Newest first.
 
 | Date | What happened |
 |---|---|
+| 2026-10-27 | Found by the review of the owner-decision branch: on a desktop (1024 px and wider) plate II, arch.webp (86 KB), now arrives before any scroll, because C3's shorter proof band moved it inside the lazy loader's 900 px lookahead; phones are unaffected. Recorded in BRAND.md ('Plate I is not lazy') and opened as F15. |
 | 2026-10-26 | Owner decisions: approved F10 (WhatsApp hero button), M4 (fold the estimator), M3 (the Aperçu once), C2 (remove Stack), C1 (hide the En cours cards), M5 (trim the footer), C3 (one trust line), C4 (hide the vista on phones); declined M1 (price in the hero) and M2 (three service cards). |
 | 2026-10-26 | Share card (assets/og.jpg) replaced, by owner decision: it showed a client's site captioned « site livré » with no written permission. It now shows Plate II, the Arch of Trajan at Timgad, one of the site's own engravings; og:image:alt updated to match. 83 KB, 1200×630. |
 | 2026-10-26 | Clear-cut items F1–F9, C6 and C7 shipped to the branch: the phone page goes from 1,223 to 1,016 KB (−17%), desktop from 2,033 to 1,826 KB, 404 from 251 to 195 KB, with no visible change except the fixes named. Then a review of the combined diff (9 minor findings, all fixed: the hint colour, stricter keys checks, EN stack title, FR colon spacing, AR FAQ 2, the Arabic review queue in OWNER-CONTENT §8, and a check.mjs 17 guard against duplicate font files). Not deployed: GitHub Actions still fails every job within seconds (billing). |

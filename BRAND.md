@@ -1216,7 +1216,14 @@ audit, before any scroll. At 960px and below the vista is `display:none`
 set, and with scripts off nothing under it is fetched either. At 640px and
 below the in-section plates are hidden too, so a phone keeps plate V only.
 Above 960px it still loads with the first screen; that costs no LCP, which is
-the hero text, painted before the masks are requested. Where the vista is
+the hero text, painted before the masks are requested. Since the proof band
+became one line (2026-10-26, 178px shorter at 1280), plate II in #work starts
+inside the lookahead too on a desktop: 1,525–1,883px down at 1024×768,
+1280×900, 1440×900 and 1920×1080, so its mask (`arch.webp`, 86,364 B) also
+arrives before any scroll there (not at 960×800, nor on a phone, where the
+in-section plates are hidden). `npm run metrics` scrolls the whole page
+before it counts, so it does not show this; narrowing the lookahead for the
+in-section plates is backlog item F15. Where the vista is
 gone, nothing covers the seam between the hero and the proof: the proof drops
 its opaque ground (it was there so the vista's layers never slid under its
 kicker) and the hero mesh fades out before the hero clips it.
