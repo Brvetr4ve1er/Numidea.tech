@@ -213,7 +213,7 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   عليك في مكالمة فيديو مدّتها 30 دقيقة» was removed; does the shorter
   sentence still read well?
 - `faq2.a` now ends with a link to the card instead of restating the offer:
-  «انظر أيضاً <a>المعاينة</a>.» (French: "Voir aussi L'Aperçu."; English:
+  «انظر أيضاً <a>المعاينة</a>.» (French: "Voir aussi l'Aperçu."; English:
   "See also the Preview."). «انظر أيضاً» or «اطّلع أيضاً على»?
 - `faq6.a` loses its last sentence and ends at «… من التصميم إلى النشر.»
 - renumbered again when the method section left the page; only the number
