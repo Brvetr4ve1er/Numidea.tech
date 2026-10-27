@@ -10,7 +10,9 @@
  * <main>, the plates, the footer):
  *  - top and height in px and in screens (height / viewport height);
  *  - words visible (innerText, so closed <details>, display:none and the
- *    other languages' text do not count) and controls visible;
+ *    other languages' text do not count) and controls visible (sized, not
+ *    hidden or inert, and checkVisibility(): nothing inside a closed
+ *    <details> but its summary);
  *  - bytes of the images and masks it shows (img currentSrc, CSS
  *    background-image and mask-image of every descendant), read from the
  *    resource timing entries (encodedBodySize, so as transferred).
@@ -72,7 +74,10 @@ async function measure(path, { lang, size, sections }) {
   await p.waitForTimeout(400);
   const m = await p.evaluate(async ({ sections, answers }) => {
     const words = (t) => (t.match(/[\p{L}\p{N}][\p{L}\p{N}'’\-]*/gu) || []).length;
-    const shown = (e) => { const r = e.getBoundingClientRect(); const s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && !e.closest('[hidden],[inert]'); };
+    // checkVisibility(): Chromium lays out the hidden content of a closed
+    // <details> (getBoundingClientRect gives it a size), so without it the
+    // folded estimator's controls and a link in a closed FAQ answer counted
+    const shown = (e) => { const r = e.getBoundingClientRect(); const s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && !e.closest('[hidden],[inert]') && (typeof e.checkVisibility !== 'function' || e.checkVisibility()); };
     const CTRL = 'a[href],button,input,select,textarea,summary';
     const res = new Map(performance.getEntriesByType('resource').map((r) => [r.name.split('#')[0], r]));
     const urls = (el) => {
