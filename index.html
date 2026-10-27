@@ -305,10 +305,11 @@
         <div class="hero-cta">
           <a class="btn btn-primary" href="#apercu" data-i18n="hero.cta1">Demander mon Aperçu gratuit →</a>
           <!-- WhatsApp with the Aperçu's own message, so a phone can write from
-               the first screen (owner decision, 2026-10-26). Scripts build its
-               link (app.js 13), so it is .js-only: with them off it would be a
-               dead button on the first screen. -->
-          <a class="btn btn-teal wa-link js-only" data-wa-pending aria-disabled="true" data-wa-text="prev.waText">
+               the first screen (owner decision, 2026-10-26). Its French link is
+               baked in (scripts/build-fr.mjs), so it works before the deferred
+               app.js arrives and with scripts off; app.js 13 rewrites it for
+               the visitor's language and adds the ad's [ref]. -->
+          <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20voir%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site." target="_blank" rel="noopener">
             <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
             <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
           </a>
@@ -561,7 +562,7 @@
         <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.</p>
         <p class="prev-actions">
           <a class="btn btn-primary" id="prev-cta" href="#contact" data-i18n="prev.cta">Demander mon Aperçu →</a>
-          <a class="prev-wa wa-link" data-wa-pending aria-disabled="true" data-wa-text="prev.waText" data-i18n="prev.wa">ou par WhatsApp</a>
+          <a class="prev-wa wa-link" data-wa-text="prev.waText" data-i18n="prev.wa" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20voir%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site." target="_blank" rel="noopener">ou par WhatsApp</a>
         </p>
         <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="prev.outcome">Vous dites oui en connaissance de cause : vous avez déjà vu le résultat.</span></p>
       </div>
@@ -1126,7 +1127,7 @@
         <p class="sub" data-i18n="contact.sub">Dites-nous ce qu'il vous faut : une urgence à traiter, quelque chose à corriger, une échéance à tenir. En français, anglais ou arabe.</p>
         <dl class="channels">
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg><dt data-i18n="form.email">Email</dt><dd><a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></dd></div>
-          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M4 20 5.3 15.7A8 8 0 1 1 8.3 18.7Z"/><circle class="f a-dt" style="--i:0" cx="8.7" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:1" cx="12" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:2" cx="15.3" cy="11.8" r=".95"/></svg><dt data-i18n="footer.wa">WhatsApp</dt><dd><a class="wa-link" data-wa-pending aria-disabled="true" dir="ltr">+213 672 41 25 78</a> <span class="ch-note" data-i18n="contact.waNote">message gratuit via l'appli</span></dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M4 20 5.3 15.7A8 8 0 1 1 8.3 18.7Z"/><circle class="f a-dt" style="--i:0" cx="8.7" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:1" cx="12" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:2" cx="15.3" cy="11.8" r=".95"/></svg><dt data-i18n="footer.wa">WhatsApp</dt><dd><a class="wa-link" dir="ltr" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">+213 672 41 25 78</a> <span class="ch-note" data-i18n="contact.waNote">message gratuit via l'appli</span></dd></div>
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M12 20s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z"/><circle class="p" pathLength="1" cx="12" cy="9" r="2.3"/></g><path class="a-shadow" d="M9.5 22h5"/></svg><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="13.5" r="7.5"/><path class="p" pathLength="1" d="M12 3.5V6M10 3.5h4"/><path class="p a-hand" style="--o:12px 13.5px;--t:3s" pathLength="1" d="M12 13.5 15 10.5"/></svg><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">&lt; 24 h ouvrées · FR · EN · <span lang="ar">ع</span></dd></div>
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><ellipse class="p a-globe" pathLength="1" cx="12" cy="12" rx="3.6" ry="8.5"/><path class="p" pathLength="1" d="M3.5 12h17"/></svg><dt data-i18n="contact.chTz">Fuseau</dt><dd data-i18n="contact.vTz">UTC+1 · l'heure de Paris en hiver, 1 h de moins en été</dd></div>
@@ -1220,7 +1221,7 @@
      hero; it steps aside while #contact or the footer is on screen -->
 <nav class="m-contact" aria-label="Contact rapide" data-i18n-aria="mbar.aria">
   <a class="btn btn-primary" href="#contact" data-i18n="mbar.cta">Démarrer un projet</a>
-  <a class="btn btn-ghost wa-link" data-wa-pending aria-disabled="true" data-i18n="footer.wa">WhatsApp</a>
+  <a class="btn btn-ghost wa-link" data-i18n="footer.wa" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">WhatsApp</a>
 </nav>
 
 <!-- Lead-capture config (Supabase). Empty until the project exists — the

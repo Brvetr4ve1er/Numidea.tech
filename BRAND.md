@@ -1562,9 +1562,13 @@ idea is said once:
   réalisations" on 2026-10-26 (owner decision): on a phone the first screen
   offered no way to write, the first wa.me link sat 8.5 screens down and the
   phone bar only shows past 1.5 screens. The plate beside the copy still
-  shows the client sites, and the navbar leads to #work. Scripts build the
-  link (app.js §13), so the button is `.js-only`: with them off it would be
-  a dead button on the first screen.
+  shows the client sites, and the navbar leads to #work. Its French wa.me
+  link is baked into index.html (`scripts/build-fr.mjs`, like every
+  `.wa-link`), so it works on the first screen before the deferred app.js
+  arrives and with scripts off; app.js §13 rewrites it for the visitor's
+  language and adds the ad's `[ref]`. Until 2026-10-27 the links shipped
+  pending and only app.js made them live: on a slow phone the hero showed
+  a greyed, untappable button.
 - There is no tools section. "Nos outils" (20 tools in five groups, with
   the strata plate behind it) left the page on 2026-10-26 (owner decision): 8 of its
   20 tools repeated the service cards' tags, four were not shown by any

@@ -15,7 +15,14 @@
  *   - the studio's ProfessionalService JSON-LD description (= meta.desc, as
  *     applyLang() sets it for the visitor's language),
  *   - the FAQPage JSON-LD (script#ld-faq), built by faqLd() exactly as
- *     applyLang() rebuilds it for the visitor's language.
+ *     applyLang() rebuilds it for the visitor's language,
+ *   - every WhatsApp link (a.wa-link): with window.NUMIDEA_WA set in the
+ *     page, its wa.me link with the French opening line (data-wa-text, else
+ *     wa.hello), as app.js §13 builds it, so the hero's WhatsApp button works
+ *     on the first screen before the deferred app.js arrives; with no number,
+ *     the pending state app.js gives it (data-wa-pending, aria-disabled,
+ *     data-soon). app.js then rewrites the link for the visitor's language
+ *     and adds the ad's [ref].
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -53,6 +60,19 @@ export function bakeFr(html, fr = loadDicts().fr) {
       return re.test(tag) ? between(tag, re, attrEsc(fr[key])) : tag;
     });
   }
+  // WhatsApp links: the attributes app.js §13 (wireWA) sets, written in
+  // French; the tag's other attributes stay where they are
+  const wa = ((/window\.NUMIDEA_WA = '([^']*)'/.exec(html) || [])[1] || '').replace(/\D/g, '');
+  html = html.replace(/<a\b[^>]*\sclass="(?:[^"]*\s)?wa-link(?:\s[^"]*)?"[^>]*>/g, (tag) => {
+    const key = (/\sdata-wa-text="([^"]+)"/.exec(tag) || [])[1] || 'wa.hello';
+    const lost = [key, 'price.waSoonSuffix'].filter((k) => fr[k] == null);
+    if (lost.length) { missing.push(...lost); return tag; }
+    const bare = tag.replace(/\s(?:href|target|rel|data-wa-pending|aria-disabled|data-soon)(?:="[^"]*")?(?=[\s>])/g, '');
+    const set = wa
+      ? ` href="https://wa.me/${wa}?text=${encodeURIComponent(fr[key])}" target="_blank" rel="noopener"`
+      : ` data-wa-pending aria-disabled="true" data-soon="${attrEsc(fr['price.waSoonSuffix'])}"`;
+    return bare.replace(/>$/, set + '>');
+  });
   html = between(html, /(<title>)[^<]*(<\/title>)/, toMarkup(fr.title));
   html = between(html, /(<meta name="description" content=")[^"]*(")/, attrEsc(fr['meta.desc']));
   // the studio's structured data: only its description, written in place

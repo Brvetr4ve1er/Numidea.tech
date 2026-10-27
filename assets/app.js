@@ -1904,7 +1904,10 @@
        NUMIDEA_WA is the studio's number in full international form, digits
        only (e.g. '213XXXXXXXXX'). While it is empty every WhatsApp control
        stays visibly pending rather than linking somewhere wrong — the same
-       idiom hub/ uses for handles with no verified URL. */
+       idiom hub/ uses for handles with no verified URL. scripts/build-fr.mjs
+       bakes the same French link (or the pending state) into index.html, so
+       the hero's button works before this deferred script runs; wireWA()
+       rewrites it for the visitor's language and the ad's [ref]. */
     var WA = (window.NUMIDEA_WA || '').replace(/[^0-9]/g, '');
     /* Where a lead came from, read at the moment it is sent: ?ref= (each ad
        and email carries its own code), utm_* and whether Meta or Google added
