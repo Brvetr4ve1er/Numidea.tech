@@ -171,13 +171,17 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   left the page and need no review.
 - `price.estHint`, the new line under «قدّر مشروعك» now that the
   estimator is folded under the tiers (its title, `price.estH`, is
-  unchanged): «الأتمتة، المتجر الإلكتروني، الهوية البصرية، الخيارات،
-  والتنفيذ المستعجل: ما لا تُسعّره الباقات.» (French: "Automatisation,
-  e-commerce, identité visuelle, options et délai accéléré : ce que les
-  formules ne chiffrent pas."). The items repeat the estimator's own labels
-  (`price.tyAuto`, `price.tyShop`, `price.tyBrand`, `price.qOpts`), except
-  «التنفيذ المستعجل» for `price.paceRush` «مستعجل»; is «تُسعّره» right
-  for "price", as in `price.moreSum` «كيف نسعّر»?
+  unchanged): «الأتمتة، المتجر الإلكتروني، الهوية البصرية، الخيارات خارج
+  الباقة، والتنفيذ المستعجل: ما لا تُسعّره الباقات.» (French:
+  "Automatisation, e-commerce, identité visuelle, options hors formule et
+  délai accéléré : ce que les formules ne chiffrent pas."). The items repeat
+  the estimator's own labels (`price.tyAuto`, `price.tyShop`,
+  `price.tyBrand`, `price.qOpts`), except «التنفيذ المستعجل» for
+  `price.paceRush` «مستعجل»; is «تُسعّره» right for "price", as in
+  `price.moreSum` «كيف نسعّر»? Changed on 2026-10-27: «الخيارات» became
+  «الخيارات خارج الباقة», the opposite of the estimator's «ضمن الباقة»,
+  since every option is already in the Studio or Moteur package; is
+  «خارج الباقة» natural, or «غير المشمولة في الباقة»?
 - the path in the Aperçu card (`prev.tl1`–`prev.tl5`), which now tells the
   method's steps too, since the method section («أربع خطوات. بلا مفاجآت.»)
   left the page. Read as one list under «قبل أيّ دفع، نبني…»:

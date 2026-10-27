@@ -1612,7 +1612,9 @@ idea is said once:
 - Pricing reads the tiers and the maintenance line, and stops. Two folded
   bars follow them: the estimator ("Estimez votre projet"), whose summary
   names what the tiers do not price (automation, e-commerce, visual
-  identity, options, the accelerated pace), then "Comment on chiffre" (the
+  identity, options outside a package, the accelerated pace; "options"
+  alone read as if the tiers priced none, while each option is in Studio
+  or Moteur), then "Comment on chiffre" (the
   market comparison, billing models and cost drivers). The estimator was
   folded on 2026-10-26 (owner decision): open, it took 2.1 phone screens,
   and at its default it quoted the Studio card again (180 000–420 000 DA
