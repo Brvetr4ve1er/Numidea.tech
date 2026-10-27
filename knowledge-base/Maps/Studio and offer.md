@@ -54,7 +54,7 @@ The home page shows five main services in three families and folds five more und
 
 ## L'Aperçu, the signature offer
 
-- Before any payment, the studio builds the homepage of the client's new site with the client's own content in 5 working days and presents it on a 30-minute video call (index.html › #apercu, prev.brief).
+- Before any payment, the studio builds the homepage of the client's new site with the client's own content in 5 working days and presents it on a 30-minute video call (index.html › #apercu, prev.brief, prev.tl3d, prev.tl4d).
 - Free and without obligation, for registered businesses only, and at most 4 Aperçus a month across all clients (index.html › #apercu, prev.terms; README.md › What we build).
 - If the client says no, nothing is owed (index.html › #apercu, prev.brief).
 - The offer and its registered-business and four-a-month conditions are stated where it is promised, in the hero and the card; FAQ 2 points to the card and FAQ 6 no longer restates it, since 2026-10-26, an owner decision (index.html › .hero, #apercu, #faq; BRAND.md › Page structure and design system (home page)).

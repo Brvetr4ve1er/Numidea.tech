@@ -1596,7 +1596,11 @@ idea is said once:
   2026-10-26 (owner decision), since on a phone a reader met the offer and
   its conditions four times before the first price. The offer is stated
   with its conditions where it is promised, in the hero lede and the card
-  (`prev.terms`); FAQ 2 points to the card ("Voir aussi L'Aperçu") and FAQ 6
+  (`prev.terms`). In the card each term is said once: the brief
+  (`prev.brief`) keeps what the list does not say (before any payment,
+  with your content, nothing owed on a no), and the 5 working days and the
+  30-minute call are the list's (`prev.tl3d`, `prev.tl4d`); until
+  2026-10-27 the brief repeated them. FAQ 2 points to the card ("Voir aussi L'Aperçu") and FAQ 6
   no longer restates it. The three "Méthode" links (navbar, phone menu,
   footer) land on the card, and the scroll-spy marks "Méthode" only while
   the card is being read, then Services again. "Décrire mon projet" went

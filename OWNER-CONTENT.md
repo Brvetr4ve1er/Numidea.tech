@@ -204,6 +204,14 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
     `prev.tl5p` «إن كان الجواب نعم، فالصفحة الرئيسية جاهزة بالفعل: ننتقل
     مباشرة إلى بقية العمل.» (French: "Si c'est oui, la page d'accueil est
     déjà faite : on enchaîne sur le reste.").
+- `prev.brief`, the line above the path, cut on 2026-10-27 to what the
+  path does not say, since the path now gives the 5 working days and the
+  30-minute call: «قبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك
+  أنت. إن قلت لا، فلا شيء عليك.» (French: "Avant tout paiement, on
+  construit la page d'accueil de votre nouveau site, avec votre contenu. Si
+  vous dites non, vous ne devez rien."). Only «، خلال 5 أيام عمل، ونعرضها
+  عليك في مكالمة فيديو مدّتها 30 دقيقة» was removed; does the shorter
+  sentence still read well?
 - `faq2.a` now ends with a link to the card instead of restating the offer:
   «انظر أيضاً <a>المعاينة</a>.» (French: "Voir aussi L'Aperçu."; English:
   "See also the Preview."). «انظر أيضاً» or «اطّلع أيضاً على»?
