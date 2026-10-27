@@ -1969,7 +1969,11 @@
     /* ---------------- phone contact bar ----------------
        Phones only (the CSS hides it above 720px). Shown once the visitor is
        1.5 screens down, hidden again while #contact or the footer is on screen
-       (both already offer the same two actions) and while the menu is open.
+       and while the menu is open: #contact already offers the same two
+       actions, and the footer comes straight after it and is shorter than a
+       phone screen, so while the footer shows, #contact's channels and form
+       are on screen too (the footer's own email and WhatsApp went on
+       2026-10-26).
        It also steps aside while the reader scrolls down: with the navbar it
        covered 142px of a 320x568 screen (25%) the whole way down. It slides
        back on a scroll up, or once the page has been still for 600ms, and
