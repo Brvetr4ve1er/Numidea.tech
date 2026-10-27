@@ -1,12 +1,12 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-26
 sources: [assets/app.js, index.html, README.md, BRAND.md, OWNER-CONTENT.md, scripts/check.mjs]
 ---
 
 # Pricing and market
 
-The studio publishes its prices in dinars before any quote, beside the going rates in Algeria, France and the United States, and lets a visitor size a project in an estimator (index.html › #pricing, price.lead). Every Numidea project figure comes from one object, `PRICE_MODEL` inside `ESTIMATE` in `assets/app.js`, and the monthly maintenance line from `RETAINER`; the tier cards, the estimator and the market table all read `PRICE_MODEL` (assets/app.js › ESTIMATE, 12a). Start with the three packages, then the model table, then the market comparison.
+The studio publishes its prices in dinars before any quote, beside the going rates in Algeria, France and the United States, and lets a visitor size a project in an estimator, folded under the tiers since 2026-10-26 behind a summary that names what the tiers do not price: automation, e-commerce, visual identity, options and the accelerated pace (index.html › #pricing, price.lead, price.estHint; BRAND.md › Page structure and design system (home page)). Every Numidea project figure comes from one object, `PRICE_MODEL` inside `ESTIMATE` in `assets/app.js`, and the monthly maintenance line from `RETAINER`; the tier cards, the estimator and the market table all read `PRICE_MODEL` (assets/app.js › ESTIMATE, 12a). Start with the three packages, then the model table, then the market comparison.
 
 ## One source of truth
 

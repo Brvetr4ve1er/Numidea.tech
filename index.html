@@ -802,81 +802,94 @@
       <span data-i18n="price.retainerB">par mois. Sans engagement de durée.</span>
     </p>
 
-    <!-- ---------------- estimator ---------------- -->
-    <div class="estimator reveal" id="estimator">
-      <div class="est-head">
-        <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/><circle class="f a-sl" style="--i:0" cx="8.5" cy="6.5" r="2"/><circle class="f a-sl" style="--i:1" cx="15" cy="12" r="2"/><circle class="f a-sl" style="--i:2" cx="7" cy="17.5" r="2"/></svg>
-        <h3 data-i18n="price.estH">Estimez votre projet</h3>
-        <p data-i18n="price.estP">Indiquez ce dont vous avez besoin : la fourchette se met à jour en direct. Pour un site vitrine, un site sur mesure ou une application web, ce sont les mêmes chiffres que dans les formules ci-dessus.</p>
-      </div>
-
-      <div class="est-grid">
-        <div class="est-controls">
-          <fieldset class="est-field">
-            <legend data-i18n="price.qType">Quel type de projet ?</legend>
-            <div class="est-chips">
-              <label class="echip"><input type="radio" name="est-type" value="vitrine"><span data-i18n="price.tyVitrine">Vitrine</span></label>
-              <label class="echip"><input type="radio" name="est-type" value="surmesure" checked><span data-i18n="price.tyCustom">Site sur mesure</span></label>
-              <label class="echip"><input type="radio" name="est-type" value="ecommerce"><span data-i18n="price.tyShop">E-commerce</span></label>
-              <label class="echip"><input type="radio" name="est-type" value="app"><span data-i18n="price.tyApp">Application web</span></label>
-              <label class="echip"><input type="radio" name="est-type" value="auto"><span data-i18n="price.tyAuto">Automatisation</span></label>
-              <label class="echip"><input type="radio" name="est-type" value="identite"><span data-i18n="price.tyBrand">Identité visuelle</span></label>
-            </div>
-          </fieldset>
-
-          <div class="est-field">
-            <div class="est-lab"><label for="est-size" data-i18n="price.qSize">Ampleur</label>
-              <span class="est-sizev" id="est-size-v" aria-hidden="true">8</span>
-              <span class="est-hint" id="est-size-h" aria-hidden="true" data-i18n="price.uPages">pages</span></div>
-            <input type="range" id="est-size" min="1" max="25" value="8" step="1">
-          </div>
-
-          <fieldset class="est-field">
-            <legend data-i18n="price.qOpts">Options</legend>
-            <div class="est-opts">
-              <label class="eopt"><input type="checkbox" name="est-opt-i18n" data-opt="i18n"><span data-i18n="price.oI18n">Trilingue FR / EN / AR + RTL</span></label>
-              <label class="eopt"><input type="checkbox" name="est-opt-cms" data-opt="cms"><span data-i18n="price.oCms">CMS / back-office</span></label>
-              <label class="eopt"><input type="checkbox" name="est-opt-pay" data-opt="pay"><span data-i18n="price.oPay">Paiement en ligne</span></label>
-              <label class="eopt"><input type="checkbox" name="est-opt-ds" data-opt="ds"><span data-i18n="price.oDs">Design system complet</span></label>
-              <label class="eopt"><input type="checkbox" name="est-opt-seo" data-opt="seo"><span data-i18n="price.oSeo">SEO avancé &amp; performance</span></label>
-              <label class="eopt"><input type="checkbox" name="est-opt-api" data-opt="api"><span data-i18n="price.oApi">Intégrations API</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="est-field">
-            <legend data-i18n="price.qPace">Délai</legend>
-            <div class="est-chips">
-              <label class="echip"><input type="radio" name="est-pace" value="std" checked><span data-i18n="price.paceStd">Standard</span></label>
-              <label class="echip"><input type="radio" name="est-pace" value="rush"><span data-i18n="price.paceRush">Accéléré</span></label>
-            </div>
-          </fieldset>
+    <!-- ---------------- estimator ----------------
+         Folded, like "Comment on chiffre" below it: open, it took two phone
+         screens and, at its default, quoted the Studio card again. Its
+         summary names what the three tiers do not price; the summary is its
+         title, so the panel has no heading of its own. Nothing in it may
+         carry .reveal (closed, the observer never sees it). -->
+    <details class="capabilities price-more price-est">
+      <summary>
+        <span data-i18n="price.estH">Estimez votre projet</span>
+        <span class="hint" data-i18n="price.estHint">Automatisation, e-commerce, identité visuelle, options et délai accéléré : ce que les formules ne chiffrent pas.</span>
+        <span class="chev" aria-hidden="true">›</span>
+      </summary>
+      <div class="pm-body">
+      <div class="estimator" id="estimator">
+        <div class="est-head">
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/><circle class="f a-sl" style="--i:0" cx="8.5" cy="6.5" r="2"/><circle class="f a-sl" style="--i:1" cx="15" cy="12" r="2"/><circle class="f a-sl" style="--i:2" cx="7" cy="17.5" r="2"/></svg>
+          <p data-i18n="price.estP">Indiquez ce dont vous avez besoin : la fourchette se met à jour en direct. Pour un site vitrine, un site sur mesure ou une application web, ce sont les mêmes chiffres que dans les formules ci-dessus.</p>
         </div>
 
-        <div class="est-out">
-          <span class="eo-k" data-i18n="price.estimate">Estimation</span>
-          <p class="eo-range" id="est-range" role="status" aria-live="polite">
-            <b id="est-lo">180 000</b><span class="eo-dash">–</span><b id="est-hi">420 000</b>
-            <span class="cur" data-i18n="price.cur">DA</span>
-          </p>
-          <p class="eo-time" role="status"><span id="est-weeks">3 –⁠ 7</span> <span data-i18n="price.weeks">semaines</span></p>
-          <!-- The estimate placed against the three packages on one price
-               scale (logarithmic, so a 90 000 and a 1 200 000 DA range both
-               read). Drawn from PRICE_MODEL by app.js 13b; decoration over the
-               figures above, which the status line already announces. -->
-          <div class="esc" aria-hidden="true">
-            <div class="esc-trk"><span class="esc-band" data-tier="vitrine"></span><span class="esc-band" data-tier="surmesure"></span><span class="esc-band" data-tier="app"></span><span class="esc-bar"></span><span class="esc-cap"></span><span class="esc-cap"></span></div>
-            <div class="esc-nm"><span data-tier="vitrine" data-i18n="price.t1name">Essentiel</span><span data-tier="surmesure" data-i18n="price.t2name">Studio</span><span data-tier="app" data-i18n="price.t3name">Moteur</span></div>
+        <div class="est-grid">
+          <div class="est-controls">
+            <fieldset class="est-field">
+              <legend data-i18n="price.qType">Quel type de projet ?</legend>
+              <div class="est-chips">
+                <label class="echip"><input type="radio" name="est-type" value="vitrine"><span data-i18n="price.tyVitrine">Vitrine</span></label>
+                <label class="echip"><input type="radio" name="est-type" value="surmesure" checked><span data-i18n="price.tyCustom">Site sur mesure</span></label>
+                <label class="echip"><input type="radio" name="est-type" value="ecommerce"><span data-i18n="price.tyShop">E-commerce</span></label>
+                <label class="echip"><input type="radio" name="est-type" value="app"><span data-i18n="price.tyApp">Application web</span></label>
+                <label class="echip"><input type="radio" name="est-type" value="auto"><span data-i18n="price.tyAuto">Automatisation</span></label>
+                <label class="echip"><input type="radio" name="est-type" value="identite"><span data-i18n="price.tyBrand">Identité visuelle</span></label>
+              </div>
+            </fieldset>
+
+            <div class="est-field">
+              <div class="est-lab"><label for="est-size" data-i18n="price.qSize">Ampleur</label>
+                <span class="est-sizev" id="est-size-v" aria-hidden="true">8</span>
+                <span class="est-hint" id="est-size-h" aria-hidden="true" data-i18n="price.uPages">pages</span></div>
+              <input type="range" id="est-size" min="1" max="25" value="8" step="1">
+            </div>
+
+            <fieldset class="est-field">
+              <legend data-i18n="price.qOpts">Options</legend>
+              <div class="est-opts">
+                <label class="eopt"><input type="checkbox" name="est-opt-i18n" data-opt="i18n"><span data-i18n="price.oI18n">Trilingue FR / EN / AR + RTL</span></label>
+                <label class="eopt"><input type="checkbox" name="est-opt-cms" data-opt="cms"><span data-i18n="price.oCms">CMS / back-office</span></label>
+                <label class="eopt"><input type="checkbox" name="est-opt-pay" data-opt="pay"><span data-i18n="price.oPay">Paiement en ligne</span></label>
+                <label class="eopt"><input type="checkbox" name="est-opt-ds" data-opt="ds"><span data-i18n="price.oDs">Design system complet</span></label>
+                <label class="eopt"><input type="checkbox" name="est-opt-seo" data-opt="seo"><span data-i18n="price.oSeo">SEO avancé &amp; performance</span></label>
+                <label class="eopt"><input type="checkbox" name="est-opt-api" data-opt="api"><span data-i18n="price.oApi">Intégrations API</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="est-field">
+              <legend data-i18n="price.qPace">Délai</legend>
+              <div class="est-chips">
+                <label class="echip"><input type="radio" name="est-pace" value="std" checked><span data-i18n="price.paceStd">Standard</span></label>
+                <label class="echip"><input type="radio" name="est-pace" value="rush"><span data-i18n="price.paceRush">Accéléré</span></label>
+              </div>
+            </fieldset>
           </div>
-          <ul class="eo-sum" id="est-summary"></ul>
-          <p class="eo-fine" data-i18n="price.estFine">Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.</p>
-          <a class="btn btn-primary" id="est-cta" href="#contact" data-i18n="price.estCta">Obtenir le prix ferme →</a>
+
+          <div class="est-out">
+            <span class="eo-k" data-i18n="price.estimate">Estimation</span>
+            <p class="eo-range" id="est-range" role="status" aria-live="polite">
+              <b id="est-lo">180 000</b><span class="eo-dash">–</span><b id="est-hi">420 000</b>
+              <span class="cur" data-i18n="price.cur">DA</span>
+            </p>
+            <p class="eo-time" role="status"><span id="est-weeks">3 –⁠ 7</span> <span data-i18n="price.weeks">semaines</span></p>
+            <!-- The estimate placed against the three packages on one price
+                 scale (logarithmic, so a 90 000 and a 1 200 000 DA range both
+                 read). Drawn from PRICE_MODEL by app.js 13b; decoration over the
+                 figures above, which the status line already announces. -->
+            <div class="esc" aria-hidden="true">
+              <div class="esc-trk"><span class="esc-band" data-tier="vitrine"></span><span class="esc-band" data-tier="surmesure"></span><span class="esc-band" data-tier="app"></span><span class="esc-bar"></span><span class="esc-cap"></span><span class="esc-cap"></span></div>
+              <div class="esc-nm"><span data-tier="vitrine" data-i18n="price.t1name">Essentiel</span><span data-tier="surmesure" data-i18n="price.t2name">Studio</span><span data-tier="app" data-i18n="price.t3name">Moteur</span></div>
+            </div>
+            <ul class="eo-sum" id="est-summary"></ul>
+            <p class="eo-fine" data-i18n="price.estFine">Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.</p>
+            <a class="btn btn-primary" id="est-cta" href="#contact" data-i18n="price.estCta">Obtenir le prix ferme →</a>
+          </div>
         </div>
       </div>
-    </div>
+      </div>
+    </details>
 
     <!-- Reference material: market comparison, billing models, cost drivers.
          Kept for whoever wants to check the numbers; folded so the section
-         reads tiers -> estimator and stops. -->
+         reads as the tiers and stops. -->
     <details class="capabilities price-more">
       <summary>
         <span data-i18n="price.moreSum">Comment on chiffre</span>

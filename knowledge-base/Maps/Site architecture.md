@@ -46,7 +46,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | Work | `#work` | Project cards, voices slot, then the planches banner to `scene/` (index.html › SELECTED WORK) |
 | Services | `#services` | Opens with the L'Aperçu card `#apercu` (index.html › SERVICES) |
 | Method | `#how` | (index.html › METHOD) |
-| Pricing | `#pricing` | Tiers, estimator, then the market comparison inside a disclosure (BRAND.md › Page structure and design system (home page)) |
+| Pricing | `#pricing` | Tiers and the maintenance line, then two disclosures: the estimator (folded on 2026-10-26, an owner decision) and the market comparison (BRAND.md › Page structure and design system (home page)) |
 | Founder and team | `#founder` | Links to `hub/` as "Portfolio personnel" (index.html › 1071) |
 | FAQ | `#faq` | (index.html › FAQ) |
 | Contact | `#contact` | Form, WhatsApp, email (index.html › CONTACT) |

@@ -1434,9 +1434,6 @@ html[dir="rtl"] .t-list li::before{transform:rotate(45deg) translateY(-1px)}
   background:var(--grad-noir);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 30px 70px -44px rgb(var(--shade) / calc(.9 * var(--shade-k)));
   margin-bottom:var(--s-8)}
 .est-head{padding:var(--s-5);border-bottom:1px solid var(--hairline)}
-.est-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(18px,2.2vw,24px);
-  letter-spacing:-.01em;color:var(--ice);margin-bottom:6px}
-html[dir="rtl"] .est-head h3{font-family:var(--font-ar-display)}
 .est-head p{color:var(--muted);font-size:14px;line-height:1.6;max-width:56em}
 .est-grid{display:grid;grid-template-columns:minmax(0,1fr)}
 .est-controls{padding:var(--s-5);display:grid;gap:var(--s-6)}
@@ -2279,7 +2276,7 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 .md-card{position:relative}
 .est-head,.mk-head{position:relative}
 .est-head .ai-corner,.mk-head .ai-corner{top:var(--s-5);inset-inline-end:var(--s-5)}
-.est-head h3,.mk-head h3,.est-head p,.mk-head p{padding-inline-end:44px}
+.mk-head h3,.est-head p,.mk-head p{padding-inline-end:44px}
 .md-card .ai-corner{top:var(--s-5);inset-inline-end:var(--s-5);width:24px;height:24px}
 .tier-pop .ai-corner{color:var(--crimson-text)}
 .ai-faq{width:24px;height:24px}
@@ -2477,7 +2474,7 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
 /* titles */
 .proj h3,.work-grid>.proj h3,.svc-row h3,.step h3,.steps .step h3,.cap h4,.md-card h4,
 .scene-banner b{font-size:var(--t-title);line-height:1.2;letter-spacing:-.01em}
-.preview h3,.tier h3,.fd-id h3,.est-head h3,.mk-head h3,
+.preview h3,.tier h3,.fd-id h3,.mk-head h3,
 .work-grid>.proj--wide h3{font-size:var(--t-feature);line-height:1.15;letter-spacing:-.015em}
 /* price figures cannot wrap ("1 200 000" is one unit), so they scale down to
    fit three tiers abreast on a tablet, currency included: at 2.2vw the "DA"
@@ -2550,7 +2547,12 @@ section.band::after,section.band+section.band::after{
 .md-tag{position:absolute;top:-10px;inset-inline-start:var(--s-5);margin:0}
 .price-more{margin-top:var(--s-7)}
 .price-more .pm-body{padding:0 var(--s-5) var(--s-5);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5)}
-.price-more .market,.price-more .models{margin:0}
+.price-more .market,.price-more .models,.price-est .estimator{margin:0}
+/* the folded estimator and "Comment on chiffre" stack as one pair under the
+   tiers; the estimator's title stays on one line beside its long hint */
+.price-est{margin-top:0}
+.price-est+.price-more{margin-top:var(--s-4)}
+.price-est>summary>span:first-child{flex:none}
 
 /* ---- method ---- */
 ol.steps{list-style:none;margin:0;padding:0}
@@ -2584,9 +2586,10 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
 }
 /* the estimate follows the controls down instead of leaving an empty column
    under its button. overflow:clip, not hidden: hidden makes the panel a
-   scroll container and pins the sticky column to it. */
+   scroll container and pins the sticky column to it. The same goes for the
+   disclosure that folds it (.capabilities clips with hidden). */
 @media (min-width:1100px){
-  .estimator{overflow:clip}
+  .estimator,.price-est{overflow:clip}
   .est-controls{border-inline-end:1px solid var(--hairline)}
   .est-out{position:sticky;top:96px;align-self:start;border-inline-start:0}
 }

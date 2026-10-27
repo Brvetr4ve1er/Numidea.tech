@@ -15,7 +15,7 @@ The site has no framework and no runtime dependency, and the only deploy-time "b
 | `npm run build` | `build-fr`, `build-scene`, `build-voices`, `build-legal`, `build-sitemap`, then `build-csp` last | Regenerates the French baked into `index.html`, `scene/`, the voices region, `legal/` (only when complete) and `sitemap.xml`, then the Content-Security-Policy meta of the hand-written pages | Node only |
 | `npm run check` | `check.mjs`, then `themes-check.mjs` | Repository invariants and the theme contract | Node only, no dependencies |
 | `npm run validate` | `validate.mjs` | html-validate on every page | `npm install` |
-| `npm run audit` | `audit.mjs` | Browser audit, 76 runs: desktop LCP over 1.5 s fails, every CSP violation fails, the WorkspaceHQ embeds and the booted console, 404 two folders down, the first screen in fallback type, then a throttled phone that only reports until `AUDIT_PHONE_STRICT=1` | Playwright, Chromium, axe-core |
+| `npm run audit` | `audit.mjs` | Browser audit, 78 runs: desktop LCP over 1.5 s fails, every CSP violation fails, the WorkspaceHQ embeds and the booted console, 404 two folders down, the first screen in fallback type, then a throttled phone that only reports until `AUDIT_PHONE_STRICT=1` | Playwright, Chromium, axe-core |
 | `npm run sweep` | `sweep.mjs` | Contrast measured on the painted pixels | Playwright, Chromium, sharp |
 | `npm run vbugs` | `vbugs.mjs` | Layout scanner with an allowlist | Playwright, Chromium |
 | `npm run keys` | `keys.mjs` | Keyboard paths, focus rings, dialogs, the contact form, reduced motion, right-to-left; 39 runs | Playwright, Chromium |

@@ -167,6 +167,15 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   (`footer.studioH`, `footer.contactH`, `footer.founderH`), the signoff
   (`footer.signoff`) and the WorkspaceHQ cartridge (`whq.kick`, `whq.sub`)
   left the page and need no review.
+- `price.estHint`, the new line under «قدّر مشروعك» now that the
+  estimator is folded under the tiers (its title, `price.estH`, is
+  unchanged): «الأتمتة، المتجر الإلكتروني، الهوية البصرية، الخيارات،
+  والتنفيذ المستعجل: ما لا تُسعّره الباقات.» (French: "Automatisation,
+  e-commerce, identité visuelle, options et délai accéléré : ce que les
+  formules ne chiffrent pas."). The items repeat the estimator's own labels
+  (`price.tyAuto`, `price.tyShop`, `price.tyBrand`, `price.qOpts`), except
+  «التنفيذ المستعجل» for `price.paceRush` «مستعجل»; is «تُسعّره» right
+  for "price", as in `price.moreSum` «كيف نسعّر»?
 
 Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
 project `ar` texts in `scripts/scene-data.mjs`, and the `lang="ar"` lines in

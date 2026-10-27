@@ -960,7 +960,7 @@ Seven commands, all green before a push:
   meta, asset byte budgets, SEO and structured data, blocks 16 to 18) plus
   `scripts/themes-check.mjs` (the theme contract).
 - `npm run validate` — html-validate on every page in `scripts/site.mjs`.
-- `npm run audit` — the browser audit, 76 runs on desktop, phone, tablet and
+- `npm run audit` — the browser audit, 78 runs on desktop, phone, tablet and
   landscape: axe, CLS, overflow, reveals, tap targets, images, animations, JS
   errors, failed and third-party requests, and every Content-Security-Policy
   violation in every frame. It includes the WorkspaceHQ embeds on their own,
@@ -1585,8 +1585,18 @@ contact. Each idea is said once:
   footer columns did before (see hub/). The signoff ("avec du café noir et du
   TypeScript") went with the Studio column.
 - The process is the four-step method. There is no second process in pricing.
-- Pricing reads tiers, then the estimator, and stops. The market comparison,
-  billing models and cost drivers sit in the "Comment on chiffre" disclosure.
+- Pricing reads the tiers and the maintenance line, and stops. Two folded
+  bars follow them: the estimator ("Estimez votre projet"), whose summary
+  names what the tiers do not price (automation, e-commerce, visual
+  identity, options, the accelerated pace), then "Comment on chiffre" (the
+  market comparison, billing models and cost drivers). The estimator was
+  folded on 2026-10-26 (owner decision): open, it took 2.1 phone screens,
+  and at its default it quoted the Studio card again (180 000–420 000 DA
+  over 3–7 weeks, "les mêmes chiffres"). It stays on the page because it is
+  the only place automation is priced, the only open price for e-commerce
+  and identity, and the only one for the options and the 25% rush; its
+  button still writes the scope into the form. The summary is its title,
+  so the panel has no heading of its own.
 - Work ends on one call to action, the planches banner. The project explorer
   modal was removed in the 2026-10 cleanup; an old
   `#/work/<slug>` link now redirects to the matching project sheet,
@@ -2014,9 +2024,9 @@ change that.
 
 The gates now repeat most of this on every run, each failing on any
 violation in any frame: `npm run audit` (every page loaded and scrolled, the
-CV panel, the phone menu, the booted console, 404 two folders down here and
-on an emulated Pages, the throttled phone's FAQ, estimator, currency and
-language switches) and `npm run keys` (the theme menu, the form through its
+CV panel, the folded estimator opened, the phone menu, the booted console,
+404 two folders down here and on an emulated Pages, the throttled phone's
+FAQ, estimator (opened, then its slider), currency and language switches) and `npm run keys` (the theme menu, the form through its
 `mailto:` hand-off, the lead store's POST with the switch on in a rebuilt
 copy, the dialogs, the embeds taking focus).
 

@@ -2,17 +2,18 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 76 runs over every page (site.mjs PAGES): index.html in all six themes x
+ * 78 runs over every page (site.mjs PAGES): index.html in all six themes x
  * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; scene/ in each
  * language on desktop and phone; 404 in two themes in Arabic; hub/ in both of
  * its palettes; tablet (768x1024, 1024x768) and short landscape (844x390);
- * one run with the phone menu open and two with the CV panel open (axe reads
- * what it shows); the three WorkspaceHQ embeds on their own, and one run that
- * lets the trailer and the walkthrough load and play and boots the live
- * console; the legal preview when it exists. Each run scrolls the whole page,
- * then checks: layout shift (CLS > 0.01), axe (all default rules),
- * horizontal overflow (honouring clipping ancestors), reveals that never
- * fired, tap targets under 24px, broken images, infinite animations, JS
+ * one run with the phone menu open, two with the CV panel open and two with
+ * the folded estimator open (axe reads what each shows); the three
+ * WorkspaceHQ embeds on their own, and one run that lets the trailer and the
+ * walkthrough load and play and boots the live console; the legal preview
+ * when it exists. Each run scrolls the whole page, then checks: layout
+ * shift (CLS > 0.01), axe (all default rules), horizontal overflow
+ * (honouring clipping ancestors), reveals that never fired, tap targets
+ * under 24px, broken images, infinite animations, JS
  * errors, failed requests, any third-party request, and every
  * Content-Security-Policy violation (securitypolicyviolation events, counted
  * in every frame). Desktop page runs fail when LCP, read at load before
@@ -37,10 +38,11 @@
  * mobile profile (412x823 at 1.75x, CPU 4x, Slow 4G as DevTools applies it:
  * 562.5 ms per request, 1.44 Mbit/s down), cold cache. Its targets: LCP at
  * most 2.5 s, the long tasks of the load adding up to at most 300 ms, and the
- * slowest scripted interaction (menu open and close, FAQ, estimator slider,
- * currency, language switch) at most 200 ms from input to the next paint,
- * read from the Event Timing API (the INP proxy). The local server gzips text
- * the way the hosts do, so transfer times match.
+ * slowest scripted interaction (menu open and close, FAQ, opening the
+ * folded estimator, its slider, currency, language switch) at most 200 ms
+ * from input to the next paint, read from the Event Timing API (the INP
+ * proxy). The local server gzips text the way the hosts do, so transfer
+ * times match.
  *
  * The home page does not meet those targets yet (measured 2026-10-24 and 25
  * on a 4-CPU machine: LCP 2.8-3.7 s, long tasks 1.3-3.6 s, language switch
@@ -198,6 +200,12 @@ const openCv=async p=>{
   await p.click('#cv-toggle');await p.waitForTimeout(800);
   return p.evaluate(()=>{const b=document.querySelector('#cv-toggle'),c=document.querySelector('#cv-panel');
     return b.getAttribute('aria-expanded')==='true'&&!c.inert&&c.getBoundingClientRect().height>100?[]:['the CV panel did not open']});
+};
+// the estimator open (it is folded under the tiers), so axe, the overflow
+// scan and the tap targets read its controls
+const openEstimator=async p=>{
+  await p.click('.price-est>summary');await p.waitForTimeout(500);
+  return p.evaluate(()=>document.querySelector('.price-est').open&&document.querySelector('#est-size').getBoundingClientRect().width>0?[]:['the estimator did not open']);
 };
 // WorkspaceHQ: the trailer and the walkthrough load (they are lazy) and play,
 // then the live console boots; every frame's errors and CSP violations count
@@ -362,6 +370,8 @@ const phone=async(label,path,{lang,to},again=false)=>{
     await time('menu close',()=>p.tap('.mobile-menu .close'),()=>!document.querySelector('.mobile-menu').classList.contains('open'));
     await settle('.faq-item summary');
     await time('FAQ',()=>p.locator('.faq-item summary').first().tap(),()=>document.querySelector('.faq-item').open);
+    await settle('.price-est>summary');
+    await time('estimator open',()=>p.locator('.price-est>summary').tap(),()=>document.querySelector('.price-est').open);
     await settle('#est-size');
     const v0=await p.inputValue('#est-size');
     await time('estimator',async()=>{const r=await p.locator('#est-size').boundingBox();await p.touchscreen.tap(r.x+r.width*0.8,r.y+r.height/2)},
@@ -422,6 +432,7 @@ if(LEGAL_PUBLISHED) await run('legal','/legal/index.html',D);
 for(const t of THEMES)
   for(const l of ['fr','en','ar']) await run(`index ${t}/${l}`,'/index.html',{...D,theme:t,lang:l});
 await run('index cv open fr','/index.html',{lang:'fr',act:openCv});
+await run('index estimator open fr','/index.html',{lang:'fr',act:openEstimator});
 console.log('— phone 390×844 —');
 await run('hub m','/hub/index.html',{w:390,h:844});
 await run('hub light m','/hub/index.html',{w:390,h:844,init:{'void-theme':'light'}});
@@ -433,6 +444,7 @@ for(const t of THEMES)
   for(const l of ['fr','ar']) await run(`index ${t}/${l} m`,'/index.html',{theme:t,lang:l,w:390,h:844});
 await run('index menu open ar m','/index.html',{lang:'ar',w:390,h:844,click:'.menu-toggle'});
 await run('index cv open ar m','/index.html',{lang:'ar',w:390,h:844,act:openCv});
+await run('index estimator open ar m','/index.html',{lang:'ar',w:390,h:844,act:openEstimator});
 console.log('— tablet and landscape —');
 await run('index arcanum/fr 768','/index.html',{theme:'arcanum',lang:'fr',w:768,h:1024,touch:true});
 await run('index daylight/ar 768','/index.html',{theme:'daylight',lang:'ar',w:768,h:1024,touch:true});
