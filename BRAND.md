@@ -1457,13 +1457,16 @@ the cursor glow's rAF stops once it catches the pointer, and reduced motion
 turns all of it off.
 
 **The cartridge.** WorkspaceHQ is the founder's favourite build, so it is
-linked as a little NES cartridge with Bit on the label: in the hub hero, in the
-hub's Dev links, and in the Numidea footer (i18n keys `whq.kick` / `whq.sub`).
-It wears WorkspaceHQ's palette in every theme, and only moves on hover/focus
-(Bit hops and blinks, +1 XP rises, PRESS START flashes) — still at rest, so
-those pages keep their no-endless-animation rule. The cut corner is drawn with
-`::after` in the page colour (`--whq-page`), not `clip-path`, which would clip
-the hover ring.
+linked as a little NES cartridge with Bit on the label in the hub hero, and
+as a link in the hub's Dev links. It wears WorkspaceHQ's palette in every
+theme, and only moves on hover/focus (Bit hops and blinks, +1 XP rises, PRESS
+START flashes) — still at rest, so the hub keeps its no-endless-animation
+rule. The cut corner is drawn with `::after` in the page colour
+(`--whq-page`), not `clip-path`, which would clip the hover ring.
+The Numidea footer carried a second cartridge until 2026-10-26 (owner
+decision): it made every visitor of the home page download Press Start 2P
+(12,512 B) for a developer tool on an English-only page. WorkspaceHQ stays
+reachable from the hub and from project sheet 04.
 
 ### Audit pass after launch
 
@@ -1503,12 +1506,13 @@ arcanum/fr, engineering/en and daylight/ar:
 - **Scene banner** art was three blank plates that read as a missing image;
   they now carry real client screenshots.
 - **Footer WhatsApp** sat 10px low (flex-centred in a 39px row while its
-  siblings sat at the top).
+  siblings sat at the top). The footer's contact column left the page on
+  2026-10-26 (owner decision).
 - **Phones (<600px):** work cards showed a narrow slice of each 16:10
   screenshot, cutting every headline mid-word; they now stack with the shot
   at its real shape. The "see every capability" summary drops its hint to its
   own line instead of squeezing the label into three. The WorkspaceHQ
-  cartridge gets air above it.
+  cartridge got air above it (it left the footer on 2026-10-26).
 
 `scripts/vbugs.mjs` (`npm run vbugs`, part of `npm run verify`) scans 7 widths
 x 4 theme/lang pairs for overlapping text, text escaping its card, clipped
@@ -1563,6 +1567,14 @@ contact. Each idea is said once:
   2026-10-26 (owner decision). Each item of the line is held together by
   no-break spaces, so a narrow screen breaks it only after a separator.
 - The free demo (L'Aperçu) is the services lead card and step 3 of the method.
+- The footer is the logo, the section links, the tagline "Enraciné en
+  Numidie · bâti sur des idées", ©, the legal slot, the language switch and
+  "Haut de page". Its Studio, Contact and Le fondateur columns repeated
+  #contact (the email, WhatsApp, the reply time, the town) and the founder
+  card's three profiles, and the WorkspaceHQ cartridge loaded its own pixel
+  font on every visit; they went on 2026-10-26 (owner decision), as the hub's
+  footer columns did before (see hub/). The signoff ("avec du café noir et du
+  TypeScript") went with the Studio column.
 - The process is the four-step method. There is no second process in pricing.
 - Pricing reads tiers, then the estimator, and stops. The market comparison,
   billing models and cost drivers sit in the "Comment on chiffre" disclosure.

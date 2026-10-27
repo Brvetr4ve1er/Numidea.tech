@@ -157,6 +157,10 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   `contact.kicker` «08 — تواصل», `pl.light` «لوحة 4 — رأس كاربون · بجاية»,
   `pl.dunes` «لوحة 5 — العرق الكبير». The section's own strings (`stack.*`,
   `pl.strata`) are gone and need no review.
+- nothing new from the footer trim: its column headings
+  (`footer.studioH`, `footer.contactH`, `footer.founderH`), the signoff
+  (`footer.signoff`) and the WorkspaceHQ cartridge (`whq.kick`, `whq.sub`)
+  left the page and need no review.
 
 Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
 project `ar` texts in `scripts/scene-data.mjs`, and the `lang="ar"` lines in

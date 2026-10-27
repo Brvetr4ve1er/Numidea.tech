@@ -50,7 +50,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | Founder and team | `#founder` | Links to `hub/` as "Portfolio personnel" (index.html › 1071) |
 | FAQ | `#faq` | (index.html › FAQ) |
 | Contact | `#contact` | Form, WhatsApp, email (index.html › CONTACT) |
-| [[Footer]] | — | Studio, contact and founder columns, the WorkspaceHQ cartridge, legal markers, a third language switch (index.html › FOOTER) |
+| [[Footer]] | — | Logo, section links, the tagline, ©, legal markers, a third language switch and "Haut de page"; its Studio, Contact and founder columns and the WorkspaceHQ cartridge went on 2026-10-26, an owner decision (index.html › FOOTER; BRAND.md › Page structure and design system (home page)) |
 | Phone contact bar | — | Phones only; steps aside near `#contact` and the footer (assets/app.js › phone contact bar) |
 
 - The order and the "each idea is said once" rule are set in BRAND.md (BRAND.md › Page structure and design system (home page)).

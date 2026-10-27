@@ -18,7 +18,7 @@ Two published pages sit beside the studio's landing page with their own CSS and 
 | Themes | Its own dark and light, stored under `void-theme`; anything else reads as dark (hub/index.html › 27) | One look: the WorkspaceHQ design system's ARCADE tokens (workspacehq/style.css › 1) |
 | Fonts | Syne and Space Mono, self-hosted through `assets/fonts-hub.css` (hub/index.html › 32) | Press Start 2P and VT323, self-hosted in `workspacehq/fonts/` (workspacehq/style.css › 11) |
 | Scripts | `hub/app.js`, `assets/carry.js` (hub/index.html › 499) | `workspacehq/app.js`, `assets/carry.js` (workspacehq/index.html › 334) |
-| Reached from | The home page's founder section, "Portfolio personnel ↗" (index.html › 1071); the WorkspaceHQ footer (workspacehq/index.html › 328) | The cartridge in the home footer and in the hub (index.html › 1288; hub/index.html › 81, 432); project sheet 04 (scripts/scene-data.mjs › PROJECTS) |
+| Reached from | The home page's founder section, "Portfolio personnel ↗" (index.html › 1071); the WorkspaceHQ footer (workspacehq/index.html › 328) | The cartridge in the hub hero and the hub's Dev links (hub/index.html › 81, 432); project sheet 04 (scripts/scene-data.mjs › PROJECTS). The home footer's cartridge went on 2026-10-26, an owner decision (BRAND.md › workspacehq/, The cartridge) |
 | Sitemap | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) |
 
 Both pages load `assets/carry.js`, so a link back to the home page keeps any `ref`, `utm_*`, `fbclid`, `gclid` or `lang` parameter the visitor arrived with (assets/carry.js › 1).
@@ -95,9 +95,9 @@ Communities and wiki: [[_COMMUNITY_WorkspaceHQ Product]], [[_COMMUNITY_Workspace
 
 ## The cartridge
 
-- WorkspaceHQ is the founder's favourite build, so it is linked as a small NES cartridge with Bit on the label: in the hub hero, in the hub's Dev links and in the Numidea footer (BRAND.md › workspacehq/, The cartridge).
-- On the home page its text is translated through the keys `whq.kick` and `whq.sub` (assets/app.js › i18n dictionary).
-- It wears WorkspaceHQ's palette in every theme and moves only on hover or focus, so the host pages keep their no-endless-animation rule; the cut corner is drawn with `::after` in `--whq-page` rather than `clip-path` (BRAND.md › workspacehq/; assets/styles.css › 2383).
+- WorkspaceHQ is the founder's favourite build, so it is linked as a small NES cartridge with Bit on the label in the hub hero, and as a link in the hub's Dev links (BRAND.md › workspacehq/, The cartridge).
+- The Numidea footer carried a second cartridge until 2026-10-26, an owner decision: it made every visitor of the home page download Press Start 2P (12,512 B) for an English-only developer tool. Its keys `whq.kick` and `whq.sub` and its CSS left `assets/app.js` and `assets/styles.css` with it (BRAND.md › workspacehq/, The cartridge).
+- It wears WorkspaceHQ's palette in every theme and moves only on hover or focus, so the hub keeps its no-endless-animation rule; the cut corner is drawn with `::after` in `--whq-page` rather than `clip-path` (BRAND.md › workspacehq/; hub/style.css › 623).
 
 Graph: [[WorkspaceHQ NES cartridge link]].
 
