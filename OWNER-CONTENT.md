@@ -157,6 +157,12 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   `contact.kicker` «08 — تواصل», `pl.light` «لوحة 4 — رأس كاربون · بجاية»,
   `pl.dunes` «لوحة 5 — العرق الكبير». The section's own strings (`stack.*`,
   `pl.strata`) are gone and need no review.
+- `hero.cta2`, the hero's second button, which now opens WhatsApp with
+  the Aperçu message (`prev.waText`, unchanged) instead of leading to the
+  projects: «راسلنا عبر واتساب» (French: "Écrire sur WhatsApp"; English:
+  "Chat on WhatsApp"). It replaced «شاهِد أعمالنا». The verb follows
+  `form.successAlt` («راسلنا مباشرة»); is «عبر واتساب» or «على واتساب»
+  more natural on a button?
 - nothing new from the footer trim: its column headings
   (`footer.studioH`, `footer.contactH`, `footer.founderH`), the signoff
   (`footer.signoff`) and the WorkspaceHQ cartridge (`whq.kick`, `whq.sub`)

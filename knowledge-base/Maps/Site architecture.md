@@ -41,7 +41,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | Skip link, progress bar | `#main` | (index.html › 216) |
 | [[Navbar]] | — | Seven section links, theme menu, FR / EN / ع buttons, menu toggle (index.html › NAV) |
 | [[Mobile Overlay Menu]] | `#mobile-menu` | A modal dialog: everything behind it is inert and Tab stays inside (assets/app.js › mobile menu) |
-| Hero | — | Headline, the free Aperçu call to action and the rotating [[Hero plate (one live site at a time)]] (index.html › HERO) |
+| Hero | — | Headline, the free Aperçu call to action, a WhatsApp button pre-filled with the Aperçu message (it replaced "Voir nos réalisations" on 2026-10-26, an owner decision) and the rotating [[Hero plate (one live site at a time)]] (index.html › HERO; BRAND.md › Page structure and design system (home page)) |
 | Proof | — | One trust line and the client logo strip (index.html › PROOF) |
 | Work | `#work` | Project cards, voices slot, then the planches banner to `scene/` (index.html › SELECTED WORK) |
 | Services | `#services` | Opens with the L'Aperçu card `#apercu` (index.html › SERVICES) |

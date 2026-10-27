@@ -101,7 +101,7 @@ After launch, each package includes 1, 3 or 6 months of support, and maintenance
 
 - The contact form opens the visitor's mail app with the message ready, and the page says the site does not keep the message (index.html › #contact, form.note; [[Contact Form (mailto handoff)]]).
 - Where a lead came from (`?ref=`, `utm_*`, presence of a Meta or Google click id) rides inside the email the visitor sends; no cookies, no analytics (README.md › Features; [[Lead source without tracking]]).
-- WhatsApp is the second channel, in the contact section and a phone bar (index.html › #contact, .m-contact; [[Studio contact (Gmail, WhatsApp)]]).
+- WhatsApp is the second channel: the hero's second button, pre-filled with the Aperçu message since 2026-10-26 (an owner decision), the contact section and a phone bar (index.html › .hero, #contact, .m-contact; assets/app.js › 13 · WhatsApp; [[Studio contact (Gmail, WhatsApp)]]).
 - The Supabase lead store is off on purpose (OWNER-CONTENT.md › 11).
 
 ## Graph entry points

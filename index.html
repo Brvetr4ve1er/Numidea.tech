@@ -304,7 +304,14 @@
         <p class="lede" data-i18n="hero.lede">Entreprise immatriculée ? Avant tout paiement, on construit la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés (4 Aperçus par mois au maximum, tous clients confondus). Aux commandes : un fondateur designer-développeur et trois spécialistes, du back-end au dernier pixel. Après la mise en ligne, on assure le suivi.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#apercu" data-i18n="hero.cta1">Demander mon Aperçu gratuit →</a>
-          <a class="btn btn-teal" href="#work" data-i18n="hero.cta2">Voir nos réalisations</a>
+          <!-- WhatsApp with the Aperçu's own message, so a phone can write from
+               the first screen (owner decision, 2026-10-26). Scripts build its
+               link (app.js 13), so it is .js-only: with them off it would be a
+               dead button on the first screen. -->
+          <a class="btn btn-teal wa-link js-only" data-wa-pending aria-disabled="true" data-wa-text="prev.waText">
+            <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+            <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
+          </a>
         </div>
       </div>
       <!-- THE PLATE — four live client sites and the Glaive portfolio demo, one at a time, at a size you

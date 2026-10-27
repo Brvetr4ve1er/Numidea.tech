@@ -1554,6 +1554,15 @@ on purpose (decorative clipped glows, for instance) must be listed in
 
 **Order:** hero, proof, work, services, method, pricing, team, FAQ,
 contact. Each idea is said once:
+- The hero's two buttons are the Aperçu (to #apercu) and WhatsApp, which
+  opens a chat pre-filled with the Aperçu's own message (`prev.waText`),
+  beside the lede that states its terms. WhatsApp replaced "Voir nos
+  réalisations" on 2026-10-26 (owner decision): on a phone the first screen
+  offered no way to write, the first wa.me link sat 8.5 screens down and the
+  phone bar only shows past 1.5 screens. The plate beside the copy still
+  shows the client sites, and the navbar leads to #work. Scripts build the
+  link (app.js §13), so the button is `.js-only`: with them off it would be
+  a dead button on the first screen.
 - There is no tools section. "Nos outils" (20 tools in five groups, with
   the strata plate behind it) left the page on 2026-10-26 (owner decision): 8 of its
   20 tools repeated the service cards' tags, four were not shown by any
