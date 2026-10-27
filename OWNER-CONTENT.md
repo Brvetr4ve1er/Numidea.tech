@@ -176,6 +176,32 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   (`price.tyAuto`, `price.tyShop`, `price.tyBrand`, `price.qOpts`), except
   «التنفيذ المستعجل» for `price.paceRush` «مستعجل»; is «تُسعّره» right
   for "price", as in `price.moreSum` «كيف نسعّر»?
+- the path in the Aperçu card (`prev.tl1`–`prev.tl5`), which now tells the
+  method's steps too, since the method section («أربع خطوات. بلا مفاجآت.»)
+  left the page. Read as one list under «قبل أيّ دفع، نبني…»:
+  - moved word for word from the method (`price.ob1h`, `price.ob1p`,
+    `price.ob2h`, `price.ob2p`): `prev.tl1` «تصف المشروع», `prev.tl1p`
+    «دقيقتان، كتابةً أو مشافهة. بالفرنسية أو الإنجليزية أو العربية.»,
+    `prev.tl2` «نعود إليك خلال 24 ساعة عمل», `prev.tl2p` «بأسئلتنا أولاً، ثم
+    بنطاق عمل مكتوب وسعر نهائي بمجرّد أن نتّفق معاً على هذا النطاق. ليس سعراً
+    تقريبياً، بل رقمٌ واحد.»;
+  - renumbered, words unchanged: `prev.tl3` «نبني صفحتك الرئيسية»,
+    `prev.tl3d` «5 أيام عمل», `prev.tl4` «نعرضها عليك», `prev.tl4d` «في
+    مكالمة فيديو من 30 دقيقة», `prev.tl5` «أنت تقرّر», `prev.tl5d` «المدفوع
+    حتى الآن:»; «ترسل إلينا محتواك» is gone (the brief says «بمحتواك أنت»);
+  - new, the second half of the method's last step made to stand alone:
+    `prev.tl5p` «إن كان الجواب نعم، فالصفحة الرئيسية جاهزة بالفعل: ننتقل
+    مباشرة إلى بقية العمل.» (French: "Si c'est oui, la page d'accueil est
+    déjà faite : on enchaîne sur le reste.").
+- `faq2.a` now ends with a link to the card instead of restating the offer:
+  «انظر أيضاً <a>المعاينة</a>.» (French: "Voir aussi L'Aperçu."; English:
+  "See also the Preview."). «انظر أيضاً» or «اطّلع أيضاً على»?
+- `faq6.a` loses its last sentence and ends at «… من التصميم إلى النشر.»
+- renumbered again when the method section left the page; only the number
+  changed in each: `price.kicker` «04 — الأسعار», `founder.kicker` «05 —
+  الفريق والمؤسّس», `faq.kicker` «06 — الأسئلة», `contact.kicker` «07 —
+  تواصل». The section's own strings (`how.*`, `price.ob*`) are gone and need
+  no review; `nav.about` «المنهج» is unchanged and now leads to the card.
 
 Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
 project `ar` texts in `scripts/scene-data.mjs`, and the `lang="ar"` lines in
@@ -245,8 +271,9 @@ Confirm it, or say what is true and the copy changes in all three languages.
   delivered client site is served from its own domain yet (see 9).
 - **AlmaFlowClim labelled "Industrie"**: its own site presents a residential
   heating, air-conditioning and plumbing business.
-- **"Si c'est oui, on est déjà à mi-chemin"** (method, step 4) after a
-  one-page Aperçu, for projects of up to 16 weeks.
+- **"Si c'est oui, on est déjà à mi-chemin"** (the last step of the path in
+  the Aperçu card; until 2026-10-26, step 4 of the method) after a one-page
+  Aperçu, for projects of up to 16 weeks.
 - **hub/: "VOIDSPLUNKER.std is an agency of one"** while the home page
   presents a studio of four specialists.
 

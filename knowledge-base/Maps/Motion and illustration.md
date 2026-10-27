@@ -58,7 +58,7 @@ Source: BRAND.md › Performance — what made scrolling slow.
 
 - Monochrome line art, white on black, applied as CSS luminance masks over `currentColor` and never as `<img>`, so one file re-tints itself in all six palettes (BRAND.md › Generated illustrations).
 - BRAND.md counts 13 such rasters (BRAND.md › Generated illustrations); `assets/illus/` today holds ten PNG figures for the FAQ and the hub, eleven WebP masks for the atlas plates, the lantern and the workbench, and three `px-*` WebP textures (assets/illus/).
-- Below roughly 90px they collapse into smudges, so the FAQ figure sits in the open answer at 92px and the method tiles put it above the text at 124px (BRAND.md › Generated illustrations).
+- Below roughly 90px they collapse into smudges, so the FAQ figure sits in the open answer at 92px; the method tiles once put it above the text at 124px, before the method section left the page (BRAND.md › Generated illustrations).
 - Check polarity after every batch: one render came back inverted and masked to a solid block (BRAND.md › Generated illustrations).
 - Every figure sits in a fixed-size box, so measured layout shift stays 0 on index; they are `aria-hidden`, and print drops them (BRAND.md › Generated illustrations).
 - A harness that checks masks must serve over HTTP: `file://` blocks masks without a console error (BRAND.md › Two traps this cost time on).

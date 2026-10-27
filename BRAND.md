@@ -701,11 +701,11 @@ of the screen as empty margin**; it is now 24%. The cap stays, though — past
 about 1600px a text column stops being readable, so wide screens get margin by
 intent rather than by neglect.
 
-Content spans worth knowing: `.steps` runs three abreast with the rail turned
-horizontal (the node sits ABOVE its copy, or the rail strikes through the
-titles); `.faq-list` runs two columns; `.preview` splits identity-left /
-argument-right so the signature card doesn't repeat the page's own mistake at
-card scale.
+Content spans worth knowing: `.faq-list` runs two columns; `.preview` splits
+identity-left / argument-right so the signature card doesn't repeat the page's
+own mistake at card scale, and the Aperçu's path runs under both halves as a
+row of its own, five steps abreast with the line horizontal (the marker sits
+ABOVE its copy, or the line strikes through the titles).
 
 ## The hero as a drafting sheet
 
@@ -818,8 +818,9 @@ placements were built and torn out again before this landed:
   60px, which also gave that flat 18-tile list the grouping its source
   comments had always described.
 - `#how` step tiles beside the copy (86px) — legible but cramped at the 3-up
-  breakpoint. The tile now sits *above* the text there via
-  `grid-template-areas`, at 124px.
+  breakpoint. The tile then sat *above* the text there via
+  `grid-template-areas`, at 124px. (The method section itself left the page
+  on 2026-10-26; its steps are told in the Aperçu card.)
 
 Regenerate rather than shrink-to-fit: `faq3`, `hub-design`, `hub-dev` and
 `hub-studio` were re-prompted for "large simple readable silhouette" after
@@ -925,8 +926,8 @@ none of them. It self-hosts, covers all six themes × FR/AR plus hub/, scene/
 and 404, and exits non-zero on any failure.
 
 Visible text counts whatever its accessibility-tree state. The pictures
-(charts, the Aperçu timeline, the estimator) are `aria-hidden` beside their
-text equivalents, but their labels are still read by eye, so they must meet
+(charts, the estimator) are `aria-hidden` beside their text equivalents, but
+their labels are still read by eye, so they must meet
 4.5:1 like any other text; until r3 the sweep reported them as notes and
 could not fail on them. Only an element marked `data-decorative` is exempt.
 Pages render with reduced motion, so a picture app.js would hold back for
@@ -1552,8 +1553,8 @@ on purpose (decorative clipped glows, for instance) must be listed in
 
 ## Page structure and design system (home page)
 
-**Order:** hero, proof, work, services, method, pricing, team, FAQ,
-contact. Each idea is said once:
+**Order:** hero, proof, work, services, pricing, team, FAQ, contact. Each
+idea is said once:
 - The hero's two buttons are the Aperçu (to #apercu) and WhatsApp, which
   opens a chat pre-filled with the Aperçu's own message (`prev.waText`),
   beside the lede that states its terms. WhatsApp replaced "Voir nos
@@ -1575,7 +1576,23 @@ contact. Each idea is said once:
   repeated the hero's title block and the line under them; they went on
   2026-10-26 (owner decision). Each item of the line is held together by
   no-break spaces, so a narrow screen breaks it only after a separator.
-- The free demo (L'Aperçu) is the services lead card and step 3 of the method.
+- The free demo (L'Aperçu) is the services lead card, and the card tells the
+  path once, as a visible list (`prev.tl1`–`prev.tl5`): you describe the
+  project (two minutes, in French, English or Arabic); we reply within 24
+  working hours (questions, then a written scope and a firm price, not a
+  range); we build the homepage in 5 working days; the 30-minute call; you
+  decide, with 0 DA paid, and on a yes the homepage is already done. The
+  method section ("Quatre étapes. Zéro surprise.") told it a second time
+  with its animated rail, and restated the terms; it left the page on
+  2026-10-26 (owner decision), since on a phone a reader met the offer and
+  its conditions four times before the first price. The offer is stated
+  with its conditions where it is promised, in the hero lede and the card
+  (`prev.terms`); FAQ 2 points to the card ("Voir aussi L'Aperçu") and FAQ 6
+  no longer restates it. The three "Méthode" links (navbar, phone menu,
+  footer) land on the card, and the scroll-spy marks "Méthode" only while
+  the card is being read, then Services again. "Décrire mon projet" went
+  with the section: the card's button and the hero lead to the form. The
+  kickers after it moved up (04 Tarifs, 05 Équipe, 06 FAQ, 07 Contact).
 - The footer is the logo, the section links, the tagline "Enraciné en
   Numidie · bâti sur des idées", ©, the legal slot, the language switch and
   "Haut de page". Its Studio, Contact and Le fondateur columns repeated
@@ -1584,7 +1601,8 @@ contact. Each idea is said once:
   font on every visit; they went on 2026-10-26 (owner decision), as the hub's
   footer columns did before (see hub/). The signoff ("avec du café noir et du
   TypeScript") went with the Studio column.
-- The process is the four-step method. There is no second process in pricing.
+- The process is told once, in the Aperçu card. There is no second process
+  in pricing or anywhere else.
 - Pricing reads the tiers and the maintenance line, and stops. Two folded
   bars follow them: the estimator ("Estimez votre projet"), whose summary
   names what the tiers do not price (automation, e-commerce, visual
@@ -2046,13 +2064,15 @@ A blocked request also shows as a failed request (`csp`).
 
 ## Visualisations (r3/c)
 
-Five pictures, each of figures the page already states, each beside its text
-equivalent (so the picture itself is `aria-hidden`):
+Four, each of figures the page already states. Three are pictures beside
+their text equivalent (so the picture itself is `aria-hidden`); the Aperçu's
+path is the text itself, a visible list whose marks are drawn beside its
+words (until 2026-10-26 it drew `prev.brief` and was `aria-hidden`, and the
+method section had a rail of its own that grew node to node):
 
 | Picture | Where | Drawn from | Text equivalent |
 |---|---|---|---|
-| The section's own rail grows node to node, ending as the static rail | `#how` | the four steps | the steps |
-| Send → 5 working days → call → decide, `0 DA` paid | `#apercu` | `prev.brief`'s terms | `prev.brief` |
+| Describe → reply within 24 working hours → 5 working days → call → decide, `0 DA` paid | `#apercu` | the path's own steps (`prev.tl1`–`prev.tl5`) | itself (a visible `<ol>`; only its marks draw in) |
 | The delivery window, shortest to longest, on one 0–16-week ruler with both ends labelled | each tier card | `PRICE_MODEL.weeks` | `.t-time` |
 | Estimate as a dimension line over the three packages | estimator | `ESTIMATE.quote`, `PRICE_MODEL.base` | the status line |
 | Every range on one price scale | `#market` | `MARKET`, `nlRange`, `FX` | the table |
@@ -2066,12 +2086,12 @@ equivalent (so the picture itself is `aria-hidden`):
 - **The bars never move with the currency.** Converting is a constant factor,
   which on a log scale only slides the tick labels.
 - **The drawn state is the default.** app.js adds `.vz-arm` to hold a picture
-  back and `.vz-go` / `.vz-lit` (the rail: `--rail`) to play it, only when motion is
+  back and `.vz-go` to play it, only when motion is
   allowed and the picture is not already on screen; reduced motion and
   scripts-off get the finished picture at once. Entrance only, started by
   IntersectionObserver, on transform and opacity: no scroll handler. A
-  picture held back never dims text below its contrast: the method's
-  numbered nodes wait small, not faded, until the rail reaches them.
+  picture held back never dims text below its contrast: the Aperçu's path
+  holds back only its marks, never its words.
 - **Buttons answer focus as they answer hover** (the ring stays the focus
   indicator), and buttons and estimator chips give a little under a press
   (`scale(.97)`, motion allowed only).
@@ -2083,7 +2103,7 @@ equivalent (so the picture itself is `aria-hidden`):
   states. Text keeps the text tokens. Lane names are always
   written out, never coded: under a 440px chart (a phone) each name takes
   its own line above its bar, so the bars keep the whole width.
-- The Aperçu timeline, the estimator and the market chart lay themselves
+- The Aperçu's path, the estimator and the market chart lay themselves
   out by **container query**: the box's own width decides, not the screen's.
 - **A floating label is pinned on its inline-start side** (`inset-inline-start`,
   the right in Arabic) and moved only by its transform. Pinned by its other

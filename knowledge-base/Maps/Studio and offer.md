@@ -57,17 +57,18 @@ The home page shows five main services in three families and folds five more und
 - Before any payment, the studio builds the homepage of the client's new site with the client's own content in 5 working days and presents it on a 30-minute video call (index.html › #apercu, prev.brief).
 - Free and without obligation, for registered businesses only, and at most 4 Aperçus a month across all clients (index.html › #apercu, prev.terms; README.md › What we build).
 - If the client says no, nothing is owed (index.html › #apercu, prev.brief).
-- The registered-business and four-a-month conditions are repeated in the hero, method step 3 and FAQ 2 and 6 (index.html › .hero, #how, #faq).
+- The offer and its registered-business and four-a-month conditions are stated where it is promised, in the hero and the card; FAQ 2 points to the card and FAQ 6 no longer restates it, since 2026-10-26, an owner decision (index.html › .hero, #apercu, #faq; BRAND.md › Page structure and design system (home page)).
 - Graph: [[L'Aperçu (signature offer)]], [[Try Before You Pay (zero-risk proof)]].
 
 ## How a project starts
 
-The [[Method Section (four steps)]] is the only process on the page (index.html › #how):
+The process is told once, as the path in the L'Aperçu card (index.html › #apercu). Until 2026-10-26 the [[Method Section (four steps)]] told it a second time; it left the page by owner decision (BRAND.md › Page structure and design system (home page)):
 
-1. The client describes the project in two minutes, in writing or by voice, in French, English or Arabic (index.html › #how, price.ob1p).
-2. The studio replies within 24 working hours with questions, then a written scope and a firm price once the scope is agreed (index.html › #how, price.ob2p).
-3. The studio builds the Aperçu for free, under the conditions above (index.html › #how, price.ob3p).
-4. The client decides; on a yes, the homepage is already done and the rest follows (index.html › #how, price.ob4p).
+1. The client describes the project in two minutes, in writing or by voice, in French, English or Arabic (index.html › #apercu, prev.tl1p).
+2. The studio replies within 24 working hours with questions, then a written scope and a firm price once the scope is agreed (index.html › #apercu, prev.tl2p).
+3. The studio builds the homepage in 5 working days, free, under the conditions above (index.html › #apercu, prev.tl3d, prev.terms).
+4. The studio presents it on a 30-minute video call (index.html › #apercu, prev.tl4d).
+5. The client decides, with nothing paid so far; on a yes, the homepage is already done and the rest follows (index.html › #apercu, prev.tl5p).
 
 Principles stated in the README (README.md › How we work; [[How we work (no middleman, one team, we answer)]]):
 - No middleman: one team scopes, builds and ships.

@@ -553,20 +553,6 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .proj .thumb:has(.shot)::before{z-index:2;opacity:1;mix-blend-mode:normal;background:linear-gradient(180deg,color-mix(in srgb,var(--void) 10%,transparent),transparent 34%),radial-gradient(circle at 72% 16%,color-mix(in srgb,var(--teal) 16%,transparent),transparent 60%)}
 @media (prefers-reduced-motion:reduce){.proj .shot{transition:none}}
 
-/* ---------- how we work ---------- */
-.steps{position:relative;display:grid;gap:var(--s-7);max-width:760px}
-/* Logical properties only: the old physical left/right rules plus their
-   html[dir=rtl] overrides out-specified the wide layout below, so in Arabic
-   at >=1100px the rail collapsed to zero width and every step kept a 60px
-   inline indent. */
-.steps::before{content:"";position:absolute;inset-inline-start:19px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--crimson),color-mix(in srgb,var(--crimson) 10%,transparent))}
-.step{position:relative;padding-inline-start:60px}
-.step .node{position:absolute;inset-inline-start:0;top:0;width:40px;height:40px;border-radius:50%;border:2px solid var(--teal);background:var(--void);display:grid;place-items:center;font-family:var(--font-mono);font-size:14px;color:var(--teal-text);box-shadow:0 0 14px color-mix(in srgb,var(--teal) 40%,transparent)}
-.step h3{font-family:var(--font-display);font-weight:600;font-size:22px;margin-bottom:var(--s-3)}
-html[dir="rtl"] .step h3{font-family:var(--font-ar-display)}
-.step p{color:var(--muted);font-size:15px;line-height:1.6;max-width:34.476em}
-
-
 /* ---------- generated illustrations ----------
    Monochrome white-on-black rasters used as luminance masks over
    `currentColor`, so one asset re-tints itself in all six palettes
@@ -923,6 +909,8 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
   border:1px solid var(--hairline);border-radius:var(--r-sm);background:var(--void);color:var(--teal-text)}
 @media (max-width:560px){.faq-fig{display:none}}
 .faq-a p{max-width:42.432em}
+/* a pointer to the section that says it (FAQ 2 to the Aperçu card) */
+.faq-a a{color:var(--teal-text);text-decoration:underline;text-underline-offset:2px}
 @media (prefers-reduced-motion:reduce){.faq-mark::before,.faq-mark::after{transition:none}}
 
 /* ---------- work thumbnails: crop anchors ---------- */
@@ -1126,24 +1114,6 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
 
   /* — per-section content spans — */
   .work-grid,.svc-grid,.founder-card,.contact-grid,.preview,.scene-banner,.voices{grid-column:1/-1}
-  /* three abreast: the process reads as a sequence instead of a column
-     with half the screen empty beside it */
-  .steps{grid-column:1/-1;max-width:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,2.4vw,48px)}
-  .steps::before{inset-inline:0;top:19px;bottom:auto;width:auto;height:2px;
-    background:linear-gradient(90deg,var(--crimson),color-mix(in srgb,var(--crimson) 8%,transparent))}
-  /* the rail fades toward the end of the sequence, which is the left in Arabic */
-  html[dir="rtl"] .steps::before{background:linear-gradient(270deg,var(--crimson),color-mix(in srgb,var(--crimson) 8%,transparent))}
-  /* Node ABOVE the copy, not beside it. Turning the rail horizontal put it
-     at node-centre height — straight through the step titles, which sat on
-     the same line. Stacking clears a band for the rail to run through, and
-     the nodes (opaque, painted after) sit on it like beads. */
-  /* align-content:start, or the two rows stretch to the tallest step and
-     each column's heading lands at a different height */
-  .steps .step{padding-inline-start:0;padding-top:60px;
-    grid-template-columns:minmax(0,1fr);
-    justify-items:start;align-content:start;gap:var(--s-5)}
-  .steps .step .node{inset-inline-start:0;top:0}
-  .steps .step p{max-width:22.542em}
   /* two columns of questions rather than one tall stack */
   .faq-list{grid-column:1/-1;max-width:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-4) clamp(20px,1.7vw,34px);align-content:start}
 
@@ -1516,47 +1486,32 @@ html[dir="rtl"] .est-field input[type="range"]::-moz-range-track{background:line
 .eo-fine{color:var(--faint);font-size:13px;line-height:1.6;max-width:46em}
 .est-out .btn{align-self:flex-start;margin-top:var(--s-2)}
 
-/* ---------- method: call to action under the four steps ---------- */
-.how-cta{display:flex;flex-wrap:wrap;gap:var(--s-3)}
-
 /* ===== r3/c: visualisations and motion =====
    Pictures of figures the page already states (app.js 13b builds and arms
-   them): the method's rail, the Aperçu's five days, each tier's weeks, the
-   estimate against the three packages, the market ranges on one price
-   scale. Each is aria-hidden beside its text equivalent. Tokens only; the
-   marks are thin and the text keeps the text tokens, never a series colour.
+   them): each tier's weeks, the estimate against the three packages, the
+   market ranges on one price scale. Each is aria-hidden beside its text
+   equivalent. The Aperçu's path is text, drawn as a line of marks: only the
+   marks are held back. Tokens only; the marks are thin and the text keeps
+   the text tokens, never a series colour.
    Motion is entrance only, on transform and opacity: .vz-arm holds a
-   picture back, .vz-go / .vz-lit (and the rail's --rail) play it. Without those classes
-   (scripts off, reduced motion, print) every picture is simply drawn.
+   picture back, .vz-go plays it. Without those classes (scripts off,
+   reduced motion, print) every picture is simply drawn.
    Pictures whose marks are placed by app.js keep their room from the first
    paint and stay invisible until placed (.vz-on): no layout shift, and
    nothing half-drawn if the script never arrives. */
 
-/* -- method: the rail draws itself, node to node --
-   The rail is the section's own (.steps::before, untouched). Held back, it
-   is scaled to nothing from its start, and app.js grows it to each node in
-   turn (--rail, the share of its length the line has reached), so its end
-   state is the static rail exactly: what reduced motion and scripts-off
-   show at once. A node waits small, not faded (its number is text, and a
-   faded number would be unreadable, 2.8:1, until the line reached it),
-   then opens out to its size when the line arrives. */
-.steps.vz-arm::before{transform:scaleY(var(--rail,0));transform-origin:50% 0;
-  transition:transform .42s var(--ease-out)}
-@media (min-width:1100px){
-  .steps.vz-arm::before{transform:scaleX(var(--rail,0));transform-origin:0 50%}
-  html[dir="rtl"] .steps.vz-arm::before{transform-origin:100% 50%}
-}
-.steps.vz-arm .step .node{z-index:1;transform:scale(.7);
-  transition:transform .5s cubic-bezier(.34,1.56,.64,1) .3s}
-.steps.vz-arm .step:first-child .node{transition-delay:0s}
-.steps.vz-arm .step.vz-lit .node{transform:none}
-
-/* -- the Aperçu: send, five working days, the call, the decision --
+/* -- the Aperçu: the path, from the first message to the decision --
+   Told once, in the card: you describe, we reply within 24 working hours,
+   we build (five working days, one cell each), the call, you decide. The
+   method section that told it a second time left the page on 2026-10-26
+   (owner decision). It is the text, not a picture of it, so it is not
+   aria-hidden, and its words are never held back: only the marks draw in.
    A vertical rail by default; laid along a line once its box is wide
-   enough (a container query, so the card's own width decides, not the
-   screen's): from 420px, which the split card's column always is (435px
-   at 1100), the four columns about 80-120px wide. Segments sit behind opaque markers. The one figure, what has
-   been paid when the visitor decides, is set as a figure. */
+   enough for five columns of sentences (a container query, so the card's
+   own width decides, not the screen's): from 720px, which the split card's
+   full width always is (about 860px at 1100), each column about 140px or
+   more. Segments sit behind opaque markers. The one figure, what has been
+   paid when the visitor decides, is set as a figure. */
 .ptl-w{container-type:inline-size;margin:0 0 var(--s-5)}
 .ptl{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-4)}
 .ptl-s{position:relative;display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:var(--s-3);align-content:start}
@@ -1580,50 +1535,53 @@ html[dir="rtl"] .ptl-d{letter-spacing:0}
   font-variant-numeric:tabular-nums}
 .ptl-zero .cur{font-family:var(--font-mono);font-size:var(--t-small);font-weight:400;letter-spacing:.06em;color:var(--teal-text)}
 html[dir="rtl"] .ptl-zero,html[dir="rtl"] .ptl-zero .cur{letter-spacing:0}
-@container (min-width:420px){
-  .ptl{grid-template-columns:minmax(0,.95fr) minmax(0,1.4fr) minmax(0,.95fr) minmax(0,1.2fr);gap:0 var(--s-4)}
-  .ptl-s{grid-template-columns:minmax(0,1fr);grid-template-rows:24px auto auto;row-gap:0}
-  .ptl-s:not(:last-child)::after{top:11px;inset-inline-start:6px;width:calc(100% + var(--s-4));height:2px;
+/* what the step means, in a sentence: the method's own words */
+.ptl-p{grid-column:2;font-size:var(--t-small);line-height:1.55;color:var(--muted);margin-top:4px;max-width:38em}
+@container (min-width:720px){
+  .ptl{grid-template-columns:repeat(5,minmax(0,1fr));gap:0 var(--s-5)}
+  .ptl-s{grid-template-columns:minmax(0,1fr);grid-template-rows:24px;row-gap:0}
+  .ptl-s:not(:last-child)::after{top:11px;inset-inline-start:6px;width:calc(100% + var(--s-5));height:2px;
     transform-origin:0 50%}
   html[dir="rtl"] .ptl-s:not(:last-child)::after{transform-origin:100% 50%}
   .ptl-m{grid-row:1;justify-self:start;margin-top:6px}
   .ptl-build .ptl-m{justify-self:stretch;width:auto;height:8px;margin-top:8px;
     grid-template-rows:none;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
   .ptl-dec .ptl-m{margin-inline-start:1px}
-  .ptl-t,.ptl-d,.ptl-zero{grid-column:1}
+  .ptl-t,.ptl-d,.ptl-zero,.ptl-p{grid-column:1}
   .ptl-t{margin-top:6px}
   .ptl-zero{margin-top:4px}
+  .ptl-p{margin-top:6px}
 }
-/* entrance: each moment in turn — the line out of it draws once it has
-   appeared, the five days fill one by one, the decision lands last */
+/* entrance: each moment's mark in turn — the line out of it draws once it
+   has appeared, the five days fill one by one, the decision lands last.
+   The words stay where they are from the first paint. */
 .ptl.vz-arm .ptl-s:not(:last-child)::after{transform:scale(0)}
-.ptl.vz-arm :is(.ptl-s>.ptl-m,.ptl-build .ptl-m i,.ptl-t,.ptl-d,.ptl-zero){opacity:0}
+.ptl.vz-arm :is(.ptl-s>.ptl-m,.ptl-build .ptl-m i){opacity:0}
 .ptl.vz-arm :is(.ptl-s:not(.ptl-build)>.ptl-m,.ptl-build .ptl-m i){transform:scale(.4)}
 .ptl.vz-arm .ptl-s.ptl-dec>.ptl-m{transform:rotate(45deg) scale(.3)}
-.ptl.vz-arm :is(.ptl-t,.ptl-d,.ptl-zero){transform:translateY(4px)}
-.ptl.vz-arm.vz-go :is(.ptl-s>.ptl-m,.ptl-build .ptl-m i,.ptl-t,.ptl-d,.ptl-zero){
+.ptl.vz-arm.vz-go :is(.ptl-s>.ptl-m,.ptl-build .ptl-m i){
   opacity:1;transform:none;transition:opacity .35s var(--ease-out) var(--pd,0s),transform .45s cubic-bezier(.34,1.4,.64,1) var(--pd,0s)}
 .ptl.vz-arm.vz-go .ptl-s.ptl-dec>.ptl-m{transform:rotate(45deg) scale(.86)}
 .ptl.vz-arm.vz-go .ptl-s:not(:last-child)::after{transform:none;transition:transform .4s var(--ease-out) var(--sd,0s)}
-/* the whole picture is in place by about 1.8s: a timeline that keeps the
+/* the whole line is drawn by about 1.9s: a timeline that keeps the
    reader waiting for its last step reads as unfinished */
 .ptl-s:nth-child(1){--pd:0s;--sd:.1s}
-.ptl-s:nth-child(2){--pd:.3s;--sd:.75s}
-.ptl-build .ptl-m i:nth-child(1){--pd:.35s}.ptl-build .ptl-m i:nth-child(2){--pd:.43s}
-.ptl-build .ptl-m i:nth-child(3){--pd:.51s}.ptl-build .ptl-m i:nth-child(4){--pd:.59s}
-.ptl-build .ptl-m i:nth-child(5){--pd:.67s}
-.ptl-s:nth-child(3){--pd:.95s;--sd:1.05s}
-.ptl-s:nth-child(4){--pd:1.25s}
-.ptl-dec .ptl-zero{--pd:1.4s}
+.ptl-s:nth-child(2){--pd:.3s;--sd:.4s}
+.ptl-s:nth-child(3){--pd:.6s;--sd:1.05s}
+.ptl-build .ptl-m i:nth-child(1){--pd:.65s}.ptl-build .ptl-m i:nth-child(2){--pd:.72s}
+.ptl-build .ptl-m i:nth-child(3){--pd:.79s}.ptl-build .ptl-m i:nth-child(4){--pd:.86s}
+.ptl-build .ptl-m i:nth-child(5){--pd:.93s}
+.ptl-s:nth-child(4){--pd:1.15s;--sd:1.25s}
+.ptl-s:nth-child(5){--pd:1.45s}
 @media (min-width:1100px){
-  /* In the split card it reads under the brief it draws, beside the promise
-     and the call to action. It spans the promise's row and the button's, so
-     the button still starts where the promise ends, as it did before the
-     timeline: its height never pushes the button down. The promise is placed
-     by row so the button's rows can never displace it. */
+  /* In the split card the path is a row of its own under both halves: the
+     name and the promise beside the brief above it, the ways in beside the
+     terms and the outcome below it. The promise is placed by row so the
+     rows below can never displace it. */
   .preview .promise{grid-row:3}
-  .preview .ptl-w{grid-column:3;grid-row:3/span 2;align-self:start;margin:var(--s-5) 0 0}
-  .preview .prev-actions{grid-row:4/span 3}
+  .preview .brief{grid-row:1/span 3}
+  .preview .ptl-w{grid-column:2/-1;grid-row:4;align-self:start;margin:var(--s-6) 0 var(--s-2)}
+  .preview .prev-actions{grid-row:5/span 2}
   .preview .prev-terms{grid-row:5}
   .preview .outcome{grid-row:6}
 }
@@ -1809,11 +1767,11 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
 }
 /* The page-wide reduced-motion rule (*{transition:none}) does not reach
    pseudo-elements: the marks here that move on their own get it too (the
-   lit band's fade, the method's rail, the Aperçu's segments). It matters
+   lit band's fade, the Aperçu's segments). It matters
    for a visitor who turns reduced motion on during the visit, with a
    picture already held back; !important beats the specificity of the
    .ptl.vz-arm.vz-go … ::after rule. */
-@media (prefers-reduced-motion:reduce){.esc-band::after,.steps.vz-arm::before,.ptl .ptl-s::after{transition:none!important}}
+@media (prefers-reduced-motion:reduce){.esc-band::after,.ptl .ptl-s::after{transition:none!important}}
 
 /* -- forced colours: backgrounds become Canvas, which would erase every
    mark; the marks are redrawn in the user's own system colours -- */
@@ -1831,8 +1789,6 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
   .esc-cap::before{forced-color-adjust:none;background:CanvasText}
   .ptl-s:not(:last-child)::after{forced-color-adjust:none;background:CanvasText}
   .mkv-gl .mkv-nb{forced-color-adjust:none;background:none;border-color:Highlight}
-  /* the method's rail is a gradient, which forced colours drop: drawn flat */
-  #how .steps::before{forced-color-adjust:none;background:CanvasText}
 }
 /* ===== end r3/c ===== */
 
@@ -1995,7 +1951,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
 @media (forced-colors:active){
   button,.btn,a.btn,.theme-btn,.lang button,.plate-rail button,.pl-pause{border:1px solid ButtonText!important}
   a:not(.btn){text-decoration:underline}
-  .proj,.svc-row,.faq-item,.step,.titleblock,.capabilities{border:1px solid CanvasText!important}
+  .proj,.svc-row,.faq-item,.titleblock,.capabilities{border:1px solid CanvasText!important}
   /* Every selected, pressed or current state on the page was drawn with a
      background colour or a gradient, and forced colours replace the first with
      Canvas and drop the second: the checked estimator chip, the option ticks,
@@ -2462,7 +2418,7 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
 .capabilities>summary .hint{color:var(--muted)}
 
 /* body */
-.proj .body p,.svc-row .brief,.preview .brief,.cap .brief,.step p,.t-for,.t-list li,.est-head p,
+.proj .body p,.svc-row .brief,.preview .brief,.cap .brief,.t-for,.t-list li,.est-head p,
 .mk-head p,.price-note,.md-card p:not(.md-where),.proof-line,.mk-day,.outcome span,
 .faq-item .a,.faq-item p{font-size:var(--t-body);line-height:1.6}
 
@@ -2472,7 +2428,7 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
 .svc-row .promise,.preview .promise,.cap .promise{margin:4px 0 var(--s-3)}
 
 /* titles */
-.proj h3,.work-grid>.proj h3,.svc-row h3,.step h3,.steps .step h3,.cap h4,.md-card h4,
+.proj h3,.work-grid>.proj h3,.svc-row h3,.cap h4,.md-card h4,
 .scene-banner b{font-size:var(--t-title);line-height:1.2;letter-spacing:-.01em}
 .preview h3,.tier h3,.fd-id h3,.mk-head h3,
 .work-grid>.proj--wide h3{font-size:var(--t-feature);line-height:1.15;letter-spacing:-.015em}
@@ -2553,12 +2509,6 @@ section.band::after,section.band+section.band::after{
 .price-est{margin-top:0}
 .price-est+.price-more{margin-top:var(--s-4)}
 .price-est>summary>span:first-child{flex:none}
-
-/* ---- method ---- */
-ol.steps{list-style:none;margin:0;padding:0}
-@media (min-width:1100px){.steps--4{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.how-cta{margin-top:var(--s-7)}
-@media (min-width:1100px){.how-cta{grid-column:1/-1}}
 
 /* ---- phone ---- */
 /* a flex logo drops the space before "Labs" ("NUMideaLABS") */

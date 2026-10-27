@@ -232,7 +232,7 @@
       <nav class="nav-links" aria-label="Navigation principale" data-i18n-aria="ui.navPrimary">
         <a href="#work" data-i18n="nav.work">Projets</a>
         <a href="#services" data-i18n="nav.services">Services</a>
-        <a href="#how" data-i18n="nav.about">Méthode</a>
+        <a href="#apercu" data-i18n="nav.about">Méthode</a>
         <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
         <a href="#founder" data-i18n="nav.team">Équipe</a>
         <a href="#faq" data-i18n="nav.faq">FAQ</a>
@@ -267,7 +267,7 @@
   <nav aria-label="Sections" data-i18n-aria="ui.sections">
   <a href="#work" data-i18n="nav.work">Projets</a>
   <a href="#services" data-i18n="nav.services">Services</a>
-  <a href="#how" data-i18n="nav.about">Méthode</a>
+  <a href="#apercu" data-i18n="nav.about">Méthode</a>
   <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
   <a href="#founder" data-i18n="nav.team">Équipe</a>
   <a href="#faq" data-i18n="nav.faq">FAQ</a>
@@ -544,17 +544,18 @@
         <h3 id="prev-h" data-i18n="prev.name">L'Aperçu</h3>
         <p class="promise" data-i18n="prev.promise">Zéro risque. Juste la preuve.</p>
         <p class="brief" data-i18n="prev.brief">Avant tout paiement, on construit la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. On vous la présente en visio (30 min). Si vous dites non, vous ne devez rien.</p>
-        <!-- The brief above, drawn: its four moments and nothing else (5
-             working days, a 30-minute call, nothing paid before you decide).
-             The brief is the text equivalent, so this is aria-hidden; still a
-             list, so it reads in order with styles off. app.js 13b writes the
-             amount in the visitor's currency and draws it in. -->
-        <div class="ptl-w" aria-hidden="true">
+        <!-- The path, from the first message to the decision, told once: the
+             method's steps (its section left the page on 2026-10-26, an owner
+             decision) and the Aperçu's own moments. It is the text, so it is
+             not aria-hidden; the markers are empty. app.js 13b writes the
+             amount in the visitor's currency and draws the marks in. -->
+        <div class="ptl-w">
           <ol class="ptl">
-            <li class="ptl-s"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl1">Vous envoyez votre contenu</span></li>
-            <li class="ptl-s ptl-build"><span class="ptl-m"><i></i><i></i><i></i><i></i><i></i></span><span class="ptl-t" data-i18n="prev.tl2">On construit votre page d'accueil</span><span class="ptl-d" data-i18n="prev.tl2d">5 jours ouvrés</span></li>
-            <li class="ptl-s ptl-call"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl3">On vous la présente</span><span class="ptl-d" data-i18n="prev.tl3d">visio de 30 min</span></li>
-            <li class="ptl-s ptl-dec"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl4">Vous décidez</span><span class="ptl-d" data-i18n="prev.tl4d">Payé jusqu'ici :</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">DA</span></b></li>
+            <li class="ptl-s"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl1">Vous décrivez le projet</span><span class="ptl-p" data-i18n="prev.tl1p">Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.</span></li>
+            <li class="ptl-s"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl2">On revient sous 24 h ouvrées</span><span class="ptl-p" data-i18n="prev.tl2p">Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.</span></li>
+            <li class="ptl-s ptl-build"><span class="ptl-m"><i></i><i></i><i></i><i></i><i></i></span><span class="ptl-t" data-i18n="prev.tl3">On construit votre page d'accueil</span><span class="ptl-d" data-i18n="prev.tl3d">5 jours ouvrés</span></li>
+            <li class="ptl-s ptl-call"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl4">On vous la présente</span><span class="ptl-d" data-i18n="prev.tl4d">visio de 30 min</span></li>
+            <li class="ptl-s ptl-dec"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl5">Vous décidez</span><span class="ptl-d" data-i18n="prev.tl5d">Payé jusqu'ici :</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">DA</span></b><span class="ptl-p" data-i18n="prev.tl5p">Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le reste.</span></li>
           </ol>
         </div>
         <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.</p>
@@ -671,54 +672,6 @@
 
   </section>
 
-  <!-- ================= METHOD ================= -->
-  <!-- The full process, from the first message to the decision. Its keys keep
-       the price.ob* names from when these steps sat inside pricing. The
-       Aperçu card in Services draws only the Aperçu's own four moments
-       (steps 3 and 4 here, in detail), not this process. -->
-  <section id="how" aria-labelledby="how-h">
-    <span class="kicker" data-parallax=".035" data-i18n="how.kicker">04 — Méthode</span>
-    <h2 class="sec font-swap-display" id="how-h" data-i18n="how.title">Quatre étapes. <em>Zéro surprise.</em></h2>
-    <p class="sec-lead" data-i18n="how.lead">Entreprise immatriculée ? Vous ne payez rien avant d'avoir vu votre page d'accueil tourner.</p>
-    <ol class="steps steps--4">
-      <li class="step reveal">
-        <div class="node">1</div>
-        <div class="step-body">
-          <h3 data-i18n="price.ob1h">Vous décrivez le projet</h3>
-          <p data-i18n="price.ob1p">Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.</p>
-        </div>
-      </li>
-      <li class="step reveal">
-        <div class="node">2</div>
-        <div class="step-body">
-          <h3 data-i18n="price.ob2h">On revient sous 24 h ouvrées</h3>
-          <p data-i18n="price.ob2p">Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.</p>
-        </div>
-      </li>
-      <li class="step reveal">
-        <div class="node">3</div>
-        <div class="step-body">
-          <h3 data-i18n="price.ob3h">On construit l'Aperçu — gratuit</h3>
-          <p data-i18n="price.ob3p">La page d'accueil de votre site, avec votre contenu, avant tout paiement. Pour les entreprises immatriculées, 4 par mois au maximum, tous clients confondus.</p>
-        </div>
-      </li>
-      <li class="step reveal">
-        <div class="node">4</div>
-        <div class="step-body">
-          <h3 data-i18n="price.ob4h">Vous décidez</h3>
-          <p data-i18n="price.ob4p">Si c'est non, vous ne devez rien. Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le reste.</p>
-        </div>
-      </li>
-    </ol>
-    <div class="how-cta">
-      <a class="btn btn-primary" href="#contact" data-i18n="price.obCta1">Décrire mon projet →</a>
-      <a class="btn btn-ghost wa-link" data-wa-pending aria-disabled="true">
-        <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
-        <span data-i18n="price.obCta2">WhatsApp</span>
-      </a>
-    </div>
-  </section>
-
   <!-- ================= PRICING ================= -->
   <!-- Numidea's own prices, in dinars. The market table further down puts the
        Algerian market beside them (Onyxlab Baromètre 2026 grid and the 2026 DZ
@@ -727,7 +680,7 @@
        tiers quote — PRICE_MODEL in app.js (ESTIMATE) is the single source. -->
   <section id="pricing" aria-labelledby="pricing-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span><span class="pi-coins lv"><span class="pi pc pc-king" data-parallax="-.16" data-parallax-cap="60"><i></i></span><span class="pi pc pc-horse" data-parallax="-.08" data-parallax-cap="50"><i></i></span><span class="pi pc pc-palm" data-parallax="-.22" data-parallax-cap="70"><i></i></span><span class="pl-cap" data-i18n="pl.coins">Pl. III — Monnaies numides</span></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="price.kicker">05 — Tarifs</span>
+    <span class="kicker" data-parallax=".035" data-i18n="price.kicker">04 — Tarifs</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
     <p class="sec-lead" data-i18n="price.lead">Nos prix, publiés — à côté des tarifs courants en Algérie, en France et aux États-Unis. Ajustez le périmètre et voyez l'estimation évoluer.</p>
 
@@ -1028,7 +981,7 @@
   <!-- ================= FOUNDER ================= -->
   <section id="founder" class="band" aria-labelledby="founder-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-bench" data-parallax="-.06" data-parallax-cap="50"><i></i></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="founder.kicker">06 — Équipe &amp; fondateur</span>
+    <span class="kicker" data-parallax=".035" data-i18n="founder.kicker">05 — Équipe &amp; fondateur</span>
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">Le studio a un <em>visage.</em></h2>
     <p class="sec-lead" data-i18n="founder.lead">Derrière Numidea : un fondateur qui conçoit, code et livre, et trois spécialistes autour de lui.</p>
 
@@ -1117,7 +1070,7 @@
   <!-- ================= FAQ ================= -->
   <section id="faq" aria-labelledby="faq-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-lantern lv"><b class="glow"></b><i></i></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="faq.kicker">07 — FAQ</span>
+    <span class="kicker" data-parallax=".035" data-i18n="faq.kicker">06 — FAQ</span>
     <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
     <p class="sec-lead" data-i18n="faq.lead">Ce qu'on nous demande avant de se lancer, et nos réponses sans détour.</p>
     <div class="faq-list">
@@ -1132,7 +1085,7 @@
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:7.5px 7.5px"><path class="p" pathLength="1" d="M3.5 3.5h8.2l8.8 8.8a1.5 1.5 0 0 1 0 2.1l-6.1 6.1a1.5 1.5 0 0 1-2.1 0L3.5 11.7Z"/><circle class="p" pathLength="1" cx="7.5" cy="7.5" r="1.4"/></g></svg><span class="q" data-i18n="faq2.q">C'est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq2"></span></span><p data-i18n="faq2.a">Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Et pour une entreprise immatriculée, on construit d'abord votre page d'accueil, gratuitement : c'est l'Aperçu (4 par mois au maximum, tous clients confondus).</p></div>
+          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq2"></span></span><p data-i18n="faq2.a">Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="#apercu">L'Aperçu</a>.</p></div>
         </details>
 
         <details class="faq-item reveal">
@@ -1155,7 +1108,7 @@
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="4.8" cy="12" r="2.6"/><circle class="p" pathLength="1" cx="19.2" cy="12" r="2.6"/><path class="p" pathLength="1" d="M7.4 12h9.2"/><circle class="f a-travel" cx="8.6" cy="12" r="1.05"/></svg><span class="q" data-i18n="faq6.q">Qu'est-ce qui vous différencie d'une agence ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq6"></span></span><p data-i18n="faq6.a">Pas d'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois, tous clients confondus.</p></div>
+          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq6"></span></span><p data-i18n="faq6.a">Pas d'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement.</p></div>
         </details>
 
       </div>
@@ -1166,7 +1119,7 @@
   <!-- ================= CONTACT ================= -->
   <section id="contact" class="contact band" aria-labelledby="contact-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-stars" data-parallax="-.04" data-parallax-cap="90"></span><span class="pi pi-light lv" data-parallax="-.05" data-parallax-cap="40"><b class="beam"></b><i></i><span class="pl-cap" data-i18n="pl.light">Pl. IV — Cap Carbon · Béjaïa</span></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="contact.kicker">08 — Contact</span>
+    <span class="kicker" data-parallax=".035" data-i18n="contact.kicker">07 — Contact</span>
     <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">Parlons de <em>votre projet.</em></h2>
     <div class="contact-grid">
       <div class="contact-side">
@@ -1240,7 +1193,7 @@
     <nav aria-label="Pied de page" data-i18n-aria="footer.navAria">
       <a href="#work" data-i18n="nav.work">Projets</a>
       <a href="#services" data-i18n="nav.services">Services</a>
-      <a href="#how" data-i18n="nav.about">Méthode</a>
+      <a href="#apercu" data-i18n="nav.about">Méthode</a>
       <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
       <a href="#founder" data-i18n="nav.team">Équipe</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
@@ -1285,11 +1238,11 @@
 <script type="application/ld+json" id="ld-faq">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Combien de temps pour livrer ?","acceptedAnswer":{"@type":"Answer","text":"Cela dépend du périmètre : comptez 2 à 4 semaines pour un site vitrine, 3 à 7 pour un site sur mesure, 8 à 16 pour une application web. Le délai ferme est fixé dès que le projet est cadré ensemble."}},
-{"@type":"Question","name":"C'est combien ?","acceptedAnswer":{"@type":"Answer","text":"Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Et pour une entreprise immatriculée, on construit d'abord votre page d'accueil, gratuitement : c'est l'Aperçu (4 par mois au maximum, tous clients confondus)."}},
+{"@type":"Question","name":"C'est combien ?","acceptedAnswer":{"@type":"Answer","text":"Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi L'Aperçu."}},
 {"@type":"Question","name":"Vous travaillez en quelles langues ?","acceptedAnswer":{"@type":"Answer","text":"Français, arabe et anglais — à l'oral, à l'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement."}},
 {"@type":"Question","name":"Et après le lancement ?","acceptedAnswer":{"@type":"Answer","text":"On reste. Chaque formule inclut 1, 3 ou 6 mois de support, et on vous répond sous 24 h ouvrées. Ensuite, la maintenance est en option : au mois, sans engagement de durée (voir les tarifs). Pas de « bonne chance » le jour de la mise en ligne."}},
 {"@type":"Question","name":"Travaillez-vous à distance ?","acceptedAnswer":{"@type":"Answer","text":"Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre projet."}},
-{"@type":"Question","name":"Qu'est-ce qui vous différencie d'une agence ?","acceptedAnswer":{"@type":"Answer","text":"Pas d'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois, tous clients confondus."}}
+{"@type":"Question","name":"Qu'est-ce qui vous différencie d'une agence ?","acceptedAnswer":{"@type":"Answer","text":"Pas d'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement."}}
 ]}
 </script>
 </body>

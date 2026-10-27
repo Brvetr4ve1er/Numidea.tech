@@ -44,8 +44,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | Hero | — | Headline, the free Aperçu call to action, a WhatsApp button pre-filled with the Aperçu message (it replaced "Voir nos réalisations" on 2026-10-26, an owner decision) and the rotating [[Hero plate (one live site at a time)]] (index.html › HERO; BRAND.md › Page structure and design system (home page)) |
 | Proof | — | One trust line and the client logo strip (index.html › PROOF) |
 | Work | `#work` | Project cards, voices slot, then the planches banner to `scene/` (index.html › SELECTED WORK) |
-| Services | `#services` | Opens with the L'Aperçu card `#apercu` (index.html › SERVICES) |
-| Method | `#how` | (index.html › METHOD) |
+| Services | `#services` | Opens with the L'Aperçu card `#apercu`, which tells the path from the first message to the decision; the "Méthode" links land on it (index.html › SERVICES) |
 | Pricing | `#pricing` | Tiers and the maintenance line, then two disclosures: the estimator (folded on 2026-10-26, an owner decision) and the market comparison (BRAND.md › Page structure and design system (home page)) |
 | Founder and team | `#founder` | Links to `hub/` as "Portfolio personnel" (index.html › 1071) |
 | FAQ | `#faq` | (index.html › FAQ) |
@@ -55,6 +54,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 
 - The order and the "each idea is said once" rule are set in BRAND.md (BRAND.md › Page structure and design system (home page)).
 - The tools section ("Nos outils", `#stack`) between the team and the FAQ left the page on 2026-10-26, an owner decision; the FAQ and contact kickers moved up to 07 and 08 (BRAND.md › Page structure and design system (home page); assets/app.js › faq.kicker, contact.kicker).
+- The method section (`#how`, "Quatre étapes. Zéro surprise.") between the services and the pricing left the page the same day, also an owner decision: its steps are told once in the L'Aperçu card. The kickers after it moved up again: 04 pricing, 05 team, 06 FAQ, 07 contact. The scroll-spy marks "Méthode" only while the card is being read (BRAND.md › Page structure and design system (home page); assets/app.js › scroll-spy).
 - The project explorer modal was removed in the 2026-10 cleanup; an old `#/work/<slug>` link is redirected to the matching sheet in `scene/` through the `SHEET` map, and any other `#/work` hash lands on `#work` (assets/app.js › DOM ready, legacy deep links). History: [[Project-explorer modal (workslug hash router)]].
 - The work section ends on one call to action, the [[Project Plates Banner (Planches)]] (index.html › 538).
 

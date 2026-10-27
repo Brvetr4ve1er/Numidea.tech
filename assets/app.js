@@ -40,13 +40,10 @@
       'work.gainMore': ' — le détail sur la planche',
       'work.lead': 'Les sites de nos clients, à visiter vous-même, et une démo de portfolio.',
       'work.live': 'Voir le site →', 'work.sheet': 'Voir la planche →', 'work.concept': 'Démo portfolio',
-      'how.kicker': '04 — Méthode',
-      'how.title': 'Quatre étapes. <em>Zéro surprise.</em>',
-      'how.lead': 'Entreprise immatriculée ? Vous ne payez rien avant d\'avoir vu votre page d\'accueil tourner.',
       'scene.kicker': '◆ PLANCHES DE PROJET', 'scene.title': 'Nos projets, livrable par livrable.',
       'scene.lead': 'Les pages, le mobile et le système visuel de nos projets, capturés sur les sites en ligne.',
       'scene.cta': 'Ouvrir les planches →',
-      'founder.kicker': '06 — Équipe & fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
+      'founder.kicker': '05 — Équipe & fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
       'founder.lead': 'Derrière Numidea : un fondateur qui conçoit, code et livre, et trois spécialistes autour de lui.',
       'founder.role': 'Designer graphique & développeur web · Fondateur', 'founder.years': '6 ans', 'founder.city': 'Bordj Bou Arréridj',
       'founder.bio': 'Six ans à concevoir des identités, coder des interfaces et livrer des produits, de la marque jusqu\'à la mise en ligne. Je transforme votre brief en produit fini, et je reste à vos côtés après le lancement.',
@@ -72,15 +69,15 @@
       'team.dFn': 'Spécialiste données', 'team.dDo': "Pipelines, scraping et la couche d'intelligence.",
       'team.sFn': 'Ventes & partenariats', 'team.sDo': "Premier contact : traduit l'idée en périmètre.",
       'team.tFn': 'Référent technique', 'team.tDo': 'Veille à la qualité de ce qui est livré et tient le client informé.',
-      'faq.kicker': '07 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
+      'faq.kicker': '06 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
       'faq.lead': 'Ce qu\'on nous demande avant de se lancer, et nos réponses sans détour.',
       'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Cela dépend du périmètre : comptez 2 à 4 semaines pour un site vitrine, 3 à 7 pour un site sur mesure, 8 à 16 pour une application web. Le délai ferme est fixé dès que le projet est cadré ensemble.',
-      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Et pour une entreprise immatriculée, on construit d\'abord votre page d\'accueil, gratuitement : c\'est l\'Aperçu (4 par mois au maximum, tous clients confondus).',
+      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="#apercu">L\'Aperçu</a>.',
       'faq3.q': 'Vous travaillez en quelles langues ?', 'faq3.a': 'Français, arabe et anglais — à l\'oral, à l\'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.',
       'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. Chaque formule inclut 1, 3 ou 6 mois de support, et on vous répond sous 24 h ouvrées. Ensuite, la maintenance est en option : au mois, sans engagement de durée (voir les tarifs). Pas de « bonne chance » le jour de la mise en ligne.',
       'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre projet.',
-      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement. Et pour une entreprise immatriculée, vous voyez votre page d\'accueil tourner avant de payer quoi que ce soit — dans la limite de 4 Aperçus par mois, tous clients confondus.',
-      'contact.kicker': '08 — Contact',
+      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement.',
+      'contact.kicker': '07 — Contact',
       'contact.title': 'Parlons de <em>votre projet.</em>',
       'contact.sub': 'Dites-nous ce qu\'il vous faut : une urgence à traiter, quelque chose à corriger, une échéance à tenir. En français, anglais ou arabe.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Réponse',
@@ -131,13 +128,10 @@
       'work.gainMore': ' — more on the project sheet',
       'work.lead': 'Our clients\' sites, to open yourself — plus a portfolio demo.',
       'work.live': 'Visit the site →', 'work.sheet': 'See the sheet →', 'work.concept': 'Portfolio demo',
-      'how.kicker': '04 — Process',
-      'how.title': 'Four steps. <em>No surprises.</em>',
-      'how.lead': 'Registered business? You pay nothing until you have seen your homepage running.',
       'scene.kicker': '◆ PROJECT SHEETS', 'scene.title': 'Our projects, piece by piece.',
       'scene.lead': 'Each sheet shows a project\'s key pages, its mobile version and its visual system — every screenshot taken from the live site.',
       'scene.cta': 'Open the project sheets →',
-      'founder.kicker': '06 — Team & founder', 'founder.title': 'The studio has a <em>face.</em>',
+      'founder.kicker': '05 — Team & founder', 'founder.title': 'The studio has a <em>face.</em>',
       'founder.lead': 'Behind Numidea: a founder who designs, codes and delivers, with three specialists around him.',
       'founder.role': 'Graphic designer & web developer · Founder', 'founder.years': '6 yrs', 'founder.city': 'Bordj Bou Arréridj',
       'founder.bio': 'Six years designing identities, coding interfaces and shipping products — brand to front-end to cloud. I turn the brief into the build, and I stay once it\'s live.',
@@ -163,15 +157,15 @@
       'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
       'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
       'team.tFn': 'Technical representative', 'team.tDo': 'Keeps the build honest and the client informed.',
-      'faq.kicker': '07 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
+      'faq.kicker': '06 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
       'faq.lead': 'What people ask before they start — answered straight.',
       'faq1.q': 'How long does a project take?', 'faq1.a': 'It depends on the scope: 2 to 4 weeks for a showcase site, 3 to 7 for a custom site and 8 to 16 for a web application. You get a firm timeline as soon as we have agreed the scope together.',
-      'faq2.q': 'What does it cost?', 'faq2.a': 'Our packages start at 90,000 DZD for a showcase site (see Pricing for euros and dollars), and every project gets one fixed price once the scope is clear — no surprise fees. Registered businesses can also get the Preview: we build your homepage for free, before you pay anything. We take on at most 4 a month, across all clients.',
+      'faq2.q': 'What does it cost?', 'faq2.a': 'Our packages start at 90,000 DZD for a showcase site (see Pricing for euros and dollars), and every project gets one fixed price once the scope is clear — no surprise fees. See also <a href="#apercu">the Preview</a>.',
       'faq3.q': 'What languages do you work in?', 'faq3.a': 'French, Arabic and English — spoken, written, and in everything we deliver. This very site is trilingual, with a natively mirrored Arabic (right-to-left) experience.',
       'faq4.q': 'What happens after launch?', 'faq4.a': 'We stay. Every package includes 1, 3 or 6 months of support, and we reply within 24 working hours. After that, maintenance is optional: monthly, with no lock-in (see Pricing). No “good luck” on launch day.',
       'faq5.q': 'Do you work remotely?', 'faq5.a': 'Yes. We\'re based in Bordj Bou Arréridj, but we work with clients anywhere — including in France. Distance doesn\'t change your direct line to the person building your project.',
-      'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman: one team scopes, codes and ships your project, design to deploy. And for a registered business, you see your homepage running before you pay anything — up to 4 Previews a month, across all clients.',
-      'contact.kicker': '08 — Contact',
+      'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman: one team scopes, codes and ships your project, design to deploy.',
+      'contact.kicker': '07 — Contact',
       'contact.title': 'Let\'s talk about <em>your project.</em>',
       'contact.sub': 'Tell us what you need: an urgent job, something that needs fixing, a deadline to meet. In English, French or Arabic.',
       'contact.chStudio': 'Studio', 'contact.chReply': 'Reply',
@@ -225,13 +219,10 @@
       'work.gainMore': ' — التفاصيل في لوحة المشروع',
       'work.lead': 'مواقع عملائنا، تصفّحها بنفسك، إضافةً إلى عرض تجريبي.',
       'work.live': 'زيارة الموقع ←', 'work.sheet': 'اعرض لوحة المشروع ←', 'work.concept': 'عرض تجريبي',
-      'how.kicker': '04 — المنهج',
-      'how.title': 'أربع خطوات. <em>بلا مفاجآت.</em>',
-      'how.lead': 'شركة مسجّلة؟ لا تدفع شيئاً قبل أن ترى صفحتك الرئيسية تعمل.',
       'scene.kicker': '◆ اللوحات · بنداً ببند', 'scene.title': 'أعمالنا، مشروعاً بمشروع.',
       'scene.lead': 'الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع كما هي على الإنترنت.',
       'scene.cta': 'افتح لوحات المشاريع ←',
-      'founder.kicker': '06 — الفريق والمؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
+      'founder.kicker': '05 — الفريق والمؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
       'founder.lead': 'خلف Numidea Labs: مؤسّس يصمّم ويبرمج ويُنجز، ومعه ثلاثة مختصّين.',
       'founder.role': 'مصمّم غرافيك ومطوّر ويب · المؤسّس', 'founder.years': '6 سنوات', 'founder.city': 'برج بوعريريج',
       'founder.bio': 'ستّ سنوات في تصميم الهويّات وبرمجة الواجهات وتسليم المنتجات — من العلامة إلى الواجهة إلى السحابة. أحوّل الفكرة إلى منتج، وأبقى بعد الإطلاق.',
@@ -257,15 +248,15 @@
       'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
       'team.sFn': 'المبيعات والشراكات', 'team.sDo': 'أول تواصل: ترجمة الفكرة إلى نطاق عمل.',
       'team.tFn': 'مسؤول المتابعة التقنية', 'team.tDo': 'متابعة جودة ما نُسلّمه، وإطلاع العميل على سير العمل أولاً بأول.',
-      'faq.kicker': '07 — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
+      'faq.kicker': '06 — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
       'faq.lead': 'ما يُسأل قبل البدء — بإجابات صريحة.',
       'faq1.q': 'كم يستغرق الإنجاز؟', 'faq1.a': 'يعتمد على حجم المشروع: من 2 إلى 4 أسابيع للموقع التعريفي، ومن 3 إلى 7 أسابيع للموقع المخصّص، ومن 8 إلى 16 أسبوعاً لتطبيق الويب. ونحدّد معك موعد التسليم النهائي بمجرّد أن نضبط نطاق العمل معاً.',
-      'faq2.q': 'كم التكلفة؟', 'faq2.a': 'أسعارنا منشورة في قسم الأسعار: تبدأ باقاتنا من 90 000 دج للموقع التعريفي (وبالأورو والدولار في القسم نفسه)، ونحدّد سعراً ثابتاً بعد توضيح نطاق العمل — دون مفاجآت. وللشركات المسجّلة نبني الصفحة الرئيسية أولاً ومجّاناً، وهذه هي المعاينة (4 معاينات في الشهر كحدّ أقصى لجميع العملاء).',
+      'faq2.q': 'كم التكلفة؟', 'faq2.a': 'أسعارنا منشورة في قسم الأسعار: تبدأ باقاتنا من 90 000 دج للموقع التعريفي (وبالأورو والدولار في القسم نفسه)، ونحدّد سعراً ثابتاً بعد توضيح نطاق العمل — دون مفاجآت. انظر أيضاً <a href="#apercu">المعاينة</a>.',
       'faq3.q': 'بأي لغات تعملون؟', 'faq3.a': 'الفرنسية والعربية والإنجليزية — حديثاً وكتابةً وفي المنتَج المُسلَّم. هذا الموقع نفسه ثلاثي اللغات، بنسخة عربية مصمّمة من الأساس للكتابة من اليمين إلى اليسار.',
       'faq4.q': 'وماذا بعد الإطلاق؟', 'faq4.a': 'نبقى معك. كل باقة تشمل دعماً لمدّة شهر أو 3 أو 6 أشهر، ونردّ عليك خلال 24 ساعة عمل. بعدها تصبح الصيانة اختيارية: اشتراك شهري دون التزام بمدّة (انظر الأسعار). لا «حظّاً موفقاً» يوم الإطلاق.',
       'faq5.q': 'هل تعملون عن بُعد؟', 'faq5.a': 'نعم. مقرّنا في برج بوعريريج، لكنّنا نعمل مع عملاء في كل مكان، ومنهم عملاء في فرنسا. والبُعد لا يغيّر شيئاً في تواصلك المباشر مع من يبني مشروعك.',
-      'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط: فريق واحد يحدّد نطاق مشروعك ويبرمجه ويُسلّمه، من التصميم إلى النشر. وللشركات المسجّلة، ترى صفحتك الرئيسية تعمل قبل أن تدفع أيّ شيء — في حدود 4 معاينات في الشهر لجميع العملاء.',
-      'contact.kicker': '08 — تواصل',
+      'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط: فريق واحد يحدّد نطاق مشروعك ويبرمجه ويُسلّمه، من التصميم إلى النشر.',
+      'contact.kicker': '07 — تواصل',
       'contact.title': 'لنتحدّث عن <em>مشروعك.</em>',
       'contact.sub': 'أخبرنا بما تريد إنجازه: أمر عاجل، أو موقع يحتاج إلى إصلاح، أو موعد نهائي يقترب. بالفرنسية أو الإنجليزية أو العربية.',
       'contact.chStudio': 'الاستوديو', 'contact.chReply': 'الردّ',
@@ -295,8 +286,11 @@
       'mk.h': 'Algérie, France, États-Unis : un projet, trois marchés',
       'mk.vizCap': "Échelle logarithmique : chaque grande graduation vaut dix fois la précédente. Entre les deux lignes en tirets, la fourchette de Numidea, prolongée sur les trois marchés ; une barre qui s'estompe n'a pas de plafond. Montants convertis au taux officiel, chiffres exacts dans le tableau ci-dessous.",
       'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
-      'prev.tl1': 'Vous envoyez votre contenu', 'prev.tl2': "On construit votre page d'accueil", 'prev.tl2d': '5 jours ouvrés',
-      'prev.tl3': 'On vous la présente', 'prev.tl3d': 'visio de 30 min', 'prev.tl4': 'Vous décidez', 'prev.tl4d': "Payé jusqu'ici :",
+      'prev.tl1': 'Vous décrivez le projet', 'prev.tl1p': 'Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.',
+      'prev.tl2': 'On revient sous 24 h ouvrées', 'prev.tl2p': 'Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.',
+      'prev.tl3': "On construit votre page d'accueil", 'prev.tl3d': '5 jours ouvrés',
+      'prev.tl4': 'On vous la présente', 'prev.tl4d': 'visio de 30 min',
+      'prev.tl5': 'Vous décidez', 'prev.tl5d': "Payé jusqu'ici :", 'prev.tl5p': "Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le reste.",
       'mk.p': "Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.",
       'mk.curL': 'Afficher en', 'mk.curNative': "Devise d'origine",
       'mk.cap': 'Fourchettes de prix courantes par type de projet',
@@ -329,7 +323,7 @@
       'nav.pricing': 'Tarifs',
       'wa.hello': "Bonjour Numidea Labs — j'aimerais parler d'un projet.",
       'footer.wa': 'WhatsApp',
-      'price.kicker': '05 — Tarifs', 'price.title': 'Un prix <em>avant le devis.</em>',
+      'price.kicker': '04 — Tarifs', 'price.title': 'Un prix <em>avant le devis.</em>',
       'price.lead': 'Nos prix, publiés — à côté des tarifs courants en Algérie, en France et aux États-Unis. Ajustez le périmètre et voyez l\'estimation évoluer.',
       'price.cur': 'DA',
       'price.popular': 'Recommandé',
@@ -371,11 +365,6 @@
       'price.estFine': "Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.",
       'price.estCta': 'Obtenir le prix ferme →',
       'price.moreSum': 'Comment on chiffre', 'price.moreHint': 'Le marché, les modèles de facturation, ce qui fait bouger un devis.',
-      'price.ob1h': 'Vous décrivez le projet', 'price.ob1p': 'Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.',
-      'price.ob2h': 'On revient sous 24 h ouvrées', 'price.ob2p': 'Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.',
-      'price.ob3h': 'On construit l\'Aperçu — gratuit', 'price.ob3p': 'La page d\'accueil de votre site, avec votre contenu, avant tout paiement. Pour les entreprises immatriculées, 4 par mois au maximum, tous clients confondus.',
-      'price.ob4h': 'Vous décidez', 'price.ob4p': 'Si c\'est non, vous ne devez rien. Si c\'est oui, la page d\'accueil est déjà faite : on enchaîne sur le reste.',
-      'price.obCta1': 'Décrire mon projet →', 'price.obCta2': 'WhatsApp',
       'svc.famBuild': 'Sites & design', 'svc.famEngine': 'Données & automatisation', 'svc.famMind': 'Conseil & IA',
       'svc.lead': 'Nos cinq services principaux — et cinq autres juste en dessous.',
       'prev.tag': 'Offre signature', 'prev.name': "L'Aperçu", 'prev.promise': 'Zéro risque. Juste la preuve.',
@@ -407,8 +396,11 @@
       'mk.h': 'Algeria, France, United States: one project, three markets',
       'mk.vizCap': "Logarithmic scale: each major gridline is ten times the one before. Between the two dashed lines, Numidea's range, carried across the three markets; a bar that fades out has no upper limit. Amounts converted at the official rate; exact figures in the table below.",
       'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
-      'prev.tl1': 'You send your content', 'prev.tl2': 'We build your homepage', 'prev.tl2d': '5 working days',
-      'prev.tl3': 'We walk you through it', 'prev.tl3d': '30-minute video call', 'prev.tl4': 'You decide', 'prev.tl4d': 'Paid so far:',
+      'prev.tl1': 'You describe the project', 'prev.tl1p': 'Two minutes, in writing or out loud. In French, English or Arabic.',
+      'prev.tl2': 'We reply within 24 working hours', 'prev.tl2p': 'First with our questions. Then, once we have agreed on what to build, with a written scope and a firm price. Not a range — one number.',
+      'prev.tl3': 'We build your homepage', 'prev.tl3d': '5 working days',
+      'prev.tl4': 'We walk you through it', 'prev.tl4d': '30-minute video call',
+      'prev.tl5': 'You decide', 'prev.tl5d': 'Paid so far:', 'prev.tl5p': "If it's yes, the homepage is already done: we move straight on to the rest.",
       'mk.p': 'The same project, priced in three markets. Typical 2026 ranges, from an experienced freelancer to an agency — excluding tax.',
       'mk.curL': 'Show in', 'mk.curNative': 'Original currency',
       'mk.cap': 'Typical price ranges by project type',
@@ -441,7 +433,7 @@
       'nav.pricing': 'Pricing',
       'wa.hello': 'Hello Numidea Labs — I would like to talk about a project.',
       'footer.wa': 'WhatsApp',
-      'price.kicker': '05 — Pricing', 'price.title': 'A price <em>before the quote.</em>',
+      'price.kicker': '04 — Pricing', 'price.title': 'A price <em>before the quote.</em>',
       'price.lead': 'Our prices, published — next to typical rates in Algeria, France and the United States. Set the scope and watch the estimate move.',
       'price.cur': 'DZD',
       'price.popular': 'Recommended',
@@ -483,11 +475,6 @@
       'price.estFine': 'An indicative range, not a quote. The firm price follows once we have scoped it together — and it does not move after that.',
       'price.estCta': 'Get the firm price →',
       'price.moreSum': 'How we price', 'price.moreHint': 'The market, billing models, what moves a quote.',
-      'price.ob1h': 'You describe the project', 'price.ob1p': 'Two minutes, in writing or out loud. In French, English or Arabic.',
-      'price.ob2h': 'We reply within 24 working hours', 'price.ob2p': 'First with our questions. Then, once we have agreed on what to build, with a written scope and a firm price. Not a range — one number.',
-      'price.ob3h': 'We build the Preview — free', 'price.ob3p': 'Your site\'s homepage, with your own content, before any payment. For registered businesses: at most 4 a month, across all clients.',
-      'price.ob4h': 'You decide', 'price.ob4p': 'If it\'s no, you owe nothing. If it\'s yes, the homepage is already done: we move straight on to the rest.',
-      'price.obCta1': 'Describe my project →', 'price.obCta2': 'WhatsApp',
       'svc.famBuild': 'Sites & design', 'svc.famEngine': 'Data & automation', 'svc.famMind': 'Advisory & AI',
       'svc.lead': 'Our five core services — and five more just below.',
       'prev.tag': 'Signature offer', 'prev.name': 'The Preview', 'prev.promise': 'Zero risk: see it before you pay.',
@@ -522,8 +509,11 @@
       'mk.h': 'الجزائر وفرنسا والولايات المتحدة: مشروع واحد، ثلاثة أسواق',
       'mk.vizCap': 'مقياس لوغاريتمي: كلّ تدريجة رئيسية تساوي عشرة أضعاف التي قبلها. بين الخطّين المتقطّعين يمتدّ نطاق أسعارنا عبر الأسواق الثلاثة، والشريط الذي يتلاشى لا حدّ أعلى له. المبالغ محوّلة بالسعر الرسمي، والأرقام الدقيقة في الجدول أدناه.',
       'mk.k': 'ألف', 'mk.M': 'مليون', 'mk.k.n': 'ألف|ألفان|آلاف|ألفاً|ألف', 'mk.M.n': 'مليون|مليونان|ملايين|مليوناً|مليون',
-      'prev.tl1': 'ترسل إلينا محتواك', 'prev.tl2': 'نبني صفحتك الرئيسية', 'prev.tl2d': '5 أيام عمل',
-      'prev.tl3': 'نعرضها عليك', 'prev.tl3d': 'في مكالمة فيديو من 30 دقيقة', 'prev.tl4': 'أنت تقرّر', 'prev.tl4d': 'المدفوع حتى الآن:',
+      'prev.tl1': 'تصف المشروع', 'prev.tl1p': 'دقيقتان، كتابةً أو مشافهة. بالفرنسية أو الإنجليزية أو العربية.',
+      'prev.tl2': 'نعود إليك خلال 24 ساعة عمل', 'prev.tl2p': 'بأسئلتنا أولاً، ثم بنطاق عمل مكتوب وسعر نهائي بمجرّد أن نتّفق معاً على هذا النطاق. ليس سعراً تقريبياً، بل رقمٌ واحد.',
+      'prev.tl3': 'نبني صفحتك الرئيسية', 'prev.tl3d': '5 أيام عمل',
+      'prev.tl4': 'نعرضها عليك', 'prev.tl4d': 'في مكالمة فيديو من 30 دقيقة',
+      'prev.tl5': 'أنت تقرّر', 'prev.tl5d': 'المدفوع حتى الآن:', 'prev.tl5p': 'إن كان الجواب نعم، فالصفحة الرئيسية جاهزة بالفعل: ننتقل مباشرة إلى بقية العمل.',
       'mk.p': 'المشروع نفسه، مسعّراً في ثلاثة أسواق. الأسعار الشائعة لعام 2026، من المستقل المتمرّس إلى الوكالة — دون احتساب الضرائب.',
       'mk.curL': 'العملة', 'mk.curNative': 'العملة الأصلية',
       'mk.cap': 'الأسعار الشائعة حسب نوع المشروع',
@@ -556,7 +546,7 @@
       'nav.pricing': 'الأسعار',
       'wa.hello': 'مرحباً نوميديا لابز — أودّ الحديث عن مشروع.',
       'footer.wa': 'واتساب',
-      'price.kicker': '05 — الأسعار', 'price.title': 'سعر <em>قبل عرض السعر.</em>',
+      'price.kicker': '04 — الأسعار', 'price.title': 'سعر <em>قبل عرض السعر.</em>',
       'price.lead': 'أسعارنا منشورة — وإلى جانبها الأسعار الشائعة في الجزائر وفرنسا والولايات المتحدة. اضبط نطاق العمل وشاهد التقدير يتحرّك.',
       'price.cur': 'دج',
       'price.popular': 'الموصى به',
@@ -598,11 +588,6 @@
       'price.estFine': 'تقدير استرشادي، لا عرض سعر رسمي. السعر النهائي نحدّده بعد أن نضبط معاً نطاق العمل — ولا يتغيّر بعدها.',
       'price.estCta': 'احصل على السعر النهائي ←',
       'price.moreSum': 'كيف نسعّر', 'price.moreHint': 'السوق، نماذج الفوترة، وما يغيّر عرض السعر.',
-      'price.ob1h': 'تصف المشروع', 'price.ob1p': 'دقيقتان، كتابةً أو مشافهة. بالفرنسية أو الإنجليزية أو العربية.',
-      'price.ob2h': 'نعود إليك خلال 24 ساعة عمل', 'price.ob2p': 'بأسئلتنا أولاً، ثم بنطاق عمل مكتوب وسعر نهائي بمجرّد أن نتّفق معاً على هذا النطاق. ليس سعراً تقريبياً، بل رقمٌ واحد.',
-      'price.ob3h': 'نبني المعاينة — مجّاناً', 'price.ob3p': 'الصفحة الرئيسية لموقعك بمحتواك، قبل أيّ دفع. للشركات المسجّلة، 4 معاينات في الشهر كحدّ أقصى لجميع العملاء.',
-      'price.ob4h': 'أنت تقرّر', 'price.ob4p': 'إن كان الجواب لا، فلا شيء عليك. وإن كان نعم، فالصفحة الرئيسية جاهزة بالفعل: ننتقل مباشرة إلى بقية العمل.',
-      'price.obCta1': 'صِف لنا مشروعك ←', 'price.obCta2': 'واتساب',
       'svc.famBuild': 'المواقع والتصميم', 'svc.famEngine': 'البيانات والأتمتة', 'svc.famMind': 'الاستشارة والذكاء الاصطناعي',
       'svc.lead': 'خدماتنا الخمس الرئيسية — وخمس أخرى أدناه.',
       'prev.tag': 'عرض مميّز', 'prev.name': 'المعاينة', 'prev.promise': 'بلا مخاطرة. ترى النتيجة قبل أن تدفع.',
@@ -2030,16 +2015,16 @@
 
     /* ---------------- 13b · visualisations (r3/c) ----------------
        Pictures of numbers the page already states, drawn from the same
-       sources and never from new ones: the method's four steps, the Aperçu's
-       terms (prev.brief), PRICE_MODEL (each tier's weeks; the estimate against
-       the three packages) and MARKET (section 14). Each one sits beside its
-       text equivalent — the steps, the brief, the tier's own line, the
-       estimator's status line, the market table — so the pictures themselves
-       are aria-hidden.
+       sources and never from new ones: PRICE_MODEL (each tier's weeks; the
+       estimate against the three packages) and MARKET (section 14). Each one
+       sits beside its text equivalent — the tier's own line, the estimator's
+       status line, the market table — so the pictures themselves are
+       aria-hidden. The Aperçu's path is the exception: it is the text (the
+       one place the page tells it), and only its marks are drawn in.
        Motion is entrance only, started by IntersectionObserver (never a
        scroll handler), on transform and opacity. The drawn state is the
-       default: the script adds .vz-arm to hold a picture back and .vz-go /
-       .vz-lit to play it, so with scripts off, with reduced motion, or for a
+       default: the script adds .vz-arm to hold a picture back and .vz-go
+       to play it, so with scripts off, with reduced motion, or for a
        picture already on screen when this runs, nothing waits. Pictures
        whose marks this places keep their room from the first paint and are
        shown (.vz-on) once placed. Printing, or reduced motion turned on
@@ -2088,59 +2073,14 @@
         return Math.max(0, Math.min(1, (Math.log(v) - Math.log(v0)) / (Math.log(v1) - Math.log(v0))));
       };
 
-      /* -- the method: the line from node to node draws itself as the steps
-         come into view, one segment at a time, then the node it reaches
-         opens out to its size (it waits small, never faded: its number is
-         text). Steps light in order, one every 420ms, so a jump down the
-         page still draws the line node by node instead of all at once. */
-      (function () {
-        var list = document.querySelector('#how .steps');
-        if (!list) return;
-        var steps = [].slice.call(list.querySelectorAll('.step'));
-        if (!vzArm(list, function () {
-          list.style.setProperty('--rail', '1');
-          steps.forEach(function (s) { s.classList.add('vz-lit'); });
-          // and the steps still queued do not light one by one after it
-          queue.length = 0; lit = steps.length;
-          if (io) io.disconnect();
-        })) return;
-        /* The share of the rail's length up to node k's centre, read from
-           the rail's own box (.steps::before) and layout offsets, which a
-           step's reveal transform does not move; the last node takes the
-           whole rail, which runs on past it. */
-        var reach = function (k) {
-          if (k >= steps.length - 1) return 1;
-          var r = getComputedStyle(list, '::before'), node = steps[k].querySelector('.node');
-          var w = parseFloat(r.width), h = parseFloat(r.height);
-          if (!node || !(w > 0) || !(h > 0)) return 1;
-          var cx = steps[k].offsetLeft + node.offsetLeft + node.offsetWidth / 2;
-          var cy = steps[k].offsetTop + node.offsetTop + node.offsetHeight / 2;
-          var f = w > h ? (cx - parseFloat(r.left)) / w : (cy - parseFloat(r.top)) / h;
-          if (w > h && vzRtl()) f = 1 - f;
-          return Math.max(0, Math.min(1, f));
-        };
-        var lit = 0, queue = [], busy = false;
-        var pump = function () {
-          if (!queue.length) { busy = false; return; }
-          busy = true;
-          var k = queue.shift();
-          list.style.setProperty('--rail', reach(k).toFixed(4));   // the line reaches node k
-          steps[k].classList.add('vz-lit');                          // which opens out (styles.css delays it)
-          setTimeout(pump, 420);
-        };
-        var io = new IntersectionObserver(function (es) {
-          es.forEach(function (e) {
-            if (!e.isIntersecting) return;
-            for (var i = steps.indexOf(e.target); lit <= i; lit++) { queue.push(lit); io.unobserve(steps[lit]); }
-          });
-          if (!busy) pump();
-        }, { threshold: 0.5, rootMargin: '0px 0px -10% 0px' });
-        steps.forEach(function (s) { io.observe(s); });
-      })();
-
-      /* -- the Aperçu: you send, five working days, the call, you decide.
-         The amount paid at the decision is the one figure in it; it follows
-         the currency switch like every price on the page. */
+      /* -- the Aperçu's path: you describe, we reply within 24 working
+         hours, five working days, the call, you decide. Its words are the
+         page's only statement of the path, so they are never held back:
+         only the marks (the markers, the five days, the line between them)
+         draw in. The amount paid at the decision is the one figure in it;
+         it follows the currency switch like every price on the page. The
+         list can be taller than a phone screen, so it plays once a quarter
+         of it is on screen (a share it can always reach). */
       (function () {
         var tl = document.querySelector('#apercu .ptl');
         if (!tl) return;
@@ -2155,7 +2095,7 @@
         document.addEventListener('numidea:lang', paint);
         paint();
         if (vzArm(tl, function () { tl.classList.add('vz-go'); })) {
-          vzOnce([tl], 0.6, function (el) { el.classList.add('vz-go'); });
+          vzOnce([tl], 0.25, function (el) { el.classList.add('vz-go'); });
         }
       })();
 
@@ -2622,18 +2562,27 @@
       var links = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
       var crumb = document.getElementById('crumb'), now = document.getElementById('crumbNow');
       var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-      var cur = -1, tops = [];
+      /* A link may point into another link's section ("Méthode" lands on the
+         Aperçu card, the path's one telling, inside Services): that link is
+         current only while its own box is being read, and after it the
+         section around it is current again. */
+      var inner = secs.map(function (el) {
+        return !!el && secs.some(function (o) { return o && o !== el && o.contains(el); });
+      });
+      var cur = -1, tops = [], ends = [];
       // section tops are measured once (and on resize/reflow), never per
       // scroll frame: the scroll handler only compares numbers
       var measure = function () {
         var y = window.scrollY || window.pageYOffset || 0;
-        tops = secs.map(function (el) { return el ? el.getBoundingClientRect().top + y : Infinity; });
+        var boxes = secs.map(function (el) { return el ? el.getBoundingClientRect() : null; });
+        tops = boxes.map(function (r) { return r ? r.top + y : Infinity; });
+        ends = boxes.map(function (r, k) { return r && inner[k] ? r.bottom + y : Infinity; });
       };
       // runs in a frame after the parallax has written its translates, so it
       // reads the cached position: reading scrollY here forced a style recalc
       var pick = function () {
         var line = scrollPos + viewH * 0.35, i = -1;
-        for (var k = 0; k < tops.length; k++) { if (tops[k] <= line) i = k; }
+        for (var k = 0; k < tops.length; k++) { if (tops[k] <= line && ends[k] > line) i = k; }
         // the order of the links is the order of the page, so the last section
         // whose top has passed the reading line is the one being read
         if (i === cur) return; cur = i;
