@@ -66,7 +66,7 @@ The process is told once, as the path in the L'Aperçu card (index.html › #ape
 
 1. The client describes the project in two minutes, in writing or by voice, in French, English or Arabic (index.html › #apercu, prev.tl1p).
 2. The studio replies within 24 working hours with questions, then a written scope and a firm price once the scope is agreed (index.html › #apercu, prev.tl2p).
-3. The studio builds the homepage in 5 working days, free, under the conditions above (index.html › #apercu, prev.tl3d, prev.terms).
+3. The client sends their content and the studio builds the homepage in 5 working days, free, under the conditions above (index.html › #apercu, prev.tl3, prev.tl3d, prev.terms).
 4. The studio presents it on a 30-minute video call (index.html › #apercu, prev.tl4d).
 5. The client decides, with nothing paid so far; on a yes, the homepage is already done and the rest follows (index.html › #apercu, prev.tl5p).
 

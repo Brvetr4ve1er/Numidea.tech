@@ -1586,8 +1586,11 @@ idea is said once:
   path once, as a visible list (`prev.tl1`–`prev.tl5`): you describe the
   project (two minutes, in French, English or Arabic); we reply within 24
   working hours (questions, then a written scope and a firm price, not a
-  range); we build the homepage in 5 working days; the 30-minute call; you
-  decide, with 0 DA paid, and on a yes the homepage is already done. The
+  range); you send your content and we build the homepage in 5 working
+  days (the card's own first step, "Vous envoyez votre contenu", joined to
+  the build so the client's one task before it is not lost); the 30-minute
+  call; you decide, with 0 DA paid, and on a yes the homepage is already
+  done. The
   method section ("Quatre étapes. Zéro surprise.") told it a second time
   with its animated rail, and restated the terms; it left the page on
   2026-10-26 (owner decision), since on a phone a reader met the offer and

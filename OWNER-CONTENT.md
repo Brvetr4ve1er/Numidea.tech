@@ -191,10 +191,15 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
     `prev.tl2` «نعود إليك خلال 24 ساعة عمل», `prev.tl2p` «بأسئلتنا أولاً، ثم
     بنطاق عمل مكتوب وسعر نهائي بمجرّد أن نتّفق معاً على هذا النطاق. ليس سعراً
     تقريبياً، بل رقمٌ واحد.»;
-  - renumbered, words unchanged: `prev.tl3` «نبني صفحتك الرئيسية»,
-    `prev.tl3d` «5 أيام عمل», `prev.tl4` «نعرضها عليك», `prev.tl4d` «في
-    مكالمة فيديو من 30 دقيقة», `prev.tl5` «أنت تقرّر», `prev.tl5d` «المدفوع
-    حتى الآن:»; «ترسل إلينا محتواك» is gone (the brief says «بمحتواك أنت»);
+  - renumbered, words unchanged: `prev.tl3d` «5 أيام عمل», `prev.tl4`
+    «نعرضها عليك», `prev.tl4d` «في مكالمة فيديو من 30 دقيقة», `prev.tl5`
+    «أنت تقرّر», `prev.tl5d` «المدفوع حتى الآن:»;
+  - joined on 2026-10-27, so the client's one task before the build stays
+    in the path: `prev.tl3` «ترسل إلينا محتواك، ونبني صفحتك الرئيسية»
+    (French: "Vous envoyez votre contenu, on construit votre page
+    d'accueil"), the card's old first step «ترسل إلينا محتواك» and its old
+    build step «نبني صفحتك الرئيسية», both in their earlier words; does
+    the joined sentence read naturally as a step title?
   - new, the second half of the method's last step made to stand alone:
     `prev.tl5p` «إن كان الجواب نعم، فالصفحة الرئيسية جاهزة بالفعل: ننتقل
     مباشرة إلى بقية العمل.» (French: "Si c'est oui, la page d'accueil est
