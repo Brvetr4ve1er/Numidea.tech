@@ -1575,7 +1575,8 @@ idea is said once:
   delivered project, and it held the FAQ and the form a phone screen
   further down. The service cards keep their tools; confirmed tools can be
   listed later on a studio page or the project sheets. The kickers after it
-  moved up (07 FAQ, 08 Contact).
+  moved up, and again when the method section left (below): 06 FAQ,
+  07 Contact.
 - The proof band is one trust line, "4 sites livrés · réponse < 24 h ouvrées
   · FR · EN · AR", then the client logo strip. Its four animated counters
   repeated the hero's title block and the line under them; they went on

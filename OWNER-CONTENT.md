@@ -153,10 +153,12 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   «عرض تجريبي» alone say "a portfolio demo" here, as it does on the card's
   pill (`work.concept`)?
 - renumbered when the tools section («أدوات متينة») and its plate left the
-  page; only the number changed in each: `faq.kicker` «07 — الأسئلة»,
-  `contact.kicker` «08 — تواصل», `pl.light` «لوحة 4 — رأس كاربون · بجاية»,
-  `pl.dunes` «لوحة 5 — العرق الكبير». The section's own strings (`stack.*`,
-  `pl.strata`) are gone and need no review.
+  page; only the number changed in each: `pl.light` «لوحة 4 — رأس كاربون ·
+  بجاية», `pl.dunes` «لوحة 5 — العرق الكبير». `faq.kicker` and
+  `contact.kicker` were renumbered too, then again when the method section
+  left; their current values are in the "renumbered again" item below. The
+  section's own strings (`stack.*`, `pl.strata`) are gone and need no
+  review.
 - `hero.cta2`, the hero's second button, which now opens WhatsApp with
   the Aperçu message (`prev.waText`, unchanged) instead of leading to the
   projects: «راسلنا عبر واتساب» (French: "Écrire sur WhatsApp"; English:
@@ -271,9 +273,10 @@ Confirm it, or say what is true and the copy changes in all three languages.
   delivered client site is served from its own domain yet (see 9).
 - **AlmaFlowClim labelled "Industrie"**: its own site presents a residential
   heating, air-conditioning and plumbing business.
-- **"Si c'est oui, on est déjà à mi-chemin"** (the last step of the path in
-  the Aperçu card; until 2026-10-26, step 4 of the method) after a one-page
-  Aperçu, for projects of up to 16 weeks.
+- **"Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le
+  reste."** (`prev.tl5p`, the last step of the path in the Aperçu card;
+  until 2026-10-26, step 4 of the method, which first said "on est déjà à
+  mi-chemin") after a one-page Aperçu, for projects of up to 16 weeks.
 - **hub/: "VOIDSPLUNKER.std is an agency of one"** while the home page
   presents a studio of four specialists.
 
