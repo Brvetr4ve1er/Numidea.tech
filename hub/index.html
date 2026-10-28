@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-iM8XL+eVvv1WQN65VTJJKbfAxfeeG7PGk+NbsLr0v+c='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
-<title>b4vetrave1er.exe // VOIDSPLUNKER.std</title>
-<meta name="description" content="Hamisse Mohamed Yasser — polymath developer & designer. VOIDSPLUNKER.std × Numidea Labs. The archive: every door into the work.">
-<meta name="theme-color" content="#0a0b0d">
-<meta property="og:title" content="b4vetrave1er.exe // VOIDSPLUNKER.std">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-HprLMVac8U4BtpwGepEVsR0d2XXXXkLD+tWBug/WNrI='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<title>br4vetr4veler // VOIDSPLUNKER.std</title>
+<meta name="description" content="Hamisse Mohamed Yasser, br4vetr4veler: artist, designer and developer. Design, code, and everything between.">
+<meta name="theme-color" content="#fcecdc">
+<meta property="og:title" content="br4vetr4veler // VOIDSPLUNKER.std">
 <meta property="og:description" content="Polymath developer & designer. Design, code, and everything between.">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://brvetr4ve1er.github.io/Numidea.tech/hub/">
 <meta property="og:url" content="https://brvetr4ve1er.github.io/Numidea.tech/hub/">
 <meta property="og:type" content="website">
@@ -23,476 +23,315 @@
 <!-- Without this the browser falls back to /favicon.ico, which does not
      exist: a 404 in every visitor's console on this page. -->
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<!-- only the two themes this page has: anything else in storage reads as dark -->
-<script>(function(){var t;try{t=localStorage.getItem('void-theme');}catch(e){}document.documentElement.dataset.theme=t==='light'?'light':'dark';})();</script>
-<!-- Syne and Space Mono are self-hosted now, so this is render-blocking like
-     any first-party sheet — no request on this page reaches a third party. It
-     was a Google link held off the critical path with media="print", which was
-     the last such dependency on the site. -->
+<!-- Paper is the default; "dark" in storage is the only other theme, and
+     anything else reads as paper. The js class lets the stylesheet hold the
+     hero's layers for their entrance: without scripts it is never set, and
+     the art is drawn where it rests. -->
+<script>(function(){var t,d=document.documentElement;try{t=localStorage.getItem('void-theme');}catch(e){}d.dataset.theme=t==='dark'?'dark':'light';d.classList.add('js');})();</script>
+<!-- Syne, Geist and Geist Mono, self-hosted (font-display:optional). The
+     three preloads are the faces of the first screen; latin-ext is one of
+     them because "Kūro" needs it (assets/fonts-hub.css). -->
 <link rel="stylesheet" href="../assets/fonts-hub.css?v=202610270345">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/syne-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/space-mono-400-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin-ext.woff2">
+<!-- the cartridge's pixel face (12.5 kB, display:swap, as on workspacehq/):
+     fetched with the page, so it is there for the first paint instead of
+     widening the cartridge when it lands -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../workspacehq/fonts/PressStart2P.woff2">
 <link rel="stylesheet" href="style.css?v=202610270345">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://brvetr4ve1er.github.io/Numidea.tech/"},{"@type":"ListItem","position":2,"name":"br4vetr4veler","item":"https://brvetr4ve1er.github.io/Numidea.tech/hub/"}]}</script>
 </head>
 <body>
 
 <!-- Skip link: the first Tab stop on every page of the site (npm run keys).
-     <main> starts with the hero, whose first stop is the breadcrumb, the
-     same stop as without a skip link, so it goes past the hero to the series
-     and says so, as scene/'s goes to its sheets. English only, like the rest
-     of hub/. -->
-<a class="skip" href="#collection">Skip to the series</a>
+     The hero's stops are the breadcrumb and the cartridge; this goes past
+     them to the work. English only, like the rest of hub/. -->
+<a class="skip" href="#make">Skip to the work</a>
 
-<!-- One main landmark for the whole page — the hero with the page's <h1>, the
-     series, design, social and the archive. It used to wrap the archive only,
-     which left most of the page outside it. -->
 <main id="main">
 
-<!-- ============================= HERO ============================= -->
-<header class="hero" id="hero">
-  <nav class="topbar" aria-label="Breadcrumb">
+<!-- ============================= HERO =============================
+     A paper print in both themes: the art was drawn on paper and Kūro is
+     black, so in the dark theme the hero sits on the night page as an inset
+     print and its text keeps the paper inks (.paper).
+     The stage is three registered layers of one 2752×1536 frame: the paper
+     and its line work, Kūro, Yasser. The wide frame from 1024px, the tall
+     crop (scripts/hub-art-data.mjs BOX.heroTall) below; each layer is the
+     same box, so they stay registered at both. Yasser is the first screen's
+     largest picture: fetched first, never lazy, never faded. -->
+<header class="hero paper" id="hero">
+  <nav class="bar" aria-label="Breadcrumb">
     <ol class="bc">
       <li><a href="../">Numidea Labs</a></li>
-      <li aria-current="page"><span class="brandtag">VOIDSPLUNKER<span class="acc">.std</span></span></li>
+      <li aria-current="page"><span>VOIDSPLUNKER<span class="bc-std">.std</span></span></li>
     </ol>
-    <span class="spacer"></span>
   </nav>
 
-  <div class="hero-grid">
-
-    <!-- IDENTITY -->
-    <section class="identity" aria-labelledby="id-title">
-      <p class="eyebrow"><i class="blip"></i> ARTIST · DESIGNER · DEVELOPER</p>
-
-      <h1 class="cycler" id="id-title">
-        <span class="cy-line"><span class="cy-text">br4vetr4veler</span></span>
-      </h1>
-
-
-      <p class="philo">form is a function of obsession.</p>
-
-      <ul class="meta mono">
-        <li><b>NAME</b><span>Hamisse Mohamed Yasser</span></li>
-        <li><b>STUDIO</b><span>VOIDSPLUNKER.std &nbsp;×&nbsp; Numidea Labs</span></li>
-        <li><b>STATUS</b><span class="ok">// available for the impossible</span></li>
-      </ul>
-      <!-- the beloved one: WorkspaceHQ, presented as a game cartridge Bit lives on -->
-      <a class="whq-cart" href="../workspacehq/"><span class="whq-bit"><svg viewBox="0 0 12 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="3" y="0" width="6" height="1" fill="#d97757"/><rect x="2" y="1" width="1" height="1" fill="#d97757"/><rect x="3" y="1" width="1" height="1" fill="#f2a27e"/><rect x="4" y="1" width="6" height="1" fill="#d97757"/><rect x="1" y="2" width="1" height="1" fill="#d97757"/><rect x="2" y="2" width="1" height="1" fill="#f2a27e"/><rect x="3" y="2" width="8" height="1" fill="#d97757"/><rect x="1" y="3" width="10" height="1" fill="#d97757"/><rect x="1" y="4" width="10" height="1" fill="#d97757"/><rect x="0" y="5" width="12" height="1" fill="#d97757"/><rect x="1" y="6" width="10" height="1" fill="#d97757"/><rect x="1" y="7" width="10" height="1" fill="#a5543a"/><rect x="2" y="8" width="1" height="1" fill="#a5543a"/><rect x="4" y="8" width="1" height="1" fill="#a5543a"/><rect x="7" y="8" width="1" height="1" fill="#a5543a"/><rect x="9" y="8" width="1" height="1" fill="#a5543a"/><g class="whq-eyes"><rect x="3" y="3" width="1" height="1" fill="#1b1430"/><rect x="8" y="3" width="1" height="1" fill="#1b1430"/><rect x="3" y="4" width="1" height="1" fill="#1b1430"/><rect x="8" y="4" width="1" height="1" fill="#1b1430"/></g></svg></span><span class="whq-txt"><span class="whq-kick">NOW PLAYING · MY FAVOURITE BUILD</span><b class="whq-name">WORKSPACE<i>HQ</i> <em>v3</em></b><span class="whq-sub">an arcade cabinet for your codebase</span></span><span class="whq-start" aria-hidden="true">▶ PRESS START</span><span class="whq-xp" aria-hidden="true">+1 XP</span></a>
-    </section>
-
-    <!-- AVATAR — decorative (the four portraits are alt=""), so a plain box, not
-         a named region landmark with nothing in it to read -->
-    <div class="avatar" data-parallax="-.05">
-      <div class="frame" id="avatarFrame">
-        <!-- POSE SLOTS — the four Traveler portraits, calm to scream; the
-             scroll-driven pose index steps through them. -->
-        <div class="portrait" id="portrait" data-pose="0">
-          <img class="pose on" src="poses/pose-0.webp" alt="" width="840" height="1008" decoding="async" fetchpriority="high">
-          <img class="pose" src="poses/pose-1.webp" alt="" width="840" height="1008" decoding="async" loading="lazy">
-          <img class="pose" src="poses/pose-2.webp" alt="" width="840" height="1008" decoding="async" loading="lazy">
-          <img class="pose" src="poses/pose-3.webp" alt="" width="840" height="1008" decoding="async" loading="lazy">
-        </div>
-        <span class="frame-cap mono">THE TRAVELER <i class="await">// four weathers</i></span>
-      </div>
+  <div class="hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow">Artist · Designer · Developer</p>
+      <h1 class="handle">br4vetr4veler</h1>
+      <p class="name">Hamisse Mohamed Yasser</p>
+      <p class="motto">form is a function of obsession.</p>
     </div>
 
-  </div>
+    <!-- the beloved one: WorkspaceHQ, presented as a game cartridge Bit lives on -->
+    <a class="whq-cart" href="../workspacehq/"><span class="whq-bit"><svg viewBox="0 0 12 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="3" y="0" width="6" height="1" fill="#d97757"/><rect x="2" y="1" width="1" height="1" fill="#d97757"/><rect x="3" y="1" width="1" height="1" fill="#f2a27e"/><rect x="4" y="1" width="6" height="1" fill="#d97757"/><rect x="1" y="2" width="1" height="1" fill="#d97757"/><rect x="2" y="2" width="1" height="1" fill="#f2a27e"/><rect x="3" y="2" width="8" height="1" fill="#d97757"/><rect x="1" y="3" width="10" height="1" fill="#d97757"/><rect x="1" y="4" width="10" height="1" fill="#d97757"/><rect x="0" y="5" width="12" height="1" fill="#d97757"/><rect x="1" y="6" width="10" height="1" fill="#d97757"/><rect x="1" y="7" width="10" height="1" fill="#a5543a"/><rect x="2" y="8" width="1" height="1" fill="#a5543a"/><rect x="4" y="8" width="1" height="1" fill="#a5543a"/><rect x="7" y="8" width="1" height="1" fill="#a5543a"/><rect x="9" y="8" width="1" height="1" fill="#a5543a"/><g class="whq-eyes"><rect x="3" y="3" width="1" height="1" fill="#1b1430"/><rect x="8" y="3" width="1" height="1" fill="#1b1430"/><rect x="3" y="4" width="1" height="1" fill="#1b1430"/><rect x="8" y="4" width="1" height="1" fill="#1b1430"/></g></svg></span><span class="whq-txt"><span class="whq-kick">NOW PLAYING · MY FAVOURITE BUILD</span><b class="whq-name">WORKSPACE<i>HQ</i> <em>v3</em></b><span class="whq-sub">an arcade cabinet for your codebase</span></span><span class="whq-start" aria-hidden="true">▶ PRESS START</span><span class="whq-xp" aria-hidden="true">+1 XP</span></a>
 
-  <a class="scrollcue mono" href="#collection">
-    <span>the series</span><span class="arr">↓</span>
-  </a>
+    <!-- depths: data-parallax is the scroll lag, data-depth the pointer
+         offset in px (fine pointers only; app.js §1). The figures lag less
+         than their paper, so they read as standing in front of it. -->
+    <div class="stage">
+      <picture class="layer layer--bg" data-parallax="-.03" data-depth="3">
+        <source media="(min-width:1024px)" srcset="art/hero-bg-wide-1280.webp 1280w, art/hero-bg-wide-1920.webp 1920w, art/hero-bg-wide-2560.webp 2560w" sizes="100vw" width="2560" height="1429">
+        <img src="art/hero-bg-tall-960.webp" srcset="art/hero-bg-tall-640.webp 640w, art/hero-bg-tall-960.webp 960w, art/hero-bg-tall-1192.webp 1192w" sizes="(min-width:700px) 44vw, 100vw" width="1192" height="1536" alt="" decoding="async">
+      </picture>
+      <picture class="layer layer--kuro" data-parallax="-.014" data-depth="6">
+        <source media="(min-width:1024px)" srcset="art/hero-kuro-wide-1280.webp 1280w, art/hero-kuro-wide-1920.webp 1920w, art/hero-kuro-wide-2560.webp 2560w" sizes="100vw" width="2560" height="1429">
+        <img src="art/hero-kuro-tall-960.webp" srcset="art/hero-kuro-tall-640.webp 640w, art/hero-kuro-tall-960.webp 960w, art/hero-kuro-tall-1192.webp 1192w" sizes="(min-width:700px) 44vw, 100vw" width="1192" height="1536" alt="" decoding="async">
+      </picture>
+      <picture class="layer layer--yasser" data-parallax="-.008" data-depth="9">
+        <source media="(min-width:1024px)" srcset="art/hero-yasser-wide-1280.webp 1280w, art/hero-yasser-wide-1920.webp 1920w, art/hero-yasser-wide-2560.webp 2560w" sizes="100vw" width="2560" height="1429">
+        <img src="art/hero-yasser-tall-960.webp" srcset="art/hero-yasser-tall-640.webp 640w, art/hero-yasser-tall-960.webp 960w, art/hero-yasser-tall-1192.webp 1192w" sizes="(min-width:700px) 44vw, 100vw" width="1192" height="1536" alt="Yasser in a long bone coat, a coffee in his hand, and Kūro, the black cat, sitting beside him." fetchpriority="high">
+      </picture>
+    </div>
+  </div>
 </header>
 
 
-<!-- ============================= THE SERIES ==============================
-     BR4VETR4VELER: the gallery remade as one poster series that reads as a
-     story — prologue, three chapters (one riso palette each), epilogue.
-     Laid out as bento grids on square units, so every tile has the exact
-     shape of its piece: posters 2:3 (2x3 / 4x6), portraits 1:1, the epilogue
-     4x7. Spans per tile are in style.css; tile order is chosen so dense
-     auto-placement leaves no holes at 6 columns or at 4. -->
-<section class="coll series" id="collection" aria-labelledby="coll-h" tabindex="-1">
-  <div class="coll-head" data-reveal>
-    <p class="eyebrow"><i class="blip"></i> THE SERIES</p>
-    <h2 id="coll-h">BR4VETR4VELER<br><span class="acc">A&nbsp;STORY IN 33&nbsp;POSTERS.</span></h2>
+<!-- ============================= WHAT I MAKE =============================
+     The skip link's target. Three roles, each a cut-out drawn on paper: on
+     the paper page they stand on the page itself; in the dark theme each sits
+     on its own paper card. Copy is the owner's published wording. -->
+<section class="make" id="make" tabindex="-1" aria-labelledby="make-h">
+  <div class="wrap make-grid">
+    <div class="make-head" data-reveal>
+      <p class="kicker">What I make</p>
+      <h2 class="make-h" id="make-h">Design meets code.</h2>
+    </div>
+
+    <article class="role role--designer" aria-labelledby="role-d" data-reveal>
+      <div class="role-fig">
+        <img class="fade" src="art/make-designer-720.webp" srcset="art/make-designer-480.webp 480w, art/make-designer-720.webp 720w, art/make-designer-960.webp 960w" sizes="(min-width:1024px) 520px, (min-width:700px) 46vw, 84vw" width="960" height="948" alt="Yasser at a drafting table, inking a logo in a sketchbook." loading="lazy" decoding="async">
+      </div>
+      <div class="role-txt">
+        <h3 id="role-d">Designer</h3>
+        <p>Brand identities, posters and print.</p>
+        <ul class="role-links">
+          <li><a href="#design">The design work</a></li>
+          <li><a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">Behance <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="role role--developer" aria-labelledby="role-v" data-reveal>
+      <div class="role-fig">
+        <img class="fade" src="art/make-developer-720.webp" srcset="art/make-developer-480.webp 480w, art/make-developer-720.webp 720w, art/make-developer-903.webp 903w" sizes="(min-width:1024px) 440px, (min-width:700px) 40vw, 84vw" width="903" height="776" alt="Yasser at a laptop full of code." loading="lazy" decoding="async">
+      </div>
+      <div class="role-txt">
+        <h3 id="role-v">Developer</h3>
+        <p>Immersive web, and the systems humming underneath.</p>
+        <ul class="role-links">
+          <li><a href="../workspacehq/">WorkspaceHQ</a></li>
+          <li><a href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
+          <li><a href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="role role--artist" aria-labelledby="role-a" data-reveal>
+      <div class="role-fig">
+        <img class="fade" src="art/make-artist-720.webp" srcset="art/make-artist-480.webp 480w, art/make-artist-720.webp 720w, art/make-artist-960.webp 960w" sizes="(min-width:1024px) 460px, (min-width:700px) 46vw, 84vw" width="960" height="787" alt="Yasser drawing on a pen display while Kūro walks across it." loading="lazy" decoding="async">
+      </div>
+      <div class="role-txt">
+        <h3 id="role-a">Artist</h3>
+        <p>The process, posted as it happens.</p>
+        <ul class="role-links">
+          <li><a href="#collection">The studio diary</a></li>
+          <li><a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">DeviantArt <span aria-hidden="true">↗</span></a></li>
+          <li><a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- marginalia: Kūro, die-cut -->
+    <img class="kuro kuro--paw" src="art/kuro-paw-240.webp" srcset="art/kuro-paw-240.webp 240w, art/kuro-paw-480.webp 480w" sizes="150px" width="240" height="340" alt="" loading="lazy" decoding="async">
   </div>
-  <section class="chapter" id="ch-0" data-ch="traveler" aria-labelledby="ch-0-h">
-    <div class="bento bento--traveler">
-      <div class="tile tile--text t-phead">
-        <span class="tt-num" aria-hidden="true">0</span>
-        <p class="tt-kick mono">Prologue</p>
-        <h3 id="ch-0-h">The Traveler</h3>
-        <p class="tt-line">one face, four weathers. this is who walks through everything that follows.</p>
-      </div>
-      <a class="tile tile--img t-pbig" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv3-l.webp" data-w="900" data-h="900" data-title="The Traveler — acid" data-meta="Prologue · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
-        <img src="art/tv3-l.webp" alt="The Traveler — acid" width="900" height="900" loading="lazy" decoding="async">
-        <span class="tl"><b>The Traveler — acid</b><i class="mono">Prologue · 2026</i></span>
-      </a>
-      <a class="tile tile--img t-psm" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv0-l.webp" data-w="900" data-h="900" data-title="The Traveler — violet" data-meta="Prologue · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
-        <img src="art/tv0-s.webp" alt="The Traveler — violet" width="420" height="420" loading="lazy" decoding="async">
-        <span class="tl"><b>The Traveler — violet</b><i class="mono">Prologue · 2026</i></span>
-      </a>
-      <a class="tile tile--img t-psm" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv1-l.webp" data-w="900" data-h="900" data-title="The Traveler — cobalt" data-meta="Prologue · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
-        <img src="art/tv1-s.webp" alt="The Traveler — cobalt" width="420" height="420" loading="lazy" decoding="async">
-        <span class="tl"><b>The Traveler — cobalt</b><i class="mono">Prologue · 2026</i></span>
-      </a>
-      <a class="tile tile--img t-psm" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/tv2-l.webp" data-w="900" data-h="900" data-title="The Traveler — vermilion" data-meta="Prologue · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
-        <img src="art/tv2-s.webp" alt="The Traveler — vermilion" width="420" height="420" loading="lazy" decoding="async">
-        <span class="tl"><b>The Traveler — vermilion</b><i class="mono">Prologue · 2026</i></span>
-      </a>
+</section>
+
+
+<!-- ============================= DESIGN =============================
+     Identity, social and print work as published on Behance, titles only.
+     The band is a paper print: full-bleed on the paper page, inset on the
+     night one. Its heading sits on the band's empty left from 1024px; below
+     that it comes first and the band's right part follows. -->
+<section class="design" id="design" aria-labelledby="design-h">
+  <div class="band band--design paper">
+    <div class="band-copy" data-reveal>
+      <h2 id="design-h">Identity. Posters. Print.</h2>
+      <p><a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">All projects on Behance <span aria-hidden="true">↗</span></a></p>
     </div>
-  </section>
-  <section class="chapter" id="ch-i" data-ch="sky" aria-labelledby="ch-i-h">
-    <div class="bento bento--sky">
-      <a class="tile tile--img t-big" href="https://www.deviantart.com/br4vetr4veler5/art/BOY-1184912606" target="_blank" rel="noopener" data-full="art/p13-l.webp" data-w="900" data-h="1350" data-title="BOY" data-meta="I · The Sky · 2025" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p13-l.webp" alt="BOY" width="900" height="1350" loading="lazy" decoding="async">
-        <span class="tl"><b>BOY</b><i class="mono">I · The Sky · 2025</i></span>
-      </a>
-      <div class="tile tile--text t-head">
-        <span class="tt-num" aria-hidden="true">I</span>
-        <p class="tt-kick mono">Chapter I · 8 posters</p>
-        <h3 id="ch-i-h">The Sky</h3>
-        <p class="tt-line">before anything, the sky. clouds you could stand on, a moon close enough to reach.</p>
-      </div>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/CLOUD-1184916814" target="_blank" rel="noopener" data-full="art/p08-l.webp" data-w="900" data-h="1342" data-title="CLOUD" data-meta="I · The Sky · 2025" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p08-s.webp" alt="CLOUD" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>CLOUD</b><i class="mono">I · The Sky · 2025</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/can%27t-wake-up-1184913176" target="_blank" rel="noopener" data-full="art/p12-l.webp" data-w="900" data-h="1342" data-title="can&#x27;t wake up" data-meta="I · The Sky · 2025" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p12-s.webp" alt="can&#x27;t wake up" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>can&#x27;t wake up</b><i class="mono">I · The Sky · 2025</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Sky-Junge-1028348649" target="_blank" rel="noopener" data-full="art/p26-l.webp" data-w="900" data-h="1342" data-title="Sky Junge" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p26-s.webp" alt="Sky Junge" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>Sky Junge</b><i class="mono">I · The Sky · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/self-portrait-1028140868" target="_blank" rel="noopener" data-full="art/p18-l.webp" data-w="900" data-h="1342" data-title="self portrait" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p18-s.webp" alt="self portrait" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>self portrait</b><i class="mono">I · The Sky · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/tears-falling-down-at-the-party-1119614662" target="_blank" rel="noopener" data-full="art/p20-l.webp" data-w="900" data-h="1342" data-title="tears falling down at the party" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p20-s.webp" alt="tears falling down at the party" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>tears falling down at the party</b><i class="mono">I · The Sky · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/I-shal-name-this-SPOT.-ELYSIUM-1104492957" target="_blank" rel="noopener" data-full="art/p21-l.webp" data-w="900" data-h="1350" data-title="ELYSIUM" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p21-s.webp" alt="ELYSIUM" width="420" height="630" loading="lazy" decoding="async">
-        <span class="tl"><b>ELYSIUM</b><i class="mono">I · The Sky · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Pic.Art-04.02.21-1026716358" target="_blank" rel="noopener" data-full="art/p28-l.webp" data-w="900" data-h="1350" data-title="Pic.Art 04.02.21" data-meta="I · The Sky · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p28-s.webp" alt="Pic.Art 04.02.21" width="420" height="630" loading="lazy" decoding="async">
-        <span class="tl"><b>Pic.Art 04.02.21</b><i class="mono">I · The Sky · 2024</i></span>
-      </a>
+    <picture class="band-art">
+      <source media="(min-width:1024px)" srcset="art/band-design-1280.webp 1280w, art/band-design-1920.webp 1920w" sizes="100vw" width="1920" height="1072">
+      <img class="fade" src="art/band-design-tall-800.webp" srcset="art/band-design-tall-800.webp 800w, art/band-design-tall-1200.webp 1200w" sizes="100vw" width="1200" height="1217" alt="Yasser at a work table among floating layouts, logo studies and colour swatches, Kūro sitting at the table's edge." loading="lazy" decoding="async">
+    </picture>
+  </div>
+
+  <div class="wrap covers-wrap">
+    <img class="kuro kuro--sit" src="art/kuro-sit-240.webp" srcset="art/kuro-sit-240.webp 240w, art/kuro-sit-445.webp 445w" sizes="130px" width="240" height="358" alt="" loading="lazy" decoding="async">
+    <ul class="covers" data-reveal>
+      <li><a class="cover" href="https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-09.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Bordj Steel Branding Project</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/254889197/HEETCH-ENTRY-TEST" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-00.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Heetch Entry Test</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/253834245/MINIMAL-INDUSTRIAL-SOCIAL-MEDIA-CREATIVES" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-01.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Minimal Industrial Social Media Creatives</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/253721505/SURFBOARD-DESIGN-FOR-BEACH-POSM" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-02.webp" alt="" width="554" height="434" loading="lazy" decoding="async"></span><span class="cover-t">Surfboard Design for Beach POSM</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/252840169/summer-creative-social-media" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-03.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Summer. Creative. Social Media</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/252522281/amanatcom-brand-guidelines" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-04.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Amanatcom Brand Guidelines</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/250754909/FIRST-MONTH-AT-HEETCH-DZ" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-05.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">First Month At Heetch. Dz</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/241516627/SANDIWCH-INSULATING-PANNELS-GRAPHIC-ASSETS" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-06.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Sandwich Insulating Panels Graphic Assets</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/241515403/BILLBOARD-URBAIN-BORDJ-STEEL-SPA" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-07.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Billboard Urbain Bordj Steel SPA</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/235033549/TYLER-DURDAIN-HALFTONE-POSTER" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-08.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Tyler Durden Halftone Poster</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/233152047/STAR-BORN-ALGERIANSERIES" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-10.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Star Born Algerian Series</span></a></li>
+      <li><a class="cover" href="https://www.behance.net/gallery/232008435/ALAN-IS-AWAKE-MANGA-CONCEPT" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-11.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Alan Is Awake Manga Concept</span></a></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================= STUDIO DIARY =============================
+     A night print in both themes: inset on the paper page, edge to edge on
+     the night one. Eight prints in story order; each opens in the viewer
+     (#lb) below. Without scripts each is a plain link to its large file.
+     Titles are the owner's drafts. The hooks keys.mjs drives: #collection,
+     .tile--img with data-title, #lb, #lbTitle. -->
+<section class="diary night" id="collection" aria-labelledby="coll-h">
+  <div class="band band--diary">
+    <div class="band-copy" data-reveal>
+      <h2 id="coll-h">Studio diary</h2>
+      <p>Yasser and Kūro, after hours.</p>
     </div>
-  </section>
-  <section class="chapter" id="ch-ii" data-ch="noise" aria-labelledby="ch-ii-h">
-    <div class="bento bento--noise">
-      <div class="tile tile--text t-head">
-        <span class="tt-num" aria-hidden="true">II</span>
-        <p class="tt-kick mono">Chapter II · 8 posters</p>
-        <h3 id="ch-ii-h">The Noise</h3>
-        <p class="tt-line">then the noise — covers, crowds, songs on repeat, the city at three in the morning.</p>
-      </div>
-      <a class="tile tile--img t-big" href="https://www.deviantart.com/br4vetr4veler5/art/BREAK-1stuck-in-the-sound1-1026714931" target="_blank" rel="noopener" data-full="art/p15-l.webp" data-w="900" data-h="1342" data-title="BREAK — stuck in the sound" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p15-l.webp" alt="BREAK — stuck in the sound" width="900" height="1342" loading="lazy" decoding="async">
-        <span class="tl"><b>BREAK — stuck in the sound</b><i class="mono">II · The Noise · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/YUNGe-falling-boy-1184911531" target="_blank" rel="noopener" data-full="art/p14-l.webp" data-w="900" data-h="1342" data-title="YUNGe — falling boy" data-meta="II · The Noise · 2025" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p14-s.webp" alt="YUNGe — falling boy" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>YUNGe — falling boy</b><i class="mono">II · The Noise · 2025</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/many-of-one-1184914134" target="_blank" rel="noopener" data-full="art/p10-l.webp" data-w="900" data-h="1350" data-title="many of one" data-meta="II · The Noise · 2025" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p10-s.webp" alt="many of one" width="420" height="630" loading="lazy" decoding="async">
-        <span class="tl"><b>many of one</b><i class="mono">II · The Noise · 2025</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/PAY-NO-MIND.-.-.-.Song%3A-MADD-pay-no-mind-1104492026" target="_blank" rel="noopener" data-full="art/p22-l.webp" data-w="900" data-h="1342" data-title="PAY NO MIND" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p22-s.webp" alt="PAY NO MIND" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>PAY NO MIND</b><i class="mono">II · The Noise · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/DAMN-1119614534" target="_blank" rel="noopener" data-full="art/p19-l.webp" data-w="900" data-h="1342" data-title="DAMN" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p19-s.webp" alt="DAMN" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>DAMN</b><i class="mono">II · The Noise · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/delusions-of-03-23-1027514649" target="_blank" rel="noopener" data-full="art/p27-l.webp" data-w="900" data-h="1342" data-title="delusions of 03-23" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p27-s.webp" alt="delusions of 03-23" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>delusions of 03-23</b><i class="mono">II · The Noise · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Design-i-made-for-my-phone-background-1025462444" target="_blank" rel="noopener" data-full="art/p29-l.webp" data-w="900" data-h="1342" data-title="DEJA VU" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p29-s.webp" alt="DEJA VU" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>DEJA VU</b><i class="mono">II · The Noise · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/ORANGE-butterfly-ALT-1025344222" target="_blank" rel="noopener" data-full="art/p17-l.webp" data-w="900" data-h="1342" data-title="ORANGE butterfly" data-meta="II · The Noise · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p17-s.webp" alt="ORANGE butterfly" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>ORANGE butterfly</b><i class="mono">II · The Noise · 2024</i></span>
-      </a>
-    </div>
-  </section>
-  <section class="chapter" id="ch-iii" data-ch="ink" aria-labelledby="ch-iii-h">
-    <div class="bento bento--ink">
-      <div class="tile tile--text t-head">
-        <span class="tt-num" aria-hidden="true">III</span>
-        <p class="tt-kick mono">Chapter III · 12 posters</p>
-        <h3 id="ch-iii-h">The Ink</h3>
-      </div>
-      <div class="tile tile--text tile--quote t-quote">
-        <p class="tt-quote">when the noise stops, the ink is what is left. every demon here was drawn so it could be beaten.</p>
-      </div>
-      <a class="tile tile--img t-big" href="https://www.deviantart.com/br4vetr4veler5/art/sekiro-character-fanart-1020907143" target="_blank" rel="noopener" data-full="art/p30-l.webp" data-w="900" data-h="1342" data-title="sekiro character fanart" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p30-l.webp" alt="sekiro character fanart" width="900" height="1342" loading="lazy" decoding="async">
-        <span class="tl"><b>sekiro character fanart</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/ego-disintegration-1018718019" target="_blank" rel="noopener" data-full="art/p33-l.webp" data-w="900" data-h="1342" data-title="ego disintegration" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p33-s.webp" alt="ego disintegration" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>ego disintegration</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/break-free-by-init-19-1017844306" target="_blank" rel="noopener" data-full="art/p35-l.webp" data-w="900" data-h="1342" data-title="break free by init 19" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p35-s.webp" alt="break free by init 19" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>break free by init 19</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/FLCL-CHARACTER-CONCEPT-1104490797" target="_blank" rel="noopener" data-full="art/p23-l.webp" data-w="900" data-h="1342" data-title="FLCL CHARACTER CONCEPT" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p23-s.webp" alt="FLCL CHARACTER CONCEPT" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>FLCL CHARACTER CONCEPT</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Kira-the-death-note-1104489180" target="_blank" rel="noopener" data-full="art/p24-l.webp" data-w="900" data-h="1342" data-title="Kira the death note" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p24-s.webp" alt="Kira the death note" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>Kira the death note</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Ukio-E%3D-imposter-1104488235" target="_blank" rel="noopener" data-full="art/p25-l.webp" data-w="900" data-h="1342" data-title="Ukio E= imposter" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p25-s.webp" alt="Ukio E= imposter" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>Ukio E= imposter</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Cutscene-Broken-Sword-1019481928" target="_blank" rel="noopener" data-full="art/p31-l.webp" data-w="900" data-h="1342" data-title="Cutscene Broken Sword" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p31-s.webp" alt="Cutscene Broken Sword" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>Cutscene Broken Sword</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Reema-1036726040" target="_blank" rel="noopener" data-full="art/p16-l.webp" data-w="900" data-h="1350" data-title="Reema" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p16-s.webp" alt="Reema" width="420" height="630" loading="lazy" decoding="async">
-        <span class="tl"><b>Reema</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Alistor-30-1017843211" target="_blank" rel="noopener" data-full="art/p36-l.webp" data-w="900" data-h="1342" data-title="Alastor 30" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p36-s.webp" alt="Alastor 30" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>Alastor 30</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/Eye-Ballzz-1017700087" target="_blank" rel="noopener" data-full="art/p37-l.webp" data-w="900" data-h="1342" data-title="Eye Ballzz" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p37-s.webp" alt="Eye Ballzz" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>Eye Ballzz</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/ALASTOR-cute-1017590148" target="_blank" rel="noopener" data-full="art/p38-l.webp" data-w="900" data-h="1342" data-title="ALASTOR cute" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p38-s.webp" alt="ALASTOR cute" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>ALASTOR cute</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-      <a class="tile tile--img t-sm" href="https://www.deviantart.com/br4vetr4veler5/art/lonely-island-1018715329" target="_blank" rel="noopener" data-full="art/p34-l.webp" data-w="900" data-h="1342" data-title="lonely island" data-meta="III · The Ink · 2024" data-link-label="the original on DeviantArt ↗">
-        <img src="art/p34-s.webp" alt="lonely island" width="420" height="626" loading="lazy" decoding="async">
-        <span class="tl"><b>lonely island</b><i class="mono">III · The Ink · 2024</i></span>
-      </a>
-    </div>
-  </section>
-  <section class="chapter" id="ch-ep" data-ch="imagination" aria-labelledby="ch-ep-h">
-    <div class="bento bento--imagination">
-      <a class="tile tile--img t-ep" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" data-full="art/imagination-l.webp" data-w="732" data-h="1300" data-title="The Power of Imagination" data-meta="Epilogue · after Neville Goddard · 2026" data-link-label="br4vetr4veler on DeviantArt ↗">
-        <img src="art/imagination-l.webp" alt="The Power of Imagination" width="732" height="1300" loading="lazy" decoding="async">
-        <span class="tl"><b>The Power of Imagination</b><i class="mono">Epilogue · after Neville Goddard · 2026</i></span>
-      </a>
-      <div class="tile tile--text t-eptext">
-        <span class="tt-num" aria-hidden="true">∞</span>
-        <p class="tt-kick mono">Epilogue · after Neville Goddard</p>
-        <h3 id="ch-ep-h">The Power of Imagination</h3>
-        <p class="tt-line">assume the feeling of the wish fulfilled. the traveler never left the room — he imagined the road, and walked it.</p>
-      </div>
-    </div>
-  </section>
-  <p class="coll-more mono"><a href="https://www.deviantart.com/br4vetr4veler5/gallery" target="_blank" rel="noopener">the originals on DeviantArt <span class="acc">↗</span></a></p>
+    <picture class="band-art">
+      <source media="(min-width:1024px)" srcset="art/band-diary-1280.webp 1280w, art/band-diary-1920.webp 1920w" sizes="100vw" width="1920" height="1072">
+      <img class="fade" src="art/band-diary-tall-800.webp" srcset="art/band-diary-tall-800.webp 800w, art/band-diary-tall-1200.webp 1200w" sizes="100vw" width="1200" height="1217" alt="Yasser turning a small model in his hands at a lamp-lit desk at night, Kūro sitting under the lamp." loading="lazy" decoding="async">
+    </picture>
+  </div>
+
+  <ul class="prints wrap">
+    <li class="print print--w" data-reveal><a class="tile tile--img" href="art/diary-4am-1600.webp" data-full="art/diary-4am-1600.webp" data-w="1600" data-h="1073" data-title="4 a.m." data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-4am-960.webp" srcset="art/diary-4am-640.webp 640w, art/diary-4am-960.webp 960w, art/diary-4am-1280.webp 1280w" sizes="(min-width:1024px) 680px, (min-width:700px) 46vw, 92vw" width="1280" height="859" alt="Yasser at his desk by a dark city window, a pen at his lips, Kūro asleep on the keyboard." loading="lazy" decoding="async"></span><span class="print-t">4 a.m.</span></a></li>
+    <li class="print print--n" data-reveal><a class="tile tile--img" href="art/diary-buried-1264.webp" data-full="art/diary-buried-1264.webp" data-w="1264" data-h="848" data-title="Buried" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-buried-960.webp" srcset="art/diary-buried-640.webp 640w, art/diary-buried-960.webp 960w, art/diary-buried-1264.webp 1264w" sizes="(min-width:1024px) 480px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Yasser holding his head next to towers of binders and papers, Kūro sitting on the open laptop." loading="lazy" decoding="async"></span><span class="print-t">Buried</span></a></li>
+    <li class="print print--n" data-reveal><a class="tile tile--img" href="art/diary-art-director-1264.webp" data-full="art/diary-art-director-1264.webp" data-w="1264" data-h="848" data-title="Art director" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-art-director-960.webp" srcset="art/diary-art-director-640.webp 640w, art/diary-art-director-960.webp 960w, art/diary-art-director-1264.webp 1264w" sizes="(min-width:1024px) 480px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Kūro sitting on Yasser's pen display while he draws around him, coffee cups all over the desk." loading="lazy" decoding="async"></span><span class="print-t">Art director</span></a></li>
+    <li class="print print--w" data-reveal><a class="tile tile--img" href="art/diary-second-brain-1264.webp" data-full="art/diary-second-brain-1264.webp" data-w="1264" data-h="848" data-title="The second brain" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-second-brain-960.webp" srcset="art/diary-second-brain-640.webp 640w, art/diary-second-brain-960.webp 960w, art/diary-second-brain-1264.webp 1264w" sizes="(min-width:1024px) 680px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Yasser at a wall of pinned notes linked by strings, Kūro asleep on the desk behind him." loading="lazy" decoding="async"></span><span class="print-t">The second brain</span></a></li>
+    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-miniature-1600.webp" data-full="art/diary-miniature-1600.webp" data-w="1600" data-h="1073" data-title="A world in miniature" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-miniature-960.webp" srcset="art/diary-miniature-640.webp 640w, art/diary-miniature-960.webp 960w, art/diary-miniature-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="859" alt="Yasser holding up a cut-paper scene of towers at his workbench, Kūro watching from a blueprint." loading="lazy" decoding="async"></span><span class="print-t">A world in miniature</span></a></li>
+    <li class="print print--w" data-reveal><a class="tile tile--img" href="art/diary-morning-1376.webp" data-full="art/diary-morning-1376.webp" data-w="1376" data-h="768" data-title="Morning light" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-morning-960.webp" srcset="art/diary-morning-640.webp 640w, art/diary-morning-960.webp 960w, art/diary-morning-1280.webp 1280w" sizes="(min-width:1024px) 680px, (min-width:700px) 46vw, 92vw" width="1280" height="714" alt="Yasser sketching at a sunlit desk beside a model tower, Kūro curled up asleep on the desk." loading="lazy" decoding="async"></span><span class="print-t">Morning light</span></a></li>
+    <li class="print print--n" data-reveal><a class="tile tile--img" href="art/diary-wandering-1264.webp" data-full="art/diary-wandering-1264.webp" data-w="1264" data-h="848" data-title="Wandering" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-wandering-960.webp" srcset="art/diary-wandering-640.webp 640w, art/diary-wandering-960.webp 960w, art/diary-wandering-1264.webp 1264w" sizes="(min-width:1024px) 480px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Yasser reading a maze of a map on a rock among ruins at sunset, Kūro sitting beside him." loading="lazy" decoding="async"></span><span class="print-t">Wandering</span></a></li>
+    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-traveler-1600.webp" data-full="art/diary-traveler-1600.webp" data-w="1600" data-h="1073" data-title="tr4veler.exe" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-traveler-960.webp" srcset="art/diary-traveler-640.webp 640w, art/diary-traveler-960.webp 960w, art/diary-traveler-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="859" alt="Three scenes of Yasser and Kūro: resting on a hillside, walking through arches into a maze, and reading a glowing map on a night platform." loading="lazy" decoding="async"></span><span class="print-t">tr4veler.exe</span></a></li>
+  </ul>
 </section>
 
 <!-- The viewer. Close comes first in the source: a modal dialog focuses its
-     first focusable element on open, and that used to be the external
-     DeviantArt link — one Enter away from leaving the site. The buttons are
-     positioned, so the order changes nothing on screen. Previous/Next speak
-     the new piece through the status line at the end. -->
-<dialog class="lb" id="lb" aria-labelledby="lbTitle">
+     first focusable element on open. The buttons are positioned, so the
+     order changes nothing on screen. Previous/Next speak the new piece
+     through the status line at the end. #lbLink shows only for a piece that
+     has a page of its own elsewhere (data-link); the diary prints have none. -->
+<dialog class="lb night" id="lb" aria-labelledby="lbTitle">
   <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
   <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous piece">←</button>
   <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next piece">→</button>
   <figure class="lb-fig">
     <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-    <figcaption><b id="lbTitle"></b><i class="mono" id="lbMeta"></i><a class="mono" id="lbLink" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">the original on DeviantArt ↗</a></figcaption>
+    <figcaption><b id="lbTitle"></b><i id="lbMeta"></i><a id="lbLink" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener" hidden>the original <span aria-hidden="true">↗</span></a></figcaption>
   </figure>
   <p class="vh" id="lbLive" role="status"></p>
 </dialog>
 
-<!-- ============================= DESIGN ================================
-     Identity, social and print work as published on Behance. View counts
-     read from the profile page; refresh them with the stats below. -->
-<section class="design" id="design" aria-labelledby="design-h">
-  <div class="coll-head" data-reveal>
-    <p class="eyebrow"><i class="blip"></i> DESIGN</p>
-    <h2 id="design-h">IDENTITY.<br><span class="acc">POSTERS. PRINT.</span></h2>
-  </div>
-  <div class="design-grid">
-    <a class="tile tile--img dtile dtile--lead" href="https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT" target="_blank" rel="noopener">
-      <img src="art/be-09.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Bordj Steel Branding Project</b><i class="mono">40 views · 1 appreciated</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/254889197/HEETCH-ENTRY-TEST" target="_blank" rel="noopener">
-      <img src="art/be-00.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Heetch Entry Test</b><i class="mono">4 views</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/253834245/MINIMAL-INDUSTRIAL-SOCIAL-MEDIA-CREATIVES" target="_blank" rel="noopener">
-      <img src="art/be-01.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Minimal Industrial Social Media Creatives</b><i class="mono">9 views</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/253721505/SURFBOARD-DESIGN-FOR-BEACH-POSM" target="_blank" rel="noopener">
-      <img src="art/be-02.webp" alt="" width="554" height="434" loading="lazy" decoding="async">
-      <span class="tl"><b>Surfboard Design for Beach POSM</b><i class="mono">10 views</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/252840169/summer-creative-social-media" target="_blank" rel="noopener">
-      <img src="art/be-03.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Summer. Creative. Social Media</b><i class="mono">15 views</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/252522281/amanatcom-brand-guidelines" target="_blank" rel="noopener">
-      <img src="art/be-04.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Amanatcom Brand Guidelines</b><i class="mono">10 views</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/250754909/FIRST-MONTH-AT-HEETCH-DZ" target="_blank" rel="noopener">
-      <img src="art/be-05.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>First Month At Heetch. Dz</b><i class="mono">23 views</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/241516627/SANDIWCH-INSULATING-PANNELS-GRAPHIC-ASSETS" target="_blank" rel="noopener">
-      <img src="art/be-06.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Sandwich Insulating Panels Graphic Assets</b><i class="mono">15 views · 2 appreciated</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/241515403/BILLBOARD-URBAIN-BORDJ-STEEL-SPA" target="_blank" rel="noopener">
-      <img src="art/be-07.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Billboard Urbain Bordj Steel SPA</b><i class="mono">28 views · 1 appreciated</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/235033549/TYLER-DURDAIN-HALFTONE-POSTER" target="_blank" rel="noopener">
-      <img src="art/be-08.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Tyler Durden Halftone Poster</b><i class="mono">9 views</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/233152047/STAR-BORN-ALGERIANSERIES" target="_blank" rel="noopener">
-      <img src="art/be-10.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Star Born Algerian Series</b><i class="mono">13 views</i></span>
-    </a>
-    <a class="tile tile--img dtile" href="https://www.behance.net/gallery/232008435/ALAN-IS-AWAKE-MANGA-CONCEPT" target="_blank" rel="noopener">
-      <img src="art/be-11.webp" alt="" width="640" height="501" loading="lazy" decoding="async">
-      <span class="tl"><b>Alan Is Awake Manga Concept</b><i class="mono">36 views · 3 appreciated</i></span>
-    </a>
-  </div>
-</section>
 
-<!-- ============================= SOCIAL HIGHLIGHTS =======================
-     Numbers as each public profile showed them in October 2026 — update by
-     hand; nothing here is fetched at runtime. Instagram exposes no public
-     count without signing in, so it gets no number rather than a guess. -->
-<section class="social" id="social" aria-labelledby="social-h">
-  <div class="coll-head" data-reveal>
-    <p class="eyebrow"><i class="blip"></i> SOCIAL HIGHLIGHTS</p>
-    <h2 id="social-h">SEEN. SAVED.<br><span class="acc">SHARED.</span></h2>
-  </div>
-  <div class="social-grid">
-    <a class="scard" data-reveal data-brand="behance" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">
-      <span class="sc-top mono"><span class="badge">Bē</span>Behance <i>@br4vetr4aveler1</i><span class="go" aria-hidden="true">↗</span></span>
-      <span class="sc-big"><b>453</b><i class="mono">project views</i></span>
-      <span class="sc-row mono"><span><b>28</b> appreciations</span><span><b>18</b> followers</span></span>
-      <span class="sc-thumbs" aria-hidden="true"><img src="art/be-00.webp" alt="" width="640" height="501" loading="lazy" decoding="async"><img src="art/be-01.webp" alt="" width="640" height="501" loading="lazy" decoding="async"><img src="art/be-02.webp" alt="" width="554" height="434" loading="lazy" decoding="async"></span>
-    </a>
-    <a class="scard" data-reveal data-brand="deviantart" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">
-      <span class="sc-top mono"><span class="badge">DA</span>DeviantArt <i>br4vetr4veler5</i><span class="go" aria-hidden="true">↗</span></span>
-      <span class="sc-big"><b>39</b><i class="mono">pieces posted</i></span>
-      <span class="sc-row mono"><span>since <b>Feb 2024</b></span><span>latest <b>Apr 2025</b></span></span>
-      <span class="sc-thumbs" aria-hidden="true"><img src="art/p13-s.webp" alt="" width="420" height="630" loading="lazy" decoding="async"><img src="art/p15-s.webp" alt="" width="420" height="626" loading="lazy" decoding="async"><img src="art/p24-s.webp" alt="" width="420" height="626" loading="lazy" decoding="async"></span>
-    </a>
-    <a class="scard sc-ig" data-reveal data-brand="instagram" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">
-      <span class="sc-top mono"><span class="badge">IG</span>Instagram <i>@stick_itty</i><span class="go" aria-hidden="true">↗</span></span>
-      <span class="sc-big"><b class="sc-word">the process,</b><i class="mono">posted as it happens</i></span>
-      <span class="sc-row mono"><span>sketches</span><span>drafts</span><span>finals</span></span>
-    </a>
-  </div>
-</section>
-
-<!-- ============================= LINKS ============================= -->
+<!-- ============================= ELSEWHERE =============================
+     Handles verified from the Behance profile's own declared social links. -->
 <section class="links" id="links" aria-labelledby="links-h">
-  <div class="links-head" data-reveal>
-    <p class="eyebrow"><i class="blip"></i> THE ARCHIVE</p>
-    <h2 id="links-h">ONE HANDLE.<br><span class="acc">EVERY&nbsp;WORLD.</span></h2>
-    <p class="links-sub">design, code, and everything between — pick a door.</p>
-  </div>
+  <div class="wrap links-grid">
+    <div class="links-head" data-reveal>
+      <p class="kicker">Elsewhere</p>
+      <h2 id="links-h">One handle. Every world.</h2>
+      <p class="links-sub">Design, code, and everything between.</p>
+    </div>
 
-  <div class="links-grid" id="linksGrid">
-    <!-- Handles verified from the Behance profile's own declared social links.
-         Rows still marked data-pending have no URL on record yet. -->
-    <!-- DESIGN -->
-    <h3 class="lgroup" data-reveal><span class="ill ill-design" aria-hidden="true"></span><span class="lgroup-t">Design<i>identity, illustration, and the places the work lives</i></span></h3>
-    <a class="link" data-reveal data-brand="behance" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener"><span class="mono badge">Bē</span><span class="ltxt"><b>Behance</b><i>@br4vetr4aveler1</i></span><span class="go">↗</span></a>
-    <a class="link" data-reveal data-brand="deviantart" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener"><span class="mono badge">DA</span><span class="ltxt"><b>DeviantArt</b><i>br4vetr4veler5</i></span><span class="go">↗</span></a>
-    <a class="link" data-reveal data-brand="pinterest" href="https://www.pinterest.com/VOID.DESIGNER/" target="_blank" rel="noopener"><span class="mono badge">P</span><span class="ltxt"><b>Pinterest</b><i>VOID.DESIGNER</i></span><span class="go">↗</span></a>
-    <a class="link" data-reveal data-brand="tumblr" href="https://delicateexpertsstuff.tumblr.com" target="_blank" rel="noopener"><span class="mono badge">tb</span><span class="ltxt"><b>Tumblr</b><i>delicateexpertsstuff</i></span><span class="go">↗</span></a>
-    <!-- DEV -->
-    <h3 class="lgroup" data-reveal><span class="ill ill-dev" aria-hidden="true"></span><span class="lgroup-t">Dev<i>the source and the professional record</i></span></h3>
-    <a class="link link--whq" data-reveal data-brand="workspacehq" href="../workspacehq/"><span class="mono badge">HQ</span><span class="ltxt"><b>WorkspaceHQ v3</b><i>my favourite build — out now</i></span><span class="go">↗</span></a>
-    <a class="link" data-reveal data-brand="github" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener"><span class="mono badge">GH</span><span class="ltxt"><b>GitHub</b><i>@Brvetr4ve1er</i></span><span class="go">↗</span></a>
-    <a class="link" data-reveal data-brand="linkedin" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener"><span class="mono badge">in</span><span class="ltxt"><b>LinkedIn</b><i>Mohamed Yasser Hamisse</i></span><span class="go">↗</span></a>
-    <!-- SOCIAL -->
-    <h3 class="lgroup" data-reveal><span class="ill ill-social" aria-hidden="true"></span><span class="lgroup-t">Social<i>where the process gets posted as it happens</i></span></h3>
-    <a class="link" data-reveal data-brand="instagram" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener"><span class="mono badge">IG</span><span class="ltxt"><b>Instagram</b><i>@stick_itty</i></span><span class="go">↗</span></a>
-    <a class="link" data-reveal data-brand="x" href="https://x.com/br4vetr4veler" target="_blank" rel="noopener"><span class="mono badge">X</span><span class="ltxt"><b>X / Twitter</b><i>@br4vetr4veler</i></span><span class="go">↗</span></a>
-    <a class="link" data-reveal data-brand="youtube" href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener"><span class="mono badge">YT</span><span class="ltxt"><b>YouTube</b><i>@br4vetr4aveler</i></span><span class="go">↗</span></a>
-    <a class="link" data-reveal data-brand="telegram" href="https://t.me/nobodysamsa" target="_blank" rel="noopener"><span class="mono badge">tg</span><span class="ltxt"><b>Telegram</b><i>@nobodysamsa</i></span><span class="go">↗</span></a>
-    <!-- SHOP / CONTACT -->
-    <h3 class="lgroup" data-reveal><span class="ill ill-studio" aria-hidden="true"></span><span class="lgroup-t">Shop &amp; contact<i>buy the work, or just say something</i></span></h3>
-    <a class="link" data-reveal data-brand="etsy" href="https://www.etsy.com/shop/Bl7nksStudio" target="_blank" rel="noopener"><span class="mono badge">et</span><span class="ltxt"><b>Etsy</b><i>Bl7nksStudio</i></span><span class="go">↗</span></a>
-    <a class="link" data-reveal data-brand="email" href="mailto:hamissemohamedyasser@gmail.com"><span class="mono badge">@</span><span class="ltxt"><b>Email</b><i>hamissemohamedyasser</i></span><span class="go">↗</span></a>
-  </div>
-  <!-- handles with no verified URL yet: listed once, not as dead tiles -->
-  <p class="links-soon mono" data-reveal>// coming soon — Dribbble · ArtStation · Are.na · TikTok · Gumroad</p>
+    <!-- loops: the still is the src; app.js swaps in the animated file once
+         half of it is on screen. It plays a set number of times (written in
+         the file) and stops on the frame it started from. With reduced motion
+         the <source> keeps the still and app.js never swaps. -->
+    <picture class="loop loop--lost">
+      <source media="(prefers-reduced-motion: reduce)" srcset="loops/yasser-lost-still.webp">
+      <img src="loops/yasser-lost-still.webp" data-anim="loops/yasser-lost.webp" width="480" height="442" alt="" loading="lazy" decoding="async">
+    </picture>
 
+    <div class="groups">
+      <div class="group" data-reveal>
+        <h3>Design</h3>
+        <ul>
+          <li><a class="out" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener"><span class="out-n">Behance</span><span class="out-h">@br4vetr4aveler1</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="out" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener"><span class="out-n">DeviantArt</span><span class="out-h">br4vetr4veler5</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="out" href="https://www.pinterest.com/VOID.DESIGNER/" target="_blank" rel="noopener"><span class="out-n">Pinterest</span><span class="out-h">VOID.DESIGNER</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="out" href="https://delicateexpertsstuff.tumblr.com" target="_blank" rel="noopener"><span class="out-n">Tumblr</span><span class="out-h">delicateexpertsstuff</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+        </ul>
+      </div>
+      <div class="group" data-reveal>
+        <h3>Code</h3>
+        <ul>
+          <li><a class="out" href="../workspacehq/"><span class="out-n">WorkspaceHQ v3</span><span class="out-h">my favourite build</span><span class="out-go" aria-hidden="true">→</span></a></li>
+          <li><a class="out" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener"><span class="out-n">GitHub</span><span class="out-h">@Brvetr4ve1er</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="out" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener"><span class="out-n">LinkedIn</span><span class="out-h">Mohamed Yasser Hamisse</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+        </ul>
+      </div>
+      <div class="group" data-reveal>
+        <h3>Social</h3>
+        <ul>
+          <li><a class="out" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener"><span class="out-n">Instagram</span><span class="out-h">@stick_itty</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="out" href="https://x.com/br4vetr4veler" target="_blank" rel="noopener"><span class="out-n">X</span><span class="out-h">@br4vetr4veler</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="out" href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener"><span class="out-n">YouTube</span><span class="out-h">@br4vetr4aveler</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="out" href="https://t.me/nobodysamsa" target="_blank" rel="noopener"><span class="out-n">Telegram</span><span class="out-h">@nobodysamsa</span><span class="out-go" aria-hidden="true">↗</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
 </main>
 
 <!-- ============================= FOOTER ============================= -->
-<footer class="site-foot" id="foot">
-  <div class="foot-top" data-reveal>
-    <span class="foot-mark" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="M12 2 22 12 12 22 2 12Z"/><circle cx="12" cy="12" r="3.4"/></svg>
-    </span>
+<footer class="foot" id="foot">
+  <div class="wrap foot-grid">
+    <div class="hello">
+      <picture class="loop loop--wave">
+        <source media="(prefers-reduced-motion: reduce)" srcset="loops/yasser-wave-still.webp">
+        <img src="loops/yasser-wave-still.webp" data-anim="loops/yasser-wave.webp" width="258" height="480" alt="" loading="lazy" decoding="async">
+      </picture>
+      <div class="hello-txt">
+        <h2 class="hello-h">Say hello</h2>
+        <a class="mail" href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser<wbr>@gmail.com</a>
+      </div>
+    </div>
+
     <p class="foot-bio">
       <b>VOIDSPLUNKER.std</b> is an agency of one. Design meets code; obsession meets output —
-      you work directly with me, <b>Hamisse Mohamed Yasser</b>, a <span class="acc">polymath developer &amp; designer</span>.
+      you work directly with me, <b>Hamisse Mohamed Yasser</b>, a polymath developer &amp; designer.
       I build brand identities, immersive web, and the systems humming underneath. I believe design can tell
       stories, evoke, and connect — and that a single mind, fully committed, beats a committee. Quality over quantity, always.
     </p>
-  </div>
 
-
-  <div class="foot-mid">
-    <!-- Each name starts with the letters on the button and then says what
-         they stand for (WCAG 2.5.3): "click IG" works by voice, and a screen
-         reader still hears "Instagram". The @ is a symbol, so Email keeps its
-         plain label. -->
-    <div class="foot-socials">
-      <a class="soc" href="mailto:hamissemohamedyasser@gmail.com" aria-label="Email">@</a>
-      <a class="soc" href="https://x.com/br4vetr4veler" target="_blank" rel="noopener">X<span class="vh"> / Twitter</span></a>
-      <a class="soc" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">IG<span class="vh"> Instagram</span></a>
-      <a class="soc" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">Bē<span class="vh"> Behance</span></a>
-      <a class="soc" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener">GH<span class="vh"> GitHub</span></a>
-      <a class="soc" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener">in<span class="vh"> LinkedIn</span></a>
-      <a class="soc" href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener">YT<span class="vh"> YouTube</span></a>
+    <div class="foot-end">
+      <!-- aria-pressed says which theme is on; app.js keeps it in step with
+           data-theme (the markup holds the default, paper) -->
+      <div class="theme-pill" role="group" aria-label="Theme &amp; scroll">
+        <button type="button" class="tp-sun" id="tpSun" aria-label="Light theme" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M19.1 4.9l-2.1 2.1M7 16.9l-2.1 2.1"/></svg></button>
+        <button type="button" class="tp-top" id="tpTop" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+        <button type="button" class="tp-moon" id="tpMoon" aria-label="Dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg></button>
+      </div>
+      <p class="legal"><span>© <span id="year">2026</span> VOIDSPLUNKER.std · DZ</span> <span>made in the void with <span class="heart" aria-hidden="true">♥</span><span class="vh">love</span> by <b>b4vetrave1er.exe</b></span></p>
+      <picture class="loop loop--sleep">
+        <source media="(prefers-reduced-motion: reduce)" srcset="loops/kuro-sleep-still.webp">
+        <img src="loops/kuro-sleep-still.webp" data-anim="loops/kuro-sleep.webp" width="431" height="480" alt="" loading="lazy" decoding="async">
+      </picture>
     </div>
-
-    <!-- aria-pressed says which theme is on; app.js keeps it in step with
-         data-theme (the markup holds the default, dark) -->
-    <div class="theme-pill" role="group" aria-label="Theme &amp; scroll">
-      <button type="button" class="tp-sun" id="tpSun" aria-label="Light theme" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M19.1 4.9l-2.1 2.1M7 16.9l-2.1 2.1"/></svg></button>
-      <button type="button" class="tp-top" id="tpTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
-      <button type="button" class="tp-moon" id="tpMoon" aria-label="Dark theme" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg></button>
-    </div>
-  </div>
-
-  <div class="foot-legal">
-    <span>©</span><span id="year">2025</span><span>— made in the void with</span>
-    <span class="heart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.3l-1.5-1.4C5 15 2 12.3 2 8.9 2 6.1 4.1 4 6.9 4c1.6 0 3.1.7 4.1 1.9C12 4.7 13.5 4 15.1 4 17.9 4 20 6.1 20 8.9c0 3.4-3 6.1-8.5 11z"/></svg></span>
-    <span>by</span> <b>b4vetrave1er.exe</b> <span class="dim">· VOIDSPLUNKER.std · DZ</span>
   </div>
 </footer>
 

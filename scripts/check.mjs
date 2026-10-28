@@ -826,14 +826,16 @@ runtimeDeps.length
 /* 17 — asset budgets */
 // Regression ceilings in bytes (kB = 1000 bytes), on the files the hosts
 // publish (DEPLOY, walked as stage-site.mjs copies it). Each folder's ceiling
-// is the largest file it held on 2026-10-24 plus 10%, rounded up to the kB,
-// and no file in it, at any depth, may be larger. Every published og.jpg (the
-// share cards) stays under 300 kB. The whole published set stays under its
-// size on 2026-10-24 plus 10%, rounded up to 0.1 MB. A miss fails: make the
-// file smaller (previews: scripts/shots.mjs, work: work-capture.mjs, illus:
-// plates.mjs, clients: client-logos.mjs, the home share card: build-og.mjs;
-// hub/art and hub/poses are exported by hand) or raise the number here on
-// purpose. The owner can tighten any of them.
+// is the largest file it held on the date beside it (2026-10-24 unless
+// noted) plus 10%, rounded up to the kB, and no file in it, at any depth, may
+// be larger. Every published og.jpg (the share cards) stays under 300 kB. The
+// whole published set stays under its size on the date beside TOTAL plus 10%,
+// rounded up to 0.1 MB. A miss fails: make the file smaller (previews:
+// scripts/shots.mjs, work: work-capture.mjs, illus: plates.mjs, clients:
+// client-logos.mjs, the home share card: build-og.mjs; hub/art and hub/loops:
+// build-hub-art.mjs, which also enforces its own per-file ceiling, except
+// hub/art/be-*.webp, exported by hand) or raise the number here on purpose.
+// The owner can tighten any of them.
 // No two published files in assets/fonts/ may hold the same bytes. Geist,
 // Geist Mono and Syne are variable fonts, and the Google Fonts API answers
 // every weight with one file: saved once per weight, the copies were each
@@ -848,12 +850,12 @@ runtimeDeps.length
     'assets/work': 129 * kB,      // 117,246 (alliance/d1.webp)
     'assets/illus': 203 * kB,     // 183,670 (vista-near.webp)
     'assets/clients': 22 * kB,    // 19,320 (bordjsteel.svg)
-    'hub/art': 367 * kB,          // 333,302 (p21-l.webp)
-    'hub/poses': 264 * kB,        // 239,336 (pose-3.webp)
+    'hub/art': 260 * kB,          // 235,748 on 2026-10-28 (diary-traveler-1600.webp)
+    'hub/loops': 419 * kB,        // 380,644 on 2026-10-28 (kuro-sleep.webp, animated)
     'assets/fonts': 51 * kB,      // 45,688 on 2026-10-26 (ibm-plex-sans-arabic-600-arabic.woff2)
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 20.9e6;           // 18,981,960 then, 262 files
+  const TOTAL = 19.0e6;           // 17,253,546 on 2026-10-28, 246 files (the hub rebuilt on its new art)
   const size = (f) => statSync(join(ROOT, f)).size;
   const fmt = (n) => (n >= 1e6 ? (n / 1e6).toFixed(2) + ' MB' : (n / kB).toFixed(1) + ' kB');
   const bytes = (n) => n.toLocaleString('en') + ' bytes';

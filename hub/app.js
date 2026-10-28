@@ -1,111 +1,45 @@
 /* ============================================================
    VOIDSPLUNKER.std — hub interactions (vanilla, no deps)
-   - scramble/cycling identity title
-   - mouse-reactive parallax + chromatic aberration
-   - rotating philosophy line
-   - reticle cursor
-   - avatar pose hook (ready for real frames)
+   1 · parallax: the hero's three layers, by scroll and by pointer
+   2 · entrance: the hero's layers rise once, when Yasser has arrived
+   3 · reveal: blocks rise and fade in as they come on screen
+   4 · loops: a still swapped for its animation once, on screen
+   5 · theme pill
+   6 · year
+   7 · the studio diary's viewer
+   8 · pictures fade in once decoded
+   With prefers-reduced-motion: reduce, 1, 2, 4 and 8 never run and 3
+   shows everything at once: nothing moves and nothing is written after
+   load (keys.mjs watches for it).
    ============================================================ */
 (function () {
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var root = document.documentElement;
 
-  /* ---------------- 1 · identity cycler ----------------
-     Was a per-character glyph scramble. Two problems, both measured: the line's
-     width changed on every animation frame, so the page's own <h1> emitted a
-     layout shift continuously for the life of the tab (14 shifts >0.01 in six
-     seconds, CLS 1.16 over a longer run) — and for roughly a third of the cycle
-     the heading read as random glyphs where a name should be, including in the
-     accessible name a screen reader announces.
-
-     Now it crossfades. The box is reserved from the longest identity, so the
-     swap cannot move anything, and the text is only ever a real identity. */
-  var IDENTITIES = [
-    'b4vetrave1er.exe',
-    'VOIDSPLUNKER.std',
-    'HAMISSE M. YASSER',
-    'POLYMATH DEVELOPER',
-    'DESIGNER / DEVELOPER'
-  ];
-  var cyText = document.getElementById('cyText');
-
-  if (cyText) {
-    cyText.textContent = IDENTITIES[0];
-    if (!reduce) {
-      var idx = 0;
-      setInterval(function () {
-        idx = (idx + 1) % IDENTITIES.length;
-        cyText.classList.add('swapping');
-        setTimeout(function () {
-          cyText.textContent = IDENTITIES[idx];
-          cyText.classList.remove('swapping');
-        }, 260);
-      }, 3400);
-    }
-  }
-
-  /* ---------------- 2 · philosophy line ---------------- */
-  var PHILO = [
-    'form is a function of obsession.',
-    'i live in the seam between the code and the canvas.',
-    'a polymath is someone who refused to choose.',
-    'build the void — then splunk it.',
-    'every system is a drawing waiting to be redrawn.',
-    'i make machines dream and pixels think.'
-  ];
-  var philoEl = document.getElementById('philo');
-  if (philoEl && !reduce) {
-    var pi = 0;
-    setInterval(function () {
-      philoEl.style.opacity = '0';
-      setTimeout(function () {
-        pi = (pi + 1) % PHILO.length;
-        philoEl.textContent = PHILO[pi];
-        philoEl.style.opacity = '1';
-      }, 420);
-    }, 5400);
-  }
-
-  /* ---------------- 3 · parallax engine (pointer + scroll) ----------------
-     Both sources write CSS variables; the stylesheet composes them into one
-     transform, so neither can clobber the other. Everything is lerped toward
-     its target, which is what makes the motion feel unhurried rather than
-     twitchy — the page settles instead of tracking. */
-  /* One list of moving elements: an element can carry data-depth (pointer),
-     data-parallax (scroll) or both, and gets ONE inline transform. These used
-     to be inherited CSS variables (--px/--py/--sy) rewritten on every element
-     every frame, forever — each write restyled the whole subtree, and the loop
-     never stopped, so the page burned a frame of style work 60 times a second
-     even while nobody touched it. Now: positions are cached, the loop runs
-     only while something is still easing, and only on-screen elements are
-     written. */
+  /* ---------------- 1 · parallax engine (pointer + scroll) ----------------
+     One list of moving elements: each can carry data-depth (pointer offset,
+     px) and data-parallax (scroll lag), and gets ONE inline transform.
+     Positions are cached (on load and resize, never while scrolling), the
+     loop runs only while something is still easing, and only on-screen
+     elements are written; everything is lerped toward its target, so the
+     art settles instead of tracking, and once settled nothing is written.
+     The pointer only counts on a fine pointer: a phone's touches are not a
+     gaze, and the old device-tilt source (a write on every sensor event
+     while the phone moved in a hand) is gone. The entrance (§2) uses the
+     `translate` property, which composes with this transform. */
   var movers = [].slice.call(document.querySelectorAll('[data-depth],[data-parallax]')).map(function (el) {
     return { el: el, d: parseFloat(el.getAttribute('data-depth')) || 0,
              k: parseFloat(el.getAttribute('data-parallax')) || 0, sy: 0, target: 0, top: 0, h: 0, last: '' };
   });
-  var ghost = document.querySelector('.ghost'), ghostSpan = ghost && ghost.querySelector('span');
   var tx = 0, ty = 0, cx = 0, cy = 0, vh = innerHeight, sy0 = scrollY || pageYOffset || 0, running = false;
 
-  function kick() { if (!running && !reduce) { running = true; requestAnimationFrame(frame); } }
+  function kick() { if (!running && !reduce && movers.length) { running = true; requestAnimationFrame(frame); } }
   function onMove(e) {
     tx = (e.clientX / innerWidth - 0.5) * 2;
     ty = (e.clientY / innerHeight - 0.5) * 2;
-    if (reticle) reticle.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
     kick();
   }
-  if (finePointer && !reduce) window.addEventListener('pointermove', onMove, { passive: true });
-
-  // gentle device-tilt parallax on mobile
-  if (!reduce && window.DeviceOrientationEvent && !finePointer) {
-    window.addEventListener('deviceorientation', function (e) {
-      if (e.gamma == null) return;
-      tx = Math.max(-1, Math.min(1, e.gamma / 30));
-      ty = Math.max(-1, Math.min(1, (e.beta - 45) / 30));
-      kick();
-    }, true);
-  }
-
-  // layout is measured once (and on resize/load), never while scrolling
   function cache() {
     var y = scrollY || pageYOffset || 0;
     vh = innerHeight;
@@ -120,9 +54,8 @@
     }
     kick();
   }
-
   function frame() {
-    cx += (tx - cx) * 0.045;          // slow follow — the calm comes from here
+    cx += (tx - cx) * 0.045;          // slow follow: the calm comes from here
     cy += (ty - cy) * 0.045;
     var settled = Math.abs(tx - cx) < 0.002 && Math.abs(ty - cy) < 0.002;
     for (var i = 0; i < movers.length; i++) {
@@ -133,36 +66,45 @@
       var v = 'translate3d(' + (-cx * m.d).toFixed(1) + 'px,' + (-cy * m.d + m.sy).toFixed(1) + 'px,0)';
       if (v !== m.last) { m.el.style.transform = v; m.last = v; }
     }
-    if (ghost) {
-      ghost.style.setProperty('--gx', (-cx * 26).toFixed(1) + 'px');
-      ghost.style.setProperty('--gy', (-cy * 26).toFixed(1) + 'px');
-      if (ghostSpan) ghostSpan.style.setProperty('--abx', (cx * 12 - 4).toFixed(1) + 'px');
-    }
     if (settled) running = false; else requestAnimationFrame(frame);
   }
-  if (!reduce) {
+  if (!reduce && movers.length) {
+    if (finePointer) addEventListener('pointermove', onMove, { passive: true });
     cache();
     addEventListener('scroll', function () { sy0 = scrollY || pageYOffset || 0; aim(); }, { passive: true });
     addEventListener('resize', cache);
     addEventListener('load', function () { setTimeout(cache, 300); });
   }
 
-  /* ---------------- 3b · staggered scroll reveal ----------------
-     Siblings entering together are delayed in sequence so the archive
-     assembles itself in a wave rather than all at once.
+  /* ---------------- 2 · entrance, once ----------------
+     The head script sets html.js, and the stylesheet then holds the three
+     layers a few px low (only with no reduced-motion preference). Once
+     Yasser's picture is decoded, .in lets them rise into register, the paper
+     first. Transforms only: the picture is never faded, and it is the first
+     screen's largest paint. If this script never runs the layers simply
+     rest a few px low, in register, inside the stage's bleed. */
+  var stage = document.querySelector('.stage');
+  var lead = stage && stage.querySelector('.layer--yasser img');
+  if (stage && lead && !reduce) {
+    var entered = false;
+    var go = function () {
+      if (entered) return; entered = true;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { stage.classList.add('in'); }); });
+    };
+    var ready = function () { if (lead.decode) lead.decode().then(go, go); else go(); };
+    if (lead.complete && lead.naturalWidth) ready();
+    else { lead.addEventListener('load', ready); lead.addEventListener('error', go); }
+    setTimeout(go, 4000);              // a stalled picture does not hold the art low
+  }
 
-     Progressive enhancement, as on the home page: the stylesheet only hides
-     [data-reveal] under html.reveal-armed, and this is the one place that
-     sets it — so with scripts off, blocked, or failing before this point,
-     everything is simply visible (it used to be 26 invisible blocks, 16 of
-     them focusable links). Anything already painted on screen is revealed in
-     the same pass that arms the gate, so nothing visible blinks off.
-
-     The observer line sits a fixed 40px above the bottom edge. It was 8% of
-     the viewport: on a screen taller than ~975px that band is deeper than an
-     archive link (78px), so a link that Tab scrolled to the bottom edge was
-     never revealed and kept focus invisible. Focus now reveals its block
-     outright, too, whatever the observer thinks. */
+  /* ---------------- 3 · staggered scroll reveal ----------------
+     Progressive enhancement: the stylesheet only hides [data-reveal] under
+     html.reveal-armed, and this is the one place that sets it, so with
+     scripts off, blocked or failing before this point, everything is simply
+     visible. Anything already painted on screen is revealed in the same pass
+     that arms the gate, so nothing visible blinks off. The observer line is
+     a fixed 40px above the bottom edge, and focus reveals its block outright
+     whatever the observer thinks, so Tab never lands on something hidden. */
   var revealEls = [].slice.call(document.querySelectorAll('[data-reveal]'));
   var revealAll = function () { revealEls.forEach(function (el) { el.classList.add('seen'); }); };
   if (revealEls.length && !reduce && 'IntersectionObserver' in window) {
@@ -176,7 +118,7 @@
           clearTimeout(flushTimer);
           flushTimer = setTimeout(function () {
             batch.filter(function (el) { return !el.classList.contains('seen'); }).forEach(function (el, i) {
-              el.style.setProperty('--rd', Math.min(i * 70, 560) + 'ms');
+              el.style.setProperty('--rd', Math.min(i * 70, 420) + 'ms');
               el.classList.add('seen');
             });
             batch = [];
@@ -199,7 +141,7 @@
         r.style.setProperty('--rd', '0ms');
         r.classList.add('seen');
       });
-      document.documentElement.classList.add('reveal-armed');
+      root.classList.add('reveal-armed');
       // safety net: anything already on screen should never stay hidden
       addEventListener('load', function () {
         revealEls.forEach(function (el) {
@@ -208,146 +150,134 @@
         });
       });
     } catch (e) {
-      document.documentElement.classList.remove('reveal-armed');
+      root.classList.remove('reveal-armed');
       revealAll();
     }
   } else {
     revealAll();
   }
 
-  /* ---------------- 4 · reticle cursor ---------------- */
-  var reticle = document.getElementById('reticle');
-  if (reticle && finePointer) {
-    document.addEventListener('pointerover', function (e) {
-      var hot = e.target.closest && e.target.closest('a,button,.chip,.link,.scrollcue');
-      reticle.classList.toggle('hot', !!hot);
-    });
+  /* ---------------- 4 · loops ----------------
+     Each loop's <img> holds its still (the poster frame) and names its
+     animated file in data-anim. Once half of it is on screen the src becomes
+     the animation, once: the file plays its own number of times (at most
+     5 s in all, scripts/hub-art-data.mjs MOTION_MS) and stops on the frame
+     it started from, so it settles back into the still. With reduced motion
+     this never observes and never writes; the <source> keeps the still. */
+  var loops = [].slice.call(document.querySelectorAll('img[data-anim]'));
+  if (loops.length && !reduce && 'IntersectionObserver' in window) {
+    var lio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        lio.unobserve(en.target);
+        en.target.src = en.target.getAttribute('data-anim');
+      });
+    }, { threshold: 0.5 });
+    loops.forEach(function (im) { lio.observe(im); });
   }
 
-  /* ---------------- 5 · avatar pose system (ready for real frames) ----------------
-     When bg-removed PNG frames are dropped into #portrait as
-     <img class="pose" data-pose="0"> … , setPose(n) cross-fades between them.
-     Until then #portrait holds the designed placeholder. */
-  var portrait = document.getElementById('portrait');
-  window.VOID = window.VOID || {};
-  window.VOID.setPose = function (n) {
-    if (!portrait) return;
-    portrait.setAttribute('data-pose', String(n));
-    var poses = portrait.querySelectorAll('.pose');
-    for (var i = 0; i < poses.length; i++) poses[i].classList.toggle('on', i === n);
-  };
-
-  /* ---------------- 6 · theme toggle (footer pill) ----------------
+  /* ---------------- 5 · theme toggle (footer pill) ----------------
      aria-pressed on both buttons is the state a screen reader hears (and
      what forced-colours mode draws); it follows data-theme at load and on
-     every switch. */
-  var htmlEl = document.documentElement;
+     every switch. Paper is the default: only "dark" is stored as dark. */
   var sun = document.getElementById('tpSun'), moon = document.getElementById('tpMoon'), toTop = document.getElementById('tpTop');
+  var tint = document.querySelector('meta[name="theme-color"]');
   function showTheme(t) {
-    if (sun) sun.setAttribute('aria-pressed', String(t === 'light'));
-    if (moon) moon.setAttribute('aria-pressed', String(t !== 'light'));
+    if (sun) sun.setAttribute('aria-pressed', String(t !== 'dark'));
+    if (moon) moon.setAttribute('aria-pressed', String(t === 'dark'));
   }
   function setTheme(t) {
-    htmlEl.setAttribute('data-theme', t);
+    root.setAttribute('data-theme', t);
     showTheme(t);
+    if (tint) tint.setAttribute('content', t === 'dark' ? '#0f1420' : '#fcecdc');
     try { localStorage.setItem('void-theme', t); } catch (e) {}
   }
-  showTheme(htmlEl.getAttribute('data-theme'));
+  showTheme(root.getAttribute('data-theme'));
+  if (tint && root.getAttribute('data-theme') === 'dark') tint.setAttribute('content', '#0f1420');
   if (sun) sun.addEventListener('click', function () { setTheme('light'); });
   if (moon) moon.addEventListener('click', function () { setTheme('dark'); });
   if (toTop) toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
 
-  /* ---------------- 7 · scroll-driven pose shift ---------------- */
-  var POSES = Math.max(1, (document.querySelectorAll('#portrait .pose').length || 4));
-  var heroEl = document.getElementById('hero'), curPose = -1, ticking = false;
-  function poseFromScroll() {
-    var h = (heroEl ? heroEl.offsetHeight : innerHeight) * 0.82;
-    var prog = Math.min(1, Math.max(0, (window.scrollY || window.pageYOffset || 0) / h));
-    var idx = Math.min(POSES - 1, Math.floor(prog * POSES));
-    if (idx !== curPose) { curPose = idx; if (window.VOID.setPose) window.VOID.setPose(idx); }
-  }
-  window.addEventListener('scroll', function () {
-    if (ticking) return; ticking = true;
-    requestAnimationFrame(function () { poseFromScroll(); ticking = false; });
-  }, { passive: true });
-  poseFromScroll();
-
-  /* ---------------- 8 · year ---------------- */
+  /* ---------------- 6 · year ---------------- */
   var yEl = document.getElementById('year'); if (yEl) yEl.textContent = new Date().getFullYear();
 
-  /* ---------------- 8 · the collection: filter + viewer ----------------
-     Filters hide pieces with [hidden]; the viewer is a native <dialog>, so
-     focus trapping and Esc come from the browser. Without scripts every piece
-     is a plain link to its DeviantArt page — the viewer only intercepts a
-     plain click (no modifier keys), so cmd/ctrl-click still opens a tab. */
+  /* ---------------- 7 · the studio diary's viewer ----------------
+     A native <dialog>, so focus trapping and Esc come from the browser.
+     Without scripts every print is a plain link to its large file; the
+     viewer only intercepts a plain click (no modifier keys), so cmd/ctrl-
+     click still opens a tab. The picture's description is the print's own
+     alt text; #lbLink shows only for a print with a data-link. */
   var grid = document.getElementById('collection');
-  if (grid) {
+  var lb = document.getElementById('lb');
+  if (grid && lb && typeof lb.showModal === 'function') {
     var pieces = [].slice.call(grid.querySelectorAll('.tile--img'));
-
-    var lb = document.getElementById('lb');
-    if (lb && typeof lb.showModal === 'function') {
-      var img = document.getElementById('lbImg'), ttl = document.getElementById('lbTitle'),
-          meta = document.getElementById('lbMeta'), link = document.getElementById('lbLink'),
-          live = document.getElementById('lbLive'), cur = -1, opener = null;
-      var visible = function () { return pieces; };
-      // Previous/Next: the dialog's name changes silently, so the new piece is
-      // also written to the polite status line (not on open — opening a
-      // dialog already announces its name).
-      var step = function (d) {
-        show(cur + d);
-        if (live) live.textContent = ttl.textContent + ', ' + (cur + 1) + ' of ' + visible().length;
-      };
-      var show = function (i) {
-        var list = visible(); if (!list.length) return;
-        cur = (i + list.length) % list.length;
-        var a = list[cur];
-        img.classList.remove('ld');
-        img.onload = function () { img.classList.add('ld'); };
-        img.src = a.getAttribute('data-full');
-        if (img.complete) img.classList.add('ld');
-        img.width = +a.getAttribute('data-w'); img.height = +a.getAttribute('data-h');
-        img.alt = a.getAttribute('data-title');
-        ttl.textContent = a.getAttribute('data-title');
-        meta.textContent = a.getAttribute('data-meta');
-        link.href = a.href;
-        link.textContent = a.getAttribute('data-link-label') || link.textContent;
-      };
-      grid.addEventListener('click', function (e) {
-        var a = e.target.closest('.tile--img');
-        if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-        e.preventDefault();
-        opener = a;
-        if (live) live.textContent = '';
-        show(visible().indexOf(a));
-        lb.showModal();
-      });
-      document.getElementById('lbPrev').addEventListener('click', function () { step(-1); });
-      document.getElementById('lbNext').addEventListener('click', function () { step(1); });
-      document.getElementById('lbClose').addEventListener('click', function () { lb.close(); });
-      lb.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowLeft') step(-1);
-        else if (e.key === 'ArrowRight') step(1);
-      });
-      // a click on the backdrop (the dialog box itself, outside the figure) closes
-      lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
-      // focus returns to the piece on screen when the viewer closes, not the one
-      // it was opened on: after paging through, the visitor keeps their place
-      lb.addEventListener('close', function () {
-        var back = visible()[cur] || opener;
-        if (back) back.focus();
-      });
-    }
+    var img = document.getElementById('lbImg'), ttl = document.getElementById('lbTitle'),
+        meta = document.getElementById('lbMeta'), link = document.getElementById('lbLink'),
+        live = document.getElementById('lbLive'), cur = -1, opener = null;
+    // Previous/Next: the dialog's name changes silently, so the new piece is
+    // also written to the polite status line (not on open: opening a dialog
+    // already announces its name).
+    var step = function (d) {
+      show(cur + d);
+      if (live) live.textContent = ttl.textContent + ', ' + (cur + 1) + ' of ' + pieces.length;
+    };
+    var show = function (i) {
+      if (!pieces.length) return;
+      cur = (i + pieces.length) % pieces.length;
+      var a = pieces[cur], thumb = a.querySelector('img');
+      img.classList.remove('ld');
+      img.onload = function () { img.classList.add('ld'); };
+      img.width = +a.getAttribute('data-w'); img.height = +a.getAttribute('data-h');
+      img.src = a.getAttribute('data-full');
+      if (img.complete) img.classList.add('ld');
+      img.alt = thumb ? thumb.alt : a.getAttribute('data-title');
+      ttl.textContent = a.getAttribute('data-title');
+      meta.textContent = a.getAttribute('data-meta') || '';
+      var out = a.getAttribute('data-link');
+      link.hidden = !out;
+      if (out) {
+        link.href = out;
+        link.firstChild.nodeValue = (a.getAttribute('data-link-label') || 'the original') + ' ';
+      }
+    };
+    grid.addEventListener('click', function (e) {
+      var a = e.target.closest('.tile--img');
+      if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      opener = a;
+      if (live) live.textContent = '';
+      show(pieces.indexOf(a));
+      lb.showModal();
+    });
+    document.getElementById('lbPrev').addEventListener('click', function () { step(-1); });
+    document.getElementById('lbNext').addEventListener('click', function () { step(1); });
+    document.getElementById('lbClose').addEventListener('click', function () { lb.close(); });
+    lb.addEventListener('keydown', function (e) {
+      var rtl = getComputedStyle(lb).direction === 'rtl';
+      if (e.key === 'ArrowLeft') step(rtl ? 1 : -1);
+      else if (e.key === 'ArrowRight') step(rtl ? -1 : 1);
+    });
+    // a click on the backdrop (the dialog box itself, outside the figure) closes
+    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+    // focus returns to the print on screen when the viewer closes, not the one
+    // it was opened on: after paging through, the visitor keeps their place
+    lb.addEventListener('close', function () {
+      var back = pieces[cur] || opener;
+      if (back) back.focus();
+    });
   }
 
-  /* ---------------- 9 · images arrive, they don't pop ----------------
-     Tiles hold their exact shape from the first paint (width/height on every
-     <img>, aspect from the bento spans), so nothing moves; each picture just
-     fades in once decoded. body.fi gates it, so with scripts off images are
-     simply visible. */
-  document.body.classList.add('fi');
-  [].forEach.call(document.querySelectorAll('.tile img'), function (im) {
-    var done = function () { im.classList.add('ld'); };
-    if (im.complete && im.naturalWidth) done();
-    else { im.addEventListener('load', done); im.addEventListener('error', done); }
-  });
+  /* ---------------- 8 · pictures arrive, they don't pop ----------------
+     Every picture holds its exact box from the first paint (width/height on
+     each <img>), so nothing moves; an img.fade just fades in once decoded.
+     body.fi gates it, so with scripts off (or reduced motion) pictures are
+     simply visible. The hero's layers are not .fade: Yasser is never faded. */
+  if (!reduce) {
+    document.body.classList.add('fi');
+    [].forEach.call(document.querySelectorAll('img.fade'), function (im) {
+      var done = function () { im.classList.add('ld'); };
+      if (im.complete && im.naturalWidth) done();
+      else { im.addEventListener('load', done); im.addEventListener('error', done); }
+    });
+  }
 })();

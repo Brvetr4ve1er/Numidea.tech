@@ -1,610 +1,165 @@
 /* ============================================================
-   VOIDSPLUNKER.std — identity hub
-   Cyber-Y2K × grunge zine × artsy. Acid green on charcoal.
+   VOIDSPLUNKER.std — the founder's own page (hub/)
+   Built around his illustrations of himself and Kūro, his black cat:
+   ink on paper, and one night scene. The art does the talking; the page
+   is the paper it is printed on.
    Self-contained; independent of the Numidea Labs stylesheet.
+
+   Grounds. Both are sampled from the art, so the pictures melt into the
+   page: paper #fcecdc (the hero's empty paper) and night #0f1420 (the
+   empty left of the studio-diary band). A ground travels with its art:
+   .paper re-declares the paper tokens and .night the night ones, so
+     - the paper theme (the default) is paper, with the studio diary as an
+       inset night print;
+     - the night theme is night, with the hero, the design band and the
+       "What I make" figures as inset paper prints.
+   Contrast (WCAG, computed on these exact values):
+     paper: text 15.4:1, text-2 7.7:1, accent 8.6:1 (bone on accent 8.6:1)
+     night: text 14.6:1, text-2 8.0:1, accent 8.2:1 (night on accent 8.2:1)
+     the design band's paper #f4e3cf: text 14.2:1, accent 7.9:1
    ============================================================ */
 :root{
-  --ink:#0a0b0d;          /* near-black */
-  --ink-2:#101216;
-  --panel:#14171c;
-  --paper:#ece9dd;        /* off-white */
-  --paper-dim:#8f9488;
-  --faint:#787f72;        /* was #565b52: 2.83:1 on --ink, used as text */
-  --acid:#b6ff2e;         /* primary acid green */
-  --acid-dim:#7fbf1f;
-  --acc-text:#b6ff2e;     /* acid used AS TEXT (darkens in light theme) */
-  --cyan:#4de2ff;         /* Y2K aberration */
-  --magenta:#ff2e97;
-  --line:#22262c;
-  --line-2:#333a41;
-  --mono:"Space Mono", ui-monospace, monospace;
-  --disp:"Syne", system-ui, sans-serif;
-  --ease:cubic-bezier(.16,1,.3,1);
-  --gut:clamp(18px,4vw,64px)}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--ink);color:var(--paper);
-  font-family:var(--disp);line-height:1.5;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;}
-/* The page glow lives on its own fixed layer. It was background-attachment:
-   fixed on <body>, which Chrome cannot composite: the whole viewport was
-   repainted on every scroll frame. A fixed pseudo-element is composited once
-   and simply stays put. */
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background-image:
-    radial-gradient(120% 90% at 80% -10%, rgba(182,255,46,.10), transparent 60%),
-    radial-gradient(90% 80% at 10% 110%, rgba(77,226,255,.06), transparent 60%)}
-a{color:inherit;text-decoration:none}
-/* skip link: off screen until it takes focus; the ink is fixed because
-   --ink turns light in the light theme and --acid stays a light green */
-.skip{position:fixed;top:8px;inset-inline-start:8px;z-index:30;padding:10px 16px;border-radius:8px;
-  background:var(--acid);color:#0a0b0d;font-family:var(--mono);font-size:13px;font-weight:700;
-  transform:translateY(-150%);transition:transform .2s var(--ease)}
-.skip:focus{transform:none;outline:2px solid var(--paper);outline-offset:2px}
-#collection:focus{outline:none}   /* the skip link's target */
-@media (prefers-reduced-motion:reduce){.skip{transition:none}}
-.mono{font-family:var(--mono)}
-.acc{color:var(--acc-text)}
-.dim{color:var(--faint)}
+  /* the palette, sampled from the art */
+  --c-paper:#fcecdc;       /* the hero's paper, the median of its empty area */
+  --c-paper-2:#f4e3cf;     /* the design band's paper */
+  --c-bone:#f6e8d6;        /* the loops' die-cut edge */
+  --c-ink:#1e1611;
+  --c-ink-2:#5b4535;
+  --c-burgundy:#7a2430;    /* the badge on the coat */
+  --c-night:#0f1420;
+  --c-night-2:#162033;
+  --c-moon:#f1e3d0;
+  --c-moon-2:#b9a892;
+  --c-rose:#e59a93;
 
-/* ---- global grain + scanlines ---- */
-/* grain without a blend mode: an overlay-blended layer over the whole
-   viewport made the GPU re-blend every pixel of every scroll frame */
+  --display:"Syne",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --gut:clamp(18px,4vw,64px);
+  /* the side gutters, never under a notch (viewport-fit=cover) */
+  --gx-l:max(var(--gut),env(safe-area-inset-left));
+  --gx-r:max(var(--gut),env(safe-area-inset-right));
+  /* how far an inset print sits from the viewport's edges */
+  --inset:clamp(8px,1.25vw,18px);
+  /* corners: prints and cards 16px, pictures in them 8px, controls round */
+  --r:16px;
+  --r-pic:8px;
+}
+:root,.paper{
+  --bg:var(--c-paper);--bg-2:var(--c-paper-2);
+  --text:var(--c-ink);--text-2:var(--c-ink-2);--accent:var(--c-burgundy);
+  --rule:rgba(30,22,17,.16);--shade:30,22,17;
+  color-scheme:light}
+:root[data-theme="dark"],.night{
+  --bg:var(--c-night);--bg-2:var(--c-night-2);
+  --text:var(--c-moon);--text-2:var(--c-moon-2);--accent:var(--c-rose);
+  --rule:rgba(241,227,208,.16);--shade:2,4,10;
+  color-scheme:dark}
+.paper,.night{background-color:var(--bg);color:var(--text)}
 
-/* ============================================================
-   AMBIENT + PARALLAX SYSTEM
-   Calm by construction: long durations, low amplitude, nothing
-   ever snaps. Pointer and scroll parallax are composed through
-   CSS variables so the two never fight over `transform`.
-     --px/--py  pointer offset   (set by app.js)
-     --sy       scroll offset    (set by app.js)
-   ============================================================ */
-[data-depth],[data-parallax]{
-  transform:translate3d(var(--px,0px),calc(var(--py,0px) + var(--sy,0px)),0);
-  will-change:transform}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-/* No filter:blur — a 60px blur over a layer 140% of the viewport was
-   re-applied by the compositor on every frame, and the fields are already
-   soft radial gradients. No blend mode either, for the same reason. */
+/* the page's measure: 1200px of content, the gutters outside it */
+.wrap{width:100%;max-width:calc(1200px + 2 * var(--gut));margin-inline:auto;
+  padding-left:var(--gx-l);padding-right:var(--gx-r)}
 
-/* ---- drifting geometry: hand-drawn SVG, slow rotation ---- */
-
-/* ---- gentle scroll reveal: rise + fade, staggered by JS ----
-   Gated on html.reveal-armed, which app.js sets only once its observer is
-   running. Without that script (disabled, blocked, a 404, an error first)
-   nothing is hidden: the old rule hid every block unconditionally, and with
-   scripts off 26 blocks — 16 of them focusable links — stayed invisible. */
-   The gate sits in :where() so it adds no specificity: the reveal rules weigh
-   what [data-reveal] always weighed, and hover lifts on cards and links
-   (.link:hover, .scard:hover) still win over .seen, as before the gate. */
-:where(.reveal-armed) [data-reveal]{opacity:0;transform:translate3d(0,18px,0);
-  transition:opacity 1s var(--ease),transform 1.1s var(--ease);
-  transition-delay:var(--rd,0ms)}
-:where(.reveal-armed) [data-reveal].seen{opacity:1;transform:none}
+/* skip link: off screen until it takes focus */
+.skip{position:fixed;top:10px;left:max(10px,env(safe-area-inset-left));z-index:50;padding:12px 18px;border-radius:999px;
+  background:var(--c-burgundy);color:var(--c-paper);font:500 15px/1 var(--sans);text-decoration:none;
+  transform:translateY(-170%);transition:transform .2s var(--ease-out)}
+.skip:focus{transform:none;outline:2px solid var(--text);outline-offset:2px}
+#make:focus{outline:none}   /* the skip link's target */
 
 /* text that only screen readers and voice control need */
 .vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;border:0;
   overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 
-/* ---- breathing accents: barely-there pulse on live marks ---- */
-@keyframes breathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+/* labels: Geist Mono, small capitals, tracked */
+.eyebrow,.kicker{font:400 12.5px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+
+/* section headings */
+.make-h,.band-copy h2,.links-head h2{font:800 clamp(34px,5vw,72px)/.96 var(--display);letter-spacing:-.03em;text-wrap:balance}
 
 /* ============================= HERO ============================= */
-/* .hero already clips (overflow:hidden below): the giant .ghost word hangs past
-   the viewport by design and is framed by it. A bounding-rect overflow check
-   reports it anyway — it has to resolve the clipping ancestor first. */
-.hero{position:relative;min-height:100svh;padding:clamp(16px,3vw,28px) var(--gut) 0;
-  display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
+.hero{position:relative;container-type:inline-size}
+:root[data-theme="dark"] .hero{margin:var(--inset) var(--inset) 0;border-radius:var(--r);overflow:clip}
 
-/* top bar */
-.topbar{position:relative;z-index:3;display:flex;align-items:center;gap:16px;
-  padding-bottom:clamp(20px,5vh,56px)}
-.brandtag{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-.topbar .spacer{flex:1}
-.topbar .mono{font-size:11px;letter-spacing:.2em;white-space:nowrap}   /* "EST — MMXXV" split in two on phones */
-.topbar .dim{color:var(--paper-dim)}   /* --faint over the hero art measured 4.24:1 */
+.bar{position:relative;z-index:3;padding:10px var(--gx-r) 0 var(--gx-l)}
+.bc{display:flex;flex-wrap:wrap;align-items:center;gap:0 10px;padding:0;list-style:none;
+  font:400 12.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--text)}
+.bc li{display:flex;align-items:center;gap:10px;min-height:44px}
+.bc li+li::before{content:"/";color:var(--text-2)}
+.bc a{display:inline-flex;align-items:center;min-height:44px;color:var(--text-2);text-decoration:none;transition:color .18s}
+.bc a:hover{color:var(--accent)}
+.bc-std{color:var(--accent)}
 
-/* hero layout */
-.hero-grid{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
-  gap:clamp(24px,5vw,64px);align-items:center;padding-bottom:clamp(40px,8vh,80px)}
+/* phone first: the words, then the stage (the tall crop), then the cartridge */
+.hero-in{display:grid;grid-template-columns:minmax(0,1fr)}
+.hero-copy{container-type:inline-size;padding:clamp(14px,4vw,24px) var(--gx-r) 0 var(--gx-l)}
+.eyebrow{margin-bottom:clamp(12px,3.4cqw,20px)}
+/* the handle is one unbreakable token: sized from its own column (Syne 800
+   sets it 10.25em wide at this tracking), so it always fits on one line.
+   With a reader's own letter-spacing (WCAG 1.4.12) it may wrap rather than
+   be cut. */
+.handle{font:800 min(9.5cqw,108px)/.92 var(--display);letter-spacing:-.035em;color:var(--text);overflow-wrap:anywhere}
+.name{margin-top:clamp(10px,2.6cqw,16px);font:500 clamp(17px,4.4cqw,25px)/1.3 var(--sans);color:var(--text)}
+.motto{margin-top:6px;font:700 clamp(15px,3.6cqw,20px)/1.4 var(--display);letter-spacing:-.005em;color:var(--text-2)}
+.motto::before{content:"";display:inline-block;width:1.4em;height:2px;margin-right:.55em;vertical-align:.3em;background:var(--accent)}
 
-/* ---- identity ---- */
-.identity{container-type:inline-size}
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--acc-text);
-  display:flex;align-items:center;gap:10px;margin-bottom:clamp(16px,3vh,28px)}
-.blip{width:8px;height:8px;border-radius:50%;background:var(--acid);box-shadow:0 0 12px var(--acid)}
+.stage{position:relative;grid-row:2;overflow:clip;aspect-ratio:1192/1536;margin-top:clamp(18px,5vw,30px);background:var(--c-paper)}
+/* each layer is the same box, bled 3% past the stage on every side so the
+   parallax never shows an edge; object-fit:cover on a box of the frame's
+   own ratio crops nothing, so the three stay registered */
+.layer{position:absolute;inset:-3%;display:block}
+.layer img{display:block;width:100%;height:100%;object-fit:cover}
+/* The frame's paper darkens a little toward its edges, which drew a seam
+   where the stage meets the page. This veil, between the paper layer and
+   the figures, fades the paper into the page's own top and bottom; it does
+   not move with the parallax, so the edge stays soft wherever the paper
+   layer is. */
+.stage::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(var(--c-paper),rgba(252,236,220,0) 7%,rgba(252,236,220,0) 93%,var(--c-paper))}
+.layer--kuro,.layer--yasser{z-index:2}
+.hero .whq-cart{grid-row:3;margin:clamp(20px,5vw,30px) var(--gx-r) clamp(28px,7vw,44px) var(--gx-l)}
 
-/* Sized from the COLUMN, not the viewport. Syne 800 runs roughly twice the
-   width of the fallback this clamp was tuned against, so the real face
-   overflowed everywhere — "VOIDSPLUNKER.std" wanted 1465px in a 739px column
-   and was clipped behind the portrait, with 132-223px of horizontal overflow on
-   the page. A vw clamp cannot express it either: the column is NARROWER at 1280
-   (585px, two-up with the portrait) than at 768 (707px), so viewport width and
-   available width do not move together. cqw tracks the column itself, and these
-   identities are unbreakable tokens with nowhere to wrap. */
-.cycler{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.94;
-  font-size:clamp(17px,6.2cqw,58px);margin-bottom:clamp(14px,2.4vh,22px)}
-/* The heading reserves two lines. Measured across widths, the five identities
-   render as either one line or two — never more — so two lines of the heading's
-   own line-height is the exact reservation that lets the text swap without ever
-   changing the box, and everything below it stays put. Reserving WIDTH instead
-   (min-width:20ch) was the wrong axis: it blew the box out to 1247px and left
-   the shift in place, because the wrap count was what actually varied.
-   The caret went with it — a flex child after the text, it slid on every swap. */
-.cycler{min-height:1.88em}   /* 2 × the .94 line-height above */
-.cy-line{display:inline-flex;align-items:baseline;gap:.08em;flex-wrap:wrap;max-width:100%}
-/* The handle is one unbreakable token sized to fit its column. With a
-   reader's own text spacing (WCAG 1.4.12: letter-spacing .12em) it no longer
-   fits, and the hero's overflow:hidden cut 19-42px off it; it may now wrap
-   rather than be clipped. At normal spacing it fits, so nothing changes. */
-.cy-text{min-width:0;overflow-wrap:anywhere}
-.cy-text{transition:opacity .26s ease}
-.cy-text.swapping{opacity:0}
-.cy-text{color:var(--paper)}
-@keyframes caret{0%,50%{opacity:1}51%,100%{opacity:0}}
-
-/* em, not ch. ch is a font metric: these are Google-hosted faces, so on a
-   blocked or slow network the measure changed when they landed. */
-.philo{font-family:var(--disp);font-weight:600;font-style:italic;font-size:clamp(16px,2vw,22px);
-  color:var(--paper);max-width:18.08em;margin-bottom:clamp(22px,4vh,34px);min-height:2.5em;
-  border-left:2px solid var(--acid);padding-left:14px;transition:opacity .4s}
-
-.meta{list-style:none;display:grid;gap:9px;font-size:12.5px;max-width:26.45em}
-.meta li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:baseline;
-  border-bottom:1px dashed var(--line);padding-bottom:9px}
-.meta b{color:var(--faint);font-weight:400;letter-spacing:.18em;font-size:10px}
-.meta span{color:var(--paper-dim)}
-.meta .ok{color:var(--acc-text)}
-
-/* ---- avatar ---- */
-.avatar{position:relative;justify-self:center;width:min(100%,420px);aspect-ratio:5/6}
-.frame{position:absolute;inset:0;border:1px solid var(--line-2);background:
-  linear-gradient(180deg,rgba(182,255,46,.04),transparent 40%),var(--ink-2);overflow:hidden}
-
-.portrait{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
-/* The glitchbar is gone. It swept a coloured bar down the portrait forever by
-   animating `top` — a layout property, so every frame of it was a layout shift
-   on a page that never stopped animating. Decoration that cost the page its
-   stability, and the loudest piece of the "glitch" vocabulary on it. */
-.frame-cap{position:absolute;left:10px;bottom:10px;z-index:3;font-size:10px;letter-spacing:.12em;
-  color:var(--paper-dim);background:rgba(10,11,13,.7);padding:4px 7px;border:1px solid var(--line)}
-.frame-cap .await{color:var(--faint);font-style:normal}
-
-/* scroll cue */
-.scrollcue{position:relative;z-index:3;display:flex;align-items:center;gap:12px;justify-content:center;
-  padding:clamp(14px,3vh,22px) 0;font-size:11px;letter-spacing:.2em;color:var(--paper-dim);border-top:1px solid var(--line)}
-.scrollcue .arr{color:var(--acc-text)}
-
-.scrollcue:hover{color:var(--acid)}
-/* inset: the cue is the last thing in the hero, whose overflow:hidden cut the
-   bottom of an outside ring */
-.scrollcue:focus-visible{outline:2px solid var(--acc-text);outline-offset:-4px}
-
-/* ============================= LINKS ============================= */
-.links{position:relative;z-index:2;padding:clamp(48px,10vh,110px) var(--gut) clamp(28px,6vh,60px);border-top:1px solid var(--line);isolation:isolate}
-.links-head{margin-bottom:clamp(28px,5vh,52px)}
-/* Sized from its own column, like the identity heading. "EVERY&nbsp;WORLD." is
-   one unbreakable token and was the page's real horizontal overflow once Syne
-   replaced the narrower fallback the vw clamp had been tuned against. */
-.links-head{container-type:inline-size}
-.links-head h2{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;
-  font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px;overflow-wrap:break-word}
-.links-sub{font-family:var(--mono);font-size:13px;color:var(--paper-dim)}
-.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-
-/* The archive was eighteen undifferentiated tiles. These headers are the
-   grouping the source comments already described, and they give the
-   generated drawings a size at which they actually read — at the 18px
-   the footer headings offered, they were smudges. */
-.lgroup{grid-column:1/-1;display:flex;align-items:center;gap:16px;
-  margin:clamp(14px,3vh,28px) 0 2px;padding-bottom:12px;border-bottom:1px dashed var(--line)}
-.lgroup:first-of-type{margin-top:0}
-.lgroup .ill{flex:none;width:60px;height:60px;background:currentColor;color:var(--acc-text);
-  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-  -webkit-mask-position:center;mask-position:center;
-  -webkit-mask-size:contain;mask-size:contain;
-  -webkit-mask-source-type:luminance;mask-mode:luminance}
-.lgroup-t{display:flex;flex-direction:column;gap:3px;min-width:0;
-  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--paper)}
-.lgroup-t i{font-family:var(--disp);font-style:normal;font-weight:500;font-size:13px;
-  letter-spacing:0;text-transform:none;color:var(--faint)}
-.ill-design{-webkit-mask-image:url(../assets/illus/hub-design.png);mask-image:url(../assets/illus/hub-design.png)}
-.ill-dev{-webkit-mask-image:url(../assets/illus/hub-dev.png);mask-image:url(../assets/illus/hub-dev.png)}
-.ill-social{-webkit-mask-image:url(../assets/illus/hub-social.png);mask-image:url(../assets/illus/hub-social.png)}
-.ill-studio{-webkit-mask-image:url(../assets/illus/hub-studio.png);mask-image:url(../assets/illus/hub-studio.png)}
-
-.link{position:relative;display:flex;align-items:center;gap:14px;padding:16px;
-  border:1px solid var(--line-2);background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);
-  transition:transform .3s var(--ease),border-color .3s,background .3s,box-shadow .3s;overflow:hidden}
-.link::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--b,var(--acid));transform:scaleY(0);transform-origin:bottom;transition:transform .3s var(--ease)}
-.link:hover{transform:translateY(-3px);border-color:var(--b,var(--acid));background:rgba(255,255,255,.04);
-  box-shadow:0 18px 40px -26px rgba(0,0,0,.9), 0 0 0 1px color-mix(in srgb, var(--b,var(--acid)) 30%, transparent)}
-.link:hover::after{transform:scaleY(1)}
-.badge{flex:none;width:44px;height:44px;display:grid;place-items:center;font-weight:700;font-size:15px;
-  border:1px solid var(--line-2);color:var(--b,var(--acid));background:var(--ink);letter-spacing:0;transition:.3s}
-.link:hover .badge{border-color:var(--b,var(--acid));background:var(--b,var(--acid));color:var(--ink);
-  transform:rotate(-4deg) scale(1.06)}
-.badge{transition:transform .5s var(--ease),background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
-.ltxt{display:flex;flex-direction:column;min-width:0;flex:1}
-.ltxt b{font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:-.01em}
-/* wraps rather than truncating with an ellipsis: in the 269px cards at 600px,
-   and under a reader's own text spacing, the line lost its end ("my favourite
-   build — out n…") */
-.ltxt i{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--faint);overflow-wrap:anywhere}
-.go{font-family:var(--mono);color:var(--faint);transition:.3s var(--ease)}
-.link:hover .go{color:var(--b,var(--acid));transform:translate(2px,-2px)}
-
-/* per-brand accents */
-.link[data-brand="behance"]{--b:#3b7bff}
-.link[data-brand="dribbble"]{--b:#ea4c89}
-.link[data-brand="deviantart"]{--b:#05cc47}
-.link[data-brand="artstation"]{--b:#22c6ff}
-.link[data-brand="pinterest"]{--b:#ff3b4e}
-.link[data-brand="arena"]{--b:#cfd2c8}
-.link[data-brand="numidea"]{--b:#34d0e8}
-.link[data-brand="github"]{--b:#eceadf}
-.link[data-brand="linkedin"]{--b:#3a9bff}
-.link[data-brand="instagram"]{--b:#ff5a8a}
-.link[data-brand="x"]{--b:#eceadf}
-.link[data-brand="youtube"]{--b:#ff3b3b}
-.link[data-brand="tiktok"]{--b:#4de8e0}
-.link[data-brand="gumroad"]{--b:#ff90e8}
-.link[data-brand="email"]{--b:#b6ff2e}
-.link[data-brand="tumblr"]{--b:#8fb3d9}
-.link[data-brand="telegram"]{--b:#3fa9e8}
-.link[data-brand="etsy"]{--b:#f1641e}
-
-/* ============================= RESPONSIVE ============================= */
-@media (max-width:860px){
-  .hero-grid{grid-template-columns:minmax(0,1fr);gap:clamp(28px,6vh,44px);padding-top:8px}
-  .avatar{order:-1;width:min(78%,320px)}
-  /* safe-area: the hero runs full-bleed under viewport-fit=cover */
-  .hero{padding-left:max(var(--gut),env(safe-area-inset-left));
-        padding-right:max(var(--gut),env(safe-area-inset-right))}
-  
-  body{cursor:auto}
-  
-}
-/* Stacking the portrait above the copy costs a whole screen when the
-   screen is short: at 717x512 the avatar alone ran y76→460 of a 512px
-   viewport, so the name, roles and status were all below the fold and
-   the first thing a visitor saw was an empty image frame. Sit them side
-   by side instead when there is width to spare but no height. Not on a
-   small portrait phone (320x568 matched this too): there is no width to
-   spare, and the copy column, 140px wide, broke the name mid-word
-   ("br4vetr / 4veler") and the studio line under the portrait (r3/a). */
-@media (max-width:860px) and (max-height:620px) and (min-width:480px){
-  .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);align-items:center;gap:clamp(16px,4vw,32px)}
-  .avatar{order:0;width:min(100%,240px)}
-  .hero{min-height:auto;padding-block:clamp(12px,3vh,20px) clamp(16px,4vh,28px)}
-  
-}
-@media (max-width:520px){
-  .meta li{grid-template-columns:56px minmax(0,1fr);gap:10px}
-  .links-grid{grid-template-columns:minmax(0,1fr)}
+/* the entrance: html.js (the head script) holds the layers a few px low,
+   app.js §2 adds .in once Yasser is decoded, and they rise into register,
+   the paper first. translate composes with the parallax's transform. */
+@media (prefers-reduced-motion:no-preference){
+  .js .stage .layer{translate:0 12px}
+  .js .stage .layer--kuro{translate:0 15px}
+  .js .stage .layer--yasser{translate:0 18px}
+  .js .stage.in .layer{translate:0 0;transition:translate .75s var(--ease-out)}
+  .js .stage.in .layer--kuro{transition-delay:.07s}
+  .js .stage.in .layer--yasser{transition-delay:.13s}
 }
 
-/* ============================= LIGHT THEME ============================= */
-:root[data-theme="light"]{
-  --ink:#e9e7dd;--ink-2:#e0ded3;--panel:#d4d2c5;
-  --paper:#14160f;--paper-dim:#494c40;--faint:#63665a;
-  --acid:#8fd600;--acid-dim:#6aa300;--acc-text:#357000;
-  --cyan:#0aa8cc;--magenta:#e01d80;
-  --line:#cccabd;--line-2:#adab9c}
-:root[data-theme="light"] body::before{
-  background-image:radial-gradient(120% 90% at 80% -10%,rgba(143,214,0,.16),transparent 60%),
-                   radial-gradient(90% 80% at 10% 110%,rgba(10,168,204,.08),transparent 60%)}
-
-:root[data-theme="light"] .frame{background:linear-gradient(180deg,rgba(143,214,0,.08),transparent 40%),var(--ink-2)}
-:root[data-theme="light"] .frame-cap{background:rgba(233,231,221,.82)}
-/* the caption sits over the portrait; --faint drops to ~3.2:1 there */
-:root[data-theme="light"] .frame-cap .await{color:var(--paper-dim)}
-:root[data-theme="light"] .badge{background:var(--ink-2)}
-/* Brand colours are tuned for the dark page; on paper they fall to ~1.1–2.6:1.
-   Text keeps a third of the brand hue over the ink colour (≥4.5:1 for every
-   brand, including near-white GitHub/X); on hover the brand fills the badge
-   and dark ink sits on it. */
-:root[data-theme="light"] .badge{color:color-mix(in srgb,var(--b,var(--acid)) 30%,var(--paper))}
-:root[data-theme="light"] .link--whq .badge{color:color-mix(in srgb,#ffd23f 30%,var(--paper))}
-:root[data-theme="light"] .link:hover .badge{color:var(--paper)}
-:root[data-theme="light"] .link{background:linear-gradient(180deg,rgba(0,0,0,.02),transparent)}
-:root[data-theme="light"] .link:hover{background:rgba(0,0,0,.04)}
-
-/* ============================= SCROLL POSE (placeholder morph) ============================= */
-.portrait{transition:transform .55s var(--ease)}
-/* real frames (when added as <img class="pose">): cross-fade */
-.portrait .pose{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
-  transition:opacity 1.1s var(--ease),transform 1.4s var(--ease);transform:scale(1.04)}
-.portrait .pose.on{opacity:1;transform:scale(1)}
-/* once real frames exist the drawn placeholder steps aside */
-
-/* ============================= FOOTER ============================= */
-.site-foot{position:relative;z-index:2;border-top:1px solid var(--line);padding:clamp(40px,7vh,72px) var(--gut) clamp(28px,5vh,44px)}
-.foot-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:start;max-width:1200px;margin:0 auto}
-.foot-mark{width:52px;height:52px;display:grid;place-items:center;border:1px dashed var(--line-2);border-radius:50%;flex:none}
-.foot-mark svg{width:26px;height:26px;fill:none;stroke:var(--acid);stroke-width:1.5}
-.foot-bio{font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--paper-dim);max-width:42.08em}
-.foot-bio b{color:var(--paper);font-weight:700}
-.foot-bio .acc{color:var(--acc-text)}
-
-   /* 16px tall was a thumb-sized coin toss */
-
-.foot-mid{max-width:1200px;margin:clamp(26px,4vh,40px) auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px}
-.foot-socials{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.soc{width:44px;height:44px;display:grid;place-items:center;border:1px dashed var(--line-2);border-radius:14px;
-  color:var(--paper-dim);font-family:var(--mono);font-weight:700;font-size:13px;
-  transition:transform .25s var(--ease),border-color .25s,color .25s,background .25s}
-.soc svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.soc:hover{transform:translateY(-4px);border-color:var(--acid);color:var(--acid);background:rgba(182,255,46,.06)}
-
-/* theme pill (sun · top · moon) */
-.theme-pill{display:inline-flex;align-items:center;gap:6px;border:1px dashed var(--line-2);border-radius:999px;padding:5px}
-.theme-pill button{width:38px;height:38px;display:grid;place-items:center;border:0;border-radius:50%;cursor:pointer;
-  background:transparent;color:var(--paper-dim);transition:.25s var(--ease)}
-.theme-pill svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
-.theme-pill .tp-top{width:30px;height:30px}
-.theme-pill .tp-top svg{width:14px;height:14px}
-.theme-pill button:hover{color:var(--paper)}
-.theme-pill .tp-sun{color:var(--acid);background:rgba(182,255,46,.08)}
-.theme-pill .tp-moon:hover{color:var(--acid)}
-:root[data-theme="light"] .theme-pill .tp-sun{background:var(--acid);color:var(--ink)}
-:root[data-theme="light"] .theme-pill .tp-moon{background:transparent}
-:root[data-theme="dark"] .theme-pill .tp-moon{background:rgba(255,255,255,.06);color:var(--paper)}
-:root[data-theme="dark"] .theme-pill .tp-sun{background:transparent;color:var(--paper-dim)}
-:root[data-theme="dark"] .theme-pill .tp-sun:hover{color:var(--acid)}
-/* Forced colours drop the backgrounds above, which were the only sign of the
-   current theme; the pressed button (aria-pressed, kept by app.js) gets a
-   system-colour ring instead. */
-@media (forced-colors:active){.theme-pill button[aria-pressed="true"]{border:2px solid Highlight}}
-/* Without scripts these three buttons do nothing (the head script that sets
-   data-theme has not run either), so they are not offered. */
-html:not([data-theme]) .theme-pill{display:none}
-
-.foot-legal{max-width:1200px;margin:clamp(26px,4vh,40px) auto 0;display:flex;align-items:center;justify-content:center;gap:6px;
-  font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--faint);flex-wrap:wrap}
-.foot-legal .heart{color:#ff3b6b;display:inline-flex}
-.foot-legal b{color:var(--paper);font-weight:700}
-.foot-legal a{color:var(--acc-text)}
-
-@media (max-width:640px){ .foot-top{grid-template-columns:minmax(0,1fr)} .foot-mid{flex-direction:column} }
-
-/* ============================= MOTION-SAFE ============================= */
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;scroll-behavior:auto}
-  /* html by name: the html{scroll-behavior:smooth} rule above outranks the
-     universal selector, and the viewport scrolls the way html says (the skip
-     link, the hero's scroll cue and focus scrolling all glided) */
-  html{scroll-behavior:auto}
-  .cy-caret{opacity:1}
-  [data-reveal],.reveal-armed [data-reveal]{opacity:1;transform:none;transition:none}
-  [data-depth],[data-parallax]{transform:none}
-  
+/* tablet: the words and the cartridge beside the tall crop */
+@media (min-width:700px){
+  .hero-in{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);grid-template-rows:1fr auto auto 1fr;column-gap:clamp(16px,3vw,40px)}
+  .hero-copy{grid-column:1;grid-row:2;padding:0 0 0 var(--gx-l)}
+  .hero .whq-cart{grid-column:1;grid-row:3;margin:clamp(22px,3vw,30px) 0 0 var(--gx-l);justify-self:start}
+  .stage{grid-column:2;grid-row:1/-1;margin:0}
 }
 
-.links-soon{margin-top:18px;font-size:11px;letter-spacing:.12em;color:var(--faint)}
-
-/* ============================= SECTIONS ============================= */
-.coll,.design,.social{position:relative;z-index:2;padding:clamp(48px,10vh,110px) var(--gut) clamp(28px,6vh,60px);
-  border-top:1px solid var(--line);isolation:isolate}
-.coll-head{margin-bottom:clamp(22px,4vh,40px);container-type:inline-size}
-.coll-head h2{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;
-  font-size:clamp(26px,7.5cqw,120px);margin:10px 0 14px;overflow-wrap:break-word}
-
-.coll-more{margin-top:18px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-.coll-more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--paper-dim);transition:color .2s}
-.coll-more a:hover{color:var(--acc-text)}
-
-/* the viewer — a native <dialog>: focus is trapped and Esc closes it for free */
-.lb{margin:auto;width:min(1100px,94vw);max-height:94vh;padding:0;border:1px solid var(--line-2);
-  background:var(--ink);color:var(--paper);overflow:visible}
-
-.lb-fig{display:grid;grid-template-rows:minmax(0,1fr) auto;max-height:94vh}
-.lb-fig img{display:block;width:100%;height:100%;max-height:calc(94vh - 72px);object-fit:contain;background:var(--ink-2)}
-.lb-fig figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;padding:14px 18px;border-top:1px solid var(--line-2)}
-.lb-fig figcaption b{font-size:16px}
-.lb-fig figcaption i{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
-.lb-fig figcaption a{margin-inline-start:auto;font-size:12px;color:var(--acc-text);min-height:24px;display:inline-flex;align-items:center}
-/* z-index: the buttons come before the figure in the source (Close first, for
-   focus), and the picture fading in would otherwise paint over them */
-.lb-btn{position:absolute;z-index:2;width:44px;height:44px;display:grid;place-items:center;cursor:pointer;
-  font:16px var(--mono);color:var(--paper);background:var(--ink);border:1px solid var(--line-2);transition:border-color .2s,color .2s}
-.lb-btn:hover{border-color:var(--acid);color:var(--acc-text)}
-.lb-btn:focus-visible{outline:2px solid var(--acid);outline-offset:2px}
-.lb-close{top:-1px;inset-inline-end:-1px}
-.lb-prev{top:40%;inset-inline-start:-1px}
-.lb-next{top:40%;inset-inline-end:-1px}
-html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
-
-/* ============================= DESIGN ============================= */
-
-/* ============================= SOCIAL HIGHLIGHTS ============================= */
-.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}
-.scard{display:flex;flex-direction:column;gap:18px;padding:20px;color:inherit;border:1px solid var(--line-2);
-  background:linear-gradient(160deg,color-mix(in srgb,var(--acid) 6%,transparent),transparent 55%);
-  transition:transform .3s var(--ease),border-color .3s}
-.scard:hover{transform:translateY(-3px);border-color:var(--acid)}
-.scard:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
-.sc-top{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.08em;color:var(--paper)}
-/* the handle wraps rather than ending in an ellipsis (at 320px all three were
-   cut: "@br4vetr4ave…") */
-.sc-top i{font-style:normal;color:var(--paper-dim);min-width:0;overflow-wrap:anywhere}
-.sc-top .go{margin-inline-start:auto}
-.scard:hover .go{color:var(--acc-text)}
-.sc-big{display:grid;gap:4px}
-.sc-big b{font-family:var(--disp);font-weight:800;font-size:clamp(48px,6vw,84px);line-height:.9;letter-spacing:-.04em;color:var(--acc-text)}
-.sc-big .sc-word{font-size:clamp(34px,4vw,54px);letter-spacing:-.03em}
-.sc-big i{font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-dim)}
-.sc-row{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--paper-dim)}
-.sc-row b{color:var(--paper);font-weight:700}
-.sc-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:auto}
-/* height:auto — the width/height attributes (there for layout stability) set
-   a fixed 501-630px height that overrode aspect-ratio, so the "squares" were
-   tall strips the full height of each source picture */
-.sc-thumbs img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border:1px solid var(--line-2)}
-.sc-ig .sc-row span{padding:4px 10px;border:1px dashed var(--line-2)}
-@media (prefers-reduced-motion:reduce){
-  .scard,
-.lb-btn{transition:none}
-  .scard:hover{transform:none}
+/* desktop: the wide frame, the words on its empty paper (columns of the
+   frame measured: x 9%-60% and y 29%-71% hold no line work) */
+@media (min-width:1024px){
+  .bar{padding-top:14px}
+  .hero-in{grid-template-columns:9.4cqw minmax(0,50cqw) 1fr;grid-template-rows:1fr auto auto 1fr;column-gap:0}
+  .stage{grid-column:1/-1;grid-row:1/-1;aspect-ratio:2752/1536;align-self:start}
+  .hero-copy{grid-column:2;grid-row:2;z-index:2;padding:0}
+  .hero .whq-cart{grid-column:2;grid-row:3;z-index:2;margin:clamp(20px,2.2cqw,34px) 0 0}
 }
-:root[data-theme="light"] .lb[open]::backdrop{background:rgba(233,231,221,.9)}
-
-.chapter{--c1:var(--acid);--c2:var(--paper-dim);scroll-margin-top:24px;margin-bottom:clamp(48px,9vh,110px)}
-.chapter[data-ch="traveler"]{--c1:#8a7dff;--c2:#b6ff2e}
-.chapter[data-ch="sky"]{--c1:#2f6fd8;--c2:#f2d43c}
-.chapter[data-ch="noise"]{--c1:#ec3b1e;--c2:#f6a21a}
-.chapter[data-ch="ink"]{--c1:#7a4dd8;--c2:#b6ff2e}
-.chapter[data-ch="imagination"]{--c1:#ec3b1e;--c2:#f2d43c}
-
-/* 13 characters of Syne 800 overflowed the column at the shared 7.5cqw */
-.series .coll-head h2{font-size:clamp(20px,6.3cqw,104px)}
-
-/* 320px phones: both long display headings need a smaller floor */
-@media (max-width:360px){.series .coll-head h2,.links-head h2{font-size:6.1vw}}
-
-/* ============================= BENTO =============================
-   One system for the whole gallery. Every grid runs on SQUARE units —
-   grid-auto-rows equals the column width, computed from the container
-   (100cqw) — so a tile spanning C columns and R rows has the shape C:R, and
-   each piece gets a tile of its own shape: posters 2:3 (2x3, 4x6), portraits
-   1:1 (2x2, 4x4), the Goddard poster 4x7 (its 941x1672 is 0.563; 4x7 is
-   0.571). object-fit:cover then crops at most a few px of gap.
-   Tile ORDER in the markup is part of the layout: with dense auto-flow it is
-   what makes each chapter close flush at 6 columns and at 4 — see BRAND.md
-   before reordering. */
-.coll,.design,.social{padding-inline:max(var(--gut),calc((100% - 1080px) / 2))}
-.chapter{container-type:inline-size;margin-bottom:var(--g,14px)}
-.series{--g:clamp(8px,1.2vw,14px)}
-/* Rows are square units that may GROW, never shrink: minmax(unit, auto).
-   Wherever a text tile fits its span (every width above ~420px at normal
-   text spacing) the grid is exactly the square one. Where it did not, the
-   tile clipped: at 320px the chapter tiles cut 24-62px off their top (the
-   numeral and the "Chapter I · 8 posters" line), and under a reader's own
-   spacing (WCAG 1.4.12) the Ink quote lost 27-35px. Now those rows grow and
-   the pictures beside them crop a little more. Picture tiles are size-
-   contained so their images never push a row — they fill what the grid gives. */
-.bento{--cols:6;--u:calc((100cqw - (var(--cols) - 1) * var(--g)) / var(--cols));
-  display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));grid-auto-rows:minmax(var(--u),auto);
-  grid-auto-flow:dense;gap:var(--g)}
-.bento .tile--img{contain:size}
-.t-big{grid-column:span 4;grid-row:span 6}
-.t-sm,.t-head{grid-column:span 2;grid-row:span 3}
-.t-quote{grid-column:span 4;grid-row:span 3}
-.t-phead{grid-column:span 2;grid-row:span 4}
-.t-pbig{grid-column:span 4;grid-row:span 4}
-.t-psm{grid-column:span 2;grid-row:span 2}
-.t-ep{grid-column:span 4;grid-row:span 7}
-.t-eptext{grid-column:span 2;grid-row:span 7}
-@media (max-width:719px){
-  .bento{--cols:4}
-  .t-phead{grid-row:span 2}
-  .t-eptext{grid-column:span 4;grid-row:span 3}
-}
-
-/* ---- tiles ---- */
-.tile{position:relative;display:block;min-width:0;border-radius:14px;overflow:hidden;background:var(--panel);
-  isolation:isolate}
-.tile--img{color:inherit;box-shadow:0 1px 0 rgba(255,255,255,.04) inset,0 22px 44px -30px rgba(0,0,0,.9)}
-.tile--img img{display:block;width:100%;height:100%;object-fit:cover;
-  transition:transform .9s var(--ease),opacity .6s ease}
-body.fi .tile img{opacity:0}
-body.fi .tile img.ld{opacity:1}
-.tile--img:hover img{transform:scale(1.03)}
-.tile--img:focus-visible{outline:2px solid var(--acid);outline-offset:3px}
-/* the label: quiet until asked for on a pointer, always there on touch */
-.tl{position:absolute;left:10px;bottom:10px;max-width:calc(100% - 20px);display:grid;gap:2px;
-  padding:8px 11px 9px;border-radius:9px;background:rgba(10,11,13,.8);color:#ece9dd;
-  opacity:0;transform:translateY(6px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
-.tl b{font-weight:700;font-size:13px;line-height:1.25;overflow-wrap:anywhere}
-.tl i{font-style:normal;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#a9ad9f}
-.tile--img:hover .tl,.tile--img:focus-visible .tl{opacity:1;transform:none}
-@media (hover:none){.tl{opacity:1;transform:none}}
-
-/* text tiles carry the chapter's two inks as a soft wash */
-.chapter{--c1:var(--acid);--c2:var(--paper-dim)}
-.tile--text{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:clamp(14px,2.2cqw,26px);
-  background:
-    radial-gradient(120% 80% at 0% 0%,color-mix(in srgb,var(--c1) 22%,transparent),transparent 60%),
-    radial-gradient(90% 70% at 100% 100%,color-mix(in srgb,var(--c2) 12%,transparent),transparent 60%),
-    var(--ink-2);
-  border:1px solid var(--line)}
-.tt-num{margin-bottom:auto;font-family:var(--disp);font-weight:800;line-height:.8;letter-spacing:-.04em;
-  font-size:clamp(40px,9cqw,104px);color:transparent;-webkit-text-stroke:1.5px var(--c1)}
-.tt-kick{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-dim)}
-.tile--text h3{font-family:var(--disp);font-weight:800;font-size:clamp(20px,3.6cqw,40px);line-height:.95;letter-spacing:-.025em;
-  text-transform:uppercase;color:var(--paper);overflow-wrap:anywhere}
-.tt-line{font-family:var(--mono);font-size:clamp(11px,1.25cqw,13px);line-height:1.55;color:var(--paper-dim)}
-.tile--quote{justify-content:center}
-.tt-quote{font-family:var(--disp);font-weight:800;font-size:clamp(17px,2.8cqw,32px);line-height:1.15;letter-spacing:-.015em;
-  color:var(--paper);max-width:24ch}
-.tt-quote::before{content:"“";display:block;font-size:2.2em;line-height:.6;color:var(--c1)}
-.t-eptext .tt-line{font-size:clamp(12px,1.5cqw,15px)}
-@media (max-width:719px){
-  .t-phead{padding:12px}
-  .t-phead .tt-num{font-size:34px}
-  .t-phead h3{font-size:18px}
-  .t-phead .tt-line{font-size:10.5px;line-height:1.4}
-}
-:root[data-theme="light"] .tile--text{background:
-    radial-gradient(120% 80% at 0% 0%,color-mix(in srgb,var(--c1) 16%,transparent),transparent 60%),var(--ink-2)}
-
-/* ---- design: the same tiles on units shaped like the Behance covers ---- */
-.design{container-type:inline-size;--g:clamp(8px,1.2vw,14px)}
-.design-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g);grid-auto-flow:dense;
-  grid-auto-rows:calc((100cqw - 2 * var(--g)) / 3 / 1.2785)}
-.dtile--lead{grid-column:span 2;grid-row:span 2}
-@media (max-width:719px){
-  .design-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:calc((100cqw - var(--g)) / 2 / 1.2785)}
-  .dtile--lead{grid-column:span 2;grid-row:span 2}
-  /* 12 tiles with one 2x2 lead is 15 cells: odd, so one hole at 2 columns.
-     A second 2x2 at the end closes it. */
-  .dtile:last-child{grid-column:span 2;grid-row:span 2}
-}
-
-/* ---- the viewer eases in and out instead of snapping ---- */
-.lb{border-radius:14px;opacity:0;transform:translateY(10px) scale(.985);
-  transition:opacity .3s var(--ease),transform .3s var(--ease),overlay .3s allow-discrete,display .3s allow-discrete}
-.lb[open]{opacity:1;transform:none}
-@starting-style{.lb[open]{opacity:0;transform:translateY(10px) scale(.985)}}
-.lb::backdrop{background:rgba(5,6,8,0);backdrop-filter:none;
-  transition:background-color .3s,overlay .3s allow-discrete,display .3s allow-discrete}
-.lb[open]::backdrop{background:rgba(5,6,8,.9)}
-@starting-style{.lb[open]::backdrop{background:rgba(5,6,8,0)}}
-.lb-fig{border-radius:14px;overflow:hidden}
-.lb-fig img{opacity:0;transition:opacity .35s ease}
-.lb-fig img.ld{opacity:1}
-.lb-btn{border-radius:10px}
-@media (prefers-reduced-motion:reduce){
-  .tile--img img,.tl,.lb,.lb::backdrop,.lb-fig img{transition:none}
-  .tile--img:hover img{transform:none}
-}
-
-/* the handle is short now that it no longer cycles: let it be the headline */
-.cycler{font-size:clamp(30px,10.5cqw,92px)}
-/* text tiles size their type from THEIR OWN width: a 2-column tile and a
-   4-column one are different measures, and a chapter-wide cqw broke
-   "TRAVELER" across lines in the narrow tile */
-.tile--text{container-type:inline-size;padding:clamp(12px,8cqw,26px)}
-.tt-num{font-size:clamp(34px,30cqw,104px)}
-.tile--text h3{font-size:clamp(15px,11.5cqw,40px)}
-.tt-line{font-size:clamp(10.5px,5.4cqw,13px)}
-.tt-quote{font-size:clamp(15px,6.4cqw,32px)}
-.t-eptext .tt-line{font-size:clamp(11px,6cqw,15px)}
-.cycler{font-size:clamp(26px,9cqw,92px)}
-@media (max-width:719px){.t-phead{padding:10px}.t-phead .tt-num{font-size:30cqw}.t-phead h3{font-size:12cqw}.t-phead .tt-line{font-size:clamp(10px,5.6cqw,12px)}}
-/* Syne 800 capitals run ~1.1em a glyph: TRAVELER needs <=9cqw, IMAGINATION <=7.6cqw */
-.tile--text h3{font-size:clamp(14px,8.6cqw,40px)}
-.t-eptext h3{font-size:clamp(14px,7.4cqw,40px)}
-@media (max-width:719px){.t-phead h3{font-size:8.6cqw}}
-/* one corner language for the page: the social cards and archive links join the bento */
-.scard{border-radius:14px;--g:clamp(8px,1.2vw,14px)}
-.social-grid{gap:clamp(8px,1.2vw,14px)}
-.link{border-radius:12px}
-.sc-thumbs img{border-radius:8px}
-.sc-big .sc-word{font-size:clamp(26px,2.9vw,42px);overflow-wrap:anywhere}
-/* the archive sits on the same centred column as the rest of the page */
-.links{padding-inline:max(var(--gut),calc((100% - 1080px) / 2))}
 
 /* ============ WorkspaceHQ cartridge ============
    The founder's own product, presented as a game cartridge with Bit on the
@@ -649,68 +204,272 @@ html[dir="rtl"] .whq-cart::after{right:auto;left:-2px;background:linear-gradient
 html[dir="rtl"] .whq-kick{font-family:var(--font-ar-body,system-ui),sans-serif;font-size:12px;letter-spacing:0}
 html[dir="rtl"] .whq-start{right:auto;left:12px}
 @media (prefers-reduced-motion:reduce){.whq-cart,.whq-bit svg{transition:none}.whq-cart *{animation:none!important}.whq-cart:hover{transform:none}}
-.link--whq{border-color:color-mix(in srgb,#ffd23f 45%,var(--line-2))}
-.link--whq .badge{color:#ffd23f}
-.whq-cart{--whq-page:var(--ink)}
+/* the cut corner shows the paper the cartridge lies on */
+.whq-cart{--whq-page:var(--bg)}
 
-/* breadcrumb: Numidea Labs / VOIDSPLUNKER.std */
-.topbar .bc{display:flex;align-items:center;gap:10px;margin:0;padding:0;list-style:none;min-width:0}
-.topbar .bc li{display:flex;align-items:center;gap:10px}
-.topbar .bc li+li::before{content:"/";font-family:var(--mono);font-size:11px;opacity:.45}
-.topbar .bc a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;transition:opacity .2s}
-.topbar .bc a:hover,.topbar .bc a:focus-visible{opacity:1}
-/* .6 of the ink lands at 4.4:1 on paper */
-:root[data-theme="light"] .topbar .bc a{opacity:.72}
-:root[data-theme="light"] .topbar .bc a:is(:hover,:focus-visible){opacity:1}
+/* ============================= WHAT I MAKE ============================= */
+.make{padding:clamp(72px,11vw,168px) 0 clamp(64px,9vw,140px)}
+.make-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr);row-gap:clamp(56px,10vw,80px)}
+.make-h{max-width:11ch}
+.role{display:grid;gap:clamp(14px,2vw,22px);align-content:start}
+.role-fig{width:min(100%,560px)}
+.role-fig img{display:block;width:100%;height:auto}
+.role--developer .role-fig{justify-self:end;width:min(92%,460px)}
+.role--artist .role-fig{width:min(96%,480px)}
+.role h3{font:700 clamp(26px,2.6vw,34px)/1.05 var(--display);letter-spacing:-.02em}
+.role p{margin-top:8px;color:var(--text-2);max-width:30ch}
+.role-links{display:flex;flex-wrap:wrap;gap:0 22px;margin-top:10px;padding:0;list-style:none}
+.role-links a{display:inline-flex;align-items:center;gap:.3em;min-height:44px;font:500 15.5px/1.2 var(--sans);color:var(--text);
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.32em;
+  text-decoration-color:color-mix(in srgb,currentColor 35%,transparent);transition:color .18s,text-decoration-color .18s}
+.role-links a:hover{color:var(--accent);text-decoration-color:currentColor}
+/* in the night theme each figure stands on its own sheet of paper */
+:root[data-theme="dark"] .role-fig{padding:clamp(14px,2.4vw,28px);border-radius:var(--r);background:var(--c-paper)}
+
+@media (min-width:700px){
+  .make-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,4vw,48px)}
+  .make-head{grid-column:1/-1}
+  .role--designer{grid-column:1}
+  .role--developer{grid-column:2;margin-top:clamp(64px,12vw,140px)}
+  .role--developer .role-fig{justify-self:start;width:100%}
+  .role--artist{grid-column:1/-1;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(24px,4vw,48px);align-items:end}
+  .role--artist .role-fig{width:100%}
+  .role--artist .role-txt{padding-bottom:12px}
+}
+/* desktop: a spread — the heading and Designer down the left, Developer
+   high on the right, Artist across the foot with Kūro in its margin */
+@media (min-width:1024px){
+  .make-grid{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(20px,2.2vw,32px);row-gap:clamp(48px,5vw,80px)}
+  .make-head{grid-column:1/8;grid-row:1}
+  .role--designer{grid-column:1/7;grid-row:2}
+  .role--developer{grid-column:8/13;grid-row:1/3;margin-top:clamp(40px,6vw,96px)}
+  .role--artist{grid-column:4/13;grid-row:3;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+}
+
+/* ============================= KŪRO, DIE-CUT =============================
+   Two cut-outs as marginalia, given the loops' die-cut edge (a hard bone
+   outline from four offset copies of the shape, then a soft shadow), so the
+   black cat reads on night as well as on paper. Decoration: alt="". */
+.kuro{display:block;width:130px;height:auto;pointer-events:none;
+  filter:drop-shadow(2.5px 0 0 var(--c-bone)) drop-shadow(-2.5px 0 0 var(--c-bone)) drop-shadow(0 2.5px 0 var(--c-bone)) drop-shadow(0 -2.5px 0 var(--c-bone)) drop-shadow(0 10px 14px rgba(var(--shade),.22))}
+/* below 1024px he waves from beside the section's heading, whose right
+   side is empty (it is 11ch at most); on a phone he sits higher, half in
+   the section's top margin, clear of the heading's second line */
+@media (max-width:1023px){
+  .kuro--paw{position:absolute;top:0;right:var(--gx-r);width:clamp(84px,13vw,120px)}
+}
+@media (max-width:519px){.kuro--paw{top:-92px}}
+@media (min-width:1024px){
+  .kuro--paw{grid-column:1/4;grid-row:3;align-self:end;justify-self:center;width:150px;margin:0 0 24px}
+}
+
+/* ============================= BANDS =============================
+   A section's opening picture with its heading. The heading sits on the
+   picture's empty left from 1024px; below that it comes first and the
+   picture's right part (scripts/hub-art-data.mjs BOX.bandTall) follows. */
+.band{position:relative;display:grid;grid-template-columns:minmax(0,1fr)}
+.band-copy{padding:clamp(56px,9vw,96px) var(--gx-r) clamp(24px,5vw,40px) var(--gx-l)}
+.band-copy p{margin-top:clamp(12px,1.6vw,20px);font:500 clamp(17px,1.6vw,21px)/1.4 var(--sans);color:var(--text-2)}
+.band-art{display:block}
+.band-art img{display:block;width:100%;height:auto}
+@media (min-width:1024px){
+  .band{grid-template-columns:max(var(--gx-l),calc((100% - 1200px) / 2)) minmax(0,40%) 1fr;grid-template-rows:1fr auto 1fr}
+  .band-art{grid-column:1/-1;grid-row:1/-1}
+  .band-copy{grid-column:2;grid-row:2;z-index:1;padding:0}
+}
+/* the design band is paper: on the paper page it melts into the page top
+   and bottom; on the night page it is an inset print */
+.band--design .band-art{-webkit-mask-image:linear-gradient(transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(transparent,#000 9%,#000 91%,transparent)}
+:root[data-theme="dark"] .band--design{margin-inline:var(--inset);border-radius:var(--r);overflow:clip}
+.band-copy a{color:var(--text);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em;
+  text-decoration-color:color-mix(in srgb,currentColor 35%,transparent);transition:color .18s,text-decoration-color .18s}
+.band-copy a:hover{color:var(--accent);text-decoration-color:currentColor}
+
+/* ============================= DESIGN ============================= */
+.design{padding-bottom:clamp(72px,10vw,150px)}
+.covers-wrap{position:relative;margin-top:clamp(36px,6vw,72px)}
+.covers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,48px) clamp(14px,2vw,28px);padding:0;list-style:none}
+@media (min-width:700px){.covers{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1024px){.covers{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.cover{display:block;color:var(--text);text-decoration:none}
+.cover-img{display:block;aspect-ratio:640/501;border-radius:var(--r-pic);overflow:clip;background:var(--bg-2);
+  box-shadow:0 1px 2px rgba(var(--shade),.08);transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out)}
+.cover-img img{display:block;width:100%;height:100%;object-fit:cover}
+.cover-t{display:block;margin-top:12px;font:500 15px/1.35 var(--sans);text-wrap:pretty}
+@media (hover:hover) and (pointer:fine){
+  .cover:hover .cover-img{transform:translateY(-2px);box-shadow:0 14px 28px -14px rgba(var(--shade),.35)}
+  .cover:hover .cover-t{color:var(--accent)}
+}
+/* the ring goes round the whole card, picture and title */
+.cover:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:var(--r-pic)}
+/* Kūro sits on the top edge of the grid, on the drawn room's empty floor */
+.kuro--sit{position:absolute;left:var(--gx-l);bottom:100%;width:clamp(84px,9vw,128px);margin-bottom:-6px;z-index:1}
+
+/* ============================= STUDIO DIARY =============================
+   Night in both themes: an inset print on the paper page, the page itself
+   on the night one. */
+.diary{position:relative}
+:root:not([data-theme="dark"]) .diary{margin-inline:var(--inset);border-radius:var(--r);overflow:clip}
+.prints{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(40px,6vw,72px) clamp(20px,3vw,40px);list-style:none;
+  padding-top:clamp(40px,6vw,96px);padding-bottom:clamp(64px,9vw,140px)}
+.tile{display:block;color:var(--text);text-decoration:none}
+.print-img{display:block;border-radius:var(--r-pic);overflow:clip;background:var(--bg-2);
+  box-shadow:0 30px 60px -36px rgba(0,0,0,.9);transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out)}
+.print-img img{display:block;width:100%;height:auto}
+.print-t{display:block;margin-top:14px;font:700 clamp(17px,1.5vw,20px)/1.25 var(--display);letter-spacing:-.005em}
+@media (hover:hover) and (pointer:fine){
+  .tile:hover .print-img{transform:translateY(-2px);box-shadow:0 36px 64px -32px rgba(0,0,0,.95)}
+  .tile:hover .print-t{color:var(--accent)}
+}
+.tile:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:var(--r-pic)}
+@media (min-width:700px){
+  .prints{grid-template-columns:repeat(2,minmax(0,1fr));align-items:end}
+  .print--full{grid-column:1/-1}
+}
+/* desktop: wide and narrow prints alternate, two full-width ones break the
+   rhythm (the markup's order is the story's, and these spans keep it) */
+@media (min-width:1024px){
+  .prints{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .print--w{grid-column:span 7}
+  .print--n{grid-column:span 5}
+  .print--full{grid-column:2/12}
+}
+
+/* ---- the viewer: a native <dialog>, night in both themes ---- */
+.lb{margin:auto;width:min(1180px,94vw);max-height:94vh;padding:0;border:1px solid var(--rule);border-radius:var(--r);
+  background:var(--bg);color:var(--text);overflow:visible;
+  opacity:0;transform:translateY(10px) scale(.985);
+  transition:opacity .3s var(--ease-out),transform .3s var(--ease-out),overlay .3s allow-discrete,display .3s allow-discrete}
+.lb[open]{opacity:1;transform:none}
+@starting-style{.lb[open]{opacity:0;transform:translateY(10px) scale(.985)}}
+.lb::backdrop{background:rgba(6,8,14,0);transition:background-color .3s,overlay .3s allow-discrete,display .3s allow-discrete}
+.lb[open]::backdrop{background:rgba(6,8,14,.9)}
+@starting-style{.lb[open]::backdrop{background:rgba(6,8,14,0)}}
+.lb-fig{display:grid;grid-template-rows:minmax(0,1fr) auto;max-height:94vh;border-radius:var(--r);overflow:hidden}
+.lb-fig img{display:block;width:100%;height:100%;max-height:calc(94vh - 64px);object-fit:contain;background:var(--c-night);opacity:0;transition:opacity .35s ease}
+.lb-fig img.ld{opacity:1}
+.lb-fig figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;padding:14px 20px;border-top:1px solid var(--rule)}
+.lb-fig figcaption b{font:700 18px/1.3 var(--display)}
+.lb-fig figcaption i{font:400 12.5px/1.3 var(--mono);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2)}
+.lb-fig figcaption a{margin-inline-start:auto;display:inline-flex;align-items:center;min-height:24px;font-size:14px;color:var(--accent)}
+.lb [hidden]{display:none}
+/* z-index: the buttons come before the figure in the source (Close first,
+   for focus), and the picture fading in would otherwise paint over them */
+.lb-btn{position:absolute;z-index:2;width:44px;height:44px;display:grid;place-items:center;cursor:pointer;
+  font:16px/1 var(--sans);color:var(--text);background:var(--bg);border:1px solid var(--rule);border-radius:999px;
+  transition:border-color .18s,color .18s}
+.lb-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lb-close{top:10px;inset-inline-end:10px}
+.lb-prev{top:calc(50% - 54px);inset-inline-start:10px}
+.lb-next{top:calc(50% - 54px);inset-inline-end:10px}
+html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
+
+/* ============================= ELSEWHERE ============================= */
+.links{padding:clamp(80px,11vw,168px) 0 clamp(64px,9vw,128px)}
+.links-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,5vw,48px)}
+.kicker{margin-bottom:14px}
+.links-head h2{max-width:12ch}
+.links-sub{margin-top:clamp(14px,1.6vw,20px);font:500 clamp(17px,1.6vw,21px)/1.4 var(--sans);color:var(--text-2)}
+.loop{display:block}
+.loop img{display:block;width:100%;height:auto}
+.loop--lost{width:min(80%,340px);justify-self:center}
+.groups{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(32px,4vw,48px)}
+.group h3{padding-bottom:12px;border-bottom:1px solid var(--rule);
+  font:400 12.5px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--text-2)}
+.group ul{padding:0;list-style:none}
+.out{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;min-height:60px;padding:10px 0;
+  color:var(--text);text-decoration:none}
+.out-n{font:700 clamp(19px,1.7vw,23px)/1.15 var(--display);letter-spacing:-.01em;transition:color .18s}
+.out-h{grid-column:1;font:400 13px/1.35 var(--mono);color:var(--text-2);overflow-wrap:anywhere}
+.out-go{grid-column:2;grid-row:1/3;font-size:18px;color:var(--text-2);transition:transform .18s var(--ease-out),color .18s}
+.out:hover .out-n,.out:hover .out-go{color:var(--accent)}
+.out:hover .out-go{transform:translate(2px,-2px)}
+@media (min-width:700px){
+  .links-grid{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);align-items:end}
+  .loop--lost{width:100%;max-width:340px;justify-self:end}
+  .groups{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(20px,3vw,40px)}
+}
+
+/* ============================= FOOTER ============================= */
+.foot{padding:clamp(64px,9vw,128px) 0 calc(20px + env(safe-area-inset-bottom));border-top:1px solid var(--rule)}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(36px,5vw,56px)}
+.hello{display:flex;align-items:flex-end;gap:clamp(14px,2.5vw,32px)}
+.loop--wave{flex:none;width:clamp(92px,11vw,148px)}
+.hello-txt{min-width:0;padding-bottom:clamp(6px,1.4vw,18px)}
+.hello-h{font:800 clamp(48px,9vw,128px)/.9 var(--display);letter-spacing:-.04em}
+.mail{display:inline-block;margin-top:clamp(10px,1.6vw,18px);font:500 clamp(17px,2.1vw,28px)/1.3 var(--sans);color:var(--text);
+  text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.24em;text-decoration-color:var(--accent);
+  overflow-wrap:anywhere;transition:color .18s}
+.mail:hover{color:var(--accent)}
+.foot-bio{max-width:58ch;font:400 15.5px/1.7 var(--sans);color:var(--text-2)}
+.foot-bio b{font-weight:500;color:var(--text)}
+.foot-end{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px 28px;padding-top:24px;border-top:1px solid var(--rule)}
+.legal{display:flex;flex-wrap:wrap;gap:4px 18px;font:400 12.5px/1.6 var(--mono);letter-spacing:.04em;color:var(--text-2)}
+.legal b{font-weight:400;color:var(--text)}
+.heart{color:var(--accent)}
+/* Kūro asleep at the very end of the page */
+.loop--sleep{width:clamp(104px,11vw,150px);margin-inline-start:auto}
+@media (min-width:1024px){
+  .foot-grid{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(20px,2.2vw,32px);align-items:end}
+  .hello{grid-column:1/8}
+  .foot-bio{grid-column:8/13;padding-bottom:clamp(6px,1.4vw,18px)}
+  .foot-end{grid-column:1/-1}
+}
+
+/* theme pill (sun · top · moon) */
+.theme-pill{display:inline-flex;align-items:center;gap:6px;padding:5px;border:1px solid var(--rule);border-radius:999px}
+.theme-pill button{width:38px;height:38px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;cursor:pointer;
+  background:transparent;color:var(--text-2);transition:background-color .18s,color .18s}
+.theme-pill svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.theme-pill .tp-top{width:30px;height:30px}
+.theme-pill .tp-top svg{width:14px;height:14px}
+.theme-pill button:hover{color:var(--text)}
+.theme-pill button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+/* Forced colours drop the backgrounds above, which were the only sign of the
+   current theme; the pressed button (aria-pressed, kept by app.js) gets a
+   system-colour ring instead. */
+@media (forced-colors:active){.theme-pill button[aria-pressed="true"]{border:2px solid Highlight}}
+/* Without scripts these three buttons do nothing (the head script that sets
+   data-theme has not run either), so they are not offered. */
+html:not([data-theme]) .theme-pill{display:none}
+
+/* ============================= MOTION =============================
+   Gentle scroll reveal: rise and fade, staggered by app.js. Gated on
+   html.reveal-armed, which app.js sets only once its observer is running:
+   without that script nothing is hidden. The gate sits in :where() so it
+   adds no specificity. */
+:where(.reveal-armed) [data-reveal]{opacity:0;transform:translate3d(0,16px,0);
+  transition:opacity .8s var(--ease-out),transform .9s var(--ease-out);transition-delay:var(--rd,0ms)}
+:where(.reveal-armed) [data-reveal].seen{opacity:1;transform:none}
+/* pictures fade in once decoded (app.js §8; body.fi gates it) */
+.fi img.fade{opacity:0;transition:opacity .6s ease}
+.fi img.fade.ld{opacity:1}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important}
+  [data-reveal],.reveal-armed [data-reveal]{opacity:1;transform:none;transition:none}
+  [data-depth],[data-parallax]{transform:none!important}
+  .skip,.cover-img,.print-img,.lb,.lb::backdrop,.lb-fig img,.out-go{transition:none}
+  .cover:hover .cover-img,.tile:hover .print-img,.out:hover .out-go{transform:none}
+}
 
 /* ============================= PRINT =============================
    Paper is white and browsers leave backgrounds out, so print takes the
-   light theme's inks whatever the screen theme (the dark theme's #ece9dd text
-   printed nearly white on white), shows every reveal block (only what had
-   been scrolled past used to print), and lets the few labels that are light
-   on their own dark ground keep that ground. */
+   paper inks everywhere, the night print included; every reveal block
+   shows; controls that do nothing on paper are left out. */
 @media print{
-  :root,:root[data-theme]{--ink:#fff;--ink-2:#fff;--panel:#fff;
-    --paper:#14160f;--paper-dim:#494c40;--faint:#63665a;--acc-text:#357000;
-    --line:#cccabd;--line-2:#adab9c}
+  :root,:root[data-theme],.paper,.night{--bg:#fff;--bg-2:#fff;--text:#1e1611;--text-2:#5b4535;--accent:#7a2430;--rule:#ccc}
   .reveal-armed [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
-  [data-depth],[data-parallax]{transform:none!important}
-  .badge{color:var(--paper)!important}
-  .whq-cart,.tl{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .tl{opacity:1!important;transform:none!important}   /* hover-only labels print */
-  .theme-pill,.skip{display:none}
+  [data-depth],[data-parallax]{transform:none!important;translate:none!important}
+  .fi img.fade{opacity:1!important}
+  .whq-cart{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .theme-pill,.skip,.lb{display:none}
+  :root[data-theme="dark"] .hero,.diary{margin:0}
 }
 
-/* ===== r3/a: mobile audit ===== */
-/* Safe-area insets. viewport-fit=cover, but only the hero was inset, and
-   only under 860px: in landscape on a notched phone (~47px insets a side,
-   emulated at 844x390) the poster tiles, the social cards, the archive and
-   the footer ran under the notch, from x=34 to x=810 of 844. */
-@supports (padding:max(0px)){
-  .hero,.site-foot{padding-left:max(var(--gut),env(safe-area-inset-left));padding-right:max(var(--gut),env(safe-area-inset-right))}
-  .coll,.design,.social,.links{padding-left:max(var(--gut),calc((100% - 1080px) / 2),env(safe-area-inset-left));
-    padding-right:max(var(--gut),calc((100% - 1080px) / 2),env(safe-area-inset-right))}
-}
 /* The lightbox: 94vh is the LARGE viewport on iOS, taller than what shows
    while the toolbars are out, so the caption bar sat under them. */
 @supports (height:1dvh){
   .lb,.lb-fig{max-height:94dvh}
-  .lb-fig img{max-height:calc(94dvh - 72px)}
-}
-/* A social card's handle broke one letter from its end at 320 ("@stick_itt
-   / y", "@br4vetr4ave / ler1"): it shared one row with the badge, the name
-   and the arrow. The row may wrap, so the handle moves down whole. The arrow
-   is pinned in the card corner, centred on the badge (44px) row, outside the
-   wrapping row: in the row it was the item that wrapped at 700 and 960-1024px,
-   alone on a second line, and made those cards 22px taller. */
-.scard{position:relative}
-.sc-top{flex-wrap:wrap;row-gap:4px;padding-inline-end:18px}
-.sc-top .go{position:absolute;top:20px;inset-inline-end:20px;height:44px;display:grid;place-items:center;margin:0}
-/* Tile labels on a 320-400px phone: a design tile is 138x108px there, and
-   "Sandwich Insulating Panels Graphic Assets" ran five lines, taller than the
-   tile, which clipped its first word; "ego disintegration" broke one letter
-   from its end. A tighter label and 11.5px type keep every title whole. */
-@media (max-width:400px){
-  .tl{left:6px;bottom:6px;max-width:calc(100% - 12px);padding:6px 8px 7px}
-  .tl b{font-size:11.5px}
+  .lb-fig img{max-height:calc(94dvh - 64px)}
 }
