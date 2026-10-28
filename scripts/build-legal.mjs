@@ -82,12 +82,12 @@ export const SECTIONS = {
 const sec = (name, lang) => `id="${SECTIONS[name][lang]}" data-sec="${name}"`;
 
 /* Font families whose licence is confirmed in this repository, in the order
-   the page lists them. All ten are SIL Open Font License 1.1: the licence text
-   for the first seven is assets/fonts/OFL.txt; for VT323, Press Start 2P and
+   the page lists them. All nine are SIL Open Font License 1.1: the licence text
+   for the first six is assets/fonts/OFL.txt; for VT323, Press Start 2P and
    IBM Plex Mono, the copyright and the OFL licence URL are in each font file's
    name table (workspacehq/fonts/, workspacehq/embed/fonts/), and
    workspacehq/embed/fonts/plex.css names OFL 1.1. */
-const OFL_FONTS = ['Cinzel', 'Cinzel Decorative', 'Geist', 'Geist Mono', 'IBM Plex Sans Arabic', 'Syne', 'Space Mono',
+const OFL_FONTS = ['Cinzel', 'Cinzel Decorative', 'Geist', 'Geist Mono', 'IBM Plex Sans Arabic', 'Syne',
   'VT323', 'Press Start 2P', 'IBM Plex Mono'];
 
 /* every family a deployed stylesheet, page or script serves from a font file
