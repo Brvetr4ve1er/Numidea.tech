@@ -21,7 +21,7 @@ Status as of 2026-10-12 (updated after the review round); rows 10 and 15 as of
 | 12 | Campaign kit and git history | Kit with the owner | outside this repo |
 | 13 | WorkspaceHQ: open source or not | Claim removed (no licence, no README) | `Brvetr4ve1er/workspace-HQ`, then `workspacehq/`, `scripts/scene-data.mjs` |
 | 14 | Claims only the owner can confirm | 8 open | see section 14 |
-| 15 | Hub illustrations (yours: you and Kūro) | 4 points for your review | `hub/` |
+| 15 | Hub illustrations (yours: you and Kūro) | 3 points for your review (the diary titles approved 2026-10-28) | `hub/` |
 
 ## 1. Legal notice + privacy page
 Fill every `null` in `scripts/legal-data.mjs`. `false` means "does not apply"
@@ -245,9 +245,9 @@ browser bar and project sheet in step).
 
 ## 10. Hub fan art
 No fan art on the site since 2026-10-28: the fan art and the remade poster
-series left `hub/` with its rebuild (IMPROVEMENTS A11, in local commits
-waiting for your review before the push; the live site changes at the next
-deploy). The files stay in the git history of earlier commits (see §12 for
+series left `hub/` with its rebuild (IMPROVEMENTS A11, pushed on 2026-10-28
+after your review; the live site changes at the next deploy). The files stay
+in the git history of earlier commits (see §12 for
 what removing them from history involves), so the rights question no longer
 concerns the site.
 
@@ -305,12 +305,12 @@ Confirm it, or say what is true and the copy changes in all three languages.
   line on the hub; the home page's team wording is the open half, A3.)
 
 ## 15. Hub illustrations
-The rebuilt `hub/` is drawn from your own illustrations of yourself and
-Kūro. As you chose (IMPROVEMENTS decision 24), the page carries no credit
-line and names no tool. Four points for your review:
-- the eight studio-diary titles (4 a.m., Buried, Art director, The second
-  brain, A world in miniature, Morning light, Wandering, tr4veler.exe) are
-  drafts: approve or rename them;
+The rebuilt `hub/` is drawn from your illustrations of yourself and Kūro.
+As you chose (IMPROVEMENTS decision 24), the page carries no credit line and
+names no tool. You approved the eight studio-diary titles on 2026-10-28
+(4 a.m., Buried, Art director, The second brain, A world in miniature,
+Morning light, Wandering, tr4veler.exe; IMPROVEMENTS decision 26). Three
+points remain for your review:
 - the page says only "Kūro, the black cat": say if more is true;
 - the hexagon "N" on the coat is treated as a costume detail, not the
   studio's mark: confirm;

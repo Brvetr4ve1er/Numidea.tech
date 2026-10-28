@@ -1110,7 +1110,7 @@ Sections: hero, What I make (Designer, Developer, Artist), the design work
 (the 12 Behance projects on the profile's first page, covers self-hosted,
 titles only), the studio diary (eight prints in the viewer), Elsewhere (the
 verified handles), the footer. The copy is the
-owner's published wording; the diary titles are drafts for him to approve.
+owner's published wording; the owner approved the diary titles on 2026-10-28.
 
 - **The owner's answers (2026-10-28).** The footer keeps "VOIDSPLUNKER.std is
   an agency of one … you work directly with me" (the main site's team
@@ -1125,8 +1125,9 @@ owner's published wording; the diary titles are drafts for him to approve.
   mark), the scribbled lines on the wall notes and the code lines on the
   laptop (texture, no words), and the dimension letters on the blueprints
   (a drafting convention). The glyph-like symbols on the cut-paper panels of
-  "A world in miniature" wait for the owner's eye, with the diary titles,
-  what the page says of Kūro and the badge (OWNER-CONTENT §15).
+  "A world in miniature" wait for the owner's eye, with what the page says
+  of Kūro and the badge (OWNER-CONTENT §15); the owner approved the diary
+  titles on 2026-10-28.
 - **Two grounds, sampled from the art.** Paper `#fcecdc` (the hero's empty
   paper) and night `#0f1420` (the empty left of the diary band); the tokens
   and their contrast figures are at the top of `hub/style.css` (paper: text

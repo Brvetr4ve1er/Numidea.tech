@@ -28,7 +28,7 @@ The register's own status line reads "as of 2026-10-12 (updated after the review
 | 12 | [[Campaign kit in public git history\|Campaign kit and git history]] | Kit with the owner | Owner's call on a history rewrite | outside this repo |
 | 13 | [[WorkspaceHQ open-source claim\|WorkspaceHQ: open source or not]] | Claim removed (no licence, no README) | A LICENSE and root README in the product repo, then restore the wording | `Brvetr4ve1er/workspace-HQ`, `workspacehq/`, `scripts/scene-data.mjs` |
 | 14 | [[Claims only the owner can confirm (8 open)\|Claims only the owner can confirm]] | 8 open | Confirm each, or say what is true | see below |
-| 15 | Hub illustrations (the owner's own: himself and Kūro) | 4 points for his review | Approve or rename the eight diary titles; say what is true of Kūro (the page says only "Kūro, the black cat"); confirm the hexagon "N" badge as a costume detail; keep or paint out the glyph-like symbols on one print | `hub/` |
+| 15 | Hub illustrations (the owner's: himself and Kūro) | 3 points for review (the diary titles approved 2026-10-28) | Say what is true of Kūro (the page says only "Kūro, the black cat"); confirm the hexagon "N" badge as a costume detail; keep or paint out the glyph-like symbols on one print | `hub/` |
 
 Source: OWNER-CONTENT.md › table and sections 1–15. The README points to the same file for "what only the owner can supply" (README.md › What only the owner can supply).
 

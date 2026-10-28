@@ -27,7 +27,7 @@ Both pages load `assets/carry.js`, so a link back to the home page keeps any `re
 
 **Rule:** client websites do not belong here; a "Selected Work" section was added once and removed at the owner's request, and `npm run check` fails if the host of any project site linked from the home page appears in `hub/` (BRAND.md › hub/ — the artist's page, not the studio's; scripts/check.mjs › block 5).
 
-Since 2026-10-28 the page is built on the owner's illustrations of himself and his black cat Kūro; the copy is his published wording, and the eight diary titles are drafts for him to approve (BRAND.md › hub/; hub/index.html › STUDIO DIARY).
+Since 2026-10-28 the page is built on the owner's illustrations of himself and his black cat Kūro; the copy is his published wording, and the owner approved the eight diary titles on 2026-10-28 (BRAND.md › hub/; hub/index.html › STUDIO DIARY).
 
 | Section | Anchor | What it holds |
 |---|---|---|
@@ -104,7 +104,7 @@ Graph: [[WorkspaceHQ NES cartridge link]].
 ## Open items
 
 - **WorkspaceHQ "open source":** the repository had no licence and no README on 2026-10-13, so the pages now say the code is public on GitHub; to say "open source" again, add a LICENSE and a root README there, then restore the wording in `workspacehq/index.html` and `scripts/scene-data.mjs` (OWNER-CONTENT.md › 13). Graph: [[WorkspaceHQ open-source claim]].
-- **Hub illustrations, four review points:** the fan art left the hub with its rebuild of 2026-10-28 (live at the next deploy) and stays in git history (OWNER-CONTENT.md › 10); the owner reviews the eight diary titles (drafts), what the page says about Kūro, the hexagon "N" as a costume detail, and the glyph-like symbols on one print (OWNER-CONTENT.md › 15).
+- **Hub illustrations, three review points:** the fan art left the hub with its rebuild of 2026-10-28 (live at the next deploy) and stays in git history (OWNER-CONTENT.md › 10); the owner approved the eight diary titles on 2026-10-28 (IMPROVEMENTS.md › decision 26) and reviews what the page says about Kūro, the hexagon "N" as a costume detail, and the glyph-like symbols on one print (OWNER-CONTENT.md › 15).
 - **"An agency of one":** the hub footer says VOIDSPLUNKER.std is an agency of one while the home page presents a studio of four specialists; the owner chose on 2026-10-28 to keep the line on the hub, and the home page's team wording is the open half (OWNER-CONTENT.md › 14; IMPROVEMENTS.md › decision 22; hub/index.html › FOOTER). Graph: [[VOIDSPLUNKER.std (agency of one)]].
 
 See [[Open owner items]].
