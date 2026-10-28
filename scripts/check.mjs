@@ -862,7 +862,7 @@ runtimeDeps.length
     'assets/fonts': 51 * kB,      // 45,688 on 2026-10-26 (ibm-plex-sans-arabic-600-arabic.woff2)
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 19.0e6;           // 17,253,546 on 2026-10-28, 246 files (the hub rebuilt on its new art)
+  const TOTAL = 19.0e6;           // 17,240,013 on 2026-10-28, 246 files (the hub rebuilt on its new art, its new share card)
   const size = (f) => statSync(join(ROOT, f)).size;
   const fmt = (n) => (n >= 1e6 ? (n / 1e6).toFixed(2) + ' MB' : (n / kB).toFixed(1) + ' kB');
   const bytes = (n) => n.toLocaleString('en') + ' bytes';
