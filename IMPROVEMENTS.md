@@ -78,6 +78,9 @@ Ordered by priority (1 first). Ids: C cut, M merge, A add, F fix. Status values:
 | C6 | 37 | CUT | clear-cut | Unused dictionary keys and stale comments | assets/app.js:25/123/224 (sheet.scale, sheet.rev, sheet.sheet) and :399/511/626 (price.waSoon); index.html:697-698 and :1139; assets/styles. | done 2026-10-26 (c028a08) |
 | F14 | 38 | FIX | owner-decision | The footer signoff says the site is built with TypeScript; it contains none | index.html:1270; footer.signoff app.js:108 (fr), :206 (en), :307 (ar); README.md:214. | waiting (owner decision) |
 | F15 | 39 | FIX | clear-cut | On a desktop, plate II (86 KB) now arrives before any scroll | assets/app.js §15 lazy loader (rootMargin '900px 0px'); index.html .pi-arch in #work; BRAND.md 'Plate I is not lazy'. | open |
+| A11 | 40 | ADD | owner-decision | Rebuild the hub on the owner's illustrations (Yasser and Kūro) | hub/ (index.html, style.css, app.js, art/, poses/, og.jpg); assets/fonts-hub.css; check.mjs block 17; the hub in audit, sweep and keys; BRAND.md hub section | in progress (owner request, 2026-10-28) |
+| A12 | 41 | ADD | owner-decision | 404 page illustrated from the empty-state art | 404.html (text only today: the 404 mark, one line in fr/en/ar, a link home); check.mjs 6 (served at any depth) and 17 | waiting (owner decision) |
+| F16 | 42 | FIX | clear-cut | Space Mono is unused once A11 ships | assets/fonts/space-mono-{400,700}-{latin,latin-ext}.woff2 (64,884 B); assets/fonts-hub.css; hub/index.html preload; BRAND.md 'Syne and Space Mono are self-hosted too' | open (after A11) |
 
 ### Details
 
@@ -315,6 +318,24 @@ Ordered by priority (1 first). Ids: C cut, M merge, A add, F fix. Status values:
 - Evidence: no-scroll probe (networkidle + 1.2 s, reduced motion), base 076c991 against the r6 branch: arch.webp loads at 1024×768, 1280×900, 1440×900 and 1920×1080 (its top 1,525–1,883 px down), not at 960×800 nor at 390×844. `npm run metrics` scrolls the whole page before counting, so its bytes do not show it (desktop −200,075 B after a full scroll).
 - Impact: −86 KB before scroll on a desktop; nothing on a phone.
 
+**A11: Rebuild the hub on the owner's illustrations (Yasser and Kūro)** (ADD, owner-decision, effort L; the owner's request of 2026-10-28)
+- What: Start hub/ (VOIDSPLUNKER.std, English only) over from the owner's own illustrations of himself and his black cat Kūro: a layered hero; 'What I make' (designer, developer, artist); the 12 Behance design covers, titles only; a studio diary of eight prints that open in the existing viewer (their titles are drafts for the owner to approve); the links; the footer. The copy reuses what the owner already published on the page; nothing new is claimed. As the owner answered (decisions 22-25): the footer keeps 'VOIDSPLUNKER.std is an agency of one … you work directly with me'; the Etsy link goes; no AI credit line; the 33-poster series, the epilogue and hub/poses go. Also removed: the view counters and the social highlights, and Space Mono (F16). Images come from a repeatable export script, with width and height on every image; the loops are finite (at most 5 s of motion each, the still under reduced motion). Gates: the check.mjs 17 budgets follow the new files, and audit and sweep run the hub in both palettes. When it ships: A10 and decision 18 are marked superseded, C5's evidence is rewritten (its link question, decision 11, stays open), and BRAND.md, the README, the knowledge-base map and OWNER-CONTENT §10 follow.
+- Why: The owner's request. The page today is built on the poster series that A10 questions and on fan art whose rights are open (OWNER-CONTENT §10).
+- Evidence: metrics hub phone today: 16.7 screens, 76 controls, 3,970,534 B (C5). hub/art holds 78 files and hub/poses 5.
+- Impact: Measured before and after with `npm run metrics` (hub, phone and desktop) when it ships. No remade poster and no fan art left on the site.
+
+**A12: 404 page illustrated from the empty-state art** (ADD, owner-decision, effort S)
+- What: Once A11 has shipped, the owner chooses whether 404.html gets an illustration from the empty-state art of the same set, and which one. The page belongs to the whole site (fr/en/ar), so the image is decoration (empty alt) with its width and height reserved and no infinite motion. 404.html is served at any depth, so the image must resolve the way the page's other links do (check.mjs 6), inside its budget (check.mjs 17).
+- Why: Raised with the hub rebuild. Today the 404 is text only: the 404 mark, one line in three languages and a link home.
+- Evidence: 404.html has no image.
+- Impact: To be measured when it ships (`npm run metrics` counts the 404's bytes).
+
+**F16: Space Mono is unused once A11 ships** (FIX, clear-cut, effort S)
+- What: After A11, delete the four Space Mono files (assets/fonts/space-mono-{400,700}-{latin,latin-ext}.woff2) and their @font-face rules in assets/fonts-hub.css, and update the lines that describe them (BRAND.md 'Syne and Space Mono are self-hosted too', the knowledge-base map 'WorkspaceHQ and hub'). Then npm run check.
+- Why: Only hub/ uses it (assets/fonts-hub.css, the preload in hub/index.html, --mono in hub/style.css), and the rebuilt hub sets its labels in Geist Mono. Dead files.
+- Evidence: a search of the tracked files finds no other page that loads fonts-hub.css or a space-mono file.
+- Impact: −64,884 B from the published set. No page changes.
+
 ## Decisions
 
 The owner-decision items as questions; the recommended option is listed first. When the owner answers, record the answer and the date here, then move the items to open.
@@ -412,7 +433,7 @@ The owner-decision items as questions; the recommended option is listed first. W
     - Add one visible line about chapters I–III and caption those tiles '2024 original · 2026 remake' (recommended): Uses facts BRAND.md already records. The prologue and epilogue stay as they are until you say how they were made.
     - Show the original images instead: A bigger change; it does not settle the fan-art rights question.
     - Keep as is: The captions read as the dates of the images shown.
-    - Answer: (waiting)
+    - Answer: (waiting) Superseded once A11 ships: the owner chose on 2026-10-28 that the series goes with the hub rebuild (decision 25). Until then the series is still on the hub, so this stays open.
 19. **Bordj Steel's card calls it 'leader de la construction métallique en Algérie'. Keep it?** (F13)
     - Replace it with the project sheet's checkable description (recommended): No new fact needed; 4 locations change.
     - Keep it, attributed as the client's own tagline: E.g. 'qui se présente comme…'. A tone choice given the client relationship.
@@ -427,6 +448,22 @@ The owner-decision items as questions; the recommended option is listed first. W
     - Yes: 'un fondateur designer-développeur, Yasser Hamisse' (recommended): The name is already on the page and in the JSON-LD, so no new fact is needed. It moves from 18.2 to about 0.5 phone screens. No 'Vous écrivez à…' line until you confirm who answers.
     - No: The name first appears at 18.2 phone screens.
     - Answer: (waiting)
+22. **Should the rebuilt hub keep its footer line 'VOIDSPLUNKER.std is an agency of one … you work directly with me'?** (A11, C5)
+    - Ship the hub with no team-size claim (recommended): The hub stops contradicting the main site's team wording while A3 is open.
+    - Keep the line as published: The hub stays in the founder's own voice. The contradiction with the main site's team wording stays open under A3.
+    - Answer: declined 2026-10-28: Keep the line as published. This answers C5's hub part only; the main site's team wording (A3) and the founder card's link (decision 11) stay open.
+23. **Should the hub keep its Etsy link?** (A11, C5)
+    - Drop it: The links keep the design, code and social profiles and the one email.
+    - Keep it: A shop under a third name stays one tap from the founder's page.
+    - Answer: 2026-10-28: Drop it.
+24. **Should the hub carry an AI credit line, saying how its illustrations were made?** (A11, A10)
+    - A one-line credit under the studio diary's heading, as the rebuild plan drafted it: The page says how the illustrations were made.
+    - No credit line: The page shows the illustrations with their titles only.
+    - Answer: declined 2026-10-28: No AI credit line on the hub.
+25. **Should the 33-poster series go with the hub rebuild?** (A11, A10)
+    - Yes: remove the series, its epilogue and hub/poses, and start over from the new illustrations (recommended): A10's captions, decision 18 and the fan art (OWNER-CONTENT §10) leave the site with it.
+    - Keep the series beside the new illustrations, captioned as decision 18 proposes: Two styles on one page, and A10 stays open.
+    - Answer: approved 2026-10-28: The series goes with the rebuild. A10 and decision 18 are superseded when A11 ships; until then they stay as they are.
 
 ## Owner facts
 
@@ -456,6 +493,8 @@ Newest first.
 
 | Date | What happened |
 |---|---|
+| 2026-10-28 | Checkpoint of the open work: everything private is kept with the owner; the site's deploy is still blocked (GitHub Actions billing); owner answers pending (private toolkit repository, the Arabic reviewer, the lawyer on L'Aperçu, the owner facts). |
+| 2026-10-28 | Owner request: rebuild the hub on his own illustrations of himself and his black cat Kūro; A11 opened (in progress), with A12 (the 404 illustration, waiting) and F16 (Space Mono, once A11 ships). Owner answers recorded as decisions 22-25: the hub footer keeps 'agency of one' (C5's hub part; A3 stays open); the Etsy link is dropped; no AI credit line on the hub; the 33-poster series goes with the rebuild (A10 and decision 18 are superseded when A11 ships, not before). |
 | 2026-10-27 | Review of the owner-decision branch, fixed: the folded estimator again hands its full scope (type, size, options, range) to the message, and keys.mjs tests it; the hero's WhatsApp button ships with its French link (build-fr.mjs bakes every wa.me link), so it works before app.js arrives; the estimator's summary says "options hors formule"; the Aperçu's path keeps the content hand-off (step 3) and the brief no longer repeats the 5 days and the call; "Voir aussi l'Aperçu"; metrics.mjs no longer counts controls inside a closed <details> (fr phone: 73 → 64 visible controls, not 83 → 77); stale kicker, plate and footer references in BRAND.md, OWNER-CONTENT.md, the phone-bar comment and the clients map. Measured (`npm run metrics`, this checkout): 18.2 phone and 11.2 desktop screens, 1,552 words, 589 KB on a phone after a full scroll; M3 saved −951 / −585 px, not the −1,050 / −690 estimated. |
 | 2026-10-27 | Found by the review of the owner-decision branch: on a desktop (1024 px and wider) plate II, arch.webp (86 KB), now arrives before any scroll, because C3's shorter proof band moved it inside the lazy loader's 900 px lookahead; phones are unaffected. Recorded in BRAND.md ('Plate I is not lazy') and opened as F15. |
 | 2026-10-26 | Owner decisions: approved F10 (WhatsApp hero button), M4 (fold the estimator), M3 (the Aperçu once), C2 (remove Stack), C1 (hide the En cours cards), M5 (trim the footer), C3 (one trust line), C4 (hide the vista on phones); declined M1 (price in the hero) and M2 (three service cards). |
