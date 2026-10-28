@@ -50,7 +50,7 @@ assets/
   work/<slug>/*.webp  # project-sheet captures (npm run work:capture)
   og.jpg              # link-preview card (French), rendered by scripts/build-og.mjs
 scene/                # project sheets, generated from scripts/scene-data.mjs
-hub/                  # VOIDSPLUNKER.std — the founder's personal page (own CSS/JS)
+hub/                  # VOIDSPLUNKER.std — the founder's personal page, built on his illustrations (own CSS/JS; images from npm run hub:art)
 workspacehq/          # WorkspaceHQ v3, the studio's own product page
 sitemap.xml           # generated with hreflang alternates
 scripts/              # generators, gates and tools (never deployed)
@@ -97,7 +97,7 @@ RELEASE.md            # release checklist, rollback, monitoring, owner-only sett
 | `npm run audit` | Browser audit (78 runs): axe, layout shift, LCP (desktop ≤ 1.5 s), overflow, tap targets, Content-Security-Policy violations, the three WorkspaceHQ embeds and the booted console, in three languages, six themes and five viewport sizes; 404.html two folders down, here and on an emulated GitHub Pages, with JavaScript on and off; the first screen in fallback type (each theme in French and English with the webfonts refused and loaded, 360 to 1600 wide: no text block may change height when a face lands); then a throttled phone measured against LCP ≤ 2.5 s, long tasks ≤ 300 ms and slowest interaction ≤ 200 ms. The site does not meet those phone targets yet, so they are reported as warnings; `AUDIT_PHONE_STRICT=1` makes them fail (see RELEASE.md, phone speed). `AUDIT_BASE=<url>` audits a deployed copy instead |
 | `npm run sweep` | Contrast sweep over the rendered pixels |
 | `npm run vbugs` | Visual bug scan (allowlist with reasons in `scripts/vbugs-allow.json`) |
-| `npm run keys` | Keyboard, reduced-motion and direction gate, in French and Arabic, on desktop and a phone: skip link, focus rings, the phone menu (focus kept inside, Escape), theme menu, CV panel, the folded estimator's scope handed to the message, the contact form (errors, the mail hand-off and success panel, the lead store's POST with its switch on), the hub and scene dialogs, nothing moving under reduced motion (no smooth scrolling; WorkspaceHQ's booted console holds Bit still), `dir="rtl"` with `?lang=ar` (`npm run keys -- hub` for one page) |
+| `npm run keys` | Keyboard, reduced-motion and direction gate, in French and Arabic, on desktop and a phone: skip link, focus rings, the phone menu (focus kept inside, Escape), theme menu, CV panel, the folded estimator's scope handed to the message, the contact form (errors, the mail hand-off and success panel, the lead store's POST with its switch on), the hub and scene dialogs, every hub link and button on top for the pointer, nothing moving under reduced motion (no smooth scrolling; WorkspaceHQ's booted console holds Bit still), `dir="rtl"` with `?lang=ar` (`npm run keys -- hub` for one page) |
 | `npm run links` | Every external link on the pages, in `scripts/scene-data.mjs` and hub/, fetched with a timeout and two retries: a dead owned or client link fails; hosts that refuse bots are only warned, with the reason. Needs the network |
 | `npm run verify` | check, themes, validate, audit, sweep, vbugs and keys in one run (it does not stop at the first failure); push only when it is green |
 | `npm run csp` | Rewrites the Content-Security-Policy meta on the hand-written pages (index, 404, hub, workspacehq and its three embeds) with the sha256 of each inline script (`scripts/build-csp.mjs`; `npm run csp -- --check` only reports) |
@@ -105,6 +105,7 @@ RELEASE.md            # release checklist, rollback, monitoring, owner-only sett
 | `npm run stage` | Copy the deploy set into `_site/`, with `404.html`'s JavaScript-off links from the site root (`/`; `node scripts/stage-site.mjs --pages` uses the path of `BASE`, as `pages.yml` does) |
 | `npm run scene` | Regenerate scene/ only |
 | `npm run og` | Re-render the share images (hub, workspacehq, assets/og.jpg) |
+| `npm run hub:art` | Cut the hub's web images (`hub/art`, `hub/loops`) from the owner's private masters, following `scripts/hub-art-data.mjs`: each master checked by size and sha256 first; fails on a file over 400 kB, an endless or over-5 s loop, or a loop frame touching its edge. Needs the masters (`./campaign/hub-art/masters` or `HUB_ART_DIR`), so it is not part of `npm run build` |
 | `npm run shots` / `work:capture` | Re-capture the client-site screenshots |
 | `npm run logos` | Re-take the four client logos from their live sites' headers (checks each is still the header logo) |
 | `npm run kb` | Export the graphify knowledge graph into the `knowledge-base/` vault (`-- --code` refreshes the code graph first) |

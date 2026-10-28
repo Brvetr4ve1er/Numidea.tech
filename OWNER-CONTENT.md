@@ -15,7 +15,7 @@ Status as of 2026-10-12 (updated after the review round).
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
 | 8 | Arabic native review | Pending | `assets/app.js`, `scripts/scene-data.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
-| 10 | Hub fan art: rights | Open question | `hub/` |
+| 10 | Hub: fan art gone; the new illustrations to review | No fan art since the rebuild (2026-10-28); 4 review points | `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
 | 12 | Campaign kit and git history | Kit with the owner | outside this repo |
 | 13 | WorkspaceHQ: open source or not | Claim removed (no licence, no README) | `Brvetr4ve1er/workspace-HQ`, then `workspacehq/`, `scripts/scene-data.mjs` |
@@ -241,9 +241,22 @@ It reports a domain as switchable only when it serves the same site. Then the
 link changes in one place per client (`check.mjs` keeps the plate, card,
 browser bar and project sheet in step).
 
-## 10. Hub fan art
-`hub/` (the founder's personal page) shows fan art. Confirm the rights to show
-it, or take it down.
+## 10. Hub: the fan art, and the new illustrations
+The fan art and the remade poster series left `hub/` with its rebuild on
+2026-10-28 (IMPROVEMENTS A11, built and waiting for your review before the
+push); the files stay in the git history of earlier commits (see §12), so
+the rights question no longer concerns the site. The rebuilt page uses your
+illustrations of yourself and Kūro. Four points for your review:
+- the eight studio-diary titles (4 a.m., Buried, Art director, The second
+  brain, A world in miniature, Morning light, Wandering, tr4veler.exe) are
+  drafts: approve or rename them;
+- the page says only "Kūro, the black cat": say if more is true;
+- the hexagon "N" on the coat is treated as a costume detail, not the
+  studio's mark: confirm;
+- "A world in miniature" carries glyph-like symbols on its cut-paper
+  panels that resemble Tifinagh letters (a yaz among them); an Amazigh reader
+  may find them garbled: keep them, or have them painted out. (The letters on the blueprints are kept as a
+  drafting convention, and the scribbles on the wall notes as texture.)
 
 ## 11. Supabase lead store
 It is off: the keys in `index.html` are empty. Switching it on needs:
@@ -295,5 +308,6 @@ Confirm it, or say what is true and the copy changes in all three languages.
   until 2026-10-26, step 4 of the method, which first said "on est déjà à
   mi-chemin") after a one-page Aperçu, for projects of up to 16 weeks.
 - **hub/: "VOIDSPLUNKER.std is an agency of one"** while the home page
-  presents a studio of four specialists.
+  presents a studio of four specialists. (You chose on 2026-10-28 to keep the
+  line on the hub; the home page's team wording is the open half, A3.)
 

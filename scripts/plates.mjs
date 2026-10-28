@@ -2,8 +2,8 @@
 /**
  * Plate pipeline — `node scripts/plates.mjs <dir-of-source-jpgs>`.
  *
- * Turns the generated engravings (white line art on black, from Magnific;
- * the sources live in the account's Personal project, not in this repo) into
+ * Turns the generated engravings (white line art on black, from the image
+ * service; the sources live in the account's Personal project, not in this repo) into
  * the luminance masks in assets/illus/*.webp, and writes .tmp/poly.json — the
  * skyline polygons that clip each vista layer's fill (see BRAND.md, "The
  * atlas"). Expects far/mid/near/dunes/light/arch/bench/lantern/coins.jpg.

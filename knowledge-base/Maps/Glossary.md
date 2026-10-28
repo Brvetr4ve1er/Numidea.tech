@@ -156,7 +156,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | Term | Meaning | Source | Graph |
 |---|---|---|---|
 | hub/, VOIDSPLUNKER.std | The founder's personal page; client websites do not belong there | README.md › This repository — the landing page; BRAND.md › hub/ — the artist's page, not the studio's | [[hub (VOIDSPLUNKER.std founder page)]] |
-| BR4VETR4VELER | The hub's gallery, remade as a series of 33 posters that reads as a story | BRAND.md › hub/ — the artist's page, not the studio's | [[BR4VETR4VELER poster series (33 posters)]] |
+| BR4VETR4VELER | The hub's gallery, remade as a series of 33 posters that reads as a story; it left the hub with the rebuild of 2026-10-28 | BRAND.md › hub/ — the artist's page, not the studio's | [[BR4VETR4VELER poster series (33 posters)]] |
 | WorkspaceHQ | WorkspaceHQ v3 and its launch page in `workspacehq/`, which the README calls "the studio's own product page" | README.md › This repository — the landing page; BRAND.md › workspacehq/ — the WorkspaceHQ v3 launch page | [[WorkspaceHQ v3 launch site]] |
 | The cartridge | The hub hero's small WorkspaceHQ link, described in the markup as "the beloved one: WorkspaceHQ, presented as a game cartridge Bit lives on"; the home footer carried one too until 2026-10-26 | hub/index.html › 80; BRAND.md › workspacehq/, The cartridge | [[WorkspaceHQ Cartridge]] |
 | The vault | `knowledge-base/`, an Obsidian vault: Home.md and Maps/ written by people (and Claude), graph/, wiki/ and graphify/ generated from the graphify graph, archive/ kept as history | scripts/build-kb.mjs › header | [[knowledge-base (internal memory snapshot)]] |

@@ -20,7 +20,10 @@
  *    frames are encoded again with the master's loop count, set explicitly.
  *    The output is read back: frame count, frame size, loop count and total
  *    duration must be what was asked, the loop finite and its motion at most
- *    MOTION_MS. The poster frame is written beside it at the same size.
+ *    MOTION_MS. No frame may have a visible pixel in its outer EDGE px (a
+ *    die-cut sticker cut off by the canvas shows a straight edge). The
+ *    poster frame is written beside it at the same size, held to the same
+ *    edge.
  * 4. A table of every output (bytes, width, height) and the srcset, src and
  *    data-full strings for the page. A file over CEILING is not written, and
  *    the build fails.
@@ -33,7 +36,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 
 import { join, resolve, relative } from 'node:path';
 import sharp from 'sharp';
 import { ROOT } from './site.mjs';
-import { ENCODE, CEILING, MOTION_MS, MASTERS, IMAGES, LOOP_ENCODE, LOOPS, KEEP } from './hub-art-data.mjs';
+import { ENCODE, CEILING, MOTION_MS, MASTERS, IMAGES, LOOP_ENCODE, EDGE, LOOPS, KEEP } from './hub-art-data.mjs';
 
 const SRC = resolve(process.env.HUB_ART_DIR || join(ROOT, 'campaign/hub-art/masters'));
 const ART = join(ROOT, 'hub/art'), LOOPDIR = join(ROOT, 'hub/loops');
@@ -125,6 +128,21 @@ for (const loop of LOOPS) {
     frames[i + 3] = a;
     if (a === 0) frames[i] = frames[i + 1] = frames[i + 2] = 0;   // nothing hidden under clear pixels
   }
+  // the outer EDGE px of every frame are clear
+  const edgeHits = (buf, n) => {
+    const hit = [];
+    for (let f = 0; f < n; f++) {
+      let bad = 0;
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        if (y >= EDGE && y < h - EDGE && x === EDGE) x = w - EDGE;   // skip the inside of the row
+        if (buf[f * fb + (y * w + x) * 4 + 3] > 0) bad++;
+      }
+      if (bad) hit.push(`${f}:${bad}px`);
+    }
+    return hit;
+  };
+  const hits = edgeHits(frames, keep.length);
+  if (hits.length) fail.push(`${loop.name}: ${hits.length} frames have visible pixels in their outer ${EDGE} px (${hits.slice(0, 4).join(', ')}${hits.length > 4 ? ', …' : ''}): the sticker is cut by the canvas edge`);
   const buf = await sharp(frames, { raw: { width: w, height: h * keep.length, channels: 4, pageHeight: h } })
     .webp({ ...LOOP_ENCODE, loop: m.loop, delay }).toBuffer();
   const o = await sharp(buf, { animated: true }).metadata();
@@ -134,6 +152,9 @@ for (const loop of LOOPS) {
   if (oTotal !== total) fail.push(`${loop.name}: frame delays sum to ${oTotal} ms after encoding, the master's to ${total} ms`);
   if (!(o.loop >= 1) || o.loop * oTotal > MOTION_MS) fail.push(`${loop.name}: moves for ${o.loop} × ${oTotal} ms, over ${MOTION_MS} ms or endless`);
   put(LOOPDIR, `${loop.name}.webp`, buf, w, h, `${o.pages} frames, ${o.loop} × ${oTotal} ms = ${o.loop * oTotal} ms (master ${pages} frames)`);
+  const stillRaw = await sharp(join(SRC, loop.still)).resize({ width: w, height: h, fit: 'fill' }).ensureAlpha().raw().toBuffer();
+  const stillHits = edgeHits(stillRaw.map((v, i) => (i % 4 === 3 && v <= 8 ? 0 : v)), 1);   // resampling may leave a trace of 1-8
+  if (stillHits.length) fail.push(`${loop.name}: the still has visible pixels in its outer ${EDGE} px (${stillHits[0]})`);
   const still = await sharp(join(SRC, loop.still)).resize({ width: w, height: h, fit: 'fill' }).webp(ENCODE).toBuffer();
   put(LOOPDIR, `${loop.name}-still.webp`, still, w, h, 'poster frame');
   html.push(`${loop.name}: src="loops/${loop.name}-still.webp" data-anim="loops/${loop.name}.webp" width="${w}" height="${h}"`);

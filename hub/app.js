@@ -8,12 +8,15 @@
    6 · year
    7 · the studio diary's viewer
    8 · pictures fade in once decoded
+   9 · the motion preference changing mid-visit; printing
    With prefers-reduced-motion: reduce, 1, 2, 4 and 8 never run and 3
    shows everything at once: nothing moves and nothing is written after
-   load (keys.mjs watches for it).
+   load (keys.mjs watches for it). Turned on mid-visit, it stops 1, 3 and 4
+   at once (§9).
    ============================================================ */
 (function () {
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motionPref = matchMedia('(prefers-reduced-motion: reduce)');
+  var reduce = motionPref.matches;
   var finePointer = matchMedia('(hover:hover) and (pointer:fine)').matches;
   var root = document.documentElement;
 
@@ -55,6 +58,7 @@
     kick();
   }
   function frame() {
+    if (reduce) { running = false; return; }
     cx += (tx - cx) * 0.045;          // slow follow: the calm comes from here
     cy += (ty - cy) * 0.045;
     var settled = Math.abs(tx - cx) < 0.002 && Math.abs(ty - cy) < 0.002;
@@ -168,7 +172,7 @@
   if (loops.length && !reduce && 'IntersectionObserver' in window) {
     var lio = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
+        if (!en.isIntersecting || reduce) return;
         lio.unobserve(en.target);
         en.target.src = en.target.getAttribute('data-anim');
       });
@@ -280,4 +284,27 @@
       else { im.addEventListener('load', done); im.addEventListener('error', done); }
     });
   }
+
+  /* ---------------- 9 · the preference changes; printing ----------------
+     Reduced motion turned on mid-visit: the parallax stops and drops its
+     transforms, everything still hidden by the reveal shows, and no loop
+     is swapped in any more (the <source> already shows the stills). Turned
+     off again, the parallax picks up where the page is. Printing: the lazy
+     pictures load first, so a page printed straight after it opens has its
+     pictures (a write only when the visitor prints). */
+  var onPref = function (e) {
+    reduce = e.matches;
+    if (reduce) {
+      running = false;
+      movers.forEach(function (m) { m.el.style.transform = ''; m.last = ''; });
+      if (io) io.disconnect();
+      if (lio) lio.disconnect();
+      revealAll();
+    } else if (movers.length) cache();
+  };
+  if (motionPref.addEventListener) motionPref.addEventListener('change', onPref);
+  else if (motionPref.addListener) motionPref.addListener(onPref);
+  addEventListener('beforeprint', function () {
+    [].forEach.call(document.querySelectorAll('img[loading="lazy"]'), function (im) { im.loading = 'eager'; });
+  });
 })();

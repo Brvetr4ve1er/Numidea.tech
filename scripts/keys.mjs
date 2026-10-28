@@ -62,6 +62,10 @@
  *                 reading direction (forward is ArrowLeft when it is RTL).
  *                 scene/'s viewer shows one capture and has no arrow keys
  *                 (the 2026-07 audit's A-04 was about arrows it no longer has)
+ *  hits           (hub/) every visible link and button, scrolled into view,
+ *                 is the topmost element at its own centre: no picture layer
+ *                 or die-cut laid over it takes its clicks (Tab reaches a
+ *                 covered control all the same, so the paths above miss it)
  *  embeds         (workspacehq/) Tab from the stop before the trailer or the
  *                 walkthrough, with the frame below the fold, lands in it and
  *                 its focused control is on screen; a click (a tap on the
@@ -128,13 +132,14 @@ import { loadDicts } from './lib/i18n.mjs';
 import { ROOT, PAGES } from './site.mjs';
 
 /* langs: the languages a page has (`only`: why it has just one); tests: its
-   own keyboard paths; noSkip: why it has no skip link. hub/'s one path is
-   the studio diary's viewer (dialog() below, on the hooks the rebuilt page
-   kept: #lb, #collection .tile--img with data-title, #lbTitle). */
+   own keyboard paths; noSkip: why it has no skip link. hub/'s path is the
+   studio diary's viewer (dialog() below, on the hooks the rebuilt page
+   kept: #lb, #collection .tile--img with data-title, #lbTitle), and its
+   pointer check (hits() below). */
 const SPEC = {
   'index.html': { langs: ['fr', 'ar'], tests: ['theme', 'menu', 'cv', 'estimate', 'form'] },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
-  'hub/index.html': { langs: ['en'], tests: ['lightbox'], only: "English only (the founder's own page)" },
+  'hub/index.html': { langs: ['en'], tests: ['lightbox', 'hits'], only: "English only (the founder's own page)" },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
   '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the logo and one link' },
   'legal/index.html': { langs: ['fr', 'ar'], tests: [] },
@@ -597,6 +602,29 @@ async function dialog(p, kind) {
   return { bad, note: kind + arrows };
 }
 
+/* hub/: every link and button outside the (closed) viewer, scrolled to the
+   middle of the screen, is the element at its own centre. The hero's stage
+   (three full-frame pictures) once sat over the WorkspaceHQ cartridge from
+   1024px: no click or hover reached it, and only a pointer finds that. */
+async function hits(p) {
+  await p.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+  const r = await p.evaluate(async () => {
+    const out = [];
+    const els = [...document.querySelectorAll('a[href],button')].filter((e) => e.offsetParent !== null && !e.closest('dialog'));
+    for (const e of els) {
+      e.scrollIntoView({ block: 'center', inline: 'nearest' });
+      await new Promise((res) => requestAnimationFrame(() => requestAnimationFrame(res)));
+      const b = e.getBoundingClientRect();
+      if (!b.width || !b.height || b.bottom < 0 || b.top > innerHeight) continue;
+      const t = document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2);
+      if (!t || (t !== e && !e.contains(t))) out.push(__d(e) + ' lies under ' + __d(t));
+    }
+    scrollTo(0, 0);
+    return { n: els.length, out };
+  });
+  return { bad: r.out.map((m) => 'covered for the pointer: ' + m), note: `hits ${r.n}` };
+}
+
 /* workspacehq/'s trailer and walkthrough: Tab into one that is below the fold
    brings it on screen (the page does that: the player runtime does not), and
    a click or tap into one that is partly on screen leaves the page where it
@@ -720,6 +748,7 @@ for (const f of pages) {
       else if (t === 'estimate') out.push(await estimatePrefill(p, lang));
       else if (t === 'form') out.push(await contactForm(p, lang));
       else if (t === 'embeds') out.push(await embeds(p, w, h));
+      else if (t === 'hits') out.push(await hits(p));
       else out.push(await dialog(p, t));
     }
     out.push({ bad: await direction(p, spec, lang, 'after the tests'), note: 'dir ' + (lang === 'ar' ? 'rtl' : 'ltr') });

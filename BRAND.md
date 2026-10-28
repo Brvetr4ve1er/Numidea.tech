@@ -605,7 +605,9 @@ reason. Grep every stylesheet *and* every inline block.
 ## Syne and Space Mono are self-hosted too
 
 `assets/fonts-hub.css` holds them; `hub/` loads it render-blocking, like any
-first-party sheet. **No page on this site now makes a third-party request.**
+first-party sheet. (Since the rebuild of 2026-10-28 the hub sets Syne, Geist
+and Geist Mono from that sheet; Space Mono's four files stay until F16 removes
+them.) **No page on this site now makes a third-party request.**
 Trimmed to latin and latin-ext (hub sets no Greek or Vietnamese), all ten
 faces `font-display:optional`. Syne's three weights are one variable file per
 subset, so the six files are 112KB.
@@ -816,7 +818,8 @@ placements were built and torn out again before this landed:
 - hub footer column headings (18px) — unreadable, and there was no room to
   grow. The four hub marks became `.lgroup` headers in the archive grid at
   60px, which also gave that flat 18-tile list the grouping its source
-  comments had always described.
+  comments had always described. (The marks and that grid left with the
+  hub's rebuild on 2026-10-28.)
 - `#how` step tiles beside the copy (86px) — legible but cramped at the 3-up
   breakpoint. The tile then sat *above* the text there via
   `grid-template-areas`, at 124px. (The method section itself left the page
@@ -1086,56 +1089,102 @@ his design work, his social presence. **Client websites do not belong here**
 sites was added once and removed at the owner's request; `npm run check` now
 fails if any project URL appears in hub/.
 
-- **Hero frame:** the four Traveler portraits (Yasser's own self-portrait
-  series) fill the pose slots, ordered calm to scream — violet, cobalt,
-  vermilion, acid — so the scroll-driven pose index escalates as you read.
-- **The Series — BR4VETR4VELER, a story in 33 posters.** The DeviantArt
-  gallery was remade with Magnific (Nano Banana Pro; Seedream 5 Pro where
-  Nano's safety filter falsely blocked a piece) into one poster series, each
-  piece re-drawn from its original with one of Yasser's portraits as the style
-  reference: hand-inked manga line, riso halftone, cream paper, a broken halo
-  ring. It reads as a story:
-  - Prologue, *The Traveler* — the four portraits.
-  - I *The Sky* (cobalt/yellow), II *The Noise* (vermilion/orange),
-    III *The Ink* (violet/acid) — one palette per chapter.
-  - Epilogue, *The Power of Imagination* — his Neville Goddard poster.
-  Titles are HTML labels, never baked into the image: AI lettering garbles. Every chapter poster links to its original.
-  DAMN (p19) and DEJA VU (p29, formerly "Phone background") were redone: the
-  first pass put DAMN on a dark ground and turned the DEJA VU collage into two
-  clean skulls. The DAMN redo keeps the face in shadow on purpose — the other
-  candidate came out as a recognisable likeness of a real person.
-  Files: `hub/art/pNN-{s,l}.webp` (NN = the DeviantArt item), `tv0-3-*`
-  (portraits), `imagination-*`; Magnific project "br4vetr4veler posters".
-- **Bento layout.** Every gallery grid runs on square units (row height =
-  column width, from `100cqw`), so a tile spanning C×R has shape C:R and each
-  piece gets its own shape: posters 2x3/4x6, portraits 2x2/4x4, the Goddard
-  poster 4x7. Measured crop is ≤0.2% at every width 320–1600. Tile ORDER is
-  part of the layout: with dense auto-flow it is what closes each chapter
-  flush at 6 columns and at 4 (per chapter: big + head + 7 small; head + big +
-  7 small; head + quote + big + 11 small; tall head + big + 3 small;
-  poster + text). Change a chapter's count and the hole check
-  (`.tmp/holes.mjs`-style: cells covered vs cols × rows) must be rerun.
-  Text tiles are their own containers and size type from their own width —
-  sized from the chapter, "TRAVELER" broke mid-word in a 2-column tile.
-  Labels sit on the image, hidden until hover/focus on a pointer and always
-  shown on touch. Images fade in once decoded; the viewer eases open and
-  closed (`@starting-style`).
-- **Clutter removed:** grain, scanlines, the custom cursor, the giant VOID
-  word, the dot grid, the floating geometry, the aurora, corner marks, tape,
-  the cycling handle and philosophy line, the code-comment eyebrows, the
-  poster card chrome and the chapter nav.
-- **The viewer** is a native `<dialog>` (focus trap and Esc for free). It only
-  intercepts a plain click, so cmd/ctrl-click still opens the original, and
-  with scripts off every poster is just that link. Its placeholder `src` is a
-  real 1×1 GIF: `data:,` counts as a broken image in the audit.
-- **Design:** the 12 Behance projects on the profile's first page, covers
-  self-hosted, view counts as read from the profile.
-- **Social highlights:** Behance and DeviantArt figures as the public profiles
-  showed them in October 2026 (hand-updated, never fetched at runtime).
-  Instagram shows no public count without signing in, so its card carries no
-  number rather than a guess.
-- The footer's link columns were removed: the archive grid is the one list.
-  Handles with no verified URL are a single "coming soon" line.
+Since 2026-10-28 the page is built on one set of the owner's illustrations of
+himself (round glasses, dreads in a bun, a bone trench coat) and his black cat
+Kūro, in an ink-on-paper look with one night scene. The art does the talking;
+the page is the paper it is printed on. Sections: hero, What I make (Designer, Developer,
+Artist), the design work (the 12 Behance projects on the profile's first page,
+covers self-hosted, titles only), the studio diary (eight prints in the
+viewer), Elsewhere (the verified handles), the footer. The copy is the
+owner's published wording; the diary titles are drafts for him to approve.
+
+- **The owner's answers (2026-10-28).** The footer keeps "VOIDSPLUNKER.std is
+  an agency of one … you work directly with me" (the main site's team
+  wording, A3, is a separate question). The Etsy link is gone. There is no
+  line on the page about how the illustrations were made, and none of the
+  tools behind them are named anywhere: page, comments, commits or docs.
+- **No lettering in the art.** Every legible letter group the images carried
+  (coat badge text, a cup sleeve, sketchbook words, wall notes, a laptop
+  title bar, a clock maker's mark) is painted out of the masters; words on
+  the page are HTML, never pixels. What stays, on purpose: the hexagon "N" on
+  the coat (a costume detail, not the studio's mark: the favicon N is the
+  mark), the scribbled lines on the wall notes and the code lines on the
+  laptop (texture, no words), and the dimension letters on the blueprints
+  (a drafting convention). The glyph-like symbols on the cut-paper panels of
+  "A world in miniature" wait for the owner's eye.
+- **Two grounds, sampled from the art.** Paper `#fcecdc` (the hero's empty
+  paper) and night `#0f1420` (the empty left of the diary band); the tokens
+  and their contrast figures are at the top of `hub/style.css` (paper: text
+  15.4:1, text-2 7.7:1, accent 8.6:1; night: 14.6:1, 8.0:1, 8.2:1). Paper is
+  the default; `void-theme` = `dark` is the only other choice. A ground
+  travels with its art: in the paper theme the diary is an inset night print;
+  in the night theme the hero and the design band are inset paper prints, and
+  the What I make figures become die-cuts (a bone edge and a soft shadow).
+  Hero text always uses the paper inks.
+- **The hero is three registered layers** of one 2752×1674 frame: the paper
+  with its line work, Kūro, Yasser. The frame is the drawing with paper added
+  above and below (3% and 6%), so the 3% bleed of each layer and its
+  parallax only ever eat paper, never a curl or a sole. The contact shadows
+  (under the shoes, the paws and the tail) live in the figure that casts
+  them. The paper under the figures is filled with its own local tone, grown
+  6 px past the outline, so the line work runs on to the figure. Ink specks
+  where the name sits are painted out; the large splatter at the far left
+  stays. The paper's grain (about 1.4 levels) is flattened, because the web
+  encoder turned it into blocks.
+  - Motion: one scroll lag (`data-parallax` −.03) for all three layers, so
+    the stage lags as one print; the pointer separates them by 2 px at most
+    (`data-depth` 3, 4, 5; fine pointers only). The entrance lifts the three
+    together, 12 px, once. Transforms only: Yasser is the first screen's
+    largest picture and is never faded.
+  - The stage takes no pointer events: the cartridge and the words over it
+    stay clickable (`npm run keys` checks every link and button on hub/ is
+    on top at its own centre).
+  - From 1024px the stage is the window's height under the bar at most, so
+    the figures end inside the first screen on a 16:9 laptop; then it is
+    pinned right and its left edge melts into the page over the gap. Below
+    1024px the tall crop (`BOX.heroTall`) takes half the width (tablet) or
+    follows the words (phone).
+- **Bands** open the design work and the diary: the heading on the art's
+  empty left from 1024px, in a column that stops 56px short of the band's
+  middle whatever the screen; below that the heading first, then the art's
+  right part. The design band melts into the paper top and bottom; the diary
+  band sinks into the night below it.
+- **The studio diary** rows: one full-width print, three side by side, one
+  full, two, one full, in story order. Every print in a row has the row's
+  ratio, so tops and bottoms align ("Morning light", wider, is cropped at its
+  sides in its row). Two prints came with a cream mat drawn round them; the
+  export cuts inside it, so every print is the picture alone. The viewer is
+  a native `<dialog>`: a plain click opens it, cmd/ctrl-click opens the file;
+  from 1024px its controls sit on the backdrop, off the picture.
+- **Kūro die-cuts** (two marginalia with the loops' bone edge) sit away from
+  the drawn Kūros and from every print edge: one beside the What I make
+  heading's first line (under the Developer links from 1024px), one under
+  the design covers. Decoration: `alt=""`, no pointer events.
+- **Loops** (Yasser waving, Yasser lost in a maze map with Kūro walking by,
+  Kūro asleep) are animated WebP with a bone die-cut edge, finite (2 plays of
+  2.45 s, 1 of 4.05 s, 1 of 3.05 s: at most 5 s of motion each, WCAG 2.2.2),
+  and start and end on their poster frame. The still is the `src`; `app.js`
+  swaps the animation in once half of it is on screen, never under reduced
+  motion, where a `<source>` keeps the still. No frame has a pixel in its
+  outer 2 px (a sticker cut by its canvas shows a straight edge; Kūro fades
+  out where he walks off the drawn canvas). The sleeping loop rests on a
+  frame with both Zs whole.
+- **Pipeline.** The masters are private (`campaign/hub-art`, git-ignored,
+  never deployed). `npm run hub:art` (`scripts/build-hub-art.mjs`, recipe in
+  `scripts/hub-art-data.mjs`) checks each master's size and sha256, cuts the
+  crops, writes `hub/art/*.webp` and `hub/loops/*.webp` with each file named
+  by its real width, and fails on a file over 400 kB, an endless or over-5 s
+  loop, or a loop frame touching its edge. It is not part of `npm run
+  build`: CI has no masters, and the committed images are its output. Check
+  block 17b holds the page to the files (sizes, ratios, `srcset`, the
+  viewer's `data-w`/`data-h`, nothing unused, finite animations).
+- **Removed with the rebuild, and why:** the 33-poster series and its
+  epilogue, the portrait poses and `hub/poses/` (remade art captioned with
+  older dates, A10; fan art whose rights were open, OWNER-CONTENT §10); the
+  view counters and the social highlights (hand-updated, low); the studio
+  framing in the identity block; the Etsy link; the "coming soon" line; the
+  footer's repeat of the links; the group mask icons. Space Mono's files
+  wait for F16.
 
 ## Founder section — the CV is the source of truth
 
@@ -1256,7 +1305,7 @@ Icons go *beside* `data-i18n` elements, never inside: `applyLang` sets
 
 ### Stock vs generated
 
-Magnific stock icons cost **300 credits each** to download, and the
+The image service's stock icons cost **300 credits each** to download, and the
 "animated icons" in stock are 600-credit video clips on coloured squares that
 cannot follow the palette. Plates were generated instead (60 credits each);
 icons are hand-drawn SVG, which costs nothing and re-inks per theme.
