@@ -11,8 +11,14 @@
  *
  * Covers index.html in all six themes x FR/AR, plus hub/, scene/, 404 and workspacehq/,
  * and a second pass at other sizes and states: phones in the dark themes, tablets,
- * short landscape, scene/ in Arabic, 404 in other themes, hub/ in its light palette.
+ * short landscape, scene/ in Arabic, 404 in other themes, and hub/ in its night
+ * palette (void-theme 'dark'; paper is its default) and on a 390px phone in both.
  * Exits non-zero on any failure. Optional arg: a single theme name.
+ *
+ * Each page is scrolled through once before it is measured, so every lazy
+ * picture is there to be measured against (the hub's headings sit on its art)
+ * and the hub's loops have been on screen: with reduced motion each must still
+ * show its still, decoded (lib/loop-state.mjs), or the run fails.
  *
  * Visible text must meet 1.4.3 whatever its accessibility-tree state: text
  * inside an aria-hidden picture (the charts, the Aperçu timeline, the
@@ -31,6 +37,7 @@ import sharp from 'sharp';
 import {existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {serve,launch} from './lib/serve.mjs';
+import {loopState} from './lib/loop-state.mjs';
 import {ROOT,THEMES} from './site.mjs';
 const srv=await serve();
 const B=srv.base;
@@ -40,7 +47,7 @@ const ONLY=process.argv[2];        // optional: restrict to one theme
 const lum=([r,g,b])=>{const f=v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(r)+.7152*f(g)+.0722*f(b)};
 const cr=(a,b)=>{const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
 const br=await launch();
-const report=[];
+const report=[],loopBad=[];
 const RUNS=[];
 for(const theme of THEMES) for(const [pname,path] of PAGES){
   // hub/scene have their own palettes; only index (and 404) honour the 6 themes
@@ -59,7 +66,10 @@ RUNS.push({theme:'arcanum',pname:'scene',path:'/scene/index.html',lang:'ar',w:12
 RUNS.push({theme:'arcanum',pname:'scene@390',path:'/scene/index.html',lang:'ar',w:390,h:844});
 RUNS.push({theme:'daylight',pname:'404@390',path:'/404.html',lang:'ar',w:390,h:844});
 RUNS.push({theme:'noir',pname:'404',path:'/404.html',lang:'ar',w:1280,h:900});
-RUNS.push({theme:'arcanum',pname:'hub-light',path:'/hub/index.html',lang:'fr',w:1280,h:900,init:{'void-theme':'light'}});
+// hub/: paper is its default (the desktop pass above); night is void-theme 'dark'
+RUNS.push({theme:'arcanum',pname:'hub-dark',path:'/hub/index.html',lang:'fr',w:1280,h:900,init:{'void-theme':'dark'}});
+RUNS.push({theme:'arcanum',pname:'hub@390',path:'/hub/index.html',lang:'fr',w:390,h:844});
+RUNS.push({theme:'arcanum',pname:'hub-dark@390',path:'/hub/index.html',lang:'fr',w:390,h:844,init:{'void-theme':'dark'}});
 for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)continue;
   {
    // reduced motion: every picture is drawn at once, never held at opacity 0
@@ -74,6 +84,12 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
    // audit.mjs still checks contrast on the real coarse-pointer layout.
    if(w<600)await (await p.context().newCDPSession(p)).send('Emulation.setTouchEmulationEnabled',{enabled:false});
    await p.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}'});
+   // the whole page on screen once, half a viewport at a time, then back to
+   // the top: lazy pictures load (text over art is measured against the art)
+   // and the hub's loops are seen; then every picture is waited for (3s at most)
+   await p.evaluate(async()=>{const H=document.documentElement.scrollHeight;for(let y=0;y<H;y+=innerHeight/2){scrollTo(0,y);await new Promise(r=>setTimeout(r,45))}scrollTo(0,0);
+     await Promise.all([...document.images].filter(i=>!i.complete).map(i=>new Promise(r=>{i.addEventListener('load',r);i.addEventListener('error',r);setTimeout(r,3000)})))});
+   for(const l of (await p.evaluate(loopState)).filter(l=>!l.ok))loopBad.push(`${theme}/${pname}/${lang}: ${l.name} shows ${l.shows}, not its still ${l.want}`);
    await p.evaluate(()=>{document.querySelectorAll('.reveal,[data-reveal]').forEach(e=>e.classList.add('in','seen'));
      document.querySelectorAll('details').forEach(d=>d.open=true);
      // audit the CV panel in its open state — the state people actually read
@@ -168,6 +184,7 @@ for(const k of Object.keys(by).sort()){
     console.log(`   ${String(r.med).padStart(5)}:1 (need ${r.need})  ${r.where.padEnd(12)} ${r.sel.padEnd(30)} "${r.text}"`);
 }
 const total=report.filter(r=>!r.note).length;
-console.log('\nTOTAL real failures:',total);
+if(loopBad.length){console.log('\nloops not on their stills with reduced motion:');for(const l of loopBad)console.log('   '+l)}
+console.log('\nTOTAL real failures:',total+loopBad.length);
 srv.close();
-process.exit(total?1:0);
+process.exit(total+loopBad.length?1:0);

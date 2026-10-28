@@ -1,6 +1,14 @@
 [
   {
-    "prefix": "HCLIP-DECOR hero section.hero",
+    "prefix": "index HCLIP-DECOR hero section.hero",
     "reason": "the hero clips its own decorative .m1/.m2 glow fields (overflow:hidden on purpose); vbugs reports HCLIP-DECOR only when nothing cut off carries text, so a clipped word in the hero still fails"
+  },
+  {
+    "prefix": "index HCLIP-DECOR services article#apercu",
+    "reason": "2026-10-28: the Aperçu card clips its own decorative .glow (aria-hidden, no text) with overflow:hidden, as the hero does; HCLIP-DECOR means nothing cut off carries text, so a clipped word there still fails. First seen when the scan began scrolling for real"
+  },
+  {
+    "prefix": "index ESCAPES pricing span.t-pop ",
+    "reason": "2026-10-28: the recommended tier's badge (Recommandé / Recommended / الموصى به) is a pill set on the card's top edge on purpose (.t-pop: position:absolute; top:0; translateY(-50%)), so half of it is outside the card by design. First seen when the scan began scrolling for real (the tiers reveal on scroll)"
   }
 ]

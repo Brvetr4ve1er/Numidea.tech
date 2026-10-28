@@ -52,6 +52,13 @@
  *                        send the same headers, with frame-ancestors and HSTS
  *  17. asset budgets  — each published folder under its byte ceiling, og.jpg ≤ 300 kB,
  *                        the whole published set under its total
+ *  17b. hub art and motion — every srcset, data-full, data-anim and hub/style.css url()
+ *                        file exists; each <img> has alt and width/height = its widest
+ *                        file, NNNw = the file's width, one ratio per image; data-w/h =
+ *                        the data-full file; nothing in hub/art or hub/loops unused; no
+ *                        infinite, no <video loop>; an animated WebP plays a finite number
+ *                        of times, ≤ 5 s in all, and only as a data-anim with a
+ *                        reduced-motion still
  *  18. SEO and structured data — title, 50-160 character descriptions per language,
  *                        og/twitter tags, og:image size, one h1, 404 and embeds noindex,
  *                        robots.txt against the sitemap, hreflang = sitemap, the
@@ -883,6 +890,170 @@ runtimeDeps.length
   }
   budgetErr.length ? bad('asset budgets: ' + budgetErr.join('; '))
     : ok(`asset budgets: largest file per folder ${largest.join(', ')}; ${seen.size} font files, no two alike; ${cards.length} share cards ≤ ${fmt(OG)}; published ${fmt(total)} of ${fmt(TOTAL)}`);
+}
+
+/* 17b — hub art and motion */
+// hub/ is built on the owner's illustrations (scripts/build-hub-art.mjs cuts
+// them into hub/art and hub/loops), and block 3 reads only src= and href=.
+// So here, for hub/index.html and hub/style.css: every file named by a
+// srcset, a data-full, a data-anim or a CSS url() exists. Every <img> has an
+// alt attribute (empty on decoration) and width and height, except the
+// viewer's #lbImg, which app.js sizes from the piece's data-w/data-h before
+// it sets the source. An image's width × height is the pixel size of its
+// widest candidate (its src and srcset files), so the box the browser
+// reserves is the picture's own; a <source> with width/height is held to
+// its own widest file, one without them takes its <img>'s box. Each NNNw
+// descriptor is the width of the file it names, and every candidate of one
+// <img> or <source> has the same aspect ratio, to the pixel (heights are
+// rounded at export). data-w/data-h are the data-full file's size, and that
+// file has the thumbnail's ratio. Nothing in hub/art or hub/loops goes
+// unreferenced (the deploy would publish it for nothing).
+// Motion: hub/style.css has no `infinite` (comments aside) and the page no
+// <video loop>. An animated WebP (an ANIM chunk) plays a finite number of
+// times, at most MOTION_MS in all (scripts/hub-art-data.mjs: auto-starting
+// motion over 5 s needs a pause control, WCAG 2.2.2, and the loops have
+// none): loop count ≥ 1 (0 is forever) and loop count × the sum of its
+// frame durations ≤ MOTION_MS, a frame of 10 ms or less counting as 100 ms,
+// as browsers play it. It is named only by a data-anim, never as a src,
+// srcset or link, so it starts only when app.js swaps it in: on view, and
+// never with reduced motion. That <img>'s <picture> holds a
+// (prefers-reduced-motion: reduce) <source> naming a still, the <img>'s src
+// is a still, and the animation is the size of the <img>'s box.
+{
+  const { MOTION_MS } = await import('./hub-art-data.mjs');
+  const hubErr = [];
+  const page = 'hub/index.html', sheet = 'hub/style.css', DIRS = ['hub/art', 'hub/loops'];
+  const src = read(page).replace(/<!--[\s\S]*?-->/g, '');
+  const cssSrc = read(sheet).replace(/\/\*[\s\S]*?\*\//g, '');
+  const at = (tag, k) => (new RegExp(`\\s${k}="([^"]*)"`).exec(tag) || [])[1];
+  const local = (u) => u && !/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(u);
+  const path = (u) => normalize(join('hub', u.split(/[?#]/)[0])).replace(/\\/g, '/');
+  // how each file is named (src, srcset, data-full, data-anim, href, url): an
+  // animated file may only be a data-anim
+  const named = new Map();
+  const name = (u, how) => { if (!local(u)) return null; const f = path(u); (named.get(f) || named.set(f, new Set()).get(f)).add(how); return f; };
+  const missingFiles = new Set();
+  const exists = (f) => { if (existsSync(join(ROOT, f))) return true; missingFiles.add(f); return false; };
+  // pixel size: WebP and SVG (fileSize, check 5b), PNG from its IHDR
+  const px = (f) => {
+    const b = readFileSync(join(ROOT, f));
+    return b.toString('latin1', 1, 4) === 'PNG' ? [b.readUInt32BE(16), b.readUInt32BE(20)] : fileSize(f).map(Math.round);
+  };
+  // an animated WebP's loop count and play time, from its RIFF chunks (ANIM:
+  // background colour, then the loop count, 16 bits; each ANMF: x, y, width-1,
+  // height-1, then the frame's duration, 24 bits); null when it is not animated
+  const anim = (f) => {
+    const b = readFileSync(join(ROOT, f));
+    if (b.toString('latin1', 0, 4) !== 'RIFF' || b.toString('latin1', 8, 12) !== 'WEBP') return null;
+    let loop = null, frames = 0, ms = 0;
+    for (let i = 12; i + 8 <= b.length;) {
+      const id = b.toString('latin1', i, i + 4), n = b.readUInt32LE(i + 4);
+      if (id === 'ANIM') loop = b.readUInt16LE(i + 8 + 4);
+      if (id === 'ANMF') { const d = b.readUIntLE(i + 8 + 12, 3); frames++; ms += d <= 10 ? 100 : d; }
+      i += 8 + n + (n & 1);
+    }
+    return loop === null ? null : { loop, frames, ms };
+  };
+  const ratioOk = ([w, h], [W, H]) => Math.abs(h - (w * H) / W) <= 1;
+  const srcset = (s) => (s || '').split(',').map((c) => c.trim()).filter(Boolean).map((c) => { const [u, d] = c.split(/\s+/); return { u, d }; });
+  // one <img> or <source>: its candidates exist, NNNw = file width, one ratio;
+  // returns the widest candidate's size (or null when a file is missing)
+  const candidates = (label, tag, extra = []) => {
+    const list = [...srcset(at(tag, 'srcset')).map((c) => ({ ...c, how: 'srcset' })), ...extra];
+    const sized = [];
+    for (const c of list) {
+      const f = name(c.u, c.how);
+      if (!f || !exists(f)) continue;
+      const wh = px(f);
+      if (!wh.every(Number.isFinite)) { hubErr.push(`${label}: cannot read the size of ${f}`); continue; }
+      if (c.d && /^\d+w$/.test(c.d) && parseInt(c.d) !== wh[0]) hubErr.push(`${label}: ${c.u} ${c.d}, but the file is ${wh[0]} px wide`);
+      sized.push([c.u, wh]);
+    }
+    if (!sized.length || sized.length < list.filter((c) => local(c.u)).length) return null;
+    const widest = sized.reduce((a, c) => (c[1][0] > a[1][0] ? c : a))[1];
+    for (const [u, wh] of sized) if (!ratioOk(wh, widest)) hubErr.push(`${label}: ${u} is ${wh.join('×')}, not the ${widest.join('×')} ratio of the others`);
+    return widest;
+  };
+  let nImg = 0, nSource = 0;
+  const animRefs = [];
+  // <img> and <source>, each with the <picture> it is in (if any)
+  const pictures = [...src.matchAll(/<picture\b[\s\S]*?<\/picture>/g)].map((m) => [m.index, m.index + m[0].length, m[0]]);
+  const pictureOf = (i) => (pictures.find(([a, z]) => i > a && i < z) || [])[2];
+  for (const m of src.matchAll(/<img\b[^>]*>/g)) {
+    const tag = m[0], id = at(tag, 'id'), label = `<img ${id ? '#' + id : at(tag, 'src')}>`;
+    nImg++;
+    if (at(tag, 'alt') === undefined) hubErr.push(`${label} has no alt (alt="" on decoration)`);
+    const w = Number(at(tag, 'width')), h = Number(at(tag, 'height'));
+    if (id !== 'lbImg' && !(w > 0 && h > 0)) hubErr.push(`${label} has no width and height (its box is not reserved)`);
+    const widest = candidates(label, tag, local(at(tag, 'src')) ? [{ u: at(tag, 'src'), how: 'src' }] : []);
+    if (widest && w && h && (widest[0] !== w || widest[1] !== h)) hubErr.push(`${label}: width/height ${w}×${h}, but its widest file is ${widest.join('×')}`);
+    const pic = pictureOf(m.index);
+    for (const s of pic ? pic.match(/<source\b[^>]*>/g) || [] : []) {
+      nSource++;
+      const sw = Number(at(s, 'width')), sh = Number(at(s, 'height')), sl = `${label} <source media="${at(s, 'media') || ''}">`;
+      const top = candidates(sl, s);
+      if (!top) continue;
+      if (sw || sh) { if (top[0] !== sw || top[1] !== sh) hubErr.push(`${sl}: width/height ${sw}×${sh}, but its widest file is ${top.join('×')}`); }
+      else if (w && h && !ratioOk([w, h], top)) hubErr.push(`${sl}: no width/height, and its ${top.join('×')} files do not have the <img>'s ${w}×${h} ratio`);
+    }
+    const a = at(tag, 'data-anim');
+    if (a !== undefined) {
+      const f = name(a, 'data-anim');
+      if (!f || !exists(f)) continue;
+      animRefs.push(f);
+      const still = (pic || '').match(/<source\b[^>]*media="\(prefers-reduced-motion: ?reduce\)"[^>]*>/);
+      const stillFile = still && local(srcset(at(still[0], 'srcset'))[0]?.u) && path(srcset(at(still[0], 'srcset'))[0].u);
+      if (!stillFile) hubErr.push(`${label}: data-anim without a (prefers-reduced-motion: reduce) <source> in its <picture> naming the still`);
+      else if (existsSync(join(ROOT, stillFile)) && anim(stillFile)) hubErr.push(`${label}: its reduced-motion <source> ${stillFile} is animated`);
+      if (local(at(tag, 'src')) && existsSync(join(ROOT, path(at(tag, 'src')))) && anim(path(at(tag, 'src')))) hubErr.push(`${label}: its src is animated (the still goes there; the animation in data-anim)`);
+      const wh = px(f);
+      if (w && h && (wh[0] !== w || wh[1] !== h)) hubErr.push(`${label}: data-anim ${f} is ${wh.join('×')}, not the <img>'s ${w}×${h}`);
+      if (!anim(f)) hubErr.push(`${label}: data-anim ${f} is not an animation`);
+    }
+  }
+  // data-full (the viewer's large file) and its data-w/data-h; the thumbnail inside has its ratio
+  let nFull = 0;
+  for (const m of src.matchAll(/<(\w+)\b[^>]*\sdata-full="[^"]*"[^>]*>([\s\S]*?)<\/\1>/g)) {
+    const tag = /^<[^>]*>/.exec(m[0])[0], full = at(tag, 'data-full'), label = `data-full="${full}"`;
+    nFull++;
+    const f = name(full, 'data-full');
+    if (!f || !exists(f)) continue;
+    const wh = px(f), dw = Number(at(tag, 'data-w')), dh = Number(at(tag, 'data-h'));
+    if (dw !== wh[0] || dh !== wh[1]) hubErr.push(`${label}: data-w/data-h ${at(tag, 'data-w')}×${at(tag, 'data-h')}, but the file is ${wh.join('×')}`);
+    const thumb = /<img\b[^>]*>/.exec(m[2]);
+    const tw = thumb && Number(at(thumb[0], 'width')), th = thumb && Number(at(thumb[0], 'height'));
+    if (tw && th && !ratioOk([tw, th], wh)) hubErr.push(`${label}: ${wh.join('×')} is not the ratio of its thumbnail (${tw}×${th})`);
+  }
+  // the other names a file can go by: links (the viewer's no-script fallback) and the stylesheet's url()s
+  for (const m of src.matchAll(/\shref="([^"]+)"/g)) if (local(m[1]) && /^hub\/(?:art|loops)\//.test(path(m[1]))) name(m[1], 'href');
+  let nUrl = 0;
+  for (const m of cssSrc.matchAll(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g)) {
+    if (!local(m[2])) continue;
+    nUrl++;
+    const f = normalize(join(dirname(sheet), m[2].split(/[?#]/)[0])).replace(/\\/g, '/');
+    (named.get(f) || named.set(f, new Set()).get(f)).add('url()');
+    exists(f);
+  }
+  if (missingFiles.size) hubErr.push('missing files: ' + [...missingFiles].join(', '));
+  // nothing unreferenced; every animation finite, at most MOTION_MS, and only a data-anim
+  const published = DIRS.flatMap((d) => (existsSync(join(ROOT, d)) ? readdirSync(join(ROOT, d)).map((e) => d + '/' + e) : []));
+  const idle = published.filter((f) => !named.has(f));
+  if (idle.length) hubErr.push(`files nothing on the page names (published for nothing): ${idle.join(', ')}`);
+  const loops = [];
+  for (const f of new Set([...published, ...named.keys()].filter((f) => /\.webp$/i.test(f) && existsSync(join(ROOT, f))))) {
+    const a = anim(f);
+    if (!a) continue;
+    const total = a.loop * a.ms;
+    if (a.loop < 1) hubErr.push(`${f} plays forever (loop count 0)`);
+    else if (total > MOTION_MS) hubErr.push(`${f} moves for ${a.loop} × ${a.ms} ms = ${total} ms, over ${MOTION_MS} ms`);
+    const other = [...(named.get(f) || [])].filter((h) => h !== 'data-anim');
+    if (other.length) hubErr.push(`${f} is animated and named as ${other.join(', ')}: only a data-anim may name an animation`);
+    loops.push(`${basename(f, '.webp')} ${a.loop} × ${a.ms} ms`);
+  }
+  if (/\binfinite\b/i.test(cssSrc)) hubErr.push(`${sheet} has an infinite animation (nothing on the hub moves forever)`);
+  if (/<video\b[^>]*\sloop\b/i.test(src)) hubErr.push(`${page} has a <video loop>`);
+  hubErr.length ? bad('hub art and motion: ' + hubErr.join('; '))
+    : ok(`hub art and motion: ${nImg} images and ${nSource} sources, each with alt, its box = its widest file, w descriptors and ratios true; ${nFull} viewer files sized; ${nUrl} CSS url()s; ${published.length} files in ${DIRS.join(' and ')}, all named; ${animRefs.length} animations, each a data-anim with a reduced-motion still, finite and ≤ ${MOTION_MS} ms (${loops.join(', ')}); no infinite, no <video loop>`);
 }
 
 /* 18 — SEO and structured data */

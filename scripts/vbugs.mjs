@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 /**
  * Layout scanner — `npm run vbugs`. Renders index.html at 7 widths x 4
- * theme/language pairs and reports overlapping text, text escaping its card,
- * text clipped by an overflow box, stretched images and horizontal scroll.
- * Content of closed <details> is skipped (it keeps stale layout boxes).
+ * theme/language pairs, and hub/ at 1440, 1024 (where its hero switches to
+ * the wide frame), 768 and 390 in both its palettes (paper, the default, and
+ * night: void-theme 'dark'), since its headings sit on its art; and reports
+ * overlapping text, text escaping its card, text clipped by an overflow box,
+ * stretched images and horizontal scroll. Content of closed <details> is
+ * skipped (it keeps stale layout boxes). Each issue is named by its page
+ * first ("index …", "hub …").
  *
  * Exits non-zero on any issue not in scripts/vbugs-allow.json, where each
  * accepted issue (matched by prefix) carries the reason it is acceptable.
@@ -13,14 +17,22 @@ import { join } from 'node:path';
 import { serve, launch } from './lib/serve.mjs';
 import { ROOT } from './site.mjs';
 const srv = await serve();
-const combos=[];for(const w of [1440,1280,1024,768,414,390,360])for(const [t,l] of [['arcanum','fr'],['arcanum','ar'],['engineering','en'],['daylight','fr']])combos.push([w,t,l]);
+// [page, path, width, what it is set to (localStorage), how a row names it]
+const combos=[];
+for(const w of [1440,1280,1024,768,414,390,360])for(const [t,l] of [['arcanum','fr'],['arcanum','ar'],['engineering','en'],['daylight','fr']])
+ combos.push(['index','/',w,{'numidea-theme':t,'numidea-lang':l},`${w}/${t}/${l}`]);
+for(const w of [1440,1024,768,390])for(const t of ['light','dark'])combos.push(['hub','/hub/',w,{'void-theme':t},`hub ${w}/${t}`]);
 const b = await launch();
 const agg={};
-for(const [w,t,l] of combos){
+for(const [page,path,w,init,label] of combos){
  const p=await b.newPage({viewport:{width:w,height:w<600?800:900}});
- await p.addInitScript(([t,l])=>{localStorage.setItem('numidea-theme',t);localStorage.setItem('numidea-lang',l)},[t,l]);
- await p.goto(srv.base+'/',{waitUntil:'networkidle'});
- await p.evaluate(async()=>{const H=document.body.scrollHeight;for(let y=0;y<H;y+=400){scrollTo(0,y);await new Promise(r=>setTimeout(r,40))}scrollTo(0,0)});
+ await p.addInitScript((init)=>{for(const k in init)localStorage.setItem(k,init[k])},init);
+ await p.goto(srv.base+path,{waitUntil:'networkidle'});
+ // both pages scroll smoothly (html{scroll-behavior:smooth}): left on, each
+ // scrollTo below only began a glide the next one cut short, the scan never
+ // reached the foot of the page, and whatever reveals on scroll stayed at
+ // opacity 0 and was skipped as hidden (until 2026-10-28)
+ await p.evaluate(async()=>{document.documentElement.style.scrollBehavior='auto';const H=document.body.scrollHeight;for(let y=0;y<H;y+=400){scrollTo(0,y);await new Promise(r=>setTimeout(r,40))}scrollTo(0,0)});
  await p.waitForTimeout(1500);
  await p.addStyleTag({content:'[data-parallax]{translate:none!important}*{transition:none!important}'});
  await p.waitForTimeout(100);
@@ -28,10 +40,17 @@ for(const [w,t,l] of combos){
   const out=[];const vis=e=>{const cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden')return false;let a=e;while(a){if(parseFloat(getComputedStyle(a).opacity)<.1)return false;a=a.parentElement}return true};
   // visually hidden on purpose (.sr-only: a 1px box clipped to nothing): screen-reader text, never a visual bug
   const srOnly=e=>{for(let a=e;a;a=a.parentElement){const c=getComputedStyle(a);if(c.clip==='rect(0px, 0px, 0px, 0px)'&&a.clientWidth<=1)return true}return false};
+  // inside a closed <details> and not in that details' own <summary>, at any
+  // depth: not painted, but its stale layout box stays. Only the nearest
+  // <details> was asked once, so the summary of a <details> nested in a closed
+  // one ("Sources et méthode" in the folded pricing block) counted as shown and
+  // "overlapped" the founder text below it (2026-10-28, once the scan really
+  // reached the bottom of the page)
+  const folded=e=>{for(let a=e;a&&a.parentElement;a=a.parentElement){const d=a.parentElement;if(d.tagName==='DETAILS'&&!d.open&&!(a.tagName==='SUMMARY'&&a===d.querySelector(':scope>summary')))return true}return false};
   const sel=e=>{let s=e.tagName.toLowerCase();if(e.id)s+='#'+e.id;else if(e.classList.length)s+='.'+[...e.classList].slice(0,2).join('.');const sec=e.closest('section,header,footer,aside,.vista');return (sec?(sec.id||sec.className.split(' ')[0]):'body')+' '+s};
   // text leaf boxes
   const texts=[];const tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
-  while(n=tw.nextNode()){if(!n.textContent.trim())continue;const el=n.parentElement;if(!el||el.closest('[aria-hidden="true"],script,style,noscript,.modal:not(.open),dialog:not([open]),.cv-panel:not(.open)'))continue;const dd=el.closest('details');if(dd&&!dd.open&&!el.closest('summary'))continue;if(!vis(el)||srOnly(el))continue;
+  while(n=tw.nextNode()){if(!n.textContent.trim())continue;const el=n.parentElement;if(!el||el.closest('[aria-hidden="true"],script,style,noscript,.modal:not(.open),dialog:not([open]),.cv-panel:not(.open)'))continue;if(folded(el))continue;if(!vis(el)||srOnly(el))continue;
    const rg=document.createRange();rg.selectNodeContents(n);for(const rc of rg.getClientRects()){if(rc.width<3||rc.height<3)continue;texts.push({el,x:rc.left,y:rc.top+scrollY,w:rc.width,h:rc.height,t:n.textContent.trim().slice(0,24)})}}
   // 1 overlapping text from different elements
   texts.sort((a,b)=>a.y-b.y);
@@ -45,7 +64,7 @@ for(const [w,t,l] of combos){
   // 3 clipped text (overflow hidden, content wider/taller), excluding ellipsis
   for(const e of document.querySelectorAll('body *')){if(!vis(e)||e.closest('[aria-hidden="true"]'))continue;const cs=getComputedStyle(e);if(cs.overflowX==='visible'&&cs.overflowY==='visible')continue;if(cs.textOverflow==='ellipsis')continue;
     if(srOnly(e))continue;
-    if(!e.textContent.trim())continue;{const dd=e.closest('details');if(dd&&!dd.open&&!e.closest('summary'))continue;}if(e.scrollWidth>e.clientWidth+2&&cs.overflowX!=='auto'&&cs.overflowX!=='scroll'&&e.clientWidth>0){
+    if(!e.textContent.trim())continue;if(folded(e))continue;if(e.scrollWidth>e.clientWidth+2&&cs.overflowX!=='auto'&&cs.overflowX!=='scroll'&&e.clientWidth>0){
       // what is cut off: text (HCLIP, always an issue unless allowed by name) or only decoration
       // (HCLIP-DECOR: nothing rendered past the box carries text of its own; an element
       // under a display:none parent has a zero box and is not rendered)
@@ -57,7 +76,7 @@ for(const [w,t,l] of combos){
   // 5 element wider than viewport
   const dw=document.documentElement.clientWidth;if(document.documentElement.scrollWidth>dw+1)out.push('HSCROLL '+document.documentElement.scrollWidth);
   return out});
- for(const x of r){(agg[x]=agg[x]||[]).push(`${w}/${t}/${l}`)}
+ for(const x of r){const k=page+' '+x;(agg[k]=agg[k]||[]).push(label)}
  await p.close();
 }
 await b.close();

@@ -2,10 +2,11 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 78 runs over every page (site.mjs PAGES): index.html in all six themes x
+ * 79 runs over every page (site.mjs PAGES): index.html in all six themes x
  * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; scene/ in each
  * language on desktop and phone; 404 in two themes in Arabic; hub/ in both of
- * its palettes; tablet (768x1024, 1024x768) and short landscape (844x390);
+ * its palettes (paper, its default, and night: void-theme 'dark') on desktop
+ * and on the phone; tablet (768x1024, 1024x768) and short landscape (844x390);
  * one run with the phone menu open, two with the CV panel open and two with
  * the folded estimator open (axe reads what each shows); the three
  * WorkspaceHQ embeds on their own, and one run that lets the trailer and the
@@ -13,7 +14,9 @@
  * when it exists. Each run scrolls the whole page, then checks: layout
  * shift (CLS > 0.01), axe (all default rules), horizontal overflow
  * (honouring clipping ancestors), reveals that never fired, tap targets
- * under 24px, broken images, infinite animations, JS
+ * under 24px, broken images, infinite animations, the hub's loops (each
+ * img[data-anim] shows its animation, decoded, once the scroll has brought
+ * it on screen: lib/loop-state.mjs), JS
  * errors, failed requests, any third-party request, and every
  * Content-Security-Policy violation (securitypolicyviolation events, counted
  * in every frame). Desktop page runs fail when LCP, read at load before
@@ -81,6 +84,7 @@ import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {serve,launch} from './lib/serve.mjs';
 import {watchCsp} from './lib/csp-watch.mjs';
+import {loopState} from './lib/loop-state.mjs';
 import {deployFiles} from './lib/deploy-files.mjs';
 import {stage404} from './lib/stage-404.mjs';
 import {ROOT,BASE,THEMES,LEGAL_PUBLISHED} from './site.mjs';
@@ -164,6 +168,8 @@ const run=async(label,path,o={})=>{
     const imgs=[...document.images].filter(i=>i.complete&&i.naturalWidth===0).length;
     return {cls:window.__cls,of:[...new Set(of)],hidden,small,imgs,hscroll:document.documentElement.scrollWidth>dw+1};});
   const anim=await p.evaluate(()=>document.getAnimations().filter(a=>a.playState==='running'&&a.effect?.getComputedTiming().iterations===Infinity).length);
+  // the hub's loops: each one the scroll brought on screen shows its animation
+  const loops=await p.evaluate(loopState),stuck=loops.filter(l=>!l.ok);
   W.off=true;
   // axe in every frame too, so it reads the embeds in their host page
   for(const f of p.frames())try{await f.evaluate(AXE)}catch{/* detached */}
@@ -176,9 +182,9 @@ const run=async(label,path,o={})=>{
   if(m.cls>0.01)issues.push('cls');if(ax.length)issues.push('axe');if(m.of.length||m.hscroll)issues.push('overflow');
   if(anim&&!allowLoops)issues.push('anim');if(errs.length)issues.push('js');if(bad.length)issues.push('net');if(third)issues.push('3p');
   if(m.hidden)issues.push('unrevealed');if(m.imgs)issues.push('img');if(m.small)issues.push('tap');
-  if(csp.length)issues.push('csp');if(broke.length)issues.push('act');
+  if(csp.length)issues.push('csp');if(broke.length)issues.push('act');if(stuck.length)issues.push('loop');
   if(lcpBudget&&!(lcp>0&&lcp<=lcpBudget))issues.push('lcp');
-  const line=`cls ${m.cls.toFixed(4)}  lcp ${Math.round(lcp)}ms${lcpBudget?'/'+lcpBudget:''}  axe ${ax.join(',')||0}  of ${m.of.length+(m.hscroll?'+H':'')}  unrev ${m.hidden}  tap<24 ${m.small}  img ${m.imgs}  anim ${anim}  js ${errs.length}${waived?' (+'+waived+' waived)':''}  net ${bad.length}  3p ${third}  csp ${csp.length}`;
+  const line=`cls ${m.cls.toFixed(4)}  lcp ${Math.round(lcp)}ms${lcpBudget?'/'+lcpBudget:''}  axe ${ax.join(',')||0}  of ${m.of.length+(m.hscroll?'+H':'')}  unrev ${m.hidden}  tap<24 ${m.small}  img ${m.imgs}  anim ${anim}  js ${errs.length}${waived?' (+'+waived+' waived)':''}  net ${bad.length}  3p ${third}  csp ${csp.length}${loops.length?`  loops ${loops.length-stuck.length}/${loops.length}`:''}`;
   await p.close();
   if(issues.length&&issues.every(i=>TIMING.has(i))&&!again){
     console.log('  ?? '+label.padEnd(26),line,' — over budget, measuring again');
@@ -192,6 +198,7 @@ const run=async(label,path,o={})=>{
   if(csp.length)console.log('      csp:',csp.join(' | '));
   if(broke.length)console.log('      act:',broke.join(' | '));
   if(m.of.length)console.log('       of:',m.of.join(' | '));
+  if(stuck.length)console.log('    loops:',stuck.map(l=>`${l.name} shows ${l.shows}, not ${l.want}`).join(' | '));
 };
 
 /* ---------------- what some runs do before the scroll ---------------- */
@@ -413,7 +420,9 @@ const phone=async(label,path,{lang,to},again=false)=>{
 console.log(REMOTE?`auditing ${REMOTE} (remote: the never-deployed legal preview is skipped)`:'auditing this checkout');
 console.log('— desktop 1280×900 —');
 const D={lcpBudget:DESKTOP_LCP};
+// hub/: paper is its default; night is void-theme 'dark' (its only other value)
 await run('hub','/hub/index.html',D);
+await run('hub dark','/hub/index.html',{...D,init:{'void-theme':'dark'}});
 for(const l of ['fr','en','ar']) await run('scene '+l,'/scene/index.html',{...D,lang:l});
 await run('404','/404.html',D);
 await run('404 noir/ar','/404.html',{...D,theme:'noir',lang:'ar'});
@@ -435,7 +444,7 @@ await run('index cv open fr','/index.html',{lang:'fr',act:openCv});
 await run('index estimator open fr','/index.html',{lang:'fr',act:openEstimator});
 console.log('— phone 390×844 —');
 await run('hub m','/hub/index.html',{w:390,h:844});
-await run('hub light m','/hub/index.html',{w:390,h:844,init:{'void-theme':'light'}});
+await run('hub dark m','/hub/index.html',{w:390,h:844,init:{'void-theme':'dark'}});
 for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});
 await run('404 m','/404.html',{w:390,h:844});
 await run('404 daylight/ar m','/404.html',{theme:'daylight',lang:'ar',w:390,h:844});

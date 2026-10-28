@@ -54,7 +54,9 @@
  *                 index.html served in its place, its policy rebuilt by
  *                 withCsp: connect-src names the store, and a valid submit
  *                 sends one POST to /rest/v1/leads with no CSP violation
- *  dialogs        hub's lightbox and scene/'s capture viewer open with Enter,
+ *  dialogs        hub's lightbox (the studio diary's viewer: #lb opened from
+ *                 #collection .tile--img, titled from data-title in #lbTitle)
+ *                 and scene/'s capture viewer open with Enter,
  *                 close with Escape and give focus back; Tab never leaves
  *                 them for the page behind; the lightbox's arrows follow the
  *                 reading direction (forward is ArrowLeft when it is RTL).
@@ -76,8 +78,12 @@
  *                 written after the first 150ms of a hold (what a scroll
  *                 handler writes at once is the page following the scroll),
  *                 no frame (the embeds included) has such an animation
- *                 running afterwards, and each embedded player, on screen
- *                 and loaded, does not advance its playhead in 2s. A jump
+ *                 running afterwards, each embedded player, on screen
+ *                 and loaded, does not advance its playhead in 2s, and
+ *                 each of hub/'s loops (img[data-anim], an animated WebP
+ *                 app.js swaps in on view) still shows its still, decoded
+ *                 (lib/loop-state.mjs; audit.mjs proves the swap without
+ *                 the preference). A jump
  *                 lands at once: html and body are not scroll-behavior:
  *                 smooth, and Enter on the skip link moves scrollY in one
  *                 step. On workspacehq/ (desktop) the live console is booted
@@ -116,12 +122,15 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { serve, launch } from './lib/serve.mjs';
 import { watchCsp } from './lib/csp-watch.mjs';
+import { loopState } from './lib/loop-state.mjs';
 import { withCsp } from './lib/csp.mjs';
 import { loadDicts } from './lib/i18n.mjs';
 import { ROOT, PAGES } from './site.mjs';
 
 /* langs: the languages a page has (`only`: why it has just one); tests: its
-   own keyboard paths; noSkip: why it has no skip link */
+   own keyboard paths; noSkip: why it has no skip link. hub/'s one path is
+   the studio diary's viewer (dialog() below, on the hooks the rebuilt page
+   kept: #lb, #collection .tile--img with data-title, #lbTitle). */
 const SPEC = {
   'index.html': { langs: ['fr', 'ar'], tests: ['theme', 'menu', 'cv', 'estimate', 'form'] },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
@@ -832,6 +841,9 @@ for (const f of pages) {
     const fanim = [];
     for (const fr of p.frames()) fanim.push(...(await running(fr)).map((a) => (fr === p.mainFrame() ? '' : fr.url().replace(B, '').split(/[?#]/)[0] + ' › ') + a));
     for (const a of fanim) bad.push('running after the scroll: ' + a);
+    // hub/'s loops: every one has been on screen, and each still shows its still
+    const loops = await p.evaluate(loopState);
+    for (const l of loops.filter((x) => !x.ok)) bad.push(`a loop left its still with reduced motion on: ${l.name} shows ${l.shows}, not ${l.want}`);
     // players (workspacehq/'s trailer and walkthrough) hold still: on screen
     // and loaded, their playheads (animations-v3.js keeps them in
     // localStorage) do not advance in 2s
@@ -854,7 +866,7 @@ for (const f of pages) {
     // console is the same script at every width)
     const bit = spec.tests.includes('embeds') && w > 600 ? await bitHolds(p) : null;
     if (bit) bad.push(...bit.bad);
-    report(`${name(f)} ${lang} ${w} rm`, [{ bad, note: `reveals ${rv.n - rv.hidden.length}/${rv.n} shown  anim ${anim.length}  moved ${mut.length}${jump}  scrolled ${sc.n}×vh: moved ${sc.moved.length}, anim ${fanim.length} in ${p.frames().length} frame(s)` + (nPlayers ? `  players held ${held}/${nPlayers}` : '') + (bit ? '  ' + bit.note : '') }], errs, csp);
+    report(`${name(f)} ${lang} ${w} rm`, [{ bad, note: `reveals ${rv.n - rv.hidden.length}/${rv.n} shown  anim ${anim.length}  moved ${mut.length}${jump}  scrolled ${sc.n}×vh: moved ${sc.moved.length}, anim ${fanim.length} in ${p.frames().length} frame(s)` + (loops.length ? `  loops on their stills ${loops.filter((x) => x.ok).length}/${loops.length}` : '') + (nPlayers ? `  players held ${held}/${nPlayers}` : '') + (bit ? '  ' + bit.note : '') }], errs, csp);
     await close();
   }
 }
