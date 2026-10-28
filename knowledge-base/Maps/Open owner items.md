@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-26
+updated: 2026-10-28
 sources: [OWNER-CONTENT.md, README.md, index.html, assets/app.js, hub/index.html, scripts/legal-data.mjs, scripts/voices-data.mjs, scripts/verify-domains.mjs, scripts/site.mjs, scripts/check.mjs]
 ---
 
@@ -8,7 +8,7 @@ sources: [OWNER-CONTENT.md, README.md, index.html, assets/app.js, hub/index.html
 
 Some things on the site can only come from the owner: legal facts, consent, photos, confirmations. `OWNER-CONTENT.md` is the register; the site leaves a place for each item and shows nothing until the real thing exists, with no placeholders and no invented content (OWNER-CONTENT.md › intro). Start with the register table, then the eight claims, then "How an item closes".
 
-The register's own status line reads "as of 2026-10-12 (updated after the review round)" (OWNER-CONTENT.md › intro). Nothing below is resolved unless a cited file says so.
+The register's own status line reads "as of 2026-10-12 (updated after the review round); rows 10 and 15 as of 2026-10-28" (OWNER-CONTENT.md › intro). Nothing below is resolved unless a cited file says so.
 
 ## The register
 
@@ -23,13 +23,14 @@ The register's own status line reads "as of 2026-10-12 (updated after the review
 | 7 | [[Nomara Voyages (unconfirmed client)\|Nomara Voyages: client or not]] | Unconfirmed | Confirmation and permission, or removal | `index.html` work grid, logo strip |
 | 8 | [[Arabic native review]] | Pending | A native speaker's pass over the Arabic copy | `assets/app.js`, `scripts/scene-data.mjs`, `404.html` |
 | 9 | [[Clients' own domains]] | None verifies | A client points a domain at the build; `verify-domains.mjs` confirms | `scripts/verify-domains.mjs` |
-| 10 | [[Hub fan art rights]] | Open question | Confirm the rights, or take the art down | `hub/` |
+| 10 | [[Hub fan art rights]] | No fan art on the site since 2026-10-28 (still in git history; live at the next deploy) | Closed for the site by the hub's rebuild; the history is the owner's call, as for 12 | git history of `hub/` |
 | 11 | [[Supabase lead store (off on purpose)]] | Off on purpose | Legal page published, region set, new form note | `index.html`, `scripts/legal-data.mjs` |
 | 12 | [[Campaign kit in public git history\|Campaign kit and git history]] | Kit with the owner | Owner's call on a history rewrite | outside this repo |
 | 13 | [[WorkspaceHQ open-source claim\|WorkspaceHQ: open source or not]] | Claim removed (no licence, no README) | A LICENSE and root README in the product repo, then restore the wording | `Brvetr4ve1er/workspace-HQ`, `workspacehq/`, `scripts/scene-data.mjs` |
 | 14 | [[Claims only the owner can confirm (8 open)\|Claims only the owner can confirm]] | 8 open | Confirm each, or say what is true | see below |
+| 15 | Hub illustrations (the owner's own: himself and Kūro) | 4 points for his review | Approve or rename the eight diary titles; say what is true of Kūro (the page says only "Kūro, the black cat"); confirm the hexagon "N" badge as a costume detail; keep or paint out the glyph-like symbols on one print | `hub/` |
 
-Source: OWNER-CONTENT.md › table and sections 1–14. The README points to the same file for "what only the owner can supply" (README.md › What only the owner can supply).
+Source: OWNER-CONTENT.md › table and sections 1–15. The README points to the same file for "what only the owner can supply" (README.md › What only the owner can supply).
 
 ## Item notes
 

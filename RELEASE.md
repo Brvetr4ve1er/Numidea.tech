@@ -88,11 +88,12 @@ site does until then. Details and status are in
 | Nomara Voyages: client or not | [§7](OWNER-CONTENT.md#7-nomara-voyages) | shown as delivered work |
 | Arabic native review | [§8](OWNER-CONTENT.md#8-arabic-native-review) | the Arabic dictionary blocks carry a banner |
 | Clients' own domains | [§9](OWNER-CONTENT.md#9-clients-own-domains) | the cards link the Netlify builds; `node scripts/verify-domains.mjs` says when a domain can replace one |
-| Hub fan art rights | [§10](OWNER-CONTENT.md#10-hub-fan-art) | shown |
+| Hub fan art rights | [§10](OWNER-CONTENT.md#10-hub-fan-art) | none on the hub since its rebuild of 2026-10-28 (live at the next deploy); still in git history |
 | Supabase lead store | [§11](OWNER-CONTENT.md#11-supabase-lead-store) | off; `check.mjs` refuses to switch it on without the legal page, the region and a new form note |
 | Campaign kit and git history | [§12](OWNER-CONTENT.md#12-campaign-kit-and-this-repository) | see [section 8](#8-the-git-history) below |
 | WorkspaceHQ: open source or not | [§13](OWNER-CONTENT.md#13-workspacehq-open-source) | the pages say the code is public, not open source |
 | Claims only the owner can confirm | [§14](OWNER-CONTENT.md#14-claims-only-the-owner-can-confirm) | on the site until confirmed or corrected |
+| Hub illustrations: titles, Kūro, the badge | [§15](OWNER-CONTENT.md#15-hub-illustrations) | the diary titles are drafts; the page says only "Kūro, the black cat"; the badge is a costume detail |
 
 Then the one-time repository settings in [section 7](#7-settings-only-the-owner-can-change),
 and the domain in [section 6](#6-domain-and-dns).

@@ -525,6 +525,8 @@ on `404.html`, `hub/` and `scene/`. Every family `404.html` and `scene/` asked
 for was already in `assets/fonts/`, so both now use the local sheet. `hub/` uses
 Syne and Space Mono, which are not self-hosted, so its link stays third-party
 but is loaded `media="print"` + `onload` and can no longer hold the page.
+(Both were self-hosted soon after, see "The hub's faces are self-hosted too";
+Space Mono left the site with the hub's rebuild on 2026-10-28.)
 
 Also found there: `scene/` had an `<h1>` and a link that only JavaScript ever
 filled, so with JS off the page carried 64 characters and a screen reader had
@@ -602,15 +604,23 @@ still held the last gradient-filled string on the site and a `34ch` width, both
 of which the pass existed to remove. `hub/` kept four `ch` widths for the same
 reason. Grep every stylesheet *and* every inline block.
 
-## Syne and Space Mono are self-hosted too
+## The hub's faces are self-hosted too
 
 `assets/fonts-hub.css` holds them; `hub/` loads it render-blocking, like any
-first-party sheet. (Since the rebuild of 2026-10-28 the hub sets Syne, Geist
-and Geist Mono from that sheet; Space Mono's four files stay until F16 removes
-them.) **No page on this site now makes a third-party request.**
-Trimmed to latin and latin-ext (hub sets no Greek or Vietnamese), all ten
-faces `font-display:optional`. Syne's three weights are one variable file per
-subset, so the six files are 112KB.
+first-party sheet. **No page on this site now makes a third-party request.**
+It first held Syne and Space Mono. Since the hub's rebuild of 2026-10-28 it
+sets Syne (700, 800) for display, Geist (400, 500) for text and Geist Mono for
+labels; Geist and Geist Mono are the main site's own files, so a visitor who
+comes from the founder card has them cached. Space Mono's four files left the
+repository the same day (F16, 64,884 bytes): nothing loaded them any more.
+Trimmed to latin and latin-ext (hub sets no Greek, Cyrillic or Vietnamese),
+all ten faces `font-display:optional`. Each family is one variable file per
+subset, so the six files are 133 kB. latin-ext is preloaded with the two latin
+files: "Kūro" is in the copy, and without it the ū would come from the
+fallback in the middle of the word.
+
+(The two lessons below come from the hub before its rebuild; the rebuilt hero
+still sizes its handle, name and line from their column with `cqw`.)
 
 **A fallback font hides how wide the real one is.** Every size on hub had been
 tuned against the metrics of whatever the system substituted for Syne. The real
@@ -791,8 +801,10 @@ budget in a 390px viewport and no plate size can rescue it.
 
 ## Generated illustrations
 
-`assets/illus/` holds 13 monochrome rasters (248K total) drawn as white line
-art on pure black. They are applied as **CSS luminance masks over
+`assets/illus/` held 13 monochrome rasters (248K total) drawn as white line
+art on pure black; six remain, the FAQ's (`faq1`–`faq6.png`, 67 kB). The
+others left with the sections that used them, the hub's four marks last
+(2026-10-28). They are applied as **CSS luminance masks over
 `currentColor`**, never as `<img>`:
 
 ```css
@@ -827,7 +839,8 @@ placements were built and torn out again before this landed:
 
 Regenerate rather than shrink-to-fit: `faq3`, `hub-design`, `hub-dev` and
 `hub-studio` were re-prompted for "large simple readable silhouette" after
-the first pass produced scenes too busy to survive downscaling.
+the first pass produced scenes too busy to survive downscaling. (The three hub
+marks are gone; `faq3` remains.)
 
 Pipeline: `sharp().resize(512).greyscale().linear(1.9,-38).png({palette:true,
 colours:16})`. **Check polarity after every batch** — one render came back
@@ -1090,12 +1103,13 @@ sites was added once and removed at the owner's request; `npm run check` now
 fails if any project URL appears in hub/.
 
 Since 2026-10-28 the page is built on one set of the owner's illustrations of
-himself (round glasses, dreads in a bun, a bone trench coat) and his black cat
-Kūro, in an ink-on-paper look with one night scene. The art does the talking;
-the page is the paper it is printed on. Sections: hero, What I make (Designer, Developer,
-Artist), the design work (the 12 Behance projects on the profile's first page,
-covers self-hosted, titles only), the studio diary (eight prints in the
-viewer), Elsewhere (the verified handles), the footer. The copy is the
+himself (round glasses, dreads in a bun, a bone trench coat with a small
+burgundy badge) and his black cat Kūro, in an ink-on-paper look with one night
+scene. The art does the talking; the page is the paper it is printed on.
+Sections: hero, What I make (Designer, Developer, Artist), the design work
+(the 12 Behance projects on the profile's first page, covers self-hosted,
+titles only), the studio diary (eight prints in the viewer), Elsewhere (the
+verified handles), the footer. The copy is the
 owner's published wording; the diary titles are drafts for him to approve.
 
 - **The owner's answers (2026-10-28).** The footer keeps "VOIDSPLUNKER.std is
@@ -1111,16 +1125,25 @@ owner's published wording; the diary titles are drafts for him to approve.
   mark), the scribbled lines on the wall notes and the code lines on the
   laptop (texture, no words), and the dimension letters on the blueprints
   (a drafting convention). The glyph-like symbols on the cut-paper panels of
-  "A world in miniature" wait for the owner's eye.
+  "A world in miniature" wait for the owner's eye, with the diary titles,
+  what the page says of Kūro and the badge (OWNER-CONTENT §15).
 - **Two grounds, sampled from the art.** Paper `#fcecdc` (the hero's empty
   paper) and night `#0f1420` (the empty left of the diary band); the tokens
   and their contrast figures are at the top of `hub/style.css` (paper: text
   15.4:1, text-2 7.7:1, accent 8.6:1; night: 14.6:1, 8.0:1, 8.2:1). Paper is
-  the default; `void-theme` = `dark` is the only other choice. A ground
-  travels with its art: in the paper theme the diary is an inset night print;
-  in the night theme the hero and the design band are inset paper prints, and
-  the What I make figures become die-cuts (a bone edge and a soft shadow).
-  Hero text always uses the paper inks.
+  the default; `void-theme` = `dark` is the only other choice. The accent is
+  the coat badge's burgundy `#7a2430` on paper (links, focus rings, and the
+  skip link's ground, paper on burgundy) and a rose `#e59a93` on night; ink
+  `#1e1611` and `#5b4535` are the paper's text, moon `#f1e3d0` and `#b9a892`
+  the night's. A ground travels with its art: in the paper theme the diary is
+  an inset night print; in the night theme the hero and the design band are
+  inset paper prints, and the What I make figures become die-cuts (a bone
+  edge and a soft shadow). Hero text always uses the paper inks.
+- **Type.** Syne for display (800 for the handle and the section headings,
+  700 for smaller titles), Geist for text, Geist Mono for labels, all
+  self-hosted (`assets/fonts-hub.css`, `font-display:optional`); the
+  cartridge keeps its Press Start 2P. Geist's latin-ext file is preloaded
+  because of the ū in "Kūro". Space Mono, the old hub's label face, is gone.
 - **The hero is three registered layers** of one 2752×1674 frame: the paper
   with its line work, Kūro, Yasser. The frame is the drawing with paper added
   above and below (3% and 6%), so the 3% bleed of each layer and its
@@ -1170,21 +1193,35 @@ owner's published wording; the diary titles are drafts for him to approve.
   out where he walks off the drawn canvas). The sleeping loop rests on a
   frame with both Zs whole.
 - **Pipeline.** The masters are private (`campaign/hub-art`, git-ignored,
-  never deployed). `npm run hub:art` (`scripts/build-hub-art.mjs`, recipe in
-  `scripts/hub-art-data.mjs`) checks each master's size and sha256, cuts the
-  crops, writes `hub/art/*.webp` and `hub/loops/*.webp` with each file named
-  by its real width, and fails on a file over 400 kB, an endless or over-5 s
-  loop, or a loop frame touching its edge. It is not part of `npm run
-  build`: CI has no masters, and the committed images are its output. Check
-  block 17b holds the page to the files (sizes, ratios, `srcset`, the
-  viewer's `data-w`/`data-h`, nothing unused, finite animations).
+  never deployed; `HUB_ART_DIR` points elsewhere). `npm run hub:art`
+  (`scripts/build-hub-art.mjs`, recipe in `scripts/hub-art-data.mjs`) checks
+  each master's size and sha256, cuts the crops, writes `hub/art/*.webp` and
+  `hub/loops/*.webp` (WebP quality 80, alpha 85; nothing upscaled), and fails
+  on a file over 400 kB, an endless or over-5 s loop, or a loop frame touching
+  its edge. It is not part of `npm run build`: CI has no masters, and the
+  committed images are its output. Check block 17b holds the page to the files
+  (sizes, ratios, `srcset`, the viewer's `data-w`/`data-h`, nothing unused,
+  finite animations).
+  - Names: `<name>-<width>.webp`, the width the file's real one, so a
+    `srcset` descriptor always equals it. `hero-{bg,kuro,yasser}-wide-`
+    1280/1920/2560 and `-tall-` 640/960/1192; `band-{design,diary}-`
+    1280/1920 and `band-…-tall-` 800/1200 (the art's right part);
+    `make-{designer,developer,artist}-` 480/720/960 (the developer stops at
+    its own 903); `kuro-{sit,paw}-` 240 and the widest (445, 480);
+    `diary-<slug>-` 640/960/1280 (1264 when the master is that wide), and
+    the viewer opens a 1600 file, or the master's own width when it is
+    narrower (the 1264 thumbnail itself; 1376 for "Morning light").
+    `be-00`…`be-11` are the
+    Behance covers, exported by hand and kept from the old page.
+    `hub/loops/{yasser-wave,yasser-lost,kuro-sleep}.webp`, each with its
+    `-still.webp` at the same size (480 px on the long side).
 - **Removed with the rebuild, and why:** the 33-poster series and its
   epilogue, the portrait poses and `hub/poses/` (remade art captioned with
   older dates, A10; fan art whose rights were open, OWNER-CONTENT §10); the
   view counters and the social highlights (hand-updated, low); the studio
   framing in the identity block; the Etsy link; the "coming soon" line; the
-  footer's repeat of the links; the group mask icons. Space Mono's files
-  wait for F16.
+  footer's repeat of the links; the group mask icons (`assets/illus/hub-*`);
+  Space Mono (its four files left the repository, F16).
 
 ## Founder section — the CV is the source of truth
 
@@ -1516,7 +1553,7 @@ turns all of it off.
 
 **The cartridge.** WorkspaceHQ is the founder's favourite build, so it is
 linked as a little NES cartridge with Bit on the label in the hub hero, and
-as a link in the hub's Dev links. It wears WorkspaceHQ's palette in every
+as a link in the hub's Developer links and in Elsewhere. It wears WorkspaceHQ's palette in every
 theme, and only moves on hover/focus (Bit hops and blinks, +1 XP rises, PRESS
 START flashes) — still at rest, so the hub keeps its no-endless-animation
 rule. The cut corner is drawn with `::after` in the page colour

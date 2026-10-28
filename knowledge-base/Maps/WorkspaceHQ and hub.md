@@ -1,7 +1,7 @@
 ---
 type: map
 updated: 2026-10-28
-sources: [README.md, BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, assets/carry.js, assets/styles.css, hub/index.html, hub/app.js, hub/style.css, scripts/build-hub-art.mjs, scripts/hub-art-data.mjs, workspacehq/index.html, workspacehq/app.js, workspacehq/style.css, workspacehq/embed/trailer.html, scripts/site.mjs, scripts/scene-data.mjs, scripts/build-sitemap.mjs, scripts/check.mjs, scripts/audit.mjs, scripts/keys.mjs, scripts/lib/csp.mjs, workspacehq/embed/hq-fx.js]
+sources: [README.md, BRAND.md, OWNER-CONTENT.md, IMPROVEMENTS.md, index.html, assets/app.js, assets/carry.js, assets/styles.css, assets/fonts-hub.css, hub/index.html, hub/app.js, hub/style.css, scripts/build-hub-art.mjs, scripts/hub-art-data.mjs, scripts/sweep.mjs, scripts/vbugs.mjs, workspacehq/index.html, workspacehq/app.js, workspacehq/style.css, workspacehq/embed/trailer.html, scripts/site.mjs, scripts/scene-data.mjs, scripts/build-sitemap.mjs, scripts/check.mjs, scripts/audit.mjs, scripts/keys.mjs, scripts/lib/csp.mjs, workspacehq/embed/hq-fx.js]
 ---
 
 # WorkspaceHQ and hub
@@ -16,9 +16,9 @@ Two published pages sit beside the studio's landing page with their own CSS and 
 | Title | `b4vetrave1er.exe // VOIDSPLUNKER.std` (hub/index.html › 7) | `WorkspaceHQ v3 — your codebase, now playable` (workspacehq/index.html › 7) |
 | Language | English (hub/index.html › 2) | English (workspacehq/index.html › 2) |
 | Themes | Paper by default and night, stored under `void-theme`; only `dark` reads as night (hub/index.html › head script) | One look: the WorkspaceHQ design system's ARCADE tokens (workspacehq/style.css › 1) |
-| Fonts | Syne, Geist and Geist Mono, self-hosted through `assets/fonts-hub.css`; the cartridge's Press Start 2P from `workspacehq/fonts/` (hub/index.html › head) | Press Start 2P and VT323, self-hosted in `workspacehq/fonts/` (workspacehq/style.css › 11) |
+| Fonts | Syne (display), Geist (text) and Geist Mono (labels), self-hosted through `assets/fonts-hub.css`; Space Mono, the old hub's, left the repository on 2026-10-28; the cartridge's Press Start 2P from `workspacehq/fonts/` (hub/index.html › head) | Press Start 2P and VT323, self-hosted in `workspacehq/fonts/` (workspacehq/style.css › 11) |
 | Scripts | `hub/app.js`, `assets/carry.js` (hub/index.html › end of body) | `workspacehq/app.js`, `assets/carry.js` (workspacehq/index.html › 334) |
-| Reached from | The home page's founder section, "Portfolio personnel ↗" (index.html › 1071); the WorkspaceHQ footer (workspacehq/index.html › 328) | The cartridge in the hub hero, the hub's Developer links and Elsewhere (hub/index.html › HERO, WHAT I MAKE, ELSEWHERE); project sheet 04 (scripts/scene-data.mjs › PROJECTS). The home footer's cartridge went on 2026-10-26, an owner decision (BRAND.md › workspacehq/, The cartridge) |
+| Reached from | The home page's founder section, "Portfolio personnel ↗" (index.html › 1022); the WorkspaceHQ footer (workspacehq/index.html › 328) | The cartridge in the hub hero, the hub's Developer links and Elsewhere (hub/index.html › HERO, WHAT I MAKE, ELSEWHERE); project sheet 04 (scripts/scene-data.mjs › PROJECTS). The home footer's cartridge went on 2026-10-26, an owner decision (BRAND.md › workspacehq/, The cartridge) |
 | Sitemap | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) |
 
 Both pages load `assets/carry.js`, so a link back to the home page keeps any `ref`, `utm_*`, `fbclid`, `gclid` or `lang` parameter the visitor arrived with (assets/carry.js › 1).
@@ -44,7 +44,9 @@ How it is built:
 - The first Tab stop is a skip link, "Skip to the work", to `#make`, past the hero; `npm run keys` requires a skip link that points inside `<main>` and skips something, and on hub/ also checks that every link and button is the topmost element at its own centre (hub/index.html › Skip link; scripts/keys.mjs › hits).
 - Two grounds sampled from the art, paper `#fcecdc` and night `#0f1420`; a ground travels with its art, so each theme shows the other as inset prints (hub/style.css › header; BRAND.md › hub/).
 - The hero's three layers are one 2752×1674 frame with paper added above and below, so the bleed and the parallax only eat paper; one scroll lag for the whole stage, the pointer separates the layers by 2 px at most, and the stage takes no pointer events (hub/index.html › HERO; hub/style.css › HERO; BRAND.md › hub/).
-- The images come from the owner's private masters through `npm run hub:art`, which checks each master's size and sha256 and fails on an oversized file or an endless loop; check block 17b holds the page to the files (scripts/build-hub-art.mjs; scripts/hub-art-data.mjs; scripts/check.mjs › block 17b).
+- Type: Syne 800 for the handle and the section headings, 700 for smaller titles, Geist for text, Geist Mono for labels, all `font-display:optional`; the first screen preloads Syne and Geist latin and Geist latin-ext, because "Kūro" needs the ū (assets/fonts-hub.css › header; hub/index.html › head; BRAND.md › The hub's faces are self-hosted too).
+- The images come from the owner's private masters (git-ignored, never deployed) through `npm run hub:art`, which checks each master's size and sha256 and fails on an oversized file or an endless loop; it is not part of `npm run build`, and the committed files in `hub/art` and `hub/loops` are its output, each named by its real width (`hero-yasser-wide-2560.webp`, `diary-4am-640.webp`); check block 17b holds the page to the files (scripts/build-hub-art.mjs; scripts/hub-art-data.mjs; scripts/check.mjs › block 17b; BRAND.md › hub/, Pipeline).
+- The gates run the hub in both palettes: the browser audit at desktop and phone size, paper and night; the contrast sweep; the visual bug scan at 1440, 1024, 768 and 390; `npm run keys` checks the viewer, the skip link and that each loop keeps its still under reduced motion (scripts/audit.mjs; scripts/sweep.mjs; scripts/vbugs.mjs; scripts/keys.mjs).
 - The three loops are animated WebP, finite (at most 5 s of motion each), settle on their poster frame, and stay stills under reduced motion (hub/app.js › 4 · loops; BRAND.md › hub/).
 - `hub/app.js` sections: 1 parallax, 2 entrance, 3 reveal, 4 loops, 5 theme pill, 6 year, 7 the diary's viewer, 8 pictures fade in, 9 the motion preference changing mid-visit and printing (hub/app.js › header).
 
@@ -102,7 +104,7 @@ Graph: [[WorkspaceHQ NES cartridge link]].
 ## Open items
 
 - **WorkspaceHQ "open source":** the repository had no licence and no README on 2026-10-13, so the pages now say the code is public on GitHub; to say "open source" again, add a LICENSE and a root README there, then restore the wording in `workspacehq/index.html` and `scripts/scene-data.mjs` (OWNER-CONTENT.md › 13). Graph: [[WorkspaceHQ open-source claim]].
-- **Hub illustrations, four review points:** the fan art left the hub with its rebuild of 2026-10-28; the owner reviews the eight diary titles (drafts), what the page says about Kūro, the hexagon "N" as a costume detail, and the glyph-like symbols on one print (OWNER-CONTENT.md › 10).
+- **Hub illustrations, four review points:** the fan art left the hub with its rebuild of 2026-10-28 (live at the next deploy) and stays in git history (OWNER-CONTENT.md › 10); the owner reviews the eight diary titles (drafts), what the page says about Kūro, the hexagon "N" as a costume detail, and the glyph-like symbols on one print (OWNER-CONTENT.md › 15).
 - **"An agency of one":** the hub footer says VOIDSPLUNKER.std is an agency of one while the home page presents a studio of four specialists; the owner chose on 2026-10-28 to keep the line on the hub, and the home page's team wording is the open half (OWNER-CONTENT.md › 14; IMPROVEMENTS.md › decision 22; hub/index.html › FOOTER). Graph: [[VOIDSPLUNKER.std (agency of one)]].
 
 See [[Open owner items]].
