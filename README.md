@@ -67,6 +67,8 @@ RELEASE.md            # release checklist, rollback, monitoring, owner-only sett
     monitor.yml       # the live site every six hours; a failure opens one issue
 ```
 
+[LICENSE](LICENSE) is CC0 1.0; [NOTICE.md](NOTICE.md) says what it covers and what it does not (the fonts, React, the clients' logos and captures, the owner's illustrations, the third-party skills).
+
 ### Deploy
 
 - **GitHub Pages is canonical:** <https://brvetr4ve1er.github.io/Numidea.tech/>.

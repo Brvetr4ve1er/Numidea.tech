@@ -54,6 +54,12 @@ export const LEGAL = {
     // Algerian ANPDP declaration status/number in each language, or false
     anpdp: { fr: null, en: null, ar: null },
     supabaseRegion: false, // the form's database is OFF (empty keys in index.html); set a region (e.g. 'eu-central-1') when it is switched on
+    /* Two campaign facts the privacy page states as the studio's (F12): true
+       prints the sentences, false drops them, null is a gap like any other
+       field (missing() lists it, nothing publishes), so the page asserts
+       neither on its own. */
+    metaAds: null,          // the studio runs Facebook/Instagram (Meta) ads → the "Si vous arrivez par une publicité" section and ", et les publicités" in the providers list
+    whatsappBusiness: null, // the number runs on the WhatsApp Business app → the ad section's last sentence (a conversation started from an ad lands there), so it prints only with metaAds true
   },
   /* Copyright of the site's text, illustrations and the CV. LICENSE in the
      repository is CC0 (public domain); a "tous droits réservés" clause would
