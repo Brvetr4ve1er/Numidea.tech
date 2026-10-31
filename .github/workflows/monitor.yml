@@ -229,7 +229,7 @@ jobs:
           status=0
           for lang in fr ar; do
             url="$SITE"
-            if [ "$lang" != fr ]; then url="$SITE?lang=$lang"; fi
+            if [ "$lang" != fr ]; then url="$SITE$lang/"; fi
             for form in mobile desktop; do
               preset=()
               if [ "$form" = desktop ]; then preset=(--preset=desktop); fi

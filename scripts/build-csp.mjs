@@ -8,7 +8,9 @@
  * EXTRA_PAGES) gets withCsp() from scripts/lib/csp.mjs: the policy meta right
  * after its viewport meta, script-src listing the sha256 of each inline
  * script. The generated pages (scene/, legal/) already come out of their
- * generators with it, so they are left to them. It runs last because every
+ * generators with it, so they are left to them; en/ and ar/ come out of
+ * build-lang.mjs with it too and get the same again here, a no-op that
+ * keeps PAGES the one list of what this covers. It runs last because every
  * earlier build step may rewrite an inline script (and bump.mjs re-applies it
  * after stamping): a hash taken before the last edit would block the script.
  */

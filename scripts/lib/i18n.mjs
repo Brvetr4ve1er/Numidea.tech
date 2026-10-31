@@ -1,27 +1,41 @@
 /**
- * The landing page's dictionaries, read from assets/app.js without running
- * the page: the I18N and EXTRA object literals are plain data, evaluated
- * here and merged the way app.js merges them. Used by check.mjs (the French
- * baked into index.html must equal I18N.fr) and by build-fr.mjs (which
- * writes it). No dependencies.
+ * The landing page's dictionaries, read from assets/i18n/{fr,en,ar}.js
+ * without running a page: each file is one `var I18N = {…};` object literal
+ * (plain data: the page's strings, the services catalog and trust strip
+ * that app.js once merged in as EXTRA), evaluated here. Used by check.mjs
+ * (the text baked into index.html, en/ and ar/ must equal the dictionary of
+ * each) and by build-lang.mjs (which writes it). No dependencies.
  */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { ROOT } from '../site.mjs';
+import { ROOT, LANGS } from '../site.mjs';
 
-function literal(src, name) {
+// one file per language, loaded by that language's page before app.js
+export const I18N_FILES = Object.fromEntries(LANGS.map((l) => [l, `assets/i18n/${l}.js`]));
+
+/* the object literal `var <name> = {…};` in src: from its "{" to the "}" of
+   the first line that closes it with "};" (at the top level of a dictionary
+   file, or indented inside a script) */
+function literal(src, name, file) {
   const start = src.indexOf(`var ${name} = {`);
-  if (start < 0) throw new Error(`assets/app.js: no "var ${name} = {"`);
-  const end = src.indexOf('\n  };', start);
-  if (end < 0) throw new Error(`assets/app.js: ${name} has no closing "  };"`);
-  return src.slice(src.indexOf('{', start), end + 4);
+  if (start < 0) throw new Error(`${file}: no "var ${name} = {"`);
+  const close = /\n[ \t]*\};/.exec(src.slice(start));
+  if (!close) throw new Error(`${file}: ${name} has no closing "};" on a line of its own`);
+  return src.slice(src.indexOf('{', start), start + close.index + close[0].length - 1);
 }
 
-export function loadDicts(app = readFileSync(join(ROOT, 'assets/app.js'), 'utf8')) {
-  const I18N = new Function(`return ${literal(app, 'I18N')}`)();
-  const EXTRA = new Function(`return ${literal(app, 'EXTRA')}`)();
-  for (const l of Object.keys(EXTRA)) Object.assign(I18N[l], EXTRA[l]);
-  return I18N;
+/* { fr, en, ar }: each language's dictionary. sources: the files' text by
+   language, for a caller that holds it (a page served from a copy, say);
+   anything else means the files in assets/i18n/. */
+export function loadDicts(sources) {
+  const given = sources && typeof sources === 'object' ? sources : {};
+  const out = {};
+  for (const l of LANGS) {
+    const file = I18N_FILES[l];
+    const src = typeof given[l] === 'string' ? given[l] : readFileSync(join(ROOT, file), 'utf8');
+    out[l] = new Function(`return ${literal(src, 'I18N', file)}`)();
+  }
+  return out;
 }
 
 /* Every element carrying data-i18n="key", with the span of its inner HTML.

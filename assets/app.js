@@ -1,7 +1,7 @@
 /* ============================================================
    NUMIDEA LABS — interactions
-   i18n (FR · EN · AR/RTL), nav, scroll progress,
-   reveal-on-scroll, mobile menu, contact form states.
+   i18n (the page's one language, assets/i18n/<lang>.js), nav, scroll
+   progress, reveal-on-scroll, mobile menu, contact form states.
    No dependencies. Respects prefers-reduced-motion.
    ============================================================ */
 (function () {
@@ -9,613 +9,17 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------------- i18n dictionary ---------------- */
-  var I18N = {
-    fr: {
-      dir: 'ltr',
-      title: 'Numidea Labs — Sites web sur mesure en français, anglais et arabe',
-      'meta.desc': 'Studio web et logiciel à Bordj Bou Arréridj, Algérie. On conçoit, on code, on livre et on suit vos sites et applications, en français, anglais et arabe.',
-      'nav.about': 'Méthode', 'nav.services': 'Services', 'nav.work': 'Projets',
-      'nav.team': 'Équipe', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
-      'hero.eyebrow': 'Studio web & logiciel · Bordj Bou Arréridj, Algérie',
-      'hero.title': 'Votre site sur mesure, <span class="swash">en français, anglais ou arabe.</span>',
-      'hero.lede': 'Entreprise immatriculée ? Avant tout paiement, on construit la page d\'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés (4 Aperçus par mois au maximum, tous clients confondus). Aux commandes : un fondateur designer-développeur et trois spécialistes, du back-end au dernier pixel. Après la mise en ligne, on assure le suivi.',
-      'hero.cta1': 'Demander mon Aperçu gratuit →', 'hero.cta2': 'Écrire sur WhatsApp',
-      'hero.plateLive': 'en ligne', 'tb.lang': 'Langues', 'tb.liveV': '4 sites clients', 'tb.live': 'En ligne', 'tb.previewV': 'Gratuit · 5 jours ouvrés', 'tb.preview': 'Aperçu', 'tb.replyV': '< 24 h ouvrées', 'tb.reply': 'Réponse', 'tb.langV': 'FR · EN · AR', 'tb.place': 'Bordj Bou Arréridj, Algérie', 'tb.studio': 'Studio',
-      'proof.kicker': '01 — Preuves',
-      'proof.line': '4 sites livrés · réponse < 24 h ouvrées · FR · EN · AR',
-      'svc.kicker': '03 — Services',
-      'svc.title': 'Ce qu\'on <em>construit pour vous.</em>',
-      'svc.outcomeLabel': 'Résultat',
-      'work.kicker': '02 — Projets',
-      'work.title': 'Réalisations <em>choisies.</em>',
-      'proj2.cat': 'Voyage · Croissance', 'proj2.desc': 'Identité, site trilingue et prise de rendez-vous visa pour une agence de voyages de Bordj Bou Arréridj.',
-      'proj3.cat': 'Artisan · Île-de-France', 'proj3.desc': 'Le site d\'un artisan de Gennevilliers en climatisation, chauffage et plomberie : une page par métier, ses réalisations chantier par chantier et une demande de devis en un seul formulaire.',
-      'proj4.cat': 'Industrie · B2B', 'proj4.desc': 'Site corporate B2B pour Bordj Steel SPA, leader de la construction métallique en Algérie — catalogue produits, références et espace recrutement.',
-      'proj6.cat': 'Voyage · Omra', 'proj6.desc': 'Une vitrine bilingue pour des voyages organisés et l\'Omra au départ de Constantine.',
-      'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'Une marque fictive de matériel gaming et sa boutique en ligne, conçues de A à Z comme démo de portfolio.',
-      'clients.h': 'Ils nous ont confié leur site',
-      'proj4.gain': 'Un acheteur trouve la bonne gamme et ses caractéristiques techniques sans appeler.', 'proj2.gain': 'Un voyageur estime son budget et envoie une demande complète sur WhatsApp.',
-      'proj3.gain': 'En cas de panne, un client appelle d\'un simple appui depuis la page du métier.', 'proj6.gain': 'Un pèlerin compare les forfaits Omra par prix et distance du Haram, puis écrit sur WhatsApp.',
-      'work.gainMore': ' — le détail sur la planche',
-      'work.lead': 'Les sites de nos clients, à visiter vous-même, et une démo de portfolio.',
-      'work.live': 'Voir le site →', 'work.sheet': 'Voir la planche →', 'work.concept': 'Démo portfolio',
-      'scene.kicker': '◆ PLANCHES DE PROJET', 'scene.title': 'Nos projets, livrable par livrable.',
-      'scene.lead': 'Les pages, le mobile et le système visuel de nos projets, capturés sur les sites en ligne.',
-      'scene.cta': 'Ouvrir les planches →',
-      'founder.kicker': '05 — Équipe & fondateur', 'founder.title': 'Le studio a un <em>visage.</em>',
-      'founder.lead': 'Derrière Numidea : un fondateur qui conçoit, code et livre, et trois spécialistes autour de lui.',
-      'founder.role': 'Designer graphique & développeur web · Fondateur', 'founder.years': '6 ans', 'founder.city': 'Bordj Bou Arréridj',
-      'founder.bio': 'Six ans à concevoir des identités, coder des interfaces et livrer des produits, de la marque jusqu\'à la mise en ligne. Je transforme votre brief en produit fini, et je reste à vos côtés après le lancement.',
-      'founder.cvBtn': 'Voir le parcours ↴', 'founder.cvClose': 'Masquer le parcours ↑', 'founder.portfolio': 'Portfolio personnel ↗',
-      'founder.expLabel': 'Parcours', 'founder.skillsLabel': 'Compétences', 'founder.eduLabel': 'Formation',
-      'founder.edu': 'Informatique — Université Mohamed El Bachir El Ibrahimi · 2018–2024',
-      'founder.download': 'Télécharger le CV (PDF) ↓',
-      'fx1': 'Designer graphique', 'fx2': 'Designer graphique & développeur web, en freelance', 'fx3': 'Développeur web & social media', 'fx4': 'Designer graphique & web', 'fx5': 'Créateur de contenu & vidéo',
-      'fx1.when': "Mai 2026 — aujourd'hui", 'fx2.when': "2019 — aujourd'hui", 'fx3.when': 'Fév. – mai 2026', 'fx4.when': 'Août 2025 – fév. 2026', 'fx5.when': 'Mars – juil. 2024',
-      'fx1.what': "Visuels et supports de communication pour une plateforme internationale de mobilité ; déclinaison de l'identité sur les campagnes et les réseaux.",
-      'fx2.what': 'Sites vitrines et landing pages orientés conversion ; identités visuelles, affiches et pochettes ; direction artistique de campagnes NFT et de branding musical.',
-      'fx3.what': "Le site complet de l'agence, la refonte visuelle de la marque et sa stratégie réseaux sociaux.",
-      'fx4.what': "Refonte de l'identité (logo, charte) et des supports print, puis un site responsive livré de A à Z.",
-      'fx5.what': "Vidéos courtes pour des événements et des campagnes communautaires ; animation d'ateliers créatifs.",
-      'fs1.h': 'Design & identité', 'fs1': 'Branding · identité visuelle · illustration · direction artistique UI/UX · photo & retouche',
-      'fs2.h': 'Web & front-end', 'fs2': 'HTML / CSS / JS · React · sites vitrines · landing pages · CMS · SEO · responsive',
-      'fs3.h': 'Stratégie & contenu', 'fs3': 'Réseaux sociaux · rédaction créative · intégration IA · automatisation · gestion de projet',
-      'founder.skillsNote': "Environ 20 % de temps de production en moins grâce à l'intégration d'outils IA. En cours d'apprentissage : motion design et montage vidéo.",
-      'founder.certs': 'Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D',
-      'pl.vista': 'Pl.\u00a0I — Les Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arc de Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Monnaies numides', 'pl.light': 'Pl.\u00a0IV — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0V — Le Grand Erg',
-      'ui.top': 'Haut de page', 'tag.brand': 'Marque', 'tag.corporate': 'Institutionnel', 'tag.funnel': 'Tunnel de vente', 'tag.static': 'Site vitrine', 'tag.commerce': 'Commerce', 'tag.identity': 'Identité', 'tag.designSystems': 'Design systems', 'tag.motion': 'Animation', 'tag.maps': 'Cartes', 'tag.scoring': 'Scoring', 'tag.strategy': 'Stratégie', 'tag.funnels': 'Tunnels de vente', 'tag.audits': 'Audits', 'tag.seo': 'SEO', 'tag.apis': 'API', 'mk.srcRange': '(Confirmé → Agence)', 'footer.legal': 'Mentions légales', 'footer.privacy': 'Confidentialité', 'work.voicesH': "Ce qu'en disent nos clients", 'mbar.aria': 'Contact rapide', 'mbar.cta': 'Démarrer un projet', 'form.note': 'Le bouton ouvre votre messagerie avec votre message déjà rédigé : il ne vous reste qu\'à l\'envoyer. Ce site ne conserve pas votre message.', 'ui.skip': 'Aller au contenu', 'ui.navPrimary': 'Navigation principale', 'ui.theme': 'Thème', 'ui.lang': 'Langue', 'footer.navAria': 'Pied de page', 'hero.plateRail': "Projets à l'écran", 'hero.platePause': 'Mettre la rotation en pause', 'work.livePill': 'En ligne', 'work.bilingual': 'Bilingue', 'proj4.alt': 'Aperçu du site Bordj Steel', 'proj2.alt': 'Aperçu du site Alliance Travel', 'proj3.alt': 'Aperçu du site AlmaFlowClim', 'proj6.alt': 'Aperçu du site Nomara Voyages', 'proj7.alt': 'Aperçu du site Glaive Store', 'ui.menu': 'Menu', 'ui.close': 'Fermer', 'ui.sections': 'Sections', 'founder.arPill': 'AR langue maternelle', 'founder.linksAria': 'Profils du fondateur',
-      'team.h': "Avec lui, l'équipe",
-      'team.dFn': 'Spécialiste données', 'team.dDo': "Pipelines, scraping et la couche d'intelligence.",
-      'team.sFn': 'Ventes & partenariats', 'team.sDo': "Premier contact : traduit l'idée en périmètre.",
-      'team.tFn': 'Référent technique', 'team.tDo': 'Veille à la qualité de ce qui est livré et tient le client informé.',
-      'faq.kicker': '06 — FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
-      'faq.lead': 'Ce qu\'on nous demande avant de se lancer, et nos réponses sans détour.',
-      'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Cela dépend du périmètre : comptez 2 à 4 semaines pour un site vitrine, 3 à 7 pour un site sur mesure, 8 à 16 pour une application web. Le délai ferme est fixé dès que le projet est cadré ensemble.',
-      'faq2.q': 'C\'est combien ?', 'faq2.a': 'Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="#apercu">l\'Aperçu</a>.',
-      'faq3.q': 'Vous travaillez en quelles langues ?', 'faq3.a': 'Français, arabe et anglais — à l\'oral, à l\'écrit, et dans le produit livré. Ce site même est trilingue, avec une expérience arabe (RTL) pensée nativement.',
-      'faq4.q': 'Et après le lancement ?', 'faq4.a': 'On reste. Chaque formule inclut 1, 3 ou 6 mois de support, et on vous répond sous 24 h ouvrées. Ensuite, la maintenance est en option : au mois, sans engagement de durée (voir les tarifs). Pas de « bonne chance » le jour de la mise en ligne.',
-      'faq5.q': 'Travaillez-vous à distance ?', 'faq5.a': 'Oui. On est basés à Bordj Bou Arréridj, mais on livre partout — y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre projet.',
-      'faq6.q': 'Qu\'est-ce qui vous différencie d\'une agence ?', 'faq6.a': 'Pas d\'intermédiaire : une seule équipe cadre, code et livre votre projet, du design au déploiement.',
-      'contact.kicker': '07 — Contact',
-      'contact.title': 'Parlons de <em>votre projet.</em>',
-      'contact.sub': 'Dites-nous ce qu\'il vous faut : une urgence à traiter, quelque chose à corriger, une échéance à tenir. En français, anglais ou arabe.',
-      'contact.chStudio': 'Studio', 'contact.chReply': 'Réponse',
-      'contact.vStudio': 'Bordj Bou Arréridj · Algérie', 'contact.vReply': '< 24 h ouvrées · FR · EN · <span lang="ar">ع</span>',
-      'form.name': 'Nom', 'form.namePh': 'Votre nom',
-      'form.email': 'Email', 'form.emailPh': 'vous@entreprise.com',
-      'form.message': 'Message', 'form.messagePh': 'Qu\'est-ce qu\'on construit ?',
-      'form.send': 'Démarrer un projet →',
-      'form.errName': 'Ajoutez un nom pour qu\'on sache à qui parler.',
-      'form.errEmail': 'Ajoutez un email pour qu\'on puisse répondre.',
-      'form.errEmailValid': 'Cet email a l\'air incomplet — vérifiez-le.',
-      'form.errMsg': 'Dites-nous une ligne sur le projet.',
-      'form.success': 'Votre messagerie devrait s\'ouvrir avec le message prêt — il ne reste qu\'à l\'envoyer.',
-      'form.successAlt': 'Rien ne s\'est ouvert ? Écrivez-nous directement :',
-      'form.edit': 'Revoir mon message',
-      'form.copy': 'Copier mon message',
-      'form.copied': 'Message copié. Collez-le dans un nouvel email, à l\'adresse ci-dessus.',
-      'form.copyFail': 'La copie n\'a pas fonctionné : votre message est sélectionné, copiez-le vous-même.',
-      'footer.rights': '© 2026 Numidea Labs',
-      'footer.tag': 'Enraciné en Numidie · bâti sur des idées'
-    },
-    en: {
-      dir: 'ltr',
-      title: 'Numidea Labs — Custom websites in English, French and Arabic',
-      'meta.desc': 'Web and software studio in Bordj Bou Arréridj, Algeria. We design, build, launch and support websites and web apps in English, French and Arabic.',
-      'nav.about': 'Process', 'nav.services': 'Services', 'nav.work': 'Work',
-      'nav.team': 'Team', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
-      'hero.eyebrow': 'Web & software studio · Bordj Bou Arréridj, Algeria',
-      'hero.title': 'Custom websites, <span class="swash">in English, French and Arabic.</span>',
-      'hero.lede': 'Registered business? Before you pay anything, we build your new site\'s homepage with your own content in 5 working days (at most 4 Previews a month, across all clients). Behind it: a designer-developer founder and three specialists, from the back-end to the last pixel, with support after launch.',
-      'hero.cta1': 'Request my free Preview →', 'hero.cta2': 'Chat on WhatsApp',
-      'hero.plateLive': 'live', 'tb.lang': 'Languages', 'tb.liveV': '4 client sites', 'tb.live': 'Live', 'tb.previewV': 'Free · 5 working days', 'tb.preview': 'Preview', 'tb.replyV': '< 24 working hours', 'tb.reply': 'Reply', 'tb.langV': 'EN · FR · AR', 'tb.place': 'Bordj Bou Arréridj, Algeria', 'tb.studio': 'Studio',
-      'proof.kicker': '01 — Proof',
-      'proof.line': '4 sites delivered · reply < 24 working hours · FR · EN · AR',
-      'svc.kicker': '03 — Services',
-      'svc.title': 'What we <em>build for you.</em>',
-      'svc.outcomeLabel': 'Outcome',
-      'work.kicker': '02 — Work',
-      'work.title': 'Selected <em>work.</em>',
-      'proj2.cat': 'Travel · Growth', 'proj2.desc': 'Brand identity and a trilingual website for a travel agency in Bordj Bou Arréridj, with a WhatsApp quote calculator and a visa-appointment service.',
-      'proj3.cat': 'Contractor · Île-de-France', 'proj3.desc': 'The website of an air-conditioning, heating and plumbing firm in Gennevilliers, near Paris: one page per trade, a page of past jobs and a one-form quote request.',
-      'proj4.cat': 'Industrial · B2B', 'proj4.desc': 'The B2B corporate site for Bordj Steel SPA, Algeria\'s structural-steel leader — product catalogue, references and a careers section.',
-      'proj6.cat': 'Travel · Umrah', 'proj6.desc': 'A bilingual storefront for package tours and Umrah trips departing from Constantine.',
-      'proj7.cat': 'Commerce · Gaming', 'proj7.desc': 'A fictional gaming-gear brand and online store, designed end to end as a portfolio demo.',
-      'clients.h': 'They trusted us with their websites',
-      'proj4.gain': 'A buyer finds the right product line and its technical data without calling.', 'proj2.gain': 'A traveller gets an estimate for their trip and sends a complete request on WhatsApp.',
-      'proj3.gain': 'If something breaks down, a customer calls in one tap from the page for that trade.', 'proj6.gain': 'A pilgrim compares Umrah packages by price and distance from the Haram, then messages on WhatsApp.',
-      'work.gainMore': ' — more on the project sheet',
-      'work.lead': 'Our clients\' sites, to open yourself — plus a portfolio demo.',
-      'work.live': 'Visit the site →', 'work.sheet': 'See the sheet →', 'work.concept': 'Portfolio demo',
-      'scene.kicker': '◆ PROJECT SHEETS', 'scene.title': 'Our projects, piece by piece.',
-      'scene.lead': 'Each sheet shows a project\'s key pages, its mobile version and its visual system — every screenshot taken from the live site.',
-      'scene.cta': 'Open the project sheets →',
-      'founder.kicker': '05 — Team & founder', 'founder.title': 'The studio has a <em>face.</em>',
-      'founder.lead': 'Behind Numidea: a founder who designs, codes and delivers, with three specialists around him.',
-      'founder.role': 'Graphic designer & web developer · Founder', 'founder.years': '6 yrs', 'founder.city': 'Bordj Bou Arréridj',
-      'founder.bio': 'Six years designing identities, coding interfaces and shipping products — brand to front-end to cloud. I turn the brief into the build, and I stay once it\'s live.',
-      'founder.cvBtn': 'View the track record ↴', 'founder.cvClose': 'Hide the track record ↑', 'founder.portfolio': 'Personal portfolio ↗',
-      'founder.expLabel': 'Experience', 'founder.skillsLabel': 'Skills', 'founder.eduLabel': 'Education',
-      'founder.edu': 'Computer Science — Univ. Mohamed El Bachir El Ibrahimi · 2018–2024',
-      'founder.download': 'Download résumé (PDF) ↓',
-      'fx1': 'Graphic designer', 'fx2': 'Freelance graphic designer & web developer', 'fx3': 'Web developer & social media manager', 'fx4': 'Graphic & web designer', 'fx5': 'Content & video creator',
-      'fx1.when': 'May 2026 — present', 'fx2.when': '2019 — present', 'fx3.when': 'Feb – May 2026', 'fx4.when': 'Aug 2025 – Feb 2026', 'fx5.when': 'Mar – Jul 2024',
-      'fx1.what': 'Visuals and communication material for an international mobility platform; carrying the brand identity across campaigns and social.',
-      'fx2.what': 'Conversion-focused showcase sites and landing pages; visual identities, posters and album covers; art direction for NFT campaigns and musician branding.',
-      'fx3.what': "The agency's full website, a visual refresh of the brand and its social media strategy.",
-      'fx4.what': 'A redesigned identity (logo, guidelines) and print collateral, then a responsive website delivered end to end.',
-      'fx5.what': 'Short-form video for events and community campaigns; running creative workshops.',
-      'fs1.h': 'Design & identity', 'fs1': 'Branding · visual identity · illustration · UI/UX art direction · photo & retouching',
-      'fs2.h': 'Web & front-end', 'fs2': 'HTML / CSS / JS · React · showcase sites · landing pages · CMS · SEO · responsive',
-      'fs3.h': 'Strategy & content', 'fs3': 'Social media · creative writing · AI integration · automation · project management',
-      'founder.skillsNote': 'About 20% less production time from integrating AI tools. Currently learning: motion design and video editing.',
-      'founder.certs': 'Certifications: Duolingo English Test · Digital design (Artiland.Studio) · 3D motion design',
-      'pl.vista': 'Pl.\u00a0I — The Bibans · Bordj Bou Arréridj', 'pl.arch': 'Pl.\u00a0II — Arch of Trajan · Timgad', 'pl.coins': 'Pl.\u00a0III — Numidian coins', 'pl.light': 'Pl.\u00a0IV — Cap Carbon · Béjaïa', 'pl.dunes': 'Pl.\u00a0V — The Grand Erg',
-      'ui.top': 'Back to top', 'tag.brand': 'Brand', 'tag.corporate': 'Corporate', 'tag.funnel': 'Funnel', 'tag.static': 'Showcase site', 'tag.commerce': 'Commerce', 'tag.identity': 'Identity', 'tag.designSystems': 'Design systems', 'tag.motion': 'Motion', 'tag.maps': 'Maps', 'tag.scoring': 'Scoring', 'tag.strategy': 'Strategy', 'tag.funnels': 'Funnels', 'tag.audits': 'Audits', 'tag.seo': 'SEO', 'tag.apis': 'APIs', 'mk.srcRange': '(Experienced → Agency)', 'footer.legal': 'Legal notice', 'footer.privacy': 'Privacy', 'work.voicesH': 'What clients say', 'mbar.aria': 'Quick contact', 'mbar.cta': 'Start a project', 'form.note': 'Sending opens your mail app with the message ready. This site does not keep your message.', 'ui.skip': 'Skip to content', 'ui.navPrimary': 'Main navigation', 'ui.theme': 'Theme', 'ui.lang': 'Language', 'footer.navAria': 'Footer', 'hero.plateRail': 'Featured projects', 'hero.platePause': 'Pause the rotation', 'work.livePill': 'Live', 'work.bilingual': 'Bilingual', 'proj4.alt': 'Bordj Steel website preview', 'proj2.alt': 'Alliance Travel website preview', 'proj3.alt': 'AlmaFlowClim website preview', 'proj6.alt': 'Nomara Voyages website preview', 'proj7.alt': 'Glaive Store website preview', 'ui.menu': 'Menu', 'ui.close': 'Close', 'ui.sections': 'Sections', 'founder.arPill': 'AR native', 'founder.linksAria': "Founder's profiles",
-      'team.h': 'Alongside him, the team',
-      'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
-      'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
-      'team.tFn': 'Technical representative', 'team.tDo': 'Keeps the build honest and the client informed.',
-      'faq.kicker': '06 — FAQ', 'faq.title': 'The questions <em>that matter.</em>',
-      'faq.lead': 'What people ask before they start — answered straight.',
-      'faq1.q': 'How long does a project take?', 'faq1.a': 'It depends on the scope: 2 to 4 weeks for a showcase site, 3 to 7 for a custom site and 8 to 16 for a web application. You get a firm timeline as soon as we have agreed the scope together.',
-      'faq2.q': 'What does it cost?', 'faq2.a': 'Our packages start at 90,000 DZD for a showcase site (see Pricing for euros and dollars), and every project gets one fixed price once the scope is clear — no surprise fees. See also <a href="#apercu">the Preview</a>.',
-      'faq3.q': 'What languages do you work in?', 'faq3.a': 'French, Arabic and English — spoken, written, and in everything we deliver. This very site is trilingual, with a natively mirrored Arabic (right-to-left) experience.',
-      'faq4.q': 'What happens after launch?', 'faq4.a': 'We stay. Every package includes 1, 3 or 6 months of support, and we reply within 24 working hours. After that, maintenance is optional: monthly, with no lock-in (see Pricing). No “good luck” on launch day.',
-      'faq5.q': 'Do you work remotely?', 'faq5.a': 'Yes. We\'re based in Bordj Bou Arréridj, but we work with clients anywhere — including in France. Distance doesn\'t change your direct line to the person building your project.',
-      'faq6.q': 'How are you different from an agency?', 'faq6.a': 'No middleman: one team scopes, codes and ships your project, design to deploy.',
-      'contact.kicker': '07 — Contact',
-      'contact.title': 'Let\'s talk about <em>your project.</em>',
-      'contact.sub': 'Tell us what you need: an urgent job, something that needs fixing, a deadline to meet. In English, French or Arabic.',
-      'contact.chStudio': 'Studio', 'contact.chReply': 'Reply',
-      'contact.vStudio': 'Bordj Bou Arréridj · Algeria', 'contact.vReply': '< 24 working hours · FR · EN · AR',
-      'form.name': 'Name', 'form.namePh': 'Your name',
-      'form.email': 'Email', 'form.emailPh': 'you@company.com',
-      'form.message': 'Message', 'form.messagePh': 'What are we building?',
-      'form.send': 'Start a project →',
-      'form.errName': 'Add a name so we know who we\'re talking to.',
-      'form.errEmail': 'Add an email so we can reply.',
-      'form.errEmailValid': 'That email looks incomplete — check it.',
-      'form.errMsg': 'Give us one line about the project.',
-      'form.success': 'Your mail app should open with the message ready — all that is left is to send it.',
-      'form.successAlt': 'Nothing opened? Write to us directly:',
-      'form.edit': 'Back to my message',
-      'form.copy': 'Copy my message',
-      'form.copied': 'Message copied. Paste it into a new email to the address above.',
-      'form.copyFail': 'Copying did not work: your message is selected, copy it yourself.',
-      'footer.rights': '© 2026 Numidea Labs',
-      'footer.tag': 'Rooted in Numidia · built on ideas'
-    },
-    /* Arabic: written for this site, pending a native speaker's review (see
-       OWNER-CONTENT.md). Conventions: Western digits, forward arrows ←,
-       singular "you", brand names in Latin script except نوميديا in prose. */
-    ar: {
-      dir: 'rtl',
-      title: 'Numidea Labs — مواقع ويب مخصّصة بالعربية والفرنسية والإنجليزية',
-      'meta.desc': 'استوديو ويب وبرمجيات في برج بوعريريج، الجزائر. نصمّم ونبرمج ونطلق مواقع وتطبيقات الويب ونتابعها بعد الإطلاق، بالعربية والفرنسية والإنجليزية.',
-      'nav.about': 'المنهج', 'nav.services': 'الخدمات', 'nav.work': 'الأعمال',
-      'nav.team': 'الفريق', 'nav.faq': 'الأسئلة', 'nav.contact': 'تواصل',
-      'hero.eyebrow': 'استوديو ويب وبرمجيات · برج بوعريريج، الجزائر',
-      'hero.title': 'موقعك المخصّص، <span class="swash">بالعربية والفرنسية والإنجليزية.</span>',
-      'hero.lede': 'شركة مسجّلة؟ قبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك أنت خلال 5 أيام عمل (4 معاينات في الشهر كحدّ أقصى لجميع العملاء). ووراء ذلك مؤسّس مصمّم ومطوّر وثلاثة مختصّين، من الخوادم إلى أدقّ تفاصيل الواجهة، مع متابعة بعد الإطلاق.',
-      'hero.cta1': 'اطلب معاينتك المجانية ←', 'hero.cta2': 'راسلنا عبر واتساب',
-      'hero.plateLive': 'على الإنترنت', 'tb.lang': 'اللغات', 'tb.liveV': '4 مواقع لعملائنا', 'tb.live': 'على الإنترنت', 'tb.previewV': 'مجّانية · 5 أيام عمل', 'tb.preview': 'المعاينة', 'tb.replyV': 'أقل من 24 ساعة عمل', 'tb.reply': 'الردّ', 'tb.langV': 'العربية · الفرنسية · الإنجليزية', 'tb.place': 'برج بوعريريج، الجزائر', 'tb.studio': 'الاستوديو',
-      'proof.kicker': '01 — الإثبات',
-      'proof.line': '4 مواقع مُسلَّمة · الردّ في أقل من 24 ساعة عمل · بالفرنسية والإنجليزية والعربية',
-      'svc.kicker': '03 — الخدمات',
-      'svc.title': 'ما <em>نبنيه لك.</em>',
-      'svc.outcomeLabel': 'النتيجة',
-      'work.kicker': '02 — الأعمال',
-      'work.title': 'أعمال <em>مختارة.</em>',
-      'proj2.cat': 'سفر · نموّ', 'proj2.desc': 'هوية بصرية وموقع ثلاثي اللغة ومسار تسويقي لوكالة سفر في برج بوعريريج، مع خدمة لحجز مواعيد التأشيرة.',
-      'proj3.cat': 'حِرفي · إيل دو فرانس', 'proj3.desc': 'موقع حِرفي في التكييف والتدفئة والسباكة بضواحي باريس: صفحة لكل خدمة، وصفحة لأعماله المنجزة، وطلب عرض سعر عبر استمارة واحدة.',
-      'proj4.cat': 'صناعة · B2B', 'proj4.desc': 'الموقع المؤسسي B2B لـ Bordj Steel SPA، رائدة الإنشاءات المعدنية في الجزائر — كتالوج المنتجات والمراجع وقسم التوظيف.',
-      'proj6.cat': 'سفر · عمرة', 'proj6.desc': 'واجهة ثنائية اللغة لرحلات منظَّمة والعمرة انطلاقاً من قسنطينة.',
-      'proj7.cat': 'تجارة · ألعاب', 'proj7.desc': 'متجر إلكتروني لعلامة خيالية لعتاد الألعاب، بهوية بصرية جريئة، صمّمناه من الألف إلى الياء ليكون عرضاً تجريبياً.',
-      'clients.h': 'وثقوا بنا في إنجاز مواقعهم',
-      'proj4.gain': 'يجد المشتري خط الإنتاج المناسب وخصائصه التقنية دون أن يتصل.', 'proj2.gain': 'يقدّر المسافر سعر رحلته ويرسل عبر واتساب طلب حجز كاملاً.',
-      'proj3.gain': 'عند العطل، يتصل العميل بلمسة واحدة من صفحة التخصّص المعني.', 'proj6.gain': 'يقارن المعتمر باقات العمرة حسب السعر والمسافة عن الحرم، ثم يراسل الوكالة عبر واتساب.',
-      'work.gainMore': ' — التفاصيل في لوحة المشروع',
-      'work.lead': 'مواقع عملائنا، تصفّحها بنفسك، إضافةً إلى عرض تجريبي.',
-      'work.live': 'زيارة الموقع ←', 'work.sheet': 'اعرض لوحة المشروع ←', 'work.concept': 'عرض تجريبي',
-      'scene.kicker': '◆ اللوحات · بنداً ببند', 'scene.title': 'أعمالنا، مشروعاً بمشروع.',
-      'scene.lead': 'الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع كما هي على الإنترنت.',
-      'scene.cta': 'افتح لوحات المشاريع ←',
-      'founder.kicker': '05 — الفريق والمؤسّس', 'founder.title': 'للاستوديو <em>وجه.</em>',
-      'founder.lead': 'خلف Numidea Labs: مؤسّس يصمّم ويبرمج ويُنجز، ومعه ثلاثة مختصّين.',
-      'founder.role': 'مصمّم غرافيك ومطوّر ويب · المؤسّس', 'founder.years': '6 سنوات', 'founder.city': 'برج بوعريريج',
-      'founder.bio': 'ستّ سنوات في تصميم الهويّات وبرمجة الواجهات وتسليم المنتجات — من العلامة إلى الواجهة إلى السحابة. أحوّل الفكرة إلى منتج، وأبقى بعد الإطلاق.',
-      'founder.cvBtn': 'عرض المسار <span class="arr">↴</span>', 'founder.cvClose': 'إخفاء المسار ↑', 'founder.portfolio': 'المعرض الشخصي <span class="arr">↗</span>',
-      'founder.expLabel': 'المسار', 'founder.skillsLabel': 'المهارات', 'founder.eduLabel': 'التعليم',
-      'founder.edu': 'علوم الحاسوب — جامعة محمد البشير الإبراهيمي · 2018–2024',
-      'founder.download': 'تحميل السيرة (PDF) ↓',
-      'fx1': 'مصمّم غرافيك', 'fx2': 'مصمّم غرافيك ومطوّر ويب، مستقل', 'fx3': 'مطوّر ويب ومسيّر شبكات التواصل', 'fx4': 'مصمّم غرافيك وويب', 'fx5': 'صانع محتوى وفيديو',
-      'fx1.when': 'ماي 2026 — حالياً', 'fx2.when': '2019 — حالياً', 'fx3.when': 'فيفري – ماي 2026', 'fx4.when': 'أوت 2025 – فيفري 2026', 'fx5.when': 'مارس – جويلية 2024',
-      'fx1.what': 'تصاميم ومواد تواصل لمنصّة تنقّل دولية، وتطبيق هويّة العلامة على الحملات وشبكات التواصل.',
-      'fx2.what': 'مواقع تعريفية وصفحات هبوط موجّهة للتحويل؛ هويّات بصرية وملصقات وأغلفة ألبومات؛ إدارة فنية لحملات NFT ولعلامات موسيقيين.',
-      'fx3.what': 'الموقع الكامل للوكالة، وتجديد الهويّة البصرية للعلامة واستراتيجيتها على شبكات التواصل.',
-      'fx4.what': 'إعادة تصميم الهويّة (الشعار والميثاق) والمطبوعات، ثم موقع متجاوب سُلِّم من الألف إلى الياء.',
-      'fx5.what': 'فيديوهات قصيرة للفعاليات والحملات المجتمعية، وتنشيط ورشات إبداعية.',
-      'fs1.h': 'التصميم والهويّة', 'fs1': 'العلامة التجارية · الهويّة البصرية · الرسم الرقمي · الإدارة الفنية لواجهات المستخدم · التصوير والمعالجة',
-      'fs2.h': 'الويب والواجهات', 'fs2': 'HTML / CSS / JS · React · مواقع تعريفية · صفحات هبوط · أنظمة إدارة المحتوى · تحسين محرّكات البحث (SEO) · تصميم متجاوب',
-      'fs3.h': 'الاستراتيجية والمحتوى', 'fs3': 'شبكات التواصل · الكتابة الإبداعية · دمج الذكاء الاصطناعي · الأتمتة · إدارة المشاريع',
-      'founder.skillsNote': 'تقليص وقت الإنتاج بنحو 20٪ بفضل دمج أدوات الذكاء الاصطناعي. قيد التعلّم: التصميم الحركي والمونتاج.',
-      'founder.certs': 'الشهادات: Duolingo English Test · التصميم الرقمي (Artiland.Studio) · التصميم الحركي ثلاثي الأبعاد',
-      'pl.vista': 'لوحة 1 — جبال البيبان · برج بوعريريج', 'pl.arch': 'لوحة 2 — قوس تراجان · تيمقاد', 'pl.coins': 'لوحة 3 — نقود نوميدية', 'pl.light': 'لوحة 4 — رأس كاربون · بجاية', 'pl.dunes': 'لوحة 5 — العرق الكبير',
-      'ui.top': 'إلى الأعلى', 'tag.brand': 'هوية', 'tag.corporate': 'مؤسّسي', 'tag.funnel': 'مسار تسويقي', 'tag.static': 'موقع تعريفي', 'tag.commerce': 'تجارة', 'tag.identity': 'هوية بصرية', 'tag.designSystems': 'أنظمة تصميم', 'tag.motion': 'حركة', 'tag.maps': 'خرائط', 'tag.scoring': 'تقييم', 'tag.strategy': 'استراتيجية', 'tag.funnels': 'مسارات تسويقية', 'tag.audits': 'تدقيق', 'tag.seo': 'تحسين محرّكات البحث (SEO)', 'tag.apis': 'واجهات برمجية', 'mk.srcRange': '(من المستقل المتمرّس ← إلى الوكالة)', 'footer.legal': 'الإشعار القانوني', 'footer.privacy': 'الخصوصية', 'work.voicesH': 'ما يقوله عملاؤنا', 'mbar.aria': 'تواصل سريع', 'mbar.cta': 'ابدأ مشروعاً', 'form.note': 'يفتح الإرسال تطبيق البريد لديك والرسالة جاهزة. لا يحتفظ هذا الموقع برسالتك.', 'ui.skip': 'انتقل إلى المحتوى', 'ui.navPrimary': 'التنقّل الرئيسي', 'ui.theme': 'المظهر', 'ui.lang': 'اللغة', 'footer.navAria': 'تذييل الصفحة', 'hero.plateRail': 'المشاريع المعروضة', 'hero.platePause': 'إيقاف التدوير مؤقتاً', 'work.livePill': 'على الإنترنت', 'work.bilingual': 'ثنائي اللغة', 'proj4.alt': 'معاينة موقع Bordj Steel', 'proj2.alt': 'معاينة موقع Alliance Travel', 'proj3.alt': 'معاينة موقع AlmaFlowClim', 'proj6.alt': 'معاينة موقع Nomara Voyages', 'proj7.alt': 'معاينة موقع Glaive Store', 'ui.menu': 'القائمة', 'ui.close': 'إغلاق', 'ui.sections': 'الأقسام', 'founder.arPill': 'العربية لغة أم', 'founder.linksAria': 'حسابات المؤسّس',
-      'team.h': 'وإلى جانبه، الفريق',
-      'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
-      'team.sFn': 'المبيعات والشراكات', 'team.sDo': 'أول تواصل: ترجمة الفكرة إلى نطاق عمل.',
-      'team.tFn': 'مسؤول المتابعة التقنية', 'team.tDo': 'متابعة جودة ما نُسلّمه، وإطلاع العميل على سير العمل أولاً بأول.',
-      'faq.kicker': '06 — الأسئلة', 'faq.title': 'الأسئلة <em>التي تهمّ.</em>',
-      'faq.lead': 'ما يُسأل قبل البدء — بإجابات صريحة.',
-      'faq1.q': 'كم يستغرق الإنجاز؟', 'faq1.a': 'يعتمد على حجم المشروع: من 2 إلى 4 أسابيع للموقع التعريفي، ومن 3 إلى 7 أسابيع للموقع المخصّص، ومن 8 إلى 16 أسبوعاً لتطبيق الويب. ونحدّد معك موعد التسليم النهائي بمجرّد أن نضبط نطاق العمل معاً.',
-      'faq2.q': 'كم التكلفة؟', 'faq2.a': 'أسعارنا منشورة في قسم الأسعار: تبدأ باقاتنا من 90 000 دج للموقع التعريفي (وبالأورو والدولار في القسم نفسه)، ونحدّد سعراً ثابتاً بعد توضيح نطاق العمل — دون مفاجآت. انظر أيضاً <a href="#apercu">المعاينة</a>.',
-      'faq3.q': 'بأي لغات تعملون؟', 'faq3.a': 'الفرنسية والعربية والإنجليزية — حديثاً وكتابةً وفي المنتَج المُسلَّم. هذا الموقع نفسه ثلاثي اللغات، بنسخة عربية مصمّمة من الأساس للكتابة من اليمين إلى اليسار.',
-      'faq4.q': 'وماذا بعد الإطلاق؟', 'faq4.a': 'نبقى معك. كل باقة تشمل دعماً لمدّة شهر أو 3 أو 6 أشهر، ونردّ عليك خلال 24 ساعة عمل. بعدها تصبح الصيانة اختيارية: اشتراك شهري دون التزام بمدّة (انظر الأسعار). لا «حظّاً موفقاً» يوم الإطلاق.',
-      'faq5.q': 'هل تعملون عن بُعد؟', 'faq5.a': 'نعم. مقرّنا في برج بوعريريج، لكنّنا نعمل مع عملاء في كل مكان، ومنهم عملاء في فرنسا. والبُعد لا يغيّر شيئاً في تواصلك المباشر مع من يبني مشروعك.',
-      'faq6.q': 'ما الذي يميّزكم عن وكالة؟', 'faq6.a': 'لا وسيط: فريق واحد يحدّد نطاق مشروعك ويبرمجه ويُسلّمه، من التصميم إلى النشر.',
-      'contact.kicker': '07 — تواصل',
-      'contact.title': 'لنتحدّث عن <em>مشروعك.</em>',
-      'contact.sub': 'أخبرنا بما تريد إنجازه: أمر عاجل، أو موقع يحتاج إلى إصلاح، أو موعد نهائي يقترب. بالفرنسية أو الإنجليزية أو العربية.',
-      'contact.chStudio': 'الاستوديو', 'contact.chReply': 'الردّ',
-      'contact.vStudio': 'برج بوعريريج · الجزائر', 'contact.vReply': 'أقل من 24 ساعة عمل · بالفرنسية والإنجليزية والعربية',
-      'form.name': 'الاسم', 'form.namePh': 'اسمك',
-      'form.email': 'البريد', 'form.emailPh': 'you@company.com',
-      'form.message': 'الرسالة', 'form.messagePh': 'ماذا سنبني؟',
-      'form.send': 'ابدأ مشروعاً ←',
-      'form.errName': 'أدخِل اسمك لنعرف مع من نتحدّث.',
-      'form.errEmail': 'أدخِل بريدك الإلكتروني لنتمكّن من الردّ عليك.',
-      'form.errEmailValid': 'يبدو هذا البريد ناقصاً — تحقّق منه.',
-      'form.errMsg': 'أخبرنا بسطر عن المشروع.',
-      'form.success': 'من المفترض أن يفتح تطبيق البريد والرسالة جاهزة — لم يبقَ سوى إرسالها.',
-      'form.successAlt': 'لم يفتح شيء؟ راسلنا مباشرة:',
-      'form.edit': 'العودة إلى رسالتي',
-      'form.copy': 'نسخ رسالتي',
-      'form.copied': 'نُسخت رسالتك. الصقها في بريد إلكتروني جديد إلى العنوان أعلاه.',
-      'form.copyFail': 'تعذّر النسخ: رسالتك محدَّدة، انسخها بنفسك.',
-      'footer.rights': '© 2026 نوميديا لابز',
-      'footer.tag': 'جذورها في نوميديا · مبنيّة على الأفكار'
-    }
-  };
-
-  /* ---- Services Catalog + Trust strip strings (merged into I18N) ---- */
-  var EXTRA = {
-    fr: {
-      'mk.h': 'Algérie, France, États-Unis : un projet, trois marchés',
-      'mk.vizCap': "Échelle logarithmique : chaque grande graduation vaut dix fois la précédente. Entre les deux lignes en tirets, la fourchette de Numidea, prolongée sur les trois marchés ; une barre qui s'estompe n'a pas de plafond. Montants convertis au taux officiel, chiffres exacts dans le tableau ci-dessous.",
-      'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
-      'prev.tl1': 'Vous décrivez le projet', 'prev.tl1p': 'Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.',
-      'prev.tl2': 'On revient sous 24 h ouvrées', 'prev.tl2p': 'Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.',
-      'prev.tl3': "Vous envoyez votre contenu, on construit votre page d'accueil", 'prev.tl3d': '5 jours ouvrés',
-      'prev.tl4': 'On vous la présente', 'prev.tl4d': 'visio de 30 min',
-      'prev.tl5': 'Vous décidez', 'prev.tl5d': "Payé jusqu'ici :", 'prev.tl5p': "Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le reste.",
-      'mk.p': "Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.",
-      'mk.curL': 'Afficher en', 'mk.curNative': "Devise d'origine",
-      'mk.cap': 'Fourchettes de prix courantes par type de projet',
-      'mk.colType': 'Projet', 'mk.colDz': 'Algérie', 'mk.colNl': 'Numidea', 'mk.colFr': 'France', 'mk.colUs': 'États-Unis',
-      'mk.day1': 'Une journée de développeur confirmé en France coûte',
-      'mk.day2': 'au taux officiel, soit à peu près le prix d\'un site vitrine complet sur le marché algérien.',
-      'mk.note': 'Conversions au taux officiel de la Banque d\'Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L\'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec les mêmes outils que les studios européens et américains : React, Next.js, Vercel.',
-      'mk.srcSum': 'Sources et méthode',
-      'mk.method': "Chaque case va du bas de la fourchette d'un freelance confirmé au haut de celle d'une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l'estimateur ci-dessus, au périmètre type de chaque projet.",
-      'mk.srcDz': 'Algérie', 'mk.srcFr': 'France', 'mk.srcUs': 'États-Unis', 'mk.srcFx': 'Change',
-      'md.h': 'Comment un projet est chiffré',
-      'md.p': 'Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.',
-      'md.ours': 'Notre modèle',
-      'md.fH': 'Au forfait', 'md.fP': "Un prix fixe pour un périmètre écrit. Si le travail déborde, c'est le prestataire qui absorbe l'écart.",
-      'md.fW': "La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C'est ainsi que nous chiffrons chaque projet.",
-      'md.tH': 'Au temps passé', 'md.tP': "Facturé au jour ou à l'heure. Souple quand le périmètre bouge, difficile à budgéter d'avance.",
-      'md.tW': "La norme en France (480 –⁠ 650 € par jour pour un développeur confirmé) et aux États-Unis (100 –⁠ 149 $ de l'heure en agence).",
-      'md.aH': "À l'abonnement", 'md.aP': 'Un montant mensuel pour un service continu : maintenance, évolutions, contenu.',
-      'md.aW': 'Courant partout après le lancement. C\'est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.',
-      'md.vH': 'À la valeur', 'md.vP': "Le prix suit ce que le projet rapporte, pas le temps qu'il demande.",
-      'md.vW': "Plus rare, surtout en conseil et en stratégie, là où l'enjeu se mesure.",
-      'md.drH': 'Ce qui fait bouger un devis',
-      'md.d1h': 'Le périmètre', 'md.d1p': "Le nombre de pages, de produits ou d'écrans.",
-      'md.d2h': 'Le design', 'md.d2p': "Entièrement sur mesure, ou à partir de votre charte et de vos maquettes existantes.",
-      'md.d3h': 'Les langues', 'md.d3p': "Chaque langue ajoute du contenu ; l'arabe ajoute une mise en page de droite à gauche.",
-      'md.d4h': 'Les intégrations', 'md.d4p': 'Paiement, comptes utilisateurs, outils et API tiers.',
-      'md.d5h': 'Le contenu', 'md.d5p': 'Textes, photos et vidéos : fournis par vous, ou à produire.',
-      'md.d6h': 'Le délai', 'md.d6p': 'Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.',
-      'nav.pricing': 'Tarifs',
-      'wa.hello': "Bonjour Numidea Labs — j'aimerais parler d'un projet.",
-      'footer.wa': 'WhatsApp',
-      'price.kicker': '04 — Tarifs', 'price.title': 'Un prix <em>avant le devis.</em>',
-      'price.lead': 'Nos prix, publiés — à côté des tarifs courants en Algérie, en France et aux États-Unis. Ajustez le périmètre et voyez l\'estimation évoluer.',
-      'price.cur': 'DA',
-      'price.popular': 'Recommandé',
-      'price.t1name': 'Essentiel', 'price.t1for': 'Une présence crédible, vite en ligne.', 'price.t1time': '2 à 4 semaines',
-      'price.t1a': 'Vitrine ou landing, 1 à 5 pages',
-      'price.t1b': 'Design sur mesure — jamais un modèle tout fait repeint à vos couleurs',
-      'price.t1c': 'Responsive, performance et SEO de base',
-      'price.t1d': 'Mise en ligne, domaine et certificat configurés',
-      'price.t1e': '1 mois de support inclus',
-      'price.t2name': 'Studio', 'price.t2for': "Le site qui porte vraiment l'entreprise.", 'price.t2time': '3 à 7 semaines',
-      'price.t2a': 'Site sur mesure, 6 à 15 pages',
-      'price.t2b': 'Trilingue FR / EN / AR, avec un arabe RTL pensé nativement',
-      'price.t2c': 'Design system documenté — styles, composants, le kit complet',
-      'price.t2d': 'CMS ou back-office pour gérer le contenu vous-même',
-      'price.t2e': 'SEO technique, Core Web Vitals, accessibilité',
-      'price.t2f': '3 mois de support inclus',
-      'price.t3name': 'Moteur', 'price.t3for': 'Quand il vous faut un outil métier, pas seulement un site.', 'price.t3time': '8 à 16 semaines',
-      'price.t3a': 'Application web sur mesure : plateforme, portail ou outil métier',
-      'price.t3b': 'Paiement, comptes utilisateurs, tableaux de bord',
-      'price.t3c': 'Scraping et intelligence marché, intégrés à l\'application',
-      'price.t3d': 'Intégrations API et outils internes',
-      'price.t3e': '6 mois de support inclus',
-      'price.retainerA': 'Maintenance après livraison, si vous la voulez :', 'price.retainerB': 'par mois. Sans engagement de durée.',
-      'price.curL': 'Afficher les prix en', 'price.exTax': 'HT',
-      'price.curNoteEUR': "≈ Conversion au taux officiel de la Banque d'Algérie (1 € ≈ 151 DA, octobre 2026), arrondie. Prix HT. Entreprise française : facture sans TVA, autoliquidée par vos soins (art. 283-2 du CGI).",
-      'price.curNoteUSD': "≈ Conversion au taux officiel de la Banque d'Algérie (1 $ ≈ 134 DA, octobre 2026), arrondie. Prix hors taxes.",
-      'price.estH': 'Estimez votre projet',
-      'price.estHint': 'Automatisation, e-commerce, identité visuelle, options hors formule et délai accéléré : ce que les formules ne chiffrent pas.',
-      'price.estP': 'Indiquez ce dont vous avez besoin : la fourchette se met à jour en direct. Pour un site vitrine, un site sur mesure ou une application web, ce sont les mêmes chiffres que dans les formules ci-dessus.',
-      'price.qType': 'Quel type de projet ?', 'price.qSize': 'Ampleur', 'price.qOpts': 'Options', 'price.qPace': 'Délai',
-      'price.tyVitrine': 'Vitrine', 'price.tyCustom': 'Site sur mesure', 'price.tyShop': 'E-commerce',
-      'price.tyApp': 'Application web', 'price.tyAuto': 'Automatisation', 'price.tyBrand': 'Identité visuelle',
-      'price.oI18n': 'Trilingue FR / EN / AR + RTL', 'price.oCms': 'CMS / back-office', 'price.oPay': 'Paiement en ligne',
-      'price.oDs': 'Design system complet', 'price.oSeo': 'SEO avancé & performance', 'price.oApi': 'Intégrations API', 'price.incl': 'déjà dans la formule',
-      'price.studioBetter': 'La formule Studio inclut déjà ces options',
-      'price.paceStd': 'Standard', 'price.paceRush': 'Accéléré',
-      'price.uPages': 'pages', 'price.uPages.n': 'page|pages', 'price.uScreens': 'écrans', 'price.uScreens.n': 'écran|écrans', 'price.uProducts': 'produits', 'price.uProducts.n': 'produit|produits', 'price.uFlows': 'flux', 'price.uFlows.n': 'flux|flux', 'price.uSupports': 'supports', 'price.uSupports.n': 'support|supports',
-      'price.estimate': 'Estimation', 'price.weeks': 'semaines', 'price.weeks.n': 'semaine|semaines',
-      'price.estFine': "Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.",
-      'price.estCta': 'Obtenir le prix ferme →',
-      'price.moreSum': 'Comment on chiffre', 'price.moreHint': 'Le marché, les modèles de facturation, ce qui fait bouger un devis.',
-      'svc.famBuild': 'Sites & design', 'svc.famEngine': 'Données & automatisation', 'svc.famMind': 'Conseil & IA',
-      'svc.lead': 'Nos cinq services principaux — et cinq autres juste en dessous.',
-      'prev.tag': 'Offre signature', 'prev.name': "L'Aperçu", 'prev.promise': 'Zéro risque. Juste la preuve.',
-      'prev.brief': 'Avant tout paiement, on construit la page d\'accueil de votre nouveau site, avec votre contenu. Si vous dites non, vous ne devez rien.', 'prev.terms': 'Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.', 'prev.cta': 'Demander mon Aperçu →', 'prev.wa': 'ou par WhatsApp', 'prev.msg': 'Bonjour, je souhaite voir l\'Aperçu gratuit de mon futur site.\nEntreprise : \nSite actuel (s\'il existe) : \nCe dont j\'ai besoin : ', 'prev.waText': 'Bonjour Numidea Labs, je souhaite voir l\'Aperçu gratuit de mon futur site.', 'form.source': 'Source', 'contact.chTz': 'Fuseau', 'contact.vTz': 'UTC+1 · l\'heure de Paris en hiver, 1 h de moins en été', 'contact.waNote': 'message gratuit via l\'appli',
-      'prev.outcome': 'Vous dites oui en connaissance de cause : vous avez déjà vu le résultat.',
-      'f1.name': 'Sites & applications web', 'f1.promise': 'Le choix évident.',
-      'f1.brief': 'Sites et applications web sur mesure — rapides, bien référencés, pensés pour convertir, du front-end au cloud. Pas de modèle acheté puis maquillé : on dessine votre site de zéro.',
-      'f2.name': 'Identité & systèmes visuels', 'f2.promise': 'La confiance avant le premier mot.',
-      'f2.brief': 'Logos, couleurs, typographie, animation et une charte complète, documentée, prête à l\'emploi : ce qui donne à une petite entreprise l\'allure d\'une maison établie.',
-      'f3.name': 'Automatisation & pipelines', 'f3.promise': 'Supprimez la corvée.',
-      'f3.brief': 'Scrapers, pipelines de données, génération de leads, automatisations, outils internes. Le travail répétitif et fragile qui dévore vos heures — on le fait tourner seul à 3 h du matin.',
-      'f4.name': 'Intelligence marché & produit', 'f4.promise': 'Voir le marché clairement.',
-      'f4.brief': 'Transformez les données publiques du web en base exploitable : veille concurrentielle, suivi des prix et des catalogues — collectées dans le respect des conditions de chaque site et du RGPD, structurées, interrogeables.',
-      'f5.name': 'Stratégie & conseil croissance', 'f5.promise': 'De la donnée, pas des impressions.',
-      'f5.brief': 'Audits marketing complets, analyse des tunnels de vente, positionnement concurrentiel, feuilles de route — honnêtes, ROI d\'abord, par phases. On étudie votre secteur avant le premier appel.',
-      'cap.summary': 'Voir les 5 autres services', 'cap.hint': 'Boutique & réservation, design graphique, data science, systèmes de connaissance, outils IA.', 'cap.h': 'Les 5 autres services',
-      'c1.name': 'Boutique & réservation', 'c1.promise': 'De la visite au paiement.',
-      'c1.brief': 'Boutiques en ligne et systèmes de réservation adaptés aux habitudes d\'achat en Algérie : commande par WhatsApp, paiement à la livraison, ou boutique Shopify sur mesure quand c\'est pertinent.', 'c1.fam': 'Sites & design',
-      'c2.name': 'Design graphique & réseaux sociaux', 'c2.promise': 'Des visuels qui arrêtent le regard.',
-      'c2.brief': 'Packs réseaux sociaux, carrousels, infographies, print — depuis un système visuel verrouillé, pour que tout vous ressemble.', 'c2.fam': 'Sites & design',
-      'c3.name': 'Data science & analytics', 'c3.promise': 'Du signal dans le bruit.',
-      'c3.brief': 'Un travail statistique rigoureux — modélisation économétrique, séries temporelles, prévision, tableaux de bord. Analyse testée et défendable.', 'c3.fam': 'Données & automatisation',
-      'c4.name': 'Systèmes de connaissance', 'c4.promise': 'Une entreprise qui se souvient.',
-      'c4.brief': 'Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes pour le RAG. Des structures qui s\'entretiennent seules.', 'c4.fam': 'Conseil & IA',
-      'c5.name': 'Outils & assistants IA sur mesure', 'c5.promise': 'Le logiciel qui construit votre logiciel.',
-      'c5.brief': 'Outils internes, générateurs et assistants sur mesure, propulsés par Claude : une tâche répétitive se lance en un clic.', 'c5.fam': 'Conseil & IA',
-    },
-    en: {
-      'mk.h': 'Algeria, France, United States: one project, three markets',
-      'mk.vizCap': "Logarithmic scale: each major gridline is ten times the one before. Between the two dashed lines, Numidea's range, carried across the three markets; a bar that fades out has no upper limit. Amounts converted at the official rate; exact figures in the table below.",
-      'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
-      'prev.tl1': 'You describe the project', 'prev.tl1p': 'Two minutes, in writing or out loud. In French, English or Arabic.',
-      'prev.tl2': 'We reply within 24 working hours', 'prev.tl2p': 'First with our questions. Then, once we have agreed on what to build, with a written scope and a firm price. Not a range — one number.',
-      'prev.tl3': 'You send your content and we build your homepage', 'prev.tl3d': '5 working days',
-      'prev.tl4': 'We walk you through it', 'prev.tl4d': '30-minute video call',
-      'prev.tl5': 'You decide', 'prev.tl5d': 'Paid so far:', 'prev.tl5p': "If it's yes, the homepage is already done: we move straight on to the rest.",
-      'mk.p': 'The same project, priced in three markets. Typical 2026 ranges, from an experienced freelancer to an agency — excluding tax.',
-      'mk.curL': 'Show in', 'mk.curNative': 'Original currency',
-      'mk.cap': 'Typical price ranges by project type',
-      'mk.colType': 'Project', 'mk.colDz': 'Algeria', 'mk.colNl': 'Numidea', 'mk.colFr': 'France', 'mk.colUs': 'United States',
-      'mk.day1': 'A day\'s work by an experienced developer in France costs',
-      'mk.day2': 'at the official rate — roughly the price of an entire showcase site on the Algerian market.',
-      'mk.note': "Converted at the Bank of Algeria's official rate, early October 2026: €1 ≈ 151 DZD, $1 ≈ 134 DZD. The gap comes from cost of living and exchange rates, not tools — we build with the same tools as European and American studios: React, Next.js, Vercel.",
-      'mk.srcSum': 'Sources and method',
-      'mk.method': "Each cell runs from the low end of an experienced freelancer's range to the high end of an agency's; \u201c+\u201d marks an open upper bound. Extremes — €300 sites or $250,000 builds — are left out. The Numidea column is computed by the estimator above, at each project's typical scope.",
-      'mk.srcDz': 'Algeria', 'mk.srcFr': 'France', 'mk.srcUs': 'United States', 'mk.srcFx': 'Exchange rate',
-      'md.h': 'How a project is priced',
-      'md.p': 'There are four ways to bill a project. Each one is the norm somewhere.',
-      'md.ours': 'Our model',
-      'md.fH': 'Fixed price', 'md.fP': 'One fixed price for a written scope. If the work overruns, the provider absorbs the difference.',
-      'md.fW': "The norm in Algeria: the Onyxlab barometer prices all development as a fixed fee. It's how we price every project.",
-      'md.tH': 'Time and materials', 'md.tP': 'Billed by the day or the hour. Flexible when the scope moves, hard to budget in advance.',
-      'md.tW': 'The norm in France (€480–650 a day for an experienced developer) and the US ($100–149 an hour at agencies).',
-      'md.aH': 'Retainer', 'md.aP': 'A monthly fee for an ongoing service: maintenance, improvements, content.',
-      'md.aW': "Common everywhere after launch. It's how our maintenance works: 18,000–60,000 DZD a month.",
-      'md.vH': 'Value-based', 'md.vP': 'The price follows what the project earns, not the time it takes.',
-      'md.vW': 'Rarer, mostly in consulting and strategy, where the stakes can be measured.',
-      'md.drH': 'What moves a quote',
-      'md.d1h': 'Scope', 'md.d1p': 'The number of pages, products or screens.',
-      'md.d2h': 'Design', 'md.d2p': 'Fully custom, or built from your existing brand guidelines and mockups.',
-      'md.d3h': 'Languages', 'md.d3p': 'Each language adds content; Arabic adds a right-to-left layout.',
-      'md.d4h': 'Integrations', 'md.d4p': 'Payments, user accounts, third-party tools and APIs.',
-      'md.d5h': 'Content', 'md.d5p': 'Copy, photos and video: supplied by you, or produced.',
-      'md.d6h': 'Timeline', 'md.d6p': 'A compressed schedule costs more: +25% in our estimator.',
-      'nav.pricing': 'Pricing',
-      'wa.hello': 'Hello Numidea Labs — I would like to talk about a project.',
-      'footer.wa': 'WhatsApp',
-      'price.kicker': '04 — Pricing', 'price.title': 'A price <em>before the quote.</em>',
-      'price.lead': 'Our prices, published — next to typical rates in Algeria, France and the United States. Set the scope and watch the estimate move.',
-      'price.cur': 'DZD',
-      'price.popular': 'Recommended',
-      'price.t1name': 'Essential', 'price.t1for': 'A credible presence, live quickly.', 'price.t1time': '2 to 4 weeks',
-      'price.t1a': 'Showcase or landing site, 1 to 5 pages',
-      'price.t1b': 'Custom design — never a re-themed template',
-      'price.t1c': 'Responsive, fast, with foundational SEO',
-      'price.t1d': 'Deployment, domain and certificate configured',
-      'price.t1e': '1 month of support included',
-      'price.t2name': 'Studio', 'price.t2for': 'The site that actually carries the business.', 'price.t2time': '3 to 7 weeks',
-      'price.t2a': 'Custom site, 6 to 15 pages',
-      'price.t2b': 'Trilingual FR / EN / AR, with Arabic RTL built natively',
-      'price.t2c': 'Documented design system — styles, components, the full kit',
-      'price.t2d': 'CMS or back-office so you manage the content yourself',
-      'price.t2e': 'Technical SEO, Core Web Vitals, accessibility',
-      'price.t2f': '3 months of support included',
-      'price.t3name': 'Engine', 'price.t3for': 'For when your business needs a tool, not just a site.', 'price.t3time': '8 to 16 weeks',
-      'price.t3a': 'Custom web application: platform, portal or business tool',
-      'price.t3b': 'Payments, user accounts, dashboards',
-      'price.t3c': 'Scraping and market intelligence, built into the application',
-      'price.t3d': 'API integrations and internal tools',
-      'price.t3e': '6 months of support included',
-      'price.retainerA': 'Maintenance after launch, if you want it:', 'price.retainerB': 'a month. No lock-in.',
-      'price.curL': 'Show prices in', 'price.exTax': 'excl. tax',
-      'price.curNoteEUR': '≈ Converted at the Bank of Algeria official rate (€1 ≈ 151 DZD, October 2026), rounded. Prices exclude VAT. French businesses: invoiced without VAT, which you self-assess (reverse charge, art. 283-2 CGI).',
-      'price.curNoteUSD': '≈ Converted at the Bank of Algeria official rate ($1 ≈ 134 DZD, October 2026), rounded. Prices exclude taxes.',
-      'price.estH': 'Estimate your project',
-      'price.estHint': 'Automation, e-commerce, visual identity, options outside a package and an accelerated timeline: what the packages do not price.',
-      'price.estP': 'Choose what you need: the range updates instantly. For showcase sites, custom sites and web applications, it uses the same figures as the packages above.',
-      'price.qType': 'What kind of project?', 'price.qSize': 'Scale', 'price.qOpts': 'Options', 'price.qPace': 'Timeline',
-      'price.tyVitrine': 'Showcase site', 'price.tyCustom': 'Custom site', 'price.tyShop': 'E-commerce',
-      'price.tyApp': 'Web application', 'price.tyAuto': 'Automation', 'price.tyBrand': 'Visual identity',
-      'price.oI18n': 'Trilingual FR / EN / AR + RTL', 'price.oCms': 'CMS / back-office', 'price.oPay': 'Online payments',
-      'price.oDs': 'Full design system', 'price.oSeo': 'Advanced SEO & performance', 'price.oApi': 'API integrations', 'price.incl': 'included',
-      'price.studioBetter': 'The Studio package already includes these options',
-      'price.paceStd': 'Standard', 'price.paceRush': 'Accelerated',
-      'price.uPages': 'pages', 'price.uPages.n': 'page|pages', 'price.uScreens': 'screens', 'price.uScreens.n': 'screen|screens', 'price.uProducts': 'products', 'price.uProducts.n': 'product|products', 'price.uFlows': 'flows', 'price.uFlows.n': 'flow|flows', 'price.uSupports': 'deliverables', 'price.uSupports.n': 'deliverable|deliverables',
-      'price.estimate': 'Estimate', 'price.weeks': 'weeks', 'price.weeks.n': 'week|weeks',
-      'price.estFine': 'An indicative range, not a quote. The firm price follows once we have scoped it together — and it does not move after that.',
-      'price.estCta': 'Get the firm price →',
-      'price.moreSum': 'How we price', 'price.moreHint': 'The market, billing models, what moves a quote.',
-      'svc.famBuild': 'Sites & design', 'svc.famEngine': 'Data & automation', 'svc.famMind': 'Advisory & AI',
-      'svc.lead': 'Our five core services — and five more just below.',
-      'prev.tag': 'Signature offer', 'prev.name': 'The Preview', 'prev.promise': 'Zero risk: see it before you pay.',
-      'prev.brief': 'Before any payment, we build your new site\'s homepage with your own content. If you say no, you owe nothing.', 'prev.terms': 'Free, no obligation · registered businesses only · at most 4 Previews a month, across all clients.', 'prev.cta': 'Request my Preview →', 'prev.wa': 'or on WhatsApp', 'prev.msg': 'Hello, I would like to see a free Preview of my new website.\nCompany: \nCurrent site (if any): \nWhat I need: ', 'prev.waText': 'Hello Numidea Labs, I would like to see a free Preview of my new website.', 'form.source': 'Source', 'contact.chTz': 'Time zone', 'contact.vTz': 'UTC+1 (Algeria) · 2 h behind Riyadh, 3 h behind Dubai · same as Paris in winter, 1 h behind in summer', 'contact.waNote': 'free message in the app',
-      'prev.outcome': 'The easiest yes you\'ll ever give — because you\'ve already seen it.',
-      'f1.name': 'Sites & web applications', 'f1.promise': 'The obvious choice.',
-      'f1.brief': 'Custom websites and web apps — fast, optimised for search engines and built to turn visitors into enquiries. No ready-made templates: we design your site from scratch.',
-      'f2.name': 'Branding & visual systems', 'f2.promise': 'Trust before a word is read.',
-      'f2.brief': 'Logos, colour, typography, motion and a complete, documented design system — everything that gives a small company the look of an established firm.',
-      'f3.name': 'Automation & pipelines', 'f3.promise': 'Delete the busywork.',
-      'f3.brief': 'Scrapers, data pipelines, lead engines, workflow automations, internal tools. The repetitive, error-prone work quietly eating hours — we make it run itself at 3am.',
-      'f4.name': 'Market & product intelligence', 'f4.promise': 'See the market clearly.',
-      'f4.brief': 'Turn public web data into a usable database: competitor monitoring, price and catalogue tracking — collected within each site\'s terms and the GDPR, structured and queryable.',
-      'f5.name': 'Strategy & growth consulting', 'f5.promise': 'Data, not vibes.',
-      'f5.brief': 'Full marketing audits, funnel analysis, competitive positioning, growth roadmaps — brutally honest, ROI-first, phased. We do the sector homework before the call.',
-      'cap.summary': 'See the other 5 services', 'cap.hint': 'Shop & booking, graphic design, data science, knowledge systems, AI tools.', 'cap.h': 'The other five services',
-      'c1.name': 'E-commerce & booking', 'c1.promise': 'From browse to paid.',
-      'c1.brief': 'Online stores and booking systems built around how people buy in Algeria: ordering on WhatsApp, cash on delivery, or a custom Shopify store when it fits.', 'c1.fam': 'Sites & design',
-      'c2.name': 'Graphic & social design', 'c2.promise': 'Scroll-stopping, on brand.',
-      'c2.brief': 'Social packs, carousels, infographics, print — all from one locked visual system so everything looks like you.', 'c2.fam': 'Sites & design',
-      'c3.name': 'Data science & analytics', 'c3.promise': 'Signal out of noise.',
-      'c3.brief': 'Rigorous statistical work — econometric modelling, time-series analysis, forecasting, dashboards. Every model is tested, diagnosed and defensible.', 'c3.fam': 'Data & automation',
-      'c4.name': 'Knowledge systems', 'c4.promise': 'A company that remembers.',
-      'c4.brief': 'Internal knowledge architecture — Obsidian/PARA + Zettelkasten, documentation, RAG-ready bases. Self-maintaining structures.', 'c4.fam': 'Advisory & AI',
-      'c5.name': 'Custom AI tools & skills', 'c5.promise': 'Software that builds your software.',
-      'c5.brief': 'Claude-powered internal tools, generators and custom skills — a repeatable task becomes a one-click factory.', 'c5.fam': 'Advisory & AI',
-    },
-    /* Arabic: written for this site, pending a native speaker's review (see
-       OWNER-CONTENT.md). Conventions: Western digits, forward arrows ←,
-       singular "you", brand names in Latin script except نوميديا in prose. */
-    ar: {
-      'mk.h': 'الجزائر وفرنسا والولايات المتحدة: مشروع واحد، ثلاثة أسواق',
-      'mk.vizCap': 'مقياس لوغاريتمي: كلّ تدريجة رئيسية تساوي عشرة أضعاف التي قبلها. بين الخطّين المتقطّعين يمتدّ نطاق أسعارنا عبر الأسواق الثلاثة، والشريط الذي يتلاشى لا حدّ أعلى له. المبالغ محوّلة بالسعر الرسمي، والأرقام الدقيقة في الجدول أدناه.',
-      'mk.k': 'ألف', 'mk.M': 'مليون', 'mk.k.n': 'ألف|ألفان|آلاف|ألفاً|ألف', 'mk.M.n': 'مليون|مليونان|ملايين|مليوناً|مليون',
-      'prev.tl1': 'تصف المشروع', 'prev.tl1p': 'دقيقتان، كتابةً أو مشافهة. بالفرنسية أو الإنجليزية أو العربية.',
-      'prev.tl2': 'نعود إليك خلال 24 ساعة عمل', 'prev.tl2p': 'بأسئلتنا أولاً، ثم بنطاق عمل مكتوب وسعر نهائي بمجرّد أن نتّفق معاً على هذا النطاق. ليس سعراً تقريبياً، بل رقمٌ واحد.',
-      'prev.tl3': 'ترسل إلينا محتواك، ونبني صفحتك الرئيسية', 'prev.tl3d': '5 أيام عمل',
-      'prev.tl4': 'نعرضها عليك', 'prev.tl4d': 'في مكالمة فيديو من 30 دقيقة',
-      'prev.tl5': 'أنت تقرّر', 'prev.tl5d': 'المدفوع حتى الآن:', 'prev.tl5p': 'إن كان الجواب نعم، فالصفحة الرئيسية جاهزة بالفعل: ننتقل مباشرة إلى بقية العمل.',
-      'mk.p': 'المشروع نفسه، مسعّراً في ثلاثة أسواق. الأسعار الشائعة لعام 2026، من المستقل المتمرّس إلى الوكالة — دون احتساب الضرائب.',
-      'mk.curL': 'العملة', 'mk.curNative': 'العملة الأصلية',
-      'mk.cap': 'الأسعار الشائعة حسب نوع المشروع',
-      'mk.colType': 'المشروع', 'mk.colDz': 'الجزائر', 'mk.colNl': 'أسعارنا', 'mk.colFr': 'فرنسا', 'mk.colUs': 'الولايات المتحدة',
-      'mk.day1': 'يكلّف يوم عمل واحد لمطوّر متمرّس في فرنسا',
-      'mk.day2': 'بالسعر الرسمي — أي ما يقارب سعر موقع تعريفي كامل في السوق الجزائرية.',
-      'mk.note': 'التحويلات بالسعر الرسمي لبنك الجزائر، مطلع أكتوبر 2026: 1 € ≈ 151 دج، 1 $ ≈ 134 دج. الفارق سببه تكلفة المعيشة وسعر الصرف لا الأدوات — فنحن نعمل بالتقنيات نفسها التي تعتمدها الاستوديوهات الأوروبية والأمريكية: React وNext.js وVercel.',
-      'mk.srcSum': 'المصادر والمنهجية',
-      'mk.method': 'تمتدّ كل خانة من أدنى سعر لدى المستقل المتمرّس إلى أعلى سعر لدى الوكالة، وتدلّ علامة «+» على حدّ أعلى مفتوح. استُبعدت الحالات القصوى — مواقع بـ300 € أو مشاريع بـ250 000 $. أمّا عمود «أسعارنا» فتحسبه حاسبة التقدير أعلاه، على أساس الحجم المعتاد لكل مشروع.',
-      'mk.srcDz': 'الجزائر', 'mk.srcFr': 'فرنسا', 'mk.srcUs': 'الولايات المتحدة', 'mk.srcFx': 'الصرف',
-      'md.h': 'كيف يُسعَّر المشروع',
-      'md.p': 'هناك أربع طرق لفوترة مشروع، ولكلٍّ منها سوقٌ تسود فيه.',
-      'md.ours': 'نموذجنا',
-      'md.fH': 'بسعر ثابت', 'md.fP': 'سعر ثابت لنطاق عمل مكتوب. إن تجاوز العمل ما اتُّفق عليه، يتحمّل مقدّم الخدمة الفارق.',
-      'md.fW': 'هو السائد في الجزائر: مقياس Onyxlab يسعّر كل أعمال التطوير بمبلغ مقطوع. وهكذا نسعّر كل مشروع.',
-      'md.tH': 'حسب الوقت', 'md.tP': 'يُفوتَر باليوم أو بالساعة. مرنٌ حين يتغيّر النطاق، لكن يصعب تقدير ميزانيته مسبقاً.',
-      'md.tW': 'هو السائد في فرنسا (480 –⁠ 650 € يومياً لمطوّر متمرّس) وفي الولايات المتحدة (100 –⁠ 149 $ للساعة في الوكالات).',
-      'md.aH': 'بالاشتراك', 'md.aP': 'مبلغ شهري مقابل خدمة مستمرّة: صيانة وتطوير ومحتوى.',
-      'md.aW': 'شائع في كل مكان بعد الإطلاق، وهو نموذج صيانتنا: من 18 000 إلى 60 000 دج شهرياً.',
-      'md.vH': 'حسب القيمة', 'md.vP': 'يتبع السعر ما يحقّقه المشروع، لا الوقت الذي يستغرقه.',
-      'md.vW': 'أندر، وأكثر ما يكون في الاستشارة والاستراتيجية، حيث يمكن قياس الأثر المالي للمشروع.',
-      'md.drH': 'ما الذي يغيّر عرض السعر',
-      'md.d1h': 'النطاق', 'md.d1p': 'عدد الصفحات أو المنتجات أو الشاشات.',
-      'md.d2h': 'التصميم', 'md.d2p': 'مخصّص بالكامل، أو انطلاقاً من دليل هويتك البصرية ونماذج تصميمك الموجودة.',
-      'md.d3h': 'اللغات', 'md.d3p': 'كل لغة تضيف محتوى، والعربية تضيف تخطيطاً من اليمين إلى اليسار.',
-      'md.d4h': 'التكاملات', 'md.d4p': 'الدفع وحسابات المستخدمين والأدوات والواجهات البرمجية الخارجية.',
-      'md.d5h': 'المحتوى', 'md.d5p': 'النصوص والصور والفيديو: تقدّمها أنت أو ننتجها نحن.',
-      'md.d6h': 'المهلة', 'md.d6p': 'الجدول المضغوط أعلى تكلفة: ‎+25٪ في حاسبة التقدير.',
-      'nav.pricing': 'الأسعار',
-      'wa.hello': 'مرحباً نوميديا لابز — أودّ الحديث عن مشروع.',
-      'footer.wa': 'واتساب',
-      'price.kicker': '04 — الأسعار', 'price.title': 'سعر <em>قبل عرض السعر.</em>',
-      'price.lead': 'أسعارنا منشورة — وإلى جانبها الأسعار الشائعة في الجزائر وفرنسا والولايات المتحدة. اضبط نطاق العمل وشاهد التقدير يتحرّك.',
-      'price.cur': 'دج',
-      'price.popular': 'الموصى به',
-      'price.t1name': 'الأساسي', 'price.t1for': 'حضور موثوق، على الإنترنت بسرعة.', 'price.t1time': 'من 2 إلى 4 أسابيع',
-      'price.t1a': 'موقع تعريفي أو صفحة هبوط، من 1 إلى 5 صفحات',
-      'price.t1b': 'تصميم مخصّص — لا قالب معاد تلوينه أبداً',
-      'price.t1c': 'متجاوب وسريع، مع أساسيات تحسين محرّكات البحث (SEO)',
-      'price.t1d': 'النشر، واسم النطاق (الدومين)، وشهادة الأمان SSL — كلّها مُعدّة',
-      'price.t1e': 'شهر دعم مشمول',
-      'price.t2name': 'الاستوديو', 'price.t2for': 'الموقع الذي يحمل الشركة فعلاً.', 'price.t2time': 'من 3 إلى 7 أسابيع',
-      'price.t2a': 'موقع مخصّص، من 6 إلى 15 صفحة',
-      'price.t2b': 'ثلاثي اللغة فرنسي / إنجليزي / عربي، بعربية مصمّمة من الأساس للكتابة من اليمين إلى اليسار',
-      'price.t2c': 'نظام تصميم موثّق — الأنماط والمكوّنات والعدّة كاملة',
-      'price.t2d': 'نظام إدارة محتوى أو لوحة تحكّم لتدير المحتوى بنفسك',
-      'price.t2e': 'الجانب التقني من تحسين محرّكات البحث (SEO)، ومؤشّرات الأداء، وإتاحة الوصول',
-      'price.t2f': 'ثلاثة أشهر دعم مشمولة',
-      'price.t3name': 'المحرّك', 'price.t3for': 'حين تحتاج شركتك إلى أداة عمل، لا إلى موقع فحسب.', 'price.t3time': 'من 8 إلى 16 أسبوعاً',
-      'price.t3a': 'تطبيق ويب مخصّص: منصّة أو بوابة أو أداة عمل',
-      'price.t3b': 'الدفع وحسابات المستخدمين ولوحات المتابعة',
-      'price.t3c': 'استخراج البيانات وتحليل السوق، مدمجان في التطبيق',
-      'price.t3d': 'تكاملات واجهات برمجية وأدوات داخلية',
-      'price.t3e': 'ستّة أشهر دعم مشمولة',
-      'price.retainerA': 'الصيانة بعد التسليم، إن أردتها:', 'price.retainerB': 'شهرياً، دون التزام بمدّة.',
-      'price.curL': 'العملة', 'price.exTax': 'قبل الضريبة',
-      'price.curNoteEUR': '≈ تحويل بالسعر الرسمي لبنك الجزائر (1 € ≈ 151 دج، أكتوبر 2026)، مع التقريب. الأسعار قبل الضريبة. للشركات الفرنسية: فاتورة دون ضريبة القيمة المضافة، يصرّح بها العميل ذاتياً (المادة 283-2 من القانون العام للضرائب الفرنسي).',
-      'price.curNoteUSD': '≈ تحويل بالسعر الرسمي لبنك الجزائر (1 $ ≈ 134 دج، أكتوبر 2026)، مع التقريب. الأسعار قبل الضريبة.',
-      'price.estH': 'قدّر مشروعك',
-      'price.estHint': 'الأتمتة، المتجر الإلكتروني، الهوية البصرية، الخيارات خارج الباقة، والتنفيذ المستعجل: ما لا تُسعّره الباقات.',
-      'price.estP': 'اضبط ما تحتاجه، فيُعاد حساب السعر التقديري مباشرة. وللمواقع وتطبيقات الويب، هي الأرقام نفسها المعلنة في الباقات أعلاه.',
-      'price.qType': 'أيّ نوع من المشاريع؟', 'price.qSize': 'الحجم', 'price.qOpts': 'الخيارات', 'price.qPace': 'المهلة',
-      'price.tyVitrine': 'موقع تعريفي', 'price.tyCustom': 'موقع مخصّص', 'price.tyShop': 'متجر إلكتروني',
-      'price.tyApp': 'تطبيق ويب', 'price.tyAuto': 'أتمتة', 'price.tyBrand': 'هوية بصرية',
-      'price.oI18n': 'ثلاثي اللغة فرنسي / إنجليزي / عربي، والعربية من اليمين إلى اليسار', 'price.oCms': 'نظام إدارة محتوى / لوحة تحكّم', 'price.oPay': 'الدفع الإلكتروني',
-      'price.oDs': 'نظام تصميم كامل', 'price.oSeo': 'تحسين محرّكات البحث (SEO) والأداء، بمستوى متقدّم', 'price.oApi': 'تكاملات واجهات برمجية', 'price.incl': 'ضمن الباقة',
-      'price.studioBetter': 'هذه الخيارات مشمولة في باقة «الاستوديو»',
-      'price.paceStd': 'عادي', 'price.paceRush': 'مستعجل',
-      'price.uPages': 'صفحات', 'price.uPages.n': 'صفحة|صفحتان|صفحات|صفحة|صفحة', 'price.uScreens': 'شاشات', 'price.uScreens.n': 'شاشة|شاشتان|شاشات|شاشة|شاشة', 'price.uProducts': 'منتجات', 'price.uProducts.n': 'منتج|منتجان|منتجات|منتجاً|منتج', 'price.uFlows': 'مسارات', 'price.uFlows.n': 'مسار|مساران|مسارات|مساراً|مسار', 'price.uSupports': 'عناصر', 'price.uSupports.n': 'عنصر|عنصران|عناصر|عنصراً|عنصر',
-      'price.estimate': 'التقدير', 'price.weeks': 'أسابيع', 'price.weeks.n': 'أسبوع|أسبوعان|أسابيع|أسبوعاً|أسبوع',
-      'price.estFine': 'تقدير استرشادي، لا عرض سعر رسمي. السعر النهائي نحدّده بعد أن نضبط معاً نطاق العمل — ولا يتغيّر بعدها.',
-      'price.estCta': 'احصل على السعر النهائي ←',
-      'price.moreSum': 'كيف نسعّر', 'price.moreHint': 'السوق، نماذج الفوترة، وما يغيّر عرض السعر.',
-      'svc.famBuild': 'المواقع والتصميم', 'svc.famEngine': 'البيانات والأتمتة', 'svc.famMind': 'الاستشارة والذكاء الاصطناعي',
-      'svc.lead': 'خدماتنا الخمس الرئيسية — وخمس أخرى أدناه.',
-      'prev.tag': 'عرض مميّز', 'prev.name': 'المعاينة', 'prev.promise': 'بلا مخاطرة. ترى النتيجة قبل أن تدفع.',
-      'prev.brief': 'قبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك أنت. إن قلت لا، فلا شيء عليك.', 'prev.terms': 'مجّاناً ودون التزام · للشركات المسجّلة فقط · 4 معاينات في الشهر كحدّ أقصى لجميع العملاء.', 'prev.cta': 'اطلب معاينتك ←', 'prev.wa': 'أو عبر واتساب', 'prev.msg': 'مرحباً، أرغب في الاطّلاع على معاينة مجانية لموقعي الجديد.\nالشركة: \nالموقع الحالي (إن وُجد): \nما أحتاجه: ', 'prev.waText': 'مرحباً نوميديا لابز، أرغب في الاطّلاع على معاينة مجانية لموقعي الجديد.', 'form.source': 'المصدر', 'contact.chTz': 'التوقيت', 'contact.vTz': 'UTC+1 (توقيت الجزائر) · أقلّ بساعتين من توقيت الرياض، وبثلاث ساعات من توقيت دبي', 'contact.waNote': 'رسالة مجانية عبر التطبيق',
-      'prev.outcome': 'أسهل «نعم» ستقولها — لأنّك رأيتها بالفعل.',
-      'f1.name': 'مواقع وتطبيقات ويب', 'f1.promise': 'الخيار البديهي.',
-      'f1.brief': 'مواقع وتطبيقات ويب مخصّصة — سريعة، مع تحسين محرّكات البحث (SEO)، ومبنيّة لتحوّل الزوّار إلى عملاء، من الواجهة إلى السحابة. لا نعيد تلوين قالب جاهز: نصمّم موقعك من الصفر.',
-      'f2.name': 'الهوية والأنظمة البصرية', 'f2.promise': 'الثقة قبل قراءة كلمة.',
-      'f2.brief': 'شعارات وألوان وخطوط وحركة، ونظام تصميم كامل وموثّق — ما يمنح الشركة الصغيرة حضور مؤسسة راسخة.',
-      'f3.name': 'الأتمتة ومعالجة البيانات', 'f3.promise': 'احذف العمل الممل.',
-      'f3.brief': 'جمع البيانات من الويب، ومعالجتها آلياً، واستقطاب العملاء المحتملين، وأتمتة سير العمل، وأدوات داخلية. العمل المتكرّر الهشّ الذي يلتهم ساعاتك — نجعله يعمل وحده عند الثالثة فجراً.',
-      'f4.name': 'تحليل السوق والمنتجات', 'f4.promise': 'رؤية السوق بوضوح.',
-      'f4.brief': 'حوّل البيانات العامة على الويب إلى قاعدة بيانات قابلة للاستخدام: رصد المنافسين، وتتبّع الأسعار والكتالوجات — تُجمع وفق شروط كل موقع وقوانين حماية البيانات، مهيكلة وقابلة للاستعلام.',
-      'f5.name': 'الاستراتيجية واستشارات النمو', 'f5.promise': 'بيانات، لا انطباعات.',
-      'f5.brief': 'تدقيقات تسويقية كاملة، وتحليل المسارات التسويقية، وتموضع تنافسي، وخرائط طريق للنمو — بصراحة، والأولوية للعائد، وعلى مراحل. ندرس قطاعك جيداً قبل أيّ مكالمة.',
-      'cap.summary': 'اعرض الخدمات الخمس الأخرى', 'cap.hint': 'المتجر والحجز، والتصميم الغرافيكي، وعلم البيانات، وأنظمة المعرفة، وأدوات الذكاء الاصطناعي.', 'cap.h': 'الخدمات الخمس الأخرى',
-      'c1.name': 'متجر وحجز', 'c1.promise': 'من التصفّح إلى الدفع.',
-      'c1.brief': 'متاجر إلكترونية وأنظمة حجز تناسب طريقة الشراء في الجزائر: الطلب عبر واتساب، والدفع نقداً عند الاستلام، وShopify بواجهة مخصّصة عند الحاجة.', 'c1.fam': 'المواقع والتصميم',
-      'c2.name': 'تصميم غرافيك ومنشورات لشبكات التواصل', 'c2.promise': 'تصاميم تلفت الانتباه، وتبقى وفيّة لهويتك.',
-      'c2.brief': 'حزم منشورات لشبكات التواصل، وتصاميم كاروسيل، وإنفوجرافيك، ومطبوعات — كلّها من نظام بصري واحد ثابت، لتحمل كلّ قطعة بصمتك.', 'c2.fam': 'المواقع والتصميم',
-      'c3.name': 'علم البيانات والتحليلات', 'c3.promise': 'المعنى وسط الضجيج.',
-      'c3.brief': 'عمل إحصائي دقيق — نمذجة قياسية، وسلاسل زمنية، وتنبّؤ، ولوحات متابعة تفاعلية. تحليلٌ مُختبَر يمكن الدفاع عنه.', 'c3.fam': 'البيانات والأتمتة',
-      'c4.name': 'أنظمة المعرفة', 'c4.promise': 'شركة تتذكّر.',
-      'c4.brief': 'بنية معرفة داخلية — Obsidian/PARA + Zettelkasten، توثيق، قواعد جاهزة للـ RAG. بنى تصون نفسها.', 'c4.fam': 'الاستشارة والذكاء الاصطناعي',
-      'c5.name': 'أدوات ومهارات ذكاء اصطناعي مخصّصة', 'c5.promise': 'برمجيات تبني برمجياتك.',
-      'c5.brief': 'أدوات داخلية ومولّدات ومهارات مخصّصة بقوّة Claude — مهمّة متكرّرة تصبح مصنعاً بنقرة.', 'c5.fam': 'الاستشارة والذكاء الاصطناعي',
-    }
-  };
-  Object.keys(EXTRA).forEach(function (l) {
-    for (var k in EXTRA[l]) { if (EXTRA[l].hasOwnProperty(k)) I18N[l][k] = EXTRA[l][k]; }
-  });
+  /* ---------------- i18n dictionary ----------------
+     One language per page. The page's text is baked in its language by
+     scripts/build-lang.mjs (index.html in French; en/ and ar/ from it in
+     English and Arabic) and that language's dictionary, assets/i18n/<lang>.js
+     (var I18N: the page's strings, the services catalog and trust strip
+     included), is loaded just before this script. It serves what is built
+     here at runtime (the estimator's labels, the WhatsApp opening line, the
+     form's messages), and applyLang() re-applies it once on load, so any
+     drift between the baked markup and the dictionary shows as text
+     changing after paint (check.mjs 8e compares them). */
+  var DICT = window.I18N || {};
 
   /* ---------------- estimator model ----------------
      Pure: figures and arithmetic only, no DOM and no dictionary, so a script
@@ -715,23 +119,25 @@
     return { PRICE_MODEL: PRICE_MODEL, PRICE_OPTS: PRICE_OPTS, quote: quote, tally: tally, roundTo: roundTo, RUSH_PRICE: RUSH_PRICE };
   })();
 
-  var SUPPORTED = ['fr', 'en', 'ar'];
   var DEFAULT_LANG = 'fr';
 
+  /* The page's language (html[lang], baked) applied from its dictionary:
+     the same strings the markup already holds, written again, so the baked
+     page and the dictionary cannot drift apart unseen. With the dictionary
+     missing (its script refused or lost) the page stands as baked. */
   function applyLang(lang) {
-    if (SUPPORTED.indexOf(lang) === -1) lang = DEFAULT_LANG;
-    var dict = I18N[lang];
+    var dict = DICT;
     var html = document.documentElement;
     html.setAttribute('lang', lang);
-    html.setAttribute('dir', dict.dir);
-    document.title = dict.title;
+    if (dict.dir) html.setAttribute('dir', dict.dir);
+    if (dict.title) document.title = dict.title;
 
     var meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', dict['meta.desc']);
+    if (meta && dict['meta.desc']) meta.setAttribute('content', dict['meta.desc']);
 
     /* The studio's own structured data describes it in the page's language
-       too: its description is the meta description (the baked French one in
-       index.html is I18N.fr's). */
+       too: its description is the meta description (the one baked into the
+       page is the dictionary's). */
     document.querySelectorAll('script[type="application/ld+json"]:not([id])').forEach(function (s) {
       try {
         var o = JSON.parse(s.textContent);
@@ -742,8 +148,8 @@
     });
 
     /* The FAQ structured data says what the visible FAQ says, in the same
-       language (scripts/lib/i18n.mjs faqLd builds the French one baked into
-       index.html the same way). */
+       language (scripts/lib/i18n.mjs faqLd builds the one baked into the
+       page the same way). */
     var ld = document.getElementById('ld-faq');
     if (ld) {
       var plain = function (s) {
@@ -780,11 +186,8 @@
       if (dict[key] != null) el.alt = dict[key];
     });
 
-    // language buttons pressed-state
-    document.querySelectorAll('.lang button').forEach(function (b) {
-      b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
-    });
-
+    // the choice every page shares (the home address sends a stored en/ar
+    // preference to that language's page; scene/ and legal/ switch to it)
     try { localStorage.setItem('numidea-lang', lang); } catch (e) {}
     // Anything that builds translated strings in JS (the estimator's unit and
     // option labels) has no data-i18n node to re-read and must rebuild itself.
@@ -794,32 +197,18 @@
   /* ---------------- DOM ready ---------------- */
   document.addEventListener('DOMContentLoaded', function () {
    try {
-    // the head resolver already chose the language (?lang=, then storage,
-    // validated) and set it on <html>, and kept it in NUMIDEA_LANG: its
-    // paint backstop puts <html> back to the baked French if this script is
-    // late, and the visitor's language is applied here all the same
-    applyLang(window.NUMIDEA_LANG || document.documentElement.getAttribute('lang') || DEFAULT_LANG);
-    // The head bootstrap held paint for a non-French visitor so the 194-node
-    // swap above could not be seen happening. It is done — release it.
-    document.documentElement.removeAttribute('data-i18n-pending');
+    applyLang(document.documentElement.getAttribute('lang') || DEFAULT_LANG);
 
-    // language switch
-    function switchLang(l) {
-      applyLang(l);
-      // keep a shared ?lang= link truthful after a switch (as page-i18n.js
-      // does), and the canonical, og:url and og:locale with it: they name the
-      // version the address bar now shows (the head script's NUMIDEA_CANON)
-      try {
-        var u = new URL(location.href);
-        if (u.searchParams.has('lang')) {
-          u.searchParams.set('lang', l);
-          history.replaceState(history.state, '', u);
-          if (window.NUMIDEA_CANON) window.NUMIDEA_CANON(l);
-        }
-      } catch (e) {}
-    }
-    document.querySelectorAll('.lang button').forEach(function (b) {
-      b.addEventListener('click', function () { switchLang(b.getAttribute('data-lang')); });
+    /* The language switch is three links: the French page (the site root),
+       en/ and ar/. The choice is stored as the link is followed, before the
+       page it leads to stores it itself, because the root's head script
+       sends a stored en/ar preference to that language's page before paint:
+       a visitor who picks French on en/ must land on the French page, not
+       back on the one they just left. */
+    document.querySelectorAll('.lang a[hreflang]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        try { localStorage.setItem('numidea-lang', a.getAttribute('hreflang')); } catch (e) {}
+      });
     });
 
     // theme switcher — every theme is a token block in themes.css, so a switch
@@ -1505,7 +894,7 @@
       function field(id) { return form.querySelector('[name="' + id + '"]').closest('.field'); }
       function err(id, key) {
         var f = field(id);
-        var dict = I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG];
+        var dict = DICT;
         f.classList.add('invalid');
         var e = f.querySelector('.err');
         e.classList.remove('hint');
@@ -1650,7 +1039,7 @@
        Forms live in the dictionary as '<key>.n', split on '|'. */
     function unit(k, n) {
       var lang = document.documentElement.getAttribute('lang') || DEFAULT_LANG;
-      var d = I18N[lang] || I18N[DEFAULT_LANG], forms = d[k + '.n'];
+      var d = DICT, forms = d[k + '.n'];
       if (!forms) return d[k] || k;
       var f = forms.split('|');
       var i = (f.length === 5 ? ['one', 'two', 'few', 'many', 'other'] : ['one', 'other']).indexOf(plural(lang, n));
@@ -1667,8 +1056,7 @@
 
     /* dictionary lookup for strings built in JS (estimator, WhatsApp text) */
     function t(k, fb) {
-      var d = I18N[document.documentElement.getAttribute('lang')] || I18N[DEFAULT_LANG];
-      return d && d[k] != null ? d[k] : (fb || k);
+      return DICT[k] != null ? DICT[k] : (fb || k);
     }
 
     /* ---------------- 12a · display currency ----------------
@@ -1901,10 +1289,10 @@
        NUMIDEA_WA is the studio's number in full international form, digits
        only (e.g. '213XXXXXXXXX'). Should it ever be empty, every WhatsApp
        control loses its href and is marked disabled rather than linking
-       somewhere wrong. scripts/build-fr.mjs bakes the same French link (or
-       that guard) into index.html, so the hero's button works before this
-       deferred script runs; wireWA() rewrites it for the visitor's language
-       and the ad's [ref]. */
+       somewhere wrong. scripts/build-lang.mjs bakes the same link, in the
+       page's language (or that guard), into the page, so the hero's button
+       works before this deferred script runs; wireWA() rewrites it with the
+       ad's [ref]. */
     var WA = (window.NUMIDEA_WA || '').replace(/[^0-9]/g, '');
     /* Where a lead came from, read at the moment it is sent: ?ref= (each ad
        and email carries its own code), utm_* and whether Meta or Google added
@@ -2634,22 +2022,21 @@
     })();
 
     /* Back/Forward can bring this page back from the browser's cache exactly
-       as it was left, after the visitor chose another language (or theme, or
-       currency) on another page. Take up the stored choice again, as a
-       fresh load would. */
+       as it was left, after the visitor chose another theme or currency on
+       another page. Take up the stored choice again, as a fresh load would.
+       Not the language: this page is one language, and Back means this
+       page; the choice made elsewhere waits for the next visit to the root. */
     window.addEventListener('pageshow', function (e) {
       // A plain Back (no cache) restores form controls after this script
       // ran: the currency radio could come back unchecked from what the
       // prices show. The prices are right; put the radio back in step.
       document.querySelectorAll('input[name="pr-cur"]').forEach(function (r) { r.checked = r.value === CUR; });
       if (!e.persisted) return;
-      var l = null, th = null, c = null;
+      var th = null, c = null;
       try {
-        l = localStorage.getItem('numidea-lang');
         th = localStorage.getItem('numidea-theme');
         c = localStorage.getItem('numidea-cur');
       } catch (x) {}
-      if (SUPPORTED.indexOf(l) > -1 && l !== document.documentElement.getAttribute('lang')) switchLang(l);
       if (THEMES.indexOf(th) > -1 && th !== document.documentElement.getAttribute('data-theme')) applyTheme(th);
       if (CURS.indexOf(c) > -1 && c !== CUR) setCur(c);
     });

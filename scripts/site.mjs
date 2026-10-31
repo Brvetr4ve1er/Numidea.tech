@@ -25,11 +25,13 @@ export const THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon', 'engine
    field; until then nothing may link to it and it is not deployed */
 export const LEGAL_PUBLISHED = existsSync(join(ROOT, 'legal/index.html'));
 
-export const PAGES = ['index.html', '404.html', 'hub/index.html', 'scene/index.html', 'workspacehq/index.html']
+/* the landing page is three static pages, one per language: index.html
+   (French, the template) and en/, ar/ written from it by build-lang.mjs */
+export const PAGES = ['index.html', 'en/index.html', 'ar/index.html', '404.html', 'hub/index.html', 'scene/index.html', 'workspacehq/index.html']
   .concat(LEGAL_PUBLISHED ? ['legal/index.html'] : []);
 export const EXTRA_PAGES = ['workspacehq/embed/trailer.html', 'workspacehq/embed/walkthrough.html', 'workspacehq/embed/console.html'];
 
-export const DEPLOY = ['index.html', '404.html', 'robots.txt', 'sitemap.xml', 'assets', 'scene', 'hub', 'workspacehq']
+export const DEPLOY = ['index.html', 'en', 'ar', '404.html', 'robots.txt', 'sitemap.xml', 'assets', 'scene', 'hub', 'workspacehq']
   .concat(LEGAL_PUBLISHED ? ['legal'] : []);
 // file names never published even inside a deployed folder: a folder's own
 // notes and the manifest the WorkspaceHQ design-system export ships. Every

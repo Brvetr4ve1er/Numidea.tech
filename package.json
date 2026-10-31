@@ -17,7 +17,7 @@
     "scene": "node scripts/build-scene.mjs",
     "work:capture": "node scripts/work-capture.mjs",
     "stage": "node scripts/stage-site.mjs",
-    "build": "node scripts/build-fr.mjs && node scripts/build-scene.mjs && node scripts/build-voices.mjs && node scripts/build-legal.mjs && node scripts/build-sitemap.mjs && node scripts/build-csp.mjs",
+    "build": "node scripts/build-scene.mjs && node scripts/build-voices.mjs && node scripts/build-legal.mjs && node scripts/build-lang.mjs && node scripts/build-sitemap.mjs && node scripts/build-csp.mjs",
     "csp": "node scripts/build-csp.mjs",
     "og": "node scripts/og-capture.mjs && node scripts/build-og.mjs",
     "hub:art": "node scripts/build-hub-art.mjs",

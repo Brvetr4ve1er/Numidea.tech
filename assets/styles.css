@@ -36,7 +36,7 @@
    rules are where the per-theme type, glow and kicker node are read;
    nothing in this file names a theme.
    ============================================================ */
-html[dir="ltr"] :is(.hero-h,h2.sec,.contact h2,.mobile-menu a,.sb-txt b){
+html[dir="ltr"] :is(.hero-h,h2.sec,.contact h2,.mobile-menu nav a,.sb-txt b){
   font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking)}
 html[dir="ltr"] .hero-h{font-size:var(--hero-fs);line-height:var(--hero-lh)}
 html[dir="ltr"] :is(.hero-h .swash,.contact h2 em){font-family:var(--font-head-em);font-weight:var(--head-weight);padding-right:.06em}
@@ -145,11 +145,14 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 .nav-links a{font-family:var(--font-mono);font-size:13px;color:var(--muted);text-decoration:none;transition:color var(--dur-fast)}
 .nav-links a:hover{color:var(--teal-text)}
 .nav-right{display:flex;align-items:center;gap:var(--s-4)}
+/* The switch is three links on the home page (the French page, en/, ar/:
+   the current one carries aria-current) and three buttons on the pages that
+   switch in place (scene/, legal/: the current one is aria-pressed). */
 .lang{display:inline-flex;gap:2px;font-family:var(--font-mono);font-size:12px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);overflow:hidden}
-.lang button{font-family:var(--font-mono);font-size:12px;background:transparent;border:none;color:var(--muted);padding:5px 9px;cursor:pointer;transition:all var(--dur-fast)}
-.lang button[aria-pressed="true"]{color:var(--on-teal);background:var(--teal)}
-.lang button:hover{color:var(--ice)}
-.lang button[aria-pressed="true"]:hover{color:var(--on-teal)}
+.lang :is(a,button){font-family:var(--font-mono);font-size:12px;background:transparent;border:none;color:var(--muted);padding:5px 9px;cursor:pointer;text-decoration:none;transition:all var(--dur-fast)}
+.lang :is(a[aria-current],button[aria-pressed="true"]){color:var(--on-teal);background:var(--teal)}
+.lang :is(a,button):hover{color:var(--ice)}
+.lang :is(a[aria-current],button[aria-pressed="true"]):hover{color:var(--on-teal)}
 .menu-toggle{display:none;background:transparent;border:1px solid var(--hairline-2);border-radius:var(--r-sm);color:var(--ice);width:44px;height:44px;cursor:pointer;font-size:18px}
 
 /* mobile full-screen menu */
@@ -172,17 +175,18 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 .mobile-menu.open{transform:translateX(0);visibility:visible}
 /* in Arabic the menu slides in from the reading start (the left) */
 html[dir="rtl"] .mobile-menu:not(.open){transform:translateX(-100%)}
-.mobile-menu a{font-family:var(--font-display);font-weight:600;font-size:40px;color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
-html[dir="rtl"] .mobile-menu a{font-family:var(--font-ar-display)}
+/* the section links (nav a; the language switch's links are the pill's own) */
+.mobile-menu nav a{font-family:var(--font-display);font-weight:600;font-size:40px;color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
+html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
 .mobile-menu .lang{opacity:0}
-.mobile-menu.open a,.mobile-menu.open .lang{animation:stagger .5s var(--ease-out) forwards}
-.mobile-menu.open a:nth-of-type(1){animation-delay:.05s}
-.mobile-menu.open a:nth-of-type(2){animation-delay:.1s}
-.mobile-menu.open a:nth-of-type(3){animation-delay:.15s}
-.mobile-menu.open a:nth-of-type(4){animation-delay:.2s}
-.mobile-menu.open a:nth-of-type(5){animation-delay:.25s}
-.mobile-menu.open a:nth-of-type(6){animation-delay:.3s}
-.mobile-menu.open a:nth-of-type(7){animation-delay:.35s}
+.mobile-menu.open nav a,.mobile-menu.open .lang{animation:stagger .5s var(--ease-out) forwards}
+.mobile-menu.open nav a:nth-of-type(1){animation-delay:.05s}
+.mobile-menu.open nav a:nth-of-type(2){animation-delay:.1s}
+.mobile-menu.open nav a:nth-of-type(3){animation-delay:.15s}
+.mobile-menu.open nav a:nth-of-type(4){animation-delay:.2s}
+.mobile-menu.open nav a:nth-of-type(5){animation-delay:.25s}
+.mobile-menu.open nav a:nth-of-type(6){animation-delay:.3s}
+.mobile-menu.open nav a:nth-of-type(7){animation-delay:.35s}
 .mobile-menu.open .lang{animation-delay:.4s}
 @keyframes stagger{to{opacity:1;transform:translateY(0)}}
 .mobile-menu .lang{margin-top:var(--s-4);align-self:flex-start}
@@ -885,8 +889,8 @@ html[dir="rtl"] .sb-txt b{font-family:var(--font-ar-display)}
 .faq-item summary:focus-visible{outline:2px solid var(--teal);outline-offset:-3px;border-radius:var(--r-sm)}
 /* .faq-item, .capabilities and .lang clip their overflow, so an outside ring
    would be cut away entirely: these controls draw it inside. */
-.capabilities>summary:focus-visible,.lang button:focus-visible{outline-offset:-3px}
-.lang button[aria-pressed="true"]:focus-visible{outline-color:var(--on-teal)}
+.capabilities>summary:focus-visible,.lang :is(a,button):focus-visible{outline-offset:-3px}
+.lang :is(a[aria-current],button[aria-pressed="true"]):focus-visible{outline-color:var(--on-teal)}
 /* a directional arrow inside translated copy (founder buttons) turns with the reading direction */
 html[dir="rtl"] .arr{display:inline-block;transform:scaleX(-1)}
 html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
@@ -1257,7 +1261,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .sec-lead,.svc-lead{margin-bottom:var(--s-6)}
   .capabilities{margin-top:var(--s-6)}
   /* mobile overlay: bring the language + close controls up to a 44px touch target */
-  .mobile-menu .lang button{padding:12px 16px;font-size:14px;min-height:44px}
+  .mobile-menu .lang :is(a,button){padding:12px 16px;font-size:14px;min-height:44px;display:inline-flex;align-items:center}
   .mobile-menu .close{width:44px;height:44px;display:grid;place-items:center;top:14px;inset-inline-end:14px;line-height:1}
   .footer nav{gap:var(--s-3) var(--s-5)}
   .footer nav a{padding-inline:6px;display:inline-flex}
@@ -1297,7 +1301,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   section{padding-block:36px}
   .hero-grid{gap:var(--s-5)}
   .mobile-menu{gap:var(--s-3);justify-content:safe flex-start}
-  .mobile-menu a{font-size:clamp(20px,6.4vh,32px)}
+  .mobile-menu nav a{font-size:clamp(20px,6.4vh,32px)}
   .mobile-menu .close{top:10px;inset-inline-end:10px}
 }
 
@@ -1338,7 +1342,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
 @media (pointer:coarse){
   .nav-links a{padding-block:12px}
   .theme-btn{min-width:44px;min-height:44px;display:grid;place-items:center}
-  .lang button{min-height:40px;padding-inline:12px}
+  .lang :is(a,button){min-height:40px;padding-inline:12px;display:inline-flex;align-items:center}
   .footer nav a{min-height:44px;display:inline-flex;align-items:center;padding-inline:6px}
   .contact .ch dd a{min-height:44px;display:inline-flex;align-items:center}
   .logo{min-height:44px;display:inline-flex;align-items:center}
@@ -1349,7 +1353,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal,.js-ready .reveal{opacity:1;transform:none}
   .hero-mesh span{animation:none}
-  .mobile-menu a,.mobile-menu .lang{opacity:1;transform:none}
+  .mobile-menu nav a,.mobile-menu .lang{opacity:1;transform:none}
   .glyph svg :is(path,circle,line,polyline,polygon,rect),.js-ready .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dashoffset:0}
   /* the ambient layer is decoration, not content — flatten it entirely */
   [data-parallax]{translate:none!important}
@@ -1940,7 +1944,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
    probe reading the style at the instant of focus saw no ring at all. A focus
    indicator must be instant. Same durations and easings; outline excluded. Lives at the END of the sheet
    on purpose: a later `transition:all` shorthand would reset the property list. */
-.theme-btn,.theme-menu button,.lang button,.btn,.proj .actions a,.field input,.field textarea{
+.theme-btn,.theme-menu button,.lang :is(a,button),.btn,.proj .actions a,.field input,.field textarea{
   transition-property:color,background-color,border-color,box-shadow,transform,opacity,filter}
 
 /* ═══ forced colours (Windows High Contrast) ═══ Backgrounds are discarded, so a
@@ -1948,7 +1952,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
    controls measured that way. A system-coloured border gives every control a
    boundary; ButtonText/LinkText are the palette the user chose. */
 @media (forced-colors:active){
-  button,.btn,a.btn,.theme-btn,.lang button,.plate-rail button,.pl-pause{border:1px solid ButtonText!important}
+  button,.btn,a.btn,.theme-btn,.lang :is(a,button),.plate-rail button,.pl-pause{border:1px solid ButtonText!important}
   a:not(.btn){text-decoration:underline}
   .proj,.svc-row,.faq-item,.titleblock,.capabilities{border:1px solid CanvasText!important}
   /* Every selected, pressed or current state on the page was drawn with a
@@ -1957,7 +1961,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
      the pressed language, the current plate and section all looked like their
      neighbours. These states are redrawn in the user's own Highlight pair, with
      forced-color-adjust:none so the system colours are used as written. */
-  .echip:has(input:checked),.lang button[aria-pressed="true"]{forced-color-adjust:none;
+  .echip:has(input:checked),.lang :is(a[aria-current],button[aria-pressed="true"]){forced-color-adjust:none;
     background:Highlight;color:HighlightText;border-color:Highlight!important}
   .eopt::before{border-color:ButtonText}
   /* the ticked box: Highlight, with the tick in HighlightText */
@@ -1981,7 +1985,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
   /* badges set in --void on an accent fill would be bare words without a box */
   .t-pop,.md-tag{border:1px solid CanvasText}
   /* focus rings on the parts that opted out above would keep the theme's teal */
-  .lang button[aria-pressed="true"]:focus-visible{outline-color:HighlightText}
+  .lang :is(a[aria-current],button[aria-pressed="true"]):focus-visible{outline-color:HighlightText}
   .echip:has(input:focus-visible),.eopt:has(input:focus-visible),.plate-rail button:focus-visible i,
   .est-field input[type="range"]:focus-visible{outline-color:CanvasText}
 }
@@ -2643,7 +2647,7 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
    there (5.4% of it, 26-36px); 390x844 and taller keep the 40px list. */
 @media (max-width:479px) and (max-height:719px){
   .mobile-menu{gap:clamp(10px,2.2vh,24px);gap:clamp(10px,2.2svh,24px)}
-  .mobile-menu a{font-size:clamp(26px,5.4vh,36px);font-size:clamp(26px,5.4svh,36px);line-height:1.4}
+  .mobile-menu nav a{font-size:clamp(26px,5.4vh,36px);font-size:clamp(26px,5.4svh,36px);line-height:1.4}
 }
 /* A phone on its side: the list ran 477px on a 375px screen (504 on 390),
    so the language switch needed a scroll. Two columns of four rows (DOM and
@@ -2652,7 +2656,7 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
 @media (max-height:560px) and (min-width:480px){
   /* svh: the short-viewport block above sizes this type in vh, the LARGE
      viewport on iOS, taller than the screen while the toolbars show */
-  .mobile-menu a{font-size:clamp(20px,6.4svh,32px)}
+  .mobile-menu nav a{font-size:clamp(20px,6.4svh,32px)}
   .mobile-menu nav{display:grid;grid-template-rows:repeat(4,auto);grid-auto-flow:column;justify-content:start;column-gap:clamp(32px,8vw,80px)}
   .mobile-menu .close{top:calc(10px + env(safe-area-inset-top));inset-inline-end:calc(10px + env(safe-area-inset-right))}
   html[dir="rtl"] .mobile-menu .close{inset-inline-end:calc(10px + env(safe-area-inset-left))}
