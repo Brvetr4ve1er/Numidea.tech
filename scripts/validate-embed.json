@@ -1,0 +1,17 @@
+{
+  "$schema": "https://html-validate.org/schemas/config.json",
+  "root": true,
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "attr-case": ["error", { "style": ["lowercase", "camelcase"] }],
+    "attribute-allowed-values": "off",
+    "attribute-boolean-style": "off",
+    "element-name": ["error", { "whitelist": ["helmet"] }],
+    "empty-heading": "off",
+    "no-implicit-button-type": "off",
+    "no-implicit-input-type": "off",
+    "no-inline-style": "off",
+    "text-content": "warn",
+    "unique-landmark": "warn"
+  }
+}

@@ -134,7 +134,7 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
        const where=sec?(sec.id||sec.className.toString().split(' ')[0]||sec.tagName):'body';
        out.push({sel,where,text:n.textContent.trim().slice(0,40),color:cs.color,op,
          x:rect.left,y:rect.top+sy,w:rect.width,h:rect.height,large,gradText,
-         decorative:!!el.closest('[data-decorative]'),disabled:!!el.closest('[aria-disabled="true"],[data-pending],[data-wa-pending]')});
+         decorative:!!el.closest('[data-decorative]'),disabled:!!el.closest('[aria-disabled="true"]')});
      }
      return out;});
    // background-only render

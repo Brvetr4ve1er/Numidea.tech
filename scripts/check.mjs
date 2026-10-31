@@ -50,8 +50,9 @@
  *                        no unhashed inline script, inline handler or javascript: URL;
  *                        both policies stand on scripts/lib/csp-floor.mjs; the mirrors
  *                        send the same headers, with frame-ancestors and HSTS
- *  17. asset budgets  — each published folder under its byte ceiling, og.jpg ≤ 300 kB,
- *                        the whole published set under its total
+ *  17. asset budgets  — every published file under its folder's (or its own) byte
+ *                        ceiling, og.jpg ≤ 300 kB, the whole published set under its
+ *                        total, and no two published files alike (licence texts aside)
  *  17b. hub art and motion — every srcset, data-full, data-anim and hub/style.css url()
  *                        file exists; each <img> has alt and width/height = its widest
  *                        file, NNNw = the file's width, one ratio per image; data-w/h =
@@ -71,7 +72,7 @@ import { readFileSync, existsSync, readdirSync, statSync, lstatSync, realpathSyn
 import { execFileSync } from 'node:child_process';
 import { runInNewContext } from 'node:vm';
 import { join, dirname, normalize, basename, extname } from 'node:path';
-import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, DEPLOY_SKIP, NOT_DEPLOYED, BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
+import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, isDeploySkipped, NOT_DEPLOYED, BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
 import { SCENE_HTML } from './build-scene.mjs';
 import { renderSitemap } from './build-sitemap.mjs';
 import { applyVoices } from './build-voices.mjs';
@@ -295,7 +296,7 @@ for (const f of PAGES) {
     const rel = normalize(join(dirname(f), u)).replace(/\\/g, '/').replace(/\/$/, '');
     if (rel === '.' || rel === '') continue;               // the site root is index.html
     const top = rel.split('/')[0];
-    if (rel.startsWith('..') || !DEPLOY.includes(top) || DEPLOY_SKIP.includes(basename(rel))) leaks.push(`${f} → ${m[1]}`);
+    if (rel.startsWith('..') || !DEPLOY.includes(top) || isDeploySkipped(basename(rel))) leaks.push(`${f} → ${m[1]}`);
   }
 }
 const sitemapLeaks = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).filter((u) => {
@@ -835,7 +836,12 @@ runtimeDeps.length
 // publish (DEPLOY, walked as stage-site.mjs copies it). Each folder's ceiling
 // is the largest file it held on the date beside it (2026-10-24 unless
 // noted) plus 10%, rounded up to the kB, and no file in it, at any depth, may
-// be larger. Every published og.jpg (the share cards) stays under 300 kB. The
+// be larger. A file is held to the longest BUDGET folder that holds it and to
+// that one alone: workspacehq/'s ceiling is the product page's own files,
+// not its embed's audio, and a folder with no ceiling of its own
+// (workspacehq/embed/fonts) takes its nearest ancestor's. FILES names single
+// files outside any budgeted folder, each under its own ceiling, set the
+// same way. Every published og.jpg (the share cards) stays under 300 kB. The
 // whole published set stays under its size on the date beside TOTAL plus 10%,
 // rounded up to 0.1 MB. A miss fails: make the file smaller (previews:
 // scripts/shots.mjs, work: work-capture.mjs, illus: plates.mjs, clients:
@@ -843,11 +849,15 @@ runtimeDeps.length
 // build-hub-art.mjs, which also enforces its own per-file ceiling, except
 // hub/art/be-*.webp, exported by hand) or raise the number here on purpose.
 // The owner can tighten any of them.
-// No two published files in assets/fonts/ may hold the same bytes. Geist,
-// Geist Mono and Syne are variable fonts, and the Google Fonts API answers
-// every weight with one file: saved once per weight, the copies were each
-// downloaded again (14 of them until c16a131). One file per family and
-// subset; the @font-face rules give it its weights.
+// No two published files may hold the same bytes: the hosts would serve the
+// same thing under two names and the browser fetch it twice. Geist, Geist
+// Mono and Syne are variable fonts, and the Google Fonts API answers every
+// weight with one file: saved once per weight, the copies were each
+// downloaded again (14 of them until 0629770), and the embed's design-system
+// export carried the product page's two fonts a second time (until 590c258).
+// One file per family and subset; the @font-face rules give it its weights.
+// Only OFL.txt, the fonts' licence, may sit beside each font set it covers:
+// those copies are not compared.
 {
   const { deployFiles } = await import('./lib/deploy-files.mjs');
   const { createHash } = await import('node:crypto');
@@ -860,24 +870,49 @@ runtimeDeps.length
     'hub/art': 260 * kB,          // 235,748 on 2026-10-28 (diary-traveler-1600.webp)
     'hub/loops': 419 * kB,        // 380,644 on 2026-10-28 (kuro-sleep.webp, animated)
     'assets/fonts': 51 * kB,      // 45,688 on 2026-10-26 (ibm-plex-sans-arabic-600-arabic.woff2)
+    'workspacehq': 64 * kB,       // 57,319 on 2026-10-31 (og.jpg)
+    'workspacehq/embed': 299 * kB,               // 271,134 on 2026-10-31 (console.html)
+    'workspacehq/embed/vendor': 146 * kB,        // 131,835 on 2026-10-31 (react-dom.production.min.js)
+    'workspacehq/embed/assets': 1477 * kB,       // 1,342,480 on 2026-10-31 (computer-icon.obj)
+    'workspacehq/embed/assets/audio': 1645 * kB, // 1,494,807 on 2026-10-31 (music2.mp3)
+  };
+  const FILES = {
+    'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 19.0e6;           // 17,237,153 on 2026-10-28, 242 files (the hub rebuilt on its new art and share card; Space Mono gone, F16)
+  const TOTAL = 19.0e6;           // 17,162,350 on 2026-10-31, 237 files (the embed's font copies, readme and manifest gone; 17,237,153 in 242 on 10-28)
   const size = (f) => statSync(join(ROOT, f)).size;
   const fmt = (n) => (n >= 1e6 ? (n / 1e6).toFixed(2) + ' MB' : (n / kB).toFixed(1) + ' kB');
   const bytes = (n) => n.toLocaleString('en') + ' bytes';
   const files = deployFiles().map((f) => [f, size(f)]);
-  const budgetErr = [], largest = [];
-  for (const [dir, cap] of Object.entries(BUDGET)) {
-    const own = files.filter(([f]) => f.startsWith(dir + '/'));
-    if (!own.length) { budgetErr.push(`${dir} publishes no files (moved? update block 17)`); continue; }
-    for (const [f, n] of own) if (n > cap) budgetErr.push(`${f} is ${bytes(n)}, over the ${dir} ceiling of ${bytes(cap)}`);
-    largest.push(`${dir} ${fmt(Math.max(...own.map(([, n]) => n)))}/${fmt(cap)}`);
+  const budgetErr = [], largest = [], singles = [];
+  // longest key first, so the first folder that holds a file is its own
+  const dirs = Object.keys(BUDGET).sort((a, b) => b.length - a.length);
+  const own = Object.fromEntries(dirs.map((d) => [d, []]));
+  for (const e of files) {
+    if (Object.hasOwn(FILES, e[0])) continue;
+    const d = dirs.find((d) => e[0].startsWith(d + '/'));
+    if (d) own[d].push(e);
   }
+  for (const [dir, cap] of Object.entries(BUDGET)) {
+    if (!own[dir].length) { budgetErr.push(`${dir} publishes no files of its own (moved? update block 17)`); continue; }
+    for (const [f, n] of own[dir]) if (n > cap) budgetErr.push(`${f} is ${bytes(n)}, over the ${dir} ceiling of ${bytes(cap)}`);
+    largest.push(`${dir} ${fmt(Math.max(...own[dir].map(([, n]) => n)))}/${fmt(cap)}`);
+  }
+  for (const [f, cap] of Object.entries(FILES)) {
+    const n = (files.find(([p]) => p === f) || [])[1];
+    if (n === undefined) { budgetErr.push(`${f} is not published (moved? update block 17)`); continue; }
+    if (n > cap) budgetErr.push(`${f} is ${bytes(n)}, over its ceiling of ${bytes(cap)}`);
+    singles.push(`${f} ${fmt(n)}/${fmt(cap)}`);
+  }
+  const LICENCE = /(^|\/)OFL\.txt$/;
   const seen = new Map();
-  for (const [f] of files.filter(([f]) => f.startsWith('assets/fonts/'))) {
+  let nHashed = 0;
+  for (const [f] of files) {
+    if (LICENCE.test(f)) continue;
+    nHashed++;
     const h = createHash('sha256').update(readFileSync(join(ROOT, f))).digest('hex');
-    if (seen.has(h)) budgetErr.push(`${f} has the same bytes as ${seen.get(h)} (one file per family and subset; point the @font-face rules at it)`);
+    if (seen.has(h)) budgetErr.push(`${f} has the same bytes as ${seen.get(h)} (publish one copy and point the other's references at it)`);
     else seen.set(h, f);
   }
   const cards = files.filter(([f]) => /(^|\/)og\.jpg$/.test(f));
@@ -889,7 +924,7 @@ runtimeDeps.length
     budgetErr.push(`the published set is ${bytes(total)} in ${files.length} files, over its ceiling of ${bytes(TOTAL)} (largest: ${top})`);
   }
   budgetErr.length ? bad('asset budgets: ' + budgetErr.join('; '))
-    : ok(`asset budgets: largest file per folder ${largest.join(', ')}; ${seen.size} font files, no two alike; ${cards.length} share cards ≤ ${fmt(OG)}; published ${fmt(total)} of ${fmt(TOTAL)}`);
+    : ok(`asset budgets: largest file per folder ${largest.join(', ')}; single files ${singles.join(', ')}; ${nHashed} files hashed, no two alike (OFL.txt aside); ${cards.length} share cards ≤ ${fmt(OG)}; published ${fmt(total)} of ${fmt(TOTAL)}`);
 }
 
 /* 17b — hub art and motion */
