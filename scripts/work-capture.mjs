@@ -2,7 +2,10 @@
 /**
  * Refreshes the blueprint showcase captures — `npm run work:capture [slug]`.
  * Four desktop pages (1440×900) and two phone screens (390×844 @2x) per
- * project, from the live sites, into assets/work/<slug>/{d1..d4,m1,m2}.webp.
+ * project, from the live sites, into assets/work/<slug>/{d1..d4,m1,m2}.webp,
+ * each with a half-width copy beside it (d<n>-720, m<n>-416): the srcset's
+ * small candidate in build-scene.mjs shot(), which a phone takes instead
+ * of the 1440 file.
  * Page lists must match scripts/scene-data.mjs. Needs the local server on
  * :8765 for WorkspaceHQ (our own page). Then run: npm run scene
  *
@@ -47,8 +50,9 @@ for(const [k,s] of Object.entries(P)){ if(only&&k!==only)continue;
    await p.waitForTimeout(k==='alliance'?6000:2500);
    const title=await p.title();
    const buf=await p.screenshot({type:'png'});
-   const out=`assets/work/${k}/${kind}${i}.webp`;
+   const out=`assets/work/${k}/${kind}${i}.webp`,small=kind==='m'?416:720;
    await sharp(buf).resize(kind==='m'?780:1440).webp({quality:80}).toFile(out);
+   await sharp(buf).resize(small).webp({quality:80}).toFile(out.replace('.webp',`-${small}.webp`));
    meta[k].pages.push({file:out,kind,path,title});console.log(out,title.slice(0,50));
    await ctx.close();}}
 }

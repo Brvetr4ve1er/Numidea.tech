@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-HprLMVac8U4BtpwGepEVsR0d2XXXXkLD+tWBug/WNrI='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-jCLfI86dxpYPAy22/N5ehJUqSRj7G6kXBGXMTCn4d5A='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>b4vetrave1er.exe // VOIDSPLUNKER.std</title>
 <meta name="description" content="Hamisse Mohamed Yasser, br4vetr4veler: artist, designer and developer. Design, code, and everything between.">
 <meta name="theme-color" content="#fcecdc">
@@ -26,15 +26,18 @@
 <!-- Paper is the default; "dark" in storage is the only other theme, and
      anything else reads as paper. The js class lets the stylesheet hold the
      hero's layers for their entrance: without scripts it is never set, and
-     the art is drawn where it rests. -->
-<script>(function(){var t,d=document.documentElement;try{t=localStorage.getItem('void-theme');}catch(e){}d.dataset.theme=t==='dark'?'dark':'light';d.classList.add('js');})();</script>
+     the art is drawn where it rests. The browser's own bar takes the page
+     colour of the theme here, before the stylesheet, keyed on data-theme as
+     index.html's map is; app.js keeps it in step on a switch. -->
+<script>(function(){var t,d=document.documentElement;try{t=localStorage.getItem('void-theme');}catch(e){}t=t==='dark'?'dark':'light';d.dataset.theme=t;d.classList.add('js');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',{light:'#fcecdc',dark:'#0f1420'}[t]);})();</script>
 <!-- Syne, Geist and Geist Mono, self-hosted (font-display:optional). The
-     three preloads are the faces of the first screen; latin-ext is one of
-     them because "Kūro" needs it (assets/fonts-hub.css). -->
+     two preloads are the faces of the first screen. "Kūro" is written
+     Ku&#x304;ro (u, combining macron) throughout: as one letter it needed
+     the latin-ext file, 16 KB preloaded for a single glyph
+     (assets/fonts-hub.css). -->
 <link rel="stylesheet" href="../assets/fonts-hub.css?v=202610281934">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/syne-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin-ext.woff2">
 <!-- the cartridge's pixel face (12.5 kB, display:swap, as on workspacehq/):
      fetched with the page, so it is there for the first paint instead of
      widening the cartridge when it lands -->
@@ -100,7 +103,7 @@
       </picture>
       <picture class="layer layer--yasser" data-parallax="-.03" data-depth="5">
         <source media="(min-width:1024px)" srcset="art/hero-yasser-wide-1280.webp 1280w, art/hero-yasser-wide-1920.webp 1920w, art/hero-yasser-wide-2560.webp 2560w" sizes="100vw" width="2560" height="1557">
-        <img src="art/hero-yasser-tall-960.webp" srcset="art/hero-yasser-tall-640.webp 640w, art/hero-yasser-tall-960.webp 960w, art/hero-yasser-tall-1192.webp 1192w" sizes="(min-width:700px) 50vw, 100vw" width="1192" height="1674" alt="Yasser in a long bone coat, a coffee in his hand, and Kūro, the black cat, sitting beside him." fetchpriority="high">
+        <img src="art/hero-yasser-tall-960.webp" srcset="art/hero-yasser-tall-640.webp 640w, art/hero-yasser-tall-960.webp 960w, art/hero-yasser-tall-1192.webp 1192w" sizes="(min-width:700px) 50vw, 100vw" width="1192" height="1674" alt="Yasser in a long bone coat, a coffee in his hand, and Ku&#x304;ro, the black cat, sitting beside him." fetchpriority="high">
       </picture>
     </div>
   </div>
@@ -157,7 +160,7 @@
 
     <article class="role role--artist" aria-labelledby="role-a" data-reveal>
       <div class="role-fig">
-        <img class="fade" src="art/make-artist-720.webp" srcset="art/make-artist-480.webp 480w, art/make-artist-720.webp 720w, art/make-artist-960.webp 960w" sizes="(min-width:1024px) 460px, (min-width:700px) 46vw, 84vw" width="960" height="787" alt="Yasser drawing on a pen display while Kūro walks across it." loading="lazy" decoding="async">
+        <img class="fade" src="art/make-artist-720.webp" srcset="art/make-artist-480.webp 480w, art/make-artist-720.webp 720w, art/make-artist-960.webp 960w" sizes="(min-width:1024px) 460px, (min-width:700px) 46vw, 84vw" width="960" height="787" alt="Yasser drawing on a pen display while Ku&#x304;ro walks across it." loading="lazy" decoding="async">
       </div>
       <div class="role-txt">
         <h3 id="role-a">Artist</h3>
@@ -187,7 +190,7 @@
     </div>
     <picture class="band-art">
       <source media="(min-width:1024px)" srcset="art/band-design-1280.webp 1280w, art/band-design-1920.webp 1920w" sizes="100vw" width="1920" height="1072">
-      <img class="fade" src="art/band-design-tall-800.webp" srcset="art/band-design-tall-800.webp 800w, art/band-design-tall-1200.webp 1200w" sizes="100vw" width="1200" height="1217" alt="Yasser at a work table among floating layouts, logo studies and colour swatches, Kūro sitting at the table's edge." loading="lazy" decoding="async">
+      <img class="fade" src="art/band-design-tall-800.webp" srcset="art/band-design-tall-800.webp 800w, art/band-design-tall-1200.webp 1200w" sizes="100vw" width="1200" height="1217" alt="Yasser at a work table among floating layouts, logo studies and colour swatches, Ku&#x304;ro sitting at the table's edge." loading="lazy" decoding="async">
     </picture>
   </div>
 
@@ -226,23 +229,23 @@
   <div class="band band--diary">
     <div class="band-copy" data-reveal>
       <h2 id="coll-h">Studio diary</h2>
-      <p>Yasser and Kūro, after hours.</p>
+      <p>Yasser and Ku&#x304;ro, after hours.</p>
     </div>
     <picture class="band-art">
       <source media="(min-width:1024px)" srcset="art/band-diary-1280.webp 1280w, art/band-diary-1920.webp 1920w" sizes="100vw" width="1920" height="1072">
-      <img class="fade" src="art/band-diary-tall-800.webp" srcset="art/band-diary-tall-800.webp 800w, art/band-diary-tall-1200.webp 1200w" sizes="100vw" width="1200" height="1217" alt="Yasser turning a small model in his hands at a lamp-lit desk at night, Kūro sitting under the lamp." loading="lazy" decoding="async">
+      <img class="fade" src="art/band-diary-tall-800.webp" srcset="art/band-diary-tall-800.webp 800w, art/band-diary-tall-1200.webp 1200w" sizes="100vw" width="1200" height="1217" alt="Yasser turning a small model in his hands at a lamp-lit desk at night, Ku&#x304;ro sitting under the lamp." loading="lazy" decoding="async">
     </picture>
   </div>
 
   <ul class="prints wrap">
-    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-4am-1600.webp" data-full="art/diary-4am-1600.webp" data-w="1600" data-h="1045" data-title="4 a.m." data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-4am-960.webp" srcset="art/diary-4am-640.webp 640w, art/diary-4am-960.webp 960w, art/diary-4am-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="836" alt="Yasser at his desk by a dark city window, a pen at his lips, Kūro asleep on the keyboard." loading="lazy" decoding="async"></span><span class="print-t">4 a.m.</span></a></li>
-    <li class="print print--third" data-reveal><a class="tile tile--img" href="art/diary-buried-1264.webp" data-full="art/diary-buried-1264.webp" data-w="1264" data-h="848" data-title="Buried" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-buried-960.webp" srcset="art/diary-buried-640.webp 640w, art/diary-buried-960.webp 960w, art/diary-buried-1264.webp 1264w" sizes="(min-width:1024px) 380px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Yasser holding his head next to towers of binders and papers, Kūro sitting on the open laptop." loading="lazy" decoding="async"></span><span class="print-t">Buried</span></a></li>
-    <li class="print print--third" data-reveal><a class="tile tile--img" href="art/diary-art-director-1264.webp" data-full="art/diary-art-director-1264.webp" data-w="1264" data-h="848" data-title="Art director" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-art-director-960.webp" srcset="art/diary-art-director-640.webp 640w, art/diary-art-director-960.webp 960w, art/diary-art-director-1264.webp 1264w" sizes="(min-width:1024px) 380px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Kūro sitting on Yasser's pen display while he draws around him, coffee cups all over the desk." loading="lazy" decoding="async"></span><span class="print-t">Art director</span></a></li>
-    <li class="print print--third print--tab-full" data-reveal><a class="tile tile--img" href="art/diary-second-brain-1264.webp" data-full="art/diary-second-brain-1264.webp" data-w="1264" data-h="848" data-title="The second brain" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-second-brain-960.webp" srcset="art/diary-second-brain-640.webp 640w, art/diary-second-brain-960.webp 960w, art/diary-second-brain-1264.webp 1264w" sizes="(min-width:1024px) 380px, 92vw" width="1264" height="848" alt="Yasser at a wall of pinned notes linked by strings, Kūro asleep on the desk behind him." loading="lazy" decoding="async"></span><span class="print-t">The second brain</span></a></li>
-    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-miniature-1600.webp" data-full="art/diary-miniature-1600.webp" data-w="1600" data-h="1046" data-title="A world in miniature" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-miniature-960.webp" srcset="art/diary-miniature-640.webp 640w, art/diary-miniature-960.webp 960w, art/diary-miniature-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="836" alt="Yasser holding up a cut-paper scene of towers at his workbench, Kūro watching from a blueprint." loading="lazy" decoding="async"></span><span class="print-t">A world in miniature</span></a></li>
-    <li class="print print--half print--crop" data-reveal><a class="tile tile--img" href="art/diary-morning-1376.webp" data-full="art/diary-morning-1376.webp" data-w="1376" data-h="768" data-title="Morning light" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-morning-960.webp" srcset="art/diary-morning-640.webp 640w, art/diary-morning-960.webp 960w, art/diary-morning-1280.webp 1280w" sizes="(min-width:1024px) 580px, (min-width:700px) 46vw, 92vw" width="1280" height="714" alt="Yasser sketching at a sunlit desk beside a model tower, Kūro curled up asleep on the desk." loading="lazy" decoding="async"></span><span class="print-t">Morning light</span></a></li>
-    <li class="print print--half" data-reveal><a class="tile tile--img" href="art/diary-wandering-1264.webp" data-full="art/diary-wandering-1264.webp" data-w="1264" data-h="848" data-title="Wandering" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-wandering-960.webp" srcset="art/diary-wandering-640.webp 640w, art/diary-wandering-960.webp 960w, art/diary-wandering-1264.webp 1264w" sizes="(min-width:1024px) 580px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Yasser reading a maze of a map on a rock among ruins at sunset, Kūro sitting beside him." loading="lazy" decoding="async"></span><span class="print-t">Wandering</span></a></li>
-    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-traveler-1600.webp" data-full="art/diary-traveler-1600.webp" data-w="1600" data-h="1073" data-title="tr4veler.exe" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-traveler-960.webp" srcset="art/diary-traveler-640.webp 640w, art/diary-traveler-960.webp 960w, art/diary-traveler-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="859" alt="Three scenes of Yasser and Kūro: resting on a hillside, walking through arches into a maze, and reading a glowing map on a night platform." loading="lazy" decoding="async"></span><span class="print-t">tr4veler.exe</span></a></li>
+    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-4am-1600.webp" data-full="art/diary-4am-1600.webp" data-w="1600" data-h="1045" data-title="4 a.m." data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-4am-960.webp" srcset="art/diary-4am-640.webp 640w, art/diary-4am-960.webp 960w, art/diary-4am-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="836" alt="Yasser at his desk by a dark city window, a pen at his lips, Ku&#x304;ro asleep on the keyboard." loading="lazy" decoding="async"></span><span class="print-t">4 a.m.</span></a></li>
+    <li class="print print--third" data-reveal><a class="tile tile--img" href="art/diary-buried-1264.webp" data-full="art/diary-buried-1264.webp" data-w="1264" data-h="848" data-title="Buried" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-buried-960.webp" srcset="art/diary-buried-640.webp 640w, art/diary-buried-960.webp 960w, art/diary-buried-1264.webp 1264w" sizes="(min-width:1024px) 380px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Yasser holding his head next to towers of binders and papers, Ku&#x304;ro sitting on the open laptop." loading="lazy" decoding="async"></span><span class="print-t">Buried</span></a></li>
+    <li class="print print--third" data-reveal><a class="tile tile--img" href="art/diary-art-director-1264.webp" data-full="art/diary-art-director-1264.webp" data-w="1264" data-h="848" data-title="Art director" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-art-director-960.webp" srcset="art/diary-art-director-640.webp 640w, art/diary-art-director-960.webp 960w, art/diary-art-director-1264.webp 1264w" sizes="(min-width:1024px) 380px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Ku&#x304;ro sitting on Yasser's pen display while he draws around him, coffee cups all over the desk." loading="lazy" decoding="async"></span><span class="print-t">Art director</span></a></li>
+    <li class="print print--third print--tab-full" data-reveal><a class="tile tile--img" href="art/diary-second-brain-1264.webp" data-full="art/diary-second-brain-1264.webp" data-w="1264" data-h="848" data-title="The second brain" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-second-brain-960.webp" srcset="art/diary-second-brain-640.webp 640w, art/diary-second-brain-960.webp 960w, art/diary-second-brain-1264.webp 1264w" sizes="(min-width:1024px) 380px, 92vw" width="1264" height="848" alt="Yasser at a wall of pinned notes linked by strings, Ku&#x304;ro asleep on the desk behind him." loading="lazy" decoding="async"></span><span class="print-t">The second brain</span></a></li>
+    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-miniature-1600.webp" data-full="art/diary-miniature-1600.webp" data-w="1600" data-h="1046" data-title="A world in miniature" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-miniature-960.webp" srcset="art/diary-miniature-640.webp 640w, art/diary-miniature-960.webp 960w, art/diary-miniature-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="836" alt="Yasser holding up a cut-paper scene of towers at his workbench, Ku&#x304;ro watching from a blueprint." loading="lazy" decoding="async"></span><span class="print-t">A world in miniature</span></a></li>
+    <li class="print print--half print--crop" data-reveal><a class="tile tile--img" href="art/diary-morning-1376.webp" data-full="art/diary-morning-1376.webp" data-w="1376" data-h="768" data-title="Morning light" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-morning-960.webp" srcset="art/diary-morning-640.webp 640w, art/diary-morning-960.webp 960w, art/diary-morning-1280.webp 1280w" sizes="(min-width:1024px) 580px, (min-width:700px) 46vw, 92vw" width="1280" height="714" alt="Yasser sketching at a sunlit desk beside a model tower, Ku&#x304;ro curled up asleep on the desk." loading="lazy" decoding="async"></span><span class="print-t">Morning light</span></a></li>
+    <li class="print print--half" data-reveal><a class="tile tile--img" href="art/diary-wandering-1264.webp" data-full="art/diary-wandering-1264.webp" data-w="1264" data-h="848" data-title="Wandering" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-wandering-960.webp" srcset="art/diary-wandering-640.webp 640w, art/diary-wandering-960.webp 960w, art/diary-wandering-1264.webp 1264w" sizes="(min-width:1024px) 580px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Yasser reading a maze of a map on a rock among ruins at sunset, Ku&#x304;ro sitting beside him." loading="lazy" decoding="async"></span><span class="print-t">Wandering</span></a></li>
+    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-traveler-1600.webp" data-full="art/diary-traveler-1600.webp" data-w="1600" data-h="1073" data-title="tr4veler.exe" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-traveler-960.webp" srcset="art/diary-traveler-640.webp 640w, art/diary-traveler-960.webp 960w, art/diary-traveler-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="859" alt="Three scenes of Yasser and Ku&#x304;ro: resting on a hillside, walking through arches into a maze, and reading a glowing map on a night platform." loading="lazy" decoding="async"></span><span class="print-t">tr4veler.exe</span></a></li>
   </ul>
 </section>
 

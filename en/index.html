@@ -207,11 +207,14 @@
           </div>
         </div>
         <!-- the language versions are pages (this one, en/, ar/): plain links,
-             so they work with scripts off; build-lang.mjs marks the current one -->
+             so they work with scripts off; build-lang.mjs marks the current one.
+             The Arabic one is drawn, not typed (scripts/lib/ayn.mjs holds the
+             same path): a typed ع took the Arabic face through styles.css's
+             [lang="ar"] rule, 42 KB on every French and English visit. -->
         <div class="lang" role="group" aria-label="Language" data-i18n-aria="ui.lang">
           <a href="../" hreflang="fr" lang="fr" aria-label="Français (FR)">FR</a>
           <a href="../en/" hreflang="en" lang="en" aria-label="English (EN)" aria-current="page">EN</a>
-          <a href="../ar/" hreflang="ar" lang="ar" aria-label="العربية (ع)">ع</a>
+          <a href="../ar/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
         </div>
         <button type="button" class="menu-toggle js-only" aria-label="Menu" data-i18n-aria="ui.menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
       </div>
@@ -234,7 +237,7 @@
   <div class="lang" role="group" aria-label="Language" data-i18n-aria="ui.lang">
     <a href="../" hreflang="fr" lang="fr" aria-label="Français (FR)">FR</a>
     <a href="../en/" hreflang="en" lang="en" aria-label="English (EN)" aria-current="page">EN</a>
-    <a href="../ar/" hreflang="ar" lang="ar" aria-label="العربية (ع)">ع</a>
+    <a href="../ar/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
   </div>
 </div>
 
@@ -277,21 +280,32 @@
            can actually read. This replaced a fan of three static thumbnails
            that showed 3 of 5 clients and was too small to make out; the studio's
            strongest asset was being used as texture. Wiped, never cross-faded:
-           screenshots stay flat and sharp, which is the scene/ idiom. -->
+           screenshots stay flat and sharp, which is the scene/ idiom.
+           Each slide is its capture at 1280 and at 720 (scripts/shots.mjs
+           writes both); sizes is the plate's measured width: 91vw to 960px,
+           at most 40vw above, so a phone at 2x takes the 720 file. The first
+           slide is the page's largest paint and keeps its high priority; the
+           four others wait in the <template> until the visitor moves (app.js:
+           the deck's wake() puts them in the plate), since the deck does not
+           turn before that and 138 KB loaded ahead of everything else for a
+           slide nobody had asked for yet. A template, not src-less images,
+           which the audit counts as broken. -->
       <div class="plate-wrap" data-parallax="-.06" data-parallax-cap="26">
         <div class="plate">
           <i class="pk tl" aria-hidden="true"></i><i class="pk tr" aria-hidden="true"></i>
           <i class="pk bl" aria-hidden="true"></i><i class="pk br" aria-hidden="true"></i>
-        <img class="pl on" src="../assets/previews/bordjsteel.webp" alt="Bordj Steel"
+        <img class="pl on" src="../assets/previews/bordjsteel.webp" srcset="../assets/previews/bordjsteel-720.webp 720w, ../assets/previews/bordjsteel.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Bordj Steel"
              width="1280" height="800" decoding="async" fetchpriority="high">
-        <img class="pl" src="../assets/previews/glaive.webp" alt="Glaive Store"
+        <template id="plate-more">
+        <img class="pl" src="../assets/previews/glaive.webp" srcset="../assets/previews/glaive-720.webp 720w, ../assets/previews/glaive.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Glaive Store"
              width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
-        <img class="pl" src="../assets/previews/alliancetravel.webp" alt="Alliance Travel"
+        <img class="pl" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Alliance Travel"
              width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
-        <img class="pl" src="../assets/previews/nomara.webp" alt="Nomara Voyages"
+        <img class="pl" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Nomara Voyages"
              width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
-        <img class="pl" src="../assets/previews/almaflowclim.webp" alt="AlmaFlowClim"
+        <img class="pl" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="AlmaFlowClim"
              width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
+        </template>
           <span class="pl-wipe" aria-hidden="true"></span>
           <span class="pl-scan" aria-hidden="true"></span>
         </div>
@@ -397,9 +411,13 @@
       <!-- Bento: live sites first, the first one featured as a wide card. At
            3 columns wide(2)+1 / 1+1+1 closes flush; at 2 columns it stays
            wide (2+2+2 = 6 cells). The order is part of the layout. Projects
-           in progress get a card only once their site is live. -->
+           in progress get a card only once their site is live.
+           The shots are the plate's captures, 720 and 1280 wide; sizes is each
+           thumb's measured width: 91vw on phones, a 232px strip beside the
+           text from 600px, then 44vw (the wide card 90vw) at 961px and 28vw
+           (57vw) from 1100px. -->
       <article id="w-bordjsteel" class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="../assets/previews/bordjsteel.webp" alt="Bordj Steel website preview" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="../assets/previews/bordjsteel.webp" srcset="../assets/previews/bordjsteel-720.webp 720w, ../assets/previews/bordjsteel.webp 1280w" sizes="(min-width:1100px) 57vw, (min-width:961px) 90vw, (min-width:600px) 232px, 91vw" alt="Bordj Steel website preview" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrial · B2B</span>
           <h3>Bordj Steel</h3>
@@ -414,7 +432,7 @@
       </article>
 
       <article id="w-alliance" class="proj proj--brand reveal" style="--brand:95,214,134">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="../assets/previews/alliancetravel.webp" alt="Alliance Travel website preview" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Alliance Travel website preview" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Travel · Growth</span>
           <h3>Alliance Travel</h3>
@@ -429,7 +447,7 @@
       </article>
 
       <article id="w-almaflow" class="proj proj--brand reveal" style="--brand:59,164,224">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="../assets/previews/almaflowclim.webp" alt="AlmaFlowClim website preview" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="AlmaFlowClim website preview" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Contractor · Île-de-France</span>
           <h3>AlmaFlowClim</h3>
@@ -444,7 +462,7 @@
       </article>
 
       <article id="w-nomara" class="proj proj--brand reveal" style="--brand:34,180,104">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="../assets/previews/nomara.webp" alt="Nomara Voyages website preview" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Nomara Voyages website preview" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Travel · Umrah</span>
           <h3>Nomara Voyages</h3>
@@ -458,7 +476,7 @@
       </article>
 
       <article class="proj proj--brand reveal" style="--brand:255,90,31">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="../assets/previews/glaive.webp" alt="Glaive Store website preview" data-i18n-alt="proj7.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="../assets/previews/glaive.webp" srcset="../assets/previews/glaive-720.webp 720w, ../assets/previews/glaive.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Glaive Store website preview" data-i18n-alt="proj7.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
           <h3>Glaive Store</h3>
@@ -1168,7 +1186,7 @@
       <span class="lang" role="group" aria-label="Language" data-i18n-aria="ui.lang">
         <a href="../" hreflang="fr" lang="fr" aria-label="Français (FR)">FR</a>
         <a href="../en/" hreflang="en" lang="en" aria-label="English (EN)" aria-current="page">EN</a>
-        <a href="../ar/" hreflang="ar" lang="ar" aria-label="العربية (ع)">ع</a>
+        <a href="../ar/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
       </span>
       <a class="meta-top" href="#top"><span data-i18n="ui.top">Back to top</span> <span aria-hidden="true">↑</span></a>
     </span>

@@ -8,7 +8,9 @@ name: Deploy to GitHub Pages
 #
 # gates — read-only. The repository invariants, html-validate, "the build
 #   leaves no change", then the browser gates (audit, sweep, vbugs, keys) on
-#   Playwright's Chromium. About twelve minutes. Every gate runs even when an
+#   Playwright's Chromium, and the staged copy (stage-check: the stylesheets
+#   and scripts that lose their comments at staging parse and compile as
+#   their sources do). About twelve minutes. Every gate runs even when an
 #   earlier one failed, so a red run lists everything that is wrong.
 # deploy — runs only when gates passed (needs: gates); any red gate means the
 #   live site stays as it is. It installs no npm package: it stages the
@@ -104,6 +106,10 @@ jobs:
       - name: Keyboard, motion and RTL paths (npm run keys)
         if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
         run: npm run keys
+
+      - name: The staged site parses and compiles as the sources do (node scripts/stage-check.mjs)
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: node scripts/stage-check.mjs
 
   deploy:
     needs: gates

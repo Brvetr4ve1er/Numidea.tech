@@ -18,6 +18,7 @@ import { VOICES, VOICE_CLIENTS } from './voices-data.mjs';
 import { BASE } from './site.mjs';
 import { withCsp } from './lib/csp.mjs';
 import { esc } from './lib/i18n.mjs';
+import { AYN } from './lib/ayn.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const stamp = (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
@@ -41,10 +42,24 @@ const files = (slug, sub, exts = ['.webp', '.png', '.jpg', '.jpeg', '.svg']) => 
 const caption = (f) => basename(f, extname(f)).replace(/[-_]+/g, ' ');
 const pad = (n) => String(n).padStart(2, '0');
 
-function shot(slug, file, alt, cls, w, h, eager) {
-  const src = `../assets/work/${slug}/${file}.webp`;
-  if (!existsSync(join(ROOT, 'assets/work', slug, file + '.webp'))) throw new Error('missing capture ' + src);
-  return `<a class="zoom ${cls}" href="${src}"><img src="${src}" alt="${esc(alt)}" width="${w}" height="${h}" decoding="async"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}></a>`;
+/* A capture and its smaller candidate, both written by work-capture.mjs: the
+   desktop frames at 720w beside the 1440 file, the phone frames at 416w
+   beside the 780 one (the phone box is 208 CSS px at most, so 416 serves it
+   at 2x). sizes is each frame's width as scene/style.css lays it out,
+   measured on 2026-10-31: the main frame 86vw of the viewport to 999px, then
+   55vw, capped at 743px; a page frame 86vw to 699px, then 28vw, capped at
+   371px; a phone frame 39vw to 599px, then at most 202px, 196px from 1000px.
+   Without these the page sent 1.5 MB of 1440-wide captures to a phone. */
+const SIZES = {
+  main: '(min-width:1360px) 743px, (min-width:1000px) 55vw, 86vw',
+  page: '(min-width:1340px) 371px, (min-width:700px) 28vw, 86vw',
+  phone: '(min-width:1000px) 196px, (min-width:600px) 202px, 39vw',
+};
+const SMALL = { 1440: 720, 780: 416 };
+function shot(slug, file, alt, cls, w, h, kind, eager) {
+  const src = `../assets/work/${slug}/${file}.webp`, small = `../assets/work/${slug}/${file}-${SMALL[w]}.webp`;
+  for (const f of [src, small]) if (!existsSync(join(ROOT, 'assets/work', slug, basename(f)))) throw new Error('missing capture ' + f);
+  return `<a class="zoom ${cls}" href="${src}"><img src="${src}" srcset="${small} ${SMALL[w]}w, ${src} ${w}w" sizes="${SIZES[kind]}" alt="${esc(alt)}" width="${w}" height="${h}" decoding="async"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}></a>`;
 }
 
 function sheet(p, i) {
@@ -72,12 +87,12 @@ function sheet(p, i) {
   label(main, 0, 'pg'); const mainAlt = altOf(main, 0, 'pg');
 
   const pages = rest.map((pg, j) => `<figure class="pg">
-            ${shot(p.slug, pg.file, altOf(pg, j + 1, 'pg'), 'frame', 1440, 900).replace('alt=', `${T(`${k}.pga${j + 1}`, '-alt')} alt=`)}
+            ${shot(p.slug, pg.file, altOf(pg, j + 1, 'pg'), 'frame', 1440, 900, 'page').replace('alt=', `${T(`${k}.pga${j + 1}`, '-alt')} alt=`)}
             <figcaption><b ${T(`${k}.pg${j + 1}`)}>${esc(label(pg, j + 1, 'pg'))}</b><code>${esc(pg.path)}</code></figcaption>
           </figure>`).join('\n          ');
 
   const phones = p.phones.map((pg, j) => `<figure class="ph">
-              ${shot(p.slug, pg.file, altOf(pg, j, 'pha'), 'phone', 780, 1688).replace('alt=', `${T(`${k}.phaa${j}`, '-alt')} alt=`)}
+              ${shot(p.slug, pg.file, altOf(pg, j, 'pha'), 'phone', 780, 1688, 'phone').replace('alt=', `${T(`${k}.phaa${j}`, '-alt')} alt=`)}
               <figcaption ${T(`${k}.ph${j}`)}>${esc(label(pg, j, 'ph'))}</figcaption>
             </figure>`).join('\n            ');
 
@@ -163,7 +178,7 @@ function sheet(p, i) {
         </div>
         <figure class="sh-main">
           <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(shownHost(p.url))}${esc(main.path === '/' ? '' : main.path)}</span></div>
-          ${shot(p.slug, main.file, mainAlt, 'frame', 1440, 900, i === 0).replace('alt=', `${T(`${k}.pga0`, '-alt')} alt=`)}
+          ${shot(p.slug, main.file, mainAlt, 'frame', 1440, 900, 'main', i === 0).replace('alt=', `${T(`${k}.pga0`, '-alt')} alt=`)}
           <figcaption class="dims" aria-hidden="true"><span class="dim-w">1440&nbsp;px</span><span class="dim-h">900</span></figcaption>
         </figure>
       </div>
@@ -275,7 +290,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAtt
   <div class="lang" role="group" aria-label="${esc(ui('langs'))}" ${T('ui.langs', '-aria')}>
     <button type="button" data-lang="fr" aria-pressed="true" lang="fr" aria-label="Français (FR)">FR</button>
     <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English (EN)">EN</button>
-    <button type="button" data-lang="ar" aria-pressed="false" lang="ar" aria-label="العربية (ع)">ع</button>
+    <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)">${AYN}</button>
   </div>
 </header>
 

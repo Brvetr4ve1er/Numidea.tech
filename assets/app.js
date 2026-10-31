@@ -623,11 +623,27 @@
       var plate = wrap.querySelector('.plate'),
           wipe  = wrap.querySelector('.pl-wipe'),
           slides = [].slice.call(wrap.querySelectorAll('.pl')),
+          more   = wrap.querySelector('#plate-more'),
           items  = [].slice.call(wrap.querySelectorAll('.pm-item')),
           tabs   = [].slice.call(wrap.querySelectorAll('.plate-rail button')),
           idxEl  = wrap.querySelector('.pm-idx b');
-      if (slides.length < 2) return;
+      if (slides.length < 2 && !more) return;
       var cur = 0, busy = false, timer = null, HOLD = 5200;
+
+      /* The slides after the first wait in a <template> (index.html): the
+         deck never turns before the visitor has moved (`idle`, below), yet
+         their four images, 138 KB, loaded with the first screen, ahead of
+         what that screen shows. They enter the plate at the first
+         interaction, where wake() runs, and load from there; a rail pick
+         before that cannot happen (its press is the interaction), and go()
+         asks anyway. */
+      function unfold() {
+        if (!more) return;
+        var frag = more.content.cloneNode(true), added = [].slice.call(frag.querySelectorAll('.pl'));
+        plate.insertBefore(frag, wipe || null);
+        slides = slides.concat(added);
+        more.parentNode.removeChild(more); more = null;
+      }
 
       function paint(n) {
         slides.forEach(function (e, i) { e.classList.toggle('on', i === n); });
@@ -649,6 +665,8 @@
          the visitor chose it, and the caption still names the client. */
       var want = -1, waiting = -1;
       function go(n) {
+        unfold();
+        if (!slides[n]) return;
         want = n;
         if (busy) return;
         if (n === cur) { want = -1; return; }
@@ -714,7 +732,7 @@
       var held = { hover: false, focus: false, hidden: false, idle: true, user: false, picked: false };
       var wake = function () {
         if (!held.idle) return;
-        held.idle = false; arm();
+        held.idle = false; unfold(); arm();
         ['pointermove', 'pointerdown', 'keydown', 'scroll', 'touchstart', 'wheel'].forEach(function (ev) {
           window.removeEventListener(ev, wake, true);
         });
@@ -1894,9 +1912,11 @@
     }
 
     /* ---------- 15. illustrations and animated icons ----------
-       Plates (.lz) only fetch their mask images once they come within a
-       screen or so of the viewport — about 1MB of engraving would otherwise
-       load with the first paint. Icons (.ai) draw themselves in once, the
+       Plates (.lz) only fetch their mask images once they come within 300px
+       of the viewport — about 1MB of engraving would otherwise load with the
+       first paint. It was 900px: on a phone that is a screen and more of
+       lead, and the masks of sections a visitor never reached were fetched
+       behind the first screen's own files. Icons (.ai) draw themselves in once, the
        first time they are seen, and run their idle loop (.live) only while
        on screen, so off-screen icons cost nothing. */
     (function () {
@@ -1912,7 +1932,7 @@
         es.forEach(function (e) {
           if (e.isIntersecting) { e.target.classList.add('lz-on'); lio.unobserve(e.target); }
         });
-      }, { rootMargin: '900px 0px' });
+      }, { rootMargin: '300px 0px' });
       lz.forEach(function (el) { lio.observe(el); });
       var aio = new IntersectionObserver(function (es) {
         es.forEach(function (e) {

@@ -3,7 +3,10 @@
  * Project preview capture — committed-screenshot pipeline.
  *
  * Captures each LIVE project URL at a fixed 16:10 viewport, optimises to a
- * lean WebP, and writes it to assets/previews/<slug>.webp. Sites that are not
+ * lean WebP, and writes it to assets/previews/<slug>.webp, with a 720-wide
+ * copy beside it (<slug>-720.webp): the srcset's small candidate on the home
+ * page's plate and work cards, which show the capture at 720px or less on
+ * every phone and most desktops. Sites that are not
  * yet live (url: null) are skipped — the page falls back to the Arcanum
  * abstract cover for those automatically, so nothing ever looks broken.
  *
@@ -64,11 +67,13 @@ async function run() {
       await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
       await page.waitForTimeout(1200); // let fonts/animations settle
       const png = await page.screenshot({ type: 'png' });
-      await sharp(png)
-        .resize(W, H, { fit: 'cover', position: 'top' })
-        .webp({ quality: 80 })
-        .toFile(join(OUT, `${slug}.webp`));
-      console.log(`✓ ${slug}.webp  ←  ${url}`);
+      for (const w of [W, 720]) {
+        await sharp(png)
+          .resize(w, Math.round((w * H) / W), { fit: 'cover', position: 'top' })
+          .webp({ quality: 80 })
+          .toFile(join(OUT, `${slug}${w === W ? '' : '-' + w}.webp`));
+      }
+      console.log(`✓ ${slug}.webp + ${slug}-720.webp  ←  ${url}`);
     } catch (e) {
       console.warn(`✗ ${slug}: ${e.message.split('\n')[0]} (kept existing cover)`);
     } finally {

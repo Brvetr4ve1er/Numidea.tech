@@ -91,8 +91,10 @@ html[dir="rtl"] body{font-family:var(--font-ar-body)}
 html[dir="rtl"]{--font-mono:"Geist Mono", "IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", "Geist Mono Fallback", ui-monospace, monospace}
 html[dir="rtl"] body :not(.logo, .logo *){letter-spacing:0!important}
 html[dir="rtl"] .font-swap-display{font-family:var(--font-ar-display)}
-/* An Arabic run on a French or English page (the ع language button, anything
-   marked lang="ar") takes the Arabic face too, not whatever the system has. */
+/* An Arabic run on a French or English page (anything marked lang="ar") takes
+   the Arabic face too, not whatever the system has. The language switch's ع
+   is drawn (.ayn below), not typed and not marked: typed, it alone brought
+   the 42 KB face to every French and English visit through this rule. */
 html[dir="ltr"] [lang="ar"]{font-family:var(--font-ar-body);letter-spacing:0}
 
 /* layered gradient atmosphere */
@@ -153,6 +155,8 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 .lang :is(a[aria-current],button[aria-pressed="true"]){color:var(--on-teal);background:var(--teal)}
 .lang :is(a,button):hover{color:var(--ice)}
 .lang :is(a[aria-current],button[aria-pressed="true"]):hover{color:var(--on-teal)}
+/* the drawn ع (scripts/lib/ayn.mjs): the text's size, on its baseline, in its colour */
+.lang .ayn{width:.95em;height:.95em;vertical-align:-.12em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .menu-toggle{display:none;background:transparent;border:1px solid var(--hairline-2);border-radius:var(--r-sm);color:var(--ice);width:44px;height:44px;cursor:pointer;font-size:18px}
 
 /* mobile full-screen menu */
@@ -562,18 +566,20 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
    `currentColor`, so one asset re-tints itself in all six palettes
    instead of shipping six copies. Every figure sits in a bounded,
    fixed-size box: the mask never participates in intrinsic sizing,
-   so there is nothing for a late-decoding PNG to shift. */
+   so there is nothing for a late-decoding file to shift. The FAQ masks
+   are lossless WebP (the PNGs re-encoded, pixel for pixel, 10% smaller),
+   the same format as every other engraving. */
 .ill{display:block;width:100%;height:100%;background:currentColor;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-position:center;mask-position:center;
   -webkit-mask-size:contain;mask-size:contain;
   -webkit-mask-source-type:luminance;mask-mode:luminance}
-.ill-faq1{-webkit-mask-image:url(illus/faq1.png);mask-image:url(illus/faq1.png)}
-.ill-faq2{-webkit-mask-image:url(illus/faq2.png);mask-image:url(illus/faq2.png)}
-.ill-faq3{-webkit-mask-image:url(illus/faq3.png);mask-image:url(illus/faq3.png)}
-.ill-faq4{-webkit-mask-image:url(illus/faq4.png);mask-image:url(illus/faq4.png)}
-.ill-faq5{-webkit-mask-image:url(illus/faq5.png);mask-image:url(illus/faq5.png)}
-.ill-faq6{-webkit-mask-image:url(illus/faq6.png);mask-image:url(illus/faq6.png)}
+.ill-faq1{-webkit-mask-image:url(illus/faq1.webp);mask-image:url(illus/faq1.webp)}
+.ill-faq2{-webkit-mask-image:url(illus/faq2.webp);mask-image:url(illus/faq2.webp)}
+.ill-faq3{-webkit-mask-image:url(illus/faq3.webp);mask-image:url(illus/faq3.webp)}
+.ill-faq4{-webkit-mask-image:url(illus/faq4.webp);mask-image:url(illus/faq4.webp)}
+.ill-faq5{-webkit-mask-image:url(illus/faq5.webp);mask-image:url(illus/faq5.webp)}
+.ill-faq6{-webkit-mask-image:url(illus/faq6.webp);mask-image:url(illus/faq6.webp)}
 
 /* ---------- founder ---------- */
 .founder-card{background:var(--navy);border:1px solid var(--hairline-2);border-radius:var(--r-lg);
@@ -2264,9 +2270,11 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
    so it reuses the Alliance preview the hero already loads: a CSS background
    downloads at page start, and its own 117 KB capture was never seen. */
 .sb-art i{background-size:cover;background-position:top left}
-.sb-art i:nth-child(1){background-image:url(previews/alliancetravel.webp)}
-.sb-art i:nth-child(2){background-image:url(previews/glaive.webp)}
-.sb-art i:nth-child(3){background-image:url(previews/bordjsteel.webp)}
+/* the 720-wide captures (scripts/shots.mjs writes them beside the 1280 ones):
+   a 76px box painted the 1280 files, 41 KB more on every visit for nothing */
+.sb-art i:nth-child(1){background-image:url(previews/alliancetravel-720.webp)}
+.sb-art i:nth-child(2){background-image:url(previews/glaive-720.webp)}
+.sb-art i:nth-child(3){background-image:url(previews/bordjsteel-720.webp)}
 .sb-art{width:92px;height:62px}
 
 /* Footer links: WhatsApp is a flex item (icon slot) and centred its label in

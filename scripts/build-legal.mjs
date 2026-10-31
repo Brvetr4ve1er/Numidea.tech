@@ -25,6 +25,7 @@ import { ROOT, BASE, THEMES, LANGS, DEPLOY, isDeploySkipped } from './site.mjs';
 import { LEGAL, missing } from './legal-data.mjs';
 import { loadDicts, toMarkup, esc } from './lib/i18n.mjs';
 import { withCsp } from './lib/csp.mjs';
+import { AYN } from './lib/ayn.mjs';
 
 const stamp =() => (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
 
@@ -64,11 +65,14 @@ const UI = {
 
 /* The language buttons are named by their endonym, and the name keeps the
    visible text (WCAG 2.5.3): a screen reader with no Arabic voice still says
-   which button switches to Arabic. */
+   which button switches to Arabic. The Arabic one's glyph is drawn
+   (scripts/lib/ayn.mjs) and the button carries no lang="ar": typed and
+   marked, the letter brought the Arabic face to the French and English
+   readings through styles.css's [lang="ar"] rule. */
 const LANG_BUTTONS = [
   { l: 'fr', text: 'FR', name: 'Français (FR)' },
   { l: 'en', text: 'EN', name: 'English (EN)' },
-  { l: 'ar', text: 'ع', name: 'العربية (ع)' },
+  { l: 'ar', text: AYN, name: 'العربية (ع)', drawn: true },
 ];
 
 /* The two sections, by language. data-sec carries the language-free name so
@@ -343,7 +347,7 @@ for(k in S)for(j in S[k])if(S[k][j]===x&&S[k][l]!==x)history.replaceState(null,'
   <header class="lg-top">
     <a class="logo" href="../">Num<i>idea</i> Labs</a>
     <div class="lang" role="group" aria-label="${esc(UI.fr.lang)}" data-i18n-aria="ui.lang">
-      ${LANG_BUTTONS.map((b) => `<button type="button" data-lang="${b.l}" aria-pressed="${b.l === 'fr'}" lang="${b.l}" aria-label="${esc(b.name)}">${b.text}</button>`).join('\n      ')}
+      ${LANG_BUTTONS.map((b) => `<button type="button" data-lang="${b.l}" aria-pressed="${b.l === 'fr'}"${b.drawn ? '' : ` lang="${b.l}"`} aria-label="${esc(b.name)}">${b.text}</button>`).join('\n      ')}
     </div>
   </header>
   <main id="lg-main" tabindex="-1">${blocks}

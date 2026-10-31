@@ -73,6 +73,8 @@ ol,ul{padding:0;list-style:none}
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .lang button:hover{color:var(--ink)}
 .lang button[aria-pressed="true"]:hover{color:var(--paper)}
+/* the drawn ع (scripts/lib/ayn.mjs): the label's size, on its baseline, in its colour */
+.lang .ayn{width:.95em;height:.95em;vertical-align:-.12em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 /* .lang clips its overflow, so an outside ring would be cut to stray bars:
    the ring is drawn inside, in the paper colour on the pressed (light) button */
 .lang button:focus-visible{outline-offset:-3px}
