@@ -130,10 +130,14 @@
     var html = document.documentElement;
     html.setAttribute('lang', lang);
     if (dict.dir) html.setAttribute('dir', dict.dir);
-    if (dict.title) document.title = dict.title;
-
+    /* The title and the description are the home page's keys (title,
+       meta.desc) unless the page names its own there (the price guide:
+       data-i18n on <title>, data-i18n-content on the meta), which the
+       passes below write with its other nodes. */
+    var titleEl = document.querySelector('title');
+    if (dict.title && !(titleEl && titleEl.hasAttribute('data-i18n'))) document.title = dict.title;
     var meta = document.querySelector('meta[name="description"]');
-    if (meta && dict['meta.desc']) meta.setAttribute('content', dict['meta.desc']);
+    if (meta && dict['meta.desc'] && !meta.hasAttribute('data-i18n-content')) meta.setAttribute('content', dict['meta.desc']);
 
     /* The studio's own structured data describes it in the page's language
        too: its description is the meta description (the one baked into the
@@ -184,6 +188,11 @@
     document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-alt');
       if (dict[key] != null) el.alt = dict[key];
+    });
+    // a meta's content (a sub-page's description and share texts)
+    document.querySelectorAll('[data-i18n-content]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-content');
+      if (dict[key] != null) el.setAttribute('content', dict[key]);
     });
 
     // the choice every page shares (the home address sends a stored en/ar
@@ -868,9 +877,16 @@
        currency switch and a re-configured estimate instead of going stale. */
     var msgBox = document.getElementById('f-message');
     var prefill = { kind: '', text: '' };
+    /* The price guide (tarifs/) has the estimator but not the form: its
+       "Obtenir le prix ferme" leads to the home page's #contact, and the
+       scope travels in sessionStorage (one tab, one visit; a copied link
+       carries nothing), which the home page reads and clears below. */
+    var HANDOFF = 'numidea-prefill';
     function untouched() { return !msgBox.value.trim() || msgBox.value === prefill.text; }
     function prefillWith(kind, text) {
-      if (!msgBox || !text || !untouched()) return;
+      if (!text) return;
+      if (!msgBox) { try { sessionStorage.setItem(HANDOFF, text); } catch (e) {} return; }
+      if (!untouched()) return;
       msgBox.value = text;
       prefill.kind = kind; prefill.text = msgBox.value;
     }
@@ -894,6 +910,32 @@
     function toForm() {
       var f = document.getElementById('contact-form');
       if (f && stacked.matches) requestAnimationFrame(function () { f.scrollIntoView(); });
+    }
+
+    /* A scope handed over by the price guide, taken up as its own kind:
+       this page's estimator must not read it as one of its own and rewrite
+       it on a currency switch (refill follows 'est' alone). The visitor
+       arrives on #contact; stacked, the form is brought up as after a
+       click here — once the browser's own jump to #contact is over. That
+       jump comes after this script and is animated (html's
+       scroll-behavior), 1.5 s on a phone: a scrollIntoView now was run
+       over by it. The jump is over when no scroll event has come for 200
+       ms after load; within 3 s of load, or the page is the visitor's. */
+    if (msgBox) {
+      var carried = null;
+      try { carried = sessionStorage.getItem(HANDOFF); if (carried !== null) sessionStorage.removeItem(HANDOFF); } catch (e) {}
+      if (carried) prefillWith('carried', carried);
+      if (carried && location.hash === '#contact') {
+        var settled = null, landed = false;
+        var land = function () {
+          if (landed) return;
+          landed = true; window.removeEventListener('scroll', jumping);
+          toForm();
+        };
+        var jumping = function () { clearTimeout(settled); settled = setTimeout(land, 200); };
+        window.addEventListener('scroll', jumping, { passive: true });
+        window.addEventListener('load', function () { jumping(); setTimeout(function () { landed = true; window.removeEventListener('scroll', jumping); }, 3000); });
+      }
     }
 
     // L'Aperçu: the button hands its request to the message field, then the

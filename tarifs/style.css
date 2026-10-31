@@ -1,0 +1,43 @@
+/* ============================================================
+   NUMIDEA LABS — the price guide (tarifs/, en/tarifs/, ar/tarifs/): the
+   rules this page alone needs. Everything it shares with the home page
+   (the navbar, the tiers, the estimator, the market table, the FAQ
+   entries) is styles.css's, loaded before this file; the themes are
+   themes.css's. Written against the theme contract's tokens, so every
+   theme serves this page as it serves the home.
+   ============================================================ */
+
+/* the page opens under the fixed navbar, with no hero to clear it */
+.tarifs>section:first-child{padding-top:calc(var(--nav-h) + var(--s-8))}
+
+/* the breadcrumb (BRAND.md: every sub-page carries one), set as a label;
+   the home link is a 24px target at least */
+.crumbs{margin-bottom:var(--s-6)}
+.crumbs ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2);
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.crumbs li{display:inline-flex;align-items:center;min-height:24px}
+.crumbs li+li::before{content:"›";margin-inline-end:var(--s-2);color:var(--faint)}
+html[dir="rtl"] .crumbs li+li::before{content:"‹"}
+html[dir="rtl"] .crumbs ol{letter-spacing:0;text-transform:none}
+.crumbs a{color:var(--teal-text);text-decoration:none}
+.crumbs a:hover{color:var(--ice)}
+.crumbs [aria-current]{color:var(--ice)}
+
+/* the page title: the section heading's size and accent (h2.sec in
+   styles.css), as an h1, since it is the page's one */
+h1.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(26px, 14px + 3.33vw, 62px);letter-spacing:-.025em;line-height:1.04;margin-bottom:var(--s-7);max-width:11.934em}
+h1.sec em{font-family:inherit;font-style:normal;color:var(--crimson-text)}
+html[dir="rtl"] h1.sec{letter-spacing:0}
+
+/* the guide's parts (the tiers, the questions), one size under the title */
+.t-sub{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.02em;line-height:1.1;margin:0 0 var(--s-5)}
+.t-sub em{font-style:normal;color:var(--crimson-text)}
+html[dir="rtl"] .t-sub{font-family:var(--font-ar-display);letter-spacing:0}
+.price-more+.t-sub{margin-top:var(--s-8)}
+
+/* the navbar marks this page, as the scroll-spy marks a section on the home */
+.nav-links a[aria-current="page"]{color:var(--ice)}
+.nav-links a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--crimson)}
+
+/* the way on: the Aperçu and WhatsApp, as the hero offers them */
+.tarifs-next{display:flex;flex-wrap:wrap;gap:var(--s-4);margin-top:var(--s-8)}

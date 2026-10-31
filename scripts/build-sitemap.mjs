@@ -4,9 +4,10 @@
  * (`--check` exits 1 if the committed file differs; check.mjs runs the same
  * comparison).
  *
- * Every published page is listed. The landing page is one static page per
- * language (index.html, en/, ar/: build-lang.mjs), each listed once with
- * xhtml:link alternates naming the three plus x-default (the French one);
+ * Every published page is listed. The landing page and the price guide are
+ * one static page per language (index.html, en/, ar/: build-lang.mjs;
+ * tarifs/, en/tarifs/, ar/tarifs/: build-tarifs.mjs), each listed once with
+ * xhtml:link alternates naming its three plus x-default (the French one);
  * the pages that switch language with ?lang= (the project sheets and, once
  * published, legal/) carry the same alternates as ?lang= versions, one
  * <url> per version. No lastmod: a date that is not maintained is worse
@@ -18,8 +19,19 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, BASE, LANGS, PAGES } from './site.mjs';
 
-// the landing page's static language versions, by page (build-lang.mjs)
+/* The pages that exist once per language, static: a French page and its
+   English and Arabic versions one folder down (en/, ar/). The landing page's
+   map (build-lang.mjs) and the price guide's (build-tarifs.mjs), each page
+   to its language; versions(p) gives any of them its three, by language, and
+   LANG_FOLDERS the French folders they live in ('' is the root), for the
+   links between them (build-lang.mjs: a link into one of these folders
+   stays in the page's own language). */
 export const STATIC_LANG = { 'index.html': 'fr', 'en/index.html': 'en', 'ar/index.html': 'ar' };
+export const TARIFS_LANG = { 'tarifs/index.html': 'fr', 'en/tarifs/index.html': 'en', 'ar/tarifs/index.html': 'ar' };
+const STATIC = { ...STATIC_LANG, ...TARIFS_LANG };
+const frOf = (p) => p.replace(/^(?:en|ar)\//, '');
+export const versions = (p) => Object.fromEntries(LANGS.map((l) => [l, (l === 'fr' ? '' : l + '/') + frOf(p)]));
+export const LANG_FOLDERS = [...new Set(Object.keys(STATIC).map((p) => frOf(p).replace(/index\.html$/, '')))];
 // pages whose language follows ?lang= (an inline dictionary, page-i18n.js);
 // a link to one of them from en/ or ar/ carries ?lang= (build-lang.mjs)
 export const MULTILINGUAL = new Set(['scene/index.html', 'legal/index.html']);
@@ -31,8 +43,9 @@ const xhtml = (l, href) => `    <xhtml:link rel="alternate" hreflang="${l}" href
 export function renderSitemap(pages = PAGES) {
   const rows = pages.filter((p) => p !== '404.html').map((p) => {
     const loc = url(p);
-    if (STATIC_LANG[p]) {
-      const alt = LANGS.map((l) => xhtml(l, BASE + (l === 'fr' ? '' : l + '/'))).concat(xhtml('x-default', BASE));
+    if (STATIC[p]) {
+      const v = versions(p);
+      const alt = LANGS.map((l) => xhtml(l, url(v[l]))).concat(xhtml('x-default', url(v.fr)));
       return `  <url>\n    <loc>${loc}</loc>\n${alt.join('\n')}\n  </url>`;
     }
     if (!MULTILINGUAL.has(p)) return `  <url><loc>${loc}</loc></url>`;

@@ -2520,6 +2520,11 @@ section.band::after,section.band+section.band::after{
 .price-est{margin-top:0}
 .price-est+.price-more{margin-top:var(--s-4)}
 .price-est>summary>span:first-child{flex:none}
+/* "Comment on chiffre" (the market comparison and the pricing models) is on
+   the price guide, tarifs/, since 2026-10-31: the home page links to it where
+   the folded panel stood (the guide renders the panel open) */
+.price-guide{margin-top:var(--s-5)}
+.mobile-menu.open nav a:nth-of-type(8){animation-delay:.4s}   /* the guide's link, after the seven sections */
 
 /* ---- phone ---- */
 /* a flex logo drops the space before "Labs" ("NUMideaLABS") */

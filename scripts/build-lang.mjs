@@ -33,28 +33,38 @@
  * en/ and ar/ sit one folder down (depth 1): every relative src, href and
  * srcset gets ../, the head script's font path too, and a link to a page
  * that still switches language with ?lang= (MULTILINGUAL in
- * build-sitemap.mjs: scene/, legal/) carries the page's language. Their
- * head script loses the French-only block (between the LANG:fr-only
- * markers: the ?lang= and stored-preference redirect, the scripted
- * canonical) and gets BAKED = their language; a static canonical names each
- * of them, as their head script reads no ?lang= (check.mjs 6); and their
- * CSP meta is their own, as the head script's hash differs (build-csp.mjs
- * applies the same policy again last, a no-op). bakeFr(html) is
- * bakeLang(html, 'fr'), the French page's check.
+ * build-sitemap.mjs: scene/, legal/) carries the page's language. A link
+ * into a folder that has a page per language (LANG_FOLDERS there: the root
+ * and tarifs/) stays in the page's own language instead — tarifs/ from en/
+ * is en/tarifs/ — unless it names a language itself (the switch's three,
+ * with hreflang). Their head script loses the French-only block (between
+ * the LANG:fr-only markers: the ?lang= and stored-preference redirect, the
+ * scripted canonical) and gets BAKED = their language; a static canonical
+ * names each of them, as their head script reads no ?lang= (check.mjs 6);
+ * and their CSP meta is their own, as the head script's hash differs
+ * (build-csp.mjs applies the same policy again last, a no-op). bakeFr(html)
+ * is bakeLang(html, 'fr'), the French page's check.
+ * The price guide (scripts/build-tarifs.mjs) is baked the same way from its
+ * own template, in which the head's texts name their keys themselves
+ * (data-i18n on <title>, data-i18n-content on a meta) and which carries no
+ * FAQ or studio structured data (ld: false).
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, BASE, LANGS } from './site.mjs';
 import { loadDicts, i18nNodes, toMarkup, faqLd, I18N_FILES } from './lib/i18n.mjs';
-import { MULTILINGUAL } from './build-sitemap.mjs';
+import { MULTILINGUAL, LANG_FOLDERS } from './build-sitemap.mjs';
 import { withCsp } from './lib/csp.mjs';
 
 export const LANG_PAGES = { fr: 'index.html', en: 'en/index.html', ar: 'ar/index.html' };
 const LOCALE = { fr: 'fr_FR', en: 'en_US', ar: 'ar_DZ' };
 const CARD = { fr: 'assets/og.jpg', en: 'assets/og-en.jpg', ar: 'assets/og-ar.jpg' };   // build-og.mjs
 const NAME = { fr: 'French', en: 'English', ar: 'Arabic' };
-const ATTR = { ph: 'placeholder', aria: 'aria-label', alt: 'alt' };
+// data-i18n-<suffix>="key" on a tag writes the key's text into this attribute
+const ATTR = { ph: 'placeholder', aria: 'aria-label', alt: 'alt', content: 'content' };
+// the note a generated page opens with (after "Generated: ")
+const GENERATED = (lang) => `the ${NAME[lang]} page, written from index.html (the French page, the\n     template) and ${I18N_FILES[lang]} by scripts/build-lang.mjs. Do not edit it here:\n     change index.html or the dictionary, then npm run build.`;
 const attrEsc = (s) => toMarkup(s).replace(/"/g, '&quot;');
 const LD = /(<script type="application\/ld\+json" id="ld-faq">)[\s\S]*?(<\/script>)/;
 /* Put `text` between the two groups `re` captures, literally. A string
@@ -94,7 +104,14 @@ function once(s, re, to, what) {
    root) becoming the parent. Absolute ones, fragments, schemes and template
    bindings are left as they are. */
 const RELATIVE = /^(?![a-z][a-z0-9+.-]*:|\/\/|\/|#|\{\{)/i;
-const up = (u, depth) => (u === '' || !RELATIVE.test(u) ? u : (u === './' ? '' : u).replace(/^/, '../'.repeat(depth)) || './');
+const up = (u, depth) => (u === '' || !RELATIVE.test(u) ? u : (u === './' ? '' : u.replace(/^\.\//, '')).replace(/^/, '../'.repeat(depth)) || './');
+/* a link into a folder that has a page per language (LANG_FOLDERS: the
+   root, tarifs/), with or without index.html, before any ?query or #fragment */
+const versioned = (u) => {
+  if (u === '' || !RELATIVE.test(u)) return false;
+  const p = u.split(/[?#]/)[0].replace(/^\.\//, '');
+  return LANG_FOLDERS.some((f) => p === f || p === f + 'index.html');
+};
 /* a link into a folder that switches language with ?lang= carries the
    page's language, before any #fragment */
 const langed = (u, lang) => {
@@ -105,9 +122,21 @@ const langed = (u, lang) => {
 
 /* every relative src, href and srcset moved down (a value holding a quote
    is script, not a path: skipped), the head script's font path with them,
-   and the links to the in-place switchers given ?lang= */
+   and the links to the in-place switchers given ?lang=. A link into a
+   folder that has a page per language is moved only as far as the page's
+   language folder, so it lands on that language's page (from en/tarifs/,
+   "./#contact" is "../#contact", en/'s; from en/, "tarifs/" stays, en/'s);
+   the switch's links (hreflang) name a language's page and are moved like
+   a file. */
 function relocate(html, lang, depth) {
-  html = html.replace(/(\s(?:src|href|poster)=")([^"]*)(")/g, (all, a, u, b) => (u.includes("'") ? all : a + langed(up(u, depth), lang) + b));
+  // folders between the page and its language's root: en/tarifs/ is one
+  // down from en/, as tarifs/ is from the root
+  const inLang = depth - (lang === 'fr' ? 0 : 1);
+  const move = (u, named) => langed(up(u, !named && versioned(u) ? inLang : depth), lang);
+  html = html.replace(/<a\b[^>]*\shreflang="[^"]*"[^>]*>|(\s(?:src|href|poster)=")([^"]*)(")/g, (all, a, u, b) => {
+    if (a === undefined) return all.replace(/(\shref=")([^"]*)(")/, (_, x, v, y) => x + move(v, true) + y);
+    return u.includes("'") ? all : a + move(u, false) + b;
+  });
   html = html.replace(/(\ssrcset=")([^"]*)(")/g, (all, a, v, b) => a + v.split(',').map((c) => {
     const [u, ...d] = c.trim().split(/\s+/);
     return [up(u, depth), ...d].join(' ');
@@ -120,9 +149,13 @@ function relocate(html, lang, depth) {
  * The page in one language. html: index.html (the template); dict: that
  * language's dictionary; depth: how many folders down the page sits (en/,
  * ar/: 1), for its relative paths; path: its URL path under BASE, for og:url
- * and the canonical. Throws on a key the dictionary lacks.
+ * and the canonical; ld: the home's structured data (the studio's
+ * description, the FAQPage), written and required — a page without them
+ * (the price guide) passes false; generated: the note an English or Arabic
+ * page opens with, or null when its generator writes its own. Throws on a
+ * key the dictionary lacks.
  */
-export function bakeLang(html, lang, dict = loadDicts()[lang], { depth = lang === 'fr' ? 0 : 1, path = lang === 'fr' ? '' : lang + '/' } = {}) {
+export function bakeLang(html, lang, dict = loadDicts()[lang], { depth = lang === 'fr' ? 0 : 1, path = lang === 'fr' ? '' : lang + '/', ld = true, generated = GENERATED } = {}) {
   if (!LANGS.includes(lang)) throw new Error(`no such language: ${lang}`);
   const missing = [];
   const need = (key) => { if (dict[key] == null) missing.push(key); return dict[key]; };
@@ -151,21 +184,28 @@ export function bakeLang(html, lang, dict = loadDicts()[lang], { depth = lang ==
       : ' aria-disabled="true"';
     return bare.replace(/>$/, set + '>');
   });
-  // the head's texts
-  if (need('title') != null) html = between(html, /(<title>)[^<]*(<\/title>)/, toMarkup(dict.title), '<title>');
-  for (const [attr, name, key] of HEAD_TEXTS) if (need(key) != null) html = between(html, meta(attr, name), attrEsc(dict[key]), `<meta ${attr}="${name}">`);
-  // the studio's structured data: only its description, written in place
-  let studio = 0;
-  html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g, (all, open, body, close) => {
-    let o; try { o = JSON.parse(body); } catch { return all; }
-    if (o['@type'] !== 'ProfessionalService') return all;
-    studio++;
-    const re = /("description":\s*)"(?:[^"\\]|\\.)*"/;
-    if (!re.test(body)) throw new Error('the ProfessionalService JSON-LD in index.html has no "description"');
-    return open + body.replace(re, (_, key) => key + JSON.stringify(dict['meta.desc'])) + close;
-  });
-  if (studio !== 1) throw new Error(`index.html has ${studio} ProfessionalService JSON-LD blocks (want one)`);
-  html = between(html, LD, ldText(dict), '<script type="application/ld+json" id="ld-faq">');
+  // the head's texts: the home's keys, unless the tag names its own (the
+  // price guide: data-i18n on <title>, data-i18n-content on a meta, both
+  // written above with the page's other nodes)
+  if (!/<title\s[^>]*\bdata-i18n=/.test(html) && need('title') != null) html = between(html, /(<title>)[^<]*(<\/title>)/, toMarkup(dict.title), '<title>');
+  for (const [attr, name, key] of HEAD_TEXTS) {
+    if (new RegExp(`<meta ${attr}="${name}"[^>]*\\sdata-i18n-content=`).test(html)) continue;
+    if (need(key) != null) html = between(html, meta(attr, name), attrEsc(dict[key]), `<meta ${attr}="${name}">`);
+  }
+  if (ld) {
+    // the studio's structured data: only its description, written in place
+    let studio = 0;
+    html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g, (all, open, body, close) => {
+      let o; try { o = JSON.parse(body); } catch { return all; }
+      if (o['@type'] !== 'ProfessionalService') return all;
+      studio++;
+      const re = /("description":\s*)"(?:[^"\\]|\\.)*"/;
+      if (!re.test(body)) throw new Error('the ProfessionalService JSON-LD in index.html has no "description"');
+      return open + body.replace(re, (_, key) => key + JSON.stringify(dict['meta.desc'])) + close;
+    });
+    if (studio !== 1) throw new Error(`index.html has ${studio} ProfessionalService JSON-LD blocks (want one)`);
+    html = between(html, LD, ldText(dict), '<script type="application/ld+json" id="ld-faq">');
+  }
   if (missing.length) throw new Error(`keys missing from I18N.${lang}: ` + [...new Set(missing)].join(', '));
 
   // the language itself: the root element, the switch's current link
@@ -194,7 +234,7 @@ export function bakeLang(html, lang, dict = loadDicts()[lang], { depth = lang ==
     // a static canonical, after the hreflang set; the scripted one went with the block
     html = html.replace(/[ \t]*<link rel="canonical"[^>]*>\r?\n?/g, '');
     html = once(html, /(<link rel="alternate" hreflang="x-default" href="[^"]*">\r?\n)/, (m) => m + `<link rel="canonical" href="${self}">\n`, 'the x-default hreflang link');
-    html = once(html, /^<!DOCTYPE html>\r?\n/i, (m) => m + `<!-- Generated: the ${NAME[lang]} page, written from index.html (the French page, the\n     template) and ${I18N_FILES[lang]} by scripts/build-lang.mjs. Do not edit it here:\n     change index.html or the dictionary, then npm run build. -->\n`, 'the doctype');
+    if (generated) html = once(html, /^<!DOCTYPE html>\r?\n/i, (m) => m + `<!-- Generated: ${generated(lang)} -->\n`, 'the doctype');
     html = withCsp(html, 'page');
   }
   return html;

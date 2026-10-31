@@ -230,6 +230,7 @@
   <a href="#services" data-i18n="nav.services">الخدمات</a>
   <a href="#apercu" data-i18n="nav.about">المنهج</a>
   <a href="#pricing" data-i18n="nav.pricing">الأسعار</a>
+  <a href="tarifs/" data-i18n="tarifs.navLink">دليل الأسعار</a>
   <a href="#founder" data-i18n="nav.team">الفريق</a>
   <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
   <a href="#contact" data-i18n="nav.contact">تواصل</a>
@@ -650,17 +651,21 @@
   </section>
 
   <!-- ================= PRICING ================= -->
-  <!-- Numidea's own prices, in dinars. The market table further down puts the
-       Algerian market beside them (Onyxlab Baromètre 2026 grid and the 2026 DZ
-       agency surveys, freelance confirmé to agency); some tiers sit inside that
-       range and some above its top. The estimator applies the same numbers the
-       tiers quote — PRICE_MODEL in app.js (ESTIMATE) is the single source. -->
+  <!-- Numidea's own prices, in dinars. The market table on the price guide
+       (tarifs/) puts the Algerian market beside them (Onyxlab Baromètre 2026
+       grid and the 2026 DZ agency surveys, freelance confirmé to agency); some
+       tiers sit inside that range and some above its top. The estimator
+       applies the same numbers the tiers quote — PRICE_MODEL in app.js
+       (ESTIMATE) is the single source. The tiers and the estimator are
+       rendered again on the guide from this markup, read between the SLOT
+       markers by scripts/build-tarifs.mjs: the two pages cannot differ. -->
   <section id="pricing" aria-labelledby="pricing-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span><span class="pi-coins lv"><span class="pi pc pc-king" data-parallax="-.16" data-parallax-cap="60"><i></i></span><span class="pi pc pc-horse" data-parallax="-.08" data-parallax-cap="50"><i></i></span><span class="pi pc pc-palm" data-parallax="-.22" data-parallax-cap="70"><i></i></span><span class="pl-cap" data-i18n="pl.coins">لوحة 3 — نقود نوميدية</span></span></span>
     <span class="kicker" data-parallax=".035" data-i18n="price.kicker">04 — الأسعار</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">سعر <em>قبل عرض السعر.</em></h2>
-    <p class="sec-lead" data-i18n="price.lead">أسعارنا منشورة — وإلى جانبها الأسعار الشائعة في الجزائر وفرنسا والولايات المتحدة. اضبط نطاق العمل وشاهد التقدير يتحرّك.</p>
+    <p class="sec-lead" data-i18n="price.lead">أسعارنا منشورة — والأسعار الشائعة في الجزائر وفرنسا والولايات المتحدة في دليل الأسعار. اضبط نطاق العمل وشاهد التقدير يتحرّك.</p>
 
+    <!-- SLOT:tiers -->
     <!-- Display currency for the tiers, the maintenance line and the
          estimator. Prices are set in dinars (PRICE_MODEL) and converted for
          display only; ?cur=eur|usd|dzd in a shared link picks the view. -->
@@ -731,13 +736,16 @@
       <span class="pr-ret"><b id="pr-ret">18 000 –⁠ 60 000</b> <span class="cur" data-i18n="price.cur">دج</span></span>
       <span data-i18n="price.retainerB">شهرياً، دون التزام بمدّة.</span>
     </p>
+    <!-- /SLOT:tiers -->
 
+    <!-- SLOT:estimator -->
     <!-- ---------------- estimator ----------------
-         Folded, like "Comment on chiffre" below it: open, it took two phone
-         screens and, at its default, quoted the Studio card again. Its
-         summary names what the three tiers do not price; the summary is its
-         title, so the panel has no heading of its own. Nothing in it may
-         carry .reveal (closed, the observer never sees it). -->
+         Folded here (open on the price guide, where the page is about
+         prices): open, it took two phone screens and, at its default, quoted
+         the Studio card again. Its summary names what the three tiers do not
+         price; the summary is its title, so the panel has no heading of its
+         own. Nothing in it may carry .reveal (closed, the observer never sees
+         it). -->
     <details class="capabilities price-more price-est">
       <summary>
         <span data-i18n="price.estH">قدّر مشروعك</span>
@@ -816,141 +824,13 @@
       </div>
       </div>
     </details>
+    <!-- /SLOT:estimator -->
 
-    <!-- Reference material: market comparison, billing models, cost drivers.
-         Kept for whoever wants to check the numbers; folded so the section
-         reads as the tiers and stops. -->
-    <details class="capabilities price-more">
-      <summary>
-        <span data-i18n="price.moreSum">كيف نسعّر</span>
-        <span class="hint" data-i18n="price.moreHint">السوق، نماذج الفوترة، وما يغيّر عرض السعر.</span>
-        <span class="chev" aria-hidden="true">›</span>
-      </summary>
-      <div class="pm-body">
-      <!-- ---------------- market comparison ----------------
-           Each cell runs from the low end of an experienced freelancer's range
-           to the high end of an agency's, per the sources listed below. Static
-           values are the native currency, so the table reads correctly with
-           JS off; app.js (section 14) converts on request and computes the
-           Numidea column from PRICE_MODEL. -->
-      <div class="market" id="market">
-        <div class="mk-head">
-          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 4v16.5M8 20.5h8"/><g class="a-tilt" style="--o:12px 6px"><path class="p" pathLength="1" d="M4.5 6h15M4.5 6 2.5 12h4ZM19.5 6l-2 6h4Z"/></g></svg>
-          <h3 data-i18n="mk.h">الجزائر وفرنسا والولايات المتحدة: مشروع واحد، ثلاثة أسواق</h3>
-          <p data-i18n="mk.p">المشروع نفسه، مسعّراً في ثلاثة أسواق. الأسعار الشائعة لعام 2026، من المستقل المتمرّس إلى الوكالة — دون احتساب الضرائب.</p>
-        </div>
-
-        <fieldset class="mk-cur est-field">
-          <legend data-i18n="mk.curL">العملة</legend>
-          <div class="est-chips">
-            <label class="echip"><input type="radio" name="mk-cur" value="native" checked><span data-i18n="mk.curNative">العملة الأصلية</span></label>
-            <label class="echip"><input type="radio" name="mk-cur" value="DZD"><span data-i18n="price.cur">دج</span></label>
-            <label class="echip"><input type="radio" name="mk-cur" value="EUR"><span>€</span></label>
-            <label class="echip"><input type="radio" name="mk-cur" value="USD"><span>$</span></label>
-          </div>
-        </fieldset>
-
-        <!-- The table, drawn: each range as a bar on one price scale, so the
-             gap between the markets reads before any figure does. Built by
-             app.js 13b from MARKET and PRICE_MODEL (the same numbers as the
-             table, which stays the exact and accessible version, so the
-             picture and its reading note are aria-hidden); hidden until
-             then, so it never shows half-built or with scripts off. -->
-        <figure class="mkv" aria-hidden="true" hidden>
-          <div class="mkv-plot"></div>
-          <figcaption class="mkv-cap" data-i18n="mk.vizCap">مقياس لوغاريتمي: كلّ تدريجة رئيسية تساوي عشرة أضعاف التي قبلها. بين الخطّين المتقطّعين يمتدّ نطاق أسعارنا عبر الأسواق الثلاثة، والشريط الذي يتلاشى لا حدّ أعلى له. المبالغ محوّلة بالسعر الرسمي، والأرقام الدقيقة في الجدول أدناه.</figcaption>
-        </figure>
-
-        <section class="mk-scroll" tabindex="0" aria-labelledby="mk-cap">
-          <table class="mk-table">
-            <caption id="mk-cap" data-i18n="mk.cap">الأسعار الشائعة حسب نوع المشروع</caption>
-            <thead>
-              <tr>
-                <th scope="col" data-i18n="mk.colType">المشروع</th>
-                <th scope="col" class="mk-nl" data-i18n="mk.colNl">أسعارنا</th>
-                <th scope="col" data-i18n="mk.colDz">الجزائر</th>
-                <th scope="col" data-i18n="mk.colFr">فرنسا</th>
-                <th scope="col" data-i18n="mk.colUs">الولايات المتحدة</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">موقع تعريفي</th>
-                <td data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
-              <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">موقع مخصّص</th>
-                <td data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
-              <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">متجر إلكتروني</th>
-                <td data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
-              <tr data-row="app"><th scope="row" data-i18n="price.tyApp">تطبيق ويب</th>
-                <td data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
-              <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">هوية بصرية</th>
-                <td data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
-            </tbody>
-          </table>
-        </section>
-
-        <p class="mk-day">
-          <span data-i18n="mk.day1">يكلّف يوم عمل واحد لمطوّر متمرّس في فرنسا</span>
-          <b class="mk-num" id="mk-day-eur">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz">70 000 –⁠ 100 000 DA</b>
-          <span data-i18n="mk.day2">بالسعر الرسمي — أي ما يقارب سعر موقع تعريفي كامل في السوق الجزائرية.</span>
-        </p>
-        <p class="mk-note" data-i18n="mk.note">التحويلات بالسعر الرسمي لبنك الجزائر، مطلع أكتوبر 2026: 1 € ≈ 151 دج، 1 $ ≈ 134 دج. الفارق سببه تكلفة المعيشة وسعر الصرف لا الأدوات — فنحن نعمل بالتقنيات نفسها التي تعتمدها الاستوديوهات الأوروبية والأمريكية: React وNext.js وVercel.</p>
-
-        <details class="mk-src">
-          <summary data-i18n="mk.srcSum">المصادر والمنهجية</summary>
-          <p data-i18n="mk.method">تمتدّ كل خانة من أدنى سعر لدى المستقل المتمرّس إلى أعلى سعر لدى الوكالة، وتدلّ علامة «+» على حدّ أعلى مفتوح. استُبعدت الحالات القصوى — مواقع بـ300 € أو مشاريع بـ250 000 $. أمّا عمود «أسعارنا» فتحسبه حاسبة التقدير أعلاه، على أساس الحجم المعتاد لكل مشروع.</p>
-          <ul>
-            <li><b data-i18n="mk.srcDz">الجزائر</b> — <a href="https://barometre.onyxlab.dz/" target="_blank" rel="noopener" lang="fr">Onyxlab, Baromètre des tarifs freelance 2026</a> <span data-i18n="mk.srcRange">(من المستقل المتمرّس ← إلى الوكالة)</span></li>
-            <li><b data-i18n="mk.srcFr">فرنسا</b> — <a href="https://www.tandem-studio.fr/prix-creation-site-internet/" target="_blank" rel="noopener" lang="fr">Tandem Studio, prix création site 2026</a> · <a href="https://lescreavores.fr/prix-creation-site-internet/" target="_blank" rel="noopener" lang="fr">Les Créavores, baromètre de 103 prix (juin 2026)</a> · <a href="https://www.heysimon.fr/articles/prix-logo-identite-visuelle-2026" target="_blank" rel="noopener" lang="fr">HeySimon, identité visuelle 2026</a> · <a href="https://lefreelance.fr/articles/tjm-developpeur-freelance/" target="_blank" rel="noopener" lang="fr">TJM d'après Malt (LeFreelance)</a></li>
-            <li><b data-i18n="mk.srcUs">الولايات المتحدة</b> — <a href="https://pitchsite.io/guides/web-design-pricing" target="_blank" rel="noopener" lang="en">Pitchsite, Web Design Pricing Guide 2026</a> · <a href="https://8gnc.io/blog/how-much-does-branding-cost" target="_blank" rel="noopener" lang="en">8GNC, branding cost 2026</a> · <a href="https://clutch.co/web-developers/pricing" target="_blank" rel="noopener" lang="en">Clutch, web development pricing (Sept. 2026)</a></li>
-            <li><b data-i18n="mk.srcFx">الصرف</b> — <a href="https://www.bank-of-algeria.dz/taux-de-change-journalier/" target="_blank" rel="noopener" lang="fr">Banque d'Algérie, taux de change journalier</a></li>
-          </ul>
-        </details>
-      </div>
-
-      <!-- ---------------- pricing models ---------------- -->
-      <div class="models" id="models">
-        <div class="mk-head">
-          <h3 data-i18n="md.h">كيف يُسعَّر المشروع</h3>
-          <p data-i18n="md.p">هناك أربع طرق لفوترة مشروع، ولكلٍّ منها سوقٌ تسود فيه.</p>
-        </div>
-        <div class="md-grid">
-          <article class="md-card md-ours">
-            <span class="md-tag" data-i18n="md.ours">نموذجنا</span>
-            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M7.5 10V7.5a4.5 4.5 0 0 1 9 0V10"/><rect class="p" pathLength="1" x="5" y="10" width="14" height="10.5" rx="1.6"/><path class="p a-bob" pathLength="1" d="M12 13.8v3"/></svg><h4 data-i18n="md.fH">بسعر ثابت</h4>
-            <p data-i18n="md.fP">سعر ثابت لنطاق عمل مكتوب. إن تجاوز العمل ما اتُّفق عليه، يتحمّل مقدّم الخدمة الفارق.</p>
-            <p class="md-where" data-i18n="md.fW">هو السائد في الجزائر: مقياس Onyxlab يسعّر كل أعمال التطوير بمبلغ مقطوع. وهكذا نسعّر كل مشروع.</p>
-          </article>
-          <article class="md-card">
-            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><path class="p a-hand" style="--o:12px 12px;--t:2.4s" pathLength="1" d="M12 12V6.8"/><path class="p a-hand" style="--o:12px 12px;--t:28.8s" pathLength="1" d="M12 12h3.4"/></svg><h4 data-i18n="md.tH">حسب الوقت</h4>
-            <p data-i18n="md.tP">يُفوتَر باليوم أو بالساعة. مرنٌ حين يتغيّر النطاق، لكن يصعب تقدير ميزانيته مسبقاً.</p>
-            <p class="md-where" data-i18n="md.tW">هو السائد في فرنسا (480 –⁠ 650 € يومياً لمطوّر متمرّس) وفي الولايات المتحدة (100 –⁠ 149 $ للساعة في الوكالات).</p>
-          </article>
-          <article class="md-card md-ours">
-            <span class="md-tag" data-i18n="md.ours">نموذجنا</span>
-            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:7s"><path class="p" pathLength="1" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path class="p" pathLength="1" d="M17.3 3.4v3.3H14M6.7 20.6v-3.3H10"/></g></svg><h4 data-i18n="md.aH">بالاشتراك</h4>
-            <p data-i18n="md.aP">مبلغ شهري مقابل خدمة مستمرّة: صيانة وتطوير ومحتوى.</p>
-            <p class="md-where" data-i18n="md.aW">شائع في كل مكان بعد الإطلاق، وهو نموذج صيانتنا: من 18 000 إلى 60 000 دج شهرياً.</p>
-          </article>
-          <article class="md-card">
-            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M6 4h12l3.5 5L12 20.5 2.5 9Z"/><path class="p" pathLength="1" d="M2.5 9h19M9.5 4 8 9l4 11.5L16 9l-1.5-5"/><path class="a-twinkle" d="M20.6 1.4v2.6M19.3 2.7h2.6"/></svg><h4 data-i18n="md.vH">حسب القيمة</h4>
-            <p data-i18n="md.vP">يتبع السعر ما يحقّقه المشروع، لا الوقت الذي يستغرقه.</p>
-            <p class="md-where" data-i18n="md.vW">أندر، وأكثر ما يكون في الاستشارة والاستراتيجية، حيث يمكن قياس الأثر المالي للمشروع.</p>
-          </article>
-        </div>
-
-        <h4 class="md-sub" data-i18n="md.drH">ما الذي يغيّر عرض السعر</h4>
-        <ul class="md-drivers">
-          <li><b data-i18n="md.d1h">النطاق</b><span data-i18n="md.d1p">عدد الصفحات أو المنتجات أو الشاشات.</span></li>
-          <li><b data-i18n="md.d2h">التصميم</b><span data-i18n="md.d2p">مخصّص بالكامل، أو انطلاقاً من دليل هويتك البصرية ونماذج تصميمك الموجودة.</span></li>
-          <li><b data-i18n="md.d3h">اللغات</b><span data-i18n="md.d3p">كل لغة تضيف محتوى، والعربية تضيف تخطيطاً من اليمين إلى اليسار.</span></li>
-          <li><b data-i18n="md.d4h">التكاملات</b><span data-i18n="md.d4p">الدفع وحسابات المستخدمين والأدوات والواجهات البرمجية الخارجية.</span></li>
-          <li><b data-i18n="md.d5h">المحتوى</b><span data-i18n="md.d5p">النصوص والصور والفيديو: تقدّمها أنت أو ننتجها نحن.</span></li>
-          <li><b data-i18n="md.d6h">المهلة</b><span data-i18n="md.d6p">الجدول المضغوط أعلى تكلفة: ‎+25٪ في حاسبة التقدير.</span></li>
-        </ul>
-      </div>
-
-      </div>
-    </details>
+    <!-- The market comparison and the pricing models ("Comment on chiffre")
+         left this page for the price guide on 2026-10-31 (decision 13:
+         scripts/build-tarifs.mjs holds them, and renders the tiers and the
+         estimator above once more from this markup). This is the way there. -->
+    <p class="price-guide reveal"><a class="btn btn-ghost" href="tarifs/" data-i18n="tarifs.link">اطّلع على دليل الأسعار 2026 ←</a></p>
   </section>
 
 
@@ -1172,6 +1052,7 @@
       <a href="#services" data-i18n="nav.services">الخدمات</a>
       <a href="#apercu" data-i18n="nav.about">المنهج</a>
       <a href="#pricing" data-i18n="nav.pricing">الأسعار</a>
+      <a href="tarifs/" data-i18n="tarifs.navLink">دليل الأسعار</a>
       <a href="#founder" data-i18n="nav.team">الفريق</a>
       <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
       <a href="#contact" data-i18n="nav.contact">تواصل</a>
