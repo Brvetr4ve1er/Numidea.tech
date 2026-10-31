@@ -15,7 +15,7 @@
  */
 import { rmSync, cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, basename } from 'node:path';
-import { ROOT, DEPLOY, DEPLOY_SKIP, BASE } from './site.mjs';
+import { ROOT, DEPLOY, isDeploySkipped, BASE } from './site.mjs';
 import { stage404 } from './lib/stage-404.mjs';
 
 const OUT = join(ROOT, '_site');
@@ -25,7 +25,7 @@ mkdirSync(OUT);
 const missing = DEPLOY.filter((p) => !existsSync(join(ROOT, p)));
 if (missing.length) { console.error('✗ deploy list names missing paths: ' + missing.join(', ')); process.exit(1); }
 for (const p of DEPLOY) {
-  cpSync(join(ROOT, p), join(OUT, p), { recursive: true, filter: (src) => !DEPLOY_SKIP.includes(basename(src)) });
+  cpSync(join(ROOT, p), join(OUT, p), { recursive: true, filter: (src) => !isDeploySkipped(basename(src)) });
 }
 const e404 = join(OUT, '404.html');
 writeFileSync(e404, stage404(readFileSync(e404, 'utf8'), SITE_ROOT));

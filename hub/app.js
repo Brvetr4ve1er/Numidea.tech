@@ -210,13 +210,13 @@
      Without scripts every print is a plain link to its large file; the
      viewer only intercepts a plain click (no modifier keys), so cmd/ctrl-
      click still opens a tab. The picture's description is the print's own
-     alt text; #lbLink shows only for a print with a data-link. */
+     alt text. */
   var grid = document.getElementById('collection');
   var lb = document.getElementById('lb');
   if (grid && lb && typeof lb.showModal === 'function') {
     var pieces = [].slice.call(grid.querySelectorAll('.tile--img'));
     var img = document.getElementById('lbImg'), ttl = document.getElementById('lbTitle'),
-        meta = document.getElementById('lbMeta'), link = document.getElementById('lbLink'),
+        meta = document.getElementById('lbMeta'),
         live = document.getElementById('lbLive'), cur = -1, opener = null;
     // Previous/Next: the dialog's name changes silently, so the new piece is
     // also written to the polite status line (not on open: opening a dialog
@@ -237,12 +237,6 @@
       img.alt = thumb ? thumb.alt : a.getAttribute('data-title');
       ttl.textContent = a.getAttribute('data-title');
       meta.textContent = a.getAttribute('data-meta') || '';
-      var out = a.getAttribute('data-link');
-      link.hidden = !out;
-      if (out) {
-        link.href = out;
-        link.firstChild.nodeValue = (a.getAttribute('data-link-label') || 'the original') + ' ';
-      }
     };
     grid.addEventListener('click', function (e) {
       var a = e.target.closest('.tile--img');

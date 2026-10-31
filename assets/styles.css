@@ -809,7 +809,7 @@ html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body);font-style:nor
 .preview .prev-terms{font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--body-strong);max-width:52em;margin-bottom:var(--s-5)}
 .preview .prev-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3) var(--s-5);margin-bottom:var(--s-5)}
 .preview .prev-wa{font-family:var(--font-mono);font-size:13px;color:var(--teal-text);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
-.preview .prev-wa[data-wa-pending]{color:var(--muted);text-decoration:none}
+.preview .prev-wa[aria-disabled="true"]{color:var(--muted);text-decoration:none}
 .preview .outcome{font-size:14px;color:var(--ice);padding-left:14px;border-left:2px solid var(--crimson)}
 html[dir="rtl"] .preview .outcome{padding-left:0;padding-right:14px;border-left:none;border-right:2px solid var(--crimson)}
 .preview .outcome b{display:block;font-family:var(--font-mono);font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-text);margin-bottom:5px}
@@ -1882,12 +1882,11 @@ html[dir="rtl"] .md-drivers b{font-family:var(--font-ar-display)}
 .wa-i{flex:none;width:19px;height:19px;display:block}
 .wa-i svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.5;
   stroke-linecap:round;stroke-linejoin:round}
-/* No number configured yet: the control stays legible and plainly not-live,
-   rather than linking somewhere wrong. Same idiom as hub/'s pending handles. */
-.wa-link[data-wa-pending]{opacity:.5;cursor:default;pointer-events:none}
-.wa-link[data-wa-pending]::after{content:attr(data-soon);font-family:var(--font-mono);
-  font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;white-space:pre}
-a.wa-link[data-wa-pending]{text-decoration:none}
+/* No number configured (app.js §13 then drops the href and marks the link
+   disabled): the control stays legible and plainly inert, rather than
+   linking somewhere wrong. */
+.wa-link[aria-disabled="true"]{opacity:.5;cursor:default;pointer-events:none}
+a.wa-link[aria-disabled="true"]{text-decoration:none}
 
 @media (min-width:720px){
   .tiers{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.6vw,24px)}

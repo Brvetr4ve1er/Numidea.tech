@@ -13,13 +13,15 @@
  *   npm run shots                       # capture everything
  *   npm run shots -- almaflowclim       # capture a single slug
  *
+ * The browser is the one every gate uses (scripts/lib/serve.mjs launch():
+ * CHROMIUM_PATH, else a pre-installed build, else Playwright's own).
  * Re-run whenever a site ships or changes, then commit the updated .webp.
  */
-import { chromium } from 'playwright';
 import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { launch } from './lib/serve.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'assets', 'previews');
@@ -47,8 +49,7 @@ async function run() {
 
   if (!targets.length) { console.log('Nothing to capture (no live URLs match).'); return; }
 
-  const browser = await chromium.launch({
-    executablePath: process.env.PW_CHROME || undefined,
+  const browser = await launch({
     proxy: process.env.HTTPS_PROXY ? { server: process.env.HTTPS_PROXY } : undefined,
   });
   const ctx = await browser.newContext({

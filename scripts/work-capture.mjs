@@ -12,9 +12,9 @@
  *  - Bordj Steel /products/charpente-metallique showed the site's own error
  *    screen at capture time; /products is used.
  */
-import { chromium } from 'playwright';
 import sharp from 'sharp';
 import { mkdirSync } from 'fs';
+import { launch } from './lib/serve.mjs';
 const P={
  bordjsteel:{base:'https://bordjsteelb2b.netlify.app',d:['/','/products','/references','/about/history'],m:['/','/products']},
  alliance:{base:'https://alliancetravel34.netlify.app',d:['/#voyages','/istanbul/','/rendez-vous-visa/','/bali/'],m:['/','/istanbul/']},
@@ -23,7 +23,8 @@ const P={
  workspacehq:{base:'http://localhost:8765/workspacehq',d:['/','/#features','/#walkthrough','/#bit'],m:['/','/#features']},
 };
 const only=process.argv[2];
-const b = await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome',args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});
+// the gates' browser (lib/serve.mjs picks it); software GL so WebGL pages render
+const b = await launch({args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});
 const meta={};
 for(const [k,s] of Object.entries(P)){ if(only&&k!==only)continue;
  mkdirSync(`assets/work/${k}`,{recursive:true});meta[k]={pages:[]};

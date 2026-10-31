@@ -30,6 +30,12 @@ campaign/
 # local Claude Code settings
 .claude/settings.local.json
 
+# never committed: local secrets and keys (the mirrors' CLIs and any API key
+# live in .env files), and Lighthouse's report output
+.env*
+*.pem
+lighthouse/
+
 # graphify working output (the committed graph lives in knowledge-base/graphify/)
 graphify-out/
 knowledge-base/graphify/cache/

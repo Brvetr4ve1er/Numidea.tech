@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Numidea Labs landing page \u2014 static site + project-preview capture pipeline.",
   "engines": {
-    "node": ">=22.22"
+    "node": ">=22.22 <23 || >=24.8"
   },
   "scripts": {
     "shots": "node scripts/shots.mjs",

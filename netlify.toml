@@ -3,10 +3,11 @@
 # failure stops the deploy), then stages only the publishable files
 # (scripts/site.mjs DEPLOY) into _site/, so internal folders (knowledge-base/,
 # audit/, scripts/…) are never served. The build command itself needs no
-# packages, but Netlify installs package.json's dependencies (devDependencies
-# included) before running it, as it does for any repository with a
-# package.json. None of them downloads a browser on install today (Playwright
-# fetches browsers only through `npx playwright install`);
+# packages, and package.json declares only devDependencies, so NPM_FLAGS
+# tells Netlify's install step (run before the build for any repository with
+# a package.json) to leave them out: nothing to download, nothing to audit.
+# None of them downloads a browser on install today (Playwright fetches
+# browsers only through `npx playwright install`);
 # PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD stays as a guard should a version add one.
 [build]
   command = "node scripts/check.mjs && node scripts/themes-check.mjs && node scripts/stage-site.mjs"
@@ -14,18 +15,31 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  NPM_FLAGS = "--omit=dev"
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"
 
-# Mirror of vercel.json (check.mjs 16 holds the two to the same headers).
-# Assets are cached for a day, not "immutable": only the CSS/JS links carry
-# ?v= stamps, and images, the CV and og.jpg are regenerated under the same
-# names (npm run shots, og). Plus security headers. Each page carries its own
+# Mirror of vercel.json (check.mjs 16 holds the two "/*" blocks to the same
+# headers). Assets, the hub's art and the WorkspaceHQ embed (the heaviest
+# files published: its audio, model and vendor code) are cached for a day,
+# not "immutable": only the CSS/JS links carry ?v= stamps, and images, the CV
+# and og.jpg are regenerated under the same names (npm run shots, og). Plus
+# security headers. Each page carries its own
 # Content-Security-Policy meta (scripts/lib/csp.mjs); the header policy adds
 # only what a meta cannot carry (frame-ancestors) and repeats its floor
 # (base-uri, object-src). The browser enforces both policies, so a fetch
 # directive here would block what the page's meta allows.
 [[headers]]
   for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/hub/art/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/workspacehq/embed/*"
   [headers.values]
     Cache-Control = "public, max-age=86400"
 

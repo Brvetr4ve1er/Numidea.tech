@@ -319,7 +319,6 @@
       'md.d4h': 'Les intégrations', 'md.d4p': 'Paiement, comptes utilisateurs, outils et API tiers.',
       'md.d5h': 'Le contenu', 'md.d5p': 'Textes, photos et vidéos : fournis par vous, ou à produire.',
       'md.d6h': 'Le délai', 'md.d6p': 'Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.',
-      'price.waSoonSuffix': ' · bientôt',
       'nav.pricing': 'Tarifs',
       'wa.hello': "Bonjour Numidea Labs — j'aimerais parler d'un projet.",
       'footer.wa': 'WhatsApp',
@@ -429,7 +428,6 @@
       'md.d4h': 'Integrations', 'md.d4p': 'Payments, user accounts, third-party tools and APIs.',
       'md.d5h': 'Content', 'md.d5p': 'Copy, photos and video: supplied by you, or produced.',
       'md.d6h': 'Timeline', 'md.d6p': 'A compressed schedule costs more: +25% in our estimator.',
-      'price.waSoonSuffix': ' · soon',
       'nav.pricing': 'Pricing',
       'wa.hello': 'Hello Numidea Labs — I would like to talk about a project.',
       'footer.wa': 'WhatsApp',
@@ -542,7 +540,6 @@
       'md.d4h': 'التكاملات', 'md.d4p': 'الدفع وحسابات المستخدمين والأدوات والواجهات البرمجية الخارجية.',
       'md.d5h': 'المحتوى', 'md.d5p': 'النصوص والصور والفيديو: تقدّمها أنت أو ننتجها نحن.',
       'md.d6h': 'المهلة', 'md.d6p': 'الجدول المضغوط أعلى تكلفة: ‎+25٪ في حاسبة التقدير.',
-      'price.waSoonSuffix': ' · قريباً',
       'nav.pricing': 'الأسعار',
       'wa.hello': 'مرحباً نوميديا لابز — أودّ الحديث عن مشروع.',
       'footer.wa': 'واتساب',
@@ -1902,12 +1899,12 @@
 
     /* ---------------- 13 · WhatsApp ----------------
        NUMIDEA_WA is the studio's number in full international form, digits
-       only (e.g. '213XXXXXXXXX'). While it is empty every WhatsApp control
-       stays visibly pending rather than linking somewhere wrong — the same
-       idiom hub/ uses for handles with no verified URL. scripts/build-fr.mjs
-       bakes the same French link (or the pending state) into index.html, so
-       the hero's button works before this deferred script runs; wireWA()
-       rewrites it for the visitor's language and the ad's [ref]. */
+       only (e.g. '213XXXXXXXXX'). Should it ever be empty, every WhatsApp
+       control loses its href and is marked disabled rather than linking
+       somewhere wrong. scripts/build-fr.mjs bakes the same French link (or
+       that guard) into index.html, so the hero's button works before this
+       deferred script runs; wireWA() rewrites it for the visitor's language
+       and the ad's [ref]. */
     var WA = (window.NUMIDEA_WA || '').replace(/[^0-9]/g, '');
     /* Where a lead came from, read at the moment it is sent: ?ref= (each ad
        and email carries its own code), utm_* and whether Meta or Google added
@@ -1951,15 +1948,10 @@
         a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t(a.getAttribute('data-wa-text') || 'wa.hello') + refTag());
         a.target = '_blank';
         a.rel = 'noopener';
-        a.removeAttribute('data-wa-pending');
         a.removeAttribute('aria-disabled');
       } else {
         a.removeAttribute('href');
-        a.setAttribute('data-wa-pending', '');
         a.setAttribute('aria-disabled', 'true');
-        // The suffix is rendered from this attribute so it stays translatable;
-        // a hard-coded CSS `content` string could not follow the language.
-        a.setAttribute('data-soon', t('price.waSoonSuffix'));
       }
     }); };
     wireWA();

@@ -17,11 +17,11 @@ import { PROJECTS, UI } from './scene-data.mjs';
 import { VOICES, VOICE_CLIENTS } from './voices-data.mjs';
 import { BASE } from './site.mjs';
 import { withCsp } from './lib/csp.mjs';
+import { esc } from './lib/i18n.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const stamp = (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
 const LANGS = ['fr', 'en', 'ar'];
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 // The address a sheet's browser bar shows. Our own product is a page of this
 // site: its relative link resolves against the published BASE, never an
 // invented host.

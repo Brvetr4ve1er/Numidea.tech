@@ -64,6 +64,11 @@ export const toMarkup = (s) => String(s)
   .replace(/&(?!(#x[0-9a-f]+|#\d+|[a-z]+);)/gi, '&amp;')
   .replace(/<(?![a-zA-Z\/!])/g, '&lt;');
 
+/* Plain text for a text node or a double-quoted attribute: what HTML would
+   read as markup (& < > ") escaped, nothing kept. The generators that write
+   a page from data (build-scene, build-voices, build-legal) share it. */
+export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
 /* The FAQPage structured data for one language, from the same strings the
    page shows. app.js builds the identical object at runtime (applyLang). */
 export function faqLd(dict) {

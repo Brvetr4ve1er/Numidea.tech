@@ -1,7 +1,10 @@
 name: Deploy to GitHub Pages
 
 # Publishes the static site to GitHub Pages on every push to the working
-# branch, but only once every gate is green.
+# branch, but only once every gate is green. A push that changes only
+# documentation or the knowledge base (paths-ignore below) publishes nothing
+# new, so it runs nothing here; check.yml, the required status, stays
+# unfiltered.
 #
 # gates — read-only. The repository invariants, html-validate, "the build
 #   leaves no change", then the browser gates (audit, sweep, vbugs, keys) on
@@ -20,6 +23,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["claude/numidea-labs-landing-c4jokc"]
+    paths-ignore: ["**.md", "knowledge-base/**", "audit/**"]
   workflow_dispatch:
 
 permissions:

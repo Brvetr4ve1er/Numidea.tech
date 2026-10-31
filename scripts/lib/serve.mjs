@@ -7,8 +7,9 @@
  * Vercel do, with the root's 404.html and status 404 (off by default: then a
  * missing file is an empty 404).
  *
- * Chromium: CHROMIUM_PATH if set; else this environment's pre-installed
- * build if it exists; else Playwright's own (CI, a contributor's machine).
+ * Chromium: CHROMIUM_PATH if set; else the newest of this environment's
+ * pre-installed builds if there is one; else Playwright's own (CI, a
+ * contributor's machine).
  * Always with --font-render-hinting=none. Without it, the binary decides
  * where text wraps: Playwright's default headless shell (what CI gets)
  * forces full hinting, which rounds glyph advances to whole pixels, while the
@@ -22,7 +23,7 @@
 import { chromium } from 'playwright';
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 import { join, extname, resolve, sep } from 'node:path';
 import { ROOT } from '../site.mjs';
@@ -72,8 +73,24 @@ export async function serve(root = ROOT, { compress = false, fallback404 = false
   return { base: 'http://127.0.0.1:' + srv.address().port, close: () => srv.close() };
 }
 
-const LOCAL_CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+// The pre-installed builds live in Playwright's own layout, one folder per
+// build number; the newest that has a binary wins (chrome-linux64/ in the
+// current builds, chrome-linux/ in older ones), so a new image needs no edit
+// here. The number the locked Playwright wants may be absent: then
+// CHROMIUM_PATH names the build to use, as the plan's setup facts say.
+const PW_BROWSERS = '/opt/pw-browsers';
+function localChrome() {
+  let builds;
+  try { builds = readdirSync(PW_BROWSERS).filter((d) => /^chromium-\d+$/.test(d)); } catch { return undefined; }
+  builds.sort((a, b) => Number(b.slice(9)) - Number(a.slice(9)));
+  for (const d of builds) {
+    for (const bin of ['chrome-linux64/chrome', 'chrome-linux/chrome']) {
+      if (existsSync(join(PW_BROWSERS, d, bin))) return join(PW_BROWSERS, d, bin);
+    }
+  }
+  return undefined;
+}
 export function launch(opts = {}) {
-  const executablePath = process.env.CHROMIUM_PATH || (existsSync(LOCAL_CHROME) ? LOCAL_CHROME : undefined);
+  const executablePath = process.env.CHROMIUM_PATH || localChrome();
   return chromium.launch({ executablePath, ...opts, args: ['--font-render-hinting=none', ...(opts.args || [])] });
 }

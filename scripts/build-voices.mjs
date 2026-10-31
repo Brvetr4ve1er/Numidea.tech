@@ -14,10 +14,9 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT } from './site.mjs';
 import { VOICES, VOICE_CLIENTS, validate } from './voices-data.mjs';
-import { loadDicts, toMarkup } from './lib/i18n.mjs';
+import { loadDicts, toMarkup, esc } from './lib/i18n.mjs';
 
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const RE = /(<!-- SLOT:voices -->)[\s\S]*?(<!-- \/SLOT:voices -->)/;
+const RE =/(<!-- SLOT:voices -->)[\s\S]*?(<!-- \/SLOT:voices -->)/;
 
 export function renderVoices(list = VOICES) {
   if (!list.length) return '';

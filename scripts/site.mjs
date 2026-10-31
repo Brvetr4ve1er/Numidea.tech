@@ -31,8 +31,12 @@ export const EXTRA_PAGES = ['workspacehq/embed/trailer.html', 'workspacehq/embed
 
 export const DEPLOY = ['index.html', '404.html', 'robots.txt', 'sitemap.xml', 'assets', 'scene', 'hub', 'workspacehq']
   .concat(LEGAL_PUBLISHED ? ['legal'] : []);
-// file names never published even inside a deployed folder
-export const DEPLOY_SKIP = ['README.md', '.DS_Store'];
+// file names never published even inside a deployed folder: a folder's own
+// notes and the manifest the WorkspaceHQ design-system export ships. Every
+// walker (stage, deploy-files, check, build-legal) asks isDeploySkipped(),
+// which ignores case: the embed's export spells its notes readme.md
+export const DEPLOY_SKIP = ['README.md', '_ds_manifest.json', '.DS_Store'];
+export const isDeploySkipped = (name) => DEPLOY_SKIP.some((s) => s.toLowerCase() === String(name).toLowerCase());
 export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '.vercel', 'node_modules', '_site', 'audit', 'campaign', 'knowledge-base', 'scripts',
-  'legal-preview', 'legal', 'BRAND.md', 'README.md', 'RELEASE.md', 'IMPROVEMENTS.md', 'LICENSE', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
-  'netlify.toml', 'vercel.json', '.gitattributes', '.gitignore', '.graphifyignore', 'graphify-out'];
+  'legal-preview', 'legal', 'BRAND.md', 'README.md', 'RELEASE.md', 'IMPROVEMENTS.md', 'LICENSE', 'NOTICE.md', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
+  'netlify.toml', 'vercel.json', '.gitattributes', '.gitignore', '.nvmrc', '.graphifyignore', 'graphify-out'];

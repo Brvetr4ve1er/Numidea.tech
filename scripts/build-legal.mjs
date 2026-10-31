@@ -21,13 +21,12 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { ROOT, BASE, THEMES, LANGS, DEPLOY, DEPLOY_SKIP } from './site.mjs';
+import { ROOT, BASE, THEMES, LANGS, DEPLOY, isDeploySkipped } from './site.mjs';
 import { LEGAL, missing } from './legal-data.mjs';
-import { loadDicts, toMarkup } from './lib/i18n.mjs';
+import { loadDicts, toMarkup, esc } from './lib/i18n.mjs';
 import { withCsp } from './lib/csp.mjs';
 
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const stamp = () => (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
+const stamp =() => (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
 
 /* a value, or (preview only) a visible gap marker */
 function val(v, path, preview) {
@@ -98,7 +97,7 @@ export function servedFonts() {
     const abs = join(ROOT, rel);
     if (!existsSync(abs)) return;
     if (statSync(abs).isDirectory()) {
-      for (const n of readdirSync(abs)) if (!DEPLOY_SKIP.includes(n)) visit(join(rel, n));
+      for (const n of readdirSync(abs)) if (!isDeploySkipped(n)) visit(join(rel, n));
       return;
     }
     if (!/\.(css|html|js|mjs)$/.test(rel)) return;

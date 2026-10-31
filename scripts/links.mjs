@@ -81,7 +81,6 @@ const BLOCKS = {
   'www.linkedin.com/': 'answers 999 (its bot wall) or 429 to anyone not signed in, whatever the profile',
   'www.instagram.com/': 'after a request or two, redirects every page to its login with a 429, existing or not',
   'www.behance.net/gallery/': 'gallery pages answer 403 with an empty noindex page, a gallery that does not exist too (profile pages answer 200 or 404 and stay checked)',
-  'www.etsy.com/': 'DataDome bot wall: 403 "Please enable JS" (x-datadome: protected)',
   'clutch.co/': 'Cloudflare challenge: 403 "Just a moment…" (cf-mitigated: challenge)',
   '*.tumblr.com/': '403 "Checking your browser…", a JavaScript check in front of every blog',
   'www.bank-of-algeria.dz/': 'serves its certificate without the DigiCert intermediate: browsers complete the chain, Node and curl refuse it ("unable to verify the first certificate")',
