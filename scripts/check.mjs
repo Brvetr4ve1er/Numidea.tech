@@ -5,8 +5,10 @@
  * Enforces the conventions the site depends on but that break silently. The
  * labels below are the ones on the blocks in the body (cite a check by its
  * label, never by line: blocks merged from other work move the lines):
- *   1. i18n balance   — every dictionary key appears exactly 3× (fr/en/ar)
- *   2. i18n coverage  — every data-i18n* attribute resolves to a key
+ *   1. i18n balance   — the three dictionaries (assets/i18n/{fr,en,ar}.js) hold
+ *                        the same keys
+ *   2. i18n coverage  — every data-i18n* attribute on the language pages resolves
+ *                        to a key in each dictionary
  *   3. assets         — every local src/href on every page exists on disk
  *  3b. parallax depths — every data-parallax / data-depth value parses
  *   4. stamp sync     — all ?v= cache-bust stamps are identical across pages
@@ -33,9 +35,10 @@
  *                        € or $ amount; the estimator's arithmetic holds
  *  8d. legal gating   — legal/ is published only complete and current; until then nothing
  *                        points at it
- *  8e. baked French and voices — the French baked into index.html (text, attributes,
- *                        title, description, the studio's and the FAQ's structured data)
- *                        and the voices region equal their generators' output
+ *  8e. baked languages and voices — the text baked into index.html, en/ and ar/
+ *                        (text, attributes, title, description, the studio's and the
+ *                        FAQ's structured data, the head's language) and the voices
+ *                        region equal their generators' output
  *  8f. digits and French typography — Western digits in Arabic; no breakable space
  *                        before ? ! ; : » or after «, nor before % and h
  *  8g. contact and JSON-LD — one contact address everywhere; structured data parses and
@@ -51,8 +54,9 @@
  *                        both policies stand on scripts/lib/csp-floor.mjs; the mirrors
  *                        send the same headers, with frame-ancestors and HSTS
  *  17. asset budgets  — every published file under its folder's (or its own) byte
- *                        ceiling, og.jpg ≤ 300 kB, the whole published set under its
- *                        total, and no two published files alike (licence texts aside)
+ *                        ceiling, every share card (og.jpg, og-en.jpg, og-ar.jpg…) ≤ 300 kB,
+ *                        the whole published set under its total, and no two published
+ *                        files alike (licence texts aside)
  *  17b. hub art and motion — every srcset, data-full, data-anim and hub/style.css url()
  *                        file exists; each <img> has alt and width/height = its widest
  *                        file, NNNw = the file's width, one ratio per image; data-w/h =
@@ -74,13 +78,13 @@ import { runInNewContext } from 'node:vm';
 import { join, dirname, normalize, basename, extname } from 'node:path';
 import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, isDeploySkipped, NOT_DEPLOYED, BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
 import { SCENE_HTML } from './build-scene.mjs';
-import { renderSitemap } from './build-sitemap.mjs';
+import { renderSitemap, STATIC_LANG } from './build-sitemap.mjs';
 import { applyVoices } from './build-voices.mjs';
 import { renderLegal, markerRegions } from './build-legal.mjs';
 import { LEGAL, missing as legalMissing } from './legal-data.mjs';
 import { validate as validateVoices, VOICE_CLIENTS } from './voices-data.mjs';
-import { bakeFr } from './build-fr.mjs';
-import { loadDicts, norm } from './lib/i18n.mjs';
+import { bakeFr, bakeLang } from './build-lang.mjs';
+import { loadDicts, norm, I18N_FILES } from './lib/i18n.mjs';
 import { UI as SCENE_UI, PROJECTS as SCENE_PROJECTS } from './scene-data.mjs';
 
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
@@ -96,23 +100,25 @@ const ok = (msg) => console.log('✓ ' + msg);
 const lf = (s) => s.replace(/\r\n?/g, '\n');
 
 /* 1 + 2 — i18n */
+// One dictionary per language, assets/i18n/{fr,en,ar}.js (lib/i18n.mjs reads
+// them as the page does). app.js keeps the estimator's figures (8c), no text.
 const app = read('assets/app.js');
-const DICT = loadDicts(app);
-const counts = {};
-for (const m of app.matchAll(/'([a-z0-9]+(?:\.[A-Za-z0-9_.]+)?)'\s*:/g)) {
-  counts[m[1]] = (counts[m[1]] || 0) + 1;
-}
-// keys that look like i18n entries: referenced from HTML or dotted
-const html = read('index.html');
-const refs = new Set([...html.matchAll(/data-i18n(?:-[a-z]+)?="([^"]+)"/g)].map((m) => m[1]));
-// a key must exist once per language (×3) — variant copy overrides add whole
-// extra fr/en/ar sets, so any multiple of 3 is balanced
-const unbalanced = Object.entries(counts).filter(([k, v]) => (refs.has(k) || k.includes('.')) && v % 3 !== 0);
+const DICT = loadDicts();
+// a key missing from one language would leave that page's node in the
+// template's French (bakeLang throws on it, 8e) or, at runtime, untouched
+const keyed = Object.fromEntries(LANGS.map((l) => [l, new Set(Object.keys(DICT[l]))]));
+const everyKey = [...new Set(LANGS.flatMap((l) => [...keyed[l]]))];
+const unbalanced = everyKey.filter((k) => !LANGS.every((l) => keyed[l].has(k)))
+  .map((k) => `${k} (${LANGS.filter((l) => keyed[l].has(k)).join('/')} only)`);
 unbalanced.length
-  ? bad('i18n unbalanced (must be a multiple of 3): ' + unbalanced.map(([k, v]) => `${k}=${v}`).join(', '))
-  : ok('i18n dictionary balanced (every key ×3 per copy set)');
-const orphans = [...refs].filter((k) => !counts[k]);
-orphans.length ? bad('orphan data-i18n refs: ' + orphans.join(', ')) : ok('no orphan data-i18n references');
+  ? bad('i18n unbalanced (every key in fr, en and ar): ' + unbalanced.join(', '))
+  : ok(`i18n dictionaries balanced (${keyed.fr.size} keys, the same in ${LANGS.join('/')})`);
+// every data-i18n* reference on the three language pages (en/ and ar/ are
+// written from index.html, so they carry the same ones) names a key
+const html = read('index.html');
+const refs = new Set(Object.keys(STATIC_LANG).flatMap((f) => [...read(f).matchAll(/data-i18n(?:-[a-z]+)?="([^"]+)"/g)].map((m) => m[1])));
+const orphans = [...refs].filter((k) => !LANGS.every((l) => keyed[l].has(k)));
+orphans.length ? bad('orphan data-i18n refs: ' + orphans.join(', ')) : ok(`no orphan data-i18n references (${refs.size} keys referenced)`);
 
 /* 3 — assets exist */
 // every entry page plus the embedded WorkspaceHQ pages, each resolved from its own folder
@@ -137,14 +143,17 @@ for (const [f, base] of Object.entries(pages)) {
   }
   // Paths that only exist inside inline scripts: quoted 'assets/...' literals
   // (e.g. NUMIDEA_ENG_CSS) and the preloaded font names, which are listed as
-  // bare names and joined onto 'assets/fonts/' + f + '.woff2' at runtime.
+  // bare names and joined onto 'assets/fonts/' + f + '.woff2' at runtime. The
+  // literal carries the page's own prefix (en/ and ar/ write ../assets/fonts/:
+  // build-lang.mjs), so the names resolve from the folder it names.
   for (const m of src.matchAll(/'((?:\.\.\/)*assets\/[^'?\s]+)/g)) {
     if (m[1].endsWith('/')) continue;                      // a prefix, not a file
     if (!existsSync(join(ROOT, base, m[1]))) missing.push(`${f} → ${m[1]} (script)`);
   }
-  if (/assets\/fonts\/' \+ \w+ \+ '\.woff2/.test(src)) {
+  const pre = (/((?:\.\.\/)*)assets\/fonts\/' \+ \w+ \+ '\.woff2/.exec(src) || [])[1];
+  if (pre !== undefined) {
     for (const m of src.matchAll(/'([a-z0-9]+(?:-[a-z0-9]+)*-(?:latin|arabic|latin-ext))'/g)) {
-      if (!existsSync(join(ROOT, base, 'assets/fonts', m[1] + '.woff2'))) missing.push(`${f} → assets/fonts/${m[1]}.woff2 (preload)`);
+      if (!existsSync(join(ROOT, base, pre, 'assets/fonts', m[1] + '.woff2'))) missing.push(`${f} → ${pre}assets/fonts/${m[1]}.woff2 (preload)`);
     }
   }
 }
@@ -342,12 +351,18 @@ problems.length ? problems.forEach(bad) : ok(`deploy set covers every page and l
   errs.length ? bad('404.html staging: ' + errs.join('; '))
     : ok(`404.html stages with its JavaScript-off links from the site root (${new URL(BASE).pathname} on Pages, / on the mirrors)`);
 }
-// One canonical per page, from one place. index.html, scene/ and legal/ set
-// theirs in the head script, because each language version names itself
-// (?lang=en is its own URL); a static <link rel="canonical"> back in their
-// markup would give them two, the static one naming the French page on every
-// language view, and search engines then fold the versions together. hub/
-// and workspacehq/ carry a static one naming themselves; 404.html has none.
+// One canonical per page, from one place. A page whose language follows
+// ?lang= (its head script reads it: index.html, which sends ?lang= to the
+// language's page, scene/ and legal/, which switch in place) sets its
+// canonical in that script, because each language version names itself
+// (?lang=en is its own URL; index.html's canon() resolves a language through
+// its hreflang alternates, so BASE/en/ for en); a static <link
+// rel="canonical"> back in their markup would give them two, the static one
+// naming the French page on every language view, and search engines then
+// fold the versions together. A page that is one language (its head script
+// reads no ?lang=: en/, ar/, written static by build-lang.mjs, hub/,
+// workspacehq/) carries a static one naming itself, read without scripts.
+// 404.html has none.
 const canonErr = [];
 let canonStatic = 0, canonScripted = 0;
 for (const f of PAGES) {
@@ -356,12 +371,15 @@ for (const f of PAGES) {
   const scripted = /\.rel\s*=\s*(['"])canonical\1|setAttribute\(\s*(['"])rel\2\s*,\s*(['"])canonical\3/.test(inline) ? 1 : 0;
   const links = src.replace(/<script\b[\s\S]*?<\/script>/gi, '').match(/<link\b[^>]*\brel\s*=\s*["']?[^"'>]*\bcanonical\b[^>]*>/gi) || [];
   const want = f === '404.html' ? 0 : 1, self = BASE + (dirname(f) === '.' ? '' : dirname(f) + '/');
-  // a page with language versions (hreflang alternates) must name itself from
-  // the head script, whatever else changes: a static canonical alone would
-  // name the French page on every ?lang= view
+  // a page with language versions (hreflang alternates) whose head script
+  // reads ?lang= must name itself from that script, whatever else changes: a
+  // static canonical alone would name the French page on every ?lang= view.
+  // One that reads no ?lang= is one language: it needs the static one.
   const multi = /<link\b[^>]*\bhreflang\s*=/i.test(src);
-  if (multi && !scripted) canonErr.push(`${f} has language versions but its head script sets no canonical`);
-  if (multi && links.length) canonErr.push(`${f} has language versions and a static canonical (remove the <link>)`);
+  const readsLang = /get\((['"])lang\1\)|[?&]lang=/.test(inline);
+  if (multi && readsLang && !scripted) canonErr.push(`${f} has language versions and reads ?lang=, but its head script sets no canonical`);
+  if (multi && !readsLang && !links.length) canonErr.push(`${f} has language versions and reads no ?lang= (it is one language): it needs a static canonical naming itself`);
+  if (multi && readsLang && links.length) canonErr.push(`${f} has language versions, reads ?lang= and has a static canonical (remove the <link>)`);
   else if (scripted && links.length) canonErr.push(`${f} has a static canonical and sets one in its head script (remove the <link>)`);
   else if (links.length + scripted !== want) canonErr.push(`${f} names ${links.length + scripted} canonical URLs (want ${want})`);
   for (const l of links) {
@@ -371,7 +389,7 @@ for (const f of PAGES) {
   canonStatic += links.length; canonScripted += scripted;
 }
 canonErr.length ? bad('canonical: ' + canonErr.join('; '))
-  : ok(`one canonical per page (${canonStatic} static, ${canonScripted} set by the head script, none on 404.html)`);
+  : ok(`one canonical per page (${canonStatic} static, ${canonScripted} set by the head script where it reads ?lang=, none on 404.html)`);
 
 /* 7 — generated pages */
 lf(read('scene/index.html')) === lf(SCENE_HTML)
@@ -528,15 +546,26 @@ if (!LEGAL_PUBLISHED) {
 }
 legalErr.length ? bad('legal page: ' + legalErr.join('; '))
   : ok(LEGAL_PUBLISHED ? 'legal page complete, current and linked' : 'legal page unpublished and nothing points at it');
-/* 8e — baked French and voices */
+/* 8e — baked languages and voices */
 // The French baked into index.html (text, translated attributes, title,
 // description, FAQ structured data) equals I18N.fr: app.js re-applies the
 // dictionary on load, so any drift shows as copy changing after paint, and
-// no-JS readers and the FAQ rich result would read an older offer.
+// no-JS readers and the FAQ rich result would read an older offer. en/ and
+// ar/ are index.html written in their language by the same generator
+// (bakeLang: their head, paths and CSP included), so each must equal that
+// bake of the committed template: a template edit without the build would
+// otherwise ship an older page in two languages.
 let frStale = '';
 try { frStale = lf(bakeFr(lf(html), DICT.fr)) !== lf(html) ? 'differs' : ''; } catch (e) { frStale = e.message; }
 frStale ? bad('index.html French: ' + (frStale === 'differs' ? 'differs from I18N.fr (run: npm run build)' : frStale))
   : ok("index.html French, its FAQ structured data and the studio's JSON-LD description equal I18N.fr");
+const langStale = [];
+for (const [file, l] of Object.entries(STATIC_LANG).filter(([f]) => f !== 'index.html')) {
+  try { if (lf(bakeLang(lf(html), l, DICT[l])) !== lf(read(file))) langStale.push(`${file} differs from index.html baked with I18N.${l}`); }
+  catch (e) { langStale.push(`${file}: ${e.message}`); }
+}
+langStale.length ? bad('language pages: ' + langStale.join('; ') + ' (run: npm run build)')
+  : ok('en/ and ar/ equal index.html baked with I18N.en and I18N.ar (scripts/build-lang.mjs)');
 // Client voices: valid (consent recorded, delivered clients only) and the
 // index.html region equals what scripts/build-voices.mjs writes from them.
 const voiceErr = validateVoices();
@@ -549,7 +578,7 @@ voiceErr.length ? bad('client voices: ' + voiceErr.join('; '))
 // Arabic uses Western digits on this site (owner decision): no Arabic-Indic
 // digits in any shipped page, dictionary or generator.
 const indic = [];
-for (const f of [...PAGES, 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/build-legal.mjs', 'scripts/voices-data.mjs']) {
+for (const f of [...PAGES, ...Object.values(I18N_FILES), 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/build-legal.mjs', 'scripts/voices-data.mjs']) {
   const hits = (read(f).match(/[٠-٩۰-۹٫٬]/g) || []).length;
   if (hits) indic.push(`${f} (${hits})`);
 }
@@ -611,7 +640,7 @@ deadRefs.length ? bad('attributes point at ids that do not exist: ' + deadRefs.j
 // "most chosen" tier claim has no data behind it, and client sites are not demos.
 const RETIRED = ['Le plus choisi', 'Most chosen', 'الأكثر اختياراً', 'Démo →', 'Live demo →', 'عرض حيّ', '5 / 7'];
 const back = [];
-for (const f of [...PAGES, 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/voices-data.mjs']) {
+for (const f of [...PAGES, ...Object.values(I18N_FILES), 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/voices-data.mjs']) {
   const src = read(f);
   for (const s of RETIRED) if (src.includes(s)) back.push(`${f}: "${s}"`);
 }
@@ -841,7 +870,8 @@ runtimeDeps.length
 // not its embed's audio, and a folder with no ceiling of its own
 // (workspacehq/embed/fonts) takes its nearest ancestor's. FILES names single
 // files outside any budgeted folder, each under its own ceiling, set the
-// same way. Every published og.jpg (the share cards) stays under 300 kB. The
+// same way. Every published share card (og.jpg, and the home page's og-en.jpg
+// and og-ar.jpg: build-og.mjs) stays under 300 kB. The
 // whole published set stays under its size on the date beside TOTAL plus 10%,
 // rounded up to 0.1 MB. A miss fails: make the file smaller (previews:
 // scripts/shots.mjs, work: work-capture.mjs, illus: plates.mjs, clients:
@@ -880,7 +910,8 @@ runtimeDeps.length
     'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 19.0e6;           // 17,162,350 on 2026-10-31, 237 files (the embed's font copies, readme and manifest gone; 17,237,153 in 242 on 10-28)
+  const TOTAL = 19.0e6;           // 17,162,350 on 2026-10-31, 237 files (the embed's font copies, readme and manifest gone; 17,237,153 in 242 on 10-28);
+                                  // 17,531,597 in 244 later that day with en/ and ar/ (two pages 216 kB, two cards 151 kB, three dictionaries 86 kB, app.js 85 kB lighter)
   const size = (f) => statSync(join(ROOT, f)).size;
   const fmt = (n) => (n >= 1e6 ? (n / 1e6).toFixed(2) + ' MB' : (n / kB).toFixed(1) + ' kB');
   const bytes = (n) => n.toLocaleString('en') + ' bytes';
@@ -915,7 +946,7 @@ runtimeDeps.length
     if (seen.has(h)) budgetErr.push(`${f} has the same bytes as ${seen.get(h)} (publish one copy and point the other's references at it)`);
     else seen.set(h, f);
   }
-  const cards = files.filter(([f]) => /(^|\/)og\.jpg$/.test(f));
+  const cards = files.filter(([f]) => /(^|\/)og(-[a-z]{2})?\.jpg$/.test(f));
   if (!cards.length) budgetErr.push('no published og.jpg');
   for (const [f, n] of cards) if (n > OG) budgetErr.push(`${f} is ${bytes(n)}, over the share-card ceiling of ${bytes(OG)}`);
   const total = files.reduce((a, [, n]) => a + n, 0);
@@ -1098,9 +1129,10 @@ runtimeDeps.length
 // robots.txt must leave crawlable so the noindex is read; noindex counts in
 // any robots meta (robots, googlebot, bingbot…); every other page is
 // indexable and carries one <title>,
-// one meta description of 50-160 characters (in every language the page
-// switches to: index.html's I18N meta.desc, a generated page's inline
-// ui.desc), og:title, og:description, og:image, og:url (the page's own URL),
+// one meta description of 50-160 characters (in the page's own language for
+// index.html, en/ and ar/: that language's I18N meta.desc; in every language
+// a generated page switches to: its inline ui.desc), og:title,
+// og:description, og:image, og:url (the page's own URL),
 // og:type, twitter:card and twitter:image, with og:image:width/height equal
 // to the image file's own size (read from its header). Every page has
 // exactly one <h1>; legal/, which carries its three languages in the body,
@@ -1191,12 +1223,13 @@ runtimeDeps.length
     indexable.push(f);
     const desc = meta.description || [];
     if (desc.length !== 1 || !descOk(desc[0])) err(f, `meta description ${desc.length === 1 ? len(desc[0]) + ' characters' : '×' + desc.length} (want one, 50-160 characters)`);
-    // the descriptions the page's own language switch puts in its place
-    const own = f === 'index.html' ? DICT : (() => {
+    // the descriptions the page's dictionary puts in its place: a language
+    // page's own (the one baked into it), a switching page's three
+    const own = STATIC_LANG[f] ? { [STATIC_LANG[f]]: DICT[STATIC_LANG[f]] } : (() => {
       const m = /<script type="application\/json" id="i18n">([\s\S]*?)<\/script>/.exec(src);
       try { return m ? JSON.parse(m[1]) : null; } catch { return null; }        // block 7 reports bad JSON
     })();
-    const dkey = f === 'index.html' ? 'meta.desc' : 'ui.desc', tkey = f === 'index.html' ? 'title' : 'ui.title';
+    const dkey = STATIC_LANG[f] ? 'meta.desc' : 'ui.desc', tkey = STATIC_LANG[f] ? 'title' : 'ui.title';
     if (own) for (const l of LANGS) {
       const d = own[l]?.[dkey], t = own[l]?.[tkey];
       if (d != null && !descOk(d)) err(f, `${dkey} (${l}) is ${len(d)} characters (want 50-160)`);

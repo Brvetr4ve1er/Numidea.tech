@@ -4,7 +4,8 @@
  * improvement cycle (IMPROVEMENTS.md) can see what a change did to the page
  * and keep a history the 14-day Lighthouse artifacts cannot.
  *
- * For index.html in French, English and Arabic, on a phone (390x844) and a
+ * For the home page in French (index.html), English (en/) and Arabic (ar/),
+ * each its own page, on a phone (390x844) and a
  * desktop (1280x900), after scrolling the whole page so every lazy image and
  * engraving mask has loaded, per top-level block (header, each section of
  * <main>, the plates, the footer):
@@ -143,8 +144,10 @@ async function measure(path, { lang, size, sections }) {
 }
 
 const result = { measured: new Date().toISOString(), base: REMOTE || 'checkout', pages: {} };
+// the home page is one page per language (build-lang.mjs): the row measures that page
+const HOME = { fr: '/index.html', en: '/en/index.html', ar: '/ar/index.html' };
 for (const lang of ['fr', 'en', 'ar']) for (const size of Object.keys(SIZES))
-  result.pages[`index ${lang} ${size}`] = await measure('/index.html', { lang, size, sections: true });
+  result.pages[`index ${lang} ${size}`] = await measure(HOME[lang], { lang, size, sections: true });
 for (const lang of ['fr', 'en', 'ar']) for (const size of Object.keys(SIZES))
   result.pages[`scene ${lang} ${size}`] = await measure('/scene/index.html', { lang, size });
 for (const [name, path] of [['hub', '/hub/index.html'], ['workspacehq', '/workspacehq/index.html'], ['404', '/404.html']])

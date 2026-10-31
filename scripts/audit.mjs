@@ -2,7 +2,8 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 79 runs over every page (site.mjs PAGES): index.html in all six themes x
+ * 79 runs over every page (site.mjs PAGES): the home page (one page per
+ * language: index.html, en/, ar/, each opened directly) in all six themes x
  * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; scene/ in each
  * language on desktop and phone; 404 in two themes in Arabic; hub/ in both of
  * its palettes (paper, its default, and night: void-theme 'dark') on desktop
@@ -37,15 +38,18 @@
  * connection that is the reflow a visitor sees when the face lands, which a
  * local run's CLS cannot (the faces arrive before the first paint here).
  *
- * Then a throttled phone: index.html in French and in Arabic on Lighthouse's
+ * Then a throttled phone: the home page in French (index.html) and in Arabic
+ * (ar/) on Lighthouse's
  * mobile profile (412x823 at 1.75x, CPU 4x, Slow 4G as DevTools applies it:
  * 562.5 ms per request, 1.44 Mbit/s down), cold cache. Its targets: LCP at
  * most 2.5 s, the long tasks of the load adding up to at most 300 ms, and the
  * slowest scripted interaction (menu open and close, FAQ, opening the
- * folded estimator, its slider, currency, language switch) at most 200 ms
+ * folded estimator, its slider, currency) at most 200 ms
  * from input to the next paint, read from the Event Timing API (the INP
- * proxy). The local server gzips text the way the hosts do, so transfer
- * times match.
+ * proxy). The language switch is a link to the other language's page, so it
+ * is not timed (the entries go with the page it leaves): the tap must land on
+ * that page, in that language, over the same connection. The local server
+ * gzips text the way the hosts do, so transfer times match.
  *
  * The home page does not meet those targets yet (measured 2026-10-24 and 25
  * on a 4-CPU machine: LCP 2.8-3.7 s, long tasks 1.3-3.6 s, language switch
@@ -101,6 +105,9 @@ const PHONE_STRICT=process.env.AUDIT_PHONE_STRICT==='1';
 const TIMING=new Set(['lcp','lt','inp']);
 let fails=0;const rows=[],warnings=[],phoneWarn=[];
 const short=u=>u.replace(B,'').split(/[?#]/)[0]||'/';
+// the home page in a language: its own page (build-lang.mjs), opened
+// directly; the root would send a stored en/ar there anyway, in two loads
+const HOME=l=>l==='fr'?'/index.html':'/'+l+'/index.html';
 
 /* The live console's template (embed/console.html, as the design tool exports
    it) holds SVG attributes like points="{{ t.pts }}" that its runtime fills
@@ -319,7 +326,7 @@ const fallbackType=async(label,{theme,lang})=>{
     await ctx.addInitScript(([t,l])=>{localStorage.setItem('numidea-theme',t);localStorage.setItem('numidea-lang',l)},[theme,lang]);
     if(refuse)await ctx.route(/\/assets\/fonts\/[^/?]+\.woff2/,r=>r.abort());
     const p=await ctx.newPage();
-    await p.goto(B+'/index.html',{waitUntil:'networkidle'});
+    await p.goto(B+HOME(lang),{waitUntil:'networkidle'});
     await p.evaluate(()=>document.fonts.ready);
     const out={};
     for(const w of FB_WIDTHS){
@@ -343,7 +350,10 @@ const fallbackType=async(label,{theme,lang})=>{
 /* ---------------- the throttled phone ---------------- */
 // Lighthouse's mobile emulation and its DevTools-applied "Slow 4G"
 const SLOW4G={offline:false,latency:562.5,downloadThroughput:1474.56*1024/8,uploadThroughput:675*1024/8};
-const phone=async(label,path,{lang,to},again=false)=>{
+// path: the home page in one language (HOME); to: the language the switch is
+// tapped to. No stored preference: the page is its language, and a stored one
+// would send the root back where the tap came from
+const phone=async(label,path,{to},again=false)=>{
   if(ONLY&&!ONLY.test(label))return;
   const ctx=await b.newContext({viewport:{width:412,height:823},deviceScaleFactor:1.75,isMobile:true,hasTouch:true});
   const p=await ctx.newPage();
@@ -352,10 +362,10 @@ const phone=async(label,path,{lang,to},again=false)=>{
   await cdp.send('Network.enable');
   await cdp.send('Network.emulateNetworkConditions',SLOW4G);
   await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});
-  await p.addInitScript(l=>{localStorage.setItem('numidea-lang',l);window.__lcp=0;window.__lt=[];window.__ev=[];
+  await p.addInitScript(()=>{window.__lcp=0;window.__lt=[];window.__ev=[];
     new PerformanceObserver(x=>{for(const e of x.getEntries())window.__lcp=e.startTime}).observe({type:'largest-contentful-paint',buffered:true});
     new PerformanceObserver(x=>{for(const e of x.getEntries())window.__lt.push(e.duration)}).observe({type:'longtask',buffered:true});
-    new PerformanceObserver(x=>{for(const e of x.getEntries())if(e.interactionId)window.__ev.push([e.startTime,e.duration,e.name])}).observe({type:'event',durationThreshold:16,buffered:true});},lang);
+    new PerformanceObserver(x=>{for(const e of x.getEntries())if(e.interactionId)window.__ev.push([e.startTime,e.duration,e.name])}).observe({type:'event',durationThreshold:16,buffered:true});});
   await p.goto(B+path,{waitUntil:'networkidle',timeout:120000});
   await p.waitForTimeout(1000);
   const load=await p.evaluate(()=>({lcp:window.__lcp,lt:window.__lt.reduce((a,d)=>a+d,0),n:window.__lt.length,max:Math.max(0,...window.__lt)}));
@@ -387,7 +397,15 @@ const phone=async(label,path,{lang,to},again=false)=>{
     await time('currency',()=>p.tap('.pr-cur label.echip:has(input[value="EUR"])'),()=>document.querySelector('.pr-cur input[value="EUR"]').checked);
     await p.evaluate(()=>scrollTo(0,0));await p.waitForTimeout(800);
     await p.tap('.menu-toggle');await p.waitForTimeout(1000);
-    await time('language',()=>p.tap(`.mobile-menu .lang button[data-lang="${to}"]`),to=>document.documentElement.lang===to,to);
+    // the language switch is a link to that language's page (index.html, en/,
+    // ar/: one page each), so the tap navigates and its input-to-paint cannot
+    // be read (the Event Timing entries go with the page it leaves). What
+    // must hold: the tap lands on the other page, in that language, over this
+    // connection (a cold load, so the same 120 s as the first)
+    const from=new URL(p.url()).pathname;
+    await Promise.all([p.waitForURL(u=>u.pathname!==from,{waitUntil:'load',timeout:120000}),p.tap(`.mobile-menu .lang a[hreflang="${to}"]`)]);
+    await p.waitForTimeout(1200);
+    acts.push({name:'language',d:0,nav:true,ok:await p.evaluate(to=>document.documentElement.lang===to,to)});
   }catch(e){acts.push({name:'stopped: '+e.message.split('\n')[0].slice(0,120),d:0,ok:false})}
   await ctx.close();
   const worst=acts.reduce((a,x)=>x.d>a.d?x:a,{d:0,name:'-'});
@@ -403,10 +421,10 @@ const phone=async(label,path,{lang,to},again=false)=>{
   const dead=acts.filter(x=>!x.ok).map(x=>x.name);if(dead.length)issues.push('act');
   const {errs,bad,csp}=W;if(errs.length)issues.push('js');if(bad.length)issues.push('net');if(csp.length)issues.push('csp');
   const line=`lcp ${Math.round(load.lcp)}ms/${PHONE.lcp}  long tasks ${Math.round(load.lt)}ms/${PHONE.lt} (${load.n}, longest ${Math.round(load.max)})  slowest interaction ${ms(worst.d)}ms/${PHONE.inp} (${worst.name})  js ${errs.length}  net ${bad.length}  csp ${csp.length}`;
-  const detail='       interactions: '+acts.map(x=>`${x.name} ${ms(x.d)}${x.ok?'':' (did nothing)'}`).join(', ');
+  const detail='       interactions: '+acts.map(x=>`${x.name} ${x.nav?'(a page: not timed)':ms(x.d)}${x.ok?'':' (did nothing)'}`).join(', ');
   if(issues.length&&issues.every(i=>TIMING.has(i))&&!again){
     console.log('  ?? '+label.padEnd(26),line,' — over budget, measuring again');console.log(detail);
-    return phone(label,path,{lang,to},true);
+    return phone(label,path,{to},true);
   }
   if(issues.length)fails++;
   else if(over.length)phoneWarn.push(label+': '+over.map(x=>x[1]).join(', '));
@@ -439,9 +457,9 @@ for(const e of ['trailer','walkthrough','console']) await run('embed '+e,`/works
 if(!REMOTE&&existsSync(join(ROOT,'legal-preview/index.html'))) await run('legal preview','/legal-preview/index.html',D);
 if(LEGAL_PUBLISHED) await run('legal','/legal/index.html',D);
 for(const t of THEMES)
-  for(const l of ['fr','en','ar']) await run(`index ${t}/${l}`,'/index.html',{...D,theme:t,lang:l});
-await run('index cv open fr','/index.html',{lang:'fr',act:openCv});
-await run('index estimator open fr','/index.html',{lang:'fr',act:openEstimator});
+  for(const l of ['fr','en','ar']) await run(`index ${t}/${l}`,HOME(l),{...D,theme:t,lang:l});
+await run('index cv open fr',HOME('fr'),{lang:'fr',act:openCv});
+await run('index estimator open fr',HOME('fr'),{lang:'fr',act:openEstimator});
 console.log('— phone 390×844 —');
 await run('hub m','/hub/index.html',{w:390,h:844});
 await run('hub dark m','/hub/index.html',{w:390,h:844,init:{'void-theme':'dark'}});
@@ -450,17 +468,17 @@ await run('404 m','/404.html',{w:390,h:844});
 await run('404 daylight/ar m','/404.html',{theme:'daylight',lang:'ar',w:390,h:844});
 await run('workspacehq m','/workspacehq/index.html',{w:390,h:844,allowLoops:true});
 for(const t of THEMES)
-  for(const l of ['fr','ar']) await run(`index ${t}/${l} m`,'/index.html',{theme:t,lang:l,w:390,h:844});
-await run('index menu open ar m','/index.html',{lang:'ar',w:390,h:844,click:'.menu-toggle'});
-await run('index cv open ar m','/index.html',{lang:'ar',w:390,h:844,act:openCv});
-await run('index estimator open ar m','/index.html',{lang:'ar',w:390,h:844,act:openEstimator});
+  for(const l of ['fr','ar']) await run(`index ${t}/${l} m`,HOME(l),{theme:t,lang:l,w:390,h:844});
+await run('index menu open ar m',HOME('ar'),{lang:'ar',w:390,h:844,click:'.menu-toggle'});
+await run('index cv open ar m',HOME('ar'),{lang:'ar',w:390,h:844,act:openCv});
+await run('index estimator open ar m',HOME('ar'),{lang:'ar',w:390,h:844,act:openEstimator});
 console.log('— tablet and landscape —');
-await run('index arcanum/fr 768','/index.html',{theme:'arcanum',lang:'fr',w:768,h:1024,touch:true});
-await run('index daylight/ar 768','/index.html',{theme:'daylight',lang:'ar',w:768,h:1024,touch:true});
-await run('index noir/fr 1024','/index.html',{theme:'noir',lang:'fr',w:1024,h:768,touch:true});
-await run('index arcanum/ar 1024','/index.html',{theme:'arcanum',lang:'ar',w:1024,h:768,touch:true});
-await run('index arcanum/fr 844×390','/index.html',{theme:'arcanum',lang:'fr',w:844,h:390,touch:true});
-await run('index arcanum/ar 844×390','/index.html',{theme:'arcanum',lang:'ar',w:844,h:390,touch:true});
+await run('index arcanum/fr 768',HOME('fr'),{theme:'arcanum',lang:'fr',w:768,h:1024,touch:true});
+await run('index daylight/ar 768',HOME('ar'),{theme:'daylight',lang:'ar',w:768,h:1024,touch:true});
+await run('index noir/fr 1024',HOME('fr'),{theme:'noir',lang:'fr',w:1024,h:768,touch:true});
+await run('index arcanum/ar 1024',HOME('ar'),{theme:'arcanum',lang:'ar',w:1024,h:768,touch:true});
+await run('index arcanum/fr 844×390',HOME('fr'),{theme:'arcanum',lang:'fr',w:844,h:390,touch:true});
+await run('index arcanum/ar 844×390',HOME('ar'),{theme:'arcanum',lang:'ar',w:844,h:390,touch:true});
 await run('404 844×390','/404.html',{w:844,h:390,touch:true});
 console.log('— 404 two folders down —');
 await nested404('404 nested noir/ar',{site:B+'/',path:'a/b/missing?lang=ar',theme:'noir'});
@@ -471,8 +489,8 @@ if(!REMOTE){
 console.log('— first paint in fallback type: webfonts refused vs loaded, 360-1600 —');
 for(const t of THEMES)for(const l of ['fr','en'])await fallbackType(`fallback type ${t}/${l}`,{theme:t,lang:l});
 console.log(`— throttled phone: 412×823, CPU 4×, Slow 4G, cold cache (timing targets ${PHONE_STRICT?'strict':'report-only'}) —`);
-await phone('throttled index fr','/index.html',{lang:'fr',to:'ar'});
-await phone('throttled index ar','/index.html',{lang:'ar',to:'fr'});
+await phone('throttled index fr',HOME('fr'),{to:'ar'});
+await phone('throttled index ar',HOME('ar'),{to:'fr'});
 await b.close();srv?.close();
 if(warnings.length){console.log('\naxe incomplete (review, not failing):');for(const w of warnings)console.log('  '+w)}
 if(phoneWarn.length){console.log('\nthrottled phone over its targets (report-only; AUDIT_PHONE_STRICT=1 fails on them):');for(const w of phoneWarn)console.log('  '+w)}

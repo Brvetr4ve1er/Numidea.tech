@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Layout scanner — `npm run vbugs`. Renders index.html at 7 widths x 4
+ * Layout scanner — `npm run vbugs`. Renders the home page (one page per
+ * language: index.html, en/, ar/, opened directly) at 7 widths x 4
  * theme/language pairs, and hub/ at 1440, 1024 (where its hero switches to
  * the wide frame), 768 and 390 in both its palettes (paper, the default, and
  * night: void-theme 'dark'), since its headings sit on its art; and reports
@@ -19,8 +20,11 @@ import { ROOT } from './site.mjs';
 const srv = await serve();
 // [page, path, width, what it is set to (localStorage), how a row names it]
 const combos=[];
+// the home page in a language is its own page (build-lang.mjs): opened there,
+// not through the root, which would send the stored language on in a second load
+const HOME={fr:'/',en:'/en/',ar:'/ar/'};
 for(const w of [1440,1280,1024,768,414,390,360])for(const [t,l] of [['arcanum','fr'],['arcanum','ar'],['engineering','en'],['daylight','fr']])
- combos.push(['index','/',w,{'numidea-theme':t,'numidea-lang':l},`${w}/${t}/${l}`]);
+ combos.push(['index',HOME[l],w,{'numidea-theme':t,'numidea-lang':l},`${w}/${t}/${l}`]);
 for(const w of [1440,1024,768,390])for(const t of ['light','dark'])combos.push(['hub','/hub/',w,{'void-theme':t},`hub ${w}/${t}`]);
 const b = await launch();
 const agg={};

@@ -9,7 +9,8 @@
  * gradients, textures, translucent panels and parallax fields, which a
  * declared-colour check cannot see.
  *
- * Covers index.html in all six themes x FR/AR, plus hub/, scene/, 404 and workspacehq/,
+ * Covers the home page (one page per language: index.html, en/, ar/) in all six
+ * themes, plus hub/, scene/, 404 and workspacehq/,
  * and a second pass at other sizes and states: phones in the dark themes, tablets,
  * short landscape, scene/ in Arabic, 404 in other themes, and hub/ in its night
  * palette (void-theme 'dark'; paper is its default) and on a 390px phone in both.
@@ -42,7 +43,10 @@ import {ROOT,THEMES} from './site.mjs';
 const srv=await serve();
 const B=srv.base;
 
-const PAGES=[['index','/index.html'],['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html'],['workspacehq','/workspacehq/index.html']];
+// the home page is one page per language (build-lang.mjs), each opened directly
+const HOME={fr:'/index.html',en:'/en/index.html',ar:'/ar/index.html'};
+const PAGES=[['index',HOME.fr],['index-en',HOME.en],['index-ar',HOME.ar],['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html'],['workspacehq','/workspacehq/index.html']];
+const OWN={index:'fr','index-en':'en','index-ar':'ar'};   // each home page's language; the other pages are swept in French
 const ONLY=process.argv[2];        // optional: restrict to one theme
 const lum=([r,g,b])=>{const f=v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(r)+.7152*f(g)+.0722*f(b)};
 const cr=(a,b)=>{const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
@@ -50,18 +54,18 @@ const br=await launch();
 const report=[],loopBad=[];
 const RUNS=[];
 for(const theme of THEMES) for(const [pname,path] of PAGES){
-  // hub/scene have their own palettes; only index (and 404) honour the 6 themes
-  if(pname!=='index' && theme!=='arcanum') continue;
-  for(const lang of (pname==='index'?['fr','ar']:['fr'])) RUNS.push({theme,pname,path,lang,w:1280,h:900});
+  // hub/scene have their own palettes; only the home pages (and 404) honour the 6 themes
+  if(!OWN[pname] && theme!=='arcanum') continue;
+  RUNS.push({theme,pname,path,lang:OWN[pname]||'fr',w:1280,h:900});
 }
 if(existsSync(join(ROOT,'legal-preview/index.html'))) RUNS.push({theme:'arcanum',pname:'legal-preview',path:'/legal-preview/index.html',lang:'fr',w:1280,h:900});
 if(existsSync(join(ROOT,'legal/index.html'))) RUNS.push({theme:'arcanum',pname:'legal',path:'/legal/index.html',lang:'fr',w:1280,h:900});
 // second pass: sizes and states the desktop pass never paints
-for(const t of ['noir','mono','altneon']) for(const l of ['fr','ar']) RUNS.push({theme:t,pname:'index@390',path:'/index.html',lang:l,w:390,h:844});
-RUNS.push({theme:'arcanum',pname:'index@768',path:'/index.html',lang:'fr',w:768,h:1024});
-RUNS.push({theme:'daylight',pname:'index@768',path:'/index.html',lang:'ar',w:768,h:1024});
-RUNS.push({theme:'noir',pname:'index@1024',path:'/index.html',lang:'fr',w:1024,h:768});
-RUNS.push({theme:'arcanum',pname:'index@844x390',path:'/index.html',lang:'fr',w:844,h:390});
+for(const t of ['noir','mono','altneon']) for(const l of ['fr','ar']) RUNS.push({theme:t,pname:'index@390',path:HOME[l],lang:l,w:390,h:844});
+RUNS.push({theme:'arcanum',pname:'index@768',path:HOME.fr,lang:'fr',w:768,h:1024});
+RUNS.push({theme:'daylight',pname:'index@768',path:HOME.ar,lang:'ar',w:768,h:1024});
+RUNS.push({theme:'noir',pname:'index@1024',path:HOME.fr,lang:'fr',w:1024,h:768});
+RUNS.push({theme:'arcanum',pname:'index@844x390',path:HOME.fr,lang:'fr',w:844,h:390});
 RUNS.push({theme:'arcanum',pname:'scene',path:'/scene/index.html',lang:'ar',w:1280,h:900});
 RUNS.push({theme:'arcanum',pname:'scene@390',path:'/scene/index.html',lang:'ar',w:390,h:844});
 RUNS.push({theme:'daylight',pname:'404@390',path:'/404.html',lang:'ar',w:390,h:844});

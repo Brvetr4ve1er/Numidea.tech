@@ -4,8 +4,10 @@
  * non-zero on any failure.
  *
  * Every page in site.mjs PAGES (each needs an entry in SPEC below, so a new
- * page is classified rather than silently skipped), in French and Arabic where
- * the page has them, at 1280x900 and on a 390x844 phone. The keyboard drives:
+ * page is classified rather than silently skipped), in each language it has
+ * (the home page is one page per language: index.html French, en/, ar/; the
+ * pages that switch in place, in French and Arabic), at 1280x900 and on a
+ * 390x844 phone. The keyboard drives:
  * Tab, Shift+Tab, Enter, Escape and the arrows. Where a test starts deep in
  * the page it focuses that control first, then carries on with keys only.
  *
@@ -95,8 +97,10 @@
  *                 does the same with no OS preference and the page's PAUSE
  *                 MOTION button pressed
  *  direction      ?lang=ar gives html dir="rtl" lang="ar" on every page that
- *                 has Arabic, and still does after the language hold's 1.5s
- *                 fallback; the English-only pages stay ltr
+ *                 switches in place, and still does after the language hold's
+ *                 1.5s fallback; on the root it lands on ar/ before paint (the
+ *                 head script's redirect); en/ and ar/ are one language each
+ *                 and ignore it, as do the English-only pages, which stay ltr
  * A JS error during a run fails it, and so does any Content-Security-Policy
  * violation, from any frame (lib/csp-watch.mjs, shared with audit.mjs). This
  * gate holds the CSP proof for what only it drives: the theme menu, the
@@ -129,15 +133,21 @@ import { watchCsp } from './lib/csp-watch.mjs';
 import { loopState } from './lib/loop-state.mjs';
 import { withCsp } from './lib/csp.mjs';
 import { loadDicts } from './lib/i18n.mjs';
+import { STATIC_LANG } from './build-sitemap.mjs';
 import { ROOT, PAGES } from './site.mjs';
 
 /* langs: the languages a page has (`only`: why it has just one); tests: its
-   own keyboard paths; noSkip: why it has no skip link. hub/'s path is the
+   own keyboard paths; noSkip: why it has no skip link. The home page is one
+   page per language (STATIC_LANG: index.html French, en/, ar/, each with the
+   same paths); hub/'s path is the
    studio diary's viewer (dialog() below, on the hooks the rebuilt page
    kept: #lb, #collection .tile--img with data-title, #lbTitle), and its
    pointer check (hits() below). */
+const HOME_TESTS = ['theme', 'menu', 'cv', 'estimate', 'form'];
 const SPEC = {
-  'index.html': { langs: ['fr', 'ar'], tests: ['theme', 'menu', 'cv', 'estimate', 'form'] },
+  'index.html': { langs: ['fr'], tests: HOME_TESTS, only: 'the French page (one language per page; its Arabic is ar/, its English en/)' },
+  'en/index.html': { langs: ['en'], tests: HOME_TESTS, only: 'the English page (one language per page)' },
+  'ar/index.html': { langs: ['ar'], tests: HOME_TESTS, only: 'the Arabic page (one language per page)' },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
   'hub/index.html': { langs: ['en'], tests: ['lightbox', 'hits'], only: "English only (the founder's own page)" },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
@@ -162,7 +172,8 @@ let fails = 0, runs = 0;
 const unclassified = pages.filter((f) => !SPEC[f]);
 if (unclassified.length) { console.log('FAIL no keys spec for: ' + unclassified.join(', ') + ' (add it to SPEC in scripts/keys.mjs)'); fails++; }
 
-const url = (f, l) => B + '/' + f.replace(/index\.html$/, '') + (l && l !== 'en' ? '?lang=' + l : '');
+// a language page is its language; the pages that switch in place take ?lang=
+const url = (f, l) => B + '/' + f.replace(/index\.html$/, '') + (l && l !== 'en' && !STATIC_LANG[f] ? '?lang=' + l : '');
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /* page helpers, defined before any page script runs */
@@ -916,9 +927,23 @@ for (const f of pages) {
   const spec = SPEC[f]; if (!spec) continue;
   const { p, errs, csp, close } = await open(1280, 900);
   await p.goto(B + '/' + f.replace(/index\.html$/, '') + '?lang=ar', { waitUntil: 'load' });
-  await wait(1700);                 // past the generated pages' 1.5s hold fallback
-  const bad = await direction(p, spec, 'ar', '?lang=ar');
-  report(`${name(f)} ?lang=ar`, [{ bad, note: spec.langs.includes('ar') ? 'rtl' : 'ltr, ' + spec.only }], errs, csp);
+  let bad, note;
+  if (STATIC_LANG[f]) {
+    // one language per page: the root's head script sends ?lang=ar to ar/
+    // before anything is painted (the address a shared link had until
+    // 2026-10-31), so it must land there, Arabic; en/ and ar/ ignore it
+    const to = f === 'index.html' ? 'ar' : STATIC_LANG[f];
+    if (f === 'index.html') { try { await p.waitForURL(/\/ar\/$/, { timeout: 10000 }); } catch { /* reported below */ } }
+    bad = await direction(p, { langs: [to] }, to, '?lang=ar');
+    const at = new URL(p.url()).pathname;
+    if (f === 'index.html' && !at.endsWith('/ar/')) bad.push(`?lang=ar on the root lands on ${at}, not on ar/`);
+    note = f === 'index.html' ? 'rtl, sent to ar/' : (to === 'ar' ? 'rtl' : 'ltr') + ', ' + spec.only;
+  } else {
+    await wait(1700);               // past the generated pages' 1.5s hold fallback
+    bad = await direction(p, spec, 'ar', '?lang=ar');
+    note = spec.langs.includes('ar') ? 'rtl' : 'ltr, ' + spec.only;
+  }
+  report(`${name(f)} ?lang=ar`, [{ bad, note }], errs, csp);
   await close();
 }
 
