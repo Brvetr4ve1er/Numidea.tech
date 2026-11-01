@@ -179,8 +179,12 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 .mobile-menu.open{transform:translateX(0);visibility:visible}
 /* in Arabic the menu slides in from the reading start (the left) */
 html[dir="rtl"] .mobile-menu:not(.open){transform:translateX(-100%)}
-/* the section links (nav a; the language switch's links are the pill's own) */
-.mobile-menu nav a{font-family:var(--font-display);font-weight:600;font-size:40px;color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
+/* the section links (nav a; the language switch's links are the pill's own).
+   The size yields under 381px so the longest label fits one line in the
+   metric fallback too: "Guide des prix" at 40px is 320px in Cinzel's fallback
+   and 316px in Cinzel, in a 320px box at 360px, and wrapped until the face
+   landed (the fallback-type audit's one red run). */
+.mobile-menu nav a{font-family:var(--font-display);font-weight:600;font-size:min(40px,10.5vw);color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
 html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
 .mobile-menu .lang{opacity:0}
 .mobile-menu.open nav a,.mobile-menu.open .lang{animation:stagger .5s var(--ease-out) forwards}
