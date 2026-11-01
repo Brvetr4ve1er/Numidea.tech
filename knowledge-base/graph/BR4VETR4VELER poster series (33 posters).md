@@ -12,7 +12,7 @@ tags:
 # BR4VETR4VELER poster series (33 posters)
 
 ## Connections
-- [[Magnific (generation service)]] - `references` [EXTRACTED]
+- [[Image generation service]] - `references` [EXTRACTED]
 - [[Square-unit bento gallery (hub)]] - `references` [EXTRACTED]
 - [[Yasser Hamisse (founder; b4vetrave1er  VOIDSPLUNKER.std)]] - `references` [EXTRACTED]
 - [[hub (Yasser's artist page)]] - `references` [EXTRACTED]

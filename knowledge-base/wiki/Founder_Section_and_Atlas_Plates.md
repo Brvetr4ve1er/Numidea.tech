@@ -13,7 +13,7 @@
 - **Founder section** (3 connections) — `BRAND.md`
 - **Generated illustrations (assets/illus)** (3 connections) — `BRAND.md`
 - **Container-query sizing (cqw)** (2 connections) — `BRAND.md`
-- **Magnific (generation service)** (2 connections) — `BRAND.md`
+- **Image generation service** (2 connections) — `BRAND.md`
 - **assets/cv_yasser_hamisse_2026.pdf** (1 connections) — `BRAND.md`
 - **Hub poster viewer (native dialog)** (1 connections) — `BRAND.md`
 

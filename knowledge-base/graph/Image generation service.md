@@ -9,7 +9,7 @@ tags:
   - community/Founder_Section_and_Atlas_Plates
 ---
 
-# Magnific (generation service)
+# Image generation service
 
 ## Connections
 - [[BR4VETR4VELER poster series (33 posters)]] - `references` [EXTRACTED]

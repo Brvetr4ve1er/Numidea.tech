@@ -307,7 +307,7 @@ Nodes (4): Engineering theme, Head bootstrap / pre-paint resolver, Logo wordmark
 
 ### Community 44 - "Founder Section and Atlas Plates"
 Cohesion: 0.23
-Nodes (6): BR4VETR4VELER poster series (33 posters), assets/cv_yasser_hamisse_2026.pdf, Generated illustrations (assets/illus), hub/ (Yasser's artist page), Magnific (generation service), Yasser Hamisse (founder; b4vetrave1er / VOIDSPLUNKER.std)
+Nodes (6): BR4VETR4VELER poster series (33 posters), assets/cv_yasser_hamisse_2026.pdf, Generated illustrations (assets/illus), hub/ (Yasser's artist page), Image generation service, Yasser Hamisse (founder; b4vetrave1er / VOIDSPLUNKER.std)
 
 ### Community 45 - "Prices, FX and Typography"
 Cohesion: 0.27

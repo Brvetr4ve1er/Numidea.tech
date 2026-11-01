@@ -15,7 +15,7 @@ tags:
 - [[CSS luminance mask over currentColor (.ill)]] - `implements` [EXTRACTED]
 - [[Generated illustrations (assetsillus)]] - `semantically_similar_to` [INFERRED]
 - [[Head bootstrap  pre-paint resolver]] - `references` [EXTRACTED]
-- [[Magnific (generation service)]] - `references` [EXTRACTED]
+- [[Image generation service]] - `references` [EXTRACTED]
 - [[No-perpetual-motion rule]] - `conceptually_related_to` [EXTRACTED]
 - [[Numidea Labs (studio)]] - `conceptually_related_to` [EXTRACTED]
 - [[Numidea Labs - Themes (BRAND.md)]] - `references` [EXTRACTED]

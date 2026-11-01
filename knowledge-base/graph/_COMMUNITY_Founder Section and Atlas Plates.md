@@ -16,7 +16,7 @@ members: 12
 - [[Founder section]] - rationale - BRAND.md
 - [[Generated illustrations (assetsillus)]] - concept - BRAND.md
 - [[Hub poster viewer (native dialog)]] - rationale - BRAND.md
-- [[Magnific (generation service)]] - concept - BRAND.md
+- [[Image generation service]] - concept - BRAND.md
 - [[Square-unit bento gallery (hub)]] - rationale - BRAND.md
 - [[The atlas - six engraved plates]] - rationale - BRAND.md
 - [[Yasser Hamisse (founder; b4vetrave1er  VOIDSPLUNKER.std)]] - concept - BRAND.md
