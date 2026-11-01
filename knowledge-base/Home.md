@@ -1,6 +1,6 @@
 ---
 type: home
-updated: 2026-10-25
+updated: 2026-10-31
 sources: [scripts/build-kb.mjs, .graphifyignore, scripts/check.mjs, scripts/site.mjs, package.json, knowledge-base/.obsidian/app.json, knowledge-base/graphify/GRAPH_REPORT.md, knowledge-base/wiki/index.md, OWNER-CONTENT.md]
 ---
 
@@ -29,7 +29,7 @@ Sources: scripts/build-kb.mjs › header and export steps; knowledge-base/wiki/i
 - The export deletes and rebuilds `graph/`, `wiki/` and `graphify/` on every run and leaves `Maps/` and `archive/` alone (scripts/build-kb.mjs › "generated layers are rebuilt from scratch"). Its machine-path scrub also reads `Home.md` and rewrites it only if it holds a checkout path (scripts/build-kb.mjs › scrub).
 - Any edit made by hand in a generated folder is lost at the next export (scripts/build-kb.mjs › rmSync of graph, wiki, graphify).
 - The export removes machine paths from what it writes, because the graph is built from a checkout (scripts/build-kb.mjs › scrub).
-- The 2026-10-19 build has 1111 nodes, 2321 edges and 68 communities (knowledge-base/graphify/GRAPH_REPORT.md › Summary).
+- The 2026-10-19 build has 1111 nodes, 2321 edges and 68 communities (knowledge-base/graphify/GRAPH_REPORT.md › Summary). It predates the changes of 2026-10-26 to 31 (the hub rebuilt, the static `/en/` and `/ar/` pages, the dictionaries in `assets/i18n/`, the price guide, `build-fr.mjs` gone), so a graph note may describe what the maps say no longer exists; the maps cite the current files and win ([[Timeline]] lists the stale nodes). graphify was not installed on the machine of the fleet of 2026-10-31, so the maps were updated by hand and the graph was not refreshed.
 - Where `archive/` disagrees with README.md, BRAND.md, OWNER-CONTENT.md or the code, the current files win; the maps never cite `archive/` for a current fact.
 
 ## Regenerate it

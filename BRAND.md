@@ -232,18 +232,31 @@ that is what "0 dépendance" has to mean if the title block is going to print it
 Trimmed to the subsets this site actually sets type in — **latin, latin-ext,
 arabic**. Cyrillic, cyrillic-ext and vietnamese were dropped: 24 faces nothing
 here is typeset in. `unicode-range` is preserved, so loading is usage-driven —
-a French reader of the default theme fetches 5 files from it (Geist, Geist
-Mono, Cinzel, Cinzel Decorative, and Plex Arabic for the ع button), and the
-rest of the Arabic binaries are fetched only when `lang=ar` actually renders
-Arabic glyphs. 335 KB on disk; no visitor pays that.
+a French reader of the default theme fetches 4 files from it (Geist, Geist
+Mono, Cinzel, Cinzel Decorative), and the Arabic binaries are fetched only
+when a page actually renders Arabic glyphs: `ar/` takes all six. (Until
+2026-10-31 the ع of the language switch, typed and marked `lang="ar"`,
+brought a fifth file, 42 KB of Plex Arabic, to every French and English
+visit; it is drawn now, see "The ع is drawn". The French page still fetches
+that one file through the ع in `contact.vReply`, until the copy change
+writes "AR" there; the English page fetches none.) 19 files, 392 KB on disk;
+no visitor pays that.
 
-**One file per family and subset.** Geist, Geist Mono and Syne are variable
-fonts: the API answers every weight with the same file, and it had been saved
-once per weight, as byte-identical copies. The browser caches by URL, so each
-copy was downloaded again: 81,928 B of repeats on every first home visit, in
-all three languages. Each weight keeps its own `@font-face` rule (weight,
-`unicode-range`, `font-display` and fallbacks unchanged), and all of them
-point at `geist-latin.woff2`, `geist-mono-latin-ext.woff2` and so on.
+**One file per family and subset, one rule per weight range.** Geist, Geist
+Mono and Syne are variable fonts (their `fvar` tables say so; Cinzel, Cinzel
+Decorative and IBM Plex Sans Arabic are static, one file per weight): the API
+answers every weight with the same file, and it had been saved once per
+weight, as byte-identical copies. The browser caches by URL, so each copy was
+downloaded again: 81,928 B of repeats on every first home visit, in all three
+languages. Since 2026-10-26 there is one file per family and subset
+(`geist-latin.woff2`, `geist-mono-latin-ext.woff2` and so on); since
+2026-10-31 there is also one `@font-face` rule per file, whose `font-weight`
+is the range the site sets (`400 700`; Syne `700 800` in `fonts-hub.css`),
+`unicode-range`, `font-display` and fallbacks unchanged. Until then each
+weight had its own rule pointing at the same file: the browser matched them
+one by one and the sheet carried four copies of one declaration (site-wide
+rule count 2,262 → 2,250). The metric-matched "Geist Fallback" rules stay
+one per weight, because each is calibrated to that weight's advances.
 
 Regenerate by fetching the CSS2 API with a modern User-Agent (an old UA gets
 you TTF instead of woff2), keeping only those three subsets, downloading each
@@ -267,9 +280,10 @@ Geist (one file for every weight: 400 body, 600 headline, and the heading in
 every theme but Arcanum), Geist Mono (the call-to-action's 700 included) and,
 in Arcanum, Cinzel; in Arabic, Plex Arabic 400 and 600, Plex Arabic 600
 latin, Geist Mono and Geist. The rest of the first screen is not preloaded:
-Arcanum's Cinzel Decorative swash and the ع button's Plex for Latin
-visitors. Those rely on their metric-matched fallback faces, which the
-fallback-type runs check in French and English.
+Arcanum's Cinzel Decorative swash (and, until 2026-10-31, the ع button's
+Plex for Latin visitors; the glyph is drawn now). Those rely on their
+metric-matched fallback faces, which the fallback-type runs check in French
+and English.
 
 **Why not `optional`.** It would never move the page, but Chromium never shows
 an optional face first requested after the page has rendered, however fast it
@@ -348,30 +362,34 @@ from one whose faces made it, and a geometric diff reports that as a failure.
 
 ## The language is resolved before first paint
 
-The markup is baked in French. For a visitor whose saved language is EN or AR the
-deferred `applyLang()` rewrote 194 nodes and flipped `dir` *after* the page had
-painted — measured at CLS 0.63, the largest shift on the site.
+**Since 2026-10-31 each language is its own page** (see "The language pages
+(/en/, /ar/)" below): `index.html` is French, `en/` and `ar/` are written from
+it with their dictionary, each with its own `lang`, `dir`, head and share
+card, so no page ever paints in one language and switches to another. What
+the head script still does before paint is route: on `/`, a shared `?lang=`
+link, else a stored `numidea-lang` of `en` or `ar`, goes to that language's
+page with `location.replace` before the stylesheets load (the `?lang=`
+dropped, an ad's `?ref=`, `utm_*` and the `#hash` kept). `en/` and `ar/`
+carry no such block (`build-lang.mjs` leaves the `LANG:fr-only` markers'
+contents out of them) and no page holds its body hidden any more.
 
-`lang` and `dir` are now set in the head bootstrap, alongside the theme.
-The text cannot be swapped that early — the dictionary is in app.js and none of
-those 194 elements have been parsed yet — so when the baked language is not the
-one about to be shown, the bootstrap sets `data-i18n-pending` and an inline
-`<head>` style holds `body{visibility:hidden}` until app.js has done the swap.
-A French visitor never takes that path and paints exactly as before.
-
-Two rules for touching this:
-
-- **The guard style must stay inline in `<head>`.** Moved to an external sheet it
-  applies after the paint it exists to suppress.
-- **The release must stay failsafe.** `DOMContentLoaded` fires after deferred
-  scripts, so if app.js executed at all it has already released the hold; that
-  event bounds the worst case to parse time instead of a timer. Verified with
-  app.js blocked entirely: the page reveals, degraded to the baked French copy,
-  rather than staying blank. With JS off the bootstrap never runs, so nothing is
-  ever hidden.
-
-The cost is honest: an EN or AR visitor pays roughly 100–200ms of FCP for this.
-A French visitor pays nothing.
+*History, kept for the lesson.* The markup was baked in French and the one
+page served three languages. For a visitor whose saved language was EN or AR
+the deferred `applyLang()` rewrote 194 nodes and flipped `dir` *after* the
+page had painted — measured at CLS 0.63, the largest shift on the site. From
+2026-08 to 2026-10-31 the bootstrap therefore set `lang` and `dir` early and,
+when the baked language was not the one about to be shown, set
+`data-i18n-pending` with an inline `<head>` style holding the body hidden
+until app.js had done the swap, released by `DOMContentLoaded` as a backstop
+(verified with app.js blocked: the page revealed, degraded to French, rather
+than staying blank; with JS off the bootstrap never ran). It cost an EN or AR
+visitor roughly 100–200 ms of first paint and the three dictionaries inside
+app.js (28.7 KB gzipped) on every visit, which the audit of 2026-10-31 put at
+the top of the phone's cost. Two of its rules still hold for any guard style
+of this kind: it must stay inline in `<head>` (moved to an external sheet it
+applies after the paint it exists to suppress), and its release must be
+failsafe (bound to an event that fires if the script ran at all, not to a
+timer).
 
 ## History (removed features): the alternate sheet must be parser-inserted
 
@@ -604,6 +622,51 @@ still held the last gradient-filled string on the site and a `34ch` width, both
 of which the pass existed to remove. `hub/` kept four `ch` widths for the same
 reason. Grep every stylesheet *and* every inline block.
 
+## 404 keeps the shared sheets
+
+`404.html` loads the site's three stylesheets (`fonts.css`, `themes.css`,
+`styles.css`), about 224 KB raw before gzip and before staging strips the
+comments, for a page of one heading, one line in three languages and a link.
+The audit of 2026-10-31 asked whether it should carry a trimmed sheet of its
+own; the answer is no, for three reasons that outweigh the bytes:
+
+- a visitor who lands on it has almost always come from a page that already
+  cached the three files (a mistyped or stale link within the site), and
+  goes to the home page next, which needs them anyway;
+- the theme contract (`themes-check.mjs`) and the audit's three-sheet
+  assertion (the 404 two folders down must load its three sheets from the
+  site root) read the themes from those same files, so the 404's palette
+  cannot drift from the site's;
+- a fourth sheet would be a second copy of the rules to keep in step, by
+  hand, for the page nobody designs for.
+
+What it does not keep: a font it does not paint in. Its inline Arabic line
+and the sr-only Arabic span still fetch two Plex Arabic files on a French
+visit (about 88 KB), listed by the audit's Arabic-font check for the next
+change to judge (IMPROVEMENTS F25).
+
+## The ع is drawn
+
+The language switch's Arabic glyph is an isolated ʿayn (ع) drawn as one
+stroked path (`scripts/lib/ayn.mjs`; the same markup in `index.html` three
+times, the scene hud and the legal template), `aria-hidden`, sized by the
+stylesheets' `.lang .ayn` rule (`.95em` on the text's baseline; the `width`
+and `height` attributes are the no-stylesheet size). The control keeps its
+`aria-label` «العربية (ع)» and carries no `lang="ar"` any more.
+
+Typed and marked, the one letter cost 42 KB: `styles.css`'s `[lang="ar"]`
+rule set the Arabic face on it, so every French and English visit fetched
+`ibm-plex-sans-arabic-400-arabic.woff2` for a 12px glyph. Verified on
+2026-10-31: `en/` requests no Plex Arabic file; `ar/` requests all six; the
+French page still requests the one file through `contact.vReply`'s
+`<span lang="ar">ع</span>` (with that span as "AR" it requests none, proven
+by routing page and dictionary), which the copy change replaces. The audit
+lists, report-only until then, every page in another language that fetched
+an Arabic file; the gates pass flips the list into a failure once the French
+page is clean. One nuance: with `lang="ar"` gone, the label «العربية (ع)» is
+read by the page language's voice; a translated label through
+`data-i18n-aria` is the copy pass's option.
+
 ## The hub's faces are self-hosted too
 
 `assets/fonts-hub.css` holds them; `hub/` loads it render-blocking, like any
@@ -614,10 +677,15 @@ labels; Geist and Geist Mono are the main site's own files, so a visitor who
 comes from the founder card has them cached. Space Mono's four files left the
 repository the same day (F16, 64,884 bytes): nothing loaded them any more.
 Trimmed to latin and latin-ext (hub sets no Greek, Cyrillic or Vietnamese),
-all ten faces `font-display:optional`. Each family is one variable file per
-subset, so the six files are 133 kB. latin-ext is preloaded with the two latin
-files: "Kūro" is in the copy, and without it the ū would come from the
-fallback in the middle of the word.
+every face `font-display:optional`. Each family is one variable file per
+subset, so the six files are 133 kB, and since 2026-10-31 one rule per file
+with a weight range (Syne `700 800`, Geist `400 700`, Geist Mono one rule)
+instead of one per weight. The page preloads the two latin files only. It
+used to preload latin-ext as well, 16 KB for one glyph: "Kūro" was in the
+copy, and without the file the ū came from the fallback in the middle of the
+word. Since 2026-10-31 the page writes the name as `Ku&#x304;ro` (u + U+0304,
+which the latin subset carries; HTML comments keep "Kūro"), so no latin-ext
+request is made at all, measured.
 
 (The two lessons below come from the hub before its rebuild; the rebuilt hero
 still sizes its handle, name and line from their column with `cqw`.)
@@ -763,6 +831,18 @@ name, category and URL. Rules that matter:
   no fresh `pointerenter` will ever fire to pause it again, and it resumes
   rotating under someone who just chose a slide. `held.hover/focus/hidden` is
   consulted every time the timer is armed.
+- **Only the first slide is in the DOM at load** (since 2026-10-31). It keeps
+  `fetchpriority="high"` and no `loading` attribute: it is the LCP candidate.
+  The four others wait in `<template id="plate-more">` and app.js's
+  `unfold()` clones them into the plate from the deck's `wake()` (the first
+  pointer move or down, key, scroll, touch or wheel) and from `go()` (a rail
+  pick), never src-less `<img>`s, which the audit counts as broken. Before,
+  138 KB of slides nobody had asked for loaded ahead of the first screen,
+  and the deck never turned before an interaction anyway. Each slide names
+  two files in a `srcset` (`<slug>-720.webp 720w`, `<slug>.webp 1280w`) with
+  a measured `sizes` (91vw below 961px, 31–40vw above, written as 50vw), so
+  a 390px phone at 2x takes the 720 file. Re-measure `sizes` after any
+  change to the hero grid.
 - *Removed in the 2026-10 cleanup; kept as a lesson:* the old
   Engineering sheet restyled the plate in full rather than letting it
   inherit; otherwise the base sheet's crimson, rounded card and CRT scanlines
@@ -802,7 +882,8 @@ budget in a 390px viewport and no plate size can rescue it.
 ## Generated illustrations
 
 `assets/illus/` held 13 monochrome rasters (248K total) drawn as white line
-art on pure black; six remain, the FAQ's (`faq1`–`faq6.png`, 67 kB). The
+art on pure black; six remain, the FAQ's (`faq1`–`faq6.webp`, lossless WebP
+since 2026-10-31, 59 kB for the 67 kB of the PNGs they replaced). The
 others left with the sections that used them, the hub's four marks last
 (2026-10-28). They are applied as **CSS luminance masks over
 `currentColor`**, never as `<img>`:
@@ -929,6 +1010,23 @@ left-aligned headline mid-word ("e monde, uidé et rganisé"). The anchor is
 **per site** — wherever its logo and headline actually sit: top-left by
 default, top-right for Nomara (RTL), top-centre for Bordj Steel (centred).
 
+Every capture exists in two sizes since 2026-10-31, both written by the
+capture scripts: `assets/previews/<slug>.webp` (1280×800) and
+`<slug>-720.webp` (`npm run shots`); `assets/work/<slug>/d<n>.webp` (1440)
+with `d<n>-720.webp`, and `m<n>.webp` (780) with `m<n>-416.webp` (`npm run
+work:capture`; the phone frames are at most 208 CSS px, so 416 serves them
+at 2x, and a 720 copy of a 780-wide file would be a near duplicate). The 35
+small variants committed that day were derived with sharp from the
+committed captures (quality 80), no live site recaptured. The work cards'
+thumbs name both in a `srcset` whose `sizes` is the measured layout: 91vw on
+phones, a 232px strip beside the text at 600–960px, 44vw (the wide card
+90vw) at 961–1099, 28vw (57vw) from 1100px; the scene's frames likewise
+(main 86vw to 999px then 55vw capped at 743px, pages 86vw to 699px then
+28vw capped at 371px, phones 39vw to 599px then ≤202px, 196px from 1000px),
+and the scene banner's 76px boxes paint the 720 previews. Check 3 holds
+every `srcset` candidate to its file's real width. On 2x desktops the
+scene's main and page frames still take the 1440 files, by design.
+
 Do not put `data-parallax` on an element inside a tight `overflow:hidden` card.
 The founder avatar drifted upward and was sliced off by its own card's top edge.
 
@@ -969,39 +1067,65 @@ retainer line, at 4.49:1); the sweep caught hundreds axe's sampling did not.
 
 ## The gates
 
-Seven commands, all green before a push:
+Eight commands, all green before a push:
 
-- `npm run check` — `scripts/check.mjs` (repo invariants: i18n balance, asset
-  references, stamps, the deploy set and sitemap, prices against
-  `PRICE_MODEL`, legal gating, one contact address; the Content-Security-Policy
-  meta, asset byte budgets, SEO and structured data, blocks 16 to 18) plus
-  `scripts/themes-check.mjs` (the theme contract).
-- `npm run validate` — html-validate on every page in `scripts/site.mjs`.
-- `npm run audit` — the browser audit, 78 runs on desktop, phone, tablet and
+- `npm run check` — `scripts/check.mjs` (repo invariants: the three
+  dictionaries' parity and coverage on the six language pages, asset
+  references with every `srcset` candidate's width, stamps, the deploy set
+  and sitemap, the generated pages (scene/, en/, ar/, the guide's three)
+  against their generators, prices against `PRICE_MODEL` on the home and on
+  the guide, legal gating, one contact address; the Content-Security-Policy
+  meta (16), every published file under its folder's or its own byte
+  ceiling, the share cards ≤ 300 kB, the set under its total and no two
+  published files alike, licence texts aside (17), SEO and structured data
+  (18)) plus `scripts/themes-check.mjs` (the theme contract, read on every
+  consumer sheet, `tarifs/style.css` included).
+- `npm run validate` — html-validate on every page in `scripts/site.mjs`
+  (`.htmlvalidate.json`: the recommended rules, nothing relaxed) and on the
+  three WorkspaceHQ embed templates (`scripts/validate-embed.json`, which
+  relaxes only what their runtime's `{{ }}` bindings are; the export's own
+  accessibility gaps print as warnings and do not fail the gate).
+- `npm run audit` — the browser audit, 89 runs on desktop, phone, tablet and
   landscape: axe, CLS, overflow, reveals, tap targets, images, animations, JS
   errors, failed and third-party requests, and every Content-Security-Policy
-  violation in every frame. It includes the WorkspaceHQ embeds on their own,
-  a run that boots the live console, and 404.html two folders down (here and
-  on an emulated GitHub Pages, JavaScript on and off). Desktop page runs fail
-  when LCP is over 1.5 s. Then the first screen in fallback type (each theme
-  in French and English, webfonts refused vs loaded, 360 to 1600 wide; see
-  "The font swap must not move the page"). Last comes a throttled phone (Slow 4G, CPU 4×),
-  whose LCP, long-task and interaction targets are report-only until
-  `AUDIT_PHONE_STRICT=1`.
-- `npm run sweep` — the painted-contrast sweep (above).
+  violation in every frame. Each language's own page is opened (index.html,
+  en/, ar/; the guide's three in arcanum and daylight). It includes the
+  WorkspaceHQ embeds on their own, a run that boots the live console, and
+  404.html two folders down (here and on an emulated GitHub Pages,
+  JavaScript on and off). Desktop page runs fail when LCP is over 1.5 s.
+  Then the first screen in fallback type (each theme in French and English,
+  webfonts refused vs loaded, 360 to 1600 wide; see "The font swap must not
+  move the page"). Every run also lists the Arabic font files a page in
+  another language fetched (report-only until the copy change; see "The ع is
+  drawn"). Last comes a throttled phone (Slow 4G, CPU 4×), whose LCP,
+  long-task and interaction targets are report-only until
+  `AUDIT_PHONE_STRICT=1`; its language switch is a link to the other page,
+  so it is not timed, only followed.
+- `npm run sweep` — the painted-contrast sweep (above), every language page
+  of the home and the guide in the six themes.
 - `npm run vbugs` — the visual bug scan, `scripts/vbugs.mjs` (see "Visual
   pass" below); accepted issues live in `scripts/vbugs-allow.json`, each with
   its reason.
 - `npm run keys` — `scripts/keys.mjs`, the keyboard, reduced-motion and
-  direction gate, in French and Arabic, on desktop and a phone: skip link,
-  focus rings, the phone and theme menus, the CV panel, the folded
-  estimator's scope handed to the message, the contact form (errors, the
-  mail hand-off, the lead store's POST with its switch on), the dialogs,
-  nothing moving under reduced motion (smooth scrolling and the booted
-  console's Bit included), and `dir="rtl"` with `?lang=ar`.
+  direction gate, 60 runs, on each language's own page, on desktop and a
+  phone: skip link, focus rings, the phone and theme menus, the CV panel,
+  the folded estimator's scope handed to the message, the guide's open
+  estimator handing its scope to the home page's form across the
+  navigation, the contact form (errors, the mail hand-off, the lead store's
+  POST with its switch on), the dialogs, nothing moving under reduced motion
+  (smooth scrolling and the booted console's Bit included), and `dir="rtl"`
+  on the Arabic pages and with `?lang=ar` on the pages that still switch
+  (`/?lang=ar` must land on `/ar/`).
+- `node scripts/stage-check.mjs` — the staged site is the site: every page
+  byte for byte the repository's (404.html's root links aside), every
+  comment-stripped stylesheet parsing in the browser to the same rules, rule
+  by rule, and every stripped script compiling (see "Staging strips the
+  comments").
 - `npm run verify` — runs all of the above (check, themes, validate, audit,
-  sweep, vbugs, keys) and does not stop at the first failure, so one run
-  shows everything that is wrong.
+  sweep, vbugs, keys, stage-check) and does not stop at the first failure,
+  so one run shows everything that is wrong. On this machine the browser
+  gates take about an hour in all (keys ≈ 14 min, audit ≈ 20, sweep ≈ 10,
+  vbugs ≈ 8; 2026-10-31).
 
 Two more commands are not gates:
 
@@ -1020,9 +1144,16 @@ gate to the release checklist):
 - `check.yml` job `nightly`, every night and from Actions → Check → Run
   workflow: the browser gates (`npm run verify`), `npm run links` and the full
   `npm audit`;
-- `pages.yml`: job `gates` runs the static gates, then audit, sweep, vbugs and
-  keys; job `deploy` stages and publishes `_site/` only once `gates` is green;
+- `pages.yml`: job `gates` runs the static gates, then audit, sweep, vbugs,
+  keys and stage-check; job `deploy` stages and publishes `_site/` only once
+  `gates` is green. A push that changes only `**.md`, `knowledge-base/**` or
+  `audit/**` does not start it (`paths-ignore`); `check.yml` is unfiltered,
+  since it is the required status;
 - `monitor.yml`, every six hours: the live site; a failure opens one issue.
+
+None of them has run since 2026-10-25: GitHub Actions is blocked on the
+account's billing, so nothing deploys and nothing is watched (RELEASE.md,
+"Outage and fallback"). Every gate still runs locally before a push.
 
 `check` had shown the same ✗ on every run for weeks — it read a `document.write`
 string concatenation as a file path. It was waved through as a "known false
@@ -1043,10 +1174,13 @@ Audit traps, on top of the sweep's list:
 
 ## Market comparison ("Ici et ailleurs") and pricing models
 
-The pricing section compares each project type across Algeria, Numidea,
+The market comparison compares each project type across Algeria, Numidea,
 France and the US, then explains the four billing models and what moves a
-quote. Every external figure was read at its source, not taken from a search
-summary:
+quote. Since 2026-10-31 it lives on the price guide, `tarifs/` (see "The
+price guide (/tarifs/)"), not on the home page: there it sat behind two
+folded panels most visitors never opened, about 17 KB gzipped and nine
+outbound links on every visit (owner decision 13, IMPROVEMENTS M6). Every
+external figure was read at its source, not taken from a search summary:
 
 | Market | Source |
 |---|---|
@@ -1063,11 +1197,14 @@ verification disabled. The parallel-market rate (~275 DZD/€) is deliberately
 not used: an international client pays through official channels.
 
 **Where the numbers live — update all of them together:**
-- market ranges: `MARKET` in `app.js` §14 **and** the static cells in
-  `index.html` (the static values are the JS-off fallback)
+- market ranges: `MARKET` in `app.js` §14 **and** the static cells in the
+  `MARKET` template of `scripts/build-tarifs.mjs` (the static values are the
+  JS-off fallback; they are baked into the guide's three pages, never into
+  `index.html`, which carries no market markup since 2026-10-31)
 - exchange rate: `FX` in `app.js` §12a (the one display-currency table, see
-  "Prices: set in dinars, converted for display"), the `mk.note` string ×3,
-  the `price.curNote*` strings, and the static callout figure
+  "Prices: set in dinars, converted for display"), the `mk.note` string ×3
+  in `assets/i18n/`, the `price.curNote*` strings, and the static callout
+  figure in the same template
 - Numidea's column: nowhere — it is computed from `PRICE_MODEL`
 
 **The estimator now matches the tier cards.** It didn't before, despite a
@@ -1130,8 +1267,13 @@ owner's published wording; the owner approved the diary titles on 2026-10-28.
   titles on 2026-10-28.
 - **Two grounds, sampled from the art.** Paper `#fcecdc` (the hero's empty
   paper) and night `#0f1420` (the empty left of the diary band); the tokens
-  and their contrast figures are at the top of `hub/style.css` (paper: text
-  15.4:1, text-2 7.7:1, accent 8.6:1; night: 14.6:1, 8.0:1, 8.2:1). Paper is
+  and their contrast figures are at the top of `hub/style.css`, each against
+  the ground it is painted on (re-measured 2026-10-31: on paper, ink 15.42:1,
+  ink-2 7.74:1, burgundy 8.56:1; paper on burgundy 8.56:1, the skip link and
+  the pressed theme button; on night, moon 14.58:1, moon-2 7.96:1, rose
+  8.21:1; night on rose 8.21:1; on the design band's paper `#f4e3cf`, ink
+  14.21:1 and burgundy 7.88:1; the bone die-cut edge on burgundy 8.21:1,
+  though no text is set in it). Paper is
   the default; `void-theme` = `dark` is the only other choice. The accent is
   the coat badge's burgundy `#7a2430` on paper (links, focus rings, and the
   skip link's ground, paper on burgundy) and a rose `#e59a93` on night; ink
@@ -1139,12 +1281,18 @@ owner's published wording; the owner approved the diary titles on 2026-10-28.
   the night's. A ground travels with its art: in the paper theme the diary is
   an inset night print; in the night theme the hero and the design band are
   inset paper prints, and the What I make figures become die-cuts (a bone
-  edge and a soft shadow). Hero text always uses the paper inks.
+  edge and a soft shadow). Hero text always uses the paper inks. The head
+  script sets the browser's `theme-color` from the stored palette (`light`
+  `#fcecdc`, `dark` `#0f1420`), as `index.html`'s VOID map does, so the bar
+  matches before `hub/app.js` runs.
 - **Type.** Syne for display (800 for the handle and the section headings,
   700 for smaller titles), Geist for text, Geist Mono for labels, all
-  self-hosted (`assets/fonts-hub.css`, `font-display:optional`); the
-  cartridge keeps its Press Start 2P. Geist's latin-ext file is preloaded
-  because of the ū in "Kūro". Space Mono, the old hub's label face, is gone.
+  self-hosted (`assets/fonts-hub.css`, `font-display:optional`, one rule per
+  file and weight range); the cartridge keeps its Press Start 2P. "Kūro" is
+  written `Ku&#x304;ro` in the visible text and the alts, so the latin
+  subset carries it and the latin-ext file is neither preloaded nor
+  requested (it was, 16 KB for the one ū, until 2026-10-31). Space Mono, the
+  old hub's label face, is gone.
 - **The hero is three registered layers** of one 2752×1674 frame: the paper
   with its line work, Kūro, Yasser. The frame is the drawing with paper added
   above and below (3% and 6%), so the 3% bleed of each layer and its
@@ -1307,10 +1455,12 @@ the hero text, painted before the masks are requested. Since the proof band
 became one line (2026-10-26, 178px shorter at 1280), plate II in #work starts
 inside the lookahead too on a desktop: 1,525–1,883px down at 1024×768,
 1280×900, 1440×900 and 1920×1080, so its mask (`arch.webp`, 86,364 B) also
-arrives before any scroll there (not at 960×800, nor on a phone, where the
+arrived before any scroll there (not at 960×800, nor on a phone, where the
 in-section plates are hidden). `npm run metrics` scrolls the whole page
-before it counts, so it does not show this; narrowing the lookahead for the
-in-section plates is backlog item F15. Where the vista is
+before it counts, so it did not show this. The lookahead was narrowed to
+300px on 2026-10-31 (F15), a screen and more of lead on a phone and enough
+on a desktop at a flick, so plate II now waits for the scroll. Where the
+vista is
 gone, nothing covers the seam between the hero and the proof: the proof drops
 its opaque ground (it was there so the vista's layers never slid under its
 kicker) and the hero mesh fades out before the hero clips it.
@@ -1637,14 +1787,23 @@ on purpose (decorative clipped glows, for instance) must be listed in
   every bento rule needed its counterpart there (it loaded last and won). A
   theme now sets tokens only, so a layout rule lives in `styles.css` once.
 - **Skeletons**: images still loading get `.sk` (finite 8-cycle shimmer), then
-  `.sk-done`. Every `<img>` declares `loading`.
+  `.sk-done`. Every `<img>` below the first screen declares `loading="lazy"`
+  (and `decoding="async"`); the images the first screen paints do not: the
+  hero plate's first slide carries `fetchpriority="high"` and no `loading`
+  (it is the LCP candidate and must not wait), and the client logos are
+  fetched by their CSS mask whatever the attribute says. Every `<img>`
+  declares `width` and `height`, which is what keeps the layout still.
+  Since 2026-10-31 the plate's other four slides are not `<img>` at load at
+  all: they wait in `<template id="plate-more">` and app.js clones them in
+  on the first interaction (see "The hero plate").
 - **Wayfinding**: scroll-spy marks the current nav link with `aria-current`
   (section tops cached, never measured per scroll frame); a crumb shows the
   section on ≤960px; a back-to-top button appears after 1.5 viewports.
-- **Sub-pages** carry a visible breadcrumb and `BreadcrumbList` JSON-LD; all
-  pages have a canonical URL. `sitemap.xml` and `robots.txt` live at the root
-  (on GitHub Pages project sites crawlers only read the domain-root
-  robots.txt — submit the sitemap in Search Console instead).
+- **Sub-pages** carry a visible breadcrumb and `BreadcrumbList` JSON-LD (the
+  price guide included); all pages have a canonical URL. `sitemap.xml` and
+  `robots.txt` live at the root (on GitHub Pages project sites crawlers only
+  read the domain-root robots.txt — submit the sitemap in Search Console
+  instead).
 
 ## Page structure and design system (home page)
 
@@ -1656,13 +1815,16 @@ idea is said once:
   réalisations" on 2026-10-26 (owner decision): on a phone the first screen
   offered no way to write, the first wa.me link sat 8.5 screens down and the
   phone bar only shows past 1.5 screens. The plate beside the copy still
-  shows the client sites, and the navbar leads to #work. Its French wa.me
-  link is baked into index.html (`scripts/build-fr.mjs`, like every
+  shows the client sites, and the navbar leads to #work. Its wa.me link is
+  baked into each language's page (`scripts/build-lang.mjs`, like every
   `.wa-link`), so it works on the first screen before the deferred app.js
-  arrives and with scripts off; app.js §13 rewrites it for the visitor's
-  language and adds the ad's `[ref]`. Until 2026-10-27 the links shipped
-  pending and only app.js made them live: on a slow phone the hero showed
-  a greyed, untappable button.
+  arrives and with scripts off; app.js §13 adds the ad's `[ref]`. Until
+  2026-10-27 the links shipped pending and only app.js made them live: on a
+  slow phone the hero showed a greyed, untappable button. That pending path
+  (`data-wa-pending`, `data-soon`, a `price.waSoonSuffix` string) left the
+  code on 2026-10-31: no number was ever pending. What stays is the
+  no-number guard: with `NUMIDEA_WA` empty the link loses its `href` and
+  gets `aria-disabled="true"`, at bake and at runtime alike.
 - There is no tools section. "Nos outils" (20 tools in five groups, with
   the strata plate behind it) left the page on 2026-10-26 (owner decision): 8 of its
   20 tools repeated the service cards' tags, four were not shown by any
@@ -1711,20 +1873,25 @@ idea is said once:
   TypeScript") went with the Studio column.
 - The process is told once, in the Aperçu card. There is no second process
   in pricing or anywhere else.
-- Pricing reads the tiers and the maintenance line, and stops. Two folded
-  bars follow them: the estimator ("Estimez votre projet"), whose summary
+- Pricing reads the tiers and the maintenance line, and stops. One folded
+  bar follows them, the estimator ("Estimez votre projet"), whose summary
   names what the tiers do not price (automation, e-commerce, visual
   identity, options outside a package, the accelerated pace; "options"
   alone read as if the tiers priced none, while each option is in Studio
-  or Moteur), then "Comment on chiffre" (the
-  market comparison, billing models and cost drivers). The estimator was
-  folded on 2026-10-26 (owner decision): open, it took 2.1 phone screens,
-  and at its default it quoted the Studio card again (180 000–420 000 DA
-  over 3–7 weeks, "les mêmes chiffres"). It stays on the page because it is
-  the only place automation is priced, the only open price for e-commerce
-  and identity, and the only one for the options and the 25% rush; its
-  button still writes the scope into the form. The summary is its title,
-  so the panel has no heading of its own.
+  or Moteur), then a ghost-button link to the price guide (`.price-guide`,
+  `tarifs.link`), where the second folded bar, "Comment on chiffre" (the
+  market comparison, billing models and cost drivers), stood until
+  2026-10-31 (owner decision 13; see "The price guide (/tarifs/)"). The
+  estimator was folded on 2026-10-26 (owner decision): open, it took 2.1
+  phone screens, and at its default it quoted the Studio card again (180
+  000–420 000 DA over 3–7 weeks, "les mêmes chiffres"). It stays on the
+  page because it is the only place automation is priced, the only open
+  price for e-commerce and identity, and the only one for the options and
+  the 25% rush; its button still writes the scope into the form. The
+  summary is its title, so the panel has no heading of its own. The tiers
+  and the estimator sit between `<!-- SLOT:tiers -->` and
+  `<!-- SLOT:estimator -->` markers, which the guide's generator reads:
+  the two pages cannot quote different figures.
 - Work ends on one call to action, the planches banner. The project explorer
   modal was removed in the 2026-10 cleanup; an old
   `#/work/<slug>` link now redirects to the matching project sheet,
@@ -1791,7 +1958,10 @@ menu, to the `HEAD` map in index.html and to the `LOGO` map in 404.html.
 
 `scene/index.html` is generated: edit `scripts/scene-data.mjs`, run
 `npm run scene`. Captures are refreshed with `npm run work:capture [slug]`
-(needs the local server for WorkspaceHQ).
+(needs the local server for WorkspaceHQ); each comes in two sizes, and
+`shot()` in `build-scene.mjs` names both in a `srcset` with the measured
+`sizes` (see "Thumbnails"). The scene follows the stored language only; it
+does not read `numidea-theme` yet (the design pass's item).
 
 Client material appears without code changes:
 - `assets/work/<slug>/before/<name>.webp` + `after/<name>.webp` (same name) →
@@ -1831,15 +2001,163 @@ past jobs", and the deliverable is "Page de réalisations". Its footer links to 
 are dead too (the section is `#zones-title`). Fixing the client's site is
 the studio's call; the word can come back after.
 
-`npm run build` runs the page generators in one go: `build-fr` (writes
-`I18N.fr` into the French baked into `index.html`, its title, description and
-FAQ structured data), `build-scene`, `build-voices`, `build-legal`,
-`build-sitemap` (the share images are separate, `npm run og`). `check.mjs`
-fails when the baked French differs from the dictionary: app.js re-applies it
-on load, so drift shows as copy changing after paint, and readers without
-scripts (and the FAQ rich result) would see an older offer. A sheet shows a client quote
-only when a consented voice exists for it (see "Client voices and photo
-slots").
+`npm run build` runs the page generators in one go, in this order:
+`build-scene`, `build-voices`, `build-legal`, `build-lang` (writes each
+dictionary into its page: the French of `assets/i18n/fr.js` into
+`index.html`, then `en/` and `ar/` from it; after `build-legal`, which may
+rewrite `index.html`'s legal regions), `build-tarifs` (the guide's three
+pages from `index.html` and the dictionaries), `build-sitemap`, then
+`build-csp` last (the share images are separate, `npm run og`). `check.mjs`
+fails when a baked page differs from its dictionary: app.js re-applies it on
+load, so drift shows as copy changing after paint, and readers without
+scripts (and the FAQ rich result) would see an older offer. A sheet shows a
+client quote only when a consented voice exists for it (see "Client voices
+and photo slots").
+
+## The language pages (/en/, /ar/)
+
+Since 2026-10-31 (owner decision 15, IMPROVEMENTS A8) the home page is three
+static pages, one per language: `index.html` is the French page and the
+template; `en/index.html` and `ar/index.html` are written from it by
+`scripts/build-lang.mjs` with `assets/i18n/en.js` and `ar.js` (a banner
+comment at the top of each says so: edit `index.html` or the dictionary,
+never the generated page). Before, one page served three languages and an
+EN or AR share unfurled a French card (scrapers run no scripts), the EN/AR
+visitor waited behind a paint-hold, and every visitor downloaded the three
+dictionaries inside app.js.
+
+- **The dictionaries** are `assets/i18n/{fr,en,ar}.js`, one language per
+  file (`var I18N = {…}`, `EXTRA` merged; 399 keys each on 2026-10-31), and
+  each page loads only its own before app.js. Check 1 holds the three to the
+  same key set and check 2 every `data-i18n` reference on the six language
+  pages to each of them. The `EN`/`AR` banners of the old `app.js` blocks
+  travelled with them: the Arabic file's banner says it awaits native
+  review.
+- **What `bakeLang()` writes:** every `data-i18n` text and `-ph`/`-aria`/
+  `-alt` attribute; `<title>`, the meta description and the share texts
+  (`meta.ogTitle`, `meta.ogDesc`, `meta.twDesc`, `meta.ogAlt`, new keys on
+  2026-10-31); the studio's and the FAQ's JSON-LD; every `.wa-link`; `html
+  lang` and `dir`; the switch's `aria-current`; `og:url`, `og:locale` and
+  its alternates; the card (`assets/og.jpg`, `og-en.jpg`, `og-ar.jpg`); the
+  dictionary file. `en/` and `ar/` sit one folder down, so every relative
+  `src`, `href` and `srcset` gets `../`, a link to a page that still switches
+  with `?lang=` (scene/, legal/) carries the page's language, and a link
+  into a folder that has a page per language (`LANG_FOLDERS` in
+  `build-sitemap.mjs`: the root and `tarifs/`) stays in the page's own
+  language unless it names a language itself (the switch's links, with
+  `hreflang`). A head text that names its own key (`data-i18n` on `<title>`,
+  `data-i18n-content` on a meta) is written from that key and left alone by
+  the home's `title`/`meta.*` pass and by `applyLang` at runtime.
+- **The head script** of `index.html` keeps a `LANG:fr-only` block between
+  two marker comments, which `build-lang` leaves out of `en/` and `ar/`: the
+  `?lang=` and stored-preference redirect and the scripted canonical. Keep
+  the two markers as a pair. The French page sets its canonical from that
+  script (it reads `?lang=`, and the served HTML must never name a URL other
+  than the rendered page's); `en/` and `ar/` carry a static canonical naming
+  themselves, since their head reads no `?lang=`; check 6 refuses both at
+  once, or neither. Their CSP meta is their own (the head script's hash
+  differs; `build-csp` re-applies the policy to them last, a no-op).
+- **The switch** is three links (`./`, `en/`, `ar/` at the root; `../`,
+  `../en/`, `../ar/` one level down; `aria-current` on the current one; no
+  `js-only`, so it works with scripts off). A click stores `numidea-lang`
+  before navigating, and the root's head script sends a stored `en` or `ar`,
+  or a shared `?lang=`, to that page before paint (`?lang=fr` stores `fr`;
+  unknown values stay). `scene/` and `legal/` keep `?lang=` through
+  `page-i18n.js`, and links to them from `en/` and `ar/` carry it. `hub/`,
+  `workspacehq/`, `scene/` and 404's links home land on the stored
+  language's page through the redirect. `switchLang`, `NUMIDEA_LANG`,
+  `NUMIDEA_CANON` and the `data-i18n-pending` hold are gone; app.js no
+  longer switches language on a bfcache `pageshow` (one language per page:
+  Back means this page).
+- **Measured** (2026-10-31): app.js 198,481 → 113,850 B raw (63.8 → 35.8 KB
+  gzipped); the dictionaries fr 26,586 B (10.4 KB gz), en 24,525 (9.7), ar
+  35,341 (11.4); the pages index.html 106,067 B (28.7 KB gz; 96,888 B after
+  the market comparison left), en/ 102,168 (26.9), ar/ 113,895 (29.6). An
+  EN or AR visitor downloads one dictionary instead of three and sees the
+  page at first paint.
+- **The gates:** check 8e bakes `en/` and `ar/` from `index.html` and fails
+  when a committed page differs ("run: npm run build"); 8f and 8h scan the
+  three dictionaries; 18 checks each page's title and description in its
+  language; the sitemap lists `/`, `/en/`, `/ar/` once each with the three
+  alternates; audit, keys, sweep, vbugs and metrics open each page directly
+  (keys' direction run expects `/?lang=ar` to land on `/ar/`); `monitor.yml`
+  runs Lighthouse on `/ar/`.
+
+## The price guide (/tarifs/)
+
+`tarifs/index.html` (French), `en/tarifs/` and `ar/tarifs/` are written by
+`scripts/build-tarifs.mjs` (part of `npm run build`, after `build-lang`;
+`--check` for the gates; never edited by hand). The page exists so that the
+studio's prices have an address of their own — no studio publishes prices
+for "prix site web Algérie" (the CMO audit of 2026-10-31; owner decision 13)
+— and so that the home page stops carrying what most visitors never opened.
+What the two pages share is written once:
+
+- the tiers (the currency switch, the three cards, the maintenance line) and
+  the estimator are read from `index.html` between its `SLOT:tiers` and
+  `SLOT:estimator` markers, so the home and the guide cannot quote different
+  figures (check 8c reads both against `PRICE_MODEL`); the estimator is open
+  on the guide, where the page is about prices, and folded on the home;
+- the chrome (navbar, phone menu, footer, phone bar, the hero's WhatsApp
+  button) is the home page's, extracted at build with its links turned
+  towards the home (`chrome()`: the logo → home, "Tarifs" → the guide with
+  `aria-current="page"`, the switch → the guide's three languages, every
+  other `#section` link → `../#section`), so a change there reaches the
+  guide at the next build;
+- the FAQ entries about money (`FAQ_ON_TARIFS`: faq2 and faq4 today; the
+  payment and ownership entries once the copy change adds them) are copied
+  from the home's FAQ, answers and icons included;
+- the theme boot script is the home's, its `LANG:fr-only` block replaced by
+  a stored-preference redirect to the guide's version in that language;
+  nothing reads `?lang=` here, so the canonical is static.
+
+The market comparison and the pricing models are the generator's own markup
+(the `MARKET` template; the home's `price-more`/`pm-body` wrappers kept so
+the phone table rules still apply; the market panel is `open`, so the chart
+is built at load with the table held in place): their text is the
+dictionaries' `mk.*` and `md.*` keys, their static JS-off figures live there
+and nowhere on the home. The nine outbound source links are on the guide
+alone. Each page has its own title and description (`tarifs.title` "Prix
+d'un site web en Algérie (2026) — Numidea Labs", `tarifs.desc`, 153/152/127
+characters, naming the Essentiel floor "dès 90 000 DA"), kicker, h1, lead
+and breadcrumb (`tarifs.*`, eight keys; the Arabic awaits native review), a
+`BreadcrumbList`, the hreflang set, `og:locale`, the home's card per
+language (no guide card was rendered) and its own CSP. `tarifs/style.css`
+is hand-written and page-only (the top padding under the fixed navbar, the
+breadcrumb, `h1.sec`, the `.t-sub` sub-headings, the nav's `aria-current`
+mark, `.tarifs-next`); it reads the theme contract like every sheet, and
+`themes-check` counts it among the consumers.
+
+**The hand-off.** On a page without the contact form, "Obtenir le prix
+ferme" stores the estimator's text in `sessionStorage` (`numidea-prefill`)
+and leads to `../#contact`, the language's home page; the home reads and
+clears the key on load, writes it as prefill kind `carried` (so its own
+estimator's `refill('est')` never rewrites it, while a later click on its
+own CTA still replaces the untouched text) and, stacked (≤960px), brings the
+form up once the browser's animated jump to `#contact` has settled (no
+scroll event for 200 ms after load, within 3 s). `npm run keys` drives it in
+the three languages at 1280 and 390: Enter on the link must land on that
+language's home at `#contact` with the scope in the message and nothing left
+in `sessionStorage`.
+
+**Links to the guide:** the pricing section's ghost button, the phone menu
+(eighth entry, `tarifs.navLink` "Guide des prix") and the footer nav. The
+desktop navbar keeps its seven links, with "Tarifs" → `#pricing`: an eighth
+item overflows the bar at 961–1040px (IMPROVEMENTS A14). The phone menu's
+new entry, set in Arcanum's Cinzel at 40px, is 316 px wide in a 320 px box
+at a 360 px viewport and wraps in the metric fallback, the one red run of the
+fallback-type audit on 2026-10-31 (F24, for the copy or design pass).
+
+**Measured:** tarifs/index.html 46,126 B, en/tarifs/ 44,666 B, ar/tarifs/
+49,222 B, tarifs/style.css 2,722 B; index.html lost 13,013 characters. On a
+phone (`npm run metrics`, 2026-11-01): tarifs fr 11.7 screens, 1,080 words,
+26 controls, 12 requests, 188 KB; en 11.3 screens, 186 KB; ar 10.7 screens,
+17 requests, 362 KB (its Arabic fonts). The home's screens did not drop when
+the market block left (18.2 before and after): a closed `<details>` never
+counted in the page height; the bytes dropped about 95 KB. The guide's three
+pages are held by check 17's total alone, like the home's: a per-page
+ceiling at +10 % (5 kB of headroom) would trip on the copy change's FAQ
+additions for no gain.
 
 ## Prices: set in dinars, converted for display
 
@@ -1866,12 +2184,16 @@ WhatsApp links append only the ref code, as `[ref]`, to the pre-filled text.
 It rides in the message the visitor sends themselves and goes nowhere else.
 The query string survives every `#anchor` jump, and links to the site's
 other pages (the project sheets, hub/, WorkspaceHQ and back) carry `ref`,
-`utm_*`, `fbclid`, `gclid` and an explicit `?lang=` along: `assets/carry.js`,
-loaded on every page, adds them from the address at the moment a link is
-followed, so a language switch and links added after load are covered. A
-`?cur=` or `?lang=` arrival is kept in local storage like a choice made on
-the page. There is one contact address site-wide; `check.mjs` fails if any
-mailto or JSON-LD email differs.
+`utm_*`, `fbclid`, `gclid` and, to the pages that still switch language in
+place, an explicit `?lang=` along: `assets/carry.js`, loaded on every page,
+adds them from the address at the moment a link is followed, so links added
+after load are covered. A `?cur=` or `?lang=` arrival is kept in local
+storage like a choice made on the page; on the home a `?lang=` arrival is
+first a redirect to that language's page (see "The language pages"). The
+price guide's estimator carries its scope to the home page's form through
+`sessionStorage` (`numidea-prefill`, read and cleared on arrival; see "The
+price guide"). There is one contact address site-wide; `check.mjs` fails if
+any mailto or JSON-LD email differs.
 
 ## Legal notice and privacy — generated, unpublished until complete
 
@@ -1888,31 +2210,49 @@ equal the generator's output.
 ## The link-preview card
 
 Scrapers (WhatsApp, LinkedIn, Facebook, X) read `og:image` without running
-scripts, so one static card serves every language. `scripts/build-og.mjs`
-renders `assets/og.jpg`, in French, from the Arcanum tokens in `themes.css`
-and the self-hosted faces, so it cannot drift from the brand; its only image
-is a real capture of a delivered site. `hub/og.jpg` and `workspacehq/og.jpg`
-are 1200×630 renders of those pages' own first screen
+scripts, so each language page names its own static card: `assets/og.jpg`
+(French, `index.html`), `og-en.jpg` and `og-ar.jpg` (`en/` and `ar/`; the
+guide's three pages reuse the home's card of their language).
+`scripts/build-og.mjs` renders the three (`CARDS`; `node scripts/build-og.mjs
+ar` renders one) from the Arcanum tokens in `themes.css` and the self-hosted
+faces, so they cannot drift from the brand; the Arabic one is set right to
+left in the page's Plex Arabic faces, the logo staying in Latin script as it
+does on the page, and its copy awaits native review (OWNER-CONTENT §8).
+Their image is one of the site's own engravings (Plate II, the Arch of
+Trajan at Timgad), since 2026-10-26: it used to be a capture of a client's
+site captioned "site livré", and no client has yet given written permission
+to appear in marketing. The card texts are dictionary keys (`meta.ogTitle`,
+`meta.ogDesc`, `meta.twDesc`, `meta.ogAlt`), baked into each page's
+`og:title`, `og:description`, `twitter:*` and `og:image:alt`; the English
+and Arabic descriptions translate the French card's promise, not the meta
+description. The encoder gives a slightly different JPEG each run (about
+1 KB), so a card is committed only when it changed. `hub/og.jpg` and
+`workspacehq/og.jpg` are 1200×630 renders of those pages' own first screen
 (`scripts/og-capture.mjs`). `npm run og` runs both; re-run after a theme or
 copy change. (The old `og.svg`/`og.png` went in the 2026-10 cleanup.)
 
 ## Sitemap
 
 `scripts/build-sitemap.mjs` writes `sitemap.xml` from the page list in
-`scripts/site.mjs`, as part of `npm run build`. Pages whose language follows
-`?lang=` (the landing page, the project sheets and, once published, `legal/`)
-carry `hreflang` alternates for fr/en/ar plus `x-default`, the French
-original. No `lastmod`: a date nobody maintains is worse than none.
-`check.mjs` fails when the committed file differs from the generator's output
-or lists an unpublished URL.
+`scripts/site.mjs`, as part of `npm run build`. The pages that exist once per
+language, static (the home: `/`, `/en/`, `/ar/`; the guide: `/tarifs/`,
+`/en/tarifs/`, `/ar/tarifs/`; `STATIC_LANG` and `TARIFS_LANG`) are listed
+once each with `hreflang` alternates naming the three plus `x-default`, the
+French one; the pages whose language still follows `?lang=` (the project
+sheets and, once published, `legal/`; `MULTILINGUAL`) carry the same
+alternates as `?lang=` versions, one `<url>` per version. No `lastmod`: a
+date nobody maintains is worse than none. `check.mjs` fails when the
+committed file differs from the generator's output or lists an unpublished
+URL.
 
 **What search engines and link previews read** is gated too (`check.mjs`
-block 18). The rules cover the pages in `PAGES`: `index.html`, `hub/`,
-`scene/`, `workspacehq/` and `legal/`. Until `legal/` is published it is
-checked from its template (`renderLegal`), so publishing it cannot turn the
-check red. Each of these pages carries one `<title>`, a meta description of
-50 to 160 characters (each language's: `meta.desc` in `app.js`, `ui.desc` in
-a generated page's dictionary), `og:title`, `og:description`, `og:image`,
+block 18). The rules cover the pages in `PAGES`: `index.html`, `en/`, `ar/`,
+the guide's three, `hub/`, `scene/`, `workspacehq/` and `legal/`. Until
+`legal/` is published it is checked from its template (`renderLegal`), so
+publishing it cannot turn the check red. Each of these pages carries one
+`<title>`, a meta description of 50 to 160 characters (its language's:
+`meta.desc` or `tarifs.desc` in `assets/i18n/`, `ui.desc` in a generated
+page's dictionary), `og:title`, `og:description`, `og:image`,
 `og:url` (its own URL), `og:type`, `twitter:card` and `twitter:image`, and
 `og:image:width`/`height` equal to the image file's real size. Re-rendering a
 share image at another size fails the check until its tags follow. Each has
@@ -2013,18 +2353,81 @@ recoloured on disk.
   own).
 - The Arabic copy is still pending a native speaker's review.
 
+## Staging strips the comments
+
+`npm run stage` (`scripts/stage-site.mjs`) copies the deploy set into
+`_site/` and then, since 2026-10-31, strips the comments from every `.css`
+and `.js` it copied: 36 files, 1,021 → 848 kB (14 stylesheets 319 → 224 kB,
+22 scripts 687 → 610 kB on that day). `styles.css` was 30 % comments and
+`app.js` 22 %, 6.6 and 7.3 KB gzipped that every visitor downloaded and no
+browser read. The repository keeps every comment: this file's rule is that
+what is served is what is reviewed, and a minifier rewrites code, while a
+comment is the one thing that can go without changing a token. Pages are
+copied as they are, because their inline scripts are hashed in the CSP meta
+and external files are not; licence headers (`/*!`, `@license`,
+`@preserve`) stay, React's MIT header among them.
+
+The stripper (`scripts/lib/strip-comments.mjs`) is not a regular expression
+over the text: it walks the source token by token, so a `//` in a URL
+string, a `/*` in a template literal or a regex, and a CSS `url(...)` holding
+`//` are kept as they are (strings, template literals with `${ }` nesting,
+regex literals told from division by the token before the slash; CSS strings
+and unquoted `url()` arguments). A block comment that spans lines becomes one
+newline, since in JavaScript it counts as a line terminator (automatic
+semicolon insertion after `return`, say); one on a line becomes a space.
+
+`scripts/stage-check.mjs` is the proof and a gate (the last step of `npm run
+verify`, and the Pages workflow's `gates` job after keys): it stages with
+`--pages`, then, in the browser, parses every stylesheet from both copies and
+compares the rules at every depth and their `cssText` rule by rule (comments
+are not serialised, so a stripped sheet that parses the same way serialises
+the same way), compiles every script from both copies (`new Function(src)`,
+and in Node with `--check`), and compares every page byte for byte except
+`404.html`, whose JavaScript-off links staging points at the site root. On
+2026-10-31: 13 pages unchanged, 15 stylesheets to the same 2,272 rules,
+22 scripts compiling from both copies.
+
+## NOTICE
+
+`LICENSE` is CC0 1.0, the studio's own dedication, and it had been read as
+covering the whole repository. `NOTICE.md` (root, not deployed; linked from
+the README) says what it reaches (the pages' markup, the stylesheets and
+scripts under `assets/`, the generators and gates, the workflows, the
+documentation and the knowledge base) and what keeps its own terms: the OFL
+fonts (three `OFL.txt` files; `assets/fonts/OFL.txt` reproduces only the
+Cinzel Project's copyright line although six families live in the folder,
+IMPROVEMENTS F21), React 18.3.1 under MIT in `workspacehq/embed/vendor/`
+(its header refers to a LICENSE file that is not in the repository, F22),
+`workspacehq/embed/support.js` (generated from a source that is not here,
+no licence stated: treated as not licensed for reuse, an owner fact), the
+clients' logos and captures (theirs, shown as references), the owner's
+illustrations under `hub/` (no licence chosen: `ip.licence` is null and the
+same choice covers the site's text and the CV), and the third-party skills
+under `.claude/skills/` with their licence files. Nothing in it is invented:
+each fact was read from the file it names, and where the origin is unknown
+it says so.
+
 ## Deploy scope
 
 Only what `DEPLOY` in `scripts/site.mjs` names is published: `index.html`,
-`404.html`, `robots.txt`, `sitemap.xml`, `assets/`, `scene/`, `hub/`,
-`workspacehq/`, and `legal/` once it is complete. `scripts/stage-site.mjs`
-(`npm run stage`) copies exactly that into `_site/`, and a missing entry fails
-the stage. Every host builds from `_site/`: GitHub Pages is canonical
-(https://brvetr4ve1er.github.io/Numidea.tech/, via
+`en/`, `ar/`, `tarifs/` (with `en/tarifs/` and `ar/tarifs/` inside the
+language folders), `404.html`, `robots.txt`, `sitemap.xml`, `assets/`,
+`scene/`, `hub/`, `workspacehq/`, and `legal/` once it is complete.
+`scripts/stage-site.mjs` (`npm run stage`) copies exactly that into `_site/`
+(then strips the comments from its stylesheets and scripts, above), and a
+missing entry fails the stage. Inside a published folder, `isDeploySkipped()`
+leaves out a folder's own notes and the WorkspaceHQ export's manifest
+(`README.md`, `_ds_manifest.json`, `.DS_Store`, matched without regard to
+case: the embed spells its notes `readme.md`, and 38 KB of them reached the
+published set until 2026-10-31); every walker (stage, deploy-files, check,
+build-legal) asks the same function. Every host builds from `_site/`: GitHub
+Pages is canonical (https://brvetr4ve1er.github.io/Numidea.tech/, via
 `.github/workflows/pages.yml`), and Netlify and Vercel are mirrors.
 `NOT_DEPLOYED` lists what must never be served, including `knowledge-base/`,
-`audit/`, `scripts/`, `legal-preview/` and this file. `campaign/` is kept
-outside the repository altogether.
+`audit/`, `scripts/`, `legal-preview/`, `NOTICE.md`, `.nvmrc` and this file.
+`campaign/` is kept outside the repository altogether. The published set on
+2026-10-31: 18,381,757 bytes in 283 files (check 17's total is that plus
+10 %).
 
 ## Content-Security-Policy
 
@@ -2034,9 +2437,11 @@ host) cannot send headers. A meta policy governs only what comes after it, so
 nothing it covers (script, style, link, base) may come first; check.mjs 16
 holds that. `scripts/lib/csp.mjs` (`withCsp(html, kind)`) computes the policy
 from the page's own markup. `npm run build` applies it: `build-csp.mjs` runs
-last over the hand-written pages and the three embeds, `build-scene` and
-`build-legal` apply it to their own output, and `bump.mjs` applies it again
-after stamping.
+last over every page in `PAGES` and the three embeds, `build-scene`,
+`build-legal`, `build-lang` and `build-tarifs` apply it to their own output
+(`en/`, `ar/` and the guide's pages have their own hash, since their head
+script differs from `index.html`'s), and `bump.mjs` applies it again after
+stamping.
 
 **The page policy** (index, 404, hub, scene, workspacehq, legal):
 
@@ -2219,13 +2624,17 @@ method section had a rail of its own that grew node to node):
   the right in Arabic) and moved only by its transform. Pinned by its other
   edge, every new text width moves its start corner, and Chrome counts that
   as a layout shift even on hover or scroll (neither is an input).
-- **The market chart is built on first open** of the folded "Comment on
-  chiffre" panel (on the summary's click, before the panel opens, so it is
-  there in the panel's first frame): the page load pays nothing for a
-  picture most visitors never unfold. Two exceptions keep a target in
+- **The market chart is built when its panel is open.** On the price guide,
+  where the "Comment on chiffre" panel is open at load, that is at load,
+  with the table held where it was while the chart goes in above it (the
+  chart is 700–1000px tall). The folded-panel logic stays in app.js for a
+  closed panel: built on the summary's click, before the panel opens, so it
+  is there in the panel's first frame, and two exceptions keep a target in
   place: an arrival on a fragment inside the panel (`#mk-cap`, or a
   `#:~:text=` link, which only the navigation entry still carries) builds
   it before load, because the browser fixes its scroll target at load and
   a chart built after it left the target a chart's height below the
   screen; and any other opening (find in page) holds the table where it
-  was while the chart goes in above it.
+  was. Until 2026-10-31 the panel was folded on the home page, and the page
+  load paid nothing for a picture most visitors never unfolded; now the
+  home page carries no market markup at all.

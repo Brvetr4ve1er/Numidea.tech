@@ -1,12 +1,22 @@
 ---
 type: map
-updated: 2026-10-26
-sources: [assets/app.js, index.html, README.md, BRAND.md, OWNER-CONTENT.md, scripts/check.mjs]
+updated: 2026-10-31
+sources: [assets/app.js, assets/i18n/fr.js, index.html, tarifs/index.html, scripts/build-tarifs.mjs, README.md, BRAND.md, OWNER-CONTENT.md, IMPROVEMENTS.md, scripts/check.mjs, scripts/keys.mjs]
 ---
 
 # Pricing and market
 
-The studio publishes its prices in dinars before any quote, beside the going rates in Algeria, France and the United States, and lets a visitor size a project in an estimator, folded under the tiers since 2026-10-26 behind a summary that names what the tiers do not price: automation, e-commerce, visual identity, options outside a package and the accelerated pace (index.html › #pricing, price.lead, price.estHint; BRAND.md › Page structure and design system (home page)). Every Numidea project figure comes from one object, `PRICE_MODEL` inside `ESTIMATE` in `assets/app.js`, and the monthly maintenance line from `RETAINER`; the tier cards, the estimator and the market table all read `PRICE_MODEL` (assets/app.js › ESTIMATE, 12a). Start with the three packages, then the model table, then the market comparison.
+The studio publishes its prices in dinars before any quote and lets a visitor size a project in an estimator, folded under the tiers on the home page since 2026-10-26 behind a summary that names what the tiers do not price: automation, e-commerce, visual identity, options outside a package and the accelerated pace (index.html › #pricing, price.lead, price.estHint; BRAND.md › Page structure and design system (home page)). Since 2026-10-31 the prices also have an address of their own, the price guide `tarifs/` (with `en/tarifs/` and `ar/tarifs/`), where the same tiers and the estimator (open there) are followed by the going rates in Algeria, France and the United States and the pricing models, which left the home page that day (owner decision 13; scripts/build-tarifs.mjs › header; IMPROVEMENTS.md › M6). Every Numidea project figure comes from one object, `PRICE_MODEL` inside `ESTIMATE` in `assets/app.js`, and the monthly maintenance line from `RETAINER`; the tier cards, the estimator and the market table all read `PRICE_MODEL` (assets/app.js › ESTIMATE, 12a). Start with the three packages, then the model table, then the guide and the market comparison.
+
+## The price guide (tarifs/)
+
+- `scripts/build-tarifs.mjs` writes the three pages as part of `npm run build`: the tiers (the currency switch, the three cards, the maintenance line) and the estimator are read from `index.html` between its `SLOT:tiers` and `SLOT:estimator` markers, so the home and the guide cannot quote different figures; `check` block 8c reads both pages against `PRICE_MODEL` (scripts/build-tarifs.mjs › header; scripts/check.mjs › block 8c).
+- The chrome (navbar, phone menu, footer, phone bar, the hero's WhatsApp button) is the home page's, with its links turned towards the home; the FAQ entries about money (`FAQ_ON_TARIFS`: faq2 and faq4, the payment and ownership entries once the next change adds them) are copied from the home's FAQ (scripts/build-tarifs.mjs › header, chrome, FAQ_ON_TARIFS).
+- Own title and description (`tarifs.title` "Prix d'un site web en Algérie (2026) — Numidea Labs", `tarifs.desc` naming "dès 90 000 DA"), kicker, h1, lead, breadcrumb and nav label, eight `tarifs.*` keys in the three dictionaries, the Arabic awaiting native review (assets/i18n/fr.js › tarifs.*; OWNER-CONTENT.md › 8); a `BreadcrumbList`, the hreflang set, a static canonical, the home's share card per language, its own CSP; `tarifs/style.css` holds the page-only rules (scripts/build-tarifs.mjs › header; tarifs/style.css).
+- The estimator's "Obtenir le prix ferme" has no form on the guide: it stores the scope in `sessionStorage` (`numidea-prefill`) and leads to the language's home page at `#contact`, which reads and clears it on load; `npm run keys` drives that in the three languages (assets/app.js › prefillWith; scripts/keys.mjs › estimate; BRAND.md › The price guide).
+- Links to the guide: the home's pricing section (`.price-guide`, `tarifs.link`), the phone menu (`tarifs.navLink` "Guide des prix") and the footer; the desktop navbar keeps "Tarifs" → `#pricing`, an eighth link overflowing at 961–1040px (index.html › #pricing, the phone menu, the footer; IMPROVEMENTS.md › A14).
+- `price.lead` on the home no longer says the comparison is beside the prices; its rewrite is the next change's (assets/i18n/fr.js › price.lead; IMPROVEMENTS.md › M6).
+- Measured 2026-11-01 (`npm run metrics`): tarifs fr on a phone 11.7 screens, 1,080 words, 26 controls, 12 requests, 188 KB; en 11.3 screens; ar 10.7 screens, 362 KB with its Arabic fonts (IMPROVEMENTS.md › Metrics history, BRAND.md › The price guide).
 
 ## One source of truth
 
@@ -72,7 +82,7 @@ How [[quote()]] adds it up (assets/app.js › ESTIMATE):
 
 ## The market comparison
 
-"Algérie, France, États-Unis : un projet, trois marchés", folded under "Comment on chiffre" (index.html › #market). Numidea's column is computed from `PRICE_MODEL` at each type's default size; the other columns are `MARKET` in app.js, mirrored as static cells for readers without scripts (assets/app.js › MARKET, nlRange; BRAND.md › Market comparison).
+"Algérie, France, États-Unis : un projet, trois marchés", under "Comment on chiffre" on the price guide, open at load there (tarifs/index.html › #market; until 2026-10-31 folded on the home page). Numidea's column is computed from `PRICE_MODEL` at each type's default size; the other columns are `MARKET` in app.js, mirrored as static cells in the generator's `MARKET` template for readers without scripts (assets/app.js › MARKET, nlRange; scripts/build-tarifs.mjs › MARKET; BRAND.md › Market comparison). The `index.html › #market` locators below now mean the guide's page, `tarifs/index.html`, which carries the same ids.
 
 | Project | Numidea | Algeria | France | United States |
 |---|---|---|---|---|
@@ -100,7 +110,7 @@ Source: index.html › #market .mk-table; assets/app.js › MARKET.
 | United States | Pitchsite, Web Design Pricing Guide 2026; 8GNC, branding cost 2026; Clutch, web development pricing (Sept. 2026) |
 | Exchange | Banque d'Algérie, taux de change journalier |
 
-To update a market range, change `MARKET` in app.js and the static cells in index.html together; the rate lives in `FX`, the `mk.note` string in three languages, the `price.curNote*` strings and the static callout (BRAND.md › Market comparison, "Where the numbers live").
+To update a market range, change `MARKET` in app.js and the static cells in the `MARKET` template of `scripts/build-tarifs.mjs` together, then `npm run build`; the rate lives in `FX`, the `mk.note` string in the three dictionaries, the `price.curNote*` strings and the static callout in the same template (BRAND.md › Market comparison, "Where the numbers live").
 
 ## How a project is billed
 

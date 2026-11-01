@@ -1,4 +1,5 @@
 > **Historical snapshot (2026-07-31).** Not deployed. Where this file disagrees with README.md, BRAND.md or the code, those win. Current owner to-dos live in OWNER-CONTENT.md.
+> Superseded by the full audit of 2026-10-26 (IMPROVEMENTS.md: backlog, decisions, metrics history) and the fix fleet of 2026-10-31 (its Log row there); the findings below describe the site as it was in July 2026.
 
 # Performance & Accessibility Report
 

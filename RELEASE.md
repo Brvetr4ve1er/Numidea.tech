@@ -4,7 +4,8 @@ How a change reaches the live site, what proves each step, how to undo a
 release, what watches the site afterwards, and the settings only the owner can
 change. Each claim names the file or the documentation it comes from. This
 file is not deployed (`scripts/site.mjs` `NOT_DEPLOYED`). Status as of
-2026-10-24.
+2026-10-31: nothing has deployed since 2026-10-25 (GitHub Actions is blocked
+on billing; [section 9](#9-outage-and-fallback) says what to do meanwhile).
 
 ## 1. Where the site lives
 
@@ -28,47 +29,59 @@ file is not deployed (`scripts/site.mjs` `NOT_DEPLOYED`). Status as of
   - Their pages carry the same canonical URLs, which point at GitHub Pages.
   - The repository does not record the mirrors' addresses or whether they are
     live (owner, below).
-- **What is published:** exactly `DEPLOY` in `scripts/site.mjs`. `scripts/`,
-  `knowledge-base/`, `audit/` and the documents (this file included) never
-  are.
+- **What is published:** exactly `DEPLOY` in `scripts/site.mjs`: the home
+  page in its three languages (`index.html`, `en/`, `ar/`), the price guide
+  in three (`tarifs/`, `en/tarifs/`, `ar/tarifs/`), `404.html`,
+  `robots.txt`, `sitemap.xml`, `assets/`, `scene/`, `hub/`, `workspacehq/`,
+  and `legal/` once it is complete. `scripts/`, `knowledge-base/`, `audit/`
+  and the documents (this file, `NOTICE.md` included) never are. What is
+  served is the staged copy: since 2026-10-31 `npm run stage` strips the
+  comments from every stylesheet and script it copies (the repository keeps
+  them), and `node scripts/stage-check.mjs` proves in a browser that the
+  stripped files parse and compile as their sources do.
 - **Caching:** GitHub Pages answered with `cache-control: max-age=600` on
   2026-10-24, for HTML and assets alike, so a deploy can take up to ten
   minutes to reach a browser. Stylesheets and scripts carry a `?v=` stamp,
-  which changes their URL. The mirrors cache `/assets/*` for a day
-  (`netlify.toml`, `vercel.json`).
+  which changes their URL. The mirrors cache `/assets/*`, `/hub/art/*` and
+  `/workspacehq/embed/*` for a day (`netlify.toml`, `vercel.json`). Netlify's
+  install step runs with `NPM_FLAGS="--omit=dev"`: `package.json` declares
+  only dev dependencies, so it installs nothing.
 
 ## 2. Release checklist
 
 Each step names the command that proves it and where CI runs that command.
-Locally, `npm run verify` runs check, themes, validate, audit, sweep, vbugs
-and keys in one go, and does not stop at the first failure
-(`scripts/verify.mjs`).
+Locally, `npm run verify` runs check, themes, validate, audit, sweep, vbugs,
+keys and stage-check in one go, and does not stop at the first failure
+(`scripts/verify.mjs`). On this machine the browser gates take about an
+hour in all (keys ≈ 14 min, audit ≈ 20, sweep ≈ 10, vbugs ≈ 8, stage-check
+under a minute; 2026-10-31).
 
 | # | Before the push | Proved by | In CI |
 | --- | --- | --- | --- |
 | 1 | A CSS or JS change has a new `?v=` stamp | `npm run bump`. No gate can tell that a stamp is due; `check.mjs` block 4 only keeps all stamps identical | after the deploy, `monitor.yml` checks that the live stamp equals the branch's |
-| 2 | Repository invariants hold: i18n ×3, assets, links, deploy coverage, generated pages, French typography, legal gating, the Supabase switch, LF line endings, no runtime dependency (block 15c), the CSP meta (block 16), asset byte budgets per folder and for the whole published set, no two font files alike (block 17), SEO and structured data (block 18) | `npm run check` (`check.mjs` + `themes-check.mjs`) | `check.yml` job `check` (every push and pull request); `pages.yml` job `gates` |
-| 3 | Every page is valid HTML | `npm run validate` | `check` job; `gates` job |
-| 4 | The build leaves no change: generated files are committed as the generators write them | `npm run build && git diff --exit-code` | `check` job; `gates` job |
+| 2 | Repository invariants hold: the three dictionaries (`assets/i18n/{fr,en,ar}.js`) hold the same keys and every `data-i18n` reference on the language pages resolves in each (blocks 1 and 2), every local asset and every `srcset` candidate exists with its stated width (block 3), links, deploy coverage, generated pages (scene/, the three home pages, the three guide pages), French typography, legal gating, the Supabase switch, LF line endings, no runtime dependency (block 15c), the CSP meta (block 16), every published file under its folder's or its own byte ceiling, the share cards ≤ 300 kB, the set under its total and no two published files alike, licence texts aside (block 17), SEO and structured data (block 18) | `npm run check` (`check.mjs` + `themes-check.mjs`) | `check.yml` job `check` (every push and pull request); `pages.yml` job `gates` |
+| 3 | Every page is valid HTML: the entry pages on html-validate's recommended rules (`.htmlvalidate.json`, nothing relaxed) and the three WorkspaceHQ embed templates on `scripts/validate-embed.json`, which relaxes only what their runtime's `{{ }}` bindings are (the export's own accessibility gaps stay as warnings) | `npm run validate` | `check` job; `gates` job |
+| 4 | The build leaves no change: generated files are committed as the generators write them (`build-scene`, `build-voices`, `build-legal`, `build-lang` for `en/` and `ar/`, `build-tarifs` for the three guide pages, `build-sitemap`, then `build-csp`) | `npm run build && git diff --exit-code` | `check` job; `gates` job |
 | 5 | The CSP meta matches each page's inline scripts | `npm run csp` (rewrites it); `check.mjs` block 16 fails when it is stale | within 2 and 4 |
 | 6 | The site has no runtime npm dependency | `check.mjs` block 15c fails when `package.json` declares one. `npm audit --omit=dev` audits runtime dependencies only: with none, it cannot fail, and it would audit the first one the owner allows | `check` job (both); `gates` job (15c) |
-| 7 | Browser audit: axe, layout shift, desktop LCP, overflow, tap targets, CSP violations, 404.html two folders down (here and on an emulated GitHub Pages, JavaScript on and off), the first screen in fallback type (each theme in French and English, webfonts refused vs loaded, 360 to 1600 wide); the throttled phone's targets are warnings until the phone-speed pass (below) | `npm run audit` (`AUDIT_PHONE_STRICT=1` to enforce the phone targets) | `gates` job; `check.yml` job `nightly` (inside `verify`) |
-| 8 | Painted contrast in every theme | `npm run sweep` | `gates`; `nightly` |
+| 7 | Browser audit (89 runs): axe, layout shift, desktop LCP, overflow, tap targets, CSP violations, on the home page and the price guide in each language's own page, scene/, hub/, workspacehq/ and its embeds; 404.html two folders down (here and on an emulated GitHub Pages, JavaScript on and off); the first screen in fallback type (each theme in French and English, webfonts refused vs loaded, 360 to 1600 wide); the Arabic font files a page in another language fetched (report-only until the copy change); the throttled phone's targets are warnings until the phone-speed pass (below) | `npm run audit` (`AUDIT_PHONE_STRICT=1` to enforce the phone targets) | `gates` job; `check.yml` job `nightly` (inside `verify`) |
+| 8 | Painted contrast in every theme, on every language page of the home and the guide | `npm run sweep` | `gates`; `nightly` |
 | 9 | No visual layout bug outside the allowlist (`scripts/vbugs-allow.json`) | `npm run vbugs` | `gates`; `nightly` |
-| 10 | Keyboard paths, focus rings, dialogs, the contact form (errors, the mail hand-off, the lead store's POST with its switch on), reduced motion (WorkspaceHQ's booted console included), RTL | `npm run keys` | `gates`; `nightly` |
-| 11 | No dead owned or client link | `npm run links` (needs the network) | `nightly`; `monitor.yml` |
-| 12 | No known advisory in any dependency, dev tools included | `npm audit` reports 0 | `nightly` |
+| 10 | Keyboard paths, focus rings, dialogs, the contact form (errors, the mail hand-off, the lead store's POST with its switch on), the guide's estimator handing its scope to the home page's form, reduced motion (WorkspaceHQ's booted console included), RTL (60 runs) | `npm run keys` | `gates`; `nightly` |
+| 11 | The staged site is the site: every page byte for byte the repository's (404.html's root links aside), every stripped stylesheet parsing to the same rules and every stripped script compiling | `node scripts/stage-check.mjs` (last step of `npm run verify`) | `gates` (after keys); `nightly` (inside `verify`) |
+| 12 | No dead owned or client link | `npm run links` (needs the network) | `nightly`; `monitor.yml` |
+| 13 | No known advisory in any dependency, dev tools included | `npm audit` reports 0 | `nightly` |
 
-Rows 7 to 12 run on a GitHub runner, without deploying, when the Check
+Rows 7 to 13 run on a GitHub runner, without deploying, when the Check
 workflow is run by hand on the branch. Do that before the working branch
 moves ([section 3](#3-how-a-change-reaches-the-live-site), step 3).
 
 | # | After the push | Proved by |
 | --- | --- | --- |
-| 13 | The gated deploy is green | Actions → "Deploy to GitHub Pages": the `gates` job and then `deploy` (`pages.yml`). The workflow file puts the gates at about twelve minutes. A red gate leaves the live site as it was |
-| 14 | The live pages answer, carry the new stamp, and stay within the Lighthouse budgets | Actions → "Live monitor" → Run workflow (`monitor.yml`). It also runs every six hours |
-| 15 | The live site passes the browser audit | `AUDIT_BASE=https://brvetr4ve1er.github.io/Numidea.tech npm run audit` (`scripts/audit.mjs`; the local-only runs are skipped) |
-| 16 | The mirrors built the same commit | the Netlify and Vercel dashboards (owner); nothing in this repository watches them |
+| 14 | The gated deploy is green | Actions → "Deploy to GitHub Pages": the `gates` job and then `deploy` (`pages.yml`). The workflow file puts the gates at about twelve minutes. A red gate leaves the live site as it was. A push that changes only `**.md`, `knowledge-base/**` or `audit/**` starts no deploy (`paths-ignore`); `check.yml` still runs on it |
+| 15 | The live pages answer, carry the new stamp, and stay within the Lighthouse budgets | Actions → "Live monitor" → Run workflow (`monitor.yml`). It also runs every six hours |
+| 16 | The live site passes the browser audit | `AUDIT_BASE=https://brvetr4ve1er.github.io/Numidea.tech npm run audit` (`scripts/audit.mjs`; the local-only runs are skipped) |
+| 17 | The mirrors built the same commit | the Netlify and Vercel dashboards (owner); nothing in this repository watches them |
 
 ### Owner-only items
 
@@ -82,18 +95,20 @@ site does until then. Details and status are in
 | Legal notice and privacy details | [§1](OWNER-CONTENT.md#1-legal-notice--privacy-page) | `legal/` is built and deployed only when every field is filled; until then `check.mjs` refuses any link to it |
 | Client quotes, with consent | [§2](OWNER-CONTENT.md#2-client-quotes-voices) | the build refuses a quote without a consent date and where the consent is kept |
 | Founder photo | [§3](OWNER-CONTENT.md#3-founder-photo) | a monogram shows |
-| Team photos; the "four specialists" claim | [§4](OWNER-CONTENT.md#4-team) | initials show; the claim stays until confirmed or corrected |
+| Team photos; the "four specialists" claim | [§4](OWNER-CONTENT.md#4-team) | answered 2026-10-30 (one founder, with freelancers when needed); initials and the claim stay on the page until the copy change ships |
 | A studio email on its own domain | [§5](OWNER-CONTENT.md#5-studio-email-on-its-own-domain) | `check.mjs` fails until every contact point uses one address |
 | Clients' permission for paid ads | [§6](OWNER-CONTENT.md#6-clients-permission-for-paid-ads) | the campaign kit is not in this repository |
 | Nomara Voyages: client or not | [§7](OWNER-CONTENT.md#7-nomara-voyages) | shown as delivered work |
 | Arabic native review | [§8](OWNER-CONTENT.md#8-arabic-native-review) | the Arabic dictionary blocks carry a banner |
 | Clients' own domains | [§9](OWNER-CONTENT.md#9-clients-own-domains) | the cards link the Netlify builds; `node scripts/verify-domains.mjs` says when a domain can replace one |
-| Hub fan art rights | [§10](OWNER-CONTENT.md#10-hub-fan-art) | none on the hub since its rebuild of 2026-10-28 (live at the next deploy); still in git history |
+| Hub fan art rights | [§10](OWNER-CONTENT.md#10-hub-fan-art) | none on the hub since its rebuild of 2026-10-28 (not live: nothing has deployed since 2026-10-25, section 9); still in git history |
 | Supabase lead store | [§11](OWNER-CONTENT.md#11-supabase-lead-store) | off; `check.mjs` refuses to switch it on without the legal page, the region and a new form note |
 | Campaign kit and git history | [§12](OWNER-CONTENT.md#12-campaign-kit-and-this-repository) | see [section 8](#8-the-git-history) below |
 | WorkspaceHQ: open source or not | [§13](OWNER-CONTENT.md#13-workspacehq-open-source) | the pages say the code is public, not open source |
 | Claims only the owner can confirm | [§14](OWNER-CONTENT.md#14-claims-only-the-owner-can-confirm) | on the site until confirmed or corrected |
 | Hub illustrations: titles, Kūro, the badge | [§15](OWNER-CONTENT.md#15-hub-illustrations) | the diary titles are drafts; the page says only "Kūro, the black cat"; the badge is a costume detail |
+| Commercial terms | [§16](OWNER-CONTENT.md#16-commercial-terms) | drafted on the owner's instruction of 2026-10-31, his to change; the FAQ carries them from the next change on |
+| Team and contact facts | [§17](OWNER-CONTENT.md#17-team-and-contact-facts-answered-2026-10-30) | answered 2026-10-30; the copy follows with the next change |
 
 Then the one-time repository settings in [section 7](#7-settings-only-the-owner-can-change),
 and the domain in [section 6](#6-domain-and-dns).
@@ -103,9 +118,9 @@ and the domain in [section 6](#6-domain-and-dns).
 The phone targets are LCP ≤ 2.5 s, long tasks ≤ 300 ms and the slowest interaction ≤ 200 ms on a throttled phone (`scripts/audit.mjs`, `PHONE`), and LCP ≤ 2.5 s, TBT ≤ 200 ms in Lighthouse mobile. The site misses them today. The throttled phone in `npm run audit` measured LCP 2.8–3.7 s, 1.3–3.6 s of long tasks, and the language switch, its slowest interaction, at 0.4–0.9 s against 200 ms (2026-10-24 and 25, a 4-CPU machine, French faster than Arabic). Lighthouse mobile on the live site, a different measurement, gave median LCP 4.99 s (fr) and 5.89 s (ar), TBT 236–252 ms. Gating deploys on them would block every deploy, so for now:
 
 - `npm run audit` reports the phone targets as warnings; `AUDIT_PHONE_STRICT=1` makes them fail.
-- `monitor.yml` holds Lighthouse mobile to regression ceilings at today's level (`LCP_MS_MOBILE` 6500, `TBT_MS_MOBILE` 350), so the phone cannot get slower unnoticed; desktop and layout shift are held to the targets.
+- `monitor.yml` holds Lighthouse mobile to regression ceilings at today's level (`LCP_MS_MOBILE` 6500, `TBT_MS_MOBILE` 350), so the phone cannot get slower unnoticed; desktop and layout shift are held to the targets. Its Arabic run opens `/ar/`, the Arabic page, since 2026-10-31.
 
-A speed pass comes next (fonts, the weight of `assets/app.js` and `assets/styles.css`, the language paint-hold, the hero image, main-thread work at start). Its font work includes Android. None of the faces in `assets/fonts.css`'s fallback lists ships there, so on Android a late webfont swaps from unadjusted system fonts and can still move the hero. Calibrating fallbacks for Android's own fonts needs a real device to confirm how Chrome there resolves `local()` names. When the phone meets the targets, set `AUDIT_PHONE_STRICT=1` in `pages.yml` and `check.yml`, and lower `LCP_MS_MOBILE` and `TBT_MS_MOBILE` in `monitor.yml` to 2500 and 200.
+The first speed pass shipped on 2026-10-31 (IMPROVEMENTS F17): the language paint-hold is gone with the static `/en/` and `/ar/` pages (each loads one dictionary, about 10 KB gzipped, instead of the three inside `app.js`), the staged stylesheets and scripts lose their comments, every capture has a phone-size variant in a `srcset`, the hero deck's other four slides wait for the first interaction, and the Geist faces are declared once per weight range. Measured on a phone served gzipped from the checkout: the home's first screen 467 → 344 KB (ar 587 → 465 KB), the scene's full page 1.69 → 0.74 MB. The throttled phone's timed interactions are now the menu, the FAQ, the folded estimator, its slider and the currency switch; the language switch is a link to the other language's page, so it is no longer timed (the tap must land on that page, in that language). It still misses the target: the throttled Arabic home measured LCP 3,032 ms on 2026-10-31 (report-only). What remains: the hero image, main-thread work at start, the fonts on Android. None of the faces in `assets/fonts.css`'s fallback lists ships there, so on Android a late webfont swaps from unadjusted system fonts and can still move the hero. Calibrating fallbacks for Android's own fonts needs a real device to confirm how Chrome there resolves `local()` names. When the phone meets the targets, set `AUDIT_PHONE_STRICT=1` in `pages.yml` and `check.yml`, and lower `LCP_MS_MOBILE` and `TBT_MS_MOBILE` in `monitor.yml` to 2500 and 200.
 
 ## 3. How a change reaches the live site
 
@@ -130,12 +145,15 @@ A speed pass comes next (fonts, the weight of `assets/app.js` and `assets/styles
 4. Only when both jobs are green, fast-forward the working branch to that
    branch and push.
 5. `pages.yml` runs `gates`: the invariants, validate, build-no-diff, then
-   audit, sweep, vbugs and keys on Playwright's Chromium. Every gate runs even
-   after one fails, so a red run lists everything that is wrong. `deploy`
-   runs only when `gates` passed (`needs: gates`). It stages `_site/`
-   (`stage-site.mjs --pages`, which also points `404.html`'s JavaScript-off
-   links at the repository subpath) and publishes it, and it is the only job
-   with Pages write and OIDC token permissions.
+   audit, sweep, vbugs, keys and stage-check on Playwright's Chromium. Every
+   gate runs even after one fails, so a red run lists everything that is
+   wrong. `deploy` runs only when `gates` passed (`needs: gates`). It stages
+   `_site/` (`stage-site.mjs --pages`, which also points `404.html`'s
+   JavaScript-off links at the repository subpath and strips the comments
+   from the staged stylesheets and scripts) and publishes it, and it is the
+   only job with Pages write and OIDC token permissions. A push that touches
+   only documentation (`**.md`, `knowledge-base/**`, `audit/**`) does not
+   start this workflow at all.
 6. Deploys run one at a time (`concurrency: pages`, never cancelled
    mid-flight). Newer pushes wait, and of those only the latest queued one
    runs.
@@ -152,7 +170,12 @@ remembers display preferences in `localStorage`, and a rollback leaves them
 in place:
 
 - the language, theme and currency (`numidea-lang`, `numidea-theme`,
-  `numidea-cur`; `assets/app.js`, `assets/page-i18n.js`);
+  `numidea-cur`; `assets/app.js`, `assets/page-i18n.js`; the language
+  switch's links and the home page's head script store and read
+  `numidea-lang`, so a stored `en` or `ar` sends `/` to that language's
+  page), and, for one tab, the price guide's estimator scope on its way to
+  the home page's form (`sessionStorage` `numidea-prefill`, cleared on
+  arrival);
 - hub/'s theme (`void-theme`, `hub/app.js`);
 - WorkspaceHQ's motion switch (`whq-motion`, `workspacehq/app.js`) and the
   embeds' playback position (`animstage-v3…`,
@@ -276,8 +299,9 @@ workflows", `schedule`):
 Not watched:
 
 - the mirrors (the monitor reads only `BASE`);
-- CSP violations on the live site (run checklist step 15 by hand);
-- anything between two six-hourly runs.
+- CSP violations on the live site (run checklist step 16 by hand);
+- anything between two six-hourly runs;
+- anything at all while Actions is blocked ([section 9](#9-outage-and-fallback)).
 
 ## 6. Domain and DNS
 
@@ -304,8 +328,9 @@ When a domain exists:
    HTTPS. A `CNAME` file in the repository does not set the domain; this
    setting does (GitHub Docs, "Configuring a publishing source").
 3. **Change `BASE`** in `scripts/site.mjs`, run `npm run build` (sitemap,
-   scene/), and update the hand-written heads in `index.html`, `hub/`,
-   `workspacehq/` and `robots.txt`.
+   scene/, and the generated `en/`, `ar/` and `tarifs/` pages, which take
+   their addresses from `index.html`'s head), and update the hand-written
+   heads in `index.html`, `hub/`, `workspacehq/` and `robots.txt`.
    - `npm run check` names what still points at the old address: block 6
      checks the static canonicals; block 18 checks the `og:` URLs, the
      hreflang alternates against the sitemap, the `Sitemap:` line in
@@ -420,3 +445,73 @@ decision (GitHub Docs, "Removing sensitive data from a repository"):
   merge brings the history back.
 - **Settings.** Branch protection must allow the force push while the
   rewrite runs.
+
+## 9. Outage and fallback
+
+**Status (2026-10-31): nothing has deployed since 2026-10-25.** Every GitHub
+Actions run on the repository has failed within seconds since 2026-10-25
+16:42 UTC, before any step runs: the account's billing (a spending limit or
+an unpaid balance, which GitHub's billing documentation says stops Actions
+from running) blocks the runners. So `pages.yml` deploys nothing, `check.yml` proves nothing on a
+runner, `monitor.yml` watches nothing, and Dependabot's pull requests get no
+`check` run. The live site still carries stamp `202610251516`; everything
+pushed since (the hub rebuild of 2026-10-28, the fleet of 2026-10-31, the
+static `/en/`, `/ar/` and `/tarifs/` pages) is on the branch and not live.
+Only the owner can clear it (Settings → Billing and plans), and nothing in
+this repository can tell when he has.
+
+**What the sessions do meanwhile (owner decision, 2026-10-30: push anyway,
+the site deploys later).**
+
+- Every push still runs the whole protocol locally first: `npm run build`
+  (no diff), `npm run verify` green with `CHROMIUM_PATH` set, `npm run
+  links`, `npm run metrics`; the Actions state is reported honestly in the
+  log (IMPROVEMENTS.md) and never as "deployed".
+- The weekly session probes the live stamp itself while the monitor cannot:
+  `curl -s https://brvetr4ve1er.github.io/Numidea.tech/ | grep -o '?v=[0-9]\{12\}' | head -1`
+  against the branch head's stamp (`grep -o '?v=[0-9]\{12\}' index.html | head -1`).
+  Equal stamps mean the site has moved; the stamp alone cannot show a deploy
+  whose gates were red, so the first run after billing clears is read in
+  Actions.
+- Once Actions runs again: re-run "Deploy to GitHub Pages" on the branch
+  head (it deploys the whole branch, so no intermediate push needs
+  replaying), then "Live monitor", then check Dependabot's open pull
+  requests, which will each want a green `check`.
+
+**Fallback release path, if the site must move before billing is cleared.**
+`BASE` does not move: the canonical host stays GitHub Pages, the sitemap,
+the canonicals and the share-card URLs keep naming it, and nothing in the
+repository changes. The mirrors are only a way to put the same files on a
+screen.
+
+1. Run the gates locally as above; stage the site with the mirrors' root:
+   `npm run stage` (the site at `/`; `--pages` is GitHub's subpath and is
+   wrong for a mirror), then `node scripts/stage-check.mjs` has already
+   proved the stripped copies, and `_site/` is what the hosts would build.
+2. Deploy by hand with the host's CLI, from the repository root:
+   - Netlify: `npx netlify-cli deploy --dir=_site --prod` publishes the
+     staged folder as it is (first `npx netlify-cli login`, then
+     `netlify link` to the project; its state goes to `.netlify/`, which
+     `NOT_DEPLOYED` already lists). The mirror's Git-connected builds, if
+     any, replace it at the next push.
+   - Vercel: `npx vercel --prod` after `npx vercel login` (state in
+     `.vercel/`, also in `NOT_DEPLOYED`) sends the repository and lets
+     Vercel run `vercel.json`'s build command (check, themes-check, stage:
+     Node only, no browser), so the headers in `vercel.json` apply; `cd
+     _site && npx vercel --prod` would publish the folder bare, without
+     them.
+   Both CLIs come from npm, not from `package.json`: run them with `npx`,
+   never add them as dependencies (check block 15c would fail, and the
+   site needs none).
+3. Say where it went: the mirror's address is not recorded in this
+   repository (section 7, "Mirrors"), and a mirror serving the branch while
+   GitHub Pages serves the 2026-10-25 build means two versions of the site
+   are public at once, each carrying the canonical of the one that is
+   behind. That is acceptable for days, not for a campaign: an ad link must
+   point at the host that has the page it promises (`/en/`, `/ar/`,
+   `/tarifs/` do not exist on the live GitHub Pages build).
+4. When GitHub Pages deploys again, the mirror becomes a mirror again by
+   itself at the next push, or is rolled back as in section 4C.
+
+Nothing above was exercised on 2026-10-31: the owner chose to push and wait,
+and no mirror deploy was made.

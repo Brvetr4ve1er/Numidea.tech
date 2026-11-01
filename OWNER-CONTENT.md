@@ -2,26 +2,28 @@
 
 The site leaves a place for each item below and shows nothing until the real
 thing exists: no placeholders, no invented content. This file is not deployed.
-Status as of 2026-10-12 (updated after the review round); rows 10 and 15 as of
-2026-10-28.
+Status as of 2026-10-31 (after the owner's answers of 2026-10-30 and the fix
+fleet of 2026-10-31; sections 16 and 17 record those answers).
 
 | # | Item | Status | Where it goes |
 |---|---|---|---|
-| 1 | Legal notice + privacy details | **Missing (14 fields; 5 in three languages)** | `scripts/legal-data.mjs` |
+| 1 | Legal notice + privacy details | **Missing (16 fields; 5 in three languages)**; "later" (owner, 2026-10-30): the pages stay unpublished, the slots stay empty | `scripts/legal-data.mjs` |
 | 2 | Client quotes, with consent | None yet | `scripts/voices-data.mjs` |
 | 3 | Founder photo | None (monogram "Y" shows) | `assets/founder.webp` |
-| 4 | Team names and photos; the team-size claim | Initials D, S, T; "four specialists" claimed | `index.html` #founder, `assets/app.js` |
-| 5 | A studio email on its own domain | Personal Gmail in use | everywhere one address appears |
+| 4 | Team names and photos; the team-size claim | Answered 2026-10-30: one founder, with freelancers when needed (section 17); the copy follows with the next change. Until then the page still says "four specialists" and shows initials D, S, T | `index.html` #founder, `assets/i18n/*.js` |
+| 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending | `assets/app.js`, `scripts/scene-data.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added on 2026-10-31 is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
-| 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history; live at the next deploy) | git history of `hub/` |
+| 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
 | 12 | Campaign kit and git history | Kit with the owner | outside this repo |
 | 13 | WorkspaceHQ: open source or not | Claim removed (no licence, no README) | `Brvetr4ve1er/workspace-HQ`, then `workspacehq/`, `scripts/scene-data.mjs` |
-| 14 | Claims only the owner can confirm | 8 open | see section 14 |
+| 14 | Claims only the owner can confirm | 8 listed: 5 open, 3 answered on 2026-10-30 (one applied, two waiting for the copy change) | see section 14 |
 | 15 | Hub illustrations (yours: you and Kūro) | 3 points for your review (the diary titles approved 2026-10-28) | `hub/` |
+| 16 | Commercial terms (payment, ownership, hosting, revisions, support, contract, the Aperçu rules) | Drafted on your instruction of 2026-10-31; yours to change at any time | section 16; the FAQ, shipped by the next change |
+| 17 | Team and contact facts | Answered 2026-10-30 | section 17; the copy follows with the next change |
 
 ## 1. Legal notice + privacy page
 Fill every `null` in `scripts/legal-data.mjs`. `false` means "does not apply"
@@ -35,9 +37,20 @@ postal address, contact email, registration label and number (ANAE card / NIF),
 publication director, GitHub's postal address (public, in GitHub's terms),
 retention period for enquiries, the email for privacy requests, the ANPDP
 declaration status (or `false`), the licence for the site's text and images
-(`cc0` keeps the current LICENSE; `reserved` reserves them), and the date of the
-review. Preview with the gaps marked: `node scripts/build-legal.mjs --preview`
-→ `legal-preview/` (never deployed).
+(`cc0` keeps the current LICENSE; `reserved` reserves them), the date of the
+review, and, since 2026-10-31, two facts about how leads arrive:
+`privacy.metaAds` (does the studio run Facebook/Instagram ads?) and
+`privacy.whatsappBusiness` (is the number on the WhatsApp Business app?). For
+those two, `true` prints the sentences, `false` drops them (the ad section
+and its "et les publicités" clause go, and the WhatsApp Business sentence with
+them), and `null` blocks publication like any other field. Preview with the
+gaps marked: `node scripts/build-legal.mjs --preview` → `legal-preview/`
+(never deployed). One thing to know before answering `metaAds: false`: the ad
+section is also the only place the privacy page explains how `?ref=`, `utm_*`
+and a Meta or Google click id are handled, and the site carries them into the
+email and the WhatsApp text whether or not an ad brought the visitor. If the
+answer is no, say so and a short neutral paragraph on campaign codes replaces
+the section; nothing is invented meanwhile.
 
 Five of those are text that changes with the language, so each takes one
 value per language, `{ fr, en, ar }`: the legal form, the capital, the
@@ -45,8 +58,8 @@ registration label, the retention period and the ANPDP status (for example
 `retention: { fr: '3 ans après le dernier échange', en: '3 years after the
 last exchange', ar: '3 سنوات بعد آخر تواصل' }`). A plain string there counts
 as missing in all three languages. Names, numbers, addresses and emails take
-one value. The build counts 14 fields; a translated field with gaps counts
-once per missing language.
+one value. The build counts 16 fields (26 gaps counting each language); a
+translated field with gaps counts once per missing language.
 
 The hosts list names GitHub only. If the Netlify or Vercel mirror is public,
 add `'netlify'` / `'vercel'` to `hosts` so the privacy page names every host
@@ -73,19 +86,21 @@ A real photo, never a generated face: square, at least 400 px, saved as
 `<img>` line; the monogram steps aside. Run `npm run bump`.
 
 ## 4. Team
-The three specialists show initials only. To show a person, replace their
-initial with `<img src="assets/team/<x>.webp" alt="" width="88" height="88">`
-inside `.tm-i` (comment above the team list). **Confirm the claim**: the site
-says "four specialists" (hero, "three specialists around him", "a
-four-person studio" in the brand-identity service; the proof band's "4
-personnes dans l'équipe" counter went on 2026-10-26). If that is no longer
-true, say so and the copy changes in all three languages.
+**Answered on 2026-10-30: one founder, with freelancers when needed** (section
+17). The copy that still says otherwise changes with the next change, in all
+three languages: the hero lede ("un fondateur designer-développeur et trois
+spécialistes"), the founder block and its team card (initials D, S, T), FAQ 5
+and FAQ 6, and the brand-identity service's "a four-person studio". No
+initials and no team photos after that: there is no team to show. The hub's
+line "an agency of one" stays as the owner chose on 2026-10-28; it stops
+contradicting the home page once the copy lands.
 
-The team card gives first contact and "turning the idea into scope" to S
-(sales and partnerships). FAQ 6 therefore no longer says "the person who
-scopes your project is the one who codes it"; it says one team scopes, codes
-and ships. If the builder is in fact on every scoping call, that stronger
-line can come back.
+Until then the page still says "four specialists" (the proof band's "4
+personnes dans l'équipe" counter went on 2026-10-26), and the team card still
+gives first contact and "turning the idea into scope" to S. FAQ 6 says one
+team scopes, codes and ships; with one founder, the stronger line "the person
+who scopes your project is the one who codes it" becomes true again and can
+come back in the same change.
 
 ## 5. Studio email on its own domain
 Today every contact point uses `hamissemohamedyasser@gmail.com`. Once a domain
@@ -115,6 +130,10 @@ usually agreed with the client; the same email or WhatsApp message as for
 item 6 can cover it.
 
 ## 8. Arabic native review
+**Every Arabic string added on 2026-10-31 awaits native review** (the list is
+at the end of this section, "Written on 2026-10-31"); nothing Arabic written
+by the fix fleet has been read by a native speaker.
+
 The Arabic copy was written for this site and needs a native speaker's pass.
 Conventions to keep: Western digits, forward arrows `←`, singular "you", brand
 names in Latin script except نوميديا in prose. Points worth a second look:
@@ -224,9 +243,32 @@ Written on 2026-10-26 (owner decisions), in `assets/app.js`:
   تواصل». The section's own strings (`how.*`, `price.ob*`) are gone and need
   no review; `nav.about` «المنهج» is unchanged and now leads to the card.
 
-Files: `assets/app.js` (both `ar:` blocks carry a banner), the `UI.ar` and
-project `ar` texts in `scripts/scene-data.mjs`, and the `lang="ar"` lines in
-`404.html`.
+Written on 2026-10-31 (the fix fleet), each saying what its French and
+English counterparts say; none read by a native speaker yet:
+- the Arabic share card's texts, in `assets/i18n/ar.js`: `meta.ogDesc`,
+  `meta.twDesc` (the Aperçu promise, as the French og and twitter
+  descriptions say it) and `meta.ogAlt`;
+- the card itself, `assets/og-ar.jpg`, drawn by `scripts/build-og.mjs`
+  (`CARDS.ar`): the kicker «المعاينة · عرضنا المميّز», the subtitle, the foot
+  line «استوديو ويب · برج بوعريريج · العربية · الفرنسية · الإنجليزية» and the
+  plate caption «لوحة 2 — قوس تراجان · تيمقاد»;
+- the price guide's eight keys in `assets/i18n/ar.js` (`tarifs.title`,
+  `tarifs.desc`, `tarifs.crumbAria`, `tarifs.kicker`, `tarifs.h1`,
+  `tarifs.lead`, `tarifs.link`, `tarifs.navLink`), baked into
+  `ar/tarifs/index.html`;
+- `price.lead`, changed in the three languages so that it no longer says the
+  market comparison is beside the prices (it is on the guide now); the
+  Arabic change is machine-drafted.
+Nothing else Arabic changed that day: the ad and WhatsApp Business sentences
+of the privacy page are the existing ones, now conditional (section 1), and
+the language switch's ع is drawn, with its `aria-label` «العربية (ع)»
+unchanged.
+
+Files: the dictionaries `assets/i18n/ar.js` (the `ar` block carries a
+banner; since 2026-10-31 the three languages are one file each, no longer in
+`assets/app.js`), the `UI.ar` and project `ar` texts in
+`scripts/scene-data.mjs`, `CARDS.ar` in `scripts/build-og.mjs`, and the
+`lang="ar"` lines in `404.html`.
 
 ## 9. Clients' own domains
 The cards link the Netlify builds, because none of the clients' domains serves
@@ -285,24 +327,44 @@ that repository, then restore the wording in `workspacehq/index.html` and
 ## 14. Claims only the owner can confirm
 Each is on the site today. None is proven false; none could be verified.
 Confirm it, or say what is true and the copy changes in all three languages.
+Eight are listed: five open, three answered on 2026-10-30 (marked; one
+applied, two waiting only for the copy change).
 - **"6 ans" of experience** (founder card) next to freelance work "2019 —
   aujourd'hui", which is about 7 years in October 2026.
 - **"des clients en France"** (FAQ 5, plural): the portfolio shows one French
   client (AlmaFlowClim).
-- **"nous livrons avec … React, Next.js, Vercel"** (market note): every
-  delivered build linked from the site is served by Netlify, and only Bordj
-  Steel shows Next.js.
+- **"nous livrons avec … React, Next.js, Vercel"** (market note, on the price
+  guide since 2026-10-31): every delivered build linked from the site is
+  served by Netlify, and only Bordj Steel shows Next.js. (The next change
+  drops the Vite and Vercel pills and keeps React and Next.js, which the
+  Bordj Steel build shows; the rest of the toolchain, F11, is still yours to
+  confirm.)
 - **Essentiel: "Mise en ligne, domaine et certificat configurés"**: no
   delivered client site is served from its own domain yet (see 9).
-- **AlmaFlowClim labelled "Industrie"**: its own site presents a residential
-  heating, air-conditioning and plumbing business.
 - **"Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le
   reste."** (`prev.tl5p`, the last step of the path in the Aperçu card;
   until 2026-10-26, step 4 of the method, which first said "on est déjà à
-  mi-chemin") after a one-page Aperçu, for projects of up to 16 weeks.
+  mi-chemin") after a one-page Aperçu, for projects of up to 16 weeks. The
+  Aperçu rules you ordered drafted (section 16) say what a yes includes; the
+  sentence stays until you confirm it against them.
+- **"Leader de la construction métallique en Algérie"** (Bordj Steel's card,
+  `proj4.desc`; IMPROVEMENTS F13): the client's own tagline, stated as fact
+  in the studio's voice. **Answered 2026-10-30** (decision 19): replaced by
+  the project sheet's checkable description; ships with the next change.
+- **"avec du café noir et du TypeScript"** (the README's signature; until
+  2026-10-26 also the footer signoff, which left with the Studio column and
+  whose key is gone from the dictionaries; IMPROVEMENTS F14): this site
+  contains no TypeScript. **Answered 2026-10-30** (decision 10): JavaScript;
+  applied to the README on 2026-10-31, the last place it was said.
 - **hub/: "VOIDSPLUNKER.std is an agency of one"** while the home page
-  presents a studio of four specialists. (You chose on 2026-10-28 to keep the
-  line on the hub; the home page's team wording is the open half, A3.)
+  presents a studio of four specialists. **Answered 2026-10-30**: one
+  founder, with freelancers when needed (section 17); the line stays on the
+  hub as you chose on 2026-10-28, and the home page's team wording follows
+  with the next change.
+
+Dropped from this list on 2026-10-31: AlmaFlowClim labelled "Industrie". The
+card has read "Artisan · Île-de-France" since the copy rewrite of 2026-10-14,
+which is what its own site presents.
 
 ## 15. Hub illustrations
 The rebuilt `hub/` is drawn from your illustrations of yourself and Kūro.
@@ -319,3 +381,56 @@ points remain for your review:
   may find them garbled: keep them, or have them painted out. (The letters
   on the blueprints are kept as a drafting convention, and the scribbles on
   the wall notes as texture.)
+
+## 16. Commercial terms
+The site said nothing about what happens after the yes (IMPROVEMENTS A1,
+A5). On 2026-10-31 you answered "make them up", so the studio's commercial
+terms below were drafted on your instruction of that date, conservative and
+standard; they are yours and you can change any of them at any time. The
+first change after the fleet of 2026-10-31 writes them into the FAQ (payment;
+ownership and hosting; the Aperçu rules), French first, English and Arabic
+translated, the Arabic marked for native review (section 8). Until that
+change ships, the site still says nothing about them.
+
+- **Payment:** 40 % at order (devis signé), 60 % at delivery, before the site
+  goes live. Bank transfer or CCP in Algeria; bank transfer in euros or
+  dollars abroad. Firm price fixed after scoping; it does not move; overruns
+  are on the studio.
+- **Ownership:** once paid in full, the client owns the site, its code, its
+  design files and its content. The domain is registered in the client's
+  name. The studio keeps the right to show the work in its portfolio unless
+  the client refuses in writing.
+- **Hosting:** chosen with the client and billed yearly by the host, in the
+  client's name; the studio sets it up and hands over the access. An order
+  of magnitude ("à partir de ~5 000 DA/an pour un site vitrine") is printed
+  only if a checkable public price exists for the recommended host;
+  otherwise no figure.
+- **Revisions:** two rounds per stage (design, then build) included; further
+  rounds quoted.
+- **Support:** 30 days of bug fixes after delivery included; the optional
+  maintenance (18 000–60 000 DA/month, already published) covers updates,
+  backups, small changes and a reply the next working day.
+- **Contract:** a written quote and a signed order form before any work;
+  Algerian law.
+- **Aperçu rules:** any registered business (RC, carte d'auto-entrepreneur,
+  SIRET or an equivalent trade licence); the 5 working days start when the
+  studio has the content (logo, texts, photos) after a 30-minute call; after
+  a no, the preview is deleted and nothing is owed; after a yes, the preview
+  becomes the homepage inside the package at no extra cost; when the month's
+  4 places are taken, the request goes to the next month in order of
+  arrival.
+
+The tax line on dinar prices (HT, TTC or not liable to TVA) and the € note's
+reverse-charge clause are not in this list: they are facts, not terms, and
+stay with you (IMPROVEMENTS A1, owner facts).
+
+## 17. Team and contact facts (answered 2026-10-30)
+- **Team:** one founder, with freelancers when needed. See section 4 for
+  what changes on the page.
+- **Contact:** WhatsApp only, no voice calls; Sunday to Thursday, 9h–18h
+  (Algiers time); the Gmail address stays (section 5). On the page this
+  turns every "24 h ouvrées" into "le jour ouvré suivant (dimanche–jeudi,
+  9h–18h)" (the title block, the proof line, the Aperçu path, FAQ 4, the
+  contact block), and no `tel:` link is added. Ships with the next change;
+  until then the site still says "< 24 h ouvrées" and defines no working
+  days.

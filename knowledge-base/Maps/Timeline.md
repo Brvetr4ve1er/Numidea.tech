@@ -1,12 +1,12 @@
 ---
 type: map
-updated: 2026-10-19
-sources: [git log, README.md, OWNER-CONTENT.md, assets/styles.css]
+updated: 2026-10-31
+sources: [git log, README.md, OWNER-CONTENT.md, IMPROVEMENTS.md, RELEASE.md, assets/styles.css]
 ---
 
 # Timeline
 
-The site's history as the git log tells it, from the first commit on 2025-06-28 to the knowledge-base export on 2026-10-19, cut down to the milestones and grouped by month, then by theme of work. Each line cites the commit it summarises; `git show <hash>` gives the full message. This is history: where an early commit and the current files disagree, the current files and the other maps win; start with October if you only need to know how the site got to its present shape.
+The site's history as the git log tells it, from the first commit on 2025-06-28 to the fix fleet of 2026-10-31, cut down to the milestones and grouped by month, then by theme of work. Each line cites the commit it summarises; `git show <hash>` gives the full message. This is history: where an early commit and the current files disagree, the current files and the other maps win; start with October if you only need to know how the site got to its present shape.
 
 ## At a glance
 
@@ -17,7 +17,7 @@ The site's history as the git log tells it, from the first commit on 2025-06-28 
 | 2026-07 | Bordj Steel card, project explorer, hub/, layout prototypes, scene/ as an engineering drawing, first full audit (commits e4482e5, 3831985, d2c95c3, 5ead4c4, bb8451f, fc9555b) |
 | 2026-08 | A/B/C variants, identity detours, Arcanum restored with Engineering as a sixth theme, mobile, self-hosted fonts (commits 9742267, 4a5aed0, 98e7d84, 127d323, cadd674, f5bf3ab) |
 | 2026-09 | Stress test, second audit, anti-slop sweep, zero layout shift (commits 4d4555c, b1dc2d8, 1302144, 5fe7e22) |
-| 2026-10 | Pricing, atlas, hub and WorkspaceHQ, token contract, one site, gates, currency, legal, Arabic, copy rewrite, round 3, knowledge base (commits 3b2375c, 6ec42b4, 0775f7a, a0b6689, f7ce370, d1e9219, c8801a3, eeca4f2, 9394ddc, 29805ac, 16d16e7, 250c133, 9afd9ba) |
+| 2026-10 | Pricing, atlas, hub and WorkspaceHQ, token contract, one site, gates, currency, legal, Arabic, copy rewrite, round 3, knowledge base (commits 3b2375c, 6ec42b4, 0775f7a, a0b6689, f7ce370, d1e9219, c8801a3, eeca4f2, 9394ddc, 29805ac, 16d16e7, 250c133, 9afd9ba); then, from 2026-10-24, the release and monitoring work, the full audit and its backlog (commits 485bc0c, 82603b0, ecf48bb), the owner's decisions and the clear-cut fixes (0629770, 951d390, a44de7e), the hub rebuilt on the owner's illustrations (4099344) and the fix fleet of 2026-10-31 (590c258, 67e04ad, 10b90ff, ff2cec9, 2ad9e7d, 7ad7b67, 786ba8e). Nothing has deployed since 2026-10-25 (RELEASE.md › 9) |
 
 ## 2026-06 — the first site
 
@@ -41,7 +41,7 @@ Graph: [[Neon Noir theme (now 'noir')]], [[Decision full rebrand to Arcanum]], [
 - Layout experiments: four selectable layouts, 2a to 2d (commits 5ead4c4, d893ff0, 02a9133, b855133); a 3D scene in the projects section (commit 73b0229); 2d "Atelier Split" promoted to the homepage, then removed (commits 3e13396, a9fd6da); the 2a–2d prototypes retired (commit 673de57).
 - scene/: two rendering prototypes, B and C, built in scene-b/ and scene-c/ (commit 117e0af); approach C, "the work as an engineering drawing", ships as scene/ and both prototype folders are removed (commit bb8451f).
 - Deploy and leads: cache-bust stamps on every asset reference (commit 565d63b); a Vercel config and Supabase-ready lead capture, mailto preserved (commit 0d470d9).
-- 2026-07-31: full codebase audit, invariant tooling and `/audit` (commit fc9555b); `audit/` is now a dated snapshot that is never deployed (README.md › This repository — the landing page). The homepage is restructured to half its length, proof up front (commit 55084b0).
+- 2026-07-31: full codebase audit, invariant tooling and `/audit` (commit fc9555b); `audit/` is now a dated snapshot that is never deployed, superseded by IMPROVEMENTS.md since 2026-10-26 (README.md › This repository — the landing page; audit/Executive_Summary.md › banner). The homepage is restructured to half its length, proof up front (commit 55084b0).
 
 Graph: [[Project-explorer modal (workslug hash router)]], [[hub (VOIDSPLUNKER.std founder page)]], [[Executive Summary - full codebase audit (2026-07-31, commit a9fd6da)]], [[Executive_Summary_-_full_codebase_audit_2026-07-31,_commit_a9fd6da]]. The audit's reports and what became of each finding: [[Code audit (2026-07)]].
 
@@ -52,7 +52,7 @@ Graph: [[Project-explorer modal (workslug hash router)]], [[hub (VOIDSPLUNKER.st
 - Motion: ambient parallax and staggered reveals on the hub and the main site (commits 760d66f, 5173e53).
 - Mobile: the hero deck rendered 0x0 on every phone, fixed (commit 3bdc93f); dead space and touch targets (commit a3da0f2); "native across every size" (commit cadd674).
 - Hero: the drafting title block (commit 1a0aa31) with the real work in it (commit 1253e9d); a custom icon set (commit 191a39b).
-- Fonts and first paint: webfonts self-hosted (commit f5bf3ab); the page holds still when they arrive (commit de1d0c5); the language is resolved before first paint (commit e424179).
+- Fonts and first paint: webfonts self-hosted (commit f5bf3ab); the page holds still when they arrive (commit de1d0c5); the language is resolved before first paint (commit e424179; the paint-hold it introduced left with the static language pages on 2026-10-31, below).
 - Contact: one email address everywhere (commit 02fd356).
 
 Graph: [[theme-engineering.css (removed alternate stylesheet)]], [[Hero as drafting-sheet title block]], [[_COMMUNITY_Ambient Motion and Reveal]]. The motion system as it stands: [[Motion and illustration]].
@@ -72,7 +72,7 @@ Pull requests #1 to #10 were merged between 2026-10-01 and 2026-10-07 (commits 9
 ### Pricing and currency
 
 - 2026-10-01: pricing, estimator and onboarding added; the "Flagship" label dropped (commit 3b2375c).
-- 2026-10-03: the market comparison, local against international, and how projects are priced (commit e684fdf).
+- 2026-10-03: the market comparison, local against international, and how projects are priced (commit e684fdf); it moved to the price guide on 2026-10-31 (below).
 - 2026-10-10: prices in € and $ for foreign visitors (commit eeca4f2).
 - 2026-10-14: the estimator caps a Vitrine at the Studio figure, bound by bound, and `check.mjs` tests every size, option set and pace (commit ded7fce).
 
@@ -82,11 +82,11 @@ Pull requests #1 to #10 were merged between 2026-10-01 and 2026-10-07 (commits 9
 - 2026-10-04: the atlas, engraved plates of Numidia and animated icons (commit 6ec42b4).
 - 2026-10-05: bento grids, skeletons and scroll-spy (commit d4ec3a9); the home page gets one structure and one design system (commit f9bac97).
 - 2026-10-06: the themes move onto one token contract; Noir, Daylight, Mono, Alt-neon and Engineering redesigned (commit f7ce370).
-- 2026-10-09: every contract token must be read, which leaves 47 (commit 3ad6381); a validated theme boot (commit 11b7af6).
+- 2026-10-09: every contract token must be read, which leaves 47 (commit 3ad6381; 46 today, scripts/themes-check.mjs › CONTRACT); a validated theme boot (commit 11b7af6).
 
 ### hub/ and WorkspaceHQ
 
-- 2026-10-04: hub/ becomes the artist's page, with no client sites (commit 0775f7a), and its gallery becomes the 33-poster BR4VETR4VELER series (commit 6a22443).
+- 2026-10-04: hub/ becomes the artist's page, with no client sites (commit 0775f7a), and its gallery becomes the 33-poster BR4VETR4VELER series (commit 6a22443); the series left with the rebuild of 2026-10-28 (below).
 - 2026-10-05: hub/ bento layout (commit 72a5655); the WorkspaceHQ v3 launch page and a cartridge link to it (commit a0b6689).
 - 2026-10-13: workspacehq/ is honest about its repository (commit 542ad1a); OWNER-CONTENT gains the WorkspaceHQ licence item and eight claims to confirm (commit ceee523).
 
@@ -134,7 +134,7 @@ Pull requests #1 to #10 were merged between 2026-10-01 and 2026-10-07 (commits 9
 
 ### Round 3: FAQ, scroll, mobile; logos, benefits; charts
 
-The code labels the three strands r3/a (FAQ columns, scroll comfort, mobile), r3/b (client logos and benefit lines) and r3/c (visualisations and motion) (assets/styles.css › 2775, 418, 1565).
+The code labels the three strands r3/a (FAQ columns, scroll comfort, mobile), r3/b (client logos and benefit lines) and r3/c (visualisations and motion) (assets/styles.css › the r3 banners).
 
 - 2026-10-17: FAQ drawers open one at a time, calmer scrolling, mobile fixes (commit 250c133).
 - 2026-10-17: the client logo strip, and what each project gives the client (commit 717a8c2).
@@ -146,7 +146,27 @@ The code labels the three strands r3/a (FAQ columns, scroll comfort, mobile), r3
 - 2026-10-09: the knowledge base stops being served on the site when the deploy is narrowed to the site list (commit c5ea7cf).
 - 2026-10-19: graphify ignore list, vault export script and a public-safety check (commit d845495); the June snapshot moves to `archive/` and the graphify graph is exported (commit 9afd9ba).
 
-Graph for October: [[PRICE_MODEL]], [[Market comparison ('Ici et ailleurs')]], [[The atlas - six engraved plates]], [[Theme contract (47 tokens)]], [[BR4VETR4VELER poster series (33 posters)]], [[WorkspaceHQ v3 launch site]], [[Planches project sheets page (work, deliverable by deliverable)]], [[Deploy scope (DEPLOY, stage-site.mjs, NOT_DEPLOYED)]], [[The gates (pre-push commands)]], [[Legal notice + privacy page (generated, unpublished)]], [[Campaign kit in public git history]], [[Client logo strip ('Ils nous ont confié leur site')]], [[Visualisations (r3c)]], [[Scroll comfort (round 3)]], [[S-01 - Internal knowledge base published on the public site]].
+### Round 4: release, fonts and the live site (2026-10-24 and 25)
+
+- 2026-10-25: the fallback faces hold the hero still when a webfont lands late, one per weight (commit 485bc0c); the gates lay text out without hinting (commit 79716a2); the audit's emulated-Pages 404 runs and `AUDIT_BASE` (commit 6a225f2); every check.mjs block gets one label, cited by the maps (commits 5bb8b89, 370e074). RELEASE.md is written (release checklist, rollback, monitoring, owner-only settings).
+- 2026-10-25, 16:42 UTC: the last successful GitHub Actions run; since then every run fails within seconds, the account's billing being blocked, so nothing after stamp 202610251516 is live (RELEASE.md › 9; IMPROVEMENTS.md › Log 2026-10-26).
+
+### The full audit and the owner's decisions (2026-10-26 and 27)
+
+- 2026-10-26: `npm run metrics` (commit 82603b0) and the full audit's backlog, decisions and metrics history in IMPROVEMENTS.md (commit ecf48bb); the clear-cut fixes F1–F9, C6 and C7 shipped the same day (one font file per family and subset 0629770; the scene-banner plate and the decomposed Behance badge 47dc522; FAQ 2's starting price 95b70d1; the copy-my-message fallback 8f1206b; the pre-fill buttons scrolling to the form adb4352; check 17's duplicate-font guard 4a4ae04); the share card becomes the site's own engraving, by owner decision (commit 89c7fb3).
+- 2026-10-26: the owner's decisions recorded (commit 076c991) and applied through 2026-10-27: the vista hidden on phones (c32c737), one trust line instead of the four counters (6ae9d95), the "En cours" cards hidden (403d10b), the tools section cut (d7485ce), the footer trimmed (737f414), the hero's second button on WhatsApp (06940fe), the estimator folded (951d390), the Aperçu's path told once (a44de7e); the price in the hero and three service cards declined (IMPROVEMENTS.md › Decisions 1, 2).
+- 2026-10-27: the review of that branch (the folded estimator's scope, the hero WhatsApp link baked, metrics not counting a closed `<details>`: commits a842b53, b8db7fb, 5d1b4ad); F15 opened (commit 894e7ac).
+
+### The hub rebuilt on the owner's illustrations (2026-10-28)
+
+- 2026-10-28: the art export script and the illustrations (commit 7726814); the page rebuilt (commit 4099344), its gates (e6361f7), the share card (ae00039), the review fixes (9fb2c49); Space Mono leaves (57864b0, F16); the docs (9b20620); the owner approves the diary titles (c75c1a7); stamps bumped (1185f08). Pushed, not deployed (IMPROVEMENTS.md › Log 2026-10-28).
+
+### The second full audit and fix fleet 1 (2026-10-30 and 31)
+
+- 2026-10-30: the owner answers the open decisions 10, 11, 13, 14, 15, 16, 17, 19, 20 and 21 (the recommended options), the team (one founder, with freelancers when needed), the contact facts (WhatsApp only, Sunday–Thursday 9h–18h, the Gmail address stays), the legal notice ("later") and the push policy (push anyway, deploy later) (IMPROVEMENTS.md › Decisions, Log 2026-10-31; OWNER-CONTENT.md › 17).
+- 2026-10-31: the CTO, CMO and design audits; the commercial terms drafted on the owner's instruction (OWNER-CONTENT.md › 16). Fleet 1, "Build and trust", in one checkout, local commits: the hygiene pass (commit 590c258: one deploy-skip rule, one esc(), one browser launcher, the WhatsApp pending path out, engines and .nvmrc, NPM_FLAGS, cache headers, paths-ignore); the legal code for the ad and WhatsApp Business facts and NOTICE.md (commit 67e04ad); check 17's ceilings and site-wide duplicate check, the embeds validated (commit 10b90ff); the static `/en/` and `/ar/` pages and the dictionaries in `assets/i18n/` (commit ff2cec9, gates 6827ce3); the performance pass: comments stripped at staging with stage-check, two sizes per capture, the deck's slides on demand, fonts by weight range, the ع drawn (commit 2ad9e7d); the price guide `/tarifs/` in three languages, the market comparison off the home page (commit 7ad7b67); every gate reading the new pages, check 3 reading srcset, stage-check in verify (commit 786ba8e); then the docs (BRAND, README, RELEASE › 9, OWNER-CONTENT › 16–17, IMPROVEMENTS › Log, these maps). Measured and recorded in IMPROVEMENTS.md › F17 and the Log. Fleet 2, the copy and design pass, is the next change.
+
+Graph for October: [[PRICE_MODEL]], [[Market comparison ('Ici et ailleurs')]], [[The atlas - six engraved plates]], [[Theme contract (47 tokens)]], [[BR4VETR4VELER poster series (33 posters)]], [[WorkspaceHQ v3 launch site]], [[Planches project sheets page (work, deliverable by deliverable)]], [[Deploy scope (DEPLOY, stage-site.mjs, NOT_DEPLOYED)]], [[The gates (pre-push commands)]], [[Legal notice + privacy page (generated, unpublished)]], [[Campaign kit in public git history]], [[Client logo strip ('Ils nous ont confié leur site')]], [[Visualisations (r3c)]], [[Scroll comfort (round 3)]], [[S-01 - Internal knowledge base published on the public site]]. The generated graph is the export of 2026-10-19: its nodes "Theme contract (47 tokens)" (46 today), "The atlas - six engraved plates" (five since the tools section left on 2026-10-26), "BR4VETR4VELER poster series" and "Hub poster viewer" (gone with the rebuild of 2026-10-28), "Market comparison" (on the price guide since 2026-10-31), "data-i18n-pending Paint Hold", "switchLang()" and "build-fr.mjs" (gone on 2026-10-31) describe the site before these changes. Refresh it with `/graphify . --update` and `npm run kb` (knowledge-base/Home.md); graphify was not installed on the fleet's machine, so the maps were updated by hand on 2026-10-31.
 
 Communities: [[_COMMUNITY_Pricing Model and Estimator]], [[_COMMUNITY_Theme Token Contract]], [[_COMMUNITY_Founder Poster Series]], [[_COMMUNITY_WorkspaceHQ Product]], [[_COMMUNITY_Project Sheets Generator]], [[_COMMUNITY_Build Scripts and Deploy Scope]], [[_COMMUNITY_Arabic RTL and Head Boot]], [[_COMMUNITY_Legal Page Generator]], [[_COMMUNITY_Market Chart and Visuals]], [[_COMMUNITY_Client Logo Strip]].
 

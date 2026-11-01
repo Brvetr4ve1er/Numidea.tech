@@ -24,7 +24,7 @@ between you and the people typing the code.
 
 1. **No middleman.** One team scopes, builds and ships your project.
 2. **One team owns the whole chain.** Design → code → deploy.
-3. **We answer when it breaks.** Deadlines kept, replies within 24 working hours.
+3. **We answer when it breaks.** Deadlines kept, a reply the next working day.
 
 ---
 
@@ -36,28 +36,39 @@ no runtime dependency. Open `index.html` and it runs. A few pages and files are
 files listed in `scripts/site.mjs`.
 
 ```
-index.html            # the landing page (French baked in; EN/AR swapped by app.js)
+index.html            # the landing page in French: the template of the three
+en/, ar/              # the English and Arabic pages, written from index.html by
+                      #   scripts/build-lang.mjs (never edited by hand)
+tarifs/               # the price guide (FR), with en/tarifs/ and ar/tarifs/,
+                      #   written by scripts/build-tarifs.mjs from index.html's
+                      #   tiers and estimator; tarifs/style.css is its own sheet
 404.html              # not-found page (host-aware paths, three languages)
 assets/
   themes.css          # the six themes: one block of the 46 contract tokens each
   styles.css          # layout and components; reads theme tokens only
-  app.js              # i18n (fr/en/ar), nav, menu dialog, prices in DA/€/$,
-                      #   estimator, lead source, contact form, WhatsApp links
-  page-i18n.js        # language switch for the generated pages
+  fonts.css           # the self-hosted faces, one rule per file and weight range
+  app.js              # nav, menu dialog, prices in DA/€/$, estimator, lead
+                      #   source, contact form, WhatsApp links, the deck
+  i18n/{fr,en,ar}.js  # the dictionaries, one language per file: edit these
+  page-i18n.js        # language switch for the pages that still switch in place (scene/, legal/)
   fonts/              # self-hosted faces (no third-party requests)
-  previews/*.webp     # screenshots of the live client sites (hero plate, cards)
+  previews/*.webp     # screenshots of the live client sites, 1280 wide and -720 (hero plate, cards)
   clients/            # the four delivered clients' own logos (npm run logos)
-  work/<slug>/*.webp  # project-sheet captures (npm run work:capture)
-  og.jpg              # link-preview card (French), rendered by scripts/build-og.mjs
+  work/<slug>/*.webp  # project-sheet captures, each with its phone-size twin (npm run work:capture)
+  og.jpg, og-en.jpg, og-ar.jpg  # link-preview cards, one per language, rendered by scripts/build-og.mjs
 scene/                # project sheets, generated from scripts/scene-data.mjs
 hub/                  # VOIDSPLUNKER.std — the founder's personal page (English): his illustrations of himself and Kūro, the black cat; his design work and links (own CSS/JS; images from npm run hub:art)
 workspacehq/          # WorkspaceHQ v3, the studio's own product page
 sitemap.xml           # generated with hreflang alternates
 scripts/              # generators, gates and tools (never deployed)
 knowledge-base/       # Obsidian vault: knowledge graph + maps (never deployed; see below)
-audit/                # 2026-07 code audit, dated snapshot (never deployed)
+audit/                # 2026-07 code audit, dated snapshot (never deployed; superseded by IMPROVEMENTS.md)
 OWNER-CONTENT.md      # everything only the owner can supply, and its status
-RELEASE.md            # release checklist, rollback, monitoring, owner-only settings
+RELEASE.md            # release checklist, rollback, monitoring, owner-only settings, the outage fallback
+IMPROVEMENTS.md       # the backlog, the owner's decisions, the metrics history and the log
+NOTICE.md             # what LICENSE (CC0) covers and what it does not
+.htmlvalidate.json    # npm run validate's rules for the pages (the embeds: scripts/validate-embed.json)
+.nvmrc                # 22.22, the Node the gates run on
 .gitattributes        # LF line endings in every checkout; binary types marked
 .github/
   dependabot.yml      # weekly update pull requests: npm dev dependencies, pinned actions
@@ -93,27 +104,32 @@ RELEASE.md            # release checklist, rollback, monitoring, owner-only sett
 
 | Command | What it does |
 | --- | --- |
-| `npm run build` | Regenerates the French baked into index.html (from `I18N.fr`), scene/, the client-voices region, the legal page (only when complete) and sitemap.xml; last, the CSP meta of the hand-written pages (`npm run csp`). CI fails when it leaves a change |
-| `npm run check` | Repo invariants: i18n ×3, assets, cache stamps, client links, deploy coverage, generated pages in sync, anchors, retired claims, prices = PRICE_MODEL, the estimator tested on every size, option set and pace, baked French = `I18N.fr`, French typography (no breakable space before ? ! ; : »), one canonical per page (language versions set theirs in the head script), one contact address, Western digits in Arabic, legal gating, the Supabase switch, LF line endings in every tracked text file (`.gitattributes` pins LF for every checkout, Windows included; the generator comparisons ignore line endings), no runtime dependency in `package.json` (15c), the Content-Security-Policy meta on every page as `scripts/lib/csp.mjs` computes it (block 16), asset byte budgets per folder and for the whole published set, no two font files alike (block 17), SEO and structured data: title, description, og/twitter tags, one h1, robots.txt, hreflang = sitemap, JSON-LD (block 18); plus `themes-check` |
-| `npm run validate` | html-validate on every page |
-| `npm run audit` | Browser audit (79 runs): axe, layout shift, LCP (desktop ≤ 1.5 s), overflow, tap targets, Content-Security-Policy violations, the three WorkspaceHQ embeds and the booted console, in three languages, six themes and five viewport sizes; 404.html two folders down, here and on an emulated GitHub Pages, with JavaScript on and off; the first screen in fallback type (each theme in French and English with the webfonts refused and loaded, 360 to 1600 wide: no text block may change height when a face lands); then a throttled phone measured against LCP ≤ 2.5 s, long tasks ≤ 300 ms and slowest interaction ≤ 200 ms. The site does not meet those phone targets yet, so they are reported as warnings; `AUDIT_PHONE_STRICT=1` makes them fail (see RELEASE.md, phone speed). `AUDIT_BASE=<url>` audits a deployed copy instead |
-| `npm run sweep` | Contrast sweep over the rendered pixels |
+| `npm run build` | Regenerates, in this order: scene/, the client-voices region, the legal page (only when complete), the English and Arabic home pages from index.html and the dictionaries (`build-lang`, after `build-legal` since that may rewrite index.html; it also checks the French baked into index.html against `assets/i18n/fr.js`), the price guide's three pages (`build-tarifs`), sitemap.xml and, last, the CSP meta of every page (`npm run csp`). CI fails when it leaves a change |
+| `npm run check` | Repo invariants: the three dictionaries hold the same keys and every `data-i18n` reference on the home and guide pages resolves in each, assets (every `src`, `href` and `srcset` candidate, each `NNNw` the file's width), cache stamps, client links, deploy coverage, generated pages in sync (scene/, en/, ar/, the guide's three), anchors, retired claims, prices = PRICE_MODEL on the home and on the guide, the estimator tested on every size, option set and pace, baked text = each page's dictionary, French typography (no breakable space before ? ! ; : »), one canonical per page (a page whose head script reads `?lang=`, index.html, scene/ and legal/, sets it there; a page that reads none, en/, ar/, the guide, hub/, workspacehq/, names itself in the markup; both at once or neither fails), one contact address, Western digits in Arabic, legal gating, the Supabase switch, LF line endings in every tracked text file (`.gitattributes` pins LF for every checkout, Windows included; the generator comparisons ignore line endings), no runtime dependency in `package.json` (15c), the Content-Security-Policy meta on every page as `scripts/lib/csp.mjs` computes it (block 16), every published file under its folder's or its own byte ceiling, the share cards ≤ 300 kB, the set under its total, no two published files alike (block 17), SEO and structured data: title, description, og/twitter tags, one h1, robots.txt, hreflang = sitemap, JSON-LD (block 18); plus `themes-check` |
+| `npm run validate` | html-validate on every page (`.htmlvalidate.json`: the recommended rules, nothing relaxed) and on the three WorkspaceHQ embed templates (`scripts/validate-embed.json`, which allows only what their runtime's `{{ }}` bindings are; the export's own accessibility gaps print as warnings and do not fail) |
+| `npm run audit` | Browser audit (89 runs): axe, layout shift, LCP (desktop ≤ 1.5 s), overflow, tap targets, Content-Security-Policy violations, the three WorkspaceHQ embeds and the booted console, on each language's own page (index.html, en/, ar/, the guide's three), six themes and five viewport sizes; 404.html two folders down, here and on an emulated GitHub Pages, with JavaScript on and off; the first screen in fallback type (each theme in French and English with the webfonts refused and loaded, 360 to 1600 wide: no text block may change height when a face lands); the Arabic font files a page in another language fetched (report-only until the copy change); then a throttled phone measured against LCP ≤ 2.5 s, long tasks ≤ 300 ms and slowest interaction ≤ 200 ms. The site does not meet those phone targets yet, so they are reported as warnings; `AUDIT_PHONE_STRICT=1` makes them fail (see RELEASE.md, phone speed). `AUDIT_BASE=<url>` audits a deployed copy instead |
+| `npm run sweep` | Contrast sweep over the rendered pixels, every language page of the home and the guide in the six themes |
 | `npm run vbugs` | Visual bug scan (allowlist with reasons in `scripts/vbugs-allow.json`) |
-| `npm run keys` | Keyboard, reduced-motion and direction gate, in French and Arabic, on desktop and a phone: skip link, focus rings, the phone menu (focus kept inside, Escape), theme menu, CV panel, the folded estimator's scope handed to the message, the contact form (errors, the mail hand-off and success panel, the lead store's POST with its switch on), the hub and scene dialogs, every hub link and button on top for the pointer, nothing moving under reduced motion (no smooth scrolling; WorkspaceHQ's booted console holds Bit still), `dir="rtl"` with `?lang=ar` (`npm run keys -- hub` for one page) |
+| `npm run keys` | Keyboard, reduced-motion and direction gate (60 runs), on each language's own page, on desktop and a phone: skip link, focus rings, the phone menu (focus kept inside, Escape), theme menu, CV panel, the folded estimator's scope handed to the message, the guide's open estimator handing its scope to the home page's form across the navigation, the contact form (errors, the mail hand-off and success panel, the lead store's POST with its switch on), the hub and scene dialogs, every hub link and button on top for the pointer, nothing moving under reduced motion (no smooth scrolling; WorkspaceHQ's booted console holds Bit still), `dir="rtl"` on the Arabic pages and with `?lang=ar` on the pages that still switch (`/?lang=ar` must land on `/ar/`) (`npm run keys -- hub` for one page) |
 | `npm run links` | Every external link on the pages, in `scripts/scene-data.mjs` and hub/, fetched with a timeout and two retries: a dead owned or client link fails; hosts that refuse bots are only warned, with the reason. Needs the network |
-| `npm run verify` | check, themes, validate, audit, sweep, vbugs and keys in one run (it does not stop at the first failure); push only when it is green |
-| `npm run csp` | Rewrites the Content-Security-Policy meta on the hand-written pages (index, 404, hub, workspacehq and its three embeds) with the sha256 of each inline script (`scripts/build-csp.mjs`; `npm run csp -- --check` only reports) |
+| `npm run verify` | check, themes, validate, audit, sweep, vbugs, keys and stage-check (`scripts/stage-check.mjs`: the staged, comment-stripped copies parse and compile as their sources do) in one run (it does not stop at the first failure); push only when it is green |
+| `npm run metrics` | Not a gate: measures the home page and the price guide in each language, on a phone and a desktop, block by block (height in screens, visible words and controls, image bytes), the page totals of every other page, and how far a buyer scrolls before a price, a client, the founder, a way to write first appear; prints the row IMPROVEMENTS.md's metrics history takes (`METRICS_BASE=<url>` for a deployed copy) |
+| `npm run csp` | Rewrites the Content-Security-Policy meta on every page (index, en/, ar/, the guide's three, 404, hub, workspacehq and its three embeds) with the sha256 of each inline script (`scripts/build-csp.mjs`; `npm run csp -- --check` only reports) |
 | `npm run bump` | Refresh the `?v=` cache stamps after a CSS/JS change; it re-applies the CSP meta too, since a stamp inside an inline script changes that script's hash |
-| `npm run stage` | Copy the deploy set into `_site/`, with `404.html`'s JavaScript-off links from the site root (`/`; `node scripts/stage-site.mjs --pages` uses the path of `BASE`, as `pages.yml` does) |
+| `npm run stage` | Copy the deploy set into `_site/`, with `404.html`'s JavaScript-off links from the site root (`/`; `node scripts/stage-site.mjs --pages` uses the path of `BASE`, as `pages.yml` does), then strip the comments from every staged stylesheet and script (36 files, 1,021 → 848 kB on 2026-10-31; licence headers kept; the repository keeps its comments, pages are copied as they are) |
 | `npm run scene` | Regenerate scene/ only |
-| `npm run og` | Re-render the share images (hub, workspacehq, assets/og.jpg); `node scripts/og-capture.mjs hub` renders only the hub's |
+| `npm run og` | Re-render the share images: hub and workspacehq from their first screen (`scripts/og-capture.mjs`), then the home's three cards, assets/og.jpg, og-en.jpg and og-ar.jpg, drawn from the tokens and faces (`scripts/build-og.mjs`; `node scripts/build-og.mjs ar` renders one). The encoder gives a slightly different JPEG each run, so commit a card only when it changed |
 | `npm run hub:art` | Cut the hub's web images (`hub/art`, `hub/loops`) from the owner's private masters, following `scripts/hub-art-data.mjs`: each master checked by size and sha256 first; fails on a file over 400 kB, an endless or over-5 s loop, or a loop frame touching its edge. Writes `<name>-<width>.webp`, named by the file's real width. Needs the masters (`./campaign/hub-art/masters` or `HUB_ART_DIR`), so it is not part of `npm run build`: the committed images are its output |
-| `npm run shots` / `work:capture` | Re-capture the client-site screenshots |
+| `npm run shots` / `work:capture` | Re-capture the client-site screenshots, each in two sizes (previews 1280 and 720 wide; sheet captures 1440 and 720, phones 780 and 416) for the pages' `srcset` |
 | `npm run logos` | Re-take the four client logos from their live sites' headers (checks each is still the header logo) |
 | `npm run kb` | Export the graphify knowledge graph into the `knowledge-base/` vault (`-- --code` refreshes the code graph first) |
 
-Node 22.22 or later. `validate` and the browser gates need `npm install` (Playwright,
-axe-core, html-validate, sharp).
+Node 22.22 or later in the 22 line, or 24.8 or later (`engines` in
+`package.json`; `.nvmrc` says 22.22: html-validate 11 refuses Node 24.0 to
+24.7). `validate` and the browser gates need `npm install` (Playwright,
+axe-core, html-validate, sharp). The browser gates and scripts find Chromium
+through `CHROMIUM_PATH`, else the newest build under `/opt/pw-browsers/`,
+else Playwright's own (`scripts/lib/serve.mjs`).
 
 ### CI
 
@@ -123,7 +139,7 @@ GitHub Actions, in `.github/workflows/`:
 | --- | --- | --- |
 | `check.yml`, job `check` | every push to any branch, every pull request | `check` and `themes-check`, `npm ci`, `validate`, `npm run build` then `git diff --exit-code` (and no new untracked file), `npm audit --omit=dev` (runtime dependencies only; there are none, and check block 15c fails if one is declared, so this audit only starts to count the day one is allowed). About a minute, no browser |
 | `check.yml`, job `nightly` | 03:17 UTC every night; Actions → Check → Run workflow | installs Chromium, then `npm run verify` (every gate, the browser ones and `keys` included), `links` and the full `npm audit` (dev dependencies included) |
-| `pages.yml` | every push to the working branch; on demand | job `gates`: the static gates above except `npm audit --omit=dev` (check block 15c, which it does run, keeps runtime dependencies at none), then audit, sweep, vbugs and keys on Chromium (about twelve minutes). Job `deploy`, only when `gates` passed: stages `_site/` and publishes it to Pages. One deployment at a time |
+| `pages.yml` | every push to the working branch that changes something other than `**.md`, `knowledge-base/**` or `audit/**` (`paths-ignore`: a documentation push deploys nothing; `check.yml` still runs on it); on demand | job `gates`: the static gates above except `npm audit --omit=dev` (check block 15c, which it does run, keeps runtime dependencies at none), then audit, sweep, vbugs, keys and stage-check on Chromium (about twelve minutes). Job `deploy`, only when `gates` passed: stages `_site/` (comments stripped from its stylesheets and scripts) and publishes it to Pages. One deployment at a time |
 | `monitor.yml` | every six hours (00:41, 06:41, 12:41, 18:41 UTC); on demand | the live site: every page and stamped asset answers, with the branch's `?v=` stamp; sitemap, robots.txt, og.jpg; the last Pages run succeeded (so a deploy refused by its gates is reported even when the stamp did not change); `npm run links`; Lighthouse on the live index (fr and ar, mobile and desktop, median of three: CLS ≤ 0.1; desktop LCP ≤ 2.5 s and TBT ≤ 200 ms; mobile, still short of that target, held to regression ceilings of 6.5 s and 350 ms, RELEASE.md §5). A failure opens or updates one issue, "Live monitor failed"; the first green run closes it |
 
 - Every gate runs even after an earlier one failed, so one run lists
@@ -163,8 +179,9 @@ quotes (with consent), a founder photo, team photos.
 python3 -m http.server 8000      # any static server works
 ```
 
-Then open <http://localhost:8000>. Useful links: `?lang=en`, `?lang=ar`,
-`?cur=eur`, `?cur=usd`.
+Then open <http://localhost:8000>. Useful links: `/en/`, `/ar/`, `/tarifs/`
+(`?lang=en` and `?lang=ar` on the home redirect there; scene/ still reads
+them), `?cur=eur`, `?cur=usd`.
 
 ### Design system — see [BRAND.md](BRAND.md)
 
@@ -178,7 +195,12 @@ misses a token, breaks a contrast pair, or if `styles.css` special-cases a theme
 
 - **Trilingual** — French (default), English and Arabic with a mirrored RTL layout
   (logical CSS properties, Western digits, forward arrows that follow the
-  reading direction). `?lang=` links set the language and the canonical URL.
+  reading direction). The home page and the price guide are one static page
+  per language (`/`, `/en/`, `/ar/`; `/tarifs/`, `/en/tarifs/`, `/ar/tarifs/`),
+  each with its own head, share card and canonical, so a shared link unfurls
+  in its language; the language switch is three links, and a stored choice
+  sends `/` to that language's page before paint. The project sheets still
+  switch in place with `?lang=`.
 - **Prices in DA, € or $** — one price source (`PRICE_MODEL` in app.js), converted
   for display at the Bank of Algeria official rate; € shown HT with the French
   reverse-charge note.
@@ -194,7 +216,8 @@ misses a token, breaks a contrast pair, or if `styles.css` special-cases a theme
 ## Project previews
 
 Each project card shows a committed screenshot of the live site
-(`assets/previews/<slug>.webp`). To refresh them after a site changes:
+(`assets/previews/<slug>.webp`, 1280 wide, and `<slug>-720.webp`, the phone's
+`srcset` candidate). To refresh them after a site changes:
 
 ```bash
 npm install
@@ -209,9 +232,9 @@ keeps them in step with the links on the page.
 
 ## Contact
 
-**hamissemohamedyasser@gmail.com** · WhatsApp +213 672 41 25 78 · Bordj Bou Arréridj, DZ
-· replies within 24 working hours, in French, English or Arabic.
+**hamissemohamedyasser@gmail.com** · WhatsApp +213 672 41 25 78 (messages only) · Bordj Bou Arréridj, DZ
+· a reply the next working day (Sunday to Thursday, 9h–18h), in French, English or Arabic.
 
 ---
 
-*Built in Bordj Bou Arréridj, with black coffee and TypeScript.*
+*Built in Bordj Bou Arréridj, with black coffee and JavaScript.*

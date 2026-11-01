@@ -13,10 +13,18 @@
        inset night print;
      - the night theme is night, with the hero, the design band and the
        "What I make" figures as inset paper prints.
-   Contrast (WCAG, computed on these exact values):
-     paper: text 15.4:1, text-2 7.7:1, accent 8.6:1 (bone on accent 8.6:1)
-     night: text 14.6:1, text-2 8.0:1, accent 8.2:1 (night on accent 8.2:1)
-     the design band's paper #f4e3cf: text 14.2:1, accent 7.9:1
+   Contrast (WCAG, computed on these exact values, each against the ground
+   it is actually painted on; re-measured 2026-10-31):
+     on paper #fcecdc: ink text 15.42:1, ink-2 text-2 7.74:1, burgundy
+       accent 8.56:1 (links, kickers, focus rings)
+     on burgundy #7a2430: paper 8.56:1 (the skip link, the pressed theme
+       button in the paper theme); bone #f6e8d6 8.21:1 (the die-cuts' edge
+       beside the badge; no text is set in it)
+     on night #0f1420: moon text 14.58:1, moon-2 text-2 7.96:1, rose
+       accent 8.21:1
+     on rose #e59a93: night 8.21:1 (the pressed theme button in the night
+       theme)
+     on the design band's paper #f4e3cf: ink 14.21:1, burgundy 7.88:1
    ============================================================ */
 :root{
   /* the palette, sampled from the art */

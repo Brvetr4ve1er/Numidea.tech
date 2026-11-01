@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-10-31
 sources: [README.md, BRAND.md, OWNER-CONTENT.md, scripts/site.mjs, scripts/stage-site.mjs, scripts/lib/stage-404.mjs, scripts/lib/csp.mjs, scripts/check.mjs, scripts/build-legal.mjs, scripts/legal-data.mjs, scripts/build-kb.mjs, .github/workflows/pages.yml, .github/workflows/check.yml, .github/workflows/monitor.yml, RELEASE.md, netlify.toml, vercel.json, .gitignore, index.html, 404.html, robots.txt, package.json, scripts/bump.mjs, scripts/build-sitemap.mjs, audit/Security_Privacy.md, audit/Performance_A11y.md, audit/Architecture.md]
 ---
 
@@ -12,13 +12,14 @@ Only the paths named in `DEPLOY` in `scripts/site.mjs` are ever published: `scri
 
 | Host | Role | Config | Build command | Publishes | Extra |
 |---|---|---|---|---|---|
-| GitHub Pages | Canonical, `https://brvetr4ve1er.github.io/Numidea.tech/` | `.github/workflows/pages.yml` | Job `gates`: `check.mjs` and `themes-check.mjs`, `npm ci`, `validate`, the build-leaves-no-change check, then `audit`, `sweep`, `vbugs` and `keys`; job `deploy`, only when `gates` passed: `node scripts/stage-site.mjs --pages` | `_site/` as a Pages artifact | Runs on every push to `claude/numidea-labs-landing-c4jokc` and on manual dispatch; Node 22 |
-| Netlify | Mirror | `netlify.toml` | `node scripts/check.mjs && node scripts/themes-check.mjs && node scripts/stage-site.mjs` | `_site` | `NODE_VERSION = "22"`, `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"`; cache and security headers |
+| GitHub Pages | Canonical, `https://brvetr4ve1er.github.io/Numidea.tech/` | `.github/workflows/pages.yml` | Job `gates`: `check.mjs` and `themes-check.mjs`, `npm ci`, `validate`, the build-leaves-no-change check, then `audit`, `sweep`, `vbugs`, `keys` and `stage-check`; job `deploy`, only when `gates` passed: `node scripts/stage-site.mjs --pages` | `_site/` as a Pages artifact | Runs on every push to `claude/numidea-labs-landing-c4jokc` that changes something other than `**.md`, `knowledge-base/**` or `audit/**` (`paths-ignore`), and on manual dispatch; Node 22 |
+| Netlify | Mirror | `netlify.toml` | `node scripts/check.mjs && node scripts/themes-check.mjs && node scripts/stage-site.mjs` | `_site` | `NODE_VERSION = "22"`, `NPM_FLAGS = "--omit=dev"` (the install step installs nothing), `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1"`; cache and security headers |
 | Vercel | Mirror | `vercel.json` | Same command | `_site` | `installCommand` is `echo skip`; `trailingSlash: true`; cache and security headers |
 
-Sources: README.md › Deploy; scripts/site.mjs › BASE; .github/workflows/pages.yml › 20–23, 36–145; netlify.toml › 11–17; vercel.json › 2–5.
+Sources: README.md › Deploy; scripts/site.mjs › BASE; .github/workflows/pages.yml › header, on, gates; netlify.toml › build, build.environment; vercel.json › buildCommand.
 
-- Netlify installs the `package.json` dependencies before the build, as it does for any repository with a `package.json`, even though the build command needs none; none of them downloads a browser on install today (netlify.toml › 1–10).
+- Netlify runs an install step before the build, as it does for any repository with a `package.json`; since 2026-10-31 `NPM_FLAGS = "--omit=dev"` leaves the dev dependencies out, so it installs nothing, the build command needing no package (netlify.toml › header).
+- **Nothing has deployed since 2026-10-25:** every GitHub Actions run fails within seconds, the account's billing being blocked, so `pages.yml`, `check.yml` and `monitor.yml` do nothing; the live site carries stamp 202610251516. The owner chose to push anyway and deploy later; RELEASE.md's section 9 records the fallback (a manual Netlify or Vercel CLI deploy of `_site/`, `BASE` unchanged) and the live-stamp probe the weekly session runs meanwhile (RELEASE.md › 9; IMPROVEMENTS.md › Log 2026-10-31).
 - Whether the Netlify or Vercel mirror is live is left open: the privacy page's hosts list names GitHub only, and the owner is asked to add `netlify` or `vercel` if a mirror is public (OWNER-CONTENT.md › 1. Legal notice + privacy page; scripts/legal-data.mjs › 40–44). See [[Open owner items]].
 - Graph: [[GitHub Pages canonical deploy]], [[Netlify and Vercel mirrors]], [[Hosting topology GitHub Pages canonical, NetlifyVercel mirrors]], [[vercel.json]].
 
@@ -26,8 +27,8 @@ Sources: README.md › Deploy; scripts/site.mjs › BASE; .github/workflows/page
 
 1. A push to the working branch, or a manual run, starts the workflow (.github/workflows/pages.yml › 20–23).
 2. Job `gates`, read-only: checkout and Node 22, then `check.mjs` and `themes-check.mjs`, `npm ci`, `validate`, and `npm run build` followed by `git diff --exit-code` (the build must change and add no file) (.github/workflows/pages.yml › 36–81).
-3. Still in `gates`: Playwright's Chromium is installed, then `audit`, `sweep`, `vbugs` and `keys` run, about twelve minutes in all. Every gate runs even after one failed, so a red run lists everything that is wrong (.github/workflows/pages.yml › 6–9, 83–102).
-4. Job `deploy` runs only when `gates` passed (`needs: gates`), so any red gate leaves the live site as it was. It checks out again and `stage-site.mjs --pages` stages the publishable files into `_site/`, pointing `404.html`'s JavaScript-off links at the repository subpath (.github/workflows/pages.yml › 10–15, 104–130; scripts/stage-site.mjs › header).
+3. Still in `gates`: Playwright's Chromium is installed, then `audit`, `sweep`, `vbugs`, `keys` and `stage-check` run, about twelve minutes in all on a runner. Every gate runs even after one failed, so a red run lists everything that is wrong (.github/workflows/pages.yml › header, gates).
+4. Job `deploy` runs only when `gates` passed (`needs: gates`), so any red gate leaves the live site as it was. It checks out again and `stage-site.mjs --pages` stages the publishable files into `_site/`, pointing `404.html`'s JavaScript-off links at the repository subpath and stripping the comments from the staged stylesheets and scripts (.github/workflows/pages.yml › deploy; scripts/stage-site.mjs › header).
 5. `configure-pages` with `enablement: true` turns Pages on with Actions as the source, then `_site` is uploaded and deployed (.github/workflows/pages.yml › 132–144).
 
 - One deployment at a time: the `pages` concurrency group never cancels a run in progress; newer pushes wait, and only the latest queued one runs (.github/workflows/pages.yml › 28–33).
@@ -41,13 +42,13 @@ Sources: README.md › Deploy; scripts/site.mjs › BASE; .github/workflows/page
 
 | Published (`DEPLOY`) | Never published (`NOT_DEPLOYED`) |
 |---|---|
-| `index.html`, `404.html`, `robots.txt`, `sitemap.xml`, `assets/`, `scene/`, `hub/`, `workspacehq/`, and `legal/` once it exists | `.git`, `.github`, `.claude`, `.tmp`, `.netlify`, `.vercel`, `node_modules`, `_site`, `audit`, `campaign`, `knowledge-base`, `scripts`, `legal-preview`, `legal`, `BRAND.md`, `README.md`, `RELEASE.md`, `LICENSE`, `OWNER-CONTENT.md`, `package.json`, `package-lock.json`, `netlify.toml`, `vercel.json`, `.gitattributes`, `.gitignore`, `.graphifyignore`, `graphify-out` |
+| `index.html`, `en/`, `ar/`, `tarifs/`, `404.html`, `robots.txt`, `sitemap.xml`, `assets/`, `scene/`, `hub/`, `workspacehq/`, and `legal/` once it exists | `.git`, `.github`, `.claude`, `.tmp`, `.netlify`, `.vercel`, `node_modules`, `_site`, `audit`, `campaign`, `knowledge-base`, `scripts`, `legal-preview`, `legal`, `BRAND.md`, `README.md`, `RELEASE.md`, `IMPROVEMENTS.md`, `LICENSE`, `NOTICE.md`, `OWNER-CONTENT.md`, `package.json`, `package-lock.json`, `netlify.toml`, `vercel.json`, `.gitattributes`, `.gitignore`, `.nvmrc`, `.graphifyignore`, `graphify-out` |
 
 Sources: scripts/site.mjs › DEPLOY, NOT_DEPLOYED, LEGAL_PUBLISHED.
 
 - `legal` is in `NOT_DEPLOYED` as written, and `DEPLOY` adds it only when `legal/index.html` exists (scripts/site.mjs › LEGAL_PUBLISHED, DEPLOY, NOT_DEPLOYED).
-- `README.md` and `.DS_Store` are skipped even inside a published folder (scripts/site.mjs › DEPLOY_SKIP).
-- `stage-site.mjs` deletes `_site/`, recreates it, stops with an error if a `DEPLOY` path is missing, copies each path recursively, then rewrites `_site/404.html`'s `<noscript>` links and its two home links to the site root: `/` by default, for the mirrors, and with `--pages` the path of `BASE` (scripts/stage-site.mjs › 21–32; scripts/lib/stage-404.mjs › header). `_site/` is git-ignored (.gitignore).
+- `README.md`, `_ds_manifest.json` and `.DS_Store` are skipped even inside a published folder, matched without regard to case through `isDeploySkipped()`, which every walker asks (the WorkspaceHQ export spells its notes `readme.md`, and they reached the published set until 2026-10-31) (scripts/site.mjs › DEPLOY_SKIP, isDeploySkipped).
+- `stage-site.mjs` deletes `_site/`, recreates it, stops with an error if a `DEPLOY` path is missing, copies each path recursively, rewrites `_site/404.html`'s `<noscript>` links and its two home links to the site root (`/` by default, for the mirrors, and with `--pages` the path of `BASE`), then strips the comments from every staged `.css` and `.js` (the repository keeps them; licence headers stay; pages are untouched, their inline scripts being hashed in the CSP meta) (scripts/stage-site.mjs › header; scripts/lib/stage-404.mjs › header; scripts/lib/strip-comments.mjs › header). `scripts/stage-check.mjs` proves the stripped copies parse and compile as their sources do (scripts/stage-check.mjs › header). `_site/` is git-ignored (.gitignore). On 2026-10-31 the published set was 18,381,757 bytes in 283 files (scripts/check.mjs › block 17, TOTAL).
 - The hosts serve `404.html` for a missing URL at any depth, so a relative link in it would resolve against the missing folder. The repository copy keeps relative `<noscript>` links so it previews from disk; the published copy is styled at any depth with JavaScript off too (404.html › 10–18).
 - `.netlify/` and `.vercel/` hold the mirror tools' local state where the mirrors build, so they are listed as never deployed rather than treated as unknown folders (scripts/site.mjs › header).
 - `check` block 6 fails when a root folder is in neither list, when a published page links to an unpublished file, when the sitemap lists an unpublished URL, or when staging `404.html` would find nothing to rewrite, leave a relative link or change a script (scripts/check.mjs › block 6). A new folder therefore has to be declared before it can reach a deploy by accident (same block).
@@ -79,7 +80,7 @@ Sources: README.md › This repository — the landing page, Deploy; scripts/sit
 
 | Header | Value | Applies to |
 |---|---|---|
-| `Cache-Control` | `public, max-age=86400` | `/assets/*` |
+| `Cache-Control` | `public, max-age=86400` | `/assets/*`, `/hub/art/*`, `/workspacehq/embed/*` (the last two since 2026-10-31: the hub's art and the embed's audio, model and vendor code are the heaviest files published) |
 | `X-Content-Type-Options` | `nosniff` | Every path |
 | `X-Frame-Options` | `SAMEORIGIN` | Every path |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` | Every path |
@@ -91,7 +92,7 @@ Sources: netlify.toml › 27–40; vercel.json › headers. The two files set th
 
 - `check` block 16 fails when the two files send different headers on every path, when either lacks one of the six headers above for every path, when a header policy holds more than `scripts/lib/csp-floor.mjs` allows a header (`frame-ancestors`, `base-uri`, `object-src`), or when the HSTS `max-age` is under a year (scripts/check.mjs › block 16).
 - Every page also carries its own CSP as a meta tag, with the sha256 of each inline script (scripts/lib/csp.mjs › header), so GitHub Pages, which sends no headers, still gets a policy. The header policy adds only what a meta cannot carry (`frame-ancestors`) and repeats its floor; a fetch directive there would block what the page's meta allows, since the browser enforces both (netlify.toml › 22–26; BRAND.md › Content-Security-Policy).
-- Assets are cached for a day, not marked immutable, because only the CSS and JS links carry `?v=` stamps, while images, the CV and `og.jpg` are regenerated under the same names (netlify.toml › 20–22).
+- Assets are cached for a day, not marked immutable, because only the CSS and JS links carry `?v=` stamps, while images, the CV and `og.jpg` are regenerated under the same names (netlify.toml › the cache comment).
 - `SAMEORIGIN` rather than a full frame ban, because `workspacehq/` embeds its own same-origin pages (netlify.toml › 36).
 - `pages.yml` sets no headers; these two files only shape the mirrors (.github/workflows/pages.yml; netlify.toml; vercel.json).
 - Graph: [[headers]], [[_COMMUNITY_Hosting and Security]], wiki [[Hosting_and_Security]].
@@ -108,7 +109,7 @@ Sources: netlify.toml › 27–40; vercel.json › headers. The two files set th
 1. Run `npm run verify` and push only when it is green (README.md › Commands). Then run the Check workflow by hand on the branch, so the browser gates also pass on a GitHub runner, before the working branch moves (RELEASE.md › 3).
 2. After a CSS or JS change, run `npm run bump` first so the stamps change (README.md › Commands; scripts/bump.mjs › header).
 3. To see exactly what will be served, run `npm run stage` and open `_site/` (package.json › scripts.stage; scripts/stage-site.mjs › header).
-4. For a quick local look, any static server works: `python3 -m http.server 8000`, with `?lang=en`, `?lang=ar`, `?cur=eur` or `?cur=usd` (README.md › Run it locally).
+4. For a quick local look, any static server works: `python3 -m http.server 8000`, then `/en/`, `/ar/`, `/tarifs/` (`?lang=en` and `?lang=ar` on the home redirect there), `?cur=eur` or `?cur=usd` (README.md › Run it locally).
 
 ## The knowledge base and deploy
 
