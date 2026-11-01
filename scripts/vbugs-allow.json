@@ -10,5 +10,13 @@
   {
     "prefix": "index ESCAPES pricing span.t-pop ",
     "reason": "2026-10-28: the recommended tier's badge (Recommandé / Recommended / الموصى به) is a pill set on the card's top edge on purpose (.t-pop: position:absolute; top:0; translateY(-50%)), so half of it is outside the card by design. First seen when the scan began scrolling for real (the tiers reveal on scroll)"
+  },
+  {
+    "prefix": "tarifs ESCAPES pricing span.t-pop ",
+    "reason": "2026-10-31: the same badge on the price guide, whose tiers are the home's (build-tarifs.mjs reads them from index.html's SLOT)"
+  },
+  {
+    "prefix": "tarifs ESCAPES pricing span.md-tag ",
+    "reason": "2026-10-31: the pricing models' \"Notre modèle\" / \"Our model\" / \"نموذجنا\" tag is a badge on the card's top edge on purpose, like Recommandé on the tiers (.md-tag: position:absolute; top:-10px), so part of it is outside the card by design. Never seen on the home, where the models sat in a closed <details> the scan skips; on the guide they are open"
   }
 ]

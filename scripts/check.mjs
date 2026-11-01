@@ -9,7 +9,8 @@
  *                        the same keys
  *   2. i18n coverage  — every data-i18n* attribute on the language pages resolves
  *                        to a key in each dictionary
- *   3. assets         — every local src/href on every page exists on disk
+ *   3. assets         — every local src/href and every srcset candidate on every
+ *                        page exists on disk, each NNNw descriptor the file's width
  *  3b. parallax depths — every data-parallax / data-depth value parses
  *   4. stamp sync     — all ?v= cache-bust stamps are identical across pages
  *   5. client links   — data-client links agree (plate, card, browser bar, shots, showcase); none on hub/
@@ -24,15 +25,17 @@
  *                        the sitemap is current, 404.html stages with its JavaScript-off
  *                        links from the site root, and every page names one canonical,
  *                        from its markup or its head script but never both
- *   7. generated pages — scene/index.html equals its generator's output (line endings
- *                        ignored, as in every generator comparison), and every page with
- *                        an inline dictionary resolves its keys in fr/en/ar
+ *   7. generated pages — scene/index.html and the price guide's three pages equal
+ *                        their generators' output (line endings ignored, as in every
+ *                        generator comparison), and every page with an inline
+ *                        dictionary resolves its keys in fr/en/ar
  *   8. anchors        — every #fragment link lands on an id in its target page, and every
  *                        aria-labelledby/describedby/controls and label for= names one
  *  8b. Supabase switch — the lead store stays off until the legal page, its region and
  *                        an honest form note exist (read by running the switch script)
- *  8c. prices         — tier, maintenance and FAQ figures equal PRICE_MODEL/RETAINER; no typed
- *                        € or $ amount; the estimator's arithmetic holds
+ *  8c. prices         — tier, maintenance and FAQ figures equal PRICE_MODEL/RETAINER on the
+ *                        home and on the price guide; no typed € or $ amount on either;
+ *                        the estimator's arithmetic holds
  *  8d. legal gating   — legal/ is published only complete and current; until then nothing
  *                        points at it
  *  8e. baked languages and voices — the text baked into index.html, en/ and ar/
@@ -78,7 +81,8 @@ import { runInNewContext } from 'node:vm';
 import { join, dirname, normalize, basename, extname } from 'node:path';
 import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, isDeploySkipped, NOT_DEPLOYED, BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
 import { SCENE_HTML } from './build-scene.mjs';
-import { renderSitemap, STATIC_LANG } from './build-sitemap.mjs';
+import { renderSitemap, STATIC_LANG, TARIFS_LANG } from './build-sitemap.mjs';
+import { renderTarifs } from './build-tarifs.mjs';
 import { applyVoices } from './build-voices.mjs';
 import { renderLegal, markerRegions } from './build-legal.mjs';
 import { LEGAL, missing as legalMissing } from './legal-data.mjs';
@@ -98,6 +102,24 @@ const ok = (msg) => console.log('✓ ' + msg);
 // scene and baked-French comparisons on identical content. Keeping CR out of
 // the repository is block 15b's job.
 const lf = (s) => s.replace(/\r\n?/g, '\n');
+// An image file's pixel size from its header: WebP (VP8X, VP8L and VP8
+// bitstreams) and SVG (its root's width/height); [NaN, NaN] for any other
+// kind. Read wherever a page states a size the file must have (3, 5b, 17b,
+// 18), so every block reads the same bytes the same way.
+const fileSize = (f) => {
+  const b = readFileSync(join(ROOT, f));
+  if (f.endsWith('.svg')) {
+    const tag = /<svg\b[^>]*>/.exec(b.toString('utf8'))?.[0] || '';
+    return [Number(/\swidth="([\d.]+)"/.exec(tag)?.[1]), Number(/\sheight="([\d.]+)"/.exec(tag)?.[1])];
+  }
+  const kind = b.toString('latin1', 12, 16);
+  if (kind === 'VP8X') return [b.readUIntLE(24, 3) + 1, b.readUIntLE(27, 3) + 1];
+  if (kind === 'VP8L') { const v = b.readUInt32LE(21); return [(v & 0x3fff) + 1, ((v >> 14) & 0x3fff) + 1]; }
+  if (kind === 'VP8 ') return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+  return [NaN, NaN];
+};
+// the candidates of a srcset attribute, each its URL and its descriptor (3, 17b)
+const srcset = (s) => (s || '').split(',').map((c) => c.trim()).filter(Boolean).map((c) => { const [u, d] = c.split(/\s+/); return { u, d }; });
 
 /* 1 + 2 — i18n */
 // One dictionary per language, assets/i18n/{fr,en,ar}.js (lib/i18n.mjs reads
@@ -113,17 +135,20 @@ const unbalanced = everyKey.filter((k) => !LANGS.every((l) => keyed[l].has(k)))
 unbalanced.length
   ? bad('i18n unbalanced (every key in fr, en and ar): ' + unbalanced.join(', '))
   : ok(`i18n dictionaries balanced (${keyed.fr.size} keys, the same in ${LANGS.join('/')})`);
-// every data-i18n* reference on the three language pages (en/ and ar/ are
-// written from index.html, so they carry the same ones) names a key
+// every data-i18n* reference on the language pages names a key: the home's
+// three (en/ and ar/ are written from index.html, so they carry the same
+// ones) and the price guide's three, whose own keys (tarifs.title, desc,
+// crumbAria, kicker, h1, lead) are on no other page
 const html = read('index.html');
-const refs = new Set(Object.keys(STATIC_LANG).flatMap((f) => [...read(f).matchAll(/data-i18n(?:-[a-z]+)?="([^"]+)"/g)].map((m) => m[1])));
+const refs = new Set([...Object.keys(STATIC_LANG), ...Object.keys(TARIFS_LANG)].flatMap((f) => [...read(f).matchAll(/data-i18n(?:-[a-z]+)?="([^"]+)"/g)].map((m) => m[1])));
 const orphans = [...refs].filter((k) => !LANGS.every((l) => keyed[l].has(k)));
 orphans.length ? bad('orphan data-i18n refs: ' + orphans.join(', ')) : ok(`no orphan data-i18n references (${refs.size} keys referenced)`);
 
 /* 3 — assets exist */
 // every entry page plus the embedded WorkspaceHQ pages, each resolved from its own folder
 const pages = Object.fromEntries([...PAGES, ...EXTRA_PAGES].map((f) => [f, dirname(f)]));
-const missing = [];
+const missing = [], wrongWidth = [];
+let nCandidates = 0;
 for (const [f, base] of Object.entries(pages)) {
   // strip HTML comments first: commented-out markup (e.g. slots waiting on
   // artwork) references files that legitimately don't exist yet
@@ -139,6 +164,22 @@ for (const [f, base] of Object.entries(pages)) {
     if (u.includes("'")) continue;
     if (!existsSync(join(ROOT, base, u)) && !existsSync(join(ROOT, base, u.replace(/\/$/, '')))) {
       missing.push(`${f} → ${m[1]}`);
+    }
+  }
+  // A srcset names files no src= does: the plate's and the work cards' 720w
+  // previews, the scene's 720w and 416w captures (a phone takes those alone),
+  // the hub's cuts. Each candidate is held to the same test, and its NNNw
+  // descriptor to the file's own width: a wrong one has the browser pick
+  // the wrong file for every screen. 17b reads the hub's again, for its
+  // boxes and ratios.
+  for (const m of src.matchAll(/\ssrcset="([^"]*)"/g)) {
+    for (const { u: raw, d } of srcset(m[1])) {
+      const u = raw.split('#')[0].split('?')[0];
+      if (/^(https?:|data:|\/\/)/.test(u) || u === '' || u.includes('{{') || u.includes("'")) continue;
+      nCandidates++;
+      if (!existsSync(join(ROOT, base, u))) { missing.push(`${f} → ${raw} (srcset)`); continue; }
+      const w = /^(\d+)w$/.exec(d || ''), px = w && fileSize(join(base, u))[0];
+      if (w && Number.isFinite(px) && px !== Number(w[1])) wrongWidth.push(`${f}: ${raw} ${d}, but the file is ${px} px wide`);
     }
   }
   // Paths that only exist inside inline scripts: quoted 'assets/...' literals
@@ -157,7 +198,9 @@ for (const [f, base] of Object.entries(pages)) {
     }
   }
 }
-missing.length ? bad('missing assets: ' + missing.join(', ')) : ok('all local asset references resolve');
+missing.length ? bad('missing assets: ' + missing.join(', '))
+  : wrongWidth.length ? bad('srcset descriptors: ' + wrongWidth.join('; '))
+  : ok(`all local asset references resolve (${nCandidates} srcset candidates, each NNNw its file's width)`);
 
 /* 3b — parallax depths parse. A typo'd data-parallax silently coerces to 0,
    which looks like "the effect just isn't working" and is miserable to find. */
@@ -218,18 +261,6 @@ onHub.length ? bad("client sites listed on the hub (it is the artist's page): " 
    takes the files from the live sites. */
 const logoErr = [];
 const strip = (/<ul class="cl-row">([\s\S]*?)<\/ul>/.exec(html) || [])[1];
-const fileSize = (f) => {
-  const b = readFileSync(join(ROOT, f));
-  if (f.endsWith('.svg')) {
-    const tag = /<svg\b[^>]*>/.exec(b.toString('utf8'))?.[0] || '';
-    return [Number(/\swidth="([\d.]+)"/.exec(tag)?.[1]), Number(/\sheight="([\d.]+)"/.exec(tag)?.[1])];
-  }
-  const kind = b.toString('latin1', 12, 16);
-  if (kind === 'VP8X') return [b.readUIntLE(24, 3) + 1, b.readUIntLE(27, 3) + 1];
-  if (kind === 'VP8L') { const v = b.readUInt32LE(21); return [(v & 0x3fff) + 1, ((v >> 14) & 0x3fff) + 1]; }
-  if (kind === 'VP8 ') return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
-  return [NaN, NaN];
-};
 const css = read('assets/styles.css');
 const seen = [];
 if (!strip) logoErr.push('no <ul class="cl-row"> in index.html');
@@ -395,6 +426,17 @@ canonErr.length ? bad('canonical: ' + canonErr.join('; '))
 lf(read('scene/index.html')) === lf(SCENE_HTML)
   ? ok('scene/index.html matches scripts/build-scene.mjs')
   : bad('scene/index.html differs from its generator (edit scripts/scene-data.mjs, then npm run scene)');
+// the price guide: each language's page equals its generator's render of the
+// committed index.html (the tiers, the estimator and the chrome come from
+// it) and that language's dictionary, so a home edit or a tarifs.* change
+// without the build cannot ship an older guide
+const guideStale = [];
+for (const [f, l] of Object.entries(TARIFS_LANG)) {
+  try { if (lf(read(f)) !== lf(renderTarifs(l, lf(html), DICT))) guideStale.push(`${f} differs`); }
+  catch (e) { guideStale.push(`${f}: ${e.message}`); }
+}
+guideStale.length ? bad('price guide: ' + guideStale.join('; ') + ' (edit index.html, the dictionaries or scripts/build-tarifs.mjs, then npm run build)')
+  : ok('tarifs/, en/tarifs/ and ar/tarifs/ match scripts/build-tarifs.mjs');
 const dictGaps = [];
 for (const f of PAGES) {
   const src = read(f);
@@ -463,18 +505,36 @@ if (supaOn) {
 // Prices have one source. The tier cards and the maintenance line carry their
 // dinar figures in the markup (scripts off); they must equal PRICE_MODEL and
 // RETAINER in app.js, and no € or $ amount may be typed into the page: the
-// converted views are computed at runtime from the same numbers.
+// converted views are computed at runtime from the same numbers. Two pages
+// carry them: the home, the source, and the price guide, which copies them
+// from index.html's SLOT (build-tarifs.mjs: block 7 holds the guide to its
+// generator and 8e en/ and ar/ to theirs, so each page's French is enough).
+// Each page's own prices run from the tiers to where its own figures end:
+// the home's at the estimator's end marker, the guide's where the market
+// comparison starts, which quotes other markets on purpose.
 const priceErr = [];
 const digits = (x) => Number(String(x).replace(/\D/g, ''));
 const base = (key) => { const m = new RegExp(key + ":\\s*\\{\\s*base:\\s*\\[(\\d+),\\s*(\\d+)\\]").exec(app); return m && [Number(m[1]), Number(m[2])]; };
-for (const m of html.matchAll(/<p class="t-range" data-tier="([a-z]+)"><b>([^<]+)<\/b>/g)) {
-  const want = base(m[1]); const got = m[2].split('–').map(digits);
-  if (!want || got[0] !== want[0] || got[1] !== want[1]) priceErr.push(`tier ${m[1]}: markup ${m[2]} vs PRICE_MODEL ${want}`);
-}
 const ret = (/RETAINER = \[(\d+), (\d+)\]/.exec(app) || []).slice(1).map(Number);
-const retHtml = (/<b id="pr-ret">([^<]+)<\/b>/.exec(html) || [])[1] || '';
-if (retHtml.split('–').map(digits).join() !== ret.join()) priceErr.push(`maintenance: markup ${retHtml} vs RETAINER ${ret}`);
-if ((html.match(/class="t-range"/g) || []).length !== (html.match(/class="t-range" data-tier=/g) || []).length) priceErr.push('a tier range without data-tier is not converted');
+const PRICED = { 'index.html': '<!-- /SLOT:estimator -->', 'tarifs/index.html': '<div class="market"' };
+for (const [f, end] of Object.entries(PRICED)) {
+  const src = f === 'index.html' ? html : read(f);
+  let tiers = 0;
+  for (const m of src.matchAll(/<p class="t-range" data-tier="([a-z]+)"><b>([^<]+)<\/b>/g)) {
+    const want = base(m[1]); const got = m[2].split('–').map(digits);
+    tiers++;
+    if (!want || got[0] !== want[0] || got[1] !== want[1]) priceErr.push(`${f} tier ${m[1]}: markup ${m[2]} vs PRICE_MODEL ${want}`);
+  }
+  if (!tiers) priceErr.push(`${f}: no tier card with a data-tier range`);
+  const retHtml = (/<b id="pr-ret">([^<]+)<\/b>/.exec(src) || [])[1] || '';
+  if (retHtml.split('–').map(digits).join() !== ret.join()) priceErr.push(`${f} maintenance: markup ${retHtml} vs RETAINER ${ret}`);
+  if ((src.match(/class="t-range"/g) || []).length !== (src.match(/class="t-range" data-tier=/g) || []).length) priceErr.push(`${f}: a tier range without data-tier is not converted`);
+  const from = src.indexOf('<div class="tiers">'), to = from < 0 ? -1 : src.indexOf(end, from);
+  if (from < 0 || to < 0) { priceErr.push(`${f}: could not find the region from the tiers to ${end}`); continue; }
+  const typed = [...src.slice(from, to).replace(/<!--[\s\S]*?-->/g, '').matchAll(/(?:€|\$)\s?\d[\d\s  .,]*|\d[\d  .,]*\s?(?:€|\$)/g)]
+    .map((m) => m[0]).filter((x) => !/^\$\{/.test(x));
+  if (typed.length) priceErr.push(`hard-coded €/$ amounts in ${f}: ` + typed.slice(0, 5).join(' | '));
+}
 // The FAQ's "what does it cost?" answer quotes the Essentiel floor in every
 // language, written so it cannot wrap apart (French once had no figure while
 // English and Arabic did).
@@ -485,12 +545,6 @@ if ((html.match(/class="t-range"/g) || []).length !== (html.match(/class="t-rang
   for (const [lang, w] of Object.entries(want))
     if (!String((DICT[lang] || {})['faq2.a'] || '').includes(w)) priceErr.push(`faq2.a (${lang}) does not quote the starting price as "${w}"`);
 }
-// only Numidea's own prices: the market table quotes other markets on purpose
-const ownPrices = html.slice(html.indexOf('<div class="tiers">'), html.indexOf('<div class="market"'));
-if (!ownPrices) priceErr.push('could not find the tiers-to-market region');
-const typed = [...ownPrices.replace(/<!--[\s\S]*?-->/g, '').matchAll(/(?:€|\$)\s?\d[\d\s  .,]*|\d[\d  .,]*\s?(?:€|\$)/g)]
-  .map((m) => m[0]).filter((x) => !/^\$\{/.test(x));
-if (typed.length) priceErr.push('hard-coded €/$ amounts in index.html: ' + typed.slice(0, 5).join(' | '));
 // The estimator's arithmetic (ESTIMATE in app.js, a pure block) is tested on
 // every size, option set and pace: a quote is a real range, a Vitrine is never
 // quoted above the Studio tier for the same pages, and no tier charges for an
@@ -525,7 +579,7 @@ if (typed.length) priceErr.push('hard-coded €/$ amounts in index.html: ' + typ
     if (bad.length) priceErr.push(`estimator: ${bad.length} bad quotes, e.g. ` + bad.slice(0, 3).join('; '));
   }
 }
-priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier, maintenance and FAQ figures equal PRICE_MODEL/RETAINER; no typed €/$ amounts; estimator sound on every size, option set and pace');
+priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier, maintenance and FAQ figures equal PRICE_MODEL/RETAINER on the home and the price guide; no typed €/$ amounts on either; estimator sound on every size, option set and pace');
 /* 8d — legal gating */
 // Legal notice + privacy: published only when complete. While legal/ does not
 // exist, nothing may point at it (comments included) and the two link regions
@@ -910,8 +964,9 @@ runtimeDeps.length
     'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 19.0e6;           // 17,162,350 on 2026-10-31, 237 files (the embed's font copies, readme and manifest gone; 17,237,153 in 242 on 10-28);
-                                  // 17,531,597 in 244 later that day with en/ and ar/ (two pages 216 kB, two cards 151 kB, three dictionaries 86 kB, app.js 85 kB lighter)
+  const TOTAL = 20.3e6;           // 18,381,757 on 2026-10-31, 283 files, once the captures had their 720w/416w files (+739 kB in 35), the price guide its
+                                  // three pages and sheet (+143 kB) and the home pages lost the market comparison; 17,162,350 in 237 that morning (the embed's
+                                  // font copies, readme and manifest gone), 17,531,597 in 244 with en/ and ar/ (two pages, two cards, three dictionaries)
   const size = (f) => statSync(join(ROOT, f)).size;
   const fmt = (n) => (n >= 1e6 ? (n / 1e6).toFixed(2) + ' MB' : (n / kB).toFixed(1) + ' kB');
   const bytes = (n) => n.toLocaleString('en') + ' bytes';
@@ -1000,7 +1055,7 @@ runtimeDeps.length
   const name = (u, how) => { if (!local(u)) return null; const f = path(u); (named.get(f) || named.set(f, new Set()).get(f)).add(how); return f; };
   const missingFiles = new Set();
   const exists = (f) => { if (existsSync(join(ROOT, f))) return true; missingFiles.add(f); return false; };
-  // pixel size: WebP and SVG (fileSize, check 5b), PNG from its IHDR
+  // pixel size: WebP and SVG (fileSize, top of the file), PNG from its IHDR
   const px = (f) => {
     const b = readFileSync(join(ROOT, f));
     return b.toString('latin1', 1, 4) === 'PNG' ? [b.readUInt32BE(16), b.readUInt32BE(20)] : fileSize(f).map(Math.round);
@@ -1021,7 +1076,6 @@ runtimeDeps.length
     return loop === null ? null : { loop, frames, ms };
   };
   const ratioOk = ([w, h], [W, H]) => Math.abs(h - (w * H) / W) <= 1;
-  const srcset = (s) => (s || '').split(',').map((c) => c.trim()).filter(Boolean).map((c) => { const [u, d] = c.split(/\s+/); return { u, d }; });
   // one <img> or <source>: its candidates exist, NNNw = file width, one ratio;
   // returns the widest candidate's size (or null when a file is missing)
   const candidates = (label, tag, extra = []) => {
@@ -1162,7 +1216,7 @@ runtimeDeps.length
   const len = (s) => [...norm(s)].length;
   const descOk = (s) => typeof s === 'string' && len(s) >= 50 && len(s) <= 160;
   // width × height from the file's header: JPEG (the first SOFn segment),
-  // PNG (IHDR), WebP and SVG (fileSize, check 5b)
+  // PNG (IHDR), WebP and SVG (fileSize, top of the file)
   const imgSize = (file) => {
     const b = readFileSync(join(ROOT, file));
     if (b[0] === 0xff && b[1] === 0xd8) {
@@ -1224,12 +1278,15 @@ runtimeDeps.length
     const desc = meta.description || [];
     if (desc.length !== 1 || !descOk(desc[0])) err(f, `meta description ${desc.length === 1 ? len(desc[0]) + ' characters' : '×' + desc.length} (want one, 50-160 characters)`);
     // the descriptions the page's dictionary puts in its place: a language
-    // page's own (the one baked into it), a switching page's three
-    const own = STATIC_LANG[f] ? { [STATIC_LANG[f]]: DICT[STATIC_LANG[f]] } : (() => {
+    // page's own (the one baked into it: the home's meta.desc and title, the
+    // price guide's tarifs.desc and tarifs.title), a switching page's three
+    const lang = STATIC_LANG[f] || TARIFS_LANG[f];
+    const own = lang ? { [lang]: DICT[lang] } : (() => {
       const m = /<script type="application\/json" id="i18n">([\s\S]*?)<\/script>/.exec(src);
       try { return m ? JSON.parse(m[1]) : null; } catch { return null; }        // block 7 reports bad JSON
     })();
-    const dkey = STATIC_LANG[f] ? 'meta.desc' : 'ui.desc', tkey = STATIC_LANG[f] ? 'title' : 'ui.title';
+    const dkey = STATIC_LANG[f] ? 'meta.desc' : TARIFS_LANG[f] ? 'tarifs.desc' : 'ui.desc';
+    const tkey = STATIC_LANG[f] ? 'title' : TARIFS_LANG[f] ? 'tarifs.title' : 'ui.title';
     if (own) for (const l of LANGS) {
       const d = own[l]?.[dkey], t = own[l]?.[tkey];
       if (d != null && !descOk(d)) err(f, `${dkey} (${l}) is ${len(d)} characters (want 50-160)`);

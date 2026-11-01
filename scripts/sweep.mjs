@@ -9,9 +9,12 @@
  * gradients, textures, translucent panels and parallax fields, which a
  * declared-colour check cannot see.
  *
- * Covers the home page (one page per language: index.html, en/, ar/) in all six
- * themes, plus hub/, scene/, 404 and workspacehq/,
- * and a second pass at other sizes and states: phones in the dark themes, tablets,
+ * Covers the home page (one page per language: index.html, en/, ar/) and the
+ * price guide (tarifs/, en/tarifs/, ar/tarifs/: the market comparison, swept
+ * on the home in every theme until it moved there) in all six themes, plus
+ * hub/, scene/, 404 and workspacehq/,
+ * and a second pass at other sizes and states: phones in the dark themes, the
+ * guide's phone in arcanum and daylight, tablets,
  * short landscape, scene/ in Arabic, 404 in other themes, and hub/ in its night
  * palette (void-theme 'dark'; paper is its default) and on a 390px phone in both.
  * Exits non-zero on any failure. Optional arg: a single theme name.
@@ -43,10 +46,11 @@ import {ROOT,THEMES} from './site.mjs';
 const srv=await serve();
 const B=srv.base;
 
-// the home page is one page per language (build-lang.mjs), each opened directly
+// the home page is one page per language (build-lang.mjs), each opened directly; the price guide likewise (build-tarifs.mjs)
 const HOME={fr:'/index.html',en:'/en/index.html',ar:'/ar/index.html'};
-const PAGES=[['index',HOME.fr],['index-en',HOME.en],['index-ar',HOME.ar],['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html'],['workspacehq','/workspacehq/index.html']];
-const OWN={index:'fr','index-en':'en','index-ar':'ar'};   // each home page's language; the other pages are swept in French
+const TARIFS={fr:'/tarifs/index.html',en:'/en/tarifs/index.html',ar:'/ar/tarifs/index.html'};
+const PAGES=[['index',HOME.fr],['index-en',HOME.en],['index-ar',HOME.ar],['tarifs',TARIFS.fr],['tarifs-en',TARIFS.en],['tarifs-ar',TARIFS.ar],['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html'],['workspacehq','/workspacehq/index.html']];
+const OWN={index:'fr','index-en':'en','index-ar':'ar',tarifs:'fr','tarifs-en':'en','tarifs-ar':'ar'};   // each home and guide page's language; the other pages are swept in French
 const ONLY=process.argv[2];        // optional: restrict to one theme
 const lum=([r,g,b])=>{const f=v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(r)+.7152*f(g)+.0722*f(b)};
 const cr=(a,b)=>{const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
@@ -62,6 +66,7 @@ if(existsSync(join(ROOT,'legal-preview/index.html'))) RUNS.push({theme:'arcanum'
 if(existsSync(join(ROOT,'legal/index.html'))) RUNS.push({theme:'arcanum',pname:'legal',path:'/legal/index.html',lang:'fr',w:1280,h:900});
 // second pass: sizes and states the desktop pass never paints
 for(const t of ['noir','mono','altneon']) for(const l of ['fr','ar']) RUNS.push({theme:t,pname:'index@390',path:HOME[l],lang:l,w:390,h:844});
+for(const t of ['arcanum','daylight']) for(const l of ['fr','ar']) RUNS.push({theme:t,pname:'tarifs@390',path:TARIFS[l],lang:l,w:390,h:844});
 RUNS.push({theme:'arcanum',pname:'index@768',path:HOME.fr,lang:'fr',w:768,h:1024});
 RUNS.push({theme:'daylight',pname:'index@768',path:HOME.ar,lang:'ar',w:768,h:1024});
 RUNS.push({theme:'noir',pname:'index@1024',path:HOME.fr,lang:'fr',w:1024,h:768});

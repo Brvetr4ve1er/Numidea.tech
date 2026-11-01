@@ -2,9 +2,11 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 79 runs over every page (site.mjs PAGES): the home page (one page per
+ * 89 runs over every page (site.mjs PAGES): the home page (one page per
  * language: index.html, en/, ar/, each opened directly) in all six themes x
- * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; scene/ in each
+ * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; the price
+ * guide (tarifs/, en/tarifs/, ar/tarifs/, likewise) in arcanum and daylight
+ * x FR/EN/AR on desktop and x FR/AR on the phone; scene/ in each
  * language on desktop and phone; 404 in two themes in Arabic; hub/ in both of
  * its palettes (paper, its default, and night: void-theme 'dark') on desktop
  * and on the phone; tablet (768x1024, 1024x768) and short landscape (844x390);
@@ -21,7 +23,9 @@
  * errors, failed requests, any third-party request, and every
  * Content-Security-Policy violation (securitypolicyviolation events, counted
  * in every frame). Desktop page runs fail when LCP, read at load before
- * anything is touched, is over 1.5 s.
+ * anything is touched, is over 1.5 s. A page in another language than
+ * Arabic that fetched an Arabic font file is listed at the end, report-only
+ * until the copy pass (see arFont below).
  *
  * Then 404.html two folders down, where a relative link would resolve
  * against the missing folder (the local server answers a missing URL with
@@ -103,11 +107,13 @@ const DESKTOP_LCP=1500;
 const PHONE={lcp:2500,lt:300,inp:200};
 const PHONE_STRICT=process.env.AUDIT_PHONE_STRICT==='1';
 const TIMING=new Set(['lcp','lt','inp']);
-let fails=0;const rows=[],warnings=[],phoneWarn=[];
+let fails=0;const rows=[],warnings=[],phoneWarn=[],fontWarn=[];
 const short=u=>u.replace(B,'').split(/[?#]/)[0]||'/';
 // the home page in a language: its own page (build-lang.mjs), opened
-// directly; the root would send a stored en/ar there anyway, in two loads
+// directly; the root would send a stored en/ar there anyway, in two loads;
+// the price guide's page in a language likewise (build-tarifs.mjs)
 const HOME=l=>l==='fr'?'/index.html':'/'+l+'/index.html';
+const TARIFS=l=>(l==='fr'?'':'/'+l)+'/tarifs/index.html';
 
 /* The live console's template (embed/console.html, as the design tool exports
    it) holds SVG attributes like points="{{ t.pts }}" that its runtime fills
@@ -184,6 +190,14 @@ const run=async(label,path,o={})=>{
     return {v:r.violations.map(v=>v.id+'('+v.nodes.length+')'),i:r.incomplete.filter(v=>v.id!=='color-contrast').map(v=>v.id+'('+v.nodes.length+')')}},axeOff);
   const ax=axr.v;if(axr.i.length)warnings.push(label+': '+axr.i.join(', '));
   const third=await p.evaluate(o=>performance.getEntriesByType('resource').filter(r=>!r.name.startsWith(o)).length,B);
+  // An Arabic face on a page in another language: styles.css's [lang="ar"]
+  // rule pulls IBM Plex Sans Arabic (42 KB) for one marked glyph. The switch's
+  // ع is drawn since 2ad9e7d and the English pages ask for no Arabic file;
+  // the French ones still do, through contact.vReply's <span lang="ar">ع</span>
+  // (assets/i18n/fr.js), so this is report-only (fontWarn, listed at the end)
+  // until the copy pass has replaced it: then count it in `issues` as 'arfont'.
+  const arFont=await p.evaluate(()=>({lang:document.documentElement.lang,n:performance.getEntriesByType('resource').filter(r=>/\/assets\/fonts\/ibm-plex-sans-arabic-[^/]*\.woff2/.test(r.name)).length}));
+  if(arFont.lang!=='ar'&&arFont.n)fontWarn.push(`${label}: ${arFont.n} Arabic font file(s) on a page in "${arFont.lang}"`);
   const {errs,bad,csp,waived}=W;
   const issues=[];
   if(m.cls>0.01)issues.push('cls');if(ax.length)issues.push('axe');if(m.of.length||m.hscroll)issues.push('overflow');
@@ -460,6 +474,11 @@ for(const t of THEMES)
   for(const l of ['fr','en','ar']) await run(`index ${t}/${l}`,HOME(l),{...D,theme:t,lang:l});
 await run('index cv open fr',HOME('fr'),{lang:'fr',act:openCv});
 await run('index estimator open fr',HOME('fr'),{lang:'fr',act:openEstimator});
+// the price guide: the home's chrome and sheets plus tarifs/style.css, the
+// estimator open at load and the market comparison the home gave up, in the
+// two palettes furthest apart (the six themes are the home's runs' job)
+for(const t of ['arcanum','daylight'])
+  for(const l of ['fr','en','ar']) await run(`tarifs ${t}/${l}`,TARIFS(l),{...D,theme:t,lang:l});
 console.log('— phone 390×844 —');
 await run('hub m','/hub/index.html',{w:390,h:844});
 await run('hub dark m','/hub/index.html',{w:390,h:844,init:{'void-theme':'dark'}});
@@ -472,6 +491,8 @@ for(const t of THEMES)
 await run('index menu open ar m',HOME('ar'),{lang:'ar',w:390,h:844,click:'.menu-toggle'});
 await run('index cv open ar m',HOME('ar'),{lang:'ar',w:390,h:844,act:openCv});
 await run('index estimator open ar m',HOME('ar'),{lang:'ar',w:390,h:844,act:openEstimator});
+for(const t of ['arcanum','daylight'])
+  for(const l of ['fr','ar']) await run(`tarifs ${t}/${l} m`,TARIFS(l),{theme:t,lang:l,w:390,h:844});
 console.log('— tablet and landscape —');
 await run('index arcanum/fr 768',HOME('fr'),{theme:'arcanum',lang:'fr',w:768,h:1024,touch:true});
 await run('index daylight/ar 768',HOME('ar'),{theme:'daylight',lang:'ar',w:768,h:1024,touch:true});
@@ -494,6 +515,7 @@ await phone('throttled index ar',HOME('ar'),{to:'fr'});
 await b.close();srv?.close();
 if(warnings.length){console.log('\naxe incomplete (review, not failing):');for(const w of warnings)console.log('  '+w)}
 if(phoneWarn.length){console.log('\nthrottled phone over its targets (report-only; AUDIT_PHONE_STRICT=1 fails on them):');for(const w of phoneWarn)console.log('  '+w)}
+if(fontWarn.length){console.log('\nArabic font files fetched by pages in another language (report-only until contact.vReply loses its <span lang="ar">; then an issue):');for(const w of fontWarn)console.log('  '+w)}
 if(!rows.length){console.log(`\nno run matched AUDIT_ONLY=${process.env.AUDIT_ONLY}`);process.exit(1)}
 console.log(fails?`\nFAILURES: ${fails} of ${rows.length}`:`\nALL CLEAN (${rows.length} runs${phoneWarn.length?`; ${phoneWarn.length} over the throttled phone's report-only targets`:''})`);
 process.exit(fails?1:0);

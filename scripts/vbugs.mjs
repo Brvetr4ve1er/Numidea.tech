@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Layout scanner — `npm run vbugs`. Renders the home page (one page per
- * language: index.html, en/, ar/, opened directly) at 7 widths x 4
+ * language: index.html, en/, ar/, opened directly) and the price guide
+ * (tarifs/, en/tarifs/, ar/tarifs/, the same way) at 7 widths x 4
  * theme/language pairs, and hub/ at 1440, 1024 (where its hero switches to
  * the wide frame), 768 and 390 in both its palettes (paper, the default, and
  * night: void-theme 'dark'), since its headings sit on its art; and reports
@@ -23,8 +24,11 @@ const combos=[];
 // the home page in a language is its own page (build-lang.mjs): opened there,
 // not through the root, which would send the stored language on in a second load
 const HOME={fr:'/',en:'/en/',ar:'/ar/'};
-for(const w of [1440,1280,1024,768,414,390,360])for(const [t,l] of [['arcanum','fr'],['arcanum','ar'],['engineering','en'],['daylight','fr']])
+const TARIFS={fr:'/tarifs/',en:'/en/tarifs/',ar:'/ar/tarifs/'};
+for(const w of [1440,1280,1024,768,414,390,360])for(const [t,l] of [['arcanum','fr'],['arcanum','ar'],['engineering','en'],['daylight','fr']]){
  combos.push(['index',HOME[l],w,{'numidea-theme':t,'numidea-lang':l},`${w}/${t}/${l}`]);
+ combos.push(['tarifs',TARIFS[l],w,{'numidea-theme':t,'numidea-lang':l},`${w}/${t}/${l}`]);
+}
 for(const w of [1440,1024,768,390])for(const t of ['light','dark'])combos.push(['hub','/hub/',w,{'void-theme':t},`hub ${w}/${t}`]);
 const b = await launch();
 const agg={};
@@ -61,10 +65,14 @@ for(const [page,path,w,init,label] of combos){
   for(let i=0;i<texts.length;i++)for(let j=i+1;j<texts.length&&texts[j].y<texts[i].y+texts[i].h;j++){const a=texts[i],c=texts[j];if(a.el===c.el||a.el.contains(c.el)||c.el.contains(a.el))continue;
     const ix=Math.min(a.x+a.w,c.x+c.w)-Math.max(a.x,c.x),iy=Math.min(a.y+a.h,c.y+c.h)-Math.max(a.y,c.y);
     if(ix>4&&iy>Math.min(a.h,c.h)*.35)out.push('OVERLAP '+sel(a.el)+' "'+a.t+'" × '+sel(c.el)+' "'+c.t+'"')}
-  // 2 text outside its card/box ancestor (bordered/background container)
+  // 2 text outside its card/box ancestor (bordered/background container). A box
+  // that scrolls on an axis (overflow auto/scroll: the market table's labelled
+  // .mk-scroll region, 640px wide at least, on the price guide) holds what lies
+  // past its edge there, reached by scrolling, so only its other axis counts
   for(const tx of texts){let c=tx.el.parentElement;while(c&&c!==document.body){const cs=getComputedStyle(c);if((cs.borderTopWidth!=='0px'&&cs.borderStyle!=='none')||cs.backgroundColor!=='rgba(0, 0, 0, 0)'||cs.backgroundImage!=='none')break;c=c.parentElement}
     if(!c||c===document.body)continue;const r=c.getBoundingClientRect();const L=r.left,R=r.right,T=r.top+scrollY,B=r.bottom+scrollY;
-    if(tx.x<L-2||tx.x+tx.w>R+2||tx.y<T-2||tx.y+tx.h>B+2)out.push('ESCAPES '+sel(tx.el)+' "'+tx.t+'" from '+sel(c))}
+    const cc=getComputedStyle(c),sx=/auto|scroll/.test(cc.overflowX),sy=/auto|scroll/.test(cc.overflowY);
+    if((!sx&&(tx.x<L-2||tx.x+tx.w>R+2))||(!sy&&(tx.y<T-2||tx.y+tx.h>B+2)))out.push('ESCAPES '+sel(tx.el)+' "'+tx.t+'" from '+sel(c))}
   // 3 clipped text (overflow hidden, content wider/taller), excluding ellipsis
   for(const e of document.querySelectorAll('body *')){if(!vis(e)||e.closest('[aria-hidden="true"]'))continue;const cs=getComputedStyle(e);if(cs.overflowX==='visible'&&cs.overflowY==='visible')continue;if(cs.textOverflow==='ellipsis')continue;
     if(srOnly(e))continue;

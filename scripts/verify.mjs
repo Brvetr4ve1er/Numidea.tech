@@ -15,6 +15,9 @@
  *   vbugs      layout scanner
  *   keys       keyboard paths, focus rings, dialogs, the contact form through its
  *              mail hand-off, reduced motion (the booted console included), RTL
+ *   stage      the staged copy: every stylesheet parses to the same rules and every
+ *              script compiles from _site/ as from the repository
+ *              (scripts/stage-check.mjs; it runs stage-site.mjs --pages itself)
  *
  * Not here: `npm run links` (every external link answers), because it needs
  * the network and the answer depends on other people's servers; CI runs it
@@ -31,6 +34,7 @@ const STEPS = [
   ['sweep', ['scripts/sweep.mjs']],
   ['vbugs', ['scripts/vbugs.mjs']],
   ['keys', ['scripts/keys.mjs']],
+  ['stage', ['scripts/stage-check.mjs']],
 ];
 const results = [];
 for (const [name, args] of STEPS) {

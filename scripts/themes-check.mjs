@@ -86,10 +86,11 @@ for (const { sel, body } of blocks) {
 const absent = THEMES.filter((t) => !seen.has(t));
 absent.length && bad('themes with no block in themes.css: ' + absent.join(', '));
 
-/* every contract token is read somewhere: a token nothing uses is dead weight
+/* every contract token is read somewhere (styles.css, the price guide's own
+   sheet, 404's and legal's inline rules): a token nothing uses is dead weight
    every theme has to keep setting (and keep contrast-safe) for nothing */
 {
-  const consumers = read('assets/styles.css') + ['404.html', 'legal/index.html'].filter((f) => existsSync(join(ROOT, f))).map(read).join('');
+  const consumers = read('assets/styles.css') + ['tarifs/style.css', '404.html', 'legal/index.html'].filter((f) => existsSync(join(ROOT, f))).map(read).join('');
   const unread = CONTRACT.filter((t) => !new RegExp('var\\(--' + t + '[,)]').test(consumers));
   unread.length ? bad('contract tokens nothing reads (drop them from the contract): ' + unread.map((t) => '--' + t).join(', ')) : ok(`every contract token is read (${CONTRACT.length})`);
 }

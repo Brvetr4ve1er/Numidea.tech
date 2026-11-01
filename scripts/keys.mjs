@@ -5,8 +5,9 @@
  *
  * Every page in site.mjs PAGES (each needs an entry in SPEC below, so a new
  * page is classified rather than silently skipped), in each language it has
- * (the home page is one page per language: index.html French, en/, ar/; the
- * pages that switch in place, in French and Arabic), at 1280x900 and on a
+ * (the home page and the price guide are one page per language: index.html
+ * French, en/, ar/, tarifs/ and its en/, ar/; the pages that switch in
+ * place, in French and Arabic), at 1280x900 and on a
  * 390x844 phone. The keyboard drives:
  * Tab, Shift+Tab, Enter, Escape and the arrows. Where a test starts deep in
  * the page it focuses that control first, then carries on with keys only.
@@ -34,7 +35,11 @@
  *                 size first (price.tyCustom · …), then the range; a type
  *                 chosen with Space and handed again, then the estimator
  *                 folded and the currency switched: the untouched message
- *                 still starts with that type, now in €
+ *                 still starts with that type, now in €. On the price guide
+ *                 (tarifs/), where the estimator is open at load and there is
+ *                 no form, Enter on the link lands on that language's home
+ *                 page at #contact with the same scope in the message and
+ *                 nothing left in sessionStorage (the hand-off, app.js)
  *  contact form   (index) submitted empty: every field aria-invalid, focus
  *                 on the first, each field's aria-describedby names a polite
  *                 live error with text in the page's language; typing clears
@@ -100,7 +105,10 @@
  *                 switches in place, and still does after the language hold's
  *                 1.5s fallback; on the root it lands on ar/ before paint (the
  *                 head script's redirect); en/ and ar/ are one language each
- *                 and ignore it, as do the English-only pages, which stay ltr
+ *                 and ignore it, as do the price guide's three pages (tarifs/
+ *                 never had a ?lang= address: a stored preference, not the
+ *                 address, sends it to its version) and the English-only
+ *                 pages, which stay ltr
  * A JS error during a run fails it, and so does any Content-Security-Policy
  * violation, from any frame (lib/csp-watch.mjs, shared with audit.mjs). This
  * gate holds the CSP proof for what only it drives: the theme menu, the
@@ -133,13 +141,16 @@ import { watchCsp } from './lib/csp-watch.mjs';
 import { loopState } from './lib/loop-state.mjs';
 import { withCsp } from './lib/csp.mjs';
 import { loadDicts } from './lib/i18n.mjs';
-import { STATIC_LANG } from './build-sitemap.mjs';
+import { STATIC_LANG, TARIFS_LANG } from './build-sitemap.mjs';
 import { ROOT, PAGES } from './site.mjs';
 
 /* langs: the languages a page has (`only`: why it has just one); tests: its
    own keyboard paths; noSkip: why it has no skip link. The home page is one
    page per language (STATIC_LANG: index.html French, en/, ar/, each with the
-   same paths); hub/'s path is the
+   same paths), and so is the price guide (TARIFS_LANG: tarifs/, en/tarifs/,
+   ar/tarifs/), which carries the home's chrome (its theme and menu paths
+   would pass there too) and the estimator, open at load, whose path hands
+   the scope to the home page's form across a navigation; hub/'s path is the
    studio diary's viewer (dialog() below, on the hooks the rebuilt page
    kept: #lb, #collection .tile--img with data-title, #lbTitle), and its
    pointer check (hits() below). */
@@ -148,6 +159,9 @@ const SPEC = {
   'index.html': { langs: ['fr'], tests: HOME_TESTS, only: 'the French page (one language per page; its Arabic is ar/, its English en/)' },
   'en/index.html': { langs: ['en'], tests: HOME_TESTS, only: 'the English page (one language per page)' },
   'ar/index.html': { langs: ['ar'], tests: HOME_TESTS, only: 'the Arabic page (one language per page)' },
+  'tarifs/index.html': { langs: ['fr'], tests: ['estimate'], only: 'the French guide (one language per page; its Arabic is ar/tarifs/, its English en/tarifs/)' },
+  'en/tarifs/index.html': { langs: ['en'], tests: ['estimate'], only: 'the English guide (one language per page)' },
+  'ar/tarifs/index.html': { langs: ['ar'], tests: ['estimate'], only: 'the Arabic guide (one language per page)' },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
   'hub/index.html': { langs: ['en'], tests: ['lightbox', 'hits'], only: "English only (the founder's own page)" },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
@@ -172,8 +186,10 @@ let fails = 0, runs = 0;
 const unclassified = pages.filter((f) => !SPEC[f]);
 if (unclassified.length) { console.log('FAIL no keys spec for: ' + unclassified.join(', ') + ' (add it to SPEC in scripts/keys.mjs)'); fails++; }
 
-// a language page is its language; the pages that switch in place take ?lang=
-const url = (f, l) => B + '/' + f.replace(/index\.html$/, '') + (l && l !== 'en' && !STATIC_LANG[f] ? '?lang=' + l : '');
+// a language page (the home's three, the guide's three) is its language; the
+// pages that switch in place take ?lang=
+const STATIC = { ...STATIC_LANG, ...TARIFS_LANG };
+const url = (f, l) => B + '/' + f.replace(/index\.html$/, '') + (l && l !== 'en' && !STATIC[f] ? '?lang=' + l : '');
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /* page helpers, defined before any page script runs */
@@ -253,6 +269,12 @@ async function skipAndRing(p, spec) {
       if (!inner || (await inner.evaluate((e) => !e || e === document.body))) break;   // the frame itself holds focus
       frame = frame || h; h = inner;
     }
+    // a chip's or an option's input (.echip, .eopt: the estimator, open at
+    // load on the price guide) is visually hidden and its label wears the
+    // ring (styles.css .echip:has(input:focus-visible)), so the ring and the
+    // visibility are read on the label
+    const lab = await h.evaluateHandle((e) => (e && e.tagName === 'INPUT' && !__shown(e) && e.closest('label')) || null);
+    if (lab.asElement()) { await h.dispose(); h = lab; } else await lab.dispose();
     const r = await h.evaluate((e, firstSeen) => {
       if (!e || e === document.body || e === document.documentElement) return { end: true };
       if (firstSeen && e === firstSeen) return { end: true };      // wrapped round
@@ -421,15 +443,40 @@ async function cvPanel(p) {
    ferme" gives the default type and size first (price.tyCustom · …), then
    the range. Re-configured (E-commerce) and handed again, then folded and
    the currency switched: the untouched message follows, type first, in €.
-   The message is emptied and the currency put back for the form test. */
+   The message is emptied and the currency put back for the form test.
+   On the price guide the estimator is open at load and the page has no
+   form: Enter on the link is a navigation to that language's home page at
+   #contact, the scope carried in sessionStorage (app.js HANDOFF), which the
+   home must have read into the message and cleared; the fold and the
+   currency switch are tried on the home alone. */
 async function estimatePrefill(p, lang) {
   const bad = [];
   const D = DICT[lang] || {};
-  const msg = () => p.evaluate(() => document.getElementById('f-message').value);
+  const msg = () => p.evaluate(() => { const f = document.getElementById('f-message'); return f ? f.value : null; });
   const isOpen = () => p.evaluate(() => document.querySelector('.price-est').open);
   const space = async (sel) => { await p.focus(sel); await p.keyboard.press('Space'); await wait(100); };
-  await p.focus('.price-est>summary'); await p.keyboard.press('Enter'); await wait(150);
-  if (!(await isOpen())) bad.push('Enter on the estimator\'s summary does not open it');
+  const guide = await p.evaluate(() => !document.getElementById('f-message'));
+  if (await isOpen()) { if (!guide) bad.push('the estimator is open at load (the home folds it)'); }
+  else {
+    if (guide) bad.push('the guide\'s estimator is folded at load (it renders open)');
+    await p.focus('.price-est>summary'); await p.keyboard.press('Enter'); await wait(150);
+    if (!(await isOpen())) bad.push('Enter on the estimator\'s summary does not open it');
+  }
+  if (guide) {
+    const from = new URL(p.url()).pathname, home = '/' + (lang === 'fr' ? '' : lang + '/');
+    await p.focus('#est-cta');
+    await Promise.all([p.waitForURL((u) => u.pathname !== from, { waitUntil: 'load', timeout: 10000 }).catch(() => {}), p.keyboard.press('Enter')]);
+    await p.waitForLoadState('networkidle'); await wait(300);
+    const at = new URL(p.url());
+    if (at.pathname !== home || at.hash !== '#contact') bad.push(`Enter on the guide's "prix ferme" link lands on ${at.pathname}${at.hash}, not on ${home}#contact`);
+    const m = await msg();
+    if (m === null) bad.push('no message field where the link landed');
+    else if (!m.startsWith(D['price.tyCustom'] + ' · ') || !m.includes(' — ')) bad.push('the scope carried to the home reads "' + m.slice(0, 60) + '", not price.tyCustom · … — range');
+    const left = await p.evaluate(() => { try { return sessionStorage.getItem('numidea-prefill'); } catch (e) { return 'unreadable'; } });
+    if (left !== null) bad.push('the carried scope is still in sessionStorage once the home has read it');
+    if (m !== null) await p.fill('#f-message', '');
+    return { bad, note: 'estimate → home message' };
+  }
   await p.focus('#est-cta'); await p.keyboard.press('Enter'); await wait(200);
   let m = await msg();
   if (!m.startsWith(D['price.tyCustom'] + ' · ') || !m.includes(' — ')) bad.push('the estimator\'s default scope hands "' + m.slice(0, 60) + '" to the message, not price.tyCustom · … — range');
@@ -928,11 +975,12 @@ for (const f of pages) {
   const { p, errs, csp, close } = await open(1280, 900);
   await p.goto(B + '/' + f.replace(/index\.html$/, '') + '?lang=ar', { waitUntil: 'load' });
   let bad, note;
-  if (STATIC_LANG[f]) {
+  if (STATIC[f]) {
     // one language per page: the root's head script sends ?lang=ar to ar/
     // before anything is painted (the address a shared link had until
-    // 2026-10-31), so it must land there, Arabic; en/ and ar/ ignore it
-    const to = f === 'index.html' ? 'ar' : STATIC_LANG[f];
+    // 2026-10-31), so it must land there, Arabic; en/ and ar/ ignore it, and
+    // so do the price guide's three (tarifs/ never had a ?lang= address)
+    const to = f === 'index.html' ? 'ar' : STATIC[f];
     if (f === 'index.html') { try { await p.waitForURL(/\/ar\/$/, { timeout: 10000 }); } catch { /* reported below */ } }
     bad = await direction(p, { langs: [to] }, to, '?lang=ar');
     const at = new URL(p.url()).pathname;
