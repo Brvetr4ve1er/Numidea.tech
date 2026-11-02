@@ -17,12 +17,16 @@ import { PROJECTS, UI } from './scene-data.mjs';
 import { VOICES, VOICE_CLIENTS } from './voices-data.mjs';
 import { BASE } from './site.mjs';
 import { withCsp } from './lib/csp.mjs';
-import { esc } from './lib/i18n.mjs';
+import { esc, loadDicts } from './lib/i18n.mjs';
 import { AYN } from './lib/ayn.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const stamp = (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/\?v=(\d+)/) || [, '1'])[1];
 const LANGS = ['fr', 'en', 'ar'];
+// The home page's dictionaries: the offer's conditions under each live
+// sheet (decision 17) are its own prev.terms, so the sheets never state
+// terms of their own and follow the home page when the owner changes them.
+const HOME = loadDicts();
 // The address a sheet's browser bar shows. Our own product is a page of this
 // site: its relative link resolves against the published BASE, never an
 // invented host.
@@ -80,6 +84,15 @@ function sheet(p, i) {
 
   const deliv = p.t.fr.deliverables.map((d, j) =>
     `<li ${T(`${k}.d${j}`)}>${esc(put(`${k}.d${j}`, Object.fromEntries(LANGS.map((l) => [l, p.t[l].deliverables[j]]))))}</li>`).join('\n            ');
+  // the founder's own work on the same client (`identity`): after the
+  // deliverables and named as his, never among them (it is not the site's)
+  const ident = p.identity ? `
+          <p class="sh-ident"><span ${T('ui.by')}>${esc(ui('by'))}</span> <a href="${esc(p.identity.href)}" target="_blank" rel="noopener" ${T(`${k}.identity`)}>${esc(put(`${k}.identity`, p.identity))}</a></p>` : '';
+  // decision 17: a delivered site ends on the offer, with the home page's
+  // own conditions. ../#apercu is the offer on the French page; its head
+  // sends an English or Arabic visitor on to en/ or ar/ with the hash kept.
+  const act = p.status === 'live' ? `
+      <p class="sh-act"><a class="cta" href="../#apercu" ${T('ui.act')}>${esc(ui('act'))}</a> <small ${T('ui.terms')}>${esc(put('ui.terms', Object.fromEntries(LANGS.map((l) => [l, HOME[l]['prev.terms']]))))}</small></p>` : '';
 
   const label = (pg, j, kind) => put(`${k}.${kind}${j}`, pg.label);
   const altOf = (pg, j, kind) => put(`${k}.${kind}a${j}`, Object.fromEntries(LANGS.map((l) => [l, `${p.name} — ${pg.label[l]}`])));
@@ -174,7 +187,7 @@ function sheet(p, i) {
           <h3 class="sh-h" ${T('ui.deliverables')}>${esc(ui('deliverables'))}</h3>
           <ul class="deliv">
             ${deliv}
-          </ul>
+          </ul>${ident}
         </div>
         <figure class="sh-main">
           <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(shownHost(p.url))}${esc(main.path === '/' ? '' : main.path)}</span></div>
@@ -215,11 +228,18 @@ ${gv}
             </div>
           </div>
         </section>
-      </div>${ba}${br}${vq}
+      </div>${ba}${br}${vq}${act}
     </article>`;
 }
 
-const sheets = PROJECTS.map(sheet).join('\n');
+// decision 16: the delivered sites first, then one heading over the sheets
+// that are not client work (the demo, our product); the data keeps them
+// last, or the heading would stand over a client's site
+const cut = PROJECTS.findIndex((p) => p.status !== 'live');
+if (PROJECTS.some((p, i) => i > cut && cut >= 0 && p.status === 'live')) throw new Error('scene-data: a live sheet after the demo/product group');
+const group = `
+    <h2 class="group" id="others" ${T('ui.group')}>${esc(ui('group'))}</h2>`;
+const sheets = PROJECTS.map((p, i) => (i === cut ? group : '') + sheet(p, i)).join('\n');
 const index = PROJECTS.map((p, i) => `<li><a href="#${p.slug}"><span class="ix-n">${pad(i + 1)}</span><span class="ix-name" dir="ltr">${esc(p.name)}</span></a></li>`).join('\n        ');
 
 // withCsp: the policy meta after the viewport meta, hashing the head script
@@ -277,7 +297,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAtt
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-latin.woff2">
 <link rel="stylesheet" href="../assets/fonts.css?v=${stamp}">
 <link rel="stylesheet" href="style.css?v=${stamp}">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"${BASE}"},{"@type":"ListItem","position":2,"name":"Planches","item":"${BASE}scene/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"${BASE}"},{"@type":"ListItem","position":2,"name":"${esc(UI.fr.crumb)}","item":"${BASE}scene/"}]}</script>
 </head>
 <body>
 <a class="skip" href="#sheets" ${T('ui.skip')}>${esc(ui('skip'))}</a>

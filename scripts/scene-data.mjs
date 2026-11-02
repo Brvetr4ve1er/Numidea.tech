@@ -21,6 +21,17 @@
  * that shows it (printed beside it, like the page captions). Phrased as what
  * the client or their customers can now do, never a result: no figures, no
  * "more", no "increased" (check.mjs refuses digits and %). 3 to 5 per sheet.
+ *
+ * Order (decision 16, 2026-10-30): the delivered client sites first, in the
+ * order the home page shows them, then the portfolio demo and our own
+ * product under one heading (UI.group); build-scene.mjs refuses a live
+ * sheet after that cut. A `live` sheet ends on the offer's call to action
+ * (decision 17), with the home page's own conditions (prev.terms).
+ *
+ * `identity` is a link beside a sheet's deliverables, not among them: work
+ * of the founder's own, shown on his Behance (hub/), such as the Bordj Steel
+ * brand identity. Its key is not `url`: check.mjs reads every `url:` of this
+ * file as a client site that the home page must link.
  */
 
 export const PROJECTS = [
@@ -49,6 +60,12 @@ export const PROJECTS = [
       { hex: '#FFFFFF', role: 'ground' },
     ],
     type: ['Montserrat'],
+    // the brand identity is the founder's design work, on his Behance (the
+    // same gallery the hub's design grid shows); the site is the studio's
+    identity: {
+      href: 'https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT',
+      fr: 'Identité de marque sur Behance ↗', en: 'Brand identity on Behance ↗', ar: 'الهوية البصرية على Behance ↗',
+    },
     context: {
       fr: "Un fabricant de Bordj Bou Arréridj aux quatre unités de production, qui travaille pour des usines, des projets agricoles et des promoteurs industriels dans toute l'Algérie.",
       en: "A Bordj Bou Arréridj manufacturer with four production units, working for factories, farm projects and industrial developers across Algeria.",
@@ -167,6 +184,79 @@ export const PROJECTS = [
         scope: 'الهوية والموقع ومسار الحجز',
         summary: 'وكالة رحلات منظّمة: لكل وجهة صفحتها وسعر «ابتداءً من» وحاسبة ترسل عرض السعر عبر واتساب. ثلاثي اللغة، والعربية من اليمين إلى اليسار، بوضعين فاتح وداكن.',
         deliverables: ['الهوية البصرية', 'موقع ثلاثي اللغة (الفرنسية والإنجليزية والعربية)، والعربية من اليمين إلى اليسار', '7 صفحات للوجهات', 'حاسبة عرض سعر عبر واتساب', 'خدمة مواعيد التأشيرة', 'وضع فاتح ووضع داكن'],
+      },
+    },
+  },
+  {
+    slug: 'almaflow',
+    name: 'AlmaFlowClim',
+    url: 'https://almaflowclim.netlify.app',
+    status: 'live',
+    pages: [
+      { file: 'd1', path: '/', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
+      { file: 'd2', path: '/climatisation', label: { fr: 'Climatisation', en: 'Air conditioning', ar: 'التكييف' } },
+      { file: 'd3', path: '/realisations', label: { fr: 'Réalisations', en: 'Projects', ar: 'الإنجازات' } },
+      { file: 'd4', path: '/contact', label: { fr: 'Devis', en: 'Quote', ar: 'طلب عرض سعر' } },
+    ],
+    phones: [
+      { file: 'm1', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
+      { file: 'm2', label: { fr: 'Climatisation', en: 'Air conditioning', ar: 'التكييف' } },
+    ],
+    pageCount: 7,
+    langs: 'FR',
+    palette: [
+      { hex: '#3A6EA5', role: 'accent' },
+      { hex: '#0D141A', role: 'ink' },
+      { hex: '#4DD0E1', role: 'highlight' },
+      { hex: '#FEA419', role: 'cta' },
+      { hex: '#E3F2FD', role: 'surface' },
+    ],
+    type: ['Roboto'],
+    context: {
+      fr: "Un artisan de Gennevilliers qui installe, entretient et dépanne climatisation, chauffage et plomberie chez des particuliers et des professionnels d'Île-de-France.",
+      en: "A Gennevilliers firm that installs, services and repairs air conditioning, heating and plumbing for homes and businesses across Île-de-France.",
+      ar: "حِرفي في جونفيلييه يركّب أنظمة التكييف والتدفئة والسباكة ويصونها ويصلح أعطالها، لدى الأفراد والمهنيين في منطقة إيل دو فرانس.",
+    },
+    gains: [
+      { at: "/climatisation",
+        fr: "En cas de panne, un client appelle d'un simple appui depuis la page du métier concerné\u202f: le numéro est en tête de page.",
+        en: "If something breaks down, a customer calls in one tap from the page for that trade: the number sits at the top.",
+        ar: "عند العطل، يتصل العميل بلمسة واحدة من صفحة التخصّص المعني: الرقم في أعلى الصفحة." },
+      { at: "/contact",
+        fr: "Pour un projet, il choisit sa prestation dans le formulaire de devis — installation, entretien, dépannage, chauffe-eau, salle de bain — et la demande arrive avec son type de travaux.",
+        en: "For a project, they pick the job in the quote form — installation, servicing, repair, water heater, bathroom — so the request arrives with its type of work.",
+        ar: "ولمشروع جديد، يختار الخدمة في استمارة عرض السعر — تركيب أو صيانة أو إصلاح أو سخّان ماء أو حمّام — فيصل الطلب ومعه نوع الأشغال." },
+      { at: "/chauffage",
+        fr: "Sur la page du métier qui le concerne, il lit ce qui est installé ou réparé, les marques suivies et les étapes d'une installation, du devis à la mise en service.",
+        en: "On the page for the trade they need, they read what is installed or repaired, the brands covered and the steps of an installation, from quote to commissioning.",
+        ar: "وفي صفحة التخصّص الذي يحتاجه، يقرأ ما يُركَّب أو يُصلَح، والعلامات التي يتعامل معها الحِرفي، ومراحل التركيب من عرض السعر إلى التشغيل." },
+      { at: "/realisations",
+        fr: "Il lit des chantiers proches du sien, chacun avec son métier, sa ville et ce qui a été posé.",
+        en: "They read about jobs like their own, each with its trade, its town and what was fitted.",
+        ar: "يقرأ عن أشغال تشبه ما يحتاجه، لكلّ منها تخصّصها ومدينتها وما رُكِّب فيها." },
+      { at: "/#zones-title",
+        fr: "Un habitant de Colombes ou de Nanterre voit d'emblée que l'artisan se déplace chez lui\u202f: les villes desservies sont listées sur l'accueil.",
+        en: "Someone in Colombes or Nanterre sees at once that the firm comes to their town: the towns served are listed on the home page.",
+        ar: "يرى ساكن كولومب أو نانتير من أول نظرة أن الحِرفي يتنقّل إلى مدينته: المدن المخدومة مذكورة في الصفحة الرئيسية." },
+    ],
+    t: {
+      fr: {
+        sector: 'Climatisation, chauffage, plomberie · Île-de-France',
+        scope: 'Site vitrine et demande de devis',
+        summary: "Un artisan de Gennevilliers qui installe et dépanne climatisation, chauffage et plomberie\u202f: une page par métier, ses réalisations chantier par chantier et un devis en un formulaire, pensés pour les recherches locales.",
+        deliverables: ['Site vitrine, 7 pages', '3 pages métier', 'Page de réalisations', 'Formulaire de devis', 'SEO local par ville desservie', 'Mentions légales'],
+      },
+      en: {
+        sector: 'Air conditioning, heating, plumbing · Île-de-France',
+        scope: 'Showcase site and quote request',
+        summary: 'A Gennevilliers installer for air conditioning, heating and plumbing: one page per trade, a page of past jobs and a one-form quote, built for local search.',
+        deliverables: ['Showcase site, 7 pages', '3 trade pages', 'Past-jobs page', 'Quote form', 'Local SEO by town served', 'Legal notice'],
+      },
+      ar: {
+        sector: 'تكييف وتدفئة وسباكة · إيل دو فرانس',
+        scope: 'موقع تعريفي وطلب عرض سعر',
+        summary: 'حِرفي في جونفيلييه يركّب ويصلح التكييف والتدفئة والسباكة: صفحة لكل تخصّص، وصفحة للأعمال المنجزة، وطلب عرض سعر في استمارة واحدة، مع تحسين محرّكات البحث (SEO) للظهور في نتائج البحث المحلية.',
+        deliverables: ['موقع تعريفي من 7 صفحات', '3 صفحات تخصّص', 'صفحة الإنجازات', 'استمارة عرض سعر', 'تحسين محرّكات البحث (SEO) لكل مدينة يخدمها', 'الإشعار القانوني'],
       },
     },
   },
@@ -313,93 +403,26 @@ export const PROJECTS = [
       },
     },
   },
-  {
-    slug: 'almaflow',
-    name: 'AlmaFlowClim',
-    url: 'https://almaflowclim.netlify.app',
-    status: 'live',
-    pages: [
-      { file: 'd1', path: '/', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
-      { file: 'd2', path: '/climatisation', label: { fr: 'Climatisation', en: 'Air conditioning', ar: 'التكييف' } },
-      { file: 'd3', path: '/realisations', label: { fr: 'Réalisations', en: 'Projects', ar: 'الإنجازات' } },
-      { file: 'd4', path: '/contact', label: { fr: 'Devis', en: 'Quote', ar: 'طلب عرض سعر' } },
-    ],
-    phones: [
-      { file: 'm1', label: { fr: 'Accueil', en: 'Home', ar: 'الرئيسية' } },
-      { file: 'm2', label: { fr: 'Climatisation', en: 'Air conditioning', ar: 'التكييف' } },
-    ],
-    pageCount: 7,
-    langs: 'FR',
-    palette: [
-      { hex: '#3A6EA5', role: 'accent' },
-      { hex: '#0D141A', role: 'ink' },
-      { hex: '#4DD0E1', role: 'highlight' },
-      { hex: '#FEA419', role: 'cta' },
-      { hex: '#E3F2FD', role: 'surface' },
-    ],
-    type: ['Roboto'],
-    context: {
-      fr: "Un artisan de Gennevilliers qui installe, entretient et dépanne climatisation, chauffage et plomberie chez des particuliers et des professionnels d'Île-de-France.",
-      en: "A Gennevilliers firm that installs, services and repairs air conditioning, heating and plumbing for homes and businesses across Île-de-France.",
-      ar: "حِرفي في جونفيلييه يركّب أنظمة التكييف والتدفئة والسباكة ويصونها ويصلح أعطالها، لدى الأفراد والمهنيين في منطقة إيل دو فرانس.",
-    },
-    gains: [
-      { at: "/climatisation",
-        fr: "En cas de panne, un client appelle d'un simple appui depuis la page du métier concerné\u202f: le numéro est en tête de page.",
-        en: "If something breaks down, a customer calls in one tap from the page for that trade: the number sits at the top.",
-        ar: "عند العطل، يتصل العميل بلمسة واحدة من صفحة التخصّص المعني: الرقم في أعلى الصفحة." },
-      { at: "/contact",
-        fr: "Pour un projet, il choisit sa prestation dans le formulaire de devis — installation, entretien, dépannage, chauffe-eau, salle de bain — et la demande arrive avec son type de travaux.",
-        en: "For a project, they pick the job in the quote form — installation, servicing, repair, water heater, bathroom — so the request arrives with its type of work.",
-        ar: "ولمشروع جديد، يختار الخدمة في استمارة عرض السعر — تركيب أو صيانة أو إصلاح أو سخّان ماء أو حمّام — فيصل الطلب ومعه نوع الأشغال." },
-      { at: "/chauffage",
-        fr: "Sur la page du métier qui le concerne, il lit ce qui est installé ou réparé, les marques suivies et les étapes d'une installation, du devis à la mise en service.",
-        en: "On the page for the trade they need, they read what is installed or repaired, the brands covered and the steps of an installation, from quote to commissioning.",
-        ar: "وفي صفحة التخصّص الذي يحتاجه، يقرأ ما يُركَّب أو يُصلَح، والعلامات التي يتعامل معها الحِرفي، ومراحل التركيب من عرض السعر إلى التشغيل." },
-      { at: "/realisations",
-        fr: "Il lit des chantiers proches du sien, chacun avec son métier, sa ville et ce qui a été posé.",
-        en: "They read about jobs like their own, each with its trade, its town and what was fitted.",
-        ar: "يقرأ عن أشغال تشبه ما يحتاجه، لكلّ منها تخصّصها ومدينتها وما رُكِّب فيها." },
-      { at: "/#zones-title",
-        fr: "Un habitant de Colombes ou de Nanterre voit d'emblée que l'artisan se déplace chez lui\u202f: les villes desservies sont listées sur l'accueil.",
-        en: "Someone in Colombes or Nanterre sees at once that the firm comes to their town: the towns served are listed on the home page.",
-        ar: "يرى ساكن كولومب أو نانتير من أول نظرة أن الحِرفي يتنقّل إلى مدينته: المدن المخدومة مذكورة في الصفحة الرئيسية." },
-    ],
-    t: {
-      fr: {
-        sector: 'Climatisation, chauffage, plomberie · Île-de-France',
-        scope: 'Site vitrine et demande de devis',
-        summary: "Un artisan de Gennevilliers qui installe et dépanne climatisation, chauffage et plomberie\u202f: une page par métier, ses réalisations chantier par chantier et un devis en un formulaire, pensés pour les recherches locales.",
-        deliverables: ['Site vitrine, 7 pages', '3 pages métier', 'Page de réalisations', 'Formulaire de devis', 'SEO local par ville desservie', 'Mentions légales'],
-      },
-      en: {
-        sector: 'Air conditioning, heating, plumbing · Île-de-France',
-        scope: 'Showcase site and quote request',
-        summary: 'A Gennevilliers installer for air conditioning, heating and plumbing: one page per trade, a page of past jobs and a one-form quote, built for local search.',
-        deliverables: ['Showcase site, 7 pages', '3 trade pages', 'Past-jobs page', 'Quote form', 'Local SEO by town served', 'Legal notice'],
-      },
-      ar: {
-        sector: 'تكييف وتدفئة وسباكة · إيل دو فرانس',
-        scope: 'موقع تعريفي وطلب عرض سعر',
-        summary: 'حِرفي في جونفيلييه يركّب ويصلح التكييف والتدفئة والسباكة: صفحة لكل تخصّص، وصفحة للأعمال المنجزة، وطلب عرض سعر في استمارة واحدة، مع تحسين محرّكات البحث (SEO) للظهور في نتائج البحث المحلية.',
-        deliverables: ['موقع تعريفي من 7 صفحات', '3 صفحات تخصّص', 'صفحة الإنجازات', 'استمارة عرض سعر', 'تحسين محرّكات البحث (SEO) لكل مدينة يخدمها', 'الإشعار القانوني'],
-      },
-    },
-  },
 ];
 
-/* Interface copy, per language. */
+/* Interface copy, per language. A buyer reads "projet", never "planche":
+   the design term stays in the kicker only. `group` heads the sheets that
+   are not client work; `act` is the offer's call to action under each live
+   sheet (its conditions come from the home dictionaries, prev.terms); `by`
+   introduces a sheet's `identity` link. */
 export const UI = {
   fr: {
-    dir: 'ltr', title: 'Planches — le travail, livrable par livrable · Numidea Labs',
-    desc: "Nos projets posés comme des planches\u202f: les pages livrées, le mobile, le système visuel, et le site en ligne.",
-    crumb: 'Planches', crumbNav: "Fil d'Ariane", langs: 'Langue', kicker: 'Planches de projet',
+    dir: 'ltr', title: 'Nos réalisations web, projet par projet — Numidea Labs',
+    desc: "Sites livrés en Algérie et en France, captures à l'appui\u202f: pages, version mobile, système visuel et lien vers le site en ligne.",
+    crumb: 'Réalisations', crumbNav: "Fil d'Ariane", langs: 'Langue', kicker: 'Planches de projet',
     h1: 'Le travail, <em>livrable par livrable.</em>',
-    lead: "Chaque planche montre ce qui a été livré, tel qu'il est en ligne aujourd'hui\u202f: ce que le site apporte au client, les pages, le mobile, le système visuel. Les captures viennent des sites eux-mêmes.",
-    index: 'Sommaire des planches', sheet: 'Pl.', visit: 'Voir le site', open: 'Ouvrir',
+    lead: "Les trois premières planches montrent des sites livrés à des clients, tels qu'ils sont en ligne aujourd'hui\u202f: ce que le site leur apporte, les pages, le mobile, le système visuel. Suivent une démo de portfolio et notre propre outil. Les captures viennent des sites eux-mêmes.",
+    group: 'Hors commande client\u202f: une démo et notre outil',
+    act: 'Demander mon Aperçu →', by: 'Par le fondateur',
+    index: 'Sommaire des projets', sheet: 'Projet', visit: 'Voir le site', open: 'Ouvrir',
     sector: 'Secteur', scope: 'Périmètre', pagesL: 'Pages', langsL: 'Langues', statusL: 'Statut',
     deliverables: 'Livrables', pages: 'Pages livrées', mobile: 'Sur mobile', system: 'Système visuel',
-    palette: 'Couleurs', type: 'Typographie', before: 'Avant / après', beforeL: 'Avant', afterL: 'Après', brand: 'Éléments de marque livrés', voice: 'Le client en parle', skip: 'Aller aux planches',
+    palette: 'Couleurs', type: 'Typographie', before: 'Avant / après', beforeL: 'Avant', afterL: 'Après', brand: 'Éléments de marque livrés', voice: 'Le client en parle', skip: 'Aller aux projets',
     status: { live: 'En ligne', concept: 'Démo de portfolio', product: 'Produit maison' },
     gain: { live: 'Ce que le site apporte au client', concept: 'Ce que la démo montre', product: "Ce que l'outil apporte à ses utilisateurs" },
     ctxL: { live: 'Le client', concept: 'Le cadre', product: 'Pour qui' },
@@ -408,15 +431,17 @@ export const UI = {
     captured: 'Captures du site en ligne', back: '← Retour à Numidea Labs', contact: 'Un projet à poser sur la table\u202f?', contactCta: 'Parlons-en →',
   },
   en: {
-    dir: 'ltr', title: 'Project sheets — our projects, piece by piece · Numidea Labs',
-    desc: 'Numidea Labs projects laid out as sheets: the pages delivered, the mobile version, the visual system and the live site.',
-    crumb: 'Project sheets', crumbNav: 'Breadcrumb', langs: 'Language', kicker: 'Project sheets',
+    dir: 'ltr', title: 'Our web projects, one by one — Numidea Labs',
+    desc: 'Sites delivered in Algeria and France, screenshots included: pages, mobile version, visual system and a link to the live site.',
+    crumb: 'Work', crumbNav: 'Breadcrumb', langs: 'Language', kicker: 'Project sheets',
     h1: 'Our projects, <em>piece by piece.</em>',
-    lead: 'Each sheet shows what we delivered, as it looks live today: what it gives the client, the key pages, the mobile version and the visual system. Every screenshot is taken from the live site.',
-    index: 'Sheet index', sheet: 'Sh.', visit: 'Visit the site', open: 'Open',
+    lead: 'The first three sheets show sites delivered to clients, as they are live today: what the site gives them, the pages, the mobile version, the visual system. Then come a portfolio demo and our own tool. Every screenshot is taken from the sites themselves.',
+    group: 'Not client work: a demo and our own tool',
+    act: 'Request my Preview →', by: 'By the founder',
+    index: 'Project index', sheet: 'Project', visit: 'Visit the site', open: 'Open',
     sector: 'Sector', scope: 'Scope', pagesL: 'Pages', langsL: 'Languages', statusL: 'Status',
     deliverables: 'Deliverables', pages: 'Pages delivered', mobile: 'On mobile', system: 'Visual system',
-    palette: 'Colour', type: 'Type', before: 'Before / after', beforeL: 'Before', afterL: 'After', brand: 'Brand assets delivered', voice: 'In the client\'s words', skip: 'Skip to the sheets',
+    palette: 'Colour', type: 'Type', before: 'Before / after', beforeL: 'Before', afterL: 'After', brand: 'Brand assets delivered', voice: 'In the client\'s words', skip: 'Skip to the projects',
     status: { live: 'Live', concept: 'Portfolio demo', product: 'Our product' },
     gain: { live: 'What the site gives the client', concept: 'What the demo shows', product: 'What the tool gives its users' },
     ctxL: { live: 'The client', concept: 'The brief', product: 'Who it is for' },
@@ -425,15 +450,17 @@ export const UI = {
     captured: 'Captured from the live site', back: '← Back to Numidea Labs', contact: 'Have a project in mind?', contactCta: "Let's talk →",
   },
   ar: {
-    dir: 'rtl', title: 'اللوحات — الأعمال، بنداً ببند · Numidea Labs',
-    desc: 'مشاريع Numidea Labs معروضة في لوحات: الصفحات المسلّمة، والهاتف، والنظام البصري، والموقع على الإنترنت.',
-    crumb: 'اللوحات', crumbNav: 'مسار التنقّل', langs: 'اللغة', kicker: 'لوحات المشاريع',
+    dir: 'rtl', title: 'أعمالنا على الويب، مشروعاً بمشروع — Numidea Labs',
+    desc: 'مواقع سُلِّمت في الجزائر وفرنسا، مع لقطات شاشة: الصفحات، ونسخة الهاتف، والنظام البصري، ورابط الموقع على الإنترنت.',
+    crumb: 'الأعمال', crumbNav: 'مسار التنقّل', langs: 'اللغة', kicker: 'لوحات المشاريع',
     h1: 'الأعمال، <em>بنداً ببند.</em>',
-    lead: 'كل لوحة تعرض ما سُلِّم كما هو على الإنترنت اليوم: ما يقدّمه للعميل، والصفحات، والهاتف، والنظام البصري. اللقطات مأخوذة من المواقع نفسها.',
-    index: 'فهرس اللوحات', sheet: 'لوحة', visit: 'زيارة الموقع', open: 'فتح',
+    lead: 'اللوحات الثلاث الأولى تعرض مواقع سُلِّمت لعملاء، كما هي على الإنترنت اليوم: ما يقدّمه الموقع لهم، والصفحات، والهاتف، والنظام البصري. يليها عرض تجريبي ضمن الأعمال وأداتنا الخاصة. اللقطات مأخوذة من المواقع نفسها.',
+    group: 'خارج طلبات العملاء: عرض تجريبي وأداتنا الخاصة',
+    act: 'اطلب معاينتك ←', by: 'من عمل المؤسّس',
+    index: 'فهرس المشاريع', sheet: 'مشروع', visit: 'زيارة الموقع', open: 'فتح',
     sector: 'القطاع', scope: 'النطاق', pagesL: 'الصفحات', langsL: 'اللغات', statusL: 'الحالة',
     deliverables: 'المُخرَجات', pages: 'الصفحات المسلّمة', mobile: 'على الهاتف', system: 'النظام البصري',
-    palette: 'الألوان', type: 'الخطوط', before: 'قبل / بعد', beforeL: 'قبل', afterL: 'بعد', brand: 'عناصر الهوية المسلّمة', voice: 'بكلمات العميل', skip: 'انتقل إلى اللوحات',
+    palette: 'الألوان', type: 'الخطوط', before: 'قبل / بعد', beforeL: 'قبل', afterL: 'بعد', brand: 'عناصر الهوية المسلّمة', voice: 'بكلمات العميل', skip: 'انتقل إلى المشاريع',
     status: { live: 'على الإنترنت', concept: 'عرض تجريبي', product: 'منتجنا' },
     gain: { live: 'ما يقدّمه الموقع للعميل', concept: 'ما يبيّنه العرض التجريبي', product: 'ما تقدّمه الأداة لمستخدميها' },
     ctxL: { live: 'العميل', concept: 'الإطار', product: 'لمن' },
