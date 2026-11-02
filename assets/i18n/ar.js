@@ -220,11 +220,4 @@ var I18N = {
   'c4.brief': 'بنية معرفة داخلية — Obsidian/PARA + Zettelkasten، توثيق، قواعد جاهزة ليستعلم منها مساعد ذكاء اصطناعي. بنى تصون نفسها.', 'c4.fam': 'الاستشارة والذكاء الاصطناعي',
   'c5.name': 'أدوات ومساعدات ذكاء اصطناعي مخصّصة', 'c5.promise': 'برمجيات تبني برمجياتك.',
   'c5.brief': 'أدوات داخلية ومولّدات ومساعدات مخصّصة مدعومة بـ Claude: مهمّة متكرّرة تنطلق بنقرة واحدة.', 'c5.fam': 'الاستشارة والذكاء الاصطناعي',
-  /* ---- retired 2026-11-02 (one founder with freelancers; decision 11 drops the portfolio link): index.html still
-     carries their nodes, and build-lang.mjs throws on a referenced key that is missing. The markup agent deletes
-     this block in the commit that removes the team rows (.tm, the D/S/T initials) and the founder card's hub link. ---- */
-  'founder.portfolio': 'المعرض الشخصي <span class="arr">↗</span>',
-  'team.dFn': 'مختصّ البيانات', 'team.dDo': 'خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.',
-  'team.sFn': 'المبيعات والشراكات', 'team.sDo': 'أول تواصل: ترجمة الفكرة إلى نطاق عمل.',
-  'team.tFn': 'مسؤول المتابعة التقنية', 'team.tDo': 'متابعة جودة ما نُسلّمه، وإطلاع العميل على سير العمل أولاً بأول.',
 };

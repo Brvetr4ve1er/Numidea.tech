@@ -217,11 +217,4 @@ var I18N = {
   'c4.brief': 'Internal knowledge architecture — Obsidian/PARA + Zettelkasten, documentation, bases ready for an AI assistant to query. Self-maintaining structures.', 'c4.fam': 'Advisory & AI',
   'c5.name': 'Custom AI tools & assistants', 'c5.promise': 'Software that builds your software.',
   'c5.brief': 'Internal tools, generators and custom assistants, powered by Claude: a repetitive task runs in one click.', 'c5.fam': 'Advisory & AI',
-  /* ---- retired 2026-11-02 (one founder with freelancers; decision 11 drops the portfolio link): index.html still
-     carries their nodes, and build-lang.mjs throws on a referenced key that is missing. The markup agent deletes
-     this block in the commit that removes the team rows (.tm, the D/S/T initials) and the founder card's hub link. ---- */
-  'founder.portfolio': 'Personal portfolio ↗',
-  'team.dFn': 'Data specialist', 'team.dDo': 'Pipelines, scraping and the intelligence layer.',
-  'team.sFn': 'Sales & partnerships', 'team.sDo': 'First contact: the translator between idea and scope.',
-  'team.tFn': 'Technical lead', 'team.tDo': 'Keeps the build honest and the client informed.',
 };

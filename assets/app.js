@@ -242,9 +242,13 @@
     var defaultTheme = 'arcanum';
     var savedTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
     applyTheme(savedTheme);
-    var themeBtn = document.querySelector('.theme-btn');
-    var themeMenu = document.querySelector('.theme-menu');
-    if (themeBtn && themeMenu) {
+    /* Two pickers: the header's, and the phone menu's (the header's goes
+       below 960px, styles.css, to make room for the language switch). Each
+       is wired on its own; applyTheme marks the chosen theme in both. */
+    [].forEach.call(document.querySelectorAll('.theme-switch'), function (sw) {
+      var themeBtn = sw.querySelector('.theme-btn');
+      var themeMenu = sw.querySelector('.theme-menu');
+      if (!themeBtn || !themeMenu) return;
       /* An ARIA menu, so it keeps the menu's keyboard contract: opening moves
          focus to the checked theme, arrows/Home/End move between themes,
          choosing one or Escape closes and returns focus to the button, and
@@ -293,7 +297,7 @@
       });
       document.addEventListener('click', function () { closeTheme(false); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeTheme(themeMenu.contains(document.activeElement)); });
-    }
+    });
 
     /* One read of the scroll position per scroll event, shared by everything
        scroll-linked below (navbar, progress, parallax, phone bar, scroll-spy,
@@ -1023,13 +1027,26 @@
 
         // Static site, no backend: hand the lead off to the visitor's mail client,
         // pre-filled to hamissemohamedyasser@gmail.com. Only show success after the handoff.
-        var subject = 'Numidea Labs · ' + name;
+        /* The subject names the way in — the Aperçu button, the estimator
+           (this page's, or the price guide's scope carried over), or a plain
+           contact — while the text that way wrote still opens the message:
+           the Aperçu's template is filled in below its greeting, the
+           estimator's scope gets the visitor's lines under it, but a message
+           rewritten from the first line is the visitor's own. */
+        var way = prefill.text && msg.indexOf(prefill.text.split('\n')[0].trim()) === 0 ? prefill.kind : '';
+        var subject = t(way === 'prev' ? 'form.subjPrev' : way === 'est' || way === 'carried' ? 'form.subjEst' : 'form.subj') + name;
         var src = leadSource();
         var body = name + ' <' + email + '>\n\n' + msg
           + '\n\n--\nnumidealabs · ' + (document.documentElement.getAttribute('lang') || 'fr')
           // French sets a narrow no-break space before the colon; English and Arabic none
           + (src ? '\n' + t('form.source') + (document.documentElement.getAttribute('lang') === 'fr' ? ' : ' : ': ') + src : '');
         handoff = subject + '\n\n' + body;
+        /* The same message on WhatsApp (#form-wa in the panel), for a visitor
+           whose mail app never opens. The body as composed, no [ref] added:
+           its Source line already carries the ad's code. Kept on the link, so
+           wireWA (§13) leaves it in place. */
+        var waAlt = document.getElementById('form-wa');
+        if (waAlt && WA) { waAlt.waText = body; waAlt.href = waUrl(body); }
         window.location.href = 'mailto:hamissemohamedyasser@gmail.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);
@@ -1389,11 +1406,14 @@
       r = r.replace(/[^\w-]/g, '').slice(0, 20);
       return r ? ' [' + r + ']' : '';
     }
+    // the conversation opened on this text (the form's submit handler, above, uses it too)
+    function waUrl(text) { return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text); }
     // Rebuilt on a language swap, so the pre-filled greeting follows the page.
     var wireWA = function () { document.querySelectorAll('.wa-link').forEach(function (a) {
       if (WA) {
-        // a link may carry its own opening line (the Aperçu one does)
-        a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t(a.getAttribute('data-wa-text') || 'wa.hello') + refTag());
+        // a link may carry its own opening line (the Aperçu one does), or the
+        // message the visitor just typed (the success panel's, set on submit)
+        a.href = waUrl(a.waText || t(a.getAttribute('data-wa-text') || 'wa.hello') + refTag());
         a.target = '_blank';
         a.rel = 'noopener';
         a.removeAttribute('aria-disabled');

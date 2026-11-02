@@ -217,11 +217,4 @@ var I18N = {
   'c4.brief': 'Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes à être interrogées par un assistant IA. Des structures qui s\'entretiennent seules.', 'c4.fam': 'Conseil & IA',
   'c5.name': 'Outils & assistants IA sur mesure', 'c5.promise': 'Le logiciel qui construit votre logiciel.',
   'c5.brief': 'Outils internes, générateurs et assistants sur mesure, propulsés par Claude : une tâche répétitive se lance en un clic.', 'c5.fam': 'Conseil & IA',
-  /* ---- retired 2026-11-02 (one founder with freelancers; decision 11 drops the portfolio link): index.html still
-     carries their nodes, and build-lang.mjs throws on a referenced key that is missing. The markup agent deletes
-     this block in the commit that removes the team rows (.tm, the D/S/T initials) and the founder card's hub link. ---- */
-  'founder.portfolio': 'Portfolio personnel ↗',
-  'team.dFn': 'Spécialiste données', 'team.dDo': 'Pipelines, scraping et la couche d\'intelligence.',
-  'team.sFn': 'Ventes & partenariats', 'team.sDo': 'Premier contact : traduit l\'idée en périmètre.',
-  'team.tFn': 'Référent technique', 'team.tDo': 'Veille à la qualité de ce qui est livré et tient le client informé.',
 };

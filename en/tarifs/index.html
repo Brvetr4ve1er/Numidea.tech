@@ -143,7 +143,10 @@
           <a href="../../en/tarifs/" hreflang="en" lang="en" aria-label="English (EN)" aria-current="page">EN</a>
           <a href="../../ar/tarifs/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
         </div>
-        <button type="button" class="menu-toggle js-only" aria-label="Menu" data-i18n-aria="ui.menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+        <!-- the menu's open and close marks are drawn (24-grid, stroke 1.5),
+             not typed: the system's ☰ and × came in whatever face the
+             platform had for them, at a different weight on every phone -->
+        <button type="button" class="menu-toggle js-only" aria-label="Menu" data-i18n-aria="ui.menu" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       </div>
     </div>
   </div>
@@ -151,7 +154,7 @@
 
 <!-- mobile overlay menu (the home page's) -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" data-i18n-aria="ui.menu">
-  <button type="button" class="close" aria-label="Close" data-i18n-aria="ui.close">×</button>
+  <button type="button" class="close" aria-label="Close" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <nav aria-label="Sections" data-i18n-aria="ui.sections">
   <a href="../#work" data-i18n="nav.work">Work</a>
   <a href="../#services" data-i18n="nav.services">Services</a>
@@ -165,6 +168,21 @@
     <a href="../../tarifs/" hreflang="fr" lang="fr" aria-label="Français (FR)">FR</a>
     <a href="../../en/tarifs/" hreflang="en" lang="en" aria-label="English (EN)" aria-current="page">EN</a>
     <a href="../../ar/tarifs/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
+  </div>
+  <!-- the theme picker again, for phones: the header's goes below 960px
+       to make room for the language switch (styles.css), and this one takes
+       over inside the menu. app.js wires every .theme-switch on the page;
+       applyTheme keeps both in step. -->
+  <div class="theme-switch js-only">
+    <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="Theme" data-i18n-aria="ui.theme"><span class="ic" aria-hidden="true"></span></button>
+    <div class="theme-menu" role="menu" aria-label="Theme" data-i18n-aria="ui.theme">
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="arcanum" aria-checked="true"><span class="dot arcanum" aria-hidden="true"></span>Arcanum</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="noir" aria-checked="false"><span class="dot noir" aria-hidden="true"></span>Noir</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="daylight" aria-checked="false"><span class="dot daylight" aria-hidden="true"></span>Daylight</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="mono" aria-checked="false"><span class="dot mono" aria-hidden="true"></span>Monochrome</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="altneon" aria-checked="false"><span class="dot altneon" aria-hidden="true"></span>Alt-neon</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="engineering" aria-checked="false"><span class="dot engineering" aria-hidden="true"></span>Engineering</button>
+    </div>
   </div>
 </div>
 
@@ -543,7 +561,7 @@
 <!-- phones: the two ways to start, kept in reach past the first screen (the
      home page's bar; both lead to the home page's #contact and WhatsApp) -->
 <nav class="m-contact" aria-label="Quick contact" data-i18n-aria="mbar.aria">
-  <a class="btn btn-primary" href="../#contact" data-i18n="mbar.cta">My free Preview</a>
+  <a class="btn btn-primary" href="../#apercu" data-i18n="mbar.cta">My free Preview</a>
   <a class="btn btn-ghost wa-link" data-i18n="footer.wa" href="https://wa.me/213672412578?text=Hello%20Numidea%20Labs%20%E2%80%94%20I%20would%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">WhatsApp</a>
 </nav>
 

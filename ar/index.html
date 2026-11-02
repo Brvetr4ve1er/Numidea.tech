@@ -63,6 +63,11 @@
   "en",
   "ar"
  ],
+ "priceRange": "90 000 – 1 200 000 DA",
+ "areaServed": [
+  "DZ",
+  "FR"
+ ],
  "founder": {
   "@type": "Person",
   "name": "Yasser Hamisse",
@@ -216,7 +221,10 @@
           <a href="../en/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
           <a href="../ar/" hreflang="ar" aria-label="العربية (ع)" aria-current="page"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
         </div>
-        <button type="button" class="menu-toggle js-only" aria-label="القائمة" data-i18n-aria="ui.menu" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+        <!-- the menu's open and close marks are drawn (24-grid, stroke 1.5),
+             not typed: the system's ☰ and × came in whatever face the
+             platform had for them, at a different weight on every phone -->
+        <button type="button" class="menu-toggle js-only" aria-label="القائمة" data-i18n-aria="ui.menu" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       </div>
     </div>
   </div>
@@ -224,7 +232,7 @@
 
 <!-- mobile overlay menu -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="القائمة" data-i18n-aria="ui.menu">
-  <button type="button" class="close" aria-label="إغلاق" data-i18n-aria="ui.close">×</button>
+  <button type="button" class="close" aria-label="إغلاق" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <nav aria-label="الأقسام" data-i18n-aria="ui.sections">
   <a href="#work" data-i18n="nav.work">الأعمال</a>
   <a href="#services" data-i18n="nav.services">الخدمات</a>
@@ -239,6 +247,21 @@
     <a href="../" hreflang="fr" lang="fr" aria-label="Français (FR)">FR</a>
     <a href="../en/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
     <a href="../ar/" hreflang="ar" aria-label="العربية (ع)" aria-current="page"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
+  </div>
+  <!-- the theme picker again, for phones: the header's goes below 960px
+       to make room for the language switch (styles.css), and this one takes
+       over inside the menu. app.js wires every .theme-switch on the page;
+       applyTheme keeps both in step. -->
+  <div class="theme-switch js-only">
+    <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="المظهر" data-i18n-aria="ui.theme"><span class="ic" aria-hidden="true"></span></button>
+    <div class="theme-menu" role="menu" aria-label="المظهر" data-i18n-aria="ui.theme">
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="arcanum" aria-checked="true"><span class="dot arcanum" aria-hidden="true"></span>Arcanum</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="noir" aria-checked="false"><span class="dot noir" aria-hidden="true"></span>Noir</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="daylight" aria-checked="false"><span class="dot daylight" aria-hidden="true"></span>Daylight</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="mono" aria-checked="false"><span class="dot mono" aria-hidden="true"></span>Monochrome</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="altneon" aria-checked="false"><span class="dot altneon" aria-hidden="true"></span>Alt-neon</button>
+      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="engineering" aria-checked="false"><span class="dot engineering" aria-hidden="true"></span>Engineering</button>
+    </div>
   </div>
 </div>
 
@@ -383,7 +406,7 @@
 
   <!-- ================= PROOF ================= -->
   <section class="proof reveal" aria-labelledby="proof-h">
-    <span class="kicker" data-parallax=".035" id="proof-h" data-i18n="proof.kicker">01 — الإثبات</span>
+    <span class="kicker" id="proof-h" data-i18n="proof.kicker">01 — الإثبات</span>
     <p class="proof-line" data-i18n="proof.line">4 مواقع مُسلَّمة · الردّ في يوم العمل التالي · بالفرنسية والإنجليزية والعربية</p>
     <!-- The four delivered client sites, each logo the client's own file
          (scripts/client-logos.mjs), painted in one theme colour by styles.css
@@ -404,7 +427,7 @@
   <!-- ================= SELECTED WORK ================= -->
   <section id="work" aria-labelledby="work-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-arch" data-parallax="-.07" data-parallax-cap="50"><i></i><span class="pl-cap" data-i18n="pl.arch">لوحة 2 — قوس تراجان · تيمقاد</span></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="work.kicker">02 — الأعمال</span>
+    <span class="kicker" data-i18n="work.kicker">02 — الأعمال</span>
     <h2 class="sec font-swap-display" id="work-h" data-i18n="work.title">أعمال <em>مختارة.</em></h2>
     <p class="sec-lead" data-i18n="work.lead">مواقع عملائنا، تصفّحها بنفسك، إضافةً إلى عرض تجريبي.</p>
     <div class="work-grid">
@@ -509,7 +532,7 @@
   <!-- ================= SERVICES ================= -->
   <section id="services" class="band" aria-labelledby="svc-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-plan" data-parallax="-.05" data-parallax-cap="90"></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="svc.kicker">03 — الخدمات</span>
+    <span class="kicker" data-i18n="svc.kicker">03 — الخدمات</span>
     <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">ما <em>نبنيه لك.</em></h2>
     <p class="svc-lead" data-i18n="svc.lead">خدماتنا الخمس الرئيسية — وخمس أخرى أدناه.</p>
 
@@ -553,7 +576,8 @@
           <h3 data-i18n="f1.name">مواقع وتطبيقات ويب</h3>
           <p class="promise" data-i18n="f1.promise">الخيار البديهي.</p>
           <p class="brief" data-i18n="f1.brief">مواقع وتطبيقات ويب مخصّصة — سريعة، مع تحسين محرّكات البحث (SEO)، ومبنيّة لتحوّل الزوّار إلى عملاء، من الواجهة إلى السحابة. لا نعيد تلوين قالب جاهز: نصمّم موقعك من الصفر.</p>
-          <div class="tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Vite</span><span class="pill">Tailwind</span><span class="pill">Vercel</span></div>
+          <!-- only what the delivered builds use (F11): the rest waits for the owner to confirm it -->
+          <div class="tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Tailwind</span></div>
         </div>
       </article>
 
@@ -661,7 +685,7 @@
        markers by scripts/build-tarifs.mjs: the two pages cannot differ. -->
   <section id="pricing" aria-labelledby="pricing-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span><span class="pi-coins lv"><span class="pi pc pc-king" data-parallax="-.16" data-parallax-cap="60"><i></i></span><span class="pi pc pc-horse" data-parallax="-.08" data-parallax-cap="50"><i></i></span><span class="pi pc pc-palm" data-parallax="-.22" data-parallax-cap="70"><i></i></span><span class="pl-cap" data-i18n="pl.coins">لوحة 3 — نقود نوميدية</span></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="price.kicker">04 — الأسعار</span>
+    <span class="kicker" data-i18n="price.kicker">04 — الأسعار</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">سعر <em>قبل عرض السعر.</em></h2>
     <p class="sec-lead" data-i18n="price.lead">أسعارنا منشورة، بالدينار أو اليورو أو الدولار. ثلاث باقات؛ وللمتجر الإلكتروني أو الأتمتة أو الهوية البصرية، حاسبة التقدير أدناه مباشرة. التفاصيل والمقارنة مع السوق: في دليل الأسعار.</p>
 
@@ -838,15 +862,15 @@
   <!-- ================= FOUNDER ================= -->
   <section id="founder" class="band" aria-labelledby="founder-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-bench" data-parallax="-.06" data-parallax-cap="50"><i></i></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="founder.kicker">05 — المؤسّس</span>
+    <span class="kicker" data-i18n="founder.kicker">05 — المؤسّس</span>
     <h2 class="sec font-swap-display" id="founder-h" data-i18n="founder.title">من يبني <em>موقعك.</em></h2>
     <p class="sec-lead" data-i18n="founder.lead">خلف Numidea Labs: مؤسّس يصمّم ويبرمج ويسلّم بنفسه، ويستعين بمستقلّين حين يتطلّب المشروع ذلك.</p>
 
     <!-- Everything below is taken from assets/cv_yasser_hamisse_2026.pdf, the
          source of truth: dates, titles and one-liners. Order follows the CV:
-         current roles first, then past work newest first. The team is
-         anonymized by design (knowledge-base 12-organization) — initials only,
-         with the responsibilities the KB marks verified. -->
+         current roles first, then past work newest first. The studio is one
+         founder, with freelancers when a project needs one (owner, 2026-10-30):
+         the team block under the card says so, and names nobody. -->
     <div class="founder-card reveal">
       <div class="fd-top">
         <div class="fd-photo"><span class="mono" aria-hidden="true">Y</span>
@@ -873,9 +897,12 @@
         <li><a href="mailto:hamissemohamedyasser@gmail.com"><span class="fl-b" aria-hidden="true">@</span><span data-i18n="form.email">البريد</span></a></li>
       </ul>
 
+      <!-- the founder's own page (hub/) is no longer linked from here
+           (decision 11): the studio's page sells the studio; with scripts
+           off the panel below is open and its PDF link stands in for this
+           button (styles.css, html:not(.js)) -->
       <div class="fd-actions">
         <button type="button" class="btn btn-teal js-only" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">عرض المسار <span class="arr">↴</span></button>
-        <a class="btn btn-ghost" href="../hub/" target="_blank" rel="noopener" data-i18n="founder.portfolio">المعرض الشخصي <span class="arr">↗</span></a>
       </div>
 
       <div class="cv-panel" id="cv-panel">
@@ -911,28 +938,32 @@
       </div>
     </div>
 
+    <!-- One row, no initial: the three D/S/T "members" went on 2026-11-02
+         (there is one founder, and freelancers when a project needs one).
+         A div, not a list: a list of one said more than there is. -->
     <div class="team reveal">
       <h3 class="team-h" data-i18n="team.h">حين يتطلّب المشروع ذلك</h3>
-      <!-- Photo slots: replace a member's initial with a real photo,
-           <span class="tm-i"><img src="../assets/team/d.webp" alt="" width="88" height="88"></span>
-           (square, at least 88px); the initial is only a placeholder. -->
-      <ul class="team-grid">
-        <li class="tm"><span class="tm-i">D</span><b data-i18n="team.dFn">مختصّ البيانات</b><span data-i18n="team.dDo">خطوط المعالجة، واستخراج البيانات، وطبقة الذكاء.</span></li>
-        <li class="tm"><span class="tm-i">S</span><b data-i18n="team.sFn">المبيعات والشراكات</b><span data-i18n="team.sDo">أول تواصل: ترجمة الفكرة إلى نطاق عمل.</span></li>
-        <li class="tm"><span class="tm-i">T</span><b data-i18n="team.tFn">مسؤول المتابعة التقنية</b><span data-i18n="team.tDo">متابعة جودة ما نُسلّمه، وإطلاع العميل على سير العمل أولاً بأول.</span></li>
-      </ul>
+      <div class="team-grid">
+        <p class="tm"><b data-i18n="team.fFn">مستقلّون، حسب الحاجة</b><span data-i18n="team.fDo">ينضمّ مختصّ إلى المشروع لجزء محدّد منه؛ ويبقى المؤسّس محاورك الوحيد والمسؤول عن التسليم.</span></p>
+      </div>
     </div>
   </section>
 
   <!-- ================= FAQ ================= -->
   <section id="faq" aria-labelledby="faq-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-lantern lv"><b class="glow"></b><i></i></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="faq.kicker">06 — الأسئلة</span>
+    <span class="kicker" data-i18n="faq.kicker">06 — الأسئلة</span>
     <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">الأسئلة <em>التي تهمّ.</em></h2>
     <p class="sec-lead" data-i18n="faq.lead">ما يُسأل قبل البدء — بإجابات صريحة.</p>
     <div class="faq-list">
-      <!-- two independent columns (1-3, 4-6): opening a question never
-           stretches the one beside it; DOM and reading order stay 1 to 6 -->
+      <!-- two independent columns (1-4, 5-8): opening a question never
+           stretches the one beside it; DOM and reading order stay 1 to 8.
+           The icons are the page's own, drawn once (.ai): no new drawings
+           for the three entries of 2026-11-02 (payment, ownership, the
+           Aperçu's rules), and no figure beside their answers either; the
+           payment entry took the languages entry's place and left its
+           speech-bubble mask behind (assets/illus/faq3.webp, styles.css
+           .ill-faq3, now unused by the page). -->
       <div class="faq-col">
 
         <details class="faq-item reveal">
@@ -946,17 +977,17 @@
         </details>
 
         <details class="faq-item reveal">
-          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p a-alt" style="--i:0" pathLength="1" d="M3 4.5h11v7.5H8.2L5 14.6V12H3Z"/><path class="p a-alt" style="--i:1" pathLength="1" d="M10 15v2.5h5.8L19 20v-2.5h2V10h-4"/></svg><span class="q" data-i18n="faq3.q">كيف يتمّ الدفع؟</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq3"></span></span><p data-i18n="faq3.a">عرض سعر مكتوب وسند طلب موقّع قبل أيّ عمل، وفق القانون الجزائري. ثم 40٪ عند الطلب، على أساس عرض السعر الموقّع، و60٪ عند التسليم، قبل نشر الموقع. بالتحويل البنكي أو عبر الحساب البريدي الجاري (CCP) في الجزائر؛ وبالتحويل البنكي باليورو أو الدولار من الخارج. السعر نهائي بمجرّد ضبط نطاق المشروع ولا يتغيّر بعدها: وإن تجاوز العمل ما اتُّفق عليه، فالفارق علينا. جولتان من التعديلات في كل مرحلة، التصميم ثم التطوير، مشمولتان؛ وما بعدهما يُسعَّر على حدة.</p></div>
+          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg><span class="q" data-i18n="faq3.q">كيف يتمّ الدفع؟</span><span class="faq-mark" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p data-i18n="faq3.a">عرض سعر مكتوب وسند طلب موقّع قبل أيّ عمل، وفق القانون الجزائري. ثم 40٪ عند الطلب، على أساس عرض السعر الموقّع، و60٪ عند التسليم، قبل نشر الموقع. بالتحويل البنكي أو عبر الحساب البريدي الجاري (CCP) في الجزائر؛ وبالتحويل البنكي باليورو أو الدولار من الخارج. السعر نهائي بمجرّد ضبط نطاق المشروع ولا يتغيّر بعدها: وإن تجاوز العمل ما اتُّفق عليه، فالفارق علينا. جولتان من التعديلات في كل مرحلة، التصميم ثم التطوير، مشمولتان؛ وما بعدهما يُسعَّر على حدة.</p></div>
         </details>
-
-      </div>
-      <div class="faq-col">
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 3 19.5 6v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6Z"/><path class="p a-ekg" pathLength="1" d="M6.5 12.5h3l1.3-3 2.4 6 1.3-3h3"/></svg><span class="q" data-i18n="faq4.q">وماذا بعد الإطلاق؟</span><span class="faq-mark" aria-hidden="true"></span></summary>
           <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq4"></span></span><p data-i18n="faq4.a">نبقى معك. ثلاثون يوماً من التصحيحات بعد التسليم، ثم شهر أو 3 أو 6 أشهر من الدعم حسب الباقة، ونردّ عليك في يوم العمل التالي (من الأحد إلى الخميس، من 9 إلى 18). بعدها تصبح الصيانة اختيارية: من 18 000 إلى 60 000 دج شهرياً، دون التزام بمدّة، وتشمل التحديثات والنسخ الاحتياطي والتعديلات الصغيرة. ولا نتركك وحدك يوم الإطلاق.</p></div>
         </details>
+
+      </div>
+      <div class="faq-col">
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="orb" cx="12" cy="12" r="9.5"/><circle class="p" pathLength="1" cx="12" cy="12" r="6"/><path class="p" pathLength="1" d="M6 12h12M12 6c1.9 1.9 1.9 10.1 0 12M12 6c-1.9 1.9-1.9 10.1 0 12"/><g class="a-orbit" style="--o:12px 12px"><circle class="f" cx="21.5" cy="12" r="1.15"/></g></svg><span class="q" data-i18n="faq5.q">هل تعملون عن بُعد؟</span><span class="faq-mark" aria-hidden="true"></span></summary>
@@ -968,6 +999,16 @@
           <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq6"></span></span><p data-i18n="faq6.a">لا وسيط: من يحدّد نطاق مشروعك هو نفسه من يصمّمه ويبرمجه ويسلّمه. وحين يتطلّب المشروع ذلك، يتولّى مستقلّ جزءاً محدّداً منه؛ ويبقى لك محاور واحد.</p></div>
         </details>
 
+        <details class="faq-item reveal">
+          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M12 20s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z"/><circle class="p" pathLength="1" cx="12" cy="9" r="2.3"/></g><path class="a-shadow" d="M9.5 22h5"/></svg><span class="q" data-i18n="faq7.q">لمن يعود الموقع، وأين يُستضاف؟</span><span class="faq-mark" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p data-i18n="faq7.a">بمجرّد دفع ثمن الموقع كاملاً يصبح ملكك: الكود وملفات التصميم والمحتوى. ويُسجَّل اسم النطاق باسمك. ونحتفظ بحقّ عرض العمل ضمن مراجعنا ما لم ترفض ذلك كتابةً. أمّا الاستضافة فنختارها معاً، ويصدر مزوّد الاستضافة فاتورتها سنوياً باسمك؛ ونتولّى تثبيتها ونسلّمك جميع بيانات الدخول.</p></div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M3 7.5V3h4.5M16.5 3H21v4.5M21 16.5V21h-4.5M7.5 21H3v-4.5"/><circle class="p" pathLength="1" cx="12" cy="12" r="3.4"/><path class="p" pathLength="1" d="M12 6.2v2.4M12 15.4v2.4M6.2 12h2.4M15.4 12h2.4"/><circle class="f a-pulse" cx="12" cy="12" r="1.2"/></svg><span class="q" data-i18n="faq8.q">كيف تعمل المعاينة؟</span><span class="faq-mark" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p data-i18n="faq8.a">متاحة لكل شركة مسجّلة: سجلّ تجاري، أو بطاقة مقاول ذاتي، أو رقم SIRET، أو رخصة معادلة. بعد مكالمة من 30 دقيقة ترسل إلينا محتواك (الشعار والنصوص والصور)، ومن تلك اللحظة تبدأ أيام العمل الخمسة. إن كان الجواب لا، تُحذف المعاينة ولا شيء عليك. وإن كان نعم، تصبح الصفحة الرئيسية لموقعك ضمن الباقة التي تختارها، دون تكلفة إضافية. وحين تُحجز أماكن الشهر الأربعة، ينتقل طلبك إلى الشهر التالي حسب ترتيب الوصول.</p></div>
+        </details>
+
       </div>
 
     </div>
@@ -976,7 +1017,7 @@
   <!-- ================= CONTACT ================= -->
   <section id="contact" class="contact band" aria-labelledby="contact-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-stars" data-parallax="-.04" data-parallax-cap="90"></span><span class="pi pi-light lv" data-parallax="-.05" data-parallax-cap="40"><b class="beam"></b><i></i><span class="pl-cap" data-i18n="pl.light">لوحة 4 — رأس كاربون · بجاية</span></span></span>
-    <span class="kicker" data-parallax=".035" data-i18n="contact.kicker">07 — تواصل</span>
+    <span class="kicker" data-i18n="contact.kicker">07 — تواصل</span>
     <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">لنتحدّث عن <em>مشروعك.</em></h2>
     <div class="contact-grid">
       <div class="contact-side">
@@ -1029,7 +1070,12 @@
           <p class="fallback"><span data-i18n="form.successAlt">لم يفتح شيء؟ راسلنا مباشرة:</span>
             <a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></p>
           <p class="fallback acts"><button type="button" class="btn btn-ghost" id="form-copy" data-i18n="form.copy">نسخ رسالتي</button>
-            <button type="button" class="btn btn-ghost" id="form-edit" data-i18n="form.edit">العودة إلى رسالتي</button></p>
+            <button type="button" class="btn btn-ghost" id="form-edit" data-i18n="form.edit">العودة إلى رسالتي</button>
+            <!-- the same message on WhatsApp instead, for a visitor whose mail
+                 app never opened: baked with the Aperçu's opening line, as the
+                 other WhatsApp links are; on a submit app.js puts the message
+                 just typed in its place -->
+            <a class="btn btn-ghost wa-link" id="form-wa" data-wa-text="prev.waText" data-i18n="form.waInstead" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D9%85%D9%88%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.%0A%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9%3A%20%0A%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%20%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%3A%20%0A%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A%20(%D8%A5%D9%86%20%D9%88%D9%8F%D8%AC%D8%AF)%3A%20" target="_blank" rel="noopener">أرسلها عبر واتساب بدلاً من ذلك</a></p>
           <p class="fallback" id="form-copied"></p>
         </div>
       </div>
@@ -1078,7 +1124,7 @@
      hero; it steps aside while #contact, or the footer just below it, is on
      screen, where #contact already offers both -->
 <nav class="m-contact" aria-label="تواصل سريع" data-i18n-aria="mbar.aria">
-  <a class="btn btn-primary" href="#contact" data-i18n="mbar.cta">معاينتي المجانية</a>
+  <a class="btn btn-primary" href="#apercu" data-i18n="mbar.cta">معاينتي المجانية</a>
   <a class="btn btn-ghost wa-link" data-i18n="footer.wa" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener">واتساب</a>
 </nav>
 
