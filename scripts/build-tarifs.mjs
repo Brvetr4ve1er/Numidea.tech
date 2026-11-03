@@ -347,6 +347,7 @@ export function renderTemplate(lang, home = read('index.html'), dicts = loadDict
 <script type="application/ld+json" id="ld-crumbs">${crumbs}</script>
 
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <!-- Resolve theme and fonts BEFORE first paint: the home page's script
      (index.html says why each line is there), with its French-only block
      replaced by this page's. Generated: the comment above the doctype says
