@@ -23,7 +23,7 @@ The work grid shows four live client sites and one portfolio demo, and only thos
 
 Sources: index.html › #work (cards, categories, links); assets/app.js › proj*.desc (English descriptions); BRAND.md › Bento, loading states and wayfinding (the two projects in progress, whose cards and keys went on 2026-10-26); scripts/scene-data.mjs › PROJECTS (pageCount, langs, status, context, gains); README.md › This repository (workspacehq/); OWNER-CONTENT.md › 7 (Nomara).
 
-- The proof band's trust line says "4 sites livrés · réponse < 24 h ouvrées · FR · EN · AR"; the title block says "4 sites clients" (index.html › .proof, .titleblock; assets/app.js › proof.line). Its four counters went on 2026-10-26, an owner decision (BRAND.md › Page structure and design system (home page)).
+- The proof band's trust line says "4 sites livrés · réponse le jour ouvré suivant · FR · EN · AR"; the title block says "4 sites clients" (index.html › .proof, .titleblock; assets/app.js › proof.line). Its four counters went on 2026-10-26, an owner decision (BRAND.md › Page structure and design system (home page)).
 - The hero plate cycles the four client sites and the Glaive demo, one at a time, labelled `01/05` (index.html › .plate).
 - It is an owner decision that Glaive is a portfolio demo and that there are 4 live client sites, not 5; `check.mjs` keeps retired wording such as "5 / 7" and "Démo →" from coming back (scripts/check.mjs › RETIRED).
 - A project in progress gets a card only once its site is live, and then comes with its own screenshot, link and browser bar; the two "En cours" cards had no screenshot and nothing to open (BRAND.md › Bento, loading states and wayfinding; OWNER-CONTENT.md › 9).

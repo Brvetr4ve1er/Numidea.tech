@@ -48,7 +48,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | Work | `#work` | Project cards, voices slot, then the planches banner to `scene/` (index.html › SELECTED WORK) |
 | Services | `#services` | Opens with the L'Aperçu card `#apercu`, which tells the path from the first message to the decision; the "Méthode" links land on it (index.html › SERVICES) |
 | Pricing | `#pricing` | Tiers and the maintenance line (between `SLOT:tiers` markers), the folded estimator (between `SLOT:estimator` markers; folded on 2026-10-26, an owner decision), then a link to the price guide, where the market comparison has lived since 2026-10-31 (index.html › #pricing, .price-guide; BRAND.md › Page structure and design system (home page), The price guide) |
-| Founder and team | `#founder` | Links to `hub/` as "Portfolio personnel" (index.html › #founder, founder.portfolio); the owner decided on 2026-10-30 to remove that link with the next change (IMPROVEMENTS.md › decision 11) |
+| Founder and team | `#founder` | No link to `hub/` since 2026-11-02 (the "Portfolio personnel" link, `founder.portfolio`, was removed on the owner's decision, IMPROVEMENTS.md › decision 11) |
 | FAQ | `#faq` | (index.html › FAQ) |
 | Contact | `#contact` | Form, WhatsApp, email (index.html › CONTACT) |
 | [[Footer]] | — | Logo, section links, the tagline, ©, legal markers, a third language switch and "Haut de page"; its Studio, Contact and founder columns and the WorkspaceHQ cartridge went on 2026-10-26, an owner decision (index.html › FOOTER; BRAND.md › Page structure and design system (home page)) |
@@ -56,7 +56,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 
 - The order and the "each idea is said once" rule are set in BRAND.md (BRAND.md › Page structure and design system (home page)).
 - The tools section ("Nos outils", `#stack`) between the team and the FAQ left the page on 2026-10-26, an owner decision; the FAQ and contact kickers moved up to 07 and 08 (BRAND.md › Page structure and design system (home page); assets/app.js › faq.kicker, contact.kicker).
-- The method section (`#how`, "Quatre étapes. Zéro surprise.") between the services and the pricing left the page the same day, also an owner decision: its steps are told once in the L'Aperçu card. The kickers after it moved up again: 04 pricing, 05 team, 06 FAQ, 07 contact. The scroll-spy marks "Méthode" only while the card is being read (BRAND.md › Page structure and design system (home page); assets/app.js › scroll-spy).
+- The method section (`#how`, "Quatre étapes. Zéro surprise.") between the services and the pricing left the page the same day, also an owner decision: its steps are told once in the L'Aperçu card. The kickers after it moved up again: 04 pricing, 05 team, 06 FAQ, 07 contact. The scroll-spy marks "L'Aperçu" (the navbar's label for the card) while it is being read (BRAND.md › Page structure and design system (home page); assets/app.js › scroll-spy).
 - The project explorer modal was removed in the 2026-10 cleanup; an old `#/work/<slug>` link is redirected to the matching sheet in `scene/` through the `SHEET` map, and any other `#/work` hash lands on `#work` (assets/app.js › DOM ready, legacy deep links). History: [[Project-explorer modal (workslug hash router)]].
 - The work section ends on one call to action, the [[Project Plates Banner (Planches)]] (index.html › 538).
 
@@ -124,7 +124,7 @@ See [[carry.js]], [[page-i18n.js]] and [[numidea-lang shared language preference
 | `legal/` (only when complete) | `scripts/build-legal.mjs` | `npm run build` |
 | `sitemap.xml` | `scripts/build-sitemap.mjs` | `npm run build` |
 | The Content-Security-Policy meta of every page and the embeds (the generators apply it to their own output too) | `scripts/build-csp.mjs` | `npm run csp`, and last in `npm run build` |
-| Share images: the home's three cards and the hub's and WorkspaceHQ's | `scripts/build-og.mjs`, `scripts/og-capture.mjs` | `npm run og` |
+| Share images: the home's three cards and the hub's, `scene/`'s and WorkspaceHQ's | `scripts/build-og.mjs` | `npm run og` |
 
 Sources: package.json › scripts; README.md › Commands; BRAND.md › Project sheets (scene/). `check.mjs` fails when a generated page differs from its generator's output (scripts/check.mjs › blocks 6, 7, 8d, 8e and 16). The gates are in [[Build and gates]]; the sheets in [[Project sheets]]; `hub/` and `workspacehq/` in [[WorkspaceHQ and hub]]; the screenshot, logo and share-image scripts in [[Captures and image tools]].
 

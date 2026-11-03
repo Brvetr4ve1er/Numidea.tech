@@ -143,16 +143,29 @@ sheet (`.term, .logo .brick { display:none }`):
 
 ## The logo
 
-Swap point in `index.html` (the navbar and the footer carry the same markup):
+The wordmark is **one drawn inline SVG lockup**: "Numidea Labs" in Cinzel 700,
+set as paths from the served Cinzel subset with the font's own kerning and
+the Arcanum tracking, "idea" in the accent. `scripts/lib/wordmark.mjs` holds
+the drawing (`WORDMARK`, and `WORDMARK_REF`, which draws the same paths by
+reference where a page already carries one, so the outlines ship once) and
+every page writes it: the home's navbar and footer, the guide, the language
+pages, the project sheets' hud, the breadcrumbs of the hub and WorkspaceHQ and
+the 404's header. "idea" takes each page's own accent through the token the
+drawing reads (the teal text on the home, burgundy on the hub, cabinet gold on
+WorkspaceHQ). The tokens `--font-logo`, `--logo-weight` and `--logo-tracking`
+are gone from `themes.css` with the per-theme `.logo` rule: the six themes no
+longer set the name in three faces, and `scene/`, the hub and WorkspaceHQ no
+longer type their own.
 
 ```html
-<a class="logo" href="#top">Num<i>idea</i> Labs<span class="cursor" aria-hidden="true"></span></a>
+<a class="logo" href="#top" aria-label="Numidea Labs"><svg class="wm" viewBox="0 0 7699 734">…</svg></a>
 ```
 
-`.cursor` is the solid block after the wordmark; it no longer blinks (see "The
-anti-slop sweep"). Replace it with the delivered artwork. (The
-Engineering `.brick` monogram that used to sit before "Num" was removed in the
-2026-10 cleanup.)
+The link carries the name as its `aria-label`; `.logo .wm` in the stylesheets
+sets the size. Nothing here is a placeholder any more: if the owner delivers
+artwork, replace the drawing in `wordmark.mjs` (rebuilt from the font only
+if the face changes) and nothing else. The Engineering `.brick` monogram
+that used to sit before "Num" was removed in the 2026-10 cleanup.
 
 ## History (removed features): adding another full design system
 
@@ -1474,6 +1487,13 @@ plays a few cycles (`--n`, default 3) and settles; `.live`, toggled by an
 IntersectionObserver, removes and re-adds the animation, so it replays each
 time the element comes back on screen. Off-screen, nothing runs.
 
+**Every loop is under 5 s in total** (duration times iterations), on the home
+page as on the hub, and plays once per view: the coins, the lantern, the
+beam, the twinkle, the skeletons and the icons' idle moves are capped (an
+icon's own `--t` too), so nothing on the home moves for longer than the hub's
+loops (WCAG 2.2.2). The hero's calls to action land by .65 s and the phone
+menu staggers 30 ms a step.
+
 ### Animated icons (`.ai`)
 
 21 inline icons on the 24×24 / 1.5-stroke grammar: tiers,
@@ -1858,8 +1878,8 @@ idea is said once:
   30-minute call are the list's (`prev.tl3d`, `prev.tl4d`); until
   2026-10-27 the brief repeated them. FAQ 2 points to the card ("Voir
   aussi l'Aperçu", lower-case in running text as everywhere else) and
-  FAQ 6 no longer restates it. The three "Méthode" links (navbar, phone menu,
-  footer) land on the card, and the scroll-spy marks "Méthode" only while
+  FAQ 6 no longer restates it. The three "L'Aperçu" links (navbar, phone menu,
+  footer) land on the card, and the scroll-spy marks "L'Aperçu" only while
   the card is being read, then Services again. "Décrire mon projet" went
   with the section: the card's button and the hero lead to the form. The
   kickers after it moved up (04 Tarifs, 05 Équipe, 06 FAQ, 07 Contact).
@@ -1930,7 +1950,7 @@ written as literals that could not re-skin, and Engineering was a separate
 59KB stylesheet that re-laid out the page. All three are gone.
 
 - `assets/themes.css` holds one block per theme, `:root[data-theme="name"]`,
-  setting exactly the 46 contract tokens (colour, effects, atmosphere,
+  setting exactly the 44 contract tokens (colour, effects, atmosphere,
   surfaces, heading type, radii, kicker node) and nothing else. It loads
   before `styles.css`. `--cover-shadow` left the contract on 2026-10-26: its
   one reader, the title on the covers of work cards not yet live, went with
@@ -1943,7 +1963,7 @@ written as literals that could not re-skin, and Engineering was a separate
   selector or a theme colour literal, when any list of theme names drifts
   from `THEMES` in `scripts/site.mjs`, or when a theme's heading face is not
   the one index.html preloads for it (`HEAD` map — a late face shifts the
-  hero; 404.html's `LOGO` map does the same for the wordmark). Any Geist or
+  hero; 404.html's `HEAD` map does the same for the numeral's face). Any Geist or
   Geist Mono weight is that family's one file.
 - Illustration strength is `--ink-k`, a multiplier on each plate's opacity.
 - Engineering is now a token theme like the others. The sections marked
@@ -1951,8 +1971,45 @@ written as literals that could not re-skin, and Engineering was a separate
 
 To add a theme: copy a block in `themes.css`, change the values, and add the
 name to `THEMES` in `scripts/site.mjs`, to `THEMES` in app.js, to the theme
-menu, to the `HEAD` map in index.html and to the `LOGO` map in 404.html.
+menu, to the `HEAD` map in index.html and to the `HEAD` map in 404.html.
 `themes-check` fails until every list agrees.
+
+## The design pass of 2026-11-03
+
+What the design audit of 2026-10-31 changed, in the rules it left:
+
+- **`--field-border`** is a contract token (44 in all): the edge of a form
+  field or an estimator chip, `color-mix(in srgb,var(--faint) 75%,var(--navy))`,
+  a quarter of the way from `--faint` to the card. It reads 3.2 to 4.5:1 on
+  `--navy` and `--void` in every theme, where the hairlines the fields wore
+  gave 1.5 to 1.8:1: fine for a rule, a failure for a control. Hairlines stay
+  for rules.
+- **Arabic type is a step up**: under `html[dir="rtl"]` the labels are 13px,
+  the small text 14px and the body 16px (`--t-label`, `--t-small`, `--t-body`;
+  12, 13 and 15 in the Latin pages), because Plex Arabic's letters sit lower
+  and smaller than Geist's at the same size. Labels elsewhere are 12px.
+- **The offer's conditions** (`.prev-terms`) and the form note are set in the
+  body face at 14px, not in mono caps.
+- **Daylight sets its headings in Cinzel**, with the Decorative swash and
+  Arcanum's hero sizes and leading; `index.html` preloads its face. The wide
+  hero is `clamp(44px,4.3vw,80px)`: three lines at 1280×800, both ways in above
+  the fold, and one line from 1100px.
+- **Tiers three abreast from 961px**, with two-column lists under; below that
+  one tier a row.
+- **The phone header** keeps the language links in the bar and folds the
+  theme picker into the menu below 960px, where it opens as a row of chips
+  with its name (the desktop header keeps its own picker). The footer links
+  reach 44px under a thumb, the plate rail 32px.
+- **No hover lift on a card that is not a link**; the project card is a
+  stretched link to its sheet. `transition:all` is gone.
+- **Motion**: every loop at most 5 s in total, once per view (see "Nothing
+  loops forever").
+- **Copy**: the FAQ has eight entries (payment, ownership and hosting, and
+  how the Aperçu works were added; the languages entry was dropped, the
+  languages being said in the hero), and the call-to-action vocabulary has two
+  verbs, "Demander" for the offer and the price and "Écrire" for WhatsApp.
+- **Fonts**: `assets/fonts/OFL.txt` names every served family's copyright line;
+  a page in French or English fetches no Arabic font file (the audit fails it).
 
 ## Project sheets (scene/)
 
@@ -1960,8 +2017,20 @@ menu, to the `HEAD` map in index.html and to the `LOGO` map in 404.html.
 `npm run scene`. Captures are refreshed with `npm run work:capture [slug]`
 (needs the local server for WorkspaceHQ); each comes in two sizes, and
 `shot()` in `build-scene.mjs` names both in a `srcset` with the measured
-`sizes` (see "Thumbnails"). The scene follows the stored language only; it
-does not read `numidea-theme` yet (the design pass's item).
+`sizes` (see "Thumbnails"). The scene follows the stored language and, since
+2026-11-03, the visitor's theme (below).
+
+**The scene follows the visitor's theme.** Its tokens are aliases of the
+contract's, not a palette of their own: `--paper` is the void, `--ink` the
+ice, `--gold` the crimson text, `--teal` the teal text, the lines the
+hairlines, the drafting grid the muted ink thinned. `build-scene.mjs` loads
+`../assets/themes.css` before `style.css`; its head script applies
+`numidea-theme` with the validated resolver the legal page uses, and the page
+colour and the controls' colour scheme are read off `themes.css` at build
+time; the markup carries Arcanum for scripts off. In Daylight the sheets have
+a paper ground and ink text. `scene/style.css` is a token consumer of
+`themes-check`, and `sweep` reads the scene in Daylight and Noir. The hud's
+logo, the language buttons and the back link are 44px targets.
 
 Client material appears without code changes:
 - `assets/work/<slug>/before/<name>.webp` + `after/<name>.webp` (same name) →
@@ -2145,8 +2214,9 @@ in `sessionStorage`.
 desktop navbar keeps its seven links, with "Tarifs" → `#pricing`: an eighth
 item overflows the bar at 961–1040px (IMPROVEMENTS A14). The phone menu's
 new entry, set in Arcanum's Cinzel at 40px, is 316 px wide in a 320 px box
-at a 360 px viewport and wraps in the metric fallback, the one red run of the
-fallback-type audit on 2026-10-31 (F24, for the copy or design pass).
+at a 360 px viewport and wrapped in the metric fallback (F24, fixed on
+2026-11-03): the rule is `.mobile-menu nav a{font-size:min(40px,10.5vw)}`, and
+the label fits one line in both faces at 360 px.
 
 **Measured:** tarifs/index.html 46,126 B, en/tarifs/ 44,666 B, ar/tarifs/
 49,222 B, tarifs/style.css 2,722 B; index.html lost 13,013 characters. On a
@@ -2215,7 +2285,9 @@ scripts, so each language page names its own static card: `assets/og.jpg`
 guide's three pages reuse the home's card of their language).
 `scripts/build-og.mjs` renders the three (`CARDS`; `node scripts/build-og.mjs
 ar` renders one) from the Arcanum tokens in `themes.css` and the self-hosted
-faces, so they cannot drift from the brand; the Arabic one is set right to
+faces, so they cannot drift from the brand (since 2026-11-03 one `CARDS` table
+renders all six cards: the home's three, the hub's, the scene's and
+WorkspaceHQ's); the Arabic one is set right to
 left in the page's Plex Arabic faces, the logo staying in Latin script as it
 does on the page, and its copy awaits native review (OWNER-CONTENT §8).
 Their image is one of the site's own engravings (Plate II, the Arch of
@@ -2226,10 +2298,14 @@ to appear in marketing. The card texts are dictionary keys (`meta.ogTitle`,
 `og:title`, `og:description`, `twitter:*` and `og:image:alt`; the English
 and Arabic descriptions translate the French card's promise, not the meta
 description. The encoder gives a slightly different JPEG each run (about
-1 KB), so a card is committed only when it changed. `hub/og.jpg` and
-`workspacehq/og.jpg` are 1200×630 renders of those pages' own first screen
-(`scripts/og-capture.mjs`). `npm run og` runs both; re-run after a theme or
-copy change. (The old `og.svg`/`og.png` went in the 2026-10 cleanup.)
+1 KB), so a card is committed only when it changed. `hub/og.jpg` is drawn on the hub's paper in Syne with the hero's two
+figures, `scene/og.jpg` is a plotted sheet with an empty, dimensioned frame
+(no client capture on a share card), and `workspacehq/og.jpg` is in the arcade
+palette with the product's name, the whole headline and Bit. They used to be
+renders of those pages' first screen; `scripts/og-capture.mjs` retired on
+2026-11-03, and `npm run og` runs the one script. Each head names
+`og:image:alt` and `twitter:title`/`description`; re-run after a theme or copy
+change. (The old `og.svg`/`og.png` went in the 2026-10 cleanup.)
 
 ## Sitemap
 

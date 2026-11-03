@@ -6,7 +6,7 @@ sources: [assets/themes.css, assets/styles.css, scripts/themes-check.mjs, script
 
 # Themes and tokens
 
-The site ships six themes, and every one of them is a single block in `assets/themes.css` that sets the same 46 tokens and nothing else; `assets/styles.css` only reads those tokens, so a theme can change how the page looks but cannot break it (assets/themes.css › 1–13; scripts/themes-check.mjs › CONTRACT; scripts/site.mjs › THEMES). `scripts/themes-check.mjs` enforces that contract on every `npm run check` (package.json › scripts.check). Start with the theme table, then the token groups; the checks the contract runs are listed under "What themes-check enforces".
+The site ships six themes, and every one of them is a single block in `assets/themes.css` that sets the same 44 tokens and nothing else; `assets/styles.css` only reads those tokens, so a theme can change how the page looks but cannot break it (assets/themes.css › 1–13; scripts/themes-check.mjs › CONTRACT; scripts/site.mjs › THEMES). `scripts/themes-check.mjs` enforces that contract on every `npm run check` (package.json › scripts.check). Start with the theme table, then the token groups; the checks the contract runs are listed under "What themes-check enforces".
 
 ## The six themes
 
@@ -25,11 +25,11 @@ Sources for the table: the six blocks (assets/themes.css › ARCANUM, NOIR, DAYL
 
 - The theme names live once in `THEMES` in `scripts/site.mjs`: `arcanum`, `noir`, `daylight`, `mono`, `altneon`, `engineering` (scripts/site.mjs › THEMES).
 - Noir was formerly called "Neon Noir" (BRAND.md › How themes work here).
-- Of the published pages, only `index.html` and `404.html` follow the six themes; `hub/` and `scene/` carry their own palettes (scripts/sweep.mjs › 46; BRAND.md › No literal palette colours in shared rules). `hub/` and `workspacehq/` are in [[WorkspaceHQ and hub]], `scene/` in [[Project sheets]].
+- Of the published pages, `index.html`, `404.html` and, since 2026-11-03, `scene/` (through aliases of the contract's tokens) follow the six themes; `hub/` carries its own palette (scripts/sweep.mjs › 46; BRAND.md › No literal palette colours in shared rules). `hub/` and `workspacehq/` are in [[WorkspaceHQ and hub]], `scene/` in [[Project sheets]].
 - The generated legal page, unpublished until the owner's fields are complete, loads `themes.css` and resolves the stored theme from the same `THEMES` list (scripts/build-legal.mjs › 290, 302). The link-preview card is drawn with the Arcanum tokens (scripts/build-og.mjs › header).
 - Graph: [[Arcanum theme (default)]], [[Noir theme]], [[Daylight theme]], [[Mono theme]], [[Altneon theme]], [[Engineering theme]], [[THEMES]].
 
-## The 46-token contract
+## The 44-token contract
 
 The token list is `CONTRACT` in `scripts/themes-check.mjs`, in six groups (scripts/themes-check.mjs › CONTRACT). The names are historical: `--crimson` is the primary accent whatever its colour, which is why it is brass in Arcanum (assets/themes.css › 15–19, ARCANUM).
 
@@ -38,8 +38,8 @@ The token list is `CONTRACT` in `scripts/themes-check.mjs`, in six groups (scrip
 | Colour (16) | `--void` `--navy` `--plum` · `--ice` `--body-strong` `--muted` `--faint` · `--crimson` `--crimson-hi` `--on-crimson` `--crimson-text` · `--teal` `--teal-text` `--on-teal` · `--hairline` `--hairline-2` | Page ground, card surface, raised surface; primary text, long copy, secondary text; primary and secondary accents, each with a text version and a text-on-fill colour; hairline borders (assets/themes.css › 15–19; assets/styles.css › 864) |
 | Depth and effects (9) | `--band` `--shade` `--shade-k` `--grad-blood` `--grad-noir` `--grad-teal` `--glow-teal` `--glow-crimson` `--btn-glow` | The wash behind `.band` sections, shadow colour and strength, three gradients, glows, the primary button's glow (assets/styles.css › 1008, 611, 130, 162, 825, 44) |
 | Atmosphere (5) | `--atmos` `--grid-color` `--grid-opacity` `--grid-size` `--ink-k` | The glow fields behind the page, the construction grid, the strength of the illustration plates (assets/styles.css › 98–109, 2008; BRAND.md › Theme contract) |
-| Surfaces (3) | `--nav-glass` `--glass` `--field-bg` | The scrolled navbar, glass panels, form fields (assets/styles.css › 137, 864, 732). `--cover-shadow` left on 2026-10-26 with the covers of the work cards not yet live, its only reader (BRAND.md › Theme contract) |
-| Type (10) | `--font-head` `--font-head-em` `--head-weight` `--head-tracking` `--font-logo` `--logo-weight` `--logo-tracking` `--hero-fs` `--hero-fs-wide` `--hero-lh` | Heading and wordmark faces, weights and tracking; hero size and line height (assets/styles.css › 37–43, 1191) |
+| Surfaces (4) | `--nav-glass` `--glass` `--field-bg` `--field-border` | The scrolled navbar, glass panels, form fields, and the edge of a field or estimator chip at 3.2 to 4.5:1 on `--navy` and `--void` (assets/styles.css › 137, 864, 732). `--cover-shadow` left on 2026-10-26 with the covers of the work cards not yet live, its only reader (BRAND.md › Theme contract) |
+| Type (7) | `--font-head` `--font-head-em` `--head-weight` `--head-tracking` `--hero-fs` `--hero-fs-wide` `--hero-lh` | Heading faces, weights and tracking; hero size and line height; the wordmark is drawn (scripts/lib/wordmark.mjs), so no theme sets a logo face (assets/styles.css › 37–43, 1191) |
 | Shape (3) | `--r-sm` `--r-md` `--kicker-node` | Corner radii and the size of the node after each kicker (assets/styles.css › 46) |
 
 - The theme-independent tokens sit in the `:root` of `styles.css`: font stacks, the spacing scale, `--r-pill` and `--r-lg`, motion timings, `--max`, `--gutter` and `--nav-h` (assets/styles.css › 9–31).
@@ -66,8 +66,8 @@ The token list is `CONTRACT` in `scripts/themes-check.mjs`, in six groups (scrip
 | No dead tokens | A contract token is read by none of `styles.css`, `404.html` or `legal/index.html` | scripts/themes-check.mjs › 89–95 |
 | No re-declaration | `styles.css` sets a contract token, except the print palette, which must carry `!important` | scripts/themes-check.mjs › 97–116 |
 | No variants | `styles.css` has a `[data-variant` selector | scripts/themes-check.mjs › 114–117 |
-| Lists agree | `index.html` `HEAD`, `404.html` `LOGO`, `THEMES` in `app.js` or the theme menu differ from `THEMES` in `site.mjs` | scripts/themes-check.mjs › 120–136 |
-| Faces preloaded | A theme's heading face is not the one `HEAD` preloads, or its wordmark face not the one `LOGO` preloads | scripts/themes-check.mjs › 137–146 |
+| Lists agree | `index.html` `HEAD`, `404.html` `HEAD`, `THEMES` in `app.js` or the theme menu differ from `THEMES` in `site.mjs` | scripts/themes-check.mjs › 120–136 |
+| Faces preloaded | A theme's heading face is not the one `HEAD` preloads, or the numeral's face in `404.html` not the one its `HEAD` map preloads | scripts/themes-check.mjs › 137–146 |
 | No theme selectors | `styles.css` contains `[data-theme` | scripts/themes-check.mjs › 148–151 |
 | No palette literals | `styles.css` writes one of the listed theme colours as an `rgb()`/`rgba()` literal outside the switcher swatches | scripts/themes-check.mjs › 152–160 |
 
@@ -78,7 +78,7 @@ The token list is `CONTRACT` in `scripts/themes-check.mjs`, in six groups (scrip
 ## How a theme is applied
 
 1. `index.html` loads `fonts.css`, then `themes.css`, then `styles.css` (index.html › 191–196).
-2. Before first paint, an inline head script reads `numidea-theme` from `localStorage`, falls back to `arcanum` for an unknown name, sets `data-theme` on `<html>` and colours the browser bar from its `VOID` map (index.html › 106–128). `404.html` does the same with its `LOGO` map and writes a preload for a wordmark face it does not already preload (404.html › 81–132). See [[Pre-paint Boot Script]] and [[Languages and RTL]].
+2. Before first paint, an inline head script reads `numidea-theme` from `localStorage`, falls back to `arcanum` for an unknown name, sets `data-theme` on `<html>` and colours the browser bar from its `VOID` map (index.html › 106–128). `404.html` does the same with its `HEAD` map and writes a preload for the face of its numeral (404.html › 81–132). See [[Pre-paint Boot Script]] and [[Languages and RTL]].
 3. A click in the switcher calls `applyTheme()`: it sets one attribute, reads `--void` back from the tokens for the browser bar, stores the choice and fires `numidea:relayout` because type tokens change line lengths (assets/app.js › 905–921, 959). No stylesheet is loaded on a switch (assets/app.js › 905–906).
 4. When a page comes back from the back/forward cache, the stored theme is re-applied if it changed (assets/app.js › 2692–2705).
 
@@ -87,7 +87,7 @@ Graph: [[applyTheme()]], [[Theme Switch Menu]], [[numidea-theme localStorage key
 ## Adding a theme
 
 1. Copy a block in `assets/themes.css` and change its values (assets/themes.css › 12–13). The same comment still says to add the name to `THEMES` in `scripts/themes-check.mjs`; that file now imports `THEMES` from `scripts/site.mjs` (scripts/themes-check.mjs › 24).
-2. Add the name to `THEMES` in `scripts/site.mjs`, to `THEMES` in `assets/app.js`, to the theme menu in `index.html`, to the `HEAD` map in `index.html` and to the `LOGO` map in `404.html` (BRAND.md › Theme contract).
+2. Add the name to `THEMES` in `scripts/site.mjs`, to `THEMES` in `assets/app.js`, to the theme menu in `index.html`, to the `HEAD` map in `index.html` and to the `HEAD` map in `404.html` (BRAND.md › Theme contract).
 3. Run `npm run check`; `themes-check` fails until every list agrees and every contrast pair passes (BRAND.md › Theme contract; scripts/themes-check.mjs › 120–136).
 
 Each item in the theme menu also carries a swatch, `.dot.<name>`, coloured in `styles.css` (index.html › 240–245; assets/styles.css › 69–75).

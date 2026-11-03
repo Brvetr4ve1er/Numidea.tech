@@ -15,7 +15,6 @@ Seven Node scripts make the site's pictures offline with Playwright and sharp: s
 | `shots.mjs` | `npm run shots [slug]` | Five live builds on Netlify, at 1280×800, 2× | `assets/previews/<slug>.webp` and, since 2026-10-31, `<slug>-720.webp` beside it | Network |
 | `work-capture.mjs` | `npm run work:capture [slug]` | Four desktop pages (1440×900) and two phone screens (390×844, 2×) per project | `assets/work/<slug>/`: `d<n>.webp` with `d<n>-720.webp`, `m<n>.webp` with `m<n>-416.webp` (since 2026-10-31) | Network; a local server on port 8765 for WorkspaceHQ |
 | `client-logos.mjs` | `npm run logos` | The header logo of each delivered client's live site | `assets/clients/` | Network |
-| `og-capture.mjs` | `npm run og` (first step) | The first screen of `hub/` and `workspacehq/` at 1200×630 | `hub/og.jpg`, `workspacehq/og.jpg` | The local harness |
 | `build-og.mjs` | `npm run og` (second step; `node scripts/build-og.mjs ar` for one) | Arcanum tokens, self-hosted faces, the site's own engraving (Plate II) | `assets/og.jpg`, `og-en.jpg`, `og-ar.jpg`, one card per language | The local harness |
 | `plates.mjs` | `node scripts/plates.mjs <dir>` | Generated engravings, kept outside this repository | `assets/illus/*.webp` and skyline polygons | sharp only |
 | `build-creative.mjs` | `node scripts/build-creative.mjs [ad-id …]` | The private campaign kit and committed captures | JPEG ads in the kit's own output folder | The kit; Playwright, sharp |
@@ -23,7 +22,7 @@ Seven Node scripts make the site's pictures offline with Playwright and sharp: s
 Sources: package.json › scripts; the header of each script; scripts/shots.mjs › W, H, deviceScaleFactor; scripts/og-capture.mjs › PAGES.
 
 - Playwright and sharp are dev dependencies (package.json › devDependencies); the July audit described them as existing only for this offline screenshot pipeline, never shipped to the browser (audit/Architecture.md › What this system is). Graph: [[playwright]], [[sharp]], [[Offline screenshot-capture pipeline (Playwright + sharp)]], [[Zero-dependency trilingual static marketing site]].
-- `og-capture`, `build-og` and `build-creative` serve the repository through the shared harness, and every capture script launches the browser through its `launch()` since 2026-10-31: `CHROMIUM_PATH` if set, else the newest build under `/opt/pw-browsers/`, else Playwright's own (their import lines; scripts/lib/serve.mjs › header, launch). Until then `shots.mjs` and `work-capture.mjs` launched Chromium themselves, one through a `PW_CHROME` variable and one through a fixed path to a build that no longer existed (IMPROVEMENTS.md › F19).
+- `build-og` and `build-creative` serve the repository through the shared harness, and every capture script launches the browser through its `launch()` since 2026-10-31: `CHROMIUM_PATH` if set, else the newest build under `/opt/pw-browsers/`, else Playwright's own (their import lines; scripts/lib/serve.mjs › header, launch). Until then `shots.mjs` and `work-capture.mjs` launched Chromium themselves, one through a `PW_CHROME` variable and one through a fixed path to a build that no longer existed (IMPROVEMENTS.md › F19).
 - The 35 small variants committed on 2026-10-31 were derived with sharp from the committed captures (quality 80), no live site recaptured; the pages name both sizes in a `srcset` whose `sizes` is the measured layout, and `check` block 3 holds each candidate to its file's width (IMPROVEMENTS.md › F17; BRAND.md › Thumbnails; scripts/check.mjs › block 3).
 - Graph: [[_COMMUNITY_Studio Overview and Tooling]], [[_COMMUNITY_Dev Dependencies]], wiki [[Studio_Overview_and_Tooling]], [[Dev_Dependencies]].
 
@@ -52,11 +51,11 @@ Sources: package.json › scripts; the header of each script; scripts/shots.mjs 
 - `check` block 5b requires the logo strip to be exactly the delivered clients, each with its own file, alt, intrinsic size and mask (scripts/check.mjs › block 5b).
 - Graph: [[client-logos.mjs]], [[Client logo strip (scriptsclient-logos.mjs)]], [[_COMMUNITY_Client Logo Extraction]], wiki [[Client_Logo_Extraction]].
 
-## Share images: og-capture.mjs and build-og.mjs
+## Share images: build-og.mjs
 
-- `og-capture.mjs` renders `hub/` and `workspacehq/` themselves at 1200×630, their real first screen rather than artwork made for the purpose, with reduced motion, and saves a JPEG next to each page (scripts/og-capture.mjs › header, PAGES).
-- `build-og.mjs` draws the home's three cards, `assets/og.jpg` (French), `og-en.jpg` and `og-ar.jpg`, one per language page, because scrapers read `og:image` without running scripts; each uses the Arcanum tokens and the self-hosted faces, the Arabic one set right to left in Plex Arabic with the logo in Latin script, and their image is one of the site's own engravings (Plate II, the Arch of Trajan at Timgad) since 2026-10-26, when the owner replaced the client capture it showed (scripts/build-og.mjs › header, CARDS). The Arabic card's copy awaits native review (OWNER-CONTENT.md › 8). The encoder gives a slightly different JPEG each run, so a card is committed only when it changed (README.md › Commands, `npm run og`).
-- Graph: [[og-capture.mjs]], [[build-og.mjs]].
+- Since 2026-11-03 `build-og.mjs` draws every card from one `CARDS` table, and `og-capture.mjs`, which photographed the first screen of `hub/` and `workspacehq/`, is retired: `hub/og.jpg` is the hub on its paper in Syne with the hero's two figures, `scene/og.jpg` a plotted sheet with an empty, dimensioned frame (no client capture on a share card), `workspacehq/og.jpg` the arcade palette with the product's name, the headline and Bit (scripts/build-og.mjs › CARDS; commit e8a2ea2).
+- It also draws the home's three cards, `assets/og.jpg` (French), `og-en.jpg` and `og-ar.jpg`, one per language page, because scrapers read `og:image` without running scripts; each uses the Arcanum tokens and the self-hosted faces, the Arabic one set right to left in Plex Arabic with the logo in Latin script, and their image is one of the site's own engravings (Plate II, the Arch of Trajan at Timgad) since 2026-10-26, when the owner replaced the client capture it showed (scripts/build-og.mjs › header, CARDS). The Arabic card's copy awaits native review (OWNER-CONTENT.md › 8). The encoder gives a slightly different JPEG each run, so a card is committed only when it changed (README.md › Commands, `npm run og`).
+- Graph: [[og-capture.mjs]] (retired), [[build-og.mjs]].
 
 ## Atlas masks: plates.mjs
 

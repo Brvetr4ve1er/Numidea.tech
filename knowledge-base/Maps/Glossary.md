@@ -60,7 +60,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | Arcanum | The identity and default theme: arcane-blue ground, brass flourish, engraved Cinzel display, electric teal as rationed neon | README.md › Design system; BRAND.md › How themes work here | [[Arcanum theme (default)]] |
 | The six themes | arcanum, noir, daylight, mono, altneon, engineering; the list is `THEMES` | scripts/site.mjs › THEMES; BRAND.md › How themes work here | [[Six themes (Arcanum, Noir, Daylight, Mono, Alt-neon, Engineering)]] |
 | Tokens | CSS custom properties set per theme in `themes.css`; `styles.css` reads theme values only through `var(--token)` and may not contain a `[data-theme]` selector, so a theme is a swap of values | BRAND.md › How themes work here; README.md › This repository — the landing page | [[Design-token system (every rule reads var(--token))]] |
-| The contract | The 46 tokens every theme block in `assets/themes.css` sets, exactly and nothing else | BRAND.md › Theme contract; README.md › Design system | [[Theme contract (47 tokens)]] |
+| The contract | The 44 tokens every theme block in `assets/themes.css` sets, exactly and nothing else | BRAND.md › Theme contract; README.md › Design system | [[Theme contract (47 tokens)]] |
 | `themes-check` | The gate on the contract: a missing or extra token, a text/surface pair under 4.5:1 (7:1 for `--ice`), a theme selector or colour literal in `styles.css`, a drifting theme list, an unpreloaded heading face | BRAND.md › Theme contract (replaces the Engineering alternate stylesheet) | [[themes-check gate]] |
 | `HEAD` / `LOGO` maps | Each theme's heading face that index.html preloads (`HEAD`) and each theme's wordmark face on the 404 page (`LOGO`) | index.html › 109; 404.html › 95; BRAND.md › Theme contract | [[headMap]] |
 | Fill vs text tokens | `--teal` and `--crimson` are fills; `--teal-text` and `--crimson-text` are for text; `color:` is never set from a fill | BRAND.md › Text tokens vs fill tokens | [[Text tokens vs fill tokens]] |
@@ -96,7 +96,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 
 | Term | Meaning | Source | Graph |
 |---|---|---|---|
-| Baked French | The French copy written into `index.html`, so the page reads right before app.js runs and for scrapers; `build-fr` writes `I18N.fr` into it and `check.mjs` fails on drift | scripts/build-fr.mjs › header; BRAND.md › Project sheets (scene/) | [[Baked French copy (I18N.fr) in index.html]] |
+| Baked French | The French copy written into `index.html`, so the page reads right before app.js runs and for scrapers; `build-lang` writes `I18N.fr` into it and `check.mjs` fails on drift | scripts/build-lang.mjs › header; BRAND.md › Project sheets (scene/) | [[Baked French copy (I18N.fr) in index.html]] |
 | `I18N` / `applyLang()` | The fr, en and ar dictionaries in app.js, and the function that applies one to the page: `lang` and `dir`, title, meta description, structured data and every translated node | assets/app.js › i18n dictionary, applyLang | [[applyLang()]] |
 | Head bootstrap | The inline head script that sets theme, `lang` and `dir` before first paint | BRAND.md › The language is resolved before first paint | [[Head bootstrap  pre-paint resolver]] |
 | `?lang=` | A link parameter that sets the language and the canonical URL | README.md › Features | [[Trilingual FRENAR with mirrored RTL]] |
@@ -129,7 +129,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 
 | Term | Meaning | Source | Graph |
 |---|---|---|---|
-| `npm run build` | The page generators in one go: build-fr, build-scene, build-voices, build-legal, build-sitemap, then build-csp last (the CSP meta of the hand-written pages) | package.json › scripts; README.md › Commands | [[npm run build (generated pages)]] |
+| `npm run build` | The page generators in one go: build-scene, build-voices, build-legal, build-lang, build-tarifs, build-sitemap, then build-csp last (the CSP meta of the hand-written pages) | package.json › scripts; README.md › Commands | [[npm run build (generated pages)]] |
 | Gates | Seven commands, all green before a push: check, validate, audit, sweep, vbugs, keys, verify | BRAND.md › The gates | [[The gates (pre-push commands)]] |
 | `check` | Repository invariants: i18n ×3, assets, stamps, client links, deploy coverage, generated pages, anchors and retired claims, the Content-Security-Policy meta (block 16), asset byte budgets (block 17), SEO and structured data (block 18), plus `themes-check` | scripts/check.mjs › header; README.md › Commands | [[Repository invariants (npm run check)]] |
 | `validate` | html-validate on every page | README.md › Commands | [[HTML validation (npm run validate)]] |

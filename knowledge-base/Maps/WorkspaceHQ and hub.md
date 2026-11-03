@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-31
+updated: 2026-11-03
 sources: [README.md, BRAND.md, NOTICE.md, OWNER-CONTENT.md, IMPROVEMENTS.md, index.html, assets/app.js, assets/carry.js, assets/styles.css, assets/fonts-hub.css, hub/index.html, hub/app.js, hub/style.css, scripts/build-hub-art.mjs, scripts/hub-art-data.mjs, scripts/sweep.mjs, scripts/vbugs.mjs, scripts/validate.mjs, scripts/validate-embed.json, workspacehq/index.html, workspacehq/app.js, workspacehq/style.css, workspacehq/embed/trailer.html, scripts/site.mjs, scripts/scene-data.mjs, scripts/build-sitemap.mjs, scripts/check.mjs, scripts/audit.mjs, scripts/keys.mjs, scripts/lib/csp.mjs, workspacehq/embed/hq-fx.js, netlify.toml, vercel.json]
 ---
 
@@ -13,12 +13,12 @@ Two published pages sit beside the studio's landing page with their own CSS and 
 | | `hub/` | `workspacehq/` |
 |---|---|---|
 | What it is | Yasser's own page: his art, design work and social presence (BRAND.md › hub/ — the artist's page, not the studio's) | Launch page for WorkspaceHQ v3, "your codebase, now playable" (workspacehq/index.html › 7) |
-| Title | `b4vetrave1er.exe // VOIDSPLUNKER.std` (hub/index.html › 7) | `WorkspaceHQ v3 — your codebase, now playable` (workspacehq/index.html › 7) |
+| Title | `Yasser Hamisse (br4vetr4veler) — artist, designer, developer`: the person's name, one spelling of the handle (hub/index.html › 7; since 2026-11-02) | `WorkspaceHQ v3 — your codebase, now playable` (workspacehq/index.html › 7) |
 | Language | English (hub/index.html › 2) | English (workspacehq/index.html › 2) |
 | Themes | Paper by default and night, stored under `void-theme`; only `dark` reads as night (hub/index.html › head script) | One look: the WorkspaceHQ design system's ARCADE tokens (workspacehq/style.css › 1) |
 | Fonts | Syne (display), Geist (text) and Geist Mono (labels), self-hosted through `assets/fonts-hub.css`, one rule per file and weight range since 2026-10-31; Space Mono, the old hub's, left the repository on 2026-10-28; the cartridge's Press Start 2P from `workspacehq/fonts/` (hub/index.html › head; assets/fonts-hub.css › header) | Press Start 2P and VT323, self-hosted in `workspacehq/fonts/` and, since 2026-10-31, served from there to the embed's design-system tokens too (workspacehq/style.css › the font faces; the embed's `_ds/…/tokens/fonts.css`) |
 | Scripts | `hub/app.js`, `assets/carry.js` (hub/index.html › end of body) | `workspacehq/app.js`, `assets/carry.js` (workspacehq/index.html › end of body) |
-| Reached from | The home page's founder section, "Portfolio personnel ↗" (index.html › #founder, founder.portfolio; the owner decided on 2026-10-30 to remove the link, IMPROVEMENTS.md › decision 11, with the next change); the WorkspaceHQ footer (workspacehq/index.html › footer) | The cartridge in the hub hero, the hub's Developer links and Elsewhere (hub/index.html › HERO, WHAT I MAKE, ELSEWHERE); project sheet 04 (scripts/scene-data.mjs › PROJECTS). The home footer's cartridge went on 2026-10-26, an owner decision (BRAND.md › workspacehq/, The cartridge) |
+| Reached from | The WorkspaceHQ breadcrumb and footer (the home's "Portfolio personnel" link, `founder.portfolio`, was removed on 2026-11-02, IMPROVEMENTS.md › decision 11); the wordmark's link from both pages goes to the studio (workspacehq/index.html › footer) | The cartridge in the hub hero, the hub's Developer links and Elsewhere (hub/index.html › HERO, WHAT I MAKE, ELSEWHERE); project sheet 04 (scripts/scene-data.mjs › PROJECTS). The home footer's cartridge went on 2026-10-26, an owner decision (BRAND.md › workspacehq/, The cartridge) |
 | Sitemap | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) | One URL, no language alternates (scripts/build-sitemap.mjs › MULTILINGUAL) |
 | Cached by the mirrors | `hub/art/*` for a day, like `assets/*` (netlify.toml, vercel.json › headers) | `workspacehq/embed/*` for a day: its audio, model and vendor code are the heaviest files published (netlify.toml › the cache comment) |
 
@@ -52,6 +52,10 @@ How it is built:
 - `hub/app.js` sections: 1 parallax, 2 entrance, 3 reveal, 4 loops, 5 theme pill, 6 year, 7 the diary's viewer, 8 pictures fade in, 9 the motion preference changing mid-visit and printing (hub/app.js › header). Section 5 still sets the night tint the head script now sets at load, harmless and redundant (hub/app.js › 5; IMPROVEMENTS.md › F23).
 - Measured on a phone served gzipped, 2026-10-31: the hub's first screen 436,416 → 397,053 B with the latin-ext preload gone, its fonts 116 → 77 KB (IMPROVEMENTS.md › F17).
 - `hub/art/` and `hub/loops/` are the founder's own drawings; he has not chosen a licence for them (`ip.licence` null), so `NOTICE.md` says the CC0 `LICENSE` does not settle their terms (NOTICE.md › The owner's illustrations; OWNER-CONTENT.md › 1).
+
+Heading hierarchy since 2026-11-02: the handle is the one `h1`; the sections are `h2` ("Design meets code.", "Identity. Posters. Print.", "Studio diary", "One person. Every world.", "Say hello"), sized a step under the handle (`clamp(30px,4.2vw,60px)`; the handle `min(9.7cqw,120px)`, the most its column carries on one line); the roles and link groups are `h3` (hub/index.html; hub/style.css). `og:site_name` is the hub's own name. The Behance covers multiply into the paper on the paper page only, the mail link is a 44px target at 700 to 768px, Press Start 2P is never under 8px, and forced-colours rules cover the cabinet (hub/style.css, workspacehq/style.css; commit e8a2ea2).
+
+The wordmark: the studio's name, drawn in Cinzel 700 by `scripts/lib/wordmark.mjs`, stands in the breadcrumbs of both pages, linking to the studio, with "idea" in each page's own accent (burgundy on the hub, cabinet gold on WorkspaceHQ); both link a 180px apple-touch-icon. Share cards: `scripts/build-og.mjs` draws `hub/og.jpg` on its paper in Syne with the hero's two figures, and `workspacehq/og.jpg` in the arcade palette with the product's name, the headline and Bit; `scene/` has its own (BRAND.md › The link-preview card).
 
 Graph: [[br4vetr4veler hub (b4vetrave1er.exe  VOIDSPLUNKER.std)]], [[hubapp.js]], [[Hub poster viewer (native dialog)]], [[Lightdark theme pill (void-theme key)]], [[The Archive one handle, every world (link hub)]]. The generated graph of 2026-10-19 predates the rebuild of 2026-10-28 (it still holds the poster series and the "Hub poster viewer") and the changes of 2026-10-31; refresh it with `/graphify . --update` and `npm run kb` (knowledge-base/Home.md). graphify was not installed on the fleet's machine, so this map was updated by hand.
 
@@ -111,8 +115,8 @@ Graph: [[WorkspaceHQ NES cartridge link]].
 
 - **WorkspaceHQ "open source":** the repository had no licence and no README on 2026-10-13, so the pages now say the code is public on GitHub; to say "open source" again, add a LICENSE and a root README there, then restore the wording in `workspacehq/index.html` and `scripts/scene-data.mjs` (OWNER-CONTENT.md › 13). Graph: [[WorkspaceHQ open-source claim]].
 - **Hub illustrations, three review points:** the fan art left the hub with its rebuild of 2026-10-28 (live at the next deploy) and stays in git history (OWNER-CONTENT.md › 10); the owner approved the eight diary titles on 2026-10-28 (IMPROVEMENTS.md › decision 26) and reviews what the page says about Kūro, the hexagon "N" as a costume detail, and the glyph-like symbols on one print (OWNER-CONTENT.md › 15).
-- **"An agency of one":** the hub footer says VOIDSPLUNKER.std is an agency of one while the home page still presents a studio of four specialists; the owner chose on 2026-10-28 to keep the line on the hub, and answered on 2026-10-30 that the studio is one founder with freelancers when needed, so the home page's wording follows with the next change (OWNER-CONTENT.md › 14, 17; IMPROVEMENTS.md › decision 22; hub/index.html › FOOTER). Graph: [[VOIDSPLUNKER.std (agency of one)]].
-- **The hub's wording for the next change:** one handle spelling (br4vetr4veler) in the title, og and footer, the person's name in the title, and WorkspaceHQ's "two seconds" and "INSTALL" wording, from the CMO audit of 2026-10-31 (IMPROVEMENTS.md › intro, the second audit; the plan's fleet 2).
+- **"An agency of one":** the hub footer says VOIDSPLUNKER.std is an agency of one while the home page, since 2026-11-02, presents one founder with freelancers when needed; the owner chose on 2026-10-28 to keep the line on the hub and answered on 2026-10-30 on the studio (OWNER-CONTENT.md › 14, 17; IMPROVEMENTS.md › decision 22; hub/index.html › FOOTER). Graph: [[VOIDSPLUNKER.std (agency of one)]].
+- **The hub's wording** was settled on 2026-11-02: one handle spelling (br4vetr4veler) in the title and card, the person's name in the title, WorkspaceHQ without a timing claim for the scan and "GET THE CODE" (the clone is a bare repository) (commit 7bb84bb).
 
 See [[Open owner items]].
 
