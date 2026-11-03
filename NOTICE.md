@@ -16,7 +16,7 @@ themselves; a Reserved Font Name may not be used for a modified font.
 
 | Folder | Families | Licence text |
 |---|---|---|
-| `assets/fonts/` | Cinzel, Cinzel Decorative, Geist, Geist Mono, IBM Plex Sans Arabic, Syne (woff2 subsets) | `assets/fonts/OFL.txt` — its copyright line names the Cinzel Project Authors; the other five families' copyright lines are not reproduced in it |
+| `assets/fonts/` | Cinzel, Cinzel Decorative, Geist, Geist Mono, IBM Plex Sans Arabic, Syne (woff2 subsets) | `assets/fonts/OFL.txt` — since 2026-11-03 it names each family's file glob and the copyright line read from that font's own name table (until then only the Cinzel Project's line was in it) |
 | `workspacehq/fonts/` | Press Start 2P (Reserved Font Name "Press Start 2P"), VT323 | `workspacehq/fonts/OFL.txt`, both copyright lines copied from the files' name tables |
 | `workspacehq/embed/fonts/` | IBM Plex Mono Regular, Medium, SemiBold (Copyright 2017 IBM Corp.) | `workspacehq/embed/fonts/OFL.txt` |
 
@@ -24,10 +24,13 @@ themselves; a Reserved Font Name may not be used for a modified font.
 
 `workspacehq/embed/vendor/react.production.min.js` and
 `react-dom.production.min.js` are the React 18.3.1 UMD production builds,
-Copyright (c) Facebook, Inc. and its affiliates, under the MIT licence. Each
-file's header says so and refers to the LICENSE file of the React source tree,
-which is not copied here (`react-dom` also embeds a Modernizr 3.0.0pre custom
-build, MIT, per its own header).
+under the MIT licence. Each file's header says so and refers to the LICENSE
+file of the React source tree; since 2026-11-03 that text is beside them,
+`workspacehq/embed/vendor/LICENSE` (the standard MIT text with the React
+tree's copyright line, "Meta Platforms, Inc. and affiliates"; the builds'
+own headers still name the company as "Facebook, Inc. and its affiliates",
+its earlier name). `react-dom` also embeds a Modernizr 3.0.0pre custom
+build, MIT, per its own header.
 
 ## `workspacehq/embed/support.js` — licence unknown
 

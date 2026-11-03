@@ -2,28 +2,30 @@
 
 The site leaves a place for each item below and shows nothing until the real
 thing exists: no placeholders, no invented content. This file is not deployed.
-Status as of 2026-10-31 (after the owner's answers of 2026-10-30 and the fix
-fleet of 2026-10-31; sections 16 and 17 record those answers).
+Status as of 2026-11-03 (after the owner's answers of 2026-10-30, the fix
+fleets of 2026-10-31 and of 2026-11-03; sections 16 and 17 record those
+answers, and the page now carries them).
 
 | # | Item | Status | Where it goes |
 |---|---|---|---|
 | 1 | Legal notice + privacy details | **Missing (16 fields; 5 in three languages)**; "later" (owner, 2026-10-30): the pages stay unpublished, the slots stay empty | `scripts/legal-data.mjs` |
 | 2 | Client quotes, with consent | None yet | `scripts/voices-data.mjs` |
-| 3 | Founder photo | None (monogram "Y" shows) | `assets/founder.webp` |
-| 4 | Team names and photos; the team-size claim | Answered 2026-10-30: one founder, with freelancers when needed (section 17); the copy follows with the next change. Until then the page still says "four specialists" and shows initials D, S, T | `index.html` #founder, `assets/i18n/*.js` |
+| 3 | Founder photo | Still open: none yet (monogram "Y" shows) | `assets/founder.webp` |
+| 4 | Team names and photos; the team-size claim | Answered 2026-10-30 and applied on 2026-11-03: one founder, with freelancers when a project calls for them (section 17). The page shows one team row, no initials and no photos | `index.html` #founder, `assets/i18n/*.js` (`team.*`) |
 | 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added on 2026-10-31 is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31 and 2026-11-03 is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
 | 12 | Campaign kit and git history | Kit with the owner | outside this repo |
 | 13 | WorkspaceHQ: open source or not | Claim removed (no licence, no README) | `Brvetr4ve1er/workspace-HQ`, then `workspacehq/`, `scripts/scene-data.mjs` |
-| 14 | Claims only the owner can confirm | 8 listed: 5 open, 3 answered on 2026-10-30 (one applied, two waiting for the copy change) | see section 14 |
+| 14 | Claims only the owner can confirm | 8 listed: 5 open (F11, the toolchain, now trimmed to what the builds use but still yours to confirm), 3 answered on 2026-10-30 and applied on 2026-11-03 | see section 14 |
 | 15 | Hub illustrations (yours: you and Kūro) | 3 points for your review (the diary titles approved 2026-10-28) | `hub/` |
-| 16 | Commercial terms (payment, ownership, hosting, revisions, support, contract, the Aperçu rules) | Drafted on your instruction of 2026-10-31; yours to change at any time | section 16; the FAQ, shipped by the next change |
-| 17 | Team and contact facts | Answered 2026-10-30 | section 17; the copy follows with the next change |
+| 16 | Commercial terms (payment, ownership, hosting, revisions, support, contract, the Aperçu rules) | On the page since 2026-11-03 as FAQ entries, drafted on your instruction of 2026-10-31; yours to change at any time | section 16; `faq3`, `faq7`, `faq8` in `assets/i18n/fr.js` |
+| 17 | Team and contact facts | Answered 2026-10-30, on the page since 2026-11-03 | section 17 |
+| 18 | The founder's name in Arabic script | Still open: the Arabic hero lede shows "Yasser Hamisse" in Latin script until you give the spelling | `assets/i18n/ar.js` (`hero.lede`) |
 
 ## 1. Legal notice + privacy page
 Fill every `null` in `scripts/legal-data.mjs`. `false` means "does not apply"
@@ -83,24 +85,17 @@ Voyages can be quoted. Get written agreement to the exact text.
 ## 3. Founder photo
 A real photo, never a generated face: square, at least 400 px, saved as
 `assets/founder.webp`. In `index.html` (#founder, `.fd-photo`), uncomment the
-`<img>` line; the monogram steps aside. Run `npm run bump`.
+`<img>` line; the monogram steps aside. Run `npm run bump`. Still open on 2026-11-03.
 
 ## 4. Team
 **Answered on 2026-10-30: one founder, with freelancers when needed** (section
-17). The copy that still says otherwise changes with the next change, in all
-three languages: the hero lede ("un fondateur designer-développeur et trois
-spécialistes"), the founder block and its team card (initials D, S, T), FAQ 5
-and FAQ 6, and the brand-identity service's "a four-person studio". No
-initials and no team photos after that: there is no team to show. The hub's
-line "an agency of one" stays as the owner chose on 2026-10-28; it stops
-contradicting the home page once the copy lands.
-
-Until then the page still says "four specialists" (the proof band's "4
-personnes dans l'équipe" counter went on 2026-10-26), and the team card still
-gives first contact and "turning the idea into scope" to S. FAQ 6 says one
-team scopes, codes and ships; with one founder, the stronger line "the person
-who scopes your project is the one who codes it" becomes true again and can
-come back in the same change.
+17). Applied on 2026-11-03, in all three languages: the hero lede names the
+founder as designer-developer who calls on freelancers when a project needs
+them, the team block is one row (`team.fFn`, `team.fDo`) under the heading
+`team.h`, the initials D, S, T and their rows are gone, and the brand-identity
+service no longer says "a four-person studio". There are no team photos to
+supply: there is no team to show. The hub's line "an agency of one" stays as
+the owner chose on 2026-10-28; it no longer contradicts the home page.
 
 ## 5. Studio email on its own domain
 Today every contact point uses `hamissemohamedyasser@gmail.com`. Once a domain
@@ -130,9 +125,10 @@ usually agreed with the client; the same email or WhatsApp message as for
 item 6 can cover it.
 
 ## 8. Arabic native review
-**Every Arabic string added on 2026-10-31 awaits native review** (the list is
-at the end of this section, "Written on 2026-10-31"); nothing Arabic written
-by the fix fleet has been read by a native speaker.
+**Every Arabic string added or changed on 2026-10-31 and 2026-11-03 awaits
+native review** (the lists are at the end of this section, "Written on
+2026-10-31" and "Written or changed on 2026-11-03"); nothing Arabic written by
+the fix fleets has been read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
 Conventions to keep: Western digits, forward arrows `←`, singular "you", brand
@@ -152,9 +148,10 @@ what its French and English counterparts say:
   "currently learning" half is unchanged);
 - `f1.brief` and `f3.brief`, each one sentence shorter (their tool lists
   went; the pills under them name the tools);
-- `faq2.a`: no-break spaces in «90 000 دج», and the new
-  «(وبالأورو والدولار في القسم نفسه)»: الأورو (Maghreb usage, like the
-  timeline's month names) or اليورو?
+- `faq2.a`: no-break spaces in «90 000 دج», and the new «(وباليورو والدولار
+  في القسم نفسه)»: since 2026-11-03 the word is اليورو (it was الأورو, Maghreb
+  usage), and the timeline's dates are numbered months; for the reviewer to
+  confirm
 - the contact form's copy button and its two lines: `form.copy`
   «نسخ رسالتي», `form.copied`
   «نُسخت رسالتك. الصقها في بريد إلكتروني جديد إلى العنوان أعلاه.» and
@@ -264,6 +261,37 @@ of the privacy page are the existing ones, now conditional (section 1), and
 the language switch's ع is drawn, with its `aria-label` «العربية (ع)»
 unchanged.
 
+Written or changed on 2026-11-03 (the second fix fleet; the strings follow
+the new French, none read by a native speaker; key names only). By area:
+- the home dictionary, `assets/i18n/ar.js`, added: `team.fFn`, `team.fDo`,
+  `faq7.q`, `faq7.a`, `faq8.q`, `faq8.a`, `form.waInstead`, `form.subjPrev`,
+  `form.subjEst`, `form.subj`;
+- the home dictionary, changed: `title`, `meta.desc`, `nav.about`, `nav.team`,
+  `hero.eyebrow`, `hero.title`, `hero.lede`, `hero.cta1`, `tb.previewV`,
+  `tb.replyV`, `proof.line`, `proj2.desc`, `proj4.desc`, `work.sheet`,
+  `scene.cta`, `founder.kicker`, `founder.title`, `founder.lead`,
+  `founder.bio`, `fx1.when`, `fx3.when`, `fx4.when`, `fx5.when`,
+  `tag.designSystems`, `mbar.cta`, `proj2.alt`, `proj3.alt`, `proj4.alt`,
+  `proj6.alt`, `proj7.alt`, `team.h`, `faq2.a`, `faq3.q`, `faq3.a`, `faq4.a`,
+  `faq5.a`, `faq6.a`, `contact.sub`, `contact.vReply`, `contact.waNote`,
+  `form.send`, `form.success`, `footer.rights`, `wa.hello`, `prev.tl2`,
+  `prev.tl2p`, `prev.promise`, `prev.msg`, `prev.waText`, `prev.outcome`,
+  `f3.promise`, `c4.brief`, `c5.name`, `c5.brief`;
+- the price guide's keys, in the same file (they bake into
+  `ar/tarifs/index.html` and the Arabic page's price section): `mk.note`,
+  `price.lead`, `price.t2c`, `price.t2e`, `price.t3c`, `price.oDs`,
+  `price.estCta`, `tarifs.lead`;
+- the project sheets, `scripts/scene-data.mjs`: `UI.ar` keys `title`, `desc`,
+  `crumb`, `lead`, `group`, `act`, `by`, `index`, `sheet`, `skip`, and the
+  Bordj Steel sheet's `identity` line.
+Choices to check in them: the founder's name stays in Latin script in
+`hero.lede` (item 18); the brand is "Numidea Labs" in Latin script in
+`footer.rights`, `wa.hello` and `prev.waText`; «اليورو» replaces «الأورو»
+in the money sentences (this answers the earlier question about Maghreb usage); the CV
+dates are numbered months (`fx1.when` and the three after it), no longer the
+Maghreb month names; «حزمة تصميم» for "kit graphique" and «وسند طلب موقّع»
+for "bon de commande signé" are the drafter's judgement.
+
 Files: the dictionaries `assets/i18n/ar.js` (the `ar` block carries a
 banner; since 2026-10-31 the three languages are one file each, no longer in
 `assets/app.js`), the `UI.ar` and project `ar` texts in
@@ -327,18 +355,18 @@ that repository, then restore the wording in `workspacehq/index.html` and
 ## 14. Claims only the owner can confirm
 Each is on the site today. None is proven false; none could be verified.
 Confirm it, or say what is true and the copy changes in all three languages.
-Eight are listed: five open, three answered on 2026-10-30 (marked; one
-applied, two waiting only for the copy change).
+Eight are listed: five open, three answered on 2026-10-30 (marked) and all
+three applied on 2026-11-03.
 - **"6 ans" of experience** (founder card) next to freelance work "2019 —
   aujourd'hui", which is about 7 years in October 2026.
 - **"des clients en France"** (FAQ 5, plural): the portfolio shows one French
   client (AlmaFlowClim).
 - **"nous livrons avec … React, Next.js, Vercel"** (market note, on the price
   guide since 2026-10-31): every delivered build linked from the site is
-  served by Netlify, and only Bordj Steel shows Next.js. (The next change
-  drops the Vite and Vercel pills and keeps React and Next.js, which the
-  Bordj Steel build shows; the rest of the toolchain, F11, is still yours to
-  confirm.)
+  served by Netlify, and only Bordj Steel shows Next.js. (F11: since
+  2026-11-03 the pills are trimmed to what the builds use, React, Next.js and
+  Tailwind, with Vite and Vercel gone; the rest of the toolchain is still
+  yours to confirm.)
 - **Essentiel: "Mise en ligne, domaine et certificat configurés"**: no
   delivered client site is served from its own domain yet (see 9).
 - **"Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le
@@ -349,8 +377,10 @@ applied, two waiting only for the copy change).
   sentence stays until you confirm it against them.
 - **"Leader de la construction métallique en Algérie"** (Bordj Steel's card,
   `proj4.desc`; IMPROVEMENTS F13): the client's own tagline, stated as fact
-  in the studio's voice. **Answered 2026-10-30** (decision 19): replaced by
-  the project sheet's checkable description; ships with the next change.
+  in the studio's voice. **Answered 2026-10-30** (decision 19) and **done
+  2026-11-03** (F13): Bordj Steel is now described as the sheet describes it,
+  "fabricant de charpente métallique et de panneaux sandwich à Bordj Bou
+  Arréridj".
 - **"avec du café noir et du TypeScript"** (the README's signature; until
   2026-10-26 also the footer signoff, which left with the Studio column and
   whose key is gone from the dictionaries; IMPROVEMENTS F14): this site
@@ -359,8 +389,8 @@ applied, two waiting only for the copy change).
 - **hub/: "VOIDSPLUNKER.std is an agency of one"** while the home page
   presents a studio of four specialists. **Answered 2026-10-30**: one
   founder, with freelancers when needed (section 17); the line stays on the
-  hub as you chose on 2026-10-28, and the home page's team wording follows
-  with the next change.
+  hub as you chose on 2026-10-28, and the home page's team wording followed
+  on 2026-11-03.
 
 Dropped from this list on 2026-10-31: AlmaFlowClim labelled "Industrie". The
 card has read "Artisan · Île-de-France" since the copy rewrite of 2026-10-14,
@@ -387,10 +417,15 @@ The site said nothing about what happens after the yes (IMPROVEMENTS A1,
 A5). On 2026-10-31 you answered "make them up", so the studio's commercial
 terms below were drafted on your instruction of that date, conservative and
 standard; they are yours and you can change any of them at any time. The
-first change after the fleet of 2026-10-31 writes them into the FAQ (payment;
-ownership and hosting; the Aperçu rules), French first, English and Arabic
-translated, the Arabic marked for native review (section 8). Until that
-change ships, the site still says nothing about them.
+change of 2026-11-03 wrote them into the FAQ (payment; ownership and hosting;
+the Aperçu rules), French first, English and Arabic translated, the Arabic
+marked for native review (section 8). They live in the dictionaries
+`assets/i18n/fr.js`, `en.js` and `ar.js`, under `faq3.q` and `faq3.a`
+(payment, contract, firm price), `faq7.q` and `faq7.a` (ownership and
+hosting) and `faq8.q` and `faq8.a` (the Aperçu rules); revisions and support
+are in `faq4.a` (30 days of fixes). To change a term, edit those keys in the
+French file and say so, so the two other languages follow; then
+`npm run build`.
 
 - **Payment:** 40 % at order (devis signé), 60 % at delivery, before the site
   goes live. Bank transfer or CCP in Algeria; bank transfer in euros or
@@ -426,11 +461,10 @@ stay with you (IMPROVEMENTS A1, owner facts).
 
 ## 17. Team and contact facts (answered 2026-10-30)
 - **Team:** one founder, with freelancers when needed. See section 4 for
-  what changes on the page.
+  what the page now says.
 - **Contact:** WhatsApp only, no voice calls; Sunday to Thursday, 9h–18h
   (Algiers time); the Gmail address stays (section 5). On the page this
   turns every "24 h ouvrées" into "le jour ouvré suivant (dimanche–jeudi,
   9h–18h)" (the title block, the proof line, the Aperçu path, FAQ 4, the
-  contact block), and no `tel:` link is added. Ships with the next change;
-  until then the site still says "< 24 h ouvrées" and defines no working
-  days.
+  contact block), and no `tel:` link is added. On the page since 2026-11-03;
+  recorded as your answers of 2026-10-30.
