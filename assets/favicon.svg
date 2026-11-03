@@ -1,18 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#09D8C7"/>
-      <stop offset="0.5" stop-color="#EAF2F4"/>
-      <stop offset="1" stop-color="#BD0927"/>
-    </linearGradient>
-    <radialGradient id="bg" cx="0.2" cy="0" r="1.2">
-      <stop offset="0" stop-color="#411E3A"/>
-      <stop offset="0.5" stop-color="#17364F"/>
-      <stop offset="1" stop-color="#0D1A2F"/>
-    </radialGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
-  <text x="32" y="46" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="700"
-        font-size="42" text-anchor="middle" fill="url(#g)">N</text>
-  <rect x="44" y="16" width="5" height="26" rx="1" fill="#BD0927"/>
+  <rect width="64" height="64" rx="14" fill="#0A1420"/>
+  <path d="M16.87 15 46.62 43.36 47.18 49 17.43 20.69ZM17.1 45.04V48.35H13.23V47.88Q13.23 47.88 13.65 47.88Q14.07 47.88 14.11 47.88Q15.28 47.88 16.12 47.04Q16.96 46.2 16.96 45.04ZM23.63 45.04Q23.63 46.2 24.47 47.04Q25.31 47.88 26.47 47.88Q26.52 47.88 26.94 47.88Q27.36 47.88 27.36 47.88V48.35H23.49V45.04ZM16.87 15 23.58 22.14 23.63 48.35H16.96V20.83Q16.96 18.22 16.68 16.61Q16.4 15 16.4 15ZM47.04 15.7V43.03Q47.04 44.76 47.18 46.13Q47.32 47.51 47.46 48.25Q47.6 49 47.6 49H47.18L40.42 41.44V15.7ZM50.77 15.7V16.17Q50.77 16.17 50.35 16.17Q49.93 16.17 49.93 16.17Q48.77 16.17 47.93 16.98Q47.09 17.8 47.04 19.01H46.9V15.7ZM36.64 15.7H40.51V19.01H40.42Q40.37 17.8 39.56 16.98Q38.74 16.17 37.53 16.17Q37.53 16.17 37.11 16.17Q36.69 16.17 36.64 16.17Z" fill="#E6B450"/>
+  <path d="M53.5 45.5 57 49 53.5 52.5 50 49Z" fill="#34D0E8"/>
 </svg>

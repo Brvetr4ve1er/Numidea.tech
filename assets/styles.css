@@ -1,10 +1,11 @@
 /* ============================================================
    NUMIDEA LABS — LANDING
    "Rooted in Numidia, built on ideas."
-   Design-token system. :root holds the base palette (the "Neon
-   Noir" set); Arcanum is the primary theme applied by default
-   (<html data-theme="arcanum">). Each [data-theme] reskins the
-   tokens, so every rule that uses var(--token) reskins for free.
+   Design-token system. :root holds the faces, the scale and the
+   motion; every colour, effect and per-theme type token lives in
+   themes.css, one block per theme (Arcanum is the default,
+   <html data-theme="arcanum">), so every rule that reads var(--token)
+   reskins for free and this sheet never names a theme.
    ============================================================ */
 :root{
   /* colour, effect, type-per-theme and radius tokens live in themes.css */
@@ -40,7 +41,6 @@ html[dir="ltr"] :is(.hero-h,h2.sec,.contact h2,.mobile-menu nav a,.sb-txt b){
   font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking)}
 html[dir="ltr"] .hero-h{font-size:var(--hero-fs);line-height:var(--hero-lh)}
 html[dir="ltr"] :is(.hero-h .swash,.contact h2 em){font-family:var(--font-head-em);font-weight:var(--head-weight);padding-right:.06em}
-html[dir="ltr"] .logo{font-family:var(--font-logo);font-weight:var(--logo-weight);letter-spacing:var(--logo-tracking)}
 .btn-primary{box-shadow:var(--btn-glow)}
 /* the kicker's node: a small rotated square after the rule; 0px hides it */
 .kicker::after{content:"";width:var(--kicker-node);height:var(--kicker-node);margin-inline-start:calc(var(--kicker-node) * -.66);
@@ -51,13 +51,13 @@ body,.navbar.scrolled,.svc-row,.proj,.card,.field input,.field textarea,.form,.c
 
 /* ---------- theme switcher ---------- */
 .theme-switch{position:relative}
-.theme-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:30px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);background:transparent;cursor:pointer;transition:all var(--dur-fast)}
+.theme-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:30px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);background:transparent;cursor:pointer;transition:border-color var(--dur-fast)}
 .theme-btn:hover{border-color:var(--teal)}
 .theme-btn .ic{width:15px;height:15px;border-radius:50%;background:conic-gradient(from 220deg,var(--crimson),var(--teal),var(--crimson));box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
 .theme-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:172px;background:var(--navy);border:1px solid var(--hairline-2);border-radius:var(--r-md);padding:6px;display:none;flex-direction:column;gap:2px;z-index:130;box-shadow:0 22px 55px -22px rgb(var(--shade) / calc(.6 * var(--shade-k)))}
 html[dir="rtl"] .theme-menu{right:auto;left:0}
 .theme-menu.open{display:flex}
-.theme-menu button{display:flex;align-items:center;gap:10px;padding:9px 10px;border:none;background:transparent;color:var(--muted);font-family:var(--font-mono);font-size:12px;border-radius:var(--r-sm);cursor:pointer;text-align:left;transition:all var(--dur-fast)}
+.theme-menu button{display:flex;align-items:center;gap:10px;padding:9px 10px;border:none;background:transparent;color:var(--muted);font-family:var(--font-mono);font-size:12px;border-radius:var(--r-sm);cursor:pointer;text-align:left;transition:background-color var(--dur-fast),color var(--dur-fast)}
 html[dir="rtl"] .theme-menu button{text-align:right}
 .theme-menu button:hover{background:rgba(127,127,127,.10);color:var(--ice)}
 .theme-menu button[aria-checked="true"]{color:var(--teal-text)}
@@ -138,10 +138,16 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 .navbar .nav-inner{border-bottom:1px solid transparent;transition:border-color var(--dur-slow)}
 .navbar.scrolled{background:var(--nav-glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .navbar.scrolled .nav-inner{border-color:color-mix(in srgb,var(--teal) 18%,transparent)}
-.logo{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
-.logo i{font-family:var(--font-swash);font-style:normal;font-weight:600;color:var(--teal-text);transition:color var(--dur-base)}
-.logo:hover i{filter:hue-rotate(40deg) saturate(1.3)}
-.cursor{display:inline-block;width:9px;height:20px;background:var(--crimson);margin-left:5px;transform:translateY(3px);box-shadow:var(--glow-crimson)}
+/* the wordmark is drawn (scripts/lib/wordmark.mjs: Cinzel 700 as paths, the
+   same on every page and in every theme). Its height is the cap height the
+   typed mark had at this font size (.734em, the N's overshoot included), so
+   the link keeps a font size and the phone rules below still scale it;
+   "idea" keeps its accent. The block after it is the cursor. */
+.logo{font-size:22px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;color:var(--ice)}
+.logo .wm{display:block;height:.734em;width:auto;overflow:visible}
+.logo .wm-accent{fill:var(--teal-text);transition:filter var(--dur-base)}
+.logo:hover .wm-accent{filter:hue-rotate(40deg) saturate(1.3)}
+.cursor{display:inline-block;width:9px;height:20px;background:var(--crimson);margin-left:5px;transform:translateY(1px);box-shadow:var(--glow-crimson)}
 
 .nav-links{display:flex;gap:26px;align-items:center}
 .nav-links a{font-family:var(--font-mono);font-size:13px;color:var(--muted);text-decoration:none;transition:color var(--dur-fast)}
@@ -151,7 +157,7 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
    the current one carries aria-current) and three buttons on the pages that
    switch in place (scene/, legal/: the current one is aria-pressed). */
 .lang{display:inline-flex;gap:2px;font-family:var(--font-mono);font-size:12px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);overflow:hidden}
-.lang :is(a,button){font-family:var(--font-mono);font-size:12px;background:transparent;border:none;color:var(--muted);padding:5px 9px;cursor:pointer;text-decoration:none;transition:all var(--dur-fast)}
+.lang :is(a,button){font-family:var(--font-mono);font-size:12px;background:transparent;border:none;color:var(--muted);padding:5px 9px;cursor:pointer;text-decoration:none;transition:color var(--dur-fast),background-color var(--dur-fast)}
 .lang :is(a[aria-current],button[aria-pressed="true"]){color:var(--on-teal);background:var(--teal)}
 .lang :is(a,button):hover{color:var(--ice)}
 .lang :is(a[aria-current],button[aria-pressed="true"]):hover{color:var(--on-teal)}
@@ -186,18 +192,31 @@ html[dir="rtl"] .mobile-menu:not(.open){transform:translateX(-100%)}
    landed (the fallback-type audit's one red run). */
 .mobile-menu nav a{font-family:var(--font-display);font-weight:600;font-size:min(40px,10.5vw);color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
 html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
-.mobile-menu .lang{opacity:0}
-.mobile-menu.open nav a,.mobile-menu.open .lang{animation:stagger .5s var(--ease-out) forwards}
-.mobile-menu.open nav a:nth-of-type(1){animation-delay:.05s}
-.mobile-menu.open nav a:nth-of-type(2){animation-delay:.1s}
-.mobile-menu.open nav a:nth-of-type(3){animation-delay:.15s}
-.mobile-menu.open nav a:nth-of-type(4){animation-delay:.2s}
-.mobile-menu.open nav a:nth-of-type(5){animation-delay:.25s}
-.mobile-menu.open nav a:nth-of-type(6){animation-delay:.3s}
-.mobile-menu.open nav a:nth-of-type(7){animation-delay:.35s}
-.mobile-menu.open .lang{animation-delay:.4s}
+.mobile-menu .lang,.mobile-menu .theme-switch{opacity:0}
+/* 30ms a step: at 50ms the last control landed 0.9s after the tap, and a
+   menu that is still arriving while the thumb is already on it reads as slow */
+.mobile-menu.open nav a,.mobile-menu.open .lang,.mobile-menu.open .theme-switch{animation:stagger .5s var(--ease-out) forwards}
+.mobile-menu.open nav a:nth-of-type(1){animation-delay:.03s}
+.mobile-menu.open nav a:nth-of-type(2){animation-delay:.06s}
+.mobile-menu.open nav a:nth-of-type(3){animation-delay:.09s}
+.mobile-menu.open nav a:nth-of-type(4){animation-delay:.12s}
+.mobile-menu.open nav a:nth-of-type(5){animation-delay:.15s}
+.mobile-menu.open nav a:nth-of-type(6){animation-delay:.18s}
+.mobile-menu.open nav a:nth-of-type(7){animation-delay:.21s}
+.mobile-menu.open .lang{animation-delay:.27s}
+.mobile-menu.open .theme-switch{animation-delay:.3s}
 @keyframes stagger{to{opacity:1;transform:translateY(0)}}
 .mobile-menu .lang{margin-top:var(--s-4);align-self:flex-start}
+/* the theme picker in the menu (the header's is hidden below 960px to make
+   room for the language switch, which a visitor who cannot read the page
+   needs on the first screen): the trigger shows its name, and the six
+   themes open in place as a row of chips, not as a dropdown hanging off the
+   foot of a scrolling dialog */
+.mobile-menu .theme-switch{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3);align-self:flex-start}
+.mobile-menu .theme-btn{display:inline-flex;width:auto;gap:8px;padding-inline:10px 12px}
+.mobile-menu .theme-btn::after{content:attr(aria-label);font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.mobile-menu .theme-menu{position:static;flex-basis:100%;min-width:0;flex-direction:row;flex-wrap:wrap;gap:6px;padding:0;border:0;background:none;box-shadow:none}
+.mobile-menu .theme-menu button{border:1px solid var(--hairline-2);min-height:44px;padding-inline:12px}
 .mobile-menu .close{position:absolute;top:20px;inset-inline-end:24px;background:transparent;border:none;color:var(--ice);font-size:34px;cursor:pointer}
 
 /* ---------- hero ---------- */
@@ -307,7 +326,9 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
   .hero .eyebrow{animation-delay:.05s}
   .hero-h{animation-delay:.14s}
   .hero .lede{animation-delay:.26s}
-  .hero-cta{animation-delay:.36s}
+  /* the two ways in are there by .65s: at .36s + .9s they were fully
+     visible only at 1.26s, after a fast visitor had already reached for them */
+  .hero-cta{animation-delay:.15s;animation-duration:.5s}
   .plate-wrap{animation-delay:.30s;animation-duration:1.1s}
   .dim-line{animation-delay:.22s}
   .titleblock{animation-delay:.46s}
@@ -368,7 +389,7 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 
 .plate-ctl{display:flex;align-items:center;gap:10px}
 .plate-rail{display:flex;gap:8px;flex:1}
-.plate-rail button{flex:1;background:none;border:0;padding:9px 0 0;cursor:pointer;min-height:24px}
+.plate-rail button{flex:1;background:none;border:0;padding:9px 0 0;cursor:pointer;min-height:32px}   /* a 2px bar needs a target around it: 32px, with the pause button's row */
 .plate-rail button i{display:block;height:2px;border-radius:2px;background:var(--hairline-2);
   transition:background var(--dur-base) var(--ease-out)}
 .plate-rail button[aria-current="true"] i{background:var(--crimson)}
@@ -402,7 +423,9 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 
 
 /* ---------- buttons / pills (from system) ---------- */
-.btn{font-family:var(--font-mono);font-size:14px;font-weight:700;padding:14px 28px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;transition:all var(--dur-base) var(--ease-out);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn{font-family:var(--font-mono);font-size:14px;font-weight:700;padding:14px 28px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
+  transition:color var(--dur-base) var(--ease-out),background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out);
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px}
 /* Flat, not a gradient sweep. A gradient-filled primary button is the same
    generated-looking vocabulary as the gradient headline was, and the diagonal
    fade made the label sit on two different backgrounds at once. */
@@ -533,8 +556,17 @@ html[dir="rtl"] .proj .body a.gain::after{content:"←" / ""}
 .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-6)}
 /* odd card count: center the trailing card so it never orphans with a void beside it */
 .work-grid>.proj:last-child:nth-child(odd){grid-column:1 / -1;max-width:calc(50% - var(--s-6) / 2);margin-inline:auto}
-.proj{background:var(--navy);border:1px solid var(--hairline);border-radius:var(--r-md);overflow:hidden;transition:transform var(--dur-slow) var(--ease-out),box-shadow var(--dur-base)}
-.proj:hover{transform:translateY(-4px)}
+.proj{background:var(--navy);border:1px solid var(--hairline);border-radius:var(--r-md);overflow:hidden;transition:border-color var(--dur-base),box-shadow var(--dur-base)}
+/* The whole card is a way to its sheet: the sheet link is stretched over the
+   card (its ::after fills .proj, the positioned box), and the links that lead
+   elsewhere, the live site and the gain line's anchor on the sheet, sit above
+   it in z-order so they stay their own targets (the thumb's address bar is
+   at 3). No lift on hover: a card that rose 4px promised a click it did not
+   have; now that it has one, the border, the shadow and the shot's zoom
+   answer the pointer. */
+.proj{position:relative}
+.proj .actions a[data-i18n="work.sheet"]::after{content:"";position:absolute;inset:0;z-index:4}
+.proj .actions a[data-i18n="work.live"],.proj .body .gain{position:relative;z-index:5}
 .proj .thumb{aspect-ratio:16/10;background:var(--grad-blood);display:grid;place-items:center;position:relative;overflow:hidden;perspective:800px}
 .proj .thumb::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,color-mix(in srgb,var(--teal) 35%,transparent),transparent 60%);mix-blend-mode:screen;transition:opacity var(--dur-base)}
 .proj:hover .thumb::before{opacity:1.4}
@@ -549,7 +581,7 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .proj p{font-size:14px;color:var(--muted);line-height:1.5;margin-bottom:var(--s-4);min-height:calc(1.5em * 3)}
 .proj .pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--s-4)}
 .proj .actions{display:flex;flex-wrap:wrap;gap:8px}
-.proj .actions a{font-family:var(--font-mono);font-size:12px;font-weight:700;padding:9px 16px;min-height:38px;display:inline-flex;align-items:center;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--ice);text-decoration:none;transition:all var(--dur-fast)}
+.proj .actions a{font-family:var(--font-mono);font-size:12px;font-weight:700;padding:9px 16px;min-height:38px;display:inline-flex;align-items:center;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--ice);text-decoration:none;transition:border-color var(--dur-fast),color var(--dur-fast)}
 .proj .actions a:hover{border-color:var(--teal);color:var(--teal-text)}
 
 /* ---------- project previews ---------- */
@@ -700,7 +732,7 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 .form-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 var(--s-5)}
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:var(--s-5)}
 .field label{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
-.field input,.field textarea{background:var(--field-bg);border:1px solid var(--hairline-2);border-radius:var(--r-sm);padding:13px 16px;color:var(--ice);font-family:var(--font-body);font-size:15px;transition:all var(--dur-fast);width:100%;resize:vertical}
+.field input,.field textarea{background:var(--field-bg);border:1px solid var(--field-border);border-radius:var(--r-sm);padding:13px 16px;color:var(--ice);font-family:var(--font-body);font-size:15px;transition:border-color var(--dur-fast),box-shadow var(--dur-fast),background-color var(--dur-fast);width:100%;resize:vertical}
 /* A real ring, outside the border. The border alone could not show focus on a
    field in error: the error border comes later at the same specificity and
    won, so after an empty submit the focused field looked like the other two,
@@ -715,7 +747,9 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 .field.invalid input,.field.invalid textarea{border-color:var(--crimson)}
 /* Arabic in the fields (placeholders, typed text) gets the Arabic face, not a system fallback */
 html[dir="rtl"] .field :is(input,textarea){font-family:var(--font-ar-body)}
-.form-note{font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--muted);margin-top:var(--s-4);max-width:52ch}
+/* what happens to the message is part of the offer, not fine print: the body
+   face at 14px, 34em (the 52ch of mono it had, in em, BRAND.md) */
+.form-note{font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--muted);margin-top:var(--s-4);max-width:34em}
 .form-success:focus{outline:none}
 .form .btn{padding:15px 40px}
 .form-success{display:none;padding:var(--s-7) 0}
@@ -788,10 +822,11 @@ details[open] .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dash
 @media(max-width:960px){.svc-grid{grid-template-columns:minmax(0,1fr)}}
 
 /* service row card */
-.svc-row{position:relative;display:grid;grid-template-columns:46px minmax(0,1fr);gap:var(--s-5);padding:var(--s-6);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--navy);overflow:hidden;transition:transform var(--dur-slow) var(--ease-out)}
+.svc-row{position:relative;display:grid;grid-template-columns:46px minmax(0,1fr);gap:var(--s-5);padding:var(--s-6);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--navy);overflow:hidden}
 .svc-row + .svc-row{margin-top:var(--s-5)}
+/* a service card is not a link: on hover its edge lights (below, and the
+   teal border further down), but it no longer rises, which read as one */
 .svc-row::after{content:"";position:absolute;inset:0;border-radius:var(--r-md);padding:1px;background:var(--grad-teal);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity var(--dur-base)}
-.svc-row:hover{transform:translateY(-3px)}
 .svc-row:hover::after{opacity:.75}
 .svc-row:hover .glyph{border-color:var(--teal);box-shadow:var(--glow-teal);animation:glyph-pulse .6s var(--ease-out)}
 .svc-row h3{font-family:var(--font-display);font-weight:600;font-size:24px;line-height:1.1}
@@ -820,7 +855,9 @@ html[dir="rtl"] .preview h3{font-family:var(--font-ar-display)}
 html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:600}
 .preview .brief{font-size:15px;color:var(--muted);line-height:1.6;max-width:41.106em;margin-bottom:var(--s-4)}
 /* the offer's terms and its two ways in: the form, or WhatsApp */
-.preview .prev-terms{font-family:var(--font-mono);font-size:12px;line-height:1.6;color:var(--body-strong);max-width:52em;margin-bottom:var(--s-5)}
+/* the conditions are the offer, not its fine print: the body face at 14px
+   (they were the smallest type on the card, 12px mono) */
+.preview .prev-terms{font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--body-strong);max-width:52em;margin-bottom:var(--s-5)}
 .preview .prev-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3) var(--s-5);margin-bottom:var(--s-5)}
 .preview .prev-wa{font-family:var(--font-mono);font-size:13px;color:var(--teal-text);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
 .preview .prev-wa[aria-disabled="true"]{color:var(--muted);text-decoration:none}
@@ -1098,8 +1135,9 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
 @media(min-width:1100px){
   :root{--max:min(1580px,93vw);--gutter:clamp(40px,3.4vw,64px)}
   /* Engineering sets a different measure (--max 1200 against 93vw = 1190 here).
-     That token has to live in THIS sheet, not in theme-engineering.css: this one
-     is render-blocking and data-theme is set before first paint, so the first
+     That token has to live in THIS sheet, not in a per-theme sheet that loads
+     later (Engineering had one until the 2026-10 cleanup): this one is
+     render-blocking and data-theme is set before first paint, so the first
      layout is already correct. Loaded from the alternate sheet it arrived after
      a layout had happened and .wrap jumped 1190px -> 1200px — CLS 0.0768, in
      roughly half of loads. Layout-critical tokens belong in the blocking sheet;
@@ -1142,6 +1180,12 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .hero-h{font-size:clamp(52px,5.6vw,104px);line-height:.98;letter-spacing:-.028em}
   html[dir="ltr"] .hero-h{font-size:var(--hero-fs-wide)}
   .hero .eyebrow{margin-bottom:var(--s-6)}
+  /* the two ways in on one line: wrapped, the second sat under the first
+     and the fold cut it at 1280x800. The copy column is 447px at 1100 and
+     the French pair needs 487 with the buttons' 28px sides, so the sides
+     narrow to 16px there and are back to 28px by 1200 (12vw - 116px). */
+  .hero-cta{flex-wrap:nowrap}
+  .hero-cta .btn{white-space:nowrap;padding-inline:clamp(16px,12vw - 116px,28px)}
 
   /* — breathing room. "Too tight" was measured too: 96px of section
        padding on a 1580px canvas is the rhythm of a 1100px one. — */
@@ -1242,7 +1286,10 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .contact .ch dd a{min-height:44px;display:inline-flex;align-items:center}
   .nav-links{display:none}
   .menu-toggle{display:grid;place-items:center}
-  .nav-right .lang{display:none}
+  /* the bar keeps the language switch and folds the theme picker into the
+     menu (it was the other way round: a visitor who could not read the page
+     saw a palette button, and the way to their language was behind it) */
+  .nav-right .theme-switch{display:none}
   .navbar .bar{padding:14px var(--gutter)}
   /* Rhythm built for a 1440px canvas costs ~2 viewports of dead space on a
      phone: 96px of padding on both sides of every section stacks into a
@@ -1326,11 +1373,20 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .footer .logo{font-size:20px}
   .navbar .bar{gap:var(--s-3)}
   .nav-right{gap:var(--s-3)}
+  /* the bar now holds the language switch (three 40px targets) beside the
+     menu button: at 12px sides under a thumb it ran 120px, and with the
+     wordmark's 139 the bar needed 360. 8px sides keep the targets and give
+     the wordmark its width down to 340px; under that the mark steps down */
+  .nav-right .lang :is(a,button){padding-inline:8px}
   /* a 96px label column is a third of a 280px screen, and forced
      hello@numidealabs.com to break mid-domain */
   .channels .ch{grid-template-columns:minmax(0,1fr);gap:6px}
   .hero-cta{gap:var(--s-3)}
   .hero-cta .btn{width:100%;justify-content:center}
+}
+@media(max-width:340px){
+  .logo{font-size:15px}
+  .nav-right .lang :is(a,button){padding-inline:7px}   /* 25px wide at the least, 40 tall */
 }
 
 /* Legibility floor. Nothing below 11px on a handset — several labels sat
@@ -1353,7 +1409,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .nav-links a{padding-block:12px}
   .theme-btn{min-width:44px;min-height:44px;display:grid;place-items:center}
   .lang :is(a,button){min-height:40px;padding-inline:12px;display:inline-flex;align-items:center}
-  .footer nav a{min-height:44px;display:inline-flex;align-items:center;padding-inline:6px}
+  /* the footer links' 44px: after the visual pass's footer rule, further down */
   .contact .ch dd a{min-height:44px;display:inline-flex;align-items:center}
   .logo{min-height:44px;display:inline-flex;align-items:center}
   .work-grid>.proj .cat,.sb-kick,.cap .fam,.fd-pills .pill,.pill,.tag{font-size:11px}
@@ -1363,7 +1419,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal,.js-ready .reveal{opacity:1;transform:none}
   .hero-mesh span{animation:none}
-  .mobile-menu nav a,.mobile-menu .lang{opacity:1;transform:none}
+  .mobile-menu nav a,.mobile-menu .lang,.mobile-menu .theme-switch{opacity:1;transform:none}
   .glyph svg :is(path,circle,line,polyline,polygon,rect),.js-ready .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dashoffset:0}
   /* the ambient layer is decoration, not content — flatten it entirely */
   [data-parallax]{translate:none!important}
@@ -1383,8 +1439,8 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   border:1px solid var(--hairline);border-radius:var(--r-lg);background:var(--navy);
   background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 42%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgb(var(--shade) / calc(.85 * var(--shade-k)));
-  transition:border-color var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out)}
-.tier:hover{border-color:var(--hairline-2);transform:translateY(-3px)}
+  transition:border-color var(--dur-base) var(--ease-out)}
+.tier:hover{border-color:var(--hairline-2)}   /* the edge answers the pointer; a tier is not a link, so it no longer rises */
 /* The chosen tier earns a ring and a label, not a different size — a scaled
    card would change the row height and shift the two beside it. */
 .tier-pop{border-color:color-mix(in srgb,var(--teal) 45%,transparent);
@@ -1432,7 +1488,7 @@ html[dir="rtl"] .t-list li::before{transform:rotate(45deg) translateY(-1px)}
 .est-chips,.est-opts{display:flex;flex-wrap:wrap;gap:var(--s-3)}
 .est-opts{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-3)}
 .echip,.eopt{position:relative;display:inline-flex;align-items:center;gap:10px;cursor:pointer;
-  border:1px solid var(--hairline-2);border-radius:var(--r-sm);background:rgba(255,255,255,.02);
+  border:1px solid var(--field-border);border-radius:var(--r-sm);background:rgba(255,255,255,.02);
   color:var(--body-strong);font-size:14px;line-height:1.3;padding:11px 14px;min-height:44px;
   transition:border-color var(--dur-fast),background var(--dur-fast),color var(--dur-fast)}
 .echip input,.eopt input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
@@ -1442,7 +1498,7 @@ html[dir="rtl"] .t-list li::before{transform:rotate(45deg) translateY(-1px)}
 @media (hover:hover){.echip:hover,.eopt:hover{border-color:var(--teal);color:var(--ice)}}
 .echip:has(input:checked){border-color:var(--teal);
   background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--ice)}
-.eopt::before{content:"";flex:none;width:17px;height:17px;border:1.5px solid var(--hairline-2);
+.eopt::before{content:"";flex:none;width:17px;height:17px;border:1.5px solid var(--field-border);
   border-radius:4px;transition:border-color var(--dur-fast),background var(--dur-fast)}
 .eopt:has(input:checked){border-color:var(--teal);color:var(--ice)}
 .eopt:has(input:checked)::before{border-color:var(--teal);background:var(--teal)}
@@ -1460,7 +1516,7 @@ html[dir="rtl"] .eopt:has(input:checked)::after{transform:rotate(45deg)}
 /* An option the chosen tier already includes: ticked, locked, labelled. */
 .eopt:has(input:disabled){cursor:default}
 .eopt:has(input:disabled):hover{border-color:var(--teal)}
-/* 11px, the page's floor for labels (it sat at 10px with tracking) */
+/* the page's label size (it sat at 10px with tracking) */
 .eo-incl{margin-inline-start:auto;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;
   text-transform:uppercase;color:var(--teal-text)}
 html[dir="rtl"] .eo-incl{letter-spacing:0}
@@ -1903,8 +1959,16 @@ html[dir="rtl"] .md-drivers b{font-family:var(--font-ar-display)}
 a.wa-link[aria-disabled="true"]{text-decoration:none}
 
 @media (min-width:720px){
-  .tiers{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.6vw,24px)}
   .est-opts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* one tier a row until 961px: three abreast from 720 squeezed each list
+     into ~200px. The list takes two columns instead, so the card stays short */
+  .t-list{display:block;columns:2;column-gap:24px}
+  .t-list li{break-inside:avoid;margin-bottom:var(--s-3)}
+}
+@media (min-width:961px){
+  .tiers{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.6vw,24px)}
+  .t-list{display:grid;columns:auto}
+  .t-list li{margin-bottom:0}
 }
 @media (min-width:1100px){
   #pricing>*{grid-column:1/-1}
@@ -1949,11 +2013,12 @@ a.wa-link[aria-disabled="true"]{text-decoration:none}
    rule covers all six palettes. */
 html[dir="rtl"] body::before{transform:scaleX(-1)}
 
-/* Nine interactive rules above use `transition:all`, which animates the outline
+/* These interactive rules used `transition:all`, which animates the outline
    too: on keyboard focus the ring grew from 0 to 2px over 200-300ms, and a
    probe reading the style at the instant of focus saw no ring at all. A focus
-   indicator must be instant. Same durations and easings; outline excluded. Lives at the END of the sheet
-   on purpose: a later `transition:all` shorthand would reset the property list. */
+   indicator must be instant. Each shorthand now lists its own properties
+   (2026-11); this guard stays, outline excluded, after them on purpose: a
+   later `transition:all` shorthand would reset the property list. */
 .theme-btn,.theme-menu button,.lang :is(a,button),.btn,.proj .actions a,.field input,.field textarea{
   transition-property:color,background-color,border-color,box-shadow,transform,opacity,filter}
 
@@ -1986,6 +2051,9 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
   /* the theme button's icon was a conic gradient, so the button was an empty
      square: a half-filled disc keeps a recognisable mark */
   .theme-btn .ic{forced-color-adjust:none;background:none;box-shadow:inset 7.5px 0 ButtonText,inset 0 0 0 1px ButtonText}
+  /* the wordmark's "idea" is a fill, which forced colours leave alone: it
+     takes the link's colour, as the rest of the mark does */
+  .logo .wm-accent{fill:currentColor!important}
   .est-field input[type="range"]{forced-color-adjust:none}
   /* html[dir] matches both directions and outranks the RTL gradient rule */
   html[dir] .est-field input[type="range"]::-webkit-slider-runnable-track{background:CanvasText}
@@ -2028,7 +2096,8 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
   section,.proj,.svc-row,.faq-item{break-inside:avoid}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:.85em;color:#555}
   /* gradient-filled type falls back to solid ink: its pale middle stops vanish on paper */
-  .hero-h .swash,.logo i,main.wrap>section h2.sec em{background:none!important;-webkit-text-fill-color:#000!important;color:#000!important}
+  .hero-h .swash,main.wrap>section h2.sec em{background:none!important;-webkit-text-fill-color:#000!important;color:#000!important}
+  .logo .wm-accent{fill:#000!important}
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -2117,11 +2186,13 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body);font-si
 .pi-coins{position:absolute;top:clamp(70px,7vw,110px);inset-inline-end:0;width:min(400px,34%);aspect-ratio:1.35;display:none}
 .pc{width:44%;aspect-ratio:1;color:var(--crimson-text)}
 .pc>i{opacity:calc(.5 * var(--ink-k))}
-.live .pc>i{animation:coin-turn 9s ease-in-out 2}
+/* one turn each, 4.5s, a beat apart: the page's rule is at most 5s of
+   motion per view (it was two 9s turns), and .live comes back with the view */
+.live .pc>i{animation:coin-turn 4.5s ease-in-out 1}
 .pc-king{top:0;left:28%;width:46%}
 .pc-horse{top:46%;left:0}
 .pc-palm{top:40%;left:56%}
-.live .pc-horse>i{animation-delay:1.2s}.live .pc-palm>i{animation-delay:2.4s}
+.live .pc-horse>i{animation-delay:.6s}.live .pc-palm>i{animation-delay:1.2s}
 .pi-coins .pl-cap{top:auto;bottom:-26px;inset-inline-start:auto;inset-inline-end:0}
 @keyframes coin-turn{0%,100%{transform:perspective(500px) rotateY(0)}45%,55%{transform:perspective(500px) rotateY(32deg)}}
 @media (min-width:1100px){.pi-coins{display:block}}
@@ -2133,13 +2204,13 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body);font-si
 /* FAQ — a lantern hangs in the gutter between the heading and the lead */
 .pi-lantern{display:none;top:0;left:calc(50% - 64px);width:128px;aspect-ratio:560/835;
   transform-origin:50% 0;color:var(--crimson-text)}
-.pi-lantern.live{animation:lantern-swing 6.5s ease-in-out 4}
+.pi-lantern.live{animation:lantern-swing 5s ease-in-out 1}   /* one swing (was four of 6.5s): at most 5s per view */
 .pi-lantern::before{content:"";position:absolute;bottom:100%;left:50%;width:1px;height:200px;background:currentColor;opacity:.35}
 .pi-lantern>i{opacity:calc(.6 * var(--ink-k))}
 .pi-lantern .glow{position:absolute;left:-40%;right:-40%;top:38%;aspect-ratio:1;border-radius:50%;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--crimson-text) 32%,transparent),transparent);
   opacity:.55}
-.pi-lantern.live .glow{animation:lantern-glow 3.2s ease-in-out 8}
+.pi-lantern.live .glow{animation:lantern-glow 2.5s ease-in-out 2}   /* two breaths, 5s in all (was eight of 3.2s) */
 @keyframes lantern-swing{0%,100%{rotate:0deg}25%{rotate:3deg}75%{rotate:-3deg}}
 @keyframes lantern-glow{0%,100%{opacity:.55}50%{opacity:1}}
 @media (min-width:1280px){.pi-lantern{display:block}}
@@ -2150,7 +2221,7 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body);font-si
 .pi-light .beam{position:absolute;left:79.6%;top:13%;width:150%;height:56%;translate:0 -50%;transform-origin:0 50%;
   background:linear-gradient(90deg,color-mix(in srgb,var(--crimson-text) 30%,transparent),transparent 70%);
   clip-path:polygon(0 48%,100% 0,100% 100%,0 52%);opacity:.5}
-.pi-light.live .beam{animation:beam 8s linear 3}
+.pi-light.live .beam{animation:beam 5s linear 1}   /* one sweep (was three of 8s): at most 5s per view */
 .pi-light .pl-cap{top:auto;bottom:14px;inset-inline-start:9%}
 @keyframes beam{0%{transform:scaleX(1)}25%{transform:scaleX(.05)}50%{transform:scaleX(-1)}75%{transform:scaleX(-.05)}100%{transform:scaleX(1)}}
 html[dir="rtl"] .pi-light{transform:scaleX(-1)}
@@ -2172,18 +2243,21 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 
 /* ---------- twinkle ---------- */
 @media (prefers-reduced-motion:no-preference){
-  .vista.live .v-sky .tw{animation:twinkle 4.8s ease-in-out 4}
-  .vista.live .v-sky .tw1{animation-delay:-1.2s}.vista.live .v-sky .tw2{animation-delay:-2.6s;animation-duration:6.2s}.vista.live .v-sky .tw3{animation-delay:-3.7s;animation-duration:3.9s}
+  /* two twinkles each, 4 to 5s in all (they ran 15 to 25s), the four
+     groups started at different points of the cycle so the sky never blinks */
+  .vista.live .v-sky .tw{animation:twinkle 2.4s ease-in-out 2}
+  .vista.live .v-sky .tw1{animation-delay:-.6s}.vista.live .v-sky .tw2{animation-delay:-1.3s;animation-duration:2.5s}.vista.live .v-sky .tw3{animation-delay:-.9s;animation-duration:2s}
 }
 @keyframes twinkle{0%,100%{opacity:.6}50%{opacity:.12}}
 
 /* ═══ animated icons (.ai) ═══
    24×24, stroke 1.5, currentColor — the service-mark grammar. Every stroked
    part with pathLength="1" draws itself in the first time the icon is seen
-   (.on). The idle loop then plays a few times and settles; it replays each
-   time the icon comes back on screen (.live is toggled by visibility). Nothing
-   here, icon or plate, loops forever: that rule from the anti-slop sweep
-   stands, and `npm run audit` fails on any endless animation. */
+   (.on). The idle loop then plays once and settles; it replays each time
+   the icon comes back on screen (.live is toggled by visibility). Nothing
+   here, icon or plate, runs past 5s in one view (duration x count; an
+   icon's own --t is capped to it) or loops forever: that rule from the
+   anti-slop sweep stands, and `npm run audit` fails on any endless animation. */
 .ai{width:26px;height:26px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible;color:var(--teal-text)}
 .ai .f{fill:currentColor;stroke:none}
 .ai .orb{stroke-dasharray:1.4 2.6;opacity:.45}
@@ -2204,24 +2278,24 @@ html[dir="rtl"] .pi-light .pl-cap{transform:scaleX(-1)}
 .ai [style*="--o"]{transform-box:view-box;transform-origin:var(--o)}
 
 @media (prefers-reduced-motion:no-preference){
-  .ai.live .a-spin{animation:ai-spin var(--t,10s) linear var(--n,3)}
-  .ai.live .a-hand{animation:ai-spin var(--t,6s) linear var(--n,3)}
-  .ai.live .a-orbit{animation:ai-spin 7s linear var(--n,3)}
-  .ai.live .a-globe{animation:ai-globe 5s ease-in-out var(--n,3)}
-  .ai.live .a-dt{animation:ai-dot 1.4s ease-in-out calc(var(--i) * .18s) var(--n,3)}
-  .ai.live .a-hop{animation:ai-hop 2.6s cubic-bezier(.3,0,.3,1) var(--n,3)}
-  .ai.live .a-shadow{animation:ai-shadow 2.6s cubic-bezier(.3,0,.3,1) var(--n,3)}
-  .ai.live .a-flap{animation:ai-flap 3.6s ease-in-out 1.2s var(--n,3)}
-  .ai.live .a-flip{animation:ai-flip 5s cubic-bezier(.7,0,.3,1) var(--n,3)}
-  .ai.live .a-swing{animation:ai-swing 3.4s ease-in-out var(--n,3)}
-  .ai.live .a-alt{animation:ai-alt 3.2s ease-in-out calc(var(--i) * -1.6s) var(--n,3)}
-  .ai.live .a-ekg{stroke-dasharray:.28 .72;animation:ai-ekg 2.2s linear var(--n,3)}
-  .ai.live .a-travel{animation:ai-travel 2.4s ease-in-out var(--n,3)}
-  .ai.live .a-pulse{animation:ai-pulse 2.6s ease-in-out var(--n,3)}
-  .ai.live .a-bob{animation:ai-bob 2.8s ease-in-out var(--n,3)}
-  .ai.live .a-twinkle{animation:ai-twinkle 2.4s ease-in-out var(--n,3)}
-  .ai.live .a-sl{animation:ai-sl 3.6s ease-in-out calc(var(--i) * -1.2s) var(--n,3)}
-  .ai.live .a-tilt{animation:ai-tilt 4.2s ease-in-out var(--n,3)}
+  .ai.live .a-spin{animation:ai-spin min(var(--t,5s),5s) linear var(--n,1)}
+  .ai.live .a-hand{animation:ai-spin min(var(--t,5s),5s) linear var(--n,1)}
+  .ai.live .a-orbit{animation:ai-spin 5s linear var(--n,1)}
+  .ai.live .a-globe{animation:ai-globe 5s ease-in-out var(--n,1)}
+  .ai.live .a-dt{animation:ai-dot 1.4s ease-in-out calc(var(--i) * .18s) 3}
+  .ai.live .a-hop{animation:ai-hop 2.6s cubic-bezier(.3,0,.3,1) var(--n,1)}
+  .ai.live .a-shadow{animation:ai-shadow 2.6s cubic-bezier(.3,0,.3,1) var(--n,1)}
+  .ai.live .a-flap{animation:ai-flap 3.6s ease-in-out 1.2s var(--n,1)}
+  .ai.live .a-flip{animation:ai-flip 5s cubic-bezier(.7,0,.3,1) var(--n,1)}
+  .ai.live .a-swing{animation:ai-swing 3.4s ease-in-out var(--n,1)}
+  .ai.live .a-alt{animation:ai-alt 3.2s ease-in-out calc(var(--i) * -1.6s) var(--n,1)}
+  .ai.live .a-ekg{stroke-dasharray:.28 .72;animation:ai-ekg 2.2s linear 2}
+  .ai.live .a-travel{animation:ai-travel 2.4s ease-in-out 2}
+  .ai.live .a-pulse{animation:ai-pulse 2.6s ease-in-out var(--n,1)}
+  .ai.live .a-bob{animation:ai-bob 2.8s ease-in-out var(--n,1)}
+  .ai.live .a-twinkle{animation:ai-twinkle 2.4s ease-in-out 2}
+  .ai.live .a-sl{animation:ai-sl 3.6s ease-in-out calc(var(--i) * -1.2s) var(--n,1)}
+  .ai.live .a-tilt{animation:ai-tilt 4.2s ease-in-out var(--n,1)}
 }
 @keyframes ai-spin{to{transform:rotate(360deg)}}
 @keyframes ai-globe{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.12)}}
@@ -2284,6 +2358,11 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 /* Footer links: WhatsApp is a flex item (icon slot) and centred its label in
    the 39px row while the others sat at the top — 10px lower. One rule for all. */
 .footer nav a{display:inline-flex;align-items:center;justify-content:center;min-width:24px;min-height:24px}
+/* and the touch rules again, after it: that 24px minimum came later in the
+   sheet than the phone and coarse-pointer blocks' 44px, at the same
+   specificity, so it won and the footer links were 24px tall under every
+   thumb (measured 2026-10-31) */
+@media (max-width:960px),(pointer:coarse){.footer nav a{min-height:44px}}
 
 @media (max-width:599px){
   /* Work cards on phones: a 16:10 screenshot squeezed into a narrow strip
@@ -2298,9 +2377,10 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
   .capabilities>summary .hint{order:3;flex-basis:100%}
 }
 
-/* RTL: the wordmark is three runs (Num · idea · Labs) plus the brick; in an
-   Arabic paragraph the bidi algorithm reordered them to "Labs idea Num".
-   A brand name has one direction. */
+/* RTL: the wordmark is one drawing now, but the cursor follows it, and in an
+   Arabic paragraph the bidi algorithm put the block first (as it reordered
+   the typed "Num · idea · Labs" to "Labs idea Num"). A brand name has one
+   direction. */
 .logo{direction:ltr;unicode-bidi:isolate}
 
 /* ═══════════════════════════ BENTO + LOADING + WAYFINDING ═══════════════════════════ */
@@ -2352,7 +2432,7 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 .sk{position:relative}
 .sk::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:1;transition:opacity .45s ease;
   background:linear-gradient(100deg,transparent 30%,color-mix(in srgb,var(--ice) 7%,transparent) 50%,transparent 70%) var(--navy);
-  background-size:220% 100%;animation:sk-shine 1.3s ease-in-out 8}
+  background-size:220% 100%;animation:sk-shine 1.25s ease-in-out 4}   /* 5s in all (was 8 of 1.3s): the page's motion rule holds here too */
 .sk.sk-done::after{opacity:0}
 @keyframes sk-shine{from{background-position:120% 0}to{background-position:-120% 0}}
 @media (prefers-reduced-motion:reduce){.sk::after{animation:none}}
@@ -2397,10 +2477,9 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
    One scale, applied last so it wins over the per-section sizes that had
    piled up: the page was rendering 36 font sizes, 41 letter-spacings and
    seven different card-title sizes. Seven text steps below the display
-   headings, three corner radii, one section rhythm. Engineering keeps its
-   own system in theme-engineering.css. */
+   headings, three corner radii, one section rhythm. */
 :root{
-  --t-label:11px;    /* mono caps: kickers, eyebrows, captions, column heads */
+  --t-label:12px;    /* mono caps: kickers, eyebrows, captions, column heads, field labels (11px with .14em tracking was the hardest read on the page) */
   --t-small:13px;    /* fine print, notes, sources */
   --t-ui:14px;       /* buttons, chips, form controls */
   --t-body:15px;     /* card copy */
@@ -2412,6 +2491,10 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
   --sec-pad:clamp(72px,7vw,112px);
   --band-fade:clamp(56px,8vw,120px);
 }
+/* Arabic a step up: Plex Arabic's letters sit lower and smaller than Geist's
+   at the same size, so the 11px labels and 13px notes were the hardest read
+   on the Arabic page (audit, 2026-10-31) */
+html[dir="rtl"]{--t-label:13px;--t-small:14px;--t-body:16px}
 
 /* labels */
 .kicker,.eyebrow,.tag,.svc-row .fam,.cap .fam,.t-pop,.md-tag,.md-sub,.eo-k,.est-hint,
@@ -2458,6 +2541,15 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
    accent colour for the emphasised words */
 .contact h2{font-size:clamp(26px, 14px + 3.33vw, 62px);margin-bottom:var(--s-7)}
 .contact h2 em{color:var(--crimson-text)}
+
+/* a heading ends on a word, not on one word alone: its last line gets its
+   share (balance); copy avoids a one-word last line (pretty). Not the hero
+   lede: the fallback-type audit holds every first-screen block to the height
+   it has in the metric fallback, and pretty wrapped it a line longer in the
+   fallback than in Geist at 1440 and 1600 (162 against 135px). The h1 is
+   tested the same way and balances alike in both faces. */
+.hero-h,h2.sec,.contact h2,.preview h3,.tier h3,.svc-row h3,.proj h3,.cap h4,.md-card h4,.fd-id h3,.mk-head h3,.faq-item summary .q,.scene-banner b,.form-success p{text-wrap:balance}
+.sec-lead,.svc-lead,.contact .sub,.fd-bio,.svc-row .brief,.preview .brief,.cap .brief,.proj .body p,.t-for,.price-note,.est-head p,.mk-head p,.faq-item .a,.faq-item p,.form-note,.preview .prev-terms,.proof-line{text-wrap:pretty}
 
 /* ---- rhythm: one section padding, one header-to-content gap ---- */
 @media (min-width:961px){
@@ -2528,11 +2620,9 @@ section.band::after,section.band+section.band::after{
    the price guide, tarifs/, since 2026-10-31: the home page links to it where
    the folded panel stood (the guide renders the panel open) */
 .price-guide{margin-top:var(--s-5)}
-.mobile-menu.open nav a:nth-of-type(8){animation-delay:.4s}   /* the guide's link, after the seven sections */
+.mobile-menu.open nav a:nth-of-type(8){animation-delay:.24s}   /* the guide's link, after the seven sections */
 
 /* ---- phone ---- */
-/* a flex logo drops the space before "Labs" ("NUMideaLABS") */
-.logo{white-space:pre}
 @media (max-width:479px){.crumb{display:none}}
 /* the round button covered copy on nearly every phone screen */
 @media (max-width:720px){.to-top{display:none}}
@@ -2638,7 +2728,7 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
    .sk-run from an IntersectionObserver and drops the mark once the picture is
    in. It animates a background, which the compositor cannot take over, so
    every running copy restyled and repainted each frame, off screen too. Paused,
-   it keeps its place in its 8 cycles and resumes when the box comes back. */
+   it keeps its place in its 4 cycles and resumes when the box comes back. */
 .sk:not(.sk-run)::after{animation-play-state:paused}
 
 /* ---- Mobile audit (r3/a): every page at 320-430px and 667/844 landscape,

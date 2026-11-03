@@ -1,4 +1,23 @@
+The font families served from this folder, each with the copyright line its
+own name table carries:
+
+Cinzel (cinzel-700-*.woff2)
 Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)
+
+Cinzel Decorative (cinzel-decorative-700-*.woff2)
+Copyright © 2012 Natanael Gama (info@ndiscovered.com), with Reserved Font Name 'Cinzel'
+
+Geist (geist-*.woff2)
+Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font)
+
+Geist Mono (geist-mono-*.woff2)
+Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font.git)
+
+IBM Plex Sans Arabic (ibm-plex-sans-arabic-*.woff2)
+Copyright 2019 IBM Corp. All rights reserved.
+
+Syne (syne-*.woff2)
+Copyright 2019 The Syne Project Authors (https://gitlab.com/bonjour-monde/fonderie/syne-typeface)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
