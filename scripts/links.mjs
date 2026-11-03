@@ -142,6 +142,9 @@ for (const f of published) {
 for (const p of PROJECTS.filter((x) => /^https:/.test(x.url))) {
   const site = p.url.replace(/\/$/, '');
   add(p.url, `scripts/scene-data.mjs ${p.slug}.url`);
+  // the founder's own gallery beside a sheet's deliverables (a Behance link:
+  // BLOCKS waives the host, so it is listed as blocked, never as broken)
+  if (p.identity) add(p.identity.href, `scripts/scene-data.mjs ${p.slug}.identity`);
   for (const pg of p.pages || []) if (pg.path) add(site + pg.path, `scripts/scene-data.mjs ${p.slug} capture ${pg.file}`);
   (p.gains || []).forEach((g, i) => g.at && add(site + g.at, `scripts/scene-data.mjs ${p.slug} gains[${i}].at`));
 }

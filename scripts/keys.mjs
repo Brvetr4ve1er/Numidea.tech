@@ -27,7 +27,15 @@
  *                 that section, not from the top or the hidden menu
  *  theme menu     (index) ArrowDown opens it on the checked theme, ArrowUp
  *                 on the last; arrows, Home and End move; Escape closes and
- *                 refocuses the button; Tab closes it; Enter applies a theme
+ *                 refocuses the button; Tab closes it; Enter applies a theme.
+ *                 The page carries two pickers: the header's, and the phone
+ *                 menu's, which takes over below 960px (the header's is
+ *                 display:none there to make room for the language switch).
+ *                 The one driven is the one rendered: on the phone the menu
+ *                 is opened first (Enter on the toggle), the picker inside
+ *                 it keeps the same contract with the menu open around it
+ *                 (Escape closes the picker alone, Enter leaves the menu
+ *                 open), and one more Escape closes the menu
  *  CV panel       (index) Enter toggles aria-expanded; open, Tab reaches its
  *                 link and the link is visible; closed, it is inert
  *  estimate       (index) Enter opens the folded estimator; Enter on its
@@ -45,7 +53,10 @@
  *                 live error with text in the page's language; typing clears
  *                 a field's error; a malformed email gets its own message.
  *                 Then submitted valid: the browser is asked to open a
- *                 mailto: URL to the form's own address, with the subject and
+ *                 mailto: URL to the form's own address, with the subject
+ *                 (form.subj in the page's language, then the name: the
+ *                 plain contact, since the message was typed here and not
+ *                 handed over by the offer or the estimator) and
  *                 a body ending in the page's language; the form gives way
  *                 to the success panel, which takes focus; its "copy" button
  *                 puts that subject and body (and not the address) on the
@@ -165,7 +176,7 @@ const SPEC = {
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
   'hub/index.html': { langs: ['en'], tests: ['lightbox', 'hits'], only: "English only (the founder's own page)" },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
-  '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the logo and one link' },
+  '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the wordmark and two links (home, the offer)' },
   'legal/index.html': { langs: ['fr', 'ar'], tests: [] },
 };
 const ONLY = process.argv[2];       // optional: only the pages whose name contains this
@@ -324,16 +335,31 @@ async function skipAndRing(p, spec) {
 
 async function themeMenu(p) {
   const bad = [];
-  const st = () => p.evaluate(() => {
-    const m = document.querySelector('.theme-menu'), btn = document.querySelector('.theme-btn');
+  // the picker under test: the first .theme-switch whose button is shown
+  // (the header's from 960px; below, the phone menu's, once the menu is
+  // open). Shown, not merely rendered: the closed menu is a fixed panel
+  // slid off screen, so offsetParent is set on everything inside it, and
+  // the picker fades in last once the menu opens (a .5s stagger after .3s)
+  const shown = () => p.evaluate(() => [...document.querySelectorAll('.theme-switch')].findIndex((sw) => { const x = sw.querySelector('.theme-btn'); return !!x && __shown(x); }));
+  let which = await shown(), inMenu = false;
+  if (which < 0 && await p.evaluate(() => { const t = document.querySelector('.menu-toggle'); return !!t && t.offsetParent !== null; })) {
+    await p.focus('.menu-toggle'); await p.keyboard.press('Enter');
+    for (let t = 0; which < 0 && t < 16; t++) { await wait(100); which = await shown(); }
+    inMenu = true;
+  }
+  if (which < 0) return { bad: ['theme button not rendered' + (inMenu ? ' (not in the open phone menu either)' : '')], note: 'theme' };
+  const st = () => p.evaluate((which) => {
+    const sw = document.querySelectorAll('.theme-switch')[which], m = sw.querySelector('.theme-menu'), btn = sw.querySelector('.theme-btn');
     const items = [...m.querySelectorAll('[role="menuitemradio"]')];
     return { open: m.classList.contains('open'), exp: btn.getAttribute('aria-expanded'), i: items.indexOf(document.activeElement),
       onBtn: document.activeElement === btn, checked: items.findIndex((x) => x.getAttribute('aria-checked') === 'true'), n: items.length,
-      theme: document.documentElement.getAttribute('data-theme'), val: items.map((x) => x.getAttribute('data-theme-val')) };
-  });
-  const shown = await p.evaluate(() => { const x = document.querySelector('.theme-btn'); return !!x && x.offsetParent !== null; });
-  if (!shown) return { bad: ['theme button not rendered'], note: 'theme' };
-  await p.focus('.theme-btn');
+      theme: document.documentElement.getAttribute('data-theme'), val: items.map((x) => x.getAttribute('data-theme-val')),
+      menuOpen: !!document.querySelector('.mobile-menu.open'),
+      // every picker on the page marks the chosen theme, not only the one driven
+      marked: [...document.querySelectorAll('.theme-menu')].every((x) => { const c = x.querySelector('[aria-checked="true"]'); return !!c && c.getAttribute('data-theme-val') === document.documentElement.getAttribute('data-theme'); }) };
+  }, which);
+  const focusBtn = () => p.evaluate((which) => document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').focus(), which);
+  await focusBtn();
   await p.keyboard.press('ArrowDown'); let s = await st();
   if (!s.open || s.exp !== 'true') bad.push('ArrowDown on the button does not open the menu');
   if (s.i !== s.checked) bad.push('opening does not focus the checked theme (focus on item ' + s.i + ')');
@@ -347,16 +373,24 @@ async function themeMenu(p) {
   if (s.i !== 0) bad.push('Home does not reach the first theme');
   await p.keyboard.press('Escape'); s = await st();
   if (s.open || s.exp !== 'false' || !s.onBtn) bad.push('Escape does not close the menu and refocus the button');
+  if (inMenu && !s.menuOpen) bad.push('Escape on the picker closes the phone menu around it too');
   await p.keyboard.press('ArrowUp'); s = await st();
   if (!s.open || s.i !== s.n - 1) bad.push('ArrowUp on the button does not open on the last theme');
   await p.keyboard.press('Tab'); s = await st();
   if (s.open) bad.push('Tab does not close the menu');
-  await p.focus('.theme-btn');
+  await focusBtn();
   await p.keyboard.press('Enter'); await p.keyboard.press('ArrowDown'); s = await st();
   const want = s.val[s.i];
   await p.keyboard.press('Enter'); s = await st();
   if (s.theme !== want || s.open || !s.onBtn) bad.push('Enter on a theme does not apply it, close and refocus the button');
-  return { bad, note: 'theme' };
+  if (!s.marked) bad.push('the chosen theme is not aria-checked on every picker');
+  if (inMenu) {
+    if (!s.menuOpen) bad.push('choosing a theme closes the phone menu around the picker');
+    // the menu, for the tests after this one: one Escape, with the picker closed
+    await p.keyboard.press('Escape'); await wait(100); s = await st();
+    if (s.menuOpen) bad.push('Escape with the picker closed does not close the phone menu');
+  }
+  return { bad, note: 'theme' + (inMenu ? ' (in the phone menu)' : '') };
 }
 
 async function phoneMenu(p, w) {
@@ -561,7 +595,11 @@ async function contactForm(p, lang) {
     const m = new URL(mail), subject = m.searchParams.get('subject') || '', body = m.searchParams.get('body') || '';
     handed = subject + '\n\n' + body;
     if (decodeURIComponent(m.pathname) !== to) bad.push('the hand-off goes to ' + m.pathname + ', not to the form\'s address');
-    if (subject !== 'Numidea Labs · Test') bad.push('the hand-off\'s subject is "' + subject + '"');
+    // the subject is composed by entry point (app.js: form.subjPrev after
+    // the offer's prefill, form.subjEst after the estimator's, form.subj
+    // otherwise) plus the name; a message typed here is the plain contact
+    const subj = String((DICT[lang] || {})['form.subj'] || '') + 'Test';
+    if (subject !== subj) bad.push('the hand-off\'s subject is "' + subject + '", not form.subj + the name ("' + subj + '")');
     if (!body.startsWith('Test <ada@example.com>') || !body.includes('Bonjour') || !body.includes('numidealabs · ' + lang)) bad.push('the hand-off\'s body is "' + body.slice(0, 80).replace(/\n/g, '⏎') + '"');
   }
   await cdp.detach();

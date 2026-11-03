@@ -5,14 +5,16 @@
  * link in it resolves against the missing folder. With JavaScript on, its
  * first head script writes the stylesheet and font links from the site root,
  * and its second points the home links there. With JavaScript off only the
- * markup is left: the <noscript> copy of the links and the two
- * href="index.html" home links in <body>, which in the repository stay
- * relative so the file still previews from disk (file://). The site root is
- * known when the site is staged, so scripts/stage-site.mjs rewrites them in
- * _site/404.html with this:
+ * markup is left: the <noscript> copy of the links and the href="index.html…"
+ * home links in <body> (the wordmark's, the way home, the offer's
+ * index.html#apercu), which in the repository stay relative so the file
+ * still previews from disk (file://). The site root is known when the site
+ * is staged, so scripts/stage-site.mjs rewrites them in _site/404.html with
+ * this, the prefix alone, so a fragment rides along:
  *
  *   stage404(html, '/Numidea.tech/')   GitHub Pages (the repository subpath,
- *                                      from scripts/site.mjs BASE)
+ *                                      from scripts/site.mjs BASE):
+ *                                      /Numidea.tech/, /Numidea.tech/#apercu
  *   stage404(html, '/')                Netlify, Vercel: the domain root
  *
  * Only the <noscript> block and <body> change, never a <script>, so the CSP
@@ -27,9 +29,9 @@ export function stage404(html, base) {
   const at = html.indexOf('<body');
   if (at < 0 || ns.index > at) throw new Error('stage404: 404.html has no <body> after its head <noscript>');
   const body = html.slice(at);
-  if (!body.includes('href="index.html"')) throw new Error('stage404: 404.html has no href="index.html" home link in <body>');
+  if (!body.includes('href="index.html')) throw new Error('stage404: 404.html has no href="index.html…" home link in <body>');
   return html.slice(0, ns.index)
     + ns[0].replaceAll('href="assets/', `href="${base}assets/`)
     + html.slice(ns.index + ns[0].length, at)
-    + body.replaceAll('href="index.html"', `href="${base}"`);
+    + body.replaceAll('href="index.html', `href="${base}`);
 }

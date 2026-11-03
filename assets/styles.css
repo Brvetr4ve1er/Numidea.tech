@@ -1173,7 +1173,13 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(20px,1.7vw,34px)}
   .hero>.hero-mesh,.hero>.floaters{grid-column:1/-1;grid-row:1}
   .hero-grid{grid-column:1/-1;grid-row:1;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(40px,4vw,80px)}
-  .lede{max-width:30.498em;font-size:clamp(18px,1.35vw,21px)}
+  /* 31.5em, not 46ch's 30.498em: the French lede of cac515f broke 1% inside
+     that edge in the metric fallback and outside it in Geist, so it wrapped
+     6 lines before the face landed and 5 after (the fallback-type audit,
+     1440 and 1600). At 31.5em every line of either face, in French and in
+     English, ends 16px or more before the edge (measured 2026-11-03); the
+     box only binds from 1440px, the column does below. */
+  .lede{max-width:31.5em;font-size:clamp(18px,1.35vw,21px)}
   /* Display type sized for the canvas it actually sits on. 84px was a
      1200px-page value; the identity is engraved Cinzel and it should
      carry the screen. */

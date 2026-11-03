@@ -2,12 +2,13 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 89 runs over every page (site.mjs PAGES): the home page (one page per
+ * 91 runs over every page (site.mjs PAGES): the home page (one page per
  * language: index.html, en/, ar/, each opened directly) in all six themes x
  * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; the price
  * guide (tarifs/, en/tarifs/, ar/tarifs/, likewise) in arcanum and daylight
  * x FR/EN/AR on desktop and x FR/AR on the phone; scene/ in each
- * language on desktop and phone; 404 in two themes in Arabic; hub/ in both of
+ * language on desktop and phone, and in daylight (it follows the visitor's
+ * theme since e8a2ea2) on both; 404 in two themes in Arabic; hub/ in both of
  * its palettes (paper, its default, and night: void-theme 'dark') on desktop
  * and on the phone; tablet (768x1024, 1024x768) and short landscape (844x390);
  * one run with the phone menu open, two with the CV panel open and two with
@@ -20,12 +21,13 @@
  * under 24px, broken images, infinite animations, the hub's loops (each
  * img[data-anim] shows its animation, decoded, once the scroll has brought
  * it on screen: lib/loop-state.mjs), JS
- * errors, failed requests, any third-party request, and every
+ * errors, failed requests, any third-party request, every
  * Content-Security-Policy violation (securitypolicyviolation events, counted
- * in every frame). Desktop page runs fail when LCP, read at load before
- * anything is touched, is over 1.5 s. A page in another language than
- * Arabic that fetched an Arabic font file is listed at the end, report-only
- * until the copy pass (see arFont below).
+ * in every frame), and, on a page in another language than Arabic, any
+ * Arabic font file fetched (the one glyph that pulled it is drawn now).
+ * Desktop page runs fail when LCP, read at load before
+ * anything is touched, is over 1.5 s. Each axe violation is printed with
+ * its nodes (selector and markup) under the FAIL line.
  *
  * Then 404.html two folders down, where a relative link would resolve
  * against the missing folder (the local server answers a missing URL with
@@ -107,7 +109,7 @@ const DESKTOP_LCP=1500;
 const PHONE={lcp:2500,lt:300,inp:200};
 const PHONE_STRICT=process.env.AUDIT_PHONE_STRICT==='1';
 const TIMING=new Set(['lcp','lt','inp']);
-let fails=0;const rows=[],warnings=[],phoneWarn=[],fontWarn=[];
+let fails=0;const rows=[],warnings=[],phoneWarn=[];
 const short=u=>u.replace(B,'').split(/[?#]/)[0]||'/';
 // the home page in a language: its own page (build-lang.mjs), opened
 // directly; the root would send a stored en/ar there anyway, in two loads;
@@ -184,20 +186,29 @@ const run=async(label,path,o={})=>{
   // the hub's loops: each one the scroll brought on screen shows its animation
   const loops=await p.evaluate(loopState),stuck=loops.filter(l=>!l.ok);
   W.off=true;
+  // The plate rail's crossfade (.pm-rot: the hero deck turns once the page
+  // is woken, two slides fading over each other): read mid-fade, axe once
+  // saw a slide's caption at a contrast it never keeps ('index cv open fr',
+  // 2026-11-01, a flake). Wait until nothing animates inside the rail, 8s at
+  // most (a loop that never ends there is the anim count's finding above).
+  await p.waitForFunction(()=>{const r=document.querySelector('.pm-rot');
+    return !r||!document.getAnimations().some(a=>a.playState==='running'&&a.effect&&a.effect.target&&r.contains(a.effect.target))},null,{timeout:8000}).catch(()=>{});
   // axe in every frame too, so it reads the embeds in their host page
   for(const f of p.frames())try{await f.evaluate(AXE)}catch{/* detached */}
   const axr=await p.evaluate(async off=>{const r=await axe.run(document,{resultTypes:['violations','incomplete'],rules:Object.fromEntries(off.map(k=>[k,{enabled:false}]))});
-    return {v:r.violations.map(v=>v.id+'('+v.nodes.length+')'),i:r.incomplete.filter(v=>v.id!=='color-contrast').map(v=>v.id+'('+v.nodes.length+')')}},axeOff);
+    // each violation with its nodes (the selector and the markup), so a
+    // failure names what to fix instead of a rule id and a count
+    return {v:r.violations.map(v=>v.id+'('+v.nodes.length+')'),
+      nodes:r.violations.flatMap(v=>v.nodes.slice(0,6).map(n=>v.id+' '+n.target.join(' ')+' '+n.html.replace(/\s+/g,' ').slice(0,140))),
+      i:r.incomplete.filter(v=>v.id!=='color-contrast').map(v=>v.id+'('+v.nodes.length+')')}},axeOff);
   const ax=axr.v;if(axr.i.length)warnings.push(label+': '+axr.i.join(', '));
   const third=await p.evaluate(o=>performance.getEntriesByType('resource').filter(r=>!r.name.startsWith(o)).length,B);
   // An Arabic face on a page in another language: styles.css's [lang="ar"]
   // rule pulls IBM Plex Sans Arabic (42 KB) for one marked glyph. The switch's
-  // ع is drawn since 2ad9e7d and the English pages ask for no Arabic file;
-  // the French ones still do, through contact.vReply's <span lang="ar">ع</span>
-  // (assets/i18n/fr.js), so this is report-only (fontWarn, listed at the end)
-  // until the copy pass has replaced it: then count it in `issues` as 'arfont'.
+  // ع is drawn since 2ad9e7d, and contact.vReply lost its <span lang="ar">ع</span>
+  // in cac515f, so no French or English page asks for an Arabic file any
+  // more: one that does fails the run ('arfont'; report-only until then).
   const arFont=await p.evaluate(()=>({lang:document.documentElement.lang,n:performance.getEntriesByType('resource').filter(r=>/\/assets\/fonts\/ibm-plex-sans-arabic-[^/]*\.woff2/.test(r.name)).length}));
-  if(arFont.lang!=='ar'&&arFont.n)fontWarn.push(`${label}: ${arFont.n} Arabic font file(s) on a page in "${arFont.lang}"`);
   const {errs,bad,csp,waived}=W;
   const issues=[];
   if(m.cls>0.01)issues.push('cls');if(ax.length)issues.push('axe');if(m.of.length||m.hscroll)issues.push('overflow');
@@ -205,7 +216,8 @@ const run=async(label,path,o={})=>{
   if(m.hidden)issues.push('unrevealed');if(m.imgs)issues.push('img');if(m.small)issues.push('tap');
   if(csp.length)issues.push('csp');if(broke.length)issues.push('act');if(stuck.length)issues.push('loop');
   if(lcpBudget&&!(lcp>0&&lcp<=lcpBudget))issues.push('lcp');
-  const line=`cls ${m.cls.toFixed(4)}  lcp ${Math.round(lcp)}ms${lcpBudget?'/'+lcpBudget:''}  axe ${ax.join(',')||0}  of ${m.of.length+(m.hscroll?'+H':'')}  unrev ${m.hidden}  tap<24 ${m.small}  img ${m.imgs}  anim ${anim}  js ${errs.length}${waived?' (+'+waived+' waived)':''}  net ${bad.length}  3p ${third}  csp ${csp.length}${loops.length?`  loops ${loops.length-stuck.length}/${loops.length}`:''}`;
+  if(arFont.lang!=='ar'&&arFont.n)issues.push('arfont');
+  const line=`cls ${m.cls.toFixed(4)}  lcp ${Math.round(lcp)}ms${lcpBudget?'/'+lcpBudget:''}  axe ${ax.join(',')||0}  of ${m.of.length+(m.hscroll?'+H':'')}  unrev ${m.hidden}  tap<24 ${m.small}  img ${m.imgs}  anim ${anim}  js ${errs.length}${waived?' (+'+waived+' waived)':''}  net ${bad.length}  3p ${third}  csp ${csp.length}${loops.length?`  loops ${loops.length-stuck.length}/${loops.length}`:''}${arFont.lang!=='ar'?`  arfont ${arFont.n}`:''}`;
   await p.close();
   if(issues.length&&issues.every(i=>TIMING.has(i))&&!again){
     console.log('  ?? '+label.padEnd(26),line,' — over budget, measuring again');
@@ -214,6 +226,8 @@ const run=async(label,path,o={})=>{
   if(issues.length)fails++;
   rows.push({label,lcp,...m,anim,ax,errs,bad,third,csp,issues});
   console.log((issues.length?'FAIL ':'  ok ')+label.padEnd(26),line);
+  if(ax.length)for(const n of axr.nodes)console.log('      axe:',n);
+  if(arFont.lang!=='ar'&&arFont.n)console.log('   arfont:',`${arFont.n} Arabic font file(s) fetched by a page in "${arFont.lang}"`);
   if(errs.length)console.log('       js:',errs.join(' | '));
   if(bad.length)console.log('      net:',bad.join(' | '));
   if(csp.length)console.log('      csp:',csp.join(' | '));
@@ -272,8 +286,9 @@ const bootConsole=async p=>{
    the published files, the staged 404.html with status 404 for anything
    else), with JavaScript on and off. Each must load the three stylesheets
    from <root>assets/, request nothing under the missing folder, have every
-   link lead to <root>, and paint with the theme's tokens. The page's own
-   404 is the one failed request expected. */
+   link lead to <root> (or a block of the home page: <root>#apercu, the
+   offer's), and paint with the theme's tokens. The page's own 404 is the
+   one failed request expected. */
 const PUBLISHED=new Set(deployFiles());
 const pagesRoot=new URL(BASE).pathname;
 // emulate: answer BASE's host from this checkout instead of the network
@@ -306,7 +321,9 @@ const nested404=async(label,{site,path,js=true,theme,lang,emulate=false})=>{
   if(m.sheets.length!==3||m.sheets.some(h=>!h.startsWith(root+'assets/')))act.push('stylesheets '+JSON.stringify(m.sheets.map(h=>h.replace(/\?.*/,''))));
   const under=reqs.filter(u=>u.startsWith(folder)&&u.split(/[?#]/)[0]!==doc.split(/[?#]/)[0]);
   if(under.length)act.push('requested under the missing folder: '+[...new Set(under.map(u=>u.replace(folder,'')))].join(', '));
-  const off=m.links.filter(h=>h!==root);if(off.length||!m.links.length)act.push('links '+JSON.stringify(m.links));
+  // every link leads to the site root: the home page, or a block of it (the
+  // offer's #apercu); a path under the root (a/b/c/index.html) does not
+  const off=m.links.filter(h=>!(h===root||(h.startsWith(root)&&/^[#?]/.test(h.slice(root.length)))));if(off.length||!m.links.length)act.push('links '+JSON.stringify(m.links));
   if(!m.ice)act.push('no theme tokens (unstyled; .mark in '+m.font+')');
   // the document's own 404 is expected; any other failed request is not (and
   // the console line each 404 adds is already counted as a request)
@@ -397,6 +414,12 @@ const phone=async(label,path,{to},again=false)=>{
   const settle=async sel=>{await p.locator(sel).first().scrollIntoViewIfNeeded();await p.waitForTimeout(1500)};
   const menuOpen=()=>document.querySelector('.mobile-menu').classList.contains('open');
   try{
+    // the deferred app.js wires every control tapped below and marks the
+    // document js-ready in the same pass; over Slow 4G it can land after
+    // networkidle, and a tap before it is a tap nothing listens to (one
+    // run of 2026-11-03: menu open "did nothing", 0 long tasks). A page
+    // whose script never runs is an act failure, not a timing
+    await p.waitForFunction(()=>document.documentElement.classList.contains('js-ready'),null,{timeout:60000});
     await time('menu open',()=>p.tap('.menu-toggle'),menuOpen);
     await time('menu close',()=>p.tap('.mobile-menu .close'),()=>!document.querySelector('.mobile-menu').classList.contains('open'));
     await settle('.faq-item summary');
@@ -456,6 +479,7 @@ const D={lcpBudget:DESKTOP_LCP};
 await run('hub','/hub/index.html',D);
 await run('hub dark','/hub/index.html',{...D,init:{'void-theme':'dark'}});
 for(const l of ['fr','en','ar']) await run('scene '+l,'/scene/index.html',{...D,lang:l});
+await run('scene daylight','/scene/index.html',{...D,theme:'daylight'});   // the light palette, on the page's own sheet (scene/style.css)
 await run('404','/404.html',D);
 await run('404 noir/ar','/404.html',{...D,theme:'noir',lang:'ar'});
 // WorkspaceHQ is a different product with its own arcade identity: blinking
@@ -483,6 +507,7 @@ console.log('— phone 390×844 —');
 await run('hub m','/hub/index.html',{w:390,h:844});
 await run('hub dark m','/hub/index.html',{w:390,h:844,init:{'void-theme':'dark'}});
 for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});
+await run('scene daylight m','/scene/index.html',{theme:'daylight',w:390,h:844});
 await run('404 m','/404.html',{w:390,h:844});
 await run('404 daylight/ar m','/404.html',{theme:'daylight',lang:'ar',w:390,h:844});
 await run('workspacehq m','/workspacehq/index.html',{w:390,h:844,allowLoops:true});
@@ -515,7 +540,6 @@ await phone('throttled index ar',HOME('ar'),{to:'fr'});
 await b.close();srv?.close();
 if(warnings.length){console.log('\naxe incomplete (review, not failing):');for(const w of warnings)console.log('  '+w)}
 if(phoneWarn.length){console.log('\nthrottled phone over its targets (report-only; AUDIT_PHONE_STRICT=1 fails on them):');for(const w of phoneWarn)console.log('  '+w)}
-if(fontWarn.length){console.log('\nArabic font files fetched by pages in another language (report-only until contact.vReply loses its <span lang="ar">; then an issue):');for(const w of fontWarn)console.log('  '+w)}
 if(!rows.length){console.log(`\nno run matched AUDIT_ONLY=${process.env.AUDIT_ONLY}`);process.exit(1)}
 console.log(fails?`\nFAILURES: ${fails} of ${rows.length}`:`\nALL CLEAN (${rows.length} runs${phoneWarn.length?`; ${phoneWarn.length} over the throttled phone's report-only targets`:''})`);
 process.exit(fails?1:0);

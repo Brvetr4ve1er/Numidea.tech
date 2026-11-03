@@ -15,7 +15,9 @@
  * hub/, scene/, 404 and workspacehq/,
  * and a second pass at other sizes and states: phones in the dark themes, the
  * guide's phone in arcanum and daylight, tablets,
- * short landscape, scene/ in Arabic, 404 in other themes, and hub/ in its night
+ * short landscape, scene/ in Arabic and in the daylight and noir themes (it
+ * follows numidea-theme since e8a2ea2), each on desktop and on a 390px phone,
+ * 404 in other themes, and hub/ in its night
  * palette (void-theme 'dark'; paper is its default) and on a 390px phone in both.
  * Exits non-zero on any failure. Optional arg: a single theme name.
  *
@@ -58,7 +60,9 @@ const br=await launch();
 const report=[],loopBad=[];
 const RUNS=[];
 for(const theme of THEMES) for(const [pname,path] of PAGES){
-  // hub/scene have their own palettes; only the home pages (and 404) honour the 6 themes
+  // every theme on the home and guide pages; the other pages once each in
+  // arcanum (hub/ and workspacehq/ keep their own palettes; 404 and scene/
+  // follow the theme and get their other themes in the second pass below)
   if(!OWN[pname] && theme!=='arcanum') continue;
   RUNS.push({theme,pname,path,lang:OWN[pname]||'fr',w:1280,h:900});
 }
@@ -73,6 +77,11 @@ RUNS.push({theme:'noir',pname:'index@1024',path:HOME.fr,lang:'fr',w:1024,h:768})
 RUNS.push({theme:'arcanum',pname:'index@844x390',path:HOME.fr,lang:'fr',w:844,h:390});
 RUNS.push({theme:'arcanum',pname:'scene',path:'/scene/index.html',lang:'ar',w:1280,h:900});
 RUNS.push({theme:'arcanum',pname:'scene@390',path:'/scene/index.html',lang:'ar',w:390,h:844});
+// scene/ in the light theme and the darkest one, on desktop and on the phone
+for(const t of ['daylight','noir']){
+  RUNS.push({theme:t,pname:'scene',path:'/scene/index.html',lang:'fr',w:1280,h:900});
+  RUNS.push({theme:t,pname:'scene@390',path:'/scene/index.html',lang:'fr',w:390,h:844});
+}
 RUNS.push({theme:'daylight',pname:'404@390',path:'/404.html',lang:'ar',w:390,h:844});
 RUNS.push({theme:'noir',pname:'404',path:'/404.html',lang:'ar',w:1280,h:900});
 // hub/: paper is its default (the desktop pass above); night is void-theme 'dark'

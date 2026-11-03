@@ -247,9 +247,15 @@ const stray = [...read('scripts/scene-data.mjs').matchAll(/url:\s*'(https:[^']+)
 const captureHosts = [...read('scripts/shots.mjs').matchAll(/capture:\s*'https:\/\/([^'/]+)/g)].map((m) => m[1]);
 const hub = read('hub/index.html').replace(/<!--[\s\S]*?-->/g, '');
 const onHub = [...new Set([...Object.values(clientHref).map((u) => new URL(u).host), ...captureHosts])].filter((h) => hub.includes(h));
+// a sheet's `identity` link (not a `url`: the founder's own design work on his
+// Behance, beside the deliverables) cites a gallery the hub's design grid
+// (.covers) already shows, so the sheets never name work the founder's page does not
+const covers = (/<ul class="covers"[\s\S]*?<\/ul>/.exec(hub) || [''])[0];
+const identityOff = [...read('scripts/scene-data.mjs').matchAll(/identity:\s*\{[^}]*?href:\s*'([^']+)'/g)].map((m) => m[1]).filter((u) => !covers.includes(`href="${u}"`));
 tagDrift.length ? bad('client links disagree: ' + tagDrift.join('; ')) : ok(`client links agree across plate, cards and browser bars (${pageClients.size} clients)`);
 shotDrift.length ? bad('scripts/shots.mjs and the page cover different clients: ' + shotDrift.join(', ')) : ok('screenshot pipeline covers exactly the linked clients');
 stray.length ? bad('showcase uses URLs the main page does not link: ' + stray.join(', ')) : ok('showcase URLs all linked from the main page');
+identityOff.length ? bad("a sheet's identity link is not in the hub's design grid (.covers): " + identityOff.join(', ')) : ok("every sheet's identity link is a gallery the hub's design grid shows");
 onHub.length ? bad("client sites listed on the hub (it is the artist's page): " + onHub.join(', ')) : ok('hub lists no client sites');
 
 /* 5b — the client logo strip in the proof band ("Ils nous ont confié leur
@@ -689,14 +695,24 @@ for (const f of PAGES) for (const m of read(f).replace(/<!--[\s\S]*?-->/g, '').m
 ldErr.length ? bad(ldErr.join(', ')) : ok('structured data parses and matches the page');
 // (8's id references, reported here with the other attribute checks)
 deadRefs.length ? bad('attributes point at ids that do not exist: ' + deadRefs.join(', ')) : ok('every aria-labelledby/describedby/controls and label for= resolves');
-/* 8h — retired claims */
+/* 8h — retired claims and retired copy */
 // Owner decision: Glaive is a portfolio demo (4 live client sites, not 5), the
 // "most chosen" tier claim has no data behind it, and client sites are not demos.
-const RETIRED = ['Le plus choisi', 'Most chosen', 'الأكثر اختياراً', 'Démo →', 'Live demo →', 'عرض حيّ', '5 / 7'];
+// The 2026-10-31 CMO audit retired the English startup register and the
+// Arabic calques (the brand in Arabic script, "الأورو" for the euro: اليورو),
+// and the Arabic CV's Maghreb month names (numbered months since 60bfc8f).
+// A phrase is matched as written; a single Arabic word (WHOLE) is matched
+// with no letter on either side, since "الأوروبية" (European) and
+// "أوتوماتيكي" (automatic) carry a retired word inside them.
+const WHOLE = new Set(['الأورو', 'فيفري', 'أوت', 'جويلية']);
+const RETIRED = ['Le plus choisi', 'Most chosen', 'الأكثر اختياراً', 'Démo →', 'Live demo →', 'عرض حيّ', '5 / 7',
+  'Data, not vibes.', 'brutally honest', 'one-click factory', 'View the track record', 'Technical representative',
+  'اعرض لوحة المشروع', 'احذف العمل الممل', 'نوميديا لابز', ...WHOLE];
+const hit = (src, s) => (WHOLE.has(s) ? new RegExp('(?<!\\p{L})' + s + '(?!\\p{L})', 'u').test(src) : src.includes(s));
 const back = [];
 for (const f of [...PAGES, ...Object.values(I18N_FILES), 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/voices-data.mjs']) {
   const src = read(f);
-  for (const s of RETIRED) if (src.includes(s)) back.push(`${f}: "${s}"`);
+  for (const s of RETIRED) if (hit(src, s)) back.push(`${f}: "${s}"`);
 }
 back.length ? bad('retired claims are back: ' + back.join(', ')) : ok('retired claims stay retired');
 

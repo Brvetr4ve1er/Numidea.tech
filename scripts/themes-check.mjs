@@ -34,10 +34,10 @@ export const CONTRACT = [
   // atmosphere
   'atmos', 'grid-color', 'grid-opacity', 'grid-size', 'ink-k',
   // surfaces
-  'nav-glass', 'glass', 'field-bg',
-  // type
+  'nav-glass', 'glass', 'field-bg', 'field-border',
+  // type (the wordmark is drawn, scripts/lib/wordmark.mjs: no logo face)
   'font-head', 'font-head-em', 'head-weight', 'head-tracking',
-  'font-logo', 'logo-weight', 'logo-tracking', 'hero-fs', 'hero-fs-wide', 'hero-lh',
+  'hero-fs', 'hero-fs-wide', 'hero-lh',
   // shape
   'r-sm', 'r-md', 'kicker-node',
 ];
@@ -86,11 +86,12 @@ for (const { sel, body } of blocks) {
 const absent = THEMES.filter((t) => !seen.has(t));
 absent.length && bad('themes with no block in themes.css: ' + absent.join(', '));
 
-/* every contract token is read somewhere (styles.css, the price guide's own
-   sheet, 404's and legal's inline rules): a token nothing uses is dead weight
-   every theme has to keep setting (and keep contrast-safe) for nothing */
+/* every contract token is read somewhere (styles.css, the price guide's and
+   the scene's own sheets, 404's and legal's inline rules): a token nothing
+   uses is dead weight every theme has to keep setting (and keep
+   contrast-safe) for nothing */
 {
-  const consumers = read('assets/styles.css') + ['tarifs/style.css', '404.html', 'legal/index.html'].filter((f) => existsSync(join(ROOT, f))).map(read).join('');
+  const consumers = read('assets/styles.css') + ['tarifs/style.css', 'scene/style.css', '404.html', 'legal/index.html'].filter((f) => existsSync(join(ROOT, f))).map(read).join('');
   const unread = CONTRACT.filter((t) => !new RegExp('var\\(--' + t + '[,)]').test(consumers));
   unread.length ? bad('contract tokens nothing reads (drop them from the contract): ' + unread.map((t) => '--' + t).join(', ')) : ok(`every contract token is read (${CONTRACT.length})`);
 }
@@ -118,34 +119,38 @@ absent.length && bad('themes with no block in themes.css: ' + absent.join(', '))
   variants ? bad(`styles.css has ${variants} [data-variant] selector(s): there is one site, not variants`) : ok('no variant selectors');
 }
 
-/* Every list of theme names agrees with site.mjs THEMES, and the faces each
-   theme paints first are the ones preloaded for it: index.html HEAD (heading
-   face) and 404.html LOGO (wordmark face). A face that is not preloaded swaps
-   in after first paint and shifts the page; a name missing from a resolver
-   is treated as unknown and silently falls back to Arcanum. */
+/* Every list of theme names agrees with site.mjs THEMES, and the heading
+   face each theme paints first is the one preloaded for it: index.html HEAD
+   and 404.html HEAD (the numeral's face there; the wordmark is drawn, so no
+   page preloads a logo face any more). A face that is not preloaded swaps in
+   after first paint and shifts the page; a name missing from a resolver is
+   treated as unknown and silently falls back to Arcanum. The page carries
+   two pickers (the header's and the phone menu's, plan C.8), so each
+   .theme-menu is read on its own: both must list every theme. */
 const idx = read('index.html');
 const mapOf = (src, name) => Object.fromEntries([...(new RegExp('var ' + name + ' = \\{([^}]*)\\}').exec(src) || [, ''])[1].matchAll(/(\w+):\s*'([\w-]+)'/g)].map((m) => [m[1], m[2]]));
-const headMap = mapOf(idx, 'HEAD'), logoMap = mapOf(read('404.html'), 'LOGO');
+const headMaps = { 'index.html': mapOf(idx, 'HEAD'), '404.html': mapOf(read('404.html'), 'HEAD') };
 const sameSet = (a, b) => a.length === b.length && a.every((x) => b.includes(x));
 const lists = {
-  'index.html HEAD': Object.keys(headMap),
-  '404.html LOGO': Object.keys(logoMap),
+  'index.html HEAD': Object.keys(headMaps['index.html']),
+  '404.html HEAD': Object.keys(headMaps['404.html']),
   'app.js THEMES': ((/var THEMES = \[([^\]]*)\]/.exec(read('assets/app.js')) || [, ''])[1].match(/'([a-z]+)'/g) || []).map((s) => s.slice(1, -1)),
-  'theme menu': [...idx.matchAll(/data-theme-val="([a-z]+)"/g)].map((m) => m[1]),
 };
+const menus = [...idx.matchAll(/<div class="theme-menu"[^>]*>([\s\S]*?)<\/div>/g)].map((m) => [...m[1].matchAll(/data-theme-val="([a-z]+)"/g)].map((x) => x[1]));
+if (!menus.length) bad('index.html has no .theme-menu picker');
+menus.forEach((l, i) => { lists[`theme menu ${i + 1} of ${menus.length}`] = l; });
 const listDrift = Object.entries(lists).filter(([, l]) => !sameSet(l, THEMES)).map(([k, l]) => `${k} [${l.join(', ')}]`);
-listDrift.length ? bad('theme lists out of step with site.mjs THEMES: ' + listDrift.join('; ')) : ok('every theme list matches site.mjs THEMES');
+listDrift.length ? bad('theme lists out of step with site.mjs THEMES: ' + listDrift.join('; ')) : ok(`every theme list matches site.mjs THEMES (${menus.length} pickers)`);
 const faceDrift = [];
 for (const { sel, body } of blocks) {
   const name = (/data-theme="([a-z]+)"/.exec(sel) || [])[1]; if (!name) continue;
   const v = (k) => ((new RegExp('--' + k + ':\\s*([^;]+)').exec(body) || [])[1] || '').trim();
   // Geist and Geist Mono are variable: every weight is the one file per subset
   const face = (fam, w) => fam.includes('font-deco') ? 'cinzel-' + w + '-latin' : fam.includes('font-mono') ? 'geist-mono-latin' : 'geist-latin';
-  const head = face(v('font-head'), v('head-weight')), logo = face(v('font-logo'), v('logo-weight'));
-  if (headMap[name] !== head) faceDrift.push(`${name}: heading face ${head}, index.html preloads ${headMap[name] || 'none'}`);
-  if (logoMap[name] !== logo) faceDrift.push(`${name}: wordmark face ${logo}, 404.html preloads ${logoMap[name] || 'none'}`);
+  const head = face(v('font-head'), v('head-weight'));
+  for (const [page, map] of Object.entries(headMaps)) if (map[name] !== head) faceDrift.push(`${name}: heading face ${head}, ${page} preloads ${map[name] || 'none'}`);
 }
-faceDrift.length ? bad(faceDrift.join('; ')) : ok('every theme preloads its own heading and wordmark faces');
+faceDrift.length ? bad(faceDrift.join('; ')) : ok('every theme preloads its own heading face (index.html and 404.html)');
 
 /* styles.css: no theme special cases, no theme colour literals */
 const styles = read('assets/styles.css').replace(/\/\*[\s\S]*?\*\//g, '');
