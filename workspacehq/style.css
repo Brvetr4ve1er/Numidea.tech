@@ -107,7 +107,10 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 /* ---------- DS: Button ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--px);line-height:1.4;cursor:pointer;border-radius:0;
   letter-spacing:1px;white-space:nowrap;transition:transform .12s,background .12s,border-color .12s,box-shadow .12s,color .12s}
-.btn--sm{font-size:7px;padding:6px 10px;min-height:30px}
+/* the pixel face never goes under 8px: its grid is 8 pixels, and smaller
+   the strokes blur (the DS set 6.5-7px on the small buttons, labels and
+   bars) */
+.btn--sm{font-size:8px;padding:6px 10px;min-height:30px}
 .btn--lg{font-size:9px;padding:12px 18px;min-height:44px}
 .btn--primary{color:#3a2a00;background:linear-gradient(180deg,var(--gold-2),var(--gold));border:2px solid #8a6200;box-shadow:0 3px 0 #8a6200}
 .btn--primary:hover{color:#3a2a00;filter:brightness(1.05)}
@@ -139,7 +142,7 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 .sh{display:flex;align-items:baseline;gap:8px;margin:0 0 22px;font-family:var(--px);font-size:10px;letter-spacing:2px;line-height:1.6;
   color:var(--cyan);text-shadow:0 0 9px rgba(0,240,255,.5)}
 .sh::before{content:"■";color:var(--faint)}
-.px-label{font-family:var(--px);font-size:7px;letter-spacing:1px;line-height:1.8;color:var(--faint)}
+.px-label{font-family:var(--px);font-size:8px;letter-spacing:1px;line-height:1.8;color:var(--faint)}
 .px-label--gap{margin-bottom:10px}
 .px-label--row{display:flex;justify-content:space-between;align-items:center}
 
@@ -180,8 +183,8 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .term--hero{flex:1 1 420px;max-width:600px;box-shadow:var(--shadow-frame)}
 .term--install{width:100%;max-width:680px;box-shadow:0 0 0 2px var(--gold),0 0 40px -10px rgba(255,210,63,.7)}
 .term-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;background:var(--panel);border-bottom:2px solid var(--ink)}
-.term-tag{font-family:var(--px);font-size:7px;letter-spacing:1px;padding:7px 10px;border:2px solid var(--gold);color:var(--gold-2)}
-.term-os{font-family:var(--px);font-size:6.5px;letter-spacing:1px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.term-tag{font-family:var(--px);font-size:8px;letter-spacing:1px;padding:7px 10px;border:2px solid var(--gold);color:var(--gold-2)}
+.term-os{font-family:var(--px);font-size:8px;letter-spacing:1px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .term-line{display:flex;align-items:center;gap:14px;padding:14px 16px}
 .term-line--2{padding-top:0}
 .term-dollar{font-size:30px;color:var(--gold);line-height:1}
@@ -213,7 +216,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 /* ---------- screens (reel / walkthrough / demo) ---------- */
 .screen{border:2px solid var(--ink);background:var(--ink);box-shadow:0 0 0 2px var(--frame),0 40px 120px -30px rgba(0,0,0,.9),0 0 60px -20px rgba(255,210,63,.35)}
 .screen-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 14px;background:var(--panel);border-bottom:2px solid var(--ink);
-  font-family:var(--px);font-size:7px;letter-spacing:1px;line-height:1.6;color:var(--faint)}
+  font-family:var(--px);font-size:8px;letter-spacing:1px;line-height:1.6;color:var(--faint)}
 .screen-169{display:block;width:100%;aspect-ratio:16/9;border:0;background:#0d0d0f}
 
 /* marquee */
@@ -283,7 +286,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
 .kpi--gold{--accent:var(--gold)}.kpi--orange{--accent:var(--orange)}.kpi--green{--accent:var(--green)}
 .kpi b{display:block;font-weight:400;font-size:34px;line-height:.9}
-.kpi span{display:block;margin-top:9px;font-family:var(--px);font-size:6.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.kpi span{display:block;margin-top:9px;font-family:var(--px);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
 
 /* DS: Achievement */
 .achs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -334,7 +337,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 /* the footer sits after <main> (a contentinfo landmark), so it carries main's
    stacking itself to stay above the fixed aurora, grid and cursor glow */
 .foot{position:relative;z-index:3;border-top:2px solid var(--frame);padding:34px var(--pad);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
-  font-family:var(--px);font-size:7px;letter-spacing:1px;line-height:1.8;color:var(--faint)}
+  font-family:var(--px);font-size:8px;letter-spacing:1px;line-height:1.8;color:var(--faint)}
 .foot a{color:var(--muted)}
 .foot a:hover{color:var(--gold-2)}
 
@@ -383,12 +386,32 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 
 /* breadcrumb: Numidea Labs / br4vetr4veler / WorkspaceHQ */
 .bc ol{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 18px;padding:0;list-style:none;
-  font-family:var(--px);font-size:7px;letter-spacing:1px;line-height:1.8;color:var(--muted)}
+  font-family:var(--px);font-size:8px;letter-spacing:1px;line-height:1.8;color:var(--muted)}
 .bc li{display:flex;align-items:center;gap:8px}
 .bc li+li::before{content:"›";color:var(--gold)}
 .bc a{color:var(--muted)}
 .bc a:hover,.bc a:focus-visible{color:var(--text)}
 .bc [aria-current]{color:var(--text)}
+/* the studio's wordmark, drawn (scripts/lib/wordmark.mjs): the same lockup
+   as on every other page, the pixel crumb's height. "idea" reads the home
+   page's --teal-text from its own fill: here that token is the cabinet's
+   gold (a rule on the group would lose to the drawing's inline style) */
+.bc{--teal-text:var(--gold)}
+.bc .wm{display:block;height:10px;width:auto;overflow:visible}
+
+/* Forced colours (Windows contrast themes) drop every background and
+   shadow, which were the only signs of a pressed button, a full bar, a lit
+   achievement or a mood in play: each gets a system-colour edge instead.
+   Bit's sprite and the tags' tints are content, left as drawn. */
+@media (forced-colors:active){
+  .btn,.tag,.term,.screen,.feat,.scan-card,.bit-card,.kpi,.ach,.faq details{border:2px solid ButtonText}
+  .btn[aria-pressed="true"],.chap[aria-pressed="true"]{forced-color-adjust:none;background:Highlight;color:HighlightText}
+  .pbar{border-color:ButtonText}
+  .pbar i{background:Highlight}
+  .ach.on{outline:2px solid Highlight;outline-offset:2px}
+  .bit svg,.ach-i{forced-color-adjust:none}
+  .prog i{background:Highlight;box-shadow:none}
+}
 
 /* ===== r3/a: mobile audit ===== */
 /* Finger-sized hit areas for the small pixel-font links, without moving a

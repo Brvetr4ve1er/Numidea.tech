@@ -96,8 +96,10 @@ a{color:inherit}
 /* labels: Geist Mono, small capitals, tracked */
 .eyebrow,.kicker{font:400 12.5px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 
-/* section headings */
-.make-h,.band-copy h2,.links-head h2{font:800 clamp(34px,5vw,72px)/.96 var(--display);letter-spacing:-.03em;text-wrap:balance}
+/* section headings: a step under the handle at every width (they ran to
+   72px while the handle, sized from its column, stopped at 108px on a
+   desktop and 34px on a phone, where these were 34px too) */
+.make-h,.band-copy h2,.links-head h2{font:800 clamp(30px,4.2vw,60px)/.96 var(--display);letter-spacing:-.03em;text-wrap:balance}
 
 /* ============================= HERO ============================= */
 .hero{position:relative;container-type:inline-size}
@@ -110,6 +112,12 @@ a{color:inherit}
 .bc li+li::before{content:"/";color:var(--text-2)}
 .bc a{display:inline-flex;align-items:center;min-height:44px;color:var(--text-2);text-decoration:none;transition:color .18s}
 .bc a:hover{color:var(--accent)}
+/* the studio's wordmark, drawn (scripts/lib/wordmark.mjs): the same lockup
+   as on every other page, at the crumb's 12.5px. "idea" reads the home
+   page's --teal-text from its own fill: here that token is this page's
+   accent (a rule on the group would lose to the drawing's inline style) */
+.bc{--teal-text:var(--accent)}
+.bc .wm{display:block;height:12px;width:auto;overflow:visible}
 .bc-std{color:var(--accent)}
 
 /* phone first: the words, then the stage (the tall crop), then the cartridge */
@@ -120,7 +128,7 @@ a{color:inherit}
    sets it 10.25em wide at this tracking), so it always fits on one line.
    With a reader's own letter-spacing (WCAG 1.4.12) it may wrap rather than
    be cut. */
-.handle{font:800 min(9.5cqw,108px)/.92 var(--display);letter-spacing:-.035em;color:var(--text);overflow-wrap:anywhere}
+.handle{font:800 min(9.7cqw,120px)/.92 var(--display);letter-spacing:-.035em;color:var(--text);overflow-wrap:anywhere}
 .name{margin-top:clamp(10px,2.6cqw,16px);font:500 clamp(17px,4.4cqw,25px)/1.3 var(--sans);color:var(--text)}
 .motto{margin-top:6px;font:700 clamp(15px,3.6cqw,20px)/1.4 var(--display);letter-spacing:-.005em;color:var(--text-2)}
 .motto::before{content:"";display:inline-block;width:1.4em;height:2px;margin-right:.55em;vertical-align:.3em;background:var(--accent)}
@@ -215,7 +223,8 @@ a{color:inherit}
 .whq-bit svg{width:36px;height:27px;display:block;filter:drop-shadow(0 0 6px rgba(217,119,87,.45));transition:transform .18s cubic-bezier(.34,1.56,.64,1)}
 .whq-eyes{transform-box:fill-box;transform-origin:center}
 .whq-txt{display:grid;gap:5px;min-width:0}
-.whq-kick{font-family:"Press Start 2P",monospace;font-size:7px;letter-spacing:1px;line-height:1.6;color:#00f0ff}
+/* the pixel face never goes under 8px (its grid is 8 pixels: smaller, the strokes blur) */
+.whq-kick{font-family:"Press Start 2P",monospace;font-size:8px;letter-spacing:1px;line-height:1.6;color:#00f0ff}
 /* when the kicker wraps (a phone, the tablet column), it breaks after the
    dot, never leaving one word on its own line */
 .whq-nw{white-space:nowrap}
@@ -223,8 +232,8 @@ a{color:inherit}
 .whq-name i{font-style:normal;color:var(--g);text-shadow:0 0 8px rgba(255,210,63,.6)}
 .whq-name em{font-style:normal;font-size:9px;color:#ff2bd6}
 .whq-sub{font-size:12px;line-height:1.35;color:#b3add9}
-.whq-start{position:absolute;right:12px;bottom:7px;font-family:"Press Start 2P",monospace;font-size:6px;letter-spacing:1px;color:var(--g2);opacity:0}
-.whq-xp{position:absolute;left:34px;top:4px;font-family:"Press Start 2P",monospace;font-size:7px;color:var(--g);text-shadow:0 0 8px rgba(255,210,63,.8);opacity:0;pointer-events:none}
+.whq-start{position:absolute;right:12px;bottom:6px;font-family:"Press Start 2P",monospace;font-size:8px;letter-spacing:1px;color:var(--g2);opacity:0}
+.whq-xp{position:absolute;left:34px;top:4px;font-family:"Press Start 2P",monospace;font-size:8px;color:var(--g);text-shadow:0 0 8px rgba(255,210,63,.8);opacity:0;pointer-events:none}
 .whq-cart:hover,.whq-cart:focus-visible{transform:translateY(-3px);border-color:var(--g);box-shadow:0 5px 0 #8a6200,0 0 28px -6px rgba(255,210,63,.75)}
 .whq-cart:focus-visible{outline:2px solid var(--g);outline-offset:4px}
 .whq-cart:hover .whq-bit svg,.whq-cart:focus-visible .whq-bit svg{animation:whq-hop .55s steps(4) 2}
@@ -356,6 +365,10 @@ html[dir="rtl"] .whq-start{right:auto;left:12px}
 .cover-img{display:block;aspect-ratio:640/501;border-radius:var(--r-pic);overflow:clip;background:var(--bg-2);
   box-shadow:0 1px 2px rgba(var(--shade),.08);transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out)}
 .cover-img img{display:block;width:100%;height:100%;object-fit:cover}
+/* on the paper page the covers' white grounds multiply into the paper, so
+   they sit on it like prints instead of twelve stark white cards; on the
+   night page they stay as exported (multiply on navy would sink them) */
+:root:not([data-theme="dark"]) .cover-img img{mix-blend-mode:multiply}
 .cover-t{display:block;margin-top:12px;font:500 15px/1.35 var(--sans);text-wrap:pretty}
 @media (hover:hover) and (pointer:fine){
   .cover:hover .cover-img{transform:translateY(-2px);box-shadow:0 14px 28px -14px rgba(var(--shade),.35)}
@@ -416,7 +429,6 @@ html[dir="rtl"] .whq-start{right:auto;left:12px}
 .lb-fig figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px;padding:14px 20px;border-top:1px solid var(--rule)}
 .lb-fig figcaption b{font:700 18px/1.3 var(--display)}
 .lb-fig figcaption i{font:400 12.5px/1.3 var(--mono);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--text-2)}
-.lb-fig figcaption a{margin-inline-start:auto;display:inline-flex;align-items:center;min-height:24px;font-size:14px;color:var(--accent)}
 .lb [hidden]{display:none}
 /* z-index: the buttons come before the figure in the source (Close first,
    for focus), and the picture fading in would otherwise paint over them */
@@ -470,7 +482,10 @@ html[dir="rtl"] .lb-prev,html[dir="rtl"] .lb-next{transform:scaleX(-1)}
 .loop--wave{flex:none;width:clamp(92px,11vw,148px)}
 .hello-txt{min-width:0;padding-bottom:clamp(6px,1.4vw,18px)}
 .hello-h{font:800 clamp(48px,9vw,128px)/.9 var(--display);letter-spacing:-.04em}
-.mail{display:inline-block;margin-top:clamp(10px,1.6vw,18px);font:500 clamp(17px,2.1vw,28px)/1.3 var(--sans);color:var(--text);
+/* a 44px target at every width (22px tall at 700-768): the padding grows it
+   and the margin gives the height back, so the line stays where it was */
+.mail{--pad:calc((44px - 1.3em) / 2);display:inline-block;padding-block:var(--pad);margin-block:calc(clamp(10px,1.6vw,18px) - var(--pad)) calc(0px - var(--pad));
+  font:500 clamp(17px,2.1vw,28px)/1.3 var(--sans);color:var(--text);
   text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.24em;text-decoration-color:var(--accent);
   overflow-wrap:anywhere;transition:color .18s}
 .mail:hover{color:var(--accent)}
