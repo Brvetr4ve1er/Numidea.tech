@@ -416,7 +416,7 @@ export const UI = {
     desc: "Sites livrés en Algérie et en France, captures à l'appui\u202f: pages, version mobile, système visuel et lien vers le site en ligne.",
     crumb: 'Réalisations', crumbNav: "Fil d'Ariane", langs: 'Langue', kicker: 'Planches de projet',
     h1: 'Le travail, <em>livrable par livrable.</em>',
-    lead: "Les trois premières planches montrent des sites livrés à des clients, tels qu'ils sont en ligne aujourd'hui\u202f: ce que le site leur apporte, les pages, le mobile, le système visuel. Suivent une démo de portfolio et notre propre outil. Les captures viennent des sites eux-mêmes.",
+    lead: "Les trois premières planches montrent des sites livrés à des clients, tels qu'ils sont en ligne aujourd'hui\u202f: ce que le site leur apporte, les pages, le mobile, le système visuel. Suivent une démo de portfolio et notre propre outil. Les captures viennent des sites eux\u2011mêmes.",
     group: 'Hors commande client\u202f: une démo et notre outil',
     act: 'Demander mon Aperçu →', by: 'Par le fondateur',
     index: 'Sommaire des projets', sheet: 'Projet', visit: 'Voir le site', open: 'Ouvrir',

@@ -37,8 +37,10 @@ const LIGHT = THEMES.filter((t) => [1, 3, 5].map((i) => parseInt(VOID[t].slice(i
 const HOME = loadDicts();
 // The address a sheet's browser bar shows. Our own product is a page of this
 // site: its relative link resolves against the published BASE, never an
-// invented host.
-const shownHost = (url) => new URL(url, BASE + 'scene/').href.replace(/^https?:\/\//, '').replace(/^([^/]+)\/$/, '$1');
+// invented host. Host only: the path and hash are cut mid-word at 390px, so
+// the full address stays in the visit link's title.
+const shownHost = (url) => new URL(url, BASE + 'scene/').host;
+const fullHref = (url) => new URL(url, BASE + 'scene/').href;
 
 /* every translatable string gets a key; the dictionary ships inline */
 const DICT = { fr: {}, en: {}, ar: {} };
@@ -183,7 +185,7 @@ function sheet(p, i) {
         <span class="sh-no"><span ${T('ui.sheet')}>${esc(ui('sheet'))}</span> ${n}</span>
         <h2 id="h-${p.slug}" dir="ltr">${esc(p.name)}</h2>
         <span class="chip is-${p.status}" ${T(`${k}.status`)}>${esc(statusTxt)}</span>
-        <a class="visit" href="${esc(p.url)}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> <span class="arr" aria-hidden="true">${ext ? '↗' : '→'}</span></a>
+        <a class="visit" href="${esc(p.url)}" title="${esc(fullHref(p.url))}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> <span class="arr" aria-hidden="true">${ext ? '↗' : '→'}</span></a>
       </header>
 
       <div class="sh-body">
@@ -198,9 +200,9 @@ function sheet(p, i) {
           </ul>${ident}
         </div>
         <figure class="sh-main">
-          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(shownHost(p.url))}${esc(main.path === '/' ? '' : main.path)}</span></div>
+          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(shownHost(p.url))}</span></div>
           ${shot(p.slug, main.file, mainAlt, 'frame', 1440, 900, 'main', i === 0).replace('alt=', `${T(`${k}.pga0`, '-alt')} alt=`)}
-          <figcaption class="dims" aria-hidden="true"><span class="dim-w">1440&nbsp;px</span><span class="dim-h">900</span></figcaption>
+          <figcaption class="dims" aria-hidden="true"><span class="dim-w"><span>1440&nbsp;px</span></span><span class="dim-h">900</span></figcaption>
         </figure>
       </div>
 ${gv}
@@ -248,7 +250,7 @@ if (PROJECTS.some((p, i) => i > cut && cut >= 0 && p.status === 'live')) throw n
 const group = `
     <h2 class="group" id="others" ${T('ui.group')}>${esc(ui('group'))}</h2>`;
 const sheets = PROJECTS.map((p, i) => (i === cut ? group : '') + sheet(p, i)).join('\n');
-const index = PROJECTS.map((p, i) => `<li><a href="#${p.slug}"><span class="ix-n">${pad(i + 1)}</span><span class="ix-name" dir="ltr">${esc(p.name)}</span></a></li>`).join('\n        ');
+const index = PROJECTS.map((p, i) => `<li><a href="#${p.slug}"><span class="ix-n">${pad(i + 1)}</span><span class="ix-name" dir="ltr">${esc(p.name)}</span><span class="ix-go" aria-hidden="true">↓</span></a></li>`).join('\n        ');
 
 // withCsp: the policy meta after the viewport meta, hashing the head script
 // (scripts/lib/csp.mjs); a data block like the dictionary is not hashed
