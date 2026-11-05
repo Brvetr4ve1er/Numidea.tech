@@ -3,360 +3,388 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-jCLfI86dxpYPAy22/N5ehJUqSRj7G6kXBGXMTCn4d5A='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Yasser Hamisse (br4vetr4veler) — artist, designer, developer</title>
-<meta name="description" content="Hamisse Mohamed Yasser, br4vetr4veler: artist, designer and developer. Design, code, and everything between.">
-<meta name="theme-color" content="#fcecdc">
+<meta name="description" content="Yasser Hamisse, br4vetr4veler: artist, designer and developer. His character bible: the builder who answers at 2 a.m., and Ku&#x304;ro, the cat who judges.">
+<meta name="theme-color" content="#d8cbb8">
 <meta property="og:title" content="Yasser Hamisse (br4vetr4veler) — artist, designer, developer">
-<meta property="og:description" content="Polymath developer & designer. Design, code, and everything between.">
-<meta name="color-scheme" content="light dark">
+<meta property="og:description" content="The builder who answers at 2 a.m. — and the black cat who decides if it's good enough.">
+<meta name="color-scheme" content="light">
 <link rel="canonical" href="https://brvetr4ve1er.github.io/Numidea.tech/hub/">
 <meta property="og:url" content="https://brvetr4ve1er.github.io/Numidea.tech/hub/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VOIDSPLUNKER.std">
-<!-- the page's own card, drawn on its paper with the hero's figures (scripts/build-og.mjs) -->
+<!-- the page's own card, drawn on its paper with the cover's drawing -->
 <meta property="og:image" content="https://brvetr4ve1er.github.io/Numidea.tech/hub/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="br4vetr4veler, Hamisse Mohamed Yasser: artist, designer, developer. A drawing of Yasser in his long coat, a coffee in hand, Ku&#x304;ro the black cat beside him, on paper.">
+<meta property="og:image:alt" content="Yasser. The character bible of br4vetr4veler, Yasser Hamisse: a drawing of Yasser sitting on the floor in his cream coat, a coffee in hand, Ku&#x304;ro the black cat beside him, on paper.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Yasser Hamisse (br4vetr4veler) — artist, designer, developer">
-<meta name="twitter:description" content="Polymath developer & designer. Design, code, and everything between.">
+<meta name="twitter:description" content="The builder who answers at 2 a.m. — and the black cat who decides if it's good enough.">
 <meta name="twitter:image" content="https://brvetr4ve1er.github.io/Numidea.tech/hub/og.jpg">
 <!-- Without this the browser falls back to /favicon.ico, which does not
      exist: a 404 in every visitor's console on this page. iOS ignores the
      SVG and takes the site's 180px PNG for the home screen. -->
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<!-- Paper is the default; "dark" in storage is the only other theme, and
-     anything else reads as paper. The js class lets the stylesheet hold the
-     hero's layers for their entrance: without scripts it is never set, and
-     the art is drawn where it rests. The browser's own bar takes the page
-     colour of the theme here, before the stylesheet, keyed on data-theme as
-     index.html's map is; app.js keeps it in step on a switch. -->
-<script>(function(){var t,d=document.documentElement;try{t=localStorage.getItem('void-theme');}catch(e){}t=t==='dark'?'dark':'light';d.dataset.theme=t;d.classList.add('js');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',{light:'#fcecdc',dark:'#0f1420'}[t]);})();</script>
-<!-- Syne, Geist and Geist Mono, self-hosted (font-display:optional). The
-     two preloads are the faces of the first screen. "Kūro" is written
-     Ku&#x304;ro (u, combining macron) throughout: as one letter it needed
-     the latin-ext file, 16 KB preloaded for a single glyph
-     (assets/fonts-hub.css). -->
+<!-- One palette, paper: no stored theme. The js class lets the stylesheet
+     show the rig's controls only where a script can answer them; without
+     scripts Yasser and Kūro stand on their base frames and the buttons are
+     not drawn. -->
+<script>document.documentElement.classList.add('js');</script>
+<!-- Geist and Geist Mono, the site's own files (assets/fonts-hub.css,
+     font-display:optional). Archivo, Permanent Marker and Noto Sans JP are
+     the page's own subsets in hub/fonts (style.css); Archivo sets the first
+     screen's H1, so it alone is preloaded. "Kūro" is written Ku&#x304;ro
+     (u, combining macron) throughout, as the latin subsets carry it. -->
 <link rel="stylesheet" href="../assets/fonts-hub.css?v=202611032143">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/syne-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/archivo-800-900-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
-<!-- the cartridge's pixel face (12.5 kB, display:swap, as on workspacehq/):
-     fetched with the page, so it is there for the first paint instead of
-     widening the cartridge when it lands -->
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../workspacehq/fonts/PressStart2P.woff2">
 <link rel="stylesheet" href="style.css?v=202611032143">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://brvetr4ve1er.github.io/Numidea.tech/"},{"@type":"ListItem","position":2,"name":"br4vetr4veler","item":"https://brvetr4ve1er.github.io/Numidea.tech/hub/"}]}</script>
 </head>
 <body>
 
 <!-- Skip link: the first Tab stop on every page of the site (npm run keys).
-     The hero's stops are the breadcrumb and the cartridge; this goes past
-     them to the work. English only, like the rest of hub/. -->
-<a class="skip" href="#make">Skip to the work</a>
+     The cover's stop is the breadcrumb; this goes past it to the rig. -->
+<a class="skip" href="#alive">Skip to the character</a>
 
-<main id="main">
+<main id="main" class="page">
 
-<!-- ============================= HERO =============================
-     A paper print in both themes: the art was drawn on paper and Kūro is
-     black, so in the dark theme the hero sits on the night page as an inset
-     print and its text keeps the paper inks (.paper).
-     The stage is three registered layers of one 2752×1674 frame (the drawn
-     frame with paper added above and below, so the figures have headroom
-     and floor room inside the bleed): the paper and its line work, Kūro,
-     Yasser, each figure with its own contact shadow. The wide frame from
-     1024px, the tall crop (scripts/hub-art-data.mjs BOX.heroTall) below;
-     each layer is the same box, so they stay registered at both. Yasser is
-     the first screen's largest picture: fetched first, never lazy, never
-     faded. -->
-<header class="hero paper" id="hero">
-  <nav class="bar" aria-label="Breadcrumb">
-    <ol class="bc">
-      <li><a href="../" aria-label="Numidea Labs"><svg class="wm" viewBox="0 0 7699 734" width="168" height="16" fill="currentColor"><title>Numidea Labs</title><g id="wm"><path d="M78 0 716 608 728 729 90 122ZM83 644V715H0V705Q0 705 9 705Q18 705 19 705Q44 705 62 687Q80 669 80 644ZM223 644Q223 669 241 687Q259 705 284 705Q285 705 294 705Q303 705 303 705V715H220V644ZM78 0 222 153 223 715H80V125Q80 69 74 34Q68 0 68 0ZM725 15V601Q725 638 728 668Q731 697 734 713Q737 729 737 729H728L583 567V15ZM805 15V25Q805 25 796 25Q787 25 787 25Q762 25 744 42Q726 60 725 86H722V15ZM502 15H585V86H583Q582 60 564 42Q547 25 521 25Q521 25 512 25Q503 25 502 25Z M1097 115V492Q1097 584 1140 636Q1182 688 1258 688Q1337 688 1380 639Q1424 590 1425 503V115H1491V497Q1491 604 1426 666Q1360 728 1240 728Q1095 728 1024 666Q953 605 953 498V115ZM955 115V167H953Q952 148 939 136Q926 124 907 124Q907 124 900 124Q893 124 893 124V115ZM1156 115V124Q1156 124 1149 124Q1142 124 1142 124Q1123 124 1110 136Q1097 148 1097 167H1095V115ZM1427 115V167H1425Q1424 148 1411 136Q1398 124 1380 124Q1380 124 1373 124Q1366 124 1366 124V115ZM1550 115V124Q1550 124 1544 124Q1537 124 1537 124Q1518 124 1504 136Q1491 148 1491 167H1489V115Z M2304 102 2312 205 2043 632Q2043 632 2034 648Q2025 665 2016 688Q2008 711 2007 734H1998L1959 652ZM1689 651V715H1591V705Q1591 705 1598 705Q1604 705 1604 705Q1629 705 1648 691Q1666 677 1670 651ZM1732 665Q1731 676 1739 690Q1747 705 1767 705H1781V715H1721L1727 665ZM1748 102H1756L1790 198L1727 715H1662ZM1756 102 2052 545 1998 734 1732 331ZM2313 102 2401 715H2248L2199 350L2304 102ZM2373 651H2392Q2397 677 2416 691Q2434 705 2457 705Q2457 705 2464 705Q2471 705 2471 705V715H2373ZM2241 665H2247L2253 715H2193V705H2207Q2229 705 2236 690Q2243 676 2241 665Z"/><g class="wm-accent" style="fill:var(--teal-text,currentColor)"><path d="M2750 115V715H2606V115ZM2609 652V715H2536V705Q2536 705 2542 705Q2548 705 2549 705Q2572 705 2589 690Q2606 674 2606 652ZM2748 652H2750Q2751 674 2768 690Q2784 705 2808 705Q2808 705 2814 705Q2819 705 2820 705V715H2748ZM2748 178V115H2820L2819 125Q2819 125 2814 125Q2809 125 2808 125Q2784 125 2768 140Q2751 155 2750 178ZM2609 178H2606Q2606 155 2589 140Q2572 125 2548 125Q2548 125 2542 125Q2536 125 2536 125V115H2609Z M3259 115Q3366 115 3443 150Q3520 186 3561 254Q3602 321 3602 415Q3602 509 3561 576Q3520 643 3443 679Q3366 715 3259 715H3037L3035 675Q3111 675 3158 675Q3204 675 3226 675Q3247 675 3247 675Q3341 675 3395 606Q3449 537 3449 415Q3449 293 3395 224Q3341 154 3247 154Q3247 154 3225 154Q3203 154 3154 154Q3105 154 3025 154V115ZM3134 115V715H2990V115ZM2993 651V715H2921V705Q2921 705 2927 705Q2933 705 2934 705Q2957 705 2974 689Q2990 673 2990 651ZM2992 178H2990Q2989 155 2972 140Q2956 125 2933 125Q2933 125 2927 125Q2921 125 2921 125V115H2992Z M3909 115V715H3765V115ZM4143 675 4166 715H3907V675ZM4109 398V438H3907V398ZM4154 115V155H3907V115ZM4207 531 4169 715H3996L4027 675Q4070 675 4104 658Q4137 640 4161 608Q4185 575 4198 531ZM4109 436V524H4099V516Q4099 483 4078 461Q4058 439 4023 438V436ZM4109 312V400H4023V398Q4058 397 4078 374Q4099 352 4099 319V312ZM4154 153V259H4144V250Q4144 206 4120 181Q4097 156 4053 155V153ZM4154 100V124L4049 115Q4078 115 4110 110Q4142 104 4154 100ZM3767 652 3772 715H3698V705Q3698 705 3704 705Q3710 705 3711 705Q3733 705 3748 690Q3764 674 3765 652ZM3767 178H3765Q3764 155 3748 140Q3733 125 3711 125Q3710 125 3704 125Q3698 125 3698 125V115H3772Z M4587 88 4883 710H4714L4528 271ZM4399 649Q4388 676 4402 690Q4416 705 4433 705H4441V715H4241V705Q4241 705 4245 705Q4249 705 4249 705Q4269 705 4291 692Q4313 680 4327 649ZM4587 88 4589 208 4372 712H4298L4532 209Q4534 203 4541 188Q4548 172 4556 152Q4564 133 4571 116Q4578 98 4579 88ZM4674 519V558H4419V519ZM4689 649H4854Q4869 680 4891 692Q4913 705 4933 705Q4933 705 4937 705Q4941 705 4941 705V715H4647V705H4655Q4672 705 4686 690Q4700 676 4689 649Z"/></g><path d="M5511 15V715H5361V15ZM5775 672 5799 715H5508V672ZM5848 510 5802 715H5606L5642 672Q5692 672 5730 652Q5768 633 5795 596Q5822 560 5838 510ZM5364 642V715H5284V705Q5284 705 5290 705Q5297 705 5297 705Q5323 705 5342 686Q5360 668 5361 642ZM5364 88H5361Q5360 62 5342 44Q5323 25 5297 25Q5297 25 5290 25Q5284 25 5284 25V15H5364ZM5508 88V15H5588V25Q5587 25 5581 25Q5575 25 5575 25Q5549 25 5530 44Q5512 62 5511 88Z M6218 88 6514 710H6345L6159 271ZM6030 649Q6019 676 6033 690Q6047 705 6064 705H6072V715H5872V705Q5872 705 5876 705Q5880 705 5880 705Q5900 705 5922 692Q5944 680 5958 649ZM6218 88 6220 208 6003 712H5929L6163 209Q6165 203 6172 188Q6179 172 6187 152Q6195 133 6202 116Q6209 98 6210 88ZM6305 519V558H6050V519ZM6320 649H6485Q6500 680 6522 692Q6544 705 6564 705Q6564 705 6568 705Q6572 705 6572 705V715H6278V705H6286Q6303 705 6317 690Q6331 676 6320 649Z M6722 115H6888Q6927 115 6967 121Q7007 127 7040 143Q7073 159 7093 188Q7113 217 7113 264Q7113 302 7097 329Q7081 356 7056 371Q7031 386 7003 388Q7047 391 7082 411Q7117 431 7138 464Q7160 498 7160 544Q7160 591 7140 624Q7120 656 7085 676Q7050 697 7004 706Q6959 715 6909 715H6819Q6819 715 6819 705Q6819 695 6819 685Q6819 675 6819 675H6867Q6903 675 6932 662Q6962 648 6980 617Q6998 586 6998 535Q6998 500 6988 474Q6977 447 6958 430Q6939 414 6913 406Q6887 398 6856 398V389Q6878 389 6898 382Q6918 376 6932 362Q6947 349 6956 327Q6964 305 6964 274Q6964 207 6933 180Q6902 154 6855 154H6731Q6731 153 6728 144Q6726 134 6724 124Q6722 115 6722 115ZM6826 115V715H6684V115ZM6687 652V715H6619V705Q6620 705 6624 705Q6629 705 6630 705Q6654 705 6670 690Q6685 674 6684 652ZM6687 178H6684Q6685 154 6670 140Q6654 125 6630 125Q6629 125 6624 125Q6620 125 6619 125V115H6687Z M7465 102Q7485 102 7514 104Q7542 106 7570 108Q7598 111 7620 114Q7641 118 7649 121L7636 243H7627Q7627 197 7595 170Q7563 143 7503 143Q7455 143 7426 164Q7396 185 7394 220Q7392 238 7400 252Q7409 267 7424 278Q7440 289 7459 300L7616 397Q7656 417 7679 455Q7702 493 7699 547Q7696 603 7666 644Q7637 685 7586 706Q7534 728 7464 728Q7421 728 7384 721Q7347 714 7320 702Q7294 690 7280 675Q7272 655 7273 626Q7274 598 7282 570Q7290 541 7302 522H7310Q7307 567 7326 605Q7346 643 7384 666Q7422 688 7475 688Q7533 688 7562 661Q7591 634 7591 598Q7591 571 7574 550Q7556 528 7516 507L7374 417Q7324 391 7302 348Q7279 305 7285 254Q7290 206 7314 172Q7337 138 7376 120Q7415 102 7465 102ZM7649 111 7648 129H7541V111Z"/></g></svg></a></li>
-      <li aria-current="page"><span>VOIDSPLUNKER<span class="bc-std">.std</span></span></li>
-    </ol>
-  </nav>
-
-  <div class="hero-in">
-    <div class="hero-copy">
-      <p class="eyebrow">Artist · Designer · Developer</p>
-      <h1 class="handle">br4vetr4veler</h1>
-      <p class="name">Hamisse Mohamed Yasser</p>
-      <p class="motto">form is a function of obsession.</p>
+<!-- ============================= COVER =============================
+     The character bible's cover: the label, the name, the night seal and
+     the tagline on the left; the drawing of the two of them at rest on the
+     right. The drawing is the one 04b flips (actor-duo-a), so it ships
+     once. -->
+<header class="cover" id="top">
+  <div class="cover-copy">
+    <nav class="bar" aria-label="Breadcrumb">
+      <ol class="bc">
+        <li><a href="../" aria-label="Numidea Labs"><svg class="wm" viewBox="0 0 7699 734" width="168" height="16" fill="currentColor"><title>Numidea Labs</title><g id="wm"><path d="M78 0 716 608 728 729 90 122ZM83 644V715H0V705Q0 705 9 705Q18 705 19 705Q44 705 62 687Q80 669 80 644ZM223 644Q223 669 241 687Q259 705 284 705Q285 705 294 705Q303 705 303 705V715H220V644ZM78 0 222 153 223 715H80V125Q80 69 74 34Q68 0 68 0ZM725 15V601Q725 638 728 668Q731 697 734 713Q737 729 737 729H728L583 567V15ZM805 15V25Q805 25 796 25Q787 25 787 25Q762 25 744 42Q726 60 725 86H722V15ZM502 15H585V86H583Q582 60 564 42Q547 25 521 25Q521 25 512 25Q503 25 502 25Z M1097 115V492Q1097 584 1140 636Q1182 688 1258 688Q1337 688 1380 639Q1424 590 1425 503V115H1491V497Q1491 604 1426 666Q1360 728 1240 728Q1095 728 1024 666Q953 605 953 498V115ZM955 115V167H953Q952 148 939 136Q926 124 907 124Q907 124 900 124Q893 124 893 124V115ZM1156 115V124Q1156 124 1149 124Q1142 124 1142 124Q1123 124 1110 136Q1097 148 1097 167H1095V115ZM1427 115V167H1425Q1424 148 1411 136Q1398 124 1380 124Q1380 124 1373 124Q1366 124 1366 124V115ZM1550 115V124Q1550 124 1544 124Q1537 124 1537 124Q1518 124 1504 136Q1491 148 1491 167H1489V115Z M2304 102 2312 205 2043 632Q2043 632 2034 648Q2025 665 2016 688Q2008 711 2007 734H1998L1959 652ZM1689 651V715H1591V705Q1591 705 1598 705Q1604 705 1604 705Q1629 705 1648 691Q1666 677 1670 651ZM1732 665Q1731 676 1739 690Q1747 705 1767 705H1781V715H1721L1727 665ZM1748 102H1756L1790 198L1727 715H1662ZM1756 102 2052 545 1998 734 1732 331ZM2313 102 2401 715H2248L2199 350L2304 102ZM2373 651H2392Q2397 677 2416 691Q2434 705 2457 705Q2457 705 2464 705Q2471 705 2471 705V715H2373ZM2241 665H2247L2253 715H2193V705H2207Q2229 705 2236 690Q2243 676 2241 665Z"/><g class="wm-accent" style="fill:var(--teal-text,currentColor)"><path d="M2750 115V715H2606V115ZM2609 652V715H2536V705Q2536 705 2542 705Q2548 705 2549 705Q2572 705 2589 690Q2606 674 2606 652ZM2748 652H2750Q2751 674 2768 690Q2784 705 2808 705Q2808 705 2814 705Q2819 705 2820 705V715H2748ZM2748 178V115H2820L2819 125Q2819 125 2814 125Q2809 125 2808 125Q2784 125 2768 140Q2751 155 2750 178ZM2609 178H2606Q2606 155 2589 140Q2572 125 2548 125Q2548 125 2542 125Q2536 125 2536 125V115H2609Z M3259 115Q3366 115 3443 150Q3520 186 3561 254Q3602 321 3602 415Q3602 509 3561 576Q3520 643 3443 679Q3366 715 3259 715H3037L3035 675Q3111 675 3158 675Q3204 675 3226 675Q3247 675 3247 675Q3341 675 3395 606Q3449 537 3449 415Q3449 293 3395 224Q3341 154 3247 154Q3247 154 3225 154Q3203 154 3154 154Q3105 154 3025 154V115ZM3134 115V715H2990V115ZM2993 651V715H2921V705Q2921 705 2927 705Q2933 705 2934 705Q2957 705 2974 689Q2990 673 2990 651ZM2992 178H2990Q2989 155 2972 140Q2956 125 2933 125Q2933 125 2927 125Q2921 125 2921 125V115H2992Z M3909 115V715H3765V115ZM4143 675 4166 715H3907V675ZM4109 398V438H3907V398ZM4154 115V155H3907V115ZM4207 531 4169 715H3996L4027 675Q4070 675 4104 658Q4137 640 4161 608Q4185 575 4198 531ZM4109 436V524H4099V516Q4099 483 4078 461Q4058 439 4023 438V436ZM4109 312V400H4023V398Q4058 397 4078 374Q4099 352 4099 319V312ZM4154 153V259H4144V250Q4144 206 4120 181Q4097 156 4053 155V153ZM4154 100V124L4049 115Q4078 115 4110 110Q4142 104 4154 100ZM3767 652 3772 715H3698V705Q3698 705 3704 705Q3710 705 3711 705Q3733 705 3748 690Q3764 674 3765 652ZM3767 178H3765Q3764 155 3748 140Q3733 125 3711 125Q3710 125 3704 125Q3698 125 3698 125V115H3772Z M4587 88 4883 710H4714L4528 271ZM4399 649Q4388 676 4402 690Q4416 705 4433 705H4441V715H4241V705Q4241 705 4245 705Q4249 705 4249 705Q4269 705 4291 692Q4313 680 4327 649ZM4587 88 4589 208 4372 712H4298L4532 209Q4534 203 4541 188Q4548 172 4556 152Q4564 133 4571 116Q4578 98 4579 88ZM4674 519V558H4419V519ZM4689 649H4854Q4869 680 4891 692Q4913 705 4933 705Q4933 705 4937 705Q4941 705 4941 705V715H4647V705H4655Q4672 705 4686 690Q4700 676 4689 649Z"/></g><path d="M5511 15V715H5361V15ZM5775 672 5799 715H5508V672ZM5848 510 5802 715H5606L5642 672Q5692 672 5730 652Q5768 633 5795 596Q5822 560 5838 510ZM5364 642V715H5284V705Q5284 705 5290 705Q5297 705 5297 705Q5323 705 5342 686Q5360 668 5361 642ZM5364 88H5361Q5360 62 5342 44Q5323 25 5297 25Q5297 25 5290 25Q5284 25 5284 25V15H5364ZM5508 88V15H5588V25Q5587 25 5581 25Q5575 25 5575 25Q5549 25 5530 44Q5512 62 5511 88Z M6218 88 6514 710H6345L6159 271ZM6030 649Q6019 676 6033 690Q6047 705 6064 705H6072V715H5872V705Q5872 705 5876 705Q5880 705 5880 705Q5900 705 5922 692Q5944 680 5958 649ZM6218 88 6220 208 6003 712H5929L6163 209Q6165 203 6172 188Q6179 172 6187 152Q6195 133 6202 116Q6209 98 6210 88ZM6305 519V558H6050V519ZM6320 649H6485Q6500 680 6522 692Q6544 705 6564 705Q6564 705 6568 705Q6572 705 6572 705V715H6278V705H6286Q6303 705 6317 690Q6331 676 6320 649Z M6722 115H6888Q6927 115 6967 121Q7007 127 7040 143Q7073 159 7093 188Q7113 217 7113 264Q7113 302 7097 329Q7081 356 7056 371Q7031 386 7003 388Q7047 391 7082 411Q7117 431 7138 464Q7160 498 7160 544Q7160 591 7140 624Q7120 656 7085 676Q7050 697 7004 706Q6959 715 6909 715H6819Q6819 715 6819 705Q6819 695 6819 685Q6819 675 6819 675H6867Q6903 675 6932 662Q6962 648 6980 617Q6998 586 6998 535Q6998 500 6988 474Q6977 447 6958 430Q6939 414 6913 406Q6887 398 6856 398V389Q6878 389 6898 382Q6918 376 6932 362Q6947 349 6956 327Q6964 305 6964 274Q6964 207 6933 180Q6902 154 6855 154H6731Q6731 153 6728 144Q6726 134 6724 124Q6722 115 6722 115ZM6826 115V715H6684V115ZM6687 652V715H6619V705Q6620 705 6624 705Q6629 705 6630 705Q6654 705 6670 690Q6685 674 6684 652ZM6687 178H6684Q6685 154 6670 140Q6654 125 6630 125Q6629 125 6624 125Q6620 125 6619 125V115H6687Z M7465 102Q7485 102 7514 104Q7542 106 7570 108Q7598 111 7620 114Q7641 118 7649 121L7636 243H7627Q7627 197 7595 170Q7563 143 7503 143Q7455 143 7426 164Q7396 185 7394 220Q7392 238 7400 252Q7409 267 7424 278Q7440 289 7459 300L7616 397Q7656 417 7679 455Q7702 493 7699 547Q7696 603 7666 644Q7637 685 7586 706Q7534 728 7464 728Q7421 728 7384 721Q7347 714 7320 702Q7294 690 7280 675Q7272 655 7273 626Q7274 598 7282 570Q7290 541 7302 522H7310Q7307 567 7326 605Q7346 643 7384 666Q7422 688 7475 688Q7533 688 7562 661Q7591 634 7591 598Q7591 571 7574 550Q7556 528 7516 507L7374 417Q7324 391 7302 348Q7279 305 7285 254Q7290 206 7314 172Q7337 138 7376 120Q7415 102 7465 102ZM7649 111 7648 129H7541V111Z"/></g></svg></a></li>
+        <li aria-current="page"><span>VOIDSPLUNKER<span class="bc-std">.std</span></span></li>
+      </ol>
+    </nav>
+    <p class="chip-row"><span class="chip">Character bible</span><span>br4vetr4veler · artist · designer · developer</span></p>
+    <h1>Yasser<span>.</span></h1>
+    <div class="seal-row">
+      <span class="seal" role="img" lang="ja" aria-label="yoru, night">夜</span>
+      <p class="tagline">The builder who answers at 2 a.m. — and the black cat who decides if it's good enough.</p>
     </div>
-
-    <!-- the beloved one: WorkspaceHQ, presented as a game cartridge Bit lives on -->
-    <a class="whq-cart" href="../workspacehq/"><span class="whq-bit"><svg viewBox="0 0 12 9" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><rect x="3" y="0" width="6" height="1" fill="#d97757"/><rect x="2" y="1" width="1" height="1" fill="#d97757"/><rect x="3" y="1" width="1" height="1" fill="#f2a27e"/><rect x="4" y="1" width="6" height="1" fill="#d97757"/><rect x="1" y="2" width="1" height="1" fill="#d97757"/><rect x="2" y="2" width="1" height="1" fill="#f2a27e"/><rect x="3" y="2" width="8" height="1" fill="#d97757"/><rect x="1" y="3" width="10" height="1" fill="#d97757"/><rect x="1" y="4" width="10" height="1" fill="#d97757"/><rect x="0" y="5" width="12" height="1" fill="#d97757"/><rect x="1" y="6" width="10" height="1" fill="#d97757"/><rect x="1" y="7" width="10" height="1" fill="#a5543a"/><rect x="2" y="8" width="1" height="1" fill="#a5543a"/><rect x="4" y="8" width="1" height="1" fill="#a5543a"/><rect x="7" y="8" width="1" height="1" fill="#a5543a"/><rect x="9" y="8" width="1" height="1" fill="#a5543a"/><g class="whq-eyes"><rect x="3" y="3" width="1" height="1" fill="#1b1430"/><rect x="8" y="3" width="1" height="1" fill="#1b1430"/><rect x="3" y="4" width="1" height="1" fill="#1b1430"/><rect x="8" y="4" width="1" height="1" fill="#1b1430"/></g></svg></span><span class="whq-txt"><span class="whq-kick">NOW PLAYING · <span class="whq-nw">MY FAVOURITE BUILD</span></span><b class="whq-name">WORKSPACE<i>HQ</i> <em>v3</em></b><span class="whq-sub">an arcade cabinet for your codebase</span></span><span class="whq-start" aria-hidden="true">▶ PRESS START</span><span class="whq-xp" aria-hidden="true">+1 XP</span></a>
-
-    <!-- depths: data-parallax is the scroll lag, data-depth the pointer
-         offset in px (fine pointers only; app.js §1). The scroll lag is one
-         value for all three, so the stage lags as one print and the figures
-         never leave their ground; only the pointer separates them, by 2px at
-         most, enough to read as standing in front of the paper. The stage
-         takes no pointer events: the cartridge and the words above it stay
-         clickable and selectable. -->
-    <div class="stage">
-      <picture class="layer layer--bg" data-parallax="-.03" data-depth="3">
-        <source media="(min-width:1024px)" srcset="art/hero-bg-wide-1280.webp 1280w, art/hero-bg-wide-1920.webp 1920w, art/hero-bg-wide-2560.webp 2560w" sizes="100vw" width="2560" height="1557">
-        <img src="art/hero-bg-tall-960.webp" srcset="art/hero-bg-tall-640.webp 640w, art/hero-bg-tall-960.webp 960w, art/hero-bg-tall-1192.webp 1192w" sizes="(min-width:700px) 50vw, 100vw" width="1192" height="1674" alt="" decoding="async">
-      </picture>
-      <picture class="layer layer--kuro" data-parallax="-.03" data-depth="4">
-        <source media="(min-width:1024px)" srcset="art/hero-kuro-wide-1280.webp 1280w, art/hero-kuro-wide-1920.webp 1920w, art/hero-kuro-wide-2560.webp 2560w" sizes="100vw" width="2560" height="1557">
-        <img src="art/hero-kuro-tall-960.webp" srcset="art/hero-kuro-tall-640.webp 640w, art/hero-kuro-tall-960.webp 960w, art/hero-kuro-tall-1192.webp 1192w" sizes="(min-width:700px) 50vw, 100vw" width="1192" height="1674" alt="" decoding="async">
-      </picture>
-      <picture class="layer layer--yasser" data-parallax="-.03" data-depth="5">
-        <source media="(min-width:1024px)" srcset="art/hero-yasser-wide-1280.webp 1280w, art/hero-yasser-wide-1920.webp 1920w, art/hero-yasser-wide-2560.webp 2560w" sizes="100vw" width="2560" height="1557">
-        <img src="art/hero-yasser-tall-960.webp" srcset="art/hero-yasser-tall-640.webp 640w, art/hero-yasser-tall-960.webp 960w, art/hero-yasser-tall-1192.webp 1192w" sizes="(min-width:700px) 50vw, 100vw" width="1192" height="1674" alt="Yasser in a long bone coat, a coffee in his hand, and Ku&#x304;ro, the black cat, sitting beside him." fetchpriority="high">
-      </picture>
-    </div>
+    <p class="marker">tired eyes · big ideas · same energy.</p>
   </div>
+  <figure class="cover-art">
+    <img src="art/actor-duo-a.webp" width="673" height="520" alt="Yasser sitting cross-legged on the floor in his oversized cream coat, a coffee in his hand; Ku&#x304;ro, the black cat, sits beside him and glares at you." fetchpriority="high" decoding="async">
+    <span class="floor-line" aria-hidden="true"></span>
+    <figcaption class="tag">Yasser &amp; Ku&#x304;ro · at rest</figcaption>
+  </figure>
 </header>
 
-
-<!-- ============================= WHAT I MAKE =============================
-     The skip link's target. Three roles, each a cut-out drawn on paper: on
-     the paper page they stand on the page itself; in the dark theme each sits
-     on its own paper card. Copy is the owner's published wording. -->
-<section class="make" id="make" tabindex="-1" aria-labelledby="make-h">
-  <div class="wrap make-grid">
-    <div class="make-head" data-reveal>
-      <p class="kicker">What I make</p>
-      <h2 class="make-h" id="make-h">Design meets code.</h2>
+<!-- ============================= 00 · HE'S ALIVE =============================
+     The live rig: thirteen drawn frames of Yasser and seven of Kūro, stacked;
+     only one is visible at a time (opacity), so a change of face is a hard
+     cut. The two base frames are plain pictures; the eighteen others wait
+     in the <template> and app.js adds them when the panel comes on screen,
+     so a visitor who never scrolls to him never fetches them. Everything
+     he does is finite: five seconds of breath and blinks after he is seen,
+     and after every move, click or button, then he rests on his base frame
+     (app.js §1). Both figures are buttons, so the keyboard pokes them too;
+     the line he says is typed in the bubble and written in full under the
+     panel (aria-live). -->
+<section class="sec" id="alive" tabindex="-1" aria-labelledby="alive-h">
+  <div class="sh"><span class="num">00 /</span><h2 id="alive-h">He's alive</h2><span class="note">move your cursor · click him</span></div>
+  <div class="live">
+    <div>
+      <div class="rig" id="rig">
+        <span class="rig-kanji" aria-hidden="true">ヤセル</span>
+        <span class="rig-floor" aria-hidden="true"></span>
+        <button type="button" class="rig-y" id="rigY" aria-label="Yasser. Press for a line; twice for a laugh.">
+          <span class="rig-body" data-ybody>
+            <img data-yf="base" src="art/rig-y-base.webp" width="501" height="565" alt="" decoding="async">
+            <span class="steam" aria-hidden="true"><i data-wisp></i><i data-wisp></i><i data-wisp></i></span>
+          </span>
+        </button>
+        <button type="button" class="rig-k" id="rigK" aria-label="Ku&#x304;ro. Poke him.">
+          <span class="rig-kbody" data-kbody>
+            <img data-kf="base" src="art/rig-k-base.webp" width="360" height="294" alt="" decoding="async">
+          </span>
+        </button>
+        <div class="bubble" data-ybubble aria-hidden="true"><span data-ytext></span><i></i></div>
+        <div class="state"><span>State</span><b id="rigState">Idle · coffee no.1</b></div>
+      </div>
+      <template id="rigFrames">
+        <img data-yf="half" src="art/rig-y-half.webp" width="501" height="565" alt="">
+        <img data-yf="blink" src="art/rig-y-blink.webp" width="501" height="565" alt="">
+        <img data-yf="smirk" src="art/rig-y-smirk.webp" width="501" height="565" alt="">
+        <img data-yf="glance" src="art/rig-y-glance.webp" width="501" height="565" alt="">
+        <img data-yf="glance-r" src="art/rig-y-glance-r.webp" width="501" height="565" alt="">
+        <img data-yf="up" src="art/rig-y-up.webp" width="501" height="565" alt="">
+        <img data-yf="sip" src="art/rig-y-sip.webp" width="501" height="565" alt="">
+        <img data-yf="talk-a" src="art/rig-y-talk-a.webp" width="501" height="565" alt="">
+        <img data-yf="talk-b" src="art/rig-y-talk-b.webp" width="501" height="565" alt="">
+        <img data-yf="yawn" src="art/rig-y-yawn.webp" width="501" height="565" alt="">
+        <img data-yf="laugh" src="art/rig-y-laugh.webp" width="501" height="565" alt="">
+        <img data-yf="glasses" src="art/rig-y-glasses.webp" width="501" height="565" alt="">
+        <img data-kf="blink" src="art/rig-k-blink.webp" width="360" height="294" alt="">
+        <img data-kf="wide" src="art/rig-k-wide.webp" width="360" height="294" alt="">
+        <img data-kf="left" src="art/rig-k-left.webp" width="360" height="294" alt="">
+        <img data-kf="right" src="art/rig-k-right.webp" width="360" height="294" alt="">
+        <img data-kf="yawn" src="art/rig-k-yawn.webp" width="360" height="294" alt="">
+        <img data-kf="ear" src="art/rig-k-ear.webp" width="360" height="294" alt="">
+      </template>
+      <p class="rig-said" id="rigSaid" aria-live="polite"></p>
     </div>
-
-    <article class="role role--designer" aria-labelledby="role-d" data-reveal>
-      <div class="role-fig">
-        <img class="fade" src="art/make-designer-720.webp" srcset="art/make-designer-480.webp 480w, art/make-designer-720.webp 720w, art/make-designer-960.webp 960w" sizes="(min-width:1024px) 520px, (min-width:700px) 46vw, 84vw" width="960" height="948" alt="Yasser at a drafting table, inking a logo in a sketchbook." loading="lazy" decoding="async">
+    <div class="live-side">
+      <p class="lede">Twenty drawn frames, one rig. Only the face swaps between frames, so nothing else jitters. Breathing, lean, steam, speech and the two-frame squash are code. He talks, follows you, and settles when you stop.</p>
+      <div class="ctrls" role="group" aria-label="Make him react">
+        <button type="button" class="ctrl" data-act="say">Say a line<small>talk</small></button>
+        <button type="button" class="ctrl" data-act="glasses">Glasses up<small>0.75 s</small></button>
+        <button type="button" class="ctrl" data-act="sip">Sip<small>1.7 s</small></button>
+        <button type="button" class="ctrl" data-act="laugh">Laugh<small>0.95 s</small></button>
+        <button type="button" class="ctrl" data-act="yawn">Yawn<small>1.2 s</small></button>
+        <button type="button" class="ctrl" data-act="blink">Blink<small>now</small></button>
+        <button type="button" class="ctrl" data-act="smirk" aria-pressed="false">Smirk<small>hold</small></button>
+        <button type="button" class="ctrl" data-act="up" aria-pressed="false">Look up<small>hold</small></button>
+        <button type="button" class="ctrl" data-act="night" aria-pressed="false">Night<small>off</small></button>
+        <button type="button" class="ctrl" data-act="idle">Go idle<small>drowsy</small></button>
+        <button type="button" class="ctrl" data-act="kyawn">Ku&#x304;ro yawn<small>1.3 s</small></button>
+        <button type="button" class="ctrl" data-act="kear">Ku&#x304;ro ear<small>flick</small></button>
+        <button type="button" class="ctrl" data-act="kwide">Ku&#x304;ro wide<small>0.9 s</small></button>
+        <button type="button" class="ctrl" data-act="release">Release<small>auto</small></button>
       </div>
-      <div class="role-txt">
-        <h3 id="role-d">Designer</h3>
-        <p>Brand identities, posters and print.</p>
-        <ul class="role-links">
-          <li><a href="#design">The design work</a></li>
-          <li><a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">Behance <span aria-hidden="true">↗</span></a></li>
-        </ul>
-      </div>
-    </article>
-
-    <!-- reveal on the article's two parts, not on the article: Kūro, at its
-         end, is placed beside the heading below 1024px and must not wait for
-         this block to scroll into view -->
-    <article class="role role--developer" aria-labelledby="role-v">
-      <div class="role-fig" data-reveal>
-        <img class="fade" src="art/make-developer-720.webp" srcset="art/make-developer-480.webp 480w, art/make-developer-720.webp 720w, art/make-developer-903.webp 903w" sizes="(min-width:1024px) 440px, (min-width:700px) 40vw, 84vw" width="903" height="776" alt="Yasser at a laptop full of code." loading="lazy" decoding="async">
-      </div>
-      <div class="role-txt" data-reveal>
-        <h3 id="role-v">Developer</h3>
-        <p>Immersive web, and the systems humming underneath.</p>
-        <ul class="role-links">
-          <li><a href="../workspacehq/">WorkspaceHQ</a></li>
-          <li><a href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
-          <li><a href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
-        </ul>
-      </div>
-      <!-- marginalia: Kūro, die-cut, away from the drawn Kūros and from every
-           print edge: from 1024px under these links, in the empty cell beside
-           the Designer's text (in this column's flow, so he never covers a
-           link); below 1024px beside the heading's short first line -->
-      <img class="kuro kuro--paw" src="art/kuro-paw-240.webp" srcset="art/kuro-paw-240.webp 240w, art/kuro-paw-480.webp 480w" sizes="150px" width="480" height="680" alt="" loading="lazy" decoding="async">
-    </article>
-
-    <article class="role role--artist" aria-labelledby="role-a" data-reveal>
-      <div class="role-fig">
-        <img class="fade" src="art/make-artist-720.webp" srcset="art/make-artist-480.webp 480w, art/make-artist-720.webp 720w, art/make-artist-960.webp 960w" sizes="(min-width:1024px) 460px, (min-width:700px) 46vw, 84vw" width="960" height="787" alt="Yasser drawing on a pen display while Ku&#x304;ro walks across it." loading="lazy" decoding="async">
-      </div>
-      <div class="role-txt">
-        <h3 id="role-a">Artist</h3>
-        <p>The process, posted as it happens.</p>
-        <ul class="role-links">
-          <li><a href="#collection">The studio diary</a></li>
-          <li><a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">DeviantArt <span aria-hidden="true">↗</span></a></li>
-          <li><a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a></li>
-        </ul>
-      </div>
-    </article>
-
+      <dl class="rules">
+        <div><dt>Gaze</dt><dd>Cursor left third → glance ←, right edge → glance →, top of screen → looks up. 110 ms dwell so he never flickers on a line. His whole body leans toward you.</dd></div>
+        <div><dt>Talk</dt><dd>Click him, or press "Say a line": the marker bubble types at 38 ms a character, the mouth flaps between three frames and shuts on punctuation. One line in three starts with the glasses push.</dd></div>
+        <div><dt>Click</dt><dd>Once: a two-frame squash and a line. Twice within 2.5 s: he laughs, Ku&#x304;ro goes wide.</dd></div>
+        <div><dt>Rest</dt><dd>He breathes and blinks for five seconds after your last move, then settles on his base frame. Nothing on this page moves on its own for longer than that.</dd></div>
+        <div><dt>Drowsy</dt><dd>"Go idle": a yawn, then heavy eyes; Ku&#x304;ro yawns three seconds later. Any move wakes him with a blink and a smirk.</dd></div>
+        <div><dt>Ku&#x304;ro</dt><dd>Follows your cursor 320 ms late, watches Yasser while he talks, flicks an ear, goes wide-eyed on a fast scroll.</dd></div>
+      </dl>
+    </div>
   </div>
 </section>
 
-
-<!-- ============================= DESIGN =============================
-     Identity, social and print work as published on Behance, titles only.
-     The band is a paper print: full-bleed on the paper page, inset on the
-     night one. Its heading sits on the band's empty left from 1024px; below
-     that it comes first and the band's right part follows. -->
-<section class="design" id="design" aria-labelledby="design-h">
-  <div class="band band--design paper">
-    <div class="band-copy" data-reveal>
-      <h2 id="design-h">Identity. Posters. Print.</h2>
-      <p><a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">All projects on Behance <span aria-hidden="true">↗</span></a></p>
+<!-- ============================= 01 · WHO HE IS ============================= -->
+<section class="sec" id="who" aria-labelledby="who-h">
+  <div class="sh"><span class="num">01 /</span><h2 id="who-h">Who he is</h2></div>
+  <div class="who">
+    <div class="card">
+      <dl class="profile">
+        <dt>Name</dt><dd><b>Yasser Hamisse</b></dd>
+        <dt>Role</dt><dd>Founder · creative director · the one who actually ships it</dd>
+        <dt>Base</dt><dd>Bordj Bou Arréridj, Algeria — the studio roof at dawn</dd>
+        <dt>Seal</dt><dd><span lang="ja">夜</span> <em>yoru</em> — night. He does his best work after everyone logs off.</dd>
+        <dt>Fuel</dt><dd>Black coffee, the Numidea mug, never a fancy order</dd>
+        <dt>Partner</dt><dd>Ku&#x304;ro <span lang="ja">クロ</span>, a black cat with taste and no patience</dd>
+      </dl>
     </div>
-    <picture class="band-art">
-      <source media="(min-width:1024px)" srcset="art/band-design-1280.webp 1280w, art/band-design-1920.webp 1920w" sizes="100vw" width="1920" height="1072">
-      <img class="fade" src="art/band-design-tall-800.webp" srcset="art/band-design-tall-800.webp 800w, art/band-design-tall-1200.webp 1200w" sizes="100vw" width="1200" height="1217" alt="Yasser at a work table among floating layouts, logo studies and colour swatches, Ku&#x304;ro sitting at the table's edge." loading="lazy" decoding="async">
-    </picture>
-  </div>
-
-  <div class="wrap covers-wrap">
-    <ul class="covers" data-reveal>
-      <li><a class="cover" href="https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-09.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Bordj Steel Branding Project</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/254889197/HEETCH-ENTRY-TEST" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-00.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Heetch Entry Test</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/253834245/MINIMAL-INDUSTRIAL-SOCIAL-MEDIA-CREATIVES" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-01.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Minimal Industrial Social Media Creatives</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/253721505/SURFBOARD-DESIGN-FOR-BEACH-POSM" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-02.webp" alt="" width="554" height="434" loading="lazy" decoding="async"></span><span class="cover-t">Surfboard Design for Beach POSM</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/252840169/summer-creative-social-media" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-03.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Summer. Creative. Social Media</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/252522281/amanatcom-brand-guidelines" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-04.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Amanatcom Brand Guidelines</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/250754909/FIRST-MONTH-AT-HEETCH-DZ" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-05.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">First Month At Heetch. Dz</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/241516627/SANDIWCH-INSULATING-PANNELS-GRAPHIC-ASSETS" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-06.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Sandwich Insulating Panels Graphic Assets</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/241515403/BILLBOARD-URBAIN-BORDJ-STEEL-SPA" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-07.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Billboard Urbain Bordj Steel SPA</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/235033549/TYLER-DURDAIN-HALFTONE-POSTER" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-08.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Tyler Durden Halftone Poster</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/233152047/STAR-BORN-ALGERIANSERIES" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-10.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Star Born Algerian Series</span></a></li>
-      <li><a class="cover" href="https://www.behance.net/gallery/232008435/ALAN-IS-AWAKE-MANGA-CONCEPT" target="_blank" rel="noopener"><span class="cover-img"><img class="fade" src="art/be-11.webp" alt="" width="640" height="501" loading="lazy" decoding="async"></span><span class="cover-t">Alan Is Awake Manga Concept</span></a></li>
-    </ul>
-    <!-- marginalia: Kūro sits below the grid's last cover, clear of the
-         covers and their rings, far from the band's drawn Kūro -->
-    <img class="kuro kuro--sit" src="art/kuro-sit-240.webp" srcset="art/kuro-sit-240.webp 240w, art/kuro-sit-445.webp 445w" sizes="130px" width="445" height="664" alt="" loading="lazy" decoding="async">
-  </div>
-</section>
-
-
-<!-- ============================= STUDIO DIARY =============================
-     A night print in both themes: inset on the paper page, edge to edge on
-     the night one. Eight prints in story order; each opens in the viewer
-     (#lb) below. Without scripts each is a plain link to its large file.
-     Titles approved by the owner on 2026-10-28. The hooks keys.mjs drives:
-     #collection, .tile--img with data-title, #lb, #lbTitle. Rows: one
-     full-width print, three of one size side by side, one full, two, one
-     full; every print in a row has its row's ratio, so tops and bottoms
-     line up. -->
-<section class="diary night" id="collection" aria-labelledby="coll-h">
-  <div class="band band--diary">
-    <div class="band-copy" data-reveal>
-      <h2 id="coll-h">Studio diary</h2>
-      <p>Yasser and Ku&#x304;ro, after hours.</p>
+    <div class="four">
+      <div><span class="label">Wants</span><span>To build the thing your business has been waiting for — and see you use it.</span></div>
+      <div><span class="label">Fears</span><span>Being one more middleman. A client who calls and nobody answers.</span></div>
+      <div><span class="label">Flaw</span><span>Says yes to the impossible, then sleeps on the keyboard proving it.</span></div>
+      <div><span class="label">Tell</span><span>Pushes his glasses up with one finger before he says "ok, watch this".</span></div>
     </div>
-    <picture class="band-art">
-      <source media="(min-width:1024px)" srcset="art/band-diary-1280.webp 1280w, art/band-diary-1920.webp 1920w" sizes="100vw" width="1920" height="1072">
-      <img class="fade" src="art/band-diary-tall-800.webp" srcset="art/band-diary-tall-800.webp 800w, art/band-diary-tall-1200.webp 1200w" sizes="100vw" width="1200" height="1217" alt="Yasser turning a small model in his hands at a lamp-lit desk at night, Ku&#x304;ro sitting under the lamp." loading="lazy" decoding="async">
-    </picture>
   </div>
-
-  <ul class="prints wrap">
-    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-4am-1600.webp" data-full="art/diary-4am-1600.webp" data-w="1600" data-h="1045" data-title="4 a.m." data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-4am-960.webp" srcset="art/diary-4am-640.webp 640w, art/diary-4am-960.webp 960w, art/diary-4am-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="836" alt="Yasser at his desk by a dark city window, a pen at his lips, Ku&#x304;ro asleep on the keyboard." loading="lazy" decoding="async"></span><span class="print-t">4 a.m.</span></a></li>
-    <li class="print print--third" data-reveal><a class="tile tile--img" href="art/diary-buried-1264.webp" data-full="art/diary-buried-1264.webp" data-w="1264" data-h="848" data-title="Buried" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-buried-960.webp" srcset="art/diary-buried-640.webp 640w, art/diary-buried-960.webp 960w, art/diary-buried-1264.webp 1264w" sizes="(min-width:1024px) 380px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Yasser holding his head next to towers of binders and papers, Ku&#x304;ro sitting on the open laptop." loading="lazy" decoding="async"></span><span class="print-t">Buried</span></a></li>
-    <li class="print print--third" data-reveal><a class="tile tile--img" href="art/diary-art-director-1264.webp" data-full="art/diary-art-director-1264.webp" data-w="1264" data-h="848" data-title="Art director" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-art-director-960.webp" srcset="art/diary-art-director-640.webp 640w, art/diary-art-director-960.webp 960w, art/diary-art-director-1264.webp 1264w" sizes="(min-width:1024px) 380px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Ku&#x304;ro sitting on Yasser's pen display while he draws around him, coffee cups all over the desk." loading="lazy" decoding="async"></span><span class="print-t">Art director</span></a></li>
-    <li class="print print--third print--tab-full" data-reveal><a class="tile tile--img" href="art/diary-second-brain-1264.webp" data-full="art/diary-second-brain-1264.webp" data-w="1264" data-h="848" data-title="The second brain" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-second-brain-960.webp" srcset="art/diary-second-brain-640.webp 640w, art/diary-second-brain-960.webp 960w, art/diary-second-brain-1264.webp 1264w" sizes="(min-width:1024px) 380px, 92vw" width="1264" height="848" alt="Yasser at a wall of pinned notes linked by strings, Ku&#x304;ro asleep on the desk behind him." loading="lazy" decoding="async"></span><span class="print-t">The second brain</span></a></li>
-    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-miniature-1600.webp" data-full="art/diary-miniature-1600.webp" data-w="1600" data-h="1046" data-title="A world in miniature" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-miniature-960.webp" srcset="art/diary-miniature-640.webp 640w, art/diary-miniature-960.webp 960w, art/diary-miniature-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="836" alt="Yasser holding up a cut-paper scene of towers at his workbench, Ku&#x304;ro watching from a blueprint." loading="lazy" decoding="async"></span><span class="print-t">A world in miniature</span></a></li>
-    <li class="print print--half print--crop" data-reveal><a class="tile tile--img" href="art/diary-morning-1376.webp" data-full="art/diary-morning-1376.webp" data-w="1376" data-h="768" data-title="Morning light" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-morning-960.webp" srcset="art/diary-morning-640.webp 640w, art/diary-morning-960.webp 960w, art/diary-morning-1280.webp 1280w" sizes="(min-width:1024px) 580px, (min-width:700px) 46vw, 92vw" width="1280" height="714" alt="Yasser sketching at a sunlit desk beside a model tower, Ku&#x304;ro curled up asleep on the desk." loading="lazy" decoding="async"></span><span class="print-t">Morning light</span></a></li>
-    <li class="print print--half" data-reveal><a class="tile tile--img" href="art/diary-wandering-1264.webp" data-full="art/diary-wandering-1264.webp" data-w="1264" data-h="848" data-title="Wandering" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-wandering-960.webp" srcset="art/diary-wandering-640.webp 640w, art/diary-wandering-960.webp 960w, art/diary-wandering-1264.webp 1264w" sizes="(min-width:1024px) 580px, (min-width:700px) 46vw, 92vw" width="1264" height="848" alt="Yasser reading a maze of a map on a rock among ruins at sunset, Ku&#x304;ro sitting beside him." loading="lazy" decoding="async"></span><span class="print-t">Wandering</span></a></li>
-    <li class="print print--full" data-reveal><a class="tile tile--img" href="art/diary-traveler-1600.webp" data-full="art/diary-traveler-1600.webp" data-w="1600" data-h="1073" data-title="tr4veler.exe" data-meta="Studio diary"><span class="print-img"><img class="fade" src="art/diary-traveler-960.webp" srcset="art/diary-traveler-640.webp 640w, art/diary-traveler-960.webp 960w, art/diary-traveler-1280.webp 1280w" sizes="(min-width:1024px) 1000px, 92vw" width="1280" height="859" alt="Three scenes of Yasser and Ku&#x304;ro: resting on a hillside, walking through arches into a maze, and reading a glowing map on a night platform." loading="lazy" decoding="async"></span><span class="print-t">tr4veler.exe</span></a></li>
+  <ul class="axes" aria-label="Where he sits on six axes">
+    <li class="axis"><span class="ends"><span>Calm</span><span>Chaotic</span></span><span class="track"><span class="pin pin--38" role="img" aria-label="38 percent toward chaotic"></span></span></li>
+    <li class="axis"><span class="ends"><span>Night</span><span>Day</span></span><span class="track"><span class="pin pin--14" role="img" aria-label="14 percent toward day"></span></span></li>
+    <li class="axis"><span class="ends"><span>Talks</span><span>Ships</span></span><span class="track"><span class="pin pin--84" role="img" aria-label="84 percent toward ships"></span></span></li>
+    <li class="axis"><span class="ends"><span>Polished</span><span>Messy</span></span><span class="track"><span class="pin pin--66" role="img" aria-label="66 percent toward messy"></span></span></li>
+    <li class="axis"><span class="ends"><span>Serious</span><span>Deadpan funny</span></span><span class="track"><span class="pin pin--72" role="img" aria-label="72 percent toward deadpan funny"></span></span></li>
+    <li class="axis"><span class="ends"><span>Solo</span><span>With Ku&#x304;ro</span></span><span class="track"><span class="pin pin--90" role="img" aria-label="90 percent toward with Ku&#x304;ro"></span></span></li>
   </ul>
 </section>
 
-<!-- The viewer. Close comes first in the source: a modal dialog focuses its
-     first focusable element on open. The buttons are positioned, so the
-     order changes nothing on screen. Previous/Next speak the new piece
-     through the status line at the end. -->
-<dialog class="lb night" id="lb" aria-labelledby="lbTitle">
-  <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
-  <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous piece">←</button>
-  <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next piece">→</button>
-  <figure class="lb-fig">
-    <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
-    <figcaption><b id="lbTitle"></b><i id="lbMeta"></i></figcaption>
-  </figure>
-  <p class="vh" id="lbLive" role="status"></p>
-</dialog>
-
-
-<!-- ============================= ELSEWHERE =============================
-     Handles verified from the Behance profile's own declared social links. -->
-<section class="links" id="links" aria-labelledby="links-h">
-  <div class="wrap links-grid">
-    <div class="links-head" data-reveal>
-      <p class="kicker">Elsewhere</p>
-      <h2 id="links-h">One person. Every world.</h2>
-      <p class="links-sub">Design, code, and everything between.</p>
+<!-- ============================= 02 · THE SILHOUETTE ============================= -->
+<section class="sec" id="silhouette" aria-labelledby="sil-h">
+  <div class="sh"><span class="num">02 /</span><h2 id="sil-h">The silhouette</h2><span class="note">readable at 24 px or it's not him</span></div>
+  <div class="sil">
+    <div class="sil-row">
+      <img src="art/sil-0.webp" width="268" height="737" alt="Pixel Yasser standing, arms crossed." loading="lazy" decoding="async">
+      <img src="art/sil-2.webp" width="289" height="742" alt="Pixel Yasser standing, a hand in his coat pocket." loading="lazy" decoding="async">
+      <img src="art/sil-3.webp" width="252" height="726" alt="Pixel Yasser standing, holding his coffee." loading="lazy" decoding="async">
+      <img src="art/sil-5.webp" width="258" height="716" alt="Pixel Yasser standing, pushing his glasses up." loading="lazy" decoding="async">
     </div>
+    <ol class="marks">
+      <li><span class="n">01</span><span><strong>High ponytail + two hair sticks</strong> — the crossed sticks are his crown; never drop them, even in pixel.</span></li>
+      <li><span class="n">02</span><span><strong>Round thin glasses</strong> — pushed up when thinking, slid down when tired.</span></li>
+      <li><span class="n">03</span><span><strong>Oversized cream coat</strong> — sumi-red lining, NUMIDEA patch on the left sleeve, hood always down.</span></li>
+      <li><span class="n">04</span><span><strong>Black turtleneck + ring pendant</strong> — the ring is the "O" — it catches light in every frame.</span></li>
+      <li><span class="n">05</span><span><strong>Wide black cargo + straps</strong> — utility, not costume; one strap crosses the chest.</span></li>
+      <li><span class="n">06</span><span><strong>Cream sneakers, red heel tab</strong> — the red tab is the only red below the waist.</span></li>
+      <li><span class="n">07</span><span><strong>Tired eyes, under-eye line</strong> — never fully wide-awake except in "shocked".</span></li>
+    </ol>
+  </div>
+  <ul class="swatches" aria-label="His six colours">
+    <li class="sw sw--skin"><i></i><div><b>Skin</b><span>#7A4E36</span></div></li>
+    <li class="sw sw--coat"><i></i><div><b>Coat</b><span>#E6DCC8</span></div></li>
+    <li class="sw sw--ink"><i></i><div><b>Ink</b><span>#211E1B</span></div></li>
+    <li class="sw sw--red"><i></i><div><b>Sumi red</b><span>#A34135</span></div></li>
+    <li class="sw sw--teal"><i></i><div><b>Teal</b><span>#236660</span></div></li>
+    <li class="sw sw--paper"><i></i><div><b>Paper</b><span>#D8CBB8</span></div></li>
+  </ul>
+</section>
 
-    <!-- loops: the still is the src; app.js swaps in the animated file once
-         half of it is on screen. It plays a set number of times (written in
-         the file) and stops on the frame it started from. With reduced motion
-         the <source> keeps the still and app.js never swaps. -->
-    <picture class="loop loop--lost">
-      <source media="(prefers-reduced-motion: reduce)" srcset="loops/yasser-lost-still.webp">
-      <img src="loops/yasser-lost-still.webp" data-anim="loops/yasser-lost.webp" width="480" height="442" alt="" loading="lazy" decoding="async">
-    </picture>
+<!-- ============================= 03 · TWELVE FACES ============================= -->
+<section class="sec" id="faces" aria-labelledby="faces-h">
+  <div class="sh"><span class="num">03 /</span><h2 id="faces-h">Twelve faces</h2><span class="note">each one has a job</span></div>
+  <ul class="faces">
+    <li><figure class="face"><div class="pic"><img src="art/face-smirk.webp" width="460" height="358" alt="Smirk" loading="lazy" decoding="async"></div><figcaption><span class="name">Smirk</span><span class="where">Hero idle</span><span class="why">Default face. Knows it works, won't brag about it.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-focus.webp" width="464" height="369" alt="Focus" loading="lazy" decoding="async"></div><figcaption><span class="name">Focus</span><span class="where">Services</span><span class="why">Heads-down build mode while you read what he does.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-think.webp" width="410" height="363" alt="Think" loading="lazy" decoding="async"></div><figcaption><span class="name">Think</span><span class="where">FAQ</span><span class="why">Each question opens on a pause, not a sales pitch.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-pointyou.webp" width="432" height="368" alt="Point" loading="lazy" decoding="async"></div><figcaption><span class="name">Point</span><span class="where">Contact CTA</span><span class="why">The only time he breaks the fourth wall.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-laugh.webp" width="427" height="354" alt="Laugh" loading="lazy" decoding="async"></div><figcaption><span class="name">Laugh</span><span class="where">Form sent</span><span class="why">Success state. Real, short, then back to work.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-deadpan.webp" width="427" height="368" alt="Deadpan" loading="lazy" decoding="async"></div><figcaption><span class="name">Deadpan</span><span class="where">Pricing</span><span class="why">Prices stated flat. No hype, no hidden line.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-sideeye.webp" width="430" height="377" alt="Side-eye" loading="lazy" decoding="async"></div><figcaption><span class="name">Side-eye</span><span class="where">Middlemen</span><span class="why">Reserved for agencies that resell your project.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-shocked.webp" width="439" height="369" alt="Shocked" loading="lazy" decoding="async"></div><figcaption><span class="name">Shocked</span><span class="where">Calculator</span><span class="why">When the estimate crosses a threshold. Once.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-facepalm.webp" width="434" height="361" alt="Facepalm" loading="lazy" decoding="async"></div><figcaption><span class="name">Facepalm</span><span class="where">Errors · 404</span><span class="why">Takes the blame for the bug, not the user.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-tired.webp" width="436" height="376" alt="Tired" loading="lazy" decoding="async"></div><figcaption><span class="name">Tired</span><span class="where">After 23:00</span><span class="why">Night mode greeting. Still answers.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-sleep.webp" width="417" height="372" alt="Sleep" loading="lazy" decoding="async"></div><figcaption><span class="name">Sleep</span><span class="where">Idle 60 s</span><span class="why">You left. He dozed. Ku&#x304;ro keeps watch.</span></figcaption></figure></li>
+    <li><figure class="face"><div class="pic"><img src="art/face-angry.webp" width="415" height="371" alt="Angry" loading="lazy" decoding="async"></div><figcaption><span class="name">Angry</span><span class="where">Loud only</span><span class="why">Social red-flags content. Never on the site.</span></figcaption></figure></li>
+  </ul>
+</section>
 
-    <div class="groups">
-      <div class="group" data-reveal>
-        <h3>Design</h3>
-        <ul>
-          <li><a class="out" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener"><span class="out-n">Behance</span><span class="out-h">@br4vetr4aveler1</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="out" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener"><span class="out-n">DeviantArt</span><span class="out-h">br4vetr4veler5</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="out" href="https://www.pinterest.com/VOID.DESIGNER/" target="_blank" rel="noopener"><span class="out-n">Pinterest</span><span class="out-h">VOID.DESIGNER</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="out" href="https://delicateexpertsstuff.tumblr.com" target="_blank" rel="noopener"><span class="out-n">Tumblr</span><span class="out-h">delicateexpertsstuff</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-        </ul>
-      </div>
-      <div class="group" data-reveal>
-        <h3>Code</h3>
-        <ul>
-          <li><a class="out" href="../workspacehq/"><span class="out-n">WorkspaceHQ v3</span><span class="out-h">my favourite build</span><span class="out-go" aria-hidden="true">→</span></a></li>
-          <li><a class="out" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener"><span class="out-n">GitHub</span><span class="out-h">@Brvetr4ve1er</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="out" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener"><span class="out-n">LinkedIn</span><span class="out-h">Mohamed Yasser Hamisse</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-        </ul>
-      </div>
-      <div class="group" data-reveal>
-        <h3>Social</h3>
-        <ul>
-          <li><a class="out" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener"><span class="out-n">Instagram</span><span class="out-h">@stick_itty</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="out" href="https://x.com/br4vetr4veler" target="_blank" rel="noopener"><span class="out-n">X</span><span class="out-h">@br4vetr4veler</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="out" href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener"><span class="out-n">YouTube</span><span class="out-h">@br4vetr4aveler</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="out" href="https://t.me/nobodysamsa" target="_blank" rel="noopener"><span class="out-n">Telegram</span><span class="out-h">@nobodysamsa</span><span class="out-go" aria-hidden="true">↗</span></a></li>
-        </ul>
-      </div>
+<!-- ============================= 04 · WHAT HE DOES ============================= -->
+<section class="sec" id="does" aria-labelledby="does-h">
+  <div class="sh"><span class="num">04 /</span><h2 id="does-h">What he does</h2></div>
+  <ul class="poses">
+    <li><figure class="pose"><div class="pic"><img src="art/pose-coffee.webp" width="385" height="440" alt="Coffee" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Coffee</span><span class="where">Hero · dawn</span></span><span class="line">The first sip is the kickoff meeting.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-laptop.webp" width="495" height="440" alt="Laptop" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Laptop</span><span class="where">Work</span></span><span class="line">Building the Preview before you pay.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-point.webp" width="498" height="440" alt="Point" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Point</span><span class="where">Contact</span></span><span class="line">You. Yes, you. Let's build it.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-shrug.webp" width="560" height="422" alt="Shrug" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Shrug</span><span class="where">FAQ</span></span><span class="line">"Can it be done?" — usually, yes.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-sign.webp" width="519" height="440" alt="Sign" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Sign</span><span class="where">Offer</span></span><span class="line">Holds the deal terms up, plainly.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-facepalm.webp" width="509" height="440" alt="Facepalm" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Facepalm</span><span class="where">404</span></span><span class="line">This page is on him.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-inspect.webp" width="560" height="416" alt="Inspect" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Inspect</span><span class="where">Audit lab tile</span></span><span class="line">Magnifier on your brand. Honest report.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-receipt.webp" width="412" height="440" alt="Receipt" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Receipt</span><span class="where">Pricing</span></span><span class="line">Every line item, nothing folded in.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-invoice.webp" width="520" height="440" alt="Invoice" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Invoice</span><span class="where">Calculator</span></span><span class="line">The total, before the call.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-flagstack.webp" width="560" height="427" alt="Flag stack" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Flag stack</span><span class="where">Red flags</span></span><span class="line">Things other studios won't tell you.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-handover.webp" width="560" height="435" alt="Handover" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Handover</span><span class="where">Delivery</span></span><span class="line">The keys are yours. Code, domain, all of it.</span></figcaption></figure></li>
+    <li><figure class="pose"><div class="pic"><img src="art/pose-nap.webp" width="560" height="233" alt="Nap" loading="lazy" decoding="async"></div><figcaption><span class="top"><span class="name">Nap</span><span class="where">Night · idle</span></span><span class="line">Shipped at 3 a.m. Earned it.</span></figcaption></figure></li>
+  </ul>
+</section>
+
+<!-- ============================= 04b · HEAD TO TOE =============================
+     Six full-body poses, each drawn twice: app.js §2 shows the second
+     frame once when the figure comes on screen, and on hover, click or
+     Enter (each figure is a button). A hard cut, never a tween; nothing
+     flips on its own after that. -->
+<section class="sec" id="toe" aria-labelledby="toe-h">
+  <div class="sh"><span class="num">04b /</span><h2 id="toe-h">Head to toe</h2><span class="note">no more cut-off sneakers</span></div>
+  <p class="lede">Six full-body poses, each drawn twice, so he moves once when you scroll to him and again when you hover or tap. Feet always land on the floor line — nothing is cropped.</p>
+  <ul class="actors">
+    <li><figure class="actor-fig"><div class="actor-box"><span class="floor-line" aria-hidden="true"></span><button type="button" class="actor actor--wave" data-seq="2600,700" aria-label="Wave: show the second frame"><img data-pf="a" src="art/actor-wave-a.webp" width="238" height="540" alt="" loading="lazy" decoding="async"><img data-pf="b" src="art/actor-wave-b.webp" width="238" height="540" alt="" loading="lazy" decoding="async"></button><span class="tag" aria-hidden="true">● 2 frames</span></div><figcaption><span class="top"><span class="name">Wave</span><span class="where">Hero · hello</span></span><span class="line">First visit. Coffee in one hand, hello in the other.</span></figcaption></figure></li>
+    <li><figure class="actor-fig"><div class="actor-box"><span class="floor-line" aria-hidden="true"></span><button type="button" class="actor actor--pointup" data-seq="3400,900" aria-label="Point up: show the second frame"><img data-pf="a" src="art/actor-pointup-a.webp" width="249" height="540" alt="" loading="lazy" decoding="async"><img data-pf="b" src="art/actor-pointup-b.webp" width="249" height="540" alt="" loading="lazy" decoding="async"></button><span class="tag" aria-hidden="true">● 2 frames</span></div><figcaption><span class="top"><span class="name">Point up</span><span class="where">Services</span></span><span class="line">Points at the heading, then explains it.</span></figcaption></figure></li>
+    <li><figure class="actor-fig"><div class="actor-box"><span class="floor-line" aria-hidden="true"></span><button type="button" class="actor actor--phone" data-seq="3000,1200" aria-label="Phone: show the second frame"><img data-pf="a" src="art/actor-phone-a.webp" width="241" height="540" alt="" loading="lazy" decoding="async"><img data-pf="b" src="art/actor-phone-b.webp" width="241" height="540" alt="" loading="lazy" decoding="async"></button><span class="tag" aria-hidden="true">● 2 frames</span></div><figcaption><span class="top"><span class="name">Phone</span><span class="where">FAQ · WhatsApp</span></span><span class="line">Types the reply, looks up: answered.</span></figcaption></figure></li>
+    <li><figure class="actor-fig"><div class="actor-box"><span class="floor-line" aria-hidden="true"></span><button type="button" class="actor actor--sketch" data-seq="3600,1000" aria-label="Sketch: show the second frame"><img data-pf="a" src="art/actor-sketch-a.webp" width="257" height="540" alt="" loading="lazy" decoding="async"><img data-pf="b" src="art/actor-sketch-b.webp" width="257" height="540" alt="" loading="lazy" decoding="async"></button><span class="tag" aria-hidden="true">● 2 frames</span></div><figcaption><span class="top"><span class="name">Sketch</span><span class="where">Brand</span></span><span class="line">Draws your identity, checks it with you.</span></figcaption></figure></li>
+    <li><figure class="actor-fig"><div class="actor-box"><span class="floor-line" aria-hidden="true"></span><button type="button" class="actor actor--win" data-seq="2800,700" aria-label="Shipped: show the second frame"><img data-pf="a" src="art/actor-win-a.webp" width="252" height="540" alt="" loading="lazy" decoding="async"><img data-pf="b" src="art/actor-win-b.webp" width="252" height="540" alt="" loading="lazy" decoding="async"></button><span class="tag" aria-hidden="true">● 2 frames</span></div><figcaption><span class="top"><span class="name">Shipped</span><span class="where">Proof</span></span><span class="line">Launch day. Small fist pump, back to work.</span></figcaption></figure></li>
+    <li><figure class="actor-fig"><div class="actor-box"><span class="floor-line" aria-hidden="true"></span><button type="button" class="actor actor--duo" data-seq="4200,1700" aria-label="With Ku&#x304;ro: show the second frame"><img data-pf="a" src="art/actor-duo-a.webp" width="673" height="520" alt="" loading="lazy" decoding="async"><img data-pf="b" src="art/actor-duo-b.webp" width="673" height="520" alt="" loading="lazy" decoding="async"></button><span class="tag" aria-hidden="true">● 2 frames</span></div><figcaption><span class="top"><span class="name">With Ku&#x304;ro</span><span class="where">Founder</span></span><span class="line">Coffee break. Ku&#x304;ro supervises.</span></figcaption></figure></li>
+  </ul>
+</section>
+
+<!-- ============================= 05 · KŪRO ============================= -->
+<section class="sec kuro" id="kuro" aria-labelledby="kuro-h">
+  <div class="sh"><span class="num">05 /</span><h2 id="kuro-h">Ku&#x304;ro <span class="jp" lang="ja">クロ</span></h2><span class="note">the quality gate has whiskers</span></div>
+  <div class="kuro-grid">
+    <div class="kuro-copy">
+      <p>Yasser builds. Ku&#x304;ro judges. He is the client's taste made visible — if it's sloppy, he walks off the screen; if it's good, he loafs on it.</p>
+      <ul>
+        <li>· Never speaks. Reacts.</li>
+        <li>· Never cute on purpose — loyal by accident.</li>
+        <li>· Yellow eyes are the only warm colour on him.</li>
+        <li>· Red collar tag = the hanko. He stamps the approval.</li>
+        <li>· Always lower in frame than Yasser, never centred alone in the hero.</li>
+      </ul>
+    </div>
+    <ul class="kuro-cards">
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-judge.webp" width="240" height="194" alt="Judge" loading="lazy" decoding="async"></div><figcaption>Judge<span>Hovering a CTA</span></figcaption></figure></li>
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-loaf.webp" width="240" height="111" alt="Loaf" loading="lazy" decoding="async"></div><figcaption>Loaf<span>Good section, settles</span></figcaption></figure></li>
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-smug.webp" width="240" height="172" alt="Smug" loading="lazy" decoding="async"></div><figcaption>Smug<span>Case study result</span></figcaption></figure></li>
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-stamp.webp" width="240" height="185" alt="Stamp" loading="lazy" decoding="async"></div><figcaption>Stamp<span>Approval · hanko</span></figcaption></figure></li>
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-peek.webp" width="240" height="165" alt="Peek" loading="lazy" decoding="async"></div><figcaption>Peek<span>Scroll-in from edge</span></figcaption></figure></li>
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-shook.webp" width="240" height="175" alt="Shook" loading="lazy" decoding="async"></div><figcaption>Shook<span>Price shock</span></figcaption></figure></li>
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-hiss.webp" width="240" height="189" alt="Hiss" loading="lazy" decoding="async"></div><figcaption>Hiss<span>Middlemen</span></figcaption></figure></li>
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-love.webp" width="240" height="242" alt="Love" loading="lazy" decoding="async"></div><figcaption>Love<span>Form sent</span></figcaption></figure></li>
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-leave.webp" width="240" height="209" alt="Leave" loading="lazy" decoding="async"></div><figcaption>Leave<span>Idle · walks off</span></figcaption></figure></li>
+      <li><figure class="kcard"><div class="pic"><img src="art/kuro-mug.webp" width="240" height="192" alt="Mug" loading="lazy" decoding="async"></div><figcaption>Mug<span>Sting · dawn</span></figcaption></figure></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================= 06 · HOW HE TALKS =============================
+     The six lines the rig says, in French with the English beside; the
+     faces are 03's pictures again, so they cost nothing more. -->
+<section class="sec" id="talks" aria-labelledby="talks-h">
+  <div class="sh"><span class="num">06 /</span><h2 id="talks-h">How he talks</h2></div>
+  <div class="talk">
+    <ul class="lines">
+      <li class="line-card"><img src="art/face-smirk.webp" width="460" height="358" alt="" loading="lazy" decoding="async"><div><span class="fr" lang="fr">Tu parles à celui qui code. Pas à un commercial.</span><span class="en">You're talking to the one who codes. Not a salesman.</span></div></li>
+      <li class="line-card"><img src="art/face-focus.webp" width="464" height="369" alt="" loading="lazy" decoding="async"><div><span class="fr" lang="fr">Je te montre une démo qui marche avant de parler argent.</span><span class="en">I show you a working demo before we talk money.</span></div></li>
+      <li class="line-card"><img src="art/face-deadpan.webp" width="427" height="368" alt="" loading="lazy" decoding="async"><div><span class="fr" lang="fr">Prix fixe. Si ça change, c'est écrit avant.</span><span class="en">Fixed price. If it changes, it's written first.</span></div></li>
+      <li class="line-card"><img src="art/face-tired.webp" width="436" height="376" alt="" loading="lazy" decoding="async"><div><span class="fr" lang="fr">Il est 2 h. Oui, je réponds encore.</span><span class="en">It's 2 a.m. Yes, I'm still answering.</span></div></li>
+      <li class="line-card"><img src="art/face-facepalm.webp" width="434" height="361" alt="" loading="lazy" decoding="async"><div><span class="fr" lang="fr">Ça, c'est un bug à moi. Je le règle.</span><span class="en">That one's my bug. I'll fix it.</span></div></li>
+      <li class="line-card"><img src="art/face-pointyou.webp" width="432" height="368" alt="" loading="lazy" decoding="async"><div><span class="fr" lang="fr">Ok. On le construit ?</span><span class="en">Ok. Shall we build it?</span></div></li>
+    </ul>
+    <div class="dn">
+      <p class="hd hd--yes">He does</p>
+      <p class="hd hd--no">He never</p>
+      <p>Speaks in short sentences that end with a full stop.</p><p>Uses "synergy", "solutions" or "leverage".</p>
+      <p>Owns the mistake before the user notices it.</p><p>Blames the client, the browser or the server.</p>
+      <p>Mixes French and English the way BBA actually does.</p><p>Fakes slang or forces darija for flavour.</p>
+      <p>Lets Ku&#x304;ro deliver the joke.</p><p>Winks, thumbs-up or emoji at the camera.</p>
+      <p>Shows a receipt: a number, a demo, a link.</p><p>Claims "best", "fastest" or "#1" without proof.</p>
     </div>
   </div>
+</section>
+
+<!-- ============================= 07 · A DAY ON STUDIO ============================= -->
+<section class="sec" id="day" aria-labelledby="day-h">
+  <div class="sh"><span class="num">07 /</span><h2 id="day-h">A day on Studio</h2><span class="note">this is how he feels alive</span></div>
+  <ol class="beats">
+    <li class="beat"><span class="sec-n">00 Sting</span><span class="st">Dawn · coffee</span><span class="tr">Mug steam writes NUMIDEA LABS, Ku&#x304;ro stamps <span lang="ja">夜</span>, paper wipes into the hero.</span></li>
+    <li class="beat"><span class="sec-n">Hero</span><span class="st">Smirk · eyes follow</span><span class="tr">Glasses glint tracks the cursor; blink every 4–7 s; a two-frame squash when the sting lands.</span></li>
+    <li class="beat"><span class="sec-n">Services</span><span class="st">Focus · laptop</span><span class="tr">Ku&#x304;ro peeks from the right edge as rows scroll in.</span></li>
+    <li class="beat"><span class="sec-n">Pricing</span><span class="st">Deadpan · receipt</span><span class="tr">Marker note writes itself next to the total: "c'est tout."</span></li>
+    <li class="beat"><span class="sec-n">Work</span><span class="st">Ku&#x304;ro smug</span><span class="tr">Loafs on whichever case tile you hover longest.</span></li>
+    <li class="beat"><span class="sec-n">FAQ</span><span class="st">Think · shrug</span><span class="tr">Switches face each time an answer opens.</span></li>
+    <li class="beat"><span class="sec-n">Contact</span><span class="st">Point · love</span><span class="tr">Points at the field you're typing in; laugh + Ku&#x304;ro heart on send.</span></li>
+    <li class="beat"><span class="sec-n">After 23:00</span><span class="st">Tired · nap</span><span class="tr">Scene goes night; idle 60 s and he dozes, Ku&#x304;ro walks off.</span></li>
+  </ol>
+</section>
+
+<!-- ============================= 08 · ELSEWHERE =============================
+     Handles verified from the Behance profile's own declared social links. -->
+<section class="sec" id="elsewhere" aria-labelledby="else-h">
+  <div class="sh"><span class="num">08 /</span><h2 id="else-h">Elsewhere</h2><span class="note">one person · every world</span></div>
+  <ul class="outs">
+    <li><a class="out" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener"><b>Behance</b><span>@br4vetr4aveler1</span><i aria-hidden="true">↗</i></a></li>
+    <li><a class="out" href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener"><b>DeviantArt</b><span>br4vetr4veler5</span><i aria-hidden="true">↗</i></a></li>
+    <li><a class="out" href="https://www.pinterest.com/VOID.DESIGNER/" target="_blank" rel="noopener"><b>Pinterest</b><span>VOID.DESIGNER</span><i aria-hidden="true">↗</i></a></li>
+    <li><a class="out" href="https://delicateexpertsstuff.tumblr.com" target="_blank" rel="noopener"><b>Tumblr</b><span>delicateexpertsstuff</span><i aria-hidden="true">↗</i></a></li>
+    <li><a class="out" href="../workspacehq/"><b>WorkspaceHQ v3</b><span>my favourite build</span><i aria-hidden="true">→</i></a></li>
+    <li><a class="out" href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener"><b>GitHub</b><span>@Brvetr4ve1er</span><i aria-hidden="true">↗</i></a></li>
+    <li><a class="out" href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener"><b>LinkedIn</b><span>Mohamed Yasser Hamisse</span><i aria-hidden="true">↗</i></a></li>
+    <li><a class="out" href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener"><b>Instagram</b><span>@stick_itty</span><i aria-hidden="true">↗</i></a></li>
+    <li><a class="out" href="https://x.com/br4vetr4veler" target="_blank" rel="noopener"><b>X</b><span>@br4vetr4veler</span><i aria-hidden="true">↗</i></a></li>
+    <li><a class="out" href="https://www.youtube.com/@br4vetr4aveler" target="_blank" rel="noopener"><b>YouTube</b><span>@br4vetr4aveler</span><i aria-hidden="true">↗</i></a></li>
+    <li><a class="out" href="https://t.me/nobodysamsa" target="_blank" rel="noopener"><b>Telegram</b><span>@nobodysamsa</span><i aria-hidden="true">↗</i></a></li>
+  </ul>
+  <p class="mail-row"><span class="label">Say hello</span><a class="mail" href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser<wbr>@gmail.com</a></p>
 </section>
 
 </main>
 
 <!-- ============================= FOOTER ============================= -->
-<footer class="foot" id="foot">
-  <div class="wrap foot-grid">
-    <div class="hello">
-      <picture class="loop loop--wave">
-        <source media="(prefers-reduced-motion: reduce)" srcset="loops/yasser-wave-still.webp">
-        <img src="loops/yasser-wave-still.webp" data-anim="loops/yasser-wave.webp" width="258" height="480" alt="" loading="lazy" decoding="async">
-      </picture>
-      <div class="hello-txt">
-        <h2 class="hello-h">Say hello</h2>
-        <a class="mail" href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser<wbr>@gmail.com</a>
-      </div>
-    </div>
-
-    <p class="foot-bio">
-      <b>VOIDSPLUNKER.std</b> is an agency of one. Design meets code; obsession meets output —
-      you work directly with me, <b>Hamisse Mohamed Yasser</b>, a polymath developer &amp; designer.
-      I build brand identities, immersive web, and the systems humming underneath. I believe design can tell
-      stories, evoke, and connect — and that a single mind, fully committed, beats a committee. Quality over quantity, always.
-    </p>
-
-    <div class="foot-end">
-      <!-- aria-pressed says which theme is on; app.js keeps it in step with
-           data-theme (the markup holds the default, paper) -->
-      <div class="theme-pill" role="group" aria-label="Theme &amp; scroll">
-        <button type="button" class="tp-sun" id="tpSun" aria-label="Light theme" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M19.1 4.9l-2.1 2.1M7 16.9l-2.1 2.1"/></svg></button>
-        <button type="button" class="tp-top" id="tpTop" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
-        <button type="button" class="tp-moon" id="tpMoon" aria-label="Dark theme" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 1 1 9.5 4 7 7 0 0 0 20 14.5z"/></svg></button>
-      </div>
-      <p class="legal"><span>© <span id="year">2026</span> VOIDSPLUNKER.std · DZ</span> <span>made in the void with <span class="heart" aria-hidden="true">♥</span><span class="vh">love</span> by <b>br4vetr4veler</b></span></p>
-      <picture class="loop loop--sleep">
-        <source media="(prefers-reduced-motion: reduce)" srcset="loops/kuro-sleep-still.webp">
-        <img src="loops/kuro-sleep-still.webp" data-anim="loops/kuro-sleep.webp" width="431" height="480" alt="" loading="lazy" decoding="async">
-      </picture>
-    </div>
+<footer class="page foot" id="foot">
+  <p class="foot-bio">
+    <b>VOIDSPLUNKER.std</b> is an agency of one. Design meets code; obsession meets output —
+    you work directly with me, <b>Hamisse Mohamed Yasser</b>, a polymath developer &amp; designer.
+    I build brand identities, immersive web, and the systems humming underneath. I believe design can tell
+    stories, evoke, and connect — and that a single mind, fully committed, beats a committee. Quality over quantity, always.
+  </p>
+  <div class="foot-row">
+    <span>Same person. Different resolution.</span>
+    <p class="legal"><span>© <span id="year">2026</span> VOIDSPLUNKER.std · DZ</span> <span>made in the void with <span class="heart" aria-hidden="true">♥</span><span class="vh">love</span> by <b>br4vetr4veler</b></span></p>
+    <a href="#top">Back to top ↑</a>
   </div>
 </footer>
 
