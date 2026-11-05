@@ -208,15 +208,15 @@ const MARKET = `    <details class="capabilities price-more" open>
             </thead>
             <tbody>
               <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">Vitrine</th>
-                <td data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
+                <td data-l="@@mk.colNl@@" data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-l="@@mk.colDz@@" data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-l="@@mk.colFr@@" data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-l="@@mk.colUs@@" data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
               <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">Site sur mesure</th>
-                <td data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
+                <td data-l="@@mk.colNl@@" data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-l="@@mk.colDz@@" data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-l="@@mk.colFr@@" data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-l="@@mk.colUs@@" data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
               <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">E-commerce</th>
-                <td data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
+                <td data-l="@@mk.colNl@@" data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-l="@@mk.colDz@@" data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-l="@@mk.colFr@@" data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-l="@@mk.colUs@@" data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
               <tr data-row="app"><th scope="row" data-i18n="price.tyApp">Application web</th>
-                <td data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
+                <td data-l="@@mk.colNl@@" data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-l="@@mk.colDz@@" data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-l="@@mk.colFr@@" data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-l="@@mk.colUs@@" data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
               <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">Identité visuelle</th>
-                <td data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
+                <td data-l="@@mk.colNl@@" data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-l="@@mk.colDz@@" data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-l="@@mk.colFr@@" data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-l="@@mk.colUs@@" data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
             </tbody>
           </table>
         </section>
@@ -387,26 +387,38 @@ ${chrome(element(home, '<div class="mobile-menu"', 'div'), { pricing: 1, guide: 
       <li><a href="./">Numidea Labs</a></li>
       <li aria-current="page" data-i18n="nav.pricing">${toMarkup(fr['nav.pricing'])}</li>
     </ol></nav>
+    <!-- the guide's parts, one tap each (it runs twelve phone screens) -->
+    <nav class="t-jump" aria-label="${esc(dicts[lang]['nav.pricing'])}">
+      <a href="#pricing-tiers" data-i18n="tarifs.jTiers">${toMarkup(fr['tarifs.jTiers'])}</a>
+      <a href="#estimator" data-i18n="tarifs.jEst">${toMarkup(fr['tarifs.jEst'])}</a>
+      <a href="#market" data-i18n="tarifs.jMk">${toMarkup(fr['tarifs.jMk'])}</a>
+      <a href="#models" data-i18n="tarifs.jMd">${toMarkup(fr['tarifs.jMd'])}</a>
+      <a href="#faq-t" data-i18n="tarifs.jFaq">${toMarkup(fr['tarifs.jFaq'])}</a>
+    </nav>
     <span class="kicker" data-i18n="tarifs.kicker">${toMarkup(fr['tarifs.kicker'])}</span>
     <h1 class="sec font-swap-display" id="pricing-h" data-i18n="tarifs.h1">${toMarkup(fr['tarifs.h1'])}</h1>
     <p class="sec-lead" data-i18n="tarifs.lead">${toMarkup(fr['tarifs.lead'])}</p>
+    <p class="tarifs-next tarifs-top">
+      <a class="btn btn-primary" href="./#apercu" data-i18n="hero.cta1">${toMarkup(fr['hero.cta1'])}</a>
+      ${element(home, '<a class="btn btn-teal wa-link"', 'a').split('\n').map((l, i) => (i ? '    ' + l : l)).join('\n')}
+    </p>
 
     <!-- Numidea's own prices, in dinars: the home page's tiers and estimator,
          read from index.html between its SLOT markers at build time. The
          estimator applies the same numbers the tiers quote — PRICE_MODEL in
          app.js (ESTIMATE) is the single source. -->
-    <h2 class="t-sub" data-i18n="price.title">${toMarkup(fr['price.title'])}</h2>
+    <h2 class="t-sub" id="pricing-tiers" data-i18n="price.title">${toMarkup(fr['price.title'])}</h2>
 ${slot(home, 'tiers')}
 
 ${estimator}
 
     <!-- Reference material: market comparison, billing models, cost drivers.
          Open: this page is where whoever wants to check the numbers comes. -->
-${MARKET.replace(/\n$/, '')}
+${MARKET.replace(/\n$/, '').replace(/@@([\w.]+)@@/g, (m, k) => esc(dicts[lang][k]))}
 
     <!-- The home page's FAQ entries about money (scripts/build-tarifs.mjs
          FAQ_ON_TARIFS), answers and icons included. -->
-    <h2 class="t-sub" data-i18n="faq.title">${toMarkup(fr['faq.title'])}</h2>
+    <h2 class="t-sub" id="faq-t" data-i18n="faq.title">${toMarkup(fr['faq.title'])}</h2>
     <div class="faq-list">
 ${faqCols}
     </div>

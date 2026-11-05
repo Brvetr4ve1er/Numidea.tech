@@ -8,7 +8,8 @@
    ============================================================ */
 
 /* the page opens under the fixed navbar, with no hero to clear it */
-.tarifs>section:first-child{padding-top:calc(var(--nav-h) + var(--s-8))}
+.tarifs>section:first-child{padding-top:calc(var(--nav-h) + var(--s-7))}
+@media (min-width:960px){.tarifs>section:first-child{padding-top:calc(var(--nav-h) + var(--s-8))}}
 
 /* the breadcrumb (BRAND.md: every sub-page carries one), set as a label;
    the home link is a 24px target at least */
@@ -27,6 +28,8 @@ html[dir="rtl"] .crumbs ol{letter-spacing:0;text-transform:none}
    styles.css), as an h1, since it is the page's one */
 h1.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(26px, 14px + 3.33vw, 62px);letter-spacing:-.025em;line-height:1.04;margin-bottom:var(--s-7);max-width:11.934em}
 h1.sec em{font-family:inherit;font-style:normal;color:var(--crimson-text)}
+html[dir="ltr"] h1.sec{font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking)}
+html[dir="ltr"] h1.sec em{font-family:var(--font-head-em)}
 html[dir="rtl"] h1.sec{letter-spacing:0}
 
 /* the guide's parts (the tiers, the questions), one size under the title */
@@ -34,10 +37,27 @@ html[dir="rtl"] h1.sec{letter-spacing:0}
 .t-sub em{font-style:normal;color:var(--crimson-text)}
 html[dir="rtl"] .t-sub{font-family:var(--font-ar-display);letter-spacing:0}
 .price-more+.t-sub{margin-top:var(--s-8)}
+.t-sub{margin-top:var(--s-6)}
+@media (min-width:760px){.t-sub{margin-top:var(--s-8)}}
 
 /* the navbar marks this page, as the scroll-spy marks a section on the home */
 .nav-links a[aria-current="page"]{color:var(--ice)}
 .nav-links a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--crimson)}
 
+/* the guide's parts, kept under the navbar while the page scrolls: five
+   chips, a 40px target each, the row sliding sideways where they do not fit */
+#pricing>.t-jump{position:sticky;top:var(--nav-h);z-index:5;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+  margin:calc(-1 * var(--s-2)) 0 var(--s-5);padding:var(--s-2) 0;background:var(--nav-glass);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#pricing>.t-jump::-webkit-scrollbar{display:none}
+.t-jump a{flex:none;display:inline-flex;align-items:center;min-height:40px;padding:0 var(--s-4);border:1px solid var(--hairline);border-radius:999px;
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--body-strong);text-decoration:none}
+.t-jump a:hover,.t-jump a:focus-visible{color:var(--ice);border-color:var(--teal)}
+html[dir="rtl"] .t-jump a{letter-spacing:0;text-transform:none}
+/* a chip lands the section below the navbar and the row */
+#pricing-tiers,#estimator,#market,#models,#faq-t{scroll-margin-top:calc(var(--nav-h) + 64px)}
+
 /* the way on: the Aperçu and WhatsApp, as the hero offers them */
-.tarifs-next{display:flex;flex-wrap:wrap;gap:var(--s-4);margin-top:var(--s-8)}
+.tarifs-next{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);margin-top:var(--s-8)}
+.tarifs-next .btn{width:100%;justify-content:center}
+.tarifs-top{margin-top:var(--s-6);margin-bottom:var(--s-6);max-width:560px}
+@media (max-width:559px){.tarifs-next{grid-template-columns:1fr}}

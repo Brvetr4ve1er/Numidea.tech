@@ -218,15 +218,30 @@
       <li><a href="../">Numidea Labs</a></li>
       <li aria-current="page" data-i18n="nav.pricing">الأسعار</li>
     </ol></nav>
+    <!-- the guide's parts, one tap each (it runs twelve phone screens) -->
+    <nav class="t-jump" aria-label="الأسعار">
+      <a href="#pricing-tiers" data-i18n="tarifs.jTiers">الباقات</a>
+      <a href="#estimator" data-i18n="tarifs.jEst">المقدِّر</a>
+      <a href="#market" data-i18n="tarifs.jMk">الأسواق</a>
+      <a href="#models" data-i18n="tarifs.jMd">النماذج</a>
+      <a href="#faq-t" data-i18n="tarifs.jFaq">الأسئلة الشائعة</a>
+    </nav>
     <span class="kicker" data-i18n="tarifs.kicker">الأسعار · دليل 2026</span>
     <h1 class="sec font-swap-display" id="pricing-h" data-i18n="tarifs.h1">سعر موقع ويب <em>في الجزائر، في 2026.</em></h1>
     <p class="sec-lead" data-i18n="tarifs.lead">باقاتنا الثلاث والصيانة، بالدينار أو اليورو أو الدولار؛ وحاسبة التقدير لما لا تسعّره الباقات؛ ثم الأسعار الشائعة في الجزائر وفرنسا والولايات المتحدة، مع المصادر.</p>
+    <p class="tarifs-next tarifs-top">
+      <a class="btn btn-primary" href="../#apercu" data-i18n="hero.cta1">اطلب معاينتك ←</a>
+      <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D8%A7%D9%8A%D9%86%D8%A9%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9%20%D9%84%D9%85%D9%88%D9%82%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF.%0A%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9%3A%20%0A%D8%A7%D9%84%D9%86%D8%B4%D8%A7%D8%B7%20%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%3A%20%0A%D8%A7%D9%84%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A%20(%D8%A5%D9%86%20%D9%88%D9%8F%D8%AC%D8%AF)%3A%20" target="_blank" rel="noopener">
+                <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+                <span data-i18n="hero.cta2">راسلنا عبر واتساب</span>
+              </a>
+    </p>
 
     <!-- Numidea's own prices, in dinars: the home page's tiers and estimator,
          read from index.html between its SLOT markers at build time. The
          estimator applies the same numbers the tiers quote — PRICE_MODEL in
          app.js (ESTIMATE) is the single source. -->
-    <h2 class="t-sub" data-i18n="price.title">سعر <em>قبل عرض السعر.</em></h2>
+    <h2 class="t-sub" id="pricing-tiers" data-i18n="price.title">سعر <em>قبل عرض السعر.</em></h2>
     <!-- Display currency for the tiers, the maintenance line and the
          estimator. Prices are set in dinars (PRICE_MODEL) and converted for
          display only; ?cur=eur|usd|dzd in a shared link picks the view. -->
@@ -441,15 +456,15 @@
             </thead>
             <tbody>
               <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">موقع تعريفي</th>
-                <td data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
+                <td data-l="أسعارنا" data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-l="الجزائر" data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-l="فرنسا" data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-l="الولايات المتحدة" data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
               <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">موقع مخصّص</th>
-                <td data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
+                <td data-l="أسعارنا" data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-l="الجزائر" data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-l="فرنسا" data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-l="الولايات المتحدة" data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
               <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">متجر إلكتروني</th>
-                <td data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
+                <td data-l="أسعارنا" data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-l="الجزائر" data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-l="فرنسا" data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-l="الولايات المتحدة" data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
               <tr data-row="app"><th scope="row" data-i18n="price.tyApp">تطبيق ويب</th>
-                <td data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
+                <td data-l="أسعارنا" data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-l="الجزائر" data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-l="فرنسا" data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-l="الولايات المتحدة" data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
               <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">هوية بصرية</th>
-                <td data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
+                <td data-l="أسعارنا" data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-l="الجزائر" data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-l="فرنسا" data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-l="الولايات المتحدة" data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
             </tbody>
           </table>
         </section>
@@ -520,7 +535,7 @@
 
     <!-- The home page's FAQ entries about money (scripts/build-tarifs.mjs
          FAQ_ON_TARIFS), answers and icons included. -->
-    <h2 class="t-sub" data-i18n="faq.title">الأسئلة <em>التي تهمّ.</em></h2>
+    <h2 class="t-sub" id="faq-t" data-i18n="faq.title">الأسئلة <em>التي تهمّ.</em></h2>
     <div class="faq-list">
       <div class="faq-col">
         <details class="faq-item reveal">

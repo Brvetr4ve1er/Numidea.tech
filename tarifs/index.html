@@ -231,15 +231,30 @@
       <li><a href="../">Numidea Labs</a></li>
       <li aria-current="page" data-i18n="nav.pricing">Tarifs</li>
     </ol></nav>
+    <!-- the guide's parts, one tap each (it runs twelve phone screens) -->
+    <nav class="t-jump" aria-label="Tarifs">
+      <a href="#pricing-tiers" data-i18n="tarifs.jTiers">Formules</a>
+      <a href="#estimator" data-i18n="tarifs.jEst">Estimateur</a>
+      <a href="#market" data-i18n="tarifs.jMk">Marchés</a>
+      <a href="#models" data-i18n="tarifs.jMd">Modèles</a>
+      <a href="#faq-t" data-i18n="tarifs.jFaq">FAQ</a>
+    </nav>
     <span class="kicker" data-i18n="tarifs.kicker">Tarifs · guide 2026</span>
     <h1 class="sec font-swap-display" id="pricing-h" data-i18n="tarifs.h1">Prix d'un site web <em>en Algérie, en 2026.</em></h1>
     <p class="sec-lead" data-i18n="tarifs.lead">Nos trois formules et la maintenance, en dinars, en euros ou en dollars ; l'estimateur pour ce que les formules ne chiffrent pas ; puis les tarifs courants en Algérie, en France et aux États-Unis, sources à l'appui.</p>
+    <p class="tarifs-next tarifs-top">
+      <a class="btn btn-primary" href="../#apercu" data-i18n="hero.cta1">Demander mon Aperçu →</a>
+      <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+                <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+                <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
+              </a>
+    </p>
 
     <!-- Numidea's own prices, in dinars: the home page's tiers and estimator,
          read from index.html between its SLOT markers at build time. The
          estimator applies the same numbers the tiers quote — PRICE_MODEL in
          app.js (ESTIMATE) is the single source. -->
-    <h2 class="t-sub" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
+    <h2 class="t-sub" id="pricing-tiers" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
     <!-- Display currency for the tiers, the maintenance line and the
          estimator. Prices are set in dinars (PRICE_MODEL) and converted for
          display only; ?cur=eur|usd|dzd in a shared link picks the view. -->
@@ -454,15 +469,15 @@
             </thead>
             <tbody>
               <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">Vitrine</th>
-                <td data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
+                <td data-l="Numidea" data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
               <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">Site sur mesure</th>
-                <td data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
+                <td data-l="Numidea" data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
               <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">E-commerce</th>
-                <td data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
+                <td data-l="Numidea" data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
               <tr data-row="app"><th scope="row" data-i18n="price.tyApp">Application web</th>
-                <td data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
+                <td data-l="Numidea" data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
               <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">Identité visuelle</th>
-                <td data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
+                <td data-l="Numidea" data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
             </tbody>
           </table>
         </section>
@@ -533,7 +548,7 @@
 
     <!-- The home page's FAQ entries about money (scripts/build-tarifs.mjs
          FAQ_ON_TARIFS), answers and icons included. -->
-    <h2 class="t-sub" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
+    <h2 class="t-sub" id="faq-t" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
     <div class="faq-list">
       <div class="faq-col">
         <details class="faq-item reveal">
