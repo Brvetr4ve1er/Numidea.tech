@@ -255,6 +255,16 @@
           <a href="en/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
           <a href="ar/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
         </div>
+        <!-- the header's one action, from 700px up where the bar has room
+             for it (the phone bar carries it under 700px): styles.css sizes
+             and hides it (.nav-cta); app.js shows it only where nothing in
+             the bar is clipped by it, and gives it its button classes (btn
+             btn-primary) then: shipped with them, the .btn display rule
+             outranked the hidden attribute, the button was painted before
+             the script ran, and hiding it moved the whole bar (a layout
+             shift of 0.01 at 1280). js-only, since a bar this full needs
+             the script's measure. -->
+        <a class="nav-cta js-only" href="#apercu" data-i18n="mbar.cta" hidden>Mon Aperçu gratuit</a>
         <!-- the menu's open and close marks are drawn (24-grid, stroke 1.5),
              not typed: the system's ☰ and × came in whatever face the
              platform had for them, at a different weight on every phone -->
@@ -297,6 +307,17 @@
       <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="engineering" aria-checked="false"><span class="dot engineering" aria-hidden="true"></span>Engineering</button>
     </div>
   </div>
+  <!-- the two ways to start, pinned at the foot of the menu (styles.css
+       .menu-acts): eight section links and no action left the visitor who
+       opened the menu to act with nothing to press. The same two links as
+       the phone bar (.m-contact), which is hidden while the menu is open. -->
+  <div class="menu-acts">
+    <a class="btn btn-primary" href="#apercu" data-i18n="mbar.cta">Mon Aperçu gratuit</a>
+    <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">
+      <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+      <span data-i18n="footer.wa">WhatsApp</span>
+    </a>
+  </div>
 </div>
 
 
@@ -327,7 +348,10 @@
                the first screen (owner decision, 2026-10-26). Its link is baked
                in, in the page's language (scripts/build-lang.mjs), so it works
                before the deferred app.js arrives and with scripts off; app.js 13
-               rewrites it with the ad's [ref]. -->
+               rewrites it with the ad's [ref]. scripts/build-tarifs.mjs copies
+               this button to the price guide by this exact class string, once:
+               the page's other WhatsApp buttons order their classes
+               differently (btn wa-link btn-teal). -->
           <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
             <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
             <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
@@ -349,6 +373,13 @@
            slide nobody had asked for yet. A template, not src-less images,
            which the audit counts as broken. -->
       <div class="plate-wrap" data-parallax="-.06" data-parallax-cap="26">
+        <!-- The plate is a way into the site, not out of it: it leads to the
+             slide's project sheet (scene/), where the caption under it leads
+             to the client's live site. The deck (app.js) moves this link to
+             each slide's sheet as it turns; Nomara has no sheet, so its
+             slide leads to its card below. The link is named by the slide
+             shown (its alt) and the sheet's own words. -->
+        <a class="plate-link" href="scene/#bordjsteel">
         <div class="plate">
           <i class="pk tl" aria-hidden="true"></i><i class="pk tr" aria-hidden="true"></i>
           <i class="pk bl" aria-hidden="true"></i><i class="pk br" aria-hidden="true"></i>
@@ -367,22 +398,24 @@
           <span class="pl-wipe" aria-hidden="true"></span>
           <span class="pl-scan" aria-hidden="true"></span>
         </div>
+        <span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span>
+        </a>
         <div class="plate-meta">
           <span class="pm-idx" aria-hidden="true"><b>01</b>/05</span>
           <span class="pm-rot">
-        <a class="pm-item on" data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer">
+        <a class="pm-item on" data-client="bordjsteel" data-sheet="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>Bordj Steel</b><i data-i18n="proj4.cat">Industrie · B2B</i>
         </a>
-        <a class="pm-item" data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener noreferrer">
+        <a class="pm-item" data-client="glaive" data-sheet="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>Glaive Store</b><i data-i18n="work.concept">Démo portfolio</i>
         </a>
-        <a class="pm-item" data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer">
+        <a class="pm-item" data-client="alliance" data-sheet="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>Alliance Travel</b><i data-i18n="proj2.cat">Voyage · Croissance</i>
         </a>
         <a class="pm-item" data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>Nomara Voyages</b><i data-i18n="proj6.cat">Voyage · Omra</i>
         </a>
-        <a class="pm-item" data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer">
+        <a class="pm-item" data-client="almaflow" data-sheet="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>AlmaFlowClim</b><i data-i18n="proj3.cat">Artisan · Île-de-France</i>
         </a>
           </span>
@@ -390,12 +423,13 @@
         </div>
         <div class="plate-ctl js-only">
         <button type="button" class="pl-pause" aria-pressed="false" aria-label="Mettre la rotation en pause" data-i18n-aria="hero.platePause"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="ic-pause" d="M3.5 2v8M8.5 2v8"/><path class="ic-play" d="M3 1.8v8.4L10 6z"/></svg></button>
+        <!-- one Tab stop: the arrows move between the tabs (app.js) -->
         <div class="plate-rail" role="group" aria-label="Projets à l'écran" data-i18n-aria="hero.plateRail">
         <button type="button" aria-current="true" aria-label="Bordj Steel"><i></i></button>
-        <button type="button" aria-label="Glaive Store"><i></i></button>
-        <button type="button" aria-label="Alliance Travel"><i></i></button>
-        <button type="button" aria-label="Nomara Voyages"><i></i></button>
-        <button type="button" aria-label="AlmaFlowClim"><i></i></button>
+        <button type="button" tabindex="-1" aria-label="Glaive Store"><i></i></button>
+        <button type="button" tabindex="-1" aria-label="Alliance Travel"><i></i></button>
+        <button type="button" tabindex="-1" aria-label="Nomara Voyages"><i></i></button>
+        <button type="button" tabindex="-1" aria-label="AlmaFlowClim"><i></i></button>
         </div>
         </div>
       </div>
@@ -475,55 +509,62 @@
            text from 600px, then 44vw (the wide card 90vw) at 961px and 28vw
            (57vw) from 1100px. -->
       <article id="w-bordjsteel" class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>bordjsteelb2b.netlify.app</span></div><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" srcset="assets/previews/bordjsteel-720.webp 720w, assets/previews/bordjsteel.webp 1280w" sizes="(min-width:1100px) 57vw, (min-width:961px) 90vw, (min-width:600px) 232px, 91vw" alt="Capture du site Bordj Steel" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" data-parallax=".032" data-parallax-cap="16" src="assets/previews/bordjsteel.webp" srcset="assets/previews/bordjsteel-720.webp 720w, assets/previews/bordjsteel.webp 1280w" sizes="(min-width:1100px) 57vw, (min-width:961px) 90vw, (min-width:600px) 232px, 91vw" alt="Capture du site Bordj Steel" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
-          <h3>Bordj Steel</h3>
+          <!-- the title is the way to the sheet (styles.css stretches it over
+               the card: .proj h3 a::after); the address under it is the
+               plate's caption grammar, index · host · state, in place of the
+               fake browser bar every thumb used to wear. The live site is the
+               one visible secondary link. -->
+          <h3><a href="scene/#bordjsteel">Bordj Steel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span></a></h3>
+          <span class="host">01/05 · bordjsteelb2b.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
           <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, fabricant de charpente métallique et de panneaux sandwich à Bordj Bou Arréridj — catalogue produits, références et espace recrutement.</p>
           <a class="gain" href="scene/#gv-bordjsteel"><span data-i18n="proj4.gain">Un acheteur trouve la bonne gamme et ses caractéristiques techniques sans appeler.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="pills"><span class="pill">B2B</span><span class="pill" data-i18n="tag.corporate">Institutionnel</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
-            <a href="scene/#bordjsteel" data-i18n="work.sheet">Voir le projet en détail →</a>
           </div>
         </div>
       </article>
 
       <article id="w-alliance" class="proj proj--brand reveal" style="--brand:95,214,134">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>alliancetravel34.netlify.app</span></div><img class="shot" data-parallax=".035" data-parallax-cap="16" src="assets/previews/alliancetravel.webp" srcset="assets/previews/alliancetravel-720.webp 720w, assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" data-parallax=".035" data-parallax-cap="16" src="assets/previews/alliancetravel.webp" srcset="assets/previews/alliancetravel-720.webp 720w, assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
-          <h3>Alliance Travel</h3>
+          <h3><a href="scene/#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span></a></h3>
+          <span class="host">02/05 · alliancetravel34.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
           <p data-i18n="proj2.desc">Identité, site trilingue, prise de rendez-vous visa et calculateur de devis sur WhatsApp pour une agence de voyages de Bordj Bou Arréridj.</p>
           <a class="gain" href="scene/#gv-alliance"><span data-i18n="proj2.gain">Un voyageur estime son budget et envoie une demande complète sur WhatsApp.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="pills"><span class="pill" data-i18n="tag.brand">Marque</span><span class="pill" data-i18n="tag.funnel">Tunnel de vente</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
-            <a href="scene/#alliance" data-i18n="work.sheet">Voir le projet en détail →</a>
           </div>
         </div>
       </article>
 
       <article id="w-almaflow" class="proj proj--brand reveal" style="--brand:59,164,224">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>almaflowclim.netlify.app</span></div><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="assets/previews/almaflowclim.webp" srcset="assets/previews/almaflowclim-720.webp 720w, assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" data-parallax="-.03" data-parallax-cap="16" src="assets/previews/almaflowclim.webp" srcset="assets/previews/almaflowclim-720.webp 720w, assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Artisan · Île-de-France</span>
-          <h3>AlmaFlowClim</h3>
+          <h3><a href="scene/#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span></a></h3>
+          <span class="host">03/05 · almaflowclim.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
           <p data-i18n="proj3.desc">Le site d'un artisan de Gennevilliers en climatisation, chauffage et plomberie : une page par métier, ses réalisations chantier par chantier et une demande de devis en un seul formulaire.</p>
           <a class="gain" href="scene/#gv-almaflow"><span data-i18n="proj3.gain">En cas de panne, un client appelle d'un simple appui depuis la page du métier.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="pills"><span class="pill" data-i18n="tag.static">Site vitrine</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
             <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
-            <a href="scene/#almaflow" data-i18n="work.sheet">Voir le projet en détail →</a>
           </div>
         </div>
       </article>
 
       <article id="w-nomara" class="proj proj--brand reveal" style="--brand:34,180,104">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>nomaravoyages.netlify.app</span></div><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" srcset="assets/previews/nomara-720.webp 720w, assets/previews/nomara.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Nomara Voyages" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" data-parallax="-.028" data-parallax-cap="16" src="assets/previews/nomara.webp" srcset="assets/previews/nomara-720.webp 720w, assets/previews/nomara.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Nomara Voyages" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
+          <!-- no sheet for Nomara (scene/): the title stays text -->
           <h3>Nomara Voyages</h3>
+          <span class="host">04/05 · nomaravoyages.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
           <p data-i18n="proj6.desc">Une vitrine bilingue pour des voyages organisés et l'Omra au départ de Constantine.</p>
           <p class="gain" data-i18n="proj6.gain">Un pèlerin compare les forfaits Omra par prix et distance du Haram, puis écrit sur WhatsApp.</p>
           <div class="pills"><span class="pill" data-i18n="work.bilingual">Bilingue</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
@@ -534,15 +575,15 @@
       </article>
 
       <article class="proj proj--brand reveal" style="--brand:255,90,31">
-        <div class="thumb"><div class="browser" aria-hidden="true"><i></i><i></i><i></i><span>glaivestore.netlify.app</span></div><img class="shot" data-parallax=".036" data-parallax-cap="16" src="assets/previews/glaive.webp" srcset="assets/previews/glaive-720.webp 720w, assets/previews/glaive.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Glaive Store" data-i18n-alt="proj7.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" data-parallax=".036" data-parallax-cap="16" src="assets/previews/glaive.webp" srcset="assets/previews/glaive-720.webp 720w, assets/previews/glaive.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:961px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Glaive Store" data-i18n-alt="proj7.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
-          <h3>Glaive Store</h3>
+          <h3><a href="scene/#glaive">Glaive Store <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span></a></h3>
+          <span class="host">05/05 · glaivestore.netlify.app · <span data-i18n="work.concept">Démo portfolio</span></span>
           <p data-i18n="proj7.desc">Une marque fictive de matériel gaming et sa boutique en ligne, conçues de A à Z comme démo de portfolio.</p>
           <div class="pills"><span class="pill" data-i18n="tag.commerce">Commerce</span><span class="pill" data-i18n="tag.brand">Marque</span><span class="pill concept" data-i18n="work.concept">Démo portfolio</span></div>
           <div class="actions">
             <a data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
-            <a href="scene/#glaive" data-i18n="work.sheet">Voir le projet en détail →</a>
           </div>
         </div>
       </article>
@@ -596,7 +637,12 @@
         <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.</p>
         <p class="prev-actions">
           <a class="btn btn-primary" id="prev-cta" href="#contact" data-i18n="prev.cta">Demander mon Aperçu →</a>
-          <a class="prev-wa wa-link" data-wa-text="prev.waText" data-i18n="prev.wa" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">ou par WhatsApp</a>
+          <!-- WhatsApp as the hero wears it (a button with the mark, not an
+               underlined aside): it is the one way in that needs no mail app -->
+          <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+            <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+            <span data-i18n="prev.wa">ou par WhatsApp</span>
+          </a>
         </p>
         <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="prev.outcome">Vous dites oui en connaissance de cause : vous avez déjà vu le résultat.</span></p>
       </div>
@@ -1046,6 +1092,17 @@
       </div>
 
     </div>
+    <!-- The section's next step: the two ways in again, under the last
+         answer, so a reader who got this far is not left at a hairline.
+         Its sentence (faq.ask) joins this row once the dictionaries carry
+         the key (I4); until then the row is the two actions. -->
+    <p class="faq-ask">
+      <a class="btn btn-primary" href="#apercu" data-i18n="prev.cta">Demander mon Aperçu →</a>
+      <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+        <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+        <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
+      </a>
+    </p>
   </section>
 
   <!-- ================= CONTACT ================= -->
@@ -1058,7 +1115,7 @@
         <p class="sub" data-i18n="contact.sub">Deux lignes suffisent : votre activité, ce que le site doit faire, votre échéance. En français, anglais ou arabe.</p>
         <dl class="channels">
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg><dt data-i18n="form.email">Email</dt><dd><a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></dd></div>
-          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M4 20 5.3 15.7A8 8 0 1 1 8.3 18.7Z"/><circle class="f a-dt" style="--i:0" cx="8.7" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:1" cx="12" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:2" cx="15.3" cy="11.8" r=".95"/></svg><dt data-i18n="footer.wa">WhatsApp</dt><dd><a class="wa-link" dir="ltr" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">+213 672 41 25 78</a> <span class="ch-note" data-i18n="contact.waNote">messages seulement, pas d'appels · gratuit via l'appli</span></dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M4 20 5.3 15.7A8 8 0 1 1 8.3 18.7Z"/><circle class="f a-dt" style="--i:0" cx="8.7" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:1" cx="12" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:2" cx="15.3" cy="11.8" r=".95"/></svg><dt data-i18n="footer.wa">WhatsApp</dt><dd><a class="wa-link" dir="ltr" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener"><bdi dir="ltr">+213 672 41 25 78</bdi></a><small class="ch-note" data-i18n="contact.waNote">messages seulement, pas d'appels · gratuit via l'appli</small></dd></div>
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M12 20s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z"/><circle class="p" pathLength="1" cx="12" cy="9" r="2.3"/></g><path class="a-shadow" d="M9.5 22h5"/></svg><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="13.5" r="7.5"/><path class="p" pathLength="1" d="M12 3.5V6M10 3.5h4"/><path class="p a-hand" style="--o:12px 13.5px;--t:3s" pathLength="1" d="M12 13.5 15 10.5"/></svg><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">Le jour ouvré suivant · dimanche–jeudi, 9h–18h · FR · EN · AR</dd></div>
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><ellipse class="p a-globe" pathLength="1" cx="12" cy="12" rx="3.6" ry="8.5"/><path class="p" pathLength="1" d="M3.5 12h17"/></svg><dt data-i18n="contact.chTz">Fuseau</dt><dd data-i18n="contact.vTz">UTC+1 · l'heure de Paris en hiver, 1 h de moins en été</dd></div>
@@ -1080,10 +1137,20 @@
           </div>
           <div class="field">
             <label for="f-message" data-i18n="form.message">Message</label>
-            <textarea id="f-message" name="message" rows="5" required aria-describedby="f-message-err" data-i18n-ph="form.messagePh" placeholder="Qu'est-ce qu'on construit ?"></textarea>
+            <textarea id="f-message" name="message" rows="7" required aria-describedby="f-message-err" data-i18n-ph="form.messagePh" placeholder="Qu'est-ce qu'on construit ?"></textarea>
             <span class="err" id="f-message-err" aria-live="polite"></span>
           </div>
-          <button type="submit" class="btn btn-primary" data-i18n="form.send">Envoyer ma demande →</button>
+          <!-- The same message on WhatsApp, beside the submit: the one way
+               that needs no mail app. Baked with the Aperçu's opening line
+               (scripts off); on a click app.js puts the name, the address
+               and the message as typed in its place, through waUrl(). -->
+          <div class="form-acts">
+            <button type="submit" class="btn btn-primary" data-i18n="form.send">Envoyer ma demande →</button>
+            <a class="btn wa-link btn-teal" id="form-wa-send" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+              <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+              <span data-i18n="form.waInstead">Envoyer plutôt sur WhatsApp</span>
+            </a>
+          </div>
           <!-- What happens to the message, stated plainly. If the Supabase store is
                ever switched on this sentence stops being true: check.mjs then
                requires the legal page and a new note. The privacy link goes after
@@ -1101,15 +1168,20 @@
         <div class="form-success" role="status" aria-live="polite" tabindex="-1">
           <svg class="ai ai-mail" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg>
           <p data-i18n="form.success">Votre messagerie s'ouvre avec votre message : envoyez-le, et on vous répond le jour ouvré suivant avec nos questions.</p>
+          <!-- The ways on, WhatsApp first: the one that needs no mail app,
+               with the message just typed (app.js sets it on submit; baked
+               with the Aperçu's opening line, as the other WhatsApp links
+               are); then the copy for a webmail, then the way back. The
+               address under them is the plain-text fallback. -->
+          <p class="fallback acts">
+            <a class="btn wa-link btn-teal" id="form-wa" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+              <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+              <span data-i18n="form.waInstead">Envoyer plutôt sur WhatsApp</span>
+            </a>
+            <button type="button" class="btn btn-ghost" id="form-copy" data-i18n="form.copy">Copier mon message</button>
+            <button type="button" class="btn btn-ghost" id="form-edit" data-i18n="form.edit">Revoir mon message</button></p>
           <p class="fallback"><span data-i18n="form.successAlt">Rien ne s'est ouvert ? Écrivez-nous directement :</span>
             <a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></p>
-          <p class="fallback acts"><button type="button" class="btn btn-ghost" id="form-copy" data-i18n="form.copy">Copier mon message</button>
-            <button type="button" class="btn btn-ghost" id="form-edit" data-i18n="form.edit">Revoir mon message</button>
-            <!-- the same message on WhatsApp instead, for a visitor whose mail
-                 app never opened: baked with the Aperçu's opening line, as the
-                 other WhatsApp links are; on a submit app.js puts the message
-                 just typed in its place -->
-            <a class="btn btn-ghost wa-link" id="form-wa" data-wa-text="prev.waText" data-i18n="form.waInstead" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">Envoyer plutôt sur WhatsApp</a></p>
           <p class="fallback" id="form-copied"></p>
         </div>
       </div>
@@ -1159,7 +1231,10 @@
      screen, where #contact already offers both -->
 <nav class="m-contact" aria-label="Contact rapide" data-i18n-aria="mbar.aria">
   <a class="btn btn-primary" href="#apercu" data-i18n="mbar.cta">Mon Aperçu gratuit</a>
-  <a class="btn btn-ghost wa-link" data-i18n="footer.wa" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">WhatsApp</a>
+  <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">
+    <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+    <span data-i18n="footer.wa">WhatsApp</span>
+  </a>
 </nav>
 
 <!-- Lead-capture config (Supabase). Empty until the project exists — the

@@ -144,6 +144,16 @@
           <a href="../../en/tarifs/" hreflang="en" lang="en" aria-label="English (EN)" aria-current="page">EN</a>
           <a href="../../ar/tarifs/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
         </div>
+        <!-- the header's one action, from 700px up where the bar has room
+             for it (the phone bar carries it under 700px): styles.css sizes
+             and hides it (.nav-cta); app.js shows it only where nothing in
+             the bar is clipped by it, and gives it its button classes (btn
+             btn-primary) then: shipped with them, the .btn display rule
+             outranked the hidden attribute, the button was painted before
+             the script ran, and hiding it moved the whole bar (a layout
+             shift of 0.01 at 1280). js-only, since a bar this full needs
+             the script's measure. -->
+        <a class="nav-cta js-only" href="../#apercu" data-i18n="mbar.cta" hidden>My free Preview</a>
         <!-- the menu's open and close marks are drawn (24-grid, stroke 1.5),
              not typed: the system's ☰ and × came in whatever face the
              platform had for them, at a different weight on every phone -->
@@ -184,6 +194,17 @@
       <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="altneon" aria-checked="false"><span class="dot altneon" aria-hidden="true"></span>Alt-neon</button>
       <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="engineering" aria-checked="false"><span class="dot engineering" aria-hidden="true"></span>Engineering</button>
     </div>
+  </div>
+  <!-- the two ways to start, pinned at the foot of the menu (styles.css
+       .menu-acts): eight section links and no action left the visitor who
+       opened the menu to act with nothing to press. The same two links as
+       the phone bar (.m-contact), which is hidden while the menu is open. -->
+  <div class="menu-acts">
+    <a class="btn btn-primary" href="../#apercu" data-i18n="mbar.cta">My free Preview</a>
+    <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Hello%20Numidea%20Labs%20%E2%80%94%20I%20would%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">
+      <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+      <span data-i18n="footer.wa">WhatsApp</span>
+    </a>
   </div>
 </div>
 
@@ -563,7 +584,10 @@
      home page's bar; both lead to the home page's #contact and WhatsApp) -->
 <nav class="m-contact" aria-label="Quick contact" data-i18n-aria="mbar.aria">
   <a class="btn btn-primary" href="../#apercu" data-i18n="mbar.cta">My free Preview</a>
-  <a class="btn btn-ghost wa-link" data-i18n="footer.wa" href="https://wa.me/213672412578?text=Hello%20Numidea%20Labs%20%E2%80%94%20I%20would%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">WhatsApp</a>
+  <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Hello%20Numidea%20Labs%20%E2%80%94%20I%20would%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">
+    <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+    <span data-i18n="footer.wa">WhatsApp</span>
+  </a>
 </nav>
 
 <!-- this page's dictionary (one language), then the script that reads it;

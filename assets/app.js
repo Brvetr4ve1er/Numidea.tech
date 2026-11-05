@@ -39,15 +39,20 @@
      estimator shows those options as included and adds nothing for them. An
      earlier version claimed this and was wrong — the defaults sat 30-60k
      below the cards. The market table reads its Numidea column from here
-     too, so if a tier moves, move it here and nowhere else. */
+     too, so if a tier moves, move it here and nowhere else.
+
+     opts, where a type sets it, names the options that apply to it: an
+     identity has no CMS, languages or payment to add, an automation no
+     design kit; the estimator (section 12) locks the others, unticked, while
+     that type is chosen. A type without opts takes every option. */
   var ESTIMATE = (function () {
     var PRICE_MODEL = {
       vitrine:   { base: [90000, 160000],   unit: [6000, 12000],  min: 1,  max: 10,  def: 3,  step: 1,  u: 'price.uPages',    base_u: 5,  weeks: [2, 4] },
       surmesure: { base: [180000, 420000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 15, weeks: [3, 7],  incl: ['i18n', 'cms', 'ds', 'seo'] },
       ecommerce: { base: [220000, 550000],  unit: [900, 2200],    min: 10, max: 400, def: 60, step: 10, u: 'price.uProducts', base_u: 60, weeks: [5, 10] },
       app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16], incl: ['pay', 'api'] },
-      auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6] },
-      identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5] }
+      auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6],  opts: ['api', 'cms'] },
+      identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5],  opts: ['ds'] }
     };
     var PRICE_OPTS = {
       i18n: { add: [22000, 55000],  weeks: [1, 2], k: 'price.oI18n' },
@@ -214,8 +219,23 @@
        sends a stored en/ar preference to that language's page before paint:
        a visitor who picks French on en/ must land on the French page, not
        back on the one they just left. */
-    document.querySelectorAll('.lang a[hreflang]').forEach(function (a) {
+    /* The switch keeps the visitor's place. The three pages share their
+       ids, so the section being read goes on each link as its #fragment:
+       the scroll-spy (below) names it as it changes, and the click writes
+       it once more in case the spy has not run. Before any section is
+       read, the links stay the plain address of the page. The header's,
+       the menu's and the footer's switches alike. */
+    var langLinks = [].slice.call(document.querySelectorAll('.lang a[hreflang]')), langId = '';
+    var langAt = function (id) {
+      langId = id || '';
+      langLinks.forEach(function (a) {
+        var base = a.getAttribute('href').replace(/#.*$/, '');
+        a.setAttribute('href', langId ? base + '#' + langId : base);
+      });
+    };
+    langLinks.forEach(function (a) {
       a.addEventListener('click', function () {
+        langAt(langId);
         try { localStorage.setItem('numidea-lang', a.getAttribute('hreflang')); } catch (e) {}
       });
     });
@@ -234,10 +254,24 @@
       document.querySelectorAll('.theme-menu button').forEach(function (b) {
         b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
       });
+      labelTheme(t);
       try { localStorage.setItem('numidea-theme', t); } catch (e) {}
       // type tokens change line lengths, so cached section tops are re-measured
       document.dispatchEvent(new CustomEvent('numidea:relayout'));
     }
+    /* The button says which theme is on ("Thème : Noir", the name as the
+       menu writes it), as its label and its tooltip; in the phone menu the
+       label is the button's visible name too (styles.css, ::after). applyLang
+       writes the bare key back (data-i18n-aria), so it is written again
+       after a language apply. */
+    function labelTheme(th) {
+      var item = document.querySelector('.theme-menu button[data-theme-val="' + th + '"]');
+      var name = item ? item.textContent.trim() : th;
+      var fr = (document.documentElement.getAttribute('lang') || DEFAULT_LANG) === 'fr';
+      var label = t('ui.theme') + (fr ? ' : ' : ': ') + name;
+      document.querySelectorAll('.theme-btn').forEach(function (b) { b.setAttribute('aria-label', label); b.setAttribute('title', label); });
+    }
+    document.addEventListener('numidea:lang', function () { labelTheme(document.documentElement.getAttribute('data-theme') || 'arcanum'); });
     // the pre-paint script already resolved and applied this; mirror it here
     var defaultTheme = 'arcanum';
     var savedTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
@@ -267,6 +301,16 @@
         var i = which === 'last' ? items.length - 1 : which === 'first' ? 0
               : Math.max(0, items.findIndex(function (b) { return b.getAttribute('aria-checked') === 'true'; }));
         if (items[i]) items[i].focus();
+        // in the phone menu the chips open in place, at the foot of a dialog
+        // that scrolls: the whole row is brought in (focus alone brought the
+        // checked chip and left the rest below the fold on the price guide)
+        var dlg = sw.closest('.mobile-menu');
+        if (dlg) requestAnimationFrame(function () {
+          themeMenu.scrollIntoView({ block: 'nearest' });
+          // nearest lands the row flush on the dialog's edge: a gutter under it
+          var over = themeMenu.getBoundingClientRect().bottom - (window.innerHeight - 16);
+          if (over > 0) dlg.scrollTop += over;
+        });
       };
       themeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -639,7 +683,13 @@
           more   = wrap.querySelector('#plate-more'),
           items  = [].slice.call(wrap.querySelectorAll('.pm-item')),
           tabs   = [].slice.call(wrap.querySelectorAll('.plate-rail button')),
-          idxEl  = wrap.querySelector('.pm-idx b');
+          idxEl  = wrap.querySelector('.pm-idx b'),
+          // the plate's own link: the slide's sheet (scene/), by the slug its
+          // caption carries (data-sheet), or the card of a client with no
+          // sheet. Its path is read from the baked href, which build-lang.mjs
+          // has moved for en/ and ar/, so the folder is never guessed here.
+          plink  = wrap.querySelector('.plate-link'),
+          sheetBase = plink ? plink.getAttribute('href').replace(/#.*$/, '') : '';
       if (slides.length < 2 && !more) return;
       var cur = 0, busy = false, timer = null, HOLD = 5200;
 
@@ -661,8 +711,13 @@
       function paint(n) {
         slides.forEach(function (e, i) { e.classList.toggle('on', i === n); });
         items.forEach(function (e, i) { e.classList.toggle('on', i === n); });
-        tabs.forEach(function (e, i) { if (i === n) e.setAttribute('aria-current', 'true'); else e.removeAttribute('aria-current'); });
+        // the rail is one Tab stop: the shown slide's tab holds it (roving tabindex)
+        tabs.forEach(function (e, i) { if (i === n) e.setAttribute('aria-current', 'true'); else e.removeAttribute('aria-current'); e.tabIndex = i === n ? 0 : -1; });
         if (idxEl) idxEl.textContent = ('0' + (n + 1)).slice(-2);
+        if (plink) {
+          var it = items[n], slug = it && it.getAttribute('data-sheet');
+          plink.setAttribute('href', slug ? sheetBase + '#' + slug : '#w-' + (it ? it.getAttribute('data-client') : ''));
+        }
         cur = n;
       }
 
@@ -779,6 +834,25 @@
           go(i); arm();
         });
       });
+      /* One Tab stop (paint() keeps the tabindex on the shown slide's tab):
+         the arrows step through the tabs, Home and End jump to the ends,
+         and each step shows its slide. In Arabic the rail reads right to
+         left, so the arrows turn with it. */
+      var rail = wrap.querySelector('.plate-rail');
+      if (rail) rail.addEventListener('keydown', function (e) {
+        var i = tabs.indexOf(document.activeElement);
+        if (i < 0) return;
+        var rtl = document.documentElement.getAttribute('dir') === 'rtl', n = tabs.length, to = -1;
+        if (e.key === (rtl ? 'ArrowLeft' : 'ArrowRight')) to = (i + 1) % n;
+        else if (e.key === (rtl ? 'ArrowRight' : 'ArrowLeft')) to = (i - 1 + n) % n;
+        else if (e.key === 'Home') to = 0;
+        else if (e.key === 'End') to = n - 1;
+        if (to < 0) return;
+        e.preventDefault();
+        tabs.forEach(function (b, k) { b.tabIndex = k === to ? 0 : -1; });
+        tabs[to].focus();
+        go(to); arm();
+      });
       // WCAG 2.2.2: anything that moves on its own for more than 5s can be paused
       var pauseBtn = wrap.querySelector('.pl-pause');
       if (pauseBtn) {
@@ -786,6 +860,13 @@
         pauseBtn.addEventListener('click', function () {
           var on = pauseBtn.getAttribute('aria-pressed') !== 'true';
           pauseBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+          /* The label names what the next press does: pause, or resume
+             (ui.resume). Until the dictionaries carry that key the pause
+             label stays, and aria-pressed tells the state. The key goes on
+             data-i18n-aria too, so a language apply keeps the state's word. */
+          var labelKey = on && DICT['ui.resume'] != null ? 'ui.resume' : 'hero.platePause';
+          pauseBtn.setAttribute('data-i18n-aria', labelKey);
+          pauseBtn.setAttribute('aria-label', t(labelKey));
           // an explicit pause or play overrides a finger's rail pick: the
           // button sits inside the plate, so its tap never clears `picked`,
           // and play would otherwise report a rotation that does not run
@@ -820,9 +901,68 @@
         if (el !== menu && !el.contains(menu) && el.tagName !== 'SCRIPT') el.inert = open;
       });
       document.dispatchEvent(new CustomEvent('numidea:menu', { detail: open }));
-      if (open) { var first = menu.querySelector('a'); if (first) first.focus(); }
+      // focus lands on the close button: first on screen, first in the
+      // dialog, so Tab reads the menu in its order (it used to start on
+      // the first link and reach "Fermer" last)
+      if (open) { var first = menu.querySelector('.close') || menu.querySelector('a'); if (first) first.focus(); }
       else if (!keepFocus && toggle) toggle.focus();
     }
+    // a viewport grown past the phone layout (a rotation, a window widened)
+    // closes the menu: it stayed open there, invisible, the page's scroll locked
+    var wideMq = window.matchMedia('(min-width: 961px)');
+    var onWide = function (e) { if (e.matches) setMenu(false, true); };
+    if (wideMq.addEventListener) wideMq.addEventListener('change', onWide); else if (wideMq.addListener) wideMq.addListener(onWide);
+
+    /* The header's own action (.nav-cta, "Mon Aperçu gratuit") shows from
+       700px up, where the bar has room for it; below, the phone bar carries
+       it. The width rule is styles.css's; until it lands this keeps the
+       button off narrow screens (it ships hidden, so a phone never paints
+       it before this runs). Room is measured, not assumed: at its full
+       button size beside the seven section links the bar overflowed at
+       1024 and squeezed the language pill at 1280 (the pill shrinks first,
+       it clips its overflow), so the button is shown only while nothing in
+       the bar is clipped by it. Measured again on a resize, a language or
+       theme apply (type tokens change widths). */
+    (function () {
+      var cta = document.querySelector('.nav-cta'), bar = document.querySelector('.navbar .bar'), pill = document.querySelector('.nav-right .lang');
+      if (!cta || !bar) return;
+      var from = window.matchMedia('(min-width: 700px)'), t0 = 0;
+      var clipped = function (el) { return !!el && el.scrollWidth > el.clientWidth + 1; };
+      var fit = function () {
+        var show = from.matches;
+        // the button classes come here, not in the markup: with them the
+        // link was painted before this ran (the .btn display rule outranks
+        // the hidden attribute) and hiding it moved the bar
+        cta.classList.add('btn', 'btn-primary');
+        cta.hidden = !show; cta.style.display = show ? '' : 'none';
+        if (show && (clipped(bar) || clipped(pill))) { cta.hidden = true; cta.style.display = 'none'; }
+      };
+      var later = function () { clearTimeout(t0); t0 = setTimeout(fit, 120); };
+      if (from.addEventListener) from.addEventListener('change', fit); else if (from.addListener) from.addListener(fit);
+      window.addEventListener('resize', later);
+      document.addEventListener('numidea:lang', later);
+      document.addEventListener('numidea:relayout', later);
+      window.addEventListener('load', later);
+      fit();
+    })();
+
+    /* A FAQ answer opened below the fold, its last lines under the phone
+       bar: once open, the answer is brought to the nearest edge, clear of
+       the bar (70px while it is on). scrollIntoView follows scroll-padding
+       (the fixed nav, the bar's own scroll-padding-bottom) and the page's
+       scroll-behavior, so reduced motion stays instant. */
+    (function () {
+      var bar = document.querySelector('.m-contact');
+      document.querySelectorAll('.faq-item').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (!d.open) return;
+          var a = d.querySelector('.faq-a');
+          if (!a) return;
+          var room = window.innerHeight - (bar && bar.classList.contains('on') ? 70 : 0);
+          if (a.getBoundingClientRect().bottom > room) a.scrollIntoView({ block: 'nearest' });
+        });
+      });
+    })();
     if (toggle) toggle.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
     if (closeBtn) closeBtn.addEventListener('click', function () { setMenu(false); });
     if (menu) menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false, true); }); });
@@ -928,7 +1068,13 @@
     if (msgBox) {
       var carried = null;
       try { carried = sessionStorage.getItem(HANDOFF); if (carried !== null) sessionStorage.removeItem(HANDOFF); } catch (e) {}
-      if (carried) prefillWith('carried', carried);
+      /* The guide's scope arrives as a bare line ("Site sur mesure · 8 pages
+         — 180 000 – 420 000 DA"): a greeting (price.estHello) goes above it,
+         so the message opens as a message and the visitor's lines follow
+         naturally; the subject logic reads the first line (way 'carried').
+         Until the dictionaries carry the key, the scope stands alone. */
+      var hello = DICT['price.estHello'] != null ? DICT['price.estHello'] : '';   // t() would hand back the key
+      if (carried) prefillWith('carried', (hello ? hello + '\n' : '') + carried);
       if (carried && location.hash === '#contact') {
         var settled = null, landed = false;
         var land = function () {
@@ -998,7 +1144,9 @@
         if (!name) { err('name', 'form.errName'); ok = false; }
         if (!email) { err('email', 'form.errEmail'); ok = false; }
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err('email', 'form.errEmailValid'); ok = false; }
-        if (!msg) { err('message', 'form.errMsg'); ok = false; }
+        // the Aperçu's template sent back as written says nothing (its blanks
+        // are the message): the visitor is asked for a line, as for an empty field
+        if (!msg || (prefill.kind === 'prev' && msg === prefill.text.trim())) { err('message', 'form.errMsg'); ok = false; }
         // focus the first field to fix; its error is read through aria-describedby
         if (!ok) { var bad = form.querySelector('[aria-invalid="true"]'); if (bad) bad.focus(); return; }
 
@@ -1079,6 +1227,22 @@
         form.style.display = '';
         if (msgBox) { msgBox.focus(); if (select) msgBox.setSelectionRange(0, msgBox.value.length); }
       }
+      /* The message on WhatsApp instead of the mail app (#form-wa-send,
+         beside the submit): the fields as they stand at the click, composed
+         as the mail body opens (name <address>, then the message), set on
+         the link before the browser follows it. Empty fields leave the
+         baked opening line; wireWA (§13) keeps a text set here. */
+      var waSend = document.getElementById('form-wa-send');
+      if (waSend) waSend.addEventListener('click', function () {
+        if (!WA) return;
+        var n = form.querySelector('[name="name"]').value.trim();
+        var m = form.querySelector('[name="email"]').value.trim();
+        var txt = form.querySelector('[name="message"]').value.trim();
+        if (!n && !m && !txt) return;
+        var who = n + (m ? (n ? ' ' : '') + '<' + m + '>' : '');
+        var text = (who ? who + '\n\n' : '') + txt;
+        waSend.waText = text; waSend.href = waUrl(text);
+      });
       var editBtn = document.getElementById('form-edit');
       if (editBtn && success) editBtn.addEventListener('click', function () { backToForm(false); });
       var copyBtn = document.getElementById('form-copy');
@@ -1247,14 +1411,21 @@
         /* Options the tier already includes are shown ticked and locked,
            labelled as included; leaving that type frees them again. */
         est.querySelectorAll('input[data-opt]').forEach(function (c) {
-          var inc = (m.incl || []).indexOf(c.getAttribute('data-opt')) > -1;
+          var opt = c.getAttribute('data-opt');
+          var inc = (m.incl || []).indexOf(opt) > -1;
+          /* An option the type has no use for (PRICE_MODEL opts: a CMS on
+             an identity, a design kit on an automation) is unticked and
+             locked, greyed by its label (.eopt-na); a type that takes it
+             gives it back as the visitor had left it. */
+          var na = !!m.opts && m.opts.indexOf(opt) === -1;
           var lab = c.closest('label'), tag = lab && lab.querySelector('.eo-incl');
-          if (inc) {
+          if (inc || na) {
             if (!c.disabled) c.dataset.user = c.checked ? '1' : '';
-            c.checked = true; c.disabled = true;
+            c.checked = inc; c.disabled = true;
           } else if (c.disabled) {
             c.checked = c.dataset.user === '1'; c.disabled = false;
           }
+          if (lab) lab.classList.toggle('eopt-na', na);
           if (inc && lab && !tag) {
             tag = document.createElement('small');
             tag.className = 'eo-incl';
@@ -1428,41 +1599,47 @@
 
     /* ---------------- phone contact bar ----------------
        Phones only (the CSS hides it above 720px). Shown once the visitor is
-       1.5 screens down, hidden again while #contact or the footer is on screen
-       and while the menu is open: #contact already offers the same two
-       actions, and the footer comes straight after it and is shorter than a
-       phone screen, so while the footer shows, #contact's channels and form
-       are on screen too (the footer's own email and WhatsApp went on
-       2026-10-26).
-       It also steps aside while the reader scrolls down: with the navbar it
-       covered 142px of a 320x568 screen (25%) the whole way down. It slides
-       back on a scroll up, or once the page has been still for 600ms, and
-       stays while focus is inside it. A same-page jump (a client logo to its
-       card, a menu link) is reading too: the bar stays aside until the
-       visitor moves the page themselves. Coming back 600ms after a logo's
-       jump, it covered the benefit line the logo leads to on a 320x568
-       phone. Caught on the click, not on hashchange, which a second tap on
-       the same logo never fires; a touch, the wheel or a key clears it
-       (each comes before the click it may lead to). */
+       1.5 screens down and kept there, hidden again while #contact or the
+       footer is on screen and while the menu is open: #contact already
+       offers the same two actions, and the footer comes straight after it
+       and is shorter than a phone screen, so while the footer shows,
+       #contact's channels and form are on screen too (the footer's own
+       email and WhatsApp went on 2026-10-26). On the price guide, whose
+       first screen has no action of its own, it is on from the start.
+       It steps aside only during a fast fling (more than 40px between two
+       scroll events) and is back 150ms after the last one; it stays while
+       focus is inside it. It used to hide on every scroll down and come
+       back after 600ms of rest, and to stay away after any same-page jump
+       (a client logo to its card, a menu link, the hero's button): measured
+       on a 390x844 phone, the two ways in were off screen for most of the
+       read, and after the hero's jump to the Aperçu card neither button was
+       in view. A jump is now a place to act from: the browser's own smooth
+       scroll moves the page fast, so the fling test is held for the jump's
+       length (1.5s on a phone, html's scroll-behavior) and the bar shows
+       where it lands. */
     (function () {
       var bar = document.querySelector('.m-contact');
       if (!bar) return;
       // as in styles.css: phones, but not a phone on its side (short and at
       // least 480px wide), where the bar would cover a third of the screen
       var mq = window.matchMedia('(max-width: 720px) and (min-height: 561px), (max-width: 479px)');
+      var guide = !!document.querySelector('main.tarifs');
       var inView = { contact: false, footer: false }, menuOpen = false;
-      var lastY = scrollPos, goingDown = false, restT = 0, jumped = false;
+      var lastY = scrollPos, fling = false, flingT = 0, jumpT = 0, jumping = false;
       function update() {
         bar.classList.toggle('on', mq.matches && !menuOpen && !inView.contact && !inView.footer
-          && scrollPos > viewH * 1.5 && !jumped && (!goingDown || bar.contains(document.activeElement)));
+          && (guide || scrollPos > viewH * 1.5) && (!fling || bar.contains(document.activeElement)));
       }
-      function rest() { goingDown = false; lastY = scrollPos; update(); }
+      function settle() { fling = false; update(); }
       function onBarScroll() {
         var dy = scrollPos - lastY;
-        // a few pixels either way (a settling fling, rubber-banding) change nothing
-        if (dy > 6 || dy < -6) { goingDown = dy > 0; lastY = scrollPos; }
-        clearTimeout(restT);
-        if (goingDown) restT = setTimeout(rest, 600);
+        lastY = scrollPos;
+        // no fling under reduced motion: the page jumps there, and a bar
+        // written back 150ms after a jump is motion of its own (keys.mjs)
+        if (!reduceMotion && !jumping && (dy > 40 || dy < -40)) {
+          fling = true;
+          clearTimeout(flingT); flingT = setTimeout(settle, 150);
+        }
         update();
       }
       if ('IntersectionObserver' in window) {
@@ -1473,13 +1650,13 @@
         ['#contact', '.footer'].forEach(function (s) { var el = document.querySelector(s); if (el) io.observe(el); });
       }
       document.addEventListener('numidea:menu', function (e) { menuOpen = !!e.detail; update(); });
+      // a same-page jump: not a fling, and the bar shows where it lands
       document.addEventListener('click', function (e) {
         var a = e.target.closest && e.target.closest('a[href^="#"]');
         if (!a || a.getAttribute('href').length < 2) return;
-        jumped = true; clearTimeout(restT); update();
-      });
-      ['touchstart', 'wheel', 'keydown'].forEach(function (t) {
-        window.addEventListener(t, function () { jumped = false; }, { passive: true });
+        jumping = true; fling = false; clearTimeout(flingT);
+        clearTimeout(jumpT); jumpT = setTimeout(function () { jumping = false; lastY = scrollPos; }, reduceMotion ? 100 : 1600);
+        update();
       });
       window.addEventListener('scroll', onBarScroll, { passive: true });
       if (mq.addEventListener) mq.addEventListener('change', update); else if (mq.addListener) mq.addListener(update);
@@ -1793,11 +1970,23 @@
               var v = m * Math.pow(10, e), p = (Math.log(v * FX[c]) - Math.log(V0)) / (Math.log(V1) - Math.log(V0));
               if (p > 0.015 && p < 0.985) ticks.push({ v: v, p: p, major: m === 1 });
             });
+            // a minor label at the end of the scale (past 93%) with a major
+            // within 6% of it printed over that major on a phone: dropped
+            ticks = ticks.filter(function (tk) {
+              return tk.major || tk.p <= 0.93 || !ticks.some(function (o) { return o.major && Math.abs(o.p - tk.p) < 0.06; });
+            });
+            /* The unit is written once per axis, in its heading cell before
+               the ticks (styles.css lays it out; it used to sit at the end
+               of the row, over the last label on a phone). The first and
+               the last label are marked, so the ends can be pinned inside
+               the plot. */
             axes.forEach(function (a) {
               a.unit.textContent = sym(c);
               a.tk.textContent = '';
-              ticks.forEach(function (tk) {
+              ticks.forEach(function (tk, i) {
                 var s = el('span', tk.major ? 'mj' : 'mn');
+                if (i === 0) s.classList.add('first');
+                if (i === ticks.length - 1) s.classList.add('last');
                 s.textContent = label(tk.v);
                 s.style.insetInlineStart = pc(tk.p);
                 a.tk.appendChild(s);
@@ -2037,6 +2226,12 @@
       var links = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
       var crumb = document.getElementById('crumb'), now = document.getElementById('crumbNow');
       var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+      /* On the price guide the nav's links lead to the home page, so the
+         spy has no section of its own there: the guide's blocks (the tiers,
+         the estimator, the comparison: main [id]) are followed for the
+         language switch alone, which keeps the visitor's place (langAt). */
+      var own = links.length > 0;
+      if (!own) secs = [].slice.call(document.querySelectorAll('main.tarifs :is(section,div,details)[id]'));
       /* A link may point into another link's section ("Méthode" lands on the
          Aperçu card, the path's one telling, inside Services): that link is
          current only while its own box is being read, and after it the
@@ -2061,6 +2256,9 @@
         // the order of the links is the order of the page, so the last section
         // whose top has passed the reading line is the one being read
         if (i === cur) return; cur = i;
+        // the language switch follows the section being read
+        langAt(i >= 0 && secs[i] ? secs[i].id : '');
+        if (!own) return;
         links.forEach(function (a, k) { if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
         if (crumb && now) { now.textContent = i >= 0 ? links[i].textContent : ''; crumb.classList.toggle('on', i >= 0); }
       };
