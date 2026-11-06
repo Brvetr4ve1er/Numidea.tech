@@ -1000,7 +1000,7 @@
       var cvLabel = function () {
         var k = ['founder.cvBtn', 'founder.cvClose'][cvPanel.classList.contains('open') ? 1 : 0];
         cvBtn.setAttribute('data-i18n', k);
-        cvBtn.innerHTML = t(k);
+        cvBtn.innerHTML = DICT[k] != null ? DICT[k] : k;
       };
       cvBtn.addEventListener('click', function () {
         var open = cvPanel.classList.toggle('open');
@@ -1073,7 +1073,7 @@
          so the message opens as a message and the visitor's lines follow
          naturally; the subject logic reads the first line (way 'carried').
          Until the dictionaries carry the key, the scope stands alone. */
-      var hello = DICT['price.estHello'] != null ? DICT['price.estHello'] : '';   // t() would hand back the key
+      var hello = DICT['price.estHello'] != null ? plain(DICT['price.estHello']) : '';   // t() would hand back the key
       if (carried) prefillWith('carried', (hello ? hello + '\n' : '') + carried);
       if (carried && location.hash === '#contact') {
         var settled = null, landed = false;
@@ -1281,10 +1281,10 @@
     function unit(k, n) {
       var lang = document.documentElement.getAttribute('lang') || DEFAULT_LANG;
       var d = DICT, forms = d[k + '.n'];
-      if (!forms) return d[k] || k;
+      if (!forms) return plain(d[k] || k);
       var f = forms.split('|');
       var i = (f.length === 5 ? ['one', 'two', 'few', 'many', 'other'] : ['one', 'other']).indexOf(plural(lang, n));
-      return f[i > -1 ? i : f.length - 1];
+      return plain(f[i > -1 ? i : f.length - 1]);
     }
     /* The Arabic dual already says "two" (صفحتان is "two pages"): it stands
        without the numeral, which would read "2 two-pages". */
@@ -1295,9 +1295,23 @@
     // "8 pages", "60 منتجاً", "صفحتان"
     function counted(k, n) { return dual(n) ? unit(k, n) : n + ' ' + unit(k, n); }
 
-    /* dictionary lookup for strings built in JS (estimator, WhatsApp text) */
+    /* dictionary lookup for strings built in JS (estimator, WhatsApp text),
+       as plain text. Every one of them lands in textContent, an attribute, the
+       message field, a mailto body or a wa.me link, none of which reads
+       markup, and a value may carry some: the Arabic isolates its Latin runs
+       (<bdi>SEO</bdi>, ccc4b42), so ticking "SEO" in the Arabic estimator
+       printed the tags in its summary and sent them on in the visitor's
+       message. The tags go; their words stay. A key that is markup on
+       purpose (the CV button) is read from DICT itself. */
     function t(k, fb) {
-      return DICT[k] != null ? DICT[k] : (fb || k);
+      return plain(DICT[k] != null ? DICT[k] : (fb || k));
+    }
+    function plain(s) {
+      s = String(s);
+      if (!/[<&]/.test(s)) return s;
+      var tpl = document.createElement('template');   // inert: nothing in it loads or runs
+      tpl.innerHTML = s;
+      return tpl.content.textContent;
     }
 
     /* ---------------- 12a · display currency ----------------

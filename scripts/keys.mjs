@@ -487,7 +487,11 @@ async function cvPanel(p) {
    #contact, the scope carried in sessionStorage (app.js HANDOFF), which the
    home must have read into the message, under the greeting price.estHello on
    its own line, and cleared; the fold and the
-   currency switch are tried on the home alone. */
+   currency switch are tried on the home alone. Whatever the scope says, it
+   says in plain text, in the summary list as in the message: a dictionary
+   value with markup in it (the Arabic's <bdi>SEO</bdi>, which the default
+   type includes) printed its tags there and sent them on in the visitor's
+   mailto body and WhatsApp text, until app.js t() returned plain text. */
 async function estimatePrefill(p, lang) {
   const bad = [];
   const D = DICT[lang] || {};
@@ -495,6 +499,9 @@ async function estimatePrefill(p, lang) {
   const isOpen = () => p.evaluate(() => document.querySelector('.price-est').open);
   const space = async (sel) => { await p.focus(sel); await p.keyboard.press('Space'); await wait(100); };
   const guide = await p.evaluate(() => !document.getElementById('f-message'));
+  const TAG = /<\/?[a-z][^>]*>/i;
+  const tagged = (where, s) => { if (s && TAG.test(s)) bad.push(`markup printed as text in the ${where}: "${s.match(TAG)[0]}" in "${s.slice(0, 60).replace(/\n/g, '⏎')}…"`); };
+  tagged('estimator summary', await p.evaluate(() => [...document.querySelectorAll('#est-summary li')].map((l) => l.textContent).join(' | ')));
   if (await isOpen()) { if (!guide) bad.push('the estimator is open at load (the home folds it)'); }
   else {
     if (guide) bad.push('the guide\'s estimator is folded at load (it renders open)');
@@ -509,6 +516,7 @@ async function estimatePrefill(p, lang) {
     const at = new URL(p.url());
     if (at.pathname !== home || at.hash !== '#contact') bad.push(`Enter on the guide's "prix ferme" link lands on ${at.pathname}${at.hash}, not on ${home}#contact`);
     const m = await msg();
+    tagged('message carried to the home', m);
     if (m === null) bad.push('no message field where the link landed');
     // the home puts the greeting (price.estHello) on the line above the carried scope
     else if (!D['price.estHello'] || !m.startsWith(D['price.estHello'] + '\n' + D['price.tyCustom'] + ' · ') || !m.includes(' — ')) bad.push('the scope carried to the home reads "' + m.slice(0, 60).replace(/\n/g, '⏎') + '", not price.estHello ⏎ price.tyCustom · … — range');
@@ -519,6 +527,7 @@ async function estimatePrefill(p, lang) {
   }
   await p.focus('#est-cta'); await p.keyboard.press('Enter'); await wait(200);
   let m = await msg();
+  tagged('message', m);
   if (!m.startsWith(D['price.tyCustom'] + ' · ') || !m.includes(' — ')) bad.push('the estimator\'s default scope hands "' + m.slice(0, 60) + '" to the message, not price.tyCustom · … — range');
   await space('input[name="est-type"][value="ecommerce"]');
   await p.focus('#est-cta'); await p.keyboard.press('Enter'); await wait(200);
