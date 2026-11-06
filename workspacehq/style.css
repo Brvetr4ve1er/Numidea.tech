@@ -428,6 +428,10 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 }
 @media (max-width:479px){
   .screen-bar>span:last-child{display:none}
+  /* the terminals' labels in the legible pixel size (0b01ae5) no longer fit
+     one line beside the tag at 390: both ended in an ellipsis ("DESKTOP
+     CONSOLE · ELECTR…", 331px of text in 322). They wrap between words. */
+  .term-os{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.5}
 }
 
 /* ---------- print: dark text on white, no atmosphere or players, nothing
