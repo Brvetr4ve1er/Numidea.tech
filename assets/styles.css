@@ -3091,13 +3091,15 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
    (the folded card, then the market panel), each padded 24px a side: at 320
    the table's scroll frame was 178px wide and its sticky first column 140px,
    so 38px of figures showed, a sliver of "DA" (218px at 360, 248 at 390).
-   Under 600px the panels pad 12px, the frame runs to the panel's edges, and
-   the row label may wrap between words, so the label column is 112px and
-   the figures get the rest (140px at 320, 210 at 390). */
+   Under 600px the panels pad 12px and the frame runs to the panel's edges.
+   The rows are labelled cards there since e0aed27 (the 640px block above):
+   the table's fixed 112px label column (8em) came later in the file and won
+   over the card's width:auto, so each card's title was a 112px block beside
+   an empty band and "E-commerce" broke as "E-" / "commerce". Gone; the title
+   runs the card's width. */
 @media (max-width:599px){
   .price-more .pm-body{padding-inline:var(--s-3)}
   .price-more .market,.price-more .models{padding-inline:var(--s-3)}
   .price-more .mk-scroll{margin-inline:calc(-1 * var(--s-3));border-inline:0;border-radius:0}
   .mk-table th,.mk-table td{padding-inline:12px}
-  .mk-table tbody th{white-space:normal;width:8em;min-width:8em}   /* "E-commerce", the longest word, is 85px */
 }
