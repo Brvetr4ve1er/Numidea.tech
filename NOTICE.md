@@ -19,6 +19,18 @@ themselves; a Reserved Font Name may not be used for a modified font.
 | `assets/fonts/` | Cinzel, Cinzel Decorative, Geist, Geist Mono, IBM Plex Sans Arabic, Syne (woff2 subsets) | `assets/fonts/OFL.txt` — since 2026-11-03 it names each family's file glob and the copyright line read from that font's own name table (until then only the Cinzel Project's line was in it) |
 | `workspacehq/fonts/` | Press Start 2P (Reserved Font Name "Press Start 2P"), VT323 | `workspacehq/fonts/OFL.txt`, both copyright lines copied from the files' name tables |
 | `workspacehq/embed/fonts/` | IBM Plex Mono Regular, Medium, SemiBold (Copyright 2017 IBM Corp.) | `workspacehq/embed/fonts/OFL.txt` |
+| `hub/fonts/` | Archivo (weights 800 to 900, latin; Copyright 2020 The Archivo Project Authors), Noto Sans JP (weights 700 to 900, cut to the six glyphs the hub sets; (c) 2014-2021 Adobe, with Reserved Font Name "Source") | `hub/fonts/OFL.txt`, each family's file and the copyright line read from its name table (since 2026-11-06, the hub's character bible) |
+
+## Permanent Marker — Apache License 2.0
+
+`hub/fonts/permanent-marker-latin.woff2` (regular, latin subset) sets the
+hub's handwritten notes and the rig's speech bubble. Its name table reads
+"Copyright (c) 2010 by Font Diner, Inc. All rights reserved. Licensed under
+the Apache License, Version 2.0"; that line and the full licence text are in
+`hub/fonts/LICENSE-permanent-marker.txt`, beside the file. It is the one
+face in the repository that is not under the OFL, and the legal page's
+fonts sentence names it apart (`scripts/build-legal.mjs`, in the three
+languages).
 
 ## React 18.3.1 — MIT
 
@@ -50,9 +62,15 @@ product.
 
 ## The owner's illustrations — no licence chosen yet
 
-`hub/art/` and `hub/loops/` are the founder's own drawings and design pieces
-(the hub's art, the diary and band illustrations, his Behance covers, the
-animated loops). He has not chosen a licence for them: `ip.licence` in
+`hub/art/` holds the founder's own drawings of himself and Kūro, as his
+character bible shows them since 2026-11-06: the live rig's frames
+(`rig-y-*`, `rig-k-*`), the twelve faces, the poses, the head-to-toe pairs,
+Kūro's cards and the silhouettes, cut from his private masters by
+`npm run hub:rig` (`scripts/build-hub-rig.mjs`); `hub/og.jpg`, the hub's
+share card, is drawn from its cover. (Until 2026-11-06 the folder also held
+the diary and band illustrations and his Behance covers, and `hub/loops/`
+the animated loops; they left with the rebuild and stay only in the git
+history.) He has not chosen a licence for them: `ip.licence` in
 `scripts/legal-data.mjs` is still null, and the same choice covers the site's
 own text, its illustrations and the CV (`assets/cv_yasser_hamisse_2026.pdf`).
 As written, `LICENSE` would cover them; the owner may instead narrow it to the

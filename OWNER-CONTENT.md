@@ -2,30 +2,33 @@
 
 The site leaves a place for each item below and shows nothing until the real
 thing exists: no placeholders, no invented content. This file is not deployed.
-Status as of 2026-11-03 (after the owner's answers of 2026-10-30, the fix
-fleets of 2026-10-31 and of 2026-11-03; sections 16 and 17 record those
-answers, and the page now carries them).
+Status as of 2026-11-06 (after the owner's answers of 2026-10-30, the fix
+fleets of 2026-10-31 and of 2026-11-03, the hub rebuilt as your character
+bible and the UX pass of 2026-11-06; sections 16 and 17 record those
+answers, and the page now carries them; section 19 lists what the UX pass
+left for you to decide).
 
 | # | Item | Status | Where it goes |
 |---|---|---|---|
 | 1 | Legal notice + privacy details | **Missing (16 fields; 5 in three languages)**; "later" (owner, 2026-10-30): the pages stay unpublished, the slots stay empty | `scripts/legal-data.mjs` |
 | 2 | Client quotes, with consent | None yet | `scripts/voices-data.mjs` |
-| 3 | Founder photo | Still open: none yet (monogram "Y" shows) | `assets/founder.webp` |
+| 3 | Founder photo | Still open: none yet (monogram "Y" shows, a 64 px mark since 2026-11-06) | `assets/founder.webp` |
 | 4 | Team names and photos; the team-size claim | Answered 2026-10-30 and applied on 2026-11-03: one founder, with freelancers when a project calls for them (section 17). The page shows one team row, no initials and no photos | `index.html` #founder, `assets/i18n/*.js` (`team.*`) |
 | 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31 and 2026-11-03 is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03 and 2026-11-06 is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
 | 12 | Campaign kit and git history | Kit with the owner | outside this repo |
 | 13 | WorkspaceHQ: open source or not | Claim removed (no licence, no README) | `Brvetr4ve1er/workspace-HQ`, then `workspacehq/`, `scripts/scene-data.mjs` |
 | 14 | Claims only the owner can confirm | 8 listed: 5 open (F11, the toolchain, now trimmed to what the builds use but still yours to confirm), 3 answered on 2026-10-30 and applied on 2026-11-03 | see section 14 |
-| 15 | Hub illustrations (yours: you and Kūro) | 3 points for your review (the diary titles approved 2026-10-28) | `hub/` |
+| 15 | Hub: your character bible (you and Kūro) | Rebuilt on 2026-11-06 from your own design page; 6 points for your review (the character facts, the day's scenarios, your name's spelling, the "2 a.m." line, the coat's patch, Kūro); the earlier diary points closed with the diary | `hub/index.html`, `hub/app.js` (the rig's lines) |
 | 16 | Commercial terms (payment, ownership, hosting, revisions, support, contract, the Aperçu rules) | On the page since 2026-11-03 as FAQ entries, drafted on your instruction of 2026-10-31; yours to change at any time | section 16; `faq3`, `faq7`, `faq8` in `assets/i18n/fr.js` |
 | 17 | Team and contact facts | Answered 2026-10-30, on the page since 2026-11-03 | section 17 |
-| 18 | The founder's name in Arabic script | Still open: the Arabic hero lede shows "Yasser Hamisse" in Latin script until you give the spelling | `assets/i18n/ar.js` (`hero.lede`) |
+| 18 | The founder's name in Arabic script | Still open: the Arabic hero lede shows "Yasser Hamisse" in Latin script (isolated in a `<bdi>` since 2026-11-06) until you give the spelling | `assets/i18n/ar.js` (`hero.lede`) |
+| 19 | The UX pass's questions | 16 asked on 2026-11-06 (IMPROVEMENTS decisions 28 to 43, the recommended option first), plus the sharper captures that need the live sites; nothing changes until you answer | section 19 |
 
 ## 1. Legal notice + privacy page
 Fill every `null` in `scripts/legal-data.mjs`. `false` means "does not apply"
@@ -85,7 +88,10 @@ Voyages can be quoted. Get written agreement to the exact text.
 ## 3. Founder photo
 A real photo, never a generated face: square, at least 400 px, saved as
 `assets/founder.webp`. In `index.html` (#founder, `.fd-photo`), uncomment the
-`<img>` line; the monogram steps aside. Run `npm run bump`. Still open on 2026-11-03.
+`<img>` line; the monogram steps aside. Run `npm run bump`. Still open on 2026-11-06.
+Meanwhile the monogram is a 64 px mark (2026-11-06; it was up to 100 px with
+a glow, and read as a missing avatar); `assets/styles.css` already places the
+photo over it (`.fd-photo img`), so the slot needs only the file.
 
 ## 4. Team
 **Answered on 2026-10-30: one founder, with freelancers when needed** (section
@@ -125,10 +131,11 @@ usually agreed with the client; the same email or WhatsApp message as for
 item 6 can cover it.
 
 ## 8. Arabic native review
-**Every Arabic string added or changed on 2026-10-31 and 2026-11-03 awaits
-native review** (the lists are at the end of this section, "Written on
-2026-10-31" and "Written or changed on 2026-11-03"); nothing Arabic written by
-the fix fleets has been read by a native speaker.
+**Every Arabic string added or changed on 2026-10-31, 2026-11-03 and
+2026-11-06 awaits native review** (the lists are at the end of this section,
+"Written on 2026-10-31", "Written or changed on 2026-11-03" and "Written or
+changed on 2026-11-06"); nothing Arabic written by the fix fleets has been
+read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
 Conventions to keep: Western digits, forward arrows `←`, singular "you", brand
@@ -292,6 +299,33 @@ dates are numbered months (`fx1.when` and the three after it), no longer the
 Maghreb month names; «حزمة تصميم» for "kit graphique" and «وسند طلب موقّع»
 for "bon de commande signé" are the drafter's judgement.
 
+Written or changed on 2026-11-06 (the UX pass; ccc4b42, 8fe0f45; none read
+by a native speaker). By kind:
+- changed words: `hero.eyebrow`, now «استوديو ويب · برج بوعريريج · AR · FR ·
+  EN», the codes in a `<bdi>` and held on one line, where it said «مواقع
+  بالعربية أو الفرنسية أو الإنجليزية»: the Arabic language names gave way to
+  the same short codes as the French and English eyebrows (IMPROVEMENTS
+  decision 30 asks whether to keep them); `founder.cvBtn` «عرض المسار ↓»,
+  only its arrow changed (it was ↴, which read as a stray comma);
+- new keys, in `assets/i18n/ar.js`: `ui.resume` «استئناف التناوب» (the hero
+  plate's pause button once pressed), `price.estHello` «مرحباً، هذا مشروعي:»
+  (the line above the estimate carried into the message), `faq.ask` «سؤال
+  آخر؟» (the line that closes the FAQ), and the price guide's jump row,
+  `tarifs.jTiers` «الباقات», `tarifs.jEst` «المقدِّر», `tarifs.jMk`
+  «الأسواق», `tarifs.jMd` «النماذج», `tarifs.jFaq` «الأسئلة الشائعة»;
+- unchanged words, the Latin runs now isolated in `<bdi>` so the comma and
+  the brand sit on the right side of them (read them for the flow, not the
+  words): `hero.lede`, `proj4.desc`, `founder.lead`, `fx2.what`, `fs2`,
+  `founder.certs`, `tag.seo`, `faq3.a`, `faq8.a`, `mk.note`, `md.fW`,
+  `price.t1c`, `price.t1d`, `price.t2e`, `price.oSeo`, `f1.brief`,
+  `c1.brief`, `c4.brief`, `c5.brief`;
+- the legal page, `scripts/build-legal.mjs`: the fonts sentence gains a
+  clause for the one face under the Apache License 2.0 (the hub's Permanent
+  Marker), «، و… بترخيص Apache License 2.0», after the OFL faces.
+Left plain on purpose: Arabic text in attributes and titles (alt, aria
+labels, the meta tags, the mail subject, the WhatsApp texts, placeholders)
+cannot carry a `<bdi>`, so its Latin runs are as they were.
+
 Files: the dictionaries `assets/i18n/ar.js` (the `ar` block carries a
 banner; since 2026-10-31 the three languages are one file each, no longer in
 `assets/app.js`), the `UI.ar` and project `ar` texts in
@@ -306,12 +340,13 @@ the delivered site:
 - `almaflowclim.fr` serves a different Hostinger site;
 - the two projects in progress (Doctor Cherfia, Étoile de l'Est) have no
   card on the page until each site is live (owner decision, 2026-10-26);
-  each then comes back with its own screenshot, link and browser bar.
+  each then comes back with its own screenshot, link and host line.
 
 When a client points a domain at the build, run `node scripts/verify-domains.mjs`.
 It reports a domain as switchable only when it serves the same site. Then the
-link changes in one place per client (`check.mjs` keeps the plate, card,
-browser bar and project sheet in step).
+link changes in one place per client (`check.mjs` keeps the plate, the card
+and the project sheet in step; the card's host line, which replaced its
+drawn browser bar on 2026-11-06, is typed by hand: change it with the link).
 
 ## 10. Hub fan art
 No fan art on the site since 2026-10-28: the fan art and the remade poster
@@ -397,20 +432,63 @@ card has read "Artisan · Île-de-France" since the copy rewrite of 2026-10-14,
 which is what its own site presents.
 
 ## 15. Hub illustrations
-The rebuilt `hub/` is drawn from your illustrations of yourself and Kūro.
-As you chose (IMPROVEMENTS decision 24), the page carries no credit line and
-names no tool. You approved the eight studio-diary titles on 2026-10-28
-(4 a.m., Buried, Art director, The second brain, A world in miniature,
-Morning light, Wandering, tr4veler.exe; IMPROVEMENTS decision 26). Three
-points remain for your review:
-- the page says only "Kūro, the black cat": say if more is true;
-- the hexagon "N" on the coat is treated as a costume detail, not the
-  studio's mark: confirm;
-- "A world in miniature" carries glyph-like symbols on its cut-paper
-  panels that resemble Tifinagh letters (a yaz among them); an Amazigh reader
-  may find them garbled: keep them, or have them painted out. (The letters
-  on the blueprints are kept as a drafting convention, and the scribbles on
-  the wall notes as texture.)
+Since 2026-11-06 (56f29c1, 6216ec9; IMPROVEMENTS A15) `hub/` is your
+character bible, built from your own design page: a cover; 00 He's alive, a
+live drawn rig of you and Kūro that follows the cursor, says a line and
+reacts to a click for five seconds, then rests (with reduced motion, only a
+click or a button changes a face); 01 Who he is; 02 The silhouette; 03
+Twelve faces; 04 What he does; 04b Head to toe; 05 Kūro; 06 How he talks;
+07 A day on Studio; 08 Elsewhere, the verified links and the email; the
+footer with your "agency of one" line (section 4). One paper palette: the
+theme pill is gone. The Behance covers grid, the studio diary and its
+viewer, the animated loops (`hub/loops/`) and the cartridge left the page
+with the rebuild, so the earlier points about the diary are closed: its
+titles (approved on 2026-10-28, IMPROVEMENTS decision 26) and the
+Tifinagh-like glyphs in "A world in miniature" are no longer on the site
+(they stay in the git history). As you chose (IMPROVEMENTS decision 24), the
+page carries no credit line and names no tool. The pictures in `hub/art/`
+are cut from your masters by `npm run hub:rig` (README); their licence is
+yours to choose (NOTICE.md).
+
+The words are your design page's, kept as written except where they were
+internal notes (its section "To finish him" was not published). Six points
+are yours to confirm, because only you can:
+- **the character facts in "Who he is"**: Role "Founder · creative director
+  · the one who actually ships it"; Base "Bordj Bou Arréridj, Algeria — the
+  studio roof at dawn"; Seal 夜 *yoru*, "He does his best work after
+  everyone logs off"; Fuel "Black coffee, the Numidea mug"; Partner Kūro; the
+  four lines Wants, Fears, Flaw and Tell; and the six axes with their
+  percentages (calm 38 % toward chaotic, night 14 % toward day, talks 84 %
+  toward ships, polished 66 % toward messy, serious 72 % toward deadpan
+  funny, solo 90 % toward with Kūro). Read as a character, they are yours to
+  set; read as facts about the founder of the studio a buyer meets on the
+  home page, say if any is not true;
+- **the scenarios of "A day on Studio"**: eight beats (the sting at dawn,
+  the hero, services, pricing, work, FAQ, contact, after 23:00) describe how
+  the character would behave on a studio site: mug steam that writes
+  NUMIDEA LABS, a marker note "c'est tout." beside the price total, Kūro
+  loafing on the case tile you hover, a face change on each FAQ answer, a
+  pointer at the field being typed in. None of it exists on the home page
+  today. Confirm they are shown as a design idea, not a feature, or say
+  which you want built;
+- **your name's spelling**: the page's title, its share card and "Who he
+  is" say "Yasser Hamisse", as the home page does; the footer says
+  "Hamisse Mohamed Yasser", and the LinkedIn link "Mohamed Yasser Hamisse"
+  (as the profile's address spells it). Say which the hub should use, or confirm the
+  footer keeps the full civil order on purpose;
+- **"the builder who answers at 2 a.m."** (the tagline, the description and
+  share texts, and the line "Il est 2 h. Oui, je réponds encore." in How he
+  talks and the rig): the home page promises a reply the next working day,
+  Sunday to Thursday, 9h–18h (section 17). As a character trait it is
+  yours; confirm a buyer will not read it as a promise;
+- **the coat's patch**: the silhouette notes say "NUMIDEA patch on the left
+  sleeve", and the mug is "the Numidea mug". The page of 2026-10-28 treated
+  the hexagon "N" as a costume detail; the bible now names it as the
+  studio's mark. Confirm;
+- **Kūro**: the page now says more than "the black cat": "a black cat with
+  taste and no patience", "the quality gate has whiskers", and ten cards
+  (judge, loaf, smug, stamp and the rest). Say if any of it should not be
+  said of your own cat.
 
 ## 16. Commercial terms
 The site said nothing about what happens after the yes (IMPROVEMENTS A1,
@@ -468,3 +546,57 @@ stay with you (IMPROVEMENTS A1, owner facts).
   9h–18h)" (the title block, the proof line, the Aperçu path, FAQ 4, the
   contact block), and no `tel:` link is added. On the page since 2026-11-03;
   recorded as your answers of 2026-10-30.
+
+## 19. The UX pass's questions (asked 2026-11-06)
+The UX and visual pass of 2026-11-06 changed only how the pages look and
+behave; the reviewers' proposals that would change a fact, a cut you made or
+one of your recorded decisions were left to you. Each is a decision in
+IMPROVEMENTS.md, its recommended option first; nothing changes until you
+answer.
+- **Themes** (decision 31): keep Arcanum (the default) and Daylight; Noir is
+  a credible third now that its emphasis is red; Mono, Engineering and
+  Alt-Neon read as recolours, or off-brand for a B2B studio. Removing one is
+  one block in `assets/themes.css` plus the theme lists the gates keep in
+  step. And (decision 32): should every theme set its headings in Cinzel,
+  the wordmark's face, or should the grotesk themes keep theirs?
+- **Founder photo** (section 3): the monogram is a 64 px mark meanwhile; the
+  slot takes the file as it is.
+- **Hero lede** (decision 33): the reviewers want it cut to two lines, the
+  founder sentence moved to the founder section or the Aperçu card. That
+  reverses your decision 21 (the founder named in the lede). The other way:
+  keep the name and shorten the offer sentence.
+- **Proof band** (decision 34): folding it into the hero's foot reverses your
+  decision 7; it stays one left-aligned line and the logo strip meanwhile.
+- **Title block** (decision 35): FONDATEUR "Yasser Hamisse" and LIVRAISON
+  "Page d'accueil en 5 j ouvrés" instead of STUDIO and LANGUES; the
+  languages would then be said only in the h1 and the eyebrow.
+- **Service cards** (decision 36): dropping the tool tags (React, Next.js,
+  Tailwind, Playwright, Python) from the five home cards, kept on the
+  project sheets. The tags are facts you confirmed (F11), so it is a cut,
+  not a correction.
+- **Project cards on a phone** (decision 37): five full cards take 3.5
+  screens; a sideways scroller or "Voir les 2 autres" would save about
+  3,000 px but hides client work behind a gesture.
+- **Price guide** (decisions 38 to 40): a strip of the three tiers' prices
+  under its h1 (the tiers would be said twice); a "−45 % vs France" chip (a
+  new comparative claim, to be checked against the guide's sources); which
+  FAQ entries the guide copies.
+- **FAQ order** (decision 41): should "Comment fonctionne l'Aperçu ?" and
+  "C'est combien ?" lead the list (today rows 8 and 2)? The same order in
+  the three languages and in the structured data.
+- **The rest** (decisions 28, 29, 42, 43): a "Pages" label over the desktop
+  footer's links; the pricing section's lead beside its heading on wide
+  screens; an optional phone field in the form; each option's "+X DA" in
+  the estimator.
+- **Legal links in the footer and the form**: they wait for the legal facts
+  (section 1).
+- **Arabic**: the eyebrow's language codes (decision 30) and every Arabic
+  string the pass added or changed join the native review (section 8).
+
+One item needs a machine, not an answer: sharper hero slides and page
+thumbnails (2x WebP), and new captures of Nomara without its footer band,
+Alliance Travel's home without its sticky header and its Istanbul and Bali
+pages from the top, need the live sites. Run `npm run shots` and
+`npm run work:capture` on a machine with network access (README, "Project
+previews"), then `npm run build`. The cards' crop is already centred in CSS
+meanwhile.
