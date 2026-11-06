@@ -1032,8 +1032,9 @@ at 2x, and a 720 copy of a 780-wide file would be a near duplicate). The 35
 small variants committed that day were derived with sharp from the
 committed captures (quality 80), no live site recaptured. The work cards'
 thumbs name both in a `srcset` whose `sizes` is the measured layout: 91vw on
-phones, a 232px strip beside the text at 600–960px, 44vw (the wide card
-90vw) at 961–1099, 28vw (57vw) from 1100px; the scene's frames likewise
+phones, a 232px strip beside the text at 600–699px, 44vw (the wide card
+91vw: two stacked columns, the wide card across both) at 700–960, 44vw (90vw)
+at 961–1099, 28vw (57vw) from 1100px; the scene's frames likewise
 (main 86vw to 999px then 55vw capped at 743px, pages 86vw to 699px then
 28vw capped at 371px, phones 39vw to 599px then ≤202px, 196px from 1000px),
 and the scene banner's 76px boxes paint the 720 previews. Check 3 holds
@@ -1098,7 +1099,7 @@ Eight commands, all green before a push:
   three WorkspaceHQ embed templates (`scripts/validate-embed.json`, which
   relaxes only what their runtime's `{{ }}` bindings are; the export's own
   accessibility gaps print as warnings and do not fail the gate).
-- `npm run audit` — the browser audit, 89 runs on desktop, phone, tablet and
+- `npm run audit` — the browser audit, 90 runs on desktop, phone, tablet and
   landscape: axe, CLS, overflow, reveals, tap targets, images, animations, JS
   errors, failed and third-party requests, and every Content-Security-Policy
   violation in every frame. Each language's own page is opened (index.html,
@@ -1120,7 +1121,7 @@ Eight commands, all green before a push:
   pass" below); accepted issues live in `scripts/vbugs-allow.json`, each with
   its reason.
 - `npm run keys` — `scripts/keys.mjs`, the keyboard, reduced-motion and
-  direction gate, 60 runs, on each language's own page, on desktop and a
+  direction gate, 69 runs, on each language's own page, on desktop and a
   phone: skip link, focus rings, the phone and theme menus, the CV panel,
   the folded estimator's scope handed to the message, the guide's open
   estimator handing its scope to the home page's form across the
@@ -1252,7 +1253,22 @@ his design work, his social presence. **Client websites do not belong here**
 sites was added once and removed at the owner's request; `npm run check` now
 fails if any project URL appears in hub/.
 
-Since 2026-10-28 the page is built on one set of the owner's illustrations of
+**Since 2026-11-06 (56f29c1, 6216ec9) the page is his character bible**: a
+cover, a live drawn rig of Yasser and Kūro (00 He's alive: it follows the
+cursor, talks and reacts to clicks for five seconds, then rests; with reduced
+motion only a click or a button changes a face), then who he is, his
+silhouette, twelve faces, what he does, head to toe, Kūro, how he talks, a day
+on Studio and the links. One paper palette: no theme pill, no `void-theme`, no
+night. Its faces are its own subsets in `hub/fonts/` (Archivo and Noto Sans JP
+under the SIL OFL 1.1, `hub/fonts/OFL.txt`; Permanent Marker under the Apache
+License 2.0, `hub/fonts/LICENSE-permanent-marker.txt`). `npm run hub:rig`
+(`scripts/build-hub-rig.mjs`, `HUB_BIBLE_DIR` naming the private masters)
+writes `hub/art/` byte for byte; `npm run og hub` draws its card from the
+cover. The Behance covers, the studio diary and its viewer, `hub/loops/` and
+the cartridge are gone; what follows describes the page of 2026-10-28, kept
+as its history, and `npm run hub:art` belongs to it.
+
+From 2026-10-28 the page was built on one set of the owner's illustrations of
 himself (round glasses, dreads in a bun, a bone trench coat with a small
 burgundy badge) and his black cat Kūro, in an ink-on-paper look with one night
 scene. The art does the talking; the page is the paper it is printed on.
@@ -1782,8 +1798,15 @@ arcanum/fr, engineering/en and daylight/ar:
 
 `scripts/vbugs.mjs` (`npm run vbugs`, part of `npm run verify`) scans 7 widths
 x 4 theme/lang pairs for overlapping text, text escaping its card, clipped
-text, stretched images and horizontal scroll. Content of closed `<details>` is
-skipped, because it keeps stale layout boxes. Anything else that is acceptable
+text, stretched images and horizontal scroll (the document's `scrollWidth` is
+its `clientWidth`, to the pixel). Since 2026-11-06 it also fails visible text
+under 12px (13px for a run in Arabic script; `.sr-only`, `aria-hidden` and
+`data-decorative` aside: TINY) and, at 390 and 360, a link, button or summary
+whose hit box is under 44x44 (SMALLTAP; a link inline in a sentence is
+exempt, a stretched link counts at the box it fills). Text in a fixed layer
+(the phone bar, the back-to-top button) is compared for overlap with the
+other fixed text only: it lies over the page on purpose. Content of closed
+`<details>` is skipped, because it keeps stale layout boxes. Anything else that is acceptable
 on purpose (decorative clipped glows, for instance) must be listed in
 `scripts/vbugs-allow.json` with its reason; any other finding exits non-zero.
 
@@ -2010,6 +2033,62 @@ What the design audit of 2026-10-31 changed, in the rules it left:
   verbs, "Demander" for the offer and the price and "Écrire" for WhatsApp.
 - **Fonts**: `assets/fonts/OFL.txt` names every served family's copyright line;
   a page in French or English fetches no Arabic font file (the audit fails it).
+
+## The UX pass of 2026-11-06 (fleet 3)
+
+What the design fleet of 2026-11-04 to 06 changed, in the rules it left
+(c2a0645 styles, 721fe91 home, e0aed27 the guide, 21ed0ce scene, 76b0c28
+404, 0b01ae5 WorkspaceHQ, ccc4b42 the dictionaries):
+
+- **The sheet frame** is one spec on the hero, the 404 and the project
+  sheets: four corner L-brackets, 14px arms of 2px, in the accent (the
+  hero's `.sheet-frame .sf` in `--crimson`, scene/'s `.tick` in `--gold`), a
+  hairline between them. Under the hero's narrow breakpoint the hero hides its
+  frame (a frame that tight around a phone reads as a box); the 404 keeps its
+  own with `.e404 .sheet-frame{display:block}`, so a change to the hero's
+  rule must leave that override standing. scene/'s dimension rule stops
+  behind a padded knock-out span instead of running through its label.
+- **Three buttons**: `.btn-primary` (flat crimson, a lighter fill on hover,
+  no bloom: `--btn-glow` is a seat in every theme, Alt-Neon's a ring),
+  `.btn-teal` (the outline, `--teal-text` on a `--teal` edge: WhatsApp
+  wherever it appears, with the mark) and `.btn-ghost` (a text link with
+  no box). Every button is 44px tall at least. A WhatsApp button orders its
+  classes `btn wa-link btn-teal`, except the hero's (`btn btn-teal
+  wa-link`), which `scripts/build-tarifs.mjs` copies to the guide by that
+  exact string.
+- **One rhythm**: `--sec-pad` (`clamp(56px,4vw + 24px,144px)`) at every
+  width, where it was three rhythms stitched at breakpoints, and
+  `--head-gap` (`clamp(32px,2.5vw + 12px,64px)`) between a section's lead and
+  its content.
+- **One label scale**: every label reads `--t-label` (12px, 13 in Arabic)
+  and `--ls-label`; the literal 10 and 11px sizes and the handset floor that
+  outranked the token are gone. vbugs fails text under 12px (13 in Arabic).
+- **The FAQ is hairline rows**: no cards, a rule above each question and one
+  under the list, the questions not balanced; it closes on a row with the
+  two ways to write (`.faq-ask`).
+- **The phone hero in reading order**: brand line, headline, the dimension
+  line, the two ways in, the plate, then the lede at 17px (`.hero-copy` is
+  `display:contents` under the phone breakpoint so its children take their
+  own `order`); the h1, both buttons and the plate's top edge fit an 844px
+  screen. The lede measures 34em.
+- **The phone bar** (`.m-contact`): on the home it comes on once the visitor
+  is 1.5 screens down, on the guide from the start; it steps aside only for
+  `#contact`, the footer, the open menu and a fast fling (150ms, never under
+  reduced motion), and it stays where a same-page jump lands. This replaces
+  the scroll-down rule of round 3 (Mobile audit, above).
+- **The project card has one link of its own and one way to its sheet**:
+  the title (`.proj h3 a`, stretched over the card by its `::after`) leads to
+  the sheet, the live site is the one visible action, and the gain line
+  links to its anchor on the sheet, both above the stretched link in
+  z-order. The fake browser bars are gone; the host is a caption under the
+  title (`.proj .host`: index · host · state, the plate's grammar). The
+  shots carry no parallax.
+- **44px targets on phones**: the language links (three 44x44 at 360px: the
+  wordmark steps down to 14.5px and the bar's gaps to 8px from 380px, so its
+  last letter is no longer cut), the footer links, the back-to-top, the
+  plate caption, the rail tabs, the pause button's hit area, the guide's
+  breadcrumb and jump row. vbugs holds every link and button to it at 390
+  and 360.
 
 ## Project sheets (scene/)
 
@@ -2619,7 +2698,8 @@ change that.
 - index in fr/en/ar: the language switch, the theme menu, currency, the
   estimator, the FAQ, the pricing panels, the CV panel, and the form through
   to its `mailto:` handoff.
-- scene's viewer, the hub lightbox, 404 at a nested path (also on an
+- scene's viewer, the hub's live rig (its lightbox went with the diary,
+  56f29c1), 404 at a nested path (also on an
   emulated `https://brvetr4ve1er.github.io/Numidea.tech/`), and the legal
   page's preview.
 - workspacehq/ with the trailer and walkthrough playing and the console
