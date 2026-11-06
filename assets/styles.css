@@ -843,6 +843,16 @@ html[dir="rtl"] .field :is(input,textarea){font-family:var(--font-ar-body)}
 /* copy and back-to-the-form side by side when the panel has room (430px for
    the French pair, 301px for the Arabic), one under the other otherwise */
 .form-success .acts{display:flex;flex-wrap:wrap;gap:var(--s-3);max-width:none}
+/* the submit and its WhatsApp twin (index.html .form-acts): one row of one
+   height, 12px apart. Unstyled, they stacked touching on a phone and stood
+   6px out of line at 1440 (50 against 53px: the teal button's 13px type in
+   an inline row). Stacked (≤960) each keeps .form .btn's full width and the
+   gap parts them; the row goes after the note, as the lone button did. */
+.form-acts{display:flex;flex-wrap:wrap;align-items:stretch;gap:var(--s-3)}
+.form-acts .btn{min-height:52px}
+/* one leading for the pair in both rows, so the 13px label is as tall as the
+   14px one when they stack (49 against 50px, 53 against 52) */
+:is(.form-acts,.faq-ask) .btn{line-height:22px}
 .form-success p{font-family:var(--font-display);font-size:22px;color:var(--ice);max-width:29.172em}
 html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
 @media(max-width:960px){
@@ -853,6 +863,7 @@ html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
   .form{display:flex;flex-direction:column}
   .form .field{margin-bottom:var(--s-4)}
   .form .btn{order:1;width:100%;min-height:52px;justify-content:center}
+  .form .form-acts{order:1}
   .form .form-note{margin:var(--s-2) 0 var(--s-4)}
 }
 @media(max-width:560px){.form-row{grid-template-columns:minmax(0,1fr)}}
@@ -2951,6 +2962,14 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
    that is shorter than its neighbour from stretching its own rows. */
 .faq-list{align-items:start}
 .faq-col{display:grid;gap:var(--s-4);align-content:start;min-width:0}
+/* The two ways in under the last answer (index.html .faq-ask) had no rule:
+   the row sat flush on the list's closing hairline, its buttons 1px apart
+   stacked (390) and 4px out of line side by side (1440, the WhatsApp one a
+   pixel shorter at its 13px type). One row, 12px apart,
+   one height, 32px under the rule; on a phone each takes the full width,
+   as every primary call to action does there. */
+.faq-ask{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:stretch;gap:var(--s-3);margin-top:var(--s-6)}
+@media (max-width:640px){.faq-ask .btn{flex:1 1 100%;justify-content:center}}
 
 /* Scroll comfort. The reading-progress bar follows the scroll on the
    compositor where the browser runs scroll-driven animations; app.js then
