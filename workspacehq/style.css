@@ -4,9 +4,12 @@
    (embed/_ds/…/tokens). The components the design imported from the DS
    bundle (Button, Tag, ProgressBar, Kpi, Achievement, SectionHeading) are
    rebuilt here as plain CSS with the same values.
-   One deliberate change: --faint. The DS value (#5e588a) measures ~3:1 on
-   the background and this page sets it as TEXT, so it is lifted to pass
-   4.5:1. Everything else matches the design.
+   Two deliberate changes, both for legibility. --faint: the DS value
+   (#5e588a) measures ~3:1 on the background and this page sets it as TEXT.
+   --muted and --faint are lifted again (about 11:1 and 8:1 on --bg), because
+   the pixel face is read at 12px. And the pixel face never goes under 12px
+   (--fs-px-min): the DS set it at 6.5-9px. Everything else matches the
+   design.
    ============================================================ */
 @font-face{font-family:"Press Start 2P";src:url(fonts/PressStart2P.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"VT323";src:url(fonts/VT323.woff2) format("woff2");font-display:swap}
@@ -14,7 +17,7 @@
 :root{
   --bg:#07060f;--bg2:#0c0a1e;--panel:#100d24;--card:#14102b;--card-hi:#1a1538;--ink:#050409;
   --frame:#322a5e;--frame-hi:#5a4ea8;
-  --text:#e8e6ff;--muted:#9a93c9;--faint:#8a83bd;
+  --text:#e8e6ff;--muted:#b9b3e0;--faint:#9d97cf;
   --cyan:#00f0ff;--magenta:#ff2bd6;--gold:#ffd23f;--gold-2:#ffe27a;--green:#3aff6e;--red:#ff4757;
   --orange:#ffa502;--yellow:#ffe14d;--blue:#4d9fff;--purple:#b14aff;--pink:#ff6bcb;
   --link:var(--cyan);--link-hover:var(--gold-2);
@@ -22,16 +25,19 @@
   --term:"VT323","Cascadia Code",Consolas,monospace;
   --shadow-frame:0 0 0 2px var(--frame),0 0 14px -6px rgba(90,78,168,.55);
   --pad:clamp(20px,5vw,56px);
+  /* the smallest the pixel face is set: its grid is 8 pixels, and at 12px each
+     stays a whole 1.5px (the DS sat at 6.5-9px, where the strokes blur) */
+  --fs-px-min:12px;
   --ease:cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--bg);scroll-padding-top:70px}
-body{margin:0;background:var(--bg);color:var(--text);font-family:var(--term);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;background:var(--bg);scroll-padding-top:70px;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--term);overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased}
 a{color:var(--link);text-decoration:none}
 a:hover{color:var(--link-hover)}
 ::selection{background:#ffd23f;color:#3a2a00}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 h1,h2,h3,p{margin:0}
-.skip{position:fixed;left:12px;top:8px;z-index:200;padding:10px 14px;background:var(--gold);color:#3a2a00;font-family:var(--px);font-size:9px;
+.skip{position:fixed;left:12px;top:8px;z-index:200;padding:10px 14px;background:var(--gold);color:#3a2a00;font-family:var(--px);font-size:var(--fs-px-min);
   transform:translateY(-200%);transition:transform .15s}
 .skip:focus{transform:none}
 
@@ -49,6 +55,8 @@ h1,h2,h3,p{margin:0}
 @keyframes gl2{0%,88%,100%{transform:translate(0);opacity:0}89%{transform:translate(7px,2px);opacity:1}94%{transform:translate(-4px,-1px);opacity:1}96%{opacity:0}}
 @keyframes rise{0%{transform:translate(-50%,0) scale(.6);opacity:0}20%{transform:translate(-50%,-18px) scale(1.1);opacity:1}100%{transform:translate(-50%,-90px) scale(1);opacity:0}}
 @keyframes zz{0%{transform:translate(0,0);opacity:0}30%{opacity:1}100%{transform:translate(18px,-46px);opacity:0}}
+/* the one blinking thing: the REC dot. Text labels stay still (they were
+   read as flicker on a page people read). */
 .blink{animation:blink 1.1s steps(1) infinite}
 /* nothing loops while it is off screen: app.js marks sections .off */
 .off,.off *{animation-play-state:paused!important}
@@ -69,7 +77,11 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
 
 /* ---------- atmosphere ---------- */
-.fx-aurora{position:fixed;inset:-20%;z-index:0;pointer-events:none;
+.fx-aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;contain:paint}
+/* the glow is drawn 20% larger than the screen so its drift never shows an
+   edge; it lives on a child, so the box that is 20% too wide is clipped by
+   the fixed layer and never reaches the page's width */
+.fx-aurora::before{content:"";position:absolute;inset:-20%;
   background:radial-gradient(36% 36% at 80% 10%,rgba(255,210,63,.16),transparent 60%),radial-gradient(34% 34% at 10% 28%,rgba(0,240,255,.12),transparent 60%),radial-gradient(46% 46% at 60% 100%,rgba(90,78,168,.42),transparent 60%),radial-gradient(28% 28% at 96% 72%,rgba(255,43,214,.12),transparent 60%);
   animation:drift 24s ease-in-out infinite alternate}
 .fx-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.07;
@@ -87,18 +99,23 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 /* the nav sits ABOVE the scanline and vignette layers (z 70): under them the
    vignette darkened the INSTALL button to 3.6:1 at the screen edge */
 .nav{position:fixed;top:4px;left:0;right:0;z-index:75;display:flex;align-items:center;justify-content:space-between;gap:24px;
-  padding:16px var(--pad);border-bottom:2px solid transparent;transition:background .6s,border-color .6s}
+  padding:8px var(--pad);border-bottom:2px solid transparent;transition:background .6s,border-color .6s}
 .nav.stuck{background:rgba(7,6,15,.9);border-bottom-color:var(--frame)}
-.brand{font-family:var(--px);font-size:12px;letter-spacing:1px;color:var(--text);white-space:nowrap}
+.brand{display:inline-flex;align-items:center;font-family:var(--px);font-size:14px;letter-spacing:.06em;color:var(--text);white-space:nowrap}
 .brand span{color:var(--gold);text-shadow:0 0 8px rgba(255,210,63,.6)}
-.nav-links{flex:1 1 auto;min-width:0;height:24px;overflow:hidden;display:flex;flex-wrap:wrap;justify-content:center;column-gap:26px;
-  font-family:var(--px);font-size:8px;letter-spacing:1px;line-height:24px}
+.nav-links{flex:1 1 auto;min-width:0;height:44px;overflow:hidden;display:flex;flex-wrap:wrap;justify-content:center;column-gap:22px;
+  font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:44px}
 .nav-links a{color:var(--muted)}
 .nav-links a:hover{color:var(--gold-2)}
 .nav-end{flex:none;display:flex;align-items:center;gap:12px}
 .motion-btn[hidden]{display:none}
-.motion-btn svg{flex:none;width:9px;height:9px;fill:currentColor;shape-rendering:crispEdges}
+.motion-btn svg{flex:none;width:10px;height:10px;fill:currentColor;shape-rendering:crispEdges}
 .motion-btn .ic-play{display:none}
+/* the label says what the page is doing, at every width: MOTION ON while the
+   loops run (pause glyph), MOTION OFF once they are stopped (play glyph) */
+.motion-btn .mo-off{display:none}
+.motion-btn[aria-pressed="true"] .mo-on{display:none}
+.motion-btn[aria-pressed="true"] .mo-off{display:inline}
 /* .nav prefix: stays dark-on-gold under .btn--ghost:hover, which comes later */
 .nav .motion-btn[aria-pressed="true"]{color:#3a2a00;background:linear-gradient(180deg,var(--gold-2),var(--gold));border-color:#8a6200}
 .motion-btn[aria-pressed="true"] .ic-play{display:inline}
@@ -106,12 +123,12 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 
 /* ---------- DS: Button ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--px);line-height:1.4;cursor:pointer;border-radius:0;
-  letter-spacing:1px;white-space:nowrap;transition:transform .12s,background .12s,border-color .12s,box-shadow .12s,color .12s}
-/* the pixel face never goes under 8px: its grid is 8 pixels, and smaller
-   the strokes blur (the DS set 6.5-7px on the small buttons, labels and
-   bars) */
-.btn--sm{font-size:8px;padding:6px 10px;min-height:30px}
-.btn--lg{font-size:9px;padding:12px 18px;min-height:44px}
+  letter-spacing:.06em;white-space:nowrap;min-width:44px;min-height:44px;transition:transform .12s,background .12s,border-color .12s,box-shadow .12s,color .12s}
+/* the pixel face never goes under --fs-px-min (12px): the DS set 6.5-7px on
+   the small buttons, labels and bars, which blurred the strokes. Every
+   button is a 44px target. */
+.btn--sm{font-size:var(--fs-px-min);padding:8px 12px}
+.btn--lg{font-size:var(--fs-px-min);padding:14px 20px}
 .btn--primary{color:#3a2a00;background:linear-gradient(180deg,var(--gold-2),var(--gold));border:2px solid #8a6200;box-shadow:0 3px 0 #8a6200}
 .btn--primary:hover{color:#3a2a00;filter:brightness(1.05)}
 .btn--primary:active{transform:translateY(3px);box-shadow:none}
@@ -139,10 +156,10 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 .w-86{width:86%!important}.w-83{width:83%}
 
 /* ---------- DS: SectionHeading (an eyebrow here; the big line is the h2) ---------- */
-.sh{display:flex;align-items:baseline;gap:8px;margin:0 0 22px;font-family:var(--px);font-size:10px;letter-spacing:2px;line-height:1.6;
+.sh{display:flex;align-items:baseline;gap:8px;margin:0 0 22px;font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:1.6;text-wrap:balance;
   color:var(--cyan);text-shadow:0 0 9px rgba(0,240,255,.5)}
 .sh::before{content:"■";color:var(--faint)}
-.px-label{font-family:var(--px);font-size:8px;letter-spacing:1px;line-height:1.8;color:var(--faint)}
+.px-label{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:1.8;color:var(--faint)}
 .px-label--gap{margin-bottom:10px}
 .px-label--row{display:flex;justify-content:space-between;align-items:center}
 
@@ -152,7 +169,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .sec{max-width:1320px;margin:0 auto;padding:clamp(80px,11vw,140px) var(--pad)}
 .sec--narrow{max-width:1100px;padding-block:clamp(60px,8vw,110px)}
 .sec--demo{padding-top:clamp(40px,6vw,80px)}
-.sec h2,.install-h{font-weight:400;font-size:clamp(56px,8vw,128px);line-height:.84;letter-spacing:-.01em}
+.sec h2,.install-h{text-wrap:balance;font-weight:400;font-size:clamp(56px,8vw,128px);line-height:.84;letter-spacing:-.01em}
 .sec h2 em,.install-h em,.demo-big em{font-style:normal;color:var(--gold);text-shadow:0 0 30px rgba(255,210,63,.4)}
 .h2-gap{margin-bottom:56px!important}
 .sec-head--split{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px;margin-bottom:40px}
@@ -161,11 +178,13 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .rule--magenta{background:linear-gradient(90deg,transparent,var(--magenta),var(--gold),transparent)}
 
 /* ---------- 01 hero ---------- */
-.hero{max-width:1320px;margin:0 auto;min-height:100vh;padding:150px var(--pad) 80px;display:flex;flex-wrap:wrap;align-items:center;gap:56px}
-.hero-copy{flex:1 1 640px;min-width:0}
-.hero-kick{font-family:var(--px);font-size:9px;letter-spacing:2px;color:var(--cyan);line-height:1.8;margin-bottom:30px;text-shadow:0 0 9px rgba(0,240,255,.45)}
-.hero-kick .blink{color:var(--magenta)}
-.hero h1{margin:0 0 0 -.04em;font-weight:400;font-size:clamp(84px,13.5vw,220px);line-height:.8;letter-spacing:-.01em}
+.hero{max-width:1320px;margin:0 auto;min-height:100vh;padding:150px var(--pad) 80px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:56px}
+.hero-copy{min-width:0}
+.hero-kick{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;color:var(--cyan);line-height:1.8;margin-bottom:30px;text-shadow:0 0 9px rgba(0,240,255,.45)}
+/* the coin prompt sits on its own line and never breaks (it does not blink:
+   only the REC dot does) */
+.hero-kick .coin{display:block;white-space:nowrap;color:var(--magenta)}
+.hero h1{margin:0 0 0 -.04em;font-weight:400;font-size:clamp(2.6rem,7vw,6.5rem);line-height:.86;letter-spacing:-.01em;text-wrap:balance}
 .glitch{position:relative;display:inline-block;color:var(--gold);text-shadow:0 0 38px rgba(255,210,63,.45)}
 /* The two coloured copies hang off .glitch-fx, an aria-hidden layer over the
    word (index.html): generated content on the heading itself was read as part
@@ -175,21 +194,22 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .glitch-fx::before,.glitch-fx::after{content:attr(data-text);position:absolute;inset:0;text-shadow:none;opacity:0}
 .glitch-fx::before{color:var(--cyan);clip-path:inset(0 0 58% 0);animation:gl1 2.8s infinite linear}
 .glitch-fx::after{color:var(--magenta);clip-path:inset(58% 0 0 0);animation:gl2 2.3s infinite linear}
-.hero-lede{margin-top:40px;max-width:46ch;font-size:clamp(22px,2vw,27px);line-height:1.3;color:var(--muted);text-wrap:pretty}
-.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:44px}
+.hero-lede{margin-top:32px;max-width:48ch;font-size:clamp(22px,2vw,27px);line-height:1.3;color:var(--muted);text-wrap:pretty}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:36px}
 
 /* install terminals */
 .term{border:2px solid var(--ink);background:var(--ink);text-align:left}
 .term--hero{flex:1 1 420px;max-width:600px;box-shadow:var(--shadow-frame)}
 .term--install{width:100%;max-width:680px;box-shadow:0 0 0 2px var(--gold),0 0 40px -10px rgba(255,210,63,.7)}
 .term-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;background:var(--panel);border-bottom:2px solid var(--ink)}
-.term-tag{font-family:var(--px);font-size:8px;letter-spacing:1px;padding:7px 10px;border:2px solid var(--gold);color:var(--gold-2)}
-.term-os{font-family:var(--px);font-size:8px;letter-spacing:1px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.term-line{display:flex;align-items:center;gap:14px;padding:14px 16px}
+.term-tag{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;padding:7px 10px;border:2px solid var(--gold);color:var(--gold-2)}
+.term-os{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.term-line{display:flex;align-items:flex-start;gap:14px;padding:14px 16px}
 .term-line--2{padding-top:0}
-.term-dollar{font-size:30px;color:var(--gold);line-height:1}
-.term-cmd{flex:1 1 auto;min-width:0;font-family:var(--term);font-size:clamp(20px,2.1vw,28px);line-height:1;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.term-dollar{flex:none;font-size:30px;color:var(--gold);line-height:1}
+.term-cmd{flex:1 1 auto;min-width:0;font-family:var(--term);font-size:clamp(20px,2.1vw,28px);line-height:1.05;color:var(--text);white-space:normal;overflow-wrap:anywhere;padding-top:3px}
 .term-cmd--muted{color:var(--muted)}
+.term-line [data-copy]{flex:none;margin-left:auto}
 
 /* Bit, the scan card */
 .hero-bit{flex:0 1 340px;min-width:280px;margin:0 auto;position:relative;padding-top:120px;animation:float 6s ease-in-out infinite}
@@ -206,7 +226,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .pops--hero{top:10px}
 .pops--big{bottom:230px}
 .pops span{position:absolute;left:0;font-family:var(--px);color:var(--gold);white-space:nowrap;text-shadow:0 0 8px rgba(255,210,63,.8);animation:rise 1s ease-out forwards}
-.pops--hero span{font-size:9px}.pops--big span{font-size:11px}
+.pops--hero span{font-size:var(--fs-px-min)}.pops--big span{font-size:var(--fs-px-min)}
 .scan-card{background:linear-gradient(160deg,var(--card-hi),var(--card));border:2px solid var(--ink);box-shadow:var(--shadow-frame);padding:16px 18px;display:grid;gap:10px}
 .scan-row{display:flex;align-items:center;gap:10px;font-size:21px;color:var(--muted)}
 .scan-row--between{justify-content:space-between;align-items:baseline;gap:12px}
@@ -216,13 +236,29 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 /* ---------- screens (reel / walkthrough / demo) ---------- */
 .screen{border:2px solid var(--ink);background:var(--ink);box-shadow:0 0 0 2px var(--frame),0 40px 120px -30px rgba(0,0,0,.9),0 0 60px -20px rgba(255,210,63,.35)}
 .screen-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 14px;background:var(--panel);border-bottom:2px solid var(--ink);
-  font-family:var(--px);font-size:8px;letter-spacing:1px;line-height:1.6;color:var(--faint)}
-.screen-169{display:block;width:100%;aspect-ratio:16/9;border:0;background:#0d0d0f}
+  font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:1.6;color:var(--faint)}
+.screen-bar .rec-dot{color:var(--magenta)}
+.screen-169{display:block;width:100%;height:100%;border:0;background:#0d0d0f}
+/* a player is a 16:9 box with a title card over it until the visitor presses
+   play (app.js): without it the exported player shows a black rectangle
+   with a one-line hint. The card is drawn in CSS, in the arcade faces. */
+.player{position:relative;aspect-ratio:16/9;background:#0d0d0f}
+.poster{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,3vw,28px);padding:16px;margin:0;border:0;
+  background:radial-gradient(ellipse at center,rgba(90,78,168,.32),transparent 68%),linear-gradient(180deg,var(--panel),var(--ink));color:var(--text);cursor:pointer;font:inherit}
+.poster[hidden],html:not(.js) .poster{display:none}
+.poster-t{font-family:var(--px);font-size:clamp(14px,2.6vw,28px);letter-spacing:.06em;line-height:1.4;color:var(--gold);text-shadow:0 0 18px rgba(255,210,63,.45);text-align:center}
+.poster-s{font-size:clamp(18px,2vw,24px);line-height:1.1;color:var(--muted);text-align:center}
+.poster-go{display:grid;place-items:center;width:64px;height:64px;color:#3a2a00;background:linear-gradient(180deg,var(--gold-2),var(--gold));border:2px solid #8a6200;box-shadow:0 4px 0 #8a6200,0 0 30px -4px rgba(255,210,63,.7);transition:transform .12s,filter .12s}
+.poster-go svg{width:24px;height:24px;fill:currentColor;shape-rendering:crispEdges;margin-left:3px}
+.poster:hover .poster-go{filter:brightness(1.07)}
+.poster:active .poster-go{transform:translateY(3px);box-shadow:none}
+.poster:focus-visible{outline-offset:-6px}
 
 /* marquee */
-.marquee{position:relative;overflow:hidden;border-top:2px solid var(--frame);border-bottom:2px solid var(--frame);background:var(--panel);padding:22px 0}
-.marquee-track{display:flex;gap:40px;width:max-content;animation:marq 34s linear infinite;font-size:clamp(34px,4vw,54px);line-height:1;white-space:nowrap}
+.marquee{position:relative;overflow:hidden;contain:paint;border-top:2px solid var(--frame);border-bottom:2px solid var(--frame);background:var(--panel);padding:22px 0}
+.marquee-track{display:flex;gap:40px;width:max-content;animation:marq 60s linear infinite;font-size:clamp(34px,4vw,54px);line-height:1;white-space:nowrap}
 .marquee-track b{font-weight:400;color:var(--gold)}
+.marquee:hover .marquee-track{animation-play-state:paused}
 
 /* ---------- 03 features ---------- */
 .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:22px}
@@ -234,33 +270,40 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .feat--cyan{--ring:var(--cyan);--glow:rgba(0,240,255,.7)}
 .feat--orange{--ring:var(--orange);--glow:rgba(255,165,2,.8)}
 .feat--magenta{--ring:var(--magenta);--glow:rgba(255,43,214,.8)}
-.feat-n{font-family:var(--px);font-size:10px;color:var(--cyan)}
+.feat-n{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;color:var(--cyan)}
 .feat h3{margin-top:6px;font-weight:400;font-size:38px;line-height:.95}
 .feat-sub{font-size:23px;color:var(--gold-2);line-height:1}
 .feat-p{flex:1 1 auto;font-size:21px;line-height:1.25;color:var(--muted)}
+/* number, title, tagline, body and tags sit on the same lines across a row of
+   cards: each card takes five rows of the grid and lays itself on them */
+@supports (grid-template-rows:subgrid){
+  .feat-grid{row-gap:0}
+  .feat{display:grid;grid-template-rows:subgrid;grid-row:span 5;row-gap:12px;margin-bottom:22px}
+  .feat h3{margin-top:0}
+}
 
 /* ---------- 04 walkthrough ---------- */
 .walk{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
 .chapters{flex:1 1 280px}
 .chap-list{display:grid;gap:4px}
-.chap{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;padding:10px 12px;text-align:left;
+.chap{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;min-height:44px;padding:10px 12px;text-align:left;
   background:transparent;border:0;border-left:3px solid var(--frame);color:var(--text);font-family:var(--term);cursor:pointer;transition:background .2s}
 .chap:hover{background:var(--card-hi)}
 .chap[aria-pressed="true"]{background:var(--card-hi);border-left-color:var(--gold)}
-.chap .n{font-family:var(--px);font-size:8px;color:var(--cyan)}
+.chap .n{font-family:var(--px);font-size:var(--fs-px-min);color:var(--cyan)}
 .chap .l{font-size:24px;line-height:1}
 .chap .ts{font-size:19px;color:var(--faint)}
 .walk-screen{flex:3 1 600px;min-width:0}
 
 /* ---------- 05 demo ---------- */
-.demo-status{color:var(--faint)}
+.demo-status{color:var(--faint);font-size:var(--fs-px-min)}
 .demo-status.live{color:var(--green)}
 .demo-stage{position:relative;height:clamp(560px,82vh,860px);background:#0d0d0f}
 .demo-stage iframe{display:block;width:100%;height:100%;border:0;background:#0d0d0f}
 .demo-coin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;padding:24px;text-align:center;
   background:radial-gradient(ellipse at center,rgba(90,78,168,.25),transparent 65%)}
 .demo-big{font-size:clamp(70px,10vw,150px);line-height:.8}
-.demo-coin .px-label{font-size:8px;letter-spacing:2px;color:var(--muted)}
+.demo-coin .px-label{color:var(--muted)}
 
 /* ---------- 06 Bit ---------- */
 .bit-wrap{display:flex;flex-wrap:wrap;gap:32px;align-items:stretch}
@@ -286,7 +329,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
 .kpi--gold{--accent:var(--gold)}.kpi--orange{--accent:var(--orange)}.kpi--green{--accent:var(--green)}
 .kpi b{display:block;font-weight:400;font-size:34px;line-height:.9}
-.kpi span{display:block;margin-top:9px;font-family:var(--px);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.kpi span{display:block;margin-top:9px;font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 
 /* DS: Achievement */
 .achs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -302,7 +345,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .ach.on .ach-star{display:block}
 .ach-i{display:block;font-size:34px;filter:grayscale(1) opacity(.45)}
 .ach.on .ach-i{filter:none}
-.ach b{display:block;margin-top:11px;font-family:var(--px);font-weight:400;font-size:8.5px;letter-spacing:.5px;line-height:1.5}
+.ach b{display:block;margin-top:11px;font-family:var(--px);font-weight:400;font-size:var(--fs-px-min);letter-spacing:.04em;line-height:1.5;overflow-wrap:anywhere}
 .ach>span:last-child{display:block;margin-top:6px;font-size:16px;line-height:1.3;color:var(--muted)}
 
 /* ---------- 07 changelog ---------- */
@@ -325,7 +368,6 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 
 /* ---------- 09 install / signature / footer ---------- */
 .install{display:flex;flex-direction:column;align-items:center;text-align:center;gap:34px;padding-block:clamp(60px,9vw,120px)}
-.install .px-label{font-size:9px;letter-spacing:2px}
 .install-h{font-size:clamp(70px,11vw,180px);line-height:.8}
 .install-p{max-width:40ch;font-size:25px;line-height:1.3;color:var(--muted)}
 .sig{padding:clamp(70px,12vw,150px) 20px clamp(50px,8vw,90px);text-align:center;overflow:hidden}
@@ -333,11 +375,11 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
    (WCAG 1.4.12) it breaks instead of being cut by .sig's overflow:hidden */
 .sig-word{font-size:clamp(64px,17vw,300px);line-height:.8;letter-spacing:-.02em;overflow-wrap:anywhere}
 .sig-word span{color:var(--gold);text-shadow:0 0 50px rgba(255,210,63,.5)}
-.sig-sub{margin-top:30px;font-size:9px;letter-spacing:3px;color:var(--muted)}
+.sig-sub{margin-top:30px;letter-spacing:.12em;color:var(--muted)}
 /* the footer sits after <main> (a contentinfo landmark), so it carries main's
    stacking itself to stay above the fixed aurora, grid and cursor glow */
 .foot{position:relative;z-index:3;border-top:2px solid var(--frame);padding:34px var(--pad);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
-  font-family:var(--px);font-size:8px;letter-spacing:1px;line-height:1.8;color:var(--faint)}
+  font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:1.8;color:var(--faint)}
 .foot a{color:var(--muted)}
 .foot a:hover{color:var(--gold-2)}
 
@@ -345,29 +387,47 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .rv{opacity:0;translate:0 46px;transition:opacity .9s var(--ease),translate .9s var(--ease),transform .5s var(--ease),box-shadow .3s,background .2s}
 .rv.in{opacity:1;translate:0 0}
 
-/* The motion switch shows only its icon (its name stays for assistive tech)
-   wherever its label would push section links off the one-row nav. */
-@media (max-width:1279px){
-  .motion-tx{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-  .motion-btn{min-width:34px}
+/* The section links give way before the motion switch loses its label: the
+   switch keeps its words at every width. */
+@media (max-width:1100px){
+  .nav-links{display:none}
+}
+@media (max-width:960px){
+  .hero{grid-template-columns:minmax(0,1fr);gap:40px}
+  .hero-bit{margin-inline:auto;width:min(100%,340px)}
 }
 
 /* ---------- small screens ---------- */
 @media (max-width:720px){
-  .nav-links{display:none}
   .nav{gap:12px}
-  /* the motion button keeps its name for assistive tech, shows only its icon */
-  .motion-tx{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-  .motion-btn{min-width:34px}
+  .hero h1{font-size:clamp(30px,9.5vw,60px)}
   .log li{grid-template-columns:minmax(0,1fr)}
   .kpis{gap:10px}
   .achs{gap:10px}
   .bit-floor{height:250px}
-  .term-line{flex-wrap:wrap}
   .term--hero{min-width:0}
   .term-bar{flex-wrap:wrap}
-  .term-cmd{flex-basis:calc(100% - 44px);white-space:normal;overflow-wrap:anywhere;font-size:22px}
-  .hero{padding-top:120px}
+  .term-cmd{font-size:22px}
+  .hero{padding-top:130px}
+}
+
+/* ---------- phones: the nav row, the title bars ---------- */
+@media (max-width:560px){
+  /* wordmark and the motion switch (which keeps its words) share the row; the
+     GET THE CODE button gives way here, the hero's clone terminal is the same
+     door and the install section is one scroll down */
+  .nav{flex-wrap:wrap;row-gap:0;padding-block:6px}
+  .nav-end>.btn--primary{display:none}
+  .brand{margin-right:auto}
+  .hero{padding-top:110px}
+}
+/* the right-hand title-bar text (the REC dot, the demo status, the sound hint)
+   gives way: the left side names the screen */
+@media (min-width:640px){
+  .screen-bar>span:last-child{white-space:nowrap}
+}
+@media (max-width:479px){
+  .screen-bar>span:last-child{display:none}
 }
 
 /* ---------- print: dark text on white, no atmosphere or players, nothing
@@ -382,11 +442,12 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
   .term,.scan-card,.feat,.bit-card,.kpi,.ach,.faq details,.tag{border:1px solid #888!important}
   .faq details::details-content{display:block;content-visibility:visible}
   .term-cmd{white-space:normal;overflow-wrap:anywhere}
+  .poster{display:none!important}
 }
 
-/* breadcrumb: Numidea Labs / br4vetr4veler / WorkspaceHQ */
+/* breadcrumb: Numidea Labs › WorkspaceHQ */
 .bc ol{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 18px;padding:0;list-style:none;
-  font-family:var(--px);font-size:8px;letter-spacing:1px;line-height:1.8;color:var(--muted)}
+  font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:1.8;color:var(--muted)}
 .bc li{display:flex;align-items:center;gap:8px}
 .bc li+li::before{content:"›";color:var(--gold)}
 .bc a{color:var(--muted)}
@@ -416,11 +477,11 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 /* ===== r3/a: mobile audit ===== */
 /* Finger-sized hit areas for the small pixel-font links, without moving a
    thing: the wordmark was a 12px-tall target, the breadcrumb links 13px and
-   the footer links 7px (measured at 320-844px). Padding grows the target;
-   the negative margin (or the inline box) keeps the layout where it was. */
-.brand{padding-block:12px;margin-block:-12px}
-.bc a{padding-block:8px;margin-block:-8px}
-.foot a{padding-block:9px}
+   the footer links 7px (measured at 320-844px). Each is now a 44px box;
+   the negative margin on the breadcrumb keeps the layout where it was. */
+.brand,.foot a{min-height:44px;min-width:44px}
+.bc a{display:inline-flex;align-items:center;min-height:44px;margin-block:-17px}
+.foot a{display:inline-flex;align-items:center}
 /* The hero centres its copy in a screen-tall box: 100vh is the LARGE
    viewport on iOS, so with the toolbars out the copy sat low and the box ran
    under them. svh is the screen as first seen. */

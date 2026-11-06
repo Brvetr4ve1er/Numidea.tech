@@ -55,6 +55,22 @@
   // a player that loads later picks up the current state
   $$('iframe').forEach(function (f) { f.addEventListener('load', function () { frameMotion(f, motionOff); }); });
 
+  /* ---------------- player title cards ----------------
+     A player is a black rectangle until its stage boots, so each one wears a
+     CSS title card (style.css .poster). Pressing it removes the card, puts
+     focus in the frame and sends the stage the space key that starts it (the
+     same press the chapter buttons send). Without JS the card stays hidden. */
+  $$('.player').forEach(function (p) {
+    var card = $('.poster', p), f = $('iframe', p);
+    if (!card || !f) return;
+    card.hidden = false;
+    card.addEventListener('click', function () {
+      card.hidden = true;
+      f.focus();
+      try { var w = f.contentWindow; w.dispatchEvent(new w.KeyboardEvent('keydown', { key: ' ', code: 'Space', bubbles: true })); } catch (e) { /* not booted: the player's own button starts it */ }
+    });
+  });
+
   /* ---------------- Bit ---------------- */
   var BITPAL = { o: '#d97757', h: '#f2a27e', d: '#a5543a', e: '#1b1430', y: '#ffd23f', s: '#9fd0e8', c: '#ff2bd6', k: '#a01d8a' };
   var PB = ['...oooooo...', '..ohoooooo..', '.ohoooooooo.', '.ooeooooeoo.', '.ooeooooeoo.', 'oooooooooooo', '.oooooooooo.', '.dddddddddd.', '..d.d..d.d..'];
@@ -190,6 +206,7 @@
     b.setAttribute('aria-label', 'Jump to ' + c[1] + ', ' + fmt(c[2]));
     b.addEventListener('click', function () {
       $$('.chap', chapEl).forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      var wc = $('.poster', walk.parentNode); if (wc) wc.hidden = true;
       // same-origin: seek the walkthrough's stage, then press play
       try {
         var w = walk.contentWindow; if (!w) return;
