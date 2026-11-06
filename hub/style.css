@@ -278,7 +278,7 @@ html:not(.js) .ctrls{display:none}
 /* ---------- 05 · Kūro: the ink band ---------- */
 .kuro{background:var(--ink);color:var(--cream);margin:0 calc(-1 * var(--gx-r)) 0 calc(-1 * var(--gx-l));padding:clamp(32px,5vw,64px) var(--gx-r) clamp(32px,5vw,64px) var(--gx-l)}
 .kuro .note{color:var(--paper)}
-.kuro h2 .jp{font-family:var(--jp);color:var(--red)}
+.kuro h2 .jp{font-family:var(--jp);color:color-mix(in srgb,var(--red) 70%,var(--cream))}   /* on the ink band: --red read 2.66:1 there, this 4.6 (sweep) */
 .kuro-grid{display:grid;grid-template-columns:1fr;gap:24px}
 .kuro-copy{display:flex;flex-direction:column;gap:14px;font-size:16px;line-height:1.5}
 .kuro-copy ul{display:flex;flex-direction:column;gap:8px;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase}
@@ -326,7 +326,7 @@ html:not(.js) .ctrls{display:none}
 .out:hover{color:var(--ink);box-shadow:var(--shadow-s);transform:translate(-1px,-1px)}
 .mail-row{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-size:16px}
 .mail-row .label{color:var(--red-text)}
-.mail{font-weight:500;overflow-wrap:anywhere;padding:4px 0}
+.mail{display:inline-flex;align-items:center;min-height:44px;font-weight:500;overflow-wrap:anywhere;padding:4px 0}   /* a 44px target on phones too */
 @media (min-width:480px){.outs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:860px){.outs{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}}
 
@@ -337,7 +337,7 @@ html:not(.js) .ctrls{display:none}
 .foot-row a{display:inline-flex;align-items:center;min-height:44px;color:var(--red-text);text-decoration:none}
 .foot-row a:hover{color:var(--ink);text-decoration:underline}
 .legal{display:flex;flex-wrap:wrap;gap:4px 18px}
-.heart{color:var(--red)}
+.heart{color:var(--red-text)}   /* 3.87:1 in --red (sweep) */
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 
 /* ---------- motion preference: nothing eases, nothing moves on its own ---------- */

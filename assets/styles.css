@@ -624,7 +624,7 @@ html[dir="rtl"] .proj .body a.gain::after{content:"←" / ""}
    have; now that it has one, the border, the shadow and the shot's zoom
    answer the pointer. */
 .proj{position:relative}
-.proj .actions a[data-i18n="work.sheet"]::after{content:"";position:absolute;inset:0;z-index:4}
+.proj h3 a::after{content:"";position:absolute;inset:0;z-index:4}   /* the title's link (721fe91), the card's way to its sheet */
 .proj .actions a[data-i18n="work.live"],.proj .body .gain{position:relative;z-index:5}
 .proj .thumb{aspect-ratio:16/10;background:var(--grad-blood);display:grid;place-items:center;position:relative;overflow:hidden;perspective:800px}
 .proj .thumb::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,color-mix(in srgb,var(--teal) 35%,transparent),transparent 60%);mix-blend-mode:screen;transition:opacity var(--dur-base)}
@@ -658,10 +658,9 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
    overscan was what cropped it: in a 16:10 box a 124%-tall cover crop takes
    10% off each side, which cut Alliance's headline to "e monde, uidé" from
    the left and AlmaFlowClim's "150" from the right. The capture is the
-   content; the card's depth is its hover zoom and its sheen. The inline
-   translate app.js writes for data-parallax is overridden here until the
-   attribute leaves the markup. */
-.proj .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:1;display:block;transform:scale(1.002);transition:transform var(--dur-slow) var(--ease-out);filter:saturate(1.04);translate:0 0!important}
+   content; the card's depth is its hover zoom and its sheen (the shots
+   carry no data-parallax since 2026-11-06). */
+.proj .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;z-index:1;display:block;transform:scale(1.002);transition:transform var(--dur-slow) var(--ease-out);filter:saturate(1.04)}
 .proj:hover .shot{transform:scale(1.045)}
 .proj .thumb:has(.shot){background:var(--navy)}
 .proj .browser{z-index:3}
@@ -871,7 +870,7 @@ html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
 .footer nav{flex-wrap:wrap;max-width:100%;min-width:0}
 .footer nav a{font-family:var(--font-mono);font-size:13px;color:var(--muted);text-decoration:none;transition:color var(--dur-fast);overflow-wrap:anywhere;word-break:break-word}
 .footer nav a:hover{color:var(--teal-text)}
-.footer .meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s-3);font-family:var(--font-mono);font-size:12px;color:var(--faint);padding-top:var(--s-5);border-top:1px solid var(--hairline)}
+.footer .meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s-3);font-family:var(--font-mono);font-size:var(--t-label);color:var(--faint);padding-top:var(--s-5);border-top:1px solid var(--hairline)}
 .footer .meta span{overflow-wrap:anywhere}
 .footer .meta-legal{display:inline-flex;flex-wrap:wrap;gap:var(--s-4)}
 .footer .meta-legal:empty{display:none}
@@ -1536,15 +1535,24 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .nav-right .lang :is(a,button){padding-inline:0}
 }
 @media(max-width:360px){
-  .nav-right .lang :is(a,button){min-width:40px}   /* three 44s and the mark overran a 320px bar by 1px */
   /* a 96px label column is a third of a 280px screen, and forced
      hello@numidealabs.com to break mid-domain */
   .channels .ch{grid-template-columns:minmax(0,1fr);gap:6px}
   .hero-cta{gap:var(--s-3)}
   .hero-cta .btn{width:100%;justify-content:center}
 }
+@media(max-width:380px){
+  /* the switch's three targets and the menu button left the 18px mark (144px
+     with its cursor) 126px at 360 and 141 at 375: its last letter was cut by
+     the bar (vbugs HCLIP-DECOR navbar a.logo, 2026-11-06), and the switch was
+     40px wide there. From 380 the mark steps down to 14.5px (119px with its
+     cursor) and the bar's two gaps to 8px, so the switch keeps 44x44 targets
+     down to 341px: at 360 the mark has 122px */
+  .logo{font-size:14.5px}
+  .navbar .bar,.nav-right{gap:8px}
+}
 @media(max-width:340px){
-  .logo{font-size:15px}
+  .logo{font-size:12.5px}
   .nav-right .lang :is(a,button){min-width:36px}   /* 36px wide at the least, 44 tall */
 }
 
