@@ -46,8 +46,9 @@
  *                 still starts with that type, now in €. On the price guide
  *                 (tarifs/), where the estimator is open at load and there is
  *                 no form, Enter on the link lands on that language's home
- *                 page at #contact with the same scope in the message and
- *                 nothing left in sessionStorage (the hand-off, app.js)
+ *                 page at #contact with the same scope in the message, under
+ *                 a greeting line (price.estHello), and nothing left in
+ *                 sessionStorage (the hand-off, app.js)
  *  contact form   (index) submitted empty: every field aria-invalid, focus
  *                 on the first, each field's aria-describedby names a polite
  *                 live error with text in the page's language; typing clears
@@ -72,14 +73,17 @@
  *                 index.html served in its place, its policy rebuilt by
  *                 withCsp: connect-src names the store, and a valid submit
  *                 sends one POST to /rest/v1/leads with no CSP violation
- *  dialogs        hub's lightbox (the studio diary's viewer: #lb opened from
- *                 #collection .tile--img, titled from data-title in #lbTitle)
- *                 and scene/'s capture viewer open with Enter,
- *                 close with Escape and give focus back; Tab never leaves
- *                 them for the page behind; the lightbox's arrows follow the
- *                 reading direction (forward is ArrowLeft when it is RTL).
- *                 scene/'s viewer shows one capture and has no arrow keys
- *                 (the 2026-07 audit's A-04 was about arrows it no longer has)
+ *  dialogs        scene/'s capture viewer opens with Enter,
+ *                 closes with Escape and gives focus back; Tab never leaves
+ *                 it for the page behind. It shows one capture and has no
+ *                 arrow keys (the 2026-07 audit's A-04 was about arrows it no
+ *                 longer has); hub/'s lightbox went with its diary (56f29c1)
+ *  rig            (hub/) the live rig: Tab from Yasser goes to Kūro, then to
+ *                 every act button in the page's order, each on screen with
+ *                 a ring; Enter on Yasser changes the state line at once and
+ *                 #rigSaid (aria-live) says his line, Space says the next;
+ *                 Enter on Kūro shows another frame; Space on "Say a line"
+ *                 says one; Enter on Smirk presses it, Release lets it go
  *  hits           (hub/) every visible link and button, scrolled into view,
  *                 is the topmost element at its own centre: no picture layer
  *                 or die-cut laid over it takes its clicks (Tab reaches a
@@ -124,7 +128,7 @@
  * violation, from any frame (lib/csp-watch.mjs, shared with audit.mjs). This
  * gate holds the CSP proof for what only it drives: the theme menu, the
  * contact form submitted (its validation, the mail hand-off and, with the
- * switch on, the lead store's POST), hub's lightbox, scene/'s viewer and the
+ * switch on, the lead store's POST), hub's rig, scene/'s viewer and the
  * embeds taking focus; audit.mjs holds it for page loads, the CV panel, the phone
  * menu, the booted WorkspaceHQ console and the throttled phone's FAQ,
  * estimator, currency and language switches. Optional arg: only the pages
@@ -162,9 +166,9 @@ import { ROOT, PAGES } from './site.mjs';
    ar/tarifs/), which carries the home's chrome (its theme and menu paths
    would pass there too) and the estimator, open at load, whose path hands
    the scope to the home page's form across a navigation; hub/'s path is the
-   studio diary's viewer (dialog() below, on the hooks the rebuilt page
-   kept: #lb, #collection .tile--img with data-title, #lbTitle), and its
-   pointer check (hits() below). */
+   live rig (rig() below: since 56f29c1 the page is the founder's character
+   bible, and the studio diary's viewer went with it), and its pointer check
+   (hits() below). */
 const HOME_TESTS = ['theme', 'menu', 'cv', 'estimate', 'form'];
 const SPEC = {
   'index.html': { langs: ['fr'], tests: HOME_TESTS, only: 'the French page (one language per page; its Arabic is ar/, its English en/)' },
@@ -174,7 +178,7 @@ const SPEC = {
   'en/tarifs/index.html': { langs: ['en'], tests: ['estimate'], only: 'the English guide (one language per page)' },
   'ar/tarifs/index.html': { langs: ['ar'], tests: ['estimate'], only: 'the Arabic guide (one language per page)' },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
-  'hub/index.html': { langs: ['en'], tests: ['lightbox', 'hits'], only: "English only (the founder's own page)" },
+  'hub/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the founder's own page)" },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
   '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the wordmark and two links (home, the offer)' },
   'legal/index.html': { langs: ['fr', 'ar'], tests: [] },
@@ -481,7 +485,8 @@ async function cvPanel(p) {
    On the price guide the estimator is open at load and the page has no
    form: Enter on the link is a navigation to that language's home page at
    #contact, the scope carried in sessionStorage (app.js HANDOFF), which the
-   home must have read into the message and cleared; the fold and the
+   home must have read into the message, under the greeting price.estHello on
+   its own line, and cleared; the fold and the
    currency switch are tried on the home alone. */
 async function estimatePrefill(p, lang) {
   const bad = [];
@@ -505,7 +510,8 @@ async function estimatePrefill(p, lang) {
     if (at.pathname !== home || at.hash !== '#contact') bad.push(`Enter on the guide's "prix ferme" link lands on ${at.pathname}${at.hash}, not on ${home}#contact`);
     const m = await msg();
     if (m === null) bad.push('no message field where the link landed');
-    else if (!m.startsWith(D['price.tyCustom'] + ' · ') || !m.includes(' — ')) bad.push('the scope carried to the home reads "' + m.slice(0, 60) + '", not price.tyCustom · … — range');
+    // the home puts the greeting (price.estHello) on the line above the carried scope
+    else if (!D['price.estHello'] || !m.startsWith(D['price.estHello'] + '\n' + D['price.tyCustom'] + ' · ') || !m.includes(' — ')) bad.push('the scope carried to the home reads "' + m.slice(0, 60).replace(/\n/g, '⏎') + '", not price.estHello ⏎ price.tyCustom · … — range');
     const left = await p.evaluate(() => { try { return sessionStorage.getItem('numidea-prefill'); } catch (e) { return 'unreadable'; } });
     if (left !== null) bad.push('the carried scope is still in sessionStorage once the home has read it');
     if (m !== null) await p.fill('#f-message', '');
@@ -661,7 +667,7 @@ async function contactForm(p, lang) {
 
 async function dialog(p, kind) {
   const bad = [];
-  const D = kind === 'lightbox' ? { dlg: '#lb', opener: '#collection .tile--img', title: '#lbTitle' } : { dlg: '#viewer', opener: 'a.zoom', title: null };
+  const D = { dlg: '#viewer', opener: 'a.zoom' };
   const idx = await p.evaluate((D) => [...document.querySelectorAll(D.opener)].findIndex((a) => a.offsetParent !== null), D);
   if (idx < 0) return { bad: ['no visible ' + D.opener + ' to open the dialog with'], note: kind };
   const opener = (await p.$$(D.opener))[idx];
@@ -670,22 +676,11 @@ async function dialog(p, kind) {
   const st = () => p.evaluate(([D, idx]) => {
     const d = document.querySelector(D.dlg), list = [...document.querySelectorAll(D.opener)], a = document.activeElement;
     return { open: d.open, inside: d.contains(a), body: a === document.body, onOpener: a === list[idx], a: __d(a),
-      title: D.title ? document.querySelector(D.title).textContent : null, titles: list.map((x) => x.getAttribute('data-title')),
-      dir: getComputedStyle(d).direction, n: [...d.querySelectorAll('a[href],button')].filter((e) => e.offsetParent !== null).length };
+      n: [...d.querySelectorAll('a[href],button')].filter((e) => e.offsetParent !== null).length };
   }, [D, idx]);
   let s = await st();
   if (!s.open) return { bad: ['Enter on ' + D.opener + ' does not open ' + D.dlg], note: kind };
   if (!s.inside) bad.push('opening leaves focus outside the dialog (' + s.a + ')');
-  let arrows = '';
-  if (D.title) {
-    const fwd = s.dir === 'rtl' ? 'ArrowLeft' : 'ArrowRight', back = s.dir === 'rtl' ? 'ArrowRight' : 'ArrowLeft';
-    if (s.title !== s.titles[idx]) bad.push('the dialog shows "' + s.title + '", not the piece it was opened on');
-    await p.keyboard.press(fwd); s = await st();
-    if (s.title !== s.titles[(idx + 1) % s.titles.length]) bad.push(fwd + ' does not go to the next piece in ' + s.dir.toUpperCase());
-    await p.keyboard.press(back); s = await st();
-    if (s.title !== s.titles[idx]) bad.push(back + ' does not go back in ' + s.dir.toUpperCase());
-    arrows = ' ' + s.dir;
-  }
   for (let i = 0; i < s.n + 1; i++) {
     await p.keyboard.press('Tab');
     const x = await st();
@@ -695,7 +690,80 @@ async function dialog(p, kind) {
   s = await st();
   if (s.open) bad.push('Escape does not close the dialog');
   if (!s.onOpener) bad.push('closing does not return focus to the opener (' + s.a + ')');
-  return { bad, note: kind + arrows };
+  return { bad, note: kind };
+}
+
+/* hub/'s live rig (00 He's alive, hub/app.js §1): Yasser and Kūro are
+   buttons, the acts a group of buttons under them (.ctrls). From Yasser, Tab
+   goes to Kūro, then to each act in the order the page lists them, each
+   on screen and wearing a ring. Enter on Yasser is a reaction at once (the
+   state line leaves its rest label: the smirk before the line) and, once
+   the line is typed, #rigSaid (aria-live) says it; Space on him, once that
+   line has gone (a second poke within 2.5 s is the laugh, no line), says
+   the next one. Enter on Kūro changes the frame he shows; Space on "Say a
+   line" writes a line again, and Enter on Smirk presses it (aria-pressed)
+   and Release lets it go. */
+async function rig(p) {
+  const bad = [];
+  await p.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+  if (!(await p.$('#rig #rigY')) || !(await p.$('#rigSaid'))) return { bad: ['no #rig with #rigY and #rigSaid (the live rig)'], note: 'rig ?' };
+  await p.locator('#rig').scrollIntoViewIfNeeded();
+  // the frames come in once the panel is on screen; a frame is shown only once loaded
+  await p.waitForFunction(() => [...document.querySelectorAll('#rig img')].length > 2 && [...document.querySelectorAll('#rig img')].every((i) => i.complete), null, { timeout: 10000 }).catch(() => {});
+  const st = () => p.evaluate(() => ({ said: document.getElementById('rigSaid').textContent.trim(), state: (document.getElementById('rigState') || {}).textContent || '',
+    k: ([...document.querySelectorAll('#rigK img[data-kf]')].find((i) => getComputedStyle(i).opacity === '1') || { dataset: {} }).dataset.kf || 'none',
+    smirk: (document.querySelector('.ctrl[data-act="smirk"]') || { getAttribute: () => null }).getAttribute('aria-pressed') }));
+  const until = async (f, ms) => { for (let t = 0; t < ms; t += 100) { const s = await st(); if (f(s)) return s; await wait(100); } return st(); };
+  // Tab order and rings: Yasser, Kūro, then every act in the page's order
+  const want = await p.evaluate(() => ['#rigY', '#rigK', ...[...document.querySelectorAll('.ctrls .ctrl[data-act]')].map((b) => `.ctrl[data-act="${b.dataset.act}"]`)]);
+  await p.focus('#rigY');
+  let order = 0;
+  for (let i = 0; i < want.length; i++) {
+    if (i) { await p.keyboard.press('Tab'); await wait(60); }
+    const r = await p.evaluate((sel) => {
+      const a = document.activeElement, s = getComputedStyle(a);
+      const clear = /^transparent$|rgba\([^)]*,\s*0\)$/.test(s.outlineColor);
+      return { on: a === document.querySelector(sel), d: __d(a), shown: __shown(a), ring: (s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) > 0 && !clear) || s.boxShadow !== 'none' };
+    }, want[i]);
+    if (!r.on) { bad.push(`Tab from ${want[i - 1] || 'the start'} lands on ${r.d}, not on ${want[i]}`); break; }
+    order++;
+    if (!r.shown) bad.push(`${r.d} takes focus off screen or hidden`);
+    if (!r.ring) bad.push(`no focus ring on ${r.d}`);
+  }
+  await p.evaluate(() => document.activeElement.blur());
+  // Yasser: Enter, then Space once his line has gone
+  const s0 = await st();
+  await p.focus('#rigY'); await p.keyboard.press('Enter');
+  const s1 = await until((s) => s.state !== s0.state, 400);
+  if (s1.state === s0.state) bad.push(`Enter on Yasser changes nothing on screen (the state line stays "${s0.state}")`);
+  const s2 = await until((s) => s.said && s.said !== s0.said, 6000);
+  if (!s2.said || s2.said === s0.said) bad.push('Enter on Yasser: #rigSaid (aria-live) never says his line');
+  await until((s) => !/^Talking/.test(s.state), 6000); await wait(2700);
+  await p.focus('#rigY'); await p.keyboard.press('Space');
+  const s3 = await until((s) => s.said && s.said !== s2.said, 6000);
+  if (s3.said === s2.said) bad.push('Space on Yasser: #rigSaid does not move on to his next line');
+  // Kūro: Enter shows another frame
+  await until((s) => s.k === 'base', 2000);
+  await p.focus('#rigK'); await p.keyboard.press('Enter');
+  const k = await until((s) => s.k !== 'base', 600);
+  if (k.k === 'base') bad.push('Enter on Kūro changes nothing (he stays on his base frame)');
+  // the acts: Space on "Say a line" says one; Enter on Smirk holds it, Release lets go
+  if (await p.$('.ctrl[data-act="say"]')) {
+    const before = (await st()).said;
+    await p.focus('.ctrl[data-act="say"]'); await p.keyboard.press('Space');
+    const a = await until((s) => s.said && s.said !== before, 6000);
+    if (a.said === before) bad.push('Space on "Say a line": #rigSaid does not say a new line');
+  }
+  if (await p.$('.ctrl[data-act="smirk"]')) {
+    await p.focus('.ctrl[data-act="smirk"]'); await p.keyboard.press('Enter'); await wait(150);
+    if ((await st()).smirk !== 'true') bad.push('Enter on Smirk does not press it (aria-pressed)');
+    if (await p.$('.ctrl[data-act="release"]')) {
+      await p.focus('.ctrl[data-act="release"]'); await p.keyboard.press('Enter'); await wait(150);
+      if ((await st()).smirk !== 'false') bad.push('Enter on Release leaves Smirk pressed');
+    }
+  }
+  await p.evaluate(() => { document.activeElement.blur(); scrollTo(0, 0); });
+  return { bad, note: `rig ${order}/${want.length} in order, said "${(s3.said || s2.said || '').slice(0, 22)}…"` };
 }
 
 /* hub/: every link and button outside the (closed) viewer, scrolled to the
@@ -845,6 +913,7 @@ for (const f of pages) {
       else if (t === 'form') out.push(await contactForm(p, lang));
       else if (t === 'embeds') out.push(await embeds(p, w, h));
       else if (t === 'hits') out.push(await hits(p));
+      else if (t === 'rig') out.push(await rig(p));
       else out.push(await dialog(p, t));
     }
     out.push({ bad: await direction(p, spec, lang, 'after the tests'), note: 'dir ' + (lang === 'ar' ? 'rtl' : 'ltr') });

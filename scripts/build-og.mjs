@@ -18,7 +18,8 @@
  * client has yet given written permission to appear in marketing, and a
  * share card is marketing. The scene card keeps that rule: a drafting sheet
  * in the page's own look, the frame empty, the sheets counted from
- * scene-data. The hub card is paper and Syne with the hero's own figures;
+ * scene-data. The hub card is the character bible's cover: its paper, Archivo
+ * and the marker hand, the 夜 seal and the cover's drawing of the two;
  * the WorkspaceHQ card its arcade palette, Press Start 2P and VT323, the
  * product's name and the whole headline (its first screen, captured, cut
  * the headline and showed no product). Each card is 1200×630, a JPEG
@@ -32,10 +33,10 @@ import { WORDMARK } from './lib/wordmark.mjs';
 import { PROJECTS, UI } from './scene-data.mjs';
 
 const PLATE = 'assets/illus/arch.webp';     // 1000x558
-// the hub's first-screen figures: the hero's Yasser and Kūro layers (each a
-// cut-out on transparent in the same 640x899 box; scripts/build-hub-art.mjs)
-const FIGURES = ['hub/art/hero-yasser-tall-640.webp', 'hub/art/hero-kuro-tall-640.webp'];
-// Bit, as hub/index.html draws him on the cartridge: a 12×9 pixel sprite
+// the hub's cover drawing: Yasser on the floor with his coffee, Kūro beside
+// him (the cover's picture and 04b's duo, scripts/build-hub-rig.mjs)
+const DUO = 'hub/art/actor-duo-a.webp';
+// Bit, WorkspaceHQ's sidekick, as the hub's cartridge drew him until 56f29c1: a 12×9 pixel sprite
 const BIT = '<svg viewBox="0 0 12 9" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="6" height="1" fill="#d97757"/><rect x="2" y="1" width="1" height="1" fill="#d97757"/><rect x="3" y="1" width="1" height="1" fill="#f2a27e"/><rect x="4" y="1" width="6" height="1" fill="#d97757"/><rect x="1" y="2" width="1" height="1" fill="#d97757"/><rect x="2" y="2" width="1" height="1" fill="#f2a27e"/><rect x="3" y="2" width="8" height="1" fill="#d97757"/><rect x="1" y="3" width="10" height="1" fill="#d97757"/><rect x="1" y="4" width="10" height="1" fill="#d97757"/><rect x="0" y="5" width="12" height="1" fill="#d97757"/><rect x="1" y="6" width="10" height="1" fill="#d97757"/><rect x="1" y="7" width="10" height="1" fill="#a5543a"/><rect x="2" y="8" width="1" height="1" fill="#a5543a"/><rect x="4" y="8" width="1" height="1" fill="#a5543a"/><rect x="7" y="8" width="1" height="1" fill="#a5543a"/><rect x="9" y="8" width="1" height="1" fill="#a5543a"/><rect x="3" y="3" width="1" height="1" fill="#1b1430"/><rect x="8" y="3" width="1" height="1" fill="#1b1430"/><rect x="3" y="4" width="1" height="1" fill="#1b1430"/><rect x="8" y="4" width="1" height="1" fill="#1b1430"/></svg>';
 
 const pad = (n) => String(n).padStart(2, '0');
@@ -85,13 +86,16 @@ const CARDS = {
     crumb: UI.fr.crumb, kicker: UI.fr.kicker, title: UI.fr.h1, sub: UI.fr.desc,
     foot: `${pad(PROJECTS.length)} planches · ${nLive} sites livrés · FR · EN · AR`,
   },
-  // the founder's page: his handle, name and roles as hub/index.html states
-  // them, on its paper, with the hero's figures
+  // the founder's page, his character bible: the cover as hub/index.html
+  // sets it (the chip, the name, the seal, the marker line) and its
+  // og:description as the line beside the seal, on its paper; the copy stays
+  // inside the left column (inColumn), the drawing has the right
   hub: {
-    kind: 'hub', out: 'hub/og.jpg', assets: FIGURES,
-    faces: ['800 30px Syne', '700 24px Syne', '400 24px Geist', '400 16px "Geist Mono"'],
-    eyebrow: 'Artist · Designer · Developer', handle: 'br4vetr4veler', name: 'Hamisse Mohamed Yasser',
-    motto: 'form is a function of obsession.', foot: 'Design, code, and everything between.',
+    kind: 'hub', out: 'hub/og.jpg', assets: [DUO], inColumn: true,
+    faces: ['900 30px Archivo', '400 24px "Permanent Marker"', '900 34px "Noto Sans JP"', '400 24px Geist', '500 16px "Geist Mono"'],
+    chip: 'Character bible', handle: 'br4vetr4veler', name: 'Yasser', seal: '夜',
+    tag: "The builder who answers at 2 a.m. — and the black cat who decides if it's good enough.",
+    marker: 'tired eyes · big ideas · same energy.', foot: 'Artist · Designer · Developer',
   },
   // the product's page: its name and its whole headline, in its arcade faces
   // quality 80, not 86: the aurora costs bytes, and check.mjs block 17 holds
@@ -227,49 +231,52 @@ p{margin-top:22px;font-size:21px;line-height:1.5;color:var(--body-strong);max-wi
 </div>
 </body></html>`;
 
-/* the hub card: paper and Syne (hub/style.css), the figures standing on the
-   card's foot as they stand on the page's */
+/* the hub card: the character bible's cover (hub/style.css): its paper
+   with the grain, the Archivo name, the red 夜 seal, the marker line, and
+   the cover's drawing in a framed box with a floor, as the page frames it */
 const hub = (base, lang, card) => `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <base href="${base}/">
 <style>
-/* the page's faces (assets/fonts-hub.css), declared here without its
-   font-display:optional: with it the card painted in the fallback and, as
+/* the page's faces (hub/fonts, assets/fonts), declared here without
+   font-display:optional: with it a card painted in the fallback and, as
    optional never swaps, stayed there although the faces had loaded */
-@font-face{font-family:"Syne";font-weight:700 800;src:url(assets/fonts/syne-latin.woff2) format("woff2")}
+@font-face{font-family:"Archivo";font-weight:800 900;src:url(hub/fonts/archivo-800-900-latin.woff2) format("woff2")}
+@font-face{font-family:"Permanent Marker";font-weight:400;src:url(hub/fonts/permanent-marker-latin.woff2) format("woff2")}
+@font-face{font-family:"Noto Sans JP";font-weight:700 900;src:url(hub/fonts/noto-sans-jp-700-900-kanji.woff2) format("woff2")}
 @font-face{font-family:"Geist";font-weight:400 700;src:url(assets/fonts/geist-latin.woff2) format("woff2")}
 @font-face{font-family:"Geist Mono";font-weight:400 700;src:url(assets/fonts/geist-mono-latin.woff2) format("woff2")}
-:root{--paper:#fcecdc;--paper-2:#f4e3cf;--ink:#1e1611;--ink-2:#5b4535;--burgundy:#7a2430;
-  --display:"Syne",sans-serif;--sans:"Geist",sans-serif;--mono:"Geist Mono",monospace}
+:root{--paper:#D8CBB8;--cream:#F3ECE1;--sand:#E8DFD1;--floor:#CFBFAB;--ink:#211E1B;--ink-2:#4F4238;--red:#A34135;--red-text:#8A3127}
 *{box-sizing:border-box;margin:0}
 html,body{width:1200px;height:630px;overflow:hidden}
-body{position:relative;background:var(--paper);color:var(--ink);font-family:var(--sans);display:grid;grid-template-columns:760px 1fr;grid-template-rows:minmax(0,1fr);padding:52px 0 48px 68px}
-.l{position:relative;z-index:1;display:flex;flex-direction:column}
-.bc{display:flex;align-items:center;gap:12px;font:400 15px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-.bc{--teal-text:var(--burgundy)}   /* "idea" reads this token from the drawing's own fill */
-.bc .wm{display:block;height:15px;width:auto;overflow:visible;color:var(--ink-2)}
-.bc b{font-weight:400;color:var(--ink)}
-.bc b i{font-style:normal;color:var(--burgundy)}
-.eyebrow{margin-top:auto;font:400 16px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy)}
-/* the handle as the page sets it: Syne 800, one unbreakable line (10.25em wide at this tracking) */
-.handle{margin-top:18px;font:800 72px/.92 var(--display);letter-spacing:-.035em;white-space:nowrap}
-.name{margin-top:22px;font:500 28px/1.3 var(--sans)}
-.motto{margin-top:8px;font:700 23px/1.4 var(--display);letter-spacing:-.005em;color:var(--ink-2)}
-.motto::before{content:"";display:inline-block;width:1.4em;height:2px;margin-right:.55em;vertical-align:.3em;background:var(--burgundy)}
-.foot{margin-top:auto;font:400 15px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-/* the figures: the hero's two layers (Yasser, then Kūro over him, the same
-   box so they stay registered), feet on the card's foot */
-.r{position:relative}
-.r img{position:absolute;right:32px;bottom:0;height:560px;width:auto;display:block}
+body{position:relative;background:var(--paper);color:var(--ink);font-family:Geist,sans-serif;display:grid;grid-template-columns:660px 1fr;gap:36px;padding:48px 56px 44px 64px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .97 0 0 0 0 .96 0 0 0 0 .94 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%23fff'/%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");background-size:360px;background-blend-mode:multiply}
+.l{position:relative;display:flex;flex-direction:column}
+.bc{display:flex;align-items:center;gap:12px;font:500 15px "Geist Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);--teal-text:var(--red-text)}
+.bc .wm{display:block;height:15px;width:auto;overflow:visible;color:var(--ink)}
+.bc b{font-weight:500;color:var(--ink)}.bc b i{font-style:normal;color:var(--red-text)}
+.chips{margin-top:auto;display:flex;gap:12px;align-items:center;font:500 14px "Geist Mono",monospace;letter-spacing:.2em;text-transform:uppercase}
+.chip{background:var(--ink);color:var(--cream);padding:5px 9px}
+h1{margin-top:14px;font:900 136px/.82 Archivo,sans-serif;letter-spacing:-.03em;text-transform:uppercase;white-space:nowrap}
+h1 span{color:var(--red)}
+.row{margin-top:26px;display:flex;gap:18px;align-items:center}
+.seal{flex:none;width:64px;height:64px;background:var(--red);border:3px solid var(--ink);display:grid;place-items:center;font:900 34px/1 "Noto Sans JP",sans-serif;color:var(--cream);transform:rotate(-6deg);box-shadow:3px 3px 0 var(--ink)}
+.tag{font-size:23px;line-height:1.3;max-width:24ch}
+.marker{margin-top:22px;font:400 24px "Permanent Marker",cursive;color:var(--red-text);transform:rotate(-2deg);transform-origin:left}
+.foot{margin-top:auto;font:500 14px "Geist Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.r{position:relative;align-self:end}
+.box{position:relative;height:534px;background:var(--sand);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.box img{width:90%;height:auto;display:block;margin-bottom:9%}
+.box i{position:absolute;left:0;right:0;bottom:0;height:7%;background:var(--floor);border-top:3px solid var(--ink)}
 </style></head><body>
 <div class="l">
   <div class="bc">${WORDMARK}<span>/</span><b>VOIDSPLUNKER<i>.std</i></b></div>
-  <div class="eyebrow">${card.eyebrow}</div>
-  <h1 class="handle">${card.handle}</h1>
-  <p class="name">${card.name}</p>
-  <p class="motto">${card.motto}</p>
+  <div class="chips"><span class="chip">${card.chip}</span><span>${card.handle}</span></div>
+  <h1>${card.name}<span>.</span></h1>
+  <div class="row"><span class="seal" lang="ja">${card.seal}</span><p class="tag">${card.tag}</p></div>
+  <p class="marker">${card.marker}</p>
   <div class="foot">${card.foot}</div>
 </div>
-<div class="r">${FIGURES.map((f) => `<img src="${f}" alt="">`).join('')}</div>
+<div class="r"><div class="box"><img src="${DUO}" alt=""><i></i></div></div>
 </body></html>`;
 
 /* the WorkspaceHQ card: the arcade cabinet (workspacehq/style.css), the
@@ -333,7 +340,7 @@ try {
     await p.goto(base + '/404.html');
     await p.setContent(TEMPLATES[card.kind](base, name, card), { waitUntil: 'networkidle' });
     const absent = await p.evaluate(async (faces) => {
-      const probe = (f) => (f.includes('Arabic') ? 'ع' : 'Aé');
+      const probe = (f) => (f.includes('Arabic') ? 'ع' : f.includes('JP') ? '夜' : 'Aé');
       await Promise.all(faces.map((f) => document.fonts.load(f, probe(f))));
       await document.fonts.ready;
       return faces.filter((f) => !document.fonts.check(f, probe(f)));
@@ -348,8 +355,11 @@ try {
     }, card.assets);
     if (lost.length) throw new Error(`og card ${name}: pictures did not load: ` + lost.join(', '));
     // the copy fits the card: nothing runs past the 630px it is cut at, and
-    // nothing past its right edge (the handle and the headline are one line)
-    const over = await p.evaluate(() => [...document.querySelectorAll('.l > *, .r > *')].filter((e) => { const r = e.getBoundingClientRect(); return r.bottom > 630 || r.right > 1200; }).map((e) => e.className || e.tagName));
+    // nothing past its right edge (the handle and the headline are one line),
+    // or, on a card whose right column is a picture (inColumn: the hub's),
+    // past its own column
+    const over = await p.evaluate((inColumn) => [...document.querySelectorAll('.l > *, .r > *')].filter((e) => { const r = e.getBoundingClientRect();
+      const lim = inColumn && e.closest('.l') ? document.querySelector('.l').getBoundingClientRect().right + 1 : 1200; return r.bottom > 630 || r.right > lim; }).map((e) => e.className || e.tagName), !!card.inColumn);
     if (over.length) throw new Error(`og card ${name}: ${over.join(', ')} run(s) past the card's edge (shorten the copy)`);
     await p.waitForTimeout(300);
     // JPEG: a photographic card as PNG is ~530 KB, and some messengers drop

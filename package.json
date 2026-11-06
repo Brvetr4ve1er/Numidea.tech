@@ -21,6 +21,7 @@
     "csp": "node scripts/build-csp.mjs",
     "og": "node scripts/build-og.mjs",
     "hub:art": "node scripts/build-hub-art.mjs",
+    "hub:rig": "node scripts/build-hub-rig.mjs",
     "validate": "node scripts/validate.mjs",
     "vbugs": "node scripts/vbugs.mjs",
     "verify": "node scripts/verify.mjs",

@@ -18,5 +18,13 @@
   {
     "prefix": "tarifs ESCAPES pricing span.md-tag ",
     "reason": "2026-10-31: the pricing models' \"Notre modèle\" / \"Our model\" / \"نموذجنا\" tag is a badge on the card's top edge on purpose, like Recommandé on the tiers (.md-tag: position:absolute; top:-10px), so part of it is outside the card by design. Never seen on the home, where the models sat in a closed <details> the scan skips; on the guide they are open"
+  },
+  {
+    "prefix": "index OVERLAP pricing h2#pricing-h \"سعر\" × pricing p.sec-lead",
+    "reason": "2026-11-06: the Arabic face's content box (IBM Plex Sans Arabic: ascent and descent near 1.5em, 93px on the 64px line of the 62px heading) reaches 13px into the lead below at 1440 and 1280; the ink keeps clear of it (the gap reads as the heading's own, screenshot checked), and it was the same before fleet 3"
+  },
+  {
+    "prefix": "index OVERLAP pricing em \"قبل عرض السعر.\" × pricing p.sec-lead",
+    "reason": "2026-11-06: the same Arabic heading's second run (its <em>), the same content box over the lead; no ink meets"
   }
 ]

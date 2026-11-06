@@ -86,13 +86,19 @@ export const SECTIONS = {
 const sec = (name, lang) => `id="${SECTIONS[name][lang]}" data-sec="${name}"`;
 
 /* Font families whose licence is confirmed in this repository, in the order
-   the page lists them. All nine are SIL Open Font License 1.1: the licence text
-   for the first six is assets/fonts/OFL.txt; for VT323, Press Start 2P and
-   IBM Plex Mono, the copyright and the OFL licence URL are in each font file's
-   name table (workspacehq/fonts/, workspacehq/embed/fonts/), and
-   workspacehq/embed/fonts/plex.css names OFL 1.1. */
+   the page lists them, by licence. These eleven are SIL Open Font License 1.1:
+   the licence text for the first six is assets/fonts/OFL.txt; for Archivo and
+   Noto Sans JP (hub/'s own subsets, since 56f29c1) it is hub/fonts/OFL.txt,
+   with the copyright line each file's name table carries; for VT323, Press
+   Start 2P and IBM Plex Mono, the copyright and the OFL licence URL are in
+   each font file's name table (workspacehq/fonts/, workspacehq/embed/fonts/),
+   and workspacehq/embed/fonts/plex.css names OFL 1.1. */
 const OFL_FONTS = ['Cinzel', 'Cinzel Decorative', 'Geist', 'Geist Mono', 'IBM Plex Sans Arabic', 'Syne',
-  'VT323', 'Press Start 2P', 'IBM Plex Mono'];
+  'Archivo', 'Noto Sans JP', 'VT323', 'Press Start 2P', 'IBM Plex Mono'];
+/* Apache License 2.0: Permanent Marker (hub/fonts/permanent-marker-latin.woff2),
+   whose name table carries the copyright and "Licensed under the Apache
+   License, Version 2.0"; the licence text is hub/fonts/LICENSE-permanent-marker.txt */
+const APACHE_FONTS = ['Permanent Marker'];
 
 /* every family a deployed stylesheet, page or script serves from a font file
    (@font-face with a url() source; the local() fallback faces are not served) */
@@ -115,13 +121,15 @@ export function servedFonts() {
   return fams;
 }
 
-/* the fonts paragraph lists exactly what the site serves; a family with no
-   confirmed licence is a gap like a missing owner field */
+/* the fonts paragraph lists exactly what the site serves, by licence (OFL,
+   then Apache 2.0 when one is served); a family with no confirmed licence is
+   a gap like a missing owner field, listed with the OFL ones */
+const join_ = (lang, names) => (lang === 'ar' ? names.join(UI.ar.and)
+  : names.length > 1 ? names.slice(0, -1).join(', ') + UI[lang].and + names[names.length - 1] : names.join(''));
 function fontList(lang, preview, served) {
   const names = OFL_FONTS.filter((f) => served.has(f)).map(esc);
-  for (const f of served) if (!OFL_FONTS.includes(f)) names.push(val(null, `fonts: licence of "${f}" (OFL_FONTS in scripts/build-legal.mjs)`, preview));
-  if (lang === 'ar') return names.join(UI.ar.and);
-  return names.length > 1 ? names.slice(0, -1).join(', ') + UI[lang].and + names[names.length - 1] : names.join('');
+  for (const f of served) if (!OFL_FONTS.includes(f) && !APACHE_FONTS.includes(f)) names.push(val(null, `fonts: licence of "${f}" (OFL_FONTS or APACHE_FONTS in scripts/build-legal.mjs)`, preview));
+  return { ofl: join_(lang, names), apache: join_(lang, APACHE_FONTS.filter((f) => served.has(f)).map(esc)) };
 }
 
 function body(lang, d, preview, served) {
@@ -183,7 +191,7 @@ function body(lang, d, preview, served) {
       ? 'Le code, les textes, les illustrations et le CV de ce site sont placés dans le domaine public (CC0 1.0).'
       : `Les textes, les illustrations et le CV de ce site appartiennent à ${v(pub.name, 'publisher.name')}\u202f; toute reproduction sans autorisation écrite est interdite.`)}
     Les sites, marques et visuels des clients présentés comme références restent la propriété de leurs titulaires.</p>
-    <h3>Polices</h3><p>${fonts}, sous licence SIL Open Font License 1.1, servies depuis ce site.</p>
+    <h3>Polices</h3><p>${fonts.ofl}, sous licence SIL Open Font License 1.1${fonts.apache ? `, et ${fonts.apache}, sous licence Apache 2.0` : ''}, servies depuis ce site.</p>
   </section>
   <section ${sec('privacy', 'fr')} aria-labelledby="privacy-h-fr"><h2 id="privacy-h-fr">Confidentialité</h2>
     <h3>Responsable du traitement</h3><p>${v(pub.name, 'publisher.name')} — pour toute question\u202f: <a href="mailto:${rightsHref}">${rights}</a>.</p>
@@ -214,7 +222,7 @@ function body(lang, d, preview, served) {
       ? "This site's code, text, illustrations and CV are dedicated to the public domain (CC0 1.0)."
       : `This site's text, illustrations and CV belong to ${v(pub.name, 'publisher.name')}; reproduction without written permission is prohibited.`)}
     Client sites, brands and visuals shown as references remain the property of their owners.</p>
-    <h3>Fonts</h3><p>${fonts}, under the SIL Open Font License 1.1, served from this site.</p>
+    <h3>Fonts</h3><p>${fonts.ofl}, under the SIL Open Font License 1.1${fonts.apache ? `, and ${fonts.apache}, under the Apache License 2.0` : ''}, served from this site.</p>
   </section>
   <section ${sec('privacy', 'en')} aria-labelledby="privacy-h-en"><h2 id="privacy-h-en">Privacy</h2>
     <h3>Controller</h3><p>${v(pub.name, 'publisher.name')} — any question: <a href="mailto:${rightsHref}">${rights}</a>.</p>
@@ -245,7 +253,7 @@ function body(lang, d, preview, served) {
       ? 'شيفرة هذا الموقع ونصوصه ورسومه والسيرة الذاتية مُتاحة في الملك العام (CC0 1.0).'
       : `نصوص هذا الموقع ورسومه والسيرة الذاتية مملوكة لـ ${v(pub.name, 'publisher.name')}؛ يُمنع نسخها دون إذن كتابي.`)}
     مواقع العملاء وعلاماتهم ومرئياتهم المعروضة كمراجع تبقى ملكاً لأصحابها.</p>
-    <h3>الخطوط</h3><p>${fonts}، بترخيص SIL Open Font License 1.1، تُخدَم من هذا الموقع.</p>
+    <h3>الخطوط</h3><p>${fonts.ofl}، بترخيص SIL Open Font License 1.1${fonts.apache ? `، و${fonts.apache}، بترخيص Apache License 2.0` : ''}، تُخدَم من هذا الموقع.</p>
   </section>
   <section ${sec('privacy', 'ar')} aria-labelledby="privacy-h-ar"><h2 id="privacy-h-ar">الخصوصية</h2>
     <h3>المسؤول عن المعالجة</h3><p>${v(pub.name, 'publisher.name')} — لأي سؤال: <a href="mailto:${rightsHref}" dir="ltr">${rights}</a>.</p>

@@ -63,7 +63,7 @@
  *  17b. hub art and motion — every srcset, data-full, data-anim and hub/style.css url()
  *                        file exists; each <img> has alt and width/height = its widest
  *                        file, NNNw = the file's width, one ratio per image; data-w/h =
- *                        the data-full file; nothing in hub/art or hub/loops unused; no
+ *                        the data-full file; nothing in hub/art unused; no
  *                        infinite, no <video loop>; an animated WebP plays a finite number
  *                        of times, ≤ 5 s in all, and only as a data-anim with a
  *                        reduced-motion still
@@ -248,14 +248,20 @@ const captureHosts = [...read('scripts/shots.mjs').matchAll(/capture:\s*'https:\
 const hub = read('hub/index.html').replace(/<!--[\s\S]*?-->/g, '');
 const onHub = [...new Set([...Object.values(clientHref).map((u) => new URL(u).host), ...captureHosts])].filter((h) => hub.includes(h));
 // a sheet's `identity` link (not a `url`: the founder's own design work on his
-// Behance, beside the deliverables) cites a gallery the hub's design grid
-// (.covers) already shows, so the sheets never name work the founder's page does not
-const covers = (/<ul class="covers"[\s\S]*?<\/ul>/.exec(hub) || [''])[0];
-const identityOff = [...read('scripts/scene-data.mjs').matchAll(/identity:\s*\{[^}]*?href:\s*'([^']+)'/g)].map((m) => m[1]).filter((u) => !covers.includes(`href="${u}"`));
+// Behance, beside the deliverables) is a Behance gallery page
+// (https://www.behance.net/gallery/<number>/<SLUG>, the shape links.mjs waives:
+// gallery pages answer 403 to a script), and the hub links the Behance profile
+// that gallery is shown on, so the sheets never cite design work the founder's
+// page does not lead to. Until 56f29c1 the hub's design grid (.covers) showed
+// the gallery itself; the character bible that replaced it has no grid
+const GALLERY = /^https:\/\/www\.behance\.net\/gallery\/\d+\/[A-Za-z0-9-]+$/;
+const behanceProfile = /href="https:\/\/www\.behance\.net\/[A-Za-z0-9_-]+"/.test(hub);
+const identityOff = [...read('scripts/scene-data.mjs').matchAll(/identity:\s*\{[^}]*?href:\s*'([^']+)'/g)].map((m) => m[1])
+  .filter((u) => !GALLERY.test(u) || !behanceProfile).map((u) => u + (GALLERY.test(u) ? ' (the hub links no Behance profile)' : ' (not a behance.net/gallery/<number>/<slug> page)'));
 tagDrift.length ? bad('client links disagree: ' + tagDrift.join('; ')) : ok(`client links agree across plate, cards and browser bars (${pageClients.size} clients)`);
 shotDrift.length ? bad('scripts/shots.mjs and the page cover different clients: ' + shotDrift.join(', ')) : ok('screenshot pipeline covers exactly the linked clients');
 stray.length ? bad('showcase uses URLs the main page does not link: ' + stray.join(', ')) : ok('showcase URLs all linked from the main page');
-identityOff.length ? bad("a sheet's identity link is not in the hub's design grid (.covers): " + identityOff.join(', ')) : ok("every sheet's identity link is a gallery the hub's design grid shows");
+identityOff.length ? bad("a sheet's identity link is not a Behance gallery the hub leads to: " + identityOff.join(', ')) : ok("every sheet's identity link is a Behance gallery, and the hub links the Behance profile");
 onHub.length ? bad("client sites listed on the hub (it is the artist's page): " + onHub.join(', ')) : ok('hub lists no client sites');
 
 /* 5b — the client logo strip in the proof band ("Ils nous ont confié leur
@@ -314,8 +320,11 @@ const sheets = new Set(SCENE_PROJECTS.map((p) => p.slug));
 for (const slug of Object.keys(VOICE_CLIENTS)) {
   const card = html.split(/<article\b/).slice(1).find((a) => a.startsWith(` id="w-${slug}"`)) || '';
   // a link: the sentence in its own span, then a visually hidden suffix
-  // (work.gainMore) so its name says it opens the sheet; plain text: <p>
-  const a = /<a class="gain" href="([^"]*)"><span data-i18n="([^"]+)">[^<]*<\/span><span class="sr-only" data-i18n="work\.gainMore">[^<]*<\/span><\/a>/.exec(card);
+  // (work.gainMore) so its name says it opens the sheet; plain text: <p>.
+  // The arrow is the stylesheet's (.gain::after); if the markup carries it
+  // instead, it is joined to the last word (&nbsp;) and hidden from the name:
+  // &nbsp;<span class="arr" aria-hidden="true">→</span>, before the suffix
+  const a = /<a class="gain" href="([^"]*)"><span data-i18n="([^"]+)">[^<]*<\/span>(?:&nbsp;<span class="arr" aria-hidden="true">→<\/span>)?<span class="sr-only" data-i18n="work\.gainMore">[^<]*<\/span><\/a>/.exec(card);
   const p = /<p class="gain" data-i18n="([^"]+)">/.exec(card);
   if (!a && !p) { gainErr.push(`${slug}: work card has no benefit line (<a class="gain"><span data-i18n>…</span><span class="sr-only" data-i18n="work.gainMore">…</span></a>, or <p class="gain" data-i18n>)`); continue; }
   const [href, key] = a ? [a[1], a[2]] : [undefined, p[1]];
@@ -945,9 +954,9 @@ runtimeDeps.length
 // whole published set stays under its size on the date beside TOTAL plus 10%,
 // rounded up to 0.1 MB. A miss fails: make the file smaller (previews:
 // scripts/shots.mjs, work: work-capture.mjs, illus: plates.mjs, clients:
-// client-logos.mjs, the home share card: build-og.mjs; hub/art and hub/loops:
-// build-hub-art.mjs, which also enforces its own per-file ceiling, except
-// hub/art/be-*.webp, exported by hand) or raise the number here on purpose.
+// client-logos.mjs, the share cards: build-og.mjs; hub/art:
+// build-hub-rig.mjs, which also enforces its own per-file ceiling; hub/fonts:
+// subset by hand, as assets/fonts) or raise the number here on purpose.
 // The owner can tighten any of them.
 // No two published files may hold the same bytes: the hosts would serve the
 // same thing under two names and the browser fetch it twice. Geist, Geist
@@ -967,8 +976,8 @@ runtimeDeps.length
     'assets/work': 129 * kB,      // 117,246 (alliance/d1.webp)
     'assets/illus': 203 * kB,     // 183,670 (vista-near.webp)
     'assets/clients': 22 * kB,    // 19,320 (bordjsteel.svg)
-    'hub/art': 260 * kB,          // 235,748 on 2026-10-28 (diary-traveler-1600.webp)
-    'hub/loops': 419 * kB,        // 380,644 on 2026-10-28 (kuro-sleep.webp, animated)
+    'hub/art': 52 * kB,           // 46,978 on 2026-11-06 (pose-inspect.webp; the character bible, 56f29c1: no loops folder since)
+    'hub/fonts': 33 * kB,         // 29,148 on 2026-11-06 (permanent-marker-latin.woff2)
     'assets/fonts': 51 * kB,      // 45,688 on 2026-10-26 (ibm-plex-sans-arabic-600-arabic.woff2)
     'workspacehq': 64 * kB,       // 57,319 on 2026-10-31 (og.jpg)
     'workspacehq/embed': 299 * kB,               // 271,134 on 2026-10-31 (console.html)
@@ -980,9 +989,10 @@ runtimeDeps.length
     'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 20.3e6;           // 18,381,757 on 2026-10-31, 283 files, once the captures had their 720w/416w files (+739 kB in 35), the price guide its
-                                  // three pages and sheet (+143 kB) and the home pages lost the market comparison; 17,162,350 in 237 that morning (the embed's
-                                  // font copies, readme and manifest gone), 17,531,597 in 244 with en/ and ar/ (two pages, two cards, three dictionaries)
+  const TOTAL = 14.5e6;           // 13,097,169 on 2026-11-06, 277 files, once the hub became its character bible (56f29c1: the diary, the Behance covers
+                                  // and hub/loops out, 71 rig and section files and its own fonts in); 18,381,757 in 283 on 2026-10-31, once the captures had
+                                  // their 720w/416w files (+739 kB in 35), the price guide its three pages and sheet (+143 kB) and the home pages lost the market
+                                  // comparison; 17,162,350 in 237 that morning (the embed's font copies, readme and manifest gone)
   const size = (f) => statSync(join(ROOT, f)).size;
   const fmt = (n) => (n >= 1e6 ? (n / 1e6).toFixed(2) + ' MB' : (n / kB).toFixed(1) + ' kB');
   const bytes = (n) => n.toLocaleString('en') + ' bytes';
@@ -1030,8 +1040,8 @@ runtimeDeps.length
 }
 
 /* 17b — hub art and motion */
-// hub/ is built on the owner's illustrations (scripts/build-hub-art.mjs cuts
-// them into hub/art and hub/loops), and block 3 reads only src= and href=.
+// hub/ is built on the owner's illustrations (scripts/build-hub-rig.mjs cuts
+// them into hub/art), and block 3 reads only src= and href=.
 // So here, for hub/index.html and hub/style.css: every file named by a
 // srcset, a data-full, a data-anim or a CSS url() exists. Every <img> has an
 // alt attribute (empty on decoration) and width and height, except the
@@ -1043,8 +1053,9 @@ runtimeDeps.length
 // descriptor is the width of the file it names, and every candidate of one
 // <img> or <source> has the same aspect ratio, to the pixel (heights are
 // rounded at export). data-w/data-h are the data-full file's size, and that
-// file has the thumbnail's ratio. Nothing in hub/art or hub/loops goes
-// unreferenced (the deploy would publish it for nothing).
+// file has the thumbnail's ratio. Nothing in hub/art goes unreferenced (the
+// deploy would publish it for nothing; hub/loops went with 56f29c1, and the
+// rig's frames waiting in its <template> count as named).
 // Motion: hub/style.css has no `infinite` (comments aside) and the page no
 // <video loop>. An animated WebP (an ANIM chunk) plays a finite number of
 // times, at most MOTION_MS in all (scripts/hub-art-data.mjs: auto-starting
@@ -1059,7 +1070,7 @@ runtimeDeps.length
 {
   const { MOTION_MS } = await import('./hub-art-data.mjs');
   const hubErr = [];
-  const page = 'hub/index.html', sheet = 'hub/style.css', DIRS = ['hub/art', 'hub/loops'];
+  const page = 'hub/index.html', sheet = 'hub/style.css', DIRS = ['hub/art'];
   const src = read(page).replace(/<!--[\s\S]*?-->/g, '');
   const cssSrc = read(sheet).replace(/\/\*[\s\S]*?\*\//g, '');
   const at = (tag, k) => (new RegExp(`\\s${k}="([^"]*)"`).exec(tag) || [])[1];

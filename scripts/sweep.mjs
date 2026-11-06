@@ -17,8 +17,8 @@
  * guide's phone in arcanum and daylight, tablets,
  * short landscape, scene/ in Arabic and in the daylight and noir themes (it
  * follows numidea-theme since e8a2ea2), each on desktop and on a 390px phone,
- * 404 in other themes, and hub/ in its night
- * palette (void-theme 'dark'; paper is its default) and on a 390px phone in both.
+ * 404 in other themes, and hub/ (one paper palette since 56f29c1) on a
+ * 390px phone.
  * Exits non-zero on any failure. Optional arg: a single theme name.
  *
  * Each page is scrolled through once before it is measured, so every lazy
@@ -38,6 +38,14 @@
  *  - color-mix() serialises as color(srgb r g b) with 0-1 channels, not 0-255
  *  - text clipped by an overflow ancestor is laid out but never painted
  *  - the CV panel is collapsed by default; it is audited open, as read
+ *  - a fixed layer (the phone contact bar) is not where the full-page capture
+ *    paints it: its text is sampled from a viewport capture, with the bar's
+ *    state held through both renders (it read 1.03:1 on its own crimson),
+ *    and the page's text it covers is not painted there (the guide's
+ *    currency legend read 1.28:1 against the bar)
+ *  - opening every <details> scrolls the page (app.js brings an FAQ answer
+ *    opened under the bar into view): it is put back at the top before
+ *    anything is measured
  */
 import sharp from 'sharp';
 import {existsSync} from 'node:fs';
@@ -84,10 +92,8 @@ for(const t of ['daylight','noir']){
 }
 RUNS.push({theme:'daylight',pname:'404@390',path:'/404.html',lang:'ar',w:390,h:844});
 RUNS.push({theme:'noir',pname:'404',path:'/404.html',lang:'ar',w:1280,h:900});
-// hub/: paper is its default (the desktop pass above); night is void-theme 'dark'
-RUNS.push({theme:'arcanum',pname:'hub-dark',path:'/hub/index.html',lang:'fr',w:1280,h:900,init:{'void-theme':'dark'}});
+// hub/: one paper palette (the character bible, 56f29c1: no void-theme), on the desktop pass above and here
 RUNS.push({theme:'arcanum',pname:'hub@390',path:'/hub/index.html',lang:'fr',w:390,h:844});
-RUNS.push({theme:'arcanum',pname:'hub-dark@390',path:'/hub/index.html',lang:'fr',w:390,h:844,init:{'void-theme':'dark'}});
 for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)continue;
   {
    // reduced motion: every picture is drawn at once, never held at opacity 0
@@ -113,6 +119,17 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
      // audit the CV panel in its open state — the state people actually read
      const cv=document.getElementById('cv-panel');if(cv){cv.classList.add('open');cv.inert=false;}});
    await p.waitForTimeout(500);
+   // back to the top: an FAQ answer opened under the phone bar is brought into
+   // view (app.js), so opening every <details> scrolled the page, and the
+   // sticky and fixed layers were measured where the capture does not paint them
+   await p.evaluate(()=>scrollTo(0,0));
+   await p.waitForTimeout(200);
+   // a fixed layer (the phone contact bar .m-contact, shown or hidden by
+   // app.js as the page moves) keeps the state it has now through both
+   // renders: the full-page capture resizes the viewport, which moves the
+   // footer into view and once hid the bar under its own measured text
+   await p.evaluate(()=>{for(const e of document.querySelectorAll('.m-contact')){const c=e.className;
+     new MutationObserver(()=>{if(e.className!==c)e.className=c}).observe(e,{attributes:true,attributeFilter:['class']})}});
    // collect text-bearing elements
    const items=await p.evaluate(()=>{
      const out=[];const sy=window.scrollY;
@@ -128,14 +145,28 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
        if(op<0.05)continue;
        const r=document.createRange();r.selectNodeContents(n);const rect=r.getBoundingClientRect();
        if(rect.width<2||rect.height<2)continue;
+       // in a fixed layer: painted over the viewport, not at its place in the
+       // document, so it is sampled from a viewport capture (below), and one
+       // parked outside the viewport (the skip link until focused) is not painted
+       let fixed=false;for(let f=el;f&&f!==document.body;f=f.parentElement)if(getComputedStyle(f).position==='fixed'){fixed=true;break}
+       if(fixed&&(rect.bottom<=0||rect.top>=innerHeight))continue;
+       // under a fixed layer (the guide's phone bar is on from the top): not
+       // painted where it is laid out, in either render (the capture keeps the
+       // bar over the first viewport), so it is read once it scrolls clear, by
+       // eye; measured here it was the bar's own colour against the text's
+       if(!fixed&&rect.top>=0&&rect.bottom<=innerHeight){const top=document.elementFromPoint(rect.left+rect.width/2,rect.top+rect.height/2);
+         if(top&&!el.contains(top)&&!top.contains(el)){let lay=null;for(let f=top;f&&f!==document.body;f=f.parentElement)if(getComputedStyle(f).position==='fixed'){lay=f;break}
+           if(lay&&!lay.contains(el))continue}}
        // skip off-screen/clipped-away (skip-link etc.)
        if(rect.right<0||rect.left>document.documentElement.clientWidth)continue;
        // ...and above the top of the document: a skip link parked at
        // translateY(-200%) is never painted until focused, so sampling 'behind'
        // it measures the page against nothing (light skip links only passed by luck)
        if(rect.bottom+sy<=0)continue;
-       // text clipped away by an overflow ancestor is laid out but never painted
-       let clipped=false,c=el.parentElement;
+       // text clipped away by its own box or an overflow ancestor is laid out
+       // but never painted (a .sr-only span clips itself to 1px: workspacehq/'s
+       // title cards say "Play" that way)
+       let clipped=false,c=el;
        while(c&&c!==document.body){const cc=getComputedStyle(c);
          if(cc.overflow!=='visible'||cc.overflowX!=='visible'||cc.overflowY!=='visible'){
            const cr2=c.getBoundingClientRect();
@@ -151,18 +182,22 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
        let sec=el.closest('section,header,footer,nav,.modal,aside');
        const where=sec?(sec.id||sec.className.toString().split(' ')[0]||sec.tagName):'body';
        out.push({sel,where,text:n.textContent.trim().slice(0,40),color:cs.color,op,
-         x:rect.left,y:rect.top+sy,w:rect.width,h:rect.height,large,gradText,
+         x:rect.left,y:fixed?rect.top:rect.top+sy,w:rect.width,h:rect.height,large,gradText,fixed,
          decorative:!!el.closest('[data-decorative]'),disabled:!!el.closest('[aria-disabled="true"]')});
      }
      return out;});
    // background-only render
    await p.addStyleTag({content:'*,*::before,*::after{color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important;caret-color:transparent!important}'});
    await p.waitForTimeout(150);
+   // the fixed layers' text against the viewport as it is, before the
+   // full-page capture moves them to the foot of a page-tall viewport
+   const vbuf=items.some(it=>it.fixed)?await p.screenshot():null;
    const buf=await p.screenshot({fullPage:true});
-   const img=sharp(buf);const meta=await img.metadata();
-   const {data,info}=await img.raw().toBuffer({resolveWithObject:true});
-   const px=(x,y)=>{x=Math.max(0,Math.min(info.width-1,x|0));y=Math.max(0,Math.min(info.height-1,y|0));const i=(y*info.width+x)*info.channels;return [data[i],data[i+1],data[i+2]]};
+   const sampler=async(b)=>{const {data,info}=await sharp(b).raw().toBuffer({resolveWithObject:true});
+     return (x,y)=>{x=Math.max(0,Math.min(info.width-1,x|0));y=Math.max(0,Math.min(info.height-1,y|0));const i=(y*info.width+x)*info.channels;return [data[i],data[i+1],data[i+2]]}};
+   const pxPage=await sampler(buf),pxView=vbuf?await sampler(vbuf):null;
    for(const it of items){
+     const px=it.fixed?pxView:pxPage;
      if(it.gradText)continue;
      // color-mix() serialises as `color(srgb r g b / a)` with 0-1 channels;
      // rgb()/rgba() use 0-255. Reading the former as the latter turns every

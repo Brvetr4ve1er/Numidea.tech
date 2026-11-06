@@ -2,15 +2,15 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 91 runs over every page (site.mjs PAGES): the home page (one page per
+ * 89 runs over every page (site.mjs PAGES): the home page (one page per
  * language: index.html, en/, ar/, each opened directly) in all six themes x
  * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; the price
  * guide (tarifs/, en/tarifs/, ar/tarifs/, likewise) in arcanum and daylight
  * x FR/EN/AR on desktop and x FR/AR on the phone; scene/ in each
  * language on desktop and phone, and in daylight (it follows the visitor's
- * theme since e8a2ea2) on both; 404 in two themes in Arabic; hub/ in both of
- * its palettes (paper, its default, and night: void-theme 'dark') on desktop
- * and on the phone; tablet (768x1024, 1024x768) and short landscape (844x390);
+ * theme since e8a2ea2) on both; 404 in two themes in Arabic; hub/ (one
+ * paper palette since its character bible, 56f29c1) on desktop and on the
+ * phone; tablet (768x1024, 1024x768) and short landscape (844x390);
  * one run with the phone menu open, two with the CV panel open and two with
  * the folded estimator open (axe reads what each shows); the three
  * WorkspaceHQ embeds on their own, and one run that lets the trailer and the
@@ -475,9 +475,8 @@ const phone=async(label,path,{to},again=false)=>{
 console.log(REMOTE?`auditing ${REMOTE} (remote: the never-deployed legal preview is skipped)`:'auditing this checkout');
 console.log('— desktop 1280×900 —');
 const D={lcpBudget:DESKTOP_LCP};
-// hub/: paper is its default; night is void-theme 'dark' (its only other value)
+// hub/: one paper palette (no void-theme since 56f29c1)
 await run('hub','/hub/index.html',D);
-await run('hub dark','/hub/index.html',{...D,init:{'void-theme':'dark'}});
 for(const l of ['fr','en','ar']) await run('scene '+l,'/scene/index.html',{...D,lang:l});
 await run('scene daylight','/scene/index.html',{...D,theme:'daylight'});   // the light palette, on the page's own sheet (scene/style.css)
 await run('404','/404.html',D);
@@ -505,7 +504,6 @@ for(const t of ['arcanum','daylight'])
   for(const l of ['fr','en','ar']) await run(`tarifs ${t}/${l}`,TARIFS(l),{...D,theme:t,lang:l});
 console.log('— phone 390×844 —');
 await run('hub m','/hub/index.html',{w:390,h:844});
-await run('hub dark m','/hub/index.html',{w:390,h:844,init:{'void-theme':'dark'}});
 for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});
 await run('scene daylight m','/scene/index.html',{theme:'daylight',w:390,h:844});
 await run('404 m','/404.html',{w:390,h:844});
