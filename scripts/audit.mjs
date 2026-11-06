@@ -2,7 +2,7 @@
 /**
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
- * 89 runs over every page (site.mjs PAGES): the home page (one page per
+ * 90 runs over every page (site.mjs PAGES): the home page (one page per
  * language: index.html, en/, ar/, each opened directly) in all six themes x
  * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; the price
  * guide (tarifs/, en/tarifs/, ar/tarifs/, likewise) in arcanum and daylight
