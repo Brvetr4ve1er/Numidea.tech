@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-31
+updated: 2026-11-06
 sources: [README.md, BRAND.md, OWNER-CONTENT.md, IMPROVEMENTS.md, index.html, en/index.html, ar/index.html, tarifs/index.html, tarifs/style.css, 404.html, assets/app.js, assets/i18n/fr.js, assets/carry.js, assets/page-i18n.js, scene/index.html, hub/index.html, workspacehq/index.html, workspacehq/app.js, scripts/site.mjs, scripts/build-lang.mjs, scripts/build-tarifs.mjs, scripts/build-scene.mjs, scripts/build-sitemap.mjs, scripts/build-legal.mjs, scripts/legal-data.mjs, scripts/check.mjs, package.json, audit/Architecture.md]
 ---
 
@@ -52,7 +52,7 @@ Sources for the table: the page list and the legal gate (scripts/site.mjs › PA
 | FAQ | `#faq` | (index.html › FAQ) |
 | Contact | `#contact` | Form, WhatsApp, email (index.html › CONTACT) |
 | [[Footer]] | — | Logo, section links, the tagline, ©, legal markers, a third language switch and "Haut de page"; its Studio, Contact and founder columns and the WorkspaceHQ cartridge went on 2026-10-26, an owner decision (index.html › FOOTER; BRAND.md › Page structure and design system (home page)) |
-| Phone contact bar | — | Phones only; steps aside near `#contact` and the footer (assets/app.js › phone contact bar) |
+| Phone contact bar | — | Phones only; since 2026-11-05 on from 1.5 screens down (on the guide from the start), stepping aside only for `#contact`, the footer, the open menu and a fast fling, and shown where a same-page jump lands (assets/app.js › phone contact bar; BRAND.md › The design pass of 2026-11-06) |
 
 - The order and the "each idea is said once" rule are set in BRAND.md (BRAND.md › Page structure and design system (home page)).
 - The tools section ("Nos outils", `#stack`) between the team and the FAQ left the page on 2026-10-26, an owner decision; the FAQ and contact kickers moved up to 07 and 08 (BRAND.md › Page structure and design system (home page); assets/app.js › faq.kicker, contact.kicker).
@@ -101,7 +101,7 @@ Nothing is stored and there are no cookies or analytics (README.md › Features)
 | `numidea-lang` | Stored language: written by the language switch's links, read by the head scripts of index (which sends `en`/`ar` to that page), the guide, scene and 404 (index.html › LANG:fr-only; scripts/build-tarifs.mjs › header; scripts/build-scene.mjs › head script; 404.html › the second head script) | index, the guide, scene, 404 |
 | `numidea-prefill` (`sessionStorage`) | The guide's estimator scope on its way to the home page's form, read and cleared on arrival (assets/app.js › prefillWith; BRAND.md › The price guide) | the guide, index |
 | `numidea-theme` | Stored theme for the six-theme pages (index.html › the head script; 404.html › the second head script) | index and its language pages, the guide, 404 |
-| `void-theme` | The hub's own dark or light choice (hub/index.html › 27) | hub |
+| `void-theme` | The old hub's dark or light choice; gone since the hub's one paper palette of 2026-11-05 (hub/index.html › head) | — |
 | `whq-motion` | WorkspaceHQ's pause-motion choice (workspacehq/app.js › motion) | workspacehq |
 
 See [[carry.js]], [[page-i18n.js]] and [[numidea-lang shared language preference]].

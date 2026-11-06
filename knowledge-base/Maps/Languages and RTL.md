@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-31
+updated: 2026-11-06
 sources: [README.md, BRAND.md, OWNER-CONTENT.md, IMPROVEMENTS.md, index.html, en/index.html, ar/index.html, tarifs/index.html, 404.html, assets/app.js, assets/i18n/fr.js, assets/i18n/en.js, assets/i18n/ar.js, assets/page-i18n.js, assets/carry.js, assets/styles.css, scene/style.css, hub/index.html, workspacehq/index.html, scripts/build-lang.mjs, scripts/build-tarifs.mjs, scripts/build-og.mjs, scripts/lib/i18n.mjs, scripts/lib/ayn.mjs, scripts/build-scene.mjs, scripts/scene-data.mjs, scripts/build-sitemap.mjs, scripts/check.mjs, scripts/keys.mjs, scripts/audit.mjs, package.json]
 ---
 
@@ -110,7 +110,7 @@ French copy keeps a no-break space (U+202F or U+00A0) before `? ! ; : »`, after
 | 6 · canonicals | A page that reads `?lang=` and carries a static canonical, or one that reads none and sets it from a script, or neither (scripts/check.mjs › block 6) |
 | Arabic digits, French typography | As above (scripts/check.mjs › block 8f) |
 | 18 · descriptions and alternates | A meta description outside 50 to 160 characters in a page's language (`meta.desc` or `tarifs.desc` in its dictionary, `ui.desc` in a generated page's); hreflang alternates in a page's head that differ from the sitemap's (scripts/check.mjs › block 18) |
-| keys · direction | `ar/` and `ar/tarifs/` give `dir="rtl" lang="ar"`; `/?lang=ar` must land on `/ar/`; `?lang=ar` on the pages that still switch gives RTL; the English-only pages and the guide's French page stay left to right; hub's viewer arrows follow the reading direction (scripts/keys.mjs › header, direction) |
+| keys · direction | `ar/` and `ar/tarifs/` give `dir="rtl" lang="ar"`; `/?lang=ar` must land on `/ar/`; `?lang=ar` on the pages that still switch gives RTL; the English-only pages and the guide's French page stay left to right (the hub's viewer, whose arrows followed the reading direction, left with the diary on 2026-11-05) (scripts/keys.mjs › header, direction) |
 | keys · form errors | The contact form's error messages must be in the page's language (scripts/keys.mjs › contactForm) |
 | audit · Arabic fonts | Every page in another language than Arabic that fetched an Arabic font file is listed at the end of the run, report-only until the copy change (scripts/audit.mjs › header) |
 

@@ -682,9 +682,16 @@ read by the page language's voice; a translated label through
 
 ## The hub's faces are self-hosted too
 
-`assets/fonts-hub.css` holds them; `hub/` loads it render-blocking, like any
-first-party sheet. **No page on this site now makes a third-party request.**
-It first held Syne and Space Mono. Since the hub's rebuild of 2026-10-28 it
+Since the character bible (56f29c1, 2026-11-05) the hub sets five faces, all
+self-hosted: Archivo, Permanent Marker and Noto Sans JP from its own subsets
+in `hub/fonts/` (`@font-face` at the top of `hub/style.css`, `font-display:swap`,
+licences beside the files; see "hub/" below), and Geist and Geist Mono from
+`assets/fonts-hub.css`, the main site's own files, so a visitor who comes
+from the studio has them cached. The page preloads Archivo, Permanent Marker
+and Geist latin. **No page on this site makes a third-party request.**
+
+What follows is the sheet's history. `assets/fonts-hub.css` loads
+render-blocking, like any first-party sheet. It first held Syne and Space Mono. Since the hub's rebuild of 2026-10-28 it
 sets Syne (700, 800) for display, Geist (400, 500) for text and Geist Mono for
 labels; Geist and Geist Mono are the main site's own files, so a visitor who
 comes from the founder card has them cached. Space Mono's four files left the
@@ -700,8 +707,9 @@ word. Since 2026-10-31 the page writes the name as `Ku&#x304;ro` (u + U+0304,
 which the latin subset carries; HTML comments keep "Kūro"), so no latin-ext
 request is made at all, measured.
 
-(The two lessons below come from the hub before its rebuild; the rebuilt hero
-still sizes its handle, name and line from their column with `cqw`.)
+(The two lessons below come from the hub before its rebuild of 2026-10-28;
+the character bible's cover still sizes "Yasser." from its own column, at
+22cqw, 6216ec9.)
 
 **A fallback font hides how wide the real one is.** Every size on hub had been
 tuned against the metrics of whatever the system substituted for Syne. The real
@@ -1253,153 +1261,133 @@ his design work, his social presence. **Client websites do not belong here**
 sites was added once and removed at the owner's request; `npm run check` now
 fails if any project URL appears in hub/.
 
-**Since 2026-11-06 (56f29c1, 6216ec9) the page is his character bible**: a
-cover, a live drawn rig of Yasser and Kūro (00 He's alive: it follows the
-cursor, talks and reacts to clicks for five seconds, then rests; with reduced
-motion only a click or a button changes a face), then who he is, his
-silhouette, twelve faces, what he does, head to toe, Kūro, how he talks, a day
-on Studio and the links. One paper palette: no theme pill, no `void-theme`, no
-night. Its faces are its own subsets in `hub/fonts/` (Archivo and Noto Sans JP
-under the SIL OFL 1.1, `hub/fonts/OFL.txt`; Permanent Marker under the Apache
-License 2.0, `hub/fonts/LICENSE-permanent-marker.txt`). `npm run hub:rig`
-(`scripts/build-hub-rig.mjs`, `HUB_BIBLE_DIR` naming the private masters)
-writes `hub/art/` byte for byte; `npm run og hub` draws its card from the
-cover. The Behance covers, the studio diary and its viewer, `hub/loops/` and
-the cartridge are gone; what follows describes the page of 2026-10-28, kept
-as its history, and `npm run hub:art` belongs to it.
+**Since 2026-11-05 the page is his character bible** (56f29c1, 6216ec9): the
+owner chose his own "character bible" design as the hub, and it is ported
+natively, with no runtime, no framework and no third-party host (the CSP
+stays `'self'`). It is in English, one `h1` (the cover's "Yasser."), and its
+sections are numbered as the design numbers them:
 
-From 2026-10-28 the page was built on one set of the owner's illustrations of
-himself (round glasses, dreads in a bun, a bone trench coat with a small
-burgundy badge) and his black cat Kūro, in an ink-on-paper look with one night
-scene. The art does the talking; the page is the paper it is printed on.
-Sections: hero, What I make (Designer, Developer, Artist), the design work
-(the 12 Behance projects on the profile's first page, covers self-hosted,
-titles only), the studio diary (eight prints in the viewer), Elsewhere (the
-verified handles), the footer. The copy is the
-owner's published wording; the owner approved the diary titles on 2026-10-28.
+| Section | Anchor | What it holds |
+|---|---|---|
+| Cover | `#top` | The breadcrumb (VOIDSPLUNKER.std), "Character bible", the name, the 夜 seal and the tagline, the marker line; the drawing of the two of them at rest (`actor-duo-a`, the picture 04b flips, so it ships once) |
+| 00 He's alive | `#alive` | The live rig of Yasser and Kūro, its fourteen act buttons and its rules; the skip link's target ("Skip to the character") |
+| 01 Who he is | `#who` | The profile card, wants / fears / flaw / tell, six axes |
+| 02 The silhouette | `#silhouette` | Four pixel silhouettes, the seven marks, his six colours |
+| 03 Twelve faces | `#faces` | Twelve faces, each with the job it does |
+| 04 What he does | `#does` | Twelve poses |
+| 04b Head to toe | `#toe` | Six full-body actors, two frames each |
+| 05 Kūro | `#kuro` | Who the cat is and his ten cards, on an ink band |
+| 06 How he talks | `#talks` | Six of his lines in French and English, each with its face; what he does and never does |
+| 07 A day on Studio | `#day` | The beats of a day, one row each |
+| 08 Elsewhere | `#elsewhere` | The verified handles (Behance first, the profile: check 5 holds it), WorkspaceHQ "my favourite build", and the one email, a 44px target |
+| Footer | `#foot` | The owner's "VOIDSPLUNKER.std is an agency of one" bio, ©, "Back to top" |
 
-- **The owner's answers (2026-10-28).** The footer keeps "VOIDSPLUNKER.std is
-  an agency of one … you work directly with me" (the main site's team
-  wording, A3, is a separate question). The Etsy link is gone. There is no
-  line on the page about how the illustrations were made, and none of the
-  tools behind them are named anywhere: page, comments, commits or docs.
-- **No lettering in the art.** Every legible letter group the images carried
-  (coat badge text, a cup sleeve, sketchbook words, wall notes, a laptop
-  title bar, a clock maker's mark) is painted out of the masters; words on
-  the page are HTML, never pixels. What stays, on purpose: the hexagon "N" on
-  the coat (a costume detail, not the studio's mark: the favicon N is the
-  mark), the scribbled lines on the wall notes and the code lines on the
-  laptop (texture, no words), and the dimension letters on the blueprints
-  (a drafting convention). The glyph-like symbols on the cut-paper panels of
-  "A world in miniature" wait for the owner's eye, with what the page says
-  of Kūro and the badge (OWNER-CONTENT §15); the owner approved the diary
-  titles on 2026-10-28.
-- **Two grounds, sampled from the art.** Paper `#fcecdc` (the hero's empty
-  paper) and night `#0f1420` (the empty left of the diary band); the tokens
-  and their contrast figures are at the top of `hub/style.css`, each against
-  the ground it is painted on (re-measured 2026-10-31: on paper, ink 15.42:1,
-  ink-2 7.74:1, burgundy 8.56:1; paper on burgundy 8.56:1, the skip link and
-  the pressed theme button; on night, moon 14.58:1, moon-2 7.96:1, rose
-  8.21:1; night on rose 8.21:1; on the design band's paper `#f4e3cf`, ink
-  14.21:1 and burgundy 7.88:1; the bone die-cut edge on burgundy 8.21:1,
-  though no text is set in it). Paper is
-  the default; `void-theme` = `dark` is the only other choice. The accent is
-  the coat badge's burgundy `#7a2430` on paper (links, focus rings, and the
-  skip link's ground, paper on burgundy) and a rose `#e59a93` on night; ink
-  `#1e1611` and `#5b4535` are the paper's text, moon `#f1e3d0` and `#b9a892`
-  the night's. A ground travels with its art: in the paper theme the diary is
-  an inset night print; in the night theme the hero and the design band are
-  inset paper prints, and the What I make figures become die-cuts (a bone
-  edge and a soft shadow). Hero text always uses the paper inks. The head
-  script sets the browser's `theme-color` from the stored palette (`light`
-  `#fcecdc`, `dark` `#0f1420`), as `index.html`'s VOID map does, so the bar
-  matches before `hub/app.js` runs.
-- **Type.** Syne for display (800 for the handle and the section headings,
-  700 for smaller titles), Geist for text, Geist Mono for labels, all
-  self-hosted (`assets/fonts-hub.css`, `font-display:optional`, one rule per
-  file and weight range); the cartridge keeps its Press Start 2P. "Kūro" is
-  written `Ku&#x304;ro` in the visible text and the alts, so the latin
-  subset carries it and the latin-ext file is neither preloaded nor
-  requested (it was, 16 KB for the one ū, until 2026-10-31). Space Mono, the
-  old hub's label face, is gone.
-- **The hero is three registered layers** of one 2752×1674 frame: the paper
-  with its line work, Kūro, Yasser. The frame is the drawing with paper added
-  above and below (3% and 6%), so the 3% bleed of each layer and its
-  parallax only ever eat paper, never a curl or a sole. The contact shadows
-  (under the shoes, the paws and the tail) live in the figure that casts
-  them. The paper under the figures is filled with its own local tone, grown
-  6 px past the outline, so the line work runs on to the figure. Ink specks
-  where the name sits are painted out; the large splatter at the far left
-  stays. The paper's grain (about 1.4 levels) is flattened, because the web
-  encoder turned it into blocks.
-  - Motion: one scroll lag (`data-parallax` −.03) for all three layers, so
-    the stage lags as one print; the pointer separates them by 2 px at most
-    (`data-depth` 3, 4, 5; fine pointers only). The entrance lifts the three
-    together, 12 px, once. Transforms only: Yasser is the first screen's
-    largest picture and is never faded.
-  - The stage takes no pointer events: the cartridge and the words over it
-    stay clickable (`npm run keys` checks every link and button on hub/ is
-    on top at its own centre).
-  - From 1024px the stage is the window's height under the bar at most, so
-    the figures end inside the first screen on a 16:9 laptop; then it is
-    pinned right and its left edge melts into the page over the gap. Below
-    1024px the tall crop (`BOX.heroTall`) takes half the width (tablet) or
-    follows the words (phone).
-- **Bands** open the design work and the diary: the heading on the art's
-  empty left from 1024px, in a column that stops 56px short of the band's
-  middle whatever the screen; below that the heading first, then the art's
-  right part. The design band melts into the paper top and bottom; the diary
-  band sinks into the night below it.
-- **The studio diary** rows: one full-width print, three side by side, one
-  full, two, one full, in story order. Every print in a row has the row's
-  ratio, so tops and bottoms align ("Morning light", wider, is cropped at its
-  sides in its row). Two prints came with a cream mat drawn round them; the
-  export cuts inside it, so every print is the picture alone. The viewer is
-  a native `<dialog>`: a plain click opens it, cmd/ctrl-click opens the file;
-  from 1024px its controls sit on the backdrop, off the picture.
-- **Kūro die-cuts** (two marginalia with the loops' bone edge) sit away from
-  the drawn Kūros and from every print edge: one beside the What I make
-  heading's first line (under the Developer links from 1024px), one under
-  the design covers. Decoration: `alt=""`, no pointer events.
-- **Loops** (Yasser waving, Yasser lost in a maze map with Kūro walking by,
-  Kūro asleep) are animated WebP with a bone die-cut edge, finite (2 plays of
-  2.45 s, 1 of 4.05 s, 1 of 3.05 s: at most 5 s of motion each, WCAG 2.2.2),
-  and start and end on their poster frame. The still is the `src`; `app.js`
-  swaps the animation in once half of it is on screen, never under reduced
-  motion, where a `<source>` keeps the still. No frame has a pixel in its
-  outer 2 px (a sticker cut by its canvas shows a straight edge; Kūro fades
-  out where he walks off the drawn canvas). The sleeping loop rests on a
-  frame with both Zs whole.
-- **Pipeline.** The masters are private (`campaign/hub-art`, git-ignored,
-  never deployed; `HUB_ART_DIR` points elsewhere). `npm run hub:art`
-  (`scripts/build-hub-art.mjs`, recipe in `scripts/hub-art-data.mjs`) checks
-  each master's size and sha256, cuts the crops, writes `hub/art/*.webp` and
-  `hub/loops/*.webp` (WebP quality 80, alpha 85; nothing upscaled), and fails
-  on a file over 400 kB, an endless or over-5 s loop, or a loop frame touching
-  its edge. It is not part of `npm run build`: CI has no masters, and the
-  committed images are its output. Check block 17b holds the page to the files
-  (sizes, ratios, `srcset`, the viewer's `data-w`/`data-h`, nothing unused,
-  finite animations).
-  - Names: `<name>-<width>.webp`, the width the file's real one, so a
-    `srcset` descriptor always equals it. `hero-{bg,kuro,yasser}-wide-`
-    1280/1920/2560 and `-tall-` 640/960/1192; `band-{design,diary}-`
-    1280/1920 and `band-…-tall-` 800/1200 (the art's right part);
-    `make-{designer,developer,artist}-` 480/720/960 (the developer stops at
-    its own 903); `kuro-{sit,paw}-` 240 and the widest (445, 480);
-    `diary-<slug>-` 640/960/1280 (1264 when the master is that wide), and
-    the viewer opens a 1600 file, or the master's own width when it is
-    narrower (the 1264 thumbnail itself; 1376 for "Morning light").
-    `be-00`…`be-11` are the
-    Behance covers, exported by hand and kept from the old page.
-    `hub/loops/{yasser-wave,yasser-lost,kuro-sleep}.webp`, each with its
-    `-still.webp` at the same size (480 px on the long side).
-- **Removed with the rebuild, and why:** the 33-poster series and its
-  epilogue, the portrait poses and `hub/poses/` (remade art captioned with
-  older dates, A10; fan art whose rights were open, OWNER-CONTENT §10); the
-  view counters and the social highlights (hand-updated, low); the studio
-  framing in the identity block; the Etsy link; the "coming soon" line; the
-  footer's repeat of the links; the group mask icons (`assets/illus/hub-*`);
-  Space Mono (its four files left the repository, F16).
+- **The rig and its motion rule.** Thirteen drawn frames of Yasser
+  (501×565) and seven of Kūro (360×294), stacked; only one shows at a time
+  and a change of face is an opacity cut, so nothing else jitters. The two
+  base frames are in the page; the eighteen others wait in a `<template>`
+  and `hub/app.js` adds them when the panel comes on screen, so a visitor
+  who never scrolls to it never fetches them, and a frame shows only once it
+  has loaded. **Nothing on the page moves on its own for longer than five
+  seconds**: the loop (breath, lean, steam, blinks, the gaze following the
+  cursor) runs for five seconds after the panel is first seen and after every
+  move, click or button (`WINDOW` 5000 ms), eases out over its last 700 ms
+  and stops, with no frame requested and `document.getAnimations()` empty.
+  With reduced motion the cursor is never followed and nothing breathes or
+  drifts: only a click or a button changes a face, as a hard cut, with no
+  typing in the bubble. Both figures are buttons, so the keyboard pokes them
+  too; every line he says is typed in the marker bubble and written in full
+  in `#rigSaid` (`aria-live`). Without scripts the two stand on their base
+  frames and the buttons are not drawn (the head adds `html.js`). The six
+  pose actors of 04b flip once on scroll-in, on hover and on a click.
+- **One palette, paper.** No theme pill, no `void-theme`, no night: the head
+  script only adds `js`, `theme-color` is the paper `#d8cbb8` and
+  `color-scheme` is `light`. Paper `#D8CBB8`, cream `#F3ECE1`, sand
+  `#E8DFD1`, floor `#CFBFAB`, ink `#211E1B` and `#4F4238`, the seal's red
+  `#A34135` (a fill: 3.91:1 on paper, so never text there), the same red
+  deepened to `#8A3127` for text (5.16:1 on paper), and a teal stamp
+  `#236660`; no radii, hard offset shadows (6px of ink), 2 to 3px ink rules,
+  and the paper's grain a 400-byte SVG turbulence tile multiplied into the
+  ground. Every pair and its ratio is at the top of `hub/style.css`, measured
+  against the ground it is painted on. The fleet's sweep found two that
+  failed and fixed them in place (d3c907a): クロ over the ink band in a red
+  mixed with cream (2.66:1 before) and the footer's heart in the text red
+  (3.87:1 before).
+- **Three faces of its own, with their licences.** Archivo 800–900 (one
+  variable latin file) for display, Permanent Marker (latin) for the notes
+  and the speech bubble, Noto Sans JP 700–900 cut to the six kana and kanji
+  the page sets; all three in `hub/fonts/`, `font-display:swap`. Archivo and
+  Noto Sans JP are under the SIL OFL 1.1 (`hub/fonts/OFL.txt` holds their
+  name-table copyright lines), Permanent Marker under the Apache License 2.0
+  (`hub/fonts/LICENSE-permanent-marker.txt`); `scripts/build-legal.mjs` lists
+  the first two with the OFL fonts and the third in a list of its own, with
+  its own sentence in the three languages. Geist and Geist Mono, for text and
+  labels, stay the site's own files through `assets/fonts-hub.css`. Archivo
+  (the cover's H1) and Permanent Marker (its marker line) are preloaded: in
+  the fallback hand the marker line took two rows, and the cover moved when
+  the face swapped in (CLS 0.0128 at 1280; 0 preloaded, 17c8e7b). Labels are
+  never under 12px.
+- **The art export.** The masters are the owner's character-sheet exports,
+  private and never deployed; `HUB_BIBLE_DIR` names their folder.
+  `npm run hub:rig` (`scripts/build-hub-rig.mjs`) cuts them into `hub/art/`
+  as the page names them, WebP at quality 80 and alpha 85 (the rig's frames
+  at 75), nothing upscaled, and writes the committed files byte for byte; it
+  fails on a rig frame over 60 kB, a rig set over 1.2 MB, any other file
+  over 300 kB, a missing master or a frame whose size is not the rig's. Names:
+  `rig-y-<frame>`, `rig-k-<frame>`, `face-<name>`, `pose-<name>`,
+  `actor-<name>-{a,b}`, `kuro-<name>`, `sil-<n>`, flat in one folder because
+  check 17b reads `hub/art` one level deep. On 2026-11-06: 71 files,
+  1,762,079 B (the rig's twenty 497,110 B), the largest `pose-inspect.webp`
+  at 46,978 B; check 17 caps `hub/art` at 52 kB a file and `hub/fonts` at
+  33 kB. It is not part of `npm run build`: CI has no masters. `npm run og
+  hub` draws `hub/og.jpg` (68,347 B) from the cover.
+- **The gates read it in its one palette**: the audit at desktop and phone
+  size, vbugs at 1440, 1024, 768 and 390, the sweep on desktop and at 390;
+  `npm run keys` walks the rig (Tab goes Yasser, Kūro, then each act in
+  order with a ring; Enter and Space on Yasser say a line in `#rigSaid`;
+  Kūro reacts; Smirk and Release toggle `aria-pressed`) and checks every
+  link and button is on top at its own centre.
+- **Not published from the design:** its internal art-prompt section and
+  the cover's production label. No tool behind the drawings is named
+  anywhere: page, comments, commits or docs.
+- **The owner's answers (2026-10-28), still standing.** The footer keeps
+  "VOIDSPLUNKER.std is an agency of one … you work directly with me" (the
+  main site's team wording is a separate question). The Etsy link is gone.
+  There is no line on the page about how the illustrations were made.
+- **Removed with the character bible, and why.** The page of 2026-10-28 was
+  built on another set of drawings, and its parts went with them: the
+  Behance covers grid (check 5 now holds each sheet's identity link to a
+  Behance gallery and the hub to the profile link), the studio diary and its
+  `<dialog>` viewer, `hub/loops/`, the hero's three registered layers and
+  their parallax, the Kūro die-cuts, the WorkspaceHQ cartridge (WorkspaceHQ
+  is an Elsewhere row now), the paper/night pair with its theme pill and
+  `void-theme`, and Syne (no longer set; its files and rules stay in
+  `assets/fonts-hub.css`, never requested). `npm run hub:art`
+  (`scripts/build-hub-art.mjs`, `scripts/hub-art-data.mjs`) exported that
+  page and is dead beside `hub:rig`; check 17b still reads `MOTION_MS` from
+  `hub-art-data.mjs`.
+
+### History (removed features): the hub of 2026-10-28
+
+From 2026-10-28 to 2026-11-05 the page was built on one set of the owner's
+illustrations of himself (round glasses, dreads in a bun, a bone trench coat
+with a small burgundy badge) and Kūro, in an ink-on-paper look with one
+night scene: a hero of three registered layers of one 2752×1674 frame, What I
+make (Designer, Developer, Artist), the 12 Behance covers, an eight-print
+studio diary in a native `<dialog>`, Elsewhere and a footer with two loops,
+on paper `#fcecdc` or night `#0f1420` (`void-theme`). Two of its rules are
+the ones the character bible keeps in another form: **no lettering in the
+art** (every legible letter group the masters carried was painted out; words
+on the page are HTML, never pixels) and **finite motion** (its three
+animated-WebP loops played at most 5 s each and rested on their poster
+frame, stills under reduced motion). The page before it, removed on
+2026-10-28: the 33-poster series and its epilogue, the portrait poses and
+`hub/poses/` (remade art captioned with older dates, A10; fan art whose
+rights were open, OWNER-CONTENT §10), the view counters and the social
+highlights, the studio framing in the identity block, the "coming soon"
+line, the footer's repeat of the links, the group mask icons
+(`assets/illus/hub-*`) and Space Mono (F16). The full description of the
+2026-10-28 page is in git history (BRAND.md at 89dfaf4).
 
 ## Founder section — the CV is the source of truth
 
@@ -1708,8 +1696,11 @@ for the product's public v3 launch. Two halves, built differently on purpose:
   CSS with the bundle's exact values; the DCLogic class (Bit's sprite and moods,
   feeding/levels/achievements, copy, chapter seek, demo boot, progress, nav,
   reveal) is ported to plain JS. Tokens are the DS ARCADE theme verbatim, with
-  one change: `--faint` is lifted from #5e588a (~3:1) to #8a83bd, because the
-  page uses it as text.
+  two changes for legibility: `--faint` was lifted from #5e588a (~3:1) to
+  #8a83bd because the page uses it as text, and since 0b01ae5 (2026-11-06)
+  `--muted` is #b9b3e0 and `--faint` #9d97cf (10.2:1 and 7.4:1 on `--bg`),
+  with the pixel face never under 12px (`--fs-px-min`; the design set it at
+  6.5 to 9px).
 - **The three embedded experiences stay the design's own React pages** —
   `embed/trailer.html`, `embed/walkthrough.html`, `embed/console.html`, on the
   Claude Design runtime (`embed/support.js`). Made self-contained:
@@ -1732,18 +1723,23 @@ install command for an unclaimed name invites someone else to claim it. The
 page points at `github.com/Brvetr4ve1er/workspace-HQ` until the packages are
 published — then restore the BREW/NPM tabs from the design.
 
-**Loops are allowed here.** INSERT COIN blinking, the glitching headline, the
-marquee and Bit floating ARE this product's identity, so the audit runs this
-page with `allowLoops`. They pause when their section is off screen (`.off`),
+**Loops are allowed here.** The glitching headline, the marquee and Bit
+floating ARE this product's identity, so the audit runs this page with
+`allowLoops`. Since 0b01ae5 (2026-11-06) the REC dot is the one thing that
+blinks (the text labels, INSERT COIN and PRESS START among them, stay
+still), the marquee takes 60 s and the aurora is clipped to the page. They pause when their section is off screen (`.off`),
 the cursor glow's rAF stops once it catches the pointer, and reduced motion
 turns all of it off.
 
-**The cartridge.** WorkspaceHQ is the founder's favourite build, so it is
-linked as a little NES cartridge with Bit on the label in the hub hero, and
-as a link in the hub's Developer links and in Elsewhere. It wears WorkspaceHQ's palette in every
-theme, and only moves on hover/focus (Bit hops and blinks, +1 XP rises, PRESS
-START flashes) — still at rest, so the hub keeps its no-endless-animation
-rule. The cut corner is drawn with `::after` in the page colour
+**The cartridge (removed 2026-11-05).** Since the character bible the hub
+links WorkspaceHQ from one Elsewhere row, "my favourite build"; the page
+links back from its footer ("BY br4vetr4veler"). Until then the founder's
+favourite build was linked as a little NES cartridge with Bit on the label
+in the hub hero, and as a link in the hub's Developer links and in
+Elsewhere. It wore WorkspaceHQ's palette in every theme, and only moved on
+hover/focus (Bit hops and blinks, +1 XP rises, PRESS
+START flashes) — still at rest, so the hub kept its no-endless-animation
+rule. The cut corner was drawn with `::after` in the page colour
 (`--whq-page`), not `clip-path`, which would clip the hover ring.
 The Numidea footer carried a second cartridge until 2026-10-26 (owner
 decision): it made every visitor of the home page download Press Start 2P
@@ -2034,11 +2030,15 @@ What the design audit of 2026-10-31 changed, in the rules it left:
 - **Fonts**: `assets/fonts/OFL.txt` names every served family's copyright line;
   a page in French or English fetches no Arabic font file (the audit fails it).
 
-## The UX pass of 2026-11-06 (fleet 3)
+## The design pass of 2026-11-06 (fleet 3)
 
-What the design fleet of 2026-11-04 to 06 changed, in the rules it left
-(c2a0645 styles, 721fe91 home, e0aed27 the guide, 21ed0ce scene, 76b0c28
-404, 0b01ae5 WorkspaceHQ, ccc4b42 the dictionaries):
+What the design fleet of 2026-11-05 and 06 changed, in the rules it left
+(c2a0645 styles, 721fe91 home, ccc4b42 the dictionaries, e0aed27 the guide,
+21ed0ce scene, 76b0c28 404, 0b01ae5 WorkspaceHQ; then what its gates found,
+d3c907a, and the last fixes, d24af75 to bc94904). It ran on the QA
+detectors' findings: 11 text runs under 12px and 4 targets under 44px on
+every phone capture. The rules for the whole site come first, then each
+page's.
 
 - **The sheet frame** is one spec on the hero, the 404 and the project
   sheets: four corner L-brackets, 14px arms of 2px, in the accent (the
@@ -2088,7 +2088,113 @@ What the design fleet of 2026-11-04 to 06 changed, in the rules it left
   last letter is no longer cut), the footer links, the back-to-top, the
   plate caption, the rail tabs, the pause button's hit area, the guide's
   breadcrumb and jump row. vbugs holds every link and button to it at 390
-  and 360.
+  and 360. A text link that took over a button's job is padded to 44px and
+  the padding given back by a negative margin, so the layout does not move:
+  the cards' title links pad 9px each way (44px, 53 for a two-line title),
+  scene/'s credit link 14px (49px in its 34px row).
+- **No sideways pixel**: `html{overflow-x:clip}` (`hidden` on the body made
+  it a scroll container that pinned every sticky element to it and still
+  let iOS rubber-band sideways), each decorative layer clipped by the wrapper
+  that owns it, the body rule kept only under
+  `@supports not (overflow:clip)`. vbugs fails any page whose
+  `scrollWidth` is not its `clientWidth`.
+- **The card system.** The work cards reserve no three lines of
+  description; the actions sit on the card's foot, so all five end at one
+  distance above their cards' bottoms; every shot is `top center` with no
+  overscan and no drift (the overscan was the crop that cut "Le monde" and
+  "150"); one teal status pill for every live site, the per-project hue on
+  the `.cat` kicker only; the state at the end of the host line ("en
+  ligne", "Démo portfolio") never breaks inside itself. From 700 to 960px
+  the cards are two stacked columns with the wide card across both (thumbs
+  2:1 and 1.6:1, `sizes` 44vw and 91vw), where the 232px strip showed the
+  left edge of a capture.
+- **The Aperçu card**: twelve columns on desktop with the five steps equal
+  across the width (198px each at 1440) and the step titles at the body
+  size, over their captions; on a phone the terms and the buttons come
+  before the steps, so the hero's jump to `#apercu` lands with `#prev-cta`
+  on screen (536px down an 844px screen).
+- **Tiers and the estimator**: check marks for the features (the
+  down-chevrons read as disclosures); the price is the tier's feature
+  (`clamp(26px,2.4vw,var(--t-feature))`, one line at 961 to 1100px) over a
+  `--t-title` name; subgrid rows, so the three week rulers sit level; the
+  options a 260px auto-fit grid with the "déjà dans la formule" badge on
+  its own line; on a phone the live estimate sticks above the options. A
+  type is offered only the options that apply to it (`opts` in
+  `PRICE_MODEL`: an identity takes no CMS, trilingual or payment; the
+  others are unticked and disabled), and every string the estimator writes
+  into the summary, the message or the hand-off is plain text: `t()` hands
+  back the dictionary value's text, never its `<bdi>` markup (3ea7fca; keys
+  fails on markup there).
+- **Action rows**: the FAQ's closing row (`.faq-ask`) and the form's
+  (`.form-acts`: the submit and "Envoyer plutôt sur WhatsApp" side by side)
+  are wrapping flex rows 12px apart with one leading, so both buttons are
+  one height; the FAQ's sits 32px under its last rule and goes full width on
+  a phone, the form's goes back under its note when it stacks. In the
+  success panel WhatsApp comes first, the copy second, the address under
+  them.
+- **The phone menu** ends on its two ways in (`.menu-acts`: "Mon Aperçu
+  gratuit" and WhatsApp, one row of two equal 48px buttons on the bar's
+  veil, sticky at the menu's foot, with the controls' stagger); the list
+  yields to the height (40px type capped at 4.6vh), so at 390x844 the
+  links, the language, the theme and the row fit one screen in the three
+  languages. Focus starts on Fermer; a viewport widened past 960px closes
+  the menu; the theme button names the theme on.
+- **The header's action** (`.nav-cta`, "Mon Aperçu gratuit") shows from
+  700px only while nothing in the bar is clipped by it: `app.js` measures
+  (shown at 820 and 1440, not at 1024 and 1280), until a width rule in
+  `styles.css` takes it over.
+- **The language switch keeps the place**: the section being read goes on
+  every `.lang a[hreflang]` as its `#fragment` (on the guide its blocks
+  too); the section ids are the same in the three languages.
+- **Language lists are whole**: "FR · EN · AR" is held by no-break spaces
+  and each "·" to the word before it, so no line opens on a separator (the
+  eyebrow, the proof line; 8fe0f45); the Arabic isolates its Latin runs in
+  `<bdi>` (ccc4b42; the strings await native review, OWNER-CONTENT §8).
+- **Themes**: `--btn-glow` is the same seat in all six themes (Noir's red
+  drop-shadow and the halos of Arcanum and Alt-Neon gone); Noir's accent
+  text is its red `#FF8A8E` (7.2:1), so the H1's emphasis is no longer
+  grey; in Mono the emphasised words are the only pure white (`--ice`
+  `#D9D9D9` under them); Daylight's primary is `#7A4F06` on a grid at
+  `.028`; Alt-Neon's `--glow-crimson` a ring and a 12px shadow, not a
+  40px bloom. themes-check: 44 tokens, every pair green in the six.
+- **The footer**: two 44px columns of links on a phone; on desktop the
+  twelve columns, with no printed label over the links (the nav's
+  `aria-label`, "Pied de page", read as a placeholder; 232e209).
+
+Per page:
+
+- **The price guide (`tarifs/`)**: the h1 takes the theme's heading face
+  as `h2.sec` does (Cinzel on Arcanum and Daylight; it preloaded a Cinzel
+  file it never used); the lead carries the Aperçu and WhatsApp pair, and
+  the closing buttons share one grid; a sticky row of 44px chips under the
+  navbar (`.t-jump`) jumps to the tiers, the estimator, the markets, the
+  models and the FAQ; under 640px the market table is cards of labelled
+  rows, each `td` carrying its column's label in `data-l` (baked per
+  language by `build-tarifs.mjs`), the card titles across the card's width;
+  the chart's unit has its own line above the scale and the last tick label
+  ends on its tick (`app.js` marks the first and last ticks and drops a
+  minor one that crowds a major).
+- **The project sheets (`scene/`)**: labels at 12px, .12em, weight 500;
+  the browser bar names the host only (the full address in the visit
+  link's title); under 720px the index is one sideways row of snapping
+  chips, each ending in ↓, tight enough that a third of
+  the third chip shows, its end fading, mirrored in Arabic; on desktop the
+  client note sticks under the header and routes are 12px pills; Daylight's
+  cards get a soft shadow; the lead's "eux‑mêmes" holds with U+2011.
+- **WorkspaceHQ (`workspacehq/`)**: see its section above (the pixel face
+  at 12px, `--muted` and `--faint` lifted, one blinking dot); 44px targets,
+  a two-column hero, the clone command wrapping, CSS title cards over the
+  players, the breadcrumb "Numidea Labs › WORKSPACEHQ" without the handle,
+  the nav's GET THE CODE hidden under 561px (the hero's terminal and the
+  install section carry the link), the terminals' labels wrapping under
+  480px. The embeds' own 36px controls are unchanged (the gates do not look
+  inside iframes).
+- **404**: the sheet's marks (the four brackets around `<main>` and the
+  workshop's coordinates, `36°04′N · 4°46′E`, on a dimension line over the
+  numeral); two equal buttons (one 320px column, two columns of a 520px
+  row from 560px, 52px tall); the ghost's border at 28% of `--ice`, visible
+  on the dark themes, with a hover fill; on a phone the numeral in the
+  upper third.
 
 ## Project sheets (scene/)
 
@@ -2272,8 +2378,9 @@ and breadcrumb (`tarifs.*`, eight keys; the Arabic awaits native review), a
 `BreadcrumbList`, the hreflang set, `og:locale`, the home's card per
 language (no guide card was rendered) and its own CSP. `tarifs/style.css`
 is hand-written and page-only (the top padding under the fixed navbar, the
-breadcrumb, `h1.sec`, the `.t-sub` sub-headings, the nav's `aria-current`
-mark, `.tarifs-next`); it reads the theme contract like every sheet, and
+breadcrumb, `h1.sec` in the theme's heading face, the `.t-sub` sub-headings,
+the nav's `aria-current` mark, the sticky jump row `.t-jump` since e0aed27,
+`.tarifs-next`); it reads the theme contract like every sheet, and
 `themes-check` counts it among the consumers.
 
 **The hand-off.** On a page without the contact form, "Obtenir le prix
@@ -2605,7 +2712,7 @@ stamping.
 | `default-src` | `'self'` | the site makes no third-party request, and anything not listed below falls back to this |
 | `script-src` | `'self'` + one `sha256-…` per inline script | the inline boot scripts (language and theme before paint, the Supabase switch) are allowed by hash. No `'unsafe-inline'`, and no nonces: a static host cannot mint one per response |
 | `style-src` | `'self' 'unsafe-inline'` | the pages' own `<style>` blocks and `style="--x:…"` custom properties. Without it, index logs 29 refusals and scene 26. Writing `el.style.x` from a script is not governed either way. The risk accepted is CSS injection only, and the site shows no user content |
-| `img-src` | `'self' data:` | the hub lightbox's placeholder is a `data:` GIF, plus `data:` URIs in CSS |
+| `img-src` | `'self' data:` | was the hub lightbox's `data:` GIF placeholder and `data:` URIs in CSS; the lightbox left with the diary (56f29c1) and on 2026-11-06 no page or sheet outside the embeds names a `data:` image, so the source could be narrowed (`scripts/lib/csp.mjs`) |
 | `font-src` | `'self'` | every font is self-hosted |
 | `connect-src` | `'self'` (+ the Supabase origin) | the origin is added only on index.html, only when its lead-store switch is on. It is read by running the switch script in a sandbox, as check.mjs block 8b reads it. A switch that cannot be read, or a non-https URL, stops the build |
 | `media-src`, `frame-src` | `'self'` | workspacehq/ frames its own three embeds |

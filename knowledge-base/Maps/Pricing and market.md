@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-31
+updated: 2026-11-06
 sources: [assets/app.js, assets/i18n/fr.js, index.html, tarifs/index.html, scripts/build-tarifs.mjs, README.md, BRAND.md, OWNER-CONTENT.md, IMPROVEMENTS.md, scripts/check.mjs, scripts/keys.mjs]
 ---
 
@@ -53,7 +53,7 @@ All six project types of the [[Project Estimator]] (assets/app.js › PRICE_MODE
 | `auto` | Automatisation | 140 000 – 420 000 | 15 000 – 40 000 | flows | 1–12 (3) | 3 | 2–6 | none |
 | `identite` | Identité visuelle | 90 000 – 180 000 | 8 000 – 16 000 | deliverables | 1–8 (2) | 2 | 2–5 | none |
 
-Options (`PRICE_OPTS`), added unless the type includes them (assets/app.js › PRICE_OPTS; labels from index.html › #estimator):
+Options (`PRICE_OPTS`), added unless the type includes them (assets/app.js › PRICE_OPTS; labels from index.html › #estimator). Since 2026-11-05 a type may name the options that apply to it (`opts`): Automatisation takes `api` and `cms`, Identité visuelle `ds` only; the others are unticked and disabled while that type is chosen, and a type without `opts` takes every option (assets/app.js › PRICE_MODEL; commit 721fe91):
 
 | Key | Option | Adds (DA) | Adds (weeks) |
 |---|---|---|---|

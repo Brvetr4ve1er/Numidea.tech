@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-31
+updated: 2026-11-06
 sources: [OWNER-CONTENT.md, README.md, IMPROVEMENTS.md, NOTICE.md, index.html, assets/i18n/fr.js, assets/i18n/ar.js, hub/index.html, scripts/legal-data.mjs, scripts/build-legal.mjs, scripts/voices-data.mjs, scripts/verify-domains.mjs, scripts/site.mjs, scripts/check.mjs]
 ---
 
@@ -28,7 +28,7 @@ The register's own status line reads "as of 2026-10-31 (after the owner's answer
 | 12 | [[Campaign kit in public git history\|Campaign kit and git history]] | Kit with the owner | Owner's call on a history rewrite | outside this repo |
 | 13 | [[WorkspaceHQ open-source claim\|WorkspaceHQ: open source or not]] | Claim removed (no licence, no README) | A LICENSE and root README in the product repo, then restore the wording | `Brvetr4ve1er/workspace-HQ`, `workspacehq/`, `scripts/scene-data.mjs` |
 | 14 | [[Claims only the owner can confirm (8 open)\|Claims only the owner can confirm]] | 8 listed: 5 open, 3 answered on 2026-10-30 (one applied, two waiting for the copy change) | Confirm each, or say what is true | see below |
-| 15 | Hub illustrations (the owner's: himself and Kūro) | 3 points for review (the diary titles approved 2026-10-28) | Say what is true of Kūro (the page says only "Kūro, the black cat"); confirm the hexagon "N" badge as a costume detail; keep or paint out the glyph-like symbols on one print | `hub/` |
+| 15 | Hub illustrations (the owner's: himself and Kūro) | 3 points for review (the diary titles approved 2026-10-28), written for the art of 2026-10-28; the diary and that print left the page with the character bible on 2026-11-05 | Say what is true of Kūro (the page says only "Kūro, the black cat"); confirm the hexagon "N" badge as a costume detail; keep or paint out the glyph-like symbols on one print | `hub/` |
 | 16 | Commercial terms (payment, ownership, hosting, revisions, support, contract, the Aperçu rules) | Drafted on the owner's instruction of 2026-10-31 ("make them up"), his to change at any time | Nothing to supply; a change of any term is his call | OWNER-CONTENT.md › 16; the FAQ, from the next change on |
 | 17 | Team and contact facts | Answered 2026-10-30: one founder with freelancers; WhatsApp only, Sunday to Thursday 9h–18h, the Gmail address stays | The copy change (the next change) | OWNER-CONTENT.md › 17 |
 

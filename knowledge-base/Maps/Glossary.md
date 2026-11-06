@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-26
+updated: 2026-11-06
 sources: [README.md, BRAND.md, OWNER-CONTENT.md, index.html, 404.html, scene/index.html, assets/app.js, assets/carry.js, assets/styles.css, scripts/site.mjs, scripts/check.mjs, scripts/build-fr.mjs, scripts/bump.mjs, scripts/plates.mjs, scripts/scene-data.mjs, scripts/stage-site.mjs, scripts/voices-data.mjs, scripts/build-kb.mjs, git log, knowledge-base/archive/2026-06-snapshot/glossary.md]
 ---
 
@@ -158,7 +158,7 @@ Several words look alike and mean different things: "plate" (the hero rotator), 
 | hub/, VOIDSPLUNKER.std | The founder's personal page; client websites do not belong there | README.md › This repository — the landing page; BRAND.md › hub/ — the artist's page, not the studio's | [[hub (VOIDSPLUNKER.std founder page)]] |
 | BR4VETR4VELER | The hub's gallery, remade as a series of 33 posters that reads as a story; it left the hub with the rebuild of 2026-10-28 | BRAND.md › hub/ — the artist's page, not the studio's | [[BR4VETR4VELER poster series (33 posters)]] |
 | WorkspaceHQ | WorkspaceHQ v3 and its launch page in `workspacehq/`, which the README calls "the studio's own product page" | README.md › This repository — the landing page; BRAND.md › workspacehq/ — the WorkspaceHQ v3 launch page | [[WorkspaceHQ v3 launch site]] |
-| The cartridge | The hub hero's small WorkspaceHQ link, described in the markup as "the beloved one: WorkspaceHQ, presented as a game cartridge Bit lives on"; the home footer carried one too until 2026-10-26 | hub/index.html › 80; BRAND.md › workspacehq/, The cartridge | [[WorkspaceHQ Cartridge]] |
+| The cartridge | The old hub hero's small WorkspaceHQ link, a game cartridge Bit lived on; it left with the hub's rebuild of 2026-11-05 (the character bible links WorkspaceHQ from Elsewhere), and the home footer's went on 2026-10-26 | BRAND.md › workspacehq/, The cartridge | [[WorkspaceHQ Cartridge]] |
 | The vault | `knowledge-base/`, an Obsidian vault: Home.md and Maps/ written by people (and Claude), graph/, wiki/ and graphify/ generated from the graphify graph, archive/ kept as history | scripts/build-kb.mjs › header | [[knowledge-base (internal memory snapshot)]] |
 | Check 15 | `check.mjs` keeps `knowledge-base/` public-safe: it fails on a temporary-folder machine path, an artifact link, a campaign-kit file name, a private note type or an e-mail address outside its allowlist | scripts/check.mjs › block 15 | [[scriptscheck.mjs (npm run check)]] |
 

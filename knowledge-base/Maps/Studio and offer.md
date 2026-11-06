@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-26
+updated: 2026-11-06
 sources: [README.md, index.html, assets/app.js, OWNER-CONTENT.md, scripts/check.mjs, BRAND.md]
 ---
 
@@ -13,7 +13,7 @@ Numidea Labs is a development studio in Bordj Bou Arréridj, Algeria, that desig
 | Field | Value | Source |
 |---|---|---|
 | Name and tagline | Numidea Labs, "Rooted in Numidia, built on ideas." | README.md › Numidea Labs |
-| What it is | "Studio web & logiciel", Bordj Bou Arréridj, Algérie | index.html › .hero (hero.eyebrow) |
+| What it is | "Studio web · Bordj Bou Arréridj · FR · EN · AR" since 2026-11-05 (the shorter eyebrow, the language list held by no-break spaces) | index.html › .hero (hero.eyebrow); assets/i18n/fr.js › hero.eyebrow |
 | Languages | French (default), English, Arabic with a mirrored right-to-left layout | README.md › Features |
 | Reply time | Within 24 working hours, in French, English or Arabic | README.md › Contact |
 | Time zone | UTC+1 (Paris time in winter, one hour less in summer) | index.html › #contact (contact.vTz) |
@@ -102,7 +102,7 @@ After launch, each package includes 1, 3 or 6 months of support, and maintenance
 
 - The contact form opens the visitor's mail app with the message ready, and the page says the site does not keep the message (index.html › #contact, form.note; [[Contact Form (mailto handoff)]]).
 - Where a lead came from (`?ref=`, `utm_*`, presence of a Meta or Google click id) rides inside the email the visitor sends; no cookies, no analytics (README.md › Features; [[Lead source without tracking]]).
-- WhatsApp is the second channel: the hero's second button, pre-filled with the Aperçu message since 2026-10-26 (an owner decision), the contact section and a phone bar (index.html › .hero, #contact, .m-contact; assets/app.js › 13 · WhatsApp; [[Studio contact (Gmail, WhatsApp)]]).
+- WhatsApp is the second channel: the hero's second button, pre-filled with the Aperçu message since 2026-10-26 (an owner decision), the contact section and a phone bar; since 2026-11-05 it is the same teal button with the mark wherever it appears, on the Aperçu card, the phone bar, the menu's foot, the FAQ's closing row, beside the form's submit and first in the form's success panel (index.html › .hero, #contact, .m-contact; commit 721fe91; assets/app.js › 13 · WhatsApp; [[Studio contact (Gmail, WhatsApp)]]).
 - The Supabase lead store is off on purpose (OWNER-CONTENT.md › 11).
 
 ## Graph entry points

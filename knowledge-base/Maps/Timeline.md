@@ -1,12 +1,12 @@
 ---
 type: map
-updated: 2026-11-03
+updated: 2026-11-06
 sources: [git log, README.md, OWNER-CONTENT.md, IMPROVEMENTS.md, RELEASE.md, assets/styles.css]
 ---
 
 # Timeline
 
-The site's history as the git log tells it, from the first commit on 2025-06-28 to fix fleet 2 of 2026-11-03, cut down to the milestones and grouped by month, then by theme of work. Each line cites the commit it summarises; `git show <hash>` gives the full message. This is history: where an early commit and the current files disagree, the current files and the other maps win; start with October if you only need to know how the site got to its present shape.
+The site's history as the git log tells it, from the first commit on 2025-06-28 to fleet 3 of 2026-11-06, cut down to the milestones and grouped by month, then by theme of work. Each line cites the commit it summarises; `git show <hash>` gives the full message. This is history: where an early commit and the current files disagree, the current files and the other maps win; start with October if you only need to know how the site got to its present shape.
 
 ## At a glance
 
@@ -18,6 +18,7 @@ The site's history as the git log tells it, from the first commit on 2025-06-28 
 | 2026-08 | A/B/C variants, identity detours, Arcanum restored with Engineering as a sixth theme, mobile, self-hosted fonts (commits 9742267, 4a5aed0, 98e7d84, 127d323, cadd674, f5bf3ab) |
 | 2026-09 | Stress test, second audit, anti-slop sweep, zero layout shift (commits 4d4555c, b1dc2d8, 1302144, 5fe7e22) |
 | 2026-10 | Pricing, atlas, hub and WorkspaceHQ, token contract, one site, gates, currency, legal, Arabic, copy rewrite, round 3, knowledge base (commits 3b2375c, 6ec42b4, 0775f7a, a0b6689, f7ce370, d1e9219, c8801a3, eeca4f2, 9394ddc, 29805ac, 16d16e7, 250c133, 9afd9ba); then, from 2026-10-24, the release and monitoring work, the full audit and its backlog (commits 485bc0c, 82603b0, ecf48bb), the owner's decisions and the clear-cut fixes (0629770, 951d390, a44de7e), the hub rebuilt on the owner's illustrations (4099344) and the fix fleet of 2026-10-31 (590c258, 67e04ad, 10b90ff, ff2cec9, 2ad9e7d, 7ad7b67, 786ba8e). Nothing has deployed since 2026-10-25 (RELEASE.md › 9) |
+| 2026-11 | Fleet 2, the copy and the design (cac515f, 1bcdd4a, e8a2ea2); the hub rebuilt as the founder's character bible (56f29c1); fleet 3, the UX and visual pass, and its gates (c2a0645, 721fe91, 1961bfd, d3c907a); local commits, not deployed |
 
 ## 2026-06 — the first site
 
@@ -170,6 +171,15 @@ The code labels the three strands r3/a (FAQ columns, scroll comfort, mobile), r3
 
 - 2026-11-02: the owner's answers and the drafted terms into the three dictionaries, French first (commit cac515f: hero in benefit-first words, a founder who is one person with freelancers, the Aperçu's rules, FAQ entries on payment and on ownership and hosting); the English and Arabic follow (commit 60bfc8f; the Arabic awaits native review, OWNER-CONTENT.md › 8); the home's markup and runtime behind them, the retired team keys and the founder's portfolio link out (commit 023f792); `scene/`, the hub and WorkspaceHQ: delivered sheets first, each ending on the offer's call, one spelling of the handle (commit 7bb84bb).
 - 2026-11-03: the design pass (commits 1bcdd4a, e8a2ea2): the wordmark drawn once from the font and worn by every page, `--field-border`, Cinzel on Daylight's headings, every ambient loop under 5 s, the phone header with the theme picker in the menu, tiers three abreast from 961px, no lift on cards that are not links, `scene/` following the visitor's theme, every share card drawn by `build-og.mjs` (`og-capture.mjs` retired). The gates followed (commit 2be10fc): contract of 44 tokens, the Arabic-font rule, the picker driven where it is shown. Measured: 92 audit runs, 69 keys runs, sweep and vbugs clean. Local commits, not pushed.
+
+### The hub as the character bible (2026-11-05)
+
+- 2026-11-05: the owner's "character bible" design becomes the hub, ported natively (commit 56f29c1): a cover, the live rig of Yasser and Kūro that rests after five seconds, who he is, his silhouette, twelve faces, what he does, head to toe, Kūro, how he talks, a day on Studio, Elsewhere; one paper palette; its own faces in `hub/fonts/` (Archivo, Noto Sans JP under the OFL, Permanent Marker under the Apache License 2.0); `hub/art/` from `scripts/build-hub-rig.mjs`. The Behance covers, the diary and its viewer, `hub/loops/`, the cartridge and the night palette leave. Then the name inside its column and the handles in full (6216ec9).
+
+### Fleet 3: the UX and visual pass (2026-11-05 and 6)
+
+- 2026-11-05: from the QA captures (11 text runs under 12px and 4 targets under 44px on every phone capture): the styles (commit c2a0645: one label scale at 12px, 44px targets, `--sec-pad` and `--head-gap` at every width, three buttons, the cards' foot, the phone hero in reading order, the FAQ as hairline rows, the theme values of Noir, Mono, Daylight and Alt-Neon); the home's markup and runtime (721fe91: WhatsApp as a button everywhere, the phone bar that stays, the cards' title link, the menu's foot, the language switch keeping the place, the estimator's options per type); the dictionaries (ccc4b42: a short eyebrow, new keys, Latin runs isolated in Arabic); the guide (e0aed27: Cinzel h1, the CTA pair under the lead, labelled market cards, the sticky jump row); `scene/` (21ed0ce); the 404 (76b0c28).
+- 2026-11-06: WorkspaceHQ (0b01ae5: the pixel face at 12px, 44px targets, a calmer hero); the gates (1961bfd: no sideways pixel, the 12px floor and 44px phone targets in vbugs, the hub's rig in keys, fixed layers measured where they are painted; 6f7548a: the audit counts 90 runs); what they found, fixed (d3c907a, 17c8e7b); the docs (4559c55: BRAND's rules, IMPROVEMENTS' metrics and decisions 28 to 30); the last fixes (d24af75, 232e209, 1e9ab88, 697955b, 8fe0f45, 3ea7fca, 7a5b3b2, bc94904: the action rows, 44px title links, the guide's market card titles, the menu's pinned foot, whole language lists, plain text in the estimator, the terminals' labels, the scene's index strip). One `npm run verify` on 6f7548a passed every gate. Local commits, not pushed; nothing has deployed since 2026-10-25.
 
 Graph for October: [[PRICE_MODEL]], [[Market comparison ('Ici et ailleurs')]], [[The atlas - six engraved plates]], [[Theme contract (47 tokens)]], [[BR4VETR4VELER poster series (33 posters)]], [[WorkspaceHQ v3 launch site]], [[Planches project sheets page (work, deliverable by deliverable)]], [[Deploy scope (DEPLOY, stage-site.mjs, NOT_DEPLOYED)]], [[The gates (pre-push commands)]], [[Legal notice + privacy page (generated, unpublished)]], [[Campaign kit in public git history]], [[Client logo strip ('Ils nous ont confié leur site')]], [[Visualisations (r3c)]], [[Scroll comfort (round 3)]], [[S-01 - Internal knowledge base published on the public site]]. The generated graph is the export of 2026-10-19: its nodes "Theme contract (47 tokens)" (46 today), "The atlas - six engraved plates" (five since the tools section left on 2026-10-26), "BR4VETR4VELER poster series" and "Hub poster viewer" (gone with the rebuild of 2026-10-28), "Market comparison" (on the price guide since 2026-10-31), "data-i18n-pending Paint Hold", "switchLang()" and "build-fr.mjs" (gone on 2026-10-31) describe the site before these changes. Refresh it with `/graphify . --update` and `npm run kb` (knowledge-base/Home.md); graphify was not installed on the fleet's machine, so the maps were updated by hand on 2026-10-31.
 

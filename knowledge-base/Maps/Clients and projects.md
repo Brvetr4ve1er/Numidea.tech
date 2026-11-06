@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-26
+updated: 2026-11-06
 sources: [index.html, assets/app.js, scripts/scene-data.mjs, scripts/voices-data.mjs, scripts/check.mjs, scripts/shots.mjs, scripts/verify-domains.mjs, OWNER-CONTENT.md, README.md, BRAND.md]
 ---
 
@@ -68,7 +68,7 @@ Sources: index.html › #work (cards, categories, links); assets/app.js › proj
 | Each project sheet carries the client's context and 3 to 5 benefits in three languages, each with the live page that shows it; no figures, %, or result words | scripts/check.mjs › block 5c; scripts/scene-data.mjs › header |
 | Each delivered client's card carries one benefit line, linked to its sheet when it has one | scripts/check.mjs › block 5c |
 | Client quotes: only the four delivered clients, at most 280 characters, a past consent date and a note of where the consent is kept; the list is empty today | scripts/voices-data.mjs › VOICES, validate |
-| Plate, card, browser bar, screenshots and showcase links agree per client; the hub lists no client sites | scripts/check.mjs › block 5 |
+| Plate, card, screenshots and showcase links agree per client (a card's browser bar too, where one exists: the cards' bars went on 2026-11-05, commit 721fe91); each sheet's identity link is a Behance gallery; the hub lists no client sites | scripts/check.mjs › block 5 |
 | Card screenshots are committed 1280×800 WebP captures of the live builds (`npm run shots`) | scripts/shots.mjs; README.md › Project previews |
 
 - Graph: [[VOICE_CLIENTS]], [[VOICES]], [[Delivered clients (quotable)]], [[Client logo strip ('Ils nous ont confié leur site')]], [[What the site brings the client (benefits) section]], [[Committed client-site preview screenshots (assetspreviews.webp)]].

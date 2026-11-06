@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-31
+updated: 2026-11-06
 sources: [package.json, README.md, BRAND.md, OWNER-CONTENT.md, .gitignore, audit/Architecture.md, scripts/shots.mjs, scripts/work-capture.mjs, scripts/client-logos.mjs, scripts/og-capture.mjs, scripts/build-og.mjs, scripts/plates.mjs, scripts/build-creative.mjs, scripts/lib/screen-quad.mjs, scripts/lib/serve.mjs, scripts/verify.mjs, scripts/check.mjs, .github/workflows/pages.yml]
 ---
 
@@ -53,7 +53,7 @@ Sources: package.json › scripts; the header of each script; scripts/shots.mjs 
 
 ## Share images: build-og.mjs
 
-- Since 2026-11-03 `build-og.mjs` draws every card from one `CARDS` table, and `og-capture.mjs`, which photographed the first screen of `hub/` and `workspacehq/`, is retired: `hub/og.jpg` is the hub on its paper in Syne with the hero's two figures, `scene/og.jpg` a plotted sheet with an empty, dimensioned frame (no client capture on a share card), `workspacehq/og.jpg` the arcade palette with the product's name, the headline and Bit (scripts/build-og.mjs › CARDS; commit e8a2ea2).
+- Since 2026-11-03 `build-og.mjs` draws every card from one `CARDS` table, and `og-capture.mjs`, which photographed the first screen of `hub/` and `workspacehq/`, is retired: `hub/og.jpg` is, since 2026-11-06, the character bible's cover: its paper, Archivo and the marker hand, the 夜 seal and the drawing of Yasser and Kūro (it was the old hub's paper in Syne with the hero's two figures), `scene/og.jpg` a plotted sheet with an empty, dimensioned frame (no client capture on a share card), `workspacehq/og.jpg` the arcade palette with the product's name, the headline and Bit (scripts/build-og.mjs › CARDS; commit e8a2ea2).
 - It also draws the home's three cards, `assets/og.jpg` (French), `og-en.jpg` and `og-ar.jpg`, one per language page, because scrapers read `og:image` without running scripts; each uses the Arcanum tokens and the self-hosted faces, the Arabic one set right to left in Plex Arabic with the logo in Latin script, and their image is one of the site's own engravings (Plate II, the Arch of Trajan at Timgad) since 2026-10-26, when the owner replaced the client capture it showed (scripts/build-og.mjs › header, CARDS). The Arabic card's copy awaits native review (OWNER-CONTENT.md › 8). The encoder gives a slightly different JPEG each run, so a card is committed only when it changed (README.md › Commands, `npm run og`).
 - Graph: [[og-capture.mjs]] (retired), [[build-og.mjs]].
 

@@ -1,6 +1,6 @@
 ---
 type: map
-updated: 2026-10-25
+updated: 2026-11-06
 sources: [BRAND.md, OWNER-CONTENT.md, index.html, assets/app.js, scene/app.js, scene/style.css, scripts/scene-data.mjs, scripts/build-scene.mjs, scripts/work-capture.mjs, scripts/voices-data.mjs, scripts/check.mjs, package.json]
 ---
 
@@ -63,7 +63,7 @@ In the order `sheet()` writes it (scripts/build-scene.mjs › sheet()):
 
 1. **Header**: "Pl. NN" ("Sh." in English) (scripts/scene-data.mjs › UI), the project name (always left to right), the status chip, and a "Visit the site" link (↗ and a new tab for an external site, → for our own page).
 2. **Spec**: a one-paragraph summary, a title block (sector, scope, page count when known, languages) and the deliverables list.
-3. **Main capture**: the first page at 1440×900 inside a browser bar that shows the real host; for WorkspaceHQ the host is derived from the published base URL, never invented (scripts/build-scene.mjs › shownHost()).
+3. **Main capture**: the first page at 1440×900 inside a browser bar that shows the real host, the host alone since 2026-11-05 (the full address is the visit link's title, commit 21ed0ce); for WorkspaceHQ the host is derived from the published base URL, never invented (scripts/build-scene.mjs › shownHost()).
 4. **What it gives** (`#gv-<slug>`): the client's context in one sentence, then 3 to 5 things a visitor can do on the live site today, each printed with the page that shows it (`at`).
 5. **Pages delivered**: the other three captures, each with its path.
 6. **On mobile** (two phone captures) beside the **visual system**: palette swatches with their role and hex, and the typefaces.
@@ -81,7 +81,7 @@ Graph: [[Project sheet (planche) structure]], [[What the site brings the client 
 ## Links into the sheets
 
 - Each delivered client's card that has a sheet (Bordj Steel, Alliance Travel, AlmaFlowClim) links its benefit line to `scene/#gv-<slug>`, and a visually hidden "— le détail sur la planche" (`work.gainMore`) ends the link's name so a screen reader hears where it goes (BRAND.md › Project sheets (scene/); index.html › SELECTED WORK; scripts/check.mjs › block 5c).
-- Cards with a sheet also carry "Voir la planche →" to `scene/#<slug>`; Nomara Voyages has no sheet, so its benefit line is plain text (index.html › SELECTED WORK; BRAND.md › Project sheets (scene/)).
+- On a card with a sheet the title is the link to `scene/#<slug>` (`.proj h3 a`, stretched over the card; the "Voir la planche" button went on 2026-11-05, commit 721fe91); Nomara Voyages has no sheet, so its benefit line is plain text (index.html › SELECTED WORK; BRAND.md › The design pass of 2026-11-06).
 - The work section ends on the planches banner, "Ouvrir les planches →" (index.html › 538). See [[Project Plates Banner (Planches)]].
 - Old `#/work/<slug>` links from the retired project explorer are redirected to the matching sheet through the `SHEET` map: `bordj-steel` → `bordjsteel`, `alliance-travel` → `alliance`, `almaflowclim` → `almaflow`, `glaive-store` → `glaive`, keeping the query string (assets/app.js › DOM ready, legacy deep links).
 - The sheet page's footer links back to `../#contact` and `../#work` (scripts/build-scene.mjs › 295).
