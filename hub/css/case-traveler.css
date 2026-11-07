@@ -117,7 +117,7 @@
 .case-traveler .st-badge{padding:3px 8px;background:var(--c-dark);border:1px solid var(--c-accent);color:var(--c-accent);font-weight:700;line-height:1.2}
 .case-traveler .st-badge.is-seen{background:var(--c-dark);border-color:var(--ct-edge);color:var(--c-on-dark)}
 .case-traveler .ct-badge--in{position:static;flex:none}
-.case-traveler .ct-hanko{position:absolute;width:116px;height:116px;display:grid;place-items:center;border:4px solid var(--ct-brick);border-radius:50%;color:var(--ct-brick);opacity:.92;pointer-events:none;transform:rotate(-12deg)}
+.case-traveler .ct-hanko{position:absolute;width:116px;height:116px;display:grid;place-items:center;border:4px solid var(--ct-brick);border-radius:50%;color:color-mix(in srgb,var(--ct-brick) 88%,#000);opacity:1;pointer-events:none;transform:rotate(-12deg)}
 .case-traveler .ct-hanko > div{width:98px;height:98px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:1.5px solid var(--ct-brick);border-radius:50%;text-align:center}
 .case-traveler .ct-hanko span:first-child{font-family:var(--ct-serif);font-weight:900;font-size:27px;line-height:1}
 .case-traveler .ct-hanko span + span{font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);line-height:1.1;letter-spacing:.06em}
@@ -363,7 +363,7 @@
 .case-traveler .ct-end__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:6px 14px;padding-top:8px;font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.25}
 .case-traveler .ct-end__list li{display:flex;align-items:center;gap:8px;transition:opacity .3s}
 .case-traveler .ct-end__list li::before{content:"[x]";flex:none;width:28px;white-space:nowrap}
-html.js .case-traveler .ct-end__list li:not(.is-seen){opacity:.6}
+html.js .case-traveler .ct-end__list li:not(.is-seen){opacity:.8}
 html.js .case-traveler .ct-end__list li:not(.is-seen)::before{content:"[ ]"}
 .case-traveler .ct-end__ft{display:flex;align-items:flex-end;gap:12px}
 .case-traveler .ct-code{flex:none;display:flex;flex-direction:column;gap:2px;padding:6px 8px;background:var(--ct-white);border:1px solid var(--ct-ink)}
