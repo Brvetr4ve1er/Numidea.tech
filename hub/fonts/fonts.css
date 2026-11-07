@@ -1,0 +1,120 @@
+/*
+ * The Studio's faces (hub/index.html). One file per family and subset, the
+ * weights carried by the variable axes (check.mjs refuses two files with the
+ * same bytes), swap everywhere, a unicode-range on every rule so a face
+ * downloads only when a character of its range is set in it: the five cases'
+ * faces sit under content-visibility and load as a case nears, and the Arabic
+ * faces only on the Arabic page. Preloaded from the head: Archivo 900 latin
+ * and Geist latin, the first screen's two. Geist, Geist Mono and IBM Plex
+ * Sans Arabic are the main site's own files, named from ../../assets/fonts
+ * rather than copied. Archivo Condensed (wdth 62, wght 900) and Expanded
+ * (wdth 125, wght 800-900) are instances cut from the variable Archivo with
+ * fontTools; Noto Sans JP and Noto Serif JP are cut to the glyphs the page
+ * sets (the seals, the kana of the wordmark, the Traveler volume); the two
+ * Arabic display faces are the arabic subsets alone, their digits fall back
+ * to the latin face of the same stack. The families and their licences:
+ * OFL.txt, LICENSE-permanent-marker.txt. Montserrat is cut without its
+ * latin-ext file (82 kB for a French case that needs none of it).
+ */
+
+/* Archivo (the page's display face): 800-900 */
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 800 900; font-display: swap;
+  src: url("archivo-800-900-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 800 900; font-display: swap;
+  src: url("archivo-800-900-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* Archivo Condensed (Traveler, Heetch): 900 */
+@font-face { font-family: "Archivo Condensed"; font-style: normal; font-weight: 900; font-display: swap;
+  src: url("archivo-cond-900-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Archivo Expanded (Traveler, Heetch): 800-900 */
+@font-face { font-family: "Archivo Expanded"; font-style: normal; font-weight: 800 900; font-display: swap;
+  src: url("archivo-exp-800-900-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Geist (body) and Geist Mono (labels), the main site's files */
+@font-face { font-family: "Geist"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url("../../assets/fonts/geist-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Geist"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url("../../assets/fonts/geist-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Geist Mono"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url("../../assets/fonts/geist-mono-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Geist Mono"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url("../../assets/fonts/geist-mono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Permanent Marker (the hand) */
+@font-face { font-family: "Permanent Marker"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("permanent-marker-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Noto Sans JP 700-900: the seals and the wordmark's kana, glyphs of the Studio only */
+@font-face { font-family: "Noto Sans JP"; font-style: normal; font-weight: 700 900; font-display: swap;
+  src: url("noto-sans-jp-700-900-studio.woff2") format("woff2");
+  unicode-range: U+30A1-30A3, U+30C7, U+30CC, U+30DC, U+30DF, U+30E9, U+30FB, U+30AF, U+30BB, U+30E4, U+30EB, U+30ED, U+4E0D, U+4EBA, U+4FA1, U+52D5, U+5370, U+54C1, U+554F, U+58F2, U+591C, U+5FC3, U+6280, U+6599, U+65C5, U+66F8, U+6A5F, U+7121, U+76F4, U+77E5, U+7BC9, U+898B, U+8A3C, U+8A71, U+8DF3, U+901F, U+904A, U+9053, U+975E, U+306E; }
+
+/* Noto Serif JP 700-900: the Traveler volume */
+@font-face { font-family: "Noto Serif JP"; font-style: normal; font-weight: 700 900; font-display: swap;
+  src: url("noto-serif-jp-700-900-traveler.woff2") format("woff2");
+  unicode-range: U+4E00, U+4E03, U+4E09, U+4E16, U+4E8C, U+4E94, U+516D, U+4EBA, U+4E0D, U+52D5, U+54C1, U+56DB, U+58F2, U+5FC3, U+610F, U+6CE8, U+65C5, U+66F8, U+6B21, U+7B2C, U+7AE0, U+754C, U+975E, U+8981, U+3078, U+306E; }
+
+/* Reem Kufi (Arabic display) 600, 700: arabic */
+@font-face { font-family: "Reem Kufi"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("reem-kufi-600-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
+@font-face { font-family: "Reem Kufi"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("reem-kufi-700-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
+
+/* IBM Plex Sans Arabic (Arabic body), the main site's files */
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../../assets/fonts/ibm-plex-sans-arabic-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../../assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../../assets/fonts/ibm-plex-sans-arabic-600-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Aref Ruqaa 700 (the Arabic hand and the watermarks): arabic */
+@font-face { font-family: "Aref Ruqaa"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("aref-ruqaa-700-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
+
+/* Montserrat (Bordj Steel, AlmaFlow's display): 400-900 */
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 400 900; font-display: swap;
+  src: url("montserrat-400-900-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Sora (Alliance Travel's display) */
+@font-face { font-family: "Sora"; font-style: normal; font-weight: 400 800; font-display: swap;
+  src: url("sora-400-800-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* DM Sans (Alliance Travel's body) */
+@font-face { font-family: "DM Sans"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url("dm-sans-400-700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Manrope (AlmaFlow's body) */
+@font-face { font-family: "Manrope"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url("manrope-400-700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Space Mono 400, 700 (Traveler's terminal) */
+@font-face { font-family: "Space Mono"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("space-mono-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Space Mono"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("space-mono-700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }

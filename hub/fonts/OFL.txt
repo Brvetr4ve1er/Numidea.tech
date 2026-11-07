@@ -1,10 +1,34 @@
-The font families served from this folder under the SIL Open Font License, each with the copyright line its own name table carries (Permanent Marker, also here, is Apache-2.0: see LICENSE-permanent-marker.txt):
+The font families served from this folder under the SIL Open Font License, each with the copyright line its own name table carries (Permanent Marker, also here, is Apache-2.0: see LICENSE-permanent-marker.txt). Geist, Geist Mono and IBM Plex Sans Arabic, which the Studio names from ../../assets/fonts, are licensed in assets/fonts/OFL.txt.
 
-Archivo (archivo-800-900-latin.woff2: the variable font, weights 800 to 900, latin)
+Archivo (archivo-800-900-latin.woff2, archivo-800-900-latin-ext.woff2: the variable font, weights 800 to 900; archivo-cond-900-latin.woff2: the width 62, weight 900 instance; archivo-exp-800-900-latin.woff2: the width 125, weights 800 to 900)
 Copyright 2020 The Archivo Project Authors (https://github.com/Omnibus-Type/Archivo)
 
-Noto Sans JP (noto-sans-jp-700-900-kanji.woff2: the variable font, weights 700 to 900, cut to the six glyphs the page sets: 夜 ク ロ ヤ セ ル)
+Montserrat (montserrat-400-900-latin.woff2: the variable font, weights 400 to 900, latin)
+Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)
+
+Sora (sora-400-800-latin.woff2: the variable font, weights 400 to 800, latin)
+Copyright 2019 The Sora Project Authors (https://github.com/sora-xor/sora-font)
+
+DM Sans (dm-sans-400-700-latin.woff2: the variable font, weights 400 to 700, latin)
+Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)
+
+Manrope (manrope-400-700-latin.woff2: the variable font, weights 400 to 700, latin)
+Copyright 2019 The Manrope Project Authors (https://github.com/sharanda/manrope)
+
+Space Mono (space-mono-400-latin.woff2, space-mono-700-latin.woff2)
+Copyright 2016 The Space Mono Project Authors (https://github.com/googlefonts/spacemono)
+
+Reem Kufi (reem-kufi-600-arabic.woff2, reem-kufi-700-arabic.woff2: arabic)
+Copyright 2015-2022 The Reem Kufi Project Authors (https://github.com/aliftype/reem-kufi).
+
+Aref Ruqaa (aref-ruqaa-700-arabic.woff2: arabic)
+Copyright 2015-2021 The Aref Ruqaa Project Authors (https://github.com/alif-type/aref-ruqaa), with Reserved Font Name EURM10.
+
+Noto Sans JP (noto-sans-jp-700-900-kanji.woff2: the variable font, weights 700 to 900, cut to the six glyphs the character bible sets: 夜 ク ロ ヤ セ ル; noto-sans-jp-700-900-studio.woff2: cut to the glyphs the Studio sets)
 (c) 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.
+
+Noto Serif JP (noto-serif-jp-700-900-traveler.woff2: the variable font, weights 700 to 900, cut to the glyphs of the Traveler volume)
+(c) 2017-2024 Adobe (http://www.adobe.com/).
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
