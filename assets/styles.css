@@ -1075,11 +1075,7 @@ details[open] .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dash
 .svc-row + .svc-row{margin-top:var(--s-5)}
 /* a service card is not a link, so it does not answer the pointer at all:
    its lit edge, its glyph's ring and 1.14x pulse said "click me" to a card
-   that does nothing (a tap on a phone left them on). --grad-teal, which
-   drew that edge, is read nowhere else; the theme contract still lists it
-   (scripts/themes-check.mjs), so it is held here, unpainted, until the
-   contract drops it. */
-.svc-row{--edge:var(--grad-teal)}
+   that does nothing (a tap on a phone left them on). */
 .svc-row h3{font-family:var(--font-display);font-weight:600;font-size:24px;line-height:1.1}
 html[dir="rtl"] .svc-row h3{font-family:var(--font-ar-display)}
 /* the promise in the body's own colour, one step up: a 21px teal line over

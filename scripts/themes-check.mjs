@@ -29,7 +29,7 @@ export const CONTRACT = [
   'crimson', 'crimson-hi', 'on-crimson', 'crimson-text', 'teal', 'teal-text', 'on-teal',
   'hairline', 'hairline-2',
   // depth and effects
-  'band', 'shade', 'shade-k', 'grad-blood', 'grad-noir', 'grad-teal',
+  'band', 'shade', 'shade-k', 'grad-blood', 'grad-noir',
   'glow-teal', 'glow-crimson', 'btn-glow',
   // atmosphere
   'atmos', 'grid-color', 'grid-opacity', 'grid-size', 'ink-k',
