@@ -225,9 +225,9 @@
       <!-- phones fold the links into the menu; this names the section you are in -->
       <span class="crumb" id="crumb" aria-hidden="true"><i>/</i><b id="crumbNow"></b></span>
       <nav class="nav-links" aria-label="Navigation principale" data-i18n-aria="ui.navPrimary">
-        <a href="#work" data-i18n="nav.work">Projets</a>
+        <a href="#work" data-i18n="nav.work">Réalisations</a>
         <a href="#services" data-i18n="nav.services">Services</a>
-        <a href="#apercu" data-i18n="nav.about">L'Aperçu</a>
+        <a href="#apercu" data-i18n="nav.about">L’Aperçu</a>
         <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
         <a href="#founder" data-i18n="nav.team">Fondateur</a>
         <a href="#faq" data-i18n="nav.faq">FAQ</a>
@@ -278,9 +278,9 @@
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" data-i18n-aria="ui.menu">
   <button type="button" class="close" aria-label="Fermer" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <nav aria-label="Sections" data-i18n-aria="ui.sections">
-  <a href="#work" data-i18n="nav.work">Projets</a>
+  <a href="#work" data-i18n="nav.work">Réalisations</a>
   <a href="#services" data-i18n="nav.services">Services</a>
-  <a href="#apercu" data-i18n="nav.about">L'Aperçu</a>
+  <a href="#apercu" data-i18n="nav.about">L’Aperçu</a>
   <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
   <a href="tarifs/" data-i18n="tarifs.navLink">Guide des prix</a>
   <a href="#founder" data-i18n="nav.team">Fondateur</a>
@@ -338,12 +338,12 @@
     </div>
     <div class="hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow" data-i18n="hero.eyebrow">Studio web · Bordj Bou Arréridj · FR · EN · AR</span>
-        <h1 class="hero-h" id="hero-title" data-i18n="hero.title">Voyez votre page d'accueil <span class="swash">avant de payer.</span></h1>
+        <span class="eyebrow" data-i18n="hero.eyebrow">Studio web · Bordj Bou Arréridj</span>
+        <h1 class="hero-h" id="hero-title" data-i18n="hero.title">Voyez votre page d’accueil <span class="swash">avant de payer.</span></h1>
         <div class="dim-line" aria-hidden="true"><i></i><b>36°04′N · 4°46′E</b><i></i></div>
-        <p class="lede" data-i18n="hero.lede">Avant tout paiement, nous construisons la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. C'est l'Aperçu : gratuit, réservé aux entreprises immatriculées, 4 par mois au plus. Yasser Hamisse, fondateur designer-développeur, conçoit, code et livre lui-même, avec des freelances quand un projet le demande.</p>
+        <p class="lede" data-i18n="hero.lede">Avant tout paiement, nous construisons la page d’accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. C’est l’Aperçu : gratuit, réservé aux entreprises immatriculées, 4 par mois au plus. Yasser Hamisse, fondateur designer-développeur, conçoit, code et livre lui-même, avec des freelances quand un projet le demande.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#apercu" data-i18n="hero.cta1">Demander mon Aperçu →</a>
+          <a class="btn btn-primary" href="#apercu" data-i18n="hero.cta1">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
           <!-- WhatsApp with the Aperçu's own message, so a phone can write from
                the first screen (owner decision, 2026-10-26). Its link is baked
                in, in the page's language (scripts/build-lang.mjs), so it works
@@ -352,7 +352,7 @@
                this button to the price guide by this exact class string, once:
                the page's other WhatsApp buttons order their classes
                differently (btn wa-link btn-teal). -->
-          <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+          <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l%E2%80%99Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s%E2%80%99il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
             <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
             <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
           </a>
@@ -398,33 +398,33 @@
           <span class="pl-wipe" aria-hidden="true"></span>
           <span class="pl-scan" aria-hidden="true"></span>
         </div>
-        <span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span>
+        <span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span>
         </a>
         <div class="plate-meta">
           <span class="pm-idx" aria-hidden="true"><b>01</b>/05</span>
           <span class="pm-rot">
         <a class="pm-item on" data-client="bordjsteel" data-sheet="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer">
-          <b>Bordj Steel</b><i data-i18n="proj4.cat">Industrie · B2B</i>
+          <b>Bordj Steel</b><i data-i18n="proj4.cat">Industrie · B2B</i>
         </a>
         <a class="pm-item" data-client="glaive" data-sheet="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener noreferrer">
           <b>Glaive Store</b><i data-i18n="work.concept">Démo portfolio</i>
         </a>
         <a class="pm-item" data-client="alliance" data-sheet="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer">
-          <b>Alliance Travel</b><i data-i18n="proj2.cat">Voyage · Croissance</i>
+          <b>Alliance Travel</b><i data-i18n="proj2.cat">Voyage · Croissance</i>
         </a>
         <a class="pm-item" data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer">
-          <b>Nomara Voyages</b><i data-i18n="proj6.cat">Voyage · Omra</i>
+          <b>Nomara Voyages</b><i data-i18n="proj6.cat">Voyage · Omra</i>
         </a>
         <a class="pm-item" data-client="almaflow" data-sheet="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer">
-          <b>AlmaFlowClim</b><i data-i18n="proj3.cat">Artisan · Île-de-France</i>
+          <b>AlmaFlowClim</b><i data-i18n="proj3.cat">Artisan · Île-⁠de-⁠France</i>
         </a>
           </span>
-          <span class="pm-live"><i aria-hidden="true"></i><span data-i18n="hero.plateLive">en ligne</span></span>
+          <span class="pm-live"><i aria-hidden="true"></i><span data-i18n="hero.plateLive">en ligne</span></span>
         </div>
         <div class="plate-ctl js-only">
         <button type="button" class="pl-pause" aria-pressed="false" aria-label="Mettre la rotation en pause" data-i18n-aria="hero.platePause"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="ic-pause" d="M3.5 2v8M8.5 2v8"/><path class="ic-play" d="M3 1.8v8.4L10 6z"/></svg></button>
         <!-- one Tab stop: the arrows move between the tabs (app.js) -->
-        <div class="plate-rail" role="group" aria-label="Projets à l'écran" data-i18n-aria="hero.plateRail">
+        <div class="plate-rail" role="group" aria-label="Réalisations à l'écran" data-i18n-aria="hero.plateRail">
         <button type="button" aria-current="true" aria-label="Bordj Steel"><i></i></button>
         <button type="button" tabindex="-1" aria-label="Glaive Store"><i></i></button>
         <button type="button" tabindex="-1" aria-label="Alliance Travel"><i></i></button>
@@ -438,11 +438,11 @@
     <dl class="titleblock">
       <div class="tb-f">
         <dt data-i18n="tb.studio">Studio</dt>
-        <dd>Numidea Labs<i data-i18n="tb.place">Bordj Bou Arréridj, Algérie</i></dd>
+        <dd>Numidea Labs<i data-i18n="tb.place">Bordj Bou Arréridj, Algérie</i></dd>
       </div>
       <div class="tb-f">
         <dt data-i18n="tb.lang">Langues</dt>
-        <dd data-i18n="tb.langV">FR · EN · AR</dd>
+        <dd data-i18n="tb.langV">FR · EN · AR</dd>
       </div>
       <div class="tb-f">
         <dt data-i18n="tb.reply">Réponse</dt>
@@ -450,10 +450,10 @@
       </div>
       <div class="tb-f">
         <dt data-i18n="tb.preview">Aperçu</dt>
-        <dd data-i18n="tb.previewV">Gratuit · 5 j ouvrés · 4/mois</dd>
+        <dd data-i18n="tb.previewV">Gratuit · 5 j ouvrés · 4/mois</dd>
       </div>
       <div class="tb-f">
-        <dt data-i18n="tb.live">En ligne</dt>
+        <dt data-i18n="tb.live">En ligne</dt>
         <dd><span class="tb-live" aria-hidden="true"></span><span data-i18n="tb.liveV">4 sites clients</span></dd>
       </div>
     </dl>
@@ -469,13 +469,13 @@
     <span class="v-l v-far" data-parallax="-.09" data-parallax-cap="56"><i class="v-fill"></i><i class="v-ink"></i></span>
     <span class="v-l v-mid" data-parallax="-.045" data-parallax-cap="40"><i class="v-fill"></i><i class="v-ink"></i></span>
     <span class="v-l v-near" data-parallax=".02" data-parallax-cap="24"><i class="v-fill"></i><i class="v-ink"></i></span>
-    <span class="v-cap pl-cap" data-i18n="pl.vista">Pl. I — Les Bibans · Bordj Bou Arréridj</span>
+    <span class="v-cap pl-cap" data-i18n="pl.vista">Pl. I — Les Bibans · Bordj Bou Arréridj</span>
   </div>
 
   <!-- ================= PROOF ================= -->
   <section class="proof reveal" aria-labelledby="proof-h">
     <span class="kicker" id="proof-h" data-i18n="proof.kicker">01 — Preuves</span>
-    <p class="proof-line" data-i18n="proof.line">4 sites livrés · réponse le jour ouvré suivant · <span class="nb">FR · EN · AR</span></p>
+    <p class="proof-line" data-i18n="proof.line">4 sites livrés · réponse le jour ouvré suivant · <span class="nb">FR · EN · AR</span></p>
     <!-- The four delivered client sites, each logo the client's own file
          (scripts/client-logos.mjs), painted in one theme colour by styles.css
          ("r3/b: client logos") and linked to its work card below. Never the
@@ -494,8 +494,8 @@
 
   <!-- ================= SELECTED WORK ================= -->
   <section id="work" aria-labelledby="work-h">
-    <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-arch" data-parallax="-.07" data-parallax-cap="50"><i></i><span class="pl-cap" data-i18n="pl.arch">Pl. II — Arc de Trajan · Timgad</span></span></span>
-    <span class="kicker" data-i18n="work.kicker">02 — Projets</span>
+    <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-arch" data-parallax="-.07" data-parallax-cap="50"><i></i><span class="pl-cap" data-i18n="pl.arch">Pl. II — Arc de Trajan · Timgad</span></span></span>
+    <span class="kicker" data-i18n="work.kicker">02 — Réalisations</span>
     <h2 class="sec font-swap-display" id="work-h" data-i18n="work.title">Réalisations <em>choisies.</em></h2>
     <p class="sec-lead" data-i18n="work.lead">Les sites de nos clients, à visiter vous-même, et une démo de portfolio.</p>
     <div class="work-grid">
@@ -511,19 +511,19 @@
       <article id="w-bordjsteel" class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
         <div class="thumb"><img class="shot" src="assets/previews/bordjsteel.webp" srcset="assets/previews/bordjsteel-720.webp 720w, assets/previews/bordjsteel.webp 1280w" sizes="(min-width:1100px) 57vw, (min-width:961px) 90vw, (min-width:700px) 91vw, (min-width:600px) 232px, 91vw" alt="Capture du site Bordj Steel" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
-          <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
+          <span class="cat" data-i18n="proj4.cat">Industrie · B2B</span>
           <!-- the title is the way to the sheet (styles.css stretches it over
                the card: .proj h3 a::after); the address under it is the
                plate's caption grammar, index · host · state, in place of the
                fake browser bar every thumb used to wear. The live site is the
                one visible secondary link. -->
-          <h3><a href="scene/#bordjsteel">Bordj Steel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span></a></h3>
-          <span class="host">01/05 · bordjsteelb2b.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
-          <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, fabricant de charpente métallique et de panneaux sandwich à Bordj Bou Arréridj — catalogue produits, références et espace recrutement.</p>
+          <h3><a href="scene/#bordjsteel">Bordj Steel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span></a></h3>
+          <span class="host">01/05 · bordjsteelb2b.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
+          <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, fabricant de charpente métallique et de panneaux sandwich à Bordj Bou Arréridj — catalogue produits, références et espace recrutement.</p>
           <a class="gain" href="scene/#gv-bordjsteel"><span data-i18n="proj4.gain">Un acheteur trouve la bonne gamme et ses caractéristiques techniques sans appeler.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
-          <div class="pills"><span class="pill">B2B</span><span class="pill" data-i18n="tag.corporate">Institutionnel</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
+          <div class="pills"><span class="pill">B2B</span><span class="pill" data-i18n="tag.corporate">Institutionnel</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
-            <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
+            <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a>
           </div>
         </div>
       </article>
@@ -531,14 +531,14 @@
       <article id="w-alliance" class="proj proj--brand reveal" style="--brand:95,214,134">
         <div class="thumb"><img class="shot" src="assets/previews/alliancetravel.webp" srcset="assets/previews/alliancetravel-720.webp 720w, assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
-          <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
-          <h3><a href="scene/#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span></a></h3>
-          <span class="host">02/05 · alliancetravel34.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
-          <p data-i18n="proj2.desc">Identité, site trilingue, prise de rendez-vous visa et calculateur de devis sur WhatsApp pour une agence de voyages de Bordj Bou Arréridj.</p>
+          <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
+          <h3><a href="scene/#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span></a></h3>
+          <span class="host">02/05 · alliancetravel34.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
+          <p data-i18n="proj2.desc">Identité, site trilingue, prise de rendez-vous visa et calculateur de devis sur WhatsApp pour une agence de voyages de Bordj Bou Arréridj.</p>
           <a class="gain" href="scene/#gv-alliance"><span data-i18n="proj2.gain">Un voyageur estime son budget et envoie une demande complète sur WhatsApp.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
-          <div class="pills"><span class="pill" data-i18n="tag.brand">Marque</span><span class="pill" data-i18n="tag.funnel">Tunnel de vente</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
+          <div class="pills"><span class="pill" data-i18n="tag.brand">Marque</span><span class="pill" data-i18n="tag.funnel">Tunnel de vente</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
-            <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
+            <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a>
           </div>
         </div>
       </article>
@@ -546,14 +546,14 @@
       <article id="w-almaflow" class="proj proj--brand reveal" style="--brand:59,164,224">
         <div class="thumb"><img class="shot" src="assets/previews/almaflowclim.webp" srcset="assets/previews/almaflowclim-720.webp 720w, assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
-          <span class="cat" data-i18n="proj3.cat">Artisan · Île-de-France</span>
-          <h3><a href="scene/#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span></a></h3>
-          <span class="host">03/05 · almaflowclim.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
-          <p data-i18n="proj3.desc">Le site d'un artisan de Gennevilliers en climatisation, chauffage et plomberie : une page par métier, ses réalisations chantier par chantier et une demande de devis en un seul formulaire.</p>
-          <a class="gain" href="scene/#gv-almaflow"><span data-i18n="proj3.gain">En cas de panne, un client appelle d'un simple appui depuis la page du métier.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
-          <div class="pills"><span class="pill" data-i18n="tag.static">Site vitrine</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
+          <span class="cat" data-i18n="proj3.cat">Artisan · Île-⁠de-⁠France</span>
+          <h3><a href="scene/#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span></a></h3>
+          <span class="host">03/05 · almaflowclim.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
+          <p data-i18n="proj3.desc">Le site d’un artisan de Gennevilliers en climatisation, chauffage et plomberie : une page par métier, ses réalisations chantier par chantier et une demande de devis en un seul formulaire.</p>
+          <a class="gain" href="scene/#gv-almaflow"><span data-i18n="proj3.gain">En cas de panne, un client appelle d’un simple appui depuis la page du métier.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
+          <div class="pills"><span class="pill" data-i18n="tag.static">Site vitrine</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
-            <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
+            <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a>
           </div>
         </div>
       </article>
@@ -561,15 +561,15 @@
       <article id="w-nomara" class="proj proj--brand reveal" style="--brand:34,180,104">
         <div class="thumb"><img class="shot" src="assets/previews/nomara.webp" srcset="assets/previews/nomara-720.webp 720w, assets/previews/nomara.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Nomara Voyages" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
-          <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
+          <span class="cat" data-i18n="proj6.cat">Voyage · Omra</span>
           <!-- no sheet for Nomara (scene/): the title stays text -->
           <h3>Nomara Voyages</h3>
-          <span class="host">04/05 · nomaravoyages.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
-          <p data-i18n="proj6.desc">Une vitrine bilingue pour des voyages organisés et l'Omra au départ de Constantine.</p>
+          <span class="host">04/05 · nomaravoyages.netlify.app · <span data-i18n="hero.plateLive">en ligne</span></span>
+          <p data-i18n="proj6.desc">Une vitrine bilingue pour des voyages organisés et l’Omra au départ de Constantine.</p>
           <p class="gain" data-i18n="proj6.gain">Un pèlerin compare les forfaits Omra par prix et distance du Haram, puis écrit sur WhatsApp.</p>
-          <div class="pills"><span class="pill" data-i18n="work.bilingual">Bilingue</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
+          <div class="pills"><span class="pill" data-i18n="work.bilingual">Bilingue</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">En ligne</span></div>
           <div class="actions">
-            <a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
+            <a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a>
           </div>
         </div>
       </article>
@@ -577,13 +577,13 @@
       <article class="proj proj--brand reveal" style="--brand:255,90,31">
         <div class="thumb"><img class="shot" src="assets/previews/glaive.webp" srcset="assets/previews/glaive-720.webp 720w, assets/previews/glaive.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Glaive Store" data-i18n-alt="proj7.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
-          <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
-          <h3><a href="scene/#glaive">Glaive Store <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail →</span></a></h3>
+          <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
+          <h3><a href="scene/#glaive">Glaive Store <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span></a></h3>
           <span class="host">05/05 · glaivestore.netlify.app · <span data-i18n="work.concept">Démo portfolio</span></span>
-          <p data-i18n="proj7.desc">Une marque fictive de matériel gaming et sa boutique en ligne, conçues de A à Z comme démo de portfolio.</p>
+          <p data-i18n="proj7.desc">Une marque fictive de matériel gaming et sa boutique en ligne, conçues de A à Z comme démo de portfolio.</p>
           <div class="pills"><span class="pill" data-i18n="tag.commerce">Commerce</span><span class="pill" data-i18n="tag.brand">Marque</span><span class="pill concept" data-i18n="work.concept">Démo portfolio</span></div>
           <div class="actions">
-            <a data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site →</a>
+            <a data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a>
           </div>
         </div>
       </article>
@@ -595,11 +595,11 @@
     <a class="scene-banner reveal" href="scene/">
       <span class="sb-art" aria-hidden="true"><i></i><i></i><i></i></span>
       <span class="sb-txt">
-        <span class="sb-kick" data-i18n="scene.kicker">◆ PLANCHES DE PROJET</span>
-        <b data-i18n="scene.title">Nos projets, livrable par livrable.</b>
-        <span class="sb-lead" data-i18n="scene.lead">Les pages, le mobile et le système visuel de nos projets, capturés sur les sites en ligne.</span>
+        <span class="sb-kick" data-i18n="scene.kicker">◆ EN DÉTAIL</span>
+        <b data-i18n="scene.title">Nos réalisations, livrable par livrable.</b>
+        <span class="sb-lead" data-i18n="scene.lead">Les pages, le mobile et le système visuel de nos projets, capturés sur les sites en ligne.</span>
       </span>
-      <span class="sb-go" data-i18n="scene.cta">Voir chaque projet en détail →</span>
+      <span class="sb-go" data-i18n="scene.cta">Voir chaque réalisation en détail <span aria-hidden="true">→</span></span>
     </a>
 
   </section>
@@ -608,7 +608,7 @@
   <section id="services" class="band" aria-labelledby="svc-h">
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-plan" data-parallax="-.05" data-parallax-cap="90"></span></span>
     <span class="kicker" data-i18n="svc.kicker">03 — Services</span>
-    <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">Ce qu'on <em>construit pour vous.</em></h2>
+    <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">Ce qu’on <em>construit pour vous.</em></h2>
     <p class="svc-lead" data-i18n="svc.lead">Nos cinq services principaux — et cinq autres juste en dessous.</p>
 
     <!-- SIGNATURE OFFER — pinned -->
@@ -617,9 +617,9 @@
       <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7.5V3h4.5M16.5 3H21v4.5M21 16.5V21h-4.5M7.5 21H3v-4.5"/><circle cx="12" cy="12" r="3.4"/><path d="M12 6.2v2.4M12 15.4v2.4M6.2 12h2.4M15.4 12h2.4"/></svg></span>
       <div class="body">
         <span class="tag" data-i18n="prev.tag">Offre signature</span>
-        <h3 id="prev-h" data-i18n="prev.name">L'Aperçu</h3>
+        <h3 id="prev-h" data-i18n="prev.name">L’Aperçu</h3>
         <p class="promise" data-i18n="prev.promise">Zéro risque : vous voyez avant de payer.</p>
-        <p class="brief" data-i18n="prev.brief">Avant tout paiement, nous construisons la page d'accueil de votre nouveau site, avec votre contenu. Si vous dites non, vous ne devez rien.</p>
+        <p class="brief" data-i18n="prev.brief">Avant tout paiement, nous construisons la page d’accueil de votre nouveau site, avec votre contenu. Si vous dites non, vous ne devez rien.</p>
         <!-- The path, from the first message to the decision, told once: the
              method's steps (its section left the page on 2026-10-26, an owner
              decision) and the Aperçu's own moments. It is the text, so it is
@@ -628,20 +628,20 @@
         <div class="ptl-w">
           <ol class="ptl">
             <li class="ptl-s"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl1">Vous décrivez le projet</span><span class="ptl-p" data-i18n="prev.tl1p">Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.</span></li>
-            <li class="ptl-s"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl2">Nous revenons le jour ouvré suivant</span><span class="ptl-p" data-i18n="prev.tl2p">Du dimanche au jeudi, 9h–18h. Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.</span></li>
-            <li class="ptl-s ptl-build"><span class="ptl-m"><i></i><i></i><i></i><i></i><i></i></span><span class="ptl-t" data-i18n="prev.tl3">Vous envoyez votre contenu, nous construisons votre page d'accueil</span><span class="ptl-d" data-i18n="prev.tl3d">5 jours ouvrés</span></li>
+            <li class="ptl-s"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl2">Nous revenons le jour ouvré suivant</span><span class="ptl-p" data-i18n="prev.tl2p">Du dimanche au jeudi, 9h–⁠18h. Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.</span></li>
+            <li class="ptl-s ptl-build"><span class="ptl-m"><i></i><i></i><i></i><i></i><i></i></span><span class="ptl-t" data-i18n="prev.tl3">Vous envoyez votre contenu, nous construisons votre page d’accueil</span><span class="ptl-d" data-i18n="prev.tl3d">5 jours ouvrés</span></li>
             <li class="ptl-s ptl-call"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl4">Nous vous la présentons</span><span class="ptl-d" data-i18n="prev.tl4d">visio de 30 min</span></li>
-            <li class="ptl-s ptl-dec"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl5">Vous décidez</span><span class="ptl-d" data-i18n="prev.tl5d">Payé jusqu'ici :</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">DA</span></b><span class="ptl-p" data-i18n="prev.tl5p">Si c'est oui, la page d'accueil est déjà faite : on enchaîne sur le reste.</span></li>
+            <li class="ptl-s ptl-dec"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl5">Vous décidez</span><span class="ptl-d" data-i18n="prev.tl5d">Payé jusqu’ici :</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">DA</span></b><span class="ptl-p" data-i18n="prev.tl5p">Si c’est oui, la page d’accueil est déjà faite : on enchaîne sur le reste.</span></li>
           </ol>
         </div>
-        <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.</p>
+        <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.</p>
         <p class="prev-actions">
-          <a class="btn btn-primary" id="prev-cta" href="#contact" data-i18n="prev.cta">Demander mon Aperçu →</a>
+          <a class="btn btn-primary" id="prev-cta" href="#contact" data-i18n="prev.cta">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
           <!-- WhatsApp as the hero wears it (a button with the mark, not an
                underlined aside): it is the one way in that needs no mail app -->
-          <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+          <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l%E2%80%99Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s%E2%80%99il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
             <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
-            <span data-i18n="prev.wa">ou par WhatsApp</span>
+            <span data-i18n="prev.wa">Écrire sur WhatsApp</span>
           </a>
         </p>
         <p class="outcome"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="prev.outcome">Vous dites oui en connaissance de cause : vous avez déjà vu le résultat.</span></p>
@@ -667,7 +667,7 @@
           <span class="fam" data-i18n="svc.famBuild">Sites &amp; design</span>
           <h3 data-i18n="f2.name">Identité &amp; systèmes visuels</h3>
           <p class="promise" data-i18n="f2.promise">La confiance avant le premier mot.</p>
-          <p class="brief" data-i18n="f2.brief">Logos, couleurs, typographie, animation et une charte complète, documentée, prête à l'emploi : ce qui donne à une petite entreprise l'allure d'une maison établie.</p>
+          <p class="brief" data-i18n="f2.brief">Logos, couleurs, typographie, animation et une charte complète, documentée, prête à l’emploi : ce qui donne à une petite entreprise l’allure d’une maison établie.</p>
           <div class="tags"><span class="pill" data-i18n="tag.identity">Identité</span><span class="pill" data-i18n="tag.designSystems">Kits graphiques</span><span class="pill" data-i18n="tag.motion">Animation</span></div>
         </div>
       </article>
@@ -700,7 +700,7 @@
           <span class="fam" data-i18n="svc.famMind">Conseil &amp; IA</span>
           <h3 data-i18n="f5.name">Stratégie &amp; conseil croissance</h3>
           <p class="promise" data-i18n="f5.promise">De la donnée, pas des impressions.</p>
-          <p class="brief" data-i18n="f5.brief">Audits marketing complets, analyse des tunnels de vente, positionnement concurrentiel, feuilles de route — honnêtes, ROI d'abord, par phases. On étudie votre secteur avant le premier appel.</p>
+          <p class="brief" data-i18n="f5.brief">Audits marketing complets, analyse des tunnels de vente, positionnement concurrentiel, feuilles de route — honnêtes, ROI d’abord, par phases. On étudie votre secteur avant le premier appel.</p>
           <div class="tags"><span class="pill" data-i18n="tag.strategy">Stratégie</span><span class="pill" data-i18n="tag.funnels">Tunnels de vente</span><span class="pill" data-i18n="tag.audits">Audits</span></div>
         </div>
       </article>
@@ -719,7 +719,7 @@
           <span class="fam" data-i18n="c1.fam">Sites &amp; design</span>
           <h4 data-i18n="c1.name">Boutique &amp; réservation</h4>
           <p class="promise" data-i18n="c1.promise">De la visite au paiement.</p>
-          <p class="brief" data-i18n="c1.brief">Boutiques en ligne et systèmes de réservation adaptés aux habitudes d'achat en Algérie : commande par WhatsApp, paiement à la livraison, ou boutique Shopify sur mesure quand c'est pertinent.</p>
+          <p class="brief" data-i18n="c1.brief">Boutiques en ligne et systèmes de réservation adaptés aux habitudes d’achat en Algérie : commande par WhatsApp, paiement à la livraison, ou boutique Shopify sur mesure quand c’est pertinent.</p>
         </div>
         <div class="cap">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M3 9.1h18M8.2 20V9.1"/><path d="M11.4 16.6 14.6 13.4l3.4 3.4"/><circle cx="12.1" cy="11.7" r="1"/></svg></span>
@@ -740,7 +740,7 @@
           <span class="fam" data-i18n="c4.fam">Conseil &amp; IA</span>
           <h4 data-i18n="c4.name">Systèmes de connaissance</h4>
           <p class="promise" data-i18n="c4.promise">Une entreprise qui se souvient.</p>
-          <p class="brief" data-i18n="c4.brief">Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes à être interrogées par un assistant IA. Des structures qui s'entretiennent seules.</p>
+          <p class="brief" data-i18n="c4.brief">Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes à être interrogées par un assistant IA. Des structures qui s’entretiennent seules.</p>
         </div>
         <div class="cap">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7.1" y="7.1" width="9.8" height="9.8"/><rect x="10.7" y="10.7" width="2.6" height="2.6"/><path d="M10.4 3.4v3.7M13.6 3.4v3.7M10.4 16.9v3.7M13.6 16.9v3.7"/><path d="M3.4 10.4h3.7M3.4 13.6h3.7M16.9 10.4h3.7M16.9 13.6h3.7"/></svg></span>
@@ -767,7 +767,7 @@
     <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span><span class="pi-coins lv"><span class="pi pc pc-king" data-parallax="-.16" data-parallax-cap="60"><i></i></span><span class="pi pc pc-horse" data-parallax="-.08" data-parallax-cap="50"><i></i></span><span class="pi pc pc-palm" data-parallax="-.22" data-parallax-cap="70"><i></i></span><span class="pl-cap" data-i18n="pl.coins">Pl. III — Monnaies numides</span></span></span>
     <span class="kicker" data-i18n="price.kicker">04 — Tarifs</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
-    <p class="sec-lead" data-i18n="price.lead">Nos prix, publiés, en dinars, en euros ou en dollars. Trois formules ; pour l'e-commerce, l'automatisation ou l'identité, l'estimateur juste en dessous. Le détail et la comparaison avec le marché : notre guide des prix.</p>
+    <p class="sec-lead" data-i18n="price.lead">Nos prix, publiés, en dinars, en euros ou en dollars. Trois formules ; pour l’e-commerce, l’automatisation ou l’identité, l’estimateur juste en dessous. Le détail et la comparaison avec le marché : notre guide des prix.</p>
 
     <!-- SLOT:tiers -->
     <!-- Display currency for the tiers, the maintenance line and the
@@ -787,7 +787,7 @@
       <article class="tier reveal">
         <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg>
         <h3 data-i18n="price.t1name">Essentiel</h3>
-        <p class="t-for" data-i18n="price.t1for">Une présence crédible, vite en ligne.</p>
+        <p class="t-for" data-i18n="price.t1for">Une présence crédible, vite en ligne.</p>
         <p class="t-range" data-tier="vitrine"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t1time">2 à 4 semaines</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
@@ -795,7 +795,7 @@
           <li data-i18n="price.t1a">Vitrine ou landing, 1 à 5 pages</li>
           <li data-i18n="price.t1b">Design sur mesure — jamais un modèle tout fait repeint à vos couleurs</li>
           <li data-i18n="price.t1c">Responsive, performance et SEO de base</li>
-          <li data-i18n="price.t1d">Mise en ligne, domaine et certificat configurés</li>
+          <li data-i18n="price.t1d">Mise en ligne, domaine et certificat configurés</li>
           <li data-i18n="price.t1e">1 mois de support inclus</li>
         </ul>
       </article>
@@ -804,7 +804,7 @@
         <span class="t-pop" data-i18n="price.popular">Recommandé</span>
         <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:12px 4.4px"><circle class="p" pathLength="1" cx="12" cy="4.4" r="1.7"/><path class="p" pathLength="1" d="M11.2 6 6.2 19.8M12.8 6l5 13.8M8.2 14.3h7.6"/></g><path class="p" pathLength="1" d="M4 20.6a14 14 0 0 0 16 0"/></svg>
         <h3 data-i18n="price.t2name">Studio</h3>
-        <p class="t-for" data-i18n="price.t2for">Le site qui porte vraiment l'entreprise.</p>
+        <p class="t-for" data-i18n="price.t2for">Le site qui porte vraiment l’entreprise.</p>
         <p class="t-range" data-tier="surmesure"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t2time">3 à 7 semaines</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
@@ -828,7 +828,7 @@
         <ul class="t-list">
           <li data-i18n="price.t3a">Application web sur mesure : plateforme, portail ou outil métier</li>
           <li data-i18n="price.t3b">Paiement, comptes utilisateurs, tableaux de bord</li>
-          <li data-i18n="price.t3c">Collecte de données sur le web et veille marché, intégrées à l'application</li>
+          <li data-i18n="price.t3c">Collecte de données sur le web et veille marché, intégrées à l’application</li>
           <li data-i18n="price.t3d">Intégrations API et outils internes</li>
           <li data-i18n="price.t3e">6 mois de support inclus</li>
         </ul>
@@ -870,7 +870,7 @@
               <div class="est-chips">
                 <label class="echip"><input type="radio" name="est-type" value="vitrine"><span data-i18n="price.tyVitrine">Vitrine</span></label>
                 <label class="echip"><input type="radio" name="est-type" value="surmesure" checked><span data-i18n="price.tyCustom">Site sur mesure</span></label>
-                <label class="echip"><input type="radio" name="est-type" value="ecommerce"><span data-i18n="price.tyShop">E-commerce</span></label>
+                <label class="echip"><input type="radio" name="est-type" value="ecommerce"><span data-i18n="price.tyShop">E-⁠commerce</span></label>
                 <label class="echip"><input type="radio" name="est-type" value="app"><span data-i18n="price.tyApp">Application web</span></label>
                 <label class="echip"><input type="radio" name="est-type" value="auto"><span data-i18n="price.tyAuto">Automatisation</span></label>
                 <label class="echip"><input type="radio" name="est-type" value="identite"><span data-i18n="price.tyBrand">Identité visuelle</span></label>
@@ -889,7 +889,7 @@
               <div class="est-opts">
                 <label class="eopt"><input type="checkbox" name="est-opt-i18n" data-opt="i18n"><span data-i18n="price.oI18n">Trilingue FR / EN / AR + RTL</span></label>
                 <label class="eopt"><input type="checkbox" name="est-opt-cms" data-opt="cms"><span data-i18n="price.oCms">CMS / back-office</span></label>
-                <label class="eopt"><input type="checkbox" name="est-opt-pay" data-opt="pay"><span data-i18n="price.oPay">Paiement en ligne</span></label>
+                <label class="eopt"><input type="checkbox" name="est-opt-pay" data-opt="pay"><span data-i18n="price.oPay">Paiement en ligne</span></label>
                 <label class="eopt"><input type="checkbox" name="est-opt-ds" data-opt="ds"><span data-i18n="price.oDs">Kit graphique complet</span></label>
                 <label class="eopt"><input type="checkbox" name="est-opt-seo" data-opt="seo"><span data-i18n="price.oSeo">SEO avancé &amp; performance</span></label>
                 <label class="eopt"><input type="checkbox" name="est-opt-api" data-opt="api"><span data-i18n="price.oApi">Intégrations API</span></label>
@@ -922,7 +922,7 @@
             </div>
             <ul class="eo-sum" id="est-summary"></ul>
             <p class="eo-fine" data-i18n="price.estFine">Fourchette indicative, pas un devis. Le prix ferme suit, une fois le périmètre cadré ensemble — et il ne bouge plus ensuite.</p>
-            <a class="btn btn-primary" id="est-cta" href="#contact" data-i18n="price.estCta">Demander mon prix ferme →</a>
+            <a class="btn btn-primary" id="est-cta" href="#contact" data-i18n="price.estCta">Demander mon prix ferme <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </div>
@@ -934,7 +934,7 @@
          left this page for the price guide on 2026-10-31 (decision 13:
          scripts/build-tarifs.mjs holds them, and renders the tiers and the
          estimator above once more from this markup). This is the way there. -->
-    <p class="price-guide reveal"><a class="btn btn-ghost" href="tarifs/" data-i18n="tarifs.link">Voir le guide des prix 2026 →</a></p>
+    <p class="price-guide reveal"><a class="btn btn-ghost" href="tarifs/" data-i18n="tarifs.link">Voir le guide des prix 2026 <span aria-hidden="true">→</span></a></p>
   </section>
 
 
@@ -960,14 +960,14 @@
         </div>
         <div class="fd-id">
           <h3>Yasser Hamisse</h3>
-          <p class="fd-role" data-i18n="founder.role">Designer graphique &amp; développeur web · Fondateur</p>
+          <p class="fd-role" data-i18n="founder.role">Designer graphique &amp; développeur web · Fondateur</p>
           <div class="fd-pills">
             <span class="pill">FR C2</span><span class="pill">EN C1</span><span class="pill" data-i18n="founder.arPill">AR langue maternelle</span>
-            <span class="pill" data-i18n="founder.years">6 ans</span><span class="pill" data-i18n="founder.city">Bordj Bou Arréridj</span>
+            <span class="pill" data-i18n="founder.years">6 ans</span><span class="pill" data-i18n="founder.city">Bordj Bou Arréridj</span>
           </div>
         </div>
       </div>
-      <p class="fd-bio" data-i18n="founder.bio">Six ans à concevoir des identités, coder des interfaces et livrer des produits, de la marque jusqu'à la mise en ligne. Je transforme votre brief en produit fini, et je reste à vos côtés après le lancement.</p>
+      <p class="fd-bio" data-i18n="founder.bio">Six ans à concevoir des identités, coder des interfaces et livrer des produits, de la marque jusqu’à la mise en ligne. Je transforme votre brief en produit fini, et je reste à vos côtés après le lancement.</p>
 
       <ul class="fd-links" data-i18n-aria="founder.linksAria" aria-label="Profils du fondateur">
         <li><a href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener"><span class="fl-b" aria-hidden="true">in</span>LinkedIn</a></li>
@@ -982,7 +982,7 @@
            off the panel below is open and its PDF link stands in for this
            button (styles.css, html:not(.js)) -->
       <div class="fd-actions">
-        <button type="button" class="btn btn-teal js-only" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">Voir le parcours <span class="arr">↓</span></button>
+        <button type="button" class="btn btn-teal js-only" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">Voir le parcours <span aria-hidden="true">↓</span></button>
       </div>
 
       <div class="cv-panel" id="cv-panel">
@@ -990,29 +990,29 @@
           <div class="cv-col cv-exp">
             <h4 data-i18n="founder.expLabel">Parcours</h4>
             <ol class="timeline">
-              <li class="tl-now"><span class="tl-date" data-i18n="fx1.when">Mai 2026 — aujourd'hui</span><b>Heetch</b><i data-i18n="fx1">Designer graphique</i><p data-i18n="fx1.what">Visuels et supports de communication pour une plateforme internationale de mobilité ; déclinaison de l'identité sur les campagnes et les réseaux.</p></li>
-              <li class="tl-now"><span class="tl-date" data-i18n="fx2.when">2019 — aujourd'hui</span><b>Grafil Studio · tr4veler.designs</b><i data-i18n="fx2">Designer graphique &amp; développeur web, en freelance</i><p data-i18n="fx2.what">Sites vitrines et landing pages orientés conversion ; identités visuelles, affiches et pochettes ; direction artistique de campagnes NFT et de branding musical.</p></li>
-              <li><span class="tl-date" data-i18n="fx3.when">Fév. – mai 2026</span><b>Alliance Travel</b><i data-i18n="fx3">Développeur web &amp; social media</i><p data-i18n="fx3.what">Le site complet de l'agence, la refonte visuelle de la marque et sa stratégie réseaux sociaux.</p></li>
-              <li><span class="tl-date" data-i18n="fx4.when">Août 2025 – fév. 2026</span><b>SPA Bordj Steel</b><i data-i18n="fx4">Designer graphique &amp; web</i><p data-i18n="fx4.what">Refonte de l'identité (logo, charte) et des supports print, puis un site responsive livré de A à Z.</p></li>
-              <li><span class="tl-date" data-i18n="fx5.when">Mars – juil. 2024</span><b>Artiland.Studio</b><i data-i18n="fx5">Créateur de contenu &amp; vidéo</i><p data-i18n="fx5.what">Vidéos courtes pour des événements et des campagnes communautaires ; animation d'ateliers créatifs.</p></li>
+              <li class="tl-now"><span class="tl-date" data-i18n="fx1.when">Mai 2026 — aujourd’hui</span><b>Heetch</b><i data-i18n="fx1">Designer graphique</i><p data-i18n="fx1.what">Visuels et supports de communication pour une plateforme internationale de mobilité ; déclinaison de l’identité sur les campagnes et les réseaux.</p></li>
+              <li class="tl-now"><span class="tl-date" data-i18n="fx2.when">2019 — aujourd’hui</span><b>Grafil Studio · tr4veler.designs</b><i data-i18n="fx2">Designer graphique &amp; développeur web, en freelance</i><p data-i18n="fx2.what">Sites vitrines et landing pages orientés conversion ; identités visuelles, affiches et pochettes ; direction artistique de campagnes NFT et de branding musical.</p></li>
+              <li><span class="tl-date" data-i18n="fx3.when">Fév. – mai 2026</span><b>Alliance Travel</b><i data-i18n="fx3">Développeur web &amp; social media</i><p data-i18n="fx3.what">Le site complet de l’agence, la refonte visuelle de la marque et sa stratégie réseaux sociaux.</p></li>
+              <li><span class="tl-date" data-i18n="fx4.when">Août 2025 – fév. 2026</span><b>SPA Bordj Steel</b><i data-i18n="fx4">Designer graphique &amp; web</i><p data-i18n="fx4.what">Refonte de l’identité (logo, charte) et des supports print, puis un site responsive livré de A à Z.</p></li>
+              <li><span class="tl-date" data-i18n="fx5.when">Mars – juil. 2024</span><b>Artiland.Studio</b><i data-i18n="fx5">Créateur de contenu &amp; vidéo</i><p data-i18n="fx5.what">Vidéos courtes pour des événements et des campagnes communautaires ; animation d’ateliers créatifs.</p></li>
             </ol>
           </div>
           <div class="cv-col cv-side">
             <div class="cv-block">
               <h4 data-i18n="founder.skillsLabel">Compétences</h4>
               <dl class="skills">
-                <div><dt data-i18n="fs1.h">Design &amp; identité</dt><dd data-i18n="fs1">Branding · identité visuelle · illustration · direction artistique UI/UX · photo &amp; retouche</dd></div>
-                <div><dt data-i18n="fs2.h">Web &amp; front-end</dt><dd data-i18n="fs2">HTML / CSS / JS · React · sites vitrines · landing pages · CMS · SEO · responsive</dd></div>
-                <div><dt data-i18n="fs3.h">Stratégie &amp; contenu</dt><dd data-i18n="fs3">Réseaux sociaux · rédaction créative · intégration IA · automatisation · gestion de projet</dd></div>
+                <div><dt data-i18n="fs1.h">Design &amp; identité</dt><dd data-i18n="fs1">Branding · identité visuelle · illustration · direction artistique UI/UX · photo &amp; retouche</dd></div>
+                <div><dt data-i18n="fs2.h">Web &amp; front-end</dt><dd data-i18n="fs2">HTML / CSS / JS · React · sites vitrines · landing pages · CMS · SEO · responsive</dd></div>
+                <div><dt data-i18n="fs3.h">Stratégie &amp; contenu</dt><dd data-i18n="fs3">Réseaux sociaux · rédaction créative · intégration IA · automatisation · gestion de projet</dd></div>
               </dl>
-              <p class="cv-note" data-i18n="founder.skillsNote">Environ 20 % de temps de production en moins grâce à l'intégration d'outils IA. En cours d'apprentissage : motion design et montage vidéo.</p>
+              <p class="cv-note" data-i18n="founder.skillsNote">Environ 20 % de temps de production en moins grâce à l’intégration d’outils IA. En cours d’apprentissage : motion design et montage vidéo.</p>
             </div>
             <div class="cv-block">
               <h4 data-i18n="founder.eduLabel">Formation</h4>
-              <p data-i18n="founder.edu">Informatique — Université Mohamed El Bachir El Ibrahimi · 2018–2024</p>
-              <p class="cv-note" data-i18n="founder.certs">Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D</p>
+              <p data-i18n="founder.edu">Informatique — Université Mohamed El Bachir El Ibrahimi · 2018–2024</p>
+              <p class="cv-note" data-i18n="founder.certs">Certifications : Duolingo English Test · Design numérique (Artiland.Studio) · Motion design 3D</p>
             </div>
-            <a class="btn btn-primary cv-dl" href="assets/cv_yasser_hamisse_2026.pdf" download target="_blank" rel="noopener" data-i18n="founder.download">Télécharger le CV (PDF) ↓</a>
+            <a class="btn btn-primary cv-dl" href="assets/cv_yasser_hamisse_2026.pdf" download target="_blank" rel="noopener" data-i18n="founder.download">Télécharger le CV (PDF) <span aria-hidden="true">↓</span></a>
           </div>
         </div></div>
       </div>
@@ -1034,7 +1034,7 @@
     <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-lantern lv"><b class="glow"></b><i></i></span></span>
     <span class="kicker" data-i18n="faq.kicker">06 — FAQ</span>
     <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
-    <p class="sec-lead" data-i18n="faq.lead">Ce qu'on nous demande avant de se lancer, et nos réponses sans détour.</p>
+    <p class="sec-lead" data-i18n="faq.lead">Ce qu’on nous demande avant de se lancer, et nos réponses sans détour.</p>
     <div class="faq-list">
       <!-- two independent columns (1-4, 5-8): opening a question never
            stretches the one beside it; DOM and reading order stay 1 to 8.
@@ -1052,18 +1052,18 @@
         </details>
 
         <details class="faq-item reveal">
-          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:7.5px 7.5px"><path class="p" pathLength="1" d="M3.5 3.5h8.2l8.8 8.8a1.5 1.5 0 0 1 0 2.1l-6.1 6.1a1.5 1.5 0 0 1-2.1 0L3.5 11.7Z"/><circle class="p" pathLength="1" cx="7.5" cy="7.5" r="1.4"/></g></svg><span class="q" data-i18n="faq2.q">C'est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq2"></span></span><p data-i18n="faq2.a">Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="#apercu">l'Aperçu</a>.</p></div>
+          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:7.5px 7.5px"><path class="p" pathLength="1" d="M3.5 3.5h8.2l8.8 8.8a1.5 1.5 0 0 1 0 2.1l-6.1 6.1a1.5 1.5 0 0 1-2.1 0L3.5 11.7Z"/><circle class="p" pathLength="1" cx="7.5" cy="7.5" r="1.4"/></g></svg><span class="q" data-i18n="faq2.q">C’est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq2"></span></span><p data-i18n="faq2.a">Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="#apercu">l’Aperçu</a>.</p></div>
         </details>
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg><span class="q" data-i18n="faq3.q">Comment se passe le paiement ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><p data-i18n="faq3.a">Un devis écrit et un bon de commande signé avant tout travail, en droit algérien. Puis 40 % à la commande, sur devis signé, et 60 % à la livraison, avant la mise en ligne. Par virement ou CCP en Algérie ; par virement en euros ou en dollars depuis l'étranger. Le prix est ferme une fois le projet cadré et il ne bouge plus : si le travail déborde, l'écart est pour nous. Deux séries de retouches par étape, le design puis le développement, sont comprises ; les suivantes sont chiffrées à part.</p></div>
+          <div class="faq-a"><p data-i18n="faq3.a">Un devis écrit et un bon de commande signé avant tout travail, en droit algérien. Puis 40 % à la commande, sur devis signé, et 60 % à la livraison, avant la mise en ligne. Par virement ou CCP en Algérie ; par virement en euros ou en dollars depuis l’étranger. Le prix est ferme une fois le projet cadré et il ne bouge plus : si le travail déborde, l’écart est pour nous. Deux séries de retouches par étape, le design puis le développement, sont comprises ; les suivantes sont chiffrées à part.</p></div>
         </details>
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 3 19.5 6v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6Z"/><path class="p a-ekg" pathLength="1" d="M6.5 12.5h3l1.3-3 2.4 6 1.3-3h3"/></svg><span class="q" data-i18n="faq4.q">Et après le lancement ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq4"></span></span><p data-i18n="faq4.a">Nous restons. Trente jours de corrections après la livraison, puis 1, 3 ou 6 mois de support selon la formule, et nous vous répondons le jour ouvré suivant (dimanche–jeudi, 9h–18h). Ensuite, la maintenance est en option : 18 000 –⁠ 60 000 DA par mois, sans engagement de durée, pour les mises à jour, les sauvegardes et les petites modifications. Pas de « bonne chance » le jour de la mise en ligne.</p></div>
+          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq4"></span></span><p data-i18n="faq4.a">Nous restons. Trente jours de corrections après la livraison, puis 1, 3 ou 6 mois de support selon la formule, et nous vous répondons le jour ouvré suivant (dimanche–jeudi, 9h–⁠18h). Ensuite, la maintenance est en option : 18 000 –⁠ 60 000 DA par mois, sans engagement de durée, pour les mises à jour, les sauvegardes et les petites modifications. Pas de « bonne chance » le jour de la mise en ligne.</p></div>
         </details>
 
       </div>
@@ -1071,22 +1071,22 @@
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="orb" cx="12" cy="12" r="9.5"/><circle class="p" pathLength="1" cx="12" cy="12" r="6"/><path class="p" pathLength="1" d="M6 12h12M12 6c1.9 1.9 1.9 10.1 0 12M12 6c-1.9 1.9-1.9 10.1 0 12"/><g class="a-orbit" style="--o:12px 12px"><circle class="f" cx="21.5" cy="12" r="1.15"/></g></svg><span class="q" data-i18n="faq5.q">Travaillez-vous à distance ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq5"></span></span><p data-i18n="faq5.a">Oui. Le studio est à Bordj Bou Arréridj, et nous livrons partout — y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre site.</p></div>
+          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq5"></span></span><p data-i18n="faq5.a">Oui. Le studio est à Bordj Bou Arréridj, et nous livrons partout — y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre site.</p></div>
         </details>
 
         <details class="faq-item reveal">
-          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="4.8" cy="12" r="2.6"/><circle class="p" pathLength="1" cx="19.2" cy="12" r="2.6"/><path class="p" pathLength="1" d="M7.4 12h9.2"/><circle class="f a-travel" cx="8.6" cy="12" r="1.05"/></svg><span class="q" data-i18n="faq6.q">Qu'est-ce qui vous différencie d'une agence ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq6"></span></span><p data-i18n="faq6.a">Pas d'intermédiaire : celui qui cadre votre projet est celui qui le conçoit, le code et le livre. Quand un projet le demande, un freelance intervient sur une partie précise ; vous gardez un seul interlocuteur.</p></div>
+          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="4.8" cy="12" r="2.6"/><circle class="p" pathLength="1" cx="19.2" cy="12" r="2.6"/><path class="p" pathLength="1" d="M7.4 12h9.2"/><circle class="f a-travel" cx="8.6" cy="12" r="1.05"/></svg><span class="q" data-i18n="faq6.q">Qu’est-ce qui vous différencie d’une agence ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq6"></span></span><p data-i18n="faq6.a">Pas d’intermédiaire : celui qui cadre votre projet est celui qui le conçoit, le code et le livre. Quand un projet le demande, un freelance intervient sur une partie précise ; vous gardez un seul interlocuteur.</p></div>
         </details>
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M12 20s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z"/><circle class="p" pathLength="1" cx="12" cy="9" r="2.3"/></g><path class="a-shadow" d="M9.5 22h5"/></svg><span class="q" data-i18n="faq7.q">À qui appartient le site, et où est-il hébergé ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><p data-i18n="faq7.a">Une fois le site payé en entier, il vous appartient : le code, les fichiers de design et le contenu. Le nom de domaine est enregistré à votre nom. Nous gardons le droit de montrer le travail dans nos références, sauf refus écrit de votre part. L'hébergement est choisi ensemble et facturé à l'année par l'hébergeur, à votre nom ; nous l'installons et vous remettons tous les accès.</p></div>
+          <div class="faq-a"><p data-i18n="faq7.a">Une fois le site payé en entier, il vous appartient : le code, les fichiers de design et le contenu. Le nom de domaine est enregistré à votre nom. Nous gardons le droit de montrer le travail dans nos références, sauf refus écrit de votre part. L’hébergement est choisi ensemble et facturé à l’année par l’hébergeur, à votre nom ; nous l’installons et vous remettons tous les accès.</p></div>
         </details>
 
         <details class="faq-item reveal">
-          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M3 7.5V3h4.5M16.5 3H21v4.5M21 16.5V21h-4.5M7.5 21H3v-4.5"/><circle class="p" pathLength="1" cx="12" cy="12" r="3.4"/><path class="p" pathLength="1" d="M12 6.2v2.4M12 15.4v2.4M6.2 12h2.4M15.4 12h2.4"/><circle class="f a-pulse" cx="12" cy="12" r="1.2"/></svg><span class="q" data-i18n="faq8.q">Comment fonctionne l'Aperçu ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><p data-i18n="faq8.a">Il est ouvert à toute entreprise immatriculée : registre du commerce, carte d'auto-entrepreneur, SIRET ou licence équivalente. Après un appel de 30 minutes, vous nous envoyez votre contenu (logo, textes, photos) ; les 5 jours ouvrés commencent à ce moment-là. Si c'est non, l'Aperçu est supprimé et vous ne devez rien. Si c'est oui, il devient la page d'accueil de votre site, dans la formule choisie, sans supplément. Quand les 4 places du mois sont prises, votre demande passe au mois suivant, dans l'ordre d'arrivée.</p></div>
+          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M3 7.5V3h4.5M16.5 3H21v4.5M21 16.5V21h-4.5M7.5 21H3v-4.5"/><circle class="p" pathLength="1" cx="12" cy="12" r="3.4"/><path class="p" pathLength="1" d="M12 6.2v2.4M12 15.4v2.4M6.2 12h2.4M15.4 12h2.4"/><circle class="f a-pulse" cx="12" cy="12" r="1.2"/></svg><span class="q" data-i18n="faq8.q">Comment fonctionne l’Aperçu ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p data-i18n="faq8.a">Il est ouvert à toute entreprise immatriculée : registre du commerce, carte d’auto-entrepreneur, SIRET ou licence équivalente. Après un appel de 30 minutes, vous nous envoyez votre contenu (logo, textes, photos) ; les 5 jours ouvrés commencent à ce moment-là. Si c’est non, l’Aperçu est supprimé et vous ne devez rien. Si c’est oui, il devient la page d’accueil de votre site, dans la formule choisie, sans supplément. Quand les 4 places du mois sont prises, votre demande passe au mois suivant, dans l’ordre d’arrivée.</p></div>
         </details>
 
       </div>
@@ -1097,8 +1097,8 @@
          Its sentence (faq.ask) joins this row once the dictionaries carry
          the key (I4); until then the row is the two actions. -->
     <p class="faq-ask">
-      <a class="btn btn-primary" href="#apercu" data-i18n="prev.cta">Demander mon Aperçu →</a>
-      <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+      <a class="btn btn-primary" href="#apercu" data-i18n="prev.cta">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
+      <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l%E2%80%99Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s%E2%80%99il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
         <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
         <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
       </a>
@@ -1107,7 +1107,7 @@
 
   <!-- ================= CONTACT ================= -->
   <section id="contact" class="contact band" aria-labelledby="contact-h">
-    <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-stars" data-parallax="-.04" data-parallax-cap="90"></span><span class="pi pi-light lv" data-parallax="-.05" data-parallax-cap="40"><b class="beam"></b><i></i><span class="pl-cap" data-i18n="pl.light">Pl. IV — Cap Carbon · Béjaïa</span></span></span>
+    <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-stars" data-parallax="-.04" data-parallax-cap="90"></span><span class="pi pi-light lv" data-parallax="-.05" data-parallax-cap="40"><b class="beam"></b><i></i><span class="pl-cap" data-i18n="pl.light">Pl. IV — Cap Carbon · Béjaïa</span></span></span>
     <span class="kicker" data-i18n="contact.kicker">07 — Contact</span>
     <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">Parlons de <em>votre projet.</em></h2>
     <div class="contact-grid">
@@ -1115,10 +1115,10 @@
         <p class="sub" data-i18n="contact.sub">Deux lignes suffisent : votre activité, ce que le site doit faire, votre échéance. En français, anglais ou arabe.</p>
         <dl class="channels">
           <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg><dt data-i18n="form.email">Email</dt><dd><a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></dd></div>
-          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M4 20 5.3 15.7A8 8 0 1 1 8.3 18.7Z"/><circle class="f a-dt" style="--i:0" cx="8.7" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:1" cx="12" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:2" cx="15.3" cy="11.8" r=".95"/></svg><dt data-i18n="footer.wa">WhatsApp</dt><dd><a class="wa-link" dir="ltr" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener"><bdi dir="ltr">+213 672 41 25 78</bdi></a><small class="ch-note" data-i18n="contact.waNote">messages seulement, pas d'appels · gratuit via l'appli</small></dd></div>
-          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M12 20s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z"/><circle class="p" pathLength="1" cx="12" cy="9" r="2.3"/></g><path class="a-shadow" d="M9.5 22h5"/></svg><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
-          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="13.5" r="7.5"/><path class="p" pathLength="1" d="M12 3.5V6M10 3.5h4"/><path class="p a-hand" style="--o:12px 13.5px;--t:3s" pathLength="1" d="M12 13.5 15 10.5"/></svg><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">Le jour ouvré suivant · dimanche–jeudi, 9h–18h · <span class="nb">FR · EN · AR</span></dd></div>
-          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><ellipse class="p a-globe" pathLength="1" cx="12" cy="12" rx="3.6" ry="8.5"/><path class="p" pathLength="1" d="M3.5 12h17"/></svg><dt data-i18n="contact.chTz">Fuseau</dt><dd data-i18n="contact.vTz">UTC+1 · l'heure de Paris en hiver, 1 h de moins en été</dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M4 20 5.3 15.7A8 8 0 1 1 8.3 18.7Z"/><circle class="f a-dt" style="--i:0" cx="8.7" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:1" cx="12" cy="11.8" r=".95"/><circle class="f a-dt" style="--i:2" cx="15.3" cy="11.8" r=".95"/></svg><dt data-i18n="footer.wa">WhatsApp</dt><dd><a class="wa-link" dir="ltr" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener"><bdi dir="ltr">+213 672 41 25 78</bdi></a><small class="ch-note" data-i18n="contact.waNote">messages seulement, pas d’appels · gratuit via l’appli</small></dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M12 20s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z"/><circle class="p" pathLength="1" cx="12" cy="9" r="2.3"/></g><path class="a-shadow" d="M9.5 22h5"/></svg><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="13.5" r="7.5"/><path class="p" pathLength="1" d="M12 3.5V6M10 3.5h4"/><path class="p a-hand" style="--o:12px 13.5px;--t:3s" pathLength="1" d="M12 13.5 15 10.5"/></svg><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">Le jour ouvré suivant · dimanche–jeudi, 9h–⁠18h · <span class="nb">FR · EN · AR</span></dd></div>
+          <div class="ch ch-ic"><svg class="ai ai-ch" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><ellipse class="p a-globe" pathLength="1" cx="12" cy="12" rx="3.6" ry="8.5"/><path class="p" pathLength="1" d="M3.5 12h17"/></svg><dt data-i18n="contact.chTz">Fuseau</dt><dd data-i18n="contact.vTz">UTC+1 · l’heure de Paris en hiver, 1 h de moins en été</dd></div>
         </dl>
       </div>
       <div class="contact-main">
@@ -1145,17 +1145,17 @@
                (scripts off); on a click app.js puts the name, the address
                and the message as typed in its place, through waUrl(). -->
           <div class="form-acts">
-            <button type="submit" class="btn btn-primary" data-i18n="form.send">Envoyer ma demande →</button>
-            <a class="btn wa-link btn-teal" id="form-wa-send" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+            <button type="submit" class="btn btn-primary" data-i18n="form.send">Envoyer ma demande <span aria-hidden="true">→</span></button>
+            <a class="btn wa-link btn-teal" id="form-wa-send" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l%E2%80%99Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s%E2%80%99il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
               <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
-              <span data-i18n="form.waInstead">Envoyer plutôt sur WhatsApp</span>
+              <span data-i18n="form.waInstead">Écrire sur WhatsApp</span>
             </a>
           </div>
           <!-- What happens to the message, stated plainly. If the Supabase store is
                ever switched on this sentence stops being true: check.mjs then
                requires the legal page and a new note. The privacy link goes after
                the sentence once legal/ is published (scripts/build-legal.mjs). -->
-          <p class="form-note"><span data-i18n="form.note">Le bouton ouvre votre messagerie avec votre message déjà rédigé : il ne vous reste qu'à l'envoyer. Ce site ne conserve pas votre message.</span><!-- LEGAL:form --><!-- /LEGAL:form --></p>
+          <p class="form-note"><span data-i18n="form.note">Le bouton ouvre votre messagerie avec votre message déjà rédigé : il ne vous reste qu’à l’envoyer. Ce site ne conserve pas votre message.</span><!-- LEGAL:form --><!-- /LEGAL:form --></p>
         </form>
         <!-- The handoff is a mailto:, and a visitor with no mail client configured
              gets nothing — yet this panel used to show a tick and claim success
@@ -1167,20 +1167,20 @@
              #form-copied, inside this role=status, says so (app.js). -->
         <div class="form-success" role="status" aria-live="polite" tabindex="-1">
           <svg class="ai ai-mail" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg>
-          <p data-i18n="form.success">Votre messagerie s'ouvre avec votre message : envoyez-le, et on vous répond le jour ouvré suivant avec nos questions.</p>
+          <p data-i18n="form.success">Votre messagerie s’ouvre avec votre message : envoyez-le, et on vous répond le jour ouvré suivant avec nos questions.</p>
           <!-- The ways on, WhatsApp first: the one that needs no mail app,
                with the message just typed (app.js sets it on submit; baked
                with the Aperçu's opening line, as the other WhatsApp links
                are); then the copy for a webmail, then the way back. The
                address under them is the plain-text fallback. -->
           <p class="fallback acts">
-            <a class="btn wa-link btn-teal" id="form-wa" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l'Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s'il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+            <a class="btn wa-link btn-teal" id="form-wa" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l%E2%80%99Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s%E2%80%99il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
               <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
-              <span data-i18n="form.waInstead">Envoyer plutôt sur WhatsApp</span>
+              <span data-i18n="form.waInstead">Écrire sur WhatsApp</span>
             </a>
             <button type="button" class="btn btn-ghost" id="form-copy" data-i18n="form.copy">Copier mon message</button>
             <button type="button" class="btn btn-ghost" id="form-edit" data-i18n="form.edit">Revoir mon message</button></p>
-          <p class="fallback"><span data-i18n="form.successAlt">Rien ne s'est ouvert ? Écrivez-nous directement :</span>
+          <p class="fallback"><span data-i18n="form.successAlt">Rien ne s’est ouvert ? Écrivez-nous directement :</span>
             <a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></p>
           <p class="fallback" id="form-copied"></p>
         </div>
@@ -1200,9 +1200,9 @@
   <div class="footer-top">
     <a class="logo" href="#top" aria-label="Numidea Labs"><svg class="wm" viewBox="0 0 7699 734" width="168" height="16" fill="currentColor"><title>Numidea Labs</title><use href="#wm"/></svg><span class="cursor" aria-hidden="true"></span></a>
     <nav aria-label="Pied de page" data-i18n-aria="footer.navAria">
-      <a href="#work" data-i18n="nav.work">Projets</a>
+      <a href="#work" data-i18n="nav.work">Réalisations</a>
       <a href="#services" data-i18n="nav.services">Services</a>
-      <a href="#apercu" data-i18n="nav.about">L'Aperçu</a>
+      <a href="#apercu" data-i18n="nav.about">L’Aperçu</a>
       <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
       <a href="tarifs/" data-i18n="tarifs.navLink">Guide des prix</a>
       <a href="#founder" data-i18n="nav.team">Fondateur</a>
@@ -1212,7 +1212,7 @@
   </div>
   <div class="meta">
     <span data-i18n="footer.rights">© 2026 Numidea Labs</span>
-    <span data-i18n="footer.tag">Enraciné en Numidie · bâti sur des idées</span>
+    <span data-i18n="footer.tag">Enraciné en Numidie · bâti sur des idées</span>
     <!-- legal notice + privacy links, written by scripts/build-legal.mjs once legal/ is published -->
     <span class="meta-legal"><!-- LEGAL:footer --><!-- /LEGAL:footer --></span>
     <span class="meta-end">
@@ -1255,13 +1255,13 @@
 <script type="application/ld+json" id="ld-faq">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Combien de temps pour livrer ?","acceptedAnswer":{"@type":"Answer","text":"Cela dépend du périmètre : comptez 2 à 4 semaines pour un site vitrine, 3 à 7 pour un site sur mesure, 8 à 16 pour une application web. Le délai ferme est fixé dès que le projet est cadré ensemble."}},
-{"@type":"Question","name":"C'est combien ?","acceptedAnswer":{"@type":"Answer","text":"Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi l'Aperçu."}},
-{"@type":"Question","name":"Comment se passe le paiement ?","acceptedAnswer":{"@type":"Answer","text":"Un devis écrit et un bon de commande signé avant tout travail, en droit algérien. Puis 40 % à la commande, sur devis signé, et 60 % à la livraison, avant la mise en ligne. Par virement ou CCP en Algérie ; par virement en euros ou en dollars depuis l'étranger. Le prix est ferme une fois le projet cadré et il ne bouge plus : si le travail déborde, l'écart est pour nous. Deux séries de retouches par étape, le design puis le développement, sont comprises ; les suivantes sont chiffrées à part."}},
-{"@type":"Question","name":"Et après le lancement ?","acceptedAnswer":{"@type":"Answer","text":"Nous restons. Trente jours de corrections après la livraison, puis 1, 3 ou 6 mois de support selon la formule, et nous vous répondons le jour ouvré suivant (dimanche–jeudi, 9h–18h). Ensuite, la maintenance est en option : 18 000 –⁠ 60 000 DA par mois, sans engagement de durée, pour les mises à jour, les sauvegardes et les petites modifications. Pas de « bonne chance » le jour de la mise en ligne."}},
-{"@type":"Question","name":"Travaillez-vous à distance ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Le studio est à Bordj Bou Arréridj, et nous livrons partout — y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre site."}},
-{"@type":"Question","name":"Qu'est-ce qui vous différencie d'une agence ?","acceptedAnswer":{"@type":"Answer","text":"Pas d'intermédiaire : celui qui cadre votre projet est celui qui le conçoit, le code et le livre. Quand un projet le demande, un freelance intervient sur une partie précise ; vous gardez un seul interlocuteur."}},
-{"@type":"Question","name":"À qui appartient le site, et où est-il hébergé ?","acceptedAnswer":{"@type":"Answer","text":"Une fois le site payé en entier, il vous appartient : le code, les fichiers de design et le contenu. Le nom de domaine est enregistré à votre nom. Nous gardons le droit de montrer le travail dans nos références, sauf refus écrit de votre part. L'hébergement est choisi ensemble et facturé à l'année par l'hébergeur, à votre nom ; nous l'installons et vous remettons tous les accès."}},
-{"@type":"Question","name":"Comment fonctionne l'Aperçu ?","acceptedAnswer":{"@type":"Answer","text":"Il est ouvert à toute entreprise immatriculée : registre du commerce, carte d'auto-entrepreneur, SIRET ou licence équivalente. Après un appel de 30 minutes, vous nous envoyez votre contenu (logo, textes, photos) ; les 5 jours ouvrés commencent à ce moment-là. Si c'est non, l'Aperçu est supprimé et vous ne devez rien. Si c'est oui, il devient la page d'accueil de votre site, dans la formule choisie, sans supplément. Quand les 4 places du mois sont prises, votre demande passe au mois suivant, dans l'ordre d'arrivée."}}
+{"@type":"Question","name":"C’est combien ?","acceptedAnswer":{"@type":"Answer","text":"Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi l’Aperçu."}},
+{"@type":"Question","name":"Comment se passe le paiement ?","acceptedAnswer":{"@type":"Answer","text":"Un devis écrit et un bon de commande signé avant tout travail, en droit algérien. Puis 40 % à la commande, sur devis signé, et 60 % à la livraison, avant la mise en ligne. Par virement ou CCP en Algérie ; par virement en euros ou en dollars depuis l’étranger. Le prix est ferme une fois le projet cadré et il ne bouge plus : si le travail déborde, l’écart est pour nous. Deux séries de retouches par étape, le design puis le développement, sont comprises ; les suivantes sont chiffrées à part."}},
+{"@type":"Question","name":"Et après le lancement ?","acceptedAnswer":{"@type":"Answer","text":"Nous restons. Trente jours de corrections après la livraison, puis 1, 3 ou 6 mois de support selon la formule, et nous vous répondons le jour ouvré suivant (dimanche–jeudi, 9h–⁠18h). Ensuite, la maintenance est en option : 18 000 –⁠ 60 000 DA par mois, sans engagement de durée, pour les mises à jour, les sauvegardes et les petites modifications. Pas de « bonne chance » le jour de la mise en ligne."}},
+{"@type":"Question","name":"Travaillez-vous à distance ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Le studio est à Bordj Bou Arréridj, et nous livrons partout — y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre site."}},
+{"@type":"Question","name":"Qu’est-ce qui vous différencie d’une agence ?","acceptedAnswer":{"@type":"Answer","text":"Pas d’intermédiaire : celui qui cadre votre projet est celui qui le conçoit, le code et le livre. Quand un projet le demande, un freelance intervient sur une partie précise ; vous gardez un seul interlocuteur."}},
+{"@type":"Question","name":"À qui appartient le site, et où est-il hébergé ?","acceptedAnswer":{"@type":"Answer","text":"Une fois le site payé en entier, il vous appartient : le code, les fichiers de design et le contenu. Le nom de domaine est enregistré à votre nom. Nous gardons le droit de montrer le travail dans nos références, sauf refus écrit de votre part. L’hébergement est choisi ensemble et facturé à l’année par l’hébergeur, à votre nom ; nous l’installons et vous remettons tous les accès."}},
+{"@type":"Question","name":"Comment fonctionne l’Aperçu ?","acceptedAnswer":{"@type":"Answer","text":"Il est ouvert à toute entreprise immatriculée : registre du commerce, carte d’auto-entrepreneur, SIRET ou licence équivalente. Après un appel de 30 minutes, vous nous envoyez votre contenu (logo, textes, photos) ; les 5 jours ouvrés commencent à ce moment-là. Si c’est non, l’Aperçu est supprimé et vous ne devez rien. Si c’est oui, il devient la page d’accueil de votre site, dans la formule choisie, sans supplément. Quand les 4 places du mois sont prises, votre demande passe au mois suivant, dans l’ordre d’arrivée."}}
 ]}
 </script>
 </body>
