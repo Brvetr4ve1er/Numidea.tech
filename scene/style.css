@@ -22,11 +22,22 @@
   --body:'Geist','Geist Fallback',system-ui,sans-serif;
   --mono:'Geist Mono','Geist Mono Fallback',ui-monospace,monospace;
   --ar:'IBM Plex Sans Arabic','IBM Plex Sans Arabic Fallback',system-ui,sans-serif;
-  --r:10px; --gut:clamp(16px,4vw,48px); --max:1240px;
-  /* the sticky .hud: 10px padding ×2, the 46px language group (44px buttons
-     in a 1px border), 1px rule */
-  --hud-h:67px;   /* header height; the crumb wraps below 320px (see the media query) */
+  /* The page's container is the home page's (assets/styles.css, which this
+     page does not load): 1200px in a 48px gutter, then from 1100px 93% of
+     the screen up to 1580px in a 3.4vw gutter (40-64px), and under 961px a
+     4.6vw gutter (20-44px). It was 1240px in a 16-48px gutter of its own,
+     so the sheets and the home page stood on two different edges. --max is
+     the whole box, gutters included, as the home page's .wrap. */
+  --r:10px; --max:1200px; --gut:48px;
+  /* the sticky .hud: 13px padding ×2, the 46px language group (44px buttons
+     in a 1px border), 1px rule: 73px, the home page's bar */
+  --hud-h:73px;   /* header height; the crumb wraps below 320px (see the media query) */
+  /* the home page's steps and timings, which its one button is drawn with */
+  --t-ui:14px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px;
+  --ease-out:cubic-bezier(.2,.8,.2,1); --t-hover:.18s var(--ease-out); --t-enter:.3s var(--ease-out);
 }
+@media (min-width:1100px){:root{--max:min(1580px,93vw);--gut:clamp(40px,3.4vw,64px)}}
+@media (max-width:960px){:root{--gut:clamp(20px,4.6vw,44px)}}
 /* Arabic never goes through the Latin faces (as on the main site). Geist and
    Geist Mono have no Arabic glyphs, so everything set in var(--body) or
    var(--mono) (skip link, visit and contact buttons, phone captions, the
@@ -47,12 +58,17 @@ body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--b
 /* drafting paper: fine 24px grid under a 120px major grid, fixed to the
    viewport. On its own fixed layer, not background-attachment:fixed: that
    made Chrome repaint and re-raster the whole viewport on every scroll frame
-   (traced at 1280, ten wheel scrolls: raster 7.2s, now 0.13s) (r3/a) */
+   (traced at 1280, ten wheel scrolls: raster 7.2s, now 0.13s) (r3/a).
+   Registered to the content: a vertical line of both grids falls on the
+   sheets' edge, max(0, (screen - --max) / 2) + --gut. A percentage here is
+   of (screen - tile), so half the screen is 50% plus half the tile. It
+   started at the screen's edge, and the sheets stood 20px off a line. */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background-image:
     linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),
     linear-gradient(var(--grid-2) 1px,transparent 1px),linear-gradient(90deg,var(--grid-2) 1px,transparent 1px);
-  background-size:24px 24px,24px 24px,120px 120px,120px 120px}
+  background-size:24px 24px,24px 24px,120px 120px,120px 120px;
+  background-position-x:0,max(var(--gut),calc(50% + 12px - var(--max) / 2 + var(--gut))),0,max(var(--gut),calc(50% + 60px - var(--max) / 2 + var(--gut)))}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
 h1,h2,h3,h4,p,ol,ul,dl,dd,figure{margin:0}
@@ -65,13 +81,18 @@ ol,ul{padding:0;list-style:none}
   font:600 14px var(--body);transform:translateY(-200%);white-space:nowrap}
 .skip:focus{transform:none}
 
-/* ---- header ---- */
-.hud{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  padding:10px var(--gut);background:color-mix(in srgb,var(--paper) 88%,transparent);
+/* ---- header ----
+   The home page's masthead (its .navbar): the wordmark on the content's
+   edge, the sections from 1360px, the language, and the one action from
+   721px; under 721px the phone bar carries the action. The bar inside has
+   the page's width (--max), so at 1920 the wordmark stands where the
+   sheets begin, as the home page's does. */
+.hud{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 88%,transparent);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hud-bar{display:flex;align-items:center;gap:var(--s-5);max-width:var(--max);margin:0 auto;padding:13px var(--gut)}
 .bc{min-width:0}
 .bc ol{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.bc li{display:flex;align-items:center;gap:10px;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.bc li{display:flex;align-items:center;gap:10px;font:500 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .bc li+li::before{content:"/";color:var(--faint)}
 /* the wordmark, drawn (scripts/lib/wordmark.mjs), the same lockup as the
    home page's at 13px of cap height; "idea" takes the theme's teal through
@@ -79,14 +100,35 @@ ol,ul{padding:0;list-style:none}
    gives its height back, so the hud stays --hud-h */
 .hud-logo{display:inline-flex;align-items:center;min-height:44px;margin-block:-4px;text-decoration:none;color:var(--ink)}
 .hud-logo .wm{display:block;height:13px;width:auto;overflow:visible}
+/* the home page's sections, as its bar sets them: 14px mono in the muted
+   ink, 24px apart, each a 44px target */
+.hud-nav{display:none;gap:var(--s-5)}
+.hud-nav a{display:inline-flex;align-items:center;min-height:44px;font:400 14px/1.6 var(--mono);color:var(--muted);text-decoration:none;white-space:nowrap;transition:color var(--t-hover)}
+@media (hover:hover){.hud-nav a:hover{color:var(--ink)}}
+.hud-end{display:flex;align-items:center;gap:var(--s-3);margin-inline-start:auto}
+/* the header's action is the home page's: 44px tall in the bar */
+/* (.hud .hud-cta: the .btn rule below is as specific and comes later) */
+.hud .hud-cta{display:none;min-height:44px;padding-block:0;white-space:nowrap}
+@media (min-width:721px){.hud .hud-cta{display:inline-flex}}
+/* The crumb's last step shows from 960 to 1359px, where the bar has room
+   for it: under 960px the wordmark, the language and (from 721px) the
+   button fill the bar, as on the home page, whose phone bar shows no crumb
+   either (it wrapped under the wordmark and made the header 79-90px); from
+   1360px the sections are there. It stays for screen readers. */
+@media (max-width:959px),(min-width:1360px){
+  .bc li[aria-current]{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+}
+@media (min-width:1360px){.hud-nav{display:flex}}
 /* flex:none: as a flex item with overflow:hidden it could shrink to nothing,
    and at 320-360px it clipped the ع button off */
 .lang{display:flex;flex:none;border:1px solid var(--line-2);border-radius:8px;overflow:hidden}
 /* 44px buttons: the group was 36px tall, under a thumb */
 .lang button{min-width:44px;min-height:44px;background:transparent;border:0;color:var(--muted);font:500 12px var(--mono);cursor:pointer}
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.lang button:hover{color:var(--ink)}
-.lang button[aria-pressed="true"]:hover{color:var(--paper)}
+@media (hover:hover){
+  .lang button:hover{color:var(--ink)}
+  .lang button[aria-pressed="true"]:hover{color:var(--paper)}
+}
 /* the drawn ع (scripts/lib/ayn.mjs): the label's size, on its baseline, in its colour */
 .lang .ayn{width:.95em;height:.95em;vertical-align:-.12em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 /* .lang clips its overflow, so an outside ring would be cut to stray bars:
@@ -94,12 +136,12 @@ ol,ul{padding:0;list-style:none}
 .lang button:focus-visible{outline-offset:-3px}
 .lang button[aria-pressed="true"]:focus-visible{outline-color:var(--paper)}
 
-main{max-width:calc(var(--max) + 2 * var(--gut));margin:0 auto;padding:0 var(--gut)}
+main{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
 main:focus{outline:none}
 
 /* ---- intro ---- */
 .intro{padding:clamp(56px,9vw,120px) 0 clamp(40px,6vw,72px)}
-.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.kicker{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
 .intro h1{font:700 clamp(34px,5.4vw,68px)/1.05 var(--display);letter-spacing:.01em;max-width:14em;text-wrap:balance}
 .intro h1 em{font-style:normal;color:var(--gold)}
 html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25}
@@ -108,8 +150,8 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .index ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px}
 .index a{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 16px;border:1px solid var(--line-2);
   border-radius:var(--r);text-decoration:none;background:var(--paper-2);transition:border-color .2s,background-color .2s}
-.index a:hover{border-color:var(--gold);background:var(--panel)}
-.ix-n{font:500 12px var(--mono);color:var(--gold);letter-spacing:.08em}
+@media (hover:hover){.index a:hover{border-color:var(--gold);background:var(--panel)}}
+.ix-n{font:500 12px/1.4 var(--mono);color:var(--gold);letter-spacing:.08em}
 .ix-name{font-weight:600}
 /* the jump affordance: the chip is an anchor to its sheet, so it says down */
 .ix-go{margin-inline-start:auto;color:var(--gold);font-size:16px;line-height:1}
@@ -129,7 +171,7 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 }
 
 /* ---- a sheet ---- */
-.sheet{position:relative;margin:0 0 clamp(56px,7vw,96px);padding:clamp(20px,3vw,40px);
+.sheet{--sh-pad:clamp(20px,3vw,40px);position:relative;margin:0 0 clamp(56px,7vw,96px);padding:var(--sh-pad);
   border:1px solid var(--line-2);border-radius:4px;background:color-mix(in srgb,var(--paper-2) 82%,transparent)}
 /* registration ticks at the corners, like a plotted sheet */
 .tick{position:absolute;width:14px;height:14px;border-color:var(--gold);border-style:solid;border-width:0}
@@ -140,62 +182,73 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 
 .sh-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;padding-bottom:clamp(16px,2vw,24px);
   margin-bottom:clamp(20px,2.6vw,32px);border-bottom:1px solid var(--line)}
-.sh-no{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.sh-no{font:500 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .sh-head h2{font:700 clamp(26px,3.2vw,40px)/1.1 var(--display);letter-spacing:.01em}
-.chip{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:7px 10px;border-radius:999px;border:1px solid}
+.chip{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid}
 .chip.is-live{color:var(--teal);border-color:color-mix(in srgb,var(--teal) 55%,transparent)}
 .chip.is-concept{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 55%,transparent)}
 /* our product's chip: the plain ink (the themes have no third accent; it was a violet of its own) */
 .chip.is-product{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 55%,transparent)}
 .visit{margin-inline-start:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;
-  border-radius:8px;border:1px solid var(--line-2);text-decoration:none;font:500 14px var(--body);transition:border-color .2s,background-color .2s}
-.visit:hover{border-color:var(--gold);background:var(--panel)}
+  border-radius:8px;border:1px solid var(--line-2);text-decoration:none;font:500 14px var(--body);transition:border-color var(--t-hover),background-color var(--t-hover)}
+@media (hover:hover){.visit:hover{border-color:var(--gold);background:var(--panel)}}
+/* the drawn arrows (build-scene.mjs ARROW): the label's size, its colour */
+.arr{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
 /* every grid gets an explicit minmax(0,1fr) column: an implicit (auto)
    column grew to the nowrap browser-bar URL and pushed the sheet 17-57px past
-   the viewport at 320-376px */
-.sh-body{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(20px,3vw,40px)}
-@media (min-width:1000px){.sh-body{grid-template-columns:minmax(0,4fr) minmax(0,8fr);align-items:start}}
+   the viewport at 320-376px.
+   One sheet, one grid: 12 columns 32px apart, from 1000px. The title block
+   takes 4 and the main capture 8, the context note 4 and the gains 8, each
+   page capture 4, the phones 4 and the visual system 8, so every vertical
+   gutter of a sheet falls on the same two lines. At 1440 they were three
+   column systems (4fr/8fr with a 40px gap, three thirds 20px apart, 5fr/7fr). */
+.sh-body,.gv-body,.sh-pair{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(20px,3vw,40px) var(--s-6)}
+@media (min-width:1000px){
+  .sh-body,.gv-body,.sh-pair,.sheet .pages{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--s-6)}
+  .sh-body,.gv-body{align-items:start}
+  :is(.sh-spec,.gv-ctx,.sh-mob,.pg){grid-column:span 4}
+  :is(.sh-main,.gv-list,.sh-sys){grid-column:span 8}
+}
 .sh-sum{font-size:17px;line-height:1.6;color:var(--ink)}
 .tblock{margin:24px 0;border:1px solid var(--line-2);border-radius:6px}
 .tblock div{display:grid;grid-template-columns:minmax(96px,34%) minmax(0,1fr);gap:12px;padding:10px 14px}
 .tblock div+div{border-top:1px solid var(--line)}
 .tblock dt{font:500 12px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
 .tblock dd{font-size:14px;color:var(--ink)}
-.sh-h{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.sh-h{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 .deliv{display:grid;gap:8px}
 .deliv li{position:relative;padding-inline-start:22px;font-size:15px;color:var(--ink)}
 .deliv li::before{content:"";position:absolute;inset-inline-start:2px;top:.62em;width:9px;height:9px;border:1.5px solid var(--teal);transform:rotate(45deg)}
 
 /* framed captures */
-.frame,.phone{display:block;border:1px solid var(--line-2);background:var(--paper);overflow:hidden;cursor:zoom-in}
-.frame img,.phone img{width:100%;transition:transform .4s ease}
-.zoom:hover img{transform:scale(1.015)}
+.frame,.phone{position:relative;display:block;border:1px solid var(--line-2);background:var(--paper);overflow:hidden;cursor:zoom-in}
+.frame img,.phone img{width:100%;transition:transform var(--t-enter)}
+@media (hover:hover){.zoom:hover img{transform:scale(1.015)}}
 .sh-main{position:relative;padding:0 0 30px;margin:0}
 .sh-main .chrome{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid var(--line-2);border-bottom:0;
   border-radius:8px 8px 0 0;background:var(--panel)}
 .chrome i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--line-2)}
-.chrome span{min-width:0;margin-inline-start:10px;font:400 12px var(--mono);color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.chrome span{min-width:0;margin-inline-start:10px;font:400 12px/1.4 var(--mono);color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .sh-main .frame{border-radius:0 0 8px 8px}
 /* dimension lines: width under the plate, height beside it */
 .dims{position:absolute;inset:30px 0 0;pointer-events:none}
 .dim-w{position:absolute;left:0;right:0;bottom:0;height:14px;display:grid;place-items:center;
-  font:500 12px var(--mono);letter-spacing:.1em;color:var(--muted)}
+  font:500 12px/1.4 var(--mono);letter-spacing:.1em;color:var(--muted)}
 .dim-w::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line-2)}
 .dim-w::after{content:"";position:absolute;inset:0;border-inline:1px solid var(--line-2)}
 .dim-w span{position:relative;z-index:1;padding:0 .5rem;background:var(--paper-2)}
 .dim-h{display:none}
 
 .sh-block{margin-top:clamp(28px,3.6vw,48px)}
-.pages{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(12px,1.6vw,20px)}
-@media (min-width:700px){.pages{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.pages{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5) var(--s-6)}
+@media (min-width:700px) and (max-width:999px){.pages{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .pg .frame{border-radius:6px}
 .pg figcaption{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;margin-top:10px}
 .pg b{font-weight:600;font-size:15px}
-.pg code,.ph figcaption,.faces,.swatches code{font:400 12px var(--mono);color:var(--muted)}
+.pg code,.ph figcaption,.faces,.swatches code{font:400 12px/1.4 var(--mono);color:var(--muted)}
 
-.sh-pair{display:grid;grid-template-columns:minmax(0,1fr);gap:0 clamp(20px,3vw,40px)}
-@media (min-width:1000px){.sh-pair{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.sh-pair{row-gap:0}
 .phones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px clamp(12px,2vw,24px);max-width:440px}
 .phones img{aspect-ratio:9/19.5;object-fit:cover;object-position:top}
 /* the bezel's hairline is a shadow, not an outline: an outline here has the
@@ -204,15 +257,15 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .ph figcaption{margin-top:12px;text-align:center}
 /* the offer under the live sheets: the button and its conditions share a
    row, wrapping with room, and sit clear of the captions above */
-.sh-act{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center;margin-top:2rem}
-.sh-act small{flex:1 1 16em;max-width:36em;font-size:13px;line-height:1.5;color:var(--muted)}
+.sh-act{display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-4);align-items:center;margin-top:var(--s-6)}
+.sh-act small{flex:1 1 16em;max-width:36em;font-size:14px;line-height:1.5;color:var(--muted)}
 /* the founder's own work on the client: a credit row, not a seventh deliverable */
 .sh-ident{margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 /* its link is a 44px target (it was 17px tall), the row's line unchanged */
-.sh-ident a{display:inline-block;padding-block:14px;margin-block:-14px}
+.sh-ident a{display:inline-flex;align-items:center;gap:6px;padding-block:14px;margin-block:-14px}
 
 .system{display:grid;gap:24px;padding:clamp(16px,2vw,24px);border:1px solid var(--line-2);border-radius:var(--r);background:var(--paper)}
-.system h4{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+.system h4{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
 .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
 .swatches li{display:grid;gap:4px}
 .swatches i{display:block;height:56px;border-radius:6px;background:var(--c);border:1px solid var(--line-2)}
@@ -224,24 +277,22 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .ba{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-bottom:24px}
 @media (min-width:700px){.ba{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ba>div{position:relative}
-.ba-tag{position:absolute;top:10px;inset-inline-start:10px;z-index:1;font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;
+.ba-tag{position:absolute;top:10px;inset-inline-start:10px;z-index:1;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;
   padding:6px 9px;border-radius:999px;background:var(--paper);border:1px solid var(--line-2);color:var(--muted)}
 .ba-tag.is-after{color:var(--teal);border-color:color-mix(in srgb,var(--teal) 55%,transparent)}
-.ba figcaption{grid-column:1/-1;font:400 12px var(--mono);color:var(--muted);text-transform:capitalize}
+.ba figcaption{grid-column:1/-1;font:400 12px/1.4 var(--mono);color:var(--muted);text-transform:capitalize}
 .assets{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
 .assets a{display:grid;place-items:center;aspect-ratio:4/3;padding:16px;border:1px solid var(--line-2);border-radius:var(--r);background:#fff;cursor:zoom-in}
 .assets img{max-height:100%;object-fit:contain}
-.assets span{display:block;margin-top:8px;font:400 12px var(--mono);color:var(--muted);text-transform:capitalize}
+.assets span{display:block;margin-top:8px;font:400 12px/1.4 var(--mono);color:var(--muted);text-transform:capitalize}
 
 /* ===== r3/b: what the work gives the client ===== */
 /* Under each sheet's title block: the client's context in one sentence (a
    framed note, like the spec table), then numbered rows, each a thing a
    visitor can do on the live site today with the page that shows it
    (scripts/scene-data.mjs `gains`). From 1000px the note and the rows share
-   the title block's 4/8 split; the page path sits at the row's end from
+   the title block's 4/8 columns (the sheet's grid, above); the page path sits at the row's end from
    700px and under the sentence below. Nothing moves. */
-.gv-body{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
-@media (min-width:1000px){.gv-body{grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(20px,3vw,40px);align-items:start}}
 .gv-ctx{padding:14px 16px;border:1px solid var(--line-2);border-radius:6px;background:var(--paper);font-size:15px;line-height:1.6;color:var(--ink)}
 .gv-ctx b{display:block;margin-bottom:6px;font:500 12px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
 .gv-list{border-top:1px solid var(--line)}
@@ -254,31 +305,146 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 html[dir="rtl"] .gv-ctx b{font-family:var(--ar);font-size:13px;font-weight:600;letter-spacing:0;text-transform:none}
 html[dir="rtl"] .gv-n{letter-spacing:0}
 
-/* ---- closing ---- */
-.outro{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;padding:clamp(40px,6vw,72px) 0 clamp(56px,8vw,96px);border-top:1px solid var(--line)}
-.outro p{font:700 clamp(22px,2.6vw,30px)/1.2 var(--display);flex-basis:100%}
-html[dir="rtl"] .outro p{font-family:var(--ar)}
-.cta{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:8px;background:var(--crimson);color:var(--on-crimson);
-  font:600 15px var(--body);text-decoration:none}
-.cta:hover{filter:brightness(1.08)}
-.back{display:inline-flex;align-items:center;min-height:44px;font:500 13px var(--mono);color:var(--muted);text-decoration:none}   /* a 44px target (it was 17px) */
-.back:hover{color:var(--ink)}
+/* ---- the work that is not a client's: two cards in one row ---- */
+.others{margin:0 0 clamp(56px,7vw,96px)}
+.group{font:700 clamp(22px,2.6vw,30px)/1.2 var(--display);margin-bottom:var(--s-5);text-wrap:balance}
+html[dir="rtl"] .group{font-family:var(--ar)}
+.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
+@media (min-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sh-card{display:flex;flex-direction:column;gap:var(--s-4);margin:0}
+.sh-card .sh-head{margin:0;padding-bottom:var(--s-4)}
+.sh-card .sh-head h2{font-size:clamp(24px,2.4vw,32px)}
+.sh-card .sh-sum{font-size:16px}
+.sh-card .sh-main{padding:0}
+.sh-card .visit{align-self:flex-start;margin:auto 0 0}
 
-/* ---- viewer ---- */
-.viewer{max-width:min(96vw,1600px);max-height:94vh;padding:0;border:1px solid var(--line-2);border-radius:8px;background:var(--paper);color:var(--ink);overflow:auto}
+/* ---- the one button: the home page's .btn (assets/styles.css, which this
+   page does not load), the same geometry in the theme's own tokens: 52px,
+   the 14px mono label, one radius, a 1px edge; the primary is the filled
+   accent, the WhatsApp way the teal outline. It was a Geist 600 15px
+   button of its own, 48px tall. ---- */
+.btn{font-family:var(--mono);font-size:var(--t-ui);font-weight:700;line-height:1.4;padding:var(--s-3) var(--s-5);min-height:52px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
+  transition:color var(--t-enter),background-color var(--t-enter),border-color var(--t-enter),box-shadow var(--t-enter);
+  text-decoration:none;display:inline-flex;align-items:center;gap:var(--s-2)}
+.btn-primary{background:var(--crimson);color:var(--on-crimson);border-color:var(--crimson);box-shadow:var(--btn-glow)}
+.btn-teal{background:transparent;color:var(--teal-text);border-color:var(--teal)}
+@media (hover:hover){
+  .btn-primary:hover{background:var(--crimson-hi);border-color:var(--crimson-hi)}
+  .btn-teal:hover{background:color-mix(in srgb,var(--teal) 8%,transparent);border-color:var(--teal-text)}
+}
+.wa-i{flex:none;width:19px;height:19px;display:block}
+.wa-i svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+/* under 600px each of the two takes the full width, as every primary call
+   to action does on a phone */
+@media (max-width:599px){.sh-act .btn,.outro-acts .btn{flex:1 1 100%;justify-content:center}}
+
+/* ---- the page's foot (contentinfo, after <main>) ---- */
+.outro{border-top:1px solid var(--line)}
+.outro-in{max-width:var(--max);margin:0 auto;padding:clamp(40px,6vw,72px) var(--gut) clamp(56px,8vw,96px)}
+.outro-q{font:700 clamp(22px,2.6vw,30px)/1.2 var(--display)}
+html[dir="rtl"] .outro-q{font-family:var(--ar)}
+.outro-acts{display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-4);margin-top:var(--s-5)}
+.outro-nav{display:flex;flex-wrap:wrap;gap:0 var(--s-5);margin-top:var(--s-6);padding-top:var(--s-4);border-top:1px solid var(--line)}
+/* each a 44px target */
+.outro-nav a{display:inline-flex;align-items:center;min-height:44px;font:400 14px/1.6 var(--mono);color:var(--muted);text-decoration:none;transition:color var(--t-hover)}
+.outro-nav .back{margin-inline-start:auto}
+@media (hover:hover){.outro-nav a:hover{color:var(--ink)}}
+
+/* ---- phone bar: the home page's .m-contact (scene/app.js toggles .on) ----
+   Phones, but not a phone on its side (short and at least 480px wide),
+   where it would cover a third of the screen. Hidden means visibility
+   hidden too, so its two links leave the Tab order. 10 + 52 + 10 + 1 =
+   73px; a control focused under it is scrolled clear of it. */
+.m-contact{display:none}
+@media (max-width:720px) and (min-height:561px),(max-width:479px){
+  .m-contact{position:fixed;inset-inline:0;bottom:0;z-index:15;display:flex;gap:10px;
+    padding:10px max(var(--gut),env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(var(--gut),env(safe-area-inset-left));
+    background:color-mix(in srgb,var(--paper) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+    transform:translateY(110%);visibility:hidden;transition:transform var(--t-enter),visibility 0s linear .3s}
+  .m-contact.on{transform:none;visibility:visible;transition:transform var(--t-enter),visibility 0s}
+  .m-contact .btn{flex:1;justify-content:center;padding:var(--s-2) var(--s-3);line-height:1.2;text-align:center}
+  html{scroll-padding-bottom:calc(73px + 9px + env(safe-area-inset-bottom))}
+}
+@media (prefers-reduced-motion:reduce){.m-contact,.m-contact.on{transition:none}}
+
+/* ---- viewer ----
+   The dialog holds a pane that scrolls; the close button stays in its
+   corner over it. On a desk the capture fits the screen; under 700px the
+   dialog is the screen and the capture is shown at its own size (1440px
+   wide, a phone's 780), panned with a finger: fitted, a 1440 capture was
+   372px wide again, the size the visitor had just tapped to leave. */
+.viewer{max-width:min(96vw,1600px);max-height:94vh;padding:0;border:1px solid var(--line-2);border-radius:8px;background:var(--paper);color:var(--ink);overflow:hidden}
 .viewer::backdrop{background:rgba(4,9,15,.86)}
+.viewer-pane{max-height:94vh;overflow:auto;overscroll-behavior:contain}
 .viewer img{width:100%;cursor:zoom-out}
 .viewer.is-tall{max-width:min(92vw,460px)}
-.viewer form{position:sticky;top:0;z-index:1;height:0;display:flex;justify-content:flex-end}
-.viewer-x{margin:8px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
+.viewer form{position:absolute;top:0;inset-inline-end:0;z-index:1}
+.viewer-x{display:grid;place-items:center;margin:8px;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);cursor:pointer}
+.viewer-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+@media (max-width:699px){
+  .viewer,.viewer.is-tall{width:100vw;max-width:none;height:100vh;max-height:none;margin:0;border:0;border-radius:0}
+  .viewer-pane{height:100%;max-height:none}
+  .viewer img{width:auto;max-width:none;cursor:default}
+}
 
 @media (prefers-reduced-motion:reduce){.frame img,.phone img{transition:none}.zoom:hover img{transform:none}}
 @media (max-width:600px){
-  .sheet{padding:16px;border-radius:2px}
+  .sheet{--sh-pad:16px;border-radius:2px}
   .visit{margin-inline-start:0;width:100%;justify-content:center}
-  .tblock div{grid-template-columns:minmax(0,1fr);gap:2px}
 }
-@media print{.hud,.viewer,.skip,body::before{display:none}body{background:#fff;color:#000}}
+
+/* ---- phones: the proof first ----
+   Under 700px a client sheet reads in one column, reordered: what the site
+   is, then the phone capture at about 260px (the size a phone shows it),
+   then the desk capture, the facts, the other pages, the gains and the
+   system. The phones and the other pages each scroll sideways in one
+   strip, the next one peeking in at the edge. At 390 the sheet's phone
+   captures came after four desk frames at 0.22 scale, nine screens down. */
+@media (max-width:699px){
+  .sheet:not(.sh-card){display:flex;flex-direction:column}
+  .sheet:not(.sh-card) :is(.sh-body,.sh-spec,.sh-pair){display:contents}
+  .sheet:not(.sh-card) .sh-sum{order:1}
+  .sh-mob{order:2;margin-top:var(--s-5)}
+  .sheet:not(.sh-card) .sh-main{order:3;margin-top:var(--s-5)}
+  .sh-spec>:is(.tblock,.sh-h,.deliv,.sh-ident){order:4}
+  .sh-pgs{order:5}
+  .gv{order:6}
+  .sh-sys{order:7}
+  .sheet>.sh-block:not(.sh-pgs,.gv){order:8}
+  .sh-act{order:9}
+  .phones,.pages{display:flex;gap:var(--s-3);max-width:none;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin-inline:calc(-1 * var(--sh-pad));padding:0 var(--sh-pad) 8px;scroll-padding-inline:var(--sh-pad)}
+  .ph{flex:0 0 248px;scroll-snap-align:start}
+  .pg{flex:0 0 85%;scroll-snap-align:start}
+  /* the two cards that are not client work: one row here too, the second
+     peeking in, so they take one card's height rather than two */
+  .cards{display:flex;gap:var(--s-3);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin-inline:calc(-1 * var(--gut));padding:0 var(--gut) 8px;scroll-padding-inline:var(--gut)}
+  .sh-card{flex:0 0 85%;scroll-snap-align:start}
+  /* the spec's labels beside their values, as on a desk, and the palette
+     three to a row on short chips: together they were a screen per sheet */
+  .tblock div{grid-template-columns:minmax(88px,32%) minmax(0,1fr);gap:12px}
+  .swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .swatches i{height:32px}
+  .swatches b{overflow-wrap:anywhere}
+  .sheet,.others{margin-bottom:var(--s-6)}
+  .intro{padding:var(--s-7) 0 var(--s-6)}
+  .sh-card{gap:var(--s-3)}
+  .outro-in{padding-bottom:var(--s-5)}
+  .outro-nav{margin-top:var(--s-5)}
+  .gv-list li{padding:10px 0}
+  .gv-ctx{padding:12px 14px}
+  /* a tap opens the capture at its own size: the badge says so, a disc in
+     the paper colour and the magnifier in the theme's ink (a mask, so it
+     follows the theme) */
+  .zoom::before,.zoom::after{content:"";position:absolute;z-index:1;pointer-events:none}
+  .zoom::before{inset-block-end:8px;inset-inline-end:8px;width:32px;height:32px;border-radius:50%;
+    border:1px solid var(--line-2);background:color-mix(in srgb,var(--paper) 88%,transparent)}
+  .zoom::after{inset-block-end:15px;inset-inline-end:15px;width:18px;height:18px;background:var(--ink);
+    -webkit-mask:var(--ic-zoom) center/contain no-repeat;mask:var(--ic-zoom) center/contain no-repeat}
+}
+:root{--ic-zoom:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6'/%3E%3Cpath d='m15 15 5 5M10.5 8v5M8 10.5h5'/%3E%3C/svg%3E")}
+@media print{.hud,.viewer,.skip,.m-contact,body::before{display:none}body{background:#fff;color:#000}}
 /* Forced colours (Windows contrast themes) replace backgrounds with Canvas:
    the pressed language would look like the others, the contact button would
    lose its shape and the palette swatches (content, not decoration) their
@@ -286,7 +452,7 @@ html[dir="rtl"] .outro p{font-family:var(--ar)}
 @media (forced-colors:active){
   .lang button[aria-pressed="true"],.lang button[aria-pressed="true"]:hover{forced-color-adjust:none;background:Highlight;color:HighlightText}
   .lang button[aria-pressed="true"]:focus-visible{outline-color:HighlightText}
-  .cta,.skip{border:1px solid ButtonText}
+  .btn,.skip{border:1px solid ButtonText}
   .swatches i{forced-color-adjust:none}
   /* the wordmark's "idea" is a fill, which forced colours leave alone: it
      takes the link's colour so the whole mark reads in one ink */
@@ -310,10 +476,13 @@ html[dir="rtl"] .sh-h,html[dir="rtl"] .kicker{font-size:13px;font-weight:600}
 html[dir="rtl"] .voice figcaption,.voice[lang="ar"] figcaption{letter-spacing:0}
 .voice figcaption b{color:var(--ink)}
 /* forward arrows point the reading way: mirrored in Arabic */
-html[dir="rtl"] .visit .arr{display:inline-block;transform:scaleX(-1)}
-/* Below 320px the crumb wraps and the header grows (79px at 280-300, 93px at
-   260): reserve that height, so focus is never scrolled under it. */
-@media (max-width:319px){:root{--hud-h:96px}}
+html[dir="rtl"] .arr{transform:scaleX(-1)}
+/* Phones: 12px of gap and a 12px wordmark (the home page's phone size), so
+   the wordmark and the 138px language group share one row down to 320px.
+   Below that the row wraps and the header grows: reserve that height, so
+   focus is never scrolled under it. */
+@media (max-width:719px){.hud-bar{gap:var(--s-3)}.hud-logo .wm{height:12px}}
+@media (max-width:319px){:root{--hud-h:121px}.hud-bar{flex-wrap:wrap}}
 /* Arabic inside a French or English page (the ع language button) is set in
    the Arabic face, as on the home page, not a system fallback. */
 html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
@@ -325,7 +494,7 @@ html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
    text ran under the notch (emulated at 844x390: the ع button at x=35, the
    wordmark to x=810 of 844). */
 @supports (padding:max(0px)){
-  .hud,main{padding-left:max(var(--gut),env(safe-area-inset-left));padding-right:max(var(--gut),env(safe-area-inset-right))}
+  .hud-bar,main,.outro-in{padding-left:max(var(--gut),env(safe-area-inset-left));padding-right:max(var(--gut),env(safe-area-inset-right))}
 }
 /* The capture viewer: 94vh is the LARGE viewport on iOS, taller than what
    shows while the toolbars are out, so the foot of a tall capture sat under

@@ -409,7 +409,11 @@ export const PROJECTS = [
    the design term stays in the kicker only. `group` heads the sheets that
    are not client work; `act` is the offer's call to action under each live
    sheet (its conditions come from the home dictionaries, prev.terms); `by`
-   introduces a sheet's `identity` link. */
+   introduces a sheet's `identity` link. `altDesk` and `altPhone` are each
+   capture's alt, filled in by build-scene.mjs: the project's name, the
+   page's label and, on a desk capture, its address. An arrow at either end
+   of a label (`act`, `contactCta`, `back`, `identity`) is cut off by
+   build-scene.mjs and drawn instead. */
 export const UI = {
   fr: {
     dir: 'ltr', title: 'Nos réalisations web, projet par projet — Numidea Labs',
@@ -428,6 +432,7 @@ export const UI = {
     ctxL: { live: 'Le client', concept: 'Le cadre', product: 'Pour qui' },
     role: { accent: 'Accent', ink: 'Texte', muted: 'Secondaire', surface: 'Surface', ground: 'Fond', highlight: 'Relief', night: 'Mode sombre', cta: 'Action' },
     viewer: 'Capture agrandie', close: 'Fermer',
+    altDesk: '{name}, page {label} ({path})\u202f: capture du site en\u00a0ligne sur un écran de 1440\u00a0px', altPhone: '{name}, page {label}\u202f: capture du site en\u00a0ligne sur un téléphone',
     captured: 'Captures du site en\u00a0ligne', back: '← Retour à Numidea Labs', contact: 'Un projet à poser sur la table\u202f?', contactCta: 'Demander mon Aperçu gratuit →',
   },
   en: {
@@ -447,6 +452,7 @@ export const UI = {
     ctxL: { live: 'The client', concept: 'The brief', product: 'Who it is for' },
     role: { accent: 'Accent', ink: 'Text', muted: 'Secondary', surface: 'Surface', ground: 'Ground', highlight: 'Highlight', night: 'Dark mode', cta: 'Action' },
     viewer: 'Enlarged screenshot', close: 'Close',
+    altDesk: '{name}, {label} page ({path}): screenshot of the live site on a 1440\u00a0px screen', altPhone: '{name}, {label} page: screenshot of the live site on a phone',
     captured: 'Captured from the live site', back: '← Back to Numidea Labs', contact: 'Have a project in mind?', contactCta: 'Request my free Preview →',
   },
   ar: {
@@ -466,6 +472,7 @@ export const UI = {
     ctxL: { live: 'العميل', concept: 'الإطار', product: 'لمن' },
     role: { accent: 'لون مميّز', ink: 'النص', muted: 'ثانوي', surface: 'سطح', ground: 'خلفية', highlight: 'إبراز', night: 'الوضع الداكن', cta: 'إجراء' },
     viewer: 'لقطة مكبّرة', close: 'إغلاق',
+    altDesk: '{name}، صفحة {label} ({path}): لقطة من الموقع على\u00a0الإنترنت على شاشة بعرض 1440\u00a0بكسل', altPhone: '{name}، صفحة {label}: لقطة من الموقع على\u00a0الإنترنت على هاتف',
     captured: 'لقطات من الموقع على\u00a0الإنترنت', back: '→ العودة إلى Numidea Labs', contact: 'مشروع تريد وضعه على الطاولة؟', contactCta: 'اطلب معاينتك المجانية ←',
   },
 };

@@ -35,6 +35,30 @@ const LIGHT = THEMES.filter((t) => [1, 3, 5].map((i) => parseInt(VOID[t].slice(i
 // sheet (decision 17) are its own prev.terms, so the sheets never state
 // terms of their own and follow the home page when the owner changes them.
 const HOME = loadDicts();
+// a home-page string the sheets reuse as it is (the masthead's links, the
+// offer's buttons, the WhatsApp openers): one key in both dictionaries, so
+// the page follows the home page's copy and never words it twice
+const home = (k) => put(k, Object.fromEntries(LANGS.map((l) => [l, HOME[l][k]])));
+// The studio's WhatsApp number, as the home page states it (index.html),
+// and a link that opens the conversation on one of the home page's lines.
+// The French text is baked; scene/app.js swaps it for the page's language
+// when the link is followed.
+const WA = (readFileSync(join(ROOT, 'index.html'), 'utf8').match(/window\.NUMIDEA_WA = '(\d+)'/) || [])[1];
+if (!WA) throw new Error('index.html: no window.NUMIDEA_WA number for the WhatsApp links');
+const WA_ICON = '<span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>';
+const waLink = (cls, textKey, labelKey) => `<a class="${cls} wa-link" href="https://wa.me/${WA}?text=${encodeURIComponent(home(textKey))}" data-wa-text="${textKey}" target="_blank" rel="noopener">${WA_ICON}<span ${T(labelKey)}>${esc(home(labelKey))}</span></a>`;
+/* The arrows are drawn, not typed: →, ← and ↗ are in none of the faces the
+   page loads, so each came in whatever system face had it (DejaVu,
+   Liberation), heavier than the label beside it. A label's own arrow is cut
+   off here, in every language, and the drawing takes its place: E is
+   forward (it turns in Arabic, as the reading does), NE leaves the site. */
+const ARROW = {
+  e: '<svg class="arr" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>',
+  ne: '<svg class="arr" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg>',
+};
+const bare = (v) => v.replace(/^\s*[←→↗]\s*|\s*[←→↗]\s*$/g, '');
+const putBare = (key, byLang) => put(key, Object.fromEntries(LANGS.map((l) => [l, bare(byLang[l])])));
+const uiBare = (k) => putBare('ui.' + k, Object.fromEntries(LANGS.map((l) => [l, UI[l][k]])));
 // The address a sheet's browser bar shows. Our own product is a page of this
 // site: its relative link resolves against the published BASE, never an
 // invented host. Host only: the path and hash are cut mid-word at 390px, so
@@ -58,16 +82,20 @@ const pad = (n) => String(n).padStart(2, '0');
 
 /* A capture and its smaller candidate, both written by work-capture.mjs: the
    desktop frames at 720w beside the 1440 file, the phone frames at 416w
-   beside the 780 one (the phone box is 208 CSS px at most, so 416 serves it
-   at 2x). sizes is each frame's width as scene/style.css lays it out,
-   measured on 2026-10-31: the main frame 86vw of the viewport to 999px, then
-   55vw, capped at 743px; a page frame 86vw to 699px, then 28vw, capped at
-   371px; a phone frame 39vw to 599px, then at most 202px, 196px from 1000px.
-   Without these the page sent 1.5 MB of 1440-wide captures to a phone. */
+   beside the 780 one. sizes is each frame's width as scene/style.css lays
+   it out on the sheet's 12 columns (32px gaps), measured on 2026-11-07: the
+   main frame (8 columns) 54vw from 1000px, 902px once the page stops
+   growing at 1700, the sheet's width below; a page frame (4 columns) 26vw
+   from 700px, 435px from 1700, and on a phone 85% of the strip it scrolls
+   in; a phone frame 248px in the phone's own strip, then half the 440px
+   box, then half of 4 columns. Without these the page sent 1.5 MB of
+   1440-wide captures to a phone. */
 const SIZES = {
-  main: '(min-width:1360px) 743px, (min-width:1000px) 55vw, 86vw',
-  page: '(min-width:1340px) 371px, (min-width:700px) 28vw, 86vw',
-  phone: '(min-width:1000px) 196px, (min-width:600px) 202px, 39vw',
+  main: '(min-width:1700px) 902px, (min-width:1000px) 54vw, 86vw',
+  page: '(min-width:1700px) 435px, (min-width:700px) 26vw, 70vw',
+  // a card is half the page from 1000px (two side by side), less its frame
+  card: '(min-width:1700px) 626px, (min-width:1000px) 37vw, 86vw',
+  phone: '(min-width:1700px) 206px, (min-width:1000px) 12vw, (min-width:700px) 210px, 248px',
 };
 const SMALL = { 1440: 720, 780: 416 };
 function shot(slug, file, alt, cls, w, h, kind, eager) {
@@ -97,15 +125,25 @@ function sheet(p, i) {
   // the founder's own work on the same client (`identity`): after the
   // deliverables and named as his, never among them (it is not the site's)
   const ident = p.identity ? `
-          <p class="sh-ident"><span ${T('ui.by')}>${esc(ui('by'))}</span> <a href="${esc(p.identity.href)}" target="_blank" rel="noopener" ${T(`${k}.identity`)}>${esc(put(`${k}.identity`, p.identity))}</a></p>` : '';
+          <p class="sh-ident"><span ${T('ui.by')}>${esc(ui('by'))}</span> <a href="${esc(p.identity.href)}" target="_blank" rel="noopener"><span ${T(`${k}.identity`)}>${esc(putBare(`${k}.identity`, p.identity))}</span>${ARROW.ne}</a></p>` : '';
   // decision 17: a delivered site ends on the offer, with the home page's
-  // own conditions. ../#apercu is the offer on the French page; its head
-  // sends an English or Arabic visitor on to en/ or ar/ with the hash kept.
+  // own conditions, and its two ways in: the request, which lands on the
+  // home page's form already written (data-prefill, scene/app.js), and
+  // WhatsApp, opened on the home page's Aperçu line. ../#contact is the form
+  // on the French page; its head sends an English or Arabic visitor on to
+  // en/ or ar/ with the hash kept.
   const act = p.status === 'live' ? `
-      <p class="sh-act"><a class="cta" href="../#apercu" ${T('ui.act')}>${esc(ui('act'))}</a> <small ${T('ui.terms')}>${esc(put('ui.terms', Object.fromEntries(LANGS.map((l) => [l, HOME[l]['prev.terms']]))))}</small></p>` : '';
+      <div class="sh-act">
+        <a class="btn btn-primary" href="../#contact" data-prefill><span ${T('ui.act')}>${esc(uiBare('act'))}</span>${ARROW.e}</a>
+        ${waLink('btn btn-teal', 'prev.waText', 'prev.wa')}
+        <small ${T('prev.terms')}>${esc(home('prev.terms'))}</small>
+      </div>` : '';
 
   const label = (pg, j, kind) => put(`${k}.${kind}${j}`, pg.label);
-  const altOf = (pg, j, kind) => put(`${k}.${kind}a${j}`, Object.fromEntries(LANGS.map((l) => [l, `${p.name} — ${pg.label[l]}`])));
+  // each capture's alt says what it is: whose site, which page (and its
+  // address), that it is the live site, and on which screen (UI.alt*)
+  const altOf = (pg, j, kind) => put(`${k}.${kind}a${j}`, Object.fromEntries(LANGS.map((l) =>
+    [l, UI[l][kind === 'pha' ? 'altPhone' : 'altDesk'].replace('{name}', p.name).replace('{label}', pg.label[l]).replace('{path}', pg.path || '/')])));
   const [main, ...rest] = p.pages;
   label(main, 0, 'pg'); const mainAlt = altOf(main, 0, 'pg');
 
@@ -185,7 +223,7 @@ function sheet(p, i) {
         <span class="sh-no"><span ${T('ui.sheet')}>${esc(ui('sheet'))}</span> ${n}</span>
         <h2 id="h-${p.slug}" dir="ltr">${esc(p.name)}</h2>
         <span class="chip is-${p.status}" ${T(`${k}.status`)}>${esc(statusTxt)}</span>
-        <a class="visit" href="${esc(p.url)}" title="${esc(fullHref(p.url))}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> <span class="arr" aria-hidden="true">${ext ? '↗' : '→'}</span></a>
+        <a class="visit" href="${esc(p.url)}" title="${esc(fullHref(p.url))}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> ${ext ? ARROW.ne : ARROW.e}</a>
       </header>
 
       <div class="sh-body">
@@ -207,7 +245,7 @@ function sheet(p, i) {
       </div>
 ${gv}
 
-      <section class="sh-block" aria-labelledby="pg-${p.slug} h-${p.slug}">
+      <section class="sh-block sh-pgs" aria-labelledby="pg-${p.slug} h-${p.slug}">
         <h3 class="sh-h" id="pg-${p.slug}" ${T('ui.pages')}>${esc(ui('pages'))}</h3>
         <div class="pages">
           ${pages}
@@ -215,13 +253,13 @@ ${gv}
       </section>
 
       <div class="sh-pair">
-        <section class="sh-block" aria-labelledby="mb-${p.slug} h-${p.slug}">
+        <section class="sh-block sh-mob" aria-labelledby="mb-${p.slug} h-${p.slug}">
           <h3 class="sh-h" id="mb-${p.slug}" ${T('ui.mobile')}>${esc(ui('mobile'))}</h3>
           <div class="phones">
             ${phones}
           </div>
         </section>
-        <section class="sh-block" aria-labelledby="sy-${p.slug} h-${p.slug}">
+        <section class="sh-block sh-sys" aria-labelledby="sy-${p.slug} h-${p.slug}">
           <h3 class="sh-h" id="sy-${p.slug}" ${T('ui.system')}>${esc(ui('system'))}</h3>
           <div class="system">
             <div>
@@ -242,15 +280,56 @@ ${gv}
     </article>`;
 }
 
+/* The work that is not a client's (the demo, our product) on a card each,
+   side by side: its title, what it is, its home page in the browser frame
+   and the way to it. The full sheet gave them 36% of the page on a phone,
+   nine screens of work nobody ordered. The data keeps their pages, phones
+   and gains (check.mjs reads them); the page shows the client sheets in
+   full and these two in brief. */
+function card(p, i) {
+  const k = 'p.' + p.slug, main = p.pages[0];
+  const ext = /^https?:/.test(p.url);
+  const statusTxt = put(`${k}.status`, Object.fromEntries(LANGS.map((l) => [l, UI[l].status[p.status]])));
+  const visit = put('ui.visit', Object.fromEntries(LANGS.map((l) => [l, UI[l].visit])));
+  const sum = put(`${k}.summary`, Object.fromEntries(LANGS.map((l) => [l, p.t[l].summary])));
+  put(`${k}.pg0`, main.label);
+  const alt = put(`${k}.pga0`, Object.fromEntries(LANGS.map((l) => [l, UI[l].altDesk.replace('{name}', p.name).replace('{label}', main.label[l]).replace('{path}', main.path || '/')])));
+  return `
+      <!-- ===================== ${p.name} ===================== -->
+      <article class="sheet sh-card" id="${p.slug}" aria-labelledby="h-${p.slug}">
+        <span class="tick tl" aria-hidden="true"></span><span class="tick tr" aria-hidden="true"></span>
+        <span class="tick bl" aria-hidden="true"></span><span class="tick br" aria-hidden="true"></span>
+        <header class="sh-head">
+          <span class="sh-no"><span ${T('ui.sheet')}>${esc(ui('sheet'))}</span> ${pad(i + 1)}</span>
+          <h2 id="h-${p.slug}" dir="ltr">${esc(p.name)}</h2>
+          <span class="chip is-${p.status}" ${T(`${k}.status`)}>${esc(statusTxt)}</span>
+        </header>
+        <p class="sh-sum" ${T(`${k}.summary`)}>${esc(sum)}</p>
+        <figure class="sh-main">
+          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(shownHost(p.url))}</span></div>
+          ${shot(p.slug, main.file, alt, 'frame', 1440, 900, 'card').replace('alt=', `${T(`${k}.pga0`, '-alt')} alt=`)}
+        </figure>
+        <a class="visit" href="${esc(p.url)}" title="${esc(fullHref(p.url))}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> ${ext ? ARROW.ne : ARROW.e}</a>
+      </article>`;
+}
+
 // decision 16: the delivered sites first, then one heading over the sheets
 // that are not client work (the demo, our product); the data keeps them
 // last, or the heading would stand over a client's site
 const cut = PROJECTS.findIndex((p) => p.status !== 'live');
 if (PROJECTS.some((p, i) => i > cut && cut >= 0 && p.status === 'live')) throw new Error('scene-data: a live sheet after the demo/product group');
-const group = `
-    <h2 class="group" id="others" ${T('ui.group')}>${esc(ui('group'))}</h2>`;
-const sheets = PROJECTS.map((p, i) => (i === cut ? group : '') + sheet(p, i)).join('\n');
+const group = cut < 0 ? '' : `
+    <section class="others" aria-labelledby="others">
+      <h2 class="group" id="others" ${T('ui.group')}>${esc(ui('group'))}</h2>
+      <div class="cards">${PROJECTS.slice(cut).map((p, j) => card(p, cut + j)).join('\n')}
+      </div>
+    </section>`;
+const sheets = PROJECTS.slice(0, cut < 0 ? undefined : cut).map((p, i) => sheet(p, i)).join('\n') + group;
 const index = PROJECTS.map((p, i) => `<li><a href="#${p.slug}"><span class="ix-n">${pad(i + 1)}</span><span class="ix-name" dir="ltr">${esc(p.name)}</span><span class="ix-go" aria-hidden="true">↓</span></a></li>`).join('\n        ');
+
+// the request a data-prefill link leaves for the home page's form
+// (scene/app.js): the home page's own Aperçu request, in each language
+home('prev.msg');
 
 // withCsp: the policy meta after the viewport meta, hashing the head script
 // (scripts/lib/csp.mjs); a data block like the dictionary is not hashed
@@ -327,15 +406,29 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAtt
 <body>
 <a class="skip" href="#sheets" ${T('ui.skip')}>${esc(ui('skip'))}</a>
 
+<!-- the home page's masthead, on this page's sheet: the wordmark and where
+     you are, the home page's sections from 1360px (where they fit beside
+     the rest, in all three languages), the language, and the header's one
+     action from 721px (the phone bar carries it below). Its inner row has
+     the page's own width, so the wordmark stands on the sheets' edge. -->
 <header class="hud">
+  <div class="hud-bar">
   <nav class="bc" aria-label="${esc(ui('crumbNav'))}" ${T('ui.crumbNav', '-aria')}><ol>
     <li><a href="../" class="hud-logo" aria-label="Numidea Labs">${WORDMARK}</a></li>
     <li aria-current="page"><span ${T('ui.crumb')}>${esc(ui('crumb'))}</span></li>
   </ol></nav>
-  <div class="lang" role="group" aria-label="${esc(ui('langs'))}" ${T('ui.langs', '-aria')}>
-    <button type="button" data-lang="fr" aria-pressed="true" lang="fr" aria-label="Français (FR)">FR</button>
-    <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English (EN)">EN</button>
-    <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)">${AYN}</button>
+  <nav class="hud-nav" aria-label="${esc(home('ui.navPrimary'))}" ${T('ui.navPrimary', '-aria')}>
+    ${[['../#work', 'nav.work'], ['../#services', 'nav.services'], ['../#apercu', 'nav.about'], ['../tarifs/', 'nav.pricing'], ['../#founder', 'nav.team'], ['../#faq', 'nav.faq'], ['../#contact', 'nav.contact']]
+      .map(([h, key]) => `<a href="${h}" ${T(key)}>${esc(home(key))}</a>`).join('\n    ')}
+  </nav>
+  <div class="hud-end">
+    <div class="lang" role="group" aria-label="${esc(ui('langs'))}" ${T('ui.langs', '-aria')}>
+      <button type="button" data-lang="fr" aria-pressed="true" lang="fr" aria-label="Français (FR)">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English (EN)">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)">${AYN}</button>
+    </div>
+    <a class="btn btn-primary hud-cta" href="../#contact" data-prefill ${T('mbar.cta')}>${esc(home('mbar.cta'))}</a>
+  </div>
   </div>
 </header>
 
@@ -351,16 +444,39 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAtt
     </nav>
   </header>
 ${sheets}
-
-  <footer class="outro">
-    <p ${T('ui.contact')}>${esc(ui('contact'))}</p>
-    <a class="cta" href="../#contact" ${T('ui.contactCta')}>${esc(ui('contactCta'))}</a>
-    <a class="back" href="../#work" ${T('ui.back')}>${esc(ui('back'))}</a>
-  </footer>
 </main>
 
+<!-- the page's foot, outside <main> (the contentinfo landmark): the offer's
+     two ways in, then the home page's price guide, Aperçu and contact -->
+<footer class="outro">
+  <div class="outro-in">
+    <p class="outro-q" ${T('ui.contact')}>${esc(ui('contact'))}</p>
+    <div class="outro-acts">
+      <a class="btn btn-primary" href="../#contact" data-prefill><span ${T('ui.contactCta')}>${esc(uiBare('contactCta'))}</span>${ARROW.e}</a>
+      ${waLink('btn btn-teal', 'prev.waText', 'prev.wa')}
+    </div>
+    <nav class="outro-nav" aria-label="${esc(home('footer.navAria'))}" ${T('footer.navAria', '-aria')}>
+      <a href="../tarifs/" ${T('nav.pricing')}>${esc(home('nav.pricing'))}</a>
+      <a href="../#apercu" ${T('nav.about')}>${esc(home('nav.about'))}</a>
+      <a href="../#contact" ${T('nav.contact')}>${esc(home('nav.contact'))}</a>
+      <a class="back" href="../#work"><span ${T('ui.back')}>${esc(uiBare('back'))}</span></a>
+    </nav>
+  </div>
+</footer>
+
+<!-- phones: the two ways in, kept in reach once the intro is passed (the
+     home page's bar; scene/app.js shows it, and hides it while the foot,
+     which offers the same two, is on screen) -->
+<nav class="m-contact" aria-label="${esc(home('mbar.aria'))}" ${T('mbar.aria', '-aria')}>
+  <a class="btn btn-primary" href="../#contact" data-prefill ${T('mbar.cta')}>${esc(home('mbar.cta'))}</a>
+  ${waLink('btn btn-teal', 'wa.hello', 'footer.wa')}
+</nav>
+
+<!-- the capture at its own size: fitted to the screen on a desk, at 1:1
+     in a scrolling pane on a phone (scene/app.js puts the image in it) -->
 <dialog class="viewer" id="viewer" ${T('ui.viewer', '-aria')} aria-label="${esc(ui('viewer'))}">
-  <form method="dialog"><button class="viewer-x" type="submit" ${T('ui.close', '-aria')} aria-label="${esc(ui('close'))}">×</button></form>
+  <form method="dialog"><button class="viewer-x" type="submit" ${T('ui.close', '-aria')} aria-label="${esc(ui('close'))}"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></form>
+  <div class="viewer-pane" dir="ltr"></div>
 </dialog>
 
 <script type="application/json" id="i18n">${JSON.stringify(DICT).replace(/</g, '\\u003c')}</script>
