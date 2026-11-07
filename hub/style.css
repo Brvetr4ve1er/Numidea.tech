@@ -594,7 +594,7 @@ html.st-stinging{overflow:hidden}
 .st-sting__labs .st-sting__g{animation-delay:calc(.787s + var(--i) * .028s)}
 .st-sting__seal{width:.5em;height:.5em;margin-bottom:.06em;display:grid;place-items:center;background:var(--red);border:3px solid var(--ink);font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:.26em;color:var(--cream);opacity:0;transform:scale(1.6) rotate(-8deg);animation:st-seal .27s var(--ease) 1.333s forwards}
 .st-sting__seal b{font-size:1em}
-.st-sting__wipe{position:absolute;left:0;right:0;bottom:0;height:0;background:var(--paper);border-top:6px solid var(--ink);animation:st-wipe .533s cubic-bezier(.87,0,.13,1) 1.667s forwards}
+.st-sting__wipe{position:absolute;inset:0;transform:translateY(100%);background:var(--paper);border-top:6px solid var(--ink);animation:st-wipe .533s cubic-bezier(.87,0,.13,1) 1.667s forwards}
 .st-sting.is-skip .st-sting__wipe{animation-name:st-wipe-now;animation-delay:0s}
 .st-sting__skip{position:absolute;top:calc(7vh + 14px);inset-inline-end:var(--gx);width:56px;height:56px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--red);border:2px solid var(--ink);color:var(--cream);box-shadow:var(--shadow-s);transform:rotate(-6deg);cursor:pointer}
 .st-sting__skip:focus-visible{outline-color:var(--cream)}
@@ -605,8 +605,8 @@ html.st-stinging{overflow:hidden}
 @keyframes st-hud{to{clip-path:inset(0 0 0 0)}}
 @keyframes st-letter{to{opacity:1;transform:none;filter:none}}
 @keyframes st-seal{0%{opacity:1;transform:scale(1.6) rotate(-8deg)}35%{transform:scale(1.15) rotate(-5deg)}60%{transform:scale(1.02) rotate(-10deg)}80%{transform:scale(1) rotate(-7deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
-@keyframes st-wipe{to{height:100%}}
-@keyframes st-wipe-now{to{height:100%}}
+@keyframes st-wipe{to{transform:none}}
+@keyframes st-wipe-now{to{transform:none}}
 
 /* ---------------- reduced motion ----------------
    No transition, no transform that moves on its own; the sting is never
