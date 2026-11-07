@@ -12,16 +12,17 @@
    design.
    ============================================================ */
 @font-face{font-family:"Press Start 2P";src:url(fonts/PressStart2P.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Geist Mono";src:url(../assets/fonts/geist-mono-latin.woff2) format("woff2");font-weight:100 900;font-display:swap}
 @font-face{font-family:"VT323";src:url(fonts/VT323.woff2) format("woff2");font-display:swap}
 
 :root{
   --bg:#07060f;--bg2:#0c0a1e;--panel:#100d24;--card:#14102b;--card-hi:#1a1538;--ink:#050409;
-  --frame:#322a5e;--frame-hi:#5a4ea8;
+  --frame:#322a5e;--frame-hi:#7467d6;
   --text:#e8e6ff;--muted:#b9b3e0;--faint:#9d97cf;
-  --cyan:#00f0ff;--magenta:#ff2bd6;--gold:#ffd23f;--gold-2:#ffe27a;--green:#3aff6e;--red:#ff4757;
-  --orange:#ffa502;--yellow:#ffe14d;--blue:#4d9fff;--purple:#b14aff;--pink:#ff6bcb;
+  --cyan:#00f0ff;--gold:#ffd23f;--gold-2:#ffe27a;--green:#3aff6e;--red:#ff4757;
   --link:var(--cyan);--link-hover:var(--gold-2);
   --px:"Press Start 2P","Courier New",monospace;
+  --mono:"Geist Mono",ui-monospace,"Cascadia Code",Consolas,monospace;
   --term:"VT323","Cascadia Code",Consolas,monospace;
   --shadow-frame:0 0 0 2px var(--frame),0 0 14px -6px rgba(90,78,168,.55);
   --pad:clamp(20px,5vw,56px);
@@ -43,21 +44,19 @@ h1,h2,h3,p{margin:0}
 
 /* ---------- colour utilities ---------- */
 .t-red{color:var(--red)}.t-gold{color:var(--gold)}.t-gold2{color:var(--gold-2)}.t-green{color:var(--green)}
-.t-magenta{color:var(--magenta)}.t-text{color:var(--text)}
+.t-text{color:var(--text)}
 
 /* ---------- motion ---------- */
-@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-3%,2%) scale(1.08)}100%{transform:translate(2%,-2%) scale(1.04)}}
-@keyframes float{50%{transform:translateY(-12px)}}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-2%,1.5%) scale(1.05)}}
 @keyframes pulse{50%{opacity:.35}}
 @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
-@keyframes marq{to{transform:translateX(-50%)}}
 @keyframes gl1{0%,91%,100%{transform:translate(0);opacity:0}92%{transform:translate(-7px,-2px);opacity:1}95%{transform:translate(5px,1px);opacity:1}97%{opacity:0}}
 @keyframes gl2{0%,88%,100%{transform:translate(0);opacity:0}89%{transform:translate(7px,2px);opacity:1}94%{transform:translate(-4px,-1px);opacity:1}96%{opacity:0}}
 @keyframes rise{0%{transform:translate(-50%,0) scale(.6);opacity:0}20%{transform:translate(-50%,-18px) scale(1.1);opacity:1}100%{transform:translate(-50%,-90px) scale(1);opacity:0}}
 @keyframes zz{0%{transform:translate(0,0);opacity:0}30%{opacity:1}100%{transform:translate(18px,-46px);opacity:0}}
 /* the one blinking thing: the REC dot. Text labels stay still (they were
    read as flicker on a page people read). */
-.blink{animation:blink 1.1s steps(1) infinite}
+.blink{animation:blink 1.1s steps(1) 4}
 /* nothing loops while it is off screen: app.js marks sections .off */
 .off,.off *{animation-play-state:paused!important}
 /* PAUSE MOTION (the nav button, app.js) sets html.motion-off: every loop on
@@ -82,8 +81,8 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
    edge; it lives on a child, so the box that is 20% too wide is clipped by
    the fixed layer and never reaches the page's width */
 .fx-aurora::before{content:"";position:absolute;inset:-20%;
-  background:radial-gradient(36% 36% at 80% 10%,rgba(255,210,63,.16),transparent 60%),radial-gradient(34% 34% at 10% 28%,rgba(0,240,255,.12),transparent 60%),radial-gradient(46% 46% at 60% 100%,rgba(90,78,168,.42),transparent 60%),radial-gradient(28% 28% at 96% 72%,rgba(255,43,214,.12),transparent 60%);
-  animation:drift 24s ease-in-out infinite alternate}
+  background:radial-gradient(36% 36% at 80% 10%,rgba(255,210,63,.16),transparent 60%),radial-gradient(34% 34% at 10% 28%,rgba(0,240,255,.12),transparent 60%),radial-gradient(46% 46% at 60% 100%,rgba(90,78,168,.42),transparent 60%);
+  animation:drift 5s ease-out both}
 .fx-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.07;
   background-image:linear-gradient(#5a4ea8 1px,transparent 1px),linear-gradient(90deg,#5a4ea8 1px,transparent 1px);background-size:64px 64px}
 .fx-cursor{position:fixed;top:0;left:0;width:320px;height:320px;margin:-160px 0 0 -160px;border-radius:50%;z-index:2;pointer-events:none;
@@ -102,7 +101,7 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
   padding:8px var(--pad);border-bottom:2px solid transparent;transition:background .6s,border-color .6s}
 .nav.stuck{background:rgba(7,6,15,.9);border-bottom-color:var(--frame)}
 .brand{display:inline-flex;align-items:center;font-family:var(--px);font-size:14px;letter-spacing:.06em;color:var(--text);white-space:nowrap}
-.brand span{color:var(--gold);text-shadow:0 0 8px rgba(255,210,63,.6)}
+.brand span{color:var(--gold)}
 .nav-links{flex:1 1 auto;min-width:0;height:44px;overflow:hidden;display:flex;flex-wrap:wrap;justify-content:center;column-gap:22px;
   font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:44px}
 .nav-links a{color:var(--muted)}
@@ -127,26 +126,24 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 /* the pixel face never goes under --fs-px-min (12px): the DS set 6.5-7px on
    the small buttons, labels and bars, which blurred the strokes. Every
    button is a 44px target. */
-.btn--sm{font-size:var(--fs-px-min);padding:8px 12px}
-.btn--lg{font-size:var(--fs-px-min);padding:14px 20px}
+.btn--sm{font-size:14px;padding:8px 12px}
+.btn--lg{font-size:14px;padding:14px 20px}
 .btn--primary{color:#3a2a00;background:linear-gradient(180deg,var(--gold-2),var(--gold));border:2px solid #8a6200;box-shadow:0 3px 0 #8a6200}
 .btn--primary:hover{color:#3a2a00;filter:brightness(1.05)}
 .btn--primary:active{transform:translateY(3px);box-shadow:none}
-.btn--outline{color:var(--cyan);background:transparent;border:2px solid var(--ink);box-shadow:0 0 0 1px var(--frame)}
+.btn--outline{color:var(--cyan);background:transparent;border:2px solid var(--frame-hi)}
 .btn--outline:hover{color:var(--gold-2)}
-.btn--ghost{color:var(--muted);background:var(--ink);border:2px solid var(--frame)}
+.btn--ghost{color:var(--muted);background:var(--ink);border:2px solid var(--frame-hi)}
 .btn--ghost:hover{color:var(--gold-2);border-color:var(--gold)}
 .btn--ghost:active{transform:translateY(2px)}
 
 /* ---------- DS: Tag ---------- */
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{display:inline-flex;align-items:center;font-family:var(--term);font-size:16px;line-height:1.1;padding:3px 8px;white-space:nowrap;
-  color:var(--muted);border:1px solid var(--frame);background:var(--ink)}
-.tag--green{color:var(--green);border-color:rgba(58,255,110,.5);background:rgba(58,255,110,.06)}
-.tag--red{color:var(--red);border-color:rgba(255,71,87,.5);background:rgba(255,71,87,.07)}
-.tag--orange{color:var(--orange);border-color:rgba(255,165,2,.5);background:rgba(255,165,2,.07)}
-.tag--blue{color:var(--blue);border-color:rgba(77,159,255,.45);background:rgba(77,159,255,.06)}
-.tag--gold{color:var(--gold-2);border-color:rgba(255,210,63,.5);background:rgba(255,210,63,.07)}
+  color:var(--muted);border:1px solid var(--frame-hi);background:var(--ink)}
+.tag--green{color:var(--green);border-color:rgba(58,255,110,.7);background:rgba(58,255,110,.06)}
+.tag--red{color:var(--red);border-color:rgba(255,71,87,.75);background:rgba(255,71,87,.07)}
+.tag--gold{color:var(--gold-2);border-color:rgba(255,210,63,.7);background:rgba(255,210,63,.07)}
 
 /* ---------- DS: ProgressBar ---------- */
 .pbar{position:relative;background:var(--ink);border:2px solid var(--ink);box-shadow:0 0 0 1px var(--frame);overflow:hidden}
@@ -157,7 +154,7 @@ html:not(.js) *:not(.pops>span),html:not(.js) *::before,html:not(.js) *::after{a
 
 /* ---------- DS: SectionHeading (an eyebrow here; the big line is the h2) ---------- */
 .sh{display:flex;align-items:baseline;gap:8px;margin:0 0 22px;font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:1.6;text-wrap:balance;
-  color:var(--cyan);text-shadow:0 0 9px rgba(0,240,255,.5)}
+  color:var(--cyan)}
 .sh::before{content:"■";color:var(--faint)}
 .px-label{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:1.8;color:var(--faint)}
 .px-label--gap{margin-bottom:10px}
@@ -170,20 +167,19 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .sec--narrow{max-width:1100px;padding-block:clamp(60px,8vw,110px)}
 .sec--demo{padding-top:clamp(40px,6vw,80px)}
 .sec h2,.install-h{text-wrap:balance;font-weight:400;font-size:clamp(56px,8vw,128px);line-height:.84;letter-spacing:-.01em}
-.sec h2 em,.install-h em,.demo-big em{font-style:normal;color:var(--gold);text-shadow:0 0 30px rgba(255,210,63,.4)}
+.sec h2 em,.install-h em,.demo-big em{font-style:normal;color:var(--gold)}
 .h2-gap{margin-bottom:56px!important}
 .sec-head--split{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px;margin-bottom:40px}
-.sec-aside{max-width:34ch;font-size:23px;line-height:1.3;color:var(--muted)}
+.sec-aside{max-width:40ch;font-family:var(--mono);font-size:15px;line-height:1.6;color:var(--muted)}
 .rule{height:2px;max-width:1320px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--gold),var(--cyan),transparent);opacity:.7}
-.rule--magenta{background:linear-gradient(90deg,transparent,var(--magenta),var(--gold),transparent)}
 
 /* ---------- 01 hero ---------- */
 .hero{max-width:1320px;margin:0 auto;min-height:100vh;padding:150px var(--pad) 80px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;gap:56px}
 .hero-copy{min-width:0}
-.hero-kick{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;color:var(--cyan);line-height:1.8;margin-bottom:30px;text-shadow:0 0 9px rgba(0,240,255,.45)}
+.hero-kick{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;color:var(--cyan);line-height:1.8;margin-bottom:30px}
 /* the coin prompt sits on its own line and never breaks (it does not blink:
    only the REC dot does) */
-.hero-kick .coin{display:block;white-space:nowrap;color:var(--magenta)}
+.hero-kick .coin{display:block;white-space:nowrap;color:var(--gold-2)}
 .hero h1{margin:0 0 0 -.04em;font-weight:400;font-size:clamp(2.6rem,7vw,6.5rem);line-height:.86;letter-spacing:-.01em;text-wrap:balance}
 .glitch{position:relative;display:inline-block;color:var(--gold);text-shadow:0 0 38px rgba(255,210,63,.45)}
 /* The two coloured copies hang off .glitch-fx, an aria-hidden layer over the
@@ -192,14 +188,14 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
    only flash mid-animation, so with motion stopped the word stays plain gold. */
 .glitch-fx{position:absolute;inset:0;pointer-events:none}
 .glitch-fx::before,.glitch-fx::after{content:attr(data-text);position:absolute;inset:0;text-shadow:none;opacity:0}
-.glitch-fx::before{color:var(--cyan);clip-path:inset(0 0 58% 0);animation:gl1 2.8s infinite linear}
-.glitch-fx::after{color:var(--magenta);clip-path:inset(58% 0 0 0);animation:gl2 2.3s infinite linear}
-.hero-lede{margin-top:32px;max-width:48ch;font-size:clamp(22px,2vw,27px);line-height:1.3;color:var(--muted);text-wrap:pretty}
+.glitch-fx::before{color:var(--cyan);clip-path:inset(0 0 58% 0);animation:gl1 2.6s .8s 1 linear both}
+.glitch-fx::after{color:var(--gold-2);clip-path:inset(58% 0 0 0);animation:gl2 2.2s .8s 1 linear both}
+.hero-lede{margin-top:32px;max-width:52ch;font-family:var(--mono);font-size:16px;line-height:1.6;color:var(--muted);text-wrap:pretty}
 .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:36px}
 
 /* install terminals */
 .term{border:2px solid var(--ink);background:var(--ink);text-align:left}
-.term--hero{flex:1 1 420px;max-width:600px;box-shadow:var(--shadow-frame)}
+.term--hero{flex:1 1 420px;max-width:680px;box-shadow:var(--shadow-frame)}
 .term--install{width:100%;max-width:680px;box-shadow:0 0 0 2px var(--gold),0 0 40px -10px rgba(255,210,63,.7)}
 .term-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;background:var(--panel);border-bottom:2px solid var(--ink)}
 .term-tag{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;padding:7px 10px;border:2px solid var(--gold);color:var(--gold-2)}
@@ -207,12 +203,12 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .term-line{display:flex;align-items:flex-start;gap:14px;padding:14px 16px}
 .term-line--2{padding-top:0}
 .term-dollar{flex:none;font-size:30px;color:var(--gold);line-height:1}
-.term-cmd{flex:1 1 auto;min-width:0;font-family:var(--term);font-size:clamp(20px,2.1vw,28px);line-height:1.05;color:var(--text);white-space:normal;overflow-wrap:anywhere;padding-top:3px}
+.term-cmd{flex:1 1 auto;min-width:0;font-family:var(--term);font-size:clamp(18px,1.5vw,21px);line-height:1.05;color:var(--text);white-space:nowrap;overflow-x:auto;scrollbar-width:thin;padding:3px 0 6px}
 .term-cmd--muted{color:var(--muted)}
 .term-line [data-copy]{flex:none;margin-left:auto}
 
 /* Bit, the scan card */
-.hero-bit{flex:0 1 340px;min-width:280px;margin:0 auto;position:relative;padding-top:120px;animation:float 6s ease-in-out infinite}
+.hero-bit{flex:0 1 340px;min-width:280px;margin:0 auto;position:relative;padding-top:120px;}
 .bit-btn{display:block;padding:0;border:0;background:none;cursor:pointer;transition:transform .17s cubic-bezier(.34,1.56,.64,1)}
 .bit-btn--small{position:absolute;left:50%;top:6px;transform:translateX(-50%)}
 .bit-btn--small.hop{transform:translateX(-50%) translateY(-22px)}
@@ -225,19 +221,19 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .pops{position:absolute;left:50%;pointer-events:none}
 .pops--hero{top:10px}
 .pops--big{bottom:230px}
-.pops span{position:absolute;left:0;font-family:var(--px);color:var(--gold);white-space:nowrap;text-shadow:0 0 8px rgba(255,210,63,.8);animation:rise 1s ease-out forwards}
+.pops span{position:absolute;left:0;font-family:var(--px);color:var(--gold);white-space:nowrap;animation:rise 1s ease-out forwards}
 .pops--hero span{font-size:var(--fs-px-min)}.pops--big span{font-size:var(--fs-px-min)}
 .scan-card{background:linear-gradient(160deg,var(--card-hi),var(--card));border:2px solid var(--ink);box-shadow:var(--shadow-frame);padding:16px 18px;display:grid;gap:10px}
 .scan-row{display:flex;align-items:center;gap:10px;font-size:21px;color:var(--muted)}
 .scan-row--between{justify-content:space-between;align-items:baseline;gap:12px}
-.dot-live{width:8px;height:8px;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 1.6s infinite}
+.dot-live{width:8px;height:8px;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 1.6s 3}
 .scan-num{font-size:40px;line-height:.9;color:var(--gold-2)}
 
 /* ---------- screens (reel / walkthrough / demo) ---------- */
 .screen{border:2px solid var(--ink);background:var(--ink);box-shadow:0 0 0 2px var(--frame),0 40px 120px -30px rgba(0,0,0,.9),0 0 60px -20px rgba(255,210,63,.35)}
 .screen-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 14px;background:var(--panel);border-bottom:2px solid var(--ink);
   font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;line-height:1.6;color:var(--faint)}
-.screen-bar .rec-dot{color:var(--magenta)}
+.screen-bar .rec-dot{color:var(--red)}
 .screen-169{display:block;width:100%;height:100%;border:0;background:#0d0d0f}
 /* a player is a 16:9 box with a title card over it until the visitor presses
    play (app.js): without it the exported player shows a black rectangle
@@ -246,7 +242,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .poster{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,3vw,28px);padding:16px;margin:0;border:0;
   background:radial-gradient(ellipse at center,rgba(90,78,168,.32),transparent 68%),linear-gradient(180deg,var(--panel),var(--ink));color:var(--text);cursor:pointer;font:inherit}
 .poster[hidden],html:not(.js) .poster{display:none}
-.poster-t{font-family:var(--px);font-size:clamp(14px,2.6vw,28px);letter-spacing:.06em;line-height:1.4;color:var(--gold);text-shadow:0 0 18px rgba(255,210,63,.45);text-align:center}
+.poster-t{font-family:var(--px);font-size:clamp(14px,2.6vw,28px);letter-spacing:.06em;line-height:1.4;color:var(--gold);text-align:center}
 .poster-s{font-size:clamp(18px,2vw,24px);line-height:1.1;color:var(--muted);text-align:center}
 .poster-go{display:grid;place-items:center;width:64px;height:64px;color:#3a2a00;background:linear-gradient(180deg,var(--gold-2),var(--gold));border:2px solid #8a6200;box-shadow:0 4px 0 #8a6200,0 0 30px -4px rgba(255,210,63,.7);transition:transform .12s,filter .12s}
 .poster-go svg{width:24px;height:24px;fill:currentColor;shape-rendering:crispEdges;margin-left:3px}
@@ -255,10 +251,10 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .poster:focus-visible{outline-offset:-6px}
 
 /* marquee */
-.marquee{position:relative;overflow:hidden;contain:paint;border-top:2px solid var(--frame);border-bottom:2px solid var(--frame);background:var(--panel);padding:22px 0}
-.marquee-track{display:flex;gap:40px;width:max-content;animation:marq 60s linear infinite;font-size:clamp(34px,4vw,54px);line-height:1;white-space:nowrap}
-.marquee-track b{font-weight:400;color:var(--gold)}
-.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee{position:relative;overflow:hidden;contain:paint;border-top:2px solid var(--frame);border-bottom:2px solid var(--frame);background:var(--panel);padding:20px 0}
+.marquee-track{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 28px;padding:0 var(--pad);font-size:clamp(24px,2.6vw,34px);line-height:1}
+/* the product's own pixel glyph: a plus of three-by-three squares, not a typed star */
+.marquee-track b{width:12px;height:12px;background:var(--gold);clip-path:polygon(33% 0,67% 0,67% 33%,100% 33%,100% 67%,67% 67%,67% 100%,33% 100%,33% 67%,0 67%,0 33%,33% 33%)}
 
 /* ---------- 03 features ---------- */
 .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:22px}
@@ -268,12 +264,10 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .feat:hover{transform:translateY(-6px);box-shadow:0 0 0 2px var(--ring),0 0 26px -8px var(--glow)}
 .feat--red{--ring:var(--red);--glow:rgba(255,71,87,.8)}
 .feat--cyan{--ring:var(--cyan);--glow:rgba(0,240,255,.7)}
-.feat--orange{--ring:var(--orange);--glow:rgba(255,165,2,.8)}
-.feat--magenta{--ring:var(--magenta);--glow:rgba(255,43,214,.8)}
 .feat-n{font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;color:var(--cyan)}
 .feat h3{margin-top:6px;font-weight:400;font-size:38px;line-height:.95}
 .feat-sub{font-size:23px;color:var(--gold-2);line-height:1}
-.feat-p{flex:1 1 auto;font-size:21px;line-height:1.25;color:var(--muted)}
+.feat-p{flex:1 1 auto;font-family:var(--mono);font-size:15px;line-height:1.6;color:var(--muted)}
 /* number, title, tagline, body and tags sit on the same lines across a row of
    cards: each card takes five rows of the grid and lays itself on them */
 @supports (grid-template-rows:subgrid){
@@ -311,7 +305,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
   background:linear-gradient(165deg,var(--card-hi),var(--card));border:2px solid var(--ink);box-shadow:var(--shadow-frame)}
 .bit-floor{position:relative;height:300px;display:flex;align-items:flex-end;justify-content:center;border-bottom:2px solid var(--frame);
   background:repeating-linear-gradient(90deg,transparent 0 31px,rgba(90,78,168,.12) 31px 32px),linear-gradient(0deg,rgba(90,78,168,.18),transparent 40%)}
-.zz{position:absolute;display:none;font-family:var(--px);color:var(--cyan);animation:zz 2.2s ease-out infinite}
+.zz{position:absolute;display:none;font-family:var(--px);color:var(--cyan);animation:zz 1.8s ease-out 2}
 .zz--1{left:62%;bottom:210px;font-size:14px}
 .zz--2{left:65%;bottom:230px;font-size:10px;animation-delay:.8s}
 .bit-card.sleepy .zz{display:block}
@@ -321,13 +315,13 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .xp{display:grid;gap:8px}
 .xp-row{display:flex;justify-content:space-between;gap:10px;font-size:19px;color:var(--faint)}
 .bit-side{flex:1 1 400px;min-width:0;display:grid;gap:22px;align-content:start}
-.bit-blurb{font-size:clamp(24px,2.2vw,30px);line-height:1.25;color:var(--muted);text-wrap:pretty}
+.bit-blurb{font-family:var(--mono);font-size:16px;line-height:1.6;color:var(--muted);text-wrap:pretty}
 
 /* DS: Kpi */
 .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.kpi{--accent:var(--blue);position:relative;padding:13px 14px 13px 18px;background:linear-gradient(160deg,var(--card-hi),var(--card));border:2px solid var(--ink);box-shadow:var(--shadow-frame)}
+.kpi{--accent:var(--cyan);position:relative;padding:13px 14px 13px 18px;background:linear-gradient(160deg,var(--card-hi),var(--card));border:2px solid var(--ink);box-shadow:var(--shadow-frame)}
 .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
-.kpi--gold{--accent:var(--gold)}.kpi--orange{--accent:var(--orange)}.kpi--green{--accent:var(--green)}
+.kpi--gold{--accent:var(--gold)}.kpi--green{--accent:var(--green)}
 .kpi b{display:block;font-weight:400;font-size:34px;line-height:.9}
 .kpi span{display:block;margin-top:9px;font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 
@@ -341,12 +335,11 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .ach b{color:var(--muted)}
 .ach.on{box-shadow:0 0 0 2px var(--gold),0 0 22px -8px rgba(255,210,63,.9)}
 .ach.on b{color:var(--text)}
-.ach-star{position:absolute;top:8px;right:10px;color:var(--gold-2);font-size:15px;text-shadow:0 0 8px rgba(255,210,63,.8);display:none}
-.ach.on .ach-star{display:block}
-.ach-i{display:block;font-size:34px;filter:grayscale(1) opacity(.45)}
-.ach.on .ach-i{filter:none}
+.ach-i{display:block;color:var(--faint)}
+.ach-i svg{display:block;margin:0 auto;width:40px;height:40px;fill:currentColor;shape-rendering:crispEdges}
+.ach.on .ach-i{color:var(--gold)}
 .ach b{display:block;margin-top:11px;font-family:var(--px);font-weight:400;font-size:var(--fs-px-min);letter-spacing:.04em;line-height:1.5;overflow-wrap:anywhere}
-.ach>span:last-child{display:block;margin-top:6px;font-size:16px;line-height:1.3;color:var(--muted)}
+.ach>span:last-child{display:block;margin-top:6px;font-family:var(--mono);font-size:13px;line-height:1.5;color:var(--muted)}
 
 /* ---------- 07 changelog ---------- */
 .log{list-style:none;margin:0;padding:0;display:grid;border-top:2px solid var(--frame)}
@@ -354,7 +347,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .log li:hover{background:rgba(26,21,56,.6)}
 .log .tag{justify-self:start}
 .log b{font-weight:400;font-size:32px;line-height:1}
-.log li>span:last-child{font-size:22px;line-height:1.25;color:var(--muted)}
+.log li>span:last-child{font-family:var(--mono);font-size:15px;line-height:1.6;color:var(--muted)}
 
 /* ---------- 08 FAQ ---------- */
 .faq{display:grid;gap:14px}
@@ -364,17 +357,17 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
 .faq summary::-webkit-details-marker{display:none}
 .faq summary i::before{content:"+";font-style:normal;font-family:var(--px);font-size:12px;color:var(--gold)}
 .faq details[open] summary i::before{content:"−"}
-.faq details p{padding:0 22px 22px;font-size:23px;line-height:1.3;color:var(--muted);max-width:70ch}
+.faq details p{padding:0 22px 22px;font-family:var(--mono);font-size:15px;line-height:1.6;color:var(--muted);max-width:70ch}
 
 /* ---------- 09 install / signature / footer ---------- */
 .install{display:flex;flex-direction:column;align-items:center;text-align:center;gap:34px;padding-block:clamp(60px,9vw,120px)}
 .install-h{font-size:clamp(70px,11vw,180px);line-height:.8}
-.install-p{max-width:40ch;font-size:25px;line-height:1.3;color:var(--muted)}
+.install-p{max-width:46ch;font-family:var(--mono);font-size:16px;line-height:1.6;color:var(--muted)}
 .sig{padding:clamp(70px,12vw,150px) 20px clamp(50px,8vw,90px);text-align:center;overflow:hidden}
 /* fits on one line at every width; under user text-spacing overrides
    (WCAG 1.4.12) it breaks instead of being cut by .sig's overflow:hidden */
 .sig-word{font-size:clamp(64px,17vw,300px);line-height:.8;letter-spacing:-.02em;overflow-wrap:anywhere}
-.sig-word span{color:var(--gold);text-shadow:0 0 50px rgba(255,210,63,.5)}
+.sig-word span{color:var(--gold)}
 .sig-sub{margin-top:30px;letter-spacing:.12em;color:var(--muted)}
 /* the footer sits after <main> (a contentinfo landmark), so it carries main's
    stacking itself to stay above the fixed aurora, grid and cursor glow */
@@ -427,6 +420,12 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
   .screen-bar>span:last-child{white-space:nowrap}
 }
 @media (max-width:479px){
+  /* the motion switch becomes a 44px icon button; its words stay for assistive tech */
+  .nav{flex-wrap:nowrap}
+  .motion-btn{padding:0;width:44px}
+  .motion-tx{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+}
+@media (max-width:479px){
   .screen-bar>span:last-child{display:none}
   /* the terminals' labels in the legible pixel size (0b01ae5) no longer fit
      one line beside the tag at 390: both ended in an ellipsis ("DESKTOP
@@ -445,7 +444,7 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
   .sec,.install,.sig{padding-block:28px}
   .term,.scan-card,.feat,.bit-card,.kpi,.ach,.faq details,.tag{border:1px solid #888!important}
   .faq details::details-content{display:block;content-visibility:visible}
-  .term-cmd{white-space:normal;overflow-wrap:anywhere}
+  .term-cmd{white-space:normal;overflow-wrap:anywhere;overflow:visible}
   .poster{display:none!important}
 }
 
@@ -490,3 +489,8 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
    viewport on iOS, so with the toolbars out the copy sat low and the box ran
    under them. svh is the screen as first seen. */
 @supports (height:1svh){@media screen{.hero{min-height:100svh}}}   /* print keeps min-height:0 */
+
+/* the studio's endorsement: a strip, a 44px door to the Aperçu */
+.studio-strip{position:relative;z-index:3;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 18px;padding:14px var(--pad);
+  border-top:2px solid var(--frame);background:var(--panel);font-family:var(--mono);font-size:15px;line-height:1.6;color:var(--muted);text-align:center}
+.studio-strip a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--px);font-size:var(--fs-px-min);letter-spacing:.06em;color:var(--gold-2)}

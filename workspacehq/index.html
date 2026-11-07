@@ -27,6 +27,7 @@
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/VT323.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PressStart2P.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-latin.woff2">
 <!-- scripts run: the loops may play (style.css stops them without JS: no switch to pause them then) -->
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="style.css?v=202611032143">
@@ -118,7 +119,7 @@
     <div class="screen" data-reveal="1">
       <div class="screen-bar">
         <span><span class="t-red">■</span> <span class="t-gold">■</span> <span class="t-green">■</span>&nbsp;&nbsp; LAUNCH TRAILER</span>
-        <span class="t-magenta"><span class="rec-dot blink">●</span> REC</span>
+        <span class="t-red"><span class="rec-dot blink">●</span> REC</span>
       </div>
       <div class="player"><iframe class="screen-169" src="embed/trailer.html" loading="lazy" title="WorkspaceHQ v3 launch trailer" allow="autoplay"></iframe><button type="button" class="poster" hidden><span class="poster-t">PRESS PLAY</span><span class="poster-go" aria-hidden="true"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1v8l7-4z"/></svg></span><span class="poster-s">LAUNCH TRAILER</span><span class="sr-only">Play</span></button></div>
     </div>
@@ -126,8 +127,7 @@
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>HQ SCAN</span><b>✦</b><span>SINCE LAST VISIT</span><b>✦</b><span>NEXT MOVE</span><b>✦</b><span>SECRET GUARD</span><b>✦</b><span>COMMIT DIFFS</span><b>✦</b><span>ASK CLAUDE</span><b>✦</b><span>LIVING MAP</span><b>✦</b><span>BIT LEVELS UP</span><b>✦</b>
-      <span>HQ SCAN</span><b>✦</b><span>SINCE LAST VISIT</span><b>✦</b><span>NEXT MOVE</span><b>✦</b><span>SECRET GUARD</span><b>✦</b><span>COMMIT DIFFS</span><b>✦</b><span>ASK CLAUDE</span><b>✦</b><span>LIVING MAP</span><b>✦</b><span>BIT LEVELS UP</span><b>✦</b>
+      <span>HQ SCAN</span><b></b><span>SINCE LAST VISIT</span><b></b><span>NEXT MOVE</span><b></b><span>SECRET GUARD</span><b></b><span>COMMIT DIFFS</span><b></b><span>ASK CLAUDE</span><b></b><span>LIVING MAP</span><b></b><span>BIT LEVELS UP</span><b></b>
     </div>
   </div>
 
@@ -166,14 +166,14 @@
       <article class="feat feat--cyan" data-reveal="1">
         <span class="feat-n">06</span><h3>Ask Claude</h3><p class="feat-sub">just ask</p>
         <p class="feat-p">Type a question in the prompt bar. Claude answers from your actual repos, not a guess.</p>
-        <p class="tags"><span class="tag tag--blue">claude</span><span class="tag">prompt</span></p>
+        <p class="tags"><span class="tag">claude</span><span class="tag">prompt</span></p>
       </article>
-      <article class="feat feat--orange" data-reveal="2">
+      <article class="feat" data-reveal="2">
         <span class="feat-n">07</span><h3>Living map</h3><p class="feat-sub">watch it breathe</p>
         <p class="feat-p">Your workspace as a pixel city. Lit windows for activity, smoke where risk is building.</p>
-        <p class="tags"><span class="tag tag--orange">live</span><span class="tag">map</span></p>
+        <p class="tags"><span class="tag">live</span><span class="tag">map</span></p>
       </article>
-      <article class="feat feat--magenta" data-reveal="3">
+      <article class="feat" data-reveal="3">
         <span class="feat-n">08</span><h3>Bit</h3><p class="feat-sub">good work, noticed</p>
         <p class="feat-p">Your sidekick reacts to the state of your code, and levels up as you keep it clean.</p>
         <p class="tags"><span class="tag tag--gold">xp</span><span class="tag">moods</span></p>
@@ -225,7 +225,7 @@
     </div>
   </section>
 
-  <div class="rule rule--magenta" aria-hidden="true"></div>
+  <div class="rule" aria-hidden="true"></div>
 
   <!-- ============ 06 MEET BIT ============ -->
   <section id="bit" class="sec">
@@ -252,14 +252,14 @@
         <p class="bit-blurb">Bit lives in the console and reads the room. Nervous when a secret shows up, busy while a scan runs, asleep once every quest is cleared. Clean commits make him throw coins.</p>
         <div class="kpis">
           <div class="kpi kpi--gold"><b data-lv>4</b><span>Level</span></div>
-          <div class="kpi kpi--orange"><b id="coins">0</b><span>Coins</span></div>
+          <div class="kpi kpi--gold"><b id="coins">0</b><span>Coins</span></div>
           <div class="kpi kpi--green"><b>5</b><span>Streak</span></div>
         </div>
         <div class="achs">
-          <div class="ach" data-ach="coin"><span class="ach-star" aria-hidden="true">★</span><span class="ach-i" aria-hidden="true">🪙</span><b>FIRST COIN</b><span>Feed Bit once</span></div>
-          <div class="ach" data-ach="crown"><span class="ach-star" aria-hidden="true">★</span><span class="ach-i" aria-hidden="true">👑</span><b>CROWNED</b><span>Reach level 5</span></div>
-          <div class="ach" data-ach="cape"><span class="ach-star" aria-hidden="true">★</span><span class="ach-i" aria-hidden="true">🦸</span><b>CAPED</b><span>Reach level 7</span></div>
-          <div class="ach" data-ach="moods"><span class="ach-star" aria-hidden="true">★</span><span class="ach-i" aria-hidden="true">🕺</span><b>DANCE FLOOR</b><span>Try every mood</span></div>
+          <div class="ach" data-ach="coin"><span class="ach-i" aria-hidden="true"><svg viewBox="0 0 8 8" aria-hidden="true"><path d="M2 0h4v1h1v1h1v4H7v1H6v1H2V7H1V6H0V2h1V1h1zM3 2v4h2V2z"/></svg></span><b>FIRST COIN</b><span>Feed Bit once</span></div>
+          <div class="ach" data-ach="crown"><span class="ach-i" aria-hidden="true"><svg viewBox="0 0 8 8" aria-hidden="true"><path d="M0 1h1v1h1v1h1V0h2v3h1V2h1V1h1v6H0z"/></svg></span><b>CROWNED</b><span>Reach level 5</span></div>
+          <div class="ach" data-ach="cape"><span class="ach-i" aria-hidden="true"><svg viewBox="0 0 8 8" aria-hidden="true"><path d="M3 0h2v2H3zM2 2h4v1h1v4H5V5H3v2H1V3h1z"/></svg></span><b>CAPED</b><span>Reach level 7</span></div>
+          <div class="ach" data-ach="moods"><span class="ach-i" aria-hidden="true"><svg viewBox="0 0 8 8" aria-hidden="true"><path d="M5 0h2v2H5zM4 2h2v2h2v1H5v1h1v2H5V6H4v2H2V5h2z"/></svg></span><b>DANCE FLOOR</b><span>Try every mood</span></div>
         </div>
       </div>
     </div>
@@ -279,8 +279,8 @@
       <li data-reveal="0"><span class="tag tag--gold">NEW</span><b>Since last visit</b><span>A digest of everything that moved while you were away, ranked by what needs you.</span></li>
       <li data-reveal="0"><span class="tag tag--gold">NEW</span><b>Prompt bar + Ask Claude</b><span>Hints commands as you type. Questions get answered from your real repos.</span></li>
       <li data-reveal="0"><span class="tag tag--gold">NEW</span><b>Living map</b><span>Your projects as a pixel skyline. Windows flicker with activity, smoke rises on risk.</span></li>
-      <li data-reveal="0"><span class="tag tag--blue">IMPROVED</span><b>Inline commit diffs</b><span>Read every change per project without switching windows.</span></li>
-      <li data-reveal="0"><span class="tag tag--blue">IMPROVED</span><b>Calmer notifications</b><span>Fewer pings. Each one comes with the action that clears it.</span></li>
+      <li data-reveal="0"><span class="tag">IMPROVED</span><b>Inline commit diffs</b><span>Read every change per project without switching windows.</span></li>
+      <li data-reveal="0"><span class="tag">IMPROVED</span><b>Calmer notifications</b><span>Fewer pings. Each one comes with the action that clears it.</span></li>
       <li data-reveal="0"><span class="tag tag--green">FIXED</span><b>Every breakpoint</b><span>The layout redraws cleanly when you resize, from a laptop split to an ultrawide.</span></li>
       <li data-reveal="0"><span class="tag tag--red">SECRET</span><b>Easter eggs</b><span>Type <span class="t-gold2">bit</span> or <span class="t-gold2">dance</span> in the prompt bar. We won't spoil it.</span></li>
     </ul>
@@ -303,7 +303,7 @@
 
   <!-- ============ 09 INSTALL ============ -->
   <section id="install" class="sec install">
-    <p class="px-label t-magenta" data-reveal="0">▶ PLAYER 1, READY</p>
+    <p class="px-label t-gold2" data-reveal="0">▶ PLAYER 1, READY</p>
     <h2 class="install-h" data-reveal="1">Insert <em>coin.</em></h2>
     <p class="install-p" data-reveal="2">The code is public on GitHub: a desktop console built on Electron. Once it runs, the first scan puts your first quest on top.</p>
     <div class="term term--install" data-reveal="3">
@@ -329,6 +329,8 @@
   <!-- announces the COPY buttons' result (app.js) -->
   <p class="sr-only" role="status" id="copyStatus"></p>
 </main>
+
+<p class="studio-strip">WorkspaceHQ is a Numidea Labs project. Want a site built with the same care? <a href="../#apercu">GET YOUR FREE APERÇU</a></p>
 
 <footer class="foot">
   <span>WORKSPACEHQ · v3.0 · OCTOBER 2026</span>
