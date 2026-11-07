@@ -87,11 +87,17 @@
      228 and 252px wide, each as wide as its label */
   .e404 .ctas{display:grid;gap:12px;width:min(100%,320px);margin:var(--s-7) auto 0}
   .e404 .cta{display:inline-flex;justify-content:center;width:100%;min-height:52px}
-  @media (min-width:560px){.e404 .ctas{grid-template-columns:1fr 1fr;width:min(100%,520px)}}
+  @media (min-width:560px){.e404 .ctas{grid-template-columns:1fr 1fr;width:min(100%,680px)}}
   /* here the ghost is a box, the one secondary beside the primary: the
      field edge (3:1 on every theme), at the shared .btn size */
   .e404 .btn-ghost{border-color:var(--field-border);padding-inline:var(--s-5);text-decoration:none}
   @media (hover:hover){.e404 .btn-ghost:hover{background:color-mix(in srgb,var(--ice) 8%,transparent)}}
+  /* the arrows are drawn (styles.css's --ic-arrow-e mask), not typed: no face
+     the site loads has ← or →. The back arrow points to the start of the line. */
+  .e404 .arw{display:inline-block;width:1em;height:1em;vertical-align:-.12em;background:currentColor;
+    -webkit-mask:var(--ic-arrow-e) center/contain no-repeat;mask:var(--ic-arrow-e) center/contain no-repeat}
+  .e404 .arw.back,html[dir="rtl"] .e404 .arw{transform:scaleX(-1)}
+  html[dir="rtl"] .e404 .arw.back{transform:none}
   /* the sheet's marks, as on the hero and scene/: corner brackets (the
      unified 2px/14px .sf of styles.css) around <main>, and the workshop's
      coordinates on a dimension line above the numeral */
@@ -203,8 +209,8 @@
          may have come for. Both links start from the site root once the
          script above has run; staging rewrites them for JavaScript off. -->
     <p class="ctas">
-      <a class="btn btn-primary cta" href="index.html"><span lang="fr"><span aria-hidden="true">←</span> Retour à l’accueil</span><span lang="en"><span aria-hidden="true">←</span> Back to the home page</span><span lang="ar"><span aria-hidden="true">→</span> العودة إلى الرئيسية</span></a>
-      <a class="btn btn-ghost cta" href="index.html#apercu"><span lang="fr">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></span><span lang="en">Request my free Preview <span aria-hidden="true">→</span></span><span lang="ar">اطلب معاينتك المجانية <span aria-hidden="true">←</span></span></a>
+      <a class="btn btn-primary cta" href="index.html"><span lang="fr"><i class="arw back" aria-hidden="true"></i> Retour à l’accueil</span><span lang="en"><i class="arw back" aria-hidden="true"></i> Back to the home page</span><span lang="ar"><i class="arw back" aria-hidden="true"></i> العودة إلى الرئيسية</span></a>
+      <a class="btn btn-ghost cta" href="index.html#apercu"><span lang="fr">Demander mon Aperçu gratuit <i class="arw" aria-hidden="true"></i></span><span lang="en">Request my free Preview <i class="arw" aria-hidden="true"></i></span><span lang="ar">اطلب معاينتك المجانية <i class="arw back" aria-hidden="true"></i></span></a>
     </p>
   </main>
 </div>
