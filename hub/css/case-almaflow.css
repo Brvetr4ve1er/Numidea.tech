@@ -208,6 +208,7 @@
 .case-almaflow .cf-serp__u{font-size:var(--t-label);color:var(--c-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .case-almaflow .cf-serp__t{font-size:15px;font-weight:700;color:var(--cf-serp);line-height:1.25}
 .case-almaflow .cf-serp__d{font-size:var(--t-label);line-height:1.4;color:var(--cf-ink-2)}
+@media (max-width:1110px){.case-almaflow .cf-serp{gap:4px}.case-almaflow .cf-serp__q{padding-block:4px}.case-almaflow .cf-serp__t{font-size:14px;line-height:1.2}}
 
 /* ---------------- AF-06 · the Google profile ---------------- */
 .case-almaflow .cf-gbp{justify-content:space-between}
@@ -245,7 +246,7 @@
 .case-almaflow .cf-pal__aa{font-family:var(--c-font-disp);font-weight:800;font-size:28px;line-height:1}
 .case-almaflow .cf-pal__name{font-family:var(--c-font-disp);font-weight:700;font-size:14px;color:var(--cf-link)}
 .case-almaflow .cf-pal__w{font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted)}
-@media (max-width:1110px){.case-almaflow .cf-pal__sw{grid-template-columns:repeat(5,minmax(0,1fr))}.case-almaflow .cf-pal__sw li{font-size:13px;padding:6px 3px;overflow-wrap:anywhere}}
+@media (max-width:1110px){.case-almaflow .cf-pal__sw{grid-template-columns:repeat(5,minmax(0,1fr))}.case-almaflow .cf-pal__sw li{font-size:13px;padding:4px 3px;line-height:1.15;overflow-wrap:anywhere}}
 
 /* ---------------- FIG. 10 · the product, close up ---------------- */
 .case-almaflow .cf-fig{display:flex;flex-direction:column;justify-content:space-between;padding:16px;background:var(--cf-black);color:var(--c-on-dark)}

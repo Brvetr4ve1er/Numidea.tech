@@ -159,8 +159,9 @@ section[id],.st-case,[id^="case-"]{scroll-margin-top:80px}
 .st-lang button[aria-busy="true"]{opacity:.6}
 .st-nav__cta{display:none;align-items:center;flex:none;min-height:44px;padding:0 16px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background-color .2s}
 .st-nav__cta:hover{background:var(--red)}
-@media (min-width:561px){.st-nav__cta{display:inline-flex}}
-@media (min-width:1000px){
+@media (min-width:680px){.st-nav__cta{display:inline-flex}}
+/* the six links, the kana, the language switch and the button need about 1180px of bar: below that the links wait (the bar overflowed 138px at 1024) */
+@media (min-width:1200px){
   .st-nav__links{display:flex}
   .st-wm__kana{display:inline}
   .st-lang{margin-inline-start:0}
@@ -231,6 +232,7 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-board__end .st-aside{font-size:24px;color:var(--red);transform:rotate(-4deg);margin-bottom:24px;align-self:auto}
 [dir="rtl"] .st-board__end .st-aside{transform:rotate(4deg)}
 .st-board__kuro{width:clamp(96px,10vw,140px);height:auto}
+@media (max-width:560px){.st-board__end{margin-top:0}}
 :lang(ar) .st-chip{text-transform:none}
 
 /* ---------------- the pose actors (hub/app.js 3) ---------------- */
@@ -260,6 +262,8 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-svc__body{flex:1;display:flex;flex-direction:column;gap:12px;padding:20px 18px 22px}
 .st-svc__body > p:not(.st-label){font-size:var(--t-card);line-height:1.55}
 .st-svc__body .st-label{letter-spacing:.16em;margin-top:6px}
+/* three or four narrow cards: "AUTOMATISATION" is 282px at 28px and 302px at 30px, past the card at 1024 and 1440 */
+.st-svc__body .st-h3{font-size:26px;overflow-wrap:anywhere}
 .st-plus{display:flex;flex-direction:column;gap:8px;margin-top:4px}
 .st-plus li{display:flex;gap:10px;font-size:var(--t-small);line-height:1.4}
 .st-plus li::before{content:"+";flex:none;font-family:var(--f-mono);font-weight:600;color:var(--red-text)}
@@ -273,6 +277,7 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-preview__copy{flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px}
 .st-preview__lead{font-size:var(--t-lead);line-height:1.6;max-width:32em}
 .st-preview .st-h2--mega{font-size:clamp(40px,6.4vw,100px);line-height:.9}
+:lang(ar) .st-preview .st-h2--mega{line-height:1.15}
 .st-preview .st-aside{font-size:24px;align-self:center}
 .st-preview__art{flex:1 1 360px;min-width:0;position:relative;display:flex;justify-content:center}
 .st-preview__img{display:block;width:min(100%,560px);height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center 30%;border:3px solid var(--ink);box-shadow:var(--shadow-l)}
@@ -420,7 +425,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-stat{flex:none;font-family:"Archivo",sans-serif;font-weight:900;font-size:var(--t-stat);line-height:1;color:var(--red)}
 .st-stat sup{font-size:.45em;vertical-align:.95em;line-height:0}
 .st-tcard__aside{position:absolute;top:18px;inset-inline-end:16px;font-size:18px;white-space:nowrap;transform:rotate(5deg)}
-@media (max-width:480px){.st-tcard > .st-label{padding-inline-end:0}.st-tcard__aside{position:static;order:-1;align-self:flex-end;margin-bottom:-6px}}
+@media (max-width:900px){.st-tcard > .st-label{padding-inline-end:0}.st-tcard__aside{position:static;order:-1;align-self:flex-end}}
 [dir="rtl"] .st-tcard__aside{transform:rotate(-5deg)}
 
 /* ---------------- 09 proof ---------------- */
@@ -489,7 +494,7 @@ figure.st-tile{margin:0}
 .st-tile--link{display:flex;flex-direction:column;gap:8px;padding:22px 18px;background:var(--red);color:var(--cream);text-decoration:none}
 .st-tile--link b{font-family:var(--f-disp);font-weight:900;font-size:22px;line-height:1.05;text-transform:uppercase}
 .st-tile--link span{font-size:var(--t-small);line-height:1.45}
-@media (max-width:560px){.st-lab__grid{column-count:2}.st-tile figcaption{letter-spacing:.04em}}
+@media (max-width:560px){.st-lab__grid{column-count:2}.st-tile figcaption{letter-spacing:.04em}.st-tile--link{padding:18px 12px}.st-tile--link b{font-size:18px;overflow-wrap:anywhere}}
 
 /* ---------------- 11 founder ---------------- */
 .st-founder__row{display:flex;flex-wrap:wrap;gap:40px 56px}

@@ -243,6 +243,8 @@ html:not(.js) .case-bordjsteel .cb-tank__pips i:nth-child(-n+5){background:var(-
 /* ---------------- BS-13 · colour and type ---------------- */
 .case-bordjsteel .cb-pal__sw{flex:1;min-height:0;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:6px}
 .case-bordjsteel .cb-pal__sw li{display:flex;align-items:flex-end;padding:6px 4px;border-radius:3px;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:0;overflow:hidden}
+/* a hex code wraps in a narrow swatch instead of being cut at its edge */
+.case-bordjsteel .cb-pal__sw li{overflow-wrap:anywhere;padding-inline:3px}
 .case-bordjsteel .cb-sw--red{background:var(--c-accent);color:var(--cb-white)}
 .case-bordjsteel .cb-sw--steel{background:var(--cb-steel);color:var(--cb-white)}
 .case-bordjsteel .cb-sw--grey{background:var(--cb-grey);color:var(--c-dark)}
