@@ -156,7 +156,7 @@
 .case-traveler .ct-file__name{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(28px,2.6vw,38px);line-height:.88;text-transform:uppercase;overflow-wrap:anywhere}
 .case-traveler .ct-file__cls{font-size:13px;line-height:1.3}
 .case-traveler .ct-stats{display:flex;flex-direction:column;gap:6px}
-.case-traveler .ct-stats li{display:grid;grid-template-columns:minmax(0,1fr) 100px 24px;gap:8px;align-items:center;font-size:12.5px;font-weight:500;line-height:1.2}
+.case-traveler .ct-stats li{display:grid;grid-template-columns:minmax(0,1fr) 100px 24px;gap:8px;align-items:center;font-size:13px;font-weight:500;line-height:1.2}
 .case-traveler .ct-seg{display:block;height:9px;background:linear-gradient(90deg,var(--ct-ink) calc(var(--n) * 10%),var(--ct-ink-15) 0);-webkit-mask:repeating-linear-gradient(90deg,black 0 calc(10% - 2px),transparent calc(10% - 2px) 10%);mask:repeating-linear-gradient(90deg,black 0 calc(10% - 2px),transparent calc(10% - 2px) 10%)}
 .case-traveler .ct-stat__v{font-family:var(--ct-mono);font-size:var(--t-label);text-align:end}
 .case-traveler .ct-file__aside{font-size:15px;line-height:1.2;color:var(--ct-brick);transform:rotate(-2deg);transform-origin:left center}
@@ -259,7 +259,7 @@
 .case-traveler .ct-panels{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:6px;padding:6px;background:var(--ct-cream);color:var(--ct-ink);border:3px solid var(--ct-ink)}
 .case-traveler .ct-panel{position:relative;overflow:hidden;margin:0;background:var(--c-dark);border:2.5px solid var(--ct-ink)}
 .case-traveler .ct-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos)}
-.case-traveler .ct-bubble{position:absolute;top:8px;max-width:calc(100% - 16px);padding:5px 9px;background:var(--ct-white);border:2px solid var(--c-dark);border-radius:14px;color:var(--c-dark);font-size:clamp(12px,.9vw,13px);font-weight:700;line-height:1.2}
+.case-traveler .ct-bubble{position:absolute;top:8px;max-width:calc(100% - 16px);padding:5px 9px;background:var(--ct-white);border:2px solid var(--c-dark);border-radius:14px;color:var(--c-dark);font-size:clamp(13px,.9vw,13px);font-weight:700;line-height:1.2}
 .case-traveler .ct-bubble--l{inset-inline-start:8px}
 .case-traveler .ct-bubble--r{inset-inline-end:8px}
 .case-traveler .ct-panel__n{position:absolute;inset-inline-start:6px;bottom:6px;max-width:calc(100% - 12px);padding:3px 6px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);line-height:1.2;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

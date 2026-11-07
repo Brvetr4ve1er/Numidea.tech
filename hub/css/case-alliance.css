@@ -137,7 +137,7 @@
 .case-alliance .ca-data{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:16px;background:var(--c-accent);color:var(--c-dark)}
 .case-alliance .ca-data__list{display:flex;flex-direction:column;gap:10px;margin:0}
 .case-alliance .ca-data__list div{display:flex;flex-direction:column-reverse}
-.case-alliance .ca-data__list dt{font-size:12.5px;font-weight:700;line-height:1.3}
+.case-alliance .ca-data__list dt{font-size:13px;font-weight:700;line-height:1.3}
 .case-alliance .ca-data__list dd{margin:0;font-family:var(--c-font-disp);font-weight:800;line-height:1}
 .case-alliance .ca-data__big{font-size:clamp(30px,3vw,42px)}
 .case-alliance .ca-data__mid{font-size:clamp(24px,2.4vw,32px)}

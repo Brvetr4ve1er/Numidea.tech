@@ -144,7 +144,7 @@
 .case-almaflow .cf-data{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:16px;background:var(--c-accent);color:var(--c-on-accent)}
 .case-almaflow .cf-data__list{display:flex;flex-direction:column;gap:10px;margin:0}
 .case-almaflow .cf-data__list div{display:flex;flex-direction:column-reverse}
-.case-almaflow .cf-data__list dt{font-size:12.5px;font-weight:700;line-height:1.3}
+.case-almaflow .cf-data__list dt{font-size:13px;font-weight:700;line-height:1.3}
 .case-almaflow .cf-data__list dd{margin:0;font-family:var(--c-font-disp);font-weight:800;line-height:1}
 .case-almaflow .cf-data__big{font-size:clamp(30px,3vw,42px)}
 .case-almaflow .cf-data__mid{font-size:clamp(24px,2.4vw,32px)}
@@ -177,7 +177,7 @@
 .case-almaflow .cf-quote__card [role="tabpanel"]{display:flex;flex-direction:column;gap:2px}
 .case-almaflow .cf-quote__card [role="tabpanel"][hidden]{display:none}
 .case-almaflow .cf-quote__n{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(18px,1.8vw,24px);line-height:1.1}
-.case-almaflow .cf-quote__d{font-size:12.5px;line-height:1.3;color:var(--cf-soft)}
+.case-almaflow .cf-quote__d{font-size:13px;line-height:1.3;color:var(--cf-soft)}
 .case-almaflow .cf-quote__sv{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
 .case-almaflow .cf-pills,.case-almaflow .cf-towns{display:flex;flex-wrap:wrap;gap:5px}
 .case-almaflow .cf-pills button{min-height:44px;padding:0 10px;border:1px solid var(--c-dark);border-radius:999px;background:var(--cf-white);color:var(--c-dark);font-family:var(--c-font);font-weight:700;font-size:var(--t-label);cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s}
@@ -203,7 +203,7 @@
 @media (max-width:1110px){.case-almaflow .cf-quote{grid-column:span 3}}
 
 /* ---------------- AF-05 · the search result ---------------- */
-.case-almaflow .cf-serp__q{display:flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid var(--c-line);border-radius:999px;font-size:12.5px;color:var(--c-muted)}
+.case-almaflow .cf-serp__q{display:flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid var(--c-line);border-radius:999px;font-size:13px;color:var(--c-muted)}
 .case-almaflow .cf-serp__r{display:flex;flex-direction:column;gap:3px;min-width:0}
 .case-almaflow .cf-serp__u{font-size:var(--t-label);color:var(--c-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .case-almaflow .cf-serp__t{font-size:15px;font-weight:700;color:var(--cf-serp);line-height:1.25}
@@ -213,7 +213,7 @@
 .case-almaflow .cf-gbp{justify-content:space-between}
 .case-almaflow .cf-gbp__id{display:flex;flex-direction:column;gap:3px}
 .case-almaflow .cf-gbp__n{font-family:var(--c-font-disp);font-weight:800;font-size:19px;line-height:1.1}
-.case-almaflow .cf-gbp__c{font-size:12.5px;color:var(--c-muted)}
+.case-almaflow .cf-gbp__c{font-size:13px;color:var(--c-muted)}
 .case-almaflow .cf-gbp__rows{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0;font-size:var(--t-label);line-height:1.35}
 .case-almaflow .cf-gbp__rows dt{padding-top:1px;font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted)}
 .case-almaflow .cf-gbp__rows dd{margin:0}
@@ -245,7 +245,7 @@
 .case-almaflow .cf-pal__aa{font-family:var(--c-font-disp);font-weight:800;font-size:28px;line-height:1}
 .case-almaflow .cf-pal__name{font-family:var(--c-font-disp);font-weight:700;font-size:14px;color:var(--cf-link)}
 .case-almaflow .cf-pal__w{font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted)}
-@media (max-width:1110px){.case-almaflow .cf-pal__sw{grid-template-columns:repeat(5,minmax(0,1fr))}.case-almaflow .cf-pal__sw li{font-size:12px;padding:6px 3px;overflow-wrap:anywhere}}
+@media (max-width:1110px){.case-almaflow .cf-pal__sw{grid-template-columns:repeat(5,minmax(0,1fr))}.case-almaflow .cf-pal__sw li{font-size:13px;padding:6px 3px;overflow-wrap:anywhere}}
 
 /* ---------------- FIG. 10 · the product, close up ---------------- */
 .case-almaflow .cf-fig{display:flex;flex-direction:column;justify-content:space-between;padding:16px;background:var(--cf-black);color:var(--c-on-dark)}
@@ -264,9 +264,9 @@
 /* every kind seen: the chip turns cyan, as the design's did */
 .case-almaflow .cf-scope:not(:has([data-scope]:not(.is-seen))) .cf-scope__chip{background:var(--c-accent)}
 .case-almaflow .cf-scope__h{font-family:var(--c-font-disp);font-weight:700;font-size:clamp(17px,1.8vw,22px);line-height:1.15;text-wrap:balance}
-.case-almaflow .cf-scope__note{font-size:12.5px;line-height:1.4;color:var(--cf-slate-l)}
+.case-almaflow .cf-scope__note{font-size:13px;line-height:1.4;color:var(--cf-slate-l)}
 .case-almaflow .cf-scope__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px 14px;padding-top:10px;border-top:1px solid var(--cf-navy-2)}
-.case-almaflow .cf-scope__list li{display:flex;gap:8px;align-items:center;font-size:12.5px;line-height:1.25;transition:opacity .3s}
+.case-almaflow .cf-scope__list li{display:flex;gap:8px;align-items:center;font-size:13px;line-height:1.25;transition:opacity .3s}
 .case-almaflow .cf-scope__list li::before{content:"";width:14px;height:14px;flex:none;border:1.5px solid var(--c-accent);border-radius:50%;transition:background-color .3s}
 html.js .case-almaflow .cf-scope__list li{opacity:.5}
 html.js .case-almaflow .cf-scope__list li.is-seen{opacity:1}
