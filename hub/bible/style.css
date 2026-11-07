@@ -29,13 +29,13 @@
    LICENSE-permanent-marker.txt beside them), swap so the text is never
    held back; Archivo is preloaded from the head (the first screen's H1) */
 @font-face{font-family:"Archivo";font-style:normal;font-weight:800 900;font-display:swap;
-  src:url("fonts/archivo-800-900-latin.woff2") format("woff2");
+  src:url("../fonts/archivo-800-900-latin.woff2") format("woff2");
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Permanent Marker";font-style:normal;font-weight:400;font-display:swap;
-  src:url("fonts/permanent-marker-latin.woff2") format("woff2");
+  src:url("../fonts/permanent-marker-latin.woff2") format("woff2");
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Noto Sans JP";font-style:normal;font-weight:700 900;font-display:swap;
-  src:url("fonts/noto-sans-jp-700-900-kanji.woff2") format("woff2");
+  src:url("../fonts/noto-sans-jp-700-900-kanji.woff2") format("woff2");
   unicode-range:U+30AF,U+30BB,U+30E4,U+30EB,U+30ED,U+591C}
 
 :root{

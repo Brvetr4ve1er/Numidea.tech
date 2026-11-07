@@ -35,7 +35,7 @@ import { PROJECTS, UI } from './scene-data.mjs';
 const PLATE = 'assets/illus/arch.webp';     // 1000x558
 // the hub's cover drawing: Yasser on the floor with his coffee, Kūro beside
 // him (the cover's picture and 04b's duo, scripts/build-hub-rig.mjs)
-const DUO = 'hub/art/actor-duo-a.webp';
+const DUO = 'hub/bible/art/actor-duo-a.webp';
 // Bit, WorkspaceHQ's sidekick, as the hub's cartridge drew him until 56f29c1: a 12×9 pixel sprite
 const BIT = '<svg viewBox="0 0 12 9" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="6" height="1" fill="#d97757"/><rect x="2" y="1" width="1" height="1" fill="#d97757"/><rect x="3" y="1" width="1" height="1" fill="#f2a27e"/><rect x="4" y="1" width="6" height="1" fill="#d97757"/><rect x="1" y="2" width="1" height="1" fill="#d97757"/><rect x="2" y="2" width="1" height="1" fill="#f2a27e"/><rect x="3" y="2" width="8" height="1" fill="#d97757"/><rect x="1" y="3" width="10" height="1" fill="#d97757"/><rect x="1" y="4" width="10" height="1" fill="#d97757"/><rect x="0" y="5" width="12" height="1" fill="#d97757"/><rect x="1" y="6" width="10" height="1" fill="#d97757"/><rect x="1" y="7" width="10" height="1" fill="#a5543a"/><rect x="2" y="8" width="1" height="1" fill="#a5543a"/><rect x="4" y="8" width="1" height="1" fill="#a5543a"/><rect x="7" y="8" width="1" height="1" fill="#a5543a"/><rect x="9" y="8" width="1" height="1" fill="#a5543a"/><rect x="3" y="3" width="1" height="1" fill="#1b1430"/><rect x="8" y="3" width="1" height="1" fill="#1b1430"/><rect x="3" y="4" width="1" height="1" fill="#1b1430"/><rect x="8" y="4" width="1" height="1" fill="#1b1430"/></svg>';
 
@@ -86,12 +86,12 @@ const CARDS = {
     crumb: UI.fr.crumb, kicker: UI.fr.kicker, title: UI.fr.h1, sub: UI.fr.desc,
     foot: `${pad(PROJECTS.length)} planches · ${nLive} sites livrés · FR · EN · AR`,
   },
-  // the founder's page, his character bible: the cover as hub/index.html
+  // the founder's page, his character bible: the cover as hub/bible/index.html
   // sets it (the chip, the name, the seal, the marker line) and its
   // og:description as the line beside the seal, on its paper; the copy stays
   // inside the left column (inColumn), the drawing has the right
   hub: {
-    kind: 'hub', out: 'hub/og.jpg', assets: [DUO], inColumn: true,
+    kind: 'hub', out: 'hub/bible/og.jpg', assets: [DUO], inColumn: true,
     faces: ['900 30px Archivo', '400 24px "Permanent Marker"', '900 34px "Noto Sans JP"', '400 24px Geist', '500 16px "Geist Mono"'],
     chip: 'Character bible', handle: 'br4vetr4veler', name: 'Yasser', seal: '夜',
     tag: "The builder who answers at 2 a.m. — and the black cat who decides if it's good enough.",

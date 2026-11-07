@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Hub art: `npm run hub:art` → hub/art/*.webp and hub/loops/*.webp
+ * Hub art: `npm run hub:art` → hub/bible/art/*.webp and hub/bible/loops/*.webp
  *
  * Cuts the hub's web images from the owner's private masters, following the
  * recipe in scripts/hub-art-data.mjs. The masters are not in this public
@@ -28,7 +28,7 @@
  *    data-full strings for the page. A file over CEILING is not written, and
  *    the build fails.
  *
- * Files in hub/art and hub/loops that the recipe does not write are listed,
+ * Files in hub/bible/art and hub/bible/loops that the recipe does not write are listed,
  * never deleted (the Behance covers, KEEP, are expected).
  */
 import { createHash } from 'node:crypto';
@@ -39,7 +39,7 @@ import { ROOT } from './site.mjs';
 import { ENCODE, CEILING, MOTION_MS, MASTERS, IMAGES, LOOP_ENCODE, EDGE, LOOPS, KEEP } from './hub-art-data.mjs';
 
 const SRC = resolve(process.env.HUB_ART_DIR || join(ROOT, 'campaign/hub-art/masters'));
-const ART = join(ROOT, 'hub/art'), LOOPDIR = join(ROOT, 'hub/loops');
+const ART = join(ROOT, 'hub/bible/art'), LOOPDIR = join(ROOT, 'hub/bible/loops');
 const kB = (n) => (n / 1000).toFixed(1) + ' kB';
 const sum = (a) => a.reduce((x, y) => x + y, 0);
 
@@ -167,14 +167,14 @@ console.log(`\n${'file'.padEnd(pad)}       bytes   width  height`);
 for (const [f, n, w, h, note] of rows) console.log(`${f.padEnd(pad)} ${n.toLocaleString('en').padStart(11)} ${String(w).padStart(7)} ${String(h).padStart(7)}${note ? '  ' + note : ''}`);
 const largest = rows.reduce((a, r) => (r[1] > a[1] ? r : a), rows[0]);
 console.log(`${rows.length} files, ${kB(sum(rows.map((r) => r[1])))}; largest ${largest[0]} ${kB(largest[1])} (ceiling ${kB(CEILING)})`);
-console.log('\nfor hub/index.html (paths relative to the page):\n  ' + html.join('\n  '));
+console.log('\nfor hub/bible/index.html (paths relative to the page):\n  ' + html.join('\n  '));
 
-const others = [[ART, 'hub/art'], [LOOPDIR, 'hub/loops']].flatMap(([dir, rel]) => readdirSync(dir)
-  .filter((f) => !written.has(`${rel}/${f}`) && !KEEP.some((re) => rel === 'hub/art' && re.test(f))).map((f) => `${rel}/${f}`));
+const others = [[ART, 'hub/bible/art'], [LOOPDIR, 'hub/bible/loops']].flatMap(([dir, rel]) => readdirSync(dir)
+  .filter((f) => !written.has(`${rel}/${f}`) && !KEEP.some((re) => rel === 'hub/bible/art' && re.test(f))).map((f) => `${rel}/${f}`));
 if (others.length) console.log(`\nnot written by this recipe (left in place): ${others.length} files: ${others.slice(0, 6).join(', ')}${others.length > 6 ? ', …' : ''}`);
 
 if (fail.length) {
   console.error('\n✗ hub art: ' + fail.join('\n  '));
   process.exit(1);
 }
-console.log(`\n✓ hub art: ${rows.length} files written to hub/art and hub/loops`);
+console.log(`\n✓ hub art: ${rows.length} files written to hub/bible/art and hub/bible/loops`);

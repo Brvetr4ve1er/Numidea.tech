@@ -1,28 +1,28 @@
 #!/usr/bin/env node
 /**
- * hub/art from the character bible's drawings —
+ * hub/bible/art from the character bible's drawings —
  * `HUB_BIBLE_DIR=/path/to/mascot node scripts/build-hub-rig.mjs`
  *
  * The masters are the owner's character sheet exports (RGBA PNG, private,
  * never deployed: the folder the owner keeps them in is named by
  * HUB_BIBLE_DIR, the `mascot/` folder of the export, with anim/, clean/,
- * poses/ and v3/ under it). This cuts them into hub/art as the page names
- * them (hub/index.html), WebP, quality 80 and alpha 85 like
+ * poses/ and v3/ under it). This cuts them into hub/bible/art as the page names
+ * them (hub/bible/index.html), WebP, quality 80 and alpha 85 like
  * build-hub-art.mjs (the rig's frames at 75), nothing upscaled: every master is smaller than twice
  * the box the page shows it in, so each ships at its own size, except
  * Kūro's ten cards, shown in 110px tiles and cut to 240px wide, the twelve
  * poses, shown in 5:4 boxes of 300px at most and cut to fit 560×440, and
  * the six actors' frames, shown 270px tall at most and cut to 540px tall.
- *   hub/art/rig-y-<frame>.webp   the 13 Yasser frames of the live rig (501×565)
- *   hub/art/rig-k-<frame>.webp   the 7 Kūro frames (360×294); flat, not in a
+ *   hub/bible/art/rig-y-<frame>.webp   the 13 Yasser frames of the live rig (501×565)
+ *   hub/bible/art/rig-k-<frame>.webp   the 7 Kūro frames (360×294); flat, not in a
  *                                folder, because check.mjs block 17b reads
- *                                hub/art one level deep
- *   hub/art/face-<name>.webp     the twelve faces (section 03, and 06's thumbs)
- *   hub/art/pose-<name>.webp     what he does (section 04)
- *   hub/art/actor-<name>-{a,b}.webp   head to toe, two frames each (04b);
+ *                                hub/bible/art one level deep
+ *   hub/bible/art/face-<name>.webp     the twelve faces (section 03, and 06's thumbs)
+ *   hub/bible/art/pose-<name>.webp     what he does (section 04)
+ *   hub/bible/art/actor-<name>-{a,b}.webp   head to toe, two frames each (04b);
  *                                actor-duo-a is also the cover's picture
- *   hub/art/kuro-<name>.webp     Kūro's ten cards (section 05)
- *   hub/art/sil-<n>.webp         the four pixel silhouettes (section 02)
+ *   hub/bible/art/kuro-<name>.webp     Kūro's ten cards (section 05)
+ *   hub/bible/art/sil-<n>.webp         the four pixel silhouettes (section 02)
  * It fails on a rig frame over 60 kB, a rig set over 1.2 MB, any other file
  * over 300 kB, a master that is missing, or a source frame whose size is
  * not the rig's. It is not part of `npm run build`: CI has no masters, and
@@ -40,7 +40,7 @@ if (!SRC || !existsSync(join(SRC, 'anim'))) {
   console.error('✗ HUB_BIBLE_DIR must name the character bible\'s mascot/ folder (anim/, clean/, poses/, v3/ inside)');
   process.exit(1);
 }
-const OUT = join(ROOT, 'hub/art');
+const OUT = join(ROOT, 'hub/bible/art');
 mkdirSync(OUT, { recursive: true });
 
 const WEBP = { quality: 80, alphaQuality: 85, effort: 6 };
@@ -93,4 +93,4 @@ if (rigBytes > RIG_SET_MAX) err.push(`the rig's ${Y.length + K.length} frames we
 for (const s of sizes) console.log('  ' + s);
 console.log(`rig set: ${rigBytes.toLocaleString('en')} B in ${Y.length + K.length} frames`);
 if (err.length) { console.error('✗ ' + err.join('\n✗ ')); process.exit(1); }
-console.log(`✓ ${jobs.length} files written to hub/art`);
+console.log(`✓ ${jobs.length} files written to hub/bible/art`);
