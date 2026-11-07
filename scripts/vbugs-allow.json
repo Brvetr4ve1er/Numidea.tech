@@ -26,5 +26,13 @@
   {
     "prefix": "index OVERLAP pricing em \"قبل عرض السعر.\" × pricing p.sec-lead",
     "reason": "2026-11-06: the same Arabic heading's second run (its <em>), the same content box over the lead; no ink meets"
+  },
+  {
+    "prefix": "hub HCLIP-DECOR preview section#preview ",
+    "reason": "2026-11-07: the Studio's preview section clips its own oversized kanji watermark (.st-preview__mark: aria-hidden, data-decorative, 8% opacity, overflow hidden on the section on purpose); HCLIP-DECOR means nothing cut off carries text of its own, so a clipped word there still fails"
+  },
+  {
+    "prefix": "hub HCLIP-DECOR top section#top ",
+    "reason": "2026-11-07: the Studio's hero clips its own oversized Arabic watermark (.st-hero__mark: aria-hidden, data-decorative, 8% opacity), as the preview clips its kanji"
   }
 ]
