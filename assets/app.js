@@ -859,14 +859,11 @@
         if (reduceMotion) pauseBtn.hidden = true;     // nothing rotates, nothing to pause
         pauseBtn.addEventListener('click', function () {
           var on = pauseBtn.getAttribute('aria-pressed') !== 'true';
+          /* A toggle keeps one name and says its state with aria-pressed
+             alone: a label swapped to "Reprendre la rotation" as it was
+             pressed was read "Reprendre la rotation, pressed", the state said
+             twice and the two contradicting. */
           pauseBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-          /* The label names what the next press does: pause, or resume
-             (ui.resume). Until the dictionaries carry that key the pause
-             label stays, and aria-pressed tells the state. The key goes on
-             data-i18n-aria too, so a language apply keeps the state's word. */
-          var labelKey = on && DICT['ui.resume'] != null ? 'ui.resume' : 'hero.platePause';
-          pauseBtn.setAttribute('data-i18n-aria', labelKey);
-          pauseBtn.setAttribute('aria-label', t(labelKey));
           // an explicit pause or play overrides a finger's rail pick: the
           // button sits inside the plate, so its tap never clears `picked`,
           // and play would otherwise report a rotation that does not run
@@ -1088,10 +1085,26 @@
       }
     }
 
-    // L'Aperçu: the button hands its request to the message field, then the
-    // normal #contact jump happens (carried on to the form where it stacks)
-    var prevCta = document.getElementById('prev-cta');
-    if (prevCta) prevCta.addEventListener('click', function () { prefillWith('prev', t('prev.msg')); toForm(); });
+    /* L'Aperçu: every link to it (data-apercu: the hero's, the Aperçu
+       card's, the FAQ's and each tier's) hands its request to the message
+       field, then the normal #contact jump happens (carried on to the form
+       where it stacks). A tier's names the tier as its card shows it, name
+       and range in the shown currency, after "what I need", the request's
+       last line; from the price guide, which has no form, that line alone is
+       carried to the home page's (prefillWith), as the estimator's scope is. */
+    function tierLine(a) {
+      var card = a.closest('.tier');
+      var name = card && card.querySelector('h3'), range = card && card.querySelector('.t-range');
+      return name ? plain(name.innerHTML) + (range ? ' · ' + range.textContent.replace(/\u2060/g, '').replace(/\s+/g, ' ').trim() : '') : '';
+    }
+    [].forEach.call(document.querySelectorAll('a[data-apercu]'), function (a) {
+      a.addEventListener('click', function () {
+        var tier = a.getAttribute('data-apercu') ? tierLine(a) : '';
+        if (!msgBox) { if (tier) prefillWith('tier', tier); return; }
+        prefillWith(tier ? 'tier' : 'prev', t('prev.msg') + tier);
+        toForm();
+      });
+    });
 
     // contact form — designed validation + success
     var form = document.querySelector('#contact-form');
@@ -1146,7 +1159,7 @@
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err('email', 'form.errEmailValid'); ok = false; }
         // the Aperçu's template sent back as written says nothing (its blanks
         // are the message): the visitor is asked for a line, as for an empty field
-        if (!msg || (prefill.kind === 'prev' && msg === prefill.text.trim())) { err('message', 'form.errMsg'); ok = false; }
+        if (!msg || ((prefill.kind === 'prev' || prefill.kind === 'tier') && msg === prefill.text.trim())) { err('message', 'form.errMsg'); ok = false; }
         // focus the first field to fix; its error is read through aria-describedby
         if (!ok) { var bad = form.querySelector('[aria-invalid="true"]'); if (bad) bad.focus(); return; }
 
@@ -1182,7 +1195,7 @@
            estimator's scope gets the visitor's lines under it, but a message
            rewritten from the first line is the visitor's own. */
         var way = prefill.text && msg.indexOf(prefill.text.split('\n')[0].trim()) === 0 ? prefill.kind : '';
-        var subject = t(way === 'prev' ? 'form.subjPrev' : way === 'est' || way === 'carried' ? 'form.subjEst' : 'form.subj') + name;
+        var subject = t(way === 'prev' || way === 'tier' ? 'form.subjPrev' : way === 'est' || way === 'carried' ? 'form.subjEst' : 'form.subj') + name;
         var src = leadSource();
         var body = name + ' <' + email + '>\n\n' + msg
           + '\n\n--\nnumidealabs · ' + (document.documentElement.getAttribute('lang') || 'fr')
@@ -2246,6 +2259,12 @@
          language switch alone, which keeps the visitor's place (langAt). */
       var own = links.length > 0;
       if (!own) secs = [].slice.call(document.querySelectorAll('main.tarifs :is(section,div,details)[id]'));
+      /* The guide's jump row (.t-jump) is its own nav: the part being read
+         is marked there (aria-current), its links' targets followed apart
+         from the blocks above, since a target may be a heading (#pricing-tiers). */
+      var jump = own ? [] : [].slice.call(document.querySelectorAll('.t-jump a[href^="#"]'));
+      var jsecs = jump.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+      var jtops = [], jcur = -1;
       /* A link may point into another link's section ("Méthode" lands on the
          Aperçu card, the path's one telling, inside Services): that link is
          current only while its own box is being read, and after it the
@@ -2261,11 +2280,17 @@
         var boxes = secs.map(function (el) { return el ? el.getBoundingClientRect() : null; });
         tops = boxes.map(function (r) { return r ? r.top + y : Infinity; });
         ends = boxes.map(function (r, k) { return r && inner[k] ? r.bottom + y : Infinity; });
+        jtops = jsecs.map(function (el) { return el ? el.getBoundingClientRect().top + y : Infinity; });
       };
       // runs in a frame after the parallax has written its translates, so it
       // reads the cached position: reading scrollY here forced a style recalc
       var pick = function () {
-        var line = scrollPos + viewH * 0.35, i = -1;
+        var line = scrollPos + viewH * 0.35, i = -1, j = -1;
+        for (var q = 0; q < jtops.length; q++) { if (jtops[q] <= line) j = q; }
+        if (j !== jcur) {
+          jcur = j;
+          jump.forEach(function (a, k) { if (k === j) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+        }
         for (var k = 0; k < tops.length; k++) { if (tops[k] <= line && ends[k] > line) i = k; }
         // the order of the links is the order of the page, so the last section
         // whose top has passed the reading line is the one being read
@@ -2278,7 +2303,7 @@
       };
       var tick = false;
       addEventListener('scroll', function () { if (tick) return; tick = true; requestAnimationFrame(function () { pick(); tick = false; }); }, { passive: true });
-      var re = function () { scrollPos = window.scrollY || window.pageYOffset || 0; measure(); cur = -2; pick(); };
+      var re = function () { scrollPos = window.scrollY || window.pageYOffset || 0; measure(); cur = -2; jcur = -2; pick(); };
       document.addEventListener('numidea:lang', function () { setTimeout(re, 60); });
       addEventListener('resize', re); addEventListener('load', re);
       if ('ResizeObserver' in window) new ResizeObserver(re).observe(document.body);

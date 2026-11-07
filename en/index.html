@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-f+SQzml1iBv7uNw9KunXNA16RIfFbqY5yN2BfJ2K1Yc=' 'sha256-3WBywRlZXeBx2txIhlv+QB17s6KxacD1amoKZfrk7Js='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VQCSpWbAmDgzNgSe7L0zxH+FyjrDMuQ0664oU7BKfGM=' 'sha256-vPdxTp5YXFWTOh7meCMlX/K1jbrSjBx8GL5HH8kmeRA=' 'sha256-3WBywRlZXeBx2txIhlv+QB17s6KxacD1amoKZfrk7Js='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Website design and development in Algeria | Numidea Labs</title>
 <meta name="description" content="Website design and development in English, French and Arabic, from 90,000 DZD. See your homepage before you pay. A web studio in Bordj Bou Arréridj, Algeria.">
 <meta name="theme-color" content="#0A1420">
@@ -126,15 +126,19 @@
      hero, each file once; HEAD is each theme's heading face (themes.css
      --font-head + --head-weight), kept in step by themes-check. Geist and
      Geist Mono are variable, one file per subset for every weight, so a
-     theme whose heading is Geist adds nothing to the base preloads. The
-     rest (the Cinzel Decorative swash of Arcanum and Daylight) relies on
-     its metric-matched fallback, which audit.mjs's fallback-type runs
-     check. -->
+     theme whose heading is Geist adds nothing to the base preloads.
+     SWASH is the hero's second face where it has one (the Cinzel
+     Decorative of Arcanum and Daylight, 15 KB): left to its metric-matched
+     fallback, "avant de payer." was set in lowercase serif for the first
+     seconds on a slow phone and then re-set in small caps, the words that
+     carry the offer changing case under the reader. The fallback matched
+     the width, not the case. -->
 <script>
   (function () {
     var d = document.documentElement;
     var HEAD = { arcanum: 'cinzel-700-latin', noir: 'geist-latin', daylight: 'cinzel-700-latin',
                  mono: 'geist-latin', altneon: 'geist-latin', engineering: 'geist-latin' };
+    var SWASH = { arcanum: 'cinzel-decorative-700-latin', daylight: 'cinzel-decorative-700-latin' };
     var BAKED = 'en', th = 'arcanum';
     /* each theme's page colour (themes.css --void), for the browser's own
        bar until app.js reads it from the tokens */
@@ -155,11 +159,16 @@
        While empty, every WhatsApp control stays visibly pending. */
     window.NUMIDEA_WA = '213672412578';
 
-    /* The Arabic hero also sets Latin glyphs (project names in Plex Arabic 600's
-       latin subset, the logo in Geist 600) — leave either out and it widens late. */
+    /* The Arabic page sets every role in Plex Arabic, at 400 and 700 (styles.css's
+       Arabic type spec; the logo is drawn): those two Arabic files, and the
+       one the plate's captions still set the client names in (Latin at 600,
+       .pm-item b: left to swap, the plate moved 5px at 1024). The old list
+       (three weights in two subsets, Geist and Cinzel besides, 255 KB
+       fetched) left the buttons' 700 to arrive last, at 10 s on a slow
+       phone, set in the fallback until then. */
     var faces = BAKED === 'ar'
-      ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-600-arabic', 'ibm-plex-sans-arabic-600-latin', 'geist-mono-latin', 'geist-latin']
-      : ['geist-latin', 'geist-mono-latin'].concat(HEAD[th] !== 'geist-latin' ? [HEAD[th]] : []);
+      ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-700-arabic', 'ibm-plex-sans-arabic-600-latin']
+      : ['geist-latin', 'geist-mono-latin'].concat(HEAD[th] !== 'geist-latin' ? [HEAD[th]] : [], SWASH[th] ? [SWASH[th]] : []);
     /* \x3c, not a literal "<": on a slow phone Chrome's parser sometimes
        read the raw '<link … href="…' + f + '…">' string in this script as a
        tag and fetched that URL unevaluated (a 404 that failed the throttled
@@ -184,7 +193,6 @@
 <body>
 
 <a class="skip" href="#main" data-i18n="ui.skip">Skip to content</a>
-<div class="progress" aria-hidden="true"></div>
 
 
 <!-- ================= NAV ================= -->
@@ -296,24 +304,53 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-mesh" data-parallax="-.10" aria-hidden="true"><span class="m1"></span><span class="m2"></span></div>
-    <div class="floaters" aria-hidden="true">
-      <svg class="fl-ring" data-parallax="-.30" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="33" stroke-dasharray="3 7"/></svg>
-      <svg class="fl-tri" data-parallax=".26" viewBox="0 0 100 100"><path d="M50 9 91 85H9Z"/></svg>
-      <svg class="fl-cross" data-parallax="-.20" viewBox="0 0 100 100"><path d="M50 8v84M8 50h84"/><circle cx="50" cy="50" r="15"/></svg>
-      <svg class="fl-dot" data-parallax=".34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="6"/><circle cx="50" cy="50" r="27" stroke-dasharray="2 8"/></svg>
-    </div>
     <div class="sheet-frame" aria-hidden="true">
       <i class="sf tl"></i><i class="sf tr"></i><i class="sf bl"></i><i class="sf br"></i>
     </div>
     <div class="hero-grid">
       <div class="hero-copy">
+        <!-- The page in the browser's own language, offered, never forced: a
+             visitor whose browser reads Arabic (or English) first and who has
+             chosen no language yet (app.js stores this page's language once
+             it runs, so this is the first visit) is offered that page in one
+             line, in its own name, by the header switch's own link. Following
+             it stores the choice, as the switch does; the close button stores
+             this page's. No redirect: the root stays French for every crawler
+             and every shared link (the x-default). The script is inline, right
+             after the line, so the line is in place before the first paint
+             and nothing under it moves when the deferred app.js arrives; it
+             sets the line's styles too, until styles.css carries a
+             .lang-offer rule. -->
+        <p class="lang-offer" hidden><a class="lang-offer-go" href="#top"></a><button type="button" class="lang-offer-x" aria-label="Close" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></p>
+        <script>
+          (function () {
+            var bar = document.querySelector('.lang-offer'), here = document.documentElement.getAttribute('lang');
+            var chosen = null;
+            try { chosen = localStorage.getItem('numidea-lang'); } catch (e) { return; }
+            var first = ((navigator.languages && navigator.languages[0]) || navigator.language || '').slice(0, 2).toLowerCase();
+            var NAMES = { fr: 'Français', en: 'English', ar: 'العربية' };
+            var src = !chosen && NAMES[first] && first !== here && document.querySelector('.navbar .lang a[hreflang="' + first + '"]');
+            if (!bar || !src) return;
+            var go = bar.querySelector('.lang-offer-go'), x = bar.querySelector('.lang-offer-x');
+            var keep = function (l) { try { localStorage.setItem('numidea-lang', l); } catch (e) {} };
+            go.textContent = NAMES[first];
+            go.setAttribute('href', src.getAttribute('href'));
+            go.setAttribute('hreflang', first); go.setAttribute('lang', first);
+            go.addEventListener('click', function () { keep(first); });
+            x.addEventListener('click', function () { keep(here); bar.hidden = true; bar.style.display = 'none'; });
+            // inline styles until styles.css carries a .lang-offer rule
+            bar.style.cssText = 'align-items:center;gap:var(--s-2);margin:0 0 var(--s-4);font-size:var(--t-small);color:var(--muted);display:flex';
+            go.style.cssText = 'color:var(--ice);min-height:44px;display:inline-flex;align-items:center';
+            x.style.cssText = 'display:inline-grid;place-items:center;width:44px;height:44px;padding:0;border:0;background:none;color:inherit;cursor:pointer';
+            bar.hidden = false;
+          })();
+        </script>
         <span class="eyebrow" data-i18n="hero.eyebrow">Web studio · Bordj Bou Arréridj</span>
         <h1 class="hero-h" id="hero-title" data-i18n="hero.title">See your homepage <span class="swash">before you pay.</span></h1>
         <div class="dim-line" aria-hidden="true"><i></i><b>36°04′N · 4°46′E</b><i></i></div>
         <p class="lede" data-i18n="hero.lede">Before you pay anything, we build your new site’s homepage with your own content in 5 working days. That is the Preview: free, for registered businesses only, at most 4 a month. Yasser Hamisse, founder, designer and developer, designs, codes and delivers it himself, with freelancers when a project calls for it.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#apercu" data-i18n="hero.cta1">Request my free Preview <span aria-hidden="true">→</span></a>
+          <a class="btn btn-primary" href="#contact" data-apercu data-i18n="hero.cta1">Request my free Preview <span aria-hidden="true">→</span></a>
           <!-- WhatsApp with the Aperçu's own message, so a phone can write from
                the first screen (owner decision, 2026-10-26). Its link is baked
                in, in the page's language (scripts/build-lang.mjs), so it works
@@ -328,21 +365,28 @@
           </a>
         </div>
       </div>
-      <!-- THE PLATE — four live client sites and the Glaive portfolio demo, one at a time, at a size you
+      <!-- THE PLATE — the four live client sites, one at a time, at a size you
            can actually read. This replaced a fan of three static thumbnails
            that showed 3 of 5 clients and was too small to make out; the studio's
            strongest asset was being used as texture. Wiped, never cross-faded:
-           screenshots stay flat and sharp, which is the scene/ idiom.
+           screenshots stay flat and sharp, which is the scene/ idiom. Client
+           sites only: the Glaive demo stays in the grid and on scene/, where
+           it is marked as no client's order.
            Each slide is its capture at 1280 and at 720 (scripts/shots.mjs
            writes both); sizes is the plate's measured width: 91vw to 960px,
            at most 40vw above, so a phone at 2x takes the 720 file. The first
            slide is the page's largest paint and keeps its high priority; the
-           four others wait in the <template> until the visitor moves (app.js:
+           three others wait in the <template> until the visitor moves (app.js:
            the deck's wake() puts them in the plate), since the deck does not
-           turn before that and 138 KB loaded ahead of everything else for a
-           slide nobody had asked for yet. A template, not src-less images,
-           which the audit counts as broken. -->
-      <div class="plate-wrap" data-parallax="-.06" data-parallax-cap="26">
+           turn before that and their files loaded ahead of everything else for
+           a slide nobody had asked for yet. A template, not src-less images,
+           which the audit counts as broken. The order is the page's language's:
+           scripts/build-lang.mjs reorders the slides, their captions and the
+           rail by data-client (PLATE_ORDER there), so the Arabic page opens on
+           Nomara, an Arabic site, not on a French capture. One slide per line:
+           the generator moves lines. The plate holds still under the pointer
+           (no data-parallax): a capture that drifts reads as a mock-up. -->
+      <div class="plate-wrap">
         <!-- The plate is a way into the site, not out of it: it leads to the
              slide's project sheet (scene/), where the caption under it leads
              to the client's live site. The deck (app.js) moves this link to
@@ -353,80 +397,42 @@
         <div class="plate">
           <i class="pk tl" aria-hidden="true"></i><i class="pk tr" aria-hidden="true"></i>
           <i class="pk bl" aria-hidden="true"></i><i class="pk br" aria-hidden="true"></i>
-        <img class="pl on" src="../assets/previews/bordjsteel.webp" srcset="../assets/previews/bordjsteel-720.webp 720w, ../assets/previews/bordjsteel.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Bordj Steel"
-             width="1280" height="800" decoding="async" fetchpriority="high">
+        <img class="pl on" data-client="bordjsteel" src="../assets/previews/bordjsteel.webp" srcset="../assets/previews/bordjsteel-720.webp 720w, ../assets/previews/bordjsteel.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Bordj Steel" width="1280" height="800" decoding="async" fetchpriority="high">
         <template id="plate-more">
-        <img class="pl" src="../assets/previews/glaive.webp" srcset="../assets/previews/glaive-720.webp 720w, ../assets/previews/glaive.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Glaive Store"
-             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
-        <img class="pl" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Alliance Travel"
-             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
-        <img class="pl" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Nomara Voyages"
-             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
-        <img class="pl" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="AlmaFlowClim"
-             width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
+        <img class="pl" data-client="alliance" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Alliance Travel" width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
+        <img class="pl" data-client="nomara" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="Nomara Voyages" width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
+        <img class="pl" data-client="almaflow" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:961px) 50vw, 91vw" alt="AlmaFlowClim" width="1280" height="800" decoding="async" loading="lazy" fetchpriority="low">
         </template>
           <span class="pl-wipe" aria-hidden="true"></span>
-          <span class="pl-scan" aria-hidden="true"></span>
         </div>
         <span class="sr-only" data-i18n="work.sheet">See the project in detail <span aria-hidden="true">→</span></span>
         </a>
         <div class="plate-meta">
-          <span class="pm-idx" aria-hidden="true"><b>01</b>/05</span>
+          <span class="pm-idx" aria-hidden="true"><b>01</b>/04</span>
           <span class="pm-rot">
-        <a class="pm-item on" data-client="bordjsteel" data-sheet="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer">
-          <b>Bordj Steel</b><i data-i18n="proj4.cat">Industrial · B2B</i>
-        </a>
-        <a class="pm-item" data-client="glaive" data-sheet="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener noreferrer">
-          <b>Glaive Store</b><i data-i18n="work.concept">Portfolio demo</i>
-        </a>
-        <a class="pm-item" data-client="alliance" data-sheet="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer">
-          <b>Alliance Travel</b><i data-i18n="proj2.cat">Travel · Growth</i>
-        </a>
-        <a class="pm-item" data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer">
-          <b>Nomara Voyages</b><i data-i18n="proj6.cat">Travel · Umrah</i>
-        </a>
-        <a class="pm-item" data-client="almaflow" data-sheet="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer">
-          <b>AlmaFlowClim</b><i data-i18n="proj3.cat">Contractor · Île-⁠de-⁠France</i>
-        </a>
+        <a class="pm-item on" data-client="bordjsteel" data-sheet="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener noreferrer"><b>Bordj Steel</b><i data-i18n="proj4.cat">Industrial · B2B</i></a>
+        <a class="pm-item" data-client="alliance" data-sheet="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener noreferrer"><b>Alliance Travel</b><i data-i18n="proj2.cat">Travel · Growth</i></a>
+        <a class="pm-item" data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener noreferrer"><b>Nomara Voyages</b><i data-i18n="proj6.cat">Travel · Umrah</i></a>
+        <a class="pm-item" data-client="almaflow" data-sheet="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener noreferrer"><b>AlmaFlowClim</b><i data-i18n="proj3.cat">Contractor · Île-⁠de-⁠France</i></a>
           </span>
           <span class="pm-live"><i aria-hidden="true"></i><span data-i18n="hero.plateLive">live</span></span>
         </div>
         <div class="plate-ctl js-only">
+        <!-- one name, whatever the state: aria-pressed says paused or not
+             (a label that swapped to "resume" as it was pressed was read as
+             "Reprendre la rotation, pressed": the state twice, contradicting) -->
         <button type="button" class="pl-pause" aria-pressed="false" aria-label="Pause the rotation" data-i18n-aria="hero.platePause"><svg viewBox="0 0 12 12" aria-hidden="true"><path class="ic-pause" d="M3.5 2v8M8.5 2v8"/><path class="ic-play" d="M3 1.8v8.4L10 6z"/></svg></button>
         <!-- one Tab stop: the arrows move between the tabs (app.js) -->
         <div class="plate-rail" role="group" aria-label="Featured work" data-i18n-aria="hero.plateRail">
-        <button type="button" aria-current="true" aria-label="Bordj Steel"><i></i></button>
-        <button type="button" tabindex="-1" aria-label="Glaive Store"><i></i></button>
-        <button type="button" tabindex="-1" aria-label="Alliance Travel"><i></i></button>
-        <button type="button" tabindex="-1" aria-label="Nomara Voyages"><i></i></button>
-        <button type="button" tabindex="-1" aria-label="AlmaFlowClim"><i></i></button>
+        <button type="button" data-client="bordjsteel" aria-current="true" aria-label="Bordj Steel"><i></i></button>
+        <button type="button" data-client="alliance" tabindex="-1" aria-label="Alliance Travel"><i></i></button>
+        <button type="button" data-client="nomara" tabindex="-1" aria-label="Nomara Voyages"><i></i></button>
+        <button type="button" data-client="almaflow" tabindex="-1" aria-label="AlmaFlowClim"><i></i></button>
         </div>
         </div>
       </div>
     </div>
 
-    <dl class="titleblock">
-      <div class="tb-f">
-        <dt data-i18n="tb.studio">Studio</dt>
-        <dd>Numidea Labs<i data-i18n="tb.place">Bordj Bou Arréridj, Algeria</i></dd>
-      </div>
-      <div class="tb-f">
-        <dt data-i18n="tb.lang">Languages</dt>
-        <dd data-i18n="tb.langV">EN · FR · AR</dd>
-      </div>
-      <div class="tb-f">
-        <dt data-i18n="tb.reply">Reply</dt>
-        <dd data-i18n="tb.replyV">The next working day</dd>
-      </div>
-      <div class="tb-f">
-        <dt data-i18n="tb.preview">Preview</dt>
-        <dd data-i18n="tb.previewV">Free · 5 working days · 4/month</dd>
-      </div>
-      <div class="tb-f">
-        <dt data-i18n="tb.live">Live</dt>
-        <dd><span class="tb-live" aria-hidden="true"></span><span data-i18n="tb.liveV">4 client sites</span></dd>
-      </div>
-    </dl>
 
   </section>
 
@@ -477,21 +483,24 @@
            The shots are the plate's captures, 720 and 1280 wide; sizes is each
            thumb's measured width: 91vw on phones, a 232px strip beside the
            text from 600px, then 44vw (the wide card 90vw) at 961px and 28vw
-           (57vw) from 1100px. -->
+           (57vw) from 1100px. The wide card keeps its full width to 960px
+           (91vw: its sizes said 232px, and a 2x screen got 0.97 image pixels
+           per CSS pixel at 820) and shows the Bordj Steel catalogue, not the
+           plate's welder again, with a 1600 file for 57vw on a 2x screen. -->
       <article id="w-bordjsteel" class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
-        <div class="thumb"><img class="shot" src="../assets/previews/bordjsteel.webp" srcset="../assets/previews/bordjsteel-720.webp 720w, ../assets/previews/bordjsteel.webp 1280w" sizes="(min-width:1100px) 57vw, (min-width:961px) 90vw, (min-width:700px) 91vw, (min-width:600px) 232px, 91vw" alt="Screenshot of the Bordj Steel website" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" src="../assets/previews/bordjsteel-products.webp" srcset="../assets/previews/bordjsteel-products-720.webp 720w, ../assets/previews/bordjsteel-products.webp 1280w, ../assets/previews/bordjsteel-products-1600.webp 1600w" sizes="(min-width:1100px) 57vw, (min-width:961px) 90vw, 91vw" alt="Screenshot of the Bordj Steel website" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrial · B2B</span>
           <!-- the title is the way to the sheet (styles.css stretches it over
-               the card: .proj h3 a::after); the address under it is the
-               plate's caption grammar, index · host · state, in place of the
-               fake browser bar every thumb used to wear. The live site is the
-               one visible secondary link. -->
+               the card: .proj h3 a::after); the benefit line leads to the
+               sheet's own account of it (check.mjs 5c); the live site is the
+               one visible secondary link. The host line and a second "En
+               ligne" pill left on 2026-11-07: an address in netlify type under
+               every title, and a state the plate already says. -->
           <h3><a href="../scene/?lang=en#bordjsteel">Bordj Steel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">See the project in detail <span aria-hidden="true">→</span></span></a></h3>
-          <span class="host">01/05 · bordjsteelb2b.netlify.app · <span data-i18n="hero.plateLive">live</span></span>
           <p data-i18n="proj4.desc">The B2B corporate site for Bordj Steel SPA, a maker of structural steel and sandwich panels in Bordj Bou Arréridj — product catalogue, references and a careers section.</p>
           <a class="gain" href="../scene/?lang=en#gv-bordjsteel"><span data-i18n="proj4.gain">A buyer finds the right product line and its technical data without calling.</span><span class="sr-only" data-i18n="work.gainMore"> — more on the project sheet</span></a>
-          <div class="pills"><span class="pill">B2B</span><span class="pill" data-i18n="tag.corporate">Corporate</span><span class="pill live" data-i18n="work.livePill">Live</span></div>
+          <div class="pills"><span class="pill">B2B</span><span class="pill" data-i18n="tag.corporate">Corporate</span></div>
           <div class="actions">
             <a data-client="bordjsteel" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Visit the site <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
@@ -503,10 +512,9 @@
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Travel · Growth</span>
           <h3><a href="../scene/?lang=en#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">See the project in detail <span aria-hidden="true">→</span></span></a></h3>
-          <span class="host">02/05 · alliancetravel34.netlify.app · <span data-i18n="hero.plateLive">live</span></span>
           <p data-i18n="proj2.desc">Brand identity and a trilingual website for a travel agency in Bordj Bou Arréridj, with a WhatsApp quote calculator and a visa-appointment service.</p>
           <a class="gain" href="../scene/?lang=en#gv-alliance"><span data-i18n="proj2.gain">A traveller gets an estimate for their trip and sends a complete request on WhatsApp.</span><span class="sr-only" data-i18n="work.gainMore"> — more on the project sheet</span></a>
-          <div class="pills"><span class="pill" data-i18n="tag.brand">Brand</span><span class="pill" data-i18n="tag.funnel">Funnel</span><span class="pill live" data-i18n="work.livePill">Live</span></div>
+          <div class="pills"><span class="pill" data-i18n="tag.brand">Brand</span><span class="pill" data-i18n="tag.funnel">Funnel</span></div>
           <div class="actions">
             <a data-client="alliance" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Visit the site <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
@@ -518,10 +526,9 @@
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Contractor · Île-⁠de-⁠France</span>
           <h3><a href="../scene/?lang=en#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">See the project in detail <span aria-hidden="true">→</span></span></a></h3>
-          <span class="host">03/05 · almaflowclim.netlify.app · <span data-i18n="hero.plateLive">live</span></span>
           <p data-i18n="proj3.desc">The website of an air-conditioning, heating and plumbing firm in Gennevilliers, near Paris: one page per trade, a page of past jobs and a one-form quote request.</p>
           <a class="gain" href="../scene/?lang=en#gv-almaflow"><span data-i18n="proj3.gain">If something breaks down, a customer calls in one tap from the page for that trade.</span><span class="sr-only" data-i18n="work.gainMore"> — more on the project sheet</span></a>
-          <div class="pills"><span class="pill" data-i18n="tag.static">Showcase site</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">Live</span></div>
+          <div class="pills"><span class="pill" data-i18n="tag.static">Showcase site</span><span class="pill" data-i18n="tag.seo">SEO</span></div>
           <div class="actions">
             <a data-client="almaflow" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Visit the site <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
@@ -532,15 +539,12 @@
         <div class="thumb"><img class="shot" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Screenshot of the Nomara Voyages website" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Travel · Umrah</span>
-          <!-- no sheet for Nomara (scene/): the title stays text -->
-          <h3>Nomara Voyages</h3>
-          <span class="host">04/05 · nomaravoyages.netlify.app · <span data-i18n="hero.plateLive">live</span></span>
+          <!-- no sheet for Nomara (scene/): the title leads to the live site,
+               a link like every card's title, not plain text among links -->
+          <h3><a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener">Nomara Voyages <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a></h3>
           <p data-i18n="proj6.desc">A bilingual storefront for package tours and Umrah trips departing from Constantine.</p>
           <p class="gain" data-i18n="proj6.gain">A pilgrim compares Umrah packages by price and distance from the Haram, then messages on WhatsApp.</p>
-          <div class="pills"><span class="pill" data-i18n="work.bilingual">Bilingual</span><span class="pill" data-i18n="tag.seo">SEO</span><span class="pill live" data-i18n="work.livePill">Live</span></div>
-          <div class="actions">
-            <a data-client="nomara" href="https://nomaravoyages.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Visit the site <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-          </div>
+          <div class="pills"><span class="pill" data-i18n="work.bilingual">Bilingual</span><span class="pill" data-i18n="tag.seo">SEO</span></div>
         </div>
       </article>
 
@@ -549,7 +553,6 @@
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
           <h3><a href="../scene/?lang=en#glaive">Glaive Store <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">See the project in detail <span aria-hidden="true">→</span></span></a></h3>
-          <span class="host">05/05 · glaivestore.netlify.app · <span data-i18n="work.concept">Portfolio demo</span></span>
           <p data-i18n="proj7.desc">A fictional gaming-gear brand and online store, designed end to end as a portfolio demo.</p>
           <div class="pills"><span class="pill" data-i18n="tag.commerce">Commerce</span><span class="pill" data-i18n="tag.brand">Brand</span><span class="pill concept" data-i18n="work.concept">Portfolio demo</span></div>
           <div class="actions">
@@ -563,7 +566,10 @@
          (real, consented quotes only, in the language they were given). Empty = nothing shown. -->
     <!-- SLOT:voices --><!-- /SLOT:voices -->
     <a class="scene-banner reveal" href="../scene/?lang=en">
-      <span class="sb-art" aria-hidden="true"><i></i><i></i><i></i></span>
+      <!-- one real sheet of /scene/, at 2x (scripts/shots.mjs writes it from
+           the built page): three blurred CSS thumbnails fanned in 3D stood
+           for the sheets before -->
+      <span class="sb-art" aria-hidden="true"><img src="../assets/previews/planche.webp" alt="" width="92" height="62" loading="lazy" decoding="async"></span>
       <span class="sb-txt">
         <span class="sb-kick" data-i18n="scene.kicker">◆ IN DETAIL</span>
         <b data-i18n="scene.title">Our work, piece by piece.</b>
@@ -576,14 +582,12 @@
 
   <!-- ================= SERVICES ================= -->
   <section id="services" class="band" aria-labelledby="svc-h">
-    <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-plan" data-parallax="-.05" data-parallax-cap="90"></span></span>
     <span class="kicker" data-i18n="svc.kicker">03 — Services</span>
     <h2 class="sec font-swap-display" id="svc-h" data-i18n="svc.title">What we <em>build for you.</em></h2>
     <p class="svc-lead" data-i18n="svc.lead">Our five core services — and five more just below.</p>
 
     <!-- SIGNATURE OFFER — pinned -->
     <article class="preview reveal" id="apercu" aria-labelledby="prev-h">
-      <div class="glow" aria-hidden="true"></div>
       <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7.5V3h4.5M16.5 3H21v4.5M21 16.5V21h-4.5M7.5 21H3v-4.5"/><circle cx="12" cy="12" r="3.4"/><path d="M12 6.2v2.4M12 15.4v2.4M6.2 12h2.4M15.4 12h2.4"/></svg></span>
       <div class="body">
         <span class="tag" data-i18n="prev.tag">Signature offer</span>
@@ -606,7 +610,7 @@
         </div>
         <p class="prev-terms" data-i18n="prev.terms">Free, no obligation · registered businesses only · at most 4 Previews a month, across all clients.</p>
         <p class="prev-actions">
-          <a class="btn btn-primary" id="prev-cta" href="#contact" data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a>
+          <a class="btn btn-primary" id="prev-cta" href="#contact" data-apercu data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a>
           <!-- WhatsApp as the hero wears it (a button with the mark, not an
                underlined aside): it is the one way in that needs no mail app -->
           <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Hello%20Numidea%20Labs%2C%20I%20would%20like%20a%20free%20Preview%20of%20my%20new%20website.%0ACompany%3A%20%0ABusiness%20and%20city%3A%20%0ACurrent%20site%20(if%20any)%3A%20" target="_blank" rel="noopener">
@@ -734,7 +738,7 @@
        rendered again on the guide from this markup, read between the SLOT
        markers by scripts/build-tarifs.mjs: the two pages cannot differ. -->
   <section id="pricing" aria-labelledby="pricing-h">
-    <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-contour" data-parallax="-.06" data-parallax-cap="90"></span><span class="pi-coins lv"><span class="pi pc pc-king" data-parallax="-.16" data-parallax-cap="60"><i></i></span><span class="pi pc pc-horse" data-parallax="-.08" data-parallax-cap="50"><i></i></span><span class="pi pc pc-palm" data-parallax="-.22" data-parallax-cap="70"><i></i></span><span class="pl-cap" data-i18n="pl.coins">Pl. III — Numidian coins</span></span></span>
+    <span class="px-wrap lz" aria-hidden="true"><span class="pi-coins lv"><span class="pi pc pc-king" data-parallax="-.16" data-parallax-cap="60"><i></i></span><span class="pi pc pc-horse" data-parallax="-.08" data-parallax-cap="50"><i></i></span><span class="pi pc pc-palm" data-parallax="-.22" data-parallax-cap="70"><i></i></span><span class="pl-cap" data-i18n="pl.coins">Pl. III — Numidian coins</span></span></span>
     <span class="kicker" data-i18n="price.kicker">04 — Pricing</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">A price <em>before the quote.</em></h2>
     <p class="sec-lead" data-i18n="price.lead">Our prices are published, in dinars, euros or dollars. Three packages; for e-commerce, automation or branding, the estimator just below. The details and the comparison with the market: our price guide.</p>
@@ -753,6 +757,14 @@
     </fieldset>
     <p class="pr-cur-note" id="pr-cur-note" hidden></p>
 
+    <!-- Every tier ends on the Aperçu, the way every project starts: the
+         page's one label for it, to the form, where app.js writes the
+         Aperçu's request with the tier named (its name and range as the card
+         shows them, in the shown currency); from the price guide the same
+         line is carried to the home page's form. Studio's is the gold one,
+         as its card is the recommended one. The list and the button share
+         the card's last row (.t-foot): the cards are a six-row subgrid from
+         961px (styles.css), and a seventh child was laid over the list. -->
     <div class="tiers">
       <article class="tier reveal">
         <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg>
@@ -761,13 +773,16 @@
         <p class="t-range" data-tier="vitrine"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DZD</span></p>
         <p class="t-time" data-i18n="price.t1time">2 to 4 weeks</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
-        <ul class="t-list">
-          <li data-i18n="price.t1a">Showcase or landing site, 1 to 5 pages</li>
-          <li data-i18n="price.t1b">Custom design — never a re-themed template</li>
-          <li data-i18n="price.t1c">Responsive, fast, with foundational SEO</li>
-          <li data-i18n="price.t1d">Deployment, domain and certificate configured</li>
-          <li data-i18n="price.t1e">1 month of support included</li>
-        </ul>
+        <div class="t-foot">
+          <ul class="t-list">
+            <li data-i18n="price.t1a">Showcase or landing site, 1 to 5 pages</li>
+            <li data-i18n="price.t1b">Custom design — never a re-themed template</li>
+            <li data-i18n="price.t1c">Responsive, fast, with foundational SEO</li>
+            <li data-i18n="price.t1d">Deployment, domain and certificate configured</li>
+            <li data-i18n="price.t1e">1 month of support included</li>
+          </ul>
+          <p class="actions-row"><a class="btn btn-teal" href="#contact" data-apercu="vitrine" data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a></p>
+        </div>
       </article>
 
       <article class="tier tier-pop reveal">
@@ -778,14 +793,17 @@
         <p class="t-range" data-tier="surmesure"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DZD</span></p>
         <p class="t-time" data-i18n="price.t2time">3 to 7 weeks</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
-        <ul class="t-list">
-          <li data-i18n="price.t2a">Custom site, 6 to 15 pages</li>
-          <li data-i18n="price.t2b">Trilingual FR / EN / AR, with Arabic RTL built natively</li>
-          <li data-i18n="price.t2c">Documented design kit — colours, styles, components, ready to reuse</li>
-          <li data-i18n="price.t2d">CMS or back-office so you manage the content yourself</li>
-          <li data-i18n="price.t2e">Technical SEO, speed as Google measures it, accessibility</li>
-          <li data-i18n="price.t2f">3 months of support included</li>
-        </ul>
+        <div class="t-foot">
+          <ul class="t-list">
+            <li data-i18n="price.t2a">Custom site, 6 to 15 pages</li>
+            <li data-i18n="price.t2b">Trilingual FR / EN / AR, with Arabic RTL built natively</li>
+            <li data-i18n="price.t2c">Documented design kit — colours, styles, components, ready to reuse</li>
+            <li data-i18n="price.t2d">CMS or back-office so you manage the content yourself</li>
+            <li data-i18n="price.t2e">Technical SEO, speed as Google measures it, accessibility</li>
+            <li data-i18n="price.t2f">3 months of support included</li>
+          </ul>
+          <p class="actions-row"><a class="btn btn-primary" href="#contact" data-apercu="surmesure" data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a></p>
+        </div>
       </article>
 
       <article class="tier reveal">
@@ -795,13 +813,16 @@
         <p class="t-range" data-tier="app"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DZD</span></p>
         <p class="t-time" data-i18n="price.t3time">8 to 16 weeks</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
-        <ul class="t-list">
-          <li data-i18n="price.t3a">Custom web application: platform, portal or business tool</li>
-          <li data-i18n="price.t3b">Payments, user accounts, dashboards</li>
-          <li data-i18n="price.t3c">Web data collection and market monitoring, built into the application</li>
-          <li data-i18n="price.t3d">API integrations and internal tools</li>
-          <li data-i18n="price.t3e">6 months of support included</li>
-        </ul>
+        <div class="t-foot">
+          <ul class="t-list">
+            <li data-i18n="price.t3a">Custom web application: platform, portal or business tool</li>
+            <li data-i18n="price.t3b">Payments, user accounts, dashboards</li>
+            <li data-i18n="price.t3c">Web data collection and market monitoring, built into the application</li>
+            <li data-i18n="price.t3d">API integrations and internal tools</li>
+            <li data-i18n="price.t3e">6 months of support included</li>
+          </ul>
+          <p class="actions-row"><a class="btn btn-teal" href="#contact" data-apercu="app" data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a></p>
+        </div>
       </article>
     </div>
 
@@ -812,7 +833,6 @@
     </p>
     <!-- /SLOT:tiers -->
 
-    <!-- SLOT:estimator -->
     <!-- ---------------- estimator ----------------
          Folded here (open on the price guide, where the page is about
          prices): open, it took two phone screens and, at its default, quoted
@@ -820,6 +840,7 @@
          price; the summary is its title, so the panel has no heading of its
          own. Nothing in it may carry .reveal (closed, the observer never sees
          it). -->
+    <!-- SLOT:estimator -->
     <details class="capabilities price-more price-est">
       <summary>
         <span data-i18n="price.estH">Estimate your project</span>
@@ -875,6 +896,20 @@
             </fieldset>
           </div>
 
+          <!-- Without scripts the controls above do nothing (styles.css hides
+               them then), so the three projects the tiers do not price are
+               given as a table instead: each one's base range, PRICE_MODEL's
+               (app.js), before options and size. -->
+          <noscript>
+            <table class="est-nojs">
+              <caption data-i18n="price.qType">What kind of project?</caption>
+              <tbody>
+                <tr><th scope="row" data-i18n="price.tyShop">E-⁠commerce</th><td>220 000 –⁠ 550 000 <span class="cur" data-i18n="price.cur">DZD</span></td></tr>
+                <tr><th scope="row" data-i18n="price.tyAuto">Automation</th><td>140 000 –⁠ 420 000 <span class="cur" data-i18n="price.cur">DZD</span></td></tr>
+                <tr><th scope="row" data-i18n="price.tyBrand">Visual identity</th><td>90 000 –⁠ 180 000 <span class="cur" data-i18n="price.cur">DZD</span></td></tr>
+              </tbody>
+            </table>
+          </noscript>
           <div class="est-out">
             <span class="eo-k" data-i18n="price.estimate">Estimate</span>
             <p class="eo-range" id="est-range" role="status" aria-live="polite">
@@ -923,11 +958,10 @@
          the team block under the card says so, and names nobody. -->
     <div class="founder-card reveal">
       <div class="fd-top">
-        <div class="fd-photo"><span class="mono" aria-hidden="true">Y</span>
-          <!-- Photo slot: a real portrait of the founder (never generated), square, at least 400px,
-               saved as assets/founder.webp. Uncomment and the monogram steps aside:
-          <img src="../assets/founder.webp" alt="Yasser Hamisse" width="400" height="400" loading="lazy" decoding="async"> -->
-        </div>
+        <!-- Photo slot: a real portrait of the founder (never generated), square,
+             at least 400px, saved as assets/founder.webp. Until it exists the
+             card shows no stand-in (a 'Y' monogram stood here): uncomment it.
+        <div class="fd-photo"><img src="../assets/founder.webp" alt="Yasser Hamisse" width="400" height="400" loading="lazy" decoding="async"></div> -->
         <div class="fd-id">
           <h3>Yasser Hamisse</h3>
           <p class="fd-role" data-i18n="founder.role">Graphic designer &amp; web developer · Founder</p>
@@ -1001,29 +1035,27 @@
 
   <!-- ================= FAQ ================= -->
   <section id="faq" aria-labelledby="faq-h">
-    <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-lantern lv"><b class="glow"></b><i></i></span></span>
+    <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-lantern lv"><i></i></span></span>
     <span class="kicker" data-i18n="faq.kicker">06 — FAQ</span>
     <h2 class="sec font-swap-display" id="faq-h" data-i18n="faq.title">The questions <em>that matter.</em></h2>
     <p class="sec-lead" data-i18n="faq.lead">What people ask before they start — answered straight.</p>
     <div class="faq-list">
       <!-- two independent columns (1-4, 5-8): opening a question never
            stretches the one beside it; DOM and reading order stay 1 to 8.
-           The icons are the page's own, drawn once (.ai): no new drawings
-           for the three entries of 2026-11-02 (payment, ownership, the
-           Aperçu's rules), and no figure beside their answers either; the
-           payment entry took the languages entry's place and left its
-           speech-bubble mask behind (assets/illus/faq3.webp, styles.css
-           .ill-faq3, now unused by the page). -->
+           The icons are the page's own, drawn once (.ai). The engraved
+           figures beside five answers left on 2026-11-07 (with their masks,
+           assets/illus/faq*.webp): hidden on phones, they framed some answers
+           and not others. -->
       <div class="faq-col">
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-flip"><path class="p" pathLength="1" d="M6.5 3h11M6.5 21h11M7.5 3c0 5 4.5 6 4.5 9s-4.5 4-4.5 9M16.5 3c0 5-4.5 6-4.5 9s4.5 4 4.5 9"/><path class="f" d="M9.6 19.6h4.8L12 16.6Z"/></g></svg><span class="q" data-i18n="faq1.q">How long does a project take?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq1"></span></span><p data-i18n="faq1.a">It depends on the scope: 2 to 4 weeks for a showcase site, 3 to 7 for a custom site and 8 to 16 for a web application. You get a firm timeline as soon as we have agreed the scope together.</p></div>
+          <div class="faq-a"><p data-i18n="faq1.a">It depends on the scope: 2 to 4 weeks for a showcase site, 3 to 7 for a custom site and 8 to 16 for a web application. You get a firm timeline as soon as we have agreed the scope together.</p></div>
         </details>
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:7.5px 7.5px"><path class="p" pathLength="1" d="M3.5 3.5h8.2l8.8 8.8a1.5 1.5 0 0 1 0 2.1l-6.1 6.1a1.5 1.5 0 0 1-2.1 0L3.5 11.7Z"/><circle class="p" pathLength="1" cx="7.5" cy="7.5" r="1.4"/></g></svg><span class="q" data-i18n="faq2.q">What does it cost?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq2"></span></span><p data-i18n="faq2.a">Our packages start at 90,000 DZD for a showcase site (see Pricing for euros and dollars), and every project gets one fixed price once the scope is clear — no surprise fees. See also <a href="#apercu">the Preview</a>.</p></div>
+          <div class="faq-a"><p data-i18n="faq2.a">Our packages start at 90,000 DZD for a showcase site (see Pricing for euros and dollars), and every project gets one fixed price once the scope is clear — no surprise fees. See also <a href="#apercu">the Preview</a>.</p></div>
         </details>
 
         <details class="faq-item reveal">
@@ -1033,7 +1065,7 @@
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 3 19.5 6v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6Z"/><path class="p a-ekg" pathLength="1" d="M6.5 12.5h3l1.3-3 2.4 6 1.3-3h3"/></svg><span class="q" data-i18n="faq4.q">What happens after launch?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq4"></span></span><p data-i18n="faq4.a">We stay. Thirty days of fixes after delivery, then 1, 3 or 6 months of support depending on the package, and we reply the next working day (Sunday to Thursday, 9am–⁠6pm). After that, maintenance is optional: 18,000–60,000 DZD a month, with no lock-in, covering updates, backups and small changes. No “good luck” on launch day.</p></div>
+          <div class="faq-a"><p data-i18n="faq4.a">We stay. Thirty days of fixes after delivery, then 1, 3 or 6 months of support depending on the package, and we reply the next working day (Sunday to Thursday, 9am–⁠6pm). After that, maintenance is optional: 18,000–60,000 DZD a month, with no lock-in, covering updates, backups and small changes. No “good luck” on launch day.</p></div>
         </details>
 
       </div>
@@ -1041,12 +1073,12 @@
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="orb" cx="12" cy="12" r="9.5"/><circle class="p" pathLength="1" cx="12" cy="12" r="6"/><path class="p" pathLength="1" d="M6 12h12M12 6c1.9 1.9 1.9 10.1 0 12M12 6c-1.9 1.9-1.9 10.1 0 12"/><g class="a-orbit" style="--o:12px 12px"><circle class="f" cx="21.5" cy="12" r="1.15"/></g></svg><span class="q" data-i18n="faq5.q">Do you work remotely?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq5"></span></span><p data-i18n="faq5.a">Yes. The studio is in Bordj Bou Arréridj, and we deliver anywhere — including to clients in France. Distance changes nothing: you talk directly to the person building your site.</p></div>
+          <div class="faq-a"><p data-i18n="faq5.a">Yes. The studio is in Bordj Bou Arréridj, and we deliver anywhere — including to clients in France. Distance changes nothing: you talk directly to the person building your site.</p></div>
         </details>
 
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="4.8" cy="12" r="2.6"/><circle class="p" pathLength="1" cx="19.2" cy="12" r="2.6"/><path class="p" pathLength="1" d="M7.4 12h9.2"/><circle class="f a-travel" cx="8.6" cy="12" r="1.05"/></svg><span class="q" data-i18n="faq6.q">How are you different from an agency?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq6"></span></span><p data-i18n="faq6.a">No middleman: the person who scopes your project is the one who designs, codes and delivers it. When a project calls for it, a freelancer takes on one well-defined part; you keep a single contact.</p></div>
+          <div class="faq-a"><p data-i18n="faq6.a">No middleman: the person who scopes your project is the one who designs, codes and delivers it. When a project calls for it, a freelancer takes on one well-defined part; you keep a single contact.</p></div>
         </details>
 
         <details class="faq-item reveal">
@@ -1062,12 +1094,12 @@
       </div>
 
     </div>
-    <!-- The section's next step: the two ways in again, under the last
-         answer, so a reader who got this far is not left at a hairline.
-         Its sentence (faq.ask) joins this row once the dictionaries carry
-         the key (I4); until then the row is the two actions. -->
+    <!-- The section's next step: its question (faq.ask), then the two ways
+         in again, under the last answer, so a reader who got this far is not
+         left at a hairline. -->
     <p class="faq-ask">
-      <a class="btn btn-primary" href="#apercu" data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a>
+      <strong data-i18n="faq.ask">Another question?</strong>
+      <a class="btn btn-primary" href="#contact" data-apercu data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a>
       <a class="btn wa-link btn-teal" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Hello%20Numidea%20Labs%2C%20I%20would%20like%20a%20free%20Preview%20of%20my%20new%20website.%0ACompany%3A%20%0ABusiness%20and%20city%3A%20%0ACurrent%20site%20(if%20any)%3A%20" target="_blank" rel="noopener">
         <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
         <span data-i18n="hero.cta2">Chat on WhatsApp</span>
@@ -1077,7 +1109,7 @@
 
   <!-- ================= CONTACT ================= -->
   <section id="contact" class="contact band" aria-labelledby="contact-h">
-    <span class="px-wrap lz" aria-hidden="true"><span class="px-field px-stars" data-parallax="-.04" data-parallax-cap="90"></span><span class="pi pi-light lv" data-parallax="-.05" data-parallax-cap="40"><b class="beam"></b><i></i><span class="pl-cap" data-i18n="pl.light">Pl. IV — Cap Carbon · Béjaïa</span></span></span>
+    <span class="px-wrap lz" aria-hidden="true"><span class="pi pi-light lv" data-parallax="-.05" data-parallax-cap="40"><i></i><span class="pl-cap" data-i18n="pl.light">Pl. IV — Cap Carbon · Béjaïa</span></span></span>
     <span class="kicker" data-i18n="contact.kicker">07 — Contact</span>
     <h2 class="font-swap-display" id="contact-h" data-i18n="contact.title">Let’s talk about <em>your project.</em></h2>
     <div class="contact-grid">
@@ -1144,7 +1176,7 @@
                are); then the copy for a webmail, then the way back. The
                address under them is the plain-text fallback. -->
           <p class="fallback acts">
-            <a class="btn wa-link btn-teal" id="form-wa" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Hello%20Numidea%20Labs%2C%20I%20would%20like%20a%20free%20Preview%20of%20my%20new%20website.%0ACompany%3A%20%0ABusiness%20and%20city%3A%20%0ACurrent%20site%20(if%20any)%3A%20" target="_blank" rel="noopener">
+            <a class="btn wa-link btn-primary" id="form-wa" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Hello%20Numidea%20Labs%2C%20I%20would%20like%20a%20free%20Preview%20of%20my%20new%20website.%0ACompany%3A%20%0ABusiness%20and%20city%3A%20%0ACurrent%20site%20(if%20any)%3A%20" target="_blank" rel="noopener">
               <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
               <span data-i18n="form.waInstead">Chat on WhatsApp</span>
             </a>
