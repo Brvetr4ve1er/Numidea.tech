@@ -1,0 +1,291 @@
+{
+  "ui": {
+    "title": "Numidea Labs — le studio : sites, applications et marques",
+    "desc": "Numidea Labs, studio à Bordj Bou Arréridj : sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu est gratuit.",
+    "skip": "Aller au contenu",
+    "ogAlt": "Numidea Labs — L’Aperçu : votre page d’accueil avant de payer, à côté d’une gravure de l’arc de Trajan à Timgad"
+  },
+  "nav": {
+    "aria": "Sections du studio",
+    "home": "Numidea Labs, le site",
+    "services": "Services",
+    "preview": "Aperçu",
+    "pricing": "Prix",
+    "work": "Travaux",
+    "studio": "Studio",
+    "faq": "FAQ",
+    "cta": "Demander un Aperçu",
+    "lang": "Langue",
+    "langFr": "Français",
+    "langEn": "English"
+  },
+  "sting": {
+    "hud": "06:12 · BORDJ BOU ARRÉRIDJ · AUBE",
+    "skip": "PASSER",
+    "skipL": "Passer l’intro"
+  },
+  "hero": {
+    "kicker": "/ STUDIO LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR",
+    "h1a": "On construit",
+    "h1b": "le logiciel que",
+    "h1c": "votre business attend.",
+    "sub": "Sites, applications, automatisations et identités, conçus et codés par les mêmes mains. Vous parlez au builder, pas à un commercial.",
+    "cta1": "Demander un Aperçu",
+    "cta2": "Estimer mon projet",
+    "aside": "yeux fatigués. grandes idées.",
+    "mood": "/ HUMEUR DU JOUR",
+    "live": "● EN DIRECT",
+    "still": "● AU REPOS"
+  },
+  "rig": {
+    "alt": "Yasser, fondateur de Numidea, avec son café, et Kūro, son chat noir",
+    "poke": "Faire parler Yasser",
+    "pokeKuro": "Taquiner Kūro",
+    "said": "Yasser dit :",
+    "lines": [
+      "Tu parles à celui qui code.",
+      "Démo d’abord. Le prix après.",
+      "Prix fixe. Écrit avant.",
+      "Kūro valide. Ou pas.",
+      "Ok. On le construit ?"
+    ],
+    "mood": {
+      "base": "CAFÉ NO.1",
+      "glance": "IL TE LIT",
+      "glance-r": "IL TE SUIT",
+      "up": "IL RÉFLÉCHIT",
+      "smirk": "ÇA MARCHE",
+      "sip": "UNE GORGÉE",
+      "half": "NUIT BLANCHE",
+      "talk": "IL TE PARLE",
+      "drowsy": "IL DÉCROCHE",
+      "yawn": "BÂILLEMENT",
+      "laugh": "MDR",
+      "glasses": "OK, REGARDE"
+    }
+  },
+  "wedge": {
+    "kicker": "/ 01 · LE PROBLÈME",
+    "title": "Chaque intermédiaire coûte de l’argent et du sens.",
+    "lead": "Dans une agence classique, votre idée passe par cinq personnes avant d’atteindre quelqu’un qui code. À chaque étape, elle perd un détail et gagne une facture.",
+    "theirsL": "L’AGENCE CLASSIQUE",
+    "theirs": ["Vous", "Commercial", "Chef de projet", "Designer", "Dev sous-traité"],
+    "theirsR": "DÉLAI : 3 MOIS · RÉPONSES : LENTES",
+    "oursL": "NUMIDEA",
+    "ours": ["Vous", "Le builder"],
+    "oursR": "DÉLAI : QUELQUES SEMAINES · RÉPONSE LE JOUR OUVRÉ SUIVANT",
+    "aside": "Kūro a coupé les câbles.",
+    "kuro": "Kūro, sceptique"
+  },
+  "services": {
+    "kicker": "/ 02 · CE QU’ON FAIT",
+    "title": "Ce qu’on rend réel.",
+    "lead": "Quatre familles de services, un seul interlocuteur du premier appel à la maintenance.",
+    "actor": "Yasser montre les services",
+    "items": [
+      { "fam": "THE BUILD", "name": "Sites & applications", "line": "Sites vitrines, e-commerce et applications web sur mesure, du front-end au cloud.", "gets": ["Design sur mesure, jamais de template", "Rapide, trilingue, arabe en RTL natif", "Code et accès qui vous appartiennent"], "weeks": "2–16 SEMAINES", "aside": "ça charge vite. promis.", "alt": "Yasser à son bureau, la nuit, avec Kūro" },
+      { "fam": "THE ENGINE", "name": "Automatisation & data", "line": "Scrapers, pipelines de leads, outils internes : les tâches répétitives disparaissent.", "gets": ["Formulaire → CRM → WhatsApp", "Veille marché et prix automatique", "Tableaux de bord sur vos vraies données"], "weeks": "2–6 SEMAINES", "aside": "Kūro approuve. (il dort.)", "alt": "Yasser construit une maquette à son établi, Kūro à côté" },
+      { "fam": "THE MARK", "name": "Marque & design system", "line": "Identité, système visuel, motion : une marque qu’on reconnaît sans lire le nom.", "gets": ["Logo, couleurs, typo, ton de voix", "Charte et composants réutilisables", "Kit réseaux sociaux animé"], "weeks": "2–5 SEMAINES", "aside": "plus qu’un logo.", "alt": "Planche de stickers et goodies Kūro" },
+      { "fam": "THE MIND", "name": "Stratégie & conseil", "line": "Audit de marché, analyse de funnel, veille concurrentielle, avant d’écrire une ligne de code.", "gets": ["Audit de votre site actuel", "Où vous perdez vos clients", "Plan d’action chiffré"], "weeks": "SUR DEVIS", "aside": "on lit les chiffres pour vous.", "alt": "Yasser lit une carte au coucher du soleil, Kūro assis à côté" }
+    ]
+  },
+  "preview": {
+    "kicker": "/ 03 · L’OFFRE SIGNATURE",
+    "title": "Une vraie démo. Avant de payer.",
+    "lead": "Avant tout paiement, on construit la page d’accueil de votre futur site, avec votre contenu. Vous cliquez, vous testez, vous décidez.",
+    "steps": [
+      { "t": "Vous décrivez le projet", "d": "Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe." },
+      { "t": "On construit l’Aperçu", "d": "Votre page d’accueil, avec votre contenu (logo, textes, photos), en 5 jours ouvrés." },
+      { "t": "Vous décidez", "d": "Ça vous plaît : on continue. Sinon, l’Aperçu est supprimé et vous ne devez rien." }
+    ],
+    "terms": "@home:prev.terms",
+    "seal": "GRATUIT",
+    "aside": "zéro risque. zéro blabla.",
+    "cta": "Demander mon Aperçu",
+    "alt": "Yasser construit une maquette avant tout paiement, Kūro à côté"
+  },
+  "process": {
+    "kicker": "/ 04 · LA MÉTHODE",
+    "title": "Comment on travaille.",
+    "now": "/ ÉTAPE",
+    "steps": [
+      { "t": "Écouter", "d": "Un appel, vos objectifs, vos contraintes. Pas de jargon.", "m": "il réfléchit.", "alt": "Yasser lit une carte au coucher du soleil" },
+      { "t": "Aperçu", "d": "Votre page d’accueil construite, avant tout engagement.", "m": "il est confiant.", "alt": "Yasser construit une maquette à son établi" },
+      { "t": "Construire", "d": "Un périmètre écrit, un prix ferme, et vous voyez le site avancer.", "m": "ne pas déranger.", "alt": "Yasser à son bureau, la nuit" },
+      { "t": "Lancer", "d": "Mise en ligne, tests de vitesse, et tous les accès remis à votre nom.", "m": "c’est en ligne !", "alt": "Yasser fête une mise en ligne" },
+      { "t": "Entretenir", "d": "Trente jours de corrections, le support de votre formule, puis la maintenance si vous la voulez.", "m": "café n°4.", "alt": "Le toit du studio à l’aube, un café posé" }
+    ]
+  },
+  "pricing": {
+    "kicker": "/ 05 · LES PRIX",
+    "title": "Nos prix. Sans surprise.",
+    "lead": "Pas de tarifs « spéciaux » : ce sont les prix publiés du studio, en dinars, en euros et en dollars. Votre devis final tombe dans la fourchette.",
+    "type": "/ TYPE DE PROJET",
+    "size": "/ AMPLEUR",
+    "opts": "/ OPTIONS",
+    "pace": "/ DÉLAI",
+    "types": {
+      "vitrine": "@home:price.tyVitrine",
+      "surmesure": "@home:price.tyCustom",
+      "ecommerce": "@home:price.tyShop",
+      "app": "@home:price.tyApp",
+      "auto": "@home:price.tyAuto",
+      "identite": "@home:price.tyBrand"
+    },
+    "units": {
+      "uPages": "@home:price.uPages",
+      "uProducts": "@home:price.uProducts",
+      "uScreens": "@home:price.uScreens",
+      "uFlows": "@home:price.uFlows",
+      "uSupports": "@home:price.uSupports"
+    },
+    "o": {
+      "i18n": "@home:price.oI18n",
+      "cms": "@home:price.oCms",
+      "pay": "@home:price.oPay",
+      "ds": "@home:price.oDs",
+      "seo": "@home:price.oSeo",
+      "api": "@home:price.oApi"
+    },
+    "paceStd": "@home:price.paceStd",
+    "paceRush": "@home:price.paceRush",
+    "included": "@home:price.incl",
+    "cur": "@home:price.cur",
+    "care": "Ajouter la maintenance mensuelle",
+    "careL": "MAINTENANCE",
+    "monthly": "/ mois",
+    "dz": "EN DINARS",
+    "eu": "≈ EN EUROS",
+    "us": "≈ EN DOLLARS",
+    "weeks": "DÉLAI",
+    "wk": "@home:price.weeks",
+    "note": "@home:price.estFine",
+    "running": "Domaine et hébergement en plus, facturés à l’année par l’hébergeur, à votre nom.",
+    "cta": "Recevoir mon devis",
+    "sources": "Le marché, sources à l’appui : le guide des prix →",
+    "noJs": "Estimation de départ : un site vitrine de 3 pages. Le détail par formule est dans le guide des prix.",
+    "kuro": ["raisonnable. Kūro valide.", "sérieux. Kūro réfléchit.", "ambitieux. Kūro doit s’asseoir."],
+    "kuroAlt": "Kūro réagit à l’estimation"
+  },
+  "brand": {
+    "kicker": "/ 06 · LA MARQUE, EXPLIQUÉE",
+    "title": "Votre logo n’est pas votre marque.",
+    "lead": "Le logo, c’est la partie visible. La marque, c’est tout ce qu’il y a dessous : ce que les gens ressentent avant même de lire votre nom.",
+    "water": "CE QUE LES GENS VOIENT ↑ · CE QUI FAIT VENDRE ↓",
+    "layers": [
+      { "k": "LOGO", "t": "Le signe", "d": "Ce qu’on voit en premier. Utile, mais seul il ne raconte rien." },
+      { "k": "IDENTITÉ", "t": "Le langage visuel", "d": "Couleurs, typographies, images : on vous reconnaît même sans le logo." },
+      { "k": "SYSTÈME", "t": "Les règles", "d": "Composants et charte : chaque nouveau visuel reste cohérent, même fait par quelqu’un d’autre." },
+      { "k": "MARQUE", "t": "La promesse", "d": "Votre voix, votre service, votre réputation. Ce qu’on dit de vous quand vous n’êtes pas là." }
+    ],
+    "aside": "l’iceberg, en mieux.",
+    "pick": "Couches de la marque"
+  },
+  "tech": {
+    "kicker": "/ 07 · LE WEB, SANS JARGON",
+    "title": "Trois choses que votre site doit faire.",
+    "items": [
+      { "k": "VITESSE", "t": "Charger vite", "d": "Un site lent fait fuir vos clients avant qu’ils lisent une ligne.", "statL": "Chaque seconde d’attente fait partir des clients : on mesure, on allège, on livre rapide.", "aside": "Kūro n’attend pas." },
+      { "k": "HÉBERGEMENT", "t": "Avoir une adresse solide", "d": "Le domaine, c’est l’adresse. L’hébergement, c’est le terrain. Le site, c’est la maison.", "stat": "3", "statL": "pièces différentes à payer, on vous explique chacune", "aside": "pas de loyer caché.", "parts": ["DOMAINE", "HÉBERGEMENT", "SITE"], "partsD": ["l’adresse", "le terrain", "la maison"] },
+      { "k": "SEO", "t": "Être trouvé", "d": "Google est un bibliothécaire : il range en premier les sites clairs, rapides et utiles.", "stat": "1<sup>re</sup>", "statL": "page : là où se jouent presque tous les clics", "aside": "chut, il range.", "you": "Votre site", "other": "Concurrent" }
+    ]
+  },
+  "proof": {
+    "kicker": "/ 08 · LES REÇUS",
+    "title": "Le travail, en vrai.",
+    "lead": "Trois clients livrés, et deux travaux personnels du fondateur. Chaque dossier dit ce qui a été fait, et pour qui.",
+    "actor": "Yasser fête une mise en ligne",
+    "own": "Aussi, faits maison :",
+    "glaive": "Glaive, la démo du studio",
+    "whq": "WorkspaceHQ, le produit du studio"
+  },
+  "lab": {
+    "kicker": "/ 09 · LE LAB",
+    "title": "Ce qu’on fait quand personne ne commande.",
+    "lead": "Affiches, illustrations, expériences : des travaux personnels, et c’est là que naît la direction artistique de vos projets.",
+    "bible": "Le carnet du personnage →",
+    "bibleD": "Yasser et Kūro, dessinés en entier : poses, visages, règles.",
+    "items": [
+      { "t": "L’INSPECTION", "alt": "Yasser inspecte un document à la loupe, Kūro assis sur le bureau" },
+      { "t": "LE DOIGT", "alt": "Yasser pointe du doigt, sûr de lui" },
+      { "t": "LA PANCARTE", "alt": "Yasser lève une pancarte vierge au-dessus de sa tête" },
+      { "t": "LES CLÉS", "alt": "Yasser tend un trousseau de clés" },
+      { "t": "LE DRAPEAU", "alt": "Kūro assis sur une pile de papiers plantée d’un drapeau rouge" },
+      { "t": "LE TAMPON", "alt": "Kūro appuie sur un tampon rouge" },
+      { "t": "LA TASSE", "alt": "Kūro endormi dans une grande tasse" },
+      { "t": "LE SOURIRE", "alt": "Le visage de Yasser, un sourire en coin" },
+      { "t": "LA SIESTE", "alt": "Kūro dort sur un ordinateur portable fermé, à côté d’un café" }
+    ]
+  },
+  "founder": {
+    "kicker": "/ 10 · LE STUDIO",
+    "title": "Assez petits pour s’en soucier. Assez seniors pour livrer.",
+    "name": "Hamisse Mohamed Yasser",
+    "role": "FONDATEUR · CEO / DIRECTEUR CRÉATIF",
+    "bio": "Développeur et designer. Code, image et systèmes, et un chat noir qui juge chaque commit.",
+    "quote": "« Même personne. Résolution différente. »",
+    "teamL": "/ UN FONDATEUR · DES FREELANCES QUAND IL LE FAUT",
+    "team": [
+      { "r": "LE FONDATEUR", "d": "Cadre, conçoit, code et livre : votre seul interlocuteur." },
+      { "r": "@home:team.fFn", "d": "@home:team.fDo" }
+    ],
+    "modes": ["MODE TRAVAIL", "MODE CAFÉ", "MODE CHAT"],
+    "modesAlt": ["Yasser assis par terre avec son ordinateur", "Yasser debout, un café à la main", "Kūro couché, l’œil mauvais"],
+    "photo": "Yasser à son bureau, la nuit, avec Kūro",
+    "duo": "Yasser et Kūro assis par terre",
+    "desk": "LE BUREAU",
+    "deskAlt": "Yasser et Kūro au coucher du soleil",
+    "stickers": "LES STICKERS",
+    "stickersAlt": "Planche de stickers et goodies Kūro",
+    "bible": "Le carnet du personnage →",
+    "cv": "Le CV (PDF) ↓"
+  },
+  "faq": {
+    "kicker": "/ 11 · QUESTIONS",
+    "title": "Ce qu’on nous demande.",
+    "actor": "Yasser répond sur son téléphone",
+    "items": [
+      { "q": "@home:faq8.q", "a": "@home:faq8.a" },
+      { "q": "@home:faq7.q", "a": "@home:faq7.a" },
+      { "q": "@home:faq1.q", "a": "@home:faq1.a" },
+      { "q": "@home:faq5.q", "a": "@home:faq5.a" },
+      { "q": "@home:faq4.q", "a": "@home:faq4.a" },
+      { "q": "@home:faq3.q", "a": "@home:faq3.a" }
+    ]
+  },
+  "contact": {
+    "kicker": "/ 12 · ON EN PARLE",
+    "title": "Rendons-le réel.",
+    "lead": "Choisissez votre canal. Réponse le jour ouvré suivant, par celui qui code.",
+    "hours": "Dimanche–jeudi, 9h–18h · messages seulement, pas d’appels",
+    "waK": "WHATSAPP · +213\u00a0672\u00a041\u00a025\u00a078",
+    "wa": "WhatsApp",
+    "previewK": "APERÇU · WHATSAPP",
+    "preview": "Demander un Aperçu",
+    "previewMsg": "@home:prev.msg",
+    "mailK": "HAMISSEMOHAMEDYASSER@GMAIL.COM",
+    "mail": "Écrire un e-mail",
+    "sign": "salut.",
+    "signAlt": "Yasser tient une pancarte",
+    "aside": "Kūro lit aussi les messages."
+  },
+  "footer": {
+    "line": "Construit à Bordj Bou Arréridj, avec du café noir et du JavaScript.",
+    "rights": "© 2026 NUMIDEA LABS",
+    "site": "Le site",
+    "bible": "Le carnet",
+    "nav": "Liens du pied de page"
+  },
+  "case": {
+    "prev": "Précédent",
+    "next": "Suivant",
+    "drag": "FAITES GLISSER · ← →",
+    "close": "Fermer",
+    "zoom": "Agrandir",
+    "new": "NOUVEAU",
+    "seen": "✓ VU",
+    "unlocked": "LIVRABLES DÉBLOQUÉS",
+    "open": "Ouvrir le site ↗",
+    "newTab": "(nouvel onglet)"
+  }
+}
