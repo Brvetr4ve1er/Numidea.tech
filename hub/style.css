@@ -308,14 +308,15 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-proc-card__bar i{flex:1;height:6px;background:var(--line);transition:background-color .3s}
 .st-proc-card__bar i.is-on{background:var(--red)}
 .st-proc{flex:2 1 420px;min-width:0}
-.st-proc li{display:flex;gap:24px;padding:clamp(28px,4vw,56px) 0;border-top:2px solid var(--ink);transition:opacity .5s var(--ease)}
+.st-proc li{display:flex;gap:24px;padding:clamp(28px,4vw,56px) 0;border-top:2px solid var(--ink)}
 .st-proc__n{flex:none;padding-top:10px;font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.12em;color:var(--red-text)}
-.st-proc li > div{display:flex;flex-direction:column;gap:10px}
+.st-proc li > div{display:flex;flex-direction:column;gap:10px;transition:opacity .5s var(--ease)}
 .st-proc p{font-size:var(--t-body);line-height:1.6;max-width:28em}
 @media (min-width:1024px){
   .st-proc-card{position:sticky;top:96px}
   .st-proc-card__frame{aspect-ratio:4/3}
-  html.js .st-proc li:not(.is-active){opacity:.72}
+  /* the step that is not current is dimmed, its number is not: small red text at .72 was 3.1:1 */
+  html.js .st-proc li:not(.is-active) > div{opacity:.72}
 }
 
 /* ---------------- 06 pricing ---------------- */

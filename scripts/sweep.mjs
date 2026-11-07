@@ -110,7 +110,8 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
    // same fine pointer. Colours do not depend on the pointer, and axe in
    // audit.mjs still checks contrast on the real coarse-pointer layout.
    if(w<600)await (await p.context().newCDPSession(p)).send('Emulation.setTouchEmulationEnabled',{enabled:false});
-   await p.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}'});
+   await p.addStyleTag({content:'*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;content-visibility:visible!important}'});
+   // (content-visibility: the Studio's cases skip painting off-screen, so a full-page capture saw them blank: 1:1 on every case text)
    // the whole page on screen once, half a viewport at a time, then back to
    // the top: lazy pictures load (text over art is measured against the art)
    // and the hub's loops are seen; then every picture is waited for (3s at most)
@@ -174,7 +175,9 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
          if(cc.overflow!=='visible'||cc.overflowX!=='visible'||cc.overflowY!=='visible'){
            const cr2=c.getBoundingClientRect();
            const vis=Math.min(rect.bottom,cr2.bottom)-Math.max(rect.top,cr2.top);
-           if(vis<rect.height*0.5){clipped=true;break}}
+           // ...and sideways: a slide of a horizontal track (the Studio's cases) parked past its edge
+           const visX=Math.min(rect.right,cr2.right)-Math.max(rect.left,cr2.left);
+           if(vis<rect.height*0.5||visX<rect.width*0.5){clipped=true;break}}
          c=c.parentElement}
        if(clipped)continue;
        const fill=cs.webkitTextFillColor;

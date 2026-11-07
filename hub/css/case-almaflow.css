@@ -107,7 +107,7 @@
 .case-almaflow .cf-cover__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:10px}
 .case-almaflow .cf-cover__logo{flex:none;display:flex;padding:7px 10px;background:var(--cf-white);border-radius:10px}
 .case-almaflow .cf-cover__logo img{width:auto;height:clamp(28px,3vw,38px)}
-.case-almaflow .cf-chip--line{max-width:100%;padding:4px 9px;border:1px solid var(--cf-hair-2);border-radius:999px;font-family:var(--f-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em;color:var(--c-accent)}
+.case-almaflow .cf-chip--line{max-width:100%;padding:4px 9px;background:var(--c-dark);border:1px solid var(--cf-hair-2);border-radius:999px;font-family:var(--f-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em;color:var(--c-accent)}
 .case-almaflow .cf-cover__txt{display:flex;flex-direction:column;gap:10px}
 .case-almaflow .cf-cover__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(24px,2.5vw,36px);line-height:1.04;text-wrap:balance}
 .case-almaflow .cf-cover__s{font-size:14px;line-height:1.5;color:var(--cf-soft);max-width:30em}
