@@ -60,6 +60,8 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
 <link rel="stylesheet" href="css/case-bordjsteel.css?v=202611032143">
 <link rel="stylesheet" href="css/case-alliance.css?v=202611032143">
 <link rel="stylesheet" href="css/case-almaflow.css?v=202611032143">
+<link rel="stylesheet" href="css/case-traveler.css?v=202611032143">
+<link rel="stylesheet" href="css/case-heetch.css?v=202611032143">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://brvetr4ve1er.github.io/Numidea.tech/"},{"@type":"ListItem","position":2,"name":"Studio","item":"https://brvetr4ve1er.github.io/Numidea.tech/hub/"}]}</script>
 <script type="application/json" id="hub-prices">{"model":{"vitrine":{"base":[90000,160000],"unit":[6000,12000],"min":1,"max":10,"def":3,"step":1,"u":"uPages","base_u":5,"weeks":[2,4]},"surmesure":{"base":[180000,420000],"unit":[9000,18000],"min":3,"max":25,"def":8,"step":1,"u":"uPages","base_u":15,"weeks":[3,7],"incl":["i18n","cms","ds","seo"]},"ecommerce":{"base":[220000,550000],"unit":[900,2200],"min":10,"max":400,"def":60,"step":10,"u":"uProducts","base_u":60,"weeks":[5,10]},"app":{"base":[450000,1200000],"unit":[18000,45000],"min":3,"max":20,"def":6,"step":1,"u":"uScreens","base_u":6,"weeks":[8,16],"incl":["pay","api"]},"auto":{"base":[140000,420000],"unit":[15000,40000],"min":1,"max":12,"def":3,"step":1,"u":"uFlows","base_u":3,"weeks":[2,6],"opts":["api","cms"]},"identite":{"base":[90000,180000],"unit":[8000,16000],"min":1,"max":8,"def":2,"step":1,"u":"uSupports","base_u":2,"weeks":[2,5],"opts":["ds"]}},"opts":{"i18n":{"add":[22000,55000],"weeks":[1,2]},"cms":{"add":[35000,90000],"weeks":[1,2]},"pay":{"add":[45000,110000],"weeks":[1,2]},"ds":{"add":[60000,140000],"weeks":[1,3]},"seo":{"add":[20000,45000],"weeks":[0,1]},"api":{"add":[30000,80000],"weeks":[1,2]}},"rush":[1.25,0.7],"fx":{"EUR":151,"USD":134},"retainer":[18000,60000]}</script>
 <script type="application/json" id="hub-fr">{"case.close":"Fermer","case.drag":"FAITES GLISSER · ← →","case.new":"NOUVEAU","case.newTab":"(nouvel onglet)","case.next":"Suivant","case.open":"Ouvrir le site ↗","case.prev":"Précédent","case.seen":"✓ VU","case.unlocked":"LIVRABLES DÉBLOQUÉS","case.zoom":"Agrandir","contact.previewMsg":"Bonjour, je souhaite voir l'Aperçu gratuit de mon futur site.\nEntreprise : \nTéléphone / WhatsApp : \nSite actuel (s'il existe) : \nCe dont j'ai besoin : ","hero.live":"● EN DIRECT","hero.still":"● AU REPOS","pricing.cur":"DA","pricing.included":"inclus","pricing.kuro.0":"raisonnable. Kūro valide.","pricing.kuro.1":"sérieux. Kūro réfléchit.","pricing.kuro.2":"ambitieux. Kūro doit s’asseoir.","pricing.kuroAlt":"Kūro réagit à l’estimation","pricing.units.uFlows":"flux","pricing.units.uPages":"pages","pricing.units.uProducts":"produits","pricing.units.uScreens":"écrans","pricing.units.uSupports":"supports","process.steps.0.m":"il réfléchit.","process.steps.1.m":"il est confiant.","process.steps.2.m":"ne pas déranger.","process.steps.3.m":"c’est en ligne !","process.steps.4.m":"café n°4.","rig.alt":"Yasser, fondateur de Numidea, avec son café, et Kūro, son chat noir","rig.lines.0":"Tu parles à celui qui code.","rig.lines.1":"Démo d’abord. Le prix après.","rig.lines.2":"Prix fixe. Écrit avant.","rig.lines.3":"Kūro valide. Ou pas.","rig.lines.4":"Ok. On le construit ?","rig.mood.base":"CAFÉ NO.1","rig.mood.drowsy":"IL DÉCROCHE","rig.mood.glance":"IL TE LIT","rig.mood.glance-r":"IL TE SUIT","rig.mood.glasses":"OK, REGARDE","rig.mood.half":"NUIT BLANCHE","rig.mood.laugh":"MDR","rig.mood.sip":"UNE GORGÉE","rig.mood.smirk":"ÇA MARCHE","rig.mood.talk":"IL TE PARLE","rig.mood.up":"IL RÉFLÉCHIT","rig.mood.yawn":"BÂILLEMENT","rig.poke":"Faire parler Yasser","rig.pokeKuro":"Taquiner Kūro","rig.said":"Yasser dit :","sting.hud":"06:12 · BORDJ BOU ARRÉRIDJ · AUBE","sting.skip":"PASSER","sting.skipL":"Passer l’intro"}</script>
@@ -1349,7 +1351,839 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
   </div>
 </section>
 <!-- CASE:traveler -->
+<!-- ---------------- case 04 · Traveler (tr4veler.exe) ----------------
+     The owner's CaseTraveler (2026-11-07), as a fragment the build inlines
+     at 09 Proof; its copy is hub/src/cases/traveler.i18n.json, its sheet
+     hub/css/case-traveler.css. This one is the founder's own brand, not a
+     client's, and says so: "hors vente", no price, no deliverable list
+     sold as a pack. The shell's hooks (hub/app.js 9) do the rest: the
+     track, the seven kinds of piece and their badges, the boot lines
+     typed once, the reality jump (the cycle: previous, next, random), the
+     viewer for every poster.
+     What changed from the design, and why: the WorkspaceHQ tile is a
+     link to the studio's own page (the page's CSP frames nothing, and a
+     second page in a tile is a heavy thing to ask of a phone) and its
+     level, XP and streak figures are gone (they were a screen's demo
+     numbers, not a fact); the Instagram tile keeps the founder's own
+     account from the design (@yass3r.0; the home links the studio's, to
+     confirm); the codex tile is the Anatomy of Peace poster alone (the
+     twelve plates are not in the files); the shelf's spines open their
+     poster in the viewer and the atlas turns with the scroll (the design
+     jumped a single state between the reality tile, the shelf and the
+     atlas, which needs a script of its own); every staged picture of the
+     drop says MAQUETTE, the drop card stays "hors vente"; the colophon
+     replaces the codex in the closing list; the end card's ISBN is its
+     VOL.04; the grain and the scanlines over the whole case are not drawn
+     (nothing here is an ambient layer); every label is 12px or more. -->
+<section class="st-case case-traveler" id="case-traveler" aria-labelledby="case-traveler-h">
+  <div class="st-case__bar ct-bar">
+    <div class="ct-vol"><span class="ct-vol__jp" lang="ja" aria-hidden="true">旅人</span><span class="ct-vol__n" dir="ltr">VOL.04</span></div>
+    <div class="st-case__progress ct-progress">
+      <h3 class="st-case__name ct-path" id="case-traveler-h"><span dir="ltr">C:\REALITIES\<b>tr4veler.exe</b></span> <span class="ct-hud" data-i18n="cases.traveler.hud">MONDE PERSO · HORS VENTE</span></h3>
+      <div class="st-case__pips ct-pips" aria-hidden="true"><i data-pip="lore"></i><i data-pip="posters"></i><i data-pip="chars"></i><i data-pip="merch"></i><i data-pip="tools"></i><i data-pip="social"></i><i data-pip="brand"></i></div>
+    </div>
+    <div class="ct-end-bar">
+      <span class="ct-barcode" aria-hidden="true"></span>
+      <span class="ct-count"><span class="st-sr" data-i18n="case.unlocked">LIVRABLES DÉBLOQUÉS</span><span data-seen-count dir="ltr">0/7</span></span>
+      <div class="st-case__nav ct-nav">
+        <button type="button" data-track-prev aria-controls="ct-track" data-i18n-aria="case.prev" aria-label="Précédent"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="ct-track" data-i18n-aria="case.next" aria-label="Suivant"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-case__track ct-track" id="ct-track" dir="ltr" data-track tabindex="0" role="region" data-i18n-aria="cases.traveler.track" aria-label="tr4veler.exe : les pièces du volume">
+
+    <!-- TV-01 · the cover: the lore, and the boot lines typed once -->
+    <article class="ct-t ct-lore st-c3 st-r2" data-kind="lore">
+      <div class="ct-lore__spine" aria-hidden="true"><span lang="ja">旅人の書</span><span dir="ltr">TR4VELER.EXE · 04</span></div>
+      <div class="ct-lore__view">
+        <img class="ct-lore__bg" src="img/clients/traveler/labyrinth.webp" width="882" height="1176" alt="" loading="lazy" decoding="async">
+        <div class="ct-lore__txt">
+          <div class="ct-lore__head">
+            <span class="ct-kick" data-i18n="cases.traveler.cover.k">VOL.04 · UNIVERS PERSONNEL</span>
+            <h4 class="ct-lore__h" data-i18n="cases.traveler.cover.t">Un vagabond entre les réalités</h4>
+            <p class="ct-lore__s" data-i18n="cases.traveler.cover.s">Un savant fou hors-la-loi qui saute de monde en monde pour trouver des réponses. Ma marque à moi : un lore, 34 affiches, des compagnons, un drop, un outil.</p>
+          </div>
+          <div class="ct-term" dir="ltr" data-type-once>
+            <div class="ct-term__l" data-type-line data-i18n="cases.traveler.boot.0">&gt; booting tr4veler.exe</div>
+            <div class="ct-term__l" data-type-line data-i18n="cases.traveler.boot.1">&gt; memory ........... 34 réalités</div>
+            <div class="ct-term__l" data-type-line data-i18n="cases.traveler.boot.2">&gt; companions ....... 4 en ligne</div>
+            <div class="ct-term__l ct-term__l--bad" data-type-line data-i18n="cases.traveler.boot.3">&gt; past.dat ......... [CORROMPU]</div>
+            <div class="ct-term__l ct-term__l--ok" data-type-line data-i18n="cases.traveler.boot.4">&gt; ready. 不動心</div>
+          </div>
+        </div>
+        <span class="st-badge ct-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+      </div>
+    </article>
+
+    <!-- TV-02 · the character file: stats in his own voice, past.dat stays shut -->
+    <article class="ct-t ct-file st-c2 st-r2" data-kind="lore">
+      <div class="ct-file__hd ct-m"><span>FILE_02 · <span data-i18n="cases.traveler.file.k">FICHE PERSONNAGE</span></span><span class="st-badge ct-badge ct-badge--in" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span></div>
+      <div class="ct-file__who">
+        <div class="ct-file__pic"><img src="img/clients/traveler/inkportrait.webp" width="978" height="978" data-i18n-alt="cases.traveler.alt.ink" alt="Autoportrait à l’encre, en noir et blanc" alt="" loading="lazy" decoding="async"></div>
+        <div class="ct-file__id">
+          <h4 class="ct-file__name" data-i18n="cases.traveler.file.name">Le voyageur</h4>
+          <p class="ct-file__cls" data-i18n="cases.traveler.file.cls">Savant fou vagabond · liberté &amp; justice · aime les animaux et les robots</p>
+        </div>
+      </div>
+      <ul class="ct-stats">
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.0">Curiosité</span><span class="ct-seg" style="--n:10" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">99</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.1">Bourreau de travail</span><span class="ct-seg" style="--n:10" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">97</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.2">Invente des trucs</span><span class="ct-seg" style="--n:9" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">94</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.3">Justice</span><span class="ct-seg" style="--n:9" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">92</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.4">Charme de nerd</span><span class="ct-seg" style="--n:8" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">81</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.5">Remarque ce qui l’entoure</span><span class="ct-seg" style="--n:1" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">12</span></li>
+      </ul>
+      <p class="ct-hand ct-file__aside" data-i18n="cases.traveler.file.aside">a oublié de dormir. encore.</p>
+      <details class="ct-past"><summary><span dir="ltr">past.dat</span><span class="ct-past__show" data-i18n="cases.traveler.file.show">[ LIRE ]</span><span class="ct-past__hid" data-i18n="cases.traveler.file.hid">██ CORROMPU ██</span></summary></details>
+      <div class="ct-hanko ct-hanko--s" aria-hidden="true" lang="ja">要注意</div>
+    </article>
+
+    <article class="ct-t ct-chap ct-chap--posters st-r2" data-kind="posters">
+      <span class="ct-chap__l" dir="ltr">CHAPTER 02</span>
+      <span class="ct-chap__jp" lang="ja" aria-hidden="true">第二章</span>
+      <h4 class="ct-chap__t" data-i18n="cases.traveler.ch.0">Réalités</h4>
+    </article>
+
+    <!-- TV-03 · the reality jump: the cycle shows one poster of the 34, the viewer opens it -->
+    <article class="ct-t ct-real st-c3 st-r2" id="ct-real" data-kind="posters" data-cycle>
+      <div class="ct-real__hd ct-m"><span class="ct-acc">FILE_03 · <span data-i18n="cases.traveler.real.k">SAUT DE RÉALITÉ</span></span><span class="st-badge ct-badge ct-badge--in" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span></div>
+      <div class="ct-real__item" data-cycle-item>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/labyrinth.webp"><img src="img/clients/traveler/labyrinth.webp" width="882" height="1176" alt="tr4veler.exe" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x047</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">tr4veler.exe</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/vagabond.webp"><img src="img/clients/traveler/vagabond.webp" width="720" height="960" alt="Vagabond" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x06C</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">Vagabond</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/monk.webp"><img src="img/clients/traveler/monk.webp" width="720" height="960" alt="Monk 2.7" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x091</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Monk 2.7</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/blazing.webp"><img src="img/clients/traveler/blazing.webp" width="640" height="960" alt="Music &gt; people" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x0B6</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Music &gt; people</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/threshold.webp"><img src="img/clients/traveler/threshold.webp" width="640" height="960" alt="Wickedness" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x0DB</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">Wickedness</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/meditation.webp"><img src="img/clients/traveler/meditation.webp" width="639" height="960" alt="Above the clouds" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x100</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Above the clouds</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/porsche.webp"><img src="img/clients/traveler/porsche.webp" width="720" height="960" alt="Red skies" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x125</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Red skies</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/starhands.webp"><img src="img/clients/traveler/starhands.webp" width="800" height="800" alt="The Cure" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x14A</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">The Cure</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/peace.webp"><img src="img/clients/traveler/peace.webp" width="900" height="1200" alt="Anatomy of Peace" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x16F</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Anatomy of Peace</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/voodoo.webp"><img src="img/clients/traveler/voodoo.webp" width="720" height="960" alt="Baron Voodoo" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x194</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Baron Voodoo</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p3650.webp"><img src="img/clients/traveler/p3650.webp" width="720" height="960" alt="Apex Predator" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x1B9</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">Apex Predator</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/prodigy.webp"><img src="img/clients/traveler/prodigy.webp" width="640" height="960" alt="Prodigy" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x1DE</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Prodigy</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/ocean.webp"><img src="img/clients/traveler/ocean.webp" width="678" height="960" alt="Digital ocean" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x203</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Digital ocean</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/dreams.webp"><img src="img/clients/traveler/dreams.webp" width="720" height="900" alt="Synchronicity" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x228</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">Synchronicity</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/falling.webp"><img src="img/clients/traveler/falling.webp" width="720" height="898" alt="Cosmic fragments" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x24D</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Cosmic fragments</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/poet.webp"><img src="img/clients/traveler/poet.webp" width="720" height="900" alt="Street poet" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x272</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Street poet</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/comeback.webp"><img src="img/clients/traveler/comeback.webp" width="720" height="960" alt="Heroes come back" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x297</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">Heroes come back</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/matrix.webp"><img src="img/clients/traveler/matrix.webp" width="639" height="960" alt="The Matrix lair" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x2BC</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">The Matrix lair</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/c1393.webp"><img src="img/clients/traveler/c1393.webp" width="640" height="960" alt="Live and suffer" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x2E1</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Live and suffer</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/gold.webp"><img src="img/clients/traveler/gold.webp" width="639" height="960" alt="Gold &amp; red" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x306</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">Gold &amp; red</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p491.webp"><img src="img/clients/traveler/p491.webp" width="640" height="960" alt="Corrupted angel" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x32B</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Corrupted angel</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p674.webp"><img src="img/clients/traveler/p674.webp" width="719" height="960" alt="Warm" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x350</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Warm</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p2983.webp"><img src="img/clients/traveler/p2983.webp" width="720" height="958" alt="No gods no masters" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x375</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">No gods no masters</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p4120.webp"><img src="img/clients/traveler/p4120.webp" width="800" height="800" alt="Hope" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x39A</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Hope</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p4126.webp"><img src="img/clients/traveler/p4126.webp" width="800" height="800" alt="Gzana" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x3BF</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Gzana</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/standoff.webp"><img src="img/clients/traveler/standoff.webp" width="960" height="720" alt="Brother" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x3E4</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">Brother</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/spike.webp"><img src="img/clients/traveler/spike.webp" width="800" height="800" alt="Space cowboy" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x409</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Space cowboy</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/conquer.webp"><img src="img/clients/traveler/conquer.webp" width="640" height="960" alt="Aut vincere aut mori" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x42E</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Aut vincere aut mori</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p509.webp"><img src="img/clients/traveler/p509.webp" width="720" height="960" alt="Ride or die" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x453</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">Ride or die</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/shadow.webp"><img src="img/clients/traveler/shadow.webp" width="960" height="640" alt="Wickedness II" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x478</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Wickedness II</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/inkportrait.webp"><img src="img/clients/traveler/inkportrait.webp" width="978" height="978" alt="Empty ink" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x49D</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title">Empty ink</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/l-2208.webp"><img src="img/clients/traveler/l-2208.webp" width="960" height="838" alt="Lost" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x4C2</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1">✓ arrivé. le chat a suivi.</p></div>
+        <p class="ct-real__title">Lost</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/l-2209.webp"><img src="img/clients/traveler/l-2209.webp" width="800" height="800" alt="Tao" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x4E7</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2">✓ arrivé. encore un bug.</p></div>
+        <p class="ct-real__title">Tao</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/l-063.webp"><img src="img/clients/traveler/l-063.webp" width="800" height="800" alt="不動心" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x50C</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0">✓ arrivé. personne n’a rien vu.</p></div>
+        <p class="ct-real__title"><span lang="ja">不動心</span></p>
+      </div>
+      <p class="ct-real__n ct-m"><span data-i18n="cases.traveler.real.label">RÉALITÉ</span> <span data-cycle-n aria-live="polite" dir="ltr">1 / 34</span></p>
+      <div class="ct-real__ctl">
+        <button type="button" class="ct-sq" data-cycle-prev aria-controls="ct-real" data-i18n-aria="cases.traveler.real.prev" aria-label="Réalité précédente"><span aria-hidden="true">←</span></button>
+        <button type="button" class="ct-go" data-cycle-random aria-controls="ct-real" data-i18n="cases.traveler.real.jump">⟳ SAUT ALÉATOIRE</button>
+        <button type="button" class="ct-sq" data-cycle-next aria-controls="ct-real" data-i18n-aria="cases.traveler.real.next" aria-label="Réalité suivante"><span aria-hidden="true">→</span></button>
+      </div>
+    </article>
+
+    <!-- TV-04 · the shelf: 34 volumes, a click opens the poster -->
+    <article class="ct-t ct-shelf ct-c5 st-r2" data-kind="posters">
+      <div class="ct-shelf__hd ct-m"><span class="ct-acc">FILE_04 · <span data-i18n="cases.traveler.shelf.k">L’ÉTAGÈRE · 34 VOLUMES</span></span><span class="ct-ash" data-i18n="cases.traveler.shelf.hint">CHOISIR UN VOLUME ↑</span></div>
+      <div class="ct-shelf__row" role="group" data-i18n-aria="cases.traveler.shelf.group" aria-label="Les 34 volumes : un clic ouvre l’affiche">
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/labyrinth.webp" style="--h:88%"><img src="img/clients/traveler/s-labyrinth.webp" width="40" height="640" alt="tr4veler.exe" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">01</b><span class="ct-spine__t" aria-hidden="true">tr4veler.exe</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/vagabond.webp" style="--h:95%"><img src="img/clients/traveler/s-vagabond.webp" width="40" height="640" alt="Vagabond" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">02</b><span class="ct-spine__t" aria-hidden="true">Vagabond</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/monk.webp" style="--h:90%"><img src="img/clients/traveler/s-monk.webp" width="40" height="640" alt="Monk 2.7" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">03</b><span class="ct-spine__t" aria-hidden="true">Monk 2.7</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/blazing.webp" style="--h:97%"><img src="img/clients/traveler/s-blazing.webp" width="40" height="640" alt="Music &gt; people" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">04</b><span class="ct-spine__t" aria-hidden="true">Music &gt; people</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/threshold.webp" style="--h:92%"><img src="img/clients/traveler/s-threshold.webp" width="40" height="640" alt="Wickedness" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">05</b><span class="ct-spine__t" aria-hidden="true">Wickedness</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/meditation.webp" style="--h:99%"><img src="img/clients/traveler/s-meditation.webp" width="40" height="640" alt="Above the clouds" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">06</b><span class="ct-spine__t" aria-hidden="true">Above the clouds</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/porsche.webp" style="--h:94%"><img src="img/clients/traveler/s-porsche.webp" width="40" height="640" alt="Red skies" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">07</b><span class="ct-spine__t" aria-hidden="true">Red skies</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/starhands.webp" style="--h:89%"><img src="img/clients/traveler/s-starhands.webp" width="40" height="640" alt="The Cure" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">08</b><span class="ct-spine__t" aria-hidden="true">The Cure</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/peace.webp" style="--h:96%"><img src="img/clients/traveler/s-peace.webp" width="40" height="640" alt="Anatomy of Peace" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">09</b><span class="ct-spine__t" aria-hidden="true">Anatomy of Peace</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/voodoo.webp" style="--h:91%"><img src="img/clients/traveler/s-voodoo.webp" width="40" height="640" alt="Baron Voodoo" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">10</b><span class="ct-spine__t" aria-hidden="true">Baron Voodoo</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p3650.webp" style="--h:98%"><img src="img/clients/traveler/s-p3650.webp" width="40" height="640" alt="Apex Predator" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">11</b><span class="ct-spine__t" aria-hidden="true">Apex Predator</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/prodigy.webp" style="--h:93%"><img src="img/clients/traveler/s-prodigy.webp" width="40" height="640" alt="Prodigy" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">12</b><span class="ct-spine__t" aria-hidden="true">Prodigy</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/ocean.webp" style="--h:88%"><img src="img/clients/traveler/s-ocean.webp" width="40" height="640" alt="Digital ocean" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">13</b><span class="ct-spine__t" aria-hidden="true">Digital ocean</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/dreams.webp" style="--h:95%"><img src="img/clients/traveler/s-dreams.webp" width="40" height="640" alt="Synchronicity" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">14</b><span class="ct-spine__t" aria-hidden="true">Synchronicity</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/falling.webp" style="--h:90%"><img src="img/clients/traveler/s-falling.webp" width="40" height="640" alt="Cosmic fragments" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">15</b><span class="ct-spine__t" aria-hidden="true">Cosmic fragments</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/poet.webp" style="--h:97%"><img src="img/clients/traveler/s-poet.webp" width="40" height="640" alt="Street poet" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">16</b><span class="ct-spine__t" aria-hidden="true">Street poet</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/comeback.webp" style="--h:92%"><img src="img/clients/traveler/s-comeback.webp" width="40" height="640" alt="Heroes come back" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">17</b><span class="ct-spine__t" aria-hidden="true">Heroes come back</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/matrix.webp" style="--h:99%"><img src="img/clients/traveler/s-matrix.webp" width="40" height="640" alt="The Matrix lair" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">18</b><span class="ct-spine__t" aria-hidden="true">The Matrix lair</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/c1393.webp" style="--h:94%"><img src="img/clients/traveler/s-c1393.webp" width="40" height="640" alt="Live and suffer" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">19</b><span class="ct-spine__t" aria-hidden="true">Live and suffer</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/gold.webp" style="--h:89%"><img src="img/clients/traveler/s-gold.webp" width="40" height="640" alt="Gold &amp; red" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">20</b><span class="ct-spine__t" aria-hidden="true">Gold &amp; red</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p491.webp" style="--h:96%"><img src="img/clients/traveler/s-p491.webp" width="40" height="640" alt="Corrupted angel" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">21</b><span class="ct-spine__t" aria-hidden="true">Corrupted angel</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p674.webp" style="--h:91%"><img src="img/clients/traveler/s-p674.webp" width="40" height="640" alt="Warm" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">22</b><span class="ct-spine__t" aria-hidden="true">Warm</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p2983.webp" style="--h:98%"><img src="img/clients/traveler/s-p2983.webp" width="40" height="640" alt="No gods no masters" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">23</b><span class="ct-spine__t" aria-hidden="true">No gods no masters</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p4120.webp" style="--h:93%"><img src="img/clients/traveler/s-p4120.webp" width="40" height="640" alt="Hope" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">24</b><span class="ct-spine__t" aria-hidden="true">Hope</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p4126.webp" style="--h:88%"><img src="img/clients/traveler/s-p4126.webp" width="40" height="640" alt="Gzana" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">25</b><span class="ct-spine__t" aria-hidden="true">Gzana</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/standoff.webp" style="--h:95%"><img src="img/clients/traveler/s-standoff.webp" width="40" height="640" alt="Brother" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">26</b><span class="ct-spine__t" aria-hidden="true">Brother</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/spike.webp" style="--h:90%"><img src="img/clients/traveler/s-spike.webp" width="40" height="640" alt="Space cowboy" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">27</b><span class="ct-spine__t" aria-hidden="true">Space cowboy</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/conquer.webp" style="--h:97%"><img src="img/clients/traveler/s-conquer.webp" width="40" height="640" alt="Aut vincere aut mori" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">28</b><span class="ct-spine__t" aria-hidden="true">Aut vincere aut mori</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p509.webp" style="--h:92%"><img src="img/clients/traveler/s-p509.webp" width="40" height="640" alt="Ride or die" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">29</b><span class="ct-spine__t" aria-hidden="true">Ride or die</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/shadow.webp" style="--h:99%"><img src="img/clients/traveler/s-shadow.webp" width="40" height="640" alt="Wickedness II" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">30</b><span class="ct-spine__t" aria-hidden="true">Wickedness II</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/inkportrait.webp" style="--h:94%"><img src="img/clients/traveler/s-inkportrait.webp" width="40" height="640" alt="Empty ink" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">31</b><span class="ct-spine__t" aria-hidden="true">Empty ink</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/l-2208.webp" style="--h:89%"><img src="img/clients/traveler/s-l-2208.webp" width="40" height="640" alt="Lost" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">32</b><span class="ct-spine__t" aria-hidden="true">Lost</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/l-2209.webp" style="--h:96%"><img src="img/clients/traveler/s-l-2209.webp" width="40" height="640" alt="Tao" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">33</b><span class="ct-spine__t" aria-hidden="true">Tao</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/l-063.webp" style="--h:91%"><img src="img/clients/traveler/s-l-063.webp" width="40" height="640" alt="不動心" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">34</b><span class="ct-spine__t" aria-hidden="true"><span lang="ja">不動心</span></span></button>
+      </div>
+      <div class="ct-shelf__base" aria-hidden="true"></div>
+    </article>
+
+    <!-- TV-05 · the atlas: three orbits, one dot a poster, turning with the scroll -->
+    <article class="ct-t ct-atlas st-c2 st-r2" data-kind="posters">
+      <div class="ct-atlas__hd ct-m"><span class="ct-acc">FIG. 34 · <span data-i18n="cases.traveler.atlas.k">ATLAS DES MONDES</span></span><span class="ct-ash" dir="ltr">0x047</span></div>
+      <div class="ct-atlas__stage">
+        <div class="ct-atlas__orb" aria-hidden="true">
+          <i class="ct-ring ct-ring--1"></i><i class="ct-ring ct-ring--2"></i><i class="ct-ring ct-ring--3"></i><i class="ct-axis ct-axis--v"></i><i class="ct-axis ct-axis--h"></i>
+          <div class="ct-atlas__spin"><i style="--x:50.00%;--y:28.00%"></i><i style="--x:69.05%;--y:39.00%"></i><i style="--x:69.05%;--y:61.00%"></i><i style="--x:50.00%;--y:72.00%"></i><i style="--x:30.95%;--y:61.00%"></i><i style="--x:30.95%;--y:39.00%"></i><i style="--x:63.24%;--y:18.68%"></i><i style="--x:77.12%;--y:29.50%"></i><i style="--x:83.74%;--y:45.81%"></i><i style="--x:81.32%;--y:63.24%"></i><i style="--x:70.50%;--y:77.12%"></i><i style="--x:54.19%;--y:83.74%"></i><i style="--x:36.76%;--y:81.32%"></i><i style="--x:22.88%;--y:70.50%"></i><i style="--x:16.26%;--y:54.19%"></i><i style="--x:18.68%;--y:36.76%"></i><i style="--x:29.50%;--y:22.88%"></i><i style="--x:45.81%;--y:16.26%"></i><i style="--x:83.00%;--y:17.95%"></i><i style="--x:92.75%;--y:33.02%"></i><i style="--x:96.00%;--y:50.67%"></i><i style="--x:92.24%;--y:68.22%"></i><i style="--x:82.05%;--y:83.00%"></i><i style="--x:66.98%;--y:92.75%"></i><i style="--x:49.33%;--y:96.00%"></i><i style="--x:31.78%;--y:92.24%"></i><i style="--x:17.00%;--y:82.05%"></i><i style="--x:7.25%;--y:66.98%"></i><i style="--x:4.00%;--y:49.33%"></i><i style="--x:7.76%;--y:31.78%"></i><i style="--x:17.95%;--y:17.00%"></i><i style="--x:33.02%;--y:7.25%"></i><i style="--x:50.67%;--y:4.00%"></i><i style="--x:68.22%;--y:7.76%"></i></div>
+          <div class="ct-atlas__core"><span lang="ja">旅</span><span dir="ltr">tr4veler.exe</span></div>
+        </div>
+      </div>
+      <p class="ct-atlas__s" data-i18n="cases.traveler.atlas.s">34 mondes sur trois orbites. Un point = une affiche.</p>
+    </article>
+
+    <article class="ct-t ct-chap ct-chap--chars st-r2" data-kind="chars">
+      <span class="ct-chap__l" dir="ltr">CHAPTER 03</span>
+      <span class="ct-chap__jp" lang="ja" aria-hidden="true">第三章</span>
+      <h4 class="ct-chap__t" data-i18n="cases.traveler.ch.1">Compagnons</h4>
+    </article>
+
+    <!-- TV-06 · the companions, four panels -->
+    <article class="ct-t ct-panels st-c3 st-r2" data-kind="chars">
+      <figure class="ct-panel">
+        <img src="img/clients/traveler/vagabond.webp" width="720" height="960" alt="" style="--pos:center 82%" loading="lazy" decoding="async">
+        <p class="ct-bubble ct-bubble--l" data-i18n="cases.traveler.panels.0.say">…on va où, cette fois ?</p>
+        <figcaption class="ct-panel__n" data-i18n="cases.traveler.panels.0.n">Le chat</figcaption>
+      </figure>
+      <figure class="ct-panel">
+        <img src="img/clients/traveler/p504.webp" width="640" height="960" alt="" style="--pos:40% 78%" loading="lazy" decoding="async">
+        <p class="ct-bubble ct-bubble--r" data-i18n="cases.traveler.panels.1.say">J’ai pas peur. Toi, si.</p>
+        <figcaption class="ct-panel__n" data-i18n="cases.traveler.panels.1.n">L’ours</figcaption>
+      </figure>
+      <figure class="ct-panel">
+        <img src="img/clients/traveler/matrix.webp" width="639" height="960" alt="" style="--pos:center 35%" loading="lazy" decoding="async">
+        <p class="ct-bubble ct-bubble--l" data-i18n="cases.traveler.panels.2.say">Calcul terminé. Tu as tort.</p>
+        <figcaption class="ct-panel__n" data-i18n="cases.traveler.panels.2.n">Le robot</figcaption>
+      </figure>
+      <figure class="ct-panel">
+        <img src="img/clients/traveler/l-vagabond-mark.webp" width="720" height="960" alt="" style="--pos:78% 40%" loading="lazy" decoding="async">
+        <p class="ct-bubble ct-bubble--r" data-i18n="cases.traveler.panels.3.say">Message reçu. Message perdu.</p>
+        <figcaption class="ct-panel__n" data-i18n="cases.traveler.panels.3.n">Les pigeons</figcaption>
+      </figure>
+    </article>
+
+    <!-- TV-07 · the kanji card -->
+    <article class="ct-t ct-kanji st-r2" data-kind="chars">
+      <span class="ct-kanji__l" dir="ltr">FUDŌSHIN</span>
+      <span class="ct-kanji__jp" lang="ja" aria-hidden="true">不動心</span>
+      <p class="ct-kanji__s" data-i18n="cases.traveler.kanji">L’esprit qui ne bouge pas. Calme au centre, chaos autour.</p>
+    </article>
+
+    <article class="ct-t ct-chap ct-chap--merch st-r2" data-kind="merch">
+      <span class="ct-chap__l" dir="ltr">CHAPTER 04</span>
+      <span class="ct-chap__jp" lang="ja" aria-hidden="true">第四章</span>
+      <h4 class="ct-chap__t" data-i18n="cases.traveler.ch.2">Le drop</h4>
+    </article>
+
+    <!-- TV-08 · the drop: staged pictures, every one a maquette -->
+    <article class="ct-t ct-mk ct-mk--hoodie st-r2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-hoodie.full.webp"><img src="img/clients/traveler/m-hoodie.webp" width="464" height="576" data-i18n-alt="cases.traveler.alt.hoodie" alt="Maquette : hoodie tr4veler.exe" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-tag ct-tag--o" dir="ltr">DROP_01</span>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mock">MAQUETTE</span>
+    </article>
+    <article class="ct-t ct-mk ct-mk--flat st-c2 st-r2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-flat.webp"><img src="img/clients/traveler/m-flat.webp" width="928" height="1152" data-i18n-alt="cases.traveler.alt.flat" alt="Maquette : tee, tote et bonnet" alt="" loading="lazy" decoding="async"></button>
+      <div class="ct-drop" aria-hidden="true">
+        <span class="ct-drop__k" data-i18n="cases.traveler.drop.k">DROP 01 · 非売品</span>
+        <span class="ct-drop__t" data-i18n="cases.traveler.drop.t">Tee · tote · bonnet</span>
+        <i class="ct-drop__code"></i>
+      </div>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mock">MAQUETTE</span>
+    </article>
+    <article class="ct-t ct-mk ct-mk--stickers st-c2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-stickers.full.webp"><img src="img/clients/traveler/m-stickers.webp" width="580" height="580" data-i18n-alt="cases.traveler.alt.stickers" alt="Maquette : planche de stickers" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mock">MAQUETTE</span>
+    </article>
+    <article class="ct-t ct-mk ct-mk--store st-c2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-store.full.webp"><img src="img/clients/traveler/m-store.webp" width="870" height="580" data-i18n-alt="cases.traveler.alt.store" alt="Maquette : pop-up store" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mk.store">POP-UP · MAQUETTE</span>
+    </article>
+    <article class="ct-t ct-mk ct-mk--worn st-r2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-worn.full.webp"><img src="img/clients/traveler/m-worn.webp" width="464" height="576" data-i18n-alt="cases.traveler.alt.worn" alt="Maquette : bonnet et tote portés" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mock">MAQUETTE</span>
+    </article>
+
+    <article class="ct-t ct-chap ct-chap--tools st-r2" data-kind="tools">
+      <span class="ct-chap__l" dir="ltr">CHAPTER 05</span>
+      <span class="ct-chap__jp" lang="ja" aria-hidden="true">第五章</span>
+      <h4 class="ct-chap__t" data-i18n="cases.traveler.ch.3">Les outils</h4>
+    </article>
+
+    <!-- TV-09 · WorkspaceHQ, the studio's own page (a link, no frame) -->
+    <article class="ct-t ct-ws st-c3 st-r2" data-kind="tools">
+      <div class="ct-ws__bar"><span class="ct-ws__star" dir="ltr">★ WORKSPACE.HQ</span></div>
+      <div class="ct-ws__view">
+        <span class="ct-ws__k ct-m">FILE_09 · <span data-i18n="cases.traveler.ws.k">SON QG</span></span>
+        <h4 class="ct-ws__h" data-i18n="cases.traveler.ws.h">Le travail devient une quête</h4>
+        <p class="ct-ws__s" data-i18n="cases.traveler.ws.s">WorkspaceHQ, mon propre tableau de bord : les tâches deviennent des quêtes, avec XP, séries et familiers.</p>
+        <div class="ct-ws__bars" aria-hidden="true">
+          <span class="ct-ws__l ct-ws__l--y" data-i18n="cases.traveler.ws.lv">NIVEAU</span><i class="ct-bar-y" style="--w:72%"></i>
+          <span class="ct-ws__l ct-ws__l--g" data-i18n="cases.traveler.ws.q">QUÊTES</span><i class="ct-bar-g" style="--w:45%"></i>
+          <span class="ct-ws__l ct-ws__l--o" data-i18n="cases.traveler.ws.st">SÉRIE</span><i class="ct-bar-o" style="--w:88%"></i>
+        </div>
+        <a class="ct-ws__go" href="../workspacehq/" data-i18n="cases.traveler.ws.live">▶ ENTRER DANS LE QG</a>
+      </div>
+      <span class="st-badge ct-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- TV-10 · the Instagram contact sheet -->
+    <article class="ct-t ct-ig st-c2 st-r2" data-kind="social">
+      <div class="ct-ig__hd ct-m"><span class="ct-acc" dir="ltr">@yass3r.0</span><span class="st-badge ct-badge ct-badge--in" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span></div>
+      <div class="ct-ig__grid" role="group" data-i18n-aria="cases.traveler.ig.sheet" aria-label="Planche contact : neuf affiches">
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/labyrinth.webp"><img src="img/clients/traveler/t-labyrinth.webp" width="280" height="373" alt="tr4veler.exe" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">12A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/monk.webp"><img src="img/clients/traveler/t-monk.webp" width="280" height="373" alt="Monk 2.7" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">13A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/vagabond.webp"><img src="img/clients/traveler/t-vagabond.webp" width="280" height="373" alt="Vagabond" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">14A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/prodigy.webp"><img src="img/clients/traveler/t-prodigy.webp" width="249" height="373" alt="Prodigy" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">15A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/starhands.webp"><img src="img/clients/traveler/t-starhands.webp" width="280" height="280" alt="The Cure" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">16A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/blazing.webp"><img src="img/clients/traveler/t-blazing.webp" width="249" height="373" alt="Music &gt; people" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">17A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/dreams.webp"><img src="img/clients/traveler/t-dreams.webp" width="280" height="350" alt="Synchronicity" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">18A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/c1393.webp"><img src="img/clients/traveler/t-c1393.webp" width="249" height="373" alt="Live and suffer" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">19A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/porsche.webp"><img src="img/clients/traveler/t-porsche.webp" width="280" height="373" alt="Red skies" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">20A</span></button>
+      </div>
+      <i class="ct-ig__ring" aria-hidden="true"></i>
+      <span class="ct-hand ct-ig__mark" data-i18n="cases.traveler.ig.mark">celle-là.</span>
+      <a class="ct-ig__go" href="https://www.instagram.com/yass3r.0/" target="_blank" rel="noopener"><span data-i18n="cases.traveler.ig.cta">Planche contact · Instagram ↗</span> <span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span></a>
+    </article>
+
+    <!-- TV-11 · the colophon: the inks and the faces -->
+    <article class="ct-t ct-pal st-c2" data-kind="brand">
+      <span class="ct-m">FILE_11 · <span data-i18n="cases.traveler.pal">COLOPHON · ENCRES</span></span>
+      <ul class="ct-pal__sw" dir="ltr">
+        <li class="ct-sw--o"><b>#EE5A1D</b></li>
+        <li class="ct-sw--k">#0B0908</li>
+        <li class="ct-sw--r">#A34135</li>
+        <li class="ct-sw--c">#F2EAD8</li>
+      </ul>
+      <p class="ct-pal__type" dir="ltr"><span class="ct-pal__aa">AA</span><span class="ct-pal__jp" lang="ja">旅人</span><span class="ct-pal__hand">aa</span><span class="ct-pal__note">Archivo 62 · Space Mono · Noto JP</span></p>
+    </article>
+    <article class="ct-t ct-quote st-c2" data-kind="brand">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/l-2104.full.webp"><img src="img/clients/traveler/l-2104.webp" width="948" height="533" data-i18n-alt="cases.traveler.alt.quote" alt="Photo : une silhouette assise face au ciel bleu, « Now I’m free to be myself, who am I? »" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-quote__t" data-i18n="cases.traveler.quote">libre d’être moi. mais qui ?</span>
+    </article>
+
+    <!-- TV-12 · the peace poster, where the design had the codex -->
+    <article class="ct-t ct-peace st-c2 st-r2" data-kind="brand">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/peace.webp"><img src="img/clients/traveler/peace.webp" width="900" height="1200" alt="Anatomy of Peace" loading="lazy" decoding="async"></button>
+      <div class="ct-peace__rings" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="ct-peace__hd ct-m" aria-hidden="true"><span dir="ltr">FIG. XII</span></div>
+      <div class="ct-peace__txt" aria-hidden="true">
+        <span class="ct-kick ct-kick--bare" data-i18n="cases.traveler.peace.k">PLANCHE XII · AFFICHE</span>
+        <span class="ct-peace__t" dir="ltr">Anatomy of Peace</span>
+      </div>
+      <span class="st-badge ct-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- the closing card, where the design had the price: hors vente, and what the volume held, ticked as it is seen -->
+    <article class="ct-t ct-end st-c3 st-r2">
+      <div class="ct-end__main">
+        <div class="ct-end__hd ct-m"><span data-i18n="cases.traveler.end.k">VOL.04 · TR4VELER.EXE</span></div>
+        <h4 class="ct-end__t" data-i18n="cases.traveler.end.t">Ma marque perso, construite avec la rigueur d’un client</h4>
+        <p class="ct-end__big" data-i18n="cases.traveler.end.big">Sans prix</p>
+        <p class="ct-hand ct-end__note" data-i18n="cases.traveler.end.note">mais elle m’a tout appris.</p>
+        <ul class="ct-end__list">
+          <li data-scope="lore" data-i18n="cases.traveler.end.items.0">Lore &amp; personnage</li>
+          <li data-scope="posters" data-i18n="cases.traveler.end.items.1">34 affiches</li>
+          <li data-scope="chars" data-i18n="cases.traveler.end.items.2">Compagnons</li>
+          <li data-scope="merch" data-i18n="cases.traveler.end.items.3">Drop merch</li>
+          <li data-scope="tools" data-i18n="cases.traveler.end.items.4">WorkspaceHQ</li>
+          <li data-scope="social" data-i18n="cases.traveler.end.items.5">Instagram</li>
+          <li data-scope="brand" data-i18n="cases.traveler.end.items.6">Colophon</li>
+        </ul>
+        <div class="ct-end__ft">
+          <div class="ct-code" aria-hidden="true"><i></i><span dir="ltr">VOL.04</span></div>
+          <a class="ct-cta" href="#contact" data-i18n="cases.traveler.end.cta">Construire mon univers →</a>
+        </div>
+        <div class="ct-hanko" aria-hidden="true"><div><span lang="ja">非売品</span><span data-i18n="cases.traveler.end.nfs">HORS VENTE</span></div></div>
+      </div>
+      <div class="ct-end__side" aria-hidden="true"><span lang="ja">次の世界へ</span><span dir="ltr">END OF FILE</span></div>
+    </article>
+  </div>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag">FAITES GLISSER · ← →</span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>
 <!-- CASE:heetch -->
+<!-- ---------------- case 05 · Heetch ----------------
+     The owner's CaseHeetch (2026-11-07), as a fragment the build inlines at
+     09 Proof; its copy is hub/src/cases/heetch.i18n.json, its sheet
+     hub/css/case-heetch.css. This is the founder's work as an employee, not
+     a Numidea client: the cover says so ("YASSER × HEETCH", "depuis mai
+     2026"). The shell's hooks (hub/app.js 8) do the rest: the track, the
+     six kinds of deliverable and their badges, the poster viewer, the
+     "turn" slider.
+     What changed from the design, and why: the header's "temps plein" and
+     the end card's "Temps plein" became the case's tag and "Chez Heetch
+     depuis mai 2026" (the CV gives the role and the month, not the hours);
+     "lancement Heetch Pro" is gone from the sentence and from the list (the
+     CV does not say it); the posters are published, the mockups are
+     concepts and say so; the "copy the code, -50 %" button is a plain line
+     of type, because it would present someone else's promotion as live;
+     the planner is radios and CSS (no script: the pill you pick is the
+     state), and the posters' wipe is a keyframe on the one that shows. -->
+<section class="st-case case-heetch" id="case-heetch" aria-labelledby="case-heetch-h">
+  <div class="st-case__bar">
+    <div class="st-case__id ch-id">
+      <span class="st-case__logo ch-logo" aria-hidden="true">H</span>
+      <div class="ch-id__txt">
+        <span class="st-case__hud ch-hud" data-i18n="cases.heetch.hud">DOSSIER 05 · MON POSTE</span>
+        <h3 class="st-case__name" id="case-heetch-h"><bdi>HEETCH<span class="ch-dot">.</span></bdi> <span class="ch-sector">· <span data-i18n="cases.heetch.sector">VTC · Algérie</span></span></h3>
+      </div>
+    </div>
+    <div class="st-case__progress ch-progress">
+      <span><span class="ch-muted" data-i18n="case.unlocked">LIVRABLES DÉBLOQUÉS</span><span data-seen-count dir="ltr">0/6</span></span>
+      <div class="st-case__pips ch-pips" aria-hidden="true"><i data-pip="cover"></i><i data-pip="type"></i><i data-pip="posters"></i><i data-pip="planner"></i><i data-pip="mock"></i><i data-pip="links"></i></div>
+    </div>
+    <div class="ch-end">
+      <span class="st-case__tag ch-tag" data-i18n="cases.heetch.tag">Campagnes + réseaux</span>
+      <div class="st-case__nav ch-nav">
+        <button type="button" data-track-prev aria-controls="ch-track" data-i18n-aria="case.prev" aria-label="Précédent"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="ch-track" data-i18n-aria="case.next" aria-label="Suivant"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-case__track ch-track" id="ch-track" dir="ltr" data-track tabindex="0" role="region" data-i18n-aria="cases.heetch.track" aria-label="Heetch : les pièces du dossier">
+
+    <!-- HT-00 · the cover: the night poster and who made it, for whom -->
+    <article class="ch-t ch-cover st-c3 st-r2" data-kind="cover">
+      <button type="button" class="st-zoom ch-zoom ch-cover__pic" data-zoom="img/studio/c08.webp"><img src="img/studio/c08.webp" width="636" height="900" data-i18n-alt="cases.heetch.posters.0" alt="Promo ERKEB50 · la nuit" alt="" loading="lazy" decoding="async"></button>
+      <div class="ch-cover__txt">
+        <div class="ch-cover__top"><span class="ch-k ch-k--pink" data-i18n="cases.heetch.cover.k">CAMPAGNES · RÉSEAUX · MERCH</span></div>
+        <div class="ch-cover__mid">
+          <span class="ch-k ch-k--grey" dir="ltr">YASSER × HEETCH</span>
+          <h4 class="ch-cover__h" data-i18n="cases.heetch.cover.t">Le rose qui fait bouger l’Algérie</h4>
+          <p class="ch-cover__s" data-i18n="cases.heetch.cover.s">Designer graphique chez Heetch depuis mai 2026 : campagnes marketing et contenus réseaux sociaux. Les affiches sont publiées ; les maquettes sont des concepts.</p>
+        </div>
+        <ul class="ch-chips">
+          <li data-i18n="cases.heetch.cover.chips.0">Promo</li>
+          <li data-i18n="cases.heetch.cover.chips.1">Instagram</li>
+          <li data-i18n="cases.heetch.cover.chips.2">Merch</li>
+        </ul>
+      </div>
+      <span class="st-badge ch-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- HT-02 · the type that rides: the slider turns the three PROMO rows -->
+    <article class="ch-t ch-type st-c2 st-r2" data-kind="type" data-range-scope>
+      <span class="ch-k ch-k--ink"><bdi>HT-02</bdi> · <span data-i18n="cases.heetch.type.k">LE TYPE QUI ROULE</span></span>
+      <div class="ch-type__rows" aria-hidden="true">
+        <span class="ch-type__row ch-type__row--a" dir="ltr">PROMO</span>
+        <span class="ch-type__row ch-type__row--b" dir="ltr">PROMO</span>
+        <span class="ch-type__row ch-type__row--c" dir="ltr">PROMO</span>
+      </div>
+      <label class="ch-type__warp"><span data-i18n="cases.heetch.type.warp">VIRAGE</span><input type="range" min="0" max="10" value="6" data-range></label>
+      <p class="ch-type__code"><b dir="ltr">ERKEB50</b><span data-i18n="cases.heetch.type.code">LE CODE DE L’AFFICHE</span></p>
+      <span class="st-badge ch-badge ch-badge--ink" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- HT-03 · the four posters, one at a time; each opens in the viewer -->
+    <article class="ch-t ch-posters st-c2 st-r2" data-kind="posters" data-cycle>
+      <div class="ch-post" data-cycle-item>
+        <button type="button" class="st-zoom ch-zoom ch-post__pic" data-zoom="img/studio/c08.webp"><img src="img/studio/c08.webp" width="636" height="900" data-i18n-alt="cases.heetch.posters.0" alt="Promo ERKEB50 · la nuit" alt="" loading="lazy" decoding="async"></button>
+        <span class="ch-lab ch-lab--top" data-i18n="cases.heetch.published">PUBLIÉ</span>
+        <div class="ch-post__bar">
+          <button type="button" class="ch-step" data-cycle-prev data-i18n-aria="cases.heetch.prevPoster" aria-label="Affiche précédente"><span aria-hidden="true">←</span></button>
+          <p class="ch-post__cap"><span class="ch-k ch-k--grey"><bdi>HT-03</bdi> · <span dir="ltr">1/4</span></span><b data-i18n="cases.heetch.posters.0">Promo ERKEB50 · la nuit</b></p>
+          <button type="button" class="ch-step" data-cycle-next data-i18n-aria="cases.heetch.nextPoster" aria-label="Affiche suivante"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="ch-post" data-cycle-item hidden>
+        <button type="button" class="st-zoom ch-zoom ch-post__pic" data-zoom="img/studio/c09.webp"><img src="img/studio/c09.webp" width="636" height="900" data-i18n-alt="cases.heetch.posters.1" alt="Promo ERKEB50 · la station" alt="" loading="lazy" decoding="async"></button>
+        <span class="ch-lab ch-lab--top" data-i18n="cases.heetch.published">PUBLIÉ</span>
+        <div class="ch-post__bar">
+          <button type="button" class="ch-step" data-cycle-prev data-i18n-aria="cases.heetch.prevPoster" aria-label="Affiche précédente"><span aria-hidden="true">←</span></button>
+          <p class="ch-post__cap"><span class="ch-k ch-k--grey"><bdi>HT-03</bdi> · <span dir="ltr">2/4</span></span><b data-i18n="cases.heetch.posters.1">Promo ERKEB50 · la station</b></p>
+          <button type="button" class="ch-step" data-cycle-next data-i18n-aria="cases.heetch.nextPoster" aria-label="Affiche suivante"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="ch-post ch-post--w" data-cycle-item hidden>
+        <button type="button" class="st-zoom ch-zoom ch-post__pic" data-zoom="img/studio/c11.webp"><img src="img/studio/c11.webp" width="600" height="900" data-i18n-alt="cases.heetch.posters.2" alt="Heetch · Supreme × Heetch" alt="" loading="lazy" decoding="async"></button>
+        <span class="ch-lab ch-lab--top" data-i18n="cases.heetch.published">PUBLIÉ</span>
+        <div class="ch-post__bar">
+          <button type="button" class="ch-step" data-cycle-prev data-i18n-aria="cases.heetch.prevPoster" aria-label="Affiche précédente"><span aria-hidden="true">←</span></button>
+          <p class="ch-post__cap"><span class="ch-k ch-k--grey"><bdi>HT-03</bdi> · <span dir="ltr">3/4</span></span><b data-i18n="cases.heetch.posters.2">Heetch · Supreme × Heetch</b></p>
+          <button type="button" class="ch-step" data-cycle-next data-i18n-aria="cases.heetch.nextPoster" aria-label="Affiche suivante"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="ch-post ch-post--w" data-cycle-item hidden>
+        <button type="button" class="st-zoom ch-zoom ch-post__pic" data-zoom="img/studio/c10.webp"><img src="img/studio/c10.webp" width="715" height="894" data-i18n-alt="cases.heetch.posters.3" alt="Découvrez Heetch Pro" alt="" loading="lazy" decoding="async"></button>
+        <span class="ch-lab ch-lab--top" data-i18n="cases.heetch.published">PUBLIÉ</span>
+        <div class="ch-post__bar">
+          <button type="button" class="ch-step" data-cycle-prev data-i18n-aria="cases.heetch.prevPoster" aria-label="Affiche précédente"><span aria-hidden="true">←</span></button>
+          <p class="ch-post__cap"><span class="ch-k ch-k--grey"><bdi>HT-03</bdi> · <span dir="ltr">4/4</span></span><b data-i18n="cases.heetch.posters.3">Découvrez Heetch Pro</b></p>
+          <button type="button" class="ch-step" data-cycle-next data-i18n-aria="cases.heetch.nextPoster" aria-label="Affiche suivante"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <span class="st-badge ch-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- HT-04 · the planner: who, where, and the format that answers.
+         Two groups of radios; the sheet shows the poster, the sentence and
+         the format that go with the pair. -->
+    <article class="ch-t ch-plan st-c3 st-r2" data-kind="planner">
+      <div class="ch-plan__l">
+        <span class="ch-k ch-k--ink"><bdi>HT-04</bdi> · <span data-i18n="cases.heetch.plan.k">PLANIFICATEUR DE CAMPAGNE</span></span>
+        <h4 class="ch-plan__h" data-i18n="cases.heetch.plan.h">Un message, trois publics</h4>
+        <fieldset class="ch-fs">
+          <legend class="ch-k ch-k--grey-d" data-i18n="cases.heetch.plan.who">POUR QUI ?</legend>
+          <div class="ch-pills">
+            <input class="st-sr" type="radio" name="ch-aud" id="ch-a0" checked><label for="ch-a0" data-i18n="cases.heetch.plan.auds.0">Passagers</label>
+            <input class="st-sr" type="radio" name="ch-aud" id="ch-a1"><label for="ch-a1" data-i18n="cases.heetch.plan.auds.1">Chauffeurs</label>
+            <input class="st-sr" type="radio" name="ch-aud" id="ch-a2"><label for="ch-a2" data-i18n="cases.heetch.plan.auds.2">Entreprises</label>
+          </div>
+        </fieldset>
+        <fieldset class="ch-fs">
+          <legend class="ch-k ch-k--grey-d" data-i18n="cases.heetch.plan.where">OÙ ?</legend>
+          <div class="ch-pills">
+            <input class="st-sr" type="radio" name="ch-chan" id="ch-c0" checked><label for="ch-c0" data-i18n="cases.heetch.plan.chans.0">Story</label>
+            <input class="st-sr" type="radio" name="ch-chan" id="ch-c1"><label for="ch-c1" data-i18n="cases.heetch.plan.chans.1">Post</label>
+            <input class="st-sr" type="radio" name="ch-chan" id="ch-c2"><label for="ch-c2" data-i18n="cases.heetch.plan.chans.2">Affichage</label>
+          </div>
+        </fieldset>
+        <div class="ch-plan__out" aria-live="polite">
+          <span class="ch-k ch-k--pink" data-i18n="cases.heetch.plan.out">LE BON FORMAT</span>
+          <div class="ch-res ch-res--0"><b data-i18n="cases.heetch.plan.res.0.0">Code promo, gros et rose</b><span data-i18n="cases.heetch.plan.res.0.1">Le code d’abord, la voiture ensuite. Lisible en une seconde.</span></div>
+          <div class="ch-res ch-res--1"><b data-i18n="cases.heetch.plan.res.1.0">La fierté du chauffeur</b><span data-i18n="cases.heetch.plan.res.1.1">Des vrais gens, une vraie station. Le chauffeur est le héros.</span></div>
+          <div class="ch-res ch-res--2"><b data-i18n="cases.heetch.plan.res.2.0">Heetch Pro, version nette</b><span data-i18n="cases.heetch.plan.res.2.1">Fond blanc, bleu Pro, la même énergie de rue.</span></div>
+        </div>
+      </div>
+      <div class="ch-plan__r" aria-hidden="true">
+        <span class="ch-im ch-im--dk ch-im0"><img src="img/studio/c08.webp" width="636" height="900" alt="" loading="lazy" decoding="async"></span>
+        <span class="ch-im ch-im--dk ch-im1"><img src="img/studio/c09.webp" width="636" height="900" alt="" loading="lazy" decoding="async"></span>
+        <span class="ch-im ch-im--w ch-im2"><img src="img/studio/c11.webp" width="600" height="900" alt="" loading="lazy" decoding="async"></span>
+        <span class="ch-im ch-im--w ch-im3"><img src="img/studio/c10.webp" width="715" height="894" alt="" loading="lazy" decoding="async"></span>
+        <span class="ch-fmt ch-fmt0" data-i18n="cases.heetch.plan.fmt.0">STORY · 9:16</span>
+        <span class="ch-fmt ch-fmt1" data-i18n="cases.heetch.plan.fmt.1">POST · 4:5</span>
+        <span class="ch-fmt ch-fmt2" data-i18n="cases.heetch.plan.fmt.2">AFFICHAGE · 3:2</span>
+      </div>
+      <span class="st-badge ch-badge ch-badge--ink" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- the concept mockups: phone, merch, bus shelter, shoot (all say CONCEPT) -->
+    <article class="ch-t ch-mock ch-mock--phone st-r2" data-kind="mock">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/clients/heetch/m-phone.full.webp"><img src="img/clients/heetch/m-phone.webp" width="464" height="576" data-i18n-alt="cases.heetch.alt.phone" alt="Maquette d’un fil Instagram de Heetch DZ (concept)" alt="" loading="lazy" decoding="async"></button>
+      <span class="ch-lab" data-i18n="cases.heetch.mk.phone">INSTAGRAM · CONCEPT</span>
+      <span class="st-badge ch-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+    <article class="ch-t ch-mock ch-mock--merch st-c2 st-r2" data-kind="mock">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/clients/heetch/m-merch.webp"><img src="img/clients/heetch/m-merch.webp" width="928" height="1152" data-i18n-alt="cases.heetch.alt.merch" alt="Maquette de merch Heetch (concept)" alt="" loading="lazy" decoding="async"></button>
+      <span class="ch-lab ch-lab--ink" data-i18n="cases.heetch.mk.merch">MERCH · CONCEPT</span>
+    </article>
+    <article class="ch-t ch-mock ch-mock--bill st-c2" data-kind="mock">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/clients/heetch/m-bill.full.webp"><img src="img/clients/heetch/m-bill.webp" width="870" height="580" data-i18n-alt="cases.heetch.alt.bill" alt="Maquette d’un abribus à Alger (concept)" alt="" loading="lazy" decoding="async"></button>
+      <span class="ch-lab" data-i18n="cases.heetch.mk.bill">ABRIBUS · CONCEPT</span>
+    </article>
+
+    <!-- HT-08 · colour and type -->
+    <article class="ch-t ch-pal st-c2" data-kind="mock">
+      <span class="ch-k ch-k--ink"><bdi>HT-08</bdi> · <span data-i18n="cases.heetch.pal">COULEURS &amp; TYPE</span></span>
+      <ul class="ch-pal__sw" dir="ltr">
+        <li class="ch-sw--pink">#FF2E7E</li>
+        <li class="ch-sw--black">#111111</li>
+        <li class="ch-sw--pro">PRO</li>
+        <li class="ch-sw--white">#FFF</li>
+      </ul>
+      <p class="ch-pal__type"><span class="ch-pal__big" dir="ltr">PROMO</span><span class="ch-pal__hand" dir="ltr">erkeb!</span><span class="ch-pal__note" data-i18n="cases.heetch.palNote">large · gras · rose</span></p>
+    </article>
+
+    <article class="ch-t ch-mock ch-mock--duo st-r2" data-kind="mock">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/clients/heetch/m-duo.full.webp"><img src="img/clients/heetch/m-duo.webp" width="464" height="576" data-i18n-alt="cases.heetch.alt.duo" alt="Maquette d’un shooting en duo pour Heetch (concept)" alt="" loading="lazy" decoding="async"></button>
+      <span class="ch-lab" data-i18n="cases.heetch.mk.duo">SHOOTING · CONCEPT</span>
+    </article>
+
+    <!-- HT-10 · the real work: two Behance galleries and the feed -->
+    <article class="ch-t ch-links st-c2 st-r2" data-kind="links">
+      <span class="ch-k ch-k--pink"><bdi>HT-10</bdi> · <span data-i18n="cases.heetch.links.k">LE VRAI TRAVAIL</span></span>
+      <h4 class="ch-links__h" data-i18n="cases.heetch.links.h">Tout est sur Behance et sur leur fil</h4>
+      <div class="ch-links__list">
+        <a href="https://www.behance.net/gallery/250754909/FIRST-MONTH-AT-HEETCH-DZ" target="_blank" rel="noopener"><span class="ch-links__l"><span class="ch-links__ico ch-links__ico--be" aria-hidden="true">Bē</span><span class="ch-links__t" data-i18n="cases.heetch.links.b1">Premier mois chez Heetch DZ</span></span><span aria-hidden="true">↗</span><span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span></a>
+        <a href="https://www.behance.net/gallery/254889197/HEETCH-ENTRY-TEST" target="_blank" rel="noopener"><span class="ch-links__l"><span class="ch-links__ico ch-links__ico--be" aria-hidden="true">Bē</span><span class="ch-links__t" data-i18n="cases.heetch.links.b2">Heetch · test d’entrée</span></span><span aria-hidden="true">↗</span><span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span></a>
+        <a href="https://www.instagram.com/heetch.dz/" target="_blank" rel="noopener"><span class="ch-links__l"><span class="ch-links__ico ch-links__ico--ig" aria-hidden="true">IG</span><span class="ch-links__t" dir="ltr">@heetch.dz</span></span><span aria-hidden="true">↗</span><span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span></a>
+      </div>
+      <span class="st-badge ch-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <article class="ch-t ch-pro st-r2" data-kind="links">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/studio/c10.webp"><img src="img/studio/c10.webp" width="715" height="894" data-i18n-alt="cases.heetch.posters.3" alt="Découvrez Heetch Pro" alt="" loading="lazy" decoding="async"></button>
+    </article>
+
+    <!-- the end card: where this work comes from, and a way to the contact -->
+    <article class="ch-t ch-end-card st-c3 st-r2">
+      <div class="ch-end-card__top"><span class="ch-k ch-k--ink" data-i18n="cases.heetch.end.k">DOSSIER 05 · HEETCH</span><span class="ch-end-card__chip" data-i18n="cases.heetch.end.chip">Chez Heetch depuis mai 2026</span></div>
+      <p class="ch-end-card__t" data-i18n="cases.heetch.end.t">Designer graphique, en interne</p>
+      <p class="ch-end-card__big" data-i18n="cases.heetch.end.big">Campagne après campagne</p>
+      <p class="ch-end-card__note" data-i18n="cases.heetch.end.note">du brief à la publication.</p>
+      <ul class="ch-end-card__list">
+        <li data-scope="cover" data-i18n="cases.heetch.end.items.0">Campagnes marketing</li>
+        <li data-scope="type" data-i18n="cases.heetch.end.items.1">Typographie des affiches</li>
+        <li data-scope="posters" data-i18n="cases.heetch.end.items.2">Affiches publiées</li>
+        <li data-scope="planner" data-i18n="cases.heetch.end.items.3">Planification</li>
+        <li data-scope="mock" data-i18n="cases.heetch.end.items.4">Maquettes (concepts)</li>
+        <li data-scope="links" data-i18n="cases.heetch.end.items.5">Contenus réseaux sociaux</li>
+      </ul>
+      <a class="ch-btn" href="#contact" data-i18n="cases.heetch.end.cta">Le même soin pour vous →</a>
+    </article>
+  </div>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag">FAITES GLISSER · ← →</span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>
     </div>
   </div>
 </section>

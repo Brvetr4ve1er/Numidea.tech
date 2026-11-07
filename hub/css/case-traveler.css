@@ -1,0 +1,400 @@
+/* ============================================================
+   Case 04 · Traveler, tr4veler.exe (hub/src/cases/traveler.html),
+   everything under .case-traveler. The founder's own brand, from the
+   owner's design (2026-11-07): a terminal on black with a red-sky orange,
+   a paper card now and then, Archivo Condensed for the titles, Space Mono
+   for the labels and Noto Serif JP for the kanji. The shell (hub/style.css
+   09: the frame, the bar, the track, its spans, the foot, the badges, the
+   viewer) is the page's; this sheet sets the palette on the scope and draws
+   the tiles. Every colour is a token of the scope block below.
+   Measured as painted: orange on black 5.8:1, black on orange 5.8:1, the
+   grey labels on black 7.4:1 and on the ash tiles 6.7:1, cream on black
+   16.6:1, the brick marker text on the paper tiles 4.8:1 (the design's was
+   3.9: darker here), the pale terminal text 11.5:1, the lilac text on the
+   night tile 7.1:1, orange on the ink button 4.8:1 (the open past.dat uses
+   the lighter orange, 6.4:1). Labels never go under 12px (the design's are
+   8.5-11.5px), the buttons are 44px, the spines are at least 24px wide
+   (the shelf takes a sixth column on a phone to keep them there).
+   Motion: the boot lines are typed once (the shell: 2.5 s at most), the
+   curtain over a new poster is 0.4 s and runs on input only, the atlas
+   turns with the scroll (a scroll-driven timeline, where the browser has
+   one) and the spines lift on hover; nothing runs on its own, and with
+   reduced motion nothing moves at all.
+   ============================================================ */
+
+.case-traveler{
+  --c-bg:#0B0908;
+  --c-dark:#0B0908;
+  --c-fg:#F2EAD8;
+  --c-muted:#A89C8C;
+  --c-line:#2A2420;
+  --c-tile:#0B0908;
+  --c-accent:#EE5A1D;
+  --c-accent-2:#FF7A40;
+  --c-on-accent:#0B0908;
+  --c-on-dark:#F2EAD8;
+  --c-font:"Geist",var(--f-body);
+  --c-font-disp:"Archivo Condensed","Reem Kufi",sans-serif;
+  --ct-mono:"Space Mono","Noto Serif JP","IBM Plex Sans Arabic",ui-monospace,monospace;
+  --ct-serif:"Noto Serif JP","Noto Sans JP",serif;
+  --ct-ink:#211E1B;
+  --ct-ash:#1A1613;
+  --ct-ash-2:#15110F;
+  --ct-void:#050404;
+  --ct-edge:#3A322B;
+  --ct-paper:#D8CBB8;
+  --ct-cream:#F2EAD8;
+  --ct-sand:#C9A77E;
+  --ct-sky:#8FB0D0;
+  --ct-white:#FFFFFF;
+  --ct-black:#000000;
+  --ct-brick:#8E382E;
+  --ct-glow:#E0563F;
+  --ct-marker:#A34135;
+  --ct-term:#CFC4B4;
+  --ct-green:#B6FF2E;
+  --ct-night:#07060F;
+  --ct-night-bar:#100D24;
+  --ct-night-rim:#050409;
+  --ct-purple:#322A5E;
+  --ct-ice:#E8E6FF;
+  --ct-lilac:#9A93C9;
+  --ct-cyan:#00F0FF;
+  --ct-yellow:#FFD23F;
+  --ct-butter:#FFE27A;
+  --ct-mint:#3AFF6E;
+  --ct-amber:#FFA502;
+  --ct-fog:#B8AA96;
+  --ct-ink-15:rgba(33,30,27,.15);
+  --ct-scrim:rgba(11,9,8,.96);
+  --ct-scrim-2:rgba(11,9,8,.9);
+  --ct-scrim-3:rgba(11,9,8,0);
+  --ct-box:rgba(11,9,8,.82);
+  --ct-orange-r:rgba(238,90,29,.75);
+  --ct-orange-g:rgba(238,90,29,.5);
+  --ct-cream-r:rgba(242,234,216,.45);
+  --ct-cream-l:rgba(242,234,216,.25);
+  --ct-aber:rgba(0,240,255,.4);
+  --ct-ease:var(--ease);
+}
+
+/* ---------------- the bar: the volume, the path, the pips, the count ---------------- */
+.case-traveler .ct-bar{gap:0;padding:0;align-items:stretch;border-bottom:1px solid var(--c-line)}
+.case-traveler .ct-vol{flex:none;display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--c-accent);color:var(--c-on-accent)}
+.case-traveler .ct-vol__jp{font-family:var(--ct-serif);font-weight:900;font-size:22px;line-height:1}
+.case-traveler .ct-vol__n{font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.14em}
+.case-traveler .ct-progress{flex:1 1 320px;justify-content:center;gap:6px;padding:8px 16px;font-family:var(--ct-mono)}
+.case-traveler .ct-path{margin:0;font-family:var(--ct-mono);font-weight:400;font-size:var(--t-label);line-height:1.3;letter-spacing:.12em;color:var(--c-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-traveler .ct-path b{font-weight:400;color:var(--c-fg)}
+.case-traveler .ct-pips{height:6px}
+.case-traveler .ct-pips i{height:100%;background:var(--c-line);opacity:1}
+.case-traveler .ct-pips i.is-seen{background:var(--c-accent)}
+.case-traveler .ct-end-bar{flex:none;display:flex;align-items:center;gap:8px;padding:8px 12px;border-inline-start:1px solid var(--c-line)}
+.case-traveler .ct-barcode{width:84px;height:28px;background:repeating-linear-gradient(90deg,var(--ct-cream) 0 2px,transparent 2px 3px,var(--ct-cream) 3px 4px,transparent 4px 7px,var(--ct-cream) 7px 10px,transparent 10px 12px)}
+.case-traveler .ct-count{font-family:var(--ct-mono);font-size:var(--t-label);letter-spacing:.1em;white-space:nowrap}
+.case-traveler .ct-nav button{border:1px solid var(--ct-edge)}
+.case-traveler .ct-nav button:hover{background:var(--ct-ash);border-color:var(--ct-edge);color:var(--c-on-dark)}
+.case-traveler .st-case__bar :focus-visible,.case-traveler .st-case__foot :focus-visible{outline-color:var(--c-accent)}
+.case-traveler .st-case__track:focus-visible{outline-color:var(--c-accent)}
+.case-traveler .st-case__bar-p{background:var(--c-line)}
+
+/* ---------------- shared tile pieces ---------------- */
+/* the tiles follow the page's direction; the track itself stays ltr (the shell) */
+:root[dir="rtl"] .case-traveler .ct-t{direction:rtl}
+.case-traveler .st-case__track > *{border-radius:0}
+.case-traveler .ct-track{scroll-timeline:--ct-scroll x}
+.case-traveler .ct-t{border:1px solid var(--c-line)}
+.case-traveler .ct-t img{display:block}
+.case-traveler .ct-c5{grid-column:span 5}
+.case-traveler .ct-m{font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.1em}
+.case-traveler .ct-acc{color:var(--c-accent)}
+.case-traveler .ct-ash{color:var(--c-muted)}
+.case-traveler .ct-hand{font-family:var(--f-hand)}
+.case-traveler .ct-kick{align-self:flex-start;padding:3px 7px;background:var(--c-dark);font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em;color:var(--c-accent)}
+.case-traveler .ct-kick--bare{padding:0;background:none}
+.case-traveler .ct-zoom img{width:100%;height:100%;object-fit:cover}
+.case-traveler .ct-zoom:focus-visible{outline:2px solid var(--c-accent);outline-offset:-4px}
+.case-traveler .st-badge{padding:3px 8px;background:var(--c-dark);border:1px solid var(--c-accent);color:var(--c-accent);font-weight:700;line-height:1.2}
+.case-traveler .st-badge.is-seen{background:var(--c-dark);border-color:var(--ct-edge);color:var(--c-on-dark)}
+.case-traveler .ct-badge--in{position:static;flex:none}
+.case-traveler .ct-hanko{position:absolute;width:116px;height:116px;display:grid;place-items:center;border:4px solid var(--ct-brick);border-radius:50%;color:var(--ct-brick);opacity:.92;pointer-events:none;transform:rotate(-12deg)}
+.case-traveler .ct-hanko > div{width:98px;height:98px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:1.5px solid var(--ct-brick);border-radius:50%;text-align:center}
+.case-traveler .ct-hanko span:first-child{font-family:var(--ct-serif);font-weight:900;font-size:27px;line-height:1}
+.case-traveler .ct-hanko span + span{font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);line-height:1.1;letter-spacing:.06em}
+.case-traveler .ct-hanko--s{width:52px;height:52px;border-width:3px;background:rgba(216,203,184,.55);font-family:var(--ct-serif);font-weight:900;font-size:13px;line-height:1;transform:rotate(-14deg)}
+
+/* ---------------- TV-01 · the cover ---------------- */
+.case-traveler .ct-lore{display:grid;grid-template-columns:44px minmax(0,1fr);background:var(--c-dark)}
+.case-traveler .ct-lore__spine{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:12px 0;background:var(--c-accent);color:var(--c-on-accent)}
+.case-traveler .ct-lore__spine span:first-child{font-family:var(--ct-serif);font-weight:900;font-size:26px;letter-spacing:.1em;writing-mode:vertical-rl}
+.case-traveler .ct-lore__spine span:last-child{font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.2em;writing-mode:vertical-rl}
+.case-traveler .ct-lore__view{position:relative;overflow:hidden}
+.case-traveler .ct-lore__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case-traveler .ct-lore__view::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--ct-scrim) 0%,var(--ct-scrim-2) 60%,var(--ct-scrim-3) 92%)}
+:root[dir="rtl"] .case-traveler .ct-lore__view::before{background:linear-gradient(270deg,var(--ct-scrim) 0%,var(--ct-scrim-2) 60%,var(--ct-scrim-3) 92%)}
+.case-traveler .ct-lore__txt{position:absolute;z-index:2;inset-block:clamp(12px,2vw,24px);inset-inline-start:clamp(12px,2vw,26px);width:min(66%,420px);display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.case-traveler .ct-lore__head{display:flex;flex-direction:column;gap:10px;min-height:0}
+.case-traveler .ct-lore__h{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(32px,4.6vw,68px);line-height:.88;text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance;text-shadow:2px 0 var(--ct-orange-r),-2px 0 var(--ct-aber)}
+.case-traveler .ct-lore__s{font-size:13.5px;line-height:1.5;color:var(--ct-term)}
+.case-traveler .ct-term{padding:8px 12px;background:var(--ct-box);border:1px solid var(--ct-edge);font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.6}
+.case-traveler .ct-term__l{color:var(--ct-term);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:1.6em}
+.case-traveler .ct-term__l--bad{color:var(--ct-glow)}
+.case-traveler .ct-term__l--ok{color:var(--ct-green)}
+.case-traveler .ct-lore .st-badge{z-index:3}
+
+/* ---------------- TV-02 · the character file ---------------- */
+.case-traveler .ct-file{display:flex;flex-direction:column;gap:12px;padding:16px;background:var(--ct-paper);color:var(--ct-ink);border-color:var(--ct-ink)}
+.case-traveler .ct-file::before{content:"";position:absolute;inset:0;background:radial-gradient(var(--ct-ink) 1px,transparent 1.4px) 0 0/7px 7px;opacity:.1;pointer-events:none}
+.case-traveler .ct-file > :not(.ct-hanko){position:relative}
+.case-traveler .ct-file__hd{display:flex;justify-content:space-between;align-items:center;gap:8px;padding-bottom:8px;border-bottom:2px solid var(--ct-ink)}
+.case-traveler .ct-file .st-badge.ct-badge--in{background:transparent;border-color:var(--ct-ink);color:var(--ct-ink)}
+.case-traveler .ct-file .st-badge.ct-badge--in.is-seen{background:var(--ct-ink);color:var(--ct-paper)}
+.case-traveler .ct-file__who{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;align-items:end}
+.case-traveler .ct-file__pic{width:92px;height:116px;border:2px solid var(--ct-ink);overflow:hidden;background:var(--c-dark)}
+.case-traveler .ct-file__pic img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15)}
+.case-traveler .ct-file__id{display:flex;flex-direction:column;gap:4px;min-width:0}
+.case-traveler .ct-file__name{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(28px,2.6vw,38px);line-height:.88;text-transform:uppercase;overflow-wrap:anywhere}
+.case-traveler .ct-file__cls{font-size:13px;line-height:1.3}
+.case-traveler .ct-stats{display:flex;flex-direction:column;gap:6px}
+.case-traveler .ct-stats li{display:grid;grid-template-columns:minmax(0,1fr) 100px 24px;gap:8px;align-items:center;font-size:12.5px;font-weight:500;line-height:1.2}
+.case-traveler .ct-seg{display:block;height:9px;background:linear-gradient(90deg,var(--ct-ink) calc(var(--n) * 10%),var(--ct-ink-15) 0);-webkit-mask:repeating-linear-gradient(90deg,black 0 calc(10% - 2px),transparent calc(10% - 2px) 10%);mask:repeating-linear-gradient(90deg,black 0 calc(10% - 2px),transparent calc(10% - 2px) 10%)}
+.case-traveler .ct-stat__v{font-family:var(--ct-mono);font-size:var(--t-label);text-align:end}
+.case-traveler .ct-file__aside{font-size:15px;line-height:1.2;color:var(--ct-brick);transform:rotate(-2deg);transform-origin:left center}
+:root[dir="rtl"] .case-traveler .ct-file__aside{transform:rotate(2deg);transform-origin:right center}
+.case-traveler .ct-past{margin-top:auto}
+.case-traveler .ct-past summary{min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 12px;border:2px solid var(--ct-ink);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.08em;cursor:pointer;list-style:none;transition:background-color .3s}
+.case-traveler .ct-past summary::-webkit-details-marker{display:none}
+.case-traveler .ct-past summary:focus-visible{outline:3px solid var(--ct-ink);outline-offset:2px}
+.case-traveler .ct-past[open] summary{background:var(--ct-ink);color:var(--c-accent-2)}
+.case-traveler .ct-past[open] .ct-past__show,.case-traveler .ct-past:not([open]) .ct-past__hid{display:none}
+.case-traveler .ct-hanko--s{inset-inline-start:46px;top:114px}
+
+/* ---------------- the chapter plates ---------------- */
+.case-traveler .ct-chap{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;padding:16px 14px}
+.case-traveler .ct-chap__l{font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.16em;white-space:nowrap}
+.case-traveler .ct-chap__jp{align-self:center;font-family:var(--ct-serif);font-weight:900;font-size:clamp(56px,6vw,86px);line-height:1;writing-mode:vertical-rl}
+.case-traveler .ct-chap__t{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(26px,2.6vw,36px);line-height:.9;text-transform:uppercase;overflow-wrap:anywhere}
+.case-traveler .ct-chap--posters{background:var(--c-accent);color:var(--c-on-accent);border-color:var(--c-dark)}
+.case-traveler .ct-chap--posters .ct-chap__jp{color:var(--c-dark)}
+.case-traveler .ct-chap--chars{background:var(--ct-paper);color:var(--ct-ink);border-color:var(--ct-ink)}
+.case-traveler .ct-chap--chars .ct-chap__jp{color:var(--ct-ink)}
+.case-traveler .ct-chap--merch{background:var(--c-dark);color:var(--c-fg);border-color:var(--c-accent)}
+.case-traveler .ct-chap--merch .ct-chap__jp{color:var(--c-accent)}
+.case-traveler .ct-chap--tools{background:var(--ct-night);color:var(--ct-ice);border-color:var(--ct-yellow)}
+.case-traveler .ct-chap--tools .ct-chap__jp{color:var(--ct-yellow)}
+
+/* ---------------- TV-03 · the reality jump ----------------
+   The cycle (the shell) shows one item at a time; an item is two parts of
+   the tile, the poster and the terminal with the title, so it is laid out
+   as `contents` and the tile's grid places both. */
+.case-traveler .ct-real{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr) auto;background:var(--c-dark)}
+.case-traveler .ct-real__item{display:contents}
+.case-traveler .ct-real__item[hidden]{display:none}
+.case-traveler .ct-real__pic{position:relative;overflow:hidden;grid-column:1;grid-row:1 / -1;background:var(--ct-void);border-inline-end:1px solid var(--c-line)}
+.case-traveler .ct-real__pic .st-zoom{position:absolute;inset:0}
+.case-traveler .ct-wipe{position:absolute;inset:0;z-index:2;background:var(--c-accent);box-shadow:inset -2px 0 0 var(--ct-cream);pointer-events:none;animation:ct-wipe .4s var(--ct-ease) both}
+@keyframes ct-wipe{from{transform:none}to{transform:translateX(101%)}}
+:root[dir="rtl"] .case-traveler .ct-wipe{animation-name:ct-wipe-rtl}
+@keyframes ct-wipe-rtl{from{transform:none}to{transform:translateX(-101%)}}
+.case-traveler .ct-real__hd{grid-column:2;grid-row:1;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:16px 16px 0}
+.case-traveler .ct-real__term{grid-column:2;grid-row:2;margin:12px 16px 0;padding:10px;background:var(--ct-void);border:1px solid var(--c-line);font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.6;color:var(--c-muted);overflow-wrap:anywhere}
+.case-traveler .ct-ok{color:var(--ct-green)}
+.case-traveler .ct-real__n{grid-column:2;grid-row:3;margin:14px 16px 0;letter-spacing:.14em;color:var(--c-muted)}
+.case-traveler .ct-real__title{grid-column:2;grid-row:4;align-self:start;padding:6px 16px 0;min-width:0;font-family:var(--c-font-disp);font-weight:900;font-size:clamp(30px,3vw,46px);line-height:.9;text-transform:uppercase;color:var(--ct-cream);text-wrap:balance;overflow-wrap:anywhere}
+.case-traveler .ct-real__ctl{grid-column:2;grid-row:5;display:flex;gap:6px;padding:16px}
+.case-traveler .ct-sq{flex:none;width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--ct-edge);background:transparent;color:var(--ct-cream);font-size:16px;cursor:pointer}
+.case-traveler .ct-sq:hover{background:var(--ct-ash)}
+:root[dir="rtl"] .case-traveler .ct-sq span{display:inline-block;transform:scaleX(-1)}
+.case-traveler .ct-go{flex:1;min-width:0;min-height:44px;padding:0 10px;border:0;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.08em;white-space:nowrap;cursor:pointer}
+.case-traveler .ct-go:hover{background:var(--c-accent-2)}
+.case-traveler .ct-real :focus-visible{outline:2px solid var(--c-accent);outline-offset:2px}
+
+/* ---------------- TV-04 · the shelf ---------------- */
+.case-traveler .ct-shelf{display:flex;flex-direction:column;background:var(--ct-ash-2)}
+.case-traveler .ct-shelf__hd{flex:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 16px 0}
+.case-traveler .ct-shelf__row{flex:1;min-height:0;display:flex;align-items:flex-end;gap:3px;padding:26px 16px 0}
+.case-traveler .ct-spine{flex:1 1 0;min-width:24px;height:var(--h);position:relative;overflow:hidden;padding:0;border:0;background:var(--c-dark);cursor:pointer;transition:transform .3s var(--ct-ease)}
+.case-traveler .ct-spine img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.15)}
+.case-traveler .ct-spine::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.1) 45%,rgba(0,0,0,.55))}
+.case-traveler .ct-spine__n{position:absolute;z-index:1;top:6px;inset-inline-start:50%;transform:translateX(-50%);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);white-space:nowrap;color:var(--ct-cream)}
+:root[dir="rtl"] .case-traveler .ct-spine__n,:root[dir="rtl"] .case-traveler .ct-spine__t{transform:translateX(50%)}
+.case-traveler .ct-spine__t{position:absolute;z-index:1;bottom:8px;inset-inline-start:50%;transform:translateX(-50%);writing-mode:vertical-rl;font-family:var(--c-font-disp);font-weight:900;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--ct-cream);white-space:nowrap;text-shadow:0 1px 3px rgba(0,0,0,1)}
+.case-traveler .ct-spine:focus-visible{outline:2px solid var(--c-accent);outline-offset:-2px;transform:translateY(-16px)}
+@media (hover:hover){.case-traveler .ct-spine:hover{transform:translateY(-16px)}}
+.case-traveler .ct-shelf__base{flex:none;height:12px;background:var(--c-line);border-top:2px solid var(--ct-edge)}
+@media (max-width:1000px){.case-traveler .ct-c5{grid-column:span 6}}
+
+/* ---------------- TV-05 · the atlas ---------------- */
+.case-traveler .ct-atlas{display:flex;flex-direction:column;gap:10px;padding:14px;background:var(--c-dark)}
+.case-traveler .ct-atlas__hd{display:flex;justify-content:space-between;gap:8px;white-space:nowrap}
+.case-traveler .ct-atlas__hd > :first-child{overflow:hidden;text-overflow:ellipsis}
+.case-traveler .ct-atlas__stage{position:relative;flex:1;min-height:0;display:grid;place-items:center}
+.case-traveler .ct-atlas__orb{position:relative;width:100%;max-height:100%;max-width:min(100%,var(--r));aspect-ratio:1;margin:0 auto}
+.case-traveler .ct-ring{position:absolute;border-radius:50%;border:1px solid var(--ct-edge)}
+.case-traveler .ct-ring--1{inset:4%}
+.case-traveler .ct-ring--2{inset:16%;border-style:dashed}
+.case-traveler .ct-ring--3{inset:28%;border-color:var(--ct-orange-g)}
+.case-traveler .ct-axis{position:absolute;background:var(--c-line)}
+.case-traveler .ct-axis--v{inset-inline-start:50%;inset-block:2%;width:1px}
+.case-traveler .ct-axis--h{inset-block-start:50%;inset-inline:2%;height:1px}
+.case-traveler .ct-atlas__spin{position:absolute;inset:0}
+.case-traveler .ct-atlas__spin i{position:absolute;left:var(--x);top:var(--y);width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--ct-cream)}
+.case-traveler .ct-atlas__spin i:first-child{width:16px;height:16px;margin:-8px 0 0 -8px;background:var(--c-accent);box-shadow:0 0 0 4px var(--ct-orange-g)}
+.case-traveler .ct-atlas__core{position:absolute;inset:34%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center}
+.case-traveler .ct-atlas__core span:first-child{font-family:var(--ct-serif);font-weight:900;font-size:clamp(18px,1.8vw,26px);line-height:1;color:var(--c-accent)}
+.case-traveler .ct-atlas__core span:last-child{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(13px,1.2vw,17px);line-height:.95;text-transform:uppercase;overflow-wrap:anywhere}
+.case-traveler .ct-atlas__s{font-size:13px;line-height:1.4;color:var(--c-muted)}
+@keyframes ct-orbit{to{transform:rotate(140deg)}}
+@supports (animation-timeline:--ct-scroll){
+  @media (prefers-reduced-motion:no-preference){
+    .case-traveler .ct-atlas__spin{animation:ct-orbit linear both;animation-timeline:--ct-scroll}
+  }
+}
+
+/* ---------------- TV-06 · the companions ---------------- */
+.case-traveler .ct-panels{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:6px;padding:6px;background:var(--ct-cream);color:var(--ct-ink);border:3px solid var(--ct-ink)}
+.case-traveler .ct-panel{position:relative;overflow:hidden;margin:0;background:var(--c-dark);border:2.5px solid var(--ct-ink)}
+.case-traveler .ct-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos)}
+.case-traveler .ct-bubble{position:absolute;top:8px;max-width:calc(100% - 16px);padding:5px 9px;background:var(--ct-white);border:2px solid var(--c-dark);border-radius:14px;color:var(--c-dark);font-size:clamp(12px,.9vw,13px);font-weight:700;line-height:1.2}
+.case-traveler .ct-bubble--l{inset-inline-start:8px}
+.case-traveler .ct-bubble--r{inset-inline-end:8px}
+.case-traveler .ct-panel__n{position:absolute;inset-inline-start:6px;bottom:6px;max-width:calc(100% - 12px);padding:3px 6px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);line-height:1.2;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------------- TV-07 · the kanji card ---------------- */
+.case-traveler .ct-kanji{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:18px 12px;text-align:center;background:var(--c-dark)}
+.case-traveler .ct-kanji__l{font-family:var(--ct-mono);font-size:var(--t-label);letter-spacing:.16em;color:var(--c-muted)}
+.case-traveler .ct-kanji__jp{font-family:var(--ct-serif);font-weight:900;font-size:clamp(60px,6.4vw,92px);line-height:1;writing-mode:vertical-rl;color:var(--ct-cream)}
+.case-traveler .ct-kanji__s{font-size:13px;line-height:1.4;color:var(--ct-term)}
+
+/* ---------------- TV-08 · the drop (staged pictures) ---------------- */
+.case-traveler .ct-mk{background:var(--c-dark)}
+.case-traveler .ct-mk .ct-zoom img{object-fit:contain}
+.case-traveler .ct-mk--flat{background:var(--ct-sand)}
+.case-traveler .ct-mk--stickers{background:var(--ct-paper)}
+.case-traveler .ct-tag{position:absolute;z-index:2;max-width:100%;box-sizing:border-box;padding:6px 8px;font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);line-height:1.2;letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.case-traveler .ct-tag--o{inset-inline-start:0;top:0;background:var(--c-accent);color:var(--c-on-accent)}
+.case-traveler .ct-tag--k{background:var(--c-dark);color:var(--c-fg)}
+.case-traveler .ct-tag--b{inset-inline-start:0;bottom:0}
+.case-traveler .ct-drop{position:absolute;z-index:2;inset-inline-end:12px;bottom:12px;display:flex;flex-direction:column;gap:4px;padding:10px 12px;background:var(--ct-cream);color:var(--c-dark);border:2px solid var(--c-dark);transform:rotate(3deg);pointer-events:none}
+:root[dir="rtl"] .case-traveler .ct-drop{transform:rotate(-3deg)}
+.case-traveler .ct-drop__k{font-family:var(--ct-mono);font-size:var(--t-label);letter-spacing:.1em;white-space:nowrap}
+.case-traveler .ct-drop__t{font-family:var(--c-font-disp);font-weight:900;font-size:18px;line-height:1;text-transform:uppercase;white-space:nowrap}
+.case-traveler .ct-drop__code{display:block;height:16px;margin-top:2px;background:repeating-linear-gradient(90deg,var(--c-dark) 0 2px,transparent 2px 3px,var(--c-dark) 3px 5px,transparent 5px 8px)}
+
+/* ---------------- TV-09 · WorkspaceHQ ---------------- */
+.case-traveler .ct-ws{display:flex;flex-direction:column;background:var(--ct-night);border:4px solid var(--ct-night-rim);outline:2px solid var(--ct-purple);outline-offset:-8px}
+.case-traveler .ct-ws__bar{flex:none;height:40px;display:flex;align-items:center;padding:0 14px;margin:6px 6px 0;background:var(--ct-night-bar);font-family:var(--ct-mono)}
+.case-traveler .ct-ws__star{font-size:var(--t-label);font-weight:700;color:var(--ct-yellow);white-space:nowrap}
+.case-traveler .ct-ws__view{flex:1;min-height:0;box-sizing:border-box;max-width:560px;margin:0 6px 6px;padding:clamp(14px,2.4vw,30px);display:flex;flex-direction:column;justify-content:center;gap:clamp(8px,1.2vw,14px)}
+.case-traveler .ct-ws__k{letter-spacing:.16em;color:var(--ct-cyan)}
+.case-traveler .ct-ws__h{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(28px,3.2vw,48px);line-height:.92;text-transform:uppercase;color:var(--ct-ice);text-wrap:balance}
+.case-traveler .ct-ws__s{font-size:14px;line-height:1.5;color:var(--ct-lilac)}
+.case-traveler .ct-ws__bars{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 10px;align-items:center;max-width:340px;font-family:var(--ct-mono);font-size:var(--t-label)}
+.case-traveler .ct-ws__l--y{color:var(--ct-yellow)}
+.case-traveler .ct-ws__l--g{color:var(--ct-mint)}
+.case-traveler .ct-ws__l--o{color:var(--ct-amber)}
+.case-traveler .ct-ws__bars i{display:block;height:8px;border:2px solid var(--ct-purple)}
+.case-traveler .ct-bar-y{background:linear-gradient(90deg,var(--ct-yellow) var(--w),transparent var(--w))}
+.case-traveler .ct-bar-g{background:linear-gradient(90deg,var(--ct-mint) var(--w),transparent var(--w))}
+.case-traveler .ct-bar-o{background:linear-gradient(90deg,var(--ct-amber) var(--w),transparent var(--w))}
+.case-traveler .ct-ws__go{align-self:flex-start;min-height:44px;display:inline-flex;align-items:center;padding:0 18px;background:var(--ct-yellow);box-shadow:4px 4px 0 var(--ct-purple);color:var(--ct-night);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.06em;text-decoration:none;white-space:nowrap}
+.case-traveler .ct-ws__go:hover{background:var(--ct-butter)}
+.case-traveler .ct-ws :focus-visible{outline:2px solid var(--ct-yellow);outline-offset:3px}
+
+/* ---------------- TV-10 · the Instagram contact sheet ---------------- */
+.case-traveler .ct-ig{display:flex;flex-direction:column;gap:8px;padding:12px;background:var(--ct-ash)}
+.case-traveler .ct-ig__hd{display:flex;justify-content:space-between;align-items:center;gap:8px;white-space:nowrap}
+.case-traveler .ct-ig__grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:8px 6px;padding:8px 6px;background:var(--c-dark)}
+.case-traveler .ct-cell{position:relative;min-height:0;padding:0;border:0;background:none;cursor:zoom-in}
+.case-traveler .ct-cell img{width:100%;height:100%;object-fit:contain}
+.case-traveler .ct-cell__n{position:absolute;inset-inline-start:3px;bottom:2px;padding:0 2px;background:var(--ct-box);font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.2;color:var(--c-accent)}
+.case-traveler .ct-cell:focus-visible{outline:2px solid var(--c-accent);outline-offset:1px}
+.case-traveler .ct-ig__ring{position:absolute;inset-inline-start:calc(33% + 4px);top:calc(36% + 2px);width:30%;height:26%;border:3px solid var(--ct-glow);border-radius:50%;transform:rotate(-8deg);pointer-events:none}
+.case-traveler .ct-ig__mark{position:absolute;inset-inline-start:calc(64% + 6px);top:35%;font-size:15px;color:var(--ct-glow);text-shadow:0 0 3px var(--c-dark),0 0 3px var(--c-dark);transform:rotate(6deg);pointer-events:none}
+.case-traveler .ct-ig__go{min-height:44px;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 8px;background:var(--ct-cream);color:var(--c-dark);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);text-decoration:none;white-space:nowrap}
+.case-traveler .ct-ig__go:hover{background:var(--ct-white)}
+.case-traveler .ct-ig__go:focus-visible{outline:2px solid var(--c-accent);outline-offset:2px}
+
+/* ---------------- TV-11 · the colophon, and the quote ---------------- */
+.case-traveler .ct-pal{display:flex;flex-direction:column;gap:8px;padding:12px;background:var(--ct-paper);color:var(--ct-ink);border-color:var(--ct-ink)}
+.case-traveler .ct-pal__sw{flex:1;display:grid;grid-template-columns:1.5fr 1.2fr 1fr 1fr;gap:4px}
+.case-traveler .ct-pal__sw li{display:flex;align-items:flex-end;padding:6px;font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.2}
+.case-traveler .ct-pal__sw b{font-weight:700}
+.case-traveler .ct-sw--o{background:var(--c-accent);color:var(--c-on-accent)}
+.case-traveler .ct-sw--k{background:var(--c-dark);color:var(--ct-cream)}
+.case-traveler .ct-sw--r{background:var(--ct-marker);color:var(--ct-cream)}
+.case-traveler .ct-sw--c{background:var(--ct-cream);border:1px solid var(--ct-fog)}
+.case-traveler .ct-pal__type{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;padding-top:6px;border-top:2px solid var(--ct-ink)}
+.case-traveler .ct-pal__aa{font-family:var(--c-font-disp);font-weight:900;font-size:30px;line-height:1}
+.case-traveler .ct-pal__jp{font-family:var(--ct-serif);font-weight:900;font-size:20px;line-height:1}
+.case-traveler .ct-pal__hand{font-family:var(--f-hand);font-size:15px;color:var(--ct-brick)}
+.case-traveler .ct-pal__note{font-family:var(--ct-mono);font-size:var(--t-label);color:var(--ct-ink)}
+.case-traveler .ct-quote{background:var(--ct-sky)}
+.case-traveler .ct-quote .ct-zoom img{object-fit:contain}
+.case-traveler .ct-quote__t{position:absolute;z-index:2;inset-inline-start:10px;bottom:10px;max-width:calc(100% - 20px);padding:5px 10px;background:var(--c-dark);color:var(--ct-cream);font-family:var(--f-hand);font-size:14px;line-height:1.3;pointer-events:none}
+
+/* ---------------- TV-12 · the peace poster ---------------- */
+.case-traveler .ct-peace{display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:16px;background:var(--ct-black);color:var(--ct-cream)}
+.case-traveler .ct-peace .ct-zoom{position:absolute;inset:0}
+.case-traveler .ct-peace .ct-zoom img{opacity:.45;filter:grayscale(.4)}
+.case-traveler .ct-peace::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.92) 72%);pointer-events:none}
+.case-traveler .ct-peace__rings{position:absolute;inset:0;pointer-events:none}
+.case-traveler .ct-peace__rings i{position:absolute;z-index:1;inset-inline-start:50%;top:38%;pointer-events:none;transform:translate(-50%,-50%)}
+:root[dir="rtl"] .case-traveler .ct-peace__rings i{transform:translate(50%,-50%)}
+.case-traveler .ct-peace__rings i:nth-child(1){width:66%;aspect-ratio:1;border:1px solid var(--ct-orange-r);border-radius:50%}
+.case-traveler .ct-peace__rings i:nth-child(2){width:44%;aspect-ratio:1;border:1px dashed var(--ct-cream-r);border-radius:50%}
+.case-traveler .ct-peace__rings i:nth-child(3){width:1px;height:76%;background:var(--ct-cream-l)}
+.case-traveler .ct-peace__hd,.case-traveler .ct-peace__txt{position:relative;z-index:2;pointer-events:none}
+.case-traveler .ct-peace__hd{letter-spacing:.14em}
+.case-traveler .ct-peace__txt{display:flex;flex-direction:column;gap:8px}
+.case-traveler .ct-peace__t{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(30px,3vw,42px);line-height:.9;text-transform:uppercase;text-wrap:balance}
+
+/* ---------------- the closing card: hors vente, and what the volume held ---------------- */
+.case-traveler .ct-end{display:grid;grid-template-columns:minmax(0,1fr) 44px;background:var(--ct-paper);color:var(--ct-ink);border-color:var(--ct-ink)}
+.case-traveler .ct-end__main{position:relative;min-width:0;display:flex;flex-direction:column;gap:10px;padding:18px}
+.case-traveler .ct-end__hd{padding-bottom:8px;border-bottom:2px solid var(--ct-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-traveler .ct-end__t{max-width:calc(100% - 130px);font-weight:700;font-size:15px;line-height:1.25}
+.case-traveler .ct-end__big{max-width:calc(100% - 130px);font-family:var(--c-font-disp);font-weight:900;font-size:clamp(44px,4.4vw,64px);line-height:.88;text-transform:uppercase}
+.case-traveler .ct-end__note{font-size:15px;line-height:1.2;color:var(--ct-brick)}
+.case-traveler .ct-end__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:6px 14px;padding-top:8px;font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.25}
+.case-traveler .ct-end__list li{display:flex;align-items:center;gap:8px;transition:opacity .3s}
+.case-traveler .ct-end__list li::before{content:"[x]";flex:none;width:28px;white-space:nowrap}
+html.js .case-traveler .ct-end__list li:not(.is-seen){opacity:.6}
+html.js .case-traveler .ct-end__list li:not(.is-seen)::before{content:"[ ]"}
+.case-traveler .ct-end__ft{display:flex;align-items:flex-end;gap:12px}
+.case-traveler .ct-code{flex:none;display:flex;flex-direction:column;gap:2px;padding:6px 8px;background:var(--ct-white);border:1px solid var(--ct-ink)}
+.case-traveler .ct-code i{display:block;width:120px;height:30px;background:repeating-linear-gradient(90deg,var(--c-dark) 0 2px,transparent 2px 3px,var(--c-dark) 3px 4px,transparent 4px 7px,var(--c-dark) 7px 10px,transparent 10px 11px,var(--c-dark) 11px 12px,transparent 12px 15px)}
+.case-traveler .ct-code span{font-family:var(--ct-mono);font-size:var(--t-label);letter-spacing:.04em;white-space:nowrap}
+.case-traveler .ct-cta{flex:1;min-width:0;min-height:44px;display:flex;align-items:center;justify-content:center;padding:0 10px;background:var(--ct-ink);color:var(--ct-cream);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.04em;text-align:center;text-decoration:none}
+.case-traveler .ct-cta:hover{background:var(--ct-black)}
+.case-traveler .ct-cta:focus-visible{outline:3px solid var(--ct-ink);outline-offset:2px}
+.case-traveler .ct-end .ct-hanko{inset-inline-end:16px;top:50px}
+.case-traveler .ct-end__side{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:12px 0;background:var(--ct-ink);color:var(--ct-paper)}
+.case-traveler .ct-end__side span:first-child{font-family:var(--ct-serif);font-weight:900;font-size:22px;writing-mode:vertical-rl}
+.case-traveler .ct-end__side span:last-child{font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.2em;writing-mode:vertical-rl}
+@media (max-width:833px){
+  .case-traveler .ct-end__main{gap:6px;padding:14px}
+  .case-traveler .ct-end__t{max-width:calc(100% - 118px);font-size:14px;line-height:1.2}
+  .case-traveler .ct-end__big{max-width:calc(100% - 118px);font-size:40px}
+  .case-traveler .ct-end__list{gap:3px 12px;padding-top:2px}
+  .case-traveler .ct-hanko{width:104px;height:104px}
+  .case-traveler .ct-hanko > div{width:88px;height:88px}
+  .case-traveler .ct-file{gap:8px;padding:12px}
+  .case-traveler .ct-stats{gap:4px}
+  .case-traveler .ct-ws__view{gap:8px;padding:12px}
+}
+
+/* ---------------- Arabic: no tracking, no capitals, a looser line ---------------- */
+:lang(ar) .case-traveler .ct-m,:lang(ar) .case-traveler .ct-kick,:lang(ar) .case-traveler .ct-vol__n,:lang(ar) .case-traveler .ct-path,:lang(ar) .case-traveler .ct-count,:lang(ar) .case-traveler .ct-term,:lang(ar) .case-traveler .ct-go,:lang(ar) .case-traveler .ct-ws__k,:lang(ar) .case-traveler .ct-ws__go,:lang(ar) .case-traveler .ct-ig__go,:lang(ar) .case-traveler .ct-cta,:lang(ar) .case-traveler .ct-tag,:lang(ar) .case-traveler .ct-drop__k,:lang(ar) .case-traveler .ct-panel__n,:lang(ar) .case-traveler .ct-past summary,:lang(ar) .case-traveler .ct-hanko span + span,:lang(ar) .case-traveler .ct-kanji__l{letter-spacing:0}
+:lang(ar) .case-traveler .ct-lore__h,:lang(ar) .case-traveler .ct-ws__h,:lang(ar) .case-traveler .ct-end__big,:lang(ar) .case-traveler .ct-real__title,:lang(ar) .case-traveler .ct-file__name,:lang(ar) .case-traveler .ct-chap__t,:lang(ar) .case-traveler .ct-peace__t{line-height:1.2;text-shadow:none}
+:lang(ar) .case-traveler .ct-chap__t,:lang(ar) .case-traveler .ct-panel__n,:lang(ar) .case-traveler .ct-spine__t,:lang(ar) .case-traveler .ct-drop__t{text-transform:none}
+:lang(ar) .case-traveler .ct-end__big{font-size:clamp(38px,3.6vw,52px);word-spacing:.12em}
+:lang(ar) .case-traveler .ct-end__note,:lang(ar) .case-traveler .ct-file__aside{line-height:1.5}
+
+/* ---------------- reduced motion: no curtain, no zoom, no lift ---------------- */
+@media (prefers-reduced-motion:reduce){
+  .case-traveler .ct-wipe{display:none}
+  .case-traveler .ct-spine{transition:none}
+  .case-traveler .ct-spine:hover,.case-traveler .ct-spine:focus-visible{transform:none}
+  .case-traveler .ct-past summary,.case-traveler .ct-end__list li{transition:none}
+}

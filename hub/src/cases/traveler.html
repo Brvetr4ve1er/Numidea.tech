@@ -1,0 +1,605 @@
+<!-- ---------------- case 04 · Traveler (tr4veler.exe) ----------------
+     The owner's CaseTraveler (2026-11-07), as a fragment the build inlines
+     at 09 Proof; its copy is hub/src/cases/traveler.i18n.json, its sheet
+     hub/css/case-traveler.css. This one is the founder's own brand, not a
+     client's, and says so: "hors vente", no price, no deliverable list
+     sold as a pack. The shell's hooks (hub/app.js 9) do the rest: the
+     track, the seven kinds of piece and their badges, the boot lines
+     typed once, the reality jump (the cycle: previous, next, random), the
+     viewer for every poster.
+     What changed from the design, and why: the WorkspaceHQ tile is a
+     link to the studio's own page (the page's CSP frames nothing, and a
+     second page in a tile is a heavy thing to ask of a phone) and its
+     level, XP and streak figures are gone (they were a screen's demo
+     numbers, not a fact); the Instagram tile keeps the founder's own
+     account from the design (@yass3r.0; the home links the studio's, to
+     confirm); the codex tile is the Anatomy of Peace poster alone (the
+     twelve plates are not in the files); the shelf's spines open their
+     poster in the viewer and the atlas turns with the scroll (the design
+     jumped a single state between the reality tile, the shelf and the
+     atlas, which needs a script of its own); every staged picture of the
+     drop says MAQUETTE, the drop card stays "hors vente"; the colophon
+     replaces the codex in the closing list; the end card's ISBN is its
+     VOL.04; the grain and the scanlines over the whole case are not drawn
+     (nothing here is an ambient layer); every label is 12px or more. -->
+<section class="st-case case-traveler" id="case-traveler" aria-labelledby="case-traveler-h">
+  <div class="st-case__bar ct-bar">
+    <div class="ct-vol"><span class="ct-vol__jp" lang="ja" aria-hidden="true">旅人</span><span class="ct-vol__n" dir="ltr">VOL.04</span></div>
+    <div class="st-case__progress ct-progress">
+      <h3 class="st-case__name ct-path" id="case-traveler-h"><span dir="ltr">C:\REALITIES\<b>tr4veler.exe</b></span> <span class="ct-hud" data-i18n="cases.traveler.hud"></span></h3>
+      <div class="st-case__pips ct-pips" aria-hidden="true"><i data-pip="lore"></i><i data-pip="posters"></i><i data-pip="chars"></i><i data-pip="merch"></i><i data-pip="tools"></i><i data-pip="social"></i><i data-pip="brand"></i></div>
+    </div>
+    <div class="ct-end-bar">
+      <span class="ct-barcode" aria-hidden="true"></span>
+      <span class="ct-count"><span class="st-sr" data-i18n="case.unlocked"></span><span data-seen-count dir="ltr">0/7</span></span>
+      <div class="st-case__nav ct-nav">
+        <button type="button" data-track-prev aria-controls="ct-track" data-i18n-aria="case.prev"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="ct-track" data-i18n-aria="case.next"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-case__track ct-track" id="ct-track" dir="ltr" data-track tabindex="0" role="region" data-i18n-aria="cases.traveler.track">
+
+    <!-- TV-01 · the cover: the lore, and the boot lines typed once -->
+    <article class="ct-t ct-lore st-c3 st-r2" data-kind="lore">
+      <div class="ct-lore__spine" aria-hidden="true"><span lang="ja">旅人の書</span><span dir="ltr">TR4VELER.EXE · 04</span></div>
+      <div class="ct-lore__view">
+        <img class="ct-lore__bg" src="img/clients/traveler/labyrinth.webp" alt="" loading="lazy" decoding="async">
+        <div class="ct-lore__txt">
+          <div class="ct-lore__head">
+            <span class="ct-kick" data-i18n="cases.traveler.cover.k"></span>
+            <h4 class="ct-lore__h" data-i18n="cases.traveler.cover.t"></h4>
+            <p class="ct-lore__s" data-i18n="cases.traveler.cover.s"></p>
+          </div>
+          <div class="ct-term" dir="ltr" data-type-once>
+            <div class="ct-term__l" data-type-line data-i18n="cases.traveler.boot.0"></div>
+            <div class="ct-term__l" data-type-line data-i18n="cases.traveler.boot.1"></div>
+            <div class="ct-term__l" data-type-line data-i18n="cases.traveler.boot.2"></div>
+            <div class="ct-term__l ct-term__l--bad" data-type-line data-i18n="cases.traveler.boot.3"></div>
+            <div class="ct-term__l ct-term__l--ok" data-type-line data-i18n="cases.traveler.boot.4"></div>
+          </div>
+        </div>
+        <span class="st-badge ct-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+      </div>
+    </article>
+
+    <!-- TV-02 · the character file: stats in his own voice, past.dat stays shut -->
+    <article class="ct-t ct-file st-c2 st-r2" data-kind="lore">
+      <div class="ct-file__hd ct-m"><span>FILE_02 · <span data-i18n="cases.traveler.file.k"></span></span><span class="st-badge ct-badge ct-badge--in" data-badge aria-hidden="true" data-i18n="case.new"></span></div>
+      <div class="ct-file__who">
+        <div class="ct-file__pic"><img src="img/clients/traveler/inkportrait.webp" data-i18n-alt="cases.traveler.alt.ink" alt="" loading="lazy" decoding="async"></div>
+        <div class="ct-file__id">
+          <h4 class="ct-file__name" data-i18n="cases.traveler.file.name"></h4>
+          <p class="ct-file__cls" data-i18n="cases.traveler.file.cls"></p>
+        </div>
+      </div>
+      <ul class="ct-stats">
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.0"></span><span class="ct-seg" style="--n:10" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">99</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.1"></span><span class="ct-seg" style="--n:10" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">97</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.2"></span><span class="ct-seg" style="--n:9" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">94</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.3"></span><span class="ct-seg" style="--n:9" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">92</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.4"></span><span class="ct-seg" style="--n:8" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">81</span></li>
+        <li><span class="ct-stat__n" data-i18n="cases.traveler.stats.5"></span><span class="ct-seg" style="--n:1" aria-hidden="true"></span><span class="ct-stat__v" dir="ltr">12</span></li>
+      </ul>
+      <p class="ct-hand ct-file__aside" data-i18n="cases.traveler.file.aside"></p>
+      <details class="ct-past"><summary><span dir="ltr">past.dat</span><span class="ct-past__show" data-i18n="cases.traveler.file.show"></span><span class="ct-past__hid" data-i18n="cases.traveler.file.hid"></span></summary></details>
+      <div class="ct-hanko ct-hanko--s" aria-hidden="true" lang="ja">要注意</div>
+    </article>
+
+    <article class="ct-t ct-chap ct-chap--posters st-r2" data-kind="posters">
+      <span class="ct-chap__l" dir="ltr">CHAPTER 02</span>
+      <span class="ct-chap__jp" lang="ja" aria-hidden="true">第二章</span>
+      <h4 class="ct-chap__t" data-i18n="cases.traveler.ch.0"></h4>
+    </article>
+
+    <!-- TV-03 · the reality jump: the cycle shows one poster of the 34, the viewer opens it -->
+    <article class="ct-t ct-real st-c3 st-r2" id="ct-real" data-kind="posters" data-cycle>
+      <div class="ct-real__hd ct-m"><span class="ct-acc">FILE_03 · <span data-i18n="cases.traveler.real.k"></span></span><span class="st-badge ct-badge ct-badge--in" data-badge aria-hidden="true" data-i18n="case.new"></span></div>
+      <div class="ct-real__item" data-cycle-item>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/labyrinth.webp"><img src="img/clients/traveler/labyrinth.webp" alt="tr4veler.exe" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x047</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">tr4veler.exe</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/vagabond.webp"><img src="img/clients/traveler/vagabond.webp" alt="Vagabond" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x06C</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">Vagabond</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/monk.webp"><img src="img/clients/traveler/monk.webp" alt="Monk 2.7" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x091</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Monk 2.7</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/blazing.webp"><img src="img/clients/traveler/blazing.webp" alt="Music &gt; people" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x0B6</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Music &gt; people</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/threshold.webp"><img src="img/clients/traveler/threshold.webp" alt="Wickedness" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x0DB</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">Wickedness</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/meditation.webp"><img src="img/clients/traveler/meditation.webp" alt="Above the clouds" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x100</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Above the clouds</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/porsche.webp"><img src="img/clients/traveler/porsche.webp" alt="Red skies" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x125</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Red skies</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/starhands.webp"><img src="img/clients/traveler/starhands.webp" alt="The Cure" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x14A</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">The Cure</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/peace.webp"><img src="img/clients/traveler/peace.webp" alt="Anatomy of Peace" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x16F</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Anatomy of Peace</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/voodoo.webp"><img src="img/clients/traveler/voodoo.webp" alt="Baron Voodoo" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x194</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Baron Voodoo</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p3650.webp"><img src="img/clients/traveler/p3650.webp" alt="Apex Predator" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x1B9</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">Apex Predator</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/prodigy.webp"><img src="img/clients/traveler/prodigy.webp" alt="Prodigy" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x1DE</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Prodigy</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/ocean.webp"><img src="img/clients/traveler/ocean.webp" alt="Digital ocean" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x203</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Digital ocean</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/dreams.webp"><img src="img/clients/traveler/dreams.webp" alt="Synchronicity" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x228</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">Synchronicity</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/falling.webp"><img src="img/clients/traveler/falling.webp" alt="Cosmic fragments" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x24D</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Cosmic fragments</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/poet.webp"><img src="img/clients/traveler/poet.webp" alt="Street poet" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x272</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Street poet</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/comeback.webp"><img src="img/clients/traveler/comeback.webp" alt="Heroes come back" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x297</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">Heroes come back</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/matrix.webp"><img src="img/clients/traveler/matrix.webp" alt="The Matrix lair" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x2BC</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">The Matrix lair</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/c1393.webp"><img src="img/clients/traveler/c1393.webp" alt="Live and suffer" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x2E1</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Live and suffer</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/gold.webp"><img src="img/clients/traveler/gold.webp" alt="Gold &amp; red" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x306</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">Gold &amp; red</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p491.webp"><img src="img/clients/traveler/p491.webp" alt="Corrupted angel" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x32B</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Corrupted angel</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p674.webp"><img src="img/clients/traveler/p674.webp" alt="Warm" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x350</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Warm</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p2983.webp"><img src="img/clients/traveler/p2983.webp" alt="No gods no masters" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x375</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">No gods no masters</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p4120.webp"><img src="img/clients/traveler/p4120.webp" alt="Hope" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x39A</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Hope</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p4126.webp"><img src="img/clients/traveler/p4126.webp" alt="Gzana" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x3BF</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Gzana</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/standoff.webp"><img src="img/clients/traveler/standoff.webp" alt="Brother" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x3E4</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">Brother</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/spike.webp"><img src="img/clients/traveler/spike.webp" alt="Space cowboy" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x409</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Space cowboy</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/conquer.webp"><img src="img/clients/traveler/conquer.webp" alt="Aut vincere aut mori" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x42E</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Aut vincere aut mori</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/p509.webp"><img src="img/clients/traveler/p509.webp" alt="Ride or die" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x453</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">Ride or die</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/shadow.webp"><img src="img/clients/traveler/shadow.webp" alt="Wickedness II" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x478</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Wickedness II</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/inkportrait.webp"><img src="img/clients/traveler/inkportrait.webp" alt="Empty ink" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x49D</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title">Empty ink</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/l-2208.webp"><img src="img/clients/traveler/l-2208.webp" alt="Lost" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x4C2</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.1"></p></div>
+        <p class="ct-real__title">Lost</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/l-2209.webp"><img src="img/clients/traveler/l-2209.webp" alt="Tao" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x4E7</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.2"></p></div>
+        <p class="ct-real__title">Tao</p>
+      </div>
+      <div class="ct-real__item" data-cycle-item hidden>
+        <div class="ct-real__pic">
+          <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/l-063.webp"><img src="img/clients/traveler/l-063.webp" alt="不動心" loading="lazy" decoding="async"></button>
+          <i class="ct-wipe" aria-hidden="true"></i>
+        </div>
+        <div class="ct-real__term" dir="ltr"><p><span class="ct-acc" aria-hidden="true">&gt;</span> tr4vel --to 0x50C</p><p class="ct-ok" data-i18n="cases.traveler.real.ok.0"></p></div>
+        <p class="ct-real__title"><span lang="ja">不動心</span></p>
+      </div>
+      <p class="ct-real__n ct-m"><span data-i18n="cases.traveler.real.label"></span> <span data-cycle-n aria-live="polite" dir="ltr">1 / 34</span></p>
+      <div class="ct-real__ctl">
+        <button type="button" class="ct-sq" data-cycle-prev aria-controls="ct-real" data-i18n-aria="cases.traveler.real.prev"><span aria-hidden="true">←</span></button>
+        <button type="button" class="ct-go" data-cycle-random aria-controls="ct-real" data-i18n="cases.traveler.real.jump"></button>
+        <button type="button" class="ct-sq" data-cycle-next aria-controls="ct-real" data-i18n-aria="cases.traveler.real.next"><span aria-hidden="true">→</span></button>
+      </div>
+    </article>
+
+    <!-- TV-04 · the shelf: 34 volumes, a click opens the poster -->
+    <article class="ct-t ct-shelf ct-c5 st-r2" data-kind="posters">
+      <div class="ct-shelf__hd ct-m"><span class="ct-acc">FILE_04 · <span data-i18n="cases.traveler.shelf.k"></span></span><span class="ct-ash" data-i18n="cases.traveler.shelf.hint"></span></div>
+      <div class="ct-shelf__row" role="group" data-i18n-aria="cases.traveler.shelf.group">
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/labyrinth.webp" style="--h:88%"><img src="img/clients/traveler/s-labyrinth.webp" alt="tr4veler.exe" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">01</b><span class="ct-spine__t" aria-hidden="true">tr4veler.exe</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/vagabond.webp" style="--h:95%"><img src="img/clients/traveler/s-vagabond.webp" alt="Vagabond" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">02</b><span class="ct-spine__t" aria-hidden="true">Vagabond</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/monk.webp" style="--h:90%"><img src="img/clients/traveler/s-monk.webp" alt="Monk 2.7" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">03</b><span class="ct-spine__t" aria-hidden="true">Monk 2.7</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/blazing.webp" style="--h:97%"><img src="img/clients/traveler/s-blazing.webp" alt="Music &gt; people" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">04</b><span class="ct-spine__t" aria-hidden="true">Music &gt; people</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/threshold.webp" style="--h:92%"><img src="img/clients/traveler/s-threshold.webp" alt="Wickedness" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">05</b><span class="ct-spine__t" aria-hidden="true">Wickedness</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/meditation.webp" style="--h:99%"><img src="img/clients/traveler/s-meditation.webp" alt="Above the clouds" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">06</b><span class="ct-spine__t" aria-hidden="true">Above the clouds</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/porsche.webp" style="--h:94%"><img src="img/clients/traveler/s-porsche.webp" alt="Red skies" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">07</b><span class="ct-spine__t" aria-hidden="true">Red skies</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/starhands.webp" style="--h:89%"><img src="img/clients/traveler/s-starhands.webp" alt="The Cure" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">08</b><span class="ct-spine__t" aria-hidden="true">The Cure</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/peace.webp" style="--h:96%"><img src="img/clients/traveler/s-peace.webp" alt="Anatomy of Peace" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">09</b><span class="ct-spine__t" aria-hidden="true">Anatomy of Peace</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/voodoo.webp" style="--h:91%"><img src="img/clients/traveler/s-voodoo.webp" alt="Baron Voodoo" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">10</b><span class="ct-spine__t" aria-hidden="true">Baron Voodoo</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p3650.webp" style="--h:98%"><img src="img/clients/traveler/s-p3650.webp" alt="Apex Predator" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">11</b><span class="ct-spine__t" aria-hidden="true">Apex Predator</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/prodigy.webp" style="--h:93%"><img src="img/clients/traveler/s-prodigy.webp" alt="Prodigy" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">12</b><span class="ct-spine__t" aria-hidden="true">Prodigy</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/ocean.webp" style="--h:88%"><img src="img/clients/traveler/s-ocean.webp" alt="Digital ocean" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">13</b><span class="ct-spine__t" aria-hidden="true">Digital ocean</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/dreams.webp" style="--h:95%"><img src="img/clients/traveler/s-dreams.webp" alt="Synchronicity" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">14</b><span class="ct-spine__t" aria-hidden="true">Synchronicity</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/falling.webp" style="--h:90%"><img src="img/clients/traveler/s-falling.webp" alt="Cosmic fragments" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">15</b><span class="ct-spine__t" aria-hidden="true">Cosmic fragments</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/poet.webp" style="--h:97%"><img src="img/clients/traveler/s-poet.webp" alt="Street poet" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">16</b><span class="ct-spine__t" aria-hidden="true">Street poet</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/comeback.webp" style="--h:92%"><img src="img/clients/traveler/s-comeback.webp" alt="Heroes come back" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">17</b><span class="ct-spine__t" aria-hidden="true">Heroes come back</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/matrix.webp" style="--h:99%"><img src="img/clients/traveler/s-matrix.webp" alt="The Matrix lair" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">18</b><span class="ct-spine__t" aria-hidden="true">The Matrix lair</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/c1393.webp" style="--h:94%"><img src="img/clients/traveler/s-c1393.webp" alt="Live and suffer" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">19</b><span class="ct-spine__t" aria-hidden="true">Live and suffer</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/gold.webp" style="--h:89%"><img src="img/clients/traveler/s-gold.webp" alt="Gold &amp; red" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">20</b><span class="ct-spine__t" aria-hidden="true">Gold &amp; red</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p491.webp" style="--h:96%"><img src="img/clients/traveler/s-p491.webp" alt="Corrupted angel" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">21</b><span class="ct-spine__t" aria-hidden="true">Corrupted angel</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p674.webp" style="--h:91%"><img src="img/clients/traveler/s-p674.webp" alt="Warm" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">22</b><span class="ct-spine__t" aria-hidden="true">Warm</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p2983.webp" style="--h:98%"><img src="img/clients/traveler/s-p2983.webp" alt="No gods no masters" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">23</b><span class="ct-spine__t" aria-hidden="true">No gods no masters</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p4120.webp" style="--h:93%"><img src="img/clients/traveler/s-p4120.webp" alt="Hope" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">24</b><span class="ct-spine__t" aria-hidden="true">Hope</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p4126.webp" style="--h:88%"><img src="img/clients/traveler/s-p4126.webp" alt="Gzana" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">25</b><span class="ct-spine__t" aria-hidden="true">Gzana</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/standoff.webp" style="--h:95%"><img src="img/clients/traveler/s-standoff.webp" alt="Brother" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">26</b><span class="ct-spine__t" aria-hidden="true">Brother</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/spike.webp" style="--h:90%"><img src="img/clients/traveler/s-spike.webp" alt="Space cowboy" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">27</b><span class="ct-spine__t" aria-hidden="true">Space cowboy</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/conquer.webp" style="--h:97%"><img src="img/clients/traveler/s-conquer.webp" alt="Aut vincere aut mori" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">28</b><span class="ct-spine__t" aria-hidden="true">Aut vincere aut mori</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/p509.webp" style="--h:92%"><img src="img/clients/traveler/s-p509.webp" alt="Ride or die" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">29</b><span class="ct-spine__t" aria-hidden="true">Ride or die</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/shadow.webp" style="--h:99%"><img src="img/clients/traveler/s-shadow.webp" alt="Wickedness II" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">30</b><span class="ct-spine__t" aria-hidden="true">Wickedness II</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/inkportrait.webp" style="--h:94%"><img src="img/clients/traveler/s-inkportrait.webp" alt="Empty ink" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">31</b><span class="ct-spine__t" aria-hidden="true">Empty ink</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/l-2208.webp" style="--h:89%"><img src="img/clients/traveler/s-l-2208.webp" alt="Lost" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">32</b><span class="ct-spine__t" aria-hidden="true">Lost</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/l-2209.webp" style="--h:96%"><img src="img/clients/traveler/s-l-2209.webp" alt="Tao" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">33</b><span class="ct-spine__t" aria-hidden="true">Tao</span></button>
+          <button type="button" class="ct-spine" data-zoom="img/clients/traveler/l-063.webp" style="--h:91%"><img src="img/clients/traveler/s-l-063.webp" alt="不動心" loading="lazy" decoding="async"><b class="ct-spine__n" aria-hidden="true" dir="ltr">34</b><span class="ct-spine__t" aria-hidden="true"><span lang="ja">不動心</span></span></button>
+      </div>
+      <div class="ct-shelf__base" aria-hidden="true"></div>
+    </article>
+
+    <!-- TV-05 · the atlas: three orbits, one dot a poster, turning with the scroll -->
+    <article class="ct-t ct-atlas st-c2 st-r2" data-kind="posters">
+      <div class="ct-atlas__hd ct-m"><span class="ct-acc">FIG. 34 · <span data-i18n="cases.traveler.atlas.k"></span></span><span class="ct-ash" dir="ltr">0x047</span></div>
+      <div class="ct-atlas__stage">
+        <div class="ct-atlas__orb" aria-hidden="true">
+          <i class="ct-ring ct-ring--1"></i><i class="ct-ring ct-ring--2"></i><i class="ct-ring ct-ring--3"></i><i class="ct-axis ct-axis--v"></i><i class="ct-axis ct-axis--h"></i>
+          <div class="ct-atlas__spin"><i style="--x:50.00%;--y:28.00%"></i><i style="--x:69.05%;--y:39.00%"></i><i style="--x:69.05%;--y:61.00%"></i><i style="--x:50.00%;--y:72.00%"></i><i style="--x:30.95%;--y:61.00%"></i><i style="--x:30.95%;--y:39.00%"></i><i style="--x:63.24%;--y:18.68%"></i><i style="--x:77.12%;--y:29.50%"></i><i style="--x:83.74%;--y:45.81%"></i><i style="--x:81.32%;--y:63.24%"></i><i style="--x:70.50%;--y:77.12%"></i><i style="--x:54.19%;--y:83.74%"></i><i style="--x:36.76%;--y:81.32%"></i><i style="--x:22.88%;--y:70.50%"></i><i style="--x:16.26%;--y:54.19%"></i><i style="--x:18.68%;--y:36.76%"></i><i style="--x:29.50%;--y:22.88%"></i><i style="--x:45.81%;--y:16.26%"></i><i style="--x:83.00%;--y:17.95%"></i><i style="--x:92.75%;--y:33.02%"></i><i style="--x:96.00%;--y:50.67%"></i><i style="--x:92.24%;--y:68.22%"></i><i style="--x:82.05%;--y:83.00%"></i><i style="--x:66.98%;--y:92.75%"></i><i style="--x:49.33%;--y:96.00%"></i><i style="--x:31.78%;--y:92.24%"></i><i style="--x:17.00%;--y:82.05%"></i><i style="--x:7.25%;--y:66.98%"></i><i style="--x:4.00%;--y:49.33%"></i><i style="--x:7.76%;--y:31.78%"></i><i style="--x:17.95%;--y:17.00%"></i><i style="--x:33.02%;--y:7.25%"></i><i style="--x:50.67%;--y:4.00%"></i><i style="--x:68.22%;--y:7.76%"></i></div>
+          <div class="ct-atlas__core"><span lang="ja">旅</span><span dir="ltr">tr4veler.exe</span></div>
+        </div>
+      </div>
+      <p class="ct-atlas__s" data-i18n="cases.traveler.atlas.s"></p>
+    </article>
+
+    <article class="ct-t ct-chap ct-chap--chars st-r2" data-kind="chars">
+      <span class="ct-chap__l" dir="ltr">CHAPTER 03</span>
+      <span class="ct-chap__jp" lang="ja" aria-hidden="true">第三章</span>
+      <h4 class="ct-chap__t" data-i18n="cases.traveler.ch.1"></h4>
+    </article>
+
+    <!-- TV-06 · the companions, four panels -->
+    <article class="ct-t ct-panels st-c3 st-r2" data-kind="chars">
+      <figure class="ct-panel">
+        <img src="img/clients/traveler/vagabond.webp" alt="" style="--pos:center 82%" loading="lazy" decoding="async">
+        <p class="ct-bubble ct-bubble--l" data-i18n="cases.traveler.panels.0.say"></p>
+        <figcaption class="ct-panel__n" data-i18n="cases.traveler.panels.0.n"></figcaption>
+      </figure>
+      <figure class="ct-panel">
+        <img src="img/clients/traveler/p504.webp" alt="" style="--pos:40% 78%" loading="lazy" decoding="async">
+        <p class="ct-bubble ct-bubble--r" data-i18n="cases.traveler.panels.1.say"></p>
+        <figcaption class="ct-panel__n" data-i18n="cases.traveler.panels.1.n"></figcaption>
+      </figure>
+      <figure class="ct-panel">
+        <img src="img/clients/traveler/matrix.webp" alt="" style="--pos:center 35%" loading="lazy" decoding="async">
+        <p class="ct-bubble ct-bubble--l" data-i18n="cases.traveler.panels.2.say"></p>
+        <figcaption class="ct-panel__n" data-i18n="cases.traveler.panels.2.n"></figcaption>
+      </figure>
+      <figure class="ct-panel">
+        <img src="img/clients/traveler/l-vagabond-mark.webp" alt="" style="--pos:78% 40%" loading="lazy" decoding="async">
+        <p class="ct-bubble ct-bubble--r" data-i18n="cases.traveler.panels.3.say"></p>
+        <figcaption class="ct-panel__n" data-i18n="cases.traveler.panels.3.n"></figcaption>
+      </figure>
+    </article>
+
+    <!-- TV-07 · the kanji card -->
+    <article class="ct-t ct-kanji st-r2" data-kind="chars">
+      <span class="ct-kanji__l" dir="ltr">FUDŌSHIN</span>
+      <span class="ct-kanji__jp" lang="ja" aria-hidden="true">不動心</span>
+      <p class="ct-kanji__s" data-i18n="cases.traveler.kanji"></p>
+    </article>
+
+    <article class="ct-t ct-chap ct-chap--merch st-r2" data-kind="merch">
+      <span class="ct-chap__l" dir="ltr">CHAPTER 04</span>
+      <span class="ct-chap__jp" lang="ja" aria-hidden="true">第四章</span>
+      <h4 class="ct-chap__t" data-i18n="cases.traveler.ch.2"></h4>
+    </article>
+
+    <!-- TV-08 · the drop: staged pictures, every one a maquette -->
+    <article class="ct-t ct-mk ct-mk--hoodie st-r2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-hoodie.full.webp"><img src="img/clients/traveler/m-hoodie.webp" data-i18n-alt="cases.traveler.alt.hoodie" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-tag ct-tag--o" dir="ltr">DROP_01</span>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mock"></span>
+    </article>
+    <article class="ct-t ct-mk ct-mk--flat st-c2 st-r2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-flat.webp"><img src="img/clients/traveler/m-flat.webp" data-i18n-alt="cases.traveler.alt.flat" alt="" loading="lazy" decoding="async"></button>
+      <div class="ct-drop" aria-hidden="true">
+        <span class="ct-drop__k" data-i18n="cases.traveler.drop.k"></span>
+        <span class="ct-drop__t" data-i18n="cases.traveler.drop.t"></span>
+        <i class="ct-drop__code"></i>
+      </div>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mock"></span>
+    </article>
+    <article class="ct-t ct-mk ct-mk--stickers st-c2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-stickers.full.webp"><img src="img/clients/traveler/m-stickers.webp" data-i18n-alt="cases.traveler.alt.stickers" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mock"></span>
+    </article>
+    <article class="ct-t ct-mk ct-mk--store st-c2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-store.full.webp"><img src="img/clients/traveler/m-store.webp" data-i18n-alt="cases.traveler.alt.store" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mk.store"></span>
+    </article>
+    <article class="ct-t ct-mk ct-mk--worn st-r2" data-kind="merch">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/m-worn.full.webp"><img src="img/clients/traveler/m-worn.webp" data-i18n-alt="cases.traveler.alt.worn" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-tag ct-tag--k ct-tag--b" data-i18n="cases.traveler.mock"></span>
+    </article>
+
+    <article class="ct-t ct-chap ct-chap--tools st-r2" data-kind="tools">
+      <span class="ct-chap__l" dir="ltr">CHAPTER 05</span>
+      <span class="ct-chap__jp" lang="ja" aria-hidden="true">第五章</span>
+      <h4 class="ct-chap__t" data-i18n="cases.traveler.ch.3"></h4>
+    </article>
+
+    <!-- TV-09 · WorkspaceHQ, the studio's own page (a link, no frame) -->
+    <article class="ct-t ct-ws st-c3 st-r2" data-kind="tools">
+      <div class="ct-ws__bar"><span class="ct-ws__star" dir="ltr">★ WORKSPACE.HQ</span></div>
+      <div class="ct-ws__view">
+        <span class="ct-ws__k ct-m">FILE_09 · <span data-i18n="cases.traveler.ws.k"></span></span>
+        <h4 class="ct-ws__h" data-i18n="cases.traveler.ws.h"></h4>
+        <p class="ct-ws__s" data-i18n="cases.traveler.ws.s"></p>
+        <div class="ct-ws__bars" aria-hidden="true">
+          <span class="ct-ws__l ct-ws__l--y" data-i18n="cases.traveler.ws.lv"></span><i class="ct-bar-y" style="--w:72%"></i>
+          <span class="ct-ws__l ct-ws__l--g" data-i18n="cases.traveler.ws.q"></span><i class="ct-bar-g" style="--w:45%"></i>
+          <span class="ct-ws__l ct-ws__l--o" data-i18n="cases.traveler.ws.st"></span><i class="ct-bar-o" style="--w:88%"></i>
+        </div>
+        <a class="ct-ws__go" href="../workspacehq/" data-i18n="cases.traveler.ws.live"></a>
+      </div>
+      <span class="st-badge ct-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- TV-10 · the Instagram contact sheet -->
+    <article class="ct-t ct-ig st-c2 st-r2" data-kind="social">
+      <div class="ct-ig__hd ct-m"><span class="ct-acc" dir="ltr">@yass3r.0</span><span class="st-badge ct-badge ct-badge--in" data-badge aria-hidden="true" data-i18n="case.new"></span></div>
+      <div class="ct-ig__grid" role="group" data-i18n-aria="cases.traveler.ig.sheet">
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/labyrinth.webp"><img src="img/clients/traveler/t-labyrinth.webp" alt="tr4veler.exe" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">12A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/monk.webp"><img src="img/clients/traveler/t-monk.webp" alt="Monk 2.7" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">13A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/vagabond.webp"><img src="img/clients/traveler/t-vagabond.webp" alt="Vagabond" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">14A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/prodigy.webp"><img src="img/clients/traveler/t-prodigy.webp" alt="Prodigy" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">15A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/starhands.webp"><img src="img/clients/traveler/t-starhands.webp" alt="The Cure" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">16A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/blazing.webp"><img src="img/clients/traveler/t-blazing.webp" alt="Music &gt; people" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">17A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/dreams.webp"><img src="img/clients/traveler/t-dreams.webp" alt="Synchronicity" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">18A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/c1393.webp"><img src="img/clients/traveler/t-c1393.webp" alt="Live and suffer" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">19A</span></button>
+          <button type="button" class="ct-cell" data-zoom="img/clients/traveler/porsche.webp"><img src="img/clients/traveler/t-porsche.webp" alt="Red skies" loading="lazy" decoding="async"><span class="ct-cell__n" aria-hidden="true" dir="ltr">20A</span></button>
+      </div>
+      <i class="ct-ig__ring" aria-hidden="true"></i>
+      <span class="ct-hand ct-ig__mark" data-i18n="cases.traveler.ig.mark"></span>
+      <a class="ct-ig__go" href="https://www.instagram.com/yass3r.0/" target="_blank" rel="noopener"><span data-i18n="cases.traveler.ig.cta"></span> <span class="st-sr" data-i18n="case.newTab"></span></a>
+    </article>
+
+    <!-- TV-11 · the colophon: the inks and the faces -->
+    <article class="ct-t ct-pal st-c2" data-kind="brand">
+      <span class="ct-m">FILE_11 · <span data-i18n="cases.traveler.pal"></span></span>
+      <ul class="ct-pal__sw" dir="ltr">
+        <li class="ct-sw--o"><b>#EE5A1D</b></li>
+        <li class="ct-sw--k">#0B0908</li>
+        <li class="ct-sw--r">#A34135</li>
+        <li class="ct-sw--c">#F2EAD8</li>
+      </ul>
+      <p class="ct-pal__type" dir="ltr"><span class="ct-pal__aa">AA</span><span class="ct-pal__jp" lang="ja">旅人</span><span class="ct-pal__hand">aa</span><span class="ct-pal__note">Archivo 62 · Space Mono · Noto JP</span></p>
+    </article>
+    <article class="ct-t ct-quote st-c2" data-kind="brand">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/l-2104.full.webp"><img src="img/clients/traveler/l-2104.webp" data-i18n-alt="cases.traveler.alt.quote" alt="" loading="lazy" decoding="async"></button>
+      <span class="ct-quote__t" data-i18n="cases.traveler.quote"></span>
+    </article>
+
+    <!-- TV-12 · the peace poster, where the design had the codex -->
+    <article class="ct-t ct-peace st-c2 st-r2" data-kind="brand">
+      <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/peace.webp"><img src="img/clients/traveler/peace.webp" alt="Anatomy of Peace" loading="lazy" decoding="async"></button>
+      <div class="ct-peace__rings" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="ct-peace__hd ct-m" aria-hidden="true"><span dir="ltr">FIG. XII</span></div>
+      <div class="ct-peace__txt" aria-hidden="true">
+        <span class="ct-kick ct-kick--bare" data-i18n="cases.traveler.peace.k"></span>
+        <span class="ct-peace__t" dir="ltr">Anatomy of Peace</span>
+      </div>
+      <span class="st-badge ct-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- the closing card, where the design had the price: hors vente, and what the volume held, ticked as it is seen -->
+    <article class="ct-t ct-end st-c3 st-r2">
+      <div class="ct-end__main">
+        <div class="ct-end__hd ct-m"><span data-i18n="cases.traveler.end.k"></span></div>
+        <h4 class="ct-end__t" data-i18n="cases.traveler.end.t"></h4>
+        <p class="ct-end__big" data-i18n="cases.traveler.end.big"></p>
+        <p class="ct-hand ct-end__note" data-i18n="cases.traveler.end.note"></p>
+        <ul class="ct-end__list">
+          <li data-scope="lore" data-i18n="cases.traveler.end.items.0"></li>
+          <li data-scope="posters" data-i18n="cases.traveler.end.items.1"></li>
+          <li data-scope="chars" data-i18n="cases.traveler.end.items.2"></li>
+          <li data-scope="merch" data-i18n="cases.traveler.end.items.3"></li>
+          <li data-scope="tools" data-i18n="cases.traveler.end.items.4"></li>
+          <li data-scope="social" data-i18n="cases.traveler.end.items.5"></li>
+          <li data-scope="brand" data-i18n="cases.traveler.end.items.6"></li>
+        </ul>
+        <div class="ct-end__ft">
+          <div class="ct-code" aria-hidden="true"><i></i><span dir="ltr">VOL.04</span></div>
+          <a class="ct-cta" href="#contact" data-i18n="cases.traveler.end.cta"></a>
+        </div>
+        <div class="ct-hanko" aria-hidden="true"><div><span lang="ja">非売品</span><span data-i18n="cases.traveler.end.nfs"></span></div></div>
+      </div>
+      <div class="ct-end__side" aria-hidden="true"><span lang="ja">次の世界へ</span><span dir="ltr">END OF FILE</span></div>
+    </article>
+  </div>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag"></span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>

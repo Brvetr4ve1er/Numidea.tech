@@ -1,0 +1,395 @@
+{
+  "fr": {
+    "hud": "MONDE PERSO · HORS VENTE",
+    "track": "tr4veler.exe : les pièces du volume",
+    "cover": {
+      "k": "VOL.04 · UNIVERS PERSONNEL",
+      "t": "Un vagabond entre les réalités",
+      "s": "Un savant fou hors-la-loi qui saute de monde en monde pour trouver des réponses. Ma marque à moi : un lore, 34 affiches, des compagnons, un drop, un outil."
+    },
+    "boot": [
+      "> booting tr4veler.exe",
+      "> memory ........... 34 réalités",
+      "> companions ....... 4 en ligne",
+      "> past.dat ......... [CORROMPU]",
+      "> ready. 不動心"
+    ],
+    "file": {
+      "k": "FICHE PERSONNAGE",
+      "name": "Le voyageur",
+      "cls": "Savant fou vagabond · liberté & justice · aime les animaux et les robots",
+      "aside": "a oublié de dormir. encore.",
+      "show": "[ LIRE ]",
+      "hid": "██ CORROMPU ██"
+    },
+    "stats": [
+      "Curiosité",
+      "Bourreau de travail",
+      "Invente des trucs",
+      "Justice",
+      "Charme de nerd",
+      "Remarque ce qui l’entoure"
+    ],
+    "real": {
+      "k": "SAUT DE RÉALITÉ",
+      "label": "RÉALITÉ",
+      "ok": [
+        "✓ arrivé. personne n’a rien vu.",
+        "✓ arrivé. le chat a suivi.",
+        "✓ arrivé. encore un bug."
+      ],
+      "jump": "⟳ SAUT ALÉATOIRE",
+      "prev": "Réalité précédente",
+      "next": "Réalité suivante"
+    },
+    "shelf": {
+      "k": "L’ÉTAGÈRE · 34 VOLUMES",
+      "hint": "CHOISIR UN VOLUME ↑",
+      "group": "Les 34 volumes : un clic ouvre l’affiche"
+    },
+    "ch": [
+      "Réalités",
+      "Compagnons",
+      "Le drop",
+      "Les outils"
+    ],
+    "atlas": {
+      "k": "ATLAS DES MONDES",
+      "s": "34 mondes sur trois orbites. Un point = une affiche."
+    },
+    "panels": [
+      {
+        "n": "Le chat",
+        "say": "…on va où, cette fois ?"
+      },
+      {
+        "n": "L’ours",
+        "say": "J’ai pas peur. Toi, si."
+      },
+      {
+        "n": "Le robot",
+        "say": "Calcul terminé. Tu as tort."
+      },
+      {
+        "n": "Les pigeons",
+        "say": "Message reçu. Message perdu."
+      }
+    ],
+    "kanji": "L’esprit qui ne bouge pas. Calme au centre, chaos autour.",
+    "mock": "MAQUETTE",
+    "mk": {
+      "store": "POP-UP · MAQUETTE"
+    },
+    "drop": {
+      "k": "DROP 01 · 非売品",
+      "t": "Tee · tote · bonnet"
+    },
+    "ws": {
+      "k": "SON QG",
+      "h": "Le travail devient une quête",
+      "s": "WorkspaceHQ, mon propre tableau de bord : les tâches deviennent des quêtes, avec XP, séries et familiers.",
+      "lv": "NIVEAU",
+      "q": "QUÊTES",
+      "st": "SÉRIE",
+      "live": "▶ ENTRER DANS LE QG"
+    },
+    "ig": {
+      "mark": "celle-là.",
+      "cta": "Planche contact · Instagram ↗",
+      "sheet": "Planche contact : neuf affiches"
+    },
+    "pal": "COLOPHON · ENCRES",
+    "quote": "libre d’être moi. mais qui ?",
+    "peace": {
+      "k": "PLANCHE XII · AFFICHE"
+    },
+    "end": {
+      "k": "VOL.04 · TR4VELER.EXE",
+      "t": "Ma marque perso, construite avec la rigueur d’un client",
+      "big": "Sans prix",
+      "note": "mais elle m’a tout appris.",
+      "cta": "Construire mon univers →",
+      "nfs": "HORS VENTE",
+      "items": [
+        "Lore & personnage",
+        "34 affiches",
+        "Compagnons",
+        "Drop merch",
+        "WorkspaceHQ",
+        "Instagram",
+        "Colophon"
+      ]
+    },
+    "alt": {
+      "quote": "Photo : une silhouette assise face au ciel bleu, « Now I’m free to be myself, who am I? »",
+      "ink": "Autoportrait à l’encre, en noir et blanc",
+      "hoodie": "Maquette : hoodie tr4veler.exe",
+      "flat": "Maquette : tee, tote et bonnet",
+      "stickers": "Maquette : planche de stickers",
+      "store": "Maquette : pop-up store",
+      "worn": "Maquette : bonnet et tote portés"
+    }
+  },
+  "en": {
+    "hud": "PERSONAL WORLD · NOT FOR SALE",
+    "track": "tr4veler.exe: the pieces of the volume",
+    "cover": {
+      "k": "VOL.04 · PERSONAL UNIVERSE",
+      "t": "A vagabond between realities",
+      "s": "An outcast mad scientist jumping from world to world looking for answers. My own brand: a lore, 34 posters, companions, a drop, a tool."
+    },
+    "boot": [
+      "> booting tr4veler.exe",
+      "> memory ........... 34 realities",
+      "> companions ....... 4 online",
+      "> past.dat ......... [CORRUPTED]",
+      "> ready. 不動心"
+    ],
+    "file": {
+      "k": "CHARACTER FILE",
+      "name": "The traveler",
+      "cls": "Vagabond mad scientist · freedom & justice · loves animals and robots",
+      "aside": "forgot to sleep. again.",
+      "show": "[ READ ]",
+      "hid": "██ CORRUPTED ██"
+    },
+    "stats": [
+      "Curiosity",
+      "Workaholic",
+      "Invents things",
+      "Justice",
+      "Nerd charm",
+      "Notices surroundings"
+    ],
+    "real": {
+      "k": "REALITY JUMP",
+      "label": "REALITY",
+      "ok": [
+        "✓ arrived. nobody saw a thing.",
+        "✓ arrived. the cat followed.",
+        "✓ arrived. another bug."
+      ],
+      "jump": "⟳ RANDOM JUMP",
+      "prev": "Previous reality",
+      "next": "Next reality"
+    },
+    "shelf": {
+      "k": "THE SHELF · 34 VOLUMES",
+      "hint": "PICK A VOLUME ↑",
+      "group": "The 34 volumes: a click opens the poster"
+    },
+    "ch": [
+      "Realities",
+      "Companions",
+      "The drop",
+      "The tools"
+    ],
+    "atlas": {
+      "k": "ATLAS OF WORLDS",
+      "s": "34 worlds on three orbits. One dot = one poster."
+    },
+    "panels": [
+      {
+        "n": "The cat",
+        "say": "…where to, this time?"
+      },
+      {
+        "n": "The bear",
+        "say": "I’m not scared. You are."
+      },
+      {
+        "n": "The robot",
+        "say": "Calculation done. You’re wrong."
+      },
+      {
+        "n": "The pigeons",
+        "say": "Message received. Message lost."
+      }
+    ],
+    "kanji": "The mind that doesn’t move. Calm at the centre, chaos around.",
+    "mock": "MOCKUP",
+    "mk": {
+      "store": "POP-UP · MOCKUP"
+    },
+    "drop": {
+      "k": "DROP 01 · 非売品",
+      "t": "Tee · tote · beanie"
+    },
+    "ws": {
+      "k": "HIS HQ",
+      "h": "Work becomes a quest",
+      "s": "WorkspaceHQ, my own dashboard: tasks become quests, with XP, streaks and familiars.",
+      "lv": "LEVEL",
+      "q": "QUESTS",
+      "st": "STREAK",
+      "live": "▶ ENTER THE HQ"
+    },
+    "ig": {
+      "mark": "this one.",
+      "cta": "Contact sheet · Instagram ↗",
+      "sheet": "Contact sheet: nine posters"
+    },
+    "pal": "COLOPHON · INKS",
+    "quote": "free to be myself. but who?",
+    "peace": {
+      "k": "PLATE XII · POSTER"
+    },
+    "end": {
+      "k": "VOL.04 · TR4VELER.EXE",
+      "t": "My personal brand, built with a client’s rigour",
+      "big": "Priceless",
+      "note": "but it taught me everything.",
+      "cta": "Build my universe →",
+      "nfs": "NOT FOR SALE",
+      "items": [
+        "Lore & character",
+        "34 posters",
+        "Companions",
+        "Merch drop",
+        "WorkspaceHQ",
+        "Instagram",
+        "Colophon"
+      ]
+    },
+    "alt": {
+      "quote": "Photo: a figure sitting against a blue sky, “Now I’m free to be myself, who am I?”",
+      "ink": "Self-portrait in ink, black and white",
+      "hoodie": "Mockup: tr4veler.exe hoodie",
+      "flat": "Mockup: tee, tote and beanie",
+      "stickers": "Mockup: sticker sheet",
+      "store": "Mockup: pop-up store",
+      "worn": "Mockup: beanie and tote worn"
+    }
+  },
+  "ar": {
+    "hud": "عالم شخصي · ليس للبيع",
+    "track": "tr4veler.exe: قطع المجلد",
+    "cover": {
+      "k": "المجلد 04 · عالم شخصي",
+      "t": "متشرّد بين العوالم",
+      "s": "عالِم مجنون منبوذ يقفز من عالم إلى آخر بحثًا عن إجابات. علامتي الخاصة: قصة، 34 ملصقًا، رفاق، إصدار، وأداة."
+    },
+    "boot": [
+      "> booting tr4veler.exe",
+      "> memory ........... 34 عالمًا",
+      "> companions ....... 4 متصلون",
+      "> past.dat ......... [تالف]",
+      "> ready. 不動心"
+    ],
+    "file": {
+      "k": "بطاقة الشخصية",
+      "name": "المسافر",
+      "cls": "عالِم مجنون متشرّد · الحرية والعدالة · يحب الحيوانات والروبوتات",
+      "aside": "نسي أن ينام. مجددًا.",
+      "show": "[ اقرأ ]",
+      "hid": "██ تالف ██"
+    },
+    "stats": [
+      "الفضول",
+      "مدمن عمل",
+      "يخترع أشياء",
+      "العدالة",
+      "سحر المهووس",
+      "ينتبه لما حوله"
+    ],
+    "real": {
+      "k": "قفزة بين العوالم",
+      "label": "العالم",
+      "ok": [
+        "✓ وصل. لم يرَ أحد شيئًا.",
+        "✓ وصل. القط تبعه.",
+        "✓ وصل. خطأ آخر."
+      ],
+      "jump": "⟳ قفزة عشوائية",
+      "prev": "العالم السابق",
+      "next": "العالم التالي"
+    },
+    "shelf": {
+      "k": "الرف · 34 مجلدًا",
+      "hint": "↑ اختر مجلدًا",
+      "group": "المجلدات الـ34: نقرة تفتح الملصق"
+    },
+    "ch": [
+      "العوالم",
+      "الرفاق",
+      "الإصدار",
+      "الأدوات"
+    ],
+    "atlas": {
+      "k": "أطلس العوالم",
+      "s": "34 عالمًا على ثلاثة مدارات. كل نقطة ملصق."
+    },
+    "panels": [
+      {
+        "n": "القط",
+        "say": "…إلى أين هذه المرة؟"
+      },
+      {
+        "n": "الدب",
+        "say": "لست خائفًا. أنت خائف."
+      },
+      {
+        "n": "الروبوت",
+        "say": "انتهى الحساب. أنت مخطئ."
+      },
+      {
+        "n": "الحمام",
+        "say": "وصلت الرسالة. ضاعت الرسالة."
+      }
+    ],
+    "kanji": "العقل الذي لا يتحرك. هدوء في المركز، وفوضى حوله.",
+    "mock": "نموذج",
+    "mk": {
+      "store": "متجر مؤقت · نموذج"
+    },
+    "drop": {
+      "k": "الإصدار 01 · 非売品",
+      "t": "قميص · حقيبة · قبعة"
+    },
+    "ws": {
+      "k": "مقرّه",
+      "h": "العمل يصبح مهمة",
+      "s": "WorkspaceHQ، لوحتي الخاصة: المهام تصبح مهمات، مع نقاط خبرة وسلاسل ورفاق.",
+      "lv": "المستوى",
+      "q": "مهمات",
+      "st": "سلسلة",
+      "live": "▶ ادخل المقر"
+    },
+    "ig": {
+      "mark": "هذه.",
+      "cta": "↗ ورقة الصور · إنستغرام",
+      "sheet": "ورقة الصور: تسعة ملصقات"
+    },
+    "pal": "الأحبار",
+    "quote": "حرّ لأكون نفسي. لكن من أنا؟",
+    "peace": {
+      "k": "اللوحة XII · ملصق"
+    },
+    "end": {
+      "k": "المجلد 04 · TR4VELER.EXE",
+      "t": "علامتي الشخصية، بصرامة مشروع عميل",
+      "big": "لا تُقدّر بثمن",
+      "note": "لكنها علّمتني كل شيء.",
+      "cta": "← ابنِ عالمي",
+      "nfs": "ليس للبيع",
+      "items": [
+        "القصة والشخصية",
+        "34 ملصقًا",
+        "الرفاق",
+        "إصدار المنتجات",
+        "WorkspaceHQ",
+        "إنستغرام",
+        "الأحبار"
+      ]
+    },
+    "alt": {
+      "quote": "صورة: شخص جالس أمام سماء زرقاء، «Now I’m free to be myself, who am I?»",
+      "ink": "بورتريه ذاتي بالحبر، أبيض وأسود",
+      "hoodie": "نموذج: هودي tr4veler.exe",
+      "flat": "نموذج: قميص وحقيبة وقبعة",
+      "stickers": "نموذج: لوحة ملصقات",
+      "store": "نموذج: متجر مؤقت",
+      "worn": "نموذج: قبعة وحقيبة على الجسد"
+    }
+  }
+}
