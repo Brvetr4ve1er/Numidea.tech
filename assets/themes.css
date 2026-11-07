@@ -46,7 +46,10 @@
   --nav-glass:rgba(10,20,32,.78); --glass:rgba(23,54,79,.35); --field-bg:rgba(10,20,32,.6);
   --field-border:color-mix(in srgb,var(--faint) 75%,var(--navy));
   --font-head:var(--font-deco); --font-head-em:var(--font-deco-dec); --head-weight:700; --head-tracking:.01em;
-  --hero-fs:clamp(27px,12.67px + 3.98vw,70px); --hero-fs-wide:clamp(44px,4.3vw,80px); --hero-lh:1.03;
+  /* 32px on a phone, not 27: the hero tops the 24px section heading by a
+     third (it stood 28 against 27). 32 and 4.3vw are sizes where Cinzel and
+     its metric fallback break the French and English hero alike. */
+  --hero-fs:clamp(32px,12.67px + 3.98vw,70px); --hero-fs-wide:clamp(44px,4.3vw,80px); --hero-lh:1.03;
   --r-sm:8px; --r-md:14px; --kicker-node:6px;
 }
 
@@ -100,7 +103,7 @@
   /* the engraved headings, as Arcanum: one brand face on both default-worthy
      themes, at Cinzel's sizes and leading (it runs wider than Geist) */
   --font-head:var(--font-deco); --font-head-em:var(--font-deco-dec); --head-weight:700; --head-tracking:.01em;
-  --hero-fs:clamp(27px,12.67px + 3.98vw,70px); --hero-fs-wide:clamp(44px,4.3vw,80px); --hero-lh:1.03;
+  --hero-fs:clamp(32px,12.67px + 3.98vw,70px); --hero-fs-wide:clamp(44px,4.3vw,80px); --hero-lh:1.03;
   --r-sm:10px; --r-md:16px; --kicker-node:0px;
 }
 

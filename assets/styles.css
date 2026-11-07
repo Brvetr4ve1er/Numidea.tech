@@ -21,11 +21,21 @@
   --font-ar-body:"IBM Plex Sans Arabic", "IBM Plex Sans Arabic Fallback", sans-serif;
 
   /* — SCALE / RADIUS / MOTION — */
-  --s-2:8px;--s-3:12px;--s-4:16px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;--s-10:128px;
+  --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;--s-10:128px;
+  /* one gutter for every grid (the home page had six: 23 to 29px at 1440)
+     and two card paddings (it had six on a phone, 16 to 32px) */
+  --col-gap:clamp(20px,1.7vw,32px);
+  --card-pad:clamp(20px,2.2vw,32px);
+  --card-pad-lg:clamp(20px,3vw,48px);
   --r-pill:4px;--r-lg:22px;
   --ease-out:cubic-bezier(.16,1,.3,1);
   --dur-fast:.2s;--dur-base:.3s;--dur-slow:.7s;
   --max:1200px;--gutter:48px;
+  /* the container, stated once for every page that reads this sheet: from
+     1100px the page is 93% of the screen up to 1580px, inside a gutter of
+     3.4vw (40-64px); under 960 the gutter is 4.6vw (20-44px). scene/, hub/
+     and workspacehq/ keep their own sheets and should copy these. */
+  --page-max:min(1580px,93vw);--page-gutter:clamp(40px,3.4vw,64px);--page-gutter-sm:clamp(20px,4.6vw,44px);
   /* Measured height of the fixed navbar. Everything that must clear it —
      hero top padding, anchor scroll offset — derives from this, so the
      three values can never drift apart again. */
@@ -44,7 +54,7 @@ html[dir="ltr"] :is(.hero-h .swash,.contact h2 em){font-family:var(--font-head-e
 .btn-primary{box-shadow:var(--btn-glow)}
 /* the kicker's node: a small rotated square after the rule; 0px hides it */
 .kicker::after{content:"";width:var(--kicker-node);height:var(--kicker-node);margin-inline-start:calc(var(--kicker-node) * -.66);
-  background:var(--crimson);transform:rotate(45deg);box-shadow:0 0 10px color-mix(in srgb,var(--crimson) 70%,transparent)}
+  background:var(--crimson);transform:rotate(45deg)}
 
 /* smooth the moment of switching */
 body,.navbar.scrolled,.svc-row,.proj,.card,.field input,.field textarea,.form,.capabilities{transition:background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),color var(--dur-base) var(--ease-out)}
@@ -57,10 +67,10 @@ body,.navbar.scrolled,.svc-row,.proj,.card,.field input,.field textarea,.form,.c
    The conic rainbow it replaces was the one element on the page in colours
    no theme owns, and read as a colour picker rather than as this site's. */
 .theme-btn .ic{width:11px;height:11px;border-radius:0;transform:rotate(45deg);background:var(--crimson)}
-.theme-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:172px;background:var(--navy);border:1px solid var(--hairline-2);border-radius:var(--r-md);padding:6px;display:none;flex-direction:column;gap:2px;z-index:130;box-shadow:0 22px 55px -22px rgb(var(--shade) / calc(.6 * var(--shade-k)))}
+.theme-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:17var(--s-1);background:var(--navy);border:1px solid var(--hairline-2);border-radius:var(--r-md);padding:var(--s-2);display:none;flex-direction:column;gap:var(--s-1);z-index:130;box-shadow:0 22px 55px -22px rgb(var(--shade) / calc(.6 * var(--shade-k)))}
 html[dir="rtl"] .theme-menu{right:auto;left:0}
 .theme-menu.open{display:flex}
-.theme-menu button{display:flex;align-items:center;gap:10px;padding:9px 10px;border:none;background:transparent;color:var(--muted);font-family:var(--font-mono);font-size:12px;border-radius:var(--r-sm);cursor:pointer;text-align:left;transition:background-color var(--dur-fast),color var(--dur-fast)}
+.theme-menu button{display:flex;align-items:center;gap:var(--s-3);padding:var(--s-2) var(--s-3);border:none;background:transparent;color:var(--muted);font-family:var(--font-mono);font-size:12px;border-radius:var(--r-sm);cursor:pointer;text-align:left;transition:background-color var(--dur-fast),color var(--dur-fast)}
 html[dir="rtl"] .theme-menu button{text-align:right}
 .theme-menu button:hover{background:rgba(127,127,127,.10);color:var(--ice)}
 .theme-menu button[aria-checked="true"]{color:var(--teal-text)}
@@ -88,7 +98,7 @@ html[dir="rtl"] .theme-menu button{text-align:right}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 15px);overflow-x:clip}
 body{
   background:var(--void);color:var(--ice);
-  font-family:var(--font-body);font-size:16px;line-height:1.6;
+  font-family:var(--font-body);font-size:var(--t-body);line-height:1.6;
   -webkit-font-smoothing:antialiased}
 @supports not (overflow:clip){body{overflow-x:hidden}}
 /* a run that must not break (the language list in the eyebrow) */
@@ -134,13 +144,18 @@ img{max-width:100%;display:block}
 /* visually-hidden helper for skip link / a11y */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 #main:focus{outline:none}
-.skip{position:fixed;top:8px;inset-inline-start:8px;z-index:1000;background:var(--navy);color:var(--ice);padding:10px 16px;border-radius:var(--r-sm);border:1px solid var(--teal);transform:translateY(-150%);transition:transform var(--dur-base)}
+.skip{position:fixed;top:8px;inset-inline-start:8px;z-index:1000;font-size:var(--t-ui);background:var(--navy);color:var(--ice);padding:var(--s-3) var(--s-4);border-radius:var(--r-sm);border:1px solid var(--teal);transform:translateY(-150%);transition:transform var(--dur-base)}
 .skip:focus{transform:translateY(0)}
 
 /* shared section heads */
-.kicker{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--crimson-text);display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-5)}
-.kicker::before{content:"";width:28px;height:1px;background:var(--crimson)}
-h2.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(25px, 14.67px + 2.87vw, 56px);letter-spacing:-.02em;line-height:1.04;margin-bottom:var(--s-7);max-width:11.934em}
+/* One eyebrow: the rule and the label, 12px mono at .14em, in the primary
+   accent. The section kickers and the hero's eyebrow were two (a gold label
+   after a rule; a cyan one without); tarifs/ reads the same pair. */
+.kicker{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--crimson-text);display:flex;align-items:center;gap:var(--s-2);margin-bottom:var(--s-5)}
+.kicker::before,.eyebrow::before{content:"";display:inline-block;vertical-align:middle;width:32px;height:1px;
+  background:linear-gradient(90deg,var(--crimson),transparent)}
+html[dir="rtl"] :is(.kicker,.eyebrow)::before{background:linear-gradient(270deg,var(--crimson),transparent)}
+h2.sec{font-family:var(--font-display);font-weight:600;font-size:var(--t-h2);letter-spacing:-.025em;line-height:1.04;margin-bottom:var(--s-7);max-width:11.934em}
 /* section-head emphasis kept quiet — the flourish is reserved for hero + contact */
 h2.sec em{font-family:inherit;font-style:normal;color:inherit}
 
@@ -168,8 +183,8 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 .logo:hover .wm-accent{filter:hue-rotate(40deg) saturate(1.3)}
 .cursor{display:inline-block;width:9px;height:20px;background:var(--crimson);margin-left:5px;transform:translateY(1px);box-shadow:var(--glow-crimson)}
 
-.nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{font-family:var(--font-mono);font-size:13px;color:var(--muted);text-decoration:none;transition:color var(--dur-fast)}
+.nav-links{display:flex;gap:var(--s-5);align-items:center}
+.nav-links a{font-family:var(--font-mono);font-size:var(--t-small);color:var(--muted);text-decoration:none;transition:color var(--dur-fast)}
 .nav-links a:hover{color:var(--teal-text)}
 .nav-right{display:flex;align-items:center;gap:var(--s-4)}
 /* The switch is three links on the home page (the French page, en/, ar/:
@@ -178,7 +193,7 @@ html[dir="rtl"] .progress{transform-origin:100% 50%}
 .lang{display:inline-flex;gap:2px;font-family:var(--font-mono);font-size:12px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);overflow:hidden}
 /* 44px tall at every width and under every pointer (they were 30x40 under a
    thumb): the bar's padding below is sized so the navbar keeps --nav-h */
-.lang :is(a,button){font-family:var(--font-mono);font-size:12px;background:transparent;border:none;color:var(--body-strong);padding:0 9px;min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;transition:color var(--dur-fast),background-color var(--dur-fast)}
+.lang :is(a,button){font-family:var(--font-mono);font-size:12px;background:transparent;border:none;color:var(--body-strong);padding:0 var(--s-2);min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;transition:color var(--dur-fast),background-color var(--dur-fast)}
 .lang :is(a[aria-current],button[aria-pressed="true"]){color:var(--on-teal);background:var(--teal)}
 .lang :is(a,button):hover{color:var(--ice)}
 .lang :is(a[aria-current],button[aria-pressed="true"]):hover{color:var(--on-teal)}
@@ -236,10 +251,10 @@ html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
    themes open in place as a row of chips, not as a dropdown hanging off the
    foot of a scrolling dialog */
 .mobile-menu .theme-switch{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3);align-self:flex-start}
-.mobile-menu .theme-btn{display:inline-flex;width:auto;gap:8px;padding-inline:10px 12px}
+.mobile-menu .theme-btn{display:inline-flex;width:auto;gap:var(--s-2);padding-inline:var(--s-3) var(--s-3)}
 .mobile-menu .theme-btn::after{content:attr(aria-label);font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.mobile-menu .theme-menu{position:static;flex-basis:100%;min-width:0;flex-direction:row;flex-wrap:wrap;gap:6px;padding:0;border:0;background:none;box-shadow:none}
-.mobile-menu .theme-menu button{border:1px solid var(--hairline-2);min-height:44px;padding-inline:12px}
+.mobile-menu .theme-menu{position:static;flex-basis:100%;min-width:0;flex-direction:row;flex-wrap:wrap;gap:var(--s-2);padding:0;border:0;background:none;box-shadow:none}
+.mobile-menu .theme-menu button{border:1px solid var(--hairline-2);min-height:44px;padding-inline:var(--s-3)}
 .mobile-menu .close{position:absolute;top:20px;inset-inline-end:24px;background:transparent;border:none;color:var(--ice);font-size:34px;cursor:pointer}
 /* The two ways to start (index.html .menu-acts) had no rule: at 390x844 they
    sat 36px under the fold of a 1000px menu, stacked touching in French and
@@ -254,7 +269,7 @@ html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
   margin:auto calc(-1 * (var(--gutter) + env(safe-area-inset-right))) calc(-1 * (var(--gutter) + env(safe-area-inset-bottom))) calc(-1 * (var(--gutter) + env(safe-area-inset-left)));
   padding:var(--s-3) calc(var(--gutter) + env(safe-area-inset-right)) calc(var(--s-3) + env(safe-area-inset-bottom)) calc(var(--gutter) + env(safe-area-inset-left));
   background:color-mix(in srgb,var(--void) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--hairline)}
-.mobile-menu .menu-acts .btn{flex:1 1 0;min-width:0;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:6px 12px;font-size:13px;line-height:1.2;text-align:center}
+.mobile-menu .menu-acts .btn{flex:1 1 0;min-width:0;display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:var(--s-2) var(--s-3);font-size:var(--t-ui);line-height:1.2;text-align:center}
 /* and the list yields to the height as well as the width, so the eight
    links, the language, the theme and that row fit a 390x844 screen whole
    (1000px of menu before; shorter phones take the 719px rule below) */
@@ -276,11 +291,14 @@ html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
 .hero-mesh .m1{width:460px;height:460px;background:radial-gradient(circle,color-mix(in srgb,var(--crimson) 50%,transparent),transparent 65%);top:-120px;inset-inline-end:-60px}
 .hero-mesh .m2{width:420px;height:420px;background:radial-gradient(circle,color-mix(in srgb,var(--teal) 40%,transparent),transparent 65%);bottom:-140px;inset-inline-start:-40px;animation-delay:-6s}
 
-.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:var(--s-8);align-items:center}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:var(--s-8);align-items:center}
 /* .14em, not .2em: at .2em the eyebrow needed two lines on a phone and
    orphaned its last word at 1440; the label scale (--ls-label) is enough */
-.eyebrow{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text);display:block;margin-bottom:var(--s-5)}
-.hero .eyebrow{max-width:none;letter-spacing:.14em}
+.eyebrow{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--crimson-text);display:block;margin-bottom:var(--s-5)}
+/* the eyebrow stays a block (its language list is a run of spans that must
+   wrap as text, not as flex items), so its rule is inline */
+.eyebrow::before{margin-inline-end:var(--s-2);translate:0 -.2em}
+.hero .eyebrow{max-width:none}
 .hero-h{font-family:var(--font-display);font-weight:600;font-size:clamp(31px, 13.33px + 4.91vw, 84px);line-height:.96;letter-spacing:-.02em}
 /* Solid ink, not a gradient fill. A three-stop gradient across the primary
    headline is the loudest "generated" tell in the vocabulary, and it is not
@@ -292,9 +310,8 @@ html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
 html[dir="rtl"] .hero-h{font-family:var(--font-ar-display);line-height:1.3}
 /* the accented phrase is one unit: at 1440 it split "قبل" from "أن تدفع." */
 html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:normal;padding:0 .08em;white-space:nowrap}
-.lede{font-size:clamp(18px,1.9vw,23px);color:var(--body-strong);max-width:34em;margin-top:var(--s-5);line-height:1.5}
+.lede{color:var(--body-strong);max-width:34em;margin-top:var(--s-5);line-height:1.5}
 .lede b,.lede strong{color:var(--teal-text);font-weight:600}
-.hero-cta{display:flex;flex-wrap:wrap;gap:var(--s-4);margin-top:var(--s-7)}
 
 
 
@@ -309,6 +326,14 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
    point of the frame — are painted underneath it and never seen. */
 .sheet-frame{position:absolute;inset:calc(var(--nav-h) + 10px) var(--ring-room) var(--s-4);z-index:0;pointer-events:none;
   border:1px solid color-mix(in srgb,var(--muted) 28%,transparent)}
+/* the copy sits inside the frame, not on it: the frame stands 16px out
+   into the gutter (the clip widens to hold it, the content stays on the
+   page's grid line, x=99 at 1440, where it had the frame's rule through
+   its first letters) */
+@media(min-width:961px){
+  .hero{--ring-room:calc(6px + var(--s-4))}
+  .sheet-frame{inset-inline:6px}
+}
 /* not placed in the wide layout's 12-column grid: its box is always the
    hero's padding box, so the inset above holds at every width */
 .hero>.sheet-frame{grid-column:auto}
@@ -321,7 +346,7 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
 .sheet-frame .sf.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
 
 /* a dimension line, annotated with where the workshop actually is */
-.dim-line{display:flex;align-items:center;gap:12px;margin:var(--s-5) 0 0;max-width:20.4em;
+.dim-line{display:flex;align-items:center;gap:var(--s-3);margin:var(--s-5) 0 0;max-width:20.4em;
   font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);color:var(--faint)}
 .dim-line i{flex:1;height:1px;background:color-mix(in srgb,var(--muted) 38%,transparent);position:relative}
 .dim-line i::before,.dim-line i::after{content:"";position:absolute;top:-3px;width:1px;height:7px;
@@ -333,12 +358,12 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
 .titleblock{position:relative;z-index:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
   margin-top:var(--s-8);border:1px solid color-mix(in srgb,var(--muted) 26%,transparent);
   background:color-mix(in srgb,var(--void) 55%,transparent);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
-.tb-f{padding:11px 16px;border-inline-end:1px solid color-mix(in srgb,var(--muted) 18%,transparent);min-width:0}
+.tb-f{padding:var(--s-3) var(--s-4);border-inline-end:1px solid color-mix(in srgb,var(--muted) 18%,transparent);min-width:0}
 .tb-f:last-child{border-inline-end:0}
 .titleblock dt{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
-  color:var(--faint);margin-bottom:5px}
-.titleblock dd{font-family:var(--font-mono);font-size:13px;letter-spacing:.03em;color:var(--ice);
-  display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;min-width:0}
+  color:var(--faint);margin-bottom:var(--s-1)}
+.titleblock dd{font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.03em;color:var(--ice);
+  display:flex;align-items:baseline;gap:var(--s-2);flex-wrap:wrap;min-width:0}
 .titleblock dd i{font-style:normal;font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text)}
 .tb-live{width:6px;height:6px;border-radius:50%;background:var(--teal);flex:none;align-self:center;
   box-shadow:0 0 0 0 color-mix(in srgb,var(--teal) 55%,transparent)}
@@ -352,14 +377,20 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
   .tb-f:last-child{grid-column:1/-1;border-block-end:0}
   .dim-line{max-width:none}
 }
-/* tablets: five fields as 3 + 2, the last spanning two cells (two columns
-   left one field on a row of its own; five across squeezed each to 130px) */
-@media(min-width:700px) and (max-width:1023px){
+/* small tablets: five fields as 3 + 2, the last spanning two cells (two
+   columns left one field on a row of its own) */
+@media(min-width:700px) and (max-width:819px){
   .titleblock{grid-template-columns:repeat(3,minmax(0,1fr))}
   .tb-f{border-inline-end:1px solid color-mix(in srgb,var(--muted) 18%,transparent);border-block-end:0}
   .tb-f:nth-child(-n+3){border-block-end:1px solid color-mix(in srgb,var(--muted) 18%,transparent)}
   .tb-f:nth-child(3n),.tb-f:last-child{border-inline-end:0}
   .tb-f:last-child{grid-column:span 2}
+}
+/* and five equal fields in one strip from 820, as on the desktop */
+@media(min-width:820px) and (max-width:960px){
+  .titleblock{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .tb-f{border-block-end:0;border-inline-end:1px solid color-mix(in srgb,var(--muted) 18%,transparent)}
+  .tb-f:last-child{grid-column:auto;border-inline-end:0}
 }
 @media(max-width:420px){
   .titleblock{grid-template-columns:minmax(0,1fr)}
@@ -427,19 +458,21 @@ html[dir="rtl"] .pl-wipe::after{right:auto;left:0}
 .pk.bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
 .pk.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
 
-.plate-meta{display:flex;align-items:center;gap:var(--s-4);flex-wrap:wrap;min-height:44px}
+/* one row: the caption wraps inside its own column, so the live mark never
+   drops to a line of its own (600-960) */
+.plate-meta{display:flex;align-items:center;gap:var(--s-4);min-height:44px}
 .pm-idx{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);color:var(--faint);flex:none}
 .pm-idx b{font-weight:400;color:var(--crimson-text)}
-.pm-rot{position:relative;flex:1 1 auto;min-width:0;display:grid}
+.pm-rot{position:relative;flex:1 1 0;min-width:0;display:grid}
 /* the caption is a link to the live site: 44px tall under a thumb (it was
    27), and a trailing ↗ so it reads as one. Each run is bidi-isolated so the
    Latin name and an Arabic category keep the gap between them. */
-.pm-item{grid-area:1/1;display:flex;align-items:baseline;align-content:center;gap:10px;flex-wrap:wrap;min-height:44px;
+.pm-item{grid-area:1/1;display:flex;align-items:baseline;align-content:center;gap:var(--s-3);flex-wrap:wrap;min-height:44px;
   text-decoration:none;opacity:0;visibility:hidden;transform:translateY(5px);
   transition:opacity .4s var(--ease-out),transform .4s var(--ease-out)}
 .pm-item>*{unicode-bidi:isolate}
 .pm-item.on{opacity:1;visibility:visible;transform:none}
-.pm-item b{font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--ice);letter-spacing:-.01em}
+.pm-item b{font-family:var(--font-display);font-weight:600;font-size:var(--t-body);color:var(--ice);letter-spacing:-.01em}
 html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 .pm-item i{font-family:var(--font-mono);font-style:normal;font-size:var(--t-label);letter-spacing:var(--ls-label);
   text-transform:uppercase;color:var(--teal-text)}
@@ -447,14 +480,14 @@ html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 html[dir="rtl"] .pm-item::after{display:inline-block;transform:scaleX(-1)}
 .pm-item:hover b{color:var(--crimson-text)}
 @media (hover:hover){.pm-item:hover::after{translate:2px -2px}html[dir="rtl"] .pm-item:hover::after{translate:-2px -2px}}
-.pm-live{flex:none;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);
+.pm-live{flex:none;display:inline-flex;align-items:center;gap:var(--s-2);font-family:var(--font-mono);
   font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted)}
 .pm-live i{width:6px;height:6px;border-radius:50%;background:var(--teal);
   box-shadow:0 0 0 0 color-mix(in srgb,var(--teal) 60%,transparent)}
 
 
-.plate-ctl{display:flex;align-items:center;gap:10px}
-.plate-rail{display:flex;gap:8px;flex:1}
+.plate-ctl{display:flex;align-items:center;gap:var(--s-3)}
+.plate-rail{display:flex;gap:var(--s-2);flex:1}
 /* a 2px bar needs a target around it: a 44px row, the bar through its
    middle (it was 32px, under the 44 every other control on the page has) */
 .plate-rail button{flex:1;background:none;border:0;padding:21px 0 0;cursor:pointer;min-height:44px}
@@ -500,31 +533,47 @@ html[dir="rtl"] .pm-item::after{display:inline-block;transform:scaleX(-1)}
    .btn-ghost (a text link with its arrow). The page had six (a gold button
    with a 34px bloom, a cyan outline, a dark outline, a gold outline, an
    underlined link, a cyan outline with another radius) and every one of them
-   was a call to action. 44px tall, one radius, the mono label. */
-.btn{font-family:var(--font-mono);font-size:14px;font-weight:700;padding:13px 28px;min-height:44px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
-  transition:color var(--dur-base) var(--ease-out),background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out),transform var(--dur-base) var(--ease-out);
-  text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+   was a call to action. One geometry for the three (Fleet 4): 52px tall, the
+   14px mono label, one radius, a 1px edge; they were five on the home page
+   (13 or 14px, 45 to 53px tall). */
+.btn{font-family:var(--font-mono);font-size:var(--t-ui);font-weight:700;line-height:1.4;padding:var(--s-3) var(--s-5);min-height:52px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
+  transition:color var(--dur-base) var(--ease-out),background-color var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out);
+  text-decoration:none;display:inline-flex;align-items:center;gap:var(--s-2)}
 /* Flat, not a gradient sweep, and no bloom: a halo under the primary button
    was the loudest thing on the first screen in three themes. --btn-glow is a
    seat now (themes.css), and the hover is the lighter fill, with no lift. */
 .btn-primary{background:var(--crimson);color:var(--on-crimson);border-color:var(--crimson)}
 .btn-primary:hover{background:var(--crimson-hi);border-color:var(--crimson-hi)}
-.btn-teal{background:transparent;color:var(--teal-text);border-color:var(--teal);font-size:var(--t-small)} /* text-safe teal: on Daylight the raw teal is 3.0:1 */
+.btn-teal{background:transparent;color:var(--teal-text);border-color:var(--teal)} /* text-safe teal: on Daylight the raw teal is 3.0:1 */
 .btn-teal:hover{background:color-mix(in srgb,var(--teal) 8%,transparent);border-color:var(--teal-text)}
 /* the text link: no box, the accent, an underline that fills on hover; the
    arrow is in the copy (and turns with .arr in Arabic) */
-.btn-ghost{background:transparent;color:var(--teal-text);border-color:transparent;padding-inline:0;font-size:var(--t-small);
+.btn-ghost{background:transparent;color:var(--teal-text);border-color:transparent;padding-inline:0;
   text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--teal-text) 45%,transparent)}
 .btn-ghost:hover{color:var(--ice);text-decoration-color:currentColor}
-.pill{font-family:var(--font-mono);font-size:var(--t-label);padding:5px 11px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted);background:var(--navy);display:inline-block}
+/* One action row for every pair of ways in: the hero's, the Aperçu's, the
+   FAQ's and the form's (index.html names them .hero-cta, .prev-actions,
+   .faq-ask and .form-acts; a new one takes .actions-row). 12px between rows,
+   16 between buttons, one height, 32px under what precedes it; under 600px
+   each button takes the full width, as every primary call to action does on
+   a phone (the hero's was 320px wide at 360 and 234 at 390). */
+.actions-row,.hero-cta,.prev-actions,.faq-ask,.form-acts{display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-4);align-items:stretch;margin-top:var(--s-6)}
+@media (max-width:599px){
+  :is(.actions-row,.hero-cta,.prev-actions,.faq-ask,.form-acts) .btn{flex:1 1 100%;justify-content:center}
+  /* 16px sides on a phone: "Demander mon Aperçu gratuit →" is 244px of
+     mono, and inside a card at 320-360 its 24px sides wrapped it to a
+     second line, a 65px button beside 52px ones */
+  .btn:not(.btn-ghost){padding-inline:var(--s-4)}
+}
+.pill{font-family:var(--font-mono);font-size:var(--t-label);padding:var(--s-1) var(--s-3);border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted);background:var(--navy);display:inline-block}
 .pill.live{color:var(--teal-text);border-color:var(--teal)}
 /* a portfolio piece, not client work: dashed, and never hidden (see the phone rule) */
 .pill.concept{border-style:dashed}
-.pill.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-inline-end:7px;box-shadow:0 0 8px var(--teal);vertical-align:middle}
+.pill.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-inline-end:var(--s-2);box-shadow:0 0 8px var(--teal);vertical-align:middle}
 
 /* ---------- proof bar ---------- */
 .proof{background:var(--navy);border-radius:0}
-.proof-line{text-align:start;color:var(--muted);font-size:15px}   /* under a start-aligned kicker, not centred beneath it */
+.proof-line{text-align:start;color:var(--muted)}   /* under a start-aligned kicker, not centred beneath it */
 
 
 /* ---------- selected work ---------- */
@@ -555,9 +604,9 @@ html[dir="rtl"] .pm-item::after{display:inline-block;transform:scaleX(-1)}
   text-wrap:balance}
 .cl-h::before,.cl-h::after{content:"";flex:none;width:clamp(20px,5vw,64px);border-top:1px solid var(--hairline-2)}
 .cl-row{list-style:none;margin:0;padding:0;display:flex;justify-content:center;align-items:center;max-width:100%;
-  gap:var(--s-2) clamp(12px,3vw,44px)}
+  gap:var(--s-2) var(--col-gap)}
 .cl-row li{display:flex;justify-content:center;min-width:0}
-.cl{display:flex;align-items:center;justify-content:center;min-height:68px;padding:8px 12px;border-radius:var(--r-sm);
+.cl{display:flex;align-items:center;justify-content:center;min-height:68px;padding:var(--s-2) var(--s-3);border-radius:var(--r-sm);
   color:var(--muted);transition:color var(--dur-fast)}
 .cl:focus-visible{color:var(--ice)}
 /* a phone keeps :hover on the last thing tapped: a tapped logo stayed lit
@@ -621,7 +670,7 @@ html[dir="rtl"] .pm-item::after{display:inline-block;transform:scaleX(-1)}
    Nomara has no sheet, so its line is plain text. A diamond marks the line
    as an outcome, like the deliverables on the sheets; the arrow points the
    reading way. */
-.proj .body .gain{position:relative;display:block;min-height:0;margin:0 0 var(--s-4);padding:var(--s-3) 0 0;padding-inline-start:20px;
+.proj .body .gain{position:relative;display:block;min-height:0;margin:0 0 var(--s-4);padding:var(--s-3) 0 0;padding-inline-start:var(--s-5);
   border-top:1px solid var(--hairline);font-size:var(--t-small);line-height:1.55;color:var(--body-strong);text-decoration:none;text-wrap:pretty}
 .proj .body .gain::before{content:"";position:absolute;inset-inline-start:2px;top:calc(var(--s-3) + .5em);width:7px;height:7px;
   border:1.5px solid var(--teal);transform:rotate(45deg)}
@@ -634,9 +683,9 @@ html[dir="rtl"] .proj .body a.gain::after{content:"←" / ""}
 }
 @media (prefers-reduced-motion:reduce){.proj .body a.gain::after{transition:none}.proj .body a.gain:hover::after{translate:none}}
 
-.work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-6)}
+.work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--col-gap)}
 /* odd card count: center the trailing card so it never orphans with a void beside it */
-.work-grid>.proj:last-child:nth-child(odd){grid-column:1 / -1;max-width:calc(50% - var(--s-6) / 2);margin-inline:auto}
+.work-grid>.proj:last-child:nth-child(odd){grid-column:1 / -1;max-width:calc(50% - var(--col-gap) / 2);margin-inline:auto}
 .proj{background:var(--navy);border:1px solid var(--hairline);border-radius:var(--r-md);overflow:hidden;transition:border-color var(--dur-base),box-shadow var(--dur-base)}
 /* The whole card is a way to its sheet: the sheet link is stretched over the
    card (its ::after fills .proj, the positioned box), and the links that lead
@@ -648,18 +697,18 @@ html[dir="rtl"] .proj .body a.gain::after{content:"←" / ""}
 .proj{position:relative}
 .proj h3 a::after{content:"";position:absolute;inset:0;z-index:4}   /* the title's link (721fe91), the card's way to its sheet */
 /* that link is a phone's tap target too: one line of title was 28px tall
-   (33 in Arabic), under the 44px floor. 9px above and below, given back by
+   (33 in Arabic), under the 44px floor. 8px above and below, given back by
    the margin, so the box grows and the title's rhythm does not. */
-.proj h3 a{display:inline-block;padding-block:9px;margin-block:-9px}
+.proj h3 a{display:inline-block;padding-block:var(--s-2);margin-block:calc(-1 * var(--s-2))}
 .proj .actions a[data-i18n="work.live"],.proj .body .gain{position:relative;z-index:5}
 .proj .thumb{aspect-ratio:16/10;background:var(--grad-blood);display:grid;place-items:center;position:relative;overflow:hidden;perspective:800px}
 .proj .thumb::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,color-mix(in srgb,var(--teal) 35%,transparent),transparent 60%);mix-blend-mode:screen;transition:opacity var(--dur-base)}
 .proj:hover .thumb::before{opacity:1.4}
-.proj .browser{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:5px;padding:9px 12px;background:color-mix(in srgb,var(--void) 50%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.proj .browser{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;gap:var(--s-1);padding:var(--s-2) var(--s-3);background:color-mix(in srgb,var(--void) 50%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .proj .browser i{width:8px;height:8px;border-radius:50%;background:color-mix(in srgb,var(--ice) 45%,transparent)}
-.proj .browser span{font-family:var(--font-mono);font-size:var(--t-label);color:color-mix(in srgb,var(--ice) 85%,transparent);margin-left:8px;letter-spacing:.03em}
-html[dir="rtl"] .proj .browser span{margin-left:0;margin-right:8px}
-.proj .body{padding:var(--s-5)}
+.proj .browser span{font-family:var(--font-mono);font-size:var(--t-label);color:color-mix(in srgb,var(--ice) 85%,transparent);margin-left:var(--s-2);letter-spacing:.03em}
+html[dir="rtl"] .proj .browser span{margin-left:0;margin-right:var(--s-2)}
+.proj .body{padding:var(--card-pad)}
 .proj .cat{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text);display:block;margin-bottom:var(--s-3)}
 .proj h3{font-family:var(--font-display);font-weight:600;font-size:22px;margin-bottom:var(--s-3)}
 html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
@@ -671,11 +720,11 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 /* no reserved three lines: the cards are flex columns with the actions at
    the foot, so a short description no longer leaves a void above them */
 .proj p{font-size:14px;color:var(--muted);line-height:1.5;margin-bottom:var(--s-4);min-height:0}
-.proj .pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:var(--s-4)}
+.proj .pills{display:flex;flex-wrap:wrap;gap:var(--s-2);margin-bottom:var(--s-4)}
 /* the two ways on: text links in the ghost look (the two stacked boxes of
    different widths at 11px read as a form), 44px tall, side by side */
 .proj .actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2) var(--s-5)}
-.proj .actions a{font-family:var(--font-mono);font-size:var(--t-small);font-weight:700;padding:0;min-height:44px;display:inline-flex;align-items:center;gap:6px;
+.proj .actions a{font-family:var(--font-mono);font-size:var(--t-small);font-weight:700;padding:0;min-height:44px;display:inline-flex;align-items:center;gap:var(--s-2);
   color:var(--teal-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--teal-text) 45%,transparent);
   transition:color var(--dur-fast),text-decoration-color var(--dur-fast)}
 .proj .actions a:hover{color:var(--ice);text-decoration-color:currentColor}
@@ -718,11 +767,11 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 
 /* ---------- founder ---------- */
 .founder-card{background:var(--navy);border:1px solid var(--hairline-2);border-radius:var(--r-lg);
-  padding:clamp(17px, 9.33px + 2.13vw, 40px);max-width:940px;position:relative;overflow:hidden;
+  padding:var(--card-pad-lg);max-width:940px;position:relative;overflow:hidden;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 34px 70px -40px rgb(var(--shade) / calc(.85 * var(--shade-k)))}
 .founder-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--crimson) 70%,transparent),transparent)}
-.fd-top{display:flex;gap:clamp(16px,3vw,26px);align-items:center;margin-bottom:var(--s-5)}
+.fd-top{display:flex;gap:var(--col-gap);align-items:center;margin-bottom:var(--s-5)}
 /* The monogram is a mark, not an avatar: 64px, the heading face, a hairline
    ring. At up to 100px with a gold ring and a crimson glow it read as the
    placeholder for a photo that has not arrived (the img rule at the end of
@@ -731,17 +780,17 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
   display:grid;place-items:center;background:var(--void);border:1px solid var(--hairline-2);position:relative;overflow:hidden}
 .fd-photo .mono{font-family:var(--font-head);font-weight:var(--head-weight);font-size:28px;line-height:1;color:var(--ice);position:relative;z-index:1}
 .fd-id h3{font-family:var(--font-display);font-weight:600;font-size:clamp(16.4px, 11.87px + 1.26vw, 30px);letter-spacing:.01em}
-.fd-role{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text);margin:6px 0 12px}
-.fd-pills{display:flex;flex-wrap:wrap;gap:6px}
-.fd-pills .pill{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;padding:4px 10px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted)}
+.fd-role{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text);margin:var(--s-2) 0 var(--s-3)}
+.fd-pills{display:flex;flex-wrap:wrap;gap:var(--s-2)}
+.fd-pills .pill{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;padding:var(--s-1) var(--s-3);border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted)}
 .fd-bio{color:var(--body-strong);line-height:1.65;max-width:43.758em;margin-bottom:var(--s-5)}
-.fd-actions{display:flex;flex-wrap:wrap;gap:12px}
+.fd-actions{display:flex;flex-wrap:wrap;gap:var(--s-3)}
 
 /* verified profiles — the same URLs the hub's archive uses */
 /* the ghost look: badge, name, no box (four boxed chips wrapped ragged under
    the bio); a 2 x 2 grid of 44px rows on a phone */
 .fd-links{list-style:none;display:flex;flex-wrap:wrap;gap:0 var(--s-5);margin:0 0 var(--s-5)}
-.fd-links a{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:0;
+.fd-links a{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;padding:0;
   color:var(--teal-text);font-family:var(--font-mono);font-size:var(--t-small);font-weight:700;
   text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--teal-text) 45%,transparent);
   transition:color var(--dur-fast),text-decoration-color var(--dur-fast)}
@@ -765,36 +814,36 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
    and the content is padded back, and the inner block keeps 6px at its foot,
    so a focus ring (5px) on a control at the edge — the download button on a
    phone — is drawn whole instead of losing two sides to the clip. */
-.cv-clip{min-height:0;overflow:hidden;margin-inline:-6px;padding-inline:6px}
-.cv-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(15px, 5.33px + 2.69vw, 44px);
-  border-top:1px solid var(--hairline);margin-top:var(--s-6);padding-top:var(--s-6);padding-bottom:6px}
-.cv-col h4{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.cv-clip{min-height:0;overflow:hidden;margin-inline:calc(-1 * var(--s-2));padding-inline:var(--s-2)}
+.cv-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:var(--col-gap);
+  border-top:1px solid var(--hairline);margin-top:var(--s-6);padding-top:var(--s-6);padding-bottom:var(--s-2)}
+.cv-col h4{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--faint);margin-bottom:var(--s-4)}
 
 /* The date sits on its own line: the CV's dates carry months ("Août 2025 –
    fév. 2026") and no fixed column fits them in every language. A rail with a
    node per role; current roles get a filled node, so "ongoing" reads at a
    glance instead of being implied by a trailing dash. */
-.timeline{list-style:none;display:grid;gap:var(--s-5);position:relative;padding-inline-start:22px}
+.timeline{list-style:none;display:grid;gap:var(--s-5);position:relative;padding-inline-start:var(--s-5)}
 .timeline::before{content:"";position:absolute;inset-block:6px;inset-inline-start:5px;width:1px;background:var(--hairline-2)}
-.timeline li{position:relative;display:grid;gap:3px}
-.timeline li::before{content:"";position:absolute;inset-inline-start:-22px;top:4px;width:11px;height:11px;border-radius:50%;
+.timeline li{position:relative;display:grid;gap:var(--s-1)}
+.timeline li::before{content:"";position:absolute;inset-inline-start:calc(-1 * var(--s-5));top:4px;width:11px;height:11px;border-radius:50%;
   border:1.5px solid var(--hairline-2);background:var(--navy)}
 .timeline li.tl-now::before{border-color:var(--teal);background:var(--teal)}
 .tl-date{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;color:var(--crimson-text)}
 .tl-now .tl-date{color:var(--teal-text)}
-.timeline b{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ice)}
+.timeline b{font-family:var(--font-display);font-weight:600;font-size:var(--t-cv);color:var(--ice)}
 html[dir="rtl"] .timeline b{font-family:var(--font-ar-display)}
-.timeline i{font-style:normal;font-size:13px;color:var(--body-strong)}
-.timeline p{font-size:13.5px;line-height:1.6;color:var(--muted);margin-top:2px}
+.timeline i{font-style:normal;font-size:var(--t-small);color:var(--body-strong)}
+.timeline p{font-size:var(--t-cv);line-height:1.6;color:var(--muted);margin-top:var(--s-1)}
 
 .cv-block{margin-bottom:var(--s-5)}
-.cv-block p{color:var(--muted);font-size:13.5px;line-height:1.6}
+.cv-block p{color:var(--muted);font-size:var(--t-cv);line-height:1.6}
 .skills{display:grid;gap:var(--s-3);margin-bottom:var(--s-3)}
-.skills dt{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ice);margin-bottom:2px}
+.skills dt{font-family:var(--font-display);font-weight:600;font-size:14px;color:var(--ice);margin-bottom:var(--s-1)}
 html[dir="rtl"] .skills dt{font-family:var(--font-ar-display)}
-.skills dd{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
-.cv-block .cv-note{font-size:12.5px;color:var(--faint);margin-top:var(--s-2)}
-.cv-dl{margin-top:6px}
+.skills dd{margin:0;font-size:var(--t-cv);line-height:1.6;color:var(--muted)}
+.cv-block .cv-note{font-size:var(--t-small);color:var(--faint);margin-top:var(--s-2)}
+.cv-dl{margin-top:var(--s-2)}
 
 /* the team: anonymized by design, so the initial is the name */
 .team{margin-top:var(--s-6);max-width:940px}
@@ -804,12 +853,12 @@ html[dir="rtl"] .skills dt{font-family:var(--font-ar-display)}
 /* one column: the card used to reserve a 44px initial column for the three
    members who left on 2026-11-02, and the freelance line sat past an empty
    gutter */
-.tm{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"fn" "do";row-gap:2px;
+.tm{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"fn" "do";row-gap:var(--s-1);
   align-items:center;padding:var(--s-4);border:1px solid var(--hairline);border-radius:var(--r-md);
   background:color-mix(in srgb,var(--navy) 70%,transparent)}
-.tm b{grid-area:fn;font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ice)}
+.tm b{grid-area:fn;font-family:var(--font-display);font-weight:600;font-size:var(--t-cv);color:var(--ice)}
 html[dir="rtl"] .tm b{font-family:var(--font-ar-display)}
-.tm span{grid-area:do;font-size:13.5px;line-height:1.5;color:var(--muted)}
+.tm span{grid-area:do;font-size:var(--t-cv);line-height:1.5;color:var(--muted)}
 @media (min-width:720px){.team-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){
   .fd-top{flex-direction:column;text-align:center;align-items:center}
@@ -822,27 +871,35 @@ html[dir="rtl"] .tm b{font-family:var(--font-ar-display)}
    glyphs overhang their box and were getting clipped at the left edge. */
 .contact{position:relative}
 .contact::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--teal) 16%,transparent),transparent 65%);top:-120px;left:50%;transform:translateX(-50%);filter:blur(30px);pointer-events:none}
-.contact h2{position:relative;font-family:var(--font-display);font-weight:600;font-size:clamp(29px, 10.67px + 5.09vw, 84px);letter-spacing:-.02em;line-height:1.04;margin-bottom:var(--s-8);max-width:none}
+.contact h2{position:relative;font-family:var(--font-display);font-weight:600;letter-spacing:-.02em;line-height:1.04;max-width:none}
 .contact h2 em{font-family:var(--font-swash);font-style:normal;color:var(--teal-text)}
 html[dir="rtl"] .contact h2{font-family:var(--font-ar-display);line-height:1.3}
 html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:normal}
-.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(300px,.85fr) minmax(0,1.15fr);gap:var(--s-6) clamp(26px, -12px + 10.56vw, 140px);align-items:start}
-.contact .sub{color:var(--body-strong);max-width:29.172em;line-height:1.65;font-size:16.5px}
+.contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-6) var(--col-gap);align-items:start}
+/* on the page's twelve tracks: the ways to reach us in five, the form in
+   the last six, its edge on the FAQ's second column (it stood at x=707
+   against the FAQ's 732 at 1440, with a gap of its own up to 140px) */
+@media(min-width:961px){
+  .contact-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .contact-side{grid-column:1/span 5}
+  .contact-main{grid-column:7/-1}
+}
+.contact .sub{color:var(--body-strong);max-width:29.172em;line-height:1.65}
 /* direct channels — aligned rows, shared hairlines with the form side */
 .channels{margin-top:var(--s-6);display:grid}
-.channels .ch{display:grid;grid-template-columns:96px minmax(0,1fr);gap:var(--s-4);align-items:baseline;padding:14px 0;border-top:1px solid var(--hairline)}
+.channels .ch{display:grid;grid-template-columns:96px minmax(0,1fr);gap:var(--s-4);align-items:baseline;padding:var(--s-4) 0;border-top:1px solid var(--hairline)}
 .channels .ch:last-child{border-bottom:1px solid var(--hairline)}
 .channels dt{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text)}
-.channels dd{font-size:15px;color:var(--ice);overflow-wrap:anywhere}
+.channels dd{font-size:var(--t-body);color:var(--ice);overflow-wrap:anywhere}
 .channels dd a{color:var(--crimson-text);text-decoration:none}
 .channels dd a:hover{text-decoration:underline}
 /* the WhatsApp note on its own line under the number, at the note size */
 .channels .ch-note,.ch .ch-note{display:block;font-size:var(--t-small);color:var(--muted)}
 /* the form sits directly on the band — no card box around it */
 .form-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 var(--s-5)}
-.field{display:flex;flex-direction:column;gap:8px;margin-bottom:var(--s-5)}
+.field{display:flex;flex-direction:column;gap:var(--s-2);margin-bottom:var(--s-5)}
 .field label{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted)}
-.field input,.field textarea{background:var(--field-bg);border:1px solid var(--field-border);border-radius:var(--r-sm);padding:13px 16px;color:var(--ice);font-family:var(--font-body);font-size:15px;transition:border-color var(--dur-fast),box-shadow var(--dur-fast),background-color var(--dur-fast);width:100%;resize:vertical}
+.field input,.field textarea{background:var(--field-bg);border:1px solid var(--field-border);border-radius:var(--r-sm);padding:var(--s-3) var(--s-4);color:var(--ice);font-family:var(--font-body);font-size:var(--t-body);transition:border-color var(--dur-fast),box-shadow var(--dur-fast),background-color var(--dur-fast);width:100%;resize:vertical}
 /* A real ring, outside the border. The border alone could not show focus on a
    field in error: the error border comes later at the same specificity and
    won, so after an empty submit the focused field looked like the other two,
@@ -859,39 +916,31 @@ html[dir="rtl"] .contact h2 em{font-family:var(--font-ar-display);font-style:nor
 html[dir="rtl"] .field :is(input,textarea){font-family:var(--font-ar-body)}
 /* what happens to the message is part of the offer, not fine print: the body
    face at 14px, 34em (the 52ch of mono it had, in em, BRAND.md) */
-.form-note{font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--muted);margin-top:var(--s-4);max-width:34em}
+.form-note{font-family:var(--font-body);font-size:var(--t-small);line-height:1.55;color:var(--muted);margin-top:var(--s-4);max-width:34em}
 .form-success:focus{outline:none}
-.form .btn{padding:15px 40px}
 .form-success{display:none;padding:var(--s-7) 0}
 .form-success.show{display:block;animation:stagger .5s var(--ease-out)}
 /* The channels' envelope, not a glowing tick: the panel cannot know the mail
    left, so its mark says "mail", the way the Email row does */
 .form-success .ai-mail{width:36px;height:36px;display:block;margin-bottom:var(--s-5)}
-.form-success .fallback{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-top:var(--s-3)}
-.form-success .fallback a{color:var(--teal-text);text-decoration:underline}
+.form-success .fallback{font-family:var(--font-mono);font-size:var(--t-small);color:var(--muted);margin-top:var(--s-3)}
+.form-success .fallback a:not(.btn){color:var(--teal-text);text-decoration:underline}
 /* copy and back-to-the-form side by side when the panel has room (430px for
    the French pair, 301px for the Arabic), one under the other otherwise */
 .form-success .acts{display:flex;flex-wrap:wrap;gap:var(--s-3);max-width:none}
-/* the submit and its WhatsApp twin (index.html .form-acts): one row of one
-   height, 12px apart. Unstyled, they stacked touching on a phone and stood
-   6px out of line at 1440 (50 against 53px: the teal button's 13px type in
-   an inline row). Stacked (≤960) each keeps .form .btn's full width and the
-   gap parts them; the row goes after the note, as the lone button did. */
-.form-acts{display:flex;flex-wrap:wrap;align-items:stretch;gap:var(--s-3)}
-.form-acts .btn{min-height:52px}
-/* one leading for the pair in both rows, so the 13px label is as tall as the
-   14px one when they stack (49 against 50px, 53 against 52) */
-:is(.form-acts,.faq-ask) .btn{line-height:22px}
-.form-success p{font-family:var(--font-display);font-size:22px;color:var(--ice);max-width:29.172em}
+/* the submit and its WhatsApp twin (index.html .form-acts) are an action
+   row (.actions-row, with the buttons): stacked (≤960) each keeps .form
+   .btn's full width and the gap parts them; the row goes after the note, as
+   the lone button did. */
+.form-success p{font-family:var(--font-display);font-size:var(--t-title);color:var(--ice);max-width:29.172em}
 html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
 @media(max-width:960px){
-  .contact-grid{grid-template-columns:minmax(0,1fr)}
   /* the one primary call to action that was content-width on a phone: full
      width like the others, the note above it where the thumb reads before
      it presses, and the fields 16px apart (they were 32) */
   .form{display:flex;flex-direction:column}
   .form .field{margin-bottom:var(--s-4)}
-  .form .btn{order:1;width:100%;min-height:52px;justify-content:center}
+  .form .btn{order:1;width:100%;justify-content:center}
   .form .form-acts{order:1}
   .form .form-note{margin:var(--s-2) 0 var(--s-4)}
 }
@@ -903,12 +952,15 @@ html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
    with `0` silently wiped the footer's horizontal gutter — logo, nav and
    copyright all sat flush against the screen edge on every phone. Second
    time this exact trap has landed in this file; see BRAND.md. */
-.footer{padding:var(--s-8) var(--gutter) var(--s-7);border-top:1px solid var(--hairline)}
+.footer{padding:var(--s-8) var(--gutter) var(--s-7);
+  /* the rule spans the content, as every section's does (it ran 50-1390
+     across the gutters while the content runs 99-1341 at 1440) */
+  background:linear-gradient(var(--hairline),var(--hairline)) 50% 0/calc(100% - 2 * var(--gutter)) 1px no-repeat}
 .footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s-6);margin-bottom:var(--s-7)}
 .footer .logo{font-size:24px}
-.footer nav{display:flex;flex-wrap:wrap;gap:20px}
+.footer nav{display:flex;flex-wrap:wrap;gap:var(--s-5)}
 .footer nav{flex-wrap:wrap;max-width:100%;min-width:0}
-.footer nav a{font-family:var(--font-mono);font-size:13px;color:var(--muted);text-decoration:none;transition:color var(--dur-fast);overflow-wrap:anywhere;word-break:break-word}
+.footer nav a{font-family:var(--font-mono);font-size:var(--t-small);color:var(--muted);text-decoration:none;transition:color var(--dur-fast);overflow-wrap:anywhere;word-break:break-word}
 .footer nav a:hover{color:var(--teal-text)}
 .footer .meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s-3);font-family:var(--font-mono);font-size:var(--t-label);color:var(--faint);padding-top:var(--s-5);border-top:1px solid var(--hairline)}
 .footer .meta span{overflow-wrap:anywhere}
@@ -917,7 +969,7 @@ html[dir="rtl"] .form-success p{font-family:var(--font-ar-display)}
 .footer .meta-legal a,.footer .meta-top{color:var(--muted);text-decoration:none}
 .footer .meta-legal a:hover,.footer .meta-top:hover{color:var(--teal-text)}
 .footer .meta-end{display:inline-flex;align-items:center;flex-wrap:wrap;gap:var(--s-4)}
-.footer .meta-top{display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.footer .meta-top{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px}
 /* the mono face has no Arabic: the fallback spaced every letter apart */
 html[dir="rtl"] :is(.footer nav a,.footer .meta){font-family:var(--font-ar-body)}
 /* Phones: the eight links as two columns of 44px rows (three ragged flex
@@ -936,7 +988,7 @@ html[dir="rtl"] :is(.footer nav a,.footer .meta){font-family:var(--font-ar-body)
    above a footer's links read as a placeholder left in; the name stays for
    assistive tech. */
 @media (min-width:961px){
-  .footer{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(20px,1.7vw,34px);row-gap:var(--s-5);align-items:start;padding-block:var(--s-8) var(--s-7)}
+  .footer{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col-gap);row-gap:var(--s-5);align-items:start;padding-block:var(--s-8) var(--s-7)}
   .footer-top,.footer .meta{display:contents}
   .footer .logo{grid-column:1/span 4;grid-row:1}
   .footer .meta>span:nth-child(2){grid-column:1/span 4;grid-row:2;font-family:var(--font-mono);font-size:var(--t-small);color:var(--muted);margin-top:calc(-1 * var(--s-3))}
@@ -975,15 +1027,14 @@ details[open] .glyph svg :is(path,circle,line,polyline,polygon,rect){stroke-dash
 .sec-lead{font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:39.78em;margin:0 0 var(--s-7);line-height:1.6}
 
 /* services grid — five compact offers; depth lives in the capabilities shelf */
-.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-5);align-items:stretch}
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--col-gap);align-items:stretch}
 .svc-grid .svc-row+.svc-row{margin-top:0}
-.svc-grid .svc-row:last-child:nth-child(odd){grid-column:1/-1}
 /* one column only on a phone: a tablet showed five full-width cards with
    60% of each row empty (two by two from 700, the fifth across both) */
 @media(max-width:699px){.svc-grid{grid-template-columns:minmax(0,1fr)}}
 
 /* service row card: one inner padding at every width and in both bento sizes */
-.svc-row{position:relative;display:grid;grid-template-columns:46px minmax(0,1fr);gap:var(--s-5);padding:clamp(22px,2.2vw,32px);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--navy);overflow:hidden}
+.svc-row{position:relative;display:grid;grid-template-columns:46px minmax(0,1fr);gap:var(--s-5);padding:var(--card-pad);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--navy);overflow:hidden}
 .svc-row + .svc-row{margin-top:var(--s-5)}
 /* a service card is not a link: on hover its edge lights (below, and the
    teal border further down), but it no longer rises, which read as one */
@@ -995,45 +1046,45 @@ html[dir="rtl"] .svc-row h3{font-family:var(--font-ar-display)}
 /* the promise in the body's own colour, one step up: a 21px teal line over
    every title made three text levels before the first sentence (teal is for
    links and labels; the Aperçu card keeps its one accented promise) */
-.svc-row .promise{font-family:var(--font-swash);font-style:normal;font-size:21px;color:var(--body-strong);margin:6px 0 var(--s-4);line-height:1.25}
+.svc-row .promise{font-family:var(--font-swash);font-style:normal;color:var(--body-strong);margin:var(--s-2) 0 var(--s-4);line-height:1.25}
 html[dir="rtl"] .svc-row .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:600}
-.svc-row .brief{font-size:14.5px;color:var(--muted);line-height:1.6;margin-bottom:var(--s-4)}
-.svc-row .outcome{font-size:14px;color:var(--ice);line-height:1.5;margin-bottom:var(--s-5);padding-left:14px;border-left:2px solid var(--crimson)}
-html[dir="rtl"] .svc-row .outcome{padding-left:0;padding-right:14px;border-left:none;border-right:2px solid var(--crimson)}
-.svc-row .outcome b{display:block;font-family:var(--font-mono);font-size:var(--t-label);font-weight:400;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text);margin-bottom:5px}
+.svc-row .brief{color:var(--muted);line-height:1.6;margin-bottom:var(--s-4)}
+.svc-row .outcome{font-size:14px;color:var(--ice);line-height:1.5;margin-bottom:var(--s-5);padding-left:var(--s-4);border-left:2px solid var(--crimson)}
+html[dir="rtl"] .svc-row .outcome{padding-left:0;padding-right:var(--s-4);border-left:none;border-right:2px solid var(--crimson)}
+.svc-row .outcome b{display:block;font-family:var(--font-mono);font-size:var(--t-label);font-weight:400;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text);margin-bottom:var(--s-1)}
 .svc-row .proof{font-family:var(--font-mono);font-size:12px;color:var(--faint);line-height:1.6;margin-bottom:var(--s-4)}
-.svc-row .proof b{color:var(--muted);font-weight:400;letter-spacing:.12em;text-transform:uppercase;margin-right:8px}
-html[dir="rtl"] .svc-row .proof b{margin-right:0;margin-left:8px}
-.svc-row .tags{display:flex;flex-wrap:wrap;gap:6px}
+.svc-row .proof b{color:var(--muted);font-weight:400;letter-spacing:.12em;text-transform:uppercase;margin-right:var(--s-2)}
+html[dir="rtl"] .svc-row .proof b{margin-right:0;margin-left:var(--s-2)}
+.svc-row .tags{display:flex;flex-wrap:wrap;gap:var(--s-2)}
 
 /* signature offer — pinned */
-.preview{position:relative;border:1px solid var(--hairline-2);border-radius:var(--r-lg);padding:var(--s-7);margin-bottom:var(--s-8);overflow:clip;background:var(--grad-noir);display:grid;grid-template-columns:46px minmax(0,1fr);gap:var(--s-5)}
+.preview{position:relative;border:1px solid var(--hairline-2);border-radius:var(--r-lg);padding:var(--card-pad-lg);margin-bottom:var(--s-8);overflow:clip;background:var(--grad-noir);display:grid;grid-template-columns:46px minmax(0,1fr);gap:var(--s-5)}
 .preview .glow{position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--teal) 22%,transparent),transparent 65%);top:-140px;right:-60px;filter:blur(24px);pointer-events:none}
 html[dir="rtl"] .preview .glow{right:auto;left:-60px}
 .preview .glyph{border-color:var(--crimson);color:var(--crimson-text)}
 .preview .body{position:relative}
 .preview .tag{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--crimson-text)}
-.preview h3{font-family:var(--font-display);font-weight:600;font-size:clamp(20.3px, 14.4px + 1.64vw, 38px);margin:var(--s-3) 0 6px;text-align:start}
+.preview h3{font-family:var(--font-display);font-weight:600;font-size:clamp(20.3px, 14.4px + 1.64vw, 38px);margin:var(--s-3) 0 var(--s-2);text-align:start}
 html[dir="rtl"] .preview h3{font-family:var(--font-ar-display)}
-.preview .promise{font-family:var(--font-swash);font-style:normal;font-size:23px;color:var(--teal-text);margin-bottom:var(--s-4)}
+.preview .promise{font-family:var(--font-swash);font-style:normal;color:var(--teal-text);margin-bottom:var(--s-4)}
 html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:600}
-.preview .brief{font-size:15px;color:var(--muted);line-height:1.6;max-width:41.106em;margin-bottom:var(--s-4);text-align:start}
+.preview .brief{color:var(--muted);line-height:1.6;max-width:41.106em;margin-bottom:var(--s-4);text-align:start}
 /* the offer's terms and its two ways in: the form, or WhatsApp */
 /* the conditions are the offer, not its fine print: the body face at 14px
    (they were the smallest type on the card, 12px mono) */
 .preview .prev-terms{font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--body-strong);max-width:52em;margin-bottom:var(--s-5)}
-.preview .prev-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3) var(--s-5);margin-bottom:var(--s-5)}
-.preview .prev-wa{font-family:var(--font-mono);font-size:13px;color:var(--teal-text);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
+.preview .prev-actions{margin-bottom:var(--s-5)}
+.preview .prev-wa{font-family:var(--font-mono);font-size:var(--t-small);color:var(--teal-text);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
 .preview .prev-wa[aria-disabled="true"]{color:var(--muted);text-decoration:none}
-.preview .outcome{font-size:14px;color:var(--ice);padding-left:14px;border-left:2px solid var(--crimson)}
-html[dir="rtl"] .preview .outcome{padding-left:0;padding-right:14px;border-left:none;border-right:2px solid var(--crimson)}
-.preview .outcome b{display:block;font-family:var(--font-mono);font-size:var(--t-label);font-weight:400;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text);margin-bottom:5px}
+.preview .outcome{font-size:14px;color:var(--ice);padding-left:var(--s-4);border-left:2px solid var(--crimson)}
+html[dir="rtl"] .preview .outcome{padding-left:0;padding-right:var(--s-4);border-left:none;border-right:2px solid var(--crimson)}
+.preview .outcome b{display:block;font-family:var(--font-mono);font-size:var(--t-label);font-weight:400;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text);margin-bottom:var(--s-1)}
 
 /* capabilities shelf — disclosure. One strip for both (the five other
    services, the estimator): a 13px label, its hint, an 18px chevron at the
    inline end, and the edge answering the pointer (no fill). */
 .capabilities{margin-top:var(--s-8);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--glass);overflow:hidden;transition:border-color var(--dur-base)}
-.capabilities>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s-4);padding:var(--s-5) var(--s-6);font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ice);transition:background var(--dur-base)}
+.capabilities>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s-4);padding:var(--card-pad);font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.1em;text-transform:uppercase;color:var(--ice);transition:background var(--dur-base)}
 .capabilities>summary::-webkit-details-marker{display:none}
 @media (hover:hover){.capabilities:has(>summary:hover){border-color:var(--teal)}}
 .capabilities>summary .chev{margin-left:auto;color:var(--teal-text);font-size:18px;line-height:1;transition:transform var(--dur-base)}
@@ -1045,19 +1096,23 @@ html[dir="rtl"] .capabilities[open]>summary .chev{transform:rotate(-90deg)}
 /* the career toggle's chevron, the strip's (I2 puts the glyph in a .chev) */
 .fd-actions .btn .chev{font-size:18px;line-height:1;color:currentColor;transition:transform var(--dur-base)}
 .fd-actions .btn[aria-expanded="true"] .chev{transform:rotate(90deg)}
-.cap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--s-5);padding:0 var(--s-6) var(--s-6)}
+.cap-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--col-gap);padding:0 var(--card-pad) var(--card-pad)}
+/* the five capabilities in one row from 820px, three over two from 480
+   (auto-fill at 180px left the fifth alone at 600 and at 960-1024) */
+@media (min-width:480px){.cap-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.cap-grid>.cap{grid-column:span 2}.cap-grid>.cap:nth-child(n+4){grid-column:span 3}}
+@media (min-width:820px){.cap-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.cap-grid>.cap,.cap-grid>.cap:nth-child(n+4){grid-column:auto}}
 .cap{display:flex;flex-direction:column;gap:var(--s-3);padding-top:var(--s-5);border-top:1px solid var(--hairline)}
 .cap .glyph{width:38px;height:38px}
 .cap .glyph svg{width:21px;height:21px}
 .cap .fam{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--faint)}
-.cap h4{font-family:var(--font-display);font-weight:600;font-size:18px}
+.cap h4{font-family:var(--font-display);font-weight:600}
 html[dir="rtl"] .cap h4{font-family:var(--font-ar-display)}
-.cap .promise{font-family:var(--font-swash);font-style:normal;font-size:16px;color:var(--teal-text)}
+.cap .promise{font-family:var(--font-swash);font-style:normal;color:var(--teal-text)}
 html[dir="rtl"] .cap .promise{font-family:var(--font-ar-body);font-style:normal;font-weight:600}
-.cap .brief{font-size:13px;color:var(--muted);line-height:1.5}
+.cap .brief{color:var(--muted);line-height:1.5}
 
 /* ---------- 3D scene banner (inside the work section) ---------- */
-.scene-banner{display:flex;align-items:center;gap:var(--s-5);margin-top:var(--s-7);padding:var(--s-5) var(--s-6);
+.scene-banner{display:flex;align-items:center;gap:var(--s-5);margin-top:var(--s-7);padding:var(--card-pad);
   background:var(--navy);border:1px solid color-mix(in srgb,var(--crimson) 35%,transparent);border-radius:var(--r-md);text-decoration:none;color:inherit;
   position:relative;overflow:hidden;transition:border-color var(--dur-base),transform var(--dur-base) var(--ease-out),box-shadow var(--dur-base)}
 .scene-banner::after{content:"";position:absolute;inset:0;pointer-events:none;
@@ -1073,14 +1128,14 @@ html[dir="rtl"] .cap .promise{font-family:var(--font-ar-body);font-style:normal;
   background:linear-gradient(140deg,var(--plum),var(--navy))}
 .scene-banner:hover .sb-art i:nth-child(1){transform:rotateY(-34deg) translateZ(-20px) scale(.84)}
 .scene-banner:hover .sb-art i:nth-child(3){transform:rotateY(-4deg) translateZ(22px)}
-.sb-txt{display:flex;flex-direction:column;gap:5px;flex:1;min-width:0}
+.sb-txt{display:flex;flex-direction:column;gap:var(--s-1);flex:1;min-width:0}
 .sb-kick{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);color:color-mix(in srgb,var(--crimson-text) 75%,var(--ice))}
 .sb-txt b{font-family:var(--font-display);font-weight:600;font-size:clamp(13.3px, 10.4px + 0.81vw, 22px)}
 html[dir="rtl"] .sb-txt b{font-family:var(--font-ar-display)}
-.sb-lead{font-size:13.5px;color:var(--body-strong);line-height:1.5}
+.sb-lead{color:var(--body-strong);line-height:1.5}
 /* the way in takes the outline button's look (.btn-teal), not a fourth one */
 .sb-go{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px;font-family:var(--font-mono);font-size:var(--t-small);font-weight:700;color:var(--teal-text);
-  border:1px solid var(--teal);border-radius:var(--r-sm);padding:0 20px;white-space:nowrap;transition:background-color var(--dur-base),border-color var(--dur-base)}
+  border:1px solid var(--teal);border-radius:var(--r-sm);padding:0 var(--s-5);white-space:nowrap;transition:background-color var(--dur-base),border-color var(--dur-base)}
 .scene-banner:hover .sb-go{background:color-mix(in srgb,var(--teal) 8%,transparent);border-color:var(--teal-text)}
 @media(max-width:760px){
   .scene-banner{flex-direction:column;align-items:flex-start;gap:var(--s-4)}
@@ -1128,7 +1183,7 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
 /* The summary row is 34px tall — far too small for these drawings to
    survive. The open panel has the room, and the figure belongs with the
    answer it illustrates rather than with the question. */
-.faq-fig{flex:none;width:92px;height:92px;display:grid;place-items:center;padding:8px;
+.faq-fig{flex:none;width:92px;height:92px;display:grid;place-items:center;padding:var(--s-2);
   border:1px solid var(--hairline);border-radius:var(--r-sm);background:var(--void);color:var(--teal-text)}
 @media (max-width:560px){.faq-fig{display:none}}
 .faq-a p{max-width:42.432em}
@@ -1195,7 +1250,6 @@ section.band+section.band::after{background:var(--band)}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 34px 64px -30px rgb(var(--shade) / calc(.9 * var(--shade-k))), 0 0 0 1px color-mix(in srgb,var(--teal) 22%,transparent), 0 0 34px -8px color-mix(in srgb,var(--teal) 28%,transparent)}
 
 /* 5 — sharper display type + a brass foil accent on the heading flourish */
-h2.sec{font-size:clamp(26px, 14px + 3.33vw, 62px);letter-spacing:-.025em}
 /* NOT --grad-blood. That ramp ends in #500A1F / #411E3A, which measure
    1.16:1 and 1.22:1 against --void — and even its brightest stop is
    2.68:1, under the 3:1 large-text floor. On desktop the dark tail falls
@@ -1206,11 +1260,6 @@ h2.sec{font-size:clamp(26px, 14px + 3.33vw, 62px);letter-spacing:-.025em}
    always moves AWAY from the background — lighter on the dark themes,
    darker on Daylight. Measured 3.6:1–11.7:1 across all five palettes. */
 main.wrap>section h2.sec em{color:var(--crimson-text)}
-/* kicker: glowing node + gradient tick */
-.kicker::before{width:32px;background:linear-gradient(90deg,var(--crimson),transparent)}
-/* the tick stays at the start and fades toward the text, in either direction */
-html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson),transparent)}
-.kicker{gap:var(--s-2)}
 
 /* 6 — per-project brand accent: each live card echoes its own site's identity
    (accent RGB triplet is set inline on the card: style="--brand:R,G,B") */
@@ -1302,7 +1351,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
    than left as void beside a wrapped headline.
    ============================================================ */
 @media(min-width:1100px){
-  :root{--max:min(1580px,93vw);--gutter:clamp(40px,3.4vw,64px)}
+  :root{--max:var(--page-max);--gutter:var(--page-gutter)}
   /* Engineering sets a different measure (--max 1200 against 93vw = 1190 here).
      That token has to live in THIS sheet, not in a per-theme sheet that loads
      later (Engineering had one until the 2026-10 cleanup): this one is
@@ -1314,7 +1363,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
 
   main.wrap>section,.footer{
     display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
-    column-gap:clamp(20px,1.7vw,34px);align-content:start}
+    column-gap:var(--col-gap);align-content:start}
   /* Default span: nothing silently escapes the grid. .footer MUST be in this
      selector — it takes `display:grid` from the rule above, but the original
      default only covered `main.wrap>section>*`, so every footer child landed
@@ -1338,19 +1387,21 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   /* — per-section content spans — */
   .work-grid,.svc-grid,.founder-card,.contact-grid,.preview,.scene-banner,.voices{grid-column:1/-1}
   /* two columns of questions rather than one tall stack */
-  .faq-list{grid-column:1/-1;max-width:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-4) clamp(20px,1.7vw,34px);align-content:start}
+  .faq-list{grid-column:1/-1;max-width:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-4) var(--col-gap);align-content:start}
 
   /* the hero gets the same footing as everything else */
-  .hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(20px,1.7vw,34px)}
+  .hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col-gap)}
   .hero>.hero-mesh,.hero>.floaters{grid-column:1/-1;grid-row:1}
-  .hero-grid{grid-column:1/-1;grid-row:1;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(40px,4vw,80px)}
+  /* the copy and the plate on six tracks each: the plate's edge is the FAQ's
+     and the form's second column (x=732 at 1440) */
+  .hero-grid{grid-column:1/-1;grid-row:1;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--col-gap)}
   /* 31.5em, not 46ch's 30.498em: the French lede of cac515f broke 1% inside
      that edge in the metric fallback and outside it in Geist, so it wrapped
      6 lines before the face landed and 5 after (the fallback-type audit,
      1440 and 1600). At 31.5em every line of either face, in French and in
      English, ends 16px or more before the edge (measured 2026-11-03); the
      box only binds from 1440px, the column does below. */
-  .lede{max-width:34em;font-size:clamp(18px,1.35vw,21px)}
+  .lede{max-width:34em}
   /* Display type sized for the canvas it actually sits on. 84px was a
      1200px-page value; the identity is engraved Cinzel and it should
      carry the screen. */
@@ -1362,12 +1413,10 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
      the French pair needs 487 with the buttons' 28px sides, so the sides
      narrow to 16px there and are back to 28px by 1200 (12vw - 116px). */
   .hero-cta{flex-wrap:nowrap}
-  .hero-cta .btn{white-space:nowrap;padding-inline:clamp(16px,12vw - 116px,28px)}
+  .hero-cta .btn{white-space:nowrap;padding-inline:clamp(16px,12vw - 116px,24px)}
 
   /* section rhythm: --sec-pad, the one fluid token (the design system block) */
   .footer{padding-block:var(--s-9) var(--s-8)}
-  .work-grid{gap:clamp(24px,2vw,40px)}
-  .svc-grid{gap:clamp(22px,1.8vw,34px)}
 
   /* The signature card on twelve columns of its own: the name, the promise
      and the brief in the first five (one edge, in both directions), the
@@ -1376,10 +1425,10 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
      split (identity left, argument right) left a void between the title
      and the brief. */
   .preview{grid-template-columns:46px repeat(12,minmax(0,1fr));
-    column-gap:clamp(16px,1.4vw,28px);align-items:start;padding:clamp(34px,3vw,52px)}
+    column-gap:var(--col-gap);align-items:start}
   .preview .body{display:contents}
   .preview .tag{grid-column:2/span 5;grid-row:1;align-self:end}
-  .preview h3{grid-column:2/span 5;grid-row:2;margin-top:6px}
+  .preview h3{grid-column:2/span 5;grid-row:2;margin-top:var(--s-2)}
   .preview .promise{grid-column:2/span 5;grid-row:3;margin-bottom:0}
   .preview .brief{grid-column:2/span 5;grid-row:4;max-width:34.476em;align-self:start;margin:var(--s-3) 0 0}
   .preview .prev-terms{grid-column:8/-1;grid-row:1/span 4;align-self:end;margin:0;max-width:none}
@@ -1395,7 +1444,6 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   main.wrap>section>h2.sec{grid-column:1/span 5}
   main.wrap>section>.sec-lead,
   main.wrap>section>.svc-lead{grid-column:7/span 5}
-  .faq-list{column-gap:clamp(34px,2.6vw,56px)}
 }
 
 /* ---------- responsive ---------- */
@@ -1427,11 +1475,10 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
 @media(max-width:960px){
   /* Fluid rather than a hard 22px: at 960 a phone gutter looks like a
      mistake, and at 360 a tablet gutter eats the content. */
-  :root{--gutter:clamp(20px,4.6vw,44px);--nav-h:73px}
+  :root{--gutter:var(--page-gutter-sm);--nav-h:73px}
   /* work cards become compact media-left rows under 700px (two stacked
      columns from 700 to 960, further down): the 7-card stack drops from
      ~4.5 viewports to ~1.5 while keeping the real screenshots visible */
-  .work-grid{gap:var(--s-4)}
   /* minmax(0,1fr), never a bare 1fr: a bare 1fr track carries
      min-width:auto, so it inflates to the longest unbreakable word
      ("AlmaFlowClim", "applications") instead of shrinking. At 280px that
@@ -1445,13 +1492,13 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
      "R L'AVENIR, ENSE". The base .proj .shot rule now anchors top-left at
      every width (and top-right for the RTL site), so nothing to restate. */
   .work-grid>.proj .browser{display:none}
-  .work-grid>.proj .body{padding:var(--s-4);min-width:0}
-  .work-grid>.proj .cat{font-size:var(--t-label);letter-spacing:.12em;margin-bottom:6px}
-  .work-grid>.proj h3{font-size:clamp(16px,4.2vw,19px);margin-bottom:6px;overflow-wrap:anywhere}
+  .work-grid>.proj .body{padding:var(--card-pad);min-width:0}
+  .work-grid>.proj .cat{font-size:var(--t-label);letter-spacing:.12em;margin-bottom:var(--s-2)}
+  .work-grid>.proj h3{font-size:clamp(16px,4.2vw,19px);margin-bottom:var(--s-2);overflow-wrap:anywhere}
   /* No line-clamp. Truncating to two lines discarded 50–86% of every
      description — one card wanted 254px of copy and showed 36px. If the
      card is too tall the answer is shorter copy, not hidden copy. */
-  .work-grid>.proj p{font-size:13px;line-height:1.5;min-height:0;margin-bottom:10px}
+  .work-grid>.proj p{font-size:var(--t-small);line-height:1.5;min-height:0;margin-bottom:var(--s-3)}
   /* tags fold away on phones — except "Démo portfolio", which is a claim, not decoration */
   .work-grid>.proj .pills:not(:has(.concept)),.work-grid>.proj .pill:not(.concept){display:none}
   /* the two ways on as two equal 44px cells (a lone link spans both) */
@@ -1484,7 +1531,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .svc-row .glyph{width:40px;height:40px}
   .svc-row h3{overflow-wrap:anywhere}
   .svc-row + .svc-row{margin-top:var(--s-4)}
-  .preview{padding:26px;margin-bottom:var(--s-6)}
+  .preview{margin-bottom:var(--s-6)}
   /* Section headers were spending ~266px before a single word of content,
      nine times over. Tighten the kicker → title → lead rhythm; the type
      scale already shrinks here, so the desktop spacing reads as a gap
@@ -1495,7 +1542,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .sec-lead,.svc-lead{margin-bottom:var(--head-gap)}
   .capabilities{margin-top:var(--s-6)}
   /* mobile overlay: bring the language + close controls up to a 44px touch target */
-  .mobile-menu .lang :is(a,button){padding:12px 16px;font-size:14px;min-height:44px;display:inline-flex;align-items:center}
+  .mobile-menu .lang :is(a,button){padding:var(--s-3) var(--s-4);font-size:14px;min-height:44px;display:inline-flex;align-items:center}
   .mobile-menu .close{width:44px;height:44px;display:grid;place-items:center;top:14px;inset-inline-end:14px;line-height:1}
   /* the wordmark is a tap target too */
   .logo{min-height:44px;display:inline-flex;align-items:center}
@@ -1518,9 +1565,9 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   .hero .eyebrow{order:1;margin-bottom:var(--s-4)}
   .hero-h{order:2}
   .hero .dim-line{order:3;margin-top:var(--s-4)}
-  .hero-cta{order:4;margin-top:var(--s-5)}
+  .hero-cta{order:4}
   .plate-wrap{order:5;margin-top:var(--s-6)}
-  .hero .lede{order:6;font-size:17px;line-height:1.5;max-width:34em;margin-top:var(--s-6)}
+  .hero .lede{order:6;font-size:var(--t-lead);line-height:1.5;max-width:34em;margin-top:var(--s-6)}
 }
 
 /* ============================================================
@@ -1552,7 +1599,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   /* must clear the fixed navbar, not merely be small: a flat 50px here
      put the eyebrow underneath a 73px bar */
   .hero{padding-block:calc(var(--nav-h) + var(--s-3)) var(--s-6)}
-  section{padding-block:36px}
+  section{padding-block:var(--s-6)}
   .hero-grid{gap:var(--s-5)}
   .mobile-menu{gap:var(--s-3);justify-content:safe flex-start}
   .mobile-menu nav a{font-size:clamp(20px,6.4vh,32px)}
@@ -1579,9 +1626,7 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
 @media(max-width:360px){
   /* a 96px label column is a third of a 280px screen, and forced
      hello@numidealabs.com to break mid-domain */
-  .channels .ch{grid-template-columns:minmax(0,1fr);gap:6px}
-  .hero-cta{gap:var(--s-3)}
-  .hero-cta .btn{width:100%;justify-content:center}
+  .channels .ch{grid-template-columns:minmax(0,1fr);gap:var(--s-2)}
 }
 @media(max-width:380px){
   /* the switch's three targets and the menu button left the 18px mark (144px
@@ -1612,9 +1657,9 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
    would ever catch.
    ============================================================ */
 @media (pointer:coarse){
-  .nav-links a{padding-block:12px}
+  .nav-links a{padding-block:var(--s-3)}
   .theme-btn{min-width:44px;min-height:44px;display:grid;place-items:center}
-  .lang :is(a,button){padding-inline:12px}   /* 44px tall at every width (above); wider under a finger */
+  .lang :is(a,button){padding-inline:var(--s-3)}   /* 44px tall at every width (above); wider under a finger */
   /* the footer links' 44px: after the visual pass's footer rule, further down */
   .contact .ch dd a{min-height:44px;display:inline-flex;align-items:center}
   .logo{min-height:44px;display:inline-flex;align-items:center}
@@ -1639,8 +1684,8 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
 
 
 /* ---------- tiers ---------- */
-.tiers{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5);margin-bottom:var(--s-5)}
-.tier{position:relative;display:flex;flex-direction:column;padding:var(--s-6) var(--s-5) var(--s-5);
+.tiers{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--col-gap);margin-bottom:var(--s-5)}
+.tier{position:relative;display:flex;flex-direction:column;padding:var(--card-pad);
   border:1px solid var(--hairline);border-radius:var(--r-lg);background:var(--navy);
   background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 42%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgb(var(--shade) / calc(.85 * var(--shade-k)));
@@ -1653,22 +1698,22 @@ html[dir="rtl"] .kicker::before{background:linear-gradient(270deg,var(--crimson)
   0 0 0 1px color-mix(in srgb,var(--teal) 18%,transparent),0 28px 60px -36px rgb(var(--shade) / calc(.9 * var(--shade-k)))}
 .t-pop{position:absolute;top:0;inset-inline-start:var(--s-5);transform:translateY(-50%);
   font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
-  color:var(--void);background:var(--teal-text);padding:4px 10px;border-radius:var(--r-pill)}
+  color:var(--void);background:var(--teal-text);padding:var(--s-1) var(--s-3);border-radius:var(--r-pill)}
 /* the price is the card's feature and the name its title (it was the other
    way round: a 30px name over a figure that fell to 19px) */
-.tier h3{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.6vw,30px);
-  letter-spacing:-.02em;color:var(--ice);margin-bottom:6px}
+.tier h3{font-family:var(--font-display);font-weight:600;
+  letter-spacing:-.02em;color:var(--ice);margin-bottom:var(--s-2)}
 html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
 .t-for{color:var(--body-strong);font-size:14px;line-height:1.55;margin-bottom:var(--s-5)}
 .t-range{font-family:var(--font-display);font-size:clamp(19px,2.2vw,25px);letter-spacing:-.02em;
-  color:var(--ice);margin-bottom:4px}
+  color:var(--ice);margin-bottom:var(--s-1)}
 .t-range b{font-weight:700}
 .t-range .cur,.eo-range .cur{font-family:var(--font-mono);font-size:.62em;letter-spacing:.08em;
-  color:var(--teal-text);margin-inline-start:4px}
+  color:var(--teal-text);margin-inline-start:var(--s-1)}
 .t-time{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--faint);padding-bottom:var(--s-5);margin-bottom:var(--s-5);border-bottom:1px solid var(--hairline)}
 .t-list{list-style:none;display:grid;gap:var(--s-3)}
-.t-list li{position:relative;padding-inline-start:22px;color:var(--body-strong);font-size:14px;line-height:1.55}
+.t-list li{position:relative;padding-inline-start:var(--s-5);color:var(--body-strong);font-size:14px;line-height:1.55}
 /* a check, two strokes in teal (the L turned the other way read as a
    down-chevron, eight disclosures a card); the mirror image in Arabic */
 .t-list li::before{content:"";position:absolute;inset-inline-start:2px;top:.3em;width:6px;height:11px;box-sizing:border-box;
@@ -1690,7 +1735,7 @@ html[dir="rtl"] .t-list li::before{transform:rotate(-45deg)}
 .est-field legend,.est-field>label,.est-lab{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);
   text-transform:uppercase;color:var(--faint);margin-bottom:var(--s-3);padding:0;display:flex;
   align-items:baseline;gap:var(--s-3)}
-.est-sizev{font-family:var(--font-display);font-size:17px;letter-spacing:-.01em;color:var(--teal-text);font-weight:600}
+.est-sizev{font-family:var(--font-display);letter-spacing:-.01em;color:var(--teal-text);font-weight:600}
 .est-hint{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--faint);display:block;margin-top:var(--s-3)}
 
@@ -1759,11 +1804,11 @@ html[dir="rtl"] .est-field input[type="range"]::-moz-range-track{background:line
 .eo-dash{color:var(--faint);margin:0 .22em;font-weight:400}
 .eo-time{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--faint);font-variant-numeric:tabular-nums}
-.eo-sum{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:var(--s-2) 0}
+.eo-sum{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s-2);margin:var(--s-2) 0}
 .eo-sum li{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.06em;color:var(--body-strong);
-  border:1px solid var(--hairline-2);border-radius:var(--r-pill);padding:4px 9px}
+  border:1px solid var(--hairline-2);border-radius:var(--r-pill);padding:var(--s-1) var(--s-2)}
 .eo-sum .eo-head{border-color:var(--teal);color:var(--teal-text)}
-.eo-fine{color:var(--faint);font-size:13px;line-height:1.6;max-width:46em}
+.eo-fine{color:var(--faint);line-height:1.6;max-width:46em}
 .est-out .btn{align-self:flex-start;margin-top:var(--s-2)}
 
 /* ===== r3/c: visualisations and motion =====
@@ -1798,7 +1843,7 @@ html[dir="rtl"] .est-field input[type="range"]::-moz-range-track{background:line
 .ptl-s:not(:last-child)::after{content:"";position:absolute;z-index:0;inset-inline-start:11px;top:10px;
   width:2px;height:calc(100% + var(--s-4));background:color-mix(in srgb,var(--teal) 45%,transparent);
   transform-origin:50% 0}
-.ptl-m{position:relative;z-index:1;grid-row:1/span 2;justify-self:center;margin-top:4px;
+.ptl-m{position:relative;z-index:1;grid-row:1/span 2;justify-self:center;margin-top:var(--s-1);
   width:12px;height:12px;border:2px solid var(--teal);border-radius:50%;background:var(--void)}
 /* the build is the one filled ring (its "5 jours ouvrés" label says the
    rest): the five squares it had read as a glitch in the line of rings */
@@ -1812,28 +1857,28 @@ html[dir="rtl"] .est-field input[type="range"]::-moz-range-track{background:line
 html[dir="rtl"] .ptl-t{font-family:var(--font-ar-display)}
 /* the step's duration as a small pill at the start of its column */
 .ptl-d{grid-column:2;justify-self:start;font-family:var(--font-mono);font-size:var(--t-label);line-height:1.5;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px;
-  padding:2px 8px;border:1px solid var(--hairline-2);border-radius:var(--r-pill)}
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:var(--s-2);
+  padding:2px var(--s-2);border:1px solid var(--hairline-2);border-radius:var(--r-pill)}
 html[dir="rtl"] .ptl-d{letter-spacing:0}
-.ptl-zero{grid-column:2;justify-self:start;margin-top:2px;font-family:var(--font-display);font-weight:700;
+.ptl-zero{grid-column:2;justify-self:start;margin-top:var(--s-1);font-family:var(--font-display);font-weight:700;
   font-size:var(--t-title);line-height:1.15;letter-spacing:-.01em;color:var(--ice);white-space:nowrap;
   font-variant-numeric:tabular-nums}
 .ptl-zero .cur{font-family:var(--font-mono);font-size:var(--t-small);font-weight:400;letter-spacing:.06em;color:var(--teal-text)}
 html[dir="rtl"] .ptl-zero,html[dir="rtl"] .ptl-zero .cur{letter-spacing:0}
 /* what the step means, in a sentence: the method's own words */
-.ptl-p{grid-column:2;font-size:var(--t-ui);line-height:1.55;color:var(--muted);margin-top:4px;max-width:38em}
+.ptl-p{grid-column:2;font-size:var(--t-ui);line-height:1.55;color:var(--muted);margin-top:var(--s-1);max-width:38em}
 @container (min-width:720px){
   .ptl{grid-template-columns:repeat(5,minmax(0,1fr));gap:0 var(--s-5)}
   .ptl-s{grid-template-columns:minmax(0,1fr);grid-template-rows:24px;row-gap:0}
   .ptl-s:not(:last-child)::after{top:11px;inset-inline-start:6px;width:calc(100% + var(--s-5));height:2px;
     transform-origin:0 50%}
   html[dir="rtl"] .ptl-s:not(:last-child)::after{transform-origin:100% 50%}
-  .ptl-m{grid-row:1;justify-self:start;margin-top:6px}
+  .ptl-m{grid-row:1;justify-self:start;margin-top:var(--s-2)}
   .ptl-dec .ptl-m{margin-inline-start:1px}
   .ptl-t,.ptl-d,.ptl-zero,.ptl-p{grid-column:1}
-  .ptl-t{margin-top:6px}
-  .ptl-zero{margin-top:4px}
-  .ptl-p{margin-top:6px}
+  .ptl-t{margin-top:var(--s-2)}
+  .ptl-zero{margin-top:var(--s-1)}
+  .ptl-p{margin-top:var(--s-2)}
 }
 /* entrance: each moment's mark in turn — the line out of it draws once it
    has appeared, the five days fill one by one, the decision lands last.
@@ -1884,7 +1929,7 @@ html.js .t-weeks{display:block;padding-bottom:var(--s-4);margin-bottom:var(--s-5
   transform-origin:0 50%}
 html[dir="rtl"] .t-wk b{transform-origin:100% 50%}
 /* the ruler's two ends, under its ticks: 0 and the longest delivery */
-.t-wk-n{display:flex;justify-content:space-between;gap:var(--s-3);height:16px;margin-top:12px;
+.t-wk-n{display:flex;justify-content:space-between;gap:var(--s-3);height:16px;margin-top:var(--s-3);
   font-family:var(--font-mono);font-size:var(--t-label);line-height:16px;letter-spacing:.06em;
   color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 html[dir="rtl"] .t-wk-n{letter-spacing:0}
@@ -1916,7 +1961,7 @@ html.js .esc{display:block;container-type:inline-size;margin:var(--s-2) 0 var(--
 .esc-cap::before{content:"";position:absolute;inset-inline-start:-1px;top:2px;bottom:0;width:2px;
   background:linear-gradient(var(--teal) 0 14px,color-mix(in srgb,var(--teal) 45%,transparent) 14px)}
 html[dir="rtl"] .esc-bar{transform-origin:100% 50%}
-.esc-nm{position:relative;display:block;height:16px;margin-top:6px}
+.esc-nm{position:relative;display:block;height:16px;margin-top:var(--s-2)}
 .esc-nm span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap;font-family:var(--font-mono);
   font-size:var(--t-label);line-height:16px;color:var(--muted);transition:opacity .5s var(--ease-out) var(--bd,0s)}
 html[dir="rtl"] .esc-nm span{transform:translateX(50%)}
@@ -1958,10 +2003,10 @@ html[dir="rtl"] .mkv-tk span{transform:translateX(50%)}
    on the bars) */
 .mkv-g{grid-template-rows:auto repeat(4,22px)}
 .mkv-hd{grid-column:1/-1;grid-row:1;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
-  gap:2px var(--s-3);padding-bottom:6px;margin-bottom:6px;border-bottom:1px solid var(--hairline)}
+  gap:var(--s-1) var(--s-3);padding-bottom:var(--s-2);margin-bottom:var(--s-2);border-bottom:1px solid var(--hairline)}
 .mkv-ty{font-family:var(--font-display);font-weight:600;font-size:var(--t-ui);color:var(--ice)}
 html[dir="rtl"] .mkv-ty{font-family:var(--font-ar-display)}
-.mkv-nv{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:var(--t-small);
+.mkv-nv{display:inline-flex;align-items:center;gap:var(--s-2);font-family:var(--font-display);font-size:var(--t-small);
   font-weight:600;color:var(--ice);font-variant-numeric:tabular-nums;white-space:nowrap}
 .mkv-nv::before{content:"";flex:none;width:12px;height:8px;border-radius:min(var(--r-sm),2px);background:var(--teal)}
 /* decoration under the lanes, never the pointer's target: on a phone-width
@@ -1992,7 +2037,7 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
    its transform: a new label is a new width, and a box pinned by its other
    edge would move its start corner with every change of text, which Chrome
    counts as a layout shift (a mouse move or a scroll is not an input). */
-.mkv-tip{position:absolute;top:0;inset-inline-start:0;z-index:3;display:grid;gap:2px;padding:8px 11px;pointer-events:none;
+.mkv-tip{position:absolute;top:0;inset-inline-start:0;z-index:3;display:grid;gap:var(--s-1);padding:var(--s-2) var(--s-3);pointer-events:none;
   opacity:0;transition:opacity var(--dur-fast);border:1px solid var(--hairline-2);border-radius:var(--r-sm);
   background:var(--plum);box-shadow:0 12px 30px -14px rgb(var(--shade) / calc(.8 * var(--shade-k)));
   font-family:var(--font-display);font-size:var(--t-small);line-height:1.5;color:var(--body-strong);
@@ -2012,7 +2057,7 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
   .mkv-plot{grid-template-columns:minmax(0,1fr)}
   /* the unit on a line of its own above the scale, at the start: at the end
      of the scale's line it printed over the last label ("10 M" under "DA") */
-  .mkv-ax{grid-template-rows:auto auto;row-gap:2px}
+  .mkv-ax{grid-template-rows:auto auto;row-gap:var(--s-1)}
   .mkv-ax>*{grid-column:1}
   .mkv-unit{grid-row:1;justify-self:start}
   .mkv-tk{grid-row:2}
@@ -2032,7 +2077,7 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
   .mkv-lab{grid-row:1;line-height:18px}
   .mkv-trk{grid-row:2;height:18px}
   /* the hover label in the label size, so its longest range fits a 180px plot */
-  .mkv-tip{padding:6px 8px;font-size:var(--t-label)}
+  .mkv-tip{padding:var(--s-2) var(--s-2);font-size:var(--t-label)}
 }
 /* entrance: the gridlines and Numidea's band settle, then each range draws
    from its low end, group by group */
@@ -2043,9 +2088,12 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
 
 /* -- focus: a keyboard reaches a button with the same answer a pointer gets
    on hover (the ring stays the focus indicator; this is the response) -- */
-.btn-primary:focus-visible{box-shadow:var(--glow-crimson);transform:translateY(-2px)}
-.btn-teal:focus-visible{box-shadow:var(--glow-teal);background:color-mix(in srgb,var(--teal) 8%,transparent)}
-.btn-ghost:focus-visible{border-color:var(--ice)}
+/* focus is the ring (:focus-visible above) and the hover's fill, nothing
+   more: the primary's 34px bloom and 2px lift on focus were the one state
+   the hover did not have */
+.btn-primary:focus-visible{background:var(--crimson-hi);border-color:var(--crimson-hi)}
+.btn-teal:focus-visible{background:color-mix(in srgb,var(--teal) 8%,transparent);border-color:var(--teal-text)}
+.btn-ghost:focus-visible{color:var(--ice);text-decoration-color:currentColor}
 
 /* -- press: buttons and chips answer the finger (hover lifts were already
    there; this is the moment of the press) -- */
@@ -2086,12 +2134,12 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
 /* ---------- market comparison + pricing models ----------
    Same panel idiom as the estimator, and token-driven
    throughout: a literal colour here would be right in one palette only. */
-.market,.models{border:1px solid var(--hairline);border-radius:var(--r-lg);padding:var(--s-6) var(--s-5);
+.market,.models{border:1px solid var(--hairline);border-radius:var(--r-lg);padding:var(--card-pad);
   background:var(--navy);background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 40%);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgb(var(--shade) / calc(.85 * var(--shade-k)));
   margin-bottom:var(--s-8)}
 .mk-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(19px,2.4vw,26px);
-  letter-spacing:-.015em;color:var(--ice);margin-bottom:6px}
+  letter-spacing:-.015em;color:var(--ice);margin-bottom:var(--s-2)}
 html[dir="rtl"] .mk-head h3{font-family:var(--font-ar-display)}
 .mk-head p{color:var(--body-strong);font-size:14px;line-height:1.6;max-width:56em;margin-bottom:var(--s-5)}
 .mk-cur{margin-bottom:var(--s-5)}
@@ -2099,7 +2147,7 @@ html[dir="rtl"] .mk-head h3{font-family:var(--font-ar-display)}
 /* the price currency switch: the same chips, above the tiers */
 .pr-cur{margin-bottom:var(--s-4)}
 .pr-cur legend{color:var(--body-strong)}
-.pr-cur-note{color:var(--muted);font-size:13px;line-height:1.6;max-width:56em;margin:0 0 var(--s-5)}
+.pr-cur-note{color:var(--muted);font-size:var(--t-small);line-height:1.6;max-width:56em;margin:0 0 var(--s-5)}
 .pr-cur-note[hidden]{display:none}
 .price-note .pr-ret{white-space:nowrap}
 
@@ -2113,7 +2161,7 @@ html[dir="rtl"] .mk-head h3{font-family:var(--font-ar-display)}
 .mk-table{width:100%;min-width:640px;border-collapse:collapse;font-variant-numeric:tabular-nums}
 .mk-table caption{caption-side:top;text-align:start;padding:var(--s-4) var(--s-4) var(--s-2);
   font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--faint)}
-.mk-table th,.mk-table td{padding:13px var(--s-4);text-align:start;border-bottom:1px solid var(--hairline);vertical-align:middle}
+.mk-table th,.mk-table td{padding:var(--s-3) var(--s-4);text-align:start;border-bottom:1px solid var(--hairline);vertical-align:middle}
 .mk-table tbody tr:last-child>*{border-bottom:0}
 .mk-table thead th{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--faint);font-weight:500}
@@ -2137,8 +2185,8 @@ html[dir="rtl"] .mk-table tbody th{font-family:var(--font-ar-display)}
   .mk-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
   .mk-table tbody{display:grid;gap:var(--s-3)}
   .mk-table tbody tr{display:flex;flex-direction:column;border:1px solid var(--hairline);border-radius:var(--r-md);background:color-mix(in srgb,var(--void) 40%,transparent);overflow:hidden}
-  .mk-table tbody th{display:block;order:-2;position:static;width:auto;min-width:0;white-space:normal;padding:12px 14px;border-bottom:1px solid var(--hairline)}
-  .mk-table td{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s-3);white-space:normal;padding:9px 14px;border-bottom:1px solid var(--hairline)}
+  .mk-table tbody th{display:block;order:-2;position:static;width:auto;min-width:0;white-space:normal;padding:var(--s-3) var(--s-4);border-bottom:1px solid var(--hairline)}
+  .mk-table td{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s-3);white-space:normal;padding:var(--s-2) var(--s-4);border-bottom:1px solid var(--hairline)}
   .mk-table td::before{content:attr(data-l);flex:none;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--faint);font-weight:400}
   .mk-table td.mk-nl{order:-1}
   .mk-table td.mk-nl::before{color:var(--teal-text)}
@@ -2153,37 +2201,37 @@ html[dir="rtl"] .mk-table tbody th{font-family:var(--font-ar-display)}
 
 .mk-day{margin:var(--s-5) 0 var(--s-3);padding:var(--s-4) var(--s-5);border-inline-start:2px solid var(--teal);
   border-radius:var(--r-sm);background:color-mix(in srgb,var(--teal) 7%,transparent);
-  color:var(--body-strong);font-size:15px;line-height:1.6}
+  color:var(--body-strong);line-height:1.6}
 .mk-num{font-family:var(--font-display);font-weight:700;color:var(--ice);font-variant-numeric:tabular-nums;white-space:nowrap}
-.mk-note{color:var(--muted);font-size:13px;line-height:1.65;max-width:62em;margin-bottom:var(--s-4)}
+.mk-note{color:var(--muted);line-height:1.65;max-width:62em;margin-bottom:var(--s-4)}
 .mk-src summary{cursor:pointer;font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.1em;text-transform:uppercase;
   color:var(--teal-text);display:inline-flex;align-items:center;min-height:44px}
 .mk-src summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:var(--r-sm)}
-.mk-src p,.mk-src li{color:var(--muted);font-size:13px;line-height:1.65}
+.mk-src p,.mk-src li{color:var(--muted);line-height:1.65}
 .mk-src p{margin:var(--s-2) 0 var(--s-3);max-width:62em}
 .mk-src ul{list-style:none;display:grid;gap:var(--s-2)}
 /* each source is its own 40px item in the line (as inline runs, two links
    that wrapped shared the same lines and one tap could land on either) */
-.mk-src li{display:flex;flex-wrap:wrap;align-items:center;gap:0 8px;margin-bottom:8px}
+.mk-src li{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s-2);margin-bottom:var(--s-2)}
 .mk-src li b{color:var(--body-strong);font-weight:600}
 .mk-src a{color:var(--teal-text);text-decoration:underline;text-underline-offset:2px}
 .mk-src li a{display:inline-flex;align-items:center;min-height:40px}
 
-.md-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4);margin-bottom:var(--s-7)}
-.md-card{display:flex;flex-direction:column;gap:var(--s-2);padding:var(--s-5);border:1px solid var(--hairline);
+.md-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--col-gap);margin-bottom:var(--s-7)}
+.md-card{display:flex;flex-direction:column;gap:var(--s-2);padding:var(--card-pad);border:1px solid var(--hairline);
   border-radius:var(--r-md);background:color-mix(in srgb,var(--void) 35%,transparent)}
 .md-ours{border-color:color-mix(in srgb,var(--teal) 45%,transparent)}
 .md-tag{align-self:flex-start;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
-  color:var(--void);background:var(--teal-text);padding:3px 9px;border-radius:var(--r-pill);margin-bottom:var(--s-2)}
-.md-card h4{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em;color:var(--ice)}
+  color:var(--void);background:var(--teal-text);padding:var(--s-1) var(--s-2);border-radius:var(--r-pill);margin-bottom:var(--s-2)}
+.md-card h4{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;color:var(--ice)}
 html[dir="rtl"] .md-card h4{font-family:var(--font-ar-display)}
 .md-card p{color:var(--body-strong);font-size:14px;line-height:1.6}
-.md-card .md-where{margin-top:auto;padding-top:var(--s-3);border-top:1px solid var(--hairline);color:var(--muted);font-size:13px}
-.md-sub{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+.md-card .md-where{margin-top:auto;padding-top:var(--s-3);border-top:1px solid var(--hairline);color:var(--muted);font-size:var(--t-small)}
+.md-sub{font-family:var(--font-mono);text-transform:uppercase;color:var(--faint);
   margin-bottom:var(--s-4)}
 .md-drivers{list-style:none;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4) var(--s-5)}
-.md-drivers li{display:flex;flex-direction:column;gap:4px;padding-inline-start:var(--s-4);border-inline-start:2px solid var(--hairline-2)}
-.md-drivers b{font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--ice)}
+.md-drivers li{display:flex;flex-direction:column;gap:var(--s-1);padding-inline-start:var(--s-4);border-inline-start:2px solid var(--hairline-2)}
+.md-drivers b{font-family:var(--font-display);font-weight:600;font-size:var(--t-body);color:var(--ice)}
 html[dir="rtl"] .md-drivers b{font-family:var(--font-ar-display)}
 .md-drivers span{color:var(--muted);font-size:14px;line-height:1.55}
 @media (min-width:720px){
@@ -2197,7 +2245,7 @@ html[dir="rtl"] .md-drivers b{font-family:var(--font-ar-display)}
 }
 
 /* ---------- WhatsApp ---------- */
-.wa-link{display:inline-flex;align-items:center;gap:9px}
+.wa-link{display:inline-flex;align-items:center;gap:var(--s-2)}
 .wa-i{flex:none;width:19px;height:19px;display:block}
 .wa-i svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.5;
   stroke-linecap:round;stroke-linejoin:round}
@@ -2211,11 +2259,11 @@ a.wa-link[aria-disabled="true"]{text-decoration:none}
   .est-opts{grid-template-columns:repeat(2,minmax(0,1fr))}
   /* one tier a row until 961px: three abreast from 720 squeezed each list
      into ~200px. The list takes two columns instead, so the card stays short */
-  .t-list{display:block;columns:2;column-gap:24px}
+  .t-list{display:block;columns:2;column-gap:var(--s-5)}
   .t-list li{break-inside:avoid;margin-bottom:var(--s-3)}
 }
 @media (min-width:961px){
-  .tiers{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.6vw,24px)}
+  .tiers{grid-template-columns:repeat(3,minmax(0,1fr))}
   /* the three cards share six rows (subgrid): name, line, price, weeks, the
      ruler and the list start level, whatever the header copy wraps to */
   .tiers>.tier{display:grid;grid-template-rows:subgrid;grid-row:span 6;align-content:start}
@@ -2635,17 +2683,17 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
    16:10 capture, so four cards showed a plain gradient and Bordj read
    "L'AVENIR, ENS". Stacked, every box is the capture's own shape. */
 @media (min-width:700px) and (max-width:960px){
-  .work-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-5)}
+  .work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .work-grid>.proj{display:flex}
   .work-grid>.proj .thumb{aspect-ratio:16/10;height:auto;min-height:0}
   .work-grid>.proj--wide{grid-column:span 2}
   .work-grid>.proj--wide .thumb{aspect-ratio:2/1}
-  .work-grid>.proj .body{padding:var(--s-5)}
+  .work-grid>.proj .body{padding:var(--card-pad)}
 }
 /* "Voir les 5 autres services": the label was squeezed to three lines beside
    its hint. Under 900px the hint drops to its own line. */
 @media (max-width:899px){
-  .capabilities>summary{flex-wrap:wrap;row-gap:6px}
+  .capabilities>summary{flex-wrap:wrap;row-gap:var(--s-2)}
   .capabilities>summary .hint{order:3;flex-basis:100%}
 }
 
@@ -2673,7 +2721,6 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 @media (min-width:1100px){
   .work-grid>.proj--wide{grid-column:span 2!important}
   .work-grid>.proj--wide .thumb{aspect-ratio:21/9}
-  .work-grid>.proj--wide h3{font-size:clamp(22px,2vw,28px)}
   .work-grid>.proj--wide p{min-height:0}
 }
 /* every card in a row ends on the same line: actions pinned to the bottom */
@@ -2681,10 +2728,17 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 .proj .body{flex:1;display:flex;flex-direction:column}
 .proj .actions{margin-top:auto}
 
-/* ---- Services: 6-col bento, two large offers over three ---- */
-@media (min-width:961px){
+/* ---- Services: 6-col bento, two large offers over three ----
+   On a tablet (700-960) the five are three over two on the same six
+   columns: two columns left the fifth alone on a 745px row. */
+@media (min-width:700px){
   .svc-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
   .svc-grid>.svc-row{grid-column:span 2!important}
+}
+@media (min-width:700px) and (max-width:960px){
+  .svc-grid>.svc-row:nth-child(n+4){grid-column:span 3!important}
+}
+@media (min-width:961px){
   .svc-grid>.svc-row:nth-child(-n+2){grid-column:span 3!important}
 }
 
@@ -2716,12 +2770,12 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 .nav-links a{position:relative}
 .nav-links a[aria-current="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--crimson)}
 /* phones: the links are folded into the menu, so a breadcrumb names the section */
-.crumb{display:none;align-items:center;gap:6px;min-width:0;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+.crumb{display:none;align-items:center;gap:var(--s-2);min-width:0;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
   opacity:0;transition:opacity .25s}
 .crumb i{font-style:normal;color:var(--faint)}
 .crumb b{font-weight:400;color:var(--crimson-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .crumb.on{opacity:1}
-@media (max-width:960px){.crumb{display:inline-flex;flex:1 1 auto;margin-inline-start:12px}}
+@media (max-width:960px){.crumb{display:inline-flex;flex:1 1 auto;margin-inline-start:var(--s-3)}}
 @media (max-width:359px){.crumb{display:none}}
 html[dir="rtl"] .crumb{letter-spacing:0}
 
@@ -2748,16 +2802,27 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
 /* ═══════════════════════════ DESIGN SYSTEM ═══════════════════════════
    One scale, applied last so it wins over the per-section sizes that had
    piled up: the page was rendering 36 font sizes, 41 letter-spacings and
-   seven different card-title sizes. Seven text steps below the display
-   headings, three corner radii, one section rhythm. */
+   seven different card-title sizes. Six text steps (12 14 16 19 24 32)
+   under three display clamps (the hero, the section heading, the feature),
+   three corner radii, one section rhythm. Fleet 4 (2026-11-07): the 13,
+   13.5, 12.5, 15 and 17px strays snapped to the steps, and the hero now
+   tops the section heading by half again (it measured 61.92 against 61.95
+   at 1440, and card titles outranked both on a phone). */
 :root{
   --t-label:12px;    /* mono caps: kickers, eyebrows, captions, column heads, field labels (11px with .14em tracking was the hardest read on the page) */
-  --t-small:13px;    /* fine print, notes, sources */
+  --t-small:14px;    /* fine print, notes, sources (13px was a step of its own) */
   --t-ui:14px;       /* buttons, chips, form controls */
-  --t-body:15px;     /* card copy */
-  --t-lead:18px;     /* section intros, promises, bios, questions */
-  --t-title:22px;    /* every card title */
-  --t-feature:30px;  /* featured titles and price figures */
+  --t-body:16px;     /* card copy and answers; 17px from 1024px (below) */
+  --t-lead:19px;     /* section intros, promises, the hero's lede, questions */
+  --t-title:24px;    /* every card title; 19px on a phone (below), under the 26px section heading */
+  --t-feature:clamp(22px,17px + 1.1vw,30px);   /* featured titles and price figures */
+  --t-cv:15px;       /* the founder's timeline and CV, a step under the card copy */
+  --t-display:32px;  /* the top step: a sub-page's section heading */
+  /* h2.sec and the contact heading, declared once: 24px on a phone, 40 from
+     1440, two-thirds of the hero or less (62px in Cinzel, 81 in Geist at
+     1440). At 52px the engraved hero had to reach 81 to top it by half, and
+     ran five lines with its buttons under the fold of a 1440x900 screen. */
+  --t-h2:clamp(24px,13px + 1.9vw,40px);
   --ls-label:.14em;
   --r-lg:var(--r-md);   /* panels share the card radius: 4 / 8 / 14 */
   /* one section rhythm at every width (56px on a phone, 82 at 1440, 144 on
@@ -2771,6 +2836,8 @@ html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
    at the same size, so the 11px labels and 13px notes were the hardest read
    on the Arabic page (audit, 2026-10-31) */
 html[dir="rtl"]{--t-label:13px;--t-small:14px;--t-body:16px}
+@media (min-width:1024px){:root,html[dir="rtl"]{--t-body:17px}}
+@media (max-width:599px){:root{--t-title:19px}}
 
 /* labels */
 .kicker,.eyebrow,.tag,.svc-row .fam,.cap .fam,.t-pop,.md-tag,.md-sub,.eo-k,.est-hint,
@@ -2783,7 +2850,7 @@ html[dir="rtl"]{--t-label:13px;--t-small:14px;--t-body:16px}
 /* the service family was a sentence-case white line here: it is the same
    eyebrow as everywhere else now. Not the kicker's accent: at 11px on a card
    surface the accent fell under 4.5:1 in Noir and Mono. */
-.svc-row .fam,.cap .fam{display:block;color:var(--body-strong);margin-bottom:8px}
+.svc-row .fam,.cap .fam{display:block;color:var(--body-strong);margin-bottom:var(--s-2)}
 .t-time{color:var(--muted)}
 
 /* small */
@@ -2794,32 +2861,45 @@ html[dir="rtl"]{--t-label:13px;--t-small:14px;--t-body:16px}
 /* body */
 .proj .body p,.svc-row .brief,.preview .brief,.cap .brief,.t-for,.t-list li,.est-head p,
 .mk-head p,.price-note,.md-card p:not(.md-where),.proof-line,.mk-day,.outcome span,
-.faq-item .a,.faq-item p{font-size:var(--t-body);line-height:1.6}
+.faq-item .a,.faq-item p,.fd-bio{font-size:var(--t-body);line-height:1.6}
+/* a running paragraph keeps a reading measure, 75 characters at most,
+   wherever its box is wider (the estimator's intro ran 119 characters a line
+   at 1440, the market panel's day rate 160). In em, not ch: Geist's zero is
+   .66em wide, so 66ch let 100 characters through. */
+.est-head p,.mk-head p,.mk-note,.mk-day,.mk-src p,.mk-src li,.pr-cur-note,.eo-fine,.price-note,.proj .body p,.faq-item .a,.faq-item p,.fd-bio,.preview .prev-terms{max-width:31em}
 
 /* lead */
-.sec-lead,.svc-lead,.contact .sub,.hero .lede,.fd-bio,.faq-item summary .q,
+.sec-lead,.svc-lead,.contact .sub,.hero .lede,.faq-item summary .q,
 .svc-row .promise,.preview .promise,.cap .promise,.est-sizev{font-size:var(--t-lead);line-height:1.5}
-.svc-row .promise,.preview .promise,.cap .promise{margin:4px 0 var(--s-3)}
+.svc-row .promise,.preview .promise,.cap .promise{margin:var(--s-1) 0 var(--s-3)}
 
 /* titles */
-.proj h3,.work-grid>.proj h3,.svc-row h3,.cap h4,.md-card h4,
+.proj h3,.work-grid>.proj h3,.svc-row h3,.tier h3,.cap h4,.md-card h4,
 .scene-banner b{font-size:var(--t-title);line-height:1.2;letter-spacing:-.01em}
-.preview h3,.tier h3,.fd-id h3,.mk-head h3,
+.preview h3,.fd-id h3,.mk-head h3,
 .work-grid>.proj--wide h3{font-size:var(--t-feature);line-height:1.15;letter-spacing:-.015em}
 /* price figures cannot wrap ("1 200 000" is one unit), so they scale down to
    fit three tiers abreast on a tablet, currency included: at 2.2vw the "DA"
    dropped to its own line on two tiers of three and their lists started at
    different heights */
-.t-range b,.eo-range b,.eo-range .eo-dash{font-size:clamp(19px,1.9vw,var(--t-feature));letter-spacing:-.02em}
-/* the tier's price is its feature (26px up to the feature size) and its name
-   the card title; "1 200 000 DA" stays on one line at 961-1100 at 2.4vw */
-.t-range b{font-size:clamp(26px,2.4vw,var(--t-feature))}
-.tier h3{font-size:var(--t-title)}
+.eo-range b,.eo-range .eo-dash{font-size:clamp(19px,1.9vw,var(--t-title));font-weight:inherit}
+/* the tier's price is its feature (24px up to the feature size) and its name
+   the card title */
+.t-range b{font-size:clamp(24px,2.4vw,var(--t-feature))}
+/* three abreast (961px up) the figure follows the card's width: untracked
+   tabular figures run wider than the old tracked ones, and at 2.4vw the "DA"
+   of "450 000 – 1 200 000" fell to its own line at 1024 */
+@media (min-width:961px){.t-range b{font-size:min(2.4vw - 4.5px,var(--t-feature))}}
 .t-range .cur,.eo-range .cur,.mk-table .cur{font-size:var(--t-small);letter-spacing:.06em}
+/* Figures read as figures: lining and tabular, and untracked (the -.02em
+   tracking closed the digit groups to 2.8px at 30px, "1 200 000" read as
+   "1200000"). The groups are split by U+202F, which no word-spacing
+   reaches and which Geist draws .11em wide. */
+.t-range b,.eo-range b,.eo-range .eo-dash,.mk-table td,.mk-num{letter-spacing:0;font-variant-numeric:tabular-nums lining-nums}
 
 /* one display size for every section heading, contact included, and one
    accent colour for the emphasised words */
-.contact h2{font-size:clamp(26px, 14px + 3.33vw, 62px);margin-bottom:var(--s-7)}
+.contact h2{font-size:var(--t-h2);margin-bottom:var(--s-7)}
 .contact h2 em{color:var(--crimson-text)}
 
 /* a heading ends on a word, not on one word alone: its last line gets its
@@ -2882,14 +2962,14 @@ section.band::after,section.band+section.band::after{
 
 /* ---- pricing ---- */
 /* "8" and its unit were split by the slider; they read as one value now */
-.est-lab{display:flex;align-items:baseline;gap:8px}
+.est-lab{display:flex;align-items:baseline;gap:var(--s-2)}
 .est-lab label{margin-inline-end:auto}
 .est-lab .est-hint{margin:0;color:var(--muted)}
 /* the estimate sits at the top of its panel, not floating mid-height */
 @media (min-width:900px){.est-out{justify-content:flex-start}}
 /* "Notre modèle" pushed two of the four titles down: it is a badge on the
    card edge now, like "Recommandé" on the tiers */
-.md-card{position:relative;padding-top:var(--s-6)}
+.md-card{position:relative}
 .md-tag{position:absolute;top:-10px;inset-inline-start:var(--s-5);margin:0}
 .price-more{margin-top:var(--s-7)}
 .price-more .pm-body{padding:0 var(--s-5) var(--s-5);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5)}
@@ -2923,7 +3003,7 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
 /* contact rows: the side column is ~300px until 1280, so the email address
    broke mid-word ("@g / mail.com"); the label sits above its value there */
 @media (min-width:961px) and (max-width:1279px){
-  .channels .ch-ic{grid-template-columns:22px minmax(0,1fr);row-gap:2px}
+  .channels .ch-ic{grid-template-columns:22px minmax(0,1fr);row-gap:var(--s-1)}
   .channels .ch .ai-ch{grid-row:1/span 2}
   .channels dd a[href^="mailto"]{overflow-wrap:normal;word-break:normal}
 }
@@ -2951,31 +3031,32 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
      lines at 390px and below (and "Start a project" at 320), and with 12px
      padding and the body's 1.6 leading that grew the buttons to 68px and the
      bar to 89px, 11px more than the page reserved for it. At 1.2 leading and
-     6px padding two lines (43px) sit inside the 48px minimum, so the bar is
-     10 + 48 + 10 + 1 = 69px from 280px up, in every language. */
-  .m-contact .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:6px 12px;font-size:13px;line-height:1.2;text-align:center}
+     8px padding two lines of the 14px label (50px) sit inside the buttons'
+     52px, so the bar is 10 + 52 + 10 + 1 = 73px from 280px up, in every
+     language. */
+  .m-contact .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;padding:var(--s-2) var(--s-3);line-height:1.2;text-align:center}
   /* beside the primary, the WhatsApp way takes the outline look: a bare text
      link in a fixed bar read as a caption */
   .m-contact .btn-ghost{border-color:var(--teal);color:var(--teal-text);text-decoration:none}
-  .footer{padding-bottom:calc(var(--s-5) + 70px + env(safe-area-inset-bottom))}
+  .footer{padding-bottom:calc(var(--s-5) + 74px + env(safe-area-inset-bottom))}
   /* a control focused under the bar is scrolled clear of it, ring included:
-     the bar's 69px plus 9px for the 5px focus ring and some air */
-  html{scroll-padding-bottom:calc(69px + 9px + env(safe-area-inset-bottom))}
+     the bar's 73px plus 9px for the 5px focus ring and some air */
+  html{scroll-padding-bottom:calc(73px + 9px + env(safe-area-inset-bottom))}
 }
 @media (prefers-reduced-motion:reduce){.m-contact,.m-contact.on{transition:none}}
 @media print{.m-contact{display:none!important}}
 
 /* ---- Client voices (scripts/build-voices.mjs; absent until a real quote exists) ---- */
 .voices{margin-top:var(--s-7);display:grid;gap:var(--s-5)}
-.voices-h{font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-text);font-weight:600}
+.voices-h{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--teal-text);font-weight:600}
 .voices-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:var(--s-5)}
 .voice{margin:0;padding:var(--s-5);border:1px solid var(--hairline-2);border-radius:var(--r-lg);background:var(--navy);display:grid;gap:var(--s-4);align-content:start}
-.voice blockquote{margin:0;font-size:17px;line-height:1.55;color:var(--ice)}
+.voice blockquote{margin:0;font-size:var(--t-lead);line-height:1.55;color:var(--ice)}
 .voice blockquote p::before{content:"« "}.voice blockquote p::after{content:" »"}
 .voice[lang="en"] blockquote p::before{content:"\201C"}.voice[lang="en"] blockquote p::after{content:"\201D"}
 .voice[lang="ar"] blockquote p::before{content:"«"}.voice[lang="ar"] blockquote p::after{content:"»"}
 .voice[lang="ar"]{font-family:var(--font-ar-body)}
-.voice figcaption{font-size:13px;color:var(--muted)}
+.voice figcaption{font-size:var(--t-small);color:var(--muted)}
 .voice figcaption b{color:var(--body-strong);font-weight:600}
 
 /* ---- Photo slots: a real <img> replaces the monogram or the initial ---- */
@@ -2996,11 +3077,9 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
 /* The two ways in under the last answer (index.html .faq-ask) had no rule:
    the row sat flush on the list's closing hairline, its buttons 1px apart
    stacked (390) and 4px out of line side by side (1440, the WhatsApp one a
-   pixel shorter at its 13px type). One row, 12px apart,
-   one height, 32px under the rule; on a phone each takes the full width,
-   as every primary call to action does there. */
-.faq-ask{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:stretch;gap:var(--s-3);margin-top:var(--s-6)}
-@media (max-width:640px){.faq-ask .btn{flex:1 1 100%;justify-content:center}}
+   pixel shorter at its 13px type). It is an action row now (.actions-row,
+   with the buttons), across both columns. */
+.faq-ask{grid-column:1/-1}
 
 /* Scroll comfort. The reading-progress bar follows the scroll on the
    compositor where the browser runs scroll-driven animations; app.js then
@@ -3091,7 +3170,7 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
    it. Under 480px it drops to its own line, aligned with the label text
    (the 17px box and the 10px gap before it); the box and its tick stay on
    the first line (the tick was centred on the whole two-line label). */
-.eopt:has(.eo-incl){flex-wrap:wrap;row-gap:2px;align-items:flex-start}
+.eopt:has(.eo-incl){flex-wrap:wrap;row-gap:var(--s-1);align-items:flex-start}
 .eopt:has(.eo-incl)>span:not(.eo-incl){flex:1 1 0;min-width:0}
 .eopt .eo-incl{flex:1 0 calc(100% - 27px);margin-inline-start:27px}
 .eopt:has(.eo-incl):has(input:checked)::after{top:19.5px}
@@ -3123,5 +3202,5 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
   .price-more .pm-body{padding-inline:var(--s-3)}
   .price-more .market,.price-more .models{padding-inline:var(--s-3)}
   .price-more .mk-scroll{margin-inline:calc(-1 * var(--s-3));border-inline:0;border-radius:0}
-  .mk-table th,.mk-table td{padding-inline:12px}
+  .mk-table th,.mk-table td{padding-inline:var(--s-3)}
 }
