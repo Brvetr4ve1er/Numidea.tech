@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-VHI+2jJyzylImkkR0Aw7DUZoOogY3A4kJ4t/a9DfF6g='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-nHFNp3fEf/kBfnJt7sOlCKKp+WdfBsIknOipUWe9cSI='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title data-i18n="tarifs.title">Prix d'un site web en Algérie (2026) — Numidea Labs</title>
 <meta name="description" content="Combien coûte un site web en Algérie en 2026 ? Nos formules dès 90 000 DA, un estimateur, et les tarifs courants en Algérie, en France et aux États-Unis." data-i18n-content="tarifs.desc">
 <meta name="theme-color" content="#0A1420">
@@ -39,8 +39,8 @@
 <meta name="twitter:title" content="Prix d'un site web en Algérie (2026) — Numidea Labs" data-i18n-content="tarifs.title">
 <meta name="twitter:description" content="Combien coûte un site web en Algérie en 2026 ? Nos formules dès 90 000 DA, un estimateur, et les tarifs courants en Algérie, en France et aux États-Unis." data-i18n-content="tarifs.desc">
 <meta name="twitter:image" content="https://brvetr4ve1er.github.io/Numidea.tech/assets/og.jpg">
-<!-- Where the page sits: the home, then this guide (the visible breadcrumb
-     says the same). -->
+<!-- Where the page sits: the home, then this guide (for search results; the
+     page itself shows no breadcrumb, its navbar marks Tarifs). -->
 <script type="application/ld+json" id="ld-crumbs">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://brvetr4ve1er.github.io/Numidea.tech/"},{"@type":"ListItem","position":2,"name":"Tarifs","item":"https://brvetr4ve1er.github.io/Numidea.tech/tarifs/"}]}</script>
 
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
@@ -54,6 +54,7 @@
     var d = document.documentElement;
     var HEAD = { arcanum: 'cinzel-700-latin', noir: 'geist-latin', daylight: 'cinzel-700-latin',
                  mono: 'geist-latin', altneon: 'geist-latin', engineering: 'geist-latin' };
+    var SWASH = { arcanum: 'cinzel-decorative-700-latin', daylight: 'cinzel-decorative-700-latin' };
     var BAKED = 'fr', th = 'arcanum';
     /* each theme's page colour (themes.css --void), for the browser's own
        bar until app.js reads it from the tokens */
@@ -87,11 +88,16 @@
        While empty, every WhatsApp control stays visibly pending. */
     window.NUMIDEA_WA = '213672412578';
 
-    /* The Arabic hero also sets Latin glyphs (project names in Plex Arabic 600's
-       latin subset, the logo in Geist 600) — leave either out and it widens late. */
+    /* The Arabic page sets every role in Plex Arabic, at 400 and 700 (styles.css's
+       Arabic type spec; the logo is drawn): those two Arabic files, and the
+       one the plate's captions still set the client names in (Latin at 600,
+       .pm-item b: left to swap, the plate moved 5px at 1024). The old list
+       (three weights in two subsets, Geist and Cinzel besides, 255 KB
+       fetched) left the buttons' 700 to arrive last, at 10 s on a slow
+       phone, set in the fallback until then. */
     var faces = BAKED === 'ar'
-      ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-600-arabic', 'ibm-plex-sans-arabic-600-latin', 'geist-mono-latin', 'geist-latin']
-      : ['geist-latin', 'geist-mono-latin'].concat(HEAD[th] !== 'geist-latin' ? [HEAD[th]] : []);
+      ? ['ibm-plex-sans-arabic-400-arabic', 'ibm-plex-sans-arabic-700-arabic', 'ibm-plex-sans-arabic-600-latin']
+      : ['geist-latin', 'geist-mono-latin'].concat(HEAD[th] !== 'geist-latin' ? [HEAD[th]] : [], SWASH[th] ? [SWASH[th]] : []);
     /* \x3c, not a literal "<": on a slow phone Chrome's parser sometimes
        read the raw '<link … href="…' + f + '…">' string in this script as a
        tag and fetched that URL unevaluated (a 404 that failed the throttled
@@ -227,34 +233,43 @@
 
   <!-- ================= THE GUIDE ================= -->
   <section id="pricing" aria-labelledby="pricing-h">
-    <nav class="crumbs" aria-label="Fil d'Ariane" data-i18n-aria="tarifs.crumbAria"><ol>
-      <li><a href="../">Numidea Labs</a></li>
-      <li aria-current="page" data-i18n="nav.pricing">Tarifs</li>
-    </ol></nav>
-    <!-- the guide's parts, one tap each (it runs twelve phone screens) -->
+    <!-- the answer first: the title, the three tiers' prices and weeks (the
+         hero's right column from 1100px), the lead, the two ways on -->
+    <div class="t-hero">
+      <span class="kicker" data-i18n="tarifs.kicker">Tarifs · guide 2026</span>
+      <h1 class="sec font-swap-display" id="pricing-h" data-i18n="tarifs.h1">Prix d’un site web <em>en Algérie, en 2026.</em></h1>
+      <ul class="t-ans">
+        <li><a href="#pricing-tiers"><span class="t-ans-n" data-i18n="price.t1name">Essentiel</span> <span class="t-range" data-tier="vitrine"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></span> <span class="t-time" data-i18n="price.t1time">2 à 4 semaines</span></a></li>
+        <li><a href="#pricing-tiers"><span class="t-ans-n" data-i18n="price.t2name">Studio</span> <span class="t-range" data-tier="surmesure"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></span> <span class="t-time" data-i18n="price.t2time">3 à 7 semaines</span></a></li>
+        <li><a href="#pricing-tiers"><span class="t-ans-n" data-i18n="price.t3name">Moteur</span> <span class="t-range" data-tier="app"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></span> <span class="t-time" data-i18n="price.t3time">8 à 16 semaines</span></a></li>
+      </ul>
+      <p class="sec-lead" data-i18n="tarifs.lead">Nos trois formules et la maintenance, en dinars, en euros ou en dollars ; l’estimateur pour ce que les formules ne chiffrent pas ; puis les tarifs courants en Algérie, en France et aux États-Unis, sources à l’appui.</p>
+      <p class="tarifs-next tarifs-top">
+        <a class="btn btn-primary" href="../#apercu" data-i18n="hero.cta1">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
+        <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l%E2%80%99Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s%E2%80%99il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
+                  <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
+                  <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
+                </a>
+      </p>
+    </div>
+    <!-- the guide's parts, one tap each (it runs twelve phone screens), each
+         an h2 below; kept under the navbar while the page scrolls, except on
+         a phone or a short screen (tarifs/style.css) -->
     <nav class="t-jump" aria-label="Tarifs">
       <a href="#pricing-tiers" data-i18n="tarifs.jTiers">Formules</a>
-      <a href="#estimator" data-i18n="tarifs.jEst">Estimateur</a>
+      <a href="#est-h" data-i18n="tarifs.jEst">Estimateur</a>
       <a href="#market" data-i18n="tarifs.jMk">Marchés</a>
       <a href="#models" data-i18n="tarifs.jMd">Modèles</a>
       <a href="#faq-t" data-i18n="tarifs.jFaq">FAQ</a>
     </nav>
-    <span class="kicker" data-i18n="tarifs.kicker">Tarifs · guide 2026</span>
-    <h1 class="sec font-swap-display" id="pricing-h" data-i18n="tarifs.h1">Prix d’un site web <em>en Algérie, en 2026.</em></h1>
-    <p class="sec-lead" data-i18n="tarifs.lead">Nos trois formules et la maintenance, en dinars, en euros ou en dollars ; l’estimateur pour ce que les formules ne chiffrent pas ; puis les tarifs courants en Algérie, en France et aux États-Unis, sources à l’appui.</p>
-    <p class="tarifs-next tarifs-top">
-      <a class="btn btn-primary" href="../#apercu" data-i18n="hero.cta1">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
-      <a class="btn btn-teal wa-link" data-wa-text="prev.waText" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%2C%20je%20souhaite%20l%E2%80%99Aper%C3%A7u%20gratuit%20de%20mon%20futur%20site.%0AEntreprise%E2%80%AF%3A%20%0AActivit%C3%A9%20et%20ville%E2%80%AF%3A%20%0ASite%20actuel%20(s%E2%80%99il%20existe)%E2%80%AF%3A%20" target="_blank" rel="noopener">
-                <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
-                <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
-              </a>
-    </p>
 
     <!-- Numidea's own prices, in dinars: the home page's tiers and estimator,
          read from index.html between its SLOT markers at build time. The
          estimator applies the same numbers the tiers quote — PRICE_MODEL in
-         app.js (ESTIMATE) is the single source. -->
-    <h2 class="t-sub" id="pricing-tiers" data-i18n="price.title">Un prix <em>avant le devis.</em></h2>
+         app.js (ESTIMATE) is the single source. Each part's heading is the
+         home's section heading (h2.sec); the tiers' is the guide's word for
+         them, the jump row's. -->
+    <h2 class="sec font-swap-display" id="pricing-tiers" data-i18n="tarifs.jTiers">Formules</h2>
     <!-- Display currency for the tiers, the maintenance line and the
          estimator. Prices are set in dinars (PRICE_MODEL) and converted for
          display only; ?cur=eur|usd|dzd in a shared link picks the view. -->
@@ -268,6 +283,14 @@
     </fieldset>
     <p class="pr-cur-note" id="pr-cur-note" hidden></p>
 
+    <!-- Every tier ends on the Aperçu, the way every project starts: the
+         page's one label for it, to the form, where app.js writes the
+         Aperçu's request with the tier named (its name and range as the card
+         shows them, in the shown currency); from the price guide the same
+         line is carried to the home page's form. Studio's is the gold one,
+         as its card is the recommended one. The list and the button share
+         the card's last row (.t-foot): the cards are a six-row subgrid from
+         961px (styles.css), and a seventh child was laid over the list. -->
     <div class="tiers">
       <article class="tier reveal">
         <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg>
@@ -276,13 +299,16 @@
         <p class="t-range" data-tier="vitrine"><b>90 000 –⁠ 160 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t1time">2 à 4 semaines</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
-        <ul class="t-list">
-          <li data-i18n="price.t1a">Vitrine ou landing, 1 à 5 pages</li>
-          <li data-i18n="price.t1b">Design sur mesure — jamais un modèle tout fait repeint à vos couleurs</li>
-          <li data-i18n="price.t1c">Responsive, performance et SEO de base</li>
-          <li data-i18n="price.t1d">Mise en ligne, domaine et certificat configurés</li>
-          <li data-i18n="price.t1e">1 mois de support inclus</li>
-        </ul>
+        <div class="t-foot">
+          <ul class="t-list">
+            <li data-i18n="price.t1a">Vitrine ou landing, 1 à 5 pages</li>
+            <li data-i18n="price.t1b">Design sur mesure — jamais un modèle tout fait repeint à vos couleurs</li>
+            <li data-i18n="price.t1c">Responsive, performance et SEO de base</li>
+            <li data-i18n="price.t1d">Mise en ligne, domaine et certificat configurés</li>
+            <li data-i18n="price.t1e">1 mois de support inclus</li>
+          </ul>
+          <p class="actions-row"><a class="btn btn-teal" href="../#contact" data-apercu="vitrine" data-i18n="prev.cta">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a></p>
+        </div>
       </article>
 
       <article class="tier tier-pop reveal">
@@ -293,14 +319,17 @@
         <p class="t-range" data-tier="surmesure"><b>180 000 –⁠ 420 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t2time">3 à 7 semaines</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
-        <ul class="t-list">
-          <li data-i18n="price.t2a">Site sur mesure, 6 à 15 pages</li>
-          <li data-i18n="price.t2b">Trilingue FR / EN / AR, avec un arabe RTL pensé nativement</li>
-          <li data-i18n="price.t2c">Kit graphique documenté — couleurs, styles, composants, prêt à réutiliser</li>
-          <li data-i18n="price.t2d">CMS ou back-office pour gérer le contenu vous-même</li>
-          <li data-i18n="price.t2e">SEO technique, vitesse mesurée par Google, accessibilité</li>
-          <li data-i18n="price.t2f">3 mois de support inclus</li>
-        </ul>
+        <div class="t-foot">
+          <ul class="t-list">
+            <li data-i18n="price.t2a">Site sur mesure, 6 à 15 pages</li>
+            <li data-i18n="price.t2b">Trilingue FR / EN / AR, avec un arabe RTL pensé nativement</li>
+            <li data-i18n="price.t2c">Kit graphique documenté — couleurs, styles, composants, prêt à réutiliser</li>
+            <li data-i18n="price.t2d">CMS ou back-office pour gérer le contenu vous-même</li>
+            <li data-i18n="price.t2e">SEO technique, vitesse mesurée par Google, accessibilité</li>
+            <li data-i18n="price.t2f">3 mois de support inclus</li>
+          </ul>
+          <p class="actions-row"><a class="btn btn-primary" href="../#contact" data-apercu="surmesure" data-i18n="prev.cta">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a></p>
+        </div>
       </article>
 
       <article class="tier reveal">
@@ -310,13 +339,16 @@
         <p class="t-range" data-tier="app"><b>450 000 –⁠ 1 200 000</b> <span class="cur" data-i18n="price.cur">DA</span></p>
         <p class="t-time" data-i18n="price.t3time">8 à 16 semaines</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
-        <ul class="t-list">
-          <li data-i18n="price.t3a">Application web sur mesure : plateforme, portail ou outil métier</li>
-          <li data-i18n="price.t3b">Paiement, comptes utilisateurs, tableaux de bord</li>
-          <li data-i18n="price.t3c">Collecte de données sur le web et veille marché, intégrées à l’application</li>
-          <li data-i18n="price.t3d">Intégrations API et outils internes</li>
-          <li data-i18n="price.t3e">6 mois de support inclus</li>
-        </ul>
+        <div class="t-foot">
+          <ul class="t-list">
+            <li data-i18n="price.t3a">Application web sur mesure : plateforme, portail ou outil métier</li>
+            <li data-i18n="price.t3b">Paiement, comptes utilisateurs, tableaux de bord</li>
+            <li data-i18n="price.t3c">Collecte de données sur le web et veille marché, intégrées à l’application</li>
+            <li data-i18n="price.t3d">Intégrations API et outils internes</li>
+            <li data-i18n="price.t3e">6 mois de support inclus</li>
+          </ul>
+          <p class="actions-row"><a class="btn btn-teal" href="../#contact" data-apercu="app" data-i18n="prev.cta">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a></p>
+        </div>
       </article>
     </div>
 
@@ -326,20 +358,8 @@
       <span data-i18n="price.retainerB">par mois. Sans engagement de durée.</span>
     </p>
 
-    <!-- ---------------- estimator ----------------
-         Folded here (open on the price guide, where the page is about
-         prices): open, it took two phone screens and, at its default, quoted
-         the Studio card again. Its summary names what the three tiers do not
-         price; the summary is its title, so the panel has no heading of its
-         own. Nothing in it may carry .reveal (closed, the observer never sees
-         it). -->
-    <details class="capabilities price-more price-est" open>
-      <summary>
-        <span data-i18n="price.estH">Estimez votre projet</span>
-        <span class="hint" data-i18n="price.estHint">Automatisation, e-commerce, identité visuelle, options hors formule et délai accéléré : ce que les formules ne chiffrent pas.</span>
-        <span class="chev" aria-hidden="true">›</span>
-      </summary>
-      <div class="pm-body">
+    <details class="price-est t-est" open>
+      <summary><h2 class="sec font-swap-display" id="est-h" data-i18n="price.estH">Estimez votre projet</h2></summary>
       <div class="estimator" id="estimator">
         <div class="est-head">
           <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M3.5 6.5h17M3.5 12h17M3.5 17.5h17"/><circle class="f a-sl" style="--i:0" cx="8.5" cy="6.5" r="2"/><circle class="f a-sl" style="--i:1" cx="15" cy="12" r="2"/><circle class="f a-sl" style="--i:2" cx="7" cy="17.5" r="2"/></svg>
@@ -388,6 +408,20 @@
             </fieldset>
           </div>
 
+          <!-- Without scripts the controls above do nothing (styles.css hides
+               them then), so the three projects the tiers do not price are
+               given as a table instead: each one's base range, PRICE_MODEL's
+               (app.js), before options and size. -->
+          <noscript>
+            <table class="est-nojs">
+              <caption data-i18n="price.qType">Quel type de projet ?</caption>
+              <tbody>
+                <tr><th scope="row" data-i18n="price.tyShop">E-⁠commerce</th><td>220 000 –⁠ 550 000 <span class="cur" data-i18n="price.cur">DA</span></td></tr>
+                <tr><th scope="row" data-i18n="price.tyAuto">Automatisation</th><td>140 000 –⁠ 420 000 <span class="cur" data-i18n="price.cur">DA</span></td></tr>
+                <tr><th scope="row" data-i18n="price.tyBrand">Identité visuelle</th><td>90 000 –⁠ 180 000 <span class="cur" data-i18n="price.cur">DA</span></td></tr>
+              </tbody>
+            </table>
+          </noscript>
           <div class="est-out">
             <span class="eo-k" data-i18n="price.estimate">Estimation</span>
             <p class="eo-range" id="est-range" role="status" aria-live="polite">
@@ -409,157 +443,151 @@
           </div>
         </div>
       </div>
-      </div>
     </details>
 
     <!-- Reference material: market comparison, billing models, cost drivers.
          Open: this page is where whoever wants to check the numbers comes. -->
-    <details class="capabilities price-more" open>
-      <summary>
-        <span data-i18n="price.moreSum">Comment on chiffre</span>
-        <span class="hint" data-i18n="price.moreHint">Le marché, les modèles de facturation, ce qui fait bouger un devis.</span>
-        <span class="chev" aria-hidden="true">›</span>
-      </summary>
-      <div class="pm-body">
-      <!-- ---------------- market comparison ----------------
-           Each cell runs from the low end of an experienced freelancer's range
-           to the high end of an agency's, per the sources listed below. Static
-           values are the native currency, so the table reads correctly with
-           JS off; app.js (section 14) converts on request and computes the
-           Numidea column from PRICE_MODEL. -->
-      <div class="market" id="market">
-        <div class="mk-head">
-          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 4v16.5M8 20.5h8"/><g class="a-tilt" style="--o:12px 6px"><path class="p" pathLength="1" d="M4.5 6h15M4.5 6 2.5 12h4ZM19.5 6l-2 6h4Z"/></g></svg>
-          <h3 data-i18n="mk.h">Algérie, France, États-Unis : un projet, trois marchés</h3>
-          <p data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l’agence — hors taxes.</p>
+    <!-- ---------------- market comparison ----------------
+         Each cell runs from the low end of an experienced freelancer's range
+         to the high end of an agency's, per the sources listed below. Static
+         values are the native currency, so the table reads correctly with
+         JS off; app.js (section 14) converts on request and computes the
+         Numidea column from PRICE_MODEL. -->
+    <div class="market" id="market">
+      <h2 class="sec font-swap-display" id="mk-h" data-i18n="mk.h">Algérie, France, États-Unis : un projet, trois marchés</h2>
+      <p class="sec-lead" data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l’agence — hors taxes.</p>
+
+      <fieldset class="mk-cur est-field">
+        <legend data-i18n="mk.curL">Afficher en</legend>
+        <div class="est-chips">
+          <label class="echip"><input type="radio" name="mk-cur" value="native" checked><span data-i18n="mk.curNative">Devise d’origine</span></label>
+          <label class="echip"><input type="radio" name="mk-cur" value="DZD"><span data-i18n="price.cur">DA</span></label>
+          <label class="echip"><input type="radio" name="mk-cur" value="EUR"><span>€</span></label>
+          <label class="echip"><input type="radio" name="mk-cur" value="USD"><span>$</span></label>
         </div>
+      </fieldset>
 
-        <fieldset class="mk-cur est-field">
-          <legend data-i18n="mk.curL">Afficher en</legend>
-          <div class="est-chips">
-            <label class="echip"><input type="radio" name="mk-cur" value="native" checked><span data-i18n="mk.curNative">Devise d’origine</span></label>
-            <label class="echip"><input type="radio" name="mk-cur" value="DZD"><span data-i18n="price.cur">DA</span></label>
-            <label class="echip"><input type="radio" name="mk-cur" value="EUR"><span>€</span></label>
-            <label class="echip"><input type="radio" name="mk-cur" value="USD"><span>$</span></label>
-          </div>
-        </fieldset>
+      <!-- The table, drawn: each range as a bar on one price scale, so the
+           gap between the markets reads before any figure does. Built by
+           app.js 13b from MARKET and PRICE_MODEL (the same numbers as the
+           table, which stays the exact and accessible version, so the
+           picture and its reading note are aria-hidden); hidden until
+           then, so it never shows half-built or with scripts off. -->
+      <figure class="mkv" aria-hidden="true" hidden>
+        <div class="mkv-plot"></div>
+        <figcaption class="mkv-cap" data-i18n="mk.vizCap">Échelle logarithmique : chaque grande graduation vaut dix fois la précédente. Entre les deux lignes en tirets, la fourchette de Numidea, prolongée sur les trois marchés ; une barre qui s’estompe n’a pas de plafond. Montants convertis au taux officiel, chiffres exacts dans le tableau ci-dessous.</figcaption>
+      </figure>
 
-        <!-- The table, drawn: each range as a bar on one price scale, so the
-             gap between the markets reads before any figure does. Built by
-             app.js 13b from MARKET and PRICE_MODEL (the same numbers as the
-             table, which stays the exact and accessible version, so the
-             picture and its reading note are aria-hidden); hidden until
-             then, so it never shows half-built or with scripts off. -->
-        <figure class="mkv" aria-hidden="true" hidden>
-          <div class="mkv-plot"></div>
-          <figcaption class="mkv-cap" data-i18n="mk.vizCap">Échelle logarithmique : chaque grande graduation vaut dix fois la précédente. Entre les deux lignes en tirets, la fourchette de Numidea, prolongée sur les trois marchés ; une barre qui s’estompe n’a pas de plafond. Montants convertis au taux officiel, chiffres exacts dans le tableau ci-dessous.</figcaption>
-        </figure>
+      <section class="mk-scroll" tabindex="0" aria-labelledby="mk-cap">
+        <table class="mk-table">
+          <caption id="mk-cap" data-i18n="mk.cap">Fourchettes de prix courantes par type de projet</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-i18n="mk.colType">Projet</th>
+              <th scope="col" class="mk-nl" data-i18n="mk.colNl">Numidea</th>
+              <th scope="col" data-i18n="mk.colDz">Algérie</th>
+              <th scope="col" data-i18n="mk.colFr">France</th>
+              <th scope="col" data-i18n="mk.colUs">États-Unis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">Vitrine</th>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
+            <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">Site sur mesure</th>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
+            <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">E-⁠commerce</th>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
+            <tr data-row="app"><th scope="row" data-i18n="price.tyApp">Application web</th>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
+            <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">Identité visuelle</th>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
+          </tbody>
+        </table>
+      </section>
 
-        <section class="mk-scroll" tabindex="0" aria-labelledby="mk-cap">
-          <table class="mk-table">
-            <caption id="mk-cap" data-i18n="mk.cap">Fourchettes de prix courantes par type de projet</caption>
-            <thead>
-              <tr>
-                <th scope="col" data-i18n="mk.colType">Projet</th>
-                <th scope="col" class="mk-nl" data-i18n="mk.colNl">Numidea</th>
-                <th scope="col" data-i18n="mk.colDz">Algérie</th>
-                <th scope="col" data-i18n="mk.colFr">France</th>
-                <th scope="col" data-i18n="mk.colUs">États-Unis</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">Vitrine</th>
-                <td data-l="Numidea" data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
-              <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">Site sur mesure</th>
-                <td data-l="Numidea" data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
-              <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">E-⁠commerce</th>
-                <td data-l="Numidea" data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
-              <tr data-row="app"><th scope="row" data-i18n="price.tyApp">Application web</th>
-                <td data-l="Numidea" data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
-              <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">Identité visuelle</th>
-                <td data-l="Numidea" data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
-            </tbody>
-          </table>
-        </section>
+      <p class="mk-day">
+        <span data-i18n="mk.day1">Une journée de développeur confirmé en France coûte</span>
+        <b class="mk-num" id="mk-day-eur">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz">70 000 –⁠ 100 000 DA</b>
+        <span data-i18n="mk.day2">au taux officiel, soit à peu près le prix d’un site vitrine complet sur le marché algérien.</span>
+      </p>
+      <p class="mk-note" data-i18n="mk.note">Conversions au taux officiel de la Banque d’Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L’écart tient au coût de la vie et au change, pas aux outils — nous livrons avec les mêmes outils que les studios européens et américains : React, Next.js.</p>
 
-        <p class="mk-day">
-          <span data-i18n="mk.day1">Une journée de développeur confirmé en France coûte</span>
-          <b class="mk-num" id="mk-day-eur">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz">70 000 –⁠ 100 000 DA</b>
-          <span data-i18n="mk.day2">au taux officiel, soit à peu près le prix d’un site vitrine complet sur le marché algérien.</span>
-        </p>
-        <p class="mk-note" data-i18n="mk.note">Conversions au taux officiel de la Banque d’Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L’écart tient au coût de la vie et au change, pas aux outils — nous livrons avec les mêmes outils que les studios européens et américains : React, Next.js.</p>
-
-        <details class="mk-src">
-          <summary data-i18n="mk.srcSum">Sources et méthode</summary>
-          <p data-i18n="mk.method">Chaque case va du bas de la fourchette d’un freelance confirmé au haut de celle d’une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l’estimateur ci-dessus, au périmètre type de chaque projet.</p>
-          <ul>
-            <li><b data-i18n="mk.srcDz">Algérie</b> — <a href="https://barometre.onyxlab.dz/" target="_blank" rel="noopener" lang="fr">Onyxlab, Baromètre des tarifs freelance 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a> <span data-i18n="mk.srcRange">(Confirmé → Agence)</span></li>
-            <li><b data-i18n="mk.srcFr">France</b> — <a href="https://www.tandem-studio.fr/prix-creation-site-internet/" target="_blank" rel="noopener" lang="fr">Tandem Studio, prix création site 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://lescreavores.fr/prix-creation-site-internet/" target="_blank" rel="noopener" lang="fr">Les Créavores, baromètre de 103 prix (juin 2026)<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://www.heysimon.fr/articles/prix-logo-identite-visuelle-2026" target="_blank" rel="noopener" lang="fr">HeySimon, identité visuelle 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://lefreelance.fr/articles/tjm-developpeur-freelance/" target="_blank" rel="noopener" lang="fr">TJM d’après Malt (LeFreelance)<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a></li>
-            <li><b data-i18n="mk.srcUs">États-Unis</b> — <a href="https://pitchsite.io/guides/web-design-pricing" target="_blank" rel="noopener" lang="en">Pitchsite, Web Design Pricing Guide 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://8gnc.io/blog/how-much-does-branding-cost" target="_blank" rel="noopener" lang="en">8GNC, branding cost 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://clutch.co/web-developers/pricing" target="_blank" rel="noopener" lang="en">Clutch, web development pricing (Sept. 2026)<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a></li>
-            <li><b data-i18n="mk.srcFx">Change</b> — <a href="https://www.bank-of-algeria.dz/taux-de-change-journalier/" target="_blank" rel="noopener" lang="fr">Banque d’Algérie, taux de change journalier<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a></li>
-          </ul>
-        </details>
-      </div>
-
-      <!-- ---------------- pricing models ---------------- -->
-      <div class="models" id="models">
-        <div class="mk-head">
-          <h3 data-i18n="md.h">Comment un projet est chiffré</h3>
-          <p data-i18n="md.p">Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.</p>
-        </div>
-        <div class="md-grid">
-          <article class="md-card md-ours">
-            <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
-            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M7.5 10V7.5a4.5 4.5 0 0 1 9 0V10"/><rect class="p" pathLength="1" x="5" y="10" width="14" height="10.5" rx="1.6"/><path class="p a-bob" pathLength="1" d="M12 13.8v3"/></svg><h4 data-i18n="md.fH">Au forfait</h4>
-            <p data-i18n="md.fP">Un prix fixe pour un périmètre écrit. Si le travail déborde, c’est le prestataire qui absorbe l’écart.</p>
-            <p class="md-where" data-i18n="md.fW">La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C’est ainsi que nous chiffrons chaque projet.</p>
-          </article>
-          <article class="md-card">
-            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><path class="p a-hand" style="--o:12px 12px;--t:2.4s" pathLength="1" d="M12 12V6.8"/><path class="p a-hand" style="--o:12px 12px;--t:28.8s" pathLength="1" d="M12 12h3.4"/></svg><h4 data-i18n="md.tH">Au temps passé</h4>
-            <p data-i18n="md.tP">Facturé au jour ou à l’heure. Souple quand le périmètre bouge, difficile à budgéter d’avance.</p>
-            <p class="md-where" data-i18n="md.tW">La norme en France (480 –⁠ 650 € par jour pour un développeur confirmé) et aux États-Unis (100 –⁠ 149 $ de l’heure en agence).</p>
-          </article>
-          <article class="md-card md-ours">
-            <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
-            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:7s"><path class="p" pathLength="1" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path class="p" pathLength="1" d="M17.3 3.4v3.3H14M6.7 20.6v-3.3H10"/></g></svg><h4 data-i18n="md.aH">À l’abonnement</h4>
-            <p data-i18n="md.aP">Un montant mensuel pour un service continu : maintenance, évolutions, contenu.</p>
-            <p class="md-where" data-i18n="md.aW">Courant partout après le lancement. C’est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.</p>
-          </article>
-          <article class="md-card">
-            <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M6 4h12l3.5 5L12 20.5 2.5 9Z"/><path class="p" pathLength="1" d="M2.5 9h19M9.5 4 8 9l4 11.5L16 9l-1.5-5"/><path class="a-twinkle" d="M20.6 1.4v2.6M19.3 2.7h2.6"/></svg><h4 data-i18n="md.vH">À la valeur</h4>
-            <p data-i18n="md.vP">Le prix suit ce que le projet rapporte, pas le temps qu’il demande.</p>
-            <p class="md-where" data-i18n="md.vW">Plus rare, surtout en conseil et en stratégie, là où l’enjeu se mesure.</p>
-          </article>
-        </div>
-
-        <h4 class="md-sub" data-i18n="md.drH">Ce qui fait bouger un devis</h4>
-        <ul class="md-drivers">
-          <li><b data-i18n="md.d1h">Le périmètre</b><span data-i18n="md.d1p">Le nombre de pages, de produits ou d’écrans.</span></li>
-          <li><b data-i18n="md.d2h">Le design</b><span data-i18n="md.d2p">Entièrement sur mesure, ou à partir de votre charte et de vos maquettes existantes.</span></li>
-          <li><b data-i18n="md.d3h">Les langues</b><span data-i18n="md.d3p">Chaque langue ajoute du contenu ; l’arabe ajoute une mise en page de droite à gauche.</span></li>
-          <li><b data-i18n="md.d4h">Les intégrations</b><span data-i18n="md.d4p">Paiement, comptes utilisateurs, outils et API tiers.</span></li>
-          <li><b data-i18n="md.d5h">Le contenu</b><span data-i18n="md.d5p">Textes, photos et vidéos : fournis par vous, ou à produire.</span></li>
-          <li><b data-i18n="md.d6h">Le délai</b><span data-i18n="md.d6p">Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.</span></li>
+      <details class="mk-src">
+        <summary data-i18n="mk.srcSum">Sources et méthode</summary>
+        <p data-i18n="mk.method">Chaque case va du bas de la fourchette d’un freelance confirmé au haut de celle d’une agence ; « + » signale une borne haute ouverte. Les extrêmes — sites à 300 € ou à 250 000 $ — sont exclus. La colonne Numidea est calculée par l’estimateur ci-dessus, au périmètre type de chaque projet.</p>
+        <ul>
+          <li><b data-i18n="mk.srcDz">Algérie</b> — <a href="https://barometre.onyxlab.dz/" target="_blank" rel="noopener" lang="fr">Onyxlab, Baromètre des tarifs freelance 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a> <span data-i18n="mk.srcRange">(Confirmé → Agence)</span></li>
+          <li><b data-i18n="mk.srcFr">France</b> — <a href="https://www.tandem-studio.fr/prix-creation-site-internet/" target="_blank" rel="noopener" lang="fr">Tandem Studio, prix création site 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://lescreavores.fr/prix-creation-site-internet/" target="_blank" rel="noopener" lang="fr">Les Créavores, baromètre de 103 prix (juin 2026)<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://www.heysimon.fr/articles/prix-logo-identite-visuelle-2026" target="_blank" rel="noopener" lang="fr">HeySimon, identité visuelle 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://lefreelance.fr/articles/tjm-developpeur-freelance/" target="_blank" rel="noopener" lang="fr">TJM d’après Malt (LeFreelance)<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a></li>
+          <li><b data-i18n="mk.srcUs">États-Unis</b> — <a href="https://pitchsite.io/guides/web-design-pricing" target="_blank" rel="noopener" lang="en">Pitchsite, Web Design Pricing Guide 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://8gnc.io/blog/how-much-does-branding-cost" target="_blank" rel="noopener" lang="en">8GNC, branding cost 2026<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a><br><a href="https://clutch.co/web-developers/pricing" target="_blank" rel="noopener" lang="en">Clutch, web development pricing (Sept. 2026)<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a></li>
+          <li><b data-i18n="mk.srcFx">Change</b> — <a href="https://www.bank-of-algeria.dz/taux-de-change-journalier/" target="_blank" rel="noopener" lang="fr">Banque d’Algérie, taux de change journalier<span class="sr-only" data-i18n="ui.newTab"> (nouvel onglet)</span><span aria-hidden="true">&#8239;↗</span></a></li>
         </ul>
+      </details>
+    </div>
+
+    <!-- ---------------- pricing models ---------------- -->
+    <div class="models" id="models">
+      <h2 class="sec font-swap-display" id="md-h" data-i18n="md.h">Comment un projet est chiffré</h2>
+      <p class="sec-lead" data-i18n="md.p">Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.</p>
+      <div class="md-grid">
+        <article class="md-card md-ours">
+          <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M7.5 10V7.5a4.5 4.5 0 0 1 9 0V10"/><rect class="p" pathLength="1" x="5" y="10" width="14" height="10.5" rx="1.6"/><path class="p a-bob" pathLength="1" d="M12 13.8v3"/></svg><h3 data-i18n="md.fH">Au forfait</h3>
+          <p data-i18n="md.fP">Un prix fixe pour un périmètre écrit. Si le travail déborde, c’est le prestataire qui absorbe l’écart.</p>
+          <p class="md-where" data-i18n="md.fW">La norme en Algérie : le baromètre Onyxlab chiffre tout le développement au forfait. C’est ainsi que nous chiffrons chaque projet.</p>
+        </article>
+        <article class="md-card">
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><path class="p a-hand" style="--o:12px 12px;--t:2.4s" pathLength="1" d="M12 12V6.8"/><path class="p a-hand" style="--o:12px 12px;--t:28.8s" pathLength="1" d="M12 12h3.4"/></svg><h3 data-i18n="md.tH">Au temps passé</h3>
+          <p data-i18n="md.tP">Facturé au jour ou à l’heure. Souple quand le périmètre bouge, difficile à budgéter d’avance.</p>
+          <p class="md-where" data-i18n="md.tW">La norme en France (480 –⁠ 650 € par jour pour un développeur confirmé) et aux États-Unis (100 –⁠ 149 $ de l’heure en agence).</p>
+        </article>
+        <article class="md-card md-ours">
+          <span class="md-tag" data-i18n="md.ours">Notre modèle</span>
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:7s"><path class="p" pathLength="1" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path class="p" pathLength="1" d="M17.3 3.4v3.3H14M6.7 20.6v-3.3H10"/></g></svg><h3 data-i18n="md.aH">À l’abonnement</h3>
+          <p data-i18n="md.aP">Un montant mensuel pour un service continu : maintenance, évolutions, contenu.</p>
+          <p class="md-where" data-i18n="md.aW">Courant partout après le lancement. C’est le modèle de notre maintenance : 18 000 –⁠ 60 000 DA par mois.</p>
+        </article>
+        <article class="md-card">
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M6 4h12l3.5 5L12 20.5 2.5 9Z"/><path class="p" pathLength="1" d="M2.5 9h19M9.5 4 8 9l4 11.5L16 9l-1.5-5"/><path class="a-twinkle" d="M20.6 1.4v2.6M19.3 2.7h2.6"/></svg><h3 data-i18n="md.vH">À la valeur</h3>
+          <p data-i18n="md.vP">Le prix suit ce que le projet rapporte, pas le temps qu’il demande.</p>
+          <p class="md-where" data-i18n="md.vW">Plus rare, surtout en conseil et en stratégie, là où l’enjeu se mesure.</p>
+        </article>
       </div>
 
-      </div>
-    </details>
+      <h3 class="md-sub" data-i18n="md.drH">Ce qui fait bouger un devis</h3>
+      <ul class="md-drivers">
+        <li><b data-i18n="md.d1h">Le périmètre</b><span data-i18n="md.d1p">Le nombre de pages, de produits ou d’écrans.</span></li>
+        <li><b data-i18n="md.d2h">Le design</b><span data-i18n="md.d2p">Entièrement sur mesure, ou à partir de votre charte et de vos maquettes existantes.</span></li>
+        <li><b data-i18n="md.d3h">Les langues</b><span data-i18n="md.d3p">Chaque langue ajoute du contenu ; l’arabe ajoute une mise en page de droite à gauche.</span></li>
+        <li><b data-i18n="md.d4h">Les intégrations</b><span data-i18n="md.d4p">Paiement, comptes utilisateurs, outils et API tiers.</span></li>
+        <li><b data-i18n="md.d5h">Le contenu</b><span data-i18n="md.d5p">Textes, photos et vidéos : fournis par vous, ou à produire.</span></li>
+        <li><b data-i18n="md.d6h">Le délai</b><span data-i18n="md.d6p">Un calendrier compressé coûte plus cher : +25 % dans notre estimateur.</span></li>
+      </ul>
+    </div>
 
     <!-- The home page's FAQ entries about money (scripts/build-tarifs.mjs
          FAQ_ON_TARIFS), answers and icons included. -->
-    <h2 class="t-sub" id="faq-t" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
+    <h2 class="sec font-swap-display" id="faq-t" data-i18n="faq.title">Les questions <em>qui comptent.</em></h2>
     <div class="faq-list">
       <div class="faq-col">
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-swing" style="--o:7.5px 7.5px"><path class="p" pathLength="1" d="M3.5 3.5h8.2l8.8 8.8a1.5 1.5 0 0 1 0 2.1l-6.1 6.1a1.5 1.5 0 0 1-2.1 0L3.5 11.7Z"/><circle class="p" pathLength="1" cx="7.5" cy="7.5" r="1.4"/></g></svg><span class="q" data-i18n="faq2.q">C’est combien ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq2"></span></span><p data-i18n="faq2.a">Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="../#apercu">l’Aperçu</a>.</p></div>
+          <div class="faq-a"><p data-i18n="faq2.a">Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="../#apercu">l’Aperçu</a>.</p></div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 2.6 20.1 7.3v9.4L12 21.4 3.9 16.7V7.3Z"/><circle class="f a-pulse" cx="12" cy="12" r="1.8"/></svg><span class="q" data-i18n="faq3.q">Comment se passe le paiement ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p data-i18n="faq3.a">Un devis écrit et un bon de commande signé avant tout travail, en droit algérien. Puis 40 % à la commande, sur devis signé, et 60 % à la livraison, avant la mise en ligne. Par virement ou CCP en Algérie ; par virement en euros ou en dollars depuis l’étranger. Le prix est ferme une fois le projet cadré et il ne bouge plus : si le travail déborde, l’écart est pour nous. Deux séries de retouches par étape, le design puis le développement, sont comprises ; les suivantes sont chiffrées à part.</p></div>
         </details>
       </div>
       <div class="faq-col">
         <details class="faq-item reveal">
           <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><path class="p" pathLength="1" d="M12 3 19.5 6v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6Z"/><path class="p a-ekg" pathLength="1" d="M6.5 12.5h3l1.3-3 2.4 6 1.3-3h3"/></svg><span class="q" data-i18n="faq4.q">Et après le lancement ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
-          <div class="faq-a"><span class="faq-fig" aria-hidden="true"><span class="ill ill-faq4"></span></span><p data-i18n="faq4.a">Nous restons. Trente jours de corrections après la livraison, puis 1, 3 ou 6 mois de support selon la formule, et nous vous répondons le jour ouvré suivant (dimanche–jeudi, 9h–⁠18h). Ensuite, la maintenance est en option : 18 000 –⁠ 60 000 DA par mois, sans engagement de durée, pour les mises à jour, les sauvegardes et les petites modifications. Pas de « bonne chance » le jour de la mise en ligne.</p></div>
+          <div class="faq-a"><p data-i18n="faq4.a">Nous restons. Trente jours de corrections après la livraison, puis 1, 3 ou 6 mois de support selon la formule, et nous vous répondons le jour ouvré suivant (dimanche–jeudi, 9h–⁠18h). Ensuite, la maintenance est en option : 18 000 –⁠ 60 000 DA par mois, sans engagement de durée, pour les mises à jour, les sauvegardes et les petites modifications. Pas de « bonne chance » le jour de la mise en ligne.</p></div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary><svg class="ai ai-faq" viewBox="0 0 24 24" aria-hidden="true"><g class="a-hop"><path class="p" pathLength="1" d="M12 20s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11Z"/><circle class="p" pathLength="1" cx="12" cy="9" r="2.3"/></g><path class="a-shadow" d="M9.5 22h5"/></svg><span class="q" data-i18n="faq7.q">À qui appartient le site, et où est-il hébergé ?</span><span class="faq-mark" aria-hidden="true"></span></summary>
+          <div class="faq-a"><p data-i18n="faq7.a">Une fois le site payé en entier, il vous appartient : le code, les fichiers de design et le contenu. Le nom de domaine est enregistré à votre nom. Nous gardons le droit de montrer le travail dans nos références, sauf refus écrit de votre part. L’hébergement est choisi ensemble et facturé à l’année par l’hébergeur, à votre nom ; nous l’installons et vous remettons tous les accès.</p></div>
         </details>
       </div>
     </div>
@@ -572,6 +600,11 @@
                 <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
               </a>
     </p>
+
+    <!-- paper only (tarifs/style.css): where the guide lives and how to reach
+         the studio, for the copy an SME prints for its manager; the date is
+         the guide's edition -->
+    <p class="t-print"><span dir="ltr">https://brvetr4ve1er.github.io/Numidea.tech/tarifs/</span> · <span dir="ltr">hamissemohamedyasser@gmail.com</span> · WhatsApp <span dir="ltr">+213 672 41 25 78</span> · <span data-i18n="tarifs.kicker">Tarifs · guide 2026</span></p>
   </section>
 
 </main>

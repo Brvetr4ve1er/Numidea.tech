@@ -7,57 +7,131 @@
    theme serves this page as it serves the home.
    ============================================================ */
 
+/* the jump row's height, for whatever sticks under it (styles.css's
+   estimate panel reads it); 0 where the row is not sticky (below) */
+#pricing{--jump-h:60px}
+
 /* the page opens under the fixed navbar, with no hero to clear it */
 .tarifs>section:first-child{padding-top:calc(var(--nav-h) + var(--s-7))}
 @media (min-width:960px){.tarifs>section:first-child{padding-top:calc(var(--nav-h) + var(--s-8))}}
 
-/* the breadcrumb (BRAND.md: every sub-page carries one), set as a label;
-   the home link is a 24px target at least */
-.crumbs{margin-bottom:var(--s-6)}
-.crumbs ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-2);
-  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.crumbs li{display:inline-flex;align-items:center;min-height:24px}
-.crumbs li+li::before{content:"›";margin-inline-end:var(--s-2);color:var(--faint)}
-html[dir="rtl"] .crumbs li+li::before{content:"‹"}
-html[dir="rtl"] .crumbs ol{letter-spacing:0;text-transform:none}
-.crumbs a{display:inline-flex;align-items:center;min-height:44px;color:var(--teal-text);text-decoration:none}   /* a 44px target (vbugs SMALLTAP) */
-.crumbs a:hover{color:var(--ice)}
-.crumbs [aria-current]{color:var(--ice)}
-
-/* the page title: the section heading's size and accent (h2.sec in
-   styles.css), as an h1, since it is the page's one */
-h1.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(26px, 14px + 3.33vw, 62px);letter-spacing:-.025em;line-height:1.04;margin-bottom:var(--s-7);max-width:11.934em}
+/* the page title: the section heading's accent (h2.sec in styles.css), a
+   size over it, as an h1, since it is the page's one */
+h1.sec{font-family:var(--font-display);font-weight:600;font-size:clamp(26px, 14px + 3.33vw, 62px);letter-spacing:-.025em;line-height:1.04;margin-bottom:var(--s-6);max-width:11.934em}
 h1.sec em{font-family:inherit;font-style:normal;color:var(--crimson-text)}
 html[dir="ltr"] h1.sec{font-family:var(--font-head);font-weight:var(--head-weight);letter-spacing:var(--head-tracking)}
 html[dir="ltr"] h1.sec em{font-family:var(--font-head-em)}
 html[dir="rtl"] h1.sec{letter-spacing:0}
+/* the Arabic title's accent stays whole on its line: its "2026." comes from
+   a face the page does not preload, and when it arrived late the line broke
+   anew and the title moved under the reader (a layout shift of 0.016) */
+@media (min-width:600px){html[dir="rtl"] .t-hero h1 em{white-space:nowrap}}
 
-/* the guide's parts (the tiers, the questions), one size under the title */
-.t-sub{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.02em;line-height:1.1;margin:0 0 var(--s-5)}
-.t-sub em{font-style:normal;color:var(--crimson-text)}
-html[dir="rtl"] .t-sub{font-family:var(--font-ar-display);letter-spacing:0}
-.price-more+.t-sub{margin-top:var(--s-8)}
-.t-sub{margin-top:var(--s-6)}
-@media (min-width:760px){.t-sub{margin-top:var(--s-8)}}
+/* The answer first: the title, the three tiers in one line each, the lead
+   and the two ways on. From 1100px the tiers take the right column, level
+   with the title, where the half-width title left the hero empty. */
+.t-hero{display:grid;grid-template-columns:minmax(0,1fr);align-items:start}
+.t-hero>.sec-lead{margin-bottom:0}
+@media (min-width:1100px){
+  .t-hero{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:calc(2 * var(--col-gap));
+    grid-template-areas:"k a" "h a" "l a" "c a";grid-template-rows:auto auto auto 1fr}   /* a taller column of answers grows the last row only: spread over the four, it moved the title as the figures' face arrived */
+  .t-hero>.kicker{grid-area:k}
+  .t-hero>h1{grid-area:h}
+  .t-hero>.sec-lead{grid-area:l}
+  .t-hero>.tarifs-top{grid-area:c}
+  .t-hero>.t-ans{grid-area:a;align-self:center;margin:0}
+}
+/* the three answers: rows between hairlines, not three more boxes; each
+   leads to the tier cards */
+.t-ans{list-style:none;margin:0 0 var(--s-6);padding:0;border-top:1px solid var(--hairline)}
+.t-ans li{border-bottom:1px solid var(--hairline)}
+.t-ans a{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n t" "r r";align-items:baseline;gap:var(--s-1) var(--s-4);
+  padding:var(--s-3) 0;color:inherit;text-decoration:none}
+.t-ans-n{grid-area:n;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--body-strong)}
+.t-ans .t-time{grid-area:t;margin:0;padding:0;border:0;text-align:end}
+.t-ans .t-range{grid-area:r;margin:0;white-space:nowrap}
+/* the figures take one width, the widest range's in either face (9.66em in
+   Geist, 9.09 in its fallback): the currency stands in one column, and it
+   stays put when Geist arrives late (the Arabic page does not preload it; the
+   re-set moved the currency, a layout shift of 0.007 on the first screen) */
+.t-ans .t-range b{display:inline-block;min-width:9.8em}
+html[dir="rtl"] .t-ans-n{letter-spacing:0;text-transform:none}
+.t-ans a:focus-visible .t-range{color:var(--crimson-text)}
+@media (hover:hover){.t-ans a:hover .t-range{color:var(--crimson-text)}}
+
+/* the guide's parts: the home's section heading (h2.sec), a part each,
+   matching the jump row; the whole width (styles.css sets a section's
+   own heading in the header's six columns) */
+#pricing h2.sec{grid-column:1/-1;max-width:none;margin:var(--sec-pad) 0 var(--s-6)}
+#pricing h2.sec+.sec-lead{margin-bottom:var(--s-6)}
+
+/* the estimator's part: its heading is the summary of an open <details>
+   (scripts/build-tarifs.mjs unfold()), drawn as the other parts' headings */
+.t-est>summary{display:flex;align-items:center;min-height:44px;list-style:none;cursor:pointer;margin:var(--sec-pad) 0 var(--s-6)}   /* a 44px target (vbugs SMALLTAP): the part's spacing is the summary's, not its heading's */
+#pricing .t-est>summary>h2.sec{margin:0}
+.t-est>summary::-webkit-details-marker{display:none}
+.t-est>summary:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+
+/* The comparison and the models are parts of the page, not panels: their
+   frames held the table's own frame and the model cards, three edges deep,
+   and left a phone a 250px measure */
+#pricing :is(.market,.models){border:0;border-radius:0;padding:0;background:none;box-shadow:none;margin:0}
+/* their titles, an h3 under the part's h2 (h4 on the home's folded panel) */
+.md-card h3{font-family:var(--font-display);font-weight:600;font-size:var(--t-title);line-height:1.2;letter-spacing:-.01em;color:var(--ice);text-wrap:balance}
+html[dir="rtl"] .md-card h3{font-family:var(--font-ar-display)}
+/* the table's rows are cards on a phone (styles.css): Numidea's figure and
+   Algeria's, the comparison that matters, come first */
+@media (max-width:599px){.mk-table tbody th{order:-3}.mk-table td.mk-nl{order:-2}.mk-table td[data-mk="dz"]{order:-1}}
 
 /* the navbar marks this page, as the scroll-spy marks a section on the home */
 .nav-links a[aria-current="page"]{color:var(--ice)}
 .nav-links a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--crimson)}
 
-/* the guide's parts, kept under the navbar while the page scrolls: five
-   chips, a 40px target each, the row sliding sideways where they do not fit */
-#pricing>.t-jump{position:sticky;top:var(--nav-h);z-index:5;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
-  margin:calc(-1 * var(--s-2)) 0 var(--s-5);padding:var(--s-2) 0;background:var(--nav-glass);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+/* The guide's parts, kept under the navbar while the page scrolls: five
+   chips, a 44px target each, the row sliding sideways where they do not
+   fit, and fading at its end so the chips past it read as more. The
+   reading position marks its chip (aria-current, from the scroll-spy). */
+#pricing>.t-jump{position:sticky;top:var(--nav-h);z-index:5;display:flex;gap:var(--s-2);overflow-x:auto;scrollbar-width:none;
+  box-sizing:border-box;height:var(--jump-h);align-items:center;margin:var(--s-6) 0 0;padding:0;
+  background:var(--nav-glass);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  -webkit-mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 32px),transparent)}
+html[dir="rtl"] #pricing>.t-jump{-webkit-mask-image:linear-gradient(to left,#000 calc(100% - 32px),transparent);mask-image:linear-gradient(to left,#000 calc(100% - 32px),transparent)}
 #pricing>.t-jump::-webkit-scrollbar{display:none}
-.t-jump a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s-4);border:1px solid var(--hairline);border-radius:999px;
-  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--body-strong);text-decoration:none}
-.t-jump a:hover,.t-jump a:focus-visible{color:var(--ice);border-color:var(--teal)}
+.t-jump a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s-4);border:1px solid var(--hairline);border-radius:var(--r-sm);
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--body-strong);text-decoration:none;
+  transition:color var(--t-hover),border-color var(--t-hover)}
+.t-jump a:last-child{margin-inline-end:32px}   /* clear of the fade once scrolled to the end */
+.t-jump a:focus-visible,.t-jump a[aria-current]{color:var(--ice);border-color:var(--teal)}
+.t-jump a[aria-current]{background:color-mix(in srgb,var(--teal) 12%,transparent)}
+@media (hover:hover){.t-jump a:hover{color:var(--ice);border-color:var(--teal)}}
 html[dir="rtl"] .t-jump a{letter-spacing:0;text-transform:none}
-/* a chip lands the section below the navbar and the row */
-#pricing-tiers,#estimator,#market,#models,#faq-t{scroll-margin-top:calc(var(--nav-h) + 64px)}
+/* On a phone and on a short screen the row stays where it is, under the
+   lead: stuck, it and the navbar took 30% of a 640x400 window, and with the
+   phone bar and the estimate panel 44% of a phone over the estimator */
+@media (max-width:599px),(max-height:520px){
+  #pricing{--jump-h:0px}
+  #pricing>.t-jump{position:static;height:auto;flex-wrap:wrap;overflow:visible;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;-webkit-mask-image:none;mask-image:none}
+  .t-jump a:last-child{margin-inline-end:0}
+}
+/* a chip lands its part below the navbar and the row */
+#pricing h2.sec,#market,#models{scroll-margin-top:calc(var(--nav-h) + var(--jump-h) + var(--s-4))}
 
 /* the way on: the Aperçu and WhatsApp, as the hero offers them */
 .tarifs-next{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);margin-top:var(--s-8)}
 .tarifs-next .btn{width:100%;justify-content:center}
-.tarifs-top{margin-top:var(--s-6);margin-bottom:var(--s-6);max-width:560px}
+.tarifs-top{margin-top:var(--s-6);margin-bottom:0;max-width:640px}
 @media (max-width:559px){.tarifs-next{grid-template-columns:1fr}}
+
+/* paper: the guide's address, the studio's email and WhatsApp number and
+   the guide's edition close the printed copy; the screen has them in the
+   footer */
+.t-print{display:none}
+@media print{
+  .t-print{display:block;margin-top:var(--s-6);padding-top:var(--s-3);border-top:1px solid #000;font-size:var(--t-small);color:#000}
+  .t-hero{display:block}
+  .tarifs-next{display:none}
+  /* the market chart's bars are fills, which paper drops: the table under it
+     carries the same figures */
+  .mkv{display:none!important}
+  #pricing h2.sec{margin-top:var(--s-7);break-after:avoid}
+}
