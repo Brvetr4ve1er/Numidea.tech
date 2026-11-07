@@ -32,9 +32,10 @@ const STATIC = { ...STATIC_LANG, ...TARIFS_LANG };
 const frOf = (p) => p.replace(/^(?:en|ar)\//, '');
 export const versions = (p) => Object.fromEntries(LANGS.map((l) => [l, (l === 'fr' ? '' : l + '/') + frOf(p)]));
 export const LANG_FOLDERS = [...new Set(Object.keys(STATIC).map((p) => frOf(p).replace(/index\.html$/, '')))];
-// pages whose language follows ?lang= (an inline dictionary, page-i18n.js);
-// a link to one of them from en/ or ar/ carries ?lang= (build-lang.mjs)
-export const MULTILINGUAL = new Set(['scene/index.html', 'legal/index.html']);
+// pages whose language follows ?lang= (an inline dictionary, page-i18n.js;
+// the Studio's hub/i18n.js); a link to one of them from en/ or ar/ carries
+// ?lang= (build-lang.mjs)
+export const MULTILINGUAL = new Set(['scene/index.html', 'legal/index.html', 'hub/index.html']);
 
 const url = (page) => BASE + page.replace(/index\.html$/, '');
 const xhtml = (l, href) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${href}"/>`;
