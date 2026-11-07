@@ -195,10 +195,15 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
    // the fixed layers' text against the viewport as it is, before the
    // full-page capture moves them to the foot of a page-tall viewport
    const vbuf=items.some(it=>it.fixed)?await p.screenshot():null;
-   const buf=await p.screenshot({fullPage:true});
+   // a page taller than Chromium's capture texture (16 384 px: the Studio is about 22 000) is taken in tiles of 8 000 px, or everything
+   // below the limit is sampled from the last row that was drawn (1:1 on every case section)
+   const PH=await p.evaluate(()=>document.documentElement.scrollHeight),TILE=8000;
    const sampler=async(b)=>{const {data,info}=await sharp(b).raw().toBuffer({resolveWithObject:true});
      return (x,y)=>{x=Math.max(0,Math.min(info.width-1,x|0));y=Math.max(0,Math.min(info.height-1,y|0));const i=(y*info.width+x)*info.channels;return [data[i],data[i+1],data[i+2]]}};
-   const pxPage=await sampler(buf),pxView=vbuf?await sampler(vbuf):null;
+   const tiles=[];
+   for(let y0=0;y0<PH;y0+=TILE)tiles.push(await sampler(await p.screenshot({fullPage:true,clip:{x:0,y:y0,width:w,height:Math.min(TILE,PH-y0)}})));
+   const pxPage=(x,y)=>tiles[Math.min(tiles.length-1,Math.max(0,(y/TILE)|0))](x,y-Math.min(tiles.length-1,Math.max(0,(y/TILE)|0))*TILE);
+   const pxView=vbuf?await sampler(vbuf):null;
    for(const it of items){
      const px=it.fixed?pxView:pxPage;
      if(it.gradText)continue;

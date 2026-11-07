@@ -44,9 +44,12 @@ for(const w of [1440,1024,768,390]){
  combos.push(['hub','/hub/',w,{'numidea-lang':'ar'},`hub ${w}/ar`]);
  combos.push(['bible','/hub/bible/',w,{},`bible ${w}`]);
 }
+// VBUGS_ONLY=<regexp>: only the rows whose "page label" match (VBUGS_ONLY='^(hub|bible) ' for the Studio and the bible)
+const ONLY=process.env.VBUGS_ONLY?new RegExp(process.env.VBUGS_ONLY):null;
 const b = await launch();
 const agg={};
 for(const [page,path,w,init,label] of combos){
+ if(ONLY&&!ONLY.test(page+' '+label))continue;
  const p=await b.newPage({viewport:{width:w,height:w<600?800:900}});
  await p.addInitScript((init)=>{for(const k in init)localStorage.setItem(k,init[k])},init);
  await p.goto(srv.base+path,{waitUntil:'networkidle'});
