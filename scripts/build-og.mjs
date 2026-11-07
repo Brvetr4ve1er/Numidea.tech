@@ -27,6 +27,7 @@
  * drop previews over that). Re-run after a theme or copy change.
  */
 import { join } from 'node:path';
+import { readFileSync } from 'node:fs';
 import { serve, launch } from './lib/serve.mjs';
 import { ROOT } from './site.mjs';
 import { WORDMARK } from './lib/wordmark.mjs';
@@ -36,6 +37,8 @@ const PLATE = 'assets/illus/arch.webp';     // 1000x558
 // the hub's cover drawing: Yasser on the floor with his coffee, Kūro beside
 // him (the cover's picture and 04b's duo, scripts/build-hub-rig.mjs)
 const DUO = 'hub/bible/art/actor-duo-a.webp';
+// the Studio's sting still: the rooftop at dawn (a single frame, hub/img/motion)
+const STING = 'hub/img/motion/sting-169.webp';
 // Bit, WorkspaceHQ's sidekick, as the hub's cartridge drew him until 56f29c1: a 12×9 pixel sprite
 const BIT = '<svg viewBox="0 0 12 9" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="6" height="1" fill="#d97757"/><rect x="2" y="1" width="1" height="1" fill="#d97757"/><rect x="3" y="1" width="1" height="1" fill="#f2a27e"/><rect x="4" y="1" width="6" height="1" fill="#d97757"/><rect x="1" y="2" width="1" height="1" fill="#d97757"/><rect x="2" y="2" width="1" height="1" fill="#f2a27e"/><rect x="3" y="2" width="8" height="1" fill="#d97757"/><rect x="1" y="3" width="10" height="1" fill="#d97757"/><rect x="1" y="4" width="10" height="1" fill="#d97757"/><rect x="0" y="5" width="12" height="1" fill="#d97757"/><rect x="1" y="6" width="10" height="1" fill="#d97757"/><rect x="1" y="7" width="10" height="1" fill="#a5543a"/><rect x="2" y="8" width="1" height="1" fill="#a5543a"/><rect x="4" y="8" width="1" height="1" fill="#a5543a"/><rect x="7" y="8" width="1" height="1" fill="#a5543a"/><rect x="9" y="8" width="1" height="1" fill="#a5543a"/><rect x="3" y="3" width="1" height="1" fill="#1b1430"/><rect x="8" y="3" width="1" height="1" fill="#1b1430"/><rect x="3" y="4" width="1" height="1" fill="#1b1430"/><rect x="8" y="4" width="1" height="1" fill="#1b1430"/></svg>';
 
@@ -51,21 +54,28 @@ const nLive = PROJECTS.filter((p) => p.status === 'live').length;
 // the Arabic copy follows the page's dictionary (assets/i18n/ar.js: prev.*,
 // tb.*, pl.arch). The Latin cards set one Arabic glyph (the foot's ع); the
 // Arabic card sets its title and lines in Plex Arabic 600 and 400.
+// the guide's starting price, from the estimator's model (check.mjs 8b holds the pages to it)
+const FROM = (() => {
+  const app = readFileSync(join(ROOT, 'assets/app.js'), 'utf8'), at = app.indexOf('  var ESTIMATE = (function () {');
+  const E = new Function(`${app.slice(at, app.indexOf('\n  })();', at) + 7)}\nreturn ESTIMATE;`)();
+  const n = String(E.PRICE_MODEL.vitrine.base[0]);
+  return { fr: n.replace(/\B(?=(\d{3})+(?!\d))/g, '\u202f'), en: n.replace(/\B(?=(\d{3})+(?!\d))/g, ',') };
+})();
 const LATIN = ['700 30px Cinzel', '400 24px Geist', '400 16px "Geist Mono"', '600 16px "IBM Plex Sans Arabic"'];
 const CARDS = {
   fr: {
     kind: 'home', out: 'assets/og.jpg', faces: LATIN, assets: [PLATE],
     kicker: "L'Aperçu · offre signature",
-    title: "Voyez votre page d'accueil avant de payer.",
-    sub: 'Gratuit et sans engagement · entreprises immatriculées · 4 par mois au maximum.',
+    title: 'Votre site, avant de payer.',
+    sub: 'Gratuit, sans engagement. Entreprises immatriculées, 4 par mois.',
     foot: 'Studio web · Bordj Bou Arréridj · FR · EN · <b lang="ar">ع</b>',
     plateCap: 'Pl. II — Arc de Trajan · Timgad',   // the site's own caption (pl.arch)
   },
   en: {
     kind: 'home', out: 'assets/og-en.jpg', faces: LATIN, assets: [PLATE],
     kicker: 'The Preview · signature offer',
-    title: 'See your new homepage before you pay.',
-    sub: 'Free, no obligation · registered businesses · at most 4 a month.',
+    title: 'Your site, before you pay.',
+    sub: 'Free, no obligation. Registered businesses, 4 a month.',
     foot: 'Web studio · Bordj Bou Arréridj · EN · FR · <b lang="ar">ع</b>',
     plateCap: 'Pl. II — Arch of Trajan · Timgad',
   },
@@ -73,8 +83,36 @@ const CARDS = {
     kind: 'home', out: 'assets/og-ar.jpg', assets: [PLATE],
     faces: ['700 30px Cinzel', '400 24px Geist', '400 16px "Geist Mono"', '600 52px "IBM Plex Sans Arabic"', '400 24px "IBM Plex Sans Arabic"'],
     kicker: 'المعاينة · عرضنا المميّز',
-    title: 'شاهد الصفحة الرئيسية لموقعك الجديد قبل أن تدفع.',
-    sub: 'مجّاناً ودون التزام · للشركات المسجّلة · 4 في الشهر كحدّ أقصى.',
+    title: 'موقعك، قبل أن تدفع.',
+    sub: 'مجّاناً ودون التزام. للشركات المسجّلة، 4 في الشهر.',
+    foot: 'استوديو ويب · برج بوعريريج · العربية · الفرنسية · الإنجليزية',
+    plateCap: 'لوحة 2 — قوس تراجان · تيمقاد',
+  },
+  // the price guide's cards (/tarifs/, /en/tarifs/, /ar/tarifs/): the starting
+  // price is read from the estimator's own model (assets/app.js), so the card
+  // cannot say a figure the page does not
+  tarifs: {
+    kind: 'home', out: 'assets/og-tarifs.jpg', faces: LATIN, assets: [PLATE],
+    kicker: 'Guide des prix · 2026',
+    title: `Dès ${FROM.fr} DA.`,
+    sub: 'Prix publiés, estimateur en ligne, fourchettes indicatives.',
+    foot: 'Studio web · Bordj Bou Arréridj · FR · EN · <b lang="ar">ع</b>',
+    plateCap: 'Pl. II — Arc de Trajan · Timgad',
+  },
+  'tarifs-en': {
+    kind: 'home', out: 'assets/og-tarifs-en.jpg', faces: LATIN, assets: [PLATE],
+    kicker: 'Price guide · 2026',
+    title: `From ${FROM.en} DZD.`,
+    sub: 'Published prices, an online estimator, indicative ranges.',
+    foot: 'Web studio · Bordj Bou Arréridj · EN · FR · <b lang="ar">ع</b>',
+    plateCap: 'Pl. II — Arch of Trajan · Timgad',
+  },
+  'tarifs-ar': {
+    kind: 'home', out: 'assets/og-tarifs-ar.jpg', assets: [PLATE],
+    faces: ['700 30px Cinzel', '400 24px Geist', '400 16px "Geist Mono"', '600 52px "IBM Plex Sans Arabic"', '400 24px "IBM Plex Sans Arabic"'],
+    kicker: 'دليل الأسعار · 2026',
+    title: `ابتداءً من ${FROM.fr} دج.`,
+    sub: 'أسعار منشورة، حاسبة تقدير على الإنترنت، نطاقات استرشادية.',
     foot: 'استوديو ويب · برج بوعريريج · العربية · الفرنسية · الإنجليزية',
     plateCap: 'لوحة 2 — قوس تراجان · تيمقاد',
   },
@@ -97,6 +135,14 @@ const CARDS = {
     tag: "The builder who answers at 2 a.m. — and the black cat who decides if it's good enough.",
     marker: 'tired eyes · big ideas · same energy.', foot: 'Artist · Designer · Developer',
   },
+  // the Studio's page: the sting's still, the wordmark and one line, inside
+  // the centre square (SAFE); the picture bleeds, so a square crop keeps
+  // the cat and the face
+  studio: {
+    kind: 'studio', out: 'hub/og.jpg', assets: [STING], quality: 82,
+    faces: ['400 16px "Geist Mono"'],
+    foot: 'Studio web · Bordj Bou Arréridj',
+  },
   // the product's page: its name and its whole headline, in its arcade faces
   // quality 80, not 86: the aurora costs bytes, and check.mjs block 17 holds
   // workspacehq/'s own files to 64 kB
@@ -109,8 +155,14 @@ const CARDS = {
   },
 };
 
-/* the home card: the Arcanum page, the offer on the left, the engraving on the right */
-const home = (base, lang, card) => `<!doctype html><html lang="${lang}" dir="${lang === 'ar' ? 'rtl' : 'ltr'}" data-theme="arcanum"><head><meta charset="utf-8">
+/* the home card: the Arcanum page. Three columns, the middle one a 630px
+   square (SAFE): the wordmark and the headline, which is all that is left when
+   a messenger crops the card to a square (a chat's link thumbnail, a compact
+   LinkedIn row). The kicker and the plate's caption sit in the start column,
+   the offer's terms (28px) in the end column, the engraving behind all three
+   as a faint ground: cut away whole, never half a word. The Arabic card is
+   the same grid read right to left, the logo staying Latin at the reading start. */
+const home = (base, lang, card) => `<!doctype html><html lang="${lang.slice(-2) === 'ar' ? 'ar' : lang.slice(-2) === 'en' ? 'en' : 'fr'}" dir="${lang.endsWith('ar') ? 'rtl' : 'ltr'}" data-theme="arcanum"><head><meta charset="utf-8">
 <base href="${base}/">
 <link rel="stylesheet" href="assets/fonts.css"><link rel="stylesheet" href="assets/themes.css">
 <style>
@@ -120,49 +172,44 @@ const home = (base, lang, card) => `<!doctype html><html lang="${lang}" dir="${l
 *{box-sizing:border-box;margin:0}
 html,body{width:1200px;height:630px;overflow:hidden}
 body{position:relative;background:var(--atmos),var(--grad-noir);color:var(--ice);font-family:var(--font-display);
-  display:grid;grid-template-columns:600px 1fr;gap:40px;padding:64px 64px 56px 72px}
+  display:grid;grid-template-columns:285px 630px 285px}
 body::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--grid-opacity);
   background-image:linear-gradient(var(--grid-color) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);
   background-size:var(--grid-size) var(--grid-size)}
-.l{position:relative;display:flex;flex-direction:column}
-/* the wordmark, as the pages draw it (scripts/lib/wordmark.mjs): 22px of cap height */
+/* the engraving, as the page draws its plates (the image is a mask, the ink the theme's), here a ground */
+.ground{position:absolute;inset:0;background:var(--teal-text);opacity:.13;
+  -webkit-mask:url(${PLATE}) center/cover no-repeat;mask:url(${PLATE}) center/cover no-repeat;
+  -webkit-mask-source-type:luminance;mask-mode:luminance}
+.side{position:relative;display:flex;flex-direction:column;padding:56px 28px 52px 48px}
+.side.e{padding:0 48px 0 28px;justify-content:center}
+/* the safe square */
+.safe{position:relative;display:flex;flex-direction:column;padding:56px 36px 52px;text-align:start}
 .logo{display:block;color:var(--ice)}
 .logo .wm{display:block;height:22px;width:auto;overflow:visible}
-.kick{margin-top:56px;font-family:var(--font-mono);font-size:17px;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson-text)}
-h1{margin-top:18px;font-family:var(--font-head);font-weight:var(--head-weight);font-size:56px;line-height:1.08;letter-spacing:var(--head-tracking)}
-p{margin-top:22px;font-size:24px;line-height:1.45;color:var(--body-strong);max-width:30em}
-.foot{margin-top:auto;font-family:var(--font-mono);font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-text)}
+h1{margin-block:auto;font-family:var(--font-head);font-weight:var(--head-weight);font-size:76px;line-height:1.08;letter-spacing:var(--head-tracking);text-wrap:balance}
+.foot{font-family:var(--font-mono);font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-text)}
 .foot b{font-family:var(--font-ar);font-weight:600;letter-spacing:0}
-/* Arabic: the page's faces, no tracking (it breaks the joins), taller lines;
-   the logo stays Latin and keeps its place at the reading start */
-html[dir="rtl"] body{padding:64px 72px 56px 64px}
+.kick{font-family:var(--font-mono);font-size:17px;line-height:1.5;letter-spacing:.16em;text-transform:uppercase;color:var(--crimson-text)}
+.cap{margin-top:auto;font-family:var(--font-mono);font-size:14px;line-height:1.5;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.terms{font-size:28px;line-height:1.35;color:var(--body-strong);text-wrap:balance}
+/* Arabic: the page's faces, no tracking (it breaks the joins), taller lines */
 html[dir="rtl"] .logo{direction:ltr;align-self:flex-start}
-html[dir="rtl"] .kick,html[dir="rtl"] .foot{font-family:var(--font-ar);font-weight:600;letter-spacing:0;text-transform:none}
-html[dir="rtl"] h1{font-family:var(--font-ar);font-weight:600;font-size:52px;line-height:1.3;letter-spacing:0}
-html[dir="rtl"] p{font-family:var(--font-ar);line-height:1.7}
-.r{position:relative;align-self:center}
-/* the plate, as the page draws its engravings: the image is a mask, the ink is the theme's */
-.plate{position:relative;aspect-ratio:1000/558;border:1px solid var(--hairline-2);border-radius:4px;padding:18px}
-.plate i{position:absolute;inset:18px;background:var(--teal-text);opacity:.62;
-  -webkit-mask:url(${PLATE}) center/100% 100% no-repeat;mask:url(${PLATE}) center/100% 100% no-repeat;
-  -webkit-mask-source-type:luminance;mask-mode:luminance}   /* a luminance mask, as styles.css draws every plate */
-.plate b{position:absolute;width:14px;height:14px;border-color:var(--crimson-text);border-style:solid;border-width:0}
-.plate .tl{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px}.plate .tr{top:-1px;right:-1px;border-top-width:2px;border-right-width:2px}
-.plate .bl{bottom:-1px;left:-1px;border-bottom-width:2px;border-left-width:2px}.plate .br{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px}
-.cap{margin-top:12px;font-family:var(--font-mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-html[dir="rtl"] .cap{font-family:var(--font-ar);letter-spacing:0;text-transform:none}
+html[dir="rtl"] .side{padding:56px 48px 52px 28px}
+html[dir="rtl"] .side.e{padding:0 28px 0 48px}
+html[dir="rtl"] .kick,html[dir="rtl"] .foot,html[dir="rtl"] .cap{font-family:var(--font-ar);font-weight:600;letter-spacing:0;text-transform:none}
+html[dir="rtl"] .kick{font-size:20px}
+html[dir="rtl"] .cap{font-size:16px;font-weight:400}
+html[dir="rtl"] h1{font-family:var(--font-ar);font-weight:600;font-size:68px;line-height:1.3;letter-spacing:0}
+html[dir="rtl"] .terms{font-family:var(--font-ar);line-height:1.6;font-size:26px}
 </style></head><body>
-<div class="l">
-  <div class="logo">${WORDMARK}</div>
-  <div class="kick">${card.kicker}</div>
-  <h1>${card.title}</h1>
-  <p>${card.sub}</p>
-  <div class="foot">${card.foot}</div>
+<div class="ground"></div>
+<div class="side"><div class="kick" data-out>${card.kicker}</div><div class="cap" data-out>${card.plateCap}</div></div>
+<div class="safe">
+  <div class="logo" data-safe>${WORDMARK}</div>
+  <h1 data-safe>${card.title}</h1>
+  <div class="foot" data-safe>${card.foot}</div>
 </div>
-<div class="r">
-  <div class="plate"><i></i><b class="tl"></b><b class="tr"></b><b class="bl"></b><b class="br"></b></div>
-  <div class="cap">${card.plateCap}</div>
-</div>
+<div class="side e"><div class="terms" data-out>${card.sub}</div></div>
 </body></html>`;
 
 /* the scene card: a plotted sheet on the drafting paper (scene/style.css),
@@ -324,7 +371,27 @@ h1 em{font-style:normal;color:var(--gold);text-shadow:0 0 38px rgba(255,210,63,.
 <div class="r"><span class="xp">+1 XP</span><div class="bit">${BIT}</div><div class="floor"></div><div class="start">▶ PRESS START</div></div>
 </body></html>`;
 
-const TEMPLATES = { home, scene, hub, workspacehq };
+/* the Studio card: the sting's still full bleed, a scrim under the wordmark
+   and one mono line, both inside the centre square */
+const studio = (base, lang, card) => `<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<base href="${base}/">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{position:relative;background:#16110d;font-family:"Geist","Geist Fallback",system-ui,sans-serif}
+img{position:absolute;inset:0;width:1200px;height:630px;object-fit:cover;object-position:30% 50%}
+.scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,10,8,.15) 0%,rgba(14,10,8,0) 38%,rgba(14,10,8,.78) 100%)}
+.safe{position:absolute;left:285px;width:630px;top:0;bottom:0;padding:0 36px 52px;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;align-items:flex-start;color:#f4ece0}
+.logo{display:block;color:#f4ece0}
+.logo .wm{display:block;height:40px;width:auto;overflow:visible}
+.foot{font:500 17px "Geist Mono","Geist Mono Fallback",ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#e9dfd0}
+</style></head><body>
+<img src="${STING}" alt="" width="1920" height="1080"><div class="scrim"></div>
+<div class="safe"><div class="logo" data-safe>${WORDMARK}</div><div class="foot" data-safe>${card.foot}</div></div>
+</body></html>`;
+
+const TEMPLATES = { home, scene, hub, studio, workspacehq };
 
 const only = process.argv[2];
 if (only && !CARDS[only]) { console.error(`✗ no card for "${only}" (one of: ${Object.keys(CARDS).join(', ')})`); process.exit(1); }
@@ -361,6 +428,18 @@ try {
     const over = await p.evaluate((inColumn) => [...document.querySelectorAll('.l > *, .r > *')].filter((e) => { const r = e.getBoundingClientRect();
       const lim = inColumn && e.closest('.l') ? document.querySelector('.l').getBoundingClientRect().right + 1 : 1200; return r.bottom > 630 || r.right > lim; }).map((e) => e.className || e.tagName), !!card.inColumn);
     if (over.length) throw new Error(`og card ${name}: ${over.join(', ')} run(s) past the card's edge (shorten the copy)`);
+    // the safe square (the centre 630×630, x 285 to 915): everything marked
+    // data-safe lies inside it, and the whole card also reads as a 200px tile
+    // (headline box at least 12px tall once scaled); what is data-out lies outside it
+    const SAFE = [285, 915];
+    const safe = await p.evaluate(([x0, x1]) => ({
+      inside: [...document.querySelectorAll('[data-safe]')].filter((e) => { const r = e.getBoundingClientRect(); return r.left < x0 || r.right > x1 || r.top < 0 || r.bottom > 630; }).map((e) => e.className || e.tagName),
+      outside: [...document.querySelectorAll('[data-out]')].filter((e) => { const r = e.getBoundingClientRect(); return r.right > x0 && r.left < x1; }).map((e) => e.className || e.tagName),
+      h1: (() => { const h = document.querySelector('h1'); return h ? parseFloat(getComputedStyle(h).fontSize) * 200 / 630 : 99; })(),
+    }), SAFE);
+    if (safe.inside.length) throw new Error(`og card ${name}: ${safe.inside.join(', ')} not inside the centre square (x ${SAFE.join('–')}): a square crop would cut it`);
+    if (safe.outside.length) throw new Error(`og card ${name}: ${safe.outside.join(', ')} reach(es) into the centre square: secondary lines belong beside it`);
+    if (safe.h1 < 8) throw new Error(`og card ${name}: the headline is ${safe.h1.toFixed(1)}px in a 200px tile (at least 8)`);
     await p.waitForTimeout(300);
     // JPEG: a photographic card as PNG is ~530 KB, and some messengers drop
     // previews over ~300 KB

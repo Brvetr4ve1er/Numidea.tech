@@ -16,7 +16,7 @@ var I18N = {
   'meta.ogTitle': 'Numidea Labs — See your new homepage before you pay',
   'meta.ogDesc': 'Web studio in Bordj Bou Arréridj. For a registered business, before any payment, we build your new site\'s homepage with your own content in 5 working days — at most 4 a month. Websites in English, French and Arabic.',
   'meta.twDesc': 'Your homepage, with your own content, in 5 working days. Free, no obligation, for registered businesses, at most 4 a month.',
-  'meta.ogAlt': 'Numidea Labs — The Preview: your homepage before you pay, beside an engraving of the Arch of Trajan at Timgad',
+  'meta.ogAlt': 'Numidea Labs — “Your site, before you pay.” The Preview: your homepage before you pay, over an engraving of the Arch of Trajan at Timgad',
   'nav.about': 'The Preview', 'nav.services': 'Services', 'nav.work': 'Work',
   'nav.team': 'Founder', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
   'hero.eyebrow': 'Web studio\u00a0· Bordj\u00a0Bou\u00a0Arréridj',
@@ -193,6 +193,7 @@ var I18N = {
   /* ---- the price guide (tarifs/, scripts/build-tarifs.mjs): its head, its own lines, the home's links to it ---- */
   'tarifs.title': 'The price of a website in Algeria (2026) — Numidea Labs',
   'tarifs.desc': 'How much does a website cost in Algeria in 2026? Our packages from 90,000 DZD, an estimator, and typical rates in Algeria, France and the United States.',
+  'tarifs.ogAlt': 'Numidea Labs — Price guide: “From 90,000 DZD.” Published prices, an online estimator, indicative ranges, over an engraving of the Arch of Trajan at Timgad',
   'tarifs.crumbAria': 'Breadcrumb', 'tarifs.kicker': 'Pricing\u00a0· 2026 guide',
   'tarifs.h1': 'The price of a website <em>in\u00a0Algeria, in 2026.</em>',
   'tarifs.lead': 'Our three packages and maintenance, in dinars, euros or dollars; the estimator for what the packages do not price; then typical rates in\u00a0Algeria, France and the United States, sources included.',

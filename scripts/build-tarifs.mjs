@@ -348,7 +348,7 @@ export function renderTemplate(lang, home = read('index.html'), dicts = loadDict
 
 <!-- Open Graph / social — absolute URLs, no scripts run: this page's language.
      Its texts name their own keys (tarifs.*: data-i18n-content; the share card
-     is the home page's, with its alt), so bakeLang writes them from each
+     is the guide's own, assets/og-tarifs*.jpg, with its alt, tarifs.ogAlt: renderTarifs), so bakeLang writes them from each
      dictionary as it writes the page. og:url, og:locale, the canonical and
      the card follow the language (scripts/build-lang.mjs). -->
 <meta property="og:type" content="website">
@@ -497,6 +497,10 @@ export function renderTarifs(lang, home = read('index.html'), dicts = loadDicts(
   const depth = TARIFS_PAGES[lang].split('/').length - 1;
   let page = bakeLang(renderTemplate(lang, home, dicts), lang, dicts[lang], { depth, path: TARIFS_PAGES[lang].replace(/index\.html$/, ''), ld: false, generated: null });
   page = homeLinks(page, home);
+  // the guide's own share card (scripts/build-og.mjs: the starting price, inside the card's centre square), not the home's
+  const card = BASE + `assets/og-tarifs${lang === 'fr' ? '' : '-' + lang}.jpg`;
+  page = page.replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${card}$2`).replace(/(<meta name="twitter:image" content=")[^"]*(")/, `$1${card}$2`)
+    .replace(/(<meta property="og:image:alt" content=")[^"]*(")/, (_, o, c) => o + esc(dicts[lang]['tarifs.ogAlt']) + c);
   page = page.replace(/^<!DOCTYPE html>\n/i, (m) => m + `<!-- Generated: the ${NAME[lang]} price guide, written by scripts/build-tarifs.mjs from its\n     template, index.html (the tiers and the estimator, between the SLOT markers;\n     the chrome) and ${I18N_FILES[lang]}. Do not edit it here: change the generator,\n     index.html or the dictionary, then npm run build. -->\n`);
   return withCsp(page, 'page');
 }

@@ -16,7 +16,7 @@ var I18N = {
   'meta.ogTitle': 'Numidea Labs — Voyez votre page d\'accueil avant de payer',
   'meta.ogDesc': 'Studio web à Bordj Bou Arréridj. Pour une entreprise immatriculée, avant tout paiement, nous construisons la page d\'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés — 4 par mois au maximum. Sites en français, anglais et arabe.',
   'meta.twDesc': 'Votre page d\'accueil, avec votre contenu, en 5 jours ouvrés. Gratuit et sans engagement, pour les entreprises immatriculées, 4 par mois au maximum.',
-  'meta.ogAlt': 'Numidea Labs — L\'Aperçu\u202f: votre page d\'accueil avant de payer, à côté d\'une gravure de l\'arc de Trajan à Timgad',
+  'meta.ogAlt': 'Numidea Labs — «\u202fVotre site, avant de payer.\u202f» L\'Aperçu\u202f: votre page d\'accueil avant de payer, devant une gravure de l\'arc de Trajan à Timgad',
   'nav.about': 'L’Aperçu', 'nav.services': 'Services', 'nav.work': 'Réalisations',
   'nav.team': 'Fondateur', 'nav.faq': 'FAQ', 'nav.contact': 'Contact',
   'hero.eyebrow': 'Studio web\u00a0· Bordj\u00a0Bou\u00a0Arréridj',
@@ -193,6 +193,7 @@ var I18N = {
   /* ---- the price guide (tarifs/, scripts/build-tarifs.mjs): its head, its own lines, the home's links to it ---- */
   'tarifs.title': 'Prix d\'un site web en Algérie (2026) — Numidea Labs',
   'tarifs.desc': 'Combien coûte un site web en Algérie en 2026 ? Nos formules dès 90 000 DA, un estimateur, et les tarifs courants en Algérie, en France et aux États-Unis.',
+  'tarifs.ogAlt': 'Numidea Labs — Guide des prix\u202f: «\u202fDès 90\u202f000 DA.\u202f» Prix publiés, estimateur en ligne, fourchettes indicatives, devant une gravure de l\'arc de Trajan à Timgad',
   'tarifs.crumbAria': 'Fil d\'Ariane', 'tarifs.kicker': 'Tarifs\u00a0· guide 2026',
   'tarifs.h1': 'Prix d’un site web <em>en\u00a0Algérie, en 2026.</em>',
   'tarifs.lead': 'Nos trois formules et la maintenance, en dinars, en euros ou en dollars ; l’estimateur pour ce que les formules ne chiffrent pas ; puis les tarifs courants en\u00a0Algérie, en France et aux États-Unis, sources à l’appui.',
