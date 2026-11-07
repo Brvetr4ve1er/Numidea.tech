@@ -178,7 +178,7 @@ const SPEC = {
   'en/tarifs/index.html': { langs: ['en'], tests: ['estimate'], only: 'the English guide (one language per page)' },
   'ar/tarifs/index.html': { langs: ['ar'], tests: ['estimate'], only: 'the Arabic guide (one language per page)' },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
-  'hub/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: [] },
+  'hub/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['studio', 'hits'] },
   'hub/bible/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the founder's own page)" },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
   '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the wordmark and two links (home, the offer)' },
@@ -703,7 +703,91 @@ async function dialog(p, kind) {
   return { bad, note: kind };
 }
 
-/* hub/'s live rig (00 He's alive, hub/app.js §1): Yasser and Kūro are
+/* hub/ the Studio's controls, by keyboard only (Tab to it, Enter or Space,
+   an arrow key on the range): the language buttons (the page's language and
+   direction follow, FR is set back), the rig's two buttons (Yasser answers
+   with a line), the estimator (a type, the range, an option, the pace, the
+   maintenance line: each moves a figure and an aria-pressed), the brand's
+   four layers, the questions (aria-expanded and the answer's hidden) and a
+   case's track (its buttons move it). Each control is reached with the
+   keyboard first: a control the pointer alone could use is a failure. */
+async function studio(p, lang) {
+  const bad = [];
+  await p.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+  const key = async (sel, k = 'Enter') => {
+    const el = p.locator(sel).first();
+    await el.scrollIntoViewIfNeeded().catch(() => {});
+    await el.focus();
+    await p.keyboard.press(k);
+    await p.waitForTimeout(120);
+  };
+  // the language buttons
+  for (const l of ['en', 'ar', 'fr'].filter((x) => x !== lang).concat(lang)) {
+    await key(`[data-lang="${l}"]`);
+    const r = await p.evaluate((l) => ({ lang: document.documentElement.lang, dir: document.documentElement.dir, on: document.querySelector(`[data-lang="${l}"]`).getAttribute('aria-pressed'), others: [...document.querySelectorAll('[data-lang]')].filter((b) => b.getAttribute('data-lang') !== l && b.getAttribute('aria-pressed') === 'true').length }), l);
+    if (r.lang !== l) bad.push(`[data-lang=${l}] left html lang="${r.lang}"`);
+    if (r.dir !== (l === 'ar' ? 'rtl' : 'ltr')) bad.push(`[data-lang=${l}] left dir="${r.dir}"`);
+    if (r.on !== 'true' || r.others) bad.push(`[data-lang=${l}]: aria-pressed ${r.on}, ${r.others} other(s) still pressed`);
+  }
+  // the rig: Yasser and Kūro each answer
+  const said = () => p.evaluate(() => (document.querySelector('[data-ytext]') || {}).textContent || '');
+  const s0 = await said();
+  await key('.st-rig__y', 'Space');
+  // the line types itself out after a beat (a reduced-motion visitor gets it whole)
+  await p.waitForFunction(() => ((document.querySelector('[data-ytext]') || {}).textContent || '').length > 3, null, { timeout: 4000 }).catch(() => {});
+  const s1 = await said();
+  if (!s1 || s1 === s0) bad.push('Space on Yasser says nothing new');
+  await key('.st-rig__k');
+  // the estimator (enabled once the script runs)
+  await p.waitForFunction(() => document.querySelector('[data-type]') && !document.querySelector('[data-type]').disabled, null, { timeout: 5000 }).catch(() => bad.push('the estimator stays disabled'));
+  const fig = () => p.evaluate(() => [...document.querySelectorAll('[data-est-dz],[data-est-w]')].map((o) => o.textContent).join('|'));
+  const f0 = await fig();
+  await key('[data-type="ecommerce"]');
+  const f1 = await fig();
+  if (f1 === f0) bad.push('choosing the shop type moves no figure');
+  if (await p.getAttribute('[data-type="ecommerce"]', 'aria-pressed') !== 'true' || await p.getAttribute('[data-type="vitrine"]', 'aria-pressed') !== 'false') bad.push('the type buttons do not hand aria-pressed on');
+  const v0 = await p.inputValue('#est-size');
+  await key('#est-size', 'ArrowRight');
+  if (await p.inputValue('#est-size') === v0) bad.push('an arrow key does not move the range');
+  const f2 = await fig();
+  if (f2 === f1) bad.push('the range moves no figure');
+  const opt = (await p.locator('[data-opt]:not([disabled])').count()) ? '[data-opt]:not([disabled])' : null;
+  if (opt) { const was = await p.locator(opt).first().getAttribute('aria-pressed'); await key(opt, 'Space'); if (await p.locator(opt).first().getAttribute('aria-pressed') === was) bad.push('Space on an option does not toggle it'); }
+  const f3 = await fig();
+  await key('[data-pace="rush"]');
+  if (await p.getAttribute('[data-pace="rush"]', 'aria-pressed') !== 'true') bad.push('the rush pace is not pressed after Enter');
+  if (await fig() === f3) bad.push('the rush pace moves no figure');
+  const care = await p.getAttribute('[data-care]', 'aria-pressed');
+  await key('[data-care]', 'Space');
+  if (await p.getAttribute('[data-care]', 'aria-pressed') === care) bad.push('Space on the maintenance line does not toggle it');
+  // the brand's layers
+  await key('[data-layer="1"]');
+  const lay = await p.evaluate(() => [...document.querySelectorAll('[data-layer]')].map((b) => b.getAttribute('aria-pressed')).join());
+  if (lay !== 'false,true,false,false') bad.push(`the brand layers after Enter on the second: ${lay}`);
+  // the questions
+  const qb = '.st-qa__item button[aria-expanded]';
+  const open0 = await p.locator(qb).first().getAttribute('aria-expanded');
+  await key(qb);
+  const open1 = await p.locator(qb).first().getAttribute('aria-expanded');
+  const hid = await p.evaluate(() => { const b = document.querySelector('.st-qa__item button[aria-expanded]'); return document.getElementById(b.getAttribute('aria-controls')).hidden; });
+  if (open0 === open1) bad.push('Enter on a question does not change aria-expanded');
+  if (hid !== (open1 === 'false')) bad.push(`a question reads aria-expanded=${open1} but its answer is ${hid ? 'hidden' : 'shown'}`);
+  // a case's track
+  const tr = await p.evaluate(() => { const t = document.querySelector('[data-track]'); return t ? { l: t.scrollLeft, w: t.scrollWidth - t.clientWidth, i: t.hasAttribute('tabindex') } : null; });
+  if (tr && tr.w > 8) {
+    if (!tr.i) bad.push('a case track cannot take focus (no tabindex)');
+    const nxt = await p.evaluate(() => { const t = document.querySelector('[data-track]'); const b = t.closest('section,article,div[id]').querySelector('[data-track-next]'); return !!b; });
+    if (nxt) {
+      await p.evaluate(() => document.querySelector('[data-track]').closest('section,article,div[id]').querySelector('[data-track-next]').focus());
+      await p.keyboard.press('Enter'); await p.waitForTimeout(700);
+      const l1 = await p.evaluate(() => document.querySelector('[data-track]').scrollLeft);
+      if (Math.abs(l1 - tr.l) < 4) bad.push('a case track does not move after Enter on its next button');
+    }
+  }
+  return { bad, note: 'studio controls' };
+}
+
+/* hub/bible's live rig (00 He's alive, hub/app.js §1): Yasser and Kūro are
    buttons, the acts a group of buttons under them (.ctrls). From Yasser, Tab
    goes to Kūro, then to each act in the order the page lists them, each
    on screen and wearing a ring. Enter on Yasser is a reaction at once (the
@@ -790,7 +874,18 @@ async function hits(p) {
       await new Promise((res) => requestAnimationFrame(() => requestAnimationFrame(res)));
       const b = e.getBoundingClientRect();
       if (!b.width || !b.height || b.bottom < 0 || b.top > innerHeight) continue;
-      const t = document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2);
+      // a control a track has scrolled out of its window is not a control the
+      // pointer can reach, nor one anything lies over: skip what an ancestor clips
+      const cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+      let clipped = cx < 0 || cx > innerWidth;
+      for (let a = e.parentElement; a && a !== document.body && !clipped; a = a.parentElement) {
+        const cs = getComputedStyle(a);
+        if (cs.overflowX === 'visible' && cs.overflowY === 'visible') continue;
+        const r = a.getBoundingClientRect();
+        if (cx < r.left || cx > r.right || cy < r.top || cy > r.bottom) clipped = true;
+      }
+      if (clipped) continue;
+      const t = document.elementFromPoint(cx, cy);
       if (!t || (t !== e && !e.contains(t))) out.push(__d(e) + ' lies under ' + __d(t));
     }
     scrollTo(0, 0);
@@ -924,6 +1019,7 @@ for (const f of pages) {
       else if (t === 'embeds') out.push(await embeds(p, w, h));
       else if (t === 'hits') out.push(await hits(p));
       else if (t === 'rig') out.push(await rig(p));
+      else if (t === 'studio') out.push(await studio(p, lang));
       else out.push(await dialog(p, t));
     }
     out.push({ bad: await direction(p, spec, lang, 'after the tests'), note: 'dir ' + (lang === 'ar' ? 'rtl' : 'ltr') });
