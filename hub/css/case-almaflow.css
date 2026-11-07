@@ -1,0 +1,290 @@
+/* ============================================================
+   Case 03 · AlmaFlowClim (hub/src/cases/almaflow.html), everything under
+   .case-almaflow. The client's own look, from the owner's design
+   (2026-11-07): night navy, one cyan, a blue and a violet that only the
+   brand rule and the palette use, Montserrat over Manrope. The shell
+   (hub/style.css 09: the bar, the track, its spans, the foot, the badges,
+   the viewer) is the page's; this sheet sets the palette on the scope and
+   draws the tiles. Every colour is a token of the scope block below.
+   Measured as painted: navy ink on the cyan 7.6:1 (white on it would be
+   2.5, so it is never white), cyan on the navy 7.6:1, the slate labels on
+   white 7.0:1, the blue link on white 5.3:1. Labels never go under 12px
+   (the design's 10px mono is the page's label size here).
+   Motion: the hover zoom of the pictures and the tab changes answer an
+   input; with reduced motion nothing moves.
+   ============================================================ */
+
+.case-almaflow{
+  --c-bg:#F3F7FB;
+  --c-dark:#0E1A2B;
+  --c-fg:#0E1A2B;
+  --c-muted:#4A5B6E;
+  --c-line:#D5DEE8;
+  --c-tile:#E4EBF2;
+  --c-accent:#1DB0E3;
+  --c-accent-2:#4CC3EC;
+  --c-on-accent:#0E1A2B;
+  --c-on-dark:#F3F7FB;
+  --c-font:"Manrope",var(--f-body);
+  --c-font-disp:"Montserrat",var(--f-disp);
+  --cf-white:#FFFFFF;
+  --cf-navy-2:#1C2C40;
+  --cf-navy-3:#33475E;
+  --cf-blue:#2C8CE8;
+  --cf-violet:#6943D7;
+  --cf-link:#1F6FC4;
+  --cf-slate-l:#A9B8C8;
+  --cf-soft:#C6D2DE;
+  --cf-chrome:#EAF0F6;
+  --cf-dot:#C3CFDB;
+  --cf-rule:#E3E9EF;
+  --cf-grey:#E4E6E8;
+  --cf-sand:#E8E2DA;
+  --cf-black:#000000;
+  --cf-ink-2:#33414F;
+  --cf-serp:#1F4FB4;
+  --cf-ok:#9FE3F7;
+  --cf-scrim:rgba(14,26,43,.94);
+  --cf-scrim-2:rgba(14,26,43,.7);
+  --cf-scrim-3:rgba(14,26,43,.05);
+  --cf-cover-a:rgba(14,26,43,.1);
+  --cf-cover-b:rgba(14,26,43,.95);
+  --cf-card:rgba(243,247,251,.95);
+  --cf-hair:rgba(243,247,251,.3);
+  --cf-hair-2:rgba(29,176,227,.7);
+  --cf-ring:rgba(243,247,251,.45);
+  --cf-grad:linear-gradient(90deg,#1DB0E3,#2C8CE8 55%,#6943D7);
+}
+
+/* ---------------- the bar: the brand rule where the shell has its border ---------------- */
+.case-almaflow .st-case__bar{position:relative;border-bottom:0}
+.case-almaflow .st-case__bar::after{content:"";position:absolute;inset-inline:0;bottom:0;height:3px;background:var(--cf-grad)}
+.case-almaflow .cf-id{flex:1 1 300px}
+.case-almaflow .cf-id__txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.case-almaflow .cf-hud{color:var(--c-accent);opacity:1;letter-spacing:.16em}
+.case-almaflow .st-case__logo{width:auto;height:44px;padding:5px 9px;border-radius:8px}
+.case-almaflow .st-case__logo img{width:auto;height:26px;max-width:none}
+.case-almaflow .st-case__name{letter-spacing:0;line-height:1.1;font-weight:700}
+.case-almaflow .cf-sector{color:var(--cf-slate-l);font-weight:600}
+.case-almaflow .cf-progress{min-width:180px;letter-spacing:.14em}
+.case-almaflow .cf-muted-d{color:var(--cf-slate-l);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.case-almaflow .cf-pips{height:8px;background:var(--cf-navy-2);border-radius:4px;overflow:hidden}
+.case-almaflow .cf-pips i{background:transparent;opacity:1}
+.case-almaflow .cf-pips i.is-seen{background:var(--c-accent)}
+.case-almaflow .cf-end{display:flex;align-items:center;gap:8px}
+.case-almaflow .cf-tag{padding:8px 12px;border-radius:999px;font-family:var(--c-font-disp);font-weight:800;font-size:14px;letter-spacing:.02em}
+.case-almaflow .cf-nav button{border:1px solid var(--cf-navy-3);border-radius:999px}
+.case-almaflow .cf-nav button:hover{background:var(--cf-navy-2);border-color:var(--cf-navy-3);color:var(--c-on-dark)}
+.case-almaflow .st-case__bar :focus-visible,.case-almaflow .cf-scope :focus-visible,.case-almaflow .cf-cover :focus-visible,.case-almaflow .cf-site__view :focus-visible,.case-almaflow .cf-post :focus-visible,.case-almaflow .cf-fig :focus-visible{outline-color:var(--c-on-dark)}
+.case-almaflow .st-case__track:focus-visible{outline-color:var(--c-accent)}
+.case-almaflow .st-case__foot{color:var(--c-muted)}
+.case-almaflow .st-case__bar-p i{background:var(--cf-grad)}
+
+/* ---------------- shared tile pieces ---------------- */
+/* the tiles follow the page's direction; the track itself stays ltr (the shell) */
+:root[dir="rtl"] .case-almaflow .cf-t{direction:rtl}
+.case-almaflow .st-case__track > .cf-t{border-radius:14px}
+.case-almaflow .cf-t img{display:block}
+.case-almaflow .cf-k{font-family:var(--f-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em;color:var(--c-muted)}
+.case-almaflow .cf-k--cyan{color:var(--c-accent);letter-spacing:.16em}
+.case-almaflow .cf-k--ink{color:var(--c-on-accent)}
+.case-almaflow .cf-k--white{color:var(--cf-white)}
+.case-almaflow .cf-k--d{color:var(--cf-slate-l)}
+.case-almaflow .cf-card{display:flex;flex-direction:column;gap:10px;padding:14px;background:var(--cf-white);border:1px solid var(--c-line)}
+.case-almaflow .cf-card__head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.case-almaflow .st-badge{top:8px;inset-inline-end:8px;border-radius:999px;padding:3px 8px;line-height:1.2}
+.case-almaflow .cf-badge--site{top:46px;inset-inline-end:10px}
+.case-almaflow .cf-badge--flow{position:static}
+.case-almaflow .cf-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--c-font-disp);font-weight:800;font-size:13px;letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:background-color .2s}
+.case-almaflow .cf-btn:hover{background:var(--c-accent-2)}
+.case-almaflow .cf-btn--block{display:flex;width:100%;font-size:14px}
+
+/* ---------------- AF-00 · the cover ---------------- */
+.case-almaflow .cf-cover{display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:20px;background:var(--c-dark);color:var(--c-on-dark)}
+.case-almaflow .cf-cover__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.55}
+.case-almaflow .cf-cover::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--cf-cover-a) 0%,var(--cf-cover-b) 70%)}
+.case-almaflow .cf-cover__top,.case-almaflow .cf-cover__txt{position:relative;z-index:2}
+.case-almaflow .cf-cover__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:10px}
+.case-almaflow .cf-cover__logo{flex:none;display:flex;padding:7px 10px;background:var(--cf-white);border-radius:10px}
+.case-almaflow .cf-cover__logo img{width:auto;height:clamp(28px,3vw,38px)}
+.case-almaflow .cf-chip--line{max-width:100%;padding:4px 9px;border:1px solid var(--cf-hair-2);border-radius:999px;font-family:var(--f-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em;color:var(--c-accent)}
+.case-almaflow .cf-cover__txt{display:flex;flex-direction:column;gap:10px}
+.case-almaflow .cf-cover__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(24px,2.5vw,36px);line-height:1.04;text-wrap:balance}
+.case-almaflow .cf-cover__s{font-size:14px;line-height:1.5;color:var(--cf-soft);max-width:30em}
+.case-almaflow .cf-chips{display:flex;flex-wrap:wrap;gap:6px}
+.case-almaflow .cf-chips li{padding:4px 10px;background:var(--c-accent);color:var(--c-on-accent);border-radius:999px;font-weight:700;font-size:var(--t-label);line-height:1.35;white-space:nowrap}
+/* at the track's 150px floor the cover is 312 wide: a tighter text leaves the four chips their room */
+@media (max-width:1110px){
+  .case-almaflow .cf-cover{padding:16px;gap:12px}
+  .case-almaflow .cf-cover__s{font-size:13.5px;line-height:1.45}
+}
+
+/* ---------------- AF-01 · the site ---------------- */
+.case-almaflow .cf-site{display:flex;flex-direction:column;background:var(--cf-white);border:1px solid var(--c-line)}
+.case-almaflow .cf-site__bar{height:38px;flex:none;display:flex;align-items:center;gap:10px;padding:0 12px;background:var(--cf-chrome);border-bottom:1px solid var(--c-line)}
+.case-almaflow .cf-site__dots{display:flex;gap:6px}
+.case-almaflow .cf-site__dots i{width:10px;height:10px;border-radius:50%;background:var(--cf-dot)}
+.case-almaflow .cf-site__dots i:first-child{background:var(--c-accent)}
+.case-almaflow .cf-site__url{flex:1;min-width:0;padding:5px 10px;background:var(--cf-white);border-radius:999px;font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-almaflow .cf-site__open{font-family:var(--f-mono);font-size:var(--t-label);color:var(--cf-link);text-decoration:none;white-space:nowrap}
+.case-almaflow .cf-site__view{position:relative;flex:1;min-height:0;overflow:hidden}
+.case-almaflow .cf-site__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.case-almaflow .cf-site__view::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--cf-scrim) 0%,var(--cf-scrim-2) 52%,var(--cf-scrim-3) 100%)}
+:root[dir="rtl"] .case-almaflow .cf-site__view::before{background:linear-gradient(270deg,var(--cf-scrim) 0%,var(--cf-scrim-2) 52%,var(--cf-scrim-3) 100%)}
+.case-almaflow .cf-site__txt{position:relative;z-index:2;height:100%;max-width:560px;display:flex;flex-direction:column;justify-content:center;gap:clamp(8px,1.2vw,14px);padding:clamp(14px,2.6vw,36px);color:var(--c-on-dark)}
+.case-almaflow .cf-site__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(21px,2.6vw,40px);line-height:1.04;text-wrap:balance}
+.case-almaflow .cf-figs{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0;padding-top:12px;border-top:1px solid var(--cf-hair)}
+.case-almaflow .cf-figs div{display:flex;flex-direction:column-reverse}
+.case-almaflow .cf-figs dt{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.1em;color:var(--cf-slate-l)}
+.case-almaflow .cf-figs dd{margin:0;font-family:var(--c-font-disp);font-weight:800;font-size:clamp(17px,1.7vw,22px);line-height:1.2;white-space:nowrap}
+.case-almaflow .cf-site .cf-btn{align-self:flex-start}
+
+/* ---------------- AF-02 · the build, in two plain counts ---------------- */
+.case-almaflow .cf-data{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:16px;background:var(--c-accent);color:var(--c-on-accent)}
+.case-almaflow .cf-data__list{display:flex;flex-direction:column;gap:10px;margin:0}
+.case-almaflow .cf-data__list div{display:flex;flex-direction:column-reverse}
+.case-almaflow .cf-data__list dt{font-size:12.5px;font-weight:700;line-height:1.3}
+.case-almaflow .cf-data__list dd{margin:0;font-family:var(--c-font-disp);font-weight:800;line-height:1}
+.case-almaflow .cf-data__big{font-size:clamp(30px,3vw,42px)}
+.case-almaflow .cf-data__mid{font-size:clamp(24px,2.4vw,32px)}
+.case-almaflow .cf-data__n{font-size:var(--t-label);font-weight:500;line-height:1.35}
+/* below 1111px the track's column is its 150px floor: the tile takes both rows rather than cut its note */
+@media (max-width:1110px){.case-almaflow .cf-data{grid-row:span 2;justify-content:flex-start;gap:18px}}
+
+/* ---------------- AF-04 · the posts ---------------- */
+.case-almaflow .cf-post{display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:14px;background:var(--c-dark);color:var(--c-on-dark)}
+.case-almaflow .cf-post::after{content:"";position:absolute;inset-inline:0;bottom:0;height:5px;background:var(--cf-grad)}
+.case-almaflow .cf-post__top{display:flex;flex-direction:column;gap:2px;padding-inline-end:76px}
+.case-almaflow .cf-post__body{display:flex;flex-direction:column;gap:6px}
+.case-almaflow .cf-post__body > div{display:flex;flex-direction:column;gap:6px}
+.case-almaflow .cf-post__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(17px,1.7vw,22px);line-height:1.05;text-wrap:balance}
+.case-almaflow .cf-post__s{font-size:var(--t-label);line-height:1.35;color:var(--cf-soft)}
+.case-almaflow .cf-post__foot{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding-bottom:6px}
+.case-almaflow .cf-post__sig{font-family:var(--c-font-disp);font-weight:800;font-size:var(--t-label);letter-spacing:.08em;color:var(--cf-slate-l)}
+.case-almaflow .cf-post__next{min-height:36px;padding:0 12px;border:1px solid var(--c-accent);border-radius:999px;background:transparent;color:var(--c-accent);font-family:var(--c-font-disp);font-weight:800;font-size:var(--t-label);cursor:pointer;transition:background-color .2s,color .2s}
+.case-almaflow .cf-post__next:hover{background:var(--c-accent);color:var(--c-on-accent)}
+.case-almaflow .cf-post__mk{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;color:var(--cf-slate-l)}
+
+/* below 1111px the column is the 150px floor: the tile takes both rows and its badge a line of its own */
+@media (max-width:1110px){.case-almaflow .cf-post{grid-row:span 2}.case-almaflow .cf-post__top{padding-top:26px;padding-inline-end:0}}
+
+/* ---------------- AF-03 · the quote: a demonstration ---------------- */
+.case-almaflow .cf-quote{background:var(--cf-white);border:1px solid var(--c-line)}
+.case-almaflow .cf-quote__in{height:100%;display:flex;flex-direction:column;gap:8px;padding:12px}
+.case-almaflow .cf-quote__head{padding-inline-end:76px}
+.case-almaflow .cf-quote__card{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:10px 12px;background:var(--c-dark);color:var(--c-on-dark);border-radius:10px;min-height:4.4em}
+.case-almaflow .cf-quote__card [role="tabpanel"]{display:flex;flex-direction:column;gap:2px}
+.case-almaflow .cf-quote__card [role="tabpanel"][hidden]{display:none}
+.case-almaflow .cf-quote__n{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(18px,1.8vw,24px);line-height:1.1}
+.case-almaflow .cf-quote__d{font-size:12.5px;line-height:1.3;color:var(--cf-soft)}
+.case-almaflow .cf-quote__sv{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
+.case-almaflow .cf-pills,.case-almaflow .cf-towns{display:flex;flex-wrap:wrap;gap:5px}
+.case-almaflow .cf-pills button{min-height:32px;padding:0 10px;border:1px solid var(--c-dark);border-radius:999px;background:var(--cf-white);color:var(--c-dark);font-family:var(--c-font);font-weight:700;font-size:var(--t-label);cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s}
+.case-almaflow .cf-pills button[aria-selected="true"]{background:var(--c-dark);color:var(--c-accent)}
+.case-almaflow .cf-towns button{min-height:28px;padding:0 8px;border:1px solid var(--cf-dot);border-radius:6px;background:var(--cf-white);color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);cursor:pointer;white-space:nowrap;transition:background-color .2s}
+.case-almaflow .cf-towns button[aria-selected="true"]{background:var(--c-accent);border-color:var(--c-accent)}
+.case-almaflow .cf-quote__town{display:flex;flex-direction:column;gap:4px}
+.case-almaflow .cf-quote__sum{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.08em;color:var(--c-muted)}
+.case-almaflow .cf-quote__sum [hidden]{display:none}
+.case-almaflow .cf-quote__row{display:flex;align-items:center;gap:8px}
+.case-almaflow .cf-quote__lab{flex:1;font-size:13px;font-weight:700;line-height:1.25}
+.case-almaflow .cf-quote__out{min-width:24px;text-align:center;font-family:var(--c-font-disp);font-weight:800;font-size:19px}
+.case-almaflow .cf-step{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--c-dark);border-radius:999px;background:var(--cf-white);color:var(--c-dark);font-family:var(--c-font-disp);font-weight:800;font-size:17px;cursor:pointer;transition:background-color .2s}
+.case-almaflow .cf-step:hover{background:var(--c-bg)}
+.case-almaflow .cf-step--plus{border-color:var(--c-dark);background:var(--c-dark);color:var(--c-accent)}
+.case-almaflow .cf-step--plus:hover{background:var(--cf-navy-2)}
+.case-almaflow .cf-step:disabled{opacity:.4;cursor:default}
+.case-almaflow .cf-quote__send{min-height:44px;border:0;border-radius:999px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--c-font-disp);font-weight:800;font-size:13px;letter-spacing:.02em;cursor:pointer;transition:background-color .2s}
+.case-almaflow .cf-quote__send:hover{background:var(--c-accent-2)}
+.case-almaflow .cf-quote__demo{padding:6px 10px;border-radius:8px;background:var(--cf-ok);color:var(--c-on-accent);font-size:var(--t-label);font-weight:700;line-height:1.3;text-align:center}
+.case-almaflow .cf-quote__demo[hidden]{display:none}
+/* at the 150px column floor the 2-column tile is 312 wide and 387 high: it takes a third column and the room it needs */
+@media (max-width:1110px){.case-almaflow .cf-quote{grid-column:span 3}}
+
+/* ---------------- AF-05 · the search result ---------------- */
+.case-almaflow .cf-serp__q{display:flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid var(--c-line);border-radius:999px;font-size:12.5px;color:var(--c-muted)}
+.case-almaflow .cf-serp__r{display:flex;flex-direction:column;gap:3px;min-width:0}
+.case-almaflow .cf-serp__u{font-size:var(--t-label);color:var(--c-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-almaflow .cf-serp__t{font-size:15px;font-weight:700;color:var(--cf-serp);line-height:1.25}
+.case-almaflow .cf-serp__d{font-size:var(--t-label);line-height:1.4;color:var(--cf-ink-2)}
+
+/* ---------------- AF-06 · the Google profile ---------------- */
+.case-almaflow .cf-gbp{justify-content:space-between}
+.case-almaflow .cf-gbp__id{display:flex;flex-direction:column;gap:3px}
+.case-almaflow .cf-gbp__n{font-family:var(--c-font-disp);font-weight:800;font-size:19px;line-height:1.1}
+.case-almaflow .cf-gbp__c{font-size:12.5px;color:var(--c-muted)}
+.case-almaflow .cf-gbp__rows{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0;font-size:var(--t-label);line-height:1.35}
+.case-almaflow .cf-gbp__rows dt{padding-top:1px;font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted)}
+.case-almaflow .cf-gbp__rows dd{margin:0}
+.case-almaflow .cf-gbp__btns{display:flex;gap:6px}
+.case-almaflow .cf-gbp__btns span{flex:1;padding:6px 0;border:1px solid var(--c-dark);border-radius:999px;font-weight:700;font-size:var(--t-label);text-align:center}
+.case-almaflow .cf-gbp__btns span:first-child{background:var(--c-dark);color:var(--c-on-dark)}
+
+/* ---------------- the pictures (the viewer opens them) ---------------- */
+.case-almaflow .cf-pic--navy{background:var(--c-dark)}
+.case-almaflow .cf-pic--grey{background:var(--cf-grey)}
+.case-almaflow .cf-pic--dark{background:var(--cf-navy-2)}
+.case-almaflow .cf-pic--sand{background:var(--cf-sand)}
+.case-almaflow .cf-zoom img{object-fit:contain}
+.case-almaflow .cf-zoom:focus-visible{outline-offset:-5px;outline-color:var(--c-accent)}
+.case-almaflow .cf-plab{position:absolute;inset-inline-start:8px;bottom:8px;z-index:2;max-width:calc(100% - 16px);padding:4px 9px;border-radius:14px;background:var(--c-dark);color:var(--c-on-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em}
+.case-almaflow .cf-plab--light{background:var(--c-bg);color:var(--c-dark)}
+@media (max-width:1110px){.case-almaflow .cf-plab{letter-spacing:.04em}}
+
+/* ---------------- AF-09 · colour and type ---------------- */
+.case-almaflow .cf-pal__sw{flex:1;min-height:0;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:6px}
+.case-almaflow .cf-pal__sw li{display:flex;flex-direction:column;justify-content:flex-end;gap:2px;padding:6px 4px;border-radius:8px;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:0;overflow:hidden}
+.case-almaflow .cf-pal__sw li span{font-family:var(--c-font);font-weight:700}
+.case-almaflow .cf-sw--night{background:var(--c-dark);color:var(--c-on-dark)}
+.case-almaflow .cf-sw--cyan{background:var(--c-accent);color:var(--c-on-accent)}
+.case-almaflow .cf-sw--blue{background:var(--cf-blue);color:var(--c-on-accent)}
+.case-almaflow .cf-sw--violet{background:var(--cf-violet);color:var(--cf-white)}
+.case-almaflow .cf-sw--ice{background:var(--c-bg);border:1px solid var(--c-line);color:var(--c-dark)}
+.case-almaflow .cf-pal__type{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;padding-top:8px;border-top:1px solid var(--cf-rule)}
+.case-almaflow .cf-pal__aa{font-family:var(--c-font-disp);font-weight:800;font-size:28px;line-height:1}
+.case-almaflow .cf-pal__name{font-family:var(--c-font-disp);font-weight:700;font-size:14px;color:var(--cf-link)}
+.case-almaflow .cf-pal__w{font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted)}
+@media (max-width:1110px){.case-almaflow .cf-pal__sw{grid-template-columns:repeat(5,minmax(0,1fr))}.case-almaflow .cf-pal__sw li{font-size:12px;padding:6px 3px;overflow-wrap:anywhere}}
+
+/* ---------------- FIG. 10 · the product, close up ---------------- */
+.case-almaflow .cf-fig{display:flex;flex-direction:column;justify-content:space-between;padding:16px;background:var(--cf-black);color:var(--c-on-dark)}
+.case-almaflow .cf-fig > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case-almaflow .cf-fig__ring{position:absolute;left:50%;top:44%;width:58%;aspect-ratio:1;border:1px solid var(--cf-ring);border-radius:50%;transform:translate(-50%,-50%)}
+.case-almaflow .cf-fig__top,.case-almaflow .cf-fig__txt{position:relative;z-index:2}
+.case-almaflow .cf-fig__top{display:flex;justify-content:space-between;gap:8px}
+.case-almaflow .cf-fig .st-badge{position:static}
+.case-almaflow .cf-fig__txt{display:flex;flex-direction:column;gap:8px}
+.case-almaflow .cf-fig__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(20px,2vw,28px);line-height:1.04;text-wrap:balance}
+
+/* ---------------- the scope card (the design's price card) ---------------- */
+.case-almaflow .cf-scope{display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--c-dark);color:var(--c-on-dark)}
+.case-almaflow .cf-scope__head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.case-almaflow .cf-scope__chip{padding:3px 8px;border-radius:999px;background:var(--c-bg);color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;white-space:nowrap;transition:background-color .3s}
+/* every kind seen: the chip turns cyan, as the design's did */
+.case-almaflow .cf-scope:not(:has([data-scope]:not(.is-seen))) .cf-scope__chip{background:var(--c-accent)}
+.case-almaflow .cf-scope__h{font-family:var(--c-font-disp);font-weight:700;font-size:clamp(17px,1.8vw,22px);line-height:1.15;text-wrap:balance}
+.case-almaflow .cf-scope__note{font-size:12.5px;line-height:1.4;color:var(--cf-slate-l)}
+.case-almaflow .cf-scope__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px 14px;padding-top:10px;border-top:1px solid var(--cf-navy-2)}
+.case-almaflow .cf-scope__list li{display:flex;gap:8px;align-items:center;font-size:12.5px;line-height:1.25;transition:opacity .3s}
+.case-almaflow .cf-scope__list li::before{content:"";width:14px;height:14px;flex:none;border:1.5px solid var(--c-accent);border-radius:50%;transition:background-color .3s}
+html.js .case-almaflow .cf-scope__list li{opacity:.5}
+html.js .case-almaflow .cf-scope__list li.is-seen{opacity:1}
+.case-almaflow .cf-scope__list li.is-seen::before{background:var(--c-accent)}
+/* the wide track: the list takes the room the design's price figure had */
+@media (min-width:1111px){
+  .case-almaflow .cf-scope__h{font-size:clamp(24px,2.4vw,34px)}
+  .case-almaflow .cf-scope__note{font-size:14px}
+  .case-almaflow .cf-scope__list{align-content:space-evenly;gap:14px 20px;padding-top:16px}
+  .case-almaflow .cf-scope__list li{font-size:15px;gap:10px}
+  .case-almaflow .cf-scope__list li::before{width:16px;height:16px}
+}
+@media (max-width:1110px){.case-almaflow .cf-scope{gap:8px;padding:16px}}
+
+/* ---------------- Arabic: no capitals, no tracking ---------------- */
+:lang(ar) .case-almaflow .cf-k,:lang(ar) .case-almaflow .cf-chip--line,:lang(ar) .case-almaflow .cf-plab,:lang(ar) .case-almaflow .cf-figs dt,:lang(ar) .case-almaflow .cf-hud,:lang(ar) .case-almaflow .cf-progress,:lang(ar) .case-almaflow .cf-scope__chip,:lang(ar) .case-almaflow .cf-post__mk,:lang(ar) .case-almaflow .cf-quote__sum{letter-spacing:0;text-transform:none}
+:lang(ar) .case-almaflow .cf-cover__h,:lang(ar) .case-almaflow .cf-site__h,:lang(ar) .case-almaflow .cf-scope__h,:lang(ar) .case-almaflow .cf-fig__h,:lang(ar) .case-almaflow .cf-post__h{line-height:1.25}
+
+/* ---------------- reduced motion: no zoom ---------------- */
+@media (prefers-reduced-motion:reduce){
+  .case-almaflow .st-case__track > *:hover img{transform:none!important}
+}

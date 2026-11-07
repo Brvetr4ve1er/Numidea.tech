@@ -1,0 +1,269 @@
+<!-- ---------------- case 03 · AlmaFlowClim ----------------
+     The owner's CaseAlmaFlow (2026-11-07), as a fragment the build inlines
+     at 09 Proof; its copy is hub/src/cases/almaflow.i18n.json, its sheet
+     hub/css/case-almaflow.css. The shell's hooks (hub/app.js 8) do the rest:
+     the track, the eight kinds of deliverable and their badges, the trade
+     and town tabs, the room stepper, the demo form, the post cycle, the
+     picture viewer.
+     What changed from the design, and why: the header's 450 EUR chip and
+     the pack's price became the case's tag and a scope list (no client
+     price is published); the live view of the client's site is a link (the
+     page's CSP frames nothing from another host) and the address is the
+     netlify one the home links, almaflowclim.fr serves another site; the
+     figures "24h", "150+ clients", "RGE" and the "17 communes" count are
+     gone (the site does not carry them), the tile says what the build
+     holds: one page per trade, one quote form; the quote form sends
+     nothing and says so; the Google card has the town only, not the
+     street or the phone (a third party's data, not published here); the
+     brand book tile has no link (its target does not exist yet) and is
+     titled for what the picture is. The three posts and the Google card
+     are mockups and say so. -->
+<section class="st-case case-almaflow" id="case-almaflow" aria-labelledby="case-almaflow-h">
+  <div class="st-case__bar">
+    <div class="st-case__id cf-id">
+      <span class="st-case__logo"><img src="img/clients/almaflow/logo.webp" alt="" loading="lazy" decoding="async"></span>
+      <div class="cf-id__txt">
+        <span class="st-case__hud cf-hud" data-i18n="cases.almaflow.hud"></span>
+        <h3 class="st-case__name" id="case-almaflow-h"><bdi>AlmaFlowClim</bdi> <span class="cf-sector">· <span data-i18n="cases.almaflow.sector"></span></span></h3>
+      </div>
+    </div>
+    <div class="st-case__progress cf-progress">
+      <span><span class="cf-muted-d" data-i18n="case.unlocked"></span><span data-seen-count dir="ltr">0/8</span></span>
+      <div class="st-case__pips cf-pips" aria-hidden="true"><i data-pip="identity"></i><i data-pip="site"></i><i data-pip="tools"></i><i data-pip="seo"></i><i data-pip="social"></i><i data-pip="print"></i><i data-pip="ooh"></i><i data-pip="brand"></i></div>
+    </div>
+    <div class="cf-end">
+      <span class="st-case__tag cf-tag" data-i18n="cases.almaflow.tag"></span>
+      <div class="st-case__nav cf-nav">
+        <button type="button" data-track-prev aria-controls="cf-track" data-i18n-aria="case.prev"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="cf-track" data-i18n-aria="case.next"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-case__track cf-track" id="cf-track" dir="ltr" data-track tabindex="0" role="region" data-i18n-aria="cases.almaflow.track">
+
+    <!-- AF-00 · the cover -->
+    <article class="cf-t cf-cover st-c2 st-r2" data-kind="identity">
+      <img class="cf-cover__bg" src="img/clients/almaflow/m-van.webp" alt="" loading="lazy" decoding="async">
+      <div class="cf-cover__top">
+        <span class="cf-cover__logo"><img src="img/clients/almaflow/logo.webp" data-i18n-alt="cases.almaflow.logo" alt="" loading="lazy" decoding="async"></span>
+        <span class="cf-chip cf-chip--line" data-i18n="cases.almaflow.cover.k"></span>
+      </div>
+      <div class="cf-cover__txt">
+        <span class="cf-k cf-k--cyan" dir="ltr">ALMAFLOWCLIM × NUMIDEA</span>
+        <h4 class="cf-cover__h" data-i18n="cases.almaflow.cover.t"></h4>
+        <p class="cf-cover__s" data-i18n="cases.almaflow.cover.s"></p>
+        <ul class="cf-chips">
+          <li data-i18n="cases.almaflow.cover.chips.0"></li>
+          <li data-i18n="cases.almaflow.cover.chips.1"></li>
+          <li data-i18n="cases.almaflow.cover.chips.2"></li>
+          <li data-i18n="cases.almaflow.cover.chips.3"></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- AF-01 · the site, as a picture and a link (no frame of another host) -->
+    <article class="cf-t cf-site st-c3 st-r2" data-kind="site">
+      <div class="cf-site__bar">
+        <span class="cf-site__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="cf-site__url" dir="ltr">almaflowclim.netlify.app</span>
+        <a class="cf-site__open" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" data-i18n="cases.almaflow.site.open"></a>
+      </div>
+      <div class="cf-site__view">
+        <img class="cf-site__bg" src="img/clients/almaflow/m-tech.webp" alt="" loading="lazy" decoding="async">
+        <div class="cf-site__txt">
+          <span class="cf-k cf-k--cyan" data-i18n="cases.almaflow.site.k"></span>
+          <h4 class="cf-site__h" data-i18n="cases.almaflow.site.h"></h4>
+          <dl class="cf-figs">
+            <div><dt data-i18n="cases.almaflow.site.fl.0"></dt><dd data-i18n="cases.almaflow.site.fv.0"></dd></div>
+            <div><dt data-i18n="cases.almaflow.site.fl.1"></dt><dd data-i18n="cases.almaflow.site.fv.1"></dd></div>
+            <div><dt data-i18n="cases.almaflow.site.fl.2"></dt><dd data-i18n="cases.almaflow.site.fv.2"></dd></div>
+          </dl>
+          <a class="cf-btn" href="https://almaflowclim.netlify.app" target="_blank" rel="noopener"><span data-i18n="case.open"></span> <span class="st-sr" data-i18n="case.newTab"></span></a>
+        </div>
+      </div>
+      <span class="st-badge cf-badge--site" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- AF-02 · what the build holds, in two plain counts -->
+    <article class="cf-t cf-data" data-kind="site">
+      <span class="cf-k cf-k--ink" data-i18n="cases.almaflow.data.k"></span>
+      <dl class="cf-data__list">
+        <div><dt data-i18n="cases.almaflow.data.al"></dt><dd class="cf-data__big" dir="ltr">1</dd></div>
+        <div><dt data-i18n="cases.almaflow.data.bl"></dt><dd class="cf-data__mid" dir="ltr">1</dd></div>
+      </dl>
+      <p class="cf-data__n" data-i18n="cases.almaflow.data.n"></p>
+    </article>
+
+    <!-- AF-04 · the social posts, three of them, one click apart -->
+    <article class="cf-t cf-post" data-kind="social" data-cycle>
+      <div class="cf-post__top">
+        <span class="cf-k cf-k--cyan"><span data-i18n="cases.almaflow.post.k"></span> <bdi data-cycle-n dir="ltr">1 / 3</bdi></span>
+        <span class="cf-post__mk" data-i18n="cases.almaflow.mockup"></span>
+      </div>
+      <div class="cf-post__body">
+        <div data-cycle-item><b class="cf-post__h" data-i18n="cases.almaflow.post.h.0"></b><span class="cf-post__s" data-i18n="cases.almaflow.post.s.0"></span></div>
+        <div data-cycle-item hidden><b class="cf-post__h" data-i18n="cases.almaflow.post.h.1"></b><span class="cf-post__s" data-i18n="cases.almaflow.post.s.1"></span></div>
+        <div data-cycle-item hidden><b class="cf-post__h" data-i18n="cases.almaflow.post.h.2"></b><span class="cf-post__s" data-i18n="cases.almaflow.post.s.2"></span></div>
+      </div>
+      <div class="cf-post__foot">
+        <span class="cf-post__sig" dir="ltr">ALMAFLOWCLIM · GENNEVILLIERS</span>
+        <button type="button" class="cf-post__next" data-cycle-next><span data-i18n="cases.almaflow.post.next"></span> <span aria-hidden="true">→</span></button>
+      </div>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- AF-03 · the online quote: a demonstration, it sends nothing -->
+    <article class="cf-t cf-quote st-c2 st-r2" data-kind="tools">
+      <form class="cf-quote__in" data-demo action="#case-almaflow" novalidate>
+        <div class="cf-quote__head">
+          <span class="cf-k" data-i18n="cases.almaflow.quote.k"></span>
+        </div>
+        <div data-tabs class="cf-quote__sv">
+          <div class="cf-quote__card">
+            <div id="cf-sv-0" role="tabpanel" data-panel="sv0"><b class="cf-quote__n" data-i18n="cases.almaflow.quote.n.0"></b><span class="cf-quote__d" data-i18n="cases.almaflow.quote.d.0"></span></div>
+            <div id="cf-sv-1" role="tabpanel" data-panel="sv1" hidden><b class="cf-quote__n" data-i18n="cases.almaflow.quote.n.1"></b><span class="cf-quote__d" data-i18n="cases.almaflow.quote.d.1"></span></div>
+            <div id="cf-sv-2" role="tabpanel" data-panel="sv2" hidden><b class="cf-quote__n" data-i18n="cases.almaflow.quote.n.2"></b><span class="cf-quote__d" data-i18n="cases.almaflow.quote.d.2"></span></div>
+            <div id="cf-sv-3" role="tabpanel" data-panel="sv3" hidden><b class="cf-quote__n" data-i18n="cases.almaflow.quote.n.3"></b><span class="cf-quote__d" data-i18n="cases.almaflow.quote.d.3"></span></div>
+          </div>
+          <div class="cf-pills" role="tablist" data-i18n-aria="cases.almaflow.quote.svAria">
+            <button type="button" role="tab" aria-selected="true" aria-controls="cf-sv-0" data-tab="sv0" data-i18n="cases.almaflow.quote.n.0"></button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="cf-sv-1" data-tab="sv1" tabindex="-1" data-i18n="cases.almaflow.quote.n.1"></button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="cf-sv-2" data-tab="sv2" tabindex="-1" data-i18n="cases.almaflow.quote.n.2"></button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="cf-sv-3" data-tab="sv3" tabindex="-1" data-i18n="cases.almaflow.quote.n.3"></button>
+          </div>
+        </div>
+        <div data-tabs class="cf-quote__town">
+          <div class="cf-towns" role="tablist" data-i18n-aria="cases.almaflow.quote.townAria">
+            <button type="button" role="tab" aria-selected="true" aria-controls="cf-tw-0" data-tab="tw0" lang="fr" dir="ltr">Gennevilliers</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="cf-tw-1" data-tab="tw1" tabindex="-1" lang="fr" dir="ltr">Asnières</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="cf-tw-2" data-tab="tw2" tabindex="-1" lang="fr" dir="ltr">Colombes</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="cf-tw-3" data-tab="tw3" tabindex="-1" lang="fr" dir="ltr">Nanterre</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="cf-tw-4" data-tab="tw4" tabindex="-1" lang="fr" dir="ltr">Clichy</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="cf-tw-5" data-tab="tw5" tabindex="-1" lang="fr" dir="ltr">Courbevoie</button>
+          </div>
+          <p class="cf-quote__sum" lang="fr" dir="ltr">
+            <span id="cf-tw-0" role="tabpanel" data-panel="tw0">GENNEVILLIERS</span><span id="cf-tw-1" role="tabpanel" data-panel="tw1" hidden>ASNIÈRES</span><span id="cf-tw-2" role="tabpanel" data-panel="tw2" hidden>COLOMBES</span><span id="cf-tw-3" role="tabpanel" data-panel="tw3" hidden>NANTERRE</span><span id="cf-tw-4" role="tabpanel" data-panel="tw4" hidden>CLICHY</span><span id="cf-tw-5" role="tabpanel" data-panel="tw5" hidden>COURBEVOIE</span>
+          </p>
+        </div>
+        <div class="cf-quote__row" data-stepper data-values="1,2,3,4,5,6,7,8" data-index="1" data-value="2">
+          <span class="cf-quote__lab" data-i18n="cases.almaflow.quote.rooms"></span>
+          <button type="button" class="cf-step" data-step="-1" data-i18n-aria="cases.almaflow.quote.minus"><span aria-hidden="true">−</span></button>
+          <output class="cf-quote__out" data-out dir="ltr" aria-live="polite">2</output>
+          <button type="button" class="cf-step cf-step--plus" data-step="1" data-i18n-aria="cases.almaflow.quote.plus"><span aria-hidden="true">+</span></button>
+        </div>
+        <button type="submit" class="cf-quote__send" data-i18n="cases.almaflow.quote.send"></button>
+        <p class="cf-quote__demo" data-demo-msg hidden role="status" data-i18n="cases.almaflow.quote.demo"></p>
+      </form>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- AF-05 · the search result the page is written for (a mockup) -->
+    <article class="cf-t cf-card cf-serp st-c2" data-kind="seo">
+      <div class="cf-card__head"><span class="cf-k"><bdi>AF-05</bdi> · <span data-i18n="cases.almaflow.seo.k"></span></span><span class="st-badge cf-badge--flow" data-badge aria-hidden="true" data-i18n="case.new"></span></div>
+      <p class="cf-serp__q" lang="fr" dir="ltr">climatisation gennevilliers</p>
+      <div class="cf-serp__r" lang="fr" dir="ltr">
+        <span class="cf-serp__u">almaflowclim.netlify.app › climatisation</span>
+        <b class="cf-serp__t">Climatisation &amp; Chauffage Gennevilliers | AlmaFlowClim</b>
+        <span class="cf-serp__d">Installation, entretien et dépannage climatisation, chauffage et plomberie à Gennevilliers.</span>
+      </div>
+    </article>
+
+    <!-- AF-06 · the Google profile, town only (a mockup) -->
+    <article class="cf-t cf-card cf-gbp st-c2" data-kind="seo">
+      <div class="cf-gbp__id">
+        <span class="cf-k"><bdi>AF-06</bdi> · <span data-i18n="cases.almaflow.seo.gbp"></span></span>
+        <b class="cf-gbp__n" dir="ltr">AlmaFlowClim</b>
+        <span class="cf-gbp__c" data-i18n="cases.almaflow.seo.cat"></span>
+      </div>
+      <dl class="cf-gbp__rows">
+        <dt data-i18n="cases.almaflow.seo.a"></dt><dd lang="fr" dir="ltr">Gennevilliers (92)</dd>
+        <dt data-i18n="cases.almaflow.seo.h"></dt><dd><span data-i18n="cases.almaflow.seo.days"></span> · <bdi dir="ltr" data-i18n="cases.almaflow.seo.hours"></bdi></dd>
+      </dl>
+      <div class="cf-gbp__btns" aria-hidden="true"><span data-i18n="cases.almaflow.seo.call"></span><span data-i18n="cases.almaflow.seo.route"></span><span data-i18n="cases.almaflow.seo.web"></span></div>
+    </article>
+
+    <!-- the technician's outfit (a mockup) -->
+    <article class="cf-t cf-pic cf-pic--navy st-r2" data-kind="ooh">
+      <button type="button" class="st-zoom cf-zoom" data-zoom="img/clients/almaflow/m-tech.webp"><img src="img/clients/almaflow/m-tech.webp" data-i18n-alt="cases.almaflow.alt.tech" alt="" loading="lazy" decoding="async"></button>
+      <span class="cf-plab cf-plab--light" data-i18n="cases.almaflow.mk.tech"></span>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- business cards -->
+    <article class="cf-t cf-pic cf-pic--grey st-c2" data-kind="print">
+      <button type="button" class="st-zoom cf-zoom" data-zoom="img/clients/almaflow/m-cards.full.webp"><img src="img/clients/almaflow/m-cards.webp" data-i18n-alt="cases.almaflow.alt.cards" alt="" loading="lazy" decoding="async"></button>
+      <span class="cf-plab" data-i18n="cases.almaflow.mk.cards"></span>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- AF-09 · colour and type -->
+    <article class="cf-t cf-card cf-pal st-c2" data-kind="identity">
+      <div class="cf-card__head"><span class="cf-k"><bdi>AF-09</bdi> · <span data-i18n="cases.almaflow.pal"></span></span><span class="st-badge cf-badge--flow" data-badge aria-hidden="true" data-i18n="case.new"></span></div>
+      <ul class="cf-pal__sw" dir="ltr">
+        <li class="cf-sw--night"><span data-i18n="cases.almaflow.night"></span>#0E1A2B</li>
+        <li class="cf-sw--cyan">#1DB0E3</li>
+        <li class="cf-sw--blue">#2C8CE8</li>
+        <li class="cf-sw--violet">#6943D7</li>
+        <li class="cf-sw--ice">#F3F7FB</li>
+      </ul>
+      <p class="cf-pal__type"><span class="cf-pal__aa" dir="ltr">Aa</span><span class="cf-pal__name" dir="ltr">Montserrat · Manrope</span><span class="cf-pal__w" data-i18n="cases.almaflow.palNote"></span></p>
+    </article>
+
+    <!-- the door hanger -->
+    <article class="cf-t cf-pic cf-pic--dark st-r2" data-kind="print">
+      <button type="button" class="st-zoom cf-zoom" data-zoom="img/clients/almaflow/m-hanger.full.webp"><img src="img/clients/almaflow/m-hanger.webp" data-i18n-alt="cases.almaflow.alt.hanger" alt="" loading="lazy" decoding="async"></button>
+      <span class="cf-plab cf-plab--light" data-i18n="cases.almaflow.mk.hanger"></span>
+    </article>
+
+    <!-- the van and the shop sign (mockups) -->
+    <article class="cf-t cf-pic cf-pic--navy st-c2" data-kind="ooh">
+      <button type="button" class="st-zoom cf-zoom" data-zoom="img/clients/almaflow/m-van.full.webp"><img src="img/clients/almaflow/m-van.webp" data-i18n-alt="cases.almaflow.alt.van" alt="" loading="lazy" decoding="async"></button>
+      <span class="cf-plab cf-plab--light" data-i18n="cases.almaflow.mk.van"></span>
+    </article>
+    <article class="cf-t cf-pic cf-pic--navy st-c2" data-kind="ooh">
+      <button type="button" class="st-zoom cf-zoom" data-zoom="img/clients/almaflow/m-shop.full.webp"><img src="img/clients/almaflow/m-shop.webp" data-i18n-alt="cases.almaflow.alt.shop" alt="" loading="lazy" decoding="async"></button>
+      <span class="cf-plab cf-plab--light" data-i18n="cases.almaflow.mk.shop"></span>
+    </article>
+
+    <!-- the site on a phone -->
+    <article class="cf-t cf-pic cf-pic--sand st-r2" data-kind="site">
+      <button type="button" class="st-zoom cf-zoom" data-zoom="img/clients/almaflow/m-phone.full.webp"><img src="img/clients/almaflow/m-phone.webp" data-i18n-alt="cases.almaflow.alt.phone" alt="" loading="lazy" decoding="async"></button>
+      <span class="cf-plab" data-i18n="cases.almaflow.mk.phone"></span>
+    </article>
+
+    <!-- FIG. 10 · the product, close up (the design's brand book tile: its target does not exist yet, so no link) -->
+    <article class="cf-t cf-fig st-c2 st-r2" data-kind="brand">
+      <img src="img/clients/almaflow/x-ac.webp" data-i18n-alt="cases.almaflow.alt.ac" alt="" loading="lazy" decoding="async">
+      <span class="cf-fig__ring" aria-hidden="true"></span>
+      <div class="cf-fig__top"><span class="cf-k cf-k--white" dir="ltr">FIG. 10</span><span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span></div>
+      <div class="cf-fig__txt">
+        <span class="cf-k cf-k--cyan" data-i18n="cases.almaflow.brand.k"></span>
+        <h4 class="cf-fig__h" data-i18n="cases.almaflow.brand.t"></h4>
+      </div>
+    </article>
+
+    <!-- the scope card, where the design had the pack's price: what was delivered, ticked as it is seen -->
+    <article class="cf-t cf-scope st-c3 st-r2">
+      <div class="cf-scope__head"><span class="cf-k cf-k--d" data-i18n="cases.almaflow.scope.k"></span><span class="cf-scope__chip" data-i18n="cases.almaflow.scope.n"></span></div>
+      <h4 class="cf-scope__h" data-i18n="cases.almaflow.scope.t"></h4>
+      <p class="cf-scope__note" data-i18n="cases.almaflow.scope.note"></p>
+      <ul class="cf-scope__list">
+        <li data-scope="identity" data-i18n="cases.almaflow.scope.items.0"></li>
+        <li data-scope="site" data-i18n="cases.almaflow.scope.items.1"></li>
+        <li data-scope="tools" data-i18n="cases.almaflow.scope.items.2"></li>
+        <li data-scope="seo" data-i18n="cases.almaflow.scope.items.3"></li>
+        <li data-scope="social" data-i18n="cases.almaflow.scope.items.4"></li>
+        <li data-scope="print" data-i18n="cases.almaflow.scope.items.5"></li>
+        <li data-scope="ooh" data-i18n="cases.almaflow.scope.items.6"></li>
+        <li data-scope="brand" data-i18n="cases.almaflow.scope.items.7"></li>
+      </ul>
+      <a class="cf-btn cf-btn--block" href="#contact" data-i18n="cases.almaflow.scope.cta"></a>
+    </article>
+  </div>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag"></span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>

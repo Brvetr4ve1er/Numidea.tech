@@ -1,0 +1,269 @@
+{
+  "fr": {
+    "hud": "DOSSIER CLIENT 03",
+    "sector": "Climatisation · Chauffage",
+    "tag": "Identité + site",
+    "track": "AlmaFlowClim : les pièces du dossier",
+    "logo": "Logo d’AlmaFlowClim",
+    "mockup": "MAQUETTE",
+    "cover": {
+      "k": "PACK ARTISAN 360°",
+      "t": "Le chauffagiste du 92, enfin visible",
+      "s": "Climatisation, chauffage et plomberie · Gennevilliers. Logo, charte, site, SEO local, devis en ligne et supports print.",
+      "chips": ["Climatisation", "Chauffage", "Plomberie", "Rénovation"]
+    },
+    "site": {
+      "k": "SITE · EN LIGNE",
+      "h": "Une demande de devis, en un seul formulaire",
+      "open": "Ouvrir ↗",
+      "fv": ["1 page", "1 formulaire", "Gennevilliers"],
+      "fl": ["PAR MÉTIER", "DE DEVIS", "ÎLE-DE-FRANCE"]
+    },
+    "data": {
+      "k": "AF-02 · LE SITE",
+      "al": "page par métier",
+      "bl": "formulaire de devis",
+      "n": "Chaque page est écrite pour sa propre recherche Google."
+    },
+    "post": {
+      "k": "POST",
+      "next": "Post suivant",
+      "h": ["Chaudière en panne ?", "Canicule annoncée.", "Pompe à chaleur ?"],
+      "s": ["On intervient dans tout le 92.", "Installez la clim avant la ruée : demandez votre devis.", "Une alternative à la chaudière : demandez conseil."]
+    },
+    "quote": {
+      "k": "DEVIS EN LIGNE · DÉMO",
+      "svAria": "Métier",
+      "townAria": "Commune",
+      "n": ["Climatisation", "Chauffage", "Plomberie", "Rénovation"],
+      "d": ["Split, multi-split, gainable", "Chaudière · pompe à chaleur air-eau", "Fuite · chauffe-eau · salle de bain", "Plancher chauffant · isolation"],
+      "rooms": "Pièces / équipements",
+      "minus": "Moins de pièces",
+      "plus": "Plus de pièces",
+      "send": "Envoyer la demande →",
+      "demo": "Démo : ce formulaire n’envoie rien."
+    },
+    "seo": {
+      "k": "SEO LOCAL · MAQUETTE",
+      "gbp": "FICHE GOOGLE · MAQUETTE",
+      "cat": "Chauffagiste · Climatisation",
+      "a": "ADR",
+      "h": "HOR",
+      "days": "Lun–Ven",
+      "hours": "8h00–18h00",
+      "call": "Appeler",
+      "route": "Itinéraire",
+      "web": "Site"
+    },
+    "mk": {
+      "tech": "TENUE · MAQUETTE",
+      "cards": "CARTES DE VISITE · MAQUETTE",
+      "hanger": "ACCROCHE-PORTE · MAQUETTE",
+      "van": "UTILITAIRE · MAQUETTE",
+      "shop": "ENSEIGNE · MAQUETTE",
+      "phone": "MOBILE · SITE"
+    },
+    "alt": {
+      "tech": "Technicien en tenue AlmaFlowClim (maquette)",
+      "cards": "Cartes de visite AlmaFlowClim (maquette)",
+      "hanger": "Accroche-porte AlmaFlowClim (maquette)",
+      "van": "Utilitaire floqué AlmaFlowClim (maquette)",
+      "shop": "Enseigne lumineuse AlmaFlowClim (maquette)",
+      "phone": "Le site d’AlmaFlowClim sur un téléphone",
+      "ac": "Un climatiseur mural en gros plan sur fond noir, un souffle d’air frais en dessous"
+    },
+    "pal": "COULEURS & TYPE",
+    "night": "Nuit",
+    "palNote": "tirées du logo",
+    "brand": {
+      "k": "VISUEL · MAQUETTE",
+      "t": "Le produit, en gros plan"
+    },
+    "scope": {
+      "k": "LIVRÉ · ALMAFLOWCLIM",
+      "t": "Artisan du bâtiment, du logo au premier appel",
+      "n": "8 LIVRABLES",
+      "note": "Chaque case se coche quand vous avez vu la pièce dans le dossier.",
+      "items": ["Logo · couleurs · typo", "Site : une page par métier", "Formulaire de devis", "SEO local & fiche Google", "Posts réseaux sociaux", "Cartes & accroche-porte", "Véhicule & enseigne (maquettes)", "Visuel de campagne (maquette)"],
+      "cta": "Un projet comme celui-ci →"
+    }
+  },
+  "en": {
+    "hud": "CLIENT FILE 03",
+    "sector": "Air con · Heating",
+    "tag": "Identity + site",
+    "track": "AlmaFlowClim: the pieces of the file",
+    "logo": "AlmaFlowClim logo",
+    "mockup": "MOCKUP",
+    "cover": {
+      "k": "360° TRADES PACK",
+      "t": "The heating pro of the 92, finally visible",
+      "s": "Air con, heating and plumbing · Gennevilliers. Logo, guidelines, site, local SEO, online quotes and print.",
+      "chips": ["Air con", "Heating", "Plumbing", "Renovation"]
+    },
+    "site": {
+      "k": "WEBSITE · LIVE",
+      "h": "A quote request, in a single form",
+      "open": "Open ↗",
+      "fv": ["1 page", "1 form", "Gennevilliers"],
+      "fl": ["PER TRADE", "FOR QUOTES", "ÎLE-DE-FRANCE"]
+    },
+    "data": {
+      "k": "AF-02 · THE SITE",
+      "al": "page per trade",
+      "bl": "quote form",
+      "n": "Each page is written for its own Google search."
+    },
+    "post": {
+      "k": "POST",
+      "next": "Next post",
+      "h": ["Boiler down?", "Heatwave on the way.", "Heat pump?"],
+      "s": ["We cover the whole 92.", "Get the air con in before the rush: ask for your quote.", "An alternative to the boiler: ask for advice."]
+    },
+    "quote": {
+      "k": "ONLINE QUOTE · DEMO",
+      "svAria": "Trade",
+      "townAria": "Town",
+      "n": ["Air con", "Heating", "Plumbing", "Renovation"],
+      "d": ["Split, multi-split, ducted", "Boiler · air-to-water heat pump", "Leak · water heater · bathroom", "Underfloor heating · insulation"],
+      "rooms": "Rooms / units",
+      "minus": "Fewer rooms",
+      "plus": "More rooms",
+      "send": "Send the request →",
+      "demo": "Demo: this form sends nothing."
+    },
+    "seo": {
+      "k": "LOCAL SEO · MOCKUP",
+      "gbp": "GOOGLE PROFILE · MOCKUP",
+      "cat": "Heating contractor · Air con",
+      "a": "ADR",
+      "h": "HRS",
+      "days": "Mon–Fri",
+      "hours": "8:00–18:00",
+      "call": "Call",
+      "route": "Directions",
+      "web": "Website"
+    },
+    "mk": {
+      "tech": "UNIFORM · MOCKUP",
+      "cards": "BUSINESS CARDS · MOCKUP",
+      "hanger": "DOOR HANGER · MOCKUP",
+      "van": "VAN · MOCKUP",
+      "shop": "SIGN · MOCKUP",
+      "phone": "MOBILE · SITE"
+    },
+    "alt": {
+      "tech": "Technician in an AlmaFlowClim uniform (mockup)",
+      "cards": "AlmaFlowClim business cards (mockup)",
+      "hanger": "AlmaFlowClim door hanger (mockup)",
+      "van": "AlmaFlowClim van livery (mockup)",
+      "shop": "AlmaFlowClim lit shop sign (mockup)",
+      "phone": "The AlmaFlowClim site on a phone",
+      "ac": "A wall-mounted air conditioner in close-up on a black background, a stream of cool air below it"
+    },
+    "pal": "COLOUR & TYPE",
+    "night": "Night",
+    "palNote": "pulled from the logo",
+    "brand": {
+      "k": "VISUAL · MOCKUP",
+      "t": "The product, up close"
+    },
+    "scope": {
+      "k": "DELIVERED · ALMAFLOWCLIM",
+      "t": "Building trade, from logo to first call",
+      "n": "8 DELIVERABLES",
+      "note": "Each box ticks once you have seen the piece in the file.",
+      "items": ["Logo · colour · type", "Site: one page per trade", "Quote form", "Local SEO & Google profile", "Social posts", "Cards & door hanger", "Van & sign (mockups)", "Campaign visual (mockup)"],
+      "cta": "A project like this one →"
+    }
+  },
+  "ar": {
+    "hud": "ملف العميل 03",
+    "sector": "تكييف · تدفئة",
+    "tag": "هوية + موقع",
+    "track": "AlmaFlowClim: قطع الملف",
+    "logo": "شعار AlmaFlowClim",
+    "mockup": "نموذج",
+    "cover": {
+      "k": "حزمة الحرفي 360°",
+      "t": "خبير التدفئة في الـ92، أخيرًا مرئي",
+      "s": "تكييف وتدفئة وسباكة · جنفيلييه. شعار ودليل بصري وموقع وSEO محلي وطلب عرض سعر ومطبوعات.",
+      "chips": ["تكييف", "تدفئة", "سباكة", "تجديد"]
+    },
+    "site": {
+      "k": "الموقع · مباشر",
+      "h": "طلب عرض سعر، في نموذج واحد",
+      "open": "↗ افتح",
+      "fv": ["صفحة واحدة", "نموذج واحد", "جنفيلييه"],
+      "fl": ["لكل حرفة", "لعرض السعر", "إيل دو فرانس"]
+    },
+    "data": {
+      "k": "AF-02 · الموقع",
+      "al": "صفحة لكل حرفة",
+      "bl": "نموذج عرض سعر",
+      "n": "كل صفحة مكتوبة لبحث Google الخاص بها."
+    },
+    "post": {
+      "k": "منشور",
+      "next": "المنشور التالي",
+      "h": ["الغلاية معطّلة؟", "موجة حر قادمة.", "مضخة حرارية؟"],
+      "s": ["نتدخّل في كامل الـ92.", "ركّبوا المكيّف قبل الازدحام: اطلبوا عرض السعر.", "بديل للغلاية: اطلبوا النصيحة."]
+    },
+    "quote": {
+      "k": "عرض سعر أونلاين · تجريبي",
+      "svAria": "الحرفة",
+      "townAria": "البلدية",
+      "n": ["تكييف", "تدفئة", "سباكة", "تجديد"],
+      "d": ["سبليت، متعدد، مخفي", "غلاية · مضخة حرارية", "تسرب · سخان ماء · حمام", "تدفئة أرضية · عزل"],
+      "rooms": "غرف / أجهزة",
+      "minus": "غرف أقل",
+      "plus": "غرف أكثر",
+      "send": "← أرسل الطلب",
+      "demo": "تجربة: هذا النموذج لا يرسل شيئًا."
+    },
+    "seo": {
+      "k": "SEO محلي · نموذج",
+      "gbp": "بطاقة GOOGLE · نموذج",
+      "cat": "تدفئة · تكييف",
+      "a": "العنوان",
+      "h": "الدوام",
+      "days": "الإثنين–الجمعة",
+      "hours": "8:00–18:00",
+      "call": "اتصال",
+      "route": "الاتجاهات",
+      "web": "الموقع"
+    },
+    "mk": {
+      "tech": "زي العمل · نموذج",
+      "cards": "بطاقات أعمال · نموذج",
+      "hanger": "معلّقة باب · نموذج",
+      "van": "شاحنة · نموذج",
+      "shop": "لافتة · نموذج",
+      "phone": "الموقع على الهاتف"
+    },
+    "alt": {
+      "tech": "فنّي بزي AlmaFlowClim (نموذج)",
+      "cards": "بطاقات أعمال AlmaFlowClim (نموذج)",
+      "hanger": "معلّقة باب AlmaFlowClim (نموذج)",
+      "van": "شاحنة عليها هوية AlmaFlowClim (نموذج)",
+      "shop": "لافتة مضيئة AlmaFlowClim (نموذج)",
+      "phone": "موقع AlmaFlowClim على الهاتف",
+      "ac": "مكيّف جداري عن قرب على خلفية سوداء، وتحته تيار هواء بارد"
+    },
+    "pal": "اللون والخط",
+    "night": "ليلي",
+    "palNote": "مستخرجة من الشعار",
+    "brand": {
+      "k": "صورة · نموذج",
+      "t": "المنتج عن قرب"
+    },
+    "scope": {
+      "k": "المسلَّم · ALMAFLOWCLIM",
+      "t": "حرفي بناء، من الشعار إلى أول مكالمة",
+      "n": "8 مخرجات",
+      "note": "تُعلَّم كل خانة عندما ترى القطعة في الملف.",
+      "items": ["شعار · ألوان · خط", "موقع: صفحة لكل حرفة", "نموذج عرض سعر", "SEO محلي وبطاقة Google", "منشورات اجتماعية", "بطاقات ومعلّقة باب", "شاحنة ولافتة (نماذج)", "صورة حملة (نموذج)"],
+      "cta": "← مشروع مثل هذا"
+    }
+  }
+}
