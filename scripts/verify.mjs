@@ -32,6 +32,7 @@ import { ROOT } from './site.mjs';
 const STEPS = [
   ['check', ['scripts/check.mjs']],
   ['themes', ['scripts/themes-check.mjs']],
+  ['hub', ['scripts/build-hub.mjs', '--check']],
   ['validate', ['scripts/validate.mjs']],
   ['audit', ['scripts/audit.mjs']],
   ['sweep', ['scripts/sweep.mjs']],
