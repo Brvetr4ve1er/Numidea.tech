@@ -610,3 +610,4 @@ html.st-stinging{overflow:hidden}
   .st-rv{opacity:1;transform:none}
   .st-svc:hover,.st-svc:focus-within,.st-btn--primary:hover,.st-cta:hover,.st-tile:hover,.st-layer:hover{transform:none}
 }
+main:focus{outline:none}

@@ -178,7 +178,8 @@ const SPEC = {
   'en/tarifs/index.html': { langs: ['en'], tests: ['estimate'], only: 'the English guide (one language per page)' },
   'ar/tarifs/index.html': { langs: ['ar'], tests: ['estimate'], only: 'the Arabic guide (one language per page)' },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
-  'hub/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the founder's own page)" },
+  'hub/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: [] },
+  'hub/bible/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the founder's own page)" },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
   '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the wordmark and two links (home, the offer)' },
   'legal/index.html': { langs: ['fr', 'ar'], tests: [] },
@@ -204,7 +205,7 @@ if (unclassified.length) { console.log('FAIL no keys spec for: ' + unclassified.
 // a language page (the home's three, the guide's three) is its language; the
 // pages that switch in place take ?lang=
 const STATIC = { ...STATIC_LANG, ...TARIFS_LANG };
-const url = (f, l) => B + '/' + f.replace(/index\.html$/, '') + (l && l !== 'en' && !STATIC[f] ? '?lang=' + l : '');
+const url = (f, l) => B + '/' + f.replace(/index\.html$/, '') + (l && l !== (SPEC[f]?.base || 'en') && !STATIC[f] ? '?lang=' + l : '');
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /* page helpers, defined before any page script runs */

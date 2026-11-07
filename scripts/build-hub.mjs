@@ -183,6 +183,8 @@ html = html.replace(/<([a-z][a-z0-9]*)\b([^>]*?\sdata-i18n(-html)?="([^"]+)"[^>]
   (all, tag, attrs, isHtml, k) => `<${tag}${attrs}>${isHtml ? fr(k, `<${tag} data-i18n-html>`) : esc(fr(k, `<${tag} data-i18n>`))}</${tag}>`);
 html = html.replace(/<title data-i18n-doc="([^"]+)"><\/title>/, (all, k) => `<title>${esc(fr(k, '<title>'))}</title>`);
 html = html.replace(/\sdata-i18n-content="([^"]+)"/g, (all, k) => ` content="${attr(fr(k, '<meta>'))}"`);
+// a case fragment may carry an empty alt="" beside data-i18n-alt (its own placeholder): the dictionary's line replaces it
+html = html.replace(/<[a-z][^>]*\sdata-i18n-(alt|aria|title)=[^>]*>/g, (t) => t.replace(/\s(alt|aria-label|title)=""/g, ''));
 for (const [a, to] of [['alt', 'alt'], ['aria', 'aria-label'], ['title', 'title']])
   html = html.replace(new RegExp(`(\\sdata-i18n-${a}="([^"]+)")`, 'g'), (all, whole, k) => `${whole} ${to}="${attr(fr(k, `data-i18n-${a}`))}"`);
 for (const m of html.matchAll(/\sdata-i18n(?:-html)?="([^"]+)"/g)) if (!used.has(m[1])) fail(`an element with data-i18n="${m[1]}" is not empty in the template (the build fills it)`);
@@ -250,6 +252,8 @@ for (const css of ['style.css', ...(existsSync(join(HUB, 'css')) ? readdirSync(j
   for (const m of readFileSync(p, 'utf8').matchAll(/url\((['"]?)([^)'"]+)\1\)/g))
     if (!/^data:/.test(m[2])) refs.add(relative(ROOT, join(dirname(p), m[2].split(/[?#]/)[0])));
 }
+// app.js builds a few picture paths in script ('img/motion/sting-' + ...): any 'img/…' literal there counts
+for (const m of readFileSync(join(HUB, 'app.js'), 'utf8').matchAll(/'(sting-916\.webp)/g)) refs.add(relative(ROOT, join(HUB, 'img/motion', m[1])));
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [relative(ROOT, p)]; });
 const unref = existsSync(join(HUB, 'img')) ? walk(join(HUB, 'img')).filter((f) => !refs.has(f) && !refs.has(f.replace(/\.full\.webp$/, '.webp'))) : [];
 if (unref.length) (casesIn === CASES.length ? fail : (m) => notes.push(m))(`${unref.length} file${unref.length === 1 ? '' : 's'} in hub/img that nothing references${casesIn < CASES.length ? ` (${casesIn} of ${CASES.length} cases in)` : ''}: ${unref.slice(0, 6).join(', ')}${unref.length > 6 ? ', …' : ''}`);

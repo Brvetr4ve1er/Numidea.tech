@@ -205,7 +205,7 @@ missing.length ? bad('missing assets: ' + missing.join(', '))
 /* 3b — parallax depths parse. A typo'd data-parallax silently coerces to 0,
    which looks like "the effect just isn't working" and is miserable to find. */
 const badDepth = [];
-for (const f of ['index.html', 'hub/index.html']) {
+for (const f of ['index.html', 'hub/index.html', 'hub/bible/index.html']) {
   for (const m of read(f).replace(/<!--[\s\S]*?-->/g, '').matchAll(/data-parallax="([^"]*)"/g)) {
     if (!Number.isFinite(parseFloat(m[1])) || parseFloat(m[1]) === 0) badDepth.push(`${f} → "${m[1]}"`);
   }
@@ -245,7 +245,10 @@ const shotDrift = [...new Set([...shotClients, ...pageClients])].filter((c) => !
 const known = new Set(Object.values(clientHref));
 const stray = [...read('scripts/scene-data.mjs').matchAll(/url:\s*'(https:[^']+)'/g)].map((m) => m[1]).filter((u) => !known.has(u));
 const captureHosts = [...read('scripts/shots.mjs').matchAll(/capture:\s*'https:\/\/([^'/]+)/g)].map((m) => m[1]);
-const hub = read('hub/index.html').replace(/<!--[\s\S]*?-->/g, '');
+const hub = read('hub/bible/index.html').replace(/<!--[\s\S]*?-->/g, '');
+const studio = read('hub/index.html').replace(/<!--[\s\S]*?-->/g, '');
+const homeHosts = new Set(Object.values(clientHref).map((u) => new URL(u).host));
+const studioStray = [...new Set([...studio.matchAll(/href="https:\/\/([a-z0-9.-]+\.netlify\.app)/g)].map((m) => m[1]))].filter((h) => !homeHosts.has(h));
 const onHub = [...new Set([...Object.values(clientHref).map((u) => new URL(u).host), ...captureHosts])].filter((h) => hub.includes(h));
 // a sheet's `identity` link (not a `url`: the founder's own design work on his
 // Behance, beside the deliverables) is a Behance gallery page
@@ -262,7 +265,8 @@ tagDrift.length ? bad('client links disagree: ' + tagDrift.join('; ')) : ok(`cli
 shotDrift.length ? bad('scripts/shots.mjs and the page cover different clients: ' + shotDrift.join(', ')) : ok('screenshot pipeline covers exactly the linked clients');
 stray.length ? bad('showcase uses URLs the main page does not link: ' + stray.join(', ')) : ok('showcase URLs all linked from the main page');
 identityOff.length ? bad("a sheet's identity link is not a Behance gallery the hub leads to: " + identityOff.join(', ')) : ok("every sheet's identity link is a Behance gallery, and the hub links the Behance profile");
-onHub.length ? bad("client sites listed on the hub (it is the artist's page): " + onHub.join(', ')) : ok('hub lists no client sites');
+onHub.length ? bad("client sites listed on the character bible (it is the artist's page): " + onHub.join(', ')) : ok('the character bible lists no client sites');
+studioStray.length ? bad("the Studio links client sites the home does not: " + studioStray.join(', ')) : ok('the Studio links only the home page\'s client sites');
 
 /* 5b — the client logo strip in the proof band ("Ils nous ont confié leur
    site"): exactly the four delivered clients (VOICE_CLIENTS: never the Glaive
@@ -976,8 +980,10 @@ runtimeDeps.length
     'assets/work': 129 * kB,      // 117,246 (alliance/d1.webp)
     'assets/illus': 203 * kB,     // 183,670 (vista-near.webp)
     'assets/clients': 22 * kB,    // 19,320 (bordjsteel.svg)
-    'hub/art': 52 * kB,           // 46,978 on 2026-11-06 (pose-inspect.webp; the character bible, 56f29c1: no loops folder since)
-    'hub/fonts': 33 * kB,         // 29,148 on 2026-11-06 (permanent-marker-latin.woff2)
+    'hub/bible/art': 52 * kB,           // 46,978 on 2026-11-06 (pose-inspect.webp; the character bible, 56f29c1: no loops folder since)
+    'hub/fonts': 46 * kB,         // 45,936 on 2026-11-07 (aref-ruqaa-700-arabic.woff2; the Studio's subsets joined the bible's)
+    'hub/img': 297 * kB,          // 270,032 on 2026-11-07 (alliance/heroes/hero__bali--bg--mobile.webp)
+    'hub/css': 42 * kB,           // 37,653 on 2026-11-07 (the five cases' sheets)
     'assets/fonts': 51 * kB,      // 45,688 on 2026-10-26 (ibm-plex-sans-arabic-600-arabic.woff2)
     'workspacehq': 64 * kB,       // 57,319 on 2026-10-31 (og.jpg)
     'workspacehq/embed': 299 * kB,               // 271,134 on 2026-10-31 (console.html)
@@ -989,7 +995,7 @@ runtimeDeps.length
     'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 14.5e6;           // 13,097,169 on 2026-11-06, 277 files, once the hub became its character bible (56f29c1: the diary, the Behance covers
+  const TOTAL = 25e6;   // 24,330,806 on 2026-11-07 once the Studio's images and fonts joined the WorkspaceHQ embed;           // 13,097,169 on 2026-11-06, 277 files, once the hub became its character bible (56f29c1: the diary, the Behance covers
                                   // and hub/loops out, 71 rig and section files and its own fonts in); 18,381,757 in 283 on 2026-10-31, once the captures had
                                   // their 720w/416w files (+739 kB in 35), the price guide its three pages and sheet (+143 kB) and the home pages lost the market
                                   // comparison; 17,162,350 in 237 that morning (the embed's font copies, readme and manifest gone)
@@ -1111,6 +1117,7 @@ runtimeDeps.length
     for (const c of list) {
       const f = name(c.u, c.how);
       if (!f || !exists(f)) continue;
+      if (/\.svg$/.test(f)) continue;   // a drawing has a viewBox, not a pixel size: build-hub writes its box from it
       const wh = px(f);
       if (!wh.every(Number.isFinite)) { hubErr.push(`${label}: cannot read the size of ${f}`); continue; }
       if (c.d && /^\d+w$/.test(c.d) && parseInt(c.d) !== wh[0]) hubErr.push(`${label}: ${c.u} ${c.d}, but the file is ${wh[0]} px wide`);

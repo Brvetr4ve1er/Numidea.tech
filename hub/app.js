@@ -158,7 +158,7 @@
     document.addEventListener('keydown', skip, true);
     $('.st-sting__wipe', el).addEventListener('animationend', end);
     setTimeout(end, 2600);
-    try { $('.st-sting__skip', el).focus({ preventScroll: true }); } catch (e) {}
+    // (no focus is moved onto it: the page's own skip link stays the first Tab stop; any key skips the sting)
   })();
   var afterSting = function (fn) { if (stinging) stingDone.push(fn); else fn(); };
 
