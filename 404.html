@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Id/tPwTsLqFwoh59TTh1A7uvXUXySl7xujSUQY0d6Ms=' 'sha256-hiB91YUCbhcWjT8a4Rdw1E6NnBtcY9lYRhM6yrvqmss='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
-<title>404 — Cette page a pris la route · Numidea Labs</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-hWE2+oz9ONHbfNCJqvV8EV/B4pvPHXGZhmvEkJVn/jE=' 'sha256-Jvn24vQysqTXazdbu/syLpHBfGz2Z/IG/2cesWu3wuQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<title>Cette page a pris la route — Numidea Labs</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A1420">
 <!-- GitHub Pages serves this page for any missing URL, at any depth, so a
@@ -34,6 +34,10 @@
   ['geist-latin', 'geist-mono-latin'].forEach(function (f) {
     h += '\x3clink rel="preload" as="font" type="font/woff2" crossorigin href="' + b + 'fonts/' + f + '.woff2">';
   });
+  // the Arabic line's own face: 19 glyphs of IBM Plex Sans Arabic 400 (4 KB),
+  // so the French and English 404 draw it in Plex and not in whatever the
+  // system has, without fetching the 42 KB face. The name is private to this page.
+  h += '\x3cstyle>@font-face{font-family:"Numidea 404 Arabic";font-weight:400;font-display:swap;src:url(' + b + 'fonts/plex-arabic-404.woff2) format("woff2")}\x3c/style>';
   // themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them
   ['fonts.css?v=202611032143', 'themes.css?v=202611032143', 'styles.css?v=202611032143'].forEach(function (f) {
     h += '\x3clink rel="stylesheet" href="' + b + f + '">';
@@ -71,13 +75,12 @@
   /* the visitor's own line is the ink, the two others muted (the French one
      was the ink whatever html[lang] said) */
   html[lang="fr"] .e404 .lines [lang="fr"],html[lang="en"] .e404 .lines [lang="en"],html[lang="ar"] .e404 .lines [lang="ar"]{color:var(--ice)}
-  /* The Arabic line takes the Arabic face only on the Arabic page. On the
-     French and English ones it is set in the body face, whose stack has no
-     Arabic glyphs, so the system draws it: styles.css's [lang="ar"] rule
-     would otherwise fetch the 42 KB face for this one muted line on every
-     visit (the sr-only Arabic in the heading is display:none there, so it
-     asks for nothing). */
-  .e404 .lines .ar{font-family:var(--font-display);direction:rtl;display:block;margin-top:8px}
+  /* The Arabic line is set in a 4 KB subset of Plex Arabic 400 (the head
+     script declares it) on the French and English pages: the body face has
+     no Arabic glyphs, so the system drew it (19 DejaVu glyphs), and
+     styles.css's [lang="ar"] rule would fetch the 42 KB face for this one
+     muted line on every visit. */
+  .e404 .lines .ar{font-family:"Numidea 404 Arabic",var(--font-display);direction:rtl;display:block;margin-top:8px}
   html[lang="ar"] .e404 .lines .ar{font-family:var(--font-ar-body)}
   /* the way home and the offer, side by side; under 480px one under the other */
   /* one column of two equal buttons, two columns from 560px: they were
@@ -85,9 +88,10 @@
   .e404 .ctas{display:grid;gap:12px;width:min(100%,320px);margin:var(--s-7) auto 0}
   .e404 .cta{display:inline-flex;justify-content:center;width:100%;min-height:52px}
   @media (min-width:560px){.e404 .ctas{grid-template-columns:1fr 1fr;width:min(100%,520px)}}
-  /* the ghost's border was --line, near invisible on the dark themes */
-  .e404 .btn-ghost{border-color:color-mix(in srgb,var(--ice) 28%,transparent)}
-  .e404 .btn-ghost:hover{background:color-mix(in srgb,var(--ice) 8%,transparent)}
+  /* here the ghost is a box, the one secondary beside the primary: the
+     field edge (3:1 on every theme), at the shared .btn size */
+  .e404 .btn-ghost{border-color:var(--field-border);padding-inline:var(--s-5);text-decoration:none}
+  @media (hover:hover){.e404 .btn-ghost:hover{background:color-mix(in srgb,var(--ice) 8%,transparent)}}
   /* the sheet's marks, as on the hero and scene/: corner brackets (the
      unified 2px/14px .sf of styles.css) around <main>, and the workshop's
      coordinates on a dimension line above the numeral */
@@ -105,6 +109,8 @@
   @media (max-width:559px){
     .e404{place-items:start center;padding-top:calc(var(--nav-h) + var(--s-8))}
   }
+  /* brackets on the gutter, not 12px outside it (8px from the edge at 390) */
+  @media (max-width:720px){.e404 .sheet-frame{inset-inline:0}}
   @media (max-height:620px){
     .e404{min-height:auto;place-items:start center;padding-block:24px 32px}
     .e404 .brand{position:static;transform:none;margin-bottom:var(--s-5)}
@@ -131,9 +137,9 @@
                mono: 'geist-latin', altneon: 'geist-latin', engineering: 'geist-latin' };
   var VOID = { arcanum: '#0A1420', noir: '#0B0B0E', daylight: '#F6F3EC',
                mono: '#0A0A0A', altneon: '#0C0716', engineering: '#0E1012' };
-  var TITLE = { fr: '404 — Cette page a pris la route · Numidea Labs',
-                en: '404 — This page hit the road · Numidea Labs',
-                ar: '404 — هذه الصفحة شدّت الرحال · Numidea Labs' };
+  var TITLE = { fr: 'Cette page a pris la route — Numidea Labs',
+                en: 'This page hit the road — Numidea Labs',
+                ar: 'هذه الصفحة شدّت الرحال — Numidea Labs' };
   var th = 'arcanum', lang = 'fr', q = '';
   try { q = (new URLSearchParams(location.search).get('lang') || '').toLowerCase(); } catch (e) {}
   try { th = localStorage.getItem('numidea-theme') || th; lang = localStorage.getItem('numidea-lang') || lang; } catch (e) {}
@@ -141,6 +147,16 @@
     lang = q;
     // kept, as the other pages keep it: the way home stays in this language
     try { localStorage.setItem('numidea-lang', q); } catch (e) {}
+  }
+  // The language of the dead link itself: a first-time visitor on /en/old or
+  // /ar/old is kept in it (after ?lang=, which names the language outright,
+  // and over a stored choice, which may be older than the link they followed).
+  var root = 'assets/', base = '', fromPath = false;
+  if (location.protocol.indexOf('http') === 0) {   // keep relative for file:// preview
+    var seg = location.pathname.split('/').filter(Boolean);
+    base = location.hostname.slice(-10) === '.github.io' && seg.length ? '/' + seg.shift() + '/' : '/';
+    root = base + 'assets/';
+    if (!Object.prototype.hasOwnProperty.call(TITLE, q) && (seg[0] === 'en' || seg[0] === 'ar')) { lang = seg[0]; fromPath = true; }
   }
   if (!Object.prototype.hasOwnProperty.call(HEAD, th)) th = 'arcanum';
   if (!Object.prototype.hasOwnProperty.call(TITLE, lang)) lang = 'fr';
@@ -151,14 +167,11 @@
   var bar = document.querySelector('meta[name="theme-color"]');
   if (bar) bar.setAttribute('content', VOID[th]);
 
-  var root = 'assets/';
-  if (location.protocol.indexOf('http') === 0) {   // keep relative for file:// preview
-    var seg = location.pathname.split('/').filter(Boolean);
-    var base = location.hostname.slice(-10) === '.github.io' && seg.length ? '/' + seg[0] + '/' : '/';
-    root = base + 'assets/';
-    // the home links, the offer's #apercu kept
+  if (base) {
+    // the home links, in the language folder (en/, ar/) when the link itself named it, the offer's #apercu kept
+    var home = base + (fromPath ? lang + '/' : '');
     document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('a[href^="index.html"]').forEach(function (el) { el.setAttribute('href', base + el.getAttribute('href').slice(10)); });
+      document.querySelectorAll('a[href^="index.html"]').forEach(function (el) { el.setAttribute('href', home + el.getAttribute('href').slice(10)); });
     });
   }
   // the numeral's face, unless it is the Geist the script above preloads for every theme
