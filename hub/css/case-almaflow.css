@@ -126,7 +126,8 @@
 .case-almaflow .cf-site__dots i{width:10px;height:10px;border-radius:50%;background:var(--cf-dot)}
 .case-almaflow .cf-site__dots i:first-child{background:var(--c-accent)}
 .case-almaflow .cf-site__url{flex:1;min-width:0;padding:5px 10px;background:var(--cf-white);border-radius:999px;font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.case-almaflow .cf-site__open{font-family:var(--f-mono);font-size:var(--t-label);color:var(--cf-link);text-decoration:none;white-space:nowrap}
+.case-almaflow .cf-site__open{position:relative;font-family:var(--f-mono);font-size:var(--t-label);color:var(--cf-link);text-decoration:none;white-space:nowrap}
+.case-almaflow .cf-site__open::after{content:"";position:absolute;inset:-13px -8px}
 .case-almaflow .cf-site__view{position:relative;flex:1;min-height:0;overflow:hidden}
 .case-almaflow .cf-site__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .case-almaflow .cf-site__view::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--cf-scrim) 0%,var(--cf-scrim-2) 52%,var(--cf-scrim-3) 100%)}
@@ -161,7 +162,7 @@
 .case-almaflow .cf-post__s{font-size:var(--t-label);line-height:1.35;color:var(--cf-soft)}
 .case-almaflow .cf-post__foot{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding-bottom:6px}
 .case-almaflow .cf-post__sig{font-family:var(--c-font-disp);font-weight:800;font-size:var(--t-label);letter-spacing:.08em;color:var(--cf-slate-l)}
-.case-almaflow .cf-post__next{min-height:36px;padding:0 12px;border:1px solid var(--c-accent);border-radius:999px;background:transparent;color:var(--c-accent);font-family:var(--c-font-disp);font-weight:800;font-size:var(--t-label);cursor:pointer;transition:background-color .2s,color .2s}
+.case-almaflow .cf-post__next{min-height:44px;padding:0 12px;border:1px solid var(--c-accent);border-radius:999px;background:transparent;color:var(--c-accent);font-family:var(--c-font-disp);font-weight:800;font-size:var(--t-label);cursor:pointer;transition:background-color .2s,color .2s}
 .case-almaflow .cf-post__next:hover{background:var(--c-accent);color:var(--c-on-accent)}
 .case-almaflow .cf-post__mk{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;color:var(--cf-slate-l)}
 
@@ -179,9 +180,9 @@
 .case-almaflow .cf-quote__d{font-size:12.5px;line-height:1.3;color:var(--cf-soft)}
 .case-almaflow .cf-quote__sv{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
 .case-almaflow .cf-pills,.case-almaflow .cf-towns{display:flex;flex-wrap:wrap;gap:5px}
-.case-almaflow .cf-pills button{min-height:32px;padding:0 10px;border:1px solid var(--c-dark);border-radius:999px;background:var(--cf-white);color:var(--c-dark);font-family:var(--c-font);font-weight:700;font-size:var(--t-label);cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s}
+.case-almaflow .cf-pills button{min-height:44px;padding:0 10px;border:1px solid var(--c-dark);border-radius:999px;background:var(--cf-white);color:var(--c-dark);font-family:var(--c-font);font-weight:700;font-size:var(--t-label);cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s}
 .case-almaflow .cf-pills button[aria-selected="true"]{background:var(--c-dark);color:var(--c-accent)}
-.case-almaflow .cf-towns button{min-height:28px;padding:0 8px;border:1px solid var(--cf-dot);border-radius:6px;background:var(--cf-white);color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);cursor:pointer;white-space:nowrap;transition:background-color .2s}
+.case-almaflow .cf-towns button{min-height:44px;padding:0 8px;border:1px solid var(--cf-dot);border-radius:6px;background:var(--cf-white);color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);cursor:pointer;white-space:nowrap;transition:background-color .2s}
 .case-almaflow .cf-towns button[aria-selected="true"]{background:var(--c-accent);border-color:var(--c-accent)}
 .case-almaflow .cf-quote__town{display:flex;flex-direction:column;gap:4px}
 .case-almaflow .cf-quote__sum{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.08em;color:var(--c-muted)}

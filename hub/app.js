@@ -371,9 +371,14 @@
     if (!IO) return;
     var pio = new IntersectionObserver(function (es) {
       es.forEach(function (e) { inView[e.target.getAttribute('data-step')] = e.isIntersecting; });
-      var last = -1;
-      steps.forEach(function (s, j) { if (inView[j]) last = j; });
-      if (last >= 0) set(last);
+      // the last step whose top has crossed the 55% line, read when one enters
+      // or leaves (not on scroll): a tall window that shows all five does not
+      // jump to the last picture
+      var line = window.innerHeight * 0.55, last = -1, any = false;
+      steps.forEach(function (s, j) { if (inView[j]) any = true; });
+      if (!any) return;
+      steps.forEach(function (s, j) { if (s.getBoundingClientRect().top <= line) last = j; });
+      set(Math.max(0, last));
     }, { rootMargin: '0px 0px -45% 0px' });
     steps.forEach(function (s) { pio.observe(s); });
   })();

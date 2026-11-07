@@ -73,7 +73,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
      bar ran off a 390px screen). -->
 <header class="st-nav">
   <div class="st-wrap st-nav__in">
-    <a class="st-wm" href="../" data-i18n-aria="nav.home" dir="ltr">{{wordmark}}<span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
+    <a class="st-wm" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
     <nav class="st-nav__links" data-i18n-aria="nav.aria">
       <a href="#services" data-i18n="nav.services"></a>
       <a href="#preview" data-i18n="nav.preview"></a>
@@ -221,7 +221,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
     <div class="st-grid st-grid--svc">
       <article class="st-svc" data-reveal>
         <p class="st-svc__bar"><span>/ 01 · <span data-i18n="services.items.0.fam"></span></span><span class="st-svc__kanji" aria-hidden="true">築</span></p>
-        <img class="st-svc__img st-pos-desk" src="img/studio/m/desk.webp" data-i18n-alt="services.items.0.alt" loading="lazy" decoding="async">
+        <img class="st-svc__img st-pos-desk3s" src="img/studio/m/desk3.webp" data-i18n-alt="services.items.0.alt" loading="lazy" decoding="async">
         <div class="st-svc__body">
           <h3 class="st-h3" data-i18n="services.items.0.name"></h3>
           <p data-i18n="services.items.0.line"></p>
@@ -232,7 +232,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       </article>
       <article class="st-svc" data-reveal>
         <p class="st-svc__bar"><span>/ 02 · <span data-i18n="services.items.1.fam"></span></span><span class="st-svc__kanji" aria-hidden="true">機</span></p>
-        <img class="st-svc__img st-pos-diorama" src="img/studio/m/diorama.webp" data-i18n-alt="services.items.1.alt" loading="lazy" decoding="async">
+        <img class="st-svc__img st-pos-brain" src="img/studio/m/brain.webp" data-i18n-alt="services.items.1.alt" loading="lazy" decoding="async">
         <div class="st-svc__body">
           <h3 class="st-h3" data-i18n="services.items.1.name"></h3>
           <p data-i18n="services.items.1.line"></p>
@@ -254,7 +254,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       </article>
       <article class="st-svc" data-reveal>
         <p class="st-svc__bar"><span>/ 04 · <span data-i18n="services.items.3.fam"></span></span><span class="st-svc__kanji" aria-hidden="true">知</span></p>
-        <img class="st-svc__img st-pos-sunset" src="img/studio/m/sunset.webp" data-i18n-alt="services.items.3.alt" loading="lazy" decoding="async">
+        <img class="st-svc__img" src="img/studio/m/empty-crop.webp" data-i18n-alt="services.items.3.alt" loading="lazy" decoding="async">
         <div class="st-svc__body">
           <h3 class="st-h3" data-i18n="services.items.3.name"></h3>
           <p data-i18n="services.items.3.line"></p>
@@ -310,11 +310,11 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
     <div class="st-process__row">
       <div class="st-proc-card" data-proc-card>
         <div class="st-proc-card__frame">
-          <img class="is-active st-pos-sunset2" data-frame="0" src="img/studio/m/sunset.webp" data-i18n-alt="process.steps.0.alt" loading="lazy" decoding="async">
+          <img class="is-active st-pos-brain2" data-frame="0" src="img/studio/m/brain.webp" data-i18n-alt="process.steps.0.alt" loading="lazy" decoding="async">
           <img class="st-pos-diorama" data-frame="1" src="img/studio/m/diorama.webp" data-i18n-alt="process.steps.1.alt" loading="lazy" decoding="async">
-          <img class="st-pos-desk2" data-frame="2" src="img/studio/m/desk.webp" data-i18n-alt="process.steps.2.alt" loading="lazy" decoding="async">
-          <img class="st-contain" data-frame="3" src="bible/art/actor-win-a.webp" data-i18n-alt="process.steps.3.alt" loading="lazy" decoding="async">
-          <img class="st-pos-sting" data-frame="4" src="img/motion/sting-169.webp" data-i18n-alt="process.steps.4.alt" loading="lazy" decoding="async">
+          <img class="st-pos-clutter" data-frame="2" src="img/studio/m/clutter.webp" data-i18n-alt="process.steps.2.alt" loading="lazy" decoding="async">
+          <img class="st-pos-desk2" data-frame="3" src="img/studio/m/desk3.webp" data-i18n-alt="process.steps.3.alt" loading="lazy" decoding="async">
+          <img class="st-pos-am4" data-frame="4" src="img/studio/m/am4.webp" data-i18n-alt="process.steps.4.alt" loading="lazy" decoding="async">
           <span class="st-proc-card__chip" aria-hidden="true">道</span>
         </div>
         <div class="st-proc-card__foot">
@@ -522,22 +522,37 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       <p class="st-lead st-lead--dark" data-i18n="lab.lead"></p>
     </div>
     <ul class="st-lab__grid">
-      <li class="st-lab__col">
-        <figure class="st-tile"><img src="bible/art/pose-inspect.webp" data-i18n-alt="lab.items.0.alt" loading="lazy" decoding="async"><figcaption>P01 · <span data-i18n="lab.items.0.t"></span></figcaption></figure>
-        <figure class="st-tile"><img src="bible/art/pose-handover.webp" data-i18n-alt="lab.items.3.alt" loading="lazy" decoding="async"><figcaption>P04 · <span data-i18n="lab.items.3.t"></span></figcaption></figure>
-        <figure class="st-tile"><img src="bible/art/kuro-mug.webp" data-i18n-alt="lab.items.6.alt" loading="lazy" decoding="async"><figcaption>P07 · <span data-i18n="lab.items.6.t"></span></figcaption></figure>
-      </li>
-      <li class="st-lab__col">
-        <figure class="st-tile"><img src="bible/art/pose-point.webp" data-i18n-alt="lab.items.1.alt" loading="lazy" decoding="async"><figcaption>P02 · <span data-i18n="lab.items.1.t"></span></figcaption></figure>
-        <figure class="st-tile"><img src="bible/art/pose-flagstack.webp" data-i18n-alt="lab.items.4.alt" loading="lazy" decoding="async"><figcaption>P05 · <span data-i18n="lab.items.4.t"></span></figcaption></figure>
-        <figure class="st-tile"><img src="bible/art/face-smirk.webp" data-i18n-alt="lab.items.7.alt" loading="lazy" decoding="async"><figcaption>P08 · <span data-i18n="lab.items.7.t"></span></figcaption></figure>
-      </li>
-      <li class="st-lab__col">
-        <figure class="st-tile"><img src="bible/art/pose-sign.webp" data-i18n-alt="lab.items.2.alt" loading="lazy" decoding="async"><figcaption>P03 · <span data-i18n="lab.items.2.t"></span></figcaption></figure>
-        <figure class="st-tile"><img src="bible/art/kuro-stamp.webp" data-i18n-alt="lab.items.5.alt" loading="lazy" decoding="async"><figcaption>P06 · <span data-i18n="lab.items.5.t"></span></figcaption></figure>
-        <figure class="st-tile"><img src="bible/art/pose-nap.webp" data-i18n-alt="lab.items.8.alt" loading="lazy" decoding="async"><figcaption>P09 · <span data-i18n="lab.items.8.t"></span></figcaption></figure>
-        <a class="st-tile st-tile--link" href="bible/"><b data-i18n="lab.bible"></b><span data-i18n="lab.bibleD"></span></a>
-      </li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p01.webp" data-i18n-alt="lab.pieces.0" loading="lazy" decoding="async"><figcaption>P01</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p02.webp" data-i18n-alt="lab.pieces.1" loading="lazy" decoding="async"><figcaption>P02</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/y-trav3.webp" data-i18n-alt="lab.pieces.2" loading="lazy" decoding="async"><figcaption>Y01</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p03.webp" data-i18n-alt="lab.pieces.3" loading="lazy" decoding="async"><figcaption>P03</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p04.webp" data-i18n-alt="lab.pieces.4" loading="lazy" decoding="async"><figcaption>P04</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p05.webp" data-i18n-alt="lab.pieces.5" loading="lazy" decoding="async"><figcaption>P05</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/y-trav3b.webp" data-i18n-alt="lab.pieces.6" loading="lazy" decoding="async"><figcaption>Y02</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p06.webp" data-i18n-alt="lab.pieces.7" loading="lazy" decoding="async"><figcaption>P06</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p07.webp" data-i18n-alt="lab.pieces.8" loading="lazy" decoding="async"><figcaption>P07</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p09.webp" data-i18n-alt="lab.pieces.9" loading="lazy" decoding="async"><figcaption>P09</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/y-revs.webp" data-i18n-alt="lab.pieces.10" loading="lazy" decoding="async"><figcaption>Y03</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p10.webp" data-i18n-alt="lab.pieces.11" loading="lazy" decoding="async"><figcaption>P10</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p11.webp" data-i18n-alt="lab.pieces.12" loading="lazy" decoding="async"><figcaption>P11</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p12.webp" data-i18n-alt="lab.pieces.13" loading="lazy" decoding="async"><figcaption>P12</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/y-empty.webp" data-i18n-alt="lab.pieces.14" loading="lazy" decoding="async"><figcaption>Y04</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p13.webp" data-i18n-alt="lab.pieces.15" loading="lazy" decoding="async"><figcaption>P13</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p14.webp" data-i18n-alt="lab.pieces.16" loading="lazy" decoding="async"><figcaption>P14</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p15.webp" data-i18n-alt="lab.pieces.17" loading="lazy" decoding="async"><figcaption>P15</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/m/am4.webp" data-i18n-alt="lab.pieces.18" loading="lazy" decoding="async"><figcaption>Y05</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p16.webp" data-i18n-alt="lab.pieces.19" loading="lazy" decoding="async"><figcaption>P16</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p18.webp" data-i18n-alt="lab.pieces.20" loading="lazy" decoding="async"><figcaption>P18</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p19.webp" data-i18n-alt="lab.pieces.21" loading="lazy" decoding="async"><figcaption>P19</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/p20.webp" data-i18n-alt="lab.pieces.22" loading="lazy" decoding="async"><figcaption>P20</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c01.webp" data-i18n-alt="lab.pieces.23" loading="lazy" decoding="async"><figcaption>A01</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c02.webp" data-i18n-alt="lab.pieces.24" loading="lazy" decoding="async"><figcaption>A02</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c03.webp" data-i18n-alt="lab.pieces.25" loading="lazy" decoding="async"><figcaption>A03</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c04.webp" data-i18n-alt="lab.pieces.26" loading="lazy" decoding="async"><figcaption>A04</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c05.webp" data-i18n-alt="lab.pieces.27" loading="lazy" decoding="async"><figcaption>A05</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c06.webp" data-i18n-alt="lab.pieces.28" loading="lazy" decoding="async"><figcaption>A06</figcaption></figure></li>
+      <li><figure class="st-tile"><img src="img/studio/lab/c07.webp" data-i18n-alt="lab.pieces.29" loading="lazy" decoding="async"><figcaption>A07</figcaption></figure></li>
+      <li><a class="st-tile st-tile--link" href="bible/"><b data-i18n="lab.bible"></b><span data-i18n="lab.bibleD"></span></a></li>
     </ul>
   </div>
 </section>
@@ -556,9 +571,9 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       <div class="st-founder__art">
         <figure class="st-founder__photo"><img class="st-pos-desk3" src="img/studio/m/desk.webp" data-i18n-alt="founder.photo" loading="lazy" decoding="async"><span class="st-founder__disc" aria-hidden="true">夜</span></figure>
         <ul class="st-modes">
-          <li><figure><img src="bible/art/pose-laptop.webp" data-i18n-alt="founder.modesAlt.0" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.0"></figcaption></figure></li>
-          <li><figure><img src="bible/art/pose-coffee.webp" data-i18n-alt="founder.modesAlt.1" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.1"></figcaption></figure></li>
-          <li><figure><img src="bible/art/kuro-loaf.webp" data-i18n-alt="founder.modesAlt.2" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.2"></figcaption></figure></li>
+          <li><figure><img src="img/studio/m/desk2.webp" class="st-pos-m0" data-i18n-alt="founder.modesAlt.0" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.0"></figcaption></figure></li>
+          <li><figure><img src="img/studio/m/am4.webp" class="st-pos-m1" data-i18n-alt="founder.modesAlt.1" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.1"></figcaption></figure></li>
+          <li><figure><img src="img/studio/m/clutter.webp" class="st-pos-m2" data-i18n-alt="founder.modesAlt.2" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.2"></figcaption></figure></li>
         </ul>
         <div class="st-founder__floor">
           <button type="button" class="st-actor st-actor--duo" data-actor data-seq="4200,1700" data-i18n-aria="founder.duo">
@@ -642,7 +657,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
 
 <footer class="st-foot">
   <div class="st-wrap st-foot__in">
-    <a class="st-wm st-wm--foot" href="../" data-i18n-aria="nav.home" dir="ltr">{{wordmarkRef}}<span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
+    <a class="st-wm st-wm--foot" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
     <p class="st-foot__line" data-i18n="footer.line"></p>
     <nav class="st-foot__links" data-i18n-aria="footer.nav">
       <a href="../" data-i18n="footer.site"></a>

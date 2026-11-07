@@ -995,7 +995,7 @@ runtimeDeps.length
     'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 25e6;   // 24,330,806 on 2026-11-07 once the Studio's images and fonts joined the WorkspaceHQ embed;           // 13,097,169 on 2026-11-06, 277 files, once the hub became its character bible (56f29c1: the diary, the Behance covers
+  const TOTAL = 26e6;   // 25.85 MB once the Studio's Lab (thirty pieces, 560px WebP) came back; before: 24,330,806 on 2026-11-07 once the Studio's images and fonts joined the WorkspaceHQ embed;           // 13,097,169 on 2026-11-06, 277 files, once the hub became its character bible (56f29c1: the diary, the Behance covers
                                   // and hub/loops out, 71 rig and section files and its own fonts in); 18,381,757 in 283 on 2026-10-31, once the captures had
                                   // their 720w/416w files (+739 kB in 35), the price guide its three pages and sheet (+143 kB) and the home pages lost the market
                                   // comparison; 17,162,350 in 237 that morning (the embed's font copies, readme and manifest gone)

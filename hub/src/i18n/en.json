@@ -69,10 +69,19 @@
     "title": "Every middleman costs money and meaning.",
     "lead": "At a typical agency, your idea passes through five people before it reaches someone who codes. At each step it loses a detail and gains an invoice.",
     "theirsL": "THE TYPICAL AGENCY",
-    "theirs": ["You", "Sales", "Project manager", "Designer", "Outsourced dev"],
+    "theirs": [
+      "You",
+      "Sales",
+      "Project manager",
+      "Designer",
+      "Outsourced dev"
+    ],
     "theirsR": "TIMELINE: 3 MONTHS · REPLIES: SLOW",
     "oursL": "NUMIDEA",
-    "ours": ["You", "The builder"],
+    "ours": [
+      "You",
+      "The builder"
+    ],
     "oursR": "TIMELINE: WEEKS · REPLY THE NEXT WORKING DAY",
     "aside": "Kūro cut the cables.",
     "kuro": "Kūro, sceptical"
@@ -83,10 +92,58 @@
     "lead": "Four service families, one contact from the first call to maintenance.",
     "actor": "Yasser points at the services",
     "items": [
-      { "fam": "THE BUILD", "name": "Sites & applications", "line": "Showcase sites, e-commerce and custom web apps, from front-end to cloud.", "gets": ["Custom design, never a template", "Fast, trilingual, native RTL Arabic", "Code and access that belong to you"], "weeks": "2–16 WEEKS", "aside": "it loads fast. promise.", "alt": "Yasser at his desk at night, with Kūro" },
-      { "fam": "THE ENGINE", "name": "Automation & data", "line": "Scrapers, lead pipelines, internal tools: the repetitive work disappears.", "gets": ["Form → CRM → WhatsApp", "Automatic market and price watch", "Dashboards on your real data"], "weeks": "2–6 WEEKS", "aside": "Kūro approves. (he’s asleep.)", "alt": "Yasser builds a model at his workbench, Kūro beside him" },
-      { "fam": "THE MARK", "name": "Brand & design systems", "line": "Identity, visual system, motion: a brand people recognise without reading the name.", "gets": ["Logo, colour, type, tone of voice", "Guidelines and reusable components", "Animated social media kit"], "weeks": "2–5 WEEKS", "aside": "more than a logo.", "alt": "A sheet of Kūro stickers and merch" },
-      { "fam": "THE MIND", "name": "Strategy & consulting", "line": "Market audits, funnel analysis, competitive intel, before a single line of code.", "gets": ["Audit of your current site", "Where you lose your clients", "A costed action plan"], "weeks": "ON QUOTE", "aside": "we read the numbers for you.", "alt": "Yasser reads a map at sunset, Kūro sitting beside him" }
+      {
+        "fam": "THE BUILD",
+        "name": "Sites & applications",
+        "line": "Showcase sites, e-commerce and custom web apps, from front-end to cloud.",
+        "gets": [
+          "Custom design, never a template",
+          "Fast, trilingual, native RTL Arabic",
+          "Code and access that belong to you"
+        ],
+        "weeks": "2–16 WEEKS",
+        "aside": "it loads fast. promise.",
+        "alt": "Yasser at his desk in a sunlit loft, Kūro in the background"
+      },
+      {
+        "fam": "THE ENGINE",
+        "name": "Automation & data",
+        "line": "Scrapers, lead pipelines, internal tools: the repetitive work disappears.",
+        "gets": [
+          "Form → CRM → WhatsApp",
+          "Automatic market and price watch",
+          "Dashboards on your real data"
+        ],
+        "weeks": "2–6 WEEKS",
+        "aside": "Kūro approves. (he’s asleep.)",
+        "alt": "Yasser at a wall of notes joined by string, Kūro asleep on a desk"
+      },
+      {
+        "fam": "THE MARK",
+        "name": "Brand & design systems",
+        "line": "Identity, visual system, motion: a brand people recognise without reading the name.",
+        "gets": [
+          "Logo, colour, type, tone of voice",
+          "Guidelines and reusable components",
+          "Animated social media kit"
+        ],
+        "weeks": "2–5 WEEKS",
+        "aside": "more than a logo.",
+        "alt": "A sheet of Kūro stickers and merch"
+      },
+      {
+        "fam": "THE MIND",
+        "name": "Strategy & consulting",
+        "line": "Market audits, funnel analysis, competitive intel, before a single line of code.",
+        "gets": [
+          "Audit of your current site",
+          "Where you lose your clients",
+          "A costed action plan"
+        ],
+        "weeks": "ON QUOTE",
+        "aside": "we read the numbers for you.",
+        "alt": "Yasser reads a labyrinth plan, Kūro puzzled at his feet"
+      }
     ]
   },
   "preview": {
@@ -94,9 +151,18 @@
     "title": "A real demo. Before you pay.",
     "lead": "Before any payment, we build your new site’s homepage with your own content. You click, you test, you decide.",
     "steps": [
-      { "t": "You describe the project", "d": "Two minutes, in writing or out loud. In French, English or Arabic." },
-      { "t": "We build the Preview", "d": "Your homepage, with your content (logo, texts, photos), in 5 working days." },
-      { "t": "You decide", "d": "Like it: we keep going. If not, the Preview is deleted and you owe nothing." }
+      {
+        "t": "You describe the project",
+        "d": "Two minutes, in writing or out loud. In French, English or Arabic."
+      },
+      {
+        "t": "We build the Preview",
+        "d": "Your homepage, with your content (logo, texts, photos), in 5 working days."
+      },
+      {
+        "t": "You decide",
+        "d": "Like it: we keep going. If not, the Preview is deleted and you owe nothing."
+      }
     ],
     "terms": "@home:prev.terms",
     "seal": "FREE",
@@ -109,11 +175,36 @@
     "title": "How we work.",
     "now": "/ STEP",
     "steps": [
-      { "t": "Listen", "d": "One call: your goals, your constraints. No jargon.", "m": "thinking.", "alt": "Yasser reads a map at sunset" },
-      { "t": "Preview", "d": "Your homepage, built before any commitment.", "m": "confident.", "alt": "Yasser builds a model at his workbench" },
-      { "t": "Build", "d": "A written scope, a fixed price, and you watch the site come together.", "m": "do not disturb.", "alt": "Yasser at his desk at night" },
-      { "t": "Launch", "d": "Go-live, speed tests, and every access handed over in your name.", "m": "it’s live!", "alt": "Yasser celebrates a launch" },
-      { "t": "Care", "d": "Thirty days of fixes, your package’s support, then maintenance if you want it.", "m": "coffee no. 4.", "alt": "The studio’s rooftop at dawn, a coffee set down" }
+      {
+        "t": "Listen",
+        "d": "One call: your goals, your constraints. No jargon.",
+        "m": "thinking.",
+        "alt": "Yasser at a wall of notes joined by string"
+      },
+      {
+        "t": "Preview",
+        "d": "Your homepage, built before any commitment.",
+        "m": "confident.",
+        "alt": "Yasser builds a model at his workbench"
+      },
+      {
+        "t": "Build",
+        "d": "A written scope, a fixed price, and you watch the site come together.",
+        "m": "do not disturb.",
+        "alt": "Yasser leaning on his drawing tablet, Kūro on top of it, coffee cups everywhere"
+      },
+      {
+        "t": "Launch",
+        "d": "Go-live, speed tests, and every access handed over in your name.",
+        "m": "it’s live!",
+        "alt": "Yasser at his desk in a bright room, Kūro in the background"
+      },
+      {
+        "t": "Care",
+        "d": "Thirty days of fixes, your package’s support, then maintenance if you want it.",
+        "m": "coffee no. 4.",
+        "alt": "Yasser at his desk at night, Kūro asleep on the keyboard"
+      }
     ]
   },
   "pricing": {
@@ -164,7 +255,11 @@
     "cta": "Get my quote",
     "sources": "The market, with sources: the price guide →",
     "noJs": "Starting estimate: a 3-page showcase site. The full grid is in the price guide.",
-    "kuro": ["reasonable. Kūro approves.", "serious. Kūro is thinking.", "ambitious. Kūro needs to sit down."],
+    "kuro": [
+      "reasonable. Kūro approves.",
+      "serious. Kūro is thinking.",
+      "ambitious. Kūro needs to sit down."
+    ],
     "kuroAlt": "Kūro reacts to the estimate"
   },
   "brand": {
@@ -173,10 +268,26 @@
     "lead": "The logo is the visible part. The brand is everything underneath: what people feel before they even read your name.",
     "water": "WHAT PEOPLE SEE ↑ · WHAT MAKES THEM BUY ↓",
     "layers": [
-      { "k": "LOGO", "t": "The mark", "d": "What people see first. Useful, but on its own it says nothing." },
-      { "k": "IDENTITY", "t": "The visual language", "d": "Colours, type, imagery: people recognise you even without the logo." },
-      { "k": "SYSTEM", "t": "The rules", "d": "Components and guidelines: every new visual stays consistent, even when someone else makes it." },
-      { "k": "BRAND", "t": "The promise", "d": "Your voice, your service, your reputation. What people say about you when you’re not in the room." }
+      {
+        "k": "LOGO",
+        "t": "The mark",
+        "d": "What people see first. Useful, but on its own it says nothing."
+      },
+      {
+        "k": "IDENTITY",
+        "t": "The visual language",
+        "d": "Colours, type, imagery: people recognise you even without the logo."
+      },
+      {
+        "k": "SYSTEM",
+        "t": "The rules",
+        "d": "Components and guidelines: every new visual stays consistent, even when someone else makes it."
+      },
+      {
+        "k": "BRAND",
+        "t": "The promise",
+        "d": "Your voice, your service, your reputation. What people say about you when you’re not in the room."
+      }
     ],
     "aside": "the iceberg, but better.",
     "pick": "Layers of the brand"
@@ -185,9 +296,41 @@
     "kicker": "/ 07 · THE WEB, NO JARGON",
     "title": "Three things your site has to do.",
     "items": [
-      { "k": "SPEED", "t": "Load fast", "d": "A slow site loses clients before they read a single line.", "statL": "Every second of waiting sends clients away: we measure, we trim, we ship fast.", "aside": "Kūro doesn’t wait." },
-      { "k": "HOSTING", "t": "Have a solid address", "d": "The domain is the address. Hosting is the land. The site is the house.", "stat": "3", "statL": "separate things you pay for, we explain each one", "aside": "no hidden rent.", "parts": ["DOMAIN", "HOSTING", "SITE"], "partsD": ["the address", "the land", "the house"] },
-      { "k": "SEO", "t": "Get found", "d": "Google is a librarian: it shelves clear, fast, useful sites first.", "stat": "1st", "statL": "page: where almost every click happens", "aside": "shh, he’s shelving.", "you": "Your site", "other": "Competitor" }
+      {
+        "k": "SPEED",
+        "t": "Load fast",
+        "d": "A slow site loses clients before they read a single line.",
+        "statL": "Every second of waiting sends clients away: we measure, we trim, we ship fast.",
+        "aside": "Kūro doesn’t wait."
+      },
+      {
+        "k": "HOSTING",
+        "t": "Have a solid address",
+        "d": "The domain is the address. Hosting is the land. The site is the house.",
+        "stat": "3",
+        "statL": "separate things you pay for, we explain each one",
+        "aside": "no hidden rent.",
+        "parts": [
+          "DOMAIN",
+          "HOSTING",
+          "SITE"
+        ],
+        "partsD": [
+          "the address",
+          "the land",
+          "the house"
+        ]
+      },
+      {
+        "k": "SEO",
+        "t": "Get found",
+        "d": "Google is a librarian: it shelves clear, fast, useful sites first.",
+        "stat": "1st",
+        "statL": "page: where almost every click happens",
+        "aside": "shh, he’s shelving.",
+        "you": "Your site",
+        "other": "Competitor"
+      }
     ]
   },
   "proof": {
@@ -205,16 +348,37 @@
     "lead": "Posters, illustration, experiments: personal work, and it’s where the art direction of your projects is born.",
     "bible": "The character bible →",
     "bibleD": "Yasser and Kūro, drawn in full: poses, faces, rules.",
-    "items": [
-      { "t": "THE INSPECTION", "alt": "Yasser inspects a document with a magnifying glass, Kūro sitting on the desk" },
-      { "t": "THE POINT", "alt": "Yasser points, sure of himself" },
-      { "t": "THE SIGN", "alt": "Yasser holds a blank sign above his head" },
-      { "t": "THE KEYS", "alt": "Yasser hands over a bunch of keys" },
-      { "t": "THE FLAG", "alt": "Kūro sitting on a stack of papers topped with a red flag" },
-      { "t": "THE STAMP", "alt": "Kūro presses a red stamp" },
-      { "t": "THE MUG", "alt": "Kūro asleep in a big mug" },
-      { "t": "THE SMIRK", "alt": "Yasser’s face, a crooked smile" },
-      { "t": "THE NAP", "alt": "Kūro asleep on a closed laptop, beside a coffee" }
+    "pieces": [
+      "Drawn portrait: a young man with messy hair adjusts his glasses",
+      "Dark portrait: a face behind glasses, a circular halo",
+      "Sunset sheet in three panels: Yasser, Kūro and a shed",
+      "Drawn portrait: a shouting face, bright green shards",
+      "Drawn portrait: hair on fire, midnight blue background",
+      "“VAGABOND” poster: a traveller and a cat walk through a flooded city",
+      "Sheet: Yasser sitting in the grass and a stone labyrinth",
+      "“The power of imagination” poster: a child runs towards a shaft of light",
+      "Red “HARD WORK / Never hurt anybody” poster",
+      "Purple illustration: a floating crystal block ringed with flowers",
+      "Yasser leaning on his hand behind stacks of paper, Kūro beside him",
+      "Typographic poster: white letters in a cloudy sky",
+      "Typographic poster: white letters in the clouds",
+      "“TNAK” poster: a silhouette on fire against black",
+      "Sketch sheet: Yasser, Kūro, folders and a typewriter",
+      "“RITUAL” poster: a crowd in pink and black",
+      "Black and white text page with two engravings",
+      "“SOLO” poster: a black silhouette on red",
+      "Yasser at his desk at night, Kūro asleep on the keyboard",
+      "“TOXIC” poster: a distorted face, scrambled letters",
+      "Black and white poster: Japanese characters and a sea of ink",
+      "Drawn portrait: a young man with white hair, face raised",
+      "Poster: a power pylon under a dusk sky",
+      "“REBEL BOY” poster: a character mid-jump over a city",
+      "Illustration: a sword-bearing warrior on a cream ground",
+      "“EARTH SHIFT” illustration: a white-haired boy",
+      "“HEARTSTEEL” illustration: a man in armour in a golden arch",
+      "“CELT” poster: a winged black silhouette",
+      "“DUSK RUNE” poster: a black silhouette and sticker labels",
+      "Poster: a circuit-board seal and a graffiti tag"
     ]
   },
   "founder": {
@@ -226,11 +390,25 @@
     "quote": "“Same person. Different resolution.”",
     "teamL": "/ ONE FOUNDER · FREELANCERS WHEN IT TAKES THEM",
     "team": [
-      { "r": "THE FOUNDER", "d": "Scopes, designs, codes and delivers: your only contact." },
-      { "r": "@home:team.fFn", "d": "@home:team.fDo" }
+      {
+        "r": "THE FOUNDER",
+        "d": "Scopes, designs, codes and delivers: your only contact."
+      },
+      {
+        "r": "@home:team.fFn",
+        "d": "@home:team.fDo"
+      }
     ],
-    "modes": ["WORK MODE", "COFFEE MODE", "CAT MODE"],
-    "modesAlt": ["Yasser sitting on the floor with his laptop", "Yasser standing, a coffee in hand", "Kūro lying down, giving the side-eye"],
+    "modes": [
+      "WORK MODE",
+      "COFFEE MODE",
+      "CAT MODE"
+    ],
+    "modesAlt": [
+      "Yasser at his desk in a sunny room, Kūro lying under the table",
+      "Yasser at his desk at night, Kūro on the keyboard",
+      "Yasser at his tablet, Kūro sitting on it"
+    ],
     "photo": "Yasser at his desk at night, with Kūro",
     "duo": "Yasser and Kūro sitting on the floor",
     "desk": "THE DESK",
@@ -245,12 +423,30 @@
     "title": "What people ask us.",
     "actor": "Yasser answers on his phone",
     "items": [
-      { "q": "@home:faq8.q", "a": "@home:faq8.a" },
-      { "q": "@home:faq7.q", "a": "@home:faq7.a" },
-      { "q": "@home:faq1.q", "a": "@home:faq1.a" },
-      { "q": "@home:faq5.q", "a": "@home:faq5.a" },
-      { "q": "@home:faq4.q", "a": "@home:faq4.a" },
-      { "q": "@home:faq3.q", "a": "@home:faq3.a" }
+      {
+        "q": "@home:faq8.q",
+        "a": "@home:faq8.a"
+      },
+      {
+        "q": "@home:faq7.q",
+        "a": "@home:faq7.a"
+      },
+      {
+        "q": "@home:faq1.q",
+        "a": "@home:faq1.a"
+      },
+      {
+        "q": "@home:faq5.q",
+        "a": "@home:faq5.a"
+      },
+      {
+        "q": "@home:faq4.q",
+        "a": "@home:faq4.a"
+      },
+      {
+        "q": "@home:faq3.q",
+        "a": "@home:faq3.a"
+      }
     ]
   },
   "contact": {
@@ -258,7 +454,7 @@
     "title": "Let’s make it real.",
     "lead": "Pick your channel. A reply the next working day, from the one who codes.",
     "hours": "Sunday–Thursday, 9am–6pm · messages only, no calls",
-    "waK": "WHATSAPP · +213\u00a0672\u00a041\u00a025\u00a078",
+    "waK": "WHATSAPP · +213 672 41 25 78",
     "wa": "WhatsApp",
     "previewK": "PREVIEW · WHATSAPP",
     "preview": "Request a Preview",

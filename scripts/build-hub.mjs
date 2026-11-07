@@ -49,7 +49,6 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { BASE } from './site.mjs';
 import { withCsp, cspKind } from './lib/csp.mjs';
 import { loadDicts } from './lib/i18n.mjs';
-import { WORDMARK, WORDMARK_REF } from './lib/wordmark.mjs';
 import { AYN } from './lib/ayn.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -161,9 +160,20 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 const attr = (s) => esc(s).replace(/"/g, '&quot;');
 let html = readFileSync(join(SRC, 'page.html'), 'utf8');
 for (const [slug] of CASES) html = html.replace(`<!-- CASE:${slug} -->`, fragments[slug] ? `<!-- CASE:${slug} -->\n${fragments[slug]}` : `<!-- CASE:${slug} -->`);
+/* Markup in a dictionary value is allowed only where the page applies it as
+   markup (data-i18n-html). The home's Arabic wraps Latin names in <bdi>; a
+   text key gets the same isolation as Unicode (FSI ... PDI), so no tag is ever
+   printed. Anything else with a '<' is refused. */
+const htmlKeys = new Set([...html.matchAll(/\sdata-i18n-html="([^"]+)"/g)].map((m) => m[1]));
+for (const l of LANGS)
+  for (const [k, v] of Object.entries(DICT[l])) {
+    if (htmlKeys.has(k) || !v.includes('<')) continue;
+    DICT[l][k] = v.replace(/<bdi>([^<]*)<\/bdi>/g, '\u2068$1\u2069');
+    if (DICT[l][k].includes('<')) fail(`${l} ${k}: markup in a value the page sets as text (declare it data-i18n-html or drop the tag)`);
+  }
 const waPreview = 'https://wa.me/213672412578?text=' + encodeURIComponent(DICT.fr['contact.previewMsg']);
 const holes = {
-  base: BASE, stamp, wordmark: WORDMARK, wordmarkRef: WORDMARK_REF, ayn: AYN, waPreview: attr(waPreview),
+  base: BASE, stamp, ayn: AYN, waPreview: attr(waPreview),
   prices: JSON.stringify(PRICES).replace(/</g, '\\u003c'),
   // the French strings app.js writes itself (the rig, the estimator's
   // labels, the process card's mood, the cases' badges): a French visitor
@@ -253,7 +263,7 @@ for (const css of ['style.css', ...(existsSync(join(HUB, 'css')) ? readdirSync(j
     if (!/^data:/.test(m[2])) refs.add(relative(ROOT, join(dirname(p), m[2].split(/[?#]/)[0])));
 }
 // app.js builds a few picture paths in script ('img/motion/sting-' + ...): any 'img/…' literal there counts
-for (const m of readFileSync(join(HUB, 'app.js'), 'utf8').matchAll(/'(sting-916\.webp)/g)) refs.add(relative(ROOT, join(HUB, 'img/motion', m[1])));
+for (const m of readFileSync(join(HUB, 'app.js'), 'utf8').matchAll(/'(sting-(?:916|169)\.webp)/g)) refs.add(relative(ROOT, join(HUB, 'img/motion', m[1])));
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [relative(ROOT, p)]; });
 const unref = existsSync(join(HUB, 'img')) ? walk(join(HUB, 'img')).filter((f) => !refs.has(f) && !refs.has(f.replace(/\.full\.webp$/, '.webp'))) : [];
 if (unref.length) (casesIn === CASES.length ? fail : (m) => notes.push(m))(`${unref.length} file${unref.length === 1 ? '' : 's'} in hub/img that nothing references${casesIn < CASES.length ? ` (${casesIn} of ${CASES.length} cases in)` : ''}: ${unref.slice(0, 6).join(', ')}${unref.length > 6 ? ', …' : ''}`);
