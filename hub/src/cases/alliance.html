@@ -1,0 +1,294 @@
+<!-- ---------------- case 02 · Alliance Travel ----------------
+     The owner's CaseAllianceTravel (2026-11-07), as a fragment the build
+     inlines at 09 Proof; its copy is hub/src/cases/alliance.i18n.json, its
+     sheet hub/css/case-alliance.css. The shell's hooks (hub/app.js 8) do
+     the rest: the track, the eight kinds of deliverable and their badges,
+     the trip calculator (tabs for the destination, a stepper for the
+     travellers), the poster viewer.
+     What changed from the design, and why: the header's price chip and the
+     pack's price became the case's tag and a list of what was delivered
+     (no client price is published), and the calculator says "sur devis"
+     for every trip (the agency's prices are its own); the live view of the
+     client's site is a link (the page's CSP frames nothing from another
+     host), to the address the home links; the data tile's "178 textes
+     traduits" and "AVIF" became what the site's own sheet (scene/) says:
+     nine pages, the visa service, the day-by-day programmes, light and
+     dark; the cover drops "par une seule équipe" (one founder) and the
+     chips the site does not carry (Omra, Billetterie); the type line names
+     the faces the client's site uses (DM Sans, Tajawal), as scene/ does;
+     the pictures that are mises en situation say MAQUETTE; the brand
+     charter is a 21-page flipbook, the Canva carousel has its four slides
+     and the calculator its seven destinations (every trip stays "sur devis"). -->
+<section class="st-case case-alliance" id="case-alliance" aria-labelledby="case-alliance-h">
+  <div class="st-case__bar">
+    <div class="st-case__id ca-id">
+      <span class="st-case__logo ca-logo"><img src="img/clients/alliance/logo-cream.svg" alt="" loading="lazy" decoding="async"></span>
+      <div class="ca-id__txt">
+        <span class="st-case__hud ca-hud" data-i18n="cases.alliance.hud"></span>
+        <h3 class="st-case__name" id="case-alliance-h"><bdi>Alliance Travel</bdi> <span class="ca-sector">· <span data-i18n="cases.alliance.sector"></span></span></h3>
+      </div>
+    </div>
+    <div class="st-case__progress ca-progress">
+      <span><span class="ca-muted-d" data-i18n="case.unlocked"></span><span data-seen-count dir="ltr">0/8</span></span>
+      <div class="st-case__pips ca-pips" aria-hidden="true"><i data-pip="identity"></i><i data-pip="site"></i><i data-pip="posters"></i><i data-pip="social"></i><i data-pip="ooh"></i><i data-pip="merch"></i><i data-pip="tools"></i><i data-pip="canva"></i></div>
+    </div>
+    <div class="ca-end">
+      <span class="st-case__tag ca-tag" data-i18n="cases.alliance.tag"></span>
+      <div class="st-case__nav ca-nav">
+        <button type="button" data-track-prev aria-controls="ca-track" data-i18n-aria="case.prev"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="ca-track" data-i18n-aria="case.next"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-case__track ca-track" id="ca-track" dir="ltr" data-track tabindex="0" role="region" data-i18n-aria="cases.alliance.track">
+
+    <!-- AT-00 · the cover -->
+    <article class="ca-t ca-cover st-c2 st-r2" data-kind="identity">
+      <img class="ca-cover__bg" src="img/clients/alliance/heroes/hero__istanbul--bg--mobile.webp" alt="" loading="lazy" decoding="async">
+      <div class="ca-cover__top">
+        <img class="ca-cover__logo" src="img/clients/alliance/logo-cream.svg" data-i18n-alt="cases.alliance.logo" alt="" loading="lazy" decoding="async">
+        <span class="ca-chip--line" data-i18n="cases.alliance.cover.k"></span>
+      </div>
+      <div class="ca-cover__txt">
+        <span class="ca-k ca-k--mint" dir="ltr">ALLIANCE TRAVEL × NUMIDEA</span>
+        <h4 class="ca-cover__h" data-i18n="cases.alliance.cover.t"></h4>
+        <p class="ca-cover__s" data-i18n="cases.alliance.cover.s"></p>
+        <ul class="ca-chips">
+          <li data-i18n="cases.alliance.cover.chips.0"></li>
+          <li data-i18n="cases.alliance.cover.chips.1"></li>
+          <li data-i18n="cases.alliance.cover.chips.2"></li>
+          <li data-i18n="cases.alliance.cover.chips.3"></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- AT-01 · the site, as a picture and a link (no frame of another host) -->
+    <article class="ca-t ca-site st-c3 st-r2" data-kind="site">
+      <div class="ca-site__bar">
+        <span class="ca-site__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="ca-site__url" dir="ltr">alliancetravel34.netlify.app</span>
+        <a class="ca-site__open" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" data-i18n="cases.alliance.site.open"></a>
+      </div>
+      <div class="ca-site__view">
+        <img class="ca-site__bg" src="img/clients/alliance/heroes/hero__azerbaidjan--bg--mobile.webp" alt="" loading="lazy" decoding="async">
+        <div class="ca-site__txt">
+          <span class="ca-k ca-k--mint" data-i18n="cases.alliance.site.k"></span>
+          <h4 class="ca-site__h" data-i18n="cases.alliance.site.h"></h4>
+          <dl class="ca-figs">
+            <div><dt data-i18n="cases.alliance.site.s0"></dt><dd dir="ltr">7</dd></div>
+            <div><dt data-i18n="cases.alliance.site.s1"></dt><dd dir="ltr">FR · EN · AR</dd></div>
+            <div><dt data-i18n="cases.alliance.site.s2"></dt><dd dir="ltr">WhatsApp</dd></div>
+          </dl>
+          <a class="ca-btn" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener"><span data-i18n="case.open"></span> <span class="st-sr" data-i18n="case.newTab"></span></a>
+        </div>
+      </div>
+      <span class="st-badge ca-badge--site" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- AT-02 · what the site carries, as its sheet on scene/ says it -->
+    <article class="ca-t ca-data" data-kind="site">
+      <span class="ca-k ca-k--navy"><bdi>AT-02</bdi> · DATA</span>
+      <dl class="ca-data__list">
+        <div><dt data-i18n="cases.alliance.stats.0"></dt><dd class="ca-data__big" dir="ltr">9</dd></div>
+        <div><dt data-i18n="cases.alliance.stats.1"></dt><dd class="ca-data__mid" dir="ltr">VISA</dd></div>
+      </dl>
+      <p class="ca-data__s" data-i18n="cases.alliance.stats.2"></p>
+    </article>
+
+    <!-- posters 02 and 01 (mises en situation) -->
+    <article class="ca-t ca-poster ca-poster--navy" data-kind="posters">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-egypt.full.webp"><img src="img/clients/alliance/m-egypt.webp" data-i18n-alt="cases.alliance.alt.egypt" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--sand"><span class="ca-plab__w" data-i18n="cases.alliance.poster"></span> 02 · <span data-i18n="cases.alliance.p.1"></span></span>
+      <span class="ca-mock" data-i18n="cases.alliance.mock"></span>
+    </article>
+    <article class="ca-t ca-poster ca-poster--navy st-c2 st-r2" data-kind="posters">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-istanbul.webp"><img src="img/clients/alliance/m-istanbul.webp" data-i18n-alt="cases.alliance.alt.istanbul" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--l"><span data-i18n="cases.alliance.poster"></span> 01 · <span data-i18n="cases.alliance.p.0"></span></span>
+      <span class="ca-mock" data-i18n="cases.alliance.mock"></span>
+      <span class="st-badge ca-badge--start" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- AT-05 · the trip calculator: the shell's tabs pick the destination,
+         its stepper counts the travellers; the price stays the agency's ("sur devis") -->
+    <article class="ca-t ca-calc st-c2 st-r2" data-kind="tools">
+      <div class="ca-calc__tabs" data-tabs>
+        <div class="ca-calc__view">
+          <div class="ca-calc__panel" id="ca-dest-istanbul" data-panel="istanbul" role="tabpanel" aria-labelledby="ca-tab-istanbul">
+            <img src="img/clients/alliance/heroes/hero__istanbul--bg--mobile.webp" data-i18n-alt="cases.alliance.dn.istanbul.0" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.istanbul.0"></b><span data-i18n="cases.alliance.dn.istanbul.1"></span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-azerbaidjan" data-panel="azerbaidjan" role="tabpanel" aria-labelledby="ca-tab-azerbaidjan" hidden>
+            <img src="img/clients/alliance/heroes/hero__azerbaidjan--bg--mobile.webp" data-i18n-alt="cases.alliance.dn.azerbaidjan.0" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.azerbaidjan.0"></b><span data-i18n="cases.alliance.dn.azerbaidjan.1"></span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-cairo-sharm" data-panel="cairo-sharm" role="tabpanel" aria-labelledby="ca-tab-cairo-sharm" hidden>
+            <img src="img/clients/alliance/heroes/hero__cairo-sharm--bg--mobile.webp" data-i18n-alt="cases.alliance.dn.cairo-sharm.0" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.cairo-sharm.0"></b><span data-i18n="cases.alliance.dn.cairo-sharm.1"></span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-bali" data-panel="bali" role="tabpanel" aria-labelledby="ca-tab-bali" hidden>
+            <img src="img/clients/alliance/heroes/hero__bali--bg--mobile.webp" data-i18n-alt="cases.alliance.dn.bali.0" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.bali.0"></b><span data-i18n="cases.alliance.dn.bali.1"></span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-kuala-lumpur" data-panel="kuala-lumpur" role="tabpanel" aria-labelledby="ca-tab-kuala-lumpur" hidden>
+            <img src="img/clients/alliance/heroes/hero__kuala-lumpur--bg--mobile.webp" data-i18n-alt="cases.alliance.dn.kuala-lumpur.0" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.kuala-lumpur.0"></b><span data-i18n="cases.alliance.dn.kuala-lumpur.1"></span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-vietnam" data-panel="vietnam" role="tabpanel" aria-labelledby="ca-tab-vietnam" hidden>
+            <img src="img/clients/alliance/heroes/hero__vietnam--bg--mobile.webp" data-i18n-alt="cases.alliance.dn.vietnam.0" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.vietnam.0"></b><span data-i18n="cases.alliance.dn.vietnam.1"></span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-tunisie" data-panel="tunisie" role="tabpanel" aria-labelledby="ca-tab-tunisie" hidden>
+            <img src="img/clients/alliance/heroes/hero__tunisie--bg--mobile.webp" data-i18n-alt="cases.alliance.dn.tunisie.0" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.tunisie.0"></b><span data-i18n="cases.alliance.dn.tunisie.1"></span></p>
+          </div>
+          <span class="ca-pill ca-pill--sand ca-calc__k" data-i18n="cases.alliance.calc.k"></span>
+          <p class="ca-calc__total"><b data-i18n="cases.alliance.calc.quote"></b><span data-i18n="cases.alliance.calc.per"></span></p>
+          <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+        </div>
+        <div class="ca-calc__dests" role="tablist" data-i18n-aria="cases.alliance.calc.dests">
+          <button type="button" role="tab" id="ca-tab-istanbul" data-tab="istanbul" aria-controls="ca-dest-istanbul" aria-selected="true" data-i18n="cases.alliance.dn.istanbul.0"></button>
+          <button type="button" role="tab" id="ca-tab-azerbaidjan" data-tab="azerbaidjan" aria-controls="ca-dest-azerbaidjan" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.azerbaidjan.0"></button>
+          <button type="button" role="tab" id="ca-tab-cairo-sharm" data-tab="cairo-sharm" aria-controls="ca-dest-cairo-sharm" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.cairo-sharm.0"></button>
+          <button type="button" role="tab" id="ca-tab-bali" data-tab="bali" aria-controls="ca-dest-bali" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.bali.0"></button>
+          <button type="button" role="tab" id="ca-tab-kuala-lumpur" data-tab="kuala-lumpur" aria-controls="ca-dest-kuala-lumpur" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.kuala-lumpur.0"></button>
+          <button type="button" role="tab" id="ca-tab-vietnam" data-tab="vietnam" aria-controls="ca-dest-vietnam" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.vietnam.0"></button>
+          <button type="button" role="tab" id="ca-tab-tunisie" data-tab="tunisie" aria-controls="ca-dest-tunisie" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.tunisie.0"></button>
+        </div>
+      </div>
+      <div class="ca-calc__pax" data-stepper data-values="1,2,3,4,5,6,7,8,9,10,11,12" data-index="1" data-value="2">
+        <span class="ca-calc__paxL" id="ca-pax-l" data-i18n="cases.alliance.calc.pax"></span>
+        <button type="button" class="ca-step" data-step="-1" data-i18n-aria="cases.alliance.calc.minus"><span aria-hidden="true">−</span></button>
+        <output class="ca-calc__n" data-out aria-live="polite" aria-labelledby="ca-pax-l" dir="ltr">2</output>
+        <button type="button" class="ca-step ca-step--plus" data-step="1" data-i18n-aria="cases.alliance.calc.plus"><span aria-hidden="true">+</span></button>
+      </div>
+    </article>
+
+    <!-- the 9:16 story (a mise en situation) -->
+    <article class="ca-t ca-poster ca-poster--navy st-r2" data-kind="social">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-story.full.webp"><img src="img/clients/alliance/m-story.webp" data-i18n-alt="cases.alliance.alt.story" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--mint" data-i18n="cases.alliance.story"></span>
+      <span class="ca-mock ca-mock--start ca-mock--low" data-i18n="cases.alliance.mock"></span>
+      <span class="st-badge ca-badge--sand" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- out of home: the billboard and the storefront (mises en situation) -->
+    <article class="ca-t ca-poster ca-poster--navy st-c2" data-kind="ooh">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-billboard.full.webp"><img src="img/clients/alliance/m-billboard.webp" data-i18n-alt="cases.alliance.alt.billboard" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--sand" data-i18n="cases.alliance.ooh.0"></span>
+      <span class="ca-mock ca-mock--start" data-i18n="cases.alliance.mock"></span>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+    <article class="ca-t ca-poster ca-poster--navy st-c2" data-kind="ooh">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-store.full.webp"><img src="img/clients/alliance/m-store.webp" data-i18n-alt="cases.alliance.alt.store" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--sand" data-i18n="cases.alliance.ooh.1"></span>
+      <span class="ca-mock ca-mock--start" data-i18n="cases.alliance.mock"></span>
+    </article>
+
+    <!-- AT-10 · the brand charter, 21 pages, one at a time -->
+    <article class="ca-t ca-chart st-c2 st-r2" data-kind="identity" data-cycle>
+      <div class="ca-chart__view">
+          <img data-cycle-item src="img/clients/alliance/charte/0001.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async">
+          <img data-cycle-item src="img/clients/alliance/charte/0002.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0003.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0004.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0005.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0006.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0007.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0008.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0009.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0010.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0011.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0012.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0013.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0014.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0015.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0016.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0017.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0018.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0019.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0020.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0021.webp" data-i18n-alt="cases.alliance.chartAlt" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+      </div>
+      <div class="ca-chart__bar">
+        <div class="ca-chart__txt"><span class="ca-k ca-k--mint"><bdi>AT-10</bdi> · <span data-i18n="cases.alliance.chart"></span></span><b dir="ltr"><span data-cycle-n aria-live="polite">1 / 21</span></b></div>
+        <button type="button" class="ca-step ca-step--l" data-cycle-prev data-i18n-aria="cases.alliance.prevPage"><span aria-hidden="true">←</span></button>
+        <button type="button" class="ca-step ca-step--plus" data-cycle-next data-i18n-aria="cases.alliance.nextPage"><span aria-hidden="true">→</span></button>
+      </div>
+    </article>
+
+    <!-- AT-11 · colour and type, from the brand charter -->
+    <article class="ca-t ca-card ca-pal st-c2" data-kind="identity">
+      <span class="ca-k"><bdi>AT-11</bdi> · <span data-i18n="cases.alliance.pal"></span></span>
+      <ul class="ca-pal__sw" dir="ltr">
+        <li class="ca-sw--navy"><b>Prussian Blue</b>#002C51</li>
+        <li class="ca-sw--mint">#9CE8B2</li>
+        <li class="ca-sw--navy-2">#003D72</li>
+        <li class="ca-sw--sand">#EFE8DF</li>
+      </ul>
+      <p class="ca-pal__type"><span class="ca-pal__aa" dir="ltr">Aa</span><span class="ca-pal__name" dir="ltr">DM Sans · Tajawal</span><span class="ca-pal__note" data-i18n="cases.alliance.palNote"></span></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- the welcome kit (a mise en situation) -->
+    <article class="ca-t ca-poster ca-poster--sand st-c2" data-kind="merch">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-kit.full.webp"><img src="img/clients/alliance/m-kit.webp" data-i18n-alt="cases.alliance.alt.kit" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab" data-i18n="cases.alliance.kit"></span>
+      <span class="ca-mock ca-mock--start" data-i18n="cases.alliance.mock"></span>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- the agency's own flyers and post, made on Canva -->
+    <!-- the Canva carousel, four slides -->
+    <article class="ca-t ca-aze st-r2" data-kind="canva" data-cycle>
+      <div class="ca-aze__view">
+          <img data-cycle-item src="img/clients/alliance/c-aze-1.webp" data-i18n-alt="cases.alliance.alt.aze" alt="" width="464" height="580" loading="lazy" decoding="async">
+          <img data-cycle-item src="img/clients/alliance/c-aze-2.webp" data-i18n-alt="cases.alliance.alt.aze" alt="" width="464" height="580" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/c-aze-3.webp" data-i18n-alt="cases.alliance.alt.aze" alt="" width="464" height="580" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/c-aze-4.webp" data-i18n-alt="cases.alliance.alt.aze" alt="" width="464" height="580" loading="lazy" decoding="async" hidden>
+      </div>
+      <div class="ca-aze__bar">
+        <span class="ca-k" data-i18n="cases.alliance.carousel"></span>
+        <button type="button" class="ca-aze__next" data-cycle-next data-i18n-aria="cases.alliance.nextSlide"><span data-cycle-n aria-live="polite" dir="ltr">1 / 4</span> <span aria-hidden="true">→</span></button>
+      </div>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+    <article class="ca-t ca-poster ca-poster--white" data-kind="canva">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/c-istanbul.full.webp"><img src="img/clients/alliance/c-istanbul.webp" data-i18n-alt="cases.alliance.alt.flyer" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab" data-i18n="cases.alliance.canva.0"></span>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+    <article class="ca-t ca-poster ca-poster--white" data-kind="canva">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/c-egypt-post.full.webp"><img src="img/clients/alliance/c-egypt-post.webp" data-i18n-alt="cases.alliance.alt.post" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab" data-i18n="cases.alliance.canva.1"></span>
+    </article>
+    <article class="ca-t ca-poster ca-poster--navy st-r2" data-kind="canva">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/c-egypt-flyer.full.webp"><img src="img/clients/alliance/c-egypt-flyer.webp" data-i18n-alt="cases.alliance.alt.eflyer" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--sand" data-i18n="cases.alliance.canva.2"></span>
+    </article>
+
+    <!-- the scope card, where the design had the pack's price: what was delivered, ticked as it is seen -->
+    <article class="ca-t ca-scope st-c3 st-r2">
+      <div class="ca-scope__head"><span class="ca-k ca-k--d" data-i18n="cases.alliance.scope.k"></span><span class="ca-scope__chip" data-i18n="cases.alliance.scope.n"></span></div>
+      <h4 class="ca-scope__h" data-i18n="cases.alliance.scope.t"></h4>
+      <p class="ca-scope__note" data-i18n="cases.alliance.scope.note"></p>
+      <ul class="ca-scope__list">
+        <li data-scope="identity" data-i18n="cases.alliance.scope.items.0"></li>
+        <li data-scope="site" data-i18n="cases.alliance.scope.items.1"></li>
+        <li data-scope="posters" data-i18n="cases.alliance.scope.items.2"></li>
+        <li data-scope="social" data-i18n="cases.alliance.scope.items.3"></li>
+        <li data-scope="ooh" data-i18n="cases.alliance.scope.items.4"></li>
+        <li data-scope="merch" data-i18n="cases.alliance.scope.items.5"></li>
+        <li data-scope="tools" data-i18n="cases.alliance.scope.items.6"></li>
+        <li data-scope="canva" data-i18n="cases.alliance.scope.items.7"></li>
+      </ul>
+      <a class="ca-btn ca-btn--block" href="#contact" data-i18n="cases.alliance.scope.cta"></a>
+    </article>
+  </div>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag"></span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>

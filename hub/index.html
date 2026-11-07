@@ -802,10 +802,8 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
      chips the site does not carry (Omra, Billetterie); the type line names
      the faces the client's site uses (DM Sans, Tajawal), as scene/ does;
      the pictures that are mises en situation say MAQUETTE; the brand
-     charter's flipbook, the Canva carousel and five of the seven
-     destinations wait for their pictures in hub/img (the design's files
-     are not exported yet), so the egypt flyer takes both rows where the
-     carousel stood. -->
+     charter is a 21-page flipbook, the Canva carousel has its four slides
+     and the calculator its seven destinations (every trip stays "sur devis"). -->
 <section class="st-case case-alliance" id="case-alliance" aria-labelledby="case-alliance-h">
   <div class="st-case__bar">
     <div class="st-case__id ca-id">
@@ -886,13 +884,13 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
     <!-- posters 02 and 01 (mises en situation) -->
     <article class="ca-t ca-poster ca-poster--navy" data-kind="posters">
       <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-egypt.full.webp"><img src="img/clients/alliance/m-egypt.webp" width="464" height="576" data-i18n-alt="cases.alliance.alt.egypt" alt="Maquette d’affiche : l’Égypte, Caire et Sharm" alt="" loading="lazy" decoding="async"></button>
-      <span class="ca-plab ca-plab--sand"><span data-i18n="cases.alliance.poster">AFFICHE</span> 02 · <span data-i18n="cases.alliance.p.1">ÉGYPTE</span></span>
+      <span class="ca-plab ca-plab--sand"><span class="ca-plab__w" data-i18n="cases.alliance.poster">AFFICHE</span> 02 · <span data-i18n="cases.alliance.p.1">ÉGYPTE</span></span>
       <span class="ca-mock" data-i18n="cases.alliance.mock">MAQUETTE</span>
     </article>
     <article class="ca-t ca-poster ca-poster--navy st-c2 st-r2" data-kind="posters">
       <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-istanbul.webp"><img src="img/clients/alliance/m-istanbul.webp" width="928" height="1152" data-i18n-alt="cases.alliance.alt.istanbul" alt="Maquette d’affiche : Istanbul, « Partout où vous voulez »" alt="" loading="lazy" decoding="async"></button>
       <span class="ca-plab ca-plab--l"><span data-i18n="cases.alliance.poster">AFFICHE</span> 01 · <span data-i18n="cases.alliance.p.0">ISTANBUL</span></span>
-      <span class="ca-mock ca-mock--end" data-i18n="cases.alliance.mock">MAQUETTE</span>
+      <span class="ca-mock" data-i18n="cases.alliance.mock">MAQUETTE</span>
       <span class="st-badge ca-badge--start" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
     </article>
 
@@ -909,6 +907,26 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
             <img src="img/clients/alliance/heroes/hero__azerbaidjan--bg--mobile.webp" width="900" height="599" data-i18n-alt="cases.alliance.dn.azerbaidjan.0" alt="Azerbaïdjan" alt="" loading="lazy" decoding="async">
             <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.azerbaidjan.0">Azerbaïdjan</b><span data-i18n="cases.alliance.dn.azerbaidjan.1">8 jours · 7 nuits</span></p>
           </div>
+          <div class="ca-calc__panel" id="ca-dest-cairo-sharm" data-panel="cairo-sharm" role="tabpanel" aria-labelledby="ca-tab-cairo-sharm" hidden>
+            <img src="img/clients/alliance/heroes/hero__cairo-sharm--bg--mobile.webp" width="768" height="511" data-i18n-alt="cases.alliance.dn.cairo-sharm.0" alt="Égypte" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.cairo-sharm.0">Égypte</b><span data-i18n="cases.alliance.dn.cairo-sharm.1">Caire + Sharm</span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-bali" data-panel="bali" role="tabpanel" aria-labelledby="ca-tab-bali" hidden>
+            <img src="img/clients/alliance/heroes/hero__bali--bg--mobile.webp" width="768" height="1024" data-i18n-alt="cases.alliance.dn.bali.0" alt="Bali" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.bali.0">Bali</b><span data-i18n="cases.alliance.dn.bali.1">Rizières &amp; temples</span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-kuala-lumpur" data-panel="kuala-lumpur" role="tabpanel" aria-labelledby="ca-tab-kuala-lumpur" hidden>
+            <img src="img/clients/alliance/heroes/hero__kuala-lumpur--bg--mobile.webp" width="768" height="614" data-i18n-alt="cases.alliance.dn.kuala-lumpur.0" alt="Kuala Lumpur" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.kuala-lumpur.0">Kuala Lumpur</b><span data-i18n="cases.alliance.dn.kuala-lumpur.1">Malaisie</span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-vietnam" data-panel="vietnam" role="tabpanel" aria-labelledby="ca-tab-vietnam" hidden>
+            <img src="img/clients/alliance/heroes/hero__vietnam--bg--mobile.webp" width="768" height="1024" data-i18n-alt="cases.alliance.dn.vietnam.0" alt="Vietnam" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.vietnam.0">Vietnam</b><span data-i18n="cases.alliance.dn.vietnam.1">Baie d’Halong</span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-tunisie" data-panel="tunisie" role="tabpanel" aria-labelledby="ca-tab-tunisie" hidden>
+            <img src="img/clients/alliance/heroes/hero__tunisie--bg--mobile.webp" width="768" height="512" data-i18n-alt="cases.alliance.dn.tunisie.0" alt="Tunisie" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.tunisie.0">Tunisie</b><span data-i18n="cases.alliance.dn.tunisie.1">Sidi Bou Saïd</span></p>
+          </div>
           <span class="ca-pill ca-pill--sand ca-calc__k" data-i18n="cases.alliance.calc.k">CALCULATEUR · VOYAGE</span>
           <p class="ca-calc__total"><b data-i18n="cases.alliance.calc.quote">Sur devis</b><span data-i18n="cases.alliance.calc.per">LE DEVIS PART SUR WHATSAPP</span></p>
           <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
@@ -916,6 +934,11 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
         <div class="ca-calc__dests" role="tablist" data-i18n-aria="cases.alliance.calc.dests" aria-label="Destinations">
           <button type="button" role="tab" id="ca-tab-istanbul" data-tab="istanbul" aria-controls="ca-dest-istanbul" aria-selected="true" data-i18n="cases.alliance.dn.istanbul.0">Istanbul</button>
           <button type="button" role="tab" id="ca-tab-azerbaidjan" data-tab="azerbaidjan" aria-controls="ca-dest-azerbaidjan" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.azerbaidjan.0">Azerbaïdjan</button>
+          <button type="button" role="tab" id="ca-tab-cairo-sharm" data-tab="cairo-sharm" aria-controls="ca-dest-cairo-sharm" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.cairo-sharm.0">Égypte</button>
+          <button type="button" role="tab" id="ca-tab-bali" data-tab="bali" aria-controls="ca-dest-bali" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.bali.0">Bali</button>
+          <button type="button" role="tab" id="ca-tab-kuala-lumpur" data-tab="kuala-lumpur" aria-controls="ca-dest-kuala-lumpur" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.kuala-lumpur.0">Kuala Lumpur</button>
+          <button type="button" role="tab" id="ca-tab-vietnam" data-tab="vietnam" aria-controls="ca-dest-vietnam" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.vietnam.0">Vietnam</button>
+          <button type="button" role="tab" id="ca-tab-tunisie" data-tab="tunisie" aria-controls="ca-dest-tunisie" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.tunisie.0">Tunisie</button>
         </div>
       </div>
       <div class="ca-calc__pax" data-stepper data-values="1,2,3,4,5,6,7,8,9,10,11,12" data-index="1" data-value="2">
@@ -930,19 +953,54 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
     <article class="ca-t ca-poster ca-poster--navy st-r2" data-kind="social">
       <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-story.full.webp"><img src="img/clients/alliance/m-story.webp" width="464" height="825" data-i18n-alt="cases.alliance.alt.story" alt="Maquette de story Instagram : Bali" alt="" loading="lazy" decoding="async"></button>
       <span class="ca-plab ca-plab--mint" data-i18n="cases.alliance.story">STORY 9:16 · BALI</span>
-      <span class="ca-mock ca-mock--start" data-i18n="cases.alliance.mock">MAQUETTE</span>
+      <span class="ca-mock ca-mock--start ca-mock--low" data-i18n="cases.alliance.mock">MAQUETTE</span>
       <span class="st-badge ca-badge--sand" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
     </article>
 
     <!-- out of home: the billboard and the storefront (mises en situation) -->
     <article class="ca-t ca-poster ca-poster--navy st-c2" data-kind="ooh">
       <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-billboard.full.webp"><img src="img/clients/alliance/m-billboard.webp" width="952" height="536" data-i18n-alt="cases.alliance.alt.billboard" alt="Maquette : un billboard pour l’Azerbaïdjan" alt="" loading="lazy" decoding="async"></button>
-      <span class="ca-plab ca-plab--sand"><span data-i18n="cases.alliance.ooh.0">BILLBOARD · AZERBAÏDJAN</span> · <span data-i18n="cases.alliance.mock">MAQUETTE</span></span>
+      <span class="ca-plab ca-plab--sand" data-i18n="cases.alliance.ooh.0">BILLBOARD · AZERBAÏDJAN</span>
+      <span class="ca-mock ca-mock--start" data-i18n="cases.alliance.mock">MAQUETTE</span>
       <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
     </article>
     <article class="ca-t ca-poster ca-poster--navy st-c2" data-kind="ooh">
       <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-store.full.webp"><img src="img/clients/alliance/m-store.webp" width="870" height="580" data-i18n-alt="cases.alliance.alt.store" alt="Maquette : la vitrine de l’agence" alt="" loading="lazy" decoding="async"></button>
-      <span class="ca-plab ca-plab--sand"><span data-i18n="cases.alliance.ooh.1">VITRINE · BBA</span> · <span data-i18n="cases.alliance.mock">MAQUETTE</span></span>
+      <span class="ca-plab ca-plab--sand" data-i18n="cases.alliance.ooh.1">VITRINE · BBA</span>
+      <span class="ca-mock ca-mock--start" data-i18n="cases.alliance.mock">MAQUETTE</span>
+    </article>
+
+    <!-- AT-10 · the brand charter, 21 pages, one at a time -->
+    <article class="ca-t ca-chart st-c2 st-r2" data-kind="identity" data-cycle>
+      <div class="ca-chart__view">
+          <img data-cycle-item src="img/clients/alliance/charte/0001.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async">
+          <img data-cycle-item src="img/clients/alliance/charte/0002.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0003.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0004.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0005.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0006.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0007.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0008.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0009.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0010.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0011.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0012.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0013.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0014.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0015.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0016.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0017.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0018.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0019.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0020.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/charte/0021.webp" data-i18n-alt="cases.alliance.chartAlt" alt="Charte graphique d’Alliance Travel, une page" alt="" width="952" height="536" loading="lazy" decoding="async" hidden>
+          <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+      </div>
+      <div class="ca-chart__bar">
+        <div class="ca-chart__txt"><span class="ca-k ca-k--mint"><bdi>AT-10</bdi> · <span data-i18n="cases.alliance.chart">CHARTE GRAPHIQUE</span></span><b dir="ltr"><span data-cycle-n aria-live="polite">1 / 21</span></b></div>
+        <button type="button" class="ca-step ca-step--l" data-cycle-prev data-i18n-aria="cases.alliance.prevPage" aria-label="Page précédente"><span aria-hidden="true">←</span></button>
+        <button type="button" class="ca-step ca-step--plus" data-cycle-next data-i18n-aria="cases.alliance.nextPage" aria-label="Page suivante"><span aria-hidden="true">→</span></button>
+      </div>
     </article>
 
     <!-- AT-11 · colour and type, from the brand charter -->
@@ -961,11 +1019,26 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
     <!-- the welcome kit (a mise en situation) -->
     <article class="ca-t ca-poster ca-poster--sand st-c2" data-kind="merch">
       <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-kit.full.webp"><img src="img/clients/alliance/m-kit.webp" width="769" height="580" data-i18n-alt="cases.alliance.alt.kit" alt="Maquette : le kit de bienvenue" alt="" loading="lazy" decoding="async"></button>
-      <span class="ca-plab"><span data-i18n="cases.alliance.kit">KIT DE BIENVENUE</span> · <span data-i18n="cases.alliance.mock">MAQUETTE</span></span>
+      <span class="ca-plab" data-i18n="cases.alliance.kit">KIT DE BIENVENUE</span>
+      <span class="ca-mock ca-mock--start" data-i18n="cases.alliance.mock">MAQUETTE</span>
       <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
     </article>
 
     <!-- the agency's own flyers and post, made on Canva -->
+    <!-- the Canva carousel, four slides -->
+    <article class="ca-t ca-aze st-r2" data-kind="canva" data-cycle>
+      <div class="ca-aze__view">
+          <img data-cycle-item src="img/clients/alliance/c-aze-1.webp" data-i18n-alt="cases.alliance.alt.aze" alt="Carrousel Canva, Azerbaïdjan" alt="" width="464" height="580" loading="lazy" decoding="async">
+          <img data-cycle-item src="img/clients/alliance/c-aze-2.webp" data-i18n-alt="cases.alliance.alt.aze" alt="Carrousel Canva, Azerbaïdjan" alt="" width="464" height="580" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/c-aze-3.webp" data-i18n-alt="cases.alliance.alt.aze" alt="Carrousel Canva, Azerbaïdjan" alt="" width="464" height="580" loading="lazy" decoding="async" hidden>
+          <img data-cycle-item src="img/clients/alliance/c-aze-4.webp" data-i18n-alt="cases.alliance.alt.aze" alt="Carrousel Canva, Azerbaïdjan" alt="" width="464" height="580" loading="lazy" decoding="async" hidden>
+      </div>
+      <div class="ca-aze__bar">
+        <span class="ca-k" data-i18n="cases.alliance.carousel">CARROUSEL · CANVA</span>
+        <button type="button" class="ca-aze__next" data-cycle-next data-i18n-aria="cases.alliance.nextSlide" aria-label="Slide suivante"><span data-cycle-n aria-live="polite" dir="ltr">1 / 4</span> <span aria-hidden="true">→</span></button>
+      </div>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
     <article class="ca-t ca-poster ca-poster--white" data-kind="canva">
       <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/c-istanbul.full.webp"><img src="img/clients/alliance/c-istanbul.webp" width="407" height="576" data-i18n-alt="cases.alliance.alt.flyer" alt="Flyer Istanbul 2026" alt="" loading="lazy" decoding="async"></button>
       <span class="ca-plab" data-i18n="cases.alliance.canva.0">FLYER · ISTANBUL</span>

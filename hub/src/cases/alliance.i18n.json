@@ -1,0 +1,374 @@
+{
+  "fr": {
+    "hud": "DOSSIER CLIENT 02",
+    "sector": "Agence de voyages",
+    "tag": "Identité + site",
+    "track": "Alliance Travel : les pièces du dossier",
+    "logo": "Logo d’Alliance Travel",
+    "cover": {
+      "k": "PACK VOYAGE 360°",
+      "t": "Partout où vous voulez — l’agence, de A à Z",
+      "s": "Agence de voyages organisés · Bordj Bou Arréridj. Identité, site trilingue, campagne et réseaux sociaux.",
+      "chips": [
+        "Voyages organisés",
+        "Rendez-vous visa",
+        "7 destinations",
+        "Devis WhatsApp"
+      ]
+    },
+    "site": {
+      "k": "SITE · EN LIGNE",
+      "h": "Réservez votre prochain voyage en un message",
+      "open": "Ouvrir ↗",
+      "s0": "DESTINATIONS",
+      "s1": "TRILINGUE + RTL",
+      "s2": "RÉSERVATION"
+    },
+    "stats": [
+      "pages en ligne",
+      "service de rendez-vous",
+      "Programme jour par jour, mode clair et mode sombre."
+    ],
+    "poster": "AFFICHE",
+    "p": [
+      "ISTANBUL",
+      "ÉGYPTE"
+    ],
+    "mock": "MAQUETTE",
+    "story": "STORY 9:16 · BALI",
+    "ooh": [
+      "BILLBOARD · AZERBAÏDJAN",
+      "VITRINE · BBA"
+    ],
+    "kit": "KIT DE BIENVENUE",
+    "canva": [
+      "FLYER · ISTANBUL",
+      "POST · ÉGYPTE",
+      "FLYER · SHARM"
+    ],
+    "pal": "COULEURS & TYPE",
+    "palNote": "Nexa pour le logo",
+    "calc": {
+      "k": "CALCULATEUR · VOYAGE",
+      "pax": "Voyageurs",
+      "quote": "Sur devis",
+      "per": "LE DEVIS PART SUR WHATSAPP",
+      "dests": "Destinations",
+      "minus": "Un voyageur de moins",
+      "plus": "Un voyageur de plus"
+    },
+    "dn": {
+      "istanbul": [
+        "Istanbul",
+        "8 jours · Bosphore"
+      ],
+      "azerbaidjan": [
+        "Azerbaïdjan",
+        "8 jours · 7 nuits"
+      ],
+      "cairo-sharm": [
+        "Égypte",
+        "Caire + Sharm"
+      ],
+      "bali": [
+        "Bali",
+        "Rizières & temples"
+      ],
+      "kuala-lumpur": [
+        "Kuala Lumpur",
+        "Malaisie"
+      ],
+      "vietnam": [
+        "Vietnam",
+        "Baie d’Halong"
+      ],
+      "tunisie": [
+        "Tunisie",
+        "Sidi Bou Saïd"
+      ]
+    },
+    "alt": {
+      "istanbul": "Maquette d’affiche : Istanbul, « Partout où vous voulez »",
+      "egypt": "Maquette d’affiche : l’Égypte, Caire et Sharm",
+      "story": "Maquette de story Instagram : Bali",
+      "billboard": "Maquette : un billboard pour l’Azerbaïdjan",
+      "store": "Maquette : la vitrine de l’agence",
+      "kit": "Maquette : le kit de bienvenue",
+      "flyer": "Flyer Istanbul 2026",
+      "post": "Post Égypte",
+      "eflyer": "Flyer Sharm El Sheikh",
+      "aze": "Carrousel Canva, Azerbaïdjan"
+    },
+    "scope": {
+      "k": "LIVRÉ · ALLIANCE TRAVEL",
+      "n": "8 LIVRABLES",
+      "t": "Agence de voyages, de l’identité à la réservation",
+      "note": "Chaque case se coche quand vous avez vu la pièce dans le dossier. Une MAQUETTE montre la pièce en situation.",
+      "items": [
+        "Charte graphique · 21 pages",
+        "Site trilingue FR · EN · AR",
+        "Affiches de campagne",
+        "Stories & carrousels",
+        "Billboard & vitrine",
+        "Kit de bienvenue",
+        "Calculateur de devis vers WhatsApp",
+        "Flyers & posts sur Canva"
+      ],
+      "cta": "Un projet comme celui-ci →"
+    },
+    "chart": "CHARTE GRAPHIQUE",
+    "chartAlt": "Charte graphique d’Alliance Travel, une page",
+    "carousel": "CARROUSEL · CANVA",
+    "prevPage": "Page précédente",
+    "nextPage": "Page suivante",
+    "nextSlide": "Slide suivante"
+  },
+  "en": {
+    "hud": "CLIENT FILE 02",
+    "sector": "Travel agency",
+    "tag": "Identity + site",
+    "track": "Alliance Travel: the pieces of the file",
+    "logo": "Alliance Travel logo",
+    "cover": {
+      "k": "360° TRAVEL PACK",
+      "t": "Anywhere you want — the agency, A to Z",
+      "s": "Guided-tour agency · Bordj Bou Arréridj. Identity, trilingual site, campaign and social media.",
+      "chips": [
+        "Guided tours",
+        "Visa appointments",
+        "7 destinations",
+        "WhatsApp quotes"
+      ]
+    },
+    "site": {
+      "k": "WEBSITE · LIVE",
+      "h": "Book your next trip in one message",
+      "open": "Open ↗",
+      "s0": "DESTINATIONS",
+      "s1": "TRILINGUAL + RTL",
+      "s2": "BOOKING"
+    },
+    "stats": [
+      "pages online",
+      "appointment service",
+      "Day-by-day programmes, light and dark mode."
+    ],
+    "poster": "POSTER",
+    "p": [
+      "ISTANBUL",
+      "EGYPT"
+    ],
+    "mock": "MOCKUP",
+    "story": "STORY 9:16 · BALI",
+    "ooh": [
+      "BILLBOARD · AZERBAIJAN",
+      "STOREFRONT · BBA"
+    ],
+    "kit": "WELCOME KIT",
+    "canva": [
+      "FLYER · ISTANBUL",
+      "POST · EGYPT",
+      "FLYER · SHARM"
+    ],
+    "pal": "COLOUR & TYPE",
+    "palNote": "Nexa for the logo",
+    "calc": {
+      "k": "CALCULATOR · TRIP",
+      "pax": "Travellers",
+      "quote": "On request",
+      "per": "THE QUOTE GOES OUT ON WHATSAPP",
+      "dests": "Destinations",
+      "minus": "One traveller fewer",
+      "plus": "One more traveller"
+    },
+    "dn": {
+      "istanbul": [
+        "Istanbul",
+        "8 days · Bosphorus"
+      ],
+      "azerbaidjan": [
+        "Azerbaijan",
+        "8 days · 7 nights"
+      ],
+      "cairo-sharm": [
+        "Egypt",
+        "Cairo + Sharm"
+      ],
+      "bali": [
+        "Bali",
+        "Rice terraces & temples"
+      ],
+      "kuala-lumpur": [
+        "Kuala Lumpur",
+        "Malaysia"
+      ],
+      "vietnam": [
+        "Vietnam",
+        "Ha Long Bay"
+      ],
+      "tunisie": [
+        "Tunisia",
+        "Sidi Bou Said"
+      ]
+    },
+    "alt": {
+      "istanbul": "Poster mockup: Istanbul, “Anywhere you want”",
+      "egypt": "Poster mockup: Egypt, Cairo and Sharm",
+      "story": "Instagram story mockup: Bali",
+      "billboard": "Mockup: a billboard for Azerbaijan",
+      "store": "Mockup: the agency’s storefront",
+      "kit": "Mockup: the welcome kit",
+      "flyer": "Istanbul 2026 flyer",
+      "post": "Egypt post",
+      "eflyer": "Sharm El Sheikh flyer",
+      "aze": "Canva carousel, Azerbaijan"
+    },
+    "scope": {
+      "k": "DELIVERED · ALLIANCE TRAVEL",
+      "n": "8 DELIVERABLES",
+      "t": "Travel agency, from identity to booking",
+      "note": "Each box ticks once you have seen the piece in the file. A MOCKUP shows the piece in situation.",
+      "items": [
+        "Brand guidelines · 21 pages",
+        "Trilingual site FR · EN · AR",
+        "Campaign posters",
+        "Stories & carousels",
+        "Billboard & storefront",
+        "Welcome kit",
+        "WhatsApp quote calculator",
+        "Flyers & posts on Canva"
+      ],
+      "cta": "A project like this one →"
+    },
+    "chart": "BRAND GUIDELINES",
+    "chartAlt": "Alliance Travel brand guidelines, one page",
+    "carousel": "CAROUSEL · CANVA",
+    "prevPage": "Previous page",
+    "nextPage": "Next page",
+    "nextSlide": "Next slide"
+  },
+  "ar": {
+    "hud": "ملف العميل 02",
+    "sector": "وكالة أسفار",
+    "tag": "هوية + موقع",
+    "track": "Alliance Travel: قطع الملف",
+    "logo": "شعار Alliance Travel",
+    "cover": {
+      "k": "حزمة سفر 360°",
+      "t": "أينما تريد — الوكالة من الألف إلى الياء",
+      "s": "وكالة رحلات منظمة · برج بوعريريج. هوية وموقع بثلاث لغات وحملة وشبكات اجتماعية.",
+      "chips": [
+        "رحلات منظمة",
+        "مواعيد التأشيرة",
+        "7 وجهات",
+        "عرض سعر عبر واتساب"
+      ]
+    },
+    "site": {
+      "k": "الموقع · مباشر",
+      "h": "احجز رحلتك القادمة برسالة واحدة",
+      "open": "افتح ↗",
+      "s0": "وجهات",
+      "s1": "ثلاث لغات + RTL",
+      "s2": "الحجز"
+    },
+    "stats": [
+      "صفحات على الموقع",
+      "خدمة المواعيد",
+      "برنامج كل رحلة يومًا بيوم، بوضع فاتح ووضع داكن."
+    ],
+    "poster": "ملصق",
+    "p": [
+      "إسطنبول",
+      "مصر"
+    ],
+    "mock": "نموذج",
+    "story": "ستوري 9:16 · بالي",
+    "ooh": [
+      "لوحة إعلانية · أذربيجان",
+      "واجهة الوكالة · BBA"
+    ],
+    "kit": "حقيبة الترحيب",
+    "canva": [
+      "مطوية · إسطنبول",
+      "منشور · مصر",
+      "مطوية · شرم"
+    ],
+    "pal": "اللون والخط",
+    "palNote": "Nexa للشعار",
+    "calc": {
+      "k": "الحاسبة · الرحلة",
+      "pax": "المسافرون",
+      "quote": "حسب الطلب",
+      "per": "يُرسَل عرض السعر عبر واتساب",
+      "dests": "الوجهات",
+      "minus": "مسافر أقل",
+      "plus": "مسافر إضافي"
+    },
+    "dn": {
+      "istanbul": [
+        "إسطنبول",
+        "8 أيام · البوسفور"
+      ],
+      "azerbaidjan": [
+        "أذربيجان",
+        "8 أيام · 7 ليال"
+      ],
+      "cairo-sharm": [
+        "مصر",
+        "القاهرة + شرم"
+      ],
+      "bali": [
+        "بالي",
+        "مدرجات الأرز والمعابد"
+      ],
+      "kuala-lumpur": [
+        "كوالالمبور",
+        "ماليزيا"
+      ],
+      "vietnam": [
+        "فيتنام",
+        "خليج ها لونغ"
+      ],
+      "tunisie": [
+        "تونس",
+        "سيدي بوسعيد"
+      ]
+    },
+    "alt": {
+      "istanbul": "نموذج ملصق: إسطنبول، «أينما تريد»",
+      "egypt": "نموذج ملصق: مصر، القاهرة وشرم",
+      "story": "نموذج ستوري إنستغرام: بالي",
+      "billboard": "نموذج: لوحة إعلانية لأذربيجان",
+      "store": "نموذج: واجهة الوكالة",
+      "kit": "نموذج: حقيبة الترحيب",
+      "flyer": "مطوية إسطنبول 2026",
+      "post": "منشور مصر",
+      "eflyer": "مطوية شرم الشيخ",
+      "aze": "كاروسيل Canva، أذربيجان"
+    },
+    "scope": {
+      "k": "ما سُلِّم · ALLIANCE TRAVEL",
+      "n": "8 مخرجات",
+      "t": "وكالة أسفار، من الهوية إلى الحجز",
+      "note": "تُؤشَّر كل خانة حين تشاهد القطعة في الملف. «النموذج» يعرض القطعة في سياقها.",
+      "items": [
+        "دليل بصري · 21 صفحة",
+        "موقع بثلاث لغات",
+        "ملصقات الحملة",
+        "ستوري وكاروسيل",
+        "لوحة إعلانية وواجهة",
+        "حقيبة الترحيب",
+        "حاسبة عرض سعر عبر واتساب",
+        "مطويات ومنشورات على Canva"
+      ],
+      "cta": "← مشروع مثل هذا"
+    },
+    "chart": "الدليل البصري",
+    "chartAlt": "الدليل البصري لشركة Alliance Travel، صفحة واحدة",
+    "carousel": "كاروسيل · CANVA",
+    "prevPage": "الصفحة السابقة",
+    "nextPage": "الصفحة التالية",
+    "nextSlide": "الشريحة التالية"
+  }
+}

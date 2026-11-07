@@ -1,0 +1,278 @@
+/* ============================================================
+   Case 02 · Alliance Travel (hub/src/cases/alliance.html), everything
+   under .case-alliance. The client's own look, from the owner's design
+   (2026-11-07): Prussian blue (#002C51), mint (#9CE8B2) on sand
+   (#EFE8DF), Sora for the titles and DM Sans for the text, round tiles
+   and pill labels. The shell (hub/style.css 09: the bar, the track, its
+   spans, the foot, the badges, the viewer) is the page's; this sheet sets
+   the palette on the scope and draws the tiles. Every colour is a token of
+   the scope block below.
+   Measured as painted: mint on the blue 10.4:1, the blue on mint 10.4:1,
+   the pale slate labels on the blue 7.6:1, the slate labels on sand 5.9:1,
+   the green "open" link on its light bar 4.9:1. The site tile's scrim is
+   darker than the design's at its far end (.3 for .1), so its white text
+   keeps 4.5:1 over the sky when the tile is narrow. Labels never go under
+   12px (the design's are 9.5-11.5px) and the calculator's buttons are
+   44px (the design's 30 and 40).
+   Motion: the posters' hover zoom is the shell's; nothing here moves on
+   its own, and with reduced motion nothing moves at all.
+   ============================================================ */
+
+.case-alliance{
+  --c-bg:#EFE8DF;
+  --c-dark:#002C51;
+  --c-fg:#0B1F33;
+  --c-muted:#4A5A6A;
+  --c-line:#D6CFC4;
+  --c-tile:#002C51;
+  --c-accent:#9CE8B2;
+  --c-accent-2:#B8F0C8;
+  --c-on-accent:#002C51;
+  --c-on-dark:#EFE8DF;
+  --c-font:"DM Sans",var(--f-body);
+  --c-font-disp:"Sora",var(--c-font);
+  --ca-navy-2:#003D72;
+  --ca-deep:#001B33;
+  --ca-steel:#2F5A80;
+  --ca-rule:#1F4A70;
+  --ca-slate-l:#A9BCCB;
+  --ca-mist:#C9D6E0;
+  --ca-green:#237A4A;
+  --ca-white:#FFFFFF;
+  --ca-chrome:#F4EFE8;
+  --ca-dot:#C9C1B5;
+  --ca-hair:#E6DFD5;
+  --ca-mint-line:rgba(156,232,178,.6);
+  --ca-cream-line:rgba(239,232,223,.3);
+  --ca-cover-a:rgba(0,44,81,.15);
+  --ca-cover-b:rgba(0,44,81,.94);
+  --ca-scrim:rgba(0,44,81,.92);
+  --ca-scrim-2:rgba(0,44,81,.66);
+  --ca-scrim-3:rgba(0,44,81,.3);
+  --ca-calc-a:rgba(0,44,81,0);
+  --ca-calc-b:rgba(0,44,81,.9);
+  --ca-r:14px;
+}
+
+/* ---------------- the bar ---------------- */
+.case-alliance .ca-id{flex:1 1 300px}
+.case-alliance .ca-logo{width:auto;height:34px;padding:0;background:none;border-radius:0}
+.case-alliance .ca-logo img{width:auto;height:34px;max-width:none;max-height:none}
+.case-alliance .ca-id__txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.case-alliance .ca-hud{color:var(--c-accent);opacity:1;letter-spacing:.16em}
+.case-alliance .st-case__name{font-weight:700;font-size:16px;line-height:1.15}
+.case-alliance .ca-sector{color:var(--ca-slate-l);font-family:var(--c-font);font-weight:400}
+.case-alliance .ca-progress{min-width:180px;letter-spacing:.14em}
+.case-alliance .ca-muted-d{color:var(--ca-slate-l);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.case-alliance .ca-pips{height:8px;background:var(--ca-navy-2);border-radius:4px;overflow:hidden}
+.case-alliance .ca-pips i{background:transparent;opacity:1}
+.case-alliance .ca-pips i.is-seen{background:var(--c-accent)}
+.case-alliance .ca-end{display:flex;align-items:center;gap:8px}
+.case-alliance .ca-tag{padding:8px 12px;border-radius:999px;font-family:var(--c-font-disp);font-weight:800;font-size:15px;letter-spacing:0}
+.case-alliance .ca-nav button{border:1px solid var(--ca-steel);border-radius:50%}
+.case-alliance .ca-nav button:hover{background:var(--ca-navy-2);border-color:var(--ca-steel);color:var(--c-on-dark)}
+.case-alliance .st-case__bar :focus-visible,.case-alliance .ca-cover :focus-visible,.case-alliance .ca-site__view :focus-visible,.case-alliance .ca-calc__view :focus-visible,.case-alliance .ca-scope :focus-visible{outline-color:var(--c-accent)}
+.case-alliance .st-case__track:focus-visible{outline-color:var(--c-dark)}
+.case-alliance .st-case__bar-p{border-radius:2px}
+.case-alliance .st-case__bar-p i{background:var(--c-dark)}
+
+/* ---------------- shared tile pieces ---------------- */
+/* the tiles follow the page's direction; the track itself stays ltr (the shell) */
+:root[dir="rtl"] .case-alliance .ca-t{direction:rtl}
+.case-alliance .st-case__track > *{border-radius:var(--ca-r)}
+.case-alliance .ca-t img{display:block}
+.case-alliance .ca-k{font-family:var(--f-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em;color:var(--c-muted)}
+.case-alliance .ca-k--mint{color:var(--c-accent);letter-spacing:.16em}
+.case-alliance .ca-k--navy{color:var(--c-dark)}
+.case-alliance .ca-k--d{color:var(--ca-slate-l)}
+.case-alliance .ca-card{display:flex;flex-direction:column;gap:10px;padding:14px;background:var(--ca-white);border:1px solid var(--c-line)}
+.case-alliance .ca-card > .ca-k:first-child{padding-inline-end:76px}
+.case-alliance .st-badge{top:8px;inset-inline-end:8px;padding:3px 8px;border-radius:999px;font-weight:600;line-height:1.2}
+.case-alliance .st-badge.is-seen{background:var(--c-accent);color:var(--c-on-accent)}
+.case-alliance .ca-badge--site{top:46px;inset-inline-end:10px}
+.case-alliance .ca-badge--start{top:10px;inset-inline-start:10px;inset-inline-end:auto}
+.case-alliance .ca-badge--sand,.case-alliance .ca-badge--sand.is-seen{background:var(--c-bg)}
+.case-alliance .ca-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--c-font-disp);font-weight:800;font-size:13px;letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:background-color .2s}
+.case-alliance .ca-btn:hover{background:var(--c-accent-2)}
+.case-alliance .ca-btn--block{display:flex;width:100%;font-size:14px;letter-spacing:0}
+.case-alliance .ca-pill{padding:3px 8px;border-radius:999px;background:var(--c-accent);color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;white-space:nowrap}
+.case-alliance .ca-pill--sand{background:var(--c-bg)}
+
+/* ---------------- AT-00 · the cover ---------------- */
+.case-alliance .ca-cover{display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:20px;background:var(--c-dark);color:var(--c-on-dark)}
+.case-alliance .ca-cover__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.case-alliance .ca-cover::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--ca-cover-a) 0%,var(--ca-cover-b) 72%)}
+.case-alliance .ca-cover__top,.case-alliance .ca-cover__txt{position:relative;z-index:2}
+.case-alliance .ca-cover__top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:10px}
+.case-alliance .ca-cover__logo{width:clamp(110px,40%,150px);height:auto;flex:none}
+.case-alliance .ca-chip--line{min-width:0;max-width:100%;padding:4px 9px;border:1px solid var(--ca-mint-line);border-radius:999px;font-family:var(--f-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em;color:var(--c-accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-alliance .ca-cover__txt{display:flex;flex-direction:column;gap:10px}
+.case-alliance .ca-cover__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(26px,2.6vw,38px);line-height:1.02;text-wrap:balance}
+.case-alliance .ca-cover__s{font-size:14px;line-height:1.5;color:var(--ca-mist);max-width:30em}
+.case-alliance .ca-chips{display:flex;flex-wrap:wrap;gap:6px}
+.case-alliance .ca-chips li{padding:4px 10px;background:var(--c-accent);color:var(--c-dark);border-radius:999px;font-weight:700;font-size:var(--t-label);line-height:1.35;white-space:nowrap}
+
+/* ---------------- AT-01 · the site ---------------- */
+.case-alliance .ca-site{display:flex;flex-direction:column;background:var(--ca-white);border:1px solid var(--c-line)}
+.case-alliance .ca-site__bar{height:38px;flex:none;display:flex;align-items:center;gap:10px;padding:0 12px;background:var(--ca-chrome);border-bottom:1px solid var(--c-line)}
+.case-alliance .ca-site__dots{display:flex;gap:6px}
+.case-alliance .ca-site__dots i{width:10px;height:10px;border-radius:50%;background:var(--ca-dot)}
+.case-alliance .ca-site__dots i:first-child{background:var(--c-accent)}
+.case-alliance .ca-site__url{flex:1;min-width:0;padding:5px 10px;background:var(--ca-white);border-radius:999px;font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-alliance .ca-site__open{font-family:var(--f-mono);font-size:var(--t-label);color:var(--ca-green);text-decoration:none;white-space:nowrap}
+.case-alliance .ca-site__view{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--c-dark)}
+.case-alliance .ca-site__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case-alliance .ca-site__view::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--ca-scrim) 0%,var(--ca-scrim-2) 55%,var(--ca-scrim-3) 100%)}
+:root[dir="rtl"] .case-alliance .ca-site__view::before{background:linear-gradient(270deg,var(--ca-scrim) 0%,var(--ca-scrim-2) 55%,var(--ca-scrim-3) 100%)}
+.case-alliance .ca-site__txt{position:relative;z-index:2;box-sizing:border-box;height:100%;max-width:560px;display:flex;flex-direction:column;justify-content:center;gap:clamp(8px,1.2vw,14px);padding:clamp(14px,2.6vw,36px);color:var(--c-on-dark)}
+.case-alliance .ca-site__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(22px,2.8vw,44px);line-height:1;text-wrap:balance}
+.case-alliance .ca-figs{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0;padding-top:12px;border-top:1px solid var(--ca-cream-line);white-space:nowrap}
+.case-alliance .ca-figs div{display:flex;flex-direction:column-reverse}
+.case-alliance .ca-figs dt{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.1em;color:var(--ca-slate-l)}
+.case-alliance .ca-figs dd{margin:0;font-family:var(--c-font-disp);font-weight:800;font-size:clamp(17px,1.7vw,22px);line-height:1.2}
+.case-alliance .ca-site .ca-btn{align-self:flex-start}
+
+/* ---------------- AT-02 · what the site carries ---------------- */
+.case-alliance .ca-data{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:16px;background:var(--c-accent);color:var(--c-dark)}
+.case-alliance .ca-data__list{display:flex;flex-direction:column;gap:10px;margin:0}
+.case-alliance .ca-data__list div{display:flex;flex-direction:column-reverse}
+.case-alliance .ca-data__list dt{font-size:12.5px;font-weight:700;line-height:1.3}
+.case-alliance .ca-data__list dd{margin:0;font-family:var(--c-font-disp);font-weight:800;line-height:1}
+.case-alliance .ca-data__big{font-size:clamp(30px,3vw,42px)}
+.case-alliance .ca-data__mid{font-size:clamp(24px,2.4vw,32px)}
+.case-alliance .ca-data__s{font-size:var(--t-label);font-weight:500;line-height:1.35}
+/* Below 1111px the track's column is its 150px floor: the two figures
+   and their labels keep their size and the closing sentence (programmes,
+   light and dark) goes, rather than shrink a label under 12px. */
+@media (max-width:1110px){
+  .case-alliance .ca-data{padding:12px;gap:6px}
+  .case-alliance .ca-data__list{gap:6px}
+  .case-alliance .ca-data__s{display:none}
+}
+
+/* ---------------- the posters, the story, the billboard, the kit, the flyers ---------------- */
+.case-alliance .ca-poster--navy{background:var(--c-dark)}
+.case-alliance .ca-poster--sand{background:var(--c-bg)}
+.case-alliance .ca-poster--white{background:var(--ca-white);border:1px solid var(--c-line)}
+.case-alliance .ca-zoom img{object-fit:contain}
+.case-alliance .ca-zoom:focus-visible{outline-offset:-5px;outline-color:var(--c-accent)}
+.case-alliance .ca-plab{position:absolute;inset-inline-start:8px;bottom:8px;z-index:2;max-width:calc(100% - 16px);padding:4px 9px;border-radius:999px;background:var(--c-dark);color:var(--c-on-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.case-alliance .ca-plab--sand{background:var(--c-bg);color:var(--c-dark)}
+.case-alliance .ca-plab--mint{background:var(--c-accent);color:var(--c-dark)}
+.case-alliance .ca-plab--l{inset-inline-start:10px;bottom:10px;padding:5px 10px}
+/* "MAQUETTE" on a mise en situation, where the label has no room for it */
+.case-alliance .ca-mock{position:absolute;top:8px;inset-inline-end:8px;z-index:2;padding:3px 8px;border:1px solid var(--ca-mint-line);border-radius:999px;background:var(--c-dark);color:var(--c-accent);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;pointer-events:none}
+.case-alliance .ca-mock--start{inset-inline-start:8px;inset-inline-end:auto}
+/* the narrow column (150px): the labels lose their tracking and the word
+   "AFFICHE" so the place stays whole, and the story's MAQUETTE drops under
+   its badge */
+@media (max-width:1110px){
+  .case-alliance .ca-plab{padding:4px 7px;letter-spacing:.02em}
+  .case-alliance .ca-plab__w{display:none}
+  .case-alliance .ca-mock--low{top:38px}
+}
+
+/* ---------------- AT-05 · the trip calculator ----------------
+   The shell's tabs show one destination's panel at a time (the others are
+   hidden, so their pictures load only when asked for); its stepper writes
+   the travellers. The figure stays "sur devis": the agency's prices are
+   its own and change with the season. */
+.case-alliance .ca-calc{display:flex;flex-direction:column;background:var(--ca-white);border:1px solid var(--c-line)}
+.case-alliance .ca-calc__tabs{flex:1;min-height:0;display:flex;flex-direction:column}
+.case-alliance .ca-calc__view{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--c-dark);color:var(--c-on-dark)}
+.case-alliance .ca-calc__panel{position:absolute;inset:0}
+.case-alliance .ca-calc__panel[hidden]{display:none}
+.case-alliance .ca-calc__panel img{width:100%;height:100%;object-fit:cover}
+.case-alliance .ca-calc__panel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--ca-calc-a) 35%,var(--ca-calc-b) 100%)}
+.case-alliance .ca-calc__dest{position:absolute;inset-inline-start:14px;bottom:12px;z-index:2;display:flex;flex-direction:column;gap:2px;max-width:calc(100% - 28px)}
+.case-alliance .ca-calc__dest b{font-family:var(--c-font-disp);font-weight:800;font-size:22px;line-height:1}
+.case-alliance .ca-calc__dest span{font-size:var(--t-label);color:var(--ca-mist)}
+.case-alliance .ca-calc__k{position:absolute;top:10px;inset-inline-start:10px;z-index:2}
+.case-alliance .ca-calc__total{position:absolute;inset-inline-end:14px;bottom:12px;z-index:2;display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:end}
+.case-alliance .ca-calc__total b{font-family:var(--c-font-disp);font-weight:800;font-size:22px;line-height:1;color:var(--c-accent)}
+.case-alliance .ca-calc__total span{max-width:15em;font-family:var(--f-mono);font-size:var(--t-label);line-height:1.3;color:var(--ca-mist)}
+.case-alliance .ca-calc__dests{flex:none;display:flex;flex-wrap:wrap;gap:6px;padding:12px 12px 0}
+.case-alliance .ca-calc__dests button{min-height:44px;padding:0 14px;border:1px solid var(--c-dark);border-radius:999px;background:var(--ca-white);color:var(--c-dark);font-family:var(--c-font);font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s}
+.case-alliance .ca-calc__dests button:hover{background:var(--c-bg)}
+.case-alliance .ca-calc__dests button[aria-selected="true"]{background:var(--c-dark);color:var(--c-accent)}
+.case-alliance .ca-calc__pax{flex:none;display:flex;align-items:center;gap:10px;padding:10px 12px 12px}
+.case-alliance .ca-calc__paxL{flex:1;min-width:0;font-size:13px;font-weight:700}
+.case-alliance .ca-calc__n{min-width:28px;text-align:center;font-family:var(--c-font-disp);font-weight:800;font-size:20px}
+.case-alliance .ca-step{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--c-dark);border-radius:50%;background:var(--ca-white);color:var(--c-dark);font-family:var(--c-font-disp);font-weight:800;font-size:18px;cursor:pointer;transition:background-color .2s}
+.case-alliance .ca-step:hover{background:var(--c-bg)}
+.case-alliance .ca-step--plus{border-color:var(--c-dark);background:var(--c-dark);color:var(--c-accent)}
+.case-alliance .ca-step--plus:hover{background:var(--ca-navy-2)}
+.case-alliance .ca-step:disabled{opacity:.4;cursor:default}
+/* the narrow tile (the 150px column): the destination sits over the quote
+   line, both on the lower half, which the scrim makes solid enough for
+   4.5:1 over the brightest sky */
+@media (max-width:1110px){
+  .case-alliance .ca-calc__panel::after{background:linear-gradient(180deg,var(--ca-calc-a) 0%,var(--ca-calc-b) 52%,var(--ca-calc-b) 100%)}
+  .case-alliance .ca-calc__dest{bottom:76px}
+  .case-alliance .ca-calc__total{inset-inline:14px;align-items:flex-start;text-align:start}
+}
+
+/* ---------------- AT-11 · colour and type ---------------- */
+.case-alliance .ca-pal__sw{flex:1;min-height:0;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:6px}
+.case-alliance .ca-pal__sw li{display:flex;flex-direction:column;justify-content:flex-end;gap:2px;padding:7px 5px;border-radius:8px;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:0;overflow:hidden}
+.case-alliance .ca-pal__sw b{font-family:var(--c-font);font-weight:700;font-size:var(--t-label)}
+.case-alliance .ca-sw--navy{background:var(--c-dark);color:var(--c-on-dark)}
+.case-alliance .ca-sw--mint{background:var(--c-accent);color:var(--c-dark)}
+.case-alliance .ca-sw--navy-2{background:var(--ca-navy-2);color:var(--c-on-dark)}
+.case-alliance .ca-sw--sand{background:var(--c-bg);border:1px solid var(--c-line);color:var(--c-dark)}
+.case-alliance .ca-pal__type{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;padding-top:8px;border-top:1px solid var(--ca-hair)}
+.case-alliance .ca-pal__aa{font-family:"DM Sans",var(--f-body);font-weight:700;font-size:28px;line-height:1;color:var(--c-dark)}
+.case-alliance .ca-pal__name{font-family:"DM Sans",var(--f-body);font-weight:700;font-size:14px;color:var(--ca-green)}
+.case-alliance .ca-pal__note{font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted)}
+
+/* ---------------- the scope card (the design's price card) ---------------- */
+.case-alliance .ca-scope{display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--c-dark);color:var(--c-on-dark)}
+.case-alliance .ca-scope__head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.case-alliance .ca-scope__chip{padding:3px 8px;border-radius:999px;background:var(--c-bg);color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;white-space:nowrap;transition:background-color .3s}
+/* every kind seen: the chip turns mint, as the design's did */
+.case-alliance .ca-scope:not(:has([data-scope]:not(.is-seen))) .ca-scope__chip{background:var(--c-accent)}
+.case-alliance .ca-scope__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(22px,2.4vw,32px);line-height:1.08;text-wrap:balance}
+.case-alliance .ca-scope__note{font-size:var(--t-label);line-height:1.45;color:var(--ca-slate-l)}
+.case-alliance .ca-scope__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px 14px;padding-top:10px;border-top:1px solid var(--ca-rule)}
+.case-alliance .ca-scope__list li{display:flex;gap:8px;align-items:center;font-size:13px;line-height:1.25;transition:color .3s}
+.case-alliance .ca-scope__list li::before{content:"";width:14px;height:14px;flex:none;border:1.5px solid var(--c-accent);border-radius:50%;transition:background-color .3s}
+/* a line not seen yet is paler, not faded (the design's .5 opacity gave
+   3.98:1); its circle fills once seen */
+html.js .case-alliance .ca-scope__list li{color:var(--ca-slate-l)}
+html.js .case-alliance .ca-scope__list li.is-seen{color:var(--c-on-dark)}
+.case-alliance .ca-scope__list li.is-seen::before{background:var(--c-accent)}
+@media (max-width:1110px){.case-alliance .ca-scope{gap:8px;padding:16px}}
+
+/* ---------------- Arabic: no tracking, a looser line ---------------- */
+:lang(ar) .case-alliance .ca-k,:lang(ar) .case-alliance .ca-chip--line,:lang(ar) .case-alliance .ca-plab,:lang(ar) .case-alliance .ca-mock,:lang(ar) .case-alliance .ca-pill,:lang(ar) .case-alliance .ca-figs dt,:lang(ar) .case-alliance .ca-hud,:lang(ar) .case-alliance .ca-progress,:lang(ar) .case-alliance .ca-scope__chip,:lang(ar) .case-alliance .ca-btn,:lang(ar) .case-alliance .ca-calc__total span{letter-spacing:0}
+:lang(ar) .case-alliance .ca-cover__h,:lang(ar) .case-alliance .ca-site__h,:lang(ar) .case-alliance .ca-scope__h{line-height:1.25}
+
+/* ---------------- reduced motion: no zoom ---------------- */
+@media (prefers-reduced-motion:reduce){
+  .case-alliance .st-case__track > *:hover img{transform:none!important}
+}
+
+/* ---------------- AT-10 · the charter, one page at a time ---------------- */
+.case-alliance .ca-chart{display:flex;flex-direction:column;background:var(--c-dark);color:var(--c-on-dark)}
+.case-alliance .ca-chart__view{position:relative;flex:1;min-height:0;background:var(--ca-deep)}
+.case-alliance .ca-chart__view > img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.case-alliance .ca-chart__view > img[hidden]{display:none}
+.case-alliance .ca-chart__bar{flex:none;display:flex;align-items:center;gap:8px;padding:10px 12px}
+.case-alliance .ca-chart__txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.case-alliance .ca-chart__txt b{font-family:var(--c-font-disp);font-weight:700;font-size:14px}
+.case-alliance .ca-step--l{border-color:var(--ca-steel);background:transparent;color:var(--c-on-dark)}
+.case-alliance .ca-step--l:hover{background:var(--ca-navy-2)}
+.case-alliance .ca-chart .ca-step--plus{border-color:var(--c-accent);background:var(--c-accent);color:var(--c-dark)}
+:root[dir="rtl"] .case-alliance .ca-chart__bar .ca-step span{display:inline-block;transform:scaleX(-1)}
+
+/* ---------------- the Canva carousel ---------------- */
+.case-alliance .ca-aze{display:flex;flex-direction:column;background:var(--ca-white);border:1px solid var(--c-line)}
+.case-alliance .ca-aze__view{position:relative;flex:1;min-height:0}
+.case-alliance .ca-aze__view > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case-alliance .ca-aze__view > img[hidden]{display:none}
+.case-alliance .ca-aze__bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 9px}
+.case-alliance .ca-aze__next{min-height:44px;padding:0 10px;border:0;background:transparent;color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.1em;cursor:pointer}
+.case-alliance .ca-aze__next:hover{color:var(--ca-green)}
+:root[dir="rtl"] .case-alliance .ca-aze__next > span[aria-hidden]{display:inline-block;transform:scaleX(-1)}
+.case-alliance .ca-aze__bar .ca-k{min-width:0;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-alliance .ca-aze__next{flex:none;padding:0 4px;white-space:nowrap;letter-spacing:.04em}
