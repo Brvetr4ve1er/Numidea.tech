@@ -72,6 +72,8 @@ const PREFIXES = {
   // app.js: 'https://wa.me/' + WA + '?text=…', WA = window.NUMIDEA_WA from
   // index.html; with no number set, app.js removes the href instead
   'https://wa.me/': () => (WA ? 'https://wa.me/' + WA : null),
+  // hub/app.js: the Studio's Aperçu link, its number written in the script
+  'https://wa.me/213672412578?text=': () => 'https://wa.me/213672412578',
 };
 // Seen 2026-10-24 from a datacenter network with this script's browser user
 // agent; a headless Chromium got the same answers. "host/path-prefix", and
@@ -129,6 +131,8 @@ for (const f of published) {
   for (const m of src.matchAll(/https:\/\/[^\s"'<>`\\)\]}|]+/g)) {
     const u = m[0].replace(/\$\{.*$/, '').replace(/&amp;/g, '&').replace(/[.,;:!?]+$/, '');
     if (/@context["']?\s*:\s*["']$/.test(src.slice(Math.max(0, m.index - 16), m.index))) continue;
+    // a CSS attribute selector (a[href^="https://wa.me"]) names a prefix, not a page
+    if (/\[[\w-]+[\^$*|~]?=["']?$/.test(src.slice(Math.max(0, m.index - 24), m.index))) continue;
     // built at runtime: 'https://…' + x, or a template literal's `https://…${x}`
     if (m[0].includes('${') || /^['"]\s*\+/.test(src.slice(m.index + m[0].length, m.index + m[0].length + 4))) {
       if (!PREFIXES[u]) { unknownPrefix.push(`${f}: '${u}' + …`); continue; }
