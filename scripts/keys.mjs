@@ -69,10 +69,9 @@
  *                 back with the whole message selected, focus in it, and
  *                 form.copyFail in the page's language under it (a hint, not
  *                 an error: no aria-invalid, not in the errors' colour)
- *  lead store     (index, one run) the Supabase switch turned on in a copy of
- *                 index.html served in its place, its policy rebuilt by
- *                 withCsp: connect-src names the store, and a valid submit
- *                 sends one POST to /rest/v1/leads with no CSP violation
+ *  no lead store (index, one run) no store switch on the page, connect-src
+ *                 'self' only, and a valid submit sends no POST (the Supabase
+ *                 path was removed in a28c546)
  *  dialogs        scene/'s capture viewer opens with Enter,
  *                 closes with Escape and gives focus back; Tab never leaves
  *                 it for the page behind. It shows one capture and has no
@@ -127,8 +126,8 @@
  * A JS error during a run fails it, and so does any Content-Security-Policy
  * violation, from any frame (lib/csp-watch.mjs, shared with audit.mjs). This
  * gate holds the CSP proof for what only it drives: the theme menu, the
- * contact form submitted (its validation, the mail hand-off and, with the
- * switch on, the lead store's POST), hub's rig, scene/'s viewer and the
+ * contact form submitted (its validation, the mail hand-off and that it
+ * sends no POST), hub's rig, scene/'s viewer and the
  * embeds taking focus; audit.mjs holds it for page loads, the CV panel, the phone
  * menu, the booted WorkspaceHQ console and the throttled phone's FAQ,
  * estimator, currency and language switches. Optional arg: only the pages
@@ -154,7 +153,6 @@ import { join } from 'node:path';
 import { serve, launch } from './lib/serve.mjs';
 import { watchCsp } from './lib/csp-watch.mjs';
 import { loopState } from './lib/loop-state.mjs';
-import { withCsp } from './lib/csp.mjs';
 import { loadDicts } from './lib/i18n.mjs';
 import { STATIC_LANG, TARIFS_LANG } from './build-sitemap.mjs';
 import { ROOT, PAGES } from './site.mjs';
@@ -1028,35 +1026,24 @@ for (const f of pages) {
   }
 }
 
-/* The lead store (window.NUMIDEA_SUPABASE_URL in index.html; off on the site
-   today). With the switch on, lib/csp.mjs adds that one origin to
-   connect-src, and a valid submit POSTs the lead there before the mail
-   hand-off. Proven on a copy of index.html served in its place, with the
-   switch on and the policy rebuilt by withCsp, the store answered here. */
-const STORE = 'https://abcdefghijklmnop.supabase.co';
+/* No lead store. The Supabase path went (a28c546: CSP is connect-src 'self',
+   and a lead goes by mail, WhatsApp or copy): a valid submit must send no POST
+   at all, and the page carries no store switch for a later edit to turn on
+   quietly (check.mjs 8b holds the same from the source). */
 if (pages.includes('index.html')) {
-  const src = readFileSync(join(ROOT, 'index.html'), 'utf8');
-  const on = src.replace('window.NUMIDEA_SUPABASE_URL = "";', `window.NUMIDEA_SUPABASE_URL = "${STORE}";`)
-    .replace('window.NUMIDEA_SUPABASE_KEY = "";', 'window.NUMIDEA_SUPABASE_KEY = "test-key";');
   const bad = [];
-  if (!on.includes(STORE) || !on.includes('"test-key"')) bad.push('the lead-store switch (window.NUMIDEA_SUPABASE_URL = "", _KEY = "") was not found in index.html');
-  const html = withCsp(on, 'page');
   const { p, errs, csp, close } = await open(1280, 900);
   const posts = [];
-  const cors = { 'access-control-allow-origin': B, 'access-control-allow-methods': 'POST', 'access-control-allow-headers': 'content-type, apikey, authorization' };
-  await p.route((u) => u.origin === B && (u.pathname === '/' || u.pathname === '/index.html'), (r) => r.fulfill({ status: 200, contentType: 'text/html', body: html }));
-  await p.route(STORE + '/**', (r) => {
-    if (r.request().method() === 'POST') posts.push(r.request().url().replace(STORE, ''));
-    return r.fulfill({ status: r.request().method() === 'POST' ? 201 : 204, headers: cors, body: '' });
-  });
+  p.on('request', (r) => { if (r.method() === 'POST') posts.push(r.url()); });
   await p.goto(url('index.html', 'fr'), { waitUntil: 'networkidle' });
+  if (await p.evaluate(() => !!(window.NUMIDEA_SUPABASE_URL || window.NUMIDEA_SUPABASE_KEY))) bad.push('the page carries a lead-store switch that is on');
   const policy = await p.evaluate(() => (document.querySelector('meta[http-equiv="Content-Security-Policy"]') || {}).content || '');
-  if (!policy.includes(`connect-src 'self' ${STORE};`)) bad.push('the policy served does not open connect-src to the store');
+  if (!/connect-src 'self';/.test(policy)) bad.push("the policy opens connect-src beyond 'self': " + policy.replace(/^[\s\S]*connect-src/, 'connect-src').replace(/;[\s\S]*$/, ''));
   await p.fill('#f-name', 'Test'); await p.fill('#f-email', 'ada@example.com'); await p.fill('#f-message', 'Bonjour');
   await p.focus('#contact-form [type="submit"]'); await p.keyboard.press('Enter');
-  for (let t = 0; t < 20 && !posts.length; t++) await wait(100);
-  if (posts.length !== 1 || posts[0] !== '/rest/v1/leads') bad.push('a valid submit sent ' + (posts.length ? posts.join(', ') : 'no POST') + ' to the store, not one POST to /rest/v1/leads');
-  report('index lead store', [{ bad, note: `store POST ${posts.length}` }], errs, csp);
+  await wait(1000);
+  if (posts.length) bad.push('a valid submit sent ' + posts.join(', '));
+  report('index no lead store', [{ bad, note: `POST ${posts.length}` }], errs, csp);
   await close();
 }
 
