@@ -13,7 +13,7 @@ Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font)
 Geist Mono (geist-mono-*.woff2)
 Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font.git)
 
-IBM Plex Sans Arabic (ibm-plex-sans-arabic-*.woff2)
+IBM Plex Sans Arabic (ibm-plex-sans-arabic-*.woff2, plex-arabic-404.woff2)
 Copyright 2019 IBM Corp. All rights reserved.
 
 Syne (syne-*.woff2)
