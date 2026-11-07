@@ -141,6 +141,7 @@ button{font:inherit;color:inherit}
 
 /* ---------------- nav ---------------- */
 .st-nav{position:sticky;top:0;z-index:50;background:rgba(216,203,184,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:2px solid var(--ink)}
+section[id],.st-case,[id^="case-"]{scroll-margin-top:80px}
 .st-nav__in{display:flex;align-items:center;gap:20px;padding-block:12px}
 /* the wordmark is set in Archivo, in every language (the display face swaps to
    Reem Kufi under Arabic; a name does not): NUMIDEA ink, LABS red */
