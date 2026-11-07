@@ -38,7 +38,12 @@ for(const w of [1440,1280,1024,768,414,390,360])for(const [t,l] of [['arcanum','
  combos.push(['index',HOME[l],w,{'numidea-theme':t,'numidea-lang':l},`${w}/${t}/${l}`]);
  combos.push(['tarifs',TARIFS[l],w,{'numidea-theme':t,'numidea-lang':l},`${w}/${t}/${l}`]);
 }
-for(const w of [1440,1024,768,390])combos.push(['hub','/hub/',w,{},`hub ${w}`]);
+// the Studio (hub/) in French and Arabic, the character bible (hub/bible/) as before
+for(const w of [1440,1024,768,390]){
+ combos.push(['hub','/hub/',w,{'numidea-lang':'fr'},`hub ${w}`]);
+ combos.push(['hub','/hub/',w,{'numidea-lang':'ar'},`hub ${w}/ar`]);
+ combos.push(['bible','/hub/bible/',w,{},`bible ${w}`]);
+}
 const b = await launch();
 const agg={};
 for(const [page,path,w,init,label] of combos){

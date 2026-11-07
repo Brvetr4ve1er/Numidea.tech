@@ -90,6 +90,7 @@
  *   AUDIT_PHONE_STRICT=1  the throttled phone's timing targets fail the run
  *                       instead of warning (see above)
  */
+import sharp from 'sharp';
 import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {serve,launch} from './lib/serve.mjs';
@@ -146,8 +147,8 @@ const watch=async p=>{
 
 const run=async(label,path,o={})=>{
   if(ONLY&&!ONLY.test(label))return;
-  const {theme,lang,w=1280,h=900,allowLoops=false,touch=w<600,init={},click=null,act=null,lcpBudget=0,axeOff=[],again=false}=o;
-  const p=await b.newPage({viewport:{width:w,height:h},hasTouch:touch,isMobile:touch});
+  const {theme,lang,w=1280,h=900,dpr=1,lede=false,allowLoops=false,touch=w<600,init={},click=null,act=null,lcpBudget=0,axeOff=[],again=false}=o;
+  const p=await b.newPage({viewport:{width:w,height:h},deviceScaleFactor:dpr,hasTouch:touch,isMobile:touch});
   const W=await watch(p);
   await p.addInitScript(([t,l,init])=>{if(t)localStorage.setItem('numidea-theme',t);if(l)localStorage.setItem('numidea-lang',l);for(const k in init)localStorage.setItem(k,init[k]);
     window.__cls=0;window.__lcp=0;
@@ -174,14 +175,19 @@ const run=async(label,path,o={})=>{
     // WCAG 2.5.8: under 24px fails only if its 24px clear zone collides
     const TG=[...document.querySelectorAll('a[href],button,input,select,textarea,summary,label.echip,label.eopt')].filter(e=>{
       const r=e.getBoundingClientRect(),s=getComputedStyle(e);if(!r.width||s.visibility==='hidden'||e.closest('[inert],[hidden]'))return false;
+      if(e.matches('input[type=radio],input[type=checkbox]')&&r.width<=1&&r.height<=1)return false;   // a visually hidden control: its label is the target
       return !(s.display==='inline'&&e.closest('p,li,dd'))});   // inline text links are exempt
     const R=TG.map(e=>e.getBoundingClientRect());
     const dist=(cx,cy,r)=>Math.hypot(Math.max(r.left-cx,0,cx-r.right),Math.max(r.top-cy,0,cy-r.bottom));
     const small=TG.filter((e,i)=>{const a=R[i];if(a.width>=24&&a.height>=24)return false;
       const cx=a.left+a.width/2,cy=a.top+a.height/2;
       return R.some((b,j)=>j!==i&&(dist(cx,cy,b)<12||((b.width<24||b.height<24)&&Math.hypot(cx-(b.left+b.width/2),cy-(b.top+b.height/2))<24)))}).length;
-    const imgs=[...document.images].filter(i=>i.complete&&i.naturalWidth===0).length;
-    return {cls:window.__cls,of:[...new Set(of)],hidden,small,imgs,hscroll:document.documentElement.scrollWidth>dw+1};});
+    const imgs=[...document.images].filter(i=>i.complete&&i.naturalWidth===0&&(i.getAttribute('src')||i.currentSrc)).length;   // an <img> with no src yet (a viewer's, filled on open) is not a broken one
+    // the first screen must reach the offer: the hero's lede starts inside the first viewport (a short landscape phone or a laptop at 150% put it below the fold)
+    const L=document.querySelector('.lede');
+    return {cls:window.__cls,of:[...new Set(of)],hidden,small,imgs,hscroll:document.documentElement.scrollWidth>dw+1,ledeTop:L?Math.round(L.getBoundingClientRect().top+scrollY):null,
+      // the webfont files this page fetched, as the browser counted them (the Arabic page carries its own faces)
+      fontBytes:performance.getEntriesByType('resource').filter(r=>/\.woff2(\?|$)/.test(r.name)).reduce((a,r)=>a+(r.encodedBodySize||0),0)};});
   const anim=await p.evaluate(()=>document.getAnimations().filter(a=>a.playState==='running'&&a.effect?.getComputedTiming().iterations===Infinity).length);
   // the hub's loops: each one the scroll brought on screen shows its animation
   const loops=await p.evaluate(loopState),stuck=loops.filter(l=>!l.ok);
@@ -217,7 +223,8 @@ const run=async(label,path,o={})=>{
   if(csp.length)issues.push('csp');if(broke.length)issues.push('act');if(stuck.length)issues.push('loop');
   if(lcpBudget&&!(lcp>0&&lcp<=lcpBudget))issues.push('lcp');
   if(arFont.lang!=='ar'&&arFont.n)issues.push('arfont');
-  const line=`cls ${m.cls.toFixed(4)}  lcp ${Math.round(lcp)}ms${lcpBudget?'/'+lcpBudget:''}  axe ${ax.join(',')||0}  of ${m.of.length+(m.hscroll?'+H':'')}  unrev ${m.hidden}  tap<24 ${m.small}  img ${m.imgs}  anim ${anim}  js ${errs.length}${waived?' (+'+waived+' waived)':''}  net ${bad.length}  3p ${third}  csp ${csp.length}${loops.length?`  loops ${loops.length-stuck.length}/${loops.length}`:''}${arFont.lang!=='ar'?`  arfont ${arFont.n}`:''}`;
+  if(lede&&!(m.ledeTop!==null&&m.ledeTop<h))issues.push('lede');
+  const line=`cls ${m.cls.toFixed(4)}  lcp ${Math.round(lcp)}ms${lcpBudget?'/'+lcpBudget:''}  axe ${ax.join(',')||0}  of ${m.of.length+(m.hscroll?'+H':'')}  unrev ${m.hidden}  tap<24 ${m.small}  img ${m.imgs}  anim ${anim}  js ${errs.length}${waived?' (+'+waived+' waived)':''}  net ${bad.length}  3p ${third}  csp ${csp.length}${loops.length?`  loops ${loops.length-stuck.length}/${loops.length}`:''}${arFont.lang!=='ar'?`  arfont ${arFont.n}`:''}${lede?`  lede ${m.ledeTop}/${h}`:''}  fonts ${(m.fontBytes/1024).toFixed(0)}kB`;
   await p.close();
   if(issues.length&&issues.every(i=>TIMING.has(i))&&!again){
     console.log('  ?? '+label.padEnd(26),line,' — over budget, measuring again');
@@ -367,11 +374,19 @@ const fallbackType=async(label,{theme,lang})=>{
           if(![...e.childNodes].some(n=>n.nodeType===3&&n.nodeValue.trim())||getComputedStyle(e).display==='inline'||!e.offsetHeight)return null;
           return [e.tagName.toLowerCase()+(typeof e.className==='string'&&e.className?'.'+e.className.split(' ')[0]:''),e.offsetHeight,e.getBoundingClientRect().top+scrollY<innerHeight];})});
     }
+    // the heading's glyph case: lower-case letters with descenders ('p' drops below the line), small capitals
+    // (no descender: Cinzel's lower case) or capitals: it must be the same with the face and without (a heading
+    // that lands as small capitals over a fallback's lower case is a visible swap, not only a reflow)
+    out.hcase=await p.evaluate(()=>{const h=document.querySelector('h1');if(!h)return null;const cs=getComputedStyle(h);
+      if(cs.textTransform==='uppercase')return 'capitals';
+      const c=document.createElement('canvas').getContext('2d');c.font=`${cs.fontStyle} ${cs.fontWeight} 100px ${cs.fontFamily}`;
+      return c.measureText('p').actualBoundingBoxDescent/100>0.06?'lower case':'small capitals'});
     await ctx.close();return out;
   };
   const [fb,face]=[await blocks(true),await blocks(false)];
   const moved=[];
-  for(const w of FB_WIDTHS)face[w].forEach((y,i)=>{const x=fb[w][i];if(y&&x&&y[2]&&Math.abs(x[1]-y[1])>1)moved.push(`${w}px ${y[0]} ${x[1]}→${y[1]}`)});
+  for(const w of FB_WIDTHS)face[w]&&face[w].forEach((y,i)=>{const x=fb[w][i];if(y&&x&&y[2]&&Math.abs(x[1]-y[1])>1)moved.push(`${w}px ${y[0]} ${x[1]}→${y[1]}`)});
+  if(fb.hcase!==face.hcase)moved.push(`h1 glyph case: ${fb.hcase} in the fallback, ${face.hcase} once the face lands`);
   if(moved.length)fails++;
   rows.push({label,issues:moved.length?['fallback']:[]});
   console.log((moved.length?'FAIL ':'  ok ')+label.padEnd(26),`first-screen text blocks that change height when the face lands: ${moved.length} (widths ${FB_WIDTHS.join(', ')})`);
@@ -475,8 +490,11 @@ const phone=async(label,path,{to},again=false)=>{
 console.log(REMOTE?`auditing ${REMOTE} (remote: the never-deployed legal preview is skipped)`:'auditing this checkout');
 console.log('— desktop 1280×900 —');
 const D={lcpBudget:DESKTOP_LCP};
-// hub/: one paper palette (no void-theme since 56f29c1)
-await run('hub','/hub/index.html',D);
+// hub/ is the Studio (French, English and Arabic: its own switch, the site's stored language);
+// hub/bible/ is the founder's character bible, one paper palette (no void-theme since 56f29c1)
+await run('hub fr','/hub/index.html',{...D,lang:'fr'});
+await run('hub ar','/hub/index.html',{...D,lang:'ar'});
+await run('hub bible','/hub/bible/index.html',D);
 for(const l of ['fr','en','ar']) await run('scene '+l,'/scene/index.html',{...D,lang:l});
 await run('scene daylight','/scene/index.html',{...D,theme:'daylight'});   // the light palette, on the page's own sheet (scene/style.css)
 await run('404','/404.html',D);
@@ -503,7 +521,9 @@ await run('index estimator open fr',HOME('fr'),{lang:'fr',act:openEstimator});
 for(const t of ['arcanum','daylight'])
   for(const l of ['fr','en','ar']) await run(`tarifs ${t}/${l}`,TARIFS(l),{...D,theme:t,lang:l});
 console.log('— phone 390×844 —');
-await run('hub m','/hub/index.html',{w:390,h:844});
+await run('hub fr m','/hub/index.html',{lang:'fr',w:390,h:844});
+await run('hub ar m','/hub/index.html',{lang:'ar',w:390,h:844});
+await run('hub bible m','/hub/bible/index.html',{w:390,h:844});
 for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});
 await run('scene daylight m','/scene/index.html',{theme:'daylight',w:390,h:844});
 await run('404 m','/404.html',{w:390,h:844});
@@ -524,6 +544,50 @@ await run('index arcanum/ar 1024',HOME('ar'),{theme:'arcanum',lang:'ar',w:1024,h
 await run('index arcanum/fr 844×390',HOME('fr'),{theme:'arcanum',lang:'fr',w:844,h:390,touch:true});
 await run('index arcanum/ar 844×390',HOME('ar'),{theme:'arcanum',lang:'ar',w:844,h:390,touch:true});
 await run('404 844×390','/404.html',{w:844,h:390,touch:true});
+// the first screen reaches the offer: a laptop at 150% (960×600 css px) and a landscape phone (844×390)
+for(const l of ['fr','ar']){
+  await run(`index arcanum/${l} 960×600 @1.5`,HOME(l),{theme:'arcanum',lang:l,w:960,h:600,dpr:1.5,lede:true});
+  await run(`index arcanum/${l} 844×390 lede`,HOME(l),{theme:'arcanum',lang:l,w:844,h:390,touch:true,lede:true});
+}
+/* ---------------- print ---------------- */
+// What a buyer prints or saves as a PDF (the guide is the page most likely to
+// be): rendered with the print sheet at A4 width (794 × 1123 CSS px), page 1
+// must carry ink (at least 20% of its 16 px cells hold some: a blank first
+// page is a page nobody keeps) and nothing may run past the page box.
+const printPage=async(label,path,{lang='fr'}={})=>{
+  if(ONLY&&!ONLY.test(label))return;
+  const ctx=await b.newContext({viewport:{width:794,height:1123},reducedMotion:'reduce'});
+  await ctx.addInitScript(l=>{try{localStorage.setItem('numidea-lang',l)}catch{}},lang);
+  const p=await ctx.newPage();
+  await p.emulateMedia({media:'print'});
+  await p.goto(B+path,{waitUntil:'networkidle'});
+  await p.evaluate(async()=>{const H=document.body.scrollHeight;for(let y=0;y<H;y+=600){scrollTo(0,y);await new Promise(r=>setTimeout(r,25))}scrollTo(0,0)});
+  await p.waitForTimeout(600);
+  const over=await p.evaluate(()=>{const W=document.documentElement.clientWidth,out=[];
+    for(const e of document.querySelectorAll('body *')){const r=e.getBoundingClientRect(),cs=getComputedStyle(e);
+      if(!r.width||cs.display==='none'||cs.visibility==='hidden'||r.right<=W+1||r.top>1123*3)continue;
+      if(![...e.childNodes].some(n=>n.nodeType===3&&n.nodeValue.trim()))continue;
+      let c=false;for(let a=e.parentElement;a;a=a.parentElement){const s=getComputedStyle(a);if(/hidden|clip|auto|scroll/.test(s.overflowX)){c=true;break}}
+      if(!c)out.push(e.tagName+'.'+String(e.className).slice(0,20))}
+    return {scroll:document.documentElement.scrollWidth>W+1,out:[...new Set(out)].slice(0,5)}});
+  const png=await p.screenshot({clip:{x:0,y:0,width:794,height:1123}});
+  const {data,info}=await sharp(png).removeAlpha().raw().toBuffer({resolveWithObject:true});
+  const C=16;let hit=0,cells=0;
+  for(let cy=0;cy<info.height;cy+=C)for(let cx=0;cx<info.width;cx+=C){cells++;let ink=false;
+    for(let y=cy;y<Math.min(cy+C,info.height)&&!ink;y++)for(let x=cx;x<Math.min(cx+C,info.width);x++){const i=(y*info.width+x)*3;if(data[i]+data[i+1]+data[i+2]<3*200){ink=true;break}}
+    if(ink)hit++}
+  const share=hit/cells;
+  await ctx.close();
+  const issues=[];if(share<0.2)issues.push('ink');if(over.scroll||over.out.length)issues.push('overflow');
+  if(issues.length)fails++;
+  rows.push({label,issues});
+  console.log((issues.length?'FAIL ':'  ok ')+label.padEnd(26),`page 1 ink ${(share*100).toFixed(1)}% of cells (at least 20)  past the page box ${over.out.length+(over.scroll?'+H':'')}`);
+  if(over.out.length)console.log('       of:',over.out.join(' | '));
+};
+console.log('— print: A4, page 1 —');
+await printPage('print index fr','/index.html');
+await printPage('print tarifs fr','/tarifs/index.html');
+await printPage('print tarifs ar','/ar/tarifs/index.html',{lang:'ar'});
 console.log('— 404 two folders down —');
 await nested404('404 nested noir/ar',{site:B+'/',path:'a/b/missing?lang=ar',theme:'noir'});
 if(!REMOTE){
@@ -535,6 +599,15 @@ for(const t of THEMES)for(const l of ['fr','en'])await fallbackType(`fallback ty
 console.log(`— throttled phone: 412×823, CPU 4×, Slow 4G, cold cache (timing targets ${PHONE_STRICT?'strict':'report-only'}) —`);
 await phone('throttled index fr',HOME('fr'),{to:'ar'});
 await phone('throttled index ar',HOME('ar'),{to:'fr'});
+// the Arabic page's font bytes against the French page's (same theme, same run size): at most 1.5×
+{
+  const fr=rows.find(r=>r.label==='index arcanum/fr'),ar=rows.find(r=>r.label==='index arcanum/ar');
+  if(fr&&ar&&fr.fontBytes){
+    const ratio=ar.fontBytes/fr.fontBytes,bad=ratio>1.5;
+    if(bad)fails++;
+    console.log((bad?'FAIL ':'  ok ')+'font bytes ar / fr'.padEnd(26),`${(ar.fontBytes/1024).toFixed(0)} kB / ${(fr.fontBytes/1024).toFixed(0)} kB = ${ratio.toFixed(2)} (at most 1.5)`);
+  }
+}
 await b.close();srv?.close();
 if(warnings.length){console.log('\naxe incomplete (review, not failing):');for(const w of warnings)console.log('  '+w)}
 if(phoneWarn.length){console.log('\nthrottled phone over its targets (report-only; AUDIT_PHONE_STRICT=1 fails on them):');for(const w of phoneWarn)console.log('  '+w)}

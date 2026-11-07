@@ -59,7 +59,7 @@ const B=srv.base;
 // the home page is one page per language (build-lang.mjs), each opened directly; the price guide likewise (build-tarifs.mjs)
 const HOME={fr:'/index.html',en:'/en/index.html',ar:'/ar/index.html'};
 const TARIFS={fr:'/tarifs/index.html',en:'/en/tarifs/index.html',ar:'/ar/tarifs/index.html'};
-const PAGES=[['index',HOME.fr],['index-en',HOME.en],['index-ar',HOME.ar],['tarifs',TARIFS.fr],['tarifs-en',TARIFS.en],['tarifs-ar',TARIFS.ar],['hub','/hub/index.html'],['scene','/scene/index.html'],['404','/404.html'],['workspacehq','/workspacehq/index.html']];
+const PAGES=[['index',HOME.fr],['index-en',HOME.en],['index-ar',HOME.ar],['tarifs',TARIFS.fr],['tarifs-en',TARIFS.en],['tarifs-ar',TARIFS.ar],['scene','/scene/index.html'],['404','/404.html'],['workspacehq','/workspacehq/index.html']];
 const OWN={index:'fr','index-en':'en','index-ar':'ar',tarifs:'fr','tarifs-en':'en','tarifs-ar':'ar'};   // each home and guide page's language; the other pages are swept in French
 const ONLY=process.argv[2];        // optional: restrict to one theme
 const lum=([r,g,b])=>{const f=v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(r)+.7152*f(g)+.0722*f(b)};
@@ -93,7 +93,10 @@ for(const t of ['daylight','noir']){
 RUNS.push({theme:'daylight',pname:'404@390',path:'/404.html',lang:'ar',w:390,h:844});
 RUNS.push({theme:'noir',pname:'404',path:'/404.html',lang:'ar',w:1280,h:900});
 // hub/: one paper palette (the character bible, 56f29c1: no void-theme), on the desktop pass above and here
-RUNS.push({theme:'arcanum',pname:'hub@390',path:'/hub/index.html',lang:'fr',w:390,h:844});
+// the Studio (hub/: French, English and Arabic by its own switch) and the character bible (hub/bible/), desktop and phone
+for(const [pname,path,lang,w,h] of [['hub','/hub/index.html','fr',1280,900],['hub-ar','/hub/index.html','ar',1280,900],['hub-bible','/hub/bible/index.html','en',1280,900],
+  ['hub@390','/hub/index.html','fr',390,844],['hub-ar@390','/hub/index.html','ar',390,844],['hub-bible@390','/hub/bible/index.html','en',390,844]])
+  RUNS.push({theme:'arcanum',pname,path,lang,w,h});
 for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)continue;
   {
    // reduced motion: every picture is drawn at once, never held at opacity 0
