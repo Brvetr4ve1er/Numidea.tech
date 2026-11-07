@@ -53,11 +53,26 @@ the file.
 A computed-style audit walked every visible element in the Engineering theme and
 failed on any base-palette colour still being painted. It reported zero.
 
-## The ambient layer — parallax, aurora, reveal
+## The ambient layer — one metaphor, the atlas
 
-Three cooperating pieces, tuned for calm rather than spectacle. All of it is
-decoration: it is `aria-hidden`, it sits at `z-index:0` beneath the content,
-and `prefers-reduced-motion` removes it completely.
+**The page's decoration is the atlas and nothing else** (2026-11-07, the
+critique's S4). The engraved plates and their captions (below, "The atlas")
+are the one ornament; the construction grid and the theme's wash behind the
+page are the sheet they are printed on. Everything else that was layered in
+went: the hero's two blurred glow blobs (the hero's clip cut them into a hard
+slab above the plate, and seams 14px in from a phone's edges), the drifting
+floaters, the scanlines over the proof (`.pl-scan`, a CRT effect at 18% over
+a client's site), the three parallax texture fields (plan, contour, stars),
+the preview's and the lantern's glows, the lighthouse's sweeping beam, the
+kicker's ◆ node, and the scroll-progress bar. Twenty-odd `aria-hidden`
+layers became eight, and 28 `@keyframes` five. A new layer needs a reason
+the plates cannot give; "atmosphere" is not one. styles.css keeps one rule
+that hides whatever markup of those layers is left until the home page drops
+it; delete that rule with the last of them.
+
+What remains of the motion is tuned for calm rather than spectacle. All of
+the decoration is `aria-hidden`, sits at `z-index:0` beneath the content,
+and `prefers-reduced-motion` holds it still.
 
 **Parallax rides the `translate` property, never `transform`.** This is
 load-bearing. `translate`, `rotate` and `transform` are independent CSS
@@ -92,14 +107,11 @@ palettes got lower opacity or they turned muddy. (The old
 Engineering sheet re-inked them to a single cold instrument glow; that sheet
 was removed in the 2026-10 cleanup.)
 
-**Floaters** — hand-drawn SVG geometry in the hero, no raster assets. They
-live strictly in the hero's negative space (the bands above and below the
-deck) and never behind the headline, lede or CTA; decoration drifting behind a
-button reads as a rendering fault, not atmosphere. Each carries a ~40px motion
-envelope (bob ±11px plus parallax travel), so clearances are sized for that,
-not for the static position. Below 960px the hero collapses to one column and
-that negative space disappears, so they are dropped rather than shuffled into
-the copy.
+**Floaters** — *removed on 2026-11-07 (one metaphor, above); kept as a
+lesson.* Hand-drawn SVG geometry in the hero's negative space. Decoration
+drifting behind a button reads as a rendering fault, not atmosphere, and
+each carried a ~40px motion envelope that every clearance had to be sized
+for.
 
 **Reveal** — batched on the next animation frame and staggered 70ms apart
 (capped at 210ms) so a row assembles as a wave. It rises 12px and starts 8% of
@@ -107,7 +119,17 @@ a screen *below* the fold, so content arrives already under way rather than
 entering blank (see "Scroll comfort" below). The flush is scheduled on rAF,
 *not* a resettable timeout: a fast scroll fires the observer faster than any
 debounce window, so a re-armed timer can be starved indefinitely and strand
-cards invisible.
+cards invisible. It is an animation (`reveal`, once, on `.in`), not a
+transition: as a transition it owned every card's transition list, so a
+revealed card's hover snapped on in 0 ms or waited out its row's stagger.
+
+**One curve, two speeds.** `--t-hover` (.18 s) for whatever answers the
+pointer or a press, `--t-enter` (.3 s) for whatever arrives, both on
+`--ease-out`; no bare `ease`, no spring. Every `:hover` sits inside
+`@media (hover:hover)`, since a phone keeps `:hover` on the last thing
+tapped, and nothing that is not a link or a control answers the pointer (the
+service and tier cards' lit edges and the 1.14x glyph pulse went). The
+hero's entrance rises without fading and is over by .6 s.
 
 ## History (removed features): the Engineering hero
 
@@ -1430,10 +1452,10 @@ itself in all six palettes from one file:
 
 | Plate | Where | File | Motion |
 |---|---|---|---|
-| I — Les Bibans | `.vista`, full-bleed under the hero (above 960px only) | `vista-far/mid/near.webp` | 3-layer parallax, twinkling sky, a constellation that draws itself |
+| I — Les Bibans | `.vista`, full-bleed under the hero (above 960px only) | `vista-far/mid/near.webp` | 3-layer parallax, a constellation that draws itself once |
 | II — Arc de Trajan, Timgad | behind the `#work` header | `arch.webp` | parallax |
-| III — Monnaies numides | beside the `#pricing` header (≥1100px) | `coin-*.webp` | three coins, three depths, each turns on its own axis |
-| IV — Cap Carbon, Béjaïa | behind the contact channels | `lighthouse.webp` | the beam sweeps |
+| III — Monnaies numides | beside the `#pricing` header (≥1100px) | `coin-*.webp` | three coins at three depths (parallax; they no longer turn) |
+| IV — Cap Carbon, Béjaïa | behind the contact channels | `lighthouse.webp` | none (its beam went with the ambient layers) |
 | V — Le Grand Erg | between `</main>` and the footer | `dunes.webp` | parallax |
 
 A sixth plate, *Coupe des couches* (`strata.webp`, a core sample drilling
@@ -1441,8 +1463,9 @@ across), stood behind the tools section, "Nos outils". It left the page with
 that section on 2026-10-26 (owner decision, see Page structure), and the
 lighthouse and the erg moved up to IV and V.
 
-Plus two uncaptioned figures: a lantern (fanous) hanging in the `#faq` gutter
-(≥1280px, swings), and the founder's workbench behind the founder card. The
+Plus two uncaptioned figures: a lantern (fanous) hanging still in the `#faq`
+gutter (≥1280px; its swing and its glow went), and the founder's workbench
+behind the founder card. The
 mid layer of plate I is a generic round tomb, **not** the Medracen — the
 generation came back looking Greek, so it is never captioned as Medracen.
 
@@ -1480,30 +1503,31 @@ on a desktop at a flick, so plate II now waits for the scroll. Where the
 vista is
 gone, nothing covers the seam between the hero and the proof: the proof drops
 its opaque ground (it was there so the vista's layers never slid under its
-kicker) and the hero mesh fades out before the hero clips it.
+kicker).
 
 **Captions are solid chips.** 10px type on hatching measured 4.0–4.4:1 under
-axe wherever the line work is dense; each `.pl-cap` sits on `--void`.
+axe wherever the line work is dense; each `.pl-cap` sits on `--void`, and over
+any fade its plate carries (plate V's caption sat under the erg's fade to the
+page colour, at 1.9:1; it is above it now, 7.4:1).
 
-**Nothing loops forever — still.** The anti-slop rule stands and
-`npm run audit` fails on any infinite animation. Every loop (icon or plate)
-plays a few cycles (`--n`, default 3) and settles; `.live`, toggled by an
-IntersectionObserver, removes and re-adds the animation, so it replays each
-time the element comes back on screen. Off-screen, nothing runs.
-
-**Every loop is under 5 s in total** (duration times iterations), on the home
-page as on the hub, and plays once per view: the coins, the lantern, the
-beam, the twinkle, the skeletons and the icons' idle moves are capped (an
-icon's own `--t` too), so nothing on the home moves for longer than the hub's
-loops (WCAG 2.2.2). The hero's calls to action land by .65 s and the phone
-menu staggers 30 ms a step.
+**Nothing loops, and the plates hold still.** The anti-slop rule stands and
+`npm run audit` fails on any infinite animation. Since 2026-11-07 the home
+page has no idle loops at all: the coins' turn, the lantern's swing and
+glow, the beam's sweep, the sky's twinkle and the icons' sixteen idle moves
+are gone. What moves is the reveal, the hero's rise (over by .6 s), each
+icon's one draw-on, the constellation's one draw-on, the skeletons' shimmer
+(5 s in all, while a capture loads) and the phone menu's 30 ms stagger:
+nothing runs past 5 s in a view (WCAG 2.2.2). The `.live` class app.js still
+toggles is inert on the home page.
 
 ### Animated icons (`.ai`)
 
 21 inline icons on the 24×24 / 1.5-stroke grammar: tiers,
 pricing models, estimator, market, onboarding steps, FAQ questions,
 contact channels. Drawable parts carry **class `.p`** and
-`pathLength="1"`; they draw in once (`.on`), then the idle loop runs (`.live`).
+`pathLength="1"`; they draw in once (`.on`) and hold still: the idle loops
+(`a-spin`, `a-pulse`, `a-swing` and the rest) were deleted with the
+ambient layers, and those classes in the markup are inert.
 
 **Never select drawable parts as `[pathLength]`.** Chromium does not invalidate
 a camelCase SVG attribute selector when an ancestor's class changes:
