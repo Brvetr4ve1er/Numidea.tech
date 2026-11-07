@@ -77,6 +77,7 @@
  */
 import { readFileSync, existsSync, readdirSync, statSync, lstatSync, realpathSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import { join, dirname, normalize, basename, extname } from 'node:path';
 import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, isDeploySkipped, NOT_DEPLOYED, BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
@@ -598,6 +599,43 @@ for (const [f, end] of Object.entries(PRICED)) {
     if (bad.length) priceErr.push(`estimator: ${bad.length} bad quotes, e.g. ` + bad.slice(0, 3).join('; '));
   }
 }
+// The Studio carries a port of that arithmetic (hub/app.js section 6, fed by
+// #hub-prices, which build-hub.mjs copies from the home's model). It must not
+// drift: the same quote over every type, size, option set and pace, and the
+// copied model must be the home's.
+{
+  const hubApp = read('hub/app.js'), hubHtml = read('hub/index.html');
+  const from = hubApp.indexOf('var M = P.model, O = P.opts;');
+  const qAt = hubApp.indexOf('var quote = function', from);
+  const to = qAt < 0 ? -1 : hubApp.indexOf('\n      return q;\n    };', qAt);
+  const priceJson = /<script type="application\/json" id="hub-prices">([\s\S]*?)<\/script>/.exec(hubHtml);
+  const at = app.indexOf('  var ESTIMATE = (function () {');
+  const end = at < 0 ? -1 : app.indexOf('\n  })();', at);
+  if (from < 0 || to < 0 || !priceJson || end < 0) priceErr.push('Studio estimator: could not find hub/app.js section 6 (var M = P.model … var quote) or #hub-prices');
+  else {
+    const P = JSON.parse(priceJson[1].replace(/\\u003c/g, '<'));
+    const H = new Function('P', `${hubApp.slice(from, to + '\n      return q;\n    };'.length)}\nreturn { quote: quote };`)(P);
+    const E = new Function(`${app.slice(at, end + 7)}\nreturn ESTIMATE;`)();
+    const drift = [];
+    if (JSON.stringify(P.model) !== JSON.stringify(Object.fromEntries(Object.entries(E.PRICE_MODEL).map(([k, m]) => [k, Object.fromEntries(Object.keys(P.model[k] || {}).map((f) => [f, f === 'u' ? m.u.replace(/^price\./, '') : m[f]]))]))))
+      drift.push('#hub-prices model differs from assets/app.js PRICE_MODEL');
+    const optKeys = Object.keys(E.PRICE_OPTS);
+    if (!optKeys.every((o) => P.opts[o] && JSON.stringify(P.opts[o].add) === JSON.stringify(E.PRICE_OPTS[o].add) && JSON.stringify(P.opts[o].weeks) === JSON.stringify(E.PRICE_OPTS[o].weeks))) drift.push('#hub-prices options differ from assets/app.js PRICE_OPTS');
+    const rw = Number((/RUSH_WEEKS = ([\d.]+);/.exec(app) || [])[1]);
+    if (P.rush[0] !== E.RUSH_PRICE || P.rush[1] !== rw) drift.push(`#hub-prices rush ${P.rush} differs from ${E.RUSH_PRICE}, ${rw}`);
+    const subsets = [];
+    for (let m = 0; m < 1 << optKeys.length; m++) subsets.push(optKeys.filter((_, b) => m >> b & 1));
+    let n = 0;
+    for (const [key, M] of Object.entries(E.PRICE_MODEL))
+      for (let u = M.min; u <= M.max; u += M.step) for (const o of subsets) for (const rush of [false, true]) {
+        const a = E.quote(key, u, o, rush), b = H.quote(key, u, o, rush);
+        n++;
+        if (a.lo !== b.lo || a.hi !== b.hi || a.wLo !== b.wLo || a.wHi !== b.wHi) drift.push(`${key} n=${u} [${o}] ${rush ? 'rush ' : ''}home ${a.lo}-${a.hi} ${a.wLo}-${a.wHi} wk, Studio ${b.lo}-${b.hi} ${b.wLo}-${b.wHi} wk`);
+      }
+    drift.length ? priceErr.push(`Studio estimator drifts from the home's: ${drift.length} differences, e.g. ` + drift.slice(0, 3).join('; '))
+      : ok(`the Studio's estimator port quotes what the home does over ${n} type, size, option and pace combinations`);
+  }
+}
 priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier, maintenance and FAQ figures equal PRICE_MODEL/RETAINER on the home and the price guide; no typed €/$ amounts on either; estimator sound on every size, option set and pace');
 /* 8d — legal gating */
 // Legal notice + privacy: published only when complete. While legal/ does not
@@ -651,7 +689,7 @@ voiceErr.length ? bad('client voices: ' + voiceErr.join('; '))
 // Arabic uses Western digits on this site (owner decision): no Arabic-Indic
 // digits in any shipped page, dictionary or generator.
 const indic = [];
-for (const f of [...PAGES, ...Object.values(I18N_FILES), 'assets/app.js', 'scripts/scene-data.mjs', 'scripts/build-legal.mjs', 'scripts/voices-data.mjs']) {
+for (const f of [...PAGES, ...Object.values(I18N_FILES), 'assets/app.js', 'hub/i18n.js', 'hub/app.js', 'scripts/scene-data.mjs', 'scripts/build-legal.mjs', 'scripts/voices-data.mjs']) {
   const hits = (read(f).match(/[٠-٩۰-۹٫٬]/g) || []).length;
   if (hits) indic.push(`${f} (${hits})`);
 }
@@ -672,6 +710,9 @@ const collectFr = (v, at) => {                 // only what sits under a `fr` ke
   else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) (k === 'fr' ? collect : collectFr)(x, `${at}.${k}`);
 };
 collect(DICT.fr, 'I18N.fr');
+// the Studio's own dictionary (hub/i18n.js, window.HUB_I18N), French as the reference
+const HUB_DICT = (() => { const w = {}; new Function('window', read('hub/i18n.js'))(w); return w.HUB_I18N || {}; })();
+collect(HUB_DICT.fr, 'HUB_I18N.fr');
 collect(SCENE_UI.fr, 'scene UI.fr');
 SCENE_PROJECTS.forEach((p) => collectFr(p, `scene ${p.slug}`));
 // breakable: any white space but the no-break ones (U+00A0, U+202F, U+2007);
@@ -685,6 +726,30 @@ for (const [at, s] of frStrings) {
 }
 frTypo.length ? bad(`French typography (U+202F before ? ! ; : », after «, and between a number and % or h; ${frTypo.length} strings): ` + frTypo.join(', '))
   : ok(`French typography holds in ${frStrings.length} strings (no breakable space before ? ! ; : », after «, or before % and h)`);
+/* 8f-2 — the Studio's dictionaries, and no tool names */
+// hub/i18n.js holds three dictionaries with one set of keys (build-hub refuses a
+// mismatch; this keeps the shipped file honest too).
+{
+  const keys = (l) => Object.keys(HUB_DICT[l] || {}).sort();
+  const fr = keys('fr'), off = ['en', 'ar'].map((l) => [l, keys(l)]).filter(([, k]) => k.join() !== fr.join()).map(([l, k]) => `${l} (${k.length} vs ${fr.length})`);
+  off.length ? bad('hub/i18n.js: key sets differ from French: ' + off.join(', ')) : ok(`hub/i18n.js: ${fr.length} keys in fr, en and ar`);
+}
+// No image tool or AI model is named anywhere under hub/ (owner rule, public
+// repo). The names are not spelled here: each word of every text file there, and
+// each pair of adjacent words joined, is hashed and looked up in this list.
+{
+  const NAMES = new Set('d931372ba7f836a0 194cbf5c4433b278 7d3194f79e645c42 60965168ce762e94 afac327e73694e68 66dc8bf3821c48bc 67133053bd92694d 5ca0b910e19bfef2 c70eca6b0f88f44d c857d09db23e6822 c9ad8f2cc1294afa e12ce8285efc67c6 090af99262e4c433 50b2676afbe30c83 8a105898989c6e17 61b77e47289aa9c2 e47b457d5f76ab05 422332977c41eb77 d61752abfdf7c0a1 9e365138bc2227d9 053ea4804ef1bb33 3ea125d0bff386e6 5d72436256ada538 d44dcb440c54129b 19621d3b5ab0aac8 66c6f57f73358bfa 5982776464b2533a'.split(' '));
+  const kinds = /\.(?:html|css|js|json|svg|mjs|md|txt)$/;
+  const walk = (d) => readdirSync(join(ROOT, d), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(d + '/' + e.name) : [d + '/' + e.name]));
+  const hits = [];
+  for (const f of walk('hub').filter((f) => kinds.test(f))) {
+    const w = read(f).toLowerCase().match(/[a-z0-9]+/g) || [];
+    for (let i = 0; i < w.length; i++) for (const x of [w[i], w[i] + (w[i + 1] || '')])
+      if (NAMES.has(createHash('sha256').update(x).digest('hex').slice(0, 16))) hits.push(`${f} ("${x}")`);
+  }
+  hits.length ? bad('an image tool or model is named under hub/ (keep the public repo free of them): ' + [...new Set(hits)].slice(0, 6).join(', '))
+    : ok('no image tool or AI model is named in the hub/ text files');
+}
 /* 8g — contact and JSON-LD */
 // One contact address everywhere: every mailto on every page, the form's
 // mailto in app.js and the structured-data email are the same string.
@@ -995,7 +1060,7 @@ runtimeDeps.length
     'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 26e6;   // 25.85 MB once the Studio's Lab (thirty pieces, 560px WebP) came back; before: 24,330,806 on 2026-11-07 once the Studio's images and fonts joined the WorkspaceHQ embed;           // 13,097,169 on 2026-11-06, 277 files, once the hub became its character bible (56f29c1: the diary, the Behance covers
+  const TOTAL = 26.6e6; // 26.24 MB on 2026-11-07 once the price guide's three share cards and the Studio's came in (4 × ~85 kB); before: 26e6 at 25.85 MB once the Studio's Lab (thirty pieces, 560px WebP) came back; before: 24,330,806 on 2026-11-07 once the Studio's images and fonts joined the WorkspaceHQ embed;           // 13,097,169 on 2026-11-06, 277 files, once the hub became its character bible (56f29c1: the diary, the Behance covers
                                   // and hub/loops out, 71 rig and section files and its own fonts in); 18,381,757 in 283 on 2026-10-31, once the captures had
                                   // their 720w/416w files (+739 kB in 35), the price guide its three pages and sheet (+143 kB) and the home pages lost the market
                                   // comparison; 17,162,350 in 237 that morning (the embed's font copies, readme and manifest gone)
@@ -1073,15 +1138,19 @@ runtimeDeps.length
 // never with reduced motion. That <img>'s <picture> holds a
 // (prefers-reduced-motion: reduce) <source> naming a still, the <img>'s src
 // is a still, and the animation is the size of the <img>'s box.
-{
+// the Studio (hub/) and the character bible (hub/bible/), each against its own page, sheet and folders
+for (const spec of [
+  { page: 'hub/index.html', sheet: 'hub/style.css', base: 'hub', DIRS: [], name: 'the Studio' },
+  { page: 'hub/bible/index.html', sheet: 'hub/bible/style.css', base: 'hub/bible', DIRS: ['hub/bible/art'], name: 'the bible' },
+]) {
   const { MOTION_MS } = await import('./hub-art-data.mjs');
   const hubErr = [];
-  const page = 'hub/index.html', sheet = 'hub/style.css', DIRS = ['hub/art'];
+  const { page, sheet, DIRS } = spec;
   const src = read(page).replace(/<!--[\s\S]*?-->/g, '');
   const cssSrc = read(sheet).replace(/\/\*[\s\S]*?\*\//g, '');
   const at = (tag, k) => (new RegExp(`\\s${k}="([^"]*)"`).exec(tag) || [])[1];
   const local = (u) => u && !/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(u);
-  const path = (u) => normalize(join('hub', u.split(/[?#]/)[0])).replace(/\\/g, '/');
+  const path = (u) => normalize(join(spec.base, u.split(/[?#]/)[0])).replace(/\\/g, '/');
   // how each file is named (src, srcset, data-full, data-anim, href, url): an
   // animated file may only be a data-anim
   const named = new Map();
@@ -1179,7 +1248,7 @@ runtimeDeps.length
     if (tw && th && !ratioOk([tw, th], wh)) hubErr.push(`${label}: ${wh.join('×')} is not the ratio of its thumbnail (${tw}×${th})`);
   }
   // the other names a file can go by: links (the viewer's no-script fallback) and the stylesheet's url()s
-  for (const m of src.matchAll(/\shref="([^"]+)"/g)) if (local(m[1]) && /^hub\/(?:art|loops)\//.test(path(m[1]))) name(m[1], 'href');
+  for (const m of src.matchAll(/\shref="([^"]+)"/g)) if (local(m[1]) && new RegExp('^' + spec.base + '/(?:art|loops)/').test(path(m[1]))) name(m[1], 'href');
   let nUrl = 0;
   for (const m of cssSrc.matchAll(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g)) {
     if (!local(m[2])) continue;
@@ -1206,8 +1275,8 @@ runtimeDeps.length
   }
   if (/\binfinite\b/i.test(cssSrc)) hubErr.push(`${sheet} has an infinite animation (nothing on the hub moves forever)`);
   if (/<video\b[^>]*\sloop\b/i.test(src)) hubErr.push(`${page} has a <video loop>`);
-  hubErr.length ? bad('hub art and motion: ' + hubErr.join('; '))
-    : ok(`hub art and motion: ${nImg} images and ${nSource} sources, each with alt, its box = its widest file, w descriptors and ratios true; ${nFull} viewer files sized; ${nUrl} CSS url()s; ${published.length} files in ${DIRS.join(' and ')}, all named; ${animRefs.length} animations, each a data-anim with a reduced-motion still, finite and ≤ ${MOTION_MS} ms (${loops.join(', ')}); no infinite, no <video loop>`);
+  hubErr.length ? bad(`hub art and motion (${spec.name}): ` + hubErr.join('; '))
+    : ok(`hub art and motion (${spec.name}): ${nImg} images and ${nSource} sources, each with alt, its box = its widest file, w descriptors and ratios true; ${nFull} viewer files sized; ${nUrl} CSS url()s; ${published.length} files in ${DIRS.join(" and ") || "no art folder"}, all named; ${animRefs.length} animations, each a data-anim with a reduced-motion still, finite and ≤ ${MOTION_MS} ms (${loops.join(', ')}); no infinite, no <video loop>`);
 }
 
 /* 18 — SEO and structured data */
