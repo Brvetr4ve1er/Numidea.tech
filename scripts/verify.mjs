@@ -15,6 +15,9 @@
  *   vbugs      layout scanner
  *   keys       keyboard paths, focus rings, dialogs, the contact form through its
  *              mail hand-off, reduced motion (the booted console included), RTL
+ *   design     design intent: type scale, hero ratio, space set, one button, card
+ *              paddings, grid gutter (scripts/design-check.mjs; report-only until
+ *              the styles settle, DESIGN_STRICT=1 makes it fail)
  *   stage      the staged copy: every stylesheet parses to the same rules and every
  *              script compiles from _site/ as from the repository
  *              (scripts/stage-check.mjs; it runs stage-site.mjs --pages itself)
@@ -34,6 +37,7 @@ const STEPS = [
   ['sweep', ['scripts/sweep.mjs']],
   ['vbugs', ['scripts/vbugs.mjs']],
   ['keys', ['scripts/keys.mjs']],
+  ['design', ['scripts/design-check.mjs']],
   ['stage', ['scripts/stage-check.mjs']],
 ];
 const results = [];

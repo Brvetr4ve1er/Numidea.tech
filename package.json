@@ -26,6 +26,7 @@
     "vbugs": "node scripts/vbugs.mjs",
     "verify": "node scripts/verify.mjs",
     "keys": "node scripts/keys.mjs",
+    "design": "node scripts/design-check.mjs",
     "links": "node scripts/links.mjs",
     "kb": "node scripts/build-kb.mjs",
     "metrics": "node scripts/metrics.mjs"
