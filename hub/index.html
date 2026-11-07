@@ -57,6 +57,8 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
 <link rel="stylesheet" href="fonts/fonts.css?v=202611032143">
 <link rel="stylesheet" href="style.css?v=202611032143">
+<link rel="stylesheet" href="css/case-bordjsteel.css?v=202611032143">
+<link rel="stylesheet" href="css/case-alliance.css?v=202611032143">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://brvetr4ve1er.github.io/Numidea.tech/"},{"@type":"ListItem","position":2,"name":"Studio","item":"https://brvetr4ve1er.github.io/Numidea.tech/hub/"}]}</script>
 <script type="application/json" id="hub-prices">{"model":{"vitrine":{"base":[90000,160000],"unit":[6000,12000],"min":1,"max":10,"def":3,"step":1,"u":"uPages","base_u":5,"weeks":[2,4]},"surmesure":{"base":[180000,420000],"unit":[9000,18000],"min":3,"max":25,"def":8,"step":1,"u":"uPages","base_u":15,"weeks":[3,7],"incl":["i18n","cms","ds","seo"]},"ecommerce":{"base":[220000,550000],"unit":[900,2200],"min":10,"max":400,"def":60,"step":10,"u":"uProducts","base_u":60,"weeks":[5,10]},"app":{"base":[450000,1200000],"unit":[18000,45000],"min":3,"max":20,"def":6,"step":1,"u":"uScreens","base_u":6,"weeks":[8,16],"incl":["pay","api"]},"auto":{"base":[140000,420000],"unit":[15000,40000],"min":1,"max":12,"def":3,"step":1,"u":"uFlows","base_u":3,"weeks":[2,6],"opts":["api","cms"]},"identite":{"base":[90000,180000],"unit":[8000,16000],"min":1,"max":8,"def":2,"step":1,"u":"uSupports","base_u":2,"weeks":[2,5],"opts":["ds"]}},"opts":{"i18n":{"add":[22000,55000],"weeks":[1,2]},"cms":{"add":[35000,90000],"weeks":[1,2]},"pay":{"add":[45000,110000],"weeks":[1,2]},"ds":{"add":[60000,140000],"weeks":[1,3]},"seo":{"add":[20000,45000],"weeks":[0,1]},"api":{"add":[30000,80000],"weeks":[1,2]}},"rush":[1.25,0.7],"fx":{"EUR":151,"USD":134},"retainer":[18000,60000]}</script>
 <script type="application/json" id="hub-fr">{"case.close":"Fermer","case.drag":"FAITES GLISSER · ← →","case.new":"NOUVEAU","case.newTab":"(nouvel onglet)","case.next":"Suivant","case.open":"Ouvrir le site ↗","case.prev":"Précédent","case.seen":"✓ VU","case.unlocked":"LIVRABLES DÉBLOQUÉS","case.zoom":"Agrandir","contact.previewMsg":"Bonjour, je souhaite voir l'Aperçu gratuit de mon futur site.\nEntreprise : \nTéléphone / WhatsApp : \nSite actuel (s'il existe) : \nCe dont j'ai besoin : ","hero.live":"● EN DIRECT","hero.still":"● AU REPOS","pricing.cur":"DA","pricing.included":"inclus","pricing.kuro.0":"raisonnable. Kūro valide.","pricing.kuro.1":"sérieux. Kūro réfléchit.","pricing.kuro.2":"ambitieux. Kūro doit s’asseoir.","pricing.kuroAlt":"Kūro réagit à l’estimation","pricing.units.uFlows":"flux","pricing.units.uPages":"pages","pricing.units.uProducts":"produits","pricing.units.uScreens":"écrans","pricing.units.uSupports":"supports","process.steps.0.m":"il réfléchit.","process.steps.1.m":"il est confiant.","process.steps.2.m":"ne pas déranger.","process.steps.3.m":"c’est en ligne !","process.steps.4.m":"café n°4.","rig.alt":"Yasser, fondateur de Numidea, avec son café, et Kūro, son chat noir","rig.lines.0":"Tu parles à celui qui code.","rig.lines.1":"Démo d’abord. Le prix après.","rig.lines.2":"Prix fixe. Écrit avant.","rig.lines.3":"Kūro valide. Ou pas.","rig.lines.4":"Ok. On le construit ?","rig.mood.base":"CAFÉ NO.1","rig.mood.drowsy":"IL DÉCROCHE","rig.mood.glance":"IL TE LIT","rig.mood.glance-r":"IL TE SUIT","rig.mood.glasses":"OK, REGARDE","rig.mood.half":"NUIT BLANCHE","rig.mood.laugh":"MDR","rig.mood.sip":"UNE GORGÉE","rig.mood.smirk":"ÇA MARCHE","rig.mood.talk":"IL TE PARLE","rig.mood.up":"IL RÉFLÉCHIT","rig.mood.yawn":"BÂILLEMENT","rig.poke":"Faire parler Yasser","rig.pokeKuro":"Taquiner Kūro","rig.said":"Yasser dit :","sting.hud":"06:12 · BORDJ BOU ARRÉRIDJ · AUBE","sting.skip":"PASSER","sting.skipL":"Passer l’intro"}</script>
@@ -498,7 +500,510 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
     <p class="st-own"><span data-i18n="proof.own">Aussi, faits maison :</span> <a href="https://glaivestore.netlify.app" target="_blank" rel="noopener"><span data-i18n="proof.glaive">Glaive, la démo du studio</span> <span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true"> ↗</span></a> · <a href="../workspacehq/"><span data-i18n="proof.whq">WorkspaceHQ, le produit du studio</span><span aria-hidden="true"> →</span></a></p>
     <div class="st-cases">
 <!-- CASE:bordjsteel -->
+<!-- ---------------- case 01 · Bordj Steel ----------------
+     The owner's CaseBordjSteel (2026-11-07), as a fragment the build inlines
+     at 09 Proof; its copy is hub/src/cases/bordjsteel.i18n.json, its sheet
+     hub/css/case-bordjsteel.css. The shell's hooks (hub/app.js 8) do the
+     rest: the track, the nine kinds of deliverable and their badges, the
+     tank stepper, the tower range, the poster viewer.
+     What changed from the design, and why: the header's price chip and the
+     pack's price became the case's tag and a list of what was delivered
+     (no client price is published); the live view of the client's site is
+     a link (the page's CSP frames nothing from another host); the cover
+     describes Bordj Steel as the site does since decision 19, not as
+     "filiale du groupe Condor" signed "par une seule équipe"; the figures,
+     the capacities and the logo wall are Bordj Steel's own, captioned so
+     (the "+ 28 grands comptes" line is gone); the site is French only, so
+     the scope's first line is the site's own count, twelve pages. -->
+<section class="st-case case-bordjsteel" id="case-bordjsteel" aria-labelledby="case-bordjsteel-h">
+  <div class="st-case__bar">
+    <div class="st-case__id cb-id">
+      <span class="st-case__logo"><img src="img/clients/bordj/logo.svg" width="1080" height="1080" alt="" loading="lazy" decoding="async"></span>
+      <div class="cb-id__txt">
+        <span class="st-case__hud cb-hud" data-i18n="cases.bordjsteel.hud">DOSSIER CLIENT 01 · BORDJ STEEL</span>
+        <h3 class="st-case__name" id="case-bordjsteel-h"><bdi>Bordj Steel</bdi> <span class="cb-sector">· <span data-i18n="cases.bordjsteel.sector">Construction métallique</span></span></h3>
+      </div>
+    </div>
+    <div class="st-case__progress cb-progress">
+      <span><span class="cb-muted-d" data-i18n="case.unlocked">LIVRABLES DÉBLOQUÉS</span><span data-seen-count dir="ltr">0/9</span></span>
+      <div class="st-case__pips cb-pips" aria-hidden="true"><i data-pip="site"></i><i data-pip="posters"></i><i data-pip="renders"></i><i data-pip="icons"></i><i data-pip="units"></i><i data-pip="refs"></i><i data-pip="palette"></i><i data-pip="tools"></i><i data-pip="clients"></i></div>
+    </div>
+    <div class="cb-end">
+      <span class="st-case__tag cb-tag" data-i18n="cases.bordjsteel.tag">Site B2B · marque</span>
+      <div class="st-case__nav cb-nav">
+        <button type="button" data-track-prev aria-controls="cb-track" data-i18n-aria="case.prev" aria-label="Précédent"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="cb-track" data-i18n-aria="case.next" aria-label="Suivant"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-case__track cb-track" id="cb-track" dir="ltr" data-track tabindex="0" role="region" data-i18n-aria="cases.bordjsteel.track" aria-label="Bordj Steel : les pièces du dossier">
+
+    <!-- BS-00 · the cover -->
+    <article class="cb-t cb-cover st-c2 st-r2">
+      <img class="cb-cover__bg" src="img/clients/bordj/s-weld.webp" width="1400" height="933" alt="" loading="lazy" decoding="async">
+      <div class="cb-cover__top">
+        <span class="cb-cover__logo"><img src="img/clients/bordj/logo.svg" width="1080" height="1080" data-i18n-alt="cases.bordjsteel.logo" alt="Logo de Bordj Steel" alt="" loading="lazy" decoding="async"></span>
+        <span class="cb-chip cb-chip--line"><bdi>BS-00</bdi> · <span data-i18n="cases.bordjsteel.cover.k">PACK DE MARQUE 360°</span></span>
+      </div>
+      <div class="cb-cover__txt">
+        <span class="cb-k cb-k--pale" dir="ltr">BORDJ STEEL × NUMIDEA</span>
+        <h4 class="cb-cover__h" data-i18n="cases.bordjsteel.cover.t">Campagne de renforcement de marque</h4>
+        <p class="cb-cover__s" data-i18n="cases.bordjsteel.cover.s">Fabricant de charpente métallique et de panneaux sandwich à Bordj Bou Arréridj. Site, campagne, rendus produits et outils de vente.</p>
+        <ul class="cb-chips">
+          <li data-i18n="cases.bordjsteel.cover.chips.0">Charpente</li>
+          <li data-i18n="cases.bordjsteel.cover.chips.1">Panneaux sandwichs</li>
+          <li data-i18n="cases.bordjsteel.cover.chips.2">Galvanisation</li>
+          <li data-i18n="cases.bordjsteel.cover.chips.3">Chaudronnerie</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- BS-01 · the site, as a picture and a link (no frame of another host) -->
+    <article class="cb-t cb-site st-c3 st-r2" data-kind="site">
+      <div class="cb-site__bar">
+        <span class="cb-site__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="cb-site__url" dir="ltr">bordjsteelb2b.netlify.app</span>
+        <a class="cb-site__open" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" data-i18n="cases.bordjsteel.site.open">Ouvrir ↗</a>
+      </div>
+      <div class="cb-site__view">
+        <img class="cb-site__bg" src="img/clients/bordj/h-charpente.webp" width="1400" height="784" alt="" loading="lazy" decoding="async">
+        <div class="cb-site__txt">
+          <span class="cb-k cb-k--pale" data-i18n="cases.bordjsteel.site.k">SITE B2B · EN LIGNE</span>
+          <h4 class="cb-site__h" data-i18n="cases.bordjsteel.site.h">Bâtir l’avenir, ensemble</h4>
+          <dl class="cb-figs">
+            <div><dt data-i18n="cases.bordjsteel.site.f.0">T/AN CHARPENTE</dt><dd dir="ltr">25 000</dd></div>
+            <div><dt data-i18n="cases.bordjsteel.site.f.1">M²/AN PANNEAUX</dt><dd dir="ltr">1 500 000</dd></div>
+            <div><dt data-i18n="cases.bordjsteel.site.f.2">T/AN GALVA</dt><dd dir="ltr">60 000</dd></div>
+          </dl>
+          <p class="cb-src" data-i18n="cases.bordjsteel.site.src">Chiffres publiés par Bordj Steel sur son site</p>
+          <a class="cb-btn" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener"><span data-i18n="case.open">Ouvrir le site ↗</span> <span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span></a>
+        </div>
+      </div>
+      <span class="st-badge cb-badge--site" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- BS-02 · Bordj Steel's own figures -->
+    <article class="cb-t cb-stats">
+      <span class="cb-k cb-k--white"><bdi>BS-02</bdi> · <span data-i18n="cases.bordjsteel.stats.k">SELON BORDJ STEEL</span></span>
+      <dl class="cb-stats__list">
+        <div><dt data-i18n="cases.bordjsteel.stats.l.0">projets réalisés</dt><dd class="cb-stats__big" dir="ltr">300+</dd></div>
+        <div><dt data-i18n="cases.bordjsteel.stats.l.1">ans d’expérience</dt><dd class="cb-stats__mid" dir="ltr">+14</dd></div>
+      </dl>
+      <ul class="cb-iso" dir="ltr"><li>ISO 9001</li><li>ISO 14001</li><li>ISO 45001</li></ul>
+    </article>
+
+    <!-- posters 02 and 01 -->
+    <article class="cb-t cb-poster cb-poster--navy" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-chaudfroid.full.webp"><img src="img/clients/bordj/p-chaudfroid.webp" width="464" height="580" data-i18n-alt="cases.bordjsteel.alt.p.1" alt="Affiche « Isolation chaud et froid »" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab cb-plab--light"><span data-i18n="cases.bordjsteel.poster">AFFICHE</span> 02 · <span data-i18n="cases.bordjsteel.p.1">ISOLATION</span></span>
+    </article>
+    <article class="cb-t cb-poster st-c2 st-r2" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-resist.webp"><img src="img/clients/bordj/p-resist.webp" width="944" height="1180" data-i18n-alt="cases.bordjsteel.alt.p.0" alt="Affiche « Construit pour durer, résistance prouvée »" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab cb-plab--l"><span data-i18n="cases.bordjsteel.poster">AFFICHE</span> 01 · <span data-i18n="cases.bordjsteel.p.0">RÉSISTANCE</span></span>
+      <span class="st-badge cb-badge--start" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- units 01 and 02 -->
+    <article class="cb-t cb-unit st-c2" data-kind="units">
+      <img src="img/clients/bordj/h-charpente.webp" width="1400" height="784" data-i18n-alt="cases.bordjsteel.alt.u.0" alt="Unité charpente métallique" alt="" loading="lazy" decoding="async">
+      <p class="cb-unit__card"><span class="cb-k"><span data-i18n="cases.bordjsteel.unit">UNITÉ</span> 01</span><b data-i18n="cases.bordjsteel.units.0">Charpente métallique</b><span class="cb-unit__cap" data-i18n="cases.bordjsteel.cap.0">1 500 T/mois · PRS 3 000 T/an</span></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+    <article class="cb-t cb-unit st-c2" data-kind="units">
+      <img src="img/clients/bordj/h-sandwich.webp" width="952" height="533" data-i18n-alt="cases.bordjsteel.alt.u.1" alt="Unité panneaux sandwichs" alt="" loading="lazy" decoding="async">
+      <p class="cb-unit__card"><span class="cb-k"><span data-i18n="cases.bordjsteel.unit">UNITÉ</span> 02</span><b data-i18n="cases.bordjsteel.units.1">Panneaux sandwichs</b><span class="cb-unit__cap" data-i18n="cases.bordjsteel.cap.1">5 000 m²/jour · 30–200 mm</span></p>
+    </article>
+
+    <!-- renders: roof and trapezoidal sheet -->
+    <article class="cb-t cb-render cb-render--l" data-kind="renders">
+      <img src="img/clients/bordj/r-roof.webp" width="386" height="575" data-i18n-alt="cases.bordjsteel.alt.r.0" alt="Rendu 3D d’un panneau sandwich de toiture" alt="" loading="lazy" decoding="async">
+      <span class="cb-plab cb-plab--top" data-i18n="cases.bordjsteel.r3d">RENDU 3D</span>
+      <p class="cb-render__card"><b data-i18n="cases.bordjsteel.rn.0">Panneau toiture</b><span class="cb-render__dim" dir="ltr"><i></i>e = 30–200 mm<i></i></span></p>
+    </article>
+    <article class="cb-t cb-render cb-render--r" data-kind="renders">
+      <img src="img/clients/bordj/r-trap.webp" width="386" height="575" data-i18n-alt="cases.bordjsteel.alt.r.1" alt="Rendu 3D d’un bac trapézoïdal" alt="" loading="lazy" decoding="async">
+      <p class="cb-render__card"><b data-i18n="cases.bordjsteel.rn.1">Bac trapézoïdal</b><span class="cb-render__ref"><span data-i18n="cases.bordjsteel.r3d">RENDU 3D</span> · <bdi>BS-07</bdi></span></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- poster 03 -->
+    <article class="cb-t cb-poster st-c2 st-r2" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-conception.webp"><img src="img/clients/bordj/p-conception.webp" width="944" height="1180" data-i18n-alt="cases.bordjsteel.alt.p.2" alt="Affiche « De la conception au montage »" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab cb-plab--l cb-plab--top"><span data-i18n="cases.bordjsteel.poster">AFFICHE</span> 03 · <span data-i18n="cases.bordjsteel.p.2">CONCEPTION</span></span>
+    </article>
+
+    <!-- renders: cold room and cladding -->
+    <article class="cb-t cb-render cb-render--x st-c2" data-kind="renders">
+      <img src="img/clients/bordj/r-cold.webp" width="859" height="576" data-i18n-alt="cases.bordjsteel.alt.r.2" alt="Rendu d’une chambre froide en panneaux sandwichs" alt="" loading="lazy" decoding="async">
+      <p class="cb-render__card cb-render__card--s"><b data-i18n="cases.bordjsteel.rn.2">Chambre froide</b><span class="cb-render__ref"><span data-i18n="cases.bordjsteel.r3d">RENDU 3D</span> · <bdi>−40 °C → +40 °C</bdi></span></p>
+    </article>
+    <article class="cb-t cb-render cb-render--w st-c2" data-kind="renders">
+      <img src="img/clients/bordj/r-wall.webp" width="859" height="576" data-i18n-alt="cases.bordjsteel.alt.r.3" alt="Rendu d’un bardage de façade" alt="" loading="lazy" decoding="async">
+      <p class="cb-render__card cb-render__card--s"><b data-i18n="cases.bordjsteel.rn.3">Bardage façade</b><span class="cb-render__ref"><span data-i18n="cases.bordjsteel.r3d">RENDU 3D</span> · <bdi>BS-09</bdi></span></p>
+    </article>
+
+    <!-- poster 04, then the tank configurator (the shell's stepper: --k per volume, below) -->
+    <article class="cb-t cb-poster" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-cuves.full.webp"><img src="img/clients/bordj/p-cuves.webp" width="460" height="575" data-i18n-alt="cases.bordjsteel.alt.p.3" alt="Affiche chaudronnerie : les cuves" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab"><span data-i18n="cases.bordjsteel.poster">AFFICHE</span> 04 · <span data-i18n="cases.bordjsteel.p.3">CUVES</span></span>
+    </article>
+    <article class="cb-t cb-tool cb-tank st-c2" data-kind="tools">
+      <div class="cb-tank__in" data-stepper data-values="3,5,10,15,20,30,40,50,60,100" data-index="4" data-value="20">
+        <span class="cb-k" data-i18n="cases.bordjsteel.tank">CONFIGURATEUR · CUVES</span>
+        <div class="cb-tank__row">
+          <p class="cb-tank__v" dir="ltr"><output data-out aria-live="polite">20</output><span>m³</span></p>
+          <button type="button" class="cb-step" data-step="-1" data-i18n-aria="cases.bordjsteel.minus" aria-label="Cuve plus petite"><span aria-hidden="true">−</span></button>
+          <button type="button" class="cb-step cb-step--plus" data-step="1" data-i18n-aria="cases.bordjsteel.plus" aria-label="Cuve plus grande"><span aria-hidden="true">+</span></button>
+        </div>
+        <div class="cb-tank__stage" aria-hidden="true"><span class="cb-tank__body"></span></div>
+        <div class="cb-tank__pips" aria-hidden="true"><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i></div>
+      </div>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- poster 05, then the tower configurator (the shell's range: --v 0-1) -->
+    <article class="cb-t cb-poster" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-tower.full.webp"><img src="img/clients/bordj/p-tower.webp" width="460" height="575" data-i18n-alt="cases.bordjsteel.alt.p.4" alt="Affiche des pylônes 5G" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab"><span data-i18n="cases.bordjsteel.poster">AFFICHE</span> 05 · <span data-i18n="cases.bordjsteel.p.4">TOWER</span></span>
+    </article>
+    <article class="cb-t cb-tool cb-tower st-c2" data-kind="tools" data-range-scope style="--v:.2045">
+      <span class="cb-tower__mast" aria-hidden="true"><i></i></span>
+      <div class="cb-tower__in">
+        <span class="cb-k cb-k--d" data-i18n="cases.bordjsteel.tower.k">CONFIGURATEUR · PYLÔNE 5G</span>
+        <p class="cb-tower__v" dir="ltr"><output data-out>15</output><span>M</span></p>
+        <p class="cb-tower__note"><span class="cb-tower__std" data-i18n="cases.bordjsteel.tower.std">Gamme standard : 06 · 09 · 12 · 15 m</span><span class="cb-tower__cus" data-i18n="cases.bordjsteel.tower.cus">Sur mesure — jusqu’à 50 m</span></p>
+        <input type="range" min="6" max="50" step="1" value="15" data-range data-i18n-aria="cases.bordjsteel.tower.aria" aria-label="Hauteur du pylône, en mètres">
+      </div>
+    </article>
+
+    <!-- poster 06 -->
+    <article class="cb-t cb-poster st-c2 st-r2" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-mains.webp"><img src="img/clients/bordj/p-mains.webp" width="944" height="1180" data-i18n-alt="cases.bordjsteel.alt.p.5" alt="Affiche « Vos projets entre de bonnes mains »" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab cb-plab--l"><span data-i18n="cases.bordjsteel.poster">AFFICHE</span> 06 · <span data-i18n="cases.bordjsteel.p.5">BONNES MAINS</span></span>
+    </article>
+
+    <!-- BS-12 · the icons, drawn here on the design's 24-unit grid -->
+    <article class="cb-t cb-card cb-icons st-c2" data-kind="icons">
+      <span class="cb-k"><bdi>BS-12</bdi> · <span data-i18n="cases.bordjsteel.icons">SYSTÈME D’ICÔNES</span></span>
+      <ul class="cb-icons__grid">
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M5 4h14M5 20h14M12 4v16M8 4v2M16 4v2M8 18v2M16 18v2"/></svg><span data-i18n="cases.bordjsteel.iconN.0">Charpente</span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M3 7l4-2 4 2 4-2 4 2 2-1M3 7v3h18V6M3 10v7h18v-7M3 17l4 2 4-2 4 2 4-2 2 1"/></svg><span data-i18n="cases.bordjsteel.iconN.1">Sandwich</span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M12 3c2 3 3 4.6 3 6a3 3 0 0 1-6 0c0-1.4 1-3 3-6zM3 14h18v6H3zM7 14v-2M17 14v-2"/></svg><span data-i18n="cases.bordjsteel.iconN.2">Galva</span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><rect x="3" y="8" width="18" height="9" rx="4.5"/><path d="M9 8V5h3v3M7 17v3M17 17v3M5 20h14"/></svg><span data-i18n="cases.bordjsteel.iconN.3">Cuves</span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M12 2v3M8 21l4-16 4 16M9.5 15h5M10.5 10h3M6 21h12M9 4.5a4 4 0 0 1 6 0"/></svg><span data-i18n="cases.bordjsteel.iconN.4">Pylônes</span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M3 17h18M5 17a7 7 0 0 1 14 0M12 10V6M9 10.5V8M15 10.5V8"/></svg><span data-i18n="cases.bordjsteel.iconN.5">Chantier</span></li>
+      </ul>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- BS-13 · colour and type -->
+    <article class="cb-t cb-card cb-pal st-c2" data-kind="palette">
+      <span class="cb-k"><bdi>BS-13</bdi> · <span data-i18n="cases.bordjsteel.pal">CHARTE · COULEUR &amp; TYPE</span></span>
+      <ul class="cb-pal__sw" dir="ltr">
+        <li class="cb-sw--red">#C1272D</li>
+        <li class="cb-sw--steel">#3D3F42</li>
+        <li class="cb-sw--grey">#A7AEB5</li>
+        <li class="cb-sw--pale">#F2F3F5</li>
+      </ul>
+      <p class="cb-pal__type" dir="ltr"><span class="cb-pal__aa">Aa</span><span class="cb-pal__name">Montserrat</span><span class="cb-pal__w">400 · 600 · 800 · 900</span></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- units 03 and 04 -->
+    <article class="cb-t cb-unit st-c2" data-kind="units">
+      <img src="img/clients/bordj/h-galva.webp" width="952" height="533" data-i18n-alt="cases.bordjsteel.alt.u.2" alt="Unité galvanisation à chaud" alt="" loading="lazy" decoding="async">
+      <p class="cb-unit__card"><span class="cb-k"><span data-i18n="cases.bordjsteel.unit">UNITÉ</span> 03</span><b data-i18n="cases.bordjsteel.units.2">Galvanisation à chaud</b><span class="cb-unit__cap" data-i18n="cases.bordjsteel.cap.2">60 000 T/an · bain de 13 m</span></p>
+    </article>
+    <article class="cb-t cb-unit st-c2" data-kind="units">
+      <img src="img/clients/bordj/h-chaud.webp" width="952" height="533" data-i18n-alt="cases.bordjsteel.alt.u.3" alt="Unité chaudronnerie" alt="" loading="lazy" decoding="async">
+      <p class="cb-unit__card"><span class="cb-k"><span data-i18n="cases.bordjsteel.unit">UNITÉ</span> 04</span><b data-i18n="cases.bordjsteel.units.3">Chaudronnerie · cuves</b><span class="cb-unit__cap" data-i18n="cases.bordjsteel.cap.3">3 → 100 m³</span></p>
+    </article>
+
+    <!-- BS-16 · Bordj Steel's reference sites (names and places as its site gives them) -->
+    <article class="cb-t cb-card cb-refs st-c2 st-r2" data-kind="refs">
+      <div class="cb-refs__head"><span class="cb-k"><bdi>BS-16</bdi> · <span data-i18n="cases.bordjsteel.refs">RÉFÉRENCES</span></span><span class="st-badge cb-badge--flow" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span></div>
+      <div class="cb-refs__grid">
+        <figure><img src="img/clients/bordj/ref-condor.webp" width="442" height="249" data-i18n-alt="cases.bordjsteel.alt.ref.0" alt="Base logistique Condor" alt="" loading="lazy" decoding="async"><figcaption lang="fr" dir="ltr"><b>Base Logistique Condor</b> Route de Msila, BBA</figcaption></figure>
+        <figure><img src="img/clients/bordj/ref-utec.webp" width="442" height="294" data-i18n-alt="cases.bordjsteel.alt.ref.1" alt="UTEC" alt="" loading="lazy" decoding="async"><figcaption lang="fr" dir="ltr"><b>UTEC</b> Ain Oulmen, Sétif</figcaption></figure>
+        <figure><img src="img/clients/bordj/ref-softal.webp" width="442" height="330" data-i18n-alt="cases.bordjsteel.alt.ref.2" alt="Softal" alt="" loading="lazy" decoding="async"><figcaption lang="fr" dir="ltr"><b>Softal</b> Boufarik, Blida</figcaption></figure>
+        <figure><img src="img/clients/bordj/ref-duct.webp" width="442" height="294" data-i18n-alt="cases.bordjsteel.alt.ref.3" alt="Unité Duct Piping" alt="" loading="lazy" decoding="async"><figcaption lang="fr" dir="ltr"><b>Unité Duct Piping</b> Bordj Bou Arréridj</figcaption></figure>
+      </div>
+    </article>
+
+    <!-- BS-17 · the logos Bordj Steel's site shows as its references (not the studio's clients) -->
+    <article class="cb-t cb-card cb-clients st-c2" data-kind="clients">
+      <span class="cb-k"><bdi>BS-17</bdi> · <span data-i18n="cases.bordjsteel.clients">ILS LEUR FONT CONFIANCE</span></span>
+      <ul class="cb-clients__grid">
+        <li><img src="img/clients/bordj/l-condor.webp" width="162" height="76" alt="Condor" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-sonatrach.webp" width="162" height="76" alt="Sonatrach" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-hyundai.webp" width="162" height="76" alt="Hyundai" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-cevital.webp" width="162" height="76" alt="Cevital" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-mobilis.webp" width="162" height="76" alt="Mobilis" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-sonelgaz.webp" width="162" height="76" alt="Sonelgaz" loading="lazy" decoding="async"></li>
+      </ul>
+      <p class="cb-clients__n" data-i18n="cases.bordjsteel.clientsN">Les références de Bordj Steel, telles que son site les présente</p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- posters 07 and 08 -->
+    <article class="cb-t cb-poster" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-galva.full.webp"><img src="img/clients/bordj/p-galva.webp" width="460" height="575" data-i18n-alt="cases.bordjsteel.alt.p.6" alt="Affiche « Galvanisation à chaud, 25 ans de durabilité »" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab"><span data-i18n="cases.bordjsteel.poster">AFFICHE</span> 07 · <span data-i18n="cases.bordjsteel.p.6">GALVA</span></span>
+    </article>
+    <article class="cb-t cb-poster" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-site.full.webp"><img src="img/clients/bordj/p-site.webp" width="460" height="575" data-i18n-alt="cases.bordjsteel.alt.p.7" alt="Affiche « Notre site web désormais live »" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab"><span data-i18n="cases.bordjsteel.poster">AFFICHE</span> 08 · <span data-i18n="cases.bordjsteel.p.7">LIVE</span></span>
+    </article>
+
+    <!-- the scope card, where the design had the pack's price: what was delivered, ticked as it is seen -->
+    <article class="cb-t cb-scope st-c3 st-r2">
+      <div class="cb-scope__head"><span class="cb-k cb-k--d" data-i18n="cases.bordjsteel.scope.k">LIVRÉ · BORDJ STEEL</span><span class="cb-scope__chip" data-i18n="cases.bordjsteel.scope.n">9 LIVRABLES</span></div>
+      <h4 class="cb-scope__h" data-i18n="cases.bordjsteel.scope.t">Campagne de renforcement de marque</h4>
+      <p class="cb-scope__note" data-i18n="cases.bordjsteel.scope.note">Chaque case se coche quand vous avez vu la pièce dans le dossier.</p>
+      <ul class="cb-scope__list">
+        <li data-scope="site" data-i18n="cases.bordjsteel.scope.items.0">Site corporate B2B, 12 pages</li>
+        <li data-scope="posters" data-i18n="cases.bordjsteel.scope.items.1">8 affiches de campagne</li>
+        <li data-scope="renders" data-i18n="cases.bordjsteel.scope.items.2">Rendus produits 3D</li>
+        <li data-scope="icons" data-i18n="cases.bordjsteel.scope.items.3">Système d’icônes</li>
+        <li data-scope="units" data-i18n="cases.bordjsteel.scope.items.4">Direction photo · 4 unités</li>
+        <li data-scope="refs" data-i18n="cases.bordjsteel.scope.items.5">Pages références</li>
+        <li data-scope="palette" data-i18n="cases.bordjsteel.scope.items.6">Charte couleur &amp; typographie</li>
+        <li data-scope="tools" data-i18n="cases.bordjsteel.scope.items.7">Configurateurs produits</li>
+        <li data-scope="clients" data-i18n="cases.bordjsteel.scope.items.8">Mur clients</li>
+      </ul>
+      <a class="cb-btn cb-btn--block" href="#contact" data-i18n="cases.bordjsteel.scope.cta">Un projet comme celui-ci →</a>
+      <a class="cb-scope__be" href="https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT" target="_blank" rel="noopener"><span data-i18n="cases.bordjsteel.scope.behance">L’identité de marque sur Behance ↗</span> <span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span></a>
+    </article>
+  </div>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag">FAITES GLISSER · ← →</span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>
 <!-- CASE:alliance -->
+<!-- ---------------- case 02 · Alliance Travel ----------------
+     The owner's CaseAllianceTravel (2026-11-07), as a fragment the build
+     inlines at 09 Proof; its copy is hub/src/cases/alliance.i18n.json, its
+     sheet hub/css/case-alliance.css. The shell's hooks (hub/app.js 8) do
+     the rest: the track, the eight kinds of deliverable and their badges,
+     the trip calculator (tabs for the destination, a stepper for the
+     travellers), the poster viewer.
+     What changed from the design, and why: the header's price chip and the
+     pack's price became the case's tag and a list of what was delivered
+     (no client price is published), and the calculator says "sur devis"
+     for every trip (the agency's prices are its own); the live view of the
+     client's site is a link (the page's CSP frames nothing from another
+     host), to the address the home links; the data tile's "178 textes
+     traduits" and "AVIF" became what the site's own sheet (scene/) says:
+     nine pages, the visa service, the day-by-day programmes, light and
+     dark; the cover drops "par une seule équipe" (one founder) and the
+     chips the site does not carry (Omra, Billetterie); the type line names
+     the faces the client's site uses (DM Sans, Tajawal), as scene/ does;
+     the pictures that are mises en situation say MAQUETTE; the brand
+     charter's flipbook, the Canva carousel and five of the seven
+     destinations wait for their pictures in hub/img (the design's files
+     are not exported yet), so the egypt flyer takes both rows where the
+     carousel stood. -->
+<section class="st-case case-alliance" id="case-alliance" aria-labelledby="case-alliance-h">
+  <div class="st-case__bar">
+    <div class="st-case__id ca-id">
+      <span class="st-case__logo ca-logo"><img src="img/clients/alliance/logo-cream.svg" width="426" height="148" alt="" loading="lazy" decoding="async"></span>
+      <div class="ca-id__txt">
+        <span class="st-case__hud ca-hud" data-i18n="cases.alliance.hud">DOSSIER CLIENT 02</span>
+        <h3 class="st-case__name" id="case-alliance-h"><bdi>Alliance Travel</bdi> <span class="ca-sector">· <span data-i18n="cases.alliance.sector">Agence de voyages</span></span></h3>
+      </div>
+    </div>
+    <div class="st-case__progress ca-progress">
+      <span><span class="ca-muted-d" data-i18n="case.unlocked">LIVRABLES DÉBLOQUÉS</span><span data-seen-count dir="ltr">0/8</span></span>
+      <div class="st-case__pips ca-pips" aria-hidden="true"><i data-pip="identity"></i><i data-pip="site"></i><i data-pip="posters"></i><i data-pip="social"></i><i data-pip="ooh"></i><i data-pip="merch"></i><i data-pip="tools"></i><i data-pip="canva"></i></div>
+    </div>
+    <div class="ca-end">
+      <span class="st-case__tag ca-tag" data-i18n="cases.alliance.tag">Identité + site</span>
+      <div class="st-case__nav ca-nav">
+        <button type="button" data-track-prev aria-controls="ca-track" data-i18n-aria="case.prev" aria-label="Précédent"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="ca-track" data-i18n-aria="case.next" aria-label="Suivant"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-case__track ca-track" id="ca-track" dir="ltr" data-track tabindex="0" role="region" data-i18n-aria="cases.alliance.track" aria-label="Alliance Travel : les pièces du dossier">
+
+    <!-- AT-00 · the cover -->
+    <article class="ca-t ca-cover st-c2 st-r2" data-kind="identity">
+      <img class="ca-cover__bg" src="img/clients/alliance/heroes/hero__istanbul--bg--mobile.webp" width="900" height="506" alt="" loading="lazy" decoding="async">
+      <div class="ca-cover__top">
+        <img class="ca-cover__logo" src="img/clients/alliance/logo-cream.svg" width="426" height="148" data-i18n-alt="cases.alliance.logo" alt="Logo d’Alliance Travel" alt="" loading="lazy" decoding="async">
+        <span class="ca-chip--line" data-i18n="cases.alliance.cover.k">PACK VOYAGE 360°</span>
+      </div>
+      <div class="ca-cover__txt">
+        <span class="ca-k ca-k--mint" dir="ltr">ALLIANCE TRAVEL × NUMIDEA</span>
+        <h4 class="ca-cover__h" data-i18n="cases.alliance.cover.t">Partout où vous voulez — l’agence, de A à Z</h4>
+        <p class="ca-cover__s" data-i18n="cases.alliance.cover.s">Agence de voyages organisés · Bordj Bou Arréridj. Identité, site trilingue, campagne et réseaux sociaux.</p>
+        <ul class="ca-chips">
+          <li data-i18n="cases.alliance.cover.chips.0">Voyages organisés</li>
+          <li data-i18n="cases.alliance.cover.chips.1">Rendez-vous visa</li>
+          <li data-i18n="cases.alliance.cover.chips.2">7 destinations</li>
+          <li data-i18n="cases.alliance.cover.chips.3">Devis WhatsApp</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- AT-01 · the site, as a picture and a link (no frame of another host) -->
+    <article class="ca-t ca-site st-c3 st-r2" data-kind="site">
+      <div class="ca-site__bar">
+        <span class="ca-site__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="ca-site__url" dir="ltr">alliancetravel34.netlify.app</span>
+        <a class="ca-site__open" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" data-i18n="cases.alliance.site.open">Ouvrir ↗</a>
+      </div>
+      <div class="ca-site__view">
+        <img class="ca-site__bg" src="img/clients/alliance/heroes/hero__azerbaidjan--bg--mobile.webp" width="900" height="599" alt="" loading="lazy" decoding="async">
+        <div class="ca-site__txt">
+          <span class="ca-k ca-k--mint" data-i18n="cases.alliance.site.k">SITE · EN LIGNE</span>
+          <h4 class="ca-site__h" data-i18n="cases.alliance.site.h">Réservez votre prochain voyage en un message</h4>
+          <dl class="ca-figs">
+            <div><dt data-i18n="cases.alliance.site.s0">DESTINATIONS</dt><dd dir="ltr">7</dd></div>
+            <div><dt data-i18n="cases.alliance.site.s1">TRILINGUE + RTL</dt><dd dir="ltr">FR · EN · AR</dd></div>
+            <div><dt data-i18n="cases.alliance.site.s2">RÉSERVATION</dt><dd dir="ltr">WhatsApp</dd></div>
+          </dl>
+          <a class="ca-btn" href="https://alliancetravel34.netlify.app" target="_blank" rel="noopener"><span data-i18n="case.open">Ouvrir le site ↗</span> <span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span></a>
+        </div>
+      </div>
+      <span class="st-badge ca-badge--site" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- AT-02 · what the site carries, as its sheet on scene/ says it -->
+    <article class="ca-t ca-data" data-kind="site">
+      <span class="ca-k ca-k--navy"><bdi>AT-02</bdi> · DATA</span>
+      <dl class="ca-data__list">
+        <div><dt data-i18n="cases.alliance.stats.0">pages en ligne</dt><dd class="ca-data__big" dir="ltr">9</dd></div>
+        <div><dt data-i18n="cases.alliance.stats.1">service de rendez-vous</dt><dd class="ca-data__mid" dir="ltr">VISA</dd></div>
+      </dl>
+      <p class="ca-data__s" data-i18n="cases.alliance.stats.2">Programme jour par jour, mode clair et mode sombre.</p>
+    </article>
+
+    <!-- posters 02 and 01 (mises en situation) -->
+    <article class="ca-t ca-poster ca-poster--navy" data-kind="posters">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-egypt.full.webp"><img src="img/clients/alliance/m-egypt.webp" width="464" height="576" data-i18n-alt="cases.alliance.alt.egypt" alt="Maquette d’affiche : l’Égypte, Caire et Sharm" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--sand"><span data-i18n="cases.alliance.poster">AFFICHE</span> 02 · <span data-i18n="cases.alliance.p.1">ÉGYPTE</span></span>
+      <span class="ca-mock" data-i18n="cases.alliance.mock">MAQUETTE</span>
+    </article>
+    <article class="ca-t ca-poster ca-poster--navy st-c2 st-r2" data-kind="posters">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-istanbul.webp"><img src="img/clients/alliance/m-istanbul.webp" width="928" height="1152" data-i18n-alt="cases.alliance.alt.istanbul" alt="Maquette d’affiche : Istanbul, « Partout où vous voulez »" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--l"><span data-i18n="cases.alliance.poster">AFFICHE</span> 01 · <span data-i18n="cases.alliance.p.0">ISTANBUL</span></span>
+      <span class="ca-mock ca-mock--end" data-i18n="cases.alliance.mock">MAQUETTE</span>
+      <span class="st-badge ca-badge--start" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- AT-05 · the trip calculator: the shell's tabs pick the destination,
+         its stepper counts the travellers; the price stays the agency's ("sur devis") -->
+    <article class="ca-t ca-calc st-c2 st-r2" data-kind="tools">
+      <div class="ca-calc__tabs" data-tabs>
+        <div class="ca-calc__view">
+          <div class="ca-calc__panel" id="ca-dest-istanbul" data-panel="istanbul" role="tabpanel" aria-labelledby="ca-tab-istanbul">
+            <img src="img/clients/alliance/heroes/hero__istanbul--bg--mobile.webp" width="900" height="506" data-i18n-alt="cases.alliance.dn.istanbul.0" alt="Istanbul" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.istanbul.0">Istanbul</b><span data-i18n="cases.alliance.dn.istanbul.1">8 jours · Bosphore</span></p>
+          </div>
+          <div class="ca-calc__panel" id="ca-dest-azerbaidjan" data-panel="azerbaidjan" role="tabpanel" aria-labelledby="ca-tab-azerbaidjan" hidden>
+            <img src="img/clients/alliance/heroes/hero__azerbaidjan--bg--mobile.webp" width="900" height="599" data-i18n-alt="cases.alliance.dn.azerbaidjan.0" alt="Azerbaïdjan" alt="" loading="lazy" decoding="async">
+            <p class="ca-calc__dest"><b data-i18n="cases.alliance.dn.azerbaidjan.0">Azerbaïdjan</b><span data-i18n="cases.alliance.dn.azerbaidjan.1">8 jours · 7 nuits</span></p>
+          </div>
+          <span class="ca-pill ca-pill--sand ca-calc__k" data-i18n="cases.alliance.calc.k">CALCULATEUR · VOYAGE</span>
+          <p class="ca-calc__total"><b data-i18n="cases.alliance.calc.quote">Sur devis</b><span data-i18n="cases.alliance.calc.per">LE DEVIS PART SUR WHATSAPP</span></p>
+          <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+        </div>
+        <div class="ca-calc__dests" role="tablist" data-i18n-aria="cases.alliance.calc.dests" aria-label="Destinations">
+          <button type="button" role="tab" id="ca-tab-istanbul" data-tab="istanbul" aria-controls="ca-dest-istanbul" aria-selected="true" data-i18n="cases.alliance.dn.istanbul.0">Istanbul</button>
+          <button type="button" role="tab" id="ca-tab-azerbaidjan" data-tab="azerbaidjan" aria-controls="ca-dest-azerbaidjan" aria-selected="false" tabindex="-1" data-i18n="cases.alliance.dn.azerbaidjan.0">Azerbaïdjan</button>
+        </div>
+      </div>
+      <div class="ca-calc__pax" data-stepper data-values="1,2,3,4,5,6,7,8,9,10,11,12" data-index="1" data-value="2">
+        <span class="ca-calc__paxL" id="ca-pax-l" data-i18n="cases.alliance.calc.pax">Voyageurs</span>
+        <button type="button" class="ca-step" data-step="-1" data-i18n-aria="cases.alliance.calc.minus" aria-label="Un voyageur de moins"><span aria-hidden="true">−</span></button>
+        <output class="ca-calc__n" data-out aria-live="polite" aria-labelledby="ca-pax-l" dir="ltr">2</output>
+        <button type="button" class="ca-step ca-step--plus" data-step="1" data-i18n-aria="cases.alliance.calc.plus" aria-label="Un voyageur de plus"><span aria-hidden="true">+</span></button>
+      </div>
+    </article>
+
+    <!-- the 9:16 story (a mise en situation) -->
+    <article class="ca-t ca-poster ca-poster--navy st-r2" data-kind="social">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-story.full.webp"><img src="img/clients/alliance/m-story.webp" width="464" height="825" data-i18n-alt="cases.alliance.alt.story" alt="Maquette de story Instagram : Bali" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--mint" data-i18n="cases.alliance.story">STORY 9:16 · BALI</span>
+      <span class="ca-mock ca-mock--start" data-i18n="cases.alliance.mock">MAQUETTE</span>
+      <span class="st-badge ca-badge--sand" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- out of home: the billboard and the storefront (mises en situation) -->
+    <article class="ca-t ca-poster ca-poster--navy st-c2" data-kind="ooh">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-billboard.full.webp"><img src="img/clients/alliance/m-billboard.webp" width="952" height="536" data-i18n-alt="cases.alliance.alt.billboard" alt="Maquette : un billboard pour l’Azerbaïdjan" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--sand"><span data-i18n="cases.alliance.ooh.0">BILLBOARD · AZERBAÏDJAN</span> · <span data-i18n="cases.alliance.mock">MAQUETTE</span></span>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+    <article class="ca-t ca-poster ca-poster--navy st-c2" data-kind="ooh">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-store.full.webp"><img src="img/clients/alliance/m-store.webp" width="870" height="580" data-i18n-alt="cases.alliance.alt.store" alt="Maquette : la vitrine de l’agence" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--sand"><span data-i18n="cases.alliance.ooh.1">VITRINE · BBA</span> · <span data-i18n="cases.alliance.mock">MAQUETTE</span></span>
+    </article>
+
+    <!-- AT-11 · colour and type, from the brand charter -->
+    <article class="ca-t ca-card ca-pal st-c2" data-kind="identity">
+      <span class="ca-k"><bdi>AT-11</bdi> · <span data-i18n="cases.alliance.pal">COULEURS &amp; TYPE</span></span>
+      <ul class="ca-pal__sw" dir="ltr">
+        <li class="ca-sw--navy"><b>Prussian Blue</b>#002C51</li>
+        <li class="ca-sw--mint">#9CE8B2</li>
+        <li class="ca-sw--navy-2">#003D72</li>
+        <li class="ca-sw--sand">#EFE8DF</li>
+      </ul>
+      <p class="ca-pal__type"><span class="ca-pal__aa" dir="ltr">Aa</span><span class="ca-pal__name" dir="ltr">DM Sans · Tajawal</span><span class="ca-pal__note" data-i18n="cases.alliance.palNote">Nexa pour le logo</span></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- the welcome kit (a mise en situation) -->
+    <article class="ca-t ca-poster ca-poster--sand st-c2" data-kind="merch">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/m-kit.full.webp"><img src="img/clients/alliance/m-kit.webp" width="769" height="580" data-i18n-alt="cases.alliance.alt.kit" alt="Maquette : le kit de bienvenue" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab"><span data-i18n="cases.alliance.kit">KIT DE BIENVENUE</span> · <span data-i18n="cases.alliance.mock">MAQUETTE</span></span>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+
+    <!-- the agency's own flyers and post, made on Canva -->
+    <article class="ca-t ca-poster ca-poster--white" data-kind="canva">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/c-istanbul.full.webp"><img src="img/clients/alliance/c-istanbul.webp" width="407" height="576" data-i18n-alt="cases.alliance.alt.flyer" alt="Flyer Istanbul 2026" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab" data-i18n="cases.alliance.canva.0">FLYER · ISTANBUL</span>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span>
+    </article>
+    <article class="ca-t ca-poster ca-poster--white" data-kind="canva">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/c-egypt-post.full.webp"><img src="img/clients/alliance/c-egypt-post.webp" width="460" height="575" data-i18n-alt="cases.alliance.alt.post" alt="Post Égypte" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab" data-i18n="cases.alliance.canva.1">POST · ÉGYPTE</span>
+    </article>
+    <article class="ca-t ca-poster ca-poster--navy st-r2" data-kind="canva">
+      <button type="button" class="st-zoom ca-zoom" data-zoom="img/clients/alliance/c-egypt-flyer.full.webp"><img src="img/clients/alliance/c-egypt-flyer.webp" width="301" height="580" data-i18n-alt="cases.alliance.alt.eflyer" alt="Flyer Sharm El Sheikh" alt="" loading="lazy" decoding="async"></button>
+      <span class="ca-plab ca-plab--sand" data-i18n="cases.alliance.canva.2">FLYER · SHARM</span>
+    </article>
+
+    <!-- the scope card, where the design had the pack's price: what was delivered, ticked as it is seen -->
+    <article class="ca-t ca-scope st-c3 st-r2">
+      <div class="ca-scope__head"><span class="ca-k ca-k--d" data-i18n="cases.alliance.scope.k">LIVRÉ · ALLIANCE TRAVEL</span><span class="ca-scope__chip" data-i18n="cases.alliance.scope.n">8 LIVRABLES</span></div>
+      <h4 class="ca-scope__h" data-i18n="cases.alliance.scope.t">Agence de voyages, de l’identité à la réservation</h4>
+      <p class="ca-scope__note" data-i18n="cases.alliance.scope.note">Chaque case se coche quand vous avez vu la pièce dans le dossier. Une MAQUETTE montre la pièce en situation.</p>
+      <ul class="ca-scope__list">
+        <li data-scope="identity" data-i18n="cases.alliance.scope.items.0">Charte graphique · 21 pages</li>
+        <li data-scope="site" data-i18n="cases.alliance.scope.items.1">Site trilingue FR · EN · AR</li>
+        <li data-scope="posters" data-i18n="cases.alliance.scope.items.2">Affiches de campagne</li>
+        <li data-scope="social" data-i18n="cases.alliance.scope.items.3">Stories &amp; carrousels</li>
+        <li data-scope="ooh" data-i18n="cases.alliance.scope.items.4">Billboard &amp; vitrine</li>
+        <li data-scope="merch" data-i18n="cases.alliance.scope.items.5">Kit de bienvenue</li>
+        <li data-scope="tools" data-i18n="cases.alliance.scope.items.6">Calculateur de devis vers WhatsApp</li>
+        <li data-scope="canva" data-i18n="cases.alliance.scope.items.7">Flyers &amp; posts sur Canva</li>
+      </ul>
+      <a class="ca-btn ca-btn--block" href="#contact" data-i18n="cases.alliance.scope.cta">Un projet comme celui-ci →</a>
+    </article>
+  </div>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag">FAITES GLISSER · ← →</span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>
 <!-- CASE:almaflow -->
 <!-- CASE:traveler -->
 <!-- CASE:heetch -->

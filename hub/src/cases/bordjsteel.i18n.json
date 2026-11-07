@@ -1,0 +1,212 @@
+{
+  "fr": {
+    "hud": "DOSSIER CLIENT 01 · BORDJ STEEL",
+    "sector": "Construction métallique",
+    "tag": "Site B2B · marque",
+    "track": "Bordj Steel : les pièces du dossier",
+    "logo": "Logo de Bordj Steel",
+    "cover": {
+      "k": "PACK DE MARQUE 360°",
+      "t": "Campagne de renforcement de marque",
+      "s": "Fabricant de charpente métallique et de panneaux sandwich à Bordj Bou Arréridj. Site, campagne, rendus produits et outils de vente.",
+      "chips": ["Charpente", "Panneaux sandwichs", "Galvanisation", "Chaudronnerie"]
+    },
+    "site": {
+      "k": "SITE B2B · EN LIGNE",
+      "h": "Bâtir l’avenir, ensemble",
+      "open": "Ouvrir ↗",
+      "src": "Chiffres publiés par Bordj Steel sur son site",
+      "f": ["T/AN CHARPENTE", "M²/AN PANNEAUX", "T/AN GALVA"]
+    },
+    "stats": {
+      "k": "SELON BORDJ STEEL",
+      "l": ["projets réalisés", "ans d’expérience"]
+    },
+    "poster": "AFFICHE",
+    "p": ["RÉSISTANCE", "ISOLATION", "CONCEPTION", "CUVES", "TOWER", "BONNES MAINS", "GALVA", "LIVE"],
+    "alt": {
+      "p": [
+        "Affiche « Construit pour durer, résistance prouvée »",
+        "Affiche « Isolation chaud et froid »",
+        "Affiche « De la conception au montage »",
+        "Affiche chaudronnerie : les cuves",
+        "Affiche des pylônes 5G",
+        "Affiche « Vos projets entre de bonnes mains »",
+        "Affiche « Galvanisation à chaud, 25 ans de durabilité »",
+        "Affiche « Notre site web désormais live »"
+      ],
+      "u": ["Unité charpente métallique", "Unité panneaux sandwichs", "Unité galvanisation à chaud", "Unité chaudronnerie"],
+      "r": ["Rendu 3D d’un panneau sandwich de toiture", "Rendu 3D d’un bac trapézoïdal", "Rendu d’une chambre froide en panneaux sandwichs", "Rendu d’un bardage de façade"],
+      "ref": ["Base logistique Condor", "UTEC", "Softal", "Unité Duct Piping"]
+    },
+    "unit": "UNITÉ",
+    "units": ["Charpente métallique", "Panneaux sandwichs", "Galvanisation à chaud", "Chaudronnerie · cuves"],
+    "cap": ["1\u202f500 T/mois · PRS 3\u202f000 T/an", "5\u202f000 m²/jour · 30–200 mm", "60\u202f000 T/an · bain de 13 m", "3 → 100 m³"],
+    "r3d": "RENDU 3D",
+    "rn": ["Panneau toiture", "Bac trapézoïdal", "Chambre froide", "Bardage façade"],
+    "tank": "CONFIGURATEUR · CUVES",
+    "minus": "Cuve plus petite",
+    "plus": "Cuve plus grande",
+    "tower": {
+      "k": "CONFIGURATEUR · PYLÔNE 5G",
+      "std": "Gamme standard : 06 · 09 · 12 · 15 m",
+      "cus": "Sur mesure — jusqu’à 50 m",
+      "aria": "Hauteur du pylône, en mètres"
+    },
+    "icons": "SYSTÈME D’ICÔNES",
+    "iconN": ["Charpente", "Sandwich", "Galva", "Cuves", "Pylônes", "Chantier"],
+    "pal": "CHARTE · COULEUR & TYPE",
+    "refs": "RÉFÉRENCES",
+    "clients": "ILS LEUR FONT CONFIANCE",
+    "clientsN": "Les références de Bordj Steel, telles que son site les présente",
+    "scope": {
+      "k": "LIVRÉ · BORDJ STEEL",
+      "t": "Campagne de renforcement de marque",
+      "n": "9 LIVRABLES",
+      "note": "Chaque case se coche quand vous avez vu la pièce dans le dossier.",
+      "items": ["Site corporate B2B, 12 pages", "8 affiches de campagne", "Rendus produits 3D", "Système d’icônes", "Direction photo · 4 unités", "Pages références", "Charte couleur & typographie", "Configurateurs produits", "Mur clients"],
+      "cta": "Un projet comme celui-ci →",
+      "behance": "L’identité de marque sur Behance ↗"
+    }
+  },
+  "en": {
+    "hud": "CLIENT FILE 01 · BORDJ STEEL",
+    "sector": "Steel construction",
+    "tag": "B2B site · brand",
+    "track": "Bordj Steel: the pieces of the file",
+    "logo": "Bordj Steel logo",
+    "cover": {
+      "k": "360° BRAND PACK",
+      "t": "Brand enhancement campaign",
+      "s": "A maker of structural steel and sandwich panels in Bordj Bou Arréridj. Website, campaign, product renders and sales tools.",
+      "chips": ["Structural steel", "Sandwich panels", "Galvanising", "Boilermaking"]
+    },
+    "site": {
+      "k": "B2B WEBSITE · LIVE",
+      "h": "Building the future, together",
+      "open": "Open ↗",
+      "src": "Figures published by Bordj Steel on its site",
+      "f": ["T/YR STEEL", "M²/YR PANELS", "T/YR GALVA"]
+    },
+    "stats": {
+      "k": "PER BORDJ STEEL",
+      "l": ["projects delivered", "years of experience"]
+    },
+    "poster": "POSTER",
+    "p": ["STRENGTH", "INSULATION", "DESIGN", "TANKS", "TOWER", "GOOD HANDS", "GALVA", "LIVE"],
+    "alt": {
+      "p": [
+        "Poster: built to last, proven strength",
+        "Poster: hot and cold insulation",
+        "Poster: from design to assembly",
+        "Boilermaking poster: the tanks",
+        "Poster for the 5G towers",
+        "Poster: your projects in good hands",
+        "Poster: hot-dip galvanising, 25 years of durability",
+        "Poster: our website is now live"
+      ],
+      "u": ["Structural steel unit", "Sandwich panel unit", "Hot-dip galvanising unit", "Boilermaking unit"],
+      "r": ["3D render of a sandwich roof panel", "3D render of a trapezoidal sheet", "Render of a cold room in sandwich panels", "Render of façade cladding"],
+      "ref": ["Condor logistics base", "UTEC", "Softal", "Duct Piping unit"]
+    },
+    "unit": "UNIT",
+    "units": ["Steel structures", "Sandwich panels", "Hot-dip galvanising", "Boilermaking · tanks"],
+    "cap": ["1,500 t/month · PRS 3,000 t/yr", "5,000 m²/day · 30–200 mm", "60,000 t/yr · 13 m bath", "3 → 100 m³"],
+    "r3d": "3D RENDER",
+    "rn": ["Roof panel", "Trapezoidal sheet", "Cold room", "Façade cladding"],
+    "tank": "CONFIGURATOR · TANKS",
+    "minus": "Smaller tank",
+    "plus": "Larger tank",
+    "tower": {
+      "k": "CONFIGURATOR · 5G TOWER",
+      "std": "Standard range: 06 · 09 · 12 · 15 m",
+      "cus": "Custom — up to 50 m",
+      "aria": "Tower height, in metres"
+    },
+    "icons": "ICON SYSTEM",
+    "iconN": ["Structure", "Sandwich", "Galva", "Tanks", "Towers", "Site"],
+    "pal": "BRAND · COLOUR & TYPE",
+    "refs": "REFERENCES",
+    "clients": "TRUSTED BY",
+    "clientsN": "Bordj Steel’s references, as its own site presents them",
+    "scope": {
+      "k": "DELIVERED · BORDJ STEEL",
+      "t": "Brand enhancement campaign",
+      "n": "9 DELIVERABLES",
+      "note": "Each box ticks once you have seen the piece in the file.",
+      "items": ["B2B corporate site, 12 pages", "8 campaign posters", "3D product renders", "Icon system", "Photo direction · 4 units", "Reference pages", "Colour & type guide", "Product configurators", "Client wall"],
+      "cta": "A project like this one →",
+      "behance": "The brand identity on Behance ↗"
+    }
+  },
+  "ar": {
+    "hud": "ملف العميل 01 · BORDJ STEEL",
+    "sector": "البناء المعدني",
+    "tag": "موقع B2B · علامة",
+    "track": "Bordj Steel: قطع الملف",
+    "logo": "شعار Bordj Steel",
+    "cover": {
+      "k": "حزمة علامة 360°",
+      "t": "حملة تعزيز العلامة التجارية",
+      "s": "مصنّع الهياكل المعدنية وألواح الساندويتش في برج بوعريريج. موقع وحملة وتصييرات منتجات وأدوات بيع.",
+      "chips": ["هياكل معدنية", "ألواح عازلة", "جلفنة", "غلايات"]
+    },
+    "site": {
+      "k": "موقع B2B · مباشر",
+      "h": "نبني المستقبل معًا",
+      "open": "↗ افتح",
+      "src": "أرقام نشرتها Bordj Steel على موقعها",
+      "f": ["طن/سنة هياكل", "م²/سنة ألواح", "طن/سنة جلفنة"]
+    },
+    "stats": {
+      "k": "بحسب BORDJ STEEL",
+      "l": ["مشروع منجز", "سنة خبرة"]
+    },
+    "poster": "ملصق",
+    "p": ["المتانة", "العزل", "التصميم", "الخزانات", "الأبراج", "أيدٍ أمينة", "الجلفنة", "مباشر"],
+    "alt": {
+      "p": [
+        "ملصق «مبنيّ ليدوم، متانة مثبتة»",
+        "ملصق «عزل حراري للحار والبارد»",
+        "ملصق «من التصميم إلى التركيب»",
+        "ملصق الغلايات: الخزانات",
+        "ملصق أبراج 5G",
+        "ملصق «مشاريعكم بين أيدٍ أمينة»",
+        "ملصق «الجلفنة الساخنة، 25 سنة من المتانة»",
+        "ملصق «موقعنا الإلكتروني متاح الآن»"
+      ],
+      "u": ["وحدة الهياكل المعدنية", "وحدة الألواح العازلة", "وحدة الجلفنة الساخنة", "وحدة الغلايات"],
+      "r": ["تصيير 3D للوح سقف عازل", "تصيير 3D لصفيح شبه منحرف", "تصيير غرفة تبريد من الألواح العازلة", "تصيير تكسية واجهة"],
+      "ref": ["القاعدة اللوجستية لكوندور", "UTEC", "Softal", "وحدة Duct Piping"]
+    },
+    "unit": "الوحدة",
+    "units": ["الهياكل المعدنية", "الألواح العازلة", "الجلفنة الساخنة", "الغلايات · الخزانات"],
+    "cap": ["1500 طن/شهر · PRS 3000 طن/سنة", "5000 م²/يوم · 30–200 مم", "60000 طن/سنة · حوض 13 م", "3 ← 100 م³"],
+    "r3d": "تصيير 3D",
+    "rn": ["لوح سقف", "صفيح شبه منحرف", "غرفة تبريد", "تكسية واجهة"],
+    "tank": "المُهيّئ · الخزانات",
+    "minus": "خزان أصغر",
+    "plus": "خزان أكبر",
+    "tower": {
+      "k": "المُهيّئ · برج 5G",
+      "std": "المقاسات القياسية: 06 · 09 · 12 · 15 م",
+      "cus": "حسب الطلب — حتى 50 م",
+      "aria": "ارتفاع البرج بالأمتار"
+    },
+    "icons": "نظام الأيقونات",
+    "iconN": ["هيكل", "ألواح", "جلفنة", "خزانات", "أبراج", "ورشة"],
+    "pal": "الهوية · اللون والخط",
+    "refs": "المراجع",
+    "clients": "يثقون بهم",
+    "clientsN": "مراجع Bordj Steel كما يعرضها موقعها",
+    "scope": {
+      "k": "ما سُلِّم · BORDJ STEEL",
+      "t": "حملة تعزيز العلامة التجارية",
+      "n": "9 مخرجات",
+      "note": "تُؤشَّر كل خانة حين تشاهد القطعة في الملف.",
+      "items": ["موقع مؤسسي B2B من 12 صفحة", "8 ملصقات حملة", "تصييرات منتجات 3D", "نظام أيقونات", "إدارة التصوير · 4 وحدات", "صفحات المراجع", "دليل اللون والخط", "مُهيّئات المنتجات", "جدار العملاء"],
+      "cta": "← مشروع مثل هذا",
+      "behance": "الهوية البصرية على Behance ↗"
+    }
+  }
+}

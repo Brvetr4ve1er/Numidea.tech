@@ -1,0 +1,282 @@
+<!-- ---------------- case 01 · Bordj Steel ----------------
+     The owner's CaseBordjSteel (2026-11-07), as a fragment the build inlines
+     at 09 Proof; its copy is hub/src/cases/bordjsteel.i18n.json, its sheet
+     hub/css/case-bordjsteel.css. The shell's hooks (hub/app.js 8) do the
+     rest: the track, the nine kinds of deliverable and their badges, the
+     tank stepper, the tower range, the poster viewer.
+     What changed from the design, and why: the header's price chip and the
+     pack's price became the case's tag and a list of what was delivered
+     (no client price is published); the live view of the client's site is
+     a link (the page's CSP frames nothing from another host); the cover
+     describes Bordj Steel as the site does since decision 19, not as
+     "filiale du groupe Condor" signed "par une seule équipe"; the figures,
+     the capacities and the logo wall are Bordj Steel's own, captioned so
+     (the "+ 28 grands comptes" line is gone); the site is French only, so
+     the scope's first line is the site's own count, twelve pages. -->
+<section class="st-case case-bordjsteel" id="case-bordjsteel" aria-labelledby="case-bordjsteel-h">
+  <div class="st-case__bar">
+    <div class="st-case__id cb-id">
+      <span class="st-case__logo"><img src="img/clients/bordj/logo.svg" alt="" loading="lazy" decoding="async"></span>
+      <div class="cb-id__txt">
+        <span class="st-case__hud cb-hud" data-i18n="cases.bordjsteel.hud"></span>
+        <h3 class="st-case__name" id="case-bordjsteel-h"><bdi>Bordj Steel</bdi> <span class="cb-sector">· <span data-i18n="cases.bordjsteel.sector"></span></span></h3>
+      </div>
+    </div>
+    <div class="st-case__progress cb-progress">
+      <span><span class="cb-muted-d" data-i18n="case.unlocked"></span><span data-seen-count dir="ltr">0/9</span></span>
+      <div class="st-case__pips cb-pips" aria-hidden="true"><i data-pip="site"></i><i data-pip="posters"></i><i data-pip="renders"></i><i data-pip="icons"></i><i data-pip="units"></i><i data-pip="refs"></i><i data-pip="palette"></i><i data-pip="tools"></i><i data-pip="clients"></i></div>
+    </div>
+    <div class="cb-end">
+      <span class="st-case__tag cb-tag" data-i18n="cases.bordjsteel.tag"></span>
+      <div class="st-case__nav cb-nav">
+        <button type="button" data-track-prev aria-controls="cb-track" data-i18n-aria="case.prev"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="cb-track" data-i18n-aria="case.next"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-case__track cb-track" id="cb-track" dir="ltr" data-track tabindex="0" role="region" data-i18n-aria="cases.bordjsteel.track">
+
+    <!-- BS-00 · the cover -->
+    <article class="cb-t cb-cover st-c2 st-r2">
+      <img class="cb-cover__bg" src="img/clients/bordj/s-weld.webp" alt="" loading="lazy" decoding="async">
+      <div class="cb-cover__top">
+        <span class="cb-cover__logo"><img src="img/clients/bordj/logo.svg" data-i18n-alt="cases.bordjsteel.logo" alt="" loading="lazy" decoding="async"></span>
+        <span class="cb-chip cb-chip--line"><bdi>BS-00</bdi> · <span data-i18n="cases.bordjsteel.cover.k"></span></span>
+      </div>
+      <div class="cb-cover__txt">
+        <span class="cb-k cb-k--pale" dir="ltr">BORDJ STEEL × NUMIDEA</span>
+        <h4 class="cb-cover__h" data-i18n="cases.bordjsteel.cover.t"></h4>
+        <p class="cb-cover__s" data-i18n="cases.bordjsteel.cover.s"></p>
+        <ul class="cb-chips">
+          <li data-i18n="cases.bordjsteel.cover.chips.0"></li>
+          <li data-i18n="cases.bordjsteel.cover.chips.1"></li>
+          <li data-i18n="cases.bordjsteel.cover.chips.2"></li>
+          <li data-i18n="cases.bordjsteel.cover.chips.3"></li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- BS-01 · the site, as a picture and a link (no frame of another host) -->
+    <article class="cb-t cb-site st-c3 st-r2" data-kind="site">
+      <div class="cb-site__bar">
+        <span class="cb-site__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="cb-site__url" dir="ltr">bordjsteelb2b.netlify.app</span>
+        <a class="cb-site__open" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true" data-i18n="cases.bordjsteel.site.open"></a>
+      </div>
+      <div class="cb-site__view">
+        <img class="cb-site__bg" src="img/clients/bordj/h-charpente.webp" alt="" loading="lazy" decoding="async">
+        <div class="cb-site__txt">
+          <span class="cb-k cb-k--pale" data-i18n="cases.bordjsteel.site.k"></span>
+          <h4 class="cb-site__h" data-i18n="cases.bordjsteel.site.h"></h4>
+          <dl class="cb-figs">
+            <div><dt data-i18n="cases.bordjsteel.site.f.0"></dt><dd dir="ltr">25 000</dd></div>
+            <div><dt data-i18n="cases.bordjsteel.site.f.1"></dt><dd dir="ltr">1 500 000</dd></div>
+            <div><dt data-i18n="cases.bordjsteel.site.f.2"></dt><dd dir="ltr">60 000</dd></div>
+          </dl>
+          <p class="cb-src" data-i18n="cases.bordjsteel.site.src"></p>
+          <a class="cb-btn" href="https://bordjsteelb2b.netlify.app" target="_blank" rel="noopener"><span data-i18n="case.open"></span> <span class="st-sr" data-i18n="case.newTab"></span></a>
+        </div>
+      </div>
+      <span class="st-badge cb-badge--site" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- BS-02 · Bordj Steel's own figures -->
+    <article class="cb-t cb-stats">
+      <span class="cb-k cb-k--white"><bdi>BS-02</bdi> · <span data-i18n="cases.bordjsteel.stats.k"></span></span>
+      <dl class="cb-stats__list">
+        <div><dt data-i18n="cases.bordjsteel.stats.l.0"></dt><dd class="cb-stats__big" dir="ltr">300+</dd></div>
+        <div><dt data-i18n="cases.bordjsteel.stats.l.1"></dt><dd class="cb-stats__mid" dir="ltr">+14</dd></div>
+      </dl>
+      <ul class="cb-iso" dir="ltr"><li>ISO 9001</li><li>ISO 14001</li><li>ISO 45001</li></ul>
+    </article>
+
+    <!-- posters 02 and 01 -->
+    <article class="cb-t cb-poster cb-poster--navy" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-chaudfroid.full.webp"><img src="img/clients/bordj/p-chaudfroid.webp" data-i18n-alt="cases.bordjsteel.alt.p.1" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab cb-plab--light"><span data-i18n="cases.bordjsteel.poster"></span> 02 · <span data-i18n="cases.bordjsteel.p.1"></span></span>
+    </article>
+    <article class="cb-t cb-poster st-c2 st-r2" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-resist.webp"><img src="img/clients/bordj/p-resist.webp" data-i18n-alt="cases.bordjsteel.alt.p.0" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab cb-plab--l"><span data-i18n="cases.bordjsteel.poster"></span> 01 · <span data-i18n="cases.bordjsteel.p.0"></span></span>
+      <span class="st-badge cb-badge--start" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- units 01 and 02 -->
+    <article class="cb-t cb-unit st-c2" data-kind="units">
+      <img src="img/clients/bordj/h-charpente.webp" data-i18n-alt="cases.bordjsteel.alt.u.0" alt="" loading="lazy" decoding="async">
+      <p class="cb-unit__card"><span class="cb-k"><span data-i18n="cases.bordjsteel.unit"></span> 01</span><b data-i18n="cases.bordjsteel.units.0"></b><span class="cb-unit__cap" data-i18n="cases.bordjsteel.cap.0"></span></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+    <article class="cb-t cb-unit st-c2" data-kind="units">
+      <img src="img/clients/bordj/h-sandwich.webp" data-i18n-alt="cases.bordjsteel.alt.u.1" alt="" loading="lazy" decoding="async">
+      <p class="cb-unit__card"><span class="cb-k"><span data-i18n="cases.bordjsteel.unit"></span> 02</span><b data-i18n="cases.bordjsteel.units.1"></b><span class="cb-unit__cap" data-i18n="cases.bordjsteel.cap.1"></span></p>
+    </article>
+
+    <!-- renders: roof and trapezoidal sheet -->
+    <article class="cb-t cb-render cb-render--l" data-kind="renders">
+      <img src="img/clients/bordj/r-roof.webp" data-i18n-alt="cases.bordjsteel.alt.r.0" alt="" loading="lazy" decoding="async">
+      <span class="cb-plab cb-plab--top" data-i18n="cases.bordjsteel.r3d"></span>
+      <p class="cb-render__card"><b data-i18n="cases.bordjsteel.rn.0"></b><span class="cb-render__dim" dir="ltr"><i></i>e = 30–200 mm<i></i></span></p>
+    </article>
+    <article class="cb-t cb-render cb-render--r" data-kind="renders">
+      <img src="img/clients/bordj/r-trap.webp" data-i18n-alt="cases.bordjsteel.alt.r.1" alt="" loading="lazy" decoding="async">
+      <p class="cb-render__card"><b data-i18n="cases.bordjsteel.rn.1"></b><span class="cb-render__ref"><span data-i18n="cases.bordjsteel.r3d"></span> · <bdi>BS-07</bdi></span></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- poster 03 -->
+    <article class="cb-t cb-poster st-c2 st-r2" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-conception.webp"><img src="img/clients/bordj/p-conception.webp" data-i18n-alt="cases.bordjsteel.alt.p.2" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab cb-plab--l cb-plab--top"><span data-i18n="cases.bordjsteel.poster"></span> 03 · <span data-i18n="cases.bordjsteel.p.2"></span></span>
+    </article>
+
+    <!-- renders: cold room and cladding -->
+    <article class="cb-t cb-render cb-render--x st-c2" data-kind="renders">
+      <img src="img/clients/bordj/r-cold.webp" data-i18n-alt="cases.bordjsteel.alt.r.2" alt="" loading="lazy" decoding="async">
+      <p class="cb-render__card cb-render__card--s"><b data-i18n="cases.bordjsteel.rn.2"></b><span class="cb-render__ref"><span data-i18n="cases.bordjsteel.r3d"></span> · <bdi>−40 °C → +40 °C</bdi></span></p>
+    </article>
+    <article class="cb-t cb-render cb-render--w st-c2" data-kind="renders">
+      <img src="img/clients/bordj/r-wall.webp" data-i18n-alt="cases.bordjsteel.alt.r.3" alt="" loading="lazy" decoding="async">
+      <p class="cb-render__card cb-render__card--s"><b data-i18n="cases.bordjsteel.rn.3"></b><span class="cb-render__ref"><span data-i18n="cases.bordjsteel.r3d"></span> · <bdi>BS-09</bdi></span></p>
+    </article>
+
+    <!-- poster 04, then the tank configurator (the shell's stepper: --k per volume, below) -->
+    <article class="cb-t cb-poster" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-cuves.full.webp"><img src="img/clients/bordj/p-cuves.webp" data-i18n-alt="cases.bordjsteel.alt.p.3" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab"><span data-i18n="cases.bordjsteel.poster"></span> 04 · <span data-i18n="cases.bordjsteel.p.3"></span></span>
+    </article>
+    <article class="cb-t cb-tool cb-tank st-c2" data-kind="tools">
+      <div class="cb-tank__in" data-stepper data-values="3,5,10,15,20,30,40,50,60,100" data-index="4" data-value="20">
+        <span class="cb-k" data-i18n="cases.bordjsteel.tank"></span>
+        <div class="cb-tank__row">
+          <p class="cb-tank__v" dir="ltr"><output data-out aria-live="polite">20</output><span>m³</span></p>
+          <button type="button" class="cb-step" data-step="-1" data-i18n-aria="cases.bordjsteel.minus"><span aria-hidden="true">−</span></button>
+          <button type="button" class="cb-step cb-step--plus" data-step="1" data-i18n-aria="cases.bordjsteel.plus"><span aria-hidden="true">+</span></button>
+        </div>
+        <div class="cb-tank__stage" aria-hidden="true"><span class="cb-tank__body"></span></div>
+        <div class="cb-tank__pips" aria-hidden="true"><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i><i data-step-pip></i></div>
+      </div>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- poster 05, then the tower configurator (the shell's range: --v 0-1) -->
+    <article class="cb-t cb-poster" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-tower.full.webp"><img src="img/clients/bordj/p-tower.webp" data-i18n-alt="cases.bordjsteel.alt.p.4" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab"><span data-i18n="cases.bordjsteel.poster"></span> 05 · <span data-i18n="cases.bordjsteel.p.4"></span></span>
+    </article>
+    <article class="cb-t cb-tool cb-tower st-c2" data-kind="tools" data-range-scope style="--v:.2045">
+      <span class="cb-tower__mast" aria-hidden="true"><i></i></span>
+      <div class="cb-tower__in">
+        <span class="cb-k cb-k--d" data-i18n="cases.bordjsteel.tower.k"></span>
+        <p class="cb-tower__v" dir="ltr"><output data-out>15</output><span>M</span></p>
+        <p class="cb-tower__note"><span class="cb-tower__std" data-i18n="cases.bordjsteel.tower.std"></span><span class="cb-tower__cus" data-i18n="cases.bordjsteel.tower.cus"></span></p>
+        <input type="range" min="6" max="50" step="1" value="15" data-range data-i18n-aria="cases.bordjsteel.tower.aria">
+      </div>
+    </article>
+
+    <!-- poster 06 -->
+    <article class="cb-t cb-poster st-c2 st-r2" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-mains.webp"><img src="img/clients/bordj/p-mains.webp" data-i18n-alt="cases.bordjsteel.alt.p.5" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab cb-plab--l"><span data-i18n="cases.bordjsteel.poster"></span> 06 · <span data-i18n="cases.bordjsteel.p.5"></span></span>
+    </article>
+
+    <!-- BS-12 · the icons, drawn here on the design's 24-unit grid -->
+    <article class="cb-t cb-card cb-icons st-c2" data-kind="icons">
+      <span class="cb-k"><bdi>BS-12</bdi> · <span data-i18n="cases.bordjsteel.icons"></span></span>
+      <ul class="cb-icons__grid">
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M5 4h14M5 20h14M12 4v16M8 4v2M16 4v2M8 18v2M16 18v2"/></svg><span data-i18n="cases.bordjsteel.iconN.0"></span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M3 7l4-2 4 2 4-2 4 2 2-1M3 7v3h18V6M3 10v7h18v-7M3 17l4 2 4-2 4 2 4-2 2 1"/></svg><span data-i18n="cases.bordjsteel.iconN.1"></span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M12 3c2 3 3 4.6 3 6a3 3 0 0 1-6 0c0-1.4 1-3 3-6zM3 14h18v6H3zM7 14v-2M17 14v-2"/></svg><span data-i18n="cases.bordjsteel.iconN.2"></span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><rect x="3" y="8" width="18" height="9" rx="4.5"/><path d="M9 8V5h3v3M7 17v3M17 17v3M5 20h14"/></svg><span data-i18n="cases.bordjsteel.iconN.3"></span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M12 2v3M8 21l4-16 4 16M9.5 15h5M10.5 10h3M6 21h12M9 4.5a4 4 0 0 1 6 0"/></svg><span data-i18n="cases.bordjsteel.iconN.4"></span></li>
+        <li><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M3 17h18M5 17a7 7 0 0 1 14 0M12 10V6M9 10.5V8M15 10.5V8"/></svg><span data-i18n="cases.bordjsteel.iconN.5"></span></li>
+      </ul>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- BS-13 · colour and type -->
+    <article class="cb-t cb-card cb-pal st-c2" data-kind="palette">
+      <span class="cb-k"><bdi>BS-13</bdi> · <span data-i18n="cases.bordjsteel.pal"></span></span>
+      <ul class="cb-pal__sw" dir="ltr">
+        <li class="cb-sw--red">#C1272D</li>
+        <li class="cb-sw--steel">#3D3F42</li>
+        <li class="cb-sw--grey">#A7AEB5</li>
+        <li class="cb-sw--pale">#F2F3F5</li>
+      </ul>
+      <p class="cb-pal__type" dir="ltr"><span class="cb-pal__aa">Aa</span><span class="cb-pal__name">Montserrat</span><span class="cb-pal__w">400 · 600 · 800 · 900</span></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- units 03 and 04 -->
+    <article class="cb-t cb-unit st-c2" data-kind="units">
+      <img src="img/clients/bordj/h-galva.webp" data-i18n-alt="cases.bordjsteel.alt.u.2" alt="" loading="lazy" decoding="async">
+      <p class="cb-unit__card"><span class="cb-k"><span data-i18n="cases.bordjsteel.unit"></span> 03</span><b data-i18n="cases.bordjsteel.units.2"></b><span class="cb-unit__cap" data-i18n="cases.bordjsteel.cap.2"></span></p>
+    </article>
+    <article class="cb-t cb-unit st-c2" data-kind="units">
+      <img src="img/clients/bordj/h-chaud.webp" data-i18n-alt="cases.bordjsteel.alt.u.3" alt="" loading="lazy" decoding="async">
+      <p class="cb-unit__card"><span class="cb-k"><span data-i18n="cases.bordjsteel.unit"></span> 04</span><b data-i18n="cases.bordjsteel.units.3"></b><span class="cb-unit__cap" data-i18n="cases.bordjsteel.cap.3"></span></p>
+    </article>
+
+    <!-- BS-16 · Bordj Steel's reference sites (names and places as its site gives them) -->
+    <article class="cb-t cb-card cb-refs st-c2 st-r2" data-kind="refs">
+      <div class="cb-refs__head"><span class="cb-k"><bdi>BS-16</bdi> · <span data-i18n="cases.bordjsteel.refs"></span></span><span class="st-badge cb-badge--flow" data-badge aria-hidden="true" data-i18n="case.new"></span></div>
+      <div class="cb-refs__grid">
+        <figure><img src="img/clients/bordj/ref-condor.webp" data-i18n-alt="cases.bordjsteel.alt.ref.0" alt="" loading="lazy" decoding="async"><figcaption lang="fr" dir="ltr"><b>Base Logistique Condor</b> Route de Msila, BBA</figcaption></figure>
+        <figure><img src="img/clients/bordj/ref-utec.webp" data-i18n-alt="cases.bordjsteel.alt.ref.1" alt="" loading="lazy" decoding="async"><figcaption lang="fr" dir="ltr"><b>UTEC</b> Ain Oulmen, Sétif</figcaption></figure>
+        <figure><img src="img/clients/bordj/ref-softal.webp" data-i18n-alt="cases.bordjsteel.alt.ref.2" alt="" loading="lazy" decoding="async"><figcaption lang="fr" dir="ltr"><b>Softal</b> Boufarik, Blida</figcaption></figure>
+        <figure><img src="img/clients/bordj/ref-duct.webp" data-i18n-alt="cases.bordjsteel.alt.ref.3" alt="" loading="lazy" decoding="async"><figcaption lang="fr" dir="ltr"><b>Unité Duct Piping</b> Bordj Bou Arréridj</figcaption></figure>
+      </div>
+    </article>
+
+    <!-- BS-17 · the logos Bordj Steel's site shows as its references (not the studio's clients) -->
+    <article class="cb-t cb-card cb-clients st-c2" data-kind="clients">
+      <span class="cb-k"><bdi>BS-17</bdi> · <span data-i18n="cases.bordjsteel.clients"></span></span>
+      <ul class="cb-clients__grid">
+        <li><img src="img/clients/bordj/l-condor.webp" alt="Condor" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-sonatrach.webp" alt="Sonatrach" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-hyundai.webp" alt="Hyundai" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-cevital.webp" alt="Cevital" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-mobilis.webp" alt="Mobilis" loading="lazy" decoding="async"></li>
+        <li><img src="img/clients/bordj/l-sonelgaz.webp" alt="Sonelgaz" loading="lazy" decoding="async"></li>
+      </ul>
+      <p class="cb-clients__n" data-i18n="cases.bordjsteel.clientsN"></p>
+      <span class="st-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- posters 07 and 08 -->
+    <article class="cb-t cb-poster" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-galva.full.webp"><img src="img/clients/bordj/p-galva.webp" data-i18n-alt="cases.bordjsteel.alt.p.6" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab"><span data-i18n="cases.bordjsteel.poster"></span> 07 · <span data-i18n="cases.bordjsteel.p.6"></span></span>
+    </article>
+    <article class="cb-t cb-poster" data-kind="posters">
+      <button type="button" class="st-zoom cb-zoom" data-zoom="img/clients/bordj/p-site.full.webp"><img src="img/clients/bordj/p-site.webp" data-i18n-alt="cases.bordjsteel.alt.p.7" alt="" loading="lazy" decoding="async"></button>
+      <span class="cb-plab"><span data-i18n="cases.bordjsteel.poster"></span> 08 · <span data-i18n="cases.bordjsteel.p.7"></span></span>
+    </article>
+
+    <!-- the scope card, where the design had the pack's price: what was delivered, ticked as it is seen -->
+    <article class="cb-t cb-scope st-c3 st-r2">
+      <div class="cb-scope__head"><span class="cb-k cb-k--d" data-i18n="cases.bordjsteel.scope.k"></span><span class="cb-scope__chip" data-i18n="cases.bordjsteel.scope.n"></span></div>
+      <h4 class="cb-scope__h" data-i18n="cases.bordjsteel.scope.t"></h4>
+      <p class="cb-scope__note" data-i18n="cases.bordjsteel.scope.note"></p>
+      <ul class="cb-scope__list">
+        <li data-scope="site" data-i18n="cases.bordjsteel.scope.items.0"></li>
+        <li data-scope="posters" data-i18n="cases.bordjsteel.scope.items.1"></li>
+        <li data-scope="renders" data-i18n="cases.bordjsteel.scope.items.2"></li>
+        <li data-scope="icons" data-i18n="cases.bordjsteel.scope.items.3"></li>
+        <li data-scope="units" data-i18n="cases.bordjsteel.scope.items.4"></li>
+        <li data-scope="refs" data-i18n="cases.bordjsteel.scope.items.5"></li>
+        <li data-scope="palette" data-i18n="cases.bordjsteel.scope.items.6"></li>
+        <li data-scope="tools" data-i18n="cases.bordjsteel.scope.items.7"></li>
+        <li data-scope="clients" data-i18n="cases.bordjsteel.scope.items.8"></li>
+      </ul>
+      <a class="cb-btn cb-btn--block" href="#contact" data-i18n="cases.bordjsteel.scope.cta"></a>
+      <a class="cb-scope__be" href="https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT" target="_blank" rel="noopener"><span data-i18n="cases.bordjsteel.scope.behance"></span> <span class="st-sr" data-i18n="case.newTab"></span></a>
+    </article>
+  </div>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag"></span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>

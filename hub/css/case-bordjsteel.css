@@ -1,0 +1,306 @@
+/* ============================================================
+   Case 01 · Bordj Steel (hub/src/cases/bordjsteel.html), everything under
+   .case-bordjsteel. The client's own look, from the owner's design
+   (2026-11-07): steel greys, one red (#C1272D), Montserrat. The shell
+   (hub/style.css 09: the bar, the track, its spans, the foot, the badges,
+   the viewer) is the page's; this sheet sets the palette on the scope and
+   draws the tiles. Every colour is a token of the scope block below.
+   Measured as painted: the red carries white text at 5.8:1, the greys on
+   the dark bar 7.3:1, the small labels on white 6.4:1; the design's pink
+   label on the red (4.2:1) is white here and its green "done" chip is a
+   darker green (5.8:1). Labels never go under 12px.
+   Motion: the hover tilts of the renders and the tank's resize answer an
+   input; with reduced motion nothing moves and nothing tilts.
+   ============================================================ */
+
+.case-bordjsteel{
+  --c-bg:#F2F3F5;
+  --c-dark:#1E2023;
+  --c-fg:#2B2D30;
+  --c-muted:#5A5F66;
+  --c-line:#CDD2D7;
+  --c-tile:#E9EBEE;
+  --c-accent:#C1272D;
+  --c-accent-2:#A11F25;
+  --c-on-accent:#FFFFFF;
+  --c-on-dark:#F2F3F5;
+  --c-font:"Montserrat",var(--f-body);
+  --c-font-disp:"Montserrat",var(--f-disp);
+  --cb-white:#FFFFFF;
+  --cb-grey:#A7AEB5;
+  --cb-pale:#E8A3A6;
+  --cb-ok:#24734A;
+  --cb-steel:#3D3F42;
+  --cb-dark-2:#3A3D42;
+  --cb-hover-d:#2E3135;
+  --cb-chrome:#E6E8EB;
+  --cb-rule:#E1E4E8;
+  --cb-blush:#FBEDEE;
+  --cb-navy:#0E1626;
+  --cb-ink-2:#41454B;
+  --cb-soft:#D9DCE0;
+  --cb-fig:#C9CDD2;
+  --cb-card:rgba(255,255,255,.95);
+  --cb-scrim:rgba(20,21,23,.86);
+  --cb-scrim-2:rgba(20,21,23,.55);
+  --cb-scrim-3:rgba(20,21,23,.15);
+  --cb-cover-a:rgba(30,32,35,.2);
+  --cb-cover-b:rgba(30,32,35,.92);
+  --cb-hair:rgba(255,255,255,.3);
+  --cb-hair-2:rgba(255,255,255,.55);
+}
+
+/* ---------------- the bar ---------------- */
+.case-bordjsteel .cb-id{flex:1 1 300px}
+.case-bordjsteel .cb-id__txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.case-bordjsteel .cb-hud{color:var(--cb-grey);opacity:1;letter-spacing:.16em}
+.case-bordjsteel .st-case__logo{padding:2px}
+.case-bordjsteel .st-case__logo img{width:44px;height:44px}
+.case-bordjsteel .st-case__name{letter-spacing:.01em;line-height:1.1}
+.case-bordjsteel .cb-sector{color:var(--cb-grey);font-weight:600}
+.case-bordjsteel .cb-progress{min-width:180px;letter-spacing:.14em}
+.case-bordjsteel .cb-muted-d{color:var(--cb-grey);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.case-bordjsteel .cb-pips{height:8px;background:var(--cb-dark-2);border-radius:2px;overflow:hidden}
+.case-bordjsteel .cb-pips i{background:transparent;opacity:1}
+.case-bordjsteel .cb-pips i.is-seen{background:var(--c-accent)}
+.case-bordjsteel .cb-end{display:flex;align-items:center;gap:8px}
+.case-bordjsteel .cb-tag{padding:8px 12px;border-radius:3px;font-family:var(--c-font-disp);font-weight:900;font-size:15px;letter-spacing:.02em}
+.case-bordjsteel .cb-nav button{border:1px solid var(--cb-grey);border-radius:3px}
+.case-bordjsteel .cb-nav button:hover{background:var(--cb-hover-d);border-color:var(--cb-grey);color:var(--c-on-dark)}
+.case-bordjsteel .st-case__bar :focus-visible,.case-bordjsteel .cb-scope :focus-visible,.case-bordjsteel .cb-tower :focus-visible,.case-bordjsteel .cb-site__view :focus-visible{outline-color:var(--cb-white)}
+.case-bordjsteel .st-case__track:focus-visible{outline-color:var(--c-accent)}
+
+/* ---------------- shared tile pieces ---------------- */
+/* the tiles follow the page's direction; the track itself stays ltr (the shell) */
+:root[dir="rtl"] .case-bordjsteel .cb-t{direction:rtl}
+.case-bordjsteel .cb-t img{display:block}
+.case-bordjsteel .cb-k{font-family:var(--f-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em;color:var(--c-muted)}
+.case-bordjsteel .cb-k--pale{color:var(--cb-pale);letter-spacing:.16em}
+.case-bordjsteel .cb-k--white{color:var(--cb-white)}
+.case-bordjsteel .cb-k--d{color:var(--cb-grey)}
+.case-bordjsteel .cb-card{display:flex;flex-direction:column;gap:10px;padding:14px;background:var(--cb-white);border:1px solid var(--c-line)}
+.case-bordjsteel .cb-card > .cb-k:first-child{padding-inline-end:76px}
+.case-bordjsteel .st-badge{top:8px;inset-inline-end:8px;border-radius:3px;line-height:1.2}
+.case-bordjsteel .cb-badge--site{top:46px;inset-inline-end:10px}
+.case-bordjsteel .cb-badge--start{top:10px;inset-inline-start:10px;inset-inline-end:auto}
+.case-bordjsteel .cb-badge--flow{position:static}
+.case-bordjsteel .cb-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 18px;border-radius:3px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--c-font-disp);font-weight:800;font-size:13px;letter-spacing:.06em;text-decoration:none;text-transform:uppercase;white-space:nowrap;transition:background-color .2s}
+.case-bordjsteel .cb-btn:hover{background:var(--c-accent-2)}
+.case-bordjsteel .cb-btn--block{display:flex;width:100%;font-size:14px;letter-spacing:.04em;text-transform:none}
+
+/* ---------------- BS-00 · the cover ---------------- */
+.case-bordjsteel .cb-cover{display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:20px;background:var(--c-dark);color:var(--cb-white)}
+.case-bordjsteel .cb-cover__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42}
+.case-bordjsteel .cb-cover::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--cb-cover-a) 0%,var(--cb-cover-b) 78%)}
+.case-bordjsteel .cb-cover__top,.case-bordjsteel .cb-cover__txt{position:relative;z-index:2}
+.case-bordjsteel .cb-cover__top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.case-bordjsteel .cb-cover__logo{flex:none;padding:6px;background:var(--cb-white);border-radius:4px}
+.case-bordjsteel .cb-cover__logo img{width:92px;height:92px}
+.case-bordjsteel .cb-chip--line{padding:4px 8px;border:1px solid var(--cb-hair-2);border-radius:3px;font-family:var(--f-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em}
+.case-bordjsteel .cb-cover__txt{display:flex;flex-direction:column;gap:10px}
+.case-bordjsteel .cb-cover__h{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(26px,2.6vw,38px);line-height:1;text-transform:uppercase;text-wrap:balance}
+.case-bordjsteel .cb-cover__s{font-size:14px;line-height:1.5;color:var(--cb-soft);max-width:30em}
+.case-bordjsteel .cb-chips{display:flex;flex-wrap:wrap;gap:6px}
+.case-bordjsteel .cb-chips li{padding:4px 8px;background:var(--c-accent);border-radius:3px;font-weight:600;font-size:var(--t-label);line-height:1.35;white-space:nowrap}
+/* at the track's 150px floor the cover is 312 wide: a smaller logo leaves the four chips their room */
+@media (max-width:1110px){
+  .case-bordjsteel .cb-cover{padding:16px}
+  .case-bordjsteel .cb-cover__logo img{width:60px;height:60px}
+  .case-bordjsteel .cb-cover__s{font-size:13.5px;line-height:1.45}
+}
+
+/* ---------------- BS-01 · the site ---------------- */
+.case-bordjsteel .cb-site{display:flex;flex-direction:column;background:var(--cb-white);border:1px solid var(--c-line)}
+.case-bordjsteel .cb-site__bar{height:38px;flex:none;display:flex;align-items:center;gap:10px;padding:0 12px;background:var(--cb-chrome);border-bottom:1px solid var(--c-line)}
+.case-bordjsteel .cb-site__dots{display:flex;gap:6px}
+.case-bordjsteel .cb-site__dots i{width:10px;height:10px;border-radius:50%;background:var(--cb-grey)}
+.case-bordjsteel .cb-site__dots i:first-child{background:var(--c-accent)}
+.case-bordjsteel .cb-site__url{flex:1;min-width:0;padding:5px 10px;background:var(--cb-white);border-radius:3px;font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-bordjsteel .cb-site__open{font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-accent);text-decoration:none;white-space:nowrap}
+.case-bordjsteel .cb-site__view{position:relative;flex:1;min-height:0;overflow:hidden}
+.case-bordjsteel .cb-site__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case-bordjsteel .cb-site__view::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--cb-scrim) 0%,var(--cb-scrim-2) 55%,var(--cb-scrim-3) 100%)}
+:root[dir="rtl"] .case-bordjsteel .cb-site__view::before{background:linear-gradient(270deg,var(--cb-scrim) 0%,var(--cb-scrim-2) 55%,var(--cb-scrim-3) 100%)}
+.case-bordjsteel .cb-site__txt{position:relative;z-index:2;height:100%;max-width:560px;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:clamp(16px,3vw,36px);color:var(--cb-white)}
+.case-bordjsteel .cb-site__h{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(26px,3.2vw,46px);line-height:.98;text-transform:uppercase}
+.case-bordjsteel .cb-figs{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0;padding-top:12px;border-top:1px solid var(--cb-hair);white-space:nowrap}
+.case-bordjsteel .cb-figs div{display:flex;flex-direction:column-reverse}
+.case-bordjsteel .cb-figs dt{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.1em;color:var(--cb-fig)}
+.case-bordjsteel .cb-figs dd{margin:0;font-weight:800;font-size:clamp(17px,1.7vw,22px);line-height:1.2}
+.case-bordjsteel .cb-src{margin-top:-4px;font-size:var(--t-label);line-height:1.4;color:var(--cb-fig)}
+.case-bordjsteel .cb-site .cb-btn{align-self:flex-start}
+
+/* ---------------- BS-02 · the figures, Bordj Steel's ---------------- */
+.case-bordjsteel .cb-stats{display:flex;flex-direction:column;justify-content:space-between;gap:10px;padding:16px;background:var(--c-accent);color:var(--cb-white)}
+.case-bordjsteel .cb-stats__list{display:flex;flex-direction:column;gap:10px;margin:0}
+.case-bordjsteel .cb-stats__list div{display:flex;flex-direction:column-reverse}
+.case-bordjsteel .cb-stats__list dt{font-size:12.5px;font-weight:600;line-height:1.3}
+.case-bordjsteel .cb-stats__list dd{margin:0;font-family:var(--c-font-disp);font-weight:900;line-height:1}
+.case-bordjsteel .cb-stats__big{font-size:clamp(30px,3vw,42px)}
+.case-bordjsteel .cb-stats__mid{font-size:clamp(24px,2.4vw,32px)}
+.case-bordjsteel .cb-iso{display:flex;flex-wrap:wrap;gap:4px}
+.case-bordjsteel .cb-iso li{padding:2px 6px;border:1px solid var(--cb-hair-2);border-radius:2px;font-family:"Geist Mono",var(--f-mono);font-size:var(--t-label);line-height:1.35;white-space:nowrap}
+/* Below 1111px the track's column is its 150px floor: the figures tile takes
+   both rows rather than cut its caption or its labels under 12px. */
+@media (max-width:1110px){.case-bordjsteel .cb-stats{grid-row:span 2;justify-content:flex-start;gap:18px}}
+
+/* ---------------- the posters (the viewer opens them) ---------------- */
+.case-bordjsteel .cb-poster{background:var(--cb-white);border:1px solid var(--c-line)}
+.case-bordjsteel .cb-poster--navy{background:var(--cb-navy);border-color:var(--cb-navy)}
+.case-bordjsteel .cb-zoom img{object-fit:contain}
+.case-bordjsteel .cb-zoom:focus-visible{outline-offset:-5px;outline-color:var(--c-accent)}
+.case-bordjsteel .cb-plab{position:absolute;inset-inline-start:8px;bottom:8px;z-index:2;padding:4px 8px;border-radius:3px;background:var(--c-dark);color:var(--cb-white);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;pointer-events:none}
+.case-bordjsteel .cb-plab--light{background:var(--cb-card);color:var(--c-dark)}
+.case-bordjsteel .cb-plab--l{inset-inline-start:10px;bottom:10px;padding:5px 9px}
+.case-bordjsteel .cb-plab--top{top:8px;bottom:auto}
+.case-bordjsteel .cb-plab--l.cb-plab--top{top:10px}
+
+/* ---------------- the four units ---------------- */
+.case-bordjsteel .cb-unit{background:var(--c-dark)}
+.case-bordjsteel .cb-unit img{width:100%;height:100%;object-fit:contain}
+.case-bordjsteel .cb-unit__card{position:absolute;inset-inline:10px;bottom:10px;z-index:2;display:flex;flex-direction:column;gap:2px;padding:10px 12px;background:var(--cb-card);border-inline-start:4px solid var(--c-accent);border-radius:3px}
+.case-bordjsteel .cb-unit__card b{font-weight:800;font-size:15px;line-height:1.1}
+.case-bordjsteel .cb-unit__cap{font-size:12.5px;line-height:1.3;color:var(--cb-ink-2)}
+
+/* ---------------- the renders: a tilt under the pointer ---------------- */
+.case-bordjsteel .cb-render{background:var(--c-tile);border:1px solid var(--c-line);perspective:900px}
+.case-bordjsteel .cb-render img{width:100%;height:100%;object-fit:contain}
+.case-bordjsteel .cb-render .cb-plab{border-radius:3px}
+.case-bordjsteel .cb-render__card{position:absolute;inset-inline:8px;bottom:8px;z-index:2;display:flex;flex-direction:column;gap:2px;padding:6px 8px;background:var(--cb-card);border-radius:3px}
+.case-bordjsteel .cb-render__card--s{inset-inline:10px auto;bottom:10px;padding:6px 10px}
+.case-bordjsteel .cb-render__card b{font-weight:800;font-size:13px;line-height:1.2}
+.case-bordjsteel .cb-render__dim{display:flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-accent)}
+.case-bordjsteel .cb-render__dim i{flex:1;border-top:1px solid var(--c-accent)}
+.case-bordjsteel .cb-render__ref{font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted)}
+@media (hover:hover){
+  .case-bordjsteel .st-case__track > .cb-render--l:hover img{transform:rotateY(-10deg) rotateX(5deg) scale(1.06)}
+  .case-bordjsteel .st-case__track > .cb-render--r:hover img{transform:rotateY(10deg) rotateX(5deg) scale(1.06)}
+  .case-bordjsteel .st-case__track > .cb-render--x:hover img{transform:rotateX(4deg) scale(1.04)}
+  .case-bordjsteel .st-case__track > .cb-render--w:hover img{transform:rotateY(-6deg) scale(1.04)}
+  .case-bordjsteel .st-case__track > .cb-unit:hover img,.case-bordjsteel .st-case__track > .cb-card:hover img{transform:none}
+}
+
+/* ---------------- the tank configurator ----------------
+   The shell's stepper walks the ten volumes and writes data-value; the
+   drawing grows with the cube root of the volume, as the design does
+   (width 34% + 62%·∛(v/100), height 18% + 30%·∛(v/100)), one --k per step. */
+.case-bordjsteel .cb-tool{padding:14px}
+.case-bordjsteel .cb-tank{background:var(--cb-white);border:1px solid var(--c-line)}
+.case-bordjsteel .cb-tank__in{--k:.585;height:100%;display:flex;flex-direction:column;gap:10px}
+.case-bordjsteel .cb-tank__in > .cb-k{padding-inline-end:76px}
+.case-bordjsteel [data-value="3"]{--k:.311}
+.case-bordjsteel [data-value="5"]{--k:.368}
+.case-bordjsteel [data-value="10"]{--k:.464}
+.case-bordjsteel [data-value="15"]{--k:.531}
+.case-bordjsteel [data-value="20"]{--k:.585}
+.case-bordjsteel [data-value="30"]{--k:.669}
+.case-bordjsteel [data-value="40"]{--k:.737}
+.case-bordjsteel [data-value="50"]{--k:.794}
+.case-bordjsteel [data-value="60"]{--k:.843}
+.case-bordjsteel [data-value="100"]{--k:1}
+.case-bordjsteel .cb-tank__row{display:flex;align-items:center;gap:10px}
+.case-bordjsteel .cb-tank__v{flex:1;display:flex;align-items:baseline;gap:4px}
+.case-bordjsteel .cb-tank__v output{font-family:var(--c-font-disp);font-weight:900;font-size:34px;line-height:1;color:var(--c-accent)}
+.case-bordjsteel .cb-tank__v span{font-weight:800;font-size:16px}
+.case-bordjsteel .cb-step{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--c-fg);border-radius:3px;background:var(--cb-white);font-family:var(--c-font-disp);font-weight:800;font-size:18px;cursor:pointer;transition:background-color .2s}
+.case-bordjsteel .cb-step:hover{background:var(--c-bg)}
+.case-bordjsteel .cb-step--plus{border-color:var(--c-accent);background:var(--c-accent);color:var(--cb-white)}
+.case-bordjsteel .cb-step--plus:hover{background:var(--c-accent-2)}
+.case-bordjsteel .cb-step:disabled{opacity:.4;cursor:default}
+.case-bordjsteel .cb-tank__stage{flex:1;min-height:48px;display:flex;align-items:center;justify-content:center}
+.case-bordjsteel .cb-tank__body{position:relative;width:calc(34% + 62% * var(--k));height:calc(18% + 30% * var(--k));min-height:16px;border:2px solid var(--c-fg);border-radius:999px;background:linear-gradient(180deg,var(--cb-white) 0%,var(--cb-rule) 100%);transition:width .5s var(--ease),height .5s var(--ease)}
+.case-bordjsteel .cb-tank__body::before{content:"";position:absolute;left:50%;top:-8px;width:14px;height:8px;margin-left:-7px;background:var(--c-fg);border-radius:2px 2px 0 0}
+.case-bordjsteel .cb-tank__pips{display:flex;gap:3px}
+.case-bordjsteel .cb-tank__pips i{flex:1;height:4px;border-radius:1px;background:var(--cb-rule);transition:background-color .3s}
+.case-bordjsteel .cb-tank__pips i.is-on{background:var(--c-accent)}
+/* without the script the stepper shows its starting volume, 20 m³: the first five pips */
+html:not(.js) .case-bordjsteel .cb-tank__pips i:nth-child(-n+5){background:var(--c-accent)}
+
+/* ---------------- the tower configurator ----------------
+   The shell's range writes --v (0 at 6 m, 1 at 50 m); the standard range
+   ends at 15 m (--v .2045), past it the note says "made to measure". */
+.case-bordjsteel .cb-tower{display:flex;gap:12px;background:var(--c-dark);color:var(--cb-white)}
+.case-bordjsteel .cb-tower__mast{width:22px;flex:none;position:relative;background:var(--cb-dark-2);border-radius:2px;overflow:hidden}
+.case-bordjsteel .cb-tower__mast i{position:absolute;inset-inline:0;bottom:0;height:calc(var(--v,.2045) * 100%);background:repeating-linear-gradient(135deg,var(--c-accent) 0 6px,var(--c-accent-2) 6px 12px);transition:height .4s var(--ease)}
+.case-bordjsteel .cb-tower__in{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.case-bordjsteel .cb-tower__v{display:flex;align-items:baseline;gap:4px;margin-top:auto}
+.case-bordjsteel .cb-tower__v output{font-family:var(--c-font-disp);font-weight:900;font-size:40px;line-height:1}
+.case-bordjsteel .cb-tower__v span{font-weight:800;font-size:16px}
+.case-bordjsteel .cb-tower__note{display:grid;font-size:var(--t-label);line-height:1.35;color:var(--cb-soft);min-height:2.7em}
+.case-bordjsteel .cb-tower__note > span{grid-area:1/1}
+.case-bordjsteel .cb-tower__std{opacity:clamp(0,(.21 - var(--v,.2045)) * 1000,1)}
+.case-bordjsteel .cb-tower__cus{opacity:clamp(0,(var(--v,.2045) - .21) * 1000,1)}
+.case-bordjsteel .cb-tower input{width:100%;height:28px;margin:0;accent-color:var(--c-accent);cursor:pointer}
+
+/* ---------------- BS-12 · icons ---------------- */
+.case-bordjsteel .cb-icons__grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.case-bordjsteel .cb-icons__grid li{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:0;border:1px solid var(--cb-rule);border-radius:4px;color:var(--c-accent);transition:background-color .2s}
+.case-bordjsteel .cb-icons__grid li:hover{background:var(--cb-blush)}
+.case-bordjsteel .cb-icons__grid svg{flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.case-bordjsteel .cb-icons__grid span{font-size:var(--t-label);font-weight:600;line-height:1.2;color:var(--c-fg)}
+
+/* ---------------- BS-13 · colour and type ---------------- */
+.case-bordjsteel .cb-pal__sw{flex:1;min-height:0;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:6px}
+.case-bordjsteel .cb-pal__sw li{display:flex;align-items:flex-end;padding:6px 4px;border-radius:3px;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:0;overflow:hidden}
+.case-bordjsteel .cb-sw--red{background:var(--c-accent);color:var(--cb-white)}
+.case-bordjsteel .cb-sw--steel{background:var(--cb-steel);color:var(--cb-white)}
+.case-bordjsteel .cb-sw--grey{background:var(--cb-grey);color:var(--c-dark)}
+.case-bordjsteel .cb-sw--pale{background:var(--c-bg);border:1px solid var(--c-line);color:var(--c-dark)}
+.case-bordjsteel .cb-pal__type{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 12px;padding-top:8px;border-top:1px solid var(--cb-rule)}
+.case-bordjsteel .cb-pal__aa{font-family:"Montserrat",sans-serif;font-weight:900;font-size:30px;line-height:1}
+.case-bordjsteel .cb-pal__name{font-family:"Montserrat",sans-serif;font-weight:800;font-size:15px;color:var(--c-accent);text-transform:uppercase}
+.case-bordjsteel .cb-pal__w{font-family:var(--f-mono);font-size:var(--t-label);color:var(--c-muted)}
+
+/* ---------------- BS-16 · references ---------------- */
+.case-bordjsteel .cb-refs{padding:12px}
+.case-bordjsteel .cb-refs__head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.case-bordjsteel .cb-refs__grid{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px}
+.case-bordjsteel .cb-refs__grid figure{position:relative;min-height:0;overflow:hidden;border-radius:4px}
+.case-bordjsteel .cb-refs__grid img{width:100%;height:100%;object-fit:contain}
+.case-bordjsteel .cb-refs__grid figcaption{position:absolute;inset-inline:6px;bottom:6px;padding:4px 6px;background:var(--cb-card);border-radius:3px;font-size:var(--t-label);line-height:1.2}
+.case-bordjsteel .cb-refs__grid b{display:block}
+
+/* ---------------- BS-17 · Bordj Steel's references, as its site shows them ---------------- */
+.case-bordjsteel .cb-clients{padding:12px;gap:8px}
+.case-bordjsteel .cb-clients__grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.case-bordjsteel .cb-clients__grid li{display:grid;place-items:center;min-height:0;padding:6px;border:1px solid var(--cb-rule);border-radius:3px;filter:grayscale(1);opacity:.75;transition:filter .3s,opacity .3s}
+.case-bordjsteel .cb-clients__grid li:hover{filter:none;opacity:1}
+.case-bordjsteel .cb-clients__grid img{width:auto;max-width:100%;height:auto;max-height:38px;object-fit:contain}
+.case-bordjsteel .cb-clients__n{font-size:var(--t-label);font-weight:600;line-height:1.35;color:var(--c-muted)}
+
+/* ---------------- the scope card (the design's price card) ---------------- */
+.case-bordjsteel .cb-scope{display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--c-dark);color:var(--cb-white)}
+.case-bordjsteel .cb-scope__head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.case-bordjsteel .cb-scope__chip{padding:3px 7px;border-radius:3px;background:var(--c-accent);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;white-space:nowrap;transition:background-color .3s}
+/* every kind seen: the chip turns green, as the design's did */
+.case-bordjsteel .cb-scope:not(:has([data-scope]:not(.is-seen))) .cb-scope__chip{background:var(--cb-ok)}
+.case-bordjsteel .cb-scope__h{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(22px,2.6vw,36px);line-height:1.02;text-transform:uppercase;text-wrap:balance}
+.case-bordjsteel .cb-scope__note{font-size:12.5px;line-height:1.4;color:var(--cb-grey)}
+.case-bordjsteel .cb-scope__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px 14px;padding-top:10px;border-top:1px solid var(--cb-dark-2)}
+.case-bordjsteel .cb-scope__list li{display:flex;gap:8px;align-items:center;font-size:12.5px;line-height:1.25;transition:opacity .3s}
+.case-bordjsteel .cb-scope__list li::before{content:"";width:14px;height:14px;flex:none;border:1.5px solid var(--c-accent);border-radius:2px;transition:background-color .3s}
+html.js .case-bordjsteel .cb-scope__list li{opacity:.5}
+html.js .case-bordjsteel .cb-scope__list li.is-seen{opacity:1}
+.case-bordjsteel .cb-scope__list li.is-seen::before{background:var(--c-accent)}
+.case-bordjsteel .cb-scope__be{display:inline-flex;align-items:center;align-self:center;min-height:44px;margin-top:-8px;color:var(--cb-pale);font-size:13px;font-weight:600;text-underline-offset:3px}
+/* the wide track: the list takes the room the design's price figure had */
+@media (min-width:1111px){
+  .case-bordjsteel .cb-scope__h{font-size:clamp(30px,3vw,44px)}
+  .case-bordjsteel .cb-scope__note{font-size:14px}
+  .case-bordjsteel .cb-scope__list{gap:14px 20px;padding-top:16px}
+  .case-bordjsteel .cb-scope__list li{font-size:15px;gap:10px}
+  .case-bordjsteel .cb-scope__list li::before{width:16px;height:16px}
+}
+@media (max-width:1110px){
+  .case-bordjsteel .cb-scope{gap:8px;padding:16px}
+  .case-bordjsteel .cb-scope__be{margin-top:-6px}
+}
+
+/* ---------------- Arabic: no capitals, no tracking ---------------- */
+:lang(ar) .case-bordjsteel .cb-k,:lang(ar) .case-bordjsteel .cb-chip--line,:lang(ar) .case-bordjsteel .cb-plab,:lang(ar) .case-bordjsteel .cb-figs dt,:lang(ar) .case-bordjsteel .cb-hud,:lang(ar) .case-bordjsteel .cb-progress,:lang(ar) .case-bordjsteel .cb-scope__chip,:lang(ar) .case-bordjsteel .cb-btn{letter-spacing:0}
+:lang(ar) .case-bordjsteel .cb-cover__h,:lang(ar) .case-bordjsteel .cb-site__h,:lang(ar) .case-bordjsteel .cb-scope__h{line-height:1.2}
+
+/* ---------------- reduced motion: no tilt, no zoom, no resize ---------------- */
+@media (prefers-reduced-motion:reduce){
+  .case-bordjsteel .st-case__track > *:hover img{transform:none!important}
+}
