@@ -1,0 +1,308 @@
+{
+  "fr": {
+    "hud": "DOSSIER 05 · MON POSTE",
+    "sector": "VTC · Algérie",
+    "tag": "Campagnes + réseaux",
+    "track": "Heetch : les pièces du dossier",
+    "cover": {
+      "k": "CAMPAGNES · RÉSEAUX · MERCH",
+      "t": "Le rose qui fait bouger l’Algérie",
+      "s": "Designer graphique chez Heetch depuis mai 2026 : campagnes marketing et contenus réseaux sociaux. Les affiches sont publiées ; les maquettes sont des concepts.",
+      "chips": [
+        "Promo",
+        "Instagram",
+        "Merch"
+      ]
+    },
+    "type": {
+      "k": "LE TYPE QUI ROULE",
+      "warp": "VIRAGE",
+      "code": "LE CODE DE L’AFFICHE"
+    },
+    "posters": [
+      "Promo ERKEB50 · la nuit",
+      "Promo ERKEB50 · la station",
+      "Heetch · Supreme × Heetch",
+      "Découvrez Heetch Pro"
+    ],
+    "prevPoster": "Affiche précédente",
+    "nextPoster": "Affiche suivante",
+    "plan": {
+      "k": "PLANIFICATEUR DE CAMPAGNE",
+      "h": "Un message, trois publics",
+      "who": "POUR QUI ?",
+      "where": "OÙ ?",
+      "out": "LE BON FORMAT",
+      "auds": [
+        "Passagers",
+        "Chauffeurs",
+        "Entreprises"
+      ],
+      "chans": [
+        "Story",
+        "Post",
+        "Affichage"
+      ],
+      "res": [
+        [
+          "Code promo, gros et rose",
+          "Le code d’abord, la voiture ensuite. Lisible en une seconde."
+        ],
+        [
+          "La fierté du chauffeur",
+          "Des vrais gens, une vraie station. Le chauffeur est le héros."
+        ],
+        [
+          "Heetch Pro, version nette",
+          "Fond blanc, bleu Pro, la même énergie de rue."
+        ]
+      ],
+      "fmt": [
+        "STORY · 9:16",
+        "POST · 4:5",
+        "AFFICHAGE · 3:2"
+      ]
+    },
+    "mk": {
+      "phone": "INSTAGRAM · CONCEPT",
+      "merch": "MERCH · CONCEPT",
+      "bill": "ABRIBUS · CONCEPT",
+      "duo": "SHOOTING · CONCEPT"
+    },
+    "alt": {
+      "phone": "Maquette d’un fil Instagram de Heetch DZ (concept)",
+      "merch": "Maquette de merch Heetch (concept)",
+      "bill": "Maquette d’un abribus à Alger (concept)",
+      "duo": "Maquette d’un shooting en duo pour Heetch (concept)"
+    },
+    "pal": "COULEURS & TYPE",
+    "palNote": "large · gras · rose",
+    "links": {
+      "k": "LE VRAI TRAVAIL",
+      "h": "Tout est sur Behance et sur leur fil",
+      "b1": "Premier mois chez Heetch DZ",
+      "b2": "Heetch · test d’entrée"
+    },
+    "end": {
+      "k": "DOSSIER 05 · HEETCH",
+      "chip": "Chez Heetch depuis mai 2026",
+      "t": "Designer graphique, en interne",
+      "big": "Campagne après campagne",
+      "note": "du brief à la publication.",
+      "items": [
+        "Campagnes marketing",
+        "Typographie des affiches",
+        "Affiches publiées",
+        "Planification",
+        "Maquettes (concepts)",
+        "Contenus réseaux sociaux"
+      ],
+      "cta": "Le même soin pour vous →"
+    },
+    "published": "PUBLIÉ"
+  },
+  "en": {
+    "hud": "FILE 05 · MY JOB",
+    "sector": "Ride-hailing · Algeria",
+    "tag": "Campaigns + social",
+    "track": "Heetch: the pieces of the file",
+    "cover": {
+      "k": "CAMPAIGNS · SOCIAL · MERCH",
+      "t": "The pink that moves Algeria",
+      "s": "Graphic designer at Heetch since May 2026: marketing campaigns and social media content. The posters are published; the mockups are concepts.",
+      "chips": [
+        "Promo",
+        "Instagram",
+        "Merch"
+      ]
+    },
+    "type": {
+      "k": "TYPE THAT RIDES",
+      "warp": "TURN",
+      "code": "THE POSTER’S CODE"
+    },
+    "posters": [
+      "Promo ERKEB50 · night",
+      "Promo ERKEB50 · the station",
+      "Heetch · Supreme × Heetch",
+      "Discover Heetch Pro"
+    ],
+    "prevPoster": "Previous poster",
+    "nextPoster": "Next poster",
+    "plan": {
+      "k": "CAMPAIGN PLANNER",
+      "h": "One message, three audiences",
+      "who": "FOR WHO?",
+      "where": "WHERE?",
+      "out": "THE RIGHT FORMAT",
+      "auds": [
+        "Riders",
+        "Drivers",
+        "Businesses"
+      ],
+      "chans": [
+        "Story",
+        "Post",
+        "Outdoor"
+      ],
+      "res": [
+        [
+          "Promo code, big and pink",
+          "Code first, car second. Readable in one second."
+        ],
+        [
+          "Driver pride",
+          "Real people, a real station. The driver is the hero."
+        ],
+        [
+          "Heetch Pro, clean cut",
+          "White ground, Pro blue, same street energy."
+        ]
+      ],
+      "fmt": [
+        "STORY · 9:16",
+        "POST · 4:5",
+        "OUTDOOR · 3:2"
+      ]
+    },
+    "mk": {
+      "phone": "INSTAGRAM · CONCEPT",
+      "merch": "MERCH · CONCEPT",
+      "bill": "BUS SHELTER · CONCEPT",
+      "duo": "SHOOT · CONCEPT"
+    },
+    "alt": {
+      "phone": "Mockup of a Heetch DZ Instagram feed (concept)",
+      "merch": "Mockup of Heetch merch (concept)",
+      "bill": "Mockup of a bus shelter in Algiers (concept)",
+      "duo": "Mockup of a two-person shoot for Heetch (concept)"
+    },
+    "pal": "COLOUR & TYPE",
+    "palNote": "wide · heavy · pink",
+    "links": {
+      "k": "THE REAL WORK",
+      "h": "It’s all on Behance and their feed",
+      "b1": "First month at Heetch DZ",
+      "b2": "Heetch · entry test"
+    },
+    "end": {
+      "k": "FILE 05 · HEETCH",
+      "chip": "At Heetch since May 2026",
+      "t": "Graphic designer, in-house",
+      "big": "Campaign after campaign",
+      "note": "from brief to publication.",
+      "items": [
+        "Marketing campaigns",
+        "Poster typography",
+        "Published posters",
+        "Planning",
+        "Mockups (concepts)",
+        "Social media content"
+      ],
+      "cta": "The same care for you →"
+    },
+    "published": "PUBLISHED"
+  },
+  "ar": {
+    "hud": "الملف 05 · عملي",
+    "sector": "نقل · الجزائر",
+    "tag": "حملات + شبكات",
+    "track": "Heetch: قطع الملف",
+    "cover": {
+      "k": "حملات · تواصل · منتجات",
+      "t": "الوردي الذي يحرّك الجزائر",
+      "s": "مصمم غرافيك في Heetch منذ ماي 2026: حملات تسويقية ومحتوى للشبكات الاجتماعية. الملصقات منشورة والنماذج مفاهيم.",
+      "chips": [
+        "ترويج",
+        "إنستغرام",
+        "منتجات"
+      ]
+    },
+    "type": {
+      "k": "خط يتحرك",
+      "warp": "منعطف",
+      "code": "رمز الملصق"
+    },
+    "posters": [
+      "ERKEB50 · ليلًا",
+      "ERKEB50 · المحطة",
+      "Supreme × Heetch",
+      "اكتشف Heetch Pro"
+    ],
+    "prevPoster": "الملصق السابق",
+    "nextPoster": "الملصق التالي",
+    "plan": {
+      "k": "مخطط الحملة",
+      "h": "رسالة واحدة، ثلاثة جماهير",
+      "who": "لمن؟",
+      "where": "أين؟",
+      "out": "الصيغة المناسبة",
+      "auds": [
+        "الركاب",
+        "السائقون",
+        "الشركات"
+      ],
+      "chans": [
+        "ستوري",
+        "منشور",
+        "لافتة"
+      ],
+      "res": [
+        [
+          "رمز ترويجي، كبير ووردي",
+          "الرمز أولًا، السيارة ثانيًا. يُقرأ في ثانية."
+        ],
+        [
+          "فخر السائق",
+          "أناس حقيقيون، محطة حقيقية. السائق هو البطل."
+        ],
+        [
+          "Heetch Pro، بشكل نظيف",
+          "خلفية بيضاء، أزرق Pro، نفس طاقة الشارع."
+        ]
+      ],
+      "fmt": [
+        "ستوري · 9:16",
+        "منشور · 4:5",
+        "لافتة · 3:2"
+      ]
+    },
+    "mk": {
+      "phone": "إنستغرام · مفهوم",
+      "merch": "منتجات · مفهوم",
+      "bill": "موقف حافلات · مفهوم",
+      "duo": "تصوير · مفهوم"
+    },
+    "alt": {
+      "phone": "نموذج لحساب Heetch DZ على إنستغرام (مفهوم)",
+      "merch": "نموذج لمنتجات Heetch (مفهوم)",
+      "bill": "نموذج لموقف حافلات في الجزائر العاصمة (مفهوم)",
+      "duo": "نموذج لجلسة تصوير ثنائية لـ Heetch (مفهوم)"
+    },
+    "pal": "اللون والخط",
+    "palNote": "عريض · ثقيل · وردي",
+    "links": {
+      "k": "العمل الحقيقي",
+      "h": "كل شيء على Behance وحسابهم",
+      "b1": "الشهر الأول في Heetch DZ",
+      "b2": "Heetch · اختبار الدخول"
+    },
+    "end": {
+      "k": "الملف 05 · HEETCH",
+      "chip": "في Heetch منذ ماي 2026",
+      "t": "مصمم غرافيك، داخل الشركة",
+      "big": "حملة بعد حملة",
+      "note": "من الطلب إلى النشر.",
+      "items": [
+        "حملات تسويقية",
+        "خط الملصقات",
+        "ملصقات منشورة",
+        "التخطيط",
+        "نماذج (مفاهيم)",
+        "محتوى الشبكات الاجتماعية"
+      ],
+      "cta": "← العناية نفسها لك"
+    },
+    "published": "منشور"
+  }
+}

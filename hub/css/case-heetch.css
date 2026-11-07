@@ -1,0 +1,245 @@
+/* ============================================================
+   Case 05 · Heetch (hub/src/cases/heetch.html), everything under
+   .case-heetch. The company's own look, from the owner's design
+   (2026-11-07): near-black ground, one hot pink (#FF2E7E), the Pro blue
+   on a single chip, Archivo (wide and heavy for the type that rides) over
+   Geist, a marker for the one hand-written word. The shell (hub/style.css
+   09: the bar, the track, its spans, the foot, the badges, the viewer) is
+   the page's; this sheet sets the palette on the scope and draws the
+   tiles. Every colour is a token of the scope block below.
+   Measured as painted: the pink on the black 6.0:1, the black on the pink
+   6.0:1 (white on the pink is 3.5, so text on it is black, and only the
+   PROMO rows' white one is large type), the grey labels on the black 8.2:1,
+   the dark grey labels on the pale card 6.2:1, white on the Pro blue 4.8:1.
+   Labels never go under 12px (the design's are 9.5-11px), the pills and the
+   steppers are 44px (the design's 34 and 40), and a mockup's CONCEPT label
+   wraps rather than being cut.
+   Motion: the posters' wipe (.3 s, on the poster that shows), the "turn"
+   slider and the hover zoom answer an input; nothing here moves on its
+   own, and with reduced motion nothing moves at all.
+   ============================================================ */
+
+.case-heetch{
+  --c-bg:#111111;
+  --c-dark:#111111;
+  --c-fg:#FFFFFF;
+  --c-muted:#A8A8B0;
+  --c-line:#2A2A2E;
+  --c-tile:#1A1A1D;
+  --c-accent:#FF2E7E;
+  --c-accent-2:#FF5C9A;
+  --c-on-accent:#111111;
+  --c-on-dark:#FFFFFF;
+  --c-font:var(--f-body);
+  --c-font-disp:"Archivo Expanded",var(--f-disp);
+  --ch-wide:"Archivo Expanded",var(--f-disp);
+  --ch-head:"Archivo",var(--f-disp);
+  --ch-ink:#111111;
+  --ch-black:#0A0A0B;
+  --ch-card-2:#222226;
+  --ch-edge:#2A2A2E;
+  --ch-edge-2:#3A3A40;
+  --ch-grey-d:#5A5A62;
+  --ch-silver:#C9C9D0;
+  --ch-mist:#D0D0D6;
+  --ch-snow:#F4F4F6;
+  --ch-white:#FFFFFF;
+  --ch-blue:#2F6BFF;
+  --ch-hand:#C4115A;
+  --ch-concrete:#7A7A80;
+  --ch-r:14px;
+}
+
+/* ---------------- the bar ---------------- */
+.case-heetch .ch-id{flex:1 1 300px}
+.case-heetch .ch-logo{width:38px;height:38px;padding:0;border-radius:10px;background:var(--c-accent);color:var(--ch-white);font-family:var(--ch-wide);font-weight:900;font-size:22px;line-height:1}
+.case-heetch .ch-id__txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.case-heetch .ch-hud{color:var(--c-accent);opacity:1;letter-spacing:.16em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-heetch .st-case__name{font-weight:900;font-size:17px;line-height:1.1;white-space:nowrap}
+.case-heetch .ch-dot{color:var(--c-accent)}
+.case-heetch .ch-sector{font-family:var(--c-font);font-weight:500;font-size:14px;color:var(--c-muted)}
+.case-heetch .ch-progress{min-width:180px;letter-spacing:.14em}
+.case-heetch .ch-muted{color:var(--c-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.case-heetch .ch-pips{height:8px;background:var(--ch-edge);border-radius:4px;overflow:hidden}
+.case-heetch .ch-pips i{background:transparent;opacity:1}
+.case-heetch .ch-pips i.is-seen{background:var(--c-accent)}
+.case-heetch .ch-end{display:flex;align-items:center;gap:8px}
+.case-heetch .ch-tag{padding:8px 12px;border-radius:999px;font-weight:600}
+.case-heetch .ch-nav button{border:1px solid var(--ch-edge-2);border-radius:50%}
+.case-heetch .ch-nav button:hover{background:var(--ch-card-2);border-color:var(--ch-edge-2);color:var(--c-on-dark)}
+.case-heetch :focus-visible{outline-color:var(--c-accent)}
+.case-heetch .ch-type :focus-visible,.case-heetch .ch-plan :focus-visible,.case-heetch .ch-pal :focus-visible,.case-heetch .ch-end-card :focus-visible{outline-color:var(--ch-ink)}
+.case-heetch .st-case__bar-p{background:var(--ch-edge);border-radius:2px}
+
+/* ---------------- shared tile pieces ---------------- */
+/* the tiles follow the page's direction; the track itself stays ltr (the shell) */
+:root[dir="rtl"] .case-heetch .ch-t{direction:rtl}
+.case-heetch .st-case__track > *{border-radius:var(--ch-r)}
+.case-heetch .ch-t img{display:block}
+.case-heetch .ch-k{font-family:var(--f-mono);font-size:var(--t-label);line-height:1.35;letter-spacing:.14em;color:var(--c-fg)}
+.case-heetch .ch-k--pink{color:var(--c-accent)}
+.case-heetch .ch-k--ink{color:var(--ch-ink)}
+.case-heetch .ch-k--grey{color:var(--c-muted)}
+.case-heetch .ch-k--grey-d{color:var(--ch-grey-d)}
+.case-heetch .ch-zoom img{object-fit:contain}
+.case-heetch .ch-zoom:focus-visible{outline-offset:-5px}
+.case-heetch .st-badge{padding:3px 8px;border-radius:999px;font-weight:600;line-height:1.2}
+.case-heetch .st-badge.is-seen{background:var(--ch-white);color:var(--ch-ink)}
+.case-heetch .ch-badge--ink{background:var(--ch-ink);color:var(--ch-white)}
+.case-heetch .ch-badge--ink.is-seen{background:var(--ch-white);color:var(--ch-ink);box-shadow:inset 0 0 0 1px var(--ch-ink)}
+.case-heetch .ch-lab{position:absolute;inset-inline-start:8px;bottom:8px;z-index:2;max-width:calc(100% - 16px);padding:4px 9px;border-radius:12px;background:var(--ch-white);color:var(--ch-ink);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.25;letter-spacing:.06em;pointer-events:none}
+.case-heetch .ch-lab--ink{background:var(--ch-ink);color:var(--ch-white)}
+.case-heetch .ch-lab--top{top:10px;bottom:auto;inset-inline-start:10px;background:var(--c-accent);color:var(--c-on-accent);border-radius:999px}
+.case-heetch .ch-step{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--ch-edge-2);border-radius:50%;background:transparent;color:var(--c-on-dark);font-size:16px;cursor:pointer;transition:background-color .2s}
+.case-heetch .ch-step:hover{background:var(--ch-card-2)}
+:root[dir="rtl"] .case-heetch .ch-step span{display:inline-block;transform:scaleX(-1)}
+.case-heetch .ch-btn{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;background:var(--ch-ink);color:var(--ch-white);font-weight:700;font-size:14px;text-decoration:none;text-align:center;transition:background-color .2s}
+.case-heetch .ch-btn:hover{background:var(--ch-black)}
+
+/* ---------------- HT-00 · the cover ---------------- */
+.case-heetch .ch-cover{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);background:var(--ch-black)}
+.case-heetch .ch-cover__pic{position:relative;height:auto;background:var(--ch-black)}
+.case-heetch .ch-cover__pic img{position:absolute;inset:0;width:100%;height:100%}
+.case-heetch .ch-cover__txt{display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-width:0;padding:clamp(14px,2vw,24px)}
+.case-heetch .ch-cover__top{padding-inline-end:76px}
+.case-heetch .ch-cover__mid{display:flex;flex-direction:column;gap:8px}
+.case-heetch .ch-cover__h{font-family:var(--ch-head);font-weight:900;font-size:clamp(21px,2.4vw,36px);line-height:.98;text-transform:uppercase;text-wrap:balance}
+.case-heetch .ch-cover__s{font-size:var(--t-label);line-height:1.45;color:var(--ch-silver)}
+.case-heetch .ch-chips{display:flex;flex-wrap:wrap;gap:6px}
+.case-heetch .ch-chips li{padding:4px 10px;background:var(--c-accent);color:var(--c-on-accent);border-radius:999px;font-weight:700;font-size:var(--t-label);line-height:1.35;white-space:nowrap}
+@media (min-width:1111px){.case-heetch .ch-cover__s{font-size:13.5px}}
+
+/* ---------------- HT-02 · the type that rides ---------------- */
+.case-heetch .ch-type{display:flex;flex-direction:column;gap:10px;padding:14px;background:var(--c-accent);color:var(--ch-ink)}
+.case-heetch .ch-type .ch-k{padding-inline-end:76px}
+.case-heetch .ch-type__rows{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.case-heetch .ch-type__row{--w:calc(var(--v,.6) * 10);display:block;font-family:var(--ch-wide);font-weight:900;font-size:clamp(40px,4.4vw,62px);line-height:.86;text-align:center;white-space:nowrap;color:var(--ch-ink);transform-origin:center;transition:transform .5s var(--ease)}
+.case-heetch .ch-type__row--a{transform:skewY(calc(var(--w) * 1.4deg)) scaleX(calc(1 - var(--w) * .006))}
+.case-heetch .ch-type__row--b{color:var(--ch-white);transform:scaleX(calc(1 + var(--w) * .012))}
+.case-heetch .ch-type__row--c{transform:skewY(calc(var(--w) * -1.4deg)) scaleX(calc(1 - var(--w) * .006))}
+.case-heetch .ch-type__warp{display:flex;align-items:center;gap:10px;min-height:44px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.1em;white-space:nowrap}
+.case-heetch .ch-type__warp input{flex:1;min-width:0;height:44px;accent-color:var(--ch-ink);cursor:pointer}
+/* the poster's code, as type (not a button: it would present someone
+   else's promotion as live) */
+.case-heetch .ch-type__code{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:48px;padding:6px 16px;border:2px dashed var(--ch-ink);border-radius:12px}
+.case-heetch .ch-type__code b{font-family:var(--ch-wide);font-weight:900;font-size:22px;letter-spacing:.02em;line-height:1.1}
+.case-heetch .ch-type__code span{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.08em}
+
+/* ---------------- HT-03 · the posters, one at a time ---------------- */
+.case-heetch .ch-posters{background:var(--ch-black);border:1px solid var(--ch-edge)}
+.case-heetch .ch-post{position:absolute;inset:0;display:flex;flex-direction:column}
+.case-heetch .ch-post[hidden]{display:none}
+.case-heetch .ch-post__pic{position:relative;flex:1;min-height:0;height:auto;background:var(--ch-black)}
+.case-heetch .ch-post--w .ch-post__pic{background:var(--ch-white)}
+.case-heetch .ch-post__pic img{position:absolute;inset:0;width:100%;height:100%}
+/* the pink wipe that crosses the poster as it changes */
+.case-heetch .ch-post__pic::after{content:"";position:absolute;inset:0;background:var(--c-accent);transform:scaleX(0);transform-origin:right center;pointer-events:none}
+.case-heetch .ch-post.is-active .ch-post__pic::after{animation:ch-wipe .3s var(--ease)}
+@keyframes ch-wipe{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.case-heetch .ch-post__bar{flex:none;display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--ch-black)}
+.case-heetch .ch-post__cap{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.case-heetch .ch-post__cap b{font-weight:700;font-size:13px;line-height:1.25;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+
+/* ---------------- HT-04 · the campaign planner ---------------- */
+.case-heetch .ch-plan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);background:var(--ch-snow);color:var(--ch-ink)}
+.case-heetch .ch-plan__l{display:flex;flex-direction:column;gap:10px;min-width:0;padding:16px}
+.case-heetch .ch-plan__l > .ch-k{padding-inline-end:76px}
+.case-heetch .ch-plan__h{font-family:var(--ch-head);font-weight:900;font-size:clamp(19px,1.9vw,26px);line-height:1;text-transform:uppercase;text-wrap:balance}
+.case-heetch .ch-fs{display:flex;flex-direction:column;gap:5px;min-width:0;margin:0;padding:0;border:0}
+.case-heetch .ch-fs legend{float:left;width:100%;padding:0}
+.case-heetch .ch-fs legend + *{clear:both}
+.case-heetch .ch-pills{display:flex;flex-wrap:wrap;gap:5px}
+.case-heetch .ch-pills label{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--ch-ink);border-radius:999px;background:transparent;color:var(--ch-ink);font-weight:700;font-size:13px;white-space:nowrap;cursor:pointer;transition:background-color .2s,color .2s}
+.case-heetch .ch-pills input:checked + label{background:var(--ch-ink);color:var(--c-accent)}
+.case-heetch .ch-pills input:focus-visible + label{outline:2px solid var(--ch-ink);outline-offset:2px}
+.case-heetch .ch-plan__out{margin-top:auto;display:flex;flex-direction:column;gap:5px;padding:12px;border-radius:12px;background:var(--ch-ink);color:var(--ch-white)}
+.case-heetch .ch-res{display:none;flex-direction:column;gap:4px}
+.case-heetch .ch-res b{font-family:var(--ch-head);font-weight:900;font-size:clamp(16px,1.5vw,21px);line-height:1.05;text-transform:uppercase}
+.case-heetch .ch-res span{font-size:var(--t-label);line-height:1.4;color:var(--ch-silver)}
+.case-heetch .ch-res--0{display:flex}
+.case-heetch .ch-plan__r{position:relative;min-width:0;background:var(--c-tile)}
+.case-heetch .ch-im{position:absolute;inset:0;display:none;padding:10px}
+.case-heetch .ch-im--dk{background:var(--c-tile)}
+.case-heetch .ch-im--w{background:var(--ch-white)}
+.case-heetch .ch-im img{width:100%;height:100%;object-fit:contain}
+.case-heetch .ch-fmt{position:absolute;inset-inline-end:10px;bottom:10px;z-index:2;display:none;padding:3px 8px;border-radius:999px;background:var(--ch-ink);color:var(--ch-white);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.1em;white-space:nowrap}
+.case-heetch .ch-fmt0{display:block}
+/* the pair picks the sheet (the design's PLAN table: the audience x the
+   place -> one of the four posters); the planner is radios and these
+   selectors, so there is nothing to run */
+@supports selector(:has(*)){
+  .case-heetch .ch-plan:has(#ch-a1:checked) .ch-res--0,.case-heetch .ch-plan:has(#ch-a2:checked) .ch-res--0{display:none}
+  .case-heetch .ch-plan:has(#ch-a1:checked) .ch-res--1,.case-heetch .ch-plan:has(#ch-a2:checked) .ch-res--2{display:flex}
+  .case-heetch .ch-plan:has(#ch-c1:checked) .ch-fmt0,.case-heetch .ch-plan:has(#ch-c2:checked) .ch-fmt0{display:none}
+  .case-heetch .ch-plan:has(#ch-c1:checked) .ch-fmt1,.case-heetch .ch-plan:has(#ch-c2:checked) .ch-fmt2{display:block}
+  .case-heetch .ch-plan:has(#ch-a0:checked):has(#ch-c0:checked) .ch-im0,
+  .case-heetch .ch-plan:has(#ch-a1:checked):has(#ch-c1:checked) .ch-im0,
+  .case-heetch .ch-plan:has(#ch-a0:checked):has(#ch-c1:checked) .ch-im1,
+  .case-heetch .ch-plan:has(#ch-a1:checked):has(#ch-c0:checked) .ch-im1,
+  .case-heetch .ch-plan:has(#ch-a0:checked):has(#ch-c2:checked) .ch-im2,
+  .case-heetch .ch-plan:has(#ch-a1:checked):has(#ch-c2:checked) .ch-im2,
+  .case-heetch .ch-plan:has(#ch-a2:checked) .ch-im3{display:block}
+}
+@supports not selector(:has(*)){.case-heetch .ch-im0{display:block}}
+/* the narrow track (150px columns): the planner takes four, so the pills
+   keep one line each */
+@media (max-width:1110px){.case-heetch .ch-plan{grid-column:span 4}}
+
+/* ---------------- the concept mockups ---------------- */
+.case-heetch .ch-mock--phone{background:var(--c-tile)}
+.case-heetch .ch-mock--merch{background:var(--ch-concrete)}
+.case-heetch .ch-mock--bill{background:var(--ch-black)}
+.case-heetch .ch-mock--duo{background:var(--ch-edge)}
+.case-heetch .ch-pro{background:var(--ch-white)}
+
+/* ---------------- HT-08 · colour and type ---------------- */
+.case-heetch .ch-pal{display:flex;flex-direction:column;gap:8px;padding:12px;background:var(--ch-snow);color:var(--ch-ink)}
+.case-heetch .ch-pal > .ch-k{padding-inline-end:76px}
+.case-heetch .ch-pal__sw{flex:1;min-height:0;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:5px}
+.case-heetch .ch-pal__sw li{display:flex;align-items:flex-end;padding:6px 5px;border-radius:8px;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:0;overflow:hidden}
+.case-heetch .ch-sw--pink{background:var(--c-accent);color:var(--ch-ink)}
+.case-heetch .ch-sw--black{background:var(--ch-ink);color:var(--ch-white)}
+.case-heetch .ch-sw--pro{background:var(--ch-blue);color:var(--ch-white)}
+.case-heetch .ch-sw--white{background:var(--ch-white);border:1px solid var(--ch-mist)}
+.case-heetch .ch-pal__type{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;padding-top:6px;border-top:1px solid var(--ch-mist)}
+.case-heetch .ch-pal__big{font-family:var(--ch-wide);font-weight:900;font-size:24px;line-height:1}
+.case-heetch .ch-pal__hand{font-family:var(--f-hand);font-size:17px;color:var(--ch-hand)}
+.case-heetch .ch-pal__note{font-family:var(--f-mono);font-size:var(--t-label);color:var(--ch-grey-d)}
+
+/* ---------------- HT-10 · the real work ---------------- */
+.case-heetch .ch-links{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--ch-black);border:1px solid var(--ch-edge)}
+.case-heetch .ch-links > .ch-k{padding-inline-end:76px}
+.case-heetch .ch-links__h{font-family:var(--ch-head);font-weight:900;font-size:clamp(20px,2vw,26px);line-height:1;text-transform:uppercase;text-wrap:balance}
+.case-heetch .ch-links__list{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.case-heetch .ch-links__list a{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;border:1px solid var(--ch-edge-2);border-radius:12px;color:var(--c-on-dark);text-decoration:none;transition:background-color .2s,border-color .2s}
+.case-heetch .ch-links__list a:hover{background:var(--c-tile);border-color:var(--c-accent)}
+.case-heetch .ch-links__l{display:flex;align-items:center;gap:10px;min-width:0}
+.case-heetch .ch-links__ico{flex:none;width:28px;height:28px;display:grid;place-items:center;border-radius:6px;font-family:var(--f-mono);font-weight:700;font-size:var(--t-label)}
+.case-heetch .ch-links__ico--be{background:var(--ch-blue);color:var(--ch-white)}
+.case-heetch .ch-links__ico--ig{background:var(--c-accent);color:var(--c-on-accent)}
+.case-heetch .ch-links__t{font-weight:700;font-size:13px;line-height:1.25}
+
+/* ---------------- the end card ---------------- */
+.case-heetch .ch-end-card{display:flex;flex-direction:column;gap:10px;padding:18px;background:var(--c-accent);color:var(--ch-ink)}
+.case-heetch .ch-end-card__top{display:flex;justify-content:space-between;align-items:center;gap:8px;padding-inline-end:0}
+.case-heetch .ch-end-card__chip{padding:3px 9px;border-radius:999px;background:var(--ch-ink);color:var(--ch-white);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.3;letter-spacing:.06em}
+.case-heetch .ch-end-card__t{font-weight:700;font-size:16px;line-height:1.2}
+.case-heetch .ch-end-card__big{font-family:var(--ch-wide);font-weight:900;font-size:clamp(22px,2.5vw,36px);line-height:.95;text-transform:uppercase;text-wrap:balance}
+.case-heetch .ch-end-card__note{font-family:var(--f-hand);font-size:16px;line-height:1.2}
+.case-heetch .ch-end-card__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:6px 14px;padding-top:10px;border-top:2px solid var(--ch-ink)}
+.case-heetch .ch-end-card__list li{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:500;line-height:1.25}
+.case-heetch .ch-end-card__list li::before{content:"";width:14px;height:14px;flex:none;border:2px solid var(--ch-ink);border-radius:50%;transition:background-color .3s}
+/* the line is ticked once its kind has been seen */
+.case-heetch .ch-end-card__list li.is-seen::before{background:var(--ch-ink)}
+
+/* ---------------- Arabic: no tracking, no capitals, a looser line ---------------- */
+:lang(ar) .case-heetch .ch-k,:lang(ar) .case-heetch .ch-hud,:lang(ar) .case-heetch .ch-progress,:lang(ar) .case-heetch .ch-lab,:lang(ar) .case-heetch .ch-fmt,:lang(ar) .case-heetch .ch-type__warp,:lang(ar) .case-heetch .ch-type__code span,:lang(ar) .case-heetch .ch-end-card__chip,:lang(ar) .case-heetch .st-case__tag{letter-spacing:0}
+:lang(ar) .case-heetch .ch-cover__h,:lang(ar) .case-heetch .ch-plan__h,:lang(ar) .case-heetch .ch-res b,:lang(ar) .case-heetch .ch-links__h,:lang(ar) .case-heetch .ch-end-card__big{line-height:1.3;text-transform:none}
+:lang(ar) .case-heetch .ch-cover__s{line-height:1.6}
+
+/* ---------------- reduced motion: no zoom, no wipe, no slide ---------------- */
+@media (prefers-reduced-motion:reduce){
+  .case-heetch .st-case__track > *:hover img{transform:none!important}
+  .case-heetch .ch-post.is-active .ch-post__pic::after{animation:none}
+  .case-heetch .ch-type__row{transition:none}
+}

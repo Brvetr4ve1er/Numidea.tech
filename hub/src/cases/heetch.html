@@ -1,0 +1,227 @@
+<!-- ---------------- case 05 · Heetch ----------------
+     The owner's CaseHeetch (2026-11-07), as a fragment the build inlines at
+     09 Proof; its copy is hub/src/cases/heetch.i18n.json, its sheet
+     hub/css/case-heetch.css. This is the founder's work as an employee, not
+     a Numidea client: the cover says so ("YASSER × HEETCH", "depuis mai
+     2026"). The shell's hooks (hub/app.js 8) do the rest: the track, the
+     six kinds of deliverable and their badges, the poster viewer, the
+     "turn" slider.
+     What changed from the design, and why: the header's "temps plein" and
+     the end card's "Temps plein" became the case's tag and "Chez Heetch
+     depuis mai 2026" (the CV gives the role and the month, not the hours);
+     "lancement Heetch Pro" is gone from the sentence and from the list (the
+     CV does not say it); the posters are published, the mockups are
+     concepts and say so; the "copy the code, -50 %" button is a plain line
+     of type, because it would present someone else's promotion as live;
+     the planner is radios and CSS (no script: the pill you pick is the
+     state), and the posters' wipe is a keyframe on the one that shows. -->
+<section class="st-case case-heetch" id="case-heetch" aria-labelledby="case-heetch-h">
+  <div class="st-case__bar">
+    <div class="st-case__id ch-id">
+      <span class="st-case__logo ch-logo" aria-hidden="true">H</span>
+      <div class="ch-id__txt">
+        <span class="st-case__hud ch-hud" data-i18n="cases.heetch.hud"></span>
+        <h3 class="st-case__name" id="case-heetch-h"><bdi>HEETCH<span class="ch-dot">.</span></bdi> <span class="ch-sector">· <span data-i18n="cases.heetch.sector"></span></span></h3>
+      </div>
+    </div>
+    <div class="st-case__progress ch-progress">
+      <span><span class="ch-muted" data-i18n="case.unlocked"></span><span data-seen-count dir="ltr">0/6</span></span>
+      <div class="st-case__pips ch-pips" aria-hidden="true"><i data-pip="cover"></i><i data-pip="type"></i><i data-pip="posters"></i><i data-pip="planner"></i><i data-pip="mock"></i><i data-pip="links"></i></div>
+    </div>
+    <div class="ch-end">
+      <span class="st-case__tag ch-tag" data-i18n="cases.heetch.tag"></span>
+      <div class="st-case__nav ch-nav">
+        <button type="button" data-track-prev aria-controls="ch-track" data-i18n-aria="case.prev"><span aria-hidden="true">←</span></button>
+        <button type="button" data-track-next aria-controls="ch-track" data-i18n-aria="case.next"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="st-case__track ch-track" id="ch-track" dir="ltr" data-track tabindex="0" role="region" data-i18n-aria="cases.heetch.track">
+
+    <!-- HT-00 · the cover: the night poster and who made it, for whom -->
+    <article class="ch-t ch-cover st-c3 st-r2" data-kind="cover">
+      <button type="button" class="st-zoom ch-zoom ch-cover__pic" data-zoom="img/studio/c08.webp"><img src="img/studio/c08.webp" data-i18n-alt="cases.heetch.posters.0" alt="" loading="lazy" decoding="async"></button>
+      <div class="ch-cover__txt">
+        <div class="ch-cover__top"><span class="ch-k ch-k--pink" data-i18n="cases.heetch.cover.k"></span></div>
+        <div class="ch-cover__mid">
+          <span class="ch-k ch-k--grey" dir="ltr">YASSER × HEETCH</span>
+          <h4 class="ch-cover__h" data-i18n="cases.heetch.cover.t"></h4>
+          <p class="ch-cover__s" data-i18n="cases.heetch.cover.s"></p>
+        </div>
+        <ul class="ch-chips">
+          <li data-i18n="cases.heetch.cover.chips.0"></li>
+          <li data-i18n="cases.heetch.cover.chips.1"></li>
+          <li data-i18n="cases.heetch.cover.chips.2"></li>
+        </ul>
+      </div>
+      <span class="st-badge ch-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- HT-02 · the type that rides: the slider turns the three PROMO rows -->
+    <article class="ch-t ch-type st-c2 st-r2" data-kind="type" data-range-scope>
+      <span class="ch-k ch-k--ink"><bdi>HT-02</bdi> · <span data-i18n="cases.heetch.type.k"></span></span>
+      <div class="ch-type__rows" aria-hidden="true">
+        <span class="ch-type__row ch-type__row--a" dir="ltr">PROMO</span>
+        <span class="ch-type__row ch-type__row--b" dir="ltr">PROMO</span>
+        <span class="ch-type__row ch-type__row--c" dir="ltr">PROMO</span>
+      </div>
+      <label class="ch-type__warp"><span data-i18n="cases.heetch.type.warp"></span><input type="range" min="0" max="10" value="6" data-range></label>
+      <p class="ch-type__code"><b dir="ltr">ERKEB50</b><span data-i18n="cases.heetch.type.code"></span></p>
+      <span class="st-badge ch-badge ch-badge--ink" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- HT-03 · the four posters, one at a time; each opens in the viewer -->
+    <article class="ch-t ch-posters st-c2 st-r2" data-kind="posters" data-cycle>
+      <div class="ch-post" data-cycle-item>
+        <button type="button" class="st-zoom ch-zoom ch-post__pic" data-zoom="img/studio/c08.webp"><img src="img/studio/c08.webp" data-i18n-alt="cases.heetch.posters.0" alt="" loading="lazy" decoding="async"></button>
+        <span class="ch-lab ch-lab--top" data-i18n="cases.heetch.published"></span>
+        <div class="ch-post__bar">
+          <button type="button" class="ch-step" data-cycle-prev data-i18n-aria="cases.heetch.prevPoster"><span aria-hidden="true">←</span></button>
+          <p class="ch-post__cap"><span class="ch-k ch-k--grey"><bdi>HT-03</bdi> · <span dir="ltr">1/4</span></span><b data-i18n="cases.heetch.posters.0"></b></p>
+          <button type="button" class="ch-step" data-cycle-next data-i18n-aria="cases.heetch.nextPoster"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="ch-post" data-cycle-item hidden>
+        <button type="button" class="st-zoom ch-zoom ch-post__pic" data-zoom="img/studio/c09.webp"><img src="img/studio/c09.webp" data-i18n-alt="cases.heetch.posters.1" alt="" loading="lazy" decoding="async"></button>
+        <span class="ch-lab ch-lab--top" data-i18n="cases.heetch.published"></span>
+        <div class="ch-post__bar">
+          <button type="button" class="ch-step" data-cycle-prev data-i18n-aria="cases.heetch.prevPoster"><span aria-hidden="true">←</span></button>
+          <p class="ch-post__cap"><span class="ch-k ch-k--grey"><bdi>HT-03</bdi> · <span dir="ltr">2/4</span></span><b data-i18n="cases.heetch.posters.1"></b></p>
+          <button type="button" class="ch-step" data-cycle-next data-i18n-aria="cases.heetch.nextPoster"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="ch-post ch-post--w" data-cycle-item hidden>
+        <button type="button" class="st-zoom ch-zoom ch-post__pic" data-zoom="img/studio/c11.webp"><img src="img/studio/c11.webp" data-i18n-alt="cases.heetch.posters.2" alt="" loading="lazy" decoding="async"></button>
+        <span class="ch-lab ch-lab--top" data-i18n="cases.heetch.published"></span>
+        <div class="ch-post__bar">
+          <button type="button" class="ch-step" data-cycle-prev data-i18n-aria="cases.heetch.prevPoster"><span aria-hidden="true">←</span></button>
+          <p class="ch-post__cap"><span class="ch-k ch-k--grey"><bdi>HT-03</bdi> · <span dir="ltr">3/4</span></span><b data-i18n="cases.heetch.posters.2"></b></p>
+          <button type="button" class="ch-step" data-cycle-next data-i18n-aria="cases.heetch.nextPoster"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="ch-post ch-post--w" data-cycle-item hidden>
+        <button type="button" class="st-zoom ch-zoom ch-post__pic" data-zoom="img/studio/c10.webp"><img src="img/studio/c10.webp" data-i18n-alt="cases.heetch.posters.3" alt="" loading="lazy" decoding="async"></button>
+        <span class="ch-lab ch-lab--top" data-i18n="cases.heetch.published"></span>
+        <div class="ch-post__bar">
+          <button type="button" class="ch-step" data-cycle-prev data-i18n-aria="cases.heetch.prevPoster"><span aria-hidden="true">←</span></button>
+          <p class="ch-post__cap"><span class="ch-k ch-k--grey"><bdi>HT-03</bdi> · <span dir="ltr">4/4</span></span><b data-i18n="cases.heetch.posters.3"></b></p>
+          <button type="button" class="ch-step" data-cycle-next data-i18n-aria="cases.heetch.nextPoster"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <span class="st-badge ch-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- HT-04 · the planner: who, where, and the format that answers.
+         Two groups of radios; the sheet shows the poster, the sentence and
+         the format that go with the pair. -->
+    <article class="ch-t ch-plan st-c3 st-r2" data-kind="planner">
+      <div class="ch-plan__l">
+        <span class="ch-k ch-k--ink"><bdi>HT-04</bdi> · <span data-i18n="cases.heetch.plan.k"></span></span>
+        <h4 class="ch-plan__h" data-i18n="cases.heetch.plan.h"></h4>
+        <fieldset class="ch-fs">
+          <legend class="ch-k ch-k--grey-d" data-i18n="cases.heetch.plan.who"></legend>
+          <div class="ch-pills">
+            <input class="st-sr" type="radio" name="ch-aud" id="ch-a0" checked><label for="ch-a0" data-i18n="cases.heetch.plan.auds.0"></label>
+            <input class="st-sr" type="radio" name="ch-aud" id="ch-a1"><label for="ch-a1" data-i18n="cases.heetch.plan.auds.1"></label>
+            <input class="st-sr" type="radio" name="ch-aud" id="ch-a2"><label for="ch-a2" data-i18n="cases.heetch.plan.auds.2"></label>
+          </div>
+        </fieldset>
+        <fieldset class="ch-fs">
+          <legend class="ch-k ch-k--grey-d" data-i18n="cases.heetch.plan.where"></legend>
+          <div class="ch-pills">
+            <input class="st-sr" type="radio" name="ch-chan" id="ch-c0" checked><label for="ch-c0" data-i18n="cases.heetch.plan.chans.0"></label>
+            <input class="st-sr" type="radio" name="ch-chan" id="ch-c1"><label for="ch-c1" data-i18n="cases.heetch.plan.chans.1"></label>
+            <input class="st-sr" type="radio" name="ch-chan" id="ch-c2"><label for="ch-c2" data-i18n="cases.heetch.plan.chans.2"></label>
+          </div>
+        </fieldset>
+        <div class="ch-plan__out" aria-live="polite">
+          <span class="ch-k ch-k--pink" data-i18n="cases.heetch.plan.out"></span>
+          <div class="ch-res ch-res--0"><b data-i18n="cases.heetch.plan.res.0.0"></b><span data-i18n="cases.heetch.plan.res.0.1"></span></div>
+          <div class="ch-res ch-res--1"><b data-i18n="cases.heetch.plan.res.1.0"></b><span data-i18n="cases.heetch.plan.res.1.1"></span></div>
+          <div class="ch-res ch-res--2"><b data-i18n="cases.heetch.plan.res.2.0"></b><span data-i18n="cases.heetch.plan.res.2.1"></span></div>
+        </div>
+      </div>
+      <div class="ch-plan__r" aria-hidden="true">
+        <span class="ch-im ch-im--dk ch-im0"><img src="img/studio/c08.webp" alt="" loading="lazy" decoding="async"></span>
+        <span class="ch-im ch-im--dk ch-im1"><img src="img/studio/c09.webp" alt="" loading="lazy" decoding="async"></span>
+        <span class="ch-im ch-im--w ch-im2"><img src="img/studio/c11.webp" alt="" loading="lazy" decoding="async"></span>
+        <span class="ch-im ch-im--w ch-im3"><img src="img/studio/c10.webp" alt="" loading="lazy" decoding="async"></span>
+        <span class="ch-fmt ch-fmt0" data-i18n="cases.heetch.plan.fmt.0"></span>
+        <span class="ch-fmt ch-fmt1" data-i18n="cases.heetch.plan.fmt.1"></span>
+        <span class="ch-fmt ch-fmt2" data-i18n="cases.heetch.plan.fmt.2"></span>
+      </div>
+      <span class="st-badge ch-badge ch-badge--ink" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <!-- the concept mockups: phone, merch, bus shelter, shoot (all say CONCEPT) -->
+    <article class="ch-t ch-mock ch-mock--phone st-r2" data-kind="mock">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/clients/heetch/m-phone.full.webp"><img src="img/clients/heetch/m-phone.webp" data-i18n-alt="cases.heetch.alt.phone" alt="" loading="lazy" decoding="async"></button>
+      <span class="ch-lab" data-i18n="cases.heetch.mk.phone"></span>
+      <span class="st-badge ch-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+    <article class="ch-t ch-mock ch-mock--merch st-c2 st-r2" data-kind="mock">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/clients/heetch/m-merch.webp"><img src="img/clients/heetch/m-merch.webp" data-i18n-alt="cases.heetch.alt.merch" alt="" loading="lazy" decoding="async"></button>
+      <span class="ch-lab ch-lab--ink" data-i18n="cases.heetch.mk.merch"></span>
+    </article>
+    <article class="ch-t ch-mock ch-mock--bill st-c2" data-kind="mock">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/clients/heetch/m-bill.full.webp"><img src="img/clients/heetch/m-bill.webp" data-i18n-alt="cases.heetch.alt.bill" alt="" loading="lazy" decoding="async"></button>
+      <span class="ch-lab" data-i18n="cases.heetch.mk.bill"></span>
+    </article>
+
+    <!-- HT-08 · colour and type -->
+    <article class="ch-t ch-pal st-c2" data-kind="mock">
+      <span class="ch-k ch-k--ink"><bdi>HT-08</bdi> · <span data-i18n="cases.heetch.pal"></span></span>
+      <ul class="ch-pal__sw" dir="ltr">
+        <li class="ch-sw--pink">#FF2E7E</li>
+        <li class="ch-sw--black">#111111</li>
+        <li class="ch-sw--pro">PRO</li>
+        <li class="ch-sw--white">#FFF</li>
+      </ul>
+      <p class="ch-pal__type"><span class="ch-pal__big" dir="ltr">PROMO</span><span class="ch-pal__hand" dir="ltr">erkeb!</span><span class="ch-pal__note" data-i18n="cases.heetch.palNote"></span></p>
+    </article>
+
+    <article class="ch-t ch-mock ch-mock--duo st-r2" data-kind="mock">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/clients/heetch/m-duo.full.webp"><img src="img/clients/heetch/m-duo.webp" data-i18n-alt="cases.heetch.alt.duo" alt="" loading="lazy" decoding="async"></button>
+      <span class="ch-lab" data-i18n="cases.heetch.mk.duo"></span>
+    </article>
+
+    <!-- HT-10 · the real work: two Behance galleries and the feed -->
+    <article class="ch-t ch-links st-c2 st-r2" data-kind="links">
+      <span class="ch-k ch-k--pink"><bdi>HT-10</bdi> · <span data-i18n="cases.heetch.links.k"></span></span>
+      <h4 class="ch-links__h" data-i18n="cases.heetch.links.h"></h4>
+      <div class="ch-links__list">
+        <a href="https://www.behance.net/gallery/250754909/FIRST-MONTH-AT-HEETCH-DZ" target="_blank" rel="noopener"><span class="ch-links__l"><span class="ch-links__ico ch-links__ico--be" aria-hidden="true">Bē</span><span class="ch-links__t" data-i18n="cases.heetch.links.b1"></span></span><span aria-hidden="true">↗</span><span class="st-sr" data-i18n="case.newTab"></span></a>
+        <a href="https://www.behance.net/gallery/254889197/HEETCH-ENTRY-TEST" target="_blank" rel="noopener"><span class="ch-links__l"><span class="ch-links__ico ch-links__ico--be" aria-hidden="true">Bē</span><span class="ch-links__t" data-i18n="cases.heetch.links.b2"></span></span><span aria-hidden="true">↗</span><span class="st-sr" data-i18n="case.newTab"></span></a>
+        <a href="https://www.instagram.com/heetch.dz/" target="_blank" rel="noopener"><span class="ch-links__l"><span class="ch-links__ico ch-links__ico--ig" aria-hidden="true">IG</span><span class="ch-links__t" dir="ltr">@heetch.dz</span></span><span aria-hidden="true">↗</span><span class="st-sr" data-i18n="case.newTab"></span></a>
+      </div>
+      <span class="st-badge ch-badge" data-badge aria-hidden="true" data-i18n="case.new"></span>
+    </article>
+
+    <article class="ch-t ch-pro st-r2" data-kind="links">
+      <button type="button" class="st-zoom ch-zoom" data-zoom="img/studio/c10.webp"><img src="img/studio/c10.webp" data-i18n-alt="cases.heetch.posters.3" alt="" loading="lazy" decoding="async"></button>
+    </article>
+
+    <!-- the end card: where this work comes from, and a way to the contact -->
+    <article class="ch-t ch-end-card st-c3 st-r2">
+      <div class="ch-end-card__top"><span class="ch-k ch-k--ink" data-i18n="cases.heetch.end.k"></span><span class="ch-end-card__chip" data-i18n="cases.heetch.end.chip"></span></div>
+      <p class="ch-end-card__t" data-i18n="cases.heetch.end.t"></p>
+      <p class="ch-end-card__big" data-i18n="cases.heetch.end.big"></p>
+      <p class="ch-end-card__note" data-i18n="cases.heetch.end.note"></p>
+      <ul class="ch-end-card__list">
+        <li data-scope="cover" data-i18n="cases.heetch.end.items.0"></li>
+        <li data-scope="type" data-i18n="cases.heetch.end.items.1"></li>
+        <li data-scope="posters" data-i18n="cases.heetch.end.items.2"></li>
+        <li data-scope="planner" data-i18n="cases.heetch.end.items.3"></li>
+        <li data-scope="mock" data-i18n="cases.heetch.end.items.4"></li>
+        <li data-scope="links" data-i18n="cases.heetch.end.items.5"></li>
+      </ul>
+      <a class="ch-btn" href="#contact" data-i18n="cases.heetch.end.cta"></a>
+    </article>
+  </div>
+
+  <div class="st-case__foot">
+    <span data-i18n="case.drag"></span>
+    <span class="st-case__bar-p" data-track-bar aria-hidden="true"><i></i></span>
+  </div>
+</section>
