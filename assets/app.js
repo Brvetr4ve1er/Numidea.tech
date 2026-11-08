@@ -1628,10 +1628,10 @@
       // least 480px wide), where the bar would cover a third of the screen
       var mq = window.matchMedia('(max-width: 720px) and (min-height: 561px), (max-width: 479px)');
       var guide = !!document.querySelector('main.tarifs');
-      var inView = { contact: false, footer: false }, menuOpen = false;
+      var inView = { contact: false, footer: false, hero: false }, menuOpen = false;
       var lastY = scrollPos, fling = false, flingT = 0, jumpT = 0, jumping = false;
       function update() {
-        bar.classList.toggle('on', mq.matches && !menuOpen && !inView.contact && !inView.footer
+        bar.classList.toggle('on', mq.matches && !menuOpen && !inView.contact && !inView.footer && !inView.hero
           && (guide || scrollPos > viewH * 1.5) && (!fling || bar.contains(document.activeElement)));
       }
       function settle() { fling = false; update(); }
@@ -1648,10 +1648,12 @@
       }
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (es) {
-          es.forEach(function (e) { inView[e.target.classList.contains('footer') ? 'footer' : 'contact'] = e.isIntersecting; });
+          es.forEach(function (e) { inView[e.target.classList.contains('footer') ? 'footer' : e.target.classList.contains('tarifs-top') ? 'hero' : 'contact'] = e.isIntersecting; });
           update();
         });
-        ['#contact', '.footer'].forEach(function (s) { var el = document.querySelector(s); if (el) io.observe(el); });
+        /* the guide's hero offers the same two ways: while they are on screen
+           the bar would show them twice, one half under it */
+        ['#contact', '.footer', '.tarifs-top'].forEach(function (s) { var el = document.querySelector(s); if (el) io.observe(el); });
       }
       document.addEventListener('numidea:menu', function (e) { menuOpen = !!e.detail; update(); });
       // a same-page jump: not a fling, and the bar shows where it lands

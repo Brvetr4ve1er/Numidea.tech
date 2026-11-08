@@ -25,6 +25,10 @@
   /* one gutter for every grid (the home page had six: 23 to 29px at 1440)
      and two card paddings (it had six on a phone, 16 to 32px) */
   --col-gap:clamp(20px,1.7vw,32px);
+  /* two shadows, no more: at rest (a card on the page) and lifted (hover, the
+     chosen tier, a popover); both read --shade, so a theme sets its own depth */
+  --shadow-rest:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgb(var(--shade) / calc(.85 * var(--shade-k)));
+  --shadow-lift:inset 0 1px 0 rgba(255,255,255,.08),0 30px 60px -32px rgb(var(--shade) / calc(.9 * var(--shade-k)));
   --card-pad:clamp(20px,2.2vw,32px);
   --card-pad-lg:clamp(20px,3vw,48px);
   --r-pill:4px;--r-lg:22px;
@@ -320,6 +324,19 @@ html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
    nothing moves and a whole ring always fits inside the clip. */
 .hero{--ring-room:6px;padding:calc(var(--s-10) + 40px) var(--ring-room) var(--s-7);margin-inline:calc(-1 * var(--ring-room));
   position:relative;overflow:hidden}
+/* The browser-language offer (index.html, before the phone bar): a small
+   pill fixed at the foot of the screen, at the inline start, clear of the
+   phone bar when that is on. It sits in no row of the page, so it takes no
+   height from the headline; the link and the close button keep 44px hit
+   areas, the pill itself is the slimmer part. */
+.lang-offer{position:fixed;z-index:79;bottom:max(var(--s-3),env(safe-area-inset-bottom));inset-inline-start:max(var(--gutter),env(safe-area-inset-left));
+  display:flex;align-items:center;margin:0;padding-inline-start:var(--s-2);border:1px solid var(--hairline);border-radius:999px;
+  background:var(--void);box-shadow:var(--shadow-lift);font-size:var(--t-small);color:var(--muted)}
+.lang-offer[hidden]{display:none}
+.lang-offer-go{display:inline-flex;align-items:center;min-height:44px;padding-inline:var(--s-2);color:var(--ice)}
+.lang-offer-x{display:inline-grid;place-items:center;width:44px;height:44px;padding:0;border:0;background:none;color:inherit;cursor:pointer}
+body:has(.m-contact.on) .lang-offer{bottom:calc(73px + var(--s-3) + env(safe-area-inset-bottom))}
+@media print{.lang-offer{display:none!important}}
 /* The ambient layers are gone (one metaphor: the engraved plates, BRAND.md
    "The atlas"): the hero's two blurred glow blobs, cut by the hero's clip
    into a hard slab above the plate and seams 14px in from a phone's edges;
@@ -563,7 +580,7 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
    was a call to action. One geometry for the three (Fleet 4): 52px tall, the
    14px mono label, one radius, a 1px edge; they were five on the home page
    (13 or 14px, 45 to 53px tall). */
-.btn{font-family:var(--font-mono);font-size:var(--t-ui);font-weight:700;line-height:1.4;padding:var(--s-3) var(--s-5);min-height:52px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
+.btn{font-family:var(--font-body);font-size:15px;font-weight:600;line-height:1.4;padding:var(--s-3) var(--s-5);min-height:52px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
   transition:color var(--t-enter),background-color var(--t-enter),border-color var(--t-enter),box-shadow var(--t-enter);
   text-decoration:none;display:inline-flex;align-items:center;gap:var(--s-2)}
 /* Flat, not a gradient sweep, and no bloom: a halo under the primary button
@@ -571,8 +588,8 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
    seat now (themes.css), and the hover is the lighter fill, with no lift. */
 .btn-primary{background:var(--crimson);color:var(--on-crimson);border-color:var(--crimson)}
 @media (hover:hover){.btn-primary:hover{background:var(--crimson-hi);border-color:var(--crimson-hi)}}
-.btn-teal{background:transparent;color:var(--teal-text);border-color:var(--teal)} /* text-safe teal: on Daylight the raw teal is 3.0:1 */
-@media (hover:hover){.btn-teal:hover{background:color-mix(in srgb,var(--teal) 8%,transparent);border-color:var(--teal-text)}}
+.btn-teal{background:transparent;color:var(--ice);border-color:var(--hairline-2)} /* the secondary way in: a ghost in the text colour, the accent is for the primary (the name is the class's old one) */
+@media (hover:hover){.btn-teal:hover{background:color-mix(in srgb,var(--ice) 6%,transparent);border-color:var(--ice)}}
 /* the text link: no box, the accent, an underline that fills on hover; the
    arrow is in the copy (and turns with .arr in Arabic) */
 .btn-ghost{background:transparent;color:var(--teal-text);border-color:transparent;padding-inline:0;
@@ -594,6 +611,11 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
 }
 .pill{font-family:var(--font-mono);font-size:var(--t-label);padding:var(--s-1) var(--s-3);border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted);background:var(--navy);display:inline-block}
 .pill.live{color:var(--teal-text);border-color:var(--teal)}
+/* A tag that only labels (a stack, a language level, a kind of site) is text,
+   not a box: the stateful pills (.live, .concept) keep their edge, the rest
+   run on one line with a middle dot between them. */
+.pill:not(.live):not(.concept){padding:0;border:0;border-radius:0;background:none}
+.pills .pill:not(.live):not(.concept)+.pill:not(.live):not(.concept)::before,.fd-pills .pill+.pill::before{content:"·";margin-inline-end:var(--s-2);color:var(--muted)}
 /* a portfolio piece, not client work: dashed, and never hidden (see the phone rule) */
 .pill.concept{border-style:dashed}
 .pill.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-inline-end:var(--s-2);vertical-align:middle}
@@ -725,9 +747,9 @@ html[dir="rtl"] .proj .body a.gain::after{transform:scaleX(-1)}
 .proj{position:relative}
 .proj h3 a::after{content:"";position:absolute;inset:0;z-index:4}   /* the title's link (721fe91), the card's way to its sheet */
 /* that link is a phone's tap target too: one line of title was 28px tall
-   (33 in Arabic), under the 44px floor. 8px above and below, given back by
+   (33 in Arabic), under the 44px floor. 12px above and below, given back by
    the margin, so the box grows and the title's rhythm does not. */
-.proj h3 a{display:inline-block;padding-block:var(--s-2);margin-block:calc(-1 * var(--s-2))}
+.proj h3 a{display:inline-block;padding-block:var(--s-3);margin-block:calc(-1 * var(--s-3))}
 .proj .actions a[data-i18n="work.live"],.proj .body .gain{position:relative;z-index:5}
 .proj .thumb{aspect-ratio:16/10;background:var(--grad-blood);display:grid;place-items:center;position:relative;overflow:hidden;perspective:800px}
 .proj .thumb::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,color-mix(in srgb,var(--teal) 35%,transparent),transparent 60%);mix-blend-mode:screen;transition:opacity var(--t-enter)}
@@ -796,7 +818,7 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 /* ---------- founder ---------- */
 .founder-card{background:var(--navy);border:1px solid var(--hairline-2);border-radius:var(--r-lg);
   padding:var(--card-pad-lg);max-width:940px;position:relative;overflow:hidden;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 34px 70px -40px rgb(var(--shade) / calc(.85 * var(--shade-k)))}
+  box-shadow:var(--shadow-rest)}
 .founder-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--crimson) 70%,transparent),transparent)}
 .fd-top{display:flex;gap:var(--col-gap);align-items:center;margin-bottom:var(--s-5)}
@@ -810,7 +832,7 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .fd-id h3{font-family:var(--font-display);font-weight:600;font-size:clamp(16.4px, 11.87px + 1.26vw, 30px);letter-spacing:.01em}
 .fd-role{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted);margin:var(--s-2) 0 var(--s-3)}
 .fd-pills{display:flex;flex-wrap:wrap;gap:var(--s-2)}
-.fd-pills .pill{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;padding:var(--s-1) var(--s-3);border:1px solid var(--hairline-2);border-radius:var(--r-pill);color:var(--muted)}
+.fd-pills .pill{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;padding:0;border:0;border-radius:0;color:var(--muted)}
 .fd-bio{color:var(--body-strong);line-height:1.65;max-width:43.758em;margin-bottom:var(--s-5)}
 .fd-actions{display:flex;flex-wrap:wrap;gap:var(--s-3)}
 
@@ -845,6 +867,11 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .cv-clip{min-height:0;overflow:hidden;margin-inline:calc(-1 * var(--s-2));padding-inline:var(--s-2)}
 .cv-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:var(--col-gap);
   border-top:1px solid var(--hairline);margin-top:var(--s-6);padding-top:var(--s-6);padding-bottom:var(--s-2)}
+/* closed, the content is hidden as well as clipped (after the row has closed):
+   a clipped control still counts as a box over whatever sits at its place */
+.cv-panel:not(.open) .cv-inner{visibility:hidden;transition:visibility 0s .45s}
+html:not(.js):not(.js-ready) .cv-panel .cv-inner{visibility:visible}
+@media (prefers-reduced-motion:reduce){.cv-panel:not(.open) .cv-inner{transition:none}}
 .cv-col h4{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--faint);margin-bottom:var(--s-4)}
 
 /* The date sits on its own line: the CV's dates carry months ("Août 2025 –
@@ -1152,7 +1179,7 @@ html[dir="rtl"] .cap .promise{font-family:var(--font-ar-body);font-style:normal;
 .scene-banner::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(70% 120% at 88% 50%,color-mix(in srgb,var(--teal) 12%,transparent),transparent 60%)}
 @media (hover:hover){.scene-banner:hover{border-color:var(--crimson);transform:translateY(-3px);
-  box-shadow:0 26px 54px -30px rgb(var(--shade) / calc(.9 * var(--shade-k))),0 0 0 1px color-mix(in srgb,var(--crimson) 28%,transparent)}}
+  box-shadow:var(--shadow-lift)}}
 .sb-art{flex:none;width:76px;height:56px;position:relative;perspective:420px}
 .sb-art i{position:absolute;inset:0;border:1px solid var(--hairline-2);border-radius:6px;background:var(--plum);
   transform-style:preserve-3d;transition:transform var(--dur-slow) var(--ease-out)}
@@ -1289,10 +1316,10 @@ section.band+section.band::after{background:var(--band)}
 /* 4 — give every card family real depth instead of a flat 1px box */
 .proj,.svc-row,.preview{
   background-image:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,0) 38%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 24px 50px -32px rgb(var(--shade) / calc(.85 * var(--shade-k)))}
+  box-shadow:var(--shadow-rest)}
 @media (hover:hover){.proj:hover{
   border-color:color-mix(in srgb,var(--teal) 35%,transparent);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 34px 64px -30px rgb(var(--shade) / calc(.9 * var(--shade-k))), 0 0 0 1px color-mix(in srgb,var(--teal) 22%,transparent), 0 0 34px -8px color-mix(in srgb,var(--teal) 28%,transparent)}}
+  box-shadow:var(--shadow-lift)}}
 
 /* 5 — sharper display type + a brass foil accent on the heading flourish */
 /* NOT --grad-blood. That ramp ends in #500A1F / #411E3A, which measure
@@ -1316,7 +1343,7 @@ main.wrap>section h2.sec em{color:var(--crimson-text)}
   background:linear-gradient(90deg,transparent,rgba(var(--brand),.85),transparent)}
 /* hover lifts into the brand colour instead of the global teal */
 @media (hover:hover){.proj--brand:hover{border-color:rgba(var(--brand),.45);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 34px 64px -30px rgb(var(--shade) / calc(.9 * var(--shade-k))), 0 0 0 1px rgba(var(--brand),.32), 0 0 38px -8px rgba(var(--brand),.4)}}
+  box-shadow:var(--shadow-lift)}}
 
 
 /* ============================================================
@@ -1684,13 +1711,12 @@ main.wrap>section h2.sec em{color:var(--crimson-text)}
 .tier{position:relative;display:flex;flex-direction:column;padding:var(--card-pad);
   border:1px solid var(--hairline);border-radius:var(--r-lg);background:var(--navy);
   background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 42%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgb(var(--shade) / calc(.85 * var(--shade-k)));
+  box-shadow:var(--shadow-rest);
   transition:border-color var(--t-enter)}
 /* The chosen tier earns a ring and a label, not a different size — a scaled
    card would change the row height and shift the two beside it. */
 .tier-pop{border-color:color-mix(in srgb,var(--crimson) 45%,transparent);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),
-  0 0 0 1px color-mix(in srgb,var(--crimson) 18%,transparent),0 28px 60px -36px rgb(var(--shade) / calc(.9 * var(--shade-k)))}
+  box-shadow:var(--shadow-lift)}
 .t-pop{position:absolute;top:0;inset-inline-start:var(--s-5);transform:translateY(-50%);
   font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--on-crimson);background:var(--crimson);padding:var(--s-1) var(--s-3);border-radius:var(--r-pill)}
@@ -1720,7 +1746,7 @@ html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
 
 /* ---------- estimator ---------- */
 .estimator{border:1px solid var(--hairline-2);border-radius:var(--r-lg);overflow:hidden;
-  background:var(--grad-noir);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 30px 70px -44px rgb(var(--shade) / calc(.9 * var(--shade-k)));
+  background:var(--grad-noir);box-shadow:var(--shadow-rest);
   margin-bottom:var(--s-8)}
 .est-head{padding:var(--s-5);border-bottom:1px solid var(--hairline)}
 .est-head p{color:var(--muted);font-size:14px;line-height:1.6;max-width:56em}
@@ -2033,7 +2059,7 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
    counts as a layout shift (a mouse move or a scroll is not an input). */
 .mkv-tip{position:absolute;top:0;inset-inline-start:0;z-index:3;display:grid;gap:var(--s-1);padding:var(--s-2) var(--s-3);pointer-events:none;
   opacity:0;transition:opacity var(--t-hover);border:1px solid var(--hairline-2);border-radius:var(--r-sm);
-  background:var(--plum);box-shadow:0 12px 30px -14px rgb(var(--shade) / calc(.8 * var(--shade-k)));
+  background:var(--plum);box-shadow:var(--shadow-lift);
   font-family:var(--font-display);font-size:var(--t-small);line-height:1.5;color:var(--body-strong);
   font-variant-numeric:tabular-nums}
 /* no wider than the plot: on a 320px chart the heading wraps at its spaces,
@@ -2091,7 +2117,7 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
    more: the primary's 34px bloom and 2px lift on focus were the one state
    the hover did not have */
 .btn-primary:focus-visible{background:var(--crimson-hi);border-color:var(--crimson-hi)}
-.btn-teal:focus-visible{background:color-mix(in srgb,var(--teal) 8%,transparent);border-color:var(--teal-text)}
+.btn-teal:focus-visible{background:color-mix(in srgb,var(--ice) 6%,transparent);border-color:var(--ice)}
 .btn-ghost:focus-visible{color:var(--ice);text-decoration-color:currentColor}
 
 /* -- press: buttons and chips answer the finger (hover lifts were already
@@ -2135,7 +2161,7 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
    throughout: a literal colour here would be right in one palette only. */
 .market,.models{border:1px solid var(--hairline);border-radius:var(--r-lg);padding:var(--card-pad);
   background:var(--navy);background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 40%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 24px 50px -36px rgb(var(--shade) / calc(.85 * var(--shade-k)));
+  box-shadow:var(--shadow-rest);
   margin-bottom:var(--s-8)}
 .mk-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(19px,2.4vw,26px);
   letter-spacing:-.015em;color:var(--ice);margin-bottom:var(--s-2)}
@@ -2720,7 +2746,7 @@ html[dir="rtl"] .crumb{letter-spacing:0}
 /* ---- Back to top ---- */
 .to-top{position:fixed;inset-inline-end:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:90;
   width:44px;height:44px;display:grid;place-items:center;border-radius:50%;cursor:pointer;
-  background:var(--navy);color:var(--ice);border:1px solid var(--hairline-2);box-shadow:0 12px 30px -14px rgb(var(--shade) / calc(.9 * var(--shade-k)));
+  background:var(--navy);color:var(--ice);border:1px solid var(--hairline-2);box-shadow:var(--shadow-lift);
   opacity:0;transform:translateY(12px);pointer-events:none;
   /* hidden, not just transparent: an invisible button still took Tab focus.
      visibility flips after the fade out and at once on the way in. */
@@ -2984,7 +3010,7 @@ html[dir="rtl"] .pi-light{-webkit-mask-image:linear-gradient(270deg,#000 55%,tra
   .m-contact .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;padding:var(--s-2) var(--s-3);line-height:1.2;text-align:center}
   /* beside the primary, the WhatsApp way takes the outline look: a bare text
      link in a fixed bar read as a caption */
-  .m-contact .btn-ghost{border-color:var(--teal);color:var(--teal-text);text-decoration:none}
+  .m-contact .btn-ghost{border-color:var(--hairline-2);color:var(--ice);text-decoration:none}
   .footer{padding-bottom:calc(var(--s-5) + 74px + env(safe-area-inset-bottom))}
   /* a control focused under the bar is scrolled clear of it, ring included:
      the bar's 73px plus 9px for the 5px focus ring and some air */

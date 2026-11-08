@@ -157,7 +157,7 @@
 .case-alliance .ca-poster--white{background:var(--ca-white);border:1px solid var(--c-line)}
 .case-alliance .ca-zoom img{object-fit:contain}
 .case-alliance .ca-zoom:focus-visible{outline-offset:-5px;outline-color:var(--c-accent)}
-.case-alliance .ca-plab{position:absolute;inset-inline-start:8px;bottom:8px;z-index:2;max-width:calc(100% - 16px);padding:4px 9px;border-radius:999px;background:var(--c-dark);color:var(--c-on-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.case-alliance .ca-plab{position:absolute;inset-inline-start:8px;bottom:8px;z-index:2;max-width:calc(100% - 16px);padding:4px 9px;border-radius:999px;background:var(--c-dark);color:var(--c-on-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;text-wrap:balance;overflow-wrap:anywhere;pointer-events:none}
 .case-alliance .ca-plab--sand{background:var(--c-bg);color:var(--c-dark)}
 .case-alliance .ca-plab--mint{background:var(--c-accent);color:var(--c-dark)}
 .case-alliance .ca-plab--l{inset-inline-start:10px;bottom:10px;padding:5px 10px}

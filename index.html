@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GdGaX3ZsmLK6ENKaWVzIGvMgMys0L2LTsmWbilkOgmo=' 'sha256-vPdxTp5YXFWTOh7meCMlX/K1jbrSjBx8GL5HH8kmeRA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GdGaX3ZsmLK6ENKaWVzIGvMgMys0L2LTsmWbilkOgmo=' 'sha256-e3Qs7FXdnwdwEgmm6jPL8+NG0nKxwNyAOvyIWy9lR9E='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Création de sites web en Algérie | Numidea Labs</title>
 <meta name="description" content="Création de sites web en français, anglais et arabe, dès 90 000 DA. Voyez votre page d'accueil avant de payer. Studio à Bordj Bou Arréridj, Algérie.">
 <meta name="theme-color" content="#0A1420">
@@ -272,7 +272,7 @@
              the script ran, and hiding it moved the whole bar (a layout
              shift of 0.01 at 1280). js-only, since a bar this full needs
              the script's measure. -->
-        <a class="nav-cta js-only" href="#apercu" data-i18n="mbar.cta" hidden>Mon Aperçu gratuit</a>
+        <a class="nav-cta js-only" href="#apercu" data-i18n="mbar.cta" hidden>Mon Aperçu</a>
         <!-- the menu's open and close marks are drawn (24-grid, stroke 1.5),
              not typed: the system's ☰ and × came in whatever face the
              platform had for them, at a different weight on every phone -->
@@ -320,7 +320,7 @@
        opened the menu to act with nothing to press. The same two links as
        the phone bar (.m-contact), which is hidden while the menu is open. -->
   <div class="menu-acts">
-    <a class="btn btn-primary" href="#apercu" data-i18n="mbar.cta">Mon Aperçu gratuit</a>
+    <a class="btn btn-primary" href="#apercu" data-i18n="mbar.cta">Mon Aperçu</a>
     <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">
       <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
       <span data-i18n="footer.wa">WhatsApp</span>
@@ -339,42 +339,6 @@
     </div>
     <div class="hero-grid">
       <div class="hero-copy">
-        <!-- The page in the browser's own language, offered, never forced: a
-             visitor whose browser reads Arabic (or English) first and who has
-             chosen no language yet (app.js stores this page's language once
-             it runs, so this is the first visit) is offered that page in one
-             line, in its own name, by the header switch's own link. Following
-             it stores the choice, as the switch does; the close button stores
-             this page's. No redirect: the root stays French for every crawler
-             and every shared link (the x-default). The script is inline, right
-             after the line, so the line is in place before the first paint
-             and nothing under it moves when the deferred app.js arrives; it
-             sets the line's styles too, until styles.css carries a
-             .lang-offer rule. -->
-        <p class="lang-offer" hidden><a class="lang-offer-go" href="#top"></a><button type="button" class="lang-offer-x" aria-label="Fermer" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></p>
-        <script>
-          (function () {
-            var bar = document.querySelector('.lang-offer'), here = document.documentElement.getAttribute('lang');
-            var chosen = null;
-            try { chosen = localStorage.getItem('numidea-lang'); } catch (e) { return; }
-            var first = ((navigator.languages && navigator.languages[0]) || navigator.language || '').slice(0, 2).toLowerCase();
-            var NAMES = { fr: 'Français', en: 'English', ar: 'العربية' };
-            var src = !chosen && NAMES[first] && first !== here && document.querySelector('.navbar .lang a[hreflang="' + first + '"]');
-            if (!bar || !src) return;
-            var go = bar.querySelector('.lang-offer-go'), x = bar.querySelector('.lang-offer-x');
-            var keep = function (l) { try { localStorage.setItem('numidea-lang', l); } catch (e) {} };
-            go.textContent = NAMES[first];
-            go.setAttribute('href', src.getAttribute('href'));
-            go.setAttribute('hreflang', first); go.setAttribute('lang', first);
-            go.addEventListener('click', function () { keep(first); });
-            x.addEventListener('click', function () { keep(here); bar.hidden = true; bar.style.display = 'none'; });
-            // inline styles until styles.css carries a .lang-offer rule
-            bar.style.cssText = 'align-items:center;gap:var(--s-2);margin:0 0 var(--s-4);font-size:var(--t-small);color:var(--muted);display:flex';
-            go.style.cssText = 'color:var(--ice);min-height:44px;display:inline-flex;align-items:center';
-            x.style.cssText = 'display:inline-grid;place-items:center;width:44px;height:44px;padding:0;border:0;background:none;color:inherit;cursor:pointer';
-            bar.hidden = false;
-          })();
-        </script>
         <span class="eyebrow" data-i18n="hero.eyebrow">Studio web · Bordj Bou Arréridj</span>
         <h1 class="hero-h" id="hero-title" data-i18n="hero.title">Voyez votre page d’accueil <span class="swash">avant de payer.</span></h1>
         <div class="dim-line" aria-hidden="true"><i></i><b>36°04′N · 4°46′E</b><i></i></div>
@@ -435,7 +399,7 @@
         </template>
           <span class="pl-wipe" aria-hidden="true"></span>
         </div>
-        <span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span>
+        <span class="sr-only" data-i18n="work.sheet">Voir le projet en détail</span>
         </a>
         <div class="plate-meta">
           <span class="pm-idx" aria-hidden="true"><b>01</b>/04</span>
@@ -527,7 +491,7 @@
                one visible secondary link. The host line and a second "En
                ligne" pill left on 2026-11-07: an address in netlify type under
                every title, and a state the plate already says. -->
-          <h3><a href="scene/#bordjsteel">Bordj Steel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span></a></h3>
+          <h3><a href="scene/#bordjsteel">Bordj Steel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail</span></a></h3>
           <p data-i18n="proj4.desc">Site corporate B2B pour Bordj Steel SPA, fabricant de charpente métallique et de panneaux sandwich à Bordj Bou Arréridj — catalogue produits, références et espace recrutement.</p>
           <a class="gain" href="scene/#gv-bordjsteel"><span data-i18n="proj4.gain">Un acheteur trouve la bonne gamme et ses caractéristiques techniques sans appeler.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="pills"><span class="pill">B2B</span><span class="pill" data-i18n="tag.corporate">Institutionnel</span></div>
@@ -541,7 +505,7 @@
         <div class="thumb"><img class="shot" src="assets/previews/alliancetravel.webp" srcset="assets/previews/alliancetravel-720.webp 720w, assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
-          <h3><a href="scene/#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span></a></h3>
+          <h3><a href="scene/#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail</span></a></h3>
           <p data-i18n="proj2.desc">Identité, site trilingue, prise de rendez-vous visa et calculateur de devis sur WhatsApp pour une agence de voyages de Bordj Bou Arréridj.</p>
           <a class="gain" href="scene/#gv-alliance"><span data-i18n="proj2.gain">Un voyageur estime son budget et envoie une demande complète sur WhatsApp.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="pills"><span class="pill" data-i18n="tag.brand">Marque</span><span class="pill" data-i18n="tag.funnel">Tunnel de vente</span></div>
@@ -555,7 +519,7 @@
         <div class="thumb"><img class="shot" src="assets/previews/almaflowclim.webp" srcset="assets/previews/almaflowclim-720.webp 720w, assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Artisan · Île-⁠de-⁠France</span>
-          <h3><a href="scene/#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span></a></h3>
+          <h3><a href="scene/#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail</span></a></h3>
           <p data-i18n="proj3.desc">Le site d’un artisan de Gennevilliers en climatisation, chauffage et plomberie : une page par métier, ses réalisations chantier par chantier et une demande de devis en un seul formulaire.</p>
           <a class="gain" href="scene/#gv-almaflow"><span data-i18n="proj3.gain">En cas de panne, un client appelle d’un simple appui depuis la page du métier.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="pills"><span class="pill" data-i18n="tag.static">Site vitrine</span><span class="pill" data-i18n="tag.seo">SEO</span></div>
@@ -582,7 +546,7 @@
         <div class="thumb"><img class="shot" src="assets/previews/glaive.webp" srcset="assets/previews/glaive-720.webp 720w, assets/previews/glaive.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Capture du site Glaive Store" data-i18n-alt="proj7.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj7.cat">Commerce · Gaming</span>
-          <h3><a href="scene/#glaive">Glaive Store <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail <span aria-hidden="true">→</span></span></a></h3>
+          <h3><a href="scene/#glaive">Glaive Store <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail</span></a></h3>
           <p data-i18n="proj7.desc">Une marque fictive de matériel gaming et sa boutique en ligne, conçues de A à Z comme démo de portfolio.</p>
           <div class="pills"><span class="pill" data-i18n="tag.commerce">Commerce</span><span class="pill" data-i18n="tag.brand">Marque</span><span class="pill concept" data-i18n="work.concept">Démo portfolio</span></div>
           <div class="actions">
@@ -1258,11 +1222,44 @@
   </div>
 </footer>
 
+<!-- The page in the browser's own language, offered, never forced: a
+     visitor whose browser reads Arabic (or English) first and who has
+     chosen no language yet (app.js stores this page's language once
+     it runs, so this is the first visit) is offered that page in one
+     line, in its own name, by the header switch's own link. Following
+     it stores the choice, as the switch does; the close button stores
+     this page's. No redirect: the root stays French for every crawler
+     and every shared link (the x-default). The script is inline, right
+     after the line, so the line is in place before the first paint.
+     styles.css floats it at the foot of the screen: it takes no height
+     from the headline, and nothing moves when the deferred app.js
+     arrives. -->
+<p class="lang-offer" hidden><a class="lang-offer-go" href="#top"></a><button type="button" class="lang-offer-x" aria-label="Fermer" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></p>
+<script>
+  (function () {
+    var bar = document.querySelector('.lang-offer'), here = document.documentElement.getAttribute('lang');
+    var chosen = null;
+    try { chosen = localStorage.getItem('numidea-lang'); } catch (e) { return; }
+    var first = ((navigator.languages && navigator.languages[0]) || navigator.language || '').slice(0, 2).toLowerCase();
+    var NAMES = { fr: 'Français', en: 'English', ar: 'العربية' };
+    var src = !chosen && NAMES[first] && first !== here && document.querySelector('.navbar .lang a[hreflang="' + first + '"]');
+    if (!bar || !src) return;
+    var go = bar.querySelector('.lang-offer-go'), x = bar.querySelector('.lang-offer-x');
+    var keep = function (l) { try { localStorage.setItem('numidea-lang', l); } catch (e) {} };
+    go.textContent = NAMES[first];
+    go.setAttribute('href', src.getAttribute('href'));
+    go.setAttribute('hreflang', first); go.setAttribute('lang', first);
+    go.addEventListener('click', function () { keep(first); });
+    x.addEventListener('click', function () { keep(here); bar.hidden = true; });
+    bar.hidden = false;
+  })();
+</script>
+
 <!-- phones: the two ways to start, kept in reach once the visitor is past the
      hero; it steps aside while #contact, or the footer just below it, is on
      screen, where #contact already offers both -->
 <nav class="m-contact" aria-label="Contact rapide" data-i18n-aria="mbar.aria">
-  <a class="btn btn-primary" href="#apercu" data-i18n="mbar.cta">Mon Aperçu gratuit</a>
+  <a class="btn btn-primary" href="#apercu" data-i18n="mbar.cta">Mon Aperçu</a>
   <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">
     <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
     <span data-i18n="footer.wa">WhatsApp</span>

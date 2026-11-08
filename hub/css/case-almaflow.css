@@ -173,12 +173,18 @@
 .case-almaflow .cf-quote{background:var(--cf-white);border:1px solid var(--c-line)}
 .case-almaflow .cf-quote__in{height:100%;display:flex;flex-direction:column;gap:8px;padding:12px}
 .case-almaflow .cf-quote__head{padding-inline-end:76px}
-.case-almaflow .cf-quote__card{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:10px 12px;background:var(--c-dark);color:var(--c-on-dark);border-radius:10px;min-height:4.4em}
+.case-almaflow .cf-quote__card{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:10px 12px;background:var(--c-dark);color:var(--c-on-dark);border-radius:10px;min-height:3.4em}
 .case-almaflow .cf-quote__card [role="tabpanel"]{display:flex;flex-direction:column;gap:2px}
 .case-almaflow .cf-quote__card [role="tabpanel"][hidden]{display:none}
 .case-almaflow .cf-quote__n{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(18px,1.8vw,24px);line-height:1.1}
 .case-almaflow .cf-quote__d{font-size:13px;line-height:1.3;color:var(--cf-soft)}
 .case-almaflow .cf-quote__sv{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
+/* the tile is a fixed two rows high, so nothing in it may shrink under its
+   neighbour (the service pills and the town buttons overlapped by 15px at a
+   phone): the rows keep their height, and the service card, which has room
+   to give, is what gives */
+.case-almaflow .cf-quote__in>*{flex-shrink:0}
+.case-almaflow .cf-quote__in>.cf-quote__sv{flex:1 0 auto}
 .case-almaflow .cf-pills,.case-almaflow .cf-towns{display:flex;flex-wrap:wrap;gap:5px}
 .case-almaflow .cf-pills button{min-height:44px;padding:0 10px;border:1px solid var(--c-dark);border-radius:999px;background:var(--cf-white);color:var(--c-dark);font-family:var(--c-font);font-weight:700;font-size:var(--t-label);cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s}
 .case-almaflow .cf-pills button[aria-selected="true"]{background:var(--c-dark);color:var(--c-accent)}
