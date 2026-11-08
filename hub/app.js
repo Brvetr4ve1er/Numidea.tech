@@ -10,6 +10,8 @@
    7 · brand layers (07) and the FAQ (12)
    8 · the cases' shell (09): tracks, badges, the viewer, and the small
        controls a case may use (see the list there)
+   9 · a link to #id lands on its target (the cases below the fold lay out
+       late, so the first jump is short)
    The rule of the page: nothing moves for longer than five seconds on its
    own, and nothing loops. Each motion answers an input or plays once when
    its section is first on screen; with prefers-reduced-motion: reduce
@@ -711,4 +713,31 @@
     lb.addEventListener('click', function (e) { if (e.target === lb || e.target === lbImg || e.target.closest('[data-lb-close]')) lb.close(); });
     lb.addEventListener('close', function () { if (opener) opener.focus(); opener = null; });
   }
+
+  /* ---------------- 9 · landing on an anchor ----------------
+     A case below the fold skips its layout (content-visibility) and counts
+     for a guessed height until it is near the screen, so a jump to
+     #voidsplunker (the bible's back link) or any #id after the cases first
+     lands short or long. On arrival (not on an in-page click: the smooth
+     scroll of those is left alone) three corrections, 150, 600 and 1400 ms after the
+     jump, put the target at its scroll-margin; none runs once the visitor
+     has scrolled, pressed a key or touched the page. */
+  (function () {
+    var touched = false;
+    ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) { addEventListener(ev, function () { touched = true; }, { passive: true }); });
+    var settle = function () {
+      var id = location.hash.slice(1), el;
+      try { el = id && document.getElementById(decodeURIComponent(id)); } catch (e) { el = null; }
+      if (!el) return;
+      touched = false;
+      [150, 600, 1400].forEach(function (ms) {
+        setTimeout(function () {
+          if (touched) return;
+          var d = el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0);
+          if (Math.abs(d) > 24) scrollBy({ top: d, behavior: 'instant' });
+        }, ms);
+      });
+    };
+    addEventListener('load', settle);
+  })();
 })();
