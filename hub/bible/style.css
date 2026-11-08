@@ -108,9 +108,9 @@ strong,b{font-weight:600}
 
 /* ---------- breadcrumb ---------- */
 .bar{display:flex;align-items:center;min-height:44px}
-.bc{display:flex;align-items:center;gap:12px;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.bc{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
 .bc li{display:flex;align-items:center;min-height:44px}
-.bc li+li::before{content:"/";margin-right:12px;color:var(--ink-2)}
+.bc li:not(:last-child)::after{content:"/";margin-left:12px;color:var(--ink-2)}
 .bc a{display:flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none;--teal-text:var(--red-text)}
 .bc .wm{display:block;height:15px;width:auto;overflow:visible}
 .bc [aria-current]{color:var(--ink)}
@@ -119,6 +119,8 @@ strong,b{font-weight:600}
 /* ---------- the cover ---------- */
 .cover{display:grid;grid-template-columns:1fr;gap:32px;align-items:end;border-bottom:3px solid var(--ink);padding-bottom:32px}
 .cover-copy{display:flex;flex-direction:column;gap:18px;container-type:inline-size}
+.back{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;min-height:44px;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red-text);text-decoration:none}
+.back:hover{color:var(--ink);text-decoration:underline}
 .chip-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font:500 12px/1.3 var(--mono);letter-spacing:.2em;text-transform:uppercase}
 .chip{background:var(--ink);color:var(--cream);padding:5px 8px}
 .chip-row span:not(.chip){letter-spacing:.14em}
