@@ -1275,18 +1275,132 @@ French uses a space as the thousands separator, so every space in
 All pricing strings in the dictionaries and the static markup carry these. A
 browser test confirmed no range splits at 1280/1024/768/390 in FR/EN/AR.
 
-## hub/ — the artist's page, not the studio's
+## hub/ — the Studio page
 
-The hub is Yasser's own page (b4vetrave1er / VOIDSPLUNKER.std): his art,
-his design work, his social presence. **Client websites do not belong here**
-— they live on the Numidea page. A "Selected Work" section of the studio's
-sites was added once and removed at the owner's request; `npm run check` now
-fails if any project URL appears in hub/.
+Since 2026-11-07 `/hub/` is the studio's own page, built from the owner's
+Studio design: a warm-paper, ink and one-red page about what Numidea Labs
+makes, how it works, what it costs and the work itself, with a character
+(Yasser and the black cat Kūro) who talks, points and reacts. It is the one
+page of the site with a fully authored identity, and it keeps its own
+stylesheet, script and fonts (`hub/style.css`, `hub/app.js`, `hub/fonts/`);
+the CSP stays `'self'`, no framework, no third-party host. The character
+bible it replaced moved to `/hub/bible/` (next section). One `h1`, in
+French, English and Arabic.
 
-**Since 2026-11-05 the page is his character bible** (56f29c1, 6216ec9): the
-owner chose his own "character bible" design as the hub, and it is ported
-natively, with no runtime, no framework and no third-party host (the CSP
-stays `'self'`). It is in English, one `h1` (the cover's "Yasser."), and its
+**The build.** `scripts/build-hub.mjs` (inside `npm run build`, and
+`--check` inside `npm run check`) turns the sources into the page; two runs
+leave no diff.
+- `hub/src/page.html`: the head, the nav, the screens and the footer, with
+  French baked in so the page reads whole with scripts off.
+- `hub/src/cases/<slug>.html` (+ `<slug>.i18n.json`): the five cases of 09
+  Proof (`bordjsteel`, `alliance`, `almaflow`, `traveler`, `heetch`), each
+  inlined at its `<!-- CASE:<slug> -->` marker; the case's own sheet is
+  `hub/css/case-<slug>.css`, scoped to `.case-<slug>`.
+- `hub/src/i18n/{fr,en,ar}.json`: the copy, flattened to the dotted keys the
+  markup names (`data-i18n`, `-html`, `-alt`, `-aria`, `-title`). A value
+  `"@home:<key>"` is the home page's own string (the FAQ, the Aperçu's terms
+  and message, the estimator's labels, the freelancers' row), so the settled
+  wording follows the home. Output: `hub/index.html` and `hub/i18n.js`
+  (English and Arabic, fetched only for a visitor who asked for them).
+- The estimator reads the home's price model from `assets/app.js` at build
+  time and bakes its starting estimate; nothing in the hub restates a price.
+  `npm run check` holds the port against the model (a drift test).
+- The build refuses: a key missing in one language, a key no dictionary has,
+  an `<img>` without alt, a local file that does not exist, a third-party
+  resource, a link host outside the allow-list, a style attribute other than
+  custom properties, an inline `on*=` handler, a `hub/img` file nothing
+  references, and a tool or model name (hashed, so the list is not in the
+  repository). Image sizes are written from the files.
+
+**Screens, in order.** 01 Hero (`#top`, the rig), 02 Wedge (`#wedge`, what
+the studio is not), 03 Services (`#services`), 04 Aperçu (`#preview`), 05
+Process (`#process`), 06 Pricing (`#pricing`, the estimator), 07 Brand
+(`#brand`, four layers), 08 Tech (`#tech`), 09 Proof (`#work`, the five
+cases), 10 Lab (`#lab`), 11 Founder (`#studio`), 12 FAQ (`#faq`), 13 Contact
+(`#contact`), then the footer. The copy is the owner's design with the facts
+corrected to the site's (prices, terms, the reply time, the team), listed in
+OWNER-CONTENT §21.
+
+**Palette** (the only colours of `hub/style.css`, each pair measured as
+painted, AA): paper `#D8CBB8`, floor `#CFBFAB`, cream `#F3ECE1`, ink
+`#211E1B` and `#3B332C`, muted `#4F4238`, line `#937F6B`, stone `#A8957F`
+(text on `#937F6B`), the red `#A34135` (a fill) and `#8A3127` (red text),
+the teal `#236660` and `#1B5550` (text), on-dark `#E4DACB`/`#CFBFAB`, the
+dark tile `#2C2824`, white. No radii, hard offset shadows (3, 6 and 10px of
+ink), a grain tile (`img/mascot/v2/grain.webp`, 360px, already coloured, used
+as a plain background). Red text under 24px is `--red-text`; small labels are
+`--muted`; labels are never under 12px (13px in Arabic, where they also drop
+their capitals and tracking). One palette: no theme picker, `color-scheme`
+light.
+
+**Faces** (`hub/fonts/`, `hub/fonts/fonts.css`, `font-display:swap`, each
+with `unicode-range`). Display: Archivo 800 to 900 (latin and latin-ext), with
+Condensed (width 62, weight 900) and Expanded (width 125) instances for the
+cases. Text and labels: Geist and Geist Mono, the site's own files named from
+`../../assets/fonts`; IBM Plex Sans Arabic likewise. Hand: Permanent Marker.
+Japanese: Noto Sans JP (700 to 900, cut to the Studio's glyphs and the
+bible's six) and Noto Serif JP (cut to the Traveler's glyphs). Arabic: Reem
+Kufi (600, 700) for display and Aref Ruqaa (700) for the hand, loaded only on
+the Arabic page; the French and English pages set their Arabic watermarks in
+the system serif and draw the nav's ع, so they fetch no Arabic face for a
+decoration. The cases load Montserrat, Sora, DM Sans, Manrope and Space Mono
+(400 and 700) as each case nears the viewport. Licences: the SIL OFL 1.1
+families in `hub/fonts/OFL.txt` (with the copyright line from each file's
+name table), Permanent Marker under the Apache License 2.0 in
+`hub/fonts/LICENSE-permanent-marker.txt`; NOTICE.md lists them.
+
+**Motion** (nothing loops; everything is at most 5 s). The intro sting plays
+once per session in CSS keyframes and is gone by 2.6 s; any key skips it; it
+does not take focus. The rig (Yasser and Kūro) is a stack of frames cut by
+opacity, run in 5-second windows after the panel is seen and after each
+input, then at rest with no animation running; the 18 frames that are not
+the base wait until the stage is on screen. Reveals play once on view; the
+wedge's cut, the process card and the carousels answer input. Under reduced
+motion there is no sting, the rig changes face only on a click and the
+figures stay still. Without JavaScript the page is complete: French, every
+FAQ answer open, every brand layer listed, the starting estimate.
+
+**The case shell.** `hub/style.css` carries what the five cases share: the
+bar, the horizontal scroll-snap track (`section.st-case__track`, not a
+`role=region` div), pips and badges, the viewer (a native `<dialog>` that
+opens the `name.full.webp` twin of a picture), the steppers, ranges, tabs,
+cycles, typed text and demo forms, driven by `data-*` hooks in `hub/app.js`
+(its section 8). A case's colours are tokens in its own `.case-<slug>`
+scope block, no hex outside it. Targets are 44px; case captions sit on the
+13px label step. A case never shows a price (decision 19): the cover chip
+shows its tag, and a scope card lists what was delivered. Live links are
+links (`rel=noopener`), never frames. Client artwork and the clients'
+figures are theirs (NOTICE.md); mockups carry a MAQUETTE or CONCEPT tag.
+
+**Images** are WebP made by `HUB_STUDIO_DIR=<design project> node
+scripts/build-hub-img.mjs` (sharp only, not part of `npm run build`):
+photos q78, posters q80, cutouts q82 with alpha 90, a lightbox twin up to
+1520px, any non-alpha file over 200 kB re-cut at q70, nothing upscaled.
+`npm run check` caps `hub/img` at 297 kB a file, `hub/fonts` at 46 kB,
+`hub/css` at 42 kB and the published set at 25 MB.
+
+**Gates.** The Studio runs in French, English and Arabic in `check`
+(estimator drift, dictionaries, art, tool names), `validate`, `audit`,
+`sweep` (with `content-visibility` painted, so the off-screen cases are
+captured), `vbugs` (the decorative watermarks are allowed by name),
+`keys` (the controls by keyboard) and `metrics`. `npm run design` does not
+measure it.
+
+## hub/bible/ — the character bible
+
+The page that was `/hub/` from 2026-11-05 to 2026-11-06 is the founder's
+character bible, now at `/hub/bible/` (`hub/bible/index.html`, `style.css`,
+`app.js`, `art/`, `og.jpg`; moved with `git mv`, paths one level deeper, the
+fonts shared in `hub/fonts`, canonical and og tags naming `/hub/bible/`). The
+Studio links it from its footer and its Lab. It is the page of **Yasser's
+own** (b4vetrave1er / VOIDSPLUNKER.std): his art, his design work, his social
+presence. The 2026-11-05 text below describes it; paths are relative to
+`hub/bible/` and `npm run hub:rig`, `hub:art` and `og` write there.
+Client websites still do not belong on the bible; the Studio is where client
+work lives (`npm run check` block 5 lets the Studio link only the
+netlify.app hosts the home links, and holds the bible to the artist's-page
+rule). The page is ported natively, with no runtime, no framework and no
+third-party host. It is in English, one `h1` (the cover's "Yasser."), and its
 sections are numbered as the design numbers them:
 
 | Section | Anchor | What it holds |
@@ -2219,6 +2333,127 @@ Per page:
   row from 560px, 52px tall); the ghost's border at 28% of `--ice`, visible
   on the dark themes, with a hover fill; on a phone the numeral in the
   upper third.
+
+## Fleet 4 design system (2026-11-07)
+
+The shared sheets (`assets/styles.css`, `assets/themes.css`) after the
+critique's 12-lens pass. The values below are the ones in the code; the
+design gate (`npm run design`, `scripts/design-check.mjs`) holds them,
+strict by default, with a ratchet for what the page does not meet yet.
+
+**One metaphor.** The page is a drafting sheet: a frame, a title block,
+engraved plates with captions, mono labels. Anything that is not that is out:
+the glow blobs, floaters, scanlines, the lantern's glow, the lighthouse beam,
+the progress bar and the idle loops are deleted (`@keyframes` 28 → 5). A
+decorative layer needs a reason in the metaphor, or it goes. The plates and
+their captions stay (the owner's choice).
+
+**Type scale** (`:root` in `assets/styles.css`). `--t-label` 12px (13 in
+Arabic; mono caps: kickers, eyebrows, captions, field labels), `--t-small`
+14px (notes, sources), `--t-ui` 14px (chips, controls), `--t-body` 16px
+(17 from 961px), `--t-lead` 19px (section intros, the hero's lede, questions),
+`--t-title` 24px (every card title; 19 under 600px), `--t-feature`
+`clamp(22px,17px + 1.1vw,30px)` (featured titles, price figures), `--t-cv`
+15px, `--t-display` 32px (a sub-page's section heading), `--t-h2`
+`clamp(24px,13px + 1.9vw,40px)`, tracking `--ls-label` .14em. The hero
+heading tops the section heading by half again: 1.55 at 1440 and 1.33 at 390
+in the default theme, and no h3/h4 is at or above the section heading. Every
+painted text size is one of these or the hero's; the gate fails a stray size.
+
+**Space, grid, container.** The set is `--s-1..--s-10`: 4, 8, 12, 16, 24, 32,
+48, 64, 96, 128px. One grid gutter, `--col-gap: clamp(20px,1.7vw,32px)`; two
+card paddings, `--card-pad: clamp(20px,2.2vw,32px)` and `--card-pad-lg:
+clamp(20px,3vw,48px)`; one section rhythm, `--sec-pad:
+clamp(56px,4vw + 24px,144px)`, and one lead-to-content gap `--head-gap:
+clamp(32px,2.5vw + 12px,64px)`. The container: `.wrap` is `--max` 1200px with a
+`--gutter` 48px; `--page-max: min(1580px,93vw)` with `--page-gutter:
+clamp(40px,3.4vw,64px)` (`--page-gutter-sm: clamp(20px,4.6vw,44px)` under
+960px) is the wide container for pages that read this sheet; scene/, hub/ and
+workspacehq/ keep their own sheets and copy these. Radii per theme:
+`--r-sm`/`--r-md` (Arcanum 8/14px, Engineering 2/4px), `--r-pill` 4px.
+
+**The button, the action row, the eyebrow.** One geometry: `.btn` is the body
+sans (Geist) at 15px/600, line-height 1.4, padding 12px 24px, min-height 52px,
+radius `--r-sm`, 8px between icon and label. Three variants: `.btn-primary`
+(brass fill, `--on-crimson` text; the one filled control in the header),
+`.btn-teal` (the secondary: a ghost in the text colour, `--hairline-2` border;
+the class name is the old one) and `.btn-ghost` (the text link: no box, the
+accent, an underline). Flat: no gradient, no bloom, hover is a lighter fill
+with no lift. An action row is `.actions-row` (the hero's, the Aperçu's, the
+FAQ's and the form's are `.hero-cta`, `.prev-actions`, `.faq-ask`,
+`.form-acts`): flex, wrap, gap 12px 16px, 32px above, buttons full width and
+centred on a phone. The eyebrow and the kicker are one recipe: Geist Mono
+`--t-label`, `--ls-label`, uppercase, brass (`--crimson-text`), 24px below.
+Tags are plain text with a middle dot; only the stateful `.live` and
+`.concept` tags keep an edge.
+
+**Colour roles** (`assets/themes.css`, all six themes; the token contract is
+`scripts/themes-check.mjs`). Brass (`--crimson`, `--crimson-text`) is the one
+emphasis colour: the primary button, the hero's swash, `h2.sec em`, the
+recommended tier, the kickers. Cyan (`--teal-text`) is a link and an accent
+only, never a wash. `--ice` is primary text and the lede's bold;
+`--body-strong` long copy; `--muted` labels and secondary text; `--faint`
+tertiary, at least 1.37:1 from `--muted` in every theme. No text or wash is
+derived from `--brand`. Daylight has one white card surface and no
+`--atmos`. Errors have their own role: `--error: color-mix(in srgb,#E5533F
+70%,var(--ice))` (5.5:1 on Daylight's paper, 6.3 to 7.5:1 on the dark
+grounds), a 14px "!" mark and a 2px inset rule on an invalid field, never
+the CTA's brass. Shadows are two tokens, `--shadow-rest` (a card on the page)
+and `--shadow-lift` (hover, the chosen tier, a popover), each reading
+`--shade` so a theme sets its own depth.
+
+**RTL typography** (`html[dir="rtl"]`). Arabic is set in IBM Plex Sans Arabic
+at 400 and 700 (600 is not used, so its files are not fetched): the display,
+body, swash and mono roles all resolve to it, with `letter-spacing:0` outside
+the logo. Headings (`h1`, `h2.sec`, `.t-sub`, `.tier h3`) take line-height
+1.28 and `padding-block:.05em`; figures are `tabular-nums lining-nums`; the
+word space of mono-role text is 0.3em or less (it measured 0.60em). Email and
+tel fields are typed left to right and aligned right. Ticks are one physical
+shape in both directions; the career chevron turns down; the arrows (`↗`,
+`→`) a pseudo-element draws are SVG masks (`--ic-arrow-ne`, `--ic-arrow-e`),
+mirrored in Arabic, because no loaded face has them. Phone market cells are a
+two-column grid. Arabic display and ranges are written in words
+(OWNER-CONTENT §8). The gate checks mono word space, system-face glyphs
+(CDP `getPlatformFontsForNode`) and a flipped "+" on `/ar/`, `/ar/tarifs/` and
+the Arabic 404; the typed arrows in the markup are still counted (F54).
+
+**Motion and hover.** One curve and two speeds: `--ease-out
+cubic-bezier(.2,.8,.2,1)`, `--t-hover` .18s (anything that answers the
+pointer or a press), `--t-enter` .3s (something that arrives: a panel, a
+menu); `--dur-slow` .7s for a border. No bare `ease`, no spring. Every
+`:hover` rule sits inside `@media (hover:hover)`, so a tap leaves nothing on.
+The reveal is a `reveal` keyframe animation (card hovers keep their own
+transitions). The hero uses `hero-rise-solid` only and finishes by 0.59s.
+Looping motion is capped at 5 s, and reduced motion removes the rest. The
+scrolled navbar is 96% opaque with no blur.
+
+**Breakpoints.** Width: 480, 600, 720, 960, 1100 and 1280px (22 became 6),
+plus `(max-height:560px)` and `(hover:hover)`. Under 480px the small-phone
+steps are one fluid block. From 961 to 1279px the nav links and the theme
+picker fold into the menu and the menu toggle shows, so the header works as
+on a phone and the call-to-action button shows at 1024. Work cards stack up
+to 720px. The Studio, scene and WorkspaceHQ have their own sets.
+
+**Sticky budget.** `--nav-h` 73px is the measured height of the fixed
+navbar; the phone bar (`.m-contact`) is 73px and appears after the hero
+(on `/tarifs/` it stays off while the hero, `.tarifs-top`, is in view); the
+language offer is a small fixed pill (`.lang-offer`, 44px hit areas, shown
+only when no language is stored) that moves above the bar; the estimate
+panel (`.est-out`) is one constant compact panel (103 to 165px), sticky at
+`top: calc(var(--nav-h) + var(--jump-h))` and only at `max-width:960px` and
+`min-height:600px`; `.to-top` is hidden under 500px of height. The target is
+that fixed plus sticky chrome covers at most 30% of the screen at 390x844,
+360x780, 844x390 and 640x400; the gate's ratchet holds today's 37% (390x844)
+and 41% (360x780), the jump row staying static on phones being the next step
+(F55).
+
+**What the gate holds.** `npm run design` runs on `/`, `/en/`, `/ar/`,
+`/tarifs/` and `/ar/tarifs/` at 1440 and 390: type, hero ratio, titles,
+space, one button geometry, at most two card paddings, one gutter, painted
+contrast (each text box repainted with its glyphs hidden, the 20th-percentile
+pixel at 3:1), hover gating, the sticky cover, one destination per label, the
+art debris in `hub/bible/art` and Arabic rendering. A figure above its target
+sits in `CEIL` at the value measured on 2026-11-07: it may fall, never rise.
 
 ## Project sheets (scene/)
 

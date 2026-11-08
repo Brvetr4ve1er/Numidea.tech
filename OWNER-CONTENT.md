@@ -2,11 +2,12 @@
 
 The site leaves a place for each item below and shows nothing until the real
 thing exists: no placeholders, no invented content. This file is not deployed.
-Status as of 2026-11-06 (after the owner's answers of 2026-10-30, the fix
+Status as of 2026-11-07 (after fleet 4b: the Studio page at /hub/, the critique pass; sections 20 and 21 are new, section 8 gained its list; before it, the owner's answers of 2026-10-30, the fix
 fleets of 2026-10-31 and of 2026-11-03, the hub rebuilt as your character
 bible and the UX pass of 2026-11-06; sections 16 and 17 record those
 answers, and the page now carries them; section 19 lists what the UX pass
-left for you to decide).
+left for you to decide; section 20 the copy proposals of the critique, section 21
+what the Studio page changed from your design).
 
 | # | Item | Status | Where it goes |
 |---|---|---|---|
@@ -17,7 +18,7 @@ left for you to decide).
 | 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03 and 2026-11-06 is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06 and 2026-11-07 (the Studio page and its five cases above all) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
@@ -29,6 +30,8 @@ left for you to decide).
 | 17 | Team and contact facts | Answered 2026-10-30, on the page since 2026-11-03 | section 17 |
 | 18 | The founder's name in Arabic script | Still open: the Arabic hero lede shows "Yasser Hamisse" in Latin script (isolated in a `<bdi>` since 2026-11-06) until you give the spelling | `assets/i18n/ar.js` (`hero.lede`) |
 | 19 | The UX pass's questions | 16 asked on 2026-11-06 (IMPROVEMENTS decisions 28 to 43, the recommended option first), plus the sharper captures that need the live sites; nothing changes until you answer | section 19 |
+| 20 | Copy proposals (I4): one claim per section heading, ledes that claim, the service taglines, a "je" version of the offer and the FAQ | Proposals only, each beside the current string; nothing on the pages changed (IMPROVEMENTS decisions 46, 47) | section 20 |
+| 21 | The Studio page (/hub/): what changed from your design, the pictures it lacks, the claims to confirm | Built 2026-11-07; the copy deviations are listed for your yes; 9 kinds of pictures missing; Arabic unreviewed | section 21; section 8 |
 
 ## 1. Legal notice + privacy page
 Fill every `null` in `scripts/legal-data.mjs`. `false` means "does not apply"
@@ -131,10 +134,10 @@ usually agreed with the client; the same email or WhatsApp message as for
 item 6 can cover it.
 
 ## 8. Arabic native review
-**Every Arabic string added or changed on 2026-10-31, 2026-11-03 and
-2026-11-06 awaits native review** (the lists are at the end of this section,
-"Written on 2026-10-31", "Written or changed on 2026-11-03" and "Written or
-changed on 2026-11-06"); nothing Arabic written by the fix fleets has been
+**Every Arabic string added or changed on 2026-10-31, 2026-11-03,
+2026-11-06 and 2026-11-07 awaits native review** (the lists are at the end of this section,
+"Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
+changed on 2026-11-06" and "Written or changed on 2026-11-07"); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -326,6 +329,80 @@ Left plain on purpose: Arabic text in attributes and titles (alt, aria
 labels, the meta tags, the mail subject, the WhatsApp texts, placeholders)
 cannot carry a `<bdi>`, so its Latin runs are as they were.
 
+Written or changed on 2026-11-07 (fleet 4b; none read by a native speaker).
+Each key is "AR review: <key>".
+
+- the home and the price guide's dictionaries (`assets/i18n/ar.js`):
+  `mbar.cta` (now «معاينتي», was «معاينتي المجانية»; the phone bar's label is
+  one word so it fits on one line), `work.sheet` (only the hidden trailing
+  arrow glyph left; the wording is unchanged); a66a2df and b9829d3 also wrote
+  ranges in words, made arrows `aria-hidden` and fixed one offer label (the
+  keys are in those commits' diffs);
+- the Studio page, `hub/src/i18n/ar.json` (333 keys; the design's own Arabic
+  kept where the page kept the sentence, the keys below are new or rewritten):
+  - `ui.title`, `ui.desc`, `ui.skip`, `ui.ogAlt`; `nav.aria`, `nav.home`,
+    `nav.lang`; `sting.skip`, `sting.skipL`; `hero.live`, `hero.still`;
+  - the rig: `rig.alt`, `rig.poke`, `rig.pokeKuro`, `rig.said`,
+    `rig.mood.base`; the wedge: `wedge.oursR`, `wedge.kuro`;
+  - services: `services.lead`, `services.actor`, `services.items.0.alt` to
+    `services.items.3.alt`, `services.items.1.weeks` to
+    `services.items.3.weeks`;
+  - the Aperçu: `preview.lead`, `preview.steps.1.d`, `preview.steps.2.d`,
+    `preview.alt`;
+  - the process: `process.steps.1.d` to `process.steps.4.d`,
+    `process.steps.4.m`, `process.steps.0.alt` to `process.steps.4.alt`;
+  - pricing: `pricing.title`, `pricing.lead`, `pricing.size`,
+    `pricing.pace`, `pricing.care`, `pricing.careL`, `pricing.dz`,
+    `pricing.eu`, `pricing.us`, `pricing.running`, `pricing.sources`,
+    `pricing.noJs`, `pricing.kuroAlt`; brand: `brand.pick`; tech:
+    `tech.items.0.statL`;
+  - proof: `proof.title`, `proof.lead`, `proof.actor`, `proof.own`,
+    `proof.glaive`, `proof.whq`;
+  - the lab: `lab.lead`, `lab.bible`, `lab.bibleD`, `lab.items.0.t` to
+    `lab.items.8.t`, `lab.items.0.alt` to `lab.items.8.alt`;
+  - the founder: `founder.teamL`, `founder.team.0.r`, `founder.team.0.d`,
+    `founder.modesAlt.0` to `founder.modesAlt.2`, `founder.photo`,
+    `founder.duo`, `founder.deskAlt`, `founder.stickersAlt`,
+    `founder.bible`, `founder.cv`;
+  - `faq.actor`; contact: `contact.lead`, `contact.hours`, `contact.waK`,
+    `contact.previewK`, `contact.signAlt`; footer: `footer.line`,
+    `footer.site`, `footer.bible`, `footer.nav`; the case shell: `case.prev`,
+    `case.next`, `case.drag`, `case.close`, `case.zoom`, `case.new`,
+    `case.seen`, `case.unlocked`, `case.open`, `case.newTab`;
+  - the sting's HUD stays in Latin («06:12 · BORDJ BOU ARRÉRIDJ · DAWN»), as
+    the design has it: confirm;
+- the five cases (`hub/src/cases/<slug>.i18n.json`, keys under
+  `cases.<slug>.`):
+  - Bordj Steel: every `cases.bordjsteel.*` key;
+  - Alliance Travel: `dn.cairo-sharm` (مصر / القاهرة + شرم), `dn.bali`
+    (بالي / مدرجات الأرز والمعابد), `dn.kuala-lumpur` (كوالالمبور / ماليزيا),
+    `dn.vietnam` (فيتنام / خليج ها لونغ), `dn.tunisie` (تونس / سيدي بوسعيد),
+    `chart` (الدليل البصري), `chartAlt`, `carousel` (كاروسيل · CANVA),
+    `alt.aze`, `prevPage`, `nextPage`, `nextSlide`; the keys of the case's
+    first pass were not re-read;
+  - AlmaFlowClim: `tag`, `track`, `logo`, `mockup`, `cover.s`, `site.h`,
+    `site.fv.0` to `.2`, `site.fl.0` to `.2`, `data.k`, `data.al`,
+    `data.bl`, `data.n`, `post.k`, `post.next`, `post.h.0` to `.2`,
+    `post.s.0` to `.2`, `quote.k`, `quote.svAria`, `quote.townAria`,
+    `quote.minus`, `quote.plus`, `quote.demo`, `seo.k`, `seo.gbp`, `seo.a`,
+    `seo.days`, `mk.cards`, `mk.hanger`, `alt.tech`, `alt.cards`,
+    `alt.hanger`, `alt.van`, `alt.shop`, `alt.phone`, `alt.ac`, `night`,
+    `brand.k`, `brand.t`, `scope.k`, `scope.n`, `scope.note`,
+    `scope.items.1`, `scope.items.7`, `scope.cta`;
+  - Traveler: `track`, `real.label`, `real.prev`, `real.next`,
+    `shelf.group`, `atlas.s`, `mock`, `ws.lv`, `ig.sheet`, `peace.k`,
+    `end.items.6`, `alt.quote`, `alt.ink`, `alt.hoodie`, `alt.flat`,
+    `alt.stickers`, `alt.store`, `alt.worn` (the rest is the design's own);
+  - Heetch: `hud`, `tag`, `cover.s` (uses «ماي 2026»: check the Algerian
+    spelling of the month), `published`, `type.code`, `alt.phone`,
+    `alt.merch`, `alt.bill`, `alt.duo`, `plan.fmt.0` to `.2`, `end.k`,
+    `end.chip`, `end.t`, `end.big`, `end.note`, `end.items.0` to `.5`,
+    `end.cta`, `track`, `prevPoster`, `nextPoster`.
+
+Arabic display and Latin digits: Reem Kufi and Aref Ruqaa (the Studio's
+Arabic display and hand faces) are Arabic-script subsets without Latin digits,
+so Arabic display text with digits falls back to the next family.
+
 Files: the dictionaries `assets/i18n/ar.js` (the `ar` block carries a
 banner; since 2026-10-31 the three languages are one file each, no longer in
 `assets/app.js`), the `UI.ar` and project `ar` texts in
@@ -432,6 +509,10 @@ card has read "Artisan · Île-de-France" since the copy rewrite of 2026-10-14,
 which is what its own site presents.
 
 ## 15. Hub illustrations
+**Since 2026-11-07 `/hub/` is the Studio page (section 21) and the character
+bible described below lives at `/hub/bible/`.** Everything in this section is
+about the bible; its points still wait for you.
+
 Since 2026-11-06 (56f29c1, 6216ec9; IMPROVEMENTS A15) `hub/` is your
 character bible, built from your own design page: a cover; 00 He's alive, a
 live drawn rig of you and Kūro that follows the cursor, says a line and
@@ -600,3 +681,164 @@ pages from the top, need the live sites. Run `npm run shots` and
 `npm run work:capture` on a machine with network access (README, "Project
 previews"), then `npm run build`. The cards' crop is already centred in CSS
 meanwhile.
+
+## 20. Copy proposals (I4, fleet 4b)
+
+The critique found the section headings, ledes and service taglines to be
+template slots (they could sit on any agency's page) and the voice to switch
+between "nous" (the studio) and "je" (the founder's bio). Nothing below is on
+a page; each proposal is French, the current string beside it, and a yes
+(IMPROVEMENTS decisions 46 and 47) writes it in all three languages, the
+Arabic into section 8. Each proposal only uses what the page already says.
+
+**Section headings (`h2`)**
+
+| Key | Today | Proposal | Why |
+|---|---|---|---|
+| `work.title` | Réalisations choisies. | Quatre entreprises, en ligne. | the title block already counts "4 sites clients"; a claim, not a label |
+| `svc.title` | Ce qu'on construit pour vous. | Cinq services, un seul interlocuteur. | FAQ 6: "vous gardez un seul interlocuteur" |
+| `founder.title` | Qui construit votre site. | Celui qui vous répond est celui qui code. | FAQ 5: "vous parlez directement à celui qui construit votre site" |
+| `faq.title` | Les questions qui comptent. | Avant de dire oui. | the lede says these are asked before starting |
+| `contact.title` | Parlons de votre projet. | Deux lignes suffisent. | `contact.sub` says exactly that; the heading becomes the offer |
+| `price.title` | Un prix avant le devis. | (keep) | already a claim |
+
+**Ledes**
+
+| Key | Today | Proposal |
+|---|---|---|
+| `svc.lead` | Nos cinq services principaux — et cinq autres juste en dessous. | Cinq services en détail, cinq autres sur demande, le même interlocuteur du premier appel à la maintenance. |
+| `work.lead` | Les sites de nos clients, à visiter vous-même, et une démo de portfolio. | Chaque site est en ligne : ouvrez-le, essayez-le sur votre téléphone. |
+| `price.lead` | Nos prix, publiés, en dinars, en euros ou en dollars. Trois formules ; … | Trois formules, un prix ferme avant que vous ne signiez ; l'estimateur couvre le reste. |
+| `faq.lead` | Ce qu'on nous demande avant de se lancer, et nos réponses sans détour. | Paiement, délais, propriété du site : les réponses, sans détour. |
+| `founder.lead` | Derrière Numidea : un fondateur qui conçoit, code et livre lui-même, et des freelances quand un projet le demande. | (keep) |
+
+**Service taglines.** The five home cards carry a family label (`svc.famBuild`
+"Sites & design", `svc.famEngine` "Données & automatisation", `svc.famMind`
+"Conseil & IA") and a stock tagline (`f1.promise` to `f5.promise`). The ten
+services stay (decision M2); this is only the line on top of each card. Option
+A, cut both (the name and the brief remain). Option B, a claim for each tagline
+(the brief of the same card is its evidence):
+
+| Key | Today | Proposal (B) |
+|---|---|---|
+| `f1.promise` | Le choix évident. | Un site dessiné de zéro, pas un modèle maquillé. |
+| `f2.promise` | La confiance avant le premier mot. | Une marque qui a l'allure d'une maison établie. |
+| `f3.promise` | Supprimez la corvée. | Le travail répétitif tourne seul, même à 3 h du matin. |
+| `f4.promise` | Voir le marché clairement. | Les prix et les catalogues de vos concurrents, à jour. |
+| `f5.promise` | De la donnée, pas des impressions. | Des décisions fondées sur vos chiffres. |
+
+**A "je" version of the offer and the FAQ.** The selling point is "Vous
+parlez directement à celui qui construit" (FAQ 5); the studio's first person
+plural contradicts it. Samples, not a rewrite of the page (the same pattern
+goes through the offer, the guide and the other FAQ rows if you say yes):
+
+| Key | Today | Proposal |
+|---|---|---|
+| `hero.lede` | Avant tout paiement, nous construisons la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. C'est l'Aperçu : gratuit, réservé aux entreprises immatriculées, 4 par mois au plus. Yasser Hamisse, fondateur designer-développeur, conçoit, code et livre lui-même, avec des freelances quand un projet le demande. | Avant tout paiement, je construis la page d'accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. C'est l'Aperçu : gratuit, réservé aux entreprises immatriculées, 4 par mois au plus. Je suis Yasser Hamisse : je conçois, je code et je livre moi-même, avec des freelances quand un projet le demande. |
+| `prev.brief` | Avant tout paiement, nous construisons la page d'accueil de votre nouveau site, avec votre contenu. Si vous dites non, vous ne devez rien. | Avant tout paiement, je construis la page d'accueil de votre nouveau site, avec votre contenu. Si vous dites non, vous ne me devez rien. |
+| `faq4.a` (opening) | Nous restons. Trente jours de corrections après la livraison … | Je reste. Trente jours de corrections après la livraison … |
+| `faq5.a` | Oui. Le studio est à Bordj Bou Arréridj, et nous livrons partout — y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre site. | Oui. Je travaille depuis Bordj Bou Arréridj et je livre partout, y compris pour des clients en France. La distance ne change rien : vous parlez directement à celui qui construit votre site. |
+| `faq6.a` | Pas d'intermédiaire : celui qui cadre votre projet est celui qui le conçoit, le code et le livre. Quand un projet le demande, un freelance intervient … | Pas d'intermédiaire : je cadre votre projet, je le conçois, je le code et je le livre. Quand il le demande, un freelance intervient … |
+
+A "je" voice is a statement about the studio's size, not only a style: the
+footer line «agency of one» (decision 22) and the freelancers row already say
+it; FAQ 6 keeps "freelance" as the only exception. The Arabic is rewritten by
+the native reviewer, not translated from these lines. The Studio page keeps the
+third person, as before.
+
+## 21. The Studio page (/hub/, 2026-11-07)
+
+`/hub/` is now your Studio page, built from your design (`hub/src`,
+`scripts/build-hub.mjs`; BRAND.md "hub/ — the Studio page"). The character
+bible moved to `/hub/bible/`. The page is trilingual, with the five cases in
+09 Proof. The facts the site publishes win over the design where they differ;
+every difference is below for your yes. Arabic is in section 8. Nothing was
+pushed or deployed.
+
+**Design copy changed to the site's facts**
+
+| Where | The design said | The page says | Reason |
+|---|---|---|---|
+| Wordmark | Archivo "NUMIDEA LABS" text | the site's drawn wordmark, the accent in the Studio's red, the kana beside it | one wordmark everywhere (F34) |
+| FR nav, CTAs | "Preview" | "Aperçu" ("Demander un Aperçu", "Demander mon Aperçu"); English keeps "Preview" | the offer's French name |
+| Rig | a line "Il est tard ? Je réponds quand même." | dropped (five lines remain) | a response promise outside the published hours |
+| Hero mood badge | ● LIVE | ● EN DIRECT (FR); at rest ● AU REPOS / ● AT REST / ● ساكن | French; the rig rests under reduced motion |
+| Wedge | RÉPONSE < 24 H | RÉPONSE LE JOUR OUVRÉ SUIVANT | the published reply time (F-1) |
+| Services lead | une seule équipe du premier appel à la maintenance | un seul interlocuteur … | the studio is one founder (F-3) |
+| Service durations | Engine 1–4 weeks, Mark 2–6, Mind 1–2 | Engine 2–6, Mark 2–5, Mind "sur devis" | aligned to the published model; Mind has no published figure |
+| Aperçu lead and steps | "Avant tout devis signé, on construit une première version qui fonctionne." and three invented steps | "Avant tout paiement, on construit la page d'accueil de votre futur site, avec votre contenu." with the home's steps (you describe the project; the Aperçu in 5 working days; you decide, and if no, it is deleted and you owe nothing) and the home's terms line | the published offer (F-6) |
+| Process steps 02 to 05 | "Une démo qui fonctionne"; "Sprints courts, une démo par semaine"; "formation de votre équipe"; "On répond quand ça casse. Mises à jour et suivi chaque mois." | "Votre page d'accueil construite, avant tout engagement."; "Un périmètre écrit, un prix ferme, et vous voyez le site avancer."; "tous les accès remis à votre nom"; "Trente jours de corrections, le support de votre formule, puis la maintenance si vous la voulez." | the home's terms (payment, handover, support) |
+| Pricing title | Les prix du marché. Sans surprise. | Nos prix. Sans surprise. | these are the studio's own published prices (F-12) |
+| Estimator | landing-page type, pages-only slider, languages switch, 8 000–25 000 DA maintenance, hosting 15 000–43 000 DA/an, a Freelance/Studio/Agence bar, a sources list | the home's six types with a size slider in each unit, its six options and pace switch, maintenance 18 000 – 60 000 DA / mois, hosting "facturé à l'année par l'hébergeur, à votre nom" (no figure), no market bar, the home's fine print; "EN DINARS / ≈ EN EUROS / ≈ EN DOLLARS"; a link to the guide's market section | one price model, no new figure (F-10) |
+| Tech 01 stat | +8,4 % … (Google × Deloitte study) | "Chaque seconde d'attente fait partir des clients : on mesure, on allège, on livre rapide." | a third-party statistic not on the site (F-24) |
+| Proof title and lead | Ils nous font confiance. | Le travail, en vrai. "Trois clients livrés, et deux travaux personnels du fondateur. Chaque dossier dit ce qui a été fait, et pour qui." | third person (decision on "je" waits, section 20) |
+| Proof extras | four client cards (Hamma Sat, Shippily, Condor, Glaive Gaming) and the "Concept : ce qu'on ferait pour Heetch" grid | dropped; one line: "Aussi, faits maison : Glaive, la démo du studio · WorkspaceHQ, le produit du studio" | clients not on the site (F-14, F-15) |
+| Founder | "/ 4 PERSONNES · TOUTES SENIORS"; three discipline rows; polaroid parallax | "/ UN FONDATEUR · DES FREELANCES QUAND IL LE FAUT"; "LE FONDATEUR" and the home's freelancers row; links to the bible and the CV; no parallax | the team answer of 2026-10-30 (F-3) |
+| FAQ | six drafts | the home's six settled answers, verbatim: faq8, faq7, faq1, faq5, faq4, faq3 | F-6 to F-9 |
+| Contact | "Réponse sous 24 h, par quelqu'un qui code."; a "Réserver un appel / BIENTÔT" card; e-mail hello@numidealabs.com | "Réponse le jour ouvré suivant, par celui qui code."; hours line "Dimanche–jeudi, 9h–18h · messages seulement, pas d'appels"; WhatsApp +213 672 41 25 78; the Aperçu card opens WhatsApp with the home's message; the e-mail is the site's Gmail; no call card | reply time, hours and contact as answered on 2026-10-30 (F-1, F-2) |
+| Footer | TypeScript; @NUM_IDEA | JavaScript; handle dropped; links to the site, the bible, Instagram stick_itty and Behance | F-5 |
+| Sting | HUD "DAWN"; skip label "SKIP" at 8.5px; audio | "AUBE" in French; "PASSER" / "SKIP" / «تخطَّ» at 12px; no audio; gone by 2.6 s, skippable by any key, once per session | accessibility; motion cap |
+| Lab | 25 tiles, "déposez une nouvelle pièce" slots | nine bible drawings with captions P01 to P09 and a link tile; no slots | the other tiles' pictures were never supplied |
+| Contrast | opacity .38 on inactive process steps; cut chips at .4; #937F6B text | .72 on the step body only (numbers keep full colour); muted text and a line border; `--stone` #A8957F | AA as painted |
+| Sizes | 8.5 to 11px mono labels, 40×36 language buttons, 28px range | 12px (13px in Arabic), 44×44, 44px | targets and legibility |
+| Fonts | Arabic watermarks in Aref Ruqaa on every page | system serif outside the Arabic page; the nav's ع drawn | no Arabic face fetched for a decoration |
+| Share card | a Studio card | the Aperçu card (`assets/og.jpg`) until a Studio card exists | open |
+| Page title | | "Numidea Labs — le studio : sites, applications et marques" | 70 and 160-character limits |
+
+**Cases: changed from the design**
+
+| Case | The design said | The page says | Reason |
+|---|---|---|---|
+| All | prices on covers and scope cards; embedded live frames | no price (decision 19): the cover shows the case's tag and a scope card lists what was delivered; a link with `rel=noopener`, never a frame | the standard CSP frames nothing; no client prices are published |
+| Bordj Steel | a price chip on the cover | tag "Site B2B · marque"; the figures (300+ projects, +14 years, ISO) and the logo wall captioned as Bordj Steel's own | decision 19 |
+| Alliance Travel | pack price and "200 000 DA" scope card; totals 123 000 / 219 000 / 180 000 DA; "178 textes traduits"; "Sora · DM Sans"; scroll dots | tag "Identité + site"; a scope card of eight delivered items; the seven destinations say "Sur devis"; "9 pages en ligne", the visa service and the day-by-day programmes (scene's own figures); "DM Sans · Tajawal"; an "n / 4" counter | no published prices or claims; the faces the client's site uses |
+| Alliance Travel | cover chips "Omra" and "Billetterie", "par une seule équipe" | dropped | the site does not carry them; one founder |
+| Alliance Travel | the client's Instagram stories and flyers | shown as the client's artwork, prices in DA included (219 000 DA on the Bali story, 180000 DA on the Sharm flyer, 123.000 DZD on the Istanbul flyer) | decision needed (below) |
+| AlmaFlowClim | header chip "450 €"; card "450 € ≈ 68 000 DA"; "rappel sous 24h", "150+ clients", "RGE", "17 communes / 4 + FAQ"; almaflowclim.fr and a live frame; "Envoyée · rappel sous 24h"; the street address and phone on the Google card; a brand-book link | tag "Identité + site" and an eight-item delivery checklist; "une demande de devis, en un seul formulaire", "1 page par métier · 1 formulaire de devis · Gennevilliers (Île-de-France)"; almaflowclim.netlify.app and a link; "Démo : ce formulaire n'envoie rien."; "Gennevilliers (92)" only, MAQUETTE; the close-up as a plain "Visuel · maquette" tile | F-10, F-11, F-13, F-17, F-18, F-26 |
+| AlmaFlowClim | one quote summary line "TOWN · n × SERVICE"; tile click advances a post | separate service and town tabs and a stepper; an explicit "Post suivant" button; posts reworded and MAQUETTE | the shell's hooks |
+| Traveler | "Cliquer pour sauter." on the atlas; a Codex tile (12 plates, "Ouvrir le codex"); a fake ISBN; an iframe of WorkspaceHQ with LV 27 / 7240 XP / 9/20 / 22j | atlas dots not interactive; "PLANCHE XII · AFFICHE / Anatomy of Peace" opening in the viewer; "Colophon" and "VOL.04"; a link tile to ../workspacehq/ with bars and no numbers | the codex file does not exist; no invented figures |
+| Traveler | merch pictures labelled only on the store | every staged merch picture tagged MAQUETTE; brick marker text #8E382E (the colophon swatch keeps #A34135) | honesty; 4.8:1 |
+| Heetch | kicker "HEETCH DZ × NUMIDEA"; "TEMPS PLEIN" chip; "Heetch Pro" launch; a copy-the-code button (ERKEB50); "EN INTERNE · RÉEL"; "Le même rythme pour vous"; "le rapport qualité/vitesse d'une équipe produit" | "YASSER × HEETCH"; tag "Campagnes + réseaux"; "Chez Heetch depuis mai 2026" (the CV); no Pro claim; the code as plain type; "PUBLIÉ"; "Le même soin pour vous"; "du brief à la publication." | F-21, F-22, F-26: only what the CV says |
+
+**Pictures the design could not supply**
+
+The masters of these were never in the download; the page uses pictures that
+exist instead. Please supply the originals or tell me to drop the slot.
+- Services 01, 02 and 04: desk, diorama and sunset stand in;
+- Process frames: sunset, diorama, desk, actor-win and the sting rooftop
+  stand in;
+- the Lab: the design's 25 tiles are nine bible drawings and a link tile;
+- the Founder modes: pose-laptop, pose-coffee and kuro-loaf stand in;
+- studio scenes brain, clutter, desk2, desk3, am4, empty, revs, trav3, trav3b;
+  p01 to p20; c01 to c07; the poses 0, 2, 3, 4, 5 and 7 (the Alliance case
+  restored its charter flipbook, Canva carousel and extra destinations from the
+  files that exist); AlmaFlow's x-pac and x-pipes macros were never placed by
+  the design.
+
+**Claims to confirm (nothing was invented; these come from your design or the
+CV)**
+- the Instagram handle: the Traveler tile links yass3r.0, the footer links
+  stick_itty;
+- permission to show Bordj Steel's figures and logos, the clients' work, and
+  Heetch's posters on a portfolio; "Chez Heetch depuis mai 2026" (the CV);
+  "temps plein" and "Heetch Pro" were left out;
+- the AlmaFlow mockups show a phone number (07 55 01 60 13) and "Intervention
+  sous 24h" and "Devis gratuit" in the pictures themselves, and the cards show
+  contact@almaflowclim.fr; they are tagged MAQUETTE. Re-render without the
+  number and the 24 h promise, or keep them?
+- AlmaFlow's six towns (Gennevilliers, Asnières, Colombes, Nanterre, Clichy,
+  Courbevoie), its four trades (Rénovation included) and the hours
+  "Lun–Ven 8h00–18h00" come from your design and notes; the "92" wording is
+  the design's. Confirm or drop;
+- the Alliance flyers and stories show DA prices (the client's artwork), against
+  the "no case prices" rule: keep showing them?
+- the order of your name: the page keeps the design's "Hamisse Mohamed
+  Yasser"; the CV says "Mohamed Yasser Hamisse";
+- the service durations (Engine 2–6, Mark 2–5, Mind on quote) and the
+  process copy rewritten to the home's terms;
+- the Arabic sting HUD kept in Latin.
+
+**Known small issues** (owner-visible): the thin pale line at the right edge of
+the Heetch c08, c09 and c10 pictures (it looks like it is in the source images);
+the Traveler and Bordj posters at 2x make the full scroll about 3.1 MB on a
+phone, over the 2.5 MB target; Arabic Reem Kufi has no Latin digits.
