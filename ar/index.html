@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-MMVrzwKYes7Y/E1ssAaaJLxYrXX2il69btRytYSSk8s=' 'sha256-e3Qs7FXdnwdwEgmm6jPL8+NG0nKxwNyAOvyIWy9lR9E='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-tvP3jANvq9/UzP4uqPdi/24QZBuNriDoqxuEquwEVKk=' 'sha256-e3Qs7FXdnwdwEgmm6jPL8+NG0nKxwNyAOvyIWy9lR9E='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>إنشاء مواقع ويب في الجزائر | Numidea Labs</title>
 <meta name="description" content="إنشاء مواقع ويب بالعربية والفرنسية والإنجليزية، من 90 000 دج. شاهد الصفحة الرئيسية لموقعك قبل أن تدفع. استوديو ويب في برج بوعريريج، الجزائر.">
 <meta name="theme-color" content="#0A1420">
@@ -111,9 +111,11 @@
      this script included, without the block between the LANG:fr-only
      markers, with BAKED set to their language and the font path one folder
      up.
-     Theme: only a known name is applied. A stored name from a retired theme
-     would otherwise leave every colour and type token undefined (the theme
-     blocks are the only place they are set) until app.js ran.
+     Theme: only a known name is applied (a name outside the two would leave
+     every colour and type token undefined: the theme blocks are the only
+     place they are set). Nothing stored: Daylight if the OS prefers light,
+     else Arcanum, and no choice is written. A retired theme's name becomes
+     Arcanum and is rewritten.
      Language: a shared ?lang= link (the address the language versions had
      until 2026-10-31), or a preference stored by any page's language switch
      (numidea-lang), goes to that language's own page before anything is
@@ -136,16 +138,23 @@
 <script>
   (function () {
     var d = document.documentElement;
-    var HEAD = { arcanum: 'cinzel-700-latin', noir: 'geist-latin', daylight: 'cinzel-700-latin',
-                 mono: 'geist-latin', altneon: 'geist-latin', engineering: 'geist-latin' };
+    var HEAD = { arcanum: 'cinzel-700-latin', daylight: 'cinzel-700-latin' };
     var SWASH = { arcanum: 'cinzel-decorative-700-latin', daylight: 'cinzel-decorative-700-latin' };
     var BAKED = 'ar', th = 'arcanum';
     /* each theme's page colour (themes.css --void), for the browser's own
        bar until app.js reads it from the tokens */
-    var VOID = { arcanum: '#0A1420', noir: '#0B0B0E', daylight: '#F6F3EC',
-                 mono: '#0A0A0A', altneon: '#0C0716', engineering: '#0E1012' };
-    try { th = localStorage.getItem('numidea-theme') || th; } catch (e) {}
-    if (!Object.prototype.hasOwnProperty.call(HEAD, th)) th = 'arcanum';
+    var VOID = { arcanum: '#0A1420', daylight: '#F6F3EC' };
+    /* Theme: the visitor's stored choice if it is one of the two. A stored
+       name from a retired theme (noir, mono, altneon, engineering) becomes
+       Arcanum and is written back. With nothing valid stored, the OS decides:
+       Daylight when it asks for light, Arcanum otherwise; that is not stored,
+       since the visitor made no choice, so the preference keeps working until
+       they press the toggle. */
+    var st = null;
+    try { st = localStorage.getItem('numidea-theme'); } catch (e) {}
+    if (Object.prototype.hasOwnProperty.call(HEAD, st)) th = st;
+    else if (/^(noir|mono|altneon|engineering)$/.test(st)) { try { localStorage.setItem('numidea-theme', th); } catch (e) {} }
+    else { try { if (window.matchMedia('(prefers-color-scheme: light)').matches) th = 'daylight'; } catch (e) {} }
 
     d.setAttribute('data-theme', th);
     // scripts run: controls that only work with them may show (styles.css .js-only)
@@ -180,10 +189,10 @@
 </script>
 <!-- Self-hosted. No third-party request on the critical path, which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
-<link rel="stylesheet" href="../assets/fonts.css?v=202611080159">
+<link rel="stylesheet" href="../assets/fonts.css?v=202611081135">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
-<link rel="stylesheet" href="../assets/themes.css?v=202611080159">
-<link rel="stylesheet" href="../assets/styles.css?v=202611080159">
+<link rel="stylesheet" href="../assets/themes.css?v=202611081135">
+<link rel="stylesheet" href="../assets/styles.css?v=202611081135">
 <noscript><style>
   /* JS disabled: never hide content behind scroll-reveal, draw all glyphs */
   .reveal{opacity:1!important;transform:none!important}
@@ -213,15 +222,7 @@
       </nav>
       <div class="nav-right">
         <div class="theme-switch js-only">
-          <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="المظهر" data-i18n-aria="ui.theme"><span class="ic" aria-hidden="true"></span></button>
-          <div class="theme-menu" role="menu" aria-label="المظهر" data-i18n-aria="ui.theme">
-            <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="arcanum" aria-checked="true"><span class="dot arcanum" aria-hidden="true"></span>Arcanum</button>
-            <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="noir" aria-checked="false"><span class="dot noir" aria-hidden="true"></span>Noir</button>
-            <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="daylight" aria-checked="false"><span class="dot daylight" aria-hidden="true"></span>Daylight</button>
-            <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="mono" aria-checked="false"><span class="dot mono" aria-hidden="true"></span>Monochrome</button>
-            <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="altneon" aria-checked="false"><span class="dot altneon" aria-hidden="true"></span>Alt-neon</button>
-            <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="engineering" aria-checked="false"><span class="dot engineering" aria-hidden="true"></span>Engineering</button>
-          </div>
+          <button type="button" class="theme-btn" data-to="daylight" aria-label="التبديل إلى النهاري (فاتح)" data-i18n-aria="theme.toDaylight"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg></button>
         </div>
         <!-- the language versions are pages (this one, en/, ar/): plain links,
              so they work with scripts off; build-lang.mjs marks the current one.
@@ -270,20 +271,12 @@
     <a href="../en/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
     <a href="../ar/" hreflang="ar" aria-label="العربية (ع)" aria-current="page"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
   </div>
-  <!-- the theme picker again, for phones: the header's goes below 960px
+  <!-- the theme toggle again, for phones: the header's goes below 960px
        to make room for the language switch (styles.css), and this one takes
        over inside the menu. app.js wires every .theme-switch on the page;
        applyTheme keeps both in step. -->
   <div class="theme-switch js-only">
-    <button type="button" class="theme-btn" aria-haspopup="true" aria-expanded="false" aria-label="المظهر" data-i18n-aria="ui.theme"><span class="ic" aria-hidden="true"></span></button>
-    <div class="theme-menu" role="menu" aria-label="المظهر" data-i18n-aria="ui.theme">
-      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="arcanum" aria-checked="true"><span class="dot arcanum" aria-hidden="true"></span>Arcanum</button>
-      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="noir" aria-checked="false"><span class="dot noir" aria-hidden="true"></span>Noir</button>
-      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="daylight" aria-checked="false"><span class="dot daylight" aria-hidden="true"></span>Daylight</button>
-      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="mono" aria-checked="false"><span class="dot mono" aria-hidden="true"></span>Monochrome</button>
-      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="altneon" aria-checked="false"><span class="dot altneon" aria-hidden="true"></span>Alt-neon</button>
-      <button type="button" role="menuitemradio" tabindex="-1" data-theme-val="engineering" aria-checked="false"><span class="dot engineering" aria-hidden="true"></span>Engineering</button>
-    </div>
+    <button type="button" class="theme-btn" data-to="daylight" aria-label="التبديل إلى النهاري (فاتح)" data-i18n-aria="theme.toDaylight"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg></button>
   </div>
   <!-- the two ways to start, pinned at the foot of the menu (styles.css
        .menu-acts): eight section links and no action left the visitor who
@@ -1238,9 +1231,9 @@
 
 <!-- this page's dictionary (one language), then the script that reads it;
      both deferred, so they run in this order -->
-<script src="../assets/i18n/ar.js?v=202611080159" defer></script>
-<script src="../assets/app.js?v=202611080159" defer></script>
-<script src="../assets/carry.js?v=202611080159" defer></script>
+<script src="../assets/i18n/ar.js?v=202611081135" defer></script>
+<script src="../assets/app.js?v=202611081135" defer></script>
+<script src="../assets/carry.js?v=202611081135" defer></script>
 <!-- FAQ structured data, written from the page's dictionary by
      scripts/build-lang.mjs; applyLang() writes it again on load. -->
 <script type="application/ld+json" id="ld-faq">
