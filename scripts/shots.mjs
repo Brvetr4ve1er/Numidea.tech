@@ -23,17 +23,15 @@
  * bottom 15% is flat (grey sd under BAND) is reported too: the
  * client's hero ended above the frame (Nomara's cream band).
  *
- * It also writes previews/planche.webp, the home page's way into /scene/
- * (.scene-banner): the second project sheet's main frame as the built page
- * draws it, 184×124 (the banner's 92×62 at 2x), from this repository served
- * locally, so the banner shows a real sheet, not a drawing of one.
+ * The Glaive demo has no preview any more (`demo: true`): it is a made-up
+ * brand, one muted line under the four clients on the home page, not a card
+ * with a capture.
  *
  * Usage:
  *   npm install
  *   npx playwright install chromium     # one-time, downloads the browser
  *   npm run shots                       # capture everything
  *   npm run shots -- almaflowclim       # capture a single file
- *   npm run shots -- planche            # the banner's sheet only (after npm run build)
  *   npm run shots -- --check            # compare the committed files only
  *
  * The browser is the one every gate uses (scripts/lib/serve.mjs launch():
@@ -46,7 +44,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { launch, serve } from './lib/serve.mjs';
+import { launch } from './lib/serve.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'assets', 'previews');
@@ -67,7 +65,9 @@ export const PROJECTS = {
   almaflowclim:          { capture: 'https://almaflowclim.netlify.app',           client: 'almaflow',   sheet: 'almaflow/d1' },
   alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/istanbul/', client: 'alliance', sheet: 'alliance/d2', dark: true },
   nomara:                { capture: 'https://nomaravoyages.netlify.app',          client: 'nomara',     sheet: null },
-  glaive:                { capture: 'https://glaivestore.netlify.app',            client: 'glaive',     sheet: 'glaive/d1' },
+  // the portfolio demo: its link on the home page carries data-client (check.mjs 5 pairs the slugs), but it has no
+  // preview file: the home shows it as one line under the clients, not as a card with a capture
+  glaive:                { capture: 'https://glaivestore.netlify.app',            client: 'glaive',     sheet: 'glaive/d1', demo: true },
 };
 
 /* The 16:10 window of each capture that keeps the client's h1, its lede and
@@ -182,38 +182,15 @@ async function capture(browser, file, { capture: url, dark, wide }) {
   }
 }
 
-// the second sheet's main frame on the built /scene/ (the first is Bordj Steel's
-// welder, already the plate's first slide), cropped to the banner's 92:62
-async function planche(browser) {
-  const srv = await serve();
-  const ctx = await browser.newContext({ viewport: { width: VW, height: VH }, deviceScaleFactor: DPR, locale: 'fr-FR', reducedMotion: 'reduce' });
-  const page = await ctx.newPage();
-  try {
-    await page.goto(srv.base + '/scene/', { waitUntil: 'networkidle' });
-    const fig = page.locator('.sh-main').nth(1);
-    await fig.scrollIntoViewIfNeeded();
-    await page.evaluate(() => Promise.all([...document.images].filter((i) => i.complete).map((i) => i.decode().catch(() => {}))));
-    await page.waitForTimeout(600);
-    const png = await fig.screenshot({ type: 'png' });
-    await sharp(png).resize(184, 124, { fit: 'cover', position: 'top' }).webp({ quality: 82 }).toFile(join(OUT, 'planche.webp'));
-    console.log('✓ planche.webp  ←  /scene/ (the second sheet)');
-  } catch (e) {
-    console.warn(`✗ planche: ${e.message.split('\n')[0]} (kept existing file)`);
-  } finally {
-    await ctx.close(); srv.close();
-  }
-}
-
 async function run() {
   await mkdir(OUT, { recursive: true });
-  const targets = Object.entries(PROJECTS).filter(([file]) => !only || file === only);
-  if (!targets.length && only !== 'planche') { console.log('Nothing to capture (no file matches).'); return; }
+  const targets = Object.entries(PROJECTS).filter(([file, p]) => !p.demo && (!only || file === only));
+  if (!targets.length) { console.log('Nothing to capture (no file matches).'); return; }
 
   if (!checkOnly) {
     // software GL, as work-capture.mjs: Alliance's hero globe is WebGL
     const browser = await launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
     for (const [file, p] of targets) await capture(browser, file, p);
-    if (!only || only === 'planche') await planche(browser);
     await browser.close();
   }
 
