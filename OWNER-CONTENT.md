@@ -791,7 +791,7 @@ pushed or deployed.
 | Contact | "Réponse sous 24 h, par quelqu'un qui code."; a "Réserver un appel / BIENTÔT" card; e-mail hello@numidealabs.com | "Réponse le jour ouvré suivant, par celui qui code."; hours line "Dimanche–jeudi, 9h–18h · messages seulement, pas d'appels"; WhatsApp +213 672 41 25 78; the Aperçu card opens WhatsApp with the home's message; the e-mail is the site's Gmail; no call card | reply time, hours and contact as answered on 2026-10-30 (F-1, F-2) |
 | Footer | TypeScript; @NUM_IDEA | JavaScript; handle dropped; links to the site, the bible, Instagram stick_itty and Behance | F-5 |
 | Sting | HUD "DAWN"; skip label "SKIP" at 8.5px; audio | "AUBE" in French; "PASSER" / "SKIP" / «تخطَّ» at 12px; no audio; gone by 2.6 s, skippable by any key, once per session | accessibility; motion cap |
-| Lab | 25 tiles, "déposez une nouvelle pièce" slots | nine bible drawings with captions P01 to P09 and a link tile; no slots | the other tiles' pictures were never supplied |
+| Lab | 25 tiles, "déposez une nouvelle pièce" slots | the grid is 30 bible pieces (dossier 06 is the character bible itself, `hub/bible/`) and a link tile; no slots | the other tiles' pictures were never supplied |
 | Contrast | opacity .38 on inactive process steps; cut chips at .4; #937F6B text | .72 on the step body only (numbers keep full colour); muted text and a line border; `--stone` #A8957F | AA as painted |
 | Sizes | 8.5 to 11px mono labels, 40×36 language buttons, 28px range | 12px (13px in Arabic), 44×44, 44px | targets and legibility |
 | Fonts | Arabic watermarks in Aref Ruqaa on every page | system serif outside the Arabic page; the nav's ع drawn | no Arabic face fetched for a decoration |
@@ -820,7 +820,7 @@ exist instead. Please supply the originals or tell me to drop the slot.
 - Services 01, 02 and 04: desk, diorama and sunset stand in;
 - Process frames: sunset, diorama, desk, actor-win and the sting rooftop
   stand in;
-- the Lab: the design's 25 tiles are nine bible drawings and a link tile;
+- the Lab: the design's 25 tiles are 30 bible pieces and a link tile;
 - the Founder modes: pose-laptop, pose-coffee and kuro-loaf stand in;
 - studio scenes brain, clutter, desk2, desk3, am4, empty, revs, trav3, trav3b;
   p01 to p20; c01 to c07; the poses 0, 2, 3, 4, 5 and 7 (the Alliance case

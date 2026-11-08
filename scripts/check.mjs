@@ -266,7 +266,7 @@ tagDrift.length ? bad('client links disagree: ' + tagDrift.join('; ')) : ok(`cli
 shotDrift.length ? bad('scripts/shots.mjs and the page cover different clients: ' + shotDrift.join(', ')) : ok('screenshot pipeline covers exactly the linked clients');
 stray.length ? bad('showcase uses URLs the main page does not link: ' + stray.join(', ')) : ok('showcase URLs all linked from the main page');
 identityOff.length ? bad("a sheet's identity link is not a Behance gallery the hub leads to: " + identityOff.join(', ')) : ok("every sheet's identity link is a Behance gallery, and the hub links the Behance profile");
-onHub.length ? bad("client sites listed on the character bible (it is the artist's page): " + onHub.join(', ')) : ok('the character bible lists no client sites');
+onHub.length ? bad("client sites listed on the character bible (a project of the studio, not a client): " + onHub.join(', ')) : ok('the character bible lists no client sites');
 studioStray.length ? bad("the Studio links client sites the home does not: " + studioStray.join(', ')) : ok('the Studio links only the home page\'s client sites');
 
 /* 5b — the client logo strip in the proof band ("Ils nous ont confié leur

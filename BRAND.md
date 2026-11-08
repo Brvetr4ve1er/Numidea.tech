@@ -1419,14 +1419,15 @@ The page that was `/hub/` from 2026-11-05 to 2026-11-06 is the founder's
 character bible, now at `/hub/bible/` (`hub/bible/index.html`, `style.css`,
 `app.js`, `art/`, `og.jpg`; moved with `git mv`, paths one level deeper, the
 fonts shared in `hub/fonts`, canonical and og tags naming `/hub/bible/`). The
-Studio links it from its footer and its Lab. It is the page of **Yasser's
-own** (b4vetrave1er / VOIDSPLUNKER.std): his art, his design work, his social
-presence. The 2026-11-05 text below describes it; paths are relative to
+Studio links it from its footer and its Lab, and lists it as dossier 06,
+**a project of the studio** (since 2026-11-08; it was "the artist's page, not
+the studio's"). It holds Yasser's own art, design work and social presence
+(b4vetrave1er / VOIDSPLUNKER.std). The 2026-11-05 text below describes it; paths are relative to
 `hub/bible/` and `npm run hub:rig`, `hub:art` and `og` write there.
 Client websites still do not belong on the bible; the Studio is where client
 work lives (`npm run check` block 5 lets the Studio link only the
-netlify.app hosts the home links, and holds the bible to the artist's-page
-rule). The page is ported natively, with no runtime, no framework and no
+netlify.app hosts the home links, and keeps client sites off the bible,
+which is a studio project, not a client). The page is ported natively, with no runtime, no framework and no
 third-party host. It is in English, one `h1` (the cover's "Yasser."), and its
 sections are numbered as the design numbers them:
 

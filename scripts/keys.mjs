@@ -180,7 +180,7 @@ const SPEC = {
   'ar/tarifs/index.html': { langs: ['ar'], tests: GUIDE_TESTS, only: 'the Arabic guide (one language per page)' },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
   'hub/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['studio', 'hits'] },
-  'hub/bible/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the founder's own page)" },
+  'hub/bible/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the character bible, a project of the studio)" },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
   '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the wordmark and two links (home, the offer)' },
   'legal/index.html': { langs: ['fr', 'ar'], tests: [] },

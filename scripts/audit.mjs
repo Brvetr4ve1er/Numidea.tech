@@ -201,6 +201,18 @@ const run=async(label,path,o={})=>{
     return !r||!document.getAnimations().some(a=>a.playState==='running'&&a.effect&&a.effect.target&&r.contains(a.effect.target))},null,{timeout:8000}).catch(()=>{});
   // axe in every frame too, so it reads the embeds in their host page
   for(const f of p.frames())try{await f.evaluate(AXE)}catch{/* detached */}
+  // The Plate I vista (.vista, aria-hidden scenery in an overflow:hidden box)
+  // has layers that are taller than the box (.v-l, bottom:-60px / -150px).
+  // axe clips their rects to the box when it files them in its 200px grid,
+  // but then matches a text's centre against the UNCLIPPED rect, so a text
+  // that merely shares a grid row with the vista's foot (the work kicker,
+  // 100px below the box since the compact proof band, 2026-11-08) is
+  // measured on a dune layer that is not painted there (axe says
+  // #d6d5d0 where the page paints the paper, 3.99:1 instead of 5.3:1;
+  // elementsFromPoint, with pointer-events forced on, finds no layer at that
+  // point). The layers go for axe's run; the painted contrast of the
+  // vista's caption and everything near it is the sweep's job (real pixels).
+  await p.evaluate(()=>{for(const l of document.querySelectorAll('.vista .v-l'))l.style.visibility='hidden'});
   const axr=await p.evaluate(async off=>{const r=await axe.run(document,{resultTypes:['violations','incomplete'],rules:Object.fromEntries(off.map(k=>[k,{enabled:false}]))});
     // each violation with its nodes (the selector and the markup), so a
     // failure names what to fix instead of a rule id and a count
