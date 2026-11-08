@@ -334,13 +334,10 @@ html:not(.js) .ctrls{display:none}
 
 /* ---------- footer ---------- */
 .foot{border-top:3px solid var(--ink);padding-top:20px;display:flex;flex-direction:column;gap:20px}
-.foot-bio{max-width:64ch;font-size:15px;line-height:1.55;text-wrap:pretty}
 .foot-row{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;align-items:center;font:500 12px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase}
 .foot-row a{display:inline-flex;align-items:center;min-height:44px;color:var(--red-text);text-decoration:none}
 .foot-row a:hover{color:var(--ink);text-decoration:underline}
 .legal{display:flex;flex-wrap:wrap;gap:4px 18px}
-.heart{color:var(--red-text)}   /* 3.87:1 in --red (sweep) */
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 
 /* ---------- motion preference: nothing eases, nothing moves on its own ---------- */
 @media (prefers-reduced-motion:reduce){
