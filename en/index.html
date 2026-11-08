@@ -431,19 +431,16 @@
     <p class="sec-lead" data-i18n="work.lead">Our clients’ sites, to open yourself.</p>
     <div class="work-grid">
 
-      <!-- Bento: live sites first, the first one featured as a wide card. At
-           3 columns wide(2)+1 / 1+1+1 closes flush; at 2 columns it stays
-           wide (2+2+2 = 6 cells). The order is part of the layout. Projects
-           in progress get a card only once their site is live.
+      <!-- Two abreast from 720px, one column below. Live sites first; the
+           first card shows the Bordj Steel references page (a steel frame
+           under a crane, four totals), not the plate's home and not the
+           white catalogue. Projects in progress get a card only once their
+           site is live.
            The shots are the plate's captures, 720 and 1280 wide; sizes is each
-           thumb's measured width: 91vw on phones, a 232px strip beside the
-           text from 600px, then 44vw (the wide card 90vw) at 961px and 28vw
-           (57vw) from 1100px. The wide card keeps its full width to 960px
-           (91vw: its sizes said 232px, and a 2x screen got 0.97 image pixels
-           per CSS pixel at 820) and shows the Bordj Steel catalogue, not the
-           plate's welder again, with a 1600 file for 57vw on a 2x screen. -->
-      <article id="w-bordjsteel" class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
-        <div class="thumb"><img class="shot" src="../assets/previews/bordjsteel-products.webp" srcset="../assets/previews/bordjsteel-products-720.webp 720w, ../assets/previews/bordjsteel-products.webp 1280w, ../assets/previews/bordjsteel-products-1600.webp 1600w" sizes="(min-width:1100px) 57vw, (min-width:961px) 90vw, 91vw" alt="Screenshot of the Bordj Steel website" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+           thumb's measured width: 91vw below 720px, 42vw from there to 1920px
+           (303px at 720, 597px at 1440), 702px beyond. -->
+      <article id="w-bordjsteel" class="proj proj--brand reveal" style="--brand:214,55,48">
+        <div class="thumb"><img class="shot" src="../assets/previews/bordjsteel-references.webp" srcset="../assets/previews/bordjsteel-references-720.webp 720w, ../assets/previews/bordjsteel-references.webp 1280w" sizes="(min-width:1920px) 702px, (min-width:720px) 42vw, 91vw" alt="Screenshot of the Bordj Steel website" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">Industrial · B2B</span>
           <!-- the title is the way to the sheet (styles.css stretches it over
@@ -462,7 +459,7 @@
       </article>
 
       <article id="w-alliance" class="proj proj--brand reveal" style="--brand:95,214,134">
-        <div class="thumb"><img class="shot" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Screenshot of the Alliance Travel website" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1920px) 702px, (min-width:720px) 42vw, 91vw" alt="Screenshot of the Alliance Travel website" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Travel · Growth</span>
           <h3><a href="../scene/?lang=en#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">See the project in detail</span></a></h3>
@@ -475,7 +472,7 @@
       </article>
 
       <article id="w-almaflow" class="proj proj--brand reveal" style="--brand:59,164,224">
-        <div class="thumb"><img class="shot" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Screenshot of the AlmaFlowClim website" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1920px) 702px, (min-width:720px) 42vw, 91vw" alt="Screenshot of the AlmaFlowClim website" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Contractor · Île-⁠de-⁠France</span>
           <h3><a href="../scene/?lang=en#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">See the project in detail</span></a></h3>
@@ -488,7 +485,7 @@
       </article>
 
       <article id="w-nomara" class="proj proj--brand reveal" style="--brand:34,180,104">
-        <div class="thumb"><img class="shot" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="Screenshot of the Nomara Voyages website" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:1920px) 702px, (min-width:720px) 42vw, 91vw" alt="Screenshot of the Nomara Voyages website" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">Travel · Umrah</span>
           <!-- no sheet for Nomara (scene/): the title leads to the live site,
@@ -641,7 +638,7 @@
   <section id="pricing" aria-labelledby="pricing-h">
     <span class="kicker" data-i18n="price.kicker">Pricing</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">A price <em>before the quote.</em></h2>
-    <p class="sec-lead" data-i18n="price.lead">Our prices are published, in dinars, euros or dollars. Three packages; for e-commerce, automation or branding, the estimator just below. The details and the comparison with the market: our price guide.</p>
+    <p class="sec-lead" data-i18n="price.lead">Our prices, published in DA, € or $. Details and comparison: the price guide.</p>
 
     <!-- SLOT:tiers -->
     <!-- Display currency for the tiers, the maintenance line and the
@@ -673,13 +670,16 @@
         <p class="t-time" data-i18n="price.t1time">2 to 4 weeks</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
         <div class="t-foot">
-          <ul class="t-list">
-            <li data-i18n="price.t1a">Showcase or landing site, 1 to 5 pages</li>
-            <li data-i18n="price.t1b">Custom design — never a re-themed template</li>
-            <li data-i18n="price.t1c">Responsive, fast, with foundational SEO</li>
-            <li data-i18n="price.t1d">Deployment, domain and certificate configured</li>
-            <li data-i18n="price.t1e">1 month of support included</li>
-          </ul>
+          <details class="t-incl">
+            <summary data-i18n="price.tIncl">What’s included</summary>
+            <ul class="t-list">
+              <li data-i18n="price.t1a">Showcase or landing site, 1 to 5 pages</li>
+              <li data-i18n="price.t1b">Custom design — never a re-themed template</li>
+              <li data-i18n="price.t1c">Responsive, fast, with foundational SEO</li>
+              <li data-i18n="price.t1d">Deployment, domain and certificate configured</li>
+              <li data-i18n="price.t1e">1 month of support included</li>
+            </ul>
+          </details>
           <p class="actions-row"><a class="btn btn-teal" href="#contact" data-apercu="vitrine" data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a></p>
         </div>
       </article>
@@ -692,14 +692,17 @@
         <p class="t-time" data-i18n="price.t2time">3 to 7 weeks</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
         <div class="t-foot">
-          <ul class="t-list">
-            <li data-i18n="price.t2a">Custom site, 6 to 15 pages</li>
-            <li data-i18n="price.t2b">Trilingual FR / EN / AR, with Arabic RTL built natively</li>
-            <li data-i18n="price.t2c">Documented design kit — colours, styles, components, ready to reuse</li>
-            <li data-i18n="price.t2d">CMS or back-office so you manage the content yourself</li>
-            <li data-i18n="price.t2e">Technical SEO, speed as Google measures it, accessibility</li>
-            <li data-i18n="price.t2f">3 months of support included</li>
-          </ul>
+          <details class="t-incl" open>
+            <summary data-i18n="price.tIncl">What’s included</summary>
+            <ul class="t-list">
+              <li data-i18n="price.t2a">Custom site, 6 to 15 pages</li>
+              <li data-i18n="price.t2b">Trilingual FR / EN / AR, with Arabic RTL built natively</li>
+              <li data-i18n="price.t2c">Documented design kit — colours, styles, components, ready to reuse</li>
+              <li data-i18n="price.t2d">CMS or back-office so you manage the content yourself</li>
+              <li data-i18n="price.t2e">Technical SEO, speed as Google measures it, accessibility</li>
+              <li data-i18n="price.t2f">3 months of support included</li>
+            </ul>
+          </details>
           <p class="actions-row"><a class="btn btn-primary" href="#contact" data-apercu="surmesure" data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a></p>
         </div>
       </article>
@@ -711,13 +714,16 @@
         <p class="t-time" data-i18n="price.t3time">8 to 16 weeks</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
         <div class="t-foot">
-          <ul class="t-list">
-            <li data-i18n="price.t3a">Custom web application: platform, portal or business tool</li>
-            <li data-i18n="price.t3b">Payments, user accounts, dashboards</li>
-            <li data-i18n="price.t3c">Web data collection and market monitoring, built into the application</li>
-            <li data-i18n="price.t3d">API integrations and internal tools</li>
-            <li data-i18n="price.t3e">6 months of support included</li>
-          </ul>
+          <details class="t-incl">
+            <summary data-i18n="price.tIncl">What’s included</summary>
+            <ul class="t-list">
+              <li data-i18n="price.t3a">Custom web application: platform, portal or business tool</li>
+              <li data-i18n="price.t3b">Payments, user accounts, dashboards</li>
+              <li data-i18n="price.t3c">Web data collection and market monitoring, built into the application</li>
+              <li data-i18n="price.t3d">API integrations and internal tools</li>
+              <li data-i18n="price.t3e">6 months of support included</li>
+            </ul>
+          </details>
           <p class="actions-row"><a class="btn btn-teal" href="#contact" data-apercu="app" data-i18n="prev.cta">Request my free Preview <span aria-hidden="true">→</span></a></p>
         </div>
       </article>

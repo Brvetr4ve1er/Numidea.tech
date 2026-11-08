@@ -431,19 +431,16 @@
     <p class="sec-lead" data-i18n="work.lead">مواقع عملائنا، تصفّحها بنفسك.</p>
     <div class="work-grid">
 
-      <!-- Bento: live sites first, the first one featured as a wide card. At
-           3 columns wide(2)+1 / 1+1+1 closes flush; at 2 columns it stays
-           wide (2+2+2 = 6 cells). The order is part of the layout. Projects
-           in progress get a card only once their site is live.
+      <!-- Two abreast from 720px, one column below. Live sites first; the
+           first card shows the Bordj Steel references page (a steel frame
+           under a crane, four totals), not the plate's home and not the
+           white catalogue. Projects in progress get a card only once their
+           site is live.
            The shots are the plate's captures, 720 and 1280 wide; sizes is each
-           thumb's measured width: 91vw on phones, a 232px strip beside the
-           text from 600px, then 44vw (the wide card 90vw) at 961px and 28vw
-           (57vw) from 1100px. The wide card keeps its full width to 960px
-           (91vw: its sizes said 232px, and a 2x screen got 0.97 image pixels
-           per CSS pixel at 820) and shows the Bordj Steel catalogue, not the
-           plate's welder again, with a 1600 file for 57vw on a 2x screen. -->
-      <article id="w-bordjsteel" class="proj proj--wide proj--brand reveal" style="--brand:214,55,48">
-        <div class="thumb"><img class="shot" src="../assets/previews/bordjsteel-products.webp" srcset="../assets/previews/bordjsteel-products-720.webp 720w, ../assets/previews/bordjsteel-products.webp 1280w, ../assets/previews/bordjsteel-products-1600.webp 1600w" sizes="(min-width:1100px) 57vw, (min-width:961px) 90vw, 91vw" alt="لقطة من موقع Bordj Steel" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+           thumb's measured width: 91vw below 720px, 42vw from there to 1920px
+           (303px at 720, 597px at 1440), 702px beyond. -->
+      <article id="w-bordjsteel" class="proj proj--brand reveal" style="--brand:214,55,48">
+        <div class="thumb"><img class="shot" src="../assets/previews/bordjsteel-references.webp" srcset="../assets/previews/bordjsteel-references-720.webp 720w, ../assets/previews/bordjsteel-references.webp 1280w" sizes="(min-width:1920px) 702px, (min-width:720px) 42vw, 91vw" alt="لقطة من موقع Bordj Steel" data-i18n-alt="proj4.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj4.cat">صناعة · B2B</span>
           <!-- the title is the way to the sheet (styles.css stretches it over
@@ -462,7 +459,7 @@
       </article>
 
       <article id="w-alliance" class="proj proj--brand reveal" style="--brand:95,214,134">
-        <div class="thumb"><img class="shot" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="لقطة من موقع Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" src="../assets/previews/alliancetravel.webp" srcset="../assets/previews/alliancetravel-720.webp 720w, ../assets/previews/alliancetravel.webp 1280w" sizes="(min-width:1920px) 702px, (min-width:720px) 42vw, 91vw" alt="لقطة من موقع Alliance Travel" data-i18n-alt="proj2.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">سفر · نموّ</span>
           <h3><a href="../scene/?lang=ar#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
@@ -475,7 +472,7 @@
       </article>
 
       <article id="w-almaflow" class="proj proj--brand reveal" style="--brand:59,164,224">
-        <div class="thumb"><img class="shot" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="لقطة من موقع AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" src="../assets/previews/almaflowclim.webp" srcset="../assets/previews/almaflowclim-720.webp 720w, ../assets/previews/almaflowclim.webp 1280w" sizes="(min-width:1920px) 702px, (min-width:720px) 42vw, 91vw" alt="لقطة من موقع AlmaFlowClim" data-i18n-alt="proj3.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">حِرفي · إيل دو فرانس</span>
           <h3><a href="../scene/?lang=ar#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
@@ -488,7 +485,7 @@
       </article>
 
       <article id="w-nomara" class="proj proj--brand reveal" style="--brand:34,180,104">
-        <div class="thumb"><img class="shot" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:1100px) 28vw, (min-width:700px) 44vw, (min-width:600px) 232px, 91vw" alt="لقطة من موقع Nomara Voyages" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
+        <div class="thumb"><img class="shot" src="../assets/previews/nomara.webp" srcset="../assets/previews/nomara-720.webp 720w, ../assets/previews/nomara.webp 1280w" sizes="(min-width:1920px) 702px, (min-width:720px) 42vw, 91vw" alt="لقطة من موقع Nomara Voyages" data-i18n-alt="proj6.alt" loading="lazy" decoding="async" width="1280" height="800"></div>
         <div class="body">
           <span class="cat" data-i18n="proj6.cat">سفر · عمرة</span>
           <!-- no sheet for Nomara (scene/): the title leads to the live site,
@@ -641,7 +638,7 @@
   <section id="pricing" aria-labelledby="pricing-h">
     <span class="kicker" data-i18n="price.kicker">الأسعار</span>
     <h2 class="sec font-swap-display" id="pricing-h" data-i18n="price.title">سعر <em>قبل عرض السعر.</em></h2>
-    <p class="sec-lead" data-i18n="price.lead">أسعارنا منشورة، بالدينار أو اليورو أو الدولار. ثلاث باقات؛ وللمتجر الإلكتروني أو الأتمتة أو الهوية البصرية، حاسبة التقدير أدناه مباشرة. التفاصيل والمقارنة مع السوق: في دليل الأسعار.</p>
+    <p class="sec-lead" data-i18n="price.lead">أسعارنا منشورة بالدينار أو اليورو أو الدولار. التفاصيل والمقارنة: في دليل الأسعار.</p>
 
     <!-- SLOT:tiers -->
     <!-- Display currency for the tiers, the maintenance line and the
@@ -673,13 +670,16 @@
         <p class="t-time" data-i18n="price.t1time">من 2 إلى 4 أسابيع</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
         <div class="t-foot">
-          <ul class="t-list">
-            <li data-i18n="price.t1a">موقع تعريفي أو صفحة هبوط، من 1 إلى 5 صفحات</li>
-            <li data-i18n="price.t1b">تصميم مخصّص — لا قالب معاد تلوينه أبداً</li>
-            <li data-i18n="price.t1c">متجاوب وسريع، مع أساسيات تحسين محرّكات البحث (<bdi>SEO</bdi>)</li>
-            <li data-i18n="price.t1d">النشر، واسم النطاق (الدومين)، وشهادة الأمان <bdi>SSL</bdi> — كلّها مُعدّة</li>
-            <li data-i18n="price.t1e">شهر دعم مشمول</li>
-          </ul>
+          <details class="t-incl">
+            <summary data-i18n="price.tIncl">ما تشمله الباقة</summary>
+            <ul class="t-list">
+              <li data-i18n="price.t1a">موقع تعريفي أو صفحة هبوط، من 1 إلى 5 صفحات</li>
+              <li data-i18n="price.t1b">تصميم مخصّص — لا قالب معاد تلوينه أبداً</li>
+              <li data-i18n="price.t1c">متجاوب وسريع، مع أساسيات تحسين محرّكات البحث (<bdi>SEO</bdi>)</li>
+              <li data-i18n="price.t1d">النشر، واسم النطاق (الدومين)، وشهادة الأمان <bdi>SSL</bdi> — كلّها مُعدّة</li>
+              <li data-i18n="price.t1e">شهر دعم مشمول</li>
+            </ul>
+          </details>
           <p class="actions-row"><a class="btn btn-teal" href="#contact" data-apercu="vitrine" data-i18n="prev.cta">اطلب معاينتك المجانية <span aria-hidden="true">←</span></a></p>
         </div>
       </article>
@@ -692,14 +692,17 @@
         <p class="t-time" data-i18n="price.t2time">من 3 إلى 7 أسابيع</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
         <div class="t-foot">
-          <ul class="t-list">
-            <li data-i18n="price.t2a">موقع مخصّص، من 6 إلى 15 صفحة</li>
-            <li data-i18n="price.t2b">ثلاثي اللغة فرنسي / إنجليزي / عربي، بعربية مصمّمة من الأساس للكتابة من اليمين إلى اليسار</li>
-            <li data-i18n="price.t2c">حزمة تصميم موثّقة — الألوان والأنماط والمكوّنات، جاهزة لإعادة الاستخدام</li>
-            <li data-i18n="price.t2d">نظام إدارة محتوى أو لوحة تحكّم لتدير المحتوى بنفسك</li>
-            <li data-i18n="price.t2e">الجانب التقني من تحسين محرّكات البحث (<bdi>SEO</bdi>)، والسرعة كما تقيسها <bdi>Google</bdi>، وإتاحة الوصول</li>
-            <li data-i18n="price.t2f">ثلاثة أشهر دعم مشمولة</li>
-          </ul>
+          <details class="t-incl" open>
+            <summary data-i18n="price.tIncl">ما تشمله الباقة</summary>
+            <ul class="t-list">
+              <li data-i18n="price.t2a">موقع مخصّص، من 6 إلى 15 صفحة</li>
+              <li data-i18n="price.t2b">ثلاثي اللغة فرنسي / إنجليزي / عربي، بعربية مصمّمة من الأساس للكتابة من اليمين إلى اليسار</li>
+              <li data-i18n="price.t2c">حزمة تصميم موثّقة — الألوان والأنماط والمكوّنات، جاهزة لإعادة الاستخدام</li>
+              <li data-i18n="price.t2d">نظام إدارة محتوى أو لوحة تحكّم لتدير المحتوى بنفسك</li>
+              <li data-i18n="price.t2e">الجانب التقني من تحسين محرّكات البحث (<bdi>SEO</bdi>)، والسرعة كما تقيسها <bdi>Google</bdi>، وإتاحة الوصول</li>
+              <li data-i18n="price.t2f">ثلاثة أشهر دعم مشمولة</li>
+            </ul>
+          </details>
           <p class="actions-row"><a class="btn btn-primary" href="#contact" data-apercu="surmesure" data-i18n="prev.cta">اطلب معاينتك المجانية <span aria-hidden="true">←</span></a></p>
         </div>
       </article>
@@ -711,13 +714,16 @@
         <p class="t-time" data-i18n="price.t3time">من 8 إلى 16 أسبوعاً</p>
         <span class="t-weeks" aria-hidden="true"><span class="t-wk"><b></b></span><span class="t-wk-n"><span>0</span><span></span></span></span>
         <div class="t-foot">
-          <ul class="t-list">
-            <li data-i18n="price.t3a">تطبيق ويب مخصّص: منصّة أو بوابة أو أداة عمل</li>
-            <li data-i18n="price.t3b">الدفع وحسابات المستخدمين ولوحات المتابعة</li>
-            <li data-i18n="price.t3c">جمع البيانات من الويب ورصد السوق، مدمجان في التطبيق</li>
-            <li data-i18n="price.t3d">تكاملات واجهات برمجية وأدوات داخلية</li>
-            <li data-i18n="price.t3e">ستّة أشهر دعم مشمولة</li>
-          </ul>
+          <details class="t-incl">
+            <summary data-i18n="price.tIncl">ما تشمله الباقة</summary>
+            <ul class="t-list">
+              <li data-i18n="price.t3a">تطبيق ويب مخصّص: منصّة أو بوابة أو أداة عمل</li>
+              <li data-i18n="price.t3b">الدفع وحسابات المستخدمين ولوحات المتابعة</li>
+              <li data-i18n="price.t3c">جمع البيانات من الويب ورصد السوق، مدمجان في التطبيق</li>
+              <li data-i18n="price.t3d">تكاملات واجهات برمجية وأدوات داخلية</li>
+              <li data-i18n="price.t3e">ستّة أشهر دعم مشمولة</li>
+            </ul>
+          </details>
           <p class="actions-row"><a class="btn btn-teal" href="#contact" data-apercu="app" data-i18n="prev.cta">اطلب معاينتك المجانية <span aria-hidden="true">←</span></a></p>
         </div>
       </article>

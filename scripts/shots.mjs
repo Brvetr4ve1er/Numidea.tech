@@ -5,9 +5,8 @@
  * Captures each LIVE project page at 1440×900 and 2x, crops it to its 16:10
  * window (CROP below), and writes assets/previews/<file>.webp at 1280 with a
  * 720 copy beside it (<file>-720.webp): the srcset's candidates on the home
- * page's plate and work cards. The wide card's file (`wide`) gets a 1600 copy
- * too (<file>-1600.webp): 57vw at 1440 and 91vw at 820 need 1.9 image pixels
- * per CSS pixel on a 2x screen, which a 1280 file cannot give.
+ * page's plate and work cards (the cards are two abreast from 720px, 91vw
+ * on a phone: a 1280 file covers a 2x screen at 1440).
  *
  * The settings are the project sheets' (scripts/work-capture.mjs, the
  * captures /scene/ shows): French, reduced motion (no reveal caught half
@@ -60,10 +59,15 @@ const OUT = join(ROOT, 'assets', 'previews');
 // capture stays on the netlify build even if a card links a production domain.
 export const PROJECTS = {
   bordjsteel:            { capture: 'https://bordjsteelb2b.netlify.app',          client: 'bordjsteel', sheet: 'bordjsteel/d1' },
-  // the wide card's: the catalogue, so the card does not repeat the plate's welder
-  'bordjsteel-products': { capture: 'https://bordjsteelb2b.netlify.app/products', client: 'bordjsteel', sheet: 'bordjsteel/d2', wide: true },
+  // the first card's: the references page (a steelwork under a crane, four
+  // totals), so the card repeats neither the plate's home nor the white
+  // catalogue (6 px text on a white page, its footer cut at the bottom edge)
+  'bordjsteel-references': { capture: 'https://bordjsteelb2b.netlify.app/references', client: 'bordjsteel', sheet: 'bordjsteel/d3' },
   almaflowclim:          { capture: 'https://almaflowclim.netlify.app',           client: 'almaflow',   sheet: 'almaflow/d1' },
-  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/istanbul/', client: 'alliance', sheet: 'alliance/d2', dark: true },
+  // a 1152×720 window (16:10 itself): at 1440×900 the hero ended at two thirds
+  // and the last third was the next band's faint card tops under a chat bubble;
+  // the bubble is hidden (`bare`) and no 1440 sheet frame is comparable (sheet: null)
+  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/istanbul/', client: 'alliance', sheet: null, dark: true, vp: { w: 1152, h: 720 }, bare: true },
   nomara:                { capture: 'https://nomaravoyages.netlify.app',          client: 'nomara',     sheet: null },
   // the portfolio demo: its link on the home page carries data-client (check.mjs 5 pairs the slugs), but it has no
   // preview file: the home shows it as one line under the clients, not as a card with a capture
@@ -83,12 +87,12 @@ export const PROJECTS = {
    of the nav and the tagline off the right). */
 export const CROP = {
   nomara: { x: 448, y: 0, w: 992 },
-  // the catalogue whole, nav to the footer's top edge: four ranges, the red rule under them
-  'bordjsteel-products': { x: 0, y: 0, w: 1440 },
+  // the references page: nav, the crane photo, the four totals, whole
+  'bordjsteel-references': { x: 0, y: 0, w: 1440 },
 };
 
 const VW = 1440, VH = 900, DPR = 2;
-const SIZES = [1280, 720], WIDE = 1600;   // WIDE for the wide card's file only
+const SIZES = [1280, 720];
 const DRIFT = 28, BAND = 10;
 const CEIL = 52000;   // under check.mjs's 53 kB (53,000 bytes) per file in assets/previews
 
@@ -97,7 +101,7 @@ const checkOnly = args.includes('--check');
 const only = args.find((a) => !a.startsWith('--'));
 
 function windowOf(file) {
-  const c = CROP[file] || { x: 0, y: 0, w: VW };
+  const c = CROP[file] || { x: 0, y: 0, w: (PROJECTS[file].vp || { w: VW }).w };
   return { left: c.x, top: c.y, width: c.w, height: Math.round((c.w * 10) / 16) };
 }
 
@@ -130,9 +134,9 @@ async function band(file) {
   return Math.sqrt(Math.max(0, q / n - m * m));
 }
 
-async function capture(browser, file, { capture: url, dark, wide }) {
+async function capture(browser, file, { capture: url, dark, vp, bare }) {
   const ctx = await browser.newContext({
-    viewport: { width: VW, height: VH }, deviceScaleFactor: DPR,
+    viewport: { width: vp ? vp.w : VW, height: vp ? vp.h : VH }, deviceScaleFactor: DPR,
     locale: 'fr-FR', reducedMotion: 'reduce', colorScheme: dark ? 'dark' : 'light',
   });
   const page = await ctx.newPage();
@@ -165,21 +169,29 @@ async function capture(browser, file, { capture: url, dark, wide }) {
       const d = Math.min(nb + 24 - t, scrollY); window.scrollBy({ top: -d, behavior: 'instant' }); return d;
     });
     if (lift) await page.waitForTimeout(1200);
+    // a chat or call bubble floating in a lower corner is the client's widget,
+    // not the page: out of the frame
+    if (bare) await page.evaluate(() => {
+      for (const e of document.querySelectorAll('body *')) {
+        const r = e.getBoundingClientRect();
+        if (getComputedStyle(e).position === 'fixed' && r.top > innerHeight * 0.5 && r.width < 400 && r.height < 100) e.style.visibility = 'hidden';
+      }
+    });
     const png = await page.screenshot({ type: 'png' });
     const w = windowOf(file);
     const region = { left: w.left * DPR, top: w.top * DPR, width: w.width * DPR, height: w.height * DPR };
-    for (const s of wide ? [...SIZES, WIDE] : SIZES) {
+    for (const s of SIZES) {
       // quality 80, lowered in steps while the file is over check.mjs's
       // ceiling for assets/previews (a photographic hero, Nomara's, came
       // to 69 KB at 80)
       let buf, q = 80;
       do {
-        buf = await sharp(png).extract(region).resize(s, Math.round((s * 10) / 16), { fit: 'fill' }).webp({ quality: q }).toBuffer();
+        buf = await sharp(png).extract(region).resize(s, Math.round((s * 10) / 16), { fit: 'fill' }).webp({ quality: q, effort: 6 }).toBuffer();
         q -= 6;
-      } while (buf.length > CEIL && q >= 50);
+      } while (buf.length > CEIL && q >= 40);
       await writeFile(join(OUT, `${file}${s === 1280 ? '' : '-' + s}.webp`), buf);
     }
-    console.log(`✓ ${file}.webp + -720${wide ? ' + -' + WIDE : ''}  ←  ${url}`);
+    console.log(`✓ ${file}.webp + -720  ←  ${url}`);
   } catch (e) {
     console.warn(`✗ ${file}: ${e.message.split('\n')[0]} (kept existing capture)`);
   } finally {

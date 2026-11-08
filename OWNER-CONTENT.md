@@ -419,6 +419,7 @@ by a native speaker). Each key is "AR review: <key>":
   `founder.langs`, `founder.xp`, `founder.basedL`, `founder.recent`, and the
   seven kicker keys (the digits are dropped, nothing else). The en and fr texts
   are in the commits;
+- AR review for the home, Fleet 6 round 1: `price.lead` (cut to one sentence), `price.tIncl` (new: the disclosure's label); the planche label's figures (`3/6`, CSS content in `assets/styles.css`) carry no Arabic word, say if one is wanted;
 - AR review for the Studio: `proof.lead`, `proof.vs.kicker`, `proof.vs.tag`,
   `proof.vs.sub`, `proof.vs.desc`, `proof.vs.facts` (four chips),
   `proof.vs.cta`, `proof.vs.lang`, `proof.vs.alt`, `footer.bible`;
