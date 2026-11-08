@@ -43,10 +43,10 @@
   --glow-teal:0 0 0 1px rgba(52,208,232,.4);
   --glow-crimson:0 0 0 1px rgba(230,180,80,.45);   /* a ring: the 34px bloom was an ambient glow */
   --btn-glow:0 1px 0 color-mix(in srgb,var(--on-crimson) 25%,transparent),0 8px 20px -14px rgb(var(--shade) / .6);
-  --atmos:radial-gradient(55% 50% at 84% 6%,rgba(230,180,80,.16),transparent 70%),
-    radial-gradient(50% 45% at 10% 22%,rgba(52,208,232,.14),transparent 72%),
-    radial-gradient(80% 70% at 50% 112%,rgba(15,40,64,.6),transparent 70%);
-  --grid-color:rgba(230,180,80,.5); --grid-opacity:.07; --grid-size:64px; --ink-k:1;
+  /* flat navy: the gold and cyan corner washes read as a SaaS gradient and
+     tinted the capture's surround (Fleet 5, A2) */
+  --atmos:none;
+  --grid-color:rgba(230,180,80,.5); --grid-opacity:.035; --grid-size:64px; --ink-k:1;
   --nav-glass:rgba(10,20,32,.96); --glass:rgba(23,54,79,.35); --field-bg:rgba(10,20,32,.6);
   --field-border:color-mix(in srgb,var(--faint) 75%,var(--navy));
   --font-head:var(--font-deco); --font-head-em:var(--font-deco-dec); --head-weight:700; --head-tracking:.01em;
@@ -61,8 +61,10 @@
 :root[data-theme="daylight"]{
   --void:#F6F3EC; --navy:#FFFFFF; --plum:#EFEADF;
   --ice:#15181D; --body-strong:#2B3038; --muted:#4B515E; --faint:#606671;
-  /* the primary a shade deeper: the lighter ochre read as mud on the paper */
-  --crimson:#7A4F06; --crimson-hi:#8C5E0A; --on-crimson:#FFF8EC; --crimson-text:#7A5208;
+  /* Fleet 5 (D3): an ochre-gold nearer Arcanum's brass than the brown it was.
+     #8A5B00 on the paper #F6F3EC is 5.30:1 (text), the cream #FFF8EC on it
+     5.56:1 (the button); the hover darkens (#7A4F06), as a pressed brass does */
+  --crimson:#8A5B00; --crimson-hi:#7A4F06; --on-crimson:#FFF8EC; --crimson-text:#8A5B00;
   --teal:#0E6E78; --teal-text:#0B5F68; --on-teal:#FFFFFF;
   --hairline:#E4DED2; --hairline-2:#D2C9B8;
   --band:rgba(140,94,10,.045); --shade:60 45 20; --shade-k:.28;
