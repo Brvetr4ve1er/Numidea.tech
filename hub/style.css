@@ -414,11 +414,14 @@ html.js .st-brand__dl > div:not(.is-active){display:none}
 .st-tcard > .st-label{letter-spacing:.18em;padding-inline-end:120px}
 .st-tcard .st-h3{font-size:30px}
 .st-tcard > p:not(.st-label):not(.st-tcard__foot):not(.st-aside){font-size:var(--t-card);line-height:1.55}
-.st-speed{display:flex;flex-direction:column;gap:6px;margin:4px 0}
-.st-speed__bar{position:relative;height:14px;overflow:hidden;background:var(--paper);border:2px solid var(--ink)}
+/* the stopwatch takes the card's spare height (the other two cards are full; the figure the design printed here is not ours to invent), centred between the text and the foot */
+.st-speed{flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;margin:4px 0;min-height:84px}
+.st-speed__bar{position:relative;height:24px;overflow:hidden;background:var(--paper);border:2px solid var(--ink)}
 .st-speed__bar i{position:absolute;inset:0;background:var(--teal);transform-origin:left center;transform:scaleX(.033);transition:transform .6s var(--ease)}
 html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-speed__ticks{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:var(--t-label);color:var(--muted)}
+.st-speed__ticks span{padding-top:5px;border-top:2px solid var(--ink)}
+.st-speed__ticks span:first-child{padding-inline-start:0}
 .st-parts{display:flex;align-items:stretch;gap:6px;margin:4px 0}
 .st-parts li{flex:1 1 auto;display:flex;flex-direction:column;gap:4px;padding:10px 8px;border:2px solid var(--ink);background:var(--paper)}
 .st-parts li:nth-child(2){background:var(--stone)}

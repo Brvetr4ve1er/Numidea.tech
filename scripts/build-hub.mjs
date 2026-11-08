@@ -6,8 +6,8 @@
  *
  *   hub/src/page.html            the page: head, nav, screens 01-13, footer
  *   hub/src/cases/<slug>.html    the five cases of 09 Proof, each inlined at
- *                                its <!-- CASE:<slug> --> marker (an empty
- *                                place until its fragment exists)
+ *                                its <!-- CASE:<slug> --> marker (a missing
+ *                                fragment leaves the marker's place empty)
  *   hub/src/cases/<slug>.i18n.json   { fr, en, ar }: a case's own copy, its
  *                                keys under cases.<slug>.
  *   hub/src/i18n/{fr,en,ar}.json the page's copy, nested; flattened here to
@@ -39,8 +39,8 @@
  * absent they are written from the file), a local file that does not
  * exist, an http(s) resource (a src), a link to a host outside the
  * allow-list, a style attribute other than custom properties, an inline
- * on*= handler. A hub/img file no page part references is listed, and fails
- * the build once all five cases are in. The output is stable: keys sorted,
+ * on*= handler. A hub/img file no page part references fails the
+ * build (it is only listed while a case's fragment is still missing). The output is stable: keys sorted,
  * no dates, so two runs leave no diff.
  */
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'node:fs';
