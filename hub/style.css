@@ -199,6 +199,12 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-rig__body,.st-rig__kbody{position:absolute;inset:0;transform-origin:50% 100%}
 .st-rig__body img,.st-rig__kbody img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block}
 .st-rig__body img:not([data-yf="base"]),.st-rig__kbody img:not([data-kf="base"]){opacity:0}
+/* the steam over the mug: three blurred wisps the script drifts for the five seconds of a window, invisible at rest (same place as the bible's) */
+.st-steam{position:absolute;left:39%;top:50%;width:8%;height:8%;pointer-events:none;z-index:2}
+.st-steam i{position:absolute;bottom:0;border-radius:50%;background:var(--cream);filter:blur(5px);opacity:0}
+.st-steam i:nth-child(1){left:10%;width:60%;height:100%}
+.st-steam i:nth-child(2){left:35%;width:50%;height:90%}
+.st-steam i:nth-child(3){left:0;width:55%;height:80%}
 .st-rig__k{position:absolute;inset-inline-start:2%;bottom:calc(6% - 16px);z-index:2;width:clamp(92px,9vw,132px);aspect-ratio:360/294}
 .st-bubble{position:absolute;right:66%;top:26%;z-index:3;width:max-content;max-width:min(240px,70%);padding:10px 14px;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow-s);font-family:var(--f-hand);font-size:clamp(15px,1.4vw,19px);line-height:1.25;color:var(--ink);opacity:0;transform:translateY(8px) rotate(-2deg);transition:opacity .2s var(--ease),transform .3s var(--ease);pointer-events:none;text-wrap:pretty}
 .st-bubble.on{opacity:1;transform:rotate(-2deg)}

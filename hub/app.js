@@ -2,7 +2,7 @@
    Numidea Labs — the Studio (hub/index.html), vanilla, no deps
    0 · the dictionaries and the language switch
    1 · the sting (00): a first visit's 2.2 s intro, once per session
-   2 · the rig (01): Yasser and Kūro, twenty drawn frames
+   2 · the rig (01): Yasser and Kūro, eighteen frames
    3 · the pose actors: two-frame figures beside four headings
    4 · reveals, the wedge's cut (02), the speed bar (08)
    5 · process (05): the step at mid-screen
@@ -166,11 +166,15 @@
      The character bible's rig (hub/bible/app.js 1), with the Studio's
      lines and moods. Frames: <img data-yf> and <img data-kf>, stacked; only
      opacity flips (hard cuts). The two base frames are in the page; the
-     eighteen others wait in <template id="rigFrames"> and come in once the
+     sixteen others wait in <template id="rigFrames"> and come in once the
      hero is on screen. The loop (tick) runs while now < S.until; every
      interaction extends S.until by at most WINDOW ms, and in its last EASE
      ms the breath, the lean and the gaze settle and he rests on his base
-     frame. Then no frame is requested. A line is typed at 38 ms a
+     frame. Then no frame is requested. Inside a window, and only there: the
+     steam over the cup, one glasses push before a line (35 % of lines) or,
+     when the pointer alone opened the window, one sip; Kūro's wide eyes on a
+     fast scroll. Nothing is scheduled outside a window (no yawn, no idle
+     loop); reduced motion keeps none of them. A line is typed at 38 ms a
      character in the bubble and written whole in the live region. */
   var WINDOW = 5000, EASE = 700;
   var panel = $('#rig');
@@ -178,6 +182,7 @@
     var yRoot = $('.st-rig__y', panel), kRoot = $('.st-rig__k', panel);
     var yBody = $('[data-ybody]', panel), kBody = $('[data-kbody]', panel);
     var bubble = $('[data-ybubble]', panel), btext = $('[data-ytext]', panel);
+    var wisps = $$('[data-wisp]', panel);
     var moodEl = $('[data-mood]', panel), liveEl = $('[data-live]', panel), saidEl = $('[data-rig-said]', panel);
     var tpl = $('#rigFrames');
     var Y = {}, K = {};
@@ -204,7 +209,8 @@
       cur: 'base', kcur: 'base', hold: null, khold: null, blinkAt: null, kBlinkAt: null,
       nextBlink: t0 + 1600, kNext: t0 + rnd(2500, 5000), kEar: t0 + rnd(2500, 4500),
       mx: .6, my: .5, gaze: 'base', gazeCand: 'base', gazeSince: t0, kgaze: 'base', kgazeAt: 0,
-      squash: 0, ksquash: 0, mood: 'base', raf: 0, until: 0, lastClick: -1e9, lean: 0, say: null, lineIx: 0
+      squash: 0, ksquash: 0, mood: 'base', raf: 0, until: 0, lastClick: -1e9, lean: 0, say: null, lineIx: 0,
+      next: null, nextSip: 0, lastY: 0, lastYt: 0
     };
     var flip = function (map, key, n) {
       if (!map[n] || !ready(map[n])) n = 'base';
@@ -225,13 +231,18 @@
       if (!saidEl) return;
       saidEl.textContent = t('rig.said') + ' ' + text;
     };
-    var startSay = function (text, at) {
+    /* a line, at t1 (default now). With glass, he pushes his glasses up for
+       750 ms from t1 and the line starts after it: the one extra a window
+       may hold (sip is the other, and only when no line is coming) */
+    var startSay = function (text, at, glass) {
       if (!bubble || !text) return;
-      var n = now(), t1 = at || n;
-      S.say = { text: text, t0: t1, shown: 0, done: 0, flapAt: 0, flap: 'base' };
+      var n = now(), t1 = at || n, t0 = t1;
+      S.next = null;
+      if (glass && !reduce) { t0 = t1 + 750; S.next = { name: 'glasses', at: t1, until: t0 }; }
+      S.say = { text: text, t0: t0, shown: 0, done: 0, flapAt: 0, flap: 'base' };
       btext.textContent = reduce ? text : ''; bubble.classList.add('on');
       if (reduce) { said(text); S.say.done = n; }
-      keep(t1 - n + (reduce ? 0 : text.length * 38) + 2200);
+      keep(t0 - n + (reduce ? 0 : text.length * 38) + 2200);
     };
     var endSay = function () { S.say = null; if (bubble) bubble.classList.remove('on'); };
 
@@ -241,6 +252,7 @@
       var fade = Math.min(1, left / EASE), live = !reduce;
       if (S.hold && n >= S.hold.until) S.hold = null;
       if (S.khold && n >= S.khold.until) S.khold = null;
+      if (S.next && n >= S.next.at) { if (n < S.next.until) S.hold = S.next; S.next = null; }
       if (fade < 1) { S.mx += (.6 - S.mx) * .12; S.my += (.5 - S.my) * .12; }
       var gt = gazeTarget();
       if (gt !== S.gazeCand) { S.gazeCand = gt; S.gazeSince = n; }
@@ -274,14 +286,22 @@
       S.lean += (leanT - S.lean) * .06;
       if (yBody) yBody.style.transform = n < S.squash ? 'scale(1.05,.95)' : 'rotate(' + (S.lean * .6).toFixed(3) + 'deg) translateX(' + (S.lean * 3).toFixed(2) + 'px) scale(' + (1 - br * .003).toFixed(4) + ',' + (1 + br * .009).toFixed(4) + ')';
       if (kBody) kBody.style.transform = n < S.ksquash ? 'scale(1.08,.92)' : 'translateY(' + (br * -1.5).toFixed(2) + 'px) rotate(' + (S.lean * -.8).toFixed(3) + 'deg)';
+      // the steam drifts while the window is open, is hidden while he sips or pushes his glasses, and is gone with the window's last 700 ms
+      var steamOn = live && ['sip', 'glasses'].indexOf(S.cur) < 0;
+      for (var i = 0; i < wisps.length; i++) {
+        var p = ((n / 2600) + i / wisps.length) % 1, w = wisps[i];
+        w.style.opacity = steamOn ? (Math.sin(p * Math.PI) * .7 * fade).toFixed(3) : 0;
+        w.style.transform = 'translate(' + (Math.sin(p * 6 + i) * 7 + S.lean * -4 * p).toFixed(1) + 'px,' + (-p * 70).toFixed(1) + 'px) scale(' + (.7 + p * .9).toFixed(2) + ')';
+      }
       S.raf = requestAnimationFrame(tick);
     }
     function settle() {
-      S.raf = 0; S.hold = null; S.khold = null; S.blinkAt = null; S.kBlinkAt = null; S.lean = 0;
+      S.raf = 0; S.hold = null; S.khold = null; S.next = null; S.blinkAt = null; S.kBlinkAt = null; S.lean = 0;
       S.mx = .6; S.my = .5; S.gaze = S.gazeCand = 'base'; S.kgaze = 'base';
       if (S.say) { if (!S.say.done) said(S.say.text); endSay(); }
       flip(Y, 'cur', 'base'); flip(K, 'kcur', 'base');
       if (yBody) yBody.style.transform = ''; if (kBody) kBody.style.transform = '';
+      for (var i = 0; i < wisps.length; i++) { wisps[i].style.opacity = 0; wisps[i].style.transform = ''; }
       emit('base');
     }
     var poke = function () {
@@ -289,7 +309,7 @@
       S.squash = n + 110; S.ksquash = n + 110;
       if (reduce) { S.hold = { name: 'smirk', until: n + 1200 }; if (!S.say) startSay(lines()[S.lineIx++ % lines().length]); return; }
       if (n - S.lastClick < 2500) { S.hold = { name: 'laugh', until: n + 950 }; S.khold = { name: 'wide', until: n + 800 }; }
-      else if (!S.say) { S.hold = { name: 'smirk', until: n + 400 }; startSay(lines()[S.lineIx++ % lines().length], n + 400); }
+      else if (!S.say) { S.hold = { name: 'smirk', until: n + 400 }; startSay(lines()[S.lineIx++ % lines().length], n + 400, Math.random() < .35); }
       else { S.hold = { name: 'smirk', until: n + 1300 }; S.khold = { name: 'wide', until: n + 700 }; }
       S.lastClick = n;
     };
@@ -300,12 +320,27 @@
     once(panel, .15, function () {
       loadFrames();
       if (reduce) return;
-      afterSting(function () { keep(WINDOW); var n = now(); startSay(lines()[S.lineIx++ % lines().length], n + 900); });
+      afterSting(function () { keep(WINDOW); var n = now(); startSay(lines()[S.lineIx++ % lines().length], n + 900, Math.random() < .35); });
     });
     if (!reduce && finePointer) {
       panel.closest('.st-hero').addEventListener('pointermove', function (e) {
         S.mx = e.clientX / innerWidth; S.my = e.clientY / innerHeight;
-        if (framesIn && !S.raf) keep(WINDOW);
+        if (framesIn && !S.raf) {
+          // a window opened by the pointer alone, no line coming: once in a while he takes one sip (1.7 s)
+          var n = now();
+          if (!S.say && n > S.nextSip) { var at = n + rnd(900, 1700); S.next = { name: 'sip', at: at, until: at + 1700 }; S.nextSip = n + rnd(12000, 18000); }
+          keep(WINDOW);
+        }
+      }, { passive: true });
+    }
+    // Kūro goes wide-eyed for half a second when the page is scrolled fast past the hero (faster than 3 px/ms); never with reduced motion
+    if (!reduce) {
+      var hero = panel.closest('.st-hero');
+      S.lastY = scrollY; S.lastYt = now();
+      addEventListener('scroll', function () {
+        var n = now(), v = Math.abs(scrollY - S.lastY) / Math.max(16, n - S.lastYt);
+        S.lastY = scrollY; S.lastYt = n;
+        if (v > 3 && framesIn && !S.khold && hero.getBoundingClientRect().bottom > 0) { keep(1200); S.khold = { name: 'wide', until: n + 500 }; }
       }, { passive: true });
     }
     onLang.push(function () { if (S.say) endSay(); if (saidEl) saidEl.textContent = ''; });
