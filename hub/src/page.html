@@ -48,6 +48,7 @@ d.lang=l;d.dir=l==='ar'?'rtl':'ltr';
 var h='{{base}}hub/',c=document.createElement('link');c.rel='canonical';c.href=q===l&&l!=='fr'?h+'?lang='+l:h;document.head.appendChild(c);
 if(c.href!==h){var m=document.querySelector('meta[property="og:url"]');if(m)m.setAttribute('content',c.href);m=document.querySelector('meta[property="og:locale"]');if(m)m.setAttribute('content',l==='ar'?'ar_DZ':'en_US');}
 window.NUMIDEA_LANG=l;
+if(l==='ar'){['fonts/reem-kufi-700-arabic','../assets/fonts/ibm-plex-sans-arabic-400-arabic','../assets/fonts/ibm-plex-sans-arabic-600-arabic'].forEach(function(f){var p=document.createElement('link');p.rel='preload';p.as='font';p.type='font/woff2';p.crossOrigin='';p.href=f+'.woff2';document.head.appendChild(p);});}
 if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript src="i18n.js?v={{stamp}}">\x3c/script>');var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};setTimeout(r,1500);}})();</script>
 <!-- Faces: hub/fonts/fonts.css, one file per family and subset, each
      fetched only when a character of its range is set in it. Preloaded:
