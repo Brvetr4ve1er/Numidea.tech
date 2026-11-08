@@ -1328,6 +1328,47 @@ browser test confirmed no range splits at 1280/1024/768/390 in FR/EN/AR.
 - **Tier CTAs share a line** at 960+ (the foot is a flex column, the button at
   its bottom). The FAQ's ask row sits at the top of its side column.
 
+### Home rules after Fleet 6 (2026-11-08)
+
+Values read from `assets/styles.css` (the Fleet 6 blocks at its end).
+
+- **The section device is the planche head.** Each section after the proof
+  opens on a kicker whose `::before` is the planche number (a counter on
+  `main:has(>#work)`, `01` to `06`), then a hairline rule ending on a tick and
+  the running label (`Pl. n/6`, `Sh. n/6` in English, the figures alone in
+  Arabic). Sections carry no top border below the hero. Brass is the one accent.
+- **Three set pieces, no more.** (1, 3) The services' and the founder's
+  numerals are outlined Cinzel, `--numeral` clamp(64px,7.2vw,104px), a 1px
+  `-webkit-text-stroke` in 80% crimson, bottom-aligned with the rule; LTR pages
+  only, so the Arabic page loads no Cinzel. Their `h2` take `--t-h2-xl`
+  clamp(28px,12px + 2.65vw,52px) (28 on a phone, 50 at 1440). (2) One engraved
+  strip, the footer's dunes mirrored (`.dune-strip`, height clamp(72px,8vw,112px),
+  ink at .4), turns from the prices to the founder, whose section is a full-bleed
+  panel, `--panel` = 80% navy over void, one step off the page in both themes.
+  Any fourth set piece needs the owner.
+- **Section rhythm.** `--sec-pad` clamp(56px, 56px + (100vw - 600px) * .0286,
+  80px) on the planche pages (Fleet 5's 64-96 stays on pages without `#work`),
+  half on each side; `--head-gap` clamp(32px,...,48px).
+- **Work rows.** The benefit line is labelled `work.outcome` («Côté visiteur»,
+  not «Résultat»: check 5c bans results) over a 2px crimson rule; the
+  description is muted, two lines; one link per row; the ruled foot
+  (`.actions`, `margin-top:auto`) aligns across rows. Two abreast from 720.
+- **The proof is one line.** Decision 7 stands (one trust line and the logos);
+  the band sits on clean ground under the vista (`--vista` height
+  clamp(120px,12vw,172px), no overlap); on a phone the four marks share one row.
+- **The Aperçu is a card.** From 1100px it has two columns (the promise and
+  terms in columns 1-7; the figure «Payé jusqu'ici : 0 DA» and two stacked
+  buttons in 9-12, behind a hairline); step captions 14px (`--t-small`).
+- **The founder's plate** is the studio's own atlas, the Arch at Timgad
+  (`illus/arch.webp`, aspect 21/9, 2/1 from 1100) with crop marks; no face is
+  drawn or generated. The photo does not exist.
+- **Tiers** are square with crop marks; on a phone Essentiel and Moteur fold
+  their lists under a native `details` (`price.tIncl`), Studio stays open.
+- **Height budget** (fr, fonts loaded, `document.documentElement.scrollHeight`,
+  both themes): phone 390 under 13,500 px (12,870 measured), desktop 1440
+  under 9,200 (8,438). A change that crosses either is a regression to
+  justify.
+
 ## hub/ — the Studio page
 
 Since 2026-11-07 `/hub/` is the studio's own page, built from the owner's
