@@ -106,7 +106,7 @@ var I18N = {
   'form.copyFail': 'تعذّر النسخ: رسالتك محدَّدة، انسخها بنفسك.',
   'form.subjPrev': 'Numidea Labs · معاينة · ', 'form.subjEst': 'Numidea Labs · تقدير · ', 'form.subj': 'Numidea Labs · تواصل · ',
   'founder.frPill': 'الفرنسية <bdi>C2</bdi>', 'founder.enPill': 'الإنجليزية <bdi>C1</bdi>',
-  'theme.arcanum': 'أركانوم', 'theme.noir': 'أسود', 'theme.daylight': 'نهاري', 'theme.mono': 'أحادي اللون', 'theme.altneon': 'نيون بديل', 'theme.engineering': 'هندسي',
+  'theme.arcanum': 'أركانوم', 'theme.daylight': 'نهاري', 'theme.toArcanum': 'التبديل إلى أركانوم (داكن)', 'theme.toDaylight': 'التبديل إلى النهاري (فاتح)',
   'ui.newTab': ' (يفتح في تبويب جديد)',
   'footer.rights': '<bdi dir="ltr">© 2026 Numidea Labs</bdi>',
   'footer.tag': 'جذورها في نوميديا\u00a0· مبنيّة على الأفكار',

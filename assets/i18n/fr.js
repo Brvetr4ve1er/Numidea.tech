@@ -103,7 +103,7 @@ var I18N = {
   'form.copyFail': 'La copie n’a pas fonctionné : votre message est sélectionné, copiez-le vous-même.',
   'form.subjPrev': 'Numidea Labs · Aperçu · ', 'form.subjEst': 'Numidea Labs · Estimation · ', 'form.subj': 'Numidea Labs · Contact · ',
   'founder.frPill': 'FR C2', 'founder.enPill': 'EN C1',
-  'theme.arcanum': 'Arcanum', 'theme.noir': 'Noir', 'theme.daylight': 'Daylight', 'theme.mono': 'Monochrome', 'theme.altneon': 'Alt-neon', 'theme.engineering': 'Engineering',
+  'theme.arcanum': 'Arcanum', 'theme.daylight': 'Daylight', 'theme.toArcanum': 'Passer en Arcanum (sombre)', 'theme.toDaylight': 'Passer en Daylight (clair)',
   'ui.newTab': ' (nouvel onglet)',
   'footer.rights': '© 2026 Numidea Labs',
   'footer.tag': 'Enraciné en Numidie\u00a0· bâti sur des idées',

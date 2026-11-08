@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url';
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const BASE = 'https://brvetr4ve1er.github.io/Numidea.tech/';
 export const LANGS = ['fr', 'en', 'ar'];
-export const THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon', 'engineering'];
+export const THEMES = ['arcanum', 'daylight'];
 
 /* the legal page exists only once scripts/build-legal.mjs had every owner
    field; until then nothing may link to it and it is not deployed */

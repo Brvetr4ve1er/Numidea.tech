@@ -8,8 +8,8 @@
 /* The sheet's colours are the visitor's theme's: each name here is an alias
    of a token from ../assets/themes.css (loaded first; the head script sets
    data-theme from the shared 'numidea-theme' key, the markup carries
-   Arcanum for scripts off), so the drawing office is Daylight paper or Noir
-   black when the home page is. It used to hard-code the Arcanum palette and
+   Arcanum for scripts off), so the drawing office is Daylight paper or Arcanum
+   blue when the home page is. It used to hard-code the Arcanum palette and
    read only the language key. --muted and --faint are the theme's own; the
    drafting grid is the theme's muted ink, thinned. */
 :root{

@@ -220,7 +220,7 @@
 
    Weights (2026-10-25). A bold heading drawn from a regular face gets
    synthetic bold, which keeps the regular advances, and Geist is ~7% wider at
-   700 than at 400: Alt-neon's French hero wrapped to 4 lines before Geist 700
+   700 than at 400: a Geist-headed theme's French hero (those themes are cut) wrapped to 4 lines before Geist 700
    arrived and 5 after, a 0.02 layout shift on the live site. So Geist has a
    face for every weight the site sets (500 from the regular list, 600 and
    700 from the bold one), and Cinzel, set only at 700, bold faces only.
@@ -236,8 +236,8 @@
      in French, and pass). Geist 700 and the two Cinzel faces on the hero
      title itself (the French one: 101.70%, 129.87%, 145.63%; English runs
      100.05%, 125.5%, 139.3%). Geist 700's other copy, headings and nav in
-     Noir and Alt-neon (~103.2%) or prices elsewhere (digits ~110%), made
-     Noir's hero a line too tall.
+     the Geist-headed themes (~103.2%) or prices elsewhere (digits ~110%), made
+     their hero a line too tall.
    - Each list starts with ONE metric family: Arial, Liberation Sans, Arimo;
      Times New Roman, Liberation Serif, Tinos; Courier New, Liberation Mono,
      Cousine. The Cinzel list used to start with Georgia, but its size was
@@ -249,7 +249,7 @@
      stacks fall through to the system fonts unadjusted. Not calibrated:
      that needs a device to see how Chrome on Android names its fonts for
      local(). RELEASE.md lists it with the phone-speed work.
-   - Margins, from audit.mjs's fallback-type runs (all six themes, French and
+   - Margins, from audit.mjs's fallback-type runs (both themes, French and
      English, 360 to 1600 wide, first screen; text laid out without hinting,
      as scripts/lib/serve.mjs explains): the hero broke in the same places at
      every value tried from 101.2% to 102.2% for Geist 700, and from

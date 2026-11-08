@@ -78,35 +78,16 @@ html[dir="ltr"] :is(.hero-h .swash,.contact h2 em){font-family:var(--font-head-e
 /* smooth the moment of switching */
 body,.navbar.scrolled,.svc-row,.proj,.card,.field input,.field textarea,.form,.capabilities{transition:background-color var(--t-enter),border-color var(--t-enter),color var(--t-enter)}
 
-/* ---------- theme switcher ---------- */
+/* ---------- theme toggle ----------
+   One button between the two themes (Arcanum, dark; Daylight, light). It
+   draws the icon of the theme it switches TO: a sun on Arcanum, a moon on
+   Daylight (app.js sets data-to); both are in the markup, one shows. 44px,
+   the touch floor, at every width. The ring is the page's own (:focus-visible). */
 .theme-switch{position:relative}
-.theme-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);background:transparent;cursor:pointer;transition:border-color var(--t-hover)}
+.theme-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--hairline-2);border-radius:var(--r-pill);background:transparent;color:var(--ice);cursor:pointer;transition:border-color var(--t-hover)}
 @media (hover:hover){.theme-btn:hover{border-color:var(--teal)}}
-/* a swatch: a disc half text colour, half accent, the theme's own two inks.
-   It was the kicker's rotated square at button size, the same mark that
-   closed every kicker, so it read as one more ornament and not as a control
-   (and the conic rainbow before that was in colours no theme owns). 44px,
-   the touch floor, at every width. */
-.theme-btn .ic{width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,var(--ice) 50%,var(--crimson) 50%);box-shadow:inset 0 0 0 1px var(--hairline-2)}
-.theme-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:17var(--s-1);background:var(--navy);border:1px solid var(--hairline-2);border-radius:var(--r-md);padding:var(--s-2);display:none;flex-direction:column;gap:var(--s-1);z-index:130;box-shadow:0 22px 55px -22px rgb(var(--shade) / calc(.6 * var(--shade-k)))}
-html[dir="rtl"] .theme-menu{right:auto;left:0}
-.theme-menu.open{display:flex}
-.theme-menu button{display:flex;align-items:center;gap:var(--s-3);padding:var(--s-2) var(--s-3);border:none;background:transparent;color:var(--muted);font-family:var(--font-mono);font-size:12px;border-radius:var(--r-sm);cursor:pointer;text-align:left;transition:background-color var(--t-hover),color var(--t-hover)}
-html[dir="rtl"] .theme-menu button{text-align:right}
-@media (hover:hover){.theme-menu button:hover{background:rgba(127,127,127,.10);color:var(--ice)}}
-.theme-menu button[aria-checked="true"]{color:var(--teal-text)}
-/* the current theme is marked by a shape, not by its colour alone (1.18:1 from
-   its neighbours in Arcanum). aria-checked already names it, so the mark is
-   kept out of the accessible name where the alt-text syntax is understood. */
-.theme-menu button::after{content:"";flex:none;width:1em;margin-inline-start:auto}
-.theme-menu button[aria-checked="true"]::after{content:"✓";content:"✓" / "";text-align:center;font-weight:700}
-.theme-menu .dot{width:15px;height:15px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(127,127,127,.4)}
-.theme-menu .dot.arcanum{background:linear-gradient(135deg,#34D0E8,#E6B450)}
-.theme-menu .dot.noir{background:linear-gradient(135deg,#E5484D,#0B0B0E)}
-.theme-menu .dot.daylight{background:linear-gradient(135deg,#F6F3EC,#8C5E0A)}
-.theme-menu .dot.mono{background:linear-gradient(135deg,#F5F5F5,#0A0A0A)}
-.theme-menu .dot.engineering{background:linear-gradient(135deg,#15181B 48%,#FF5B1F 52%)}
-.theme-menu .dot.altneon{background:linear-gradient(135deg,#FF3EA5,#3EE6FF)}
+.theme-btn svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.theme-btn[data-to="daylight"] .i-moon,.theme-btn[data-to="arcanum"] .i-sun{display:none}
 
 *{box-sizing:border-box;margin:0;padding:0}
 /* overflow-x:clip, not hidden. The decorative layers (the hero's glow fields,
@@ -283,16 +264,13 @@ html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
 .mobile-menu.open .menu-acts{animation-delay:.33s}
 @keyframes stagger{to{opacity:1;transform:translateY(0)}}
 .mobile-menu .lang{margin-top:var(--s-4);align-self:flex-start}
-/* the theme picker in the menu (the header's is hidden below 960px to make
+/* the theme toggle in the menu (the header's is hidden below 960px to make
    room for the language switch, which a visitor who cannot read the page
-   needs on the first screen): the trigger shows its name, and the six
-   themes open in place as a row of chips, not as a dropdown hanging off the
-   foot of a scrolling dialog */
-.mobile-menu .theme-switch{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s-3);align-self:flex-start}
-.mobile-menu .theme-btn{display:inline-flex;width:auto;gap:var(--s-2);padding-inline:var(--s-3) var(--s-3)}
-.mobile-menu .theme-btn::after{content:attr(aria-label);font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.mobile-menu .theme-menu{position:static;flex-basis:100%;min-width:0;flex-direction:row;flex-wrap:wrap;gap:var(--s-2);padding:0;border:0;background:none;box-shadow:none}
-.mobile-menu .theme-menu button{border:1px solid var(--hairline-2);min-height:44px;padding-inline:var(--s-3)}
+   needs on the first screen): the same button, and it says what it does,
+   "Switch to Daylight (light)", as its visible name */
+.mobile-menu .theme-switch{display:flex;align-items:center;align-self:flex-start}
+.mobile-menu .theme-btn{display:inline-flex;width:auto;max-width:100%;gap:var(--s-2);padding-inline:var(--s-3)}
+.mobile-menu .theme-btn::after{content:attr(aria-label);font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:start}
 .mobile-menu .close{position:absolute;top:20px;inset-inline-end:24px;background:transparent;border:none;color:var(--ice);font-size:34px;cursor:pointer}
 /* The two ways to start (index.html .menu-acts) had no rule: at 390x844 they
    sat 36px under the fold of a 1000px menu, stacked touching in French and
@@ -359,7 +337,7 @@ body:has(.m-contact.on) .lang-offer{bottom:calc(73px + var(--s-3) + env(safe-are
 .hero-h{font-family:var(--font-display);font-weight:600;font-size:clamp(31px, 13.33px + 4.91vw, 84px);line-height:.96;letter-spacing:-.02em}
 /* Solid ink, not a gradient fill. A three-stop gradient across the primary
    headline is the loudest "generated" tell in the vocabulary, and it is not
-   free: --grad-text's own stops measure 2.7:1 on noir and 3.1:1 on daylight
+   free: --grad-text's own stops measure 2.7:1 on the dark theme and 3.1:1 on daylight
    against those backgrounds — under the 4.5 floor, on the largest text on the
    page. axe never caught it: gradient-filled text computes as
    color:transparent, so its contrast rule skips the node entirely. */
@@ -631,7 +609,7 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
    proof line. Each logo is the client's own file, as its site serves it
    (scripts/client-logos.mjs), and the page paints all four in ONE theme
    colour through a mask: no recoloured copies, and the row reskins with the
-   six themes. The <img> carries the mask and keeps its alt; its own pixels
+   both themes. The <img> carries the mask and keeps its alt; its own pixels
    are pushed out of its box (object-position) so only the theme colour
    shows through the silhouette. crossorigin on the <img> makes its request
    the same CORS request as the mask's, so each file downloads once. The
@@ -797,7 +775,7 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 
 /* ---------- generated illustrations ----------
    Monochrome white-on-black rasters used as luminance masks over
-   `currentColor`, so one asset re-tints itself in all six palettes
+   `currentColor`, so one asset re-tints itself in both palettes
    instead of shipping six copies. Every figure sits in a bounded,
    fixed-size box: the mask never participates in intrinsic sizing,
    so there is nothing for a late-decoding file to shift. The FAQ masks
@@ -2322,7 +2300,7 @@ a.wa-link[aria-disabled="true"]{text-decoration:none}
    but the glows did not, so the text column and the logo sat directly on the
    warm one (3.8:1 on Daylight). The layer is a fixed full-viewport field of
    gradients with nothing directional in it, so flipping it is exact, and one
-   rule covers all six palettes. */
+   rule covers both palettes. */
 html[dir="rtl"] body::before{transform:scaleX(-1)}
 
 /* These interactive rules used `transition:all`, which animates the outline
@@ -2331,7 +2309,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
    indicator must be instant. Each shorthand now lists its own properties
    (2026-11); this guard stays, outline excluded, after them on purpose: a
    later `transition:all` shorthand would reset the property list. */
-.theme-btn,.theme-menu button,.lang :is(a,button),.btn,.proj .actions a,.field input,.field textarea{
+.theme-btn,.lang :is(a,button),.btn,.proj .actions a,.field input,.field textarea{
   transition-property:color,background-color,border-color,box-shadow,transform,opacity,filter,text-decoration-color}
 
 /* ═══ forced colours (Windows High Contrast) ═══ Backgrounds are discarded, so a
@@ -2360,9 +2338,8 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
   .plate-rail button[aria-current="true"] i{background:Highlight;height:4px;margin-top:-1px}
   .nav-links a[aria-current="true"]::after,.timeline li.tl-now::before{forced-color-adjust:none;background:Highlight;border-color:Highlight}
   .faq-mark::before,.faq-mark::after{forced-color-adjust:none;background:CanvasText}
-  /* the theme button's icon was a conic gradient, so the button was an empty
-     square: a half-filled disc keeps a recognisable mark */
-  .theme-btn .ic{forced-color-adjust:none;background:none;box-shadow:inset 8px 0 ButtonText,inset 0 0 0 1px ButtonText}
+  /* the theme button's icon is drawn in currentColor, which forced colours
+     map to ButtonText: nothing to restore */
   /* the wordmark's "idea" is a fill, which forced colours leave alone: it
      takes the link's colour, as the rest of the mark does */
   .logo .wm-accent{fill:currentColor!important}
@@ -2399,7 +2376,7 @@ html[dir="rtl"] body::before{transform:scaleX(-1)}
      made) print open, where the browser lets CSS reach their content */
   details::details-content{content-visibility:visible!important}
   body{background:#fff!important;color:#000!important}
-  body::before,body::after,html::after,.skip,.nav-right,.theme-menu,.mobile-menu,.menu-toggle,.sheet-frame,.browser{display:none!important}
+  body::before,body::after,html::after,.skip,.nav-right,.mobile-menu,.menu-toggle,.sheet-frame,.browser{display:none!important}
   .faq-fig{display:none!important}
   *{box-shadow:none!important;text-shadow:none!important;backdrop-filter:none!important;animation:none!important;transition:none!important}
   .reveal,.js-ready .reveal{opacity:1!important;transform:none!important}

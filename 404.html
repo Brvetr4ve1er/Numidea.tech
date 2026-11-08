@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-JCpbp3zM95HXK0E7E1sSxULrYjHc3DbzcfChAlAF+PM=' 'sha256-Jvn24vQysqTXazdbu/syLpHBfGz2Z/IG/2cesWu3wuQ='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-KceiDbXRvpaUmWdG1rBl6r8DzJNq/2eETq8sNd+Gwgw=' 'sha256-ck8vR4cQLM/Y8Iv2QvU0yuUNm+jt7ut+A/D2h01fsTk='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Cette page a pris la route — Numidea Labs</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A1420">
@@ -39,7 +39,7 @@
   // system has, without fetching the 42 KB face. The name is private to this page.
   h += '\x3cstyle>@font-face{font-family:"Numidea 404 Arabic";font-weight:400;font-display:swap;src:url(' + b + 'fonts/plex-arabic-404.woff2) format("woff2")}\x3c/style>';
   // themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them
-  ['fonts.css?v=202611080159', 'themes.css?v=202611080159', 'styles.css?v=202611080159'].forEach(function (f) {
+  ['fonts.css?v=202611081135', 'themes.css?v=202611081135', 'styles.css?v=202611081135'].forEach(function (f) {
     h += '\x3clink rel="stylesheet" href="' + b + f + '">';
   });
   document.write(h);
@@ -48,9 +48,9 @@
 <noscript>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/fonts.css?v=202611080159">
-<link rel="stylesheet" href="assets/themes.css?v=202611080159">
-<link rel="stylesheet" href="assets/styles.css?v=202611080159">
+<link rel="stylesheet" href="assets/fonts.css?v=202611081135">
+<link rel="stylesheet" href="assets/themes.css?v=202611081135">
+<link rel="stylesheet" href="assets/styles.css?v=202611081135">
 </noscript>
 <style>
   /* svh, not vh: with viewport-fit=cover, 100vh is the tallest the viewport
@@ -139,16 +139,15 @@
    colour (themes.css --void), for the browser's own bar. */
 (function () {
   var d = document.documentElement;
-  var HEAD = { arcanum: 'cinzel-700-latin', noir: 'geist-latin', daylight: 'cinzel-700-latin',
-               mono: 'geist-latin', altneon: 'geist-latin', engineering: 'geist-latin' };
-  var VOID = { arcanum: '#0A1420', noir: '#0B0B0E', daylight: '#F6F3EC',
-               mono: '#0A0A0A', altneon: '#0C0716', engineering: '#0E1012' };
+  var HEAD = { arcanum: 'cinzel-700-latin', daylight: 'cinzel-700-latin' };
+  var VOID = { arcanum: '#0A1420', daylight: '#F6F3EC' };
   var TITLE = { fr: 'Cette page a pris la route — Numidea Labs',
                 en: 'This page hit the road — Numidea Labs',
                 ar: 'هذه الصفحة شدّت الرحال — Numidea Labs' };
   var th = 'arcanum', lang = 'fr', q = '';
   try { q = (new URLSearchParams(location.search).get('lang') || '').toLowerCase(); } catch (e) {}
-  try { th = localStorage.getItem('numidea-theme') || th; lang = localStorage.getItem('numidea-lang') || lang; } catch (e) {}
+  var st = null;
+  try { st = localStorage.getItem('numidea-theme'); lang = localStorage.getItem('numidea-lang') || lang; } catch (e) {}
   if (Object.prototype.hasOwnProperty.call(TITLE, q)) {
     lang = q;
     // kept, as the other pages keep it: the way home stays in this language
@@ -164,7 +163,12 @@
     root = base + 'assets/';
     if (!Object.prototype.hasOwnProperty.call(TITLE, q) && (seg[0] === 'en' || seg[0] === 'ar')) { lang = seg[0]; fromPath = true; }
   }
-  if (!Object.prototype.hasOwnProperty.call(HEAD, th)) th = 'arcanum';
+  /* the stored choice if it is one of the two; a retired theme's name becomes
+     Arcanum and is rewritten; nothing valid stored: the OS decides (Daylight
+     when it asks for light) and nothing is written, since no choice was made */
+  if (Object.prototype.hasOwnProperty.call(HEAD, st)) th = st;
+  else if (/^(noir|mono|altneon|engineering)$/.test(st)) { try { localStorage.setItem('numidea-theme', th); } catch (e) {} }
+  else { try { if (window.matchMedia('(prefers-color-scheme: light)').matches) th = 'daylight'; } catch (e) {} }
   if (!Object.prototype.hasOwnProperty.call(TITLE, lang)) lang = 'fr';
   d.setAttribute('data-theme', th);
   d.setAttribute('lang', lang);

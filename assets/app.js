@@ -240,107 +240,50 @@
       });
     });
 
-    // theme switcher — every theme is a token block in themes.css, so a switch
-    // is one attribute; nothing loads, nothing re-lays out
-    var THEMES = ['arcanum', 'noir', 'daylight', 'mono', 'altneon', 'engineering'];
-    function applyTheme(t) {
-      if (THEMES.indexOf(t) === -1) t = 'arcanum';
-      document.documentElement.setAttribute('data-theme', t);
+    /* theme toggle — two themes, each a token block in themes.css, so a switch
+       is one attribute; nothing loads, nothing re-lays out. The head script
+       already resolved the theme before first paint (the stored choice, else
+       the OS preference); this mirrors it and wires the button(s). Only a
+       press of the button stores a choice: a visitor who made none keeps the
+       OS preference. */
+    var THEMES = ['arcanum', 'daylight'];
+    function applyTheme(th, store) {
+      if (THEMES.indexOf(th) === -1) th = 'arcanum';
+      document.documentElement.setAttribute('data-theme', th);
       // the browser's own bar takes the page colour (Daylight is light): read
       // from the theme's tokens, so it cannot drift from themes.css
       var bar = document.querySelector('meta[name="theme-color"]');
       var bg = getComputedStyle(document.documentElement).getPropertyValue('--void').trim();
       if (bar && bg) bar.setAttribute('content', bg);
-      document.querySelectorAll('.theme-menu button').forEach(function (b) {
-        b.setAttribute('aria-checked', b.getAttribute('data-theme-val') === t ? 'true' : 'false');
-      });
-      labelTheme(t);
-      try { localStorage.setItem('numidea-theme', t); } catch (e) {}
+      labelTheme(th);
+      if (store) { try { localStorage.setItem('numidea-theme', th); } catch (e) {} }
       // type tokens change line lengths, so cached section tops are re-measured
       document.dispatchEvent(new CustomEvent('numidea:relayout'));
     }
-    /* The button says which theme is on ("Thème : Noir", the name as the
-       menu writes it), as its label and its tooltip; in the phone menu the
-       label is the button's visible name too (styles.css, ::after). applyLang
-       writes the bare key back (data-i18n-aria), so it is written again
-       after a language apply. */
+    /* The button names the theme it switches to ("Passer en Daylight
+       (clair)"), as its label and its tooltip, and draws that theme's icon
+       (data-to, styles.css); in the phone menu the label is the button's
+       visible name too (::after). The key goes on data-i18n-aria, so the
+       language apply writes the same words back. */
     function labelTheme(th) {
-      var item = document.querySelector('.theme-menu button[data-theme-val="' + th + '"]');
-      var name = item ? item.textContent.trim() : th;
-      var fr = (document.documentElement.getAttribute('lang') || DEFAULT_LANG) === 'fr';
-      var label = t('ui.theme') + (fr ? ' : ' : ': ') + name;
-      document.querySelectorAll('.theme-btn').forEach(function (b) { b.setAttribute('aria-label', label); b.setAttribute('title', label); });
+      var to = th === 'daylight' ? 'arcanum' : 'daylight';
+      var key = 'theme.to' + (to === 'daylight' ? 'Daylight' : 'Arcanum');
+      var label = t(key);
+      document.querySelectorAll('.theme-btn').forEach(function (b) {
+        b.setAttribute('data-to', to);
+        b.setAttribute('data-i18n-aria', key);
+        b.setAttribute('aria-label', label);
+        b.setAttribute('title', label);
+      });
     }
     document.addEventListener('numidea:lang', function () { labelTheme(document.documentElement.getAttribute('data-theme') || 'arcanum'); });
-    // the pre-paint script already resolved and applied this; mirror it here
-    var defaultTheme = 'arcanum';
-    var savedTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
-    applyTheme(savedTheme);
-    /* Two pickers: the header's, and the phone menu's (the header's goes
-       below 960px, styles.css, to make room for the language switch). Each
-       is wired on its own; applyTheme marks the chosen theme in both. */
-    [].forEach.call(document.querySelectorAll('.theme-switch'), function (sw) {
-      var themeBtn = sw.querySelector('.theme-btn');
-      var themeMenu = sw.querySelector('.theme-menu');
-      if (!themeBtn || !themeMenu) return;
-      /* An ARIA menu, so it keeps the menu's keyboard contract: opening moves
-         focus to the checked theme, arrows/Home/End move between themes,
-         choosing one or Escape closes and returns focus to the button, and
-         Tab or a click elsewhere closes it. Items stay out of the Tab order. */
-      var items = Array.prototype.slice.call(themeMenu.querySelectorAll('[role="menuitemradio"]'));
-      var isOpen = function () { return themeMenu.classList.contains('open'); };
-      var closeTheme = function (refocus) {
-        if (!isOpen()) return;
-        themeMenu.classList.remove('open');
-        themeBtn.setAttribute('aria-expanded', 'false');
-        if (refocus) themeBtn.focus();
-      };
-      var openTheme = function (which) {
-        themeMenu.classList.add('open');
-        themeBtn.setAttribute('aria-expanded', 'true');
-        var i = which === 'last' ? items.length - 1 : which === 'first' ? 0
-              : Math.max(0, items.findIndex(function (b) { return b.getAttribute('aria-checked') === 'true'; }));
-        if (items[i]) items[i].focus();
-        // in the phone menu the chips open in place, at the foot of a dialog
-        // that scrolls: the whole row is brought in (focus alone brought the
-        // checked chip and left the rest below the fold on the price guide)
-        var dlg = sw.closest('.mobile-menu');
-        if (dlg) requestAnimationFrame(function () {
-          themeMenu.scrollIntoView({ block: 'nearest' });
-          // nearest lands the row flush on the dialog's edge: a gutter under it
-          var over = themeMenu.getBoundingClientRect().bottom - (window.innerHeight - 16);
-          if (over > 0) dlg.scrollTop += over;
-        });
-      };
-      themeBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        if (isOpen()) closeTheme(false); else openTheme();
+    applyTheme(document.documentElement.getAttribute('data-theme') || 'arcanum', false);
+    // two buttons: the header's, and the phone menu's (the header's goes
+    // below 960px, styles.css, to make room for the language switch)
+    document.querySelectorAll('.theme-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        applyTheme(document.documentElement.getAttribute('data-theme') === 'daylight' ? 'arcanum' : 'daylight', true);
       });
-      themeBtn.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); openTheme(e.key === 'ArrowUp' ? 'last' : null); }
-      });
-      items.forEach(function (b, i) {
-        b.addEventListener('click', function (e) {
-          e.stopPropagation();
-          applyTheme(b.getAttribute('data-theme-val'));
-          closeTheme(true);
-        });
-        b.addEventListener('keydown', function (e) {
-          var n = items.length, to = null;
-          if (e.key === 'ArrowDown') to = (i + 1) % n;
-          else if (e.key === 'ArrowUp') to = (i - 1 + n) % n;
-          else if (e.key === 'Home') to = 0;
-          else if (e.key === 'End') to = n - 1;
-          else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeTheme(true); return; }
-          else if (e.key === 'Tab') { closeTheme(false); return; }
-          if (to !== null) { e.preventDefault(); items[to].focus(); }
-        });
-      });
-      themeMenu.addEventListener('focusout', function (e) {
-        if (e.relatedTarget && !themeMenu.contains(e.relatedTarget) && e.relatedTarget !== themeBtn) closeTheme(false);
-      });
-      document.addEventListener('click', function () { closeTheme(false); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeTheme(themeMenu.contains(document.activeElement)); });
     });
 
     /* One read of the scroll position per scroll event, shared by everything
