@@ -113,7 +113,7 @@ button{font:inherit;color:inherit}
 .st-seal{width:46px;height:46px;flex:none;display:grid;place-items:center;border:2px solid var(--ink);border-radius:50%;font-family:var(--f-jp);font-weight:900;font-size:22px;letter-spacing:0;color:var(--red)}
 .st-seal--red{background:var(--red);border-color:var(--cream);color:var(--cream)}
 .st-seal--fill{background:var(--red);border-color:var(--red);color:var(--cream)}
-.st-h2{font-family:var(--f-disp);font-weight:900;font-size:var(--t-h2);line-height:.94;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+.st-h2{overflow-wrap:break-word;font-family:var(--f-disp);font-weight:900;font-size:var(--t-h2);line-height:.94;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
 .st-h2--mega{font-size:var(--t-mega);line-height:.88;letter-spacing:-.015em}
 .st-h2--narrow{max-width:16em}
 .st-h3{font-family:var(--f-disp);font-weight:900;font-size:var(--t-h3);line-height:1;text-transform:uppercase}
@@ -167,6 +167,8 @@ section[id],.st-case,[id^="case-"]{scroll-margin-top:80px}
   .st-lang{margin-inline-start:0}
 }
 @media (max-width:380px){.st-wm__t{font-size:19px}}
+/* 320: the wordmark, a 20px gap and the three 44px switch buttons need 330px of a 288px bar */
+@media (max-width:359px){:root{--t-h2:31px}.st-nav__in{gap:10px}.st-wm{gap:6px}.st-wm__t{font-size:16px}}
 
 /* ---------------- 01 hero ---------------- */
 /* the two Arabic watermarks (نوميديا here, فكرة in the Lab) are set in
@@ -348,11 +350,13 @@ html.js .st-est .st-obtn:disabled:not([aria-pressed="true"]){opacity:.45}
 .st-seg{display:inline-flex;align-self:flex-start;max-width:100%;border:2px solid var(--line)}
 .st-seg button{min-height:44px;padding:0 16px;border:0;background:transparent;color:var(--cream);font-family:var(--f-mono);font-weight:600;font-size:var(--t-mono);letter-spacing:.08em;cursor:pointer}
 .st-seg button[aria-pressed="true"]{background:var(--red)}
-.st-est__out{flex:1 1 380px;min-width:0;position:relative;display:flex;flex-direction:column;gap:18px;padding:clamp(18px,2.6vw,32px);background:var(--paper);color:var(--ink);border:2px solid var(--paper)}
+.st-est__out{flex:1 1 380px;min-width:0;container-type:inline-size;position:relative;display:flex;flex-direction:column;gap:18px;padding:clamp(18px,2.6vw,32px);background:var(--paper);color:var(--ink);border:2px solid var(--paper)}
 .st-est__out .st-label--red{color:var(--red-text)}
 .st-est__out .st-label--teal{color:var(--teal-text)}
 .st-est__fig{display:flex;flex-direction:column;gap:6px}
 .st-est__fig output{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(28px,3.4vw,46px);line-height:1;font-variant-numeric:tabular-nums;text-align:start}
+/* the range ("90,000 – 160,000 DZD", about 11em, one unbreakable run) is sized from the card it sits in, so it fits at 320 and at 1024 alike */
+@supports (font-size:1cqw){.st-est__fig output{font-size:min(clamp(28px,3.4vw,46px),8.6cqw)}}
 :lang(ar) .st-est__fig output{text-align:right}
 .st-est__fig--rule{padding-top:16px;border-top:2px solid var(--ink)}
 .st-est__meta{display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:16px;border-top:2px solid var(--ink);font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.08em}
@@ -456,6 +460,8 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-case__pips i.is-seen{opacity:1;background:var(--c-accent)}
 .st-case__tag{padding:5px 10px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;white-space:nowrap}
 .st-case__nav{display:flex;gap:6px}
+/* a long tag ("Campagnes + réseaux") wraps in the bar instead of pushing it past a 320px screen */
+@media (max-width:420px){.st-case__tag{white-space:normal}}
 .st-case__nav button{width:44px;height:44px;display:grid;place-items:center;border:2px solid currentColor;background:transparent;color:inherit;font-size:18px;cursor:pointer}
 .st-case__nav button:hover{background:var(--c-accent);border-color:var(--c-accent);color:var(--c-on-accent)}
 .st-case__track{--c:clamp(150px,18vw,232px);--r:calc(var(--c) * 1.25);display:grid;grid-auto-flow:column dense;grid-auto-columns:var(--c);grid-template-rows:repeat(2,var(--r));gap:12px;padding:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding:16px;overscroll-behavior-x:contain;scrollbar-width:thin}

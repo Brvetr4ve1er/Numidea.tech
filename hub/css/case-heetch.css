@@ -63,7 +63,8 @@
 .case-heetch .ch-pips{height:8px;background:var(--ch-edge);border-radius:4px;overflow:hidden}
 .case-heetch .ch-pips i{background:transparent;opacity:1}
 .case-heetch .ch-pips i.is-seen{background:var(--c-accent)}
-.case-heetch .ch-end{display:flex;align-items:center;gap:8px}
+.case-heetch .ch-end{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0;max-width:100%}
+@media (max-width:420px){.case-heetch .st-case__name{white-space:normal}.case-heetch .ch-tag{border-radius:16px}}
 .case-heetch .ch-tag{padding:8px 12px;border-radius:999px;font-weight:600}
 .case-heetch .ch-nav button{border:1px solid var(--ch-edge-2);border-radius:50%}
 .case-heetch .ch-nav button:hover{background:var(--ch-card-2);border-color:var(--ch-edge-2);color:var(--c-on-dark)}
