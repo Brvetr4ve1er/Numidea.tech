@@ -62,7 +62,8 @@ export const PROJECTS = {
   // the first card's: the references page (a steelwork under a crane, four
   // totals), so the card repeats neither the plate's home nor the white
   // catalogue (6 px text on a white page, its footer cut at the bottom edge)
-  'bordjsteel-references': { capture: 'https://bordjsteelb2b.netlify.app/references', client: 'bordjsteel', sheet: 'bordjsteel/d3' },
+  // soft: a 0.6 px blur before the encode, the crane photo's grain being most of its bytes (the 1280 file was 61 KB at quality 56, over the 53 KB ceiling)
+  'bordjsteel-references': { capture: 'https://bordjsteelb2b.netlify.app/references', client: 'bordjsteel', sheet: 'bordjsteel/d3', soft: 0.6 },
   almaflowclim:          { capture: 'https://almaflowclim.netlify.app',           client: 'almaflow',   sheet: 'almaflow/d1' },
   // a 1152×720 window (16:10 itself): at 1440×900 the hero ended at two thirds
   // and the last third was the next band's faint card tops under a chat bubble;
@@ -87,8 +88,10 @@ export const PROJECTS = {
    of the nav and the tagline off the right). */
 export const CROP = {
   nomara: { x: 448, y: 0, w: 992 },
-  // the references page: nav, the crane photo, the four totals, whole
-  'bordjsteel-references': { x: 0, y: 0, w: 1440 },
+  // the references page: the nav, the crane photo and its heading (the totals below are on the sheet)
+  // Fleet 6 round 2: the references page's header only, nav to the crane photo's foot (y 540):
+  // the white totals panel below it was half the plate and read as a hole in a dark page
+  'bordjsteel-references': { x: 270, y: 0, w: 864 },
 };
 
 const VW = 1440, VH = 900, DPR = 2;
@@ -134,7 +137,7 @@ async function band(file) {
   return Math.sqrt(Math.max(0, q / n - m * m));
 }
 
-async function capture(browser, file, { capture: url, dark, vp, bare }) {
+async function capture(browser, file, { capture: url, dark, vp, bare, soft }) {
   const ctx = await browser.newContext({
     viewport: { width: vp ? vp.w : VW, height: vp ? vp.h : VH }, deviceScaleFactor: DPR,
     locale: 'fr-FR', reducedMotion: 'reduce', colorScheme: dark ? 'dark' : 'light',
@@ -186,7 +189,9 @@ async function capture(browser, file, { capture: url, dark, vp, bare }) {
       // to 69 KB at 80)
       let buf, q = 80;
       do {
-        buf = await sharp(png).extract(region).resize(s, Math.round((s * 10) / 16), { fit: 'fill' }).webp({ quality: q, effort: 6 }).toBuffer();
+        let img = sharp(png).extract(region).resize(s, Math.round((s * 10) / 16), { fit: 'fill' });
+        if (soft) img = img.blur(soft);
+        buf = await img.webp({ quality: q, effort: 6 }).toBuffer();
         q -= 6;
       } while (buf.length > CEIL && q >= 40);
       await writeFile(join(OUT, `${file}${s === 1280 ? '' : '-' + s}.webp`), buf);

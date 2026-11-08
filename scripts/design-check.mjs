@@ -98,7 +98,7 @@ const measure = () => {
     e.remove();
     return v;
   };
-  const tIds = ['label', 'small', 'ui', 'body', 'lead', 'title', 'feature', 'cv', 'display', 'h2'];
+  const tIds = ['label', 'small', 'ui', 'body', 'lead', 'title', 'feature', 'cv', 'display', 'h2', 'h2-xl'];
   const sizeSet = new Set(tIds.map((t) => probe(`font-size:var(--t-${t},0px)`)).filter(Boolean));
   const h1 = document.querySelector('.hero-h');
   const h2 = document.querySelector('h2.sec');

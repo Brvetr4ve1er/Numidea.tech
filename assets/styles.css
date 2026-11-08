@@ -3256,3 +3256,153 @@ html[dir="rtl"] #services .svc-grid>.svc-row h3::before{text-align:right}
   .tier:not(.tier-pop) .actions-row .btn{background:none;border-color:transparent;box-shadow:none;justify-content:flex-start;margin-inline-start:calc(-1 * var(--s-4));
     color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FLEET 6 / ROUND 2 — set pieces, one proof line, work rows, the card, the
+   founder's plate, 2026-11-08
+   The sheet below the hero opened every section the same way. Three set
+   pieces now break it, and only three: the services' and the founder's
+   planche numbers become the big outlined Cinzel numerals of a title block
+   with a larger heading (--t-h2-xl); one engraved strip (the footer's
+   dunes, mirrored) turns from the prices to the person; the founder sits
+   on a lighter full-bleed panel with a plate of the studio's atlas, the
+   Arch at Timgad, since no photo exists. Elsewhere the head is unchanged.
+   Brass stays the one accent. Written last.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --panel:color-mix(in srgb,var(--navy) 80%,var(--void));   /* the founder's panel: one step off the page, lighter in both themes */
+  --t-h2-xl:clamp(28px,12px + 2.65vw,52px);                /* the two set-piece headings: 28 on a phone, 50 at 1440, 52 on a wide screen */
+  --numeral:clamp(64px,7.2vw,104px);
+}
+
+/* ---- the proof (decision 7: one trust line and the logo strip), on clean ground ----
+   The line and the four marks sit under the plate, not on it: the vista
+   ends, then the ruled row, so the logos no longer stand on the engraving's
+   foot. On a phone the four marks share one row (a quarter of the 2x2 grid's
+   height); the plate and the rows below show the same four captures, so the
+   marks stay small. */
+.vista{margin-bottom:0;height:clamp(120px,12vw,172px)}
+@media (max-width:959px){
+  main.wrap>section.proof{gap:var(--s-3);padding-block:var(--s-4)}
+  .cl-row{display:flex;justify-content:space-between;align-items:center;width:100%;gap:var(--s-1)}
+  .cl{width:auto;min-height:48px;padding-inline:var(--s-3)}
+  .cl img{--cl-s:.52}
+}
+@media (max-width:379px){.cl img{--cl-s:.46}}
+@media (max-width:339px){.cl img{--cl-s:.36}}
+@media (min-width:480px) and (max-width:959px){.cl img{--cl-s:.7}}
+
+/* ---- set piece 1 and 3: the big numeral of a title block ---- */
+html[dir="ltr"] main:has(>#work)>:is(#services,#founder)>.kicker{align-items:flex-end}
+html[dir="ltr"] main:has(>#work)>:is(#services,#founder)>.kicker::before{
+  font-family:var(--font-deco);font-weight:400;font-size:var(--numeral);line-height:.8;letter-spacing:0;
+  padding-inline-end:var(--s-4);border-inline-end:0;margin-block-end:-.02em;
+  color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--crimson) 80%,transparent)}
+html[dir="ltr"] main:has(>#work)>:is(#services,#founder)>.kicker::after{align-self:flex-end;padding-bottom:var(--s-1)}
+html[dir="ltr"] main:has(>#work)>:is(#services,#founder)>.kicker{padding-bottom:0}
+#services>h2.sec,#founder>h2.sec{font-size:var(--t-h2-xl)}
+html[dir="ltr"] #services>h2.sec,html[dir="ltr"] #founder>h2.sec{line-height:1.02}
+@media (min-width:1100px){
+  #services>h2.sec,#founder>h2.sec{grid-column:1/span 7}
+  #services>.svc-lead,#founder>.sec-lead{grid-column:9/-1}
+}
+
+/* ---- the work rows: one voice per part ---- */
+.proj{grid-template-rows:auto minmax(0,1fr);align-content:stretch}
+.proj .body{display:flex;flex-direction:column;align-items:stretch;align-self:stretch;justify-items:normal}
+.proj .body>*{grid-column:auto}
+.proj .body>h3{grid-column:auto}
+.proj .body>.actions{grid-column:auto;grid-row:auto;justify-self:auto}
+.proj .body p:not(.gain){color:var(--muted)}
+.proj .body>p:not(.gain){margin-bottom:0;max-width:31em}
+.proj .gain-k{display:block;margin-top:var(--s-4);padding-inline-start:var(--s-3);border-inline-start:2px solid var(--crimson);
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;line-height:1.5;color:var(--crimson-text)}
+html[dir="rtl"] .proj .gain-k{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:var(--t-small)}
+.proj .body .gain{color:var(--ice);margin-bottom:var(--s-4);max-width:31em}
+.proj .body a.gain{margin-block:-10px var(--s-3)}
+.proj .body a.gain>span:first-child,.proj .body p.gain{display:block;padding-inline-start:var(--s-3);border-inline-start:2px solid var(--crimson)}
+.proj .body p.gain{padding-block:0}
+.proj .actions{margin-top:auto;padding-top:var(--s-2);border-top:1px solid var(--hairline-2);gap:0 var(--s-5)}
+.proj .actions a.stretch{position:static}
+.proj .actions a.stretch::after{content:"";position:absolute;inset:0;z-index:4}
+
+/* ---- the Aperçu: a two-column card from 1100px ---- */
+.prev-paid{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s-1);margin:var(--s-5) 0 0;order:1}
+.prev-paid .ptl-d{margin:0;padding:0;border:0;border-radius:0;font-size:var(--t-small);letter-spacing:.04em;color:var(--muted)}
+.prev-paid .ptl-zero{margin:0;font-family:var(--font-head);font-weight:var(--head-weight);font-size:var(--t-h2-xl);line-height:1;letter-spacing:0;color:var(--ice)}
+html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display)}
+.prev-paid .ptl-zero .cur{font-size:var(--t-small);margin-inline-start:var(--s-1)}
+.preview .ptl-p{font-size:var(--t-small)}
+.preview .ptl-d{font-size:var(--t-small);letter-spacing:.04em;text-transform:none;padding:0;border:0;border-radius:0}
+@media (min-width:1100px){
+  .preview .body{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col-gap);align-items:start;align-content:start}
+  .preview .body>*{grid-column:1/-1;order:0}
+  .preview .tag,.preview h3,.preview .promise,.preview .prev-terms{grid-column:1/span 7}
+  .preview .tag{grid-row:1}.preview h3{grid-row:2}.preview .promise{grid-row:3}.preview .prev-terms{grid-row:4;margin-top:var(--s-3)}
+  .preview .prev-paid{grid-column:9/-1;grid-row:1/span 2;margin:0;padding-inline-start:var(--s-5);border-inline-start:1px solid var(--hairline-2)}
+  .preview .prev-actions{grid-column:9/-1;grid-row:3/span 2;margin:0;padding-inline-start:var(--s-5);border-inline-start:1px solid var(--hairline-2);
+    display:flex;flex-direction:column;align-items:stretch;gap:var(--s-3);align-self:stretch;justify-content:flex-end}
+  .preview .prev-actions .btn{justify-content:center;width:100%}
+  .preview .ptl-w{grid-row:5;margin-top:var(--s-6)}
+}
+
+/* ---- the services: the prose and, to its right, the tools as a short column ---- */
+.svc-grid>.svc-row{padding-block:var(--s-4)}
+.cap{padding-block:var(--s-4)}
+@media (min-width:961px){
+  .svc-row h3{grid-column:1/span 4;grid-row:1}
+  .svc-row .brief{grid-column:5/span 6;grid-row:1;max-width:36em}
+  .svc-row .tags{grid-column:11/-1;grid-row:1;flex-direction:column;align-items:flex-end;text-align:end;gap:2px}
+  .svc-row .tags .pill+.pill::before{content:none}
+  .cap h4{grid-column:1/span 4}
+  .cap .brief{grid-column:5/span 6;max-width:36em}
+}
+
+/* ---- set piece 2: the strip, then the founder's panel ---- */
+.dune-strip{position:relative;z-index:1;height:clamp(72px,8vw,112px);margin:calc(-1 * var(--s-5)) calc(50% - 50vw) 0;overflow:clip;pointer-events:none}
+.ds-ink{display:block;position:absolute;inset:0 -30px;background:var(--crimson-text);opacity:.4;transform:scaleX(-1);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% auto;mask-size:100% auto;-webkit-mask-position:50% 63%;mask-position:50% 63%;
+  -webkit-mask-source-type:luminance;mask-mode:luminance}
+:is(.lz-on,html:not([data-lz]) .lz) .ds-ink{-webkit-mask-image:url(illus/dunes.webp);mask-image:url(illus/dunes.webp)}
+.dune-strip::after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(transparent,var(--panel))}
+main.wrap>#founder.band{padding-top:var(--s-7)}
+main.wrap>#founder.band::after{background:var(--panel);border-bottom:1px solid var(--hairline)}
+
+/* ---- the founder: the plate, the two columns ---- */
+.fd-aside{display:contents}
+.fd-plate{position:relative;order:-1;margin:0 0 var(--s-4)}
+.fdp-art{position:relative;aspect-ratio:21/9;border:1px solid var(--hairline-2);overflow:clip}
+.fdp-ink{display:block;width:100%;height:100%;background:var(--crimson-text);opacity:.7;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:cover;mask-size:cover;-webkit-mask-position:50% 62%;mask-position:50% 62%;
+  -webkit-mask-source-type:luminance;mask-mode:luminance}
+:is(.lz-on,html:not([data-lz]) .lz) .fdp-ink{-webkit-mask-image:url(illus/arch.webp);mask-image:url(illus/arch.webp)}
+.fd-plate::before{content:"";position:absolute;inset:-6px -6px auto;height:calc(100% - 28px);pointer-events:none;z-index:2;
+  --k:color-mix(in srgb,var(--crimson) 75%,transparent);
+  background:
+    linear-gradient(var(--k),var(--k)) 0 0/9px 1px,linear-gradient(var(--k),var(--k)) 0 0/1px 9px,
+    linear-gradient(var(--k),var(--k)) 100% 0/9px 1px,linear-gradient(var(--k),var(--k)) 100% 0/1px 9px,
+    linear-gradient(var(--k),var(--k)) 0 100%/9px 1px,linear-gradient(var(--k),var(--k)) 0 100%/1px 9px,
+    linear-gradient(var(--k),var(--k)) 100% 100%/9px 1px,linear-gradient(var(--k),var(--k)) 100% 100%/1px 9px;
+  background-repeat:no-repeat}
+.fdp-cap{margin-top:var(--s-2);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;line-height:1.5;color:var(--muted)}
+html[dir="rtl"] .fdp-cap{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:var(--t-small)}
+.fd-aside .fd-recent{margin:0}
+.fd-aside .team{margin:var(--s-5) 0 0;padding-top:var(--s-4);border-top:1px solid var(--hairline-2)}
+.fd-facts>div:first-child{grid-column:1/-1}
+@media (min-width:1100px){
+  .fd-top{grid-column:1/span 7;grid-row:1}
+  .fd-bio{grid-column:1/span 7;grid-row:2}
+  .fd-links{grid-column:1/span 7;grid-row:3}
+  .fd-actions{grid-column:1/span 7;grid-row:4;align-self:start}
+  .founder-card{grid-template-rows:auto auto auto minmax(0,1fr) auto}
+  .cv-panel{grid-column:1/-1;grid-row:5}
+  .fd-aside{display:flex;flex-direction:column;gap:var(--s-5);grid-column:9/-1;grid-row:1/span 4;align-self:start}
+  .fd-aside .fd-recent{grid-column:auto;grid-row:auto;padding-top:0}
+  .fd-aside .team{margin:0}
+  .fd-plate{order:0;margin:0}
+  .fdp-art{aspect-ratio:2/1}
+  .fd-top>.fd-facts>div:first-child{grid-column:auto}
+}
+.fd-links{display:flex;flex-wrap:wrap;gap:0 var(--s-5);list-style:none;padding:0}
+.fd-links a{min-width:44px;justify-content:center}
+@media (min-width:600px) and (max-width:1099px){.fd-plate{max-width:560px}}

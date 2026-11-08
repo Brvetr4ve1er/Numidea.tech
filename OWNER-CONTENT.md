@@ -92,9 +92,10 @@ Voyages can be quoted. Get written agreement to the exact text.
 A real photo, never a generated face: square, at least 400 px, saved as
 `assets/founder.webp`. In `index.html` (#founder, `.fd-photo`), uncomment the
 `<img>` line; the monogram steps aside. Run `npm run bump`. Still open on 2026-11-06.
-Meanwhile the monogram is a 64 px mark (2026-11-06; it was up to 100 px with
-a glow, and read as a missing avatar); `assets/styles.css` already places the
-photo over it (`.fd-photo img`), so the slot needs only the file.
+No stand-in face or monogram stands in the card meanwhile (the old 'Y' mark is gone). Since
+2026-11-08 (Fleet 6 round 2) the card's right column holds an engraved plate instead, the Arch of
+Trajan at Timgad (`assets/illus/arch.webp`, the studio's own atlas, Pl. III), with crop marks and a
+caption, and it stays when the photo arrives: the photo goes beside the name (`.fd-photo`).
 
 ## 4. Team
 **Answered on 2026-10-30: one founder, with freelancers when needed** (section
@@ -419,6 +420,7 @@ by a native speaker). Each key is "AR review: <key>":
   `founder.langs`, `founder.xp`, `founder.basedL`, `founder.recent`, and the
   seven kicker keys (the digits are dropped, nothing else). The en and fr texts
   are in the commits;
+- AR review for the home, Fleet 6 round 2: `work.outcome` (new: the label «للزائر» over each work row's benefit line, "for the visitor"), `pl.arch` (new: the founder's plate caption «لوحة 3 — قوس تراجان في تيمقاد»), `proj2.desc`, `proj3.desc`, `proj4.desc` (shortened to two lines);
 - AR review for the home, Fleet 6 round 1: `price.lead` (cut to one sentence), `price.tIncl` (new: the disclosure's label); the planche label's figures (`3/6`, CSS content in `assets/styles.css`) carry no Arabic word, say if one is wanted;
 - AR review for the Studio: `proof.lead`, `proof.vs.kicker`, `proof.vs.tag`,
   `proof.vs.sub`, `proof.vs.desc`, `proof.vs.facts` (four chips),

@@ -1683,7 +1683,7 @@
       (function () {
         var tl = document.querySelector('#apercu .ptl');
         if (!tl) return;
-        var zero = tl.querySelector('.ptl-zero');
+        var zero = document.querySelector('#apercu .ptl-zero');
         var paint = function () {
           if (!zero || !zero.firstChild) return;
           zero.firstChild.nodeValue = pre(CUR) + '0' + (post(CUR) ? ' ' : '');

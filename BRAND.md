@@ -2081,6 +2081,21 @@ idea is said once:
   repeated the hero's title block and the line under them; they went on
   2026-10-26 (owner decision). Each item of the line is held together by
   no-break spaces, so a narrow screen breaks it only after a separator.
+- **Round 2 of the drafted sheet (2026-11-08).** Three set pieces, no more:
+  the services' and the founder's planche numbers are 64-104 px outlined
+  Cinzel numerals in brass (a title block; `html[dir="ltr"]` only, the Arabic
+  page keeps the small mono number and loads no Cinzel), their headings take
+  `--t-h2-xl` (the only second heading size; `design-check.mjs` lists it as
+  a token); one strip of the footer's dunes, mirrored, turns from the prices
+  to the founder, whose section is an opaque full-bleed `--panel` (the navy
+  card surface at 80% over the page: a step lighter in both themes). The
+  founder's plate is the Arch of Trajan at Timgad (Pl. III, `illus/arch.webp`
+  as a luminance mask in brass at 70%), with crop marks, a caption and no
+  face: no photo exists and none is drawn. A work row has one voice per part
+  (the muted description, the benefit line labelled `work.outcome` over a 2 px
+  brass rule, a ruled foot with the one link); the Aperçu is two columns from
+  1100 px. The proof band stays one line and the logo strip (decision 7), on
+  clean ground under the vista, one row of four marks on a phone.
 - The free demo (L'Aperçu) is the services lead card, and the card tells the
   path once, as a visible list (`prev.tl1`–`prev.tl5`): you describe the
   project (two minutes, in French, English or Arabic); we reply within 24
