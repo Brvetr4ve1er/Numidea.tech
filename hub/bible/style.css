@@ -347,3 +347,8 @@ html:not(.js) .ctrls{display:none}
   .skip,.bubble,.ctrl,.face,.out{transition:none}
 }
 @media print{.skip,.ctrls,.state{display:none}.rig{position:static}}
+
+/* project voice: the intro under the cover tagline and the lede under each section heading */
+.cover .intro{margin-top:4px;max-width:46ch;font-size:15px}
+.sh+.lede{margin-top:14px}
+.sec>.lede+.outs{margin-top:16px}
