@@ -336,11 +336,26 @@
   "proof": {
     "kicker": "/ 08 · LES REÇUS",
     "title": "Le travail, en vrai.",
-    "lead": "Trois clients livrés, et deux travaux personnels du fondateur. Chaque dossier dit ce qui a été fait, et pour qui.",
+    "lead": "Trois clients livrés, deux travaux du fondateur, et son projet personnel. Chaque dossier dit ce qui a été fait, et pour qui.",
     "actor": "Yasser fête une mise en ligne",
     "own": "Aussi, faits maison :",
     "glaive": "Glaive, la démo du studio",
-    "whq": "WorkspaceHQ, le produit du studio"
+    "whq": "WorkspaceHQ, le produit du studio",
+    "vs": {
+      "kicker": "DOSSIER 06 · MON PROJET",
+      "tag": "Projet personnel",
+      "sub": "Le carnet de personnage de Yasser et Kūro",
+      "desc": "Le projet personnel du fondateur, sans client : la bible d’un personnage et de son chat noir. Un rig de vingt images où Yasser suit le curseur, parle et se repose au bout de cinq secondes, douze visages, six poses en deux temps, dix cartes pour Kūro, la silhouette en sept règles et la façon dont il parle.",
+      "facts": [
+        "Un rig de 20 images",
+        "12 visages",
+        "6 poses",
+        "10 cartes pour Kūro"
+      ],
+      "cta": "Ouvrir le carnet",
+      "lang": "Page en anglais",
+      "alt": "Six visages de Yasser, tirés du carnet : sourire en coin, main sur les lunettes, main sur le menton, grand rire, air impassible, regard de travers."
+    }
   },
   "lab": {
     "kicker": "/ 09 · LE LAB",
@@ -469,7 +484,7 @@
     "line": "Construit à Bordj Bou Arréridj, avec du café noir et du JavaScript.",
     "rights": "© 2026 NUMIDEA LABS",
     "site": "Le site",
-    "bible": "Le carnet",
+    "bible": "VOIDSPLUNKER.std",
     "nav": "Liens du pied de page"
   },
   "case": {

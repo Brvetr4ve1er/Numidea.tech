@@ -336,11 +336,26 @@
   "proof": {
     "kicker": "/ 08 · THE RECEIPTS",
     "title": "The work, for real.",
-    "lead": "Three delivered clients, and two of the founder’s own projects. Each file says what was made, and for whom.",
+    "lead": "Three delivered clients, two pieces of the founder’s own work, and his personal project. Each file says what was made, and for whom.",
     "actor": "Yasser celebrates a launch",
     "own": "Also, made in-house:",
     "glaive": "Glaive, the studio’s demo",
-    "whq": "WorkspaceHQ, the studio’s product"
+    "whq": "WorkspaceHQ, the studio’s product",
+    "vs": {
+      "kicker": "FILE 06 · MY PROJECT",
+      "tag": "Personal project",
+      "sub": "The character bible of Yasser and Kūro",
+      "desc": "The founder’s own project, with no client: the bible of a character and his black cat. A twenty-frame rig where Yasser follows your cursor, talks and settles after five seconds, twelve faces, six poses in two beats, ten cards for Kūro, the silhouette in seven rules and the way he talks.",
+      "facts": [
+        "A 20-frame rig",
+        "12 faces",
+        "6 poses",
+        "10 cards for Kūro"
+      ],
+      "cta": "Open the bible",
+      "lang": "Page in English",
+      "alt": "Six of Yasser’s faces from the bible: a sideways smirk, a hand on his glasses, a hand on his chin, a big laugh, a deadpan stare, a suspicious side-eye."
+    }
   },
   "lab": {
     "kicker": "/ 09 · THE LAB",
@@ -469,7 +484,7 @@
     "line": "Built in Bordj Bou Arréridj, with black coffee and JavaScript.",
     "rights": "© 2026 NUMIDEA LABS",
     "site": "The site",
-    "bible": "The bible",
+    "bible": "VOIDSPLUNKER.std",
     "nav": "Footer links"
   },
   "case": {
