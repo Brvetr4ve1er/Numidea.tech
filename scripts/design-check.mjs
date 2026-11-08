@@ -23,6 +23,9 @@
  *   hover     no :hover rule outside @media (hover: hover) (a tap leaves it on)
  *   cover     fixed + sticky elements together cover at most 30% of the screen
  *             at 390×844, 360×780, 844×390 and 640×400, at every scroll stop
+ *   plate     the hero plate is as wide as its column (.plate = .plate-wrap) and
+ *             inside the screen, in fr, en and ar at 320, 360, 375, 390, 414
+ *             (the caption's longest name once pushed it 20-50px past the box)
  *   labels    one visible link label has one destination
  *   art       hub/bible/art/*.webp: one alpha connected component of any size
  *             (no sprite debris beside the figure); the Kūro motion marks are listed
@@ -413,6 +416,21 @@ console.log(`hover: ${hoverSeen.size} :hover selectors outside @media (hover: ho
     else if (worst > LIMITS.cover + 0.005) above.push(`cover ${key}: ${(worst * 100).toFixed(0)}% at ${where}, target ${(LIMITS.cover * 100).toFixed(0)}%`);
   }
 }
+
+/* ---- the hero plate fits its column on every common phone width ---- */
+for (const path of ['/', '/en/', '/ar/']) {
+  for (const w of [320, 360, 375, 390, 414]) {
+    const ctx = await br.newContext({ viewport: { width: w, height: 800 }, reducedMotion: 'reduce', isMobile: true, hasTouch: true });
+    const p = await ctx.newPage();
+    await p.goto(srv.base + path, { waitUntil: 'load' }).catch(() => {});
+    await p.waitForTimeout(250);
+    const r = await p.evaluate(() => { const pl = document.querySelector('.plate'), wr = document.querySelector('.plate-wrap'); if (!pl || !wr) return null; const a = pl.getBoundingClientRect(), b = wr.getBoundingClientRect(); return { plate: Math.round(a.width), wrap: Math.round(b.width), left: Math.round(a.left), right: Math.round(a.right), vw: innerWidth }; });
+    if (!r) fails.push(`plate ${path} @${w}: no .plate`);
+    else if (Math.abs(r.plate - r.wrap) > 1 || r.left < 0 || r.right > r.vw) fails.push(`plate ${path} @${w}: .plate ${r.plate}px in a ${r.wrap}px column, spans ${r.left} to ${r.right} of ${r.vw}`);
+    await ctx.close();
+  }
+}
+console.log('plate: .plate = .plate-wrap and inside the screen, fr/en/ar at 320 to 414');
 
 /* ---- Arabic: mono word spaces, system faces, a leading "+" ---- */
 {

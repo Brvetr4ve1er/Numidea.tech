@@ -156,7 +156,7 @@ body::after{
 /* one fluid section rhythm at every width (--sec-pad, DESIGN SYSTEM below):
    it was three rhythms stitched at breakpoints, 96px here, 52px under 960
    and 72-112px from 961, so the gaps changed character at each seam */
-section{padding:var(--sec-pad) 0;border-top:1px solid var(--hairline);position:relative;z-index:1}
+section{padding:calc(var(--sec-pad) / 2) 0;border-top:1px solid var(--hairline);position:relative;z-index:1}
 
 a{color:inherit}
 img{max-width:100%;display:block}
@@ -455,7 +455,8 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
    flat UIs into a smear, while a hard edge keeps both razor sharp. That
    is the same rule scene/ is built on.
    ============================================================ */
-.plate-wrap{position:relative;display:grid;gap:var(--s-4);align-content:start}
+.plate-wrap{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4);align-content:start}
+.plate-wrap,.plate,.plate-meta{min-width:0;max-width:100%}
 .plate{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:var(--r-md);
   background:var(--navy);border:1px solid var(--hairline-2);
   box-shadow:0 0 0 6px color-mix(in srgb,var(--void) 55%,transparent),
@@ -483,7 +484,7 @@ html[dir="rtl"] .pl-wipe::after{right:auto;left:0}
 .plate-meta{display:flex;align-items:center;gap:var(--s-4);min-height:44px}
 .pm-idx{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);color:var(--faint);flex:none}
 .pm-idx b{font-weight:400;color:var(--crimson-text)}
-.pm-rot{position:relative;flex:1 1 0;min-width:0;display:grid}
+.pm-rot{position:relative;flex:1 1 0;min-width:0;display:grid;grid-template-columns:minmax(0,1fr)}
 /* the caption is a link to the live site: 44px tall under a thumb (it was
    27), and a trailing ↗ so it reads as one. Each run is bidi-isolated so the
    Latin name and an Arabic category keep the gap between them. */
@@ -691,8 +692,8 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
    7/5), in RTL mirrored by the grid itself. The whole row is a way to its
    sheet: the title's link is stretched over it (.proj h3 a::after), and the
    live site and the benefit line, which lead elsewhere, sit above it. */
-.work-grid{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--s-7)}
-@media (min-width:960px){.work-grid{row-gap:var(--s-8)}}
+.work-grid{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--s-6)}
+@media (min-width:960px){.work-grid{row-gap:var(--s-7)}}
 .proj{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5);align-items:start;
   background:none;border:0;border-radius:0;box-shadow:none;overflow:visible}
 @media (min-width:960px){.proj{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:var(--s-7);align-items:center}}
@@ -728,12 +729,17 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
   color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--crimson-text) 45%,transparent);
   transition:color var(--t-hover),text-decoration-color var(--t-hover)}
 @media (hover:hover){.proj .actions a:hover{color:var(--ice);text-decoration-color:currentColor}}
-/* a demo is not client work: one muted line under the four rows, and the
-   link row to the sheets after it */
-.work-demo{margin-top:var(--s-8);padding-top:var(--s-5);border-top:1px solid var(--hairline);max-width:46em;font-size:var(--t-small);line-height:1.6;color:var(--muted)}
-.work-demo a{color:var(--crimson-text);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+/* a demo is not client work: one ruled row under the four rows. The sentence
+   and its two links on the left (each link keeps to one line), the link to
+   the sheets at the end of the same hairline; on a phone they stack under it */
+.work-foot{margin-top:var(--s-7);padding-top:var(--s-4);border-top:1px solid var(--hairline);
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--s-2) var(--s-7)}
+.work-demo{flex:1 1 34em;min-width:0;margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 var(--s-5);
+  font-size:var(--t-small);line-height:1.6;color:var(--muted)}
+.work-links{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:0 var(--s-5)}
+.work-demo a{display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;color:var(--crimson-text);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 @media (hover:hover){.work-demo a:hover{color:var(--ice)}}
-.scene-link{display:flex;align-items:center;min-height:56px;margin-top:var(--s-6);padding:var(--s-3) 0 0;border-top:1px solid var(--hairline);
+.scene-link{display:flex;align-items:center;min-height:44px;flex:none;
   font-size:var(--t-body);font-weight:600;color:var(--crimson-text);text-decoration:none}
 .scene-link .sb-go{min-height:44px;padding:0;border:0;font-family:var(--font-body);font-size:inherit;font-weight:inherit;color:inherit;white-space:normal;
   text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--crimson-text) 45%,transparent)}
@@ -1299,7 +1305,7 @@ main.wrap>section h2.sec em{color:inherit}
   main.wrap>section>.kicker+h2.sec+:not(.sec-lead,.svc-lead){margin-top:var(--head-gap)}
 
   /* — per-section content spans — */
-  .work-grid,.svc-grid,.founder-card,.contact-grid,.preview,.scene-link,.work-demo,.voices{grid-column:1/-1}
+  .work-grid,.svc-grid,.founder-card,.contact-grid,.preview,.work-foot,.voices{grid-column:1/-1}
   /* two columns of questions rather than one tall stack */
   .faq-list{grid-column:1/-1;max-width:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-4) var(--col-gap);align-content:start}
 
@@ -1369,7 +1375,7 @@ main.wrap>section h2.sec em{color:inherit}
   .navbar .bar{padding:13px var(--gutter)}
   /* the section rhythm is --sec-pad at every width (56px here); the hero's
      own padding clears the navbar */
-  .hero{padding-block:calc(var(--nav-h) + var(--s-5)) var(--s-7)}
+  .hero{padding-block:calc(var(--nav-h) + var(--s-5)) var(--s-5)}
   .footer{padding-block:var(--s-6) var(--s-5)}
   .svc-row h3{overflow-wrap:anywhere}
   .preview{margin-bottom:var(--s-6)}
@@ -1530,6 +1536,9 @@ html[dir="rtl"] .tier h3{font-family:var(--font-ar-display)}
 .t-time{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--faint);padding-bottom:var(--s-5);margin-bottom:var(--s-5);border-bottom:1px solid var(--hairline)}
 .t-list{list-style:none;display:grid;gap:var(--s-3)}
+/* the list, then the button at the card's foot: the three CTAs share one line */
+.t-foot{display:flex;flex-direction:column;min-height:0}
+.t-foot .actions-row{margin-top:auto;padding-top:var(--s-6)}
 .t-list li{position:relative;padding-inline-start:var(--s-5);color:var(--body-strong);font-size:14px;line-height:1.55}
 /* a check, two strokes in teal, the same ✓ in both directions: a check
    mark is not mirrored in Arabic. Physical borders, so the RTL flip of a
@@ -2569,7 +2578,7 @@ section.band::after,section.band+section.band::after{
    of pure picture between content; both are now an interlude, not a stop.
    The vista's foot runs under the proof (its mask has faded by then), so
    the hero's copy and "01 Preuves" are a section's padding apart, not two. */
-.vista{height:clamp(150px,20vw,280px);margin-bottom:calc(-1 * var(--s-7))}
+.vista{height:clamp(120px,15vw,210px);margin-bottom:calc(-1 * var(--s-7))}
 .foot-dunes{height:clamp(110px,14vw,210px)}
 @media (max-width:599px){.titleblock{display:none}}
 
@@ -2865,12 +2874,15 @@ main.wrap>section+section::before{display:none}
 @media (min-width:600px) and (max-width:960px){.hero-cta{flex-wrap:nowrap}.hero-cta .btn{flex:1 1 0;justify-content:center}}
 @media (prefers-reduced-motion:no-preference){.hero-terms{animation:hero-rise-solid .45s var(--ease-out) .1s both}}
 /* the caption under the capture, one line: 01/04 · name · what it is ↗ */
-.pm-item{flex-wrap:nowrap;gap:var(--s-2);align-items:center}
+.pm-item{flex-wrap:nowrap;gap:var(--s-2);align-items:center;min-width:0;max-width:100%}
 .pm-item i{font-family:var(--font-body);font-size:var(--t-small);letter-spacing:0;text-transform:none;color:var(--muted);white-space:nowrap}
 .pm-item i::before{content:"·";margin-inline-end:var(--s-2)}
 .pm-item::after{background:var(--crimson-text);flex:none}
-.pm-item b{white-space:nowrap}
-@media (max-width:420px){.pm-item i{overflow:hidden;text-overflow:ellipsis}}
+/* the caption never sets its column's width (it did at 360-390: the longest
+   name pushed the plate 20-50px past its box); the name keeps its room and the
+   category truncates first, then the name */
+.pm-item b{white-space:nowrap;min-width:0;flex:0 1 auto;overflow:hidden;text-overflow:ellipsis}
+.pm-item i{min-width:0;flex:0 100 auto;overflow:hidden;text-overflow:ellipsis}
 
 /* ---- proof: one ruled row under the hero ---- */
 main.wrap>section.proof{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4);align-items:center;
@@ -3030,7 +3042,7 @@ html[dir="rtl"] .faq-ask strong{font-family:var(--font-ar-display)}
   #faq>.kicker{grid-column:1/span 4}
   #faq>h2.sec{grid-column:1/span 4;grid-row:2;max-width:none}
   #faq>.sec-lead{grid-column:1/span 4;grid-row:3;align-self:start;max-width:none;padding-bottom:0;margin-top:var(--s-5)}
-  #faq>.faq-ask{grid-column:1/span 4;grid-row:4;margin-top:var(--s-6)}
+  #faq>.faq-ask{grid-column:1/span 4;grid-row:4;margin-top:var(--s-6);align-self:start;align-content:flex-start;gap:var(--s-3)}
   #faq>.faq-ask .btn{flex:1 1 100%;justify-content:center}
   #faq{grid-template-rows:auto auto auto 1fr}
   #faq>.faq-list{grid-column:5/-1;grid-row:1/span 4;margin-top:0}
