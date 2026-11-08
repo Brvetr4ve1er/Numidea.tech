@@ -685,47 +685,64 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
 }
 @media (forced-colors:active) and (hover:hover){.cl:hover img{background:LinkText}}
 
-/* ---------- the work rows (Fleet 5, B4) ----------
-   Four clients, four rows, the capture the object: no card box, no tint, no
-   zoom, no pills. Phones stack the capture over its words; from 960px the
-   capture takes seven of twelve tracks and the words five (the page's own
-   7/5), in RTL mirrored by the grid itself. The whole row is a way to its
-   sheet: the title's link is stretched over it (.proj h3 a::after), and the
-   live site and the benefit line, which lead elsewhere, sit above it. */
-.work-grid{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--s-6)}
-@media (min-width:960px){.work-grid{row-gap:var(--s-7)}}
-.proj{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-5);align-items:start;
+/* ---------- the work: four plates (Fleet 6) ----------
+   Four clients, the capture the object: no card box, no tint, no zoom, no
+   pills. Each is a drafted plate, as the hero's: the capture inside four
+   brass crop marks, a numbered caption under it (01 | what it is), the
+   title with the live site on the same line, then the two sentences. Phones
+   stack them; from 720px they stand two abreast (the same four on a third
+   fewer pixels than four rows). The whole plate is a way to its sheet: the
+   title's link is stretched over it (.proj h3 a::after), and the live site
+   and the benefit line, which lead elsewhere, sit above it. */
+.work-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-7) 0;counter-reset:work}
+@media (min-width:720px){.work-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s-7);row-gap:var(--s-8)}}
+.proj{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4);align-content:start;align-items:start;counter-increment:work;
   background:none;border:0;border-radius:0;box-shadow:none;overflow:visible}
-@media (min-width:960px){.proj{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:var(--s-7);align-items:center}}
-.proj h3 a::after{content:"";position:absolute;inset:0;z-index:4}   /* the title's link, the row's way to its sheet */
+.proj h3 a::after{content:"";position:absolute;inset:0;z-index:4}   /* the title's link, the plate's way to its sheet */
 /* that link is a phone's tap target too: 12px above and below, given back by
    the margin, so the box grows and the title's rhythm does not */
 .proj h3 a{display:inline-block;padding-block:var(--s-3);margin-block:calc(-1 * var(--s-3));text-decoration:none}
 @media (hover:hover){.proj h3 a:hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}}
 .proj .actions a[data-i18n="work.live"],.proj .body .gain{position:relative;z-index:5}
-/* the capture: 16:10 like the file, a hairline and the page's radius, nothing over it */
-.proj .thumb{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;
+/* the capture: 16:10 like the file, a hairline and the page's radius, nothing
+   over it; four crop marks stand 4px outside it (the hero plate's idiom) */
+.proj .thumb{position:relative;display:block;aspect-ratio:16/10;overflow:visible;
   border:1px solid var(--hairline-2);border-radius:var(--r-md);background:var(--grad-blood);
   box-shadow:0 36px 60px -42px rgb(var(--shade) / calc(.9 * var(--shade-k)));
   transition:border-color var(--t-enter)}
 .proj .thumb:has(.shot){background:var(--navy)}
+.proj .thumb::before{content:"";position:absolute;inset:-12px;z-index:3;pointer-events:none;
+  --k:color-mix(in srgb,var(--crimson) 75%,transparent);
+  background:
+    linear-gradient(var(--k),var(--k)) 0 0/8px 1px,linear-gradient(var(--k),var(--k)) 0 0/1px 8px,
+    linear-gradient(var(--k),var(--k)) 100% 0/8px 1px,linear-gradient(var(--k),var(--k)) 100% 0/1px 8px,
+    linear-gradient(var(--k),var(--k)) 0 100%/8px 1px,linear-gradient(var(--k),var(--k)) 0 100%/1px 8px,
+    linear-gradient(var(--k),var(--k)) 100% 100%/8px 1px,linear-gradient(var(--k),var(--k)) 100% 100%/1px 8px;
+  background-repeat:no-repeat}
+.proj .thumb.sk::after{border-radius:inherit}
 .proj .browser{display:none}
-.proj .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.proj .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;display:block;border-radius:inherit}
 @media (hover:hover){.proj:hover .thumb{border-color:rgba(var(--brand,230,180,80),.7)}}
-.proj .body{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:0}
-.proj .cat{display:block;margin-bottom:var(--s-2);font-family:var(--font-body);font-size:var(--t-small);font-weight:400;
+.proj .body{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:var(--s-4);align-items:center;align-content:start;justify-items:start;min-width:0;padding:0}
+.proj .body>*{grid-column:1/-1}
+.proj .body>h3{grid-column:1}
+.proj .body>.actions{grid-column:2;grid-row:2;justify-self:end}
+/* the caption: its number, a rule, what it is (the plate row under the hero's capture) */
+.proj .cat{display:flex;align-items:center;margin-bottom:var(--s-2);font-family:var(--font-body);font-size:var(--t-small);font-weight:400;
   letter-spacing:0;text-transform:none;color:var(--muted)}
-.proj h3{font-family:var(--font-display);font-weight:600;font-size:var(--t-feature);line-height:1.12;letter-spacing:-.015em;margin-bottom:var(--s-3)}
+.proj .cat::before{content:counter(work,decimal-leading-zero);margin-inline-end:var(--s-3);padding-inline-end:var(--s-3);border-inline-end:1px solid var(--hairline-2);
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.08em;line-height:1.4;color:var(--crimson-text);font-variant-numeric:tabular-nums}
+.proj h3{font-family:var(--font-display);font-weight:600;font-size:var(--t-feature);line-height:1.12;letter-spacing:-.015em;margin-bottom:var(--s-2)}
 html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
-.proj .body p{font-size:var(--t-body);line-height:1.6;color:var(--body-strong);margin-bottom:var(--s-3);min-height:0}
+.proj .body p{font-size:var(--t-body);line-height:1.6;color:var(--body-strong);margin-bottom:var(--s-2);min-height:0}
 /* What the client gets: the second sentence under the description, in the
    muted ink. It links to the full list on the project sheet (scene/, "Ce que
    le site apporte"); Nomara has no sheet, so its line is plain text. */
-.proj .body .gain{display:block;margin:0 0 var(--s-4);padding:0;border:0;font-size:var(--t-body);line-height:1.6;color:var(--muted);text-decoration:none;text-wrap:pretty}
-.proj .body a.gain{padding-block:10px;margin-block:-10px calc(var(--s-4) - 10px)}   /* a one-line sentence is still a 44px tap target */
+.proj .body .gain{display:block;margin:0;padding:0;border:0;font-size:var(--t-body);line-height:1.6;color:var(--muted);text-decoration:none;text-wrap:pretty}
+.proj .body a.gain{padding-block:10px;margin-block:-10px}   /* a one-line sentence is still a 44px tap target */
 @media (hover:hover){.proj .body a.gain:hover{color:var(--ice);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}}
 .proj .actions{display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--s-5);margin-top:0}
-.proj .actions a{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;padding:0;font-family:var(--font-body);font-size:var(--t-body);font-weight:600;
+.proj .actions a{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;padding:0;font-family:var(--font-body);font-size:var(--t-body);font-weight:600;white-space:nowrap;
   color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--crimson-text) 45%,transparent);
   transition:color var(--t-hover),text-decoration-color var(--t-hover)}
 @media (hover:hover){.proj .actions a:hover{color:var(--ice);text-decoration-color:currentColor}}
@@ -3076,3 +3093,78 @@ html[dir="rtl"] .channels dt{font-family:var(--font-ar-body)}
   #pricing>h2.sec{grid-column:1/span 6}
   #pricing>.sec-lead{grid-column:8/-1}
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FLEET 6 — THE HOME, 2026-11-08: the drafted sheet, carried to the footer
+   The hero is a sheet (brass corner brackets, crop marks on the capture, a
+   numbered caption). This block carries that idea down the page, sparingly:
+   every section opens on a numbered title-block rule (a counter, so the
+   numbers follow the sections), each plate in the work has its crop marks
+   and its number, the price weeks are a dimension line, and the founder and
+   the footer are ruled, not boxed. Brass stays the one accent. Written last.
+   Compactness is part of the brief: 56px between sections on a phone, 80 at
+   1440 (it was 64 and 96), the work two abreast from 720px, the founder
+   unboxed, the FAQ rows at 56px.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{--sec-pad:clamp(56px,56px + (100vw - 600px) * .0286,80px)}
+
+/* ---- the planche head: 01 | RÉALISATIONS ────────────┤ ---- */
+main:has(>#work){counter-reset:planche}
+main:has(>#work)>section:not(.hero,.proof){border-top:0;counter-increment:planche}
+main:has(>#work)>section:not(.hero,.proof)>.kicker{gap:var(--s-3);margin-bottom:var(--s-5);color:var(--muted)}
+main:has(>#work)>section:not(.hero,.proof)>.kicker::before{content:counter(planche,decimal-leading-zero);width:auto;height:auto;background:none;
+  padding-inline-end:var(--s-3);border-inline-end:1px solid var(--hairline-2);color:var(--crimson-text);letter-spacing:.08em;line-height:1.4;font-variant-numeric:tabular-nums}
+main:has(>#work)>section:not(.hero,.proof)>.kicker::after{content:"";flex:1 1 auto;width:auto;height:9px;margin:0;border-radius:0;transform:none;background:none;
+  --k:var(--hairline-2);
+  background:linear-gradient(var(--k),var(--k)) 0 50%/100% 1px no-repeat,linear-gradient(var(--k),var(--k)) 100% 50%/1px 100% no-repeat}
+html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::after{background:linear-gradient(var(--k),var(--k)) 0 50%/100% 1px no-repeat,linear-gradient(var(--k),var(--k)) 0 50%/1px 100% no-repeat}
+@media (min-width:1100px){main.wrap>section>.kicker{margin-bottom:var(--s-5)}}
+
+/* ---- services: tighter rows ---- */
+.svc-grid>.svc-row{padding-block:var(--s-5)}
+.cap{padding-block:var(--s-5)}
+.preview{margin-bottom:var(--s-7)}
+
+/* ---- pricing: the card's list and foot, tighter ---- */
+.t-list{gap:var(--s-2)}
+.t-for{margin-bottom:var(--s-4)}
+.t-foot .actions-row{padding-top:var(--s-5)}
+
+/* ---- the founder: ruled, not boxed ---- */
+#founder .founder-card{background:none;border:0;border-radius:0;box-shadow:none;padding:var(--s-6) 0 0;border-top:1px solid var(--hairline-2)}
+
+/* ---- the FAQ: 56px rows ---- */
+.faq-item summary{min-height:56px;padding-block:var(--s-3)}
+
+/* ---- the Aperçu: a plate with its brackets inside the border ---- */
+.preview::before{content:"";position:absolute;inset:var(--s-2);pointer-events:none;
+  --k:color-mix(in srgb,var(--crimson) 70%,transparent);
+  background:
+    linear-gradient(var(--k),var(--k)) 0 0/10px 1px,linear-gradient(var(--k),var(--k)) 0 0/1px 10px,
+    linear-gradient(var(--k),var(--k)) 100% 0/10px 1px,linear-gradient(var(--k),var(--k)) 100% 0/1px 10px,
+    linear-gradient(var(--k),var(--k)) 0 100%/10px 1px,linear-gradient(var(--k),var(--k)) 0 100%/1px 10px,
+    linear-gradient(var(--k),var(--k)) 100% 100%/10px 1px,linear-gradient(var(--k),var(--k)) 100% 100%/1px 10px;
+  background-repeat:no-repeat}
+
+/* ---- the price line under the tiers sits close to what it explains ---- */
+.price-note{margin-bottom:var(--s-6)}
+
+/* ---- the footer closes the sheet: a hairline frame, the brass brackets of the hero's ---- */
+.footer{position:relative;background:none;
+  padding-inline:calc(max(var(--gutter),env(safe-area-inset-left)) + var(--s-4)) calc(max(var(--gutter),env(safe-area-inset-right)) + var(--s-4))}
+.footer::before{content:"";position:absolute;inset:var(--s-5) max(var(--gutter),env(safe-area-inset-right)) var(--s-5) max(var(--gutter),env(safe-area-inset-left));pointer-events:none;
+  border:1px solid var(--hairline-2);
+  --k:var(--crimson);
+  background:
+    linear-gradient(var(--k),var(--k)) 0 0/14px 2px,linear-gradient(var(--k),var(--k)) 0 0/2px 14px,
+    linear-gradient(var(--k),var(--k)) 100% 0/14px 2px,linear-gradient(var(--k),var(--k)) 100% 0/2px 14px,
+    linear-gradient(var(--k),var(--k)) 0 100%/14px 2px,linear-gradient(var(--k),var(--k)) 0 100%/2px 14px,
+    linear-gradient(var(--k),var(--k)) 100% 100%/14px 2px,linear-gradient(var(--k),var(--k)) 100% 100%/2px 14px;
+  background-repeat:no-repeat}
+/* the phone's contact bar reserves 74px under the last line (the footer pads
+   for it): the frame ends above that reserve, not around it */
+@media (max-width:720px){.footer::before{bottom:calc(74px + env(safe-area-inset-bottom))}}
+@media (max-width:720px) and (max-height:560px) and (min-width:480px){.footer::before{bottom:var(--s-5)}}
+
+/* ---- the proof row's lower rule is the first planche's own ---- */
+main.wrap>section.proof{border-bottom:0}

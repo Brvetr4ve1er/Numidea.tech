@@ -75,11 +75,16 @@ export const PROJECTS = {
    the height follows). The whole frame unless noted; a sheet frame is
    compared through the same window. Nomara's hero ends at
    y≈620 (a cream band below it filled the old preview's last quarter): the
-   window stops there, from the reading start (the right: the site is Arabic). */
+   window stops there, from the reading start (the right: the site is Arabic).
+   Its left edge is the widest the 620px hero allows at 16:10 (992 wide, x 448):
+   the headline's last letter starts at x 455, so any x above 448 cuts it, and
+   the nav's last item shows as an 11px sliver. The catalogue's frame is the
+   whole 1440 (Fleet 6: x 80 / w 1280 cut the logo and "Accueil" off the left
+   of the nav and the tagline off the right). */
 export const CROP = {
   nomara: { x: 448, y: 0, w: 992 },
-  // the catalogue's four ranges whole, the footer's top edge under them
-  'bordjsteel-products': { x: 80, y: 0, w: 1280 },
+  // the catalogue whole, nav to the footer's top edge: four ranges, the red rule under them
+  'bordjsteel-products': { x: 0, y: 0, w: 1440 },
 };
 
 const VW = 1440, VH = 900, DPR = 2;
