@@ -25,17 +25,19 @@
  *                 Escape closes it and focus returns to the toggle; Enter on
  *                 one of its links closes it and the next Tab continues from
  *                 that section, not from the top or the hidden menu
- *  theme menu     (index) ArrowDown opens it on the checked theme, ArrowUp
- *                 on the last; arrows, Home and End move; Escape closes and
- *                 refocuses the button; Tab closes it; Enter applies a theme.
- *                 The page carries two pickers: the header's, and the phone
- *                 menu's, which takes over below 960px (the header's is
- *                 display:none there to make room for the language switch).
- *                 The one driven is the one rendered: on the phone the menu
- *                 is opened first (Enter on the toggle), the picker inside
- *                 it keeps the same contract with the menu open around it
- *                 (Escape closes the picker alone, Enter leaves the menu
- *                 open), and one more Escape closes the menu
+ *  theme toggle   (index, and the price guide) one real <button> between
+ *                 Arcanum and Daylight: no menu, 44px, two aria-hidden inline
+ *                 SVGs (one shown), its label names the theme it switches to
+ *                 (all toggles agree). Nothing is stored before a choice.
+ *                 Enter and Space switch it and store it, focus stays on the
+ *                 button, a click does the same, the browser's bar follows
+ *                 the page colour, a reload keeps the choice and so does a
+ *                 switch of language. The page carries two toggles: the
+ *                 header's, and the phone menu's, which takes over below
+ *                 960px (the header's is display:none there to make room for
+ *                 the language switch). The one driven is the one rendered:
+ *                 on the phone the menu is opened first (Enter on the
+ *                 toggle) and stays open around the switch
  *  CV panel       (index) Enter toggles aria-expanded; open, Tab reaches its
  *                 link and the link is visible; closed, it is inert
  *  estimate       (index) Enter opens the folded estimator; Enter on its
@@ -125,7 +127,7 @@
  *                 pages, which stay ltr
  * A JS error during a run fails it, and so does any Content-Security-Policy
  * violation, from any frame (lib/csp-watch.mjs, shared with audit.mjs). This
- * gate holds the CSP proof for what only it drives: the theme menu, the
+ * gate holds the CSP proof for what only it drives: the theme toggle, the
  * contact form submitted (its validation, the mail hand-off and that it
  * sends no POST), hub's rig, scene/'s viewer and the
  * embeds taking focus; audit.mjs holds it for page loads, the CV panel, the phone
@@ -168,13 +170,14 @@ import { ROOT, PAGES } from './site.mjs';
    bible, and the studio diary's viewer went with it), and its pointer check
    (hits() below). */
 const HOME_TESTS = ['theme', 'menu', 'cv', 'estimate', 'form'];
+const GUIDE_TESTS = ['theme', 'estimate'];
 const SPEC = {
   'index.html': { langs: ['fr'], tests: HOME_TESTS, only: 'the French page (one language per page; its Arabic is ar/, its English en/)' },
   'en/index.html': { langs: ['en'], tests: HOME_TESTS, only: 'the English page (one language per page)' },
   'ar/index.html': { langs: ['ar'], tests: HOME_TESTS, only: 'the Arabic page (one language per page)' },
-  'tarifs/index.html': { langs: ['fr'], tests: ['estimate'], only: 'the French guide (one language per page; its Arabic is ar/tarifs/, its English en/tarifs/)' },
-  'en/tarifs/index.html': { langs: ['en'], tests: ['estimate'], only: 'the English guide (one language per page)' },
-  'ar/tarifs/index.html': { langs: ['ar'], tests: ['estimate'], only: 'the Arabic guide (one language per page)' },
+  'tarifs/index.html': { langs: ['fr'], tests: GUIDE_TESTS, only: 'the French guide (one language per page; its Arabic is ar/tarifs/, its English en/tarifs/)' },
+  'en/tarifs/index.html': { langs: ['en'], tests: GUIDE_TESTS, only: 'the English guide (one language per page)' },
+  'ar/tarifs/index.html': { langs: ['ar'], tests: GUIDE_TESTS, only: 'the Arabic guide (one language per page)' },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
   'hub/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['studio', 'hits'] },
   'hub/bible/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the founder's own page)" },
@@ -336,13 +339,14 @@ async function skipAndRing(p, spec) {
   return { bad, note: `ring ${n}` + (byShadow || frames ? ` (${[byShadow && byShadow + ' by glow', frames && frames + ' in an embed'].filter(Boolean).join(', ')})` : '') };
 }
 
-async function themeMenu(p) {
+async function themeToggle(p) {
   const bad = [];
-  // the picker under test: the first .theme-switch whose button is shown
+  const here = p.url();
+  // the toggle under test: the first .theme-switch whose button is shown
   // (the header's from 960px; below, the phone menu's, once the menu is
   // open). Shown, not merely rendered: the closed menu is a fixed panel
   // slid off screen, so offsetParent is set on everything inside it, and
-  // the picker fades in last once the menu opens (a .5s stagger after .3s)
+  // the toggle fades in last once the menu opens (a .5s stagger after .3s)
   const shown = () => p.evaluate(() => [...document.querySelectorAll('.theme-switch')].findIndex((sw) => { const x = sw.querySelector('.theme-btn'); return !!x && __shown(x); }));
   let which = await shown(), inMenu = false;
   if (which < 0 && await p.evaluate(() => { const t = document.querySelector('.menu-toggle'); return !!t && t.offsetParent !== null; })) {
@@ -352,48 +356,67 @@ async function themeMenu(p) {
   }
   if (which < 0) return { bad: ['theme button not rendered' + (inMenu ? ' (not in the open phone menu either)' : '')], note: 'theme' };
   const st = () => p.evaluate((which) => {
-    const sw = document.querySelectorAll('.theme-switch')[which], m = sw.querySelector('.theme-menu'), btn = sw.querySelector('.theme-btn');
-    const items = [...m.querySelectorAll('[role="menuitemradio"]')];
-    return { open: m.classList.contains('open'), exp: btn.getAttribute('aria-expanded'), i: items.indexOf(document.activeElement),
-      onBtn: document.activeElement === btn, checked: items.findIndex((x) => x.getAttribute('aria-checked') === 'true'), n: items.length,
-      theme: document.documentElement.getAttribute('data-theme'), val: items.map((x) => x.getAttribute('data-theme-val')),
-      menuOpen: !!document.querySelector('.mobile-menu.open'),
-      // every picker on the page marks the chosen theme, not only the one driven
-      marked: [...document.querySelectorAll('.theme-menu')].every((x) => { const c = x.querySelector('[aria-checked="true"]'); return !!c && c.getAttribute('data-theme-val') === document.documentElement.getAttribute('data-theme'); }) };
+    const sws = [...document.querySelectorAll('.theme-switch')], btn = sws[which].querySelector('.theme-btn'), r = btn.getBoundingClientRect();
+    const cur = document.documentElement.getAttribute('data-theme'), svgs = [...btn.querySelectorAll('svg')];
+    let stored = null; try { stored = localStorage.getItem('numidea-theme'); } catch (e) {}
+    return { theme: cur, stored, tag: btn.tagName, type: btn.getAttribute('type'), label: btn.getAttribute('aria-label') || '', title: btn.getAttribute('title') || '',
+      menu: !!sws[which].querySelector('.theme-menu, [role="menu"], [aria-haspopup]'), w: Math.round(r.width), h: Math.round(r.height),
+      onBtn: document.activeElement === btn, menuOpen: !!document.querySelector('.mobile-menu.open'),
+      icons: svgs.length, iconsHidden: svgs.every((x) => x.getAttribute('aria-hidden') === 'true'), iconsShown: svgs.filter((x) => x.getBoundingClientRect().width > 0).length,
+      // every toggle on the page names the same target, and it is the other theme
+      labels: [...new Set(sws.map((x) => x.querySelector('.theme-btn').getAttribute('aria-label')))].length,
+      meta: (document.querySelector('meta[name="theme-color"]') || {}).content };
   }, which);
   const focusBtn = () => p.evaluate((which) => document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').focus(), which);
+  const other = (t) => (t === 'daylight' ? 'arcanum' : 'daylight');
+  let s = await st();
+  const first = s.theme;
+  if (s.tag !== 'BUTTON' || s.type !== 'button') bad.push('the toggle is not a <button type="button">');
+  if (s.menu) bad.push('the toggle still carries a menu / aria-haspopup');
+  if (s.w < 44 || s.h < 44) bad.push(`target ${s.w}x${s.h}, under 44px`);
+  if (s.icons !== 2 || !s.iconsHidden) bad.push('the icons are not two aria-hidden inline SVGs');
+  if (s.iconsShown !== 1) bad.push(`${s.iconsShown} icons shown, want 1`);
+  if (s.stored !== null) bad.push(`a theme is stored (${s.stored}) before the visitor chose one`);
+  const named = (st2) => new RegExp(other(st2.theme) === 'daylight' ? 'Daylight|نهاري' : 'Arcanum|أركانوم').test(st2.label);
+  if (!named(s) || s.title !== s.label) bad.push(`the label does not name the theme it switches to (${s.label})`);
+  if (s.labels !== 1) bad.push('the toggles on the page do not agree on their label');
+  // keyboard: Enter, then Space, each flips it, stores it, keeps focus on the button
   await focusBtn();
-  await p.keyboard.press('ArrowDown'); let s = await st();
-  if (!s.open || s.exp !== 'true') bad.push('ArrowDown on the button does not open the menu');
-  if (s.i !== s.checked) bad.push('opening does not focus the checked theme (focus on item ' + s.i + ')');
-  await p.keyboard.press('ArrowDown'); s = await st();
-  if (s.i !== (s.checked + 1) % s.n) bad.push('ArrowDown does not move to the next theme');
-  await p.keyboard.press('ArrowUp'); s = await st();
-  if (s.i !== s.checked) bad.push('ArrowUp does not move back');
-  await p.keyboard.press('End'); s = await st();
-  if (s.i !== s.n - 1) bad.push('End does not reach the last theme');
-  await p.keyboard.press('Home'); s = await st();
-  if (s.i !== 0) bad.push('Home does not reach the first theme');
-  await p.keyboard.press('Escape'); s = await st();
-  if (s.open || s.exp !== 'false' || !s.onBtn) bad.push('Escape does not close the menu and refocus the button');
-  if (inMenu && !s.menuOpen) bad.push('Escape on the picker closes the phone menu around it too');
-  await p.keyboard.press('ArrowUp'); s = await st();
-  if (!s.open || s.i !== s.n - 1) bad.push('ArrowUp on the button does not open on the last theme');
-  await p.keyboard.press('Tab'); s = await st();
-  if (s.open) bad.push('Tab does not close the menu');
-  await focusBtn();
-  await p.keyboard.press('Enter'); await p.keyboard.press('ArrowDown'); s = await st();
-  const want = s.val[s.i];
-  await p.keyboard.press('Enter'); s = await st();
-  if (s.theme !== want || s.open || !s.onBtn) bad.push('Enter on a theme does not apply it, close and refocus the button');
-  if (!s.marked) bad.push('the chosen theme is not aria-checked on every picker');
-  if (inMenu) {
-    if (!s.menuOpen) bad.push('choosing a theme closes the phone menu around the picker');
-    // the menu, for the tests after this one: one Escape, with the picker closed
-    await p.keyboard.press('Escape'); await wait(100); s = await st();
-    if (s.menuOpen) bad.push('Escape with the picker closed does not close the phone menu');
+  await p.keyboard.press('Enter'); await wait(80); s = await st();
+  if (s.theme !== other(first)) bad.push(`Enter does not switch (${first} -> ${s.theme})`);
+  if (s.stored !== s.theme) bad.push(`Enter does not store the choice (stored ${s.stored})`);
+  if (!s.onBtn) bad.push('focus leaves the button after Enter');
+  if (!named(s) || s.labels !== 1) bad.push(`the label does not follow the switch (${s.label})`);
+  if (s.iconsShown !== 1) bad.push(`${s.iconsShown} icons shown after the switch, want 1`);
+  if (inMenu && !s.menuOpen) bad.push('switching closes the phone menu around the toggle');
+  await p.keyboard.press('Space'); await wait(80); s = await st();
+  if (s.theme !== first || s.stored !== first) bad.push(`Space does not switch back (theme ${s.theme}, stored ${s.stored})`);
+  // pointer
+  await p.evaluate((which) => document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').scrollIntoView({ block: 'center' }), which);
+  const box = await p.evaluate((which) => { const r = document.querySelectorAll('.theme-switch')[which].querySelector('.theme-btn').getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; }, which);
+  await p.mouse.click(box.x, box.y); await wait(80); s = await st();
+  const chosen = s.theme;
+  if (chosen !== other(first) || s.stored !== chosen) bad.push(`a click does not switch and store (theme ${s.theme}, stored ${s.stored})`);
+  // the browser's bar follows the page colour
+  const bg = await p.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--void').trim().toLowerCase());
+  if ((s.meta || '').toLowerCase() !== bg) bad.push(`theme-color ${s.meta} is not the page colour ${bg}`);
+  // it persists: a reload keeps it
+  await p.reload({ waitUntil: 'networkidle' });
+  const after = await p.evaluate(() => ({ theme: document.documentElement.getAttribute('data-theme'), stored: localStorage.getItem('numidea-theme') }));
+  if (after.theme !== chosen || after.stored !== chosen) bad.push(`a reload loses the choice (${after.theme}, stored ${after.stored})`);
+  // and it survives a language switch (the other language's page, same choice)
+  const lang = await p.evaluate(() => { const a = [...document.querySelectorAll('.lang a[hreflang]')].find((x) => !x.hasAttribute('aria-current')); if (!a) return null; const h = a.getAttribute('hreflang'); a.click(); return h; });
+  if (!lang) bad.push('no language link to switch with');
+  else {
+    await p.waitForURL((u) => u.href !== here, { timeout: 10000 }).catch(() => {});
+    await p.waitForLoadState('networkidle');
+    const sw = await p.evaluate(() => ({ theme: document.documentElement.getAttribute('data-theme'), stored: localStorage.getItem('numidea-theme'), lang: document.documentElement.lang }));
+    if (sw.theme !== chosen || sw.stored !== chosen) bad.push(`switching to ${lang} loses the choice (${sw.theme}, stored ${sw.stored})`);
   }
-  return { bad, note: 'theme' + (inMenu ? ' (in the phone menu)' : '') };
+  // back where the next tests expect to be, with the choice reset to none
+  await p.evaluate(() => { try { localStorage.removeItem('numidea-theme'); localStorage.removeItem('numidea-lang'); } catch (e) {} });
+  await p.goto(here, { waitUntil: 'networkidle' });
+  return { bad, note: 'theme toggle' + (inMenu ? ' (in the phone menu)' : '') };
 }
 
 async function phoneMenu(p, w) {
@@ -1009,7 +1032,7 @@ for (const f of pages) {
     out.push(await skipAndRing(p, spec));
     for (const t of spec.tests) {
       await p.evaluate(() => { document.activeElement && document.activeElement.blur && document.activeElement.blur(); scrollTo(0, 0); });
-      if (t === 'theme') out.push(await themeMenu(p));
+      if (t === 'theme') out.push(await themeToggle(p));
       else if (t === 'menu') out.push(await phoneMenu(p, w));
       else if (t === 'cv') out.push(await cvPanel(p));
       else if (t === 'estimate') out.push(await estimatePrefill(p, lang));
@@ -1024,6 +1047,40 @@ for (const f of pages) {
     report(`${name(f)} ${lang} ${w}`, out, errs, csp);
     await close();
   }
+}
+
+/* The theme on a first visit. The head script of every page that paints a
+   theme (the home's three, the guide's three, scene/, 404, legal) resolves it
+   before first paint: the stored choice if it is Arcanum or Daylight; a
+   retired theme's name (noir, mono, altneon, engineering) becomes Arcanum and
+   is written back; with nothing valid stored, the OS decides (Daylight for a
+   light scheme, else Arcanum) and nothing is written, so the preference keeps
+   working until the visitor presses the toggle. */
+console.log('— theme on a first visit —');
+for (const f of pages) {
+  const spec = SPEC[f]; if (!spec || /^hub|^workspacehq/.test(f)) continue;
+  const lang = spec.langs[0], bad = [];
+  const probe = async (label, scheme, stored, want, wantStored) => {
+    const { p, errs, csp, close } = await open(1280, 900, { colorScheme: scheme });
+    if (stored !== undefined) await p.addInitScript((v) => { try { if (!sessionStorage.getItem('__seeded')) { localStorage.setItem('numidea-theme', v); sessionStorage.setItem('__seeded', '1'); } } catch (e) {} }, stored);
+    await p.goto(url(f, lang), { waitUntil: 'load' });
+    await wait(f === '404.html' || /scene/.test(f) ? 1700 : 200);
+    const r = await p.evaluate(() => ({ theme: document.documentElement.getAttribute('data-theme'), stored: localStorage.getItem('numidea-theme'),
+      bar: (document.querySelector('meta[name="theme-color"]') || {}).content, void: getComputedStyle(document.documentElement).getPropertyValue('--void').trim() }));
+    if (r.theme !== want) bad.push(`${label}: theme ${r.theme}, want ${want}`);
+    if (r.stored !== wantStored) bad.push(`${label}: stored ${r.stored}, want ${wantStored}`);
+    if (r.bar && r.void && r.bar.toLowerCase() !== r.void.toLowerCase()) bad.push(`${label}: theme-color ${r.bar} is not the page colour ${r.void}`);
+    if (errs.length) bad.push(`${label}: js ${errs.join(' | ')}`);
+    if (csp.length) bad.push(`${label}: csp ${[...new Set(csp)].join(' | ')}`);
+    await close();
+  };
+  await probe('OS light', 'light', undefined, 'daylight', null);
+  await probe('OS dark', 'dark', undefined, 'arcanum', null);
+  for (const old of ['noir', 'mono', 'altneon', 'engineering']) await probe(`stored ${old}`, 'light', old, 'arcanum', 'arcanum');
+  await probe('stored garbage', 'dark', 'purple', 'arcanum', 'purple');
+  await probe('stored daylight, OS dark', 'dark', 'daylight', 'daylight', 'daylight');
+  await probe('stored arcanum, OS light', 'light', 'arcanum', 'arcanum', 'arcanum');
+  report(`${name(f)} first visit`, [{ bad, note: 'light->daylight, dark->arcanum, retired->arcanum' }], [], []);
 }
 
 /* No lead store. The Supabase path went (a28c546: CSP is connect-src 'self',

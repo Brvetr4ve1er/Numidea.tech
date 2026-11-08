@@ -90,7 +90,18 @@ function localChrome() {
   }
   return undefined;
 }
-export function launch(opts = {}) {
+/* The gates paint Arcanum, the default look, unless a run asks otherwise: a
+   visitor with nothing stored gets Daylight when the OS prefers light, and
+   Playwright's contexts prefer light unless told. So every context and page
+   opened through launch() starts with the dark scheme; a run that wants the
+   other (keys.mjs's first-visit tests) passes colorScheme itself, and a
+   stored theme beats either. */
+export async function launch(opts = {}) {
   const executablePath = process.env.CHROMIUM_PATH || localChrome();
-  return chromium.launch({ executablePath, ...opts, args: ['--font-render-hinting=none', ...(opts.args || [])] });
+  const b = await chromium.launch({ executablePath, ...opts, args: ['--font-render-hinting=none', ...(opts.args || [])] });
+  for (const m of ['newContext', 'newPage']) {
+    const orig = b[m].bind(b);
+    b[m] = (o = {}) => orig({ colorScheme: 'dark', ...o });
+  }
+  return b;
 }

@@ -3,8 +3,8 @@
  * Browser audit — `npm run audit`. Self-hosting; exits non-zero on any failure.
  *
  * 90 runs over every page (site.mjs PAGES): the home page (one page per
- * language: index.html, en/, ar/, each opened directly) in all six themes x
- * FR/EN/AR at 1280x900 and all six x FR/AR on a 390x844 phone; the price
+ * language: index.html, en/, ar/, each opened directly) in both themes x
+ * FR/EN/AR at 1280x900 and both x FR/AR on a 390x844 phone; the price
  * guide (tarifs/, en/tarifs/, ar/tarifs/, likewise) in arcanum and daylight
  * x FR/EN/AR on desktop and x FR/AR on the phone; scene/ in each
  * language on desktop and phone, and in daylight (it follows the visitor's
@@ -350,7 +350,7 @@ const nested404=async(label,{site,path,js=true,theme,lang,emulate=false})=>{
    On a real connection a webfont can land after the first paint, and the text
    then reflows from the metric-matched fallback (fonts.css) to the face. Served
    from this checkout the faces arrive at once, so the CLS above never sees it:
-   Alt-neon's French hero passed here at 0 and failed live at 0.02. So each
+   a Geist-headed theme's French hero (since cut) passed here at 0 and failed live at 0.02. So each
    theme loads twice, once with every webfont file refused (the fallback, as a
    slow visitor sees it) and once with the faces, and every text block in the
    first screen must be as tall in both, at seven widths. Arabic is left out:
@@ -504,7 +504,7 @@ await run('hub bible','/hub/bible/index.html',D);
 for(const l of ['fr','en','ar']) await run('scene '+l,'/scene/index.html',{...D,lang:l});
 await run('scene daylight','/scene/index.html',{...D,theme:'daylight'});   // the light palette, on the page's own sheet (scene/style.css)
 await run('404','/404.html',D);
-await run('404 noir/ar','/404.html',{...D,theme:'noir',lang:'ar'});
+await run('404 arcanum/ar','/404.html',{...D,theme:'arcanum',lang:'ar'});
 // WorkspaceHQ is a different product with its own arcade identity: blinking
 // INSERT COIN, the glitching headline and the marquee ARE the design, so the
 // no-endless-loop rule is waived there (its loops pause when off screen).
@@ -523,7 +523,7 @@ await run('index cv open fr',HOME('fr'),{lang:'fr',act:openCv});
 await run('index estimator open fr',HOME('fr'),{lang:'fr',act:openEstimator});
 // the price guide: the home's chrome and sheets plus tarifs/style.css, the
 // estimator open at load and the market comparison the home gave up, in the
-// two palettes furthest apart (the six themes are the home's runs' job)
+// two palettes furthest apart (both themes are the home's runs' job)
 for(const t of ['arcanum','daylight'])
   for(const l of ['fr','en','ar']) await run(`tarifs ${t}/${l}`,TARIFS(l),{...D,theme:t,lang:l});
 console.log('— phone 390×844 —');
@@ -545,7 +545,7 @@ for(const t of ['arcanum','daylight'])
 console.log('— tablet and landscape —');
 await run('index arcanum/fr 768',HOME('fr'),{theme:'arcanum',lang:'fr',w:768,h:1024,touch:true});
 await run('index daylight/ar 768',HOME('ar'),{theme:'daylight',lang:'ar',w:768,h:1024,touch:true});
-await run('index noir/fr 1024',HOME('fr'),{theme:'noir',lang:'fr',w:1024,h:768,touch:true});
+await run('index daylight/fr 1024',HOME('fr'),{theme:'daylight',lang:'fr',w:1024,h:768,touch:true});
 await run('index arcanum/ar 1024',HOME('ar'),{theme:'arcanum',lang:'ar',w:1024,h:768,touch:true});
 await run('index arcanum/fr 844×390',HOME('fr'),{theme:'arcanum',lang:'fr',w:844,h:390,touch:true});
 await run('index arcanum/ar 844×390',HOME('ar'),{theme:'arcanum',lang:'ar',w:844,h:390,touch:true});
@@ -596,7 +596,7 @@ await printPage('print index fr','/index.html');
 await printPage('print tarifs fr','/tarifs/index.html');
 await printPage('print tarifs ar','/ar/tarifs/index.html',{lang:'ar'});
 console.log('— 404 two folders down —');
-await nested404('404 nested noir/ar',{site:B+'/',path:'a/b/missing?lang=ar',theme:'noir'});
+await nested404('404 nested arcanum/ar',{site:B+'/',path:'a/b/missing?lang=ar',theme:'arcanum'});
 if(!REMOTE){
   await nested404('404 pages nested fr',{site:BASE,path:'a/b/missing?lang=fr',emulate:true});
   await nested404('404 pages nested no-JS',{site:BASE,path:'a/b/c/nope.html',js:false,emulate:true});

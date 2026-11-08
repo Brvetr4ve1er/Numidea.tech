@@ -34,7 +34,7 @@ const combos=[];
 // not through the root, which would send the stored language on in a second load
 const HOME={fr:'/',en:'/en/',ar:'/ar/'};
 const TARIFS={fr:'/tarifs/',en:'/en/tarifs/',ar:'/ar/tarifs/'};
-for(const w of [1440,1280,1024,768,414,390,360])for(const [t,l] of [['arcanum','fr'],['arcanum','ar'],['engineering','en'],['daylight','fr']]){
+for(const w of [1440,1280,1024,768,414,390,360])for(const [t,l] of [['arcanum','fr'],['arcanum','ar'],['daylight','en'],['daylight','fr']]){
  combos.push(['index',HOME[l],w,{'numidea-theme':t,'numidea-lang':l},`${w}/${t}/${l}`]);
  combos.push(['tarifs',TARIFS[l],w,{'numidea-theme':t,'numidea-lang':l},`${w}/${t}/${l}`]);
 }

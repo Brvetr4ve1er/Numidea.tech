@@ -124,9 +124,10 @@ absent.length && bad('themes with no block in themes.css: ' + absent.join(', '))
    and 404.html HEAD (the numeral's face there; the wordmark is drawn, so no
    page preloads a logo face any more). A face that is not preloaded swaps in
    after first paint and shifts the page; a name missing from a resolver is
-   treated as unknown and silently falls back to Arcanum. The page carries
-   two pickers (the header's and the phone menu's, plan C.8), so each
-   .theme-menu is read on its own: both must list every theme. */
+   treated as unknown and silently falls back to Arcanum. There are two
+   themes (owner decision, 2026-11-08), so the picker is one toggle button,
+   in the header and again in the phone menu (plan C.8): each .theme-switch
+   holds exactly that button, no menu. */
 const idx = read('index.html');
 const mapOf = (src, name) => Object.fromEntries([...(new RegExp('var ' + name + ' = \\{([^}]*)\\}').exec(src) || [, ''])[1].matchAll(/(\w+):\s*'([\w-]+)'/g)].map((m) => [m[1], m[2]]));
 const headMaps = { 'index.html': mapOf(idx, 'HEAD'), '404.html': mapOf(read('404.html'), 'HEAD') };
@@ -134,13 +135,42 @@ const sameSet = (a, b) => a.length === b.length && a.every((x) => b.includes(x))
 const lists = {
   'index.html HEAD': Object.keys(headMaps['index.html']),
   '404.html HEAD': Object.keys(headMaps['404.html']),
+  'index.html VOID': Object.keys(mapOfHex(idx, 'VOID')),
+  '404.html VOID': Object.keys(mapOfHex(read('404.html'), 'VOID')),
   'app.js THEMES': ((/var THEMES = \[([^\]]*)\]/.exec(read('assets/app.js')) || [, ''])[1].match(/'([a-z]+)'/g) || []).map((s) => s.slice(1, -1)),
 };
-const menus = [...idx.matchAll(/<div class="theme-menu"[^>]*>([\s\S]*?)<\/div>/g)].map((m) => [...m[1].matchAll(/data-theme-val="([a-z]+)"/g)].map((x) => x[1]));
-if (!menus.length) bad('index.html has no .theme-menu picker');
-menus.forEach((l, i) => { lists[`theme menu ${i + 1} of ${menus.length}`] = l; });
+function mapOfHex(src, name) { return Object.fromEntries([...(new RegExp('var ' + name + ' = \\{([^}]*)\\}').exec(src) || [, ''])[1].matchAll(/(\w+):\s*'(#[0-9A-Fa-f]{6})'/g)].map((m) => [m[1], m[2]])); }
 const listDrift = Object.entries(lists).filter(([, l]) => !sameSet(l, THEMES)).map(([k, l]) => `${k} [${l.join(', ')}]`);
-listDrift.length ? bad('theme lists out of step with site.mjs THEMES: ' + listDrift.join('; ')) : ok(`every theme list matches site.mjs THEMES (${menus.length} pickers)`);
+listDrift.length ? bad('theme lists out of step with site.mjs THEMES: ' + listDrift.join('; ')) : ok(`every theme list matches site.mjs THEMES (${THEMES.join(', ')})`);
+// each page's VOID is the --void its theme block sets (the browser's bar)
+{
+  const voids = Object.fromEntries(blocks.map(({ sel, body }) => [(/data-theme="([a-z]+)"/.exec(sel) || [])[1], ((/--void:\s*(#[0-9A-Fa-f]{6})/.exec(body) || [])[1] || '').toLowerCase()]));
+  const drift = [];
+  for (const [page, src] of [['index.html', idx], ['404.html', read('404.html')]])
+    for (const [t, c] of Object.entries(mapOfHex(src, 'VOID'))) if (voids[t] !== c.toLowerCase()) drift.push(`${page} VOID ${t} ${c} (themes.css ${voids[t]})`);
+  drift.length ? bad('page colour out of step with themes.css: ' + drift.join('; ')) : ok('index.html and 404.html VOID match themes.css --void');
+}
+{
+  const sw = [...idx.matchAll(/<div class="theme-switch[^"]*"[^>]*>([\s\S]*?)<\/div>/g)].map((m) => m[1]);
+  const wrong = [];
+  if (sw.length !== 2) wrong.push(`${sw.length} toggles (want 2: the header's and the phone menu's)`);
+  sw.forEach((h, i) => {
+    const btns = h.match(/<button\b[^>]*>/g) || [];
+    if (btns.length !== 1 || !/class="theme-btn"/.test(btns[0]) || !/type="button"/.test(btns[0])) wrong.push(`toggle ${i + 1}: not exactly one <button type="button" class="theme-btn">`);
+    if (/theme-menu|data-theme-val|aria-haspopup|menuitemradio/.test(h)) wrong.push(`toggle ${i + 1}: still carries a menu`);
+    if (!/aria-label="[^"]+"/.test(btns[0] || '') || !/data-i18n-aria="theme\.to(Daylight|Arcanum)"/.test(btns[0] || '')) wrong.push(`toggle ${i + 1}: no aria-label naming the target theme (theme.toDaylight / theme.toArcanum)`);
+    if ((h.match(/<svg\b[^>]*aria-hidden="true"/g) || []).length !== 2) wrong.push(`toggle ${i + 1}: want two aria-hidden inline SVGs (sun, moon)`);
+  });
+  wrong.length ? bad(wrong.join('; ')) : ok('the theme picker is one toggle button, twice (header, phone menu)');
+}
+/* the first-visit rule is in every head script that resolves the theme:
+   stored choice, else the OS preference (not stored), a retired name to
+   Arcanum (rewritten) */
+{
+  const need = [['index.html', idx], ['404.html', read('404.html')], ['tarifs/index.html', existsSync(join(ROOT, 'tarifs/index.html')) ? read('tarifs/index.html') : ''], ['scene/index.html', existsSync(join(ROOT, 'scene/index.html')) ? read('scene/index.html') : ''], ['scripts/build-legal.mjs', read('scripts/build-legal.mjs')]];
+  const miss = need.filter(([, src]) => !/prefers-color-scheme: light/.test(src) || !/noir\|mono\|altneon\|engineering/.test(src)).map(([f]) => f);
+  miss.length ? bad('head script without the first-visit rule (prefers-color-scheme light, retired names): ' + miss.join(', ')) : ok('every head script resolves the theme the same way (stored, else OS, retired to Arcanum)');
+}
 const faceDrift = [];
 for (const { sel, body } of blocks) {
   const name = (/data-theme="([a-z]+)"/.exec(sel) || [])[1]; if (!name) continue;
@@ -161,7 +191,6 @@ scoped ? bad(`styles.css has ${scoped} [data-theme] selector(s) — express the 
 const PALETTE = /rgba?\(\s*(230,\s*180,\s*80|52,\s*208,\s*232|9,\s*216,\s*199|189,\s*9,\s*39|13,\s*26,\s*47|234,\s*242,\s*244|65,\s*30,\s*58|15,\s*40,\s*64|10,\s*20,\s*32|8,\s*16,\s*28|23,\s*54,\s*79)\b/g;
 const lits = [];
 for (const m of styles.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
-  if (/\.theme-menu \.dot/.test(m[1])) continue;   // the switcher shows each theme's colours on purpose
   for (const c of m[2].matchAll(PALETTE)) lits.push(`${m[1].trim().slice(0, 40)} → ${c[0]}`);
 }
 lits.length ? bad(`styles.css hard-codes theme colours (${lits.length}): ${lits.slice(0, 6).join(' | ')}${lits.length > 6 ? ' …' : ''}`) : ok('styles.css reads theme colours from tokens only');

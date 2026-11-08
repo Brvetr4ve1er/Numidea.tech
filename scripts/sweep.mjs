@@ -11,11 +11,11 @@
  *
  * Covers the home page (one page per language: index.html, en/, ar/) and the
  * price guide (tarifs/, en/tarifs/, ar/tarifs/: the market comparison, swept
- * on the home in every theme until it moved there) in all six themes, plus
+ * on the home in every theme until it moved there) in both themes, plus
  * hub/, scene/, 404 and workspacehq/,
- * and a second pass at other sizes and states: phones in the dark themes, the
+ * and a second pass at other sizes and states: phones in both themes, the
  * guide's phone in arcanum and daylight, tablets,
- * short landscape, scene/ in Arabic and in the daylight and noir themes (it
+ * short landscape, scene/ in Arabic and in French in both themes (it
  * follows numidea-theme since e8a2ea2), each on desktop and on a 390px phone,
  * 404 in other themes, and hub/ (one paper palette since 56f29c1) on a
  * 390px phone.
@@ -77,21 +77,21 @@ for(const theme of THEMES) for(const [pname,path] of PAGES){
 if(existsSync(join(ROOT,'legal-preview/index.html'))) RUNS.push({theme:'arcanum',pname:'legal-preview',path:'/legal-preview/index.html',lang:'fr',w:1280,h:900});
 if(existsSync(join(ROOT,'legal/index.html'))) RUNS.push({theme:'arcanum',pname:'legal',path:'/legal/index.html',lang:'fr',w:1280,h:900});
 // second pass: sizes and states the desktop pass never paints
-for(const t of ['noir','mono','altneon']) for(const l of ['fr','ar']) RUNS.push({theme:t,pname:'index@390',path:HOME[l],lang:l,w:390,h:844});
+for(const t of ['arcanum','daylight']) for(const l of ['fr','ar']) RUNS.push({theme:t,pname:'index@390',path:HOME[l],lang:l,w:390,h:844});
 for(const t of ['arcanum','daylight']) for(const l of ['fr','ar']) RUNS.push({theme:t,pname:'tarifs@390',path:TARIFS[l],lang:l,w:390,h:844});
 RUNS.push({theme:'arcanum',pname:'index@768',path:HOME.fr,lang:'fr',w:768,h:1024});
 RUNS.push({theme:'daylight',pname:'index@768',path:HOME.ar,lang:'ar',w:768,h:1024});
-RUNS.push({theme:'noir',pname:'index@1024',path:HOME.fr,lang:'fr',w:1024,h:768});
+RUNS.push({theme:'daylight',pname:'index@1024',path:HOME.fr,lang:'fr',w:1024,h:768});
 RUNS.push({theme:'arcanum',pname:'index@844x390',path:HOME.fr,lang:'fr',w:844,h:390});
 RUNS.push({theme:'arcanum',pname:'scene',path:'/scene/index.html',lang:'ar',w:1280,h:900});
 RUNS.push({theme:'arcanum',pname:'scene@390',path:'/scene/index.html',lang:'ar',w:390,h:844});
-// scene/ in the light theme and the darkest one, on desktop and on the phone
-for(const t of ['daylight','noir']){
+// scene/ in the light theme and the dark one in French, on desktop and on the phone
+for(const t of ['daylight','arcanum']){
   RUNS.push({theme:t,pname:'scene',path:'/scene/index.html',lang:'fr',w:1280,h:900});
   RUNS.push({theme:t,pname:'scene@390',path:'/scene/index.html',lang:'fr',w:390,h:844});
 }
 RUNS.push({theme:'daylight',pname:'404@390',path:'/404.html',lang:'ar',w:390,h:844});
-RUNS.push({theme:'noir',pname:'404',path:'/404.html',lang:'ar',w:1280,h:900});
+RUNS.push({theme:'arcanum',pname:'404',path:'/404.html',lang:'ar',w:1280,h:900});
 // hub/: one paper palette (the character bible, 56f29c1: no void-theme), on the desktop pass above and here
 // the Studio (hub/: French, English and Arabic by its own switch) and the character bible (hub/bible/), desktop and phone
 for(const [pname,path,lang,w,h] of [['hub','/hub/index.html','fr',1280,900],['hub-ar','/hub/index.html','ar',1280,900],['hub-bible','/hub/bible/index.html','en',1280,900],

@@ -108,7 +108,7 @@ const measure = () => {
   for (const k of ['card-pad', 'card-pad-lg', 'gutter']) spaceSet.add(probe(`padding-left:var(--${k},0px)`));
 
   const out = { hs, h2s, offSizes: {}, titles: [], offSpace: {}, btn: {}, cardPads: {}, cols: {} };
-  const skip = (el) => el.closest('[aria-hidden="true"], .sr-only, script, style, template, noscript, .mobile-menu, .theme-menu');
+  const skip = (el) => el.closest('[aria-hidden="true"], .sr-only, script, style, template, noscript, .mobile-menu');
   const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   let n;
   while ((n = tw.nextNode())) {
@@ -173,7 +173,7 @@ const textBoxes = (MAX) => {
   while ((n = tw.nextNode())) {
     const el = n.parentElement;
     if (!el || seen.has(el) || !n.nodeValue.trim() || n.nodeValue.trim().length < 3) continue;
-    if (el.closest('[aria-hidden="true"], .sr-only, script, style, template, noscript, .mobile-menu, .theme-menu, svg, canvas, [hidden], details:not([open]) > :not(summary)')) continue;
+    if (el.closest('[aria-hidden="true"], .sr-only, script, style, template, noscript, .mobile-menu, svg, canvas, [hidden], details:not([open]) > :not(summary)')) continue;
     const cs = getComputedStyle(el);
     if (cs.visibility === 'hidden' || cs.display === 'none' || +cs.opacity === 0 || cs.color.endsWith(', 0)')) continue;
     // the text's own box, not its element's (a card's padding is not text)
