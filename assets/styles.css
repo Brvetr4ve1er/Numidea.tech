@@ -3330,7 +3330,8 @@ html[dir="rtl"] .proj .gain-k{font-family:var(--font-ar-body);letter-spacing:0;t
 .prev-paid{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s-1);margin:var(--s-5) 0 0;order:1}
 .prev-paid .ptl-d{margin:0;padding:0;border:0;border-radius:0;font-size:var(--t-small);letter-spacing:.04em;color:var(--muted)}
 .prev-paid .ptl-zero{margin:0;font-family:var(--font-head);font-weight:var(--head-weight);font-size:var(--t-h2-xl);line-height:1;letter-spacing:0;color:var(--ice)}
-html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display)}
+html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display);line-height:1.4}
+html[dir="rtl"] .prev-paid{gap:var(--s-2)}
 .prev-paid .ptl-zero .cur{font-size:var(--t-small);margin-inline-start:var(--s-1)}
 .preview .ptl-p{font-size:var(--t-small)}
 .preview .ptl-d{font-size:var(--t-small);letter-spacing:.04em;text-transform:none;padding:0;border:0;border-radius:0}
