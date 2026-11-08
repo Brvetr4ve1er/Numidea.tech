@@ -338,6 +338,7 @@ html:not(.js) .ctrls{display:none}
 .foot-row a{display:inline-flex;align-items:center;min-height:44px;color:var(--red-text);text-decoration:none}
 .foot-row a:hover{color:var(--ink);text-decoration:underline}
 .legal{display:flex;flex-wrap:wrap;gap:4px 18px}
+.foot-bio{max-width:64ch;font-size:15px;line-height:1.55;text-wrap:pretty}
 
 /* ---------- motion preference: nothing eases, nothing moves on its own ---------- */
 @media (prefers-reduced-motion:reduce){
