@@ -1,15 +1,16 @@
 # Numidea Labs — Themes
 
-The site ships **Arcanum** (arcane-blue + brass, Cinzel display) as its identity.
-Five more themes sit behind the theme switcher. All six are token themes on one
-contract; none of them is a separate stylesheet.
+The site ships **Arcanum** (arcane-blue + brass, Cinzel display) as its identity,
+and one alternative, **Daylight** (warm paper and ink). The owner cut the other
+four (Noir, Mono, Alt-neon, Engineering) on 2026-11-08. Both are token themes on
+one contract; neither is a separate stylesheet.
 
 ---
 
 ## How themes work here
 
-All six are **token swaps**: `assets/themes.css` holds one
-`:root[data-theme="name"]` block per theme, each setting exactly the same **46
+Both are **token swaps**: `assets/themes.css` holds one
+`:root[data-theme="name"]` block per theme, each setting exactly the same **43
 contract tokens**, and every rule in `assets/styles.css` that reads
 `var(--token)` reskins for free. `styles.css` may not contain a `[data-theme]`
 selector. `scripts/themes-check.mjs` (part of `npm run check`) enforces that, the
@@ -18,12 +19,38 @@ agrees with `THEMES` in `scripts/site.mjs`. Details under "Theme contract" below
 
 | Theme | Character |
 | --- | --- |
-| **arcanum** *(default)* | Arcane blue and brass, engraved Cinzel display |
-| **noir** *(formerly "Neon Noir")* | Cinematic black, signal red, steel |
-| **daylight** | Warm paper, ink, ochre and deep teal |
-| **mono** | True black and white, sharp, no colour |
-| **altneon** | Synthwave violet, magenta and cyan |
-| **engineering** | Graphite, safety orange, drafting grid |
+| **arcanum** *(default, dark)* | Arcane blue and brass, engraved Cinzel display |
+| **daylight** *(light)* | Warm paper, ink, ochre and deep teal, Cinzel display |
+
+### First visit and the toggle (2026-11-08)
+
+- **First visit.** Every page that paints a theme (the home's three languages,
+  the price guide's three, `scene/`, the 404, the legal template) resolves it in
+  its head script, before first paint: the stored choice if it is `arcanum` or
+  `daylight`; otherwise **Daylight when the OS asks for a light scheme
+  (`prefers-color-scheme: light`), Arcanum when it does not**. That default is
+  *not* written to `localStorage`: the visitor made no choice, so the OS
+  preference keeps working until they press the toggle.
+- **A retired name.** A stored `noir`, `mono`, `altneon` or `engineering`
+  (the key is `numidea-theme`, shared by all pages) maps to Arcanum and is
+  rewritten. Any other unknown value is ignored like an empty one.
+- **The toggle.** The six-option menu is gone. One real `<button>` (`.theme-btn`)
+  switches between the two, in the header on desktop and again in the phone menu
+  (below 960px the header's is hidden to make room for the language switch).
+  44px, a drawn sun or moon as inline SVG (`aria-hidden`; the icon is the theme
+  it switches *to*: a sun on Arcanum, a moon on Daylight), the page's focus ring,
+  and an `aria-label` and tooltip that name that theme, in the page's language
+  ("Passer en Daylight (clair)", "Switch to Daylight (light)", "التبديل إلى
+  النهاري (فاتح)"). In the phone menu the label is also its visible text. It
+  stores the choice, updates the browser's bar colour, and a language switch
+  keeps it. In right-to-left the button sits where the layout puts it (logical
+  properties); the sun is symmetric and the crescent is a drawing, not an arrow,
+  so neither is mirrored.
+- **Gates.** `themes-check` (the contract, the two toggles, the first-visit rule
+  in every head script), `keys` (the toggle by keyboard and pointer, persistence,
+  a language switch, and the first-visit table on every page), `audit`, `sweep`
+  and `vbugs` (both themes). Their browsers open with a dark OS scheme unless a
+  run says otherwise (`scripts/lib/serve.mjs`), so an unthemed run is Arcanum.
 
 ### History (removed features): Engineering as an alternate stylesheet
 
@@ -175,7 +202,7 @@ pages, the project sheets' hud, the breadcrumbs of the hub and WorkspaceHQ and
 the 404's header. "idea" takes each page's own accent through the token the
 drawing reads (the teal text on the home, burgundy on the hub, cabinet gold on
 WorkspaceHQ). The tokens `--font-logo`, `--logo-weight` and `--logo-tracking`
-are gone from `themes.css` with the per-theme `.logo` rule: the six themes no
+are gone from `themes.css` with the per-theme `.logo` rule: the themes no
 longer set the name in three faces, and `scene/`, the hub and WorkspaceHQ no
 longer type their own.
 
@@ -2127,9 +2154,9 @@ written as literals that could not re-skin, and Engineering was a separate
   "History (removed features)" above describe a file that no longer exists.
 
 To add a theme: copy a block in `themes.css`, change the values, and add the
-name to `THEMES` in `scripts/site.mjs`, to `THEMES` in app.js, to the theme
-menu, to the `HEAD` map in index.html and to the `HEAD` map in 404.html.
-`themes-check` fails until every list agrees.
+name to `THEMES` in `scripts/site.mjs`, to `THEMES` in app.js, to the `HEAD` and
+`VOID` maps in index.html and in 404.html, and turn the toggle back into a menu
+(it switches between exactly two). `themes-check` fails until every list agrees.
 
 ## The design pass of 2026-11-03
 

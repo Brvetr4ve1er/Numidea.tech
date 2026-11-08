@@ -2,7 +2,7 @@
 
 The site leaves a place for each item below and shows nothing until the real
 thing exists: no placeholders, no invented content. This file is not deployed.
-Status as of 2026-11-07 (after fleet 4b: the Studio page at /hub/, the critique pass; sections 20 and 21 are new, section 8 gained its list; before it, the owner's answers of 2026-10-30, the fix
+Status as of 2026-11-08 (after the themes were cut to Arcanum and Daylight, section 19, and fleet 4b: the Studio page at /hub/, the critique pass; sections 20 and 21 are new, section 8 gained its list; before it, the owner's answers of 2026-10-30, the fix
 fleets of 2026-10-31 and of 2026-11-03, the hub rebuilt as your character
 bible and the UX pass of 2026-11-06; sections 16 and 17 record those
 answers, and the page now carries them; section 19 lists what the UX pass
@@ -18,7 +18,7 @@ what the Studio page changed from your design).
 | 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06 and 2026-11-07 (the Studio page and its five cases above all) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07 and 2026-11-08 (the theme toggle's two labels; the Studio page and its five cases above all) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
@@ -135,9 +135,9 @@ item 6 can cover it.
 
 ## 8. Arabic native review
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
-2026-11-06 and 2026-11-07 awaits native review** (the lists are at the end of this section,
+2026-11-06, 2026-11-07 and 2026-11-08 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06" and "Written or changed on 2026-11-07"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07" and "Written or changed on 2026-11-08"); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -399,6 +399,19 @@ Each key is "AR review: <key>".
     `end.chip`, `end.t`, `end.big`, `end.note`, `end.items.0` to `.5`,
     `end.cta`, `track`, `prevPoster`, `nextPoster`.
 
+Written or changed on 2026-11-08 (the themes cut to Arcanum and Daylight; none
+read by a native speaker). Each key is "AR review: <key>". The toggle's label
+names the theme it switches to; the theme names are as they were
+(`theme.arcanum` «أركانوم», `theme.daylight` «نهاري», unchanged):
+- AR review: `theme.toArcanum`, new: «التبديل إلى أركانوم (داكن)», the toggle's
+  label and tooltip while Daylight is on (also the visible text of the button
+  in the phone menu);
+- AR review: `theme.toDaylight`, new: «التبديل إلى النهاري (فاتح)», the same
+  while Arcanum is on;
+- removed with their themes, nothing to review: `theme.noir` «أسود»,
+  `theme.mono` «أحادي اللون», `theme.altneon` «نيون بديل», `theme.engineering`
+  «هندسي».
+
 Arabic display and Latin digits: Reem Kufi and Aref Ruqaa (the Studio's
 Arabic display and hand faces) are Arabic-script subsets without Latin digits,
 so Arabic display text with digits falls back to the next family.
@@ -634,12 +647,12 @@ behave; the reviewers' proposals that would change a fact, a cut you made or
 one of your recorded decisions were left to you. Each is a decision in
 IMPROVEMENTS.md, its recommended option first; nothing changes until you
 answer.
-- **Themes** (decision 31): keep Arcanum (the default) and Daylight; Noir is
-  a credible third now that its emphasis is red; Mono, Engineering and
-  Alt-Neon read as recolours, or off-brand for a B2B studio. Removing one is
-  one block in `assets/themes.css` plus the theme lists the gates keep in
-  step. And (decision 32): should every theme set its headings in Cinzel,
-  the wordmark's face, or should the grotesk themes keep theirs?
+- **Themes** (decision 31): **answered 2026-11-08, "cut the themes to arcanum
+  and daylight"**. Done: the site has Arcanum (dark, the default) and
+  Daylight (light), one toggle button, and a first visit follows the visitor's
+  OS preference (Daylight if it asks for light, Arcanum otherwise, nothing
+  stored until they press the toggle). Decision 32 (heading faces) is moot:
+  both themes set Cinzel.
 - **Founder photo** (section 3): the monogram is a 64 px mark meanwhile; the
   slot takes the file as it is.
 - **Hero lede** (decision 33): the reviewers want it cut to two lines, the
