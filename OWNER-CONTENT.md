@@ -412,6 +412,29 @@ names the theme it switches to; the theme names are as they were
   `theme.mono` «أحادي اللون», `theme.altneon` «نيون بديل», `theme.engineering`
   «هندسي».
 
+Written or changed on 2026-11-08 (Fleet 5: the home and the Studio; none read
+by a native speaker). Each key is "AR review: <key>":
+- AR review for the home: `hero.lede`, `hero.terms`, `work.lead`, `work.demo`,
+  `pl.vista`, `pl.dunes`, `contact.vReply` (the merged reply and UTC+1),
+  `founder.langs`, `founder.xp`, `founder.basedL`, `founder.recent`, and the
+  seven kicker keys (the digits are dropped, nothing else). The en and fr texts
+  are in the commits;
+- AR review for the Studio: `proof.lead`, `proof.vs.kicker`, `proof.vs.tag`,
+  `proof.vs.sub`, `proof.vs.desc`, `proof.vs.facts` (four chips),
+  `proof.vs.cta`, `proof.vs.lang`, `proof.vs.alt`, `footer.bible`;
+- the Arabic phone number and mail key (`contact.waK`, `contact.mailK`) now
+  carry invisible bidi and zero-width characters (U+2066, U+2069, U+200B) so they
+  read left to right inside Arabic text: check they paste and read right;
+- the retired home keys are deleted in fr, en and ar (an older cached app.js
+  does not reference them), nothing to review.
+
+Owner to confirm (not Arabic): the VOIDSPLUNKER dossier on the Studio says only
+what the bible page prints; confirm that the character bible is a studio
+project (not a client, not "the artist's page") and that "English only" is
+the wording you want on its button. Open as before: decision 22 (bible footer
+"agency of one"), §15 (the "2 a.m." voice), Q45, the founder photo slot, the
+Instagram handle.
+
 Arabic display and Latin digits: Reem Kufi and Aref Ruqaa (the Studio's
 Arabic display and hand faces) are Arabic-script subsets without Latin digits,
 so Arabic display text with digits falls back to the next family.

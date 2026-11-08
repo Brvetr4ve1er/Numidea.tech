@@ -1302,6 +1302,32 @@ French uses a space as the thousands separator, so every space in
 All pricing strings in the dictionaries and the static markup carry these. A
 browser test confirmed no range splits at 1280/1024/768/390 in FR/EN/AR.
 
+### Home rules after Fleet 5 (2026-11-08)
+
+- **Work is rows.** `.work-grid` is one column with `row-gap:var(--s-6)`; the
+  rows are not cards. The foot (`.work-foot`) is one hairline-ruled row: the
+  Glaive demo line (`.work-demo`), its two links (`.work-links`, each on one
+  line, 44px high, `--crimson-text`, underlined) and the link to the sheets.
+- **Services are ruled rows** (`.svc-row`, `.svc-grid` with no gap): a 12-column
+  grid from 960 (title columns 1-4, brief and tags 5-end), the tags as dotted
+  text (`.pill+.pill::before` a "·"), no pills, no icons. The ten stay (M2).
+- **One accent.** Brass on Arcanum, ochre on Daylight; the tier card that
+  leads carries `inset 0 2px 0 var(--crimson)` only. No glow, no gradient
+  corners: Arcanum's `--atmos` is `none` and its grid opacity .035.
+- **Type steps.** `--t-ui` 16px, `--t-lead` 18px, `--t-title` 24px (22px on a
+  phone), `--t-feature` clamp(22px,17px + 1.1vw,30px), `--t-cv` 14px.
+- **One section rhythm.** `--sec-pad` is clamp(64px, 64px + (100vw - 600px) *
+  .0381, 96px), half on each side of a section; `--head-gap` clamp(32px, ...,
+  48px).
+- **Daylight accent** `#8A5B00` (text 5.30:1 on the paper #F6F3EC), the button's
+  `#FFF8EC` on it 5.56:1, hover `#7A4F06`.
+- **The hero plate fits its column.** `.plate-wrap`, `.pm-rot` and the caption
+  rows are `minmax(0,1fr)` tracks with `min-width:0`; the caption truncates
+  (category first, then name). `design-check` fails if `.plate` is wider than
+  `.plate-wrap` at 320, 360, 375, 390 or 414.
+- **Tier CTAs share a line** at 960+ (the foot is a flex column, the button at
+  its bottom). The FAQ's ask row sits at the top of its side column.
+
 ## hub/ — the Studio page
 
 Since 2026-11-07 `/hub/` is the studio's own page, built from the owner's
@@ -1414,6 +1440,18 @@ captured), `vbugs` (the decorative watermarks are allowed by name),
 measure it.
 
 ## hub/bible/ — the character bible
+
+**VOIDSPLUNKER.std in the Studio (2026-11-08).** The Studio's dossier 06
+(`#voidsplunker`, `.st-proj`) is not a client's sheet and has no palette of its
+own: the shell is the cases' cream, 2px ink border and 8px ink shadow, the bar
+is ink with a 3px red rule, the 44px seal 夜, the tag in mono, the name in
+Archivo 900 clamp(20px,2.4vw,28px) in `dir="ltr"`. The body is one contact
+sheet of six faces (`hub/img/studio/vs/face-*.webp`, cut to 320 px, tiles at
+aspect-ratio 320/270, 3 columns) beside the text, four fact chips (the first
+inked) and one primary button to `bible/`, with "English only" as its label.
+Below 420px a long tag wraps in the bar. The bible page links back to
+`/hub/#voidsplunker` (`.back`, 44px) and its breadcrumb wraps.
+
 
 The page that was `/hub/` from 2026-11-05 to 2026-11-06 is the founder's
 character bible, now at `/hub/bible/` (`hub/bible/index.html`, `style.css`,
