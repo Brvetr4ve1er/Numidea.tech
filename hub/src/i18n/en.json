@@ -336,7 +336,7 @@
   "proof": {
     "kicker": "/ 08 · THE RECEIPTS",
     "title": "The work, for real.",
-    "lead": "Three delivered clients, two pieces of the founder’s own work, and his personal project. Each file says what was made, and for whom.",
+    "lead": "Three delivered clients, two pieces of the founder’s own work, and two personal projects. Each file says what was made, and for whom.",
     "actor": "Yasser celebrates a launch",
     "own": "Also, made in-house:",
     "glaive": "Glaive, the studio’s demo",
@@ -355,6 +355,29 @@
       "cta": "Open the bible",
       "lang": "Page in English",
       "alt": "Six of Yasser’s faces from the bible: a sideways smirk, a hand on his glasses, a hand on his chin, a big laugh, a deadpan stare, a suspicious side-eye."
+    },
+    "mc": {
+      "kicker": "FILE 07 · MY PROJECT",
+      "tag": "Personal project",
+      "sub": "From gentleman to sage",
+      "desc": "The founder’s own animated-short project, with no client, in two acts. Yasser, a gentleman thief in a black three-piece suit, bows on the stage of a Belle Époque theatre. His suit unfolds into a red traveller’s outfit, then his companions arrive: Kūro the black cat in a red scarf, a raven on his shoulder, a techno pigeon and Ratman the rat in his satchel. The white curtains open on a cobalt moon.",
+      "facts": [
+        "2 acts",
+        "5 key frames",
+        "10 s animation",
+        "Kūro and 3 companions"
+      ],
+      "lang": "Act 2 · 10 s · silent, press play yourself",
+      "framesLabel": "Five key frames, from the transformation to the final tableau",
+      "frames": [
+        "Yasser as the gentleman, in a black three-piece suit and hat, walking across a theatre stage under great dark wings.",
+        "Yasser leans into a bow, hat raised, a gold coin in the air, in front of a golden curtain.",
+        "Mid-transformation: the black suit unfolds into red flames around Yasser, one arm raised towards a gold coin and the cobalt moon.",
+        "Yasser in the red traveller’s outfit tosses the coin, with Kūro the cat, a raven, a techno pigeon and Ratman around him, under the moon.",
+        "The final tableau: Yasser in red, a raven on his shoulder, Ratman in his satchel, Kūro at his feet, in front of white curtains and the moon."
+      ],
+      "video": "Act 2 of MERCURY in ten seconds: Yasser in the red traveller’s outfit, with Kūro, the raven, the techno pigeon and Ratman, in front of the moon.",
+      "fallback": "Your browser cannot play this video."
     }
   },
   "lab": {

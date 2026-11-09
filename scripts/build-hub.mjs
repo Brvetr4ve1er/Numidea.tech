@@ -238,6 +238,15 @@ const CLIENT_HOSTS = [...readFileSync(join(ROOT, 'index.html'), 'utf8').matchAll
 const ALLOW = new Set([new URL(BASE).host, 'wa.me', 'www.behance.net', 'www.instagram.com', 'instagram.com', ...CLIENT_HOSTS]);
 for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|poster)="([^"]*)"/g)) {
   const [, a, v] = m;
+  // a srcset is a list of "file 480w" candidates: each file must exist and counts as referenced
+  if (a === 'srcset') {
+    for (const c of v.split(',').map((x) => x.trim().split(/\s+/)[0]).filter(Boolean)) {
+      const f = localFile(c);
+      if (/^(https?:)?\/\//.test(c)) fail(`srcset="${c}": a third-party request`);
+      else if (!existsSync(f)) fail(`srcset="${c}": no such file`); else refs.add(relative(ROOT, f));
+    }
+    continue;
+  }
   if (/^(mailto:|#|data:)/.test(v) || v === '') continue;
   if (/^https?:\/\//.test(v)) {
     const host = new URL(v).host;

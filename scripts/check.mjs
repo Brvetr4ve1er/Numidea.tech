@@ -1047,7 +1047,7 @@ runtimeDeps.length
     'assets/clients': 22 * kB,    // 19,320 (bordjsteel.svg)
     'hub/bible/art': 52 * kB,           // 46,978 on 2026-11-06 (pose-inspect.webp; the character bible, 56f29c1: no loops folder since)
     'hub/fonts': 46 * kB,         // 45,936 on 2026-11-07 (aref-ruqaa-700-arabic.woff2; the Studio's subsets joined the bible's)
-    'hub/img': 297 * kB,          // 270,032 on 2026-11-07 (alliance/heroes/hero__bali--bg--mobile.webp)
+    'hub/img': 741 * kB,          // 672,831 on 2026-11-09 (mercury/mercury-act2.mp4, the 10 s Act 2 clip, +10%); before: 297 kB at 270,032 on 2026-11-07 (alliance/heroes/hero__bali--bg--mobile.webp)
     'hub/css': 42 * kB,           // 37,653 on 2026-11-07 (the five cases' sheets)
     'assets/fonts': 51 * kB,      // 45,688 on 2026-10-26 (ibm-plex-sans-arabic-600-arabic.woff2)
     'workspacehq': 64 * kB,       // 57,319 on 2026-10-31 (og.jpg)
@@ -1060,7 +1060,7 @@ runtimeDeps.length
     'assets/cv_yasser_hamisse_2026.pdf': 378 * kB,   // 343,053 on 2026-10-31
   };
   const OG = 300 * kB;            // 105,403 then (hub/og.jpg)
-  const TOTAL = 26.6e6; // 26.24 MB on 2026-11-07 once the price guide's three share cards and the Studio's came in (4 × ~85 kB); before: 26e6 at 25.85 MB once the Studio's Lab (thirty pieces, 560px WebP) came back; before: 24,330,806 on 2026-11-07 once the Studio's images and fonts joined the WorkspaceHQ embed;           // 13,097,169 on 2026-11-06, 277 files, once the hub became its character bible (56f29c1: the diary, the Behance covers
+  const TOTAL = 28.284e6; // 27.75 MB on 2026-11-09 once MERCURY's images and Act 2 clip came in (+1,683,613 bytes: 26.6e6 + that); before: 26.6e6 at 26.24 MB on 2026-11-07 once the price guide's three share cards and the Studio's came in (4 × ~85 kB); before: 26e6 at 25.85 MB once the Studio's Lab (thirty pieces, 560px WebP) came back; before: 24,330,806 on 2026-11-07 once the Studio's images and fonts joined the WorkspaceHQ embed;           // 13,097,169 on 2026-11-06, 277 files, once the hub became its character bible (56f29c1: the diary, the Behance covers
                                   // and hub/loops out, 71 rig and section files and its own fonts in); 18,381,757 in 283 on 2026-10-31, once the captures had
                                   // their 720w/416w files (+739 kB in 35), the price guide its three pages and sheet (+143 kB) and the home pages lost the market
                                   // comparison; 17,162,350 in 237 that morning (the embed's font copies, readme and manifest gone)
