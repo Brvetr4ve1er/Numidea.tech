@@ -209,10 +209,10 @@ h2.sec em{font-family:inherit;font-style:normal;color:var(--crimson-text)}
 /* The switch is three links on the home page (the French page, en/, ar/:
    the current one carries aria-current) and three buttons on the pages that
    switch in place (scene/, legal/: the current one is aria-pressed). */
-.lang{display:inline-flex;gap:2px;font-family:var(--font-mono);font-size:12px;border:1px solid var(--hairline-2);border-radius:var(--r-pill);overflow:hidden}
+.lang{display:inline-flex;gap:2px;font-family:var(--font-mono);font-size:var(--t-label);border:1px solid var(--hairline-2);border-radius:var(--r-pill);overflow:hidden}
 /* 44px tall at every width and under every pointer (they were 30x40 under a
    thumb): the bar's padding below is sized so the navbar keeps --nav-h */
-.lang :is(a,button){font-family:var(--font-mono);font-size:12px;background:transparent;border:none;color:var(--body-strong);padding:0 var(--s-2);min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;transition:color var(--t-hover),background-color var(--t-hover)}
+.lang :is(a,button){font-family:var(--font-mono);font-size:var(--t-label);background:transparent;border:none;color:var(--body-strong);padding:0 var(--s-2);min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;transition:color var(--t-hover),background-color var(--t-hover)}
 .lang :is(a[aria-current],button[aria-pressed="true"]){color:var(--ice);
   background:linear-gradient(var(--ice),var(--ice)) no-repeat 50% calc(50% + .95em) / 1.6em 1px}   /* underlined, not filled: the bar's one filled control is its CTA */
 @media (hover:hover){.lang :is(a,button):hover{color:var(--ice)}}
@@ -3540,3 +3540,79 @@ html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::after{align-
   .footer{padding-bottom:calc(2 * var(--s-5))}
   .footer::before{bottom:var(--s-5)}
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FLEET 7 / ROUND 3 — the sheet on a phone, the work captures' text, the
+   services' detail, 2026-11-09
+   The identity that carries the desktop (the closed frame, the engraving)
+   is on the phone now too: the hero is framed, and Gravure I stands under it
+   as a 128px strip (two layers of the three, the far ridge and the mid
+   tower; the near ground's 184 KB mask is not fetched). The small work cards
+   keep one paragraph, the visitor's line. The foot row has one link
+   treatment. The services' tools are one mono line under the sentence and
+   each row's rule carries a brass tick, as the founder's does. The phone
+   drops the FAQ's second button pair (the contact is the next screen), its
+   footer is tighter and its mono labels stand at 12.5px.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ---- the phone's hero is framed as the desktop's; Gravure I stands under it ---- */
+@media (max-width:960px){
+  .hero{--ring-room:12px}
+  .sheet-frame{display:block;inset:calc(var(--nav-h) + 2px) 0 var(--s-3)}
+  .vista{display:block;height:128px;margin-top:0;margin-bottom:var(--s-2)}
+  .vista .v-near{display:none}   /* no mask is fetched for a layer that is not rendered */
+  .vista .v-cap{bottom:12px}
+  .vista .v-l{width:960px;margin-left:-480px}
+}
+
+/* ---- the work cards: one paragraph, one link treatment ---- */
+.work-foot{row-gap:0}
+.work-demo{flex:1 1 100%;gap:0 var(--s-5)}
+.work-demo>span:first-child{flex:1 1 100%;margin-bottom:var(--s-1)}
+.work-demo a,.scene-link{font-family:var(--font-body);font-size:var(--t-body);font-weight:600;gap:var(--s-2);
+  text-decoration-color:color-mix(in srgb,var(--crimson-text) 45%,transparent);text-underline-offset:5px}
+.scene-link{flex:1 1 100%}
+.scene-link .sb-go{min-height:44px;display:inline-flex;align-items:center;gap:var(--s-2)}
+@media (hover:hover){.work-demo a:hover{text-decoration-color:currentColor}}
+@media (min-width:720px){
+  .work-foot{flex-wrap:wrap;justify-content:flex-start;align-items:center;column-gap:var(--s-5)}
+  .work-demo{display:contents}
+  .work-demo>span:first-child{flex:1 1 100%;margin-bottom:0}
+  .work-links{flex:none}
+  .scene-link{flex:none;margin-inline-start:auto}
+}
+@media (max-width:959px){.work-grid{row-gap:var(--s-7)}.work-foot{margin-top:var(--s-6)}}
+
+/* ---- services: the tools as one mono line, a brass tick on each rule ---- */
+.svc-row .tags{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;line-height:1.6;color:var(--faint)}
+.svc-row .tags .pill{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted)}
+.svc-row .tags .pill+.pill::before{content:"·";margin-inline:var(--s-2);color:var(--crimson-text)}
+#services .svc-grid>.svc-row{position:relative}
+#services .svc-grid>.svc-row::after{content:"";position:absolute;top:-1px;inset-inline-start:0;width:28px;height:2px;background:var(--crimson);pointer-events:none}
+@media (min-width:961px){
+  .svc-row h3{grid-row:1/span 2}
+  .svc-row .brief{grid-column:5/span 7;max-width:43em}
+  .svc-row .tags{grid-column:5/span 7;grid-row:2;flex-direction:row;align-items:baseline;text-align:start;gap:0}
+  .svc-row .tags .pill+.pill::before{content:"·"}
+  .svc-grid>.svc-row{padding-block:var(--s-4);row-gap:var(--s-2)}
+}
+/* the five steps share one baseline for their lines: two lines of the title (1.4) hold their room */
+@media (min-width:1100px){.ptl-t{min-height:2.8em}}
+
+/* ---- the phone: the FAQ's one text link, the footer and the contact rows ---- */
+@media (max-width:720px){
+  .faq-ask .btn-teal{display:none}
+  .faq-ask .btn-primary{background:none;border-color:transparent;box-shadow:none;justify-content:flex-start;margin-inline-start:calc(-1 * var(--s-4));
+    color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;
+    text-decoration-color:color-mix(in srgb,var(--crimson-text) 45%,transparent)}
+  .faq-ask{margin-top:var(--s-5);gap:0}
+  .footer-top{margin-bottom:var(--s-5);gap:var(--s-4)}
+  .footer .meta{gap:var(--s-2);padding-top:var(--s-4)}
+  :root{--t-label:12.5px}
+}
+@media (max-width:599px){
+  .contact .ch dd a{margin-block:-10px}   /* the 44px target stays; the row is the text's height, as the two without a link */
+}
+
+/* ---- plate captions: one step stronger, on the engraving's chip ---- */
+.pl-cap,.v-cap{color:var(--body-strong)}

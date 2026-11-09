@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5lLObl3ZFgbB3BTEHnUdhdXzkuDZ9/8ra3NFXCYc9Yc=' 'sha256-M7kfKFhtkcb1NHMaJDmmwq7j+DVKiXP216tKfDaV2UU='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5lLObl3ZFgbB3BTEHnUdhdXzkuDZ9/8ra3NFXCYc9Yc=' 'sha256-otV6jPgHsTUaI7SjESpRWjEXVtfrPr0rL8U4EezfjWE='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Website design and development in Algeria | Numidea Labs</title>
 <meta name="description" content="Website design and development in English, French and Arabic, from 90,000 DZD. See your homepage before you pay. A web studio in Bordj Bou Arréridj, Algeria.">
 <meta name="theme-color" content="#0A1420">
@@ -470,7 +470,6 @@
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Travel · Growth</span>
           <h3><a href="../scene/?lang=en#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">See the project in detail</span></a></h3>
-          <p data-i18n="proj2.desc">Brand identity, a trilingual site, visa appointments and WhatsApp quotes for a travel agency in Bordj Bou Arréridj.</p>
           <span class="gain-k" data-i18n="work.outcome">For the visitor</span>
           <a class="gain" href="../scene/?lang=en#gv-alliance"><span data-i18n="proj2.gain">A traveller gets an estimate for their trip and sends a complete request on WhatsApp.</span><span class="sr-only" data-i18n="work.gainMore"> — more on the project sheet</span></a>
           <div class="actions">
@@ -484,7 +483,6 @@
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Contractor · Île-⁠de-⁠France</span>
           <h3><a href="../scene/?lang=en#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">See the project in detail</span></a></h3>
-          <p data-i18n="proj3.desc">Air conditioning, heating and plumbing near Paris: a page per trade, past jobs, one quote form.</p>
           <span class="gain-k" data-i18n="work.outcome">For the visitor</span>
           <a class="gain" href="../scene/?lang=en#gv-almaflow"><span data-i18n="proj3.gain">If something breaks down, a customer calls in one tap from the page for that trade.</span><span class="sr-only" data-i18n="work.gainMore"> — more on the project sheet</span></a>
           <div class="actions">
@@ -500,7 +498,6 @@
           <!-- no sheet for Nomara (scene/): its title is plain text and the foot
                link, stretched over the plate (.stretch), is its one link -->
           <h3>Nomara Voyages</h3>
-          <p data-i18n="proj6.desc">A bilingual storefront for package tours and Umrah trips departing from Constantine.</p>
           <span class="gain-k" data-i18n="work.outcome">For the visitor</span>
           <p class="gain" data-i18n="proj6.gain">A pilgrim compares Umrah packages by price and distance from the Haram, then messages on WhatsApp.</p>
           <div class="actions">
@@ -546,7 +543,7 @@
             <li class="ptl-s"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl1">You describe the project</span><span class="ptl-p" data-i18n="prev.tl1p">Two minutes, in writing or out loud. In French, English or Arabic.</span></li>
             <li class="ptl-s"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl2">We get back to you the next working day</span><span class="ptl-p" data-i18n="prev.tl2p">Sunday to Thursday, 9am–⁠6pm. With our questions, then a written scope and a firm price as soon as we have agreed the scope together. Not a range: one number.</span></li>
             <li class="ptl-s ptl-build"><span class="ptl-m"><i></i><i></i><i></i><i></i><i></i></span><span class="ptl-t" data-i18n="prev.tl3">You send your content</span><span class="ptl-p" data-i18n="prev.tl3p">We build your homepage.</span><span class="ptl-d" data-i18n="prev.tl3d">5 working days</span></li>
-            <li class="ptl-s ptl-call"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl4">We walk you through it</span><span class="ptl-d" data-i18n="prev.tl4d">30-minute video call</span></li>
+            <li class="ptl-s ptl-call"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl4">We walk you through it</span><span class="ptl-p" data-i18n="prev.tl4p">We go through the homepage together and you ask your questions.</span><span class="ptl-d" data-i18n="prev.tl4d">30-minute video call</span></li>
             <li class="ptl-s ptl-dec"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl5">You decide</span><span class="ptl-p" data-i18n="prev.tl5p">If it’s yes, the homepage is already done: we move straight on to the rest.</span></li>
           </ol>
         </div>
@@ -1198,9 +1195,15 @@
     go.setAttribute('href', src.getAttribute('href'));
     go.setAttribute('hreflang', first); go.setAttribute('lang', first);
     go.addEventListener('click', function () { keep(first); });
-    x.addEventListener('click', function () { keep(here); bar.hidden = true; });
-    // never on the first paint (it sat on the hero capture's headline): once
-    // the visitor has scrolled past the hero, or after 8 seconds, whichever is first
+    var gone = false, phone = window.matchMedia('(max-width:720px)');
+    x.addEventListener('click', function () { keep(here); gone = true; bar.hidden = true; });
+    // never on the first paint (it sat on the hero capture's headline). On a
+    // wide screen: once the visitor has scrolled past the hero, or after 8
+    // seconds, whichever is first, and it stays. On a phone it never sat well
+    // on the plate's caption right under the first screen (round 3 of Fleet 7):
+    // it shows between 1,400 and 3,600 px of scroll, past the hero and the
+    // client row, and is gone again after the work cards (the header's switch
+    // is still there)
     var shown = false, timer = 0;
     var show = function () {
       if (shown) return;
@@ -1208,8 +1211,13 @@
       window.removeEventListener('scroll', onScroll);
       bar.hidden = false;
     };
-    var onScroll = function () { if (window.scrollY > window.innerHeight * 0.9) show(); };
-    timer = setTimeout(show, 8000);
+    var onScroll = function () {
+      if (gone) return;
+      var y = window.scrollY;
+      if (phone.matches) bar.hidden = !(y > 1400 && y < 3600);
+      else if (y > window.innerHeight * 0.9) show();
+    };
+    if (!phone.matches) timer = setTimeout(show, 8000);
     window.addEventListener('scroll', onScroll, { passive: true });
   })();
 </script>

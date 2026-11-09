@@ -71,7 +71,7 @@ export const PROJECTS = {
   // Fleet 7 round 2: the home's destinations band, not a trip page (a black slab of 6 px text): the heading
   // is scrolled off and the first photographic cards fill the frame (#voyages, 230 px lower, the fixed nav and
   // the chat bubble out: bare 'all'). The hero is the WebGL globe that draws black headless; the card photos are the client's own.
-  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/#voyages', client: 'alliance', sheet: null, scroll: 230, bare: 'all', soft: 0.8 },
+  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/#voyages', client: 'alliance', sheet: null, scroll: 230, align: ['a.trip-card', 301], bare: 'all', soft: 0.8 },
   nomara:                { capture: 'https://nomaravoyages.netlify.app',          client: 'nomara',     sheet: null },
   // the portfolio demo: its link on the home page carries data-client (check.mjs 5 pairs the slugs), but it has no
   // preview file: the home shows it as one line under the clients, not as a card with a capture
@@ -96,9 +96,15 @@ export const CROP = {
   // the white totals panel below it was half the plate and read as a hole in a dark page
   // Fleet 7 round 2: the card is the feature row now (7/12 of the width), so the window is tighter again: the nav,
   // the crane under its heading, nothing of the white totals panel (a 540 px hero: 864 wide is the widest 16:10 that fits)
-  'bordjsteel-references': { x: 288, y: 0, w: 864 },
-  // the first two destination cards whole under their price pills (1440 viewport, 230 px below #voyages)
-  alliancetravel: { x: 145, y: 291, w: 780 },
+  // Fleet 7 round 3: the lead row repeated the plate's nav (a pale chrome strip over the dark photo): the window now
+  // starts under the nav (y 67) and stops 4 px above the photo's foot (y 540), the crane under its heading and nothing else
+  'bordjsteel-references': { x: 345, y: 67, w: 750 },
+  // Fleet 7 round 3: the headline, its lede and its two actions, zoomed (a 900 px window instead of the whole 1440 page:
+  // at card size the 1440 frame's 18 px lede was 7 px); the hero's right card is cut at its middle, as any crop
+  almaflowclim: { x: 100, y: 112, w: 900 },
+  // the first two destination cards whole (the first row of the grid, cards at y 301 to 754, the third card
+  // starting at x 925: the window ends at 914 and at 775, 23 px above the next row), no sliver of either
+  alliancetravel: { x: 138, y: 290, w: 776 },
 };
 
 const VW = 1440, VH = 900, DPR = 2;
@@ -144,7 +150,7 @@ async function band(file) {
   return Math.sqrt(Math.max(0, q / n - m * m));
 }
 
-async function capture(browser, file, { capture: url, dark, vp, bare, soft, scroll }) {
+async function capture(browser, file, { capture: url, dark, vp, bare, soft, scroll, align }) {
   const ctx = await browser.newContext({
     viewport: { width: vp ? vp.w : VW, height: vp ? vp.h : VH }, deviceScaleFactor: DPR,
     locale: 'fr-FR', reducedMotion: 'reduce', colorScheme: dark ? 'dark' : 'light',
@@ -182,6 +188,10 @@ async function capture(browser, file, { capture: url, dark, vp, bare, soft, scro
     // a chat or call bubble floating in a lower corner is the client's widget,
     // not the page: out of the frame
     if (scroll) { await page.evaluate((d) => window.scrollBy({ top: d, behavior: 'instant' }), scroll); await page.waitForTimeout(1200); }
+    // align: [selector, y]: the first match's top at y in the viewport, so the crop window sits on the same pixels
+    // whatever the height of the sections above it (Fleet 7 round 3: Alliance's destinations grid moved by 30 px and
+    // the old window showed the sliver of the next row of cards)
+    if (align) { await page.evaluate(([sel, y]) => { const e = document.querySelector(sel); if (e) window.scrollBy({ top: e.getBoundingClientRect().top - y, behavior: 'instant' }); }, align); await page.waitForTimeout(800); }
     if (bare) await page.evaluate((all) => {
       for (const e of document.querySelectorAll('body *')) {
         const r = e.getBoundingClientRect();
