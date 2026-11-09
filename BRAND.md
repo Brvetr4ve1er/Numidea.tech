@@ -2284,7 +2284,7 @@ written as literals that could not re-skin, and Engineering was a separate
   the one index.html preloads for it (`HEAD` map — a late face shifts the
   hero; 404.html's `HEAD` map does the same for the numeral's face). Any Geist or
   Geist Mono weight is that family's one file.
-- Illustration strength is `--ink-k`, a multiplier on each plate's opacity.
+- The hero vista's three engraved layers are `--vista-far`, `--vista-mid` and `--vista-near`: ink and alpha in one colour each (Fleet 7 round 2; `--ink-k`, the old strength multiplier, is gone). Arcanum keeps the blue-grey, cyan and ice it had; Daylight uses the dune strips' umber and brass, so the engraving is ink on paper, not a grey smear with a cyan tower.
 - Engineering is now a token theme like the others. The sections marked
   "History (removed features)" above describe a file that no longer exists.
 
@@ -3322,3 +3322,38 @@ method section had a rail of its own that grew node to node):
   was. Until 2026-10-31 the panel was folded on the home page, and the page
   load paid nothing for a picture most visitors never unfolded; now the
   home page carries no market markup at all.
+
+
+## Home rules after Fleet 7 round 2 (2026-11-09)
+
+- **The work is a lead row and three.** From 860 px the first card leads: its
+  capture at 7/12 of the width, its text at 5/12 (title at `--t-display`), the
+  visitor's line with its label and brass rule. From 960 px the other three stand
+  abreast under it (4/12 each); between 720 and 959 the last card is a second wide
+  row (three abreast would be 200 px captures); a phone keeps one column. The
+  label «Côté visiteur» and its rule belong to the lead only: on the others the
+  same sentence (still the link to the sheet, check 5c) is a muted line under the
+  description, so four quotes no longer read as one form filled four times.
+- **Captures are heroes at a readable scale** (`scripts/shots.mjs`): Bordj Steel
+  is the references page's nav, crane and heading (864 px window, no white totals
+  panel); Alliance is the home's first two destination cards under their price
+  pills (its hero is a WebGL globe that draws black headless; the photographs are
+  the client's own), scrolled 230 px below `#voyages` with every fixed element
+  hidden (`bare: 'all'`), `soft` so the file stays under the 53 kB ceiling.
+- **One dimension device in the services (>=1100 px).** Each of the five rows is
+  a vertical dimension line in the left margin, end ticks on the row's own rules
+  and a hairline between (`#services .svc-grid>.svc-row::before`), brass on the
+  row under the pointer or the focus. 0 px of height; a phone has none. It is the
+  one device, drawn once; the tier duration scale is the other dimension mark.
+- **The Arabic planche numeral is outlined brass too**, in the page's own display
+  face (IBM Plex Sans Arabic 600, already loaded) at the same `--numeral` size;
+  no Cinzel on /ar/. The mark stays «n/6» (AR review: pl.*).
+- **The stepper has one marker shape**: a ring for every step, the brass diamond
+  for the last; step 3's title is «Vous envoyez votre contenu» with «Nous
+  construisons votre page d'accueil.» as its sentence (`prev.tl3p`; AR review:
+  prev.tl3, prev.tl3p).
+- **The language offer keeps off the captions**: at the end side from 960 px; on a
+  phone it appears only once the page has scrolled 600 px (a scroll-driven
+  animation on `visibility`/`opacity`; browsers without `animation-timeline` show
+  it at once as before). The phone footer no longer reserves the contact bar's
+  74 px: the bar is hidden while the footer shows (app.js).

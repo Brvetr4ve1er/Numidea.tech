@@ -116,7 +116,7 @@ var I18N = {
   'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
   'prev.tl1': 'You describe the project', 'prev.tl1p': 'Two minutes, in writing or out loud. In French, English or Arabic.',
   'prev.tl2': 'We get back to you the next working day', 'prev.tl2p': 'Sunday to Thursday, 9am–\u20606pm. With our questions, then a written scope and a firm price as soon as we have agreed the scope together. Not a range: one number.',
-  'prev.tl3': 'You send your content and we build your homepage', 'prev.tl3d': '5 working days',
+  'prev.tl3': 'You send your content', 'prev.tl3p': 'We build your homepage.', 'prev.tl3d': '5 working days',
   'prev.tl4': 'We walk you through it', 'prev.tl4d': '30-minute video call',
   'prev.tl5': 'You decide', 'prev.tl5d': 'Paid so far:', 'prev.tl5p': "If it’s yes, the homepage is already done: we move straight on to the rest.",
   'mk.p': 'The same project, priced in three markets. Typical 2026 ranges, from an experienced freelancer to an agency — excluding tax.',

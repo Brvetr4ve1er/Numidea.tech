@@ -420,6 +420,7 @@ by a native speaker). Each key is "AR review: <key>":
   `founder.langs`, `founder.xp`, `founder.basedL`, `founder.recent`, and the
   seven kicker keys (the digits are dropped, nothing else). The en and fr texts
   are in the commits;
+- AR review for the home, Fleet 7 round 2: `prev.tl3` (shortened to «ترسل إلينا محتواك») and `prev.tl3p` (new: «ونبني صفحتك الرئيسية.», the sentence that used to end the step's title); the work rows' visitor line shows its label «للزائر» on the lead row only (no copy change).
 - AR review for the home, Fleet 6 round 2: `work.outcome` (new: the label «للزائر» over each work row's benefit line, "for the visitor"), `pl.arch` (new: the founder's plate caption «لوحة 3 — قوس تراجان في تيمقاد»), `proj2.desc`, `proj3.desc`, `proj4.desc` (shortened to two lines);
 - Fleet 6 closing (2026-11-08): no further Arabic key changed after rounds 1 and 2 (the hub's Arabic faces are a font preload, no copy). The bible's footer and project page are English only and have no Arabic;
 - AR review for the home, Fleet 6 round 1: `price.lead` (cut to one sentence), `price.tIncl` (new: the disclosure's label); the planche label's figures (`3/6`, CSS content in `assets/styles.css`) carry no Arabic word, say if one is wanted;

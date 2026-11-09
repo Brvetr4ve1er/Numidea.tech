@@ -116,7 +116,7 @@ var I18N = {
   'mk.k': 'k', 'mk.M': 'M', 'mk.k.n': 'k|k', 'mk.M.n': 'M|M',
   'prev.tl1': 'Vous décrivez le projet', 'prev.tl1p': 'Deux minutes, par écrit ou de vive voix. En français, anglais ou arabe.',
   'prev.tl2': 'Nous revenons le jour ouvré suivant', 'prev.tl2p': 'Du dimanche au jeudi, 9h–\u206018h. Avec nos questions, puis un périmètre écrit et un prix ferme dès que le cadrage est validé ensemble. Pas une fourchette, un chiffre.',
-  'prev.tl3': 'Vous envoyez votre contenu, nous construisons votre page d’accueil', 'prev.tl3d': '5 jours ouvrés',
+  'prev.tl3': 'Vous envoyez votre contenu', 'prev.tl3p': 'Nous construisons votre page d’accueil.', 'prev.tl3d': '5 jours ouvrés',
   'prev.tl4': 'Nous vous la présentons', 'prev.tl4d': 'visio de 30 min',
   'prev.tl5': 'Vous décidez', 'prev.tl5d': "Payé jusqu’ici :", 'prev.tl5p': "Si c’est oui, la page d’accueil est déjà faite : on enchaîne sur le reste.",
   'mk.p': "Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l’agence — hors taxes.",

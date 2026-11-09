@@ -32,7 +32,9 @@ export const CONTRACT = [
   'band', 'shade', 'shade-k', 'grad-blood', 'grad-noir',
   'glow-teal', 'glow-crimson', 'btn-glow',
   // atmosphere
-  'atmos', 'grid-color', 'grid-opacity', 'grid-size', 'ink-k',
+  'atmos', 'grid-color', 'grid-opacity', 'grid-size',
+  // the hero vista's three engraved layers (ink and alpha in one: far ridge, mid, near)
+  'vista-far', 'vista-mid', 'vista-near',
   // surfaces
   'nav-glass', 'glass', 'field-bg', 'field-border',
   // type (the wordmark is drawn, scripts/lib/wordmark.mjs: no logo face)

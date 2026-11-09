@@ -68,7 +68,10 @@ export const PROJECTS = {
   // a 1152×720 window (16:10 itself): at 1440×900 the hero ended at two thirds
   // and the last third was the next band's faint card tops under a chat bubble;
   // the bubble is hidden (`bare`) and no 1440 sheet frame is comparable (sheet: null)
-  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/istanbul/', client: 'alliance', sheet: null, dark: true, vp: { w: 1040, h: 650 }, bare: true },
+  // Fleet 7 round 2: the home's destinations band, not a trip page (a black slab of 6 px text): the heading
+  // is scrolled off and the first photographic cards fill the frame (#voyages, 230 px lower, the fixed nav and
+  // the chat bubble out: bare 'all'). The hero is the WebGL globe that draws black headless; the card photos are the client's own.
+  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/#voyages', client: 'alliance', sheet: null, scroll: 230, bare: 'all', soft: 0.8 },
   nomara:                { capture: 'https://nomaravoyages.netlify.app',          client: 'nomara',     sheet: null },
   // the portfolio demo: its link on the home page carries data-client (check.mjs 5 pairs the slugs), but it has no
   // preview file: the home shows it as one line under the clients, not as a card with a capture
@@ -91,7 +94,11 @@ export const CROP = {
   // the references page: the nav, the crane photo and its heading (the totals below are on the sheet)
   // Fleet 6 round 2: the references page's header only, nav to the crane photo's foot (y 540):
   // the white totals panel below it was half the plate and read as a hole in a dark page
-  'bordjsteel-references': { x: 80, y: 100, w: 1280 },
+  // Fleet 7 round 2: the card is the feature row now (7/12 of the width), so the window is tighter again: the nav,
+  // the crane under its heading, nothing of the white totals panel (a 540 px hero: 864 wide is the widest 16:10 that fits)
+  'bordjsteel-references': { x: 288, y: 0, w: 864 },
+  // the first two destination cards whole under their price pills (1440 viewport, 230 px below #voyages)
+  alliancetravel: { x: 145, y: 291, w: 780 },
 };
 
 const VW = 1440, VH = 900, DPR = 2;
@@ -137,7 +144,7 @@ async function band(file) {
   return Math.sqrt(Math.max(0, q / n - m * m));
 }
 
-async function capture(browser, file, { capture: url, dark, vp, bare, soft }) {
+async function capture(browser, file, { capture: url, dark, vp, bare, soft, scroll }) {
   const ctx = await browser.newContext({
     viewport: { width: vp ? vp.w : VW, height: vp ? vp.h : VH }, deviceScaleFactor: DPR,
     locale: 'fr-FR', reducedMotion: 'reduce', colorScheme: dark ? 'dark' : 'light',
@@ -174,12 +181,14 @@ async function capture(browser, file, { capture: url, dark, vp, bare, soft }) {
     if (lift) await page.waitForTimeout(1200);
     // a chat or call bubble floating in a lower corner is the client's widget,
     // not the page: out of the frame
-    if (bare) await page.evaluate(() => {
+    if (scroll) { await page.evaluate((d) => window.scrollBy({ top: d, behavior: 'instant' }), scroll); await page.waitForTimeout(1200); }
+    if (bare) await page.evaluate((all) => {
       for (const e of document.querySelectorAll('body *')) {
         const r = e.getBoundingClientRect();
-        if (getComputedStyle(e).position === 'fixed' && r.top > innerHeight * 0.5 && r.width < 400 && r.height < 100) e.style.visibility = 'hidden';
+        if (getComputedStyle(e).position !== 'fixed') continue;
+        if (all === 'all' || (r.top > innerHeight * 0.5 && r.width < 400 && r.height < 100)) e.style.visibility = 'hidden';
       }
-    });
+    }, bare);
     const png = await page.screenshot({ type: 'png' });
     const w = windowOf(file);
     const region = { left: w.left * DPR, top: w.top * DPR, width: w.width * DPR, height: w.height * DPR };
@@ -193,7 +202,7 @@ async function capture(browser, file, { capture: url, dark, vp, bare, soft }) {
         if (soft) img = img.blur(soft);
         buf = await img.webp({ quality: q, effort: 6 }).toBuffer();
         q -= 6;
-      } while (buf.length > CEIL && q >= 40);
+      } while (buf.length > CEIL && q >= 30);
       await writeFile(join(OUT, `${file}${s === 1280 ? '' : '-' + s}.webp`), buf);
     }
     console.log(`✓ ${file}.webp + -720  ←  ${url}`);

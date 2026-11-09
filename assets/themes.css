@@ -46,7 +46,8 @@
   /* flat navy: the gold and cyan corner washes read as a SaaS gradient and
      tinted the capture's surround (Fleet 5, A2) */
   --atmos:none;
-  --grid-color:rgba(230,180,80,.5); --grid-opacity:.035; --grid-size:64px; --ink-k:1;
+  --grid-color:rgba(230,180,80,.5); --grid-opacity:.035; --grid-size:64px;
+  --vista-far:rgba(157,178,198,.32); --vista-mid:rgba(52,208,232,.42); --vista-near:rgba(199,213,226,.26);
   --nav-glass:rgba(10,20,32,.96); --glass:rgba(23,54,79,.35); --field-bg:rgba(10,20,32,.6);
   --field-border:color-mix(in srgb,var(--faint) 75%,var(--navy));
   --font-head:var(--font-deco); --font-head-em:var(--font-deco-dec); --head-weight:700; --head-tracking:.01em;
@@ -74,7 +75,9 @@
   --glow-crimson:0 0 0 1px rgba(140,94,10,.35);
   --btn-glow:0 1px 0 color-mix(in srgb,var(--on-crimson) 25%,transparent),0 8px 20px -14px rgb(var(--shade) / .6);
   --atmos:none;   /* paper, untinted: the ochre and teal washes are gone */
-  --grid-color:var(--ice); --grid-opacity:.028; --grid-size:64px; --ink-k:.6;   /* .045 read as graph paper through the lede */
+  --grid-color:var(--ice); --grid-opacity:.028; --grid-size:64px;
+  /* Fleet 7 round 2: the engraving in the brass and umber of the dune strips, not the page's blue-grey at .6 (a grey smear with a cyan tower) */
+  --vista-far:rgba(122,106,74,.5); --vista-mid:rgba(138,91,0,.62); --vista-near:rgba(58,44,18,.5);   /* .045 read as graph paper through the lede */
   --nav-glass:rgba(246,243,236,.96); --glass:#FFFFFF; --field-bg:rgba(255,255,255,.9);
   --field-border:color-mix(in srgb,var(--faint) 75%,var(--navy));
   /* the engraved headings, as Arcanum: one brand face on both default-worthy

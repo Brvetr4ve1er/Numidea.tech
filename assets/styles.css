@@ -2288,9 +2288,9 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body)}
 .v-fill{background:var(--void)}
 .v-far .v-fill{background:color-mix(in srgb,var(--navy) 62%,var(--void))}
 .v-mid .v-fill{background:color-mix(in srgb,var(--navy) 30%,var(--void))}
-.v-far .v-ink{color:var(--muted);opacity:calc(.32 * var(--ink-k))}
-.v-mid .v-ink{color:var(--teal-text);opacity:calc(.42 * var(--ink-k))}
-.v-near .v-ink{color:var(--body-strong);opacity:calc(.26 * var(--ink-k))}
+.v-far .v-ink{color:var(--vista-far)}
+.v-mid .v-ink{color:var(--vista-mid)}
+.v-near .v-ink{color:var(--vista-near)}
 .v-near{bottom:-150px}
 .v-cap{bottom:24%;inset-inline-start:max(var(--gutter),calc(50vw - var(--max) / 2 + var(--gutter)));z-index:2}
 /* At 960px and below the vista is not shown (owner decision, 2026-10-26):
@@ -2939,7 +2939,7 @@ html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body)}
    duration is data, not a box; the unit of the 0 is muted */
 .ptl-s:not(:last-child)::after{background:color-mix(in srgb,var(--crimson) 38%,transparent)}
 .ptl-m{border-color:var(--crimson)}
-.ptl-build .ptl-m{background:var(--ice);border-color:var(--ice)}
+.ptl-build .ptl-m{background:var(--void);border-color:var(--crimson)}   /* one ring for every step, the brass diamond for the last (Fleet 7 round 2: three marks read as assembled) */
 .ptl-d{padding:0;border:0;border-radius:0;margin-top:var(--s-1)}
 .ptl-zero .cur{color:var(--muted)}
 @container (min-width:720px){.ptl-t{min-height:0}}
@@ -3463,4 +3463,80 @@ main.wrap>section.proof::before{content:"";position:absolute;inset:0 0 auto;heig
 /* ---- the contact's four rows, closer on a phone (each link keeps its 44px target) ---- */
 @media (max-width:599px){
   .channels .ch{gap:0;padding-block:var(--s-2)}
+}
+
+/* ---- the work rows, Fleet 7 round 2: a lead row, then three ----
+   Four identical cards read as one form filled four times. From 860px the
+   first card leads (capture 7/12, text 5/12, the visitor's line with its
+   label); from 960px the other three stand abreast under it, the visitor's
+   line folded under the sentence (the label hidden, the rule gone: the one
+   quote with a label is the lead's). A phone keeps one column, the label
+   gone from the three too. The last card is a second wide row between 720
+   and 959, where three abreast would be 200px captures. */
+.proj:not(.proj--lead) .gain-k{display:none}
+.proj:not(.proj--lead) .body .gain{margin-top:var(--s-2);margin-bottom:var(--s-3);color:var(--muted)}
+.proj:not(.proj--lead) .body a.gain{padding-block:12px;margin-block:calc(var(--s-2) - 12px) calc(var(--s-2) - 12px)}   /* a one-line sentence is still a 44px target */
+.proj:not(.proj--lead) .body a.gain>span:first-child,.proj:not(.proj--lead) .body p.gain{padding-inline-start:0;border-inline-start:0}
+.proj:not(.proj--lead) .body .gain{font-size:var(--t-small);line-height:1.55}
+@media (min-width:720px){
+  .work-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s-6);row-gap:var(--s-8)}
+  .proj--lead{grid-column:1/-1}
+}
+@media (min-width:720px) and (max-width:959px){.proj:last-child{grid-column:1/-1}}
+@media (min-width:860px) and (max-width:959px){
+  .proj--lead,.proj:last-child{grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-rows:auto;column-gap:var(--s-6);align-items:center}
+  .proj--lead .body,.proj:last-child .body{align-self:center}
+}
+@media (min-width:960px){
+  .work-grid{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--s-6);row-gap:var(--s-8)}
+  .proj{grid-column:span 4}
+  .proj--lead{grid-column:1/-1;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-rows:auto;column-gap:var(--s-7);align-items:center}
+  .proj--lead .body{align-self:center}
+  .proj--lead .cat{margin-bottom:var(--s-3)}
+  .proj--lead h3{font-size:var(--t-display);margin-bottom:var(--s-4)}
+  .proj--lead .body>p:not(.gain){font-size:var(--t-lead);max-width:30em}
+  .proj--lead .gain-k{margin-top:var(--s-5)}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FLEET 7 / ROUND 2 — the sheet carried below the hero, 2026-11-09
+   The services are dimensioned: each row's height is a dimension line in
+   the left margin (end ticks on the row's own rules, a hairline between;
+   brass on the row under the pointer or the keyboard), so the list reads as
+   a chain of measured bays; drawn once, 0 px of height, margin only, so a
+   phone has none. The Arabic planche numeral is outlined too (the page's
+   own display face at the same size, not Cinzel). The language offer leaves
+   the plate's caption: at the end side from 960px, and on a phone only
+   once the page has scrolled past the first screen. The footer stops
+   reserving the contact bar's 74px: the bar is hidden while the footer
+   shows (app.js), so the reserve was dead space.
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (min-width:1100px){
+  #services .svc-grid>.svc-row{position:relative;--k:color-mix(in srgb,var(--faint) 60%,transparent)}
+  #services .svc-grid>.svc-row::before{content:"";position:absolute;inset-block:0;inset-inline-start:-34px;width:11px;pointer-events:none;
+    background:
+      linear-gradient(var(--k),var(--k)) 50% 0/1px 100% no-repeat,
+      linear-gradient(var(--k),var(--k)) 0 0/100% 1px no-repeat,
+      linear-gradient(var(--k),var(--k)) 0 100%/100% 1px no-repeat}
+  #services .svc-grid>.svc-row:focus-within{--k:var(--crimson)}
+}
+@media (min-width:1100px) and (hover:hover){#services .svc-grid>.svc-row:hover{--k:var(--crimson)}}
+
+html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker{align-items:flex-end;padding-bottom:0}
+html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::before{
+  font-family:var(--font-ar-display);font-weight:600;font-size:var(--numeral);line-height:.8;letter-spacing:0;
+  padding-inline-end:var(--s-4);border-inline-end:0;margin-block-end:-.02em;
+  color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--crimson) 80%,transparent)}
+html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::after{align-self:flex-end;padding-bottom:var(--s-1)}
+
+@media (min-width:960px){
+  .lang-offer{inset-inline-start:auto;inset-inline-end:calc(max(16px,env(safe-area-inset-right)) + 56px)}
+}
+@media (max-width:720px){
+  @supports (animation-timeline:scroll()){
+    .lang-offer{animation:offer-late linear both;animation-timeline:scroll(root);animation-range:0 600px}
+    @keyframes offer-late{from,99%{visibility:hidden;opacity:0}to{visibility:visible;opacity:1}}
+  }
+  .footer{padding-bottom:calc(2 * var(--s-5))}
+  .footer::before{bottom:var(--s-5)}
 }
