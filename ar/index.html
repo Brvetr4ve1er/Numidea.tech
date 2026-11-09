@@ -304,7 +304,7 @@
       <div class="hero-copy">
         <span class="eyebrow" data-i18n="hero.eyebrow">استوديو ويب · برج بوعريريج</span>
         <h1 class="hero-h" id="hero-title" data-i18n="hero.title">شاهد صفحتك الرئيسية <span class="swash">قبل أن تدفع.</span></h1>
-        <p class="lede" data-i18n="hero.lede">قبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك أنت خلال 5 أيام عمل. <bdi>Yasser Hamisse</bdi>، المؤسّس، يصمّمها ويبرمجها ويسلّمها بنفسه.</p>
+        <p class="lede" data-i18n="hero.lede">قبل أيّ دفع، نبني الصفحة الرئيسية لموقعك الجديد بمحتواك أنت خلال 5 أيام عمل.<span class="lede-who"> <bdi>Yasser Hamisse</bdi>، المؤسّس، يصمّمها ويبرمجها ويسلّمها بنفسه.</span></p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#contact" data-apercu data-i18n="hero.cta1">اطلب معاينتك المجانية <span aria-hidden="true">←</span></a>
           <!-- WhatsApp with the Aperçu's own message, so a phone can write from
@@ -401,7 +401,7 @@
     <span class="v-l v-far" data-parallax="-.09" data-parallax-cap="56"><i class="v-fill"></i><i class="v-ink"></i></span>
     <span class="v-l v-mid" data-parallax="-.045" data-parallax-cap="40"><i class="v-fill"></i><i class="v-ink"></i></span>
     <span class="v-l v-near" data-parallax=".02" data-parallax-cap="24"><i class="v-fill"></i><i class="v-ink"></i></span>
-    <span class="v-cap pl-cap" data-i18n="pl.vista">لوحة 1 — منظر طبيعي منقوش</span>
+    <span class="v-cap pl-cap" data-i18n="pl.vista">نقش 1 — منظر طبيعي</span>
   </div>
 
   <!-- ================= PROOF ================= -->
@@ -889,14 +889,24 @@
       </div>
       <p class="fd-bio" data-i18n="founder.bio">ستّ سنوات في تصميم الهويّات وبرمجة الواجهات وتسليم المنتجات، من العلامة حتى النشر على الإنترنت. أحوّل موجز مشروعك إلى منتج مكتمل، وأبقى إلى جانبك بعد الإطلاق.</p>
 
+      <!-- One row, no initial: the three D/S/T "members" went on 2026-11-02
+           (there is one founder, and freelancers when a project needs one).
+           A div, not a list: a list of one said more than there is. -->
+      <div class="team">
+        <h3 class="team-h" data-i18n="team.h">حين يتطلّب المشروع ذلك</h3>
+        <div class="team-grid">
+          <p class="tm"><b data-i18n="team.fFn">مستقلّون، حسب الحاجة</b><span data-i18n="team.fDo">ينضمّ مختصّ إلى المشروع لجزء محدّد منه؛ ويبقى المؤسّس محاورك الوحيد والمسؤول عن التسليم.</span></p>
+        </div>
+      </div>
+
       <!-- the right column: an engraved plate (the founder's photo does not
-           exist, and no face is drawn or generated), the two latest pieces,
-           and the freelance line. A plate of the studio's own atlas, the Arch
+           exist, and no face is drawn or generated), and the two latest pieces (the freelance line sits in the left column, under the bio).
+           A plate of the studio's own atlas, the Arch
            of Trajan at Timgad, which also draws the share card. -->
       <div class="fd-aside">
         <figure class="fd-plate">
           <div class="fdp-art lz" aria-hidden="true"><span class="fdp-ink"></span></div>
-          <figcaption class="fdp-cap" data-i18n="pl.arch">لوحة 3 — قوس تراجان في تيمقاد</figcaption>
+          <figcaption class="fdp-cap" data-i18n="pl.arch">نقش 3 — قوس تراجان في تيمقاد</figcaption>
         </figure>
         <!-- the two most recent dated pieces for named clients, from the CV
              panel below (same keys), each leading to its project sheet -->
@@ -906,16 +916,6 @@
             <li><a href="../scene/?lang=ar#alliance">Alliance Travel</a> · <span data-i18n="fx3">مطوّر ويب ومسيّر شبكات التواصل</span> · <span data-i18n="fx3.when">من 02/2026 إلى 05/2026</span></li>
             <li><a href="../scene/?lang=ar#bordjsteel">SPA Bordj Steel</a> · <span data-i18n="fx4">مصمّم غرافيك وويب</span> · <span data-i18n="fx4.when">من 08/2025 إلى 02/2026</span></li>
           </ul>
-        </div>
-
-        <!-- One row, no initial: the three D/S/T "members" went on 2026-11-02
-             (there is one founder, and freelancers when a project needs one).
-             A div, not a list: a list of one said more than there is. -->
-        <div class="team">
-          <h3 class="team-h" data-i18n="team.h">حين يتطلّب المشروع ذلك</h3>
-          <div class="team-grid">
-            <p class="tm"><b data-i18n="team.fFn">مستقلّون، حسب الحاجة</b><span data-i18n="team.fDo">ينضمّ مختصّ إلى المشروع لجزء محدّد منه؛ ويبقى المؤسّس محاورك الوحيد والمسؤول عن التسليم.</span></p>
-          </div>
         </div>
       </div>
 
@@ -1128,7 +1128,7 @@
 </main>
 
 <!-- PLATE V — the erg closes the page. -->
-<div class="foot-dunes lz" aria-hidden="true"><span class="fd-ink" data-parallax="-.05" data-parallax-cap="30"></span><span class="pl-cap" data-i18n="pl.dunes">لوحة 2 — كثبان منقوشة</span></div>
+<div class="foot-dunes lz" aria-hidden="true"><span class="fd-ink" data-parallax="-.05" data-parallax-cap="30"></span><span class="pl-cap" data-i18n="pl.dunes">نقش 2 — كثبان</span></div>
 
 <button type="button" class="to-top" id="toTop" data-i18n-aria="ui.top" aria-label="إلى الأعلى"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 

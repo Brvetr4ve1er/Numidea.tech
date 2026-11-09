@@ -68,7 +68,7 @@ export const PROJECTS = {
   // a 1152×720 window (16:10 itself): at 1440×900 the hero ended at two thirds
   // and the last third was the next band's faint card tops under a chat bubble;
   // the bubble is hidden (`bare`) and no 1440 sheet frame is comparable (sheet: null)
-  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/istanbul/', client: 'alliance', sheet: null, dark: true, vp: { w: 1152, h: 720 }, bare: true },
+  alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/istanbul/', client: 'alliance', sheet: null, dark: true, vp: { w: 1040, h: 650 }, bare: true },
   nomara:                { capture: 'https://nomaravoyages.netlify.app',          client: 'nomara',     sheet: null },
   // the portfolio demo: its link on the home page carries data-client (check.mjs 5 pairs the slugs), but it has no
   // preview file: the home shows it as one line under the clients, not as a card with a capture
@@ -91,7 +91,7 @@ export const CROP = {
   // the references page: the nav, the crane photo and its heading (the totals below are on the sheet)
   // Fleet 6 round 2: the references page's header only, nav to the crane photo's foot (y 540):
   // the white totals panel below it was half the plate and read as a hole in a dark page
-  'bordjsteel-references': { x: 270, y: 0, w: 864 },
+  'bordjsteel-references': { x: 80, y: 100, w: 1280 },
 };
 
 const VW = 1440, VH = 900, DPR = 2;

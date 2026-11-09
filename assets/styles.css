@@ -3056,13 +3056,13 @@ html[dir="rtl"] .faq-a{padding:0 0 var(--s-5) var(--s-8)}
 .faq-ask strong{flex:1 1 100%;font-family:var(--font-display);font-weight:600;font-size:var(--t-body);color:var(--ice)}
 html[dir="rtl"] .faq-ask strong{font-family:var(--font-ar-display)}
 @media (min-width:1100px){
-  #faq>.kicker{grid-column:1/span 4}
+  #faq>.kicker{grid-column:1/-1}
   #faq>h2.sec{grid-column:1/span 4;grid-row:2;max-width:none}
   #faq>.sec-lead{grid-column:1/span 4;grid-row:3;align-self:start;max-width:none;padding-bottom:0;margin-top:var(--s-5)}
   #faq>.faq-ask{grid-column:1/span 4;grid-row:4;margin-top:var(--s-6);align-self:start;align-content:flex-start;gap:var(--s-3)}
   #faq>.faq-ask .btn{flex:1 1 100%;justify-content:center}
   #faq{grid-template-rows:auto auto auto 1fr}
-  #faq>.faq-list{grid-column:5/-1;grid-row:1/span 4;margin-top:0}
+  #faq>.faq-list{grid-column:5/-1;grid-row:2/span 3;margin-top:0}
 }
 
 /* ---- contact: one clear way to write (C7) ---- */
@@ -3136,15 +3136,7 @@ html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::after{backgr
 /* ---- the FAQ: 56px rows ---- */
 .faq-item summary{min-height:56px;padding-block:var(--s-3)}
 
-/* ---- the Aperçu: a plate with its brackets inside the border ---- */
-.preview::before{content:"";position:absolute;inset:var(--s-2);pointer-events:none;
-  --k:color-mix(in srgb,var(--crimson) 70%,transparent);
-  background:
-    linear-gradient(var(--k),var(--k)) 0 0/10px 1px,linear-gradient(var(--k),var(--k)) 0 0/1px 10px,
-    linear-gradient(var(--k),var(--k)) 100% 0/10px 1px,linear-gradient(var(--k),var(--k)) 100% 0/1px 10px,
-    linear-gradient(var(--k),var(--k)) 0 100%/10px 1px,linear-gradient(var(--k),var(--k)) 0 100%/1px 10px,
-    linear-gradient(var(--k),var(--k)) 100% 100%/10px 1px,linear-gradient(var(--k),var(--k)) 100% 100%/1px 10px;
-  background-repeat:no-repeat}
+/* ---- the Aperçu: a plain ruled card (Fleet 7: its crop marks went; the sheet's marks stay on the hero frame, the work plates, the recommended tier and the footer) ---- */
 
 /* ---- the price line under the tiers sits close to what it explains ---- */
 .price-note{margin-bottom:var(--s-6)}
@@ -3219,7 +3211,7 @@ html[dir="rtl"] #services .svc-grid>.svc-row h3::before{text-align:right}
 
 /* ---- tiers: square, with crop marks, not a rounded card ---- */
 .tier{border-radius:0}
-.tier::before{content:"";position:absolute;inset:-7px;pointer-events:none;z-index:1;
+.tier-pop::before{content:"";position:absolute;inset:-7px;pointer-events:none;z-index:1;
   --k:color-mix(in srgb,var(--crimson) 75%,transparent);
   background:
     linear-gradient(var(--k),var(--k)) 0 0/9px 1px,linear-gradient(var(--k),var(--k)) 0 0/1px 9px,
@@ -3271,8 +3263,8 @@ html[dir="rtl"] #services .svc-grid>.svc-row h3::before{text-align:right}
    ═══════════════════════════════════════════════════════════════════════ */
 :root{
   --panel:color-mix(in srgb,var(--navy) 80%,var(--void));   /* the founder's panel: one step off the page, lighter in both themes */
-  --t-h2-xl:clamp(28px,12px + 2.65vw,52px);                /* the two set-piece headings: 28 on a phone, 50 at 1440, 52 on a wide screen */
-  --numeral:clamp(64px,7.2vw,104px);
+  --t-h2-xl:clamp(28px,12px + 2.65vw,52px);                /* the Aperçu's «0 DA» figure (it was the two set-piece headings until Fleet 7) */
+  --numeral:clamp(44px,20px + 2.4vw,58px);                   /* Fleet 7: one numeral for all six planche heads: 44 on a phone, 55 at 1440, 58 wide */
 }
 
 /* ---- the proof (decision 7: one trust line and the logo strip), on clean ground ----
@@ -3292,20 +3284,17 @@ html[dir="rtl"] #services .svc-grid>.svc-row h3::before{text-align:right}
 @media (max-width:339px){.cl img{--cl-s:.36}}
 @media (min-width:480px) and (max-width:959px){.cl img{--cl-s:.7}}
 
-/* ---- set piece 1 and 3: the big numeral of a title block ---- */
-html[dir="ltr"] main:has(>#work)>:is(#services,#founder)>.kicker{align-items:flex-end}
-html[dir="ltr"] main:has(>#work)>:is(#services,#founder)>.kicker::before{
+/* ---- the planche head, Fleet 7: the same title block on all six sections ----
+   One numeral (outlined Cinzel, brass), one heading size, one rule with its
+   running label. The Fleet 6 round 2 set pieces (a 104px 02 and 04, the others
+   12px mono) made the rhythm read as accidental: now none is bigger than another.
+   LTR pages only (the Arabic page loads no Cinzel and keeps the small figure). */
+html[dir="ltr"] main:has(>#work)>section:not(.hero,.proof)>.kicker{align-items:flex-end;padding-bottom:0}
+html[dir="ltr"] main:has(>#work)>section:not(.hero,.proof)>.kicker::before{
   font-family:var(--font-deco);font-weight:400;font-size:var(--numeral);line-height:.8;letter-spacing:0;
   padding-inline-end:var(--s-4);border-inline-end:0;margin-block-end:-.02em;
   color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--crimson) 80%,transparent)}
-html[dir="ltr"] main:has(>#work)>:is(#services,#founder)>.kicker::after{align-self:flex-end;padding-bottom:var(--s-1)}
-html[dir="ltr"] main:has(>#work)>:is(#services,#founder)>.kicker{padding-bottom:0}
-#services>h2.sec,#founder>h2.sec{font-size:var(--t-h2-xl)}
-html[dir="ltr"] #services>h2.sec,html[dir="ltr"] #founder>h2.sec{line-height:1.02}
-@media (min-width:1100px){
-  #services>h2.sec,#founder>h2.sec{grid-column:1/span 7}
-  #services>.svc-lead,#founder>.sec-lead{grid-column:9/-1}
-}
+html[dir="ltr"] main:has(>#work)>section:not(.hero,.proof)>.kicker::after{align-self:flex-end;padding-bottom:var(--s-1)}
 
 /* ---- the work rows: one voice per part ---- */
 .proj{grid-template-rows:auto minmax(0,1fr);align-content:stretch}
@@ -3377,14 +3366,6 @@ main.wrap>#founder.band::after{background:var(--panel);border-bottom:1px solid v
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:cover;mask-size:cover;-webkit-mask-position:50% 62%;mask-position:50% 62%;
   -webkit-mask-source-type:luminance;mask-mode:luminance}
 :is(.lz-on,html:not([data-lz]) .lz) .fdp-ink{-webkit-mask-image:url(illus/arch.webp);mask-image:url(illus/arch.webp)}
-.fd-plate::before{content:"";position:absolute;inset:-6px -6px auto;height:calc(100% - 28px);pointer-events:none;z-index:2;
-  --k:color-mix(in srgb,var(--crimson) 75%,transparent);
-  background:
-    linear-gradient(var(--k),var(--k)) 0 0/9px 1px,linear-gradient(var(--k),var(--k)) 0 0/1px 9px,
-    linear-gradient(var(--k),var(--k)) 100% 0/9px 1px,linear-gradient(var(--k),var(--k)) 100% 0/1px 9px,
-    linear-gradient(var(--k),var(--k)) 0 100%/9px 1px,linear-gradient(var(--k),var(--k)) 0 100%/1px 9px,
-    linear-gradient(var(--k),var(--k)) 100% 100%/9px 1px,linear-gradient(var(--k),var(--k)) 100% 100%/1px 9px;
-  background-repeat:no-repeat}
 .fdp-cap{margin-top:var(--s-2);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;line-height:1.5;color:var(--muted)}
 html[dir="rtl"] .fdp-cap{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:var(--t-small)}
 .fd-aside .fd-recent{margin:0}
@@ -3407,3 +3388,79 @@ html[dir="rtl"] .fdp-cap{font-family:var(--font-ar-body);letter-spacing:0;text-t
 .fd-links{display:flex;flex-wrap:wrap;gap:0 var(--s-5);list-style:none;padding:0}
 .fd-links a{min-width:44px;justify-content:center}
 @media (min-width:600px) and (max-width:1099px){.fd-plate{max-width:560px}}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FLEET 7 / ROUND 1 — the sheet's one system, 2026-11-09
+   (1) Six identical planche heads (above: the numeral and the heading are the
+   same everywhere; the FAQ's head is the full-width one, the intro under it).
+   (2) Crop marks are kept for the "drawings" only: the hero frame (closed
+   above the vista now), the work plates, the recommended tier, the footer.
+   (3) The tiers are as tall as their content (the subgrid's row gap was
+   adding 32px between every row). (4) The founder's two columns end level.
+   (5) The proof is a mono small-cap line over a dimension rule. (6) Brass is
+   the one UI accent (the checked currency chip, the idle pager bars).
+   (7) A phone's engraving moment: the dune strip, taller and at full ink,
+   cropped on the caravan. Written last.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ---- the hero frame is a closed rectangle: the vista starts below it ---- */
+@media (min-width:961px){.vista{margin-top:0}}
+
+/* ---- the proof: one mono small-cap line, then the marks, on a dimension rule ---- */
+.proof-line{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;line-height:1.7;color:var(--muted)}
+html[dir="rtl"] .proof-line{font-family:var(--font-ar-body);font-size:var(--t-small);letter-spacing:0;text-transform:none}
+main.wrap>section.proof{position:relative;border-block:0}
+@media (min-width:961px){.proof-line{flex:1 1 auto}}
+main.wrap>section.proof::before{content:"";position:absolute;inset:0 0 auto;height:9px;pointer-events:none;
+  --k:var(--hairline-2);
+  background:linear-gradient(var(--k),var(--k)) 0 50%/100% 1px no-repeat,linear-gradient(var(--k),var(--k)) 0 0/1px 100% no-repeat,linear-gradient(var(--k),var(--k)) 100% 0/1px 100% no-repeat}
+.cl{align-self:center}
+
+/* ---- the tiers: the subgrid's row gap (32px) went; the rows keep their own margins ---- */
+@media (min-width:961px){
+  .tiers>.tier{row-gap:0}
+  .t-for{min-height:calc(2 * 1.55em);margin-bottom:var(--s-3)}
+  .t-range{margin-bottom:var(--s-2)}
+}
+
+/* ---- the founder: the freelance line is the founder's way of working, so it sits in his column ---- */
+.founder-card>.team{margin:var(--s-5) 0 0}
+@media (min-width:1100px){
+  .founder-card>.team{grid-column:1/span 7;grid-row:3;margin:var(--s-2) 0 0}
+  .fd-aside{grid-row:1/span 3}
+  /* the links and the parcours button share one ruled row under both columns */
+  .fd-links{grid-column:1/span 7;grid-row:4;align-self:start;margin-top:var(--s-5);padding-top:var(--s-4);border-top:1px solid var(--hairline-2)}
+  .fd-actions{grid-column:8/-1;grid-row:4;align-self:start;justify-self:end;margin-top:var(--s-5);padding-top:var(--s-4);border-top:1px solid var(--hairline-2);width:100%;display:flex;justify-content:flex-end}
+  .founder-card{grid-template-rows:auto auto auto auto auto}
+  .cv-panel{grid-row:5}
+}
+
+/* ---- brass is the one UI accent: the checked currency chip, the idle pager bars ---- */
+.echip:has(input:checked){border-color:var(--crimson);background:color-mix(in srgb,var(--crimson) 12%,transparent);color:var(--ice)}
+@media (hover:hover){.echip:hover{border-color:var(--crimson)}}
+.echip:has(input:focus-visible){outline-color:var(--crimson)}
+.plate-rail button i{background:color-mix(in srgb,var(--muted) 38%,transparent)}
+.plate-rail button[aria-current="true"] i{background:var(--crimson)}
+
+/* ---- the founder's panel: the dunes' strip turns up on a phone, at full ink, cropped on the caravan ---- */
+@media (max-width:720px){
+  .dune-strip{height:104px}
+  .ds-ink{opacity:.8;-webkit-mask-size:205% auto;mask-size:205% auto;-webkit-mask-position:81% 57%;mask-position:81% 57%}
+}
+
+/* ---- the hero on a phone: the lede without the founder's sentence (the founder section says it), WhatsApp as a ruled text link ---- */
+@media (max-width:720px){
+  .lede-who{display:none}
+  .hero-cta .btn-teal{background:none;border-color:transparent;box-shadow:none;justify-content:flex-start;margin-inline-start:calc(-1 * var(--s-4));
+    color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+}
+
+/* ---- the founder's column on a phone: the freelance line, the recent pieces, the links, each its own beat ---- */
+@media (max-width:1099px){
+  .fd-aside .fd-recent{margin-top:var(--s-5)}
+  .fd-links{margin-top:var(--s-4)}
+}
+/* ---- the contact's four rows, closer on a phone (each link keeps its 44px target) ---- */
+@media (max-width:599px){
+  .channels .ch{gap:0;padding-block:var(--s-2)}
+}

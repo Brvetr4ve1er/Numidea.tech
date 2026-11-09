@@ -334,7 +334,7 @@
       <div class="hero-copy">
         <span class="eyebrow" data-i18n="hero.eyebrow">Studio web · Bordj Bou Arréridj</span>
         <h1 class="hero-h" id="hero-title" data-i18n="hero.title">Voyez votre page d’accueil <span class="swash">avant de payer.</span></h1>
-        <p class="lede" data-i18n="hero.lede">Avant tout paiement, nous construisons la page d’accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés. Yasser Hamisse, fondateur, la conçoit, la code et la livre lui-même.</p>
+        <p class="lede" data-i18n="hero.lede">Avant tout paiement, nous construisons la page d’accueil de votre nouveau site, avec votre contenu, en 5 jours ouvrés.<span class="lede-who"> Yasser Hamisse, fondateur, la conçoit, la code et la livre lui-même.</span></p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#contact" data-apercu data-i18n="hero.cta1">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
           <!-- WhatsApp with the Aperçu's own message, so a phone can write from
@@ -431,7 +431,7 @@
     <span class="v-l v-far" data-parallax="-.09" data-parallax-cap="56"><i class="v-fill"></i><i class="v-ink"></i></span>
     <span class="v-l v-mid" data-parallax="-.045" data-parallax-cap="40"><i class="v-fill"></i><i class="v-ink"></i></span>
     <span class="v-l v-near" data-parallax=".02" data-parallax-cap="24"><i class="v-fill"></i><i class="v-ink"></i></span>
-    <span class="v-cap pl-cap" data-i18n="pl.vista">Pl. I — Paysage gravé</span>
+    <span class="v-cap pl-cap" data-i18n="pl.vista">Gravure I — Paysage</span>
   </div>
 
   <!-- ================= PROOF ================= -->
@@ -919,14 +919,24 @@
       </div>
       <p class="fd-bio" data-i18n="founder.bio">Six ans à concevoir des identités, coder des interfaces et livrer des produits, de la marque jusqu’à la mise en ligne. Je transforme votre brief en produit fini, et je reste à vos côtés après le lancement.</p>
 
+      <!-- One row, no initial: the three D/S/T "members" went on 2026-11-02
+           (there is one founder, and freelancers when a project needs one).
+           A div, not a list: a list of one said more than there is. -->
+      <div class="team">
+        <h3 class="team-h" data-i18n="team.h">Quand un projet le demande</h3>
+        <div class="team-grid">
+          <p class="tm"><b data-i18n="team.fFn">Des freelances, au cas par cas</b><span data-i18n="team.fDo">Un spécialiste rejoint le projet pour une partie précise ; le fondateur reste votre seul interlocuteur et répond de la livraison.</span></p>
+        </div>
+      </div>
+
       <!-- the right column: an engraved plate (the founder's photo does not
-           exist, and no face is drawn or generated), the two latest pieces,
-           and the freelance line. A plate of the studio's own atlas, the Arch
+           exist, and no face is drawn or generated), and the two latest pieces (the freelance line sits in the left column, under the bio).
+           A plate of the studio's own atlas, the Arch
            of Trajan at Timgad, which also draws the share card. -->
       <div class="fd-aside">
         <figure class="fd-plate">
           <div class="fdp-art lz" aria-hidden="true"><span class="fdp-ink"></span></div>
-          <figcaption class="fdp-cap" data-i18n="pl.arch">Pl. III — L’arc de Trajan, Timgad</figcaption>
+          <figcaption class="fdp-cap" data-i18n="pl.arch">Gravure III — L’arc de Trajan, Timgad</figcaption>
         </figure>
         <!-- the two most recent dated pieces for named clients, from the CV
              panel below (same keys), each leading to its project sheet -->
@@ -936,16 +946,6 @@
             <li><a href="scene/#alliance">Alliance Travel</a> · <span data-i18n="fx3">Développeur web &amp; social media</span> · <span data-i18n="fx3.when">Fév. – mai 2026</span></li>
             <li><a href="scene/#bordjsteel">SPA Bordj Steel</a> · <span data-i18n="fx4">Designer graphique &amp; web</span> · <span data-i18n="fx4.when">Août 2025 – fév. 2026</span></li>
           </ul>
-        </div>
-
-        <!-- One row, no initial: the three D/S/T "members" went on 2026-11-02
-             (there is one founder, and freelancers when a project needs one).
-             A div, not a list: a list of one said more than there is. -->
-        <div class="team">
-          <h3 class="team-h" data-i18n="team.h">Quand un projet le demande</h3>
-          <div class="team-grid">
-            <p class="tm"><b data-i18n="team.fFn">Des freelances, au cas par cas</b><span data-i18n="team.fDo">Un spécialiste rejoint le projet pour une partie précise ; le fondateur reste votre seul interlocuteur et répond de la livraison.</span></p>
-          </div>
         </div>
       </div>
 
@@ -1158,7 +1158,7 @@
 </main>
 
 <!-- PLATE V — the erg closes the page. -->
-<div class="foot-dunes lz" aria-hidden="true"><span class="fd-ink" data-parallax="-.05" data-parallax-cap="30"></span><span class="pl-cap" data-i18n="pl.dunes">Pl. II — Dunes gravées</span></div>
+<div class="foot-dunes lz" aria-hidden="true"><span class="fd-ink" data-parallax="-.05" data-parallax-cap="30"></span><span class="pl-cap" data-i18n="pl.dunes">Gravure II — Dunes</span></div>
 
 <button type="button" class="to-top" id="toTop" data-i18n-aria="ui.top" aria-label="Haut de page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 

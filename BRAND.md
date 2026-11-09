@@ -1369,6 +1369,46 @@ Values read from `assets/styles.css` (the Fleet 6 blocks at its end).
   under 9,200 (8,438). A change that crosses either is a regression to
   justify.
 
+### Home rules after Fleet 7 (2026-11-09) — they replace the Fleet 6 set pieces
+
+- **One planche head, six times.** The numeral (`--numeral`, 44 px on a phone,
+  55 at 1440, outlined Cinzel in 80% brass, LTR pages only) and the heading
+  (`--t-h2`) are the same on 01 to 06; the rule ends on its tick and the running
+  label (`Pl. n/6`). The FAQ's kicker spans the whole container like the
+  others, the intro and the two buttons sit under it in columns 1-4 and the
+  questions in 5-12. The Fleet 6 round 2 "set pieces" (104 px 02 and 04, mono
+  01 03 05 06) are gone: the page read as accidental. `--t-h2-xl` is now the
+  Aperçu's «0 DA» figure only. The Arabic page keeps the small mono figure
+  (no Cinzel there).
+- **The sections own «Pl.»; the engravings are «Gravure».** `pl.vista`,
+  `pl.dunes`, `pl.arch` read «Gravure I / II / III» (en «Engraving», ar «نقش»),
+  so «Pl. 4/6» is never beside a caption that also says plate.
+- **Crop marks are for the three drawings and one tier.** Kept: the hero frame
+  (now a closed rectangle: the vista starts below it, no negative margin from
+  961px), the work plates, the footer frame, and the recommended tier. Gone:
+  the Aperçu, the two other tiers, the founder's plate.
+- **Tiers.** `.tiers>.tier` has `row-gap:0` from 961px (the subgrid inherited the
+  grid's 32px gap between each of its six rows, about 150 px a card); the line
+  keeps a two-line minimum so the prices start level. 840 to about 690 px.
+- **Founder.** The freelance line (`.team`) is a child of the card, under the
+  bio; the links and the «Voir le parcours» button share one ruled row under
+  both columns (from 1100px). The two columns end within about 15 px.
+- **Proof.** One mono small-cap line (`--t-label`, `--ls-label`) over the marks,
+  under a dimension rule with end ticks (`.proof::before`); no box rules.
+- **Brass is the one UI accent.** The checked currency chip is brass (12% fill),
+  the idle pager bars are a neutral rule colour.
+- **Phones keep decision C4** (the vista, 416 KB of masks, stays off phones).
+  The engraving moment is the dune strip: 104 px, ink at .8, the mask cropped so
+  the caravan is a third of the width (`mask-size:205%`, position 81% 57%).
+  The hero lede drops the founder's sentence (`.lede-who`, hidden under 721 px;
+  the founder section says it) and WhatsApp becomes a ruled text link under the
+  primary button; the four contact rows are tighter.
+- **Work captures.** Row 01 is the references page from y 100 with the client's
+  own four totals and no nav strip (`CROP['bordjsteel-references']` x 80, y 100,
+  w 1280); row 02's window is 1040x650, so the page ends under the buttons.
+- **Height budget** (fr, fonts loaded): phone 390 13,217 (limit 13,500), desktop
+  1440 8,462 (limit 9,200), both themes.
+
 ## hub/ — the Studio page
 
 Since 2026-11-07 `/hub/` is the studio's own page, built from the owner's
