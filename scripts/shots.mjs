@@ -63,7 +63,9 @@ export const PROJECTS = {
   // totals), so the card repeats neither the plate's home nor the white
   // catalogue (6 px text on a white page, its footer cut at the bottom edge)
   // soft: a 0.6 px blur before the encode, the crane photo's grain being most of its bytes (the 1280 file was 61 KB at quality 56, over the 53 KB ceiling)
-  'bordjsteel-references': { capture: 'https://bordjsteelb2b.netlify.app/references', client: 'bordjsteel', sheet: 'bordjsteel/d3', soft: 0.6 },
+  // Fleet 7 round 4: scrolled past the crane heading (scroll 505), so the window is the client's nav, its four totals
+  // and the first reference card (a photograph of a building), not its section title over a darkened photo
+  'bordjsteel-references': { capture: 'https://bordjsteelb2b.netlify.app/references', client: 'bordjsteel', sheet: null, scroll: 505 },
   almaflowclim:          { capture: 'https://almaflowclim.netlify.app',           client: 'almaflow',   sheet: 'almaflow/d1' },
   // a 1152×720 window (16:10 itself): at 1440×900 the hero ended at two thirds
   // and the last third was the next band's faint card tops under a chat bubble;
@@ -72,7 +74,8 @@ export const PROJECTS = {
   // is scrolled off and the first photographic cards fill the frame (#voyages, 230 px lower, the fixed nav and
   // the chat bubble out: bare 'all'). The hero is the WebGL globe that draws black headless; the card photos are the client's own.
   alliancetravel:        { capture: 'https://alliancetravel34.netlify.app/#voyages', client: 'alliance', sheet: null, scroll: 230, align: ['a.trip-card', 301], bare: 'all', soft: 0.8 },
-  nomara:                { capture: 'https://nomaravoyages.netlify.app',          client: 'nomara',     sheet: null },
+  // Fleet 7 round 4: the client's fixed nav hidden (bare 'all'): the nav's cut Arabic item and white strip were the one edge that differed
+  nomara:                { capture: 'https://nomaravoyages.netlify.app',          client: 'nomara',     sheet: null, bare: 'all' },
   // the portfolio demo: its link on the home page carries data-client (check.mjs 5 pairs the slugs), but it has no
   // preview file: the home shows it as one line under the clients, not as a card with a capture
   glaive:                { capture: 'https://glaivestore.netlify.app',            client: 'glaive',     sheet: 'glaive/d1', demo: true },
@@ -90,7 +93,8 @@ export const PROJECTS = {
    whole 1440 (Fleet 6: x 80 / w 1280 cut the logo and "Accueil" off the left
    of the nav and the tagline off the right). */
 export const CROP = {
-  nomara: { x: 448, y: 0, w: 992 },
+  // Fleet 7 round 4: 976 wide (610 tall), the nav hidden: an edge-to-edge hero
+  nomara: { x: 448, y: 0, w: 976 },
   // the references page: the nav, the crane photo and its heading (the totals below are on the sheet)
   // Fleet 6 round 2: the references page's header only, nav to the crane photo's foot (y 540):
   // the white totals panel below it was half the plate and read as a hole in a dark page
@@ -98,13 +102,16 @@ export const CROP = {
   // the crane under its heading, nothing of the white totals panel (a 540 px hero: 864 wide is the widest 16:10 that fits)
   // Fleet 7 round 3: the lead row repeated the plate's nav (a pale chrome strip over the dark photo): the window now
   // starts under the nav (y 67) and stops 4 px above the photo's foot (y 540), the crane under its heading and nothing else
-  'bordjsteel-references': { x: 345, y: 67, w: 750 },
+  // Fleet 7 round 4: the whole 1440 width of the scrolled page (nav, totals, first card)
+  'bordjsteel-references': { x: 0, y: 0, w: 1440 },
   // Fleet 7 round 3: the headline, its lede and its two actions, zoomed (a 900 px window instead of the whole 1440 page:
   // at card size the 1440 frame's 18 px lede was 7 px); the hero's right card is cut at its middle, as any crop
   almaflowclim: { x: 100, y: 112, w: 900 },
   // the first two destination cards whole (the first row of the grid, cards at y 301 to 754, the third card
   // starting at x 925: the window ends at 914 and at 775, 23 px above the next row), no sliver of either
-  alliancetravel: { x: 138, y: 290, w: 776 },
+  // Fleet 7 round 4: inside the two cards, 13 px in from their outer edges (x 166 to 886, y 303 to 753 where the first card’s top is at 301: the text keeps 6 px):
+  // no cream mat, no card edge, no shadow: photographs edge to edge like the other three
+  alliancetravel: { x: 166, y: 303, w: 720 },
 };
 
 const VW = 1440, VH = 900, DPR = 2;
