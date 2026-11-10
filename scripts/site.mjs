@@ -41,7 +41,7 @@ export const PAGES = ['index.html', 'en/index.html', 'ar/index.html', 'tarifs/in
   .concat(LEGAL_PUBLISHED ? ['legal/index.html'] : []);
 export const EXTRA_PAGES = ['workspacehq/embed/trailer.html', 'workspacehq/embed/walkthrough.html', 'workspacehq/embed/console.html'];
 
-export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', '404.html', 'robots.txt', 'sitemap.xml', 'assets', 'scene', 'hub', 'workspacehq']
+export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', '404.html', 'robots.txt', 'sitemap.xml', 'google35d412133786d0cb.html', 'assets', 'scene', 'hub', 'workspacehq']
   .concat(LEGAL_PUBLISHED ? ['legal'] : []);
 // file names never published even inside a deployed folder: a folder's own
 // notes and the manifest the WorkspaceHQ design-system export ships. Every
