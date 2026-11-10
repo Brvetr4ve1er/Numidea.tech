@@ -47,7 +47,7 @@
      tinted the capture's surround (Fleet 5, A2) */
   --atmos:none;
   --grid-color:rgba(230,180,80,.5); --grid-opacity:.035; --grid-size:64px;
-  --vista-far:rgba(157,178,198,.32); --vista-mid:rgba(52,208,232,.42); --vista-near:rgba(199,213,226,.26);
+  --vista-far:rgba(176,160,128,.30); --vista-mid:rgba(230,180,80,.40); --vista-near:rgba(212,196,160,.24);   /* Fleet 7 round 4: the engraving in brass, as the dune strips, not a teal tower (the one cyan on the page is the wordmark) */
   --nav-glass:rgba(10,20,32,.96); --glass:rgba(23,54,79,.35); --field-bg:rgba(10,20,32,.6);
   --field-border:color-mix(in srgb,var(--faint) 75%,var(--navy));
   --font-head:var(--font-deco); --font-head-em:var(--font-deco-dec); --head-weight:700; --head-tracking:.01em;
