@@ -34,7 +34,12 @@
     Cache-Control = "public, max-age=86400"
 
 [[headers]]
-  for = "/hub/art/*"
+  for = "/hub/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/hub/bible/art/*"
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
