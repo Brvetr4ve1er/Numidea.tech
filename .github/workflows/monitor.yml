@@ -1,6 +1,7 @@
 name: Live monitor
 
-# Watches the published site (GitHub Pages, the canonical host) every six
+# Watches the published site (Vercel, the canonical host, scripts/site.mjs BASE;
+# the GitHub Pages mirror is probed report-only) every six
 # hours and on demand (Actions → Live monitor → Run workflow).
 #
 # live — read-only. Four checks, each run even when an earlier one failed:
@@ -90,7 +91,7 @@ jobs:
         run: |
           node --input-type=module <<'EOF'
           import { readFileSync, appendFileSync } from 'node:fs';
-          import { BASE, PAGES } from './scripts/site.mjs';
+          import { BASE, PAGES_BASE, PAGES } from './scripts/site.mjs';
 
           const run = process.env.GITHUB_RUN_ID || String(Date.now());
           // the HTML is fetched past the CDN cache: a deploy from minutes ago counts
@@ -98,9 +99,10 @@ jobs:
           // check.mjs 4 keeps every stamp in the repository identical
           const want = (readFileSync('index.html', 'utf8').match(/\?v=(\d+)/) || [])[1];
           const rows = [];
-          const note = (ok, what, url, detail, stale = false) => {
-            rows.push({ ok, what, url, detail, stale });
-            console.log(`${ok ? '✓' : stale ? '~' : '✗'} ${what} — ${detail}`);   // ~: may only be waiting for a deploy
+          // info rows (the GitHub Pages mirror) are listed but never fail the run
+          const note = (ok, what, url, detail, stale = false, info = false) => {
+            rows.push({ ok: ok || info, what, url, detail: info && !ok ? 'report-only: ' + detail : detail, stale: stale && !info });
+            console.log(`${ok ? '✓' : info ? 'i' : stale ? '~' : '✗'} ${what} — ${detail}`);   // ~: may only be waiting for a deploy
           };
 
           async function get(url, headers = {}) {
@@ -145,6 +147,15 @@ jobs:
             note(r.status === 200 && r.type.includes(type) && body(type.startsWith('image') ? r.body : r.body.toString('utf8')),
               p, BASE + p, `${r.status || r.error} ${r.type.split(';')[0]}, ${r.body.length} bytes`);
           }
+          // the GitHub Pages mirror: report-only (a billing lock or a lagging
+          // deploy there is not an outage of the canonical site)
+          {
+            const r = await get(fresh(PAGES_BASE));
+            const html = r.body.toString('utf8');
+            const stamps = [...new Set([...html.matchAll(/\?v=(\d+)/g)].map((m) => m[1]))];
+            note(r.status === 200 && stamps.length === 1 && stamps[0] === want, 'GitHub Pages mirror: home', PAGES_BASE,
+              `${r.status || r.error}, stamp ${stamps.join(' + ') || 'none'} (branch ${want})`, false, true);
+          }
 
           // The Pages workflow's own record, read on every run: the latest
           // finished run on the default branch, and any newer one still queued
@@ -172,11 +183,11 @@ jobs:
                 console.log(`::warning::no finished Pages run on ${branch} yet${busy ? '; one is ' + busy.status : ''}`);
               } else {
                 const ok = last.conclusion === 'success';
-                note(ok, what, last.html_url,
+                note(ok, what + ' (mirror)', last.html_url,
                   `run ${last.run_number} on ${branch} (${last.head_sha.slice(0, 7)}, ${last.event}) ended "${last.conclusion}"`
                     + (ok ? '' : busy ? `; a newer run is ${busy.status}` : '; no newer run is queued or running, so that commit is not live'),
-                  !ok && !!busy);
-                why = ` No newer deploy is queued or running; the last Pages run ended "${last.conclusion}": ${last.html_url}`;
+                  !ok && !!busy, true);
+                // the Pages run is the mirror's: it says nothing about the canonical (Vercel) deploy
               }
             } catch (e) {
               note(false, what, API + '/actions/workflows/pages.yml/runs', `could not be read: ${e.message}`);

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://brvetr4ve1er.github.io/Numidea.tech/sitemap.xml
+Sitemap: https://numidea-tech.vercel.app/sitemap.xml

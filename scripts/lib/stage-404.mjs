@@ -13,7 +13,7 @@
  * this, the prefix alone, so a fragment rides along:
  *
  *   stage404(html, '/Numidea.tech/')   GitHub Pages (the repository subpath,
- *                                      from scripts/site.mjs BASE):
+ *                                      from scripts/site.mjs PAGES_BASE):
  *                                      /Numidea.tech/, /Numidea.tech/#apercu
  *   stage404(html, '/')                Netlify, Vercel: the domain root
  *

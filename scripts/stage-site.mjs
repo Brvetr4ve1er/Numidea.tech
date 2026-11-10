@@ -9,9 +9,9 @@
  * _site/404.html then gets its JavaScript-off links from the site root
  * (scripts/lib/stage-404.mjs), because the hosts serve it at any depth:
  *   node scripts/stage-site.mjs           the site at "/" (Netlify, Vercel)
- *   node scripts/stage-site.mjs --pages   GitHub Pages: the path of BASE in
- *                                         scripts/site.mjs ("/Numidea.tech/",
- *                                         or "/" once BASE is a custom domain)
+ *   node scripts/stage-site.mjs --pages   GitHub Pages mirror: the path of
+ *                                         PAGES_BASE in scripts/site.mjs
+ *                                         ("/Numidea.tech/")
  * Then every staged .css and .js loses its comments (scripts/lib/strip-
  * comments.mjs): the repository keeps them, the visitor does not download
  * them. Pages are copied as they are, since their inline scripts are hashed
@@ -20,12 +20,12 @@
  */
 import { rmSync, cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join, basename } from 'node:path';
-import { ROOT, DEPLOY, isDeploySkipped, BASE } from './site.mjs';
+import { ROOT, DEPLOY, isDeploySkipped, PAGES_BASE } from './site.mjs';
 import { stage404 } from './lib/stage-404.mjs';
 import { stripComments } from './lib/strip-comments.mjs';
 
 const OUT = join(ROOT, '_site');
-const SITE_ROOT = process.argv.includes('--pages') ? new URL(BASE).pathname : '/';
+const SITE_ROOT = process.argv.includes('--pages') ? new URL(PAGES_BASE).pathname : '/';
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT);
 const missing = DEPLOY.filter((p) => !existsSync(join(ROOT, p)));

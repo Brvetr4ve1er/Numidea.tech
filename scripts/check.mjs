@@ -80,7 +80,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import { join, dirname, normalize, basename, extname } from 'node:path';
-import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, isDeploySkipped, NOT_DEPLOYED, BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
+import { ROOT, PAGES, EXTRA_PAGES, DEPLOY, isDeploySkipped, NOT_DEPLOYED, BASE, PAGES_BASE, LANGS, LEGAL_PUBLISHED } from './site.mjs';
 import { SCENE_HTML } from './build-scene.mjs';
 import { renderSitemap, STATIC_LANG, TARIFS_LANG } from './build-sitemap.mjs';
 import { renderTarifs } from './build-tarifs.mjs';
@@ -392,7 +392,7 @@ problems.length ? problems.forEach(bad) : ok(`deploy set covers every page and l
   const src = read('404.html'), code = (h) => scripts(h).map((x) => x.text).join('\0');
   const markup = (h) => h.replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<!--[\s\S]*?-->/g, '');
   const errs = [];
-  for (const root of [...new Set([new URL(BASE).pathname, '/'])]) {
+  for (const root of [...new Set([new URL(PAGES_BASE).pathname, new URL(BASE).pathname, '/'])]) {
     let out;
     try { out = stage404(src, root); } catch (e) { errs.push(e.message); continue; }
     if (code(out) !== code(src)) errs.push(`staging for ${root} changes an inline script`);
@@ -400,7 +400,7 @@ problems.length ? problems.forEach(bad) : ok(`deploy set covers every page and l
     if (rel.length) errs.push(`staged for ${root}, 404.html still has relative links: ${rel.join(', ')}`);
   }
   errs.length ? bad('404.html staging: ' + errs.join('; '))
-    : ok(`404.html stages with its JavaScript-off links from the site root (${new URL(BASE).pathname} on Pages, / on the mirrors)`);
+    : ok(`404.html stages with its JavaScript-off links from the site root (${new URL(PAGES_BASE).pathname} on the Pages mirror, / on Vercel and Netlify)`);
 }
 // One canonical per page, from one place. A page whose language follows
 // ?lang= (its head script reads it: index.html, which sends ?lang= to the
@@ -1298,7 +1298,7 @@ for (const spec of [
 // red. robots.txt names BASE/sitemap.xml and disallows none of the
 // sitemap's URLs (?lang= versions included) for a search engine ('*',
 // Googlebot, Bingbot), whether served at the host root (the mirrors) or
-// under BASE's path (Pages). The hreflang alternates in a page's head equal its
+// under PAGES_BASE's path (the Pages mirror). The hreflang alternates in a page's head equal its
 // sitemap entry's. The studio's ProfessionalService JSON-LD states name,
 // url, locality, country and telephone, and index.html describes the site
 // itself in a WebSite object (name = og:site_name, url, the three languages).
@@ -1436,7 +1436,7 @@ for (const spec of [
   // robots.txt: the sitemap line, and no published URL disallowed for a
   // search engine. Every sitemap <loc>, its ?lang= versions included (and
   // legal/'s while it is held back), is tested as the mirrors serve it (at the
-  // host root) and as Pages serves it (under BASE's path). A crawler obeys
+  // host root) and as the Pages mirror serves it (under PAGES_BASE's path). A crawler obeys
   // the groups that name it, else the '*' group; '*' (every engine without a
   // group of its own), Googlebot and Bingbot are evaluated, so a group for
   // another crawler (User-agent: GPTBot / Disallow: /) is the owner's call.
@@ -1461,13 +1461,13 @@ for (const spec of [
     return (named.length ? named : groups.filter((g) => g.tokens.includes('*'))).flatMap((g) => g.rules);
   };
   const robotsRe = (p) => new RegExp('^' + p.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\\\$$/, '$'));
-  const sub = new URL(BASE).pathname;
+  const sub = new URL(PAGES_BASE).pathname;
   const locs = [...(LEGAL_PUBLISHED ? smap : sitemapOf(renderSitemap([...PAGES, 'legal/index.html']))).keys()].map((u) => [u, 'published URLs'])
     .concat(EXTRA_PAGES.map((f) => [BASE + f, 'noindex embeds (a blocked page\'s noindex is never read)']));
   const blocked = new Map();
   for (const [loc, kind] of locs) {
     const u = new URL(loc), full = u.pathname + u.search;
-    for (const path of new Set([full, full.startsWith(sub) ? '/' + full.slice(sub.length) : full])) for (const bot of ['*', 'googlebot', 'bingbot']) {
+    for (const path of new Set([full, full.startsWith(sub) ? '/' + full.slice(sub.length) : full, sub + full.replace(/^\//, '')])) for (const bot of ['*', 'googlebot', 'bingbot']) {
       const hit = rulesOf(bot).filter((r) => robotsRe(r.path).test(path)).sort((a, b) => b.path.length - a.path.length || b.allow - a.allow)[0];
       if (!hit || hit.allow) continue;
       const k = `"Disallow: ${hit.path}" (User-agent: ${hit.agents.join(', ')})\u0000${kind}`;

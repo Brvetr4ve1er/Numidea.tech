@@ -28,7 +28,7 @@
  * totals only, at both sizes, scene/ in all three languages.
  *
  *   METRICS_BASE=<url>  measure a deployed copy instead of this checkout, e.g.
- *                       METRICS_BASE=https://brvetr4ve1er.github.io/Numidea.tech
+ *                       METRICS_BASE=https://numidea-tech.vercel.app
  *   METRICS_OUT=<file>  where the JSON goes (default: .tmp/metrics.json, git-ignored)
  *
  * Prints one summary table and the line IMPROVEMENTS.md's history takes.

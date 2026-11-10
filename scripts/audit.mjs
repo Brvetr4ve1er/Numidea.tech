@@ -83,7 +83,7 @@
  * aria-labelledby) are printed as warnings: they need a look, not a failure.
  *
  *   AUDIT_BASE=<url>    audit a deployed copy instead of this checkout, e.g.
- *                       AUDIT_BASE=https://brvetr4ve1er.github.io/Numidea.tech
+ *                       AUDIT_BASE=https://numidea-tech.vercel.app
  *                       (the legal preview, which is never deployed, is skipped)
  *   AUDIT_ONLY=<regex>  only the runs whose label matches, e.g. to measure one
  *                       timing failure again alone: AUDIT_ONLY='^throttled'
@@ -98,7 +98,7 @@ import {watchCsp} from './lib/csp-watch.mjs';
 import {loopState} from './lib/loop-state.mjs';
 import {deployFiles} from './lib/deploy-files.mjs';
 import {stage404} from './lib/stage-404.mjs';
-import {ROOT,BASE,THEMES,LEGAL_PUBLISHED} from './site.mjs';
+import {ROOT,BASE,PAGES_BASE,THEMES,LEGAL_PUBLISHED} from './site.mjs';
 const REMOTE=(process.env.AUDIT_BASE||'').trim().replace(/\/+$/,'');
 const ONLY=process.env.AUDIT_ONLY?new RegExp(process.env.AUDIT_ONLY):null;
 // a missing URL gets 404.html with status 404, as on every host
@@ -309,16 +309,17 @@ const bootConsole=async p=>{
    offer's), and paint with the theme's tokens. The page's own 404 is the
    one failed request expected. */
 const PUBLISHED=new Set(deployFiles());
-const pagesRoot=new URL(BASE).pathname;
-// emulate: answer BASE's host from this checkout instead of the network
+// emulate: answer the host of `site` (BASE, or PAGES_BASE for the GitHub Pages
+// mirror under its repository subpath) from this checkout instead of the network
 const nested404=async(label,{site,path,js=true,theme,lang,emulate=false})=>{
+  const pagesRoot=new URL(site).pathname;
   if(ONLY&&!ONLY.test(label))return;
   const ctx=await b.newContext({viewport:{width:1280,height:900},javaScriptEnabled:js});
   if(emulate){
     const staged=stage404(readFileSync(join(ROOT,'404.html'),'utf8'),pagesRoot);
     await ctx.route(()=>true,r=>{
       const u=new URL(r.request().url());
-      if(u.origin!==new URL(BASE).origin)return r.abort();
+      if(u.origin!==new URL(site).origin)return r.abort();
       if(!u.pathname.startsWith(pagesRoot))return r.fulfill({status:404,body:''});
       let rel=decodeURIComponent(u.pathname.slice(pagesRoot.length));
       if(rel===''||rel.endsWith('/'))rel+='index.html';
@@ -610,8 +611,10 @@ await printPage('print tarifs ar','/ar/tarifs/index.html',{lang:'ar'});
 console.log('— 404 two folders down —');
 await nested404('404 nested arcanum/ar',{site:B+'/',path:'a/b/missing?lang=ar',theme:'arcanum'});
 if(!REMOTE){
-  await nested404('404 pages nested fr',{site:BASE,path:'a/b/missing?lang=fr',emulate:true});
-  await nested404('404 pages nested no-JS',{site:BASE,path:'a/b/c/nope.html',js:false,emulate:true});
+  await nested404('404 canonical nested fr',{site:BASE,path:'a/b/missing?lang=fr',emulate:true});
+  await nested404('404 canonical nested no-JS',{site:BASE,path:'a/b/c/nope.html',js:false,emulate:true});
+  await nested404('404 pages nested fr',{site:PAGES_BASE,path:'a/b/missing?lang=fr',emulate:true});
+  await nested404('404 pages nested no-JS',{site:PAGES_BASE,path:'a/b/c/nope.html',js:false,emulate:true});
 }
 console.log('— first paint in fallback type: webfonts refused vs loaded, 360-1600 —');
 for(const t of THEMES)for(const l of ['fr','en'])await fallbackType(`fallback type ${t}/${l}`,{theme:t,lang:l});

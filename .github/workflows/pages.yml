@@ -136,7 +136,7 @@ jobs:
 
       - name: Stage publishable files into _site/
         # --pages: _site/404.html gets its JavaScript-off links from the
-        # repository subpath (the path of BASE in scripts/site.mjs)
+        # repository subpath (the path of PAGES_BASE in scripts/site.mjs)
         run: node scripts/stage-site.mjs --pages
 
       - name: Configure Pages (auto-enable with Actions as the source)

@@ -17,7 +17,14 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-export const BASE = 'https://brvetr4ve1er.github.io/Numidea.tech/';
+/* The canonical host: every canonical, og:url, hreflang, sitemap, robots and
+   JSON-LD URL names it. Vercel for now (owner decision 2026-11-10); a custom
+   domain replaces it later, and this is the one line to change. */
+export const BASE = 'https://numidea-tech.vercel.app/';
+/* The GitHub Pages mirror, served under the repository subpath. Never
+   canonical: it only decides where the Pages staging roots its 404 links
+   (stage-site.mjs --pages) and what the monitor and the audit probe. */
+export const PAGES_BASE = 'https://brvetr4ve1er.github.io/Numidea.tech/';
 export const LANGS = ['fr', 'en', 'ar'];
 export const THEMES = ['arcanum', 'daylight'];
 
