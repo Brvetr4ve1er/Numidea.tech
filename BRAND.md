@@ -2960,8 +2960,8 @@ The studio's `ProfessionalService` JSON-LD states name, URL, town, country
 and phone. A `WebSite` object gives the site name (the `og:site_name`), the
 home URL and the three languages. Search engines take a site name only from a
 domain's or subdomain's home page, not from a subdirectory such as
-`/Numidea.tech/`, so it names the site in results once the site has its own
-domain. Legal fields (legal name, registration number…) join the structured
+`/Numidea.tech/` (the Pages mirror), so it names the site in results from a
+host root: Vercel's `numidea-tech.vercel.app` now, a custom domain later. Legal fields (legal name, registration number…) join the structured
 data only once the owner supplies them (`OWNER-CONTENT.md` §1).
 
 ## Client voices and photo slots
@@ -3104,8 +3104,10 @@ leaves out a folder's own notes and the WorkspaceHQ export's manifest
 case: the embed spells its notes `readme.md`, and 38 KB of them reached the
 published set until 2026-10-31); every walker (stage, deploy-files, check,
 build-legal) asks the same function. Every host builds from `_site/`: GitHub
-Pages is canonical (https://brvetr4ve1er.github.io/Numidea.tech/, via
-`.github/workflows/pages.yml`), and Netlify and Vercel are mirrors.
+Vercel is canonical for now (https://numidea-tech.vercel.app/, `BASE`;
+owner decision 2026-11-10), GitHub Pages
+(https://brvetr4ve1er.github.io/Numidea.tech/, `PAGES_BASE`, via
+`.github/workflows/pages.yml`) and Netlify are mirrors.
 `NOT_DEPLOYED` lists what must never be served, including `knowledge-base/`,
 `audit/`, `scripts/`, `legal-preview/`, `NOTICE.md`, `.nvmrc` and this file.
 `campaign/` is kept outside the repository altogether. The published set on
@@ -3115,8 +3117,7 @@ Pages is canonical (https://brvetr4ve1er.github.io/Numidea.tech/, via
 ## Content-Security-Policy
 
 Every page carries its policy as `<meta http-equiv="Content-Security-Policy">`,
-written right after the viewport meta, because GitHub Pages (the canonical
-host) cannot send headers. A meta policy governs only what comes after it, so
+written right after the viewport meta, because GitHub Pages (the mirror) cannot send headers. A meta policy governs only what comes after it, so
 nothing it covers (script, style, link, base) may come first; check.mjs 16
 holds that. `scripts/lib/csp.mjs` (`withCsp(html, kind)`) computes the policy
 from the page's own markup. `npm run build` applies it: `build-csp.mjs` runs
@@ -3228,7 +3229,8 @@ change that.
   to its `mailto:` handoff.
 - scene's viewer, the hub's live rig (its lightbox went with the diary,
   56f29c1), 404 at a nested path (also on an
-  emulated `https://brvetr4ve1er.github.io/Numidea.tech/`), and the legal
+  emulated `https://brvetr4ve1er.github.io/Numidea.tech/`, PAGES_BASE; the canonical
+  host's root is run too), and the legal
   page's preview.
 - workspacehq/ with the trailer and walkthrough playing and the console
   booted from "Boot the console" and clicked through, plus each embed

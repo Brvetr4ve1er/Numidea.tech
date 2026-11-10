@@ -89,12 +89,16 @@ NOTICE.md             # what LICENSE (CC0) covers and what it does not
 
 ### Deploy
 
-- **GitHub Pages is canonical:** <https://brvetr4ve1er.github.io/Numidea.tech/>.
+- **Vercel is canonical, for now:** <https://numidea-tech.vercel.app/> (`BASE` in
+  `scripts/site.mjs`; a custom domain will replace it, owner decision 2026-11-10).
+  **GitHub Pages is a mirror:** <https://brvetr4ve1er.github.io/Numidea.tech/>
+  (`PAGES_BASE`; staged with `--pages`, frozen on the 25 October build by a
+  billing lock).
   Every push to the working branch runs the gates in `pages.yml` (below); only
   when every one is green does `scripts/stage-site.mjs` copy `DEPLOY` from
   `scripts/site.mjs` into `_site/`, which is published. A red gate leaves the
   live site as it was.
-- **Netlify and Vercel are mirrors.** `netlify.toml` and `vercel.json` run
+- **Netlify is a mirror; Vercel is the canonical host.** `netlify.toml` and `vercel.json` run
   `check` and `themes-check`, then the same staging, and publish `_site/`.
   They do not run the browser gates.
 - **Never published:** `scripts/`, `knowledge-base/`, `audit/`, `legal-preview/`

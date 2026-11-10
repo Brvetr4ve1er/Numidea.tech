@@ -9,8 +9,12 @@ on billing; [section 9](#9-outage-and-fallback) says what to do meanwhile).
 
 ## 1. Where the site lives
 
-- **Canonical host: GitHub Pages**, <https://brvetr4ve1er.github.io/Numidea.tech/>
-  (`BASE` in `scripts/site.mjs`). Every page except 404 names one canonical
+- **Canonical host: Vercel, for now**, <https://numidea-tech.vercel.app/>
+  (`BASE` in `scripts/site.mjs`; owner decision 2026-11-10, a custom domain
+  will replace it, and `BASE` is the one line to change). The GitHub Pages
+  mirror, <https://brvetr4ve1er.github.io/Numidea.tech/> (`PAGES_BASE`), is
+  frozen on the 25 October build by a billing lock and is never canonical.
+  Every page except 404 names one canonical
   URL (`check.mjs` block 6). `sitemap.xml` is generated from `BASE`
   (`scripts/build-sitemap.mjs`).
 - **Repository:** `Brvetr4ve1er/Numidea.tech` on GitHub. Its former name,
@@ -19,14 +23,15 @@ on billing; [section 9](#9-outage-and-fallback) says what to do meanwhile).
 - **Working branch:** `claude/numidea-labs-landing-c4jokc`. It is also the
   repository's default branch, so scheduled workflows and Dependabot run on it.
   Every push to it deploys, once the gates pass (`.github/workflows/pages.yml`).
-- **Mirrors: Netlify and Vercel** (`netlify.toml`, `vercel.json`). They stage
+- **Vercel and Netlify** (`vercel.json`, `netlify.toml`). They stage
   the same files into `_site/` (`scripts/stage-site.mjs`). They also send HTTP
   headers that GitHub Pages cannot set.
   - Their build runs only `check.mjs` and `themes-check.mjs`. It skips the
     browser gates and does not wait for `pages.yml`. A mirror connected to the
     repository therefore builds every push on its own, and can publish a
     commit that the Pages gates refused.
-  - Their pages carry the same canonical URLs, which point at GitHub Pages.
+  - Every host's pages carry the same canonical URLs, which point at Vercel
+    (`BASE`); the Pages mirror is staged with `--pages` for its 404 links only.
   - The repository does not record the mirrors' addresses or whether they are
     live (owner, below).
 - **What is published:** exactly `DEPLOY` in `scripts/site.mjs`: the home
@@ -82,7 +87,7 @@ moves ([section 3](#3-how-a-change-reaches-the-live-site), step 3).
 | --- | --- | --- |
 | 14 | The gated deploy is green | Actions → "Deploy to GitHub Pages": the `gates` job and then `deploy` (`pages.yml`). The workflow file puts the gates at about twelve minutes. A red gate leaves the live site as it was. A push that changes only `**.md`, `knowledge-base/**` or `audit/**` starts no deploy (`paths-ignore`); `check.yml` still runs on it |
 | 15 | The live pages answer, carry the new stamp, and stay within the Lighthouse budgets | Actions → "Live monitor" → Run workflow (`monitor.yml`). It also runs every six hours |
-| 16 | The live site passes the browser audit | `AUDIT_BASE=https://brvetr4ve1er.github.io/Numidea.tech npm run audit` (`scripts/audit.mjs`; the local-only runs are skipped) |
+| 16 | The live site passes the browser audit | `AUDIT_BASE=https://numidea-tech.vercel.app npm run audit` (`scripts/audit.mjs`; the local-only runs are skipped) |
 | 17 | The mirrors built the same commit | the Netlify and Vercel dashboards (owner); nothing in this repository watches them |
 
 ### Owner-only items
@@ -472,7 +477,7 @@ the site deploys later).**
   links`, `npm run metrics`; the Actions state is reported honestly in the
   log (IMPROVEMENTS.md) and never as "deployed".
 - The weekly session probes the live stamp itself while the monitor cannot:
-  `curl -s https://brvetr4ve1er.github.io/Numidea.tech/ | grep -o '?v=[0-9]\{12\}' | head -1`
+  `curl -s https://numidea-tech.vercel.app/ | grep -o '?v=[0-9]\{12\}' | head -1`
   against the branch head's stamp (`grep -o '?v=[0-9]\{12\}' index.html | head -1`).
   Equal stamps mean the site has moved; the stamp alone cannot show a deploy
   whose gates were red, so the first run after billing clears is read in
@@ -483,9 +488,9 @@ the site deploys later).**
   requests, which will each want a green `check`.
 
 **Fallback release path, if the site must move before billing is cleared.**
-`BASE` does not move: the canonical host stays GitHub Pages, the sitemap,
-the canonicals and the share-card URLs keep naming it, and nothing in the
-repository changes. The mirrors are only a way to put the same files on a
+`BASE` does not move: the canonical host stays Vercel (a custom domain
+moves it later, deliberately), the sitemap, the canonicals and the share-card
+URLs keep naming it, and nothing in the repository changes. The mirrors are only a way to put the same files on a
 screen.
 
 1. Run the gates locally as above; stage the site with the mirrors' root:
