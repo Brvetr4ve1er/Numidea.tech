@@ -63,7 +63,12 @@ html[dir="rtl"] .t-ans-n{letter-spacing:0;text-transform:none}
    matching the jump row; the whole width (styles.css sets a section's
    own heading in the header's six columns) */
 #pricing h2.sec{grid-column:1/-1;max-width:none;margin:var(--sec-pad) 0 var(--s-6)}
-#pricing h2.sec+.sec-lead{margin-bottom:var(--s-6)}
+#pricing h2.sec+.sec-lead,.t-est>.sec-lead{grid-column:1/-1;margin-bottom:var(--s-6)}
+/* a part's two lead lines (the market's: what the guide's reference part covers, then the part's own): the first sits close over the second */
+#pricing h2.sec+.sec-lead.t-sub{margin-bottom:var(--s-2)}
+#pricing .sec-lead.t-sub+.sec-lead{margin-bottom:var(--s-6)}
+/* the lines under the guide's part headings sit close under them: the heading's own gap is the lead's */
+#pricing h2.sec:has(+.sec-lead){margin-bottom:var(--s-3)}
 
 /* the estimator's part: its heading is the summary of an open <details>
    (scripts/build-tarifs.mjs unfold()), drawn as the other parts' headings */

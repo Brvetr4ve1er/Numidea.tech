@@ -164,6 +164,7 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
          Numidea column from PRICE_MODEL. -->
     <div class="market" id="market">
       <h2 class="sec font-swap-display" id="mk-h" data-i18n="mk.h">Algérie, France, États-Unis : un projet, trois marchés</h2>
+      <p class="sec-lead t-sub" data-i18n="price.moreHint">Le marché, les modèles de facturation, ce qui fait bouger un devis.</p>
       <p class="sec-lead" data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.</p>
 
       <fieldset class="mk-cur est-field">
@@ -276,13 +277,14 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
 
 /* the home's estimator, unfolded: the guide is about prices, so the home's
    panel frame (.capabilities, a framed <details> around the framed
-   estimator) and its summary's hint and chevron go, and the summary holds the
-   part's h2 alone. It stays an open <details class="price-est">: keys.mjs
+   estimator) and its summary's chevron go, and the summary holds the
+   part's h2 alone, its hint following as the part's lead. It stays an open <details class="price-est">: keys.mjs
    reads the guide's estimator as one (estimatePrefill). */
 function unfold(est) {
-  const m = /^([ \t]*)<details class="capabilities price-more price-est">\s*<summary>\s*<span data-i18n="([^"]+)">([^<]*)<\/span>[\s\S]*?<\/summary>\s*<div class="pm-body">\r?\n([\s\S]*?)\r?\n[ \t]*<\/div>\r?\n([ \t]*)<\/details>$/.exec(est);
-  if (!m) throw new Error('index.html: the estimator SLOT is not one <details class="capabilities price-more price-est"> with a summary title and a .pm-body');
-  return `${m[1]}<details class="price-est t-est" open>\n${m[1]}  <summary><h2 class="sec font-swap-display" id="est-h" data-i18n="${m[2]}">${m[3]}</h2></summary>\n${m[4]}\n${m[5]}</details>`;
+  const m = /^([ \t]*)<details class="capabilities price-more price-est">\s*<summary>\s*<span data-i18n="([^"]+)">([^<]*)<\/span>\s*<span class="hint" data-i18n="([^"]+)">([^<]*)<\/span>[\s\S]*?<\/summary>\s*<div class="pm-body">\r?\n([\s\S]*?)\r?\n[ \t]*<\/div>\r?\n([ \t]*)<\/details>$/.exec(est);
+  if (!m) throw new Error('index.html: the estimator SLOT is not one <details class="capabilities price-more price-est"> with a summary title, its hint and a .pm-body');
+  // the home's summary hint ("ce que les formules ne chiffrent pas") stays, as the part's lead under its h2
+  return `${m[1]}<details class="price-est t-est" open>\n${m[1]}  <summary><h2 class="sec font-swap-display" id="est-h" data-i18n="${m[2]}">${m[3]}</h2></summary>\n${m[1]}  <p class="sec-lead" data-i18n="${m[4]}">${m[5]}</p>\n${m[6]}\n${m[7]}</details>`;
 }
 /* The answer first: each tier's name, range and weeks, as its card in the
    tiers SLOT publishes them, for the guide's first screen (the first figure
@@ -443,6 +445,7 @@ ${answers(tiers, lang)}
          home's section heading (h2.sec); the tiers' is the guide's word for
          them, the jump row's. -->
     <h2 class="sec font-swap-display" id="pricing-tiers" data-i18n="tarifs.jTiers">${toMarkup(fr['tarifs.jTiers'])}</h2>
+    <p class="sec-lead" data-i18n="price.title">${toMarkup(fr['price.title'])}</p>
 ${tiers}
 
 ${estimator}
