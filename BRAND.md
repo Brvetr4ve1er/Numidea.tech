@@ -1520,6 +1520,36 @@ captured), `vbugs` (the decorative watermarks are allowed by name),
 `keys` (the controls by keyboard) and `metrics`. `npm run design` does not
 measure it.
 
+## hub/brand/ — the three brand books
+
+The owner's design project carries four brand-book decks (`brand/*.dc.html`).
+Since 2026-11-11 three are static pages of the Studio: `/hub/brand/almaflow/`
+(AlmaFlowClim, 12 planches), `/hub/brand/traveler/` (the tr4veler.exe codex,
+12 planches) and `/hub/brand/numidea/` (the studio's own identity). They share
+`hub/brand/style.css` (paper, ink and the red seal, as the Studio), use the
+site's own font files, load no deck runtime and no script beyond
+`assets/carry.js`, and take their pictures from the Studio's `hub/img/`
+wherever one fits (the rest in `hub/brand/<slug>/img/`, WebP, check 17 and
+17b). They are in `PAGES` (`scripts/site.mjs`), the sitemap and the gates
+(`audit`, `keys`, `check`). The case sheets link to them: AlmaFlow's FIG. 10
+tile and delivered item 8, the Traveler's poster tile and the end of its
+list, and `#brand` ("Notre propre marque, planche par planche"). AlmaFlow and
+Traveler are French only and Numidea's is English only, like the bible; they
+carry no Arabic.
+- **Client text follows the site's facts.** AlmaFlow's page drops the "24h",
+  RGE / décennale, "Devis gratuit", MaPrime Rénov', phone, address, e-mail and
+  domain of the design; the mockup pictures that still show a phone number are
+  captioned "maquette" (the owner's question on re-rendering them is open).
+- **Numidea's page is the cleaned version of the 27 October draft**: who we
+  are and what we sell are rewritten to today's facts (one founder and
+  freelancers, a reply the next working day, the Aperçu terms); the open-items
+  plate, "4 specialists", the 24 h reply, the TypeScript line, the retired
+  Engineering surface and the stale gap notes are gone; the "Shipped" and
+  "Proposed" tags stay, so it reads as the draft it is.
+- **"Brand Enhancement" is not published.** It is the studio's own "LOUD gear"
+  exploration, not a Bordj Steel deliverable, so there is no
+  `/hub/brand/bordjsteel/` and no link from the Bordj case.
+
 ## hub/bible/ — the character bible
 
 **VOIDSPLUNKER.std in the Studio (2026-11-08).** The Studio's dossier 06
@@ -1637,18 +1667,35 @@ sections are numbered as the design numbers them:
   "VOIDSPLUNKER.std is an agency of one … you work directly with me" (the
   main site's team wording is a separate question). The Etsy link is gone.
   There is no line on the page about how the illustrations were made.
-- **Removed with the character bible, and why.** The page of 2026-10-28 was
-  built on another set of drawings, and its parts went with them: the
-  Behance covers grid (check 5 now holds each sheet's identity link to a
-  Behance gallery and the hub to the profile link), the studio diary and its
-  `<dialog>` viewer, `hub/loops/`, the hero's three registered layers and
-  their parallax, the Kūro die-cuts, the WorkspaceHQ cartridge (WorkspaceHQ
-  is an Elsewhere row now), the paper/night pair with its theme pill and
-  `void-theme`, and Syne (no longer set; its files and rules stay in
-  `assets/fonts-hub.css`, never requested). `npm run hub:art`
-  (`scripts/build-hub-art.mjs`, `scripts/hub-art-data.mjs`) exported that
-  page and is dead beside `hub:rig`; check 17b still reads `MOTION_MS` from
-  `hub-art-data.mjs`.
+- **Removed with the character bible, and what came back (2026-11-11).** The
+  page of 2026-10-28 was built on another set of drawings, and its parts went
+  with them on 2026-11-05 and 2026-11-07 without anyone deciding item by item.
+  On 2026-11-11 the owner said yes to bringing them back, in the Studio's own
+  style and on the pages they fit, not as a second page. Where each went:
+  the twelve Behance covers and their links are dossier 08 "Sur Behance" in
+  the Studio's #work (check 5 still holds each sheet's identity link and the
+  hub's profile link); the diary is the Lab's "Journal d'atelier" row (J01 to
+  J08) with its previous/next/arrow-key viewer in the Studio's one `#lightbox`;
+  the hero's long-coat drawing is the founder section's plate, played once
+  (Kūro then Yasser, under 5 s) and still under reduced motion, with no
+  pointer parallax; "What I make" is the founder section's three cards; the
+  handle, eyebrow and motto sit on the founder card; the two Kūro die-cuts
+  stand by the founder links and the Behance plate; the three short loops are
+  `yasser-wave` in the contact card, `kuro-sleep` in the footer and
+  `yasser-lost` on the bible (each finite, at most 5 s, a still under reduced
+  motion, as check 17b reads them); the WorkspaceHQ cartridge is a ticket
+  in the Studio's "Aussi, faits maison" line and a Press Start 2P face used
+  only there. `hub/loops/` stays gone as a folder (the loops live in
+  `hub/img/` and `hub/bible/art/`). What stays removed, by decision: the
+  paper/night pair with its theme pill and `void-theme`, the hero's parallax,
+  Syne (no longer set; its files and rules stay in `assets/fonts-hub.css`,
+  never requested), the Etsy link, and the 33-poster series. `npm run
+  hub:art` (`scripts/build-hub-art.mjs`, `scripts/hub-art-data.mjs`) exported
+  the 2026-10-28 page and is dead beside `hub:rig`; check 17b still reads
+  `MOTION_MS` from `hub-art-data.mjs`. The Studio's images are built by
+  `scripts/build-hub-img.mjs`; the eight diary `.full.webp` files and
+  `band-tall-800` were cut once with the same settings and are not in its
+  `PLAN` yet.
 
 ### History (removed features): the hub of 2026-10-28
 

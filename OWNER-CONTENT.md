@@ -2,7 +2,7 @@
 
 The site leaves a place for each item below and shows nothing until the real
 thing exists: no placeholders, no invented content. This file is not deployed.
-Status as of 2026-11-08 (after the themes were cut to Arcanum and Daylight, section 19, and fleet 4b: the Studio page at /hub/, the critique pass; sections 20 and 21 are new, section 8 gained its list; before it, the owner's answers of 2026-10-30, the fix
+Status as of 2026-11-11 (after the recovery of the old personal page, section 21's last block; before it, on 2026-11-08, the themes were cut to Arcanum and Daylight, section 19, and fleet 4b: the Studio page at /hub/, the critique pass; sections 20 and 21 are new, section 8 gained its list; before it, the owner's answers of 2026-10-30, the fix
 fleets of 2026-10-31 and of 2026-11-03, the hub rebuilt as your character
 bible and the UX pass of 2026-11-06; sections 16 and 17 record those
 answers, and the page now carries them; section 19 lists what the UX pass
@@ -18,7 +18,7 @@ what the Studio page changed from your design).
 | 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07 and 2026-11-08 (the theme toggle's two labels; the Studio page and its five cases above all) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08 and 2026-11-11 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
@@ -31,7 +31,7 @@ what the Studio page changed from your design).
 | 18 | The founder's name in Arabic script | Still open: the Arabic hero lede shows "Yasser Hamisse" in Latin script (isolated in a `<bdi>` since 2026-11-06) until you give the spelling | `assets/i18n/ar.js` (`hero.lede`) |
 | 19 | The UX pass's questions | 16 asked on 2026-11-06 (IMPROVEMENTS decisions 28 to 43, the recommended option first), plus the sharper captures that need the live sites; nothing changes until you answer | section 19 |
 | 20 | Copy proposals (I4): one claim per section heading, ledes that claim, the service taglines, a "je" version of the offer and the FAQ | Proposals only, each beside the current string; nothing on the pages changed (IMPROVEMENTS decisions 46, 47) | section 20 |
-| 21 | The Studio page (/hub/): what changed from your design, the pictures it lacks, the claims to confirm | Built 2026-11-07; the copy deviations are listed for your yes; 9 kinds of pictures missing; Arabic unreviewed | section 21; section 8 |
+| 21 | The Studio page (/hub/): what changed from your design, the pictures it lacks, the claims to confirm | Built 2026-11-07, then the lost content of your old page recovered 2026-11-11 (Behance dossier, "Ce que je fais", plate, diary, three brand books, links from the home); the copy deviations are listed for your yes; 8 kinds of pictures still stand in; the Brand Enhancement question; Arabic unreviewed | section 21; section 8 |
 
 ## 1. Legal notice + privacy page
 Fill every `null` in `scripts/legal-data.mjs`. `false` means "does not apply"
@@ -136,9 +136,9 @@ item 6 can cover it.
 
 ## 8. Arabic native review
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
-2026-11-06, 2026-11-07 and 2026-11-08 awaits native review** (the lists are at the end of this section,
+2026-11-06, 2026-11-07, 2026-11-08 and 2026-11-11 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06", "Written or changed on 2026-11-07" and "Written or changed on 2026-11-08"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08" and "Written or changed on 2026-11-11"); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -432,6 +432,37 @@ by a native speaker). Each key is "AR review: <key>":
   read left to right inside Arabic text: check they paste and read right;
 - the retired home keys are deleted in fr, en and ar (an older cached app.js
   does not reference them), nothing to review.
+
+Written or changed on 2026-11-11 (the recovery of the old personal page; none
+read by a native speaker). Each key is "AR review: <key>". The home's restored
+descriptions and taglines are your own words from the 3 November dictionary and
+are not listed as new; what follows is new or changed.
+- AR review for the home and the tarifs/scene pages: `contact.tzNote`
+  (the time-zone note under the hours), `founder.studio` and `founder.bible`
+  (the two links from the founder card to the Studio and to the English-only
+  bible), `footer.studio` (the footer's link), `scene` card label `ui.full`
+  («عرض اللوحة كاملة», the fold under the Glaive Store and WorkspaceHQ
+  cards in `scripts/scene-data.mjs`);
+- AR review for the Studio (`hub/src/i18n/ar.json`): `wedge.close.a`,
+  `wedge.close.b` (the closing line of the wedge), `brand.more` (the link to
+  the three brand books), `proof.be.*` (dossier 08 "Sur Behance": `kicker`,
+  `name`, `tag`, `sub`, `cta`, `case`, `listLabel` and the twelve covers'
+  `items.0` to `items.11` with their `title` and `alt`; the project titles are
+  Latin as on Behance), `proof.whqCart.kick`, `proof.whqCart.sub` (the
+  WorkspaceHQ cartridge ticket, which replaces `proof.whq`), `lab.diary.kicker`,
+  `lab.diary.title` and `lab.diary.items.0` to `.7` (the eight titled prints),
+  `founder.handle`, `founder.eyebrow`, `founder.motto` (kept in English as your
+  signature), `founder.plate`, `founder.plateAlt` (the plate caption; its mixed
+  Latin and Arabic date line reads slightly jumbled in bidi, so look at it),
+  `founder.make.title`, `founder.make.aside`, `founder.make.design`,
+  `founder.make.diary` and `founder.make.items.0` to `.2` (`role`, `line`,
+  `alt`);
+- AR review for the cases: AlmaFlowClim `brand.k`, `brand.t`, `brand.cta` and
+  `scope.items.7` (the brand-book tile and delivered item), Traveler
+  `peace.cta` and `end.items.6` («الكودكس» for the codex, back at the end of
+  the closing list);
+- the brand books are French only (AlmaFlow, Traveler) and English only
+  (Numidea's identity), like the bible, so they carry no Arabic to review.
 
 Owner to confirm (not Arabic): the VOIDSPLUNKER dossier on the Studio says only
 what the bible page prints; confirm that the character bible is a studio
@@ -819,7 +850,7 @@ pushed or deployed.
 | Contact | "Réponse sous 24 h, par quelqu'un qui code."; a "Réserver un appel / BIENTÔT" card; e-mail hello@numidealabs.com | "Réponse le jour ouvré suivant, par celui qui code."; hours line "Dimanche–jeudi, 9h–18h · messages seulement, pas d'appels"; WhatsApp +213 672 41 25 78; the Aperçu card opens WhatsApp with the home's message; the e-mail is the site's Gmail; no call card | reply time, hours and contact as answered on 2026-10-30 (F-1, F-2) |
 | Footer | TypeScript; @NUM_IDEA | JavaScript; handle dropped; links to the site, the bible, Instagram stick_itty and Behance | F-5 |
 | Sting | HUD "DAWN"; skip label "SKIP" at 8.5px; audio | "AUBE" in French; "PASSER" / "SKIP" / «تخطَّ» at 12px; no audio; gone by 2.6 s, skippable by any key, once per session | accessibility; motion cap |
-| Lab | 25 tiles, "déposez une nouvelle pièce" slots | the grid is 30 bible pieces (dossier 06 is the character bible itself, `hub/bible/`) and a link tile; no slots | the other tiles' pictures were never supplied |
+| Lab | 25 tiles, "déposez une nouvelle pièce" slots | the grid is 30 pieces (P and Y tiles, from the bible's art), then the titled diary row of eight prints (J01 to J08, since 2026-11-11), then a link tile to the bible; no slots | the other tiles' pictures were never supplied |
 | Contrast | opacity .38 on inactive process steps; cut chips at .4; #937F6B text | .72 on the step body only (numbers keep full colour); muted text and a line border; `--stone` #A8957F | AA as painted |
 | Sizes | 8.5 to 11px mono labels, 40×36 language buttons, 28px range | 12px (13px in Arabic), 44×44, 44px | targets and legibility |
 | Fonts | Arabic watermarks in Aref Ruqaa on every page | system serif outside the Arabic page; the nav's ع drawn | no Arabic face fetched for a decoration |
@@ -835,9 +866,9 @@ pushed or deployed.
 | Alliance Travel | pack price and "200 000 DA" scope card; totals 123 000 / 219 000 / 180 000 DA; "178 textes traduits"; "Sora · DM Sans"; scroll dots | tag "Identité + site"; a scope card of eight delivered items; the seven destinations say "Sur devis"; "9 pages en ligne", the visa service and the day-by-day programmes (scene's own figures); "DM Sans · Tajawal"; an "n / 4" counter | no published prices or claims; the faces the client's site uses |
 | Alliance Travel | cover chips "Omra" and "Billetterie", "par une seule équipe" | dropped | the site does not carry them; one founder |
 | Alliance Travel | the client's Instagram stories and flyers | shown as the client's artwork, prices in DA included (219 000 DA on the Bali story, 180000 DA on the Sharm flyer, 123.000 DZD on the Istanbul flyer) | decision needed (below) |
-| AlmaFlowClim | header chip "450 €"; card "450 € ≈ 68 000 DA"; "rappel sous 24h", "150+ clients", "RGE", "17 communes / 4 + FAQ"; almaflowclim.fr and a live frame; "Envoyée · rappel sous 24h"; the street address and phone on the Google card; a brand-book link | tag "Identité + site" and an eight-item delivery checklist; "une demande de devis, en un seul formulaire", "1 page par métier · 1 formulaire de devis · Gennevilliers (Île-de-France)"; almaflowclim.netlify.app and a link; "Démo : ce formulaire n'envoie rien."; "Gennevilliers (92)" only, MAQUETTE; the close-up as a plain "Visuel · maquette" tile | F-10, F-11, F-13, F-17, F-18, F-26 |
+| AlmaFlowClim | header chip "450 €"; card "450 € ≈ 68 000 DA"; "rappel sous 24h", "150+ clients", "RGE", "17 communes / 4 + FAQ"; almaflowclim.fr and a live frame; "Envoyée · rappel sous 24h"; the street address and phone on the Google card; a brand-book link | tag "Identité + site" and an eight-item delivery checklist; "une demande de devis, en un seul formulaire", "1 page par métier · 1 formulaire de devis · Gennevilliers (Île-de-France)"; almaflowclim.netlify.app and a link; "Démo : ce formulaire n'envoie rien."; "Gennevilliers (92)" only, MAQUETTE; the close-up as a plain "Visuel · maquette" tile; since 2026-11-11 the FIG. 10 tile reads "Brand book · 12 planches" with "Ouvrir le brand book ↗" to `/hub/brand/almaflow/`, ported without the "24h", RGE / décennale, "Devis gratuit", MaPrime Rénov', phone, address, e-mail and domain | F-10, F-11, F-13, F-17, F-18, F-26 |
 | AlmaFlowClim | one quote summary line "TOWN · n × SERVICE"; tile click advances a post | separate service and town tabs and a stepper; an explicit "Post suivant" button; posts reworded and MAQUETTE | the shell's hooks |
-| Traveler | "Cliquer pour sauter." on the atlas; a Codex tile (12 plates, "Ouvrir le codex"); a fake ISBN; an iframe of WorkspaceHQ with LV 27 / 7240 XP / 9/20 / 22j | atlas dots not interactive; "PLANCHE XII · AFFICHE / Anatomy of Peace" opening in the viewer; "Colophon" and "VOL.04"; a link tile to ../workspacehq/ with bars and no numbers | the codex file does not exist; no invented figures |
+| Traveler | "Cliquer pour sauter." on the atlas; a Codex tile (12 plates, "Ouvrir le codex"); a fake ISBN; an iframe of WorkspaceHQ with LV 27 / 7240 XP / 9/20 / 22j | atlas dots not interactive; "PLANCHE XII · AFFICHE / Anatomy of Peace" opening in the viewer; "Colophon" and "VOL.04"; a link tile to ../workspacehq/ with bars and no numbers; since 2026-11-11 the poster tile also carries "Ouvrir le codex ↗" to `/hub/brand/traveler/` (the 12-plate codex, a static page ported from your design) and "Codex" ends the closing list | the first build said the codex file did not exist; it does (`brand/Traveler Brand Book.dc.html`) and is ported; no invented figures |
 | Traveler | merch pictures labelled only on the store | every staged merch picture tagged MAQUETTE; brick marker text #8E382E (the colophon swatch keeps #A34135) | honesty; 4.8:1 |
 | Heetch | kicker "HEETCH DZ × NUMIDEA"; "TEMPS PLEIN" chip; "Heetch Pro" launch; a copy-the-code button (ERKEB50); "EN INTERNE · RÉEL"; "Le même rythme pour vous"; "le rapport qualité/vitesse d'une équipe produit" | "YASSER × HEETCH"; tag "Campagnes + réseaux"; "Chez Heetch depuis mai 2026" (the CV); no Pro claim; the code as plain type; "PUBLIÉ"; "Le même soin pour vous"; "du brief à la publication." | F-21, F-22, F-26: only what the CV says |
 
@@ -845,16 +876,29 @@ pushed or deployed.
 
 The masters of these were never in the download; the page uses pictures that
 exist instead. Please supply the originals or tell me to drop the slot.
+(Corrected 2026-11-11: the first list below named the Lab as lacking tiles and
+the scenes as untitled stand-ins; the Lab is 30 pieces and the eight diary
+scenes are now a titled row.)
 - Services 01, 02 and 04: desk, diorama and sunset stand in;
 - Process frames: sunset, diorama, desk, actor-win and the sting rooftop
   stand in;
-- the Lab: the design's 25 tiles are 30 bible pieces and a link tile;
+- the Lab: the design's 25 tiles are 30 pieces from the bible's art, plus the
+  diary row of eight prints and a link tile;
 - the Founder modes: pose-laptop, pose-coffee and kuro-loaf stand in;
-- studio scenes brain, clutter, desk2, desk3, am4, empty, revs, trav3, trav3b;
-  p01 to p20; c01 to c07; the poses 0, 2, 3, 4, 5 and 7 (the Alliance case
-  restored its charter flipbook, Canva carousel and extra destinations from the
-  files that exist); AlmaFlow's x-pac and x-pipes macros were never placed by
-  the design.
+- studio scenes desk3 and empty; p01 to p20; c01 to c07; the poses 0, 2, 3, 4, 5 and
+  7 (the Alliance case restored its charter flipbook, Canva carousel and extra
+  destinations from the files that exist); AlmaFlow's x-pac and x-pipes macros
+  were never placed by the design (the AlmaFlow brand book now uses them);
+- no longer stand-ins: the scenes brain, clutter, desk2, am4, revs, trav3 and
+  trav3b are the eight prints of the Lab's "Journal d'atelier" with their
+  titles;
+- the brand books: the design project has four (`brand/*.dc.html`). Three are
+  ported (`/hub/brand/almaflow/`, `/hub/brand/traveler/`,
+  `/hub/brand/numidea/`). The fourth, "Brand Enhancement", is not a Bordj
+  Steel brand book (it is the studio's own "LOUD gear" exploration, a turn-1
+  draft with three superseded mascot concepts), so it is not published and the
+  Bordj Steel case has no brand-book link; say if you want it published as a
+  labelled exploration, or dropped.
 
 **Claims to confirm (nothing was invented; these come from your design or the
 CV)**
@@ -878,6 +922,28 @@ CV)**
 - the service durations (Engine 2–6, Mark 2–5, Mind on quote) and the
   process copy rewritten to the home's terms;
 - the Arabic sting HUD kept in Latin.
+
+**The recovery of 2026-11-11** (your request of 2026-11-10 to bring back what
+the overwrite of the old personal page lost; RECOVERY report items L01 to L13
+and R01 to R17, all with your yes of 2026-11-11, which undoes decision 11 and
+M5). Local commits, not pushed. What is on the Studio now:
+- dossier 08 "Sur Behance" (12 covers, the profile link, Kūro's sticker), the
+  WorkspaceHQ cartridge ticket and "Pas d'intermédiaires. Juste le builder.";
+- the founder section's long-coat plate, your handle, eyebrow and motto,
+  "Ce que je fais" (Designer, Developer, Artist) and Kūro's paw; Yasser's wave
+  in the contact card, Kūro asleep in the footer, one yawn in the rig;
+- the Lab's "Journal d'atelier" (J01 to J08) in the one viewer;
+- the three brand books and their links (above);
+- on the home, /en/ and /ar/: the links to the Studio and the bible, your
+  restored descriptions, taglines and coordinates mark; on /scene/, /tarifs/
+  and WorkspaceHQ: the Glaive Store and WorkspaceHQ full sheets, the price
+  guide's lines and the breadcrumb.
+Still yours to decide: the Brand Enhancement question above; the AlmaFlow
+mockup pictures that carry a phone number and "Intervention sous 24h"; the
+Numidea identity page is a cleaned version of your 27 October draft (it keeps
+"Proposed" tags and your name order); the engraving place names stay off
+(neither picture shows the place the old caption named); the Arabic keys in
+section 8.
 
 **Known small issues** (owner-visible): the thin pale line at the right edge of
 the Heetch c08, c09 and c10 pictures (it looks like it is in the source images);
