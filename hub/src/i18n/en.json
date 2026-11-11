@@ -525,7 +525,35 @@
     "stickers": "THE STICKERS",
     "stickersAlt": "A sheet of Kūro stickers and merch",
     "bible": "The character bible →",
-    "cv": "The CV (PDF) ↓"
+    "cv": "The CV (PDF) ↓",
+    "handle": "br4vetr4veler",
+    "eyebrow": "ARTIST · DESIGNER · DEVELOPER",
+    "motto": "form is a function of obsession.",
+    "plate": "PL. · br4vetr4veler, 28 Oct 2026",
+    "plateAlt": "Yasser in a long bone coat, a coffee in his hand, and Kūro, the black cat, sitting beside him.",
+    "make": {
+      "title": "WHAT I MAKE",
+      "aside": "design meets code.",
+      "design": "The design work",
+      "diary": "The studio diary",
+      "items": [
+        {
+          "role": "DESIGNER",
+          "line": "Brand identities, posters and print.",
+          "alt": "Yasser at a drafting table, inking a logo in a sketchbook."
+        },
+        {
+          "role": "DEVELOPER",
+          "line": "Immersive web, and the systems humming underneath.",
+          "alt": "Yasser at a laptop full of code."
+        },
+        {
+          "role": "ARTIST",
+          "line": "The process, posted as it happens.",
+          "alt": "Yasser drawing on a pen display while Kūro walks across it."
+        }
+      ]
+    }
   },
   "faq": {
     "kicker": "/ 11 · QUESTIONS",

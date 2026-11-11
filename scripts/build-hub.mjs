@@ -235,8 +235,8 @@ html = html.replace(/<img\b([^>]*)>/g, (all, a) => {
 
 /* ---------------- the rest of the markup's rules ---------------- */
 const CLIENT_HOSTS = [...readFileSync(join(ROOT, 'index.html'), 'utf8').matchAll(/href="https:\/\/([^/"]+)[^"]*"/g)].map((m) => m[1]);
-const ALLOW = new Set([new URL(BASE).host, 'wa.me', 'www.behance.net', 'www.instagram.com', 'instagram.com', ...CLIENT_HOSTS]);
-for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|poster)="([^"]*)"/g)) {
+const ALLOW = new Set([new URL(BASE).host, 'wa.me', 'www.behance.net', 'www.deviantart.com', 'www.instagram.com', 'instagram.com', ...CLIENT_HOSTS]);
+for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|data-anim|poster)="([^"]*)"/g)) {
   const [, a, v] = m;
   // a srcset is a list of "file 480w" candidates: each file must exist and counts as referenced
   if (a === 'srcset') {
@@ -251,7 +251,7 @@ for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|poster)="([^"]*)"/g)
   if (/^https?:\/\//.test(v)) {
     const host = new URL(v).host;
     if (a !== 'href') fail(`${a}="${v}": a third-party request`);
-    else if (!ALLOW.has(host)) fail(`href="${v}": ${host} is not on the allow-list (the home's client sites, wa.me, Behance, Instagram)`);
+    else if (!ALLOW.has(host)) fail(`href="${v}": ${host} is not on the allow-list (the home's client sites, wa.me, Behance, DeviantArt, Instagram)`);
     continue;
   }
   const file = localFile(v);

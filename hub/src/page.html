@@ -158,6 +158,8 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
         <img data-kf="left" src="bible/art/rig-k-left.webp" alt="">
         <img data-kf="right" src="bible/art/rig-k-right.webp" alt="">
         <img data-kf="ear" src="bible/art/rig-k-ear.webp" alt="">
+        <img data-yf="yawn" src="bible/art/rig-y-yawn.webp" alt="">
+        <img data-kf="yawn" src="bible/art/rig-k-yawn.webp" alt="">
       </template>
     </div>
   </div>
@@ -760,6 +762,26 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
      bible; the design's pictures for them are not in the files. -->
 <section class="st-sec st-founder" id="studio" aria-labelledby="studio-h">
   <div class="st-wrap">
+    <!-- the first drawing (28 Oct): the paper and its linework, Kūro, Yasser; three layers of one
+         drawing, one entrance when it is first on screen (hub/app.js 4), still in place otherwise.
+         From 700 px the wide cut, below it the tall one. -->
+    <figure class="st-plate" data-plate>
+      <div class="st-plate__stage">
+        <picture class="st-plate__l st-plate__l--bg">
+          <source media="(min-width:700px)" srcset="img/studio/hero/bg-wide-1280.webp 1280w, img/studio/hero/bg-wide-1920.webp 1920w" sizes="(min-width:1400px) 1320px, 100vw" width="1920" height="1168">
+          <img src="img/studio/hero/bg-tall-960.webp" srcset="img/studio/hero/bg-tall-640.webp 640w, img/studio/hero/bg-tall-960.webp 960w" sizes="100vw" width="960" height="1348" alt="" loading="lazy" decoding="async">
+        </picture>
+        <picture class="st-plate__l st-plate__l--kuro">
+          <source media="(min-width:700px)" srcset="img/studio/hero/kuro-wide-1280.webp 1280w, img/studio/hero/kuro-wide-1920.webp 1920w" sizes="(min-width:1400px) 1320px, 100vw" width="1920" height="1168">
+          <img src="img/studio/hero/kuro-tall-960.webp" srcset="img/studio/hero/kuro-tall-640.webp 640w, img/studio/hero/kuro-tall-960.webp 960w" sizes="100vw" width="960" height="1348" alt="" loading="lazy" decoding="async">
+        </picture>
+        <picture class="st-plate__l st-plate__l--yasser">
+          <source media="(min-width:700px)" srcset="img/studio/hero/yasser-wide-1280.webp 1280w, img/studio/hero/yasser-wide-1920.webp 1920w" sizes="(min-width:1400px) 1320px, 100vw" width="1920" height="1168">
+          <img src="img/studio/hero/yasser-tall-960.webp" srcset="img/studio/hero/yasser-tall-640.webp 640w, img/studio/hero/yasser-tall-960.webp 960w" sizes="100vw" width="960" height="1348" data-i18n-alt="founder.plateAlt" alt="" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <figcaption class="st-plate__cap"><span class="st-seal st-seal--fill" aria-hidden="true">夜</span><span class="st-label" dir="auto" data-i18n="founder.plate"></span></figcaption>
+    </figure>
     <div class="st-head st-head--stack" data-reveal>
       <p class="st-kick"><span class="st-seal" aria-hidden="true">夜</span><span data-i18n="founder.kicker"></span></p>
       <h2 class="st-h2 st-h2--narrow" id="studio-h" data-i18n="founder.title"></h2>
@@ -780,11 +802,19 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
         </div>
       </div>
       <div class="st-founder__copy">
-        <h3 class="st-h3l" data-i18n="founder.name"></h3>
+        <div class="st-founder__id">
+          <h3 class="st-h3l" data-i18n="founder.name"></h3>
+          <p class="st-founder__handle" lang="en" dir="ltr" data-i18n="founder.handle"></p>
+        </div>
         <p class="st-label st-label--red st-founder__role" data-i18n="founder.role"></p>
+        <p class="st-label st-label--red st-founder__eyebrow" data-i18n="founder.eyebrow"></p>
         <p class="st-body" data-i18n="founder.bio"></p>
-        <p class="st-links"><a href="bible/" data-i18n="founder.bible"></a><a href="../assets/cv_yasser_hamisse_2026.pdf" data-i18n="founder.cv"></a></p>
+        <div class="st-founder__linkrow">
+          <p class="st-links"><a href="bible/" data-i18n="founder.bible"></a><a href="../assets/cv_yasser_hamisse_2026.pdf" data-i18n="founder.cv"></a></p>
+          <img class="st-founder__paw" src="img/studio/kuro-paw.webp" width="240" height="340" alt="" loading="lazy" decoding="async">
+        </div>
         <p class="st-aside st-founder__quote" data-i18n="founder.quote"></p>
+        <p class="st-aside st-founder__motto" lang="en" dir="ltr" data-i18n="founder.motto"></p>
         <p class="st-label st-founder__teaml" data-i18n="founder.teamL"></p>
         <ul class="st-team">
           <li><b data-i18n="founder.team.0.r"></b><span data-i18n="founder.team.0.d"></span></li>
@@ -796,6 +826,33 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
         </div>
       </div>
     </div>
+    <!-- "What I make", the old page's three roles (28 Oct), each drawn on its own sheet -->
+    <section class="st-make" aria-labelledby="make-h">
+      <div class="st-make__head" data-reveal>
+        <h3 class="st-make__h" id="make-h" data-i18n="founder.make.title"></h3>
+        <p class="st-aside st-make__aside" data-i18n="founder.make.aside"></p>
+      </div>
+      <ul class="st-make__grid">
+        <li class="st-make__card">
+          <figure class="st-make__fig"><img src="img/studio/make/designer-720.webp" srcset="img/studio/make/designer-480.webp 480w, img/studio/make/designer-720.webp 720w" sizes="(min-width:900px) 400px, 86vw" width="720" height="711" data-i18n-alt="founder.make.items.0.alt" alt="" loading="lazy" decoding="async"></figure>
+          <h4 class="st-make__role" data-i18n="founder.make.items.0.role"></h4>
+          <p class="st-make__line" data-i18n="founder.make.items.0.line"></p>
+          <ul class="st-make__links"><li><a href="#behance" data-i18n="founder.make.design"></a></li><li><a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">Behance <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></a></li></ul>
+        </li>
+        <li class="st-make__card">
+          <figure class="st-make__fig"><img src="img/studio/make/developer-720.webp" srcset="img/studio/make/developer-480.webp 480w, img/studio/make/developer-720.webp 720w" sizes="(min-width:900px) 400px, 86vw" width="720" height="619" data-i18n-alt="founder.make.items.1.alt" alt="" loading="lazy" decoding="async"></figure>
+          <h4 class="st-make__role" data-i18n="founder.make.items.1.role"></h4>
+          <p class="st-make__line" data-i18n="founder.make.items.1.line"></p>
+          <ul class="st-make__links"><li><a href="../workspacehq/">WorkspaceHQ</a></li><li><a href="https://github.com/Brvetr4ve1er" target="_blank" rel="noopener">GitHub <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></a></li><li><a href="https://www.linkedin.com/in/mohamed-yasser-hamisse-553437277/" target="_blank" rel="noopener">LinkedIn <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></a></li></ul>
+        </li>
+        <li class="st-make__card">
+          <figure class="st-make__fig"><img src="img/studio/make/artist-720.webp" srcset="img/studio/make/artist-480.webp 480w, img/studio/make/artist-720.webp 720w" sizes="(min-width:900px) 400px, 86vw" width="720" height="590" data-i18n-alt="founder.make.items.2.alt" alt="" loading="lazy" decoding="async"></figure>
+          <h4 class="st-make__role" data-i18n="founder.make.items.2.role"></h4>
+          <p class="st-make__line" data-i18n="founder.make.items.2.line"></p>
+          <ul class="st-make__links"><li><a href="#lab" data-i18n="founder.make.diary"></a></li><li><a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">DeviantArt <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></a></li><li><a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></a></li></ul>
+        </li>
+      </ul>
+    </section>
   </div>
 </section>
 
@@ -844,6 +901,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       <div class="st-contact__art">
         <div class="st-sign"><img src="img/mascot/clean/y-sign.webp" data-i18n-alt="contact.signAlt" loading="lazy" decoding="async"><span class="st-sign__t" aria-hidden="true" data-i18n="contact.sign"></span></div>
         <img class="st-contact__kuro" src="bible/art/kuro-love.webp" alt="" loading="lazy" decoding="async">
+        <picture class="st-contact__wave"><source media="(prefers-reduced-motion: reduce)" srcset="img/studio/loops/yasser-wave-still.webp"><img src="img/studio/loops/yasser-wave-still.webp" data-anim="img/studio/loops/yasser-wave.webp" width="258" height="480" alt="" loading="lazy" decoding="async"></picture>
       </div>
       <p class="st-aside st-contact__aside" data-i18n="contact.aside"></p>
     </div>
@@ -855,7 +913,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
 <footer class="st-foot">
   <div class="st-wrap st-foot__in">
     <a class="st-wm st-wm--foot" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
-    <p class="st-foot__line" data-i18n="footer.line"></p>
+    <p class="st-foot__line"><span data-i18n="footer.line"></span> <picture class="st-foot__sleep"><source media="(prefers-reduced-motion: reduce)" srcset="img/studio/loops/kuro-sleep-still.webp"><img src="img/studio/loops/kuro-sleep-still.webp" data-anim="img/studio/loops/kuro-sleep.webp" width="258" height="287" alt="" loading="lazy" decoding="async"></picture></p>
     <nav class="st-foot__links" data-i18n-aria="footer.nav">
       <a href="../" data-i18n="footer.site"></a>
       <a href="bible/" data-i18n="footer.bible"></a>

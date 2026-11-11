@@ -2,7 +2,7 @@
    Numidea Labs — the Studio (hub/index.html), vanilla, no deps
    0 · the dictionaries and the language switch
    1 · the sting (00): a first visit's 2.2 s intro, once per session
-   2 · the rig (01): Yasser and Kūro, eighteen frames
+   2 · the rig (01): Yasser and Kūro, twenty frames
    3 · the pose actors: two-frame figures beside four headings
    4 · reveals, the wedge's cut (02), the speed bar (08)
    5 · process (05): the step at mid-screen
@@ -168,14 +168,16 @@
      The character bible's rig (hub/bible/app.js 1), with the Studio's
      lines and moods. Frames: <img data-yf> and <img data-kf>, stacked; only
      opacity flips (hard cuts). The two base frames are in the page; the
-     sixteen others wait in <template id="rigFrames"> and come in once the
+     eighteen others wait in <template id="rigFrames"> and come in once the
      hero is on screen. The loop (tick) runs while now < S.until; every
      interaction extends S.until by at most WINDOW ms, and in its last EASE
      ms the breath, the lean and the gaze settle and he rests on his base
      frame. Then no frame is requested. Inside a window, and only there: the
      steam over the cup, one glasses push before a line (35 % of lines) or,
      when the pointer alone opened the window, one sip; Kūro's wide eyes on a
-     fast scroll. Nothing is scheduled outside a window (no yawn, no idle
+     fast scroll. One yawn per visit, in a window the pointer opened and
+     after it has been still for 2.3 s (both of them, 1.5 s, done before the
+     window's last 700 ms). Nothing is scheduled outside a window (no idle
      loop); reduced motion keeps none of them. A line is typed at 38 ms a
      character in the bubble and written whole in the live region. */
   var WINDOW = 5000, EASE = 700;
@@ -212,7 +214,7 @@
       nextBlink: t0 + 1600, kNext: t0 + rnd(2500, 5000), kEar: t0 + rnd(2500, 4500),
       mx: .6, my: .5, gaze: 'base', gazeCand: 'base', gazeSince: t0, kgaze: 'base', kgazeAt: 0,
       squash: 0, ksquash: 0, mood: 'base', raf: 0, until: 0, lastClick: -1e9, lean: 0, say: null, lineIx: 0,
-      next: null, nextSip: 0, lastY: 0, lastYt: 0
+      next: null, nextSip: 0, lastY: 0, lastYt: 0, lastMove: 0, yawned: false
     };
     var flip = function (map, key, n) {
       if (!map[n] || !ready(map[n])) n = 'base';
@@ -269,6 +271,10 @@
           else { if (n > sy.flapAt) { sy.flap = ['talk-a', 'talk-b', 'talk-a', 'base'][Math.floor(Math.random() * 4)]; sy.flapAt = n + rnd(70, 120); } mouth = sy.flap; }
         } else { if (!sy.done) { sy.done = n; said(sy.text); } if (n - sy.done > 2000) endSay(); }
       }
+      // still for 2.3 s inside a window the pointer opened: one yawn, once, for both (never while a line or another pose is on)
+      if (live && !S.yawned && S.lastMove && !S.say && !S.hold && !S.khold && !S.next && fade === 1 && n - S.lastMove > 2300 && left > 2400) {
+        S.yawned = true; S.hold = { name: 'yawn', until: n + 1500 }; S.khold = { name: 'yawn', until: n + 1500 };
+      }
       var mood = S.hold ? S.hold.name : mouth || (S.say ? 'base' : S.gaze);
       emit(S.say ? 'talk' : (mood === 'talk-a' || mood === 'talk-b') ? 'talk' : mood);
       if (live && !S.hold && !mouth && n > S.nextBlink && fade === 1) { S.blinkAt = n; S.nextBlink = n + (Math.random() < .2 ? 260 : rnd(2600, 6000)); }
@@ -289,7 +295,7 @@
       if (yBody) yBody.style.transform = n < S.squash ? 'scale(1.05,.95)' : 'rotate(' + (S.lean * .6).toFixed(3) + 'deg) translateX(' + (S.lean * 3).toFixed(2) + 'px) scale(' + (1 - br * .003).toFixed(4) + ',' + (1 + br * .009).toFixed(4) + ')';
       if (kBody) kBody.style.transform = n < S.ksquash ? 'scale(1.08,.92)' : 'translateY(' + (br * -1.5).toFixed(2) + 'px) rotate(' + (S.lean * -.8).toFixed(3) + 'deg)';
       // the steam drifts while the window is open, is hidden while he sips or pushes his glasses, and is gone with the window's last 700 ms
-      var steamOn = live && ['sip', 'glasses'].indexOf(S.cur) < 0;
+      var steamOn = live && ['sip', 'yawn', 'glasses'].indexOf(S.cur) < 0;
       for (var i = 0; i < wisps.length; i++) {
         var p = ((n / 2600) + i / wisps.length) % 1, w = wisps[i];
         w.style.opacity = steamOn ? (Math.sin(p * Math.PI) * .7 * fade).toFixed(3) : 0;
@@ -326,11 +332,11 @@
     });
     if (!reduce && finePointer) {
       panel.closest('.st-hero').addEventListener('pointermove', function (e) {
-        S.mx = e.clientX / innerWidth; S.my = e.clientY / innerHeight;
+        S.mx = e.clientX / innerWidth; S.my = e.clientY / innerHeight; S.lastMove = now();
         if (framesIn && !S.raf) {
-          // a window opened by the pointer alone, no line coming: once in a while he takes one sip (1.7 s)
+          // a window opened by the pointer alone, no line coming: once in a while he takes one sip (1.7 s), once the visit's yawn is done
           var n = now();
-          if (!S.say && n > S.nextSip) { var at = n + rnd(900, 1700); S.next = { name: 'sip', at: at, until: at + 1700 }; S.nextSip = n + rnd(12000, 18000); }
+          if (!S.say && S.yawned && n > S.nextSip) { var at = n + rnd(900, 1700); S.next = { name: 'sip', at: at, until: at + 1700 }; S.nextSip = n + rnd(12000, 18000); }
           keep(WINDOW);
         }
       }, { passive: true });
@@ -380,6 +386,32 @@
       el.classList.add('st-rv');
       rio.observe(el);
     });
+  }
+  /* the first drawing (the founder section's plate): three layers of one
+     drawing. Once, when 35% of it is on screen, Kūro slides in, then Yasser
+     (CSS: 0.9 s and 1.0 s, the second 0.45 s later: done in 1.5 s). Without
+     this script, or with reduced motion, the layers are simply in place. */
+  var plate = $('[data-plate]');
+  if (plate && !reduce && IO) {
+    plate.classList.add('is-pre');
+    once(plate, .35, function () { plate.classList.add('is-in'); });
+  }
+  /* the short animations (a footer sleep, a wave in the contact card): each
+     <img> holds its still and names its animated file in data-anim. Once
+     half of it is on screen the src becomes the animation, once: it plays
+     for less than five seconds (scripts/check.mjs 17b) and rests on the
+     frame it started from. With reduced motion nothing is observed and the
+     <picture>'s <source> keeps the still. */
+  var loops = $$('img[data-anim]');
+  if (loops.length && !reduce && IO) {
+    var lio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        lio.unobserve(e.target);
+        e.target.src = e.target.getAttribute('data-anim');
+      });
+    }, { threshold: .5 });
+    loops.forEach(function (im) { lio.observe(im); });
   }
   var board = $('[data-wedge]');
   once(board, .12, function () { setTimeout(function () { board.classList.add('is-cut'); }, reduce ? 0 : 350); });

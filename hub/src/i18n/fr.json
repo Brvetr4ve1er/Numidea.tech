@@ -525,7 +525,35 @@
     "stickers": "LES STICKERS",
     "stickersAlt": "Planche de stickers et goodies Kūro",
     "bible": "Le carnet du personnage →",
-    "cv": "Le CV (PDF) ↓"
+    "cv": "Le CV (PDF) ↓",
+    "handle": "br4vetr4veler",
+    "eyebrow": "ARTISTE · DESIGNER · DÉVELOPPEUR",
+    "motto": "form is a function of obsession.",
+    "plate": "PL. · br4vetr4veler, 28 oct. 2026",
+    "plateAlt": "Yasser en long manteau couleur os, un café à la main, et Kūro, le chat noir, assis à côté.",
+    "make": {
+      "title": "CE QUE JE FAIS",
+      "aside": "design meets code.",
+      "design": "Le travail de design",
+      "diary": "Le journal d’atelier",
+      "items": [
+        {
+          "role": "DESIGNER",
+          "line": "Identités de marque, affiches et print.",
+          "alt": "Yasser à une table à dessin, en train d’encrer un logo dans un carnet."
+        },
+        {
+          "role": "DÉVELOPPEUR",
+          "line": "Du web immersif, et les systèmes qui ronronnent dessous.",
+          "alt": "Yasser devant un portable plein de code."
+        },
+        {
+          "role": "ARTISTE",
+          "line": "Le processus, publié au fil de l’eau.",
+          "alt": "Yasser dessine sur une tablette graphique pendant que Kūro la traverse."
+        }
+      ]
+    }
   },
   "faq": {
     "kicker": "/ 11 · QUESTIONS",
