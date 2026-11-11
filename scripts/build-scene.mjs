@@ -96,6 +96,12 @@ const SIZES = {
   // a card is half the page from 1000px (two side by side), less its frame
   card: '(min-width:1700px) 626px, (min-width:1000px) 37vw, 86vw',
   phone: '(min-width:1700px) 206px, (min-width:1000px) 12vw, (min-width:700px) 210px, 248px',
+  // the folded full sheet of a card, measured on 2026-11-11: a page frame is a
+  // third of the card's inner width from 1000px (the card is half the page,
+  // 292px at 1440 less its padding), a full row below 700px; a phone frame is
+  // half the box
+  fpage: '(min-width:1700px) 210px, (min-width:1000px) 11vw, (min-width:700px) 28vw, 70vw',
+  fphone: '(min-width:1000px) 12vw, 150px',
 };
 const SMALL = { 1440: 720, 780: 416 };
 function shot(slug, file, alt, cls, w, h, kind, eager) {
@@ -104,8 +110,13 @@ function shot(slug, file, alt, cls, w, h, kind, eager) {
   return `<a class="zoom ${cls}" href="${src}"><img src="${src}" srcset="${small} ${SMALL[w]}w, ${src} ${w}w" sizes="${SIZES[kind]}" alt="${esc(alt)}" width="${w}" height="${h}" decoding="async"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}></a>`;
 }
 
-function sheet(p, i) {
-  const n = pad(i + 1), k = 'p.' + p.slug;
+/* The pieces of a project's sheet that a card folds into "the full sheet"
+   as well (facts, deliverables, what it gives, pages, phones, system):
+   built once, here, so a card and a sheet never word them twice. `kinds` is
+   the SIZES entry of the page frames and of the phone frames in that
+   layout. */
+function parts(p, kinds = { page: 'page', phone: 'phone' }) {
+  const k = 'p.' + p.slug;
   const t = (f) => put(`${k}.${f}`, Object.fromEntries(LANGS.map((l) => [l, p.t[l][f]])));
   const statusTxt = put(`${k}.status`, Object.fromEntries(LANGS.map((l) => [l, UI[l].status[p.status]])));
   const ext = /^https?:/.test(p.url);
@@ -122,6 +133,52 @@ function sheet(p, i) {
 
   const deliv = p.t.fr.deliverables.map((d, j) =>
     `<li ${T(`${k}.d${j}`)}>${esc(put(`${k}.d${j}`, Object.fromEntries(LANGS.map((l) => [l, p.t[l].deliverables[j]]))))}</li>`).join('\n            ');
+  const label = (pg, j, kind) => put(`${k}.${kind}${j}`, pg.label);
+  // each capture's alt says what it is: whose site, which page (and its
+  // address), that it is the live site, and on which screen (UI.alt*)
+  const altOf = (pg, j, kind) => put(`${k}.${kind}a${j}`, Object.fromEntries(LANGS.map((l) =>
+    [l, UI[l][kind === 'pha' ? 'altPhone' : 'altDesk'].replace('{name}', p.name).replace('{label}', pg.label[l]).replace('{path}', pg.path || '/')])));
+  const [main, ...rest] = p.pages;
+  label(main, 0, 'pg'); const mainAlt = altOf(main, 0, 'pg');
+
+  const pages = rest.map((pg, j) => `<figure class="pg">
+            ${shot(p.slug, pg.file, altOf(pg, j + 1, 'pg'), 'frame', 1440, 900, kinds.page).replace('alt=', `${T(`${k}.pga${j + 1}`, '-alt')} alt=`)}
+            <figcaption><b ${T(`${k}.pg${j + 1}`)}>${esc(label(pg, j + 1, 'pg'))}</b><code>${esc(pg.path)}</code></figcaption>
+          </figure>`).join('\n          ');
+
+  const phones = p.phones.map((pg, j) => `<figure class="ph">
+              ${shot(p.slug, pg.file, altOf(pg, j, 'pha'), 'phone', 780, 1688, kinds.phone).replace('alt=', `${T(`${k}.phaa${j}`, '-alt')} alt=`)}
+              <figcaption ${T(`${k}.ph${j}`)}>${esc(label(pg, j, 'ph'))}</figcaption>
+            </figure>`).join('\n            ');
+
+  const sw = p.palette.map((c) => {
+    const role = put('ui.role.' + c.role, Object.fromEntries(LANGS.map((l) => [l, UI[l].role[c.role]])));
+    return `<li><i style="--c:${c.hex}"></i><b ${T('ui.role.' + c.role)}>${esc(role)}</b><code>${c.hex}</code></li>`;
+  }).join('\n                ');
+
+  // What the work gives the client (for the demo: what it shows; for our
+  // product: what it gives its users). The client's context in one sentence,
+  // then 3-5 things a visitor can do on the live site today, each with the
+  // page that shows it. The home page's work cards link here (#gv-<slug>).
+  const gainT = put('ui.gain.' + p.status, Object.fromEntries(LANGS.map((l) => [l, UI[l].gain[p.status]])));
+  const ctxL = put('ui.ctxL.' + p.status, Object.fromEntries(LANGS.map((l) => [l, UI[l].ctxL[p.status]])));
+  const gv = `
+      <section class="sh-block gv" aria-labelledby="gv-${p.slug} h-${p.slug}">
+        <h3 class="sh-h" id="gv-${p.slug}" ${T('ui.gain.' + p.status)}>${esc(gainT)}</h3>
+        <div class="gv-body">
+          <p class="gv-ctx"><b ${T('ui.ctxL.' + p.status)}>${esc(ctxL)}</b><span ${T(`${k}.ctx`)}>${esc(put(`${k}.ctx`, p.context))}</span></p>
+          <ol class="gv-list">
+            ${p.gains.map((g, j) => `<li><span class="gv-n" aria-hidden="true">${pad(j + 1)}</span><p ${T(`${k}.g${j}`)}>${esc(put(`${k}.g${j}`, g))}</p><code>${esc(g.at)}</code></li>`).join('\n            ')}
+          </ol>
+        </div>
+      </section>`;
+
+  return { k, t, statusTxt, ext, visit, rows, deliv, main, mainAlt, pages, phones, sw, gv };
+}
+
+function sheet(p, i) {
+  const n = pad(i + 1);
+  const { k, t, statusTxt, ext, visit, rows, deliv, main, mainAlt, pages, phones, sw, gv } = parts(p);
   // the founder's own work on the same client (`identity`): after the
   // deliverables and named as his, never among them (it is not the site's)
   const ident = p.identity ? `
@@ -138,29 +195,6 @@ function sheet(p, i) {
         ${waLink('btn btn-teal', 'prev.waText', 'prev.wa')}
         <small ${T('prev.terms')}>${esc(home('prev.terms'))}</small>
       </div>` : '';
-
-  const label = (pg, j, kind) => put(`${k}.${kind}${j}`, pg.label);
-  // each capture's alt says what it is: whose site, which page (and its
-  // address), that it is the live site, and on which screen (UI.alt*)
-  const altOf = (pg, j, kind) => put(`${k}.${kind}a${j}`, Object.fromEntries(LANGS.map((l) =>
-    [l, UI[l][kind === 'pha' ? 'altPhone' : 'altDesk'].replace('{name}', p.name).replace('{label}', pg.label[l]).replace('{path}', pg.path || '/')])));
-  const [main, ...rest] = p.pages;
-  label(main, 0, 'pg'); const mainAlt = altOf(main, 0, 'pg');
-
-  const pages = rest.map((pg, j) => `<figure class="pg">
-            ${shot(p.slug, pg.file, altOf(pg, j + 1, 'pg'), 'frame', 1440, 900, 'page').replace('alt=', `${T(`${k}.pga${j + 1}`, '-alt')} alt=`)}
-            <figcaption><b ${T(`${k}.pg${j + 1}`)}>${esc(label(pg, j + 1, 'pg'))}</b><code>${esc(pg.path)}</code></figcaption>
-          </figure>`).join('\n          ');
-
-  const phones = p.phones.map((pg, j) => `<figure class="ph">
-              ${shot(p.slug, pg.file, altOf(pg, j, 'pha'), 'phone', 780, 1688, 'phone').replace('alt=', `${T(`${k}.phaa${j}`, '-alt')} alt=`)}
-              <figcaption ${T(`${k}.ph${j}`)}>${esc(label(pg, j, 'ph'))}</figcaption>
-            </figure>`).join('\n            ');
-
-  const sw = p.palette.map((c) => {
-    const role = put('ui.role.' + c.role, Object.fromEntries(LANGS.map((l) => [l, UI[l].role[c.role]])));
-    return `<li><i style="--c:${c.hex}"></i><b ${T('ui.role.' + c.role)}>${esc(role)}</b><code>${c.hex}</code></li>`;
-  }).join('\n                ');
 
   // before/after pairs: a "before" file needs an "after" file of the same name
   const befores = files(p.slug, 'before'), afters = new Set(files(p.slug, 'after'));
@@ -185,23 +219,6 @@ function sheet(p, i) {
           ${brand.map((f) => `<li><a class="zoom" href="../assets/work/${p.slug}/brand/${f}"><img src="../assets/work/${p.slug}/brand/${f}" alt="${esc(p.name)} — ${esc(caption(f))}" loading="lazy" decoding="async"></a><span>${esc(caption(f))}</span></li>`).join('\n          ')}
         </ul>
       </section>` : '';
-
-  // What the work gives the client (for the demo: what it shows; for our
-  // product: what it gives its users). The client's context in one sentence,
-  // then 3-5 things a visitor can do on the live site today, each with the
-  // page that shows it. The home page's work cards link here (#gv-<slug>).
-  const gainT = put('ui.gain.' + p.status, Object.fromEntries(LANGS.map((l) => [l, UI[l].gain[p.status]])));
-  const ctxL = put('ui.ctxL.' + p.status, Object.fromEntries(LANGS.map((l) => [l, UI[l].ctxL[p.status]])));
-  const gv = `
-      <section class="sh-block gv" aria-labelledby="gv-${p.slug} h-${p.slug}">
-        <h3 class="sh-h" id="gv-${p.slug}" ${T('ui.gain.' + p.status)}>${esc(gainT)}</h3>
-        <div class="gv-body">
-          <p class="gv-ctx"><b ${T('ui.ctxL.' + p.status)}>${esc(ctxL)}</b><span ${T(`${k}.ctx`)}>${esc(put(`${k}.ctx`, p.context))}</span></p>
-          <ol class="gv-list">
-            ${p.gains.map((g, j) => `<li><span class="gv-n" aria-hidden="true">${pad(j + 1)}</span><p ${T(`${k}.g${j}`)}>${esc(put(`${k}.g${j}`, g))}</p><code>${esc(g.at)}</code></li>`).join('\n            ')}
-          </ol>
-        </div>
-      </section>`;
 
   // the client's own words, in the language they gave them (scripts/voices-data.mjs)
   const voices = VOICES.filter((v) => v.client === p.slug);
@@ -283,9 +300,11 @@ ${gv}
 /* The work that is not a client's (the demo, our product) on a card each,
    side by side: its title, what it is, its home page in the browser frame
    and the way to it. The full sheet gave them 36% of the page on a phone,
-   nine screens of work nobody ordered. The data keeps their pages, phones
-   and gains (check.mjs reads them); the page shows the client sheets in
-   full and these two in brief. */
+   nine screens of work nobody ordered, so it stays folded inside the card
+   ("Voir la planche complète", a <details>: no script, closed on load, its
+   captures lazy and outside the first screen): the facts, deliverables,
+   what it shows or gives, the other pages, the phones and the visual
+   system, built by parts() like a client's sheet. */
 function card(p, i) {
   const k = 'p.' + p.slug, main = p.pages[0];
   const ext = /^https?:/.test(p.url);
@@ -294,6 +313,8 @@ function card(p, i) {
   const sum = put(`${k}.summary`, Object.fromEntries(LANGS.map((l) => [l, p.t[l].summary])));
   put(`${k}.pg0`, main.label);
   const alt = put(`${k}.pga0`, Object.fromEntries(LANGS.map((l) => [l, UI[l].altDesk.replace('{name}', p.name).replace('{label}', main.label[l]).replace('{path}', main.path || '/')])));
+  const f = parts(p, { page: 'fpage', phone: 'fphone' });
+  const full = put('ui.full', Object.fromEntries(LANGS.map((l) => [l, UI[l].full])));
   return `
       <!-- ===================== ${p.name} ===================== -->
       <article class="sheet sh-card" id="${p.slug}" aria-labelledby="h-${p.slug}">
@@ -309,6 +330,50 @@ function card(p, i) {
           <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(shownHost(p.url))}</span></div>
           ${shot(p.slug, main.file, alt, 'frame', 1440, 900, 'card').replace('alt=', `${T(`${k}.pga0`, '-alt')} alt=`)}
         </figure>
+        <details class="sh-more" id="more-${p.slug}">
+          <summary><span ${T('ui.full')}>${esc(full)}</span><svg class="chev" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="sh-full">
+            <div class="sh-block sh-facts">
+              <dl class="tblock">
+          ${f.rows}
+              </dl>
+              <h3 class="sh-h" ${T('ui.deliverables')}>${esc(ui('deliverables'))}</h3>
+              <ul class="deliv">
+                ${f.deliv}
+              </ul>
+            </div>
+${f.gv}
+            <section class="sh-block sh-pgs" aria-labelledby="pg-${p.slug} h-${p.slug}">
+              <h3 class="sh-h" id="pg-${p.slug}" ${T('ui.pages')}>${esc(ui('pages'))}</h3>
+              <div class="pages">
+                ${f.pages}
+              </div>
+            </section>
+            <section class="sh-block sh-mob" aria-labelledby="mb-${p.slug} h-${p.slug}">
+              <h3 class="sh-h" id="mb-${p.slug}" ${T('ui.mobile')}>${esc(ui('mobile'))}</h3>
+              <div class="phones">
+                ${f.phones}
+              </div>
+            </section>
+            <section class="sh-block sh-sys" aria-labelledby="sy-${p.slug} h-${p.slug}">
+              <h3 class="sh-h" id="sy-${p.slug}" ${T('ui.system')}>${esc(ui('system'))}</h3>
+              <div class="system">
+                <div>
+                  <h4 ${T('ui.palette')}>${esc(ui('palette'))}</h4>
+                  <ul class="swatches">
+                    ${f.sw}
+                  </ul>
+                </div>
+                <div>
+                  <h4 ${T('ui.type')}>${esc(ui('type'))}</h4>
+                  <ul class="faces" dir="ltr">
+                    ${p.type.map((x) => `<li>${esc(x)}</li>`).join('')}
+                  </ul>
+                </div>
+              </div>
+            </section>
+          </div>
+        </details>
         <a class="visit" href="${esc(p.url)}" title="${esc(fullHref(p.url))}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> ${ext ? ARROW.ne : ARROW.e}</a>
       </article>`;
 }
