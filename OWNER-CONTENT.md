@@ -915,9 +915,10 @@ scenes are now a titled row.)
   delay, guarantee, certification, review or address (the places for a phone
   number read `[téléphone]`, the account `[@compte]`); the advice is general
   (annual boiler maintenance "obligatoire chaque année", heating around 19 °C,
-  filters, shutters in a heat wave). Please confirm the wording of the
-  tips and that "Gennevilliers (92)" may sit in the posts' footers. French
-  only, no Arabic page.
+  filters, shutters in a heat wave). French only, no Arabic page.
+  **Confirmed by the owner on 2026-11-11:** "Gennevilliers (92)" is right in
+  the posts' footers, and post 03's speed promise ("On vient vite", the
+  "Rapide" tag) stays, like the mockups' "sous 24h".
 
 **Claims to confirm (nothing was invented; these come from your design or the
 CV)**
