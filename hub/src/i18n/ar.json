@@ -84,7 +84,11 @@
     ],
     "oursR": "المدة: أسابيع · الرد في يوم العمل التالي",
     "aside": "كورو قطع الأسلاك.",
-    "kuro": "كورو، متشكّك"
+    "kuro": "كورو، متشكّك",
+    "close": {
+      "a": "بلا وسطاء.",
+      "b": "فقط من يبني."
+    }
   },
   "services": {
     "kicker": "/ 02 · ماذا نفعل",
@@ -340,7 +344,6 @@
     "actor": "ياسر يحتفل بإطلاق موقع",
     "own": "وأيضًا، من صنع الاستوديو:",
     "glaive": "Glaive، النسخة التجريبية للاستوديو",
-    "whq": "WorkspaceHQ، منتج الاستوديو",
     "vs": {
       "kicker": "الملف 06 · مشروعي",
       "tag": "مشروع شخصي",
@@ -382,6 +385,69 @@
       ],
       "video": "الفصل الثاني من MERCURY في عشر ثوانٍ: ياسر بزيّ المسافر الأحمر مع كورو والغراب والحمامة التقنية ورات مان أمام القمر.",
       "fallback": "متصفحك لا يشغّل هذا الفيديو."
+    },
+    "be": {
+      "kicker": "الملف 08 · بقية الأعمال",
+      "name": "على بيهانس",
+      "tag": "بيهانس ↗",
+      "sub": "هوية. ملصقات. طباعة.",
+      "cta": "كل المشاريع على بيهانس",
+      "case": "عرض دراسة الحالة",
+      "listLabel": "اثنا عشر مشروعًا منشورًا على بيهانس",
+      "items": [
+        {
+          "title": "Bordj Steel Branding Project",
+          "alt": "ملصق «Strong choice»: فيل جالس على عمود فولاذي أمام هيكل معدني."
+        },
+        {
+          "title": "Heetch Entry Test",
+          "alt": "مادة ترويجية وردية: سيارة وردية والرمز ERKEB50 بحروف ضخمة جدًا."
+        },
+        {
+          "title": "Minimal Industrial Social Media Creatives",
+          "alt": "تصميم «Tower»: برج اتصالات ملفوف بشريط أحمر، وشعار بوردج ستيل أعلى اليمين."
+        },
+        {
+          "title": "Surfboard Design for Beach POSM",
+          "alt": "لوح تزلج أسود ووردي بألوان هيتش: «Late nights, good vibes»."
+        },
+        {
+          "title": "Summer. Creative. Social Media",
+          "alt": "تصميم «Bac is over, time to ride»: شخصية وردية تطفو فوق آلة حاسبة وردية."
+        },
+        {
+          "title": "Amanatcom Brand Guidelines",
+          "alt": "شعار amanatcom بالعربية وبالحروف اللاتينية: درع أصفر وأزرق."
+        },
+        {
+          "title": "First Month At Heetch. Dz",
+          "alt": "آلة حاسبة وردية من هيتش تحيط بها سماعات رأس وردية."
+        },
+        {
+          "title": "Sandwich Insulating Panels Graphic Assets",
+          "alt": "لوح ساندويتش عازل: صفيحة حمراء ولبّ فاتح على خلفية كريمية."
+        },
+        {
+          "title": "Billboard Urbain Bordj Steel SPA",
+          "alt": "واجهة مبنى زجاجي تحمل لافتة بوردج ستيل SPA."
+        },
+        {
+          "title": "Tyler Durden Halftone Poster",
+          "alt": "ملصق بنصف تدرّج: رجل بقبعة ونظارة داكنة وسيجارة بين شفتيه على خلفية حمراء."
+        },
+        {
+          "title": "Star Born Algerian Series",
+          "alt": "رسم «Sand Oracle»: شخصية زرقاء معصوبة العينين جالسة وكفّاها مفتوحتان على خلفية حمراء."
+        },
+        {
+          "title": "Alan Is Awake Manga Concept",
+          "alt": "رسم مانغا: شاب يدخّن وفي يده كوب، متكئ على شرفة."
+        }
+      ]
+    },
+    "whqCart": {
+      "kick": "يُلعب الآن · مشروعي المفضّل",
+      "sub": "آلة أركيد لشيفرتك البرمجية"
     }
   },
   "lab": {

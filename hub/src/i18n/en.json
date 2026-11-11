@@ -84,7 +84,11 @@
     ],
     "oursR": "TIMELINE: WEEKS · REPLY THE NEXT WORKING DAY",
     "aside": "Kūro cut the cables.",
-    "kuro": "Kūro, sceptical"
+    "kuro": "Kūro, sceptical",
+    "close": {
+      "a": "No middlemen.",
+      "b": "Just the builder."
+    }
   },
   "services": {
     "kicker": "/ 02 · WHAT WE DO",
@@ -340,7 +344,6 @@
     "actor": "Yasser celebrates a launch",
     "own": "Also, made in-house:",
     "glaive": "Glaive, the studio’s demo",
-    "whq": "WorkspaceHQ, the studio’s product",
     "vs": {
       "kicker": "FILE 06 · MY PROJECT",
       "tag": "Personal project",
@@ -382,6 +385,69 @@
       ],
       "video": "Act 2 of MERCURY in ten seconds: Yasser in the red traveller’s outfit, with Kūro, the raven, the techno pigeon and Ratman, in front of the moon.",
       "fallback": "Your browser cannot play this video."
+    },
+    "be": {
+      "kicker": "FILE 08 · THE REST OF THE WORK",
+      "name": "On Behance",
+      "tag": "Behance ↗",
+      "sub": "Identity. Posters. Print.",
+      "cta": "All projects on Behance",
+      "case": "See the case study",
+      "listLabel": "Twelve projects published on Behance",
+      "items": [
+        {
+          "title": "Bordj Steel Branding Project",
+          "alt": "“Strong choice” poster: an elephant sitting on a steel pillar in front of a metal framework."
+        },
+        {
+          "title": "Heetch Entry Test",
+          "alt": "Pink promo visual: a pink saloon car and the code ERKEB50 in very large letters."
+        },
+        {
+          "title": "Minimal Industrial Social Media Creatives",
+          "alt": "“Tower” visual: a telecom tower wrapped in a red ribbon, the Bordj Steel logo at the top right."
+        },
+        {
+          "title": "Surfboard Design for Beach POSM",
+          "alt": "Black and pink surfboard in Heetch colours: “Late nights, good vibes”."
+        },
+        {
+          "title": "Summer. Creative. Social Media",
+          "alt": "“Bac is over, time to ride” visual: a figure in pink floating above a pink calculator."
+        },
+        {
+          "title": "Amanatcom Brand Guidelines",
+          "alt": "The amanatcom logo, in Arabic and Latin letters: a yellow and blue shield."
+        },
+        {
+          "title": "First Month At Heetch. Dz",
+          "alt": "A pink Heetch calculator wrapped in pink headphones."
+        },
+        {
+          "title": "Sandwich Insulating Panels Graphic Assets",
+          "alt": "An insulating sandwich panel: red sheet metal, pale core, on a cream ground."
+        },
+        {
+          "title": "Billboard Urbain Bordj Steel SPA",
+          "alt": "The front of a glass office building carrying the Bordj Steel SPA sign."
+        },
+        {
+          "title": "Tyler Durden Halftone Poster",
+          "alt": "Halftone poster: a man in a hat and dark glasses, a cigarette between his lips, on a red ground."
+        },
+        {
+          "title": "Star Born Algerian Series",
+          "alt": "“Sand Oracle” illustration: a blue blindfolded figure sitting with open hands, on a red ground."
+        },
+        {
+          "title": "Alan Is Awake Manga Concept",
+          "alt": "Manga illustration: a young man smoking, a mug in his hand, leaning on a balcony."
+        }
+      ]
+    },
+    "whqCart": {
+      "kick": "NOW PLAYING · MY FAVOURITE BUILD",
+      "sub": "an arcade cabinet for your codebase"
     }
   },
   "lab": {

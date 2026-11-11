@@ -84,7 +84,11 @@
     ],
     "oursR": "DÉLAI : QUELQUES SEMAINES · RÉPONSE LE JOUR OUVRÉ SUIVANT",
     "aside": "Kūro a coupé les câbles.",
-    "kuro": "Kūro, sceptique"
+    "kuro": "Kūro, sceptique",
+    "close": {
+      "a": "Pas d’intermédiaires.",
+      "b": "Juste le builder."
+    }
   },
   "services": {
     "kicker": "/ 02 · CE QU’ON FAIT",
@@ -340,7 +344,6 @@
     "actor": "Yasser fête une mise en ligne",
     "own": "Aussi, faits maison :",
     "glaive": "Glaive, la démo du studio",
-    "whq": "WorkspaceHQ, le produit du studio",
     "vs": {
       "kicker": "DOSSIER 06 · MON PROJET",
       "tag": "Projet personnel",
@@ -382,6 +385,69 @@
       ],
       "video": "L’acte 2 de MERCURY en dix secondes : Yasser en voyageur rouge, entouré de Kūro, du corbeau, du pigeon techno et de Ratman, devant la lune.",
       "fallback": "Votre navigateur ne lit pas la vidéo."
+    },
+    "be": {
+      "kicker": "DOSSIER 08 · LE RESTE DU TRAVAIL",
+      "name": "Sur Behance",
+      "tag": "Behance ↗",
+      "sub": "Identité. Affiches. Print.",
+      "cta": "Tous les projets sur Behance",
+      "case": "Voir l’étude de cas",
+      "listLabel": "Douze projets publiés sur Behance",
+      "items": [
+        {
+          "title": "Bordj Steel Branding Project",
+          "alt": "Affiche « Strong choice » : un éléphant assis sur un pilier d’acier, devant une charpente métallique."
+        },
+        {
+          "title": "Heetch Entry Test",
+          "alt": "Visuel promo rose : une berline rose et le code ERKEB50 en très grosses lettres."
+        },
+        {
+          "title": "Minimal Industrial Social Media Creatives",
+          "alt": "Visuel « Tower » : une tour télécom enroulée d’un ruban rouge, logo Bordj Steel en haut à droite."
+        },
+        {
+          "title": "Surfboard Design for Beach POSM",
+          "alt": "Planche de surf noire et rose aux couleurs de Heetch : « Late nights, good vibes »."
+        },
+        {
+          "title": "Summer. Creative. Social Media",
+          "alt": "Visuel « Bac is over, time to ride » : une silhouette en rose lévite au-dessus d’une calculatrice rose."
+        },
+        {
+          "title": "Amanatcom Brand Guidelines",
+          "alt": "Logo amanatcom, en arabe et en lettres latines : un bouclier jaune et bleu."
+        },
+        {
+          "title": "First Month At Heetch. Dz",
+          "alt": "Une calculatrice rose Heetch entourée d’un casque audio rose."
+        },
+        {
+          "title": "Sandwich Insulating Panels Graphic Assets",
+          "alt": "Un panneau sandwich isolant : tôle rouge, âme claire, sur fond crème."
+        },
+        {
+          "title": "Billboard Urbain Bordj Steel SPA",
+          "alt": "Façade d’un immeuble vitré portant l’enseigne Bordj Steel SPA."
+        },
+        {
+          "title": "Tyler Durden Halftone Poster",
+          "alt": "Affiche en demi-teinte : un homme en chapeau et lunettes noires, une cigarette aux lèvres, sur fond rouge."
+        },
+        {
+          "title": "Star Born Algerian Series",
+          "alt": "Illustration « Sand Oracle » : une figure bleue aux yeux bandés, assise les mains ouvertes, sur fond rouge."
+        },
+        {
+          "title": "Alan Is Awake Manga Concept",
+          "alt": "Illustration de manga : un jeune homme qui fume, une tasse à la main, accoudé à un balcon."
+        }
+      ]
+    },
+    "whqCart": {
+      "kick": "EN JEU · MON BUILD PRÉFÉRÉ",
+      "sub": "une borne d’arcade pour votre code"
     }
   },
   "lab": {
