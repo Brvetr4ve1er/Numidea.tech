@@ -457,6 +457,10 @@ are not listed as new; what follows is new or changed.
   `founder.make.title`, `founder.make.aside`, `founder.make.design`,
   `founder.make.diary` and `founder.make.items.0` to `.2` (`role`, `line`,
   `alt`);
+- AR review for MERCURY (dossier 07), whose nine key frames became your five
+  posters on 2026-11-11: `proof.mc.facts.1` («5 ملصقات»), `proof.mc.framesLabel`
+  and `proof.mc.frames.0` to `.4` (one description per poster; the titles stay
+  Latin as on the posters);
 - AR review for the cases: AlmaFlowClim `brand.k`, `brand.t`, `brand.cta` and
   `scope.items.7` (the brand-book tile and delivered item; `brand.k` now reads
   "14 PLANCHES" with the new plates), Traveler

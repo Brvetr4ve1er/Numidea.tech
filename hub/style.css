@@ -531,6 +531,32 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 [dir="rtl"] .st-proj__frame figcaption{inset:auto 6px 6px auto}
 @media (max-width:899px){.st-proj--film .st-proj__body{grid-template-columns:minmax(0,1fr);justify-items:center}.st-proj--film .st-proj__reel{width:min(100%,360px)}.st-proj--film .st-proj__copy{justify-self:stretch}}
 @media (max-width:899px){.st-proj__strip{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* MERCURY's five posters (2026-11-11): each keeps its own shape, uncropped. One row on wide screens, every
+   poster the same height (each item grows by its width/height ratio); two columns on phones. Each opens
+   full size in the one viewer, as the set "mercury". */
+.st-proj__strip--posters{display:flex;align-items:flex-start;gap:clamp(10px,1.4vw,18px)}
+.st-proj__strip--posters li{flex:var(--r,1) 1 0;min-width:0}
+.st-proj__strip--posters li:nth-child(1){--r:1}
+.st-proj__strip--posters li:nth-child(2){--r:.6672}
+.st-proj__strip--posters li:nth-child(3),.st-proj__strip--posters li:nth-child(4){--r:.75}
+.st-proj__strip--posters li:nth-child(5){--r:.8}
+.st-proj__zoom{display:block;color:inherit;text-decoration:none;border-radius:6px}
+.st-proj__zoom:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.st-proj__poster{aspect-ratio:auto;background:var(--ink);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.st-proj__poster img{height:auto;object-fit:contain}
+.st-proj__poster figcaption{position:static;display:block;padding:6px 8px;border-top:2px solid var(--ink);text-wrap:balance}
+.st-proj__zoom:hover .st-proj__poster{transform:translateY(-3px);box-shadow:var(--shadow-s)}
+@media (prefers-reduced-motion:reduce){.st-proj__poster{transition:none}.st-proj__zoom:hover .st-proj__poster{transform:none}}
+@media (max-width:899px){
+  /* phones and tablets: the square GZANA across the row, then the four upright posters two by two at one
+     height (the picture sits whole on the ink, never cropped) */
+  .st-proj__strip--posters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+  .st-proj__strip--posters li:first-child{grid-column:1/-1}
+  .st-proj__strip--posters .st-proj__zoom,.st-proj__strip--posters .st-proj__poster{height:100%}
+  .st-proj__strip--posters .st-proj__poster{display:flex;flex-direction:column}
+  .st-proj__strip--posters .st-proj__poster img{flex:1 1 auto;min-height:0;height:100%}
+  .st-proj__strip--posters li:first-child .st-proj__poster img{max-height:min(86vw,520px)}
+}
 
 /* 08 · "Sur Behance": the same plate. A band (the drawing of Yasser at his
    work table, its left half empty paper that carries the title and the

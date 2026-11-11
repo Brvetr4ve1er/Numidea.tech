@@ -367,22 +367,18 @@
       "desc": "Le projet de court-métrage animé du fondateur, sans client, en deux actes. Yasser, gentleman cambrioleur en costume trois-pièces noir, salue sur la scène d’un théâtre Belle Époque. Son costume se déplie en tenue de voyageur rouge, puis ses compagnons arrivent : Kūro le chat noir au foulard rouge, un corbeau sur l’épaule, un pigeon techno et Ratman le rat dans sa sacoche. Les rideaux blancs s’ouvrent sur une lune cobalt.",
       "facts": [
         "2 actes",
-        "9 images clés",
+        "5 affiches",
         "Animation de 10 s",
         "Kūro et 3 compagnons"
       ],
       "lang": "Acte 2 · 10 s · sans son, à lancer vous-même",
-      "framesLabel": "Neuf images clés, de l’entrée en scène au gros plan final",
+      "framesLabel": "Cinq affiches du projet, à ouvrir en grand",
       "frames": [
-        "Yasser en gentleman, costume trois-pièces noir et chapeau, marche sur la scène d’un théâtre sous de grandes ailes sombres.",
-        "Yasser en costume noir et chapeau entre sur la scène dans le faisceau d’un projecteur, devant les rideaux sombres.",
-        "Yasser salue, le chapeau à la main, une pièce d’or au-dessus du chapeau, dans le cercle doré du projecteur.",
-        "Yasser se penche en un salut, le chapeau levé, une pièce d’or en l’air, devant un rideau doré.",
-        "Mi-métamorphose : le costume noir se déplie en flammes rouges autour de Yasser, bras levé vers une pièce d’or et la lune cobalt.",
-        "Le manteau noir s’ouvre sur la doublure rouge : Yasser à mi-changement, un corbeau en approche, un pigeon techno au-dessus, Kūro à ses pieds.",
-        "Yasser en tenue de voyageur rouge lance la pièce, entouré de Kūro le chat, d’un corbeau, d’un pigeon techno et de Ratman, sous la lune.",
-        "Le tableau final : Yasser en voyageur rouge, un corbeau sur l’épaule, Ratman dans sa sacoche, Kūro à ses pieds, devant les rideaux blancs et la lune.",
-        "Gros plan final : Yasser en voyageur rouge rattrape la pièce d’or, le corbeau sur l’épaule ; en dessous, Kūro et Ratman devant la lune et la ville dorée."
+        "Affiche GZANA, en rouge et noir : un enfant aux dreadlocks, une petite valise à la main, de dos face à une femme masquée en manteau rouge et colliers de perles, entourée de silhouettes aux yeux vides ; en marge, « No savior. No escape. Only choice. » et des lignes en latin et en japonais.",
+        "Affiche AUTOPHAGY, sur papier usé : un squelette couronné d’or enlace un jeune homme aux cheveux noirs dans une danse, devant un disque d’or, des colonnes en ruine et des crânes.",
+        "Affiche MERCURY RETROGRADE : Yasser aux longs cheveux et lunettes, foulard rouge et sacoche, flotte appuyé sur un immense porte-mine, devant une éclipse et des planètes en orbite, sur fond noir.",
+        "Affiche MERCURY RETROGRADE, deuxième version : Yasser en cape rouge déchirée, lunettes et bandeau rouge, appuyé sur un immense porte-mine, dans le sceau circulaire du titre.",
+        "Planche TR4VELERS.EXE, « Archetype 01 » : une voyageuse aux longs cheveux roux en robe ivoire déchirée et brassard doré, un sabre à la main, entourée de ses pièces de tenue — manteau, veste, jupe, capuche, brassard et bottes — sur fond rouge sombre."
       ],
       "video": "L’acte 2 de MERCURY en dix secondes : Yasser en voyageur rouge, entouré de Kūro, du corbeau, du pigeon techno et de Ratman, devant la lune.",
       "fallback": "Votre navigateur ne lit pas la vidéo."
