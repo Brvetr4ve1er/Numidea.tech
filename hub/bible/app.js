@@ -2,7 +2,8 @@
    VOIDSPLUNKER.std — hub interactions (vanilla, no deps)
    1 · the rig: Yasser and Kūro, twenty drawn frames, one loop that ends
    2 · the pose actors: six two-frame figures (section 04b)
-   3 · year
+   3 · loops: a still swapped for its animation once, on screen
+   4 · year
    The rule of the page: nothing moves for longer than five seconds on its
    own. The rig's loop runs for five seconds after the panel is first on
    screen and after every move, click or button, eases out and stops;
@@ -282,7 +283,26 @@
     }
   }
 
-  /* ---------------- 3 · year ---------------- */
+  /* ---------------- 3 · loops ----------------
+     Each loop's <img> holds its still (the poster frame) and names its
+     animated file in data-anim. Once half of it is on screen the src becomes
+     the animation, once: the file plays one time (4 s, under the page's
+     five-second rule, scripts/check.mjs 17b) and stops on the frame it
+     started from, so it settles back into the still. With reduced motion this
+     never observes and never writes; the <picture>'s <source> keeps the still. */
+  var loops = [].slice.call(document.querySelectorAll('img[data-anim]'));
+  if (loops.length && !reduce && 'IntersectionObserver' in window) {
+    var lio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        lio.unobserve(en.target);
+        en.target.src = en.target.getAttribute('data-anim');
+      });
+    }, { threshold: 0.5 });
+    loops.forEach(function (im) { lio.observe(im); });
+  }
+
+  /* ---------------- 4 · year ---------------- */
   var y = document.getElementById('year');
   if (y) y.textContent = String(new Date().getFullYear());
 })();
