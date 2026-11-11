@@ -931,18 +931,18 @@ scenes are now a titled row.)
   (the posters, the cat and the pigeons cut as round medals, the maquette
   merch tagged MAQUETTE and "hors vente", "Prochain monde", the terminal
   boot lines). No fact is added: no price, release date, stock, follower or
-  like count, shop address, collaboration, exhibition or place; the account
-  reads `[@compte]`, dates `[date]`, links `[lien]`. French only, no Arabic
-  page, so no AR review key. Please confirm: which Instagram account the
-  profile mock should carry (the codex links yass3r.0, the footer stick_itty;
-  see "Claims to confirm"); that the Matrix-style "robot" picture of plate 08
+  like count, shop address, collaboration, exhibition or place; dates read
+  `[date]`, links `[lien]`. The account is @yass3r.0 (the owner's choice of
+  2026-11-11 for the Instagram handle). French only, no Arabic page, so no
+  AR review key. Please confirm: that the Matrix-style "robot" picture of plate 08
   may be cut as a round crop in the carousel; that "Le chat est d'accord" and
   the other lines may be reused as post copy.
 
 **Claims to confirm (nothing was invented; these come from your design or the
 CV)**
-- the Instagram handle: the Traveler tile links yass3r.0, the footer links
-  stick_itty;
+- the Instagram handle: the owner chose yass3r.0 on 2026-11-11 (the
+  Traveler codex's social kit carries it); the Studio's founder card and
+  footer and the bible still link stick_itty, pending his word on those;
 - permission to show Bordj Steel's figures and logos, the clients' work, and
   Heetch's posters on a portfolio; "Chez Heetch depuis mai 2026" (the CV);
   "temps plein" and "Heetch Pro" were left out;

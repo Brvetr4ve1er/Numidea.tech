@@ -113,7 +113,7 @@
 .bk-tr .ig-id{display:grid;gap:3px;min-width:0}
 .bk-tr .ig-id b{font:900 clamp(22px,2.4vw,30px)/1.1 var(--t-cond);color:var(--t-bone);overflow-wrap:anywhere}
 .bk-tr .ig-id b i{font-style:normal;color:var(--t-red)}
-.bk-tr .ig-id b .ph{font:500 14px/1.4 "Geist Mono",monospace;color:var(--t-sub)}
+.bk-tr .ig-id b .ig-handle,.bk-tr .ig-id b .ph{font:500 14px/1.4 "Geist Mono",monospace;color:var(--t-sub)}
 .bk-tr .ig-id span{font-size:15px;line-height:1.45;color:var(--t-sub)}
 .bk-tr .ig-id .ig-meta{font:500 12px/1.5 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#B3A58F}
 .bk-tr .ig-hl{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px 20px;padding-top:6px}
