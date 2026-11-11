@@ -3701,3 +3701,39 @@ html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::before{
       linear-gradient(var(--k),var(--k)) 0 100%/100% 1px no-repeat}
 }
 @media (max-width:1199px){.plate-wrap{row-gap:var(--s-1)}}
+
+/* ---- recovered elements (2026-11-11, the look-back: owner's own copy and marks that left in small steps) ----
+   the coordinates under the hero's terms; the services' tagline (brass) and
+   family label (mono); the Aperçu's outcome line beside "Payé jusqu'ici";
+   the project-sheets sentence under the work link; the founder card's links
+   to the Studio and the bible. Nothing here moves: all of it is text. */
+.hero .dim-line{margin-top:var(--s-4)}
+@media (max-width:960px){.hero .dim-line{order:6}}
+
+.svc-row .promise,.cap .promise{margin:0;font-family:var(--font-body);font-size:var(--t-body);font-weight:600;line-height:1.4;color:var(--crimson-text)}
+html[dir="rtl"] .svc-row .promise,html[dir="rtl"] .cap .promise{font-family:var(--font-ar-body)}
+.svc-row .fam,.cap .fam{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;line-height:1.5;color:var(--muted)}
+html[dir="rtl"] .svc-row .fam,html[dir="rtl"] .cap .fam{letter-spacing:0;text-transform:none}
+@media (min-width:961px){
+  /* the five: tagline, brief, tools on the right; the title and, under it, the family on the left */
+  .svc-row .promise{grid-column:5/span 7;grid-row:1}
+  .svc-row .brief{grid-row:2}
+  .svc-row .tags{grid-row:3}
+  .svc-row h3{grid-row:1/span 2}
+  .svc-row .fam{grid-column:1/span 4;grid-row:3;align-self:end}
+  /* the five others: the title and the family on the left, tagline and brief on the right */
+  .cap .promise{grid-column:5/span 6;grid-row:1}
+  .cap h4{grid-row:1/span 2}
+  .cap .brief{grid-row:2/span 2}
+  .cap .fam{grid-column:1/span 4;grid-row:3;align-self:end}
+}
+
+.prev-out{display:grid;gap:2px;max-width:22em;margin:var(--s-3) 0 var(--s-3);font-size:var(--t-small);line-height:1.5;color:var(--body-strong)}
+.prev-out b{font-family:var(--font-mono);font-size:var(--t-label);font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+html[dir="rtl"] .prev-out b{letter-spacing:0;text-transform:none}
+
+.scene-lead{flex:1 1 100%;margin:0;font-size:var(--t-small);line-height:1.5;color:var(--muted)}
+@media (min-width:720px){.scene-lead{text-align:end}}
+
+.fd-actions .fd-bible{min-height:44px}
+@media (max-width:600px){.fd-actions{gap:var(--s-2)}}

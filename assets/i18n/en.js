@@ -227,4 +227,20 @@ var I18N = {
   'c4.brief': 'Internal knowledge architecture — Obsidian/PARA + Zettelkasten, documentation, bases ready for an AI assistant to query. Self-maintaining structures.',
   'c5.name': 'Custom AI tools & assistants',
   'c5.brief': 'Internal tools, generators and custom assistants, powered by Claude: a repetitive task runs in one click.',
+
+  /* restored 2026-11-11 from the 3 Nov dictionary (owner's own copy, verbatim) */
+  'proj2.desc': 'Brand identity and a trilingual website for a travel agency in Bordj\u00a0Bou\u00a0Arréridj, with a WhatsApp quote calculator and a visa-appointment service.',
+  'proj3.desc': 'The website of an air-conditioning, heating and plumbing firm in Gennevilliers, near Paris: one page per trade, a page of past jobs and a one-form quote request.',
+  'proj6.desc': 'A bilingual storefront for package tours and Umrah trips departing from Constantine.',
+  'svc.outcomeLabel': 'Outcome', 'prev.outcome': 'You say yes knowing what you get: you have already seen the result.',
+  'svc.famBuild': 'Sites & design', 'svc.famEngine': 'Data & automation', 'svc.famMind': 'Advisory & AI',
+  'f1.promise': 'The obvious choice.', 'f2.promise': 'Trust before a word is read.', 'f3.promise': 'Delete the busywork.', 'f4.promise': 'See the market clearly.', 'f5.promise': 'Data, not impressions.',
+  'c1.promise': 'From browse to paid.', 'c2.promise': 'Scroll-stopping, on brand.', 'c3.promise': 'Signal out of noise.', 'c4.promise': 'A company that remembers.', 'c5.promise': 'Software that builds your software.',
+  'c1.fam': 'Sites & design', 'c2.fam': 'Sites & design', 'c3.fam': 'Data & automation', 'c4.fam': 'Advisory & AI', 'c5.fam': 'Advisory & AI',
+  'scene.lead': 'Each sheet shows a project’s key pages, its mobile version and its visual system — every screenshot taken from the live site.',
+  'contact.tzNote': 'Paris time in winter, 1\u00a0h behind in summer',
+  /* new 2026-11-11: the home leads to the Studio and the bible again and to WorkspaceHQ */
+  'founder.studio': 'The studio, in detail <span aria-hidden="true">→</span>',
+  'founder.bible': 'The character bible <span aria-hidden="true">→</span>',
+  'footer.studio': 'The Studio',
 };

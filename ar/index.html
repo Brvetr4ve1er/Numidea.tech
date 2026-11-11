@@ -321,6 +321,9 @@
           </a>
         </div>
         <p class="hero-terms" data-i18n="hero.terms">معاينة مجّانية · للشركات المسجّلة فقط · 4 في الشهر كحدّ أقصى</p>
+        <!-- the workshop's place on the sheet, back at the hero's foot (it stood under the title until 8 Nov;
+             the 404 page still wears it): a mark, not a claim, so it is the same in every language -->
+        <div class="dim-line" aria-hidden="true"><i></i><b dir="ltr">36°04′N · 4°46′E</b><i></i></div>
       </div>
       <!-- THE PLATE — the four live client sites, one at a time, at a size you
            can actually read. This replaced a fan of three static thumbnails
@@ -470,6 +473,7 @@
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">سفر · نموّ</span>
           <h3><a href="../scene/?lang=ar#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
+          <p data-i18n="proj2.desc">هوية بصرية وموقع ثلاثي اللغة لوكالة سفر في برج بوعريريج، مع حاسبة عروض أسعار عبر واتساب وخدمة حجز مواعيد التأشيرة.</p>
           <span class="gain-k" data-i18n="work.outcome">للزائر</span>
           <a class="gain" href="../scene/?lang=ar#gv-alliance"><span data-i18n="proj2.gain">يقدّر المسافر سعر رحلته ويرسل عبر واتساب طلب حجز كاملاً.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
           <div class="actions">
@@ -483,6 +487,7 @@
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">حِرفي · إيل دو فرانس</span>
           <h3><a href="../scene/?lang=ar#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">تفاصيل المشروع</span></a></h3>
+          <p data-i18n="proj3.desc">موقع حِرفي في التكييف والتدفئة والسباكة بضواحي باريس: صفحة لكل خدمة، وصفحة لأعماله المنجزة، وطلب عرض سعر عبر استمارة واحدة.</p>
           <span class="gain-k" data-i18n="work.outcome">للزائر</span>
           <a class="gain" href="../scene/?lang=ar#gv-almaflow"><span data-i18n="proj3.gain">عند العطل، يتصل العميل بلمسة واحدة من صفحة التخصّص المعني.</span><span class="sr-only" data-i18n="work.gainMore"> — التفاصيل في لوحة المشروع</span></a>
           <div class="actions">
@@ -498,6 +503,7 @@
           <!-- no sheet for Nomara (scene/): its title is plain text and the foot
                link, stretched over the plate (.stretch), is its one link -->
           <h3>Nomara Voyages</h3>
+          <p data-i18n="proj6.desc">واجهة ثنائية اللغة لرحلات منظَّمة والعمرة انطلاقاً من قسنطينة.</p>
           <span class="gain-k" data-i18n="work.outcome">للزائر</span>
           <p class="gain" data-i18n="proj6.gain">يقارن المعتمر باقات العمرة حسب السعر والمسافة عن الحرم، ثم يراسل الوكالة عبر واتساب.</p>
           <div class="actions">
@@ -517,6 +523,7 @@
         <span class="work-links"><a data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">زيارة الموقع <span aria-hidden="true">↗</span><span class="sr-only"> (يفتح في تبويب جديد)</span></a>
         <a href="../scene/?lang=ar#glaive" data-i18n="work.sheet">تفاصيل المشروع</a></span></p>
       <a class="scene-link" href="../scene/?lang=ar"><span class="sb-go" data-i18n="scene.cta">اطّلع على كل مشروع بالتفصيل <span aria-hidden="true">←</span></span></a>
+      <p class="scene-lead" data-i18n="scene.lead">الصفحات وعرض الهاتف والنظام البصري لكل مشروع، ملتقطة من المواقع كما هي على الإنترنت.</p>
     </div>
 
   </section>
@@ -549,7 +556,7 @@
         </div>
         <p class="prev-terms" data-i18n="prev.terms">مجّاناً ودون التزام · للشركات المسجّلة فقط · 4 معاينات في الشهر كحدّ أقصى لجميع العملاء.</p>
         <!-- the one figure of the path, set beside the promise: what has been paid when the visitor decides (app.js writes it in the visitor's currency) -->
-        <p class="prev-paid"><span class="ptl-d" data-i18n="prev.tl5d">المدفوع حتى الآن:</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">دج</span></b></p>
+        <p class="prev-paid"><span class="ptl-d" data-i18n="prev.tl5d">المدفوع حتى الآن:</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">دج</span></b><span class="prev-out"><b data-i18n="svc.outcomeLabel">النتيجة</b><span data-i18n="prev.outcome">تقول نعم عن معرفة: فقد رأيت النتيجة بالفعل.</span></span></p>
         <p class="prev-actions">
           <a class="btn btn-primary" id="prev-cta" href="#contact" data-apercu data-i18n="prev.cta">اطلب معاينتك المجانية <span aria-hidden="true">←</span></a>
           <!-- WhatsApp as the hero wears it (a button with the mark, not an
@@ -566,41 +573,51 @@
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f1.name">مواقع وتطبيقات ويب</h3>
+          <p class="promise" data-i18n="f1.promise">الخيار البديهي.</p>
           <p class="brief" data-i18n="f1.brief">مواقع وتطبيقات ويب مخصّصة — سريعة، مع تحسين محرّكات البحث (<bdi>SEO</bdi>)، ومبنيّة لتحوّل الزوّار إلى عملاء، من الواجهة إلى السحابة. لا نعيد تلوين قالب جاهز: نصمّم موقعك من الصفر.</p>
           <!-- only what the delivered builds use (F11): the rest waits for the owner to confirm it -->
           <div class="tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Tailwind</span></div>
+          <span class="fam" data-i18n="svc.famBuild">المواقع والتصميم</span>
         </div>
       </article>
 
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f2.name">الهوية والأنظمة البصرية</h3>
+          <p class="promise" data-i18n="f2.promise">الثقة قبل قراءة كلمة.</p>
           <p class="brief" data-i18n="f2.brief">شعارات وألوان وخطوط وحركة، ونظام تصميم كامل وموثّق — ما يمنح الشركة الصغيرة حضور مؤسسة راسخة.</p>
           <div class="tags"><span class="pill" data-i18n="tag.identity">هوية بصرية</span><span class="pill" data-i18n="tag.designSystems">حزم تصميم</span><span class="pill" data-i18n="tag.motion">حركة</span></div>
+          <span class="fam" data-i18n="svc.famBuild">المواقع والتصميم</span>
         </div>
       </article>
 
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f3.name">الأتمتة ومعالجة البيانات</h3>
+          <p class="promise" data-i18n="f3.promise">تخلّص من المهام المتكرّرة.</p>
           <p class="brief" data-i18n="f3.brief">جمع البيانات من الويب، ومعالجتها آلياً، واستقطاب العملاء المحتملين، وأتمتة سير العمل، وأدوات داخلية. العمل المتكرّر الهشّ الذي يلتهم ساعاتك — نجعله يعمل وحده عند الثالثة فجراً.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.apis">واجهات برمجية</span><span class="pill">Claude</span></div>
+          <span class="fam" data-i18n="svc.famEngine">البيانات والأتمتة</span>
         </div>
       </article>
 
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f4.name">تحليل السوق والمنتجات</h3>
+          <p class="promise" data-i18n="f4.promise">رؤية السوق بوضوح.</p>
           <p class="brief" data-i18n="f4.brief">حوّل البيانات العامة على الويب إلى قاعدة بيانات قابلة للاستخدام: رصد المنافسين، وتتبّع الأسعار والكتالوجات — تُجمع وفق شروط كل موقع وقوانين حماية البيانات، مهيكلة وقابلة للاستعلام.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.maps">خرائط</span><span class="pill" data-i18n="tag.scoring">تقييم</span></div>
+          <span class="fam" data-i18n="svc.famEngine">البيانات والأتمتة</span>
         </div>
       </article>
 
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f5.name">الاستراتيجية واستشارات النمو</h3>
+          <p class="promise" data-i18n="f5.promise">بيانات، لا انطباعات.</p>
           <p class="brief" data-i18n="f5.brief">تدقيقات تسويقية كاملة، وتحليل المسارات التسويقية، وتموضع تنافسي، وخرائط طريق للنمو — بصراحة، والأولوية للعائد، وعلى مراحل. ندرس قطاعك جيداً قبل أيّ مكالمة.</p>
           <div class="tags"><span class="pill" data-i18n="tag.strategy">استراتيجية</span><span class="pill" data-i18n="tag.funnels">مسارات تسويقية</span><span class="pill" data-i18n="tag.audits">تدقيق</span></div>
+          <span class="fam" data-i18n="svc.famMind">الاستشارة والذكاء الاصطناعي</span>
         </div>
       </article>
     </div>
@@ -615,23 +632,33 @@
       <div class="cap-grid">
         <div class="cap">
           <h4 data-i18n="c1.name">متجر وحجز</h4>
+          <p class="promise" data-i18n="c1.promise">من التصفّح إلى الدفع.</p>
           <p class="brief" data-i18n="c1.brief">متاجر إلكترونية وأنظمة حجز تناسب طريقة الشراء في الجزائر: الطلب عبر واتساب، والدفع نقداً عند الاستلام، و<bdi>Shopify</bdi> بواجهة مخصّصة عند الحاجة.</p>
+          <span class="fam" data-i18n="c1.fam">المواقع والتصميم</span>
         </div>
         <div class="cap">
           <h4 data-i18n="c2.name">تصميم غرافيك ومنشورات لشبكات التواصل</h4>
+          <p class="promise" data-i18n="c2.promise">تصاميم تلفت الانتباه، وتبقى وفيّة لهويتك.</p>
           <p class="brief" data-i18n="c2.brief">حزم منشورات لشبكات التواصل، وتصاميم كاروسيل، وإنفوجرافيك، ومطبوعات — كلّها من نظام بصري واحد ثابت، لتحمل كلّ قطعة بصمتك.</p>
+          <span class="fam" data-i18n="c2.fam">المواقع والتصميم</span>
         </div>
         <div class="cap">
           <h4 data-i18n="c3.name">علم البيانات والتحليلات</h4>
+          <p class="promise" data-i18n="c3.promise">المعنى وسط الضجيج.</p>
           <p class="brief" data-i18n="c3.brief">عمل إحصائي دقيق — نمذجة قياسية، وسلاسل زمنية، وتنبّؤ، ولوحات متابعة تفاعلية. تحليلٌ مُختبَر يمكن الدفاع عنه.</p>
+          <span class="fam" data-i18n="c3.fam">البيانات والأتمتة</span>
         </div>
         <div class="cap">
           <h4 data-i18n="c4.name">أنظمة المعرفة</h4>
+          <p class="promise" data-i18n="c4.promise">شركة تتذكّر.</p>
           <p class="brief" data-i18n="c4.brief">بنية معرفة داخلية — <bdi>Obsidian/PARA + Zettelkasten</bdi>، توثيق، قواعد جاهزة ليستعلم منها مساعد ذكاء اصطناعي. بنى تصون نفسها.</p>
+          <span class="fam" data-i18n="c4.fam">الاستشارة والذكاء الاصطناعي</span>
         </div>
         <div class="cap">
           <h4 data-i18n="c5.name">أدوات ومساعدات ذكاء اصطناعي مخصّصة</h4>
+          <p class="promise" data-i18n="c5.promise">برمجيات تبني برمجياتك.</p>
           <p class="brief" data-i18n="c5.brief">أدوات داخلية ومولّدات ومساعدات مخصّصة مدعومة بـ <bdi>Claude</bdi>: مهمّة متكرّرة تنطلق بنقرة واحدة.</p>
+          <span class="fam" data-i18n="c5.fam">الاستشارة والذكاء الاصطناعي</span>
         </div>
       </div>
     </details>
@@ -934,12 +961,17 @@
         <li><a href="mailto:hamissemohamedyasser@gmail.com"><span class="fl-b" aria-hidden="true">@</span><span data-i18n="form.email">البريد</span></a></li>
       </ul>
 
-      <!-- the founder's own page (hub/) is no longer linked from here
-           (decision 11): the studio's page sells the studio; with scripts
-           off the panel below is open and its PDF link stands in for this
-           button (styles.css, html:not(.js)) -->
+      <!-- the Studio (hub/) and the character bible (hub/bible/) are linked from
+           here again (owner, 2026-11-11: the old reason, "agency of one", went
+           when /hub/ became the Studio). The Studio switches language with
+           the page (?lang=, build-lang.mjs); the bible is in English only,
+           which its label says. With scripts off the panel below is open and
+           its PDF link stands in for the career button (styles.css,
+           html:not(.js)) -->
       <div class="fd-actions">
+        <a class="btn btn-teal fd-studio" href="../hub/?lang=ar" data-i18n="founder.studio">الاستوديو بالتفصيل <span aria-hidden="true">←</span></a>
         <button type="button" class="btn btn-teal js-only" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">عرض المسار <span aria-hidden="true">↓</span></button>
+        <a class="btn btn-ghost fd-bible" href="../hub/bible/" data-i18n="founder.bible">دفتر الشخصية، بالإنجليزية <span aria-hidden="true">←</span></a>
       </div>
 
       <div class="cv-panel" id="cv-panel">
@@ -1061,7 +1093,7 @@
           <div class="ch"><dt data-i18n="footer.wa">واتساب</dt><dd><a class="wa-link" dir="ltr" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener"><bdi dir="ltr">+213 672 41 25 78</bdi></a><small class="ch-note" data-i18n="contact.waNote">رسائل فقط، دون مكالمات · مجاناً عبر التطبيق</small></dd></div>
           <div class="ch"><dt data-i18n="form.email">البريد</dt><dd><a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></dd></div>
           <div class="ch"><dt data-i18n="contact.chStudio">الاستوديو</dt><dd data-i18n="contact.vStudio">برج بوعريريج · الجزائر</dd></div>
-          <div class="ch"><dt data-i18n="contact.chReply">الردّ</dt><dd data-i18n="contact.vReply">في يوم العمل التالي · من الأحد إلى الخميس، من 9 إلى 18 (<bdi>UTC+1</bdi>) · بالفرنسية والإنجليزية والعربية</dd></div>
+          <div class="ch"><dt data-i18n="contact.chReply">الردّ</dt><dd><span data-i18n="contact.vReply">في يوم العمل التالي · من الأحد إلى الخميس، من 9 إلى 18 (<bdi>UTC+1</bdi>) · بالفرنسية والإنجليزية والعربية</span><small class="ch-note" data-i18n="contact.tzNote">بتوقيت باريس شتاءً، وبساعة أقلّ صيفاً</small></dd></div>
         </dl>
       </div>
       <div class="contact-main">
@@ -1151,6 +1183,8 @@
       <a href="#founder" data-i18n="nav.team">المؤسّس</a>
       <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
       <a href="#contact" data-i18n="nav.contact">تواصل</a>
+      <a href="../hub/?lang=ar" data-i18n="footer.studio">الاستوديو</a>
+      <a href="../workspacehq/">WorkspaceHQ</a>
     </nav>
   </div>
   <div class="meta">

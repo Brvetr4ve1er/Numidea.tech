@@ -351,6 +351,9 @@
           </a>
         </div>
         <p class="hero-terms" data-i18n="hero.terms">Aperçu gratuit · réservé aux entreprises immatriculées · 4 par mois au plus</p>
+        <!-- the workshop's place on the sheet, back at the hero's foot (it stood under the title until 8 Nov;
+             the 404 page still wears it): a mark, not a claim, so it is the same in every language -->
+        <div class="dim-line" aria-hidden="true"><i></i><b dir="ltr">36°04′N · 4°46′E</b><i></i></div>
       </div>
       <!-- THE PLATE — the four live client sites, one at a time, at a size you
            can actually read. This replaced a fan of three static thumbnails
@@ -500,6 +503,7 @@
         <div class="body">
           <span class="cat" data-i18n="proj2.cat">Voyage · Croissance</span>
           <h3><a href="scene/#alliance">Alliance Travel <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail</span></a></h3>
+          <p data-i18n="proj2.desc">Identité, site trilingue, prise de rendez-vous visa et calculateur de devis sur WhatsApp pour une agence de voyages de Bordj Bou Arréridj.</p>
           <span class="gain-k" data-i18n="work.outcome">Côté visiteur</span>
           <a class="gain" href="scene/#gv-alliance"><span data-i18n="proj2.gain">Un voyageur estime son budget et envoie une demande complète sur WhatsApp.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="actions">
@@ -513,6 +517,7 @@
         <div class="body">
           <span class="cat" data-i18n="proj3.cat">Artisan · Île-⁠de-⁠France</span>
           <h3><a href="scene/#almaflow">AlmaFlowClim <span class="arr" aria-hidden="true">→</span><span class="sr-only" data-i18n="work.sheet">Voir le projet en détail</span></a></h3>
+          <p data-i18n="proj3.desc">Le site d’un artisan de Gennevilliers en climatisation, chauffage et plomberie : une page par métier, ses réalisations chantier par chantier et une demande de devis en un seul formulaire.</p>
           <span class="gain-k" data-i18n="work.outcome">Côté visiteur</span>
           <a class="gain" href="scene/#gv-almaflow"><span data-i18n="proj3.gain">En cas de panne, un client appelle d’un simple appui depuis la page du métier.</span><span class="sr-only" data-i18n="work.gainMore"> — le détail sur la planche</span></a>
           <div class="actions">
@@ -528,6 +533,7 @@
           <!-- no sheet for Nomara (scene/): its title is plain text and the foot
                link, stretched over the plate (.stretch), is its one link -->
           <h3>Nomara Voyages</h3>
+          <p data-i18n="proj6.desc">Une vitrine bilingue pour des voyages organisés et l’Omra au départ de Constantine.</p>
           <span class="gain-k" data-i18n="work.outcome">Côté visiteur</span>
           <p class="gain" data-i18n="proj6.gain">Un pèlerin compare les forfaits Omra par prix et distance du Haram, puis écrit sur WhatsApp.</p>
           <div class="actions">
@@ -547,6 +553,7 @@
         <span class="work-links"><a data-client="glaive" href="https://glaivestore.netlify.app" target="_blank" rel="noopener" data-i18n="work.live">Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span></a>
         <a href="scene/#glaive" data-i18n="work.sheet">Voir le projet en détail</a></span></p>
       <a class="scene-link" href="scene/"><span class="sb-go" data-i18n="scene.cta">Voir chaque réalisation en détail <span aria-hidden="true">→</span></span></a>
+      <p class="scene-lead" data-i18n="scene.lead">Les pages, le mobile et le système visuel de nos projets, capturés sur les sites en ligne.</p>
     </div>
 
   </section>
@@ -579,7 +586,7 @@
         </div>
         <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.</p>
         <!-- the one figure of the path, set beside the promise: what has been paid when the visitor decides (app.js writes it in the visitor's currency) -->
-        <p class="prev-paid"><span class="ptl-d" data-i18n="prev.tl5d">Payé jusqu’ici :</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">DA</span></b></p>
+        <p class="prev-paid"><span class="ptl-d" data-i18n="prev.tl5d">Payé jusqu’ici :</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">DA</span></b><span class="prev-out"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="prev.outcome">Vous dites oui en connaissance de cause : vous avez déjà vu le résultat.</span></span></p>
         <p class="prev-actions">
           <a class="btn btn-primary" id="prev-cta" href="#contact" data-apercu data-i18n="prev.cta">Demander mon Aperçu gratuit <span aria-hidden="true">→</span></a>
           <!-- WhatsApp as the hero wears it (a button with the mark, not an
@@ -596,41 +603,51 @@
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f1.name">Sites &amp; applications web</h3>
+          <p class="promise" data-i18n="f1.promise">Le choix évident.</p>
           <p class="brief" data-i18n="f1.brief">Sites et applications web sur mesure — rapides, bien référencés, pensés pour convertir, du front-end au cloud. Pas de modèle acheté puis maquillé : on dessine votre site de zéro.</p>
           <!-- only what the delivered builds use (F11): the rest waits for the owner to confirm it -->
           <div class="tags"><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Tailwind</span></div>
+          <span class="fam" data-i18n="svc.famBuild">Sites &amp; design</span>
         </div>
       </article>
 
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f2.name">Identité &amp; systèmes visuels</h3>
+          <p class="promise" data-i18n="f2.promise">La confiance avant le premier mot.</p>
           <p class="brief" data-i18n="f2.brief">Logos, couleurs, typographie, animation et une charte complète, documentée, prête à l’emploi : ce qui donne à une petite entreprise l’allure d’une maison établie.</p>
           <div class="tags"><span class="pill" data-i18n="tag.identity">Identité</span><span class="pill" data-i18n="tag.designSystems">Kits graphiques</span><span class="pill" data-i18n="tag.motion">Animation</span></div>
+          <span class="fam" data-i18n="svc.famBuild">Sites &amp; design</span>
         </div>
       </article>
 
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f3.name">Automatisation &amp; pipelines</h3>
+          <p class="promise" data-i18n="f3.promise">Supprimez la corvée.</p>
           <p class="brief" data-i18n="f3.brief">Collecte de données sur le web, pipelines de données, génération de leads, automatisations, outils internes. Le travail répétitif et fragile qui dévore vos heures — on le fait tourner seul à 3 h du matin.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.apis">API</span><span class="pill">Claude</span></div>
+          <span class="fam" data-i18n="svc.famEngine">Données &amp; automatisation</span>
         </div>
       </article>
 
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f4.name">Intelligence marché &amp; produit</h3>
+          <p class="promise" data-i18n="f4.promise">Voir le marché clairement.</p>
           <p class="brief" data-i18n="f4.brief">Transformez les données publiques du web en base exploitable : veille concurrentielle, suivi des prix et des catalogues — collectées dans le respect des conditions de chaque site et du RGPD, structurées, interrogeables.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.maps">Cartes</span><span class="pill" data-i18n="tag.scoring">Scoring</span></div>
+          <span class="fam" data-i18n="svc.famEngine">Données &amp; automatisation</span>
         </div>
       </article>
 
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f5.name">Stratégie &amp; conseil croissance</h3>
+          <p class="promise" data-i18n="f5.promise">De la donnée, pas des impressions.</p>
           <p class="brief" data-i18n="f5.brief">Audits marketing complets, analyse des tunnels de vente, positionnement concurrentiel, feuilles de route — honnêtes, ROI d’abord, par phases. On étudie votre secteur avant le premier appel.</p>
           <div class="tags"><span class="pill" data-i18n="tag.strategy">Stratégie</span><span class="pill" data-i18n="tag.funnels">Tunnels de vente</span><span class="pill" data-i18n="tag.audits">Audits</span></div>
+          <span class="fam" data-i18n="svc.famMind">Conseil &amp; IA</span>
         </div>
       </article>
     </div>
@@ -645,23 +662,33 @@
       <div class="cap-grid">
         <div class="cap">
           <h4 data-i18n="c1.name">Boutique &amp; réservation</h4>
+          <p class="promise" data-i18n="c1.promise">De la visite au paiement.</p>
           <p class="brief" data-i18n="c1.brief">Boutiques en ligne et systèmes de réservation adaptés aux habitudes d’achat en Algérie : commande par WhatsApp, paiement à la livraison, ou boutique Shopify sur mesure quand c’est pertinent.</p>
+          <span class="fam" data-i18n="c1.fam">Sites &amp; design</span>
         </div>
         <div class="cap">
           <h4 data-i18n="c2.name">Design graphique &amp; réseaux sociaux</h4>
+          <p class="promise" data-i18n="c2.promise">Des visuels qui arrêtent le regard.</p>
           <p class="brief" data-i18n="c2.brief">Packs réseaux sociaux, carrousels, infographies, print — depuis un système visuel verrouillé, pour que tout vous ressemble.</p>
+          <span class="fam" data-i18n="c2.fam">Sites &amp; design</span>
         </div>
         <div class="cap">
           <h4 data-i18n="c3.name">Data science &amp; analytics</h4>
+          <p class="promise" data-i18n="c3.promise">Du signal dans le bruit.</p>
           <p class="brief" data-i18n="c3.brief">Un travail statistique rigoureux — modélisation économétrique, séries temporelles, prévision, tableaux de bord. Analyse testée et défendable.</p>
+          <span class="fam" data-i18n="c3.fam">Données &amp; automatisation</span>
         </div>
         <div class="cap">
           <h4 data-i18n="c4.name">Systèmes de connaissance</h4>
+          <p class="promise" data-i18n="c4.promise">Une entreprise qui se souvient.</p>
           <p class="brief" data-i18n="c4.brief">Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes à être interrogées par un assistant IA. Des structures qui s’entretiennent seules.</p>
+          <span class="fam" data-i18n="c4.fam">Conseil &amp; IA</span>
         </div>
         <div class="cap">
           <h4 data-i18n="c5.name">Outils &amp; assistants IA sur mesure</h4>
+          <p class="promise" data-i18n="c5.promise">Le logiciel qui construit votre logiciel.</p>
           <p class="brief" data-i18n="c5.brief">Outils internes, générateurs et assistants sur mesure, propulsés par Claude : une tâche répétitive se lance en un clic.</p>
+          <span class="fam" data-i18n="c5.fam">Conseil &amp; IA</span>
         </div>
       </div>
     </details>
@@ -964,12 +991,17 @@
         <li><a href="mailto:hamissemohamedyasser@gmail.com"><span class="fl-b" aria-hidden="true">@</span><span data-i18n="form.email">Email</span></a></li>
       </ul>
 
-      <!-- the founder's own page (hub/) is no longer linked from here
-           (decision 11): the studio's page sells the studio; with scripts
-           off the panel below is open and its PDF link stands in for this
-           button (styles.css, html:not(.js)) -->
+      <!-- the Studio (hub/) and the character bible (hub/bible/) are linked from
+           here again (owner, 2026-11-11: the old reason, "agency of one", went
+           when /hub/ became the Studio). The Studio switches language with
+           the page (?lang=, build-lang.mjs); the bible is in English only,
+           which its label says. With scripts off the panel below is open and
+           its PDF link stands in for the career button (styles.css,
+           html:not(.js)) -->
       <div class="fd-actions">
+        <a class="btn btn-teal fd-studio" href="hub/" data-i18n="founder.studio">Le studio, en détail <span aria-hidden="true">→</span></a>
         <button type="button" class="btn btn-teal js-only" id="cv-toggle" aria-expanded="false" aria-controls="cv-panel" data-i18n="founder.cvBtn">Voir le parcours <span aria-hidden="true">↓</span></button>
+        <a class="btn btn-ghost fd-bible" href="hub/bible/" data-i18n="founder.bible">Le carnet du personnage, en anglais <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="cv-panel" id="cv-panel">
@@ -1091,7 +1123,7 @@
           <div class="ch"><dt data-i18n="footer.wa">WhatsApp</dt><dd><a class="wa-link" dir="ltr" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener"><bdi dir="ltr">+213 672 41 25 78</bdi></a><small class="ch-note" data-i18n="contact.waNote">messages seulement, pas d’appels · gratuit via l’appli</small></dd></div>
           <div class="ch"><dt data-i18n="form.email">Email</dt><dd><a href="mailto:hamissemohamedyasser@gmail.com">hamissemohamedyasser@<wbr>gmail.com</a></dd></div>
           <div class="ch"><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
-          <div class="ch"><dt data-i18n="contact.chReply">Réponse</dt><dd data-i18n="contact.vReply">Le jour ouvré suivant · dimanche–jeudi, 9h–⁠18h (UTC+1) · <span class="nb">FR · EN · AR</span></dd></div>
+          <div class="ch"><dt data-i18n="contact.chReply">Réponse</dt><dd><span data-i18n="contact.vReply">Le jour ouvré suivant · dimanche–jeudi, 9h–⁠18h (UTC+1) · <span class="nb">FR · EN · AR</span></span><small class="ch-note" data-i18n="contact.tzNote">Heure de Paris en hiver, 1 h de moins en été</small></dd></div>
         </dl>
       </div>
       <div class="contact-main">
@@ -1181,6 +1213,8 @@
       <a href="#founder" data-i18n="nav.team">Fondateur</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <a href="hub/" data-i18n="footer.studio">Le Studio</a>
+      <a href="workspacehq/">WorkspaceHQ</a>
     </nav>
   </div>
   <div class="meta">

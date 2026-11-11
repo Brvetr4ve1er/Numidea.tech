@@ -227,4 +227,20 @@ var I18N = {
   'c4.brief': 'Architecture de connaissance interne — Obsidian/PARA + Zettelkasten, documentation, bases prêtes à être interrogées par un assistant IA. Des structures qui s’entretiennent seules.',
   'c5.name': 'Outils & assistants IA sur mesure',
   'c5.brief': 'Outils internes, générateurs et assistants sur mesure, propulsés par Claude : une tâche répétitive se lance en un clic.',
+
+  /* restored 2026-11-11 from the 3 Nov dictionary (owner's own copy, verbatim; the apostrophes and non-breaking spaces follow the page's typography) */
+  'proj2.desc': 'Identité, site trilingue, prise de rendez-vous visa et calculateur de devis sur WhatsApp pour une agence de voyages de Bordj\u00a0Bou\u00a0Arréridj.',
+  'proj3.desc': 'Le site d’un artisan de Gennevilliers en climatisation, chauffage et plomberie\u00a0: une page par métier, ses réalisations chantier par chantier et une demande de devis en un seul formulaire.',
+  'proj6.desc': 'Une vitrine bilingue pour des voyages organisés et l’Omra au départ de Constantine.',
+  'svc.outcomeLabel': 'Résultat', 'prev.outcome': 'Vous dites oui en connaissance de cause\u00a0: vous avez déjà vu le résultat.',
+  'svc.famBuild': 'Sites & design', 'svc.famEngine': 'Données & automatisation', 'svc.famMind': 'Conseil & IA',
+  'f1.promise': 'Le choix évident.', 'f2.promise': 'La confiance avant le premier mot.', 'f3.promise': 'Supprimez la corvée.', 'f4.promise': 'Voir le marché clairement.', 'f5.promise': 'De la donnée, pas des impressions.',
+  'c1.promise': 'De la visite au paiement.', 'c2.promise': 'Des visuels qui arrêtent le regard.', 'c3.promise': 'Du signal dans le bruit.', 'c4.promise': 'Une entreprise qui se souvient.', 'c5.promise': 'Le logiciel qui construit votre logiciel.',
+  'c1.fam': 'Sites & design', 'c2.fam': 'Sites & design', 'c3.fam': 'Données & automatisation', 'c4.fam': 'Conseil & IA', 'c5.fam': 'Conseil & IA',
+  'scene.lead': 'Les pages, le mobile et le système visuel de nos projets, capturés sur les sites en\u00a0ligne.',
+  'contact.tzNote': 'Heure de Paris en hiver, 1\u00a0h de moins en été',
+  /* new 2026-11-11: the home leads to the Studio and the bible again (the bible is in English only) and to WorkspaceHQ */
+  'founder.studio': 'Le studio, en détail <span aria-hidden="true">→</span>',
+  'founder.bible': 'Le carnet du personnage, en anglais <span aria-hidden="true">→</span>',
+  'footer.studio': 'Le Studio',
 };
