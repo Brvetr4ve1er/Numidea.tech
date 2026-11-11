@@ -1525,7 +1525,7 @@ measure it.
 The owner's design project carries four brand-book decks (`brand/*.dc.html`).
 Since 2026-11-11 three are static pages of the Studio: `/hub/brand/almaflow/`
 (AlmaFlowClim, 12 planches), `/hub/brand/traveler/` (the tr4veler.exe codex,
-12 planches) and `/hub/brand/numidea/` (the studio's own identity). They share
+14 planches) and `/hub/brand/numidea/` (the studio's own identity). They share
 `hub/brand/style.css` (paper, ink and the red seal, as the Studio), use the
 site's own font files, load no deck runtime and no script beyond
 `assets/carry.js`, and take their pictures from the Studio's `hub/img/`
@@ -1553,6 +1553,30 @@ carry no Arabic.
   `[@compte]`; the tips avoid figures other than the 19 °C public guidance and
   the legal annual boiler service. `scripts/check.mjs` reads the second sheet
   (`extra:`) in the brand entry.
+- **The Traveler codex's social kit (2026-11-11, plates 13 and 14).** On the
+  owner's word the codex gained a social kit in its own world: an Instagram
+  profile (hanko avatar, five highlight covers), nine square posts in a
+  3 x 3 grid (two poster drops with a metadata band, a voice quote on bone,
+  a carousel cover, the cat on ciel rouge, an ink "coulisses" post, the
+  pigeons on paper, a merch maquette stamped MAQUETTE, a "Prochain monde"
+  announcement), three 9:16 stories (poll, countdown, question box) and the
+  rules (grid rhythm, safe zones, where the mark and the 旅 seal sit, colour
+  per post type, caption voice, type sizes), then plate 14: a five-image 4:5
+  carousel of the four companions, a five-frame reel storyboard that replays
+  the volume's terminal boot lines, and three caption examples. Ink is the
+  default ground, bone the paper, ciel rouge the loud one (one full field
+  per grid), brick the aside colour on light grounds (ciel rouge text on bone
+  fails AA, brick on ciel rouge is 2.2:1: never). Titles are Archivo
+  Condensed caps, the mark is the lower-case tr4veler.exe with its orange 4 and
+  .exe, the seal is the tilted hanko (filled where it sits on art). The Noto
+  Serif JP subset only carries the glyphs the book already uses, so the kit
+  uses 旅, 不動心, 非売品 and 次の世界へ and no other kanji. Same build as
+  AlmaFlow's: `role="img"` frames with a label and a visible caption, a
+  container-query unit set on the figure (`.pf`, never on the post), styled by
+  `hub/brand/traveler/social.css`, linked only from that page and read by
+  `scripts/check.mjs` (`extra:`); no new image file (the round medals are
+  crops of existing pictures). No price, date, count, shop, collaboration or
+  place; placeholders read `[@compte]`, `[date]`, `[lien]`.
 - **Client text follows the site's facts.** AlmaFlow's page drops the "24h",
   RGE / décennale, "Devis gratuit", MaPrime Rénov', phone, address, e-mail and
   domain of the design; the mockup pictures that still show a phone number are

@@ -919,6 +919,25 @@ scenes are now a titled row.)
   **Confirmed by the owner on 2026-11-11:** "Gennevilliers (92)" is right in
   the posts' footers, and post 03's speed promise ("On vient vite", the
   "Rapide" tag) stays, like the mockups' "sous 24h".
+  **Update, 2026-11-11, on the owner's word ("add more posts to the traveler
+  codex too"): the Traveler codex gains plate 13 (Réseaux sociaux: an
+  Instagram profile with five highlight covers, nine square posts in a 3 x 3
+  grid, three 9:16 stories and the kit's rules) and plate 14 (Carrousel &
+  reel: the five-image carousel "Quatre présences", a five-frame reel
+  storyboard, three caption examples).** The 12 earlier plates are unchanged;
+  the page now says 14 planches (title, kicker, facts, contents); the Studio's
+  codex tile states no count, so the case only has a source comment updated.
+  All are maquettes in HTML and CSS from the codex's own pictures and lines
+  (the posters, the cat and the pigeons cut as round medals, the maquette
+  merch tagged MAQUETTE and "hors vente", "Prochain monde", the terminal
+  boot lines). No fact is added: no price, release date, stock, follower or
+  like count, shop address, collaboration, exhibition or place; the account
+  reads `[@compte]`, dates `[date]`, links `[lien]`. French only, no Arabic
+  page, so no AR review key. Please confirm: which Instagram account the
+  profile mock should carry (the codex links yass3r.0, the footer stick_itty;
+  see "Claims to confirm"); that the Matrix-style "robot" picture of plate 08
+  may be cut as a round crop in the carousel; that "Le chat est d'accord" and
+  the other lines may be reused as post copy.
 
 **Claims to confirm (nothing was invented; these come from your design or the
 CV)**
