@@ -937,6 +937,33 @@ scenes are now a titled row.)
   AR review key. Please confirm: that the Matrix-style "robot" picture of plate 08
   may be cut as a round crop in the carousel; that "Le chat est d'accord" and
   the other lines may be reused as post copy.
+  **Update, 2026-11-11, on the owner's word ("add more posts to the numidea
+  identity too"): Numidea's own identity page gains plate 18 (Social: an
+  Instagram profile with five highlight covers, nine square posts in a 3 x 3
+  grid, three 9:16 stories, two LinkedIn landscape posts and the kit's rules)
+  and plate 19 (Explainers: three carousels, "The Preview in five steps" in
+  eight slides, "How a project runs" and "A site in three languages" as a
+  cover and three slides each).** Plates 01 to 17 are unchanged; the page now
+  says 19 plates (title, descriptions, facts, contents). English only, like the
+  page. The posts are maquettes in HTML and CSS from the rulebook's own
+  rules (Arcanum void and navy, paper for the cast, brass button, one arcane
+  word, the wordmark on a navy band or chip) and the pictures the page already
+  uses (the Bordj Steel and Alliance Travel captures, Yasser and Kūro's
+  drawings). Every fact is one the site states: "See your homepage before you
+  pay", the Preview (free, registered businesses only, at most 4 a month, 5
+  working days, a 30-minute call, 0 DA paid so far), three languages FR, EN and
+  AR, "From 90,000 DZD", the reply the next working day, Sunday to Thursday
+  9am-6pm, Bordj Bou Arréridj, "No middlemen. Just the builder.". No
+  follower or like count, quote, award, launch date or new price. Placeholders
+  read `[@account]` and `[link]` (the studio's own account and WhatsApp
+  link). Please confirm: the studio's Instagram account name (the Traveler kit
+  carries @yass3r.0; this one is left open, since the Studio's footer still
+  links stick_itty); the WhatsApp link to print; that the Alliance Travel
+  capture, which shows the client's own "A PARTIR DE 169,000 DA" badge in its
+  top corner, may be used in post 06 (it is cropped to hide it); and that the
+  French and Arabic feeds should follow this grid. The Arabic greeting was
+  left out of post 05 (it reads "Marhaba." in Latin letters, mirrored): the
+  Arabic script waits for the native review. No Arabic page, so no new AR key.
 
 **Claims to confirm (nothing was invented; these come from your design or the
 CV)**

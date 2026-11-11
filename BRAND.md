@@ -1577,6 +1577,30 @@ carry no Arabic.
   `scripts/check.mjs` (`extra:`); no new image file (the round medals are
   crops of existing pictures). No price, date, count, shop, collaboration or
   place; placeholders read `[@compte]`, `[date]`, `[lien]`.
+- **Numidea's own social kit (2026-11-11, plates 18 and 19).** On the
+  owner's word the studio's identity gained a social kit and three
+  explainers, English, in its own rules: Arcanum (void #0A1420 and navy
+  #0F1E30) for the offer, the languages, the price and the contact line, paper
+  for Yasser and Kūro (Archivo 900 caps, sumi red on one word, one marker
+  aside, the drawing bleeding off the bottom edge on a sumi panel). A grid
+  holds void, navy and paper once per row and column; headlines are Cinzel,
+  at most seven words with a full stop, one arcane word, one brass button;
+  the wordmark (the site's own lockup, `<use href="#wm">`) sits on a navy or
+  void band, at the foot of Arcanum and proof posts, at the top of cast
+  posts, on a navy chip on stories and paper slides, never on paper or a
+  capture. Nine posts, three stories, two LinkedIn posts, the rules (grid
+  rhythm, safe zones, wordmark, colour per type, a 1080 px type table, voice
+  and facts) and, in plate 19, a full eight-slide carousel on the Preview and
+  two eight-slide carousels shown as cover plus three slides. HTML, CSS and
+  inline SVG with real text; each post a `role="img"` frame with an aria-label
+  and a visible caption; styled by `hub/brand/numidea/social.css`, linked only
+  from that page and read by `scripts/check.mjs` (`extra:`); the posts scale
+  with a container-query unit on their figure (`.nf`), and a narrower figure
+  restacks the landscape posts and lets a square post grow rather than clip.
+  No new image file: the page's own drawings and the two client captures.
+  Only facts the site states; placeholders `[@account]` and `[link]`. The
+  Arabic greeting is transliterated (Arabic script on an English page fetches
+  four Plex files, which the audit refuses).
 - **Client text follows the site's facts.** AlmaFlow's page drops the "24h",
   RGE / décennale, "Devis gratuit", MaPrime Rénov', phone, address, e-mail and
   domain of the design; the mockup pictures that still show a phone number are
