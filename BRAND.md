@@ -1794,6 +1794,25 @@ line, the footer's repeat of the links, the group mask icons
 (`assets/illus/hub-*`) and Space Mono (F16). The full description of the
 2026-10-28 page is in git history (BRAND.md at 89dfaf4).
 
+
+**The characters' social kit (2026-11-11, section 07b "On the feed").** On the
+owner's word the bible gained a social kit between 07 and 08, numbered like
+04b so nothing else moves: an Instagram profile (the smirk as avatar, five
+highlight covers), twelve square posts in a three-wide grid, three 9:16
+stories, a four-slide "Meet Kūro" carousel and the kit's rules. It keeps the
+page's paper palette (red, ink, teal, cream, sand, paper), Archivo 900 for
+titles, Geist, Geist Mono for labels and Permanent Marker for the lines he
+says, with no radii and the 2px ink rules. Each post is a `role="img"` frame
+with an aria-label and a visible caption; the type is set in container-query
+units of the wrapping figure (`.pf`, never the post), so a 1080 px post is the
+design size. Everything is in `hub/bible/style.css` ("on the feed"); no new
+image file (the page's `art/` and two Studio stickers, by relative path).
+Rules the kit sets: Yasser's feet on the floor line, nothing cropped; Kūro
+lower in frame, and off-centre when alone; Kūro never on red or teal; the
+Angry face only on red-flag posts; no emoji, wink or thumbs-up; safe zones of
+80 px on a post and 250 px / 340 px on a story. Quotes are the bible's own
+lines; handles and links are placeholders.
+
 ## Founder section — the CV is the source of truth
 
 Every date, title and one-liner in the founder card comes from

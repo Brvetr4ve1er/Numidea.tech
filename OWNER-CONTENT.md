@@ -964,6 +964,27 @@ scenes are now a titled row.)
   French and Arabic feeds should follow this grid. The Arabic greeting was
   left out of post 05 (it reads "Marhaba." in Latin letters, mirrored): the
   Arabic script waits for the native review. No Arabic page, so no new AR key.
+  **Update, 2026-11-11, on the owner's word ("add more posts to the bible
+  too"): the character bible gains section 07b, "On the feed", the
+  characters' social kit.** Sections 00 to 08 are unchanged and nothing is
+  renumbered. It holds an Instagram profile with five highlight covers, twelve
+  square posts (Yasser's reveal, the head-to-toe sheet, the twelve-face sheet,
+  a "Things he says" quote, Kūro judging, asleep and with his paw, a
+  silhouette-to-final process post, the motto, the cover of a "day in the
+  void" carousel, a sticker drop marked Maquette, a two-panel meme), three 9:16
+  stories (poll, link sticker, quote), a four-slide "Meet Kūro" carousel and
+  the kit's rules (which drawings, scale and crop, safe zones, colour per post
+  type with measured contrast, type sizes, what never to do). English only,
+  like the page. Maquettes in HTML and CSS from the bible's own drawings and
+  its two Studio stickers; every quoted line is a line the bible already has,
+  and no count, date, price, shop or collaboration is stated. Placeholders
+  read `[@account]`, `[link]` and `[the commit under review]`. Please confirm:
+  the bible's Instagram account (the Traveler kit carries @yass3r.0; the bible
+  page still links stick_itty, so the kit leaves the handle open); that twelve
+  posts, not nine, is the grid you want; and the rules that are the kit's own
+  choice rather than the bible's: Kūro never on red or teal, alone in a post he
+  sits low and off-centre, the 80 px post margin and the 250 px top and 340 px
+  bottom story bands. No new image file, no Arabic page, no new AR key.
 
 **Claims to confirm (nothing was invented; these come from your design or the
 CV)**

@@ -375,6 +375,320 @@
   </ol>
 </section>
 
+<!-- ============================= 07b · ON THE FEED =============================
+     The characters' social kit: a profile, twelve posts, three stories, a
+     carousel and the rules. Maquettes in plain HTML and CSS (style.css, "on
+     the feed"): the type is set in container-query units of each figure
+     (1cqw = 1 % of the post's width, so a 1080 px post is the design size),
+     the drawings are the ones this page already holds (art/) and the Studio's
+     two Ku&#x304;ro stickers, nothing moves and nothing is fetched. Each post is
+     a role="img" frame with its aria-label (the alt text it would be posted
+     with) and a visible caption. Every line in quotes is a line of this
+     bible, word for word; handles and links are placeholders. -->
+<section class="sec feed" id="feed" aria-labelledby="feed-h">
+  <div class="sh"><span class="num">07b /</span><h2 id="feed-h">On the feed</h2><span class="note">the same two, on a phone</span></div>
+  <p class="lede">The social kit for the characters: a profile, twelve posts, three stories and a carousel, then the rules for how Yasser and Ku&#x304;ro appear on a feed. These are maquettes, not a live account: the handle and the links are placeholders, and no count, date, price or shop is stated.</p>
+
+  <!-- profile -->
+  <div class="kit-part">
+    <h3 class="kit-h">Profile <span class="lab">header and highlight covers</span></h3>
+    <figure class="pf pf--wide">
+      <div class="ig-profile" role="img" aria-label="Instagram profile maquette. Avatar: Yasser's smirk in a red ring. Name: VOIDSPLUNKER.std. Handle: a placeholder, [@account]. Bio: Design, code, and everything between. tired eyes, big ideas, same energy. form is a function of obsession. Link: a placeholder, [link]. Five highlight covers: Yasser, Ku&#x304;ro, Process, Faces and Stickers.">
+        <div class="ig-top" aria-hidden="true">
+          <span class="ig-av"><img src="art/face-smirk.webp" width="460" height="358" alt="" loading="lazy" decoding="async"></span>
+          <div class="ig-id">
+            <b>VOIDSPLUNKER<span>.std</span></b>
+            <span class="ph">[@account]</span>
+            <p>Design, code, and everything between.<br>tired eyes · big ideas · same energy.<br><em>form is a function of obsession.</em></p>
+            <span class="ph">[link]</span>
+          </div>
+        </div>
+        <ul class="ig-hl" aria-hidden="true">
+          <li><i class="hl--red"><img src="art/face-smirk.webp" width="460" height="358" alt="" loading="lazy" decoding="async"></i>Yasser</li>
+          <li><i class="hl--ink"><img src="art/kuro-judge.webp" width="240" height="194" alt="" loading="lazy" decoding="async"></i>Ku&#x304;ro</li>
+          <li><i class="hl--sand"><img src="art/actor-sketch-a.webp" width="257" height="540" alt="" loading="lazy" decoding="async"></i>Process</li>
+          <li><i class="hl--teal"><img src="art/face-think.webp" width="410" height="363" alt="" loading="lazy" decoding="async"></i>Faces</li>
+          <li><i class="hl--paper"><img src="art/kuro-stamp.webp" width="240" height="185" alt="" loading="lazy" decoding="async"></i>Stickers</li>
+        </ul>
+      </div>
+      <figcaption>Maquette. The avatar is the smirk, his default face, cropped so the glasses and the hair sticks stay in the circle; each highlight is one drawing on one flat colour, with its name under it.</figcaption>
+    </figure>
+  </div>
+
+  <!-- the grid -->
+  <div class="kit-part">
+    <h3 class="kit-h">The grid <span class="lab">twelve posts, 1 : 1</span></h3>
+    <div class="pgrid">
+
+      <figure class="pf"><div class="sp sp--red" role="img" aria-label="Post 1, character reveal, on red. Yasser in his oversized cream coat stands beside Ku&#x304;ro, the black cat, on a paper floor. Text: Meet Yasser. tired eyes, big ideas, same energy.">
+        <span class="floor" aria-hidden="true"></span>
+        <img class="a-y1" src="art/rig-y-base.webp" width="501" height="565" alt="" loading="lazy" decoding="async">
+        <img class="a-k1" src="art/rig-k-base.webp" width="360" height="294" alt="" loading="lazy" decoding="async">
+        <div class="sp-in sp-in--top" aria-hidden="true"><span class="t-lab">Character reveal</span><p class="t-h t-h--m">Meet<br>Yasser.</p><p class="t-mark">tired eyes · big ideas · same energy.</p></div>
+      </div><figcaption><span class="cap-k">01 · Reveal</span>Yasser and Ku&#x304;ro on a floor line, on red. The marker line is the cover's.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--sand" role="img" aria-label="Post 2, head to toe, on sand. Five full-body drawings of Yasser stand on one floor line: waving, pointing up, on the phone, sketching, and the fist pump. Text: Head to toe.">
+        <span class="floor floor--s" aria-hidden="true"></span>
+        <div class="sp-in" aria-hidden="true">
+          <div class="p2-head"><span class="t-lab">Pose sheet</span><span class="t-lab t-lab--r">five poses</span></div>
+          <p class="t-h t-h--m">Head<br>to toe.</p>
+          <div class="p2-row">
+            <img src="art/actor-wave-a.webp" width="238" height="540" alt="" loading="lazy" decoding="async">
+            <img src="art/actor-pointup-a.webp" width="249" height="540" alt="" loading="lazy" decoding="async">
+            <img src="art/actor-phone-a.webp" width="241" height="540" alt="" loading="lazy" decoding="async">
+            <img src="art/actor-sketch-a.webp" width="257" height="540" alt="" loading="lazy" decoding="async">
+            <img src="art/actor-win-a.webp" width="252" height="540" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div><figcaption><span class="cap-k">02 · Pose sheet</span>The turnaround post: full figures only, feet on the floor line, nothing cropped.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--cream" role="img" aria-label="Post 3, the expression sheet, on cream. Twelve faces of Yasser in a grid of four by three, each named: Smirk, Focus, Think, Point, Laugh, Deadpan, Side-eye, Shocked, Facepalm, Tired, Sleep, Angry. Text: Twelve faces. Each one has a job.">
+        <div class="sp-in" aria-hidden="true">
+          <div class="p2-head"><span class="t-lab">Expression sheet</span><span class="t-lab t-lab--r">each one has a job</span></div>
+          <ul class="p3-grid">
+            <li><img src="art/face-smirk.webp" width="460" height="358" alt="" loading="lazy" decoding="async"><b>Smirk</b></li>
+            <li><img src="art/face-focus.webp" width="464" height="369" alt="" loading="lazy" decoding="async"><b>Focus</b></li>
+            <li><img src="art/face-think.webp" width="410" height="363" alt="" loading="lazy" decoding="async"><b>Think</b></li>
+            <li><img src="art/face-pointyou.webp" width="432" height="368" alt="" loading="lazy" decoding="async"><b>Point</b></li>
+            <li><img src="art/face-laugh.webp" width="427" height="354" alt="" loading="lazy" decoding="async"><b>Laugh</b></li>
+            <li><img src="art/face-deadpan.webp" width="427" height="368" alt="" loading="lazy" decoding="async"><b>Deadpan</b></li>
+            <li><img src="art/face-sideeye.webp" width="430" height="377" alt="" loading="lazy" decoding="async"><b>Side-eye</b></li>
+            <li><img src="art/face-shocked.webp" width="439" height="369" alt="" loading="lazy" decoding="async"><b>Shocked</b></li>
+            <li><img src="art/face-facepalm.webp" width="434" height="361" alt="" loading="lazy" decoding="async"><b>Facepalm</b></li>
+            <li><img src="art/face-tired.webp" width="436" height="376" alt="" loading="lazy" decoding="async"><b>Tired</b></li>
+            <li><img src="art/face-sleep.webp" width="417" height="372" alt="" loading="lazy" decoding="async"><b>Sleep</b></li>
+            <li><img src="art/face-angry.webp" width="415" height="371" alt="" loading="lazy" decoding="async"><b>Angry</b></li>
+          </ul>
+        </div>
+      </div><figcaption><span class="cap-k">03 · Expression sheet</span>All twelve faces, one name each. It posts once; the red-flag posts alone use Angry.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--ink" role="img" aria-label="Post 4, a quote, on ink. A large red quotation mark, then in marker lettering: build the void, then splunk it. Signed Yasser, things he says, with a small drawing of his smirk.">
+        <div class="sp-in" aria-hidden="true">
+          <span class="p4-q">&ldquo;</span>
+          <p class="t-say">build the void — then splunk it.</p>
+          <div class="p4-by"><img src="art/face-smirk.webp" width="460" height="358" alt="" loading="lazy" decoding="async"><span class="t-lab">Yasser · things he says</span></div>
+        </div>
+      </div><figcaption><span class="cap-k">04 · Quote</span>One of the five lines from &ldquo;Things he says&rdquo;, in the marker, as written.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--paper" role="img" aria-label="Post 5, Ku&#x304;ro judging, on paper. A close drawing of Ku&#x304;ro the black cat, glaring, yellow eyes. Text: Good enough? A dashed placeholder reads [the commit under review]. Marker line: the quality gate has whiskers.">
+        <img class="a-kj" src="art/kuro-judge.webp" width="240" height="194" alt="" loading="lazy" decoding="async">
+        <div class="sp-in" aria-hidden="true"><span class="t-lab">Ku&#x304;ro · quality gate</span><p class="t-h t-h--ink">Good<br>enough?</p><div class="p5-foot"><span class="ph ph--b">[the commit under review]</span><p class="t-mark t-mark--red">the quality gate has whiskers</p></div></div>
+      </div><figcaption><span class="cap-k">05 · Ku&#x304;ro judges</span>He reacts, he never speaks: the verdict is the glare. The commit is a placeholder, not a real one.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--ink" role="img" aria-label="Post 6, Ku&#x304;ro asleep, on ink. Ku&#x304;ro the black cat curled up asleep, a small z z above him. Text: You left. He dozed. Ku&#x304;ro keeps watch.">
+        <img class="a-ks" src="../img/studio/loops/kuro-sleep-still.webp" width="258" height="287" alt="" loading="lazy" decoding="async">
+        <div class="sp-in sp-in--top" aria-hidden="true"><span class="t-lab">Ku&#x304;ro · idle</span><p class="t-p">You left. He dozed.<br>Ku&#x304;ro keeps watch.</p></div>
+      </div><figcaption><span class="cap-k">06 · Ku&#x304;ro asleep</span>The sleep face&rsquo;s own line, under the drawing of him curled up. Low and off-centre.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--sand" role="img" aria-label="Post 7, the paw, on sand. Ku&#x304;ro sits with one paw raised. Text: Never speaks. Reacts.">
+        <img class="a-kp" src="../img/studio/kuro-paw.webp" width="240" height="340" alt="" loading="lazy" decoding="async">
+        <span class="floor floor--s" aria-hidden="true"></span>
+        <div class="sp-in sp-in--top" aria-hidden="true"><span class="t-lab">Ku&#x304;ro · the paw</span><p class="t-h t-h--ink t-h--s">Never<br>speaks.<br>Reacts.</p></div>
+      </div><figcaption><span class="cap-k">07 · The paw</span>His rule from section 05 as the headline. He sits low on the floor line, to the right.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--cream" role="img" aria-label="Post 8, process, on cream. Two drawings of Yasser pushing his glasses up with one finger: a small pixel silhouette labelled 24 pixels, then the finished drawing, with an arrow between them. Marker line: readable at 24 px or it's not him.">
+        <div class="sp-in" aria-hidden="true">
+          <div class="p2-head"><span class="t-lab">Process</span><span class="t-lab t-lab--r">silhouette → final</span></div>
+          <div class="p8-pair">
+            <div class="p8-a"><img src="art/sil-5.webp" width="258" height="716" alt="" loading="lazy" decoding="async"><b>01 · 24 px</b></div>
+            <span class="p8-arrow">→</span>
+            <div class="p8-b"><img src="art/rig-y-glasses.webp" width="501" height="565" alt="" loading="lazy" decoding="async"><b>02 · final</b></div>
+          </div>
+          <p class="t-mark t-mark--red">readable at 24 px or it's not him.</p>
+        </div>
+      </div><figcaption><span class="cap-k">08 · Process</span>The silhouette test beside the finished drawing of the same gesture, the glasses push.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--teal" role="img" aria-label="Post 9, the motto, on teal. A red seal with the kanji yoru, night, then large type: form is a function of obsession. Small line: VOIDSPLUNKER.std.">
+        <div class="sp-in" aria-hidden="true">
+          <span class="seal seal--p" lang="ja">夜</span>
+          <p class="t-motto">form is a function of obsession.</p>
+          <span class="t-lab">VOIDSPLUNKER.std</span>
+        </div>
+      </div><figcaption><span class="cap-k">09 · Motto</span>Type only, with the night seal. The one post with no drawing of either of them.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--paper" role="img" aria-label="Post 10, a carousel cover, on paper. Yasser sits on the floor with a laptop under Ku&#x304;ro. Text: A day in the void. Three chips: Dawn, coffee. Hero, smirk, eyes follow. After 23:00, tired, nap. A swipe cue.">
+        <img class="a-day" src="art/pose-laptop.webp" width="495" height="440" alt="" loading="lazy" decoding="async">
+        <div class="sp-in" aria-hidden="true">
+          <div class="p2-head"><span class="t-lab">Carousel</span><span class="t-lab t-lab--r">swipe →</span></div>
+          <p class="t-h t-h--m">A day<br>in the<br>void.</p>
+          <ul class="p10-chips"><li>Dawn · coffee</li><li>Smirk · eyes follow</li><li>Tired · nap</li></ul>
+        </div>
+      </div><figcaption><span class="cap-k">10 · Cover</span>The first slide of a day-in-the-void carousel, built on section 07&rsquo;s beats. Slides two onward are not drawn.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--paper sp--dash" role="img" aria-label="Post 11, a sticker drop, marked maquette, on paper. A sheet of six die-cut stickers: Ku&#x304;ro with his paw up, Ku&#x304;ro with the stamp, Ku&#x304;ro in the mug, Ku&#x304;ro loving, Yasser laughing, Yasser lost with his map. A dashed stamp reads Maquette. A dashed placeholder reads [link].">
+        <div class="sp-in" aria-hidden="true">
+          <div class="p2-head"><span class="t-lab">Sticker drop</span><span class="stamp">Maquette</span></div>
+          <ul class="p11-sheet">
+            <li><img src="../img/studio/kuro-paw.webp" width="240" height="340" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="art/kuro-stamp.webp" width="240" height="185" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="art/kuro-mug.webp" width="240" height="192" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="art/kuro-love.webp" width="240" height="242" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="art/face-laugh.webp" width="427" height="354" alt="" loading="lazy" decoding="async"></li>
+            <li><img src="art/yasser-lost-still.webp" width="480" height="442" alt="" loading="lazy" decoding="async"></li>
+          </ul>
+          <span class="ph ph--b">[link]</span>
+        </div>
+      </div><figcaption><span class="cap-k">11 · Sticker drop</span>Six drawings from this bible with a die-cut edge. A maquette: no product, price or shop exists.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--cream" role="img" aria-label="Post 12, a meme format in the characters' voice, on cream. Top panel: Yasser tired, with the line, It's 2 a.m. Yes, I'm still answering. Bottom panel: Ku&#x304;ro glaring, captioned, Ku&#x304;ro, unmoved.">
+        <div class="p12-a"><img src="art/face-tired.webp" width="436" height="376" alt="" loading="lazy" decoding="async"><p class="p12-say">&ldquo;It's 2 a.m. Yes, I'm still answering.&rdquo;</p></div>
+        <div class="p12-b"><img src="art/kuro-judge.webp" width="240" height="194" alt="" loading="lazy" decoding="async"><p class="p12-act">Ku&#x304;ro, unmoved.</p></div>
+      </div><figcaption><span class="cap-k">12 · Meme</span>Two panels: he says the line, Ku&#x304;ro reacts. The format is the voice: short, flat, no emoji.</figcaption></figure>
+
+    </div>
+  </div>
+
+  <!-- stories -->
+  <div class="kit-part">
+    <h3 class="kit-h">Stories <span class="lab">9 : 16, three frames</span></h3>
+    <div class="stories">
+
+      <figure class="pf"><div class="sp sp--st sp--paper" role="img" aria-label="Story 1, a poll, on paper. Progress bars and the placeholder [@account] at the top. Ku&#x304;ro glaring. Text: Good enough? A poll sticker with two answers: Ship it, and Not yet.">
+        <div class="st-top" aria-hidden="true"><i></i><i></i><i></i></div>
+        <span class="st-who ph" aria-hidden="true">[@account]</span>
+        <img class="a-stk" src="art/kuro-judge.webp" width="240" height="194" alt="" loading="lazy" decoding="async">
+        <div class="sp-in" aria-hidden="true">
+          <p class="t-h t-h--ink">Good<br>enough?</p>
+          <div class="stk"><b class="stk-q">Ship it, or not yet?</b><span class="stk-o">Ship it.</span><span class="stk-o stk-o--on">Not yet.</span></div>
+        </div>
+      </div><figcaption><span class="cap-k">Story 1 · Poll</span>Ku&#x304;ro asks, the viewer votes. The answers are the verdict; he does not speak.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--st sp--ink" role="img" aria-label="Story 2, a link, on ink. Yasser pointing at you. Text: Ok. Shall we build it? A link sticker with a placeholder, [link].">
+        <div class="st-top" aria-hidden="true"><i></i><i></i><i></i></div>
+        <span class="st-who ph" aria-hidden="true">[@account]</span>
+        <img class="a-sty" src="art/face-pointyou.webp" width="432" height="368" alt="" loading="lazy" decoding="async">
+        <div class="sp-in" aria-hidden="true">
+          <p class="t-h">Ok.<br>Shall we<br>build it?</p>
+          <span class="stk stk--link">Say hello <span class="ph ph--n">[link]</span></span>
+        </div>
+      </div><figcaption><span class="cap-k">Story 2 · Link</span>The one time he breaks the fourth wall: the Point face and a link sticker, with its address left blank.</figcaption></figure>
+
+      <figure class="pf"><div class="sp sp--st sp--red" role="img" aria-label="Story 3, a quote, on red. Yasser with his coffee, on a paper floor. Quote: The first sip is the kickoff meeting. A reply bar at the bottom.">
+        <div class="st-top" aria-hidden="true"><i></i><i></i><i></i></div>
+        <span class="st-who ph" aria-hidden="true">[@account]</span>
+        <span class="floor floor--st" aria-hidden="true"></span>
+        <img class="a-stc" src="art/pose-coffee.webp" width="385" height="440" alt="" loading="lazy" decoding="async">
+        <div class="sp-in" aria-hidden="true"><p class="t-say t-say--c">&ldquo;The first sip is the kickoff meeting.&rdquo;</p></div>
+        <span class="st-reply" aria-hidden="true">Send message</span>
+      </div><figcaption><span class="cap-k">Story 3 · Quote</span>Dawn, coffee: the Coffee pose&rsquo;s line, kept clear of the top and bottom bands.</figcaption></figure>
+
+    </div>
+  </div>
+
+  <!-- carousel -->
+  <div class="kit-part">
+    <h3 class="kit-h">Carousel <span class="lab">Meet Ku&#x304;ro · cover and three slides</span></h3>
+    <ol class="slides">
+      <li><figure class="pf"><div class="sp sp--ink" role="img" aria-label="Carousel slide 1, the cover, on ink. Ku&#x304;ro sits low on the right. Text: Meet Ku&#x304;ro, with the katakana kuro. Marker line: the quality gate has whiskers. A swipe cue.">
+        <img class="a-sit" src="../img/studio/kuro-sit.webp" width="240" height="358" alt="" loading="lazy" decoding="async">
+        <div class="sp-in" aria-hidden="true"><div class="p2-head"><span class="t-lab">Cover</span><span class="t-lab t-lab--r">swipe →</span></div><p class="t-h">Meet<br>Ku&#x304;ro.<span class="jp" lang="ja">クロ</span></p><p class="t-mark">the quality gate has whiskers</p></div>
+      </div><figcaption><span class="cap-k">Slide 1</span>Cover. Low and off-centre, never alone in the middle.</figcaption></figure></li>
+      <li><figure class="pf"><div class="sp sp--paper" role="img" aria-label="Carousel slide 2, on paper. Text: Never speaks. Reacts. Three of his cards: Judge, Smug and Shook.">
+        <div class="sp-in" aria-hidden="true"><span class="t-lab">01 · How he works</span><p class="t-h t-h--ink t-h--s">Never<br>speaks.<br>Reacts.</p>
+          <ul class="s2-cards"><li><img src="art/kuro-judge.webp" width="240" height="194" alt="" loading="lazy" decoding="async"><b>Judge</b></li><li><img src="art/kuro-smug.webp" width="240" height="172" alt="" loading="lazy" decoding="async"><b>Smug</b></li><li><img src="art/kuro-shook.webp" width="240" height="175" alt="" loading="lazy" decoding="async"><b>Shook</b></li></ul></div>
+      </div><figcaption><span class="cap-k">Slide 2</span>His first rule, three of his ten cards.</figcaption></figure></li>
+      <li><figure class="pf"><div class="sp sp--sand" role="img" aria-label="Carousel slide 3, on sand. Ku&#x304;ro with a red stamp. Text: Yellow eyes are the only warm colour on him. Red collar tag, the hanko: he stamps the approval.">
+        <img class="a-stp" src="art/kuro-stamp.webp" width="240" height="185" alt="" loading="lazy" decoding="async">
+        <span class="floor floor--s" aria-hidden="true"></span>
+        <div class="sp-in sp-in--top" aria-hidden="true"><span class="t-lab">02 · His marks</span><p class="t-p t-p--ink">Yellow eyes are the only warm colour on him.<br>Red collar tag = the hanko. He stamps the approval.</p></div>
+      </div><figcaption><span class="cap-k">Slide 3</span>Two of his marks, from section 05, as written.</figcaption></figure></li>
+      <li><figure class="pf"><div class="sp sp--red" role="img" aria-label="Carousel slide 4, on red. Yasser sits cross-legged with a coffee, Ku&#x304;ro beside him and lower. Text: Always lower in frame than Yasser. A placeholder, [@account], to follow.">
+        <span class="floor" aria-hidden="true"></span>
+        <img class="a-duo" src="art/actor-duo-a.webp" width="673" height="520" alt="" loading="lazy" decoding="async">
+        <div class="sp-in sp-in--top" aria-hidden="true"><span class="t-lab">03 · Where he sits</span><p class="t-h t-h--xs">Always lower in frame than Yasser.</p><span class="ph ph--c">[@account]</span></div>
+      </div><figcaption><span class="cap-k">Slide 4</span>Close: the two of them at rest, then the handle to follow, a placeholder.</figcaption></figure></li>
+    </ol>
+  </div>
+
+  <!-- rules -->
+  <div class="kit-part">
+    <h3 class="kit-h">The kit&rsquo;s rules <span class="lab">how the characters appear on social</span></h3>
+    <div class="krules">
+
+      <div class="krule">
+        <h4>Which drawing</h4>
+        <p class="krule-s">Only the drawings this bible holds: the twelve faces, twelve poses, six head-to-toe frames, the rig&rsquo;s frames, Ku&#x304;ro&rsquo;s ten cards and his two Studio stickers.</p>
+        <ul>
+          <li>Yasser carries a post as a face, a pose or a full figure; Ku&#x304;ro carries one as a card.</li>
+          <li>The <b>Angry</b> face is for red-flag posts only: the face sheet reserves it for &ldquo;social red-flags content&rdquo;.</li>
+          <li>Two frames of one pose may be posted one after the other; nothing is tweened.</li>
+          <li>Any motion plays once, five seconds at most, with a still for reduced motion.</li>
+        </ul>
+      </div>
+
+      <div class="krule">
+        <h4>Scale and crop</h4>
+        <ul>
+          <li>A full figure shows his feet on the floor line. Nothing is cropped, as in 04b.</li>
+          <li>A face crop keeps both hair sticks and the glasses inside the frame.</li>
+          <li>On a feed Yasser is at least a third of the post&rsquo;s height; the avatar is the smirk, readable at 24 px.</li>
+          <li>Ku&#x304;ro sits lower in frame than Yasser, and alone in a post he sits low and off-centre, never in the middle.</li>
+        </ul>
+      </div>
+
+      <div class="krule krule--zones">
+        <h4>Safe zones <span class="lab">at 1080 px</span></h4>
+        <div class="zones">
+          <div class="zone">
+            <div class="zn zn--sq"><i class="zn-in"></i></div>
+            <p><b>Post, 1080 × 1080.</b> Type and faces stay inside an 80 px margin (7.4%). The profile grid can crop the sides.</p>
+          </div>
+          <div class="zone">
+            <div class="zn zn--st"><i class="zn-in"></i></div>
+            <p><b>Story, 1080 × 1920.</b> Keep the top 250 px and the bottom 340 px free of anything to read: the bar, the handle and the reply field sit there. Side margin 65 px.</p>
+          </div>
+          <div class="zone">
+            <div class="zn zn--av"><i class="zn-in"></i></div>
+            <p><b>Avatar and highlight, a circle.</b> The face fills 70% of the circle&rsquo;s width; the hair sticks stay inside it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="krule krule--wide">
+        <h4>Colour per post type <span class="lab">contrast measured on the painted pairs</span></h4>
+        <div class="tscroll"><table class="tt">
+          <thead><tr><th scope="col">Post</th><th scope="col">Ground</th><th scope="col">Text</th><th scope="col">Ratio</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Yasser reveal, carousel close</th><td data-l="Ground"><i class="ch ch--red"></i>Sumi red <code>#A34135</code></td><td data-l="Text">Cream <code>#F3ECE1</code></td><td data-l="Ratio">5.32 : 1</td></tr>
+            <tr><th scope="row">Quote, Ku&#x304;ro asleep, cover</th><td data-l="Ground"><i class="ch ch--ink"></i>Ink <code>#211E1B</code></td><td data-l="Text">Cream <code>#F3ECE1</code></td><td data-l="Ratio">14.13 : 1</td></tr>
+            <tr><th scope="row">Motto</th><td data-l="Ground"><i class="ch ch--teal"></i>Teal <code>#236660</code></td><td data-l="Text">Cream <code>#F3ECE1</code></td><td data-l="Ratio">5.70 : 1</td></tr>
+            <tr><th scope="row">Sheets, process, meme</th><td data-l="Ground"><i class="ch ch--cream"></i>Cream <code>#F3ECE1</code></td><td data-l="Text">Ink <code>#211E1B</code></td><td data-l="Ratio">14.13 : 1</td></tr>
+            <tr><th scope="row">Ku&#x304;ro cards, stickers, covers</th><td data-l="Ground"><i class="ch ch--paper"></i>Paper <code>#D8CBB8</code></td><td data-l="Text">Ink <code>#211E1B</code></td><td data-l="Ratio">10.39 : 1</td></tr>
+            <tr><th scope="row">Pose sheets, the paw</th><td data-l="Ground"><i class="ch ch--sand"></i>Sand <code>#E8DFD1</code></td><td data-l="Text">Ink <code>#211E1B</code></td><td data-l="Ratio">12.56 : 1</td></tr>
+            <tr><th scope="row">Marker note on paper or cream</th><td data-l="Ground">Paper or cream</td><td data-l="Text">Red text <code>#8A3127</code></td><td data-l="Ratio">5.16 : 1 · 7.02 : 1</td></tr>
+          </tbody>
+        </table></div>
+        <p class="krule-s">One ground per post, no gradient. Ku&#x304;ro never stands on red or teal: the dark cat loses his outline there.</p>
+      </div>
+
+      <div class="krule">
+        <h4>Type <span class="lab">on a 1080 px post</span></h4>
+        <ul>
+          <li><b>Title:</b> Archivo 900, capitals, 100 to 140 px.</li>
+          <li><b>Quote and marker line:</b> Permanent Marker, 52 to 84 px, as written, lower case.</li>
+          <li><b>Text:</b> Geist 500, 44 px at least; <b>labels:</b> Geist Mono 500, 32 px, capitals.</li>
+          <li>Nothing renders under 12 px, in the kit or in a caption. The seal is Noto Sans JP 900.</li>
+          <li>Short sentences ending in a full stop. French lines stay French, English beside.</li>
+        </ul>
+      </div>
+
+      <div class="krule krule--never">
+        <h4>Never</h4>
+        <ul>
+          <li>Ku&#x304;ro speaking: no bubble, no text in his mouth.</li>
+          <li>A wink, a thumbs-up or an emoji at the camera.</li>
+          <li>&ldquo;Synergy&rdquo;, &ldquo;solutions&rdquo; or &ldquo;leverage&rdquo;; &ldquo;best&rdquo;, &ldquo;fastest&rdquo; or &ldquo;#1&rdquo; without proof.</li>
+          <li>Blaming the client, the browser or the server.</li>
+          <li>Dropping the crossed hair sticks, recolouring the coat or the red heel tab, stretching or tilting a drawing.</li>
+          <li>Making up slang, a count, a date, a price or a collaboration.</li>
+          <li>A post without its alt text: the sentence written under each maquette here.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ============================= 08 · BACK TO THE STUDIO (outro, then the founder's other places) =============================
      Handles verified from the Behance profile's own declared social links. -->
 <section class="sec" id="elsewhere" aria-labelledby="else-h">
