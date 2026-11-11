@@ -1536,6 +1536,23 @@ tile and delivered item 8, the Traveler's poster tile and the end of its
 list, and `#brand` ("Notre propre marque, planche par planche"). AlmaFlow and
 Traveler are French only and Numidea's is English only, like the bible; they
 carry no Arabic.
+- **AlmaFlow's social kit and infographics (2026-11-11, plates 13 and 14).**
+  On the owner's word the book gained a social kit (nine square posts in a
+  3 x 3 grid with a profile and highlight covers, three 9:16 stories with
+  poll, quiz and question stickers, a LinkedIn and a Facebook post, and the
+  rules: grid rhythm, safe zones and logo, which logo on which fund, colour per
+  post type, type sizes) and four infographics (heat pump in four steps,
+  yearly calendar, energy label structure, five gestures). They are HTML,
+  CSS and inline SVG with real text (each post a `role="img"` frame with a
+  label and a visible caption; each infographic a `<figure>` with a caption and
+  an ordered list), styled by `hub/brand/almaflow/social.css`, linked only
+  from that page; the posts scale with a container-query unit set on their
+  figure (set on the post itself, Chromium took about 2 s to first paint).
+  Cyan means cold (air conditioning), Chaleur violet means heat (heating).
+  The photos are the book's own; the placeholders read `[téléphone]` and
+  `[@compte]`; the tips avoid figures other than the 19 °C public guidance and
+  the legal annual boiler service. `scripts/check.mjs` reads the second sheet
+  (`extra:`) in the brand entry.
 - **Client text follows the site's facts.** AlmaFlow's page drops the "24h",
   RGE / décennale, "Devis gratuit", MaPrime Rénov', phone, address, e-mail and
   domain of the design; the mockup pictures that still show a phone number are

@@ -458,7 +458,8 @@ are not listed as new; what follows is new or changed.
   `founder.make.diary` and `founder.make.items.0` to `.2` (`role`, `line`,
   `alt`);
 - AR review for the cases: AlmaFlowClim `brand.k`, `brand.t`, `brand.cta` and
-  `scope.items.7` (the brand-book tile and delivered item), Traveler
+  `scope.items.7` (the brand-book tile and delivered item; `brand.k` now reads
+  "14 PLANCHES" with the new plates), Traveler
   `peace.cta` and `end.items.6` («الكودكس» for the codex, back at the end of
   the closing list);
 - the brand books are French only (AlmaFlow, Traveler) and English only
@@ -902,6 +903,21 @@ scenes are now a titled row.)
   exploration at `/hub/brand/exploration/`** (banner "Exploration · not
   adopted", mascots marked superseded, linked from the Numidea identity page
   only; the Studio is unchanged). English only, so no Arabic review key.
+  **Update, 2026-11-11, on the owner's word ("keep the AlmaFlow mockups as
+  they are but add more branded social media content and infographics in the
+  context of a European HVAC company and brand"): the AlmaFlow brand book
+  gains plate 13 (Réseaux sociaux: nine Instagram posts, three stories, two
+  LinkedIn / Facebook posts and the kit's rules) and plate 14 (Infographies:
+  the air/water heat pump in four steps, the yearly maintenance calendar, how
+  to read an energy label (structure only), five gestures to consume less).**
+  All are maquettes drawn in HTML and CSS from the book's own photos; the 12
+  earlier plates are unchanged. No business fact is stated: no phone, price,
+  delay, guarantee, certification, review or address (the places for a phone
+  number read `[téléphone]`, the account `[@compte]`); the advice is general
+  (annual boiler maintenance "obligatoire chaque année", heating around 19 °C,
+  filters, shutters in a heat wave). Please confirm the wording of the
+  tips and that "Gennevilliers (92)" may sit in the posts' footers. French
+  only, no Arabic page.
 
 **Claims to confirm (nothing was invented; these come from your design or the
 CV)**
