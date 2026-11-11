@@ -76,15 +76,16 @@
     "night": "Nuit",
     "palNote": "tirées du logo",
     "brand": {
-      "k": "VISUEL · MAQUETTE",
-      "t": "Le produit, en gros plan"
+      "k": "BRAND BOOK · 12 PLANCHES",
+      "t": "Toute la marque, planche par planche",
+      "cta": "Ouvrir le brand book ↗"
     },
     "scope": {
       "k": "LIVRÉ · ALMAFLOWCLIM",
       "t": "Artisan du bâtiment, du logo au premier appel",
       "n": "8 LIVRABLES",
       "note": "Chaque case se coche quand vous avez vu la pièce dans le dossier.",
-      "items": ["Logo · couleurs · typo", "Site : une page par métier", "Formulaire de devis", "SEO local & fiche Google", "Posts réseaux sociaux", "Cartes & accroche-porte", "Véhicule & enseigne (maquettes)", "Visuel de campagne (maquette)"],
+      "items": ["Logo · couleurs · typo", "Site : une page par métier", "Formulaire de devis", "SEO local & fiche Google", "Posts réseaux sociaux", "Cartes & accroche-porte", "Véhicule & enseigne (maquettes)", "Brand book · 12 planches"],
       "cta": "Un projet comme celui-ci →"
     }
   },
@@ -165,15 +166,16 @@
     "night": "Night",
     "palNote": "pulled from the logo",
     "brand": {
-      "k": "VISUAL · MOCKUP",
-      "t": "The product, up close"
+      "k": "BRAND BOOK · 12 PLATES",
+      "t": "The whole brand, plate by plate",
+      "cta": "Open the brand book ↗"
     },
     "scope": {
       "k": "DELIVERED · ALMAFLOWCLIM",
       "t": "Building trade, from logo to first call",
       "n": "8 DELIVERABLES",
       "note": "Each box ticks once you have seen the piece in the file.",
-      "items": ["Logo · colour · type", "Site: one page per trade", "Quote form", "Local SEO & Google profile", "Social posts", "Cards & door hanger", "Van & sign (mockups)", "Campaign visual (mockup)"],
+      "items": ["Logo · colour · type", "Site: one page per trade", "Quote form", "Local SEO & Google profile", "Social posts", "Cards & door hanger", "Van & sign (mockups)", "Brand book · 12 plates"],
       "cta": "A project like this one →"
     }
   },
@@ -254,15 +256,16 @@
     "night": "ليلي",
     "palNote": "مستخرجة من الشعار",
     "brand": {
-      "k": "صورة · نموذج",
-      "t": "المنتج عن قرب"
+      "k": "كتاب الهوية · 12 لوحة",
+      "t": "الهوية كاملة، لوحةً لوحة",
+      "cta": "افتح كتاب الهوية ↗"
     },
     "scope": {
       "k": "المسلَّم · ALMAFLOWCLIM",
       "t": "حرفي بناء، من الشعار إلى أول مكالمة",
       "n": "8 مخرجات",
       "note": "تُعلَّم كل خانة عندما ترى القطعة في الملف.",
-      "items": ["شعار · ألوان · خط", "موقع: صفحة لكل حرفة", "نموذج عرض سعر", "SEO محلي وبطاقة Google", "منشورات اجتماعية", "بطاقات ومعلّقة باب", "شاحنة ولافتة (نماذج)", "صورة حملة (نموذج)"],
+      "items": ["شعار · ألوان · خط", "موقع: صفحة لكل حرفة", "نموذج عرض سعر", "SEO محلي وبطاقة Google", "منشورات اجتماعية", "بطاقات ومعلّقة باب", "شاحنة ولافتة (نماذج)", "كتاب الهوية · 12 لوحة"],
       "cta": "← مشروع مثل هذا"
     }
   }

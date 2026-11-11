@@ -352,6 +352,10 @@
 .case-traveler .ct-peace__rings i:nth-child(3){width:1px;height:76%;background:var(--ct-cream-l)}
 .case-traveler .ct-peace__hd,.case-traveler .ct-peace__txt{position:relative;z-index:2;pointer-events:none}
 .case-traveler .ct-peace__hd{letter-spacing:.14em}
+.case-traveler .ct-peace__txt{margin-top:auto}
+.case-traveler .ct-codex{position:relative;z-index:3;align-self:stretch;min-height:44px;display:flex;align-items:center;justify-content:center;padding:0 12px;background:var(--ct-cream);color:var(--ct-ink);font-weight:700;font-size:var(--t-label);text-decoration:none;text-align:center}
+.case-traveler .ct-codex:hover{background:var(--c-accent);color:var(--ct-black)}
+.case-traveler .ct-codex:focus-visible{outline:3px solid var(--ct-cream);outline-offset:2px}
 .case-traveler .ct-peace__txt{display:flex;flex-direction:column;gap:8px}
 .case-traveler .ct-peace__t{font-family:var(--c-font-disp);font-weight:900;font-size:clamp(30px,3vw,42px);line-height:.9;text-transform:uppercase;text-wrap:balance}
 

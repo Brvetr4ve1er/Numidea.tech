@@ -101,7 +101,8 @@
     "pal": "COLOPHON · ENCRES",
     "quote": "libre d’être moi. mais qui ?",
     "peace": {
-      "k": "PLANCHE XII · AFFICHE"
+      "k": "PLANCHE XII · AFFICHE",
+      "cta": "Ouvrir le codex ↗"
     },
     "end": {
       "k": "VOL.04 · TR4VELER.EXE",
@@ -117,7 +118,7 @@
         "Drop merch",
         "WorkspaceHQ",
         "Instagram",
-        "Colophon"
+        "Codex"
       ]
     },
     "alt": {
@@ -232,7 +233,8 @@
     "pal": "COLOPHON · INKS",
     "quote": "free to be myself. but who?",
     "peace": {
-      "k": "PLATE XII · POSTER"
+      "k": "PLATE XII · POSTER",
+      "cta": "Open the codex ↗"
     },
     "end": {
       "k": "VOL.04 · TR4VELER.EXE",
@@ -248,7 +250,7 @@
         "Merch drop",
         "WorkspaceHQ",
         "Instagram",
-        "Colophon"
+        "Codex"
       ]
     },
     "alt": {
@@ -363,7 +365,8 @@
     "pal": "الأحبار",
     "quote": "حرّ لأكون نفسي. لكن من أنا؟",
     "peace": {
-      "k": "اللوحة XII · ملصق"
+      "k": "اللوحة XII · ملصق",
+      "cta": "افتح الكودكس ↗"
     },
     "end": {
       "k": "المجلد 04 · TR4VELER.EXE",
@@ -379,7 +382,7 @@
         "إصدار المنتجات",
         "WorkspaceHQ",
         "إنستغرام",
-        "الأحبار"
+        "الكودكس"
       ]
     },
     "alt": {

@@ -262,6 +262,7 @@
 .case-almaflow .cf-fig__top{display:flex;justify-content:space-between;gap:8px}
 .case-almaflow .cf-fig .st-badge{position:static}
 .case-almaflow .cf-fig__txt{display:flex;flex-direction:column;gap:8px}
+.case-almaflow .cf-fig__open{align-self:flex-start;margin-top:6px}
 .case-almaflow .cf-fig__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(20px,2vw,28px);line-height:1.04;text-wrap:balance}
 
 /* ---------------- the scope card (the design's price card) ---------------- */
