@@ -568,6 +568,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 /* the wedge's closing line: the design's hero words, as the board's last word */
 .st-wedge__close{margin:clamp(28px,4vw,48px) 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px clamp(14px,2vw,28px)}
 .st-wedge__a{font-family:var(--f-disp);font-weight:900;font-size:clamp(30px,5.4vw,76px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;text-wrap:balance}
+@media (max-width:359px){.st-wedge__a{font-size:24px;overflow-wrap:anywhere}}
 .st-wedge__b{display:inline-block;font-family:var(--f-hand);font-size:clamp(26px,3.6vw,48px);line-height:1.1;color:var(--red-text);transform:rotate(-3deg);transform-origin:left center}
 :lang(ar) .st-wedge__a{letter-spacing:0;line-height:1.2}
 [dir="rtl"] .st-wedge__b{transform:rotate(3deg);transform-origin:right center}
@@ -580,7 +581,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
    and focus, a few hundred milliseconds each and then stop. */
 @font-face{font-family:"Press Start 2P";src:url(../workspacehq/fonts/PressStart2P.woff2) format("woff2");font-display:swap}
 .st-own{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
-.st-own a.whq-cart{--g:#FFD23F;position:relative;display:flex;align-items:center;gap:14px;max-width:440px;min-height:44px;margin-top:6px;padding:16px 74px 22px 14px;color:var(--cream);font-weight:400;text-decoration:none;background:var(--ink);
+.st-own a.whq-cart{--g:#FFD23F;position:relative;display:flex;align-items:center;gap:14px;max-width:440px;min-height:44px;margin-top:6px;padding:16px 14px 22px;padding-inline-end:74px;color:var(--cream);font-weight:400;text-decoration:none;background:var(--ink);
   border:2px solid var(--ink);box-shadow:5px 5px 0 var(--red);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .whq-cart::before{content:"";position:absolute;inset-inline:12px;top:5px;height:3px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 10px)}
 .whq-bit{flex:none;width:54px;height:44px;display:grid;place-items:end center;background:#0C0A1E;border:2px solid #050409;padding:4px 0 3px}
