@@ -896,9 +896,12 @@ scenes are now a titled row.)
   ported (`/hub/brand/almaflow/`, `/hub/brand/traveler/`,
   `/hub/brand/numidea/`). The fourth, "Brand Enhancement", is not a Bordj
   Steel brand book (it is the studio's own "LOUD gear" exploration, a turn-1
-  draft with three superseded mascot concepts), so it is not published and the
-  Bordj Steel case has no brand-book link; say if you want it published as a
-  labelled exploration, or dropped.
+  draft with three superseded mascot concepts), so the Bordj Steel case has no
+  brand-book link. **Update, 2026-11-11, on the owner's word ("publish brand
+  enhancement as a labelled exploration"): it is now published as a labelled
+  exploration at `/hub/brand/exploration/`** (banner "Exploration · not
+  adopted", mascots marked superseded, linked from the Numidea identity page
+  only; the Studio is unchanged). English only, so no Arabic review key.
 
 **Claims to confirm (nothing was invented; these come from your design or the
 CV)**

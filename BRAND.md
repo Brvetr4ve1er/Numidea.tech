@@ -1546,9 +1546,19 @@ carry no Arabic.
   plate, "4 specialists", the 24 h reply, the TypeScript line, the retired
   Engineering surface and the stale gap notes are gone; the "Shipped" and
   "Proposed" tags stay, so it reads as the draft it is.
-- **"Brand Enhancement" is not published.** It is the studio's own "LOUD gear"
-  exploration, not a Bordj Steel deliverable, so there is no
-  `/hub/brand/bordjsteel/` and no link from the Bordj case.
+- **"Brand Enhancement" is not a Bordj Steel book**, so there is no
+  `/hub/brand/bordjsteel/` and no link from the Bordj case. On the owner's word
+  of 2026-11-11 it is published as a labelled exploration:
+  `/hub/brand/exploration/` (`.bk-ex` in `hub/brand/style.css`, English only,
+  no image files, every drawing inline SVG or CSS). It carries an "Exploration
+  · not adopted" kicker, a banner, a status plate and a link to the adopted
+  identity; the three mascots are marked superseded. Rewritten from the source:
+  the assistant voice ("I propose", "Want me to") became neutral notes; the
+  "recommended" flag on the fennec, the V01/V10 storyboard codes, "Gate B", the
+  deploy time and page count in the terminal still, the "series people follow"
+  and "fastest hook in the feed" claims and the "once permission is in" client
+  line are dropped. The numidea page links to it in its footer; the Studio does
+  not.
 
 ## hub/bible/ — the character bible
 

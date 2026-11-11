@@ -515,7 +515,7 @@ await run('hub fr','/hub/index.html',{...D,lang:'fr'});
 await run('hub ar','/hub/index.html',{...D,lang:'ar'});
 await run('hub bible','/hub/bible/index.html',D);
 // the three brand books (hub/brand/): static plate sets, one paper page each
-for(const b of ['almaflow','traveler','numidea']) await run('hub brand '+b,'/hub/brand/'+b+'/index.html',D);
+for(const b of ['almaflow','traveler','numidea','exploration']) await run('hub brand '+b,'/hub/brand/'+b+'/index.html',D);
 for(const l of ['fr','en','ar']) await run('scene '+l,'/scene/index.html',{...D,lang:l});
 await run('scene daylight','/scene/index.html',{...D,theme:'daylight'});   // the light palette, on the page's own sheet (scene/style.css)
 await run('404','/404.html',D);
@@ -545,7 +545,7 @@ console.log('— phone 390×844 —');
 await run('hub fr m','/hub/index.html',{lang:'fr',w:390,h:844});
 await run('hub ar m','/hub/index.html',{lang:'ar',w:390,h:844});
 await run('hub bible m','/hub/bible/index.html',{w:390,h:844});
-for(const b of ['almaflow','traveler','numidea']) await run('hub brand '+b+' m','/hub/brand/'+b+'/index.html',{w:390,h:844});
+for(const b of ['almaflow','traveler','numidea','exploration']) await run('hub brand '+b+' m','/hub/brand/'+b+'/index.html',{w:390,h:844});
 for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});
 await run('scene daylight m','/scene/index.html',{theme:'daylight',w:390,h:844});
 await run('404 m','/404.html',{w:390,h:844});

@@ -183,6 +183,7 @@ const SPEC = {
   'hub/bible/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the character bible, a project of the studio)" },
   'hub/brand/almaflow/index.html': { langs: ['fr'], tests: [], only: 'French only (a client brand book, a plate set of the Studio)' },
   'hub/brand/traveler/index.html': { langs: ['fr'], tests: [], only: 'French only (the codex of a personal project, a plate set of the Studio)' },
+  'hub/brand/exploration/index.html': { langs: ['en'], tests: [], only: 'English only (a labelled exploration, not adopted, a plate set of the Studio)' },
   'hub/brand/numidea/index.html': { langs: ['en'], tests: [], only: 'English only (the studio identity rulebook, a plate set of the Studio)' },
   'workspacehq/index.html': { langs: ['en'], tests: ['embeds'], only: 'English only (the product page)' },
   '404.html': { langs: ['fr', 'ar'], tests: [], noSkip: 'one short block: the wordmark and two links (home, the offer)' },
