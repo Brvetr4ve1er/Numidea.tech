@@ -3728,12 +3728,15 @@ html[dir="rtl"] .svc-row .fam,html[dir="rtl"] .cap .fam{letter-spacing:0;text-tr
   .cap .fam{grid-column:1/span 4;grid-row:3;align-self:end}
 }
 
-.prev-out{display:grid;gap:2px;max-width:22em;margin:var(--s-3) 0 var(--s-3);font-size:var(--t-small);line-height:1.5;color:var(--body-strong)}
+.prev-out{display:grid;gap:var(--s-1);max-width:22em;margin:var(--s-3) 0 var(--s-3);font-size:var(--t-small);line-height:1.5;color:var(--body-strong)}
 .prev-out b{font-family:var(--font-mono);font-size:var(--t-label);font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 html[dir="rtl"] .prev-out b{letter-spacing:0;text-transform:none}
 
 .scene-lead{flex:1 1 100%;margin:0;font-size:var(--t-small);line-height:1.5;color:var(--muted)}
 @media (min-width:720px){.scene-lead{text-align:end}}
 
-.fd-actions .fd-bible{min-height:44px}
+/* the link to the English-only bible: the ghost button's look as a plain text link, not a fifth .btn geometry (design-check) */
+.fd-actions .fd-bible{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;font-family:var(--font-body);font-size:var(--t-ui);font-weight:600;line-height:1.4;color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--crimson-text) 45%,transparent)}
+@media (hover:hover){.fd-actions .fd-bible:hover{color:var(--ice);text-decoration-color:currentColor}}
+.fd-actions .fd-bible:focus-visible{color:var(--ice);text-decoration-color:currentColor}
 @media (max-width:600px){.fd-actions{gap:var(--s-2)}}

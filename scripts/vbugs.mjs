@@ -104,7 +104,7 @@ for(const [page,path,w,init,label] of combos){
       const cut=(own(e)&&e.children.length===0)?e:[...e.querySelectorAll('*')].find((d)=>{if(!own(d)||d.closest('[aria-hidden="true"]')||!vis(d))return false;const q=d.getBoundingClientRect();return q.width>0&&q.height>0&&(q.left<r.left-2||q.right>r.right+2)});
       out.push(cut?'HCLIP '+sel(e)+' '+e.scrollWidth+'>'+e.clientWidth+' cuts '+sel(cut)+' "'+cut.textContent.trim().slice(0,30)+'"':'HCLIP-DECOR '+sel(e)+' '+e.scrollWidth+'>'+e.clientWidth)}}
   // 4 images whose box aspect differs from intrinsic with object-fit fill (stretch)
-  for(const im of document.images){if(!vis(im)||!im.naturalWidth)continue;const r=im.getBoundingClientRect();if(r.width<10)continue;const cs=getComputedStyle(im);if(cs.objectFit!=='fill')continue;const d=Math.abs((r.width/r.height)/(im.naturalWidth/im.naturalHeight)-1);if(d>.03)out.push('STRETCH '+sel(im)+' '+(d*100).toFixed(0)+'%')}
+  for(const im of document.images){if(!vis(im)||!im.naturalWidth)continue;const r=im.getBoundingClientRect();if(r.width<10)continue;const cs=getComputedStyle(im);if(cs.objectFit!=='fill')continue;const bw=cs.transform!=='none'?im.offsetWidth:r.width,bh=cs.transform!=='none'?im.offsetHeight:r.height;/* a tilted sticker's bounding box is wider than its picture: measure the layout box */const d=Math.abs((bw/bh)/(im.naturalWidth/im.naturalHeight)-1);if(d>.03)out.push('STRETCH '+sel(im)+' '+(d*100).toFixed(0)+'%')}
   // 5 element wider than viewport: the document scrolls sideways by even a pixel
   const dw=document.documentElement.clientWidth;if(document.documentElement.scrollWidth!==dw)out.push('HSCROLL '+document.documentElement.scrollWidth+'>'+dw);
   // 6 text under the floor: 12px, 13px for a run in Arabic script (its

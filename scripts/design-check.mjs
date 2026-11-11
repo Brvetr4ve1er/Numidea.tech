@@ -466,7 +466,7 @@ console.log('plate: .plate = .plate-wrap and inside the screen, fr/en/ar at 320 
 /* ---- the hub's art: no debris beside the figure ---- */
 {
   const dir = join(ROOT, 'hub/bible/art');
-  const motion = /^(?:kuro-|rig-k-|motion-)/;   // the Kūro marks (stars, steam, z's) are parts by design
+  const motion = /^(?:kuro-|rig-k-|motion-|yasser-lost)/;   // the Kūro marks (stars, steam, z's) are parts by design, and so are the question marks over Yasser's map in the bible's yasser-lost loop (restored 2026-11-11)
   const bad = [], held = [];
   let n = 0;
   for (const f of readdirSync(dir).filter((f) => /\.webp$/.test(f))) {
