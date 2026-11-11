@@ -751,8 +751,36 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       <li><figure class="st-tile"><img src="img/studio/lab/c05.webp" data-i18n-alt="lab.pieces.27" loading="lazy" decoding="async"><figcaption>A05</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/c06.webp" data-i18n-alt="lab.pieces.28" loading="lazy" decoding="async"><figcaption>A06</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/c07.webp" data-i18n-alt="lab.pieces.29" loading="lazy" decoding="async"><figcaption>A07</figcaption></figure></li>
-      <li><a class="st-tile st-tile--link" href="bible/"><b data-i18n="lab.bible"></b><span data-i18n="lab.bibleD"></span></a></li>
     </ul>
+
+    <!-- The Studio diary, back as a titled set (28 Oct): the night desk as the strip's head, then
+         the eight prints in story order. Each opens in the one viewer (#lightbox, hub/app.js 8)
+         with previous, next and a caption; without scripts each is a link to its large file.
+         The titles are the owner's, in English in every language. -->
+    <section class="st-diary" id="diary" aria-labelledby="diary-h">
+      <div class="st-diary__head" data-reveal>
+        <picture class="st-diary__art">
+          <source media="(min-width:700px)" srcset="img/studio/m/desk.webp" width="1600" height="893">
+          <img src="img/studio/diary/band-tall-800.webp" width="800" height="812" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="st-diary__copy">
+          <p class="st-kick st-kick--dark"><span class="st-seal st-seal--red" aria-hidden="true">夜</span><span data-i18n="lab.diary.kicker"></span></p>
+          <h3 class="st-h3l" id="diary-h" data-i18n="lab.diary.title"></h3>
+        </div>
+      </div>
+      <ul class="st-diary__grid">
+      <li><a class="st-diary__a" href="img/studio/m/am4.full.webp" data-zoom="img/studio/m/am4.full.webp" data-set="diary" data-w="1520" data-h="1019"><figure class="st-tile st-diary__tile"><img src="img/studio/m/am4.webp" width="960" height="644" data-i18n-alt="lab.diary.items.0" alt="" loading="lazy" decoding="async"><figcaption dir="ltr"><span>J01</span> · <span lang="en" dir="ltr">4 a.m.</span></figcaption></figure></a></li>
+      <li><a class="st-diary__a" href="img/studio/lab/y-revs.full.webp" data-zoom="img/studio/lab/y-revs.full.webp" data-set="diary" data-w="1264" data-h="848"><figure class="st-tile st-diary__tile"><img src="img/studio/lab/y-revs.webp" width="560" height="376" data-i18n-alt="lab.diary.items.1" alt="" loading="lazy" decoding="async"><figcaption dir="ltr"><span>J02</span> · <span lang="en" dir="ltr">Buried</span></figcaption></figure></a></li>
+      <li><a class="st-diary__a" href="img/studio/m/clutter.full.webp" data-zoom="img/studio/m/clutter.full.webp" data-set="diary" data-w="1264" data-h="848"><figure class="st-tile st-diary__tile"><img src="img/studio/m/clutter.webp" width="960" height="644" data-i18n-alt="lab.diary.items.2" alt="" loading="lazy" decoding="async"><figcaption dir="ltr"><span>J03</span> · <span lang="en" dir="ltr">Art director</span></figcaption></figure></a></li>
+      <li><a class="st-diary__a" href="img/studio/m/brain.full.webp" data-zoom="img/studio/m/brain.full.webp" data-set="diary" data-w="1264" data-h="848"><figure class="st-tile st-diary__tile"><img src="img/studio/m/brain.webp" width="960" height="644" data-i18n-alt="lab.diary.items.3" alt="" loading="lazy" decoding="async"><figcaption dir="ltr"><span>J04</span> · <span lang="en" dir="ltr">The second brain</span></figcaption></figure></a></li>
+      <li><a class="st-diary__a" href="img/studio/m/diorama.full.webp" data-zoom="img/studio/m/diorama.full.webp" data-set="diary" data-w="1520" data-h="1019"><figure class="st-tile st-diary__tile"><img src="img/studio/m/diorama.webp" width="1132" height="759" data-i18n-alt="lab.diary.items.4" alt="" loading="lazy" decoding="async"><figcaption dir="ltr"><span>J05</span> · <span lang="en" dir="ltr">A world in miniature</span></figcaption></figure></a></li>
+      <li><a class="st-diary__a" href="img/studio/m/desk2.full.webp" data-zoom="img/studio/m/desk2.full.webp" data-set="diary" data-w="1376" data-h="768"><figure class="st-tile st-diary__tile"><img src="img/studio/m/desk2.webp" width="640" height="357" data-i18n-alt="lab.diary.items.5" alt="" loading="lazy" decoding="async"><figcaption dir="ltr"><span>J06</span> · <span lang="en" dir="ltr">Morning light</span></figcaption></figure></a></li>
+      <li><a class="st-diary__a" href="img/studio/m/sunset.full.webp" data-zoom="img/studio/m/sunset.full.webp" data-set="diary" data-w="1264" data-h="848"><figure class="st-tile st-diary__tile"><img src="img/studio/m/sunset.webp" width="823" height="552" data-i18n-alt="lab.diary.items.6" alt="" loading="lazy" decoding="async"><figcaption dir="ltr"><span>J07</span> · <span lang="en" dir="ltr">Wandering</span></figcaption></figure></a></li>
+      <li><a class="st-diary__a" href="img/studio/lab/y-trav3b.full.webp" data-zoom="img/studio/lab/y-trav3b.full.webp" data-set="diary" data-w="1520" data-h="1019"><figure class="st-tile st-diary__tile"><img src="img/studio/lab/y-trav3b.webp" width="560" height="376" data-i18n-alt="lab.diary.items.7" alt="" loading="lazy" decoding="async"><figcaption dir="ltr"><span>J08</span> · <span lang="en" dir="ltr">tr4veler.exe</span></figcaption></figure></a></li>
+      </ul>
+    </section>
+
+    <a class="st-tile st-tile--link st-lab__end" href="bible/"><b data-i18n="lab.bible"></b><span data-i18n="lab.bibleD"></span></a>
   </div>
 </section>
 
@@ -849,7 +877,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
           <figure class="st-make__fig"><img src="img/studio/make/artist-720.webp" srcset="img/studio/make/artist-480.webp 480w, img/studio/make/artist-720.webp 720w" sizes="(min-width:900px) 400px, 86vw" width="720" height="590" data-i18n-alt="founder.make.items.2.alt" alt="" loading="lazy" decoding="async"></figure>
           <h4 class="st-make__role" data-i18n="founder.make.items.2.role"></h4>
           <p class="st-make__line" data-i18n="founder.make.items.2.line"></p>
-          <ul class="st-make__links"><li><a href="#lab" data-i18n="founder.make.diary"></a></li><li><a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">DeviantArt <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></a></li><li><a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></a></li></ul>
+          <ul class="st-make__links"><li><a href="#diary" data-i18n="founder.make.diary"></a></li><li><a href="https://www.deviantart.com/br4vetr4veler5" target="_blank" rel="noopener">DeviantArt <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></a></li><li><a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">↗</span></a></li></ul>
         </li>
       </ul>
     </section>
@@ -924,9 +952,12 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
   </div>
 </footer>
 
-<!-- the one viewer for every case's posters (hub/app.js 9) -->
+<!-- the one viewer for every case's posters and the Lab's diary (hub/app.js 8) -->
 <dialog class="st-lb" id="lightbox">
   <button type="button" class="st-lb__x" data-lb-close data-i18n-aria="case.close">✕</button>
+  <button type="button" class="st-lb__nav st-lb__nav--prev" data-lb-prev data-i18n-aria="case.prev" hidden><span aria-hidden="true">←</span></button>
+  <button type="button" class="st-lb__nav st-lb__nav--next" data-lb-next data-i18n-aria="case.next" hidden><span aria-hidden="true">→</span></button>
+  <p class="st-lb__cap st-label" aria-live="polite" hidden></p>
 </dialog>
 
 <script src="app.js?v={{stamp}}" defer></script>

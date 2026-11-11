@@ -457,6 +457,20 @@
     "lead": "Affiches, illustrations, expériences : des travaux personnels, et c’est là que naît la direction artistique de vos projets.",
     "bible": "Le carnet du personnage →",
     "bibleD": "Yasser et Kūro, dessinés en entier : poses, visages, règles.",
+    "diary": {
+      "kicker": "JOURNAL D’ATELIER",
+      "title": "Yasser et Kūro, après les heures.",
+      "items": [
+        "Yasser à son bureau devant une fenêtre sur la ville de nuit, un stylo aux lèvres, Kūro endormi sur le clavier.",
+        "Yasser se tient la tête à côté de tours de classeurs et de papiers, Kūro assis sur l’ordinateur portable ouvert.",
+        "Kūro assis sur la tablette graphique de Yasser pendant qu’il dessine autour de lui, des gobelets de café partout sur le bureau.",
+        "Yasser devant un mur de notes épinglées reliées par des ficelles, Kūro endormi sur le bureau, en dessous.",
+        "Yasser tient une scène de tours en papier découpé à son établi, Kūro assis au bord du bureau.",
+        "Yasser dessine à un bureau baigné de soleil près d’une tour en maquette, Kūro endormi en boule sur le bureau.",
+        "Yasser lit un plan en labyrinthe assis sur un rocher parmi des ruines au coucher du soleil, Kūro assis à côté de lui.",
+        "Trois scènes de Yasser et Kūro : au repos sur une colline, entrant par des arches dans un labyrinthe, lisant une carte lumineuse sur un quai de nuit."
+      ]
+    },
     "pieces": [
       "Portrait dessiné : un jeune homme aux cheveux en bataille ajuste ses lunettes",
       "Portrait sombre : un visage derrière des lunettes, un halo en cercle",

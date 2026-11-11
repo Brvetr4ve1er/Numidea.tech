@@ -457,6 +457,20 @@
     "lead": "Posters, illustration, experiments: personal work, and it’s where the art direction of your projects is born.",
     "bible": "The character bible →",
     "bibleD": "Yasser and Kūro, drawn in full: poses, faces, rules.",
+    "diary": {
+      "kicker": "STUDIO DIARY",
+      "title": "Yasser and Kūro, after hours.",
+      "items": [
+        "Yasser at his desk by a dark city window, a pen at his lips, Kūro asleep on the keyboard.",
+        "Yasser holding his head next to towers of binders and papers, Kūro sitting on the open laptop.",
+        "Kūro sitting on Yasser’s pen display while he draws around him, coffee cups all over the desk.",
+        "Yasser at a wall of pinned notes linked by strings, Kūro asleep on the desk below him.",
+        "Yasser holding up a cut-paper scene of towers at his workbench, Kūro sitting at the edge of the desk.",
+        "Yasser sketching at a sunlit desk beside a model tower, Kūro curled up asleep on the desk.",
+        "Yasser reading a maze of a map on a rock among ruins at sunset, Kūro sitting beside him.",
+        "Three scenes of Yasser and Kūro: resting on a hillside, walking through arches into a maze, and reading a glowing map on a night platform."
+      ]
+    },
     "pieces": [
       "Drawn portrait: a young man with messy hair adjusts his glasses",
       "Dark portrait: a face behind glasses, a circular halo",

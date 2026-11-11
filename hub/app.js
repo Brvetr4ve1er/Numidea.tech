@@ -727,23 +727,52 @@
     });
   });
 
-  // the viewer: one <dialog> for every case's posters; Esc, a click or the button close it
+  // the viewer: one <dialog> for every case's posters and the Lab's diary; Esc, a click or the button
+  // close it. A picture with data-set joins the pictures of its set: previous, next, the arrow keys
+  // and a caption (the figcaption's text) appear, and the dialog widens.
   var lb = $('#lightbox');
   if (lb && typeof lb.showModal === 'function') {
-    var lbImg = document.createElement('img'), opener = null;
+    var lbImg = document.createElement('img'), opener = null, setList = [], setAt = 0;
+    var lbPrev = $('[data-lb-prev]', lb), lbNext = $('[data-lb-next]', lb), lbCap = $('.st-lb__cap', lb);
     lbImg.alt = '';
     lb.insertBefore(lbImg, lb.firstChild);
+    var show = function (z) {
+      var im = $('img', z), fc = $('figcaption', z), cap = fc ? fc.textContent.replace(/\s+/g, ' ').trim() : '';
+      opener = z;
+      lbImg.src = z.getAttribute('data-zoom');
+      lbImg.alt = im ? im.alt : '';
+      lb.setAttribute('aria-label', cap || lbImg.alt || t('case.zoom'));
+      if (lbCap) { lbCap.textContent = cap; lbCap.hidden = !setList.length || !cap; }
+    };
+    var go = function (d) {
+      if (setList.length < 2) return;
+      setAt = (setAt + d + setList.length) % setList.length;
+      show(setList[setAt]);
+      var nx = setList[(setAt + 1) % setList.length].getAttribute('data-zoom');
+      new Image().src = nx;
+    };
     document.addEventListener('click', function (e) {
       var z = e.target.closest && e.target.closest('[data-zoom]');
       if (!z) return;
       e.preventDefault();
-      var im = $('img', z);
-      opener = z; lbImg.src = z.getAttribute('data-zoom'); lbImg.alt = im ? im.alt : '';
-      lb.setAttribute('aria-label', lbImg.alt || t('case.zoom'));
+      var set = z.getAttribute('data-set');
+      setList = set ? $$('[data-zoom][data-set="' + set + '"]') : [];
+      setAt = Math.max(0, setList.indexOf(z));
+      lb.classList.toggle('st-lb--set', setList.length > 1);
+      [lbPrev, lbNext].forEach(function (b) { if (b) b.hidden = setList.length < 2; });
+      show(z);
       lb.showModal();
     });
+    if (lbPrev) lbPrev.addEventListener('click', function () { go(-1); });
+    if (lbNext) lbNext.addEventListener('click', function () { go(1); });
+    lb.addEventListener('keydown', function (e) {
+      if (setList.length < 2 || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+      e.preventDefault();
+      var rtl = getComputedStyle(lb).direction === 'rtl';
+      go((e.key === 'ArrowRight') !== rtl ? 1 : -1);
+    });
     lb.addEventListener('click', function (e) { if (e.target === lb || e.target === lbImg || e.target.closest('[data-lb-close]')) lb.close(); });
-    lb.addEventListener('close', function () { if (opener) opener.focus(); opener = null; });
+    lb.addEventListener('close', function () { if (opener) opener.focus(); opener = null; setList = []; });
   }
 
   /* ---------------- 9 · landing on an anchor ----------------
