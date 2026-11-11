@@ -64,6 +64,9 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://numidea-tech.vercel.app/hub/"/>
   </url>
   <url><loc>https://numidea-tech.vercel.app/hub/bible/</loc></url>
+  <url><loc>https://numidea-tech.vercel.app/hub/brand/almaflow/</loc></url>
+  <url><loc>https://numidea-tech.vercel.app/hub/brand/traveler/</loc></url>
+  <url><loc>https://numidea-tech.vercel.app/hub/brand/numidea/</loc></url>
   <url>
     <loc>https://numidea-tech.vercel.app/scene/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://numidea-tech.vercel.app/scene/"/>
