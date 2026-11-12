@@ -50,6 +50,6 @@ export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', '404.html', 'robots.t
 // which ignores case: the embed's export spells its notes readme.md
 export const DEPLOY_SKIP = ['README.md', '_ds_manifest.json', '.DS_Store'];
 export const isDeploySkipped = (name) => DEPLOY_SKIP.some((s) => s.toLowerCase() === String(name).toLowerCase());
-export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '.vercel', 'node_modules', '_site', 'audit', 'campaign', 'knowledge-base', 'scripts',
+export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '.vercel', 'node_modules', '_site', 'audit', 'campaign', 'knowledge-base', 'scripts', 'shop',
   'legal-preview', 'legal', 'BRAND.md', 'README.md', 'RELEASE.md', 'IMPROVEMENTS.md', 'LICENSE', 'NOTICE.md', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
   'netlify.toml', 'vercel.json', '.gitattributes', '.gitignore', '.nvmrc', '.graphifyignore', 'graphify-out'];
