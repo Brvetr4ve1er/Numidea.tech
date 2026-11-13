@@ -481,7 +481,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAtt
 <header class="hud">
   <div class="hud-bar">
   <nav class="bc" aria-label="${esc(ui('crumbNav'))}" ${T('ui.crumbNav', '-aria')}><ol>
-    <li><a href="../" class="hud-logo" aria-label="Numidea Labs">${WORDMARK}</a></li>
+    <li><a href="../" class="hud-logo" aria-label="Numidea Labs">${WORDMARK}<span class="cursor" aria-hidden="true"></span></a></li>
     <li aria-current="page"><span ${T('ui.crumb')}>${esc(ui('crumb'))}</span></li>
   </ol></nav>
   <nav class="hud-nav" aria-label="${esc(home('ui.navPrimary'))}" ${T('ui.navPrimary', '-aria')}>

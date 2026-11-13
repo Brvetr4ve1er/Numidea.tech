@@ -100,6 +100,8 @@ ol,ul{padding:0;list-style:none}
    gives its height back, so the hud stays --hud-h */
 .hud-logo{display:inline-flex;align-items:center;min-height:44px;margin-block:-4px;text-decoration:none;color:var(--ink)}
 .hud-logo .wm{display:block;height:13px;width:auto;overflow:visible}
+/* the brass cursor block after the mark, as the home's, the guide's and the 404's wordmark carry it, at the 13px mark's scale */
+.hud-logo .cursor{display:inline-block;flex:none;width:7px;height:15px;margin-inline-start:4px;background:var(--gold);transform:translateY(1px)}
 /* the home page's sections, as its bar sets them: 14px mono in the muted
    ink, 24px apart, each a 44px target */
 .hud-nav{display:none;gap:var(--s-5)}
@@ -124,17 +126,18 @@ ol,ul{padding:0;list-style:none}
 .lang{display:flex;flex:none;border:1px solid var(--line-2);border-radius:8px;overflow:hidden}
 /* 44px buttons: the group was 36px tall, under a thumb */
 .lang button{min-width:44px;min-height:44px;background:transparent;border:0;color:var(--muted);font:500 12px var(--mono);cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+/* underlined, not filled (the home's bar): the one filled control is the CTA */
+.lang button[aria-pressed="true"]{background:linear-gradient(var(--ink),var(--ink)) no-repeat 50% calc(50% + .95em) / 1.6em 1px;color:var(--ink)}
 @media (hover:hover){
   .lang button:hover{color:var(--ink)}
-  .lang button[aria-pressed="true"]:hover{color:var(--paper)}
+  .lang button[aria-pressed="true"]:hover{color:var(--ink)}
 }
 /* the drawn ع (scripts/lib/ayn.mjs): the label's size, on its baseline, in its colour */
 .lang .ayn{width:.95em;height:.95em;vertical-align:-.12em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 /* .lang clips its overflow, so an outside ring would be cut to stray bars:
    the ring is drawn inside, in the paper colour on the pressed (light) button */
 .lang button:focus-visible{outline-offset:-3px}
-.lang button[aria-pressed="true"]:focus-visible{outline-color:var(--paper)}
+.lang button[aria-pressed="true"]:focus-visible{outline-color:var(--gold)}
 
 main{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
 main:focus{outline:none}
@@ -350,10 +353,10 @@ html[dir="rtl"] .group{font-family:var(--ar)}
 
 /* ---- the one button: the home page's .btn (assets/styles.css, which this
    page does not load), the same geometry in the theme's own tokens: 52px,
-   the 14px mono label, one radius, a 1px edge; the primary is the filled
+   the Geist 600 label, one radius, a 1px edge; the primary is the filled
    accent, the WhatsApp way the teal outline. It was a Geist 600 15px
    button of its own, 48px tall. ---- */
-.btn{font-family:var(--mono);font-size:var(--t-ui);font-weight:700;line-height:1.4;padding:var(--s-3) var(--s-5);min-height:52px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
+.btn{font-family:var(--body);font-size:var(--t-ui);font-weight:600;line-height:1.4;padding:var(--s-3) var(--s-5);min-height:52px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
   transition:color var(--t-enter),background-color var(--t-enter),border-color var(--t-enter),box-shadow var(--t-enter);
   text-decoration:none;display:inline-flex;align-items:center;gap:var(--s-2)}
 .btn-primary{background:var(--crimson);color:var(--on-crimson);border-color:var(--crimson);box-shadow:var(--btn-glow)}
@@ -535,3 +538,21 @@ html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
    only a hairline. The label gold (--crimson-text #7A5208) is 6.5:1 on it. */
 :root[data-theme="daylight"] :is(.sheet,.gv-ctx,.system,.tblock,.voice){
   box-shadow:0 1px 0 rgba(0,0,0,.04),0 8px 24px -12px rgba(60,40,0,.18)}
+
+/* ---- G8: the sheet is one grid from 1000px, so the gains rise under the
+   capture instead of waiting for the taller spec column to end. The wrappers
+   of the body and the gains flatten (display:contents; the gains section
+   keeps its explicit region role, scripts/build-scene.mjs) so their parts
+   take the sheet's own tracks: the spec and the client note on the left,
+   the capture, the gains heading and its list on the right. ---- */
+@media (min-width:1000px){
+  .sheet:not(.sh-card){display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--s-6);align-items:start;grid-template-rows:auto auto auto auto}
+  .sheet:not(.sh-card)>*{grid-column:1/-1}
+  .sheet:not(.sh-card) :is(.sh-body,.gv,.gv-body){display:contents}
+  .sheet:not(.sh-card) .sh-spec{grid-column:1/span 4;grid-row:2/span 2}
+  .sheet:not(.sh-card) .sh-main{grid-column:5/-1;grid-row:2}
+  .sheet:not(.sh-card) .gv>.sh-h{grid-column:5/-1;grid-row:3;align-self:end;margin:var(--s-5) 0 var(--s-4)}
+  .sheet:not(.sh-card) .gv-ctx{grid-column:1/span 4;grid-row:4;margin-top:var(--s-5)}
+  .sheet:not(.sh-card) .gv-list{grid-column:5/-1;grid-row:4}
+  .sheet:not(.sh-card)>:is(.sh-pgs,.sh-pair,.sh-act,.sh-block){grid-row:auto}
+}
