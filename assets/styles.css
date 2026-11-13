@@ -1092,8 +1092,6 @@ html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body);font-style:nor
 .capabilities>summary .chev{margin-left:auto;color:var(--teal-text);font-size:18px;line-height:1;transition:transform var(--t-enter)}
 html[dir="rtl"] .capabilities>summary .chev{margin-left:0;margin-right:auto}
 .capabilities[open]>summary .chev{transform:rotate(90deg)}
-/* RTL mirrors › into ‹: turn it the other way so open still points down */
-html[dir="rtl"] .capabilities[open]>summary .chev{transform:rotate(-90deg)}
 .capabilities>summary .hint{color:var(--faint);text-transform:none;letter-spacing:.02em;font-size:var(--t-small)}
 /* the career toggle's chevron, the strip's (I2 puts the glyph in a .chev) */
 .fd-actions .btn .chev{font-size:18px;line-height:1;color:currentColor;transition:transform var(--t-enter)}
@@ -3740,3 +3738,107 @@ html[dir="rtl"] .prev-out b{letter-spacing:0;text-transform:none}
 @media (hover:hover){.fd-actions .fd-bible:hover{color:var(--ice);text-decoration-color:currentColor}}
 .fd-actions .fd-bible:focus-visible{color:var(--ice);text-decoration-color:currentColor}
 @media (max-width:600px){.fd-actions{gap:var(--s-2)}}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Beautify pass (G1–G4) — written last
+   G1 the Aperçu as a ticket stub · G2 the footer as a colophon · G3 the
+   plates register on hover/focus · G4 one drawn plus for every fold.
+   Tokens only; every :hover sits in (hover:hover); logical directions.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ---- G1 · the Aperçu: offer on the left, the stub behind a perforation ---- */
+.preview{border-radius:var(--r-sm)}
+.preview .prev-stub{order:2;display:flex;flex-direction:column;margin-top:var(--s-3);padding-top:var(--s-3);border-top:1px dashed var(--hairline-2)}
+.preview .prev-stub .prev-paid{order:0;margin:0}
+.preview .prev-stub .prev-actions{order:0;margin:var(--s-5) 0 0}
+.preview .ptl-w{order:3}
+/* the 0, in the planche numerals' brass Cinzel, solid: paid so far */
+.prev-paid .ptl-zero{font-family:var(--font-deco);font-weight:700;color:var(--crimson-text)}
+html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display);font-weight:700}
+@media (min-width:1100px){
+  .preview .body{grid-template-rows:auto auto auto 1fr auto}
+  .preview .tag,.preview h3,.preview .promise{align-self:start}
+  .preview .prev-terms{align-self:end;margin-top:0;padding-top:var(--s-3);border-top:1px solid var(--hairline)}
+  .preview .prev-stub{order:0;grid-column:9/-1;grid-row:1/span 4;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-4);
+    margin:0;margin-inline-start:calc(var(--col-gap) / -2);padding:0;padding-inline-start:var(--s-5);border-top:0;border-inline-start:1px dashed var(--hairline-2)}
+  .preview .prev-stub .prev-paid,.preview .prev-stub .prev-actions{grid-column:auto;grid-row:auto;margin:0;padding:0;border:0;align-self:auto}
+  .preview .prev-stub .prev-actions{justify-content:flex-end}
+  .preview .ptl-w{order:0}
+  /* two holes punched in the perforation. --nx is the dashed line's distance from the card's inline-start edge;
+     --bw stands for the card's width where the formula is read. The mask image is 120px larger than the card on
+     every side (mask-clip:no-clip), so the card's shadow, outside the border box, is not cut with it. */
+  .preview{
+    --nr:9px;
+    --bw:calc(100% - 120px);
+    --nx:calc(1px + var(--card-pad-lg) + (var(--bw) - 2 * var(--card-pad-lg) - 2px + var(--col-gap)) * 8 / 12 - var(--col-gap) / 2);
+    --nxm:calc(var(--nx) + 60px);
+    --hole:#0000 calc(var(--nr) - .5px),#000 var(--nr);
+    -webkit-mask:radial-gradient(circle var(--nr) at var(--nxm) 60px,var(--hole)) -60px -60px/calc(100% + 120px) calc(100% + 120px) no-repeat,
+                 radial-gradient(circle var(--nr) at var(--nxm) calc(100% - 60px),var(--hole)) -60px -60px/calc(100% + 120px) calc(100% + 120px) no-repeat;
+    -webkit-mask-composite:source-in;
+    mask:radial-gradient(circle var(--nr) at var(--nxm) 60px,var(--hole)) -60px -60px/calc(100% + 120px) calc(100% + 120px) no-repeat,
+         radial-gradient(circle var(--nr) at var(--nxm) calc(100% - 60px),var(--hole)) -60px -60px/calc(100% + 120px) calc(100% + 120px) no-repeat;
+    mask-composite:intersect;
+    -webkit-mask-clip:no-clip;mask-clip:no-clip;
+    -webkit-mask-origin:border-box;mask-origin:border-box}
+  html[dir="rtl"] .preview{--nxm:calc(100% - 60px - var(--nx))}
+  /* the edge of each hole, a hairline like the card's own border */
+  .preview::before,.preview::after{content:"";position:absolute;z-index:1;pointer-events:none;box-sizing:border-box;
+    inset-inline-start:calc(1px + var(--card-pad-lg) + (100% + 2px - 2 * var(--card-pad-lg) - 2px + var(--col-gap)) * 8 / 12 - var(--col-gap) / 2 - 2px - var(--nr));width:calc(2 * var(--nr) + 2px);height:calc(2 * var(--nr) + 2px);
+    border:1px solid var(--hairline-2);border-radius:50%}
+  .preview::before{top:calc(-1px - var(--nr) - 1px)}
+  .preview::after{bottom:calc(-1px - var(--nr) - 1px)}
+}
+
+/* ---- G2 · the footer as a colophon: two even rows of links, the coordinates under the motto ---- */
+.foot-coord{display:none}
+@media (min-width:961px){
+  .footer nav{grid-template-columns:repeat(2,max-content);display:grid;justify-content:end;column-gap:var(--s-5);row-gap:0}
+  .footer .meta>.foot-coord{display:flex;grid-column:1/span 4;grid-row:3;margin:0;max-width:none}
+  .footer:has(.foot-coord)::after{grid-row:4}
+  .footer:has(.foot-coord) .meta>span:first-child,.footer:has(.foot-coord) .meta-legal,.footer:has(.foot-coord) .meta-end{grid-row:5}
+}
+@media (min-width:1200px){
+  .footer nav{grid-template-columns:repeat(5,max-content)}
+}
+
+/* ---- G3 · the plates register on hover and focus ---- */
+.proj .thumb::before{--arm:8px;--lw:1px;
+  background:
+    linear-gradient(var(--k),var(--k)) 0 0/var(--arm) var(--lw),linear-gradient(var(--k),var(--k)) 0 0/var(--lw) var(--arm),
+    linear-gradient(var(--k),var(--k)) 100% 0/var(--arm) var(--lw),linear-gradient(var(--k),var(--k)) 100% 0/var(--lw) var(--arm),
+    linear-gradient(var(--k),var(--k)) 0 100%/var(--arm) var(--lw),linear-gradient(var(--k),var(--k)) 0 100%/var(--lw) var(--arm),
+    linear-gradient(var(--k),var(--k)) 100% 100%/var(--arm) var(--lw),linear-gradient(var(--k),var(--k)) 100% 100%/var(--lw) var(--arm);
+  background-repeat:no-repeat}
+@media (prefers-reduced-motion:no-preference){
+  .proj .thumb{transition:border-color var(--t-enter),transform .24s var(--ease-out),box-shadow .24s var(--ease-out)}
+  .proj .thumb::before{transition:inset .24s var(--ease-out),--arm .24s var(--ease-out),--lw .24s var(--ease-out)}
+}
+@property --arm{syntax:"<length>";inherits:false;initial-value:8px}
+@property --lw{syntax:"<length>";inherits:false;initial-value:1px}
+.proj:has(:focus-visible) .thumb::before{inset:-6px;--arm:14px;--lw:1.5px;--k:var(--crimson)}
+.proj:has(:focus-visible) .thumb{transform:translateY(-3px);box-shadow:0 44px 70px -40px rgb(var(--shade) / calc(1 * var(--shade-k)))}
+@media (hover:hover){
+  .proj:hover .thumb::before{inset:-6px;--arm:14px;--lw:1.5px;--k:var(--crimson)}
+  .proj:hover .thumb{transform:translateY(-3px);box-shadow:0 44px 70px -40px rgb(var(--shade) / calc(1 * var(--shade-k)))}
+}
+
+/* ---- G4 · one drawn plus for every fold ---- */
+.capabilities>summary .chev{position:relative;flex:none;width:20px;height:20px;font-size:0;line-height:0;color:transparent}
+.capabilities>summary .chev::before,.capabilities>summary .chev::after{content:"";position:absolute;background:var(--muted);border-radius:2px}
+.capabilities>summary .chev::before{top:50%;left:3px;right:3px;height:2px;transform:translateY(-50%)}
+.capabilities>summary .chev::after{left:50%;top:3px;bottom:3px;width:2px;transform:translateX(-50%)}
+.capabilities[open]>summary .chev,html[dir="rtl"] .capabilities[open]>summary .chev{transform:none}
+.capabilities[open]>summary .chev::after{transform:translateX(-50%) scaleY(0);opacity:0}
+.capabilities[open]>summary .chev::before{background:var(--crimson)}
+.t-incl>summary::after,.t-incl[open]>summary::after{content:"";flex:none;width:14px;height:14px;font-size:0;color:var(--crimson-text);
+  background:linear-gradient(currentColor,currentColor) 50% 50%/14px 2px no-repeat,linear-gradient(currentColor,currentColor) 50% 50%/2px 14px no-repeat}
+.t-incl[open]>summary::after{background-size:14px 2px,2px 0}
+@media (prefers-reduced-motion:no-preference){
+  .capabilities>summary .chev::before,.capabilities>summary .chev::after{transition:transform var(--t-enter),opacity var(--t-enter),background-color var(--t-hover)}
+  .t-incl>summary::after{transition:background-size var(--t-enter)}
+}
+@media (forced-colors:active){
+  .capabilities>summary .chev::before,.capabilities>summary .chev::after{forced-color-adjust:none;background:CanvasText}
+  .t-incl>summary::after{forced-color-adjust:none;color:CanvasText}
+}
