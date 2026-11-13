@@ -163,6 +163,7 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
          JS off; app.js (section 14) converts on request and computes the
          Numidea column from PRICE_MODEL. -->
     <div class="market" id="market">
+      <span class="t-pl" aria-hidden="true"></span>
       <h2 class="sec font-swap-display" id="mk-h" data-i18n="mk.h">Algérie, France, États-Unis : un projet, trois marchés</h2>
       <p class="sec-lead t-sub" data-i18n="price.moreHint">Le marché, les modèles de facturation, ce qui fait bouger un devis.</p>
       <p class="sec-lead" data-i18n="mk.p">Le même projet, chiffré sur trois marchés. Fourchettes courantes 2026, du freelance confirmé à l'agence — hors taxes.</p>
@@ -236,6 +237,7 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
 
     <!-- ---------------- pricing models ---------------- -->
     <div class="models" id="models">
+      <span class="t-pl" aria-hidden="true"></span>
       <h2 class="sec font-swap-display" id="md-h" data-i18n="md.h">Comment un projet est chiffré</h2>
       <p class="sec-lead" data-i18n="md.p">Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.</p>
       <div class="md-grid">
@@ -280,11 +282,13 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
    estimator) and its summary's chevron go, and the summary holds the
    part's h2 alone, its hint following as the part's lead. It stays an open <details class="price-est">: keys.mjs
    reads the guide's estimator as one (estimatePrefill). */
+const PLH = '<span class="t-pl" aria-hidden="true"></span>';
 function unfold(est) {
   const m = /^([ \t]*)<details class="capabilities price-more price-est">\s*<summary>\s*<span data-i18n="([^"]+)">([^<]*)<\/span>\s*<span class="hint" data-i18n="([^"]+)">([^<]*)<\/span>[\s\S]*?<\/summary>\s*<div class="pm-body">\r?\n([\s\S]*?)\r?\n[ \t]*<\/div>\r?\n([ \t]*)<\/details>$/.exec(est);
   if (!m) throw new Error('index.html: the estimator SLOT is not one <details class="capabilities price-more price-est"> with a summary title, its hint and a .pm-body');
   // the home's summary hint ("ce que les formules ne chiffrent pas") stays, as the part's lead under its h2
-  return `${m[1]}<details class="price-est t-est" open>\n${m[1]}  <summary><h2 class="sec font-swap-display" id="est-h" data-i18n="${m[2]}">${m[3]}</h2></summary>\n${m[1]}  <p class="sec-lead" data-i18n="${m[4]}">${m[5]}</p>\n${m[6]}\n${m[7]}</details>`;
+  return `${m[1]}${PLH}
+${m[1]}<details class="price-est t-est" open>\n${m[1]}  <summary><h2 class="sec font-swap-display" id="est-h" data-i18n="${m[2]}">${m[3]}</h2></summary>\n${m[1]}  <p class="sec-lead" data-i18n="${m[4]}">${m[5]}</p>\n${m[6]}\n${m[7]}</details>`;
 }
 /* The answer first: each tier's name, range and weeks, as its card in the
    tiers SLOT publishes them, for the guide's first screen (the first figure
@@ -444,6 +448,7 @@ ${answers(tiers, lang)}
          app.js (ESTIMATE) is the single source. Each part's heading is the
          home's section heading (h2.sec); the tiers' is the guide's word for
          them, the jump row's. -->
+    <span class="t-pl" aria-hidden="true"></span>
     <h2 class="sec font-swap-display" id="pricing-tiers" data-i18n="tarifs.jTiers">${toMarkup(fr['tarifs.jTiers'])}</h2>
     <p class="sec-lead" data-i18n="price.title">${toMarkup(fr['price.title'])}</p>
 ${tiers}
@@ -456,6 +461,7 @@ ${MARKET.replace(/\n$/, '').replace(/@@([\w.]+)@@/g, (m, k) => esc(dicts[lang][k
 
     <!-- The home page's FAQ entries about money (scripts/build-tarifs.mjs
          FAQ_ON_TARIFS), answers and icons included. -->
+    <span class="t-pl" aria-hidden="true"></span>
     <h2 class="sec font-swap-display" id="faq-t" data-i18n="faq.title">${toMarkup(fr['faq.title'])}</h2>
     <div class="faq-list">
 ${faqCols}

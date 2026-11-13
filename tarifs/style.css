@@ -140,3 +140,42 @@ html[dir="rtl"] .t-jump a{letter-spacing:0;text-transform:none}
   .mkv{display:none!important}
   #pricing h2.sec{margin-top:var(--s-7);break-after:avoid}
 }
+
+/* ---- the guide's five planche heads (the home's, 01 to 05) ----
+   An empty, aria-hidden span before each part's heading: the outlined brass
+   numeral, then the dimension rule running out to "Pl. n/5". The heading
+   under it says the word. Arabic keeps the figures alone, in Plex Arabic,
+   with the rule mirrored, as the home does. */
+.tarifs{counter-reset:tpl}
+.t-pl{--k:var(--hairline-2);display:flex;align-items:flex-end;gap:var(--s-3);margin:var(--sec-pad) 0 var(--s-4);counter-increment:tpl;
+  font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted)}
+.t-pl::before{content:counter(tpl,decimal-leading-zero);font-family:var(--font-deco);font-weight:400;font-size:var(--numeral);line-height:.8;letter-spacing:0;
+  padding-inline-end:var(--s-4);margin-block-end:-.02em;
+  color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--crimson) 80%,transparent);font-variant-numeric:tabular-nums}
+.t-pl::after{--lw:calc(var(--lwc) * 1ch + var(--lwc) * .08em + 14px);
+  content:var(--pl) counter(tpl) "/5";content:var(--pl) counter(tpl) "/5" / "";
+  flex:1 1 auto;direction:ltr;unicode-bidi:isolate;text-align:end;white-space:nowrap;padding-bottom:var(--s-1);
+  line-height:1.4;letter-spacing:.08em;font-variant-numeric:tabular-nums;
+  background:
+    linear-gradient(var(--k),var(--k)) 0 calc(100% - .7em - var(--s-1) / 2)/calc(100% - var(--lw)) 1px no-repeat,
+    linear-gradient(var(--k),var(--k)) calc(100% - var(--lw)) calc(100% - .7em - var(--s-1) / 2 + 4px)/1px 9px no-repeat}
+html[dir="rtl"] .t-pl::before{font-family:var(--font-ar-display);font-weight:600}
+html[dir="rtl"] .t-pl::after{text-align:start;
+  background:
+    linear-gradient(var(--k),var(--k)) 100% calc(100% - .7em - var(--s-1) / 2)/calc(100% - var(--lw)) 1px no-repeat,
+    linear-gradient(var(--k),var(--k)) var(--lw) calc(100% - .7em - var(--s-1) / 2 + 4px)/1px 9px no-repeat}
+/* the part's own heading no longer carries the section gap above it: the head's is */
+#pricing .t-pl+h2.sec,#pricing .t-pl+.t-est>summary,#pricing :is(.market,.models)>.t-pl+h2.sec{margin-top:0}
+#pricing .t-pl+.t-est>summary{margin-top:0}
+/* a chip lands the part at its head, not its heading */
+.t-pl{scroll-margin-top:calc(var(--nav-h) + var(--jump-h) + var(--s-4))}
+@media print{.t-pl{display:none}}
+
+/* ---- the market table on a phone: the figure and its currency on one line ---- */
+@media (max-width:599px){
+  .mk-table td{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:var(--s-2)}
+  .mk-table td::before{flex:0 0 40%;margin-inline-end:var(--s-2)}
+  .mk-table td .cur{flex:none}
+  .mk-table td.mk-nl{box-shadow:inset 3px 0 0 var(--teal)}
+  html[dir="rtl"] .mk-table td.mk-nl{box-shadow:inset -3px 0 0 var(--teal)}
+}
