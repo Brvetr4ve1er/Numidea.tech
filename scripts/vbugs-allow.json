@@ -34,5 +34,13 @@
   {
     "prefix": "hub HCLIP-DECOR top section#top ",
     "reason": "2026-11-07: the Studio's hero clips its own oversized Arabic watermark (.st-hero__mark: aria-hidden, data-decorative, 8% opacity), as the preview clips its kanji"
+  },
+  {
+    "prefix": "bible HCLIP-DECOR feed div.sp.sp--red ",
+    "reason": "2026-11-13: the bible's social kit (section 07b) frames each post like the platform does: the post (.sp, overflow:hidden) crops its own drawing at the frame's edge on purpose, as a feed crops a picture; HCLIP-DECOR means nothing cut off carries text, so a clipped word in a post still fails"
+  },
+  {
+    "prefix": "bible HCLIP-DECOR feed div.sp.sp--paper ",
+    "reason": "2026-11-13: the bible's social kit (section 07b) frames each post like the platform does: the post (.sp, overflow:hidden) crops its own drawing at the frame's edge on purpose, as a feed crops a picture; HCLIP-DECOR means nothing cut off carries text, so a clipped word in a post still fails"
   }
 ]

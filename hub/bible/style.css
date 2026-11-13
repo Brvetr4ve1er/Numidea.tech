@@ -471,8 +471,8 @@ html:not(.js) .ctrls{display:none}
 /* 08 process */
 .p8-pair{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:end;justify-content:start;gap:2.4cqw}
 .p8-a,.p8-b{display:grid;justify-items:center;gap:1.4cqw;padding:2cqw 2cqw 1.4cqw;background:var(--sand);border:1.5px solid var(--ink)}
-.p8-a img{height:40cqw;width:auto;image-rendering:pixelated}
-.p8-b img{height:40cqw;width:auto}
+.p8-a img{height:40cqw;width:auto;max-width:100%;object-fit:contain;image-rendering:pixelated}
+.p8-b img{height:40cqw;width:auto;max-width:100%;object-fit:contain} /* a narrow column shrinks the width, not the drawing (it stretched 4% at 1024) */
 .p8-a b,.p8-b b{font:500 max(12px,2.8cqw)/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase}
 .p8-arrow{align-self:center;font:900 8cqw/1 var(--display);color:var(--red-text)}
 /* 10 cover */
