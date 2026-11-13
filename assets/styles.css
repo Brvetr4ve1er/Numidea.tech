@@ -3756,14 +3756,16 @@ html[dir="rtl"] .prev-out b{letter-spacing:0;text-transform:none}
 .prev-paid .ptl-zero{font-family:var(--font-deco);font-weight:700;color:var(--crimson-text)}
 html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display);font-weight:700}
 @media (min-width:1100px){
-  .preview .body{grid-template-rows:auto auto auto 1fr auto}
+  /* the offer's words sit together, centred against the stub: a spacer track above and below */
+  .preview .body{grid-template-rows:1fr auto auto auto auto 1fr auto}
+  .preview .tag{grid-row:2}.preview h3{grid-row:3}.preview .promise{grid-row:4}
   .preview .tag,.preview h3,.preview .promise{align-self:start}
-  .preview .prev-terms{align-self:end;margin-top:0;padding-top:var(--s-3);border-top:1px solid var(--hairline)}
-  .preview .prev-stub{order:0;grid-column:9/-1;grid-row:1/span 4;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-4);
+  .preview .prev-terms{grid-row:5;align-self:start;margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--hairline)}
+  .preview .prev-stub{order:0;grid-column:9/-1;grid-row:1/span 6;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s-4);
     margin:0;margin-inline-start:calc(var(--col-gap) / -2);padding:0;padding-inline-start:var(--s-5);border-top:0;border-inline-start:1px dashed var(--hairline-2)}
   .preview .prev-stub .prev-paid,.preview .prev-stub .prev-actions{grid-column:auto;grid-row:auto;margin:0;padding:0;border:0;align-self:auto}
   .preview .prev-stub .prev-actions{justify-content:flex-end}
-  .preview .ptl-w{order:0}
+  .preview .ptl-w{order:0;grid-row:7}
   /* two holes punched in the perforation. --nx is the dashed line's distance from the card's inline-start edge;
      --bw stands for the card's width where the formula is read. The mask image is 120px larger than the card on
      every side (mask-clip:no-clip), so the card's shadow, outside the border box, is not cut with it. */
