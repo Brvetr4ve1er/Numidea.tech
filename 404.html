@@ -104,6 +104,19 @@
   .e404>main{position:relative}
   .e404 .sheet-frame{display:block;inset:calc(-1 * var(--s-5)) -12px calc(-1 * var(--s-5))}
   .e404 .dim-line{justify-content:center;margin:0 auto var(--s-4);max-width:20.4em}
+  /* the road: the dunes' engraving with the caravan (assets/illus/dunes.webp,
+     as the home's founder strip crops it on a phone), under the buttons. One
+     slow pan along the dunes that stops on the caravan, once; still under
+     reduced motion. The box has a fixed height. The page's ground is the
+     void, not the founder band's panel. */
+  .e404 .e404-road{width:min(100%,390px);height:104px;margin:var(--s-5) auto 0;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+  .e404 .e404-road .ds-ink{opacity:.8;-webkit-mask-size:205% auto;mask-size:205% auto;-webkit-mask-position:81% 57%;mask-position:81% 57%}
+  .e404 .e404-road::after{background:linear-gradient(transparent,var(--void))}
+  @media (prefers-reduced-motion:no-preference){
+    .e404 .ds-ink{animation:e404-walk 4.5s cubic-bezier(.2,.6,.2,1) .4s 1 both}
+    @keyframes e404-walk{from{-webkit-mask-position:74% 57%;mask-position:74% 57%}}
+  }
   /* one label per language, chosen by html[lang] (set before paint) */
   .e404 .cta>[lang],.e404 .sr-only>[lang]{display:none}
   html[lang="fr"] .e404 :is(.cta,.sr-only)>[lang="fr"],html[lang="en"] .e404 :is(.cta,.sr-only)>[lang="en"],html[lang="ar"] .e404 :is(.cta,.sr-only)>[lang="ar"]{display:inline}
@@ -216,6 +229,7 @@
       <a class="btn btn-primary cta" href="index.html"><span lang="fr"><i class="arw back" aria-hidden="true"></i> Retour à l’accueil</span><span lang="en"><i class="arw back" aria-hidden="true"></i> Back to the home page</span><span lang="ar"><i class="arw back" aria-hidden="true"></i> العودة إلى الرئيسية</span></a>
       <a class="btn btn-ghost cta" href="index.html#apercu"><span lang="fr">Demander mon Aperçu gratuit <i class="arw" aria-hidden="true"></i></span><span lang="en">Request my free Preview <i class="arw" aria-hidden="true"></i></span><span lang="ar">اطلب معاينتك المجانية <i class="arw back" aria-hidden="true"></i></span></a>
     </p>
+    <div class="dune-strip e404-road lz" aria-hidden="true"><span class="ds-ink"></span></div>
   </main>
 </div>
 </body>
