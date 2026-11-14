@@ -433,6 +433,38 @@ main:focus{outline:none}   /* focused by the skip link (tabindex=-1), not a cont
   .term-os{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.5}
 }
 
+/* ---------- the walkthrough: the player first (W1), the chapters under it ----------
+   Below 960px the chapter list stood before the player: nine rows, and a tap
+   on one seeked a player 700px further down, out of sight. The screen goes
+   first and the chapters become one row of chips under it, sliding sideways,
+   so a tap on one is answered where the visitor is looking. */
+@media (max-width:959px){
+  .walk{gap:16px}
+  .walk>*{flex:1 1 100%;min-width:0}
+  .walk-screen{order:-1}
+  .chap-list{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin;
+    margin-inline:calc(-1 * var(--pad));padding:0 var(--pad) 8px;scroll-padding-inline:var(--pad)}
+  .chap{flex:0 0 auto;width:auto;grid-template-columns:auto auto auto;gap:10px;border:2px solid var(--frame);border-left-width:3px;scroll-snap-align:start}
+  .chap[aria-pressed="true"]{border-color:var(--gold)}
+  .chapters .px-label--gap{margin-bottom:8px}
+}
+
+/* ---------- notches and short screens (W2) ---------- */
+.nav{padding-inline:max(var(--pad),env(safe-area-inset-left)) max(var(--pad),env(safe-area-inset-right))}
+@media (max-height:560px){.nav{padding-block:4px}}
+/* touch screens: the scanlines and the grid read as noise at 3x, and cost a full-viewport layer each on every frame (W6) */
+@media (pointer:coarse){.fx-scan,.fx-grid{display:none}}
+/* the narrowest screens (W3, W4): the boot button and the cards wrap instead of widening the page; the clone command shows whole */
+@media (max-width:339px){
+  .btn--lg{white-space:normal}
+  .demo-coin{padding:12px}
+  .hero-bit{min-width:0}
+  .scan-card{min-width:0;padding-inline:12px}
+}
+@media (max-width:479px){
+  .term-cmd{white-space:normal;overflow-wrap:anywhere}
+}
+
 /* ---------- print: dark text on white, no atmosphere or players, nothing
    left at the reveal's opacity 0, FAQ answers printed ---------- */
 @media print{
