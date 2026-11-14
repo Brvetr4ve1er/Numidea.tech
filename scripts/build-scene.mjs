@@ -223,7 +223,7 @@ function sheet(p, i) {
   // the client's own words, in the language they gave them (scripts/voices-data.mjs)
   const voices = VOICES.filter((v) => v.client === p.slug);
   const vq = voices.length ? `
-      <section class="sh-block" aria-labelledby="vq-${p.slug} h-${p.slug}">
+      <section class="sh-block sh-vq" aria-labelledby="vq-${p.slug} h-${p.slug}">
         <h3 class="sh-h" id="vq-${p.slug}" ${T('ui.voice')}>${esc(ui('voice'))}</h3>
         ${voices.map((v) => `<figure class="voice" lang="${v.lang}" dir="${v.lang === 'ar' ? 'rtl' : 'ltr'}">
           <blockquote><p>${esc(v.quote)}</p></blockquote>
@@ -539,12 +539,18 @@ ${sheets}
   ${waLink('btn btn-teal', 'wa.hello', 'footer.wa')}
 </nav>
 
-<!-- the capture at its own size: fitted to the screen on a desk, at 1:1
-     in a scrolling pane on a phone (scene/app.js puts the image in it) -->
+<!-- the capture: on a desk fitted to the screen (a click closes it); on a
+     phone the dialog is the whole screen, the capture opens fitted and a tap
+     zooms it to its own size where the finger fell (scene/app.js puts the
+     image in the pane and writes the hint) -->
 <dialog class="viewer" id="viewer" ${T('ui.viewer', '-aria')} aria-label="${esc(ui('viewer'))}">
   <form method="dialog"><button class="viewer-x" type="submit" ${T('ui.close', '-aria')} aria-label="${esc(ui('close'))}"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></form>
   <div class="viewer-pane" dir="ltr"></div>
+  <p class="viewer-cap" aria-hidden="true" ${T('ui.zoomIn')}>${esc(ui('zoomIn'))}</p>
 </dialog>
+<!-- the folded sheet's label and the zoomed viewer's hint, for scene/app.js -->
+<template id="tech-label"><span ${T('ui.tech')}>${esc(ui('tech'))}</span></template>
+<template id="zoom-out-label"><span ${T('ui.zoomOut')}>${esc(ui('zoomOut'))}</span></template>
 
 <script type="application/json" id="i18n">${JSON.stringify(DICT).replace(/</g, '\\u003c')}</script>
 <script src="../assets/page-i18n.js?v=${stamp}" defer></script>

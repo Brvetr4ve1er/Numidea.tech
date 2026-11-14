@@ -313,7 +313,9 @@ html[dir="rtl"] .gv-n{letter-spacing:0}
 .group{font:700 clamp(22px,2.6vw,30px)/1.2 var(--display);margin-bottom:var(--s-5);text-wrap:balance}
 html[dir="rtl"] .group{font-family:var(--ar)}
 .cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
-@media (min-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:700px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* between 700 and 999px a card that is opened takes the row, its full sheet laid out in the page's width, not half of it */
+@media (min-width:700px) and (max-width:999px){.sh-card:has(.sh-more[open]){grid-column:1/-1}}
 .sh-card{display:flex;flex-direction:column;gap:var(--s-4);margin:0}
 .sh-card .sh-head{margin:0;padding-bottom:var(--s-4)}
 .sh-card .sh-head h2{font-size:clamp(24px,2.4vw,32px)}
@@ -348,7 +350,7 @@ html[dir="rtl"] .group{font-family:var(--ar)}
 .sh-full .ph{flex:none}
 .sh-full .swatches{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}
 .sh-full .swatches b{overflow-wrap:normal}
-@media (max-width:699px){.sh-more{width:100%}.sh-more summary{width:100%;justify-content:center}}
+@media (max-width:699px),(max-width:999px) and (max-height:560px){.sh-more{width:100%}.sh-more summary{width:100%;justify-content:center}}
 @media (prefers-reduced-motion:reduce){.sh-more .chev{transition:none}}
 
 /* ---- the one button: the home page's .btn (assets/styles.css, which this
@@ -379,7 +381,7 @@ html[dir="rtl"] .outro-q{font-family:var(--ar)}
 .outro-acts{display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-4);margin-top:var(--s-5)}
 .outro-nav{display:flex;flex-wrap:wrap;gap:0 var(--s-5);margin-top:var(--s-6);padding-top:var(--s-4);border-top:1px solid var(--line)}
 /* each a 44px target */
-.outro-nav a{display:inline-flex;align-items:center;min-height:44px;font:400 14px/1.6 var(--mono);color:var(--muted);text-decoration:none;transition:color var(--t-hover)}
+.outro-nav a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;font:400 14px/1.6 var(--mono);color:var(--muted);text-decoration:none;transition:color var(--t-hover)}
 .outro-nav .back{margin-inline-start:auto}
 @media (hover:hover){.outro-nav a:hover{color:var(--ink)}}
 
@@ -402,22 +404,36 @@ html[dir="rtl"] .outro-q{font-family:var(--ar)}
 
 /* ---- viewer ----
    The dialog holds a pane that scrolls; the close button stays in its
-   corner over it. On a desk the capture fits the screen; under 700px the
-   dialog is the screen and the capture is shown at its own size (1440px
-   wide, a phone's 780), panned with a finger: fitted, a 1440 capture was
-   372px wide again, the size the visitor had just tapped to leave. */
+   corner over it. On a desk the capture fits the screen and a click closes
+   it. On a phone the dialog is the whole screen (100dvh, no 94% with the
+   page's bar showing under it) and the capture opens fitted, whole, with a
+   hint; a tap zooms it to its own size (the page's 1440px, a phone's 780)
+   where the finger fell, and the pane pans it; a tap on the bare screen
+   around the fitted capture closes it. The page behind is locked
+   (html.viewing, scene/app.js). */
 .viewer{max-width:min(96vw,1600px);max-height:94vh;padding:0;border:1px solid var(--line-2);border-radius:8px;background:var(--paper);color:var(--ink);overflow:hidden}
+@supports (height:1dvh){.viewer{max-height:94dvh}}
 .viewer::backdrop{background:rgba(4,9,15,.86)}
 .viewer-pane{max-height:94vh;overflow:auto;overscroll-behavior:contain}
+@supports (height:1dvh){.viewer-pane{max-height:94dvh}}
 .viewer img{width:100%;cursor:zoom-out}
 .viewer.is-tall{max-width:min(92vw,460px)}
 .viewer form{position:absolute;top:0;inset-inline-end:0;z-index:1}
 .viewer-x{display:grid;place-items:center;margin:8px;width:44px;height:44px;padding:0;border-radius:50%;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);cursor:pointer}
 .viewer-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
-@media (max-width:699px){
-  .viewer,.viewer.is-tall{width:100vw;max-width:none;height:100vh;max-height:none;margin:0;border:0;border-radius:0}
-  .viewer-pane{height:100%;max-height:none}
-  .viewer img{width:auto;max-width:none;cursor:default}
+.viewer-cap{display:none}
+html.viewing{overflow:hidden}
+@media (max-width:699px),(max-width:999px) and (max-height:560px){
+  .viewer,.viewer.is-tall,.viewer-pane{width:100vw;max-width:none;height:100vh;max-height:none;margin:0;border:0;border-radius:0}
+  @supports (height:1dvh){.viewer,.viewer.is-tall,.viewer-pane{height:100dvh;max-height:none}}
+  .viewer-pane{display:grid;place-items:center;touch-action:pan-x pan-y pinch-zoom}
+  .viewer img{width:auto;height:auto;max-width:100%;max-height:100%;cursor:zoom-in;object-fit:contain}
+  .viewer.is-zoom .viewer-pane{display:block;place-items:start}
+  .viewer.is-zoom img{width:var(--zw);max-width:none;max-height:none;cursor:zoom-out}
+  .viewer-cap{display:block;position:absolute;inset-inline:0;bottom:0;margin:0;z-index:1;pointer-events:none;text-align:center;
+    padding:var(--s-3) var(--s-4) calc(var(--s-3) + env(safe-area-inset-bottom));font:500 12px/1.4 var(--mono);letter-spacing:.08em;color:var(--ink);
+    background:linear-gradient(transparent,color-mix(in srgb,var(--paper) 88%,transparent))}
+  html[dir="rtl"] .viewer-cap{font-family:var(--ar);letter-spacing:0;font-size:13px}
 }
 
 @media (prefers-reduced-motion:reduce){.frame img,.phone img{transition:none}.zoom:hover img{transform:none}}
@@ -433,7 +449,7 @@ html[dir="rtl"] .outro-q{font-family:var(--ar)}
    system. The phones and the other pages each scroll sideways in one
    strip, the next one peeking in at the edge. At 390 the sheet's phone
    captures came after four desk frames at 0.22 scale, nine screens down. */
-@media (max-width:699px){
+@media (max-width:699px),(max-width:999px) and (max-height:560px){
   .sheet:not(.sh-card){display:flex;flex-direction:column}
   .sheet:not(.sh-card) :is(.sh-body,.sh-spec,.sh-pair){display:contents}
   .sheet:not(.sh-card) .sh-sum{order:1}
@@ -444,16 +460,17 @@ html[dir="rtl"] .outro-q{font-family:var(--ar)}
   .gv{order:6}
   .sh-sys{order:7}
   .sheet>.sh-block:not(.sh-pgs,.gv){order:8}
+  .sheet>.sh-vq{order:7}
+  .sheet>.sh-tech{order:8;margin-top:var(--s-5)}
   .sh-act{order:9}
+  /* the offer is one text link here: the phone bar carries the two buttons */
+  .sh-act .btn-teal{display:none}
+  .sh-act .btn-primary{flex:0 1 auto;min-height:44px;padding:0;background:none;border:0;box-shadow:none;color:var(--gold);text-decoration:underline;text-underline-offset:3px}
   .phones,.pages{display:flex;gap:var(--s-3);max-width:none;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
     margin-inline:calc(-1 * var(--sh-pad));padding:0 var(--sh-pad) 8px;scroll-padding-inline:var(--sh-pad)}
   .ph{flex:0 0 248px;scroll-snap-align:start}
   .pg{flex:0 0 85%;scroll-snap-align:start}
-  /* the two cards that are not client work: one row here too, the second
-     peeking in, so they take one card's height rather than two */
-  .cards{display:flex;gap:var(--s-3);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-    margin-inline:calc(-1 * var(--gut));padding:0 var(--gut) 8px;scroll-padding-inline:var(--gut)}
-  .sh-card{flex:0 0 85%;scroll-snap-align:start}
+  /* the two cards that are not client work stack here (a strip made "the full sheet" open inside one 298px card, 5 screens tall) */
   /* the spec's labels beside their values, as on a desk, and the palette
      three to a row on short chips: together they were a screen per sheet */
   .tblock div{grid-template-columns:minmax(88px,32%) minmax(0,1fr);gap:12px}
@@ -463,6 +480,7 @@ html[dir="rtl"] .outro-q{font-family:var(--ar)}
   .sheet,.others{margin-bottom:var(--s-6)}
   .intro{padding:var(--s-7) 0 var(--s-6)}
   .sh-card{gap:var(--s-3)}
+  .sh-card .sh-main{margin-top:0}
   .outro-in{padding-bottom:var(--s-5)}
   .outro-nav{margin-top:var(--s-5)}
   .gv-list li{padding:10px 0}
@@ -529,10 +547,9 @@ html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
 @supports (padding:max(0px)){
   .hud-bar,main,.outro-in{padding-left:max(var(--gut),env(safe-area-inset-left));padding-right:max(var(--gut),env(safe-area-inset-right))}
 }
-/* The capture viewer: 94vh is the LARGE viewport on iOS, taller than what
-   shows while the toolbars are out, so the foot of a tall capture sat under
-   them. 94dvh is what is on screen. */
-@supports (height:1dvh){.viewer{max-height:94dvh}}
+/* (the capture viewer's dvh heights are with it, above: 94vh is the LARGE
+   viewport on iOS, so the foot of a tall capture sat under the toolbars; and
+   this rule, coming after the phone's, had kept the dialog at 94% there) */
 
 /* Daylight is paper: white cards lifted off the cream by a soft shadow, not
    only a hairline. The label gold (--crimson-text #7A5208) is 6.5:1 on it. */
@@ -556,3 +573,36 @@ html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
   .sheet:not(.sh-card) .gv-list{grid-column:5/-1;grid-row:4}
   .sheet:not(.sh-card)>:is(.sh-pgs,.sh-pair,.sh-act,.sh-block){grid-row:auto}
 }
+
+/* ---- a tablet (700 to 999px, upright): the sheet in the desktop's grid ----
+   The sheet stood in one column here, the phones capped at 440px beside
+   nothing, three screens a sheet. The 12 columns of the 1000px layout, split
+   5 and 7 (the title block is the narrower side): the title block beside the
+   capture, the client note beside the gains, the phones beside the visual
+   system. */
+@media (min-width:700px) and (max-width:999px) and (min-height:561px){
+  .sheet:not(.sh-card){display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--s-5);align-items:start;grid-template-rows:auto auto auto auto}
+  .sheet:not(.sh-card)>*{grid-column:1/-1}
+  .sheet:not(.sh-card) :is(.sh-body,.gv,.gv-body){display:contents}
+  .sheet:not(.sh-card) .sh-spec{grid-column:1/span 5;grid-row:2/span 2}
+  .sheet:not(.sh-card) .sh-main{grid-column:6/-1;grid-row:2}
+  .sheet:not(.sh-card) .gv>.sh-h{grid-column:6/-1;grid-row:3;align-self:end;margin:var(--s-5) 0 var(--s-4)}
+  .sheet:not(.sh-card) .gv-ctx{grid-column:1/span 5;grid-row:4;margin-top:var(--s-5)}
+  .sheet:not(.sh-card) .gv-list{grid-column:6/-1;grid-row:4}
+  .sheet:not(.sh-card)>:is(.sh-pgs,.sh-pair,.sh-act,.sh-block){grid-row:auto}
+  .sh-pair{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--s-5)}
+  .sh-pair .sh-mob{grid-column:span 5}
+  .sh-pair .sh-sys{grid-column:span 7}
+  .phones{max-width:none}
+}
+
+/* ---- a phone on its side (S6): a slimmer header, as the home's ---- */
+@media (max-height:560px){
+  :root{--hud-h:57px}
+  .hud-bar{padding-block:6px}
+}
+
+/* the folded technical part of a phone sheet (scene/app.js moves it in) */
+.sh-tech-in>*:first-child{margin-top:var(--s-5)}
+.sh-tech-in .tblock{margin-top:0}
+.sh-tech-in>.sh-h{margin-top:var(--s-5)}

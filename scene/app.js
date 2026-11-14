@@ -12,32 +12,104 @@
   try { DICT = JSON.parse(document.getElementById('i18n').textContent) || {}; } catch (e) {}
   function t(k) { var d = DICT[root.lang] || DICT.fr || {}; return d[k] != null ? d[k] : (DICT.fr || {})[k]; }
 
+  /* A phone, or a phone on its side: the viewer is the whole screen and the
+     sheet's technical part folds (style.css's phone rules, the same query) */
+  var phone = window.matchMedia('(max-width: 699px), (max-width: 999px) and (max-height: 560px)');
+
   /* image viewer: progressive — without JS (or <dialog>) the link opens the
-     file. The image goes in the pane: fitted to the screen on a desk, at
-     its own size on a phone, where the pane scrolls (style.css). */
+     file. On a desk the image is fitted to the screen and a click closes it.
+     On a phone it opens fitted too, the whole capture on the screen; a tap
+     zooms it to its own size, centred where the finger fell, a second tap
+     brings it back, and a tap on the bare screen around it closes the
+     viewer. The page behind does not scroll while it is open. */
   var dlg = document.getElementById('viewer');
   var pane = dlg && dlg.querySelector('.viewer-pane');
+  var cap = dlg && dlg.querySelector('.viewer-cap');
   if (dlg && pane && typeof dlg.showModal === 'function') {
     // created on first open: an <img> with no src counts as a broken image
-    var big = null;
+    var big = null, zoomed = false;
+    var hint = function () {
+      if (!cap) return;
+      var key = zoomed ? 'ui.zoomOut' : 'ui.zoomIn';
+      cap.setAttribute('data-i18n', key);
+      cap.textContent = t(key) || '';
+    };
+    var zoom = function (on, x, y) {
+      if (!big || on === zoomed) return;
+      var box = big.getBoundingClientRect(), view = pane.getBoundingClientRect();
+      var fx = x == null ? 0.5 : (x - box.left) / box.width, fy = y == null ? 0.5 : (y - box.top) / box.height;
+      zoomed = on;
+      dlg.classList.toggle('is-zoom', on);
+      if (on) {
+        big.style.setProperty('--zw', big.naturalWidth + 'px');
+        pane.scrollLeft = fx * big.offsetWidth - (x == null ? view.width / 2 : x - view.left);
+        pane.scrollTop = fy * big.offsetHeight - (y == null ? view.height / 2 : y - view.top);
+      } else { pane.scrollLeft = 0; pane.scrollTop = 0; }
+      hint();
+    };
     document.addEventListener('click', function (ev) {
       var a = ev.target.closest && ev.target.closest('a.zoom');
       if (!a || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
       ev.preventDefault();
       var img = a.querySelector('img');
       if (!big) { big = document.createElement('img'); pane.appendChild(big); }
+      zoomed = false; dlg.classList.remove('is-zoom'); hint();
       big.src = a.getAttribute('href');
       big.alt = img ? img.alt : '';
       dlg.classList.toggle('is-tall', !!(img && img.naturalHeight > img.naturalWidth));
+      root.classList.add('viewing');
       dlg.showModal();
       pane.scrollTop = 0; pane.scrollLeft = 0;
     });
     // a click on the backdrop closes it, and on a desk a click on the
-    // fitted image too; on a phone the image is panned, not a way out
-    var pan = window.matchMedia('(max-width: 699px)');
-    dlg.addEventListener('click', function (ev) { if (ev.target === dlg || (ev.target === big && !pan.matches)) dlg.close(); });
-    dlg.addEventListener('close', function () { if (big) big.removeAttribute('src'); });
+    // fitted image too; on a phone the image zooms and the bare screen closes
+    dlg.addEventListener('click', function (ev) {
+      if (phone.matches) {
+        if (ev.target === big) zoom(!zoomed, ev.clientX, ev.clientY);
+        else if (ev.target === pane || ev.target === dlg) dlg.close();
+      } else if (ev.target === dlg || ev.target === big) dlg.close();
+    });
+    dlg.addEventListener('close', function () { root.classList.remove('viewing'); zoomed = false; dlg.classList.remove('is-zoom'); if (big) big.removeAttribute('src'); });
   }
+
+  /* A phone's sheet, shortened: what the site gives the client and the
+     phone captures stay in view; the technical part (the facts and
+     deliverables, the other pages, the visual system, before and after, the
+     brand elements) goes behind one closed "Technical sheet". Done here, not
+     in the markup, because from 700px the same parts stand in the sheet's
+     grid: the elements are moved into the fold on a phone and put back where
+     they were (a comment marks each place) when the screen turns or widens. */
+  var folds = [];
+  var TECH = '.sh-spec > :is(.tblock, .sh-h, .deliv, .sh-ident), .sh-pgs, .sh-sys, .sheet > .sh-block:not(.sh-pgs):not(.gv):not(.sh-vq)';
+  var fold = function (on) {
+    document.querySelectorAll('.sheet:not(.sh-card)').forEach(function (sh) {
+      if (on && !sh.querySelector(':scope > .sh-tech')) {
+        var det = document.createElement('details'), sum = document.createElement('summary'), lab = document.createElement('span');
+        det.className = 'sh-more sh-tech';
+        lab.setAttribute('data-i18n', 'ui.tech'); lab.textContent = t('ui.tech') || '';
+        sum.appendChild(lab);
+        sum.insertAdjacentHTML('beforeend', '<svg class="chev" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>');
+        det.appendChild(sum);
+        var inner = document.createElement('div'); inner.className = 'sh-tech-in'; det.appendChild(inner);
+        var marks = [];
+        sh.querySelectorAll(TECH).forEach(function (el) {
+          var m = document.createComment('tech'); el.parentNode.insertBefore(m, el); inner.appendChild(el); marks.push([el, m]);
+        });
+        sh.appendChild(det);
+        folds.push([det, marks]);
+      } else if (!on) {
+        folds = folds.filter(function (f) {
+          if (f[0].parentNode !== sh) return true;
+          f[1].forEach(function (p) { p[1].parentNode.replaceChild(p[0], p[1]); });
+          f[0].remove();
+          return false;
+        });
+      }
+    });
+  };
+  fold(phone.matches);
+  var onChange = function () { fold(phone.matches); };
+  if (phone.addEventListener) phone.addEventListener('change', onChange); else if (phone.addListener) phone.addListener(onChange);
 
   /* The offer's request (data-prefill) lands on the home page's form
      already written: its own Aperçu request (prev.msg) without its first
