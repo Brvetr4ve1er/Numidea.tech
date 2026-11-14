@@ -651,13 +651,13 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 @media (max-width:420px){.st-own a.whq-cart{padding-inline-end:14px;padding-bottom:26px;box-shadow:4px 4px 0 var(--red)}.whq-name{font-size:12px}}
 
 /* the viewer */
-.st-lb{max-width:min(92vw,760px);max-height:88vh;padding:0;border:2px solid var(--ink);background:var(--ink);overflow:visible}
+.st-lb{max-width:min(92vw,760px);max-height:88vh;max-height:88dvh;padding:0;border:2px solid var(--ink);background:var(--ink);overflow:visible}
 .st-lb::backdrop{background:rgba(20,21,23,.92)}
-.st-lb img{display:block;max-width:100%;max-height:calc(88vh - 4px);width:auto;height:auto;margin:auto}
+.st-lb img{display:block;max-width:100%;max-height:calc(88vh - 4px);max-height:calc(88dvh - 4px);width:auto;height:auto;margin:auto}
 .st-lb__x{position:absolute;top:8px;inset-inline-end:8px;width:44px;height:44px;border:2px solid var(--ink);background:var(--cream);color:var(--ink);font-size:18px;cursor:pointer}
 /* the diary's prints: wide, with previous, next and a caption (hub/app.js 8) */
 .st-lb--set{max-width:min(94vw,1280px)}
-.st-lb--set img{max-height:calc(88vh - 52px)}
+.st-lb--set img{max-height:calc(88vh - 52px);max-height:calc(88dvh - 52px)}
 .st-lb__nav{position:absolute;top:calc(50% - 26px);width:44px;height:44px;padding:0;border:2px solid var(--ink);background:var(--cream);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
 .st-lb__nav[hidden],.st-lb__cap[hidden]{display:none}
 .st-lb__nav--prev{inset-inline-start:8px}
@@ -1211,4 +1211,19 @@ main:focus{outline:none}
   .st-sign{width:min(100%,280px)}
   .st-contact__kuro{width:88px}
   .st-contact__wave{width:92px}
+}
+
+/* ---- the viewer on a phone or a small tablet: the picture takes the screen, the controls sit under it ----
+   (the buttons were drawn over the art, the sizes were 88vh, which on a phone is the page with its toolbars away) */
+@media (max-width:899px){
+  .st-lb{width:100vw;width:100dvw;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;border:0;touch-action:none;overscroll-behavior:contain}
+  .st-lb[open]{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:auto minmax(0,1fr) auto;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .st-lb > img,.st-lb--set > img{grid-column:1 / -1;grid-row:2;justify-self:center;align-self:center;max-width:100%;max-height:100%;min-height:0;min-width:0;width:auto;height:auto;object-fit:contain;-webkit-user-drag:none;user-select:none}
+  .st-lb__x{position:static;grid-column:3;grid-row:1;justify-self:end;margin:8px}
+  .st-lb__nav{position:static;grid-row:3;margin:8px}
+  .st-lb__nav--prev{grid-column:1}
+  .st-lb__nav--next{grid-column:3}
+  .st-lb__cap{grid-column:2;grid-row:3;align-self:center;min-height:0;padding:6px 4px;text-align:center;font-size:var(--t-label);line-height:1.35;letter-spacing:.08em}
+  :lang(ar) .st-lb__cap{letter-spacing:0}
+  .st-lb__nav:active,.st-lb__x:active{background:var(--red);color:var(--cream)}
 }

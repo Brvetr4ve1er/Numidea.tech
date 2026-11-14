@@ -794,14 +794,13 @@
       lbImg.src = z.getAttribute('data-zoom');
       lbImg.alt = im ? im.alt : '';
       lb.setAttribute('aria-label', cap || lbImg.alt || t('case.zoom'));
-      if (lbCap) { lbCap.textContent = cap; lbCap.hidden = !setList.length || !cap; }
+      if (lbCap) { lbCap.textContent = cap + (setList.length > 1 ? (cap ? '  ·  ' : '') + (setAt + 1) + ' / ' + setList.length : ''); lbCap.hidden = !setList.length || !cap; }
     };
     var go = function (d) {
       if (setList.length < 2) return;
       setAt = (setAt + d + setList.length) % setList.length;
       show(setList[setAt]);
-      var nx = setList[(setAt + 1) % setList.length].getAttribute('data-zoom');
-      new Image().src = nx;
+      [1, -1].forEach(function (k) { new Image().src = setList[(setAt + k + setList.length) % setList.length].getAttribute('data-zoom'); });
     };
     document.addEventListener('click', function (e) {
       var z = e.target.closest && e.target.closest('[data-zoom]');
@@ -825,6 +824,27 @@
     });
     lb.addEventListener('click', function (e) { if (e.target === lb || e.target === lbImg || e.target.closest('[data-lb-close]')) lb.close(); });
     lb.addEventListener('close', function () { if (opener) opener.focus(); opener = null; setList = []; });
+    // a touch swipes the viewer: sideways moves one picture (as the page reads: the other way in Arabic), a pull down closes it
+    var sw = null;
+    lb.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' || e.target.closest('button')) return;
+      sw = { x: e.clientX, y: e.clientY, id: e.pointerId };
+    });
+    lb.addEventListener('pointermove', function (e) {
+      if (!sw || e.pointerId !== sw.id) return;
+      var dx = e.clientX - sw.x, dy = e.clientY - sw.y;
+      if (!reduce && dy > 12 && dy > Math.abs(dx)) { lb.style.transform = 'translateY(' + dy + 'px)'; lb.style.opacity = String(Math.max(.4, 1 - dy / 500)); }
+    });
+    var endSwipe = function (e) {
+      if (!sw || e.pointerId !== sw.id) return;
+      var dx = e.clientX - sw.x, dy = e.clientY - sw.y;
+      sw = null; lb.style.transform = ''; lb.style.opacity = '';
+      if (e.type === 'pointercancel') return;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) go((dx < 0) !== (getComputedStyle(lb).direction === 'rtl') ? 1 : -1);
+      else if (dy > 80 && dy > Math.abs(dx) * 1.3) lb.close();
+    };
+    lb.addEventListener('pointerup', endSwipe);
+    lb.addEventListener('pointercancel', endSwipe);
   }
 
   /* ---------------- 9 · landing on an anchor ----------------
