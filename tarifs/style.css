@@ -260,7 +260,7 @@ html[dir="rtl"] .t-pl::after{text-align:start;
   .tarifs .tier:not(.tier-pop) .t-list{columns:1}
 }
 /* the hero's two buttons stack in the narrower column of a tablet */
-@media screen and (min-width:760px) and (max-width:1000px){
+@media screen and (min-width:760px) and (max-width:1099px){
   .tarifs-top{grid-template-columns:1fr}
 }
 
