@@ -32,7 +32,7 @@ html[dir="rtl"] h1.sec{letter-spacing:0}
    with the title, where the half-width title left the hero empty. */
 .t-hero{display:grid;grid-template-columns:minmax(0,1fr);align-items:start}
 .t-hero>.sec-lead{margin-bottom:0}
-@media (min-width:760px){
+@media screen and (min-width:760px){
   .t-hero{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:calc(2 * var(--col-gap));
     grid-template-areas:"k a" "h a" "l a" "c a";grid-template-rows:auto auto auto 1fr}   /* a taller column of answers grows the last row only: spread over the four, it moved the title as the figures' face arrived */
   .t-hero>.kicker{grid-area:k}
@@ -209,7 +209,7 @@ html[dir="rtl"] .t-pl::after{text-align:start;
    the chart's own logarithmic scale (the cell's --lo and --w, written by
    scripts/build-tarifs.mjs from the cell's own range): Numidea's in teal, the
    markets' faint, a range with no ceiling fading out. ---- */
-@media (max-width:959px){
+@media screen and (max-width:959px){
   #market .mkv{display:none}
   .mk-table tbody{gap:var(--s-2)}
   .mk-table tbody th{padding:var(--s-2) var(--s-4)}
@@ -223,7 +223,7 @@ html[dir="rtl"] .t-pl::after{text-align:start;
   .mk-table caption{padding-bottom:var(--s-2)}
 }
 /* the cards of a phone (styles.css draws them under 600px), kept to 959px */
-@media (min-width:600px) and (max-width:959px){
+@media screen and (min-width:600px) and (max-width:959px){
   .mk-scroll,html[dir="rtl"] .mk-scroll{overflow:visible;border:0;background:none;-webkit-mask-image:none;mask-image:none}
   .mk-table{min-width:0;display:block}
   .mk-table caption{display:block;padding-inline:0}
@@ -240,11 +240,10 @@ html[dir="rtl"] .t-pl::after{text-align:start;
   .mk-table td::after{forced-color-adjust:none;background:GrayText}
   .mk-table td.mk-nl::after{forced-color-adjust:none;background:Highlight}
 }
-@media print{.mk-table td::after{display:none}}
 
 /* ---- the tiers on a tablet (T4): three abreast from 700px, as from 961px on
    the home; the lists a single column in the narrower cards ---- */
-@media (min-width:700px) and (max-width:960px){
+@media screen and (min-width:700px) and (max-width:960px){
   .tarifs .tiers{grid-template-columns:repeat(3,minmax(0,1fr))}
   .tarifs .tiers>.tier{display:grid;grid-template-rows:subgrid;grid-row:span 6;align-content:start}
   .tarifs .t-list{display:grid;columns:auto}
@@ -254,7 +253,7 @@ html[dir="rtl"] .t-pl::after{text-align:start;
   .tarifs .tier .t-pop{inset-inline-start:var(--s-4)}
 }
 /* the hero's two buttons stack in the narrower column of a tablet */
-@media (min-width:760px) and (max-width:1000px){
+@media screen and (min-width:760px) and (max-width:1000px){
   .tarifs-top{grid-template-columns:1fr}
 }
 
