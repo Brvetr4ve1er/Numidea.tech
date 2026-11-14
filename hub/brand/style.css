@@ -177,6 +177,10 @@ ul.dots li::before{content:"";position:absolute;inset-inline-start:0;top:.62em;w
   .facts div{grid-template-columns:minmax(0,1fr)}
   .facts div{gap:2px}
 }
+@media (max-width:359px){
+  .g4,.g5{grid-template-columns:minmax(0,1fr)}
+  .lab,.sm-h,.txt-s{overflow-wrap:anywhere}
+}
 @media (max-width:420px){
   .g4,.g5{grid-template-columns:repeat(2,minmax(0,1fr))}
   .plate__body{padding:18px 16px}

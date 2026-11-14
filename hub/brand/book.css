@@ -1,0 +1,98 @@
+/* ============================================================
+   Numidea Labs: the books on a phone or a tablet (hub/brand/book.js).
+   Shared by the character bible and the brand books, after their own
+   sheets. Everything here is dormant until book.js sets html.pv (or adds
+   its own elements), so a page without the script is unchanged.
+
+   Contrast, measured on the painted pairs (WCAG AA): cream #F3ECE1 on ink
+   #211E1B 14.13; ink on cream 14.13; red text #8A3127 on cream 7.02;
+   #CFBFAB on ink 9.24. Targets are 44 px or more. Nothing moves.
+   ============================================================ */
+
+/* ---------- the Plates chip and its sheet (up to 1023 px) ---------- */
+.pi-chip,.pi-dlg{display:none}
+@media (max-width:1023px){
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .pi-chip{position:fixed;z-index:60;inset-inline-end:max(12px,env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));
+    display:none;align-items:center;gap:10px;min-height:48px;min-width:48px;padding:0 16px;border:2px solid var(--ink);background:var(--ink);color:var(--cream);
+    box-shadow:3px 3px 0 var(--red);font:500 12px/1 var(--f-mono,var(--mono));letter-spacing:.14em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .pi-chip.is-on{display:inline-flex}
+  .pi-chip .pi-n{font-weight:500;padding:3px 7px;background:var(--cream);color:var(--ink);letter-spacing:.04em}
+  .pi-chip:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--red)}
+  .pi-dlg{margin:auto 0 0;inset-inline:0;width:100%;max-width:640px;margin-inline:auto;max-height:min(86dvh,720px);padding:0;border:2px solid var(--ink);border-bottom:0;background:var(--cream);color:var(--ink);overflow:auto;overscroll-behavior:contain}
+  .pi-dlg[open]{display:block}
+  .pi-dlg::backdrop{background:rgba(33,30,27,.6)}
+  .pi-hd{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 8px 6px 16px;background:var(--ink);color:var(--cream)}
+  .pi-h{margin:0;font:900 16px/1.2 var(--f-disp,var(--display));letter-spacing:.04em;text-transform:uppercase}
+  .pi-x{width:48px;height:48px;border:0;background:transparent;color:inherit;font:400 30px/1 var(--f-body,sans-serif);cursor:pointer}
+  .pi-ol{display:grid;grid-template-columns:1fr;margin:0;padding:8px 12px 4px;list-style:none}
+  .pi-ol a{display:flex;align-items:center;gap:14px;min-height:48px;padding:6px 8px;border-bottom:1px solid rgba(33,30,27,.25);color:var(--ink);text-decoration:none;font:500 15px/1.25 var(--f-body,var(--sans))}
+  .pi-ol b{flex:none;min-width:2.4em;font:500 12px var(--f-mono,var(--mono));letter-spacing:.1em;color:var(--red-text)}
+  .pi-ol a[aria-current]{background:var(--ink);color:var(--cream)}
+  .pi-ol a[aria-current] b{color:var(--cream)}
+  .pi-top{display:flex;align-items:center;min-height:48px;margin:0 12px 10px;padding:0 8px;color:var(--ink);font:500 12px var(--f-mono,var(--mono));letter-spacing:.14em;text-transform:uppercase}
+}
+@media (min-width:641px) and (max-width:1023px){
+  .pi-ol{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px}
+}
+
+/* ---------- posts on a phone: thumbnails and swipe rows ---------- */
+.pv-open,.pv-hint{display:none}
+@media (max-width:640px){
+  /* the 3 x 3 (or 3 x 4) grid, three across, each post drawn at its design width then scaled */
+  html.pv .pv-set--grid.pv-on{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;max-width:none;margin-inline:0;width:100%}
+  html.pv .pv-set--row.pv-on{display:flex;gap:10px;grid-template-columns:none;max-width:none;margin-inline:0;width:100%;padding:0 0 10px;list-style:none}
+  html.pv .pv-set--row.pv-on>*{flex:0 0 min(46vw,200px);min-width:0;scroll-snap-align:start}
+  html.pv .pv-set.pv-on .pv-cell{position:relative;min-width:0;overflow:hidden;border:1.5px solid var(--ink)}
+  html.pv .pv-set.pv-on .pv-cell>figure{position:absolute;top:0;left:0;width:var(--dw);margin:0;transform:scale(var(--k,1));transform-origin:0 0;pointer-events:none}
+  html.pv .pv-set.pv-on .pv-cell figcaption{display:none}
+  html.pv .pv-set.pv-on .pv-cell .sp,html.pv .pv-set.pv-on .pv-cell .np,html.pv .pv-set.pv-on .pv-cell .ns{box-shadow:none}
+  html.pv .pv-set.pv-on .pv-open{display:block;position:absolute;inset:0;z-index:5;width:100%;height:100%;margin:0;padding:0;border:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:rgba(163,65,53,.25)}
+  html.pv .pv-set.pv-on .pv-open:focus-visible{outline:3px solid var(--red);outline-offset:-3px;box-shadow:inset 0 0 0 5px var(--cream)}
+  html.pv .pv-set.pv-on .pv-open:active{background:rgba(33,30,27,.18)}
+  /* the one-line hint above a swipe row */
+  html.pv .pv-hint{display:block;margin:-6px 0 -4px;font:500 12px/1.4 var(--f-mono,var(--mono));letter-spacing:.14em;text-transform:uppercase;color:var(--mut,var(--ink-2))}
+  html.pv .pv-set--grid+.pv-hint{display:none}
+  /* swipe rows: carousel slides, stories, reel */
+  html.pv .pv-swipe{display:flex;grid-template-columns:none;gap:12px;max-width:none;width:100%;margin-inline:0;padding:0 0 12px;list-style:none;
+    overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:2px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  html.pv .pv-swipe:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+  html.pv .pv-swipe>*{min-width:0;scroll-snap-align:start}
+  html.pv .slides.pv-swipe>*,html.pv .car.pv-swipe>*,html.pv .nsl-grid.pv-swipe>*{flex:0 0 min(78vw,340px)}
+  html.pv .igs.pv-swipe>*{flex:0 0 min(86vw,380px)}
+  /* the figure inside a row cell must not use the 460 px / 320 px caps the books set for a single column */
+  html.pv .pv-swipe .pf,html.pv .pv-swipe .nf{max-width:none}
+}
+
+/* ---------- the large view ---------- */
+.pv-dlg{display:none}
+.pv-dlg[open]{display:flex;flex-direction:column}
+.pv-dlg{margin:0;padding:0;border:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;background:#211E1B;color:#F3ECE1;overflow:hidden}
+.pv-dlg::backdrop{background:#211E1B}
+.pv-stage{flex:1;min-height:0;display:grid;place-items:center;padding:12px 12px 4px;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
+.pv-shell{border:0;box-shadow:none;width:min(100%,520px);padding:0;margin:auto;background:transparent}
+.pv-shell .plate__body{padding:0}
+.pv-big{width:100%;margin:0 auto;display:grid;gap:10px;align-content:start}
+.pv-stage--st .pv-shell{width:min(100%,calc((100dvh - 190px)*9/16 + 4px))}
+.pv-stage:not(.pv-stage--st) .pv-shell{width:min(100%,calc(100dvh - 210px),520px)}
+.pv-big figcaption{padding:2px 2px 0;font-size:14px;line-height:1.45;color:#E8DFD1}
+.pv-big .cap-k,.pv-big figcaption>span:first-child{color:#E7BFB7}
+.pv-bar{flex:none;display:flex;align-items:center;gap:6px;padding:6px 8px calc(6px + env(safe-area-inset-bottom));background:#211E1B;border-top:1px solid rgba(243,236,225,.25)}
+.pv-bar button{flex:none;width:52px;height:48px;border:2px solid #F3ECE1;background:transparent;color:#F3ECE1;font:500 22px/1 var(--f-body,sans-serif);cursor:pointer}
+.pv-bar button:active{background:#F3ECE1;color:#211E1B}
+.pv-bar button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.pv-count{flex:1;text-align:center;font:500 13px var(--f-mono,var(--mono));letter-spacing:.14em;text-transform:uppercase}
+.pv-close{margin-inline-start:8px}
+
+/* ---------- folds (phones) ---------- */
+.fold-btn{display:none}
+@media (max-width:640px){
+  .fold-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;padding:8px 16px;border:2px solid var(--line,var(--ink));background:transparent;color:inherit;font:500 13px/1.3 var(--f-mono,var(--mono));letter-spacing:.12em;text-transform:uppercase;text-align:start;cursor:pointer}
+  .fold-i{font:400 24px/1 var(--f-body,sans-serif)}
+  .fold-btn:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+  .fold-btn:active{background:rgba(127,127,127,.18)}
+  .is-folded>.fold-body{display:none}
+}
+@media print{.pi-chip,.pi-dlg,.pv-dlg,.pv-open,.pv-hint{display:none!important}}
+.fold-body{display:grid;gap:14px;min-width:0}
+.fold-body>*{min-width:0}
