@@ -13,6 +13,8 @@
  *              home page meets them; AUDIT_PHONE_STRICT=1 npm run verify fails on them)
  *   sweep      painted-contrast sweep
  *   vbugs      layout scanner
+ *   hub-mobile the Studio on phones: overflow 280-430, tiles in their tracks, the
+ *              bubble, the arrows, the menu and the viewer (check-hub-mobile.mjs)
  *   keys       keyboard paths, focus rings, dialogs, the contact form through its
  *              mail hand-off, reduced motion (the booted console included), RTL
  *   design     design intent: type scale, hero ratio, space set, one button, card
@@ -37,6 +39,7 @@ const STEPS = [
   ['audit', ['scripts/audit.mjs']],
   ['sweep', ['scripts/sweep.mjs']],
   ['vbugs', ['scripts/vbugs.mjs']],
+  ['hub-mobile', ['scripts/check-hub-mobile.mjs']],
   ['keys', ['scripts/keys.mjs']],
   ['design', ['scripts/design-check.mjs']],
   ['stage', ['scripts/stage-check.mjs']],

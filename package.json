@@ -27,6 +27,7 @@
     "verify": "node scripts/verify.mjs",
     "keys": "node scripts/keys.mjs",
     "design": "node scripts/design-check.mjs",
+    "hub:mobile": "node scripts/check-hub-mobile.mjs",
     "links": "node scripts/links.mjs",
     "kb": "node scripts/build-kb.mjs",
     "metrics": "node scripts/metrics.mjs"
