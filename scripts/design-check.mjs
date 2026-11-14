@@ -79,7 +79,7 @@ const ART_PARTS = new Map([['face-smirk.webp', 2], ['pose-facepalm.webp', 2], ['
   ['pose-receipt.webp', 3], ['rig-y-glasses.webp', 2], ['rig-y-sip.webp', 2]]);
 const LIMITS = { paint: 0, hover: 0, labels: 3, cover: 0.30 };
 // measured on 2026-11-07: 36% and 40% (the price guide's sticky estimate panel and phone bar over its estimator); 25% and 25%
-const COVER_CEIL = { '390x844': 0.37, '360x780': 0.41, '844x390': 0.30, '640x400': 0.30 };
+const COVER_CEIL = { '390x844': 0.33, '360x780': 0.29, '844x390': 0.30, '640x400': 0.30 };   // lowered 2026-11-14 (the home's phone chrome is 56px + 61px, and the estimate rides in the bar): 32% and 28% measured on the price guide
 
 const measure = () => {
   const vis = (el) => {
@@ -459,6 +459,73 @@ console.log('plate: .plate = .plate-wrap and inside the screen, fr/en/ar at 320 
     if (nSys > (RTL_SYS[path] || 0)) fails.push(`rtl ${path}: ${nSys} glyphs in a system face (ceiling ${RTL_SYS[path] || 0}): ${[...sys].map(([k, v]) => `${k} ${v}`).join(', ')}`);
     else if (nSys) above.push(`rtl ${path}: ${nSys} glyphs in a system face (${[...sys.keys()].join(', ')}), target 0`);
     if (r.plus.length) fails.push(`rtl ${path}: a "+" leads a number in a right-to-left run (it renders after it): ${r.plus.slice(0, 4).join('; ')}`);
+    await ctx.close();
+  }
+}
+
+/* ---- the phone and the tablet (2026-11-14: the home was 13,460px at 390 and a stretched phone at 768) ----
+   (a) the hero's buttons never run into the plate's column at 961 to 1440, in every language (the French pair
+   did from 1100 to 1250 on an iPad in landscape); (b) the home's height, fr, fonts loaded, held at what was
+   measured plus 5%: phone 390 and tablet 768 (a ceiling to lower, never to raise); (c) no sideways scroll at
+   the tablet widths; (d) the fixed + sticky chrome at most 25% of a 390x664 phone with the estimator open */
+const HOME_H = { 390: 8800, 768: 8300 };   // measured 2026-11-14: 8,3xx at 390x664 and 7,9xx at 768x1024, +5%; it was 13,460 and 12,426
+{
+  for (const path of ['/', '/en/', '/ar/']) {
+    for (let w = 960; w <= 1440; w += 40) {
+      const ctx = await br.newContext({ viewport: { width: w, height: 834 }, reducedMotion: 'reduce', isMobile: true, hasTouch: true });
+      const p = await ctx.newPage();
+      await p.goto(srv.base + path, { waitUntil: 'load' }).catch(() => {});
+      await p.evaluate(() => document.fonts.ready);
+      await p.waitForTimeout(200);
+      const hit = await p.evaluate(() => {
+        const pw = document.querySelector('.plate-wrap'); if (!pw) return 'no .plate-wrap';
+        const b = pw.getBoundingClientRect();
+        for (const e of document.querySelectorAll('.hero-cta .btn')) { const r = e.getBoundingClientRect(); if (r.left < b.right && b.left < r.right && r.top < b.bottom && b.top < r.bottom) return (e.textContent || '').trim().slice(0, 30); }
+        return '';
+      });
+      if (hit) fails.push(`hero ${path} @${w}: the button "${hit}" runs into the plate's column`);
+      await ctx.close();
+    }
+  }
+  console.log('hero: the buttons clear the plate, 960 to 1440, fr/en/ar');
+  for (const [w, h, key] of [[390, 664, 390], [768, 1024, 768]]) {
+    const ctx = await br.newContext({ viewport: { width: w, height: h }, reducedMotion: 'reduce', isMobile: true, hasTouch: true });
+    const p = await ctx.newPage();
+    await p.goto(srv.base + '/', { waitUntil: 'networkidle' }).catch(() => {});
+    await p.evaluate(() => document.fonts.ready);
+    await p.waitForTimeout(300);
+    const H = await p.evaluate(() => document.documentElement.scrollHeight);
+    console.log(`height @${w}: ${H}px (ceiling ${HOME_H[key]})`);
+    if (H > HOME_H[key]) fails.push(`height @${w}: the home is ${H}px tall (ceiling ${HOME_H[key]})`);
+    await ctx.close();
+  }
+  for (const path of ['/', '/en/', '/ar/']) {
+    for (const [w, h] of [[768, 1024], [834, 1194], [1024, 768], [1194, 834]]) {
+      const ctx = await br.newContext({ viewport: { width: w, height: h }, reducedMotion: 'reduce', isMobile: true, hasTouch: true });
+      const p = await ctx.newPage();
+      await p.goto(srv.base + path, { waitUntil: 'load' }).catch(() => {});
+      await p.waitForTimeout(250);
+      const sw = await p.evaluate(() => document.documentElement.scrollWidth);
+      if (sw > w) fails.push(`tablet ${path} @${w}: scrolls sideways (${sw}px in ${w})`);
+      await ctx.close();
+    }
+  }
+  console.log('tablet: no sideways scroll at 768, 834, 1024, 1194, fr/en/ar');
+  {
+    const ctx = await br.newContext({ viewport: { width: 390, height: 664 }, reducedMotion: 'reduce', isMobile: true, hasTouch: true });
+    const p = await ctx.newPage();
+    await p.goto(srv.base + '/', { waitUntil: 'networkidle' }).catch(() => {});
+    await p.evaluate(() => { document.querySelector('.price-est').open = true; });
+    const top = await p.evaluate(() => document.querySelector('.price-est').getBoundingClientRect().top + scrollY);
+    const hh = await p.evaluate(() => document.querySelector('.price-est').offsetHeight);
+    let worst = 0;
+    for (let y = top - 60; y < top + hh; y += 160) {
+      await p.evaluate((y) => window.scrollTo(0, y), y);
+      await p.waitForTimeout(450);
+      worst = Math.max(worst, await p.evaluate(coverage));
+    }
+    console.log(`cover with the estimator open, 390x664: ${(worst * 100).toFixed(0)}%`);
+    if (worst > 0.25) fails.push(`cover: the chrome covers ${(worst * 100).toFixed(0)}% of 390x664 with the estimator open (ceiling 25%; it was 51%)`);
     await ctx.close();
   }
 }

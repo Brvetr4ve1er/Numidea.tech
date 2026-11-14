@@ -2691,10 +2691,7 @@ section.band::after,section.band+section.band::after{
      52px, so the bar is 10 + 52 + 10 + 1 = 73px from 280px up, in every
      language. */
   .m-contact .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;padding:var(--s-2) var(--s-3);line-height:1.2;text-align:center}
-  /* beside the primary, the WhatsApp way takes the outline look: a bare text
-     link in a fixed bar read as a caption */
-  .m-contact .btn-ghost{border-color:var(--hairline-2);color:var(--ice);text-decoration:none}
-  .footer{padding-bottom:calc(var(--s-5) + 74px + env(safe-area-inset-bottom))}
+    .footer{padding-bottom:calc(var(--s-5) + 74px + env(safe-area-inset-bottom))}
   /* a control focused under the bar is scrolled clear of it, ring included:
      the bar's 73px plus 9px for the 5px focus ring and some air */
   html{scroll-padding-bottom:calc(73px + 9px + env(safe-area-inset-bottom))}
@@ -3964,7 +3961,8 @@ html:has(.mobile-menu.open){overscroll-behavior:none}
   .plate-wrap>.plate-ctl{flex:0 0 auto;gap:0}
   .plate-meta .pm-idx{display:none}
   .plate-rail{flex:none;gap:0}
-  .plate-rail button{flex:none;width:26px}
+  .plate-rail button{flex:none;width:44px}
+  .plate-meta .pm-item b{font-size:15px}
   .pl-pause{margin-inline-end:calc(-1 * var(--s-2))}
   main.wrap>section.proof{padding-block:var(--s-3)}
   .vista{height:104px;margin-bottom:0}
@@ -4090,7 +4088,7 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   #services.svc-fold :is(.svc-row,.cap):not(.open) :is(.brief,.tags,.fam){display:none}
   #services.svc-fold :is(.svc-row,.cap){cursor:pointer}
   #services.svc-fold :is(.svc-row,.cap) :is(.brief,.tags,.fam){cursor:auto}
-  #services .svc-tog{display:block;position:absolute;z-index:1;inset-block-start:0;inset-inline-end:-6px;width:48px;height:56px;padding:0;background:none;border:0;cursor:pointer}
+  #services .svc-tog{display:block;position:absolute;z-index:1;inset-block-start:0;inset-inline-end:0;width:48px;height:56px;padding:0;background:none;border:0;cursor:pointer}
   #services .svc-tog::before,#services .svc-tog::after{content:"";position:absolute;left:50%;top:calc(var(--s-3) + 11px);background:var(--crimson-text);border-radius:2px;transition:transform var(--t-enter),opacity var(--t-enter)}
   #services .svc-tog::before{width:14px;height:2px;margin:-1px 0 0 -7px}
   #services .svc-tog::after{width:2px;height:14px;margin:-7px 0 0 -1px}
@@ -4252,3 +4250,10 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
 @media (max-width:479px){
   .plate-meta .pm-item i{display:none}   /* the name and its arrow: the category truncated the name beside the pause button */
 }
+
+/* the plate turns on a swipe (app.js): the page still scrolls up and down under a finger on it */
+.plate-link{touch-action:pan-y}
+/* the founder's name never splits across two lines in the hero's lede on a tablet or a phone on its side (Arabic: "Yasser" / "Hamisse،") */
+.lede bdi{white-space:nowrap}
+/* the planche numerals in Plex Arabic 700, the weight the page already loads (600 was a third file of 65 KB for six figures) */
+html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::before{font-weight:700}

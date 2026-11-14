@@ -770,6 +770,22 @@
       document.addEventListener('pointerdown', function (e) {
         if (held.picked && !wrap.contains(e.target)) hold('picked', false);
       }, { passive: true });
+      /* A swipe on the capture turns it (it was a link and nothing else, and
+         its four bars were its only control on a phone); a tap still opens
+         the sheet, a swipe does not. */
+      var plateLink = wrap.querySelector('.plate-link'), sx = 0, sy = 0, swiped = false;
+      if (plateLink) {
+        plateLink.addEventListener('touchstart', function (e) { var t0 = e.touches[0]; sx = t0.clientX; sy = t0.clientY; swiped = false; }, { passive: true });
+        plateLink.addEventListener('touchend', function (e) {
+          var t1 = e.changedTouches[0], dx = t1.clientX - sx, dy = t1.clientY - sy;
+          if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+          swiped = true;
+          var rtl = document.documentElement.getAttribute('dir') === 'rtl', n = tabs.length;
+          held.picked = true;
+          go((cur + ((dx < 0) !== rtl ? 1 : n - 1)) % n); arm();
+        }, { passive: true });
+        plateLink.addEventListener('click', function (e) { if (swiped) { e.preventDefault(); swiped = false; } });
+      }
       tabs.forEach(function (b, i) {
         b.addEventListener('click', function () {
           if (lastPointer === 'touch') held.picked = true;
@@ -1551,8 +1567,8 @@
        carries the estimate then, see below), #contact or the footer is on
        screen, and while the menu is open: #contact already offers the same
        two actions, and the footer comes straight after it and is shorter
-       than a phone screen. On the price guide, whose first screen has no
-       action of its own, it is on from the start. Its main button goes to
+       than a phone screen. On the price guide it shows once the hero (which
+       offers the same two ways) has gone, not from load. Its main button goes to
        the form with the Aperçu's request written in (data-apercu), as the
        hero's does: it used to jump back up to the explainer card.
        It steps aside on a long downward run (600px without a pause) and is
@@ -1584,7 +1600,7 @@
       }
       function update() {
         var on = mq.matches && !menuOpen && !inView.contact && !inView.footer && !inView.hero
-          && (guide || scrollPos > viewH) && (!away || bar.contains(document.activeElement));
+          && (guide ? scrollPos > 0 : scrollPos > viewH) && (!away || bar.contains(document.activeElement));
         bar.classList.toggle('on', on);
         bar.classList.toggle('est', on && inView.est && !!price);
       }
@@ -1624,6 +1640,12 @@
         if (c) { e.preventDefault(); c.click(); }
       });
       document.addEventListener('numidea:menu', function (e) { menuOpen = !!e.detail; update(); });
+      // keyboard focus is never left under the bar: a control it reaches below the bar's top edge is brought clear of it
+      document.addEventListener('focusin', function (e) {
+        var el = e.target;
+        if (!bar.classList.contains('on') || !el || !el.getBoundingClientRect || bar.contains(el)) return;
+        if (el.getBoundingClientRect().bottom > bar.getBoundingClientRect().top) el.scrollIntoView({ block: 'nearest' });
+      });
       document.addEventListener('numidea:lang', function () { setTimeout(fill, 0); });
       // a same-page jump: not a run, and the bar shows where it lands
       document.addEventListener('click', function (e) {
@@ -2289,7 +2311,16 @@
           if (e.isIntersecting) { e.target.classList.add('lz-on'); lio.unobserve(e.target); }
         });
       }, { rootMargin: '300px 0px' });
-      lz.forEach(function (el) { lio.observe(el); });
+      /* the landscape plate under the hero is 227 KB of masks on a phone, and
+         it sits one screen under the first: it is asked for when it enters
+         the screen, not 300px before (its 104px box is kept, so nothing moves) */
+      var vio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('lz-on'); vio.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px' });
+      var phoneMq = window.matchMedia('(max-width: 720px)');
+      lz.forEach(function (el) { (phoneMq.matches && el.classList.contains('vista') ? vio : lio).observe(el); });
       var aio = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
           if (e.isIntersecting) e.target.classList.add('on');
