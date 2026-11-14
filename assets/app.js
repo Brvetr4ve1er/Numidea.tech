@@ -837,6 +837,7 @@
       menu.classList.toggle('open', open);
       if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
+      document.documentElement.style.overflow = open ? 'hidden' : '';   // older iOS rubber-bands the page behind a body-only lock
       Array.prototype.forEach.call(document.body.children, function (el) {
         if (el !== menu && !el.contains(menu) && el.tagName !== 'SCRIPT') el.inert = open;
       });
@@ -1545,25 +1546,25 @@
 
 
     /* ---------------- phone contact bar ----------------
-       Phones only (the CSS hides it above 720px). Shown once the visitor is
-       1.5 screens down and kept there, hidden again while #contact or the
-       footer is on screen and while the menu is open: #contact already
-       offers the same two actions, and the footer comes straight after it
-       and is shorter than a phone screen, so while the footer shows,
-       #contact's channels and form are on screen too (the footer's own
-       email and WhatsApp went on 2026-10-26). On the price guide, whose
-       first screen has no action of its own, it is on from the start.
-       It steps aside only during a fast fling (more than 40px between two
-       scroll events) and is back 150ms after the last one; it stays while
-       focus is inside it. It used to hide on every scroll down and come
-       back after 600ms of rest, and to stay away after any same-page jump
-       (a client logo to its card, a menu link, the hero's button): measured
-       on a 390x844 phone, the two ways in were off screen for most of the
-       read, and after the hero's jump to the Aperçu card neither button was
-       in view. A jump is now a place to act from: the browser's own smooth
-       scroll moves the page fast, so the fling test is held for the jump's
-       length (1.5s on a phone, html's scroll-behavior) and the bar shows
-       where it lands. */
+       Phones only (the CSS hides it above 720px). On from one screen down,
+       hidden again while the hero's buttons, the estimator's figure (it
+       carries the estimate then, see below), #contact or the footer is on
+       screen, and while the menu is open: #contact already offers the same
+       two actions, and the footer comes straight after it and is shorter
+       than a phone screen. On the price guide, whose first screen has no
+       action of its own, it is on from the start. Its main button goes to
+       the form with the Aperçu's request written in (data-apercu), as the
+       hero's does: it used to jump back up to the explainer card.
+       It steps aside on a long downward run (600px without a pause) and is
+       back at the first upward move or 220ms after the last scroll event: a
+       flick's momentum is one run, and the bar no longer slides in and out
+       under it (it left on any step over 40px and came back 150ms later).
+       It stays while focus is inside it. A same-page jump (a client logo to
+       its card, a menu link) is not a run: the bar shows where it lands.
+       While #estimator's controls are on screen the bar swaps its buttons
+       for the figure (.m-price, copied from #est-range) and the estimator's
+       own action: the panel that used to stick under the navbar for it took
+       51% of a phone screen, and a tick is answered where the thumb is. */
     (function () {
       var bar = document.querySelector('.m-contact');
       if (!bar) return;
@@ -1571,39 +1572,64 @@
       // least 480px wide), where the bar would cover a third of the screen
       var mq = window.matchMedia('(max-width: 720px) and (min-height: 561px), (max-width: 479px)');
       var guide = !!document.querySelector('main.tarifs');
-      var inView = { contact: false, footer: false, hero: false }, menuOpen = false;
-      var lastY = scrollPos, fling = false, flingT = 0, jumpT = 0, jumping = false;
-      function update() {
-        bar.classList.toggle('on', mq.matches && !menuOpen && !inView.contact && !inView.footer && !inView.hero
-          && (guide || scrollPos > viewH * 1.5) && (!fling || bar.contains(document.activeElement)));
+      var inView = { contact: false, footer: false, hero: false, est: false }, menuOpen = false;
+      var lastY = scrollPos, run = 0, away = false, restT = 0, jumpT = 0, jumping = false;
+      var price = bar.querySelector('.m-price'), go = bar.querySelector('.m-estgo');
+      var rng = document.getElementById('est-range'), wks = document.getElementById('est-weeks');
+      function fill() {
+        if (!price || !rng) return;
+        var clean = function (x) { return (x || '').replace(/[\u2060\u00a0\s]+/g, ' ').trim(); };
+        price.querySelector('.mp-n').textContent = clean(rng.textContent);
+        price.querySelector('.mp-w').textContent = wks && wks.parentNode ? clean(wks.parentNode.textContent) : '';
       }
-      function settle() { fling = false; update(); }
+      function update() {
+        var on = mq.matches && !menuOpen && !inView.contact && !inView.footer && !inView.hero
+          && (guide || scrollPos > viewH) && (!away || bar.contains(document.activeElement));
+        bar.classList.toggle('on', on);
+        bar.classList.toggle('est', on && inView.est && !!price);
+      }
       function onBarScroll() {
         var dy = scrollPos - lastY;
         lastY = scrollPos;
-        // no fling under reduced motion: the page jumps there, and a bar
-        // written back 150ms after a jump is motion of its own (keys.mjs)
-        if (!reduceMotion && !jumping && (dy > 40 || dy < -40)) {
-          fling = true;
-          clearTimeout(flingT); flingT = setTimeout(settle, 150);
+        // no run under reduced motion: the page jumps there, and a bar
+        // written back after a jump is motion of its own (keys.mjs)
+        if (!reduceMotion && !jumping) {
+          if (dy < 0) { run = 0; away = false; }
+          else if (dy > 0) { run += dy; if (run > 600) away = true; }
+          clearTimeout(restT);
+          restT = setTimeout(function () { run = 0; away = false; update(); }, 220);
         }
         update();
       }
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (es) {
-          es.forEach(function (e) { inView[e.target.classList.contains('footer') ? 'footer' : e.target.classList.contains('tarifs-top') ? 'hero' : 'contact'] = e.isIntersecting; });
+          es.forEach(function (e) {
+            var c = e.target.classList;
+            inView[c.contains('footer') ? 'footer' : c.contains('tarifs-top') || c.contains('hero-cta') ? 'hero' : c.contains('est-grid') ? 'est' : 'contact'] = e.isIntersecting;
+          });
           update();
         });
-        /* the guide's hero offers the same two ways: while they are on screen
-           the bar would show them twice, one half under it */
-        ['#contact', '.footer', '.tarifs-top'].forEach(function (s) { var el = document.querySelector(s); if (el) io.observe(el); });
+        /* the guide's hero and the home's offer the same two ways: while they
+           are on screen the bar would show them twice, one half under it */
+        ['#contact', '.footer', '.tarifs-top', '.hero-cta', '#estimator .est-grid'].forEach(function (s) { var el = document.querySelector(s); if (el) io.observe(el); });
       }
+      if (price && rng && 'MutationObserver' in window) {
+        var fr = 0;
+        new MutationObserver(function () { cancelAnimationFrame(fr); fr = requestAnimationFrame(fill); })
+          .observe(rng.parentNode, { subtree: true, childList: true, characterData: true });
+        fill();
+      }
+      if (go) go.addEventListener('click', function (e) {
+        var c = document.getElementById('est-cta');
+        if (c) { e.preventDefault(); c.click(); }
+      });
       document.addEventListener('numidea:menu', function (e) { menuOpen = !!e.detail; update(); });
-      // a same-page jump: not a fling, and the bar shows where it lands
+      document.addEventListener('numidea:lang', function () { setTimeout(fill, 0); });
+      // a same-page jump: not a run, and the bar shows where it lands
       document.addEventListener('click', function (e) {
         var a = e.target.closest && e.target.closest('a[href^="#"]');
         if (!a || a.getAttribute('href').length < 2) return;
-        jumping = true; fling = false; clearTimeout(flingT);
+        jumping = true; away = false; run = 0; clearTimeout(restT);
         clearTimeout(jumpT); jumpT = setTimeout(function () { jumping = false; lastY = scrollPos; }, reduceMotion ? 100 : 1600);
         update();
       });
@@ -1611,6 +1637,136 @@
       if (mq.addEventListener) mq.addEventListener('change', update); else if (mq.addListener) mq.addListener(update);
       update();
     })();
+
+    /* ---------------- phone and tablet furniture ----------------
+       What the phone layout (styles.css, "THE PHONE AND THE TABLET") needs a
+       script for. Each piece is its own try: with scripts off the page is the
+       plain stack, every list open, the three tiers one under the other. */
+    // the header's language switch is one button on a phone (the current
+    // language: it opens the other two); the menu keeps the whole switch
+    try {
+      (function () {
+        var lg = document.querySelector('.navbar .lang');
+        var cur = lg && lg.querySelector('a[aria-current]');
+        if (!cur) return;
+        var one = window.matchMedia('(max-width: 720px)');
+        var set = function (open) { lg.classList.toggle('open', open); cur.setAttribute('aria-expanded', open ? 'true' : 'false'); };
+        var sync = function () {
+          if (one.matches) { cur.setAttribute('role', 'button'); cur.setAttribute('aria-haspopup', 'true'); cur.setAttribute('aria-expanded', 'false'); }
+          else { cur.removeAttribute('role'); cur.removeAttribute('aria-haspopup'); cur.removeAttribute('aria-expanded'); lg.classList.remove('open'); }
+        };
+        cur.addEventListener('click', function (e) { if (!one.matches) return; e.preventDefault(); set(!lg.classList.contains('open')); });
+        cur.addEventListener('keydown', function (e) { if (one.matches && e.key === ' ') { e.preventDefault(); cur.click(); } });
+        document.addEventListener('click', function (e) { if (lg.classList.contains('open') && !lg.contains(e.target)) set(false); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lg.classList.contains('open')) { set(false); cur.focus(); } });
+        if (one.addEventListener) one.addEventListener('change', sync); else if (one.addListener) one.addListener(sync);
+        sync();
+      })();
+    } catch (e) { if (window.console && console.error) console.error(e); }
+
+    // the Aperçu's path: three lines on a phone, the other two and the
+    // sentences behind one button
+    try {
+      (function () {
+        var more = document.querySelector('.ptl-more'), w = more && more.closest('.ptl-w');
+        if (!w) return;
+        more.addEventListener('click', function () {
+          var on = w.classList.toggle('full');
+          more.setAttribute('aria-expanded', on ? 'true' : 'false');
+        });
+      })();
+    } catch (e) { if (window.console && console.error) console.error(e); }
+
+    // the work as a rail on a phone: its place in dots, and a logo in the
+    // proof row brings its card into the rail
+    try {
+      (function () {
+        var grid = document.querySelector('#work .work-grid');
+        if (!grid) return;
+        var cards = [].slice.call(grid.querySelectorAll('.proj'));
+        if (cards.length < 2) return;
+        var dots = document.createElement('div');
+        dots.className = 'rail-dots'; dots.setAttribute('aria-hidden', 'true');
+        cards.forEach(function () { dots.appendChild(document.createElement('i')); });
+        grid.parentNode.insertBefore(dots, grid.nextSibling);
+        var step = function () { return Math.abs(cards[1].offsetLeft - cards[0].offsetLeft) || 1; };
+        var raf = 0;
+        var mark = function () {
+          raf = 0;
+          var i = Math.max(0, Math.min(cards.length - 1, Math.round(Math.abs(grid.scrollLeft) / step())));
+          [].forEach.call(dots.children, function (d, k) { d.classList.toggle('on', k === i); });
+        };
+        grid.addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(mark); }, { passive: true });
+        mark();
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a[href^="#w-"]');
+          if (!a || grid.scrollWidth <= grid.clientWidth + 2) return;
+          var i = cards.indexOf(document.getElementById(a.getAttribute('href').slice(1)));
+          if (i < 0) return;
+          var rtl = document.documentElement.getAttribute('dir') === 'rtl';
+          grid.scrollTo({ left: (rtl ? -1 : 1) * i * step(), behavior: reduceMotion ? 'auto' : 'smooth' });
+        });
+      })();
+    } catch (e) { if (window.console && console.error) console.error(e); }
+
+    // the three tiers as one at a time on a phone (Studio first, as the
+    // card recommended), the lists folded; the price guide keeps its stack
+    try {
+      (function () {
+        var tiers = document.querySelector('#pricing .tiers');
+        if (!tiers || document.querySelector('main.tarifs')) return;
+        var cards = [].slice.call(tiers.querySelectorAll(':scope > .tier'));
+        if (cards.length < 2) return;
+        var sw = document.createElement('div');
+        sw.className = 'tier-tabs'; sw.setAttribute('role', 'group'); sw.setAttribute('aria-labelledby', 'pricing-h');
+        var btns = cards.map(function (c, i) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.addEventListener('click', function () { pick(i); });
+          sw.appendChild(b);
+          return b;
+        });
+        var names = function () { cards.forEach(function (c, i) { var h = c.querySelector('h3'); btns[i].textContent = h ? h.textContent : ''; }); };
+        var pick = function (i) {
+          cards.forEach(function (c, k) { c.classList.toggle('on', k === i); btns[k].setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+        };
+        var first = cards.findIndex(function (c) { return c.classList.contains('tier-pop'); });
+        names(); pick(first < 0 ? 0 : first);
+        tiers.parentNode.insertBefore(sw, tiers);
+        tiers.classList.add('tt');
+        document.addEventListener('numidea:lang', names);
+        if (window.matchMedia('(max-width: 720px)').matches) cards.forEach(function (c) { var d = c.querySelector('.t-incl'); if (d) d.open = false; });
+      })();
+    } catch (e) { if (window.console && console.error) console.error(e); }
+
+    // the ten services as rows that open on a tap on a phone (all ten are
+    // listed: the five others stand open there, with no fold of their own)
+    try {
+      (function () {
+        var sec = document.getElementById('services');
+        if (!sec) return;
+        var rows = [].slice.call(sec.querySelectorAll('.svc-row, .cap'));
+        rows.forEach(function (row, n) {
+          var h = row.querySelector('h3, h4');
+          if (!h) return;
+          if (!h.id) h.id = 'svc-h' + n;
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'svc-tog'; b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-labelledby', h.id);
+          row.insertBefore(b, row.firstChild);
+          var flip = function () { var on = row.classList.toggle('open'); b.setAttribute('aria-expanded', on ? 'true' : 'false'); };
+          b.addEventListener('click', function (e) { e.stopPropagation(); flip(); });
+          // a tap on the title or the tagline does the same (a pointer's reach; the button is the keyboard's)
+          row.addEventListener('click', function (e) {
+            if (e.target.closest('a, button, .brief, .tags, .fam')) return;
+            if (window.matchMedia('(max-width: 960px)').matches) flip();
+          });
+        });
+        sec.classList.add('svc-fold');
+        var fold = sec.querySelector('details.capabilities');
+        var openFold = function () { if (fold && window.matchMedia('(max-width: 960px)').matches) { fold.open = true; fold.classList.add('svc-flat'); } };
+        openFold();
+      })();
+    } catch (e) { if (window.console && console.error) console.error(e); }
 
     /* ---------------- 13b · visualisations (r3/c) ----------------
        Pictures of numbers the page already states, drawn from the same

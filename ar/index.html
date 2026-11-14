@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-tvP3jANvq9/UzP4uqPdi/24QZBuNriDoqxuEquwEVKk=' 'sha256-otV6jPgHsTUaI7SjESpRWjEXVtfrPr0rL8U4EezfjWE='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-tvP3jANvq9/UzP4uqPdi/24QZBuNriDoqxuEquwEVKk=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>إنشاء مواقع ويب في الجزائر | Numidea Labs</title>
 <meta name="description" content="إنشاء مواقع ويب بالعربية والفرنسية والإنجليزية، من 90 000 دج. شاهد الصفحة الرئيسية لموقعك قبل أن تدفع. استوديو ويب في برج بوعريريج، الجزائر.">
 <meta name="theme-color" content="#0A1420">
@@ -243,7 +243,7 @@
              the script ran, and hiding it moved the whole bar (a layout
              shift of 0.01 at 1280). js-only, since a bar this full needs
              the script's measure. -->
-        <a class="nav-cta js-only" href="#apercu" data-i18n="mbar.cta" hidden>معاينتي</a>
+        <a class="nav-cta js-only" href="#contact" data-apercu data-i18n="mbar.cta" hidden>معاينتي</a>
         <!-- the menu's open and close marks are drawn (24-grid, stroke 1.5),
              not typed: the system's ☰ and × came in whatever face the
              platform had for them, at a different weight on every phone -->
@@ -255,7 +255,24 @@
 
 <!-- mobile overlay menu -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="القائمة" data-i18n-aria="ui.menu">
-  <button type="button" class="close" aria-label="إغلاق" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <!-- one row at the top, where a thumb that opened the menu is: the
+       language, the theme, the close button. (They were under the eight links,
+       and on a phone the theme was below the fold.) -->
+  <div class="menu-top">
+    <div class="lang" role="group" aria-label="اللغة" data-i18n-aria="ui.lang">
+      <a href="../" hreflang="fr" lang="fr" aria-label="Français (FR)">FR</a>
+      <a href="../en/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
+      <a href="../ar/" hreflang="ar" aria-label="العربية (ع)" aria-current="page"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
+    </div>
+    <!-- the theme toggle again, for phones: the header's goes below 960px
+         to make room for the language switch (styles.css), and this one takes
+         over inside the menu. app.js wires every .theme-switch on the page;
+         applyTheme keeps both in step. -->
+    <div class="theme-switch js-only">
+      <button type="button" class="theme-btn" data-to="daylight" aria-label="التبديل إلى النهاري (فاتح)" data-i18n-aria="theme.toDaylight"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg></button>
+    </div>
+    <button type="button" class="close" aria-label="إغلاق" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
   <nav aria-label="الأقسام" data-i18n-aria="ui.sections">
   <a href="#work" data-i18n="nav.work">الأعمال</a>
   <a href="#services" data-i18n="nav.services">الخدمات</a>
@@ -266,24 +283,12 @@
   <a href="#faq" data-i18n="nav.faq">الأسئلة</a>
   <a href="#contact" data-i18n="nav.contact">تواصل</a>
   </nav>
-  <div class="lang" role="group" aria-label="اللغة" data-i18n-aria="ui.lang">
-    <a href="../" hreflang="fr" lang="fr" aria-label="Français (FR)">FR</a>
-    <a href="../en/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
-    <a href="../ar/" hreflang="ar" aria-label="العربية (ع)" aria-current="page"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
-  </div>
-  <!-- the theme toggle again, for phones: the header's goes below 960px
-       to make room for the language switch (styles.css), and this one takes
-       over inside the menu. app.js wires every .theme-switch on the page;
-       applyTheme keeps both in step. -->
-  <div class="theme-switch js-only">
-    <button type="button" class="theme-btn" data-to="daylight" aria-label="التبديل إلى النهاري (فاتح)" data-i18n-aria="theme.toDaylight"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg></button>
-  </div>
   <!-- the two ways to start, pinned at the foot of the menu (styles.css
        .menu-acts): eight section links and no action left the visitor who
        opened the menu to act with nothing to press. The same two links as
        the phone bar (.m-contact), which is hidden while the menu is open. -->
   <div class="menu-acts">
-    <a class="btn btn-primary" href="#apercu" data-i18n="mbar.cta">معاينتي</a>
+    <a class="btn btn-primary" href="#contact" data-apercu data-i18n="mbar.cta">معاينتي</a>
     <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener">
       <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
       <span data-i18n="footer.wa">واتساب</span>
@@ -553,6 +558,9 @@
             <li class="ptl-s ptl-call"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl4">نعرضها عليك</span><span class="ptl-p" data-i18n="prev.tl4p">نتصفح الصفحة الرئيسية معًا وتطرح أسئلتك.</span><span class="ptl-d" data-i18n="prev.tl4d">في مكالمة فيديو من 30 دقيقة</span></li>
             <li class="ptl-s ptl-dec"><span class="ptl-m"></span><span class="ptl-t" data-i18n="prev.tl5">أنت تقرّر</span><span class="ptl-p" data-i18n="prev.tl5p">إن كان الجواب نعم، فالصفحة الرئيسية جاهزة بالفعل: ننتقل مباشرة إلى بقية العمل.</span></li>
           </ol>
+          <!-- on a phone the path is three lines (describe, send the content, decide);
+               this opens the other two and the sentences (app.js, styles.css) -->
+          <button type="button" class="ptl-more js-only" aria-expanded="false"><span data-i18n="prev.more">كل الخطوات بالتفصيل</span></button>
         </div>
         <p class="prev-terms" data-i18n="prev.terms">مجّاناً ودون التزام · للشركات المسجّلة فقط · 4 معاينات في الشهر كحدّ أقصى لجميع العملاء.</p>
         <!-- the one figure of the path, set beside the promise: what has been paid when the visitor decides (app.js writes it in the visitor's currency) -->
@@ -1103,18 +1111,18 @@
           <div class="form-row">
             <div class="field">
               <label for="f-name" data-i18n="form.name">الاسم</label>
-              <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err" data-i18n-ph="form.namePh" placeholder="اسمك">
+              <input id="f-name" name="name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required aria-describedby="f-name-err" data-i18n-ph="form.namePh" placeholder="اسمك">
               <span class="err" id="f-name-err" aria-live="polite"></span>
             </div>
             <div class="field">
               <label for="f-email" data-i18n="form.email">البريد</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err" data-i18n-ph="form.emailPh" placeholder="you@company.com">
+              <input id="f-email" name="email" type="email" autocomplete="email" enterkeyhint="next" required aria-describedby="f-email-err" data-i18n-ph="form.emailPh" placeholder="you@company.com">
               <span class="err" id="f-email-err" aria-live="polite"></span>
             </div>
           </div>
           <div class="field">
             <label for="f-message" data-i18n="form.message">الرسالة</label>
-            <textarea id="f-message" name="message" rows="7" required aria-describedby="f-message-err" data-i18n-ph="form.messagePh" placeholder="ماذا سنبني؟"></textarea>
+            <textarea id="f-message" name="message" rows="5" enterkeyhint="enter" required aria-describedby="f-message-err" data-i18n-ph="form.messagePh" placeholder="ماذا سنبني؟"></textarea>
             <span class="err" id="f-message-err" aria-live="polite"></span>
           </div>
           <!-- The same message on WhatsApp, beside the submit: the one way
@@ -1215,10 +1223,11 @@
      this page's. No redirect: the root stays French for every crawler
      and every shared link (the x-default). The script is inline, right
      after the line. The line waits: it appears once the visitor has
-     scrolled past the hero, or after 8 seconds, never on the first screen,
-     where it sat over the hero capture's headline. styles.css floats it at
-     the foot of the screen: it takes no height from the page, and nothing
-     moves when the deferred app.js arrives. -->
+     scrolled past the first screen, or after 8 seconds, never on the first
+     screen, where it sat over the hero capture's headline, and it leaves
+     again after 7 seconds. styles.css floats it at the foot of the screen
+     while it shows: it takes no height from the page, and nothing moves when
+     the deferred app.js arrives. -->
 <p class="lang-offer" hidden><a class="lang-offer-go" href="#top"></a><button type="button" class="lang-offer-x" aria-label="إغلاق" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></p>
 <script>
   (function () {
@@ -1235,29 +1244,24 @@
     go.setAttribute('href', src.getAttribute('href'));
     go.setAttribute('hreflang', first); go.setAttribute('lang', first);
     go.addEventListener('click', function () { keep(first); });
-    var gone = false, phone = window.matchMedia('(max-width:720px)');
+    var gone = false, shown = false, timer = 0;
     x.addEventListener('click', function () { keep(here); gone = true; bar.hidden = true; });
-    // never on the first paint (it sat on the hero capture's headline). On a
-    // wide screen: once the visitor has scrolled past the hero, or after 8
-    // seconds, whichever is first, and it stays. On a phone it never sat well
-    // on the plate's caption right under the first screen (round 3 of Fleet 7):
-    // it shows between 1,400 and 3,600 px of scroll, past the hero and the
-    // client row, and is gone again after the work cards (the header's switch
-    // is still there)
-    var shown = false, timer = 0;
+    // Offered once, then gone: once the visitor has scrolled past the first
+    // screen, or after 8 seconds, whichever comes first, for 7 seconds. It
+    // stood for the whole page (and, on a phone, between 1,400 and 3,600px of
+    // it), fixed over the work cards' captions, a button of the Aperçu or a
+    // heading on every phone and tablet it was tried on (2026-11-14): a pill
+    // that floats over the content is never where nothing is. The header's
+    // switch is still there.
     var show = function () {
-      if (shown) return;
+      if (shown || gone) return;
       shown = true; clearTimeout(timer);
       window.removeEventListener('scroll', onScroll);
       bar.hidden = false;
+      setTimeout(function () { gone = true; bar.hidden = true; }, 7000);
     };
-    var onScroll = function () {
-      if (gone) return;
-      var y = window.scrollY;
-      if (phone.matches) bar.hidden = !(y > 1400 && y < 3600);
-      else if (y > window.innerHeight * 0.9) show();
-    };
-    if (!phone.matches) timer = setTimeout(show, 8000);
+    var onScroll = function () { if (window.scrollY > window.innerHeight * 0.9) show(); };
+    timer = setTimeout(show, 8000);
     window.addEventListener('scroll', onScroll, { passive: true });
   })();
 </script>
@@ -1266,11 +1270,17 @@
      hero; it steps aside while #contact, or the footer just below it, is on
      screen, where #contact already offers both -->
 <nav class="m-contact" aria-label="تواصل سريع" data-i18n-aria="mbar.aria">
-  <a class="btn btn-primary" href="#apercu" data-i18n="mbar.cta">معاينتي</a>
+  <a class="btn btn-primary m-main" href="#contact" data-apercu data-i18n="mbar.cta">معاينتي</a>
   <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20Numidea%20Labs%20%E2%80%94%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9." target="_blank" rel="noopener">
     <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
     <span data-i18n="footer.wa">واتساب</span>
   </a>
+  <!-- while the estimator is on screen the bar carries its figure and its one
+       action (app.js fills .m-price from #est-range and sends the button to
+       #est-cta): the estimate is in view whichever option the thumb is on,
+       and nothing else is stuck to the top of the screen -->
+  <p class="m-price" aria-hidden="true"><b class="mp-n"></b><span class="mp-w"></span></p>
+  <a class="btn btn-primary m-estgo" href="#contact" data-i18n="price.estCta" tabindex="-1">اطلب سعرك النهائي <span aria-hidden="true">←</span></a>
 </nav>
 
 <!-- this page's dictionary (one language), then the script that reads it;

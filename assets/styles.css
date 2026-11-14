@@ -1346,11 +1346,19 @@ main.wrap>section h2.sec em{color:inherit}
      and the fold cut it at 1280x800. The copy column is 447px at 1100 and
      the French pair needs 487 with the buttons' 28px sides, so the sides
      narrow to 16px there and are back to 28px by 1200 (12vw - 116px). */
-  .hero-cta{flex-wrap:nowrap}
+  .hero-cta{flex-wrap:wrap}
   .hero-cta .btn{white-space:nowrap;padding-inline:clamp(16px,12vw - 116px,24px)}
+  /* 2026-11-14: the two French labels need more than the six-track copy column
+     between 1100 and 1250 (the WhatsApp button ran over the plate's caption
+     and its pause button on an iPad in landscape): the row wraps there, and
+     the copy never paints into the plate's column. One row again from 1280. */
+  .hero-copy{min-width:0}
 
   /* section rhythm: --sec-pad, the one fluid token (the design system block) */
   .footer{padding-block:var(--s-9) var(--s-8)}
+}
+@media(min-width:1280px){
+  .hero-cta{flex-wrap:nowrap}
 }
 
 /* ---------- responsive ---------- */
@@ -3843,4 +3851,404 @@ html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display);font-wei
 @media (forced-colors:active){
   .capabilities>summary .chev::before,.capabilities>summary .chev::after{forced-color-adjust:none;background:CanvasText}
   .t-incl>summary::after{forced-color-adjust:none;color:CanvasText}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE PHONE AND THE TABLET — 2026-11-14 (the owner: "the mobile version is
+   so trash"; the audit is in the home's mobile record)
+   Until now the phone page was the desktop sheet poured into one column:
+   13,460px at 390 (20 screens), five sections of 1,000 to 2,800px, 22% of
+   the screen fixed at all times and 51% in the estimator, and tablets a
+   stretched phone (92% of its height). Every component below has a phone
+   form now, on the same markup and the same words:
+   • phone (to 720px): the header is 56px with one language button, the
+     bottom bar is 61px and carries the estimate while the estimator is on
+     screen, the hero shows the offer, the action and a capture on the first
+     screen, the work is a rail, the Aperçu's path three lines, the tiers one
+     card at a time, the ten services rows that open, the form comes first
+     and goes to WhatsApp first;
+   • tablet (721 to 1099px): two columns where the text has the room (FAQ,
+     services, founder, contact), the three tiers abreast with their lists
+     folded, the work two by two, the path still three lines;
+   • a phone on its side: the hero in two columns.
+   Written last; it wins ties with everything above, and under 1100px it
+   replaces what the Fleet blocks above did for a single column. Scripts
+   (app.js, "phone and tablet furniture") add the language button, the
+   tier tabs, the rows' buttons and the rail's dots; with scripts off the
+   page is the plain stack, every list open. Desktop (1100px and up) is not
+   touched, bar the 961-1279 header, which is the phone's 56px.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ---- the header: 56px, opaque (it was 73, and 96% glass with the copy ghosting through it) ---- */
+@media (max-width:1279px){
+  :root{--nav-h:56px}
+  .navbar .bar{padding-block:4.5px}
+  .navbar.scrolled{background:var(--void)}
+  /* the close button's 44px, wherever the menu is shown (it was set under 960px only: 24x39 on an iPad in landscape) */
+  .mobile-menu .close{width:44px;height:44px;display:grid;place-items:center}
+}
+
+/* ---- the menu: language, theme and close in one row on top; seven links at 48px and the guide under them ---- */
+.menu-top{display:flex;align-items:center;gap:var(--s-3);flex:none}
+.menu-top .lang{margin:0;align-self:auto}
+.menu-top .theme-switch{margin:0;align-self:auto}
+.mobile-menu .menu-top .close{position:static;inset:auto;margin-inline-start:auto;font-size:inherit}
+.mobile-menu .theme-btn::after{display:none}
+.mobile-menu .theme-btn{width:44px;padding:0;justify-content:center}
+.mobile-menu{justify-content:safe flex-start;gap:var(--s-4);padding-top:calc(var(--s-3) + env(safe-area-inset-top))}
+.mobile-menu nav{gap:0}
+.mobile-menu nav a{font-size:clamp(22px,min(6.6vw,5.2svh),30px);min-height:48px;display:flex;align-items:center;line-height:1.2}
+.mobile-menu nav a[data-i18n="tarifs.navLink"]{font-family:var(--font-mono);font-weight:400;font-size:var(--t-small);letter-spacing:.04em;min-height:40px;color:var(--muted)}
+html[dir="rtl"] .mobile-menu nav a[data-i18n="tarifs.navLink"]{font-family:var(--font-ar-body);letter-spacing:0}
+html:has(.mobile-menu.open){overscroll-behavior:none}
+@media (max-height:560px) and (min-width:480px){
+  .mobile-menu{gap:var(--s-2)}
+  .mobile-menu nav a{font-size:clamp(20px,6.4svh,26px);min-height:44px}
+  .mobile-menu nav a[data-i18n="tarifs.navLink"]{min-height:40px}
+}
+
+/* ---- the language: one button on a phone, the current language, opening the other two ---- */
+@media (max-width:720px){
+  html.js .navbar .lang{position:relative;overflow:visible}
+  html.js .navbar .lang>a[aria-current]{gap:6px;background:none}
+  html.js .navbar .lang>a[aria-current]::after{content:"";width:6px;height:6px;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:rotate(45deg) translateY(-2px);transition:transform var(--t-hover)}
+  html.js .navbar .lang.open>a[aria-current]::after{transform:rotate(225deg) translate(-2px,-1px)}
+  html.js .navbar .lang>a:not([aria-current]){display:none}
+  html.js .navbar .lang.open>a:not([aria-current]){display:flex;position:absolute;inset-inline-end:-1px;top:calc(100% + 6px + (var(--n,1) - 1) * 50px);width:46px;min-width:46px;z-index:5;
+    background:var(--void);border:1px solid var(--hairline-2);border-radius:var(--r-pill);box-shadow:var(--shadow-lift)}
+}
+
+/* ---- the bottom bar: 61px, and the estimate while the estimator is on screen ---- */
+.m-contact .m-price,.m-contact .m-estgo{display:none}
+@media (max-width:720px){
+  .m-contact{gap:var(--s-2);padding-block:var(--s-2) calc(var(--s-2) + env(safe-area-inset-bottom))}
+  .m-contact .btn{min-height:44px;padding:var(--s-1) var(--s-3)}
+  html{scroll-padding-bottom:calc(61px + 9px + env(safe-area-inset-bottom))}
+  .m-contact.est .m-main,.m-contact.est .wa-link{display:none}
+  .m-contact.est .m-price{display:flex;flex-direction:column;justify-content:center;flex:1 1 auto;min-width:0;margin:0;gap:1px}
+  .m-contact.est .m-estgo{display:inline-flex;flex:0 0 auto;font-size:14px;padding-inline:var(--s-3)}
+  .mp-n{font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.2;color:var(--ice);font-variant-numeric:tabular-nums;white-space:nowrap}
+  html[dir="rtl"] .mp-n{font-family:var(--font-ar-display)}
+  .mp-w{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;line-height:1.2;color:var(--muted);white-space:nowrap}
+  html[dir="rtl"] .mp-w{font-family:var(--font-ar-body);letter-spacing:0}
+  /* the toast sits above the bar while that is on */
+  body:has(.m-contact.on) .lang-offer{bottom:calc(61px + var(--s-3) + env(safe-area-inset-bottom))}
+}
+@media (max-width:720px){
+  .lang-offer{animation:none}   /* it no longer waits on the scroll: it shows once, for a few seconds (index.html) */
+}
+
+/* ---- the estimator on a phone: its figure is in the bar, so the panel is not stuck under the navbar (it was 51% of the screen with it) ---- */
+@media (max-width:720px){
+  .est-out{position:static;max-height:none;top:auto}
+  .est-out .btn{min-height:52px;padding-block:var(--s-3)}
+}
+@media (min-width:721px) and (max-width:960px){
+  .est-out .eo-fine{display:none}
+}
+
+/* ---- the hero: the offer, the action and a client's work on the first screen ---- */
+@media (max-width:720px){
+  .hero{padding-block:calc(var(--nav-h) + var(--s-4)) var(--s-3)}
+  .sheet-frame{inset:calc(var(--nav-h) + 2px) 0 var(--s-2)}
+  .hero .eyebrow{margin-bottom:var(--s-3)}
+  .hero .lede{font-size:var(--t-body);margin-top:var(--s-3)}
+  .hero-cta{margin-top:var(--s-4);gap:var(--s-1)}
+  .hero-cta .btn-teal{min-height:44px}
+  .hero .hero-terms{margin-top:var(--s-2);font-size:var(--t-body);line-height:1.45;color:var(--body-strong)}
+  .hero .dim-line{display:none}   /* the workshop's coordinates sat between the offer and the proof */
+  .hero .plate-wrap{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--s-2);row-gap:0;margin-top:var(--s-3)}
+  .plate-wrap>.plate-link{display:block;flex:1 1 100%;margin-bottom:var(--s-1)}
+  .plate{max-height:none;aspect-ratio:2/1}
+  .plate-wrap>.plate-meta{flex:1 1 0;min-width:0;min-height:44px}
+  .plate-wrap>.plate-ctl{flex:0 0 auto;gap:0}
+  .plate-meta .pm-idx{display:none}
+  .plate-rail{flex:none;gap:0}
+  .plate-rail button{flex:none;width:26px}
+  .pl-pause{margin-inline-end:calc(-1 * var(--s-2))}
+  main.wrap>section.proof{padding-block:var(--s-3)}
+  .vista{height:104px;margin-bottom:0}
+}
+
+/* ---- the hero on a tablet: the capture a little flatter, no coordinates line ---- */
+@media (min-width:721px) and (max-width:960px){
+  .hero .dim-line{display:none}
+  .plate{max-height:none;aspect-ratio:2.2/1}
+  .hero .plate-wrap{margin-top:var(--s-4)}
+  .hero-cta{margin-top:var(--s-5)}
+}
+
+/* ---- a phone on its side: the hero in two columns, the action on the first screen ---- */
+@media (max-height:560px) and (min-width:640px) and (max-width:1099px){
+  .hero{padding-block:calc(var(--nav-h) + var(--s-3)) var(--s-5)}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);column-gap:var(--s-6);align-items:start}
+  .hero-copy{display:block}
+  html[dir] .hero-h{font-size:clamp(24px,4.6vh + 8px,34px);line-height:1.02}
+  .hero .lede-who{display:none}
+  .hero .eyebrow{margin-bottom:var(--s-2)}
+  .hero .lede{font-size:var(--t-body);margin-top:var(--s-2)}
+  .hero-cta{margin-top:var(--s-3);flex-wrap:nowrap}
+  .hero-cta .btn{flex:1 1 0;justify-content:center;min-height:44px}
+  .hero-cta .btn-teal{margin-inline-start:0}
+  .hero .dim-line,.hero .hero-terms{display:none}
+  .plate{max-height:none;aspect-ratio:16/10}
+  .plate-wrap{display:flex;flex-wrap:wrap;align-items:center;margin-top:0}
+  .plate-wrap>.plate-link{flex:1 1 100%}
+  .plate-wrap>.plate-meta{flex:1 1 0}
+  .plate-wrap>.plate-ctl{flex:0 0 auto}
+  .plate-meta .pm-idx{display:none}
+  .vista{height:88px}
+}
+
+/* ---- the Aperçu: three lines, then the amount and the action; the five steps behind a button ---- */
+.ptl-more{display:none}
+@container (max-width:719px){
+  .ptl-more{display:none}
+  html.js .ptl-more{display:inline-flex;align-items:center;gap:var(--s-3);min-height:44px;margin-top:var(--s-1);padding:0;background:none;border:0;cursor:pointer;
+    font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted)}
+  html.js .ptl-more::after{content:"";flex:none;width:14px;height:14px;
+    background:linear-gradient(var(--crimson-text),var(--crimson-text)) 50% 50%/14px 2px no-repeat,linear-gradient(var(--crimson-text),var(--crimson-text)) 50% 50%/2px 14px no-repeat;transition:background-size var(--t-enter)}
+  html.js .ptl-w.full .ptl-more::after{background-size:14px 2px,2px 0}
+  html.js .ptl-w:not(.full) .ptl-s:nth-child(even){display:none}
+  html.js .ptl-w:not(.full) .ptl-s:not(.ptl-build) .ptl-p{display:none}
+  .ptl{gap:var(--s-3)}
+}
+html[dir="rtl"] .ptl-more{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:var(--t-small)}
+@media (max-width:1099px){
+  .preview .ptl-w{order:2;margin-top:var(--s-5)}
+  .preview .prev-stub{order:3;margin-top:var(--s-4)}
+}
+@media (min-width:721px) and (max-width:1099px){
+  /* the offer and its path on the left, the amount and the action on the right of one card */
+  .preview .body{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);column-gap:var(--s-7);align-items:start;align-content:start}
+  .preview .body>*{grid-column:1}
+  .preview .body>.prev-stub{grid-column:2;grid-row:1/span 5;margin:0;padding:0;padding-inline-start:var(--s-5);border-top:0;border-inline-start:1px dashed var(--hairline-2);align-self:stretch}
+  .preview .prev-stub .prev-actions{flex-direction:column;align-items:stretch}
+  .preview .prev-stub .prev-actions .btn{justify-content:center}
+  .preview .prev-out{max-width:none}
+}
+@media (max-width:720px){
+  .preview{margin-bottom:var(--s-5)}
+  .preview .prev-out{display:none}
+  .preview .prev-terms{margin-top:var(--s-3);line-height:1.5}
+  .preview .prev-stub .prev-actions{margin-top:var(--s-3)}
+  .preview .prev-actions .btn-teal{background:none;border-color:transparent;box-shadow:none;justify-content:flex-start;margin-inline-start:calc(-1 * var(--s-4));min-height:44px;
+    color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+  .preview .prev-actions{gap:var(--s-1)}
+}
+
+/* ---- the work: a rail on a phone, two by two on a tablet ---- */
+.rail-dots{display:none}
+@media (max-width:959px){
+  .proj .body>p:not(.gain){display:none}   /* the visitor's line is the one that sells; the sheet has the rest */
+  .proj .gain-k{display:none}
+}
+@media (max-width:720px){
+  #work .work-grid{display:flex;gap:var(--s-3);margin-inline:calc(-1 * var(--gutter));padding:var(--s-4) var(--gutter) var(--s-2);
+    overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  #work .work-grid::-webkit-scrollbar{display:none}
+  #work .work-grid>.proj{flex:0 0 min(82%,340px);min-width:0;scroll-snap-align:start;scroll-snap-stop:always}
+  html #work .work-grid>.proj.reveal{opacity:1;transform:none;animation:none}
+  .proj .body .gain{margin-bottom:var(--s-2)}
+  .rail-dots{display:flex;justify-content:center;gap:var(--s-2);margin-top:var(--s-1)}
+  .rail-dots i{display:block;width:20px;height:2px;border-radius:2px;background:color-mix(in srgb,var(--muted) 38%,transparent);transition:background var(--t-enter)}
+  .rail-dots i.on{background:var(--crimson)}
+  .work-foot{margin-top:var(--s-4)}
+  .scene-lead{display:none}
+}
+@media (min-width:721px) and (max-width:959px){
+  .work-grid{row-gap:var(--s-6)}
+  .proj--lead,.proj:last-child{grid-column:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:start}
+  .proj--lead .body,.proj:last-child .body{align-self:stretch}
+  .proj--lead h3{font-size:var(--t-feature)}
+}
+
+/* ---- the services: the ten as rows (the five, then the five others, open) that open on a tap on a phone ---- */
+.svc-tog{display:none}
+#services .cap{counter-increment:svcrow}
+#services .cap h4::before{
+  content:counter(planche,decimal-leading-zero) "." counter(svcrow);content:counter(planche,decimal-leading-zero) "." counter(svcrow) / "";
+  display:block;margin-bottom:var(--s-2);
+  font-family:var(--font-mono);font-size:var(--t-label);font-weight:400;letter-spacing:.08em;line-height:1.4;
+  color:var(--crimson-text);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;text-align:start}
+html[dir="rtl"] #services .cap h4::before{text-align:right}
+#services .cap h4{font-family:var(--font-display);font-weight:600}
+html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
+@media (max-width:960px){
+  #services .svc-grid>.svc-row,#services .cap{position:relative;padding:var(--s-3) 0;row-gap:0}
+  #services .svc-grid>.svc-row>div{row-gap:var(--s-1)}
+  #services .svc-grid>.svc-row::before{display:none}
+  #services .cap::after{content:"";position:absolute;top:-1px;inset-inline-start:0;width:28px;height:2px;background:var(--crimson);pointer-events:none}
+  #services :is(.svc-row h3,.cap h4){display:flex;align-items:baseline;gap:var(--s-2);font-size:var(--t-lead);line-height:1.25;padding-inline-end:40px}
+  #services .cap h4::before{display:inline;flex:none;margin:0}
+  #services .svc-grid>.svc-row{padding-inline-start:0}
+  #services :is(.svc-row,.cap) .promise{font-size:var(--t-small);line-height:1.4}
+  #services :is(.svc-row,.cap) .brief{margin-top:var(--s-1);font-size:var(--t-body)}
+  #services .svc-grid>.svc-row .brief{line-height:1.5}
+  #services .cap{display:grid;grid-template-columns:minmax(0,1fr)}
+  #services :is(.svc-row,.cap) .fam{margin-top:var(--s-1)}
+  #services.svc-fold :is(.svc-row,.cap):not(.open) :is(.brief,.tags,.fam){display:none}
+  #services.svc-fold :is(.svc-row,.cap){cursor:pointer}
+  #services.svc-fold :is(.svc-row,.cap) :is(.brief,.tags,.fam){cursor:auto}
+  #services .svc-tog{display:block;position:absolute;z-index:1;inset-block-start:0;inset-inline-end:-6px;width:48px;height:56px;padding:0;background:none;border:0;cursor:pointer}
+  #services .svc-tog::before,#services .svc-tog::after{content:"";position:absolute;left:50%;top:calc(var(--s-3) + 11px);background:var(--crimson-text);border-radius:2px;transition:transform var(--t-enter),opacity var(--t-enter)}
+  #services .svc-tog::before{width:14px;height:2px;margin:-1px 0 0 -7px}
+  #services .svc-tog::after{width:2px;height:14px;margin:-7px 0 0 -1px}
+  #services .open>.svc-tog::after{transform:scaleY(0);opacity:0}
+  #services .svc-tog:focus-visible{outline-offset:-4px}
+  /* every one of the ten is listed: the fold's own button goes, its rows stand open */
+  #services .capabilities.svc-flat{margin-top:0;border-top:0}
+  #services .capabilities.svc-flat>summary{display:none}
+  #services .capabilities.svc-flat .cap:first-child{border-top:1px solid var(--hairline)}
+  .svc-lead{margin-bottom:var(--s-4)}
+}
+@media (prefers-reduced-motion:reduce){#services .svc-tog::before,#services .svc-tog::after{transition:none}}
+
+/* ---- the prices: one card at a time on a phone (Studio first), three abreast on a tablet ---- */
+.tier-tabs{display:none}
+@media (max-width:960px){
+  .tier-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:var(--s-4);border:1px solid var(--hairline-2);border-radius:var(--r-sm);overflow:hidden}
+  .tier-tabs button{min-height:44px;padding:0 var(--s-2);background:none;border:0;border-inline-start:1px solid var(--hairline-2);cursor:pointer;
+    font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted);transition:color var(--t-hover),background-color var(--t-hover)}
+  html[dir="rtl"] .tier-tabs button{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:var(--t-small)}
+  .tier-tabs button:first-child{border-inline-start:0}
+  .tier-tabs button[aria-pressed="true"]{color:var(--ice);background:color-mix(in srgb,var(--crimson) 12%,transparent);box-shadow:inset 0 -2px 0 var(--crimson)}
+  .tier-tabs button:focus-visible{outline-offset:-3px}
+  .tiers.tt>.tier:not(.on){display:none}
+  .tiers.tt{margin-bottom:var(--s-3)}
+}
+@media (max-width:720px){
+  .pr-cur{display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-3)}
+  .pr-cur legend{float:inline-start;padding:0;margin:0;margin-inline-end:var(--s-3);line-height:44px;letter-spacing:.04em}
+  html[dir="rtl"] .pr-cur legend{letter-spacing:0}
+  .pr-cur .est-chips{overflow:hidden;flex-wrap:nowrap;gap:var(--s-2)}
+  .pr-cur .echip{padding-inline:var(--s-3)}
+  .tiers.tt .tier{padding:var(--card-pad)}
+  /* one gold button on a screen is the bar's: the card ends on a text link, whichever tier it is */
+  .tiers.tt .tier .t-foot .actions-row .btn{background:none;border-color:transparent;box-shadow:none;justify-content:flex-start;margin-inline-start:calc(-1 * var(--s-4));min-height:44px;
+    color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+  .tiers.tt .tier .t-foot .actions-row{padding-top:var(--s-1)}
+  .tiers.tt .t-for{margin-bottom:var(--s-3)}
+  .tiers.tt .t-time{padding-bottom:var(--s-3);margin-bottom:var(--s-3)}
+  html.js .tiers.tt .t-weeks{padding-bottom:var(--s-3);margin-bottom:var(--s-3)}
+  .price-note{margin-bottom:var(--s-4);font-size:var(--t-small)}
+  main:has(>#work) .price-est .hint{display:none}
+  main:has(>#work) .capabilities>summary{min-height:56px;padding-block:var(--s-3)}
+  .price-guide .btn{min-height:56px}
+  .t-range b{white-space:normal}   /* "450 000 – 1 200 000" wraps after the dash at 280 rather than leaving the card */
+}
+@media (min-width:721px) and (max-width:960px){
+  /* the tab's card across the page: the name, the range and the weeks on the left, the list and the action on the right */
+  .tiers.tt .tier{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:var(--s-7);align-content:start;padding:var(--s-5)}
+  .tiers.tt .tier>*{grid-column:1}
+  .tiers.tt .tier>.t-foot{grid-column:2;grid-row:1/span 7}
+  .tiers.tt .tier .t-foot .actions-row{padding-top:var(--s-4)}
+  .tiers.tt .t-time{border-bottom:0;margin-bottom:var(--s-3);padding-bottom:0}
+  html.js .tiers.tt .t-weeks{border-bottom:0;margin-bottom:0}
+  .tiers.tt .t-list{grid-template-columns:minmax(0,1fr)}
+  .tiers.tt .t-list li{font-size:var(--t-body)}
+}
+
+/* ---- the founder ---- */
+@media (max-width:720px){
+  .dune-strip{height:72px}
+  main.wrap>#founder.band{padding-top:var(--s-6)}
+  #founder .founder-card{padding-top:var(--s-4)}
+  .fd-top{gap:var(--s-3);margin-bottom:var(--s-3)}
+  .fd-aside .fd-plate{display:none}   /* the dune strip above is the section's engraving; this one's 85 KB is not fetched */
+  .fd-facts{gap:var(--s-2) var(--s-4)}
+  .fd-facts dd{font-size:var(--t-small)}
+  .fd-bio{margin-bottom:var(--s-3)}
+  .founder-card>.team{margin-top:var(--s-3);padding-top:var(--s-3)}
+  .founder-card>.fd-recent{margin-top:var(--s-3)}
+  .fd-recent a,.team .tm span{font-size:var(--t-small)}
+  .fd-links{margin-top:var(--s-3);gap:0 var(--s-4)}
+  .fd-actions{display:flex;flex-wrap:wrap;gap:var(--s-2)}
+  .fd-actions{flex-direction:column;align-items:flex-start;gap:0}
+  .fd-actions .btn{flex:none;justify-content:flex-start;margin-inline-start:calc(-1 * var(--s-4));background:none;border-color:transparent;box-shadow:none;
+    color:var(--crimson-text);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+}
+
+/* ---- the questions ---- */
+@media (max-width:720px){
+  #faq>.sec-lead{display:none}
+  #faq h2.sec{margin-bottom:var(--s-4)}
+  .faq-item summary{font-size:var(--t-body);line-height:1.35}
+  .faq-a{padding-inline-end:var(--s-5);font-size:var(--t-body)}
+  .faq-ask{margin-top:var(--s-3)}
+}
+
+/* ---- the contact: the form first, WhatsApp first ---- */
+@media (max-width:720px){
+  .contact-grid{display:flex;flex-direction:column;gap:var(--s-4)}
+  .contact-side{display:contents}
+  .contact .sub{order:-2;margin:0}
+  .contact-main{order:-1}
+  .channels{order:0;margin-top:var(--s-2)}
+  .channels .ch{grid-template-columns:78px minmax(0,1fr);gap:var(--s-3);padding-block:var(--s-2)}
+  .channels .ch-note{line-height:1.4}
+  .channels .ch:nth-child(3) dt{visibility:visible}
+  .contact h2{margin-bottom:var(--s-4)}
+  .field input,.field textarea{padding:var(--s-3) var(--s-4)}
+  .field textarea{min-height:112px}
+  .form .field{margin-bottom:var(--s-3)}
+  .form-acts{flex-direction:column;gap:var(--s-2);margin-top:var(--s-3)}
+  .form .form-acts #form-wa-send{order:-1;background:var(--crimson);color:var(--on-crimson);border-color:var(--crimson)}
+  .form .form-acts button[type="submit"]{background:transparent;color:var(--ice);border-color:var(--hairline-2);box-shadow:none}
+  .form .form-note{margin:var(--s-3) 0 0}
+}
+
+/* ---- the foot ---- */
+@media (max-width:720px){
+  .footer-top{margin-bottom:var(--s-3);gap:var(--s-3)}
+  .footer nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--s-4)}
+  .footer nav a{min-height:44px}
+  .footer .meta .meta-end .lang{display:none}   /* the header's button and the menu hold the language */
+  .foot-dunes{height:88px}
+}
+
+/* ---- tablet: two columns where the text has the room ---- */
+@media (min-width:721px) and (max-width:1099px){
+  .faq-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s-6);align-items:start;border-bottom:0}
+  .faq-col{display:block;min-width:0}
+  .faq-col:first-child .faq-item:first-child,.faq-col:last-child .faq-item:first-child{border-top:1px solid var(--hairline)}
+  .faq-col .faq-item:last-child{border-bottom:1px solid var(--hairline)}
+  .faq-a{padding-inline-end:var(--s-3)}
+  .faq-item summary{font-size:var(--t-body)}
+  .faq-ask{margin-top:var(--s-5)}
+}
+@media (min-width:721px) and (max-width:960px){
+  /* the ten in two columns of rows (each opens in its own column) */
+  #services .svc-grid,#services .cap-grid{display:block;column-count:2;column-gap:var(--s-6)}
+  #services .svc-grid>.svc-row,#services .cap{break-inside:avoid;grid-column:auto!important}
+  #services .svc-grid>.svc-row:first-child,#services .cap-grid>.cap:first-child{border-top:1px solid var(--hairline)}
+  #services .capabilities.svc-flat .cap:first-child{border-top:1px solid var(--hairline)}
+  #services .capabilities.svc-flat{border-bottom:0}
+}
+@media (min-width:721px) and (max-width:1099px){
+  /* the founder: his name, facts and bio on the left, the engraving on the right, then the freelance line and the recent pieces side by side */
+  .founder-card{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .founder-card>*{grid-column:1/-1}
+  .founder-card>.fd-top,.founder-card>.fd-bio{grid-column:1/span 7}
+  .founder-card>.fd-top{grid-row:1}
+  .founder-card>.fd-bio{grid-row:2}
+  .founder-card>.fd-aside{display:block;grid-column:8/-1;grid-row:1/span 2}
+  .fd-aside .fd-plate{order:0;margin:0;height:100%;display:flex;flex-direction:column}
+  .fd-aside .fdp-art{aspect-ratio:auto;flex:1;min-height:200px}
+  .fd-plate{max-width:none}
+  .founder-card>.team{grid-column:1/span 6;grid-row:3;margin-top:var(--s-4)}
+  .founder-card>.fd-recent{grid-column:7/-1;grid-row:3;margin-top:var(--s-4)}
+  .founder-card>.fd-links{grid-row:4}
+  .founder-card>.fd-actions{grid-row:5;display:flex;flex-wrap:wrap;gap:var(--s-3);align-items:center}
+  .founder-card>.cv-panel{grid-row:6}
+  .contact-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+  .contact-side{grid-column:auto}
+  .contact-main{grid-column:auto}
+  .channels{margin-top:var(--s-5)}
+  .channels .ch{grid-template-columns:minmax(0,1fr);gap:var(--s-1)}
+  .form-acts{flex-wrap:nowrap}
+  .dune-strip{height:88px}
+}
+@media (max-width:479px){
+  .plate-meta .pm-item i{display:none}   /* the name and its arrow: the category truncated the name beside the pause button */
 }
