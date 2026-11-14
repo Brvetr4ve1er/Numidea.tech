@@ -279,3 +279,6 @@ html.js .case-alliance .ca-scope__list li.is-seen{color:var(--c-on-dark)}
 :root[dir="rtl"] .case-alliance .ca-aze__next > span[aria-hidden]{display:inline-block;transform:scaleX(-1)}
 .case-alliance .ca-aze__bar .ca-k{min-width:0;letter-spacing:.06em;line-height:1.25;overflow-wrap:anywhere}
 .case-alliance .ca-aze__next{flex:none;padding:0 4px;white-space:nowrap;letter-spacing:.04em}
+
+/* a phone: the browser bar's address may break rather than run out of its tile (hub/style.css, the cases on a phone) */
+@media (max-width:599px){.case-alliance .ca-site__bar{height:auto;min-height:38px;padding-block:6px}.case-alliance .ca-site__url{white-space:normal;overflow-wrap:anywhere;line-height:1.2;border-radius:12px}}

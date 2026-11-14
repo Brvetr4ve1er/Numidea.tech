@@ -1062,7 +1062,7 @@ main:focus{outline:none}
   /* the wedge and the brand layers */
   .st-board{gap:18px;padding:14px}
   .st-chain{gap:10px}
-  .st-board__end{margin-top:-8px}
+  .st-board__end{margin-top:0}
   .st-board__kuro{width:84px}
   .st-board__end .st-aside{margin-bottom:14px}
   .st-chip{padding:8px 12px}
@@ -1090,7 +1090,7 @@ main:focus{outline:none}
   .st-case__track > .st-c3,.st-case.case-traveler .ct-c5,.st-case.case-traveler .ct-shelf.ct-c5,.st-case.case-almaflow .cf-quote,.st-case.case-heetch .ch-plan{grid-column:span 2}
   /* a narrow screen (a 360px phone's track is 324px): the tiles are narrower, so their rows are taller */
   @container (max-width:339px){.st-case__track{--r:calc(var(--c) * 2.15)}}
-  .st-case__track > *{overflow-wrap:anywhere}
+  .st-case__track > *{overflow-wrap:break-word}
   .st-case__foot{gap:10px;padding:0 16px 12px}
   .st-case__bar-p{height:6px;overflow:visible;touch-action:none;cursor:pointer;background:var(--c-line)}
   .st-case__bar-p::before{content:"";position:absolute;inset:-19px 0}

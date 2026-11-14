@@ -265,3 +265,4 @@
   .case-heetch .ch-plan__out{padding:8px 10px}
   .case-heetch .ch-plan__r{border-top:1px solid var(--ch-edge)}
 }
+@media (max-width:599px){.case-heetch .ch-pal__sw li{min-width:0;overflow-wrap:anywhere}}

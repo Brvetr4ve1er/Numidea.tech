@@ -307,3 +307,6 @@ html.js .case-bordjsteel .cb-scope__list li.is-seen{opacity:1}
 @media (prefers-reduced-motion:reduce){
   .case-bordjsteel .st-case__track > *:hover img{transform:none!important}
 }
+
+/* a phone: a scope line may break inside a word rather than leave its tile */
+@media (max-width:599px){.case-bordjsteel .cb-scope__list li{overflow-wrap:anywhere}}

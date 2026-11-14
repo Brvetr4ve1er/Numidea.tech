@@ -297,3 +297,6 @@ html.js .case-almaflow .cf-scope__list li.is-seen{opacity:1}
 @media (prefers-reduced-motion:reduce){
   .case-almaflow .st-case__track > *:hover img{transform:none!important}
 }
+
+/* a phone: the post's signature may wrap in its one-column tile */
+@media (max-width:599px){.case-almaflow .cf-post__sig{white-space:normal;overflow-wrap:anywhere}}
