@@ -4,9 +4,11 @@
      change index.html or the dictionary, then npm run build. -->
 <html lang="en" dir="ltr" data-theme="arcanum">
 <head>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted'});gtag('js',new Date());</script>
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5lLObl3ZFgbB3BTEHnUdhdXzkuDZ9/8ra3NFXCYc9Yc=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-5lLObl3ZFgbB3BTEHnUdhdXzkuDZ9/8ra3NFXCYc9Yc=' 'sha256-jqvmeaJzhI0avE/Byblgel+6lAUwtfzShFKt7DLnhME='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Website design and development in Algeria | Numidea Labs</title>
 <meta name="description" content="Website design and development in English, French and Arabic, from 90,000 DZD. See your homepage before you pay. A web studio in Bordj Bou Arréridj, Algeria.">
 <meta name="theme-color" content="#0A1420">
@@ -187,7 +189,8 @@
     }).join(''));
   })();
 </script>
-<!-- Self-hosted. No third-party request on the critical path, which is what
+<!-- Self-hosted. No third-party request on the critical path (the Google tag is
+     async, consent denied: BRAND.md "Google tag"), which is what
      "0 dependence" has to mean if it is going to be printed on the page. -->
 <link rel="stylesheet" href="../assets/fonts.css?v=202611141634">
 <!-- themes first: theme blocks are :root[data-theme] (0,2,0); styles.css only reads them -->
