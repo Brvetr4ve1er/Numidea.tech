@@ -244,3 +244,24 @@
   .case-heetch .ch-post.is-active .ch-post__pic::after{animation:none}
   .case-heetch .ch-type__row{transition:none}
 }
+
+/* ---------------- a phone: the deck's tiles are at most two columns wide ----------------
+   (hub/style.css, "the cases on a phone"). The cover and the planner were laid for 474px and
+   more; here they stack, and the deck's rows are a little taller for the planner's controls. */
+@media (max-width:599px),(max-height:500px) and (orientation:landscape){
+  .case-heetch .st-case__track{--r:calc(var(--c) * 2)}
+  .case-heetch .ch-k{letter-spacing:.06em}
+  .case-heetch .ch-cover{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,32%) minmax(0,1fr)}
+  .case-heetch .ch-cover__pic img{object-fit:cover;object-position:50% 38%}
+  .case-heetch .ch-cover__txt{padding:12px 14px;gap:6px}
+  .case-heetch .ch-cover__top{padding-inline-end:0}
+  .case-heetch .ch-cover__h{font-size:22px}
+  .case-heetch .ch-cover__s{font-size:12.5px;line-height:1.4}
+  .case-heetch .ch-plan{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(120px,1fr)}
+  .case-heetch .ch-plan__l{gap:8px;padding:12px 14px}
+  .case-heetch .ch-plan__l > .ch-k{padding-inline-end:70px}
+  .case-heetch .ch-plan__h{font-size:19px}
+  .case-heetch .ch-pills label{padding:0 10px;font-size:12.5px}
+  .case-heetch .ch-plan__out{padding:8px 10px}
+  .case-heetch .ch-plan__r{border-top:1px solid var(--ch-edge)}
+}

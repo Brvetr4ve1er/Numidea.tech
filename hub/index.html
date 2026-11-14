@@ -73,10 +73,13 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
 
 <!-- ============================== NAV ==============================
      Sticky on paper. The drawn wordmark goes to the site; the six sections
-     from 1000px; the language switch keeps 44px buttons, its ع drawn as on
-     the home (scripts/lib/ayn.mjs: typed, it would fetch an Arabic face on
-     every French visit); the CTA leaves the bar under 560px (the design's
-     bar ran off a 390px screen). -->
+     from 1160px, below it a Menu button opens them as a full-height sheet
+     (#menu: the six links, the language switch, the Aperçu and WhatsApp);
+     the language switch keeps 44px buttons, its ع drawn as on the home
+     (scripts/lib/ayn.mjs: typed, it would fetch an Arabic face on every
+     French visit) and leaves the bar for the sheet under 360px; the CTA is
+     in the bar from 680px, under it the dock (#dock, hub/app.js 10) carries
+     it along the screen's foot once the hero is behind. -->
 <header class="st-nav">
   <div class="st-wrap st-nav__in">
     <a class="st-wm" href="../" data-i18n-aria="nav.home" aria-label="Numidea Labs, le site" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
@@ -94,6 +97,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></button>
     </div>
     <a class="st-nav__cta" href="#contact" data-i18n="nav.cta">Demander un Aperçu</a>
+    <button type="button" class="st-nav__menu" data-menu-open aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" data-i18n-aria="nav.menu" aria-label="Menu"><span aria-hidden="true"><i></i><i></i><i></i></span></button>
   </div>
 </header>
 
@@ -226,7 +230,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
         <img data-pf="b" src="bible/art/actor-pointup-b.webp" width="249" height="540" alt="" loading="lazy" decoding="async">
       </button>
     </div>
-    <div class="st-grid st-grid--svc">
+    <div class="st-grid st-grid--svc" data-row>
       <article class="st-svc" data-reveal>
         <p class="st-svc__bar"><span>/ 01 · <span data-i18n="services.items.0.fam">THE BUILD</span></span><span class="st-svc__kanji" aria-hidden="true">築</span></p>
         <img class="st-svc__img st-pos-desk3s" src="img/studio/m/desk3.webp" width="960" height="536" data-i18n-alt="services.items.0.alt" alt="Yasser à son bureau, dans un loft baigné de lumière, Kūro au fond" loading="lazy" decoding="async">
@@ -330,7 +334,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
           <span class="st-proc-card__bar" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i><i></i></span>
         </div>
       </div>
-      <ol class="st-proc">
+      <ol class="st-proc" data-row>
         <li data-step="0"><span class="st-proc__n">01</span><div><h3 class="st-h3l" data-i18n="process.steps.0.t">Écouter</h3><p data-i18n="process.steps.0.d">Un appel, vos objectifs, vos contraintes. Pas de jargon.</p></div></li>
         <li data-step="1"><span class="st-proc__n">02</span><div><h3 class="st-h3l" data-i18n="process.steps.1.t">Aperçu</h3><p data-i18n="process.steps.1.d">Votre page d’accueil construite, avant tout engagement.</p></div></li>
         <li data-step="2"><span class="st-proc__n">03</span><div><h3 class="st-h3l" data-i18n="process.steps.2.t">Construire</h3><p data-i18n="process.steps.2.d">Un périmètre écrit, un prix ferme, et vous voyez le site avancer.</p></div></li>
@@ -393,6 +397,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
           </div>
         </fieldset>
         <button type="button" class="st-obtn st-obtn--care" data-care aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.care">Ajouter la maintenance mensuelle</span></button>
+        <p class="st-est__live" aria-hidden="true"><output dir="ltr" data-est-live>90 000 –⁠ 160 000 DA</output><span class="st-est__live-w"><b data-est-live-w>2–4</b> <span data-i18n="pricing.wk">semaines</span></span></p>
       </div>
       <div class="st-est__out" aria-live="polite">
         <p class="st-est__fig"><span class="st-label st-label--red" data-i18n="pricing.dz">EN DINARS</span><output dir="ltr" data-est-dz>90 000 –⁠ 160 000 DA</output></p>
@@ -458,7 +463,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       <p class="st-kick"><span class="st-seal" aria-hidden="true">速</span><span data-i18n="tech.kicker">/ 07 · LE WEB, SANS JARGON</span></p>
       <h2 class="st-h2 st-h2--narrow" id="tech-h" data-i18n="tech.title">Trois choses que votre site doit faire.</h2>
     </div>
-    <div class="st-grid st-grid--tech">
+    <div class="st-grid st-grid--tech" data-row>
       <article class="st-tcard" data-reveal>
         <p class="st-label st-label--red">/ 01 · <span data-i18n="tech.items.0.k">VITESSE</span></p>
         <h3 class="st-h3" data-i18n="tech.items.0.t">Charger vite</h3>
@@ -2270,7 +2275,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
             <p class="st-label st-proj__lang st-proj__lang--note" data-i18n="proof.mc.lang">Acte 2 · 10 s · sans son, à lancer vous-même</p>
           </div>
         </div>
-        <ol class="st-proj__strip st-proj__strip--posters" data-i18n-aria="proof.mc.framesLabel" aria-label="Cinq affiches du projet, à ouvrir en grand">
+        <ol class="st-proj__strip st-proj__strip--posters" data-row data-i18n-aria="proof.mc.framesLabel" aria-label="Cinq affiches du projet, à ouvrir en grand">
           <li><a class="st-proj__zoom" href="img/mercury/gzana.full.webp" data-zoom="img/mercury/gzana.full.webp" data-set="mercury" data-w="1536" data-h="1536"><figure class="st-proj__frame st-proj__poster"><img src="img/mercury/gzana.webp" width="640" height="640" data-i18n-alt="proof.mc.frames.0" alt="Affiche GZANA, en rouge et noir : un enfant aux dreadlocks, une petite valise à la main, de dos face à une femme masquée en manteau rouge et colliers de perles, entourée de silhouettes aux yeux vides ; en marge, « No savior. No escape. Only choice. » et des lignes en latin et en japonais." loading="lazy" decoding="async"><figcaption dir="ltr"><span>01</span> · <span lang="en">GZANA</span></figcaption></figure></a></li>
           <li><a class="st-proj__zoom" href="img/mercury/autophagy.full.webp" data-zoom="img/mercury/autophagy.full.webp" data-set="mercury" data-w="1025" data-h="1535"><figure class="st-proj__frame st-proj__poster"><img src="img/mercury/autophagy.webp" width="427" height="640" data-i18n-alt="proof.mc.frames.1" alt="Affiche AUTOPHAGY, sur papier usé : un squelette couronné d’or enlace un jeune homme aux cheveux noirs dans une danse, devant un disque d’or, des colonnes en ruine et des crânes." loading="lazy" decoding="async"><figcaption dir="ltr"><span>02</span> · <span lang="en">AUTOPHAGY</span></figcaption></figure></a></li>
           <li><a class="st-proj__zoom" href="img/mercury/retrograde-eclipse.full.webp" data-zoom="img/mercury/retrograde-eclipse.full.webp" data-set="mercury" data-w="1086" data-h="1448"><figure class="st-proj__frame st-proj__poster"><img src="img/mercury/retrograde-eclipse.webp" width="480" height="640" data-i18n-alt="proof.mc.frames.2" alt="Affiche MERCURY RETROGRADE : Yasser aux longs cheveux et lunettes, foulard rouge et sacoche, flotte appuyé sur un immense porte-mine, devant une éclipse et des planètes en orbite, sur fond noir." loading="lazy" decoding="async"><figcaption dir="ltr"><span>03</span> · <span lang="en">MERCURY RETROGRADE · I</span></figcaption></figure></a></li>
@@ -2305,7 +2310,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
             <a class="st-btn st-btn--primary" href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener"><span data-i18n="proof.be.cta">Tous les projets sur Behance</span><span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span class="st-proj__arr" aria-hidden="true">&nbsp;↗</span></a>
           </div>
         </div>
-        <ul class="st-be__grid" data-i18n-aria="proof.be.listLabel" aria-label="Douze projets publiés sur Behance">
+        <ul class="st-be__grid" data-row data-i18n-aria="proof.be.listLabel" aria-label="Douze projets publiés sur Behance">
           <li class="st-be__item">
             <a class="st-be__cover" href="https://www.behance.net/gallery/233148849/BORDJ-STEEL-BRANDING-PROJECT" target="_blank" rel="noopener">
               <span class="st-be__img"><img src="img/studio/be/bordj-steel.webp" width="560" height="438" data-i18n-alt="proof.be.items.0.alt" alt="Affiche « Strong choice » : un éléphant assis sur un pilier d’acier, devant une charpente métallique." loading="lazy" decoding="async"></span>
@@ -2403,7 +2408,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       </div>
       <p class="st-lead st-lead--dark" data-i18n="lab.lead">Affiches, illustrations, expériences : des travaux personnels, et c’est là que naît la direction artistique de vos projets.</p>
     </div>
-    <ul class="st-lab__grid">
+    <ul class="st-lab__grid" data-row>
       <li><figure class="st-tile"><img src="img/studio/lab/p01.webp" width="560" height="560" data-i18n-alt="lab.pieces.0" alt="Portrait dessiné : un jeune homme aux cheveux en bataille ajuste ses lunettes" loading="lazy" decoding="async"><figcaption>P01</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/p02.webp" width="560" height="560" data-i18n-alt="lab.pieces.1" alt="Portrait sombre : un visage derrière des lunettes, un halo en cercle" loading="lazy" decoding="async"><figcaption>P02</figcaption></figure></li>
       <li><figure class="st-tile"><img src="img/studio/lab/y-trav3.webp" width="560" height="376" data-i18n-alt="lab.pieces.2" alt="Planche de coucher de soleil en trois cases : Yasser, Kūro et une cabane" loading="lazy" decoding="async"><figcaption>Y01</figcaption></figure></li>
@@ -2451,7 +2456,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
           <h3 class="st-h3l" id="diary-h" data-i18n="lab.diary.title">Yasser et Kūro, après les heures.</h3>
         </div>
       </div>
-      <ul class="st-diary__grid">
+      <ul class="st-diary__grid" data-row>
       <li><a class="st-diary__a" href="img/studio/m/am4.full.webp" data-zoom="img/studio/m/am4.full.webp" data-set="diary" data-w="1520" data-h="1019"><figure class="st-tile st-diary__tile"><img src="img/studio/m/am4.webp" width="960" height="644" data-i18n-alt="lab.diary.items.0" alt="Yasser à son bureau devant une fenêtre sur la ville de nuit, un stylo aux lèvres, Kūro endormi sur le clavier." loading="lazy" decoding="async"><figcaption dir="ltr"><span>J01</span> · <span lang="en" dir="ltr">4 a.m.</span></figcaption></figure></a></li>
       <li><a class="st-diary__a" href="img/studio/lab/y-revs.full.webp" data-zoom="img/studio/lab/y-revs.full.webp" data-set="diary" data-w="1264" data-h="848"><figure class="st-tile st-diary__tile"><img src="img/studio/lab/y-revs.webp" width="560" height="376" data-i18n-alt="lab.diary.items.1" alt="Yasser se tient la tête à côté de tours de classeurs et de papiers, Kūro assis sur l’ordinateur portable ouvert." loading="lazy" decoding="async"><figcaption dir="ltr"><span>J02</span> · <span lang="en" dir="ltr">Buried</span></figcaption></figure></a></li>
       <li><a class="st-diary__a" href="img/studio/m/clutter.full.webp" data-zoom="img/studio/m/clutter.full.webp" data-set="diary" data-w="1264" data-h="848"><figure class="st-tile st-diary__tile"><img src="img/studio/m/clutter.webp" width="960" height="644" data-i18n-alt="lab.diary.items.2" alt="Kūro assis sur la tablette graphique de Yasser pendant qu’il dessine autour de lui, des gobelets de café partout sur le bureau." loading="lazy" decoding="async"><figcaption dir="ltr"><span>J03</span> · <span lang="en" dir="ltr">Art director</span></figcaption></figure></a></li>
@@ -2543,7 +2548,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
         <h3 class="st-make__h" id="make-h" data-i18n="founder.make.title">CE QUE JE FAIS</h3>
         <p class="st-aside st-make__aside" data-i18n="founder.make.aside">design meets code.</p>
       </div>
-      <ul class="st-make__grid">
+      <ul class="st-make__grid" data-row>
         <li class="st-make__card">
           <figure class="st-make__fig"><img src="img/studio/make/designer-720.webp" srcset="img/studio/make/designer-480.webp 480w, img/studio/make/designer-720.webp 720w" sizes="(min-width:900px) 400px, 86vw" width="720" height="711" data-i18n-alt="founder.make.items.0.alt" alt="Yasser à une table à dessin, en train d’encrer un logo dans un carnet." loading="lazy" decoding="async"></figure>
           <h4 class="st-make__role" data-i18n="founder.make.items.0.role">DESIGNER</h4>
@@ -2636,6 +2641,37 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
     <p class="st-label st-foot__rights" data-i18n="footer.rights">© 2026 NUMIDEA LABS</p>
   </div></div>
 </footer>
+
+<!-- the sheet behind the Menu button (below 1160px): one <dialog>, as the viewer is -->
+<dialog class="st-menu" id="menu" data-i18n-aria="nav.aria" aria-label="Sections du studio">
+  <div class="st-menu__top">
+    <span class="st-label" data-i18n="nav.menu">Menu</span>
+    <button type="button" class="st-menu__x" data-menu-close data-i18n-aria="nav.menuClose" aria-label="Fermer le menu"><span aria-hidden="true">✕</span></button>
+  </div>
+  <nav class="st-menu__nav" data-i18n-aria="nav.aria" aria-label="Sections du studio">
+    <a href="#services"><span class="st-menu__n" aria-hidden="true">01</span><span data-i18n="nav.services">Services</span></a>
+    <a href="#preview"><span class="st-menu__n" aria-hidden="true">02</span><span data-i18n="nav.preview">Aperçu</span></a>
+    <a href="#pricing"><span class="st-menu__n" aria-hidden="true">03</span><span data-i18n="nav.pricing">Prix</span></a>
+    <a href="#work"><span class="st-menu__n" aria-hidden="true">04</span><span data-i18n="nav.work">Travaux</span></a>
+    <a href="#studio"><span class="st-menu__n" aria-hidden="true">05</span><span data-i18n="nav.studio">Studio</span></a>
+    <a href="#faq"><span class="st-menu__n" aria-hidden="true">06</span><span data-i18n="nav.faq">FAQ</span></a>
+  </nav>
+  <div class="st-menu__foot">
+    <div class="st-lang" role="group" data-i18n-aria="nav.lang" aria-label="Langue">
+      <button type="button" data-lang="fr" aria-pressed="true" lang="fr" data-i18n-title="nav.langFr" title="Français">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en" data-i18n-title="nav.langEn" title="English">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></button>
+    </div>
+    <a class="st-btn st-btn--primary" href="#contact" data-i18n="nav.cta">Demander un Aperçu</a>
+    <a class="st-btn st-btn--ghost" href="https://wa.me/213672412578" target="_blank" rel="noopener"><span data-i18n="contact.wa">WhatsApp</span><span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a>
+  </div>
+</dialog>
+
+<!-- the dock: the Aperçu and WhatsApp along the screen's foot on a phone, once the hero is behind (hidden over the Aperçu, the estimator and the contact, which carry their own) -->
+<div class="st-dock" id="dock" data-dock>
+  <a class="st-btn st-btn--primary" href="#contact" data-i18n="nav.cta">Demander un Aperçu</a>
+  <a class="st-dock__wa" href="https://wa.me/213672412578" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.2 18.6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z" fill="currentColor"/></svg><span class="st-sr" data-i18n="contact.wa">WhatsApp</span><span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span></a>
+</div>
 
 <!-- the one viewer for every case's posters and the Lab's diary (hub/app.js 8) -->
 <dialog class="st-lb" id="lightbox">

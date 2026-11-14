@@ -408,3 +408,21 @@ html.js .case-traveler .ct-end__list li:not(.is-seen)::before{content:"[ ]"}
   .case-traveler .ct-spine:hover,.case-traveler .ct-spine:focus-visible{transform:none}
   .case-traveler .ct-past summary,.case-traveler .ct-end__list li{transition:none}
 }
+
+/* ---------------- a phone: the deck's tiles are at most two columns wide ----------------
+   (hub/style.css, "the cases on a phone"). The lore's text takes the tile, the reality
+   tile stacks its picture over its terminal, and the shelf of thirty-four spines scrolls
+   inside its own tile instead of making the tile 1,770px wide. */
+@media (max-width:599px),(max-height:500px) and (orientation:landscape){
+  .case-traveler .ct-lore__txt{width:auto;inset-inline-end:12px}
+  .case-traveler .ct-lore__h{font-size:30px}
+  .case-traveler .ct-real{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,34%) auto auto auto minmax(0,1fr) auto}
+  .case-traveler .ct-real__pic{grid-row:1;border-inline-end:0;border-bottom:1px solid var(--c-line)}
+  .case-traveler .ct-real__hd{grid-column:1;grid-row:2;padding:10px 12px 0}
+  .case-traveler .ct-real__term{grid-column:1;grid-row:3;margin:8px 12px 0}
+  .case-traveler .ct-real__n{grid-column:1;grid-row:4;margin:8px 12px 0}
+  .case-traveler .ct-real__title{grid-column:1;grid-row:5;padding:4px 12px 0;font-size:28px}
+  .case-traveler .ct-real__ctl{grid-column:1;grid-row:6;padding:8px 12px 12px}
+  .case-traveler .ct-shelf__row{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding-inline:16px;overscroll-behavior-x:contain;scrollbar-width:thin}
+  .case-traveler .ct-spine{flex:none;width:44px;scroll-snap-align:start}
+}

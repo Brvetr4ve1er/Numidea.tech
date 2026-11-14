@@ -12,6 +12,8 @@
        controls a case may use (see the list there)
    9 · a link to #id lands on its target (the cases below the fold lay out
        late, so the first jump is short)
+  10 · the sheet behind the Menu button and the dock (a phone's foot bar)
+  11 · the rows that swipe on a phone: their place and their bar
    The rule of the page: nothing moves for longer than five seconds on its
    own, and nothing loops. Each motion answers an input or plays once when
    its section is first on screen; with prefers-reduced-motion: reduce
@@ -437,8 +439,17 @@
       if (mEl) { mEl.setAttribute('data-i18n', 'process.steps.' + i + '.m'); mEl.textContent = t('process.steps.' + i + '.m'); }
     };
     set(0);
+    // on a phone the five steps are a row that swipes: the step at the row's left edge is the one the card shows
+    var row = steps[0].parentNode, swipes = function () { return row.scrollWidth > row.clientWidth + 2; };
+    row.addEventListener('scroll', function () {
+      if (!swipes()) return;
+      var rr = row.getBoundingClientRect(), rtl = root.dir === 'rtl', cs0 = getComputedStyle(row), pad = parseFloat(rtl ? cs0.paddingRight : cs0.paddingLeft) || 0, best = 0, bd = 1e9;
+      steps.forEach(function (s, j) { var r = s.getBoundingClientRect(), d = Math.abs((rtl ? rr.right - r.right : r.left - rr.left) - pad); if (d < bd) { bd = d; best = j; } });
+      set(best);
+    }, { passive: true });
     if (!IO) return;
     var pio = new IntersectionObserver(function (es) {
+      if (swipes()) return;
       es.forEach(function (e) { inView[e.target.getAttribute('data-step')] = e.isIntersecting; });
       // the last step whose top has crossed the 55% line, read when one enters
       // or leaves (not on scroll): a tall window that shows all five does not
@@ -493,9 +504,11 @@
     var dz = $('[data-est-dz]'), eu = $('[data-est-eu]'), us = $('[data-est-us]'), w = $('[data-est-w]');
     var careBox = $('[data-est-care]'), careV = $('[data-est-care-v]');
     var kuro = $('[data-est-kuro]'), kImgs = $$('img', kuro), kLine = $('[data-est-line]');
+    var live = $('[data-est-live]', est), liveW = $('[data-est-live-w]', est);
     var shown = null, tw = 0, tier = 0;
     var paint = function (lo, hi) {
       dz.textContent = range(lo, hi, 'DZD'); eu.textContent = range(lo, hi, 'EUR'); us.textContent = range(lo, hi, 'USD');
+      if (live) live.textContent = dz.textContent;
     };
     var render = function (animate) {
       var m = M[st.type], q = quote(st.type, st.n, st.opts, st.rush);
@@ -503,6 +516,7 @@
       size.setAttribute('aria-valuetext', st.n + ' ' + t('pricing.units.' + m.u));
       unit.setAttribute('data-i18n', 'pricing.units.' + m.u); unit.textContent = t('pricing.units.' + m.u);
       w.textContent = q.wLo + '–' + q.wHi;
+      if (liveW) liveW.textContent = w.textContent;
       careBox.hidden = !st.care; careV.textContent = range(P.retainer[0], P.retainer[1], 'DZD');
       var nt = q.hi < 200000 ? 0 : q.hi < 600000 ? 1 : 2;
       if (nt !== tier) { tier = nt; kImgs.forEach(function (im) { im.classList.toggle('is-active', Number(im.getAttribute('data-tier')) === tier); }); }
@@ -621,12 +635,50 @@
   $$('.st-case').forEach(function (cs) {
     var track = $('[data-track]', cs);
     if (track) {
-      var bar = $('[data-track-bar]', cs);
-      var prog = function () { var max = track.scrollWidth - track.clientWidth; if (bar) bar.style.setProperty('--p', max > 0 ? Math.abs(track.scrollLeft) / max : 0); };
+      var bar = $('[data-track-bar]', cs), foot = $('.st-case__foot', cs);
+      var prevB = $$('[data-track-prev]', cs), nextB = $$('[data-track-next]', cs);
+      var tiles = [].slice.call(track.children);
+      // the position, "k / n" tiles seen so far, in the foot beside the bar
+      var nEl = null;
+      if (foot) { nEl = document.createElement('span'); nEl.className = 'st-case__n'; nEl.setAttribute('aria-hidden', 'true'); nEl.setAttribute('dir', 'ltr'); foot.insertBefore(nEl, foot.firstChild); }
+      var padL = function () { return parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0; };
+      // each tile's left edge in scroll coordinates, once per distinct value
+      var starts = function () {
+        var tr = track.getBoundingClientRect(), sl = track.scrollLeft, out = [];
+        tiles.forEach(function (el) { var x = Math.round(el.getBoundingClientRect().left - tr.left + sl - padL()); if (out.indexOf(x) < 0) out.push(x); });
+        return out.sort(function (a, b) { return a - b; });
+      };
+      var prog = function () {
+        var max = track.scrollWidth - track.clientWidth, sl = Math.abs(track.scrollLeft);
+        if (bar) bar.style.setProperty('--p', max > 0 ? sl / max : 0);
+        prevB.forEach(function (b) { b.setAttribute('aria-disabled', String(sl <= 2)); });
+        nextB.forEach(function (b) { b.setAttribute('aria-disabled', String(max - sl <= 2)); });
+        if (nEl) {
+          var tr = track.getBoundingClientRect(), k = 0;
+          tiles.forEach(function (el) { if (el.getBoundingClientRect().right <= tr.right + 4) k++; });
+          nEl.textContent = Math.max(1, k) + ' / ' + tiles.length;
+        }
+      };
       track.addEventListener('scroll', prog, { passive: true }); prog();
-      var by = function (d) { track.scrollBy({ left: d * track.clientWidth * .8, behavior: reduce ? 'auto' : 'smooth' }); };
-      $$('[data-track-prev]', cs).forEach(function (b) { b.addEventListener('click', function () { by(-1); }); });
-      $$('[data-track-next]', cs).forEach(function (b) { b.addEventListener('click', function () { by(1); }); });
+      if ('ResizeObserver' in window) new ResizeObserver(prog).observe(track);
+      // an arrow moves to the next tile's edge (a page of tiles on a wide track), not by a width that stops mid-tile
+      var by = function (d) {
+        var max = track.scrollWidth - track.clientWidth, cur = track.scrollLeft, xs = starts(), min = track.clientWidth >= 900 ? track.clientWidth * .7 : 8, to;
+        if (d > 0) { to = xs.filter(function (x) { return x > cur + min; })[0]; if (to == null) to = max; }
+        else { to = xs.filter(function (x) { return x < cur - min; }).pop(); if (to == null) to = 0; }
+        track.scrollTo({ left: Math.max(0, Math.min(max, to)), behavior: reduce ? 'auto' : 'smooth' });
+      };
+      prevB.forEach(function (b) { b.addEventListener('click', function () { by(-1); }); });
+      nextB.forEach(function (b) { b.addEventListener('click', function () { by(1); }); });
+      // the foot's bar is a scrubber: a touch or a click on it takes the track there, and it settles on a tile
+      var barP = $('.st-case__bar-p', cs), scrub = false;
+      var scrubTo = function (e) { var r = barP.getBoundingClientRect(), f = Math.max(0, Math.min(1, (e.clientX - r.left) / (r.width || 1))); track.scrollLeft = f * (track.scrollWidth - track.clientWidth); };
+      if (barP) {
+        barP.addEventListener('pointerdown', function (e) { scrub = true; barP.setPointerCapture(e.pointerId); track.classList.add('is-drag'); scrubTo(e); });
+        barP.addEventListener('pointermove', function (e) { if (scrub) scrubTo(e); });
+        var endScrub = function () { if (!scrub) return; scrub = false; track.classList.remove('is-drag'); };
+        barP.addEventListener('pointerup', endScrub); barP.addEventListener('pointercancel', endScrub);
+      }
       var drag = null;
       track.addEventListener('pointerdown', function (e) {
         if (e.pointerType !== 'mouse' || e.button !== 0 || e.target.closest('button,a,input,select,textarea,label')) return;
@@ -801,4 +853,80 @@
     };
     addEventListener('load', settle);
   })();
+
+  /* ---------------- 10 · the sheet and the dock ----------------
+     Below 1160px the bar has no room for the six sections: the Menu button
+     opens them in #menu, a <dialog> (Esc closes it, focus stays inside and
+     comes back to the button); a link in it closes it and the page goes
+     there. On a phone (under 680px, where the bar has no button) the dock
+     carries the Aperçu and WhatsApp along the screen's foot once the hero is
+     behind, and steps aside over the three blocks that carry their own: the
+     Aperçu band, the estimator and the contact card (and the footer). */
+  (function () {
+    var menu = $('#menu'), openBtn = $('[data-menu-open]');
+    if (menu && openBtn && typeof menu.showModal === 'function') {
+      var shut = function () { if (menu.open) menu.close(); };
+      openBtn.addEventListener('click', function () { menu.showModal(); openBtn.setAttribute('aria-expanded', 'true'); });
+      menu.addEventListener('close', function () { openBtn.setAttribute('aria-expanded', 'false'); openBtn.focus(); });
+      menu.addEventListener('click', function (e) { if (e.target === menu || e.target.closest('[data-menu-close]') || e.target.closest('.st-menu__nav a') || e.target.closest('.st-menu__foot .st-btn')) shut(); });
+      // a language switch inside the sheet changes the page behind it, which stays in view
+      matchMedia('(min-width:1160px)').addEventListener('change', function (m) { if (m.matches) shut(); });
+    } else if (openBtn) openBtn.hidden = true;
+
+    var dock = $('[data-dock]');
+    if (dock && IO) {
+      var hero = $('#top'), over = {}, heroGone = false;
+      var paint = function () {
+        var cover = over.preview || over.pricing || over.contact || over.foot;
+        dock.classList.toggle('is-on', heroGone && !cover);
+      };
+      var dio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroGone = !e.isIntersecting && e.boundingClientRect.bottom < 0;
+          else over[e.target.getAttribute('data-dock-for')] = e.isIntersecting;
+        });
+        paint();
+      });
+      dio.observe(hero);
+      [['#preview', 'preview'], ['#pricing', 'pricing'], ['#contact', 'contact'], ['.st-foot', 'foot']].forEach(function (p) {
+        var el = $(p[0]); if (!el) return; el.setAttribute('data-dock-for', p[1]); dio.observe(el);
+      });
+    }
+  })();
+
+  /* ---------------- 11 · rows ----------------
+     What is a grid on a desktop is a row that swipes on a phone (style.css,
+     the phone block): [data-row]. Here each row gets its place, "3 / 8"
+     and a bar under it, and, while it does scroll, a tab stop and the name
+     of its section so the keyboard can move it too. Nothing is added to a
+     row that does not scroll. */
+  $$('[data-row]').forEach(function (row) {
+    var items = [].slice.call(row.children);
+    var bar = document.createElement('div');
+    bar.className = 'st-rowbar'; bar.setAttribute('aria-hidden', 'true');
+    bar.innerHTML = '<span class="st-rowbar__n" dir="ltr"></span><span class="st-rowbar__p"><i></i></span>';
+    row.parentNode.insertBefore(bar, row.nextSibling);
+    var nEl = bar.firstChild, pEl = bar.lastChild.firstChild, sec = row.closest('section[aria-labelledby]');
+    var swipes = function () { return row.scrollWidth > row.clientWidth + 2; };
+    var paint = function () {
+      if (!swipes()) return;
+      var rr = row.getBoundingClientRect(), rtl = root.dir === 'rtl', max = row.scrollWidth - row.clientWidth, k = 0;
+      items.forEach(function (it) { var r = it.getBoundingClientRect(); if ((rtl ? r.left >= rr.left - 4 : r.right <= rr.right + 4)) k++; });
+      nEl.textContent = Math.max(1, k) + ' / ' + items.length;
+      bar.style.setProperty('--p', max > 0 ? Math.abs(row.scrollLeft) / max : 0);
+      pEl.parentNode.style.setProperty('--p', max > 0 ? Math.abs(row.scrollLeft) / max : 0);
+    };
+    var fit = function () {
+      if (swipes()) {
+        row.tabIndex = 0;
+        if (sec && !row.hasAttribute('aria-label') && !row.hasAttribute('aria-labelledby')) { row.setAttribute('aria-labelledby', sec.getAttribute('aria-labelledby')); row.setAttribute('data-named', ''); }
+      } else {
+        row.removeAttribute('tabindex');
+        if (row.hasAttribute('data-named')) { row.removeAttribute('aria-labelledby'); row.removeAttribute('data-named'); }
+      }
+      paint();
+    };
+    row.addEventListener('scroll', paint, { passive: true });
+    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(row); else { addEventListener('resize', fit); fit(); }
+  });
 })();

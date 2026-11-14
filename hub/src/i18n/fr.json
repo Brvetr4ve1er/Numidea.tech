@@ -17,7 +17,9 @@
     "cta": "Demander un Aperçu",
     "lang": "Langue",
     "langFr": "Français",
-    "langEn": "English"
+    "langEn": "English",
+    "menu": "Menu",
+    "menuClose": "Fermer le menu"
   },
   "sting": {
     "hud": "06:12 · BORDJ BOU ARRÉRIDJ · AUBE",
