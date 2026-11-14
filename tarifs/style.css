@@ -28,11 +28,11 @@ html[dir="rtl"] h1.sec{letter-spacing:0}
 @media (min-width:600px){html[dir="rtl"] .t-hero h1 em{white-space:nowrap}}
 
 /* The answer first: the title, the three tiers in one line each, the lead
-   and the two ways on. From 1100px the tiers take the right column, level
+   and the two ways on. From 760px the tiers take the right column, level
    with the title, where the half-width title left the hero empty. */
 .t-hero{display:grid;grid-template-columns:minmax(0,1fr);align-items:start}
 .t-hero>.sec-lead{margin-bottom:0}
-@media (min-width:1100px){
+@media (min-width:760px){
   .t-hero{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:calc(2 * var(--col-gap));
     grid-template-areas:"k a" "h a" "l a" "c a";grid-template-rows:auto auto auto 1fr}   /* a taller column of answers grows the last row only: spread over the four, it moved the title as the figures' face arrived */
   .t-hero>.kicker{grid-area:k}
@@ -86,7 +86,7 @@ html[dir="rtl"] .t-ans-n{letter-spacing:0;text-transform:none}
 html[dir="rtl"] .md-card h3{font-family:var(--font-ar-display)}
 /* the table's rows are cards on a phone (styles.css): Numidea's figure and
    Algeria's, the comparison that matters, come first */
-@media (max-width:599px){.mk-table tbody th{order:-3}.mk-table td.mk-nl{order:-2}.mk-table td[data-mk="dz"]{order:-1}}
+@media (max-width:959px){.mk-table tbody th{order:-3}.mk-table td.mk-nl{order:-2}.mk-table td[data-mk="dz"]{order:-1}}
 
 /* the navbar marks this page, as the scroll-spy marks a section on the home */
 .nav-links a[aria-current="page"]{color:var(--ice)}
@@ -115,7 +115,18 @@ html[dir="rtl"] .t-jump a{letter-spacing:0;text-transform:none}
    phone bar and the estimate panel 44% of a phone over the estimator */
 @media (max-width:599px),(max-height:520px){
   #pricing{--jump-h:0px}
-  #pricing>.t-jump{position:static;height:auto;flex-wrap:wrap;overflow:visible;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;-webkit-mask-image:none;mask-image:none}
+  #pricing>.t-jump{position:static;height:auto;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;margin-top:var(--s-5)}
+}
+/* a phone's row is one line that slides sideways (the chips are 44px, and
+   the two rows they wrapped to took 96px of a screen), fading at its end */
+@media (max-width:599px){
+  #pricing>.t-jump{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);scroll-snap-type:x proximity}
+  html[dir="rtl"] #pricing>.t-jump{-webkit-mask-image:linear-gradient(to left,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to left,#000 calc(100% - 28px),transparent)}
+  .t-jump a{scroll-snap-align:start}
+}
+/* a short screen (landscape) keeps the chips wrapping, in the flow */
+@media (min-width:600px) and (max-height:520px){
+  #pricing>.t-jump{flex-wrap:wrap;overflow:visible;-webkit-mask-image:none;mask-image:none}
   .t-jump a:last-child{margin-inline-end:0}
 }
 /* a chip lands its part below the navbar and the row */
@@ -172,10 +183,99 @@ html[dir="rtl"] .t-pl::after{text-align:start;
 @media print{.t-pl{display:none}}
 
 /* ---- the market table on a phone: the figure and its currency on one line ---- */
-@media (max-width:599px){
+@media (max-width:959px){
   .mk-table td{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:var(--s-2)}
   .mk-table td::before{flex:0 0 40%;margin-inline-end:var(--s-2)}
   .mk-table td .cur{flex:none}
   .mk-table td.mk-nl{box-shadow:inset 3px 0 0 var(--teal)}
   html[dir="rtl"] .mk-table td.mk-nl{box-shadow:inset -3px 0 0 var(--teal)}
+}
+
+/* ================= mobile and tablet pass (audit 2026-11-14) ================= */
+
+/* ---- the hero's answers on a phone (T6, T7): the currency stands against its
+   figure, and the rows wrap rather than widen a 280px layout ---- */
+@media (max-width:599px){
+  .t-ans .t-range b{min-width:0}
+}
+@media (max-width:330px){
+  .t-ans .t-range{white-space:normal}
+}
+
+/* ---- the market, below the chart's width (T2, T3): one card per project type,
+   on a tablet two to a row. The chart that needed a mouse for its figures is
+   gone here, and the table's four columns (a fourth of them cut off on every
+   tablet) with it. Each figure carries a thin bar along the foot of its row on
+   the chart's own logarithmic scale (the cell's --lo and --w, written by
+   scripts/build-tarifs.mjs from the cell's own range): Numidea's in teal, the
+   markets' faint, a range with no ceiling fading out. ---- */
+@media (max-width:959px){
+  #market .mkv{display:none}
+  .mk-table tbody{gap:var(--s-2)}
+  .mk-table tbody th{padding:var(--s-2) var(--s-4)}
+  .mk-table td{position:relative;padding:6px var(--s-4) 9px;column-gap:var(--s-3)}
+  .mk-table td::before{flex-basis:38%}
+  .mk-table td::after{content:"";position:absolute;bottom:0;inset-inline-start:var(--lo,0);width:var(--w,0);height:3px;border-radius:2px;
+    background:color-mix(in srgb,var(--body-strong) 40%,transparent)}
+  .mk-table td.mk-nl::after{height:4px;background:var(--teal)}
+  .mk-table td.mk-open::after{-webkit-mask-image:linear-gradient(90deg,#000 var(--solid,50%),transparent);mask-image:linear-gradient(90deg,#000 var(--solid,50%),transparent)}
+  html[dir="rtl"] .mk-table td.mk-open::after{-webkit-mask-image:linear-gradient(270deg,#000 var(--solid,50%),transparent);mask-image:linear-gradient(270deg,#000 var(--solid,50%),transparent)}
+  .mk-table caption{padding-bottom:var(--s-2)}
+}
+/* the cards of a phone (styles.css draws them under 600px), kept to 959px */
+@media (min-width:600px) and (max-width:959px){
+  .mk-scroll,html[dir="rtl"] .mk-scroll{overflow:visible;border:0;background:none;-webkit-mask-image:none;mask-image:none}
+  .mk-table{min-width:0;display:block}
+  .mk-table caption{display:block;padding-inline:0}
+  .mk-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+  .mk-table tbody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .mk-table tbody tr{display:flex;flex-direction:column;border:1px solid var(--hairline);border-radius:var(--r-md);background:color-mix(in srgb,var(--void) 40%,transparent);overflow:hidden}
+  .mk-table tbody th{display:block;position:static;width:auto;min-width:0;white-space:normal;border-bottom:1px solid var(--hairline)}
+  .mk-table td{display:flex;white-space:normal;border-bottom:1px solid var(--hairline)}
+  .mk-table td::before{content:attr(data-l);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--faint);font-weight:400}
+  .mk-table td.mk-nl::before{color:var(--teal-text)}
+  .mk-table tbody tr>*:last-child{border-bottom:0}
+}
+@media (forced-colors:active){
+  .mk-table td::after{forced-color-adjust:none;background:GrayText}
+  .mk-table td.mk-nl::after{forced-color-adjust:none;background:Highlight}
+}
+@media print{.mk-table td::after{display:none}}
+
+/* ---- the tiers on a tablet (T4): three abreast from 700px, as from 961px on
+   the home; the lists a single column in the narrower cards ---- */
+@media (min-width:700px) and (max-width:960px){
+  .tarifs .tiers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tarifs .tiers>.tier{display:grid;grid-template-rows:subgrid;grid-row:span 6;align-content:start}
+  .tarifs .t-list{display:grid;columns:auto}
+  .tarifs .t-list li{margin-bottom:0}
+  .tarifs .tier{padding:var(--s-4)}
+  .tarifs .tier .t-range{font-size:clamp(14px,2vw,19px)}
+  .tarifs .tier .t-pop{inset-inline-start:var(--s-4)}
+}
+/* the hero's two buttons stack in the narrower column of a tablet */
+@media (min-width:760px) and (max-width:1000px){
+  .tarifs-top{grid-template-columns:1fr}
+}
+
+/* ---- the models and what moves a quote, shorter on a phone (T5) ---- */
+@media (max-width:720px){
+  .md-grid{gap:var(--s-3);margin-bottom:var(--s-6)}
+  .md-card{padding:var(--s-4)}
+  .md-card .md-where{padding-top:var(--s-2)}
+  .md-sub{margin-bottom:var(--s-3)}
+}
+@media (min-width:340px) and (max-width:720px){
+  .md-drivers{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-3) var(--s-4)}
+  .md-drivers li{padding-inline-start:var(--s-3)}
+  .md-drivers span{font-size:var(--t-small);line-height:1.5}
+}
+
+/* ---- the estimate beside its options on a short, wide screen (T10): a phone on
+   its side (below 600px tall styles.css leaves the panel in the flow above the
+   options, out of sight while one ticks them). Two columns, the panel kept in
+   view by sticking beside them, under the navbar. ---- */
+@media (min-width:640px) and (max-height:599px){
+  .est-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}
+  .est-out{order:0;position:sticky;top:calc(var(--nav-h) + var(--s-3));align-self:start;border-bottom:0;border-inline-start:1px solid var(--hairline)}
 }

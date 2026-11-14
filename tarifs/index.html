@@ -171,7 +171,7 @@
              the script ran, and hiding it moved the whole bar (a layout
              shift of 0.01 at 1280). js-only, since a bar this full needs
              the script's measure. -->
-        <a class="nav-cta js-only" href="../#apercu" data-i18n="mbar.cta" hidden>Mon Aperçu</a>
+        <a class="nav-cta js-only" href="../#contact" data-apercu data-i18n="mbar.cta" hidden>Mon Aperçu</a>
         <!-- the menu's open and close marks are drawn (24-grid, stroke 1.5),
              not typed: the system's ☰ and × came in whatever face the
              platform had for them, at a different weight on every phone -->
@@ -183,7 +183,24 @@
 
 <!-- mobile overlay menu (the home page's) -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" data-i18n-aria="ui.menu">
-  <button type="button" class="close" aria-label="Fermer" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <!-- one row at the top, where a thumb that opened the menu is: the
+       language, the theme, the close button. (They were under the eight links,
+       and on a phone the theme was below the fold.) -->
+  <div class="menu-top">
+    <div class="lang" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
+      <a href="../tarifs/" hreflang="fr" lang="fr" aria-label="Français (FR)" aria-current="page">FR</a>
+      <a href="../en/tarifs/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
+      <a href="../ar/tarifs/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
+    </div>
+    <!-- the theme toggle again, for phones: the header's goes below 960px
+         to make room for the language switch (styles.css), and this one takes
+         over inside the menu. app.js wires every .theme-switch on the page;
+         applyTheme keeps both in step. -->
+    <div class="theme-switch js-only">
+      <button type="button" class="theme-btn" data-to="daylight" aria-label="Passer en Daylight (clair)" data-i18n-aria="theme.toDaylight"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg></button>
+    </div>
+    <button type="button" class="close" aria-label="Fermer" data-i18n-aria="ui.close"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
   <nav aria-label="Sections" data-i18n-aria="ui.sections">
   <a href="../#work" data-i18n="nav.work">Réalisations</a>
   <a href="../#services" data-i18n="nav.services">Services</a>
@@ -193,24 +210,12 @@
   <a href="../#faq" data-i18n="nav.faq">FAQ</a>
   <a href="../#contact" data-i18n="nav.contact">Contact</a>
   </nav>
-  <div class="lang" role="group" aria-label="Langue" data-i18n-aria="ui.lang">
-    <a href="../tarifs/" hreflang="fr" lang="fr" aria-label="Français (FR)" aria-current="page">FR</a>
-    <a href="../en/tarifs/" hreflang="en" lang="en" aria-label="English (EN)">EN</a>
-    <a href="../ar/tarifs/" hreflang="ar" aria-label="العربية (ع)"><svg class="ayn" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M16.2 6.2C14.4 4.2 9.8 4.4 9.2 7.8C8.7 10.6 11.6 12 15.2 11.3C9.4 12.4 4.8 15 5.6 18.6C6.4 22.2 13.6 22.6 18.6 18.6"/></svg></a>
-  </div>
-  <!-- the theme toggle again, for phones: the header's goes below 960px
-       to make room for the language switch (styles.css), and this one takes
-       over inside the menu. app.js wires every .theme-switch on the page;
-       applyTheme keeps both in step. -->
-  <div class="theme-switch js-only">
-    <button type="button" class="theme-btn" data-to="daylight" aria-label="Passer en Daylight (clair)" data-i18n-aria="theme.toDaylight"><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg></button>
-  </div>
   <!-- the two ways to start, pinned at the foot of the menu (styles.css
        .menu-acts): eight section links and no action left the visitor who
        opened the menu to act with nothing to press. The same two links as
        the phone bar (.m-contact), which is hidden while the menu is open. -->
   <div class="menu-acts">
-    <a class="btn btn-primary" href="../#apercu" data-i18n="mbar.cta">Mon Aperçu</a>
+    <a class="btn btn-primary" href="../#contact" data-apercu data-i18n="mbar.cta">Mon Aperçu</a>
     <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">
       <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
       <span data-i18n="footer.wa">WhatsApp</span>
@@ -495,15 +500,15 @@
           </thead>
           <tbody>
             <tr data-row="vitrine"><th scope="row" data-i18n="price.tyVitrine">Vitrine</th>
-              <td data-l="Numidea" data-mk="nl" class="mk-nl">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl" style="--lo:14.20%;--w:10.08%">90 000 –⁠ 160 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz" style="--lo:3.91%;--w:12.14%">50 000 –⁠ 100 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr" style="--lo:30.37%;--w:24.28%">1 500 –⁠ 6 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us" style="--lo:28.28%;--w:36.43%">1 500 –⁠ 12 000 <span class="cur">$</span></td></tr>
             <tr data-row="surmesure"><th scope="row" data-i18n="price.tyCustom">Site sur mesure</th>
-              <td data-l="Numidea" data-mk="nl" class="mk-nl">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl" style="--lo:26.35%;--w:14.84%">180 000 –⁠ 420 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz" style="--lo:26.35%;--w:13.99%">180 000 –⁠ 400 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr" class="mk-open" style="--lo:54.66%;--w:16.05%;--solid:55.75%">6 000 –⁠ 10 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us" style="--lo:52.56%;--w:21.09%">6 000 –⁠ 20 000 <span class="cur">$</span></td></tr>
             <tr data-row="ecommerce"><th scope="row" data-i18n="price.tyShop">E-⁠commerce</th>
-              <td data-l="Numidea" data-mk="nl" class="mk-nl">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl" style="--lo:29.86%;--w:16.05%">220 000 –⁠ 550 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz" style="--lo:23.15%;--w:33.23%">150 000 –⁠ 1 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr" style="--lo:35.41%;--w:40.33%">2 000 –⁠ 20 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us" style="--lo:49.37%;--w:31.39%">5 000 –⁠ 30 000 <span class="cur">$</span></td></tr>
             <tr data-row="app"><th scope="row" data-i18n="price.tyApp">Application web</th>
-              <td data-l="Numidea" data-mk="nl" class="mk-nl">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl" style="--lo:42.40%;--w:17.18%">450 000 –⁠ 1 200 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz" style="--lo:28.19%;--w:40.33%">200 000 –⁠ 2 000 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr" style="--lo:63.60%;--w:28.19%">10 000 –⁠ 50 000 <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us" class="mk-open" style="--lo:73.65%;--w:26.35%;--solid:73.04%">20 000 –⁠ 60 000+ <span class="cur">$</span></td></tr>
             <tr data-row="identite"><th scope="row" data-i18n="price.tyBrand">Identité visuelle</th>
-              <td data-l="Numidea" data-mk="nl" class="mk-nl">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
+              <td data-l="Numidea" data-mk="nl" class="mk-nl" style="--lo:14.20%;--w:12.14%">90 000 –⁠ 180 000 <span class="cur">DA</span></td><td data-l="Algérie" data-mk="dz" style="--lo:12.14%;--w:11.01%">80 000 –⁠ 150 000 <span class="cur">DA</span></td><td data-l="France" data-mk="fr" class="mk-open" style="--lo:26.46%;--w:32.10%;--solid:77.87%">1 200 –⁠ 5 000+ <span class="cur">€</span></td><td data-l="États-Unis" data-mk="us" style="--lo:9.04%;--w:71.72%">500 –⁠ 30 000 <span class="cur">$</span></td></tr>
           </tbody>
         </table>
       </section>
@@ -652,11 +657,17 @@
 <!-- phones: the two ways to start, kept in reach past the first screen (the
      home page's bar; both lead to the home page's #contact and WhatsApp) -->
 <nav class="m-contact" aria-label="Contact rapide" data-i18n-aria="mbar.aria">
-  <a class="btn btn-primary" href="../#apercu" data-i18n="mbar.cta">Mon Aperçu</a>
+  <a class="btn btn-primary m-main" href="../#contact" data-apercu data-i18n="mbar.cta">Mon Aperçu</a>
   <a class="btn wa-link btn-teal" href="https://wa.me/213672412578?text=Bonjour%20Numidea%20Labs%20%E2%80%94%20j'aimerais%20parler%20d'un%20projet." target="_blank" rel="noopener">
     <span class="wa-i" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3a8.5 8.5 0 1 1 15.4-4.6Z"/><path d="M8.9 8.4c.3-.7.6-.7.9-.7h.6c.2 0 .5 0 .7.6l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.4 0 .7a6 6 0 0 0 2.8 2.4c.3.1.5.1.7-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.5.3.5.5 0 .9-.6 1.7-1.4 1.9a3 3 0 0 1-1.6 0 11 11 0 0 1-6.4-5.4 3.4 3.4 0 0 1-.2-2.6Z"/></svg></span>
     <span data-i18n="footer.wa">WhatsApp</span>
   </a>
+  <!-- while the estimator is on screen the bar carries its figure and its one
+       action (app.js fills .m-price from #est-range and sends the button to
+       #est-cta): the estimate is in view whichever option the thumb is on,
+       and nothing else is stuck to the top of the screen -->
+  <p class="m-price" aria-hidden="true"><b class="mp-n"></b><span class="mp-w"></span></p>
+  <a class="btn btn-primary m-estgo" href="../#contact" data-i18n="price.estCta" tabindex="-1">Demander mon prix ferme <span aria-hidden="true">→</span></a>
 </nav>
 
 <!-- this page's dictionary (one language), then the script that reads it;

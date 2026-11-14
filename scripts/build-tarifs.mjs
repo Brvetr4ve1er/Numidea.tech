@@ -277,6 +277,43 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
     </div>
 `;
 
+/* The market table's bars, for a phone. Under 600px the table is one card
+   per project type, and each figure carries a thin bar along the foot of its
+   row, drawn on the one logarithmic price scale of the chart that is hidden
+   there (app.js 13b: the scale runs from the lowest low / 1.2 to the highest
+   high x 1.1, an open range x 1.5; a price in euros or dollars at the
+   official rate of the page's own FX table). The bars read the table's own
+   figures, so they cannot disagree with it; the share and the width are the
+   cell's custom properties (--lo, --w), and a range with no ceiling fades out
+   as the chart's does. The currency switch rewrites a cell's text and leaves
+   these alone, as it should: the ratios do not change with the currency. */
+const FX = { dz: 1, nl: 1, fr: 151, us: 134 };
+function marketBars(html) {
+  const cell = /<td data-l="@@mk\.col(\w+)@@" data-mk="(nl|dz|fr|us)"([^>]*)>([^<]*)<span class="cur">/g;
+  const OPEN = 1.5;
+  const seen = [];
+  html.replace(cell, (m, c, lane, attrs, txt) => {
+    const [lo, hi] = txt.split('\u2013').map((x) => +x.replace(/\D/g, ''));
+    if (!(lo > 0 && hi > 0)) throw new Error(`the market cell "${txt}" is not a range`);
+    seen.push({ lane, lo: lo * FX[lane], hi: hi * FX[lane], open: /\+\s*$/.test(txt) });
+    return m;
+  });
+  if (!seen.length) throw new Error('the market table has no cells to draw');
+  let v0 = 40000, v1 = 1e7;
+  for (const r of seen) { v0 = Math.min(v0, r.lo / 1.2); v1 = Math.max(v1, r.hi * (r.open ? OPEN : 1.1)); }
+  const at = (v) => Math.max(0, Math.min(1, (Math.log(v) - Math.log(v0)) / (Math.log(v1) - Math.log(v0))));
+  const pc = (x) => (x * 100).toFixed(2) + '%';
+  return html.replace(cell, (m, c, lane, attrs, txt) => {
+    const [lo, hi] = txt.split('\u2013').map((x) => +x.replace(/\D/g, '')).map((x) => x * FX[lane]);
+    const open = /\+\s*$/.test(txt);
+    const a = at(lo), b = open ? at(hi * OPEN) : at(hi);
+    const w = Math.max(b - a, 0.008);
+    const solid = open ? ` --solid:${pc((at(hi) - a) / (b - a))};` : '';
+    const cls = attrs.includes('class="') ? attrs.replace('class="', `class="${open ? 'mk-open ' : ''}`) : (open ? `${attrs} class="mk-open"` : attrs);
+    return m.replace(`data-mk="${lane}"${attrs}>`, `data-mk="${lane}"${cls} style="--lo:${pc(a)};--w:${pc(w)};${solid.trim()}">`.replace(';"', '"'));
+  });
+}
+
 /* the home's estimator, unfolded: the guide is about prices, so the home's
    panel frame (.capabilities, a framed <details> around the framed
    estimator) and its summary's chevron go, and the summary holds the
@@ -457,7 +494,7 @@ ${estimator}
 
     <!-- Reference material: market comparison, billing models, cost drivers.
          Open: this page is where whoever wants to check the numbers comes. -->
-${MARKET.replace(/\n$/, '').replace(/@@([\w.]+)@@/g, (m, k) => esc(dicts[lang][k]))}
+${marketBars(MARKET).replace(/\n$/, '').replace(/@@([\w.]+)@@/g, (m, k) => esc(dicts[lang][k]))}
 
     <!-- The home page's FAQ entries about money (scripts/build-tarifs.mjs
          FAQ_ON_TARIFS), answers and icons included. -->
