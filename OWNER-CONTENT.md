@@ -18,7 +18,7 @@ what the Studio page changed from your design).
 | 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08 and 2026-11-11 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11 and 2026-11-14 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
@@ -468,6 +468,15 @@ are not listed as new; what follows is new or changed.
   the closing list);
 - the brand books are French only (AlmaFlow, Traveler) and English only
   (Numidea's identity), like the bible, so they carry no Arabic to review.
+
+Written or changed on 2026-11-14 (the mobile pass; none read by a native
+speaker):
+- AR review: `prev.more` («كل الخطوات بالتفصيل», the home's folded Aperçu steps);
+- AR review: `ui.zoomIn` («المس للتكبير»), `ui.zoomOut` («المس للملاءمة مع
+  الشاشة») and `ui.tech` («البطاقة التقنية») on the project sheets
+  (`scripts/scene-data.mjs`);
+- AR review: the Studio's `nav.menu` («القائمة») and `nav.menuClose` («أغلق
+  القائمة») (`hub/src/i18n/ar.json`).
 
 Owner to confirm (not Arabic): the VOIDSPLUNKER dossier on the Studio says only
 what the bible page prints; confirm that the character bible is a studio

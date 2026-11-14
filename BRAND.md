@@ -1408,6 +1408,18 @@ Values read from `assets/styles.css` (the Fleet 6 blocks at its end).
   w 1280); row 02's window is 1040x650, so the page ends under the buttons.
 - **Height budget** (fr, fonts loaded): phone 390 13,217 (limit 13,500), desktop
   1440 8,462 (limit 9,200), both themes.
+- **Height budget after the mobile pass (2026-11-14)**: phone 390 under 8,800 px
+  (8,361 measured) and tablet 768 under 8,300 (7,895), held by
+  `design-check.mjs`; the 13,500 limit above is retired. On phones the bottom
+  bar carries the estimate, the Aperçu path is three lines with the steps
+  folded (`prev.more`), the tiers show one at a time and the services are rows.
+- **Other pages on phones (2026-11-14)**: the price guide's market cards draw
+  their log bars from `marketBars()` in `scripts/build-tarifs.mjs`; the sheets
+  fold the "Fiche technique" from `scene/app.js` (`ui.tech`) and the viewer
+  fits 100dvh with tap to zoom (`ui.zoomIn`, `ui.zoomOut`); the 404's dunes
+  come from `--dunes-404` (`assets/illus/dunes-404.webp`). The bible and the
+  brand books share `hub/brand/book.js` and `book.css`: a Plates chip,
+  thumbnail grids opening a post viewer, swipe rows, folded rule tables.
 
 ## hub/ — the Studio page
 
@@ -1482,6 +1494,22 @@ decoration. The cases load Montserrat, Sora, DM Sans, Manrope and Space Mono
 families in `hub/fonts/OFL.txt` (with the copyright line from each file's
 name table), Permanent Marker under the Apache License 2.0 in
 `hub/fonts/LICENSE-permanent-marker.txt`; NOTICE.md lists them.
+
+**Loading on phones (2026-11-14).** `build-hub.mjs` writes `hub/fonts/studio.css`
+(the core faces) and one `hub/fonts/lazy-<slug>.css` per case from
+`fonts.css`, which stays whole for the bible and the brand books; a case's
+faces are asked for when the case comes within 150% of the viewport, not on
+`content-visibility`. Each language loads its own dictionary
+(`hub/i18n.{fr,en,ar}.js`, async; `hub/i18n.js` is still built for the gates),
+the rig frames wait for the first touch on screens without hover, the two
+loops are cut by `scripts/build-hub-loops.mjs` (phones get the stills
+`kuro-sleep-small-still.webp` and `yasser-wave-small-still.webp`), and the
+sting is skipped on 2G/3G or save-data links. Below 1160 px a Menu button
+opens the sections as a sheet (`nav.menu`, `nav.menuClose`); below 680 a dock
+carries the Aperçu and WhatsApp once the hero has gone. `npm run hub:mobile`
+(`scripts/check-hub-mobile.mjs`, part of `npm run verify`) holds overflow at
+280–430 px in three languages, tiles inside their tracks, the bubble, the
+arrows, the menu and the viewer.
 
 **Motion** (nothing loops; everything is at most 5 s). The intro sting plays
 once per session in CSS keyframes and is gone by 2.6 s; any key skips it; it
