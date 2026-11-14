@@ -12,13 +12,14 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PAGES } from './site.mjs';
 import { withCsp, cspKind } from './lib/csp.mjs';
+import { withGtag } from './lib/gtag.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const stamp = new Date().toISOString().replace(/[-:TZ]/g, '').slice(0, 12);
 
 for (const f of PAGES) {
   const p = join(ROOT, f);
-  const next = withCsp(readFileSync(p, 'utf8').replace(/\?v=\d+/g, '?v=' + stamp), cspKind(f));
+  const next = withCsp(withGtag(readFileSync(p, 'utf8').replace(/\?v=\d+/g, '?v=' + stamp)), cspKind(f));
   writeFileSync(p, next);
   console.log(`✓ ${f} → ?v=${stamp}`);
 }

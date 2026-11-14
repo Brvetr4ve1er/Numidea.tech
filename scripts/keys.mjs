@@ -152,7 +152,7 @@
  */
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { serve, launch } from './lib/serve.mjs';
+import { serve, launch, isStubbed } from './lib/serve.mjs';
 import { watchCsp } from './lib/csp-watch.mjs';
 import { loopState } from './lib/loop-state.mjs';
 import { loadDicts } from './lib/i18n.mjs';
@@ -1099,11 +1099,12 @@ if (pages.includes('index.html')) {
   const bad = [];
   const { p, errs, csp, close } = await open(1280, 900);
   const posts = [];
-  p.on('request', (r) => { if (r.method() === 'POST') posts.push(r.url()); });
+  p.on('request', (r) => { if (r.method() === 'POST' && !isStubbed(r.url())) posts.push(r.url()); });
   await p.goto(url('index.html', 'fr'), { waitUntil: 'networkidle' });
   if (await p.evaluate(() => !!(window.NUMIDEA_SUPABASE_URL || window.NUMIDEA_SUPABASE_KEY))) bad.push('the page carries a lead-store switch that is on');
   const policy = await p.evaluate(() => (document.querySelector('meta[http-equiv="Content-Security-Policy"]') || {}).content || '');
-  if (!/connect-src 'self';/.test(policy)) bad.push("the policy opens connect-src beyond 'self': " + policy.replace(/^[\s\S]*connect-src/, 'connect-src').replace(/;[\s\S]*$/, ''));
+  // the lead store is off: connect-src is 'self' and the Google tag's three beacon hosts (csp-floor.mjs), nothing else
+  if (!/connect-src 'self' https:\/\/\*\.google-analytics\.com https:\/\/\*\.analytics\.google\.com https:\/\/\*\.googletagmanager\.com;/.test(policy)) bad.push("the policy opens connect-src beyond 'self' and the Google tag's hosts: " + policy.replace(/^[\s\S]*connect-src/, 'connect-src').replace(/;[\s\S]*$/, ''));
   await p.fill('#f-name', 'Test'); await p.fill('#f-email', 'ada@example.com'); await p.fill('#f-message', 'Bonjour');
   await p.focus('#contact-form [type="submit"]'); await p.keyboard.press('Enter');
   await wait(1000);

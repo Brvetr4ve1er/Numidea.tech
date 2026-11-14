@@ -56,6 +56,11 @@
  *                        no unhashed inline script, inline handler or javascript: URL;
  *                        both policies stand on scripts/lib/csp-floor.mjs; the mirrors
  *                        send the same headers, with frame-ancestors and HSTS
+ *  16b. Google tag    — every page (PAGES, not the WorkspaceHQ embeds) carries exactly one
+ *                        copy of scripts/lib/gtag.mjs's snippet, container GTM-PMF7RWVK, right
+ *                        after <head>; run in a sandbox it pushes the consent default with
+ *                        everything denied (security_storage aside) and nothing else but
+ *                        'js'; no page ever updates consent
  *  17. asset budgets  — every published file under its folder's (or its own) byte
  *                        ceiling, every share card (og.jpg, og-en.jpg, og-ar.jpg…) ≤ 300 kB,
  *                        the whole published set under its total, and no two published
@@ -89,6 +94,7 @@ import { renderLegal, markerRegions } from './build-legal.mjs';
 import { LEGAL, missing as legalMissing } from './legal-data.mjs';
 import { validate as validateVoices, VOICE_CLIENTS } from './voices-data.mjs';
 import { bakeFr, bakeLang } from './build-lang.mjs';
+import { GTAG_ID, GTAG_SRC, GTAG_INLINE, GTAG_INLINE_TAG, GTAG_LOADER_TAG } from './lib/gtag.mjs';
 import { loadDicts, norm, I18N_FILES } from './lib/i18n.mjs';
 import { UI as SCENE_UI, PROJECTS as SCENE_PROJECTS } from './scene-data.mjs';
 
@@ -954,7 +960,9 @@ runtimeDeps.length
       if (tag && /^(svg|math)$/i.test(tag) && !/(?:^|[\s"'])\/$/.test(tAttrs)) foreign++;
       const name = (sAttrs !== undefined ? 'script' : raw || tag).toLowerCase();
       const a = attrsOf(sAttrs ?? rAttrs ?? tAttrs);
-      if (governedAt < 0 && ['script', 'style', 'link', 'base'].includes(name)) governedAt = t.index;
+      // the Google tag comes first by design (scripts/lib/gtag.mjs; 16b holds its exact text)
+      const isGtag = name === 'script' && (sText === GTAG_INLINE || (a.src === GTAG_SRC && 'async' in a && sText === ''));
+      if (governedAt < 0 && !isGtag && ['script', 'style', 'link', 'base'].includes(name)) governedAt = t.index;
       if (name === 'meta' && (a['http-equiv'] || '').toLowerCase() === 'content-security-policy') { metas++; if (metaAt < 0) metaAt = t.index; }
       for (const [k, v] of Object.entries(a)) {
         // the embeds are Claude Design templates: onClick="{{ goHome }}" is a
@@ -1006,6 +1014,44 @@ runtimeDeps.length
   }
   cspErr.length ? bad('content security policy: ' + cspErr.join('; '))
     : ok(`content security policy: ${nPages} pages equal withCsp, ${nScripts} inline scripts all hashed, no inline handlers, every policy on its floor (directives known and given once, script-src 'self' and hashes only, object-src 'none', base-uri 'self'); mirrors send frame-ancestors and HSTS`);
+}
+
+/* 16b — the Google tag */
+// Owner decision 2026-11-14: container GTM-PMF7RWVK, Consent Mode denied for
+// good, no cookie bar. Each page of PAGES (the legal page once published; its
+// preview render stands in for it until then) holds exactly one copy of the
+// snippet scripts/lib/gtag.mjs writes, immediately after <head>, and nothing
+// on it ever updates consent. The inline script runs in a bare sandbox and
+// what it pushes is read: one consent default, every storage and ad signal
+// denied but security_storage, then js. The WorkspaceHQ embeds (EXTRA_PAGES:
+// iframes inside workspacehq/, a tag there would count a visit twice) carry none.
+{
+  const errs = [];
+  const targets = PAGES.map((f) => [f, read(f)]);
+  if (!LEGAL_PUBLISHED) targets.push(['legal (renderLegal preview)', renderLegal(LEGAL, { preview: true })]);
+  const count = (h, needle) => h.split(needle).length - 1;
+  const WANT = { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', functionality_storage: 'denied', personalization_storage: 'denied', security_storage: 'granted' };
+  for (const [f, html] of targets) {
+    if (count(html, GTAG_INLINE_TAG) !== 1 || count(html, GTAG_LOADER_TAG) !== 1) { errs.push(`${f}: wants exactly one copy of the Google tag (${count(html, GTAG_INLINE_TAG)} inline, ${count(html, GTAG_LOADER_TAG)} loader)`); continue; }
+    const head = /<head(?=[\s>])[^>]*>(\r?\n)?/i.exec(html);
+    if (!head || !head[1] || !html.slice(head.index + head[0].length).replace(/\r\n/g, '\n').startsWith(GTAG_INLINE_TAG + '\n' + GTAG_LOADER_TAG + '\n'))
+      errs.push(`${f}: the Google tag is not immediately after <head>`);
+    const ids = [...html.matchAll(/GTM-[A-Z0-9]+/g)].map((m) => m[0]);
+    if (ids.some((i) => i !== GTAG_ID)) errs.push(`${f}: another Tag Manager container than ${GTAG_ID}`);
+    // outside the CSP meta, the loader is the only mention of a Google host
+    if ((html.replace(/<meta http-equiv="Content-Security-Policy"[^>]*>/, '').match(/googletagmanager\.com|google-analytics\.com|analytics\.google\.com/g) || []).length !== 1)
+      errs.push(`${f}: a Google host outside the tag and the CSP meta`);
+    if (/['"]consent['"]\s*,\s*['"]update['"]|consent\s*:\s*['"]update['"]/.test(html)) errs.push(`${f}: updates Google consent (it is denied for good: a consent bar must come first)`);
+    const win = { Date, Array }; win.window = win;
+    try { runInNewContext(GTAG_INLINE, win, { timeout: 200 }); } catch (e) { errs.push(`${f}: the Google tag's inline script does not run (${e.message})`); continue; }
+    const [first, second, ...rest] = Array.from(win.dataLayer || [], (a) => Array.from(a));
+    const got = first && first[0] === 'consent' && first[1] === 'default' ? first[2] : null;
+    if (!got || Object.keys(WANT).some((k) => got[k] !== WANT[k]) || Object.keys(got).length !== Object.keys(WANT).length) errs.push(`${f}: the consent default is not "denied" on every signal but security_storage`);
+    if (!second || second[0] !== 'js' || rest.length) errs.push(`${f}: the Google tag pushes more than the consent default and js`);
+  }
+  for (const f of EXTRA_PAGES) if (read(f).includes(GTAG_ID)) errs.push(`${f}: an embed must not carry the Google tag (an iframe inside workspacehq/: it would count a visit twice)`);
+  errs.length ? bad('google tag: ' + errs.join('; '))
+    : ok(`google tag: ${targets.length} pages carry exactly one copy of the ${GTAG_ID} snippet right after <head>, consent default denied (security_storage aside), never updated; the ${EXTRA_PAGES.length} embeds carry none`);
 }
 
 /* 17 — asset budgets */

@@ -93,7 +93,7 @@
 import sharp from 'sharp';
 import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
-import {serve,launch} from './lib/serve.mjs';
+import {serve,launch,isStubbed} from './lib/serve.mjs';
 import {watchCsp} from './lib/csp-watch.mjs';
 import {loopState} from './lib/loop-state.mjs';
 import {deployFiles} from './lib/deploy-files.mjs';
@@ -220,7 +220,8 @@ const run=async(label,path,o={})=>{
       nodes:r.violations.flatMap(v=>v.nodes.slice(0,6).map(n=>v.id+' '+n.target.join(' ')+' '+n.html.replace(/\s+/g,' ').slice(0,140))),
       i:r.incomplete.filter(v=>v.id!=='color-contrast').map(v=>v.id+'('+v.nodes.length+')')}},axeOff);
   const ax=axr.v;if(axr.i.length)warnings.push(label+': '+axr.i.join(', '));
-  const third=await p.evaluate(o=>performance.getEntriesByType('resource').filter(r=>!r.name.startsWith(o)).length,B);
+  // the Google tag's hosts are answered with a 204 by launch() (lib/serve.mjs) and are the only third-party hosts allowed: the page may ask for them, nothing else
+  const third=(await p.evaluate(o=>performance.getEntriesByType('resource').filter(r=>!r.name.startsWith(o)).map(r=>r.name),B)).filter(n=>!isStubbed(n)).length;
   // An Arabic face on a page in another language: styles.css's [lang="ar"]
   // rule pulls IBM Plex Sans Arabic (42 KB) for one marked glyph. The switch's
   // ع is drawn since 2ad9e7d, and contact.vReply lost its <span lang="ar">ع</span>
@@ -319,6 +320,7 @@ const nested404=async(label,{site,path,js=true,theme,lang,emulate=false})=>{
     const staged=stage404(readFileSync(join(ROOT,'404.html'),'utf8'),pagesRoot);
     await ctx.route(()=>true,r=>{
       const u=new URL(r.request().url());
+      if(isStubbed(u.href))return r.fallback();   // the Google tag's hosts: launch() answers them
       if(u.origin!==new URL(site).origin)return r.abort();
       if(!u.pathname.startsWith(pagesRoot))return r.fulfill({status:404,body:''});
       let rel=decodeURIComponent(u.pathname.slice(pagesRoot.length));

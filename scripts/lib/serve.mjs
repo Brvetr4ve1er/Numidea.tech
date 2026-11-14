@@ -10,6 +10,7 @@
  * Chromium: CHROMIUM_PATH if set; else the newest of this environment's
  * pre-installed builds if there is one; else Playwright's own (CI, a
  * contributor's machine).
+ * Every context also stubs the Google tag's hosts (isStubbed below).
  * Always with --font-render-hinting=none. Without it, the binary decides
  * where text wraps: Playwright's default headless shell (what CI gets)
  * forces full hinting, which rounds glyph advances to whole pixels, while the
@@ -96,12 +97,34 @@ function localChrome() {
    opened through launch() starts with the dark scheme; a run that wants the
    other (keys.mjs's first-visit tests) passes colorScheme itself, and a
    stored theme beats either. */
+/* The Google tag (scripts/lib/gtag.mjs) is the one runtime third-party request
+   the pages make, and its hosts are the only ones the CSP lets through. The
+   gates must not depend on the network, so every context opened through
+   launch() answers those hosts with an empty 204 before the request leaves
+   the machine: runs stay deterministic and offline, the tag's own script never
+   runs, and a page that reached any other host would still be a failed
+   request or a third-party request to the audit. isStubbed() says which
+   requests were answered that way, so the audit's third-party counter can
+   allow exactly these hosts and nothing broader. */
+export const STUBBED_HOSTS = ['googletagmanager.com', 'google-analytics.com', 'analytics.google.com'];
+export const isStubbed = (url) => {
+  try {
+    const h = new URL(url).hostname;
+    return STUBBED_HOSTS.some((d) => h === d || h.endsWith('.' + d));
+  } catch { return false; }
+};
+const stub = (ctx) => ctx.route((u) => isStubbed(u.href), (r) => r.fulfill({ status: 204, body: '' }));
+
 export async function launch(opts = {}) {
   const executablePath = process.env.CHROMIUM_PATH || localChrome();
   const b = await chromium.launch({ executablePath, ...opts, args: ['--font-render-hinting=none', ...(opts.args || [])] });
   for (const m of ['newContext', 'newPage']) {
     const orig = b[m].bind(b);
-    b[m] = (o = {}) => orig({ colorScheme: 'dark', ...o });
+    b[m] = async (o = {}) => {
+      const made = await orig({ colorScheme: 'dark', ...o });
+      await stub(m === 'newPage' ? made.context() : made);
+      return made;
+    };
   }
   return b;
 }

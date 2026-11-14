@@ -10,7 +10,9 @@
  * script. The generated pages (scene/, legal/) already come out of their
  * generators with it, so they are left to them; en/ and ar/ come out of
  * build-lang.mjs with it too and get the same again here, a no-op that
- * keeps PAGES the one list of what this covers. It runs last because every
+ * keeps PAGES the one list of what this covers. The pages (not the embeds)
+ * also get the Google tag first, withGtag() from scripts/lib/gtag.mjs: right
+ * after <head>, before the policy is computed so its inline script is hashed. It runs last because every
  * earlier build step may rewrite an inline script (and bump.mjs re-applies it
  * after stamping): a hash taken before the last edit would block the script.
  */
@@ -19,6 +21,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, PAGES, EXTRA_PAGES } from './site.mjs';
 import { withCsp, cspKind, scriptHashes } from './lib/csp.mjs';
+import { withGtag } from './lib/gtag.mjs';
 
 // pages whose generator calls withCsp itself (build-scene.mjs, build-legal.mjs)
 export const GENERATED = ['scene/index.html', 'legal/index.html'];
@@ -27,7 +30,7 @@ export const CSP_FILES = [...PAGES, ...EXTRA_PAGES].filter((f) => !GENERATED.inc
 /** Applies (or, with write = false, only computes) the policy on each file. */
 export function applyCsp(files = CSP_FILES, { write = true } = {}) {
   return files.map((file) => {
-    const p = join(ROOT, file), html = readFileSync(p, 'utf8'), kind = cspKind(file), want = withCsp(html, kind);
+    const p = join(ROOT, file), html = readFileSync(p, 'utf8'), kind = cspKind(file), want = withCsp(kind === 'embed' ? html : withGtag(html), kind);
     const changed = want !== html;
     if (changed && write) writeFileSync(p, want);
     return { file, kind, changed, hashes: scriptHashes(want).length };

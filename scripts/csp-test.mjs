@@ -24,6 +24,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ROOT, PAGES, EXTRA_PAGES } from './site.mjs';
 import { withCsp, cspPolicy, cspKind, cspOf, scriptHashes, supabaseOrigin } from './lib/csp.mjs';
+import { withGtag, GTAG_SNIPPET } from './lib/gtag.mjs';
 import { policyErrors, headerPolicyErrors, directiveMap } from './lib/csp-floor.mjs';
 
 const sha = (t) => `'sha256-${createHash('sha256').update(t).digest('base64')}'`;
@@ -175,6 +176,19 @@ export function fixtureErrors() {
     ['font-src data: on a page', swap(page, 'font-src', `'self' data:`)],
     ['frame-src *', swap(page, 'frame-src', `'self' *`)],
     ['form-action https:', swap(page, 'form-action', 'mailto: https:')],
+    // the Google tag's hosts are exact: nothing broader, nowhere else
+    ['script-src a Google wildcard', swap(page, 'script-src', `'self' https://*.googletagmanager.com ${H}`)],
+    ['script-src the Analytics host', swap(page, 'script-src', `'self' https://www.googletagmanager.com https://www.google-analytics.com ${H}`)],
+    ['script-src google.com', swap(page, 'script-src', `'self' https://www.googletagmanager.com https://*.google.com ${H}`)],
+    ['img-src https:', swap(page, 'img-src', `'self' data: https://*.google-analytics.com https://*.googletagmanager.com https:`)],
+    ['img-src google.com', swap(page, 'img-src', `'self' data: https://*.google.com`)],
+    ['connect-src google.com', swap(page, 'connect-src', `'self' https://*.google.com`)],
+    ['connect-src a bare Google wildcard', swap(page, 'connect-src', `'self' https://*`)],
+    ['connect-src doubleclick', swap(page, 'connect-src', `'self' https://*.doubleclick.net`)],
+    ['the Tag Manager host in an embed script-src', swap(embed, 'script-src', `'self' 'unsafe-eval' https://www.googletagmanager.com`), { kind: 'embed' }],
+    ['a Google host in an embed img-src', swap(embed, 'img-src', `'self' data: blob: https://*.google-analytics.com`), { kind: 'embed' }],
+    ['a Google host in an embed connect-src', swap(embed, 'connect-src', `'self' https://*.googletagmanager.com`), { kind: 'embed' }],
+    ['the Tag Manager host in default-src', swap(page, 'default-src', `'self' https://www.googletagmanager.com`)],
   ];
   for (const [what, p, ctx = { kind: 'page' }] of LOOSE) {
     expect(p !== page && p !== embed && p !== onSwitch, `floor fixture "${what}" did not change the policy`);
@@ -190,9 +204,15 @@ export function fixtureErrors() {
     expect(headerPolicyErrors(p).length > 0, `the header floor lets through ${what}`);
   }
 
+  // the Google tag (scripts/lib/gtag.mjs): exactly what Google documents on a page, none of it on an embed
+  expect(directive(page, 'script-src').includes('https://www.googletagmanager.com') && !directive(embed, 'script-src').some((v) => /google/.test(v)), 'script-src: the Tag Manager host on pages only');
+  expect(directive(page, 'img-src').join(' ') === "'self' data: https://*.google-analytics.com https://*.googletagmanager.com" && !directive(embed, 'img-src').some((v) => /google/.test(v)), 'img-src: the Google beacon hosts on pages only');
+  expect(!directive(embed, 'connect-src').some((v) => /google/.test(v)), 'connect-src: no Google host on an embed');
+
   // the Supabase switch, read in a sandbox
-  expect(directive(cspPolicy(SWITCH('')), 'connect-src').join(' ') === "'self'", 'switch off: connect-src must be self only');
-  expect(directive(cspPolicy(SWITCH('https://abcd.supabase.co/')), 'connect-src').join(' ') === "'self' https://abcd.supabase.co", 'switch on: connect-src must add the origin');
+  const G = "https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com";
+  expect(directive(cspPolicy(SWITCH('')), 'connect-src').join(' ') === `'self' ${G}`, 'switch off: connect-src must be self and the Google tag hosts only');
+  expect(directive(cspPolicy(SWITCH('https://abcd.supabase.co/')), 'connect-src').join(' ') === `'self' ${G} https://abcd.supabase.co`, 'switch on: connect-src must add the origin');
   expect(supabaseOrigin(SWITCH('https://abcd.supabase.co', 'var NUMIDEA_SUPABASE_URL')) === 'https://abcd.supabase.co', 'a top-level var is window.X in the browser too');
   expect(throws(() => cspPolicy(SWITCH('http://abcd.supabase.co'))), 'a non-https Supabase URL must stop the build');
   expect(throws(() => cspPolicy(FIX.replace('</body>', '<script>window.NUMIDEA_SUPABASE_URL = location.origin;</script></body>'))), 'a switch that cannot run in the sandbox must stop the build');
@@ -201,6 +221,13 @@ export function fixtureErrors() {
   expect(throws(() => withCsp(FIX.replace(/<meta name="viewport"[^>]*>\n/, ''))), 'no viewport meta must throw');
   expect(throws(() => withCsp(FIX, 'strict')), 'an unknown kind must throw');
   expect(throws(() => withCsp(FIX.replace('<meta name="viewport"', '<script>early()</script>\n<meta name="viewport"'))), 'a script before the viewport meta must throw');
+  // the Google tag is the one script that may come first (scripts/lib/gtag.mjs), and only exactly as written
+  const tagged = withGtag(FIX);
+  expect(tagged.includes('<head>\n' + GTAG_SNIPPET + '\n<meta charset') && withGtag(tagged) === tagged, 'withGtag must write the snippet right after <head>, once, idempotently');
+  expect(!throws(() => withCsp(tagged)) && withCsp(withCsp(tagged)) === withCsp(tagged), 'the Google tag before the viewport meta must pass withCsp, idempotently');
+  expect(directive(cspPolicy(tagged), 'script-src').length === directive(cspPolicy(FIX), 'script-src').length + 1, 'the Google tag adds exactly its inline script hash to script-src');
+  expect(throws(() => withCsp(tagged.replace('gtag(\'js\'', 'gtag(\'js2\''))), 'an edited Google tag before the viewport meta must throw');
+  expect(throws(() => withCsp(tagged.replace('async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"', 'async src="https://evil.example/gtm.js"'))), 'another loader before the viewport meta must throw');
   expect(throws(() => scriptHashes(FIX.replace('boot()', 'var s = "<!--<script>"; boot()'))), '"<!--" then "<script" inside a script must throw');
   // a script in foreign content (<svg>, <math>) is hashed by the browser after
   // "&…;" and CDATA are decoded, so it is refused; markup around it is not

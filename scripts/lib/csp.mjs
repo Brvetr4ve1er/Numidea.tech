@@ -48,8 +48,20 @@
  */
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
+import { GTAG_INLINE_TAG, GTAG_LOADER_TAG } from './gtag.mjs';
 
 export const KINDS = ['page', 'embed'];
+
+/* What Google documents for Tag Manager + GA4 (owner decision 2026-11-14, see
+   scripts/lib/gtag.mjs), on the pages and nowhere else: the loader's host in
+   script-src; the beacons' hosts in img-src and connect-src. Consent Mode is
+   denied for good, so these are cookieless pings. csp-floor.mjs states the
+   same three lists apart from here, and holds every policy to them. */
+export const GOOGLE = {
+  script: ['https://www.googletagmanager.com'],
+  img: ['https://*.google-analytics.com', 'https://*.googletagmanager.com'],
+  connect: ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com'],
+};
 
 /* which policy a site file gets, by its path from the repository root */
 export const cspKind = (file) => (/^workspacehq\/embed\/[^/]+\.html$/.test(String(file).replace(/\\/g, '/')) ? 'embed' : 'page');
@@ -239,12 +251,12 @@ export function cspPolicy(html, kind = 'page') {
   const supa = supabaseOrigin(html);
   const d = [
     ['default-src', "'self'"],
-    ['script-src', "'self'", ...(embed ? ["'unsafe-eval'"] : []), ...scriptHashes(html)],
+    ['script-src', "'self'", ...(embed ? ["'unsafe-eval'"] : GOOGLE.script), ...scriptHashes(html)],
     // style="" custom properties, CSSOM writes and the pages' own <style> blocks
     ['style-src', "'self'", "'unsafe-inline'"],
-    ['img-src', "'self'", 'data:', ...(embed ? ['blob:'] : [])],
+    ['img-src', "'self'", 'data:', ...(embed ? ['blob:'] : GOOGLE.img)],
     ['font-src', "'self'", ...(embed ? ['data:'] : [])],
-    ['connect-src', "'self'", ...(supa ? [supa] : [])],
+    ['connect-src', "'self'", ...(embed ? [] : GOOGLE.connect), ...(supa ? [supa] : [])],
     ['media-src', "'self'"],
     ['frame-src', "'self'"],
     ['worker-src', "'none'"],
@@ -269,7 +281,8 @@ export function withCsp(html, kind = 'page') {
   if (!vp) throw new Error('no <meta name="viewport"> to anchor the CSP meta after');
   const at = vp.index + vp[0].length;
   // a meta policy governs only what follows it: nothing it covers may come first
-  const early = /<(script|style|link|base)\b/i.exec(bare.slice(0, vp.index));
+  // (the Google tag is the one exception: it comes first by design, see gtag.mjs)
+  const early = /<(script|style|link|base)\b/i.exec(bare.slice(0, vp.index).replace(GTAG_INLINE_TAG, '').replace(GTAG_LOADER_TAG, ''));
   if (early) throw new Error(`a <${early[1].toLowerCase()}> comes before the viewport meta, so the CSP meta would not govern it`);
   const eol = (/^\r?\n/.exec(bare.slice(at)) || ['\n'])[0];
   const meta = `<meta http-equiv="Content-Security-Policy" content="${cspPolicy(bare, kind)}">`;

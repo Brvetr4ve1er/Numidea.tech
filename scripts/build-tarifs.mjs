@@ -46,6 +46,7 @@ import { loadDicts, toMarkup, esc, I18N_FILES } from './lib/i18n.mjs';
 import { bakeLang } from './build-lang.mjs';
 import { TARIFS_LANG, versions } from './build-sitemap.mjs';
 import { scripts, withCsp } from './lib/csp.mjs';
+import { withGtag } from './lib/gtag.mjs';
 
 export const TARIFS_PAGES = Object.fromEntries(Object.entries(TARIFS_LANG).map(([p, l]) => [l, p]));
 const NAME = { fr: 'French', en: 'English', ar: 'Arabic' };
@@ -548,7 +549,7 @@ export function renderTarifs(lang, home = read('index.html'), dicts = loadDicts(
   page = page.replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${card}$2`).replace(/(<meta name="twitter:image" content=")[^"]*(")/, `$1${card}$2`)
     .replace(/(<meta property="og:image:alt" content=")[^"]*(")/, (_, o, c) => o + esc(dicts[lang]['tarifs.ogAlt']) + c);
   page = page.replace(/^<!DOCTYPE html>\n/i, (m) => m + `<!-- Generated: the ${NAME[lang]} price guide, written by scripts/build-tarifs.mjs from its\n     template, index.html (the tiers and the estimator, between the SLOT markers;\n     the chrome) and ${I18N_FILES[lang]}. Do not edit it here: change the generator,\n     index.html or the dictionary, then npm run build. -->\n`);
-  return withCsp(page, 'page');
+  return withCsp(withGtag(page), 'page');
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

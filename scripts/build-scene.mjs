@@ -17,6 +17,7 @@ import { PROJECTS, UI } from './scene-data.mjs';
 import { VOICES, VOICE_CLIENTS } from './voices-data.mjs';
 import { BASE, THEMES } from './site.mjs';
 import { withCsp } from './lib/csp.mjs';
+import { withGtag } from './lib/gtag.mjs';
 import { esc, loadDicts } from './lib/i18n.mjs';
 import { AYN } from './lib/ayn.mjs';
 import { WORDMARK } from './lib/wordmark.mjs';
@@ -398,7 +399,7 @@ home('prev.msg');
 
 // withCsp: the policy meta after the viewport meta, hashing the head script
 // (scripts/lib/csp.mjs); a data block like the dictionary is not hashed
-const html = withCsp(`<!DOCTYPE html>
+const html = withCsp(withGtag(`<!DOCTYPE html>
 <html lang="fr" dir="ltr" data-theme="arcanum">
 <head>
 <meta charset="utf-8">
@@ -558,7 +559,7 @@ ${sheets}
 <script src="app.js?v=${stamp}" defer></script>
 </body>
 </html>
-`, 'page');
+`), 'page');
 export const SCENE_HTML = html;
 const OUT = join(ROOT, 'scene/index.html');
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

@@ -59,6 +59,7 @@ import { ROOT, BASE, LANGS } from './site.mjs';
 import { loadDicts, i18nNodes, toMarkup, faqLd, I18N_FILES } from './lib/i18n.mjs';
 import { MULTILINGUAL, LANG_FOLDERS } from './build-sitemap.mjs';
 import { withCsp } from './lib/csp.mjs';
+import { withGtag } from './lib/gtag.mjs';
 
 export const LANG_PAGES = { fr: 'index.html', en: 'en/index.html', ar: 'ar/index.html' };
 const LOCALE = { fr: 'fr_FR', en: 'en_US', ar: 'ar_DZ' };
@@ -268,7 +269,7 @@ export function bakeLang(html, lang, dict = loadDicts()[lang], { depth = lang ==
     html = html.replace(/[ \t]*<link rel="canonical"[^>]*>\r?\n?/g, '');
     html = once(html, /(<link rel="alternate" hreflang="x-default" href="[^"]*">\r?\n)/, (m) => m + `<link rel="canonical" href="${self}">\n`, 'the x-default hreflang link');
     if (generated) html = once(html, /^<!DOCTYPE html>\r?\n/i, (m) => m + `<!-- Generated: ${generated(lang)} -->\n`, 'the doctype');
-    html = withCsp(html, 'page');
+    html = withCsp(withGtag(html), 'page');
   }
   return html;
 }

@@ -20,7 +20,8 @@
  *     <script> elements and for inline handlers, so the hashes would no
  *     longer be the whole rule;
  *   - 'unsafe-inline', 'unsafe-hashes', 'strict-dynamic', nonces, wildcards,
- *     schemes (https:, data:) and hosts in script-src or default-src;
+ *     schemes (https:, data:) and hosts in script-src (but the Tag Manager
+ *     host, on the pages) or default-src;
  *   - 'unsafe-eval' anywhere but script-src on a WorkspaceHQ embed;
  *   - any source added next to 'none' (the browser then ignores 'none').
  */
@@ -29,15 +30,23 @@ const HASH = /^'sha256-[A-Za-z0-9+/]{43}='$/;
 // one https origin, no path, port or wildcard: the Supabase lead store
 const ORIGIN = /^https:\/\/[a-z0-9-]+(?:\.[a-z0-9-]+)+$/;
 
+/* The Google tag (scripts/lib/gtag.mjs; owner decision 2026-11-14), exactly what
+   Google documents for Tag Manager + GA4 and nothing broader, on the pages
+   and not on the WorkspaceHQ embeds. Stated here on its own, not imported
+   from csp.mjs, so that widening it takes an edit in this file. */
+const GOOGLE_SCRIPT = ['https://www.googletagmanager.com'];
+const GOOGLE_IMG = ['https://*.google-analytics.com', 'https://*.googletagmanager.com'];
+const GOOGLE_CONNECT = ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com'];
+
 /* the most each directive may allow, by policy kind ('page' or 'embed') and
    whether the page may connect to its lead store (index.html, switch on) */
 const CEILING = {
   'default-src': () => ["'self'"],
-  'script-src': ({ kind }) => ["'self'", HASH, ...(kind === 'embed' ? ["'unsafe-eval'"] : [])],
+  'script-src': ({ kind }) => ["'self'", HASH, ...(kind === 'embed' ? ["'unsafe-eval'"] : GOOGLE_SCRIPT)],
   'style-src': () => ["'self'", "'unsafe-inline'"],
-  'img-src': ({ kind }) => ["'self'", 'data:', ...(kind === 'embed' ? ['blob:'] : [])],
+  'img-src': ({ kind }) => ["'self'", 'data:', ...(kind === 'embed' ? ['blob:'] : GOOGLE_IMG)],
   'font-src': ({ kind }) => ["'self'", ...(kind === 'embed' ? ['data:'] : [])],
-  'connect-src': ({ connect }) => ["'self'", ...(connect ? [ORIGIN] : [])],
+  'connect-src': ({ kind, connect }) => ["'self'", ...(kind === 'embed' ? [] : GOOGLE_CONNECT), ...(connect ? [ORIGIN] : [])],
   'media-src': () => ["'self'"],
   'frame-src': () => ["'self'"],
   'worker-src': () => ["'none'"],
