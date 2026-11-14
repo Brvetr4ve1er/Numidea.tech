@@ -136,9 +136,9 @@ item 6 can cover it.
 
 ## 8. Arabic native review
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
-2026-11-06, 2026-11-07, 2026-11-08 and 2026-11-11 awaits native review** (the lists are at the end of this section,
+2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11 and 2026-11-14 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08" and "Written or changed on 2026-11-11"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11" and "Written or changed on 2026-11-14"); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -478,6 +478,20 @@ speaker):
 - AR review: the Studio's `nav.menu` («القائمة») and `nav.menuClose` («أغلق
   القائمة») (`hub/src/i18n/ar.json`).
 
+Written or changed on 2026-11-14 (Google tag; the privacy page of
+`scripts/build-legal.mjs`, unpublished until the owner fields are in; none read
+by a native speaker):
+- AR review: the "On your device" paragraph, rewritten because the site now
+  loads Google Tag Manager with every consent signal refused: «لا تُخزَّن أي
+  ملفات تعريف ارتباط. يحمّل الموقع Google Tag Manager …» (no cookies; Google
+  receives only cookieless, anonymous pings for aggregate audience measurement;
+  no advertising, no profile; no other third-party request);
+- AR review: in the ads paragraph, «ولا يحتوي هذا الموقع على بكسل Meta ولا على أداة
+  تتبّع إعلانية» (no Meta pixel and no advertising tracker; it said "no pixel or
+  tracker") and the new ending «ومع عنوان الصفحة المعروضة في قياس الزيارات المذكور
+  أدناه» (the page address goes with the audience pings);
+- AR review: in "Who has access", «Google (البريد، وقياس الزيارات المذكور أدناه)».
+
 Owner to confirm (not Arabic): the VOIDSPLUNKER dossier on the Studio says only
 what the bible page prints; confirm that the character bible is a studio
 project (not a client, not "the artist's page") and that "English only" is
@@ -494,6 +508,22 @@ banner; since 2026-10-31 the three languages are one file each, no longer in
 `assets/app.js`), the `UI.ar` and project `ar` texts in
 `scripts/scene-data.mjs`, `CARDS.ar` in `scripts/build-og.mjs`, and the
 `lang="ar"` lines in `404.html`.
+
+## 8b. The Google tag and consent (2026-11-14)
+The site loads the owner's Google Tag Manager container (GTM-PMF7RWVK) on every
+page with Google Consent Mode **denied for good** and no cookie bar: Google gets
+cookieless, anonymous pings only, which is what the privacy page promises (no
+cookie is set). That promise holds only while the container itself stays quiet:
+**a tag added inside the GTM container that does not honour Consent Mode (a Meta
+Pixel, Hotjar, a custom HTML tag, any third-party script) would set cookies or
+send identifiers whatever the page says**, and would make the privacy page
+false. Any such tag needs a consent bar built first (and the page's consent
+default changed on purpose: the site never updates consent to granted today).
+Keep the container to Google's own tags, with their consent checks on.
+Open for the owner: the privacy page says what Google receives (page viewed,
+approximate time, browser type); the container's GA4 settings (for example
+Google signals, advertising features, data retention) should stay off so that
+stays true.
 
 ## 9. Clients' own domains
 The cards link the Netlify builds, because none of the clients' domains serves

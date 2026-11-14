@@ -3283,6 +3283,55 @@ owner decision 2026-11-10), GitHub Pages
 2026-10-31: 18,381,757 bytes in 283 files (check 17's total is that plus
 10 %).
 
+## Google tag
+
+Every page of `scripts/site.mjs` PAGES carries the owner's Google tag, Tag Manager
+container **GTM-PMF7RWVK** (owner decision 2026-11-14), and nothing else of
+Google's. Consent Mode is **denied by design** and there is no cookie bar: the
+inline script pushes `gtag('consent','default', …)` with `ad_storage`,
+`analytics_storage`, `ad_user_data`, `ad_personalization`,
+`functionality_storage` and `personalization_storage` all `denied`
+(`security_storage` granted), then `js`, and only afterwards does the async loader
+start. Consent is never updated to granted anywhere, so Google receives
+cookieless, anonymous pings (page viewed, approximate time, browser type) for
+aggregate audience measurement and sets no cookie. The privacy page
+(`scripts/build-legal.mjs`, unpublished until the owner fields are in) says so in
+the three languages.
+
+- **Where it comes from.** `scripts/lib/gtag.mjs` is the one source: the two
+  scripts and an idempotent `withGtag(html)` that writes them right after the
+  opening `<head>`, once. The generators (build-lang, build-tarifs, build-hub,
+  build-scene, build-legal), `bump.mjs` and `build-csp.mjs` (the hand-written
+  pages: 404, hub/bible, the four brand books, workspacehq/, the home template)
+  apply it before `withCsp`, so the inline script's hash comes out of the normal
+  build. `npm run build` twice leaves no diff. Not on the WorkspaceHQ embeds
+  (`EXTRA_PAGES`: iframes inside workspacehq/, a tag there would count a visit
+  twice) and not on `shop/` (another project).
+- **CSP, pages only (the embeds get none of it).** `script-src` adds
+  `https://www.googletagmanager.com`; `img-src` adds
+  `https://*.google-analytics.com https://*.googletagmanager.com`;
+  `connect-src` adds `https://*.google-analytics.com
+  https://*.analytics.google.com https://*.googletagmanager.com`: what Google
+  documents for Tag Manager and GA4, nothing broader. `scripts/lib/csp-floor.mjs`
+  states the same lists on its own, so widening them takes an edit there (and
+  `scripts/csp-test.mjs` has fixtures for each broader value). The mirrors'
+  headers (vercel.json, netlify.toml) hold no fetch directive, so they did not
+  change. The snippet comes before the CSP meta by design (the meta follows the
+  viewport meta); `withCsp` and check.mjs 16 let exactly these two scripts through
+  the "nothing governed comes first" rule, and the requests Tag Manager makes
+  itself come after the meta and are governed.
+- **Gates.** check.mjs 16b: every page has exactly one copy of the snippet, ID
+  GTM-PMF7RWVK, right after `<head>`; run in a sandbox it pushes the denied consent
+  default and `js` only; no page updates consent; the embeds carry none. The
+  browser gates must not depend on the network: `launch()` in
+  `scripts/lib/serve.mjs` answers googletagmanager.com, google-analytics.com and
+  analytics.google.com with an empty 204 in every context (`isStubbed()`), and
+  the audit's `3p` counter allows exactly those three hosts and no others.
+- **A promise that breaks easily.** Tags added later inside the GTM container
+  that do not honour Consent Mode (Meta Pixel, Hotjar, custom HTML) set cookies
+  and break the privacy page's sentence: any such tag needs a consent bar first
+  (OWNER-CONTENT.md §8b).
+
 ## Content-Security-Policy
 
 Every page carries its policy as `<meta http-equiv="Content-Security-Policy">`,
