@@ -38,7 +38,7 @@
 
 /* ---------- posts on a phone: thumbnails and swipe rows ---------- */
 .pv-open,.pv-hint{display:none}
-@media (max-width:640px){
+@media (max-width:640px),(orientation:landscape) and (max-height:500px){
   /* the 3 x 3 (or 3 x 4) grid, three across, each post drawn at its design width then scaled */
   html.pv .pv-set--grid.pv-on{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;max-width:none;margin-inline:0;width:100%}
   html.pv .pv-set--row.pv-on{display:flex;gap:10px;grid-template-columns:none;max-width:none;margin-inline:0;width:100%;padding:0 0 10px;list-style:none}
@@ -64,6 +64,14 @@
   html.pv .pv-swipe .pf,html.pv .pv-swipe .nf{max-width:none}
 }
 
+@media (orientation:landscape) and (max-height:500px) and (min-width:641px){
+  html.pv .pv-set--grid.pv-on{grid-template-columns:repeat(4,minmax(0,1fr))}
+  html.pv .slides.pv-swipe>*,html.pv .car.pv-swipe>*,html.pv .nsl-grid.pv-swipe>*{flex-basis:min(44vw,380px)}
+  html.pv .igs.pv-swipe>*{flex-basis:min(60vw,480px)}
+  .pi-chip{min-height:44px}
+  .pv-stage--st .pv-shell{width:min(100%,calc((100dvh - 120px)*9/16 + 4px))}
+  .pv-stage:not(.pv-stage--st) .pv-shell{width:min(100%,calc(100dvh - 140px),520px)}
+}
 /* ---------- the large view ---------- */
 .pv-dlg{display:none}
 .pv-dlg[open]{display:flex;flex-direction:column}
@@ -86,7 +94,7 @@
 
 /* ---------- folds (phones) ---------- */
 .fold-btn{display:none}
-@media (max-width:640px){
+@media (max-width:640px),(orientation:landscape) and (max-height:500px){
   .fold-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;padding:8px 16px;border:2px solid var(--line,var(--ink));background:transparent;color:inherit;font:500 13px/1.3 var(--f-mono,var(--mono));letter-spacing:.12em;text-transform:uppercase;text-align:start;cursor:pointer}
   .fold-i{font:400 24px/1 var(--f-body,sans-serif)}
   .fold-btn:focus-visible{outline:3px solid currentColor;outline-offset:3px}

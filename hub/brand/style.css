@@ -182,6 +182,7 @@ ul.dots li::before{content:"";position:absolute;inset-inline-start:0;top:.62em;w
   .lab,.sm-h,.txt-s{overflow-wrap:anywhere}
 }
 @media (max-width:420px){
+  .g4 .sm-h,.g5 .sm-h{font-size:16px;overflow-wrap:anywhere}
   .g4,.g5{grid-template-columns:repeat(2,minmax(0,1fr))}
   .plate__body{padding:18px 16px}
 }
@@ -255,7 +256,7 @@ ul.dots li::before{content:"";position:absolute;inset-inline-start:0;top:.62em;w
 .bk-tr .rules{display:grid}
 .bk-tr .rules li{display:grid;grid-template-columns:2.6em minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--line);color:var(--sub)}
 @media (max-width:960px){.bk-tr .poster-wall{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:520px){.bk-tr .poster-wall{grid-template-columns:repeat(2,minmax(0,1fr))}.bk-tr .stat{grid-template-columns:minmax(0,1fr) 3.2em}.bk-tr .stat i{grid-column:1/-1;order:3}}
+@media (max-width:520px){.bk-tr .poster-wall{grid-template-columns:repeat(2,minmax(0,1fr))}.bk-tr .stat{grid-template-columns:minmax(0,1fr) 3.2em}.bk-tr .stat i{grid-column:1/-1;order:3}.bk-tr .stat .wide{grid-column:1/-1;order:3;overflow-wrap:anywhere;font-size:13px}}
 
 /* ============ Numidea ============ */
 .bk-nu{--d-bg:#0A1420;--d-fg:#EAF1F8;--d-sub:#C7D5E2;--d-mut:#9DB2C6;--d-line:#27496B;--d-acc:#34D0E8;

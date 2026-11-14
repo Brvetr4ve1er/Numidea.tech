@@ -44,6 +44,9 @@ for(const w of [1440,1024,768,390]){
  combos.push(['hub','/hub/',w,{'numidea-lang':'ar'},`hub ${w}/ar`]);
  combos.push(['bible','/hub/bible/',w,{},`bible ${w}`]);
 }
+// the brand books (hub/brand/) on a tablet and two phone widths, and the bible at 360 (2026-11-14, the mobile pass)
+for(const w of [768,390,360])for(const b of ['almaflow','traveler','numidea','exploration'])combos.push(['brand','/hub/brand/'+b+'/',w,{},`${b} ${w}`]);
+combos.push(['bible','/hub/bible/',360,{},'bible 360']);
 // VBUGS_ONLY=<regexp>: only the rows whose "page label" match (VBUGS_ONLY='^(hub|bible) ' for the Studio and the bible)
 const ONLY=process.env.VBUGS_ONLY?new RegExp(process.env.VBUGS_ONLY):null;
 const b = await launch();
@@ -92,7 +95,8 @@ for(const [page,path,w,init,label] of combos){
   for(const tx of texts){let c=tx.el.parentElement;while(c&&c!==document.body){const cs=getComputedStyle(c);if((cs.borderTopWidth!=='0px'&&cs.borderStyle!=='none')||cs.backgroundColor!=='rgba(0, 0, 0, 0)'||cs.backgroundImage!=='none')break;c=c.parentElement}
     if(!c||c===document.body)continue;const r=c.getBoundingClientRect();const L=r.left,R=r.right,T=r.top+scrollY,B=r.bottom+scrollY;
     const cc=getComputedStyle(c),sx=/auto|scroll/.test(cc.overflowX),sy=/auto|scroll/.test(cc.overflowY);
-    if((!sx&&(tx.x<L-2||tx.x+tx.w>R+2))||(!sy&&(tx.y<T-2||tx.y+tx.h>B+2)))out.push('ESCAPES '+sel(tx.el)+' "'+tx.t+'" from '+sel(c))}
+    let sxIn=false;/* a swipe row inside the box (the brand books' carousels and stories on a phone) holds what lies past its edge, reached by swiping */for(let q=tx.el;q&&q!==c;q=q.parentElement){if(/auto|scroll/.test(getComputedStyle(q).overflowX)){sxIn=true;break}}
+    if((!sx&&!sxIn&&(tx.x<L-2||tx.x+tx.w>R+2))||(!sy&&(tx.y<T-2||tx.y+tx.h>B+2)))out.push('ESCAPES '+sel(tx.el)+' "'+tx.t+'" from '+sel(c))}
   // 3 clipped text (overflow hidden, content wider/taller), excluding ellipsis
   for(const e of document.querySelectorAll('body *')){if(!vis(e)||e.closest('[aria-hidden="true"]'))continue;const cs=getComputedStyle(e);if(cs.overflowX==='visible'&&cs.overflowY==='visible')continue;if(cs.textOverflow==='ellipsis')continue;
     if(srOnly(e))continue;

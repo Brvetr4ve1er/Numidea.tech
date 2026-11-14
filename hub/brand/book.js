@@ -24,7 +24,7 @@
         swipe: 'Faites glisser', of: ' sur ', show: 'Afficher : ', hide: 'Masquer : ', view: 'Aperçu du post', top: 'Haut de page' }
     : { plates: 'Plates', sections: 'Sections', plate: 'Pl.', list: 'The plates', sectionList: 'The sections', close: 'Close', open: 'Enlarge', prev: 'Previous post', next: 'Next post',
         swipe: 'Swipe', of: ' of ', show: 'Show: ', hide: 'Hide: ', view: 'Post preview', top: 'Top of page' };
-  var phone = window.matchMedia('(max-width:640px)');
+  var phone = window.matchMedia('(max-width:640px), (orientation:landscape) and (max-height:500px)');
   var small = window.matchMedia('(max-width:1023px)');
 
   function el(tag, cls, html) { var e = d.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
@@ -69,10 +69,10 @@
       // show the chip once the top of the page (the cover or the contents) is behind the reader
       var head = d.querySelector('.toc, .cover');
       if (head) {
-        var io2 = new IntersectionObserver(function (es) {
-          chip.classList.toggle('is-on', !es[0].isIntersecting && es[0].boundingClientRect.bottom < 0);
-        });
-        io2.observe(head);
+        var tick = false;
+        var upd = function () { tick = false; chip.classList.toggle('is-on', head.getBoundingClientRect().bottom < 0); };
+        window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
+        upd();
       } else chip.classList.add('is-on');
     } else chip.classList.add('is-on');
     chip.addEventListener('click', function () { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); });
@@ -125,7 +125,7 @@
 
   function fit() {
     swipes.forEach(function (n) {
-      if (phone.matches) { n.setAttribute('tabindex', '0'); n.setAttribute('role', 'group'); if (n.getAttribute('data-pv-label')) n.setAttribute('aria-label', n.getAttribute('data-pv-label')); }
+      if (phone.matches) { n.setAttribute('tabindex', '0'); if (n.tagName === 'DIV') n.setAttribute('role', 'group'); if (n.getAttribute('data-pv-label')) n.setAttribute('aria-label', n.getAttribute('data-pv-label')); }
       else { n.removeAttribute('tabindex'); n.removeAttribute('role'); n.removeAttribute('aria-label'); }
     });
     sets.forEach(function (s) {
@@ -146,12 +146,13 @@
   }
 
   function openViewer(set, i) {
+    var v;
     if (!viewer) {
       var dlg = el('dialog', 'pv-dlg');
       dlg.setAttribute('aria-label', T.view);
       dlg.innerHTML = '<div class="pv-stage"></div><div class="pv-bar"><button type="button" class="pv-prev" aria-label="' + T.prev + '"><span aria-hidden="true">←</span></button><span class="pv-count" aria-live="polite"></span><button type="button" class="pv-next" aria-label="' + T.next + '"><span aria-hidden="true">→</span></button><button type="button" class="pv-close" aria-label="' + T.close + '"><span aria-hidden="true">×</span></button></div>';
       d.body.appendChild(dlg);
-      viewer = { dlg: dlg, stage: dlg.querySelector('.pv-stage'), count: dlg.querySelector('.pv-count'), set: null, i: 0 };
+      viewer = v = { dlg: dlg, stage: dlg.querySelector('.pv-stage'), count: dlg.querySelector('.pv-count'), set: null, i: 0 };
       dlg.addEventListener('click', function (e) {
         if (e.target.closest('.pv-close') || e.target === dlg || e.target === viewer.stage) dlg.close();
         else if (e.target.closest('.pv-prev')) go(-1);
@@ -159,13 +160,13 @@
       });
       dlg.addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft') go(-1); else if (e.key === 'ArrowRight') go(1); });
       var x0 = null, y0 = 0;
-      dlg.addEventListener('pointerdown', function (e) { x0 = e.clientX; y0 = e.clientY; });
-      dlg.addEventListener('pointerup', function (e) {
-        if (x0 === null) return; var dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
+      dlg.addEventListener('touchstart', function (e) { var t = e.touches[0]; x0 = e.touches.length === 1 ? t.clientX : null; y0 = t.clientY; }, { passive: true });
+      dlg.addEventListener('touchend', function (e) {
+        if (x0 === null) return; var t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null;
         if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? 1 : -1);
-        else if (dy > 90 && dy > Math.abs(dx) * 1.5) dlg.close();
-      });
-      dlg.addEventListener('pointercancel', function () { x0 = null; });
+        else if (dy > 90 && dy > Math.abs(dx) * 1.5 && v.stage.scrollTop <= 0) dlg.close();
+      }, { passive: true });
+      dlg.addEventListener('touchcancel', function () { x0 = null; }, { passive: true });
     }
     viewer.set = set; show(i);
     if (!viewer.dlg.open) viewer.dlg.showModal();

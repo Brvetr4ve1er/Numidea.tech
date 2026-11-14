@@ -42,5 +42,13 @@
   {
     "prefix": "bible HCLIP-DECOR feed div.sp.sp--paper ",
     "reason": "2026-11-13: the bible's social kit (section 07b) frames each post like the platform does: the post (.sp, overflow:hidden) crops its own drawing at the frame's edge on purpose, as a feed crops a picture; HCLIP-DECOR means nothing cut off carries text, so a clipped word in a post still fails"
+  },
+  {
+    "prefix": "brand HCLIP-DECOR p13 div.sp",
+    "reason": "2026-11-14: a brand book's social kit (plate 13) frames each post like the platform does: the post (.sp, overflow:hidden) crops its own picture at the frame's edge on purpose, as a feed crops a photo; HCLIP-DECOR means nothing cut off carries text, so a clipped word in a post still fails"
+  },
+  {
+    "prefix": "brand HCLIP-DECOR p18 div.nshot",
+    "reason": "2026-11-14: the Numidea social kit (plate 18) shows a capture of the live site inside a post; the capture is wider than the frame and is cropped by it on purpose (nothing cut off carries text)"
   }
 ]
