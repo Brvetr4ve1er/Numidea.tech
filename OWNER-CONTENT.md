@@ -1024,9 +1024,9 @@ scenes are now a titled row.)
   like the page. Maquettes in HTML and CSS from the bible's own drawings and
   its two Studio stickers; every quoted line is a line the bible already has,
   and no count, date, price, shop or collaboration is stated. Placeholders
-  read `[@account]`, `[link]` and `[the commit under review]`. Please confirm:
-  the bible's Instagram account (the Traveler kit carries @yass3r.0; the bible
-  page still links stick_itty, so the kit leaves the handle open); that twelve
+  read `[link]` and `[the commit under review]`; the handle is @stick_itty
+  (the owner's choice, 2026-11-14, for the Studio and the bible). Please
+  confirm: that twelve
   posts, not nine, is the grid you want; and the rules that are the kit's own
   choice rather than the bible's: Kūro never on red or teal, alone in a post he
   sits low and off-centre, the 80 px post margin and the 250 px top and 340 px
@@ -1034,9 +1034,10 @@ scenes are now a titled row.)
 
 **Claims to confirm (nothing was invented; these come from your design or the
 CV)**
-- the Instagram handle: the owner chose yass3r.0 on 2026-11-11 (the
-  Traveler codex's social kit carries it); the Studio's founder card and
-  footer and the bible still link stick_itty, pending his word on those;
+- the Instagram handle: the owner chose yass3r.0 on 2026-11-11 for the
+  Traveler codex's social kit, and on 2026-11-14 stick_itty for the Studio
+  (founder card and footer) and the bible (its links and its social kit's
+  maquettes): settled;
 - permission to show Bordj Steel's figures and logos, the clients' work, and
   Heetch's posters on a portfolio; "Chez Heetch depuis mai 2026" (the CV);
   "temps plein" and "Heetch Pro" were left out;
