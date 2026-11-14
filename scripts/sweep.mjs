@@ -134,6 +134,12 @@ for(const {theme,pname,path,lang,w,h,init={}} of RUNS){ if(ONLY&&theme!==ONLY)co
    // footer into view and once hid the bar under its own measured text
    await p.evaluate(()=>{for(const e of document.querySelectorAll('.m-contact')){const c=e.className;
      new MutationObserver(()=>{if(e.className!==c)e.className=c}).observe(e,{attributes:true,attributeFilter:['class']})}});
+   // a bottom-sticky layer (the Studio's one-line price under its estimator on
+   // phones) pins to the foot of the viewport as the page moves; the full-page
+   // capture computes it against the first viewport, where it is clamped to the
+   // top of its block and covered the estimator's first row. Measured where the
+   // flow puts it, which is where it sits once its block is in view
+   await p.evaluate(()=>{for(const e of document.querySelectorAll('body *')){const c=getComputedStyle(e);if(c.position==='sticky'&&c.bottom!=='auto')e.style.setProperty('position','relative','important')}});
    // collect text-bearing elements
    const items=await p.evaluate(()=>{
      const out=[];const sy=window.scrollY;

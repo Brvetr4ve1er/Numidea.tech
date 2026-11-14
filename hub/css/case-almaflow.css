@@ -300,3 +300,5 @@ html.js .case-almaflow .cf-scope__list li.is-seen{opacity:1}
 
 /* a phone: the post's signature may wrap in its one-column tile */
 @media (max-width:599px){.case-almaflow .cf-post__sig{white-space:normal;overflow-wrap:anywhere}}
+/* under 340px the cover's line wraps onto the van's white side: a backing of the cover's navy keeps it 4.5:1 */
+@media (max-width:339px){.case-almaflow .cf-cover__txt .cf-k--cyan{background:rgba(14,26,43,.9);padding:2px 6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;display:inline}}
