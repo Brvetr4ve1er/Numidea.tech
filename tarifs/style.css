@@ -230,7 +230,7 @@ html[dir="rtl"] .t-pl::after{text-align:start;
   .mk-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
   .mk-table tbody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
   .mk-table tbody tr{display:flex;flex-direction:column;border:1px solid var(--hairline);border-radius:var(--r-md);background:color-mix(in srgb,var(--void) 40%,transparent);overflow:hidden}
-  .mk-table tbody th{display:block;position:static;width:auto;min-width:0;white-space:normal;border-bottom:1px solid var(--hairline)}
+  .mk-table tbody th,.mk-table th:first-child{display:block;position:static;width:auto;min-width:0;white-space:normal;border-bottom:1px solid var(--hairline)}
   .mk-table td{display:flex;white-space:normal;border-bottom:1px solid var(--hairline)}
   .mk-table td::before{content:attr(data-l);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--faint);font-weight:400}
   .mk-table td.mk-nl::before{color:var(--teal-text)}
@@ -241,16 +241,23 @@ html[dir="rtl"] .t-pl::after{text-align:start;
   .mk-table td.mk-nl::after{forced-color-adjust:none;background:Highlight}
 }
 
-/* ---- the tiers on a tablet (T4): three abreast from 700px, as from 961px on
-   the home; the lists a single column in the narrower cards ---- */
-@media screen and (min-width:700px) and (max-width:960px){
+/* ---- the tiers on a tablet (T4): three abreast from 800px, as from 961px on
+   the home (a card is 190px of text there, which holds the widest figure at
+   14px: below it the figure ran out of its card); from 700 to 799px two
+   cards under the recommended one, which takes the row, the others' lists in
+   one column ---- */
+@media screen and (min-width:800px) and (max-width:960px){
   .tarifs .tiers{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .tarifs .tiers>.tier{display:grid;grid-template-rows:subgrid;grid-row:span 6;align-content:start}
+  .tarifs .tiers>.tier{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:subgrid;grid-row:span 6;align-content:start;padding:var(--s-4)}
   .tarifs .t-list{display:grid;columns:auto}
   .tarifs .t-list li{margin-bottom:0}
-  .tarifs .tier{padding:var(--s-4)}
-  .tarifs .tier .t-range{font-size:clamp(14px,2vw,19px)}
+  .tarifs .tier .t-range{font-size:14px}
   .tarifs .tier .t-pop{inset-inline-start:var(--s-4)}
+}
+@media screen and (min-width:700px) and (max-width:799px){
+  .tarifs .tiers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tarifs .tier-pop{grid-column:1/-1;order:-1}
+  .tarifs .tier:not(.tier-pop) .t-list{columns:1}
 }
 /* the hero's two buttons stack in the narrower column of a tablet */
 @media screen and (min-width:760px) and (max-width:1000px){
@@ -260,7 +267,6 @@ html[dir="rtl"] .t-pl::after{text-align:start;
 /* ---- the models and what moves a quote, shorter on a phone (T5) ---- */
 @media (max-width:720px){
   .md-grid{gap:var(--s-3);margin-bottom:var(--s-6)}
-  .md-card{padding:var(--s-4)}
   .md-card .md-where{padding-top:var(--s-2)}
   .md-sub{margin-bottom:var(--s-3)}
 }
@@ -276,5 +282,10 @@ html[dir="rtl"] .t-pl::after{text-align:start;
    view by sticking beside them, under the navbar. ---- */
 @media (min-width:640px) and (max-height:599px){
   .est-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}
-  .est-out{order:0;position:sticky;top:calc(var(--nav-h) + var(--s-3));align-self:start;border-bottom:0;border-inline-start:1px solid var(--hairline)}
+  .est-out{order:0;position:sticky;top:calc(var(--nav-h) + var(--s-2));align-self:start;border-bottom:0;border-inline-start:1px solid var(--hairline);
+    gap:var(--s-1);padding:var(--s-3) var(--s-4)}
+  /* it stays short while it follows (the fixed and sticky chrome may cover 30% of a short screen): the figure, the weeks and the way on */
+  .est-out :is(.eo-fine,.eo-sum,.esc){display:none}
+  .est-out .eo-k{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+  .est-out .btn{min-height:44px;padding-block:var(--s-2);margin-top:var(--s-1)}
 }
