@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-FCEl7z5OdxwS2Odthvi/taDHlm5dT9GNNQ/gXDDJTuU=' 'sha256-ck8vR4cQLM/Y8Iv2QvU0yuUNm+jt7ut+A/D2h01fsTk='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-FCEl7z5OdxwS2Odthvi/taDHlm5dT9GNNQ/gXDDJTuU=' 'sha256-3++QDyTUkyomSKBghkiUz2S41qK9OEI1gU1+0nnPI6Y='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Cette page a pris la route — Numidea Labs</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A1420">
@@ -82,6 +82,10 @@
      muted line on every visit. */
   .e404 .lines .ar{font-family:"Numidea 404 Arabic",var(--font-display);direction:rtl;display:block;margin-top:8px}
   html[lang="ar"] .e404 .lines .ar{font-family:var(--font-ar-body)}
+  /* Arabic here draws in one weight: the buttons' 600 and the 700 any heading rule gives the
+     numeral would each fetch their own pair of Plex Arabic files (Arabic and Latin ranges,
+     ~65 KB a weight) for two buttons and a number; the 400 is fetched for the line anyway */
+  html[lang="ar"] .e404 :is(.btn,.mark){font-weight:400}
   /* the way home and the offer, side by side; under 480px one under the other */
   /* one column of two equal buttons, two columns from 560px: they were
      228 and 252px wide, each as wide as its label */
@@ -111,11 +115,19 @@
      void, not the founder band's panel. */
   .e404 .e404-road{width:min(100%,390px);height:104px;margin:var(--s-5) auto 0;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
-  .e404 .e404-road .ds-ink{opacity:.8;-webkit-mask-size:205% auto;mask-size:205% auto;-webkit-mask-position:81% 57%;mask-position:81% 57%}
+  /* The strip is its own small engraving (assets/illus/dunes-404.webp, 787x169: the part of
+     dunes.webp these 450x104px ever show, at the size the pan sets it: 484x104px; the whole
+     115 KB sheet was fetched for it). Its address is written from the site root by the
+     script below (--dunes-404), which also marks the page (data-dunes): the strip is not
+     drawn without it, since an unmasked ink is a solid block. */
+  .e404 .e404-road{display:none}
+  html[data-dunes] .e404 .e404-road{display:block}
+  html[data-dunes] .e404 .e404-road .ds-ink{opacity:.8;-webkit-mask-image:var(--dunes-404);mask-image:var(--dunes-404);
+    -webkit-mask-size:484px 104px;mask-size:484px 104px;-webkit-mask-position:100% 0;mask-position:100% 0}
   .e404 .e404-road::after{background:linear-gradient(transparent,var(--void))}
   @media (prefers-reduced-motion:no-preference){
-    .e404 .ds-ink{animation:e404-walk 4.5s cubic-bezier(.2,.6,.2,1) .4s 1 both}
-    @keyframes e404-walk{from{-webkit-mask-position:74% 57%;mask-position:74% 57%}}
+    html[data-dunes] .e404 .ds-ink{animation:e404-walk 4.5s cubic-bezier(.2,.6,.2,1) .4s 1 both}
+    @keyframes e404-walk{from{-webkit-mask-position:0 0;mask-position:0 0}}
   }
   /* one label per language, chosen by html[lang] (set before paint) */
   .e404 .cta>[lang],.e404 .sr-only>[lang]{display:none}
@@ -136,6 +148,16 @@
     .e404 .mark{font-size:clamp(64px,16vw,120px)}
     .e404 .lines{margin-top:var(--s-4)}
     .e404 .ctas{margin-top:var(--s-5)}
+  }
+  /* a phone on its side: the numeral, the line and the two buttons in the first
+     screen. The coordinates and the dunes are the page's decoration, and go. */
+  @media (max-height:480px){
+    .e404 .dim-line,html[data-dunes] .e404 .e404-road{display:none}
+    .e404 .mark{font-size:72px}
+    .e404 .brand{margin-bottom:var(--s-3)}
+    .e404 .lines{margin-top:var(--s-3)}
+    .e404 .ctas{margin-top:var(--s-4)}
+    .e404{padding-block:16px 24px}
   }
 </style>
 <script>
@@ -187,6 +209,9 @@
   d.setAttribute('lang', lang);
   d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
   document.title = TITLE[lang];
+  // the road's engraving, from the site root like the links above (CSS here would resolve against the missing folder)
+  d.style.setProperty('--dunes-404', 'url("' + root + 'illus/dunes-404.webp")');
+  d.setAttribute('data-dunes', '');
   var bar = document.querySelector('meta[name="theme-color"]');
   if (bar) bar.setAttribute('content', VOID[th]);
 
@@ -227,7 +252,7 @@
          script above has run; staging rewrites them for JavaScript off. -->
     <p class="ctas">
       <a class="btn btn-primary cta" href="index.html"><span lang="fr"><i class="arw back" aria-hidden="true"></i> Retour à l’accueil</span><span lang="en"><i class="arw back" aria-hidden="true"></i> Back to the home page</span><span lang="ar"><i class="arw back" aria-hidden="true"></i> العودة إلى الرئيسية</span></a>
-      <a class="btn btn-ghost cta" href="index.html#apercu"><span lang="fr">Demander mon Aperçu gratuit <i class="arw" aria-hidden="true"></i></span><span lang="en">Request my free Preview <i class="arw" aria-hidden="true"></i></span><span lang="ar">اطلب معاينتك المجانية <i class="arw back" aria-hidden="true"></i></span></a>
+      <a class="btn btn-ghost cta" href="index.html#apercu"><span lang="fr">Demander mon Aperçu gratuit <i class="arw" aria-hidden="true"></i></span><span lang="en">Request my free Preview <i class="arw" aria-hidden="true"></i></span><span lang="ar">اطلب معاينتك المجانية <i class="arw" aria-hidden="true"></i></span></a>
     </p>
     <div class="dune-strip e404-road lz" aria-hidden="true"><span class="ds-ink"></span></div>
   </main>
