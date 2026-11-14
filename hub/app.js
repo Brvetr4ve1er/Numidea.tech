@@ -14,6 +14,7 @@
        late, so the first jump is short)
   10 · the sheet behind the Menu button and the dock (a phone's foot bar)
   11 · the rows that swipe on a phone: their place and their bar
+  12 · each case's own faces, as it nears the screen
    The rule of the page: nothing moves for longer than five seconds on its
    own, and nothing loops. Each motion answers an input or plays once when
    its section is first on screen; with prefers-reduced-motion: reduce
@@ -44,9 +45,10 @@
   /* ---------------- 0 · dictionaries and the language switch ----------------
      French is baked in the markup; the few French strings this script
      writes itself (the rig's lines and moods, the estimator's labels, the
-     cases' badges) come in the page's #hub-fr block. hub/i18n.js holds all
-     three languages and is fetched only for a visitor who wants English or
-     Arabic (the head script, or the first switch). */
+     cases' badges) come in the page's #hub-fr block. hub/i18n.<lang>.js
+     holds one language each (hub/i18n.js all three, for the gates) and is
+     fetched only for a visitor who wants that language (the head script, or
+     the first switch to it). */
   var FR = {};
   try { FR = JSON.parse($('#hub-fr').textContent); } catch (e) {}
   var lang = root.getAttribute('lang') || 'fr';
@@ -83,36 +85,43 @@
     } catch (e) {}
   }
   var loading = null;
-  function withDicts(fn) {
-    if (window.HUB_I18N) { fn(); return; }
-    if (loading) { loading.push(fn); return; }
-    loading = [fn];
+  function withDicts(l, fn) {
+    if (window.HUB_I18N && window.HUB_I18N[l]) { fn(); return; }
+    if (loading && loading.l === l) { loading.push(fn); return; }
+    loading = [fn]; loading.l = l;
     var busy = $$('.st-lang button');
     busy.forEach(function (b) { b.setAttribute('aria-busy', 'true'); });
     var s = document.createElement('script');
     var me = $('script[src*="app.js"]');
-    s.src = 'i18n.js' + ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0];
-    s.onload = s.onerror = function () { busy.forEach(function (b) { b.removeAttribute('aria-busy'); }); var q = loading; loading = null; if (window.HUB_I18N) q.forEach(function (f) { f(); }); };
+    s.src = 'i18n.' + l + '.js' + ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0];
+    s.onload = s.onerror = function () { busy.forEach(function (b) { b.removeAttribute('aria-busy'); }); var q = loading; loading = null; if (window.HUB_I18N && window.HUB_I18N[l]) q.forEach(function (f) { f(); }); };
     document.head.appendChild(s);
   }
   $$('.st-lang button').forEach(function (b) {
     b.addEventListener('click', function () {
       var l = b.getAttribute('data-lang');
       try { localStorage.setItem('numidea-lang', l); } catch (e) {}
-      withDicts(function () { apply(l); syncUrl(l); });
+      withDicts(l, function () { apply(l); syncUrl(l); });
     });
   });
   // the head script chose EN or AR and fetched the dictionary: apply it, release the paint
   var start = window.NUMIDEA_LANG || 'fr';
-  if (start !== 'fr' && window.HUB_I18N) apply(start);
-  else if (start !== 'fr') { root.lang = 'fr'; root.dir = 'ltr'; lang = 'fr'; }
-  root.removeAttribute('data-i18n-pending');
+  var have = function () { return window.HUB_I18N && window.HUB_I18N[start]; };
+  if (start === 'fr' || have()) { if (start !== 'fr') apply(start); root.removeAttribute('data-i18n-pending'); }
+  else if (window.NUMIDEA_DICT) {
+    // the dictionary is on its way (async): the page stays unpainted until it lands, or the head's 1.5 s backstop
+    var landed = function () {
+      if (have()) apply(start); else { root.lang = 'fr'; root.dir = 'ltr'; lang = 'fr'; }
+      root.removeAttribute('data-i18n-pending');
+    };
+    window.NUMIDEA_DICT.addEventListener('load', landed); window.NUMIDEA_DICT.addEventListener('error', landed);
+  } else { root.lang = 'fr'; root.dir = 'ltr'; lang = 'fr'; root.removeAttribute('data-i18n-pending'); }
   // back from the browser's cache after a switch elsewhere: take the stored choice again
   window.addEventListener('pageshow', function (e) {
     if (!e.persisted) return;
     var l = null;
     try { l = localStorage.getItem('numidea-lang'); } catch (x) {}
-    if (l && /^(fr|en|ar)$/.test(l) && l !== lang) withDicts(function () { apply(l); });
+    if (l && /^(fr|en|ar)$/.test(l) && l !== lang) withDicts(l, function () { apply(l); });
   });
 
   /* ---------------- 1 · the sting ----------------
@@ -198,8 +207,10 @@
     };
     collect();
     var framesIn = false;
+    // a screen without a hover brings the eighteen frames (about 470 kB) in on the first touch, key or focus, not on view
+    var touched = finePointer;
     var loadFrames = function () {
-      if (framesIn || !tpl || !('content' in tpl)) return;
+      if (framesIn || !touched || !tpl || !('content' in tpl)) return;
       framesIn = true;
       var frag = tpl.content.cloneNode(true);
       $$('[data-yf]', frag).forEach(function (el) { el.setAttribute('decoding', 'async'); yBody.insertBefore(el, yBody.firstChild); });
@@ -314,7 +325,10 @@
       for (var i = 0; i < wisps.length; i++) { wisps[i].style.opacity = 0; wisps[i].style.transform = ''; }
       emit('base');
     }
+    var wake = function () { touched = true; loadFrames(); };
+    ['pointerdown', 'keydown', 'focusin'].forEach(function (ev) { panel.addEventListener(ev, wake, { once: true, passive: true }); });
     var poke = function () {
+      wake();
       var n = now(); keep(WINDOW);
       S.squash = n + 110; S.ksquash = n + 110;
       if (reduce) { S.hold = { name: 'smirk', until: n + 1200 }; if (!S.say) startSay(lines()[S.lineIx++ % lines().length]); return; }
@@ -323,7 +337,7 @@
       else { S.hold = { name: 'smirk', until: n + 1300 }; S.khold = { name: 'wide', until: n + 700 }; }
       S.lastClick = n;
     };
-    var pokeKuro = function () { var n = now(); keep(WINDOW); S.ksquash = n + 110; S.khold = { name: Math.random() < .5 ? 'wide' : 'ear', until: n + 800 }; };
+    var pokeKuro = function () { wake(); var n = now(); keep(WINDOW); S.ksquash = n + 110; S.khold = { name: Math.random() < .5 ? 'wide' : 'ear', until: n + 800 }; };
     yRoot.addEventListener('click', poke);
     kRoot.addEventListener('click', pokeKuro);
     // on screen, once the sting is gone: the frames come in, he wakes for five seconds and says his first line
@@ -400,12 +414,13 @@
   }
   /* the short animations (a footer sleep, a wave in the contact card): each
      <img> holds its still and names its animated file in data-anim. Once
-     half of it is on screen the src becomes the animation, once: it plays
+     half of it is on screen (not on a phone: it keeps the still) the src becomes the animation, once: it plays
      for less than five seconds (scripts/check.mjs 17b) and rests on the
      frame it started from. With reduced motion nothing is observed and the
      <picture>'s <source> keeps the still. */
   var loops = $$('img[data-anim]');
-  if (loops.length && !reduce && IO) {
+  // a phone keeps the stills: two decorations at the page's end are not worth 176 kB of its data
+  if (loops.length && !reduce && IO && !matchMedia('(max-width:599px)').matches) {
     var lio = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (!e.isIntersecting) return;
@@ -949,4 +964,26 @@
     row.addEventListener('scroll', paint, { passive: true });
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(row); else { addEventListener('resize', fit); fit(); }
   });
+
+  /* ---------------- 12 · each case's faces, as it nears ----------------
+     hub/fonts/lazy-<slug>.css holds a case's own faces (the WorkspaceHQ
+     ticket's arcade face is lazy-whq.css): a link to it is added once the
+     block is within a screen and a half, so a phone at the top of the page
+     fetches none of them (21 font files, 364 kB, were asked for at first
+     paint). Until it lands the case sets its fallback stack; font-display
+     swap does the rest. */
+  (function () {
+    var me = $('script[src*="app.js"]'), v = ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0], done = {};
+    var load = function (n) {
+      if (done[n]) return; done[n] = 1;
+      var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'fonts/lazy-' + n + '.css' + v; document.head.appendChild(l);
+    };
+    var targets = $$('.st-case').map(function (el) { return [el, el.id.replace(/^case-/, '')]; });
+    var own = $('.st-own'); if (own) targets.push([own, 'whq']);
+    if (!IO) { targets.forEach(function (t) { load(t[1]); }); return; }
+    var fio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { load(e.target.getAttribute('data-fonts')); fio.unobserve(e.target); } });
+    }, { rootMargin: '150% 0px' });
+    targets.forEach(function (t) { t[0].setAttribute('data-fonts', t[1]); fio.observe(t[0]); });
+  })();
 })();

@@ -34,9 +34,9 @@
      Edit those, then run: node scripts/build-hub.mjs -->
 <!-- Language before first paint, as scene/ does: ?lang= (a shared link),
      then the site's shared 'numidea-lang' key, validated. The text is baked
-     in French; for EN or AR the page's dictionary (i18n.js, written by the
-     build) is fetched here, parser-blocking, so app.js finds it, and paint
-     is held until app.js has applied it (1.5 s backstop: then the baked
+     in French; for EN or AR that language's dictionary (i18n.en.js or
+     i18n.ar.js, written by the build) is fetched here, async (it no longer holds the parser: the CSS and the
+     pictures load beside it), and paint is held until app.js has applied it (1.5 s backstop: then the baked
      French shows, left to right). The canonical names the version the
      address asked for. The js class lets the stylesheet hide what only a
      script reveals (the reveals' start, the sting) and nothing else. -->
@@ -48,14 +48,18 @@ d.lang=l;d.dir=l==='ar'?'rtl':'ltr';
 var h='{{base}}hub/',c=document.createElement('link');c.rel='canonical';c.href=q===l&&l!=='fr'?h+'?lang='+l:h;document.head.appendChild(c);
 if(c.href!==h){var m=document.querySelector('meta[property="og:url"]');if(m)m.setAttribute('content',c.href);m=document.querySelector('meta[property="og:locale"]');if(m)m.setAttribute('content',l==='ar'?'ar_DZ':'en_US');}
 window.NUMIDEA_LANG=l;
-if(l==='ar'){['fonts/reem-kufi-700-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2'].forEach(function(f){var p=document.createElement('link');p.rel='preload';p.as='font';p.type='font/woff2';p.crossOrigin='';p.href=f;document.head.appendChild(p);});}
-if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript src="i18n.js?v={{stamp}}">\x3c/script>');var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};setTimeout(r,1500);}})();</script>
-<!-- Faces: hub/fonts/fonts.css, one file per family and subset, each
-     fetched only when a character of its range is set in it. Preloaded:
-     the first screen's display face and body face. -->
+if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElement('script');sc.src='i18n.'+l+'.js?v={{stamp}}';sc.async=true;sc.setAttribute('fetchpriority','high');document.head.appendChild(sc);window.NUMIDEA_DICT=sc;var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};setTimeout(r,1500);}if(l==='ar'){['fonts/reem-kufi-700-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2'].forEach(function(f){var p=document.createElement('link');p.rel='preload';p.as='font';p.type='font/woff2';p.crossOrigin='';p.href=f;document.head.appendChild(p);});}
+})();</script>
+<!-- Faces: hub/fonts/studio.css (cut from fonts.css by the build), one file
+     per family and subset, each fetched only when a character of its range
+     is set in it; each case's own faces and the arcade face of the
+     WorkspaceHQ ticket come in as their block nears the screen
+     (hub/fonts/lazy-*.css, hub/app.js 12; without scripts, the noscript
+     links). Preloaded: the first screen's display face and body face. -->
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/archivo-800-900-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
-<link rel="stylesheet" href="fonts/fonts.css?v={{stamp}}">
+<link rel="stylesheet" href="fonts/studio.css?v={{stamp}}">
+<noscript>{{lazyFonts}}</noscript>
 <link rel="stylesheet" href="style.css?v={{stamp}}">
 {{caseCss}}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"{{base}}"},{"@type":"ListItem","position":2,"name":"Studio","item":"{{base}}hub/"}]}</script>
@@ -932,7 +936,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
       <div class="st-contact__art">
         <div class="st-sign"><img src="img/mascot/clean/y-sign.webp" data-i18n-alt="contact.signAlt" loading="lazy" decoding="async"><span class="st-sign__t" aria-hidden="true" data-i18n="contact.sign"></span></div>
         <img class="st-contact__kuro" src="bible/art/kuro-love.webp" alt="" loading="lazy" decoding="async">
-        <picture class="st-contact__wave"><source media="(prefers-reduced-motion: reduce)" srcset="img/studio/loops/yasser-wave-still.webp"><img src="img/studio/loops/yasser-wave-still.webp" data-anim="img/studio/loops/yasser-wave.webp" width="258" height="480" alt="" loading="lazy" decoding="async"></picture>
+        <picture class="st-contact__wave"><source media="(prefers-reduced-motion: reduce)" srcset="img/studio/loops/yasser-wave-small-still.webp"><img src="img/studio/loops/yasser-wave-small-still.webp" data-anim="img/studio/loops/yasser-wave.webp" width="200" height="372" alt="" loading="lazy" decoding="async"></picture>
       </div>
       <p class="st-aside st-contact__aside" data-i18n="contact.aside"></p>
     </div>
@@ -945,7 +949,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');document.write('\x3cscript s
   <div class="st-wrap"><div class="st-foot__in">
     <span class="st-label st-foot__ok" aria-hidden="true">奥付</span>
     <a class="st-wm st-wm--foot" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
-    <p class="st-foot__line"><span data-i18n="footer.line"></span> <picture class="st-foot__sleep"><source media="(prefers-reduced-motion: reduce)" srcset="img/studio/loops/kuro-sleep-still.webp"><img src="img/studio/loops/kuro-sleep-still.webp" data-anim="img/studio/loops/kuro-sleep.webp" width="258" height="287" alt="" loading="lazy" decoding="async"></picture></p>
+    <p class="st-foot__line"><span data-i18n="footer.line"></span> <picture class="st-foot__sleep"><source media="(prefers-reduced-motion: reduce)" srcset="img/studio/loops/kuro-sleep-small-still.webp"><img src="img/studio/loops/kuro-sleep-small-still.webp" data-anim="img/studio/loops/kuro-sleep.webp" width="112" height="125" alt="" loading="lazy" decoding="async"></picture></p>
     <nav class="st-foot__links" data-i18n-aria="footer.nav">
       <a href="../" data-i18n="footer.site"></a>
       <a href="bible/" data-i18n="footer.bible"></a>

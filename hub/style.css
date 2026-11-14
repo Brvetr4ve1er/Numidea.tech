@@ -617,10 +617,10 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 /* WorkspaceHQ, the founder's favourite build, as a game cartridge ticket in
    the "Aussi, faits maison" line (the cartridge Bit lived on in the page of
    28 Oct). Ink ground, the Studio's perforation, the arcade face for the name
-   only (the font WorkspaceHQ already hosts: one file, no second download).
+   only (the font WorkspaceHQ already hosts: one file, no second download;
+   hub/fonts/lazy-whq.css, fetched as the ticket nears).
    Still at rest; the hop, the blink, "PRESS START" and "+1 XP" play on hover
    and focus, a few hundred milliseconds each and then stop. */
-@font-face{font-family:"Press Start 2P";src:url(../workspacehq/fonts/PressStart2P.woff2) format("woff2");font-display:swap}
 .st-own{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
 .st-own a.whq-cart{--g:#FFD23F;position:relative;display:flex;align-items:center;gap:14px;max-width:440px;min-height:44px;margin-top:6px;padding:16px 14px 22px;padding-inline-end:74px;color:var(--cream);font-weight:400;text-decoration:none;background:var(--ink);
   border:2px solid var(--ink);box-shadow:5px 5px 0 var(--red);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
