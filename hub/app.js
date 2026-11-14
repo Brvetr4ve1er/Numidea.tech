@@ -405,6 +405,9 @@
     }, { threshold: .12 });
     $$('[data-reveal]').forEach(function (el) {
       if (el.getBoundingClientRect().top < innerHeight) return;
+      // a card inside a row that swipes is revealed by the swipe itself, as it comes into the row: not hidden behind a scroll the visitor may never make
+      var rowEl = el.closest('[data-row]');
+      if (rowEl && rowEl.scrollWidth > rowEl.clientWidth + 2) return;
       var sib = [].filter.call(el.parentElement.children, function (c) { return c.hasAttribute('data-reveal'); });
       el.style.setProperty('--d', Math.min(490, Math.max(0, sib.indexOf(el)) * 70) + 'ms');
       el.classList.add('st-rv');
@@ -422,7 +425,7 @@
   }
   /* the short animations (a footer sleep, a wave in the contact card): each
      <img> holds its still and names its animated file in data-anim. Once
-     half of it is on screen (not on a data-saving or 2G/3G connection: it keeps the still) the src becomes the animation, once: it plays
+     a third of it is on screen (not on a data-saving or 2G/3G connection: it keeps the still) the src becomes the animation, once: it plays
      for less than five seconds (scripts/check.mjs 17b) and rests on the
      frame it started from. With reduced motion nothing is observed and the
      <picture>'s <source> keeps the still. */
@@ -436,7 +439,7 @@
         lio.unobserve(e.target);
         e.target.src = e.target.getAttribute('data-anim');
       });
-    }, { threshold: .5 });
+    }, { threshold: .3 });
     loops.forEach(function (im) { lio.observe(im); });
   }
   var board = $('[data-wedge]');
@@ -692,6 +695,14 @@
         else { to = xs.filter(function (x) { return x < cur - min; }).pop(); if (to == null) to = 0; }
         track.scrollTo({ left: Math.max(0, Math.min(max, to)), behavior: reduce ? 'auto' : 'smooth' });
       };
+      // a control reached by the keyboard (or a screen reader) in a tile that is only peeking in: the track brings the tile to its snap point, whole (the browser's own scroll-into-view stopped at the edge, and the snap took it back)
+      track.addEventListener('focusin', function (e) {
+        var tile = tiles.filter(function (t) { return t.contains(e.target); })[0];
+        if (!tile) return;
+        var tr = track.getBoundingClientRect(), r = tile.getBoundingClientRect();
+        if (r.left >= tr.left + 8 && r.right <= tr.right - 8) return;
+        track.scrollTo({ left: Math.max(0, Math.min(track.scrollWidth - track.clientWidth, Math.round(r.left - tr.left + track.scrollLeft - padL()))), behavior: 'auto' });
+      });
       prevB.forEach(function (b) { b.addEventListener('click', function () { by(-1); }); });
       nextB.forEach(function (b) { b.addEventListener('click', function () { by(1); }); });
       // the foot's bar is a scrubber: a touch or a click on it takes the track there, and it settles on a tile

@@ -1051,7 +1051,7 @@ main:focus{outline:none}
   .st-preview__in{gap:24px}
   .st-preview__row{gap:20px}
   .st-preview__copy{gap:14px}
-  .st-preview__img{aspect-ratio:2/1;box-shadow:6px 6px 0 var(--ink)}
+  .st-preview__img{aspect-ratio:5/2;box-shadow:6px 6px 0 var(--ink)}
   .st-preview__seal{width:84px;height:84px;border-width:3px;top:-8%}
   .st-preview__seal span:first-child{font-size:24px}
   .st-steps{grid-template-columns:1fr}
@@ -1060,12 +1060,17 @@ main:focus{outline:none}
   .st-steps__t{font-size:20px}
   .st-steps p{font-size:15px}
   /* the wedge and the brand layers */
-  .st-board{gap:24px;padding:16px}
+  .st-board{gap:18px;padding:14px}
+  .st-chain{gap:10px}
+  .st-board__end{margin-top:-8px}
+  .st-board__kuro{width:84px}
+  .st-board__end .st-aside{margin-bottom:14px}
   .st-chip{padding:8px 12px}
   .st-wedge__close{margin-top:24px}
-  .st-layer{min-height:52px}
+  .st-layer{min-height:48px}
+  .st-water{margin:4px 0 6px}
   .st-brand__row{gap:24px}
-  .st-brand__card{min-height:0;padding:18px 16px 118px}
+  .st-brand__card{min-height:0;padding:16px 14px 104px}
   .st-brand__dl p{font-size:16px}
   .st-brand__face{width:112px}
   .st-brand__aside{inset-inline-start:16px;bottom:22px;font-size:20px}
@@ -1092,15 +1097,15 @@ main:focus{outline:none}
   .st-case__bar-p i{overflow:hidden}
 }
 @media (max-width:599px){
-  .st-cases{gap:28px}
+  .st-cases{gap:22px}
   .st-case{box-shadow:5px 5px 0 var(--ink)}
   /* the bar: the name and the arrows on one line, then the tag and the unlocked count (the tag and the arrows sit in a wrapper of their own in each case: it steps aside) */
   .st-case__bar{padding:10px 12px;gap:8px 12px}
   .st-case__bar > div:last-child:not(.st-case__id):not(.st-case__progress){display:contents}
-  .st-case__bar > .st-case__id{order:1;flex:1 1 100%;min-width:0}
-  .st-case__bar .st-case__tag{order:2;flex:1 1 0;min-width:0;align-self:center}
-  .st-case__bar .st-case__nav{order:3;flex:none}
-  .st-case__bar > .st-case__progress{order:4;flex:1 1 100%}
+  .st-case__bar > .st-case__id{order:1;flex:1 1 0;min-width:0}
+  .st-case__bar .st-case__nav{order:2;flex:none}
+  .st-case__bar .st-case__tag{order:3;flex:0 1 auto;min-width:0;align-self:center}
+  .st-case__bar > .st-case__progress{order:4;flex:1 1 120px}
   .st-case__logo{width:40px;height:40px;padding:4px}
   .st-case__logo img{object-fit:contain}
   .st-case__name{font-size:16px}
@@ -1137,7 +1142,8 @@ main:focus{outline:none}
   .st-est__kuro{min-height:0;gap:8px;align-items:center}
   .st-est__k{width:76px;height:76px}
   .st-est__line{font-size:19px;padding-bottom:0;min-width:0;overflow-wrap:anywhere}
-  .st-est__note{font-size:14px}
+  .st-est__note{font-size:13.5px;line-height:1.4}
+  .st-est__src a{min-height:44px}
   .st-est__src{font-size:var(--t-label)}
 
   /* the proof */
@@ -1182,7 +1188,7 @@ main:focus{outline:none}
   .st-tile img{max-width:none}
   .st-lab__grid .st-tile img{height:168px;width:auto}
   .st-diary{margin-top:28px;padding-bottom:0}
-  .st-diary__art img{aspect-ratio:16/10;object-fit:cover;object-position:50% 40%}
+  .st-diary__art img{aspect-ratio:2/1;object-fit:cover;object-position:50% 45%}
   .st-diary__copy{padding:14px 16px 18px;gap:10px}
   .st-diary__grid{grid-auto-columns:min(80%,300px);gap:12px;margin-top:12px}
   .st-lab__end{margin-top:16px}
@@ -1190,11 +1196,13 @@ main:focus{outline:none}
   /* the founder */
   .st-plate{margin-bottom:28px}
   .st-founder__row{gap:24px}
-  .st-founder__photo img{aspect-ratio:16/10}
+  .st-founder__photo img{aspect-ratio:2/1}
   .st-modes{gap:8px}
   .st-founder__floor{padding-top:8px}
   .st-actor--duo{width:min(100%,230px)}
-  .st-founder__copy{gap:14px}
+  .st-founder__copy{gap:12px}
+  .st-team{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .st-team li{padding:10px}
   .st-founder__copy .st-h3l{font-size:30px}
   .st-founder__handle{font-size:26px;margin:4px 0}
   .st-polas{flex-wrap:nowrap;gap:12px;margin-top:10px;padding-bottom:8px}
@@ -1212,11 +1220,11 @@ main:focus{outline:none}
   .st-qa__a{padding-bottom:16px}
   .st-faq__head{margin-bottom:20px}
   .st-contact{padding:12px 0 28px}
-  .st-contact__card{padding:22px 16px;gap:24px}
+  .st-contact__card{padding:20px 16px;gap:18px}
   .st-contact__copy{gap:14px}
   .st-ctas{grid-template-columns:1fr;gap:10px}
   .st-cta{min-height:68px}
-  .st-contact__art{min-height:240px;flex-basis:100%}
+  .st-contact__art{min-height:200px;flex-basis:100%}
   .st-sign{width:min(100%,280px)}
   .st-contact__kuro{width:88px}
   .st-contact__wave{width:92px}

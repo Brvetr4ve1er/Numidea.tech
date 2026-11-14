@@ -895,6 +895,8 @@ async function hits(p) {
     const out = [];
     const els = [...document.querySelectorAll('a[href],button')].filter((e) => e.offsetParent !== null && !e.closest('dialog'));
     for (const e of els) {
+      // a control inside a track is reached as the keyboard reaches it: by focus, which brings its tile whole to the track's snap point
+      if (e.closest('[data-track]')) e.focus({ preventScroll: true });
       e.scrollIntoView({ block: 'center', inline: 'nearest' });
       await new Promise((res) => requestAnimationFrame(() => requestAnimationFrame(res)));
       // a track snaps tile by tile (mandatory, on a phone) once its scroll has settled: wait for the tile to land
