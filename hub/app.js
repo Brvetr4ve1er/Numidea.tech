@@ -137,7 +137,9 @@
   (function () {
     var seen = null;
     try { seen = sessionStorage.getItem('numidea-sting'); } catch (e) { seen = '1'; }
-    if (reduce || seen) return;
+    // a slow or saving connection goes straight to the page: the picture (117 kB) would arrive after the wipe
+    var cn = navigator.connection;
+    if (reduce || seen || (cn && (cn.saveData || /(^|-)[23]g$/.test(cn.effectiveType || '')))) return;
     try { sessionStorage.setItem('numidea-sting', '1'); } catch (e) {}
     stinging = true;
     var portrait = innerHeight > innerWidth;
@@ -216,6 +218,8 @@
       $$('[data-yf]', frag).forEach(function (el) { el.setAttribute('decoding', 'async'); yBody.insertBefore(el, yBody.firstChild); });
       $$('[data-kf]', frag).forEach(function (el) { el.setAttribute('decoding', 'async'); kBody.insertBefore(el, kBody.firstChild); });
       collect();
+      // decoded before the first flip to it: a frame that is complete but not decoded showed a blank figure once
+      [Y, K].forEach(function (m) { Object.keys(m).forEach(function (k) { var el = m[k]; if (el.decode) el.decode().catch(function () {}); }); });
     };
     var ready = function (img) { return img && img.complete && img.naturalWidth > 0; };
     var lines = function () { var a = []; for (var i = 0; t('rig.lines.' + i); i++) a.push(t('rig.lines.' + i)); return a; };
@@ -387,6 +391,10 @@
     if (!reduce) once(el, .3, function () { show(250 + hb); });
   });
 
+  // the WorkspaceHQ ticket plays its game animation (a second or three) on hover; with no hover it plays once, when it is first on screen
+  var cart = $('.whq-cart');
+  if (cart && !reduce && !finePointer) once(cart, .8, function () { cart.classList.add('is-play'); });
+
   /* ---------------- 4 · reveals, the wedge, the speed bar ----------------
      A [data-reveal] block below the first screen starts 18px low and
      transparent and comes up once 12% of it is on screen, 70 ms after the
@@ -414,13 +422,14 @@
   }
   /* the short animations (a footer sleep, a wave in the contact card): each
      <img> holds its still and names its animated file in data-anim. Once
-     half of it is on screen (not on a phone: it keeps the still) the src becomes the animation, once: it plays
+     half of it is on screen (not on a data-saving or 2G/3G connection: it keeps the still) the src becomes the animation, once: it plays
      for less than five seconds (scripts/check.mjs 17b) and rests on the
      frame it started from. With reduced motion nothing is observed and the
      <picture>'s <source> keeps the still. */
   var loops = $$('img[data-anim]');
-  // a phone keeps the stills: two decorations at the page's end are not worth 176 kB of its data
-  if (loops.length && !reduce && IO && !matchMedia('(max-width:599px)').matches) {
+  // a connection that says it is saving data, or is slow, keeps the stills: two decorations at the page's end are not worth 176 kB of it
+  var thin = navigator.connection && (navigator.connection.saveData || /(^|-)[23]g$/.test(navigator.connection.effectiveType || ''));
+  if (loops.length && !reduce && IO && !thin) {
     var lio = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (!e.isIntersecting) return;

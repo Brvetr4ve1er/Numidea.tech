@@ -897,6 +897,8 @@ async function hits(p) {
     for (const e of els) {
       e.scrollIntoView({ block: 'center', inline: 'nearest' });
       await new Promise((res) => requestAnimationFrame(() => requestAnimationFrame(res)));
+      // a track snaps tile by tile (mandatory, on a phone) once its scroll has settled: wait for the tile to land
+      if (e.closest('[data-track]')) await new Promise((res) => setTimeout(res, 200));
       const b = e.getBoundingClientRect();
       if (!b.width || !b.height || b.bottom < 0 || b.top > innerHeight) continue;
       // a control a track has scrolled out of its window is not a control the
@@ -1174,7 +1176,12 @@ for (const f of pages) {
       document.documentElement.style.scrollBehavior = 'auto';
       const out = {}; let jump = performance.now();
       const mo = new MutationObserver((list) => { if (performance.now() - jump < 150) return;
-        for (const r of list) { const k = __d(r.target.nodeType === 1 ? r.target : r.target.parentElement) + ' ' + (r.attributeName || r.type); out[k] = (out[k] || 0) + 1; } });
+        for (const r of list) {
+          const el = r.target.nodeType === 1 ? r.target : r.target.parentElement;
+          // a case's "seen" marks (badge, pip, scope line, count) follow the tiles the visitor's scroll has brought into the track: the lazy faces of a case that has just come near can settle its layout a moment after the jump, and the observer reports then. State, not motion.
+          if (el && (el.closest('.st-badge,[data-seen-count]') || el.classList.contains('is-seen'))) continue;
+          const k = __d(el) + ' ' + (r.attributeName || r.type); out[k] = (out[k] || 0) + 1;
+        } });
       mo.observe(document.body, { subtree: true, attributes: true, characterData: true, childList: true });
       let n = 0;
       for (let y = innerHeight; y < document.documentElement.scrollHeight; y += innerHeight) {

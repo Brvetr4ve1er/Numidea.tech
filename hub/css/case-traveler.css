@@ -35,7 +35,7 @@
   --c-on-dark:#F2EAD8;
   --c-font:"Geist",var(--f-body);
   --c-font-disp:"Archivo Condensed","Reem Kufi",sans-serif;
-  --ct-mono:"Space Mono","Noto Serif JP","IBM Plex Sans Arabic",ui-monospace,monospace;
+  --ct-mono:"Space Mono","Noto Serif JP",ui-monospace,monospace;
   --ct-serif:"Noto Serif JP","Noto Sans JP",serif;
   --ct-ink:#211E1B;
   --ct-ash:#1A1613;
@@ -426,3 +426,7 @@ html.js .case-traveler .ct-end__list li:not(.is-seen)::before{content:"[ ]"}
   .case-traveler .ct-shelf__row{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding-inline:16px;overscroll-behavior-x:contain;scrollbar-width:thin}
   .case-traveler .ct-spine{flex:none;width:44px;scroll-snap-align:start}
 }
+
+/* the Arabic page keeps its Arabic face in the terminal's stack (named only there: a French page's
+   missing glyph, before Space Mono has come in, would otherwise ask for its Latin cut) */
+:root:lang(ar) .case-traveler{--ct-mono:"Space Mono","Noto Serif JP","IBM Plex Sans Arabic",ui-monospace,monospace}

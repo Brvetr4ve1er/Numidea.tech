@@ -44,6 +44,11 @@ for(const w of [1440,1024,768,390]){
  combos.push(['hub','/hub/',w,{'numidea-lang':'ar'},`hub ${w}/ar`]);
  combos.push(['bible','/hub/bible/',w,{},`bible ${w}`]);
 }
+// the Studio on the two narrow phones too (360, and a fold's 280: 2026-11-14, the mobile pass)
+for(const w of [360,280]){
+ combos.push(['hub','/hub/',w,{'numidea-lang':'fr'},`hub ${w}`]);
+ combos.push(['hub','/hub/',w,{'numidea-lang':'ar'},`hub ${w}/ar`]);
+}
 // the brand books (hub/brand/) on a tablet and two phone widths, and the bible at 360 (2026-11-14, the mobile pass)
 for(const w of [768,390,360])for(const b of ['almaflow','traveler','numidea','exploration'])combos.push(['brand','/hub/brand/'+b+'/',w,{},`${b} ${w}`]);
 combos.push(['bible','/hub/bible/',360,{},'bible 360']);

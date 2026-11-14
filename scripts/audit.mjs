@@ -544,6 +544,10 @@ for(const t of ['arcanum','daylight'])
 console.log('— phone 390×844 —');
 await run('hub fr m','/hub/index.html',{lang:'fr',w:390,h:844});
 await run('hub ar m','/hub/index.html',{lang:'ar',w:390,h:844});
+await run('hub en m','/hub/index.html',{lang:'en',w:390,h:844});
+// a fold's cover screen (2026-11-14, the mobile pass): the layout may not be wider than the screen
+await run('hub fr xs','/hub/index.html',{lang:'fr',w:280,h:653});
+await run('hub ar xs','/hub/index.html',{lang:'ar',w:280,h:653});
 await run('hub bible m','/hub/bible/index.html',{w:390,h:844});
 for(const b of ['almaflow','traveler','numidea','exploration']) await run('hub brand '+b+' m','/hub/brand/'+b+'/index.html',{w:390,h:844});
 for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});

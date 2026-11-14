@@ -256,12 +256,12 @@
   .case-heetch .ch-cover__txt{padding:12px 14px;gap:6px}
   .case-heetch .ch-cover__top{padding-inline-end:0}
   .case-heetch .ch-cover__h{font-size:22px}
-  .case-heetch .ch-cover__s{font-size:12.5px;line-height:1.4}
+  .case-heetch .ch-cover__s{font-size:var(--t-label);line-height:1.4}
   .case-heetch .ch-plan{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(120px,1fr)}
   .case-heetch .ch-plan__l{gap:8px;padding:12px 14px}
   .case-heetch .ch-plan__l > .ch-k{padding-inline-end:70px}
   .case-heetch .ch-plan__h{font-size:19px}
-  .case-heetch .ch-pills label{padding:0 10px;font-size:12.5px}
+  .case-heetch .ch-pills label{padding:0 10px;font-size:var(--t-label)}
   .case-heetch .ch-plan__out{padding:8px 10px}
   .case-heetch .ch-plan__r{border-top:1px solid var(--ch-edge)}
 }
