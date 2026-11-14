@@ -526,7 +526,7 @@ Google signals, advertising features, data retention) should stay off so that
 stays true.
 Confirmed by the owner 2026-11-14: the privacy page's new line that campaign
 parameters (`?ref=`, `utm_*`) leave with the page address in Google's anonymous
-pings, not only with the visitor's message, is the wording he wants.
+pings, not only with the visitor's message, is the wording the owner wants.
 
 ## 9. Clients' own domains
 The cards link the Netlify builds, because none of the clients' domains serves
