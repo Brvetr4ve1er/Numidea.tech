@@ -959,7 +959,11 @@ scenes are now a titled row.)
   All are maquettes drawn in HTML and CSS from the book's own photos; the 12
   earlier plates are unchanged. No business fact is stated: no phone, price,
   delay, guarantee, certification, review or address (the places for a phone
-  number read `[téléphone]`, the account `[@compte]`); the advice is general
+  number read `[téléphone]`, the account `[@compte]`; since 2026-11-15, on the
+  owner's choice of a neutral stand-in rather than the studio's own WhatsApp,
+  the two phone slots show 01 99 00 12 34, a number in ARCEP's range reserved
+  for fiction, labelled as a sample, to replace with the client's own; the
+  account still reads `[@compte]`); the advice is general
   (annual boiler maintenance "obligatoire chaque année", heating around 19 °C,
   filters, shutters in a heat wave). French only, no Arabic page.
   **Confirmed by the owner on 2026-11-11:** "Gennevilliers (92)" is right in

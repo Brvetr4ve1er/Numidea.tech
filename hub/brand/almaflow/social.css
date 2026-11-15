@@ -51,6 +51,8 @@
 .bk-af .sp .tag--h{background:var(--af-heat);color:var(--af-frost)}
 .bk-af .sp .tag--o{box-shadow:inset 0 0 0 .4cqw currentColor}
 .bk-af .sp .ph,.bk-af .ph{display:inline-block;padding:0 .5em;border:1px dashed currentColor;border-radius:3px;font-family:"Geist Mono",monospace;font-weight:500;font-size:max(12px,.92em);letter-spacing:.02em;white-space:nowrap}
+/* the sample phone number (ARCEP fiction range, 2026-11-15) where a dashed [téléphone] stood: the same mono face, no dashed box */
+.bk-af .tel{display:inline-block;font-family:"Geist Mono",monospace;font-weight:500;font-size:max(12px,.92em);letter-spacing:.02em;white-space:nowrap}
 .bk-af .sp .ic{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .bk-af .sp .rule-flux{height:1.2cqw;width:22cqw;background:var(--af-flux);border-radius:1cqw}
 
