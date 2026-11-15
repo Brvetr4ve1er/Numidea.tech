@@ -170,7 +170,7 @@ section[id],.st-case,[id^="case-"]{scroll-margin-top:80px}
 @media (min-width:1160px){
   .st-nav__links{display:flex}
   .st-lang{margin-inline-start:0}
-  .st-nav__menu{display:none}
+  .st-nav__in .st-nav__menu{display:none}
 }
 @media (min-width:1200px){.st-wm__kana{display:inline}}
 /* the Menu button: three bars on a 44px square, the language switch's own frame */
