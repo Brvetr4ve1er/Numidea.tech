@@ -127,30 +127,37 @@
   /* ---------------- 1 · the sting ----------------
      Shown once per session (sessionStorage 'numidea-sting'), only with
      scripts on and without reduced motion; never in the HTML, so a reader
-     without scripts and every crawler get the page as it is. Its timeline
-     is CSS (style.css, 00): the rooftop eases in over 2.2 s, the HUD line
-     opens, the letters land, the seal stamps, the paper wipes up from
-     1.667 s. A click anywhere, Esc or any key jumps to the wipe; whatever
-     happens it is gone by 2.6 s. The rig waits for it. */
+     without scripts and every crawler get the page as it is. Rebuilt around
+     the characters (2026-11-15): Yasser in three rig frames on the red
+     block (base, up, smirk: the hero's own files, already in the page),
+     Kuro's eyes in a night cut, the red stamp, then the paper wipes up from
+     1.667 s. Its timeline is CSS (style.css, 00). A click anywhere, Esc or
+     any key jumps to the wipe; whatever happens it is gone by 2.6 s. The
+     rig waits for it. The old still ('sting-169.webp' and 'sting-916.webp' in
+     img/motion) is no longer loaded here; it stays as the source of the
+     social card (scripts/build-og.mjs), and naming it keeps the build's
+     unreferenced-file check quiet. */
   var stingDone = [];
   var stinging = false;
   (function () {
     var seen = null;
     try { seen = sessionStorage.getItem('numidea-sting'); } catch (e) { seen = '1'; }
-    // a slow or saving connection goes straight to the page: the picture (117 kB) would arrive after the wipe
+    // a slow or saving connection goes straight to the page: the frames (about 75 kB) would arrive after the wipe
     var cn = navigator.connection;
     if (reduce || seen || (cn && (cn.saveData || /(^|-)[23]g$/.test(cn.effectiveType || '')))) return;
     try { sessionStorage.setItem('numidea-sting', '1'); } catch (e) {}
     stinging = true;
-    var portrait = innerHeight > innerWidth;
     var el = document.createElement('div');
     el.className = 'st-sting';
     el.setAttribute('role', 'presentation');
     var letters = function (w, from) { return w.split('').map(function (c, i) { return '<span class="st-sting__g" style="--i:' + (from + i) + '">' + c + '</span>'; }).join(''); };
-    el.innerHTML = '<img class="st-sting__img" alt="" src="img/motion/' + (portrait ? 'sting-916.webp" width="900" height="1600"' : 'sting-169.webp" width="1920" height="1080"') + '>'
-      + '<span class="st-sting__bar st-sting__bar--t" aria-hidden="true"></span>'
+    var yf = function (k, f) { return '<img class="st-sting__y st-sting__y--' + k + '" alt="" width="501" height="565" decoding="async" src="bible/art/rig-y-' + f + '.webp">'; };
+    el.innerHTML = '<span class="st-sting__bar st-sting__bar--t" aria-hidden="true"></span>'
       + '<span class="st-sting__bar st-sting__bar--b" aria-hidden="true"><span class="st-sting__hud"></span></span>'
-      + '<span class="st-sting__word" aria-hidden="true" dir="ltr"><span>' + letters('NUMIDEA', 0) + '</span><span class="st-sting__labs"><span>' + letters('LABS', 0) + '</span><span class="st-sting__seal">夜</span></span></span>'
+      + '<span class="st-sting__block" aria-hidden="true">' + yf('a', 'base') + yf('b', 'up') + yf('c', 'smirk') + '</span>'
+      + '<span class="st-sting__word" aria-hidden="true" dir="ltr"><span>' + letters('NUMIDEA', 0) + '</span><span class="st-sting__labs"><span>' + letters('LABS', 0) + '</span></span></span>'
+      + '<span class="st-sting__eyes" aria-hidden="true"><img alt="" width="360" height="294" decoding="async" src="bible/art/rig-k-wide.webp"></span>'
+      + '<span class="st-sting__stamp" aria-hidden="true" lang="ja">夜</span>'
       + '<span class="st-sting__wipe" aria-hidden="true"></span>'
       + '<button type="button" class="st-sting__skip"><b aria-hidden="true">跳</b><span aria-hidden="true"></span></button>';
     $('.st-sting__hud', el).textContent = t('sting.hud');
@@ -175,6 +182,39 @@
     setTimeout(end, 2600);
     // (no focus is moved onto it: the page's own skip link stays the first Tab stop; any key skips the sting)
   })();
+
+  /* ---------------- 1b · the paper wipe between pages ----------------
+     0.4 s, the sting's paper and rule, on a same-origin navigation (a link
+     to another page of the site, the main buttons included). Never with a
+     modifier key, a middle or right click, target="_blank", a download, a
+     hash-only link (same page), a file that is not a page, or with reduced
+     motion (nothing is built). The overlay is taken away on pageshow, so a
+     page restored from the back/forward cache never sticks under it; a 2 s
+     backstop does the same if the navigation never leaves. */
+  var pgwipe = null;
+  var wipeOff = function () { if (pgwipe) { pgwipe.classList.remove('is-on'); pgwipe.remove(); pgwipe = null; } };
+  window.addEventListener('pageshow', wipeOff);
+  if (!reduce) document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
+    var u;
+    try { u = new URL(a.href, location.href); } catch (x) { return; }
+    if (u.origin !== location.origin || !/^https?:$/.test(u.protocol)) return;
+    if (u.pathname === location.pathname && u.search === location.search) return;
+    if (!/(\/|\.html?)$/.test(u.pathname)) return;
+    if (pgwipe) return;
+    e.preventDefault();
+    pgwipe = document.createElement('div');
+    pgwipe.className = 'st-pgwipe';
+    pgwipe.setAttribute('aria-hidden', 'true');
+    pgwipe.innerHTML = '<span class="st-pgwipe__seal" lang="ja">夜</span>';
+    document.body.appendChild(pgwipe);
+    void pgwipe.offsetWidth;
+    pgwipe.classList.add('is-on');
+    setTimeout(function () { location.href = a.href; }, 400);
+    setTimeout(wipeOff, 2000);
+  });
   var afterSting = function (fn) { if (stinging) stingDone.push(fn); else fn(); };
 
   /* ---------------- 2 · the rig ----------------
@@ -531,6 +571,7 @@
     var dz = $('[data-est-dz]'), eu = $('[data-est-eu]'), us = $('[data-est-us]'), w = $('[data-est-w]');
     var careBox = $('[data-est-care]'), careV = $('[data-est-care-v]');
     var kuro = $('[data-est-kuro]'), kImgs = $$('img', kuro), kLine = $('[data-est-line]');
+    var seal = $('[data-est-seal]', est);
     var live = $('[data-est-live]', est), liveW = $('[data-est-live-w]', est);
     var shown = null, tw = 0, tier = 0;
     var paint = function (lo, hi) {
@@ -549,6 +590,8 @@
       if (nt !== tier) { tier = nt; kImgs.forEach(function (im) { im.classList.toggle('is-active', Number(im.getAttribute('data-tier')) === tier); }); }
       kLine.setAttribute('data-i18n', 'pricing.kuro.' + tier); kLine.textContent = t('pricing.kuro.' + tier);
       kImgs[0].alt = ''; kImgs[tier].alt = t('pricing.kuroAlt');
+      // the seal stamps the figures once the visitor has changed something (never on the first paint)
+      if (animate && seal) { seal.hidden = false; seal.classList.remove('is-stamp'); if (!reduce) { void seal.offsetWidth; seal.classList.add('is-stamp'); } }
       cancelAnimationFrame(tw);
       var from = shown || { lo: q.lo, hi: q.hi };
       shown = { lo: q.lo, hi: q.hi };
