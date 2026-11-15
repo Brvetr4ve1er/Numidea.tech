@@ -968,7 +968,7 @@ html.st-stinging{overflow:hidden}
 .st-door--night .st-door__k{color:var(--on-dark)}
 .st-door__t{font-family:var(--f-disp);font-weight:900;font-size:clamp(30px,3.6vw,52px);line-height:.95;text-transform:uppercase;letter-spacing:-.015em}
 :lang(ar) .st-door__t{text-transform:none;letter-spacing:0;line-height:1.2}
-.st-door__t a{text-decoration:none}
+.st-door__t a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
 .st-door__t a:hover{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:4px;text-underline-offset:6px}
 .st-door__d{font-size:var(--t-card);line-height:1.55;max-width:32em}
 .st-door--night .st-btn--primary{background:var(--red);box-shadow:5px 5px 0 var(--cream)}
@@ -988,7 +988,8 @@ html.st-stinging{overflow:hidden}
 .st-menu__g{grid-column:1 / -1;padding:20px 0 8px;color:var(--muted)}
 .st-menu__g--night{margin-top:12px;padding-top:24px;border-top:2px solid var(--ink);color:var(--red-text)}
 .st-menu__nav a.st-menu__world{font-size:clamp(24px,7vw,36px);min-height:56px}
-.st-skip--b{inset-inline-start:8px}
+.st-skip--b{inset-inline-start:8px;top:-130px}
+.st-skip--b:focus{top:8px}
 
 /* start here, above the dossiers (night plate) and the see-also lines */
 .st-start{display:grid;gap:18px;padding:clamp(20px,2.6vw,36px);background:#0F1E30;color:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow);scroll-margin-top:90px}
