@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-LJx49NuR3KBt5jFdqQZT98j/gqmjX39i2ytI2KJEBao=' 'sha256-3++QDyTUkyomSKBghkiUz2S41qK9OEI1gU1+0nnPI6Y='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-LJx49NuR3KBt5jFdqQZT98j/gqmjX39i2ytI2KJEBao=' 'sha256-AbxrsRmQRZMfCqZDDNIqrYEiRiUHm7QQxdluN21BzRI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Cette page a pris la route — Numidea Labs</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A1420">
@@ -110,27 +110,21 @@
   .e404>main{position:relative}
   .e404 .sheet-frame{display:block;inset:calc(-1 * var(--s-5)) -12px calc(-1 * var(--s-5))}
   .e404 .dim-line{justify-content:center;margin:0 auto var(--s-4);max-width:20.4em}
-  /* the road: the dunes' engraving with the caravan (assets/illus/dunes.webp,
-     as the home's founder strip crops it on a phone), under the buttons. One
-     slow pan along the dunes that stops on the caravan, once; still under
-     reduced motion. The box has a fixed height. The page's ground is the
-     void, not the founder band's panel. */
-  .e404 .e404-road{width:min(100%,390px);height:104px;margin:var(--s-5) auto 0;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
-  /* The strip is its own small engraving (assets/illus/dunes-404.webp, 787x169: the part of
-     dunes.webp these 450x104px ever show, at the size the pan sets it: 484x104px; the whole
-     115 KB sheet was fetched for it). Its address is written from the site root by the
-     script below (--dunes-404), which also marks the page (data-dunes): the strip is not
-     drawn without it, since an unmasked ink is a solid block. */
-  .e404 .e404-road{display:none}
-  html[data-dunes] .e404 .e404-road{display:block}
-  html[data-dunes] .e404 .e404-road .ds-ink{opacity:.8;-webkit-mask-image:var(--dunes-404);mask-image:var(--dunes-404);
-    -webkit-mask-size:484px 104px;mask-size:484px 104px;-webkit-mask-position:100% 0;mask-position:100% 0}
-  .e404 .e404-road::after{background:linear-gradient(transparent,var(--void))}
-  @media (prefers-reduced-motion:no-preference){
-    html[data-dunes] .e404 .ds-ink{animation:e404-walk 4.5s cubic-bezier(.2,.6,.2,1) .4s 1 both}
-    @keyframes e404-walk{from{-webkit-mask-position:0 0;mask-position:0 0}}
-  }
+  /* The scene: Yasser's Facepalm pose (assets/illus/yasser-facepalm.webp) in a night panel (a hard
+     offset shadow, a ground line), with one line from Kuro under it, in red: red is voice. The
+     image is made and addressed by the script below, from the site root like the links (a relative
+     src would be fetched from the missing folder); with JavaScript off the panel is not drawn. */
+  .e404 .e404-scene{display:none;margin:var(--s-5) auto 0;width:min(100%,300px)}
+  html[data-scene] .e404 .e404-scene{display:block}
+  .e404 .e404-art{background:var(--nsp-panel);border:2px solid var(--nsp-ink);border-bottom:4px solid var(--nsp-paper);border-radius:4px 4px 0 0;
+    box-shadow:6px 6px 0 var(--nsp-shadow);padding:var(--s-4) var(--s-4) 0;display:flex;justify-content:center;align-items:flex-end;overflow:clip;min-height:170px}
+  html[dir="rtl"] .e404 .e404-art{box-shadow:-6px 6px 0 var(--nsp-shadow)}
+  .e404 .e404-art img{display:block;width:min(100%,220px);height:auto}
+  .e404 .e404-kuro{margin:var(--s-4) 0 var(--s-5);font-size:var(--t-small);line-height:1.5;color:var(--ice)}
+  .e404 .e404-kuro b{font-family:var(--font-mono);font-weight:600;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--nsp-red);margin-inline-end:var(--s-2)}
+  .e404 .e404-kuro>[lang]{display:none}
+  html[lang="fr"] .e404 .e404-kuro>[lang="fr"],html[lang="en"] .e404 .e404-kuro>[lang="en"],html[lang="ar"] .e404 .e404-kuro>[lang="ar"]{display:inline}
+  html[lang="ar"] .e404 .e404-kuro b{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none}
   /* one label per language, chosen by html[lang] (set before paint) */
   .e404 .cta>[lang],.e404 .sr-only>[lang]{display:none}
   html[lang="fr"] .e404 :is(.cta,.sr-only)>[lang="fr"],html[lang="en"] .e404 :is(.cta,.sr-only)>[lang="en"],html[lang="ar"] .e404 :is(.cta,.sr-only)>[lang="ar"]{display:inline}
@@ -148,13 +142,16 @@
     .e404{min-height:auto;place-items:start center;padding-block:24px 32px}
     .e404 .brand{position:static;transform:none;margin-bottom:var(--s-5)}
     .e404 .mark{font-size:clamp(64px,16vw,120px)}
+    .e404 .e404-scene{margin-top:var(--s-3);width:min(100%,220px)}
+    .e404 .e404-art{min-height:0;padding-top:var(--s-3)}
+    .e404 .e404-art img{width:150px}
     .e404 .lines{margin-top:var(--s-4)}
     .e404 .ctas{margin-top:var(--s-5)}
   }
   /* a phone on its side: the numeral, the line and the two buttons in the first
      screen. The coordinates and the dunes are the page's decoration, and go. */
   @media (max-height:480px){
-    .e404 .dim-line,html[data-dunes] .e404 .e404-road{display:none}
+    .e404 .dim-line,html[data-scene] .e404 .e404-scene{display:none}
     .e404 .mark{font-size:72px}
     .e404 .brand{margin-bottom:var(--s-3)}
     .e404 .lines{margin-top:var(--s-3)}
@@ -211,9 +208,17 @@
   d.setAttribute('lang', lang);
   d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
   document.title = TITLE[lang];
-  // the road's engraving, from the site root like the links above (CSS here would resolve against the missing folder)
-  d.style.setProperty('--dunes-404', 'url("' + root + 'illus/dunes-404.webp")');
-  d.setAttribute('data-dunes', '');
+  // the scene's image, made here from the site root like the links above (a src in the markup would resolve against the missing folder)
+  var ALT = { fr: 'Yasser, la main sur le visage', en: 'Yasser, hand over his face', ar: 'ياسر يضع يده على وجهه' };
+  document.addEventListener('DOMContentLoaded', function () {
+    var box = document.querySelector('.e404-art');
+    if (!box) return;
+    var im = new Image();
+    im.width = 447; im.height = 440; im.decoding = 'async';
+    im.alt = ALT[lang]; im.src = root + 'illus/yasser-facepalm.webp';
+    box.appendChild(im);
+    d.setAttribute('data-scene', '');
+  });
   var bar = document.querySelector('meta[name="theme-color"]');
   if (bar) bar.setAttribute('content', VOID[th]);
 
@@ -243,6 +248,10 @@
          no landmark leaves a screen-reader user nothing to navigate by. The
          visible glyph carries the number; the sr-only span carries the sentence
          that makes it a heading rather than a bare figure. -->
+    <figure class="e404-scene">
+      <div class="e404-art"></div>
+      <figcaption class="e404-kuro"><b>Ku&#x304;ro</b><span lang="fr">« L’atelier, lui, est resté ouvert. »</span><span lang="en" dir="ltr">“The workshop, though, stayed open.”</span><span lang="ar" dir="rtl">«أما الورشة فما زالت مفتوحة.»</span></figcaption>
+    </figure>
     <h1 class="mark">404<span class="sr-only"> — <span lang="fr">page introuvable</span><span lang="en">page not found</span><span lang="ar">الصفحة غير موجودة</span></span></h1>
     <p class="lines">
       <span class="fr" lang="fr" dir="ltr">Cette page a pris la route.</span><br>
@@ -256,7 +265,6 @@
       <a class="btn btn-primary cta" href="index.html"><span lang="fr"><i class="arw back" aria-hidden="true"></i> Retour à l’accueil</span><span lang="en"><i class="arw back" aria-hidden="true"></i> Back to the home page</span><span lang="ar"><i class="arw back" aria-hidden="true"></i> العودة إلى الرئيسية</span></a>
       <a class="btn btn-ghost cta" href="index.html#apercu"><span lang="fr">Demander mon Aperçu gratuit <i class="arw" aria-hidden="true"></i></span><span lang="en">Request my free Preview <i class="arw" aria-hidden="true"></i></span><span lang="ar">اطلب معاينتك المجانية <i class="arw" aria-hidden="true"></i></span></a>
     </p>
-    <div class="dune-strip e404-road lz" aria-hidden="true"><span class="ds-ink"></span></div>
   </main>
 </div>
 </body>
