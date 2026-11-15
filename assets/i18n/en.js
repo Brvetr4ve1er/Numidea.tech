@@ -242,5 +242,14 @@ var I18N = {
   /* new 2026-11-11: the home leads to the Studio and the bible again and to WorkspaceHQ */
   'founder.studio': 'The studio, in detail <span aria-hidden="true">→</span>',
   'founder.bible': 'The character bible <span aria-hidden="true">→</span>',
+  /* the night band (index.html #atelier) and the founder's drawn portrait; premise approved 2026-11-15 */
+  'atelier.kicker': 'Bordj Bou Arréridj\u00a0· 36°04′N 4°46′E',
+  'atelier.title': 'The night workshop.',
+  'atelier.line': 'Numidea is a night workshop in Bordj Bou Arréridj where a builder and his black cat make your homepage before you pay, and every finished job opens a door to another world.',
+  'atelier.cta': 'Enter the workshop <span aria-hidden="true">→</span>',
+  'atelier.alt': 'Yasser at his workshop table at night, holding up a drawn panel; Kūro, the black cat, sits on a blueprint beside him, next to a coffee cup.',
+  'founder.sceneAlt': 'Drawn portrait of Yasser: long hair tied up, round glasses, a cream jacket, a coffee cup in his hand.',
+  'founder.sceneCap': 'Yasser, at the workshop',
+  'seal.est': 'Estimated', 'seal.sent': 'Sent',   /* the red seal stamps (estimator result, sent form) */
   'footer.studio': 'The Studio',
 };

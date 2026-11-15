@@ -4249,3 +4249,90 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
 .lede bdi{white-space:nowrap}
 /* the planche numerals in Plex Arabic 700, the weight the page already loads (600 was a third file of 65 KB for six figures) */
 html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::before{font-weight:700}
+
+/* ============================================================
+   NIGHT SHIFT POSTER — the home's first character moments (2026-11-15)
+   The band #atelier and the founder's drawn portrait. Night = a fixed
+   ink-navy ground in both themes. RED is voice and the way in (the link, the
+   stamps); BRASS (--crimson-text on night, here its own value) is place only:
+   the kicker's coordinates. Characters sit INSIDE a scene panel: a hard offset
+   shadow and a ground line, never a floating cut-out. The headline is the
+   Studio's heavy Archivo (22 KB, latin; the Arabic page keeps Plex).
+   ============================================================ */
+@font-face{font-family:"Archivo";font-style:normal;font-weight:800 900;font-display:swap;src:url("../hub/fonts/archivo-800-900-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  --nsp-ink:#0A1420; --nsp-panel:#0F1E30; --nsp-paper:#EAF1F8; --nsp-mute:#B4C4D4;
+  --nsp-red:#FF5A4D;            /* voice and action: 5.9:1 on --nsp-ink, 5.1:1 on --nsp-panel */
+  --nsp-brass:#E6B450;          /* place only */
+  --nsp-red-fill:#C8372D; --nsp-on-red:#FFF6EE;   /* a stamp's ink and its paper */
+  --nsp-shadow:#05090F;
+}
+main.wrap>.nsp{position:relative;margin:var(--s-8) 0;display:grid;grid-template-columns:minmax(0,1fr);gap:0;background:var(--nsp-panel);color:var(--nsp-paper);
+  border:2px solid var(--nsp-ink);border-radius:4px;box-shadow:8px 8px 0 var(--nsp-shadow);overflow:clip}
+main.wrap>.nsp::before{display:none}
+main.wrap>.nsp>*{grid-column:auto}
+.nsp-scene{margin:0;position:relative;border-bottom:4px solid var(--nsp-paper);background:var(--nsp-ink)}   /* the ground line */
+.nsp-img{display:block;width:100%;height:auto;aspect-ratio:1000/671;object-fit:cover}
+.nsp-copy{padding:var(--s-5) var(--s-5) var(--s-6);display:flex;flex-direction:column;align-items:flex-start;gap:var(--s-3)}
+.nsp-kick{margin:0;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--nsp-brass);line-height:1.5}
+.nsp-h{margin:0;font-family:"Archivo","Arial Black",sans-serif;font-weight:900;font-size:clamp(30px,8.4vw,46px);line-height:1;letter-spacing:-.01em;color:var(--nsp-paper)}
+.nsp-line{margin:0;font-size:clamp(16px,4.2vw,19px);line-height:1.55;color:var(--nsp-mute);max-width:34em}
+.nsp-go{display:inline-flex;align-items:center;gap:var(--s-2);min-height:48px;margin-top:var(--s-2);padding:0 var(--s-1);font-family:var(--font-mono);font-size:var(--t-ui);font-weight:600;
+  color:var(--nsp-red);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
+.nsp-go:hover{color:var(--nsp-paper)}
+.nsp-go:focus-visible{outline:3px solid var(--nsp-paper);outline-offset:4px;border-radius:2px}
+html[dir="rtl"] .nsp-h{font-family:var(--font-ar-body);font-weight:700;letter-spacing:0;line-height:1.25}
+html[dir="rtl"] .nsp-kick,html[dir="rtl"] .nsp-go{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none}
+html[dir="rtl"] .nsp-line{line-height:1.8}
+html[dir="rtl"] main.wrap>.nsp{box-shadow:-8px 8px 0 var(--nsp-shadow)}
+@media (min-width:700px){
+  main.wrap>.nsp{grid-template-columns:minmax(0,11fr) minmax(0,10fr);align-items:stretch;margin:var(--s-6) 0}
+  .nsp-scene{border-bottom:0;border-inline-end:4px solid var(--nsp-paper);order:0}
+  .nsp-img{height:100%;aspect-ratio:auto}
+  .nsp-copy{justify-content:center;padding:var(--s-6) var(--s-6) var(--s-6) var(--s-5);gap:var(--s-3)}
+  html[dir="rtl"] .nsp-copy{padding:var(--s-6) var(--s-5) var(--s-6) var(--s-6)}
+  .nsp-h{font-size:clamp(32px,4.2vw,58px)}
+  .nsp-img{min-height:300px}
+}
+@media (max-width:699px){   /* a phone: the table and the cat, not the shelves, in the fewest pixels the sentence allows */
+  main.wrap>.nsp{margin:var(--s-5) 0}
+  .nsp-img{aspect-ratio:1000/400}
+  .nsp-copy{padding:var(--s-4) var(--s-4) var(--s-4);gap:var(--s-2)}
+  .nsp-kick{font-size:11px;letter-spacing:.03em}
+  .nsp-h{font-size:28px}
+  .nsp-line{font-size:16px;line-height:1.5}
+  .nsp-go{min-height:44px;margin-top:0}
+}
+
+/* the founder's drawn portrait: the same panel, smaller */
+.fd-plate.fd-scene{margin:0 0 var(--s-4);max-width:340px}
+.fds-art{background:var(--nsp-panel);border:2px solid var(--nsp-ink);border-bottom:4px solid var(--nsp-paper);border-radius:4px 4px 0 0;box-shadow:6px 6px 0 var(--nsp-shadow);
+  padding:var(--s-5) var(--s-5) 0;display:flex;justify-content:center;align-items:flex-end;overflow:clip}
+.fds-art img{display:block;width:min(100%,260px);height:auto}
+html[dir="rtl"] .fds-art{box-shadow:-6px 6px 0 var(--nsp-shadow)}
+.fd-scene .fdp-cap{margin-top:var(--s-4)}
+@media (min-width:1100px){.fd-plate.fd-scene{max-width:none}}
+@media (max-width:1099px){
+  .fd-aside .fd-plate.fd-scene{display:flex;flex-direction:row;height:auto;align-self:start;align-items:flex-end;gap:var(--s-4);max-width:none;margin:var(--s-4) 0 var(--s-1)}
+  .fds-art{flex:none;padding:var(--s-2) var(--s-3) 0;box-shadow:4px 4px 0 var(--nsp-shadow)}
+  .fds-art img{width:84px}
+  .fd-scene .fdp-cap{margin:0 0 var(--s-1)}
+}
+
+/* the red seal stamp: the universal "done" (the estimator's result, the sent form).
+   Red is voice; the seal is decoration (aria-hidden), the status lines say the same in words. */
+.seal{position:absolute;inset-block-start:var(--s-4);inset-inline-end:var(--s-4);display:grid;place-items:center;width:76px;height:76px;border-radius:50%;
+  background:var(--nsp-red-fill);box-shadow:inset 0 0 0 3px var(--nsp-red-fill),inset 0 0 0 5px var(--nsp-on-red);color:var(--nsp-on-red);font-family:var(--font-mono);font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;line-height:1.1;text-align:center;
+  transform:rotate(-12deg);opacity:0;pointer-events:none}
+html[dir="rtl"] .seal{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:13px}
+.est-out,.form-success{position:relative}
+.seal.stamped,.form-success.show .seal{opacity:.92;animation:seal-stamp .32s steps(4) both}
+@keyframes seal-stamp{0%{opacity:0;transform:rotate(-12deg) scale(1.9)}70%{opacity:.95;transform:rotate(-12deg) scale(.94)}100%{opacity:.92;transform:rotate(-12deg) scale(1)}}
+@media (prefers-reduced-motion:reduce){.seal.stamped,.form-success.show .seal{animation:none}}
+.seal--sent{inset-block-start:0}
+
+/* the paper wipe (app.js "paper wipe"): a cream sheet, 0.4 s, from the reading side */
+.pw{position:fixed;inset:0;z-index:2147483000;background:#F1E8D4;border-inline-start:6px solid #0A1420;transform:translateX(101%);visibility:hidden;pointer-events:none}
+html[dir="rtl"] .pw{transform:translateX(-101%)}
+.pw.pw-go{visibility:visible;pointer-events:auto;transform:none;transition:transform .4s cubic-bezier(.7,0,.3,1)}
+@media (prefers-reduced-motion:reduce){.pw{display:none}}

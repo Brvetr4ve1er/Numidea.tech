@@ -2281,6 +2281,67 @@
       if (CURS.indexOf(c) > -1 && c !== CUR) setCur(c);
     });
 
+    /* ---------- paper wipe + seal stamp (Night Shift Poster) ----------
+       A cream sheet crosses the screen in 0.4 s on a same-origin page change
+       (links and the main buttons are links), then the browser navigates.
+       Skipped for: a modifier or non-primary click, target=_blank, a download,
+       a hash-only link, a non-page file, a click another handler took, and
+       prefers-reduced-motion. Restored on pageshow (back/forward cache), so the
+       sheet never stays over a page. The overlay is made here, not in the markup. */
+    (function () {
+      var sheet = null, wipeTimer = 0;
+      function getSheet() {
+        if (!sheet) {
+          sheet = document.createElement('div');
+          sheet.className = 'pw';
+          sheet.setAttribute('aria-hidden', 'true');
+          document.body.appendChild(sheet);
+        }
+        return sheet;
+      }
+      function clearSheet() {
+        clearTimeout(wipeTimer);
+        if (sheet) sheet.classList.remove('pw-go');
+        document.documentElement.classList.remove('pw-busy');
+      }
+      window.addEventListener('pageshow', clearSheet);   // restored from the cache: no sheet
+      document.addEventListener('click', function (e) {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+        if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
+        var u;
+        try { u = new URL(a.href, location.href); } catch (x) { return; }
+        if (u.origin !== location.origin || (u.protocol !== 'http:' && u.protocol !== 'https:')) return;
+        if (u.pathname === location.pathname && u.search === location.search) return;   // hash-only, or this very page
+        if (!/(\/|\.html?)$/.test(u.pathname)) return;                                   // a PDF or an image is no page change
+        e.preventDefault();
+        var go = u.href;
+        getSheet();
+        document.documentElement.classList.add('pw-busy');
+        void sheet.offsetWidth;
+        sheet.classList.add('pw-go');
+        clearTimeout(wipeTimer);
+        wipeTimer = setTimeout(function () { location.assign(go); }, 400);
+      });
+
+      /* the red seal on the estimator's result: stamped again once the visitor
+         stops moving the controls (the result then holds still) */
+      var estBox = document.getElementById('estimator');
+      var seal = estBox && estBox.querySelector('.seal');
+      if (seal) {
+        var sealTimer = 0;
+        var stamp = function () {
+          seal.classList.remove('stamped');
+          void seal.offsetWidth;
+          seal.classList.add('stamped');
+        };
+        var arm = function () { clearTimeout(sealTimer); sealTimer = setTimeout(stamp, 450); };
+        estBox.addEventListener('input', arm);
+        estBox.addEventListener('change', arm);
+      }
+    })();
+
    } catch (e) {
     // Never let an init error leave content stuck behind scroll-reveal.
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });

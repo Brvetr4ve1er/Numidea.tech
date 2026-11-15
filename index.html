@@ -565,6 +565,23 @@
 
   </section>
 
+  <!-- ================= THE NIGHT WORKSHOP (Night Shift Poster) =================
+       The home's one character scene: the Studio's workbench art (hub/img/studio/m/diorama.webp,
+       copied at web size) in a night panel, whatever the page's theme (the night mode is
+       fixed here). Red = voice and the way in (the link); brass = place (the kicker).
+       The sentence is the studio's premise, FR first (assets/i18n atelier.*). -->
+  <section class="nsp reveal" id="atelier" aria-labelledby="nsp-h">
+    <figure class="nsp-scene">
+      <img class="nsp-img" src="assets/illus/workbench-night.webp" srcset="assets/illus/workbench-night-560.webp 560w, assets/illus/workbench-night.webp 1000w" sizes="(min-width:900px) 520px, calc(100vw - 32px)" width="1000" height="671" alt="Yasser, à sa table d’atelier la nuit, tient une planche dessinée ; Kūro, le chat noir, est assis sur un plan à côté de lui, près d’un gobelet de café." data-i18n-alt="atelier.alt" loading="lazy" decoding="async">
+    </figure>
+    <div class="nsp-copy">
+      <p class="nsp-kick" data-i18n="atelier.kicker">Bordj Bou Arréridj · 36°04′N 4°46′E</p>
+      <h2 class="nsp-h" id="nsp-h" data-i18n="atelier.title">L’atelier de nuit.</h2>
+      <p class="nsp-line" data-i18n="atelier.line">Numidea est un atelier de nuit à Bordj Bou Arréridj où un bâtisseur et son chat noir construisent votre page d’accueil avant que vous ne payiez, et où chaque projet livré ouvre une porte vers un autre monde.</p>
+      <a class="nsp-go" href="hub/" data-i18n="atelier.cta">Entrer dans l’atelier <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
   <!-- ================= SERVICES ================= -->
   <section id="services" class="band" aria-labelledby="svc-h">
     <span class="kicker" data-i18n="svc.kicker">Services</span>
@@ -895,6 +912,7 @@
             </table>
           </noscript>
           <div class="est-out">
+            <span class="seal" aria-hidden="true" data-i18n="seal.est">Estimé</span>
             <span class="eo-k" data-i18n="price.estimate">Estimation</span>
             <p class="eo-range" id="est-range" role="status" aria-live="polite">
               <b id="est-lo">180 000</b><span class="eo-dash">–</span><b id="est-hi">420 000</b>
@@ -983,14 +1001,14 @@
         </ul>
       </div>
 
-      <!-- the right column: an engraved plate (the founder's photo does not
-           exist, and no face is drawn or generated).
-           A plate of the studio's own atlas, the Arch
-           of Trajan at Timgad, which also draws the share card. -->
+      <!-- the right column: the drawn Yasser (hub/bible/art/pose-coffee.webp,
+           copied at web size) in a scene panel: a night ground, a ground line,
+           a hard offset shadow (Night Shift Poster). The real photo, when the
+           owner supplies one, replaces the <img> (the slot below stays). -->
       <div class="fd-aside">
-        <figure class="fd-plate">
-          <div class="fdp-art lz" aria-hidden="true"><span class="fdp-ink"></span></div>
-          <figcaption class="fdp-cap" data-i18n="pl.arch">Gravure III — L’arc de Trajan, Timgad</figcaption>
+        <figure class="fd-plate fd-scene">
+          <div class="fds-art"><img src="assets/illus/yasser-coffee.webp" width="385" height="440" alt="Portrait dessiné de Yasser : cheveux longs noués, lunettes rondes, veste crème, un gobelet de café à la main." data-i18n-alt="founder.sceneAlt" loading="lazy" decoding="async"></div>
+          <figcaption class="fdp-cap" data-i18n="founder.sceneCap">Yasser, à l’atelier</figcaption>
         </figure>
       </div>
 
@@ -1183,6 +1201,7 @@
              message" puts the subject and body on the clipboard for a webmail;
              #form-copied, inside this role=status, says so (app.js). -->
         <div class="form-success" role="status" aria-live="polite" tabindex="-1">
+          <span class="seal seal--sent" aria-hidden="true" data-i18n="seal.sent">Envoyé</span>
           <svg class="ai ai-mail" viewBox="0 0 24 24" aria-hidden="true"><rect class="p" pathLength="1" x="3" y="5.5" width="18" height="13" rx="1.5"/><path class="p a-flap" pathLength="1" d="m3.6 6.6 8.4 6.4 8.4-6.4"/></svg>
           <p data-i18n="form.success">Votre messagerie s’ouvre avec votre message : envoyez-le, et on vous répond le jour ouvré suivant avec nos questions.</p>
           <!-- The ways on, WhatsApp first: the one that needs no mail app,
