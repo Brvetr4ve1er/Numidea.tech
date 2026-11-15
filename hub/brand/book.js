@@ -224,4 +224,44 @@
     window.addEventListener('load', fit);
   }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init); else init();
+
+  /* 3. The paper wipe: 0.4 s, on a same-origin page-to-page link (the bible
+        and the brand books share this file). Never for a modifier key, a
+        non-primary button, target other than _self, a download, a hash-only
+        link, another origin, or with reduced motion; taken away again on
+        pageshow so the back/forward cache never restores it covering the
+        page. Without a script the link simply navigates. */
+  (function () {
+    var rm = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    var wipe = null, timer = 0;
+    function build() {
+      if (wipe) return wipe;
+      wipe = d.createElement('div');
+      wipe.className = 'bk-wipe';
+      wipe.setAttribute('aria-hidden', 'true');
+      var seal = d.createElement('span');
+      seal.className = 'bk-wipe__seal';
+      seal.setAttribute('lang', 'ja');
+      seal.textContent = '\u591C';
+      wipe.appendChild(seal);
+      d.body.appendChild(wipe);
+      return wipe;
+    }
+    function clear() { clearTimeout(timer); if (wipe) wipe.classList.remove('is-on'); }
+    window.addEventListener('pageshow', clear);
+    d.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (rm && rm.matches) return;
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
+      var u;
+      try { u = new URL(a.href, location.href); } catch (err) { return; }
+      if (u.origin !== location.origin || !/^https?:$/.test(u.protocol)) return;
+      if (u.pathname === location.pathname && u.search === location.search) return;
+      e.preventDefault();
+      build().classList.add('is-on');
+      clearTimeout(timer);
+      timer = setTimeout(function () { location.href = u.href; }, 400);
+    });
+  })();
 })();

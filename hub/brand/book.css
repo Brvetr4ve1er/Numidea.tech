@@ -104,3 +104,14 @@
 @media print{.pi-chip,.pi-dlg,.pv-dlg,.pv-open,.pv-hint{display:none!important}}
 .fold-body{display:grid;gap:14px;min-width:0}
 .fold-body>*{min-width:0}
+
+/* The paper wipe between pages (book.js 3): 0.4 s, paper and an ink rule,
+   a red seal that stamps in. Drawn only by the script, never with reduced
+   motion, and removed again on pageshow. */
+.bk-wipe{position:fixed;inset:0;z-index:2000;transform:translateY(100%);background:var(--paper,#D8CBB8);border-block-start:6px solid var(--ink,#211E1B);pointer-events:none;display:grid;place-items:center}
+.bk-wipe.is-on{pointer-events:auto;animation:bk-wipe .4s cubic-bezier(.87,0,.13,1) forwards}
+.bk-wipe__seal{width:84px;height:84px;display:grid;place-items:center;background:#A34135;border:4px solid var(--ink,#211E1B);box-shadow:5px 5px 0 var(--ink,#211E1B);font:900 44px/1 "Noto Sans JP",sans-serif;color:#F3ECE1;transform:rotate(-8deg) scale(.6);opacity:0}
+.bk-wipe.is-on .bk-wipe__seal{animation:bk-seal .27s cubic-bezier(.16,1,.3,1) .13s forwards}
+@keyframes bk-wipe{to{transform:none}}
+@keyframes bk-seal{to{opacity:1;transform:rotate(-8deg) scale(1)}}
+@media (prefers-reduced-motion:reduce){.bk-wipe{display:none}}
