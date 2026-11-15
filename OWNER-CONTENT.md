@@ -1001,10 +1001,9 @@ scenes are now a titled row.)
   AR, "From 90,000 DZD", the reply the next working day, Sunday to Thursday
   9am-6pm, Bordj Bou Arréridj, "No middlemen. Just the builder.". No
   follower or like count, quote, award, launch date or new price. Placeholders
-  read `[@account]` and `[link]` (the studio's own account and WhatsApp
-  link). Please confirm: the studio's Instagram account name (the Traveler kit
-  carries @yass3r.0; this one is left open, since the Studio's footer still
-  links stick_itty); the WhatsApp link to print; that the Alliance Travel
+  read `[link]` (the studio's WhatsApp link); the Instagram account is
+  @stick_itty (the owner's choice, 2026-11-15). Please confirm: the WhatsApp
+  link to print; that the Alliance Travel
   capture, which shows the client's own "A PARTIR DE 169,000 DA" badge in its
   top corner, may be used in post 06 (it is cropped to hide it); and that the
   French and Arabic feeds should follow this grid. The Arabic greeting was
@@ -1037,7 +1036,8 @@ CV)**
 - the Instagram handle: the owner chose yass3r.0 on 2026-11-11 for the
   Traveler codex's social kit, and on 2026-11-14 stick_itty for the Studio
   (founder card and footer) and the bible (its links and its social kit's
-  maquettes): settled;
+  maquettes), and on 2026-11-15 stick_itty for the Numidea identity's social
+  kit too: settled;
 - permission to show Bordj Steel's figures and logos, the clients' work, and
   Heetch's posters on a portfolio; "Chez Heetch depuis mai 2026" (the CV);
   "temps plein" and "Heetch Pro" were left out;
