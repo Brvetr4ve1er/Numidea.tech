@@ -1240,17 +1240,11 @@ main.wrap>section h2.sec em{color:inherit}
    row: style="--brand:R,G,B"); no text takes it */
 
 /* ============================================================
-   AMBIENT DEPTH — parallax · staggered reveal
+   AMBIENT DEPTH — staggered reveal
    Motion here is deliberately slower than it feels natural to write:
-   the point is a page that settles rather than reacts.
-
-   Parallax rides the `translate` PROPERTY, not `transform`. That is
-   load-bearing — `translate`, `rotate` and `transform` are independent
-   properties, so an element can be parallaxed while it still runs a
-   reveal transform, a hover scale or a spin animation, and none of
-   them clobber the others. app.js only ever writes the CSS variables.
+   the point is a page that settles rather than reacts. (The parallax
+   that used to live here was removed: it was invisible.)
    ============================================================ */
-[data-parallax]{translate:var(--px,0px) calc(var(--py,0px) + var(--sy,0px));will-change:translate}
 
 /* The aurora is gone: three colour fields drifting under every page, forever.
    Decoration with no job — it carried nothing, it muddied the construction grid
@@ -1520,8 +1514,6 @@ main.wrap>section h2.sec em{color:inherit}
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal,.js-ready .reveal:is(*,:not(.in)){opacity:1;transform:none}
   .mobile-menu nav a,.mobile-menu .lang,.mobile-menu .theme-switch,.mobile-menu .menu-acts{opacity:1;transform:none}
-  /* the plates are decoration, not content: they hold still */
-  [data-parallax]{translate:none!important}
 }
 
 
@@ -2738,8 +2730,6 @@ section.band::after,section.band+section.band::after{
 
 /* Parallax that app.js leaves still (read content on a touch screen) or that
    reduced motion flattens keeps no compositor layer of its own. */
-.px-still{will-change:auto}
-@media (prefers-reduced-motion:reduce){[data-parallax]{will-change:auto}}
 /* A skeleton shimmers only while its box is on screen: app.js marks it
    .sk-run from an IntersectionObserver and drops the mark once the picture is
    in. It animates a background, which the compositor cannot take over, so
