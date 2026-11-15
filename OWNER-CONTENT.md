@@ -1001,9 +1001,9 @@ scenes are now a titled row.)
   AR, "From 90,000 DZD", the reply the next working day, Sunday to Thursday
   9am-6pm, Bordj Bou Arréridj, "No middlemen. Just the builder.". No
   follower or like count, quote, award, launch date or new price. Placeholders
-  read `[link]` (the studio's WhatsApp link); the Instagram account is
-  @stick_itty (the owner's choice, 2026-11-15). Please confirm: the WhatsApp
-  link to print; that the Alliance Travel
+  are filled: the Instagram account is @stick_itty and the link is the studio's
+  WhatsApp, the home page's number +213 672 41 25 78 / wa.me/213672412578 (both
+  the owner's choice, 2026-11-15). Please confirm: that the Alliance Travel
   capture, which shows the client's own "A PARTIR DE 169,000 DA" badge in its
   top corner, may be used in post 06 (it is cropped to hide it); and that the
   French and Arabic feeds should follow this grid. The Arabic greeting was
