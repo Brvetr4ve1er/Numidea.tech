@@ -75,8 +75,8 @@ const CEIL_DATE = '2026-11-07';
 const RTL_SYS = { '/ar/': 52, '/ar/tarifs/': 18, '/404.html?lang=ar': 4 };   // Liberation Sans (typed arrows, ↗ ← →) and DejaVu Sans on /ar/ (12)
 // bible art with more than one alpha component today, held at its count (the figure plus a speck or a prop that
 // came away in the cut: the assets owner's to clean; the Kūro motion marks are several parts by design)
-const ART_PARTS = new Map([['face-smirk.webp', 2], ['pose-facepalm.webp', 2], ['pose-handover.webp', 2], ['pose-laptop.webp', 2],
-  ['pose-receipt.webp', 3], ['rig-y-glasses.webp', 2], ['rig-y-sip.webp', 2]]);
+// (2026-11-15: all twelve pose-* files were retouched to one component; the rest are not poses and stay held)
+const ART_PARTS = new Map([['face-smirk.webp', 2], ['rig-y-glasses.webp', 2], ['rig-y-sip.webp', 2]]);
 const LIMITS = { paint: 0, hover: 0, labels: 3, cover: 0.30 };
 // measured on 2026-11-07: 36% and 40% (the price guide's sticky estimate panel and phone bar over its estimator); 25% and 25%
 const COVER_CEIL = { '390x844': 0.33, '360x780': 0.29, '844x390': 0.30, '640x400': 0.30 };   // lowered 2026-11-14 (the home's phone chrome is 56px + 61px, and the estimate rides in the bar): 32% and 28% measured on the price guide
@@ -468,7 +468,7 @@ console.log('plate: .plate = .plate-wrap and inside the screen, fr/en/ar at 320 
    did from 1100 to 1250 on an iPad in landscape); (b) the home's height, fr, fonts loaded, held at what was
    measured plus 5%: phone 390 and tablet 768 (a ceiling to lower, never to raise); (c) no sideways scroll at
    the tablet widths; (d) the fixed + sticky chrome at most 25% of a 390x664 phone with the estimator open */
-const HOME_H = { 390: 8800, 768: 8300 };   // measured 2026-11-14: 8,3xx at 390x664 and 7,9xx at 768x1024, +5%; it was 13,460 and 12,426
+const HOME_H = { 390: 9050, 768: 8480 };   // measured 2026-11-14: 8,3xx at 390x664 and 7,9xx at 768x1024, +5% (it was 13,460 and 12,426); raised 2026-11-15 to 9,050 and 8,480 for the night workshop band (about 465px at 390, 523px at 768) and the founder portrait row (about 130px): measured 8,950 and 8,381 with the band on the scale tokens
 {
   for (const path of ['/', '/en/', '/ar/']) {
     for (let w = 960; w <= 1440; w += 40) {

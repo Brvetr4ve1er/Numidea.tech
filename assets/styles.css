@@ -4267,7 +4267,7 @@ html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::before{font-
   --nsp-red-fill:#C8372D; --nsp-on-red:#FFF6EE;   /* a stamp's ink and its paper */
   --nsp-shadow:#05090F;
 }
-main.wrap>.nsp{position:relative;margin:var(--s-8) 0;display:grid;grid-template-columns:minmax(0,1fr);gap:0;background:var(--nsp-panel);color:var(--nsp-paper);
+main.wrap>.nsp{position:relative;margin:var(--s-8) 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:0;background:var(--nsp-panel);color:var(--nsp-paper);
   border:2px solid var(--nsp-ink);border-radius:4px;box-shadow:8px 8px 0 var(--nsp-shadow);overflow:clip}
 main.wrap>.nsp::before{display:none}
 main.wrap>.nsp>*{grid-column:auto}
@@ -4275,11 +4275,11 @@ main.wrap>.nsp>*{grid-column:auto}
 .nsp-img{display:block;width:100%;height:auto;aspect-ratio:1000/671;object-fit:cover}
 .nsp-copy{padding:var(--s-5) var(--s-5) var(--s-6);display:flex;flex-direction:column;align-items:flex-start;gap:var(--s-3)}
 .nsp-kick{margin:0;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--nsp-brass);line-height:1.5}
-.nsp-h{margin:0;font-family:"Archivo","Arial Black",sans-serif;font-weight:900;font-size:clamp(30px,8.4vw,46px);line-height:1;letter-spacing:-.01em;color:var(--nsp-paper)}
-.nsp-line{margin:0;font-size:clamp(16px,4.2vw,19px);line-height:1.55;color:var(--nsp-mute);max-width:34em}
+.nsp-h{margin:0;font-family:"Archivo","Arial Black",sans-serif;font-weight:900;font-size:var(--t-h2-xl);line-height:1;letter-spacing:-.01em;color:var(--nsp-paper)}
+.nsp-line{margin:0;font-size:var(--t-lead);line-height:1.55;color:var(--nsp-mute);max-width:34em}
 .nsp-go{display:inline-flex;align-items:center;gap:var(--s-2);min-height:48px;margin-top:var(--s-2);padding:0 var(--s-1);font-family:var(--font-mono);font-size:var(--t-ui);font-weight:600;
   color:var(--nsp-red);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
-.nsp-go:hover{color:var(--nsp-paper)}
+@media (hover:hover){.nsp-go:hover{color:var(--nsp-paper)}}
 .nsp-go:focus-visible{outline:3px solid var(--nsp-paper);outline-offset:4px;border-radius:2px}
 html[dir="rtl"] .nsp-h{font-family:var(--font-ar-body);font-weight:700;letter-spacing:0;line-height:1.25}
 html[dir="rtl"] .nsp-kick,html[dir="rtl"] .nsp-go{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none}
@@ -4291,23 +4291,21 @@ html[dir="rtl"] main.wrap>.nsp{box-shadow:-8px 8px 0 var(--nsp-shadow)}
   .nsp-img{height:100%;aspect-ratio:auto}
   .nsp-copy{justify-content:center;padding:var(--s-6) var(--s-6) var(--s-6) var(--s-5);gap:var(--s-3)}
   html[dir="rtl"] .nsp-copy{padding:var(--s-6) var(--s-5) var(--s-6) var(--s-6)}
-  .nsp-h{font-size:clamp(32px,4.2vw,58px)}
   .nsp-img{min-height:300px}
 }
 @media (max-width:699px){   /* a phone: the table and the cat, not the shelves, in the fewest pixels the sentence allows */
   main.wrap>.nsp{margin:var(--s-5) 0}
   .nsp-img{aspect-ratio:1000/400}
   .nsp-copy{padding:var(--s-4) var(--s-4) var(--s-4);gap:var(--s-2)}
-  .nsp-kick{font-size:11px;letter-spacing:.03em}
-  .nsp-h{font-size:28px}
-  .nsp-line{font-size:16px;line-height:1.5}
+  .nsp-kick{letter-spacing:.03em}
+  .nsp-line{font-size:var(--t-body);line-height:1.5}
   .nsp-go{min-height:44px;margin-top:0}
 }
 
 /* the founder's drawn portrait: the same panel, smaller */
 .fd-plate.fd-scene{margin:0 0 var(--s-4);max-width:340px}
 .fds-art{background:var(--nsp-panel);border:2px solid var(--nsp-ink);border-bottom:4px solid var(--nsp-paper);border-radius:4px 4px 0 0;box-shadow:6px 6px 0 var(--nsp-shadow);
-  padding:var(--s-5) var(--s-5) 0;display:flex;justify-content:center;align-items:flex-end;overflow:clip}
+  padding:var(--s-4) var(--s-4) 0;display:flex;justify-content:center;align-items:flex-end;overflow:clip}
 .fds-art img{display:block;width:min(100%,260px);height:auto}
 html[dir="rtl"] .fds-art{box-shadow:-6px 6px 0 var(--nsp-shadow)}
 .fd-scene .fdp-cap{margin-top:var(--s-4)}
