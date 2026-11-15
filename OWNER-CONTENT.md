@@ -1023,8 +1023,10 @@ scenes are now a titled row.)
   like the page. Maquettes in HTML and CSS from the bible's own drawings and
   its two Studio stickers; every quoted line is a line the bible already has,
   and no count, date, price, shop or collaboration is stated. Placeholders
-  read `[link]` and `[the commit under review]`; the handle is @stick_itty
-  (the owner's choice, 2026-11-14, for the Studio and the bible). Please
+  read `[the commit under review]` only; the handle is @stick_itty (the
+  owner's choice, 2026-11-14, for the Studio and the bible) and the links are
+  the studio's WhatsApp, the home page's number, wa.me/213672412578 (the
+  owner's choice, 2026-11-15). Please
   confirm: that twelve
   posts, not nine, is the grid you want; and the rules that are the kit's own
   choice rather than the bible's: Kūro never on red or teal, alone in a post he
