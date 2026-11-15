@@ -62,7 +62,7 @@ for (const lang of ['fr', 'en', 'ar']) {
       // the menu
       await p.evaluate(() => scrollTo(0, 0));
       await p.locator('[data-menu-open]').tap(); await p.waitForTimeout(300);
-      const mn = await p.evaluate(() => ({ open: document.getElementById('menu').open, links: document.querySelectorAll('#menu .st-menu__nav a').length }));
+      const mn = await p.evaluate(() => ({ open: document.getElementById('menu').open, links: document.querySelectorAll('#menu .st-menu__nav a:not(.st-menu__world)').length }));
       if (!mn.open || mn.links !== 6) note(`${lang} 390: the Menu button does not open the six sections (${JSON.stringify(mn)})`);
       await p.keyboard.press('Escape'); await p.waitForTimeout(200);
       if (await p.evaluate(() => document.getElementById('menu').open)) note(`${lang} 390: Escape does not close the menu`);

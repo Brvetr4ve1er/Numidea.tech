@@ -19,10 +19,13 @@
     "langFr": "Français",
     "langEn": "English",
     "menu": "Menu",
-    "menuClose": "Fermer le menu"
+    "menuClose": "Fermer le menu",
+    "world": "Le monde",
+    "groupSite": "Je veux un site",
+    "groupWorld": "Le monde"
   },
   "sting": {
-    "hud": "06:12 · BORDJ BOU ARRÉRIDJ · AUBE",
+    "hud": "02:00 · BORDJ BOU ARRÉRIDJ · ATELIER DE NUIT",
     "skip": "PASSER",
     "skipL": "Passer l’intro"
   },
@@ -349,7 +352,7 @@
     "glaive": "Glaive, la démo du studio",
     "vs": {
       "kicker": "DOSSIER 06 · MON PROJET",
-      "tag": "Projet personnel",
+      "tag": "Bible des personnages",
       "sub": "Le carnet de personnage de Yasser et Kūro",
       "desc": "Le projet personnel du fondateur, sans client : la bible d’un personnage et de son chat noir. Un rig de vingt images où Yasser suit le curseur, parle et se repose au bout de cinq secondes, douze visages, six poses en deux temps, dix cartes pour Kūro, la silhouette en sept règles et la façon dont il parle.",
       "facts": [
@@ -505,7 +508,7 @@
   "founder": {
     "kicker": "/ 10 · LE STUDIO",
     "title": "Assez petits pour s’en soucier. Assez seniors pour livrer.",
-    "name": "Hamisse Mohamed Yasser",
+    "name": "Yasser Hamisse",
     "role": "FONDATEUR · CEO / DIRECTEUR CRÉATIF",
     "bio": "Développeur et designer. Code, image et systèmes, et un chat noir qui juge chaque commit.",
     "quote": "« Même personne. Résolution différente. »",
@@ -614,11 +617,53 @@
     "signAlt": "Yasser tient une pancarte",
     "aside": "Kūro lit aussi les messages."
   },
+  "doors": {
+    "aria": "Deux chemins dans le studio",
+    "kicker": "/ PAR OÙ ENTRER",
+    "premise": "Numidea est un atelier de nuit à Bordj Bou Arréridj où un bâtisseur et son chat noir construisent votre page d’accueil avant que vous ne payiez, et où chaque projet livré ouvre une porte vers un autre monde.",
+    "a": {
+      "k": "01 · LE JOUR",
+      "t": "Je veux un site",
+      "d": "Un Aperçu gratuit avant de payer, les prix publiés, des travaux livrés, un contact direct.",
+      "go": "Demander un Aperçu",
+      "preview": "L’Aperçu",
+      "pricing": "Les prix",
+      "work": "Les travaux",
+      "contact": "Contact"
+    },
+    "b": {
+      "k": "02 · LA NUIT, ET AU-DELÀ",
+      "t": "Le monde",
+      "d": "Yasser et Kūro après les heures : la bible des personnages, MERCURY, tr4veler.exe.",
+      "go": "Entrer dans le monde",
+      "bible": "La bible"
+    },
+    "skip": "Aller au monde"
+  },
+  "start": {
+    "kicker": "/ COMMENCER ICI",
+    "title": "Trois couches, un seul atelier.",
+    "aria": "Les trois couches du monde",
+    "day": {
+      "k": "LE JOUR",
+      "d": "Yasser, Numidea Labs, les clients, la vraie ville."
+    },
+    "night": {
+      "k": "LA NUIT",
+      "d": "L’atelier de deux heures du matin. Kūro en est la porte et le contrôle qualité."
+    },
+    "real": {
+      "k": "LA RÉALITÉ",
+      "d": "Les autres mondes : tr4veler.exe, MERCURY, et VOIDSPLUNKER.std, le projet qui tient la bible des personnages."
+    },
+    "see": "Voir aussi",
+    "bible": "La bible (en anglais)"
+  },
   "footer": {
     "line": "Construit à Bordj Bou Arréridj, avec du café noir et du JavaScript.",
     "rights": "© 2026 NUMIDEA LABS",
     "site": "Le site",
-    "bible": "VOIDSPLUNKER.std",
+    "bible": "Bible · VOIDSPLUNKER.std",
     "nav": "Liens du pied de page"
   },
   "case": {

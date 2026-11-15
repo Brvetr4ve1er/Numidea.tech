@@ -69,6 +69,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
 <body>
 
 <a class="st-skip" href="#main" data-i18n="ui.skip"></a>
+<a class="st-skip st-skip--b" href="#world" data-i18n="doors.skip"></a>
 
 <!-- ============================== NAV ==============================
      Sticky on paper. The drawn wordmark goes to the site; the six sections
@@ -89,6 +90,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
       <a href="#work" data-i18n="nav.work"></a>
       <a href="#studio" data-i18n="nav.studio"></a>
       <a href="#faq" data-i18n="nav.faq"></a>
+      <a class="st-nav__world" href="#world" data-i18n="nav.world"></a>
     </nav>
     <div class="st-lang" role="group" data-i18n-aria="nav.lang">
       <button type="button" data-lang="fr" aria-pressed="true" lang="fr" data-i18n-title="nav.langFr">FR</button>
@@ -169,6 +171,58 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
         <img data-yf="yawn" src="bible/art/rig-y-yawn.webp" alt="">
         <img data-kf="yawn" src="bible/art/rig-k-yawn.webp" alt="">
       </template>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 01b THE TWO DOORS ==============================
+     The premise (2026-11-15), then two doors in the poster language: day (red,
+     the buyer's path) and night (the Arcanum navy, the world's path). The
+     characters sit inside their panels (hard shadow, a ground line); the two
+     base frames are the hero's own files, so nothing new is fetched. Brass is
+     for the place only (the coordinates on the night panel). -->
+<section class="st-doors" id="doors" aria-labelledby="doors-h">
+  <div class="st-wrap">
+    <div class="st-doors__top" data-reveal>
+      <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">夜</span><span data-i18n="doors.kicker"></span></p>
+      <h2 class="st-doors__premise" id="doors-h" data-i18n="doors.premise"></h2>
+    </div>
+    <div class="st-doors__row" role="group" data-i18n-aria="doors.aria">
+      <article class="st-door st-door--day" data-reveal>
+        <div class="st-door__scene" aria-hidden="true">
+          <img src="bible/art/rig-y-base.webp" alt="" width="501" height="565" loading="lazy" decoding="async">
+        </div>
+        <div class="st-door__body">
+          <p class="st-label st-door__k" data-i18n="doors.a.k"></p>
+          <h3 class="st-door__t"><a href="#preview" data-i18n="doors.a.t"></a></h3>
+          <p class="st-door__d" data-i18n="doors.a.d"></p>
+          <a class="st-btn st-btn--primary st-door__go" href="#contact"><span data-i18n="doors.a.go"></span><span aria-hidden="true">&nbsp;→</span></a>
+          <ul class="st-door__links">
+            <li><a href="#preview" data-i18n="doors.a.preview"></a></li>
+            <li><a href="#pricing" data-i18n="doors.a.pricing"></a></li>
+            <li><a href="#work" data-i18n="doors.a.work"></a></li>
+            <li><a href="#contact" data-i18n="doors.a.contact"></a></li>
+          </ul>
+        </div>
+      </article>
+      <article class="st-door st-door--night" data-reveal>
+        <div class="st-door__scene" aria-hidden="true">
+          <img src="bible/art/rig-k-wide.webp" alt="" width="360" height="294" loading="lazy" decoding="async">
+          <span class="st-door__coord" dir="ltr">36°04′N 4°46′E</span>
+        </div>
+        <div class="st-door__body">
+          <p class="st-label st-door__k" data-i18n="doors.b.k"></p>
+          <h3 class="st-door__t"><a href="#world" data-i18n="doors.b.t"></a></h3>
+          <p class="st-door__d" data-i18n="doors.b.d"></p>
+          <a class="st-btn st-btn--primary st-door__go" href="#world"><span data-i18n="doors.b.go"></span><span aria-hidden="true">&nbsp;→</span></a>
+          <ul class="st-door__links">
+            <li><a href="#voidsplunker" dir="ltr">VOIDSPLUNKER.std</a></li>
+            <li><a href="#mercury" dir="ltr">MERCURY</a></li>
+            <li><a href="#case-traveler" dir="ltr">tr4veler.exe</a></li>
+            <li><a href="bible/" data-i18n="doors.b.bible"></a></li>
+          </ul>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -399,6 +453,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
         <p class="st-est__live" aria-hidden="true"><output dir="ltr" data-est-live>{{est.dz}}</output><span class="st-est__live-w"><b data-est-live-w>{{est.w}}</b> <span data-i18n="pricing.wk"></span></span></p>
       </div>
       <div class="st-est__out" aria-live="polite">
+        <span class="st-est__seal" data-est-seal aria-hidden="true" lang="ja" hidden>印</span>
         <p class="st-est__fig"><span class="st-label st-label--red" data-i18n="pricing.dz"></span><output dir="ltr" data-est-dz>{{est.dz}}</output></p>
         <p class="st-est__fig st-est__fig--rule"><span class="st-label st-label--teal" data-i18n="pricing.eu"></span><output dir="ltr" data-est-eu>{{est.eu}}</output></p>
         <p class="st-est__fig st-est__fig--rule"><span class="st-label st-label--teal" data-i18n="pricing.us"></span><output dir="ltr" data-est-us>{{est.us}}</output></p>
@@ -515,6 +570,27 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
 <!-- CASE:almaflow -->
 <!-- CASE:traveler -->
 <!-- CASE:heetch -->
+      <!-- START HERE (2026-11-15): the three layers in one short paragraph and
+           the cross-links between the dossiers below, the traveler case above
+           and the bible. Real facts stay real; the layers are the world's frame. -->
+      <aside class="st-start" id="world" aria-labelledby="start-h" tabindex="-1">
+        <div class="st-start__head">
+          <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">夜</span><span data-i18n="start.kicker"></span></p>
+          <h3 class="st-start__t" id="start-h" data-i18n="start.title"></h3>
+        </div>
+        <p class="st-start__p" data-i18n-aria="start.aria" role="group">
+          <span class="st-start__l st-start__l--day"><b data-i18n="start.day.k"></b> <span data-i18n="start.day.d"></span></span>
+          <span class="st-start__l st-start__l--night"><b data-i18n="start.night.k"></b> <span data-i18n="start.night.d"></span></span>
+          <span class="st-start__l st-start__l--real"><b data-i18n="start.real.k"></b> <span data-i18n="start.real.d"></span></span>
+        </p>
+        <ul class="st-start__go">
+          <li><a href="#case-traveler" dir="ltr">tr4veler.exe</a></li>
+          <li><a href="#mercury" dir="ltr">MERCURY</a></li>
+          <li><a href="#voidsplunker" dir="ltr">VOIDSPLUNKER.std</a></li>
+          <li><a href="bible/" data-i18n="start.bible"></a></li>
+        </ul>
+      </aside>
+
       <!-- 06 · the founder's personal project: VOIDSPLUNKER.std, the character
            bible of Yasser and Kūro (hub/bible/, English only). Not a client
            and not a track: one plate in the Studio's own paper, ink and red,
@@ -552,6 +628,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
               <a class="st-btn st-btn--primary" href="bible/"><span data-i18n="proof.vs.cta"></span><span class="st-proj__arr" aria-hidden="true">&nbsp;→</span></a>
               <span class="st-label st-proj__lang" data-i18n="proof.vs.lang"></span>
             </div>
+            <p class="st-proj__see"><span class="st-label" data-i18n="start.see"></span> <a href="#mercury" dir="ltr">MERCURY</a> <a href="#case-traveler" dir="ltr">tr4veler.exe</a> <a href="#world" data-i18n="nav.world"></a></p>
           </div>
         </div>
       </section>
@@ -592,6 +669,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
               <li data-i18n="proof.mc.facts.3"></li>
             </ul>
             <p class="st-label st-proj__lang st-proj__lang--note" data-i18n="proof.mc.lang"></p>
+            <p class="st-proj__see"><span class="st-label" data-i18n="start.see"></span> <a href="#voidsplunker" dir="ltr">VOIDSPLUNKER.std</a> <a href="#case-traveler" dir="ltr">tr4veler.exe</a> <a href="#world" data-i18n="nav.world"></a></p>
           </div>
         </div>
         <ol class="st-proj__strip st-proj__strip--posters" data-row data-i18n-aria="proof.mc.framesLabel">
@@ -968,12 +1046,17 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
     <button type="button" class="st-menu__x" data-menu-close data-i18n-aria="nav.menuClose"><span aria-hidden="true">✕</span></button>
   </div>
   <nav class="st-menu__nav" data-i18n-aria="nav.menu">
+    <p class="st-menu__g st-label" data-i18n="nav.groupSite"></p>
     <a href="#services"><span class="st-menu__n" aria-hidden="true">01</span><span data-i18n="nav.services"></span></a>
     <a href="#preview"><span class="st-menu__n" aria-hidden="true">02</span><span data-i18n="nav.preview"></span></a>
     <a href="#pricing"><span class="st-menu__n" aria-hidden="true">03</span><span data-i18n="nav.pricing"></span></a>
     <a href="#work"><span class="st-menu__n" aria-hidden="true">04</span><span data-i18n="nav.work"></span></a>
     <a href="#studio"><span class="st-menu__n" aria-hidden="true">05</span><span data-i18n="nav.studio"></span></a>
     <a href="#faq"><span class="st-menu__n" aria-hidden="true">06</span><span data-i18n="nav.faq"></span></a>
+    <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupWorld"></p>
+    <a class="st-menu__world" href="#world"><span class="st-menu__n" aria-hidden="true">夜</span><span data-i18n="nav.world"></span></a>
+    <a class="st-menu__world" href="#voidsplunker"><span class="st-menu__n" aria-hidden="true">06</span><span dir="ltr">VOIDSPLUNKER.std</span></a>
+    <a class="st-menu__world" href="#mercury"><span class="st-menu__n" aria-hidden="true">07</span><span dir="ltr">MERCURY</span></a>
   </nav>
   <div class="st-menu__foot">
     <div class="st-lang" role="group" data-i18n-aria="nav.lang">

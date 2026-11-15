@@ -879,35 +879,142 @@ figure.st-tile{margin:0}
 .st-rv.is-in{opacity:1;transform:none;transition:opacity 1s var(--ease) var(--d,0ms),transform 1s var(--ease) var(--d,0ms)}
 
 /* ---------------- 00 sting (hub/app.js 1) ----------------
-   Inserted by the script on a first visit of the session, never in the
-   HTML: 2.2 s of keyframes, then the paper wipes up and it is gone. */
+   Rebuilt 2026-11-15 around the characters. Inserted by the script on a
+   first visit of the session, never in the HTML: 2.2 s of keyframes, then the
+   paper wipes up and it is gone. Timeline: 0.1 s the HUD line opens; 0.15 to
+   1.0 s Yasser on the red block in three hard-cut frames (the rig's base,
+   up and smirk, the hero's own files) while the letters land; 1.0 to 1.4 s a
+   night cut: Kuro's eyes; 1.4 s the red stamp; 1.667 s the paper wipes up
+   (0.533 s). Hard cuts and stamps, no eases on the characters. */
 html.st-stinging{overflow:hidden}
-.st-sting{position:fixed;inset:0;z-index:100;overflow:hidden;background:var(--ink)}
-.st-sting__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;transform-origin:50% 38%;animation:st-zoom 2.2s linear forwards}
-.st-sting__bar{position:absolute;left:0;right:0;height:7vh;background:var(--ink)}
+.st-sting{position:fixed;inset:0;z-index:100;overflow:hidden;background:var(--paper)}
+.st-sting__bar{position:absolute;left:0;right:0;height:7vh;background:var(--ink);z-index:2}
 .st-sting__bar--t{top:0}
 .st-sting__bar--b{bottom:0;display:flex;align-items:center;padding:0 var(--gx)}
 .st-sting__hud{font-family:"Geist Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.2em;color:var(--cream);white-space:nowrap;clip-path:inset(0 100% 0 0);animation:st-hud .5s var(--ease) .1s forwards}
-.st-sting__word{position:absolute;left:clamp(16px,7vw,140px);top:22%;display:flex;flex-wrap:wrap;align-items:flex-end;gap:0 .22em;font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(44px,8.6vw,150px);line-height:.9;letter-spacing:-.02em;color:var(--ink);text-transform:uppercase}
+.st-sting__block{position:absolute;left:52%;right:6%;top:17%;bottom:17%;background:var(--red);border:2px solid var(--ink);box-shadow:var(--shadow-l);overflow:hidden}
+.st-sting__block::after{content:"";position:absolute;left:0;right:0;bottom:8%;height:2px;background:var(--ink)}
+.st-sting__y{position:absolute;inset:0;width:100%;height:92%;bottom:0;top:auto;object-fit:contain;object-position:center bottom;opacity:0}
+.st-sting__y--a{animation:st-fa 2.2s steps(1,end) forwards}
+.st-sting__y--b{animation:st-fb 2.2s steps(1,end) forwards}
+.st-sting__y--c{animation:st-fc 2.2s steps(1,end) forwards}
+.st-sting__word{position:absolute;left:clamp(16px,7vw,140px);top:26%;display:flex;flex-direction:column;align-items:flex-start;gap:.04em;font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(44px,7.4vw,130px);line-height:.9;letter-spacing:-.02em;color:var(--ink);text-transform:uppercase}
 .st-sting__word > span,.st-sting__labs > span:first-child{display:flex}
 .st-sting__labs{align-items:flex-end;gap:.18em;color:var(--red)}
-.st-sting__g{display:inline-block;opacity:0;transform:translateY(56px);filter:blur(10px);animation:st-letter .42s var(--ease) forwards;animation-delay:calc(.667s + var(--i) * .028s)}
-.st-sting__labs .st-sting__g{animation-delay:calc(.787s + var(--i) * .028s)}
-.st-sting__seal{width:.5em;height:.5em;margin-bottom:.06em;display:grid;place-items:center;background:var(--red);border:3px solid var(--ink);font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:.26em;color:var(--cream);opacity:0;transform:scale(1.6) rotate(-8deg);animation:st-seal .27s var(--ease) 1.333s forwards}
-.st-sting__seal b{font-size:1em}
-.st-sting__wipe{position:absolute;inset:0;transform:translateY(100%);background:var(--paper);border-top:6px solid var(--ink);animation:st-wipe .533s cubic-bezier(.87,0,.13,1) 1.667s forwards}
+.st-sting__g{display:inline-block;opacity:0;transform:translateY(56px);filter:blur(10px);animation:st-letter .42s var(--ease) forwards;animation-delay:calc(.2s + var(--i) * .028s)}
+.st-sting__labs .st-sting__g{animation-delay:calc(.32s + var(--i) * .028s)}
+.st-sting__eyes{position:absolute;inset:0;z-index:1;display:grid;place-items:center;overflow:hidden;background:#0F1E30;opacity:0;animation:st-eyes .4s steps(1,end) 1s forwards}
+.st-sting__eyes img{display:block;width:min(96vw,115vh);max-width:none;height:auto;margin-top:6vh}
+.st-sting__stamp{position:absolute;left:clamp(20px,8vw,150px);bottom:20%;z-index:1;width:clamp(84px,11vw,168px);aspect-ratio:1;display:grid;place-items:center;background:var(--red);border:4px solid var(--ink);box-shadow:var(--shadow);font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:clamp(44px,6.4vw,100px);line-height:1;color:var(--cream);opacity:0;transform:scale(1.6) rotate(-8deg);animation:st-seal .27s var(--ease) 1.4s forwards}
+.st-sting__wipe{position:absolute;inset:0;z-index:3;transform:translateY(100%);background:var(--paper);border-top:6px solid var(--ink);animation:st-wipe .533s cubic-bezier(.87,0,.13,1) 1.667s forwards}
 .st-sting.is-skip .st-sting__wipe{animation-name:st-wipe-now;animation-delay:0s}
-.st-sting__skip{position:absolute;top:calc(7vh + 14px);inset-inline-end:var(--gx);width:56px;height:56px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--red);border:2px solid var(--ink);color:var(--cream);box-shadow:var(--shadow-s);transform:rotate(-6deg);cursor:pointer}
+.st-sting__skip{position:absolute;z-index:4;top:calc(7vh + 14px);inset-inline-end:var(--gx);width:56px;height:56px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--red);border:2px solid var(--ink);color:var(--cream);box-shadow:var(--shadow-s);transform:rotate(-6deg);cursor:pointer}
 .st-sting__skip:focus-visible{outline-color:var(--cream)}
 .st-sting__skip b{font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:20px;line-height:1}
 .st-sting__skip span{font-family:"Geist Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.02em;line-height:1}
 :lang(ar) .st-sting__skip span{font-family:"IBM Plex Sans Arabic",sans-serif}
-@keyframes st-zoom{to{transform:scale(1.06)}}
+@media (orientation:portrait){
+  .st-sting__block{left:8%;right:8%;top:30%;bottom:20%}
+  .st-sting__word{top:11%;font-size:clamp(40px,13vw,90px)}
+  .st-sting__hud{font-size:11px;letter-spacing:.08em}
+  .st-sting__stamp{left:auto;inset-inline-end:10%;bottom:12%;width:clamp(72px,22vw,110px);font-size:clamp(38px,12vw,64px)}
+}
 @keyframes st-hud{to{clip-path:inset(0 0 0 0)}}
 @keyframes st-letter{to{opacity:1;transform:none;filter:none}}
+@keyframes st-fa{0%,6.8%{opacity:0}6.81%,25%{opacity:1}25.01%,100%{opacity:0}}
+@keyframes st-fb{0%,25%{opacity:0}25.01%,43.2%{opacity:1}43.21%,100%{opacity:0}}
+@keyframes st-fc{0%,43.2%{opacity:0}43.21%,100%{opacity:1}}
+@keyframes st-eyes{0%{opacity:1}100%{opacity:0}}
 @keyframes st-seal{0%{opacity:1;transform:scale(1.6) rotate(-8deg)}35%{transform:scale(1.15) rotate(-5deg)}60%{transform:scale(1.02) rotate(-10deg)}80%{transform:scale(1) rotate(-7deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
 @keyframes st-wipe{to{transform:none}}
 @keyframes st-wipe-now{to{transform:none}}
+
+/* ---------------- paper wipe between pages (hub/app.js 1b) ----------------
+   0.4 s, the sting's paper and rule; added to the page by the script on a
+   same-origin navigation and taken away again on pageshow (the back/forward
+   cache), so it never sticks. Never with reduced motion (the script does not
+   build it). */
+.st-pgwipe{position:fixed;inset:0;z-index:110;transform:translateY(100%);background:var(--paper);border-top:6px solid var(--ink);pointer-events:none;display:grid;place-items:center}
+.st-pgwipe.is-on{pointer-events:auto;animation:st-wipe .4s cubic-bezier(.87,0,.13,1) forwards}
+.st-pgwipe__seal{width:84px;height:84px;display:grid;place-items:center;background:var(--red);border:4px solid var(--ink);box-shadow:var(--shadow-s);font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:44px;line-height:1;color:var(--cream);transform:rotate(-8deg);opacity:0}
+.st-pgwipe.is-on .st-pgwipe__seal{animation:st-seal .27s var(--ease) .13s forwards}
+
+/* ---------------- the seal on the estimator's result ---------------- */
+.st-est__seal{position:absolute;inset-block-start:14px;inset-inline-end:14px;z-index:2;width:58px;height:58px;display:grid;place-items:center;background:var(--red);border:3px solid var(--ink);box-shadow:var(--shadow-s);font-family:var(--f-jp);font-weight:900;font-size:24px;line-height:1;color:var(--cream);transform:rotate(-8deg);pointer-events:none}
+.st-est__seal.is-stamp{animation:st-seal .27s var(--ease) both}
+
+/* ---------------- the two doors (2026-11-15) ----------------
+   The premise, then the buyer's door (the day: red scene) and the world's
+   door (the night: the home's Arcanum navy). Red is voice and action; the
+   brass is for the place alone (the coordinates). Characters sit inside the
+   scene with a hard shadow and a ground line. */
+.st-doors{padding-block:clamp(40px,5vw,72px) clamp(48px,6vw,88px);border-top:2px solid var(--ink)}
+.st-doors__top{display:flex;flex-direction:column;gap:18px;margin-bottom:clamp(28px,3.4vw,48px)}
+.st-doors__premise{max-width:30em;font-family:var(--f-disp);font-weight:800;font-size:clamp(22px,2.7vw,40px);line-height:1.14;letter-spacing:-.01em;text-wrap:balance}
+:lang(ar) .st-doors__premise{letter-spacing:0;line-height:1.4}
+.st-doors__row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.6vw,36px)}
+.st-door{display:flex;flex-direction:column;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-door__scene{position:relative;height:clamp(200px,20vw,280px);overflow:hidden;background:var(--red);border-bottom:2px solid var(--ink)}
+.st-door__scene::after{content:"";position:absolute;left:0;right:0;bottom:9%;height:2px;background:var(--ink)}
+.st-door__scene img{position:absolute;bottom:0;inset-inline-start:50%;height:96%;width:auto;max-width:none;transform:translateX(-50%)}
+[dir="rtl"] .st-door__scene img{transform:translateX(50%)}
+.st-door--night{background:#0F1E30;color:var(--cream)}
+.st-door--night .st-door__scene{background:#0F1E30;border-bottom-color:var(--cream)}
+.st-door--night .st-door__scene::after{background:var(--cream);opacity:.5}
+.st-door--night .st-door__scene img{height:auto;width:min(62%,300px)}
+.st-door__coord{position:absolute;inset-block-start:14px;inset-inline-start:16px;font-family:"Geist Mono",ui-monospace,monospace;font-size:13px;letter-spacing:.16em;color:#D2B26A}
+.st-door__body{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:clamp(18px,2.2vw,30px)}
+.st-door__k{color:var(--red-text)}
+.st-door--night .st-door__k{color:var(--on-dark)}
+.st-door__t{font-family:var(--f-disp);font-weight:900;font-size:clamp(30px,3.6vw,52px);line-height:.95;text-transform:uppercase;letter-spacing:-.015em}
+:lang(ar) .st-door__t{text-transform:none;letter-spacing:0;line-height:1.2}
+.st-door__t a{text-decoration:none}
+.st-door__t a:hover{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:4px;text-underline-offset:6px}
+.st-door__d{font-size:var(--t-card);line-height:1.55;max-width:32em}
+.st-door--night .st-btn--primary{background:var(--red);box-shadow:5px 5px 0 var(--cream)}
+.st-door__links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.st-door__links a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:2px solid currentColor;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+:lang(ar) .st-door__links a{letter-spacing:0}
+@media (hover:hover){
+  .st-door__links a:hover{background:var(--ink);color:var(--cream)}
+  .st-door--night .st-door__links a:hover{background:var(--cream);color:#0F1E30}
+}
+.st-door--night :focus-visible{outline-color:var(--cream)}
+
+/* nav and sheet: the world's link in red, a group label in the sheet */
+.st-nav__links .st-nav__world{display:none;color:var(--red-text);border:2px solid var(--red)}
+@media (min-width:1240px){.st-nav__links .st-nav__world{display:inline-flex}}
+.st-nav__links .st-nav__world:hover{background:var(--red);color:var(--cream)}
+.st-menu__g{grid-column:1 / -1;padding:20px 0 8px;color:var(--muted)}
+.st-menu__g--night{margin-top:12px;padding-top:24px;border-top:2px solid var(--ink);color:var(--red-text)}
+.st-menu__nav a.st-menu__world{font-size:clamp(24px,7vw,36px);min-height:56px}
+.st-skip--b{inset-inline-start:8px}
+
+/* start here, above the dossiers (night plate) and the see-also lines */
+.st-start{display:grid;gap:18px;padding:clamp(20px,2.6vw,36px);background:#0F1E30;color:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow);scroll-margin-top:90px}
+.st-start .st-kick{color:var(--on-dark)}
+.st-start__go a[dir="ltr"],.st-door__links a[dir="ltr"],.st-proj__see a[dir="ltr"]{text-transform:none}
+.st-start :focus-visible,.st-start:focus-visible{outline-color:var(--cream)}
+.st-start__t{font-family:var(--f-disp);font-weight:900;font-size:clamp(26px,3.2vw,46px);line-height:1;text-transform:uppercase;letter-spacing:-.01em;margin-top:10px}
+:lang(ar) .st-start__t{text-transform:none;letter-spacing:0;line-height:1.25}
+.st-start__p{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 28px;font-size:var(--t-card);line-height:1.55}
+.st-start__l{display:block}
+.st-start__l b{display:inline-block;margin-bottom:8px;padding:3px 10px;background:var(--red);color:var(--cream);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.12em}
+:lang(ar) .st-start__l b{letter-spacing:0}
+.st-start__l > span{display:block}
+.st-start__go{display:flex;flex-wrap:wrap;gap:8px}
+.st-start__go a,.st-proj__see a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:2px solid currentColor;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+:lang(ar) .st-start__go a,:lang(ar) .st-proj__see a{letter-spacing:0}
+@media (hover:hover){
+  .st-start__go a:hover{background:var(--cream);color:#0F1E30}
+  .st-proj__see a:hover{background:var(--ink);color:var(--cream)}
+}
+.st-proj__see{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px}
+.st-proj__see--case{margin-top:0}
+@media (max-width:900px){
+  .st-doors__row{grid-template-columns:1fr}
+  .st-start__p{grid-template-columns:1fr}
+}
 
 /* ---------------- reduced motion ----------------
    No transition, no transform that moves on its own; the sting is never
