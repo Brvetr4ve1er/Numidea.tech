@@ -28,7 +28,7 @@ what the Studio page changed from your design).
 | 15 | Hub: your character bible (you and Kūro) | Rebuilt on 2026-11-06 from your own design page; 6 points for your review (the character facts, the day's scenarios, your name's spelling, the "2 a.m." line, the coat's patch, Kūro); the earlier diary points closed with the diary | `hub/index.html`, `hub/app.js` (the rig's lines) |
 | 16 | Commercial terms (payment, ownership, hosting, revisions, support, contract, the Aperçu rules) | On the page since 2026-11-03 as FAQ entries, drafted on your instruction of 2026-10-31; yours to change at any time | section 16; `faq3`, `faq7`, `faq8` in `assets/i18n/fr.js` |
 | 17 | Team and contact facts | Answered 2026-10-30, on the page since 2026-11-03 | section 17 |
-| 18 | The founder's name in Arabic script | Still open: the Arabic hero lede shows "Yasser Hamisse" in Latin script (isolated in a `<bdi>` since 2026-11-06) until you give the spelling | `assets/i18n/ar.js` (`hero.lede`) |
+| 18 | The names (person, artist handle, studio, characters) | Closed 2026-11-15 with the set you approved: the person is Yasser Hamisse; the artist handle is br4vetr4veler everywhere (b4vetrave1er.exe retired); the studio is Numidea Labs, Instagram @stick_itty; VOIDSPLUNKER.std is the character-bible project only; tr4veler.exe is the traveler world, Instagram @yass3r.0. The Arabic spelling of the founder's name is now «ياسر حميس» on the Studio (`founder.name` in `hub/src/i18n/ar.json`), AR review; the home's Arabic hero lede still shows the Latin spelling in a `<bdi>` | `hub/src/i18n/*.json`, `hub/bible/index.html`, `hub/brand/numidea/index.html`, `assets/i18n/ar.js` (`hero.lede`); BRAND.md "Night Shift Poster" |
 | 19 | The UX pass's questions | 16 asked on 2026-11-06 (IMPROVEMENTS decisions 28 to 43, the recommended option first), plus the sharper captures that need the live sites; nothing changes until you answer | section 19 |
 | 20 | Copy proposals (I4): one claim per section heading, ledes that claim, the service taglines, a "je" version of the offer and the FAQ | Proposals only, each beside the current string; nothing on the pages changed (IMPROVEMENTS decisions 46, 47) | section 20 |
 | 21 | The Studio page (/hub/): what changed from your design, the pictures it lacks, the claims to confirm | Built 2026-11-07, then the lost content of your old page recovered 2026-11-11 (Behance dossier, "Ce que je fais", plate, diary, three brand books, links from the home); the copy deviations are listed for your yes; 8 kinds of pictures still stand in; the Brand Enhancement question; Arabic unreviewed | section 21; section 8 |
@@ -136,9 +136,9 @@ item 6 can cover it.
 
 ## 8. Arabic native review
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
-2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11 and 2026-11-14 awaits native review** (the lists are at the end of this section,
+2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14 and 2026-11-15 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11" and "Written or changed on 2026-11-14"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14" and "Written or changed on 2026-11-15"); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -508,6 +508,43 @@ banner; since 2026-10-31 the three languages are one file each, no longer in
 `assets/app.js`), the `UI.ar` and project `ar` texts in
 `scripts/scene-data.mjs`, `CARDS.ar` in `scripts/build-og.mjs`, and the
 `lang="ar"` lines in `404.html`.
+
+Written or changed on 2026-11-15 (the creative-audit moves: the premise, the
+night workshop band, the founder's scene, the 404, the Studio's two doors and
+"Start here", the seal; none read by a native speaker; every Arabic string
+below is **AR review**). The approved premise is the source: FR first, EN and AR
+translated from it.
+- AR review, home dictionary `assets/i18n/ar.js`: `atelier.kicker`,
+  `atelier.title` («ورشة الليل.»), `atelier.line` (the premise), `atelier.cta`
+  («ادخل الورشة»), `atelier.alt` (the diorama's alt text); `founder.sceneAlt`,
+  `founder.sceneCap` (the founder's drawn portrait); `seal.est` («تقدير») and
+  `seal.sent` («أُرسل»), the two stamp words;
+- AR review, `404.html` (inline, `lang="ar"`): the line under the facepalm
+  panel («أما الورشة فما زالت مفتوحة.») and the image's alt text («ياسر يضع يده
+  على وجهه»); the label «Kūro» stays in Latin script on purpose;
+- AR review, the Studio `hub/src/i18n/ar.json`, new: `doors.aria`,
+  `doors.kicker`, `doors.premise` (the premise), `doors.skip`,
+  `doors.a.{k,t,d,go,preview,pricing,work,contact}`,
+  `doors.b.{k,t,d,go,bible}`, `start.{kicker,title,aria,see,bible}`,
+  `start.day.{k,d}`, `start.night.{k,d}`, `start.real.{k,d}`, `nav.world`,
+  `nav.groupSite`, `nav.groupWorld`;
+- AR review, the Studio, changed values: `sting.hud` (the English line, as
+  before), `proof.vs.tag` («دفتر الشخصيات»), `footer.bible`, `founder.name`
+  («ياسر حميس»); the bible is «الدفتر» in `doors.b.bible` and `start.bible`.
+  The Studio's English and French counterparts carry the same keys;
+- the bible and the brand books are English only; the premise sentence added
+  to the bible's cover is English and has no Arabic to review.
+
+Open art items (2026-11-15): the white patch behind the Sign pose is cleared
+(transparent now; the old file is kept in the retouch folder of the session),
+so it is no longer an owner item. Three non-pose bible files still carry a
+detached alpha speck (`face-smirk.webp` 90 px, `rig-y-glasses.webp` 49 px,
+`rig-y-sip.webp` 25 px, held in `scripts/design-check.mjs`): confirm whether
+they are intended or have them cut.
+The Studio has no contact form (WhatsApp, the Aperçu and e-mail only), so the
+sent-form seal exists on the home's form only; the estimator seal is on the
+home, the price guide and the Studio. The real photograph of Yasser (section 3)
+still replaces the drawn portrait where the home's founder card keeps its slot.
 
 ## 8b. The Google tag and consent (2026-11-14)
 The site loads the owner's Google Tag Manager container (GTM-PMF7RWVK) on every

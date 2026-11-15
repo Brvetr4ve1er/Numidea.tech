@@ -1841,6 +1841,39 @@ Angry face only on red-flag posts; no emoji, wink or thumbs-up; safe zones of
 80 px on a post and 250 px / 340 px on a story. Quotes are the bible's own
 lines; handles and links are placeholders.
 
+## The premise and the "Night Shift Poster" (2026-11-15)
+
+Source: the creative audit of 2026-11-15 and the owner's approval of its moves.
+
+**The premise** (FR first; EN and AR are translations, AR to review). EN: "Numidea is a night workshop in Bordj Bou Arréridj where a builder and his black cat make your homepage before you pay, and every finished job opens a door to another world." FR: "Numidea est un atelier de nuit à Bordj Bou Arréridj où un bâtisseur et son chat noir construisent votre page d'accueil avant que vous ne payiez, et où chaque projet livré ouvre une porte vers un autre monde." It sits in the home's night band (`atelier.line`), under the Studio's hero (`doors.premise`) and on the bible's cover (English only). The hero and its calls to action keep selling the site; the world is the second layer.
+
+**Modes.** The home's navy (Arcanum) is night, the Studio's cream is day. The night band and the 404 panel are fixed night navy in both themes (a first-time light-mode visitor sees a night panel on a cream page: deliberate).
+
+**Palette roles.** RED is voice and action: character accents, stamps, character links ("Entrer dans l'atelier →", the Studio's "Le monde" link, the Kūro label). BRASS is place only: engravings and coordinates (36°04′N 4°46′E), never a button. The red is defined in `styles.css` `:root` as fixed colours (`--nsp-red` and friends), not as theme tokens, because `themes.css` and its checks forbid new theme tokens.
+
+**Type.** The Studio's heavy Archivo (800 to 900) for the headline of any new character moment (the band's title, the premise, the doors, the 404 line); the home's other headings are not restyled (that is a later move). The home loads Archivo from `hub/fonts/archivo-800-900-latin.woff2` rather than a copy (the asset budget rejects duplicate bytes). Arabic keeps the Arabic body face with no tracking.
+
+**Framing.** A character sits inside a scene or a panel, never a floating cut-out: a hard offset shadow (no blur), a ground line under the figure, cream paper rules on navy. Existing art only; no new drawings.
+
+**Motion.** Three pieces, all skipped under `prefers-reduced-motion`:
+- the **paper wipe**, 0.4 s, on same-origin internal navigation and the main buttons. Skipped for modifier keys, non-primary clicks, `target=_blank`, downloads, hash-only and same-page links, non-page files and a click another handler took. The overlay is removed on `pageshow` so a bfcache restore never leaves it stuck. Home: `.pw` in `assets/app.js`. Studio: `hub/app.js`. Bible and brand books: `hub/brand/book.js` (`.bk-wipe`). Do not add a second implementation; extend the nearest one;
+- the **seal**, a red stamp (0.32 s, stepped) on the estimator result (replayed once the visitor stops moving the controls) and on the home's sent-form panel; the Studio has no form, so it stamps the estimator only; static under reduced motion;
+- the **character sting** on the Studio's first visit (once per session, about 2.2 s): the HUD line, Yasser in three hard-cut rig frames while the NUMIDEA LABS letters land, Kūro's eyes in a night cut, the red stamp, then the wipe. Built from frames the page already loads (about 75 kB); skipped for reduced motion and slow or save-data connections; a click or a key skips it. `sting-169.webp` and `sting-916.webp` are no longer loaded but stay in `hub/img/motion` because `build-og.mjs` reads one of them.
+
+**Names.** The person is Yasser Hamisse (Arabic spelling on the Studio: ياسر حميس, AR review). The artist handle is br4vetr4veler everywhere; b4vetrave1er.exe is retired. The studio is Numidea Labs, Instagram @stick_itty. VOIDSPLUNKER.std is the character-bible project only (dossier tag "Bible des personnages"). tr4veler.exe is the traveler world, Instagram @yass3r.0. The MERCURY and Behance walls are not changed by this direction.
+
+**The home's night band `#atelier`** (after `#work`, before `#services`): the Studio's workbench diorama at web size (`assets/illus/workbench-night.webp` 1000w and `-560`), a brass kicker with the place, the Archivo title, the premise, the red link into the Studio (`hub/`, `?lang=` added by build-lang). It is 465 px at 390 and 523 px in two columns at 768; the home's height ceilings in `design-check.mjs` were raised for it (390: 8,800 to 9,050; 768: 8,300 to 8,480; measured 8,950 and 8,381). Its type uses the scale tokens (`--t-h2-xl`, `--t-lead`, `--t-label`).
+
+**The founder card.** The Roman-arch plate is replaced by `assets/illus/yasser-coffee.webp` (the coffee pose) in a scene panel with shadow and ground line and a caption (`founder.sceneAlt`, `founder.sceneCap`); phones and tablets up to 1099 px show a compact row (small portrait and caption). The commented photograph slot stays: a real photograph replaces the drawing there. `pl.arch` and the `.fdp-*` rules are unused and may be deleted.
+
+**The Studio's doors and "Start here".** `#doors` after the hero: "Je veux un site" (a red day panel with Yasser, links to the Aperçu, the prices, the work and the contact, its main button to #contact) and "Le monde" (a navy night panel with Kūro and the brass coordinates, links to #world, VOIDSPLUNKER.std, MERCURY, the traveler case and the bible). The nav carries a red "Le monde" link from 1240 px up (at 1160 px it overflowed the bar); the phone menu sheet has the two groups; a second skip link goes to `#world`. `#world` ("Start here"), a night plate before dossiers 06 and 07, states three layers in one paragraph: Day (Yasser, Numidea Labs, clients, the real city), Night (the 2 a.m. workshop, Kūro as gate and quality check), Reality (tr4veler.exe, MERCURY, VOIDSPLUNKER.std as the bible project). No biography is invented. "Voir aussi" lines cross-link the dossiers.
+
+**The 404.** Yasser's Facepalm pose (`assets/illus/yasser-facepalm.webp`, the stray hand island cropped off) sits in a night panel with a red "Kūro" label and one line from the workshop ("L'atelier, lui, est resté ouvert." / "The workshop, though, stayed open." / the Arabic). The head script builds the image from the site root, so a nested missing URL requests nothing under the missing folder; with JavaScript off the panel is not drawn. The caravan strip is gone (`assets/illus/dunes-404.webp` is now unreferenced and may be deleted). The "Kūro" label stays in Latin script in Arabic.
+
+**Removed.** The home's pointer parallax (`data-parallax`, its CSS, `.px-still`) is gone: it was invisible. The history notes above describe the old behaviour.
+
+**Art.** All twelve `pose-*.webp` files were retouched to one alpha component (detached specks removed) and the Sign pose's opaque white patch was made transparent, so `ART_PARTS` in `design-check.mjs` now holds only the three non-pose files.
+
 ## Founder section — the CV is the source of truth
 
 Every date, title and one-liner in the founder card comes from
