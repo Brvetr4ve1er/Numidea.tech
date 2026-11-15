@@ -128,6 +128,8 @@ for (const f of published) {
   if (!TEXT.has(ext)) continue;
   let src = read(f);
   if (/\.(html|xml|svg)$/.test(ext)) src = src.replace(/<!--[\s\S]*?-->/g, '');
+  // a page's Content-Security-Policy lists hosts (wildcards, bare origins), not links: nothing to fetch there
+  if (ext === '.html') src = src.replace(/<meta\s+http-equiv="Content-Security-Policy"[^>]*>/gi, '');
   for (const m of src.matchAll(/https:\/\/[^\s"'<>`\\)\]}|]+/g)) {
     const u = m[0].replace(/\$\{.*$/, '').replace(/&amp;/g, '&').replace(/[.,;:!?]+$/, '');
     if (/@context["']?\s*:\s*["']$/.test(src.slice(Math.max(0, m.index - 16), m.index))) continue;
