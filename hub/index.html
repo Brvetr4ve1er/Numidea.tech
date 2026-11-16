@@ -719,8 +719,8 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
             <span class="st-ls__t" data-i18n="money.ls.items.2.t">Fixer son tarif journalier</span>
             <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
           </button>
-          <button type="button" class="st-ls__tab" role="tab" id="ls-t-runway" aria-controls="ls-p-runway" aria-selected="false" data-ls-tab="runway">
-            <img src="img/studio/money/ls-runway.webp" width="480" height="480" srcset="img/studio/money/ls-runway-240.webp 240w, img/studio/money/ls-runway.webp 480w" sizes="(max-width:599px) 28vw, 150px" data-i18n-alt="money.ls.items.3.alt" alt="Kūro regarde un grand bocal à moitié rempli de pièces où flotte un bateau en papier" loading="lazy" decoding="async">
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-treso" aria-controls="ls-p-treso" aria-selected="false" data-ls-tab="treso">
+            <img src="img/studio/money/ls-treso.webp" width="480" height="480" srcset="img/studio/money/ls-treso-240.webp 240w, img/studio/money/ls-treso.webp 480w" sizes="(max-width:599px) 28vw, 150px" data-i18n-alt="money.ls.items.3.alt" alt="Kūro regarde un grand bocal à moitié rempli de pièces où flotte un bateau en papier" loading="lazy" decoding="async">
             <span class="st-ls__n" aria-hidden="true">L4</span>
             <span class="st-ls__t" data-i18n="money.ls.items.3.t">Budget et trésorerie</span>
             <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
@@ -813,8 +813,8 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
               <div class="st-calc__f">
                 <label class="st-calc__l" for="rate-net" data-i18n="money.ls.items.2.f.net">Revenu net visé, par mois</label><input class="st-calc__i" id="rate-net" type="number" inputmode="numeric" min="0" step="1000" value="100000" data-f="net">
                 <label class="st-calc__l" for="rate-costs" data-i18n="money.ls.items.2.f.costs">Charges professionnelles, par mois</label><input class="st-calc__i" id="rate-costs" type="number" inputmode="numeric" min="0" step="1000" value="20000" data-f="costs">
-                <label class="st-calc__l" for="rate-days"><span data-i18n="money.ls.items.2.f.days">Jours facturés, par mois</span> · <output for="rate-days" data-o="days">12</output></label><input class="st-calc__r" id="rate-days" type="range" min="4" max="22" step="1" value="12" data-f="days">
-                <label class="st-calc__l" for="rate-tax"><span data-i18n="money.ls.items.2.f.tax">Part des impôts et cotisations</span> · <output for="rate-tax" data-o="tax">20</output>&nbsp;%</label><input class="st-calc__r" id="rate-tax" type="range" min="0" max="50" step="5" value="20" data-f="tax">
+                <p class="st-calc__l"><label for="rate-days" data-i18n="money.ls.items.2.f.days">Jours facturés, par mois</label> · <output for="rate-days" data-o="days">12</output></p><input class="st-calc__r" id="rate-days" type="range" min="4" max="22" step="1" value="12" data-f="days">
+                <p class="st-calc__l"><label for="rate-tax" data-i18n="money.ls.items.2.f.tax">Part des impôts et cotisations</label> · <output for="rate-tax" data-o="tax">20</output>&nbsp;%</p><input class="st-calc__r" id="rate-tax" type="range" min="0" max="50" step="5" value="20" data-f="tax">
               </div>
               <div class="st-calc__out" aria-live="polite">
                 <p><output class="st-calc__big" dir="ltr" data-o="day">12 500</output> <span data-i18n="money.ls.items.2.f.day">par jour facturé</span></p>
@@ -835,10 +835,10 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
               </div>
             </div>
           </div>
-          <div class="st-ls__panel" id="ls-p-runway" role="tabpanel" aria-labelledby="ls-t-runway" tabindex="0" data-ls-panel="runway">
+          <div class="st-ls__panel" id="ls-p-treso" role="tabpanel" aria-labelledby="ls-t-treso" tabindex="0" data-ls-panel="treso">
             <h3 class="st-ls__h" data-i18n="money.ls.items.3.t">Budget et trésorerie</h3>
             <p class="st-ls__d" data-i18n="money.ls.items.3.d">La trésorerie, c’est le nombre de mois que vous tenez si plus rien ne rentre comme prévu. Elle se calcule en une division.</p>
-            <div class="st-calc" data-calc="runway">
+            <div class="st-calc" data-calc="treso">
               <div class="st-calc__f">
                 <label class="st-calc__l" for="run-save" data-i18n="money.ls.items.3.f.save">Épargne disponible</label><input class="st-calc__i" id="run-save" type="number" inputmode="numeric" min="0" step="1000" value="300000" data-f="save">
                 <label class="st-calc__l" for="run-spend" data-i18n="money.ls.items.3.f.spend">Dépenses, par mois</label><input class="st-calc__i" id="run-spend" type="number" inputmode="numeric" min="0" step="1000" value="80000" data-f="spend">

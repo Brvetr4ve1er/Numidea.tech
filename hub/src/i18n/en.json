@@ -866,14 +866,14 @@
           "ok": "Yes. Divide by the days billed, not the days worked."
         },
         {
-          "t": "Budget and runway",
+          "t": "Budget and cash cushion",
           "alt": "Kūro watches a large jar half full of coins with a paper boat floating on top",
-          "d": "Runway is the number of months you last if nothing comes in as planned. It is one division.",
+          "d": "Your cushion is the number of months you last if nothing comes in as planned. It is one division.",
           "f": {
             "save": "Savings available",
             "spend": "Spending, per month",
             "inc": "Reliable income, per month",
-            "months": "months of runway",
+            "months": "months of cushion",
             "fine": "Your reliable income covers your spending: the savings do not move.",
             "unit": "In whatever currency you type."
           },

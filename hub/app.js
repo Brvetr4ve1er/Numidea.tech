@@ -1186,7 +1186,7 @@
      tablist does). In a lesson: [data-pick] shows one explanation at a time
      ([data-pick-b] picks [data-pick-p]); [data-calc] works a figure out of
      the visitor's own numbers (rate: what to keep plus costs, grossed up for
-     the tax share, over the days billed; runway: savings over what a month
+     the tax share, over the days billed; treso: savings over what a month
      costs beyond what it brings); [data-ls-a] are the answers, the one
      marked "ok" stamps the lesson. Stamps are kept on this device only
      (localStorage 'numidea-lessons', an array of lesson ids) and sent
