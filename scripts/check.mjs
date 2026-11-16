@@ -1336,6 +1336,12 @@ for (const spec of [
     loops.push(`${basename(f, '.webp')} ${a.loop} × ${a.ms} ms`);
   }
   if (/\binfinite\b/i.test(cssSrc)) hubErr.push(`${sheet} has an infinite animation (nothing on the hub moves forever)`);
+  // braces balance, and never close more than was opened: a block that loses its closing brace swallows every rule after it into its own @media (on 2026-11-16 a moved block did, and the phone viewer's rules applied under 360px only)
+  {
+    let depth = 0, low = 0;
+    for (const ch of cssSrc.replace(/"[^"\n]*"|'[^'\n]*'/g, '')) { if (ch === '{') depth++; else if (ch === '}' && --depth < low) low = depth; }
+    if (depth !== 0 || low < 0) hubErr.push(`${sheet}: its braces do not balance (${depth > 0 ? depth + ' left open' : low < 0 ? 'a closing brace with nothing open' : 'unbalanced'})`);
+  }
   if (/<video\b[^>]*\sloop\b/i.test(src)) hubErr.push(`${page} has a <video loop>`);
   hubErr.length ? bad(`hub art and motion (${spec.name}): ` + hubErr.join('; '))
     : ok(`hub art and motion (${spec.name}): ${nImg} images and ${nSource} sources, each with alt, its box = its widest file, w descriptors and ratios true; ${nFull} viewer files sized; ${nUrl} CSS url()s; ${published.length} files in ${DIRS.join(" and ") || "no art folder"}, all named; ${animRefs.length} animations, each a data-anim with a reduced-motion still, finite and ≤ ${MOTION_MS} ms (${loops.join(', ')}); no infinite, no <video loop>`);

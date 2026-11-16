@@ -1312,7 +1312,6 @@ main:focus{outline:none}
    so a one-line copy of the range sticks to the screen's foot while the controls are on screen. */
 .st-est{container:est / inline-size}
 .st-est__live{display:none}
-}
 /* beside the console the receipt follows the reader down the controls */
 @container est (min-width:836px){
   .st-est__out{position:sticky;top:96px}
@@ -1348,7 +1347,6 @@ main:focus{outline:none}
   .st-est__note{font-size:13.5px;line-height:1.4}
   .st-est__src a{min-height:44px}
   .st-est__src{font-size:var(--t-label)}
-  .st-est__live{flex-wrap:wrap}
 
   /* the proof */
   .st-own{margin:-8px 0 20px}
@@ -1445,6 +1443,8 @@ main:focus{outline:none}
   .st-dr__w{grid-column:2;grid-row:1;align-self:center}
   .st-dr__what{grid-column:1 / -1;grid-row:2;align-self:start}
   .st-seg button{padding:0 10px}
+  .st-est__live{flex-wrap:wrap}
+}
 
 /* ---- the viewer on a phone or a small tablet: the picture takes the screen, the controls sit under it ----
    (the buttons were drawn over the art, the sizes were 88vh, which on a phone is the page with its toolbars away) */
