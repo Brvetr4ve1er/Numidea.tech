@@ -98,6 +98,19 @@ code, as `scripts/legal-data.mjs` explains. Until he decides, nothing here
 grants a right to reuse them, and the legal page will state his choice when it
 is published.
 
+## The radio's music and the pictures made for the site — no licence chosen yet
+
+`hub/audio/` holds the four instrumental tracks of the Studio page's radio
+(`nuit.mp3`, `cafe.mp3`, `douro.mp3`, `kuro.mp3`), made for Numidea Labs in
+November 2026. `hub/img/studio/douro-kuro*.webp` and `hub/img/studio/money/`
+(the calculator's drawing, the night-desk scene and the six lesson pictures)
+were made for the site in the same month, from the founder's characters; they
+are not cut from his private masters. `hub/img/studio/reel/` holds recordings
+of this site's own pages. The owner has not chosen a licence for any of them:
+the choice recorded in `scripts/legal-data.mjs` (`ip.licence`) will cover them
+with his illustrations. Until he decides, nothing here grants a right to reuse
+them.
+
 ## Third-party skills — `.claude/skills/`
 
 Tooling for the studio's creative work, never deployed (`NOT_DEPLOYED` in

@@ -109,6 +109,20 @@ for (const c of REEL) {
   }
 }
 
+/* ---------------- the radio ----------------
+   hub/src/radio.json lists the workshop radio's tracks: id, src (an .mp3 in
+   hub/audio), dur in seconds, and a name in each language. A file in
+   hub/audio that the list does not name fails the build, as art does. */
+const RADIO = JSON.parse(readFileSync(join(SRC, 'radio.json'), 'utf8'));
+for (const tr of RADIO) {
+  if (!/^[a-z0-9-]+$/.test(tr.id || '')) fail(`hub/src/radio.json: a track's id must be lowercase letters, digits and hyphens ("${tr.id}")`);
+  if (!tr.src || !/^audio\/[a-z0-9-]+\.mp3$/.test(tr.src) || !existsSync(join(HUB, tr.src))) fail(`hub/src/radio.json ${tr.id}: src "${tr.src}" is not an .mp3 in hub/audio`);
+  if (!(tr.dur > 0) || !tr.name || !tr.name.fr) fail(`hub/src/radio.json ${tr.id}: dur and a French name are needed`);
+  for (const l of LANGS) DICT[l][`radio.tracks.${tr.id}.name`] = (tr.name && (tr.name[l] || tr.name.fr)) || '';
+}
+if (existsSync(join(HUB, 'audio'))) for (const f of readdirSync(join(HUB, 'audio'))) if (!RADIO.some((tr) => tr.src === `audio/${f}`)) fail(`hub/audio/${f} is not a track of hub/src/radio.json`);
+const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
+
 /* ---------------- cases ---------------- */
 const fragments = {};
 let casesIn = 0;
@@ -205,6 +219,7 @@ const REEL_TILES = REEL.map((c) => `      <li class="st-reel__tile${c.tall ? ' s
           <span class="st-reel__cap"><span class="st-sr" data-i18n="motion.reel.play"></span> <b data-i18n="motion.reel.items.${c.id}.name"></b><span data-i18n="motion.reel.items.${c.id}.what"></span></span>
         </button>
       </li>`).join('\n');
+const RADIO_PICKS = RADIO.map((tr, i) => `          <button type="button" class="st-radio__t" data-radio-pick="${i}" aria-pressed="${i === 0}" disabled><span class="st-radio__tn" aria-hidden="true">${i + 1}</span><span data-i18n="radio.tracks.${tr.id}.name"></span></button>`).join('\n');
 const EST_ROWS = `<tr><th scope="row">${DICT.fr['pricing.rc.base']} ${countedFr(U0, q0.lines[0].n)}</th><td dir="ltr">${grpFr(q0.lines[0].lo)}</td><td dir="ltr">${grpFr(q0.lines[0].hi)}</td></tr>`;
 
 /* ---------------- the faces, split: the page's own, and each case's as it nears ----------------
@@ -233,7 +248,7 @@ const FONT_FILES = [
 const GENERATED = new Set(FONT_FILES.map(([f]) => f.replace(/^hub\//, '')));
 
 /* ---------------- the page ---------------- */
-const RUNTIME = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|unitsN\.|wkN$|types\.|o\.|rc\.(base|studio|rush|kit|call|mid)$|beyond$|kuro|cur$|included$)|money\.(mid$|svc\.waMsg$|svc\.items\.\d+\.name$)|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
+const RUNTIME = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|unitsN\.|wkN$|types\.|o\.|rc\.(base|studio|rush|kit|call|mid)$|beyond$|kuro|cur$|included$)|money\.(mid$|svc\.waMsg$|svc\.items\.\d+\.name$)|radio\.(play|pause|onair|idle|paused)$|radio\.tracks\.|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
 const sorted = (o) => Object.fromEntries(Object.keys(o).sort().map((k) => [k, o[k]]));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const attr = (s) => esc(s).replace(/"/g, '&quot;');
@@ -262,6 +277,10 @@ const holes = {
   caseCss: caseCss.map((h) => `<link rel="stylesheet" href="${h}?v=${stamp}">`).join('\n'),
   ...Object.fromEntries(Object.entries(EST).map(([k, v]) => [`est.${k}`, esc(v)])),
   estRows: EST_ROWS,
+  radio: JSON.stringify(RADIO.map((tr) => ({ id: tr.id, src: tr.src, dur: tr.dur }))).replace(/</g, '\\u003c'),
+  radioPicks: RADIO_PICKS,
+  radioFirst: esc(DICT.fr[`radio.tracks.${RADIO[0].id}.name`]),
+  radioDur: mmss(RADIO[0].dur),
   reel: REEL_TILES,
   ...Object.fromEntries(Object.entries(MOTION).map(([k, v]) => [`motion.${k}`, esc(v)])),
   ...Object.fromEntries(Object.entries(MONEY).map(([k, v]) => [`money.${k}`, esc(v)])),

@@ -563,6 +563,10 @@ translated from it.
   `motion` group (the head, the three offers, the reel's head, the three
   market markers), and the six clips' names and lines in
   `hub/src/reel.json` (`name.ar`, `what.ar`).
+- AR review (2026-11-16, the radio), the Studio `hub/src/i18n/ar.json`, new:
+  the `radio` group («راديو الورشة», the keys' labels, «على الهواء»,
+  «مُطفأ», «متوقف مؤقتاً»), and three track names in `hub/src/radio.json`
+  («الثانية صباحاً», «قهوة رقم 1», «كورو نائم»).
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1293,4 +1297,50 @@ calculator read them from there.
 - **One format, not two:** the clips are MP4 (H.264) only. The plan said WebM
   and MP4; MP4 alone plays everywhere and halves the weight (the five new
   clips come to about 365 kB together, posters 75 kB).
+
+## 25. The workshop radio (2026-11-16)
+
+"La radio de l'atelier", a shelf on the Studio under the two doors. You asked
+for a music player; this is it, drawn as a small radio with Kūro asleep on it.
+
+- **Please listen to the four tracks before you judge this section.** They
+  were made for the studio on 16 November and I cannot hear them: I checked
+  only their length, their loudness and that none has a long silence. If one
+  is wrong for the brand, tell me which and I replace it.
+
+  | # | Name on the page | What was asked for | File |
+  |---|---|---|---|
+  | 1 | Deux heures du matin | slow desert blues, clean guitar, hand claps, night sky | `hub/audio/nuit.mp3` |
+  | 2 | Café no 1 | jazzhop, brushed drums, electric piano, nylon guitar | `hub/audio/cafe.mp3` |
+  | 3 | DOURO·8 | mellow chiptune over a slow beat | `hub/audio/douro.mp3` |
+  | 4 | Kūro dort | quiet piano lullaby with rain | `hub/audio/kuro.mp3` |
+
+  A fifth, a lo-fi piece with an oud, was refused by the music service's
+  filter and does not exist. The names are mine; rename them in
+  `hub/src/radio.json`.
+- **Each track is cut to two minutes** with a fade, evened in loudness, as MP3
+  at 80 kbit/s (1.2 MB each, 4.8 MB together). The originals run about 2 min 45
+  and are kept in the service's project folder, not in this repository.
+- **It never starts by itself.** Nothing is downloaded and nothing sounds
+  until a visitor presses play. After that the tracks follow each other and
+  come round again until the visitor pauses or turns it off.
+- **Controls:** play and pause, previous and next, the four tracks by name,
+  the volume; all work from the keyboard. Once it is on and the shelf has
+  scrolled away, a small control stays at the foot of the screen (above the
+  phone's bottom bar) with pause, next and off. A phone's lock screen shows
+  the track with its keys.
+- **What is remembered:** the track, the place in it and the volume, in the
+  visitor's browser only (`localStorage`, key `numidea-radio`). The next visit
+  shows the same track and, when play is pressed, takes up where it stopped.
+  Nothing is sent anywhere; it is not a cookie.
+- **One difference from the plan:** the radio is on the Studio page only. The
+  plan said it would carry over between the Studio's pages; the bible and the
+  brand books have no radio, so the music stops when a visitor opens one. Say
+  if you want it there too.
+- **To add or replace a track:** put an `.mp3` in `hub/audio/`, add or edit
+  its entry in `hub/src/radio.json` (`id`, `src`, `dur` in seconds, `name` in
+  the three languages), then `npm run build`. A file in `hub/audio/` that the
+  list does not name stops the build.
+- **Rights:** see NOTICE.md. Like your illustrations, no licence is chosen
+  for the music; that choice is yours.
 

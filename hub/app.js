@@ -1326,6 +1326,104 @@
     addEventListener('pagehide', function () { if (live) stop(live); });
   })();
 
+  /* ---------------- 15 · the radio ----------------
+     The workshop radio ([data-radio], its tracks in #hub-radio). Nothing is
+     fetched and nothing sounds until a press: the <audio> element is made
+     on the first one. Play and pause, previous and next, a track picked by
+     name, the volume; a track that ends hands over to the next. The track,
+     the place in it and the volume are kept on this device ('numidea-radio')
+     so the next visit takes up where this one stopped, once play is pressed.
+     While it is on and its shelf is out of sight, a small control follows at
+     the foot of the screen ([data-radio-chip]); its last key turns the radio
+     off. Lock-screen keys where the browser has them (Media Session). The
+     only writes without a press are the clock and the bar while it plays. */
+  (function () {
+    var box = $('[data-radio]'), list = null;
+    try { list = JSON.parse($('#hub-radio').textContent); } catch (e) {}
+    if (!box || !list || !list.length) return;
+    var chip = $('[data-radio-chip]');
+    var KEY = 'numidea-radio', st = { i: 0, t: 0, v: 0.6 };
+    try { var kept = JSON.parse(localStorage.getItem(KEY) || '{}'); if (kept && typeof kept === 'object') { if (kept.i >= 0 && kept.i < list.length) st.i = kept.i; if (kept.t >= 0) st.t = kept.t; if (kept.v >= 0 && kept.v <= 1) st.v = kept.v; } } catch (e) {}
+    var me = $('script[src*="app.js"]'), ver = ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0];
+    var audio = null, started = false, seen = true, saved = 0;
+    var plays = $$('[data-radio-play]'), titles = $$('[data-radio-title]'), picks = $$('[data-radio-pick]', box), vol = $('[data-radio-vol]', box);
+    var stateEl = $('[data-radio-state]', box), timeEl = $('[data-radio-time]', box), durEl = $('[data-radio-dur]', box), bar = $('[data-radio-bar]', box);
+    var mmss = function (s) { s = Math.max(0, Math.floor(s)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); };
+    var set = function (el, v) { if (el && el.textContent !== v) el.textContent = v; };
+    var on = function () { return !!audio && !audio.paused; };
+    var keep = function () { try { localStorage.setItem(KEY, JSON.stringify({ i: st.i, t: audio ? Math.floor(audio.currentTime) : st.t, v: st.v })); } catch (e) {} };
+    var paint = function () {
+      var name = t('radio.tracks.' + list[st.i].id + '.name'), playing = on();
+      titles.forEach(function (n) { set(n, name); });
+      set(durEl, mmss(list[st.i].dur));
+      picks.forEach(function (b, i) { b.setAttribute('aria-pressed', String(i === st.i)); });
+      plays.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(playing)); b.setAttribute('aria-label', t(playing ? 'radio.pause' : 'radio.play'));
+        $('[data-radio-ico-play]', b).toggleAttribute('hidden', playing); $('[data-radio-ico-pause]', b).toggleAttribute('hidden', !playing);
+      });
+      var key = playing ? 'radio.onair' : started ? 'radio.paused' : 'radio.idle';
+      stateEl.setAttribute('data-i18n', key); set(stateEl, t(key));
+      box.classList.toggle('is-on', playing);
+      if (chip) chip.hidden = !(started && !seen);
+    };
+    var tick = function () {
+      var c = audio.currentTime || 0, d = audio.duration || list[st.i].dur;
+      set(timeEl, mmss(c)); bar.style.setProperty('--p', Math.min(100, c / d * 100).toFixed(1) + '%');
+      if (c - saved > 5 || c < saved) { saved = c; keep(); }
+    };
+    var session = function () {
+      if (!('mediaSession' in navigator) || !window.MediaMetadata) return;
+      try {
+        navigator.mediaSession.metadata = new MediaMetadata({ title: t('radio.tracks.' + list[st.i].id + '.name'), artist: 'Numidea Labs', album: t('radio.title') });
+        navigator.mediaSession.setActionHandler('play', function () { audio.play(); });
+        navigator.mediaSession.setActionHandler('pause', function () { audio.pause(); });
+        navigator.mediaSession.setActionHandler('nexttrack', function () { go(1, true); });
+        navigator.mediaSession.setActionHandler('previoustrack', function () { go(-1, true); });
+      } catch (e) {}
+    };
+    var load = function (i, at) {
+      st.i = (i + list.length) % list.length; saved = at || 0;
+      audio.src = list[st.i].src + ver;
+      if (at > 0) audio.addEventListener('loadedmetadata', function once() { audio.removeEventListener('loadedmetadata', once); if (at < (audio.duration || 1e9) - 3) audio.currentTime = at; });
+      set(timeEl, mmss(at || 0)); bar.style.setProperty('--p', '0%');
+      session(); paint();
+    };
+    var ensure = function () {
+      if (audio) return;
+      audio = new Audio(); audio.preload = 'none'; audio.volume = st.v;
+      audio.addEventListener('timeupdate', tick);
+      audio.addEventListener('play', paint); audio.addEventListener('pause', function () { keep(); paint(); });
+      audio.addEventListener('ended', function () { load(st.i + 1, 0); audio.play().catch(function () {}); });
+      audio.addEventListener('error', function () { paint(); });
+    };
+    var play = function () { var p = audio.play(); if (p && p.catch) p.catch(function () { paint(); }); };
+    var toggle = function () {
+      ensure();
+      if (!started) { started = true; load(st.i, st.t); play(); return; }
+      if (audio.paused) play(); else audio.pause();
+    };
+    var go = function (d, keepPlaying) {
+      ensure();
+      var was = started && !audio.paused;
+      started = true; load(st.i + d, 0);
+      if (was || keepPlaying) play(); else keep();
+    };
+    plays.forEach(function (b) { b.disabled = false; b.addEventListener('click', toggle); });
+    $$('[data-radio-next]').forEach(function (b) { b.disabled = false; b.addEventListener('click', function () { go(1, true); }); });
+    $$('[data-radio-prev]').forEach(function (b) { b.disabled = false; b.addEventListener('click', function () { go(-1, true); }); });
+    picks.forEach(function (b, i) { b.disabled = false; b.addEventListener('click', function () { ensure(); started = true; load(i, 0); play(); }); });
+    vol.disabled = false; vol.value = String(Math.round(st.v * 100));
+    vol.addEventListener('input', function () { st.v = Math.min(1, Math.max(0, Number(vol.value) / 100)); if (audio) audio.volume = st.v; keep(); });
+    $$('[data-radio-off]').forEach(function (b) {
+      b.addEventListener('click', function () { if (audio) { audio.pause(); keep(); } started = false; paint(); });
+    });
+    if (chip && IO) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; if (started) paint(); }).observe(box);
+    addEventListener('pagehide', function () { if (audio && started) keep(); });
+    // the kept track's name and length, without a write when they are the baked ones
+    paint();
+    onLang.push(function () { paint(); if (started) session(); });
+  })();
+
   /* ---------------- 12 · each case's faces, as it nears ----------------
      hub/fonts/lazy-<slug>.css holds a case's own faces (the WorkspaceHQ
      ticket's arcade face is lazy-whq.css): a link to it is added once the

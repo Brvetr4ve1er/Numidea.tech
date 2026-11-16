@@ -1003,5 +1003,20 @@
       "dz": "Algeria: the Onyxlab barometer has no “motion design” line. The nearest, a short video for social networks, runs from 6,000 to 20,000 DZD a post.",
       "src": "Sources: the price guide →"
     }
+  },
+  "radio": {
+    "title": "The workshop radio",
+    "note": "Four instrumentals made for the workshop. Nothing plays until you press.",
+    "play": "Turn the radio on",
+    "pause": "Pause the radio",
+    "next": "Next track",
+    "prev": "Previous track",
+    "vol": "VOLUME",
+    "pick": "Choose the track",
+    "off": "Turn the radio off",
+    "onair": "ON AIR",
+    "idle": "OFF",
+    "paused": "PAUSED",
+    "chip": "The radio"
   }
 }

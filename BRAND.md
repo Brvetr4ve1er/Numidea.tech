@@ -1884,6 +1884,10 @@ Source: the creative audit of 2026-11-15 and the owner's approval of its moves.
 
 **The market in the calculator.** Three bars (Algeria, France, United States) from the price guide's sourced table (`MARKET`, `assets/app.js` 14), each in its own currency on one logarithmic scale, with the estimate laid across in red. A type without a sourced row shows none.
 
+## Sound (2026-11-16)
+
+The Studio has one source of sound, the workshop radio, and it is silent until a visitor presses play: nothing is fetched before, nothing starts by itself, on any page, ever. Once on, it is always one press from silence (the shelf, or the small control at the foot of the screen), and its volume is the visitor's. Interface sounds, if any are added later, belong to the same switch: with the radio off the page makes no sound at all.
+
 ## Lessons (2026-11-16)
 
 A lesson is one idea, one gesture and one question, in that order: two or three sentences, then something to press or type (one explanation at a time, or a figure worked out of the visitor's own numbers), then a question with three answers. A right answer stamps the lesson with the seal; a wrong one says so and lets the reader try again. Stamps stay on the visitor's device and are sent nowhere.

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "nuit",
+    "src": "audio/nuit.mp3",
+    "dur": 120,
+    "name": {
+      "fr": "Deux heures du matin",
+      "en": "Two in the morning",
+      "ar": "الثانية صباحاً"
+    }
+  },
+  {
+    "id": "cafe",
+    "src": "audio/cafe.mp3",
+    "dur": 120,
+    "name": {
+      "fr": "Café no 1",
+      "en": "Coffee no. 1",
+      "ar": "قهوة رقم 1"
+    }
+  },
+  {
+    "id": "douro",
+    "src": "audio/douro.mp3",
+    "dur": 120,
+    "name": {
+      "fr": "DOURO·8",
+      "en": "DOURO·8",
+      "ar": "DOURO·8"
+    }
+  },
+  {
+    "id": "kuro",
+    "src": "audio/kuro.mp3",
+    "dur": 120,
+    "name": {
+      "fr": "Kūro dort",
+      "en": "Kūro sleeps",
+      "ar": "كورو نائم"
+    }
+  }
+]

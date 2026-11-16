@@ -1003,5 +1003,20 @@
       "dz": "Algérie : le baromètre Onyxlab n’a pas de ligne « motion design ». Le plus proche, une vidéo courte pour les réseaux, va de 6 000 à 20 000 DA le post.",
       "src": "Sources : le guide des prix →"
     }
+  },
+  "radio": {
+    "title": "La radio de l’atelier",
+    "note": "Quatre instrumentaux faits pour l’atelier. Rien ne joue tant que vous n’appuyez pas.",
+    "play": "Allumer la radio",
+    "pause": "Mettre la radio en pause",
+    "next": "Morceau suivant",
+    "prev": "Morceau précédent",
+    "vol": "VOLUME",
+    "pick": "Choisir le morceau",
+    "off": "Éteindre la radio",
+    "onair": "À L’ANTENNE",
+    "idle": "ÉTEINTE",
+    "paused": "EN PAUSE",
+    "chip": "La radio"
   }
 }

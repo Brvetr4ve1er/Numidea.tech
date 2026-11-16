@@ -227,6 +227,40 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
   </div>
 </section>
 
+<!-- ============================== RADIO ==============================
+     The workshop radio, a shelf under the two doors. Its tracks are the
+     list in hub/src/radio.json; nothing is fetched and nothing plays until
+     the visitor presses (hub/app.js 15). Once it is on and this shelf has
+     scrolled away, a small control follows at the foot of the screen
+     ([data-radio-chip], below). Without scripts the keys stay disabled. -->
+<section class="st-radio" id="radio" aria-labelledby="radio-h" data-radio>
+  <div class="st-wrap st-radio__in">
+    <div class="st-radio__set">
+      <img class="st-radio__kuro" src="img/studio/loops/kuro-sleep-still.webp" width="258" height="287" alt="" loading="lazy" decoding="async">
+      <span class="st-radio__grille" aria-hidden="true"></span>
+      <div class="st-radio__dial">
+        <p class="st-radio__state"><span class="st-radio__led" aria-hidden="true"></span><span data-radio-state data-i18n="radio.idle"></span></p>
+        <p class="st-radio__now" data-radio-title>{{radioFirst}}</p>
+        <p class="st-radio__time" dir="ltr"><span data-radio-time>0:00</span> / <span data-radio-dur>{{radioDur}}</span></p>
+        <span class="st-radio__bar" aria-hidden="true"><i data-radio-bar></i></span>
+      </div>
+    </div>
+    <div class="st-radio__ctl">
+      <h2 class="st-radio__h" id="radio-h" data-i18n="radio.title"></h2>
+      <p class="st-radio__note" data-i18n="radio.note"></p>
+      <div class="st-radio__keys">
+        <button type="button" class="st-radio__k" data-radio-prev data-i18n-aria="radio.prev" disabled><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4L9 12l11 8zM4 4h3v16H4z"/></svg></button>
+        <button type="button" class="st-radio__k st-radio__k--play" data-radio-play aria-pressed="false" data-i18n-aria="radio.play" disabled><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path data-radio-ico-play d="M7 4l13 8-13 8z"/><path data-radio-ico-pause d="M6 4h4v16H6zM14 4h4v16h-4z" hidden/></svg></button>
+        <button type="button" class="st-radio__k" data-radio-next data-i18n-aria="radio.next" disabled><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11 8-11 8zM17 4h3v16h-3z"/></svg></button>
+        <p class="st-radio__vol"><label class="st-label" for="radio-vol" data-i18n="radio.vol"></label><input type="range" id="radio-vol" min="0" max="100" step="5" value="60" data-radio-vol disabled></p>
+      </div>
+      <div class="st-radio__list" role="group" data-i18n-aria="radio.pick">
+{{radioPicks}}
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================== 02 WEDGE ==============================
      Five people between the client and the code, then two. With scripts
      the middle three are cut once the board is on screen (hub/app.js 5);
@@ -1526,6 +1560,14 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
 </dialog>
 
 <!-- the dock: the Aperçu and WhatsApp along the screen's foot on a phone, once the hero is behind (hidden over the Aperçu, the estimator and the contact, which carry their own) -->
+<!-- the radio's small control: shown only once the radio is on and its shelf is out of sight (hub/app.js 15) -->
+<div class="st-chip" data-radio-chip role="group" data-i18n-aria="radio.chip" hidden>
+  <button type="button" class="st-chip__b" data-radio-play aria-pressed="false" data-i18n-aria="radio.play"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path data-radio-ico-play d="M7 4l13 8-13 8z"/><path data-radio-ico-pause d="M6 4h4v16H6zM14 4h4v16h-4z" hidden/></svg></button>
+  <span class="st-chip__t" data-radio-title>{{radioFirst}}</span>
+  <button type="button" class="st-chip__b" data-radio-next data-i18n-aria="radio.next"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11 8-11 8zM17 4h3v16h-3z"/></svg></button>
+  <button type="button" class="st-chip__b" data-radio-off data-i18n-aria="radio.off"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="3"/></svg></button>
+</div>
+<script type="application/json" id="hub-radio">{{radio}}</script>
 <div class="st-dock" id="dock" data-dock>
   <a class="st-btn st-btn--primary" href="#contact" data-i18n="nav.cta"></a>
   <a class="st-dock__wa" href="https://wa.me/213672412578" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.2 18.6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z" fill="currentColor"/></svg><span class="st-sr" data-i18n="contact.wa"></span><span class="st-sr" data-i18n="case.newTab"></span></a>
