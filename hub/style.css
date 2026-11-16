@@ -506,7 +506,7 @@ html.js .st-est__nojs{display:none}
 .st-radio__h{margin:0;font-family:var(--f-disp);font-weight:900;font-size:clamp(24px,2.6vw,34px);line-height:1;letter-spacing:-.01em;text-transform:uppercase}
 .st-radio__note{font-size:var(--t-small);line-height:1.45;color:var(--ink-2);max-width:56ch}
 .st-radio__keys{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;padding:0 3px 3px 0}
-.st-radio__k,.st-radio__t,.st-chip__b{transition:transform .08s,box-shadow .08s,background-color .12s,color .12s}
+.st-radio__k,.st-radio__t,.st-rchip__b{transition:transform .08s,box-shadow .08s,background-color .12s,color .12s}
 .st-radio__k{width:48px;height:48px;padding:0;display:grid;place-items:center;border:2px solid var(--ink);background:var(--cream);color:var(--ink);box-shadow:3px 3px 0 var(--ink);cursor:pointer}
 .st-radio__k--play{width:58px;height:58px;border-radius:50%;background:var(--red);color:var(--cream)}
 .st-radio__k[aria-pressed="true"]{box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
@@ -524,13 +524,13 @@ html.js .st-est__nojs{display:none}
 @media (hover:hover){
   .st-radio__k:hover:not(:disabled):not([aria-pressed="true"]),.st-radio__t:hover:not(:disabled):not([aria-pressed="true"]){transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
 }
-.st-chip{position:fixed;inset-inline-start:max(14px,env(safe-area-inset-left));bottom:calc(14px + env(safe-area-inset-bottom));z-index:44;display:flex;align-items:center;gap:2px;max-width:min(340px,calc(100vw - 28px));padding:4px;background:var(--ink);color:var(--cream);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--red)}
-.st-chip[hidden]{display:none}
-.st-chip :focus-visible{outline-color:var(--cream)}
-.st-chip__b{flex:none;width:44px;height:44px;padding:0;display:grid;place-items:center;border:0;background:transparent;color:var(--cream);cursor:pointer}
-.st-chip__b:first-child{background:var(--red)}
-.st-chip__t{min-width:0;padding:0 10px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-@media (hover:hover){.st-chip__b:hover{background:var(--red)}}
+.st-rchip{position:fixed;inset-inline-start:max(14px,env(safe-area-inset-left));bottom:calc(14px + env(safe-area-inset-bottom));z-index:44;display:flex;align-items:center;gap:2px;max-width:min(340px,calc(100vw - 28px));padding:4px;background:var(--ink);color:var(--cream);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--red)}
+.st-rchip[hidden]{display:none}
+.st-rchip :focus-visible{outline-color:var(--cream)}
+.st-rchip__b{flex:none;width:44px;height:44px;padding:0;display:grid;place-items:center;border:0;background:transparent;color:var(--cream);cursor:pointer}
+.st-rchip__b:first-child{background:var(--red)}
+.st-rchip__t{min-width:0;padding:0 10px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (hover:hover){.st-rchip__b:hover{background:var(--red)}}
 :lang(ar) .st-radio__h{letter-spacing:0;line-height:1.2}
 /* ---------------- motion: "Le mouvement" (hub/app.js 14) ----------------
    Three price cards (the money cards' own pattern) and the reel: the head
@@ -1772,7 +1772,7 @@ main:focus{outline:none}
 
 /* ---- the radio, by width: on a phone the chip sits above the dock ---- */
 @media (max-width:679px){
-  .st-chip{bottom:calc(82px + env(safe-area-inset-bottom))}
+  .st-rchip{bottom:calc(82px + env(safe-area-inset-bottom))}
 }
 @media (max-width:599px){
   .st-radio{padding:18px 0 20px}

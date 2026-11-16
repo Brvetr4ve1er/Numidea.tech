@@ -1561,11 +1561,11 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
 
 <!-- the dock: the Aperçu and WhatsApp along the screen's foot on a phone, once the hero is behind (hidden over the Aperçu, the estimator and the contact, which carry their own) -->
 <!-- the radio's small control: shown only once the radio is on and its shelf is out of sight (hub/app.js 15) -->
-<div class="st-chip" data-radio-chip role="group" data-i18n-aria="radio.chip" hidden>
-  <button type="button" class="st-chip__b" data-radio-play aria-pressed="false" data-i18n-aria="radio.play"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path data-radio-ico-play d="M7 4l13 8-13 8z"/><path data-radio-ico-pause d="M6 4h4v16H6zM14 4h4v16h-4z" hidden/></svg></button>
-  <span class="st-chip__t" data-radio-title>{{radioFirst}}</span>
-  <button type="button" class="st-chip__b" data-radio-next data-i18n-aria="radio.next"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11 8-11 8zM17 4h3v16h-3z"/></svg></button>
-  <button type="button" class="st-chip__b" data-radio-off data-i18n-aria="radio.off"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="3"/></svg></button>
+<div class="st-rchip" data-radio-chip role="group" data-i18n-aria="radio.chip" hidden>
+  <button type="button" class="st-rchip__b" data-radio-play aria-pressed="false" data-i18n-aria="radio.play"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path data-radio-ico-play d="M7 4l13 8-13 8z"/><path data-radio-ico-pause d="M6 4h4v16H6zM14 4h4v16h-4z" hidden/></svg></button>
+  <span class="st-rchip__t" data-radio-title>{{radioFirst}}</span>
+  <button type="button" class="st-rchip__b" data-radio-next data-i18n-aria="radio.next"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11 8-11 8zM17 4h3v16h-3z"/></svg></button>
+  <button type="button" class="st-rchip__b" data-radio-off data-i18n-aria="radio.off"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="3"/></svg></button>
 </div>
 <script type="application/json" id="hub-radio">{{radio}}</script>
 <div class="st-dock" id="dock" data-dock>
