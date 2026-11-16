@@ -1280,6 +1280,8 @@ html.st-stinging{overflow:hidden}
   .st-door3{flex-wrap:wrap}
   .st-door3__go{flex:1 1 100%}
 }
+/* a fold's cover screen: the picture would leave the title less room than its one word needs */
+@media (max-width:359px){.st-door3__img{display:none}}
 
 /* nav and sheet: the world's link in red, a group label in the sheet */
 .st-nav__links .st-nav__world{display:none;color:var(--red-text);border:2px solid var(--red)}
