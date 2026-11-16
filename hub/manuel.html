@@ -83,6 +83,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
     <a class="st-wm" href="../" data-i18n-aria="nav.home" aria-label="Numidea Labs, le site" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
     <nav class="st-nav__links" data-i18n-aria="manual.nav.aria" aria-label="Sections du manuel">
       <a href="#lessons" data-i18n="manual.nav.lessons">Leçons</a>
+      <a href="#jeu" data-i18n="manual.nav.course">Le jeu juste</a>
       <a href="#services" data-i18n="nav.services">Services</a>
       <a href="#radio" data-i18n="manual.nav.radio">Radio</a>
       <a class="st-nav__world" href="./" data-i18n="manual.nav.studio">Le Studio</a>
@@ -106,7 +107,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
         <p class="st-kick"><span class="st-seal" aria-hidden="true" lang="ja">金</span><span data-i18n="manual.kicker">/ LE MANUEL</span></p>
         <h1 class="st-h2" id="manual-h" data-i18n="money.title">Gagner sa vie de loin.</h1>
       </div>
-      <p class="st-lead" data-i18n="money.lead">Se faire payer depuis l’étranger, choisir ses comptes, fixer son tarif, comprendre la crypto. Six leçons courtes, et quatre services pour aller plus loin.</p>
+      <p class="st-lead" data-i18n="money.lead">Se faire payer depuis l’étranger, choisir ses comptes, fixer son tarif, comprendre la crypto : six leçons courtes. Puis un maître-cours sur la gamification, et quatre services pour aller plus loin.</p>
     </div>
     <figure class="st-mny__scene" data-reveal>
       <img src="img/studio/money/scene.webp" width="1200" height="670" srcset="img/studio/money/scene-640.webp 640w, img/studio/money/scene.webp 1200w" sizes="(max-width:1320px) 94vw, 1224px" data-i18n-alt="money.sceneAlt" alt="Yasser compte quelques pièces à son bureau de nuit pendant que la petite calculatrice imprime un reçu ; Kūro pose une patte sur une pièce" fetchpriority="high" decoding="async">
@@ -424,6 +425,386 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
   </div>
 </section>
 
+<!-- COURSE:jeu (written by the course's generator from its content file: edit the text in hub/src/i18n, the structure here) -->
+<!-- ============================== FAIR PLAY ==============================
+     "Le jeu juste", a master course on gamification in eight levels, in the
+     lessons' own shell (hub/app.js 13; this set is data-ls="jeu" and keeps
+     its own stamps): one idea, one explanation at a time, one question. A
+     right answer stamps the level and puts its sticker in the book; eight
+     of eight offers the sticker sheet. Every figure names its source in the
+     list under the plate; where a study is small or a figure is a
+     company's own, the level says so. The key picture, the eight pixel
+     icons and the eight stickers are the retro pack (hub/img/studio/jeu). -->
+<section class="st-sec st-mny st-jeu" id="jeu" aria-labelledby="jeu-h">
+  <div class="st-wrap">
+    <div class="st-head" data-reveal>
+      <div class="st-head__main">
+        <p class="st-kick"><span class="st-seal" aria-hidden="true" lang="ja">遊</span><span data-i18n="jeu.kicker">/ MAÎTRE-COURS · LA GAMIFICATION</span></p>
+        <h2 class="st-h2" id="jeu-h" data-i18n="jeu.title">Le jeu juste.</h2>
+      </div>
+      <p class="st-lead" data-i18n="jeu.lead">La gamification sans poudre aux yeux : ce que c’est, pourquoi ça marche, ce que dit la recherche, ce que ça rapporte, quand ça abîme, et comment ce site s’en sert. Huit niveaux, huit stickers, toutes les sources.</p>
+    </div>
+    <figure class="st-mny__scene st-jeu__key" data-reveal>
+      <img src="img/studio/jeu/key.webp" width="1600" height="905" srcset="img/studio/jeu/key-800.webp 800w, img/studio/jeu/key.webp 1600w" sizes="(max-width:1320px) 94vw, 1224px" data-i18n-alt="jeu.keyAlt" alt="Yasser et Kūro en personnages de jeu vidéo des années 1990 sur une île flottante, la nuit ; Kūro bondit vers une traînée de sceaux rouges qui mène à la petite console DOURO·8" loading="lazy" decoding="async">
+    </figure>
+    <div class="st-ls st-ls--jeu" data-ls="jeu" data-ls-bar>
+      <div class="st-ls__head">
+        <p class="st-jeu__hud" data-i18n="jeu.hud">/ HUIT NIVEAUX · UN STICKER PAR BONNE RÉPONSE</p>
+        <p class="st-ls__pass" data-ls-pass><b data-ls-count>0</b><span aria-hidden="true"> / 8</span><span class="st-sr"> / 8</span> <span data-i18n="jeu.pass">stickers</span></p>
+      </div>
+      <p class="st-jeu__xp" aria-hidden="true"><i></i></p>
+      <ul class="st-jeu__album" data-i18n-aria="jeu.album" aria-label="Votre carnet de stickers">
+        <li data-ls-earn="g1"><img src="img/studio/jeu/st-1.webp" width="224" height="199" data-i18n-alt="jeu.st.0" alt="Kūro à la manette" loading="lazy" decoding="async"></li>
+        <li data-ls-earn="g2"><img src="img/studio/jeu/st-2.webp" width="214" height="224" data-i18n-alt="jeu.st.1" alt="Yasser, pouce levé" loading="lazy" decoding="async"></li>
+        <li data-ls-earn="g3"><img src="img/studio/jeu/st-3.webp" width="186" height="224" data-i18n-alt="jeu.st.2" alt="Kūro sur la DOURO·8" loading="lazy" decoding="async"></li>
+        <li data-ls-earn="g4"><img src="img/studio/jeu/st-4.webp" width="224" height="212" data-i18n-alt="jeu.st.3" alt="Kūro et la coupe" loading="lazy" decoding="async"></li>
+        <li data-ls-earn="g5"><img src="img/studio/jeu/st-5.webp" width="224" height="199" data-i18n-alt="jeu.st.4" alt="Tope là" loading="lazy" decoding="async"></li>
+        <li data-ls-earn="g6"><img src="img/studio/jeu/st-6.webp" width="224" height="191" data-i18n-alt="jeu.st.5" alt="Kūro dort sur la cartouche" loading="lazy" decoding="async"></li>
+        <li data-ls-earn="g7"><img src="img/studio/jeu/st-7.webp" width="207" height="224" data-i18n-alt="jeu.st.6" alt="Kūro attrape l’étoile" loading="lazy" decoding="async"></li>
+        <li data-ls-earn="g8"><img src="img/studio/jeu/st-8.webp" width="224" height="218" data-i18n-alt="jeu.st.7" alt="Le sceau à la patte" loading="lazy" decoding="async"></li>
+      </ul>
+      <div class="st-ls__tabs" role="tablist" data-i18n-aria="jeu.tabs" aria-label="Les huit niveaux">
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-g1" aria-controls="ls-p-g1" aria-selected="true" data-ls-tab="g1">
+            <img src="img/studio/jeu/lv-1.webp" width="260" height="260" alt="" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true"><span data-i18n="jeu.lv">NIV.</span> 1</span>
+            <span class="st-ls__t" data-i18n="jeu.items.0.t">C’est quoi, au juste ?</span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-g2" aria-controls="ls-p-g2" aria-selected="false" data-ls-tab="g2">
+            <img src="img/studio/jeu/lv-2.webp" width="260" height="260" alt="" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true"><span data-i18n="jeu.lv">NIV.</span> 2</span>
+            <span class="st-ls__t" data-i18n="jeu.items.1.t">Pourquoi ça marche</span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-g3" aria-controls="ls-p-g3" aria-selected="false" data-ls-tab="g3">
+            <img src="img/studio/jeu/lv-3.webp" width="260" height="260" alt="" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true"><span data-i18n="jeu.lv">NIV.</span> 3</span>
+            <span class="st-ls__t" data-i18n="jeu.items.2.t">Ce que dit la recherche</span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-g4" aria-controls="ls-p-g4" aria-selected="false" data-ls-tab="g4">
+            <img src="img/studio/jeu/lv-4.webp" width="260" height="260" alt="" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true"><span data-i18n="jeu.lv">NIV.</span> 4</span>
+            <span class="st-ls__t" data-i18n="jeu.items.3.t">Les mécaniques, une à une</span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-g5" aria-controls="ls-p-g5" aria-selected="false" data-ls-tab="g5">
+            <img src="img/studio/jeu/lv-5.webp" width="260" height="260" alt="" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true"><span data-i18n="jeu.lv">NIV.</span> 5</span>
+            <span class="st-ls__t" data-i18n="jeu.items.4.t">Ce que ça fait à une marque</span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-g6" aria-controls="ls-p-g6" aria-selected="false" data-ls-tab="g6">
+            <img src="img/studio/jeu/lv-6.webp" width="260" height="260" alt="" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true"><span data-i18n="jeu.lv">NIV.</span> 6</span>
+            <span class="st-ls__t" data-i18n="jeu.items.5.t">Ce que ça rapporte : des cas réels</span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-g7" aria-controls="ls-p-g7" aria-selected="false" data-ls-tab="g7">
+            <img src="img/studio/jeu/lv-7.webp" width="260" height="260" alt="" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true"><span data-i18n="jeu.lv">NIV.</span> 7</span>
+            <span class="st-ls__t" data-i18n="jeu.items.6.t">Quand ça abîme</span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-g8" aria-controls="ls-p-g8" aria-selected="false" data-ls-tab="g8">
+            <img src="img/studio/jeu/lv-8.webp" width="260" height="260" alt="" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true"><span data-i18n="jeu.lv">NIV.</span> 8</span>
+            <span class="st-ls__t" data-i18n="jeu.items.7.t">Le jeu juste : nos règles, ici</span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden>leçon tamponnée</span>
+          </button>
+      </div>
+      <div class="st-ls__panels">
+          <div class="st-ls__panel" id="ls-p-g1" role="tabpanel" aria-labelledby="ls-t-g1" tabindex="0" data-ls-panel="g1">
+            <h3 class="st-ls__h" data-i18n="jeu.items.0.t">C’est quoi, au juste ?</h3>
+            <p class="st-ls__d" data-i18n="jeu.items.0.d">La gamification, c’est emprunter au jeu quelques-uns de ses ressorts pour une activité qui n’est pas un jeu : un cours, une appli, un site. L’activité reste la vraie ; le jeu lui prête sa façon de donner envie.</p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="jeu.items.0.pick.0.k">La définition</button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="jeu.items.0.pick.1.k">Ce que ce n’est pas</button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="jeu.items.0.pick.2.k">Le piège des points</button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="jeu.items.0.pick.0.k">La définition</b><span data-i18n="jeu.items.0.pick.0.v">« L’usage d’éléments de design de jeu dans des contextes non ludiques » : la définition proposée par Deterding et ses collègues en 2011, celle que la recherche reprend depuis.</span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="jeu.items.0.pick.1.k">Ce que ce n’est pas</b><span data-i18n="jeu.items.0.pick.1.v">Ce n’est pas fabriquer un jeu entier, et ce n’est pas un habillage. Si on retire le jeu et qu’il ne reste rien d’utile, ce n’était pas de la gamification.</span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="jeu.items.0.pick.2.k">Le piège des points</b><span data-i18n="jeu.items.0.pick.2.v">En 2010, la conceptrice de jeux Margaret Robertson écrit que le mot juste pour ce qu’elle voit alors est « pointsification » : des points et des badges posés sur n’importe quoi, sans le jeu.</span></p>
+              </div>
+            </div>
+            <p class="st-jeu__refs"><span class="st-label" data-i18n="jeu.src.title">Les sources du cours</span> <a href="#src-s1" dir="ltr">[1]</a> <a href="#src-s2" dir="ltr">[2]</a></p>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q">LA QUESTION</span><span data-i18n="jeu.items.0.q">Lequel des trois est de la gamification ?</span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.0.a.0">Un jeu vidéo éducatif complet</button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="jeu.items.0.a.1">Une barre de progression dans un cours en ligne</button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.0.a.2">Une mascotte dans une publicité</button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="jeu.items.0.ok" hidden>Oui. Le cours reste un cours ; la barre lui prête un ressort du jeu : voir qu’on avance.</p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden>Pas tout à fait. Relisez, puis réessayez.</p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-g2" role="tabpanel" aria-labelledby="ls-t-g2" tabindex="0" data-ls-panel="g2">
+            <h3 class="st-ls__h" data-i18n="jeu.items.1.t">Pourquoi ça marche</h3>
+            <p class="st-ls__d" data-i18n="jeu.items.1.d">Un bon jeu ne retient pas par ses points. Il nourrit trois besoins que la psychologie décrit depuis longtemps : se sentir capable, se sentir libre, se sentir relié. Quand une activité les nourrit, on y revient sans y être poussé.</p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="jeu.items.1.pick.0.k">Capable</button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="jeu.items.1.pick.1.k">Libre</button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="jeu.items.1.pick.2.k">Relié</button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="jeu.items.1.pick.3.k">D’où ça vient</button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="jeu.items.1.pick.0.k">Capable</b><span data-i18n="jeu.items.1.pick.0.v">Un retour immédiat, des paliers à sa portée : on voit qu’on progresse. C’est le besoin de compétence.</span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="jeu.items.1.pick.1.k">Libre</b><span data-i18n="jeu.items.1.pick.1.v">On choisit son chemin et son rythme. Ce qui devient obligatoire cesse d’être un jeu. C’est le besoin d’autonomie.</span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="jeu.items.1.pick.2.k">Relié</b><span data-i18n="jeu.items.1.pick.2.v">Jouer avec d’autres, ou appartenir à un monde commun. C’est le besoin de lien.</span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="jeu.items.1.pick.3.k">D’où ça vient</b><span data-i18n="jeu.items.1.pick.3.v">De la théorie de l’autodétermination de Ryan et Deci (2000) : trois besoins psychologiques, la compétence, l’autonomie et le lien. Satisfaits, ils renforcent la motivation ; contrariés, ils l’affaiblissent.</span></p>
+              </div>
+            </div>
+            <p class="st-jeu__refs"><span class="st-label" data-i18n="jeu.src.title">Les sources du cours</span> <a href="#src-s3" dir="ltr">[3]</a></p>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q">LA QUESTION</span><span data-i18n="jeu.items.1.q">Une barre de progression nourrit d’abord quel besoin ?</span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="jeu.items.1.a.0">Se sentir capable</button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.1.a.1">Se sentir libre</button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.1.a.2">Se sentir relié</button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="jeu.items.1.ok" hidden>Oui : elle montre le chemin déjà fait. C’est de la compétence rendue visible.</p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden>Pas tout à fait. Relisez, puis réessayez.</p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-g3" role="tabpanel" aria-labelledby="ls-t-g3" tabindex="0" data-ls-panel="g3">
+            <h3 class="st-ls__h" data-i18n="jeu.items.2.t">Ce que dit la recherche</h3>
+            <p class="st-ls__d" data-i18n="jeu.items.2.d">Est-ce que ça aide vraiment à apprendre ? En 2020, Sailer et Homner ont réuni 38 publications, soit 40 expériences. Leur réponse : oui, des effets petits mais réels, et pas tous aussi solides.</p>
+            <ul class="st-jeu__bars" aria-hidden="true">
+              <li style="--v:49"><span data-i18n="jeu.items.2.pick.0.k">Les savoirs</span><i></i><b dir="ltr">g&nbsp;=&nbsp;.49</b></li>
+              <li style="--v:36"><span data-i18n="jeu.items.2.pick.1.k">La motivation</span><i></i><b dir="ltr">g&nbsp;=&nbsp;.36</b></li>
+              <li style="--v:25"><span data-i18n="jeu.items.2.pick.2.k">Les actes</span><i></i><b dir="ltr">g&nbsp;=&nbsp;.25</b></li>
+            </ul>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="jeu.items.2.pick.0.k">Les savoirs</button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="jeu.items.2.pick.1.k">La motivation</button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="jeu.items.2.pick.2.k">Les actes</button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="jeu.items.2.pick.3.k">La nuance</button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="jeu.items.2.pick.0.k">Les savoirs</b><span data-i18n="jeu.items.2.pick.0.v">Sur ce qu’on apprend : g = 0,49. C’est le résultat le plus stable de l’étude, même en ne gardant que les expériences les plus rigoureuses.</span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="jeu.items.2.pick.1.k">La motivation</b><span data-i18n="jeu.items.2.pick.1.v">Sur la motivation : g = 0,36. Les auteurs le disent moins stable que le premier.</span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="jeu.items.2.pick.2.k">Les actes</b><span data-i18n="jeu.items.2.pick.2.v">Sur ce qu’on fait vraiment : g = 0,25, le plus petit des trois, et lui aussi moins stable.</span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="jeu.items.2.pick.3.k">La nuance</b><span data-i18n="jeu.items.2.pick.3.v">Deux revues plus larges le disent autrement. Hamari et ses collègues (2014, 24 études) : des effets positifs, qui dépendent beaucoup du contexte et des personnes. Koivisto et Hamari (2019, 819 études) : des résultats plutôt positifs, avec une part remarquable de résultats mitigés.</span></p>
+              </div>
+            </div>
+            <p class="st-jeu__refs"><span class="st-label" data-i18n="jeu.src.title">Les sources du cours</span> <a href="#src-s4" dir="ltr">[4]</a> <a href="#src-s5" dir="ltr">[5]</a> <a href="#src-s6" dir="ltr">[6]</a></p>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q">LA QUESTION</span><span data-i18n="jeu.items.2.q">Que retenir de ces études ?</span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.2.a.0">La gamification marche à tous les coups</button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="jeu.items.2.a.1">Elle aide un peu, quand elle est bien conçue pour son public</button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.2.a.2">Elle ne change rien</button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="jeu.items.2.ok" hidden>Oui : des effets réels et modestes, qui dépendent du contexte. Personne de sérieux ne promet davantage.</p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden>Pas tout à fait. Relisez, puis réessayez.</p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-g4" role="tabpanel" aria-labelledby="ls-t-g4" tabindex="0" data-ls-panel="g4">
+            <h3 class="st-ls__h" data-i18n="jeu.items.3.t">Les mécaniques, une à une</h3>
+            <p class="st-ls__d" data-i18n="jeu.items.3.d">Une mécanique de jeu répond à un ressort précis. On en choisit une ou deux pour un but, pas dix pour décorer.</p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="jeu.items.3.pick.0.k">L’avance offerte</button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="jeu.items.3.pick.1.k">L’approche du but</button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="jeu.items.3.pick.2.k">Les badges</button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="jeu.items.3.pick.3.k">Les séries</button>
+              <button type="button" class="st-pick__b" data-pick-b="4" aria-pressed="false" data-i18n="jeu.items.3.pick.4.k">La collection</button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="jeu.items.3.pick.0.k">L’avance offerte</b><span data-i18n="jeu.items.3.pick.0.v">Nunes et Drèze (2006) : une tâche de huit étapes présentée comme dix étapes dont deux déjà faites est plus souvent terminée, et plus vite. Commencer à 2 sur 10 engage plus que commencer à 0 sur 8.</span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="jeu.items.3.pick.1.k">L’approche du but</b><span data-i18n="jeu.items.3.pick.1.v">Kivetz et ses collègues (2006), dans un vrai café : plus les clients approchent du café offert, plus ils achètent souvent. On accélère près de la ligne d’arrivée.</span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="jeu.items.3.pick.2.k">Les badges</b><span data-i18n="jeu.items.3.pick.2.v">Sur Stack Overflow, Anderson et ses collègues (2013) voient l’activité monter à l’approche d’un badge, puis retomber. Une étude de 2020 nuance : environ 20 % des utilisateurs y réagissent.</span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="jeu.items.3.pick.3.k">Les séries</b><span data-i18n="jeu.items.3.pick.3.v">Duolingo écrit à ses actionnaires, en novembre 2026, mener des centaines d’expériences, notamment sur les notifications et les séries, pour faire revenir ses utilisateurs : 64,9 millions par jour au troisième trimestre 2026.</span></p>
+              <p class="st-pick__p" data-pick-p="4"><b class="st-pick__k" data-i18n="jeu.items.3.pick.4.k">La collection</b><span data-i18n="jeu.items.3.pick.4.v">Compléter une série d’objets : c’est ce que font les huit stickers de ce cours. Vous avez la mécanique sous les yeux.</span></p>
+              </div>
+            </div>
+            <p class="st-jeu__refs"><span class="st-label" data-i18n="jeu.src.title">Les sources du cours</span> <a href="#src-s7" dir="ltr">[7]</a> <a href="#src-s8" dir="ltr">[8]</a> <a href="#src-s9" dir="ltr">[9]</a> <a href="#src-s10" dir="ltr">[10]</a> <a href="#src-s11" dir="ltr">[11]</a></p>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q">LA QUESTION</span><span data-i18n="jeu.items.3.q">Deux cartes de fidélité demandent huit lavages. Laquelle est le plus souvent terminée ?</span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.3.a.0">Huit cases vides</button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="jeu.items.3.a.1">Dix cases, dont deux déjà tamponnées</button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.3.a.2">Aucune différence</button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="jeu.items.3.ok" hidden>Oui. Le même effort, mais on a déjà commencé : c’est l’effet de progression offerte.</p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden>Pas tout à fait. Relisez, puis réessayez.</p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-g5" role="tabpanel" aria-labelledby="ls-t-g5" tabindex="0" data-ls-panel="g5">
+            <h3 class="st-ls__h" data-i18n="jeu.items.4.t">Ce que ça fait à une marque</h3>
+            <p class="st-ls__d" data-i18n="jeu.items.4.d">Ce niveau est notre lecture de praticiens, pas un résultat d’étude. Le jeu donne à une marque trois choses qu’un logo seul ne donne pas : une voix, un monde, et une raison de revenir.</p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="jeu.items.4.pick.0.k">Une voix</button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="jeu.items.4.pick.1.k">Un monde</button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="jeu.items.4.pick.2.k">Un rituel</button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="jeu.items.4.pick.3.k">La limite</button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="jeu.items.4.pick.0.k">Une voix</b><span data-i18n="jeu.items.4.pick.0.v">Ici, Kūro juge vos réponses en deux mots. Une marque qui réagit à ce que vous faites a un caractère ; une marque qui récite n’en a pas.</span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="jeu.items.4.pick.1.k">Un monde</b><span data-i18n="jeu.items.4.pick.1.v">L’atelier de nuit, la radio, la console DOURO·8, les sceaux : tout vient du même endroit. On reconnaît la marque sans voir son logo.</span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="jeu.items.4.pick.2.k">Un rituel</b><span data-i18n="jeu.items.4.pick.2.v">Des tampons, des sceaux, des stickers : de petites fins à atteindre, qui donnent une raison de finir la page et d’y revenir.</span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="jeu.items.4.pick.3.k">La limite</b><span data-i18n="jeu.items.4.pick.3.v">Si le jeu cache l’offre, le prix ou le contact, il travaille contre la marque. Le jeu sert le message ; il ne le remplace pas.</span></p>
+              </div>
+            </div>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q">LA QUESTION</span><span data-i18n="jeu.items.4.q">Qu’est-ce qu’une marque gagne d’abord à être jouable ?</span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.4.a.0">Des données sur ses visiteurs</button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="jeu.items.4.a.1">Un caractère qu’on reconnaît et qu’on retrouve</button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.4.a.2">Des clics sur ses publicités</button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="jeu.items.4.ok" hidden>Oui. Le reste peut suivre, mais c’est le caractère qui fait revenir.</p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden>Pas tout à fait. Relisez, puis réessayez.</p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-g6" role="tabpanel" aria-labelledby="ls-t-g6" tabindex="0" data-ls-panel="g6">
+            <h3 class="st-ls__h" data-i18n="jeu.items.5.t">Ce que ça rapporte : des cas réels</h3>
+            <p class="st-ls__d" data-i18n="jeu.items.5.d">Quatre cas, chacun avec sa source et sa limite. Deux chiffres viennent des entreprises elles-mêmes, et un troisième d’une campagne de marque : c’est dit à chaque fois.</p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="jeu.items.5.pick.0.k">Starbucks</button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="jeu.items.5.pick.1.k">Deloitte</button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="jeu.items.5.pick.2.k">Foldit</button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="jeu.items.5.pick.3.k">La loterie des radars</button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="jeu.items.5.pick.0.k">Starbucks</b><span data-i18n="jeu.items.5.pick.0.v">Le programme Starbucks Rewards compte 35,8 millions de membres actifs aux États-Unis, et 59 % des montants encaissés dans les cafés que l’enseigne exploite elle-même aux États-Unis viennent de ses membres. Chiffres publiés par Starbucks pour le trimestre clos fin juin 2026.</span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="jeu.items.5.pick.1.k">Deloitte</b><span data-i18n="jeu.items.5.pick.1.v">Deloitte a ajouté des éléments de jeu à sa plateforme de formation des cadres. La Harvard Business Review (2013) rapporte 37 % d’utilisateurs en plus à y revenir chaque semaine. Un chiffre de l’entreprise, sans groupe de comparaison.</span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="jeu.items.5.pick.2.k">Foldit</b><span data-i18n="jeu.items.5.pick.2.v">Un jeu en ligne où l’on replie des protéines. En 2011, ses joueurs produisent en trois semaines un modèle assez juste pour que des chercheurs déterminent la structure d’une enzyme d’un rétrovirus du singe. Le résultat est publié dans Nature Structural &amp; Molecular Biology.</span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="jeu.items.5.pick.3.k">La loterie des radars</b><span data-i18n="jeu.items.5.pick.3.v">Stockholm, 2010 : pendant trois jours, les conducteurs qui respectent la limite participent à une loterie. La vitesse moyenne annoncée passe de 32 à 25 km/h. Un cas célèbre mais fragile : trois jours, pas de groupe témoin, et un chiffre donné par le sponsor, Volkswagen.</span></p>
+              </div>
+            </div>
+            <p class="st-jeu__refs"><span class="st-label" data-i18n="jeu.src.title">Les sources du cours</span> <a href="#src-s12" dir="ltr">[12]</a> <a href="#src-s13" dir="ltr">[13]</a> <a href="#src-s14" dir="ltr">[14]</a> <a href="#src-s15" dir="ltr">[15]</a> <a href="#src-s16" dir="ltr">[16]</a></p>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q">LA QUESTION</span><span data-i18n="jeu.items.5.q">Lequel de ces cas repose sur une publication scientifique ?</span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.5.a.0">Starbucks</button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="jeu.items.5.a.1">Foldit</button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.5.a.2">La loterie des radars</button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="jeu.items.5.ok" hidden>Oui. Les autres sont des chiffres d’entreprise ou de campagne : utiles, à lire comme tels.</p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden>Pas tout à fait. Relisez, puis réessayez.</p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-g7" role="tabpanel" aria-labelledby="ls-t-g7" tabindex="0" data-ls-panel="g7">
+            <h3 class="st-ls__h" data-i18n="jeu.items.6.t">Quand ça abîme</h3>
+            <p class="st-ls__d" data-i18n="jeu.items.6.d">Le jeu peut aussi démotiver, pousser, piéger. Savoir où ça casse fait partie du métier.</p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="jeu.items.6.pick.0.k">La récompense promise</button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="jeu.items.6.pick.1.k">La classe gamifiée</button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="jeu.items.6.pick.2.k">La prévision de Gartner</button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="jeu.items.6.pick.3.k">Les pièges</button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="jeu.items.6.pick.0.k">La récompense promise</b><span data-i18n="jeu.items.6.pick.0.v">Lepper, Greene et Nisbett (1973) : des enfants qui aimaient déjà une activité s’y intéressent moins après l’avoir faite pour une récompense promise. Ceux qui reçoivent une récompense surprise, ou rien, gardent leur intérêt.</span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="jeu.items.6.pick.1.k">La classe gamifiée</b><span data-i18n="jeu.items.6.pick.1.v">Hanus et Fox (2015) suivent deux classes pendant seize semaines. Celle qui a des badges et un classement finit moins motivée, moins satisfaite, avec de moins bonnes notes à l’examen. Une petite étude, mais elle prévient : le classement n’est pas un cadeau pour tout le monde.</span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="jeu.items.6.pick.2.k">La prévision de Gartner</b><span data-i18n="jeu.items.6.pick.2.v">En novembre 2012, le cabinet Gartner prévoit que 80 % des applications gamifiées de l’époque manqueront leurs objectifs d’ici 2014, surtout à cause d’une mauvaise conception. C’est une prévision, pas une mesure.</span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="jeu.items.6.pick.3.k">Les pièges</b><span data-i18n="jeu.items.6.pick.3.v">L’autorité américaine de protection des consommateurs (FTC) publie en 2022 un rapport sur les « dark patterns », ces interfaces qui poussent à des choix qu’on n’aurait pas faits. La même année, l’éditeur de Fortnite accepte de verser 245 millions de dollars pour rembourser des achats non voulus.</span></p>
+              </div>
+            </div>
+            <p class="st-jeu__refs"><span class="st-label" data-i18n="jeu.src.title">Les sources du cours</span> <a href="#src-s17" dir="ltr">[17]</a> <a href="#src-s18" dir="ltr">[18]</a> <a href="#src-s19" dir="ltr">[19]</a> <a href="#src-s20" dir="ltr">[20]</a> <a href="#src-s21" dir="ltr">[21]</a></p>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q">LA QUESTION</span><span data-i18n="jeu.items.6.q">D’après Gartner, pourquoi la plupart de ces projets devaient-ils échouer ?</span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.6.a.0">Les gens n’aiment pas jouer</button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="jeu.items.6.a.1">Une mauvaise conception</button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.6.a.2">Le coût de la technologie</button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="jeu.items.6.ok" hidden>Oui. Ce n’est pas le jeu qui échoue, c’est le jeu mal pensé pour son but.</p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden>Pas tout à fait. Relisez, puis réessayez.</p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-g8" role="tabpanel" aria-labelledby="ls-t-g8" tabindex="0" data-ls-panel="g8">
+            <h3 class="st-ls__h" data-i18n="jeu.items.7.t">Le jeu juste : nos règles, ici</h3>
+            <p class="st-ls__d" data-i18n="jeu.items.7.d">Ce site joue, et il s’est donné des règles. Les voici, avec l’endroit où les vérifier.</p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="jeu.items.7.pick.0.k">Rien ne démarre seul</button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="jeu.items.7.pick.1.k">Le prix ne joue pas</button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="jeu.items.7.pick.2.k">Un dessin, pas une remise</button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="jeu.items.7.pick.3.k">Rien ne sort d’ici</button>
+              <button type="button" class="st-pick__b" data-pick-b="4" aria-pressed="false" data-i18n="jeu.items.7.pick.4.k">Pas de pression</button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="jeu.items.7.pick.0.k">Rien ne démarre seul</b><span data-i18n="jeu.items.7.pick.0.v">La radio, les clips, Kūro : tout attend votre geste, et tout s’arrête d’un geste. Sur un appareil réglé sur « moins de mouvement », rien ne bouge.</span> <span class="st-jeu__try"><span data-i18n="jeu.tryK">Aller voir :</span> <a href="#radio" data-i18n="jeu.tryL.0">la radio</a></span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="jeu.items.7.pick.1.k">Le prix ne joue pas</b><span data-i18n="jeu.items.7.pick.1.v">La calculatrice DOURO·8 a l’air d’une console, mais son reçu additionne des lignes et son total est leur somme exacte. Le jeu rend le prix lisible ; il ne le maquille pas.</span> <span class="st-jeu__try"><span data-i18n="jeu.tryK">Aller voir :</span> <a href="./#pricing" data-i18n="jeu.tryL.1">la calculatrice</a></span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="jeu.items.7.pick.2.k">Un dessin, pas une remise</b><span data-i18n="jeu.items.7.pick.2.v">Sept sceaux ouvrent un dessin. Huit niveaux donnent huit stickers. Aucune récompense ici ne s’échange contre votre adresse ou contre un achat.</span> <span class="st-jeu__try"><span data-i18n="jeu.tryK">Aller voir :</span> <a href="#game" data-i18n="jeu.tryL.2">la ronde de nuit</a></span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="jeu.items.7.pick.3.k">Rien ne sort d’ici</b><span data-i18n="jeu.items.7.pick.3.v">Tampons, sceaux et stickers restent dans votre navigateur. Ils ne sont envoyés nulle part ; il n’y a ni compte ni classement.</span></p>
+              <p class="st-pick__p" data-pick-p="4"><b class="st-pick__k" data-i18n="jeu.items.7.pick.4.k">Pas de pression</b><span data-i18n="jeu.items.7.pick.4.v">Aucune série à ne pas rompre, aucun compte à rebours. Vous pouvez partir et revenir : votre progression vous attend.</span></p>
+              </div>
+            </div>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q">LA QUESTION</span><span data-i18n="jeu.items.7.q">Sur ce site, que reçoit-on pour sept sceaux ?</span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.7.a.0">Une remise</button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="jeu.items.7.a.1">Un dessin</button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="jeu.items.7.a.2">Une place dans un classement</button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="jeu.items.7.ok" hidden>Oui. C’est notre règle : on récompense par quelque chose à regarder, jamais par une pression à acheter.</p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden>Pas tout à fait. Relisez, puis réessayez.</p>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="st-jeu__all" data-ls-all hidden>
+        <p><b data-i18n="jeu.all.t">Huit sur huit.</b> <span data-i18n="jeu.all.d">La planche de stickers est à vous, pour vos messages ou votre écran.</span></p>
+        <a class="st-btn st-btn--primary" href="img/studio/jeu/stickers.webp" download data-i18n="jeu.all.go">Télécharger la planche</a>
+      </div>
+    </div>
+    <p class="st-jeu__cta"><span data-i18n="jeu.cta.d">Un site, un cours ou une marque qui joue juste, ça se construit.</span> <a href="./#contact" data-i18n="jeu.cta.go">En parler au Studio →</a></p>
+    <details class="st-jeu__src">
+      <summary><span data-i18n="jeu.src.title">Les sources du cours</span> <span dir="ltr">(21)</span></summary>
+      <p data-i18n="jeu.src.note">Chaque chiffre de ce cours vient de l’une de ces sources. Là où une étude est petite, ou un chiffre donné par l’entreprise elle-même, le niveau le dit.</p>
+      <ol>
+        <li id="src-s1"><cite lang="en" dir="ltr">Deterding, S., Dixon, D., Khaled, R. &amp; Nacke, L. (2011). From game design elements to gamefulness: defining “gamification”. MindTrek ’11.</cite> <a data-ref href="https://doi.org/10.1145/2181037.2181040" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s2"><cite lang="en" dir="ltr">Robertson, M. (2010). Can’t play, won’t play. Quoted in J. Juul, “Gamification backlash roundup” (2011).</cite> <a data-ref href="https://www.jesperjuul.net/ludologist/2011/04/02/gamification-backlash-roundup/" target="_blank" rel="noopener" dir="ltr">jesperjuul.net<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s3"><cite lang="en" dir="ltr">Ryan, R. M. &amp; Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. American Psychologist, 55(1).</cite> <a data-ref href="https://doi.org/10.1037/0003-066X.55.1.68" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s4"><cite lang="en" dir="ltr">Sailer, M. &amp; Homner, L. (2020). The Gamification of Learning: a Meta-analysis. Educational Psychology Review, 32(1).</cite> <a data-ref href="https://doi.org/10.1007/s10648-019-09498-w" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s5"><cite lang="en" dir="ltr">Hamari, J., Koivisto, J. &amp; Sarsa, H. (2014). Does Gamification Work? A Literature Review of Empirical Studies on Gamification. HICSS 47.</cite> <a data-ref href="https://doi.org/10.1109/HICSS.2014.377" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s6"><cite lang="en" dir="ltr">Koivisto, J. &amp; Hamari, J. (2019). The rise of motivational information systems: A review of gamification research. International Journal of Information Management, 45.</cite> <a data-ref href="https://doi.org/10.1016/j.ijinfomgt.2018.10.013" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s7"><cite lang="en" dir="ltr">Nunes, J. C. &amp; Drèze, X. (2006). The Endowed Progress Effect: How Artificial Advancement Increases Effort. Journal of Consumer Research, 32(4).</cite> <a data-ref href="https://doi.org/10.1086/500480" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s8"><cite lang="en" dir="ltr">Kivetz, R., Urminsky, O. &amp; Zheng, Y. (2006). The Goal-Gradient Hypothesis Resurrected. Journal of Marketing Research, 43(1).</cite> <a data-ref href="https://doi.org/10.1509/jmkr.43.1.39" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s9"><cite lang="en" dir="ltr">Anderson, A., Huttenlocher, D., Kleinberg, J. &amp; Leskovec, J. (2013). Steering User Behavior with Badges. WWW ’13.</cite> <a data-ref href="https://doi.org/10.1145/2488388.2488398" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s10"><cite lang="en" dir="ltr">Hoernle, N., Kehne, G., Procaccia, A. D. &amp; Gal, K. (2020). The Phantom Steering Effect in Q&amp;A Websites. IEEE ICDM 2020.</cite> <a data-ref href="https://arxiv.org/abs/2002.06160" target="_blank" rel="noopener" dir="ltr">arxiv.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s11"><cite lang="en" dir="ltr">Duolingo, Inc. (3 November 2026). Shareholder Letter, Q3 2026.</cite> <a data-ref href="https://www.sec.gov/Archives/edgar/data/0001562088/000162828026069474/q3fy26duolingo9-30x26share.htm" target="_blank" rel="noopener" dir="ltr">sec.gov<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s12"><cite lang="en" dir="ltr">Starbucks Coffee Company (7 July 2026). Starbucks Card, Loyalty &amp; Mobile Dashboard, Q3 FY26.</cite> <a data-ref href="https://s203.q4cdn.com/326826266/files/doc_financials/2026/q3/Q3-FY26-Digital-IR-Dashboard.pdf" target="_blank" rel="noopener" dir="ltr">s203.q4cdn.com<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s13"><cite lang="en" dir="ltr">Meister, J. C. (2 January 2013). How Deloitte Made Learning a Game. Harvard Business Review.</cite> <a data-ref href="https://hbr.org/2013/01/how-deloitte-made-learning-a-g" target="_blank" rel="noopener" dir="ltr">hbr.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s14"><cite lang="en" dir="ltr">Khatib, F., DiMaio, F., Foldit Contenders Group, Foldit Void Crushers Group, Cooper, S. et al. (2011). Crystal structure of a monomeric retroviral protease solved by protein folding game players. Nature Structural &amp; Molecular Biology, 18(10).</cite> <a data-ref href="https://doi.org/10.1038/nsmb.2119" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s15"><cite lang="en" dir="ltr">University of Washington (19 September 2011). Gamers succeed where scientists fail.</cite> <a data-ref href="https://www.washington.edu/news/2011/09/19/gamers-succeed-where-scientists-fail" target="_blank" rel="noopener" dir="ltr">washington.edu<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s16"><cite lang="en" dir="ltr">AAP FactCheck (16 September 2021). Sweden’s “speed camera lottery” hit a red light years ago.</cite> <a data-ref href="https://www.aap.com.au/factcheck/swedens-speed-camera-lottery-hit-a-red-light-years-ago/" target="_blank" rel="noopener" dir="ltr">aap.com.au<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s17"><cite lang="en" dir="ltr">Lepper, M. R., Greene, D. &amp; Nisbett, R. E. (1973). Undermining children’s intrinsic interest with extrinsic reward. Journal of Personality and Social Psychology, 28(1).</cite> <a data-ref href="https://doi.org/10.1037/h0035519" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s18"><cite lang="en" dir="ltr">Hanus, M. D. &amp; Fox, J. (2015). Assessing the effects of gamification in the classroom. Computers &amp; Education, 80.</cite> <a data-ref href="https://doi.org/10.1016/j.compedu.2014.08.019" target="_blank" rel="noopener" dir="ltr">doi.org<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s19"><cite lang="en" dir="ltr">Gartner (27 November 2012), press release, as reported by Digital News Asia: “80 percent of gamified apps will fail”.</cite> <a data-ref href="https://digitalnewsasia.com/tech-at-work/80-percent-of-gamified-apps-will-fail-gartner" target="_blank" rel="noopener" dir="ltr">digitalnewsasia.com<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s20"><cite lang="en" dir="ltr">U.S. Federal Trade Commission (September 2022). Bringing Dark Patterns to Light. Staff report.</cite> <a data-ref href="https://www.ftc.gov/reports/bringing-dark-patterns-light" target="_blank" rel="noopener" dir="ltr">ftc.gov<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+        <li id="src-s21"><cite lang="en" dir="ltr">U.S. Federal Trade Commission (19 December 2022). Fortnite Video Game Maker Epic Games to Pay More Than Half a Billion Dollars over FTC Allegations.</cite> <a data-ref href="https://www.ftc.gov/news-events/news/press-releases/2022/12/fortnite-video-game-maker-epic-games-pay-more-half-billion-dollars-over-ftc-allegations" target="_blank" rel="noopener" dir="ltr">ftc.gov<span class="st-sr" data-i18n="case.newTab">(nouvel onglet)</span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      </ol>
+    </details>
+  </div>
+</section>
+<!-- /COURSE:jeu -->
+
 <!-- ============================== SERVICES ==============================
      Four services at fixed prices: each figure is written by the build from
      the home's price model (assets/app.js PRICE_MODEL.argent and its
@@ -540,8 +921,9 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
   <nav class="st-menu__nav" data-i18n-aria="nav.menu" aria-label="Menu">
     <p class="st-menu__g st-label" data-i18n="nav.manual">Le manuel</p>
     <a href="#lessons"><span class="st-menu__n" aria-hidden="true">01</span><span data-i18n="manual.nav.lessons">Leçons</span></a>
-    <a href="#services"><span class="st-menu__n" aria-hidden="true">02</span><span data-i18n="nav.services">Services</span></a>
-    <a href="#radio"><span class="st-menu__n" aria-hidden="true">03</span><span data-i18n="manual.nav.radio">Radio</span></a>
+    <a href="#jeu"><span class="st-menu__n" aria-hidden="true">02</span><span data-i18n="manual.nav.course">Le jeu juste</span></a>
+    <a href="#services"><span class="st-menu__n" aria-hidden="true">03</span><span data-i18n="nav.services">Services</span></a>
+    <a href="#radio"><span class="st-menu__n" aria-hidden="true">04</span><span data-i18n="manual.nav.radio">Radio</span></a>
     <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupSite">Je veux un site</p>
     <a class="st-menu__world" href="./"><span class="st-menu__n" aria-hidden="true" lang="ja">築</span><span data-i18n="manual.nav.studio">Le Studio</span></a>
   </nav>

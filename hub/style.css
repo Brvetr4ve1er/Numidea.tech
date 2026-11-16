@@ -1921,3 +1921,69 @@ html.is-playing{scroll-behavior:auto}
   .st-pad__k--a{margin-inline-start:4px}
 }
 @media (max-width:299px){.st-pad__k,.st-pad__x{width:40px;height:40px}}
+
+/* ---------------- "Le jeu juste": the gamification course (manual, 2026-11-16) ----------------
+   The lessons' shell in a console's dress: a HUD line in the arcade face
+   (Press Start 2P, the file WorkspaceHQ hosts, fetched as the plate nears),
+   a brass bar that fills with the stickers, a sticker book, eight pixel
+   tabs. Same night navy, cream, red, teal and brass as the rest: the dress
+   is the page's own palette, not a second brand. Nothing moves by itself;
+   a sticker pops once when it is earned. */
+.st-jeu__key{margin-bottom:40px}
+.st-jeu__key img{aspect-ratio:16 / 9;object-fit:cover;object-position:50% 38%}
+@media (min-width:900px){.st-jeu__key img{aspect-ratio:21 / 9}}
+.st-ls--jeu{--brass:#D2B26A}
+.st-ls--jeu .st-ls__head{align-items:center;margin-bottom:14px}
+.st-jeu__hud{margin:0;min-width:0;font-family:"Press Start 2P",var(--f-mono);font-size:10px;line-height:1.7;letter-spacing:.04em;color:var(--brass)}
+:lang(ar) .st-jeu__hud{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:0}
+.st-ls--jeu .st-ls__pass b{color:var(--brass)}
+.st-jeu__xp{height:14px;margin:0 0 18px;padding:2px;border:2px solid var(--cream);background:rgba(243,236,225,.08)}
+.st-jeu__xp i{display:block;height:100%;width:calc(var(--n,0) / 8 * 100%);background:var(--brass);transition:width .35s var(--ease)}
+.st-jeu__album{list-style:none;margin:0 0 22px;padding:14px 12px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px;align-items:center;border:2px dashed rgba(243,236,225,.3)}
+.st-jeu__album li{min-width:0;display:grid;place-items:center}
+.st-jeu__album img{display:block;width:100%;max-width:104px;height:auto;aspect-ratio:1;object-fit:contain;filter:grayscale(1) brightness(.28);opacity:.55;transition:filter .25s,opacity .25s}
+.st-jeu__album .is-earned img{filter:none;opacity:1;animation:st-seal .3s var(--ease) both}
+.st-ls--jeu .st-ls__tabs{grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
+.st-ls--jeu .st-ls__tab{padding:6px 6px 10px}
+.st-ls--jeu .st-ls__tab img{image-rendering:pixelated}
+.st-ls--jeu .st-ls__n{font-family:"Press Start 2P",var(--f-mono);font-size:9px;letter-spacing:.02em;color:var(--brass)}
+:lang(ar) .st-ls--jeu .st-ls__n{font-family:var(--f-mono);font-size:var(--t-label)}
+.st-ls--jeu .st-ls__tab[aria-selected="true"]{border-color:var(--brass)}
+.st-ls--jeu .st-ls__t{font-size:13px}
+.st-jeu__bars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;max-width:560px}
+.st-jeu__bars li{display:grid;grid-template-columns:minmax(84px,150px) minmax(0,1fr) auto;align-items:center;gap:10px;font-size:var(--t-small);font-weight:600}
+.st-jeu__bars i{display:block;height:14px;background:linear-gradient(var(--teal),var(--teal)) 0 0 / calc(var(--v) * 1%) 100% no-repeat,rgba(33,30,27,.12);border:2px solid var(--ink)}
+.st-jeu__bars b{font-family:var(--f-mono);font-size:var(--t-label);color:var(--ink-2)}
+[dir="rtl"] .st-jeu__bars i{background-position:100% 0,0 0}
+.st-jeu__try{display:block;margin-top:6px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.04em}
+.st-jeu__try a{display:inline-flex;align-items:center;min-height:44px;color:var(--red-text);font-weight:600;text-underline-offset:3px}
+.st-jeu__refs{margin:0;width:fit-content;max-width:100%;font-family:var(--f-mono);font-size:var(--t-label);color:var(--muted)}   /* no wider than its text: the air beside it, above the question's line, is where Kūro sits */
+.st-jeu__refs a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;color:var(--ink);text-underline-offset:3px}
+.st-jeu__all{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:16px;padding:16px 18px;background:var(--brass);color:var(--ink);border:2px solid var(--cream)}
+.st-jeu__all[hidden]{display:none}
+.st-jeu__all p{margin:0;flex:1 1 280px;font-size:var(--t-body);line-height:1.4}
+.st-jeu__all b{font-family:var(--f-disp);font-weight:900;font-size:1.25em}
+.st-jeu__cta{margin:26px 0 0;font-size:var(--t-body);line-height:1.5}
+.st-jeu__cta a{display:inline-flex;align-items:center;min-height:44px;color:var(--red-text);font-weight:700;text-underline-offset:3px}
+.st-jeu__src{margin-top:18px;border:2px solid var(--ink);background:var(--cream)}
+.st-jeu__src summary{display:flex;align-items:center;gap:8px;min-height:48px;padding:0 16px;font-family:var(--f-mono);font-size:var(--t-mono);font-weight:600;letter-spacing:.06em;cursor:pointer}
+.st-jeu__src > p{margin:0;padding:4px 16px 0;max-width:80ch;font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
+.st-jeu__src ol{margin:10px 0 16px;padding-inline:44px 16px;display:flex;flex-direction:column;gap:6px;font-size:var(--t-small);line-height:1.5}
+.st-jeu__src li{scroll-margin-top:96px;overflow-wrap:anywhere}
+.st-jeu__src li:target{background:rgba(210,178,106,.35)}
+.st-jeu__src cite{font-style:normal}
+.st-jeu__src a{display:inline-flex;align-items:center;min-height:44px;color:var(--red-text);font-weight:600;text-underline-offset:3px}
+@media (max-width:1099px){
+  .st-ls--jeu .st-ls__tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:699px){
+  .st-jeu__key{margin-bottom:24px}
+  .st-jeu__album{grid-template-columns:repeat(4,minmax(0,1fr));padding:10px 8px;gap:8px}
+  .st-ls--jeu .st-ls__tabs{gap:6px}
+  .st-ls--jeu .st-ls__tab{padding:4px 4px 8px}
+  .st-ls--jeu .st-ls__t{font-size:11px;line-height:1.2}
+  .st-jeu__hud{font-size:8px}
+  .st-jeu__bars li{grid-template-columns:minmax(64px,96px) minmax(0,1fr) auto;gap:6px}
+  .st-jeu__src ol{padding-inline-start:32px}
+  .st-jeu__all .st-btn{flex:1 1 100%}
+}

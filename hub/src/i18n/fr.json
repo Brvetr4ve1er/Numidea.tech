@@ -738,7 +738,7 @@
   },
   "money": {
     "title": "Gagner sa vie de loin.",
-    "lead": "Se faire payer depuis l’étranger, choisir ses comptes, fixer son tarif, comprendre la crypto. Six leçons courtes, et quatre services pour aller plus loin.",
+    "lead": "Se faire payer depuis l’étranger, choisir ses comptes, fixer son tarif, comprendre la crypto : six leçons courtes. Puis un maître-cours sur la gamification, et quatre services pour aller plus loin.",
     "sceneAlt": "Yasser compte quelques pièces à son bureau de nuit pendant que la petite calculatrice imprime un reçu ; Kūro pose une patte sur une pièce",
     "svc": {
       "aria": "Les quatre services",
@@ -1018,7 +1018,8 @@
       "lessons": "Leçons",
       "radio": "Radio",
       "studio": "Le Studio",
-      "cta": "Réserver un appel"
+      "cta": "Réserver un appel",
+      "course": "Le jeu juste"
     },
     "svc": {
       "kicker": "/ QUATRE SERVICES",
@@ -1073,5 +1074,283 @@
       "some": "{n} sur 6. Continue, les leçons sont plus haut.",
       "all": "Six tampons sur six. Respect."
     }
+  },
+  "jeu": {
+    "kicker": "/ MAÎTRE-COURS · LA GAMIFICATION",
+    "title": "Le jeu juste.",
+    "lead": "La gamification sans poudre aux yeux : ce que c’est, pourquoi ça marche, ce que dit la recherche, ce que ça rapporte, quand ça abîme, et comment ce site s’en sert. Huit niveaux, huit stickers, toutes les sources.",
+    "keyAlt": "Yasser et Kūro en personnages de jeu vidéo des années 1990 sur une île flottante, la nuit ; Kūro bondit vers une traînée de sceaux rouges qui mène à la petite console DOURO·8",
+    "hud": "/ HUIT NIVEAUX · UN STICKER PAR BONNE RÉPONSE",
+    "pass": "stickers",
+    "tabs": "Les huit niveaux",
+    "lv": "NIV.",
+    "album": "Votre carnet de stickers",
+    "tryK": "Aller voir :",
+    "tryL": [
+      "la radio",
+      "la calculatrice",
+      "la ronde de nuit"
+    ],
+    "all": {
+      "t": "Huit sur huit.",
+      "d": "La planche de stickers est à vous, pour vos messages ou votre écran.",
+      "go": "Télécharger la planche"
+    },
+    "cta": {
+      "d": "Un site, un cours ou une marque qui joue juste, ça se construit.",
+      "go": "En parler au Studio →"
+    },
+    "src": {
+      "title": "Les sources du cours",
+      "note": "Chaque chiffre de ce cours vient de l’une de ces sources. Là où une étude est petite, ou un chiffre donné par l’entreprise elle-même, le niveau le dit."
+    },
+    "st": [
+      "Kūro à la manette",
+      "Yasser, pouce levé",
+      "Kūro sur la DOURO·8",
+      "Kūro et la coupe",
+      "Tope là",
+      "Kūro dort sur la cartouche",
+      "Kūro attrape l’étoile",
+      "Le sceau à la patte"
+    ],
+    "items": [
+      {
+        "t": "C’est quoi, au juste ?",
+        "d": "La gamification, c’est emprunter au jeu quelques-uns de ses ressorts pour une activité qui n’est pas un jeu : un cours, une appli, un site. L’activité reste la vraie ; le jeu lui prête sa façon de donner envie.",
+        "pick": [
+          {
+            "k": "La définition",
+            "v": "« L’usage d’éléments de design de jeu dans des contextes non ludiques » : la définition proposée par Deterding et ses collègues en 2011, celle que la recherche reprend depuis."
+          },
+          {
+            "k": "Ce que ce n’est pas",
+            "v": "Ce n’est pas fabriquer un jeu entier, et ce n’est pas un habillage. Si on retire le jeu et qu’il ne reste rien d’utile, ce n’était pas de la gamification."
+          },
+          {
+            "k": "Le piège des points",
+            "v": "En 2010, la conceptrice de jeux Margaret Robertson écrit que le mot juste pour ce qu’elle voit alors est « pointsification » : des points et des badges posés sur n’importe quoi, sans le jeu."
+          }
+        ],
+        "q": "Lequel des trois est de la gamification ?",
+        "a": [
+          "Un jeu vidéo éducatif complet",
+          "Une barre de progression dans un cours en ligne",
+          "Une mascotte dans une publicité"
+        ],
+        "ok": "Oui. Le cours reste un cours ; la barre lui prête un ressort du jeu : voir qu’on avance."
+      },
+      {
+        "t": "Pourquoi ça marche",
+        "d": "Un bon jeu ne retient pas par ses points. Il nourrit trois besoins que la psychologie décrit depuis longtemps : se sentir capable, se sentir libre, se sentir relié. Quand une activité les nourrit, on y revient sans y être poussé.",
+        "pick": [
+          {
+            "k": "Capable",
+            "v": "Un retour immédiat, des paliers à sa portée : on voit qu’on progresse. C’est le besoin de compétence."
+          },
+          {
+            "k": "Libre",
+            "v": "On choisit son chemin et son rythme. Ce qui devient obligatoire cesse d’être un jeu. C’est le besoin d’autonomie."
+          },
+          {
+            "k": "Relié",
+            "v": "Jouer avec d’autres, ou appartenir à un monde commun. C’est le besoin de lien."
+          },
+          {
+            "k": "D’où ça vient",
+            "v": "De la théorie de l’autodétermination de Ryan et Deci (2000) : trois besoins psychologiques, la compétence, l’autonomie et le lien. Satisfaits, ils renforcent la motivation ; contrariés, ils l’affaiblissent."
+          }
+        ],
+        "q": "Une barre de progression nourrit d’abord quel besoin ?",
+        "a": [
+          "Se sentir capable",
+          "Se sentir libre",
+          "Se sentir relié"
+        ],
+        "ok": "Oui : elle montre le chemin déjà fait. C’est de la compétence rendue visible."
+      },
+      {
+        "t": "Ce que dit la recherche",
+        "d": "Est-ce que ça aide vraiment à apprendre ? En 2020, Sailer et Homner ont réuni 38 publications, soit 40 expériences. Leur réponse : oui, des effets petits mais réels, et pas tous aussi solides.",
+        "pick": [
+          {
+            "k": "Les savoirs",
+            "v": "Sur ce qu’on apprend : g = 0,49. C’est le résultat le plus stable de l’étude, même en ne gardant que les expériences les plus rigoureuses."
+          },
+          {
+            "k": "La motivation",
+            "v": "Sur la motivation : g = 0,36. Les auteurs le disent moins stable que le premier."
+          },
+          {
+            "k": "Les actes",
+            "v": "Sur ce qu’on fait vraiment : g = 0,25, le plus petit des trois, et lui aussi moins stable."
+          },
+          {
+            "k": "La nuance",
+            "v": "Deux revues plus larges le disent autrement. Hamari et ses collègues (2014, 24 études) : des effets positifs, qui dépendent beaucoup du contexte et des personnes. Koivisto et Hamari (2019, 819 études) : des résultats plutôt positifs, avec une part remarquable de résultats mitigés."
+          }
+        ],
+        "q": "Que retenir de ces études ?",
+        "a": [
+          "La gamification marche à tous les coups",
+          "Elle aide un peu, quand elle est bien conçue pour son public",
+          "Elle ne change rien"
+        ],
+        "ok": "Oui : des effets réels et modestes, qui dépendent du contexte. Personne de sérieux ne promet davantage."
+      },
+      {
+        "t": "Les mécaniques, une à une",
+        "d": "Une mécanique de jeu répond à un ressort précis. On en choisit une ou deux pour un but, pas dix pour décorer.",
+        "pick": [
+          {
+            "k": "L’avance offerte",
+            "v": "Nunes et Drèze (2006) : une tâche de huit étapes présentée comme dix étapes dont deux déjà faites est plus souvent terminée, et plus vite. Commencer à 2 sur 10 engage plus que commencer à 0 sur 8."
+          },
+          {
+            "k": "L’approche du but",
+            "v": "Kivetz et ses collègues (2006), dans un vrai café : plus les clients approchent du café offert, plus ils achètent souvent. On accélère près de la ligne d’arrivée."
+          },
+          {
+            "k": "Les badges",
+            "v": "Sur Stack Overflow, Anderson et ses collègues (2013) voient l’activité monter à l’approche d’un badge, puis retomber. Une étude de 2020 nuance : environ 20 % des utilisateurs y réagissent."
+          },
+          {
+            "k": "Les séries",
+            "v": "Duolingo écrit à ses actionnaires, en novembre 2026, mener des centaines d’expériences, notamment sur les notifications et les séries, pour faire revenir ses utilisateurs : 64,9 millions par jour au troisième trimestre 2026."
+          },
+          {
+            "k": "La collection",
+            "v": "Compléter une série d’objets : c’est ce que font les huit stickers de ce cours. Vous avez la mécanique sous les yeux."
+          }
+        ],
+        "q": "Deux cartes de fidélité demandent huit lavages. Laquelle est le plus souvent terminée ?",
+        "a": [
+          "Huit cases vides",
+          "Dix cases, dont deux déjà tamponnées",
+          "Aucune différence"
+        ],
+        "ok": "Oui. Le même effort, mais on a déjà commencé : c’est l’effet de progression offerte."
+      },
+      {
+        "t": "Ce que ça fait à une marque",
+        "d": "Ce niveau est notre lecture de praticiens, pas un résultat d’étude. Le jeu donne à une marque trois choses qu’un logo seul ne donne pas : une voix, un monde, et une raison de revenir.",
+        "pick": [
+          {
+            "k": "Une voix",
+            "v": "Ici, Kūro juge vos réponses en deux mots. Une marque qui réagit à ce que vous faites a un caractère ; une marque qui récite n’en a pas."
+          },
+          {
+            "k": "Un monde",
+            "v": "L’atelier de nuit, la radio, la console DOURO·8, les sceaux : tout vient du même endroit. On reconnaît la marque sans voir son logo."
+          },
+          {
+            "k": "Un rituel",
+            "v": "Des tampons, des sceaux, des stickers : de petites fins à atteindre, qui donnent une raison de finir la page et d’y revenir."
+          },
+          {
+            "k": "La limite",
+            "v": "Si le jeu cache l’offre, le prix ou le contact, il travaille contre la marque. Le jeu sert le message ; il ne le remplace pas."
+          }
+        ],
+        "q": "Qu’est-ce qu’une marque gagne d’abord à être jouable ?",
+        "a": [
+          "Des données sur ses visiteurs",
+          "Un caractère qu’on reconnaît et qu’on retrouve",
+          "Des clics sur ses publicités"
+        ],
+        "ok": "Oui. Le reste peut suivre, mais c’est le caractère qui fait revenir."
+      },
+      {
+        "t": "Ce que ça rapporte : des cas réels",
+        "d": "Quatre cas, chacun avec sa source et sa limite. Deux chiffres viennent des entreprises elles-mêmes, et un troisième d’une campagne de marque : c’est dit à chaque fois.",
+        "pick": [
+          {
+            "k": "Starbucks",
+            "v": "Le programme Starbucks Rewards compte 35,8 millions de membres actifs aux États-Unis, et 59 % des montants encaissés dans les cafés que l’enseigne exploite elle-même aux États-Unis viennent de ses membres. Chiffres publiés par Starbucks pour le trimestre clos fin juin 2026."
+          },
+          {
+            "k": "Deloitte",
+            "v": "Deloitte a ajouté des éléments de jeu à sa plateforme de formation des cadres. La Harvard Business Review (2013) rapporte 37 % d’utilisateurs en plus à y revenir chaque semaine. Un chiffre de l’entreprise, sans groupe de comparaison."
+          },
+          {
+            "k": "Foldit",
+            "v": "Un jeu en ligne où l’on replie des protéines. En 2011, ses joueurs produisent en trois semaines un modèle assez juste pour que des chercheurs déterminent la structure d’une enzyme d’un rétrovirus du singe. Le résultat est publié dans Nature Structural & Molecular Biology."
+          },
+          {
+            "k": "La loterie des radars",
+            "v": "Stockholm, 2010 : pendant trois jours, les conducteurs qui respectent la limite participent à une loterie. La vitesse moyenne annoncée passe de 32 à 25 km/h. Un cas célèbre mais fragile : trois jours, pas de groupe témoin, et un chiffre donné par le sponsor, Volkswagen."
+          }
+        ],
+        "q": "Lequel de ces cas repose sur une publication scientifique ?",
+        "a": [
+          "Starbucks",
+          "Foldit",
+          "La loterie des radars"
+        ],
+        "ok": "Oui. Les autres sont des chiffres d’entreprise ou de campagne : utiles, à lire comme tels."
+      },
+      {
+        "t": "Quand ça abîme",
+        "d": "Le jeu peut aussi démotiver, pousser, piéger. Savoir où ça casse fait partie du métier.",
+        "pick": [
+          {
+            "k": "La récompense promise",
+            "v": "Lepper, Greene et Nisbett (1973) : des enfants qui aimaient déjà une activité s’y intéressent moins après l’avoir faite pour une récompense promise. Ceux qui reçoivent une récompense surprise, ou rien, gardent leur intérêt."
+          },
+          {
+            "k": "La classe gamifiée",
+            "v": "Hanus et Fox (2015) suivent deux classes pendant seize semaines. Celle qui a des badges et un classement finit moins motivée, moins satisfaite, avec de moins bonnes notes à l’examen. Une petite étude, mais elle prévient : le classement n’est pas un cadeau pour tout le monde."
+          },
+          {
+            "k": "La prévision de Gartner",
+            "v": "En novembre 2012, le cabinet Gartner prévoit que 80 % des applications gamifiées de l’époque manqueront leurs objectifs d’ici 2014, surtout à cause d’une mauvaise conception. C’est une prévision, pas une mesure."
+          },
+          {
+            "k": "Les pièges",
+            "v": "L’autorité américaine de protection des consommateurs (FTC) publie en 2022 un rapport sur les « dark patterns », ces interfaces qui poussent à des choix qu’on n’aurait pas faits. La même année, l’éditeur de Fortnite accepte de verser 245 millions de dollars pour rembourser des achats non voulus."
+          }
+        ],
+        "q": "D’après Gartner, pourquoi la plupart de ces projets devaient-ils échouer ?",
+        "a": [
+          "Les gens n’aiment pas jouer",
+          "Une mauvaise conception",
+          "Le coût de la technologie"
+        ],
+        "ok": "Oui. Ce n’est pas le jeu qui échoue, c’est le jeu mal pensé pour son but."
+      },
+      {
+        "t": "Le jeu juste : nos règles, ici",
+        "d": "Ce site joue, et il s’est donné des règles. Les voici, avec l’endroit où les vérifier.",
+        "pick": [
+          {
+            "k": "Rien ne démarre seul",
+            "v": "La radio, les clips, Kūro : tout attend votre geste, et tout s’arrête d’un geste. Sur un appareil réglé sur « moins de mouvement », rien ne bouge."
+          },
+          {
+            "k": "Le prix ne joue pas",
+            "v": "La calculatrice DOURO·8 a l’air d’une console, mais son reçu additionne des lignes et son total est leur somme exacte. Le jeu rend le prix lisible ; il ne le maquille pas."
+          },
+          {
+            "k": "Un dessin, pas une remise",
+            "v": "Sept sceaux ouvrent un dessin. Huit niveaux donnent huit stickers. Aucune récompense ici ne s’échange contre votre adresse ou contre un achat."
+          },
+          {
+            "k": "Rien ne sort d’ici",
+            "v": "Tampons, sceaux et stickers restent dans votre navigateur. Ils ne sont envoyés nulle part ; il n’y a ni compte ni classement."
+          },
+          {
+            "k": "Pas de pression",
+            "v": "Aucune série à ne pas rompre, aucun compte à rebours. Vous pouvez partir et revenir : votre progression vous attend."
+          }
+        ],
+        "q": "Sur ce site, que reçoit-on pour sept sceaux ?",
+        "a": [
+          "Une remise",
+          "Un dessin",
+          "Une place dans un classement"
+        ],
+        "ok": "Oui. C’est notre règle : on récompense par quelque chose à regarder, jamais par une pression à acheter."
+      }
+    ]
   }
 }

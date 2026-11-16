@@ -576,6 +576,12 @@ translated from it.
   new: the whole `life` group («جولة الليل», «كورو يسكن هذه الصفحة.», the
   pad's labels, «رسم الليل.», Kūro's short lines under `life.k` and Yasser's
   under `life.y`).
+- AR review (2026-11-16, the gamification course), the Studio
+  `hub/src/i18n/ar.json`, new: the whole `jeu` group («اللعب النظيف.», the
+  eight levels' titles, texts, questions and answers, the sticker names),
+  `manual.nav.course`, and the page's opening line `money.lead`. The word
+  chosen for gamification is «التلعيب», for a sticker «ملصق», for
+  "pointsification" «التنقيط».
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1485,4 +1491,72 @@ page, where you agreed the characters go.
 - **Still open from the review:** what a visitor gets for six lesson stamps
   (the seals have their drawing; the stamps have nothing yet), and a way to
   follow the studio from this page.
+
+## 29. The retro pack and "Le jeu juste", the gamification course (2026-11-16)
+
+You asked, while Kūro was being built, for "a new gamified N64 vibe pack"
+(stickers and pixel-art versions of the characters) and "a master course in
+gamification and how it's good for business", with real cases and with your
+own brand's use of it. You confirmed that "no run" meant "now run".
+
+- **The pack** (`hub/img/studio/jeu/`), made from your characters:
+  - a key picture in the look of a late-1990s 3D console game: Yasser with
+    his coffee, Kūro leaping after a trail of red seals, the DOURO·8 console
+    glowing on the next island (`key.webp`);
+  - eight pixel-art pictures, one per level of the course (`lv-1` to `lv-8`);
+  - eight stickers (`st-1` to `st-8`): Kūro at a game pad, Yasser with a
+    headset and a thumb up, Kūro riding the console, Kūro and a cup, a high
+    five, Kūro asleep on a cartridge, Kūro catching a star, a seal with a paw;
+    and the whole sheet as one transparent picture (`stickers.webp`).
+  It is original work: no console maker's name or logo, no existing game's
+  characters or interface. "N64" is the feeling you named, not a mark used.
+  Spent on the pack: 390 credits (3,255 of the 15,000 so far).
+- **The course**, on the manual page between the money lessons and the
+  services (`#jeu`), three languages, eight levels in the lessons' own form
+  (one idea, one explanation at a time, one question):
+  1. what gamification is, and what it is not;
+  2. why it works: the three needs a game feeds;
+  3. what research says about learning;
+  4. the mechanics, one by one;
+  5. what it does for a brand;
+  6. what it earns: four real cases;
+  7. when it harms;
+  8. the rules this site plays by, with the place to check each one.
+  A right answer stamps the level and puts one sticker in the visitor's book;
+  eight of eight offers the sticker sheet to download. Like the other stamps,
+  these stay in the visitor's browser (`numidea-lessons-jeu`).
+- **Every figure has a source, and I checked each one before writing.** The
+  list is under the course ("Les sources du cours", 21 entries, each a link).
+  What the check changed:
+  - the loyalty-card study (Nunes and Drèze) is told without its percentages:
+    the "34% against 19%" you see quoted everywhere could not be read in the
+    paper itself, only in other people's summaries;
+  - Foldit says "three weeks", which is what the university's release says;
+    "ten days" is press wording and is not used;
+  - the Stockholm speed-camera lottery is told as what it is: three days, no
+    control group, and a figure that comes from the sponsor, Volkswagen;
+  - Starbucks and Deloitte are marked as the companies' own figures;
+  - Gartner's "80%" is marked as a forecast, not a measurement, and it links
+    to a news report of the release because Gartner's own page could not be
+    opened;
+  - one study (Hanus and Fox) is marked as small: two classes.
+- **Level 5 is an opinion, and says so**: what play gives a brand (a voice,
+  a world, a ritual, and the limit). It is my reading of your site, written
+  in the studio's voice. Change it to your own words if it is not what you
+  think.
+- **Level 8 makes promises on your behalf**, each true of the site today:
+  nothing starts by itself; the calculator's total is the exact sum of its
+  lines; a reward is a drawing or a sticker, never traded for an address or a
+  purchase; stamps, seals and stickers are sent nowhere, with no account and
+  no leaderboard; no streak and no countdown. If you later add any of those
+  things, this level must change with it.
+- **A closing line sends a reader to the Studio**: "Un site, un cours ou une
+  marque qui joue juste, ça se construit. En parler au Studio →". It names no
+  price and no new service. Say if you want gamified work listed as an offer.
+- **The page's opening line changed** to name both courses: "Se faire payer
+  depuis l'étranger, choisir ses comptes, fixer son tarif, comprendre la
+  crypto : six leçons courtes. Puis un maître-cours sur la gamification, et
+  quatre services pour aller plus loin."
+- **The stickers are yours to use elsewhere** (messages, posts). Like the
+  rest of the art made for the site, no licence is chosen for them yet.
 

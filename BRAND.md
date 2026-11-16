@@ -1892,6 +1892,10 @@ The manual (`/hub/manuel.html`) is the learner's page: the lessons first, which 
 
 A new block goes on the page of the reader it is for. If it is for neither, it is not for the Studio.
 
+## Play, by our own rules (2026-11-16)
+
+The site teaches gamification ("Le jeu juste", on the manual) and is held to what it teaches. Its rules: nothing starts by itself; a price is never part of a game (the calculator's total is the exact sum of its lines); a reward is something to look at (a drawing, a sticker), never a discount and never traded for an address; what a visitor earns stays in their browser, with no account and no leaderboard; no streak to keep and no countdown. A figure in a lesson names its source, and says when the source is the company itself, a forecast, or a small study. The retro dress (pixel icons, the arcade face in a HUD line, a brass bar) uses the page's own palette: it is a costume for one course, not a second brand.
+
 ## Kūro on the page (2026-11-16)
 
 On the manual Kūro is alive, and the rule that nothing loops still holds: he moves only in answer to the visitor (a scroll that ends, a lesson picked or answered, the radio, a card pointed at, or the keys while he is being played), one short trip at a time, and then he sits still. He never covers a word or a control: he sits only where the page's own layout leaves air, and his layer takes no click. He goes from one place to a far one through "the door" (he sinks behind an edge and rises behind another): he is the gate, as the bible says. His lines are short verdicts, never sentences ("Tamponné.", "Non.", "Plus fort."). With reduced motion he is the sleeping picture on the radio and nothing else. A reward on this site is a drawing, never a discount and never something asked back from the visitor.

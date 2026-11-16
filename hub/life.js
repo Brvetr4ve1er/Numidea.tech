@@ -61,7 +61,7 @@
       [].forEach.call(d.querySelectorAll(df[1]), function (node, i) {
         var r = node.getBoundingClientRect();
         if (r.width < W * 0.9 || !r.height) return;
-        out.push({ id: df[0] === 'card' ? 'card' + i : df[0], el: node, x0: r.left + sx + inset, x1: r.right + sx - inset, y: Math.round(r.top + sy), at: df[2] });
+        out.push({ id: df[0] === 'card' || df[0] === 'plate' || df[0] === 'ask' ? df[0] + i : df[0], el: node, x0: r.left + sx + inset, x1: r.right + sx - inset, y: Math.round(r.top + sy), at: df[2] });
       });
     });
     out.sort(function (a, b) { return a.y - b.y || a.x0 - b.x0; });
@@ -70,6 +70,12 @@
     if (K.p) for (var i = 0; i < out.length; i++) if (out[i].id === K.p.id) { K.p = out[i]; break; }
   };
   var perch = function (id) { for (var i = 0; i < perches.length; i++) if (perches[i].id === id) return perches[i]; return null; };
+  // of several perches of one kind (two sets of lessons: two plates, two question lines), the one nearest the middle of the screen
+  var nearestOf = function (kind) {
+    var mid = window.pageYOffset + window.innerHeight * 0.5, best = null;
+    perches.forEach(function (p) { if (p.id.indexOf(kind) === 0 && (!best || Math.abs(p.y - mid) < Math.abs(best.y - mid))) best = p; });
+    return best;
+  };
   var clampX = function (p, x) { return Math.max(p.x0, Math.min(p.x1, x)); };
   // is the air above this spot free of words and controls? (the layer takes no hit, so the page answers for itself)
   var LEAF = 'h1,h2,h3,p,a,button,img,input,label,li,output,figcaption,svg,video';
@@ -242,7 +248,7 @@
   var tabX = function (id) { var b = d.querySelector('[data-ls-tab="' + id + '"]'); if (!b) return null; var r = b.getBoundingClientRect(); return r.left + window.pageXOffset + r.width / 2; };
   var saidTab = false;
   // by the lesson: on the plate's edge over the picked tab when that edge is in view, else on the line above the question
-  var byLesson = function (id, how, after) { return arrive(perch('plate'), tabX(id), how, after) || arrive(perch('ask'), null, how, after); };
+  var byLesson = function (id, how, after) { return arrive(nearestOf('plate'), tabX(id), how, after) || arrive(nearestOf('ask'), null, how, after); };
   d.addEventListener('numidea:tab', function (e) {
     measure();
     byLesson(e.detail.id, 'look', saidTab ? null : function () { saidTab = true; speak(t('life.k.tab')); });
@@ -255,7 +261,7 @@
       else push([call(function () { pose('sit'); }), frames('paw', 12), frames('paw', 12, true), call(function () { pose('sit'); speak(pick('life.k.wrong')); })]);
     };
     if (playing) { if (right) speak(pick('life.k.right')); return; }
-    if (!(arrive(perch('ask'), null, 'sit', react) || arrive(perch('plate'), tabX(e.detail.id), 'sit', react)) && onScreen()) { clear(); react(); }
+    if (!(arrive(nearestOf('ask'), null, 'sit', react) || arrive(nearestOf('plate'), tabX(e.detail.id), 'sit', react)) && onScreen()) { clear(); react(); }
   });
   d.addEventListener('numidea:radio', function (e) {
     if (playing) return;
@@ -327,7 +333,7 @@
   /* ---------------- the seven seals ---------------- */
   var seals = (function () {
     // id, perch, where along it, how far above the edge (two of them want a hop: they hang where the page leaves air, above the plate and above the last band)
-    var DEFS = [['s1', 'radio', 0.2, 0], ['s2', 'game', 0.9, 0], ['s3', 'plate', 0.12, 92], ['s4', 'ask', 0.84, 0], ['s5', 'card1', 0.5, 0], ['s6', 'kit', 0.42, 0], ['s7', 'back', 0.3, 92]];
+    var DEFS = [['s1', 'radio', 0.2, 0], ['s2', 'game', 0.9, 0], ['s3', 'plate0', 0.12, 92], ['s4', 'ask0', 0.84, 0], ['s5', 'card1', 0.5, 0], ['s6', 'kit', 0.42, 0], ['s7', 'back', 0.3, 92]];
     var got = [], nodes = {};
     try { got = JSON.parse(localStorage.getItem('numidea-seals') || '[]'); } catch (e) { got = []; }
     if (!Array.isArray(got)) got = [];

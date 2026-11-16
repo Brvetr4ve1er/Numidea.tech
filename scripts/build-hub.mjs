@@ -359,8 +359,11 @@ const refs = new Set();
 const localFile = (u) => { const p = u.split(/[?#]/)[0]; return p ? join(HUB, decodeURI(p)) : null; };
 const CLIENT_HOSTS = [...readFileSync(join(ROOT, 'index.html'), 'utf8').matchAll(/href="https:\/\/([^/"]+)[^"]*"/g)].map((m) => m[1]);
 const ALLOW = new Set([new URL(BASE).host, 'wa.me', 'www.behance.net', 'www.deviantart.com', 'www.instagram.com', 'instagram.com', ...CLIENT_HOSTS]);
+// the hosts a reference list may cite (the gamification course's sources: journals by DOI, a preprint server, a regulator, the companies' own filings, two news pages); a link to one must be marked data-ref
+const REF_HOSTS = new Set(['doi.org', 'arxiv.org', 'www.sec.gov', 's203.q4cdn.com', 'hbr.org', 'www.washington.edu', 'www.aap.com.au', 'digitalnewsasia.com', 'www.ftc.gov', 'www.jesperjuul.net']);
 // a page's pictures (sizes from the files) and the rest of its markup's rules: the same for the Studio and for the manual
 function rules(html) {
+const refHrefs = new Set([...html.matchAll(/<a\b[^>]*\sdata-ref\s[^>]*\bhref="([^"]+)"/g)].map((m) => m[1]));
 html = html.replace(/<img\b([^>]*)>/g, (all, a) => {
   const src = (/\ssrc="([^"]+)"/.exec(a) || [])[1];
   if (!src) { fail(`<img${a.slice(0, 60)}>: no src`); return all; }
@@ -392,6 +395,7 @@ for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|data-anim|poster)="(
   if (/^https?:\/\//.test(v)) {
     const host = new URL(v).host;
     if (a !== 'href') fail(`${a}="${v}": a third-party request`);
+    else if (REF_HOSTS.has(host) && refHrefs.has(v)) continue;   // a source in a reference list
     else if (!ALLOW.has(host)) fail(`href="${v}": ${host} is not on the allow-list (the home's client sites, wa.me, Behance, DeviantArt, Instagram)`);
     continue;
   }

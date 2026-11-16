@@ -738,7 +738,7 @@
   },
   "money": {
     "title": "Earning from far away.",
-    "lead": "Getting paid from abroad, choosing accounts, setting your rate, understanding crypto. Six short lessons, and four services to go further.",
+    "lead": "Getting paid from abroad, choosing accounts, setting your rate, understanding crypto: six short lessons. Then a master course on gamification, and four services to go further.",
     "sceneAlt": "Yasser counts a few coins at his night desk while the little calculator prints a receipt; Kūro rests a paw on a coin",
     "svc": {
       "aria": "The four services",
@@ -1018,7 +1018,8 @@
       "lessons": "Lessons",
       "radio": "Radio",
       "studio": "The Studio",
-      "cta": "Book a call"
+      "cta": "Book a call",
+      "course": "Fair play"
     },
     "svc": {
       "kicker": "/ FOUR SERVICES",
@@ -1073,5 +1074,283 @@
       "some": "{n} of 6. Keep going, the lessons are further up.",
       "all": "Six stamps out of six. Respect."
     }
+  },
+  "jeu": {
+    "kicker": "/ MASTER COURSE · GAMIFICATION",
+    "title": "Fair play.",
+    "lead": "Gamification without the smoke: what it is, why it works, what research says, what it earns, when it harms, and how this site uses it. Eight levels, eight stickers, every source.",
+    "keyAlt": "Yasser and Kūro as 1990s video-game characters on a floating island at night; Kūro leaps towards a trail of red seals that leads to the small DOURO·8 console",
+    "hud": "/ EIGHT LEVELS · ONE STICKER PER RIGHT ANSWER",
+    "pass": "stickers",
+    "tabs": "The eight levels",
+    "lv": "LV",
+    "album": "Your sticker book",
+    "tryK": "Go and see:",
+    "tryL": [
+      "the radio",
+      "the calculator",
+      "the night round"
+    ],
+    "all": {
+      "t": "Eight out of eight.",
+      "d": "The sticker sheet is yours, for your messages or your screen.",
+      "go": "Download the sheet"
+    },
+    "cta": {
+      "d": "A site, a course or a brand that plays fair can be built.",
+      "go": "Talk to the Studio →"
+    },
+    "src": {
+      "title": "The course’s sources",
+      "note": "Every figure in this course comes from one of these sources. Where a study is small, or a figure is the company’s own, the level says so."
+    },
+    "st": [
+      "Kūro at the pad",
+      "Yasser, thumbs up",
+      "Kūro on the DOURO·8",
+      "Kūro and the cup",
+      "High five",
+      "Kūro asleep on the cartridge",
+      "Kūro catches the star",
+      "The paw seal"
+    ],
+    "items": [
+      {
+        "t": "What is it, exactly?",
+        "d": "Gamification borrows a few of a game’s springs for an activity that is not a game: a course, an app, a site. The activity stays the real thing; the game lends it its way of making you want to.",
+        "pick": [
+          {
+            "k": "The definition",
+            "v": "“The use of game design elements in non-game contexts”: the definition proposed by Deterding and colleagues in 2011, the one research has used since."
+          },
+          {
+            "k": "What it is not",
+            "v": "It is not building a whole game, and it is not a coat of paint. If you take the game away and nothing useful is left, it was not gamification."
+          },
+          {
+            "k": "The points trap",
+            "v": "In 2010 the game designer Margaret Robertson wrote that the right word for what she was seeing was “pointsification”: points and badges put on anything, without the game."
+          }
+        ],
+        "q": "Which of the three is gamification?",
+        "a": [
+          "A complete educational video game",
+          "A progress bar in an online course",
+          "A mascot in an advert"
+        ],
+        "ok": "Yes. The course is still a course; the bar lends it one of a game’s springs: seeing that you are moving forward."
+      },
+      {
+        "t": "Why it works",
+        "d": "A good game does not hold you with its points. It feeds three needs psychology has long described: to feel capable, to feel free, to feel connected. When an activity feeds them, people come back without being pushed.",
+        "pick": [
+          {
+            "k": "Capable",
+            "v": "Immediate feedback and steps within reach: you can see yourself improve. That is the need for competence."
+          },
+          {
+            "k": "Free",
+            "v": "You choose your path and your pace. What becomes compulsory stops being a game. That is the need for autonomy."
+          },
+          {
+            "k": "Connected",
+            "v": "Playing with others, or belonging to a shared world. That is the need for relatedness."
+          },
+          {
+            "k": "Where it comes from",
+            "v": "From Ryan and Deci’s self-determination theory (2000): three psychological needs, competence, autonomy and relatedness. Satisfied, they strengthen motivation; thwarted, they weaken it."
+          }
+        ],
+        "q": "A progress bar feeds which need first?",
+        "a": [
+          "Feeling capable",
+          "Feeling free",
+          "Feeling connected"
+        ],
+        "ok": "Yes: it shows the road already covered. It is competence made visible."
+      },
+      {
+        "t": "What research says",
+        "d": "Does it really help people learn? In 2020 Sailer and Homner pooled 38 publications, 40 experiments in all. Their answer: yes, effects that are small but real, and not all equally solid.",
+        "pick": [
+          {
+            "k": "Knowledge",
+            "v": "On what is learned: g = 0.49. It is the study’s most stable result, even when only the most rigorous experiments are kept."
+          },
+          {
+            "k": "Motivation",
+            "v": "On motivation: g = 0.36. The authors call it less stable than the first."
+          },
+          {
+            "k": "Behaviour",
+            "v": "On what people actually do: g = 0.25, the smallest of the three, and also less stable."
+          },
+          {
+            "k": "The nuance",
+            "v": "Two wider reviews say it another way. Hamari and colleagues (2014, 24 studies): positive effects that depend greatly on the context and on the people. Koivisto and Hamari (2019, 819 studies): results that lean positive, with a remarkable share of mixed results."
+          }
+        ],
+        "q": "What should you take from these studies?",
+        "a": [
+          "Gamification works every time",
+          "It helps a little, when it is well designed for its audience",
+          "It changes nothing"
+        ],
+        "ok": "Yes: real, modest effects that depend on the context. Nobody serious promises more."
+      },
+      {
+        "t": "The mechanics, one by one",
+        "d": "A game mechanic answers one precise spring. You choose one or two for a goal, not ten for decoration.",
+        "pick": [
+          {
+            "k": "A head start",
+            "v": "Nunes and Drèze (2006): a task of eight steps presented as ten steps with two already done is completed more often, and faster. Starting at 2 of 10 commits you more than starting at 0 of 8."
+          },
+          {
+            "k": "Nearing the goal",
+            "v": "Kivetz and colleagues (2006), in a real café: the closer customers get to the free coffee, the more often they buy. People speed up near the finish line."
+          },
+          {
+            "k": "Badges",
+            "v": "On Stack Overflow, Anderson and colleagues (2013) see activity rise as a badge nears, then fall back. A 2020 study adds a caveat: about 20% of users respond."
+          },
+          {
+            "k": "Streaks",
+            "v": "Duolingo told its shareholders in November 2026 that it runs hundreds of experiments, on notifications and streaks among other things, to bring users back: 64.9 million a day in the third quarter of 2026."
+          },
+          {
+            "k": "Collecting",
+            "v": "Completing a set of things: that is what this course’s eight stickers do. The mechanic is in front of you."
+          }
+        ],
+        "q": "Two loyalty cards both ask for eight car washes. Which one is completed more often?",
+        "a": [
+          "Eight empty boxes",
+          "Ten boxes, two already stamped",
+          "No difference"
+        ],
+        "ok": "Yes. The same effort, but you have already started: that is the endowed progress effect."
+      },
+      {
+        "t": "What it does for a brand",
+        "d": "This level is our reading as practitioners, not a study’s result. A game gives a brand three things a logo alone does not: a voice, a world, and a reason to come back.",
+        "pick": [
+          {
+            "k": "A voice",
+            "v": "Here, Kūro judges your answers in two words. A brand that reacts to what you do has a character; a brand that recites has none."
+          },
+          {
+            "k": "A world",
+            "v": "The night workshop, the radio, the DOURO·8 console, the seals: it all comes from the same place. You recognise the brand without seeing its logo."
+          },
+          {
+            "k": "A ritual",
+            "v": "Stamps, seals, stickers: small ends to reach, which give a reason to finish the page and to come back to it."
+          },
+          {
+            "k": "The limit",
+            "v": "If the game hides the offer, the price or the contact, it works against the brand. The game serves the message; it does not replace it."
+          }
+        ],
+        "q": "What does a brand gain first from being playable?",
+        "a": [
+          "Data about its visitors",
+          "A character people recognise and come back to",
+          "Clicks on its adverts"
+        ],
+        "ok": "Yes. The rest may follow, but character is what brings people back."
+      },
+      {
+        "t": "What it earns: real cases",
+        "d": "Four cases, each with its source and its limit. Two figures come from the companies themselves, and a third from a brand campaign: each time, it is said.",
+        "pick": [
+          {
+            "k": "Starbucks",
+            "v": "The Starbucks Rewards programme has 35.8 million active members in the United States, and 59% of the money taken in the chain’s own U.S. stores comes from its members. Figures published by Starbucks for the quarter ended in late June 2026."
+          },
+          {
+            "k": "Deloitte",
+            "v": "Deloitte added game elements to its executive training platform. Harvard Business Review (2013) reports 37% more users returning to it each week. A company figure, with no comparison group."
+          },
+          {
+            "k": "Foldit",
+            "v": "An online game in which players fold proteins. In 2011 its players produced, in three weeks, a model accurate enough for researchers to determine the structure of an enzyme from a monkey retrovirus. The result was published in Nature Structural & Molecular Biology."
+          },
+          {
+            "k": "The speed camera lottery",
+            "v": "Stockholm, 2010: for three days, drivers who kept to the limit were entered in a lottery. The average speed reported fell from 32 to 25 km/h. A famous case but a fragile one: three days, no control group, and a figure given by the sponsor, Volkswagen."
+          }
+        ],
+        "q": "Which of these cases rests on a scientific publication?",
+        "a": [
+          "Starbucks",
+          "Foldit",
+          "The speed camera lottery"
+        ],
+        "ok": "Yes. The others are company or campaign figures: useful, and to be read as such."
+      },
+      {
+        "t": "When it harms",
+        "d": "A game can also demotivate, push and trap. Knowing where it breaks is part of the craft.",
+        "pick": [
+          {
+            "k": "The promised reward",
+            "v": "Lepper, Greene and Nisbett (1973): children who already liked an activity showed less interest in it after doing it for a promised reward. Those who got a surprise reward, or none, kept their interest."
+          },
+          {
+            "k": "The gamified class",
+            "v": "Hanus and Fox (2015) followed two classes for sixteen weeks. The one with badges and a leaderboard ended less motivated, less satisfied, and with lower exam scores. A small study, but a warning: a leaderboard is not a gift to everyone."
+          },
+          {
+            "k": "Gartner’s forecast",
+            "v": "In November 2012 the analyst firm Gartner forecast that 80% of the gamified applications of the time would miss their business objectives by 2014, mainly because of poor design. It is a forecast, not a measurement."
+          },
+          {
+            "k": "The traps",
+            "v": "In 2022 the U.S. consumer protection agency (FTC) published a report on “dark patterns”, interfaces that push people into choices they would not otherwise have made. The same year the maker of Fortnite agreed to pay 245 million dollars to refund unwanted purchases."
+          }
+        ],
+        "q": "According to Gartner, why were most of these projects going to fail?",
+        "a": [
+          "People do not like to play",
+          "Poor design",
+          "The cost of the technology"
+        ],
+        "ok": "Yes. It is not the game that fails, it is the game badly thought out for its goal."
+      },
+      {
+        "t": "Fair play: our rules, here",
+        "d": "This site plays, and it has given itself rules. Here they are, with the place to check them.",
+        "pick": [
+          {
+            "k": "Nothing starts by itself",
+            "v": "The radio, the clips, Kūro: everything waits for your move, and everything stops with one. On a device set to “reduce motion”, nothing moves."
+          },
+          {
+            "k": "The price does not play",
+            "v": "The DOURO·8 calculator looks like a console, but its receipt adds up lines and its total is their exact sum. The game makes the price readable; it does not dress it up."
+          },
+          {
+            "k": "A drawing, not a discount",
+            "v": "Seven seals open a drawing. Eight levels give eight stickers. No reward here is traded for your address or for a purchase."
+          },
+          {
+            "k": "Nothing leaves here",
+            "v": "Stamps, seals and stickers stay in your browser. They are sent nowhere; there is no account and no leaderboard."
+          },
+          {
+            "k": "No pressure",
+            "v": "No streak to keep, no countdown. You can leave and come back: your progress waits for you."
+          }
+        ],
+        "q": "On this site, what do you get for seven seals?",
+        "a": [
+          "A discount",
+          "A drawing",
+          "A place on a leaderboard"
+        ],
+        "ok": "Yes. That is our rule: we reward with something to look at, never with pressure to buy."
+      }
+    ]
   }
 }

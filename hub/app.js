@@ -1204,12 +1204,15 @@
      the tax share, over the days billed; treso: savings over what a month
      costs beyond what it brings); [data-ls-a] are the answers, the one
      marked "ok" stamps the lesson. Stamps are kept on this device only
-     (localStorage 'numidea-lessons', an array of lesson ids) and sent
-     nowhere. Without scripts every panel is laid out and no question shows
+     (localStorage 'numidea-lessons', an array of lesson ids; a second set
+     of lessons names itself, data-ls="jeu", and keeps 'numidea-lessons-jeu')
+     and sent nowhere. A set may also show what each stamp earned
+     ([data-ls-earn="<id>"] gets is-earned), how far it is (--n on the set,
+     for a bar) and something for the whole set ([data-ls-all]). Without scripts every panel is laid out and no question shows
      (style.css). Nothing here moves on its own; everything answers a press. */
   $$('[data-ls]').forEach(function (ls) {
     var tabs = $$('[data-ls-tab]', ls), panels = $$('[data-ls-panel]', ls), count = $('[data-ls-count]', ls);
-    var KEY = 'numidea-lessons', done = [];
+    var KEY = 'numidea-lessons' + (ls.getAttribute('data-ls') ? '-' + ls.getAttribute('data-ls') : ''), done = [];
     try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { done = []; }
     if (!Array.isArray(done)) done = [];
     var show = function (id, focus) {
@@ -1221,7 +1224,11 @@
         var on = done.indexOf(b.getAttribute('data-ls-tab')) > -1;
         $('[data-ls-stamp]', b).hidden = !on; $('[data-ls-done]', b).hidden = !on;
       });
-      if (count) count.textContent = String(tabs.filter(function (b) { return done.indexOf(b.getAttribute('data-ls-tab')) > -1; }).length);
+      var n = tabs.filter(function (b) { return done.indexOf(b.getAttribute('data-ls-tab')) > -1; }).length;
+      if (count) count.textContent = String(n);
+      $$('[data-ls-earn]', ls).forEach(function (x) { x.classList.toggle('is-earned', done.indexOf(x.getAttribute('data-ls-earn')) > -1); });
+      $$('[data-ls-all]', ls).forEach(function (x) { x.hidden = n < tabs.length; });
+      if (ls.hasAttribute('data-ls-bar')) ls.style.setProperty('--n', String(n));
     };
     tabs.forEach(function (b, i) {
       b.addEventListener('click', function () { show(b.getAttribute('data-ls-tab')); emit('numidea:tab', { id: b.getAttribute('data-ls-tab') }); });
@@ -1449,6 +1456,7 @@
     var targets = $$('.st-case').map(function (el) { return [el, el.id.replace(/^case-/, '')]; });
     var own = $('.st-own'); if (own) targets.push([own, 'whq']);
     var con = $('.st-est'); if (con) targets.push([con, 'console']);
+    var jeu = $('.st-ls--jeu'); if (jeu) targets.push([jeu, 'whq']);   // the course's HUD face, the arcade one
     if (!IO) { targets.forEach(function (t) { load(t[1]); }); return; }
     var fio = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { load(e.target.getAttribute('data-fonts')); fio.unobserve(e.target); } });
