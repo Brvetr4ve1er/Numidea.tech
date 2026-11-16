@@ -591,6 +591,12 @@ translated from it.
   السعر» for a quote, «مفوتر» for billed, «مشاركة اتصال الهاتف» for a phone
   hotspot. Agency and product names stay in Latin letters (ANSSI, NCSC, Zoom,
   Google Meet, BitLocker, FileVault).
+- AR review (2026-11-16, the copy sweep), the Studio `hub/src/i18n/ar.json`:
+  the new titles `ui.title` and `manual.ui.title`, `doors.c.d`, the four
+  `services.items.N.line`, and the whole `start.codex` group («الفهرس», its
+  eleven entries, type tags and link texts). The words chosen: «الفهرس» for
+  the codex, «البنّاء» for the builder, «الختم» for the seal, «المترحّل» for
+  nomad in the title.
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1654,3 +1660,62 @@ last of the six things you asked for.
   in this set; the Studio page already says those things to clients. And the
   six money lessons still have no reward for a full set. Say if you want
   either.
+
+## 31. The copy sweep, first slice: search titles and the world's voice (2026-11-16)
+
+You asked for "an improvement sweep on the website copy" using Google's
+search starter guide, in a writing style that mixes two references: the
+Cyberpunk wiki and the Bloodborne wiki. This is the first slice, on the Studio
+page; I stopped there so you can judge the voice before it goes further.
+
+- **What Google's guide asks, and where the site stood.** I read the guide in
+  full and checked every published page against it. Most of it was already in
+  place: one unique title and description per page, one main heading, a
+  canonical address, alternate languages, alt text on content images, no vague
+  link text, a sitemap. The guide itself says not to chase keywords, word
+  counts or heading order, so I did not.
+- **What changed for search**:
+  - the Studio's title now says what it is and where: "Studio web et logiciel
+    à Bordj Bou Arréridj | Numidea Labs" (it was "Numidea Labs — le studio :
+    sites, applications et marques");
+  - the manual's title now says what a searcher gets: "Manuel du freelance
+    nomade : 22 leçons gratuites | Numidea Labs" (it was "Le manuel — gagner
+    sa vie de loin");
+  - the third door on the Studio still said "six leçons courtes"; it now says
+    twenty-two and names the three sets;
+  - the codex (below) defines the site's own names in plain sight, each with a
+    link whose text says where it leads. That is the guide's "write good link
+    text" and "make it unique", applied to your world.
+- **The voice, written down** (BRAND.md, "The world's voice"). Two registers.
+  A plain one for whatever a client or Google must understand: titles, the
+  offer, prices, terms, answers, buttons. A world one for the rest, which
+  fuses the two references as I read them: short street-tech lines (a tag, a
+  number, things that ship) and the cadence of an object's description (what
+  it is, whose it is, what it does or costs, and a last line that turns).
+  **Nothing is taken from either reference**: no name, no slang, no term.
+  Only the method.
+- **I could not open the Cyberpunk wiki**: it refuses automated readers. I
+  worked from what I know of that voice, not from the pages. The Bloodborne
+  wiki and Google's guide I read directly.
+- **Where the voice was applied**:
+  - the four service cards: each still opens on the plain words a client
+    searches ("Sites vitrines, e-commerce et applications web sur mesure"),
+    then two short lines in the world's register ("Écrits à la main, ligne
+    après ligne. Ce qui est lent ne sort pas de l'atelier.");
+  - **the codex**, new, inside "Commencer ici" on the Studio: eleven entries
+    that open one by one (Yasser, Kūro, the night workshop, the Aperçu, the
+    seal, DOURO·8, the radio, the manual, tr4veler.exe, MERCURY,
+    VOIDSPLUNKER.std). Every fact in them is already printed elsewhere on the
+    site; the wry lines are mine ("Ce qui en sort au matin a été relu par un
+    chat."). Change or cut any of them.
+- **What I left alone, on purpose**: the Studio's headings, the Aperçu, the
+  prices, the questions and the contact block. They already have a voice and
+  they sell; rewriting them for style would cost clarity. Say if you want the
+  voice pushed further there.
+- **Not done yet** (the next slices, on your word): the home page and the
+  price guide (the pages that earn; I would touch only labels and the
+  founder's card), the manual's section heads, the character bible and the
+  brand books (English), and the 404 page.
+- **A note on search**: Google's guide says a change can take from a few
+  hours to several months to show. The titles are the part most likely to be
+  seen first.

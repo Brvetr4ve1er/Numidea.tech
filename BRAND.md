@@ -1892,6 +1892,26 @@ The manual (`/hub/manuel.html`) is the learner's page: the lessons first, which 
 
 A new block goes on the page of the reader it is for. If it is for neither, it is not for the Studio.
 
+## The world's voice (2026-11-16)
+
+The site speaks in two registers, and the rule is where each one goes.
+
+**The plain register** carries everything a client must understand or a search engine must read: page titles and descriptions, the first heading of a page, the offer, prices, terms, the answers to questions, a lesson's facts, a button's label. It uses the words a client would type ("site vitrine", "application web", "prix d'un site web en Algérie"), says the city, and never trades clarity for style. A title is unique to its page, short, and says what the page offers and where the studio is; a description is one or two sentences with the page's most relevant points.
+
+**The world's register** carries the rest: the lines under a card, the codex, the dossiers of the founder's own projects, the Lab, Kūro's asides, the labels in the margins. It fuses two things.
+- *Signal.* Short, present tense, concrete. A tag and a number before an adjective ("/ 02 · THE ENGINE", "2–6 SEMAINES"). The cadence of things that ship: a build, a receipt, a version. Confidence without boasting; one dry joke, never two.
+- *Relic.* The cadence of an object's description: what the thing is; whose it is or who made it; what it does or what it costs; then a last line that turns, a rule, a warning or a dry aside ("Il ne se demande pas ; il se mérite."). It states the function and lets the history show through.
+
+**Rules.**
+1. One fact per sentence, and every fact is true of the site today: an entry may be wry, never invented. If a sentence cannot be checked against the site, it is cut.
+2. Only our own words: the night workshop, the seal, the Aperçu, the receipt, the console, the manual, the radio, Kūro as the gate. No slang, name or term borrowed from another world; no profanity.
+3. The search words stay in the sentence. A service card still says "sites vitrines, e-commerce et applications web sur mesure" before it says anything else.
+4. A link says where it leads ("Chiffrer un projet avec la console"), never "ici" or an arrow alone.
+5. The last line is short. If it explains itself, it is not a last line.
+6. Three languages carry the same register; product and world names stay in Latin letters (DOURO·8, MERCURY, tr4veler.exe, VOIDSPLUNKER.std).
+
+**The codex** (the Studio, in the world's plate) is the register's reference: eleven entries, each a number, a name and a type tag, opening on three or four sentences and one link. A new recurring name on the site gets an entry there, or it is not a name yet.
+
 ## The road book (2026-11-16)
 
 "Le carnet de route" is the third set of lessons on the manual, about working from anywhere. It follows the lessons' rule and adds three of its own. **A calculator starts on examples and says so**: a starting value is never presented as an average or a benchmark, and the result is the visitor's own arithmetic. **Advice names who gives it**: a security or travel tip is attributed in the sentence itself ("l'ANSSI conseille", "le NCSC recommande"), in the source's own strength (an agency that says "when possible" is not made to say "never"), and a vendor's figure is called the vendor's. **Where the answer depends on the reader's country or status, the lesson gives the question to ask and whom to ask**, not a rule. When the set quotes the studio's own terms it quotes them as published on the home page, and says they are terms, not a legal template. Its dress is a passport: a strip of eight stops joined by a dashed route, inked in red as they are earned; brass for the labels, as for a place.

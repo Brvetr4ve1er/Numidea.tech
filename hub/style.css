@@ -1305,6 +1305,28 @@ html.st-stinging{overflow:hidden}
 .st-start__l b{display:inline-block;margin-bottom:8px;padding:3px 10px;background:var(--red);color:var(--cream);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.12em}
 :lang(ar) .st-start__l b{letter-spacing:0}
 .st-start__l > span{display:block}
+/* the codex: the site's own names as entries that open one by one (native <details>, no script). A number, a name, a type
+   tag; inside, three or four sentences and the link to where the thing lives. */
+.st-codex{display:grid;gap:12px;padding-top:20px;border-top:2px dashed rgba(243,236,225,.3)}
+.st-codex .st-label{color:var(--on-dark-2);letter-spacing:.18em}
+.st-codex__lead{margin:0;max-width:72ch;font-size:var(--t-card);line-height:1.55;color:var(--on-dark)}
+.st-codex__g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 14px;align-items:start}
+.st-codex__e{min-width:0;border:2px solid rgba(243,236,225,.28);background:rgba(243,236,225,.04)}
+.st-codex__e[open]{border-color:var(--cream);background:rgba(243,236,225,.1)}
+.st-codex__e summary{display:flex;align-items:center;gap:10px;min-height:48px;padding:6px 12px;cursor:pointer;list-style:none}
+.st-codex__e summary::-webkit-details-marker{display:none}
+.st-codex__e summary::after{content:"+";flex:none;font-family:var(--f-mono);font-size:18px;line-height:1;color:var(--on-dark-2)}
+.st-codex__e[open] summary::after{content:"\2212"}
+.st-codex__n{flex:none;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.08em;color:var(--on-dark-2)}
+.st-codex__name{flex:1 1 auto;min-width:0;font-family:var(--f-disp);font-weight:900;font-size:17px;line-height:1.15;overflow-wrap:anywhere}
+:lang(ar) .st-codex__name:not([dir="ltr"]){line-height:1.4}
+.st-codex__t{flex:none;padding:2px 8px;border:1px solid rgba(243,236,225,.55);font-family:var(--f-mono);font-size:var(--t-label);line-height:1.5;letter-spacing:.1em;color:var(--on-dark)}
+:lang(ar) .st-codex__t,:lang(ar) .st-codex .st-label{letter-spacing:0}
+.st-codex__e p{margin:0;padding:2px 12px 0;font-size:var(--t-small);line-height:1.6;color:var(--on-dark)}
+.st-codex__e a{display:inline-flex;align-items:center;min-height:44px;margin:0 12px 6px;color:var(--cream);font-weight:600;font-size:var(--t-small);text-underline-offset:3px}
+@media (hover:hover){.st-codex__e summary:hover .st-codex__name{text-decoration:underline;text-underline-offset:3px}}
+@media (max-width:1099px){.st-codex__g{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:699px){.st-codex__g{grid-template-columns:minmax(0,1fr)}.st-codex__e summary{padding:6px 10px}}
 .st-start__go{display:flex;flex-wrap:wrap;gap:8px}
 .st-start__go a,.st-proj__see a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:2px solid currentColor;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
 :lang(ar) .st-start__go a,:lang(ar) .st-proj__see a{letter-spacing:0}

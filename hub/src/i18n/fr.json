@@ -1,6 +1,6 @@
 {
   "ui": {
-    "title": "Numidea Labs — le studio : sites, applications et marques",
+    "title": "Studio web et logiciel à Bordj Bou Arréridj | Numidea Labs",
     "desc": "Numidea Labs, studio à Bordj Bou Arréridj : sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu est gratuit.",
     "skip": "Aller au contenu",
     "ogAlt": "Numidea Labs — le studio : une illustration d’un toit à l’aube, un homme avec sa tasse de café et un chat noir"
@@ -106,7 +106,7 @@
       {
         "fam": "THE BUILD",
         "name": "Sites & applications",
-        "line": "Sites vitrines, e-commerce et applications web sur mesure, du front-end au cloud.",
+        "line": "Sites vitrines, e-commerce et applications web sur mesure, du front-end au cloud. Écrits à la main, ligne après ligne. Ce qui est lent ne sort pas de l’atelier.",
         "gets": [
           "Design sur mesure, jamais de template",
           "Rapide, trilingue, arabe en RTL natif",
@@ -119,7 +119,7 @@
       {
         "fam": "THE ENGINE",
         "name": "Automatisation & data",
-        "line": "Scrapers, pipelines de leads, outils internes : les tâches répétitives disparaissent.",
+        "line": "Scrapers, pipelines de leads, outils internes. Des machines discrètes qui font, la nuit, ce que personne ne veut faire le jour. Elles ne demandent ni café ni congé.",
         "gets": [
           "Formulaire → CRM → WhatsApp",
           "Veille marché et prix automatique",
@@ -132,7 +132,7 @@
       {
         "fam": "THE MARK",
         "name": "Marque & design system",
-        "line": "Identité, système visuel, motion : une marque qu’on reconnaît sans lire le nom.",
+        "line": "Identité, système visuel, motion. Un signe, puis les règles qui le tiennent debout. Une marque qu’on reconnaît avant d’avoir lu le nom.",
         "gets": [
           "Logo, couleurs, typo, ton de voix",
           "Charte et composants réutilisables",
@@ -145,7 +145,7 @@
       {
         "fam": "THE MIND",
         "name": "Stratégie & conseil",
-        "line": "Audit de marché, analyse de funnel, veille concurrentielle, avant d’écrire une ligne de code.",
+        "line": "Audit de marché, analyse de funnel, veille concurrentielle. La carte avant le chantier : on lit les chiffres d’abord, le code attend son tour.",
         "gets": [
           "Audit de votre site actuel",
           "Où vous perdez vos clients",
@@ -693,7 +693,7 @@
     "c": {
       "k": "03 · LE MANUEL",
       "t": "J’apprends",
-      "d": "Se faire payer de loin, fixer son tarif, comprendre la crypto : six leçons courtes, quatre services à prix fixe, et la radio de l’atelier.",
+      "d": "Se faire payer de loin, travailler de partout, jouer juste : vingt-deux leçons courtes, quatre services à prix fixe, et la radio de l’atelier.",
       "go": "Ouvrir le manuel"
     },
     "skip": "Aller au monde"
@@ -715,7 +715,76 @@
       "d": "Les autres mondes : tr4veler.exe, MERCURY, et VOIDSPLUNKER.std, le projet qui tient la bible des personnages."
     },
     "see": "Voir aussi",
-    "bible": "La bible (en anglais)"
+    "bible": "La bible (en anglais)",
+    "codex": {
+      "k": "/ LE CODEX · ONZE ENTRÉES",
+      "aria": "Le codex du studio",
+      "lead": "Les noms qui reviennent sur ce site, et ce qu’ils désignent. Ouvrez une entrée ; chacune mène à l’endroit où la chose existe.",
+      "e": {
+        "yasser": {
+          "n": "Yasser",
+          "t": "BÂTISSEUR",
+          "d": "Fondateur de Numidea Labs, à Bordj Bou Arréridj. Il cadre, conçoit, code et livre de la même main ; c’est lui qui répond à vos messages. On le reconnaît à son café, rarement le premier de la journée.",
+          "go": "Le studio et son fondateur"
+        },
+        "kuro": {
+          "n": "Kūro",
+          "t": "CHAT NOIR",
+          "d": "Le chat de l’atelier. Il en est la porte et le contrôle qualité : il juge chaque commit, puis s’endort sur le clavier. Sur le manuel, il vit sur la page et vient s’asseoir près de ce que vous lisez.",
+          "go": "Kūro, vivant, sur le manuel"
+        },
+        "atelier": {
+          "n": "L’atelier de nuit",
+          "t": "LIEU",
+          "d": "L’atelier de deux heures du matin, à Bordj Bou Arréridj. Le jour, on y répond aux messages ; la nuit, on y construit. Ce qui en sort au matin a été relu par un chat.",
+          "go": "Le journal d’atelier"
+        },
+        "apercu": {
+          "n": "L’Aperçu",
+          "t": "OFFRE",
+          "d": "Votre page d’accueil, construite avec votre contenu avant tout paiement. Cinq jours ouvrés ; quatre places par mois. Si c’est non, elle est supprimée et vous ne devez rien.",
+          "go": "L’Aperçu, étape par étape"
+        },
+        "sceau": {
+          "n": "Le sceau",
+          "t": "MARQUE",
+          "d": "Le tampon rouge de l’atelier. Il tombe sur ce qui est fini : une estimation chiffrée, une leçon réussie. Il ne se demande pas ; il se mérite.",
+          "go": "Le voir tomber sur une estimation"
+        },
+        "douro": {
+          "t": "MACHINE",
+          "d": "La petite console qui chiffre un projet, ligne par ligne. Son reçu s’additionne toujours au total affiché : c’est sa seule règle. Elle ne sait pas arrondir pour faire joli.",
+          "go": "Chiffrer un projet avec la console"
+        },
+        "radio": {
+          "n": "La radio",
+          "t": "SIGNAL",
+          "d": "Le poste de l’atelier, sur le manuel. Quatre instrumentaux faits pour les nuits de travail. Elle ne joue jamais seule : il faut l’allumer.",
+          "go": "Allumer la radio de l’atelier"
+        },
+        "manuel": {
+          "n": "Le manuel",
+          "t": "SAVOIR",
+          "d": "Vingt-deux leçons courtes pour gagner sa vie de loin : l’argent, la route, le jeu juste. Les leçons sont gratuites ; les tampons, eux, se gagnent.",
+          "go": "Ouvrir le manuel"
+        },
+        "traveler": {
+          "t": "MONDE",
+          "d": "L’univers du voyageur : un mythe, un nom, des sceaux, des affiches, une voix. C’est un monde de Yasser, pas une commande. On y entre par son codex.",
+          "go": "Le dossier tr4veler.exe"
+        },
+        "mercury": {
+          "t": "FILM",
+          "d": "Un projet de court-métrage animé, en deux actes : du gentleman au sage. Cinq affiches, dix secondes d’animation. Kūro n’y marche pas seul.",
+          "go": "Le dossier MERCURY"
+        },
+        "void": {
+          "t": "CARNET",
+          "d": "Le projet qui tient la bible des personnages : un rig de vingt images, douze visages, six poses. Ce que Yasser et Kūro ont le droit d’être y est écrit.",
+          "go": "La bible des personnages (en anglais)"
+        }
+      }
+    }
   },
   "footer": {
     "line": "Construit à Bordj Bou Arréridj, avec du café noir et du JavaScript.",
@@ -1009,7 +1078,7 @@
   },
   "manual": {
     "ui": {
-      "title": "Le manuel — gagner sa vie de loin | Numidea Labs",
+      "title": "Manuel du freelance nomade : 22 leçons gratuites | Numidea Labs",
       "desc": "Vingt-deux leçons courtes : se faire payer de l’étranger, fixer son tarif, travailler de partout, comprendre la gamification. Quatre services à prix fixe."
     },
     "kicker": "/ LE MANUEL",

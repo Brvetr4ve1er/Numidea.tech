@@ -1,6 +1,6 @@
 {
   "ui": {
-    "title": "Numidea Labs — the studio: sites, apps and brands",
+    "title": "Web and software studio in Bordj Bou Arréridj | Numidea Labs",
     "desc": "Numidea Labs, a studio in Bordj Bou Arréridj: sites, apps, automations and identities, designed and coded by the same hands. The Preview is free.",
     "skip": "Skip to content",
     "ogAlt": "Numidea Labs — the studio: an illustration of a rooftop at dawn, a man with his coffee cup and a black cat"
@@ -106,7 +106,7 @@
       {
         "fam": "THE BUILD",
         "name": "Sites & applications",
-        "line": "Showcase sites, e-commerce and custom web apps, from front-end to cloud.",
+        "line": "Showcase sites, e-commerce and custom web apps, from front-end to cloud. Written by hand, line after line. Nothing slow leaves the workshop.",
         "gets": [
           "Custom design, never a template",
           "Fast, trilingual, native RTL Arabic",
@@ -119,7 +119,7 @@
       {
         "fam": "THE ENGINE",
         "name": "Automation & data",
-        "line": "Scrapers, lead pipelines, internal tools: the repetitive work disappears.",
+        "line": "Scrapers, lead pipelines, internal tools. Quiet machines that do, at night, what nobody wants to do by day. They ask for no coffee and no leave.",
         "gets": [
           "Form → CRM → WhatsApp",
           "Automatic market and price watch",
@@ -132,7 +132,7 @@
       {
         "fam": "THE MARK",
         "name": "Brand & design systems",
-        "line": "Identity, visual system, motion: a brand people recognise without reading the name.",
+        "line": "Identity, visual system, motion. A sign, then the rules that keep it standing. A brand people recognise before they have read the name.",
         "gets": [
           "Logo, colour, type, tone of voice",
           "Guidelines and reusable components",
@@ -145,7 +145,7 @@
       {
         "fam": "THE MIND",
         "name": "Strategy & consulting",
-        "line": "Market audits, funnel analysis, competitive intel, before a single line of code.",
+        "line": "Market audits, funnel analysis, competitive intel. The map before the building site: we read the numbers first, the code waits its turn.",
         "gets": [
           "Audit of your current site",
           "Where you lose your clients",
@@ -693,7 +693,7 @@
     "c": {
       "k": "03 · THE MANUAL",
       "t": "I’m learning",
-      "d": "Getting paid from far away, setting your rate, understanding crypto: six short lessons, four fixed-price services, and the workshop radio.",
+      "d": "Getting paid from far away, working from anywhere, playing fair: twenty-two short lessons, four fixed-price services, and the workshop radio.",
       "go": "Open the manual"
     },
     "skip": "Skip to the world"
@@ -715,7 +715,76 @@
       "d": "The other worlds: tr4veler.exe, MERCURY, and VOIDSPLUNKER.std, the project that holds the character bible."
     },
     "see": "See also",
-    "bible": "The bible (in English)"
+    "bible": "The bible (in English)",
+    "codex": {
+      "k": "/ THE CODEX · ELEVEN ENTRIES",
+      "aria": "The studio’s codex",
+      "lead": "The names that keep coming back on this site, and what they stand for. Open an entry; each one leads to the place where the thing lives.",
+      "e": {
+        "yasser": {
+          "n": "Yasser",
+          "t": "BUILDER",
+          "d": "Founder of Numidea Labs, in Bordj Bou Arréridj. He scopes, designs, codes and ships with the same hands; he is the one who answers your messages. You will know him by his coffee, rarely the first of the day.",
+          "go": "The studio and its founder"
+        },
+        "kuro": {
+          "n": "Kūro",
+          "t": "BLACK CAT",
+          "d": "The workshop’s cat. He is its gate and its quality check: he judges every commit, then falls asleep on the keyboard. On the manual he lives on the page and comes to sit by whatever you are reading.",
+          "go": "Kūro, alive, on the manual"
+        },
+        "atelier": {
+          "n": "The night workshop",
+          "t": "PLACE",
+          "d": "The workshop at two in the morning, in Bordj Bou Arréridj. By day, messages get answered there; by night, things get built. What leaves it in the morning has been proofread by a cat.",
+          "go": "The workshop diary"
+        },
+        "apercu": {
+          "n": "The Preview",
+          "t": "OFFER",
+          "d": "Your homepage, built with your content before any payment. Five working days; four places a month. If it is a no, it is deleted and you owe nothing.",
+          "go": "The Preview, step by step"
+        },
+        "sceau": {
+          "n": "The seal",
+          "t": "MARK",
+          "d": "The workshop’s red stamp. It lands on what is finished: a costed estimate, a lesson answered right. It is not asked for; it is earned.",
+          "go": "Watch it land on an estimate"
+        },
+        "douro": {
+          "t": "MACHINE",
+          "d": "The small console that prices a project, line by line. Its receipt always adds up to the total it shows: that is its one rule. It does not know how to round a figure to make it pretty.",
+          "go": "Price a project on the console"
+        },
+        "radio": {
+          "n": "The radio",
+          "t": "SIGNAL",
+          "d": "The workshop’s set, on the manual. Four instrumentals made for working nights. It never plays by itself: you have to switch it on.",
+          "go": "Switch on the workshop radio"
+        },
+        "manuel": {
+          "n": "The manual",
+          "t": "KNOWLEDGE",
+          "d": "Twenty-two short lessons on earning a living from far away: money, the road, fair play. The lessons are free; the stamps have to be earned.",
+          "go": "Open the manual"
+        },
+        "traveler": {
+          "t": "WORLD",
+          "d": "The traveller’s universe: a myth, a name, seals, posters, a voice. It is a world of Yasser’s, not a commission. You enter it through its codex.",
+          "go": "The tr4veler.exe file"
+        },
+        "mercury": {
+          "t": "FILM",
+          "d": "An animated short film project, in two acts: from gentleman to sage. Five posters, ten seconds of animation. Kūro does not walk it alone.",
+          "go": "The MERCURY file"
+        },
+        "void": {
+          "t": "NOTEBOOK",
+          "d": "The project that holds the character bible: a rig of twenty frames, twelve faces, six poses. What Yasser and Kūro are allowed to be is written there.",
+          "go": "The character bible (in English)"
+        }
+      }
+    }
   },
   "footer": {
     "line": "Built in Bordj Bou Arréridj, with black coffee and JavaScript.",
@@ -1009,7 +1078,7 @@
   },
   "manual": {
     "ui": {
-      "title": "The manual — earning from far away | Numidea Labs",
+      "title": "The nomad freelancer’s manual: 22 free lessons | Numidea Labs",
       "desc": "Twenty-two short lessons: getting paid from abroad, setting your rate, working from anywhere, understanding gamification. Four fixed-price services."
     },
     "kicker": "/ THE MANUAL",
