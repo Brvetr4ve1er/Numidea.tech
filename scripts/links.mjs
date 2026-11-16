@@ -85,6 +85,8 @@ const BLOCKS = {
   'www.behance.net/gallery/': 'gallery pages answer 403 with an empty noindex page, a gallery that does not exist too (profile pages answer 200 or 404 and stay checked)',
   'clutch.co/': 'Cloudflare challenge: 403 "Just a moment…" (cf-mitigated: challenge)',
   '*.tumblr.com/': '403 "Checking your browser…", a JavaScript check in front of every blog',
+  'www.ftc.gov/': 'answers 404 to this script for every page, its home page too (seen 2026-11-16): a wall, not a missing page',
+  'www.sec.gov/': 'answers 403 to a client that does not declare a contact in its user agent (the SEC’s fair-access rule)',
   'www.bank-of-algeria.dz/': 'serves its certificate without the DigiCert intermediate: browsers complete the chain, Node and curl refuse it ("unable to verify the first certificate")',
 };
 // hosts that answer 200 whatever the name, so a pass shows only that the host is up
@@ -187,7 +189,10 @@ await Promise.all(Array.from({ length: POOL }, async () => {
     if (i < 0) { await sleep(50); continue; }
     const [u] = queue.splice(i, 1);
     busy.set(host(u), (busy.get(host(u)) || 0) + 1);
-    results.set(u, await get(u, { retries: kind(u) === 'blocked' ? 0 : 2 }));
+    // a DOI is asked of the resolver itself (its handle record: 200 if the DOI exists, 404 if not), not of the publisher it
+    // forwards to: most publishers answer 403 to a script, and a wall there says nothing about the citation
+    const doi = /^https:\/\/doi\.org\/(10\.[^?#]+)$/.exec(u);
+    results.set(u, await get(doi ? 'https://doi.org/api/handles/' + doi[1] : u, { retries: kind(u) === 'blocked' ? 0 : 2 }));
     busy.set(host(u), busy.get(host(u)) - 1);
   }
 }));

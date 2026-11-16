@@ -1934,7 +1934,7 @@ html.is-playing{scroll-behavior:auto}
 @media (min-width:900px){.st-jeu__key img{aspect-ratio:21 / 9}}
 .st-ls--jeu{--brass:#D2B26A}
 .st-ls--jeu .st-ls__head{align-items:center;margin-bottom:14px}
-.st-jeu__hud{margin:0;min-width:0;font-family:"Press Start 2P",var(--f-mono);font-size:10px;line-height:1.7;letter-spacing:.04em;color:var(--brass)}
+.st-jeu__hud{margin:0;min-width:0;font-family:"Press Start 2P",var(--f-mono);font-size:12px;line-height:1.7;letter-spacing:.02em;color:var(--brass)}
 :lang(ar) .st-jeu__hud{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:0}
 .st-ls--jeu .st-ls__pass b{color:var(--brass)}
 .st-jeu__xp{height:14px;margin:0 0 18px;padding:2px;border:2px solid var(--cream);background:rgba(243,236,225,.08)}
@@ -1982,8 +1982,9 @@ html.is-playing{scroll-behavior:auto}
   .st-jeu__album{grid-template-columns:repeat(4,minmax(0,1fr));padding:10px 8px;gap:8px}
   .st-ls--jeu .st-ls__tabs{gap:6px}
   .st-ls--jeu .st-ls__tab{padding:4px 4px 8px}
-  .st-ls--jeu .st-ls__t{font-size:11px;line-height:1.2}
-  .st-jeu__hud{font-size:8px}
+  .st-ls--jeu .st-ls__t{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .st-ls--jeu .st-ls__n{font-size:10px}
+  .st-jeu__hud{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em}
   .st-jeu__bars li{grid-template-columns:minmax(64px,96px) minmax(0,1fr) auto;gap:6px}
   .st-jeu__src ol{padding-inline-start:32px}
   .st-jeu__all .st-btn{flex:1 1 100%}

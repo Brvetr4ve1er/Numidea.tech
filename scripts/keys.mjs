@@ -894,7 +894,8 @@ async function hits(p) {
   await p.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
   const r = await p.evaluate(async () => {
     const out = [];
-    const els = [...document.querySelectorAll('a[href],button')].filter((e) => e.offsetParent !== null && !e.closest('dialog'));
+    // (a control inside a closed <details> is not shown either, though it keeps a box: only its <summary> is there to press)
+    const els = [...document.querySelectorAll('a[href],button')].filter((e) => e.offsetParent !== null && !e.closest('dialog') && !(e.closest('details:not([open])') && !e.closest('summary')));
     for (const e of els) {
       // a control inside a track is reached as the keyboard reaches it: by focus, which brings its tile whole to the track's snap point
       if (e.closest('[data-track]')) e.focus({ preventScroll: true });
