@@ -1892,6 +1892,10 @@ The manual (`/hub/manuel.html`) is the learner's page: the lessons first, which 
 
 A new block goes on the page of the reader it is for. If it is for neither, it is not for the Studio.
 
+## Kūro on the page (2026-11-16)
+
+On the manual Kūro is alive, and the rule that nothing loops still holds: he moves only in answer to the visitor (a scroll that ends, a lesson picked or answered, the radio, a card pointed at, or the keys while he is being played), one short trip at a time, and then he sits still. He never covers a word or a control: he sits only where the page's own layout leaves air, and his layer takes no click. He goes from one place to a far one through "the door" (he sinks behind an edge and rises behind another): he is the gate, as the bible says. His lines are short verdicts, never sentences ("Tamponné.", "Non.", "Plus fort."). With reduced motion he is the sleeping picture on the radio and nothing else. A reward on this site is a drawing, never a discount and never something asked back from the visitor.
+
 ## Sound (2026-11-16)
 
 The site has one source of sound, the workshop radio on the manual page, and it is silent until a visitor presses play: nothing is fetched before, nothing starts by itself, on any page, ever. Once on, it is always one press from silence (the shelf, or the small control at the foot of the screen), and its volume is the visitor's. Interface sounds, if any are added later, belong to the same switch: with the radio off the page makes no sound at all.

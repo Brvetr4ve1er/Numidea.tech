@@ -36,6 +36,8 @@
   var now = function () { return performance.now(); };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  // what happened, for whoever listens (hub/life.js: Kūro answers a lesson picked or answered, the radio turned on or off)
+  var emit = function (name, detail) { try { document.dispatchEvent(new CustomEvent(name, { detail: detail })); } catch (e) {} };
   var once = function (el, threshold, fn, opts) {
     if (!el) return;
     if (!IO) { fn(); return; }
@@ -1222,13 +1224,13 @@
       if (count) count.textContent = String(tabs.filter(function (b) { return done.indexOf(b.getAttribute('data-ls-tab')) > -1; }).length);
     };
     tabs.forEach(function (b, i) {
-      b.addEventListener('click', function () { show(b.getAttribute('data-ls-tab')); });
+      b.addEventListener('click', function () { show(b.getAttribute('data-ls-tab')); emit('numidea:tab', { id: b.getAttribute('data-ls-tab') }); });
       b.addEventListener('keydown', function (e) {
         var rtl = root.getAttribute('dir') === 'rtl', n = tabs.length;
         var to = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1
           : e.key === 'ArrowRight' ? i + (rtl ? -1 : 1) : e.key === 'ArrowLeft' ? i + (rtl ? 1 : -1) : null;
         if (to === null) return;
-        e.preventDefault(); show(tabs[(to + n) % n].getAttribute('data-ls-tab'), true);
+        e.preventDefault(); show(tabs[(to + n) % n].getAttribute('data-ls-tab'), true); emit('numidea:tab', { id: tabs[(to + n) % n].getAttribute('data-ls-tab') });
       });
     });
     panels.forEach(function (p) {
@@ -1271,6 +1273,7 @@
           as.forEach(function (x) { x.classList.remove('is-right', 'is-wrong'); x.setAttribute('aria-pressed', String(x === a)); });
           a.classList.add(right ? 'is-right' : 'is-wrong');
           ok.hidden = !right; no.hidden = right;
+          emit('numidea:lesson', { id: id, right: right, first: right && done.indexOf(id) < 0 });
           if (right && done.indexOf(id) < 0) {
             done.push(id);
             try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
@@ -1368,6 +1371,7 @@
       });
       var key = playing ? 'radio.onair' : started ? 'radio.paused' : 'radio.idle';
       stateEl.setAttribute('data-i18n', key); set(stateEl, t(key));
+      if (box.classList.contains('is-on') !== playing) emit('numidea:radio', { on: playing });
       box.classList.toggle('is-on', playing);
       if (chip) chip.hidden = !(started && !seen);
     };

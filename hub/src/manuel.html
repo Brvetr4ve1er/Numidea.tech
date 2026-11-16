@@ -79,6 +79,30 @@
   </div>
 </section>
 
+<!-- ============================== THE NIGHT ROUND ==============================
+     Kūro lives on this page (hub/life.js): he comes to a perch in view when
+     a scroll ends, answers a lesson and the radio, and can be played (the
+     keys, or the pad at the screen's foot): seven seals, then the night
+     drawing (#prize). The button is disabled until the script is ready;
+     without scripts the strip is not shown, and with reduced motion it says
+     the game is off (style.css). -->
+<section class="st-game" id="game" aria-labelledby="game-h" data-game>
+  <div class="st-wrap"><div class="st-game__in">
+    <div class="st-game__copy">
+      <p class="st-label st-label--red" data-i18n="life.kicker"></p>
+      <h2 class="st-game__h" id="game-h" data-i18n="life.title"></h2>
+      <p class="st-game__d" data-i18n="life.lead"></p>
+    </div>
+    <div class="st-game__act">
+      <p class="st-game__count"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">印</span><b data-game-count>0</b><span aria-hidden="true">&nbsp;/&nbsp;7</span><span class="st-sr"> / 7</span> <span data-i18n="life.seals"></span></p>
+      <button type="button" class="st-btn st-btn--primary" data-game-play aria-pressed="false" disabled data-i18n="life.play"></button>
+      <button type="button" class="st-btn st-btn--ghost" data-game-prize hidden data-i18n="life.again"></button>
+      <p class="st-game__keys st-label" data-i18n="life.keys"></p>
+      <p class="st-game__rm" data-i18n="life.rm"></p>
+    </div>
+  </div></div>
+</section>
+
 <!-- ============================== LESSONS ==============================
      Six lessons as tabs (hub/app.js 13): one idea, one gesture, one
      question; a right answer stamps the lesson, kept on the visitor's device
@@ -469,7 +493,38 @@
 </div>
 <script type="application/json" id="hub-radio">{{radio}}</script>
 
+<!-- Kūro's layer (hub/life.js): it takes no click and says nothing to assistive tech; the sheet is the stylesheet's -->
+<div class="st-life" data-life aria-hidden="true" hidden>
+  <span class="st-kuro" data-life-kuro><i></i></span>
+  <span class="st-say" data-life-say></span>
+  <span class="st-say st-say--y" data-life-say-y></span>
+</div>
+<!-- the pad, shown while he is played: hold left or right, press the others -->
+<div class="st-pad" data-pad role="group" tabindex="-1" data-i18n-aria="life.pad" hidden>
+  <p class="st-pad__count"><span aria-hidden="true" lang="ja">印</span> <b data-game-count>0</b><span aria-hidden="true">&nbsp;/&nbsp;7</span></p>
+  <div class="st-pad__keys">
+    <button type="button" class="st-pad__k" data-pad-k="left" data-i18n-aria="life.left"><span aria-hidden="true">◀</span></button>
+    <button type="button" class="st-pad__k" data-pad-k="right" data-i18n-aria="life.right"><span aria-hidden="true">▶</span></button>
+    <button type="button" class="st-pad__k" data-pad-k="up" data-i18n-aria="life.up"><span aria-hidden="true">▲</span></button>
+    <button type="button" class="st-pad__k" data-pad-k="down" data-i18n-aria="life.down"><span aria-hidden="true">▼</span></button>
+    <button type="button" class="st-pad__k st-pad__k--a" data-pad-k="jump" data-i18n-aria="life.jump"><span aria-hidden="true">A</span></button>
+  </div>
+  <button type="button" class="st-pad__x" data-pad-exit data-i18n-aria="life.stop"><span aria-hidden="true">✕</span></button>
+</div>
+<dialog class="st-prize" id="prize" aria-labelledby="prize-h">
+  <figure class="st-prize__fig">
+    <img src="img/studio/life/night.webp" srcset="img/studio/life/night-800.webp 800w, img/studio/life/night.webp 1600w" sizes="(max-width:900px) 94vw, 860px" data-i18n-alt="life.prize.alt" loading="lazy" decoding="async">
+    <figcaption>
+      <p class="st-label st-label--red" data-i18n="life.prize.k"></p>
+      <h2 class="st-prize__h" id="prize-h" data-i18n="life.prize.title"></h2>
+      <p class="st-prize__d" data-i18n="life.prize.line"></p>
+    </figcaption>
+  </figure>
+  <button type="button" class="st-prize__x" data-prize-close data-i18n-aria="life.prize.close"><span aria-hidden="true">✕</span></button>
+</dialog>
+
 <script src="app.js?v={{stamp}}" defer></script>
+<script src="life.js?v={{stamp}}" defer></script>
 <script src="../assets/carry.js?v={{stamp}}" defer></script>
 </body>
 </html>

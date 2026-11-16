@@ -1032,5 +1032,46 @@
       "preview": "See the free Preview",
       "go": "Go to the Studio →"
     }
+  },
+  "life": {
+    "kicker": "/ THE NIGHT ROUND",
+    "title": "Kūro lives on this page.",
+    "lead": "He joins you while you read, judges your answers and falls asleep on the radio. Take the pad: seven seals are hidden between the radio, the lessons and the services. Find them all and a drawing is waiting.",
+    "seals": "seals",
+    "play": "Play with Kūro",
+    "again": "See the drawing again",
+    "keys": "← → walk · ↑ leap · ↓ drop · Space hop · Esc quit",
+    "rm": "Your device asks for less motion: Kūro sleeps on the radio and the game is off.",
+    "pad": "Kūro’s pad",
+    "left": "Walk left",
+    "right": "Walk right",
+    "up": "Leap higher",
+    "down": "Drop down",
+    "jump": "Hop",
+    "stop": "Quit the game",
+    "prize": {
+      "k": "/ SEVEN SEALS OUT OF SEVEN",
+      "title": "The night drawing.",
+      "line": "Four in the morning, on the workshop roof. Kūro keeps the seventh seal, Yasser finishes his coffee, and the town is still asleep.",
+      "alt": "Yasser sitting on the edge of the workshop roof at four in the morning, a coffee in his hand; beside him Kūro holds a red seal in his mouth, and the small console glows like a lantern",
+      "close": "Close the drawing"
+    },
+    "k": {
+      "tab": "Good pick.",
+      "right": "Stamped.|Kūro approves.|Correct.",
+      "again": "Already stamped.",
+      "wrong": "No.|Read it again.|Close. No.",
+      "radio": "Louder.",
+      "card": "Fixed price. I checked.",
+      "seal": "{n} of 7.",
+      "all": "Seven. Look.",
+      "play": "The pad is yours.",
+      "done": "You have them all. Take a walk."
+    },
+    "y": {
+      "none": "No stamp yet? The lessons are further up.",
+      "some": "{n} of 6. Keep going, the lessons are further up.",
+      "all": "Six stamps out of six. Respect."
+    }
   }
 }

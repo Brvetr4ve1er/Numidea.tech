@@ -572,6 +572,10 @@ translated from it.
   `nav.manual` («الدليل»), `proof.lead`, `pricing.mk.why`, `motion.line`,
   `motion.reel.price`, `money.kit.go`, and the whole `manual` group (the new
   page's title, its menu, «لنذهب أبعد، معاً.», «الاستوديو يبنيه.»).
+- AR review (2026-11-16, Kūro on the manual), the Studio `hub/src/i18n/ar.json`,
+  new: the whole `life` group («جولة الليل», «كورو يسكن هذه الصفحة.», the
+  pad's labels, «رسم الليل.», Kūro's short lines under `life.k` and Yasser's
+  under `life.y`).
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1429,4 +1433,56 @@ find, and confirmed that Search Console verified `numedialab.dev`.
   set it up.
 - **Elsewhere:** the links on Behance, Instagram and DeviantArt, and any link
   on a client's site, are yours to point at the new address.
+
+## 28. Kūro lives on the manual, and can be played (2026-11-16)
+
+Step 5 of "The living Studio": you asked for Yasser and Kūro living on the
+site "like Mario on a 2D plane". This first version is Kūro's, on the manual
+page, where you agreed the characters go.
+
+- **What a visitor sees without doing anything special.** Kūro sleeps on the
+  radio. When a scroll ends and he is out of sight, he comes to something in
+  view (the top edge of the scene, the radio, the night card, the lessons'
+  plate, the line above a lesson's question, a service card, the kit, the
+  last band, the footer) and sits. He goes to the lesson you pick, taps a paw
+  at a wrong answer, hops at a right one, sits on the radio when it starts
+  and sleeps when it stops, and goes to a service card a mouse rests on. Each
+  trip lasts a few seconds and then he is still: nothing on the page moves by
+  itself.
+- **"Jouer avec Kūro".** A night card under the radio, "La ronde de nuit".
+  The arrow keys (or a pad at the foot of the screen on a phone) walk him;
+  Up leaps to the thing above, Down drops to the thing below, Space hops.
+  Seven red seals wait on the page; all seven open "Le dessin de nuit", a new
+  drawing of Yasser and Kūro on the workshop roof at four in the morning.
+  Seals are kept in the visitor's browser only (`numidea-seals`).
+- **Yasser.** He does not walk. When Kūro reaches the last band, where Yasser
+  stands, a bubble from Yasser counts the visitor's lesson stamps and points
+  to the lessons. A walk for Yasser was not tried: his likeness is harder to
+  hold across frames than a black cat's, and I preferred one character done
+  well. Say if you want it tried.
+- **How the art was made.** One clean side view of Kūro, drawn from your
+  existing Kūro drawings, then five short clips of that same drawing (walk,
+  sit, jump, paw, sleep). I cut 47 frames out of them into one sheet
+  (`hub/img/studio/life/kuro.webp`) and gave him a cream sticker edge so he
+  reads on paper, on the navy and on ink. Please look at him closely: he is
+  smoother and rounder than your ink drawings. Spent on this step: 960
+  credits (2,865 of the 15,000 so far).
+- **Lines I wrote for them, yours to change** (`hub/src/i18n/fr.json`, group
+  `life`): Kūro's "Bon choix.", "Tamponné.", "Kūro valide.", "Non.",
+  "Relis.", "Plus fort.", "Prix fixe. J'ai vérifié.", "Sept. Regarde.";
+  Yasser's "Pas encore de tampon ? Les leçons sont plus haut." and "Six
+  tampons sur six. Respect."; the card's title "Kūro habite cette page." and
+  the drawing's caption.
+- **Reduced motion and no scripts.** A visitor whose device asks for less
+  motion gets none of this: the sleeping picture stays on the radio and the
+  card says the game is off. That excludes those visitors from the game; it
+  is the careful choice, and yours to revisit. Without scripts the card is
+  not shown.
+- **Two small layout changes for his sake:** 86 px between the services'
+  heading and its four cards on a wide screen (it was 44), and on a phone
+  72 px above the line over each lesson's question. That air is where he
+  sits.
+- **Still open from the review:** what a visitor gets for six lesson stamps
+  (the seals have their drawing; the stamps have nothing yet), and a way to
+  follow the studio from this page.
 

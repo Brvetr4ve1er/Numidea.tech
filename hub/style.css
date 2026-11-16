@@ -1831,3 +1831,93 @@ main:focus{outline:none}
 @media (max-width:679px){
   .st-manual .st-rchip{bottom:calc(14px + env(safe-area-inset-bottom))}
 }
+
+/* ---------------- the night round: Kūro lives on the manual (hub/life.js, 2026-11-16) ----------------
+   The strip is a night card with room above it: its top edge is where a
+   game starts. Kūro is one sprite on a layer that takes no click; his
+   sheet (8 x 6 cells, a cream sticker edge baked in so he reads on paper,
+   on the navy and on ink) is fetched when the layer is first shown.
+   Nothing here is an animation of its own: the script steps the cells and
+   moves him while the visitor's event lasts. The one keyframe is a seal's
+   pop when it is taken. */
+.st-game{padding-block:clamp(88px,9vw,116px) clamp(10px,2vw,24px);border-top:2px solid var(--ink)}
+html:not(.js) .st-game{display:none}
+.st-game__in{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:22px 44px;padding:clamp(18px,2.4vw,30px);background:#0F1E30;color:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-game__copy{flex:1 1 340px;display:flex;flex-direction:column;gap:10px;min-width:0;max-width:44em}
+.st-game__copy p,.st-game__act p{margin:0}
+.st-game .st-label{color:var(--on-dark-2)}
+.st-game__h{margin:0;font-family:var(--f-disp);font-weight:900;font-size:clamp(26px,3vw,40px);line-height:1;text-transform:uppercase;letter-spacing:-.015em}
+:lang(ar) .st-game__h{text-transform:none;letter-spacing:0;line-height:1.25}
+.st-game__d{font-size:var(--t-card);line-height:1.55;color:var(--on-dark)}
+.st-game__act{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
+.st-game__count{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.06em;color:var(--on-dark)}
+.st-game__count b{font-family:var(--f-disp);font-weight:900;font-size:30px;line-height:1;color:var(--cream)}
+.st-game .st-btn--primary{background:var(--red);box-shadow:5px 5px 0 var(--cream)}
+.st-game .st-btn--primary[aria-pressed="true"]{background:var(--cream);color:var(--ink);box-shadow:5px 5px 0 var(--red)}
+.st-game .st-btn:disabled{opacity:.6;cursor:default}
+.st-game .st-btn--ghost{border-color:var(--cream);color:var(--cream)}
+.st-game .st-btn[hidden]{display:none}
+.st-game__keys{letter-spacing:.04em;text-transform:none}
+.st-game__rm{display:none;max-width:30em;font-size:var(--t-small);line-height:1.5;color:var(--on-dark)}
+.st-game :focus-visible{outline-color:var(--cream)}
+@media (hover:none){.st-game__keys{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .st-game__act > :not(.st-game__rm){display:none}
+  .st-game__rm{display:block}
+}
+.st-life{position:absolute;top:0;left:0;width:0;height:0;z-index:40;pointer-events:none}
+.st-life[hidden]{display:none}
+.st-kuro{position:absolute;top:0;left:0;width:130px;height:109px;overflow:hidden;will-change:transform}
+.st-kuro i{display:block;width:100%;height:100%;background:url("img/studio/life/kuro.webp") 0 0 / 800% 600% no-repeat;transform-origin:53.85% 50%}
+.has-life .st-radio__kuro{visibility:hidden}
+/* air for him to sit in, laid out before the first paint (the js class is the head script's) so nothing shifts when he wakes:
+   where a lesson's text runs the full width, above the line over its question; on a wide screen, above the four cards */
+@media (prefers-reduced-motion:no-preference) and (max-width:899px){html.js .st-manual .st-ls__q{margin-top:72px}}
+@media (min-width:900px){.st-manual #services .st-head{margin-bottom:86px}}
+.st-say{position:absolute;top:0;left:0;padding:6px 10px 7px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-mono);font-weight:600;font-size:13px;line-height:1.3;white-space:nowrap;opacity:0;transition:opacity .16s}
+.st-say--y{white-space:normal;width:max-content;max-width:230px}
+.st-say.is-on{opacity:1}
+.st-sealt{position:absolute;top:0;left:0;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--red);color:var(--cream);border:2px solid var(--cream);box-shadow:0 0 0 2px var(--ink);font-family:var(--f-jp);font-weight:900;font-size:17px;font-style:normal;line-height:1}
+.st-sealt[hidden]{display:none}
+.st-sealt.is-got{animation:st-seal-got .42s var(--ease) forwards}
+@keyframes st-seal-got{40%{scale:1.5;opacity:1}100%{scale:.2;opacity:0}}
+/* while he is played the page does not smooth its own scroll (the script keeps him in the middle band), and the radio's control stands above the pad */
+html.is-playing{scroll-behavior:auto}
+.is-playing .st-rchip{bottom:calc(78px + env(safe-area-inset-bottom))}
+.st-pad{position:fixed;inset-inline:0;bottom:0;z-index:46;display:flex;align-items:center;justify-content:center;gap:10px 18px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(15,30,48,.97);color:var(--cream);border-top:2px solid var(--ink)}
+.st-pad[hidden]{display:none}
+.st-pad:focus{outline:none}
+.st-pad__count{margin:0;display:flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:var(--t-mono);white-space:nowrap}
+.st-pad__count b{font-family:var(--f-disp);font-weight:900;font-size:22px;line-height:1}
+.st-pad__keys{display:flex;gap:6px;direction:ltr}
+.st-pad__k,.st-pad__x{display:grid;place-items:center;flex:none;width:48px;height:48px;padding:0;border:2px solid var(--cream);background:var(--teal);color:var(--cream);font-family:var(--f-mono);font-weight:700;font-size:16px;line-height:1;cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none}
+.st-pad__k--a{border-radius:50%;background:var(--red);margin-inline-start:8px}
+.st-pad__x{background:var(--ink)}
+.st-pad__k:active{transform:translateY(2px)}
+.st-pad :focus-visible{outline:3px solid var(--cream);outline-offset:2px}
+.st-prize{width:min(900px,calc(100vw - 28px));max-height:calc(100vh - 28px);padding:0;border:2px solid var(--ink);background:#0F1E30;color:var(--cream);box-shadow:8px 8px 0 var(--red);overflow:auto}
+.st-prize::backdrop{background:rgba(15,30,48,.84)}
+.st-prize__fig{margin:0}
+.st-prize__fig img{display:block;width:100%;height:auto}
+.st-prize figcaption{display:flex;flex-direction:column;gap:8px;padding:18px 20px 22px}
+.st-prize figcaption p{margin:0}
+.st-prize .st-label{color:var(--on-dark-2)}
+.st-prize__h{margin:0;font-family:var(--f-disp);font-weight:900;font-size:clamp(24px,3vw,36px);line-height:1;text-transform:uppercase;letter-spacing:-.01em}
+:lang(ar) .st-prize__h{text-transform:none;letter-spacing:0;line-height:1.25}
+.st-prize__d{font-size:var(--t-card);line-height:1.55;color:var(--on-dark)}
+.st-prize__x{position:absolute;top:10px;inset-inline-end:10px;display:grid;place-items:center;width:44px;height:44px;padding:0;border:2px solid var(--cream);background:var(--ink);color:var(--cream);font-size:18px;line-height:1;cursor:pointer}
+.st-prize :focus-visible{outline:3px solid var(--cream);outline-offset:2px}
+@media (max-width:699px){
+  .st-kuro{width:104px;height:87px}
+  .st-game{padding-top:84px}
+  .st-game__act{flex:1 1 100%}
+  .st-game__act .st-btn{align-self:stretch}
+}
+@media (max-width:399px){
+  .st-pad{gap:6px 8px;padding-inline:6px}
+  .st-pad__count{display:none}
+  .st-pad__k,.st-pad__x{width:44px;height:44px}
+  .st-pad__keys{gap:4px}
+  .st-pad__k--a{margin-inline-start:4px}
+}
+@media (max-width:299px){.st-pad__k,.st-pad__x{width:40px;height:40px}}

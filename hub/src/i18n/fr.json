@@ -1032,5 +1032,46 @@
       "preview": "Découvrir l’Aperçu gratuit",
       "go": "Aller au Studio →"
     }
+  },
+  "life": {
+    "kicker": "/ LA RONDE DE NUIT",
+    "title": "Kūro habite cette page.",
+    "lead": "Il vous rejoint quand vous lisez, il juge vos réponses, il s’endort sur la radio. Prenez la manette : sept sceaux sont cachés entre la radio, les leçons et les services. Trouvez-les tous, un dessin vous attend.",
+    "seals": "sceaux",
+    "play": "Jouer avec Kūro",
+    "again": "Revoir le dessin",
+    "keys": "← → marcher · ↑ bondir · ↓ descendre · Espace sauter · Échap quitter",
+    "rm": "Votre appareil demande moins de mouvement : Kūro dort sur la radio et le jeu est coupé.",
+    "pad": "La manette de Kūro",
+    "left": "Marcher à gauche",
+    "right": "Marcher à droite",
+    "up": "Bondir plus haut",
+    "down": "Descendre",
+    "jump": "Sauter",
+    "stop": "Quitter le jeu",
+    "prize": {
+      "k": "/ SEPT SCEAUX SUR SEPT",
+      "title": "Le dessin de nuit.",
+      "line": "Quatre heures du matin, sur le toit de l’atelier. Kūro garde le septième sceau, Yasser finit son café, et la ville dort encore.",
+      "alt": "Yasser assis au bord du toit de l’atelier à quatre heures du matin, un café à la main ; à côté de lui Kūro tient un sceau rouge dans la gueule, et la petite console éclaire comme une lanterne",
+      "close": "Fermer le dessin"
+    },
+    "k": {
+      "tab": "Bon choix.",
+      "right": "Tamponné.|Kūro valide.|Exact.",
+      "again": "Déjà tamponné.",
+      "wrong": "Non.|Relis.|Presque. Non.",
+      "radio": "Plus fort.",
+      "card": "Prix fixe. J’ai vérifié.",
+      "seal": "{n} sur 7.",
+      "all": "Sept. Regarde.",
+      "play": "À toi la manette.",
+      "done": "Tu les as tous. Balade-toi."
+    },
+    "y": {
+      "none": "Pas encore de tampon ? Les leçons sont plus haut.",
+      "some": "{n} sur 6. Continue, les leçons sont plus haut.",
+      "all": "Six tampons sur six. Respect."
+    }
   }
 }
