@@ -1293,6 +1293,8 @@
     });
     show(tabs[0].getAttribute('data-ls-tab')); stamps();
   });
+  // a level's reference ([3]) opens the list of sources it points into (not every browser opens a closed <details> for a link to something inside it)
+  $$('.st-jeu__refs a').forEach(function (a) { a.addEventListener('click', function () { var d = $('.st-jeu__src'); if (d) d.open = true; }); });
 
   /* ---------------- 14 · the reel ----------------
      The motion section's clips ([data-reel], a button around a muted
