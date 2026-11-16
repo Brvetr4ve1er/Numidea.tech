@@ -269,7 +269,42 @@
       "sérieux. Kūro réfléchit.",
       "ambitieux. Kūro doit s’asseoir."
     ],
-    "kuroAlt": "Kūro réagit à l’estimation"
+    "kuroAlt": "Kūro réagit à l’estimation",
+    "unitsN": {
+      "uPages": "@home:price.uPages.n",
+      "uProducts": "@home:price.uProducts.n",
+      "uScreens": "@home:price.uScreens.n",
+      "uFlows": "@home:price.uFlows.n",
+      "uSupports": "@home:price.uSupports.n"
+    },
+    "console": "La calculatrice du studio",
+    "beyond": "Au-delà :",
+    "rc": {
+      "title": "REÇU D’ESTIMATION",
+      "cap": "Le détail de l’estimation, ligne par ligne",
+      "line": "LIGNE",
+      "min": "DE",
+      "max": "À",
+      "base": "@home:price.lnUpTo",
+      "studio": "@home:price.lnStudio",
+      "rush": "@home:price.lnRush",
+      "total": "@home:price.lnTotal"
+    },
+    "pad": {
+      "up": "Type de projet précédent",
+      "down": "Type de projet suivant",
+      "less": "Réduire l’ampleur",
+      "more": "Augmenter l’ampleur"
+    },
+    "mk": {
+      "title": "LE MÊME PROJET, TROIS MARCHÉS",
+      "dz": "@home:mk.colDz",
+      "fr": "@home:mk.colFr",
+      "us": "@home:mk.colUs",
+      "you": "Votre estimation",
+      "lead": "Fourchettes courantes 2026, du freelance confirmé à l’agence. La bande rouge est votre estimation, convertie au taux officiel."
+    },
+    "consoleAlt": "DOURO·8, la petite calculatrice du studio, imprime un reçu que Kūro attrape au vol"
   },
   "brand": {
     "kicker": "/ 06 · LA MARQUE, EXPLIQUÉE",

@@ -588,9 +588,20 @@ for (const [f, end] of Object.entries(PRICED)) {
       for (let n = M.min; n <= M.max; n += M.step) for (const o of subsets) for (const rush of [false, true]) {
         const q = E.quote(key, n, o, rush);
         if (!(q.lo > 0 && q.lo <= q.hi && q.wLo >= 1 && q.wLo <= q.wHi)) bad.push(`${key} n=${n} [${o}] ${rush ? 'rush' : ''}: ${q.lo}-${q.hi}, ${q.wLo}-${q.wHi} wk`);
-        // never above what the tier itself adds up to
+        // the receipt adds up: the total is the exact sum of its lines, bound by bound, in whole thousands
+        const sum = (f) => q.lines.reduce((a, l) => a + l[f], 0);
+        if (sum('lo') !== q.lo || sum('hi') !== q.hi || q.lo % 1000 || q.hi % 1000) bad.push(`${key} n=${n} [${o}] ${rush ? 'rush' : ''}: the lines add up to ${sum('lo')}-${sum('hi')}, the total says ${q.lo}-${q.hi}`);
+        // never above what the tier itself adds up to (the rush line is a quarter of the subtotal, to the thousand)
         const t = E.tally(key, n, o), k = rush ? E.RUSH_PRICE : 1;
-        if (q.lo > E.roundTo(t.lo * k) || q.hi > E.roundTo(t.hi * k)) bad.push(`${key} n=${n} [${o}] ${rush ? 'rush' : ''} above its own sum`);
+        if (q.lo > Math.round(t.lo * k / 1000) * 1000 || q.hi > Math.round(t.hi * k / 1000) * 1000) bad.push(`${key} n=${n} [${o}] ${rush ? 'rush' : ''} above its own sum`);
+        // no dead control: one more step of size prints a different receipt, and never a cheaper or a faster one
+        if (n + M.step <= M.max) {
+          const up = E.quote(key, n + M.step, o, rush);
+          if (JSON.stringify(up.lines) === JSON.stringify(q.lines) && n >= M.base_u) bad.push(`${key} n=${n} [${o}]: a step of size changes nothing`);
+          if (up.lo < q.lo || up.hi < q.hi || up.wHi < q.wHi) bad.push(`${key} n=${n} [${o}]: a bigger size is quoted lower`);
+        }
+        // every ticked option is a line (charged, or shown as included)
+        if (q.lines.filter((l) => l.k === 'opt').length !== o.length) bad.push(`${key} n=${n} [${o}]: an option has no line`);
         if (key === 'vitrine') {
           const s = E.quote('surmesure', n, o, rush);
           if (q.lo > s.lo || q.hi > s.hi || q.wHi > s.wHi) bad.push(`vitrine n=${n} [${o}] ${rush ? 'rush' : ''} above Studio (${q.lo}-${q.hi} vs ${s.lo}-${s.hi})`);
@@ -636,13 +647,13 @@ for (const [f, end] of Object.entries(PRICED)) {
       for (let u = M.min; u <= M.max; u += M.step) for (const o of subsets) for (const rush of [false, true]) {
         const a = E.quote(key, u, o, rush), b = H.quote(key, u, o, rush);
         n++;
-        if (a.lo !== b.lo || a.hi !== b.hi || a.wLo !== b.wLo || a.wHi !== b.wHi) drift.push(`${key} n=${u} [${o}] ${rush ? 'rush ' : ''}home ${a.lo}-${a.hi} ${a.wLo}-${a.wHi} wk, Studio ${b.lo}-${b.hi} ${b.wLo}-${b.wHi} wk`);
+        if (a.lo !== b.lo || a.hi !== b.hi || a.wLo !== b.wLo || a.wHi !== b.wHi || JSON.stringify(a.lines) !== JSON.stringify(b.lines)) drift.push(`${key} n=${u} [${o}] ${rush ? 'rush ' : ''}home ${a.lo}-${a.hi} ${a.wLo}-${a.wHi} wk, Studio ${b.lo}-${b.hi} ${b.wLo}-${b.wHi} wk`);
       }
     drift.length ? priceErr.push(`Studio estimator drifts from the home's: ${drift.length} differences, e.g. ` + drift.slice(0, 3).join('; '))
       : ok(`the Studio's estimator port quotes what the home does over ${n} type, size, option and pace combinations`);
   }
 }
-priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier, maintenance and FAQ figures equal PRICE_MODEL/RETAINER on the home and the price guide; no typed €/$ amounts on either; estimator sound on every size, option set and pace');
+priceErr.length ? bad('prices drift from PRICE_MODEL: ' + priceErr.join('; ')) : ok('tier, maintenance and FAQ figures equal PRICE_MODEL/RETAINER on the home and the price guide; no typed €/$ amounts on either; estimator sound on every size, option set and pace, every receipt adding up line by line');
 /* 8d — legal gating */
 // Legal notice + privacy: published only when complete. While legal/ does not
 // exist, nothing may point at it (comments included) and the two link regions

@@ -1258,7 +1258,7 @@ external figure was read at its source, not taken from a search summary:
 | Algeria | Onyxlab Baromètre 2026 — Confirmé → Agence columns |
 | France | Tandem Studio (sites), Les Créavores (103-price dataset, June 2026), HeySimon (identity), Malt day rates via LeFreelance |
 | USA | Pitchsite (sites, apps, hourly), 8GNC (branding), Clutch (agency hourly, Sept 2026) |
-| FX | Bank of Algeria official rate, 1 Oct 2026: €1 = 151.06, $1 = 133.66 DZD |
+| FX | Bank of Algeria official rate, 10 Nov 2026: €1 = 152.37, $1 = 136.13 DZD (as the Algerian press printed the bank's daily table) |
 
 Each cell runs from the low end of an experienced freelancer's range to the
 high end of an agency's; `+` marks an open upper bound. The Bank of Algeria
@@ -1873,6 +1873,16 @@ Source: the creative audit of 2026-11-15 and the owner's approval of its moves.
 **Removed.** The home's pointer parallax (`data-parallax`, its CSS, `.px-still`) is gone: it was invisible. The history notes above describe the old behaviour.
 
 **Art.** All twelve `pose-*.webp` files were retouched to one alpha component (detached specks removed) and the Sign pose's opaque white patch was made transparent, so `ART_PARTS` in `design-check.mjs` now holds only the three non-pose files.
+
+## The calculator: a receipt that adds up, and the console (2026-11-16)
+
+**The rule.** A quote is a list of lines and its total is their exact sum. It is never rounded after it is summed: the owner found the old calculator "broken", and one cause was a total that its parts did not add up to. `ESTIMATE.quote()` in `assets/app.js` returns `lines` (`base`, `extra`, `opt`, `studio`, `rush`); every display of a quote (the home, the price guide, the Studio) prints those lines. Lines are in dinars, the currency the prices are set in; a converted total keeps its "≈". `scripts/check.mjs` 8c holds the rule on every type, size, option set and pace.
+
+**No dead control.** A step of the size control prints a different receipt once the package's base size is passed, and under it the receipt says what the package covers ("Forfait, jusqu'à 5 pages"). The Studio draws that zone under the range. A Vitrine that would cost more than the Studio package shows the difference as its own line, "Formule Studio appliquée".
+
+**The console, DOURO·8** (the Studio's `#pricing`). An original drawing in CSS, not a copy of an existing character: a paper body on the dark band, a night-navy screen (the navy of the night panels) with a three-mood pixel face and the total, keys that travel 3px when pressed, a teal pad (up and down walk the project types, minus and plus step the size), a round red key to the contact card, and beside it the cream receipt with a torn edge. The screen is VT323 (the file WorkspaceHQ already hosts; `hub/fonts/lazy-console.css`, fetched as the console nears). Red is the action, teal the pad, navy the night screen. Nothing on it moves by itself: the rows and the face answer a change once, and reduced motion stops both.
+
+**The market in the calculator.** Three bars (Algeria, France, United States) from the price guide's sourced table (`MARKET`, `assets/app.js` 14), each in its own currency on one logarithmic scale, with the estimate laid across in red. A type without a sourced row shows none.
 
 ## Founder section — the CV is the source of truth
 
@@ -3042,8 +3052,8 @@ additions for no gain.
 
 Every price is set in DZD: `PRICE_MODEL` (the tier and estimator figures) and
 `RETAINER` (the monthly maintenance line) in `assets/app.js`. They are
-converted for display only, in §12a: `FX` holds 151 DA/EUR and 134 DA/USD (the
-Bank of Algeria official rate, early October 2026), and `tidy()` rounds each
+converted for display only, in §12a: `FX` holds 152 DA/EUR and 136 DA/USD (the
+Bank of Algeria official rate, 10 November 2026), and `tidy()` rounds each
 converted figure to what a person would actually quote. Tier cards, the
 maintenance line, the estimator and the market table all go through that one
 place, so no two figures can disagree. `?cur=eur|usd|dzd` (an ad or a shared

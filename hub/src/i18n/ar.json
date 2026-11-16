@@ -269,7 +269,42 @@
       "جدّي. كورو يفكّر.",
       "طموح. كورو يحتاج أن يجلس."
     ],
-    "kuroAlt": "كورو يتفاعل مع التقدير"
+    "kuroAlt": "كورو يتفاعل مع التقدير",
+    "unitsN": {
+      "uPages": "@home:price.uPages.n",
+      "uProducts": "@home:price.uProducts.n",
+      "uScreens": "@home:price.uScreens.n",
+      "uFlows": "@home:price.uFlows.n",
+      "uSupports": "@home:price.uSupports.n"
+    },
+    "console": "حاسبة الاستوديو",
+    "beyond": "بعد ذلك:",
+    "rc": {
+      "title": "إيصال التقدير",
+      "cap": "تفاصيل التقدير، بنداً بنداً",
+      "line": "البند",
+      "min": "من",
+      "max": "إلى",
+      "base": "@home:price.lnUpTo",
+      "studio": "@home:price.lnStudio",
+      "rush": "@home:price.lnRush",
+      "total": "@home:price.lnTotal"
+    },
+    "pad": {
+      "up": "نوع المشروع السابق",
+      "down": "نوع المشروع التالي",
+      "less": "تصغير الحجم",
+      "more": "تكبير الحجم"
+    },
+    "mk": {
+      "title": "المشروع نفسه في ثلاث أسواق",
+      "dz": "@home:mk.colDz",
+      "fr": "@home:mk.colFr",
+      "us": "@home:mk.colUs",
+      "you": "تقديرك",
+      "lead": "النطاقات المعتادة في 2026، من المستقل المتمرّس إلى الوكالة. الشريط الأحمر هو تقديرك، محوَّلاً بالسعر الرسمي."
+    },
+    "consoleAlt": "DOURO·8، حاسبة الاستوديو الصغيرة، تطبع إيصالاً يلتقطه كورو"
   },
   "brand": {
     "kicker": "/ 06 · العلامة، ببساطة",

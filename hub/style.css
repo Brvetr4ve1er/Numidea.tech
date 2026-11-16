@@ -84,7 +84,7 @@ ol,ul{padding:0;list-style:none}
 button{font:inherit;color:inherit}
 ::selection{background:var(--red);color:var(--cream)}
 :focus-visible{outline:3px solid var(--red);outline-offset:3px}
-.st-preview :focus-visible,.st-lab :focus-visible,.st-est :focus-visible,.st-contact :focus-visible{outline-color:var(--cream)}
+.st-preview :focus-visible,.st-lab :focus-visible,.st-est__src :focus-visible,.st-contact :focus-visible{outline-color:var(--cream)}
 .st-est__out :focus-visible{outline-color:var(--red)}
 [hidden]{display:none!important}
 .st-sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
@@ -347,44 +347,130 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 
 /* ---------------- 06 pricing ---------------- */
 .st-pricing .st-head{margin-bottom:40px}
-.st-est{display:flex;flex-wrap:wrap;gap:36px;padding:clamp(20px,3.4vw,44px);background:var(--ink);color:var(--cream);border:2px solid var(--ink)}
-.st-est__ctrl{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:28px}
-.st-est__grp{display:flex;flex-direction:column;gap:12px;min-width:0;margin:0;padding:0;border:0}
-.st-est__grp legend{padding:0;margin-bottom:12px}
-.st-est .st-label{color:var(--on-dark-2);letter-spacing:.18em}
-.st-est__types,.st-est__opts{display:flex;flex-wrap:wrap;gap:10px}
-.st-tbtn,.st-obtn{min-height:46px;padding:0 16px;border:2px solid var(--line);background:transparent;color:var(--cream);font-family:var(--f-body);font-weight:600;font-size:var(--t-small);cursor:pointer;transition:background-color .2s,border-color .2s}
-.st-tbtn:hover:not(:disabled),.st-obtn:hover:not(:disabled){border-color:var(--cream)}
-.st-tbtn[aria-pressed="true"]{background:var(--red);border-color:var(--red)}
-.st-obtn{min-height:44px;padding:0 14px;display:inline-flex;align-items:center;gap:10px;font-weight:400;text-align:start}
-.st-obtn i{width:16px;height:16px;flex:none;border:2px solid var(--cream)}
-.st-obtn[aria-pressed="true"]{border-color:var(--cream)}
-.st-obtn[aria-pressed="true"] i{background:var(--red)}
-.st-obtn--care{align-self:flex-start}
+/* the console and Kuro, drawn: a small poster pinned beside the title */
+.st-pricing__card{flex:none;width:clamp(120px,15vw,210px);height:auto;aspect-ratio:1;border:2px solid var(--ink);box-shadow:var(--shadow);transform:rotate(3deg);margin-inline-end:10px}
+[dir="rtl"] .st-pricing__card{transform:rotate(-3deg)}
+/* ---------------- 05 the console (hub/app.js 6) ----------------
+   The calculator as a small machine, DOURO·8: a paper-coloured body on the
+   dark band with a night screen (the navy of the night panels), keys that
+   press down, a pad, and beside it the receipt it prints. Its own drawing,
+   CSS only. The screen's figures are VT323 (fonts/lazy-console.css, fetched
+   as the console nears; Geist Mono until then). Nothing moves on its own:
+   a key travels 3px, the receipt's rows and the face answer a change once. */
+.st-est{--lcd:#0F1E30;display:flex;flex-wrap:wrap;align-items:flex-start;gap:44px 36px;padding:clamp(20px,3.4vw,44px);background:var(--ink);color:var(--cream);border:2px solid var(--ink)}
+.st-dr{flex:1.25 1 480px;min-width:0;container-type:inline-size;position:relative;display:flex;flex-direction:column;gap:22px;margin-bottom:24px;padding:clamp(16px,2.2vw,28px);background:var(--paper);color:var(--ink);border-radius:26px 26px 18px 18px;box-shadow:8px 8px 0 var(--red)}
+/* its two feet */
+.st-dr::before,.st-dr::after{content:"";position:absolute;bottom:-22px;width:64px;height:22px;background:var(--stone);border-radius:0 0 12px 12px}
+.st-dr::before{inset-inline-start:11%}
+.st-dr::after{inset-inline-end:11%}
+.st-dr :focus-visible{outline-color:var(--red-text)}
+.st-dr__head{display:flex;align-items:center;gap:12px;margin:0;font-family:"Archivo",sans-serif;font-weight:900;font-size:14px;letter-spacing:.2em;line-height:1}
+.st-dr__led{flex:none;width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid var(--ink)}
+.st-dr__grille{flex:1;height:12px;background:repeating-linear-gradient(90deg,var(--ink) 0 3px,transparent 3px 9px);opacity:.55}
+/* the screen */
+.st-dr__lcd{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px 18px;padding:16px 18px 18px;background:var(--lcd);color:var(--cream);border:3px solid var(--ink);border-radius:12px;box-shadow:inset 0 0 0 4px rgba(243,236,225,.07);background-image:repeating-linear-gradient(0deg,rgba(243,236,225,.035) 0 1px,transparent 1px 3px);font-family:"VT323","Geist Mono",ui-monospace,monospace}
+.st-dr__lcd p{margin:0}
+.st-dr__face{display:block;width:128px;height:64px;fill:var(--cream);shape-rendering:crispEdges;grid-row:1 / span 2}
+.st-dr__face g{display:none}
+.st-dr__face[data-mood="0"] [data-m="0"],.st-dr__face[data-mood="1"] [data-m="1"],.st-dr__face[data-mood="2"] [data-m="2"]{display:inline}
+.st-dr__hole{fill:var(--lcd)}
+.st-dr__face.is-blink{transform:scaleY(.2)}
+.st-dr__what{align-self:end;font-size:22px;line-height:1.05;letter-spacing:.04em;text-transform:uppercase;overflow-wrap:break-word}
+.st-dr__w{align-self:start;font-size:20px;line-height:1.05;letter-spacing:.04em;text-transform:uppercase;color:var(--on-dark-2)}
+.st-dr__w b{font-weight:400;color:var(--cream)}
+.st-dr__fig{grid-column:1 / -1;display:flex;flex-direction:column;gap:2px;padding-top:10px;border-top:2px dashed rgba(243,236,225,.28)}
+.st-dr__k{font-size:18px;letter-spacing:.14em;line-height:1;color:var(--on-dark-2)}
+.st-dr__fig output{font-size:clamp(20px,9cqw,54px);line-height:.95;letter-spacing:.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
+:lang(ar) .st-dr__lcd{font-family:"VT323","IBM Plex Sans Arabic",sans-serif}
+:lang(ar) .st-dr__what,:lang(ar) .st-dr__w,:lang(ar) .st-dr__k{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:15px;letter-spacing:0;line-height:1.4}
+:lang(ar) .st-dr__fig output{text-align:right}
+/* the controls */
+.st-est__ctrl{min-width:0;display:flex;flex-direction:column;gap:22px}
+.st-est__grp{display:flex;flex-direction:column;gap:10px;min-width:0;margin:0;padding:0;border:0}
+.st-est__grp legend{padding:0;margin-bottom:10px}
+.st-est .st-label{color:var(--muted);letter-spacing:.18em}
+/* keys in a grid, with room at the end and below for a pressed key's 3px of travel */
+.st-est__types,.st-est__opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;padding:0 3px 3px 0}
+.st-est__opts{grid-template-columns:repeat(2,minmax(0,1fr))}
+.st-tbtn,.st-obtn,.st-seg button,.st-dr__d{transition:transform .08s,box-shadow .08s,background-color .12s,color .12s}
+.st-tbtn,.st-obtn{min-height:46px;min-width:0;padding:6px 14px;line-height:1.2;overflow-wrap:break-word;hyphens:auto;border:2px solid var(--ink);background:var(--cream);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-weight:600;font-size:var(--t-small);cursor:pointer}
+.st-tbtn[aria-pressed="true"]{background:var(--red);color:var(--cream);box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
+.st-obtn{min-height:44px;display:inline-flex;align-items:center;gap:10px;font-weight:500;text-align:start}
+.st-obtn i{width:12px;height:12px;flex:none;border-radius:50%;border:2px solid var(--ink);background:var(--stone)}
+.st-obtn[aria-pressed="true"]{box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
+.st-obtn[aria-pressed="true"] i{background:var(--red);box-shadow:0 0 0 3px rgba(163,65,53,.28)}
 .st-est button:disabled{cursor:default}
-html.js .st-est .st-obtn:disabled:not([aria-pressed="true"]){opacity:.45}
-.st-est__size{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.st-est__n{font-family:"Archivo",sans-serif;font-weight:900;font-size:26px}
+html.js .st-est .st-obtn:disabled:not([aria-pressed="true"]){opacity:.5;box-shadow:none}
+.st-est__size{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0}
+.st-est__n{font-family:"Archivo",sans-serif;font-weight:900;font-size:26px;line-height:1}
 .st-est input[type="range"]{width:100%;height:44px;margin:0;accent-color:var(--red);cursor:pointer}
-.st-seg{display:inline-flex;align-self:flex-start;max-width:100%;border:2px solid var(--line)}
-.st-seg button{min-height:44px;padding:0 16px;border:0;background:transparent;color:var(--cream);font-family:var(--f-mono);font-weight:600;font-size:var(--t-mono);letter-spacing:.08em;cursor:pointer}
-.st-seg button[aria-pressed="true"]{background:var(--red)}
-.st-est__out{flex:1 1 380px;min-width:0;container-type:inline-size;position:relative;display:flex;flex-direction:column;gap:18px;padding:clamp(18px,2.6vw,32px);background:var(--paper);color:var(--ink);border:2px solid var(--paper)}
+/* what the package covers, drawn under the range: the teal run is included, the rest is charged per unit */
+.st-est__zone{display:block;height:6px;margin-top:-8px;background:repeating-linear-gradient(90deg,var(--line) 0 2px,transparent 2px 6px)}
+.st-est__zone i{display:block;height:100%;width:var(--incl,0%);min-width:6px;background:var(--teal)}
+.st-est__incl{margin:0;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.02em;line-height:1.5;color:var(--muted)}
+.st-dr__row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 22px;padding:0 3px 3px 0}
+.st-seg{display:inline-flex;align-self:flex-start;max-width:100%;border:2px solid var(--ink);background:var(--cream)}
+.st-seg button{min-height:44px;padding:0 16px;border:0;background:transparent;color:var(--ink);font-family:var(--f-mono);font-weight:600;font-size:var(--t-mono);letter-spacing:.08em;cursor:pointer}
+.st-seg button[aria-pressed="true"]{background:var(--red);color:var(--cream)}
+/* the pad and the round key */
+.st-dr__deck{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:6px}
+.st-dr__pad{display:grid;grid-template:repeat(3,44px) / repeat(3,44px);direction:ltr}
+.st-dr__d{width:44px;height:44px;padding:0;display:grid;place-items:center;border:2px solid var(--ink);background:var(--teal);color:var(--cream);font-family:var(--f-mono);font-weight:700;font-size:18px;line-height:1;cursor:pointer}
+.st-dr__d:active:not(:disabled){transform:scale(.92)}
+.st-dr__d--u{grid-area:1 / 2;border-radius:10px 10px 0 0;border-bottom:0}
+.st-dr__d--l{grid-area:2 / 1;border-radius:10px 0 0 10px;border-right:0}
+.st-dr__d--r{grid-area:2 / 3;border-radius:0 10px 10px 0;border-left:0}
+.st-dr__d--d{grid-area:3 / 2;border-radius:0 0 10px 10px;border-top:0}
+.st-dr__pad::after{content:"";grid-area:2 / 2;background:var(--teal);border:0}
+.st-dr__go{display:flex;align-items:center;justify-content:flex-end;gap:14px;min-width:0;margin:0}
+.st-dr__alab{min-width:0;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;line-height:1.3;text-transform:uppercase;text-align:end;color:var(--muted)}
+.st-dr__a{flex:none;width:76px;height:76px;display:grid;place-items:center;border-radius:50%;background:var(--red);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);color:var(--cream);font-family:"Archivo",sans-serif;font-weight:900;font-size:30px;line-height:1;text-decoration:none;transition:transform .08s,box-shadow .08s}
+.st-dr__a:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+@media (hover:hover){
+  .st-tbtn:hover:not(:disabled):not([aria-pressed="true"]),.st-obtn:hover:not(:disabled):not([aria-pressed="true"]){transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
+  .st-dr__d:hover:not(:disabled){background:var(--teal-text)}
+  .st-dr__a:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+}
+/* the receipt */
+.st-est__out{--z:9px;flex:1 1 340px;min-width:0;container-type:inline-size;position:relative;display:flex;flex-direction:column;gap:16px;padding:clamp(18px,2.4vw,28px);padding-bottom:calc(clamp(18px,2.4vw,28px) + var(--z));background:var(--cream);color:var(--ink);
+  -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50% / calc(2 * var(--z)) 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50% / calc(2 * var(--z)) 100%}
+.st-est__out p{margin:0}
 .st-est__out .st-label--red{color:var(--red-text)}
 .st-est__out .st-label--teal{color:var(--teal-text)}
-.st-est__fig{display:flex;flex-direction:column;gap:6px}
-.st-est__fig output{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(28px,3.4vw,46px);line-height:1;font-variant-numeric:tabular-nums;text-align:start}
-/* the range ("90,000 – 160,000 DZD", about 11em, one unbreakable run) is sized from the card it sits in, so it fits at 320 and at 1024 alike */
-@supports (font-size:1cqw){.st-est__fig output{font-size:min(clamp(28px,3.4vw,46px),8.6cqw)}}
-:lang(ar) .st-est__fig output{text-align:right}
-.st-est__fig--rule{padding-top:16px;border-top:2px solid var(--ink)}
-.st-est__meta{display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:16px;border-top:2px solid var(--ink);font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.08em}
-.st-est__kuro{display:flex;align-items:flex-end;gap:12px;min-height:120px}
-.st-est__k{position:relative;flex:none;width:110px;height:110px;transform-origin:50% 100%;transition:transform .11s}
+.st-rc__title{display:flex;flex-direction:column;gap:4px;padding-bottom:12px;padding-inline-end:72px;border-bottom:2px dashed var(--line);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.18em;color:var(--muted)}
+.st-rc__title b{font-family:"Archivo",sans-serif;font-weight:900;font-size:18px;letter-spacing:.06em;color:var(--ink)}
+.st-rc{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:var(--t-mono);line-height:1.35;font-variant-numeric:tabular-nums}
+.st-rc th,.st-rc td{padding:7px 0;border-bottom:1px dashed var(--line);vertical-align:baseline}
+.st-rc th{font-weight:400;text-align:start;padding-inline-end:10px}
+.st-rc td{text-align:end;white-space:nowrap;padding-inline-start:10px}
+.st-rc thead th{font-size:var(--t-label);letter-spacing:.14em;color:var(--muted);border-bottom:2px solid var(--ink)}
+.st-rc thead th + th{text-align:end;padding-inline:10px 0}
+.st-rc td[colspan]{color:var(--teal-text)}
+.st-rc tfoot th,.st-rc tfoot td{padding-top:10px;border-top:2px solid var(--ink);border-bottom:0;font-weight:700;font-size:15px}
+.st-rc tbody.is-print tr{animation:st-print .22s var(--ease) both}
+.st-rc__fx{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.st-rc__fx output{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(18px,6.4cqw,24px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.st-est__meta{display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:12px;border-top:2px dashed var(--line);font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.08em}
+.st-est__kuro{display:flex;align-items:flex-end;gap:12px;min-height:96px}
+.st-est__k{position:relative;flex:none;width:92px;height:92px;transform-origin:50% 100%;transition:transform .11s}
 .st-est__k.is-squash{transform:scale(1.08,.92)}
 .st-est__k img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0}
 .st-est__k img.is-active{opacity:1}
-.st-est__line{font-size:22px;padding-bottom:16px}
+.st-est__line{font-size:20px;padding-bottom:12px}
+/* the same project on three markets */
+.st-mk{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:2px dashed var(--line)}
+.st-mk[hidden]{display:none}
+.st-mk__rows{display:flex;flex-direction:column;gap:10px;margin:0}
+.st-mk__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:baseline;font-family:var(--f-mono);font-size:var(--t-mono)}
+.st-mk__row dt{font-weight:600}
+.st-mk__row dd{display:contents}
+.st-mk__v{text-align:end;white-space:nowrap;font-variant-numeric:tabular-nums}
+.st-mk__trk{grid-column:1 / -1;position:relative;display:block;height:10px;background:rgba(33,30,27,.1)}
+.st-mk__trk i{position:absolute;inset-block:0;inset-inline-start:var(--a,0%);width:calc(var(--b,0%) - var(--a,0%));min-width:3px;background:var(--ink)}
+.st-mk__trk::after{content:"";position:absolute;inset-block:-3px;inset-inline-start:var(--q0,0%);width:max(3px,calc(var(--q1,0%) - var(--q0,0%)));background:var(--red);opacity:.7}
+.st-mk__you{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.08em;color:var(--red-text)}
+.st-mk__you i{flex:none;width:18px;height:10px;background:var(--red);opacity:.7}
+.st-mk__lead{font-size:13px;line-height:1.45;color:var(--ink-2)}
 .st-est__note{font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
 .st-est__nojs{font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
 html.js .st-est__nojs{display:none}
@@ -926,6 +1012,7 @@ html.st-stinging{overflow:hidden}
 @keyframes st-fb{0%,25%{opacity:0}25.01%,43.2%{opacity:1}43.21%,100%{opacity:0}}
 @keyframes st-fc{0%,43.2%{opacity:0}43.21%,100%{opacity:1}}
 @keyframes st-eyes{0%{opacity:1}100%{opacity:0}}
+@keyframes st-print{0%{opacity:0;transform:translateY(-6px)}100%{opacity:1;transform:none}}
 @keyframes st-seal{0%{opacity:1;transform:scale(1.6) rotate(-8deg)}35%{transform:scale(1.15) rotate(-5deg)}60%{transform:scale(1.02) rotate(-10deg)}80%{transform:scale(1) rotate(-7deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
 @keyframes st-wipe{to{transform:none}}
 @keyframes st-wipe-now{to{transform:none}}
@@ -1223,37 +1310,45 @@ main:focus{outline:none}
 /* ---- the estimator: the price stays beside the controls while they are tapped ----
    Below about 835px of card the figures stack under the controls (an 860px column on a phone),
    so a one-line copy of the range sticks to the screen's foot while the controls are on screen. */
-.st-est{container-type:inline-size}
+.st-est{container:est / inline-size}
 .st-est__live{display:none}
-@container (max-width:835px){
-  .st-est__live{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom));z-index:3;display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:8px 14px;background:var(--paper);color:var(--ink);border:2px solid var(--cream);box-shadow:4px 4px 0 var(--red)}
+}
+/* beside the console the receipt follows the reader down the controls */
+@container est (min-width:836px){
+  .st-est__out{position:sticky;top:96px}
+}
+@container est (max-width:835px){
+  .st-est__live{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom));z-index:3;display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:8px 14px;background:var(--ink);color:var(--cream);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--red)}
   .st-est__live output{min-width:0;font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(16px,4.9vw,24px);line-height:1.1;font-variant-numeric:tabular-nums}
-  .st-est__live-w{flex:none;max-width:7em;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.04em;line-height:1.25;text-align:end;color:var(--ink-2)}
+  .st-est__live-w{flex:none;max-width:7em;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.04em;line-height:1.25;text-align:end;color:var(--on-dark-2)}
 }
 
 /* ---- phones, the rest of the page ---- */
 @media (max-width:599px){
   /* the estimator */
-  .st-est{gap:20px;padding:18px 14px}
-  .st-est__ctrl{flex-basis:100%;gap:22px}
+  .st-est{gap:36px 20px;padding:18px 12px 18px}
+  .st-dr{flex-basis:100%;gap:18px;padding:14px 12px 16px;border-radius:20px 20px 14px 14px;box-shadow:5px 5px 0 var(--red)}
+  .st-dr__lcd{padding:12px 12px 14px;gap:6px 12px}
+  .st-dr__face{width:84px;height:42px}
+  .st-dr__what{font-size:19px}
+  .st-dr__w{font-size:17px}
+  .st-est__ctrl{gap:18px}
   .st-est__grp{gap:8px}
   .st-est__grp legend{margin-bottom:8px}
-  .st-est__types,.st-est__opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .st-est__types,.st-est__opts{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 10px}
   .st-tbtn,.st-obtn{min-height:44px;padding:0 10px;font-size:14.5px}
   .st-obtn{gap:8px}
-  .st-obtn--care{align-self:stretch}
-  .st-est__out{flex-basis:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px;padding:16px 14px}
-  .st-est__out > *{grid-column:1 / -1}
-  .st-est__out > .st-est__fig--rule{grid-column:auto;padding-top:12px}
-  .st-est__fig output{font-size:min(30px,8.6cqw)}
-  .st-est__fig--rule output{font-size:min(20px,5.6cqw)}
-  .st-est__meta{padding-top:12px;gap:8px 20px}
+  .st-dr__row{align-items:stretch}
+  .st-obtn--care{flex:1 1 100%}
+  .st-dr__a{width:68px;height:68px;font-size:26px}
+  .st-est__out{flex-basis:100%;gap:14px;padding:16px 14px calc(16px + var(--z))}
   .st-est__kuro{min-height:0;gap:8px;align-items:center}
   .st-est__k{width:76px;height:76px}
   .st-est__line{font-size:19px;padding-bottom:0;min-width:0;overflow-wrap:anywhere}
   .st-est__note{font-size:13.5px;line-height:1.4}
   .st-est__src a{min-height:44px}
   .st-est__src{font-size:var(--t-label)}
+  .st-est__live{flex-wrap:wrap}
 
   /* the proof */
   .st-own{margin:-8px 0 20px}
@@ -1338,6 +1433,18 @@ main:focus{outline:none}
   .st-contact__kuro{width:88px}
   .st-contact__wave{width:92px}
 }
+@media (max-width:359px){
+  .st-dr__face{width:56px;height:28px}
+  .st-dr__what{font-size:17px}
+  .st-dr__w{font-size:16px}
+  .st-tbtn,.st-obtn{padding:6px 8px;font-size:13.5px}
+  .st-est__opts{grid-template-columns:minmax(0,1fr)}
+  .st-dr__alab{display:none}
+  .st-rc{font-size:12px}
+  .st-dr__face{grid-row:1}
+  .st-dr__w{grid-column:2;grid-row:1;align-self:center}
+  .st-dr__what{grid-column:1 / -1;grid-row:2;align-self:start}
+  .st-seg button{padding:0 10px}
 
 /* ---- the viewer on a phone or a small tablet: the picture takes the screen, the controls sit under it ----
    (the buttons were drawn over the art, the sizes were 88vh, which on a phone is the page with its toolbars away) */

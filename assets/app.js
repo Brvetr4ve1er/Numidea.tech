@@ -47,12 +47,12 @@
      that type is chosen. A type without opts takes every option. */
   var ESTIMATE = (function () {
     var PRICE_MODEL = {
-      vitrine:   { base: [90000, 160000],   unit: [6000, 12000],  min: 1,  max: 10,  def: 3,  step: 1,  u: 'price.uPages',    base_u: 5,  weeks: [2, 4] },
-      surmesure: { base: [180000, 420000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 15, weeks: [3, 7],  incl: ['i18n', 'cms', 'ds', 'seo'] },
-      ecommerce: { base: [220000, 550000],  unit: [900, 2200],    min: 10, max: 400, def: 60, step: 10, u: 'price.uProducts', base_u: 60, weeks: [5, 10] },
-      app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16], incl: ['pay', 'api'] },
-      auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6],  opts: ['api', 'cms'] },
-      identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5],  opts: ['ds'] }
+      vitrine:   { base: [90000, 160000],   unit: [6000, 12000],  min: 1,  max: 10,  def: 3,  step: 1,  u: 'price.uPages',    base_u: 5,  weeks: [2, 4],  per: 5 },
+      surmesure: { base: [180000, 420000],  unit: [9000, 18000],  min: 3,  max: 25,  def: 8,  step: 1,  u: 'price.uPages',    base_u: 15, weeks: [3, 7],  per: 5,   incl: ['i18n', 'cms', 'ds', 'seo'] },
+      ecommerce: { base: [220000, 550000],  unit: [900, 2200],    min: 10, max: 400, def: 60, step: 10, u: 'price.uProducts', base_u: 60, weeks: [5, 10], per: 100 },
+      app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16], per: 2,   incl: ['pay', 'api'] },
+      auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6],  per: 3,   opts: ['api', 'cms'] },
+      identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5],  per: 3,   opts: ['ds'] }
     };
     var PRICE_OPTS = {
       i18n: { add: [22000, 55000],  weeks: [1, 2], k: 'price.oI18n' },
@@ -68,22 +68,37 @@
     var RUSH_PRICE = 1.25, RUSH_WEEKS = 0.7;
     var rushWeeks = function (w) { return Math.max(Math.ceil(w * 2 / 3), Math.round(w * RUSH_WEEKS)); };
 
-    /* Round to a figure a human would actually say out loud. Quoting
-       "186 400" implies a precision this model does not have. */
+    /* A rounder figure for a display that states one number alone (a share
+       card, a caption). A quote is never rounded after it is summed: until
+       2026-11-16 it was, and the parts no longer added up to the total
+       (90 000 + 22 000 read 110 000). */
     var roundTo = function (n) {
       var g = n >= 500000 ? 50000 : n >= 150000 ? 10000 : 5000;
       return Math.round(n / g) * g;
     };
+    // to the thousand: used once, on the rush line
+    var kilo = function (n) { return Math.round(n / 1000) * 1000; };
+    // a bigger job takes longer: one more week for every `per` units over the base size
+    var sizeWeeks = function (m, n) { return m.per ? Math.floor(Math.max(0, n - m.base_u) / m.per) : 0; };
 
-    // one tier, n units, the ticked options: what it adds up to, unrounded
+    /* One tier, n units, the ticked options: every line of the receipt and
+       what they add up to. lines: { k: 'base' } the tier up to its base size
+       (n: that size), { k: 'extra', n, unit } the units over it, { k: 'opt',
+       o } an option ({ incl: true } and nothing charged when the tier
+       already includes it). lo and hi are the sums of the lines' lo and hi. */
     var tally = function (key, n, opts) {
-      var m = PRICE_MODEL[key], over = Math.max(0, n - m.base_u), incl = m.incl || [];
-      var q = { lo: m.base[0] + over * m.unit[0], hi: m.base[1] + over * m.unit[1],
-                wLo: m.weeks[0], wHi: m.weeks[1], incl: [] };
+      var m = PRICE_MODEL[key], over = Math.max(0, n - m.base_u), incl = m.incl || [], sw = sizeWeeks(m, n);
+      var q = { lo: m.base[0], hi: m.base[1], wLo: m.weeks[0] + sw, wHi: m.weeks[1] + sw, incl: [],
+                lines: [{ k: 'base', n: m.base_u, lo: m.base[0], hi: m.base[1] }] };
+      if (over) {
+        q.lines.push({ k: 'extra', n: over, unit: m.unit, lo: over * m.unit[0], hi: over * m.unit[1] });
+        q.lo += over * m.unit[0]; q.hi += over * m.unit[1];
+      }
       opts.forEach(function (o) {
         var p = PRICE_OPTS[o];
         if (!p) return;
-        if (incl.indexOf(o) > -1) { q.incl.push(o); return; }   // in the tier's base price
+        if (incl.indexOf(o) > -1) { q.incl.push(o); q.lines.push({ k: 'opt', o: o, incl: true, lo: 0, hi: 0 }); return; }   // in the tier's base price
+        q.lines.push({ k: 'opt', o: o, lo: p.add[0], hi: p.add[1] });
         q.lo += p.add[0]; q.hi += p.add[1];
         q.wLo += p.weeks[0]; q.wHi += p.weeks[1];
       });
@@ -101,23 +116,27 @@
        sum and the Studio figure. Bound by bound, never the whole Studio
        range: taking it whole when only the low end was cheaper would raise
        the top above what the Vitrine itself adds up to. studio: true when
-       the Studio figure set either price bound. check.mjs tests every size,
-       option set and pace. */
+       the Studio figure set either price bound; the difference is then a
+       line of its own ({ k: 'studio' }, zero or below), so the receipt still
+       adds up. Rushing is a line too ({ k: 'rush' }): a quarter of the
+       subtotal, to the thousand. lo and hi are the exact sums of the lines.
+       check.mjs tests every size, option set and pace. */
     function quote(key, n, opts, rush) {
       var q = tally(key, n, opts || []);
       q.studio = false;
       if (key === 'vitrine') {
         var s = tally('surmesure', n, opts || []);
-        q.studio = s.lo < q.lo || s.hi < q.hi;
-        q.lo = Math.min(q.lo, s.lo); q.hi = Math.min(q.hi, s.hi);
+        var dLo = Math.min(0, s.lo - q.lo), dHi = Math.min(0, s.hi - q.hi);
+        q.studio = dLo < 0 || dHi < 0;
+        if (q.studio) { q.lines.push({ k: 'studio', lo: dLo, hi: dHi }); q.lo += dLo; q.hi += dHi; }
         q.wLo = Math.min(q.wLo, s.wLo); q.wHi = Math.min(q.wHi, s.wHi);
       }
       q.rush = !!rush;
       if (rush) {
-        q.lo *= RUSH_PRICE; q.hi *= RUSH_PRICE;
+        var rLo = kilo(q.lo * (RUSH_PRICE - 1)), rHi = kilo(q.hi * (RUSH_PRICE - 1));
+        q.lines.push({ k: 'rush', lo: rLo, hi: rHi }); q.lo += rLo; q.hi += rHi;
         q.wLo = rushWeeks(q.wLo); q.wHi = rushWeeks(q.wHi);
       }
-      q.lo = roundTo(q.lo); q.hi = roundTo(q.hi);
       return q;
     }
 
@@ -1078,14 +1097,14 @@
 
     /* ---------------- 12a · display currency ----------------
        Every price is set in dinars (PRICE_MODEL, RETAINER) and only converted
-       for display, at the Bank of Algeria official rate of early October 2026
-       (1 Oct: 1 € = 151.06 DA, 1 $ = 133.66 DA; an independent page agreed
-       within 0.3%), rounded to what a person would actually quote. The tier
+       for display, at the Bank of Algeria official rate of 10 November 2026
+       (1 € = 152.37 DA, 1 $ = 136.13 DA, as the Algerian press printed the
+       bank's daily table), rounded to what a person would actually quote. The tier
        cards, the maintenance line, the estimator and the market table all go
        through this one place, so no two figures on the page can disagree.
        ?cur= (an ad or a shared link) wins over the stored choice; dinars
        otherwise, which is also what the markup says with scripts off. */
-    var FX = { DZD: 1, EUR: 151, USD: 134 };
+    var FX = { DZD: 1, EUR: 152, USD: 136 };
     var CURS = ['DZD', 'EUR', 'USD'];
     var RETAINER = [18000, 60000];   // per month
     // narrow no-break space between groups: a normal space lets a figure wrap,
@@ -1252,11 +1271,25 @@
           head.className = 'eo-head';
           head.textContent = headText;
           eSum.appendChild(head);
-          picked.forEach(function (label) {
-            var li = document.createElement('li');
-            li.textContent = label;
-            eSum.appendChild(li);
+          /* The receipt: every line of the quote with its amount, then the
+             total, which is their exact sum. Lines are in dinars whatever the
+             display currency, because that is the currency the prices are set
+             in; the figure above converts the total. */
+          var amt = function (n) { return (n < 0 ? '\u2212' : '') + grp(Math.abs(n)); };
+          var row = function (label, value, cls) {
+            var li = document.createElement('li'), l = document.createElement('span'), v = document.createElement('span');
+            if (cls) li.className = cls;
+            l.className = 'eo-l'; l.textContent = label; v.className = 'eo-v'; v.textContent = value;
+            li.appendChild(l); li.appendChild(v); eSum.appendChild(li);
+          };
+          q.lines.forEach(function (ln) {
+            var label = ln.k === 'base' ? t('price.lnUpTo') + ' ' + counted(m.u, ln.n)
+                      : ln.k === 'extra' ? '+ ' + counted(m.u, ln.n)
+                      : ln.k === 'opt' ? t(PRICE_OPTS[ln.o].k)
+                      : ln.k === 'studio' ? t('price.lnStudio') : t('price.lnRush');
+            row(label, ln.incl ? t('price.incl') : amt(ln.lo) + dash() + amt(ln.hi) + ' ' + t('price.cur'));
           });
+          row(t('price.lnTotal'), amt(q.lo) + dash() + amt(q.hi) + ' ' + t('price.cur'), 'eo-total');
         }
 
         /* Carry the configured scope into the contact form, so the visitor
@@ -2029,8 +2062,8 @@
        off. This converts them on request and computes the Numidea column from
        PRICE_MODEL — the table cannot quote a Numidea price the tier cards and
        the estimator disagree with.
-       FX: Bank of Algeria official rate, early October 2026 (1 Oct: 1 € =
-       151.06, 1 $ = 133.66; an independent page agreed within 0.3%). Rounded,
+       FX: Bank of Algeria official rate, 10 November 2026 (1 € = 152.37,
+       1 $ = 136.13, as the Algerian press printed the bank's table). Rounded,
        because the comparison is about orders of magnitude, not centimes. */
     var MARKET = {   // [low, high, openEnded] — freelance confirmé low → agency high
       vitrine:   { dz: [50000, 100000],   fr: [1500, 6000],     us: [1500, 12000] },

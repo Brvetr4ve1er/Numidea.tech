@@ -530,74 +530,159 @@
     steps.forEach(function (s) { pio.observe(s); });
   })();
 
-  /* ---------------- 6 · the estimator ----------------
+  /* ---------------- 6 · the console (the estimator) ----------------
      The home's model, as the build copied it from assets/app.js into
-     #hub-prices (types, units, options, rush, exchange rates, maintenance).
-     quote() is the home's: the tier's base, each unit over its base size,
-     the options it does not already include; a Vitrine never above the
-     Studio tier for the same pages; rush ×1.25 and weeks ×0.7, never
-     under two thirds; rounded as a person would say it. Figures are
-     written as the home writes them in each language. */
+     #hub-prices (types, units, options, rush, exchange rates, maintenance,
+     the three markets). quote() is the home's, line for line (scripts/
+     check.mjs runs both over every combination): the tier up to its base
+     size, each unit over it, each option it does not already include; a
+     Vitrine never above the Studio tier for the same pages, the difference
+     a line of its own; rush a line too, a quarter of the subtotal. The
+     total is the exact sum of the lines: nothing is rounded after the sum.
+     The screen shows the total and a face, the pad steps the type and the
+     size, the receipt lists every line. Figures are written as the home
+     writes them in each language. */
   var est = $('[data-est]');
   var P = null;
   try { P = JSON.parse($('#hub-prices').textContent); } catch (e) {}
   if (est && P) (function () {
     var M = P.model, O = P.opts;
-    var roundTo = function (n) { var g = n >= 500000 ? 50000 : n >= 150000 ? 10000 : 5000; return Math.round(n / g) * g; };
+    var kilo = function (n) { return Math.round(n / 1000) * 1000; };
+    var sizeWeeks = function (m, n) { return m.per ? Math.floor(Math.max(0, n - m.base_u) / m.per) : 0; };
     var rushWeeks = function (w) { return Math.max(Math.ceil(w * 2 / 3), Math.round(w * P.rush[1])); };
     var tally = function (key, n, opts) {
-      var m = M[key], over = Math.max(0, n - m.base_u), incl = m.incl || [];
-      var q = { lo: m.base[0] + over * m.unit[0], hi: m.base[1] + over * m.unit[1], wLo: m.weeks[0], wHi: m.weeks[1] };
-      opts.forEach(function (o) { var p = O[o]; if (!p || incl.indexOf(o) > -1) return; q.lo += p.add[0]; q.hi += p.add[1]; q.wLo += p.weeks[0]; q.wHi += p.weeks[1]; });
+      var m = M[key], over = Math.max(0, n - m.base_u), incl = m.incl || [], sw = sizeWeeks(m, n);
+      var q = { lo: m.base[0], hi: m.base[1], wLo: m.weeks[0] + sw, wHi: m.weeks[1] + sw, lines: [{ k: 'base', n: m.base_u, lo: m.base[0], hi: m.base[1] }] };
+      if (over) { q.lines.push({ k: 'extra', n: over, unit: m.unit, lo: over * m.unit[0], hi: over * m.unit[1] }); q.lo += over * m.unit[0]; q.hi += over * m.unit[1]; }
+      opts.forEach(function (o) {
+        var p = O[o];
+        if (!p) return;
+        if (incl.indexOf(o) > -1) { q.lines.push({ k: 'opt', o: o, incl: true, lo: 0, hi: 0 }); return; }
+        q.lines.push({ k: 'opt', o: o, lo: p.add[0], hi: p.add[1] });
+        q.lo += p.add[0]; q.hi += p.add[1]; q.wLo += p.weeks[0]; q.wHi += p.weeks[1];
+      });
       return q;
     };
     var quote = function (key, n, opts, rush) {
       var q = tally(key, n, opts);
-      if (key === 'vitrine') { var s = tally('surmesure', n, opts); q.lo = Math.min(q.lo, s.lo); q.hi = Math.min(q.hi, s.hi); q.wLo = Math.min(q.wLo, s.wLo); q.wHi = Math.min(q.wHi, s.wHi); }
-      if (rush) { q.lo *= P.rush[0]; q.hi *= P.rush[0]; q.wLo = rushWeeks(q.wLo); q.wHi = rushWeeks(q.wHi); }
-      q.lo = roundTo(q.lo); q.hi = roundTo(q.hi);
+      if (key === 'vitrine') {
+        var s = tally('surmesure', n, opts), dLo = Math.min(0, s.lo - q.lo), dHi = Math.min(0, s.hi - q.hi);
+        if (dLo < 0 || dHi < 0) { q.lines.push({ k: 'studio', lo: dLo, hi: dHi }); q.lo += dLo; q.hi += dHi; }
+        q.wLo = Math.min(q.wLo, s.wLo); q.wHi = Math.min(q.wHi, s.wHi);
+      }
+      if (rush) {
+        var rLo = kilo(q.lo * (P.rush[0] - 1)), rHi = kilo(q.hi * (P.rush[0] - 1));
+        q.lines.push({ k: 'rush', lo: rLo, hi: rHi }); q.lo += rLo; q.hi += rHi;
+        q.wLo = rushWeeks(q.wLo); q.wHi = rushWeeks(q.wHi);
+      }
       return q;
     };
-    var range = function (lo, hi, c) {
-      var en = lang === 'en', grp = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, en ? ',' : ' '); };
-      var dash = en ? '⁠–⁠' : ' –⁠ ';
-      var tidy = function (n) { var g = c === 'DZD' ? (n >= 1e6 ? 50000 : n >= 150000 ? 10000 : 5000) : (n >= 10000 ? 500 : n >= 1000 ? 100 : 10); return Math.max(g, Math.round(n / g) * g); };
-      var a = c === 'DZD' ? lo : tidy(lo / P.fx[c]), b = c === 'DZD' ? hi : tidy(hi / P.fx[c]);
-      var sym = c === 'DZD' ? t('pricing.cur') : c === 'EUR' ? '€' : '$';
-      return en && c !== 'DZD' ? sym + grp(a) + dash + grp(b) : grp(a) + dash + grp(b) + ' ' + sym;
+    // figures: French and Arabic group with a narrow no-break space and put the currency after; English uses commas and puts € and $ first
+    var grp = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, lang === 'en' ? ',' : ' '); };
+    var amt = function (n) { return (n < 0 ? '−' : '') + grp(Math.abs(n)); };
+    var dash = function () { return lang === 'en' ? '⁠–⁠' : ' –⁠ '; };
+    var sym = function (c) { return c === 'DZD' ? t('pricing.cur') : c === 'EUR' ? '€' : '$'; };
+    var pair = function (a, b, c) { return lang === 'en' && c !== 'DZD' ? sym(c) + grp(a) + dash() + grp(b) : grp(a) + dash() + grp(b) + ' ' + sym(c); };
+    var tidy = function (n, c) { var g = c === 'DZD' ? (n >= 1e6 ? 50000 : n >= 150000 ? 10000 : 5000) : (n >= 10000 ? 500 : n >= 1000 ? 100 : 10); return Math.max(g, Math.round(n / g) * g); };
+    // a dinar range as shown in currency c (dinars pass through as they are)
+    var range = function (lo, hi, c) { return c === 'DZD' ? pair(lo, hi, c) : pair(tidy(lo / P.fx[c], c), tidy(hi / P.fx[c], c), c); };
+    // a counted unit: "1 page", "3 pages"; Arabic has five forms and its dual stands without the numeral
+    var plural = function (n) {
+      try { return new Intl.PluralRules(lang).select(n); } catch (e) {}
+      if (n === 1) return 'one';
+      if (lang === 'ar') { var h = n % 100; return n === 2 ? 'two' : h >= 3 && h <= 10 ? 'few' : h >= 11 ? 'many' : 'other'; }
+      return 'other';
     };
+    var unitN = function (u, n) {
+      var f = t('pricing.unitsN.' + u).split('|'), i = (f.length === 5 ? ['one', 'two', 'few', 'many', 'other'] : ['one', 'other']).indexOf(plural(n));
+      return f[i > -1 ? i : f.length - 1];
+    };
+    var counted = function (u, n) { return lang === 'ar' && plural(n) === 'two' ? unitN(u, n) : n + ' ' + unitN(u, n); };
+
     var st = { type: 'vitrine', n: M.vitrine.def, opts: [], rush: false, care: false };
+    var order = $$('[data-type]', est).map(function (b) { return b.getAttribute('data-type'); });
     var size = $('#est-size'), nOut = $('[data-est-n]'), unit = $('[data-est-unit]');
     var dz = $('[data-est-dz]'), eu = $('[data-est-eu]'), us = $('[data-est-us]'), w = $('[data-est-w]');
+    var what = $('[data-est-what]', est), inclEl = $('[data-est-incl]', est), zone = $('[data-est-zone]', est), face = $('[data-est-face]', est);
+    var rowsEl = $('[data-est-lines]', est), loEl = $('[data-est-lo]', est), hiEl = $('[data-est-hi]', est), mk = $('[data-est-mk]', est);
     var careBox = $('[data-est-care]'), careV = $('[data-est-care-v]');
     var kuro = $('[data-est-kuro]'), kImgs = $$('img', kuro), kLine = $('[data-est-line]');
     var seal = $('[data-est-seal]', est);
     var live = $('[data-est-live]', est), liveW = $('[data-est-live-w]', est);
     var shown = null, tw = 0, tier = 0;
     var paint = function (lo, hi) {
-      dz.textContent = range(lo, hi, 'DZD'); eu.textContent = range(lo, hi, 'EUR'); us.textContent = range(lo, hi, 'USD');
+      dz.textContent = range(lo, hi, 'DZD');
       if (live) live.textContent = dz.textContent;
     };
+    // the receipt: one row per line of the quote, then the two totals, which are their sums
+    var receipt = function (q, m, animate) {
+      var frag = document.createDocumentFragment();
+      q.lines.forEach(function (ln) {
+        var tr = document.createElement('tr'), th = document.createElement('th'), td;
+        th.scope = 'row';
+        th.textContent = ln.k === 'base' ? t('pricing.rc.base') + ' ' + counted(m.u, ln.n)
+          : ln.k === 'extra' ? '+ ' + counted(m.u, ln.n)
+          : ln.k === 'opt' ? t('pricing.o.' + ln.o)
+          : ln.k === 'studio' ? t('pricing.rc.studio') : t('pricing.rc.rush');
+        tr.appendChild(th);
+        if (ln.incl) { td = document.createElement('td'); td.colSpan = 2; td.textContent = t('pricing.included'); tr.appendChild(td); }
+        else ['lo', 'hi'].forEach(function (f) { td = document.createElement('td'); td.dir = 'ltr'; td.textContent = amt(ln[f]); tr.appendChild(td); });
+        frag.appendChild(tr);
+      });
+      rowsEl.textContent = ''; rowsEl.appendChild(frag);
+      loEl.textContent = amt(q.lo); hiEl.textContent = amt(q.hi);
+      eu.textContent = range(q.lo, q.hi, 'EUR'); us.textContent = range(q.lo, q.hi, 'USD');
+      if (animate && !reduce) { rowsEl.classList.remove('is-print'); void rowsEl.offsetWidth; rowsEl.classList.add('is-print'); }
+    };
+    /* The same project on three markets (the price guide's sourced ranges),
+       each in its own currency, drawn on one logarithmic dinar scale with the
+       estimate laid across as a band. A type the guide has no row for
+       (an automation) shows no market. */
+    var NATIVE = { dz: 'DZD', fr: 'EUR', us: 'USD' };
+    var market = function (q) {
+      var row = P.market && P.market[st.type];
+      if (!mk) return;
+      mk.hidden = !row;
+      if (!row) return;
+      var toDz = function (k, v) { return k === 'dz' ? v : v * P.fx[NATIVE[k]]; };
+      var lo = q.lo, hi = q.hi;
+      Object.keys(NATIVE).forEach(function (k) { lo = Math.min(lo, toDz(k, row[k][0])); hi = Math.max(hi, toDz(k, row[k][1])); });
+      var L0 = Math.log(lo * 0.8), L1 = Math.log(hi * 1.25);
+      var pos = function (v) { return ((Math.log(v) - L0) / (L1 - L0) * 100).toFixed(1) + '%'; };
+      mk.style.setProperty('--q0', pos(q.lo)); mk.style.setProperty('--q1', pos(q.hi));
+      $$('[data-mk]', mk).forEach(function (r) {
+        var k = r.getAttribute('data-mk'), v = row[k];
+        $('[data-mk-v]', r).textContent = pair(v[0], v[1], NATIVE[k]) + (v[2] ? '+' : '');
+        r.style.setProperty('--a', pos(toDz(k, v[0]))); r.style.setProperty('--b', pos(toDz(k, v[1])));
+      });
+    };
     var render = function (animate) {
-      var m = M[st.type], q = quote(st.type, st.n, st.opts, st.rush);
+      var m = M[st.type], q = quote(st.type, st.n, picked(), st.rush);
       nOut.textContent = st.n;
-      size.setAttribute('aria-valuetext', st.n + ' ' + t('pricing.units.' + m.u));
+      size.setAttribute('aria-valuetext', counted(m.u, st.n));
       unit.setAttribute('data-i18n', 'pricing.units.' + m.u); unit.textContent = t('pricing.units.' + m.u);
+      what.textContent = t('pricing.types.' + st.type) + ' · ' + counted(m.u, st.n);
+      inclEl.textContent = t('pricing.rc.base') + ' ' + counted(m.u, m.base_u) + '. ' + t('pricing.beyond') + ' + ' + range(m.unit[0], m.unit[1], 'DZD') + ' / ' + unitN(m.u, 1);
+      if (zone) zone.style.setProperty('--incl', ((m.base_u - m.min) / (m.max - m.min) * 100).toFixed(1) + '%');
       w.textContent = q.wLo + '–' + q.wHi;
       if (liveW) liveW.textContent = w.textContent;
       careBox.hidden = !st.care; careV.textContent = range(P.retainer[0], P.retainer[1], 'DZD');
+      receipt(q, m, animate);
+      market(q);
       var nt = q.hi < 200000 ? 0 : q.hi < 600000 ? 1 : 2;
       if (nt !== tier) { tier = nt; kImgs.forEach(function (im) { im.classList.toggle('is-active', Number(im.getAttribute('data-tier')) === tier); }); }
+      face.setAttribute('data-mood', tier);
       kLine.setAttribute('data-i18n', 'pricing.kuro.' + tier); kLine.textContent = t('pricing.kuro.' + tier);
       kImgs[0].alt = ''; kImgs[tier].alt = t('pricing.kuroAlt');
-      // the seal stamps the figures once the visitor has changed something (never on the first paint)
+      // the seal stamps the receipt once the visitor has changed something (never on the first paint)
       if (animate && seal) { seal.hidden = false; seal.classList.remove('is-stamp'); if (!reduce) { void seal.offsetWidth; seal.classList.add('is-stamp'); } }
       cancelAnimationFrame(tw);
       var from = shown || { lo: q.lo, hi: q.hi };
       shown = { lo: q.lo, hi: q.hi };
       if (!animate || reduce) { paint(q.lo, q.hi); return; }
       kuro.classList.add('is-squash'); setTimeout(function () { kuro.classList.remove('is-squash'); }, 110);
-      var t1 = now(), D = 520;
+      face.classList.add('is-blink'); setTimeout(function () { face.classList.remove('is-blink'); }, 140);
+      var t1 = now(), D = 420;
       var step = function (n) {
         var p = Math.min(1, (n - t1) / D), e = 1 - Math.pow(1 - p, 4);
         var r = function (a, b) { return Math.round((a + (b - a) * e) / 1000) * 1000; };
@@ -621,6 +706,8 @@
         if (tag) { tag.hidden = !incl; tag.textContent = ' (' + t('pricing.included') + ')'; }
       });
     };
+    // an option the tier includes is on the receipt as "included"
+    var picked = function () { var m = M[st.type]; return (m.incl || []).concat(st.opts.filter(function (o) { return (m.incl || []).indexOf(o) < 0; })); };
     $$('button', est).forEach(function (b) { b.disabled = false; });
     size.disabled = false;
     $$('[data-type]', est).forEach(function (b) { b.addEventListener('click', function () { setType(b.getAttribute('data-type')); render(true); }); });
@@ -636,6 +723,21 @@
       b.addEventListener('click', function () {
         st.rush = b.getAttribute('data-pace') === 'rush';
         $$('[data-pace]', est).forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        render(true);
+      });
+    });
+    // the pad: up and down walk the types, minus and plus step the size
+    $$('[data-pad]', est).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var d = b.getAttribute('data-pad'), m = M[st.type];
+        if (d === 'up' || d === 'down') {
+          var i = order.indexOf(st.type) + (d === 'up' ? -1 : 1);
+          setType(order[(i + order.length) % order.length]);
+        } else {
+          var v = Math.min(m.max, Math.max(m.min, st.n + (d === 'more' ? m.step : -m.step)));
+          if (v === st.n) return;
+          st.n = v; size.value = v;
+        }
         render(true);
       });
     });
@@ -1043,6 +1145,7 @@
     };
     var targets = $$('.st-case').map(function (el) { return [el, el.id.replace(/^case-/, '')]; });
     var own = $('.st-own'); if (own) targets.push([own, 'whq']);
+    var con = $('.st-est'); if (con) targets.push([con, 'console']);
     if (!IO) { targets.forEach(function (t) { load(t[1]); }); return; }
     var fio = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { load(e.target.getAttribute('data-fonts')); fio.unobserve(e.target); } });

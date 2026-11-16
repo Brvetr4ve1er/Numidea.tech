@@ -269,7 +269,42 @@
       "serious. Kūro is thinking.",
       "ambitious. Kūro needs to sit down."
     ],
-    "kuroAlt": "Kūro reacts to the estimate"
+    "kuroAlt": "Kūro reacts to the estimate",
+    "unitsN": {
+      "uPages": "@home:price.uPages.n",
+      "uProducts": "@home:price.uProducts.n",
+      "uScreens": "@home:price.uScreens.n",
+      "uFlows": "@home:price.uFlows.n",
+      "uSupports": "@home:price.uSupports.n"
+    },
+    "console": "The studio’s calculator",
+    "beyond": "Beyond:",
+    "rc": {
+      "title": "ESTIMATE RECEIPT",
+      "cap": "The estimate, line by line",
+      "line": "LINE",
+      "min": "FROM",
+      "max": "TO",
+      "base": "@home:price.lnUpTo",
+      "studio": "@home:price.lnStudio",
+      "rush": "@home:price.lnRush",
+      "total": "@home:price.lnTotal"
+    },
+    "pad": {
+      "up": "Previous project type",
+      "down": "Next project type",
+      "less": "Smaller scope",
+      "more": "Bigger scope"
+    },
+    "mk": {
+      "title": "SAME PROJECT, THREE MARKETS",
+      "dz": "@home:mk.colDz",
+      "fr": "@home:mk.colFr",
+      "us": "@home:mk.colUs",
+      "you": "Your estimate",
+      "lead": "Usual 2026 ranges, from an experienced freelancer to an agency. The red band is your estimate, converted at the official rate."
+    },
+    "consoleAlt": "DOURO·8, the studio’s little calculator, prints a receipt that Kūro catches"
   },
   "brand": {
     "kicker": "/ 06 · BRAND, EXPLAINED",

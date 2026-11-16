@@ -534,6 +534,17 @@ translated from it.
   The Studio's English and French counterparts carry the same keys;
 - the bible and the brand books are English only; the premise sentence added
   to the bible's cover is English and has no Arabic to review.
+- AR review (2026-11-16, the calculator), `assets/i18n/ar.js`, new:
+  `price.lnUpTo` («الباقة، حتى»), `price.lnStudio` («تطبيق باقة الاستوديو»),
+  `price.lnRush` («معجَّل، +25%»), `price.lnTotal` («المجموع»); changed: the
+  rate and its date in `mk.note`, `price.curNoteEUR`, `price.curNoteUSD`
+  (10 نوفمبر 2026, 152 and 136);
+- AR review (2026-11-16), the Studio `hub/src/i18n/ar.json`, new:
+  `pricing.console` («حاسبة الاستوديو»), `pricing.consoleAlt`,
+  `pricing.beyond` («بعد ذلك:»), `pricing.rc.{title,cap,line,min,max}`
+  («إيصال التقدير», «من», «إلى»), `pricing.pad.{up,down,less,more}`,
+  `pricing.mk.{title,you,lead}`. The console's name, DOURO·8, stays in Latin
+  script on purpose.
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1126,3 +1137,42 @@ section 8.
 the Heetch c08, c09 and c10 pictures (it looks like it is in the source images);
 the Traveler and Bordj posters at 2x make the full scroll about 3.1 MB on a
 phone, over the 2.5 MB target; Arabic Reem Kufi has no Latin digits.
+
+## 22. The calculator (2026-11-16)
+
+You said the calculator was broken. Measured on the live Studio on 15 November:
+the size slider did nothing for half its range, some options added nothing, the
+total was rounded after it was summed (90 000 + 22 000 read 110 000), and the
+weeks never moved with the size. It is rebuilt on your approval of the plan
+"The living Studio". No published price changed: the three tier cards, the
+90 000 DA floor and the maintenance line are what they were.
+
+**What is new, and yours to change:**
+
+- **Every quote is a receipt.** Each part is a line (the package up to its base
+  size, the units over it, each option, "Formule Studio appliquée" when a
+  Vitrine would cost more than the Studio package, "Accéléré, +25 %"), and the
+  total is the exact sum of the lines. Nothing is rounded after the sum, so
+  totals such as 526 000 DA now appear where 550 000 did.
+- **Weeks grow with the size** (drafted by me, none of this was on the site
+  before; change any figure in `assets/app.js`, `PRICE_MODEL`, field `per`):
+  one more week for every 5 pages over the package on a Vitrine or a Studio
+  site, every 100 products on a shop, every 2 screens on an application, every
+  3 flows on an automation, every 3 deliverables on an identity. A 400-product
+  shop reads 8 to 13 weeks (5 to 10 before); a 20-screen application 15 to 23.
+- **Exchange rate:** 1 € ≈ 152 DA, 1 $ ≈ 136 DA, the Bank of Algeria's official
+  rate of 10 November 2026 (152.37 and 136.13, as the Algerian press printed
+  the bank's daily table). It was 151 and 134 (1 October).
+- **The Studio's calculator is a small console, DOURO·8** (a working name:
+  "douro", the old coin). It is an original drawing, not a copy of any
+  existing cartoon console. Say so if you want another name.
+- **The market, inside the calculator:** three bars (Algeria, France, United
+  States) from the price guide's sourced table, with your estimate laid
+  across. An automation has no row in that table, so it shows no market.
+- **One price list, in dinars.** A client abroad sees the same prices
+  converted at the official rate. A separate price list in euros for clients
+  abroad is your decision; nothing was done about it.
+- **The drawing beside the title** (`hub/img/studio/douro-kuro.webp`) is new
+  art made for this section. Kūro is fluffier in it than in your own
+  drawings; say if you want it redrawn closer to your line.
+

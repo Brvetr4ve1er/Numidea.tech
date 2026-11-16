@@ -131,6 +131,8 @@ const PRICES = {
   model: Object.fromEntries(Object.entries(ESTIMATE.PRICE_MODEL).map(([k, m]) => [k, { ...m, u: m.u.replace(/^price\./, '') }])),
   opts: Object.fromEntries(Object.entries(ESTIMATE.PRICE_OPTS).map(([k, o]) => [k, { add: o.add, weeks: o.weeks }])),
   rush: [Number(rushP), Number(rushW)], fx: { EUR: FX.EUR, USD: FX.USD }, retainer: RETAINER,
+  // what the same project costs on three markets (the price guide's sourced table, assets/app.js 14): [low, high, open-ended]
+  market: new Function(`return ${grab(/var MARKET = (\{[\s\S]*?\n    \});/, 'MARKET')[1]}`)(),
 };
 /* The figures as the home's estimator writes them (assets/app.js 12a):
    French and Arabic group with a narrow no-break space and put the currency
@@ -153,6 +155,20 @@ const EST = {
   dz: f0(q0.lo, q0.hi, 'DZD'), eu: f0(q0.lo, q0.hi, 'EUR'), us: f0(q0.lo, q0.hi, 'USD'),
   w: `${q0.wLo}–${q0.wHi}`, care: f0(RETAINER[0], RETAINER[1], 'DZD'),
 };
+/* The console's starting screen and receipt, as hub/app.js 6 writes them in
+   French (a reader without scripts gets these): the type and its size, what
+   the package covers and what a unit over it adds, one row per line of the
+   quote, the two totals. */
+const grpFr = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u202f');
+const countedFr = (u, n) => `${n} ${DICT.fr[`pricing.unitsN.${u}`].split('|')[n === 1 ? 0 : 1]}`;
+const U0 = M0.u.replace(/^price\./, '');
+Object.assign(EST, {
+  what: `${DICT.fr['pricing.types.vitrine']} · ${countedFr(U0, M0.def)}`,
+  incl: `${DICT.fr['pricing.rc.base']} ${countedFr(U0, M0.base_u)}. ${DICT.fr['pricing.beyond']} + ${f0(M0.unit[0], M0.unit[1], 'DZD')} / ${DICT.fr[`pricing.unitsN.${U0}`].split('|')[0]}`,
+  lo: grpFr(q0.lo), hi: grpFr(q0.hi),
+});
+if (q0.lines.length !== 1 || q0.lines[0].k !== 'base') fail('build-hub.mjs: the starting quote is no longer one line (the baked receipt row assumes it)');
+const EST_ROWS = `<tr><th scope="row">${DICT.fr['pricing.rc.base']} ${countedFr(U0, q0.lines[0].n)}</th><td dir="ltr">${grpFr(q0.lines[0].lo)}</td><td dir="ltr">${grpFr(q0.lines[0].hi)}</td></tr>`;
 
 /* ---------------- the faces, split: the page's own, and each case's as it nears ----------------
    hub/fonts/fonts.css is the one list of the Studio's faces (the bible and the brand books load
@@ -173,12 +189,14 @@ const FONT_FILES = [
   ...Object.entries(LAZY).map(([slug, fams]) => [`hub/fonts/lazy-${slug}.css`, FONT_HEAD(`the faces of the ${slug} case, loaded as it nears`) + FONT_RULES.filter(([n]) => fams.includes(n)).map(([, r]) => r).join('\n') + '\n']),
   // the arcade face of the WorkspaceHQ ticket (the font WorkspaceHQ already hosts: one file), loaded as the ticket nears
   ['hub/fonts/lazy-whq.css', FONT_HEAD('the arcade face of the WorkspaceHQ ticket') + '@font-face { font-family: "Press Start 2P"; font-style: normal; font-weight: 400; font-display: swap;\n  src: url("../../workspacehq/fonts/PressStart2P.woff2") format("woff2"); }\n'],
+  // the screen face of the price console (VT323, also the file WorkspaceHQ hosts), loaded as the console nears
+  ['hub/fonts/lazy-console.css', FONT_HEAD('the screen face of the price console') + '@font-face { font-family: "VT323"; font-style: normal; font-weight: 400; font-display: swap;\n  src: url("../../workspacehq/fonts/VT323.woff2") format("woff2"); }\n'],
 ];
 
 const GENERATED = new Set(FONT_FILES.map(([f]) => f.replace(/^hub\//, '')));
 
 /* ---------------- the page ---------------- */
-const RUNTIME = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|kuro|cur$|included$)|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
+const RUNTIME = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|unitsN\.|types\.|o\.|rc\.(base|studio|rush)$|beyond$|kuro|cur$|included$)|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
 const sorted = (o) => Object.fromEntries(Object.keys(o).sort().map((k) => [k, o[k]]));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const attr = (s) => esc(s).replace(/"/g, '&quot;');
@@ -203,9 +221,10 @@ const holes = {
   // labels, the process card's mood, the cases' badges): a French visitor
   // never fetches i18n.js
   fr: JSON.stringify(sorted(Object.fromEntries(Object.entries(DICT.fr).filter(([k]) => RUNTIME.test(k))))).replace(/</g, '\\u003c'),
-  lazyFonts: [...CASES.map((c) => c[0]), 'whq'].map((n) => `<link rel="stylesheet" href="fonts/lazy-${n}.css?v=${stamp}">`).join(''),
+  lazyFonts: [...CASES.map((c) => c[0]), 'whq', 'console'].map((n) => `<link rel="stylesheet" href="fonts/lazy-${n}.css?v=${stamp}">`).join(''),
   caseCss: caseCss.map((h) => `<link rel="stylesheet" href="${h}?v=${stamp}">`).join('\n'),
   ...Object.fromEntries(Object.entries(EST).map(([k, v]) => [`est.${k}`, esc(v)])),
+  estRows: EST_ROWS,
 };
 html = html.replace(/\{\{([a-zA-Z.]+)\}\}/g, (all, k) => { if (holes[k] == null) { fail(`page.html: unknown hole {{${k}}}`); return all; } return holes[k]; });
 // a template line that is all hole (caseCss with no case css yet) leaves no blank line

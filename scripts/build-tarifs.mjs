@@ -219,10 +219,10 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
 
       <p class="mk-day">
         <span data-i18n="mk.day1">Une journée de développeur confirmé en France coûte</span>
-        <b class="mk-num" id="mk-day-eur">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz">70 000 –⁠ 100 000 DA</b>
+        <b class="mk-num" id="mk-day-eur">480 –⁠ 650 €</b> ≈ <b class="mk-num" id="mk-day-dz">75 000 –⁠ 100 000 DA</b>
         <span data-i18n="mk.day2">au taux officiel, soit à peu près le prix d'un site vitrine complet sur le marché algérien.</span>
       </p>
-      <p class="mk-note" data-i18n="mk.note">Conversions au taux officiel de la Banque d'Algérie, début octobre 2026 : 1 € ≈ 151 DA, 1 $ ≈ 134 DA. L'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec les mêmes outils que les studios européens et américains : React, Next.js, Vercel.</p>
+      <p class="mk-note" data-i18n="mk.note">Conversions au taux officiel de la Banque d'Algérie, le 10 novembre 2026 : 1 € ≈ 152 DA, 1 $ ≈ 136 DA. L'écart tient au coût de la vie et au change, pas aux outils — nous livrons avec les mêmes outils que les studios européens et américains : React, Next.js, Vercel.</p>
 
       <details class="mk-src">
         <summary data-i18n="mk.srcSum">Sources et méthode</summary>
@@ -288,7 +288,7 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
    cell's custom properties (--lo, --w), and a range with no ceiling fades out
    as the chart's does. The currency switch rewrites a cell's text and leaves
    these alone, as it should: the ratios do not change with the currency. */
-const FX = { dz: 1, nl: 1, fr: 151, us: 134 };
+const FX = { dz: 1, nl: 1, fr: 152, us: 136 };
 function marketBars(html) {
   const cell = /<td data-l="@@mk\.col(\w+)@@" data-mk="(nl|dz|fr|us)"([^>]*)>([^<]*)<span class="cur">/g;
   const OPEN = 1.5;

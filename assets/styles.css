@@ -1644,10 +1644,13 @@ html[dir="rtl"] .est-field input[type="range"]::-moz-range-track{background:line
 .eo-dash{color:var(--faint);margin:0 .22em;font-weight:400}
 .eo-time{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;
   color:var(--faint);font-variant-numeric:tabular-nums}
-.eo-sum{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s-2);margin:var(--s-2) 0}
-.eo-sum li{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.06em;color:var(--body-strong);
-  border:1px solid var(--hairline-2);border-radius:var(--r-pill);padding:var(--s-1) var(--s-2)}
-.eo-sum .eo-head{border-color:var(--teal);color:var(--teal-text)}
+/* the receipt: one line per part of the quote, label left, amount right, the total last (app.js 12) */
+.eo-sum{list-style:none;display:flex;flex-direction:column;margin:var(--s-2) 0}
+.eo-sum li{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s-3);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;color:var(--body-strong);
+  border-bottom:1px solid var(--hairline);padding:var(--s-1) 0;font-variant-numeric:tabular-nums}
+.eo-sum .eo-v{white-space:nowrap;text-align:end}
+.eo-sum .eo-head{color:var(--teal-text);border-bottom-color:var(--teal)}
+.eo-sum .eo-total{color:var(--ice);font-weight:700;border-bottom:0;border-top:1px solid var(--hairline-2);margin-top:-1px}
 .eo-fine{color:var(--faint);line-height:1.6;max-width:46em}
 .est-out .btn{align-self:flex-start;margin-top:var(--s-2)}
 

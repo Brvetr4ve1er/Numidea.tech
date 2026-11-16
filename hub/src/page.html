@@ -413,51 +413,90 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
         <h2 class="st-h2" id="pricing-h" data-i18n="pricing.title"></h2>
       </div>
       <p class="st-lead" data-i18n="pricing.lead"></p>
+      <img class="st-pricing__card" src="img/studio/douro-kuro.webp" srcset="img/studio/douro-kuro-240.webp 240w, img/studio/douro-kuro.webp 480w" sizes="(max-width:599px) 120px, 210px" data-i18n-alt="pricing.consoleAlt" loading="lazy" decoding="async">
     </div>
+    <!-- The calculator is a small console (hub/app.js 6, hub/style.css "05 the
+         console"): a night screen with a face and the total, the controls on
+         its body, a pad, and the receipt it prints. Every control is a real
+         button or range; the receipt is a table whose lines add up to its
+         total (assets/app.js ESTIMATE, tested by scripts/check.mjs). Without
+         scripts the screen and the receipt show the starting figure. -->
     <div class="st-est" data-est>
-      <div class="st-est__ctrl">
-        <fieldset class="st-est__grp">
-          <legend class="st-label" data-i18n="pricing.type"></legend>
-          <div class="st-est__types">
-            <button type="button" class="st-tbtn" data-type="vitrine" aria-pressed="true" disabled data-i18n="pricing.types.vitrine"></button>
-            <button type="button" class="st-tbtn" data-type="surmesure" aria-pressed="false" disabled data-i18n="pricing.types.surmesure"></button>
-            <button type="button" class="st-tbtn" data-type="ecommerce" aria-pressed="false" disabled data-i18n="pricing.types.ecommerce"></button>
-            <button type="button" class="st-tbtn" data-type="app" aria-pressed="false" disabled data-i18n="pricing.types.app"></button>
-            <button type="button" class="st-tbtn" data-type="auto" aria-pressed="false" disabled data-i18n="pricing.types.auto"></button>
-            <button type="button" class="st-tbtn" data-type="identite" aria-pressed="false" disabled data-i18n="pricing.types.identite"></button>
-          </div>
-        </fieldset>
-        <div class="st-est__grp">
-          <p class="st-est__size"><label class="st-label" for="est-size"><span data-i18n="pricing.size"></span> · <span data-est-unit data-i18n="pricing.units.uPages"></span></label><output class="st-est__n" for="est-size" data-est-n>{{est.n}}</output></p>
-          <input type="range" id="est-size" min="{{est.min}}" max="{{est.max}}" step="{{est.step}}" value="{{est.n}}" disabled>
+      <div class="st-dr" role="group" data-i18n-aria="pricing.console">
+        <p class="st-dr__head" aria-hidden="true"><span class="st-dr__led"></span><b dir="ltr">DOURO·8</b><span class="st-dr__grille"></span></p>
+        <div class="st-dr__lcd" aria-live="polite">
+          <svg class="st-dr__face" data-est-face data-mood="0" viewBox="0 0 28 14" width="112" height="56" aria-hidden="true" focusable="false">
+            <g data-m="0"><path d="M7 3h3v4H7zM18 3h3v4h-3zM10 9h1v1h-1zM17 9h1v1h-1zM11 10h6v1h-6z"/></g>
+            <g data-m="1"><path d="M7 4h3v2H7zM18 4h3v2h-3zM11 10h6v1h-6z"/></g>
+            <g data-m="2"><path d="M6 2h5v6H6zM17 2h5v6h-5zM12 9h4v4h-4z"/><path class="st-dr__hole" d="M8 4h1v2H8zM19 4h1v2h-1zM13 10h2v2h-2z"/></g>
+          </svg>
+          <p class="st-dr__what" data-est-what>{{est.what}}</p>
+          <p class="st-dr__fig"><span class="st-dr__k" data-i18n="pricing.dz"></span><output dir="ltr" data-est-dz>{{est.dz}}</output></p>
+          <p class="st-dr__w"><span data-i18n="pricing.weeks"></span> · <b data-est-w>{{est.w}}</b> <span data-est-wk data-i18n="pricing.wk"></span></p>
         </div>
-        <fieldset class="st-est__grp">
-          <legend class="st-label" data-i18n="pricing.opts"></legend>
-          <div class="st-est__opts">
-            <button type="button" class="st-obtn" data-opt="i18n" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.i18n"></span></button>
-            <button type="button" class="st-obtn" data-opt="cms" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.cms"></span></button>
-            <button type="button" class="st-obtn" data-opt="pay" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.pay"></span></button>
-            <button type="button" class="st-obtn" data-opt="ds" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.ds"></span></button>
-            <button type="button" class="st-obtn" data-opt="seo" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.seo"></span></button>
-            <button type="button" class="st-obtn" data-opt="api" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.api"></span></button>
+        <div class="st-est__ctrl">
+          <fieldset class="st-est__grp">
+            <legend class="st-label" data-i18n="pricing.type"></legend>
+            <div class="st-est__types">
+              <button type="button" class="st-tbtn" data-type="vitrine" aria-pressed="true" disabled data-i18n="pricing.types.vitrine"></button>
+              <button type="button" class="st-tbtn" data-type="surmesure" aria-pressed="false" disabled data-i18n="pricing.types.surmesure"></button>
+              <button type="button" class="st-tbtn" data-type="ecommerce" aria-pressed="false" disabled data-i18n="pricing.types.ecommerce"></button>
+              <button type="button" class="st-tbtn" data-type="app" aria-pressed="false" disabled data-i18n="pricing.types.app"></button>
+              <button type="button" class="st-tbtn" data-type="auto" aria-pressed="false" disabled data-i18n="pricing.types.auto"></button>
+              <button type="button" class="st-tbtn" data-type="identite" aria-pressed="false" disabled data-i18n="pricing.types.identite"></button>
+            </div>
+          </fieldset>
+          <div class="st-est__grp">
+            <p class="st-est__size"><label class="st-label" for="est-size"><span data-i18n="pricing.size"></span> · <span data-est-unit data-i18n="pricing.units.uPages"></span></label><output class="st-est__n" for="est-size" data-est-n>{{est.n}}</output></p>
+            <input type="range" id="est-size" min="{{est.min}}" max="{{est.max}}" step="{{est.step}}" value="{{est.n}}" disabled>
+            <span class="st-est__zone" data-est-zone aria-hidden="true"><i></i></span>
+            <p class="st-est__incl" data-est-incl>{{est.incl}}</p>
           </div>
-        </fieldset>
-        <fieldset class="st-est__grp">
-          <legend class="st-label" data-i18n="pricing.pace"></legend>
-          <div class="st-seg">
-            <button type="button" data-pace="std" aria-pressed="true" disabled data-i18n="pricing.paceStd"></button>
-            <button type="button" data-pace="rush" aria-pressed="false" disabled data-i18n="pricing.paceRush"></button>
+          <fieldset class="st-est__grp">
+            <legend class="st-label" data-i18n="pricing.opts"></legend>
+            <div class="st-est__opts">
+              <button type="button" class="st-obtn" data-opt="i18n" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.i18n"></span></button>
+              <button type="button" class="st-obtn" data-opt="cms" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.cms"></span></button>
+              <button type="button" class="st-obtn" data-opt="pay" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.pay"></span></button>
+              <button type="button" class="st-obtn" data-opt="ds" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.ds"></span></button>
+              <button type="button" class="st-obtn" data-opt="seo" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.seo"></span></button>
+              <button type="button" class="st-obtn" data-opt="api" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.api"></span></button>
+            </div>
+          </fieldset>
+          <div class="st-dr__row">
+            <fieldset class="st-est__grp">
+              <legend class="st-label" data-i18n="pricing.pace"></legend>
+              <div class="st-seg">
+                <button type="button" data-pace="std" aria-pressed="true" disabled data-i18n="pricing.paceStd"></button>
+                <button type="button" data-pace="rush" aria-pressed="false" disabled data-i18n="pricing.paceRush"></button>
+              </div>
+            </fieldset>
+            <button type="button" class="st-obtn st-obtn--care" data-care aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.care"></span></button>
           </div>
-        </fieldset>
-        <button type="button" class="st-obtn st-obtn--care" data-care aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.care"></span></button>
-        <p class="st-est__live" aria-hidden="true"><output dir="ltr" data-est-live>{{est.dz}}</output><span class="st-est__live-w"><b data-est-live-w>{{est.w}}</b> <span data-i18n="pricing.wk"></span></span></p>
+          <p class="st-est__live" aria-hidden="true"><output dir="ltr" data-est-live>{{est.dz}}</output><span class="st-est__live-w"><b data-est-live-w>{{est.w}}</b> <span data-i18n="pricing.wk"></span></span></p>
+        </div>
+        <div class="st-dr__deck">
+          <div class="st-dr__pad">
+            <button type="button" class="st-dr__d st-dr__d--u" data-pad="up" disabled data-i18n-aria="pricing.pad.up"><span aria-hidden="true">▲</span></button>
+            <button type="button" class="st-dr__d st-dr__d--l" data-pad="less" disabled data-i18n-aria="pricing.pad.less"><span aria-hidden="true">−</span></button>
+            <button type="button" class="st-dr__d st-dr__d--r" data-pad="more" disabled data-i18n-aria="pricing.pad.more"><span aria-hidden="true">+</span></button>
+            <button type="button" class="st-dr__d st-dr__d--d" data-pad="down" disabled data-i18n-aria="pricing.pad.down"><span aria-hidden="true">▼</span></button>
+          </div>
+          <p class="st-dr__go"><span class="st-dr__alab" aria-hidden="true" data-i18n="pricing.cta"></span><a class="st-dr__a" href="#contact" data-i18n-aria="pricing.cta"><span aria-hidden="true">A</span></a></p>
+        </div>
       </div>
-      <div class="st-est__out" aria-live="polite">
+      <div class="st-est__out">
         <span class="st-est__seal" data-est-seal aria-hidden="true" lang="ja" hidden>印</span>
-        <p class="st-est__fig"><span class="st-label st-label--red" data-i18n="pricing.dz"></span><output dir="ltr" data-est-dz>{{est.dz}}</output></p>
-        <p class="st-est__fig st-est__fig--rule"><span class="st-label st-label--teal" data-i18n="pricing.eu"></span><output dir="ltr" data-est-eu>{{est.eu}}</output></p>
-        <p class="st-est__fig st-est__fig--rule"><span class="st-label st-label--teal" data-i18n="pricing.us"></span><output dir="ltr" data-est-us>{{est.us}}</output></p>
-        <p class="st-est__meta"><span><span class="st-muted"><span data-i18n="pricing.weeks"></span> ·</span> <b data-est-w>{{est.w}}</b> <span data-est-wk data-i18n="pricing.wk"></span></span><span data-est-care hidden><span class="st-muted"><span data-i18n="pricing.careL"></span> ·</span> <b dir="ltr" data-est-care-v>{{est.care}}</b> <span data-i18n="pricing.monthly"></span></span></p>
+        <p class="st-rc__title"><b dir="ltr">NUMIDEA LABS</b><span data-i18n="pricing.rc.title"></span></p>
+        <table class="st-rc">
+          <caption class="st-sr" data-i18n="pricing.rc.cap"></caption>
+          <thead><tr><th scope="col" data-i18n="pricing.rc.line"></th><th scope="col" data-i18n="pricing.rc.min"></th><th scope="col" data-i18n="pricing.rc.max"></th></tr></thead>
+          <tbody data-est-lines>{{estRows}}</tbody>
+          <tfoot><tr><th scope="row"><span data-i18n="pricing.rc.total"></span> · <span data-i18n="pricing.cur"></span></th><td dir="ltr" data-est-lo>{{est.lo}}</td><td dir="ltr" data-est-hi>{{est.hi}}</td></tr></tfoot>
+        </table>
+        <p class="st-rc__fx"><span class="st-label st-label--teal" data-i18n="pricing.eu"></span><output dir="ltr" data-est-eu>{{est.eu}}</output></p>
+        <p class="st-rc__fx"><span class="st-label st-label--teal" data-i18n="pricing.us"></span><output dir="ltr" data-est-us>{{est.us}}</output></p>
+        <p class="st-est__meta" data-est-care hidden><span><span class="st-muted"><span data-i18n="pricing.careL"></span> ·</span> <b dir="ltr" data-est-care-v>{{est.care}}</b> <span data-i18n="pricing.monthly"></span></span></p>
         <div class="st-est__kuro">
           <span class="st-est__k" data-est-kuro>
             <img class="is-active" data-tier="0" src="bible/art/kuro-love.webp" data-i18n-alt="pricing.kuroAlt" loading="lazy" decoding="async">
@@ -465,6 +504,16 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
             <img data-tier="2" src="bible/art/kuro-shook.webp" alt="" loading="lazy" decoding="async">
           </span>
           <span class="st-aside st-aside--s st-est__line" data-est-line data-i18n="pricing.kuro.0"></span>
+        </div>
+        <div class="st-mk" data-est-mk hidden>
+          <p class="st-label st-label--red" data-i18n="pricing.mk.title"></p>
+          <dl class="st-mk__rows">
+            <div class="st-mk__row" data-mk="dz"><dt data-i18n="pricing.mk.dz"></dt><dd><span class="st-mk__v" dir="ltr" data-mk-v></span><span class="st-mk__trk" aria-hidden="true"><i></i></span></dd></div>
+            <div class="st-mk__row" data-mk="fr"><dt data-i18n="pricing.mk.fr"></dt><dd><span class="st-mk__v" dir="ltr" data-mk-v></span><span class="st-mk__trk" aria-hidden="true"><i></i></span></dd></div>
+            <div class="st-mk__row" data-mk="us"><dt data-i18n="pricing.mk.us"></dt><dd><span class="st-mk__v" dir="ltr" data-mk-v></span><span class="st-mk__trk" aria-hidden="true"><i></i></span></dd></div>
+          </dl>
+          <p class="st-mk__you"><i aria-hidden="true"></i><span data-i18n="pricing.mk.you"></span></p>
+          <p class="st-mk__lead" data-i18n="pricing.mk.lead"></p>
         </div>
         <p class="st-est__note"><span data-i18n="pricing.note"></span> <span data-i18n="pricing.running"></span></p>
         <p class="st-est__nojs" data-i18n="pricing.noJs"></p>
