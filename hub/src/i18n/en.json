@@ -738,7 +738,7 @@
   },
   "money": {
     "title": "Earning from far away.",
-    "lead": "Getting paid from abroad, choosing accounts, setting your rate, understanding crypto: six short lessons. Then a master course on gamification, and four services to go further.",
+    "lead": "Getting paid from abroad, setting your rate, understanding crypto: six money lessons. Then a road book for working from anywhere, a master course on gamification, and four services to go further.",
     "sceneAlt": "Yasser counts a few coins at his night desk while the little calculator prints a receipt; Kūro rests a paw on a coin",
     "svc": {
       "aria": "The four services",
@@ -1010,16 +1010,17 @@
   "manual": {
     "ui": {
       "title": "The manual — earning from far away | Numidea Labs",
-      "desc": "Six short lessons on getting paid from abroad, choosing accounts, setting your rate and understanding crypto. Four fixed-price coaching services."
+      "desc": "Twenty-two short lessons: getting paid from abroad, setting your rate, working from anywhere, understanding gamification. Four fixed-price services."
     },
     "kicker": "/ THE MANUAL",
     "nav": {
       "aria": "Manual sections",
-      "lessons": "Lessons",
+      "lessons": "Money",
       "radio": "Radio",
       "studio": "The Studio",
       "cta": "Book a call",
-      "course": "Fair play"
+      "course": "Fair play",
+      "nomad": "Nomad"
     },
     "svc": {
       "kicker": "/ FOUR SERVICES",
@@ -1350,6 +1351,240 @@
           "A place on a leaderboard"
         ],
         "ok": "Yes. That is our rule: we reward with something to look at, never with pressure to buy."
+      }
+    ]
+  },
+  "nomade": {
+    "kicker": "/ ROAD BOOK · NOMAD LIFE",
+    "title": "The road book.",
+    "lead": "Working from anywhere, without kidding yourself: finding clients, pricing, protecting yourself, living with time zones, keeping your files and accounts safe, preparing a departure. Eight stops, eight stamps. The figures are your own, or come from a named source.",
+    "sceneAlt": "Yasser works at night on a terrace, laptop open on a wooden table, above a lit coastal town; Kūro sits on the backpack, looking at the sea",
+    "hud": "/ EIGHT STOPS · ONE STAMP PER RIGHT ANSWER",
+    "tabs": "The eight stops of the road book",
+    "book": "Your passport",
+    "n": "STOP",
+    "stops": [
+      "Clients",
+      "Price",
+      "Quote",
+      "Zones",
+      "Bag",
+      "Security",
+      "Year",
+      "Leaving"
+    ],
+    "all": {
+      "t": "Eight out of eight.",
+      "d": "The road book’s wallpaper is yours: the terrace, at night, sized for your phone.",
+      "go": "Download the wallpaper"
+    },
+    "cta": {
+      "d": "A site that answers your clients while you sleep in another time zone can be built.",
+      "go": "Talk to the Studio →"
+    },
+    "src": {
+      "title": "The road book’s sources",
+      "note": "The advice on security, backups, bandwidth and stays comes from these sources; the calculators’ figures are your own. The ANSSI guide dates from 2019 and addresses employees: its habits hold for a freelancer too. Nothing here is legal or tax advice."
+    },
+    "items": [
+      {
+        "t": "Finding clients",
+        "d": "Clients do not fall from the sky: they answer messages. How many should you send? It can be counted. The clients you want, divided by the share of people who reply, then by the share of those who sign.",
+        "f": {
+          "want": "New clients wanted, per month",
+          "reply": "Replies, per 100 messages sent",
+          "close": "Signatures, per 100 replies",
+          "msgs": "messages to send per month",
+          "week": "per week, roughly",
+          "unit": "The starting rates are examples, not averages. Note what you send and what comes back for a month, then put in your own."
+        },
+        "q": "You send 40 messages: 4 people reply, 1 signs. You want 3 clients a month. What do you do?",
+        "a": [
+          "Send 120 messages, or improve one of the two rates",
+          "Halve your prices",
+          "Wait for word of mouth to do the rest"
+        ],
+        "ok": "Yes. One signature per 40 messages, so 120 messages for 3 clients. Or a better message, or a better offer: both rates can be worked on."
+      },
+      {
+        "t": "Pricing a project",
+        "d": "A project price is time counted before you start: your day rate, times the days you estimate, plus a margin for what you did not see coming. The client wants one figure that no longer moves.",
+        "f": {
+          "rate": "Your day rate",
+          "days": "Days estimated",
+          "rev": "Margin for the unexpected",
+          "price": "the price to announce",
+          "dep": "at the order, if you ask for 40%",
+          "unit": "In whatever currency you type. To find your day rate: lesson 3 of the money manual, above."
+        },
+        "q": "The project takes three days more than planned, and the scope has not changed. Who pays for those three days?",
+        "a": [
+          "The client: you send an extra invoice",
+          "You: that is what the margin is for",
+          "Half each"
+        ],
+        "ok": "Yes, if the price was firm. It is the Studio’s rule: “if the work overruns, the difference is on us”. If the scope changes, that is a new quote."
+      },
+      {
+        "t": "The quote that protects you",
+        "d": "A signed quote prevents most disputes, because it answers the awkward questions in advance. Here are five lines, with what the Studio writes in its own. These are our terms, not a legal template.",
+        "pick": [
+          {
+            "k": "The scope",
+            "v": "What is included, written as a list: the pages, the languages, the functions. What is not on it is not included. Every other line depends on this one."
+          },
+          {
+            "k": "The deposit",
+            "v": "At the Studio: 40% at the order, on a signed quote, and 60% at delivery, before the site goes live. A deposit shows the project is real on both sides."
+          },
+          {
+            "k": "The revisions",
+            "v": "At the Studio: two rounds of revisions per stage, design then development, are included; further ones are quoted separately. Without this line, a project never ends."
+          },
+          {
+            "k": "The ownership",
+            "v": "At the Studio: once the site is paid in full, it belongs to the client, with the code, the design files and the content. Write down the moment the work changes hands."
+          },
+          {
+            "k": "The deadline",
+            "v": "At the Studio: the firm deadline is set once the project has been scoped together, not before. A deadline promised before the scope is known is a guess."
+          }
+        ],
+        "q": "The client asks for a third round of revisions on the design. What does the Studio’s quote say?",
+        "a": [
+          "It is included",
+          "It is quoted separately",
+          "It is refused"
+        ],
+        "ok": "Yes. Two rounds per stage are included; further ones are quoted separately."
+      },
+      {
+        "t": "Working across time zones",
+        "d": "A client six time zones away is not a problem, it is a calendar. What matters is the hours your two working days share: that is where calls go. The rest is done in writing.",
+        "f": {
+          "me": "Your time zone",
+          "them": "The client’s time zone",
+          "over": "shared hours",
+          "from": "from",
+          "to": "to",
+          "clock": "on your clock",
+          "gap": "hours apart",
+          "none": "No shared hour between two 9-to-18 days: one of you will have to shift theirs, or everything goes in writing.",
+          "unit": "Two 9-to-18 days, in whole hours. Algeria is on UTC+1 all year, with no summer time; the client’s summer time, if they have one, can move the window by an hour."
+        },
+        "q": "You are on UTC+1, your client on UTC−5. At what time, on your clock, do you offer the call?",
+        "a": [
+          "At 10:00",
+          "At 16:00",
+          "At 23:00"
+        ],
+        "ok": "Yes. 16:00 for you is 10:00 for your client: the hour falls inside both days."
+      },
+      {
+        "t": "The bag and the connection",
+        "d": "Your office fits in a bag: anything that breaks, gets lost or cuts out stops you dead. Three precautions: copies of your files, enough bandwidth for your calls, and a second connection.",
+        "pick": [
+          {
+            "k": "The 3-2-1 rule",
+            "v": "At least three copies of your files, on two devices, with one backup kept somewhere else. The UK’s National Cyber Security Centre (NCSC) calls it a popular strategy that can be used in most scenarios: if one copy is compromised, at least one other is intact."
+          },
+          {
+            "k": "The video call",
+            "v": "A one-to-one call needs little. Zoom recommends 600 kbps each way for high-quality video, and 1.2 Mbps for 720p. Google Meet counts up to 1.7 Mbps per participant at 720p, and lowers the definition when bandwidth is short. These are the vendors’ own figures: test your connection before the call, not during it."
+          },
+          {
+            "k": "The backup connection",
+            "v": "The Wi-Fi where you stay can drop on the day of a call. Keep a second way in: your phone’s hotspot. It is also what the NCSC advises instead of an unknown hotspot: use the mobile network."
+          }
+        ],
+        "q": "Your bag is stolen: the laptop, and the backup drive that was inside it. What was missing?",
+        "a": [
+          "A longer password",
+          "A copy kept somewhere else",
+          "A second laptop"
+        ],
+        "ok": "Yes. That is the “1” in 3-2-1: one copy outside the bag, online or with someone you trust."
+      },
+      {
+        "t": "Security on the road",
+        "d": "On the road, your accounts are worth more than your gear: a laptop can be bought again, a hacked mailbox much less so. Five habits, each recommended by a public cyber security agency.",
+        "pick": [
+          {
+            "k": "Public Wi-Fi",
+            "v": "The French agency, ANSSI, advises avoiding networks you do not control whenever possible: hotel, station or café Wi-Fi. The UK’s NCSC agrees: the simplest precaution is not to connect through an unknown hotspot and to use the mobile network instead; a VPN is another option."
+          },
+          {
+            "k": "Two-step verification",
+            "v": "The NCSC recommends turning on 2-step verification for your most important accounts: email, banking, social media, online shopping. It keeps criminals out even if they know your password."
+          },
+          {
+            "k": "Passwords",
+            "v": "A different password for each account, says ANSSI. And a password manager to remember them for you, says the NCSC, which also advises choosing passkeys wherever they are offered."
+          },
+          {
+            "k": "Encryption",
+            "v": "The NCSC advises that every laptop use encryption that requires a password to boot: BitLocker on Windows, FileVault on macOS. Keep the recovery key somewhere safe. And before you leave, ANSSI advises finding out about the law of the country you are going to, including on encryption."
+          },
+          {
+            "k": "On the spot",
+            "v": "Three habits from ANSSI’s guide for professionals who travel: lock your session whenever you step away, even for a moment; do not plug in a USB key you were given without having it checked; carry the strict minimum of data."
+          }
+        ],
+        "q": "At the airport, you need to sign in to an important account. What is safest?",
+        "a": [
+          "The airport’s free Wi-Fi",
+          "Your phone’s hotspot",
+          "The lounge’s shared computer"
+        ],
+        "ok": "Yes. The mobile network rather than a network you do not control: that is the NCSC’s advice, and ANSSI’s."
+      },
+      {
+        "t": "A freelancer’s year",
+        "d": "A year has 52 weeks, but you bill only part of it: there are holidays, public holidays, illness, and all the work nobody pays for. Count your billed days before you promise yourself an income.",
+        "f": {
+          "days": "Working days, per week",
+          "bill": "Share of time actually billed",
+          "off": "Weeks without work, per year",
+          "year": "days billed per year",
+          "month": "per month, on average",
+          "unit": "Holidays, public holidays and illness go into the weeks without work. The starting billed share is an example: measure your own."
+        },
+        "q": "You work 5 days a week and bill 60% of them. Over one week, that makes…",
+        "a": [
+          "5 days billed",
+          "3 days billed",
+          "1 day billed"
+        ],
+        "ok": "Yes. The other two days are real: prospecting, quotes, paperwork, learning. Your day rate is what pays for them."
+      },
+      {
+        "t": "Before you leave",
+        "d": "Going to work somewhere else means four files to open before you buy the ticket: the stay, taxes, health, the bank. The answers depend on your nationality, your status and the country. This lesson gives you the questions, not the answers.",
+        "pick": [
+          {
+            "k": "The stay",
+            "v": "Every country has its own rules on entry and length of stay. One official example: in the Schengen area, a short stay is usually a maximum of 90 days within any 180-day period, and the European Commission publishes a calculator to check it. To ask the consulate: does this visa allow me to work remotely for clients in another country?"
+          },
+          {
+            "k": "Taxes",
+            "v": "Where do you pay tax if you spend several months elsewhere? It depends on your tax residence, and on the agreements between the two countries. To ask the tax office or an accountant, before leaving: from when am I a resident here, and what must I still declare at home?"
+          },
+          {
+            "k": "Health",
+            "v": "To ask your insurer: am I covered outside my country, for how long, and for repatriation? And the consulate: does my visa require insurance?"
+          },
+          {
+            "k": "Bank and phone",
+            "v": "To check before you go: does my card work abroad, and at what cost? Does my bank send its codes by text message, and will my number receive them there? Who receives my post in the meantime?"
+          }
+        ],
+        "q": "You leave the Schengen area for one day, then come back. The 90-day count…",
+        "a": [
+          "starts again from zero",
+          "carries on: it looks at the previous 180 days",
+          "stops for a month"
+        ],
+        "ok": "Yes. You count back 180 days from each day of your stay: leaving for a day erases nothing. The Commission’s calculator does the count for you."
       }
     ]
   }

@@ -582,6 +582,15 @@ translated from it.
   `manual.nav.course`, and the page's opening line `money.lead`. The word
   chosen for gamification is «التلعيب», for a sticker «ملصق», for
   "pointsification" «التنقيط».
+- AR review (2026-11-16, the nomad lessons), the Studio
+  `hub/src/i18n/ar.json`, new: the whole `nomade` group («دفتر الطريق.», the
+  eight stops' titles, texts, calculator labels, questions and answers, the
+  stamp words), `manual.nav.lessons` and `manual.nav.nomad` («المال»,
+  «الترحال»), `manual.ui.desc` and the page's opening line `money.lead`. The
+  words chosen: «دفتر الطريق» for the road book, «محطة» for a stop, «عرض
+  السعر» for a quote, «مفوتر» for billed, «مشاركة اتصال الهاتف» for a phone
+  hotspot. Agency and product names stay in Latin letters (ANSSI, NCSC, Zoom,
+  Google Meet, BitLocker, FileVault).
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1560,3 +1569,88 @@ own brand's use of it. You confirmed that "no run" meant "now run".
 - **The stickers are yours to use elsewhere** (messages, posts). Like the
   rest of the art made for the site, no licence is chosen for them yet.
 
+## 30. "Le carnet de route", the nomad lessons (2026-11-16)
+
+You said "go, start the nomad-life lessons". This is step 6 of the plan, the
+last of the six things you asked for.
+
+- **Where**: on the manual page, between the money lessons and the
+  gamification course (`#nomade`), in three languages. The top bar now reads
+  Argent · Nomade · Jeu juste · Services · Radio.
+- **Eight stops**, in the lessons' own form (one idea, one gesture, one
+  question):
+  1. finding clients: a calculator, how many messages to send for the clients
+     you want, at your own reply and signing rates;
+  2. pricing a project: day rate, times days, plus a margin; and the 40% asked
+     at the order;
+  3. the quote that protects you: scope, deposit, revisions, ownership,
+     deadline;
+  4. working across time zones: the hours two 9-to-18 days share;
+  5. the bag and the connection: backups, bandwidth for a call, a second
+     connection;
+  6. security on the road: public Wi-Fi, two-step verification, passwords,
+     disk encryption, habits on the spot;
+  7. a freelancer's year: how many days a year can really be billed;
+  8. before you leave: the questions to ask about the stay, taxes, health,
+     the bank and the phone.
+  A right answer inks one stamp in a passport strip above the lessons; eight
+  of eight offers a phone wallpaper of the terrace scene. Like the other
+  stamps, these stay in the visitor's browser (`numidea-lessons-nomade`).
+- **Stop 3 quotes your own terms**, as they are published on the home page's
+  questions: 40% at the order and 60% at delivery; two rounds of revisions
+  per stage, further ones quoted separately; the site belongs to the client
+  once paid in full; the firm deadline set once the project is scoped. It
+  says "these are our terms, not a legal template". Stop 2 quotes "si le
+  travail déborde, l'écart est pour nous". If you change those terms on the
+  home page, these two stops must change with them.
+- **The calculators claim nothing.** Their starting values are examples and
+  the text says so ("des exemples, pas des moyennes"): 10 replies per 100
+  messages, 25 signatures per 100 replies, 60% of time billed, 5 weeks
+  without work. The day rate that stop 2 starts from, 12,500, is the result
+  the money manual's own rate lesson starts on. Change any of them if you
+  have truer starting points from your own experience.
+- **Every piece of advice has a source, and each was checked before
+  writing** (nine entries under the lessons, "Les sources du carnet"). What
+  the check changed:
+  - public Wi-Fi: no official page I could open says "never do your banking
+    on public Wi-Fi", so the lesson does not say it. It says what the French
+    agency (ANSSI) and the British one (NCSC) do say: avoid networks you do
+    not control when you can, use the mobile network, or a VPN;
+  - two-step verification: Microsoft's well-known "blocks 99.9% of attacks"
+    is its own marketing figure with no method given, so it is not used;
+  - disk encryption: no agency page says in so many words "your data is safe
+    if the laptop is stolen", so the lesson gives the NCSC's actual advice
+    (encryption that asks for a password at start-up) and no promise;
+  - the 3-2-1 backup rule is given in the NCSC's wording (three copies, two
+    devices, one elsewhere), which I could read directly;
+  - video calls: Zoom's and Google Meet's figures are marked as the vendors'
+    own; Google gives no figure for a call between two people, so the lesson
+    gives its per-participant figure and says so;
+  - the Schengen rule is given with the Commission's own hedge ("en
+    général"), and nothing is said about any other country's visa;
+  - Algeria's UTC+1 with no summer time comes from the time-zone database
+    that computers use, not from an Algerian official page (I found none).
+  The ANSSI guide dates from 2019 and is written for employees; the note
+  under the sources says so.
+- **Stop 8 gives questions, not answers.** Stay, tax, health and banking
+  rules depend on nationality, status and country, and I had no official
+  text for an Algerian freelancer's case. So the lesson tells the reader
+  what to ask the consulate, the tax office, the insurer and the bank. The
+  note under the sources says "Rien ici n'est un conseil juridique ou
+  fiscal". If you want real answers there (for Algeria, for France), they
+  need to come from you or from an accountant.
+- **The art** (`hub/img/studio/nomade/`), made from your characters: the
+  terrace scene (Yasser at a table above a lit coastal town at night, Kūro on
+  the backpack), eight small pictures of Kūro, one per stop, and a tall
+  version of the terrace for a phone screen. Spent: 325 credits (3,580 of the
+  15,000 so far). No licence is chosen for it yet, like the rest.
+- **The page's opening line and its search description changed** to name the
+  three sets: "Se faire payer depuis l'étranger, fixer son tarif, comprendre
+  la crypto : six leçons d'argent. Puis un carnet de route pour travailler de
+  partout, un maître-cours sur la gamification, et quatre services pour aller
+  plus loin."
+- **Not done, on purpose**: the plan's older idea of lessons about the
+  Studio's own offer (what a site costs, the Aperçu, the five steps) is not
+  in this set; the Studio page already says those things to clients. And the
+  six money lessons still have no reward for a full set. Say if you want
+  either.

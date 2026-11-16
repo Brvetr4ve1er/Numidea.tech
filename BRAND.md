@@ -1892,6 +1892,10 @@ The manual (`/hub/manuel.html`) is the learner's page: the lessons first, which 
 
 A new block goes on the page of the reader it is for. If it is for neither, it is not for the Studio.
 
+## The road book (2026-11-16)
+
+"Le carnet de route" is the third set of lessons on the manual, about working from anywhere. It follows the lessons' rule and adds three of its own. **A calculator starts on examples and says so**: a starting value is never presented as an average or a benchmark, and the result is the visitor's own arithmetic. **Advice names who gives it**: a security or travel tip is attributed in the sentence itself ("l'ANSSI conseille", "le NCSC recommande"), in the source's own strength (an agency that says "when possible" is not made to say "never"), and a vendor's figure is called the vendor's. **Where the answer depends on the reader's country or status, the lesson gives the question to ask and whom to ask**, not a rule. When the set quotes the studio's own terms it quotes them as published on the home page, and says they are terms, not a legal template. Its dress is a passport: a strip of eight stops joined by a dashed route, inked in red as they are earned; brass for the labels, as for a place.
+
 ## Play, by our own rules (2026-11-16)
 
 The site teaches gamification ("Le jeu juste", on the manual) and is held to what it teaches. Its rules: nothing starts by itself; a price is never part of a game (the calculator's total is the exact sum of its lines); a reward is something to look at (a drawing, a sticker), never a discount and never traded for an address; what a visitor earns stays in their browser, with no account and no leaderboard; no streak to keep and no countdown. A figure in a lesson names its source, and says when the source is the company itself, a forecast, or a small study. The retro dress (pixel icons, the arcade face in a HUD line, a brass bar) uses the page's own palette: it is a costume for one course, not a second brand.

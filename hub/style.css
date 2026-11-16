@@ -1817,6 +1817,10 @@ main:focus{outline:none}
 /* the scene is a band here, not a full plate: the radio and the lessons start on the first screens */
 @media (min-width:700px){.st-man .st-mny__scene img{aspect-ratio:5 / 2;object-fit:cover;object-position:50% 46%}}
 .st-manual .st-nav__links .st-nav__world{display:inline-flex}
+/* six links here (three sets of lessons, the services, the radio, the Studio): a label never breaks in two, and the kana waits for the width that holds it */
+.st-manual .st-nav__links a{white-space:nowrap}
+@media (max-width:1439px){.st-manual .st-nav .st-wm__kana{display:none}}
+@media (max-width:1239px){.st-manual .st-nav__links{gap:2px}.st-manual .st-nav__links a{padding:0 5px}}   /* the French bar ran 23px over at 1160 */
 .st-manual .st-mny__kit{margin-bottom:0}
 .st-back{background:var(--floor);overflow:hidden}
 .st-back__in{display:flex;align-items:flex-end;justify-content:space-between;gap:24px 48px}
@@ -1873,6 +1877,7 @@ html:not(.js) .st-game{display:none}
 /* air for him to sit in, laid out before the first paint (the js class is the head script's) so nothing shifts when he wakes:
    where a lesson's text runs the full width, above the line over its question; on a wide screen, above the four cards */
 @media (prefers-reduced-motion:no-preference) and (max-width:899px){html.js .st-manual .st-ls__q{margin-top:72px}}
+@media (prefers-reduced-motion:no-preference) and (min-width:900px){html.js .st-manual .st-calc{margin-bottom:64px}}   /* a calculator fills the width: without this he sat on the corner of its result */
 @media (min-width:900px){.st-manual #services .st-head{margin-bottom:86px}}
 .st-say{position:absolute;top:0;left:0;padding:6px 10px 7px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-mono);font-weight:600;font-size:13px;line-height:1.3;white-space:nowrap;opacity:0;transition:opacity .16s}
 .st-say--y{white-space:normal;width:max-content;max-width:230px}
@@ -1988,4 +1993,51 @@ html.is-playing{scroll-behavior:auto}
   .st-jeu__bars li{grid-template-columns:minmax(64px,96px) minmax(0,1fr) auto;gap:6px}
   .st-jeu__src ol{padding-inline-start:32px}
   .st-jeu__all .st-btn{flex:1 1 100%}
+}
+
+/* ---------------- "Le carnet de route": the nomad lessons (manual, 2026-11-16) ----------------
+   The lessons' shell again, as a road book: a strip of eight passport
+   stamps over the tabs, a dashed route between them, a stop inked in red
+   when its question is answered. Same night navy, cream, red and brass.
+   The two extra calculator parts (a group that hides as one, a sentence
+   with figures in it) belong to the time-zone lesson. Nothing moves by
+   itself; a stamp lands once when it is earned. */
+.st-nmd__scene img{aspect-ratio:16 / 9;object-fit:cover;object-position:50% 58%}
+@media (min-width:900px){.st-nmd__scene img{aspect-ratio:21 / 9}}
+.st-ls--nmd{--brass:#D2B26A}
+.st-ls--nmd .st-ls__head{align-items:center;margin-bottom:16px}
+.st-nmd__hud{margin:0;min-width:0;font-family:var(--f-mono);font-size:var(--t-mono);font-weight:600;line-height:1.5;letter-spacing:.14em;color:var(--brass)}
+:lang(ar) .st-nmd__hud,:lang(ar) .st-nmd__w{letter-spacing:0}
+.st-ls--nmd .st-ls__pass b{color:var(--brass)}
+.st-nmd__book{list-style:none;margin:0 0 22px;padding:18px 12px 14px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:14px 0;background:var(--cream);color:var(--ink);border:2px solid var(--cream)}
+.st-nmd__book li{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.st-nmd__book li + li::before{content:"";position:absolute;top:27px;inset-inline-end:calc(50% + 34px);width:calc(100% - 68px);border-top:2px dashed var(--line)}   /* the route from the stop before */
+.st-nmd__ring{width:56px;height:56px;display:grid;place-items:center;border:2px dashed var(--ink-2);border-radius:50%;font-family:"Archivo",sans-serif;font-weight:900;font-size:22px;line-height:1;color:var(--muted)}
+.st-nmd__w{max-width:100%;font-family:var(--f-mono);font-size:var(--t-label);line-height:1.3;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);overflow-wrap:anywhere}
+.st-nmd__book .is-earned .st-nmd__ring{border:3px double var(--red-text);color:var(--red-text);transform:rotate(-8deg);animation:st-seal .3s var(--ease) both}
+.st-nmd__book .is-earned .st-nmd__w{color:var(--red-text);font-weight:700}
+.st-ls--nmd .st-ls__tabs{grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
+.st-ls--nmd .st-ls__tab{padding:6px 6px 10px}
+.st-ls--nmd .st-ls__n{color:var(--brass)}
+.st-ls--nmd .st-ls__tab[aria-selected="true"]{border-color:var(--brass)}
+.st-ls--nmd .st-ls__t{font-size:13px}
+.st-calc__grp{display:flex;flex-direction:column;gap:12px}
+.st-calc__grp[hidden]{display:none}
+.st-calc__win output{font-family:"Archivo",sans-serif;font-weight:900;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+@media (max-width:1099px){
+  .st-ls--nmd .st-ls__tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:699px){
+  .st-nmd__scene{margin-bottom:24px}
+  .st-nmd__hud{font-size:var(--t-label);letter-spacing:.08em}
+  .st-nmd__book{grid-template-columns:repeat(4,minmax(0,1fr));padding:14px 6px 10px}
+  .st-nmd__ring{width:48px;height:48px;font-size:19px}
+  .st-nmd__book li + li::before{top:23px;inset-inline-end:calc(50% + 29px);width:calc(100% - 58px)}
+  .st-nmd__book li:nth-child(5)::before{content:none}
+  .st-ls--nmd .st-ls__tabs{gap:6px}
+  .st-ls--nmd .st-ls__tab{padding:4px 4px 8px}
+  .st-ls--nmd .st-ls__t{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}   /* read, not drawn: the open lesson's page carries its title in full */
+}
+@media (max-width:359px){
+  .st-nmd__w{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 }

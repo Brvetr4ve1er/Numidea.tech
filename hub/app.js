@@ -1202,7 +1202,11 @@
      ([data-pick-b] picks [data-pick-p]); [data-calc] works a figure out of
      the visitor's own numbers (rate: what to keep plus costs, grossed up for
      the tax share, over the days billed; treso: savings over what a month
-     costs beyond what it brings); [data-ls-a] are the answers, the one
+     costs beyond what it brings; funnel: the messages to send for the
+     clients wanted, at the visitor's own reply and signing rates; quote: a
+     day rate times the days, plus a margin, and the 40% asked at the order;
+     zones: the hours two 9-to-18 days share across two UTC offsets; week:
+     the days a year that can be billed); [data-ls-a] are the answers, the one
      marked "ok" stamps the lesson. Stamps are kept on this device only
      (localStorage 'numidea-lessons', an array of lesson ids; a second set
      of lessons names itself, data-ls="jeu", and keeps 'numidea-lessons-jeu')
@@ -1257,12 +1261,32 @@
         var kind = c.getAttribute('data-calc');
         var val = function (f) { var v = Number($('[data-f="' + f + '"]', c).value); return isFinite(v) && v > 0 ? v : 0; };
         var out = function (k, v) { var o = $('[data-o="' + k + '"]', c); if (o && o.textContent !== v) o.textContent = v; };
+        var num = function (f) { var v = Number($('[data-f="' + f + '"]', c).value); return isFinite(v) ? v : 0; };   // may be zero or negative (a UTC offset)
+        var wrap = function (k, hide) { var w = $('[data-o-wrap="' + k + '"]', c); if (w && w.hidden !== hide) w.hidden = hide; };
+        var dec = function (n) { return (Math.round(n * 10) / 10).toString().replace('.', lang === 'en' ? '.' : ','); };
         var grp = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, lang === 'en' ? ',' : ' '); };
         var work = function () {
           if (kind === 'rate') {
             var days = Math.max(1, val('days')), tax = Math.min(90, val('tax')) / 100;
             var day = (val('net') + val('costs')) / (1 - tax) / days;
             out('days', String(days)); out('tax', String(Math.round(tax * 100))); out('day', grp(day)); out('hour', grp(day / 7));
+          } else if (kind === 'funnel') {
+            var want = Math.max(1, Math.round(val('want'))), reply = Math.max(1, Math.round(val('reply'))), close = Math.max(1, Math.round(val('close'))), msgs = Math.ceil(want * 10000 / (reply * close));
+            out('want', String(want)); out('reply', String(reply)); out('close', String(close));
+            out('msgs', grp(msgs)); out('week', grp(Math.ceil(msgs * 12 / 52)));
+          } else if (kind === 'quote') {
+            var qd = Math.max(1, val('days')), price = Math.round(val('rate') * qd * (100 + val('rev')) / 100);
+            out('days', String(qd)); out('rev', String(val('rev'))); out('price', grp(price)); out('dep', grp(Math.round(price * 2 / 5)));
+          } else if (kind === 'zones') {
+            // the client's 9-to-18 day, seen on the visitor's clock, is 9 - d to 18 - d (d: their offset minus the visitor's, taken the short way round the globe)
+            var me = num('me'), them = num('them'), dz = ((them - me + 12) % 24 + 24) % 24 - 12, over = Math.max(0, 9 - Math.abs(dz));
+            var utc = function (n) { return 'UTC' + (n < 0 ? '\u2212' : '+') + Math.abs(n); };
+            out('me', utc(me)); out('them', utc(them)); out('gap', String(Math.abs(dz))); out('over', String(over));
+            wrap('win', over <= 0); wrap('none', over > 0);
+            if (over > 0) { out('from', Math.max(9, 9 - dz) + ':00'); out('to', Math.min(18, 18 - dz) + ':00'); }
+          } else if (kind === 'week') {
+            var yr = Math.round(val('days') * val('bill') * (52 - val('off')) / 100);
+            out('days', String(val('days'))); out('bill', String(val('bill'))); out('off', String(val('off'))); out('year', grp(yr)); out('month', dec(yr / 12));
           } else {
             var gap = val('spend') - val('inc'), fine = gap <= 0;
             $('[data-o-wrap="months"]', c).hidden = fine; $('[data-o-wrap="fine"]', c).hidden = !fine;
@@ -1294,7 +1318,7 @@
     show(tabs[0].getAttribute('data-ls-tab')); stamps();
   });
   // a level's reference ([3]) opens the list of sources it points into (not every browser opens a closed <details> for a link to something inside it)
-  $$('.st-jeu__refs a').forEach(function (a) { a.addEventListener('click', function () { var d = $('.st-jeu__src'); if (d) d.open = true; }); });
+  $$('.st-jeu__refs a').forEach(function (a) { a.addEventListener('click', function () { var t = document.getElementById(a.getAttribute('href').slice(1)), d = t && t.closest('details'); if (d) d.open = true; }); });
 
   /* ---------------- 14 · the reel ----------------
      The motion section's clips ([data-reel], a button around a muted

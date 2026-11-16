@@ -738,7 +738,7 @@
   },
   "money": {
     "title": "Gagner sa vie de loin.",
-    "lead": "Se faire payer depuis l’étranger, choisir ses comptes, fixer son tarif, comprendre la crypto : six leçons courtes. Puis un maître-cours sur la gamification, et quatre services pour aller plus loin.",
+    "lead": "Se faire payer depuis l’étranger, fixer son tarif, comprendre la crypto : six leçons d’argent. Puis un carnet de route pour travailler de partout, un maître-cours sur la gamification, et quatre services pour aller plus loin.",
     "sceneAlt": "Yasser compte quelques pièces à son bureau de nuit pendant que la petite calculatrice imprime un reçu ; Kūro pose une patte sur une pièce",
     "svc": {
       "aria": "Les quatre services",
@@ -1010,16 +1010,17 @@
   "manual": {
     "ui": {
       "title": "Le manuel — gagner sa vie de loin | Numidea Labs",
-      "desc": "Six leçons courtes pour se faire payer de l’étranger, choisir ses comptes, fixer son tarif et comprendre la crypto. Quatre services de coaching à prix fixe."
+      "desc": "Vingt-deux leçons courtes : se faire payer de l’étranger, fixer son tarif, travailler de partout, comprendre la gamification. Quatre services à prix fixe."
     },
     "kicker": "/ LE MANUEL",
     "nav": {
       "aria": "Sections du manuel",
-      "lessons": "Leçons",
+      "lessons": "Argent",
       "radio": "Radio",
       "studio": "Le Studio",
       "cta": "Réserver un appel",
-      "course": "Le jeu juste"
+      "course": "Jeu juste",
+      "nomad": "Nomade"
     },
     "svc": {
       "kicker": "/ QUATRE SERVICES",
@@ -1350,6 +1351,240 @@
           "Une place dans un classement"
         ],
         "ok": "Oui. C’est notre règle : on récompense par quelque chose à regarder, jamais par une pression à acheter."
+      }
+    ]
+  },
+  "nomade": {
+    "kicker": "/ CARNET DE ROUTE · LA VIE NOMADE",
+    "title": "Le carnet de route.",
+    "lead": "Travailler de partout, sans se raconter d’histoires : trouver ses clients, chiffrer, se protéger, tenir le décalage horaire, garder ses fichiers et ses comptes en sûreté, préparer un départ. Huit étapes, huit tampons. Les chiffres sont les vôtres, ou ceux d’une source nommée.",
+    "sceneAlt": "Yasser travaille la nuit sur une terrasse, l’ordinateur ouvert sur une table en bois, au-dessus d’une ville côtière illuminée ; Kūro, assis sur le sac à dos, regarde la mer",
+    "hud": "/ HUIT ÉTAPES · UN TAMPON PAR BONNE RÉPONSE",
+    "tabs": "Les huit étapes du carnet",
+    "book": "Votre passeport",
+    "n": "ÉTAPE",
+    "stops": [
+      "Clients",
+      "Prix",
+      "Devis",
+      "Fuseaux",
+      "Sac",
+      "Sécurité",
+      "Année",
+      "Départ"
+    ],
+    "all": {
+      "t": "Huit sur huit.",
+      "d": "Le fond d’écran du carnet est à vous : la terrasse, la nuit, au format de votre téléphone.",
+      "go": "Télécharger le fond d’écran"
+    },
+    "cta": {
+      "d": "Un site qui répond à vos clients pendant que vous dormez dans un autre fuseau, ça se construit.",
+      "go": "En parler au Studio →"
+    },
+    "src": {
+      "title": "Les sources du carnet",
+      "note": "Les conseils de sécurité, de sauvegarde, de débit et de séjour viennent de ces sources ; les chiffres des calculatrices sont les vôtres. Le guide de l’ANSSI date de 2019 et s’adresse à des salariés : ses gestes valent aussi pour un indépendant. Rien ici n’est un conseil juridique ou fiscal."
+    },
+    "items": [
+      {
+        "t": "Trouver ses clients",
+        "d": "Les clients ne tombent pas du ciel : ils répondent à des messages. Combien en envoyer ? Cela se compte. Les clients que vous voulez, divisés par la part des gens qui répondent, puis par la part de ceux qui signent.",
+        "f": {
+          "want": "Nouveaux clients voulus, par mois",
+          "reply": "Réponses, pour 100 messages envoyés",
+          "close": "Signatures, pour 100 réponses",
+          "msgs": "messages à envoyer par mois",
+          "week": "par semaine, à peu près",
+          "unit": "Les taux de départ sont des exemples, pas des moyennes. Notez vos envois et vos réponses pendant un mois, puis mettez les vôtres."
+        },
+        "q": "Vous envoyez 40 messages : 4 personnes répondent, 1 signe. Vous voulez 3 clients par mois. Que faire ?",
+        "a": [
+          "Envoyer 120 messages, ou améliorer l’un des deux taux",
+          "Diviser vos prix par deux",
+          "Attendre que le bouche-à-oreille fasse le reste"
+        ],
+        "ok": "Oui. Une signature pour 40 messages, donc 120 messages pour 3 clients. Ou un meilleur message, ou une meilleure offre : les deux taux se travaillent."
+      },
+      {
+        "t": "Chiffrer un projet",
+        "d": "Un prix de projet, c’est du temps compté avant de commencer : votre tarif journalier, fois les jours estimés, plus une marge pour ce que vous n’avez pas vu venir. Le client, lui, veut un chiffre qui ne bouge plus.",
+        "f": {
+          "rate": "Votre tarif journalier",
+          "days": "Jours estimés",
+          "rev": "Marge pour l’imprévu",
+          "price": "le prix à annoncer",
+          "dep": "à la commande, si vous demandez 40 %",
+          "unit": "Dans la monnaie que vous tapez. Pour trouver votre tarif journalier : la leçon 3 du manuel de l’argent, plus haut."
+        },
+        "q": "Le projet prend trois jours de plus que prévu, et le périmètre n’a pas changé. Qui paie ces trois jours ?",
+        "a": [
+          "Le client : on lui envoie un supplément",
+          "Vous : c’est à cela que sert la marge",
+          "Chacun la moitié"
+        ],
+        "ok": "Oui, si le prix était ferme. C’est la règle du Studio : « si le travail déborde, l’écart est pour nous ». Si c’est le périmètre qui change, c’est un nouveau devis."
+      },
+      {
+        "t": "Le devis qui protège",
+        "d": "Un devis signé évite la plupart des disputes, parce qu’il répond d’avance aux questions qui fâchent. Voici cinq lignes, avec ce que le Studio écrit dans les siens. Ce sont nos conditions, pas un modèle juridique.",
+        "pick": [
+          {
+            "k": "Le périmètre",
+            "v": "Ce qui est compris, écrit en liste : les pages, les langues, les fonctions. Ce qui n’y figure pas n’est pas compris. C’est la ligne dont dépendent toutes les autres."
+          },
+          {
+            "k": "L’acompte",
+            "v": "Au Studio : 40 % à la commande, sur devis signé, et 60 % à la livraison, avant la mise en ligne. Un acompte montre que le projet est réel des deux côtés."
+          },
+          {
+            "k": "Les retouches",
+            "v": "Au Studio : deux séries de retouches par étape, le design puis le développement, sont comprises ; les suivantes sont chiffrées à part. Sans cette ligne, un projet ne finit jamais."
+          },
+          {
+            "k": "La propriété",
+            "v": "Au Studio : une fois le site payé en entier, il appartient au client, avec le code, les fichiers de design et le contenu. Écrivez à quel moment le travail change de mains."
+          },
+          {
+            "k": "Le délai",
+            "v": "Au Studio : le délai ferme est fixé dès que le projet est cadré ensemble, pas avant. Un délai promis avant de connaître le périmètre est une devinette."
+          }
+        ],
+        "q": "Le client demande une troisième série de retouches sur le design. Que dit le devis du Studio ?",
+        "a": [
+          "Elle est comprise",
+          "Elle est chiffrée à part",
+          "Elle est refusée"
+        ],
+        "ok": "Oui. Deux séries par étape sont comprises ; les suivantes sont chiffrées à part."
+      },
+      {
+        "t": "Travailler en décalé",
+        "d": "Un client à six fuseaux de chez vous n’est pas un problème, c’est un calendrier. Ce qui compte, ce sont les heures que vos deux journées partagent : c’est là que se placent les appels. Le reste se fait par écrit.",
+        "f": {
+          "me": "Votre fuseau",
+          "them": "Le fuseau du client",
+          "over": "heures communes",
+          "from": "de",
+          "to": "à",
+          "clock": "à votre horloge",
+          "gap": "heures d’écart",
+          "none": "Aucune heure commune entre deux journées de 9 h à 18 h : l’un des deux devra décaler la sienne, ou tout passera par écrit.",
+          "unit": "Deux journées de 9 h à 18 h, en heures entières. L’Algérie est à UTC+1 toute l’année, sans heure d’été ; celle du client, s’il en a une, peut déplacer la fenêtre d’une heure."
+        },
+        "q": "Vous êtes à UTC+1, votre client à UTC−5. À quelle heure, chez vous, proposer l’appel ?",
+        "a": [
+          "À 10 h",
+          "À 16 h",
+          "À 23 h"
+        ],
+        "ok": "Oui. 16 h chez vous, c’est 10 h chez votre client : l’heure tombe dans les deux journées."
+      },
+      {
+        "t": "Le sac et la connexion",
+        "d": "Votre bureau tient dans un sac : tout ce qui casse, se perd ou se coupe vous arrête net. Trois précautions : des copies de vos fichiers, assez de débit pour vos appels, et une deuxième connexion.",
+        "pick": [
+          {
+            "k": "La règle 3-2-1",
+            "v": "Au moins trois copies de vos fichiers, sur deux appareils, dont une sauvegarde gardée ailleurs. Le centre britannique de cybersécurité (NCSC) la décrit comme une stratégie courante, valable dans la plupart des cas : si une copie est touchée, il en reste une intacte."
+          },
+          {
+            "k": "L’appel vidéo",
+            "v": "Un appel à deux demande peu. Zoom recommande 600 kbit/s dans chaque sens pour une vidéo de bonne qualité, et 1,2 Mbit/s en 720p. Google Meet compte jusqu’à 1,7 Mbit/s par participant en 720p, et baisse la définition si le débit manque. Ce sont les chiffres des éditeurs : testez votre connexion avant l’appel, pas pendant."
+          },
+          {
+            "k": "La connexion de secours",
+            "v": "Le Wi-Fi du logement peut tomber le jour d’un appel. Gardez une deuxième voie : le partage de connexion de votre téléphone. C’est aussi ce que le NCSC conseille plutôt qu’un point d’accès inconnu : passer par le réseau mobile."
+          }
+        ],
+        "q": "On vous vole votre sac : l’ordinateur, et le disque de sauvegarde qui était dedans. Que manquait-il ?",
+        "a": [
+          "Un mot de passe plus long",
+          "Une copie gardée ailleurs",
+          "Un deuxième ordinateur"
+        ],
+        "ok": "Oui. C’est le « 1 » de 3-2-1 : une copie hors du sac, en ligne ou chez quelqu’un de confiance."
+      },
+      {
+        "t": "La sécurité en voyage",
+        "d": "En voyage, vos comptes valent plus que votre matériel : un ordinateur se rachète, une messagerie piratée beaucoup moins. Cinq gestes, tous recommandés par une agence publique de cybersécurité.",
+        "pick": [
+          {
+            "k": "Le Wi-Fi public",
+            "v": "L’agence française, l’ANSSI, conseille d’éviter quand c’est possible les réseaux non maîtrisés : Wi-Fi d’hôtel, de gare ou de café. Le NCSC britannique dit de même : le plus simple est de ne pas se connecter à un point d’accès inconnu et de passer par le réseau mobile ; un VPN est une autre solution."
+          },
+          {
+            "k": "La double validation",
+            "v": "Le NCSC recommande d’activer la validation en deux étapes sur vos comptes les plus importants : messagerie, banque, réseaux sociaux, achats en ligne. Elle garde les voleurs dehors même s’ils connaissent votre mot de passe."
+          },
+          {
+            "k": "Les mots de passe",
+            "v": "Un mot de passe différent pour chaque compte, dit l’ANSSI. Et un gestionnaire de mots de passe pour les retenir à votre place, dit le NCSC, qui conseille aussi de choisir les clés d’accès (passkeys) partout où elles sont proposées."
+          },
+          {
+            "k": "Le chiffrement",
+            "v": "Le NCSC conseille que tout ordinateur portable utilise un chiffrement qui exige un mot de passe au démarrage : BitLocker sous Windows, FileVault sous macOS. Gardez la clé de récupération en lieu sûr. Et avant de partir, l’ANSSI conseille de vous informer sur la législation du pays de destination, y compris sur les moyens de chiffrement."
+          },
+          {
+            "k": "Sur place",
+            "v": "Trois habitudes du guide de l’ANSSI pour les professionnels en déplacement : verrouillez votre session dès que vous vous éloignez, même un instant ; ne branchez pas une clé USB qu’on vous offre sans l’avoir fait vérifier ; emportez le strict minimum de données."
+          }
+        ],
+        "q": "À l’aéroport, vous devez vous connecter à un compte important. Le plus sûr ?",
+        "a": [
+          "Le Wi-Fi gratuit de l’aéroport",
+          "Le partage de connexion de votre téléphone",
+          "L’ordinateur en libre-service du salon"
+        ],
+        "ok": "Oui. Le réseau mobile plutôt qu’un réseau que vous ne maîtrisez pas : c’est le conseil du NCSC comme celui de l’ANSSI."
+      },
+      {
+        "t": "L’année d’un indépendant",
+        "d": "Une année compte 52 semaines, mais vous n’en facturez qu’une partie : il y a les congés, les jours fériés, la maladie, et tout le travail que personne ne paie. Comptez vos jours facturés avant de vous promettre un revenu.",
+        "f": {
+          "days": "Jours de travail, par semaine",
+          "bill": "Part du temps réellement facturée",
+          "off": "Semaines sans travail, par an",
+          "year": "jours facturés par an",
+          "month": "par mois, en moyenne",
+          "unit": "Congés, jours fériés et maladie vont dans les semaines sans travail. La part facturée de départ est un exemple : mesurez la vôtre."
+        },
+        "q": "Vous travaillez 5 jours par semaine et vous en facturez 60 %. Sur une semaine, cela fait…",
+        "a": [
+          "5 jours facturés",
+          "3 jours facturés",
+          "1 jour facturé"
+        ],
+        "ok": "Oui. Les deux autres jours existent bel et bien : prospection, devis, administratif, apprentissage. C’est votre tarif journalier qui les paie."
+      },
+      {
+        "t": "Avant de partir",
+        "d": "Partir travailler ailleurs, c’est quatre dossiers à ouvrir avant d’acheter le billet : le séjour, les impôts, la santé, la banque. Les réponses dépendent de votre nationalité, de votre statut et du pays. Cette leçon vous donne les questions, pas les réponses.",
+        "pick": [
+          {
+            "k": "Le séjour",
+            "v": "Chaque pays a ses règles d’entrée et de durée. Un exemple officiel : dans l’espace Schengen, un court séjour dure en général au maximum 90 jours sur toute période de 180 jours, et la Commission européenne publie une calculatrice pour le vérifier. À demander au consulat : ce visa m’autorise-t-il à travailler à distance pour des clients d’un autre pays ?"
+          },
+          {
+            "k": "Les impôts",
+            "v": "Où payez-vous vos impôts si vous passez plusieurs mois ailleurs ? Cela tient à votre résidence fiscale, et aux accords entre les deux pays. À demander à l’administration fiscale ou à un comptable, avant de partir : à partir de quand suis-je résident ici, et que dois-je encore déclarer chez moi ?"
+          },
+          {
+            "k": "La santé",
+            "v": "À demander à votre assurance : suis-je couvert hors de mon pays, pendant combien de temps, et pour un rapatriement ? Et au consulat : mon visa exige-t-il une assurance ?"
+          },
+          {
+            "k": "La banque et le téléphone",
+            "v": "À vérifier avant le départ : ma carte fonctionne-t-elle à l’étranger, et à quels frais ? Ma banque envoie-t-elle ses codes par SMS, et mon numéro les recevra-t-il là-bas ? Qui reçoit mon courrier pendant ce temps ?"
+          }
+        ],
+        "q": "Vous sortez de l’espace Schengen une journée, puis vous y revenez. Le compteur des 90 jours…",
+        "a": [
+          "repart de zéro",
+          "continue : on compte sur les 180 jours précédents",
+          "s’arrête pendant un mois"
+        ],
+        "ok": "Oui. On compte 180 jours en arrière depuis chaque jour du séjour : sortir une journée n’efface rien. La calculatrice de la Commission fait le compte pour vous."
       }
     ]
   }

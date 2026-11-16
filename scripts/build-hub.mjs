@@ -360,7 +360,8 @@ const localFile = (u) => { const p = u.split(/[?#]/)[0]; return p ? join(HUB, de
 const CLIENT_HOSTS = [...readFileSync(join(ROOT, 'index.html'), 'utf8').matchAll(/href="https:\/\/([^/"]+)[^"]*"/g)].map((m) => m[1]);
 const ALLOW = new Set([new URL(BASE).host, 'wa.me', 'www.behance.net', 'www.deviantart.com', 'www.instagram.com', 'instagram.com', ...CLIENT_HOSTS]);
 // the hosts a reference list may cite (the gamification course's sources: journals by DOI, a preprint server, a regulator, the companies' own filings, two news pages); a link to one must be marked data-ref
-const REF_HOSTS = new Set(['doi.org', 'arxiv.org', 'www.sec.gov', 's203.q4cdn.com', 'hbr.org', 'www.washington.edu', 'www.aap.com.au', 'digitalnewsasia.com', 'www.ftc.gov', 'www.jesperjuul.net']);
+const REF_HOSTS = new Set(['doi.org', 'arxiv.org', 'www.sec.gov', 's203.q4cdn.com', 'hbr.org', 'www.washington.edu', 'www.aap.com.au', 'digitalnewsasia.com', 'www.ftc.gov', 'www.jesperjuul.net',
+  'www.ncsc.gov.uk', 'support.zoom.com', 'support.google.com', 'messervices.cyber.gouv.fr', 'home-affairs.ec.europa.eu', 'data.iana.org']);
 // a page's pictures (sizes from the files) and the rest of its markup's rules: the same for the Studio and for the manual
 function rules(html) {
 const refHrefs = new Set([...html.matchAll(/<a\b[^>]*\sdata-ref\s[^>]*\bhref="([^"]+)"/g)].map((m) => m[1]));

@@ -100,7 +100,7 @@ is published.
 
 ## The radio's music and the pictures made for the site — no licence chosen yet
 
-`hub/img/studio/jeu/` holds the retro pack of the manual's gamification course (a key picture, eight pixel icons, eight stickers and their sheet), and `hub/img/studio/life/` holds Kūro's sprite sheet and the night drawing of the manual page, all made for the site in November 2026 from the founder's characters. `hub/audio/` holds the four instrumental tracks of the Studio page's radio
+`hub/img/studio/jeu/` holds the retro pack of the manual's gamification course (a key picture, eight pixel icons, eight stickers and their sheet), `hub/img/studio/nomade/` holds the art of the manual's nomad lessons (a terrace scene, eight small pictures and a phone wallpaper), and `hub/img/studio/life/` holds Kūro's sprite sheet and the night drawing of the manual page, all made for the site in November 2026 from the founder's characters. `hub/audio/` holds the four instrumental tracks of the Studio page's radio
 (`nuit.mp3`, `cafe.mp3`, `douro.mp3`, `kuro.mp3`), made for Numidea Labs in
 November 2026. `hub/img/studio/douro-kuro*.webp` and `hub/img/studio/money/`
 (the calculator's drawing, the night-desk scene and the six lesson pictures)
