@@ -556,6 +556,13 @@ translated from it.
   `pricing.rc.mid`. The lessons' Arabic is a translation of the French and
   uses technical words («عبارة الاسترداد», «العملة المستقرة», «العقد
   الذكي») that a native reader should confirm.
+- AR review (2026-11-16, the motion section), `assets/i18n/ar.js`, new:
+  `price.tyMotion` («موشن ديزاين»), `price.uSecs` and its five forms,
+  `price.oAnim` («حركات الموقع»), `mk.srcMotion`;
+- AR review (2026-11-16), the Studio `hub/src/i18n/ar.json`, new: the
+  `motion` group (the head, the three offers, the reel's head, the three
+  market markers), and the six clips' names and lines in
+  `hub/src/reel.json` (`name.ar`, `what.ar`).
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1239,4 +1246,51 @@ cards, the kit strip and the calculator all read them from there.
 - **New art** (made for this section): the night-desk scene and six lesson
   pictures, in `hub/img/studio/money/`. The passport in the scene carries the
   word "PASSPORT".
+
+## 24. The motion section (2026-11-16)
+
+"Le mouvement", on the Studio after "Ce qu'on fait". Drafted on your
+instruction ("add animation and motion design… a creative section where I can
+show gifs of my animations… play on hover… price them accordingly"); the
+prices are the ones in the plan you approved and are yours to change. They live
+in `assets/app.js` (`PRICE_MODEL.motion`, the option `anim`); the cards and the
+calculator read them from there.
+
+| Offer | Price | What the page says |
+|---|---|---|
+| Logo animé, 3 à 5 s, trois formats | 25 000 – 45 000 DA | The logo in motion, delivered landscape, square and vertical |
+| Vidéo animée, à la seconde | + 1 800 – 4 000 DA la seconde au-delà de 5 s | 30 s: 70 000 – 145 000 DA; 60 s: 124 000 – 265 000 DA |
+| Animations du site (option d'un projet web) | + 35 000 – 90 000 DA | An opening, characters that react, a receipt that prints |
+
+- **In the calculator:** a type "Motion design" sold by the second (5 to 90 s),
+  and an option "Animations du site" on the four web types. Delivery: 1 to 2
+  weeks for a logo, one more week for every 15 seconds (drafted).
+- **The market markers on the page** are quoted from two pages I read on
+  16 November: LeFreelance.fr (updated 7 October 2026: an animated logo of 3
+  to 5 s in three ratios, 600 to 1 500 € excluding tax from a freelancer; a
+  60 s explainer, 3 000 to 9 000 €) and Yum Yum Videos (updated 6 August 2026:
+  1 000 to 5 000 $ a minute from freelancers, 5 000 to 8 000 $ from small
+  studios; it is a studio's own page). Algeria: the Onyxlab barometer has no
+  motion line, and the page says so; the nearest line is a short social video,
+  6 000 to 20 000 DA a post. Both links are in the price guide's sources.
+- **The reel today holds six clips, none of them a client's:** five are this
+  site's own motion, recorded from the page (the opening, the hero characters,
+  the calculator printing a receipt, a lesson being stamped, the page turn),
+  and the sixth is your MERCURY act 2 film, the same file as in dossier 07.
+- **To show your own animations:** put the GIF or video anywhere on your
+  machine and run
+  `npm run motion:add -- <file> <id> "<name>" "<line under the name>"`
+  then `npm run build`. The script cuts a small silent MP4 and a poster (at
+  most 12 seconds, 640 px wide, or 540 for a portrait clip), and adds the
+  clip to `hub/src/reel.json`. Add `"en"` and `"ar"` beside `"fr"` there for
+  the other two languages. Needs ffmpeg. To remove a clip, delete its entry
+  from `reel.json` and its two files from `hub/img/studio/reel/`.
+- **How a clip behaves:** it is a still picture until the pointer rests on it
+  or it is pressed, plays while the pointer stays, and stops when it leaves. On
+  a phone a tap plays it once. Nothing plays by itself, and a visitor who asks
+  for reduced motion gets a clip only on a press. The file is not downloaded
+  before that first play.
+- **One format, not two:** the clips are MP4 (H.264) only. The plan said WebM
+  and MP4; MP4 alone plays everywhere and halves the weight (the five new
+  clips come to about 365 kB together, posters 75 kB).
 

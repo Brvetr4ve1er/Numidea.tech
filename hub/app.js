@@ -627,7 +627,7 @@
       q.lines.forEach(function (ln) {
         var tr = document.createElement('tr'), th = document.createElement('th'), td;
         th.scope = 'row';
-        th.textContent = ln.k === 'base' ? (m.fam ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, ln.n))
+        th.textContent = ln.k === 'base' ? (m.fam === 'argent' ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, ln.n))
           : ln.k === 'extra' ? '+ ' + counted(m.u, ln.n)
           : ln.k === 'opt' ? t('pricing.o.' + ln.o)
           : ln.k === 'studio' ? t('pricing.rc.studio') : ln.k === 'kit' ? t('pricing.rc.kit') : t('pricing.rc.rush');
@@ -669,7 +669,7 @@
       size.setAttribute('aria-valuetext', counted(m.u, st.n));
       unit.setAttribute('data-i18n', 'pricing.units.' + m.u); unit.textContent = t('pricing.units.' + m.u);
       what.textContent = t('pricing.types.' + st.type) + ' · ' + counted(m.u, st.n);
-      inclEl.textContent = (m.fam ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, m.base_u)) + '. ' + t('pricing.beyond') + ' + ' + range(m.unit[0], m.unit[1], 'DZD') + ' / ' + unitN(m.u, 1);
+      inclEl.textContent = (m.fam === 'argent' ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, m.base_u)) + '. ' + t('pricing.beyond') + ' + ' + range(m.unit[0], m.unit[1], 'DZD') + ' / ' + unitN(m.u, 1);
       // a studio project whose range meets the mid band carries the mid-range note; the money services do not
       if (midEl) { midEl.hidden = !!m.fam || q.lo > P.mid[1] || q.hi < P.mid[0]; midEl.textContent = t('pricing.rc.mid').replace('{r}', pair(P.mid[0], P.mid[1], 'DZD')); }
       // pace and maintenance are a project's, not a call's
@@ -706,7 +706,7 @@
       tw = requestAnimationFrame(step);
     };
     // which options apply to the type (opts), which it already includes (incl)
-    var optBtns = $$('[data-opt]', est);
+    var optBtns = $$('[data-opt]', est), optGrp = $('[data-est-optgrp]', est);
     var setType = function (k) {
       st.type = k; var m = M[k];
       st.n = m.def; size.min = m.min; size.max = m.max; size.step = m.step; size.value = m.def;
@@ -723,6 +723,7 @@
         if (incl && !tag) { tag = document.createElement('span'); tag.setAttribute('data-incl', ''); b.appendChild(tag); }
         if (tag) { tag.hidden = !incl; tag.textContent = ' (' + t('pricing.included') + ')'; }
       });
+      if (optGrp) optGrp.hidden = !optBtns.some(function (b) { return !b.hidden; });
     };
     // an option the tier includes is on the receipt as "included"
     var picked = function () { var m = M[st.type]; return (m.incl || []).concat(st.opts.filter(function (o) { return (m.incl || []).indexOf(o) < 0; })); };
@@ -778,6 +779,11 @@
       $$('[data-money-price]').forEach(function (n) { var v = moneyPrice(n.getAttribute('data-money-price')); if (n.textContent !== v) n.textContent = v; });
       var mid = $('[data-money-mid]');
       if (mid) { var mt = t('money.mid').replace('{r}', pair(P.mid[0], P.mid[1], 'DZD')); if (mid.textContent !== mt) mid.textContent = mt; }
+      // the motion section's figures: the logo package, a second, the site option, and two lengths
+      var MT = M.motion, q30 = quote('motion', 30, [], false), q60 = quote('motion', 60, [], false);
+      var motionPrice = { logo: range(MT.base[0], MT.base[1], 'DZD'), sec: '+\u00a0' + range(MT.unit[0], MT.unit[1], 'DZD'), anim: '+\u00a0' + range(O.anim.add[0], O.anim.add[1], 'DZD'),
+        sThirty: range(q30.lo, q30.hi, 'DZD'), sSixty: range(q60.lo, q60.hi, 'DZD') };
+      $$('[data-motion-price]').forEach(function (n) { var v = motionPrice[n.getAttribute('data-motion-price')]; if (v && n.textContent !== v) n.textContent = v; });
       $$('[data-money-wa]').forEach(function (a) {
         var i = Number(a.getAttribute('data-money-wa')), key = ['call', 'setup', 'pack', 'guides'][i];
         a.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(t('money.svc.waMsg').replace('{s}', t('money.svc.items.' + i + '.name') + ' (' + moneyPrice(key) + ')'));
@@ -791,6 +797,8 @@
         st.opts = pick === 'kit' ? m.kit.needs.slice() : pick && O[pick] ? [pick] : [];
         setType(k);
         if (pick === 'kit') { st.n = m.kit.at; size.value = st.n; }
+        var wantN = Number(a.getAttribute('data-est-size'));
+        if (wantN >= m.min && wantN <= m.max) { st.n = wantN; size.value = st.n; }   // [data-est-size]: the size a card stands for
         render(true);
       });
     });
@@ -1270,6 +1278,53 @@
     });
     show(tabs[0].getAttribute('data-ls-tab')); stamps();
   });
+
+  /* ---------------- 14 · the reel ----------------
+     The motion section's clips ([data-reel], a button around a muted
+     <video preload="none">): a poster until asked. With a mouse, resting on
+     a tile plays it and leaving stops it; a press (a tap, Enter, Space)
+     plays it too and a second press stops it. While the pointer stays or
+     the tile was pressed, a clip that ends starts again; nothing has the
+     loop attribute and nothing plays that was not asked for. One clip at a
+     time. With reduced motion the pointer alone starts nothing: only a
+     press does. Stopping puts the poster back (load()). */
+  (function () {
+    var tiles = $$('[data-reel]');
+    if (!tiles.length) return;
+    var live = null;
+    var stop = function (b) {
+      var v = $('video', b);
+      b._on = false; b._hover = false;
+      b.setAttribute('aria-pressed', 'false'); b.classList.remove('is-on');
+      if (!v.paused) v.pause();
+      if (v.currentTime > 0 || v.readyState > 0) { try { v.load(); } catch (e) {} }
+      if (live === b) live = null;
+    };
+    var play = function (b) {
+      var v = $('video', b);
+      if (live && live !== b) stop(live);
+      live = b; b.classList.add('is-on');
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { b.classList.remove('is-on'); });
+    };
+    tiles.forEach(function (b) {
+      var v = $('video', b);
+      if (finePointer && !reduce) {
+        b.addEventListener('pointerenter', function () { b._hover = true; if (!b._on) play(b); });
+        b.addEventListener('pointerleave', function () { b._hover = false; if (!b._on) stop(b); });
+      }
+      b.addEventListener('click', function () {
+        if (b._on) { stop(b); return; }
+        b._on = true; b.setAttribute('aria-pressed', 'true'); play(b);
+      });
+      b.addEventListener('blur', function () { if (b._on && !b._hover) stop(b); });
+      v.addEventListener('ended', function () {
+        if (b._hover && finePointer) { v.currentTime = 0; v.play(); return; }
+        stop(b);
+      });
+    });
+    addEventListener('pagehide', function () { if (live) stop(live); });
+  })();
 
   /* ---------------- 12 · each case's faces, as it nears ----------------
      hub/fonts/lazy-<slug>.css holds a case's own faces (the WorkspaceHQ

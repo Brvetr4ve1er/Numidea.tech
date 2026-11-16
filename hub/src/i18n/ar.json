@@ -233,7 +233,8 @@
       "app": "@home:price.tyApp",
       "auto": "@home:price.tyAuto",
       "identite": "@home:price.tyBrand",
-      "argent": "@home:price.tyMoney"
+      "argent": "@home:price.tyMoney",
+      "motion": "@home:price.tyMotion"
     },
     "units": {
       "uPages": "@home:price.uPages",
@@ -241,7 +242,8 @@
       "uScreens": "@home:price.uScreens",
       "uFlows": "@home:price.uFlows",
       "uSupports": "@home:price.uSupports",
-      "uCalls": "@home:price.uCalls"
+      "uCalls": "@home:price.uCalls",
+      "uSecs": "@home:price.uSecs"
     },
     "o": {
       "i18n": "@home:price.oI18n",
@@ -252,7 +254,8 @@
       "api": "@home:price.oApi",
       "setup": "@home:price.oSetup",
       "pack": "@home:price.oPack",
-      "guides": "@home:price.oGuides"
+      "guides": "@home:price.oGuides",
+      "anim": "@home:price.oAnim"
     },
     "paceStd": "@home:price.paceStd",
     "paceRush": "@home:price.paceRush",
@@ -283,7 +286,8 @@
       "uScreens": "@home:price.uScreens.n",
       "uFlows": "@home:price.uFlows.n",
       "uSupports": "@home:price.uSupports.n",
-      "uCalls": "@home:price.uCalls.n"
+      "uCalls": "@home:price.uCalls.n",
+      "uSecs": "@home:price.uSecs.n"
     },
     "console": "حاسبة الاستوديو",
     "beyond": "بعد ذلك:",
@@ -953,5 +957,51 @@
     },
     "note1": "هذه الدروس للتثقيف، وليست نصيحة مالية ولا استثمارية. لا إشارات تداول، ولا إدارة أموال، ولا وعد بربح.",
     "note2": "القواعد تختلف من بلد إلى آخر. في الجزائر، يمنع القانون 25-10 الصادر في يوليو 2025 شراء الأصول المشفّرة وبيعها وحيازتها والترويج لها: تحقّق دائماً من القانون حيث تقيم."
+  },
+  "motion": {
+    "kicker": "/ الحركة",
+    "title": "يتحرّك ثم يتوقّف.",
+    "lead": "شعار ينبض بالحركة، فيديو يشرح، وموقع يستجيب للّمس. حركة تخدم الفكرة ولا تدور في حلقة.",
+    "calc": "احسب السعر ←",
+    "sec": "للثانية",
+    "s30": "30 ث",
+    "s60": "60 ث",
+    "svc": {
+      "aria": "عروض الموشن ديزاين الثلاثة",
+      "items": [
+        {
+          "fam": "الشعار",
+          "name": "شعار متحرّك",
+          "meta": "من 3 إلى 5 ث · ثلاث صيغ",
+          "line": "شعارك في حركة، يُسلَّم بثلاث صيغ: أفقية ومربّعة وعمودية."
+        },
+        {
+          "fam": "الفيديو",
+          "name": "فيديو متحرّك",
+          "meta": "بعد 5 ث · بالثانية",
+          "line": "كل ثانية تُضاف إلى باقة الشعار. مدّتان للاسترشاد:"
+        },
+        {
+          "fam": "الموقع",
+          "name": "حركات الموقع",
+          "meta": "خيار ضمن مشروع ويب",
+          "line": "افتتاحية، وشخصيات تتفاعل، وإيصال يُطبع: حركة هذه الصفحة على صفحتك."
+        }
+      ]
+    },
+    "reel": {
+      "kicker": "/ البكرة",
+      "title": "مرّر فوقها.",
+      "lead": "ستة مقاطع. تبدأ بالفأرة أو بالإصبع، وتتوقف حين تغادر.",
+      "play": "شغّل المقطع:",
+      "aria": "المقاطع"
+    },
+    "refs": {
+      "title": "مؤشرات السوق، 2026",
+      "fr": "فرنسا: شعار متحرّك من 3 إلى 5 ث بثلاث صيغ، من 600 إلى 1 500 € قبل الضريبة لدى مستقل؛ وفيديو توضيحي من 60 ث، من 3 000 إلى 9 000 € قبل الضريبة.",
+      "us": "الولايات المتحدة: من 1 000 إلى 5 000 $ للدقيقة لدى مستقل، ومن 5 000 إلى 8 000 $ لدى استوديو صغير.",
+      "dz": "الجزائر: لا يتضمّن بارومتر Onyxlab بنداً للموشن ديزاين. الأقرب إليه فيديو قصير للشبكات الاجتماعية، من 6 000 إلى 20 000 دج للمنشور.",
+      "src": "المصادر: دليل الأسعار ←"
+    }
   }
 }

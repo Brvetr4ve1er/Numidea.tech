@@ -1,0 +1,105 @@
+[
+  {
+    "id": "sting",
+    "src": "img/studio/reel/sting.mp4",
+    "poster": "img/studio/reel/sting.webp",
+    "w": 640,
+    "h": 360,
+    "name": {
+      "fr": "L’ouverture",
+      "en": "The opening",
+      "ar": "الافتتاحية"
+    },
+    "what": {
+      "fr": "2,9 s · à la première visite",
+      "en": "2.9 s · on a first visit",
+      "ar": "2.9 ث · عند الزيارة الأولى"
+    }
+  },
+  {
+    "id": "rig",
+    "src": "img/studio/reel/rig.mp4",
+    "poster": "img/studio/reel/rig.webp",
+    "w": 640,
+    "h": 360,
+    "name": {
+      "fr": "Les personnages",
+      "en": "The characters",
+      "ar": "الشخصيات"
+    },
+    "what": {
+      "fr": "Yasser parle, Kūro réagit",
+      "en": "Yasser speaks, Kūro reacts",
+      "ar": "ياسر يتكلّم وكورو يتفاعل"
+    }
+  },
+  {
+    "id": "console",
+    "src": "img/studio/reel/console.mp4",
+    "poster": "img/studio/reel/console.webp",
+    "w": 640,
+    "h": 360,
+    "name": {
+      "fr": "La calculatrice",
+      "en": "The calculator",
+      "ar": "الحاسبة"
+    },
+    "what": {
+      "fr": "Le reçu s’imprime, le sceau tombe",
+      "en": "The receipt prints, the seal lands",
+      "ar": "يُطبع الإيصال ويهبط الختم"
+    }
+  },
+  {
+    "id": "stamp",
+    "src": "img/studio/reel/stamp.mp4",
+    "poster": "img/studio/reel/stamp.webp",
+    "w": 640,
+    "h": 360,
+    "name": {
+      "fr": "Le tampon",
+      "en": "The stamp",
+      "ar": "الختم"
+    },
+    "what": {
+      "fr": "Une bonne réponse, une leçon tamponnée",
+      "en": "A right answer, a lesson stamped",
+      "ar": "إجابة صحيحة، درس مختوم"
+    }
+  },
+  {
+    "id": "wipe",
+    "src": "img/studio/reel/wipe.mp4",
+    "poster": "img/studio/reel/wipe.webp",
+    "w": 640,
+    "h": 360,
+    "name": {
+      "fr": "Le passage",
+      "en": "The page turn",
+      "ar": "الانتقال"
+    },
+    "what": {
+      "fr": "Une feuille tourne entre deux pages",
+      "en": "A sheet turns between two pages",
+      "ar": "ورقة تنقلب بين صفحتين"
+    }
+  },
+  {
+    "id": "mercury",
+    "src": "img/mercury/mercury-act2.mp4",
+    "poster": "img/mercury/mercury-act2-poster.webp",
+    "w": 540,
+    "h": 946,
+    "tall": true,
+    "name": {
+      "fr": "MERCURY, acte 2",
+      "en": "MERCURY, act 2",
+      "ar": "MERCURY، الفصل 2"
+    },
+    "what": {
+      "fr": "Film personnel · 10 s",
+      "en": "Personal film · 10 s",
+      "ar": "فيلم شخصي · 10 ث"
+    }
+  }
+]

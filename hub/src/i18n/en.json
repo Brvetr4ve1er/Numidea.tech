@@ -233,7 +233,8 @@
       "app": "@home:price.tyApp",
       "auto": "@home:price.tyAuto",
       "identite": "@home:price.tyBrand",
-      "argent": "@home:price.tyMoney"
+      "argent": "@home:price.tyMoney",
+      "motion": "@home:price.tyMotion"
     },
     "units": {
       "uPages": "@home:price.uPages",
@@ -241,7 +242,8 @@
       "uScreens": "@home:price.uScreens",
       "uFlows": "@home:price.uFlows",
       "uSupports": "@home:price.uSupports",
-      "uCalls": "@home:price.uCalls"
+      "uCalls": "@home:price.uCalls",
+      "uSecs": "@home:price.uSecs"
     },
     "o": {
       "i18n": "@home:price.oI18n",
@@ -252,7 +254,8 @@
       "api": "@home:price.oApi",
       "setup": "@home:price.oSetup",
       "pack": "@home:price.oPack",
-      "guides": "@home:price.oGuides"
+      "guides": "@home:price.oGuides",
+      "anim": "@home:price.oAnim"
     },
     "paceStd": "@home:price.paceStd",
     "paceRush": "@home:price.paceRush",
@@ -283,7 +286,8 @@
       "uScreens": "@home:price.uScreens.n",
       "uFlows": "@home:price.uFlows.n",
       "uSupports": "@home:price.uSupports.n",
-      "uCalls": "@home:price.uCalls.n"
+      "uCalls": "@home:price.uCalls.n",
+      "uSecs": "@home:price.uSecs.n"
     },
     "console": "The studio’s calculator",
     "beyond": "Beyond:",
@@ -953,5 +957,51 @@
     },
     "note1": "These lessons are education, not financial or investment advice. No trading signals, no management of funds, no promise of gain.",
     "note2": "Rules change from one country to the next. In Algeria, law 25-10 of July 2025 bans buying, selling, holding and promoting crypto-assets: always check the law where you live."
+  },
+  "motion": {
+    "kicker": "/ MOTION",
+    "title": "It moves, then it stops.",
+    "lead": "A logo that comes alive, a video that explains, a site that answers the finger. Motion that serves the point, never a loop.",
+    "calc": "Price it →",
+    "sec": "per second",
+    "s30": "30 s",
+    "s60": "60 s",
+    "svc": {
+      "aria": "The three motion design offers",
+      "items": [
+        {
+          "fam": "THE LOGO",
+          "name": "Animated logo",
+          "meta": "3 TO 5 S · THREE FORMATS",
+          "line": "Your logo in motion, delivered in three formats: landscape, square, vertical."
+        },
+        {
+          "fam": "THE VIDEO",
+          "name": "Animated video",
+          "meta": "BEYOND 5 S · BY THE SECOND",
+          "line": "Each second adds to the logo package. Two lengths to find your bearings:"
+        },
+        {
+          "fam": "THE SITE",
+          "name": "Site animations",
+          "meta": "AN OPTION OF A WEB PROJECT",
+          "line": "An opening, characters that react, a receipt that prints: the motion of this page, on yours."
+        }
+      ]
+    },
+    "reel": {
+      "kicker": "/ THE REEL",
+      "title": "Hover over it.",
+      "lead": "Six clips. The mouse or a finger starts them, and they stop when you leave.",
+      "play": "Play the clip:",
+      "aria": "The clips"
+    },
+    "refs": {
+      "title": "MARKET MARKERS, 2026",
+      "fr": "France: an animated logo of 3 to 5 s in three formats, €600 to €1,500 excluding tax from a freelancer; a 60 s explainer video, €3,000 to €9,000 excluding tax.",
+      "us": "United States: $1,000 to $5,000 a minute from a freelancer, $5,000 to $8,000 from a small studio.",
+      "dz": "Algeria: the Onyxlab barometer has no “motion design” line. The nearest, a short video for social networks, runs from 6,000 to 20,000 DZD a post.",
+      "src": "Sources: the price guide →"
+    }
   }
 }

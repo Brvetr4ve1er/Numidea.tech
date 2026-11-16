@@ -1511,7 +1511,7 @@ carries the Aperçu and WhatsApp once the hero has gone. `npm run hub:mobile`
 280–430 px in three languages, tiles inside their tracks, the bubble, the
 arrows, the menu and the viewer.
 
-**Motion** (nothing loops; everything is at most 5 s). The intro sting plays
+**Motion** (nothing loops; everything is at most 5 s). A clip of the reel (the motion section, 2026-11-16) is the one thing that may run longer, because the visitor is holding it: it is a poster until the pointer rests on it or it is pressed, it plays only while that lasts (starting again if it ends first), and it stops when the pointer leaves; it never carries the `loop` attribute and never starts by itself. The intro sting plays
 once per session in CSS keyframes and is gone by 2.6 s; any key skips it; it
 does not take focus. The rig (Yasser and Kūro) is a stack of frames cut by
 opacity, run in 5-second windows after the panel is seen and after each

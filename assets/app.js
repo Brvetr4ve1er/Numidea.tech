@@ -63,6 +63,10 @@
          `at` is the size the bundle is advertised at (the pack, the setup
          and two calls). n is 1 on purpose: were the saving to start at two
          calls, a second call would make the order cheaper than one. */
+      /* Motion design (the Studio's "Le mouvement", 2026-11-16), sold by
+         the second: the base is an animated logo of up to 5 seconds, in
+         three formats; each further second is a unit. It takes no option. */
+      motion:    { base: [25000, 45000],    unit: [1800, 4000],   min: 5,  max: 90,  def: 5,  step: 5,  u: 'price.uSecs',     base_u: 5,  weeks: [1, 2],  per: 15,  opts: [], fam: 'motion' },
       argent:    { base: [3000, 3000],      unit: [3000, 3000],   min: 1,  max: 6,   def: 1,  step: 1,  u: 'price.uCalls',    base_u: 1,  weeks: [1, 1],  opts: ['setup', 'pack', 'guides'], fam: 'argent', noRush: true, kit: { needs: ['setup', 'pack'], n: 1, at: 2, off: 5000 } }
     };
     var PRICE_OPTS = {
@@ -72,6 +76,8 @@
       ds:   { add: [60000, 140000], weeks: [1, 3], k: 'price.oDs' },
       seo:  { add: [20000, 45000],  weeks: [0, 1], k: 'price.oSeo' },
       api:  { add: [30000, 80000],  weeks: [1, 2], k: 'price.oApi' },
+      // the site's own motion (an opening, the characters, micro-interactions): a web project's option
+      anim: { add: [35000, 90000],  weeks: [1, 2], k: 'price.oAnim' },
       // only: the types an option is for, and no other type may take it
       setup:  { add: [6000, 6000],   weeks: [0, 0], k: 'price.oSetup',  only: ['argent'] },
       pack:   { add: [15000, 15000], weeks: [0, 0], k: 'price.oPack',   only: ['argent'] },
@@ -1797,7 +1803,8 @@
         /* The extremes: every type at its smallest size with nothing added,
            and at its largest with every option and the rush pace (a quote
            only grows with size, options and pace). */
-        var all = Object.keys(PRICE_OPTS), qLo = Infinity, qHi = 0;
+        // every option this page's estimator offers (the model holds more: the Studio's own)
+        var all = [].map.call(document.querySelectorAll('#estimator input[data-opt]'), function (c) { return c.getAttribute('data-opt'); }), qLo = Infinity, qHi = 0;
         Object.keys(PRICE_MODEL).forEach(function (k) {
           var m = PRICE_MODEL[k];
           if (m.fam) return;   // a family this page's estimator does not list (the Studio's money services)

@@ -93,6 +93,22 @@ for (const l of LANGS) {
   DICT[l] = resolve(l, flatten(JSON.parse(readFileSync(join(ROOT, file), 'utf8'))), file);
 }
 
+/* ---------------- the reel ----------------
+   hub/src/reel.json lists the motion section's clips (scripts/motion-add.mjs
+   appends to it): id, src (an .mp4 under hub/img), poster, w and h, tall for
+   a portrait clip, and name and what in each language (French stands in for
+   a missing one). Their texts join the dictionary as motion.reel.items.<id>. */
+const REEL = JSON.parse(readFileSync(join(SRC, 'reel.json'), 'utf8'));
+for (const c of REEL) {
+  if (!/^[a-z0-9-]+$/.test(c.id || '')) fail(`hub/src/reel.json: a clip's id must be lowercase letters, digits and hyphens ("${c.id}")`);
+  for (const f of ['src', 'poster']) if (!c[f] || !existsSync(join(HUB, c[f]))) fail(`hub/src/reel.json ${c.id}: ${f} "${c[f]}" is not a file under hub/`);
+  if (!(c.w > 0 && c.h > 0) || !c.name || !c.name.fr) fail(`hub/src/reel.json ${c.id}: w, h and a French name are needed`);
+  for (const l of LANGS) {
+    DICT[l][`motion.reel.items.${c.id}.name`] = (c.name && (c.name[l] || c.name.fr)) || '';
+    DICT[l][`motion.reel.items.${c.id}.what`] = (c.what && (c.what[l] || c.what.fr)) || '';
+  }
+}
+
 /* ---------------- cases ---------------- */
 const fragments = {};
 let casesIn = 0;
@@ -177,6 +193,18 @@ const MONEY = {
   midText: DICT.fr['money.mid'].replace('{r}', f0(ESTIMATE.MID_RANGE[0], ESTIMATE.MID_RANGE[1], 'DZD')),
 };
 if (kitQ.lo !== kitQ.hi) fail('build-hub.mjs: the nomad kit is no longer one figure');
+/* The motion section's figures, from the same model, in French as baked (hub/app.js 6 writes them again in the page's language). */
+const MM = ESTIMATE.PRICE_MODEL.motion, q30 = ESTIMATE.quote('motion', 30, [], false), q60 = ESTIMATE.quote('motion', 60, [], false);
+const MOTION = {
+  logo: f0(MM.base[0], MM.base[1], 'DZD'), sec: `+\u00a0${f0(MM.unit[0], MM.unit[1], 'DZD')}`, anim: `+\u00a0${f0(MO.anim.add[0], MO.anim.add[1], 'DZD')}`,
+  sThirty: f0(q30.lo, q30.hi, 'DZD'), sSixty: f0(q60.lo, q60.hi, 'DZD'),
+};
+const REEL_TILES = REEL.map((c) => `      <li class="st-reel__tile${c.tall ? ' st-reel__tile--tall' : ''}">
+        <button type="button" class="st-reel__b" data-reel aria-pressed="false">
+          <video muted playsinline preload="none" width="${c.w}" height="${c.h}" poster="${c.poster}" aria-hidden="true" tabindex="-1"><source src="${c.src}" type="video/mp4"></video>
+          <span class="st-reel__cap"><span class="st-sr" data-i18n="motion.reel.play"></span> <b data-i18n="motion.reel.items.${c.id}.name"></b><span data-i18n="motion.reel.items.${c.id}.what"></span></span>
+        </button>
+      </li>`).join('\n');
 const EST_ROWS = `<tr><th scope="row">${DICT.fr['pricing.rc.base']} ${countedFr(U0, q0.lines[0].n)}</th><td dir="ltr">${grpFr(q0.lines[0].lo)}</td><td dir="ltr">${grpFr(q0.lines[0].hi)}</td></tr>`;
 
 /* ---------------- the faces, split: the page's own, and each case's as it nears ----------------
@@ -234,6 +262,8 @@ const holes = {
   caseCss: caseCss.map((h) => `<link rel="stylesheet" href="${h}?v=${stamp}">`).join('\n'),
   ...Object.fromEntries(Object.entries(EST).map(([k, v]) => [`est.${k}`, esc(v)])),
   estRows: EST_ROWS,
+  reel: REEL_TILES,
+  ...Object.fromEntries(Object.entries(MOTION).map(([k, v]) => [`motion.${k}`, esc(v)])),
   ...Object.fromEntries(Object.entries(MONEY).map(([k, v]) => [`money.${k}`, esc(v)])),
 };
 html = html.replace(/\{\{([a-zA-Z.]+)\}\}/g, (all, k) => { if (holes[k] == null) { fail(`page.html: unknown hole {{${k}}}`); return all; } return holes[k]; });

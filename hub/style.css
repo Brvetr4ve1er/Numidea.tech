@@ -480,6 +480,40 @@ html.js .st-est__nojs{display:none}
 .st-est__src a:hover{color:var(--cream)}
 .st-rc__mid{padding:10px 12px;border:2px dashed var(--teal);font-size:13px;line-height:1.45;color:var(--teal-text)}
 .st-rc__mid[hidden]{display:none}
+/* ---------------- motion: "Le mouvement" (hub/app.js 14) ----------------
+   Three price cards (the money cards' own pattern) and the reel: the head
+   and five landscape tiles in two columns, the portrait clip tall beside
+   them. A tile is its poster until the pointer rests on it or it is pressed. */
+.st-mot .st-head{margin-bottom:36px}
+.st-mny__svc.st-mot__svc{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:56px}
+/* a range is longer than one figure: smaller, and free to wrap */
+.st-mot__svc .st-mny__price b{font-size:24px;white-space:normal}
+.st-mot__len{display:flex;flex-wrap:wrap;gap:6px 22px;font-family:var(--f-mono);font-size:var(--t-mono);color:var(--ink-2)}
+.st-mot__len b{color:var(--ink);white-space:nowrap}
+.st-reel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+.st-reel__head{grid-column:1;display:flex;flex-direction:column;gap:10px;min-width:0;padding-block:6px}
+.st-reel__head p{margin:0}
+.st-reel__title{margin:0;font-family:var(--f-disp);font-weight:900;font-size:var(--t-h3l);line-height:.95;letter-spacing:-.015em;text-transform:uppercase}
+.st-reel__lead{font-size:var(--t-lead);line-height:1.45;color:var(--ink-2)}
+.st-reel__grid{display:contents;list-style:none;margin:0;padding:0}
+.st-reel__tile{min-width:0}
+.st-reel__tile--tall{grid-column:3;grid-row:1 / span 3}
+.st-reel__b{position:relative;display:flex;flex-direction:column;width:100%;height:100%;padding:0;border:2px solid var(--ink);background:var(--ink);color:var(--cream);box-shadow:var(--shadow);text-align:start;cursor:pointer;transition:transform .12s var(--ease),box-shadow .12s var(--ease)}
+.st-reel__b video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;background:var(--tile-dark)}
+.st-reel__tile--tall .st-reel__b video{flex:1;aspect-ratio:auto;min-height:0;height:100%}
+.st-reel__cap{display:flex;flex-direction:column;gap:2px;padding:10px 14px 12px;border-top:2px solid var(--ink);background:var(--cream);color:var(--ink);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.4}
+.st-reel__cap b{font-family:var(--f-disp);font-weight:900;font-size:17px;letter-spacing:0;line-height:1.15}
+/* a play mark on the poster, gone while the clip runs */
+.st-reel__b::after{content:"";position:absolute;top:12px;inset-inline-end:12px;width:0;height:0;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--cream);filter:drop-shadow(2px 2px 0 var(--ink))}
+.st-reel__b.is-on::after{opacity:0}
+.st-reel__b.is-on,.st-reel__b[aria-pressed="true"]{box-shadow:var(--shadow-s)}
+.st-reel__b[aria-pressed="true"]{border-color:var(--red)}
+.st-mot__refs{margin-top:56px;padding:20px 22px;border:2px solid var(--ink);background:var(--cream)}
+.st-mot__refs p{margin:0}
+.st-mot__refs ul{margin:10px 0 0;padding-inline-start:1.2em;display:flex;flex-direction:column;gap:6px;font-size:var(--t-small);line-height:1.5;color:var(--ink-2);max-width:92ch}
+.st-mot__src{margin-top:8px !important;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em}
+.st-mot__src a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-underline-offset:3px}
+:lang(ar) .st-reel__title{letter-spacing:0;line-height:1.2}
 /* ---------------- money: "L'argent, sans jargon" (hub/app.js 6 and 13) ----------------
    The night desk as a scene panel, four price cards, the bundle on a red
    strip, then the lessons on a night plate (the navy of the night panels):
@@ -1666,4 +1700,20 @@ main:focus{outline:none}
 @media (max-width:359px){
   .st-ls__tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
   .st-mny__price b{font-size:26px}
+}
+
+/* ---- the motion section, by width ---- */
+@media (max-width:1099px){
+  .st-mny__svc.st-mot__svc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .st-reel{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .st-reel__head{grid-column:1 / -1}
+  .st-reel__tile--tall{grid-column:auto;grid-row:auto}
+  .st-reel__tile--tall .st-reel__b video{flex:none;height:auto;aspect-ratio:16 / 9;object-position:50% 30%}
+}
+@media (max-width:599px){
+  .st-mot .st-head{margin-bottom:22px}
+  .st-mny__svc.st-mot__svc{grid-template-columns:minmax(0,1fr);margin-bottom:36px}
+  .st-reel{grid-template-columns:minmax(0,1fr);gap:16px}
+  .st-reel__b{box-shadow:5px 5px 0 var(--ink)}
+  .st-mot__refs{margin-top:36px;padding:16px 14px}
 }
