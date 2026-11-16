@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 /**
- * Builds the Studio page, hub/index.html and its dictionary hub/i18n.js,
- * from hub/src — `node scripts/build-hub.mjs` (`--check`: write nothing,
- * exit 1 if either file differs from what the sources give).
+ * Builds the Studio page, hub/index.html, the manual, hub/manuel.html, and
+ * their dictionary hub/i18n.js, from hub/src — `node scripts/build-hub.mjs`
+ * (`--check`: write nothing, exit 1 if a file differs from what the sources
+ * give).
  *
- *   hub/src/page.html            the page: head, nav, screens 01-13, footer
+ *   hub/src/page.html            the Studio: head, nav, screens 01-12, footer
+ *   hub/src/manuel.html          the manual's body (the lessons, the coaching
+ *                                services, the radio); its head is the
+ *                                Studio's, re-addressed here
  *   hub/src/cases/<slug>.html    the five cases of 09 Proof, each inlined at
  *                                its <!-- CASE:<slug> --> marker (a missing
  *                                fragment leaves the marker's place empty)
@@ -204,14 +208,12 @@ const kitQ = ESTIMATE.quote('argent', MA.kit.at, MA.kit.needs, false);
 const MONEY = {
   call: da(MA.base[0]), setup: da(MO.setup.add[0]), pack: da(MO.pack.add[0]), guides: da(MO.guides.add[0]), guideOne: da(MO.guides.one),
   kit: da(kitQ.lo), kitWas: da(kitQ.lo + MA.kit.off),
-  midText: DICT.fr['money.mid'].replace('{r}', f0(ESTIMATE.MID_RANGE[0], ESTIMATE.MID_RANGE[1], 'DZD')),
 };
 if (kitQ.lo !== kitQ.hi) fail('build-hub.mjs: the nomad kit is no longer one figure');
-/* The motion section's figures, from the same model, in French as baked (hub/app.js 6 writes them again in the page's language). */
-const MM = ESTIMATE.PRICE_MODEL.motion, q30 = ESTIMATE.quote('motion', 30, [], false), q60 = ESTIMATE.quote('motion', 60, [], false);
+/* The motion line's figures, from the same model, in French as baked (hub/app.js 6 writes them again in the page's language). */
+const MM = ESTIMATE.PRICE_MODEL.motion;
 const MOTION = {
   logo: f0(MM.base[0], MM.base[1], 'DZD'), sec: `+\u00a0${f0(MM.unit[0], MM.unit[1], 'DZD')}`, anim: `+\u00a0${f0(MO.anim.add[0], MO.anim.add[1], 'DZD')}`,
-  sThirty: f0(q30.lo, q30.hi, 'DZD'), sSixty: f0(q60.lo, q60.hi, 'DZD'),
 };
 const REEL_TILES = REEL.map((c) => `      <li class="st-reel__tile${c.tall ? ' st-reel__tile--tall' : ''}">
         <button type="button" class="st-reel__b" data-reel aria-pressed="false">
@@ -245,20 +247,48 @@ const FONT_FILES = [
   ['hub/fonts/lazy-console.css', FONT_HEAD('the screen face of the price console') + '@font-face { font-family: "VT323"; font-style: normal; font-weight: 400; font-display: swap;\n  src: url("../../workspacehq/fonts/VT323.woff2") format("woff2"); }\n'],
 ];
 
-const GENERATED = new Set(FONT_FILES.map(([f]) => f.replace(/^hub\//, '')));
+const GENERATED = new Set([...FONT_FILES.map(([f]) => f.replace(/^hub\//, '')), 'manuel.html']);
 
 /* ---------------- the page ---------------- */
-const RUNTIME = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|unitsN\.|wkN$|types\.|o\.|rc\.(base|studio|rush|kit|call|mid)$|beyond$|kuro|cur$|included$)|money\.(mid$|svc\.waMsg$|svc\.items\.\d+\.name$)|radio\.(play|pause|onair|idle|paused)$|radio\.tracks\.|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
+const RUNTIME = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|unitsN\.|wkN$|types\.|o\.|rc\.(base|studio|rush|kit|call|mid)$|beyond$|kuro|cur$|included$)|money\.(kit\.k$|svc\.waMsg$|svc\.items\.\d+\.name$)|radio\.(play|pause|onair|idle|paused)$|radio\.tracks\.|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
 const sorted = (o) => Object.fromEntries(Object.keys(o).sort().map((k) => [k, o[k]]));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const attr = (s) => esc(s).replace(/"/g, '&quot;');
-let html = readFileSync(join(SRC, 'page.html'), 'utf8');
+const pageSrc = readFileSync(join(SRC, 'page.html'), 'utf8');
+let html = pageSrc;
 for (const [slug] of CASES) html = html.replace(`<!-- CASE:${slug} -->`, fragments[slug] ? `<!-- CASE:${slug} -->\n${fragments[slug]}` : `<!-- CASE:${slug} -->`);
+/* The manual (hub/manuel.html, 2026-11-16): the Studio's head, re-addressed
+   (its own address in og:url, the hreflang links and the canonical the head
+   script writes; its own title and description; a third breadcrumb), without
+   the cases' sheets and faces, then hub/src/manuel.html as its body. One
+   head to keep: the language script, the faces and the sheet cannot drift. */
+const headEnd = pageSrc.indexOf('<body>');
+if (headEnd < 0) fail('page.html: no <body>');
+const swap = (text, from, to, n, what) => {
+  const parts = text.split(from);
+  if (parts.length - 1 !== n) fail(`the manual's head: ${what} found ${parts.length - 1} times in page.html's head, ${n} expected`);
+  return parts.join(to);
+};
+let manualHead = pageSrc.slice(0, headEnd);
+manualHead = swap(manualHead, '<html lang="fr" dir="ltr">', '<html lang="fr" dir="ltr" data-ui="manual.ui">', 1, 'the html tag');
+manualHead = swap(manualHead, '<noscript>{{lazyFonts}}</noscript>\n', '', 1, 'the cases\' faces');
+manualHead = swap(manualHead, '{{caseCss}}\n', '', 1, 'the cases\' sheets');
+manualHead = swap(manualHead, '"ui.title"', '"manual.ui.title"', 3, 'the title key');
+manualHead = swap(manualHead, '"ui.desc"', '"manual.ui.desc"', 3, 'the description key');
+{
+  const before = manualHead, at = /\{\{base\}\}hub\/(?=["'?])/g;
+  const n = (before.match(at) || []).length;
+  if (n !== 7) fail(`the manual's head: the Studio's address found ${n} times in page.html's head, 7 expected (og:url, four hreflang, the canonical script, the breadcrumb)`);
+  manualHead = before.replace(at, '{{base}}hub/manuel.html');
+}
+manualHead = swap(manualHead, '{"@type":"ListItem","position":2,"name":"Studio","item":"{{base}}hub/manuel.html"}]}',
+  '{"@type":"ListItem","position":2,"name":"Studio","item":"{{base}}hub/"},{"@type":"ListItem","position":3,"name":"Manuel","item":"{{base}}hub/manuel.html"}]}', 1, 'the breadcrumb');
+let manual = manualHead + readFileSync(join(SRC, 'manuel.html'), 'utf8');
 /* Markup in a dictionary value is allowed only where the page applies it as
    markup (data-i18n-html). The home's Arabic wraps Latin names in <bdi>; a
    text key gets the same isolation as Unicode (FSI ... PDI), so no tag is ever
    printed. Anything else with a '<' is refused. */
-const htmlKeys = new Set([...html.matchAll(/\sdata-i18n-html="([^"]+)"/g)].map((m) => m[1]));
+const htmlKeys = new Set([...(html + manual).matchAll(/\sdata-i18n-html="([^"]+)"/g)].map((m) => m[1]));
 for (const l of LANGS)
   for (const [k, v] of Object.entries(DICT[l])) {
     if (htmlKeys.has(k) || !v.includes('<')) continue;
@@ -285,22 +315,28 @@ const holes = {
   ...Object.fromEntries(Object.entries(MOTION).map(([k, v]) => [`motion.${k}`, esc(v)])),
   ...Object.fromEntries(Object.entries(MONEY).map(([k, v]) => [`money.${k}`, esc(v)])),
 };
-html = html.replace(/\{\{([a-zA-Z.]+)\}\}/g, (all, k) => { if (holes[k] == null) { fail(`page.html: unknown hole {{${k}}}`); return all; } return holes[k]; });
-// a template line that is all hole (caseCss with no case css yet) leaves no blank line
-html = html.replace(/\n\n(?=<script type="application\/ld\+json">)/, '\n');
-
 const used = new Set();
-const fr = (k, where) => { used.add(k); if (DICT.fr[k] == null) { fail(`${where}: no key ${k}`); return ''; } return DICT.fr[k]; };
-// text and markup: the element is written empty, the build fills it
-html = html.replace(/<([a-z][a-z0-9]*)\b([^>]*?\sdata-i18n(-html)?="([^"]+)"[^>]*)><\/\1>/g,
-  (all, tag, attrs, isHtml, k) => `<${tag}${attrs}>${isHtml ? fr(k, `<${tag} data-i18n-html>`) : esc(fr(k, `<${tag} data-i18n>`))}</${tag}>`);
-html = html.replace(/<title data-i18n-doc="([^"]+)"><\/title>/, (all, k) => `<title>${esc(fr(k, '<title>'))}</title>`);
-html = html.replace(/\sdata-i18n-content="([^"]+)"/g, (all, k) => ` content="${attr(fr(k, '<meta>'))}"`);
-// a case fragment may carry an empty alt="" beside data-i18n-alt (its own placeholder): the dictionary's line replaces it
-html = html.replace(/<[a-z][^>]*\sdata-i18n-(alt|aria|title)=[^>]*>/g, (t) => t.replace(/\s(alt|aria-label|title)=""/g, ''));
-for (const [a, to] of [['alt', 'alt'], ['aria', 'aria-label'], ['title', 'title']])
-  html = html.replace(new RegExp(`(\\sdata-i18n-${a}="([^"]+)")`, 'g'), (all, whole, k) => `${whole} ${to}="${attr(fr(k, `data-i18n-${a}`))}"`);
-for (const m of html.matchAll(/\sdata-i18n(?:-html)?="([^"]+)"/g)) if (!used.has(m[1])) fail(`an element with data-i18n="${m[1]}" is not empty in the template (the build fills it)`);
+// holes, then the dictionary's French: the same steps for the Studio and for the manual
+function fill(html, name) {
+  html = html.replace(/\{\{([a-zA-Z.]+)\}\}/g, (all, k) => { if (holes[k] == null) { fail(`${name}: unknown hole {{${k}}}`); return all; } return holes[k]; });
+  // a template line that is all hole (caseCss with no case css yet) leaves no blank line
+  html = html.replace(/\n\n(?=<script type="application\/ld\+json">)/, '\n');
+  const mine = new Set();
+  const fr = (k, where) => { used.add(k); mine.add(k); if (DICT.fr[k] == null) { fail(`${name}, ${where}: no key ${k}`); return ''; } return DICT.fr[k]; };
+  // text and markup: the element is written empty, the build fills it
+  html = html.replace(/<([a-z][a-z0-9]*)\b([^>]*?\sdata-i18n(-html)?="([^"]+)"[^>]*)><\/\1>/g,
+    (all, tag, attrs, isHtml, k) => `<${tag}${attrs}>${isHtml ? fr(k, `<${tag} data-i18n-html>`) : esc(fr(k, `<${tag} data-i18n>`))}</${tag}>`);
+  html = html.replace(/<title data-i18n-doc="([^"]+)"><\/title>/, (all, k) => `<title>${esc(fr(k, '<title>'))}</title>`);
+  html = html.replace(/\sdata-i18n-content="([^"]+)"/g, (all, k) => ` content="${attr(fr(k, '<meta>'))}"`);
+  // a case fragment may carry an empty alt="" beside data-i18n-alt (its own placeholder): the dictionary's line replaces it
+  html = html.replace(/<[a-z][^>]*\sdata-i18n-(alt|aria|title)=[^>]*>/g, (t) => t.replace(/\s(alt|aria-label|title)=""/g, ''));
+  for (const [a, to] of [['alt', 'alt'], ['aria', 'aria-label'], ['title', 'title']])
+    html = html.replace(new RegExp(`(\\sdata-i18n-${a}="([^"]+)")`, 'g'), (all, whole, k) => `${whole} ${to}="${attr(fr(k, `data-i18n-${a}`))}"`);
+  for (const m of html.matchAll(/\sdata-i18n(?:-html)?="([^"]+)"/g)) if (!mine.has(m[1])) fail(`${name}: an element with data-i18n="${m[1]}" is not empty in the template (the build fills it)`);
+  return html;
+}
+html = fill(html, 'page.html');
+manual = fill(manual, 'manuel.html');
 for (const k of Object.keys(DICT.fr)) if (!used.has(k) && !RUNTIME.test(k) && !/^cases\./.test(k))
   notes.push(`key ${k} is in the dictionaries but no markup names it (app.js may)`);
 
@@ -321,6 +357,10 @@ function imageSize(file) {
 }
 const refs = new Set();
 const localFile = (u) => { const p = u.split(/[?#]/)[0]; return p ? join(HUB, decodeURI(p)) : null; };
+const CLIENT_HOSTS = [...readFileSync(join(ROOT, 'index.html'), 'utf8').matchAll(/href="https:\/\/([^/"]+)[^"]*"/g)].map((m) => m[1]);
+const ALLOW = new Set([new URL(BASE).host, 'wa.me', 'www.behance.net', 'www.deviantart.com', 'www.instagram.com', 'instagram.com', ...CLIENT_HOSTS]);
+// a page's pictures (sizes from the files) and the rest of its markup's rules: the same for the Studio and for the manual
+function rules(html) {
 html = html.replace(/<img\b([^>]*)>/g, (all, a) => {
   const src = (/\ssrc="([^"]+)"/.exec(a) || [])[1];
   if (!src) { fail(`<img${a.slice(0, 60)}>: no src`); return all; }
@@ -337,8 +377,6 @@ html = html.replace(/<img\b([^>]*)>/g, (all, a) => {
 });
 
 /* ---------------- the rest of the markup's rules ---------------- */
-const CLIENT_HOSTS = [...readFileSync(join(ROOT, 'index.html'), 'utf8').matchAll(/href="https:\/\/([^/"]+)[^"]*"/g)].map((m) => m[1]);
-const ALLOW = new Set([new URL(BASE).host, 'wa.me', 'www.behance.net', 'www.deviantart.com', 'www.instagram.com', 'instagram.com', ...CLIENT_HOSTS]);
 for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|data-anim|poster)="([^"]*)"/g)) {
   const [, a, v] = m;
   // a srcset is a list of "file 480w" candidates: each file must exist and counts as referenced
@@ -358,7 +396,8 @@ for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|data-anim|poster)="(
     continue;
   }
   const file = localFile(v);
-  if (v.endsWith('/')) { if (!existsSync(join(file, 'index.html'))) fail(`${a}="${v}": no page there`); continue; }
+  // './' and './#preview' are the Studio itself, from the manual beside it
+  if (v.endsWith('/') || /^\.\/#/.test(v)) { if (!existsSync(join(file, 'index.html'))) fail(`${a}="${v}": no page there`); continue; }
   if (/^i18n\.(?:'\+l\+'\.)?js\b/.test(v) || GENERATED.has(v.split(/[?#]/)[0])) continue;   // written below
   if (!existsSync(file)) fail(`${a}="${v}": no such file`); else refs.add(relative(ROOT, file));
 }
@@ -367,6 +406,10 @@ for (const m of html.matchAll(/\sstyle="([^"]*)"/g))
   if (m[1] !== 'fill:var(--teal-text,currentColor)' && !/^\s*(--[a-z0-9-]+\s*:\s*[^;"]+;?\s*)+$/i.test(m[1])) fail(`style="${m[1]}": only custom properties (style="--i:3"), the rest is the stylesheet's`);
 for (const m of html.matchAll(/<[a-z][^>]*\s(on[a-z]+)=/gi)) fail(`an inline ${m[1]}= handler: attach it from hub/app.js`);
 for (const m of html.matchAll(/url\((['"]?)([^)'"]+)\1\)/g)) if (!/^data:/.test(m[2]) && !existsSync(localFile(m[2]))) fail(`url(${m[2]}): no such file`);
+return html;
+}
+html = rules(html);
+manual = rules(manual);
 // the stylesheets' own pictures count as referenced
 for (const css of ['style.css', ...(existsSync(join(HUB, 'css')) ? readdirSync(join(HUB, 'css')) : []).filter((f) => f.endsWith('.css')).map((f) => `css/${f}`)]) {
   const p = join(HUB, css);
@@ -385,6 +428,7 @@ if (unref.length) (casesIn === CASES.length ? fail : (m) => notes.push(m))(`${un
 
 /* ---------------- outputs ---------------- */
 const page = withCsp(withGtag(html), cspKind('hub/index.html'));
+const manualPage = withCsp(withGtag(manual), cspKind('hub/manuel.html'));
 const i18n = `/* GENERATED by scripts/build-hub.mjs from hub/src/i18n and hub/src/cases:
    the Studio's three dictionaries (French too, for a switch back), flat
    keys, and nothing else. Loaded by the head script for an EN or AR visitor
@@ -398,11 +442,11 @@ if (errors.length) {
 for (const n of notes) console.log(`  · ${n}`);
 // one dictionary file per language: the head script and a switch fetch only the language asked for (the three in one file were 161 kB held in front of the first paint)
 const perLang = LANGS.map((l) => [`hub/i18n.${l}.js`, `/* GENERATED by scripts/build-hub.mjs: the Studio's ${l} dictionary alone (hub/i18n.js holds the three). */\nwindow.HUB_I18N = window.HUB_I18N || {};\nwindow.HUB_I18N.${l} = ${JSON.stringify(sorted(DICT[l]))};\n`]);
-const OUT = [['hub/index.html', page], ['hub/i18n.js', i18n], ...perLang, ...FONT_FILES];
+const OUT = [['hub/index.html', page], ['hub/manuel.html', manualPage], ['hub/i18n.js', i18n], ...perLang, ...FONT_FILES];
 if (process.argv.includes('--check')) {
   const stale = OUT.filter(([f, s]) => !existsSync(join(ROOT, f)) || readFileSync(join(ROOT, f), 'utf8') !== s).map(([f]) => f);
-  console.log(stale.length ? `✗ ${stale.join(', ')} differ from hub/src (run: node scripts/build-hub.mjs)` : '✓ hub/index.html and hub/i18n.js match hub/src');
+  console.log(stale.length ? `✗ ${stale.join(', ')} differ from hub/src (run: node scripts/build-hub.mjs)` : '✓ hub/index.html, hub/manuel.html and hub/i18n.js match hub/src');
   process.exit(stale.length ? 1 : 0);
 }
 for (const [f, s] of OUT) writeFileSync(join(ROOT, f), s);
-console.log(`✓ hub/index.html (${(page.length / 1000).toFixed(1)} kB, ${casesIn} of ${CASES.length} cases) and hub/i18n.js (${Object.keys(DICT.fr).length} keys × 3)`);
+console.log(`✓ hub/index.html (${(page.length / 1000).toFixed(1)} kB, ${casesIn} of ${CASES.length} cases), hub/manuel.html (${(manualPage.length / 1000).toFixed(1)} kB) and hub/i18n.js (${Object.keys(DICT.fr).length} keys × 3)`);

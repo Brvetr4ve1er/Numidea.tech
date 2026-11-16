@@ -44,6 +44,9 @@ for(const w of [1440,1024,768,390]){
  combos.push(['hub','/hub/',w,{'numidea-lang':'ar'},`hub ${w}/ar`]);
  combos.push(['bible','/hub/bible/',w,{},`bible ${w}`]);
 }
+// the manual beside the Studio (hub/manuel.html, 2026-11-16), same sheet
+for(const w of [1440,768,390,360]) combos.push(['hub','/hub/manuel.html',w,{'numidea-lang':'fr'},`manual ${w}`]);
+combos.push(['hub','/hub/manuel.html',390,{'numidea-lang':'ar'},'manual 390/ar']);
 // the Studio on a 360px phone too (2026-11-14, the mobile pass; a fold's 280px is held for overflow by check-hub-mobile.mjs and the audit, its tiles squeeze)
 for(const w of [360]){
  combos.push(['hub','/hub/',w,{'numidea-lang':'fr'},`hub ${w}`]);

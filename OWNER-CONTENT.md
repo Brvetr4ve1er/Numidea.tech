@@ -567,6 +567,11 @@ translated from it.
   the `radio` group («راديو الورشة», the keys' labels, «على الهواء»,
   «مُطفأ», «متوقف مؤقتاً»), and three track names in `hub/src/radio.json`
   («الثانية صباحاً», «قهوة رقم 1», «كورو نائم»).
+- AR review (2026-11-16, the split), the Studio `hub/src/i18n/ar.json`, new or
+  changed: `doors.aria` and the `doors.c` group («أتعلّم», «افتح الدليل»),
+  `nav.manual` («الدليل»), `proof.lead`, `pricing.mk.why`, `motion.line`,
+  `motion.reel.price`, `money.kit.go`, and the whole `manual` group (the new
+  page's title, its menu, «لنذهب أبعد، معاً.», «الاستوديو يبنيه.»).
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1343,4 +1348,63 @@ for a music player; this is it, drawn as a small radio with Kūro asleep on it.
   list does not name stops the build.
 - **Rights:** see NOTICE.md. Like your illustrations, no licence is chosen
   for the music; that choice is yours.
+
+## 26. The split: the Studio for clients, the manual for learners (2026-11-16)
+
+You approved items 1 to 4 of my review of the new sections. This is what they
+became. Sections 23 (money), 24 (motion) and 25 (radio) above still describe
+what each piece is; where each one sits is now as written here.
+
+- **A new page, "Le manuel":** `/hub/manuel.html`. It holds the night-desk
+  scene, the workshop radio, the six lessons with their two notes, the four
+  coaching services and the Kit nomade, and at its foot a band that sends a
+  reader back to the Studio and the Aperçu. Three languages, like the Studio.
+- **Three ways to reach it from the Studio:** a third, slimmer door under the
+  two ("03 · LE MANUEL, J'apprends"), the phone menu's "Apprendre" group, and
+  the footer.
+- **The Studio's order is now:** the opening, the doors, the problem (01),
+  what we do (02), the Aperçu (03), client work (04), the method (05), the
+  prices (06), the brand (07), the web (08), then "the world" (start here,
+  VOIDSPLUNKER.std, MERCURY, the rest of the work), the Lab (09), the studio
+  (10), questions (11), contact (12). On a phone the Studio went from 40.3 screens to 33.4 (2,864 words to 2,171, 370 controls to 311); the Aperçu now starts at screen 5.8 (it was at 10.0), client work at 7.1 (22.6), the prices at 13.0 (12.0) and the contact at 31.7 (38.7).
+- **Taken off the Studio:**
+  - the radio. Music is on the manual page only, so it stops when a visitor
+    leaves that page. Say if you want it on the Studio as well;
+  - the three motion cards. Motion is now one line at the foot of "Ce qu'on
+    fait" (its three prices and two links: the calculator, the reel). The reel
+    is in the Lab. The list of market sources that stood under the cards is no
+    longer on the page; the same figures remain in the calculator's three
+    market bars and in the price guide;
+  - the coaching type in the calculator ("L'argent") and its three options.
+    The calculator prices client projects only. Coaching is booked from the
+    manual page: each card and the kit open WhatsApp with a line that names the
+    service and its price;
+  - the sentence under the money cards about projects between 180 000 and
+    450 000 DA. The rule itself is unchanged and still prints on the receipt
+    when an estimate meets that band.
+- **Copy I drafted, yours to change** (`hub/src/i18n/fr.json`, with English
+  and Arabic beside it):
+  - the third door: "Se faire payer de loin, fixer son tarif, comprendre la
+    crypto : six leçons courtes, quatre services à prix fixe, et la radio de
+    l'atelier." (`doors.c`);
+  - under the three market bars: "Notre prix comprend la conception sur mesure,
+    des fichiers et un code qui vous appartiennent une fois le projet payé, un
+    seul interlocuteur du premier appel à la livraison, et 30 jours de
+    corrections ensuite." (`pricing.mk.why`). Each part comes from the terms of
+    31 October (ownership once paid in full, 30 days of fixes) and from the
+    Studio's own line "conçus et codés par les mêmes mains". Check that it is
+    what you want to promise on a motion or an identity job too;
+  - the manual page's title "Le manuel — gagner sa vie de loin", its services
+    head "Pour aller plus loin, à deux." with "Les leçons sont gratuites. Si
+    vous voulez qu'on regarde votre situation ensemble, voici quatre services à
+    prix fixe : le prix est écrit, il ne bouge pas.", and the closing band "Le
+    Studio le construit." (`manual`);
+  - the client-work lead no longer counts the two personal projects, which
+    moved to "the world": "Trois clients livrés et deux travaux du fondateur."
+- **The reel's clips were recorded before the split.** "Le tampon" shows the
+  lessons on the Studio and "Le passage" shows two doors. They are still
+  recordings of this site's pages; say if you want them recorded again.
+- **Not done, waiting for your word** (items 5 and 6 of the review): what a
+  visitor gets for six stamps, a way to follow the studio from the manual page,
+  and then the characters and the wider manual, both on the new page.
 

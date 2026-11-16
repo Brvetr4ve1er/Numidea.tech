@@ -1,5 +1,8 @@
 /* ============================================================
-   Numidea Labs — the Studio (hub/index.html), vanilla, no deps
+   Numidea Labs — the Studio (hub/index.html) and the manual beside it
+   (hub/manuel.html: the lessons, the coaching services, the radio; no rig,
+   no console, no cases there, and every block below looks for its own
+   markup before it starts), vanilla, no deps
    0 · the dictionaries and the language switch
    1 · the sting (00): a first visit's 2.2 s intro, once per session
    2 · the rig (01): Yasser and Kūro, twenty frames
@@ -67,8 +70,10 @@
     $$('[data-i18n-alt]').forEach(function (n) { var v = d[n.getAttribute('data-i18n-alt')]; if (v != null) n.alt = v; });
     $$('[data-i18n-aria]').forEach(function (n) { var v = d[n.getAttribute('data-i18n-aria')]; if (v != null) n.setAttribute('aria-label', v); });
     $$('[data-i18n-title]').forEach(function (n) { var v = d[n.getAttribute('data-i18n-title')]; if (v != null) n.title = v; });
-    if (d['ui.title']) document.title = d['ui.title'];
-    var md = $('meta[name="description"]'); if (md && d['ui.desc']) md.setAttribute('content', d['ui.desc']);
+    // the title and the description are the page's own: the manual names its keys on <html data-ui="manual.ui">
+    var ui = root.getAttribute('data-ui') || 'ui';
+    if (d[ui + '.title']) document.title = d[ui + '.title'];
+    var md = $('meta[name="description"]'); if (md && d[ui + '.desc']) md.setAttribute('content', d[ui + '.desc']);
     var ol = $('meta[property="og:locale"]'); if (ol) ol.setAttribute('content', LOCALE[l]);
     $$('.st-lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === l)); });
     onLang.forEach(function (fn) { fn(l); });
@@ -144,7 +149,8 @@
     try { seen = sessionStorage.getItem('numidea-sting'); } catch (e) { seen = '1'; }
     // a slow or saving connection goes straight to the page: the frames (about 75 kB) would arrive after the wipe
     var cn = navigator.connection;
-    if (reduce || seen || (cn && (cn.saveData || /(^|-)[23]g$/.test(cn.effectiveType || '')))) return;
+    // (and only where the rig is: the manual page opens without it)
+    if (!$('#rig') || reduce || seen || (cn && (cn.saveData || /(^|-)[23]g$/.test(cn.effectiveType || '')))) return;
     try { sessionStorage.setItem('numidea-sting', '1'); } catch (e) {}
     stinging = true;
     var el = document.createElement('div');
@@ -545,7 +551,7 @@
   var est = $('[data-est]');
   var P = null;
   try { P = JSON.parse($('#hub-prices').textContent); } catch (e) {}
-  if (est && P) (function () {
+  if (P) (function () {
     var M = P.model, O = P.opts;
     var kilo = function (n) { return Math.round(n / 1000) * 1000; };
     var sizeWeeks = function (m, n) { return m.per ? Math.floor(Math.max(0, n - m.base_u) / m.per) : 0; };
@@ -604,6 +610,33 @@
     };
     var wkN = function (n) { var f = t('pricing.wkN').split('|'), i = (f.length === 5 ? ['one', 'two', 'few', 'many', 'other'] : ['one', 'other']).indexOf(plural(n)); return f[i > -1 ? i : f.length - 1]; };
     var counted = function (u, n) { return lang === 'ar' && plural(n) === 'two' ? unitN(u, n) : n + ' ' + unitN(u, n); };
+
+    /* The figures printed outside the console read this same model, so a
+       card and the console cannot disagree: [data-money-price] is a figure
+       of the coaching services (the manual page), [data-motion-price] one of
+       the motion line (the Studio), each written in the page's language;
+       [data-money-wa] is a WhatsApp line naming the service and its price
+       (0 to 3: the four services; "kit": the bundle). The manual page has
+       no console: there this is all section 6 does. */
+    var MA = M.argent;
+    var moneyPrice = function (k) {
+      var kitQ = quote('argent', MA.kit.at, MA.kit.needs, false);
+      var v = k === 'call' ? MA.base[0] : k === 'guideOne' ? O.guides.one : k === 'kit' ? kitQ.lo : k === 'kitWas' ? kitQ.lo + MA.kit.off : O[k].add[0];
+      return pair(v, v, 'DZD');
+    };
+    var money = function () {
+      $$('[data-money-price]').forEach(function (n) { var v = moneyPrice(n.getAttribute('data-money-price')); if (n.textContent !== v) n.textContent = v; });
+      // the motion line's figures: the logo package, a second, the site option
+      var MT = M.motion;
+      var motionPrice = { logo: range(MT.base[0], MT.base[1], 'DZD'), sec: '+\u00a0' + range(MT.unit[0], MT.unit[1], 'DZD'), anim: '+\u00a0' + range(O.anim.add[0], O.anim.add[1], 'DZD') };
+      $$('[data-motion-price]').forEach(function (n) { var v = motionPrice[n.getAttribute('data-motion-price')]; if (v && n.textContent !== v) n.textContent = v; });
+      $$('[data-money-wa]').forEach(function (a) {
+        var w = a.getAttribute('data-money-wa'), kit = w === 'kit', i = Number(w), key = kit ? 'kit' : ['call', 'setup', 'pack', 'guides'][i];
+        a.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(t('money.svc.waMsg').replace('{s}', t(kit ? 'money.kit.k' : 'money.svc.items.' + i + '.name') + ' (' + moneyPrice(key) + ')'));
+      });
+    };
+    money();
+    if (!est) { onLang.push(money); return; }
 
     var st = { type: 'vitrine', n: M.vitrine.def, opts: [], rush: false, care: false };
     var order = $$('[data-type]', est).map(function (b) { return b.getAttribute('data-type'); });
@@ -762,34 +795,6 @@
     });
     care.addEventListener('click', function () { st.care = !st.care; care.setAttribute('aria-pressed', String(st.care)); render(false); });
     setType('vitrine'); render(false);
-    /* The money section ("L'argent, sans jargon") reads its prices from this
-       same model and sends its buttons here: a card and the console cannot
-       disagree. [data-money-price] is a figure of the model, written in the
-       page's language; [data-est-go] opens the console on a type, with the
-       options its card stands for ([data-est-pick]: call, setup, pack,
-       guides, or kit for the bundle); [data-money-wa] is a WhatsApp line
-       naming the service and its price. */
-    var MA = M.argent;
-    var moneyPrice = function (k) {
-      var kitQ = quote('argent', MA.kit.at, MA.kit.needs, false);
-      var v = k === 'call' ? MA.base[0] : k === 'guideOne' ? O.guides.one : k === 'kit' ? kitQ.lo : k === 'kitWas' ? kitQ.lo + MA.kit.off : O[k].add[0];
-      return pair(v, v, 'DZD');
-    };
-    var money = function () {
-      $$('[data-money-price]').forEach(function (n) { var v = moneyPrice(n.getAttribute('data-money-price')); if (n.textContent !== v) n.textContent = v; });
-      var mid = $('[data-money-mid]');
-      if (mid) { var mt = t('money.mid').replace('{r}', pair(P.mid[0], P.mid[1], 'DZD')); if (mid.textContent !== mt) mid.textContent = mt; }
-      // the motion section's figures: the logo package, a second, the site option, and two lengths
-      var MT = M.motion, q30 = quote('motion', 30, [], false), q60 = quote('motion', 60, [], false);
-      var motionPrice = { logo: range(MT.base[0], MT.base[1], 'DZD'), sec: '+\u00a0' + range(MT.unit[0], MT.unit[1], 'DZD'), anim: '+\u00a0' + range(O.anim.add[0], O.anim.add[1], 'DZD'),
-        sThirty: range(q30.lo, q30.hi, 'DZD'), sSixty: range(q60.lo, q60.hi, 'DZD') };
-      $$('[data-motion-price]').forEach(function (n) { var v = motionPrice[n.getAttribute('data-motion-price')]; if (v && n.textContent !== v) n.textContent = v; });
-      $$('[data-money-wa]').forEach(function (a) {
-        var i = Number(a.getAttribute('data-money-wa')), key = ['call', 'setup', 'pack', 'guides'][i];
-        a.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(t('money.svc.waMsg').replace('{s}', t('money.svc.items.' + i + '.name') + ' (' + moneyPrice(key) + ')'));
-      });
-    };
-    money();
     $$('[data-est-go]').forEach(function (a) {
       a.addEventListener('click', function () {
         var k = a.getAttribute('data-est-go'), pick = a.getAttribute('data-est-pick'), m = M[k];

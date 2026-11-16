@@ -35,7 +35,7 @@ export const LANG_FOLDERS = [...new Set(Object.keys(STATIC).map((p) => frOf(p).r
 // pages whose language follows ?lang= (an inline dictionary, page-i18n.js;
 // the Studio's hub/i18n.js); a link to one of them from en/ or ar/ carries
 // ?lang= (build-lang.mjs)
-export const MULTILINGUAL = new Set(['scene/index.html', 'legal/index.html', 'hub/index.html']);
+export const MULTILINGUAL = new Set(['scene/index.html', 'legal/index.html', 'hub/index.html', 'hub/manuel.html']);
 
 const url = (page) => BASE + page.replace(/index\.html$/, '');
 const xhtml = (l, href) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${href}"/>`;

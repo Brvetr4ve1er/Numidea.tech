@@ -515,6 +515,9 @@ const D={lcpBudget:DESKTOP_LCP};
 // hub/bible/ is the founder's character bible, one paper palette (no void-theme since 56f29c1)
 await run('hub fr','/hub/index.html',{...D,lang:'fr'});
 await run('hub ar','/hub/index.html',{...D,lang:'ar'});
+// the manual beside the Studio (hub/manuel.html, 2026-11-16): the lessons, the coaching services, the radio; same sheet and script
+await run('hub manual fr','/hub/manuel.html',{...D,lang:'fr'});
+await run('hub manual ar','/hub/manuel.html',{...D,lang:'ar'});
 await run('hub bible','/hub/bible/index.html',D);
 // the three brand books (hub/brand/): static plate sets, one paper page each
 for(const b of ['almaflow','traveler','numidea','exploration']) await run('hub brand '+b,'/hub/brand/'+b+'/index.html',D);
@@ -550,6 +553,10 @@ await run('hub en m','/hub/index.html',{lang:'en',w:390,h:844});
 // a fold's cover screen (2026-11-14, the mobile pass): the layout may not be wider than the screen
 await run('hub fr xs','/hub/index.html',{lang:'fr',w:280,h:653});
 await run('hub ar xs','/hub/index.html',{lang:'ar',w:280,h:653});
+await run('hub manual fr m','/hub/manuel.html',{lang:'fr',w:390,h:844});
+await run('hub manual ar m','/hub/manuel.html',{lang:'ar',w:390,h:844});
+await run('hub manual en m','/hub/manuel.html',{lang:'en',w:390,h:844});
+await run('hub manual fr xs','/hub/manuel.html',{lang:'fr',w:280,h:653});
 await run('hub bible m','/hub/bible/index.html',{w:390,h:844});
 for(const b of ['almaflow','traveler','numidea','exploration']) await run('hub brand '+b+' m','/hub/brand/'+b+'/index.html',{w:390,h:844});
 for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});

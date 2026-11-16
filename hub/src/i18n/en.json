@@ -24,7 +24,7 @@
     "groupSite": "I want a website",
     "groupWorld": "The world",
     "groupLearn": "Learn",
-    "money": "Money, in plain words"
+    "manual": "The manual"
   },
   "sting": {
     "hud": "02:00 · BORDJ BOU ARRÉRIDJ · NIGHT WORKSHOP",
@@ -182,7 +182,7 @@
     "alt": "Yasser builds a model before any payment, Kūro beside him"
   },
   "process": {
-    "kicker": "/ 04 · THE METHOD",
+    "kicker": "/ 05 · THE METHOD",
     "title": "How we work.",
     "now": "/ STEP",
     "steps": [
@@ -219,7 +219,7 @@
     ]
   },
   "pricing": {
-    "kicker": "/ 05 · PRICING",
+    "kicker": "/ 06 · PRICING",
     "title": "Our prices. No surprises.",
     "lead": "No “special” rates: these are the studio’s published prices, in dinars, euros and dollars. Your final quote lands inside the range.",
     "type": "/ PROJECT TYPE",
@@ -317,13 +317,14 @@
       "fr": "@home:mk.colFr",
       "us": "@home:mk.colUs",
       "you": "Your estimate",
-      "lead": "Usual 2026 ranges, from an experienced freelancer to an agency. The red band is your estimate, converted at the official rate."
+      "lead": "Usual 2026 ranges, from an experienced freelancer to an agency. The red band is your estimate, converted at the official rate.",
+      "why": "Our price includes custom design, files and code that are yours once the project is paid, one person to talk to from the first call to delivery, and 30 days of fixes after that."
     },
     "consoleAlt": "DOURO·8, the studio’s little calculator, prints a receipt that Kūro catches",
     "wkN": "@home:price.weeks.n"
   },
   "brand": {
-    "kicker": "/ 06 · BRAND, EXPLAINED",
+    "kicker": "/ 07 · BRAND, EXPLAINED",
     "title": "Your logo is not your brand.",
     "lead": "The logo is the visible part. The brand is everything underneath: what people feel before they even read your name.",
     "water": "WHAT PEOPLE SEE ↑ · WHAT MAKES THEM BUY ↓",
@@ -354,7 +355,7 @@
     "more": "Our own brand, plate by plate →"
   },
   "tech": {
-    "kicker": "/ 07 · THE WEB, NO JARGON",
+    "kicker": "/ 08 · THE WEB, NO JARGON",
     "title": "Three things your site has to do.",
     "items": [
       {
@@ -395,9 +396,9 @@
     ]
   },
   "proof": {
-    "kicker": "/ 08 · THE RECEIPTS",
+    "kicker": "/ 04 · THE RECEIPTS",
     "title": "The work, for real.",
-    "lead": "Three delivered clients, two pieces of the founder’s own work, and two personal projects. Each file says what was made, and for whom.",
+    "lead": "Three delivered clients and two pieces of the founder’s own work. Each file says what was made, and for whom.",
     "actor": "Yasser celebrates a launch",
     "own": "Also, made in-house:",
     "glaive": "Glaive, the studio’s demo",
@@ -669,7 +670,7 @@
     "aside": "Kūro reads the messages too."
   },
   "doors": {
-    "aria": "Two ways into the studio",
+    "aria": "Three ways into the studio",
     "kicker": "/ WHERE TO START",
     "premise": "Numidea is a night workshop in Bordj Bou Arréridj where a builder and his black cat make your homepage before you pay, and every finished job opens a door to another world.",
     "a": {
@@ -688,6 +689,12 @@
       "d": "Yasser and Kūro after hours: the character bible, MERCURY, tr4veler.exe.",
       "go": "Enter the world",
       "bible": "The bible"
+    },
+    "c": {
+      "k": "03 · THE MANUAL",
+      "t": "I’m learning",
+      "d": "Getting paid from far away, setting your rate, understanding crypto: six short lessons, four fixed-price services, and the workshop radio.",
+      "go": "Open the manual"
     },
     "skip": "Skip to the world"
   },
@@ -730,13 +737,11 @@
     "newTab": "(new tab)"
   },
   "money": {
-    "kicker": "/ MONEY, IN PLAIN WORDS",
     "title": "Earning from far away.",
     "lead": "Getting paid from abroad, choosing accounts, setting your rate, understanding crypto. Six short lessons, and four services to go further.",
     "sceneAlt": "Yasser counts a few coins at his night desk while the little calculator prints a receipt; Kūro rests a paw on a coin",
     "svc": {
       "aria": "The four services",
-      "calc": "Price it →",
       "wa": "Book on WhatsApp",
       "waMsg": "Hello, I would like to book: {s}.",
       "items": [
@@ -772,9 +777,8 @@
       "k": "NOMAD KIT",
       "line": "The pack, the setup and two calls.",
       "was": "instead of",
-      "go": "See the kit in the calculator →"
+      "go": "Book the kit on WhatsApp"
     },
-    "mid": "A web project whose firm price lands between {r}: one coaching call included, and payment possible in three parts (40 / 30 / 30).",
     "ls": {
       "kicker": "/ SIX LESSONS",
       "title": "The money manual.",
@@ -959,33 +963,23 @@
     "note2": "Rules change from one country to the next. In Algeria, law 25-10 of July 2025 bans buying, selling, holding and promoting crypto-assets: always check the law where you live."
   },
   "motion": {
-    "kicker": "/ MOTION",
-    "title": "It moves, then it stops.",
-    "lead": "A logo that comes alive, a video that explains, a site that answers the finger. Motion that serves the point, never a loop.",
     "calc": "Price it →",
     "sec": "per second",
-    "s30": "30 s",
-    "s60": "60 s",
+    "line": {
+      "k": "MOTION",
+      "t": "And when it has to move: motion design, priced by the second.",
+      "reel": "See the reel ↓"
+    },
     "svc": {
-      "aria": "The three motion design offers",
       "items": [
         {
-          "fam": "THE LOGO",
-          "name": "Animated logo",
-          "meta": "3 TO 5 S · THREE FORMATS",
-          "line": "Your logo in motion, delivered in three formats: landscape, square, vertical."
+          "name": "Animated logo"
         },
         {
-          "fam": "THE VIDEO",
-          "name": "Animated video",
-          "meta": "BEYOND 5 S · BY THE SECOND",
-          "line": "Each second adds to the logo package. Two lengths to find your bearings:"
+          "name": "Animated video"
         },
         {
-          "fam": "THE SITE",
-          "name": "Site animations",
-          "meta": "AN OPTION OF A WEB PROJECT",
-          "line": "An opening, characters that react, a receipt that prints: the motion of this page, on yours."
+          "name": "Site animations"
         }
       ]
     },
@@ -994,14 +988,8 @@
       "title": "Hover over it.",
       "lead": "Six clips. The mouse or a finger starts them, and they stop when you leave.",
       "play": "Play the clip:",
-      "aria": "The clips"
-    },
-    "refs": {
-      "title": "MARKET MARKERS, 2026",
-      "fr": "France: an animated logo of 3 to 5 s in three formats, €600 to €1,500 excluding tax from a freelancer; a 60 s explainer video, €3,000 to €9,000 excluding tax.",
-      "us": "United States: $1,000 to $5,000 a minute from a freelancer, $5,000 to $8,000 from a small studio.",
-      "dz": "Algeria: the Onyxlab barometer has no “motion design” line. The nearest, a short video for social networks, runs from 6,000 to 20,000 DZD a post.",
-      "src": "Sources: the price guide →"
+      "aria": "The clips",
+      "price": "Price an animation →"
     }
   },
   "radio": {
@@ -1018,5 +1006,31 @@
     "idle": "OFF",
     "paused": "PAUSED",
     "chip": "The radio"
+  },
+  "manual": {
+    "ui": {
+      "title": "The manual — earning from far away | Numidea Labs",
+      "desc": "Six short lessons on getting paid from abroad, choosing accounts, setting your rate and understanding crypto. Four fixed-price coaching services."
+    },
+    "kicker": "/ THE MANUAL",
+    "nav": {
+      "aria": "Manual sections",
+      "lessons": "Lessons",
+      "radio": "Radio",
+      "studio": "The Studio",
+      "cta": "Book a call"
+    },
+    "svc": {
+      "kicker": "/ FOUR SERVICES",
+      "title": "To go further, together.",
+      "lead": "The lessons are free. If you want us to look at your situation together, here are four fixed-price services: the price is written down, and it does not move."
+    },
+    "back": {
+      "k": "/ AND IF YOU WANT A SITE",
+      "t": "The Studio builds it.",
+      "d": "Sites, apps, automations and identities, designed and coded by the same hands. The Preview is free: you see your homepage before you pay.",
+      "preview": "See the free Preview",
+      "go": "Go to the Studio →"
+    }
   }
 }

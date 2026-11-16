@@ -24,7 +24,7 @@
     "groupSite": "Je veux un site",
     "groupWorld": "Le monde",
     "groupLearn": "Apprendre",
-    "money": "L’argent, sans jargon"
+    "manual": "Le manuel"
   },
   "sting": {
     "hud": "02:00 · BORDJ BOU ARRÉRIDJ · ATELIER DE NUIT",
@@ -182,7 +182,7 @@
     "alt": "Yasser construit une maquette avant tout paiement, Kūro à côté"
   },
   "process": {
-    "kicker": "/ 04 · LA MÉTHODE",
+    "kicker": "/ 05 · LA MÉTHODE",
     "title": "Comment on travaille.",
     "now": "/ ÉTAPE",
     "steps": [
@@ -219,7 +219,7 @@
     ]
   },
   "pricing": {
-    "kicker": "/ 05 · LES PRIX",
+    "kicker": "/ 06 · LES PRIX",
     "title": "Nos prix. Sans surprise.",
     "lead": "Pas de tarifs « spéciaux » : ce sont les prix publiés du studio, en dinars, en euros et en dollars. Votre devis final tombe dans la fourchette.",
     "type": "/ TYPE DE PROJET",
@@ -317,13 +317,14 @@
       "fr": "@home:mk.colFr",
       "us": "@home:mk.colUs",
       "you": "Votre estimation",
-      "lead": "Fourchettes courantes 2026, du freelance confirmé à l’agence. La bande rouge est votre estimation, convertie au taux officiel."
+      "lead": "Fourchettes courantes 2026, du freelance confirmé à l’agence. La bande rouge est votre estimation, convertie au taux officiel.",
+      "why": "Notre prix comprend la conception sur mesure, des fichiers et un code qui vous appartiennent une fois le projet payé, un seul interlocuteur du premier appel à la livraison, et 30 jours de corrections ensuite."
     },
     "consoleAlt": "DOURO·8, la petite calculatrice du studio, imprime un reçu que Kūro attrape au vol",
     "wkN": "@home:price.weeks.n"
   },
   "brand": {
-    "kicker": "/ 06 · LA MARQUE, EXPLIQUÉE",
+    "kicker": "/ 07 · LA MARQUE, EXPLIQUÉE",
     "title": "Votre logo n’est pas votre marque.",
     "lead": "Le logo, c’est la partie visible. La marque, c’est tout ce qu’il y a dessous : ce que les gens ressentent avant même de lire votre nom.",
     "water": "CE QUE LES GENS VOIENT ↑ · CE QUI FAIT VENDRE ↓",
@@ -354,7 +355,7 @@
     "more": "Notre propre marque, planche par planche →"
   },
   "tech": {
-    "kicker": "/ 07 · LE WEB, SANS JARGON",
+    "kicker": "/ 08 · LE WEB, SANS JARGON",
     "title": "Trois choses que votre site doit faire.",
     "items": [
       {
@@ -395,9 +396,9 @@
     ]
   },
   "proof": {
-    "kicker": "/ 08 · LES REÇUS",
+    "kicker": "/ 04 · LES REÇUS",
     "title": "Le travail, en vrai.",
-    "lead": "Trois clients livrés, deux travaux du fondateur, et deux projets personnels. Chaque dossier dit ce qui a été fait, et pour qui.",
+    "lead": "Trois clients livrés et deux travaux du fondateur. Chaque dossier dit ce qui a été fait, et pour qui.",
     "actor": "Yasser fête une mise en ligne",
     "own": "Aussi, faits maison :",
     "glaive": "Glaive, la démo du studio",
@@ -669,7 +670,7 @@
     "aside": "Kūro lit aussi les messages."
   },
   "doors": {
-    "aria": "Deux chemins dans le studio",
+    "aria": "Trois chemins dans le studio",
     "kicker": "/ PAR OÙ ENTRER",
     "premise": "Numidea est un atelier de nuit à Bordj Bou Arréridj où un bâtisseur et son chat noir construisent votre page d’accueil avant que vous ne payiez, et où chaque projet livré ouvre une porte vers un autre monde.",
     "a": {
@@ -688,6 +689,12 @@
       "d": "Yasser et Kūro après les heures : la bible des personnages, MERCURY, tr4veler.exe.",
       "go": "Entrer dans le monde",
       "bible": "La bible"
+    },
+    "c": {
+      "k": "03 · LE MANUEL",
+      "t": "J’apprends",
+      "d": "Se faire payer de loin, fixer son tarif, comprendre la crypto : six leçons courtes, quatre services à prix fixe, et la radio de l’atelier.",
+      "go": "Ouvrir le manuel"
     },
     "skip": "Aller au monde"
   },
@@ -730,13 +737,11 @@
     "newTab": "(nouvel onglet)"
   },
   "money": {
-    "kicker": "/ L’ARGENT, SANS JARGON",
     "title": "Gagner sa vie de loin.",
     "lead": "Se faire payer depuis l’étranger, choisir ses comptes, fixer son tarif, comprendre la crypto. Six leçons courtes, et quatre services pour aller plus loin.",
     "sceneAlt": "Yasser compte quelques pièces à son bureau de nuit pendant que la petite calculatrice imprime un reçu ; Kūro pose une patte sur une pièce",
     "svc": {
       "aria": "Les quatre services",
-      "calc": "Chiffrer →",
       "wa": "Réserver sur WhatsApp",
       "waMsg": "Bonjour, je voudrais réserver : {s}.",
       "items": [
@@ -772,9 +777,8 @@
       "k": "KIT NOMADE",
       "line": "Le pack, la mise en place et deux appels.",
       "was": "au lieu de",
-      "go": "Voir le kit dans la calculatrice →"
+      "go": "Réserver le kit sur WhatsApp"
     },
-    "mid": "Projet web dont le prix ferme tombe entre {r} : un appel de coaching offert, et un paiement possible en trois fois (40 / 30 / 30).",
     "ls": {
       "kicker": "/ SIX LEÇONS",
       "title": "Le manuel de l’argent.",
@@ -959,33 +963,23 @@
     "note2": "Les règles changent d’un pays à l’autre. En Algérie, la loi 25-10 de juillet 2025 interdit l’achat, la vente, la détention et la promotion des crypto-actifs : vérifiez toujours la loi là où vous vivez."
   },
   "motion": {
-    "kicker": "/ LE MOUVEMENT",
-    "title": "Ça bouge, puis ça s’arrête.",
-    "lead": "Un logo qui s’anime, une vidéo qui explique, un site qui répond au doigt. Du mouvement qui sert le propos, jamais qui tourne en boucle.",
     "calc": "Chiffrer →",
     "sec": "la seconde",
-    "s30": "30 s",
-    "s60": "60 s",
+    "line": {
+      "k": "LE MOUVEMENT",
+      "t": "Et quand il faut que ça bouge : du motion design, chiffré à la seconde.",
+      "reel": "Voir la bobine ↓"
+    },
     "svc": {
-      "aria": "Les trois offres de motion design",
       "items": [
         {
-          "fam": "LE LOGO",
-          "name": "Logo animé",
-          "meta": "3 À 5 S · TROIS FORMATS",
-          "line": "Votre logo en mouvement, livré en trois formats : paysage, carré, vertical."
+          "name": "Logo animé"
         },
         {
-          "fam": "LA VIDÉO",
-          "name": "Vidéo animée",
-          "meta": "AU-DELÀ DE 5 S · À LA SECONDE",
-          "line": "Chaque seconde s’ajoute au forfait du logo. Deux durées pour se repérer :"
+          "name": "Vidéo animée"
         },
         {
-          "fam": "LE SITE",
-          "name": "Animations du site",
-          "meta": "OPTION D’UN PROJET WEB",
-          "line": "Une ouverture, des personnages qui réagissent, un reçu qui s’imprime : le mouvement de cette page, sur la vôtre."
+          "name": "Animations du site"
         }
       ]
     },
@@ -994,14 +988,8 @@
       "title": "Passez dessus.",
       "lead": "Six clips. La souris ou le doigt les lance, ils s’arrêtent quand vous partez.",
       "play": "Lire le clip :",
-      "aria": "Les clips"
-    },
-    "refs": {
-      "title": "REPÈRES DU MARCHÉ, 2026",
-      "fr": "France : un logo animé de 3 à 5 s en trois formats, 600 à 1 500 € HT chez un freelance ; une vidéo explicative de 60 s, 3 000 à 9 000 € HT.",
-      "us": "États-Unis : 1 000 à 5 000 $ la minute chez un freelance, 5 000 à 8 000 $ dans un petit studio.",
-      "dz": "Algérie : le baromètre Onyxlab n’a pas de ligne « motion design ». Le plus proche, une vidéo courte pour les réseaux, va de 6 000 à 20 000 DA le post.",
-      "src": "Sources : le guide des prix →"
+      "aria": "Les clips",
+      "price": "Chiffrer une animation →"
     }
   },
   "radio": {
@@ -1018,5 +1006,31 @@
     "idle": "ÉTEINTE",
     "paused": "EN PAUSE",
     "chip": "La radio"
+  },
+  "manual": {
+    "ui": {
+      "title": "Le manuel — gagner sa vie de loin | Numidea Labs",
+      "desc": "Six leçons courtes pour se faire payer de l’étranger, choisir ses comptes, fixer son tarif et comprendre la crypto. Quatre services de coaching à prix fixe."
+    },
+    "kicker": "/ LE MANUEL",
+    "nav": {
+      "aria": "Sections du manuel",
+      "lessons": "Leçons",
+      "radio": "Radio",
+      "studio": "Le Studio",
+      "cta": "Réserver un appel"
+    },
+    "svc": {
+      "kicker": "/ QUATRE SERVICES",
+      "title": "Pour aller plus loin, à deux.",
+      "lead": "Les leçons sont gratuites. Si vous voulez qu’on regarde votre situation ensemble, voici quatre services à prix fixe : le prix est écrit, il ne bouge pas."
+    },
+    "back": {
+      "k": "/ ET SI VOUS VOULEZ UN SITE",
+      "t": "Le Studio le construit.",
+      "d": "Sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu est gratuit : vous voyez votre page d’accueil avant de payer.",
+      "preview": "Découvrir l’Aperçu gratuit",
+      "go": "Aller au Studio →"
+    }
   }
 }

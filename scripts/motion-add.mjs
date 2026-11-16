@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Add a clip to the Studio's reel (the motion section, hub/#motion).
+ * Add a clip to the Studio's reel (in the Lab, hub/#reel).
  *
  *   npm run motion:add -- <file> <id> "<name>" ["<line under the name>"]
  *   npm run motion:add -- ~/Desktop/logo-reveal.gif logo-reveal "Logo Atlas" "Logo animé · 4 s"

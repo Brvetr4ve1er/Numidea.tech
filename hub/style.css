@@ -471,6 +471,8 @@ html.js .st-est .st-obtn:disabled:not([aria-pressed="true"]){opacity:.5;box-shad
 .st-mk__you{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.08em;color:var(--red-text)}
 .st-mk__you i{flex:none;width:18px;height:10px;background:var(--red);opacity:.7}
 .st-mk__lead{font-size:13px;line-height:1.45;color:var(--ink-2)}
+/* what the price covers, under the three markets (2026-11-16) */
+.st-mk__why{margin:0;padding-top:10px;border-top:2px solid var(--ink);font-size:13px;line-height:1.5;color:var(--ink);font-weight:600}
 .st-est__note{font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
 .st-est__note[hidden]{display:none}
 .st-est__nojs{font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
@@ -533,15 +535,26 @@ html.js .st-est__nojs{display:none}
 @media (hover:hover){.st-rchip__b:hover{background:var(--red)}}
 :lang(ar) .st-radio__h{letter-spacing:0;line-height:1.2}
 /* ---------------- motion: "Le mouvement" (hub/app.js 14) ----------------
-   Three price cards (the money cards' own pattern) and the reel: the head
+   The reel (in the Lab since 2026-11-16, on ink: .st-reel--dark): the head
    and five landscape tiles in two columns, the portrait clip tall beside
-   them. A tile is its poster until the pointer rests on it or it is pressed. */
-.st-mot .st-head{margin-bottom:36px}
-.st-mny__svc.st-mot__svc{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:56px}
-/* a range is longer than one figure: smaller, and free to wrap */
-.st-mot__svc .st-mny__price b{font-size:24px;white-space:normal}
-.st-mot__len{display:flex;flex-wrap:wrap;gap:6px 22px;font-family:var(--f-mono);font-size:var(--t-mono);color:var(--ink-2)}
-.st-mot__len b{color:var(--ink);white-space:nowrap}
+   them. A tile is its poster until the pointer rests on it or it is pressed.
+   The motion offer itself is one line of the services list (.st-svcmot). */
+.st-svcmot{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.5fr) auto;align-items:center;gap:12px 28px;margin-top:28px;padding:18px 22px;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow);scroll-margin-top:90px}
+.st-svcmot p,.st-svcmot ul{margin:0}
+.st-svcmot__t{font-family:var(--f-disp);font-weight:800;font-size:clamp(18px,1.6vw,23px);line-height:1.2;text-wrap:balance}
+.st-svcmot__p{list-style:none;padding:0;display:flex;flex-direction:column;gap:4px;font-size:var(--t-small);line-height:1.45;color:var(--ink-2)}
+.st-svcmot__p b{font-family:var(--f-mono);font-weight:600;color:var(--red-text);white-space:nowrap}
+.st-svcmot__go{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
+.st-svcmot__go .st-btn{min-height:44px;padding:0 16px;font-size:var(--t-label)}
+.st-svcmot__reel{display:inline-flex;align-items:center;min-height:44px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.08em;color:var(--ink);text-underline-offset:3px}
+:lang(ar) .st-svcmot__reel{letter-spacing:0}
+.st-lab .st-reel{margin-top:clamp(40px,5vw,72px);scroll-margin-top:90px}
+.st-reel__go{margin-top:8px !important}
+.st-reel--dark .st-label,.st-reel--dark .st-reel__lead{color:var(--on-dark-2)}
+.st-reel--dark .st-reel__b{border-color:var(--cream);box-shadow:5px 5px 0 var(--red)}
+.st-reel--dark .st-reel__b.is-on,.st-reel--dark .st-reel__b[aria-pressed="true"]{box-shadow:3px 3px 0 var(--red)}
+.st-reel--dark .st-btn--primary{background:var(--red);box-shadow:5px 5px 0 var(--cream)}
+.st-reel--dark :focus-visible{outline-color:var(--cream)}
 .st-reel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
 .st-reel__head{grid-column:1;display:flex;flex-direction:column;gap:10px;min-width:0;padding-block:6px}
 .st-reel__head p{margin:0}
@@ -560,11 +573,6 @@ html.js .st-est__nojs{display:none}
 .st-reel__b.is-on::after{opacity:0}
 .st-reel__b.is-on,.st-reel__b[aria-pressed="true"]{box-shadow:var(--shadow-s)}
 .st-reel__b[aria-pressed="true"]{border-color:var(--red)}
-.st-mot__refs{margin-top:56px;padding:20px 22px;border:2px solid var(--ink);background:var(--cream)}
-.st-mot__refs p{margin:0}
-.st-mot__refs ul{margin:10px 0 0;padding-inline-start:1.2em;display:flex;flex-direction:column;gap:6px;font-size:var(--t-small);line-height:1.5;color:var(--ink-2);max-width:92ch}
-.st-mot__src{margin-top:8px !important;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em}
-.st-mot__src a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-underline-offset:3px}
 :lang(ar) .st-reel__title{letter-spacing:0;line-height:1.2}
 /* ---------------- money: "L'argent, sans jargon" (hub/app.js 6 and 13) ----------------
    The night desk as a scene panel, four price cards, the bundle on a red
@@ -595,7 +603,7 @@ html.js .st-est__nojs{display:none}
 .st-mny__kitl{flex:1 1 320px;font-size:var(--t-body);line-height:1.4}
 .st-mny__kitl b{font-family:"Archivo",sans-serif;font-weight:900;font-size:1.35em;white-space:nowrap}
 .st-mny__was{white-space:nowrap;opacity:.92}
-.st-mny__mid{margin:0 0 56px;padding:4px 0 4px 16px;border-inline-start:4px solid var(--red);font-size:var(--t-small);line-height:1.5;color:var(--ink-2);max-width:70ch}
+.st-mny__kit .st-btn{min-height:48px;padding:0 20px;background:var(--cream);color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
 .st-ls + .st-mny__note{margin-top:34px}
 .st-mny__note{margin:14px 0 0;max-width:86ch;font-size:var(--t-small);line-height:1.5;color:var(--muted)}
 /* the lessons, a night plate */
@@ -1257,6 +1265,21 @@ html.st-stinging{overflow:hidden}
   .st-door--night .st-door__links a:hover{background:var(--cream);color:#0F1E30}
 }
 .st-door--night :focus-visible{outline-color:var(--cream)}
+/* the third door (2026-11-16): a slim strip under the two, to the manual's page */
+.st-door3{grid-column:1 / -1;display:flex;align-items:center;gap:clamp(14px,2vw,28px);padding:clamp(14px,1.6vw,20px) clamp(16px,2vw,28px);background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-door3__img{flex:none;width:clamp(72px,8vw,104px);height:auto;border:2px solid var(--ink);background:#0F1E30}
+.st-door3__body{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:6px}
+.st-door3__body p{margin:0}
+.st-door3__t{margin:0;font-family:var(--f-disp);font-weight:900;font-size:clamp(24px,2.6vw,36px);line-height:1;text-transform:uppercase;letter-spacing:-.015em}
+:lang(ar) .st-door3__t{text-transform:none;letter-spacing:0;line-height:1.25}
+.st-door3__t a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+.st-door3__t a:hover{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:4px;text-underline-offset:6px}
+.st-door3__d{font-size:var(--t-card);line-height:1.5;max-width:48em}
+.st-door3__go{flex:none}
+@media (max-width:899px){
+  .st-door3{flex-wrap:wrap}
+  .st-door3__go{flex:1 1 100%}
+}
 
 /* nav and sheet: the world's link in red, a group label in the sheet */
 .st-nav__links .st-nav__world{display:none;color:var(--red-text);border:2px solid var(--red)}
@@ -1734,7 +1757,6 @@ main:focus{outline:none}
   .st-mny__card{box-shadow:5px 5px 0 var(--ink)}
   .st-mny__kit{padding:14px;box-shadow:5px 5px 0 var(--ink)}
   .st-mny__kit .st-btn{flex:1 1 100%;justify-content:center;text-align:center}
-  .st-mny__mid{margin-bottom:36px}
   .st-ls{padding:16px 12px;box-shadow:5px 5px 0 var(--ink)}
   .st-ls__head{margin-bottom:18px}
   .st-ls__pass b{font-size:34px}
@@ -1754,20 +1776,21 @@ main:focus{outline:none}
   .st-mny__price b{font-size:26px}
 }
 
-/* ---- the motion section, by width ---- */
+/* ---- the motion line and the reel, by width ---- */
 @media (max-width:1099px){
-  .st-mny__svc.st-mot__svc{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .st-svcmot{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .st-svcmot__k{grid-column:1 / -1}
   .st-reel{grid-template-columns:repeat(2,minmax(0,1fr))}
   .st-reel__head{grid-column:1 / -1}
   .st-reel__tile--tall{grid-column:auto;grid-row:auto}
   .st-reel__tile--tall .st-reel__b video{flex:none;height:auto;aspect-ratio:16 / 9;object-position:50% 30%}
 }
 @media (max-width:599px){
-  .st-mot .st-head{margin-bottom:22px}
-  .st-mny__svc.st-mot__svc{grid-template-columns:minmax(0,1fr);margin-bottom:36px}
+  .st-svcmot{grid-template-columns:minmax(0,1fr);margin-top:20px;padding:16px 14px;box-shadow:5px 5px 0 var(--ink)}
+  .st-svcmot__go .st-btn{flex:1 1 auto}
   .st-reel{grid-template-columns:minmax(0,1fr);gap:16px}
   .st-reel__b{box-shadow:5px 5px 0 var(--ink)}
-  .st-mot__refs{margin-top:36px;padding:16px 14px}
+  .st-reel--dark .st-reel__b{box-shadow:4px 4px 0 var(--red)}
 }
 
 /* ---- the radio, by width: on a phone the chip sits above the dock ---- */
@@ -1782,4 +1805,27 @@ main:focus{outline:none}
   .st-radio__vol{flex:1 1 100%;margin-inline-start:0 !important}
   .st-radio__vol input{flex:1;width:auto}
   .st-radio__t{flex:1 1 calc(50% - 10px);min-width:0}
+}
+
+/* ---------------- the manual page (hub/manuel.html, 2026-11-16) ----------------
+   The learner's page beside the Studio: same nav, cards, lessons and radio
+   (their rules are above); here only what the page itself needs. */
+.st-man{border-top:0}
+.st-man .st-mny__scene{margin-bottom:0}
+/* the scene is a band here, not a full plate: the radio and the lessons start on the first screens */
+@media (min-width:700px){.st-man .st-mny__scene img{aspect-ratio:5 / 2;object-fit:cover;object-position:50% 46%}}
+.st-manual .st-nav__links .st-nav__world{display:inline-flex}
+.st-manual .st-mny__kit{margin-bottom:0}
+.st-back{background:var(--floor);overflow:hidden}
+.st-back__in{display:flex;align-items:flex-end;justify-content:space-between;gap:24px 48px}
+.st-back__copy{display:flex;flex-direction:column;align-items:flex-start;gap:18px;min-width:0;max-width:46em}
+.st-back__copy .st-lead{flex:none}
+.st-back__img{flex:none;width:clamp(130px,17vw,230px);height:auto;margin-bottom:calc(var(--sec-y) * -1)}
+@media (max-width:699px){
+  .st-back__img{display:none}
+  .st-back .st-actions .st-btn{flex:1 1 100%}
+}
+/* no dock on this page: the radio's small control sits at the screen's foot */
+@media (max-width:679px){
+  .st-manual .st-rchip{bottom:calc(14px + env(safe-area-inset-bottom))}
 }

@@ -1511,7 +1511,7 @@ carries the Aperçu and WhatsApp once the hero has gone. `npm run hub:mobile`
 280–430 px in three languages, tiles inside their tracks, the bubble, the
 arrows, the menu and the viewer.
 
-**Motion** (nothing loops; everything is at most 5 s). A clip of the reel (the motion section, 2026-11-16) is the one thing that may run longer, because the visitor is holding it: it is a poster until the pointer rests on it or it is pressed, it plays only while that lasts (starting again if it ends first), and it stops when the pointer leaves; it never carries the `loop` attribute and never starts by itself. The intro sting plays
+**Motion** (nothing loops; everything is at most 5 s). A clip of the reel (in the Studio's Lab since the split of 2026-11-16) is the one thing that may run longer, because the visitor is holding it: it is a poster until the pointer rests on it or it is pressed, it plays only while that lasts (starting again if it ends first), and it stops when the pointer leaves; it never carries the `loop` attribute and never starts by itself. The intro sting plays
 once per session in CSS keyframes and is gone by 2.6 s; any key skips it; it
 does not take focus. The rig (Yasser and Kūro) is a stack of frames cut by
 opacity, run in 5-second windows after the panel is seen and after each
@@ -1880,13 +1880,21 @@ Source: the creative audit of 2026-11-15 and the owner's approval of its moves.
 
 **No dead control.** A step of the size control prints a different receipt once the package's base size is passed, and under it the receipt says what the package covers ("Forfait, jusqu'à 5 pages"). The Studio draws that zone under the range. A Vitrine that would cost more than the Studio package shows the difference as its own line, "Formule Studio appliquée".
 
-**The console, DOURO·8** (the Studio's `#pricing`). An original drawing in CSS, not a copy of an existing character: a paper body on the dark band, a night-navy screen (the navy of the night panels) with a three-mood pixel face and the total, keys that travel 3px when pressed, a teal pad (up and down walk the project types, minus and plus step the size), a round red key to the contact card, and beside it the cream receipt with a torn edge. The screen is VT323 (the file WorkspaceHQ already hosts; `hub/fonts/lazy-console.css`, fetched as the console nears). Red is the action, teal the pad, navy the night screen. Nothing on it moves by itself: the rows and the face answer a change once, and reduced motion stops both.
+**The console, DOURO·8** (the Studio's `#pricing`; it prices client projects only since the split of 2026-11-16: coaching is booked from the manual page). An original drawing in CSS, not a copy of an existing character: a paper body on the dark band, a night-navy screen (the navy of the night panels) with a three-mood pixel face and the total, keys that travel 3px when pressed, a teal pad (up and down walk the project types, minus and plus step the size), a round red key to the contact card, and beside it the cream receipt with a torn edge. The screen is VT323 (the file WorkspaceHQ already hosts; `hub/fonts/lazy-console.css`, fetched as the console nears). Red is the action, teal the pad, navy the night screen. Nothing on it moves by itself: the rows and the face answer a change once, and reduced motion stops both.
 
 **The market in the calculator.** Three bars (Algeria, France, United States) from the price guide's sourced table (`MARKET`, `assets/app.js` 14), each in its own currency on one logarithmic scale, with the estimate laid across in red. A type without a sourced row shows none.
 
+## Two pages, two readers (2026-11-16)
+
+The Studio (`/hub/`) is the client's page and reads in a buyer's order, proof before price: the opening, the doors, the problem, what we do, the Aperçu, client work, then the method and the prices, the brand, the web. After that comes the world (the personal dossiers, the Lab), then the studio, the questions and the contact. Nothing on it sells to another reader: its calculator prices client projects only, and motion is one line of the services list with its reel in the Lab.
+
+The manual (`/hub/manuel.html`) is the learner's page: the lessons first, which are free, then the coaching services at their fixed prices, then a way back to the Studio. It has no calculator; a service is booked with a WhatsApp line that names it and its price. The Studio opens on it through a third, slimmer door; the two big doors stay the client's and the world's.
+
+A new block goes on the page of the reader it is for. If it is for neither, it is not for the Studio.
+
 ## Sound (2026-11-16)
 
-The Studio has one source of sound, the workshop radio, and it is silent until a visitor presses play: nothing is fetched before, nothing starts by itself, on any page, ever. Once on, it is always one press from silence (the shelf, or the small control at the foot of the screen), and its volume is the visitor's. Interface sounds, if any are added later, belong to the same switch: with the radio off the page makes no sound at all.
+The site has one source of sound, the workshop radio on the manual page, and it is silent until a visitor presses play: nothing is fetched before, nothing starts by itself, on any page, ever. Once on, it is always one press from silence (the shelf, or the small control at the foot of the screen), and its volume is the visitor's. Interface sounds, if any are added later, belong to the same switch: with the radio off the page makes no sound at all.
 
 ## Lessons (2026-11-16)
 
