@@ -904,7 +904,8 @@ html.st-stinging{overflow:hidden}
 .st-sting__g{display:inline-block;opacity:0;transform:translateY(56px);filter:blur(10px);animation:st-letter .42s var(--ease) forwards;animation-delay:calc(.2s + var(--i) * .028s)}
 .st-sting__labs .st-sting__g{animation-delay:calc(.32s + var(--i) * .028s)}
 .st-sting__eyes{position:absolute;inset:0;z-index:1;display:grid;place-items:center;overflow:hidden;background:#0F1E30;opacity:0;animation:st-eyes .4s steps(1,end) 1s forwards}
-.st-sting__eyes img{display:block;width:min(96vw,115vh);max-width:none;height:auto;margin-top:6vh}
+/* Kuro at his file's own size in a cream panel: stretched across the screen his 360px frame went soft and its paper-matte edge showed as a pale line on the navy */
+.st-sting__eyes img{display:block;width:min(400px,68vw);max-width:none;height:auto;background:var(--cream);border:2px solid var(--ink);box-shadow:10px 10px 0 var(--red)}
 .st-sting__stamp{position:absolute;left:clamp(20px,8vw,150px);bottom:20%;z-index:1;width:clamp(84px,11vw,168px);aspect-ratio:1;display:grid;place-items:center;background:var(--red);border:4px solid var(--ink);box-shadow:var(--shadow);font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:clamp(44px,6.4vw,100px);line-height:1;color:var(--cream);opacity:0;transform:scale(1.6) rotate(-8deg);animation:st-seal .27s var(--ease) 1.4s forwards}
 .st-sting__wipe{position:absolute;inset:0;z-index:3;transform:translateY(100%);background:var(--paper);border-top:6px solid var(--ink);animation:st-wipe .533s cubic-bezier(.87,0,.13,1) 1.667s forwards}
 .st-sting.is-skip .st-sting__wipe{animation-name:st-wipe-now;animation-delay:0s}
