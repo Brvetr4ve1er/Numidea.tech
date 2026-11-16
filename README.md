@@ -89,8 +89,10 @@ NOTICE.md             # what LICENSE (CC0) covers and what it does not
 
 ### Deploy
 
-- **Vercel is canonical, for now:** <https://numidea-tech.vercel.app/> (`BASE` in
-  `scripts/site.mjs`; a custom domain will replace it, owner decision 2026-11-10).
+- **The canonical address is the studio's own domain:** <https://www.numedialab.dev/>
+  (`BASE` in `scripts/site.mjs`; owner decision 2026-11-16). Vercel serves it; the
+  Vercel address, <https://numidea-tech.vercel.app/>, shows the same deployment and
+  was the canonical from 2026-11-10 until then.
   **GitHub Pages is a mirror:** <https://brvetr4ve1er.github.io/Numidea.tech/>
   (`PAGES_BASE`; staged with `--pages`, frozen on the 25 October build by a
   billing lock).

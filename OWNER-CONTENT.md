@@ -1408,3 +1408,25 @@ what each piece is; where each one sits is now as written here.
   visitor gets for six stamps, a way to follow the studio from the manual page,
   and then the characters and the wider manual, both on the new page.
 
+## 27. The official address: www.numedialab.dev (2026-11-16)
+
+You chose the studio's own domain as the address people and Google should
+find, and confirmed that Search Console verified `numedialab.dev`.
+
+- **What changed:** every page now names `https://www.numedialab.dev/` as its
+  own address (the canonical link, the address in a shared link's preview, the
+  language alternates), and so do `sitemap.xml` and `robots.txt`.
+- **What did not:** the site is still served by Vercel, and
+  `numidea-tech.vercel.app` still shows the same pages. Links you already
+  shared keep working. `numedialab.dev` without `www` forwards to `www`.
+- **For you, in Search Console:** open Sitemaps and submit
+  `https://www.numedialab.dev/sitemap.xml`. Then use URL Inspection and
+  "Request indexing" on the home page, `/en/`, `/ar/`, `/tarifs/`, `/hub/` and
+  `/hub/manuel.html`.
+- **Your decision, not done:** the Vercel address could forward every visit to
+  the domain, so only one address is ever seen. It is cleaner for search, and
+  it means the Vercel address stops being a second way in. Say the word and I
+  set it up.
+- **Elsewhere:** the links on Behance, Instagram and DeviantArt, and any link
+  on a client's site, are yours to point at the new address.
+

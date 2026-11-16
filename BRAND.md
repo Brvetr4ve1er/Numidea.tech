@@ -3193,7 +3193,7 @@ and phone. A `WebSite` object gives the site name (the `og:site_name`), the
 home URL and the three languages. Search engines take a site name only from a
 domain's or subdomain's home page, not from a subdirectory such as
 `/Numidea.tech/` (the Pages mirror), so it names the site in results from a
-host root: Vercel's `numidea-tech.vercel.app` now, a custom domain later. Legal fields (legal name, registration number…) join the structured
+host root: the studio's own domain, `www.numedialab.dev`, since 2026-11-16 (Vercel's `numidea-tech.vercel.app` before). Legal fields (legal name, registration number…) join the structured
 data only once the owner supplies them (`OWNER-CONTENT.md` §1).
 
 ## Client voices and photo slots
@@ -3336,8 +3336,10 @@ leaves out a folder's own notes and the WorkspaceHQ export's manifest
 case: the embed spells its notes `readme.md`, and 38 KB of them reached the
 published set until 2026-10-31); every walker (stage, deploy-files, check,
 build-legal) asks the same function. Every host builds from `_site/`: GitHub
-Vercel is canonical for now (https://numidea-tech.vercel.app/, `BASE`;
-owner decision 2026-11-10), GitHub Pages
+The studio's own domain is canonical (https://www.numedialab.dev/, `BASE`;
+owner decision 2026-11-16; served by Vercel, whose own address
+https://numidea-tech.vercel.app/ shows the same deployment and was the
+canonical from 2026-11-10), GitHub Pages
 (https://brvetr4ve1er.github.io/Numidea.tech/, `PAGES_BASE`, via
 `.github/workflows/pages.yml`) and Netlify are mirrors.
 `NOT_DEPLOYED` lists what must never be served, including `knowledge-base/`,

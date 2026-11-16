@@ -83,7 +83,7 @@
  * aria-labelledby) are printed as warnings: they need a look, not a failure.
  *
  *   AUDIT_BASE=<url>    audit a deployed copy instead of this checkout, e.g.
- *                       AUDIT_BASE=https://numidea-tech.vercel.app
+ *                       AUDIT_BASE=https://www.numedialab.dev
  *                       (the legal preview, which is never deployed, is skipped)
  *   AUDIT_ONLY=<regex>  only the runs whose label matches, e.g. to measure one
  *                       timing failure again alone: AUDIT_ONLY='^throttled'

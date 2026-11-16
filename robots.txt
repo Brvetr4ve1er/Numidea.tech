@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://numidea-tech.vercel.app/sitemap.xml
+Sitemap: https://www.numedialab.dev/sitemap.xml

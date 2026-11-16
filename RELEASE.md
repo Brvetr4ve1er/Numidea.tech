@@ -9,9 +9,12 @@ on billing; [section 9](#9-outage-and-fallback) says what to do meanwhile).
 
 ## 1. Where the site lives
 
-- **Canonical host: Vercel, for now**, <https://numidea-tech.vercel.app/>
-  (`BASE` in `scripts/site.mjs`; owner decision 2026-11-10, a custom domain
-  will replace it, and `BASE` is the one line to change). The GitHub Pages
+- **Canonical host: the studio's own domain**, <https://www.numedialab.dev/>
+  (`BASE` in `scripts/site.mjs`; owner decision 2026-11-16, and `BASE` is the
+  one line to change, with the hand-kept heads `npm run check` then names).
+  Vercel serves it: the project's own address,
+  <https://numidea-tech.vercel.app/>, shows the same deployment and is where a
+  release is first confirmed (it was the canonical from 2026-11-10). The GitHub Pages
   mirror, <https://brvetr4ve1er.github.io/Numidea.tech/> (`PAGES_BASE`), is
   frozen on the 25 October build by a billing lock and is never canonical.
   Every page except 404 names one canonical
@@ -87,7 +90,7 @@ moves ([section 3](#3-how-a-change-reaches-the-live-site), step 3).
 | --- | --- | --- |
 | 14 | The gated deploy is green | Actions → "Deploy to GitHub Pages": the `gates` job and then `deploy` (`pages.yml`). The workflow file puts the gates at about twelve minutes. A red gate leaves the live site as it was. A push that changes only `**.md`, `knowledge-base/**` or `audit/**` starts no deploy (`paths-ignore`); `check.yml` still runs on it |
 | 15 | The live pages answer, carry the new stamp, and stay within the Lighthouse budgets | Actions → "Live monitor" → Run workflow (`monitor.yml`). It also runs every six hours |
-| 16 | The live site passes the browser audit | `AUDIT_BASE=https://numidea-tech.vercel.app npm run audit` (`scripts/audit.mjs`; the local-only runs are skipped) |
+| 16 | The live site passes the browser audit | `AUDIT_BASE=https://www.numedialab.dev npm run audit` (`scripts/audit.mjs`; the local-only runs are skipped) |
 | 17 | The mirrors built the same commit | the Netlify and Vercel dashboards (owner); nothing in this repository watches them |
 
 ### Owner-only items

@@ -18,9 +18,11 @@ import { fileURLToPath } from 'node:url';
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 /* The canonical host: every canonical, og:url, hreflang, sitemap, robots and
-   JSON-LD URL names it. Vercel for now (owner decision 2026-11-10); a custom
-   domain replaces it later, and this is the one line to change. */
-export const BASE = 'https://numidea-tech.vercel.app/';
+   JSON-LD URL names it. The studio's own domain since 2026-11-16 (owner
+   decision; the Vercel address, https://numidea-tech.vercel.app/, was the
+   canonical from 2026-11-10 and still serves the same deployment). This is
+   the one line to change. */
+export const BASE = 'https://www.numedialab.dev/';
 /* The GitHub Pages mirror, served under the repository subpath. Never
    canonical: it only decides where the Pages staging roots its 404 links
    (stage-site.mjs --pages) and what the monitor and the audit probe. */
