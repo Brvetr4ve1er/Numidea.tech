@@ -1884,6 +1884,14 @@ Source: the creative audit of 2026-11-15 and the owner's approval of its moves.
 
 **The market in the calculator.** Three bars (Algeria, France, United States) from the price guide's sourced table (`MARKET`, `assets/app.js` 14), each in its own currency on one logarithmic scale, with the estimate laid across in red. A type without a sourced row shows none.
 
+## Lessons (2026-11-16)
+
+A lesson is one idea, one gesture and one question, in that order: two or three sentences, then something to press or type (one explanation at a time, or a figure worked out of the visitor's own numbers), then a question with three answers. A right answer stamps the lesson with the seal; a wrong one says so and lets the reader try again. Stamps stay on the visitor's device and are sent nowhere.
+
+**What a lesson may say.** A figure in a lesson is either the visitor's own input or carries its source beside it. A rule that changes by country, bank or service is not stated as fact: the lesson says what to check and with whom. No provider is named unless its own page has been read for the reader's country. Anything about money that could be read as advice carries the two notes (education, not advice; the law where you live).
+
+**How it looks.** Lessons sit on a night plate (the navy of the night panels), as tabs with one small picture each, Kūro in every picture; the open lesson is a cream page. Keys press down 3px like the console's. Without scripts every lesson is laid out in full and the questions are not shown.
+
 ## Founder section — the CV is the source of truth
 
 Every date, title and one-liner in the founder card comes from

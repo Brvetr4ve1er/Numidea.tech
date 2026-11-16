@@ -188,6 +188,7 @@ var I18N = {
   'price.oDs': 'Kit graphique complet', 'price.oSeo': 'SEO avancé & performance', 'price.oApi': 'Intégrations API', 'price.incl': 'inclus',
   'price.studioBetter': 'La formule Studio inclut déjà ces options',
   'price.lnUpTo': 'Forfait, jusqu’à', 'price.lnStudio': 'Formule Studio appliquée', 'price.lnRush': 'Accéléré, +25\u00a0%', 'price.lnTotal': 'Total',
+  'price.tyMoney': 'Coaching & argent', 'price.uCalls': 'appels', 'price.uCalls.n': 'appel|appels', 'price.oSetup': 'Mise en place accompagnée', 'price.oPack': 'Pack de départ freelance', 'price.oGuides': 'Guides et modèles, la collection', 'price.lnKit': 'Kit nomade',
   'price.estHello': 'Bonjour, voici mon projet :',
   'price.paceStd': 'Standard', 'price.paceRush': 'Accéléré',
   'price.uPages': 'pages', 'price.uPages.n': 'page|pages', 'price.uScreens': 'écrans', 'price.uScreens.n': 'écran|écrans', 'price.uProducts': 'produits', 'price.uProducts.n': 'produit|produits', 'price.uFlows': 'flux', 'price.uFlows.n': 'flux|flux', 'price.uSupports': 'supports', 'price.uSupports.n': 'support|supports',

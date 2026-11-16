@@ -129,8 +129,8 @@ const RETAINER = JSON.parse(grab(/var RETAINER = (\[[^\]]*\]);/, 'RETAINER')[1])
 if (Number(rushP) !== ESTIMATE.RUSH_PRICE) fail('assets/app.js: RUSH_PRICE read twice, two values');
 const PRICES = {
   model: Object.fromEntries(Object.entries(ESTIMATE.PRICE_MODEL).map(([k, m]) => [k, { ...m, u: m.u.replace(/^price\./, '') }])),
-  opts: Object.fromEntries(Object.entries(ESTIMATE.PRICE_OPTS).map(([k, o]) => [k, { add: o.add, weeks: o.weeks }])),
-  rush: [Number(rushP), Number(rushW)], fx: { EUR: FX.EUR, USD: FX.USD }, retainer: RETAINER,
+  opts: Object.fromEntries(Object.entries(ESTIMATE.PRICE_OPTS).map(([k, o]) => [k, { add: o.add, weeks: o.weeks, ...(o.only ? { only: o.only } : {}), ...(o.one ? { one: o.one } : {}) }])),
+  rush: [Number(rushP), Number(rushW)], fx: { EUR: FX.EUR, USD: FX.USD }, retainer: RETAINER, mid: ESTIMATE.MID_RANGE,
   // what the same project costs on three markets (the price guide's sourced table, assets/app.js 14): [low, high, open-ended]
   market: new Function(`return ${grab(/var MARKET = (\{[\s\S]*?\n    \});/, 'MARKET')[1]}`)(),
 };
@@ -168,6 +168,15 @@ Object.assign(EST, {
   lo: grpFr(q0.lo), hi: grpFr(q0.hi),
 });
 if (q0.lines.length !== 1 || q0.lines[0].k !== 'base') fail('build-hub.mjs: the starting quote is no longer one line (the baked receipt row assumes it)');
+/* The money section's prices, from the same model (a card and the console cannot disagree), in French as baked. */
+const MA = ESTIMATE.PRICE_MODEL.argent, MO = ESTIMATE.PRICE_OPTS, da = (n) => `${grpFr(n)}\u00a0${DICT.fr['pricing.cur']}`;
+const kitQ = ESTIMATE.quote('argent', MA.kit.at, MA.kit.needs, false);
+const MONEY = {
+  call: da(MA.base[0]), setup: da(MO.setup.add[0]), pack: da(MO.pack.add[0]), guides: da(MO.guides.add[0]), guideOne: da(MO.guides.one),
+  kit: da(kitQ.lo), kitWas: da(kitQ.lo + MA.kit.off),
+  midText: DICT.fr['money.mid'].replace('{r}', f0(ESTIMATE.MID_RANGE[0], ESTIMATE.MID_RANGE[1], 'DZD')),
+};
+if (kitQ.lo !== kitQ.hi) fail('build-hub.mjs: the nomad kit is no longer one figure');
 const EST_ROWS = `<tr><th scope="row">${DICT.fr['pricing.rc.base']} ${countedFr(U0, q0.lines[0].n)}</th><td dir="ltr">${grpFr(q0.lines[0].lo)}</td><td dir="ltr">${grpFr(q0.lines[0].hi)}</td></tr>`;
 
 /* ---------------- the faces, split: the page's own, and each case's as it nears ----------------
@@ -196,7 +205,7 @@ const FONT_FILES = [
 const GENERATED = new Set(FONT_FILES.map(([f]) => f.replace(/^hub\//, '')));
 
 /* ---------------- the page ---------------- */
-const RUNTIME = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|unitsN\.|types\.|o\.|rc\.(base|studio|rush)$|beyond$|kuro|cur$|included$)|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
+const RUNTIME = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|unitsN\.|wkN$|types\.|o\.|rc\.(base|studio|rush|kit|call|mid)$|beyond$|kuro|cur$|included$)|money\.(mid$|svc\.waMsg$|svc\.items\.\d+\.name$)|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
 const sorted = (o) => Object.fromEntries(Object.keys(o).sort().map((k) => [k, o[k]]));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const attr = (s) => esc(s).replace(/"/g, '&quot;');
@@ -225,6 +234,7 @@ const holes = {
   caseCss: caseCss.map((h) => `<link rel="stylesheet" href="${h}?v=${stamp}">`).join('\n'),
   ...Object.fromEntries(Object.entries(EST).map(([k, v]) => [`est.${k}`, esc(v)])),
   estRows: EST_ROWS,
+  ...Object.fromEntries(Object.entries(MONEY).map(([k, v]) => [`money.${k}`, esc(v)])),
 };
 html = html.replace(/\{\{([a-zA-Z.]+)\}\}/g, (all, k) => { if (holes[k] == null) { fail(`page.html: unknown hole {{${k}}}`); return all; } return holes[k]; });
 // a template line that is all hole (caseCss with no case css yet) leaves no blank line

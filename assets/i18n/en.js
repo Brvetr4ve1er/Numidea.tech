@@ -188,6 +188,7 @@ var I18N = {
   'price.oDs': 'Full design kit', 'price.oSeo': 'Advanced SEO & performance', 'price.oApi': 'API integrations', 'price.incl': 'included',
   'price.studioBetter': 'The Studio package already includes these options',
   'price.lnUpTo': 'Package, up to', 'price.lnStudio': 'Studio package applied', 'price.lnRush': 'Rush, +25%', 'price.lnTotal': 'Total',
+  'price.tyMoney': 'Coaching & money', 'price.uCalls': 'calls', 'price.uCalls.n': 'call|calls', 'price.oSetup': 'Guided setup', 'price.oPack': 'Freelance starter pack', 'price.oGuides': 'Guides and templates, the set', 'price.lnKit': 'Nomad kit',
   'price.estHello': 'Hello, here is my project:',
   'price.paceStd': 'Standard', 'price.paceRush': 'Accelerated',
   'price.uPages': 'pages', 'price.uPages.n': 'page|pages', 'price.uScreens': 'screens', 'price.uScreens.n': 'screen|screens', 'price.uProducts': 'products', 'price.uProducts.n': 'product|products', 'price.uFlows': 'flows', 'price.uFlows.n': 'flow|flows', 'price.uSupports': 'deliverables', 'price.uSupports.n': 'deliverable|deliverables',

@@ -52,7 +52,18 @@
       ecommerce: { base: [220000, 550000],  unit: [900, 2200],    min: 10, max: 400, def: 60, step: 10, u: 'price.uProducts', base_u: 60, weeks: [5, 10], per: 100 },
       app:       { base: [450000, 1200000], unit: [18000, 45000], min: 3,  max: 20,  def: 6,  step: 1,  u: 'price.uScreens',  base_u: 6,  weeks: [8, 16], per: 2,   incl: ['pay', 'api'] },
       auto:      { base: [140000, 420000],  unit: [15000, 40000], min: 1,  max: 12,  def: 3,  step: 1,  u: 'price.uFlows',    base_u: 3,  weeks: [2, 6],  per: 3,   opts: ['api', 'cms'] },
-      identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5],  per: 3,   opts: ['ds'] }
+      identite:  { base: [90000, 180000],   unit: [8000, 16000],  min: 1,  max: 8,   def: 2,  step: 1,  u: 'price.uSupports', base_u: 2,  weeks: [2, 5],  per: 3,   opts: ['ds'] },
+      /* The money services (the Studio's "L'argent, sans jargon", 2026-11-16):
+         fixed prices, so both bounds are the same figure. The base is one
+         60-minute call; each further call is a unit. fam marks a family the
+         home and the price guide do not list (their estimator has no radio
+         for it, their scale and market table skip it); noRush: a call is
+         not rushed. kit: with these options together (and at least n
+         calls) the order is cheaper by `off`, shown as a line of its own;
+         `at` is the size the bundle is advertised at (the pack, the setup
+         and two calls). n is 1 on purpose: were the saving to start at two
+         calls, a second call would make the order cheaper than one. */
+      argent:    { base: [3000, 3000],      unit: [3000, 3000],   min: 1,  max: 6,   def: 1,  step: 1,  u: 'price.uCalls',    base_u: 1,  weeks: [1, 1],  opts: ['setup', 'pack', 'guides'], fam: 'argent', noRush: true, kit: { needs: ['setup', 'pack'], n: 1, at: 2, off: 5000 } }
     };
     var PRICE_OPTS = {
       i18n: { add: [22000, 55000],  weeks: [1, 2], k: 'price.oI18n' },
@@ -60,7 +71,20 @@
       pay:  { add: [45000, 110000], weeks: [1, 2], k: 'price.oPay' },
       ds:   { add: [60000, 140000], weeks: [1, 3], k: 'price.oDs' },
       seo:  { add: [20000, 45000],  weeks: [0, 1], k: 'price.oSeo' },
-      api:  { add: [30000, 80000],  weeks: [1, 2], k: 'price.oApi' }
+      api:  { add: [30000, 80000],  weeks: [1, 2], k: 'price.oApi' },
+      // only: the types an option is for, and no other type may take it
+      setup:  { add: [6000, 6000],   weeks: [0, 0], k: 'price.oSetup',  only: ['argent'] },
+      pack:   { add: [15000, 15000], weeks: [0, 0], k: 'price.oPack',   only: ['argent'] },
+      guides: { add: [4000, 4000],   weeks: [0, 0], k: 'price.oGuides', only: ['argent'], one: 1500 }   // one: a single guide, outside the estimator
+    };
+    /* A studio project whose firm price lands in this band includes one
+       coaching call and may be paid in three parts (drafted 2026-11-16 on the
+       owner's "rules that favour the mid range"; OWNER-CONTENT.md). */
+    var MID_RANGE = [180000, 450000];
+    // does option o apply to type key? Its own list (only) decides, else the type's (opts); a type without a list takes every option that has none
+    var applies = function (o, key) {
+      var p = PRICE_OPTS[o], m = PRICE_MODEL[key];
+      return p.only ? p.only.indexOf(key) > -1 : !m.opts || m.opts.indexOf(o) > -1;
     };
     /* Rushing does not make the work smaller, it makes it more expensive and
        compresses the calendar — never below two thirds, which is the floor
@@ -96,7 +120,7 @@
       }
       opts.forEach(function (o) {
         var p = PRICE_OPTS[o];
-        if (!p) return;
+        if (!p || !applies(o, key)) return;   // an option the type has no use for is never charged
         if (incl.indexOf(o) > -1) { q.incl.push(o); q.lines.push({ k: 'opt', o: o, incl: true, lo: 0, hi: 0 }); return; }   // in the tier's base price
         q.lines.push({ k: 'opt', o: o, lo: p.add[0], hi: p.add[1] });
         q.lo += p.add[0]; q.hi += p.add[1];
@@ -131,8 +155,13 @@
         if (q.studio) { q.lines.push({ k: 'studio', lo: dLo, hi: dHi }); q.lo += dLo; q.hi += dHi; }
         q.wLo = Math.min(q.wLo, s.wLo); q.wHi = Math.min(q.wHi, s.wHi);
       }
-      q.rush = !!rush;
-      if (rush) {
+      // a bundle: every option it needs is ticked and the size reaches n
+      var kit = PRICE_MODEL[key].kit;
+      if (kit && n >= kit.n && kit.needs.every(function (o) { return (opts || []).indexOf(o) > -1; })) {
+        q.lines.push({ k: 'kit', lo: -kit.off, hi: -kit.off }); q.lo -= kit.off; q.hi -= kit.off;
+      }
+      q.rush = !!rush && !PRICE_MODEL[key].noRush;
+      if (q.rush) {
         var rLo = kilo(q.lo * (RUSH_PRICE - 1)), rHi = kilo(q.hi * (RUSH_PRICE - 1));
         q.lines.push({ k: 'rush', lo: rLo, hi: rHi }); q.lo += rLo; q.hi += rHi;
         q.wLo = rushWeeks(q.wLo); q.wHi = rushWeeks(q.wHi);
@@ -140,7 +169,7 @@
       return q;
     }
 
-    return { PRICE_MODEL: PRICE_MODEL, PRICE_OPTS: PRICE_OPTS, quote: quote, tally: tally, roundTo: roundTo, RUSH_PRICE: RUSH_PRICE };
+    return { PRICE_MODEL: PRICE_MODEL, PRICE_OPTS: PRICE_OPTS, quote: quote, tally: tally, roundTo: roundTo, RUSH_PRICE: RUSH_PRICE, MID_RANGE: MID_RANGE, applies: applies };
   })();
 
   var DEFAULT_LANG = 'fr';
@@ -1286,7 +1315,7 @@
             var label = ln.k === 'base' ? t('price.lnUpTo') + ' ' + counted(m.u, ln.n)
                       : ln.k === 'extra' ? '+ ' + counted(m.u, ln.n)
                       : ln.k === 'opt' ? t(PRICE_OPTS[ln.o].k)
-                      : ln.k === 'studio' ? t('price.lnStudio') : t('price.lnRush');
+                      : ln.k === 'studio' ? t('price.lnStudio') : ln.k === 'kit' ? t('price.lnKit') : t('price.lnRush');
             row(label, ln.incl ? t('price.incl') : amt(ln.lo) + dash() + amt(ln.hi) + ' ' + t('price.cur'));
           });
           row(t('price.lnTotal'), amt(q.lo) + dash() + amt(q.hi) + ' ' + t('price.cur'), 'eo-total');
@@ -1771,6 +1800,7 @@
         var all = Object.keys(PRICE_OPTS), qLo = Infinity, qHi = 0;
         Object.keys(PRICE_MODEL).forEach(function (k) {
           var m = PRICE_MODEL[k];
+          if (m.fam) return;   // a family this page's estimator does not list (the Studio's money services)
           qLo = Math.min(qLo, ESTIMATE.quote(k, m.min, [], false).lo);
           qHi = Math.max(qHi, ESTIMATE.quote(k, m.max, all, true).hi);
         });

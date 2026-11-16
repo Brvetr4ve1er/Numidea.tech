@@ -22,7 +22,9 @@
     "menuClose": "Fermer le menu",
     "world": "Le monde",
     "groupSite": "Je veux un site",
-    "groupWorld": "Le monde"
+    "groupWorld": "Le monde",
+    "groupLearn": "Apprendre",
+    "money": "L’argent, sans jargon"
   },
   "sting": {
     "hud": "02:00 · BORDJ BOU ARRÉRIDJ · ATELIER DE NUIT",
@@ -230,14 +232,16 @@
       "ecommerce": "@home:price.tyShop",
       "app": "@home:price.tyApp",
       "auto": "@home:price.tyAuto",
-      "identite": "@home:price.tyBrand"
+      "identite": "@home:price.tyBrand",
+      "argent": "@home:price.tyMoney"
     },
     "units": {
       "uPages": "@home:price.uPages",
       "uProducts": "@home:price.uProducts",
       "uScreens": "@home:price.uScreens",
       "uFlows": "@home:price.uFlows",
-      "uSupports": "@home:price.uSupports"
+      "uSupports": "@home:price.uSupports",
+      "uCalls": "@home:price.uCalls"
     },
     "o": {
       "i18n": "@home:price.oI18n",
@@ -245,7 +249,10 @@
       "pay": "@home:price.oPay",
       "ds": "@home:price.oDs",
       "seo": "@home:price.oSeo",
-      "api": "@home:price.oApi"
+      "api": "@home:price.oApi",
+      "setup": "@home:price.oSetup",
+      "pack": "@home:price.oPack",
+      "guides": "@home:price.oGuides"
     },
     "paceStd": "@home:price.paceStd",
     "paceRush": "@home:price.paceRush",
@@ -275,7 +282,8 @@
       "uProducts": "@home:price.uProducts.n",
       "uScreens": "@home:price.uScreens.n",
       "uFlows": "@home:price.uFlows.n",
-      "uSupports": "@home:price.uSupports.n"
+      "uSupports": "@home:price.uSupports.n",
+      "uCalls": "@home:price.uCalls.n"
     },
     "console": "La calculatrice du studio",
     "beyond": "Au-delà :",
@@ -288,7 +296,10 @@
       "base": "@home:price.lnUpTo",
       "studio": "@home:price.lnStudio",
       "rush": "@home:price.lnRush",
-      "total": "@home:price.lnTotal"
+      "total": "@home:price.lnTotal",
+      "kit": "@home:price.lnKit",
+      "call": "Appel 1:1, 60 min",
+      "mid": "Prix ferme entre {r} : un appel de coaching offert, paiement possible en trois fois (40 / 30 / 30)."
     },
     "pad": {
       "up": "Type de projet précédent",
@@ -304,7 +315,8 @@
       "you": "Votre estimation",
       "lead": "Fourchettes courantes 2026, du freelance confirmé à l’agence. La bande rouge est votre estimation, convertie au taux officiel."
     },
-    "consoleAlt": "DOURO·8, la petite calculatrice du studio, imprime un reçu que Kūro attrape au vol"
+    "consoleAlt": "DOURO·8, la petite calculatrice du studio, imprime un reçu que Kūro attrape au vol",
+    "wkN": "@home:price.weeks.n"
   },
   "brand": {
     "kicker": "/ 06 · LA MARQUE, EXPLIQUÉE",
@@ -712,5 +724,234 @@
     "unlocked": "LIVRABLES DÉBLOQUÉS",
     "open": "Ouvrir le site ↗",
     "newTab": "(nouvel onglet)"
+  },
+  "money": {
+    "kicker": "/ L’ARGENT, SANS JARGON",
+    "title": "Gagner sa vie de loin.",
+    "lead": "Se faire payer depuis l’étranger, choisir ses comptes, fixer son tarif, comprendre la crypto. Six leçons courtes, et quatre services pour aller plus loin.",
+    "sceneAlt": "Yasser compte quelques pièces à son bureau de nuit pendant que la petite calculatrice imprime un reçu ; Kūro pose une patte sur une pièce",
+    "svc": {
+      "aria": "Les quatre services",
+      "calc": "Chiffrer →",
+      "wa": "Réserver sur WhatsApp",
+      "waMsg": "Bonjour, je voudrais réserver : {s}.",
+      "items": [
+        {
+          "fam": "L’APPEL",
+          "name": "Appel 1:1",
+          "meta": "60 MIN · EN VISIO",
+          "line": "Une heure sur votre situation : se faire payer de l’étranger, choisir ses comptes, fixer ses prix, premiers pas en crypto."
+        },
+        {
+          "fam": "LA MISE EN PLACE",
+          "name": "Mise en place accompagnée",
+          "meta": "90 MIN · ON LE FAIT ENSEMBLE",
+          "line": "Vous ouvrez et réglez vos comptes, votre portefeuille et votre facturation pendant la séance, écran partagé."
+        },
+        {
+          "fam": "LE DÉPART",
+          "name": "Pack de départ freelance",
+          "meta": "DEUX APPELS INCLUS",
+          "line": "Vos profils sur les plateformes, vos modèles de devis et de facture, votre grille de prix."
+        },
+        {
+          "fam": "LES GUIDES",
+          "name": "Guides et modèles",
+          "meta": "À LIRE À VOTRE RYTHME",
+          "line": "Des guides écrits et des modèles prêts à remplir, sans séance."
+        }
+      ],
+      "each": "le guide",
+      "all": "la collection"
+    },
+    "kit": {
+      "k": "KIT NOMADE",
+      "line": "Le pack, la mise en place et deux appels.",
+      "was": "au lieu de",
+      "go": "Voir le kit dans la calculatrice →"
+    },
+    "mid": "Projet web dont le prix ferme tombe entre {r} : un appel de coaching offert, et un paiement possible en trois fois (40 / 30 / 30).",
+    "ls": {
+      "kicker": "/ SIX LEÇONS",
+      "title": "Le manuel de l’argent.",
+      "lead": "Une idée, un geste, une question. Chaque bonne réponse tamponne votre passeport.",
+      "tabs": "Les six leçons",
+      "pass": "tampons",
+      "done": "leçon tamponnée",
+      "q": "LA QUESTION",
+      "wrong": "Pas tout à fait. Relisez, puis réessayez.",
+      "items": [
+        {
+          "t": "Se faire payer de l’étranger",
+          "alt": "Kūro, assis sur une valise, attrape une enveloppe portée par un avion en papier",
+          "d": "Un client à l’étranger peut vous payer par quatre routes. Aucune n’est la meilleure partout : comparez le délai, les frais et ce que votre banque accepte.",
+          "pick": [
+            {
+              "k": "Virement bancaire",
+              "v": "Le client vire sur votre compte. Il lui faut votre IBAN ou votre numéro de compte, le code SWIFT/BIC de votre banque et une facture. Demandez d’abord à votre banque comment elle reçoit un virement de l’étranger, et dans quelle devise il vous est crédité."
+            },
+            {
+              "k": "Plateforme de paiement",
+              "v": "Un service en ligne encaisse pour vous et reverse sur votre compte ou votre carte. Vérifiez d’abord, sur le site du service lui-même, qu’il ouvre des comptes aux résidents de votre pays et comment on en retire l’argent."
+            },
+            {
+              "k": "Place de marché freelance",
+              "v": "La plateforme encaisse le client, garde l’argent jusqu’à la livraison, prend sa commission et vous reverse le reste. Simple pour démarrer : lisez sa commission et ses moyens de retrait avant d’accepter une mission."
+            },
+            {
+              "k": "Crypto",
+              "v": "Le client envoie des jetons, souvent un stablecoin, sur votre adresse. C’est rapide et irréversible. Légal dans certains pays, interdit dans d’autres, dont l’Algérie (loi 25-10) : vérifiez la loi là où vous vivez."
+            }
+          ],
+          "q": "Avant d’accepter un premier paiement de l’étranger, que vérifier d’abord ?",
+          "a": [
+            "Le taux de change du jour",
+            "Comment votre banque ou le service reçoit l’argent, et ce que cela vous coûte",
+            "La couleur de la facture"
+          ],
+          "ok": "Oui. La route d’abord, le prix ensuite."
+        },
+        {
+          "t": "Banques en ligne et comptes multidevises",
+          "alt": "Kūro passe la tête par la porte d’un petit coffre-fort, devant une carte et trois pièces",
+          "d": "Un compte multidevises garde plusieurs monnaies côte à côte et vous donne des coordonnées bancaires pour être payé. Ce qui coûte n’est presque jamais l’ouverture : ce sont trois frais.",
+          "pick": [
+            {
+              "k": "Le change",
+              "v": "La marge prise quand une devise en devient une autre. Comparez le taux qu’on vous offre au taux du marché le même jour : l’écart est votre vrai prix."
+            },
+            {
+              "k": "Le transfert",
+              "v": "Un montant fixe ou un pourcentage à chaque envoi, à chaque réception ou à chaque retrait. Un petit pourcentage pèse lourd sur une grosse facture."
+            },
+            {
+              "k": "La carte et le retrait",
+              "v": "Des frais au distributeur, à l’étranger, ou au-delà d’un plafond mensuel. Lisez la grille avant de voyager, pas après."
+            }
+          ],
+          "listT": "Quatre questions à poser avant d’ouvrir",
+          "list": [
+            "Le service accepte-t-il les résidents de mon pays ?",
+            "Dans quelles devises puis-je recevoir ?",
+            "Comment je retire, et à quel prix ?",
+            "Qui garde et protège mes fonds ?"
+          ],
+          "q": "Deux services affichent « 0 frais ». Où regarder ?",
+          "a": [
+            "Le taux de change appliqué",
+            "Le logo",
+            "Le nombre d’abonnés"
+          ],
+          "ok": "Oui. Un taux moins bon que le marché est un frais qui ne dit pas son nom."
+        },
+        {
+          "t": "Fixer son tarif journalier",
+          "alt": "Kūro pose une patte sur un boulier, à côté d’un calendrier et d’un sablier",
+          "d": "Un tarif ne se devine pas, il se calcule : ce que vous voulez garder, plus vos charges, divisé par les jours réellement facturés.",
+          "f": {
+            "net": "Revenu net visé, par mois",
+            "costs": "Charges professionnelles, par mois",
+            "days": "Jours facturés, par mois",
+            "tax": "Part des impôts et cotisations",
+            "day": "par jour facturé",
+            "hour": "de l’heure, pour 7 heures par jour",
+            "unit": "Dans la monnaie que vous tapez."
+          },
+          "q": "Vous travaillez 22 jours par mois. Combien en facturez-vous, en général ?",
+          "a": [
+            "Les 22",
+            "Moins : il y a la prospection, les devis, l’administratif, les congés",
+            "Davantage"
+          ],
+          "ok": "Oui. Divisez par les jours facturés, pas par les jours travaillés."
+        },
+        {
+          "t": "Budget et trésorerie",
+          "alt": "Kūro regarde un grand bocal à moitié rempli de pièces où flotte un bateau en papier",
+          "d": "La trésorerie, c’est le nombre de mois que vous tenez si plus rien ne rentre comme prévu. Elle se calcule en une division.",
+          "f": {
+            "save": "Épargne disponible",
+            "spend": "Dépenses, par mois",
+            "inc": "Revenus sûrs, par mois",
+            "months": "mois de trésorerie",
+            "fine": "Vos revenus sûrs couvrent vos dépenses : l’épargne ne bouge pas.",
+            "unit": "Dans la monnaie que vous tapez."
+          },
+          "q": "Un client paie à 60 jours. Que faut-il avoir de côté avant de dire oui ?",
+          "a": [
+            "Rien, il paiera",
+            "De quoi tenir au moins ces deux mois",
+            "Un nouveau téléphone"
+          ],
+          "ok": "Oui. Le délai de paiement du client devient votre besoin de trésorerie."
+        },
+        {
+          "t": "Crypto 101",
+          "alt": "Kūro garde une grande clé posée sur un carnet, devant une chaîne de trois blocs",
+          "d": "Une cryptomonnaie est une ligne dans un registre public. Ce que vous possédez, c’est la clé qui permet de la déplacer.",
+          "pick": [
+            {
+              "k": "Portefeuille",
+              "v": "Un logiciel ou un appareil qui garde vos clés. Il ne contient pas les pièces : elles restent dans le registre."
+            },
+            {
+              "k": "Phrase de récupération",
+              "v": "Une suite de mots, souvent 12 ou 24, qui recrée vos clés. Qui la lit prend tout. Personne de sérieux ne vous la demandera jamais."
+            },
+            {
+              "k": "Stablecoin",
+              "v": "Un jeton conçu pour suivre une monnaie, souvent le dollar. Il vaut ce que vaut la solidité de celui qui l’émet."
+            },
+            {
+              "k": "Frais de réseau",
+              "v": "Chaque envoi paie le réseau qui le transporte. Le montant change selon le réseau et l’heure. Un envoi sur le mauvais réseau peut être perdu."
+            },
+            {
+              "k": "Irréversible",
+              "v": "Un envoi confirmé ne s’annule pas. Vérifiez l’adresse, puis envoyez d’abord un petit montant."
+            }
+          ],
+          "q": "Quelqu’un du « support » vous demande votre phrase de récupération.",
+          "a": [
+            "Je la donne, c’est le support",
+            "Jamais : c’est une arnaque",
+            "Seulement les six premiers mots"
+          ],
+          "ok": "Oui. Aucun support ne la demande. Jamais."
+        },
+        {
+          "t": "Web3 101",
+          "alt": "Kūro touche du bout de la patte un cube relié à d’autres par des fils",
+          "d": "Le web3, c’est un site qui parle à un registre partagé au lieu d’une base de données privée.",
+          "pick": [
+            {
+              "k": "Blockchain",
+              "v": "Un registre copié sur des milliers de machines, où l’on ajoute des lignes sans jamais en effacer."
+            },
+            {
+              "k": "Smart contract",
+              "v": "Un programme publié dans ce registre. Il s’exécute seul, et son code est lisible par tous."
+            },
+            {
+              "k": "Jeton et NFT",
+              "v": "Une ligne du registre qui dit qui possède quoi : une unité interchangeable, ou un objet unique."
+            },
+            {
+              "k": "Connecter son portefeuille",
+              "v": "Le site lit votre adresse publique. Il ne peut rien déplacer tant que vous n’avez pas signé."
+            }
+          ],
+          "q": "Un site vous demande de « signer » une transaction que vous ne comprenez pas.",
+          "a": [
+            "Je signe, on verra bien",
+            "Je refuse tant que je ne sais pas ce qu’elle autorise",
+            "Je change de navigateur"
+          ],
+          "ok": "Oui. Une signature est un accord : on lit avant de signer."
+        }
+      ]
+    },
+    "note1": "Ces leçons sont de l’éducation, pas un conseil financier ni un conseil en placement. Aucun signal de trading, aucune gestion de fonds, aucune promesse de gain.",
+    "note2": "Les règles changent d’un pays à l’autre. En Algérie, la loi 25-10 de juillet 2025 interdit l’achat, la vente, la détention et la promotion des crypto-actifs : vérifiez toujours la loi là où vous vivez."
   }
 }

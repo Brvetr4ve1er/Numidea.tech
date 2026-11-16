@@ -22,7 +22,9 @@
     "menuClose": "Close the menu",
     "world": "The world",
     "groupSite": "I want a website",
-    "groupWorld": "The world"
+    "groupWorld": "The world",
+    "groupLearn": "Learn",
+    "money": "Money, in plain words"
   },
   "sting": {
     "hud": "02:00 · BORDJ BOU ARRÉRIDJ · NIGHT WORKSHOP",
@@ -230,14 +232,16 @@
       "ecommerce": "@home:price.tyShop",
       "app": "@home:price.tyApp",
       "auto": "@home:price.tyAuto",
-      "identite": "@home:price.tyBrand"
+      "identite": "@home:price.tyBrand",
+      "argent": "@home:price.tyMoney"
     },
     "units": {
       "uPages": "@home:price.uPages",
       "uProducts": "@home:price.uProducts",
       "uScreens": "@home:price.uScreens",
       "uFlows": "@home:price.uFlows",
-      "uSupports": "@home:price.uSupports"
+      "uSupports": "@home:price.uSupports",
+      "uCalls": "@home:price.uCalls"
     },
     "o": {
       "i18n": "@home:price.oI18n",
@@ -245,7 +249,10 @@
       "pay": "@home:price.oPay",
       "ds": "@home:price.oDs",
       "seo": "@home:price.oSeo",
-      "api": "@home:price.oApi"
+      "api": "@home:price.oApi",
+      "setup": "@home:price.oSetup",
+      "pack": "@home:price.oPack",
+      "guides": "@home:price.oGuides"
     },
     "paceStd": "@home:price.paceStd",
     "paceRush": "@home:price.paceRush",
@@ -275,7 +282,8 @@
       "uProducts": "@home:price.uProducts.n",
       "uScreens": "@home:price.uScreens.n",
       "uFlows": "@home:price.uFlows.n",
-      "uSupports": "@home:price.uSupports.n"
+      "uSupports": "@home:price.uSupports.n",
+      "uCalls": "@home:price.uCalls.n"
     },
     "console": "The studio’s calculator",
     "beyond": "Beyond:",
@@ -288,7 +296,10 @@
       "base": "@home:price.lnUpTo",
       "studio": "@home:price.lnStudio",
       "rush": "@home:price.lnRush",
-      "total": "@home:price.lnTotal"
+      "total": "@home:price.lnTotal",
+      "kit": "@home:price.lnKit",
+      "call": "1:1 call, 60 min",
+      "mid": "Firm price between {r}: one coaching call included, payment possible in three parts (40 / 30 / 30)."
     },
     "pad": {
       "up": "Previous project type",
@@ -304,7 +315,8 @@
       "you": "Your estimate",
       "lead": "Usual 2026 ranges, from an experienced freelancer to an agency. The red band is your estimate, converted at the official rate."
     },
-    "consoleAlt": "DOURO·8, the studio’s little calculator, prints a receipt that Kūro catches"
+    "consoleAlt": "DOURO·8, the studio’s little calculator, prints a receipt that Kūro catches",
+    "wkN": "@home:price.weeks.n"
   },
   "brand": {
     "kicker": "/ 06 · BRAND, EXPLAINED",
@@ -712,5 +724,234 @@
     "unlocked": "DELIVERABLES UNLOCKED",
     "open": "Open the site ↗",
     "newTab": "(new tab)"
+  },
+  "money": {
+    "kicker": "/ MONEY, IN PLAIN WORDS",
+    "title": "Earning from far away.",
+    "lead": "Getting paid from abroad, choosing accounts, setting your rate, understanding crypto. Six short lessons, and four services to go further.",
+    "sceneAlt": "Yasser counts a few coins at his night desk while the little calculator prints a receipt; Kūro rests a paw on a coin",
+    "svc": {
+      "aria": "The four services",
+      "calc": "Price it →",
+      "wa": "Book on WhatsApp",
+      "waMsg": "Hello, I would like to book: {s}.",
+      "items": [
+        {
+          "fam": "THE CALL",
+          "name": "1:1 call",
+          "meta": "60 MIN · VIDEO",
+          "line": "One hour on your situation: getting paid from abroad, choosing accounts, setting prices, first steps in crypto."
+        },
+        {
+          "fam": "THE SETUP",
+          "name": "Guided setup",
+          "meta": "90 MIN · WE DO IT TOGETHER",
+          "line": "You open and configure your accounts, your wallet and your invoicing during the session, screen shared."
+        },
+        {
+          "fam": "THE START",
+          "name": "Freelance starter pack",
+          "meta": "TWO CALLS INCLUDED",
+          "line": "Your profiles on the platforms, your quote and invoice templates, your price sheet."
+        },
+        {
+          "fam": "THE GUIDES",
+          "name": "Guides and templates",
+          "meta": "READ AT YOUR OWN PACE",
+          "line": "Written guides and ready-to-fill templates, with no session."
+        }
+      ],
+      "each": "per guide",
+      "all": "the set"
+    },
+    "kit": {
+      "k": "NOMAD KIT",
+      "line": "The pack, the setup and two calls.",
+      "was": "instead of",
+      "go": "See the kit in the calculator →"
+    },
+    "mid": "A web project whose firm price lands between {r}: one coaching call included, and payment possible in three parts (40 / 30 / 30).",
+    "ls": {
+      "kicker": "/ SIX LESSONS",
+      "title": "The money manual.",
+      "lead": "One idea, one gesture, one question. Each right answer stamps your passport.",
+      "tabs": "The six lessons",
+      "pass": "stamps",
+      "done": "lesson stamped",
+      "q": "THE QUESTION",
+      "wrong": "Not quite. Read it again, then try once more.",
+      "items": [
+        {
+          "t": "Getting paid from abroad",
+          "alt": "Kūro, sitting on a suitcase, catches an envelope carried by a paper plane",
+          "d": "A client abroad can pay you by four routes. None is the best everywhere: compare the delay, the fees and what your bank accepts.",
+          "pick": [
+            {
+              "k": "Bank transfer",
+              "v": "The client wires money to your account. They need your IBAN or account number, your bank’s SWIFT/BIC code and an invoice. Ask your bank first how it receives a transfer from abroad, and in which currency it is credited."
+            },
+            {
+              "k": "Payment platform",
+              "v": "An online service collects the money for you and pays it out to your account or card. Check first, on the service’s own site, that it opens accounts for residents of your country and how money is withdrawn."
+            },
+            {
+              "k": "Freelance marketplace",
+              "v": "The platform charges the client, holds the money until delivery, takes its commission and pays you the rest. Simple to start with: read its commission and its withdrawal methods before you accept a job."
+            },
+            {
+              "k": "Crypto",
+              "v": "The client sends tokens, often a stablecoin, to your address. It is fast and cannot be undone. Legal in some countries, banned in others, Algeria among them (law 25-10): check the law where you live."
+            }
+          ],
+          "q": "Before you accept a first payment from abroad, what do you check first?",
+          "a": [
+            "Today’s exchange rate",
+            "How your bank or the service receives the money, and what it costs you",
+            "The colour of the invoice"
+          ],
+          "ok": "Yes. The route first, the price after."
+        },
+        {
+          "t": "Online banks and multi-currency accounts",
+          "alt": "Kūro peeks out of a small vault door, in front of a card and three coins",
+          "d": "A multi-currency account holds several currencies side by side and gives you bank details to be paid with. What costs is almost never the opening: it is three fees.",
+          "pick": [
+            {
+              "k": "Exchange",
+              "v": "The margin taken when one currency becomes another. Compare the rate you are offered with the market rate on the same day: the gap is your real price."
+            },
+            {
+              "k": "Transfer",
+              "v": "A fixed amount or a percentage on each sending, each receipt or each withdrawal. A small percentage weighs a lot on a large invoice."
+            },
+            {
+              "k": "Card and cash",
+              "v": "Fees at the cash machine, abroad, or beyond a monthly limit. Read the fee table before you travel, not after."
+            }
+          ],
+          "listT": "Four questions to ask before you open one",
+          "list": [
+            "Does the service accept residents of my country?",
+            "In which currencies can I receive?",
+            "How do I withdraw, and at what price?",
+            "Who holds and protects my money?"
+          ],
+          "q": "Two services both say “0 fees”. Where do you look?",
+          "a": [
+            "The exchange rate they apply",
+            "The logo",
+            "The number of followers"
+          ],
+          "ok": "Yes. A rate worse than the market is a fee that does not say its name."
+        },
+        {
+          "t": "Setting your day rate",
+          "alt": "Kūro rests a paw on an abacus, beside a calendar and an hourglass",
+          "d": "A rate is not guessed, it is worked out: what you want to keep, plus your costs, divided by the days you really bill.",
+          "f": {
+            "net": "Net income wanted, per month",
+            "costs": "Business costs, per month",
+            "days": "Days billed, per month",
+            "tax": "Share of taxes and contributions",
+            "day": "per billed day",
+            "hour": "per hour, at 7 hours a day",
+            "unit": "In whatever currency you type."
+          },
+          "q": "You work 22 days a month. How many do you bill, as a rule?",
+          "a": [
+            "All 22",
+            "Fewer: there is prospecting, quotes, admin, time off",
+            "More"
+          ],
+          "ok": "Yes. Divide by the days billed, not the days worked."
+        },
+        {
+          "t": "Budget and runway",
+          "alt": "Kūro watches a large jar half full of coins with a paper boat floating on top",
+          "d": "Runway is the number of months you last if nothing comes in as planned. It is one division.",
+          "f": {
+            "save": "Savings available",
+            "spend": "Spending, per month",
+            "inc": "Reliable income, per month",
+            "months": "months of runway",
+            "fine": "Your reliable income covers your spending: the savings do not move.",
+            "unit": "In whatever currency you type."
+          },
+          "q": "A client pays at 60 days. What do you need set aside before saying yes?",
+          "a": [
+            "Nothing, they will pay",
+            "Enough to last at least those two months",
+            "A new phone"
+          ],
+          "ok": "Yes. The client’s payment delay becomes your need for cash."
+        },
+        {
+          "t": "Crypto 101",
+          "alt": "Kūro guards a large key lying on a notebook, in front of a chain of three blocks",
+          "d": "A cryptocurrency is a line in a public ledger. What you own is the key that lets you move it.",
+          "pick": [
+            {
+              "k": "Wallet",
+              "v": "Software or a device that keeps your keys. It does not contain the coins: they stay in the ledger."
+            },
+            {
+              "k": "Recovery phrase",
+              "v": "A list of words, often 12 or 24, that rebuilds your keys. Whoever reads it takes everything. Nobody serious will ever ask you for it."
+            },
+            {
+              "k": "Stablecoin",
+              "v": "A token built to follow a currency, often the dollar. It is worth what the soundness of its issuer is worth."
+            },
+            {
+              "k": "Network fees",
+              "v": "Every sending pays the network that carries it. The amount changes with the network and the hour. A sending on the wrong network can be lost."
+            },
+            {
+              "k": "Irreversible",
+              "v": "A confirmed sending cannot be cancelled. Check the address, then send a small amount first."
+            }
+          ],
+          "q": "Someone from “support” asks for your recovery phrase.",
+          "a": [
+            "I give it, it is support",
+            "Never: it is a scam",
+            "Only the first six words"
+          ],
+          "ok": "Yes. No support asks for it. Ever."
+        },
+        {
+          "t": "Web3 101",
+          "alt": "Kūro touches with one paw a cube linked to others by thin lines",
+          "d": "Web3 is a site that talks to a shared ledger instead of a private database.",
+          "pick": [
+            {
+              "k": "Blockchain",
+              "v": "A ledger copied on thousands of machines, where lines are added and never erased."
+            },
+            {
+              "k": "Smart contract",
+              "v": "A program published in that ledger. It runs by itself, and anyone can read its code."
+            },
+            {
+              "k": "Token and NFT",
+              "v": "A line of the ledger that says who owns what: an interchangeable unit, or a unique object."
+            },
+            {
+              "k": "Connecting your wallet",
+              "v": "The site reads your public address. It can move nothing until you have signed."
+            }
+          ],
+          "q": "A site asks you to “sign” a transaction you do not understand.",
+          "a": [
+            "I sign and we will see",
+            "I refuse until I know what it allows",
+            "I switch browsers"
+          ],
+          "ok": "Yes. A signature is an agreement: read before you sign."
+        }
+      ]
+    },
+    "note1": "These lessons are education, not financial or investment advice. No trading signals, no management of funds, no promise of gain.",
+    "note2": "Rules change from one country to the next. In Algeria, law 25-10 of July 2025 bans buying, selling, holding and promoting crypto-assets: always check the law where you live."
   }
 }

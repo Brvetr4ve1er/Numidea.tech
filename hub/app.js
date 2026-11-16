@@ -550,13 +550,15 @@
     var kilo = function (n) { return Math.round(n / 1000) * 1000; };
     var sizeWeeks = function (m, n) { return m.per ? Math.floor(Math.max(0, n - m.base_u) / m.per) : 0; };
     var rushWeeks = function (w) { return Math.max(Math.ceil(w * 2 / 3), Math.round(w * P.rush[1])); };
+    // does option o apply to type key? Its own list (only) decides, else the type's (opts)
+    var applies = function (o, key) { var p = O[o], m = M[key]; return p.only ? p.only.indexOf(key) > -1 : !m.opts || m.opts.indexOf(o) > -1; };
     var tally = function (key, n, opts) {
       var m = M[key], over = Math.max(0, n - m.base_u), incl = m.incl || [], sw = sizeWeeks(m, n);
       var q = { lo: m.base[0], hi: m.base[1], wLo: m.weeks[0] + sw, wHi: m.weeks[1] + sw, lines: [{ k: 'base', n: m.base_u, lo: m.base[0], hi: m.base[1] }] };
       if (over) { q.lines.push({ k: 'extra', n: over, unit: m.unit, lo: over * m.unit[0], hi: over * m.unit[1] }); q.lo += over * m.unit[0]; q.hi += over * m.unit[1]; }
       opts.forEach(function (o) {
         var p = O[o];
-        if (!p) return;
+        if (!p || !applies(o, key)) return;
         if (incl.indexOf(o) > -1) { q.lines.push({ k: 'opt', o: o, incl: true, lo: 0, hi: 0 }); return; }
         q.lines.push({ k: 'opt', o: o, lo: p.add[0], hi: p.add[1] });
         q.lo += p.add[0]; q.hi += p.add[1]; q.wLo += p.weeks[0]; q.wHi += p.weeks[1];
@@ -570,7 +572,9 @@
         if (dLo < 0 || dHi < 0) { q.lines.push({ k: 'studio', lo: dLo, hi: dHi }); q.lo += dLo; q.hi += dHi; }
         q.wLo = Math.min(q.wLo, s.wLo); q.wHi = Math.min(q.wHi, s.wHi);
       }
-      if (rush) {
+      var kit = M[key].kit;
+      if (kit && n >= kit.n && kit.needs.every(function (o) { return opts.indexOf(o) > -1; })) { q.lines.push({ k: 'kit', lo: -kit.off, hi: -kit.off }); q.lo -= kit.off; q.hi -= kit.off; }
+      if (rush && !M[key].noRush) {
         var rLo = kilo(q.lo * (P.rush[0] - 1)), rHi = kilo(q.hi * (P.rush[0] - 1));
         q.lines.push({ k: 'rush', lo: rLo, hi: rHi }); q.lo += rLo; q.hi += rHi;
         q.wLo = rushWeeks(q.wLo); q.wHi = rushWeeks(q.wHi);
@@ -582,7 +586,8 @@
     var amt = function (n) { return (n < 0 ? '−' : '') + grp(Math.abs(n)); };
     var dash = function () { return lang === 'en' ? '⁠–⁠' : ' –⁠ '; };
     var sym = function (c) { return c === 'DZD' ? t('pricing.cur') : c === 'EUR' ? '€' : '$'; };
-    var pair = function (a, b, c) { return lang === 'en' && c !== 'DZD' ? sym(c) + grp(a) + dash() + grp(b) : grp(a) + dash() + grp(b) + ' ' + sym(c); };
+    // a range, or one figure when both bounds are the same (the money services are fixed prices)
+    var pair = function (a, b, c) { var v = a === b ? grp(a) : grp(a) + dash() + grp(b); return lang === 'en' && c !== 'DZD' ? sym(c) + v : v + ' ' + sym(c); };
     var tidy = function (n, c) { var g = c === 'DZD' ? (n >= 1e6 ? 50000 : n >= 150000 ? 10000 : 5000) : (n >= 10000 ? 500 : n >= 1000 ? 100 : 10); return Math.max(g, Math.round(n / g) * g); };
     // a dinar range as shown in currency c (dinars pass through as they are)
     var range = function (lo, hi, c) { return c === 'DZD' ? pair(lo, hi, c) : pair(tidy(lo / P.fx[c], c), tidy(hi / P.fx[c], c), c); };
@@ -597,6 +602,7 @@
       var f = t('pricing.unitsN.' + u).split('|'), i = (f.length === 5 ? ['one', 'two', 'few', 'many', 'other'] : ['one', 'other']).indexOf(plural(n));
       return f[i > -1 ? i : f.length - 1];
     };
+    var wkN = function (n) { var f = t('pricing.wkN').split('|'), i = (f.length === 5 ? ['one', 'two', 'few', 'many', 'other'] : ['one', 'other']).indexOf(plural(n)); return f[i > -1 ? i : f.length - 1]; };
     var counted = function (u, n) { return lang === 'ar' && plural(n) === 'two' ? unitN(u, n) : n + ' ' + unitN(u, n); };
 
     var st = { type: 'vitrine', n: M.vitrine.def, opts: [], rush: false, care: false };
@@ -606,6 +612,7 @@
     var what = $('[data-est-what]', est), inclEl = $('[data-est-incl]', est), zone = $('[data-est-zone]', est), face = $('[data-est-face]', est);
     var rowsEl = $('[data-est-lines]', est), loEl = $('[data-est-lo]', est), hiEl = $('[data-est-hi]', est), mk = $('[data-est-mk]', est);
     var careBox = $('[data-est-care]'), careV = $('[data-est-care-v]');
+    var noteEl = $('.st-est__note', est), midEl = $('[data-est-mid]', est), paceBox = $('[data-est-pace]', est), care = $('[data-care]', est);
     var kuro = $('[data-est-kuro]'), kImgs = $$('img', kuro), kLine = $('[data-est-line]');
     var seal = $('[data-est-seal]', est);
     var live = $('[data-est-live]', est), liveW = $('[data-est-live-w]', est);
@@ -620,10 +627,10 @@
       q.lines.forEach(function (ln) {
         var tr = document.createElement('tr'), th = document.createElement('th'), td;
         th.scope = 'row';
-        th.textContent = ln.k === 'base' ? t('pricing.rc.base') + ' ' + counted(m.u, ln.n)
+        th.textContent = ln.k === 'base' ? (m.fam ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, ln.n))
           : ln.k === 'extra' ? '+ ' + counted(m.u, ln.n)
           : ln.k === 'opt' ? t('pricing.o.' + ln.o)
-          : ln.k === 'studio' ? t('pricing.rc.studio') : t('pricing.rc.rush');
+          : ln.k === 'studio' ? t('pricing.rc.studio') : ln.k === 'kit' ? t('pricing.rc.kit') : t('pricing.rc.rush');
         tr.appendChild(th);
         if (ln.incl) { td = document.createElement('td'); td.colSpan = 2; td.textContent = t('pricing.included'); tr.appendChild(td); }
         else ['lo', 'hi'].forEach(function (f) { td = document.createElement('td'); td.dir = 'ltr'; td.textContent = amt(ln[f]); tr.appendChild(td); });
@@ -662,11 +669,19 @@
       size.setAttribute('aria-valuetext', counted(m.u, st.n));
       unit.setAttribute('data-i18n', 'pricing.units.' + m.u); unit.textContent = t('pricing.units.' + m.u);
       what.textContent = t('pricing.types.' + st.type) + ' · ' + counted(m.u, st.n);
-      inclEl.textContent = t('pricing.rc.base') + ' ' + counted(m.u, m.base_u) + '. ' + t('pricing.beyond') + ' + ' + range(m.unit[0], m.unit[1], 'DZD') + ' / ' + unitN(m.u, 1);
+      inclEl.textContent = (m.fam ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, m.base_u)) + '. ' + t('pricing.beyond') + ' + ' + range(m.unit[0], m.unit[1], 'DZD') + ' / ' + unitN(m.u, 1);
+      // a studio project whose range meets the mid band carries the mid-range note; the money services do not
+      if (midEl) { midEl.hidden = !!m.fam || q.lo > P.mid[1] || q.hi < P.mid[0]; midEl.textContent = t('pricing.rc.mid').replace('{r}', pair(P.mid[0], P.mid[1], 'DZD')); }
+      // pace and maintenance are a project's, not a call's
+      if (paceBox) paceBox.hidden = !!m.noRush;
+      care.hidden = !!m.fam;
       if (zone) zone.style.setProperty('--incl', ((m.base_u - m.min) / (m.max - m.min) * 100).toFixed(1) + '%');
-      w.textContent = q.wLo + '–' + q.wHi;
+      // "2–4 semaines", or "1 semaine" when both ends are the same week
+      w.textContent = q.wLo === q.wHi ? String(q.wHi) : q.wLo + '–' + q.wHi;
       if (liveW) liveW.textContent = w.textContent;
-      careBox.hidden = !st.care; careV.textContent = range(P.retainer[0], P.retainer[1], 'DZD');
+      $$('[data-est-wk]', est).forEach(function (n) { n.textContent = wkN(q.wHi); });
+      if (noteEl) noteEl.hidden = !!m.fam;
+      careBox.hidden = !st.care || !!m.fam; careV.textContent = range(P.retainer[0], P.retainer[1], 'DZD');
       receipt(q, m, animate);
       market(q);
       var nt = q.hi < 200000 ? 0 : q.hi < 600000 ? 1 : 2;
@@ -695,10 +710,13 @@
     var setType = function (k) {
       st.type = k; var m = M[k];
       st.n = m.def; size.min = m.min; size.max = m.max; size.step = m.step; size.value = m.def;
-      st.opts = st.opts.filter(function (o) { return !m.opts || m.opts.indexOf(o) > -1; });
+      st.opts = st.opts.filter(function (o) { return applies(o, k); });
+      if (m.noRush && st.rush) { st.rush = false; $$('[data-pace]', est).forEach(function (x) { x.setAttribute('aria-pressed', String(x.getAttribute('data-pace') === 'std')); }); }
       $$('[data-type]', est).forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-type') === k)); });
       optBtns.forEach(function (b) {
-        var o = b.getAttribute('data-opt'), incl = (m.incl || []).indexOf(o) > -1, off = m.opts && m.opts.indexOf(o) < 0;
+        var o = b.getAttribute('data-opt'), incl = (m.incl || []).indexOf(o) > -1, off = !applies(o, k);
+        // an option of another family is not shown at all; one the type has no use for stays, locked
+        b.hidden = !!(O[o].only || m.fam) && off;
         b.disabled = incl || !!off;
         b.setAttribute('aria-pressed', String(incl || st.opts.indexOf(o) > -1));
         var tag = $('[data-incl]', b);
@@ -741,10 +759,42 @@
         render(true);
       });
     });
-    var care = $('[data-care]', est);
     care.addEventListener('click', function () { st.care = !st.care; care.setAttribute('aria-pressed', String(st.care)); render(false); });
     setType('vitrine'); render(false);
-    onLang.push(function () { var n = st.n; setType(st.type); st.n = n; size.value = n; render(false); });
+    /* The money section ("L'argent, sans jargon") reads its prices from this
+       same model and sends its buttons here: a card and the console cannot
+       disagree. [data-money-price] is a figure of the model, written in the
+       page's language; [data-est-go] opens the console on a type, with the
+       options its card stands for ([data-est-pick]: call, setup, pack,
+       guides, or kit for the bundle); [data-money-wa] is a WhatsApp line
+       naming the service and its price. */
+    var MA = M.argent;
+    var moneyPrice = function (k) {
+      var kitQ = quote('argent', MA.kit.at, MA.kit.needs, false);
+      var v = k === 'call' ? MA.base[0] : k === 'guideOne' ? O.guides.one : k === 'kit' ? kitQ.lo : k === 'kitWas' ? kitQ.lo + MA.kit.off : O[k].add[0];
+      return pair(v, v, 'DZD');
+    };
+    var money = function () {
+      $$('[data-money-price]').forEach(function (n) { var v = moneyPrice(n.getAttribute('data-money-price')); if (n.textContent !== v) n.textContent = v; });
+      var mid = $('[data-money-mid]');
+      if (mid) { var mt = t('money.mid').replace('{r}', pair(P.mid[0], P.mid[1], 'DZD')); if (mid.textContent !== mt) mid.textContent = mt; }
+      $$('[data-money-wa]').forEach(function (a) {
+        var i = Number(a.getAttribute('data-money-wa')), key = ['call', 'setup', 'pack', 'guides'][i];
+        a.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(t('money.svc.waMsg').replace('{s}', t('money.svc.items.' + i + '.name') + ' (' + moneyPrice(key) + ')'));
+      });
+    };
+    money();
+    $$('[data-est-go]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var k = a.getAttribute('data-est-go'), pick = a.getAttribute('data-est-pick'), m = M[k];
+        if (!m) return;
+        st.opts = pick === 'kit' ? m.kit.needs.slice() : pick && O[pick] ? [pick] : [];
+        setType(k);
+        if (pick === 'kit') { st.n = m.kit.at; size.value = st.n; }
+        render(true);
+      });
+    });
+    onLang.push(function () { var n = st.n; setType(st.type); st.n = n; size.value = n; render(false); money(); });
   })();
 
   /* ---------------- 7 · brand layers and the FAQ ---------------- */
@@ -1128,6 +1178,97 @@
     };
     row.addEventListener('scroll', paint, { passive: true });
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(row); else { addEventListener('resize', fit); fit(); }
+  });
+
+  /* ---------------- 13 · the lessons ----------------
+     The money manual: six lessons as tabs ([data-ls-tab] shows
+     [data-ls-panel]; the arrow keys, Home and End walk the tabs, as a
+     tablist does). In a lesson: [data-pick] shows one explanation at a time
+     ([data-pick-b] picks [data-pick-p]); [data-calc] works a figure out of
+     the visitor's own numbers (rate: what to keep plus costs, grossed up for
+     the tax share, over the days billed; runway: savings over what a month
+     costs beyond what it brings); [data-ls-a] are the answers, the one
+     marked "ok" stamps the lesson. Stamps are kept on this device only
+     (localStorage 'numidea-lessons', an array of lesson ids) and sent
+     nowhere. Without scripts every panel is laid out and no question shows
+     (style.css). Nothing here moves on its own; everything answers a press. */
+  $$('[data-ls]').forEach(function (ls) {
+    var tabs = $$('[data-ls-tab]', ls), panels = $$('[data-ls-panel]', ls), count = $('[data-ls-count]', ls);
+    var KEY = 'numidea-lessons', done = [];
+    try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { done = []; }
+    if (!Array.isArray(done)) done = [];
+    var show = function (id, focus) {
+      tabs.forEach(function (b) { var on = b.getAttribute('data-ls-tab') === id; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
+      panels.forEach(function (p) { p.hidden = p.getAttribute('data-ls-panel') !== id; });
+    };
+    var stamps = function () {
+      tabs.forEach(function (b) {
+        var on = done.indexOf(b.getAttribute('data-ls-tab')) > -1;
+        $('[data-ls-stamp]', b).hidden = !on; $('[data-ls-done]', b).hidden = !on;
+      });
+      if (count) count.textContent = String(tabs.filter(function (b) { return done.indexOf(b.getAttribute('data-ls-tab')) > -1; }).length);
+    };
+    tabs.forEach(function (b, i) {
+      b.addEventListener('click', function () { show(b.getAttribute('data-ls-tab')); });
+      b.addEventListener('keydown', function (e) {
+        var rtl = root.getAttribute('dir') === 'rtl', n = tabs.length;
+        var to = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1
+          : e.key === 'ArrowRight' ? i + (rtl ? -1 : 1) : e.key === 'ArrowLeft' ? i + (rtl ? 1 : -1) : null;
+        if (to === null) return;
+        e.preventDefault(); show(tabs[(to + n) % n].getAttribute('data-ls-tab'), true);
+      });
+    });
+    panels.forEach(function (p) {
+      var id = p.getAttribute('data-ls-panel');
+      // one explanation at a time
+      $$('[data-pick]', p).forEach(function (pk) {
+        var bs = $$('[data-pick-b]', pk), ps = $$('[data-pick-p]', pk);
+        var pick = function (k) {
+          bs.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-pick-b') === k)); });
+          ps.forEach(function (x) { x.hidden = x.getAttribute('data-pick-p') !== k; });
+        };
+        bs.forEach(function (b) { b.addEventListener('click', function () { pick(b.getAttribute('data-pick-b')); }); });
+        pick('0');
+      });
+      // a figure from the visitor's own numbers
+      $$('[data-calc]', p).forEach(function (c) {
+        var kind = c.getAttribute('data-calc');
+        var val = function (f) { var v = Number($('[data-f="' + f + '"]', c).value); return isFinite(v) && v > 0 ? v : 0; };
+        var out = function (k, v) { var o = $('[data-o="' + k + '"]', c); if (o && o.textContent !== v) o.textContent = v; };
+        var grp = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, lang === 'en' ? ',' : ' '); };
+        var work = function () {
+          if (kind === 'rate') {
+            var days = Math.max(1, val('days')), tax = Math.min(90, val('tax')) / 100;
+            var day = (val('net') + val('costs')) / (1 - tax) / days;
+            out('days', String(days)); out('tax', String(Math.round(tax * 100))); out('day', grp(day)); out('hour', grp(day / 7));
+          } else {
+            var gap = val('spend') - val('inc'), fine = gap <= 0;
+            $('[data-o-wrap="months"]', c).hidden = fine; $('[data-o-wrap="fine"]', c).hidden = !fine;
+            if (!fine) { var mth = val('save') / gap; out('months', mth >= 100 ? '99+' : (Math.round(mth * 10) / 10).toString().replace('.', lang === 'en' ? '.' : ',')); }
+          }
+        };
+        $$('[data-f]', c).forEach(function (i) { i.addEventListener('input', work); });
+        work(); onLang.push(work);
+      });
+      // the question
+      var ok = $('[data-ls-ok]', p), no = $('[data-ls-no]', p), as = $$('[data-ls-a]', p);
+      as.forEach(function (a) {
+        a.addEventListener('click', function () {
+          var right = a.getAttribute('data-ls-a') === 'ok';
+          as.forEach(function (x) { x.classList.remove('is-right', 'is-wrong'); x.setAttribute('aria-pressed', String(x === a)); });
+          a.classList.add(right ? 'is-right' : 'is-wrong');
+          ok.hidden = !right; no.hidden = right;
+          if (right && done.indexOf(id) < 0) {
+            done.push(id);
+            try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
+            stamps();
+            var sp = $('[data-ls-tab="' + id + '"] [data-ls-stamp]', ls);
+            if (sp && !reduce) { sp.classList.remove('is-stamp'); void sp.offsetWidth; sp.classList.add('is-stamp'); }
+          }
+        });
+      });
+    });
+    show(tabs[0].getAttribute('data-ls-tab')); stamps();
   });
 
   /* ---------------- 12 · each case's faces, as it nears ----------------

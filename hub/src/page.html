@@ -444,6 +444,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
               <button type="button" class="st-tbtn" data-type="app" aria-pressed="false" disabled data-i18n="pricing.types.app"></button>
               <button type="button" class="st-tbtn" data-type="auto" aria-pressed="false" disabled data-i18n="pricing.types.auto"></button>
               <button type="button" class="st-tbtn" data-type="identite" aria-pressed="false" disabled data-i18n="pricing.types.identite"></button>
+              <button type="button" class="st-tbtn" data-type="argent" aria-pressed="false" disabled data-i18n="pricing.types.argent"></button>
             </div>
           </fieldset>
           <div class="st-est__grp">
@@ -461,10 +462,13 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
               <button type="button" class="st-obtn" data-opt="ds" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.ds"></span></button>
               <button type="button" class="st-obtn" data-opt="seo" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.seo"></span></button>
               <button type="button" class="st-obtn" data-opt="api" aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.o.api"></span></button>
+              <button type="button" class="st-obtn" data-opt="setup" aria-pressed="false" disabled hidden><i aria-hidden="true"></i><span data-i18n="pricing.o.setup"></span></button>
+              <button type="button" class="st-obtn" data-opt="pack" aria-pressed="false" disabled hidden><i aria-hidden="true"></i><span data-i18n="pricing.o.pack"></span></button>
+              <button type="button" class="st-obtn" data-opt="guides" aria-pressed="false" disabled hidden><i aria-hidden="true"></i><span data-i18n="pricing.o.guides"></span></button>
             </div>
           </fieldset>
           <div class="st-dr__row">
-            <fieldset class="st-est__grp">
+            <fieldset class="st-est__grp" data-est-pace>
               <legend class="st-label" data-i18n="pricing.pace"></legend>
               <div class="st-seg">
                 <button type="button" data-pace="std" aria-pressed="true" disabled data-i18n="pricing.paceStd"></button>
@@ -473,7 +477,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
             </fieldset>
             <button type="button" class="st-obtn st-obtn--care" data-care aria-pressed="false" disabled><i aria-hidden="true"></i><span data-i18n="pricing.care"></span></button>
           </div>
-          <p class="st-est__live" aria-hidden="true"><output dir="ltr" data-est-live>{{est.dz}}</output><span class="st-est__live-w"><b data-est-live-w>{{est.w}}</b> <span data-i18n="pricing.wk"></span></span></p>
+          <p class="st-est__live" aria-hidden="true"><output dir="ltr" data-est-live>{{est.dz}}</output><span class="st-est__live-w"><b data-est-live-w>{{est.w}}</b> <span data-est-wk data-i18n="pricing.wk"></span></span></p>
         </div>
         <div class="st-dr__deck">
           <div class="st-dr__pad">
@@ -496,6 +500,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
         </table>
         <p class="st-rc__fx"><span class="st-label st-label--teal" data-i18n="pricing.eu"></span><output dir="ltr" data-est-eu>{{est.eu}}</output></p>
         <p class="st-rc__fx"><span class="st-label st-label--teal" data-i18n="pricing.us"></span><output dir="ltr" data-est-us>{{est.us}}</output></p>
+        <p class="st-rc__mid" data-est-mid hidden></p>
         <p class="st-est__meta" data-est-care hidden><span><span class="st-muted"><span data-i18n="pricing.careL"></span> ·</span> <b dir="ltr" data-est-care-v>{{est.care}}</b> <span data-i18n="pricing.monthly"></span></span></p>
         <div class="st-est__kuro">
           <span class="st-est__k" data-est-kuro>
@@ -592,6 +597,331 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
         <p class="st-aside st-aside--teal st-tcard__aside" data-i18n="tech.items.2.aside"></p>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ============================== MONEY ==============================
+     "L'argent, sans jargon", the sibling of 07 (no number of its own, so
+     the twelve numbered sections keep theirs). Four services at fixed
+     prices: each figure is written by the build from the home's price model
+     (assets/app.js PRICE_MODEL.argent and its options; hub/app.js 6 writes
+     them again in the page's language), so a card and the console cannot
+     disagree. Six lessons as tabs (hub/app.js 13): one idea, one gesture,
+     one question; a right answer stamps the lesson, kept on the visitor's
+     device only. Without scripts every lesson is laid out in full and the
+     questions are not shown. No provider is named and no banking rule is
+     stated as fact: see OWNER-CONTENT.md. -->
+<section class="st-sec st-mny" id="money" aria-labelledby="money-h">
+  <div class="st-wrap">
+    <div class="st-head" data-reveal>
+      <div class="st-head__main">
+        <p class="st-kick"><span class="st-seal" aria-hidden="true" lang="ja">金</span><span data-i18n="money.kicker"></span></p>
+        <h2 class="st-h2" id="money-h" data-i18n="money.title"></h2>
+      </div>
+      <p class="st-lead" data-i18n="money.lead"></p>
+    </div>
+    <figure class="st-mny__scene" data-reveal>
+      <img src="img/studio/money/scene.webp" srcset="img/studio/money/scene-640.webp 640w, img/studio/money/scene.webp 1200w" sizes="(max-width:1320px) 94vw, 1224px" data-i18n-alt="money.sceneAlt" loading="lazy" decoding="async">
+    </figure>
+    <ul class="st-mny__svc" data-i18n-aria="money.svc.aria">
+      <li class="st-mny__card" data-reveal>
+        <p class="st-mny__bar"><span>/ 01 · <span data-i18n="money.svc.items.0.fam"></span></span><span class="st-mny__kanji" aria-hidden="true" lang="ja">話</span></p>
+        <div class="st-mny__body">
+          <h3 class="st-mny__name" data-i18n="money.svc.items.0.name"></h3>
+          <p class="st-mny__price"><b dir="ltr" data-money-price="call">{{money.call}}</b></p>
+          <p class="st-mny__meta st-label" data-i18n="money.svc.items.0.meta"></p>
+          <p class="st-mny__line" data-i18n="money.svc.items.0.line"></p>
+          <p class="st-mny__act">
+            <a class="st-btn st-btn--primary" href="#pricing" data-est-go="argent" data-est-pick="call" data-i18n="money.svc.calc"></a>
+            <a class="st-btn st-btn--ghost" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="0"><span data-i18n="money.svc.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </div>
+      </li>
+      <li class="st-mny__card" data-reveal>
+        <p class="st-mny__bar"><span>/ 02 · <span data-i18n="money.svc.items.1.fam"></span></span><span class="st-mny__kanji" aria-hidden="true" lang="ja">設</span></p>
+        <div class="st-mny__body">
+          <h3 class="st-mny__name" data-i18n="money.svc.items.1.name"></h3>
+          <p class="st-mny__price"><b dir="ltr" data-money-price="setup">{{money.setup}}</b></p>
+          <p class="st-mny__meta st-label" data-i18n="money.svc.items.1.meta"></p>
+          <p class="st-mny__line" data-i18n="money.svc.items.1.line"></p>
+          <p class="st-mny__act">
+            <a class="st-btn st-btn--primary" href="#pricing" data-est-go="argent" data-est-pick="setup" data-i18n="money.svc.calc"></a>
+            <a class="st-btn st-btn--ghost" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="1"><span data-i18n="money.svc.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </div>
+      </li>
+      <li class="st-mny__card" data-reveal>
+        <p class="st-mny__bar"><span>/ 03 · <span data-i18n="money.svc.items.2.fam"></span></span><span class="st-mny__kanji" aria-hidden="true" lang="ja">始</span></p>
+        <div class="st-mny__body">
+          <h3 class="st-mny__name" data-i18n="money.svc.items.2.name"></h3>
+          <p class="st-mny__price"><b dir="ltr" data-money-price="pack">{{money.pack}}</b></p>
+          <p class="st-mny__meta st-label" data-i18n="money.svc.items.2.meta"></p>
+          <p class="st-mny__line" data-i18n="money.svc.items.2.line"></p>
+          <p class="st-mny__act">
+            <a class="st-btn st-btn--primary" href="#pricing" data-est-go="argent" data-est-pick="pack" data-i18n="money.svc.calc"></a>
+            <a class="st-btn st-btn--ghost" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="2"><span data-i18n="money.svc.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </div>
+      </li>
+      <li class="st-mny__card" data-reveal>
+        <p class="st-mny__bar"><span>/ 04 · <span data-i18n="money.svc.items.3.fam"></span></span><span class="st-mny__kanji" aria-hidden="true" lang="ja">書</span></p>
+        <div class="st-mny__body">
+          <h3 class="st-mny__name" data-i18n="money.svc.items.3.name"></h3>
+          <p class="st-mny__price"><b dir="ltr" data-money-price="guideOne">{{money.guideOne}}</b> <span data-i18n="money.svc.each"></span><br><b dir="ltr" data-money-price="guides">{{money.guides}}</b> <span data-i18n="money.svc.all"></span></p>
+          <p class="st-mny__meta st-label" data-i18n="money.svc.items.3.meta"></p>
+          <p class="st-mny__line" data-i18n="money.svc.items.3.line"></p>
+          <p class="st-mny__act">
+            <a class="st-btn st-btn--primary" href="#pricing" data-est-go="argent" data-est-pick="guides" data-i18n="money.svc.calc"></a>
+            <a class="st-btn st-btn--ghost" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="3"><span data-i18n="money.svc.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </div>
+      </li>
+    </ul>
+    <div class="st-mny__kit" data-reveal>
+      <p class="st-mny__kitk" data-i18n="money.kit.k"></p>
+      <p class="st-mny__kitl"><span data-i18n="money.kit.line"></span> <b dir="ltr" data-money-price="kit">{{money.kit}}</b> <span class="st-mny__was"><span data-i18n="money.kit.was"></span> <s dir="ltr" data-money-price="kitWas">{{money.kitWas}}</s></span></p>
+      <a class="st-btn st-btn--on" href="#pricing" data-est-go="argent" data-est-pick="kit" data-i18n="money.kit.go"></a>
+    </div>
+    <p class="st-mny__mid" data-money-mid>{{money.midText}}</p>
+
+    <div class="st-ls" data-ls>
+      <div class="st-ls__head">
+        <div>
+          <p class="st-label" data-i18n="money.ls.kicker"></p>
+          <h3 class="st-ls__title" data-i18n="money.ls.title"></h3>
+          <p class="st-ls__lead" data-i18n="money.ls.lead"></p>
+        </div>
+        <p class="st-ls__pass" data-ls-pass><b data-ls-count>0</b><span aria-hidden="true"> / 6</span><span class="st-sr"> / 6</span> <span data-i18n="money.ls.pass"></span></p>
+      </div>
+      <div class="st-ls__tabs" role="tablist" data-i18n-aria="money.ls.tabs">
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-pay" aria-controls="ls-p-pay" aria-selected="true" data-ls-tab="pay">
+            <img src="img/studio/money/ls-pay.webp" srcset="img/studio/money/ls-pay-240.webp 240w, img/studio/money/ls-pay.webp 480w" sizes="(max-width:599px) 28vw, 150px" data-i18n-alt="money.ls.items.0.alt" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true">L1</span>
+            <span class="st-ls__t" data-i18n="money.ls.items.0.t"></span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-bank" aria-controls="ls-p-bank" aria-selected="false" data-ls-tab="bank">
+            <img src="img/studio/money/ls-bank.webp" srcset="img/studio/money/ls-bank-240.webp 240w, img/studio/money/ls-bank.webp 480w" sizes="(max-width:599px) 28vw, 150px" data-i18n-alt="money.ls.items.1.alt" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true">L2</span>
+            <span class="st-ls__t" data-i18n="money.ls.items.1.t"></span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-rate" aria-controls="ls-p-rate" aria-selected="false" data-ls-tab="rate">
+            <img src="img/studio/money/ls-rate.webp" srcset="img/studio/money/ls-rate-240.webp 240w, img/studio/money/ls-rate.webp 480w" sizes="(max-width:599px) 28vw, 150px" data-i18n-alt="money.ls.items.2.alt" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true">L3</span>
+            <span class="st-ls__t" data-i18n="money.ls.items.2.t"></span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-runway" aria-controls="ls-p-runway" aria-selected="false" data-ls-tab="runway">
+            <img src="img/studio/money/ls-runway.webp" srcset="img/studio/money/ls-runway-240.webp 240w, img/studio/money/ls-runway.webp 480w" sizes="(max-width:599px) 28vw, 150px" data-i18n-alt="money.ls.items.3.alt" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true">L4</span>
+            <span class="st-ls__t" data-i18n="money.ls.items.3.t"></span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-crypto" aria-controls="ls-p-crypto" aria-selected="false" data-ls-tab="crypto">
+            <img src="img/studio/money/ls-crypto.webp" srcset="img/studio/money/ls-crypto-240.webp 240w, img/studio/money/ls-crypto.webp 480w" sizes="(max-width:599px) 28vw, 150px" data-i18n-alt="money.ls.items.4.alt" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true">L5</span>
+            <span class="st-ls__t" data-i18n="money.ls.items.4.t"></span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+          </button>
+          <button type="button" class="st-ls__tab" role="tab" id="ls-t-web3" aria-controls="ls-p-web3" aria-selected="false" data-ls-tab="web3">
+            <img src="img/studio/money/ls-web3.webp" srcset="img/studio/money/ls-web3-240.webp 240w, img/studio/money/ls-web3.webp 480w" sizes="(max-width:599px) 28vw, 150px" data-i18n-alt="money.ls.items.5.alt" loading="lazy" decoding="async">
+            <span class="st-ls__n" aria-hidden="true">L6</span>
+            <span class="st-ls__t" data-i18n="money.ls.items.5.t"></span>
+            <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+          </button>
+      </div>
+      <div class="st-ls__panels">
+          <div class="st-ls__panel" id="ls-p-pay" role="tabpanel" aria-labelledby="ls-t-pay" tabindex="0" data-ls-panel="pay">
+            <h3 class="st-ls__h" data-i18n="money.ls.items.0.t"></h3>
+            <p class="st-ls__d" data-i18n="money.ls.items.0.d"></p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="money.ls.items.0.pick.0.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="money.ls.items.0.pick.1.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="money.ls.items.0.pick.2.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="money.ls.items.0.pick.3.k"></button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="money.ls.items.0.pick.0.k"></b><span data-i18n="money.ls.items.0.pick.0.v"></span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="money.ls.items.0.pick.1.k"></b><span data-i18n="money.ls.items.0.pick.1.v"></span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="money.ls.items.0.pick.2.k"></b><span data-i18n="money.ls.items.0.pick.2.v"></span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="money.ls.items.0.pick.3.k"></b><span data-i18n="money.ls.items.0.pick.3.v"></span></p>
+              </div>
+            </div>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="money.ls.items.0.q"></span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.0.a.0"></button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="money.ls.items.0.a.1"></button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.0.a.2"></button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="money.ls.items.0.ok" hidden></p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-bank" role="tabpanel" aria-labelledby="ls-t-bank" tabindex="0" data-ls-panel="bank">
+            <h3 class="st-ls__h" data-i18n="money.ls.items.1.t"></h3>
+            <p class="st-ls__d" data-i18n="money.ls.items.1.d"></p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="money.ls.items.1.pick.0.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="money.ls.items.1.pick.1.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="money.ls.items.1.pick.2.k"></button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="money.ls.items.1.pick.0.k"></b><span data-i18n="money.ls.items.1.pick.0.v"></span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="money.ls.items.1.pick.1.k"></b><span data-i18n="money.ls.items.1.pick.1.v"></span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="money.ls.items.1.pick.2.k"></b><span data-i18n="money.ls.items.1.pick.2.v"></span></p>
+              </div>
+            </div>
+            <div class="st-ls__list">
+              <p class="st-label" data-i18n="money.ls.items.1.listT"></p>
+              <ul>
+                <li data-i18n="money.ls.items.1.list.0"></li>
+                <li data-i18n="money.ls.items.1.list.1"></li>
+                <li data-i18n="money.ls.items.1.list.2"></li>
+                <li data-i18n="money.ls.items.1.list.3"></li>
+              </ul>
+            </div>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="money.ls.items.1.q"></span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="money.ls.items.1.a.0"></button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.1.a.1"></button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.1.a.2"></button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="money.ls.items.1.ok" hidden></p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-rate" role="tabpanel" aria-labelledby="ls-t-rate" tabindex="0" data-ls-panel="rate">
+            <h3 class="st-ls__h" data-i18n="money.ls.items.2.t"></h3>
+            <p class="st-ls__d" data-i18n="money.ls.items.2.d"></p>
+            <div class="st-calc" data-calc="rate">
+              <div class="st-calc__f">
+                <label class="st-calc__l" for="rate-net" data-i18n="money.ls.items.2.f.net"></label><input class="st-calc__i" id="rate-net" type="number" inputmode="numeric" min="0" step="1000" value="100000" data-f="net">
+                <label class="st-calc__l" for="rate-costs" data-i18n="money.ls.items.2.f.costs"></label><input class="st-calc__i" id="rate-costs" type="number" inputmode="numeric" min="0" step="1000" value="20000" data-f="costs">
+                <label class="st-calc__l" for="rate-days"><span data-i18n="money.ls.items.2.f.days"></span> · <output for="rate-days" data-o="days">12</output></label><input class="st-calc__r" id="rate-days" type="range" min="4" max="22" step="1" value="12" data-f="days">
+                <label class="st-calc__l" for="rate-tax"><span data-i18n="money.ls.items.2.f.tax"></span> · <output for="rate-tax" data-o="tax">20</output>&nbsp;%</label><input class="st-calc__r" id="rate-tax" type="range" min="0" max="50" step="5" value="20" data-f="tax">
+              </div>
+              <div class="st-calc__out" aria-live="polite">
+                <p><output class="st-calc__big" dir="ltr" data-o="day">12 500</output> <span data-i18n="money.ls.items.2.f.day"></span></p>
+                <p><output class="st-calc__mid" dir="ltr" data-o="hour">1 786</output> <span data-i18n="money.ls.items.2.f.hour"></span></p>
+                <p class="st-calc__unit" data-i18n="money.ls.items.2.f.unit"></p>
+              </div>
+            </div>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="money.ls.items.2.q"></span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.2.a.0"></button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="money.ls.items.2.a.1"></button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.2.a.2"></button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="money.ls.items.2.ok" hidden></p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-runway" role="tabpanel" aria-labelledby="ls-t-runway" tabindex="0" data-ls-panel="runway">
+            <h3 class="st-ls__h" data-i18n="money.ls.items.3.t"></h3>
+            <p class="st-ls__d" data-i18n="money.ls.items.3.d"></p>
+            <div class="st-calc" data-calc="runway">
+              <div class="st-calc__f">
+                <label class="st-calc__l" for="run-save" data-i18n="money.ls.items.3.f.save"></label><input class="st-calc__i" id="run-save" type="number" inputmode="numeric" min="0" step="1000" value="300000" data-f="save">
+                <label class="st-calc__l" for="run-spend" data-i18n="money.ls.items.3.f.spend"></label><input class="st-calc__i" id="run-spend" type="number" inputmode="numeric" min="0" step="1000" value="80000" data-f="spend">
+                <label class="st-calc__l" for="run-inc" data-i18n="money.ls.items.3.f.inc"></label><input class="st-calc__i" id="run-inc" type="number" inputmode="numeric" min="0" step="1000" value="30000" data-f="inc">
+              </div>
+              <div class="st-calc__out" aria-live="polite">
+                <p data-o-wrap="months"><output class="st-calc__big" dir="ltr" data-o="months">6</output> <span data-i18n="money.ls.items.3.f.months"></span></p>
+                <p class="st-calc__fine" data-o-wrap="fine" hidden data-i18n="money.ls.items.3.f.fine"></p>
+                <p class="st-calc__unit" data-i18n="money.ls.items.3.f.unit"></p>
+              </div>
+            </div>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="money.ls.items.3.q"></span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.3.a.0"></button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="money.ls.items.3.a.1"></button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.3.a.2"></button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="money.ls.items.3.ok" hidden></p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-crypto" role="tabpanel" aria-labelledby="ls-t-crypto" tabindex="0" data-ls-panel="crypto">
+            <h3 class="st-ls__h" data-i18n="money.ls.items.4.t"></h3>
+            <p class="st-ls__d" data-i18n="money.ls.items.4.d"></p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="money.ls.items.4.pick.0.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="money.ls.items.4.pick.1.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="money.ls.items.4.pick.2.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="money.ls.items.4.pick.3.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="4" aria-pressed="false" data-i18n="money.ls.items.4.pick.4.k"></button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="money.ls.items.4.pick.0.k"></b><span data-i18n="money.ls.items.4.pick.0.v"></span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="money.ls.items.4.pick.1.k"></b><span data-i18n="money.ls.items.4.pick.1.v"></span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="money.ls.items.4.pick.2.k"></b><span data-i18n="money.ls.items.4.pick.2.v"></span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="money.ls.items.4.pick.3.k"></b><span data-i18n="money.ls.items.4.pick.3.v"></span></p>
+              <p class="st-pick__p" data-pick-p="4"><b class="st-pick__k" data-i18n="money.ls.items.4.pick.4.k"></b><span data-i18n="money.ls.items.4.pick.4.v"></span></p>
+              </div>
+            </div>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="money.ls.items.4.q"></span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.4.a.0"></button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="money.ls.items.4.a.1"></button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.4.a.2"></button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="money.ls.items.4.ok" hidden></p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+              </div>
+            </div>
+          </div>
+          <div class="st-ls__panel" id="ls-p-web3" role="tabpanel" aria-labelledby="ls-t-web3" tabindex="0" data-ls-panel="web3">
+            <h3 class="st-ls__h" data-i18n="money.ls.items.5.t"></h3>
+            <p class="st-ls__d" data-i18n="money.ls.items.5.d"></p>
+            <div class="st-pick" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="money.ls.items.5.pick.0.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="money.ls.items.5.pick.1.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="money.ls.items.5.pick.2.k"></button>
+              <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="money.ls.items.5.pick.3.k"></button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="money.ls.items.5.pick.0.k"></b><span data-i18n="money.ls.items.5.pick.0.v"></span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="money.ls.items.5.pick.1.k"></b><span data-i18n="money.ls.items.5.pick.1.v"></span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="money.ls.items.5.pick.2.k"></b><span data-i18n="money.ls.items.5.pick.2.v"></span></p>
+              <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="money.ls.items.5.pick.3.k"></b><span data-i18n="money.ls.items.5.pick.3.v"></span></p>
+              </div>
+            </div>
+            <div class="st-ls__q" data-ls-q>
+              <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="money.ls.items.5.q"></span></p>
+              <div class="st-ls__as">
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.5.a.0"></button>
+              <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="money.ls.items.5.a.1"></button>
+              <button type="button" class="st-ls__a" data-ls-a data-i18n="money.ls.items.5.a.2"></button>
+              </div>
+              <div class="st-ls__fb" aria-live="polite">
+                <p class="st-ls__ok" data-ls-ok data-i18n="money.ls.items.5.ok" hidden></p>
+                <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <p class="st-mny__note" data-i18n="money.note1"></p>
+    <p class="st-mny__note" data-i18n="money.note2"></p>
   </div>
 </section>
 
@@ -1106,6 +1436,8 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
     <a class="st-menu__world" href="#world"><span class="st-menu__n" aria-hidden="true">夜</span><span data-i18n="nav.world"></span></a>
     <a class="st-menu__world" href="#voidsplunker"><span class="st-menu__n" aria-hidden="true">06</span><span dir="ltr">VOIDSPLUNKER.std</span></a>
     <a class="st-menu__world" href="#mercury"><span class="st-menu__n" aria-hidden="true">07</span><span dir="ltr">MERCURY</span></a>
+    <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupLearn"></p>
+    <a class="st-menu__world" href="#money"><span class="st-menu__n" aria-hidden="true" lang="ja">金</span><span data-i18n="nav.money"></span></a>
   </nav>
   <div class="st-menu__foot">
     <div class="st-lang" role="group" data-i18n-aria="nav.lang">

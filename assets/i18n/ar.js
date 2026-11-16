@@ -191,6 +191,7 @@ var I18N = {
   'price.oDs': 'حزمة تصميم كاملة', 'price.oSeo': 'تحسين محرّكات البحث (<bdi>SEO</bdi>) والأداء، بمستوى متقدّم', 'price.oApi': 'تكاملات واجهات برمجية', 'price.incl': 'ضمن الباقة',
   'price.studioBetter': 'هذه الخيارات مشمولة في باقة «الاستوديو»',
   'price.lnUpTo': 'الباقة، حتى', 'price.lnStudio': 'تطبيق باقة الاستوديو', 'price.lnRush': 'معجَّل، +25%', 'price.lnTotal': 'المجموع',
+  'price.tyMoney': 'استشارات ومال', 'price.uCalls': 'مكالمات', 'price.uCalls.n': 'مكالمة|مكالمتان|مكالمات|مكالمة|مكالمة', 'price.oSetup': 'إعداد مرافَق', 'price.oPack': 'حزمة انطلاق المستقل', 'price.oGuides': 'الأدلة والنماذج، المجموعة', 'price.lnKit': 'عُدّة الرحّال',
   'price.estHello': 'مرحباً، هذا مشروعي:',
   'price.paceStd': 'عادي', 'price.paceRush': 'مستعجل',
   'price.uPages': 'صفحات', 'price.uPages.n': 'صفحة|صفحتان|صفحات|صفحة|صفحة', 'price.uScreens': 'شاشات', 'price.uScreens.n': 'شاشة|شاشتان|شاشات|شاشة|شاشة', 'price.uProducts': 'منتجات', 'price.uProducts.n': 'منتج|منتجان|منتجات|منتجاً|منتج', 'price.uFlows': 'مسارات', 'price.uFlows.n': 'مسار|مساران|مسارات|مساراً|مسار', 'price.uSupports': 'عناصر', 'price.uSupports.n': 'عنصر|عنصران|عناصر|عنصراً|عنصر',

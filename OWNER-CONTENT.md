@@ -545,6 +545,17 @@ translated from it.
   («إيصال التقدير», «من», «إلى»), `pricing.pad.{up,down,less,more}`,
   `pricing.mk.{title,you,lead}`. The console's name, DOURO·8, stays in Latin
   script on purpose.
+- AR review (2026-11-16, the money section), `assets/i18n/ar.js`, new:
+  `price.tyMoney` («استشارات ومال»), `price.uCalls` and its five forms,
+  `price.oSetup`, `price.oPack`, `price.oGuides`, `price.lnKit`
+  («عُدّة الرحّال»);
+- AR review (2026-11-16), the Studio `hub/src/i18n/ar.json`, new: the whole
+  `money` group (about 150 strings: the head, the four services, the kit,
+  the mid-range rule, the six lessons with their explanations, questions and
+  answers, the two notes), `nav.groupLearn`, `nav.money`, `pricing.rc.call`,
+  `pricing.rc.mid`. The lessons' Arabic is a translation of the French and
+  uses technical words («عبارة الاسترداد», «العملة المستقرة», «العقد
+  الذكي») that a native reader should confirm.
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1175,4 +1186,57 @@ weeks never moved with the size. It is rebuilt on your approval of the plan
 - **The drawing beside the title** (`hub/img/studio/douro-kuro.webp`) is new
   art made for this section. Kūro is fluffier in it than in your own
   drawings; say if you want it redrawn closer to your line.
+
+## 23. The money section (2026-11-16)
+
+"L'argent, sans jargon", on the Studio after "Le web, sans jargon". You
+confirmed the four services are real and chose "full crypto services" with the
+legal side yours. Everything below is drafted on your instruction ("price them
+very attractively and make the rules beneficial on the medium range") and is
+yours to change. The figures live in one place, `assets/app.js`
+(`PRICE_MODEL.argent`, the options `setup`, `pack`, `guides`, `MID_RANGE`); the
+cards, the kit strip and the calculator all read them from there.
+
+| Service | Price | What the page says the client gets |
+|---|---|---|
+| Appel 1:1, 60 min, en visio | 3 000 DA | One hour on their situation: getting paid from abroad, accounts, prices, first steps in crypto |
+| Mise en place accompagnée, 90 min | 6 000 DA | Accounts, wallet and invoicing opened and set up during the session, screen shared |
+| Pack de départ freelance | 15 000 DA | Platform profiles, quote and invoice templates, a price sheet; two calls included |
+| Guides et modèles | 1 500 DA le guide, 4 000 DA la collection | Written guides and templates, no session |
+
+- **Anchor:** the Onyxlab barometer (March 2026) lists a confirmed
+  consultant's hour at 3 000 DA and an agency's at 6 000 DA.
+- **Kit nomade:** the pack and the setup together take 5 000 DA off. With two
+  calls that is 22 000 DA instead of 27 000 (the strip on the page). With one
+  call it is 19 000 instead of 24 000: the saving starts at the first call on
+  purpose, or a second call would have made the order cheaper than one.
+- **Mid-range rule:** a web project whose firm price lands between 180 000
+  and 450 000 DA includes one coaching call and may be paid in three parts
+  (40 / 30 / 30). It is stated in this section and as a note on the
+  calculator's receipt. The home's payment answer (40 / 60) is unchanged and
+  stays the default; say if you want the three-part option written there too.
+- **What I did not know and left out:** how many guides there are and their
+  titles; whether the calls are in French, English or Arabic; how the client
+  pays for a call. The page promises none of these.
+- **Crypto:** it is taught (lessons 1, 5 and 6) and it is a topic of the call
+  and of the setup session. The page says, in three languages, that this is
+  education and not financial advice, with no trading signals, no management
+  of funds and no promise of gain, and it names Algeria's law 25-10 of July
+  2025 (buying, selling, holding and promoting crypto-assets are banned
+  there). Those two lines are in `money.note1` and `money.note2`; removing
+  them is your call, I would keep them.
+- **What the lessons do not say:** no payment provider is named, and no
+  Algerian banking rule is stated as fact. I found no official text I could
+  check on how a bank there treats a freelancer's foreign income, only pages
+  from sellers of payment accounts. Where the answer depends on the reader's
+  bank, the lesson says to ask the bank. If you want providers named, tell me
+  which ones you use and I will check each one's own country list.
+- **The calculators** in lessons 3 and 4 use the visitor's own numbers and
+  one stated assumption (7 hours in a billed day).
+- **Stamps:** a right answer stamps the lesson. This is kept in the
+  visitor's browser only (`localStorage`, key `numidea-lessons`) and is sent
+  nowhere; it is not a cookie and needs no consent.
+- **New art** (made for this section): the night-desk scene and six lesson
+  pictures, in `hub/img/studio/money/`. The passport in the scene carries the
+  word "PASSPORT".
 

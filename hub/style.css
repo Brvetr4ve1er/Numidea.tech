@@ -472,11 +472,114 @@ html.js .st-est .st-obtn:disabled:not([aria-pressed="true"]){opacity:.5;box-shad
 .st-mk__you i{flex:none;width:18px;height:10px;background:var(--red);opacity:.7}
 .st-mk__lead{font-size:13px;line-height:1.45;color:var(--ink-2)}
 .st-est__note{font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
+.st-est__note[hidden]{display:none}
 .st-est__nojs{font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
 html.js .st-est__nojs{display:none}
 .st-est__src{flex:1 1 100%;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.7;color:var(--on-dark-2)}
 .st-est__src a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-dark-2);text-underline-offset:3px}
 .st-est__src a:hover{color:var(--cream)}
+.st-rc__mid{padding:10px 12px;border:2px dashed var(--teal);font-size:13px;line-height:1.45;color:var(--teal-text)}
+.st-rc__mid[hidden]{display:none}
+/* ---------------- money: "L'argent, sans jargon" (hub/app.js 6 and 13) ----------------
+   The night desk as a scene panel, four price cards, the bundle on a red
+   strip, then the lessons on a night plate (the navy of the night panels):
+   six tabs, each a small picture, and one cream panel that reads like a
+   page of the manual. A right answer stamps the tab with the seal. */
+.st-mny .st-head{margin-bottom:36px}
+.st-mny__scene{margin:0 0 40px;border:2px solid var(--ink);box-shadow:var(--shadow-l);background:#0F1E30}
+.st-mny__scene img{display:block;width:100%;height:auto}
+.st-mny__svc{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.st-mny__card{display:flex;flex-direction:column;min-width:0;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-mny__bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0;padding:10px 16px;border-bottom:2px solid var(--ink);background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em}
+.st-mny__kanji{font-family:var(--f-jp);font-weight:900;font-size:18px;letter-spacing:0;color:var(--on-dark-2)}
+.st-mny__body{flex:1;display:flex;flex-direction:column;gap:10px;padding:18px 16px 18px}
+.st-mny__body p{margin:0}
+.st-mny__name{margin:0;font-family:var(--f-disp);font-weight:900;font-size:24px;line-height:1.05;letter-spacing:-.01em;overflow-wrap:break-word}
+.st-mny__price{font-family:var(--f-mono);font-size:var(--t-mono);line-height:1.5;color:var(--ink-2)}
+.st-mny__price b{font-family:"Archivo",sans-serif;font-weight:900;font-size:30px;line-height:1.1;letter-spacing:-.01em;color:var(--red-text);font-variant-numeric:tabular-nums;white-space:nowrap}
+.st-mny__meta{color:var(--muted)}
+.st-mny__line{font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
+.st-mny__act{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto !important;padding-top:8px}
+.st-mny__act .st-btn{flex:1 1 auto;min-height:44px;padding:10px 14px;font-size:var(--t-label);text-align:center;justify-content:center}
+/* the bundle */
+.st-mny__kit{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin:0 0 18px;padding:18px 22px;background:var(--red);color:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-mny__kit p{margin:0}
+.st-mny__kit :focus-visible{outline-color:var(--cream)}
+.st-mny__kitk{font-family:var(--f-disp);font-weight:900;font-size:clamp(24px,2.6vw,34px);line-height:1;letter-spacing:-.01em}
+.st-mny__kitl{flex:1 1 320px;font-size:var(--t-body);line-height:1.4}
+.st-mny__kitl b{font-family:"Archivo",sans-serif;font-weight:900;font-size:1.35em;white-space:nowrap}
+.st-mny__was{white-space:nowrap;opacity:.92}
+.st-mny__mid{margin:0 0 56px;padding:4px 0 4px 16px;border-inline-start:4px solid var(--red);font-size:var(--t-small);line-height:1.5;color:var(--ink-2);max-width:70ch}
+.st-ls + .st-mny__note{margin-top:34px}
+.st-mny__note{margin:14px 0 0;max-width:86ch;font-size:var(--t-small);line-height:1.5;color:var(--muted)}
+/* the lessons, a night plate */
+.st-ls{--night:#0F1E30;padding:clamp(18px,3vw,40px);background:var(--night);color:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow-l)}
+.st-ls :focus-visible{outline-color:var(--cream)}
+.st-ls p{margin:0}
+.st-ls .st-label{color:var(--on-dark-2);letter-spacing:.18em}
+.st-ls__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px;margin-bottom:28px}
+.st-ls__head > div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.st-ls__title{margin:0;font-family:var(--f-disp);font-weight:900;font-size:var(--t-h3l);line-height:.95;letter-spacing:-.015em;text-transform:uppercase}
+.st-ls__lead{font-size:var(--t-lead);line-height:1.45;color:var(--on-dark);max-width:52ch}
+.st-ls__pass{font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.1em;color:var(--on-dark-2);white-space:nowrap}
+.st-ls__pass b{font-family:"Archivo",sans-serif;font-weight:900;font-size:44px;line-height:1;letter-spacing:0;color:var(--cream)}
+.st-ls__tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.st-ls__tab{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:6px;min-width:0;padding:8px 8px 12px;background:transparent;border:2px solid rgba(243,236,225,.28);color:var(--cream);font-family:var(--f-body);text-align:start;cursor:pointer;transition:border-color .15s,background-color .15s}
+.st-ls__tab img{display:block;width:100%;height:auto;aspect-ratio:1}
+.st-ls__n{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;color:var(--on-dark-2)}
+.st-ls__t{min-width:0;font-weight:600;font-size:var(--t-small);line-height:1.25;overflow-wrap:anywhere}
+.st-ls__tab[aria-selected="true"]{border-color:var(--cream);background:rgba(243,236,225,.1)}
+@media (hover:hover){.st-ls__tab:hover{border-color:var(--cream)}}
+.st-ls__stamp{position:absolute;top:6px;inset-inline-end:6px;width:40px;height:40px;display:grid;place-items:center;background:var(--red);border:2px solid var(--cream);font-family:var(--f-jp);font-weight:900;font-size:18px;line-height:1;color:var(--cream);transform:rotate(-8deg);pointer-events:none}
+.st-ls__stamp[hidden]{display:none}
+.st-ls__stamp.is-stamp{animation:st-seal .27s var(--ease) both}
+/* a lesson: a page of the manual */
+.st-ls__panel{display:flex;flex-direction:column;gap:18px;padding:clamp(18px,2.6vw,36px);background:var(--cream);color:var(--ink);border:2px solid var(--cream)}
+.st-ls__panel[hidden]{display:none}
+.st-ls__panel :focus-visible,.st-ls__panel:focus-visible{outline-color:var(--red-text)}
+.st-ls__panel .st-label{color:var(--red-text)}
+.st-ls__panel + .st-ls__panel{margin-top:16px}
+.st-ls__h{margin:0;font-family:var(--f-disp);font-weight:900;font-size:var(--t-h3);line-height:1.05;letter-spacing:-.01em}
+.st-ls__d{font-size:var(--t-body);line-height:1.5;max-width:68ch}
+.st-pick{display:flex;flex-direction:column;gap:14px}
+.st-pick__bs{display:flex;flex-wrap:wrap;gap:10px 12px;padding:0 3px 3px 0}
+html:not(.js) .st-pick__bs,html:not(.js) .st-ls__q{display:none}
+.st-pick__b{min-height:44px;padding:8px 14px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-weight:600;font-size:var(--t-small);line-height:1.2;cursor:pointer;transition:transform .08s,box-shadow .08s,background-color .12s,color .12s}
+.st-pick__b[aria-pressed="true"]{background:var(--ink);color:var(--cream);box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
+.st-pick__ps{min-height:5.4em}
+.st-pick__p{padding:14px 16px;border-inline-start:4px solid var(--teal);background:rgba(35,102,96,.08);font-size:var(--t-card);line-height:1.55;max-width:74ch}
+.st-pick__p[hidden]{display:none}
+.st-pick__p + .st-pick__p{margin-top:10px}
+.st-pick__k{display:block;margin-bottom:4px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;color:var(--teal-text)}
+html.js .st-pick__k{display:none}
+.st-ls__list{display:flex;flex-direction:column;gap:8px}
+.st-ls__list ul{margin:0;padding-inline-start:1.2em;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 28px;font-size:var(--t-small);line-height:1.45}
+.st-calc{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px 36px;align-items:start}
+.st-calc__f{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+.st-calc__l{margin-top:8px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.4;color:var(--muted)}
+.st-calc__l output{font-weight:700;color:var(--ink)}
+.st-calc__i{width:100%;min-height:46px;padding:8px 12px;border:2px solid var(--ink);background:var(--white);color:var(--ink);font-family:var(--f-mono);font-size:17px;font-variant-numeric:tabular-nums}
+.st-calc__r{width:100%;height:44px;margin:0;accent-color:var(--red);cursor:pointer}
+.st-calc__out{display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--paper);border:2px solid var(--ink);box-shadow:var(--shadow-s);font-size:var(--t-small);line-height:1.4}
+html:not(.js) .st-calc__out{display:none}
+.st-calc__out p[hidden]{display:none}
+.st-calc__big{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(34px,4.4vw,56px);line-height:1;color:var(--red-text);font-variant-numeric:tabular-nums}
+.st-calc__mid{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+.st-calc__fine{font-weight:600}
+.st-calc__unit{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.04em;color:var(--muted)}
+/* the question */
+.st-ls__q{display:flex;flex-direction:column;gap:12px;padding-top:18px;border-top:2px dashed var(--line)}
+.st-ls__ask{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:var(--t-body);line-height:1.35}
+.st-ls__as{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;padding:0 3px 3px 0}
+.st-ls__a{min-height:48px;padding:10px 14px;border:2px solid var(--ink);background:var(--white);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-size:var(--t-small);line-height:1.3;text-align:start;cursor:pointer;transition:transform .08s,box-shadow .08s,background-color .12s,color .12s}
+.st-ls__a.is-right{background:var(--teal);color:var(--cream);box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
+.st-ls__a.is-wrong{background:var(--paper);border-style:dashed;box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
+.st-ls__fb{min-height:1.5em;font-size:var(--t-small);line-height:1.45}
+.st-ls__fb p[hidden]{display:none}
+.st-ls__ok{font-weight:600;color:var(--teal-text)}
+.st-ls__no{color:var(--red-text)}
+:lang(ar) .st-ls__title,:lang(ar) .st-mny__kitk{letter-spacing:0;line-height:1.2}
+:lang(ar) .st-pick__k{letter-spacing:0}
 
 /* ---------------- 07 brand ---------------- */
 .st-brand__row{display:flex;flex-wrap:wrap;align-items:center;gap:36px 56px}
@@ -1531,4 +1634,36 @@ main:focus{outline:none}
   .st-dock{padding-block:6px}
   .st-dock .st-btn{min-height:44px}
   .st-foot{padding-bottom:calc(36px + 56px)}
+}
+
+/* ---- money and the lessons, by width (after every other width rule, so these win) ---- */
+@media (max-width:1099px){
+  .st-mny__svc{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .st-ls__tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:599px){
+  .st-mny .st-head{margin-bottom:22px}
+  .st-mny__scene{margin-bottom:24px;box-shadow:5px 5px 0 var(--ink)}
+  .st-mny__svc{grid-template-columns:minmax(0,1fr);gap:16px;margin-bottom:20px}
+  .st-mny__card{box-shadow:5px 5px 0 var(--ink)}
+  .st-mny__kit{padding:14px;box-shadow:5px 5px 0 var(--ink)}
+  .st-mny__kit .st-btn{flex:1 1 100%;justify-content:center;text-align:center}
+  .st-mny__mid{margin-bottom:36px}
+  .st-ls{padding:16px 12px;box-shadow:5px 5px 0 var(--ink)}
+  .st-ls__head{margin-bottom:18px}
+  .st-ls__pass b{font-size:34px}
+  .st-ls__tabs{gap:8px}
+  .st-ls__tab{padding:6px 6px 10px}
+  .st-ls__t{font-size:13px;hyphens:auto}
+  .st-ls__stamp{top:4px;inset-inline-end:4px;width:32px;height:32px;font-size:15px}
+  .st-ls__panel{padding:16px 14px;gap:14px}
+  .st-pick__bs{gap:8px 9px}
+  .st-pick__b{padding:8px 11px}
+  .st-ls__list ul{grid-template-columns:minmax(0,1fr)}
+  .st-calc{grid-template-columns:minmax(0,1fr);gap:16px}
+  .st-ls__as{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:359px){
+  .st-ls__tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .st-mny__price b{font-size:26px}
 }
