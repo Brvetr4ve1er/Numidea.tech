@@ -604,6 +604,12 @@ translated from it.
   `process.steps.N.d`, `proof.lead`, `lab.lead`, `doors.b.d`, the three
   `start.*.d`, `contact.lead`, the end of `proof.vs.desc`; and on the home
   page (`assets/i18n/ar.js`): `founder.lead`, `founder.sceneCap`, `svc.lead`.
+- AR review (2026-11-17, the copy sweep's third slice), the Studio
+  `hub/src/i18n/ar.json`: six headlines, `proof.title` («كل ما يلي موجود
+  فعلًا.»), `process.title` («من أول مكالمة إلى المفاتيح. ثم نبقى.»),
+  `pricing.title` («الأسعار على الطاولة.»), `tech.title` («سريع. ثابت.
+  ظاهر.»), `faq.title` («الأسئلة المحرجة، أولًا.»), `contact.title` («الباب
+  مفتوح. اكتب لنا.»).
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1785,3 +1791,46 @@ work was mainly on the Studio.
   on purpose: the Studio's headlines, the Aperçu's three steps, the prices
   and the answers to questions. Changing those trades clarity for style, so
   that is a decision for you, not a sweep.
+
+## 33. The copy sweep, third slice: the Studio's headlines (2026-11-17)
+
+You answered the second slice with "keep the promises, go louder on the
+headlines too". The two promises stay as published ("Personne ne vous passe
+à un autre.", "Pas de standard, pas de ticket."). This slice is the
+headlines.
+
+- **Six section headlines of the Studio changed** (three languages). They
+  were the flat ones; each new line states something its section shows:
+
+  | Section | Before | Now |
+  |---|---|---|
+  | 04 · Les reçus | Le travail, en vrai. | Tout ce qui suit existe. |
+  | 05 · La méthode | Comment on travaille. | Du premier appel aux clés. Puis on reste. |
+  | 06 · Les prix | Nos prix. Sans surprise. | Les prix sont sur la table. |
+  | 08 · Le web, sans jargon | Trois choses que votre site doit faire. | Vite. Solide. Trouvé. |
+  | 11 · Questions | Ce qu'on nous demande. | Les questions qui fâchent, d'abord. |
+  | 12 · On en parle | Rendons-le réel. | La porte est ouverte. Écrivez. |
+
+  The label above each headline still carries the section's plain name and
+  number, so a reader who scans, or a search engine, loses nothing.
+- **What each one leans on**: "Tout ce qui suit existe" on the five dossiers,
+  each with a place to check it; "Du premier appel aux clés. Puis on reste"
+  on the five steps (the call, the accesses handed over in your name, then
+  thirty days of fixes and the maintenance if wanted); "Les prix sont sur la
+  table" on the published prices; "Vite. Solide. Trouvé" on the section's
+  three cards (speed, hosting, search); "Les questions qui fâchent" on the
+  six questions (payment, ownership, delay); "La porte est ouverte. Écrivez"
+  on the contact block, which takes messages and no calls.
+- **Four headlines I kept, because they are already at full volume**:
+  "Chaque intermédiaire coûte de l'argent et du sens.", "Une vraie démo.
+  Avant de payer.", "Votre logo n'est pas votre marque.", "Assez petits pour
+  s'en soucier. Assez seniors pour livrer." (three of them are quoted in your
+  rulebook as the lines to write towards), along with "Ce qu'on rend réel."
+  and "Ce qu'on fait quand personne ne commande."
+- **One I held back on purpose: the page's first heading**, "On construit le
+  logiciel que votre business attend." It is what a visitor reads first and
+  what Google is most likely to show with the title; it says plainly what
+  the studio does. Tell me if you want it changed too, and to what.
+- **"Rendons-le réel" is gone as the closing line.** It mirrored "Ce qu'on
+  rend réel" at the top of the services. If you miss the pair, say so and I
+  put it back.

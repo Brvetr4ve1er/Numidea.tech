@@ -183,7 +183,7 @@
   },
   "process": {
     "kicker": "/ 05 · LA MÉTHODE · CINQ TEMPS",
-    "title": "Comment on travaille.",
+    "title": "Du premier appel aux clés. Puis on reste.",
     "now": "/ ÉTAPE",
     "steps": [
       {
@@ -220,7 +220,7 @@
   },
   "pricing": {
     "kicker": "/ 06 · LES PRIX · PUBLIÉS",
-    "title": "Nos prix. Sans surprise.",
+    "title": "Les prix sont sur la table.",
     "lead": "Pas de tarifs « spéciaux » : ce sont les prix publiés du studio, en dinars, en euros et en dollars. Votre devis final tombe dans la fourchette.",
     "type": "/ TYPE DE PROJET",
     "size": "/ AMPLEUR",
@@ -356,7 +356,7 @@
   },
   "tech": {
     "kicker": "/ 08 · LE WEB, SANS JARGON",
-    "title": "Trois choses que votre site doit faire.",
+    "title": "Vite. Solide. Trouvé.",
     "items": [
       {
         "k": "VITESSE",
@@ -397,7 +397,7 @@
   },
   "proof": {
     "kicker": "/ 04 · LES REÇUS · PIÈCES À L’APPUI",
-    "title": "Le travail, en vrai.",
+    "title": "Tout ce qui suit existe.",
     "lead": "Trois clients livrés et deux travaux du fondateur. Chaque dossier dit ce qui a été fait, pour qui, et où le vérifier.",
     "actor": "Yasser fête une mise en ligne",
     "own": "Aussi, faits maison :",
@@ -624,7 +624,7 @@
   },
   "faq": {
     "kicker": "/ 11 · QUESTIONS",
-    "title": "Ce qu’on nous demande.",
+    "title": "Les questions qui fâchent, d’abord.",
     "actor": "Yasser répond sur son téléphone",
     "items": [
       {
@@ -655,7 +655,7 @@
   },
   "contact": {
     "kicker": "/ 12 · ON EN PARLE · PAR ÉCRIT",
-    "title": "Rendons-le réel.",
+    "title": "La porte est ouverte. Écrivez.",
     "lead": "Choisissez votre canal. Réponse le jour ouvré suivant, par celui qui code. Pas de standard, pas de ticket.",
     "hours": "Dimanche–jeudi, 9h–18h · messages seulement, pas d’appels",
     "waK": "WHATSAPP · +213 672 41 25 78",

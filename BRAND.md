@@ -1910,6 +1910,8 @@ The site speaks in two registers, and the rule is where each one goes.
 5. The last line is short. If it explains itself, it is not a last line.
 6. Three languages carry the same register; product and world names stay in Latin letters (DOURO·8, MERCURY, tr4veler.exe, VOIDSPLUNKER.std).
 
+**Section headlines** on the Studio may speak in the world's register, because the label above each one carries the section's plain name: the pair is read together. A headline still states something its section shows ("Vite. Solide. Trouvé." over the three cards on speed, hosting and search). A page's title and its first heading are not section headlines: they stay plain.
+
 **Section labels** carry both registers in one line: the number and the plain name first, then one tag of two or three words in the signal register ("/ 05 · LA MÉTHODE · CINQ TEMPS"). The tag states a fact about the section, never a mood.
 
 **The codex** (the Studio, in the world's plate) is the register's reference: eleven entries, each a number, a name and a type tag, opening on three or four sentences and one link. A new recurring name on the site gets an entry there, or it is not a name yet.
