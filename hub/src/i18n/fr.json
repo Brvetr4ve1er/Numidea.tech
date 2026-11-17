@@ -72,7 +72,7 @@
     }
   },
   "wedge": {
-    "kicker": "/ 01 · LE PROBLÈME",
+    "kicker": "/ 01 · LE PROBLÈME · TROP DE MAINS",
     "title": "Chaque intermédiaire coûte de l’argent et du sens.",
     "lead": "Dans une agence classique, votre idée passe par cinq personnes avant d’atteindre quelqu’un qui code. À chaque étape, elle perd un détail et gagne une facture.",
     "theirsL": "L’AGENCE CLASSIQUE",
@@ -98,9 +98,9 @@
     }
   },
   "services": {
-    "kicker": "/ 02 · CE QU’ON FAIT",
+    "kicker": "/ 02 · CE QU’ON FAIT · QUATRE FAMILLES",
     "title": "Ce qu’on rend réel.",
-    "lead": "Quatre familles de services, un seul interlocuteur du premier appel à la maintenance.",
+    "lead": "Quatre familles de services, un seul interlocuteur, du premier appel à la maintenance. Personne ne vous passe à un autre.",
     "actor": "Yasser montre les services",
     "items": [
       {
@@ -158,7 +158,7 @@
     ]
   },
   "preview": {
-    "kicker": "/ 03 · L’OFFRE SIGNATURE",
+    "kicker": "/ 03 · L’OFFRE SIGNATURE · AVANT DE PAYER",
     "title": "Une vraie démo. Avant de payer.",
     "lead": "Avant tout paiement, on construit la page d’accueil de votre futur site, avec votre contenu. Vous cliquez, vous testez, vous décidez.",
     "steps": [
@@ -182,44 +182,44 @@
     "alt": "Yasser construit une maquette avant tout paiement, Kūro à côté"
   },
   "process": {
-    "kicker": "/ 05 · LA MÉTHODE",
+    "kicker": "/ 05 · LA MÉTHODE · CINQ TEMPS",
     "title": "Comment on travaille.",
     "now": "/ ÉTAPE",
     "steps": [
       {
         "t": "Écouter",
-        "d": "Un appel, vos objectifs, vos contraintes. Pas de jargon.",
+        "d": "Un appel. Vos objectifs, vos contraintes, vos mots. Le jargon reste à la porte.",
         "m": "il réfléchit.",
         "alt": "Yasser devant un mur de notes reliées par des fils"
       },
       {
         "t": "Aperçu",
-        "d": "Votre page d’accueil construite, avant tout engagement.",
+        "d": "Votre page d’accueil, construite avant tout engagement. On montre d’abord ; l’argent vient après.",
         "m": "il est confiant.",
         "alt": "Yasser construit une maquette à son établi"
       },
       {
         "t": "Construire",
-        "d": "Un périmètre écrit, un prix ferme, et vous voyez le site avancer.",
+        "d": "Un périmètre écrit, un prix ferme, et le site qui avance sous vos yeux. Le prix, lui, ne bouge plus.",
         "m": "ne pas déranger.",
         "alt": "Yasser accoudé à sa tablette, Kūro dessus, des cafés partout"
       },
       {
         "t": "Lancer",
-        "d": "Mise en ligne, tests de vitesse, et tous les accès remis à votre nom.",
+        "d": "Mise en ligne, tests de vitesse, et tous les accès remis à votre nom. Les clés changent de main.",
         "m": "c’est en ligne !",
         "alt": "Yasser à son bureau dans une pièce lumineuse, Kūro au fond"
       },
       {
         "t": "Entretenir",
-        "d": "Trente jours de corrections, le support de votre formule, puis la maintenance si vous la voulez.",
+        "d": "Trente jours de corrections, le support de votre formule, puis la maintenance si vous la voulez. Un site s’entretient comme un outil.",
         "m": "café n°4.",
         "alt": "Yasser à son bureau la nuit, Kūro endormi sur le clavier"
       }
     ]
   },
   "pricing": {
-    "kicker": "/ 06 · LES PRIX",
+    "kicker": "/ 06 · LES PRIX · PUBLIÉS",
     "title": "Nos prix. Sans surprise.",
     "lead": "Pas de tarifs « spéciaux » : ce sont les prix publiés du studio, en dinars, en euros et en dollars. Votre devis final tombe dans la fourchette.",
     "type": "/ TYPE DE PROJET",
@@ -396,9 +396,9 @@
     ]
   },
   "proof": {
-    "kicker": "/ 04 · LES REÇUS",
+    "kicker": "/ 04 · LES REÇUS · PIÈCES À L’APPUI",
     "title": "Le travail, en vrai.",
-    "lead": "Trois clients livrés et deux travaux du fondateur. Chaque dossier dit ce qui a été fait, et pour qui.",
+    "lead": "Trois clients livrés et deux travaux du fondateur. Chaque dossier dit ce qui a été fait, pour qui, et où le vérifier.",
     "actor": "Yasser fête une mise en ligne",
     "own": "Aussi, faits maison :",
     "glaive": "Glaive, la démo du studio",
@@ -406,7 +406,7 @@
       "kicker": "DOSSIER 06 · MON PROJET",
       "tag": "Bible des personnages",
       "sub": "Le carnet de personnage de Yasser et Kūro",
-      "desc": "Le projet personnel du fondateur, sans client : la bible d’un personnage et de son chat noir. Un rig de vingt images où Yasser suit le curseur, parle et se repose au bout de cinq secondes, douze visages, six poses en deux temps, dix cartes pour Kūro, la silhouette en sept règles et la façon dont il parle.",
+      "desc": "Le projet personnel du fondateur, sans client : la bible d’un personnage et de son chat noir. Un rig de vingt images où Yasser suit le curseur, parle et se repose au bout de cinq secondes, douze visages, six poses en deux temps, dix cartes pour Kūro, la silhouette en sept règles et la façon dont il parle. Ce qu’il a le droit d’être tient dans ce carnet.",
       "facts": [
         "Un rig de 20 images",
         "12 visages",
@@ -505,9 +505,9 @@
     }
   },
   "lab": {
-    "kicker": "/ 09 · LE LAB",
+    "kicker": "/ 09 · LE LAB · HORS COMMANDE",
     "title": "Ce qu’on fait quand personne ne commande.",
-    "lead": "Affiches, illustrations, expériences : des travaux personnels, et c’est là que naît la direction artistique de vos projets.",
+    "lead": "Affiches, illustrations, expériences. Personne ne les a commandées ; c’est pourtant là que naît la direction artistique de vos projets.",
     "bible": "Le carnet du personnage →",
     "bibleD": "Yasser et Kūro, dessinés en entier : poses, visages, règles.",
     "diary": {
@@ -558,7 +558,7 @@
     ]
   },
   "founder": {
-    "kicker": "/ 10 · LE STUDIO",
+    "kicker": "/ 10 · LE STUDIO · UNE SEULE MAIN",
     "title": "Assez petits pour s’en soucier. Assez seniors pour livrer.",
     "name": "Yasser Hamisse",
     "role": "FONDATEUR · CEO / DIRECTEUR CRÉATIF",
@@ -654,9 +654,9 @@
     ]
   },
   "contact": {
-    "kicker": "/ 12 · ON EN PARLE",
+    "kicker": "/ 12 · ON EN PARLE · PAR ÉCRIT",
     "title": "Rendons-le réel.",
-    "lead": "Choisissez votre canal. Réponse le jour ouvré suivant, par celui qui code.",
+    "lead": "Choisissez votre canal. Réponse le jour ouvré suivant, par celui qui code. Pas de standard, pas de ticket.",
     "hours": "Dimanche–jeudi, 9h–18h · messages seulement, pas d’appels",
     "waK": "WHATSAPP · +213 672 41 25 78",
     "wa": "WhatsApp",
@@ -686,7 +686,7 @@
     "b": {
       "k": "02 · LA NUIT, ET AU-DELÀ",
       "t": "Le monde",
-      "d": "Yasser et Kūro après les heures : la bible des personnages, MERCURY, tr4veler.exe.",
+      "d": "Ce qui se passe quand l’atelier ferme sa porte : la bible des personnages, MERCURY, tr4veler.exe, et le codex qui nomme tout cela.",
       "go": "Entrer dans le monde",
       "bible": "La bible"
     },
@@ -704,15 +704,15 @@
     "aria": "Les trois couches du monde",
     "day": {
       "k": "LE JOUR",
-      "d": "Yasser, Numidea Labs, les clients, la vraie ville."
+      "d": "Yasser, Numidea Labs, les clients, la vraie ville. Ce qui paie le café."
     },
     "night": {
       "k": "LA NUIT",
-      "d": "L’atelier de deux heures du matin. Kūro en est la porte et le contrôle qualité."
+      "d": "L’atelier de deux heures du matin. Kūro en est la porte et le contrôle qualité. Rien n’en sort sans avoir été regardé."
     },
     "real": {
       "k": "LA RÉALITÉ",
-      "d": "Les autres mondes : tr4veler.exe, MERCURY, et VOIDSPLUNKER.std, le projet qui tient la bible des personnages."
+      "d": "Les autres mondes : tr4veler.exe, MERCURY, et VOIDSPLUNKER.std, le projet qui tient la bible des personnages. Chaque projet livré en ouvre la porte."
     },
     "see": "Voir aussi",
     "bible": "La bible (en anglais)",
@@ -849,7 +849,7 @@
       "go": "Réserver le kit sur WhatsApp"
     },
     "ls": {
-      "kicker": "/ SIX LEÇONS",
+      "kicker": "/ SIX LEÇONS · L’ARGENT",
       "title": "Le manuel de l’argent.",
       "lead": "Une idée, un geste, une question. Chaque bonne réponse tamponne votre passeport.",
       "tabs": "Les six leçons",
@@ -1092,7 +1092,7 @@
       "nomad": "Nomade"
     },
     "svc": {
-      "kicker": "/ QUATRE SERVICES",
+      "kicker": "/ QUATRE SERVICES · PRIX FIXE",
       "title": "Pour aller plus loin, à deux.",
       "lead": "Les leçons sont gratuites. Si vous voulez qu’on regarde votre situation ensemble, voici quatre services à prix fixe : le prix est écrit, il ne bouge pas."
     },

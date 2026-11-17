@@ -72,7 +72,7 @@
     }
   },
   "wedge": {
-    "kicker": "/ 01 · THE PROBLEM",
+    "kicker": "/ 01 · THE PROBLEM · TOO MANY HANDS",
     "title": "Every middleman costs money and meaning.",
     "lead": "At a typical agency, your idea passes through five people before it reaches someone who codes. At each step it loses a detail and gains an invoice.",
     "theirsL": "THE TYPICAL AGENCY",
@@ -98,9 +98,9 @@
     }
   },
   "services": {
-    "kicker": "/ 02 · WHAT WE DO",
+    "kicker": "/ 02 · WHAT WE DO · FOUR FAMILIES",
     "title": "What we make real.",
-    "lead": "Four service families, one contact from the first call to maintenance.",
+    "lead": "Four service families, one contact, from the first call to maintenance. Nobody hands you on to someone else.",
     "actor": "Yasser points at the services",
     "items": [
       {
@@ -158,7 +158,7 @@
     ]
   },
   "preview": {
-    "kicker": "/ 03 · THE SIGNATURE OFFER",
+    "kicker": "/ 03 · THE SIGNATURE OFFER · BEFORE YOU PAY",
     "title": "A real demo. Before you pay.",
     "lead": "Before any payment, we build your new site’s homepage with your own content. You click, you test, you decide.",
     "steps": [
@@ -182,44 +182,44 @@
     "alt": "Yasser builds a model before any payment, Kūro beside him"
   },
   "process": {
-    "kicker": "/ 05 · THE METHOD",
+    "kicker": "/ 05 · THE METHOD · FIVE BEATS",
     "title": "How we work.",
     "now": "/ STEP",
     "steps": [
       {
         "t": "Listen",
-        "d": "One call: your goals, your constraints. No jargon.",
+        "d": "One call. Your goals, your constraints, your words. The jargon stays at the door.",
         "m": "thinking.",
         "alt": "Yasser at a wall of notes joined by string"
       },
       {
         "t": "Preview",
-        "d": "Your homepage, built before any commitment.",
+        "d": "Your homepage, built before any commitment. We show first; the money comes after.",
         "m": "confident.",
         "alt": "Yasser builds a model at his workbench"
       },
       {
         "t": "Build",
-        "d": "A written scope, a fixed price, and you watch the site come together.",
+        "d": "A written scope, a fixed price, and the site coming together before your eyes. The price does not move again.",
         "m": "do not disturb.",
         "alt": "Yasser leaning on his drawing tablet, Kūro on top of it, coffee cups everywhere"
       },
       {
         "t": "Launch",
-        "d": "Go-live, speed tests, and every access handed over in your name.",
+        "d": "Go-live, speed tests, and every access handed over in your name. The keys change hands.",
         "m": "it’s live!",
         "alt": "Yasser at his desk in a bright room, Kūro in the background"
       },
       {
         "t": "Care",
-        "d": "Thirty days of fixes, your package’s support, then maintenance if you want it.",
+        "d": "Thirty days of fixes, your package’s support, then maintenance if you want it. A site is kept the way a tool is.",
         "m": "coffee no. 4.",
         "alt": "Yasser at his desk at night, Kūro asleep on the keyboard"
       }
     ]
   },
   "pricing": {
-    "kicker": "/ 06 · PRICING",
+    "kicker": "/ 06 · PRICING · PUBLISHED",
     "title": "Our prices. No surprises.",
     "lead": "No “special” rates: these are the studio’s published prices, in dinars, euros and dollars. Your final quote lands inside the range.",
     "type": "/ PROJECT TYPE",
@@ -396,9 +396,9 @@
     ]
   },
   "proof": {
-    "kicker": "/ 04 · THE RECEIPTS",
+    "kicker": "/ 04 · THE RECEIPTS · WITH THE EVIDENCE",
     "title": "The work, for real.",
-    "lead": "Three delivered clients and two pieces of the founder’s own work. Each file says what was made, and for whom.",
+    "lead": "Three delivered clients and two pieces of the founder’s own work. Each file says what was made, for whom, and where to check it.",
     "actor": "Yasser celebrates a launch",
     "own": "Also, made in-house:",
     "glaive": "Glaive, the studio’s demo",
@@ -406,7 +406,7 @@
       "kicker": "FILE 06 · MY PROJECT",
       "tag": "Character bible",
       "sub": "The character bible of Yasser and Kūro",
-      "desc": "The founder’s own project, with no client: the bible of a character and his black cat. A twenty-frame rig where Yasser follows your cursor, talks and settles after five seconds, twelve faces, six poses in two beats, ten cards for Kūro, the silhouette in seven rules and the way he talks.",
+      "desc": "The founder’s own project, with no client: the bible of a character and his black cat. A twenty-frame rig where Yasser follows your cursor, talks and settles after five seconds, twelve faces, six poses in two beats, ten cards for Kūro, the silhouette in seven rules and the way he talks. What he is allowed to be fits in this notebook.",
       "facts": [
         "A 20-frame rig",
         "12 faces",
@@ -505,9 +505,9 @@
     }
   },
   "lab": {
-    "kicker": "/ 09 · THE LAB",
+    "kicker": "/ 09 · THE LAB · UNCOMMISSIONED",
     "title": "What we make when nobody’s asking.",
-    "lead": "Posters, illustration, experiments: personal work, and it’s where the art direction of your projects is born.",
+    "lead": "Posters, illustration, experiments. Nobody ordered them; yet this is where the art direction of your projects is born.",
     "bible": "The character bible →",
     "bibleD": "Yasser and Kūro, drawn in full: poses, faces, rules.",
     "diary": {
@@ -558,7 +558,7 @@
     ]
   },
   "founder": {
-    "kicker": "/ 10 · THE STUDIO",
+    "kicker": "/ 10 · THE STUDIO · ONE PAIR OF HANDS",
     "title": "Small enough to care. Senior enough to ship.",
     "name": "Yasser Hamisse",
     "role": "FOUNDER · CEO / CREATIVE DIRECTOR",
@@ -654,9 +654,9 @@
     ]
   },
   "contact": {
-    "kicker": "/ 12 · LET’S TALK",
+    "kicker": "/ 12 · LET’S TALK · IN WRITING",
     "title": "Let’s make it real.",
-    "lead": "Pick your channel. A reply the next working day, from the one who codes.",
+    "lead": "Pick your channel. A reply the next working day, from the one who codes. No switchboard, no ticket.",
     "hours": "Sunday–Thursday, 9am–6pm · messages only, no calls",
     "waK": "WHATSAPP · +213 672 41 25 78",
     "wa": "WhatsApp",
@@ -686,7 +686,7 @@
     "b": {
       "k": "02 · THE NIGHT, AND BEYOND",
       "t": "The world",
-      "d": "Yasser and Kūro after hours: the character bible, MERCURY, tr4veler.exe.",
+      "d": "What happens once the workshop shuts its door: the character bible, MERCURY, tr4veler.exe, and the codex that names it all.",
       "go": "Enter the world",
       "bible": "The bible"
     },
@@ -704,15 +704,15 @@
     "aria": "The three layers of the world",
     "day": {
       "k": "THE DAY",
-      "d": "Yasser, Numidea Labs, the clients, the real city."
+      "d": "Yasser, Numidea Labs, the clients, the real city. What pays for the coffee."
     },
     "night": {
       "k": "THE NIGHT",
-      "d": "The workshop at two in the morning. Kūro is its gate and its quality check."
+      "d": "The workshop at two in the morning. Kūro is its gate and its quality check. Nothing leaves it unlooked-at."
     },
     "real": {
       "k": "REALITY",
-      "d": "The other worlds: tr4veler.exe, MERCURY, and VOIDSPLUNKER.std, the project that holds the character bible."
+      "d": "The other worlds: tr4veler.exe, MERCURY, and VOIDSPLUNKER.std, the project that holds the character bible. Every delivered project opens their door."
     },
     "see": "See also",
     "bible": "The bible (in English)",
@@ -849,7 +849,7 @@
       "go": "Book the kit on WhatsApp"
     },
     "ls": {
-      "kicker": "/ SIX LESSONS",
+      "kicker": "/ SIX LESSONS · MONEY",
       "title": "The money manual.",
       "lead": "One idea, one gesture, one question. Each right answer stamps your passport.",
       "tabs": "The six lessons",
@@ -1092,7 +1092,7 @@
       "nomad": "Nomad"
     },
     "svc": {
-      "kicker": "/ FOUR SERVICES",
+      "kicker": "/ FOUR SERVICES · FIXED PRICE",
       "title": "To go further, together.",
       "lead": "The lessons are free. If you want us to look at your situation together, here are four fixed-price services: the price is written down, and it does not move."
     },

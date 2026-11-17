@@ -597,6 +597,13 @@ translated from it.
   eleven entries, type tags and link texts). The words chosen: «الفهرس» for
   the codex, «البنّاء» for the builder, «الختم» for the seal, «المترحّل» for
   nomad in the title.
+- AR review (2026-11-17, the copy sweep's second slice), the Studio
+  `hub/src/i18n/ar.json`: the second tags on eleven labels («أيادٍ كثيرة»,
+  «أربع عائلات», «قبل أن تدفع», «بالدليل», «خمس مراحل», «معلنة», «بلا طلب»,
+  «يد واحدة», «كتابةً», «المال», «سعر ثابت»), `services.lead`, the five
+  `process.steps.N.d`, `proof.lead`, `lab.lead`, `doors.b.d`, the three
+  `start.*.d`, `contact.lead`, the end of `proof.vs.desc`; and on the home
+  page (`assets/i18n/ar.js`): `founder.lead`, `founder.sceneCap`, `svc.lead`.
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1719,3 +1726,62 @@ page; I stopped there so you can judge the voice before it goes further.
 - **A note on search**: Google's guide says a change can take from a few
   hours to several months to show. The titles are the part most likely to be
   seen first.
+
+## 32. The copy sweep, second slice: the voice pushed further (2026-11-17)
+
+You answered the first slice with "keep the codex, push the voice further, do
+the next slices". This is that pass. I read every surface before touching it,
+and the honest finding is that most of them already spoke in this voice: the
+work was mainly on the Studio.
+
+- **The Studio, pushed** (three languages):
+  - nine section labels gained a second tag, in the short "signal" register:
+    "/ 01 · LE PROBLÈME · TROP DE MAINS", "/ 03 · L'OFFRE SIGNATURE · AVANT DE
+    PAYER", "/ 04 · LES REÇUS · PIÈCES À L'APPUI", "/ 05 · LA MÉTHODE · CINQ
+    TEMPS", "/ 06 · LES PRIX · PUBLIÉS", "/ 09 · LE LAB · HORS COMMANDE",
+    "/ 10 · LE STUDIO · UNE SEULE MAIN", "/ 12 · ON EN PARLE · PAR ÉCRIT", and
+    "/ 02 · CE QU'ON FAIT · QUATRE FAMILLES". The number and the plain name
+    stay first;
+  - the five steps of the method each end on a short last line ("Le jargon
+    reste à la porte.", "On montre d'abord ; l'argent vient après.", "Le
+    prix, lui, ne bouge plus.", "Les clés changent de main.", "Un site
+    s'entretient comme un outil.");
+  - the three layers of the world each gained a last line ("Ce qui paie le
+    café.", "Rien n'en sort sans avoir été regardé.", "Chaque projet livré
+    en ouvre la porte.");
+  - a few leads: the services ("Personne ne vous passe à un autre."), the
+    proofs ("…pour qui, et où le vérifier."), the Lab ("Personne ne les a
+    commandées ; c'est pourtant là que naît la direction artistique de vos
+    projets."), the contact block ("Pas de standard, pas de ticket."), the
+    night door, and the VOIDSPLUNKER dossier's last line.
+  Each added line says something already true of the site. "Pas de standard,
+  pas de ticket" and "Personne ne vous passe à un autre" are promises about
+  how you work: they match what the page already says (one contact, messages
+  only), but they are yours to keep.
+- **The manual**: two labels gained a tag ("/ SIX LEÇONS · L'ARGENT", "/
+  QUATRE SERVICES · PRIX FIXE"). Its three sets of lessons, the radio and
+  Kūro's lines were written in this voice already; I left them.
+- **The home page**: three lines only, because it is the page that earns and
+  its register is the plain one: the founder's lead ("Derrière Numidea, une
+  seule main : un fondateur qui conçoit, code et livre lui-même. Des
+  freelances le rejoignent quand un projet le demande."), the caption under
+  your portrait ("Yasser, à l'atelier. Ce café n'est pas le premier."), and
+  the services' lead ("…Un seul interlocuteur pour tous."). The headline, the
+  offer, the prices and the answers are untouched.
+- **The character bible**: one pair added to "He does / He never" ("Names a
+  thing, says whose it is and what it costs, then one dry line." / "Borrows
+  another world's slang to sound like it."), and a link to the codex among
+  its ways back to the Studio.
+- **The studio's rulebook** (the brand identity page): the voice plate now
+  states the two registers, with one line from the codex as an example.
+- **Left alone, and why**:
+  - the 404 page: its three lines and Kūro's ("L'atelier, lui, est resté
+    ouvert.") are already this voice;
+  - the traveller's codex: it is your own lore, with its own voice plate; a
+    studio voice laid over it would flatten it;
+  - AlmaFlowClim's brand book: it is a client's brand, in the client's voice;
+  - the exploration page: labelled as not adopted.
+- **If you want it louder still**, the places left are the ones I kept plain
+  on purpose: the Studio's headlines, the Aperçu's three steps, the prices
+  and the answers to questions. Changing those trades clarity for style, so
+  that is a decision for you, not a sweep.

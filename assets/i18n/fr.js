@@ -45,7 +45,7 @@ var I18N = {
   'work.live': 'Voir le site <span aria-hidden="true">↗</span><span class="sr-only"> (nouvel onglet)</span>', 'work.sheet': 'Voir le projet en détail',
   'scene.cta': 'Voir chaque réalisation en détail <span aria-hidden="true">→</span>',
   'founder.kicker': 'Le fondateur', 'founder.title': 'Qui construit <em>votre site.</em>',
-  'founder.lead': 'Derrière Numidea : un fondateur qui conçoit, code et livre lui-même, et des freelances quand un projet le demande.',
+  'founder.lead': 'Derrière Numidea, une seule main : un fondateur qui conçoit, code et livre lui-même. Des freelances le rejoignent quand un projet le demande.',
   'founder.role': 'Designer graphique & développeur web\u00a0· Fondateur', 'founder.years': '6 ans',
   'founder.langs': 'FR C2\u00a0· EN C1\u00a0· AR langue maternelle',
   'founder.xp': 'Expérience',
@@ -206,7 +206,7 @@ var I18N = {
   'tarifs.lead': 'Nos trois formules et la maintenance, en dinars, en euros ou en dollars ; l’estimateur pour ce que les formules ne chiffrent pas ; puis les tarifs courants en\u00a0Algérie, en France et aux États-Unis, sources à l’appui.',
   'tarifs.jTiers': 'Formules', 'tarifs.jEst': 'Estimateur', 'tarifs.jMk': 'Marchés', 'tarifs.jMd': 'Modèles', 'tarifs.jFaq': 'FAQ',
   'tarifs.link': 'Voir le guide des prix 2026 <span aria-hidden="true">→</span>', 'tarifs.navLink': 'Guide des prix',
-  'svc.lead': 'Nos cinq services principaux — et cinq autres juste en dessous.',
+  'svc.lead': 'Cinq services principaux, et cinq autres juste en dessous. Un seul interlocuteur pour tous.',
   'prev.tag': 'Offre signature', 'prev.name': "L’Aperçu", 'prev.promise': 'Zéro risque : vous voyez avant de payer.',
   'prev.more': 'Le détail des étapes', 'prev.terms': 'Gratuit et sans engagement\u00a0· réservé aux entreprises immatriculées\u00a0· 4 Aperçus par mois au maximum, tous clients confondus.', 'prev.cta': 'Demander mon Aperçu gratuit <span aria-hidden="true">→</span>', 'prev.wa': 'Écrire sur WhatsApp', 'prev.msg': 'Bonjour, je souhaite voir l\'Aperçu gratuit de mon futur site.\nEntreprise : \nTéléphone / WhatsApp : \nSite actuel (s\'il existe) : \nCe dont j\'ai besoin : ', 'prev.waText': 'Bonjour Numidea Labs, je souhaite l’Aperçu gratuit de mon futur site.\nEntreprise : \nActivité et ville : \nSite actuel (s’il existe) : ', 'form.source': 'Source', 'contact.waNote': 'messages seulement, pas d’appels\u00a0· gratuit via l’appli',
   'f1.name': 'Sites & applications web',
@@ -252,7 +252,7 @@ var I18N = {
   'atelier.cta': 'Entrer dans l’atelier <span aria-hidden="true">→</span>',
   'atelier.alt': 'Yasser, à sa table d’atelier la nuit, tient une planche dessinée ; Kūro, le chat noir, est assis sur un plan à côté de lui, près d’un gobelet de café.',
   'founder.sceneAlt': 'Portrait dessiné de Yasser : cheveux longs noués, lunettes rondes, veste crème, un gobelet de café à la main.',
-  'founder.sceneCap': 'Yasser, à l’atelier',
+  'founder.sceneCap': 'Yasser, à l’atelier. Ce café n’est pas le premier.',
   'seal.est': 'Estimé', 'seal.sent': 'Envoyé',   /* the red seal stamps (estimator result, sent form) */
   'footer.studio': 'Le Studio',
 };

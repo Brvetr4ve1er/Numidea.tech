@@ -45,7 +45,7 @@ var I18N = {
   'work.live': 'Visit the site <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>', 'work.sheet': 'See the project in detail',
   'scene.cta': 'See each project in detail <span aria-hidden="true">→</span>',
   'founder.kicker': 'The founder', 'founder.title': 'Who builds <em>your site.</em>',
-  'founder.lead': 'Behind Numidea: a founder who designs, codes and delivers himself, and freelancers when a project calls for it.',
+  'founder.lead': 'Behind Numidea, one pair of hands: a founder who designs, codes and delivers himself. Freelancers join him when a project calls for it.',
   'founder.role': 'Graphic designer & web developer\u00a0· Founder', 'founder.years': '6 yrs',
   'founder.langs': 'FR C2\u00a0· EN C1\u00a0· AR native',
   'founder.xp': 'Experience',
@@ -206,7 +206,7 @@ var I18N = {
   'tarifs.lead': 'Our three packages and maintenance, in dinars, euros or dollars; the estimator for what the packages do not price; then typical rates in\u00a0Algeria, France and the United States, sources included.',
   'tarifs.jTiers': 'Packages', 'tarifs.jEst': 'Estimator', 'tarifs.jMk': 'Markets', 'tarifs.jMd': 'Models', 'tarifs.jFaq': 'FAQ',
   'tarifs.link': 'See the 2026 price guide <span aria-hidden="true">→</span>', 'tarifs.navLink': 'Price guide',
-  'svc.lead': 'Our five core services — and five more just below.',
+  'svc.lead': 'Five core services, and five more just below. One contact for all of them.',
   'prev.tag': 'Signature offer', 'prev.name': 'The Preview', 'prev.promise': 'Zero risk: you see it before you pay.',
   'prev.more': 'Every step, in detail', 'prev.terms': 'Free, no obligation\u00a0· registered businesses only\u00a0· at most 4 Previews a month, across all clients.', 'prev.cta': 'Request my free Preview <span aria-hidden="true">→</span>', 'prev.wa': 'Chat on WhatsApp', 'prev.msg': 'Hello, I would like to see a free Preview of my new website.\nCompany: \nPhone / WhatsApp: \nCurrent site (if any): \nWhat I need: ', 'prev.waText': 'Hello Numidea Labs, I would like a free Preview of my new website.\nCompany: \nBusiness and city: \nCurrent site (if any): ', 'form.source': 'Source', 'contact.waNote': 'messages only, no calls\u00a0· free in the app',
   'f1.name': 'Sites & web applications',
@@ -252,7 +252,7 @@ var I18N = {
   'atelier.cta': 'Enter the workshop <span aria-hidden="true">→</span>',
   'atelier.alt': 'Yasser at his workshop table at night, holding up a drawn panel; Kūro, the black cat, sits on a blueprint beside him, next to a coffee cup.',
   'founder.sceneAlt': 'Drawn portrait of Yasser: long hair tied up, round glasses, a cream jacket, a coffee cup in his hand.',
-  'founder.sceneCap': 'Yasser, at the workshop',
+  'founder.sceneCap': 'Yasser, at the workshop. This coffee is not the first.',
   'seal.est': 'Estimated', 'seal.sent': 'Sent',   /* the red seal stamps (estimator result, sent form) */
   'footer.studio': 'The Studio',
 };
