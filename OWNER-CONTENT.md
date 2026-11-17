@@ -1877,3 +1877,58 @@ only.
 - **Not changed**: the home page's first heading ("Voyez votre page d'accueil
   avant de payer."), which is the offer itself, and the README's opening
   quote, which is the studio's general tagline.
+
+## 35. An outside scorecard, checked claim by claim (2026-11-17)
+
+You pasted a scorecard of the site (eight areas, scored 4 to 6 out of 10,
+with six priority fixes). I measured every claim on the built site before
+acting on any of it. Two things explain most of the low scores: the reviewer
+came in by the Studio page and took it for the home page, and they read the
+site on its second address, `numidea-tech.vercel.app`.
+
+**What the reviewer did not see.** The home page is `/`, not `/hub/`. It is
+navy and gold like the price guide, its first heading is the offer ("Voyez
+votre page d'accueil avant de payer."), the offer's conditions are printed
+under the button, and it makes 26 requests. So "make the Preview the front
+door" describes the page that already is the front door.
+
+| The scorecard says | Measured | Verdict |
+|---|---|---|
+| The hub, /tarifs/ and the 404 look like three studios | Two looks: navy and gold (home, price guide, 404), cream and red (the Studio, the manual). It was decided on 15 November as night and day modes. | True as seen, and deliberate. Still a fair point: a visitor who lands on the Studio first meets a different studio one click later. |
+| The hub loads Archivo, Montserrat, Manrope, Sora, DM Sans | At load: Archivo, Geist, Geist Mono, Permanent Marker, Noto Sans JP. The other four are the clients' own typefaces, fetched only when their case study scrolls into view. | Mostly false. |
+| The rulebook lists other faces than the Studio uses | The rulebook describes the home page's system only. | True: the Studio's faces are written in BRAND.md, not in the public rulebook. |
+| The hub makes 166 requests, 2.4 MB, 319 images | 47 requests when the page opens; 169 only after scrolling all 35,000 px of it. 298 of the 319 images load lazily. | True of a full scroll, not of a visit. The page is long. |
+| /tarifs/ is light and well titled | 14 requests, no image, one heading. | True. |
+| The brand page is a public draft with internal notes | It says "draft 0.1 · 27.10.2026" and tags plates "Proposed". It is linked from the Studio. | True. Yours to decide: sign it off, or unlink it. |
+| 24 of 36 images on it have no alt text | No image lacks the attribute. 24 are marked decorative on purpose: they sit inside mock social posts whose captions describe them. | False. |
+| Canonical tags point to the wrong address | Every page names itself on `www.numedialab.dev`. The reviewer was on `numidea-tech.vercel.app`, where that looks like a mismatch. An English browser on /tarifs/ is sent to /en/tarifs/, whose canonical is /en/tarifs/. | False as a defect; true as a symptom of two live addresses. |
+| The 404 is French by default | It prints its line in three languages and highlights the visitor's. | Minor. |
+| The Preview's conditions are hidden in question 1 | They are printed under the offer on the home page and in the Studio's Aperçu section. | False. Whether the conditions are too strict is a business choice. |
+| Prices in euros and dollars, but only an Algerian WhatsApp and a Gmail | Correct. | True. A contact address on your own domain would answer half of it. |
+| The first heading fails contrast | Its red line measured 3.91:1. That passes the standard for large type (3:1) and fails the stricter 4.5:1 some tools apply. | Fixed: it is now 5.16:1. |
+| Tiny text | A few decorative labels under 12 px, none read by a screen reader. | Partly true. The course's level labels are now 12 px. Two remain by design: the arcade card's "PRESS START" and the word on the seal. |
+| No sign of reduced-motion handling | Each page carries 8 to 20 reduced-motion rules, and the scripts stop all movement; a check runs on every page for it. | False. |
+| Autoplay-style video | Seven clips, none plays by itself, each has a poster. | False. |
+| Three clients, no quotes | Correct: no client quote is published. It has been on your list since October (consent). | True, and yours. |
+| A job test shown as a case study | The Studio's Heetch dossier is your work as an employee there, and says so. "Heetch Entry Test" is the title of one of twelve Behance projects listed in dossier 08. | Misread, but the title does read like a test. One line to remove if you want. |
+| The copy contradicts itself | The home page says four client sites delivered; the Studio says three clients. Nomara Voyages is on the home page and has no dossier in the Studio. | True. Which number is right is yours to say. |
+
+**Fixed now** (small, no decision needed): the red line of the Studio's first
+heading uses the darker text red; the course's level labels are 12 px.
+
+**Their six priorities, and what I would do with each:**
+1. *Make /tarifs/ and the Preview the front door.* Already so at `/`. What
+   would help: share `/` as the link, not `/hub/`.
+2. *One domain.* The tags are already right. The fix is the redirect from
+   `numidea-tech.vercel.app` to `www.numedialab.dev`, offered on the 16th and
+   still waiting for your word. This scorecard is the proof it matters.
+3. *Hub under 40 requests.* It opens with 47. Moving the world (below) is
+   what would cut it properly.
+4. *Move the lore to its own section.* The one structural change I would
+   make: a page for the world (the dossiers 06 to 08, the Lab, the diary, the
+   codex), as was done for the manual. The Studio would be the client page it
+   says it is, and far lighter.
+5. *Contrast, reduced motion, draft labels.* Contrast is fixed, reduced
+   motion was already there, the draft label is your decision.
+6. *Two client quotes, remove the Heetch test.* The quotes need your
+   clients' consent. The Behance title is one line.

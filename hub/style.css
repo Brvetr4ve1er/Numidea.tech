@@ -90,7 +90,7 @@ button{font:inherit;color:inherit}
 .st-sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .st-skip{position:absolute;inset-inline-start:8px;top:-60px;z-index:120;padding:12px 16px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-mono);text-decoration:none}
 .st-skip:focus{top:8px}
-.st-red{color:var(--red)}
+.st-red{color:var(--red-text)}   /* text red, 5.16:1 on the paper: the fill red gave 3.91:1, enough for large type only */
 .st-muted{color:var(--muted)}
 
 .st-wrap{box-sizing:content-box;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gx)}
@@ -1973,7 +1973,7 @@ html.is-playing{scroll-behavior:auto}
 .st-ls--jeu .st-ls__tabs{grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
 .st-ls--jeu .st-ls__tab{padding:6px 6px 10px}
 .st-ls--jeu .st-ls__tab img{image-rendering:pixelated}
-.st-ls--jeu .st-ls__n{font-family:"Press Start 2P",var(--f-mono);font-size:9px;letter-spacing:.02em;color:var(--brass)}
+.st-ls--jeu .st-ls__n{font-family:"Press Start 2P",var(--f-mono);font-size:12px;letter-spacing:0;color:var(--brass)}
 :lang(ar) .st-ls--jeu .st-ls__n{font-family:var(--f-mono);font-size:var(--t-label)}
 .st-ls--jeu .st-ls__tab[aria-selected="true"]{border-color:var(--brass)}
 .st-ls--jeu .st-ls__t{font-size:13px}
@@ -2010,7 +2010,8 @@ html.is-playing{scroll-behavior:auto}
   .st-ls--jeu .st-ls__tabs{gap:6px}
   .st-ls--jeu .st-ls__tab{padding:4px 4px 8px}
   .st-ls--jeu .st-ls__t{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-  .st-ls--jeu .st-ls__n{font-size:10px}
+  .st-ls--jeu .st-ls__n{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em}   /* the arcade face at 12 px is wider than a phone's tab */
+  @media (max-width:359px){.st-ls--jeu .st-ls__n span{display:none}}   /* the number alone: "NIV. 1" is wider than a 280 px screen's tab */
   .st-jeu__hud{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em}
   .st-jeu__bars li{grid-template-columns:minmax(64px,96px) minmax(0,1fr) auto;gap:6px}
   .st-jeu__src ol{padding-inline-start:32px}
