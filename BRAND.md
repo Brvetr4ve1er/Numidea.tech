@@ -1896,7 +1896,7 @@ A new block goes on the page of the reader it is for. If it is for neither, it i
 
 The site speaks in two registers, and the rule is where each one goes.
 
-**The plain register** carries everything a client must understand or a search engine must read: page titles and descriptions, the first heading of a page, the offer, prices, terms, the answers to questions, a lesson's facts, a button's label. It uses the words a client would type ("site vitrine", "application web", "prix d'un site web en Algérie"), says the city, and never trades clarity for style. A title is unique to its page, short, and says what the page offers and where the studio is; a description is one or two sentences with the page's most relevant points.
+**The plain register** carries everything a client must understand or a search engine must read: page titles and descriptions, the first heading of a page that states an offer (the home page's, the price guide's), the offer, prices, terms, the answers to questions, a lesson's facts, a button's label. It uses the words a client would type ("site vitrine", "application web", "prix d'un site web en Algérie"), says the city, and never trades clarity for style. A title is unique to its page, short, and says what the page offers and where the studio is; a description is one or two sentences with the page's most relevant points.
 
 **The world's register** carries the rest: the lines under a card, the codex, the dossiers of the founder's own projects, the Lab, Kūro's asides, the labels in the margins. It fuses two things.
 - *Signal.* Short, present tense, concrete. A tag and a number before an adjective ("/ 02 · THE ENGINE", "2–6 SEMAINES"). The cadence of things that ship: a build, a receipt, a version. Confidence without boasting; one dry joke, never two.
@@ -1910,7 +1910,7 @@ The site speaks in two registers, and the rule is where each one goes.
 5. The last line is short. If it explains itself, it is not a last line.
 6. Three languages carry the same register; product and world names stay in Latin letters (DOURO·8, MERCURY, tr4veler.exe, VOIDSPLUNKER.std).
 
-**Section headlines** on the Studio may speak in the world's register, because the label above each one carries the section's plain name: the pair is read together. A headline still states something its section shows ("Vite. Solide. Trouvé." over the three cards on speed, hosting and search). A page's title and its first heading are not section headlines: they stay plain.
+**Section headlines** on the Studio may speak in the world's register, because the label above each one carries the section's plain name: the pair is read together. A headline still states something its section shows ("Vite. Solide. Trouvé." over the three cards on speed, hosting and search). A page's title always stays plain. The Studio's first heading speaks in the world's register by the owner's decision of 2026-11-17 ("Votre idée. Une seule main. Votre logiciel."), on two conditions. It is written for its column: short sentences of two or three words, because the heading sits beside the character and a long line breaks into single words. And, on one condition that holds for any first heading written this way: the label above it and the line below it say in plain words what the studio is, where it is and what it makes.
 
 **Section labels** carry both registers in one line: the number and the plain name first, then one tag of two or three words in the signal register ("/ 05 · LA MÉTHODE · CINQ TEMPS"). The tag states a fact about the section, never a mood.
 

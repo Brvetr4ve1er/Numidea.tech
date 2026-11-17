@@ -610,6 +610,9 @@ translated from it.
   `pricing.title` («الأسعار على الطاولة.»), `tech.title` («سريع. ثابت.
   ظاهر.»), `faq.title` («الأسئلة المحرجة، أولًا.»), `contact.title` («الباب
   مفتوح. اكتب لنا.»).
+- AR review (2026-11-17, the copy sweep's fourth slice), the Studio
+  `hub/src/i18n/ar.json`: the first heading, `hero.h1a`, `hero.h1b`,
+  `hero.h1c` («فكرتك.» «يد واحدة.» «برنامجك.»).
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1834,3 +1837,43 @@ headlines.
 - **"Rendons-le réel" is gone as the closing line.** It mirrored "Ce qu'on
   rend réel" at the top of the services. If you miss the pair, say so and I
   put it back.
+
+## 34. The copy sweep, fourth slice: the Studio's first heading (2026-11-17)
+
+You said "go louder on the first heading too". It is done, on the Studio page
+only.
+
+- **Before**: "On construit le logiciel que votre business attend."
+- **Now**, three short lines, the last in red:
+  **"Votre idée. Une seule main. Votre logiciel."**
+  In English "Your idea. One pair of hands. Your product.", in Arabic
+  «فكرتك. يد واحدة. برنامجك.» (The English says "product" because
+  "SOFTWARE." is too wide a word for the heading's column on a very wide
+  screen: it touched the card beside it.)
+- **Why this line**: it is the page's whole argument in three beats. What is
+  yours goes in, what is yours comes out, and one pair of hands stands
+  between the two: the same claim the first section makes at length ("Pas
+  d'intermédiaires. Juste le builder."). "Une seule main" is already how the
+  page names you (the label over section 10, the founder's lead on the home
+  page).
+- **A first wording was dropped**: "Votre idée entre. Un logiciel sort. Une
+  seule main." At desktop width the heading's column is narrow, and it broke
+  into eight one-word lines that pushed the two buttons further down. The
+  wording kept holds in six lines there, one fewer than the old heading, and
+  in three on a phone.
+- **What keeps it clear**: the plain words sit directly around it. The label
+  above still reads "/ STUDIO LOGICIEL · BORDJ BOU ARRÉRIDJ · FR·EN·AR", the
+  line below still reads "Sites, applications, automatisations et identités,
+  conçus et codés par les mêmes mains.", and the page's title, the one Google
+  shows, is unchanged: "Studio web et logiciel à Bordj Bou Arréridj | Numidea
+  Labs".
+- **The honest caveat**: this is the first thing a visitor reads, and it is
+  now a claim about how you work more than a description of what you sell.
+  "Une seule main" is true as the page tells it (you scope, design, code and
+  deliver; freelancers join for a precise part and you answer for the
+  delivery). If a project ever runs otherwise, this line is the first to
+  change. And if enquiries from the Studio page drop in the coming weeks, the
+  old heading is one edit away.
+- **Not changed**: the home page's first heading ("Voyez votre page d'accueil
+  avant de payer."), which is the offer itself, and the README's opening
+  quote, which is the studio's general tagline.
