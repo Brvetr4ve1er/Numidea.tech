@@ -82,7 +82,7 @@ const PREFIXES = {
 const BLOCKS = {
   'www.linkedin.com/': 'answers 999 (its bot wall) or 429 to anyone not signed in, whatever the profile',
   'www.instagram.com/': 'after a request or two, redirects every page to its login with a 429, existing or not',
-  'www.behance.net/gallery/': 'gallery pages answer 403 with an empty noindex page, a gallery that does not exist too (profile pages answer 200 or 404 and stay checked)',
+  'www.behance.net/': 'answers 403 to this script: gallery pages always did (an empty noindex page, a gallery that does not exist too); profile pages answered 200 or 404 until 2026-11-17, and 403 since, from two networks, so a profile is no longer told from a missing one here',
   'clutch.co/': 'Cloudflare challenge: 403 "Just a moment…" (cf-mitigated: challenge)',
   '*.tumblr.com/': '403 "Checking your browser…", a JavaScript check in front of every blog',
   'www.ftc.gov/': 'answers 404 to this script for every page, its home page too (seen 2026-11-16): a wall, not a missing page',

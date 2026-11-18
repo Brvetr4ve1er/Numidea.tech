@@ -1916,6 +1916,13 @@ door" describes the page that already is the front door.
 **Fixed now** (small, no decision needed): the red line of the Studio's first
 heading uses the darker text red; the course's level labels are 12 px.
 
+**One link I can no longer confirm by machine: your Behance profile**
+(`behance.net/br4vetr4aveler1`, linked from the home page, the Studio and the
+character bible). Since 17 November Behance answers "forbidden" to automated
+readers for profile pages, as it always did for project pages. The link has
+not changed and it answered until then, but please open it once yourself to
+be sure it still leads to your profile.
+
 **Their six priorities, and what I would do with each:**
 1. *Make /tarifs/ and the Preview the front door.* Already so at `/`. What
    would help: share `/` as the link, not `/hub/`.

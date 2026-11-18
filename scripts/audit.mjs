@@ -161,7 +161,11 @@ const run=async(label,path,o={})=>{
   // a control the act needs that is missing (an older deploy, a renamed id) is a failure, not a crash
   const broke=act?await act(p).catch(e=>['stopped: '+e.message.split('\n')[0].slice(0,120)]):[];
   await p.evaluate(()=>{document.documentElement.style.scrollBehavior='auto'});
-  await p.evaluate(async()=>{/* the height is read at every step: the Studio's cases take their real height as they near the screen, so the page grows under the scroll (1,640px at 280px in French, 2026-11-16) and a height read once stopped short of the contact card */for(let y=0;y<document.body.scrollHeight;y+=innerHeight/2){scrollTo(0,y);await new Promise(r=>setTimeout(r,45))}scrollTo(0,document.body.scrollHeight);await new Promise(r=>setTimeout(r,90));/* the very bottom too: half-screen steps can land a footer picture just under the half the loops wait for */scrollTo(0,0)});
+  await p.evaluate(async()=>{/* the height is read at every step: the Studio's cases take their real height as they near the screen, so the page grows under the scroll (1,640px at 280px in French, 2026-11-16) and a height read once stopped short of the contact card */for(let y=0;y<document.body.scrollHeight;y+=innerHeight/2){scrollTo(0,y);await new Promise(r=>setTimeout(r,45))}scrollTo(0,document.body.scrollHeight);await new Promise(r=>setTimeout(r,90));/* the very bottom too: half-screen steps can land a footer picture just under the half the loops wait for */
+    /* a reveal the fast scroll passed between two frames is not a reveal that never fires: each one still hidden is put in the middle of the screen for two frames before it is counted (the Studio in English on a phone, then in Arabic on a desktop, each failed one run in three on 2026-11-17 and passed every rerun) */
+    const frame=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+    for(const e of document.querySelectorAll('.reveal,[data-reveal]')){const cs=getComputedStyle(e);if(cs.display==='none'||parseFloat(cs.opacity)>=0.5)continue;e.scrollIntoView({block:'center'});await frame();await new Promise(r=>setTimeout(r,60))}
+    scrollTo(0,0)});
   await p.waitForTimeout(1800);   // reveals run 1s plus a stagger delay
   const m=await p.evaluate(()=>{
     const dw=document.documentElement.clientWidth;const of=[];
