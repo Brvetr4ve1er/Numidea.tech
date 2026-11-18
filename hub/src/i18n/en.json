@@ -505,7 +505,7 @@
     }
   },
   "lab": {
-    "kicker": "/ 09 · THE LAB · UNCOMMISSIONED",
+    "kicker": "/ THE LAB · UNCOMMISSIONED",
     "title": "What we make when nobody’s asking.",
     "lead": "Posters, illustration, experiments. Nobody ordered them; yet this is where the art direction of your projects is born.",
     "bible": "The character bible →",
@@ -558,7 +558,7 @@
     ]
   },
   "founder": {
-    "kicker": "/ 10 · THE STUDIO · ONE PAIR OF HANDS",
+    "kicker": "/ 09 · THE STUDIO · ONE PAIR OF HANDS",
     "title": "Small enough to care. Senior enough to ship.",
     "name": "Yasser Hamisse",
     "role": "FOUNDER · CEO / CREATIVE DIRECTOR",
@@ -623,7 +623,7 @@
     }
   },
   "faq": {
-    "kicker": "/ 11 · QUESTIONS",
+    "kicker": "/ 10 · QUESTIONS",
     "title": "The awkward questions, first.",
     "actor": "Yasser answers on his phone",
     "items": [
@@ -654,7 +654,7 @@
     ]
   },
   "contact": {
-    "kicker": "/ 12 · LET’S TALK · IN WRITING",
+    "kicker": "/ 11 · LET’S TALK · IN WRITING",
     "title": "The door is open. Write.",
     "lead": "Pick your channel. A reply the next working day, from the one who codes. No switchboard, no ticket.",
     "hours": "Sunday–Thursday, 9am–6pm · messages only, no calls",
@@ -695,8 +695,7 @@
       "t": "I’m learning",
       "d": "Getting paid from far away, working from anywhere, playing fair: twenty-two short lessons, four fixed-price services, and the workshop radio.",
       "go": "Open the manual"
-    },
-    "skip": "Skip to the world"
+    }
   },
   "start": {
     "kicker": "/ START HERE",
@@ -1656,5 +1655,22 @@
         "ok": "Yes. You count back 180 days from each day of your stay: leaving for a day erases nothing. The Commission’s calculator does the count for you."
       }
     ]
+  },
+  "world": {
+    "ui": {
+      "title": "The world of Yasser and Kūro: bible, MERCURY, codex | Numidea Labs",
+      "desc": "The personal projects of Numidea Labs’ founder: the character bible, the MERCURY short film, the posters, the Lab and the workshop diary."
+    },
+    "kicker": "/ THE WORLD · PERSONAL PROJECTS",
+    "title": "Behind the night door.",
+    "note": "Nothing on this page was commissioned by a client. These are the founder’s own projects: a character bible, a short film, posters, a diary. The client work is on the Studio.",
+    "nav": {
+      "aria": "Sections of the world",
+      "codex": "Codex",
+      "bible": "The bible",
+      "design": "Design",
+      "lab": "The Lab",
+      "diary": "Diary"
+    }
   }
 }

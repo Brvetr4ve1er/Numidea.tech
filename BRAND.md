@@ -1884,13 +1884,15 @@ Source: the creative audit of 2026-11-15 and the owner's approval of its moves.
 
 **The market in the calculator.** Three bars (Algeria, France, United States) from the price guide's sourced table (`MARKET`, `assets/app.js` 14), each in its own currency on one logarithmic scale, with the estimate laid across in red. A type without a sourced row shows none.
 
-## Two pages, two readers (2026-11-16)
+## Three pages, three readers (2026-11-16, the world's page 2026-11-18)
 
-The Studio (`/hub/`) is the client's page and reads in a buyer's order, proof before price: the opening, the doors, the problem, what we do, the Aperçu, client work, then the method and the prices, the brand, the web. After that comes the world (the personal dossiers, the Lab), then the studio, the questions and the contact. Nothing on it sells to another reader: its calculator prices client projects only, and motion is one line of the services list with its reel in the Lab.
+The Studio (`/hub/`) is the client's page and reads in a buyer's order, proof before price: the opening, the doors, the problem, what we do, the Aperçu, client work, then the method and the prices, the brand, the web, then the studio, the questions and the contact. The motion reel sits under the motion line of the services: it shows a service. Nothing on it sells to another reader: its calculator prices client projects only, and motion is one line of the services list with its reel in the Lab.
 
 The manual (`/hub/manuel.html`) is the learner's page: the lessons first, which are free, then the coaching services at their fixed prices, then a way back to the Studio. It has no calculator; a service is booked with a WhatsApp line that names it and its price. The Studio opens on it through a third, slimmer door; the two big doors stay the client's and the world's.
 
-A new block goes on the page of the reader it is for. If it is for neither, it is not for the Studio.
+The world (`/hub/monde.html`) is the page of whoever came for the characters: the codex, the personal dossiers 06 to 08, the Lab and the diary, under one plain line that says nothing there is a client's. It was the Studio's back half until 2026-11-18; the Studio's second door, its bar and its footer lead to it, and it leads back with the same band as the manual. It sells nothing.
+
+A new block goes on the page of the reader it is for. If it is for none of the three, it is not for the Studio.
 
 ## The world's voice (2026-11-16)
 
@@ -3374,8 +3376,8 @@ published set until 2026-10-31); every walker (stage, deploy-files, check,
 build-legal) asks the same function. Every host builds from `_site/`: GitHub
 The studio's own domain is canonical (https://www.numedialab.dev/, `BASE`;
 owner decision 2026-11-16; served by Vercel, whose own address
-https://numidea-tech.vercel.app/ shows the same deployment and was the
-canonical from 2026-11-10), GitHub Pages
+https://numidea-tech.vercel.app/ was the canonical from 2026-11-10 and
+redirects to it, page for page, since 2026-11-18: `vercel.json`), GitHub Pages
 (https://brvetr4ve1er.github.io/Numidea.tech/, `PAGES_BASE`, via
 `.github/workflows/pages.yml`) and Netlify are mirrors.
 `NOT_DEPLOYED` lists what must never be served, including `knowledge-base/`,

@@ -613,6 +613,10 @@ translated from it.
 - AR review (2026-11-17, the copy sweep's fourth slice), the Studio
   `hub/src/i18n/ar.json`: the first heading, `hero.h1a`, `hero.h1b`,
   `hero.h1c` («فكرتك.» «يد واحدة.» «برنامجك.»).
+- AR review (2026-11-18, the world's page), the Studio
+  `hub/src/i18n/ar.json`: the `world` group («خلف باب الليل.», the title and
+  description, the label, the line under the premise, the six names in the
+  bar: «الفهرس», «الدفتر», «التصميم», «المختبر», «اليوميات»).
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1939,3 +1943,43 @@ be sure it still leads to your profile.
    motion was already there, the draft label is your decision.
 6. *Two client quotes, remove the Heetch test.* The quotes need your
    clients' consent. The Behance title is one line.
+
+## 36. The world has its own page, and the second address redirects (2026-11-18)
+
+You said "do the redirect and give the world its own page". Both are done.
+
+**The world's page** is `/hub/monde.html`. It holds what was the back half of
+the Studio: "Commencer ici" with the codex, the dossiers 06 (VOIDSPLUNKER.std),
+07 (MERCURY) and 08 (the design work on Behance), the Lab's thirty pieces and
+the workshop diary. It opens on the premise you approved and one plain line:
+"Rien sur cette page n'a été commandé par un client."
+
+- **The Studio is now the client's page from top to bottom**: the offer, the
+  proofs, the method, the prices, the brand, the web, then you, the questions
+  and the contact. Its sections are renumbered 01 to 11 (the studio is 09,
+  the questions 10, the contact 11). On a desktop it is about a third
+  shorter (22,900 px against 35,100) and carries 255 pictures against 319.
+- **The motion reel stayed on the Studio**, moved up under the motion line of
+  the services: it shows a service you sell, with its button to the
+  calculator, so it belongs with the client's page and not with the Lab.
+- **The tr4veler.exe and Heetch dossiers stayed on the Studio** too, among
+  the five proofs, as "deux travaux du fondateur". Say if you would rather
+  have tr4veler.exe on the world's page.
+- **Every way in follows**: the Studio's second door, its "Le monde" link in
+  the bar and the menu, its footer, the founder's two links (the design work,
+  the diary), the traveler dossier's "voir aussi", and the character bible's
+  ways back, which now say "The world".
+- **The page's title and heading**: the title is plain ("Le monde de Yasser
+  et Kūro : bible, MERCURY, codex | Numidea Labs"); the heading is the
+  world's ("Derrière la porte de nuit."), with the label "/ LE MONDE ·
+  PROJETS PERSONNELS" above it. Both are mine; change them freely.
+- **One clip of the reel is out of date**: "Les personnages" was recorded
+  with the Studio's old first heading. It joins the two clips already on
+  your list to record again.
+
+**The redirect.** `numidea-tech.vercel.app` (and Vercel's team address for
+the project) now answer every page with a permanent redirect to the same
+page on `www.numedialab.dev`. Old links and bookmarks keep working; a visitor
+or a reviewer can no longer read the site on the second address. The preview
+addresses Vercel makes for each change are left alone, so a change can still
+be looked at before it is published.

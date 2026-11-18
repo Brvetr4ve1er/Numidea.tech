@@ -505,7 +505,7 @@
     }
   },
   "lab": {
-    "kicker": "/ 09 · LE LAB · HORS COMMANDE",
+    "kicker": "/ LE LAB · HORS COMMANDE",
     "title": "Ce qu’on fait quand personne ne commande.",
     "lead": "Affiches, illustrations, expériences. Personne ne les a commandées ; c’est pourtant là que naît la direction artistique de vos projets.",
     "bible": "Le carnet du personnage →",
@@ -558,7 +558,7 @@
     ]
   },
   "founder": {
-    "kicker": "/ 10 · LE STUDIO · UNE SEULE MAIN",
+    "kicker": "/ 09 · LE STUDIO · UNE SEULE MAIN",
     "title": "Assez petits pour s’en soucier. Assez seniors pour livrer.",
     "name": "Yasser Hamisse",
     "role": "FONDATEUR · CEO / DIRECTEUR CRÉATIF",
@@ -623,7 +623,7 @@
     }
   },
   "faq": {
-    "kicker": "/ 11 · QUESTIONS",
+    "kicker": "/ 10 · QUESTIONS",
     "title": "Les questions qui fâchent, d’abord.",
     "actor": "Yasser répond sur son téléphone",
     "items": [
@@ -654,7 +654,7 @@
     ]
   },
   "contact": {
-    "kicker": "/ 12 · ON EN PARLE · PAR ÉCRIT",
+    "kicker": "/ 11 · ON EN PARLE · PAR ÉCRIT",
     "title": "La porte est ouverte. Écrivez.",
     "lead": "Choisissez votre canal. Réponse le jour ouvré suivant, par celui qui code. Pas de standard, pas de ticket.",
     "hours": "Dimanche–jeudi, 9h–18h · messages seulement, pas d’appels",
@@ -695,8 +695,7 @@
       "t": "J’apprends",
       "d": "Se faire payer de loin, travailler de partout, jouer juste : vingt-deux leçons courtes, quatre services à prix fixe, et la radio de l’atelier.",
       "go": "Ouvrir le manuel"
-    },
-    "skip": "Aller au monde"
+    }
   },
   "start": {
     "kicker": "/ COMMENCER ICI",
@@ -1656,5 +1655,22 @@
         "ok": "Oui. On compte 180 jours en arrière depuis chaque jour du séjour : sortir une journée n’efface rien. La calculatrice de la Commission fait le compte pour vous."
       }
     ]
+  },
+  "world": {
+    "ui": {
+      "title": "Le monde de Yasser et Kūro : bible, MERCURY, codex | Numidea Labs",
+      "desc": "Les projets personnels du fondateur de Numidea Labs : la bible des personnages, le court-métrage MERCURY, les affiches, le Lab et le journal d’atelier."
+    },
+    "kicker": "/ LE MONDE · PROJETS PERSONNELS",
+    "title": "Derrière la porte de nuit.",
+    "note": "Rien sur cette page n’a été commandé par un client. Ce sont les projets du fondateur : une bible de personnages, un court-métrage, des affiches, un journal. Le travail pour les clients est au Studio.",
+    "nav": {
+      "aria": "Sections du monde",
+      "codex": "Codex",
+      "bible": "La bible",
+      "design": "Design",
+      "lab": "Le Lab",
+      "diary": "Journal"
+    }
   }
 }

@@ -15,7 +15,8 @@
  *   menu       under 1160px the Menu button opens a sheet that holds the six
  *              sections, and closes with Escape
  *   viewer     on a phone the viewer holds the picture, previous and next
- *              under it (not over it), and a swipe moves one picture
+ *              under it (not over it), and a swipe moves one picture (run on
+ *              the world's page, hub/monde.html, where the diary is)
  * Touch is driven with real touch events (CDP): synthesized scroll gestures
  * do nothing in the headless build.
  */
@@ -66,7 +67,8 @@ for (const lang of ['fr', 'en', 'ar']) {
       if (!mn.open || mn.links !== 6) note(`${lang} 390: the Menu button does not open the six sections (${JSON.stringify(mn)})`);
       await p.keyboard.press('Escape'); await p.waitForTimeout(200);
       if (await p.evaluate(() => document.getElementById('menu').open)) note(`${lang} 390: Escape does not close the menu`);
-      // the viewer
+      // the viewer, on the world's page since 2026-11-18 (the diary went there with the Lab; same viewer, same script)
+      await p.goto(`${srv.base}/hub/monde.html${lang === 'fr' ? '' : '?lang=' + lang}`, { waitUntil: 'load' }); await p.waitForTimeout(500);
       await p.evaluate(() => document.querySelector('.st-diary [data-zoom]').scrollIntoView({ block: 'center' })); await p.waitForTimeout(400);
       await p.locator('.st-diary [data-zoom]').first().tap(); await p.waitForTimeout(700);
       const g = await p.evaluate(() => { const q = (s) => document.querySelector(s).getBoundingClientRect(); const i = q('#lightbox > img'); return { imgBottom: i.bottom, prevTop: q('.st-lb__nav--prev').top, nextTop: q('.st-lb__nav--next').top, xBottom: q('.st-lb__x').bottom, imgTop: i.top, src: document.querySelector('#lightbox > img').getAttribute('src') }; });

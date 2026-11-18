@@ -20,7 +20,7 @@ export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 /* The canonical host: every canonical, og:url, hreflang, sitemap, robots and
    JSON-LD URL names it. The studio's own domain since 2026-11-16 (owner
    decision; the Vercel address, https://numidea-tech.vercel.app/, was the
-   canonical from 2026-11-10 and still serves the same deployment). This is
+   canonical from 2026-11-10 and redirects here since 2026-11-18). This is
    the one line to change. */
 export const BASE = 'https://www.numedialab.dev/';
 /* The GitHub Pages mirror, served under the repository subpath. Never
@@ -39,7 +39,7 @@ export const LEGAL_PUBLISHED = existsSync(join(ROOT, 'legal/index.html'));
    the price guide likewise: tarifs/ and en/tarifs/, ar/tarifs/, written by
    build-tarifs.mjs */
 export const PAGES = ['index.html', 'en/index.html', 'ar/index.html', 'tarifs/index.html', 'en/tarifs/index.html', 'ar/tarifs/index.html',
-  '404.html', 'hub/index.html', 'hub/manuel.html', 'hub/bible/index.html', 'hub/brand/almaflow/index.html', 'hub/brand/traveler/index.html', 'hub/brand/numidea/index.html', 'hub/brand/exploration/index.html',
+  '404.html', 'hub/index.html', 'hub/manuel.html', 'hub/monde.html', 'hub/bible/index.html', 'hub/brand/almaflow/index.html', 'hub/brand/traveler/index.html', 'hub/brand/numidea/index.html', 'hub/brand/exploration/index.html',
   'scene/index.html', 'workspacehq/index.html']
   .concat(LEGAL_PUBLISHED ? ['legal/index.html'] : []);
 export const EXTRA_PAGES = ['workspacehq/embed/trailer.html', 'workspacehq/embed/walkthrough.html', 'workspacehq/embed/console.html'];

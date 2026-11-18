@@ -181,6 +181,7 @@ const SPEC = {
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
   'hub/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['studio', 'hits'] },
   'hub/manuel.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['hits'] },
+  'hub/monde.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['hits'] },
   'hub/bible/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the character bible, a project of the studio)" },
   'hub/brand/almaflow/index.html': { langs: ['fr'], tests: [], only: 'French only (a client brand book, a plate set of the Studio)' },
   'hub/brand/traveler/index.html': { langs: ['fr'], tests: [], only: 'French only (the codex of a personal project, a plate set of the Studio)' },

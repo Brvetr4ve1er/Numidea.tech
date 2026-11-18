@@ -548,7 +548,7 @@ html.js .st-est__nojs{display:none}
 .st-svcmot__go .st-btn{min-height:44px;padding:0 16px;font-size:var(--t-label)}
 .st-svcmot__reel{display:inline-flex;align-items:center;min-height:44px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.08em;color:var(--ink);text-underline-offset:3px}
 :lang(ar) .st-svcmot__reel{letter-spacing:0}
-.st-lab .st-reel{margin-top:clamp(40px,5vw,72px);scroll-margin-top:90px}
+.st-lab .st-reel,.st-services .st-reel{margin-top:clamp(40px,5vw,72px);scroll-margin-top:90px}   /* under the motion line since the Lab left for the world's page (2026-11-18) */
 .st-reel__go{margin-top:8px !important}
 .st-reel--dark .st-label,.st-reel--dark .st-reel__lead{color:var(--on-dark-2)}
 .st-reel--dark .st-reel__b{border-color:var(--cream);box-shadow:5px 5px 0 var(--red)}
@@ -1838,11 +1838,11 @@ main:focus{outline:none}
 .st-man .st-mny__scene{margin-bottom:0}
 /* the scene is a band here, not a full plate: the radio and the lessons start on the first screens */
 @media (min-width:700px){.st-man .st-mny__scene img{aspect-ratio:5 / 2;object-fit:cover;object-position:50% 46%}}
-.st-manual .st-nav__links .st-nav__world{display:inline-flex}
+.st-manual .st-nav__links .st-nav__world,.st-monde .st-nav__links .st-nav__world{display:inline-flex}
 /* six links here (three sets of lessons, the services, the radio, the Studio): a label never breaks in two, and the kana waits for the width that holds it */
-.st-manual .st-nav__links a{white-space:nowrap}
-@media (max-width:1439px){.st-manual .st-nav .st-wm__kana{display:none}}
-@media (max-width:1239px){.st-manual .st-nav__links{gap:2px}.st-manual .st-nav__links a{padding:0 5px}}   /* the French bar ran 23px over at 1160 */
+.st-manual .st-nav__links a,.st-monde .st-nav__links a{white-space:nowrap}
+@media (max-width:1439px){.st-manual .st-nav .st-wm__kana,.st-monde .st-nav .st-wm__kana{display:none}}
+@media (max-width:1239px){.st-manual .st-nav__links,.st-monde .st-nav__links{gap:2px}.st-manual .st-nav__links a,.st-monde .st-nav__links a{padding:0 5px}}   /* the French bar ran 23px over at 1160 */
 .st-manual .st-mny__kit{margin-bottom:0}
 .st-back{background:var(--floor);overflow:hidden}
 .st-back__in{display:flex;align-items:flex-end;justify-content:space-between;gap:24px 48px}
@@ -2064,3 +2064,16 @@ html.is-playing{scroll-behavior:auto}
 @media (max-width:359px){
   .st-nmd__w{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 }
+
+/* ---------------- the world's page (hub/monde.html, 2026-11-18) ----------------
+   The night door's page: the codex, the personal dossiers, the Lab and the
+   diary, which were the Studio's. Its blocks keep their own rules above;
+   only the head is new: a label, the heading, the premise, and one plain
+   line saying nothing here is a client's. */
+.st-mondehead{padding-bottom:clamp(28px,4vw,56px)}   /* the room under the heading is the section's own: as a margin it fell outside, and the heading's last line stood on the section's edge */
+.st-mondehead .st-head{margin-bottom:0}
+.st-mondehead__lead{flex:1 1 340px;max-width:30em;display:flex;flex-direction:column;gap:14px;min-width:0}   /* the two lines stand where a section's lead stands */
+.st-mondehead__lead p{margin:0}
+.st-mondehead__lead .st-lead{flex:none;max-width:none}
+.st-mondehead__note{max-width:60ch;font-size:var(--t-small);line-height:1.55;color:var(--ink-2)}
+.st-monde .st-world{padding-top:clamp(20px,3vw,40px)}

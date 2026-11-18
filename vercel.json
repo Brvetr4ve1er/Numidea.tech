@@ -8,6 +8,20 @@
       "claude/fix-fleets-wip": false
     }
   },
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "numidea-tech\\.vercel\\.app" }],
+      "destination": "https://www.numedialab.dev/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "numidea-tech-br4vetravelers-projects\\.vercel\\.app" }],
+      "destination": "https://www.numedialab.dev/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

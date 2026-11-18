@@ -6,6 +6,9 @@
  * give).
  *
  *   hub/src/page.html            the Studio: head, nav, screens 01-12, footer
+ *   hub/src/monde.html           the world's body (the codex, the personal
+ *                                dossiers, the Lab, the diary); its head is
+ *                                the Studio's too, re-addressed here
  *   hub/src/manuel.html          the manual's body (the lessons, the coaching
  *                                services, the radio); its head is the
  *                                Studio's, re-addressed here
@@ -247,7 +250,7 @@ const FONT_FILES = [
   ['hub/fonts/lazy-console.css', FONT_HEAD('the screen face of the price console') + '@font-face { font-family: "VT323"; font-style: normal; font-weight: 400; font-display: swap;\n  src: url("../../workspacehq/fonts/VT323.woff2") format("woff2"); }\n'],
 ];
 
-const GENERATED = new Set([...FONT_FILES.map(([f]) => f.replace(/^hub\//, '')), 'manuel.html']);
+const GENERATED = new Set([...FONT_FILES.map(([f]) => f.replace(/^hub\//, '')), 'manuel.html', 'monde.html']);
 
 /* ---------------- the page ---------------- */
 const RUNTIME = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|unitsN\.|wkN$|types\.|o\.|rc\.(base|studio|rush|kit|call|mid)$|beyond$|kuro|cur$|included$)|money\.(kit\.k$|svc\.waMsg$|svc\.items\.\d+\.name$)|life\.(k|y)\.|radio\.(play|pause|onair|idle|paused)$|radio\.tracks\.|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
@@ -269,26 +272,30 @@ const swap = (text, from, to, n, what) => {
   if (parts.length - 1 !== n) fail(`the manual's head: ${what} found ${parts.length - 1} times in page.html's head, ${n} expected`);
   return parts.join(to);
 };
-let manualHead = pageSrc.slice(0, headEnd);
-manualHead = swap(manualHead, '<html lang="fr" dir="ltr">', '<html lang="fr" dir="ltr" data-ui="manual.ui">', 1, 'the html tag');
-manualHead = swap(manualHead, '<noscript>{{lazyFonts}}</noscript>\n', '', 1, 'the cases\' faces');
-manualHead = swap(manualHead, '{{caseCss}}\n', '', 1, 'the cases\' sheets');
-manualHead = swap(manualHead, '"ui.title"', '"manual.ui.title"', 3, 'the title key');
-manualHead = swap(manualHead, '"ui.desc"', '"manual.ui.desc"', 3, 'the description key');
-{
-  const before = manualHead, at = /\{\{base\}\}hub\/(?=["'?])/g;
-  const n = (before.match(at) || []).length;
-  if (n !== 7) fail(`the manual's head: the Studio's address found ${n} times in page.html's head, 7 expected (og:url, four hreflang, the canonical script, the breadcrumb)`);
-  manualHead = before.replace(at, '{{base}}hub/manuel.html');
-}
-manualHead = swap(manualHead, '{"@type":"ListItem","position":2,"name":"Studio","item":"{{base}}hub/manuel.html"}]}',
-  '{"@type":"ListItem","position":2,"name":"Studio","item":"{{base}}hub/"},{"@type":"ListItem","position":3,"name":"Manuel","item":"{{base}}hub/manuel.html"}]}', 1, 'the breadcrumb');
-let manual = manualHead + readFileSync(join(SRC, 'manuel.html'), 'utf8');
+// the Studio's head for a page beside it: its file, the group that holds its title and description, its name in the breadcrumb
+const headFor = (file, ui, crumb) => {
+  let h = pageSrc.slice(0, headEnd);
+  h = swap(h, '<html lang="fr" dir="ltr">', `<html lang="fr" dir="ltr" data-ui="${ui}">`, 1, 'the html tag');
+  h = swap(h, '<noscript>{{lazyFonts}}</noscript>\n', '', 1, 'the cases\' faces');
+  h = swap(h, '{{caseCss}}\n', '', 1, 'the cases\' sheets');
+  h = swap(h, '"ui.title"', `"${ui}.title"`, 3, 'the title key');
+  h = swap(h, '"ui.desc"', `"${ui}.desc"`, 3, 'the description key');
+  const at = /\{\{base\}\}hub\/(?=["'?])/g, n = (h.match(at) || []).length;
+  if (n !== 7) fail(`the head of ${file}: the Studio's address found ${n} times in page.html's head, 7 expected (og:url, four hreflang, the canonical script, the breadcrumb)`);
+  h = h.replace(at, `{{base}}hub/${file}`);
+  return swap(h, `{"@type":"ListItem","position":2,"name":"Studio","item":"{{base}}hub/${file}"}]}`,
+    `{"@type":"ListItem","position":2,"name":"Studio","item":"{{base}}hub/"},{"@type":"ListItem","position":3,"name":"${crumb}","item":"{{base}}hub/${file}"}]}`, 1, 'the breadcrumb');
+};
+let manual = headFor('manuel.html', 'manual.ui', 'Manuel') + readFileSync(join(SRC, 'manuel.html'), 'utf8');
+/* The world (hub/monde.html, 2026-11-18): the same head again, and
+   hub/src/monde.html as its body: the codex, the personal dossiers 06 to
+   08, the Lab and the diary, which were the Studio's until then. */
+let monde = headFor('monde.html', 'world.ui', 'Le monde') + readFileSync(join(SRC, 'monde.html'), 'utf8');
 /* Markup in a dictionary value is allowed only where the page applies it as
    markup (data-i18n-html). The home's Arabic wraps Latin names in <bdi>; a
    text key gets the same isolation as Unicode (FSI ... PDI), so no tag is ever
    printed. Anything else with a '<' is refused. */
-const htmlKeys = new Set([...(html + manual).matchAll(/\sdata-i18n-html="([^"]+)"/g)].map((m) => m[1]));
+const htmlKeys = new Set([...(html + manual + monde).matchAll(/\sdata-i18n-html="([^"]+)"/g)].map((m) => m[1]));
 for (const l of LANGS)
   for (const [k, v] of Object.entries(DICT[l])) {
     if (htmlKeys.has(k) || !v.includes('<')) continue;
@@ -337,6 +344,7 @@ function fill(html, name) {
 }
 html = fill(html, 'page.html');
 manual = fill(manual, 'manuel.html');
+monde = fill(monde, 'monde.html');
 for (const k of Object.keys(DICT.fr)) if (!used.has(k) && !RUNTIME.test(k) && !/^cases\./.test(k))
   notes.push(`key ${k} is in the dictionaries but no markup names it (app.js may)`);
 
@@ -415,6 +423,7 @@ return html;
 }
 html = rules(html);
 manual = rules(manual);
+monde = rules(monde);
 // the stylesheets' own pictures count as referenced
 for (const css of ['style.css', ...(existsSync(join(HUB, 'css')) ? readdirSync(join(HUB, 'css')) : []).filter((f) => f.endsWith('.css')).map((f) => `css/${f}`)]) {
   const p = join(HUB, css);
@@ -434,6 +443,7 @@ if (unref.length) (casesIn === CASES.length ? fail : (m) => notes.push(m))(`${un
 /* ---------------- outputs ---------------- */
 const page = withCsp(withGtag(html), cspKind('hub/index.html'));
 const manualPage = withCsp(withGtag(manual), cspKind('hub/manuel.html'));
+const mondePage = withCsp(withGtag(monde), cspKind('hub/monde.html'));
 const i18n = `/* GENERATED by scripts/build-hub.mjs from hub/src/i18n and hub/src/cases:
    the Studio's three dictionaries (French too, for a switch back), flat
    keys, and nothing else. Loaded by the head script for an EN or AR visitor
@@ -447,11 +457,11 @@ if (errors.length) {
 for (const n of notes) console.log(`  · ${n}`);
 // one dictionary file per language: the head script and a switch fetch only the language asked for (the three in one file were 161 kB held in front of the first paint)
 const perLang = LANGS.map((l) => [`hub/i18n.${l}.js`, `/* GENERATED by scripts/build-hub.mjs: the Studio's ${l} dictionary alone (hub/i18n.js holds the three). */\nwindow.HUB_I18N = window.HUB_I18N || {};\nwindow.HUB_I18N.${l} = ${JSON.stringify(sorted(DICT[l]))};\n`]);
-const OUT = [['hub/index.html', page], ['hub/manuel.html', manualPage], ['hub/i18n.js', i18n], ...perLang, ...FONT_FILES];
+const OUT = [['hub/index.html', page], ['hub/manuel.html', manualPage], ['hub/monde.html', mondePage], ['hub/i18n.js', i18n], ...perLang, ...FONT_FILES];
 if (process.argv.includes('--check')) {
   const stale = OUT.filter(([f, s]) => !existsSync(join(ROOT, f)) || readFileSync(join(ROOT, f), 'utf8') !== s).map(([f]) => f);
-  console.log(stale.length ? `✗ ${stale.join(', ')} differ from hub/src (run: node scripts/build-hub.mjs)` : '✓ hub/index.html, hub/manuel.html and hub/i18n.js match hub/src');
+  console.log(stale.length ? `✗ ${stale.join(', ')} differ from hub/src (run: node scripts/build-hub.mjs)` : '✓ hub/index.html, hub/manuel.html, hub/monde.html and hub/i18n.js match hub/src');
   process.exit(stale.length ? 1 : 0);
 }
 for (const [f, s] of OUT) writeFileSync(join(ROOT, f), s);
-console.log(`✓ hub/index.html (${(page.length / 1000).toFixed(1)} kB, ${casesIn} of ${CASES.length} cases), hub/manuel.html (${(manualPage.length / 1000).toFixed(1)} kB) and hub/i18n.js (${Object.keys(DICT.fr).length} keys × 3)`);
+console.log(`✓ hub/index.html (${(page.length / 1000).toFixed(1)} kB, ${casesIn} of ${CASES.length} cases), hub/manuel.html (${(manualPage.length / 1000).toFixed(1)} kB), hub/monde.html (${(mondePage.length / 1000).toFixed(1)} kB) and hub/i18n.js (${Object.keys(DICT.fr).length} keys × 3)`);

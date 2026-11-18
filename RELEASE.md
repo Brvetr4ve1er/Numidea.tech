@@ -13,8 +13,9 @@ on billing; [section 9](#9-outage-and-fallback) says what to do meanwhile).
   (`BASE` in `scripts/site.mjs`; owner decision 2026-11-16, and `BASE` is the
   one line to change, with the hand-kept heads `npm run check` then names).
   Vercel serves it: the project's own address,
-  <https://numidea-tech.vercel.app/>, shows the same deployment and is where a
-  release is first confirmed (it was the canonical from 2026-11-10). The GitHub Pages
+  <https://numidea-tech.vercel.app/>, redirects to it page for page since
+  2026-11-18 (`vercel.json`; it was the canonical from 2026-11-10). A release
+  is confirmed on the canonical address. The GitHub Pages
   mirror, <https://brvetr4ve1er.github.io/Numidea.tech/> (`PAGES_BASE`), is
   frozen on the 25 October build by a billing lock and is never canonical.
   Every page except 404 names one canonical
@@ -480,7 +481,7 @@ the site deploys later).**
   links`, `npm run metrics`; the Actions state is reported honestly in the
   log (IMPROVEMENTS.md) and never as "deployed".
 - The weekly session probes the live stamp itself while the monitor cannot:
-  `curl -s https://numidea-tech.vercel.app/ | grep -o '?v=[0-9]\{12\}' | head -1`
+  `curl -s https://www.numedialab.dev/ | grep -o '?v=[0-9]\{12\}' | head -1`
   against the branch head's stamp (`grep -o '?v=[0-9]\{12\}' index.html | head -1`).
   Equal stamps mean the site has moved; the stamp alone cannot show a deploy
   whose gates were red, so the first run after billing clears is read in
