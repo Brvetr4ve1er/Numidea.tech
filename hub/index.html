@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-tKx2xniwgPYhTYmeN90HKGjaI8OciE0NrrM27BZD+Qg='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-1T6AXwQSvcHrHajV8Z/qt9YUVnY0G0Cz0J0OaffuZSw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Studio web et logiciel à Bordj Bou Arréridj | Numidea Labs</title>
 <meta name="description" content="Numidea Labs, studio à Bordj Bou Arréridj : sites, applications, automatisations et identités, conçus et codés par les mêmes mains. L’Aperçu est gratuit.">
 <meta name="theme-color" content="#D8CBB8">
@@ -42,7 +42,16 @@
      pictures load beside it), and paint is held until app.js has applied it (1.5 s backstop: then the baked
      French shows, left to right). The canonical names the version the
      address asked for. The js class lets the stylesheet hide what only a
-     script reveals (the reveals' start, the sting) and nothing else. -->
+     script reveals (the reveals' start, the sting) and nothing else. The
+     sting's first frame (paper, two ink bars) covers the Studio from the
+     first paint (st-sting-pending: not with reduced motion, not when the
+     gates turn the sting off, not on the manual or the world, which share
+     this head and name themselves in data-ui; app.js takes it away,
+     3.333 s at most; st-gutter: this browser's scrollbars take room, so
+     their place is kept while the sting holds the scroll), and
+     pagereveal keeps the end of a page change's lift for the sting to wait
+     on (window.stReveal). The sting's four pictures start to decode here,
+     at first paint, not inside app.js's first task (window.stDecode). -->
 <script>(function(){var d=document.documentElement,L=['fr','en','ar'],l='fr',q=null;d.classList.add('js');
 try{q=(new URLSearchParams(location.search).get('lang')||'').toLowerCase()||null;}catch(e){}
 try{l=localStorage.getItem('numidea-lang')||l;}catch(e){}
@@ -52,6 +61,9 @@ var h='https://www.numedialab.dev/hub/',c=document.createElement('link');c.rel='
 if(c.href!==h){var m=document.querySelector('meta[property="og:url"]');if(m)m.setAttribute('content',c.href);m=document.querySelector('meta[property="og:locale"]');if(m)m.setAttribute('content',l==='ar'?'ar_DZ':'en_US');}
 window.NUMIDEA_LANG=l;
 if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElement('script');sc.src='i18n.'+l+'.js?v=202611180258';sc.async=true;sc.setAttribute('fetchpriority','high');document.head.appendChild(sc);window.NUMIDEA_DICT=sc;var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};setTimeout(r,1500);}if(l==='ar'){['fonts/reem-kufi-700-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2'].forEach(function(f){var p=document.createElement('link');p.rel='preload';p.as='font';p.type='font/woff2';p.crossOrigin='';p.href=f;document.head.appendChild(p);});}
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,ss=null;try{ss=sessionStorage.getItem('numidea-sting');}catch(e){}
+if(!rm&&ss!=='1'&&!d.hasAttribute('data-ui')){var g=document.createElement('div');g.style.position='absolute';g.style.width=g.style.height='50px';g.style.overflow='scroll';d.appendChild(g);if(g.offsetWidth>g.clientWidth)d.classList.add('st-gutter');d.removeChild(g);d.classList.add('st-sting-pending');setTimeout(function(){d.classList.remove('st-sting-pending');},3333);window.stDecode=Promise.all(['y-base','y-up','y-smirk','k-wide'].map(function(f){var i=new Image();i.src='bible/art/rig-'+f+'.webp';return i.decode?i.decode():null;}));}
+addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.viewTransition.finished.then(null,function(){}):null;});
 })();</script>
 <!-- Faces: hub/fonts/studio.css (cut from fonts.css by the build), one file
      per family and subset, each fetched only when a character of its range
@@ -61,6 +73,10 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
      links). Preloaded: the first screen's display face and body face. -->
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/archivo-800-900-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
+<!-- The page change's opt-in (style.css has it too), inline and first: in
+     style.css alone it was not yet read when a fast arrival showed its first
+     frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
+<style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
 <link rel="stylesheet" href="fonts/studio.css?v=202611180258">
 <noscript><link rel="stylesheet" href="fonts/lazy-bordjsteel.css?v=202611180258"><link rel="stylesheet" href="fonts/lazy-alliance.css?v=202611180258"><link rel="stylesheet" href="fonts/lazy-almaflow.css?v=202611180258"><link rel="stylesheet" href="fonts/lazy-traveler.css?v=202611180258"><link rel="stylesheet" href="fonts/lazy-heetch.css?v=202611180258"><link rel="stylesheet" href="fonts/lazy-whq.css?v=202611180258"><link rel="stylesheet" href="fonts/lazy-console.css?v=202611180258"></noscript>
 <link rel="stylesheet" href="style.css?v=202611180258">
@@ -153,6 +169,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
         <span class="st-mood__k" data-i18n="hero.mood">/ HUMEUR DU JOUR</span>
         <span class="st-mood__v" data-mood data-i18n="rig.mood.base">CAFÉ NO.1</span>
         <span class="st-mood__live" data-live data-i18n="hero.live">● EN DIRECT</span>
+        <button type="button" class="st-mood__replay" data-sting-replay data-i18n-aria="hero.replayL" aria-label="Rejouer l’intro" hidden><span aria-hidden="true">↻</span> <span data-i18n="hero.replay">REJOUER</span></button>
       </div>
       <span class="st-hero__floor" aria-hidden="true"></span>
       <span class="st-hero__stamp" aria-hidden="true">夜</span>
@@ -246,7 +263,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
 
 <!-- ============================== 01 WEDGE ==============================
      Five people between the client and the code, then two. With scripts
-     the middle three are cut once the board is on screen (hub/app.js 5);
+     the middle three are cut once the board is on screen (hub/app.js 4);
      without, the chain reads whole. -->
 <section class="st-sec st-wedge" id="wedge" aria-labelledby="wedge-h">
   <div class="st-wrap">
@@ -295,7 +312,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
         <h2 class="st-h2" id="services-h" data-i18n="services.title">Ce qu’on rend réel.</h2>
       </div>
       <p class="st-lead" data-i18n="services.lead">Quatre familles de services, un seul interlocuteur, du premier appel à la maintenance. Personne ne vous passe à un autre.</p>
-      <button type="button" class="st-actor st-actor--head" data-actor data-seq="3400,900" data-i18n-aria="services.actor" aria-label="Yasser montre les services">
+      <button type="button" class="st-actor st-actor--head" data-actor data-seq="3417,917" data-i18n-aria="services.actor" aria-label="Yasser montre les services">
         <img data-pf="a" src="bible/art/actor-pointup-a.webp" width="249" height="540" alt="" loading="lazy" decoding="async">
         <img data-pf="b" src="bible/art/actor-pointup-b.webp" width="249" height="540" alt="" loading="lazy" decoding="async">
       </button>
@@ -462,7 +479,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
         <h2 class="st-h2" id="work-h" data-i18n="proof.title">Tout ce qui suit existe.</h2>
       </div>
       <p class="st-lead" data-i18n="proof.lead">Trois clients livrés et deux travaux du fondateur. Chaque dossier dit ce qui a été fait, pour qui, et où le vérifier.</p>
-      <button type="button" class="st-actor st-actor--head" data-actor data-seq="2800,700" data-i18n-aria="proof.actor" aria-label="Yasser fête une mise en ligne">
+      <button type="button" class="st-actor st-actor--head" data-actor data-seq="2792,708" data-i18n-aria="proof.actor" aria-label="Yasser fête une mise en ligne">
         <img data-pf="a" src="bible/art/actor-win-a.webp" width="252" height="540" alt="" loading="lazy" decoding="async">
         <img data-pf="b" src="bible/art/actor-win-b.webp" width="252" height="540" alt="" loading="lazy" decoding="async">
       </button>
@@ -1418,7 +1435,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
     <!-- TV-03 · the reality jump: the cycle shows one poster of the 34, the viewer opens it -->
     <article class="ct-t ct-real st-c3 st-r2" id="ct-real" data-kind="posters" data-cycle>
       <div class="ct-real__hd ct-m"><span class="ct-acc">FILE_03 · <span data-i18n="cases.traveler.real.k">SAUT DE RÉALITÉ</span></span><span class="st-badge ct-badge ct-badge--in" data-badge aria-hidden="true" data-i18n="case.new">NOUVEAU</span></div>
-      <div class="ct-real__item" data-cycle-item>
+      <div class="ct-real__item is-initial" data-cycle-item>
         <div class="ct-real__pic">
           <button type="button" class="st-zoom ct-zoom" data-zoom="img/clients/traveler/labyrinth.webp"><img src="img/clients/traveler/labyrinth.webp" width="882" height="1176" alt="tr4veler.exe" loading="lazy" decoding="async"></button>
           <i class="ct-wipe" aria-hidden="true"></i>
@@ -2003,7 +2020,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
 
     <!-- HT-03 · the four posters, one at a time; each opens in the viewer -->
     <article class="ch-t ch-posters st-c2 st-r2" data-kind="posters" data-cycle>
-      <div class="ch-post" data-cycle-item>
+      <div class="ch-post is-initial" data-cycle-item>
         <button type="button" class="st-zoom ch-zoom ch-post__pic" data-zoom="img/studio/c08.webp"><img src="img/studio/c08.webp" width="636" height="900" data-i18n-alt="cases.heetch.posters.0" alt="Promo ERKEB50 · la nuit" loading="lazy" decoding="async"></button>
         <span class="ch-lab ch-lab--top" data-i18n="cases.heetch.published">PUBLIÉ</span>
         <div class="ch-post__bar">
@@ -2435,7 +2452,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
           <li><figure><img src="img/studio/m/clutter.webp" width="960" height="644" class="st-pos-m2" data-i18n-alt="founder.modesAlt.2" alt="Yasser à sa tablette, Kūro assis dessus" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.2">MODE CHAT</figcaption></figure></li>
         </ul>
         <div class="st-founder__floor">
-          <button type="button" class="st-actor st-actor--duo" data-actor data-seq="4200,1700" data-i18n-aria="founder.duo" aria-label="Yasser et Kūro assis par terre">
+          <button type="button" class="st-actor st-actor--duo" data-actor data-seq="4208,1708" data-i18n-aria="founder.duo" aria-label="Yasser et Kūro assis par terre">
             <img data-pf="a" src="bible/art/actor-duo-a.webp" width="673" height="520" alt="" loading="lazy" decoding="async">
             <img data-pf="b" src="bible/art/actor-duo-b.webp" width="673" height="520" alt="" loading="lazy" decoding="async">
           </button>
@@ -2505,7 +2522,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
     <div class="st-head st-head--stack st-faq__head" data-reveal>
       <p class="st-kick"><span class="st-seal" aria-hidden="true">問</span><span data-i18n="faq.kicker">/ 10 · QUESTIONS</span></p>
       <h2 class="st-h2" id="faq-h" data-i18n="faq.title">Les questions qui fâchent, d’abord.</h2>
-      <button type="button" class="st-actor st-actor--faq" data-actor data-seq="3000,1200" data-i18n-aria="faq.actor" aria-label="Yasser répond sur son téléphone">
+      <button type="button" class="st-actor st-actor--faq" data-actor data-seq="3000,1208" data-i18n-aria="faq.actor" aria-label="Yasser répond sur son téléphone">
         <img data-pf="a" src="bible/art/actor-phone-a.webp" width="241" height="540" alt="" loading="lazy" decoding="async">
         <img data-pf="b" src="bible/art/actor-phone-b.webp" width="241" height="540" alt="" loading="lazy" decoding="async">
       </button>

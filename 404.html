@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-4JrU1s1R3yMLMsUV5Y4JpWDP9w7BsVHn3vIGleKXx4g=' 'sha256-AbxrsRmQRZMfCqZDDNIqrYEiRiUHm7QQxdluN21BzRI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-4JrU1s1R3yMLMsUV5Y4JpWDP9w7BsVHn3vIGleKXx4g=' 'sha256-nZEManJF3YtPbuTKDbxEiilWaYYTdjrn/MDaiy0g/9c='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Cette page a pris la route — Numidea Labs</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A1420">
@@ -47,6 +47,10 @@
   document.write(h);
 })();
 </script>
+<!-- The page change's opt-in (the stylesheet has it too), inline and first:
+     in the stylesheet alone it was not yet read when a fast arrival showed its
+     first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
+<style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
 <noscript>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -158,6 +162,21 @@
     .e404 .ctas{margin-top:var(--s-4)}
     .e404{padding-block:16px 24px}
   }
+  /* The first screen arrives as the home's hero does: each part rises 10px
+     in 500, an eighth of a beat after the one before (transform only: the
+     numeral is painted, and credited as painted, from the first frame), and
+     waits under the page being lifted off when the visitor arrives by a page
+     change. The drawing fades in (250) once it is decoded. */
+  @media (prefers-reduced-motion:no-preference){
+    .e404 :is(.dim-line,.mark,.lines,.e404-scene,.ctas){animation:hero-rise-solid var(--m-reveal) var(--m-ease-enter) both}
+    .e404 .mark{animation-delay:var(--m-step)}
+    .e404 .lines{animation-delay:calc(2 * var(--m-step))}
+    .e404 .e404-scene{animation-delay:calc(3 * var(--m-step))}
+    .e404 .ctas{animation-delay:calc(4 * var(--m-step))}
+    html:active-view-transition .e404 :is(.dim-line,.mark,.lines,.e404-scene,.ctas){animation-play-state:paused}
+    .e404 .e404-art img{transition:opacity var(--m-hover) var(--m-ease-enter)}
+  }
+  .e404 .e404-art img.is-wait{opacity:0}
 </style>
 <script>
 /* GitHub Pages serves this page for ANY missing URL, at any depth — relative
@@ -216,8 +235,14 @@
     var im = new Image();
     im.width = 447; im.height = 440; im.decoding = 'async';
     im.alt = ALT[lang]; im.src = root + 'illus/yasser-facepalm.webp';
+    // in its place at once (its box sized by width and height), unseen
+    // until decoded, then faded in (styles above), never half-painted; if
+    // decoding fails it is shown all the same
+    im.className = 'is-wait';
     box.appendChild(im);
     d.setAttribute('data-scene', '');
+    var put = function () { im.className = ''; };
+    if (im.decode) im.decode().then(put, put); else put();
   });
   var bar = document.querySelector('meta[name="theme-color"]');
   if (bar) bar.setAttribute('content', VOID[th]);

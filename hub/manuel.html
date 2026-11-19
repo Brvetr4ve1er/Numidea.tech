@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-OMYq6AhwO9IQXbTfVD9V98EOKSz4d5MlyCKquXi04Kc='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-tVp5zoNOqiGlb8ktqgaQt0+P2m6g0FKugrewIvj04nI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Manuel du freelance nomade : 22 leçons gratuites | Numidea Labs</title>
 <meta name="description" content="Vingt-deux leçons courtes : se faire payer de l’étranger, fixer son tarif, travailler de partout, comprendre la gamification. Quatre services à prix fixe.">
 <meta name="theme-color" content="#D8CBB8">
@@ -42,7 +42,16 @@
      pictures load beside it), and paint is held until app.js has applied it (1.5 s backstop: then the baked
      French shows, left to right). The canonical names the version the
      address asked for. The js class lets the stylesheet hide what only a
-     script reveals (the reveals' start, the sting) and nothing else. -->
+     script reveals (the reveals' start, the sting) and nothing else. The
+     sting's first frame (paper, two ink bars) covers the Studio from the
+     first paint (st-sting-pending: not with reduced motion, not when the
+     gates turn the sting off, not on the manual or the world, which share
+     this head and name themselves in data-ui; app.js takes it away,
+     3.333 s at most; st-gutter: this browser's scrollbars take room, so
+     their place is kept while the sting holds the scroll), and
+     pagereveal keeps the end of a page change's lift for the sting to wait
+     on (window.stReveal). The sting's four pictures start to decode here,
+     at first paint, not inside app.js's first task (window.stDecode). -->
 <script>(function(){var d=document.documentElement,L=['fr','en','ar'],l='fr',q=null;d.classList.add('js');
 try{q=(new URLSearchParams(location.search).get('lang')||'').toLowerCase()||null;}catch(e){}
 try{l=localStorage.getItem('numidea-lang')||l;}catch(e){}
@@ -52,6 +61,9 @@ var h='https://www.numedialab.dev/hub/manuel.html',c=document.createElement('lin
 if(c.href!==h){var m=document.querySelector('meta[property="og:url"]');if(m)m.setAttribute('content',c.href);m=document.querySelector('meta[property="og:locale"]');if(m)m.setAttribute('content',l==='ar'?'ar_DZ':'en_US');}
 window.NUMIDEA_LANG=l;
 if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElement('script');sc.src='i18n.'+l+'.js?v=202611180258';sc.async=true;sc.setAttribute('fetchpriority','high');document.head.appendChild(sc);window.NUMIDEA_DICT=sc;var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};setTimeout(r,1500);}if(l==='ar'){['fonts/reem-kufi-700-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-400-arabic.woff2','../assets/fonts/ibm-plex-sans-arabic-600-arabic.woff2'].forEach(function(f){var p=document.createElement('link');p.rel='preload';p.as='font';p.type='font/woff2';p.crossOrigin='';p.href=f;document.head.appendChild(p);});}
+var rm=matchMedia('(prefers-reduced-motion: reduce)').matches,ss=null;try{ss=sessionStorage.getItem('numidea-sting');}catch(e){}
+if(!rm&&ss!=='1'&&!d.hasAttribute('data-ui')){var g=document.createElement('div');g.style.position='absolute';g.style.width=g.style.height='50px';g.style.overflow='scroll';d.appendChild(g);if(g.offsetWidth>g.clientWidth)d.classList.add('st-gutter');d.removeChild(g);d.classList.add('st-sting-pending');setTimeout(function(){d.classList.remove('st-sting-pending');},3333);window.stDecode=Promise.all(['y-base','y-up','y-smirk','k-wide'].map(function(f){var i=new Image();i.src='bible/art/rig-'+f+'.webp';return i.decode?i.decode():null;}));}
+addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.viewTransition.finished.then(null,function(){}):null;});
 })();</script>
 <!-- Faces: hub/fonts/studio.css (cut from fonts.css by the build), one file
      per family and subset, each fetched only when a character of its range
@@ -61,6 +73,10 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
      links). Preloaded: the first screen's display face and body face. -->
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/archivo-800-900-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
+<!-- The page change's opt-in (style.css has it too), inline and first: in
+     style.css alone it was not yet read when a fast arrival showed its first
+     frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
+<style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
 <link rel="stylesheet" href="fonts/studio.css?v=202611180258">
 <link rel="stylesheet" href="style.css?v=202611180258">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://www.numedialab.dev/"},{"@type":"ListItem","position":2,"name":"Studio","item":"https://www.numedialab.dev/hub/"},{"@type":"ListItem","position":3,"name":"Manuel","item":"https://www.numedialab.dev/hub/manuel.html"}]}</script>
@@ -125,7 +141,7 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var sc=document.createElemen
 <section class="st-radio" id="radio" aria-labelledby="radio-h" data-radio>
   <div class="st-wrap st-radio__in">
     <div class="st-radio__set">
-      <img class="st-radio__kuro" src="img/studio/loops/kuro-sleep-still.webp" width="258" height="287" alt="" loading="lazy" decoding="async">
+      <img class="st-radio__kuro" src="img/studio/loops/kuro-sleep-still.webp" width="258" height="287" alt="" decoding="async">
       <span class="st-radio__grille" aria-hidden="true"></span>
       <div class="st-radio__dial">
         <p class="st-radio__state"><span class="st-radio__led" aria-hidden="true"></span><span data-radio-state data-i18n="radio.idle">ÉTEINTE</span></p>

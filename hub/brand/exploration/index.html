@@ -33,6 +33,10 @@
      head (consent denied, see BRAND.md). No script runs on this page but
      carry.js and that tag. Every drawing here is inline SVG or CSS: there is no image
      file. -->
+<!-- The page change's opt-in (the stylesheet has it too), inline and first:
+     in the stylesheet alone it was not yet read when a fast arrival showed its
+     first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
+<style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
 <link rel="stylesheet" href="../../fonts/fonts.css?v=202611180258">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../fonts/archivo-800-900-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../assets/fonts/geist-latin.woff2">

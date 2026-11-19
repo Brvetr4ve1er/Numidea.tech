@@ -42,7 +42,9 @@
     "aside": "yeux fatigués. grandes idées.",
     "mood": "/ HUMEUR DU JOUR",
     "live": "● EN DIRECT",
-    "still": "● AU REPOS"
+    "still": "● AU REPOS",
+    "replay": "REJOUER",
+    "replayL": "Rejouer l’intro"
   },
   "rig": {
     "alt": "Yasser, fondateur de Numidea, avec son café, et Kūro, son chat noir",

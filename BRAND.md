@@ -1504,7 +1504,8 @@ faces are asked for when the case comes within 150% of the viewport, not on
 the rig frames wait for the first touch on screens without hover, the two
 loops are cut by `scripts/build-hub-loops.mjs` (phones get the stills
 `kuro-sleep-small-still.webp` and `yasser-wave-small-still.webp`), and the
-sting is skipped on 2G/3G or save-data links. Below 1160 px a Menu button
+loops stay stills on 2G/3G or save-data links (the sting plays on every
+visit since 2026-11-18: it is built from frames the page already loads). Below 1160 px a Menu button
 opens the sections as a sheet (`nav.menu`, `nav.menuClose`); below 680 a dock
 carries the Aperçu and WhatsApp once the hero has gone. `npm run hub:mobile`
 (`scripts/check-hub-mobile.mjs`, part of `npm run verify`) holds overflow at
@@ -1512,8 +1513,9 @@ carries the Aperçu and WhatsApp once the hero has gone. `npm run hub:mobile`
 arrows, the menu and the viewer.
 
 **Motion** (nothing loops; everything is at most 5 s). A clip of the reel (in the Studio's Lab since the split of 2026-11-16) is the one thing that may run longer, because the visitor is holding it: it is a poster until the pointer rests on it or it is pressed, it plays only while that lasts (starting again if it ends first), and it stops when the pointer leaves; it never carries the `loop` attribute and never starts by itself. The intro sting plays
-once per session in CSS keyframes and is gone by 2.6 s; any key skips it; it
-does not take focus. The rig (Yasser and Kūro) is a stack of frames cut by
+on every visit (a load, a return by the back button, after any other page) in CSS keyframes,
+one bar of the site's 90 BPM (2.667 s, gone by 3.333 s whatever happens), and again from the hero's
+replay control; a click or any key skips it; it does not take focus. The rig (Yasser and Kūro) is a stack of frames cut by
 opacity, run in 5-second windows after the panel is seen and after each
 input, then at rest with no animation running; the 18 frames that are not
 the base wait until the stage is on screen. Reveals play once on view; the
@@ -1856,9 +1858,9 @@ Source: the creative audit of 2026-11-15 and the owner's approval of its moves.
 **Framing.** A character sits inside a scene or a panel, never a floating cut-out: a hard offset shadow (no blur), a ground line under the figure, cream paper rules on navy. Existing art only; no new drawings.
 
 **Motion.** Three pieces, all skipped under `prefers-reduced-motion`:
-- the **paper wipe**, 0.4 s, on same-origin internal navigation and the main buttons. Skipped for modifier keys, non-primary clicks, `target=_blank`, downloads, hash-only and same-page links, non-page files and a click another handler took. The overlay is removed on `pageshow` so a bfcache restore never leaves it stuck. Home: `.pw` in `assets/app.js`. Studio: `hub/app.js`. Bible and brand books: `hub/brand/book.js` (`.bk-wipe`). Do not add a second implementation; extend the nearest one;
+- the **paper wipe** (replaced on 2026-11-18 by the page lift: a cross-document view transition of 500 ms in which the leaving page is lifted off like a sheet, and the arriving page's entrance waits under it), formerly 0.4 s, on same-origin internal navigation and the main buttons. Skipped for modifier keys, non-primary clicks, `target=_blank`, downloads, hash-only and same-page links, non-page files and a click another handler took. The overlay is removed on `pageshow` so a bfcache restore never leaves it stuck. Home: `.pw` in `assets/app.js`. Studio: `hub/app.js`. Bible and brand books: `hub/brand/book.js` (`.bk-wipe`). Do not add a second implementation; extend the nearest one;
 - the **seal**, a red stamp (0.32 s, stepped) on the estimator result (replayed once the visitor stops moving the controls) and on the home's sent-form panel; the Studio has no form, so it stamps the estimator only; static under reduced motion;
-- the **character sting** on the Studio's first visit (once per session, about 2.2 s): the HUD line, Yasser in three hard-cut rig frames while the NUMIDEA LABS letters land, Kūro's eyes in a night cut, the red stamp, then the wipe. Built from frames the page already loads (about 75 kB); skipped for reduced motion and slow or save-data connections; a click or a key skips it. `sting-169.webp` and `sting-916.webp` are no longer loaded but stay in `hub/img/motion` because `build-og.mjs` reads one of them.
+- the **character sting** on every visit to the Studio (since 2026-11-18; before, once per session), one bar, 2.667 s, replayable from the hero: the HUD line, Yasser in three hard-cut rig frames while the NUMIDEA LABS letters land, Kūro's eyes in a night cut, the red stamp, then the wipe. Built from frames the page already loads (about 75 kB); skipped for reduced motion (its replay control is hidden then); a click or a key skips it. `sting-169.webp` and `sting-916.webp` are no longer loaded but stay in `hub/img/motion` because `build-og.mjs` reads one of them.
 
 **Names.** The person is Yasser Hamisse (Arabic spelling on the Studio: ياسر حميس, AR review). The artist handle is br4vetr4veler everywhere; b4vetrave1er.exe is retired. The studio is Numidea Labs, Instagram @stick_itty. VOIDSPLUNKER.std is the character-bible project only (dossier tag "Bible des personnages"). tr4veler.exe is the traveler world, Instagram @yass3r.0. The MERCURY and Behance walls are not changed by this direction.
 

@@ -4,7 +4,7 @@
    no console, no cases there, and every block below looks for its own
    markup before it starts), vanilla, no deps
    0 · the dictionaries and the language switch
-   1 · the sting (00): a first visit's 2.2 s intro, once per session
+   1 · the sting (00): one bar (2.667 s) on every visit, and its replay
    2 · the rig (01): Yasser and Kūro, twenty frames
    3 · the pose actors: two-frame figures beside four headings
    4 · reveals, the wedge's cut (02), the speed bar (08)
@@ -17,9 +17,10 @@
        late, so the first jump is short)
   10 · the sheet behind the Menu button and the dock (a phone's foot bar)
   11 · the rows that swipe on a phone: their place and their bar
-  12 · each case's own faces, as it nears the screen
+  12 · each case's own faces, and its layout, as it nears the screen
    The rule of the page: nothing moves for longer than five seconds on its
-   own, and nothing loops. Each motion answers an input or plays once when
+   own, and nothing loops; every duration and wait is on the site's one
+   tempo (90 BPM: BEAT, M() and Q() below, the stylesheet's --m-* tokens). Each motion answers an input or plays once when
    its section is first on screen; with prefers-reduced-motion: reduce
    there is no sting, the figures stay on their first frame, the reveals
    are not hidden and every change is a cut. Without this script the page
@@ -34,6 +35,11 @@
   var IO = 'IntersectionObserver' in window;
   var rnd = function (a, b) { return a + Math.random() * (b - a); };
   var now = function () { return performance.now(); };
+  // the site's tempo (the stylesheets' --m-* tokens): 90 BPM, a beat of 667 ms;
+  // M(n) is n eighths of a beat, Q() rounds a drawn time to the nearest sixteenth
+  var BEAT = 2000 / 3;
+  var M = function (n) { return Math.round(n * BEAT / 8); };
+  var Q = function (ms) { var s = BEAT / 16; return Math.round(Math.round(ms / s) * s); };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   // what happened, for whoever listens (hub/life.js: Kūro answers a lesson picked or answered, the radio turned on or off)
@@ -104,13 +110,47 @@
     s.onload = s.onerror = function () { busy.forEach(function (b) { b.removeAttribute('aria-busy'); }); var q = loading; loading = null; if (window.HUB_I18N && window.HUB_I18N[l]) q.forEach(function (f) { f(); }); };
     document.head.appendChild(s);
   }
+  /* Arabic sets the page in its own faces: they are asked for before the
+     swap (a beat at most), so the swap's update is the words alone and does
+     not wait on a font while the page is held as a picture */
+  var faces = function (l) {
+    if (l !== 'ar' || !document.fonts || !document.fonts.load) return Promise.resolve();
+    var want = ['400 16px "IBM Plex Sans Arabic"', '600 16px "IBM Plex Sans Arabic"', '700 16px "Reem Kufi"', '700 16px "Aref Ruqaa"'];
+    return Promise.race([Promise.all(want.map(function (f) { return document.fonts.load(f, '\u0627\u0644\u0639'); })).then(null, function () {}), new Promise(function (r) { setTimeout(r, M(8)); })]);
+  };
+  // a switch is a swap on the same page: the old words fade out (167 ms) as the new fade in (250 ms) where the browser can say so (a view transition of type swap, style.css); otherwise, and with reduced motion, a cut
+  var swapping = null;
+  var swap = function (fn) {
+    if (!reduce && document.startViewTransition && window.ViewTransition && 'types' in ViewTransition.prototype) {
+      try {
+        var vt = swapping = document.startViewTransition({ update: fn, types: ['swap'] });
+        vt.ready.then(null, function () {});   // a swap skipped by the next one is not an error
+        vt.finished.then(null, function () {}).then(function () { if (swapping === vt) swapping = null; });
+        return;
+      } catch (e) {}
+    }
+    fn();
+  };
   $$('.st-lang button').forEach(function (b) {
     b.addEventListener('click', function () {
       var l = b.getAttribute('data-lang');
       try { localStorage.setItem('numidea-lang', l); } catch (e) {}
-      withDicts(l, function () { apply(l); syncUrl(l); });
+      withDicts(l, function () { faces(l).then(function () { swap(function () { apply(l); syncUrl(l); }); }); });
     });
   });
+  /* While a swap runs the page is its picture, and a pointer lands on the
+     document, not on what it shows: a second press of the switch inside
+     those 250 ms was lost. It is handed on to the button under it (the new
+     swap takes over from the running one). */
+  document.addEventListener('click', function (e) {
+    if (!swapping || e.target !== document.documentElement) return;
+    $$('.st-lang button').some(function (b) {
+      var r = b.getBoundingClientRect();
+      if (!r.width || e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return false;
+      b.focus({ preventScroll: true }); b.click();
+      return true;
+    });
+  }, true);
   // the head script chose EN or AR and fetched the dictionary: apply it, release the paint
   var start = window.NUMIDEA_LANG || 'fr';
   var have = function () { return window.HUB_I18N && window.HUB_I18N[start]; };
@@ -132,98 +172,138 @@
   });
 
   /* ---------------- 1 · the sting ----------------
-     Shown once per session (sessionStorage 'numidea-sting'), only with
-     scripts on and without reduced motion; never in the HTML, so a reader
-     without scripts and every crawler get the page as it is. Rebuilt around
-     the characters (2026-11-15): Yasser in three rig frames on the red
-     block (base, up, smirk: the hero's own files, already in the page),
-     Kuro's eyes in a night cut, the red stamp, then the paper wipes up from
-     1.667 s. Its timeline is CSS (style.css, 00). A click anywhere, Esc or
-     any key jumps to the wipe; whatever happens it is gone by 2.6 s. The
-     rig waits for it. The old still ('sting-169.webp' and 'sting-916.webp' in
+     On every visit: a load, a return by the back button (the page from the
+     browser's cache), and again on demand from the hero's replay control.
+     Only with scripts on and without reduced motion; never in the HTML, so
+     a reader without scripts and every crawler get the page as it is; and
+     not while sessionStorage 'numidea-sting' is '1' (nothing here writes
+     it: the gates set it to look at the page beneath). Built around the
+     characters (2026-11-15): Yasser in three rig frames on the red block
+     (base, up, smirk: the hero's own files, already in the page), Kuro's
+     eyes in a night cut, the red stamp, then the paper wipes up. One bar
+     of the site's 90 BPM, 2.667 s, its timeline in CSS (style.css, 00):
+     the frames cut at 167, 667 and 1000 ms, the letters land from 333 ms,
+     the night cut at 1333, the stamp at 1667, the paper from 2000 to the
+     bar line. It is built once the page's language is final (its HUD and
+     skip label are in that language), and held on its first frame while a
+     page change lifts the last page away and while its four pictures
+     decode (a beat at most: then it plays the type-only cut). A click
+     anywhere, Esc or any key before the paper jumps to a quicker wipe
+     (500 ms). Whatever happens it is gone 3.333 s after it starts. The
+     rig waits for the first one only. The head script paints its first
+     frame before anything else (html.st-sting-pending); this takes that
+     cover away once the sting is on screen, or at once when it will not
+     play. The old still ('sting-169.webp' and 'sting-916.webp' in
      img/motion) is no longer loaded here; it stays as the source of the
      social card (scripts/build-og.mjs), and naming it keeps the build's
      unreferenced-file check quiet. */
   var stingDone = [];
-  var stinging = false;
-  (function () {
-    var seen = null;
-    try { seen = sessionStorage.getItem('numidea-sting'); } catch (e) { seen = '1'; }
-    // a slow or saving connection goes straight to the page: the frames (about 75 kB) would arrive after the wipe
-    var cn = navigator.connection;
-    // (and only where the rig is: the manual page opens without it)
-    if (!$('#rig') || reduce || seen || (cn && (cn.saveData || /(^|-)[23]g$/.test(cn.effectiveType || '')))) return;
-    try { sessionStorage.setItem('numidea-sting', '1'); } catch (e) {}
+  // read when the sting would start, not once at load: a visitor may turn reduced motion on during the visit and come back by the back button
+  var stillNow = function () { return reduce || matchMedia('(prefers-reduced-motion: reduce)').matches; };
+  var gated = function () { try { return sessionStorage.getItem('numidea-sting') === '1'; } catch (e) { return false; } };
+  var stinging = false, stingDue = !!$('#rig') && !reduce && !gated(), stingEnd = null;
+  var uncover = function () { root.classList.remove('st-sting-pending'); };
+  // what waited for the first sting (the rig's first line) goes once it is over, or once it is clear there will be none
+  var released = function () { stingDue = false; var q = stingDone; stingDone = []; q.forEach(function (fn) { fn(); }); };
+  var replayBtn = $('[data-sting-replay]');
+  // the page change's lift, if there is one: the head script keeps pagereveal's promise in window.stReveal (null without a lift); pagereveal may come after this script has run
+  var lifted = function () {
+    return new Promise(function (res) {
+      if (window.stReveal !== undefined || !('onpagereveal' in window)) { res(window.stReveal); return; }
+      addEventListener('pagereveal', function () { res(window.stReveal); }, { once: true });
+      setTimeout(res, M(12));   // (never held longer than this: the stylesheet still pauses it while a lift runs)
+    });
+  };
+  function playSting(opts) {
+    if (stinging) return;
+    var replay = !!(opts && opts.replay), shown = !!(opts && opts.shown);
+    if (!$('#rig') || stillNow() || gated()) { uncover(); released(); return; }
+    /* the load's sting plays only under the head's cover (which also holds
+       the scroll): once that is off (its 3.333 s backstop, on a slow link)
+       the page is the reader's, and a paper coming over it then would take
+       it back from them */
+    if (!replay && !shown && !root.classList.contains('st-sting-pending')) { uncover(); released(); return; }
     stinging = true;
+    // (the control is not disabled: a disabled control drops the focus to the page; a press while it plays does nothing, see stinging above)
+    if (replay && replayBtn) replayBtn.setAttribute('aria-disabled', 'true');
     var el = document.createElement('div');
-    el.className = 'st-sting';
+    el.className = 'st-sting is-wait';
     el.setAttribute('role', 'presentation');
     var letters = function (w, from) { return w.split('').map(function (c, i) { return '<span class="st-sting__g" style="--i:' + (from + i) + '">' + c + '</span>'; }).join(''); };
     var yf = function (k, f) { return '<img class="st-sting__y st-sting__y--' + k + '" alt="" width="501" height="565" decoding="async" src="bible/art/rig-y-' + f + '.webp">'; };
     el.innerHTML = '<span class="st-sting__bar st-sting__bar--t" aria-hidden="true"></span>'
-      + '<span class="st-sting__bar st-sting__bar--b" aria-hidden="true"><span class="st-sting__hud"></span></span>'
+      + '<span class="st-sting__bar st-sting__bar--b" aria-hidden="true"><span class="st-sting__hud" data-i18n="sting.hud"></span></span>'
       + '<span class="st-sting__block" aria-hidden="true">' + yf('a', 'base') + yf('b', 'up') + yf('c', 'smirk') + '</span>'
       + '<span class="st-sting__word" aria-hidden="true" dir="ltr"><span>' + letters('NUMIDEA', 0) + '</span><span class="st-sting__labs"><span>' + letters('LABS', 0) + '</span></span></span>'
       + '<span class="st-sting__eyes" aria-hidden="true"><img alt="" width="360" height="294" decoding="async" src="bible/art/rig-k-wide.webp"></span>'
       + '<span class="st-sting__stamp" aria-hidden="true" lang="ja">夜</span>'
       + '<span class="st-sting__wipe" aria-hidden="true"></span>'
-      + '<button type="button" class="st-sting__skip"><b aria-hidden="true">跳</b><span aria-hidden="true"></span></button>';
+      + '<button type="button" class="st-sting__skip" data-i18n-aria="sting.skipL"><b aria-hidden="true">跳</b><span aria-hidden="true" data-i18n="sting.skip"></span></button>';
+    // written in the page's language now; the data-i18n names let a switch while it plays translate it too
     $('.st-sting__hud', el).textContent = t('sting.hud');
     $('.st-sting__skip span', el).textContent = t('sting.skip');
     $('.st-sting__skip', el).setAttribute('aria-label', t('sting.skipL'));
     root.classList.add('st-stinging');
     document.body.appendChild(el);
-    var t0 = now(), ended = false;
-    var end = function () {
-      if (ended) return; ended = true; stinging = false;
-      el.remove(); root.classList.remove('st-stinging');
+    var t0 = 0, ended = false, ready = false;
+    var skipBtn = $('.st-sting__skip', el);
+    var end = function (quiet) {
+      if (ended) return; ended = true; stinging = false; stingEnd = null;
+      // the focus goes back to the replay control only from the sting's own button (or from nowhere), and the control is brought into view with it
+      var back = quiet !== true && replay && replayBtn && (document.activeElement === skipBtn || document.activeElement === document.body || !document.activeElement);
+      el.remove(); root.classList.remove('st-stinging'); uncover();
       document.removeEventListener('keydown', skip, true);
-      stingDone.forEach(function (fn) { fn(); });
+      if (replay && replayBtn) { replayBtn.removeAttribute('aria-disabled'); if (back) replayBtn.focus(); }
+      if (!replay) released();
     };
     var skip = function (e) {
+      // in a replay Tab stays on the sting's own button: the links under the paper are not reachable while it covers them
+      if (e && e.type === 'keydown' && e.key === 'Tab' && replay && skipBtn) { e.preventDefault(); skipBtn.focus({ preventScroll: true }); return; }
       if (e && e.type === 'keydown' && (e.key === 'Tab' || e.key === 'Shift')) return;
-      if (now() - t0 < 1667) el.classList.add('is-skip');
+      if (!t0 || now() - t0 < M(24)) el.classList.add('is-skip');
     };
     el.addEventListener('click', skip);
     document.addEventListener('keydown', skip, true);
-    $('.st-sting__wipe', el).addEventListener('animationend', end);
-    setTimeout(end, 2600);
-    // (no focus is moved onto it: the page's own skip link stays the first Tab stop; any key skips the sting)
-  })();
-
-  /* ---------------- 1b · the paper wipe between pages ----------------
-     0.4 s, the sting's paper and rule, on a same-origin navigation (a link
-     to another page of the site, the main buttons included). Never with a
-     modifier key, a middle or right click, target="_blank", a download, a
-     hash-only link (same page), a file that is not a page, or with reduced
-     motion (nothing is built). The overlay is taken away on pageshow, so a
-     page restored from the back/forward cache never sticks under it; a 2 s
-     backstop does the same if the navigation never leaves. */
-  var pgwipe = null;
-  var wipeOff = function () { if (pgwipe) { pgwipe.classList.remove('is-on'); pgwipe.remove(); pgwipe = null; } };
-  window.addEventListener('pageshow', wipeOff);
-  if (!reduce) document.addEventListener('click', function (e) {
-    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-    if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
-    var u;
-    try { u = new URL(a.href, location.href); } catch (x) { return; }
-    if (u.origin !== location.origin || !/^https?:$/.test(u.protocol)) return;
-    if (u.pathname === location.pathname && u.search === location.search) return;
-    if (!/(\/|\.html?)$/.test(u.pathname)) return;
-    if (pgwipe) return;
-    e.preventDefault();
-    pgwipe = document.createElement('div');
-    pgwipe.className = 'st-pgwipe';
-    pgwipe.setAttribute('aria-hidden', 'true');
-    pgwipe.innerHTML = '<span class="st-pgwipe__seal" lang="ja">夜</span>';
-    document.body.appendChild(pgwipe);
-    void pgwipe.offsetWidth;
-    pgwipe.classList.add('is-on');
-    setTimeout(function () { location.href = a.href; }, 400);
-    setTimeout(wipeOff, 2000);
-  });
-  var afterSting = function (fn) { if (stinging) stingDone.push(fn); else fn(); };
+    $('.st-sting__wipe', el).addEventListener('animationend', function () { end(); });
+    stingEnd = end;
+    /* the clock starts once the lift is over and the pictures are decoded,
+       or a beat has gone by without them. The load's decodes began in the
+       head script, at first paint (window.stDecode); the beat is counted
+       from the end of this script's first task, so a busy start does not
+       count against the pictures. */
+    var own = Promise.all($$('img', el).map(function (im) { return im.decode ? im.decode() : Promise.resolve(); }));
+    var decoded = (!replay && !shown && window.stDecode ? window.stDecode : own).then(function () { ready = true; }, function () {});
+    var beat = new Promise(function (r) { setTimeout(function () { setTimeout(r, M(8)); }, 0); });
+    Promise.all([lifted(), Promise.race([decoded, beat])]).then(function () {
+      if (ended) return;
+      if (!ready) el.classList.add('is-type');
+      el.classList.remove('is-wait');
+      t0 = now();
+      uncover();
+      setTimeout(function () { end(); }, M(40));
+    });
+    // a replay puts the focus on the sting's own labelled button, so Tab does not walk the links hidden under the paper; the load's sting moves no focus (the page's own skip link stays the first Tab stop; any key skips it)
+    if (replay && skipBtn) skipBtn.focus({ preventScroll: true });
+  }
+  // played where the page's language is final: at once in French (or with a dictionary already applied), else when the head script's hold comes off (the dictionary has landed, or its 1.5 s backstop)
+  if (!root.hasAttribute('data-i18n-pending') || !('MutationObserver' in window)) playSting();
+  else {
+    var langMo = new MutationObserver(function () { if (!root.hasAttribute('data-i18n-pending')) { langMo.disconnect(); playSting(); } });
+    langMo.observe(root, { attributes: true, attributeFilter: ['data-i18n-pending'] });
+  }
+  // back from the browser's cache: the page as it was left, and the sting over it once the lift that brings it back is done
+  addEventListener('pageshow', function (e) { if (e.persisted) { window.stReveal = undefined; playSting({ shown: true }); } });
+  /* left while one plays: it is ended as the page goes into the browser's
+     cache (no focus moved), so the return starts a fresh one instead of the
+     frozen one resuming where it stopped, or none at all ('stinging' still
+     set from the frozen run turned the return's sting away) */
+  addEventListener('pagehide', function (e) { if (e.persisted && stingEnd) stingEnd(true); });
+  // the hero's replay control: only where motion is allowed (it stays hidden otherwise, and without scripts)
+  if (replayBtn && !reduce) {
+    replayBtn.hidden = false;
+    replayBtn.addEventListener('click', function () { playSting({ replay: true }); });
+  }
+  var afterSting = function (fn) { if (stinging || stingDue) stingDone.push(fn); else fn(); };
 
   /* ---------------- 2 · the rig ----------------
      The character bible's rig (hub/bible/app.js 1), with the Studio's
@@ -231,17 +311,21 @@
      opacity flips (hard cuts). The two base frames are in the page; the
      eighteen others wait in <template id="rigFrames"> and come in once the
      hero is on screen. The loop (tick) runs while now < S.until; every
-     interaction extends S.until by at most WINDOW ms, and in its last EASE
-     ms the breath, the lean and the gaze settle and he rests on his base
-     frame. Then no frame is requested. Inside a window, and only there: the
-     steam over the cup, one glasses push before a line (35 % of lines) or,
-     when the pointer alone opened the window, one sip; Kūro's wide eyes on a
-     fast scroll. One yawn per visit, in a window the pointer opened and
-     after it has been still for 2.3 s (both of them, 1.5 s, done before the
-     window's last 700 ms). Nothing is scheduled outside a window (no idle
-     loop); reduced motion keeps none of them. A line is typed at 38 ms a
-     character in the bubble and written whole in the live region. */
-  var WINDOW = 5000, EASE = 700;
+     interaction extends S.until by at most WINDOW ms (seven beats of the
+     site's tempo, 4.667 s), and in its last EASE ms (one beat) the breath,
+     the lean and the gaze settle and he rests on his base frame. Then no
+     frame is requested. Inside a window, and only there: the steam over the
+     cup (a drift of four beats), one glasses push before a line (35 % of
+     lines) or, when the pointer alone opened the window, one sip; Kūro's
+     wide eyes on a fast scroll. One yawn per visit, in a window the pointer
+     opened and after it has been still for 2.333 s (both of them, two
+     beats, done before the window's last beat). Every hold, blink and
+     interval is on the grid (blinks of 42/125/167 ms, intervals drawn and
+     then rounded to a sixteenth). Nothing is scheduled outside a window (no
+     idle loop); reduced motion keeps none of them. A line is typed a
+     character every sixteenth (42 ms) in the bubble, laid out whole from
+     the first character, and written whole in the live region. */
+  var WINDOW = M(56), EASE = M(8), CH = Q(42);
   var panel = $('#rig');
   if (panel) (function () {
     var yRoot = $('.st-rig__y', panel), kRoot = $('.st-rig__k', panel);
@@ -276,7 +360,7 @@
     var t0 = now();
     var S = {
       cur: 'base', kcur: 'base', hold: null, khold: null, blinkAt: null, kBlinkAt: null,
-      nextBlink: t0 + 1600, kNext: t0 + rnd(2500, 5000), kEar: t0 + rnd(2500, 4500),
+      nextBlink: t0 + M(20), kNext: t0 + Q(rnd(2667, 5000)), kEar: t0 + Q(rnd(2667, 4667)),
       mx: .6, my: .5, gaze: 'base', gazeCand: 'base', gazeSince: t0, kgaze: 'base', kgazeAt: 0,
       squash: 0, ksquash: 0, mood: 'base', raf: 0, until: 0, lastClick: -1e9, lean: 0, say: null, lineIx: 0,
       next: null, nextSip: 0, lastY: 0, lastYt: 0, lastMove: 0, yawned: false
@@ -300,6 +384,19 @@
       if (!saidEl) return;
       saidEl.textContent = t('rig.said') + ' ' + text;
     };
+    /* the bubble's text: k characters typed, the rest of the line laid out
+       but unseen (.st-ghost), so the bubble has its final size from the
+       first character and nothing around it moves while he types */
+    var typed = null, ghost = null;
+    var line = function (text, k) {
+      if (!typed || typed.parentNode !== btext) {
+        btext.textContent = '';
+        typed = btext.appendChild(document.createElement('span'));
+        ghost = btext.appendChild(document.createElement('span'));
+        ghost.className = 'st-ghost';
+      }
+      typed.textContent = text.slice(0, k); ghost.textContent = text.slice(k);
+    };
     /* a line, at t1 (default now). With glass, he pushes his glasses up for
        750 ms from t1 and the line starts after it: the one extra a window
        may hold (sip is the other, and only when no line is coming) */
@@ -307,11 +404,12 @@
       if (!bubble || !text) return;
       var n = now(), t1 = at || n, t0 = t1;
       S.next = null;
-      if (glass && !reduce) { t0 = t1 + 750; S.next = { name: 'glasses', at: t1, until: t0 }; }
-      S.say = { text: text, t0: t0, shown: 0, done: 0, flapAt: 0, flap: 'base' };
-      btext.textContent = reduce ? text : ''; bubble.classList.add('on');
-      if (reduce) { said(text); S.say.done = n; }
-      keep(t0 - n + (reduce ? 0 : text.length * 38) + 2200);
+      if (glass && !reduce) { t0 = t1 + M(9); S.next = { name: 'glasses', at: t1, until: t0 }; }
+      S.say = { text: text, t0: t0, shown: 0, done: 0, flapAt: 0, flap: 'base', on: false };
+      // the bubble comes on with the first character (tick), as the bible's rig does: never an empty pill waiting for its words; with reduced motion the whole line, at once
+      line(text, reduce ? text.length : 0);
+      if (reduce) { said(text); S.say.done = n; S.say.on = true; bubble.classList.add('on'); }
+      keep(t0 - n + (reduce ? 0 : text.length * CH) + M(32));
     };
     var endSay = function () { S.say = null; if (bubble) bubble.classList.remove('on'); };
 
@@ -325,44 +423,45 @@
       if (fade < 1) { S.mx += (.6 - S.mx) * .12; S.my += (.5 - S.my) * .12; }
       var gt = gazeTarget();
       if (gt !== S.gazeCand) { S.gazeCand = gt; S.gazeSince = n; }
-      if (n - S.gazeSince > 110) S.gaze = S.gazeCand;
+      if (n - S.gazeSince > Q(125)) S.gaze = S.gazeCand;
       var mouth = null;
       if (S.say && n >= S.say.t0) {
-        var sy = S.say, len = sy.text.length, k = reduce ? len : Math.min(len, Math.floor((n - sy.t0) / 38));
-        if (k !== sy.shown) { sy.shown = k; btext.textContent = sy.text.slice(0, k); }
+        var sy = S.say, len = sy.text.length, k = reduce ? len : Math.min(len, 1 + Math.floor((n - sy.t0) / CH));
+        if (k !== sy.shown) { sy.shown = k; line(sy.text, k); }
+        if (!sy.on) { sy.on = true; bubble.classList.add('on'); }
         if (k < len) {
           var ch = sy.text[k - 1] || '';
           if (/[.,?!…،؟]/.test(ch)) mouth = 'base';
-          else { if (n > sy.flapAt) { sy.flap = ['talk-a', 'talk-b', 'talk-a', 'base'][Math.floor(Math.random() * 4)]; sy.flapAt = n + rnd(70, 120); } mouth = sy.flap; }
-        } else { if (!sy.done) { sy.done = n; said(sy.text); } if (n - sy.done > 2000) endSay(); }
+          else { if (n > sy.flapAt) { sy.flap = ['talk-a', 'talk-b', 'talk-a', 'base'][Math.floor(Math.random() * 4)]; sy.flapAt = n + Q(rnd(83, 125)); } mouth = sy.flap; }
+        } else { if (!sy.done) { sy.done = n; said(sy.text); } if (n - sy.done > M(28)) endSay(); }   // held 2.333 s once typed, as on the bible's rig
       }
-      // still for 2.3 s inside a window the pointer opened: one yawn, once, for both (never while a line or another pose is on)
-      if (live && !S.yawned && S.lastMove && !S.say && !S.hold && !S.khold && !S.next && fade === 1 && n - S.lastMove > 2300 && left > 2400) {
-        S.yawned = true; S.hold = { name: 'yawn', until: n + 1500 }; S.khold = { name: 'yawn', until: n + 1500 };
+      // still for 2.333 s inside a window the pointer opened: one yawn, once, for both (never while a line or another pose is on)
+      if (live && !S.yawned && S.lastMove && !S.say && !S.hold && !S.khold && !S.next && fade === 1 && n - S.lastMove > M(28) && left > M(16) + EASE) {
+        S.yawned = true; S.hold = { name: 'yawn', until: n + M(16) }; S.khold = { name: 'yawn', until: n + M(16) };
       }
       var mood = S.hold ? S.hold.name : mouth || (S.say ? 'base' : S.gaze);
       emit(S.say ? 'talk' : (mood === 'talk-a' || mood === 'talk-b') ? 'talk' : mood);
-      if (live && !S.hold && !mouth && n > S.nextBlink && fade === 1) { S.blinkAt = n; S.nextBlink = n + (Math.random() < .2 ? 260 : rnd(2600, 6000)); }
+      if (live && !S.hold && !mouth && n > S.nextBlink && fade === 1) { S.blinkAt = n; S.nextBlink = n + (Math.random() < .2 ? M(3) : Q(rnd(2667, 6000))); }
       var f = mood, blinkable = ['sip', 'yawn', 'laugh', 'glasses'].indexOf(mood) < 0;
-      if (S.blinkAt != null && blinkable) { var bt = n - S.blinkAt; f = bt < 45 ? 'half' : bt < 135 ? 'blink' : bt < 180 ? 'half' : (S.blinkAt = null, mood); }
+      if (S.blinkAt != null && blinkable) { var bt = n - S.blinkAt; f = bt < Q(42) ? 'half' : bt < Q(125) ? 'blink' : bt < M(2) ? 'half' : (S.blinkAt = null, mood); }
       else if (!blinkable) S.blinkAt = null;
       flip(Y, 'cur', f);
       var kt = S.say ? 'right' : S.mx < .33 ? 'left' : S.mx > .82 ? 'right' : 'base';
-      if (kt !== S.kgaze && n - S.kgazeAt > 320) { S.kgaze = kt; S.kgazeAt = n; }
-      if (live && !S.khold && n > S.kNext && fade === 1) { S.kBlinkAt = n; S.kNext = n + rnd(3500, 7500); }
-      if (live && !S.khold && n > S.kEar && fade === 1) { S.khold = { name: 'ear', until: n + 200 }; S.kEar = n + rnd(2500, 4500); }
+      if (kt !== S.kgaze && n - S.kgazeAt > M(4)) { S.kgaze = kt; S.kgazeAt = n; }
+      if (live && !S.khold && n > S.kNext && fade === 1) { S.kBlinkAt = n; S.kNext = n + Q(rnd(3333, 7333)); }
+      if (live && !S.khold && n > S.kEar && fade === 1) { S.khold = { name: 'ear', until: n + M(3) }; S.kEar = n + Q(rnd(2667, 4667)); }
       var kf = S.khold ? S.khold.name : S.kgaze;
-      if (S.kBlinkAt != null && !S.khold) { if (n - S.kBlinkAt < 170) kf = 'blink'; else S.kBlinkAt = null; }
+      if (S.kBlinkAt != null && !S.khold) { if (n - S.kBlinkAt < M(2)) kf = 'blink'; else S.kBlinkAt = null; }
       flip(K, 'kcur', kf);
-      var br = live ? Math.sin(n / 4200 * Math.PI * 2) * fade : 0;
+      var br = live ? Math.sin(n / M(48) * Math.PI * 2) * fade : 0;
       var leanT = live ? (S.mx - .6) * 1.6 * fade : 0;
       S.lean += (leanT - S.lean) * .06;
       if (yBody) yBody.style.transform = n < S.squash ? 'scale(1.05,.95)' : 'rotate(' + (S.lean * .6).toFixed(3) + 'deg) translateX(' + (S.lean * 3).toFixed(2) + 'px) scale(' + (1 - br * .003).toFixed(4) + ',' + (1 + br * .009).toFixed(4) + ')';
       if (kBody) kBody.style.transform = n < S.ksquash ? 'scale(1.08,.92)' : 'translateY(' + (br * -1.5).toFixed(2) + 'px) rotate(' + (S.lean * -.8).toFixed(3) + 'deg)';
-      // the steam drifts while the window is open, is hidden while he sips or pushes his glasses, and is gone with the window's last 700 ms
+      // the steam drifts while the window is open, is hidden while he sips or pushes his glasses, and is gone with the window's last beat
       var steamOn = live && ['sip', 'yawn', 'glasses'].indexOf(S.cur) < 0;
       for (var i = 0; i < wisps.length; i++) {
-        var p = ((n / 2600) + i / wisps.length) % 1, w = wisps[i];
+        var p = ((n / M(32)) + i / wisps.length) % 1, w = wisps[i];
         w.style.opacity = steamOn ? (Math.sin(p * Math.PI) * .7 * fade).toFixed(3) : 0;
         w.style.transform = 'translate(' + (Math.sin(p * 6 + i) * 7 + S.lean * -4 * p).toFixed(1) + 'px,' + (-p * 70).toFixed(1) + 'px) scale(' + (.7 + p * .9).toFixed(2) + ')';
       }
@@ -382,42 +481,53 @@
     var poke = function () {
       wake();
       var n = now(); keep(WINDOW);
-      S.squash = n + 110; S.ksquash = n + 110;
-      if (reduce) { S.hold = { name: 'smirk', until: n + 1200 }; if (!S.say) startSay(lines()[S.lineIx++ % lines().length]); return; }
-      if (n - S.lastClick < 2500) { S.hold = { name: 'laugh', until: n + 950 }; S.khold = { name: 'wide', until: n + 800 }; }
-      else if (!S.say) { S.hold = { name: 'smirk', until: n + 400 }; startSay(lines()[S.lineIx++ % lines().length], n + 400, Math.random() < .35); }
-      else { S.hold = { name: 'smirk', until: n + 1300 }; S.khold = { name: 'wide', until: n + 700 }; }
+      S.squash = n + M(1); S.ksquash = n + M(1);
+      if (reduce) { S.hold = { name: 'smirk', until: n + M(14) }; if (!S.say) startSay(lines()[S.lineIx++ % lines().length]); return; }
+      if (n - S.lastClick < M(30)) { S.hold = { name: 'laugh', until: n + M(12) }; S.khold = { name: 'wide', until: n + M(10) }; }
+      else if (!S.say) { S.hold = { name: 'smirk', until: n + M(5) }; startSay(lines()[S.lineIx++ % lines().length], n + M(5), Math.random() < .35); }
+      else { S.hold = { name: 'smirk', until: n + M(16) }; S.khold = { name: 'wide', until: n + M(8) }; }
       S.lastClick = n;
     };
-    var pokeKuro = function () { wake(); var n = now(); keep(WINDOW); S.ksquash = n + 110; S.khold = { name: Math.random() < .5 ? 'wide' : 'ear', until: n + 800 }; };
+    var pokeKuro = function () { wake(); var n = now(); keep(WINDOW); S.ksquash = n + M(1); S.khold = { name: Math.random() < .5 ? 'wide' : 'ear', until: n + M(10) }; };
     yRoot.addEventListener('click', poke);
     kRoot.addEventListener('click', pokeKuro);
-    // on screen, once the sting is gone: the frames come in, he wakes for five seconds and says his first line
+    // on screen, once the first sting is gone: the frames come in, he wakes for a window and says his first line a beat and a half later
     once(panel, .15, function () {
       loadFrames();
       if (reduce) return;
-      afterSting(function () { keep(WINDOW); var n = now(); startSay(lines()[S.lineIx++ % lines().length], n + 900, Math.random() < .35); });
+      afterSting(function () { keep(WINDOW); var n = now(); startSay(lines()[S.lineIx++ % lines().length], n + M(12), Math.random() < .35); });
     });
     if (!reduce && finePointer) {
       panel.closest('.st-hero').addEventListener('pointermove', function (e) {
         S.mx = e.clientX / innerWidth; S.my = e.clientY / innerHeight; S.lastMove = now();
         if (framesIn && !S.raf) {
-          // a window opened by the pointer alone, no line coming: once in a while he takes one sip (1.7 s), once the visit's yawn is done
+          // a window opened by the pointer alone, no line coming: once in a while he takes one sip (1.667 s), once the visit's yawn is done
           var n = now();
-          if (!S.say && S.yawned && n > S.nextSip) { var at = n + rnd(900, 1700); S.next = { name: 'sip', at: at, until: at + 1700 }; S.nextSip = n + rnd(12000, 18000); }
+          if (!S.say && S.yawned && n > S.nextSip) { var at = n + Q(rnd(1000, 1667)); S.next = { name: 'sip', at: at, until: at + M(20) }; S.nextSip = n + Q(rnd(12000, 18000)); }
           keep(WINDOW);
         }
       }, { passive: true });
     }
-    // Kūro goes wide-eyed for half a second when the page is scrolled fast past the hero (faster than 3 px/ms); never with reduced motion
+    /* Kūro goes wide-eyed for three quarters of a beat (500 ms) when the page
+       is scrolled fast past the hero (faster than 3 px/ms); never with
+       reduced motion. The scroll event reads nothing: an observer says
+       whether the hero is on screen, and the position is read once a frame,
+       in the frame's own callback (a read inside the event forced a whole
+       relayout each time a case's faces had just landed). */
     if (!reduce) {
-      var hero = panel.closest('.st-hero');
-      S.lastY = scrollY; S.lastYt = now();
-      addEventListener('scroll', function () {
-        var n = now(), v = Math.abs(scrollY - S.lastY) / Math.max(16, n - S.lastYt);
-        S.lastY = scrollY; S.lastYt = n;
-        if (v > 3 && framesIn && !S.khold && hero.getBoundingClientRect().bottom > 0) { keep(1200); S.khold = { name: 'wide', until: n + 500 }; }
-      }, { passive: true });
+      var hero = panel.closest('.st-hero'), heroOn = true, sRaf = 0;
+      S.lastY = null;
+      if (IO) new IntersectionObserver(function (es) { heroOn = es[es.length - 1].isIntersecting; }).observe(hero);
+      var look = function () {
+        sRaf = 0;
+        var n = now(), y = scrollY;
+        if (S.lastY !== null) {
+          var v = Math.abs(y - S.lastY) / Math.max(16, n - S.lastYt);
+          if (v > 3 && framesIn && !S.khold) { keep(M(14)); S.khold = { name: 'wide', until: n + M(6) }; }
+        }
+        S.lastY = y; S.lastYt = n;
+      };
+      addEventListener('scroll', function () { if (!heroOn) { S.lastY = null; return; } if (!sRaf) sRaf = requestAnimationFrame(look); }, { passive: true });
     }
     onLang.push(function () { if (S.say) endSay(); if (saidEl) saidEl.textContent = ''; });
   })();
@@ -425,18 +535,19 @@
   /* ---------------- 3 · the pose actors ----------------
      <button class="st-actor" data-seq="holdA,holdB"> with <img data-pf="a">
      and <img data-pf="b">: the class b shows the second frame. Once, when
-     the figure is first on screen, for 250 + holdB ms (never with reduced
+     the figure is first on screen, for 250 ms + holdB (never with reduced
      motion; never more than five seconds); on hover while the pointer is
-     over it; on a click or Enter for 1.6 × holdB. A hard cut each way. */
+     over it; on a click or Enter for 1.5 × holdB. Both rounded to a
+     sixteenth of the beat. A hard cut each way. */
   $$('.st-actor[data-seq]').forEach(function (el) {
-    var hb = Math.min(4000, Number((el.getAttribute('data-seq') || '3200,700').split(',')[1]) || 700), timer = 0, hover = false;
+    var hb = Math.min(4000, Number((el.getAttribute('data-seq') || '3208,708').split(',')[1]) || 708), timer = 0, hover = false;
     var show = function (ms) { el.classList.add('b'); clearTimeout(timer); timer = setTimeout(function () { if (!hover) el.classList.remove('b'); }, ms); };
-    el.addEventListener('click', function () { show(hb * 1.6); });
+    el.addEventListener('click', function () { show(Q(hb * 1.5)); });
     if (!reduce && finePointer) {
       el.addEventListener('pointerenter', function () { hover = true; el.classList.add('b'); });
       el.addEventListener('pointerleave', function () { hover = false; clearTimeout(timer); el.classList.remove('b'); });
     }
-    if (!reduce) once(el, .3, function () { show(250 + hb); });
+    if (!reduce) once(el, .3, function () { show(M(3) + Q(hb)); });
   });
 
   // the WorkspaceHQ ticket plays its game animation (a second or three) on hover; with no hover it plays once, when it is first on screen
@@ -444,27 +555,53 @@
   if (cart && !reduce && !finePointer) once(cart, .8, function () { cart.classList.add('is-play'); });
 
   /* ---------------- 4 · reveals, the wedge, the speed bar ----------------
-     A [data-reveal] block below the first screen starts 18px low and
-     transparent and comes up once 12% of it is on screen, 70 ms after the
-     sibling before it (490 ms at most). Above the fold nothing is hidden. */
+     A [data-reveal] block below the first screen starts 12px low and
+     transparent and comes up (500 ms) as it nears the screen (a fifth of a
+     screen before it, as on the home). Blocks that arrive together step an
+     eighth of a beat apart in the order they arrive (three steps at most,
+     250 ms); a block that arrives alone starts at once. The rise is an
+     animation (style.css), so the block keeps its own hover. Above the fold
+     nothing is hidden. Which blocks start hidden is the answer of an
+     observer's first look, so no layout is read while the page starts.
+     whenIn(el, fn) calls fn with the time a block's rise starts (now, for
+     a block that is not hidden): what follows a reveal waits for it. */
+  var whenIn = function (el, fn) {
+    if (!el || !el._rv) fn(now());
+    else if (el._rv.at) fn(el._rv.at);
+    else el._rv.q.push(fn);
+  };
   if (!reduce && IO) {
     var rio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); rio.unobserve(e.target); } });
-    }, { threshold: .12 });
-    $$('[data-reveal]').forEach(function (el) {
-      if (el.getBoundingClientRect().top < innerHeight) return;
-      // a card inside a row that swipes is revealed by the swipe itself, as it comes into the row: not hidden behind a scroll the visitor may never make
-      var rowEl = el.closest('[data-row]');
-      if (rowEl && rowEl.scrollWidth > rowEl.clientWidth + 2) return;
-      var sib = [].filter.call(el.parentElement.children, function (c) { return c.hasAttribute('data-reveal'); });
-      el.style.setProperty('--d', Math.min(490, Math.max(0, sib.indexOf(el)) * 70) + 'ms');
-      el.classList.add('st-rv');
-      rio.observe(el);
+      var i = 0;
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target, r = el._rv, d = M(Math.min(3, i++));
+        el.style.setProperty('--d', d + 'ms');
+        el.classList.add('is-in'); rio.unobserve(el);
+        r.at = now() + d; r.q.forEach(function (fn) { fn(r.at); }); r.q = [];
+      });
+    }, { rootMargin: '0px 0px 20% 0px' });
+    var sio = new IntersectionObserver(function (es) {
+      // every read first (the observer's own boxes, and a row's widths), then every write
+      var hide = es.filter(function (e) {
+        sio.unobserve(e.target);
+        if (e.boundingClientRect.top < (e.rootBounds ? e.rootBounds.height : innerHeight)) return false;
+        // a card inside a row that swipes is revealed by the swipe itself, as it comes into the row: not hidden behind a scroll the visitor may never make
+        var rowEl = e.target.closest('[data-row]');
+        return !(rowEl && rowEl.scrollWidth > rowEl.clientWidth + 2);
+      });
+      hide.forEach(function (e) { e.target._rv = { at: 0, q: [] }; e.target.classList.add('st-rv'); });
+      hide.forEach(function (e) { rio.observe(e.target); });
     });
+    /* armed once a page change's lift is over (at once on a load): the
+       observer's first look reads the rows' widths, a layout that landed in
+       the lift's frames; the blocks it hides are below the screen, so
+       nothing on screen changes for the wait */
+    lifted().then(function () { $$('[data-reveal]').forEach(function (el) { sio.observe(el); }); });
   }
   /* the first drawing (the founder section's plate): three layers of one
      drawing. Once, when 35% of it is on screen, Kūro slides in, then Yasser
-     (CSS: 0.9 s and 1.0 s, the second 0.45 s later: done in 1.5 s). Without
+     (CSS: 1 s each, the second 0.5 s later: done in 1.5 s). Without
      this script, or with reduced motion, the layers are simply in place. */
   var plate = $('[data-plate]');
   if (plate && !reduce && IO) {
@@ -490,10 +627,20 @@
     }, { threshold: .3 });
     loops.forEach(function (im) { lio.observe(im); });
   }
+  // the wedge's cut: once the board is on screen, half a beat after its heading has started to come up (at once with reduced motion)
   var board = $('[data-wedge]');
-  once(board, .12, function () { setTimeout(function () { board.classList.add('is-cut'); }, reduce ? 0 : 350); });
-  var speed = $('[data-speed]');
-  once($('#tech'), .12, function () { if (speed) speed.classList.add('is-on'); });
+  once(board, .12, function () {
+    var cut = function () { board.classList.add('is-cut'); };
+    if (reduce) { cut(); return; }
+    whenIn(board.previousElementSibling, function (at) { setTimeout(cut, Math.max(0, at + M(6) - now())); });
+  });
+  // the stopwatch fills while its own card is in view: half of it on screen, a beat after the card has started to come up
+  var speed = $('[data-speed]'), tcard = speed && speed.closest('.st-tcard');
+  if (speed) once(tcard || speed, .5, function () {
+    var fill = function () { speed.classList.add('is-on'); };
+    if (reduce) { fill(); return; }
+    whenIn(tcard, function (at) { setTimeout(fill, Math.max(0, at + M(8) - now())); });
+  });
 
   /* ---------------- 5 · process ----------------
      The active step is the last one whose top has crossed 55% of the
@@ -524,14 +671,15 @@
     }, { passive: true });
     if (!IO) return;
     var pio = new IntersectionObserver(function (es) {
-      if (swipes()) return;
       es.forEach(function (e) { inView[e.target.getAttribute('data-step')] = e.isIntersecting; });
       // the last step whose top has crossed the 55% line, read when one enters
       // or leaves (not on scroll): a tall window that shows all five does not
-      // jump to the last picture
+      // jump to the last picture. (The row's width is read only once a step
+      // is in: the observer's first answer, with every step off screen, laid
+      // the section out for nothing as the page started.)
       var line = window.innerHeight * 0.55, last = -1, any = false;
       steps.forEach(function (s, j) { if (inView[j]) any = true; });
-      if (!any) return;
+      if (!any || swipes()) return;
       steps.forEach(function (s, j) { if (s.getBoundingClientRect().top <= line) last = j; });
       set(Math.max(0, last));
     }, { rootMargin: '0px 0px -45% 0px' });
@@ -553,7 +701,8 @@
   var est = $('[data-est]');
   var P = null;
   try { P = JSON.parse($('#hub-prices').textContent); } catch (e) {}
-  if (P) (function () {
+  // (the section names its price model M, as the home's port does, and scripts/check.mjs reads it by that name: the tempo comes in as M8)
+  if (P) (function (M8) {
     var M = P.model, O = P.opts;
     var kilo = function (n) { return Math.round(n / 1000) * 1000; };
     var sizeWeeks = function (m, n) { return m.per ? Math.floor(Math.max(0, n - m.base_u) / m.per) : 0; };
@@ -651,7 +800,7 @@
     var kuro = $('[data-est-kuro]'), kImgs = $$('img', kuro), kLine = $('[data-est-line]');
     var seal = $('[data-est-seal]', est);
     var live = $('[data-est-live]', est), liveW = $('[data-est-live-w]', est);
-    var shown = null, tw = 0, tier = 0;
+    var shown = null, tw = 0, tier = 0, padTo = 0;
     var paint = function (lo, hi) {
       dz.textContent = range(lo, hi, 'DZD');
       if (live) live.textContent = dz.textContent;
@@ -671,10 +820,22 @@
         else ['lo', 'hi'].forEach(function (f) { td = document.createElement('td'); td.dir = 'ltr'; td.textContent = amt(ln[f]); tr.appendChild(td); });
         frag.appendChild(tr);
       });
+      /* the receipt keeps the length of the longest quote the same choices
+         give on any type (blank lines under the last), so the total, Kūro
+         and the markets below it stay put as the type changes */
+      var opts = st.opts, longest = q.lines.length;
+      order.forEach(function (k) { var mk2 = M[k]; if (!mk2) return; longest = Math.max(longest, quote(k, mk2.def, (mk2.incl || []).concat(opts.filter(function (o) { return (mk2.incl || []).indexOf(o) < 0; })), st.rush).lines.length); });
+      padTo = Math.max(padTo, longest);
+      for (var pi = q.lines.length; pi < padTo; pi++) {
+        var pr = document.createElement('tr'), pd = document.createElement('td');
+        pr.className = 'st-rc__pad'; pr.setAttribute('aria-hidden', 'true'); pd.colSpan = 3; pd.textContent = '\u00a0';
+        pr.appendChild(pd); frag.appendChild(pr);
+      }
       rowsEl.textContent = ''; rowsEl.appendChild(frag);
       loEl.textContent = amt(q.lo); hiEl.textContent = amt(q.hi);
       eu.textContent = range(q.lo, q.hi, 'EUR'); us.textContent = range(q.lo, q.hi, 'USD');
-      if (animate && !reduce) { rowsEl.classList.remove('is-print'); void rowsEl.offsetWidth; rowsEl.classList.add('is-print'); }
+      // the rows are new, so a print needs no restart (a forced layout in the press, as it was): the class only says whether they print
+      rowsEl.classList.toggle('is-print', !!animate && !reduce);
     };
     /* The same project on three markets (the price guide's sourced ranges),
        each in its own currency, drawn on one logarithmic dinar scale with the
@@ -698,6 +859,9 @@
         r.style.setProperty('--a', pos(toDz(k, v[0]))); r.style.setProperty('--b', pos(toDz(k, v[1])));
       });
     };
+    /* animate: false paints at once (the first paint, a language switch);
+       'figures' only tweens the total (the size slider while it is being
+       dragged); true also prints the receipt and stamps the seal */
     var render = function (animate) {
       var m = M[st.type], q = quote(st.type, st.n, picked(), st.rush);
       nOut.textContent = st.n;
@@ -706,7 +870,8 @@
       what.textContent = t('pricing.types.' + st.type) + ' · ' + counted(m.u, st.n);
       inclEl.textContent = (m.fam === 'argent' ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, m.base_u)) + '. ' + t('pricing.beyond') + ' + ' + range(m.unit[0], m.unit[1], 'DZD') + ' / ' + unitN(m.u, 1);
       // a studio project whose range meets the mid band carries the mid-range note; the money services do not
-      if (midEl) { midEl.hidden = !!m.fam || q.lo > P.mid[1] || q.hi < P.mid[0]; midEl.textContent = t('pricing.rc.mid').replace('{r}', pair(P.mid[0], P.mid[1], 'DZD')); }
+      // (one without it keeps its place, unseen and unread, style.css: Kūro and the markets below stay put as the type changes)
+      if (midEl) { var midOff = !!m.fam || q.lo > P.mid[1] || q.hi < P.mid[0]; midEl.hidden = false; midEl.classList.toggle('is-off', midOff); midEl.setAttribute('aria-hidden', String(midOff)); midEl.textContent = t('pricing.rc.mid').replace('{r}', pair(P.mid[0], P.mid[1], 'DZD')); }
       // pace and maintenance are a project's, not a call's
       if (paceBox) paceBox.hidden = !!m.noRush;
       care.hidden = !!m.fam;
@@ -717,7 +882,7 @@
       $$('[data-est-wk]', est).forEach(function (n) { n.textContent = wkN(q.wHi); });
       if (noteEl) noteEl.hidden = !!m.fam;
       careBox.hidden = !st.care || !!m.fam; careV.textContent = range(P.retainer[0], P.retainer[1], 'DZD');
-      receipt(q, m, animate);
+      receipt(q, m, animate === true);
       market(q);
       var nt = q.hi < 200000 ? 0 : q.hi < 600000 ? 1 : 2;
       if (nt !== tier) { tier = nt; kImgs.forEach(function (im) { im.classList.toggle('is-active', Number(im.getAttribute('data-tier')) === tier); }); }
@@ -725,14 +890,22 @@
       kLine.setAttribute('data-i18n', 'pricing.kuro.' + tier); kLine.textContent = t('pricing.kuro.' + tier);
       kImgs[0].alt = ''; kImgs[tier].alt = t('pricing.kuroAlt');
       // the seal stamps the receipt once the visitor has changed something (never on the first paint)
-      if (animate && seal) { seal.hidden = false; seal.classList.remove('is-stamp'); if (!reduce) { void seal.offsetWidth; seal.classList.add('is-stamp'); } }
+      // (stamped again by restarting its animation, not by taking the class off and forcing a layout to put it back)
+      if (animate === true && seal) {
+        seal.hidden = false;
+        if (reduce) seal.classList.remove('is-stamp');
+        else if (!seal.classList.contains('is-stamp') || !seal.getAnimations) seal.classList.add('is-stamp');
+        else seal.getAnimations().forEach(function (a) { a.cancel(); a.play(); });
+      }
       cancelAnimationFrame(tw);
       var from = shown || { lo: q.lo, hi: q.hi };
       shown = { lo: q.lo, hi: q.hi };
       if (!animate || reduce) { paint(q.lo, q.hi); return; }
-      kuro.classList.add('is-squash'); setTimeout(function () { kuro.classList.remove('is-squash'); }, 110);
-      face.classList.add('is-blink'); setTimeout(function () { face.classList.remove('is-blink'); }, 140);
-      var t1 = now(), D = 420;
+      if (animate === true) {
+        kuro.classList.add('is-squash'); setTimeout(function () { kuro.classList.remove('is-squash'); }, M8(1));
+        face.classList.add('is-blink'); setTimeout(function () { face.classList.remove('is-blink'); }, M8(2));
+      }
+      var t1 = now(), D = M8(5);
       var step = function (n) {
         var p = Math.min(1, (n - t1) / D), e = 1 - Math.pow(1 - p, 4);
         var r = function (a, b) { return Math.round((a + (b - a) * e) / 1000) * 1000; };
@@ -765,7 +938,11 @@
     $$('button', est).forEach(function (b) { b.disabled = false; });
     size.disabled = false;
     $$('[data-type]', est).forEach(function (b) { b.addEventListener('click', function () { setType(b.getAttribute('data-type')); render(true); }); });
-    size.addEventListener('input', function () { st.n = Number(size.value); render(true); });
+    // the slider: while it moves only the figures follow; the receipt prints and the seal stamps once, when it is let go or half a beat after its last move
+    var sizeT = 0;
+    var sizeDone = function () { clearTimeout(sizeT); sizeT = 0; render(true); };
+    size.addEventListener('input', function () { st.n = Number(size.value); render('figures'); clearTimeout(sizeT); sizeT = setTimeout(sizeDone, M8(6)); });
+    size.addEventListener('change', function () { if (sizeT) sizeDone(); });
     optBtns.forEach(function (b) {
       b.addEventListener('click', function () {
         var o = b.getAttribute('data-opt'), i = st.opts.indexOf(o);
@@ -810,26 +987,28 @@
       });
     });
     onLang.push(function () { var n = st.n; setType(st.type); st.n = n; size.value = n; render(false); money(); });
-  })();
+  })(M);
 
   /* ---------------- 7 · brand layers and the FAQ ---------------- */
   var layers = $$('[data-layer]'), lcards = $$('[data-layer-card]');
   if (layers.length) {
-    var pick = function (i) {
+    // a layer picked by a press rises into place (is-rise, style.css: 333 ms); the first one is simply there
+    var pick = function (i, rise) {
       layers.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-layer') === i)); });
-      lcards.forEach(function (c) { c.classList.toggle('is-active', c.getAttribute('data-layer-card') === i); });
+      lcards.forEach(function (c) { var on = c.getAttribute('data-layer-card') === i; c.classList.toggle('is-active', on); if (on && rise) c.classList.add('is-rise'); });
     };
-    layers.forEach(function (b) { b.addEventListener('click', function () { pick(b.getAttribute('data-layer')); }); });
+    layers.forEach(function (b) { b.addEventListener('click', function () { pick(b.getAttribute('data-layer'), true); }); });
     pick('3');
   }
   var qas = $$('.st-qa button[aria-controls]');
-  var openQa = function (btn, on) { btn.setAttribute('aria-expanded', String(on)); document.getElementById(btn.getAttribute('aria-controls')).hidden = !on; };
+  // an answer opened by a press rises into place (is-rise, style.css: 333 ms); its height is a cut
+  var openQa = function (btn, on, rise) { var a = document.getElementById(btn.getAttribute('aria-controls')); btn.setAttribute('aria-expanded', String(on)); a.hidden = !on; if (on && rise) a.classList.add('is-rise'); };
   qas.forEach(function (b, i) {
     openQa(b, i === 0);
     b.addEventListener('click', function () {
       var was = b.getAttribute('aria-expanded') === 'true';
       qas.forEach(function (x) { openQa(x, false); });
-      if (!was) openQa(b, true);
+      if (!was) openQa(b, true, true);
     });
   });
   // the Aperçu card's WhatsApp message, in the page's language
@@ -862,13 +1041,29 @@
                                     [data-panel="id"]; arrows move along
        [data-cycle]                 one [data-cycle-item] at a time, with
                                     [data-cycle-prev|next|random] and
-                                    [data-cycle-n] ("2 / 4")
+                                    [data-cycle-n] ("2 / 4"); the first
+                                    shown is .is-initial until a change, so
+                                    a case's wipe answers a change and never
+                                    plays at the page's load
        [data-type-once]             its [data-type-line] lines typed once on
-                                    first view, 30 ms a character, 2.5 s at
-                                    most (whole with reduced motion)
+                                    first view, a character a sixteenth of
+                                    the beat (42 ms), 2.667 s at most (whole
+                                    with reduced motion)
        form[data-demo]              a demonstration: a submit sends nothing
                                     and shows its [data-demo-msg]
      State is in classes and custom properties, never in style rules. */
+  // one frame's work for every track that asked: all the reads, then all the writes
+  var tracksQ = [], tracksRaf = 0;
+  var tracks = function (job) {
+    if (tracksQ.indexOf(job) < 0) tracksQ.push(job);
+    if (tracksRaf) return;
+    tracksRaf = requestAnimationFrame(function () {
+      tracksRaf = 0;
+      var q = tracksQ; tracksQ = [];
+      var ms = q.map(function (j) { return j.measure(); });
+      q.forEach(function (j, i) { j.paint(ms[i]); });
+    });
+  };
   $$('.st-case').forEach(function (cs) {
     var track = $('[data-track]', cs);
     if (track) {
@@ -877,7 +1072,7 @@
       var tiles = [].slice.call(track.children);
       // the position, "k / n" tiles seen so far, in the foot beside the bar
       var nEl = null;
-      if (foot) { nEl = document.createElement('span'); nEl.className = 'st-case__n'; nEl.setAttribute('aria-hidden', 'true'); nEl.setAttribute('dir', 'ltr'); foot.insertBefore(nEl, foot.firstChild); }
+      if (foot) { nEl = document.createElement('span'); nEl.className = 'st-case__n'; nEl.setAttribute('aria-hidden', 'true'); nEl.setAttribute('dir', 'ltr'); nEl.textContent = '1 / ' + tiles.length; foot.insertBefore(nEl, foot.firstChild); }
       var padL = function () { return parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0; };
       // each tile's left edge in scroll coordinates, once per distinct value
       var starts = function () {
@@ -885,19 +1080,38 @@
         tiles.forEach(function (el) { var x = Math.round(el.getBoundingClientRect().left - tr.left + sl - padL()); if (out.indexOf(x) < 0) out.push(x); });
         return out.sort(function (a, b) { return a - b; });
       };
-      var prog = function () {
-        var max = track.scrollWidth - track.clientWidth, sl = Math.abs(track.scrollLeft);
-        if (bar) bar.style.setProperty('--p', max > 0 ? sl / max : 0);
-        prevB.forEach(function (b) { b.setAttribute('aria-disabled', String(sl <= 2)); });
-        nextB.forEach(function (b) { b.setAttribute('aria-disabled', String(max - sl <= 2)); });
-        if (nEl) {
-          var tr = track.getBoundingClientRect(), k = 0;
-          tiles.forEach(function (el) { if (el.getBoundingClientRect().right <= tr.right + 4) k++; });
-          nEl.textContent = Math.max(1, k) + ' / ' + tiles.length;
+      /* the bar, the arrows and "k / n": measured, then written, once a frame
+         at most and together with every other track (tracks() below), and
+         not before the track first nears the screen. A case further down
+         skips its layout until then: reading its tiles while the page
+         started laid every case out, five times over. */
+      var job = {
+        measure: function () {
+          var max = track.scrollWidth - track.clientWidth, sl = Math.abs(track.scrollLeft), k = 0;
+          if (nEl) { var edge = track.getBoundingClientRect().right + 4; tiles.forEach(function (el) { if (el.getBoundingClientRect().right <= edge) k++; }); }
+          return { max: max, sl: sl, k: k };
+        },
+        // written only when they change: a track that first comes near at rest restates what its markup already says, and writes nothing
+        paint: function (m) {
+          var p = m.max > 0 ? m.sl / m.max : 0, pv = String(m.sl <= 2), nx = String(m.max - m.sl <= 2);
+          if (bar && p !== last.p) { last.p = p; bar.style.setProperty('--p', p); }
+          if (pv !== last.prev) { last.prev = pv; prevB.forEach(function (b) { b.setAttribute('aria-disabled', pv); }); }
+          if (nx !== last.next) { last.next = nx; nextB.forEach(function (b) { b.setAttribute('aria-disabled', nx); }); }
+          if (nEl) { var txt = Math.max(1, m.k) + ' / ' + tiles.length; if (nEl.textContent !== txt) nEl.textContent = txt; }
         }
       };
-      track.addEventListener('scroll', prog, { passive: true }); prog();
-      if ('ResizeObserver' in window) new ResizeObserver(prog).observe(track);
+      // the state at rest at the start (the bar empty, at the first tile, more to come), set before the track is measured
+      var last = { p: 0, prev: 'true', next: 'false' };
+      prevB.forEach(function (b) { b.setAttribute('aria-disabled', 'true'); });
+      nextB.forEach(function (b) { b.setAttribute('aria-disabled', 'false'); });
+      var prog = function () { tracks(job); };
+      var watch = function () {
+        prog();
+        track.addEventListener('scroll', prog, { passive: true });
+        if ('ResizeObserver' in window) new ResizeObserver(prog).observe(track);
+      };
+      if (IO) { var tio = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) { tio.disconnect(); watch(); } }, { rootMargin: '50% 0px' }); tio.observe(track); }
+      else watch();
       // an arrow moves to the next tile's edge (a page of tiles on a wide track), not by a width that stops mid-tile
       var by = function (d) {
         var max = track.scrollWidth - track.clientWidth, cur = track.scrollLeft, xs = starts(), min = track.clientWidth >= 900 ? track.clientWidth * .7 : 8, to;
@@ -915,11 +1129,21 @@
       });
       prevB.forEach(function (b) { b.addEventListener('click', function () { by(-1); }); });
       nextB.forEach(function (b) { b.addEventListener('click', function () { by(1); }); });
+      /* a drag and the scrubber move the track once a frame, in the tracks'
+         frame (its reads first, then this write): written on every
+         pointermove, each write forced the layout the last frame's bar and
+         count had left, several times a frame */
+      var to = null;
+      var mover = {
+        measure: function () { if (to == null) return null; var x = to; to = null; return x.bar ? x.f * (track.scrollWidth - track.clientWidth) : x.left; },
+        paint: function (left) { if (left != null) track.scrollLeft = left; }
+      };
+      var moveTo = function (x) { to = x; tracks(mover); };
       // the foot's bar is a scrubber: a touch or a click on it takes the track there, and it settles on a tile
-      var barP = $('.st-case__bar-p', cs), scrub = false;
-      var scrubTo = function (e) { var r = barP.getBoundingClientRect(), f = Math.max(0, Math.min(1, (e.clientX - r.left) / (r.width || 1))); track.scrollLeft = f * (track.scrollWidth - track.clientWidth); };
+      var barP = $('.st-case__bar-p', cs), scrub = false, barR = null;
+      var scrubTo = function (e) { var r = barR || (barR = barP.getBoundingClientRect()), f = Math.max(0, Math.min(1, (e.clientX - r.left) / (r.width || 1))); moveTo({ bar: true, f: f }); };
       if (barP) {
-        barP.addEventListener('pointerdown', function (e) { scrub = true; barP.setPointerCapture(e.pointerId); track.classList.add('is-drag'); scrubTo(e); });
+        barP.addEventListener('pointerdown', function (e) { scrub = true; barR = null; barP.setPointerCapture(e.pointerId); track.classList.add('is-drag'); scrubTo(e); });
         barP.addEventListener('pointermove', function (e) { if (scrub) scrubTo(e); });
         var endScrub = function () { if (!scrub) return; scrub = false; track.classList.remove('is-drag'); };
         barP.addEventListener('pointerup', endScrub); barP.addEventListener('pointercancel', endScrub);
@@ -933,7 +1157,7 @@
         if (!drag) return;
         var dx = e.clientX - drag.x;
         if (!drag.moved && Math.abs(dx) > 4) { drag.moved = true; track.classList.add('is-drag'); }
-        if (drag.moved) track.scrollLeft = drag.left - dx;
+        if (drag.moved) moveTo({ left: drag.left - dx });
       });
       window.addEventListener('pointerup', function () { if (drag) { track.classList.remove('is-drag'); drag = null; } });
       // the kinds of deliverable seen so far
@@ -995,24 +1219,25 @@
     });
     $$('[data-cycle]', cs).forEach(function (cy) {
       var items = $$('[data-cycle-item]', cy), i = 0, n = $('[data-cycle-n]', cy);
-      var set = function (j) { i = (j + items.length) % items.length; items.forEach(function (it, k) { it.hidden = k !== i; it.classList.toggle('is-active', k === i); }); if (n) n.textContent = (i + 1) + ' / ' + items.length; };
+      var set = function (j, first) { i = (j + items.length) % items.length; items.forEach(function (it, k) { it.hidden = k !== i; it.classList.toggle('is-active', k === i); it.classList.toggle('is-initial', !!first && k === i); }); if (n) n.textContent = (i + 1) + ' / ' + items.length; };
       $$('[data-cycle-prev]', cy).forEach(function (b) { b.addEventListener('click', function () { set(i - 1); }); });
       $$('[data-cycle-next]', cy).forEach(function (b) { b.addEventListener('click', function () { set(i + 1); }); });
       $$('[data-cycle-random]', cy).forEach(function (b) { b.addEventListener('click', function () { if (items.length > 1) { var j = i; while (j === i) j = Math.floor(Math.random() * items.length); set(j); } }); });
-      set(0);
+      set(0, true);
     });
     $$('[data-type-once]', cs).forEach(function (box) {
       var lns = $$('[data-type-line]', box);
       if (reduce || !lns.length) return;
       var full = lns.map(function (l) { return l.textContent; }), total = full.join('').length;
-      var per = Math.min(30, 2500 / Math.max(1, total));
+      // a step every sixteenth (42 ms) as everywhere else; a text longer than 64 characters types two or three a step, so the whole run still fits one bar (2.667 s)
+      var per = Q(42), each = Math.max(1, Math.ceil(total / 64));
       box.setAttribute('aria-label', full.join(' '));
       lns.forEach(function (l) { l.setAttribute('aria-hidden', 'true'); });
       once(box, .3, function () {
         lns.forEach(function (l) { l.textContent = ''; });
         var t1 = now();
         var step = function (n) {
-          var k = Math.floor((n - t1) / per), left = k;
+          var k = Math.floor((n - t1) / per) * each, left = k;
           lns.forEach(function (l, j) { var s = full[j]; l.textContent = s.slice(0, Math.max(0, Math.min(s.length, left))); left -= s.length; });
           if (k < total) requestAnimationFrame(step);
         };
@@ -1033,19 +1258,39 @@
     var lbPrev = $('[data-lb-prev]', lb), lbNext = $('[data-lb-next]', lb), lbCap = $('.st-lb__cap', lb);
     lbImg.alt = '';
     lb.insertBefore(lbImg, lb.firstChild);
+    /* a picture whose opener names its size (data-w, data-h) is laid out at
+       that size before it has loaded (style.css: .is-sized), so the viewer's
+       first frame is its last; one that does not keeps the picture's own */
+    var size = function (z) {
+      var w = Number(z.getAttribute('data-w')), h = Number(z.getAttribute('data-h'));
+      lbImg.classList.toggle('is-sized', w > 0 && h > 0);
+      if (w > 0 && h > 0) { lbImg.width = w; lbImg.height = h; lbImg.style.setProperty('--w', w); lbImg.style.setProperty('--h', h); }
+      else { lbImg.removeAttribute('width'); lbImg.removeAttribute('height'); lbImg.style.removeProperty('--w'); lbImg.style.removeProperty('--h'); }
+    };
     var show = function (z) {
       var im = $('img', z), fc = $('figcaption', z), cap = fc ? fc.textContent.replace(/\s+/g, ' ').trim() : '';
       opener = z;
+      size(z);
       lbImg.src = z.getAttribute('data-zoom');
       lbImg.alt = im ? im.alt : '';
       lb.setAttribute('aria-label', cap || lbImg.alt || t('case.zoom'));
       if (lbCap) { lbCap.textContent = cap + (setList.length > 1 ? (cap ? '  ·  ' : '') + (setAt + 1) + ' / ' + setList.length : ''); lbCap.hidden = !setList.length || !cap; }
     };
+    // previous and next: the picture fades out (167 ms) while the next decodes, and the next fades in (250 ms) once it can be painted whole
+    var turn = 0, noop = function () {};
     var go = function (d) {
       if (setList.length < 2) return;
       setAt = (setAt + d + setList.length) % setList.length;
-      show(setList[setAt]);
+      var z = setList[setAt], my = ++turn;
       [1, -1].forEach(function (k) { new Image().src = setList[(setAt + k + setList.length) % setList.length].getAttribute('data-zoom'); });
+      if (reduce) { show(z); return; }
+      var next = new Image(); next.src = z.getAttribute('data-zoom');
+      lbImg.classList.add('is-swap');
+      Promise.all([next.decode ? next.decode().catch(noop) : null, new Promise(function (r) { setTimeout(r, M(2)); })]).then(function () {
+        if (my !== turn) return;
+        show(z);
+        (lbImg.decode ? lbImg.decode().catch(noop) : Promise.resolve()).then(function () { if (my === turn) lbImg.classList.remove('is-swap'); });
+      });
     };
     document.addEventListener('click', function (e) {
       var z = e.target.closest && e.target.closest('[data-zoom]');
@@ -1056,6 +1301,7 @@
       setAt = Math.max(0, setList.indexOf(z));
       lb.classList.toggle('st-lb--set', setList.length > 1);
       [lbPrev, lbNext].forEach(function (b) { if (b) b.hidden = setList.length < 2; });
+      turn++; lbImg.classList.remove('is-swap');
       show(z);
       lb.showModal();
     });
@@ -1067,8 +1313,10 @@
       var rtl = getComputedStyle(lb).direction === 'rtl';
       go((e.key === 'ArrowRight') !== rtl ? 1 : -1);
     });
+    // (it fades as it goes, a step quicker than it came: style.css)
     lb.addEventListener('click', function (e) { if (e.target === lb || e.target === lbImg || e.target.closest('[data-lb-close]')) lb.close(); });
-    lb.addEventListener('close', function () { if (opener) opener.focus(); opener = null; setList = []; });
+    // the focus goes back to the picture in the frame that starts the exit, not inside the press that closed it (a second forced layout there)
+    lb.addEventListener('close', function () { var o = opener; opener = null; setList = []; if (o) requestAnimationFrame(function () { if (!lb.open) o.focus(); }); });
     // a touch swipes the viewer: sideways moves one picture (as the page reads: the other way in Arabic), a pull down closes it
     var sw = null;
     lb.addEventListener('pointerdown', function (e) {
@@ -1078,12 +1326,13 @@
     lb.addEventListener('pointermove', function (e) {
       if (!sw || e.pointerId !== sw.id) return;
       var dx = e.clientX - sw.x, dy = e.clientY - sw.y;
-      if (!reduce && dy > 12 && dy > Math.abs(dx)) { lb.style.transform = 'translateY(' + dy + 'px)'; lb.style.opacity = String(Math.max(.4, 1 - dy / 500)); }
+      // the pull follows the finger exactly: no transition while it is held
+      if (!reduce && dy > 12 && dy > Math.abs(dx)) { lb.style.transition = 'none'; lb.style.transform = 'translateY(' + dy + 'px)'; lb.style.opacity = String(Math.max(.4, 1 - dy / 500)); }
     });
     var endSwipe = function (e) {
       if (!sw || e.pointerId !== sw.id) return;
       var dx = e.clientX - sw.x, dy = e.clientY - sw.y;
-      sw = null; lb.style.transform = ''; lb.style.opacity = '';
+      sw = null; lb.style.transform = ''; lb.style.opacity = ''; lb.style.transition = '';
       if (e.type === 'pointercancel') return;
       if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) go((dx < 0) !== (getComputedStyle(lb).direction === 'rtl') ? 1 : -1);
       else if (dy > 80 && dy > Math.abs(dx) * 1.3) lb.close();
@@ -1097,9 +1346,10 @@
      for a guessed height until it is near the screen, so a jump to
      #voidsplunker (the bible's back link) or any #id after the cases first
      lands short or long. On arrival (not on an in-page click: the smooth
-     scroll of those is left alone) three corrections, 150, 600 and 1400 ms after the
-     jump, put the target at its scroll-margin; none runs once the visitor
-     has scrolled, pressed a key or touched the page. */
+     scroll of those is left alone) three corrections, 167, 667 and 1333 ms after the
+     jump (a quarter, one and two beats), put the target at its
+     scroll-margin; none runs once the visitor has scrolled, pressed a key
+     or touched the page. With the sting playing they run under its paper. */
   (function () {
     var touched = false;
     ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) { addEventListener(ev, function () { touched = true; }, { passive: true }); });
@@ -1108,7 +1358,7 @@
       try { el = id && document.getElementById(decodeURIComponent(id)); } catch (e) { el = null; }
       if (!el) return;
       touched = false;
-      [150, 600, 1400].forEach(function (ms) {
+      [M(2), M(8), M(16)].forEach(function (ms) {
         setTimeout(function () {
           if (touched) return;
           var d = el.getBoundingClientRect().top - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0);
@@ -1130,9 +1380,14 @@
   (function () {
     var menu = $('#menu'), openBtn = $('[data-menu-open]');
     if (menu && openBtn && typeof menu.showModal === 'function') {
+      // (it lifts away as it goes, a step quicker than it came: style.css)
       var shut = function () { if (menu.open) menu.close(); };
-      openBtn.addEventListener('click', function () { menu.showModal(); openBtn.setAttribute('aria-expanded', 'true'); });
-      menu.addEventListener('close', function () { openBtn.setAttribute('aria-expanded', 'false'); openBtn.focus(); });
+      /* showModal() and close() lay the page out themselves (the top layer,
+         the inert page, the focus): what follows them waits for the next
+         frame, so the press pays for one layout and the entrance or exit
+         starts on time */
+      openBtn.addEventListener('click', function () { menu.showModal(); requestAnimationFrame(function () { openBtn.setAttribute('aria-expanded', String(menu.open)); }); });
+      menu.addEventListener('close', function () { requestAnimationFrame(function () { openBtn.setAttribute('aria-expanded', 'false'); if (!menu.open && document.activeElement !== openBtn) openBtn.focus(); }); });
       menu.addEventListener('click', function (e) { if (e.target === menu || e.target.closest('[data-menu-close]') || e.target.closest('.st-menu__nav a') || e.target.closest('.st-menu__foot .st-btn')) shut(); });
       // a language switch inside the sheet changes the page behind it, which stays in view
       matchMedia('(min-width:1160px)').addEventListener('change', function (m) { if (m.matches) shut(); });
@@ -1219,9 +1474,10 @@
     var KEY = 'numidea-lessons' + (ls.getAttribute('data-ls') ? '-' + ls.getAttribute('data-ls') : ''), done = [];
     try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { done = []; }
     if (!Array.isArray(done)) done = [];
-    var show = function (id, focus) {
+    // a lesson picked by a press rises into place (is-rise, style.css: 333 ms); the first one is simply there
+    var show = function (id, focus, rise) {
       tabs.forEach(function (b) { var on = b.getAttribute('data-ls-tab') === id; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
-      panels.forEach(function (p) { p.hidden = p.getAttribute('data-ls-panel') !== id; });
+      panels.forEach(function (p) { var on = p.getAttribute('data-ls-panel') === id; p.hidden = !on; if (on && rise) p.classList.add('is-rise'); });
     };
     var stamps = function () {
       tabs.forEach(function (b) {
@@ -1235,13 +1491,13 @@
       if (ls.hasAttribute('data-ls-bar')) ls.style.setProperty('--n', String(n));
     };
     tabs.forEach(function (b, i) {
-      b.addEventListener('click', function () { show(b.getAttribute('data-ls-tab')); emit('numidea:tab', { id: b.getAttribute('data-ls-tab') }); });
+      b.addEventListener('click', function () { show(b.getAttribute('data-ls-tab'), false, true); emit('numidea:tab', { id: b.getAttribute('data-ls-tab') }); });
       b.addEventListener('keydown', function (e) {
         var rtl = root.getAttribute('dir') === 'rtl', n = tabs.length;
         var to = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1
           : e.key === 'ArrowRight' ? i + (rtl ? -1 : 1) : e.key === 'ArrowLeft' ? i + (rtl ? 1 : -1) : null;
         if (to === null) return;
-        e.preventDefault(); show(tabs[(to + n) % n].getAttribute('data-ls-tab'), true); emit('numidea:tab', { id: tabs[(to + n) % n].getAttribute('data-ls-tab') });
+        e.preventDefault(); show(tabs[(to + n) % n].getAttribute('data-ls-tab'), true, true); emit('numidea:tab', { id: tabs[(to + n) % n].getAttribute('data-ls-tab') });
       });
     });
     panels.forEach(function (p) {
@@ -1328,21 +1584,28 @@
      the tile was pressed, a clip that ends starts again; nothing has the
      loop attribute and nothing plays that was not asked for. One clip at a
      time. With reduced motion the pointer alone starts nothing: only a
-     press does. Stopping puts the poster back (load()). */
+     press does. Stopping puts the poster back (load()), after the frame it
+     stopped on has dipped out (a quarter of a beat; at once with reduced
+     motion). */
   (function () {
     var tiles = $$('[data-reel]');
     if (!tiles.length) return;
     var live = null;
+    var rewind = function (b) { var v = $('video', b); clearTimeout(b._dip); b._dip = 0; b.classList.remove('is-stop'); try { v.load(); } catch (e) {} };
     var stop = function (b) {
       var v = $('video', b);
       b._on = false; b._hover = false;
       b.setAttribute('aria-pressed', 'false'); b.classList.remove('is-on');
       if (!v.paused) v.pause();
-      if (v.currentTime > 0 || v.readyState > 0) { try { v.load(); } catch (e) {} }
       if (live === b) live = null;
+      if (!(v.currentTime > 0 || v.readyState > 0) || b._dip) return;
+      if (reduce) { rewind(b); return; }
+      b.classList.add('is-stop');
+      b._dip = setTimeout(function () { rewind(b); }, M(2));
     };
     var play = function (b) {
       var v = $('video', b);
+      if (b._dip) { clearTimeout(b._dip); b._dip = 0; b.classList.remove('is-stop'); }
       if (live && live !== b) stop(live);
       live = b; b.classList.add('is-on');
       var p = v.play();
@@ -1410,7 +1673,7 @@
     };
     var tick = function () {
       var c = audio.currentTime || 0, d = audio.duration || list[st.i].dur;
-      set(timeEl, mmss(c)); bar.style.setProperty('--p', Math.min(100, c / d * 100).toFixed(1) + '%');
+      set(timeEl, mmss(c)); bar.style.setProperty('--p', Math.min(1, c / d).toFixed(4));
       if (c - saved > 5 || c < saved) { saved = c; keep(); }
     };
     var session = function () {
@@ -1427,7 +1690,7 @@
       st.i = (i + list.length) % list.length; saved = at || 0;
       audio.src = list[st.i].src + ver;
       if (at > 0) audio.addEventListener('loadedmetadata', function once() { audio.removeEventListener('loadedmetadata', once); if (at < (audio.duration || 1e9) - 3) audio.currentTime = at; });
-      set(timeEl, mmss(at || 0)); bar.style.setProperty('--p', '0%');
+      set(timeEl, mmss(at || 0)); bar.style.setProperty('--p', '0');
       session(); paint();
     };
     var ensure = function () {
@@ -1466,27 +1729,146 @@
     onLang.push(function () { paint(); if (started) session(); });
   })();
 
-  /* ---------------- 12 · each case's faces, as it nears ----------------
+  /* ---------------- 12 · each case's faces, and its layout ----------------
      hub/fonts/lazy-<slug>.css holds a case's own faces (the WorkspaceHQ
-     ticket's arcade face is lazy-whq.css): a link to it is added once the
-     block is within a screen and a half, so a phone at the top of the page
-     fetches none of them (21 font files, 364 kB, were asked for at first
-     paint). Until it lands the case sets its fallback stack; font-display
-     swap does the rest. */
+     ticket's arcade face is lazy-whq.css), none of them asked for at first
+     paint (21 font files, 364 kB, were). A face handed to the page makes the
+     browser set every line of it again, and a case's first layout is a
+     thousand to two thousand boxes: done while the page scrolls, both cost
+     whole frames on a mid phone (a dozen relayouts on the way down, and the
+     idle callback's one-second timeout fired them mid-scroll). So both wait
+     for the page at rest, never for a timeout:
+     - the faces of every case are fetched off the page (FontFace.load()) in
+       the first idle moment after the load, and handed to it in one go, once,
+       when nothing has scrolled for three eighths of a beat (250 ms): one
+       relayout while the page is still, before the cases are on screen (they
+       are not laid out yet: content-visibility). With save-data or a 2G link
+       a case's faces are fetched only as it nears, and handed the same way.
+     - then every case (and the personal project) is laid out ahead of the
+       scroll, one per idle moment, again only at rest, nearest first: shown
+       for that one forced layout (a rule in a sheet of its own, so nothing in
+       the page's markup changes) and skipped again at once. The browser keeps
+       the layout of a skipped block, so its first frame on screen is not the
+       frame that pays for it, and a block off screen stays out of the page's
+       later relayouts (a language swap lays out the first screen only).
+     Until its faces are in, a case sets its fallback stack; the sheet itself
+     is the fallback where FontFace is missing. */
   (function () {
     var me = $('script[src*="app.js"]'), v = ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0], done = {};
+    var idle = function (fn) { if (window.requestIdleCallback) requestIdleCallback(fn); else setTimeout(fn, M(1)); };
+    // at rest: no scroll for 250 ms, and the sting, which holds the page, over
+    var lastScroll = -1e9, still = [], stillT = 0;
+    addEventListener('scroll', function () { lastScroll = now(); }, { passive: true });
+    var pump = function () {
+      stillT = 0;
+      var wait = M(3) - (now() - lastScroll);
+      if (wait > 0) { stillT = setTimeout(pump, wait); return; }
+      idle(function () {
+        if (now() - lastScroll < M(3)) { if (!stillT) stillT = setTimeout(pump, M(3)); return; }
+        var fn = still.shift(); if (fn) fn();
+        if (still.length && !stillT) stillT = setTimeout(pump, 0);
+      });
+    };
+    // (and never inside a page change's lift: lifted() waits for it to end)
+    var atRest = function (fn) { still.push(fn); if (!stillT) { stillT = 1; lifted().then(function () { afterSting(function () { stillT = 0; pump(); }); }); } };
+    var landed = [], handing = false, batch = false;
+    var hand = function () { handing = false; var q = landed; landed = []; q.forEach(function (f) { try { document.fonts.add(f); } catch (e) {} }); };
+    var sheet = function (href) { var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l); };
     var load = function (n) {
-      if (done[n]) return; done[n] = 1;
-      var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'fonts/lazy-' + n + '.css' + v; document.head.appendChild(l);
+      if (!n || done[n]) return null; done[n] = 1;
+      var href = 'fonts/lazy-' + n + '.css' + v;
+      if (!window.FontFace || !document.fonts || !document.fonts.add || !window.fetch) { sheet(href); return null; }
+      var base = new URL(href, location.href);
+      return fetch(href).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(function (css) {
+        var list = (css.match(/@font-face\s*\{[^}]*\}/g) || []).map(function (rule) {
+          var get = function (k) { var m = new RegExp('(?:^|[{;\\s])' + k + '\\s*:\\s*([^;}]+)').exec(rule); return m ? m[1].trim() : ''; };
+          var src = get('src').replace(/url\(\s*["']?([^"')]+)["']?\s*\)/g, function (x, u) { return 'url("' + new URL(u, base).href + '")'; });
+          var o = { style: get('font-style') || 'normal', weight: get('font-weight') || 'normal', display: get('font-display') || 'swap' };
+          if (get('unicode-range')) o.unicodeRange = get('unicode-range');
+          return new FontFace(get('font-family').replace(/^["']|["']$/g, ''), src, o);
+        });
+        if (!list.length) throw new Error('no face');
+        return Promise.all(list.map(function (f) { return f.load(); })).then(function () {
+          landed = landed.concat(list);
+          if (!batch && !handing) { handing = true; atRest(hand); }
+        });
+      }).then(null, function () { sheet(href); });
     };
     var targets = $$('.st-case').map(function (el) { return [el, el.id.replace(/^case-/, '')]; });
+    $$('.st-proj').forEach(function (el) { targets.push([el, '']); });
     var own = $('.st-own'); if (own) targets.push([own, 'whq']);
     var con = $('.st-est'); if (con) targets.push([con, 'console']);
     var jeu = $('.st-ls--jeu'); if (jeu) targets.push([jeu, 'whq']);   // the course's HUD face, the arcade one
     if (!IO) { targets.forEach(function (t) { load(t[1]); }); return; }
-    var fio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { load(e.target.getAttribute('data-fonts')); fio.unobserve(e.target); } });
-    }, { rootMargin: '150% 0px' });
-    targets.forEach(function (t) { t[0].setAttribute('data-fonts', t[1]); fio.observe(t[0]); });
+    var c = navigator.connection, lean = !!(c && (c.saveData || /(^|-)2g$/.test(c.effectiveType || '')));
+    // the layouts ahead: once the faces are in (at once on a lean link, or after two beats if they are slow), one block per moment at rest
+    // (the Studio's own sections too, nearest first: they skip their layout as well, style.css)
+    var blocks = $$(root.hasAttribute('data-ui') ? '.st-case,.st-proj' : 'main>.st-sec,main>.st-contact,.st-case,.st-proj'), pre = null, laid = false;
+    blocks.forEach(function (el, i) { el.setAttribute('data-lay', i); });
+    /* laid out for that one forced layout, its true height is written down
+       as the height it stands in for while it skips (a rule in a sheet of
+       its own, so nothing in the page's markup changes). The browser itself
+       remembers a skipped block's height only once the block has been on
+       screen (contain-intrinsic-size: auto), and keeps that height while the
+       block is skipped whatever changes in it: shown off screen for a frame,
+       a block kept its placeholder, so a page that had never been scrolled
+       was the wrong length and a jump to an anchor landed short; and a block
+       drawn before its faces or a language swap stood in at a height its
+       new lines overflowed. So the written height wins while it is there
+       (measured again at rest after each such change, below), and goes as
+       the block leaves the screen, when the browser's own memory of it is
+       the true one. (The content box: padding and border come on top.) */
+    var size = null;
+    var lay = function (el) {
+      return function () {
+        try {
+          if (!pre) { pre = document.createElement('style'); document.head.appendChild(pre); size = document.createElement('style'); document.head.appendChild(size); }
+          var sel = '[data-lay="' + el.getAttribute('data-lay') + '"]';
+          pre.sheet.insertRule(sel + '{content-visibility:visible!important}', 0);
+          var cs = getComputedStyle(el), h = el.getBoundingClientRect().height;
+          ['paddingTop', 'paddingBottom', 'borderTopWidth', 'borderBottomWidth'].forEach(function (k) { h -= parseFloat(cs[k]) || 0; });
+          pre.sheet.deleteRule(0);
+          unsize(el);
+          if (h > 0) size.sheet.insertRule(sel + '{contain-intrinsic-block-size:' + Math.ceil(h) + 'px!important}', size.sheet.cssRules.length);
+        } catch (e) {}
+      };
+    };
+    var unsize = function (el) {
+      if (!size) return;
+      var sel = '[data-lay="' + el.getAttribute('data-lay') + '"]';
+      for (var i = size.sheet.cssRules.length - 1; i >= 0; i--) if (size.sheet.cssRules[i].selectorText === sel) size.sheet.deleteRule(i);
+    };
+    blocks.forEach(function (el) { el.addEventListener('contentvisibilityautostatechange', function (e) { if (e.skipped) unsize(el); }); });
+    var layAll = function () {
+      if (laid) return; laid = true;
+      var d = function (el) { var r = el.getBoundingClientRect(); return Math.abs(r.top + r.height / 2 - innerHeight / 2); };
+      // (a block inside another first: the section around a case is measured with the case at its written height; then nearest first)
+      var inner = function (el) { return blocks.some(function (o) { return o !== el && o.contains(el); }) ? 0 : 1; };
+      blocks.map(function (el) { return [inner(el), d(el), el]; }).sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; }).forEach(function (x) { atRest(lay(x[2])); });
+    };
+    var start = function () {
+      if (lean) { layAll(); return; }
+      // every case's faces, fetched in the first idle moment after the load and handed in one go
+      idle(function () {
+        batch = true;   // (handed in one go below, not as each case's faces land)
+        var asked = targets.map(function (t) { return load(t[1]); }).filter(Boolean);
+        if (!asked.length) { layAll(); return; }
+        // (faces slower than two beats: the blocks are laid out without them, and once more after the hand-over, which set their lines again)
+        Promise.all(asked).then(function () { if (landed.length) atRest(hand); atRest(function () { laid = false; layAll(); }); });
+        setTimeout(layAll, M(16));
+      });
+    };
+    if (document.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
+    // the written heights are measured again at rest after what sets the lines anew: a language swap, a new width
+    var againQ = false, again = function () { if (againQ) return; againQ = true; atRest(function () { againQ = false; laid = false; layAll(); }); };
+    onLang.push(again);
+    var lastW = innerWidth;
+    addEventListener('resize', function () { if (innerWidth !== lastW) { lastW = innerWidth; again(); } }, { passive: true });
+    targets.forEach(function (t) { t[0].setAttribute('data-fonts', t[1]); });
+    // on a lean link a case's faces are fetched only as it nears
+    if (lean) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { load(e.target.getAttribute('data-fonts')); io.unobserve(e.target); } }); }, { rootMargin: '150% 0px' });
+      targets.forEach(function (t) { io.observe(t[0]); });
+    }
   })();
 })();

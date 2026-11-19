@@ -13,11 +13,28 @@
       in a dialog with its caption, previous and next, and a swipe.
    3. Carousels (slides) are swipe rows; blocks marked data-fold fold
       behind one button on phones.
-   Nothing moves by itself; no network request is made.
+   4. Long jumps land: a jump in the page longer than two screens (the
+      chip's list, the contents, "top of page") is made at once and the
+      plate rises into place, instead of a long glide.
+   5. Plates and sections arrive: those below the screen at load rise in
+      as they come on screen (the site's [data-reveal] contract); nothing
+      shown at load is ever hidden or moved.
+   The page change itself is the browser's (a view transition, in the
+   books' stylesheets), so nothing here holds a link back. Every motion is
+   on the site's 90 BPM grid and none runs with reduced motion; nothing
+   moves by itself; no network request is made.
    ============================================================ */
 (function () {
   'use strict';
   var d = document, root = d.documentElement;
+  // the site's tempo (the stylesheets' --m-* tokens): 90 BPM, a beat of 667 ms;
+  // M(n) is n eighths of a beat, Q() rounds a drawn time to the nearest sixteenth
+  var BEAT = 2000 / 3;
+  var M = function (n) { return Math.round(n * BEAT / 8); };
+  var Q = function (ms) { var s = BEAT / 16; return Math.round(Math.round(ms / s) * s); };
+  var EASE_ENTER = 'cubic-bezier(.16,1,.3,1)';
+  var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+  var rtl = function () { return getComputedStyle(root).direction === 'rtl'; };
   var FR = /^fr/i.test(root.lang || '');
   var T = FR
     ? { plates: 'Planches', sections: 'Sections', plate: 'Pl.', list: 'Les planches', sectionList: 'Sections', close: 'Fermer', open: 'Agrandir', prev: 'Post précédent', next: 'Post suivant',
@@ -72,7 +89,8 @@
         var tick = false;
         var upd = function () { tick = false; chip.classList.toggle('is-on', head.getBoundingClientRect().bottom < 0); };
         window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
-        upd();
+        // the first read waits for a frame, so it is not a layout forced in the middle of loading
+        tick = true; requestAnimationFrame(upd);
       } else chip.classList.add('is-on');
     } else chip.classList.add('is-on');
     chip.addEventListener('click', function () { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); });
@@ -123,25 +141,32 @@
     node.parentNode.insertBefore(hint, node);
   }
 
+  // Reads first, then writes: every width and height is measured in one
+  // pass and the scales written in the next, so the browser lays the page
+  // out once, not once per post.
   function fit() {
+    var on = phone.matches, jobs = [];
     swipes.forEach(function (n) {
-      if (phone.matches) { n.setAttribute('tabindex', '0'); if (n.tagName === 'DIV') n.setAttribute('role', 'group'); if (n.getAttribute('data-pv-label')) n.setAttribute('aria-label', n.getAttribute('data-pv-label')); }
+      if (on) { n.setAttribute('tabindex', '0'); if (n.tagName === 'DIV') n.setAttribute('role', 'group'); if (n.getAttribute('data-pv-label')) n.setAttribute('aria-label', n.getAttribute('data-pv-label')); }
       else { n.removeAttribute('tabindex'); n.removeAttribute('role'); n.removeAttribute('aria-label'); }
     });
     sets.forEach(function (s) {
-      var on = phone.matches;
       s.node.classList.toggle('pv-on', on);
+      var dw = s.kind === 'grid' ? DW.grid : DW.row;
       s.cells.forEach(function (c) {
-        c.fig.style.removeProperty('--k'); c.cell.style.removeProperty('height');
-        if (!on) { c.fig.removeAttribute('aria-hidden'); return; }
+        if (!on) { c.fig.style.removeProperty('--k'); c.cell.style.removeProperty('height'); c.fig.removeAttribute('aria-hidden'); return; }
         c.fig.setAttribute('aria-hidden', 'true');
-        var dw = s.kind === 'grid' ? DW.grid : DW.row;
         c.fig.style.setProperty('--dw', dw + 'px');
-        var w = c.cell.clientWidth; if (!w) return;
-        var k = w / dw;
-        c.fig.style.setProperty('--k', k.toFixed(4));
-        c.cell.style.height = Math.round(c.fig.offsetHeight * k) + 'px';
+        jobs.push({ c: c, dw: dw });
       });
+    });
+    // the cell's width comes from its grid or row, the post's height from its design width: neither depends on the scale
+    jobs.forEach(function (j) { j.w = j.c.cell.clientWidth; j.h = j.c.fig.offsetHeight; });
+    jobs.forEach(function (j) {
+      if (!j.w) { j.c.fig.style.removeProperty('--k'); j.c.cell.style.removeProperty('height'); return; }
+      var k = j.w / j.dw;
+      j.c.fig.style.setProperty('--k', k.toFixed(4));
+      j.c.cell.style.height = Math.round(j.h * k) + 'px';
     });
   }
 
@@ -168,11 +193,15 @@
       }, { passive: true });
       dlg.addEventListener('touchcancel', function () { x0 = null; }, { passive: true });
     }
-    viewer.set = set; show(i);
+    viewer.set = set; show(i, 0);
     if (!viewer.dlg.open) viewer.dlg.showModal();
   }
-  function go(n) { var c = viewer.set.cells.length; show((viewer.i + n + c) % c); }
-  function show(i) {
+  function go(n) { var c = viewer.set.cells.length; show((viewer.i + n + c) % c, n); }
+  // dir: 1 for the next post, -1 for the previous one, 0 when the viewer opens.
+  // The new post slides in from the side it comes from, half a beat on the
+  // enter curve; the old one is simply replaced (no exit to wait for), so a
+  // fast run of swipes never queues.
+  function show(i, dir) {
     var v = viewer, c = v.set.cells[i]; v.i = i;
     var f = c.fig.cloneNode(true);
     f.removeAttribute('aria-hidden'); f.removeAttribute('style'); f.classList.add('pv-big');
@@ -185,7 +214,13 @@
     shell.appendChild(f);
     v.stage.textContent = ''; v.stage.appendChild(shell);
     v.count.textContent = (i + 1) + T.of + v.set.cells.length;
-    v.stage.scrollTop = 0;
+    // back to the top of the stage: at once between posts; on opening, in the frame after showModal(), whose own layout it would have doubled (a scroll written to a closed dialog lays it out)
+    if (dir || v.dlg.open) v.stage.scrollTop = 0;
+    else requestAnimationFrame(function () { v.stage.scrollTop = 0; });
+    if (dir && !reduce.matches && shell.animate) {
+      var x = dir * (rtl() ? -24 : 24);
+      shell.animate([{ transform: 'translateX(' + x + 'px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: M(4), easing: EASE_ENTER });
+    }
   }
 
   /* ---------- 3. folds ---------- */
@@ -205,9 +240,77 @@
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         b.classList.toggle('is-folded', !open);
         btn.querySelector('.fold-t').textContent = (open ? T.hide : T.show) + name;
-        btn.querySelector('.fold-i').textContent = open ? '−' : '+';
+        var mark = btn.querySelector('.fold-i');
+        mark.textContent = open ? '−' : '+';
+        // the new mark turns a quarter into place (the minus as the plus's
+        // upright laid down) in three eighths of a beat (250, as the home's); the content's rise is the
+        // stylesheet's, and closing is a cut
+        if (!reduce.matches && mark.animate) mark.animate([{ transform: 'rotate(-90deg)' }, { transform: 'none' }], { duration: M(3), easing: EASE_ENTER });
       });
     });
+  }
+
+  /* ---------- 4. long jumps land ---------- */
+  var rio = null;
+  // a plate still waiting to rise is let go first (no reveal on top of the
+  // arrival), so it is measured where it rests, not 12px low
+  function unmark(t) {
+    if (t.hasAttribute('data-reveal') && !t.classList.contains('is-in')) { t.removeAttribute('data-reveal'); if (rio) rio.unobserve(t); }
+  }
+  // the plate's arrival after a jump: three quarters of a beat, rising 12px, the reveal's own motion
+  function arrive(t) {
+    if (t.animate) t.animate([{ opacity: .001, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }], { duration: M(6), easing: EASE_ENTER });
+  }
+  // A short hop keeps the page's smooth scroll; a jump of more than two
+  // screens would glide for a second and a half past plates nobody asked
+  // for, so it is made at once and the plate arrives where the reader is.
+  // With reduced motion the stylesheet already makes every jump instant.
+  function jumps() {
+    d.addEventListener('click', function (e) {
+      if (reduce.matches || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target && e.target.closest ? e.target.closest('.pi-ol a, .toc a, a.pi-top') : null;
+      var href = a && a.getAttribute('href');
+      if (!href || href.charAt(0) !== '#') return;
+      var id = decodeURIComponent(href.slice(1)), t = id && d.getElementById(id);
+      if (!t) return;
+      var m = parseFloat(getComputedStyle(t).scrollMarginTop) || 0;
+      var top = Math.max(0, Math.round(t.getBoundingClientRect().top + window.scrollY - m));
+      if (Math.abs(top - window.scrollY) <= 2 * window.innerHeight) return;
+      e.preventDefault();
+      if (t.hasAttribute('data-reveal')) { unmark(t); top = Math.max(0, Math.round(t.getBoundingClientRect().top + window.scrollY - m)); }
+      if (location.hash !== href) history.pushState(null, '', href);
+      window.scrollTo({ top: top, behavior: 'instant' });
+      // focus follows the reader, as a link to the plate would take it
+      if (!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '-1');
+      t.focus({ preventScroll: true });
+      arrive(t);
+    });
+  }
+
+  /* ---------- 5. plates and sections arrive ----------
+     Only what the observer's first report puts below the screen is marked
+     data-reveal (the stylesheets hide it then, 12px low); what is on
+     screen at load, or above it, is never touched. A marked block rises in
+     once it is 8% into the screen, and is let go. Never with reduced
+     motion: then nothing is marked at all. */
+  function reveals() {
+    if (reduce.matches || !('IntersectionObserver' in window)) return;
+    var els = [].slice.call(d.querySelectorAll('.plate[id], .sec'));
+    if (!els.length) return;
+    // started a fifth of a screen before the block is in, as on the home and the Studio: the reader never sees the empty place first
+    rio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var t = e.target;
+        if (!t.__rv) {
+          t.__rv = true;
+          if (!e.isIntersecting && e.boundingClientRect.top >= window.innerHeight) t.setAttribute('data-reveal', '');
+          else rio.unobserve(t);
+          return;
+        }
+        if (e.isIntersecting) { t.classList.add('is-in'); rio.unobserve(t); }
+      });
+    }, { rootMargin: '0px 0px 20% 0px', threshold: 0 });
+    els.forEach(function (t) { rio.observe(t); });
   }
 
   function init() {
@@ -216,52 +319,22 @@
     [].forEach.call(d.querySelectorAll('.stories, .nstories, .reel'), function (n) { prepare(n, 'row'); swipeRow(n); });
     [].forEach.call(d.querySelectorAll('.slides, .car, .nsl-grid, .igs'), swipeRow);
     folds();
+    jumps();
+    reveals();
     root.classList.add('pv');
-    fit();
-    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 60); });
+    // the posts are measured once, when the faces they are set in have
+    // arrived (measured earlier, a later font swap would leave them the wrong
+    // height); waiting a frame first lets the first layout ask for those
+    // faces, so fonts.ready means them. After that, only a change of width
+    // measures again (a phone's toolbar changes the height on every scroll).
+    var lastW = window.innerWidth;
+    var measure = function () { if (d.fonts && d.fonts.ready) d.fonts.ready.then(fit); else fit(); };
+    requestAnimationFrame(function () { setTimeout(measure, 0); });
+    var t; window.addEventListener('resize', function () {
+      if (window.innerWidth === lastW) return;
+      lastW = window.innerWidth; clearTimeout(t); t = setTimeout(fit, M(1));
+    });
     if (phone.addEventListener) phone.addEventListener('change', fit);
-    if (d.fonts && d.fonts.ready) d.fonts.ready.then(fit);
-    window.addEventListener('load', fit);
   }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init); else init();
-
-  /* 3. The paper wipe: 0.4 s, on a same-origin page-to-page link (the bible
-        and the brand books share this file). Never for a modifier key, a
-        non-primary button, target other than _self, a download, a hash-only
-        link, another origin, or with reduced motion; taken away again on
-        pageshow so the back/forward cache never restores it covering the
-        page. Without a script the link simply navigates. */
-  (function () {
-    var rm = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
-    var wipe = null, timer = 0;
-    function build() {
-      if (wipe) return wipe;
-      wipe = d.createElement('div');
-      wipe.className = 'bk-wipe';
-      wipe.setAttribute('aria-hidden', 'true');
-      var seal = d.createElement('span');
-      seal.className = 'bk-wipe__seal';
-      seal.setAttribute('lang', 'ja');
-      seal.textContent = '\u591C';
-      wipe.appendChild(seal);
-      d.body.appendChild(wipe);
-      return wipe;
-    }
-    function clear() { clearTimeout(timer); if (wipe) wipe.classList.remove('is-on'); }
-    window.addEventListener('pageshow', clear);
-    d.addEventListener('click', function (e) {
-      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      if (rm && rm.matches) return;
-      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-      if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
-      var u;
-      try { u = new URL(a.href, location.href); } catch (err) { return; }
-      if (u.origin !== location.origin || !/^https?:$/.test(u.protocol)) return;
-      if (u.pathname === location.pathname && u.search === location.search) return;
-      e.preventDefault();
-      build().classList.add('is-on');
-      clearTimeout(timer);
-      timer = setTimeout(function () { location.href = u.href; }, 400);
-    });
-  })();
 })();

@@ -6,22 +6,49 @@
 
    Contrast, measured on the painted pairs (WCAG AA): cream #F3ECE1 on ink
    #211E1B 14.13; ink on cream 14.13; red text #8A3127 on cream 7.02;
-   #CFBFAB on ink 9.24. Targets are 44 px or more. Nothing moves.
+   #CFBFAB on ink 9.24. Targets are 44 px or more.
+   Motion: every state here that changes has an in-between, on the site's
+   90 BPM grid (the --m-* tokens of the book's own sheet): what arrives
+   takes half a beat on the enter curve, what leaves three eighths on the
+   exit curve, a press an eighth. With reduced motion none of it runs: the
+   chip, the sheets and the folds simply appear and disappear.
    ============================================================ */
 
 /* ---------- the Plates chip and its sheet (up to 1023 px) ---------- */
 .pi-chip,.pi-dlg{display:none}
 @media (max-width:1023px){
   body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  /* the chip stays laid out and is hidden by opacity and visibility, so it
+     can rise in (half a beat) and sink out (three eighths, its visibility
+     let go only once it has gone); it is fixed, so it never moves the page */
   .pi-chip{position:fixed;z-index:60;inset-inline-end:max(12px,env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));
-    display:none;align-items:center;gap:10px;min-height:48px;min-width:48px;padding:0 16px;border:2px solid var(--ink);background:var(--ink);color:var(--cream);
-    box-shadow:3px 3px 0 var(--red);font:500 12px/1 var(--f-mono,var(--mono));letter-spacing:.14em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent}
-  .pi-chip.is-on{display:inline-flex}
-  .pi-chip .pi-n{font-weight:500;padding:3px 7px;background:var(--cream);color:var(--ink);letter-spacing:.04em}
+    display:inline-flex;align-items:center;gap:10px;min-height:48px;min-width:48px;padding:0 16px;border:2px solid var(--ink);background:var(--ink);color:var(--cream);
+    box-shadow:3px 3px 0 var(--red);font:500 12px/1 var(--f-mono,var(--mono));letter-spacing:.14em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent;
+    opacity:0;transform:translateY(12px);visibility:hidden}
+  .pi-chip.is-on{opacity:1;transform:none;visibility:visible}
+  /* the number holds three characters ("04b"), so the chip, pinned by its
+     end, keeps one width as the reader moves from plate to plate */
+  .pi-chip .pi-n{font-weight:500;padding:3px 7px;background:var(--cream);color:var(--ink);letter-spacing:.04em;min-width:calc(3ch + .12em + 14px);text-align:center}
   .pi-chip:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--red)}
   .pi-dlg{margin:auto 0 0;inset-inline:0;width:100%;max-width:640px;margin-inline:auto;max-height:min(86dvh,720px);padding:0;border:2px solid var(--ink);border-bottom:0;background:var(--cream);color:var(--ink);overflow:auto;overscroll-behavior:contain}
   .pi-dlg[open]{display:block}
   .pi-dlg::backdrop{background:rgba(33,30,27,.6)}
+  @media (prefers-reduced-motion:no-preference){
+    .pi-chip{transition:opacity var(--m-hover) var(--m-ease-exit),transform var(--m-hover) var(--m-ease-exit),visibility 0s linear var(--m-hover)}
+    .pi-chip.is-on{transition:opacity var(--m-enter) var(--m-ease-enter),transform var(--m-enter) var(--m-ease-enter),visibility 0s}
+    .pi-chip:active{transition:transform var(--m-press) var(--m-ease-enter),background-color var(--m-press) var(--m-ease-enter)}
+    /* the sheet of plates rises from the bottom edge in half a beat and
+       sinks back in three eighths; display and the top layer are held for
+       the exit, so it is seen leaving */
+    .pi-dlg{opacity:0;transform:translateY(24px);
+      transition:opacity var(--m-hover) var(--m-ease-exit),transform var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+    .pi-dlg[open]{opacity:1;transform:none;
+      transition:opacity var(--m-enter) var(--m-ease-enter),transform var(--m-enter) var(--m-ease-enter),overlay var(--m-enter) allow-discrete,display var(--m-enter) allow-discrete}
+    @starting-style{.pi-dlg[open]{opacity:0;transform:translateY(24px)}}
+    .pi-dlg::backdrop{opacity:0;transition:opacity var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+    .pi-dlg[open]::backdrop{opacity:1;transition:opacity var(--m-enter) var(--m-ease-enter),overlay var(--m-enter) allow-discrete,display var(--m-enter) allow-discrete}
+    @starting-style{.pi-dlg[open]::backdrop{opacity:0}}
+  }
   .pi-hd{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 8px 6px 16px;background:var(--ink);color:var(--cream)}
   .pi-h{margin:0;font:900 16px/1.2 var(--f-disp,var(--display));letter-spacing:.04em;text-transform:uppercase}
   .pi-x{width:48px;height:48px;border:0;background:transparent;color:inherit;font:400 30px/1 var(--f-body,sans-serif);cursor:pointer}
@@ -50,6 +77,7 @@
   html.pv .pv-set.pv-on .pv-open{display:block;position:absolute;inset:0;z-index:5;width:100%;height:100%;margin:0;padding:0;border:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:rgba(163,65,53,.25)}
   html.pv .pv-set.pv-on .pv-open:focus-visible{outline:3px solid var(--red);outline-offset:-3px;box-shadow:inset 0 0 0 5px var(--cream)}
   html.pv .pv-set.pv-on .pv-open:active{background:rgba(33,30,27,.18)}
+  @media (prefers-reduced-motion:no-preference){html.pv .pv-set.pv-on .pv-open:active{transition:transform var(--m-press) var(--m-ease-enter),background-color var(--m-press) var(--m-ease-enter)}}
   /* the one-line hint above a swipe row */
   html.pv .pv-hint{display:block;margin:-6px 0 -4px;font:500 12px/1.4 var(--f-mono,var(--mono));letter-spacing:.14em;text-transform:uppercase;color:var(--mut,var(--ink-2))}
   html.pv .pv-set--grid+.pv-hint{display:none}
@@ -73,8 +101,8 @@
   .pv-stage:not(.pv-stage--st) .pv-shell{width:min(100%,calc(100dvh - 140px),520px)}
 }
 /* ---------- the large view ---------- */
-.pv-dlg{display:none}
-.pv-dlg[open]{display:flex;flex-direction:column}
+.pv-dlg{display:none;flex-direction:column}
+.pv-dlg[open]{display:flex}
 .pv-dlg{margin:0;padding:0;border:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;background:#211E1B;color:#F3ECE1;overflow:hidden}
 .pv-dlg::backdrop{background:#211E1B}
 .pv-stage{flex:1;min-height:0;display:grid;place-items:center;padding:12px 12px 4px;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
@@ -91,6 +119,21 @@
 .pv-bar button:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .pv-count{flex:1;text-align:center;font:500 13px var(--f-mono,var(--mono));letter-spacing:.14em;text-transform:uppercase}
 .pv-close{margin-inline-start:8px}
+/* the large view: fades in with its post settling from 98% in half a beat,
+   fades out in three eighths; the ink behind it fades the same way */
+@media (prefers-reduced-motion:no-preference){
+  .pv-bar button:active{transition:transform var(--m-press) var(--m-ease-enter),background-color var(--m-press) var(--m-ease-enter)}
+  .pv-dlg{opacity:0;
+    transition:opacity var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+  .pv-dlg[open]{opacity:1;
+    transition:opacity var(--m-enter) var(--m-ease-enter),overlay var(--m-enter) allow-discrete,display var(--m-enter) allow-discrete}
+  @starting-style{.pv-dlg[open]{opacity:0}}
+  .pv-dlg[open] .pv-stage{transform:none;transition:transform var(--m-enter) var(--m-ease-enter)}
+  @starting-style{.pv-dlg[open] .pv-stage{transform:scale(.98)}}
+  .pv-dlg::backdrop{opacity:0;transition:opacity var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+  .pv-dlg[open]::backdrop{opacity:1;transition:opacity var(--m-enter) var(--m-ease-enter),overlay var(--m-enter) allow-discrete,display var(--m-enter) allow-discrete}
+  @starting-style{.pv-dlg[open]::backdrop{opacity:0}}
+}
 
 /* ---------- folds (phones) ---------- */
 .fold-btn{display:none}
@@ -100,18 +143,14 @@
   .fold-btn:focus-visible{outline:3px solid currentColor;outline-offset:3px}
   .fold-btn:active{background:rgba(127,127,127,.18)}
   .is-folded>.fold-body{display:none}
+  /* opening: the height is a cut and the content rises 6px into it in half
+     a beat (book.js turns the mark); closing stays a cut */
+  @media (prefers-reduced-motion:no-preference){
+    .fold-btn:active{transition:transform var(--m-press) var(--m-ease-enter),background-color var(--m-press) var(--m-ease-enter)}
+    .fold-body{transition:opacity var(--m-enter) var(--m-ease-enter),transform var(--m-enter) var(--m-ease-enter)}
+    @starting-style{.fold-btn[aria-expanded="true"]+.fold-body{opacity:0;transform:translateY(-6px)}}
+  }
 }
 @media print{.pi-chip,.pi-dlg,.pv-dlg,.pv-open,.pv-hint{display:none!important}}
 .fold-body{display:grid;gap:14px;min-width:0}
 .fold-body>*{min-width:0}
-
-/* The paper wipe between pages (book.js 3): 0.4 s, paper and an ink rule,
-   a red seal that stamps in. Drawn only by the script, never with reduced
-   motion, and removed again on pageshow. */
-.bk-wipe{position:fixed;inset:0;z-index:2000;transform:translateY(100%);background:var(--paper,#D8CBB8);border-block-start:6px solid var(--ink,#211E1B);pointer-events:none;display:grid;place-items:center}
-.bk-wipe.is-on{pointer-events:auto;animation:bk-wipe .4s cubic-bezier(.87,0,.13,1) forwards}
-.bk-wipe__seal{width:84px;height:84px;display:grid;place-items:center;background:#A34135;border:4px solid var(--ink,#211E1B);box-shadow:5px 5px 0 var(--ink,#211E1B);font:900 44px/1 "Noto Sans JP",sans-serif;color:#F3ECE1;transform:rotate(-8deg) scale(.6);opacity:0}
-.bk-wipe.is-on .bk-wipe__seal{animation:bk-seal .27s cubic-bezier(.16,1,.3,1) .13s forwards}
-@keyframes bk-wipe{to{transform:none}}
-@keyframes bk-seal{to{opacity:1;transform:rotate(-8deg) scale(1)}}
-@media (prefers-reduced-motion:reduce){.bk-wipe{display:none}}

@@ -7,6 +7,10 @@
    phone bar.
    ============================================================ */
 (function () {
+  // the site's tempo (the stylesheets' --m-* tokens): 90 BPM, a beat of 667 ms;
+  // M(n) is n eighths of a beat
+  var BEAT = 2000 / 3;
+  var M = function (n) { return Math.round(n * BEAT / 8); };
   var root = document.documentElement;
   var DICT = {};
   try { DICT = JSON.parse(document.getElementById('i18n').textContent) || {}; } catch (e) {}
@@ -53,13 +57,15 @@
       ev.preventDefault();
       var img = a.querySelector('img');
       if (!big) { big = document.createElement('img'); pane.appendChild(big); }
+      clearTimeout(clearT); clearT = 0;
       zoomed = false; dlg.classList.remove('is-zoom'); hint();
       big.src = a.getAttribute('href');
       big.alt = img ? img.alt : '';
       dlg.classList.toggle('is-tall', !!(img && img.naturalHeight > img.naturalWidth));
       root.classList.add('viewing');
       dlg.showModal();
-      pane.scrollTop = 0; pane.scrollLeft = 0;
+      // (in the next frame: written here they laid the page out a second time inside the press)
+      requestAnimationFrame(function () { pane.scrollTop = 0; pane.scrollLeft = 0; });
     });
     // a click on the backdrop closes it, and on a desk a click on the
     // fitted image too; on a phone the image zooms and the bare screen closes
@@ -69,7 +75,20 @@
         else if (ev.target === pane || ev.target === dlg) dlg.close();
       } else if (ev.target === dlg || ev.target === big) dlg.close();
     });
-    dlg.addEventListener('close', function () { root.classList.remove('viewing'); zoomed = false; dlg.classList.remove('is-zoom'); if (big) big.removeAttribute('src'); });
+    /* the capture stays in the dialog until the dialog's exit (style.css,
+       --m-hover) has played: emptied on 'close' it collapsed the dialog to a
+       bar while it was still fading, and a timer as long as the exit lost the
+       race (the exit starts a frame or two after the event). So it is
+       emptied when the dialog's fade ends, with a backstop a step longer
+       than the exit; with reduced motion there is no exit */
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)'), clearT = 0;
+    var empty = function () { clearTimeout(clearT); clearT = 0; if (dlg.open) return; zoomed = false; dlg.classList.remove('is-zoom'); if (big) big.removeAttribute('src'); };
+    dlg.addEventListener('transitionend', function (ev) { if (ev.target === dlg && ev.propertyName === 'opacity' && clearT) empty(); });
+    dlg.addEventListener('close', function () {
+      root.classList.remove('viewing');
+      clearTimeout(clearT);
+      if (still.matches) empty(); else clearT = setTimeout(empty, M(4) + M(1));
+    });
   }
 
   /* A phone's sheet, shortened: what the site gives the client and the

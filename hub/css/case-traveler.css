@@ -75,7 +75,6 @@
   --ct-cream-r:rgba(242,234,216,.45);
   --ct-cream-l:rgba(242,234,216,.25);
   --ct-aber:rgba(0,240,255,.4);
-  --ct-ease:var(--ease);
 }
 
 /* ---------------- the bar: the volume, the path, the pips, the count ---------------- */
@@ -164,7 +163,7 @@
 .case-traveler .ct-file__aside{font-size:15px;line-height:1.2;color:var(--ct-brick);transform:rotate(-2deg);transform-origin:left center}
 :root[dir="rtl"] .case-traveler .ct-file__aside{transform:rotate(2deg);transform-origin:right center}
 .case-traveler .ct-past{margin-top:auto}
-.case-traveler .ct-past summary{min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 12px;border:2px solid var(--ct-ink);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.08em;cursor:pointer;list-style:none;transition:background-color .3s}
+.case-traveler .ct-past summary{min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 12px;border:2px solid var(--ct-ink);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);letter-spacing:.08em;cursor:pointer;list-style:none;transition:background-color var(--m-hover) var(--m-ease-enter)}
 .case-traveler .ct-past summary::-webkit-details-marker{display:none}
 .case-traveler .ct-past summary:focus-visible{outline:3px solid var(--ct-ink);outline-offset:2px}
 .case-traveler .ct-past[open] summary{background:var(--ct-ink);color:var(--c-accent-2)}
@@ -194,7 +193,9 @@
 .case-traveler .ct-real__item[hidden]{display:none}
 .case-traveler .ct-real__pic{position:relative;overflow:hidden;grid-column:1;grid-row:1 / -1;background:var(--ct-void);border-inline-end:1px solid var(--c-line)}
 .case-traveler .ct-real__pic .st-zoom{position:absolute;inset:0}
-.case-traveler .ct-wipe{position:absolute;inset:0;z-index:2;background:var(--c-accent);box-shadow:inset -2px 0 0 var(--ct-cream);pointer-events:none;animation:ct-wipe .4s var(--ct-ease) both}
+.case-traveler .ct-wipe{position:absolute;inset:0;z-index:2;background:var(--c-accent);box-shadow:inset -2px 0 0 var(--ct-cream);pointer-events:none;animation:ct-wipe var(--m-reveal) var(--m-ease-move) both}
+/* the first poster is simply there: the curtain answers a change, never the page's load (hub/app.js 8) */
+.case-traveler .ct-real__item.is-initial .ct-wipe{display:none}
 @keyframes ct-wipe{from{transform:none}to{transform:translateX(101%)}}
 :root[dir="rtl"] .case-traveler .ct-wipe{animation-name:ct-wipe-rtl}
 @keyframes ct-wipe-rtl{from{transform:none}to{transform:translateX(-101%)}}
@@ -215,7 +216,7 @@
 .case-traveler .ct-shelf{display:flex;flex-direction:column;background:var(--ct-ash-2)}
 .case-traveler .ct-shelf__hd{flex:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 16px 0}
 .case-traveler .ct-shelf__row{flex:1;min-height:0;display:flex;align-items:flex-end;gap:3px;padding:26px 16px 0}
-.case-traveler .ct-spine{flex:1 1 0;min-width:44px;height:var(--h);position:relative;overflow:hidden;padding:0;border:0;background:var(--c-dark);cursor:pointer;transition:transform .3s var(--ct-ease)}
+.case-traveler .ct-spine{flex:1 1 0;min-width:44px;height:var(--h);position:relative;overflow:hidden;padding:0;border:0;background:var(--c-dark);cursor:pointer;transition:transform var(--m-hover) var(--m-ease-enter)}
 .case-traveler .ct-spine img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.15)}
 .case-traveler .ct-spine::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.1) 45%,rgba(0,0,0,.55))}
 .case-traveler .ct-spine__n{position:absolute;z-index:1;top:6px;inset-inline-start:50%;transform:translateX(-50%);font-family:var(--ct-mono);font-weight:700;font-size:var(--t-label);white-space:nowrap;color:var(--ct-cream)}
@@ -367,7 +368,7 @@
 .case-traveler .ct-end__big{max-width:calc(100% - 130px);font-family:var(--c-font-disp);font-weight:900;font-size:clamp(44px,4.4vw,64px);line-height:.88;text-transform:uppercase}
 .case-traveler .ct-end__note{font-size:15px;line-height:1.2;color:var(--ct-brick)}
 .case-traveler .ct-end__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:6px 14px;padding-top:8px;font-family:var(--ct-mono);font-size:var(--t-label);line-height:1.25}
-.case-traveler .ct-end__list li{display:flex;align-items:center;gap:8px;transition:opacity .3s}
+.case-traveler .ct-end__list li{display:flex;align-items:center;gap:8px;transition:opacity var(--m-hover) var(--m-ease-enter)}
 .case-traveler .ct-end__list li::before{content:"[x]";flex:none;width:28px;white-space:nowrap}
 html.js .case-traveler .ct-end__list li:not(.is-seen){opacity:.8}
 html.js .case-traveler .ct-end__list li:not(.is-seen)::before{content:"[ ]"}

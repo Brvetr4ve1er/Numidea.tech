@@ -13,6 +13,26 @@
    read only the language key. --muted and --faint are the theme's own; the
    drafting grid is the theme's muted ink, thinned. */
 :root{
+  /* motion: one tempo for the whole site, 90 BPM, the pulse the radio's
+     four tracks share (85 to 92 BPM). A beat is 667 ms; every duration,
+     delay and stagger is a whole number of its eighths (83 ms), and letters,
+     characters and long rows step by sixteenths (42 ms), so motions that
+     start together land together. Four curves, one per job. */
+  --m-beat:667ms;
+  --m-press:83ms;    /* 1/8: a press */
+  --m-step:83.333ms;     /* 1/8: one step of a stagger (three at most) */
+  --m-quick:167ms;   /* 1/4: something small leaving */
+  --m-hover:250ms;   /* 3/8: answering the pointer or focus; a panel leaving */
+  --m-enter:333ms;   /* 1/2: a panel, menu, sheet or dialog arriving */
+  --m-reveal:500ms;  /* 3/4: a block arriving on scroll, a slide, the page lift */
+  --m-draw:1000ms;   /* 1 1/2: a picture drawing itself */
+  --m-bar:2667ms;    /* 4 beats: the longest single piece (the sting) */
+  --m-ease-enter:cubic-bezier(.16,1,.3,1);  /* arriving, answering */
+  --m-ease-exit:cubic-bezier(.5,0,.75,0);   /* leaving */
+  --m-ease-move:cubic-bezier(.87,0,.13,1);  /* crossing the screen: wipes, the lift, slides */
+  --m-ease-snap:steps(1,end);               /* hard cuts: drawn frames, the night cut */
+  /* the rule along the lower edge of a page lifted off by a page change */
+  --m-edge:#F1E8D4;
   --paper:var(--void); --paper-2:var(--navy); --panel:var(--plum);
   --line:var(--hairline); --line-2:var(--hairline-2);
   --grid:color-mix(in srgb,var(--muted) 7%,transparent); --grid-2:color-mix(in srgb,var(--muted) 11%,transparent);
@@ -34,7 +54,8 @@
   --hud-h:73px;   /* header height; the crumb wraps below 320px (see the media query) */
   /* the home page's steps and timings, which its one button is drawn with */
   --t-ui:14px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px;
-  --ease-out:cubic-bezier(.2,.8,.2,1); --t-hover:.18s var(--ease-out); --t-enter:.3s var(--ease-out);
+  /* the older names, now the tempo's: 250 answering, 333 arriving */
+  --ease-out:var(--m-ease-enter); --t-hover:var(--m-hover) var(--m-ease-enter); --t-enter:var(--m-enter) var(--m-ease-enter);
 }
 @media (min-width:1100px){:root{--max:min(1580px,93vw);--gut:clamp(40px,3.4vw,64px)}}
 @media (max-width:960px){:root{--gut:clamp(20px,4.6vw,44px)}}
@@ -152,7 +173,7 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .index{margin-top:clamp(32px,4vw,48px)}
 .index ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px}
 .index a{display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 16px;border:1px solid var(--line-2);
-  border-radius:var(--r);text-decoration:none;background:var(--paper-2);transition:border-color .2s,background-color .2s}
+  border-radius:var(--r);text-decoration:none;background:var(--paper-2);transition:border-color var(--t-hover),background-color var(--t-hover)}
 @media (hover:hover){.index a:hover{border-color:var(--gold);background:var(--panel)}}
 .ix-n{font:500 12px/1.4 var(--mono);color:var(--gold);letter-spacing:.08em}
 .ix-name{font-weight:600}
@@ -226,7 +247,7 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 
 /* framed captures */
 .frame,.phone{position:relative;display:block;border:1px solid var(--line-2);background:var(--paper);overflow:hidden;cursor:zoom-in}
-.frame img,.phone img{width:100%;transition:transform var(--t-enter)}
+.frame img,.phone img{width:100%;transition:transform var(--m-reveal) var(--m-ease-enter)}   /* an image's zoom: three quarters of a beat */
 @media (hover:hover){.zoom:hover img{transform:scale(1.015)}}
 .sh-main{position:relative;padding:0 0 30px;margin:0}
 .sh-main .chrome{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border:1px solid var(--line-2);border-bottom:0;
@@ -333,7 +354,7 @@ html[dir="rtl"] .group{font-family:var(--ar)}
   font:500 14px var(--body);color:var(--ink);cursor:pointer;list-style:none;transition:border-color var(--t-hover),background-color var(--t-hover)}
 .sh-more summary::-webkit-details-marker{display:none}
 @media (hover:hover){.sh-more summary:hover{border-color:var(--gold);background:var(--panel)}}
-.sh-more .chev{flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:transform var(--t-enter)}
+.sh-more .chev{flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:transform var(--t-hover)}
 .sh-more[open] .chev{transform:rotate(180deg)}
 .cards:has(.sh-more[open]){align-items:start}
 .sh-full{display:grid;gap:var(--s-6);margin-top:var(--s-5);padding-top:var(--s-5);border-top:1px solid var(--line)}
@@ -359,7 +380,7 @@ html[dir="rtl"] .group{font-family:var(--ar)}
    accent, the WhatsApp way the teal outline. It was a Geist 600 15px
    button of its own, 48px tall. ---- */
 .btn{font-family:var(--body);font-size:var(--t-ui);font-weight:600;line-height:1.4;padding:var(--s-3) var(--s-5);min-height:52px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
-  transition:color var(--t-enter),background-color var(--t-enter),border-color var(--t-enter),box-shadow var(--t-enter);
+  transition:color var(--t-hover),background-color var(--t-hover),border-color var(--t-hover),box-shadow var(--t-hover);
   text-decoration:none;display:inline-flex;align-items:center;gap:var(--s-2)}
 .btn-primary{background:var(--crimson);color:var(--on-crimson);border-color:var(--crimson);box-shadow:var(--btn-glow)}
 .btn-teal{background:transparent;color:var(--teal-text);border-color:var(--teal)}
@@ -395,8 +416,9 @@ html[dir="rtl"] .outro-q{font-family:var(--ar)}
   .m-contact{position:fixed;inset-inline:0;bottom:0;z-index:15;display:flex;gap:10px;
     padding:10px max(var(--gut),env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(var(--gut),env(safe-area-inset-left));
     background:color-mix(in srgb,var(--paper) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line);
-    transform:translateY(110%);visibility:hidden;transition:transform var(--t-enter),visibility 0s linear .3s}
-  .m-contact.on{transform:none;visibility:visible;transition:transform var(--t-enter),visibility 0s}
+    /* out in 250 on the exit curve, visible until it has gone; in, 333 */
+    transform:translateY(110%);visibility:hidden;transition:transform var(--m-hover) var(--m-ease-exit),visibility 0s linear var(--m-hover)}
+  .m-contact.on{transform:none;visibility:visible;transition:transform var(--m-enter) var(--m-ease-enter),visibility 0s}
   .m-contact .btn{flex:1;justify-content:center;padding:var(--s-2) var(--s-3);line-height:1.2;text-align:center}
   html{scroll-padding-bottom:calc(73px + 9px + env(safe-area-inset-bottom))}
 }
@@ -411,7 +433,9 @@ html[dir="rtl"] .outro-q{font-family:var(--ar)}
    where the finger fell, and the pane pans it; a tap on the bare screen
    around the fitted capture closes it. The page behind is locked
    (html.viewing, scene/app.js). */
-.viewer{max-width:min(96vw,1600px);max-height:94vh;padding:0;border:1px solid var(--line-2);border-radius:8px;background:var(--paper);color:var(--ink);overflow:hidden}
+/* placed by its own rule, not by the browser's :modal one: closing ends :modal on the exit's first frame, and the dialog,
+   still fading, dropped from the middle of the screen to a strip at the page's top */
+.viewer{position:fixed;inset:0;max-width:min(96vw,1600px);max-height:94vh;padding:0;border:1px solid var(--line-2);border-radius:8px;background:var(--paper);color:var(--ink);overflow:hidden}
 @supports (height:1dvh){.viewer{max-height:94dvh}}
 .viewer::backdrop{background:rgba(4,9,15,.86)}
 .viewer-pane{max-height:94vh;overflow:auto;overscroll-behavior:contain}
@@ -423,6 +447,22 @@ html[dir="rtl"] .outro-q{font-family:var(--ar)}
 .viewer-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
 .viewer-cap{display:none}
 html.viewing{overflow:hidden}
+/* The viewer and its veil come in (333, the enter curve) from a touch
+   smaller and transparent, and go (250, the exit curve) the same way; the
+   dialog stays in the top layer and displayed until its exit has played
+   (overlay, display: allow-discrete). A tap that zooms the capture fades it
+   in at its new size: the size itself is never animated. */
+@media (prefers-reduced-motion:no-preference){
+  .viewer{opacity:0;transform:scale(.98);
+    transition:opacity var(--m-hover) var(--m-ease-exit),transform var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+  .viewer[open]{opacity:1;transform:none;
+    transition:opacity var(--m-enter) var(--m-ease-enter),transform var(--m-enter) var(--m-ease-enter),overlay var(--m-enter) allow-discrete,display var(--m-enter) allow-discrete}
+  @starting-style{.viewer[open]{opacity:0;transform:scale(.98)}}
+  .viewer::backdrop{opacity:0;transition:opacity var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+  .viewer[open]::backdrop{opacity:1;transition:opacity var(--m-enter) var(--m-ease-enter),overlay var(--m-enter) allow-discrete,display var(--m-enter) allow-discrete}
+  @starting-style{.viewer[open]::backdrop{opacity:0}}
+  .viewer.is-zoom img{animation:m-in var(--m-hover) var(--m-ease-enter)}
+}
 @media (max-width:699px),(max-width:999px) and (max-height:560px){
   .viewer,.viewer.is-tall,.viewer-pane{width:100vw;max-width:none;height:100vh;max-height:none;margin:0;border:0;border-radius:0}
   @supports (height:1dvh){.viewer,.viewer.is-tall,.viewer-pane{height:100dvh;max-height:none}}
@@ -606,3 +646,22 @@ html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
 .sh-tech-in>*:first-child{margin-top:var(--s-5)}
 .sh-tech-in .tblock{margin-top:0}
 .sh-tech-in>.sh-h{margin-top:var(--s-5)}
+
+/* the page change: both pages opt in; the leaving page is lifted off like a
+   sheet of paper, its rule along its lower edge, and the arriving page is
+   already underneath. One stroke of 500 ms and no wait before the request.
+   A swap on the same page (theme, language) crossfades instead. Off with
+   reduced motion: the browser shows the next page at once. */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto;types:page}
+  html:active-view-transition-type(page)::view-transition-group(root){animation:none}   /* old and new share one box, so the group's own size-and-place animation shows nothing, and it is not one the compositor can run alone: off, and the old page's lift (500 ms) sets the length */
+  html:active-view-transition-type(page)::view-transition-old(root){z-index:1;mix-blend-mode:normal;box-shadow:0 6px 0 var(--m-edge);animation:m-lift var(--m-reveal) var(--m-ease-move) both}
+  html:active-view-transition-type(page)::view-transition-new(root){mix-blend-mode:normal;animation:none}
+  html:active-view-transition-type(swap)::view-transition-old(root){animation:m-out var(--m-quick) var(--m-ease-exit) both}
+  html:active-view-transition-type(swap)::view-transition-new(root){animation:m-in var(--m-hover) var(--m-ease-enter) both}
+}
+@keyframes m-lift{to{transform:translateY(-100%)}}
+@keyframes m-out{to{opacity:0}}
+@keyframes m-in{from{opacity:0}}
+/* reduced motion: no lift and no crossfade, the next page at once */
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}

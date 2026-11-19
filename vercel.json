@@ -10,15 +10,15 @@
   },
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "numidea-tech\\.vercel\\.app" }],
-      "destination": "https://www.numedialab.dev/:path*",
+      "destination": "https://www.numedialab.dev/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "numidea-tech-br4vetravelers-projects\\.vercel\\.app" }],
-      "destination": "https://www.numedialab.dev/:path*",
+      "destination": "https://www.numedialab.dev/$1",
       "permanent": true
     }
   ],

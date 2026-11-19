@@ -8,6 +8,19 @@
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // the site's tempo (the stylesheets' --m-* tokens): 90 BPM, a beat of 667 ms;
+  // M(n) is n eighths of a beat, Q() rounds a drawn time to the nearest sixteenth
+  var BEAT = 2000 / 3;
+  var M = function (n) { return Math.round(n * BEAT / 8); };
+  var Q = function (ms) { var s = BEAT / 16; return Math.round(Math.round(ms / s) * s); };
+  var EASE_ENTER = 'cubic-bezier(.16,1,.3,1)', EASE_EXIT = 'cubic-bezier(.5,0,.75,0)', EASE_MOVE = 'cubic-bezier(.87,0,.13,1)';
+  /* Work the first screen does not need (measuring, arming the pictures,
+     fitting the header's action) waits until the browser is idle, a second
+     at most, so it never runs inside the hero's entrance. */
+  var idle = function (fn) {
+    if (window.requestIdleCallback) requestIdleCallback(fn, { timeout: M(12) });
+    else setTimeout(fn, M(12));
+  };
 
   /* ---------------- i18n dictionary ----------------
      One language per page. The page's text is baked in its language by
@@ -267,6 +280,26 @@
    try {
     applyLang(document.documentElement.getAttribute('lang') || DEFAULT_LANG);
 
+    /* (declared first: the start's two tasks below both use them)
+       dictionary lookup for strings built in JS (estimator, WhatsApp text),
+       as plain text. Every one of them lands in textContent, an attribute, the
+       message field, a mailto body or a wa.me link, none of which reads
+       markup, and a value may carry some: the Arabic isolates its Latin runs
+       (<bdi>SEO</bdi>, ccc4b42), so ticking "SEO" in the Arabic estimator
+       printed the tags in its summary and sent them on in the visitor's
+       message. The tags go; their words stay. A key that is markup on
+       purpose (the CV button) is read from DICT itself. */
+    function t(k, fb) {
+      return plain(DICT[k] != null ? DICT[k] : (fb || k));
+    }
+    function plain(s) {
+      s = String(s);
+      if (!/[<&]/.test(s)) return s;
+      var tpl = document.createElement('template');   // inert: nothing in it loads or runs
+      tpl.innerHTML = s;
+      return tpl.content.textContent;
+    }
+
     /* The language switch is three links: the French page (the site root),
        en/ and ar/. The choice is stored as the link is followed, before the
        page it leads to stores it itself, because the root's head script
@@ -301,18 +334,22 @@
        press of the button stores a choice: a visitor who made none keeps the
        OS preference. */
     var THEMES = ['arcanum', 'daylight'];
-    function applyTheme(th, store) {
+    function applyTheme(th, store, later) {
       if (THEMES.indexOf(th) === -1) th = 'arcanum';
       document.documentElement.setAttribute('data-theme', th);
       // the browser's own bar takes the page colour (Daylight is light): read
-      // from the theme's tokens, so it cannot drift from themes.css
+      // from the theme's tokens, so it cannot drift from themes.css (a style
+      // read only, which the swap's new picture needs anyway)
       var bar = document.querySelector('meta[name="theme-color"]');
       var bg = getComputedStyle(document.documentElement).getPropertyValue('--void').trim();
       if (bar && bg) bar.setAttribute('content', bg);
       labelTheme(th);
       if (store) { try { localStorage.setItem('numidea-theme', th); } catch (e) {} }
-      // type tokens change line lengths, so cached section tops are re-measured
-      document.dispatchEvent(new CustomEvent('numidea:relayout'));
+      // type tokens change line lengths, so cached section tops are re-measured;
+      // inside a swap's update the page is held as a picture, and what lays the
+      // page out to measure it waits for the crossfade (later)
+      var measure = function () { document.dispatchEvent(new CustomEvent('numidea:relayout')); };
+      if (later) later(measure); else measure();
     }
     /* The button names the theme it switches to ("Passer en Daylight
        (clair)"), as its label and its tooltip, and draws that theme's icon
@@ -331,15 +368,68 @@
       });
     }
     document.addEventListener('numidea:lang', function () { labelTheme(document.documentElement.getAttribute('data-theme') || 'arcanum'); });
-    applyTheme(document.documentElement.getAttribute('data-theme') || 'arcanum', false);
+    /* At the start the head script has set the theme and the browser bar's
+       colour already, and nothing has been measured yet: only the buttons are
+       named. (Applying it whole here read the theme's tokens and sent the
+       page's re-measure, two forced layouts inside the first task, which
+       froze the hero's first frames on a phone.) */
+    var th0 = document.documentElement.getAttribute('data-theme');
+    if (THEMES.indexOf(th0) > -1) labelTheme(th0); else applyTheme(th0 || 'arcanum', false);
     // two buttons: the header's, and the phone menu's (the header's goes
     // below 960px, styles.css, to make room for the language switch)
+    /* The switch is one crossfade of the whole page (a same-document view
+       transition of type "swap", styles.css: 167 out, 250 in): every
+       element changes in the same frame under it. A transition list on a
+       few kinds of element eased those and left the rest to snap, so the
+       page tore. Without the browser's support, or with reduced motion, it
+       is a clean cut. */
+    var swap = function (fn, after) {
+      after = after || function () {};
+      if (!reduceMotion && document.startViewTransition && window.ViewTransition && 'types' in ViewTransition.prototype) {
+        var h = document.documentElement;
+        try {
+          // the elements' own colour transitions are held for the swap
+          // (html.m-swap, styles.css): under the crossfade they would still
+          // be easing in the new picture, a quarter beat behind the rest
+          var vt = swapping = document.startViewTransition({ update: function () { h.classList.add('m-swap'); fn(); }, types: ['swap'] });
+          vt.ready.then(null, function () {});   // a swap skipped by the next one is not an error
+          vt.finished.then(null, function () {}).then(function () { if (swapping === vt) { swapping = null; h.classList.remove('m-swap'); } after(); });
+          return;
+        } catch (e) { h.classList.remove('m-swap'); }
+      }
+      fn(); after();
+    };
     document.querySelectorAll('.theme-btn').forEach(function (b) {
       b.addEventListener('click', function () {
-        applyTheme(document.documentElement.getAttribute('data-theme') === 'daylight' ? 'arcanum' : 'daylight', true);
+        var to = document.documentElement.getAttribute('data-theme') === 'daylight' ? 'arcanum' : 'daylight';
+        var waits = [], run = function () { waits.forEach(function (f) { f(); }); waits = []; };
+        swap(function () { applyTheme(to, true, function (f) { waits.push(f); }); }, run);
       });
     });
+    /* While a crossfade runs the page is its picture, and a pointer lands on
+       the document, not on what it shows: a second press of the toggle
+       inside those 250 ms was lost. It is handed on to the toggle under it
+       (the new swap takes over from the running one). */
+    var swapping = null;
+    document.addEventListener('click', function (e) {
+      if (!swapping || e.target !== document.documentElement) return;
+      [].some.call(document.querySelectorAll('.theme-btn'), function (b) {
+        var r = b.getBoundingClientRect();
+        if (!r.width || e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return false;
+        b.focus({ preventScroll: true }); b.click();
+        return true;
+      });
+    }, true);
 
+    /* The start is two tasks. What the first screen needs is above (the
+       language, the theme, its buttons); everything below measures the page
+       (the scroll, the reveals, the header's room, the sections), wires the
+       blocks further down and arms what is drawn on the way. Run in one task
+       after the first paint it held the main thread for a third of a second
+       on a phone (CPU 4x), the hero's entrance frozen under it; given its own
+       task, the browser paints in between. */
+    setTimeout(function () {
+     try {
     /* One read of the scroll position per scroll event, shared by everything
        scroll-linked below (navbar, progress, parallax, phone bar, scroll-spy,
        back to top). Reading scrollY forces a style recalculation whenever a
@@ -349,8 +439,13 @@
        are in BRAND.md, "Scroll comfort (round 3)"). This listener is
        registered first, reads once, writes nothing; the others read
        `scrollPos`/`viewH` and only write. */
-    var scrollPos = window.scrollY || window.pageYOffset || 0, viewH = window.innerHeight;
+    /* At the start the page has not been scrolled by anyone but the browser
+       (a restored position, an anchor): its first read waits for the first
+       frame, where the layout is due anyway (read here, inside the start's
+       task, it laid the whole page out again on the spot). */
+    var scrollPos = 0, viewH = window.innerHeight;
     window.addEventListener('scroll', function () { scrollPos = window.scrollY || window.pageYOffset || 0; }, { passive: true });
+    requestAnimationFrame(function () { var y = window.scrollY || window.pageYOffset || 0; if (y !== scrollPos) { scrollPos = y; window.dispatchEvent(new Event('scroll')); } });
     window.addEventListener('resize', function () { viewH = window.innerHeight; scrollPos = window.scrollY || window.pageYOffset || 0; });
 
     // navbar scroll state + progress bar
@@ -404,6 +499,10 @@
       el.classList.add('in');
     }
     var revealEls = document.querySelectorAll('.reveal');
+    /* A block taller than 60% of the screen fades instead of rising
+       (styles.css, .rv-tall): its height is read from the observer's entry
+       or the pass that already measured it, never on its own. */
+    var tall = function (el, h) { if (h > viewH * 0.6) el.classList.add('rv-tall'); };
     // Progressive enhancement: CSS only hides .reveal under html.js-ready, so a
     // visitor whose app.js never arrives sees everything. If the page has
     // ALREADY painted by the time this runs (slow network, deferred script
@@ -413,9 +512,11 @@
     try { painted = performance.getEntriesByType('paint').length > 0; } catch (e) {}
     if (painted) {
       var vh0 = window.innerHeight || document.documentElement.clientHeight;
-      revealEls.forEach(function (el) {
-        var r0 = el.getBoundingClientRect();
-        if (r0.top < vh0 * 0.92 && r0.bottom > 0) revealNow(el);
+      // every box read first, then the classes written: one layout, not one per block
+      var r0s = [].map.call(revealEls, function (el) { return el.getBoundingClientRect(); });
+      revealEls.forEach(function (el, i) {
+        var r0 = r0s[i];
+        if (r0.top < vh0 * 0.92 && r0.bottom > 0) { tall(el, r0.height); revealNow(el); }
       });
     }
     document.documentElement.classList.add('js-ready');
@@ -439,10 +540,11 @@
         batch = [];
         flushQueued = false;
         items.forEach(function (el, i) {
-          // stagger the wave, but never make the last card wait too long:
-          // a fling lands on a dozen at once, and at 490ms the last of them
-          // was still blank while the reader was already looking at it
-          el.style.setProperty('--rd', Math.min(i * 70, 210) + 'ms');
+          // stagger the wave an eighth of a beat a card, but never make the
+          // last card wait too long: a fling lands on a dozen at once, and at
+          // 490ms the last of them was still blank while the reader was
+          // already looking at it (three steps at most, 250)
+          el.style.setProperty('--rd', M(Math.min(i, 3)) + 'ms');
           try { revealNow(el); } catch (e) { el.classList.add('in'); }
         });
       }
@@ -450,30 +552,36 @@
         entries.forEach(function (en) {
           if (!en.isIntersecting) return;
           io.unobserve(en.target);
+          tall(en.target, en.boundingClientRect.height);
           queue(en.target);
         });
-      // Starts a little BELOW the fold (+8%), not 8% inside it: content
+      // Starts a fifth of a screen BELOW the fold, not inside it: content
       // used to enter blank and only begin to appear once well on screen,
       // up to 600ms after entering on a phone (before/after figures in
-      // BRAND.md, "Scroll comfort (round 3)"). Now the wave is under way as
-      // it comes into view.
-      }, { threshold: 0, rootMargin: '0px 0px 8% 0px' });
+      // BRAND.md, "Scroll comfort (round 3)"). At 8% a block was still
+      // rising as it came into view; 20% ahead, the 500ms rise is mostly
+      // done by the time it is read.
+      }, { threshold: 0, rootMargin: '0px 0px 20% 0px' });
       revealEls.forEach(function (el) { io.observe(el); });
       // Safety net: never leave on-screen content stuck invisible if the
       // observer is slow/janky — reveal anything in (or near) the viewport.
       // `direct` skips the stagger queue: on `load` correctness beats grace.
       function revealInView(direct) {
         var h = window.innerHeight || document.documentElement.clientHeight;
-        revealEls.forEach(function (el) {
-          var r = el.getBoundingClientRect();
+        var rs = [].map.call(revealEls, function (el) { return el.getBoundingClientRect(); });   // reads, then writes
+        revealEls.forEach(function (el, i) {
+          var r = rs[i];
           if (r.top >= h * 0.92 || r.bottom <= 0) return;
+          tall(el, r.height);
           if (direct) return revealNow(el);
           io.unobserve(el);
           queue(el);
         });
       }
-      revealInView(false);   // first screen still arrives as a wave
-      window.addEventListener('load', function () { revealInView(true); });
+      // the observer brings in the first screen as a wave on its own; this
+      // net waits until the browser is idle, out of the hero's entrance
+      idle(function () { revealInView(false); });
+      window.addEventListener('load', function () { idle(function () { revealInView(true); }); });
     } else {
       revealEls.forEach(revealNow);
     }
@@ -500,7 +608,11 @@
           plink  = wrap.querySelector('.plate-link'),
           sheetBase = plink ? plink.getAttribute('href').replace(/#.*$/, '') : '';
       if (slides.length < 2 && !more) return;
-      var cur = 0, busy = false, timer = null, HOLD = 5200;
+      /* Each slide holds two bars (5333 ms) and the deck goes round once:
+         after four turns (every slide shown; back on the first one when no
+         one has picked another) it stays. The rail, a swipe and the keys
+         still turn it; the play button starts another round. */
+      var cur = 0, busy = false, timer = null, HOLD = M(64), turns = 0;
 
       /* The slides after the first wait in a <template> (index.html): the
          deck never turns before the visitor has moved (`idle`, below), yet
@@ -560,23 +672,23 @@
           return;
         }
         want = -1; waiting = -1;
-        if (reduceMotion || !wipe) { paint(n); return; }
+        if (reduceMotion || !wipe || !wipe.animate) { paint(n); return; }
         busy = true;
-        var t0 = 0, DUR = 620, swapped = false;
-        function step(ts) {
-          if (!t0) t0 = ts;
-          var t = Math.min(1, (ts - t0) / DUR);
-          // out: bar sweeps across, covering the plate; in: it retreats
-          var half = t < .5 ? t * 2 : 1 - (t - .5) * 2;
-          var e = half < .5 ? 4 * half * half * half : 1 - Math.pow(-2 * half + 2, 3) / 2;
-          wipe.style.setProperty('--wipe', e.toFixed(3));
-          wipe.style.setProperty('--wipeEdge', (t > .96 ? 0 : 1).toString());
-          if (t >= .5 && !swapped) { paint(n); swapped = true; }   // swap behind the bar
-          if (t < 1) { requestAnimationFrame(step); return; }
-          wipe.style.setProperty('--wipe', '0'); wipe.style.setProperty('--wipeEdge', '0'); busy = false;
+        /* One beat (667 ms) on the move curve, run by the compositor: the
+           bar sweeps across, covering the plate, and retreats; the slide is
+           swapped behind it at the half (333), and the caption rises from
+           there to land as the plate uncovers. The bright leading edge
+           fades on the same clock. Nothing is written per frame. */
+        var done = false, finish = function () {
+          if (done) return;
+          done = true; clearTimeout(swapT); paint(n); busy = false;
           if (want > -1) go(want);   // a pick made while this one ran
-        }
-        requestAnimationFrame(step);
+        };
+        var a = wipe.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)', offset: .5 }, { transform: 'scaleX(0)' }], { duration: M(8), easing: EASE_MOVE });
+        // (linear on purpose: the edge holds at full for fifteen sixteenths of the beat, 625 ms, and drops in the last sixteenth, so a curve would change nothing seen)
+        try { wipe.animate([{ opacity: 1 }, { opacity: 1, offset: .9375 }, { opacity: 0 }], { duration: M(8), pseudoElement: '::after' }); } catch (e) {}
+        var swapT = setTimeout(function () { paint(n); }, M(4));   // swap behind the bar
+        a.onfinish = finish; a.oncancel = finish;
       }
 
       function next() {
@@ -591,7 +703,11 @@
         for (var k = 1; k < slides.length; k++) {
           var n = (cur + k) % slides.length;
           if (failed(n)) continue;
-          if (ready(n)) go(n);
+          if (ready(n)) {
+            go(n);
+            // one round, then it stays
+            if (++turns >= tabs.length) halt();
+          }
           return;
         }
       }
@@ -620,7 +736,7 @@
       function halt() { clearInterval(timer); timer = null; }
       function arm() {
         clearInterval(timer); timer = null;
-        if (reduceMotion || held.hover || held.focus || held.hidden || held.idle || held.user || held.picked) return;
+        if (reduceMotion || held.hover || held.focus || held.hidden || held.idle || held.user || held.picked || turns >= tabs.length) return;
         timer = setInterval(next, HOLD);
       }
       function hold(k, v) { held[k] = v; arm(); }
@@ -693,6 +809,7 @@
           // button sits inside the plate, so its tap never clears `picked`,
           // and play would otherwise report a rotation that does not run
           held.picked = false;
+          if (!on && turns >= tabs.length) turns = 0;   // play after the round: another round
           hold('user', on);
         });
       }
@@ -717,19 +834,29 @@
     function setMenu(open, keepFocus) {
       if (!menu || open === menu.classList.contains('open')) return;
       menu.classList.toggle('open', open);
+      document.documentElement.classList.toggle('menu-open', open);
       if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
       document.documentElement.style.overflow = open ? 'hidden' : '';   // older iOS rubber-bands the page behind a body-only lock
       Array.prototype.forEach.call(document.body.children, function (el) {
         if (el !== menu && !el.contains(menu) && el.tagName !== 'SCRIPT') el.inert = open;
       });
+      // the menu itself leaves the Tab order the moment it starts to close:
+      // it stays painted for its slide-out (styles.css), and a Tab pressed
+      // then landed inside it, on a link about to vanish under the focus
+      menu.inert = !open;
       document.dispatchEvent(new CustomEvent('numidea:menu', { detail: open }));
       // focus lands on the close button: first on screen, first in the
       // dialog, so Tab reads the menu in its order (it used to start on
-      // the first link and reach "Fermer" last)
-      if (open) { var first = menu.querySelector('.close') || menu.querySelector('a'); if (first) first.focus(); }
-      else if (!keepFocus && toggle) toggle.focus();
+      // the first link and reach "Fermer" last). It moves in the frame that
+      // starts the slide, not inside the press: focus() lays the page out on
+      // the spot, and the press held the main thread for it. The way back
+      // to the toggle on a close is the same, in the frame that starts the
+      // menu's exit.
+      if (open) { var first = menu.querySelector('.close') || menu.querySelector('a'); if (first) requestAnimationFrame(function () { if (menu.classList.contains('open')) first.focus(); }); }
+      else if (!keepFocus && toggle) requestAnimationFrame(function () { if (!menu.classList.contains('open')) toggle.focus(); });
     }
+    if (menu) menu.inert = true;
     // a viewport grown past the phone layout (a rotation, a window widened)
     // closes the menu: it stayed open there, invisible, the page's scroll locked
     var wideMq = window.matchMedia('(min-width: 961px)');
@@ -745,7 +872,11 @@
        1024 and squeezed the language pill at 1280 (the pill shrinks first,
        it clips its overflow), so the button is shown only while nothing in
        the bar is clipped by it. Measured again on a resize, a language or
-       theme apply (type tokens change widths). */
+       theme apply (type tokens change widths).
+       Its slot is kept from the first paint (styles.css: the button's
+       geometry, unseen), so showing it moves nothing: it fades in (.fit)
+       once measured, when the browser is idle. Only a bar too narrow for
+       it takes it out of the row (display), which the measure decides. */
     (function () {
       var cta = document.querySelector('.nav-cta'), bar = document.querySelector('.navbar .bar'), pill = document.querySelector('.nav-right .lang');
       if (!cta || !bar) return;
@@ -755,18 +886,22 @@
         var show = from.matches;
         // the button classes come here, not in the markup: with them the
         // link was painted before this ran (the .btn display rule outranks
-        // the hidden attribute) and hiding it moved the bar
+        // the hidden attribute)
         cta.classList.add('btn', 'btn-primary');
-        cta.hidden = !show; cta.style.display = show ? '' : 'none';
-        if (show && (clipped(bar) || clipped(pill))) { cta.hidden = true; cta.style.display = 'none'; }
+        cta.hidden = !show;
+        if (cta.style.display) cta.style.display = '';   // back in the row to be measured
+        // both reads first, then the writes
+        var over = show && (clipped(bar) || clipped(pill));
+        cta.classList.toggle('fit', show && !over);
+        if (over) cta.style.display = 'none';
       };
-      var later = function () { clearTimeout(t0); t0 = setTimeout(fit, 120); };
+      var later = function () { clearTimeout(t0); t0 = setTimeout(fit, M(1)); };
       if (from.addEventListener) from.addEventListener('change', fit); else if (from.addListener) from.addListener(fit);
       window.addEventListener('resize', later);
       document.addEventListener('numidea:lang', later);
       document.addEventListener('numidea:relayout', later);
       window.addEventListener('load', later);
-      fit();
+      idle(fit);
     })();
 
     /* A FAQ answer opened below the fold, its last lines under the phone
@@ -905,9 +1040,9 @@
           landed = true; window.removeEventListener('scroll', jumping);
           toForm();
         };
-        var jumping = function () { clearTimeout(settled); settled = setTimeout(land, 200); };
+        var jumping = function () { clearTimeout(settled); settled = setTimeout(land, M(3)); };
         window.addEventListener('scroll', jumping, { passive: true });
-        window.addEventListener('load', function () { jumping(); setTimeout(function () { landed = true; window.removeEventListener('scroll', jumping); }, 3000); });
+        window.addEventListener('load', function () { jumping(); setTimeout(function () { landed = true; window.removeEventListener('scroll', jumping); }, M(36)); });
       }
     }
 
@@ -1035,7 +1170,7 @@
         copyNote.textContent = '';
         if (!key) { copyNote.removeAttribute('data-i18n'); return; }
         copyNote.setAttribute('data-i18n', key);
-        setTimeout(function () { if (copyNote.getAttribute('data-i18n') === key) copyNote.textContent = t(key); }, 80);
+        setTimeout(function () { if (copyNote.getAttribute('data-i18n') === key) copyNote.textContent = t(key); }, M(1));   // an eighth after the clear, so the live region announces it again
       }
       function backToForm(select) {
         note('');
@@ -1111,24 +1246,6 @@
     // "8 pages", "60 منتجاً", "صفحتان"
     function counted(k, n) { return dual(n) ? unit(k, n) : n + ' ' + unit(k, n); }
 
-    /* dictionary lookup for strings built in JS (estimator, WhatsApp text),
-       as plain text. Every one of them lands in textContent, an attribute, the
-       message field, a mailto body or a wa.me link, none of which reads
-       markup, and a value may carry some: the Arabic isolates its Latin runs
-       (<bdi>SEO</bdi>, ccc4b42), so ticking "SEO" in the Arabic estimator
-       printed the tags in its summary and sent them on in the visitor's
-       message. The tags go; their words stay. A key that is markup on
-       purpose (the CV button) is read from DICT itself. */
-    function t(k, fb) {
-      return plain(DICT[k] != null ? DICT[k] : (fb || k));
-    }
-    function plain(s) {
-      s = String(s);
-      if (!/[<&]/.test(s)) return s;
-      var tpl = document.createElement('template');   // inert: nothing in it loads or runs
-      tpl.innerHTML = s;
-      return tpl.content.textContent;
-    }
 
     /* ---------------- 12a · display currency ----------------
        Every price is set in dinars (PRICE_MODEL, RETAINER) and only converted
@@ -1464,12 +1581,13 @@
     (function () {
       var bar = document.querySelector('.m-contact');
       if (!bar) return;
+      document.documentElement.classList.add('mbar');
       // as in styles.css: phones, but not a phone on its side (short and at
       // least 480px wide), where the bar would cover a third of the screen
       var mq = window.matchMedia('(max-width: 720px) and (min-height: 561px), (max-width: 479px)');
       var guide = !!document.querySelector('main.tarifs');
       var inView = { contact: false, footer: false, hero: false, est: false }, menuOpen = false;
-      var lastY = scrollPos, run = 0, away = false, restT = 0, jumpT = 0, jumping = false;
+      var lastY = scrollPos, run = 0, up = 0, away = false, restT = 0, jumpT = 0, jumping = false;
       var price = bar.querySelector('.m-price'), go = bar.querySelector('.m-estgo');
       var rng = document.getElementById('est-range'), wks = document.getElementById('est-weeks');
       function fill() {
@@ -1482,18 +1600,24 @@
         var on = mq.matches && !menuOpen && !inView.contact && !inView.footer && !inView.hero
           && (guide ? scrollPos > 0 : scrollPos > viewH) && (!away || bar.contains(document.activeElement));
         bar.classList.toggle('on', on);
+        document.documentElement.classList.toggle('mbar-on', on);   // what the toast above the bar reads (styles.css)
         bar.classList.toggle('est', on && inView.est && !!price);
       }
       function onBarScroll() {
         var dy = scrollPos - lastY;
         lastY = scrollPos;
         // no run under reduced motion: the page jumps there, and a bar
-        // written back after a jump is motion of its own (keys.mjs)
+        // written back after a jump is motion of its own (keys.mjs).
+        /* It goes after a screen and a half read downward (600px went in two
+           flicks of a thumb), and comes back on a deliberate move up (48px
+           of it, not the twitch at the end of a flick) or after a second at
+           rest (it came back in 220ms, so a flick-and-pause read flipped it
+           twenty times in six seconds). */
         if (!reduceMotion && !jumping) {
-          if (dy < 0) { run = 0; away = false; }
-          else if (dy > 0) { run += dy; if (run > 600) away = true; }
+          if (dy < 0) { run = 0; up += dy; if (up < -48) away = false; }
+          else if (dy > 0) { up = 0; run += dy; if (run > viewH * 1.5) away = true; }
           clearTimeout(restT);
-          restT = setTimeout(function () { run = 0; away = false; update(); }, 220);
+          restT = setTimeout(function () { run = 0; up = 0; away = false; update(); }, M(12));
         }
         update();
       }
@@ -1531,8 +1655,8 @@
       document.addEventListener('click', function (e) {
         var a = e.target.closest && e.target.closest('a[href^="#"]');
         if (!a || a.getAttribute('href').length < 2) return;
-        jumping = true; away = false; run = 0; clearTimeout(restT);
-        clearTimeout(jumpT); jumpT = setTimeout(function () { jumping = false; lastY = scrollPos; }, reduceMotion ? 100 : 1600);
+        jumping = true; away = false; run = 0; up = 0; clearTimeout(restT);
+        clearTimeout(jumpT); jumpT = setTimeout(function () { jumping = false; lastY = scrollPos; }, reduceMotion ? M(1) : M(20));
         update();
       });
       window.addEventListener('scroll', onBarScroll, { passive: true });
@@ -1599,7 +1723,7 @@
           [].forEach.call(dots.children, function (d, k) { d.classList.toggle('on', k === i); });
         };
         grid.addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(mark); }, { passive: true });
-        mark();
+        raf = requestAnimationFrame(mark);   // (in the first frame, not in the start's task: it measures the cards)
         document.addEventListener('click', function (e) {
           var a = e.target.closest && e.target.closest('a[href^="#w-"]');
           if (!a || grid.scrollWidth <= grid.clientWidth + 2) return;
@@ -1624,13 +1748,22 @@
         var btns = cards.map(function (c, i) {
           var b = document.createElement('button');
           b.type = 'button';
-          b.addEventListener('click', function () { pick(i); });
+          b.addEventListener('click', function () { pick(i, true); });
           sw.appendChild(b);
           return b;
         });
         var names = function () { cards.forEach(function (c, i) { var h = c.querySelector('h3'); btns[i].textContent = h ? h.textContent : ''; }); };
-        var pick = function (i) {
+        var at = -1;
+        var pick = function (i, user) {
           cards.forEach(function (c, k) { c.classList.toggle('on', k === i); btns[k].setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+          /* the chosen card comes in from the side of its tab, 16px in 333:
+             from the right for a tab after the last one, from the left for
+             one before it, mirrored in Arabic where the tabs read the other way */
+          if (user && at > -1 && at !== i && !reduceMotion && cards[i].animate) {
+            var dir = (i > at ? 1 : -1) * (document.documentElement.getAttribute('dir') === 'rtl' ? -1 : 1);
+            cards[i].animate([{ opacity: 0, transform: 'translateX(' + dir * 16 + 'px)' }, { opacity: 1, transform: 'none' }], { duration: M(4), easing: EASE_ENTER });
+          }
+          at = i;
         };
         var first = cards.findIndex(function (c) { return c.classList.contains('tier-pop'); });
         names(); pick(first < 0 ? 0 : first);
@@ -1696,12 +1829,12 @@
       /* Hold el back for its entrance, unless motion is off or the visitor
          is already looking at it (a page opened on #pricing): a picture that
          blinked out and redrew itself in front of them would read as a fault. */
+      var vzRect = null;   // the pictures' boxes, read in one pass before any is armed
       var vzArm = function (el, finish) {
         if (!vzMove) return false;
-        if (vzPainted) {
-          var r = el.getBoundingClientRect();
-          if (r.width && r.bottom > 0 && r.top < (window.innerHeight || 0)) return false;
-        }
+        var r = vzRect && vzRect.get(el);
+        if (!r && vzPainted) r = el.getBoundingClientRect();
+        if (r && r.width && r.bottom > 0 && r.top < (window.innerHeight || 0)) return false;
         el.classList.add('vz-arm');
         vzPrint.push(finish || function () { el.classList.remove('vz-arm'); });
         return true;
@@ -1729,6 +1862,16 @@
       var logAt = function (v, v0, v1) {
         return Math.max(0, Math.min(1, (Math.log(v) - Math.log(v0)) / (Math.log(v1) - Math.log(v0))));
       };
+
+      /* The three pictures below are placed and armed when the browser is
+         idle, out of the hero's entrance: they are below the first screen
+         on arrival, and a picture already on screen by then is drawn at
+         once (vzArm). Their boxes are read together first, then written. */
+      idle(function () {
+       try {
+      vzPainted = true;
+      vzRect = typeof Map === 'function' ? new Map() : null;
+      if (vzRect) [].forEach.call(document.querySelectorAll('#apercu .ptl, .t-weeks, #estimator .esc'), function (el) { vzRect.set(el, el.getBoundingClientRect()); });
 
       /* -- the Aperçu's path: you describe, we reply within 24 working
          hours, five working days, the call, you decide. Its words are the
@@ -1858,6 +2001,10 @@
         if (!shown) vzOnce([box], 0.9, go);
       })();
 
+      vzRect = null;
+       } catch (e1) { if (window.console && console.error) console.error(e1); }
+      });
+
       /* -- market: every range in the table as a bar on one logarithmic price
          scale (from 40 000 to 10 000 000 DA, widened if a figure ever falls
          outside; a € or $ range sits where it converts to at the official
@@ -1937,7 +2084,7 @@
                 bar.style.inlineSize = pc(tail - lo);
                 bar.style.setProperty('--solid', ((hi - lo) / (tail - lo) * 100).toFixed(2) + '%');
               } else bar.style.inlineSize = pc(Math.max(hi - lo, 0.008));
-              bar.style.setProperty('--d', (g * 80 + i * 40) + 'ms');
+              bar.style.setProperty('--d', Q((2 * g + i) * BEAT / 16) + 'ms');   // an eighth a group, a sixteenth a lane
               trk.appendChild(bar);
               lane.appendChild(trk);
               box.appendChild(lane);
@@ -2222,11 +2369,12 @@
     // Skeleton: a picture's box shimmers until the picture has decoded. Only
     // images not yet complete get one, so cached loads never flash it.
     // The shimmer runs only while its box is on screen (.sk-run) and stops
-    // for good once the picture is in. It animates a background, which the
-    // compositor cannot take over, so every running copy cost a style
-    // recalculation and a repaint per frame: traced on a phone (CPU 4x),
-    // ~1,900 recalcs in fourteen swipes, nearly all for boxes off screen
-    // whose 8 cycles had started with the page.
+    // for good once the picture is in. It used to animate a background,
+    // which the compositor cannot take over, so every running copy cost a
+    // style recalculation and a repaint per frame: traced on a phone (CPU
+    // 4x), ~1,900 recalcs in fourteen swipes, nearly all for boxes off
+    // screen whose 8 cycles had started with the page. It moves by
+    // transform and clip now (styles.css), and still only on screen.
     var skio = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
       es.forEach(function (e) { e.target.classList.toggle('sk-run', e.isIntersecting && !e.target.classList.contains('sk-done')); });
     }) : null;
@@ -2234,7 +2382,11 @@
       var box = img.closest('.thumb, .plate, .fd-photo'); if (!box || (img.complete && img.naturalWidth)) return;
       box.classList.add('sk');
       if (skio) skio.observe(box); else box.classList.add('sk-run');
-      var done = function () { box.classList.add('sk-done'); box.classList.remove('sk-run'); if (skio) skio.unobserve(box); };
+      var done = function () {
+        box.classList.add('sk-done'); box.classList.remove('sk-run'); if (skio) skio.unobserve(box);
+        // the cover fades in 250 (styles.css), then leaves with its clip
+        setTimeout(function () { box.classList.add('sk-gone'); }, M(3));
+      };
       img.addEventListener('load', done, { once: true }); img.addEventListener('error', done, { once: true });
     });
 
@@ -2290,15 +2442,26 @@
         langAt(i >= 0 && secs[i] ? secs[i].id : '');
         if (!own) return;
         links.forEach(function (a, k) { if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
-        if (crumb && now) { now.textContent = i >= 0 ? links[i].textContent : ''; crumb.classList.toggle('on', i >= 0); }
+        if (crumb && now) {
+          var said = i >= 0 ? links[i].textContent : '';
+          crumb.classList.toggle('on', i >= 0);
+          /* a new section's name crossfades in (167 out, 250 in) rather
+             than flipping in one frame; with reduced motion it is written */
+          if (reduceMotion || !now.animate || !now.textContent || !said) now.textContent = said;
+          else {
+            var out = now.animate([{ opacity: 1 }, { opacity: 0 }], { duration: M(2), easing: EASE_EXIT });
+            out.onfinish = function () { now.textContent = said; now.animate([{ opacity: 0 }, { opacity: 1 }], { duration: M(3), easing: EASE_ENTER }); };
+          }
+        }
       };
       var tick = false;
       addEventListener('scroll', function () { if (tick) return; tick = true; requestAnimationFrame(function () { pick(); tick = false; }); }, { passive: true });
       var re = function () { scrollPos = window.scrollY || window.pageYOffset || 0; measure(); cur = -2; jcur = -2; pick(); };
-      document.addEventListener('numidea:lang', function () { setTimeout(re, 60); });
+      document.addEventListener('numidea:lang', function () { setTimeout(re, M(1)); });
       addEventListener('resize', re); addEventListener('load', re);
       if ('ResizeObserver' in window) new ResizeObserver(re).observe(document.body);
-      re();
+      // the sections are measured once the first screen is up, not inside the start's task (the observer above reports at once anyway)
+      idle(re);
     })();
 
     // Back to top: appears after a screen and a half of reading.
@@ -2351,50 +2514,14 @@
       if (CURS.indexOf(c) > -1 && c !== CUR) setCur(c);
     });
 
-    /* ---------- paper wipe + seal stamp (Night Shift Poster) ----------
-       A cream sheet crosses the screen in 0.4 s on a same-origin page change
-       (links and the main buttons are links), then the browser navigates.
-       Skipped for: a modifier or non-primary click, target=_blank, a download,
-       a hash-only link, a non-page file, a click another handler took, and
-       prefers-reduced-motion. Restored on pageshow (back/forward cache), so the
-       sheet never stays over a page. The overlay is made here, not in the markup. */
+    /* ---------- seal stamp (Night Shift Poster) ----------
+       Page changes are the stylesheets' own now: a cross-document view
+       transition lifts the leaving page off over the arriving one
+       (styles.css, "the page change"), and assets/carry.js fetches the next
+       page while the visitor reaches for its link. The script's paper wipe
+       (a cream sheet that held the click for 400 ms before the request)
+       is gone, so the two can never double up. */
     (function () {
-      var sheet = null, wipeTimer = 0;
-      function getSheet() {
-        if (!sheet) {
-          sheet = document.createElement('div');
-          sheet.className = 'pw';
-          sheet.setAttribute('aria-hidden', 'true');
-          document.body.appendChild(sheet);
-        }
-        return sheet;
-      }
-      function clearSheet() {
-        clearTimeout(wipeTimer);
-        if (sheet) sheet.classList.remove('pw-go');
-        document.documentElement.classList.remove('pw-busy');
-      }
-      window.addEventListener('pageshow', clearSheet);   // restored from the cache: no sheet
-      document.addEventListener('click', function (e) {
-        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-        if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
-        var u;
-        try { u = new URL(a.href, location.href); } catch (x) { return; }
-        if (u.origin !== location.origin || (u.protocol !== 'http:' && u.protocol !== 'https:')) return;
-        if (u.pathname === location.pathname && u.search === location.search) return;   // hash-only, or this very page
-        if (!/(\/|\.html?)$/.test(u.pathname)) return;                                   // a PDF or an image is no page change
-        e.preventDefault();
-        var go = u.href;
-        getSheet();
-        document.documentElement.classList.add('pw-busy');
-        void sheet.offsetWidth;
-        sheet.classList.add('pw-go');
-        clearTimeout(wipeTimer);
-        wipeTimer = setTimeout(function () { location.assign(go); }, 400);
-      });
-
       /* the red seal on the estimator's result: stamped again once the visitor
          stops moving the controls (the result then holds still) */
       var estBox = document.getElementById('estimator');
@@ -2406,18 +2533,21 @@
           void seal.offsetWidth;
           seal.classList.add('stamped');
         };
-        var arm = function () { clearTimeout(sealTimer); sealTimer = setTimeout(stamp, 450); };
+        var arm = function () { clearTimeout(sealTimer); sealTimer = setTimeout(stamp, M(6)); };
         estBox.addEventListener('input', arm);
         estBox.addEventListener('change', arm);
       }
     })();
 
-   } catch (e) {
-    // Never let an init error leave content stuck behind scroll-reveal.
+     } catch (e) { stuck(e); }
+    }, 0);
+   } catch (e) { stuck(e); }
+  });
+  // Never let an init error leave content stuck behind scroll-reveal.
+  function stuck(e) {
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
     document.querySelectorAll('.lz').forEach(function (el) { el.classList.add('lz-on'); });
     document.querySelectorAll('.ai').forEach(function (el) { el.classList.add('on'); });
     if (window.console && console.error) console.error(e);
-   }
-  });
+  }
 })();

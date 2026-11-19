@@ -466,6 +466,10 @@ if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAtt
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cinzel-700-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-latin.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/geist-mono-latin.woff2">
+<!-- The page change's opt-in (the stylesheet has it too), inline and first:
+     in the stylesheet alone it was not yet read when a fast arrival showed its
+     first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
+<style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
 <link rel="stylesheet" href="../assets/fonts.css?v=${stamp}">
 <link rel="stylesheet" href="../assets/themes.css?v=${stamp}">
 <link rel="stylesheet" href="style.css?v=${stamp}">

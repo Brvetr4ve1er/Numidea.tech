@@ -105,6 +105,10 @@
 </script>
 <!-- Self-hosted. themes first: theme blocks are :root[data-theme] (0,2,0);
      styles.css only reads them; this page's own rules come last. -->
+<!-- The page change's opt-in (the stylesheet has it too), inline and first:
+     in the stylesheet alone it was not yet read when a fast arrival showed its
+     first frame ("opt-in disabled"), and the lift was skipped, a hard cut. -->
+<style>@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto;types:page}}</style>
 <link rel="stylesheet" href="../../assets/fonts.css?v=202611180258">
 <link rel="stylesheet" href="../../assets/themes.css?v=202611180258">
 <link rel="stylesheet" href="../../assets/styles.css?v=202611180258">
@@ -536,13 +540,13 @@
           <p class="md-where" data-i18n="md.fW">The norm in Algeria: the Onyxlab barometer prices all development as a fixed fee. It’s how we price every project.</p>
         </article>
         <article class="md-card">
-          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><path class="p a-hand" style="--o:12px 12px;--t:2.4s" pathLength="1" d="M12 12V6.8"/><path class="p a-hand" style="--o:12px 12px;--t:28.8s" pathLength="1" d="M12 12h3.4"/></svg><h3 data-i18n="md.tH">Time and materials</h3>
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><circle class="p" pathLength="1" cx="12" cy="12" r="8.5"/><path class="p a-hand" style="--o:12px 12px" pathLength="1" d="M12 12V6.8"/><path class="p a-hand" style="--o:12px 12px" pathLength="1" d="M12 12h3.4"/></svg><h3 data-i18n="md.tH">Time and materials</h3>
           <p data-i18n="md.tP">Billed by the day or the hour. Flexible when the scope moves, hard to budget in advance.</p>
           <p class="md-where" data-i18n="md.tW">The norm in France (€480–650 a day for an experienced developer) and the US ($100–149 an hour at agencies).</p>
         </article>
         <article class="md-card md-ours">
           <span class="md-tag" data-i18n="md.ours">Our model</span>
-          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin" style="--t:7s"><path class="p" pathLength="1" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path class="p" pathLength="1" d="M17.3 3.4v3.3H14M6.7 20.6v-3.3H10"/></g></svg><h3 data-i18n="md.aH">Retainer</h3>
+          <svg class="ai ai-corner" viewBox="0 0 24 24" aria-hidden="true"><g class="a-spin"><path class="p" pathLength="1" d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path class="p" pathLength="1" d="M17.3 3.4v3.3H14M6.7 20.6v-3.3H10"/></g></svg><h3 data-i18n="md.aH">Retainer</h3>
           <p data-i18n="md.aP">A monthly fee for an ongoing service: maintenance, improvements, content.</p>
           <p class="md-where" data-i18n="md.aW">Common everywhere after launch. It’s how our maintenance works: 18,000–60,000 DZD a month.</p>
         </article>

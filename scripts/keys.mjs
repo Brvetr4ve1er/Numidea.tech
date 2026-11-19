@@ -467,6 +467,16 @@ async function phoneMenu(p, w) {
     return { d: __d(a), ok: !!a && a !== document.body && !a.closest('.mobile-menu') && (sec.contains(a) || !!(sec.compareDocumentPosition(a) & Node.DOCUMENT_POSITION_FOLLOWING)) };
   });
   if (!nx.ok) bad.push('after a menu link to #contact, Tab goes to ' + nx.d + ' instead of continuing from #contact');
+  // a quick close: the menu stays painted for its slide-out, but a Tab pressed at once must not land in it (the focus
+  // dropped to <body> when the focused link vanished a quarter beat later)
+  await p.focus('.menu-toggle');
+  await p.keyboard.press('Enter'); await wait(400);
+  await p.keyboard.press('Escape'); await p.keyboard.press('Tab');
+  const q1 = await p.evaluate(() => ({ inMenu: !!document.activeElement.closest('.mobile-menu'), a: __d(document.activeElement) }));
+  await wait(500);
+  const q2 = await p.evaluate(() => ({ body: document.activeElement === document.body, a: __d(document.activeElement) }));
+  if (q1.inMenu) bad.push('Tab right after Escape lands inside the closing menu (' + q1.a + ')');
+  if (q2.body) bad.push('after a quick Escape and Tab the focus ends on <body>');
   return { bad, note: 'menu' };
 }
 
@@ -1267,6 +1277,117 @@ for (const f of pages) {
   }
   report(`${name(f)} ?lang=ar`, [{ bad, note }], errs, csp);
   await close();
+}
+
+/* The Studio's sting, where the tests above do not meet it (they play the
+   page with the sting on, at full speed, and never come back to it):
+   (a) the replay from the keyboard: while it plays the focus is never on
+       <body> (it is on the sting's own button), and once it is over the
+       focus is back on the replay control, on screen;
+   (b) reduced motion turned on during the visit, then a return by the back
+       button, the page from the browser's cache: no sting;
+   (c) a slow link (a 400 ms, 400 kb/s line): the sting never starts once
+       the head's cover has come off or the reader has scrolled. */
+if (pages.includes('hub/index.html')) {
+  console.log("— the Studio's sting —");
+  {
+    const bad = [];
+    const { p, errs, csp, close } = await open(1280, 900);
+    await p.goto(url('hub/index.html', 'fr'), { waitUntil: 'load' });
+    await p.waitForFunction(() => !document.querySelector('.st-sting') && !document.documentElement.classList.contains('st-sting-pending'), null, { timeout: 8000 }).catch(() => bad.push('the load sting never ends'));
+    const has = await p.evaluate(() => { const r = document.querySelector('[data-sting-replay]'); return !!r && !r.hidden; });
+    if (!has) bad.push('no replay control');
+    else {
+      await p.focus('[data-sting-replay]'); await p.keyboard.press('Enter');
+      const seen = [];
+      for (let i = 0; i < 40; i++) {
+        await wait(100);
+        const s = await p.evaluate(() => ({ on: !!document.querySelector('.st-sting'), body: document.activeElement === document.body, a: __d(document.activeElement) }));
+        seen.push(s);
+        if (!s.on && i > 2) break;
+        if (s.on && i === 1) await p.keyboard.press('Tab');   // a Tab while it plays stays with the sting or the page, never <body>
+      }
+      if (!seen.some((s) => s.on)) bad.push('Enter on the replay control plays no sting');
+      const lost = seen.filter((s) => s.on && s.body);
+      if (lost.length) bad.push(`the focus is on <body> for ${lost.length * 100} ms while the replay plays`);
+      await p.waitForFunction(() => !document.querySelector('.st-sting'), null, { timeout: 5000 }).catch(() => bad.push('the replay never ends'));
+      const end = await p.evaluate(() => { const a = document.activeElement, r = a.getBoundingClientRect(); return { a: __d(a), body: a === document.body, onScreen: r.bottom > 0 && r.top < innerHeight }; });
+      if (end.body) bad.push('after the replay the focus is on <body>');
+      else if (!end.onScreen) bad.push('after the replay the focused control (' + end.a + ') is off screen');
+    }
+    report('hub/ replay by keys', [{ bad, note: 'focus on the sting, then back on screen' }], errs, csp);
+    await close();
+  }
+  {
+    const bad = [];
+    const bb = await launch({ ignoreDefaultArgs: ['--disable-back-forward-cache'] });
+    const c = await bb.newContext({ viewport: { width: 1280, height: 860 } });
+    const p = await c.newPage();
+    await p.goto(url('hub/index.html', 'fr'), { waitUntil: 'load' });
+    await p.waitForFunction(() => !document.querySelector('.st-sting') && !document.documentElement.classList.contains('st-sting-pending'), null, { timeout: 8000 }).catch(() => {});
+    await p.evaluate(() => { const a = [...document.querySelectorAll('a[href="manuel.html"]')].find((x) => x.getClientRects().length); if (a) a.click(); else location.href = 'manuel.html'; });
+    await p.waitForURL(/manuel/); await wait(800);
+    await p.emulateMedia({ reducedMotion: 'reduce' });
+    await p.goBack({ waitUntil: 'commit' });
+    const restored = await p.evaluate(() => new Promise((r) => { if (document.readyState === 'complete') r(true); else addEventListener('load', () => r(true)); })).catch(() => false);
+    let on = 0;
+    for (let i = 0; i < 20; i++) { await wait(100); if (await p.evaluate(() => !!document.querySelector('.st-sting') || document.documentElement.classList.contains('st-sting-pending')).catch(() => false)) on++; }
+    if (on) bad.push(`with reduced motion turned on during the visit, the return by the back button covers the page for ${on * 100} ms`);
+    report('hub/ back with reduce', [{ bad, note: restored ? 'no sting' : 'no sting (page reloaded)' }], [], []);
+    await bb.close();
+  }
+  {
+    const bad = [];
+    const c = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+    const p = await c.newPage();
+    const cdp = await c.newCDPSession(p);
+    await cdp.send('Network.enable');
+    await cdp.send('Network.emulateNetworkConditions', { offline: false, latency: 400, downloadThroughput: 400 * 1024 / 8, uploadThroughput: 400 * 1024 / 8 });
+    await p.goto(url('hub/index.html', 'fr'), { waitUntil: 'commit' });
+    let shown = null, late = null;
+    for (let i = 0; i < 160 && late === null; i++) {
+      await wait(100);
+      const s = await p.evaluate(() => ({ pending: document.documentElement.classList.contains('st-sting-pending'), js: document.documentElement.classList.contains('js'), sting: !!document.querySelector('.st-sting'), t: Math.round(performance.now()) })).catch(() => null);
+      if (!s || !s.js) continue;
+      if (shown === null && !s.pending && !s.sting) { shown = s.t; await p.evaluate(() => scrollTo(0, 600)); }
+      else if (shown !== null && s.sting) late = s.t;
+    }
+    if (late !== null) bad.push(`on a slow link the sting starts at ${late} ms, after the page was shown (${shown} ms) and scrolled`);
+    report('hub/ slow link', [{ bad, note: shown === null ? 'the cover never came off in 16 s' : `page shown at ${shown} ms, no sting after it` }], [], []);
+    await c.close();
+  }
+}
+
+/* The page hand-over (the lift, a cross-document view transition), with
+   the browser's back/forward cache off (as the gates run) and on (as real
+   browsers have it): whether the arriving page's pagereveal carries a view
+   transition, on a real click of a visible link. Report only: a headless
+   browser with the cache on was seen to skip it where a headed one may
+   not, so this line is a reading to compare with a phone, not a verdict. */
+if (pages.includes('index.html') && pages.includes('tarifs/index.html')) {
+  const counts = [];
+  for (const bf of [false, true]) {
+    const bb = bf ? await launch({ ignoreDefaultArgs: ['--disable-back-forward-cache'] }) : b;
+    let ran = 0, n = 0;
+    // (and two arrivals that opt in by their own head only: the home, and a brand book)
+    for (const [from, sel, to] of [['/', 'a[href$="tarifs/"]', /tarifs/], ['/hub/', 'a[href="manuel.html"]', /manuel/], ['/tarifs/', 'a[href="../"]', /^https?:\/\/[^/]+\/$/], ['/hub/', 'a[href="brand/almaflow/"]', /almaflow/]]) {
+      const c = await bb.newContext({ viewport: { width: 1280, height: 900 } });
+      await c.addInitScript(() => { try { sessionStorage.setItem('numidea-sting', '1'); } catch (e) {} addEventListener('pagereveal', (e) => { try { sessionStorage.setItem('__vt', e.viewTransition ? '1' : '0'); } catch (x) {} }); });
+      const p = await c.newPage();
+      await p.goto(B + from, { waitUntil: 'load' }); await wait(1200);
+      const ok = await p.evaluate((sel) => { const a = [...document.querySelectorAll(sel)].find((x) => x.getClientRects().length && x.getBoundingClientRect().width); if (!a) return false; a.scrollIntoView({ block: 'center' }); return true; }, sel);
+      if (ok) {
+        await p.locator(sel).filter({ visible: true }).first().click().catch(() => {});
+        await p.waitForURL(to, { timeout: 8000 }).catch(() => {}); await wait(900);
+        n++; if (await p.evaluate(() => sessionStorage.getItem('__vt') === '1').catch(() => false)) ran++;
+      }
+      await c.close();
+    }
+    counts.push(`cache ${bf ? 'on' : 'off'}: lift ${ran}/${n}`);
+    if (bf) await bb.close();
+  }
+  console.log('— page hand-over (report only) —');
+  console.log('  -- ' + 'hand-over'.padEnd(22) + counts.join(', '));
 }
 
 await b.close(); srv.close();

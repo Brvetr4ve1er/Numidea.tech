@@ -8,7 +8,9 @@
    teal text --teal-text, small labels --muted. Labels never go under
    12px; in Arabic they drop the capitals and the tracking.
    Motion: nothing loops. Every transition answers an input or plays once
-   on view (hub/app.js), and prefers-reduced-motion stops them all.
+   on view (hub/app.js), on one tempo (the --m-* tokens below: 90 BPM,
+   durations in eighths of a beat, exits a step quicker than entrances),
+   and prefers-reduced-motion stops them all.
    ============================================================ */
 
 :root{
@@ -31,7 +33,26 @@
   --shadow:6px 6px 0 var(--ink);
   --shadow-s:3px 3px 0 var(--ink);
   --shadow-l:10px 10px 0 var(--ink);
-  --ease:cubic-bezier(.16,1,.3,1);
+  /* motion: one tempo for the whole site, 90 BPM, the pulse the radio's
+     four tracks share (85 to 92 BPM). A beat is 667 ms; every duration,
+     delay and stagger is a whole number of its eighths (83 ms), and letters,
+     characters and long rows step by sixteenths (42 ms), so motions that
+     start together land together. Four curves, one per job. */
+  --m-beat:667ms;
+  --m-press:83ms;    /* 1/8: a press */
+  --m-step:83.333ms;     /* 1/8: one step of a stagger (three at most) */
+  --m-quick:167ms;   /* 1/4: something small leaving */
+  --m-hover:250ms;   /* 3/8: answering the pointer or focus; a panel leaving */
+  --m-enter:333ms;   /* 1/2: a panel, menu, sheet or dialog arriving */
+  --m-reveal:500ms;  /* 3/4: a block arriving on scroll, a slide, the page lift */
+  --m-draw:1000ms;   /* 1 1/2: a picture drawing itself */
+  --m-bar:2667ms;    /* 4 beats: the longest single piece (the sting) */
+  --m-ease-enter:cubic-bezier(.16,1,.3,1);  /* arriving, answering */
+  --m-ease-exit:cubic-bezier(.5,0,.75,0);   /* leaving */
+  --m-ease-move:cubic-bezier(.87,0,.13,1);  /* crossing the screen: wipes, the lift, slides */
+  --m-ease-snap:steps(1,end);               /* hard cuts: drawn frames, the night cut */
+  --m-edge:#211E1B;
+  --ease:var(--m-ease-enter);
 
   --f-disp:"Archivo","Arial Black",sans-serif;
   --f-body:"Geist",system-ui,sans-serif;
@@ -73,9 +94,35 @@
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+/* the sting's overflow:hidden (hub/app.js 1) no longer moves the page sideways at its last beat where scrollbars take room:
+   the scrollbar's place is kept while the sting (or its cover) holds the scroll. Only then: kept always, Chromium with
+   overlay scrollbars counts the empty gutter out of the page's scroll width, and the page reads 15px narrower than its window.
+   And only where scrollbars take room (st-gutter, measured by the head script): with hidden scrollbars Chromium still
+   reserves the gutter, and giving it back when the sting ends moved the whole page 15px (a 0.06 layout shift) */
+html.st-gutter:is(.st-stinging,.st-sting-pending){scrollbar-gutter:stable}
+/* the page change: both pages opt in; the leaving page is lifted off like a
+   sheet of paper, its rule along its lower edge, and the arriving page is
+   already underneath. One stroke of 500 ms and no wait before the request.
+   A swap on the same page (theme, language) crossfades instead. Off with
+   reduced motion: the browser shows the next page at once. */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto;types:page}
+  html:active-view-transition-type(page)::view-transition-group(root){animation:none}   /* old and new share one box, so the group's own size-and-place animation shows nothing, and it is not one the compositor can run alone: off, and the old page's lift (500 ms) sets the length */
+  html:active-view-transition-type(page)::view-transition-old(root){z-index:1;mix-blend-mode:normal;box-shadow:0 6px 0 var(--m-edge);animation:m-lift var(--m-reveal) var(--m-ease-move) both}
+  html:active-view-transition-type(page)::view-transition-new(root){mix-blend-mode:normal;animation:none}
+  html:active-view-transition-type(swap)::view-transition-old(root){animation:m-out var(--m-quick) var(--m-ease-exit) both}
+  html:active-view-transition-type(swap)::view-transition-new(root){animation:m-in var(--m-hover) var(--m-ease-enter) both}
+}
+@keyframes m-lift{to{transform:translateY(-100%)}}
+@keyframes m-out{to{opacity:0}}
+@keyframes m-in{from{opacity:0}}
+/* content inside a panel that has just opened (a brand layer, an FAQ answer, a lesson) rises 6px; the panel's height itself is never animated */
+@keyframes m-rise{from{opacity:0;transform:translateY(6px)}}
+@media (prefers-reduced-motion:no-preference){.is-rise{animation:m-rise var(--m-enter) var(--m-ease-enter) backwards}}
 /* the design's grain, laid once on the paper (hub/img/mascot/v2/grain.webp,
    the tile already multiplied onto --paper): a background, not a layer */
 body{margin:0;background:var(--paper) url("img/mascot/v2/grain.webp") repeat;color:var(--ink);font-family:var(--f-body);font-size:var(--t-card);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+/* (released as a cut, not a fade: a page whose words fade in from opacity 0 often reports no largest paint at all in Chromium) */
 html[data-i18n-pending] body{opacity:0}
 img{max-width:100%}
 a{color:inherit}
@@ -88,13 +135,24 @@ button{font:inherit;color:inherit}
 .st-est__out :focus-visible{outline-color:var(--red)}
 [hidden]{display:none!important}
 .st-sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-.st-skip{position:absolute;inset-inline-start:8px;top:-60px;z-index:120;padding:12px 16px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-mono);text-decoration:none}
-.st-skip:focus{top:8px}
+.st-skip{position:absolute;inset-inline-start:8px;top:8px;transform:translateY(calc(-100% - 16px));z-index:120;padding:12px 16px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-mono);text-decoration:none}
+.st-skip:focus{transform:none}
+@media (prefers-reduced-motion:no-preference){.st-skip{transition:transform var(--m-hover) var(--m-ease-enter)}}
 .st-red{color:var(--red-text)}   /* text red, 5.16:1 on the paper: the fill red gave 3.91:1, enough for large type only */
 .st-muted{color:var(--muted)}
 
 .st-wrap{box-sizing:content-box;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gx)}
 .st-sec{padding-block:var(--sec-y);border-top:2px solid var(--ink)}
+/* The Studio's sections below the first screen are laid out only near the
+   screen (and ahead of it, while the page is at rest: hub/app.js 12), like
+   its cases: a page change into the Studio, or a language swap, lays out
+   the hero, not twenty-three thousand pixels of page. The heights are the
+   desk's; each block remembers its own once it has been laid out (auto). The
+   manual and the world (data-ui) keep theirs: Kuro walks across them. */
+:root:not([data-ui]) main>.st-sec,:root:not([data-ui]) main>.st-contact{content-visibility:auto;contain-intrinsic-size:auto 1400px}
+:root:not([data-ui]) #services,:root:not([data-ui]) #pricing,:root:not([data-ui]) #studio{contain-intrinsic-size:auto 2800px}
+:root:not([data-ui]) #work{contain-intrinsic-size:auto 4600px}
+:root:not([data-ui]) #brand,:root:not([data-ui]) #tech,:root:not([data-ui]) #contact{contain-intrinsic-size:auto 950px}
 .st-process,.st-founder{border-top:0}
 
 /* ---------------- shared pieces ---------------- */
@@ -129,7 +187,7 @@ button{font:inherit;color:inherit}
 .st-aside--teal{color:var(--teal-text)}
 
 .st-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px}
-.st-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;font-family:var(--f-mono);font-weight:600;font-size:var(--t-mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;text-align:center;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background-color .2s,color .2s}
+.st-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;font-family:var(--f-mono);font-weight:600;font-size:var(--t-mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;text-align:center;transition:transform var(--m-hover) var(--m-ease-enter),box-shadow var(--m-hover) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
 .st-btn--primary{background:var(--ink);color:var(--cream);box-shadow:5px 5px 0 var(--red)}
 .st-btn--ghost{border:2px solid var(--ink);color:var(--ink);padding:0 22px}
 .st-btn--on-red{box-shadow:5px 5px 0 var(--cream)}
@@ -163,7 +221,7 @@ section[id],.st-case,[id^="case-"]{scroll-margin-top:80px}
 .st-lang .ayn{width:1.2em;height:1.2em;vertical-align:-.2em;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .st-lang button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
 .st-lang button[aria-busy="true"]{opacity:.6}
-.st-nav__cta{display:none;align-items:center;flex:none;min-height:44px;padding:0 16px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background-color .2s}
+.st-nav__cta{display:none;align-items:center;flex:none;min-height:44px;padding:0 16px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background-color var(--m-hover) var(--m-ease-enter)}
 .st-nav__cta:hover{background:var(--red)}
 @media (min-width:680px){.st-nav__cta{display:inline-flex}}
 /* the six links, the language switch and the button need about 1130px of bar (the kana, 70px more, from 1200): below that a Menu button opens them as a sheet (the bar overflowed 138px at 1024; the iPad Pro's 1194 landscape had no navigation) */
@@ -218,13 +276,24 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-steam i:nth-child(2){left:35%;width:50%;height:90%}
 .st-steam i:nth-child(3){left:0;width:55%;height:80%}
 .st-rig__k{position:absolute;inset-inline-start:2%;bottom:calc(6% - 16px);z-index:2;width:clamp(92px,9vw,132px);aspect-ratio:360/294}
-.st-bubble{position:absolute;right:66%;top:26%;z-index:3;width:max-content;max-width:min(240px,70%);padding:10px 14px;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow-s);font-family:var(--f-hand);font-size:clamp(15px,1.4vw,19px);line-height:1.25;color:var(--ink);opacity:0;transform:translateY(8px) rotate(-2deg);transition:opacity .2s var(--ease),transform .3s var(--ease);pointer-events:none;text-wrap:pretty}
+.st-bubble{position:absolute;right:66%;top:26%;z-index:3;width:max-content;max-width:min(240px,70%);padding:10px 14px;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow-s);font-family:var(--f-hand);font-size:clamp(15px,1.4vw,19px);line-height:1.25;color:var(--ink);opacity:0;transform:translateY(8px) rotate(-2deg);transition:opacity var(--m-hover) var(--m-ease-enter),transform var(--m-hover) var(--m-ease-enter);pointer-events:none;text-wrap:pretty}
 .st-bubble.on{opacity:1;transform:rotate(-2deg)}
+.st-bubble:not(.on){transition-duration:var(--m-quick);transition-timing-function:var(--m-ease-exit)}
+/* the rest of a line being typed: laid out from the first character, unseen, so the bubble has its final size at once (hub/app.js 2) */
+.st-ghost{visibility:hidden}
 .st-bubble i{position:absolute;right:-9px;top:18px;width:14px;height:14px;background:var(--cream);border-top:2px solid var(--ink);border-right:2px solid var(--ink);transform:rotate(45deg)}
 .st-mood{position:absolute;top:0;inset-inline-start:0;z-index:4;width:clamp(130px,13vw,176px);padding:10px 12px;display:flex;flex-direction:column;gap:4px;background:var(--floor);border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
 .st-mood__k,.st-mood__live{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;color:var(--muted)}
 .st-mood__live{color:var(--red-text)}
 .st-mood__v{font-family:var(--f-disp);font-weight:900;font-size:19px;letter-spacing:.02em;line-height:1}
+/* the sting again, on demand (hub/app.js 1): the script shows it only where motion is allowed */
+.st-mood__replay{display:inline-flex;align-items:center;align-self:flex-start;gap:6px;min-height:32px;margin-top:6px;padding:4px 8px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.2;color:var(--red-text);background:none;border:2px solid var(--ink);cursor:pointer;transition:background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter),transform var(--m-press) var(--m-ease-enter)}
+@media (hover:hover){.st-mood__replay:hover{background:var(--red-text);color:var(--cream)}}
+.st-mood__replay:active{transform:translate(1px,1px)}
+.st-mood__replay:disabled{cursor:default}
+:lang(ar) .st-mood__replay{font-family:var(--f-body);letter-spacing:0}
+/* a finger's height on a phone or a touch screen */
+@media (pointer:coarse),(max-width:599px){.st-mood__replay{min-height:44px}}
 .st-hero__floor{position:absolute;left:4%;right:0;bottom:0;height:6%;z-index:3;background:var(--paper);border-top:2px solid var(--ink);pointer-events:none}
 .st-hero__stamp{position:absolute;inset-inline-end:6%;bottom:4%;z-index:4;width:74px;height:74px;display:grid;place-items:center;background:var(--red);border:3px solid var(--ink);transform:rotate(-8deg);font-family:var(--f-jp);font-weight:900;font-size:26px;line-height:1;color:var(--cream)}
 @media (max-width:560px){.st-hero__stage{height:clamp(420px,110vw,520px)}}
@@ -236,14 +305,15 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-chain__row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 0}
 .st-chain__row li{display:flex;align-items:center;flex:1 1 auto}
 .st-chain__row li:last-child{flex:0 0 auto}
-.st-chain__row--theirs li:not(:last-child)::after{content:"";flex:1;min-width:22px;border-top:2px solid var(--ink);transition:border-color .4s}
-.st-chip{padding:10px 16px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font-family:var(--f-disp);font-weight:800;font-size:clamp(14px,1.3vw,17px);text-transform:uppercase;white-space:nowrap;text-decoration-color:var(--red);text-decoration-thickness:3px;transition:transform .7s var(--ease),opacity .7s var(--ease)}
+.st-chain__row--theirs li:not(:last-child)::after{content:"";flex:1;min-width:22px;border-top:2px solid var(--ink);transition:border-color var(--m-beat) var(--m-ease-enter)}
+.st-chip{padding:10px 16px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);font-family:var(--f-disp);font-weight:800;font-size:clamp(14px,1.3vw,17px);text-transform:uppercase;white-space:nowrap;text-decoration-color:var(--red);text-decoration-thickness:3px;transition:transform var(--m-beat) var(--m-ease-enter),opacity var(--m-beat) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter),border-color var(--m-hover) var(--m-ease-enter),text-decoration-color var(--m-hover) var(--m-ease-enter)}
 .st-chip--ink{background:var(--ink);color:var(--cream)}
 .st-chip--teal{background:var(--teal);color:var(--cream)}
 .st-chain__row--ours{max-width:620px;flex-wrap:nowrap}
 .st-chain__row--ours li:first-child::after{content:"";flex:1;min-width:40px;height:6px;background:var(--teal)}
-.st-chain__row--theirs li:nth-child(3) [data-cut]{transition-delay:120ms}
-.st-chain__row--theirs li:nth-child(4) [data-cut]{transition-delay:240ms}
+/* the three cut chips fall an eighth apart, and the rule after each goes with its chip */
+.st-chain__row--theirs li:nth-child(3) [data-cut],.st-chain__row--theirs li:nth-child(3)::after{transition-delay:var(--m-step)}
+.st-chain__row--theirs li:nth-child(4) [data-cut],.st-chain__row--theirs li:nth-child(4)::after{transition-delay:calc(var(--m-step) * 2)}
 .st-board.is-cut [data-cut]{color:var(--muted);background:transparent;border-color:var(--line);text-decoration-line:line-through}
 .st-board.is-cut li:nth-child(odd) [data-cut]{transform:translateY(18px) rotate(4deg)}
 .st-board.is-cut li:nth-child(even) [data-cut]{transform:translateY(12px) rotate(-5deg)}
@@ -271,7 +341,7 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 /* ---------------- 03 services ---------------- */
 .st-grid{display:grid;gap:24px}
 .st-grid--svc{grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr))}
-.st-svc{position:relative;display:flex;flex-direction:column;background:var(--floor);border:2px solid var(--ink);box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.st-svc{position:relative;display:flex;flex-direction:column;background:var(--floor);border:2px solid var(--ink);box-shadow:var(--shadow);transition:transform var(--m-hover) var(--m-ease-enter),box-shadow var(--m-hover) var(--m-ease-enter)}
 .st-svc:focus-within{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--red)}
 @media (hover:hover){.st-svc:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--red)}}
 .st-svc__bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.18em}
@@ -320,7 +390,7 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-process__row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:32px 56px}
 .st-proc-card{flex:1 1 300px;max-width:400px;position:relative;z-index:2;background:var(--floor);border:2px solid var(--ink);box-shadow:var(--shadow)}
 .st-proc-card__frame{position:relative;aspect-ratio:16/9;overflow:hidden;border-bottom:2px solid var(--ink);background:var(--paper)}
-.st-proc-card__frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s var(--ease)}
+.st-proc-card__frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity var(--m-enter) var(--m-ease-enter)}
 .st-proc-card__frame img.is-active{opacity:1}
 .st-pos-brain2{object-position:60% 30%}
 .st-pos-clutter{object-position:60% 40%}
@@ -331,12 +401,12 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-proc-card__now{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
 .st-proc-card__now .st-label{letter-spacing:.16em}
 .st-proc-card__bar{display:flex;gap:4px}
-.st-proc-card__bar i{flex:1;height:6px;background:var(--line);transition:background-color .3s}
+.st-proc-card__bar i{flex:1;height:6px;background:var(--line);transition:background-color var(--m-hover) var(--m-ease-enter)}
 .st-proc-card__bar i.is-on{background:var(--red)}
 .st-proc{flex:2 1 420px;min-width:0}
 .st-proc li{display:flex;gap:24px;padding:clamp(28px,4vw,56px) 0;border-top:2px solid var(--ink)}
 .st-proc__n{flex:none;padding-top:10px;font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.12em;color:var(--red-text)}
-.st-proc li > div{display:flex;flex-direction:column;gap:10px;transition:opacity .5s var(--ease)}
+.st-proc li > div{display:flex;flex-direction:column;gap:10px;transition:opacity var(--m-reveal) var(--m-ease-enter)}
 .st-proc p{font-size:var(--t-body);line-height:1.6;max-width:28em}
 @media (min-width:1024px){
   .st-proc-card{position:sticky;top:96px}
@@ -392,7 +462,7 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 /* keys in a grid, with room at the end and below for a pressed key's 3px of travel */
 .st-est__types,.st-est__opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;padding:0 3px 3px 0}
 .st-est__opts{grid-template-columns:repeat(2,minmax(0,1fr))}
-.st-tbtn,.st-obtn,.st-seg button,.st-dr__d{transition:transform .08s,box-shadow .08s,background-color .12s,color .12s}
+.st-tbtn,.st-obtn,.st-seg button,.st-dr__d{transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
 .st-tbtn,.st-obtn{min-height:46px;min-width:0;padding:6px 14px;line-height:1.2;overflow-wrap:break-word;hyphens:auto;border:2px solid var(--ink);background:var(--cream);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-weight:600;font-size:var(--t-small);cursor:pointer}
 .st-tbtn[aria-pressed="true"]{background:var(--red);color:var(--cream);box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
 .st-obtn{min-height:44px;display:inline-flex;align-items:center;gap:10px;font-weight:500;text-align:start}
@@ -424,7 +494,7 @@ html.js .st-est .st-obtn:disabled:not([aria-pressed="true"]){opacity:.5;box-shad
 .st-dr__pad::after{content:"";grid-area:2 / 2;background:var(--teal);border:0}
 .st-dr__go{display:flex;align-items:center;justify-content:flex-end;gap:14px;min-width:0;margin:0}
 .st-dr__alab{min-width:0;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;line-height:1.3;text-transform:uppercase;text-align:end;color:var(--muted)}
-.st-dr__a{flex:none;width:76px;height:76px;display:grid;place-items:center;border-radius:50%;background:var(--red);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);color:var(--cream);font-family:"Archivo",sans-serif;font-weight:900;font-size:30px;line-height:1;text-decoration:none;transition:transform .08s,box-shadow .08s}
+.st-dr__a{flex:none;width:76px;height:76px;display:grid;place-items:center;border-radius:50%;background:var(--red);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);color:var(--cream);font-family:"Archivo",sans-serif;font-weight:900;font-size:30px;line-height:1;text-decoration:none;transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter)}
 .st-dr__a:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
 @media (hover:hover){
   .st-tbtn:hover:not(:disabled):not([aria-pressed="true"]),.st-obtn:hover:not(:disabled):not([aria-pressed="true"]){transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
@@ -447,12 +517,16 @@ html.js .st-est .st-obtn:disabled:not([aria-pressed="true"]){opacity:.5;box-shad
 .st-rc thead th + th{text-align:end;padding-inline:10px 0}
 .st-rc td[colspan]{color:var(--teal-text)}
 .st-rc tfoot th,.st-rc tfoot td{padding-top:10px;border-top:2px solid var(--ink);border-bottom:0;font-weight:700;font-size:15px}
-.st-rc tbody.is-print tr{animation:st-print .22s var(--ease) both}
+/* the receipt prints row by row, an eighth apart, the fourth row and after together */
+.st-rc tbody.is-print tr{animation:st-print var(--m-hover) var(--m-ease-enter) both}
+.st-rc tbody.is-print tr:nth-child(2){animation-delay:var(--m-step)}
+.st-rc tbody.is-print tr:nth-child(3){animation-delay:calc(var(--m-step) * 2)}
+.st-rc tbody.is-print tr:nth-child(n+4){animation-delay:calc(var(--m-step) * 3)}
 .st-rc__fx{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .st-rc__fx output{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(18px,6.4cqw,24px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
 .st-est__meta{display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:12px;border-top:2px dashed var(--line);font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.08em}
 .st-est__kuro{display:flex;align-items:flex-end;gap:12px;min-height:96px}
-.st-est__k{position:relative;flex:none;width:92px;height:92px;transform-origin:50% 100%;transition:transform .11s}
+.st-est__k{position:relative;flex:none;width:92px;height:92px;transform-origin:50% 100%;transition:transform var(--m-press) var(--m-ease-enter)}
 .st-est__k.is-squash{transform:scale(1.08,.92)}
 .st-est__k img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0}
 .st-est__k img.is-active{opacity:1}
@@ -481,7 +555,9 @@ html.js .st-est__nojs{display:none}
 .st-est__src a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-dark-2);text-underline-offset:3px}
 .st-est__src a:hover{color:var(--cream)}
 .st-rc__mid{padding:10px 12px;border:2px dashed var(--teal);font-size:13px;line-height:1.45;color:var(--teal-text)}
+/* a type without the mid-range note keeps its place (unseen, and unread): Kūro and the markets below stay put as the type changes */
 .st-rc__mid[hidden]{display:none}
+.st-rc__mid.is-off{visibility:hidden}
 /* ---------------- the radio (hub/app.js 15) ----------------
    A shelf under the two doors: the set (a paper body, a speaker grille, a
    night dial, Kuro asleep on top), then its keys and its four tracks. The
@@ -502,13 +578,15 @@ html.js .st-est__nojs{display:none}
 .st-radio__now{font-family:var(--f-disp);font-weight:900;font-size:19px;line-height:1.15;letter-spacing:0;overflow-wrap:anywhere}
 .st-radio__time{font-size:var(--t-label);letter-spacing:.08em;color:var(--on-dark-2);font-variant-numeric:tabular-nums}
 .st-radio__bar{display:block;height:5px;margin-top:2px;background:rgba(243,236,225,.2)}
-.st-radio__bar i{display:block;height:100%;width:var(--p,0%);background:var(--cream)}
+/* the place in the track: a scale, not a width (no layout while it plays); its transition is the cadence of the audio's timeupdate (about four a second), linear so the steps join into one glide */
+.st-radio__bar i{display:block;height:100%;width:100%;background:var(--cream);transform:scaleX(var(--p,0));transform-origin:left center;transition:transform 250ms linear}
+[dir="rtl"] .st-radio__bar i{transform-origin:right center}
 .st-radio__ctl{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px}
 .st-radio__ctl p{margin:0}
 .st-radio__h{margin:0;font-family:var(--f-disp);font-weight:900;font-size:clamp(24px,2.6vw,34px);line-height:1;letter-spacing:-.01em;text-transform:uppercase}
 .st-radio__note{font-size:var(--t-small);line-height:1.45;color:var(--ink-2);max-width:56ch}
 .st-radio__keys{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;padding:0 3px 3px 0}
-.st-radio__k,.st-radio__t,.st-rchip__b{transition:transform .08s,box-shadow .08s,background-color .12s,color .12s}
+.st-radio__k,.st-radio__t,.st-rchip__b{transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
 .st-radio__k{width:48px;height:48px;padding:0;display:grid;place-items:center;border:2px solid var(--ink);background:var(--cream);color:var(--ink);box-shadow:3px 3px 0 var(--ink);cursor:pointer}
 .st-radio__k--play{width:58px;height:58px;border-radius:50%;background:var(--red);color:var(--cream)}
 .st-radio__k[aria-pressed="true"]{box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
@@ -563,14 +641,16 @@ html.js .st-est__nojs{display:none}
 .st-reel__grid{display:contents;list-style:none;margin:0;padding:0}
 .st-reel__tile{min-width:0}
 .st-reel__tile--tall{grid-column:3;grid-row:1 / span 3}
-.st-reel__b{position:relative;display:flex;flex-direction:column;width:100%;height:100%;padding:0;border:2px solid var(--ink);background:var(--ink);color:var(--cream);box-shadow:var(--shadow);text-align:start;cursor:pointer;transition:transform .12s var(--ease),box-shadow .12s var(--ease)}
-.st-reel__b video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;background:var(--tile-dark)}
+.st-reel__b{position:relative;display:flex;flex-direction:column;width:100%;height:100%;padding:0;border:2px solid var(--ink);background:var(--ink);color:var(--cream);box-shadow:var(--shadow);text-align:start;cursor:pointer;transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter)}
+.st-reel__b video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;background:var(--tile-dark);transition:opacity var(--m-quick) var(--m-ease-enter)}
+/* a clip that stops dips out before its poster comes back (hub/app.js 14) */
+.st-reel__b.is-stop video{opacity:0;transition-timing-function:var(--m-ease-exit)}
 .st-reel__tile--tall .st-reel__b video{flex:1;aspect-ratio:auto;min-height:0;height:100%}
 .st-reel__cap{display:flex;flex-direction:column;gap:2px;padding:10px 14px 12px;border-top:2px solid var(--ink);background:var(--cream);color:var(--ink);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.4}
 .st-reel__cap b{font-family:var(--f-disp);font-weight:900;font-size:17px;letter-spacing:0;line-height:1.15}
 /* a play mark on the poster, gone while the clip runs */
-.st-reel__b::after{content:"";position:absolute;top:12px;inset-inline-end:12px;width:0;height:0;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--cream);filter:drop-shadow(2px 2px 0 var(--ink))}
-.st-reel__b.is-on::after{opacity:0}
+.st-reel__b::after{content:"";position:absolute;top:12px;inset-inline-end:12px;width:0;height:0;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--cream);filter:drop-shadow(2px 2px 0 var(--ink));transition:opacity var(--m-hover) var(--m-ease-enter)}
+.st-reel__b.is-on::after{opacity:0;transition:opacity var(--m-quick) var(--m-ease-exit)}   /* (the mark goes a step quicker than it comes back, on the exit curve) */
 .st-reel__b.is-on,.st-reel__b[aria-pressed="true"]{box-shadow:var(--shadow-s)}
 .st-reel__b[aria-pressed="true"]{border-color:var(--red)}
 :lang(ar) .st-reel__title{letter-spacing:0;line-height:1.2}
@@ -618,7 +698,7 @@ html.js .st-est__nojs{display:none}
 .st-ls__pass{font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.1em;color:var(--on-dark-2);white-space:nowrap}
 .st-ls__pass b{font-family:"Archivo",sans-serif;font-weight:900;font-size:44px;line-height:1;letter-spacing:0;color:var(--cream)}
 .st-ls__tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:16px}
-.st-ls__tab{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:6px;min-width:0;padding:8px 8px 12px;background:transparent;border:2px solid rgba(243,236,225,.28);color:var(--cream);font-family:var(--f-body);text-align:start;cursor:pointer;transition:border-color .15s,background-color .15s}
+.st-ls__tab{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:6px;min-width:0;padding:8px 8px 12px;background:transparent;border:2px solid rgba(243,236,225,.28);color:var(--cream);font-family:var(--f-body);text-align:start;cursor:pointer;transition:border-color var(--m-hover) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter)}
 .st-ls__tab img{display:block;width:100%;height:auto;aspect-ratio:1}
 .st-ls__n{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;color:var(--on-dark-2)}
 .st-ls__t{min-width:0;font-weight:600;font-size:var(--t-small);line-height:1.25;overflow-wrap:anywhere}
@@ -626,7 +706,7 @@ html.js .st-est__nojs{display:none}
 @media (hover:hover){.st-ls__tab:hover{border-color:var(--cream)}}
 .st-ls__stamp{position:absolute;top:6px;inset-inline-end:6px;width:40px;height:40px;display:grid;place-items:center;background:var(--red);border:2px solid var(--cream);font-family:var(--f-jp);font-weight:900;font-size:18px;line-height:1;color:var(--cream);transform:rotate(-8deg);pointer-events:none}
 .st-ls__stamp[hidden]{display:none}
-.st-ls__stamp.is-stamp{animation:st-seal .27s var(--ease) both}
+.st-ls__stamp.is-stamp{animation:st-seal var(--m-hover) var(--m-ease-enter) both}
 /* a lesson: a page of the manual */
 .st-ls__panel{display:flex;flex-direction:column;gap:18px;padding:clamp(18px,2.6vw,36px);background:var(--cream);color:var(--ink);border:2px solid var(--cream)}
 .st-ls__panel[hidden]{display:none}
@@ -638,7 +718,7 @@ html.js .st-est__nojs{display:none}
 .st-pick{display:flex;flex-direction:column;gap:14px}
 .st-pick__bs{display:flex;flex-wrap:wrap;gap:10px 12px;padding:0 3px 3px 0}
 html:not(.js) .st-pick__bs,html:not(.js) .st-ls__q{display:none}
-.st-pick__b{min-height:44px;padding:8px 14px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-weight:600;font-size:var(--t-small);line-height:1.2;cursor:pointer;transition:transform .08s,box-shadow .08s,background-color .12s,color .12s}
+.st-pick__b{min-height:44px;padding:8px 14px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-weight:600;font-size:var(--t-small);line-height:1.2;cursor:pointer;transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
 .st-pick__b[aria-pressed="true"]{background:var(--ink);color:var(--cream);box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
 .st-pick__ps{min-height:5.4em}
 .st-pick__p{padding:14px 16px;border-inline-start:4px solid var(--teal);background:rgba(35,102,96,.08);font-size:var(--t-card);line-height:1.55;max-width:74ch}
@@ -665,7 +745,7 @@ html:not(.js) .st-calc__out{display:none}
 .st-ls__q{display:flex;flex-direction:column;gap:12px;padding-top:18px;border-top:2px dashed var(--line)}
 .st-ls__ask{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:var(--t-body);line-height:1.35}
 .st-ls__as{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px;padding:0 3px 3px 0}
-.st-ls__a{min-height:48px;padding:10px 14px;border:2px solid var(--ink);background:var(--white);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-size:var(--t-small);line-height:1.3;text-align:start;cursor:pointer;transition:transform .08s,box-shadow .08s,background-color .12s,color .12s}
+.st-ls__a{min-height:48px;padding:10px 14px;border:2px solid var(--ink);background:var(--white);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-size:var(--t-small);line-height:1.3;text-align:start;cursor:pointer;transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
 .st-ls__a.is-right{background:var(--teal);color:var(--cream);box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
 .st-ls__a.is-wrong{background:var(--paper);border-style:dashed;box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
 .st-ls__fb{min-height:1.5em;font-size:var(--t-small);line-height:1.45}
@@ -678,7 +758,7 @@ html:not(.js) .st-calc__out{display:none}
 /* ---------------- 07 brand ---------------- */
 .st-brand__row{display:flex;flex-wrap:wrap;align-items:center;gap:36px 56px}
 .st-layers{flex:1.2 1 440px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px}
-.st-layer{min-height:66px;border:0;outline:3px solid transparent;outline-offset:4px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.2em;cursor:pointer;transition:transform .3s var(--ease),outline-color .2s}
+.st-layer{min-height:66px;border:0;outline:3px solid transparent;outline-offset:4px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.2em;cursor:pointer;transition:transform var(--m-hover) var(--m-ease-enter),outline-color var(--m-hover) var(--m-ease-enter)}
 .st-layer:hover{transform:scale(1.02)}
 .st-layer[aria-pressed="true"]{outline-color:var(--ink)}
 .st-layer:focus-visible{outline-color:var(--red)}
@@ -698,10 +778,8 @@ html:not(.js) .st-calc__out{display:none}
 .st-brand__dl .st-h3l{font-size:clamp(30px,3.2vw,44px)}
 .st-brand__dl p{font-size:17.5px;line-height:1.6}
 html.js .st-brand__dl > div:not(.is-active){display:none}
-.st-brand__dl > div.is-active{animation:st-fade .2s var(--ease)}
 .st-brand__aside{position:absolute;inset-inline-start:24px;bottom:30px;font-size:22px;transform:rotate(-4deg)}
 .st-brand__face{position:absolute;inset-inline-end:0;bottom:0;width:150px;height:auto}
-@keyframes st-fade{from{opacity:0}to{opacity:1}}
 
 /* ---------------- 08 tech ---------------- */
 .st-tech .st-head{margin-bottom:44px}
@@ -713,7 +791,7 @@ html.js .st-brand__dl > div:not(.is-active){display:none}
 /* the stopwatch takes the card's spare height (the other two cards are full; the figure the design printed here is not ours to invent), centred between the text and the foot */
 .st-speed{flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px;margin:4px 0;min-height:84px}
 .st-speed__bar{position:relative;height:24px;overflow:hidden;background:var(--paper);border:2px solid var(--ink)}
-.st-speed__bar i{position:absolute;inset:0;background:var(--teal);transform-origin:left center;transform:scaleX(.033);transition:transform .6s var(--ease)}
+.st-speed__bar i{position:absolute;inset:0;background:var(--teal);transform-origin:left center;transform:scaleX(.033);transition:transform var(--m-beat) var(--m-ease-enter)}
 html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-speed__ticks{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:var(--t-label);color:var(--muted)}
 .st-speed__ticks span{padding-top:5px;border-top:2px solid var(--ink)}
@@ -761,7 +839,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-case__progress{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:6px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em}
 .st-case__progress > span{display:flex;justify-content:space-between;gap:10px}
 .st-case__pips{display:flex;gap:2px}
-.st-case__pips i{flex:1;height:8px;background:currentColor;opacity:.25;transition:opacity .3s,background-color .3s}
+.st-case__pips i{flex:1;height:8px;background:currentColor;opacity:.25;transition:opacity var(--m-hover) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter)}
 .st-case__pips i.is-seen{opacity:1;background:var(--c-accent)}
 .st-case__tag{padding:5px 10px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;white-space:nowrap}
 .st-case__nav{display:flex;gap:6px}
@@ -773,25 +851,28 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-case__nav button[aria-disabled="true"]{opacity:.35;cursor:default;background:transparent;border-color:currentColor;color:inherit}
 .st-case__track{--c:clamp(150px,18vw,232px);--r:calc(var(--c) * 1.25);display:grid;grid-auto-flow:column dense;grid-auto-columns:var(--c);grid-template-rows:repeat(2,var(--r));gap:12px;padding:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding:16px;overscroll-behavior-x:contain;scrollbar-width:thin}
 .st-case__track.is-drag{scroll-snap-type:none;cursor:grabbing;user-select:none}
-.st-case__track > *{position:relative;min-width:0;overflow:hidden;border-radius:6px;background:var(--c-tile);scroll-snap-align:start}
+/* each tile is its own stacking context: a badge or a plate's label raised (z-index) inside a tile of a scrolling track otherwise
+   belonged to the page's context, and the browser gave each its own layer to keep it over the track (8 layers became 99) */
+.st-case__track > *{position:relative;isolation:isolate;min-width:0;overflow:hidden;border-radius:6px;background:var(--c-tile);scroll-snap-align:start}
 .st-c2{grid-column:span 2}
 .st-c3{grid-column:span 3}
 .st-r2{grid-row:span 2}
 .st-case__foot{display:flex;align-items:center;gap:16px;padding:0 16px 14px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;color:var(--c-muted)}
 .st-case__bar-p{flex:1;height:3px;background:var(--c-line);position:relative;overflow:hidden}
 .st-case__bar-p i{position:absolute;inset:0;background:var(--c-accent);transform-origin:left center;transform:scaleX(var(--p,0))}
-.st-badge{position:absolute;top:8px;inset-inline-end:8px;z-index:2;padding:3px 7px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;pointer-events:none}
+.st-badge{position:absolute;top:8px;inset-inline-end:8px;z-index:2;padding:3px 7px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;pointer-events:none;transition:background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
 .st-badge.is-seen{background:var(--c-dark);color:var(--c-on-dark)}
 .st-zoom{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in}
 .st-zoom img{display:block;width:100%;height:100%;object-fit:cover}
 .st-case img{max-width:100%}
-@media (hover:hover){.st-case__track > * img{transition:transform .7s var(--ease)}.st-case__track > *:hover img{transform:scale(1.02)}}
+@media (hover:hover){.st-case__track > * img{transition:transform var(--m-reveal) var(--m-ease-enter)}.st-case__track > *:hover img{transform:scale(1.02)}}
 
 /* ---------------- 09 proof · 06 the personal project ----------------
    VOIDSPLUNKER.std (hub/bible/): not a client's sheet, so no palette of its
    own; the shell, bar and tag are the cases' (the Studio's cream, ink and
    red), the body is one contact sheet of six faces and the text beside it. */
 .st-proj{--c-accent:var(--red);--c-on-accent:var(--cream);position:relative;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink);content-visibility:auto;contain-intrinsic-size:auto 560px}
+/* each case and the project is laid out ahead of the scroll, in an idle moment while the page is at rest (hub/app.js 12), not in the frame that scrolls it in */
 .st-proj__bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;padding:12px 16px;background:var(--ink);color:var(--cream);border-bottom:3px solid var(--red)}
 .st-proj__bar .st-seal{width:44px;height:44px;flex:none;font-size:21px}
 .st-proj__id{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -805,7 +886,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-proj__tile{display:block;overflow:hidden;aspect-ratio:320/270;border:2px solid var(--ink);border-radius:6px;background:var(--floor)}
 .st-proj__tile:nth-child(even){background:var(--paper)}
 .st-proj__tile img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
-@media (hover:hover){.st-proj__tile img{transition:transform .7s var(--ease)}.st-proj__tile:hover img{transform:scale(1.04)}}
+@media (hover:hover){.st-proj__tile img{transition:transform var(--m-reveal) var(--m-ease-enter)}.st-proj__tile:hover img{transform:scale(1.04)}}
 .st-proj__copy{min-width:0;display:flex;flex-direction:column;gap:16px}
 .st-proj__sub{font-size:clamp(26px,3vw,40px);text-wrap:balance}
 .st-proj__facts{display:flex;flex-wrap:wrap;gap:8px}
@@ -840,7 +921,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-proj__strip--posters li:nth-child(5){--r:.8}
 .st-proj__zoom{display:block;color:inherit;text-decoration:none;border-radius:6px}
 .st-proj__zoom:focus-visible{outline:3px solid var(--red);outline-offset:3px}
-.st-proj__poster{aspect-ratio:auto;background:var(--ink);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.st-proj__poster{aspect-ratio:auto;background:var(--ink);transition:transform var(--m-hover) var(--m-ease-enter),box-shadow var(--m-hover) var(--m-ease-enter)}
 .st-proj__poster img{height:auto;object-fit:contain}
 .st-proj__poster figcaption{position:static;display:block;padding:6px 8px;border-top:2px solid var(--ink);text-wrap:balance}
 .st-proj__zoom:hover .st-proj__poster{transform:translateY(-3px);box-shadow:var(--shadow-s)}
@@ -878,7 +959,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-be__cover{display:flex;flex-direction:column;gap:10px;width:100%;color:var(--ink);text-decoration:none}
 .st-be__img{display:block;overflow:hidden;aspect-ratio:640/501;border:2px solid var(--ink);border-radius:6px;background:var(--floor)}
 .st-be__img img{display:block;width:100%;height:100%;object-fit:cover}
-@media (hover:hover){.st-be__img img{transition:transform .7s var(--ease)}.st-be__cover:hover .st-be__img img{transform:scale(1.04)}}
+@media (hover:hover){.st-be__img img{transition:transform var(--m-reveal) var(--m-ease-enter)}.st-be__cover:hover .st-be__img img{transform:scale(1.04)}}
 .st-be__t{display:flex;flex-direction:column;gap:2px;font-size:var(--t-small);line-height:1.35;font-weight:600;text-wrap:balance}
 .st-be__cover:hover .st-be__name,.st-be__cover:focus-visible .st-be__name{text-decoration:underline;text-underline-offset:3px}
 .st-be__out{letter-spacing:.1em}
@@ -908,7 +989,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
    on screen (hub/app.js 3). */
 .st-own{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
 .st-own a.whq-cart{--g:#FFD23F;position:relative;display:flex;align-items:center;gap:14px;max-width:440px;min-height:44px;margin-top:6px;padding:16px 14px 22px;padding-inline-end:74px;color:var(--cream);font-weight:400;text-decoration:none;background:var(--ink);
-  border:2px solid var(--ink);box-shadow:5px 5px 0 var(--red);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  border:2px solid var(--ink);box-shadow:5px 5px 0 var(--red);transition:transform var(--m-hover) var(--m-ease-enter),box-shadow var(--m-hover) var(--m-ease-enter)}
 .whq-cart::before{content:"";position:absolute;inset-inline:12px;top:5px;height:3px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 10px)}
 .whq-bit{flex:none;width:54px;height:44px;display:grid;place-items:end center;background:#0C0A1E;border:2px solid #050409;padding:4px 0 3px}
 .whq-bit svg{width:36px;height:27px;display:block;filter:drop-shadow(0 0 6px rgba(217,119,87,.45))}
@@ -925,12 +1006,12 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 @media (hover:hover){.st-own a.whq-cart:hover{transform:translate(-2px,-3px);box-shadow:7px 8px 0 var(--red)}}
 .st-own a.whq-cart:focus-visible{transform:translate(-2px,-3px);box-shadow:7px 8px 0 var(--red)}
 .st-own a.whq-cart:focus-visible{outline:3px solid var(--g);outline-offset:3px}
-.whq-cart:hover .whq-bit svg,.whq-cart:focus-visible .whq-bit svg,.whq-cart.is-play .whq-bit svg{animation:whq-hop .55s steps(4) 2}
-.whq-cart:hover .whq-eyes,.whq-cart:focus-visible .whq-eyes,.whq-cart.is-play .whq-eyes{animation:whq-blink .9s steps(1) 1 .3s}
-.whq-cart:hover .whq-start,.whq-cart:focus-visible .whq-start,.whq-cart.is-play .whq-start{animation:whq-press 1.1s steps(1) 3}
-.whq-cart:hover .whq-xp,.whq-cart:focus-visible .whq-xp,.whq-cart.is-play .whq-xp{animation:whq-xp .9s ease-out 1 forwards}
+.whq-cart:hover .whq-bit svg,.whq-cart:focus-visible .whq-bit svg,.whq-cart.is-play .whq-bit svg{animation:whq-hop var(--m-reveal) steps(3) 2}   /* (steps cut each half: three of 83 ms) */
+.whq-cart:hover .whq-eyes,.whq-cart:focus-visible .whq-eyes,.whq-cart.is-play .whq-eyes{animation:whq-blink var(--m-draw) steps(1) 1 var(--m-enter)}
+.whq-cart:hover .whq-start,.whq-cart:focus-visible .whq-start,.whq-cart.is-play .whq-start{animation:whq-press var(--m-draw) steps(1) 3}
+.whq-cart:hover .whq-xp,.whq-cart:focus-visible .whq-xp,.whq-cart.is-play .whq-xp{animation:whq-xp var(--m-draw) var(--m-ease-enter) 1 forwards}
 @keyframes whq-hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes whq-blink{0%,100%{transform:scaleY(1)}20%,40%{transform:scaleY(.1)}}
+@keyframes whq-blink{0%,100%{transform:scaleY(1)}16.667%,33.333%{transform:scaleY(.1)}}
 @keyframes whq-press{0%{opacity:1}50%{opacity:0}}
 @keyframes whq-xp{0%{opacity:0;transform:translateY(4px)}25%{opacity:1}100%{opacity:0;transform:translateY(-22px)}}
 @media (max-width:420px){.st-own a.whq-cart{padding-inline-end:14px;padding-bottom:26px;box-shadow:4px 4px 0 var(--red)}.whq-name{font-size:12px}}
@@ -943,6 +1024,9 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 /* the diary's prints: wide, with previous, next and a caption (hub/app.js 8) */
 .st-lb--set{max-width:min(94vw,1280px)}
 .st-lb--set img{max-height:calc(88vh - 52px);max-height:calc(88dvh - 52px)}
+/* sized by its opener (data-w, data-h: hub/app.js 8) before it has loaded: its own width at most, fitted to the dialog's width and the screen's height */
+.st-lb img.is-sized{width:min(calc(var(--w) * 1px),min(92vw,760px),calc((88dvh - 4px) * var(--w) / var(--h)));height:auto}
+.st-lb--set img.is-sized{width:min(calc(var(--w) * 1px),min(94vw,1280px),calc((88dvh - 52px) * var(--w) / var(--h)))}
 .st-lb__nav{position:absolute;top:calc(50% - 26px);width:44px;height:44px;padding:0;border:2px solid var(--ink);background:var(--cream);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
 .st-lb__nav[hidden],.st-lb__cap[hidden]{display:none}
 .st-lb__nav--prev{inset-inline-start:8px}
@@ -951,6 +1035,21 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 :lang(ar) .st-lb__nav span{display:inline-block;transform:scaleX(-1)}
 .st-lb__cap{margin:0;padding:12px 16px;min-height:52px;box-sizing:border-box;color:var(--cream);letter-spacing:.14em;text-align:start}
 .st-lb:focus-visible,.st-lb :focus-visible{outline:3px solid var(--cream);outline-offset:2px}
+/* the viewer opens in 333 ms and leaves a step quicker (167 ms): the
+   script closes it at once (focus goes back, the page is live again) and
+   the dialog stays in the top layer while it fades (overlay and display,
+   allow-discrete); a picture changes by a crossfade once the next has
+   decoded (hub/app.js 8) */
+@media (prefers-reduced-motion:no-preference){
+  .st-lb{opacity:0;scale:.98;transition:opacity var(--m-hover) var(--m-ease-exit),scale var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+  .st-lb[open]{opacity:1;scale:1;transition-duration:var(--m-enter);transition-timing-function:var(--m-ease-enter)}
+  @starting-style{.st-lb[open]{opacity:0;scale:.96}}
+  .st-lb::backdrop{opacity:0;transition:opacity var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+  .st-lb[open]::backdrop{opacity:1;transition-duration:var(--m-enter);transition-timing-function:var(--m-ease-enter)}
+  @starting-style{.st-lb[open]::backdrop{opacity:0}}
+  .st-lb > img{transition:opacity var(--m-hover) var(--m-ease-enter)}
+  .st-lb > img.is-swap{opacity:0;transition-duration:var(--m-quick);transition-timing-function:var(--m-ease-exit)}
+}
 
 /* ---------------- 10 lab ---------------- */
 .st-lab{position:relative;overflow:hidden;background:var(--ink);color:var(--cream);border-top:0}
@@ -958,7 +1057,7 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-lab .st-wrap{position:relative}
 .st-lab__grid{list-style:none;margin:0;padding:24px 0;column-count:3;column-gap:clamp(10px,1.6vw,20px)}
 .st-lab__grid > li{break-inside:avoid;margin-bottom:clamp(10px,1.6vw,20px)}
-.st-tile{position:relative;overflow:hidden;background:var(--floor);border:2px solid var(--cream);transition:transform .7s var(--ease)}
+.st-tile{position:relative;overflow:hidden;background:var(--floor);border:2px solid var(--cream);transition:transform var(--m-reveal) var(--m-ease-enter)}
 @media (hover:hover){.st-tile:hover{transform:scale(1.025) rotate(-.6deg)}}
 .st-tile img{display:block;width:100%;height:auto}
 figure.st-tile{margin:0}
@@ -1038,8 +1137,8 @@ figure.st-tile{margin:0}
 :lang(ar) .st-plate__cap .st-label{letter-spacing:0}
 .st-plate.is-pre .st-plate__l--kuro{opacity:0;transform:translateX(-5%)}
 .st-plate.is-pre .st-plate__l--yasser{opacity:0;transform:translateX(5%)}
-.st-plate.is-in .st-plate__l--kuro{opacity:1;transform:none;transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.st-plate.is-in .st-plate__l--yasser{opacity:1;transform:none;transition:opacity 1s var(--ease) .45s,transform 1s var(--ease) .45s}
+.st-plate.is-in .st-plate__l--kuro{opacity:1;transform:none;transition:opacity var(--m-draw) var(--m-ease-enter),transform var(--m-draw) var(--m-ease-enter)}
+.st-plate.is-in .st-plate__l--yasser{opacity:1;transform:none;transition:opacity var(--m-draw) var(--m-ease-enter) var(--m-reveal),transform var(--m-draw) var(--m-ease-enter) var(--m-reveal)}
 [dir="rtl"] .st-plate.is-pre .st-plate__l--kuro{transform:translateX(5%)}
 [dir="rtl"] .st-plate.is-pre .st-plate__l--yasser{transform:translateX(-5%)}
 @media (max-width:699px){.st-plate{box-shadow:var(--shadow-s)}}
@@ -1101,7 +1200,7 @@ figure.st-tile{margin:0}
 .st-contact__copy{position:relative;z-index:1;flex:1.4 1 480px;min-width:0;display:flex;flex-direction:column;gap:18px}
 .st-contact__copy .st-lead{flex:none}
 .st-ctas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px;margin-top:10px}
-.st-cta{min-height:76px;height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:14px 16px;border:2px solid var(--cream);color:var(--cream);text-decoration:none;transition:transform .3s var(--ease)}
+.st-cta{min-height:76px;height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:14px 16px;border:2px solid var(--cream);color:var(--cream);text-decoration:none;transition:transform var(--m-hover) var(--m-ease-enter)}
 @media (hover:hover){.st-cta:hover{transform:translate(-2px,-2px)}}
 .st-cta:active{transform:translate(1px,1px)}
 .st-cta--teal{background:var(--teal);border-color:var(--teal)}
@@ -1157,41 +1256,67 @@ figure.st-tile{margin:0}
   .st-foot__in>.st-foot__rights{grid-column:1/-1;grid-row:4;border-top:1px solid var(--ink)}
 }
 
-/* ---------------- reveals (hub/app.js 4) ---------------- */
-.st-rv{opacity:0;transform:translateY(18px)}
-.st-rv.is-in{opacity:1;transform:none;transition:opacity 1s var(--ease) var(--d,0ms),transform 1s var(--ease) var(--d,0ms)}
+/* ---------------- reveals (hub/app.js 4) ----------------
+   An animation on the translate property, not a transition on transform:
+   a revealed block keeps its own transition list and its own transform, so
+   a service card or a tech card still lifts under the pointer. 12px, 500 ms,
+   an eighth after the sibling before it; from the hidden start to the
+   block's own values (no end keyframe, so nothing is pinned after). */
+.st-rv:not(.is-in){opacity:0;translate:0 12px}
+.st-rv.is-in{animation:m-reveal var(--m-reveal) var(--m-ease-enter) var(--d,0ms) backwards}
+/* revealed while the last page is still being lifted off: it waits for the lift, so the old page's motion and the new page's never run at once */
+html:active-view-transition-type(page) .st-rv.is-in{animation-play-state:paused}
+@keyframes m-reveal{from{opacity:0;translate:0 12px}}
 
 /* ---------------- 00 sting (hub/app.js 1) ----------------
-   Rebuilt 2026-11-15 around the characters. Inserted by the script on a
-   first visit of the session, never in the HTML: 2.2 s of keyframes, then the
-   paper wipes up and it is gone. Timeline: 0.1 s the HUD line opens; 0.15 to
-   1.0 s Yasser on the red block in three hard-cut frames (the rig's base,
-   up and smirk, the hero's own files) while the letters land; 1.0 to 1.4 s a
-   night cut: Kuro's eyes; 1.4 s the red stamp; 1.667 s the paper wipes up
-   (0.533 s). Hard cuts and stamps, no eases on the characters. */
+   Rebuilt 2026-11-15 around the characters, set on the 90 BPM grid
+   2026-11-18. Inserted by the script on every visit (a load, a return by
+   the back button, the hero's replay control), never in the HTML: one bar
+   of keyframes, 2.667 s, then it is gone; 3.333 s at the very most. The
+   beats: 0 the first frame (paper, ink bars), painted before anything else
+   by the head script's cover; 1/4 (167 ms) the HUD line opens and Yasser's
+   base frame cuts in on the red block; 1/2 (333 ms) NUMIDEA lands, a
+   letter every sixteenth; beat 1 (667 ms) his up frame and LABS; beat 1.5
+   (1 s) his smirk, held; beat 2 (1.333 s) a night cut, Kuro's eyes; beat
+   2.5 (1.667 s) the red stamp; beat 3 (2 s) the paper wipes up, one beat;
+   the bar line (2.667 s), gone. Hard cuts and stamps, no eases on the
+   characters. It waits, paused on its first frame, while a page change
+   lifts the last page away and while its pictures decode (one beat at
+   most, then it plays without them). */
 html.st-stinging{overflow:hidden}
+/* the first frame before the sting is built: the head script sets the class
+   (not with reduced motion, not when the gates turn the sting off) and
+   app.js takes it away once the sting is on screen or will not play; a
+   pseudo-element with no text, so never the page's largest paint */
+html.st-sting-pending{overflow:hidden}
+html.st-sting-pending::after{content:"";position:fixed;inset:0;z-index:99;background:linear-gradient(var(--ink) 0 7vh,transparent 7vh calc(100% - 7vh),var(--ink) calc(100% - 7vh)),var(--paper)}
+/* held on its first frame while its pictures decode, and while the page change runs (two rules: a browser that does not know the second must still read the first) */
+.st-sting.is-wait,.st-sting.is-wait *{animation-play-state:paused}
+html:active-view-transition .st-sting,html:active-view-transition .st-sting *{animation-play-state:paused}
+/* pictures not ready within a beat: the type-only cut, on the same timeline */
+.st-sting.is-type :is(.st-sting__block,.st-sting__eyes){display:none}
 .st-sting{position:fixed;inset:0;z-index:100;overflow:hidden;background:var(--paper)}
 .st-sting__bar{position:absolute;left:0;right:0;height:7vh;background:var(--ink);z-index:2}
 .st-sting__bar--t{top:0}
 .st-sting__bar--b{bottom:0;display:flex;align-items:center;padding:0 var(--gx)}
-.st-sting__hud{font-family:"Geist Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.2em;color:var(--cream);white-space:nowrap;clip-path:inset(0 100% 0 0);animation:st-hud .5s var(--ease) .1s forwards}
+.st-sting__hud{font-family:"Geist Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.2em;color:var(--cream);white-space:nowrap;clip-path:inset(0 100% 0 0);animation:st-hud var(--m-reveal) var(--m-ease-enter) 167ms forwards}
 .st-sting__block{position:absolute;left:52%;right:6%;top:17%;bottom:17%;background:var(--red);border:2px solid var(--ink);box-shadow:var(--shadow-l);overflow:hidden}
 .st-sting__block::after{content:"";position:absolute;left:0;right:0;bottom:8%;height:2px;background:var(--ink)}
 .st-sting__y{position:absolute;inset:0;width:100%;height:92%;bottom:0;top:auto;object-fit:contain;object-position:center bottom;opacity:0}
-.st-sting__y--a{animation:st-fa 2.2s steps(1,end) forwards}
-.st-sting__y--b{animation:st-fb 2.2s steps(1,end) forwards}
-.st-sting__y--c{animation:st-fc 2.2s steps(1,end) forwards}
+.st-sting__y--a{animation:st-fa var(--m-bar) var(--m-ease-snap) forwards}
+.st-sting__y--b{animation:st-fb var(--m-bar) var(--m-ease-snap) forwards}
+.st-sting__y--c{animation:st-fc var(--m-bar) var(--m-ease-snap) forwards}
 .st-sting__word{position:absolute;left:clamp(16px,7vw,140px);top:26%;display:flex;flex-direction:column;align-items:flex-start;gap:.04em;font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(44px,7.4vw,130px);line-height:.9;letter-spacing:-.02em;color:var(--ink);text-transform:uppercase}
 .st-sting__word > span,.st-sting__labs > span:first-child{display:flex}
 .st-sting__labs{align-items:flex-end;gap:.18em;color:var(--red)}
-.st-sting__g{display:inline-block;opacity:0;transform:translateY(56px);filter:blur(10px);animation:st-letter .42s var(--ease) forwards;animation-delay:calc(.2s + var(--i) * .028s)}
-.st-sting__labs .st-sting__g{animation-delay:calc(.32s + var(--i) * .028s)}
-.st-sting__eyes{position:absolute;inset:0;z-index:1;display:grid;place-items:center;overflow:hidden;background:#0F1E30;opacity:0;animation:st-eyes .4s steps(1,end) 1s forwards}
+.st-sting__g{display:inline-block;opacity:0;transform:translateY(56px);filter:blur(10px);animation:st-letter 417ms var(--m-ease-enter) forwards;animation-delay:calc(333ms + var(--m-beat) / 16 * var(--i))}
+.st-sting__labs .st-sting__g{animation-duration:var(--m-enter);animation-delay:calc(667ms + var(--m-beat) / 16 * var(--i))}   /* (333 each: the last is still at 1125, a beat line before the night cut at 1333) */
+.st-sting__eyes{position:absolute;inset:0;z-index:1;display:grid;place-items:center;overflow:hidden;background:#0F1E30;opacity:0;animation:st-eyes var(--m-enter) var(--m-ease-snap) 1333ms forwards}
 /* Kuro at his file's own size in a cream panel: stretched across the screen his 360px frame went soft and its paper-matte edge showed as a pale line on the navy */
 .st-sting__eyes img{display:block;width:min(400px,68vw);max-width:none;height:auto;background:var(--cream);border:2px solid var(--ink);box-shadow:10px 10px 0 var(--red)}
-.st-sting__stamp{position:absolute;left:clamp(20px,8vw,150px);bottom:20%;z-index:1;width:clamp(84px,11vw,168px);aspect-ratio:1;display:grid;place-items:center;background:var(--red);border:4px solid var(--ink);box-shadow:var(--shadow);font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:clamp(44px,6.4vw,100px);line-height:1;color:var(--cream);opacity:0;transform:scale(1.6) rotate(-8deg);animation:st-seal .27s var(--ease) 1.4s forwards}
-.st-sting__wipe{position:absolute;inset:0;z-index:3;transform:translateY(100%);background:var(--paper);border-top:6px solid var(--ink);animation:st-wipe .533s cubic-bezier(.87,0,.13,1) 1.667s forwards}
-.st-sting.is-skip .st-sting__wipe{animation-name:st-wipe-now;animation-delay:0s}
+.st-sting__stamp{position:absolute;left:clamp(20px,8vw,150px);bottom:20%;z-index:1;width:clamp(84px,11vw,168px);aspect-ratio:1;display:grid;place-items:center;background:var(--red);border:4px solid var(--ink);box-shadow:var(--shadow);font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:clamp(44px,6.4vw,100px);line-height:1;color:var(--cream);opacity:0;transform:scale(1.6) rotate(-8deg);animation:st-seal var(--m-hover) var(--m-ease-enter) 1667ms forwards}
+.st-sting__wipe{position:absolute;inset:0;z-index:3;transform:translateY(100%);background:var(--paper);border-top:6px solid var(--ink);animation:st-wipe var(--m-beat) var(--m-ease-move) 2000ms forwards}
+.st-sting.is-skip .st-sting__wipe{animation:st-wipe-now var(--m-reveal) var(--m-ease-move) 0s forwards}
 .st-sting__skip{position:absolute;z-index:4;top:calc(7vh + 14px);inset-inline-end:var(--gx);width:56px;height:56px;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--red);border:2px solid var(--ink);color:var(--cream);box-shadow:var(--shadow-s);transform:rotate(-6deg);cursor:pointer}
 .st-sting__skip:focus-visible{outline-color:var(--cream)}
 .st-sting__skip b{font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:20px;line-height:1}
@@ -1205,28 +1330,19 @@ html.st-stinging{overflow:hidden}
 }
 @keyframes st-hud{to{clip-path:inset(0 0 0 0)}}
 @keyframes st-letter{to{opacity:1;transform:none;filter:none}}
-@keyframes st-fa{0%,6.8%{opacity:0}6.81%,25%{opacity:1}25.01%,100%{opacity:0}}
-@keyframes st-fb{0%,25%{opacity:0}25.01%,43.2%{opacity:1}43.21%,100%{opacity:0}}
-@keyframes st-fc{0%,43.2%{opacity:0}43.21%,100%{opacity:1}}
+/* the frames over the bar: base cuts in at 167 ms, up at 667, smirk at 1000 */
+@keyframes st-fa{0%,6.25%{opacity:0}6.26%,25%{opacity:1}25.01%,100%{opacity:0}}
+@keyframes st-fb{0%,25%{opacity:0}25.01%,37.5%{opacity:1}37.51%,100%{opacity:0}}
+@keyframes st-fc{0%,37.5%{opacity:0}37.51%,100%{opacity:1}}
 @keyframes st-eyes{0%{opacity:1}100%{opacity:0}}
 @keyframes st-print{0%{opacity:0;transform:translateY(-6px)}100%{opacity:1;transform:none}}
-@keyframes st-seal{0%{opacity:1;transform:scale(1.6) rotate(-8deg)}35%{transform:scale(1.15) rotate(-5deg)}60%{transform:scale(1.02) rotate(-10deg)}80%{transform:scale(1) rotate(-7deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
+@keyframes st-seal{0%{opacity:1;transform:scale(1.6) rotate(-8deg)}33.333%{transform:scale(1.15) rotate(-5deg)}66.667%{transform:scale(1.02) rotate(-10deg)}83.333%{transform:scale(1) rotate(-7deg)}100%{opacity:1;transform:scale(1) rotate(-8deg)}}
 @keyframes st-wipe{to{transform:none}}
 @keyframes st-wipe-now{to{transform:none}}
 
-/* ---------------- paper wipe between pages (hub/app.js 1b) ----------------
-   0.4 s, the sting's paper and rule; added to the page by the script on a
-   same-origin navigation and taken away again on pageshow (the back/forward
-   cache), so it never sticks. Never with reduced motion (the script does not
-   build it). */
-.st-pgwipe{position:fixed;inset:0;z-index:110;transform:translateY(100%);background:var(--paper);border-top:6px solid var(--ink);pointer-events:none;display:grid;place-items:center}
-.st-pgwipe.is-on{pointer-events:auto;animation:st-wipe .4s cubic-bezier(.87,0,.13,1) forwards}
-.st-pgwipe__seal{width:84px;height:84px;display:grid;place-items:center;background:var(--red);border:4px solid var(--ink);box-shadow:var(--shadow-s);font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:44px;line-height:1;color:var(--cream);transform:rotate(-8deg);opacity:0}
-.st-pgwipe.is-on .st-pgwipe__seal{animation:st-seal .27s var(--ease) .13s forwards}
-
 /* ---------------- the seal on the estimator's result ---------------- */
 .st-est__seal{position:absolute;inset-block-start:14px;inset-inline-end:14px;z-index:2;width:58px;height:58px;display:grid;place-items:center;background:var(--red);border:3px solid var(--ink);box-shadow:var(--shadow-s);font-family:var(--f-jp);font-weight:900;font-size:24px;line-height:1;color:var(--cream);transform:rotate(-8deg);pointer-events:none}
-.st-est__seal.is-stamp{animation:st-seal .27s var(--ease) both}
+.st-est__seal.is-stamp{animation:st-seal var(--m-hover) var(--m-ease-enter) both}
 
 /* ---------------- the two doors (2026-11-15) ----------------
    The premise, then the buyer's door (the day: red scene) and the world's
@@ -1290,8 +1406,7 @@ html.st-stinging{overflow:hidden}
 .st-menu__g{grid-column:1 / -1;padding:20px 0 8px;color:var(--muted)}
 .st-menu__g--night{margin-top:12px;padding-top:24px;border-top:2px solid var(--ink);color:var(--red-text)}
 .st-menu__nav a.st-menu__world{font-size:clamp(24px,7vw,36px);min-height:56px}
-.st-skip--b{inset-inline-start:8px;top:-130px}
-.st-skip--b:focus{top:8px}
+.st-skip--b{inset-inline-start:8px}
 
 /* start here, above the dossiers (night plate) and the see-also lines */
 .st-start{display:grid;gap:18px;padding:clamp(20px,2.6vw,36px);background:#0F1E30;color:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow);scroll-margin-top:90px}
@@ -1343,10 +1458,13 @@ html.st-stinging{overflow:hidden}
 
 /* ---------------- reduced motion ----------------
    No transition, no transform that moves on its own; the sting is never
-   inserted, the rig and the actors stay on their first frame (app.js). */
+   inserted (nor its cover, nor its replay control), the rig and the actors
+   stay on their first frame (app.js), and a page change is a cut. */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important}
-  .st-rv{opacity:1;transform:none}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+  .st-rv{opacity:1;translate:none}
+  .st-mood__replay{display:none}
   .st-svc:hover,.st-svc:focus-within,.st-btn--primary:hover,.st-cta:hover,.st-tile:hover,.st-layer:hover{transform:none}
 }
 .st-brand__more{margin-top:clamp(28px,4vw,44px)}
@@ -1366,8 +1484,8 @@ main:focus{outline:none}
    ===================================================================== */
 
 /* ---- the sheet (hub/app.js 10) ---- */
-.st-menu{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--paper);color:var(--ink);overflow:auto;overscroll-behavior:contain}
-.st-menu[open]{display:flex;flex-direction:column}
+.st-menu{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--paper);color:var(--ink);overflow:auto;overscroll-behavior:contain;flex-direction:column}
+.st-menu[open]{display:flex}
 .st-menu::backdrop{background:var(--paper)}
 .st-menu :focus-visible{outline-color:var(--red)}
 .st-menu__top{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;padding:10px var(--gx);padding-top:max(10px,env(safe-area-inset-top));border-bottom:2px solid var(--ink)}
@@ -1382,13 +1500,24 @@ main:focus{outline:none}
 .st-menu__foot .st-lang{margin:0}
 .st-menu__foot .st-btn{flex:1 1 200px}
 @media (max-height:500px){.st-menu__nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}.st-menu__nav a{min-height:52px;padding-block:6px}}
-@media (prefers-reduced-motion:no-preference){.st-menu[open]{animation:st-fade .2s var(--ease)}}
+/* the sheet drops in (333 ms) and lifts away a step quicker (250 ms): it
+   is closed at once (Esc, a link, the button) and stays in the top layer
+   while it goes (overlay and display, allow-discrete) */
+@media (prefers-reduced-motion:no-preference){
+  .st-menu{transition:opacity var(--m-hover) var(--m-ease-exit),transform var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+  .st-menu:not([open]){opacity:0;transform:translateY(-8px)}
+  .st-menu[open]{transition-duration:var(--m-enter);transition-timing-function:var(--m-ease-enter)}
+  @starting-style{.st-menu[open]{opacity:0;transform:translateY(-8px)}}
+  .st-menu::backdrop{opacity:0;transition:opacity var(--m-hover) var(--m-ease-exit),overlay var(--m-hover) allow-discrete,display var(--m-hover) allow-discrete}
+  .st-menu[open]::backdrop{opacity:1;transition-duration:var(--m-enter);transition-timing-function:var(--m-ease-enter)}
+  @starting-style{.st-menu[open]::backdrop{opacity:0}}
+}
 
 /* ---- the dock: the Aperçu and WhatsApp along the screen's foot (phones) ---- */
 .st-dock{display:none}
 @media (max-width:679px){
-  .st-dock{position:fixed;inset-inline:0;bottom:0;z-index:45;display:flex;align-items:center;gap:10px;padding:10px var(--gx);padding-bottom:calc(10px + env(safe-area-inset-bottom));background:rgba(216,203,184,.97);border-top:2px solid var(--ink);visibility:hidden;transform:translateY(100%);transition:transform .25s var(--ease),visibility 0s .25s}
-  .st-dock.is-on{visibility:visible;transform:none;transition:transform .25s var(--ease)}
+  .st-dock{position:fixed;inset-inline:0;bottom:0;z-index:45;display:flex;align-items:center;gap:10px;padding:10px var(--gx);padding-bottom:calc(10px + env(safe-area-inset-bottom));background:rgba(216,203,184,.97);border-top:2px solid var(--ink);visibility:hidden;transform:translateY(100%);transition:transform var(--m-hover) var(--m-ease-exit),visibility 0s var(--m-hover)}
+  .st-dock.is-on{visibility:visible;transform:none;transition:transform var(--m-enter) var(--m-ease-enter)}
   .st-dock .st-btn{flex:1;min-height:48px;padding:0 12px;box-shadow:none}
   .st-dock__wa{flex:none;width:48px;height:48px;display:grid;place-items:center;background:var(--teal);border:2px solid var(--ink);color:var(--cream)}
   .st-dock__wa:active{background:var(--ink)}
@@ -1565,7 +1694,9 @@ main:focus{outline:none}
   .st-dr{flex-basis:100%;gap:18px;padding:14px 12px 16px;border-radius:20px 20px 14px 14px;box-shadow:5px 5px 0 var(--red)}
   .st-dr__lcd{padding:12px 12px 14px;gap:6px 12px}
   .st-dr__face{width:84px;height:42px}
-  .st-dr__what{font-size:19px}
+  /* three lines kept for the project's name, its longest: a type with a shorter name no longer pulls the figure and the controls up a line */
+  .st-dr__what{font-size:19px;min-height:3.15em}
+  :lang(ar) .st-dr__what{min-height:4.2em}
   .st-dr__w{font-size:17px}
   .st-est__ctrl{gap:18px}
   .st-est__grp{gap:8px}
@@ -1685,8 +1816,9 @@ main:focus{outline:none}
 /* ---- the viewer on a phone or a small tablet: the picture takes the screen, the controls sit under it ----
    (the buttons were drawn over the art, the sizes were 88vh, which on a phone is the page with its toolbars away) */
 @media (max-width:899px){
-  .st-lb{width:100vw;width:100dvw;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;border:0;touch-action:none;overscroll-behavior:contain}
-  .st-lb[open]{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:auto minmax(0,1fr) auto;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  /* the grid is the dialog's own, not its [open] state's: closing takes [open] off on the fade's first frame, and the picture must not re-lay while it is still seen (display itself is held by the fade, allow-discrete) */
+  .st-lb{width:100vw;width:100dvw;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;border:0;touch-action:none;overscroll-behavior:contain;grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:auto minmax(0,1fr) auto;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .st-lb[open]{display:grid}
   .st-lb > img,.st-lb--set > img{grid-column:1 / -1;grid-row:2;justify-self:center;align-self:center;max-width:100%;max-height:100%;min-height:0;min-width:0;width:auto;height:auto;object-fit:contain;-webkit-user-drag:none;user-select:none}
   .st-lb__x{position:static;grid-column:3;grid-row:1;justify-self:end;margin:8px}
   .st-lb__nav{position:static;grid-row:3;margin:8px}
@@ -1896,21 +2028,32 @@ html:not(.js) .st-game{display:none}
 .st-kuro{position:absolute;top:0;left:0;width:130px;height:109px;overflow:hidden;will-change:transform}
 .st-kuro i{display:block;width:100%;height:100%;background:url("img/studio/life/kuro.webp") 0 0 / 800% 600% no-repeat;transform-origin:53.85% 50%}
 .has-life .st-radio__kuro{visibility:hidden}
+/* his wake (hub/life.js sets has-life and is-ready together once his sheet
+   has decoded): the sleeping picture fades out as the sprite fades in, a
+   crossfade of 250 ms instead of a swap */
+@media (prefers-reduced-motion:no-preference){
+  .st-radio__kuro{transition:opacity var(--m-hover) var(--m-ease-enter),visibility 0s}
+  /* (what leaves goes a step quicker, on the exit curve: the sleeping picture in 167 as the sprite comes in over 250) */
+  .has-life .st-radio__kuro{opacity:0;visibility:hidden;transition:opacity var(--m-quick) var(--m-ease-exit),visibility 0s linear var(--m-quick)}
+  .st-kuro i{opacity:0;transition:opacity var(--m-quick) var(--m-ease-exit)}
+  .st-kuro.is-ready i{opacity:1;transition:opacity var(--m-hover) var(--m-ease-enter)}
+}
 /* air for him to sit in, laid out before the first paint (the js class is the head script's) so nothing shifts when he wakes:
    where a lesson's text runs the full width, above the line over its question; on a wide screen, above the four cards */
 @media (prefers-reduced-motion:no-preference) and (max-width:899px){html.js .st-manual .st-ls__q{margin-top:72px}}
 @media (prefers-reduced-motion:no-preference) and (min-width:900px){html.js .st-manual .st-calc{margin-bottom:64px}}   /* a calculator fills the width: without this he sat on the corner of its result */
 @media (min-width:900px){.st-manual #services .st-head{margin-bottom:86px}}
-.st-say{position:absolute;top:0;left:0;padding:6px 10px 7px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-mono);font-weight:600;font-size:13px;line-height:1.3;white-space:nowrap;opacity:0;transition:opacity .16s}
+.st-say{position:absolute;top:0;left:0;padding:6px 10px 7px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-mono);font-weight:600;font-size:13px;line-height:1.3;white-space:nowrap;opacity:0}
 .st-say--y{white-space:normal;width:max-content;max-width:230px}
 .st-say.is-on{opacity:1}
 .st-sealt{position:absolute;top:0;left:0;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--red);color:var(--cream);border:2px solid var(--cream);box-shadow:0 0 0 2px var(--ink);font-family:var(--f-jp);font-weight:900;font-size:17px;font-style:normal;line-height:1}
 .st-sealt[hidden]{display:none}
-.st-sealt.is-got{animation:st-seal-got .42s var(--ease) forwards}
-@keyframes st-seal-got{40%{scale:1.5;opacity:1}100%{scale:.2;opacity:0}}
+.st-sealt.is-got{animation:st-seal-got var(--m-reveal) var(--m-ease-enter) forwards}
+@keyframes st-seal-got{33.333%{scale:1.5;opacity:1}100%{scale:.2;opacity:0}}
 /* while he is played the page does not smooth its own scroll (the script keeps him in the middle band), and the radio's control stands above the pad */
 html.is-playing{scroll-behavior:auto}
-.is-playing .st-rchip{bottom:calc(78px + env(safe-area-inset-bottom))}
+/* (moved, not re-laid: 64px is the pad's height above the chip's resting 14px, the place bottom:78px gave it) */
+.is-playing .st-rchip{translate:0 -64px}
 .st-pad{position:fixed;inset-inline:0;bottom:0;z-index:46;display:flex;align-items:center;justify-content:center;gap:10px 18px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(15,30,48,.97);color:var(--cream);border-top:2px solid var(--ink)}
 .st-pad[hidden]{display:none}
 .st-pad:focus{outline:none}
@@ -1932,6 +2075,32 @@ html.is-playing{scroll-behavior:auto}
 .st-prize__h{margin:0;font-family:var(--f-disp);font-weight:900;font-size:clamp(24px,3vw,36px);line-height:1;text-transform:uppercase;letter-spacing:-.01em}
 :lang(ar) .st-prize__h{text-transform:none;letter-spacing:0;line-height:1.25}
 .st-prize__d{font-size:var(--t-card);line-height:1.55;color:var(--on-dark)}
+/* the bubbles, the seals, the pad and the prize arrive and leave instead of
+   appearing (hub/life.js only sets classes and the hidden attribute, and
+   writes transform for a bubble's place: the motion here uses translate
+   and scale, which add to it). Exits a step quicker than entrances. */
+@media (prefers-reduced-motion:no-preference){
+  .st-say{opacity:0;translate:0 6px;scale:.96;transition:opacity var(--m-quick) var(--m-ease-exit),translate var(--m-quick) var(--m-ease-exit),scale var(--m-quick) var(--m-ease-exit)}
+  .st-say.is-on{opacity:1;translate:0 0;scale:1;transition-duration:var(--m-hover);transition-timing-function:var(--m-ease-enter)}
+  .st-sealt{transition:opacity var(--m-hover) var(--m-ease-enter),scale var(--m-hover) var(--m-ease-enter),display var(--m-hover) allow-discrete;transition-delay:calc(var(--m-beat) / 16 * var(--i,0))}
+  @starting-style{.st-sealt:not([hidden]){opacity:0;scale:.4}}
+  .st-sealt[hidden]{display:none;opacity:0;scale:.6;transition-delay:0s;transition-duration:var(--m-quick);transition-timing-function:var(--m-ease-exit)}
+  .st-pad{transform:none;transition:transform var(--m-enter) var(--m-ease-enter),display var(--m-enter) allow-discrete}
+  @starting-style{.st-pad:not([hidden]){transform:translateY(100%)}}
+  .st-pad[hidden]{display:none;transform:translateY(100%);transition-duration:var(--m-hover);transition-timing-function:var(--m-ease-exit)}
+  .st-pad__k{transition:transform var(--m-press) var(--m-ease-enter)}
+  .st-rchip{transition:translate var(--m-hover) var(--m-ease-exit)}
+  .is-playing .st-rchip{transition:translate var(--m-enter) var(--m-ease-enter)}
+  /* the prize opens and closes like every other dialog: 333 in on the enter curve, 250 out on the exit curve */
+  .st-prize{opacity:0;translate:0 24px;transition:opacity var(--m-enter) var(--m-ease-enter),translate var(--m-enter) var(--m-ease-enter),overlay var(--m-enter) allow-discrete,display var(--m-enter) allow-discrete}
+  .st-prize[open]{opacity:1;translate:0 0}
+  .st-prize:not([open]),.st-prize:not([open])::backdrop{transition-duration:var(--m-hover);transition-timing-function:var(--m-ease-exit)}
+  @starting-style{.st-prize[open]{opacity:0;translate:0 24px}}
+  .st-prize::backdrop{opacity:0;transition:opacity var(--m-enter) var(--m-ease-enter),overlay var(--m-enter) allow-discrete,display var(--m-enter) allow-discrete}
+  .st-prize[open]::backdrop{opacity:1}
+  @starting-style{.st-prize[open]::backdrop{opacity:0}}
+  .st-game .st-btn{transition:transform var(--m-hover) var(--m-ease-enter),box-shadow var(--m-hover) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter),opacity var(--m-hover) var(--m-ease-enter)}
+}
 .st-prize__x{position:absolute;top:10px;inset-inline-end:10px;display:grid;place-items:center;width:44px;height:44px;padding:0;border:2px solid var(--cream);background:var(--ink);color:var(--cream);font-size:18px;line-height:1;cursor:pointer}
 .st-prize :focus-visible{outline:3px solid var(--cream);outline-offset:2px}
 @media (max-width:699px){
@@ -1965,11 +2134,12 @@ html.is-playing{scroll-behavior:auto}
 :lang(ar) .st-jeu__hud{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:0}
 .st-ls--jeu .st-ls__pass b{color:var(--brass)}
 .st-jeu__xp{height:14px;margin:0 0 18px;padding:2px;border:2px solid var(--cream);background:rgba(243,236,225,.08)}
-.st-jeu__xp i{display:block;height:100%;width:calc(var(--n,0) / 8 * 100%);background:var(--brass);transition:width .35s var(--ease)}
+.st-jeu__xp i{display:block;height:100%;width:100%;background:var(--brass);transform:scaleX(calc(var(--n,0) / 8));transform-origin:left center;transition:transform var(--m-enter) var(--m-ease-enter)}
+[dir="rtl"] .st-jeu__xp i{transform-origin:right center}
 .st-jeu__album{list-style:none;margin:0 0 22px;padding:14px 12px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px;align-items:center;border:2px dashed rgba(243,236,225,.3)}
 .st-jeu__album li{min-width:0;display:grid;place-items:center}
-.st-jeu__album img{display:block;width:100%;max-width:104px;height:auto;aspect-ratio:1;object-fit:contain;filter:grayscale(1) brightness(.28);opacity:.55;transition:filter .25s,opacity .25s}
-.st-jeu__album .is-earned img{filter:none;opacity:1;animation:st-seal .3s var(--ease) both}
+.st-jeu__album img{display:block;width:100%;max-width:104px;height:auto;aspect-ratio:1;object-fit:contain;filter:grayscale(1) brightness(.28);opacity:.55;transition:filter var(--m-hover) var(--m-ease-enter),opacity var(--m-hover) var(--m-ease-enter)}
+.st-jeu__album .is-earned img{filter:none;opacity:1;animation:st-seal var(--m-hover) var(--m-ease-enter) both}
 .st-ls--jeu .st-ls__tabs{grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
 .st-ls--jeu .st-ls__tab{padding:6px 6px 10px}
 .st-ls--jeu .st-ls__tab img{image-rendering:pixelated}
@@ -2037,7 +2207,7 @@ html.is-playing{scroll-behavior:auto}
 .st-nmd__book li + li::before{content:"";position:absolute;top:27px;inset-inline-end:calc(50% + 34px);width:calc(100% - 68px);border-top:2px dashed var(--line)}   /* the route from the stop before */
 .st-nmd__ring{width:56px;height:56px;display:grid;place-items:center;border:2px dashed var(--ink-2);border-radius:50%;font-family:"Archivo",sans-serif;font-weight:900;font-size:22px;line-height:1;color:var(--muted)}
 .st-nmd__w{max-width:100%;font-family:var(--f-mono);font-size:var(--t-label);line-height:1.3;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);overflow-wrap:anywhere}
-.st-nmd__book .is-earned .st-nmd__ring{border:3px double var(--red-text);color:var(--red-text);transform:rotate(-8deg);animation:st-seal .3s var(--ease) both}
+.st-nmd__book .is-earned .st-nmd__ring{border:3px double var(--red-text);color:var(--red-text);transform:rotate(-8deg);animation:st-seal var(--m-hover) var(--m-ease-enter) both}
 .st-nmd__book .is-earned .st-nmd__w{color:var(--red-text);font-weight:700}
 .st-ls--nmd .st-ls__tabs{grid-template-columns:repeat(8,minmax(0,1fr));gap:10px}
 .st-ls--nmd .st-ls__tab{padding:6px 6px 10px}

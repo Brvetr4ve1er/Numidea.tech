@@ -32,6 +32,17 @@ html[dir="rtl"] h1.sec{letter-spacing:0}
    with the title, where the half-width title left the hero empty. */
 .t-hero{display:grid;grid-template-columns:minmax(0,1fr);align-items:start}
 .t-hero>.sec-lead{margin-bottom:0}
+/* The first screen arrives as the home's hero does: each part rises 10px
+   in 500, an eighth of a beat after the one before (transform only, so the
+   title is painted, and credited as painted, from the first frame). Arriving
+   by a page change, it waits under the page being lifted off, then plays. */
+@media (prefers-reduced-motion:no-preference){
+  .t-hero>:is(.kicker,h1,.t-ans,.sec-lead,.tarifs-top),#pricing>.t-jump{animation:hero-rise-solid var(--m-reveal) var(--m-ease-enter) both}
+  .t-hero>h1{animation-delay:var(--m-step)}
+  .t-hero>:is(.t-ans,.sec-lead){animation-delay:calc(2 * var(--m-step))}
+  .t-hero>.tarifs-top,#pricing>.t-jump{animation-delay:calc(3 * var(--m-step))}
+  html:active-view-transition :is(.t-hero>*,#pricing>.t-jump){animation-play-state:paused}
+}
 @media screen and (min-width:760px){
   .t-hero{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:calc(2 * var(--col-gap));
     grid-template-areas:"k a" "h a" "l a" "c a";grid-template-rows:auto auto auto 1fr}   /* a taller column of answers grows the last row only: spread over the four, it moved the title as the figures' face arrived */
@@ -90,7 +101,7 @@ html[dir="rtl"] .md-card h3{font-family:var(--font-ar-display)}
 
 /* the navbar marks this page, as the scroll-spy marks a section on the home */
 .nav-links a[aria-current="page"]{color:var(--ice)}
-.nav-links a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--crimson)}
+.nav-links a[aria-current="page"]::after{transform:none;opacity:1}   /* styles.css draws the mark under every link, unseen until current */
 
 /* The guide's parts, kept under the navbar while the page scrolls: five
    chips, a 44px target each, the row sliding sideways where they do not
@@ -104,7 +115,7 @@ html[dir="rtl"] #pricing>.t-jump{-webkit-mask-image:linear-gradient(to left,#000
 #pricing>.t-jump::-webkit-scrollbar{display:none}
 .t-jump a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s-4);border:1px solid var(--hairline);border-radius:var(--r-sm);
   font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--body-strong);text-decoration:none;
-  transition:color var(--t-hover),border-color var(--t-hover)}
+  transition:color var(--t-hover),border-color var(--t-hover),background-color var(--t-hover)}   /* the current chip's fill too: it snapped */
 .t-jump a:last-child{margin-inline-end:32px}   /* clear of the fade once scrolled to the end */
 .t-jump a:focus-visible,.t-jump a[aria-current]{color:var(--ice);border-color:var(--teal)}
 .t-jump a[aria-current]{background:color-mix(in srgb,var(--teal) 12%,transparent)}

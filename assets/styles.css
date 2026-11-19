@@ -8,6 +8,27 @@
    reskins for free and this sheet never names a theme.
    ============================================================ */
 :root{
+  /* motion: one tempo for the whole site, 90 BPM, the pulse the radio's
+     four tracks share (85 to 92 BPM). A beat is 667 ms; every duration,
+     delay and stagger is a whole number of its eighths (83 ms), and letters,
+     characters and long rows step by sixteenths (42 ms), so motions that
+     start together land together. Four curves, one per job. */
+  --m-beat:667ms;
+  --m-press:83ms;    /* 1/8: a press */
+  --m-step:83.333ms;     /* 1/8: one step of a stagger (three at most) */
+  --m-quick:167ms;   /* 1/4: something small leaving */
+  --m-hover:250ms;   /* 3/8: answering the pointer or focus; a panel leaving */
+  --m-enter:333ms;   /* 1/2: a panel, menu, sheet or dialog arriving */
+  --m-reveal:500ms;  /* 3/4: a block arriving on scroll, a slide, the page lift */
+  --m-draw:1000ms;   /* 1 1/2: a picture drawing itself */
+  --m-bar:2667ms;    /* 4 beats: the longest single piece (the sting) */
+  --m-ease-enter:cubic-bezier(.16,1,.3,1);  /* arriving, answering */
+  --m-ease-exit:cubic-bezier(.5,0,.75,0);   /* leaving */
+  --m-ease-move:cubic-bezier(.87,0,.13,1);  /* crossing the screen: wipes, the lift, slides */
+  --m-ease-snap:steps(1,end);               /* hard cuts: drawn frames, the night cut */
+  /* the rule along the lower edge of a page lifted off by a page change */
+  --m-edge:#F1E8D4;
+
   /* colour, effect, type-per-theme and radius tokens live in themes.css */
 
   /* — TYPE — */
@@ -32,11 +53,11 @@
   --card-pad:clamp(20px,2.2vw,32px);
   --card-pad-lg:clamp(20px,3vw,48px);
   --r-pill:4px;--r-lg:22px;
-  /* one curve and two speeds: --t-hover for anything that answers the
-     pointer or a press, --t-enter for something that arrives (a panel, a
-     menu). The page mixed bare `ease`, an expo-out and a spring. */
-  --ease-out:cubic-bezier(.2,.8,.2,1);
-  --dur-fast:.18s;--dur-base:.3s;--dur-slow:.7s;
+  /* the older names, read by many rules, now say the tempo's values:
+     --t-hover (250) for anything that answers the pointer or focus,
+     --t-enter (333) for something that arrives (a panel, a menu). */
+  --ease-out:var(--m-ease-enter);
+  --dur-fast:var(--m-hover);--dur-base:var(--m-enter);--dur-slow:var(--m-reveal);
   --t-hover:var(--dur-fast) var(--ease-out);--t-enter:var(--dur-base) var(--ease-out);
   --max:1200px;--gutter:48px;
   /* the container, stated once for every page that reads this sheet: from
@@ -75,8 +96,9 @@ html[dir="ltr"] .hero-h .swash{font-family:var(--font-head-em);font-weight:var(-
 .kicker::after{content:"";width:var(--kicker-node);height:var(--kicker-node);margin-inline-start:calc(var(--kicker-node) * -.66);
   background:var(--crimson);transform:rotate(45deg)}
 
-/* smooth the moment of switching */
-body,.navbar.scrolled,.svc-row,.proj,.card,.field input,.field textarea,.form,.capabilities{transition:background-color var(--t-enter),border-color var(--t-enter),color var(--t-enter)}
+/* The theme switch is one crossfade of the whole page (app.js runs it as a
+   view transition of type "swap", below). A transition list here eased
+   eight kinds of element and left the rest to snap, so the page tore. */
 
 /* ---------- theme toggle ----------
    One button between the two themes (Arcanum, dark; Daylight, light). It
@@ -164,7 +186,7 @@ img{max-width:100%;display:block}
 /* visually-hidden helper for skip link / a11y */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 #main:focus{outline:none}
-.skip{position:fixed;top:8px;inset-inline-start:8px;z-index:1000;font-size:var(--t-ui);background:var(--navy);color:var(--ice);padding:var(--s-3) var(--s-4);border-radius:var(--r-sm);border:1px solid var(--teal);transform:translateY(-150%);transition:transform var(--t-enter)}
+.skip{position:fixed;top:8px;inset-inline-start:8px;z-index:1000;font-size:var(--t-ui);background:var(--navy);color:var(--ice);padding:var(--s-3) var(--s-4);border-radius:var(--r-sm);border:1px solid var(--teal);transform:translateY(-150%);transition:transform var(--m-hover) var(--m-ease-enter)}
 .skip:focus{transform:translateY(0)}
 
 /* shared section heads */
@@ -185,7 +207,7 @@ h2.sec em{font-family:inherit;font-style:normal;color:var(--crimson-text)}
    frame) and the 1px rule: 73px, the measured --nav-h at every width (it
    was 18px around 30px controls, 72px, until the switch grew to 44) */
 .navbar .bar{display:flex;align-items:center;justify-content:space-between;max-width:var(--max);margin:0 auto;padding:13px var(--gutter)}
-.navbar .nav-inner{border-bottom:1px solid transparent;transition:border-color var(--dur-slow) var(--ease-out)}
+.navbar .nav-inner{border-bottom:1px solid transparent;transition:border-color var(--t-enter)}   /* with the bar's own fill, on one clock */
 /* opaque once the page moves under it (96%: it was 78% glass, the copy
    scrolling through it read as a smear behind the links) */
 .navbar.scrolled{background:var(--nav-glass)}
@@ -197,7 +219,7 @@ h2.sec em{font-family:inherit;font-style:normal;color:var(--crimson-text)}
    "idea" keeps its accent. The block after it is the cursor. */
 .logo{font-size:22px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;color:var(--ice)}
 .logo .wm{display:block;height:.734em;width:auto;overflow:visible}
-.logo .wm-accent{fill:var(--teal-text);transition:filter var(--t-enter)}
+.logo .wm-accent{fill:var(--teal-text);transition:filter var(--t-hover)}
 @media (hover:hover){.logo:hover .wm-accent{filter:hue-rotate(40deg) saturate(1.3)}}
 .cursor{display:inline-block;width:9px;height:20px;background:var(--crimson);margin-left:5px;transform:translateY(1px);box-shadow:var(--glow-crimson)}
 .logo .cursor{flex:none}   /* a flex item: under 400px the squeezed mark took its width (0.375px at 390) */
@@ -231,14 +253,17 @@ h2.sec em{font-family:inherit;font-style:normal;color:var(--crimson-text)}
 .mobile-menu{position:fixed;inset:0;z-index:150;background:var(--grad-noir);display:flex;flex-direction:column;justify-content:safe center;gap:var(--s-5);
   padding:calc(var(--gutter) + env(safe-area-inset-top)) calc(var(--gutter) + env(safe-area-inset-right)) calc(var(--gutter) + env(safe-area-inset-bottom)) calc(var(--gutter) + env(safe-area-inset-left));
   overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
-  transform:translateX(100%);transition:transform var(--t-enter);visibility:hidden}
+  transform:translateX(100%);visibility:hidden;
+  /* leaving: out on the exit curve, one step quicker than it came, and
+     visible until it has gone (the visibility flips after the slide) */
+  transition:transform var(--m-hover) var(--m-ease-exit),visibility 0s linear var(--m-hover)}
 /* The pill carries overflow:hidden, which nullifies its automatic minimum
    size — as a flex item it was the only one able to shrink, and collapsed
    to a 2px sliver while its 44px buttons were clipped away inside it. */
 .mobile-menu .lang{flex:none;align-self:flex-start}
 /* the links sit in a <nav> landmark inside the dialog; it stacks like the dialog did */
 .mobile-menu nav{display:flex;flex-direction:column;gap:inherit}
-.mobile-menu.open{transform:translateX(0);visibility:visible}
+.mobile-menu.open{transform:translateX(0);visibility:visible;transition:transform var(--m-enter) var(--m-ease-enter),visibility 0s}
 /* in Arabic the menu slides in from the reading start (the left) */
 html[dir="rtl"] .mobile-menu:not(.open){transform:translateX(-100%)}
 /* the section links (nav a; the language switch's links are the pill's own).
@@ -249,20 +274,26 @@ html[dir="rtl"] .mobile-menu:not(.open){transform:translateX(-100%)}
 .mobile-menu nav a{font-family:var(--font-display);font-weight:600;font-size:min(40px,10.5vw);color:var(--ice);text-decoration:none;opacity:0;transform:translateY(14px)}
 html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
 .mobile-menu .lang,.mobile-menu .theme-switch,.mobile-menu .menu-acts{opacity:0}
-/* 30ms a step: at 50ms the last control landed 0.9s after the tap, and a
-   menu that is still arriving while the thumb is already on it reads as slow */
-.mobile-menu.open nav a,.mobile-menu.open .lang,.mobile-menu.open .theme-switch,.mobile-menu.open .menu-acts{animation:stagger .5s var(--ease-out) forwards}
-.mobile-menu.open nav a:nth-of-type(1){animation-delay:.03s}
-.mobile-menu.open nav a:nth-of-type(2){animation-delay:.06s}
-.mobile-menu.open nav a:nth-of-type(3){animation-delay:.09s}
-.mobile-menu.open nav a:nth-of-type(4){animation-delay:.12s}
-.mobile-menu.open nav a:nth-of-type(5){animation-delay:.15s}
-.mobile-menu.open nav a:nth-of-type(6){animation-delay:.18s}
-.mobile-menu.open nav a:nth-of-type(7){animation-delay:.21s}
-.mobile-menu.open .lang{animation-delay:.27s}
-.mobile-menu.open .theme-switch{animation-delay:.3s}
-.mobile-menu.open .menu-acts{animation-delay:.33s}
-@keyframes stagger{to{opacity:1;transform:translateY(0)}}
+/* A sixteenth of a beat (42 ms) a step, a row of eleven: each item rises in
+   250 and the last lands at 667, one beat after the tap, while the panel
+   itself is in at 333. Closing, they fade out together in 167, on the
+   panel's way out (an animation: nothing is left for a transition to start
+   from once the opening one is gone; it also runs, unseen, on the hidden
+   menu as the page loads). The reduced-motion rule turns both off. */
+.mobile-menu:not(.open) :is(nav a,.lang,.theme-switch,.menu-acts){animation:m-fade-out var(--m-quick) var(--m-ease-exit) both}
+@keyframes m-fade-out{from{opacity:1}to{opacity:0}}
+.mobile-menu.open nav a,.mobile-menu.open .lang,.mobile-menu.open .theme-switch,.mobile-menu.open .menu-acts{animation:stagger var(--m-hover) var(--m-ease-enter) both}
+.mobile-menu.open nav a:nth-of-type(2){animation-delay:42ms}
+.mobile-menu.open nav a:nth-of-type(3){animation-delay:83ms}
+.mobile-menu.open nav a:nth-of-type(4){animation-delay:125ms}
+.mobile-menu.open nav a:nth-of-type(5){animation-delay:167ms}
+.mobile-menu.open nav a:nth-of-type(6){animation-delay:208ms}
+/* the links step a sixteenth apart through the seventh; from there the
+   rest of the menu (the last links, the language, the theme, the actions)
+   lands together at 250, so the cascade reads as one run, not as four
+   links and then a block, and the last item is in at 500, not 667 */
+.mobile-menu.open nav a:nth-of-type(n+7),.mobile-menu.open .lang,.mobile-menu.open .theme-switch,.mobile-menu.open .menu-acts{animation-delay:250ms}
+@keyframes stagger{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .mobile-menu .lang{margin-top:var(--s-4);align-self:flex-start}
 /* the theme toggle in the menu (the header's is hidden below 960px to make
    room for the language switch, which a visitor who cannot read the page
@@ -311,9 +342,22 @@ html[dir="rtl"] .mobile-menu nav a{font-family:var(--font-ar-display)}
   display:flex;align-items:center;margin:0;padding-inline-start:var(--s-2);border:1px solid var(--hairline);border-radius:999px;
   background:var(--void);box-shadow:var(--shadow-lift);font-size:var(--t-small);color:var(--muted)}
 .lang-offer[hidden]{display:none}
+/* It shows and goes by the hidden attribute (index.html's script): it rises
+   8px into view in 333 and leaves in 250, display flipping after the exit
+   (allow-discrete). With the phone bar on it rides up by the bar's height,
+   by transform on the bar's own clock (it moved by `bottom`, a layout). */
+@media (prefers-reduced-motion:no-preference){
+  .lang-offer{transition:opacity var(--m-enter) var(--m-ease-enter),transform var(--m-enter) var(--m-ease-enter),display var(--m-enter) allow-discrete}
+  @starting-style{.lang-offer{opacity:0;transform:translateY(8px)}}
+  .lang-offer[hidden]{opacity:0;transform:translateY(8px);transition:opacity var(--m-hover) var(--m-ease-exit),transform var(--m-hover) var(--m-ease-exit),display var(--m-hover) allow-discrete}
+  html.mbar-on .lang-offer:not([hidden]){transition:opacity var(--m-enter) var(--m-ease-enter),transform var(--m-enter) var(--m-ease-enter)}
+  html.mbar:not(.mbar-on) .lang-offer:not([hidden]){transition:opacity var(--m-enter) var(--m-ease-enter),transform var(--m-hover) var(--m-ease-exit)}
+}
 .lang-offer-go{display:inline-flex;align-items:center;min-height:44px;padding-inline:var(--s-2);color:var(--ice)}
 .lang-offer-x{display:inline-grid;place-items:center;width:44px;height:44px;padding:0;border:0;background:none;color:inherit;cursor:pointer}
-body:has(.m-contact.on) .lang-offer{bottom:calc(73px + var(--s-3) + env(safe-area-inset-bottom))}
+/* html.mbar and .mbar-on mirror the phone bar (app.js): a body:has(.m-contact.on) here made every
+   class change named 'on' anywhere on the page (the plate, the crumb, the dots) restyle the whole page */
+html.mbar-on .lang-offer{--mbar-h:73px;transform:translateY(calc(-1 * var(--mbar-h)))}
 @media print{.lang-offer{display:none!important}}
 /* The ambient layers are gone (one metaphor: the engraved plates, BRAND.md
    "The atlas"): the hero's two blurred glow blobs, cut by the hero's clip
@@ -436,15 +480,19 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
      (the headline, the lede, the plate) means the browser does not credit
      it as painted until the fade is well under way: measured on Slow 3G,
      the plate's image was visible at 3.6s but LCP was reported at 7.5s;
-     without the fade, 3.7s. The whole entrance is over by .6s (it ran to
-     1.4s), so a fast visitor never reaches for something still arriving. */
-  .hero .eyebrow,.hero-h,.hero .lede,.dim-line,.hero-cta,.plate-wrap,.titleblock{
-    animation:hero-rise-solid .45s var(--ease-out) both}
-  .hero-h{animation-delay:.03s}
-  .hero .lede,.dim-line{animation-delay:.06s}
-  .hero-cta{animation-delay:.08s}
-  .plate-wrap{animation-delay:.1s}
-  .titleblock{animation-delay:.14s}
+     without the fade, 3.7s. Each part rises in 500 (three quarters of a
+     beat), one eighth after the last: the whole entrance lands at 917, so a
+     fast visitor never reaches for something still arriving. */
+  .hero .eyebrow,.hero-h,.hero .lede,.hero .dim-line,.hero-cta,.plate-wrap,.titleblock,.hero-terms{
+    animation:hero-rise-solid var(--m-reveal) var(--m-ease-enter) both}
+  .hero-h{animation-delay:var(--m-step)}
+  .hero .lede,.hero .dim-line{animation-delay:calc(2 * var(--m-step))}
+  .hero-cta{animation-delay:calc(3 * var(--m-step))}
+  .plate-wrap,.hero-terms{animation-delay:calc(4 * var(--m-step))}
+  .titleblock{animation-delay:calc(5 * var(--m-step))}
+  /* Arriving by a page change, the rise waits under the page being lifted
+     off, then plays: the page, then its content, on consecutive beats. */
+  html:active-view-transition :is(.hero .eyebrow,.hero-h,.hero .lede,.hero .dim-line,.hero-cta,.plate-wrap,.titleblock,.hero-terms){animation-play-state:paused}
 }
 @keyframes hero-rise-solid{from{transform:translateY(10px)}to{transform:none}}
 
@@ -464,13 +512,15 @@ html[dir="rtl"] .hero-h .swash{font-family:var(--font-ar-display);font-style:nor
 .plate .pl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;
   opacity:0;visibility:hidden}
 .plate .pl.on{opacity:1;visibility:visible}
-/* the leading edge of the wipe: a bright rule that crosses the plate */
+/* the wipe: app.js animates its scale (one beat, the move curve, the slide
+   swapped behind it at the half); its leading edge is a bright rule that
+   crosses the plate, faded on the same clock */
 .pl-wipe{position:absolute;inset:0;z-index:3;pointer-events:none;background:var(--void);
-  transform:scaleX(var(--wipe,0));transform-origin:left center}
+  transform:scaleX(0);transform-origin:left center}
 html[dir="rtl"] .pl-wipe{transform-origin:right center}
 .pl-wipe::after{content:"";position:absolute;right:0;top:0;bottom:0;width:2px;
   background:var(--crimson-hi);box-shadow:0 0 20px 2px color-mix(in srgb,var(--crimson-hi) 75%,transparent);
-  opacity:var(--wipeEdge,0)}
+  opacity:0}
 html[dir="rtl"] .pl-wipe::after{right:auto;left:0}
 /* drafting corner ticks */
 .pk{position:absolute;width:14px;height:14px;z-index:4;border:1px solid var(--crimson)}
@@ -489,10 +539,13 @@ html[dir="rtl"] .pl-wipe::after{right:auto;left:0}
    27), and a trailing ↗ so it reads as one. Each run is bidi-isolated so the
    Latin name and an Arabic category keep the gap between them. */
 .pm-item{grid-area:1/1;display:flex;align-items:baseline;align-content:center;gap:var(--s-3);flex-wrap:wrap;min-height:44px;
-  text-decoration:none;opacity:0;visibility:hidden;transform:translateY(5px);
-  transition:opacity .4s var(--ease-out),transform .4s var(--ease-out)}
+  text-decoration:none;opacity:0;visibility:hidden;transform:translateY(6px);
+  /* a crossfade like the site's other text swaps: the caption leaving goes
+     in 167 on the exit curve (and is hidden only after it), the new one
+     comes in over 250 on the enter curve, from the swap at the wipe's half */
+  transition:opacity var(--m-quick) var(--m-ease-exit),transform var(--m-quick) var(--m-ease-exit),visibility 0s linear var(--m-quick)}
 .pm-item>*{unicode-bidi:isolate}
-.pm-item.on{opacity:1;visibility:visible;transform:none}
+.pm-item.on{opacity:1;visibility:visible;transform:none;transition:opacity var(--m-hover) var(--m-ease-enter),transform var(--m-hover) var(--m-ease-enter),visibility 0s}
 .pm-item b{font-family:var(--font-display);font-weight:600;font-size:var(--t-body);color:var(--ice);letter-spacing:-.01em}
 html[dir="rtl"] .pm-item b{font-family:var(--font-ar-display)}
 .pm-item i{font-family:var(--font-mono);font-style:normal;font-size:var(--t-label);letter-spacing:var(--ls-label);
@@ -510,7 +563,7 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
    middle (it was 32px, under the 44 every other control on the page has) */
 .plate-rail button{flex:1;background:none;border:0;padding:21px 0 0;cursor:pointer;min-height:44px}
 .plate-rail button i{display:block;height:2px;border-radius:2px;background:var(--hairline-2);
-  transition:background var(--t-enter)}
+  transition:background-color var(--t-hover)}
 .plate-rail button[aria-current="true"] i{background:var(--crimson)}
 @media (hover:hover){.plate-rail button:hover i{background:var(--crimson-hi)}}   /* a tapped tab kept it after the deck moved on (r3/a) */
 .plate-rail button:focus-visible i{outline:2px solid var(--teal);outline-offset:3px}
@@ -554,7 +607,7 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
    14px mono label, one radius, a 1px edge; they were five on the home page
    (13 or 14px, 45 to 53px tall). */
 .btn{font-family:var(--font-body);font-size:var(--t-ui);font-weight:600;line-height:1.4;padding:var(--s-3) var(--s-5);min-height:52px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;
-  transition:color var(--t-enter),background-color var(--t-enter),border-color var(--t-enter),box-shadow var(--t-enter);
+  transition:color var(--t-hover),background-color var(--t-hover),border-color var(--t-hover),box-shadow var(--t-hover);
   text-decoration:none;display:inline-flex;align-items:center;gap:var(--s-2)}
 /* Flat, not a gradient sweep, and no bloom: a halo under the primary button
    was the loudest thing on the first screen in three themes. --btn-glow is a
@@ -709,7 +762,7 @@ html[dir="rtl"] .pm-item::after{transform:scaleX(-1)}
 .proj .thumb{position:relative;display:block;aspect-ratio:16/10;overflow:visible;
   border:1px solid var(--hairline-2);border-radius:var(--r-md);background:var(--grad-blood);
   box-shadow:0 36px 60px -42px rgb(var(--shade) / calc(.9 * var(--shade-k)));
-  transition:border-color var(--t-enter)}
+  transition:border-color var(--t-hover)}
 .proj .thumb:has(.shot){background:var(--navy)}
 .proj .thumb::before{content:"";position:absolute;inset:-12px;z-index:3;pointer-events:none;
   --k:color-mix(in srgb,var(--crimson) 75%,transparent);
@@ -820,10 +873,16 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 
 /* résumé accordion. It animated to max-height:1600px, which silently clips
    anything taller — and the richer timeline is taller on a phone. A
-   0fr -> 1fr grid row animates to the content's real height instead. */
-.cv-panel{display:grid;grid-template-rows:0fr;opacity:.4;
-  transition:grid-template-rows .45s var(--ease-out),opacity .3s var(--ease-out)}
-.cv-panel.open{grid-template-rows:1fr;opacity:1}
+   0fr -> 1fr grid row takes the content's real height. The row opens at
+   once (a height is never animated: it lays the page out every frame);
+   the content rises into it, its two columns an eighth apart (500). */
+.cv-panel{display:grid;grid-template-rows:0fr}
+.cv-panel.open{grid-template-rows:1fr}
+@media (prefers-reduced-motion:no-preference){
+  .cv-panel.open .cv-inner>*{animation:m-rise var(--m-reveal) var(--m-ease-enter) both}
+  .cv-panel.open .cv-inner>:nth-child(2){animation-delay:var(--m-step)}
+  .cv-panel.open .cv-inner>:nth-child(n+3){animation-delay:calc(2 * var(--m-step))}
+}
 /* the collapsing row must carry no block padding or border, or it cannot reach
    0. Inline padding is free: the clip reaches 6px into the card's own padding
    and the content is padded back, and the inner block keeps 6px at its foot,
@@ -832,11 +891,10 @@ html[dir="rtl"] .proj h3{font-family:var(--font-ar-display)}
 .cv-clip{min-height:0;overflow:hidden;margin-inline:calc(-1 * var(--s-2));padding-inline:var(--s-2)}
 .cv-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:var(--col-gap);
   border-top:1px solid var(--hairline);margin-top:var(--s-6);padding-top:var(--s-6);padding-bottom:var(--s-2)}
-/* closed, the content is hidden as well as clipped (after the row has closed):
-   a clipped control still counts as a box over whatever sits at its place */
-.cv-panel:not(.open) .cv-inner{visibility:hidden;transition:visibility 0s .45s}
+/* closed, the content is hidden as well as clipped: a clipped control
+   still counts as a box over whatever sits at its place */
+.cv-panel:not(.open) .cv-inner{visibility:hidden}
 html:not(.js):not(.js-ready) .cv-panel .cv-inner{visibility:visible}
-@media (prefers-reduced-motion:reduce){.cv-panel:not(.open) .cv-inner{transition:none}}
 .cv-col h4{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--faint);margin-bottom:var(--s-4)}
 
 /* The date sits on its own line: the CV's dates carry months ("Août 2025 –
@@ -884,7 +942,6 @@ html[dir="rtl"] .tm b{font-family:var(--font-ar-display)}
   .fd-top{flex-direction:column;text-align:center;align-items:center}
   .cv-inner{grid-template-columns:minmax(0,1fr)}
 }
-@media (prefers-reduced-motion:reduce){.cv-panel{transition:none}}
 
 /* ---------- contact ---------- */
 /* Full-bleed closing band. No overflow:hidden here — the display face's swash
@@ -949,7 +1006,11 @@ html[dir="rtl"] .field :is(input,textarea){font-family:var(--font-ar-body)}
 .form-note{font-family:var(--font-body);font-size:var(--t-small);line-height:1.55;color:var(--muted);margin-top:var(--s-4);max-width:34em}
 .form-success:focus{outline:none}
 .form-success{display:none;padding:var(--s-7) 0}
-.form-success.show{display:block;animation:stagger .5s var(--ease-out)}
+/* the sent message rises into place (500), and the seal is stamped on it
+   three eighths of a beat later (250, below) */
+.form-success.show{display:block}
+@media (prefers-reduced-motion:no-preference){.form-success.show{animation:m-sent var(--m-reveal) var(--m-ease-enter) both}}
+@keyframes m-sent{from{opacity:0;transform:translateY(12px)}}
 /* The channels' envelope, not a glowing tick: the panel cannot know the mail
    left, so its mark says "mail", the way the Email row does */
 .form-success .ai-mail{width:36px;height:36px;display:block;margin-bottom:var(--s-5)}
@@ -1085,16 +1146,16 @@ html[dir="rtl"] .preview .promise{font-family:var(--font-ar-body);font-style:nor
 /* capabilities shelf — disclosure. One strip for both (the five other
    services, the estimator): a 13px label, its hint, an 18px chevron at the
    inline end, and the edge answering the pointer (no fill). */
-.capabilities{margin-top:var(--s-8);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--glass);overflow:hidden;transition:border-color var(--t-enter)}
-.capabilities>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s-4);padding:var(--card-pad);font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.1em;text-transform:uppercase;color:var(--ice);transition:background var(--t-enter)}
+.capabilities{margin-top:var(--s-8);border:1px solid var(--hairline);border-radius:var(--r-md);background:var(--glass);overflow:hidden;transition:border-color var(--t-hover)}
+.capabilities>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s-4);padding:var(--card-pad);font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.1em;text-transform:uppercase;color:var(--ice);transition:background-color var(--t-hover)}
 .capabilities>summary::-webkit-details-marker{display:none}
 @media (hover:hover){.capabilities:has(>summary:hover){border-color:var(--teal)}}
-.capabilities>summary .chev{margin-left:auto;color:var(--teal-text);font-size:18px;line-height:1;transition:transform var(--t-enter)}
+.capabilities>summary .chev{margin-left:auto;color:var(--teal-text);font-size:18px;line-height:1;transition:transform var(--t-hover)}
 html[dir="rtl"] .capabilities>summary .chev{margin-left:0;margin-right:auto}
 .capabilities[open]>summary .chev{transform:rotate(90deg)}
 .capabilities>summary .hint{color:var(--faint);text-transform:none;letter-spacing:.02em;font-size:var(--t-small)}
 /* the career toggle's chevron, the strip's (I2 puts the glyph in a .chev) */
-.fd-actions .btn .chev{font-size:18px;line-height:1;color:currentColor;transition:transform var(--t-enter)}
+.fd-actions .btn .chev{font-size:18px;line-height:1;color:currentColor;transition:transform var(--t-hover)}
 .fd-actions .btn[aria-expanded="true"] .chev{transform:rotate(90deg)}
 html[dir="rtl"] .fd-actions .btn[aria-expanded="true"] .chev{transform:rotate(-90deg)}   /* the glyph is mirrored to ‹ in Arabic: turned the same way it pointed up */
 .cap-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--col-gap);padding:0 var(--card-pad) var(--card-pad)}
@@ -1113,7 +1174,7 @@ html[dir="rtl"] .cap h4{font-family:var(--font-ar-display)}
    list, the question at the lead size, the mark in the muted ink. */
 .faq-list{display:grid;gap:0;max-width:840px;border-bottom:1px solid var(--hairline)}
 .faq-item{border:0;border-top:1px solid var(--hairline);border-radius:0;background:none;box-shadow:none;
-  transition:border-color var(--t-enter)}
+  transition:border-color var(--t-hover)}
 .faq-item[open]{border-color:var(--hairline-2)}
 .faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s-4);
   padding:var(--s-4) 0;font-family:var(--font-display);font-weight:600;font-size:clamp(16px,1.9vw,19px);
@@ -1136,7 +1197,7 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
 /* plus-mark that morphs to a minus when open */
 .faq-mark{position:relative;flex:none;width:20px;height:20px;margin-inline-start:auto}
 .faq-mark::before,.faq-mark::after{content:"";position:absolute;background:var(--muted);border-radius:2px;
-  transition:transform var(--t-enter),opacity var(--t-enter),background-color var(--t-hover)}
+  transition:transform var(--t-hover),opacity var(--t-hover),background-color var(--t-hover)}
 .faq-mark::before{top:50%;left:3px;right:3px;height:2px;transform:translateY(-50%)}
 .faq-mark::after{left:50%;top:3px;bottom:3px;width:2px;transform:translateX(-50%)}
 .faq-item[open] .faq-mark::after{transform:translateX(-50%) scaleY(0);opacity:0}
@@ -1144,6 +1205,16 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
 .faq-item[open] .faq-mark::before{background:var(--teal)}
 .faq-a{padding:0 0 var(--s-5);color:var(--muted);font-size:15px;line-height:1.65;
   display:flex;gap:var(--s-5);align-items:flex-start}
+/* Panels that open never animate their height (the browser lays the open
+   panel out at once); their content rises 6px into it in 333, the children
+   an eighth apart, three steps at most. Here, and for the capabilities, the
+   services' folds, the path's steps and the career panel below. */
+@media (prefers-reduced-motion:no-preference){
+  :is(.faq-item[open] .faq-a,.capabilities[open] .cap-grid)>*{animation:m-rise var(--m-enter) var(--m-ease-enter) both}
+  :is(.faq-item[open] .faq-a,.capabilities[open] .cap-grid)>:nth-child(2){animation-delay:var(--m-step)}
+  :is(.faq-item[open] .faq-a,.capabilities[open] .cap-grid)>:nth-child(n+3){animation-delay:calc(2 * var(--m-step))}
+}
+@keyframes m-rise{from{opacity:0;transform:translateY(6px)}}
 /* The summary row is 34px tall — far too small for these drawings to
    survive. The open panel has the room, and the figure belongs with the
    answer it illustrates rather than with the question. */
@@ -1176,9 +1247,19 @@ html[dir="rtl"] .faq-item summary{font-family:var(--font-ar-display)}
    snapped on in 0ms var(--ease-out), or waited out the row's stagger delay. The animation
    runs once when .in lands and leaves the card's own transitions alone. */
 @media (prefers-reduced-motion:no-preference){
-  .js-ready .reveal.in{animation:reveal var(--dur-slow) var(--ease-out) var(--rd,0ms) backwards}
+  .js-ready .reveal.in{animation:reveal var(--m-reveal) var(--m-ease-enter) var(--rd,0ms) backwards}
+  /* A block taller than 60% of the screen (the founder's card, the Aperçu,
+     the atelier, a tier at 1440) is mostly on screen as it arrives: 12px of
+     rise moved a whole screen of text under the reader. It fades instead
+     (app.js marks it .rv-tall). */
+  .js-ready .reveal.in.rv-tall{animation-name:reveal-soft}
+  /* a block revealed while the last page is still being lifted off (the
+     first screen's lower edge is uncovered first) waits for the lift, as the
+     hero does: never the old page's motion and the new page's at once */
+  html:active-view-transition-type(page) .reveal.in{animation-play-state:paused}
 }
 @keyframes reveal{from{opacity:0;transform:translateY(12px)}}
+@keyframes reveal-soft{from{opacity:0}}
 /* No JavaScript (the head script marks <html class="js"> before first paint):
    controls that only app.js can drive — theme, menu, language, plate rail,
    pause, the career toggle — are taken away rather than left doing nothing,
@@ -1248,7 +1329,7 @@ main.wrap>section h2.sec em{color:inherit}
 
 /* The aurora is gone: three colour fields drifting under every page, forever.
    Decoration with no job — it carried nothing, it muddied the construction grid
-   it floated over, and it ran three infinite animations for the life of the
+   it floated over, and it ran three endless animations for the life of the
    tab. The grid and the floor gradient are the depth. */
 
 
@@ -1514,6 +1595,8 @@ main.wrap>section h2.sec em{color:inherit}
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal,.js-ready .reveal:is(*,:not(.in)){opacity:1;transform:none}
   .mobile-menu nav a,.mobile-menu .lang,.mobile-menu .theme-switch,.mobile-menu .menu-acts{opacity:1;transform:none}
+  /* no page lift and no crossfade: the next page, or the new theme, at once */
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
 }
 
 
@@ -1529,7 +1612,7 @@ main.wrap>section h2.sec em{color:inherit}
   border:1px solid var(--hairline);border-radius:var(--r-lg);background:var(--navy);
   background-image:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 42%);
   box-shadow:var(--shadow-rest);
-  transition:border-color var(--t-enter)}
+  transition:border-color var(--t-hover)}
 /* The chosen tier earns a ring and a label, not a different size — a scaled
    card would change the row height and shift the two beside it. */
 .tier-pop{border-color:color-mix(in srgb,var(--crimson) 45%,transparent);
@@ -1731,19 +1814,21 @@ html[dir="rtl"] .ptl-zero,html[dir="rtl"] .ptl-zero .cur{letter-spacing:0}
 .ptl.vz-arm :is(.ptl-s:not(.ptl-build)>.ptl-m,.ptl-build .ptl-m i){transform:scale(.4)}
 .ptl.vz-arm .ptl-s.ptl-dec>.ptl-m{transform:rotate(45deg) scale(.3)}
 .ptl.vz-arm.vz-go :is(.ptl-s>.ptl-m,.ptl-build .ptl-m i){
-  opacity:1;transform:none;transition:opacity .35s var(--ease-out) var(--pd,0s),transform .45s var(--ease-out) var(--pd,0s)}
+  opacity:1;transform:none;transition:opacity var(--m-hover) var(--m-ease-enter) var(--pd,0s),transform var(--m-enter) var(--m-ease-enter) var(--pd,0s)}
 .ptl.vz-arm.vz-go .ptl-s.ptl-dec>.ptl-m{transform:rotate(45deg) scale(.86)}
-.ptl.vz-arm.vz-go .ptl-s:not(:last-child)::after{transform:none;transition:transform .4s var(--ease-out) var(--sd,0s)}
-/* the whole line is drawn by about 1.9s: a timeline that keeps the
-   reader waiting for its last step reads as unfinished */
-.ptl-s:nth-child(1){--pd:0s;--sd:.1s}
-.ptl-s:nth-child(2){--pd:.3s;--sd:.4s}
-.ptl-s:nth-child(3){--pd:.6s;--sd:1.05s}
-.ptl-build .ptl-m i:nth-child(1){--pd:.65s}.ptl-build .ptl-m i:nth-child(2){--pd:.72s}
-.ptl-build .ptl-m i:nth-child(3){--pd:.79s}.ptl-build .ptl-m i:nth-child(4){--pd:.86s}
-.ptl-build .ptl-m i:nth-child(5){--pd:.93s}
-.ptl-s:nth-child(4){--pd:1.15s;--sd:1.25s}
-.ptl-s:nth-child(5){--pd:1.45s}
+.ptl.vz-arm.vz-go .ptl-s:not(:last-child)::after{transform:none;transition:transform var(--m-enter) var(--m-ease-enter) var(--sd,0s)}
+/* On the beat grid (eighths of 83): a mark every three eighths, each line
+   out of it an eighth after, the five days of the build an eighth apart;
+   the whole line is drawn by 1667 (two and a half beats), a timeline that
+   keeps the reader waiting for its last step reads as unfinished */
+.ptl-s:nth-child(1){--pd:0ms;--sd:83ms}
+.ptl-s:nth-child(2){--pd:250ms;--sd:333ms}
+.ptl-s:nth-child(3){--pd:500ms;--sd:833ms}
+.ptl-build .ptl-m i:nth-child(1){--pd:583ms}.ptl-build .ptl-m i:nth-child(2){--pd:667ms}
+.ptl-build .ptl-m i:nth-child(3){--pd:750ms}.ptl-build .ptl-m i:nth-child(4){--pd:833ms}
+.ptl-build .ptl-m i:nth-child(5){--pd:917ms}
+.ptl-s:nth-child(4){--pd:1000ms;--sd:1083ms}
+.ptl-s:nth-child(5){--pd:1333ms}
 @media (min-width:1100px){
   /* the path is a row of its own across the card (placed with the rest of
      the card in the editorial grid block above); five equal columns, each
@@ -1778,7 +1863,7 @@ html[dir="rtl"] .t-wk b{transform-origin:100% 50%}
 html[dir="rtl"] .t-wk-n{letter-spacing:0}
 /* entrance: the window opens from its first week to its last */
 .t-weeks.vz-arm .t-wk b{transform:scaleX(0)}
-.t-weeks.vz-arm.vz-go .t-wk b{transform:none;transition:transform .7s var(--ease-out) .3s}
+.t-weeks.vz-arm.vz-go .t-wk b{transform:none;transition:transform var(--m-reveal) var(--m-ease-enter) var(--m-hover)}
 
 /* -- estimator: the estimate as a dimension line over the packages --
    The track clips: the line and its two end marks are track-wide boxes
@@ -1794,22 +1879,22 @@ html.js .esc{display:block;container-type:inline-size;margin:var(--s-2) 0 var(--
    still stands 3:1 off the track in every theme (the fill alone: 1.6-1.8:1) */
 .esc-band{position:absolute;bottom:0;height:8px;border-radius:min(var(--r-sm),3px);
   background:color-mix(in srgb,var(--muted) 30%,transparent);box-shadow:inset 0 0 0 1px var(--muted);
-  transition:opacity .5s var(--ease-out) var(--bd,0s)}
+  transition:opacity var(--m-enter) var(--m-ease-enter) var(--bd,0s)}
 .esc-band::after{content:"";position:absolute;inset:0;border-radius:inherit;
-  background:color-mix(in srgb,var(--teal) 55%,transparent);opacity:0;transition:opacity var(--t-enter)}
+  background:color-mix(in srgb,var(--teal) 55%,transparent);opacity:0;transition:opacity var(--t-hover)}
 .esc-band.on::after{opacity:1}
 .esc-bar{position:absolute;inset-inline:0;top:7px;height:3px;background:var(--teal);transform-origin:0 50%;
-  transition:transform .45s var(--ease-out),opacity .3s var(--ease-out)}
-.esc-cap{position:absolute;inset:0;transition:transform .45s var(--ease-out),opacity .3s var(--ease-out)}
+  transition:transform var(--m-enter) var(--m-ease-enter),opacity var(--m-hover) var(--m-ease-enter)}
+.esc-cap{position:absolute;inset:0;transition:transform var(--m-enter) var(--m-ease-enter),opacity var(--m-hover) var(--m-ease-enter)}
 .esc-cap::before{content:"";position:absolute;inset-inline-start:-1px;top:2px;bottom:0;width:2px;
   background:linear-gradient(var(--teal) 0 14px,color-mix(in srgb,var(--teal) 45%,transparent) 14px)}
 html[dir="rtl"] .esc-bar{transform-origin:100% 50%}
 .esc-nm{position:relative;display:block;height:16px;margin-top:var(--s-2)}
 .esc-nm span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap;font-family:var(--font-mono);
-  font-size:var(--t-label);line-height:16px;color:var(--muted);transition:opacity .5s var(--ease-out) var(--bd,0s)}
+  font-size:var(--t-label);line-height:16px;color:var(--muted);transition:opacity var(--m-enter) var(--m-ease-enter) var(--bd,0s)}
 html[dir="rtl"] .esc-nm span{transform:translateX(50%)}
 .esc-nm span.on{color:var(--ice)}
-.esc [data-tier="surmesure"]{--bd:.1s}.esc [data-tier="app"]{--bd:.2s}
+.esc [data-tier="surmesure"]{--bd:83ms}.esc [data-tier="app"]{--bd:167ms}
 /* under ~270px (a 320-360px phone) three names do not fit on one line */
 @container (max-width:270px){
   .esc-nm{height:32px}
@@ -1881,14 +1966,14 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
    edge would move its start corner with every change of text, which Chrome
    counts as a layout shift (a mouse move or a scroll is not an input). */
 .mkv-tip{position:absolute;top:0;inset-inline-start:0;z-index:3;display:grid;gap:var(--s-1);padding:var(--s-2) var(--s-3);pointer-events:none;
-  opacity:0;transition:opacity var(--t-hover);border:1px solid var(--hairline-2);border-radius:var(--r-sm);
+  opacity:0;transition:opacity var(--m-quick) var(--m-ease-exit);border:1px solid var(--hairline-2);border-radius:var(--r-sm);
   background:var(--plum);box-shadow:var(--shadow-lift);
   font-family:var(--font-display);font-size:var(--t-small);line-height:1.5;color:var(--body-strong);
   font-variant-numeric:tabular-nums}
 /* no wider than the plot: on a 320px chart the heading wraps at its spaces,
    and each range holds together (no-break spaces) */
 .mkv-tip b{font-weight:600;color:var(--ice)}
-.mkv-tip.on{opacity:1}
+.mkv-tip.on{opacity:1;transition:opacity var(--m-hover) var(--m-ease-enter)}   /* 250 in on the enter curve, 167 out on the exit curve, as the other small things */
 .mkv-cap{margin-top:var(--s-4);max-width:62em;color:var(--muted);font-size:var(--t-small);line-height:1.6}
 @container (min-width:520px){.mkv-tk .mn{display:block}}
 /* A narrow chart (a phone: 180-290px) gives the names a line of their own
@@ -1931,8 +2016,8 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
    from its low end, group by group */
 .mkv.vz-arm .mkv-gl{opacity:0}
 .mkv.vz-arm .mkv-bar{transform:scaleX(0)}
-.mkv.vz-arm.vz-go .mkv-gl{opacity:1;transition:opacity .5s var(--ease-out)}
-.mkv.vz-arm.vz-go .mkv-bar{transform:none;transition:transform .7s var(--ease-out) var(--d,0s),opacity var(--t-hover)}
+.mkv.vz-arm.vz-go .mkv-gl{opacity:1;transition:opacity var(--m-enter) var(--m-ease-enter)}
+.mkv.vz-arm.vz-go .mkv-bar{transform:none;transition:transform var(--m-reveal) var(--m-ease-enter) var(--d,0s),opacity var(--t-hover)}
 
 /* -- focus: a keyboard reaches a button with the same answer a pointer gets
    on hover (the ring stays the focus indicator; this is the response) -- */
@@ -1946,10 +2031,12 @@ html[dir="rtl"] .mkv-bar{transform-origin:100% 50%}
 /* -- press: buttons and chips answer the finger (hover lifts were already
    there; this is the moment of the press) -- */
 @media (prefers-reduced-motion:no-preference){
-  .btn:active{transform:translateY(0) scale(.97);transition-duration:.08s}
+  /* a press is one eighth (83), on the transform only: the colours keep
+     their 250 (each of the guard's eight properties named, below) */
+  .btn:active{transform:translateY(0) scale(.97);transition-duration:var(--m-hover),var(--m-hover),var(--m-hover),var(--m-hover),var(--m-press),var(--m-hover),var(--m-hover),var(--m-hover)}
   .echip,.eopt{transition:border-color var(--t-hover),background var(--t-hover),color var(--t-hover),
     transform var(--t-hover)}
-  .echip:active,.eopt:active{transform:scale(.97)}
+  .echip:active,.eopt:active{transform:scale(.97);transition-duration:var(--m-hover),var(--m-hover),var(--m-hover),var(--m-press)}
   .eopt:has(input:disabled):active{transform:none}
 }
 /* The page-wide reduced-motion rule (*{transition:none}) does not reach
@@ -2137,14 +2224,18 @@ a.wa-link[aria-disabled="true"]{text-decoration:none}
    rule covers both palettes. */
 html[dir="rtl"] body::before{transform:scaleX(-1)}
 
-/* These interactive rules used `transition:all`, which animates the outline
-   too: on keyboard focus the ring grew from 0 to 2px over 200-300ms var(--ease-out), and a
+/* These interactive rules used to transition every property, the outline
+   too: on keyboard focus the ring grew from 0 to 2px over 200-300ms, and a
    probe reading the style at the instant of focus saw no ring at all. A focus
    indicator must be instant. Each shorthand now lists its own properties
    (2026-11); this guard stays, outline excluded, after them on purpose: a
-   later `transition:all` shorthand would reset the property list. */
+   later shorthand naming every property would reset the list. */
 .theme-btn,.lang :is(a,button),.btn,.proj .actions a,.field input,.field textarea{
-  transition-property:color,background-color,border-color,box-shadow,transform,opacity,filter,text-decoration-color}
+  transition-property:color,background-color,border-color,box-shadow,transform,opacity,filter,text-decoration-color;
+  /* one duration per property, all eight written out, so none takes its
+     time by repeating a shorter list (the press shortens transform alone) */
+  transition-duration:var(--m-hover),var(--m-hover),var(--m-hover),var(--m-hover),var(--m-hover),var(--m-hover),var(--m-hover),var(--m-hover);
+  transition-timing-function:var(--m-ease-enter);transition-delay:0s}
 
 /* ═══ forced colours (Windows High Contrast) ═══ Backgrounds are discarded, so a
    borderless button or chip is text floating on Canvas with no edge — 12 of 32
@@ -2275,7 +2366,7 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body)}
 .v-sky{position:absolute;inset:0 0 auto;width:100%;height:70%;color:var(--muted)}
 .v-sky .tw{fill:currentColor;opacity:.55}
 .v-sky .v-moon{fill:var(--crimson-text);opacity:.55}
-.v-sky .v-const{fill:none;stroke:var(--teal-text);stroke-width:1;opacity:.45;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.6s var(--ease-out) .4s}
+.v-sky .v-const{fill:none;stroke:var(--teal-text);stroke-width:1;opacity:.45;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1333ms var(--m-ease-enter) var(--m-beat)}   /* two beats, after one */
 .v-sky .v-const-s{fill:var(--teal-text);opacity:.8}
 .lz-on .v-sky .v-const,html:not([data-lz]) .v-sky .v-const{stroke-dashoffset:0}
 .v-l{position:absolute;bottom:-60px;width:max(calc(100% + 80px),860px);aspect-ratio:1600/679;
@@ -2338,8 +2429,8 @@ html[dir="rtl"] .pl-cap{letter-spacing:0;font-family:var(--font-ar-body)}
 .ai .p{stroke-dasharray:1;stroke-dashoffset:1}
 .ai.on .p,html:not([data-lz]) .ai .p{stroke-dashoffset:0}
 @media (prefers-reduced-motion:no-preference){
-  .ai.on .p{animation:ai-draw 1.2s cubic-bezier(.6,0,.2,1) backwards}
-  .ai.on .p:nth-child(2){animation-delay:.15s}.ai.on .p:nth-child(3){animation-delay:.3s}
+  .ai.on .p{animation:ai-draw var(--m-draw) var(--m-ease-move) backwards}
+  .ai.on .p:nth-child(2){animation-delay:calc(2 * var(--m-step))}.ai.on .p:nth-child(3){animation-delay:calc(4 * var(--m-step))}
 }
 @keyframes ai-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 .ai g,.ai path,.ai circle,.ai ellipse{transform-box:fill-box;transform-origin:center}
@@ -2415,24 +2506,51 @@ main.wrap>section.proof{padding-block:clamp(48px,5.5vw,84px)}
 /* ---- Skeletons: a picture's box shimmers until the picture has decoded ----
    Boxes already have their final size (width/height + aspect-ratio), so
    nothing moves; the shimmer runs a bounded number of times — the page's
-   no-endless-animation rule holds even on a slow network. */
+   no-endless-animation rule holds even on a slow network. The cover is a
+   sheet 220% of the box wide, starting 120% before it, with the light band
+   at its middle; it slides one box width and a fifth across (transform)
+   while its clip slides back by as much (clip-path), so the box stays
+   covered exactly and only the band crosses it. It used to move its
+   background, which repainted every frame; these two the compositor runs.
+   While it runs the box clips what overflows it 24px out (16px on a
+   phone), room for the work plates' crop marks, which stand outside it:
+   unclipped, the wide sheet made the Arabic page scroll sideways. Once the
+   picture is in the sheet fades (250, .sk-done) and then leaves the layout
+   with the clip (.sk-gone, app.js).
+   Four sweeps of one and a half beats (4 s in all), on the move curve. */
 .sk{position:relative}
-.sk::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:1;transition:opacity .45s var(--ease-out);
-  background:linear-gradient(100deg,transparent 30%,color-mix(in srgb,var(--ice) 7%,transparent) 50%,transparent 70%) var(--navy);
-  background-size:220% 100%;animation:sk-shine 1.25s ease-in-out 4}   /* 5s in all (was 8 of 1.3s): the page's motion rule holds here too */
+.sk:not(.sk-gone){overflow:clip;overflow-clip-margin:24px}
+@media (max-width:719px){.sk:not(.sk-gone){overflow-clip-margin:16px}}
+.sk::after{content:"";position:absolute;top:0;bottom:0;left:-120%;width:220%;z-index:2;pointer-events:none;opacity:1;
+  background:linear-gradient(100deg,var(--navy) 36%,color-mix(in srgb,var(--ice) 7%,var(--navy)) 50%,var(--navy) 64%);
+  clip-path:inset(0 0 0 54.545% round var(--sk-r,0px));
+  transition:opacity var(--m-hover) var(--m-ease-exit)}
+@media (prefers-reduced-motion:no-preference){.sk::after{animation:sk-shine var(--m-draw) var(--m-ease-move) 4}}
 .sk.sk-done::after{opacity:0}
-@keyframes sk-shine{from{background-position:120% 0}to{background-position:-120% 0}}
-@media (prefers-reduced-motion:reduce){.sk::after{animation:none}}
+.sk.sk-gone::after{display:none}
+@keyframes sk-shine{
+  from{transform:translateX(0);clip-path:inset(0 0 0 54.545% round var(--sk-r,0px))}
+  to{transform:translateX(54.545%);clip-path:inset(0 45.455% 0 0 round var(--sk-r,0px))}}
+.plate.sk,.proj .thumb.sk{--sk-r:var(--r-md)}
+.fd-photo.sk{--sk-r:32px}
 .proj .thumb.sk::after{z-index:2}
 .proj .thumb .browser{z-index:3}
 
 /* ---- Wayfinding: the section you are in ---- */
 .nav-links a[aria-current="true"]{color:var(--ice)}
 .nav-links a{position:relative}
-.nav-links a[aria-current="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--crimson)}
+/* the mark under the current link is always there, drawn from the reading
+   start when the section becomes current (250), so it never flips on in
+   one frame */
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--crimson);
+  transform:scaleX(0);transform-origin:0 50%;opacity:0;transition:transform var(--t-hover),opacity var(--t-hover)}
+html[dir="rtl"] .nav-links a::after{transform-origin:100% 50%}
+.nav-links a[aria-current="true"]::after{transform:none;opacity:1}
+/* with reduced motion the mark is there or not, drawn by nothing */
+@media (prefers-reduced-motion:reduce){.nav-links a::after{transition:none}}
 /* phones: the links are folded into the menu, so a breadcrumb names the section */
 .crumb{display:none;align-items:center;gap:var(--s-2);min-width:0;font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
-  opacity:0;transition:opacity .25s var(--ease-out)}
+  opacity:0;transition:opacity var(--t-hover)}
 .crumb i{font-style:normal;color:var(--faint)}
 .crumb b{font-weight:400;color:var(--crimson-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .crumb.on{opacity:1}
@@ -2445,9 +2563,10 @@ html[dir="rtl"] .crumb{letter-spacing:0}
   background:var(--navy);color:var(--ice);border:1px solid var(--hairline-2);box-shadow:var(--shadow-lift);
   opacity:0;transform:translateY(12px);pointer-events:none;
   /* hidden, not just transparent: an invisible button still took Tab focus.
-     visibility flips after the fade out and at once on the way in. */
-  visibility:hidden;transition:opacity .3s var(--ease-out),transform .3s var(--ease-out),border-color .2s var(--ease-out),visibility 0s var(--ease-out) .3s}
-.to-top.on{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity .3s var(--ease-out),transform .3s var(--ease-out),border-color .2s var(--ease-out),visibility 0s var(--ease-out)}
+     visibility flips after the fade out (250, the exit curve) and at once on
+     the way in (333, the enter curve). */
+  visibility:hidden;transition:opacity var(--m-hover) var(--m-ease-exit),transform var(--m-hover) var(--m-ease-exit),border-color var(--t-hover),visibility 0s linear var(--m-hover)}
+.to-top.on{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition:opacity var(--m-enter) var(--m-ease-enter),transform var(--m-enter) var(--m-ease-enter),border-color var(--t-hover),visibility 0s}
 /* the inline end is the left in Arabic, so it clears the left inset (a notch in landscape) */
 html[dir="rtl"] .to-top{inset-inline-end:max(16px,env(safe-area-inset-left))}
 @media (hover:hover){.to-top:hover{border-color:var(--teal)}}
@@ -2625,7 +2744,6 @@ section.band::after,section.band+section.band::after{
    the price guide, tarifs/, since 2026-10-31: the home page links to it where
    the folded panel stood (the guide renders the panel open) */
 .price-guide{margin-top:var(--s-5)}
-.mobile-menu.open nav a:nth-of-type(8){animation-delay:.24s}   /* the guide's link, after the seven sections */
 
 /* ---- phone ---- */
 @media (max-width:479px){.crumb{display:none}}
@@ -2651,6 +2769,21 @@ section.band::after,section.band+section.band::after{
    button's 52 it made the bar 6px taller as it appeared (app.js shows it),
    and moved the whole bar down with it (a layout shift of 0.009-0.012) */
 .navbar .nav-cta.btn{min-height:44px;padding-block:0;white-space:nowrap}
+/* From 700px, with scripts, the action keeps its place in the bar from the
+   first paint: the button's own geometry, unseen, until app.js has found
+   that it fits and fades it in (250, the buttons' clock). It used to arrive
+   by display after the page had painted, and the pill and the links beside
+   it moved (a layout shift of 0.004-0.005 at 1440). */
+@media (min-width:700px){
+  html.js .navbar .nav-cta{display:inline-flex;align-items:center;gap:var(--s-2);min-height:44px;padding:0 var(--s-5);
+    border:1px solid transparent;border-radius:var(--r-sm);font-family:var(--font-body);font-size:var(--t-ui);font-weight:600;line-height:1.4;
+    white-space:nowrap;text-decoration:none}
+  html.js .navbar .nav-cta:not(.fit){visibility:hidden;opacity:0}
+  /* measured while the last page is still being lifted off it: it is
+     simply there when the bar is uncovered, nothing fades under the lift */
+  html:active-view-transition-type(page) .navbar .nav-cta{transition:none}
+}
+.navbar .nav-cta[hidden]{display:none}   /* under 700px (the .btn class would outrank the attribute) */
 @media (min-width:961px) and (max-width:1279px){
   .nav-links,.nav-right .theme-switch{display:none}
   .menu-toggle{display:grid;place-items:center}
@@ -2676,8 +2809,9 @@ section.band::after,section.band+section.band::after{
   .m-contact{position:fixed;inset-inline:0;bottom:0;z-index:80;display:flex;gap:10px;
     padding:10px max(var(--gutter),env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(var(--gutter),env(safe-area-inset-left));
     background:color-mix(in srgb,var(--void) 90%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--hairline);
-    transform:translateY(110%);visibility:hidden;transition:transform .3s var(--ease-out),visibility 0s var(--ease-out) .3s}
-  .m-contact.on{transform:none;visibility:visible;transition:transform .3s var(--ease-out),visibility 0s var(--ease-out)}
+    /* out in 250 on the exit curve, visible until it has gone; in, 333 */
+    transform:translateY(110%);visibility:hidden;transition:transform var(--m-hover) var(--m-ease-exit),visibility 0s linear var(--m-hover)}
+  .m-contact.on{transform:none;visibility:visible;transition:transform var(--m-enter) var(--m-ease-enter),visibility 0s}
   /* One height whatever the label does. "Démarrer un projet" wraps to two
      lines at 390px and below (and "Start a project" at 320), and with 12px
      padding and the body's 1.6 leading that grew the buttons to 68px and the
@@ -2735,9 +2869,10 @@ section.band::after,section.band+section.band::after{
    reduced motion flattens keeps no compositor layer of its own. */
 /* A skeleton shimmers only while its box is on screen: app.js marks it
    .sk-run from an IntersectionObserver and drops the mark once the picture is
-   in. It animates a background, which the compositor cannot take over, so
-   every running copy restyled and repainted each frame, off screen too. Paused,
-   it keeps its place in its 4 cycles and resumes when the box comes back. */
+   in. When it animated a background, every running copy restyled and
+   repainted each frame, off screen too; it moves on the compositor now, and
+   still only where it is seen. Paused, it keeps its place in its 4 cycles
+   and resumes when the box comes back. */
 .sk:not(.sk-run)::after{animation-play-state:paused}
 
 /* ---- Mobile audit (r3/a): every page at 320-430px and 667/844 landscape,
@@ -2887,7 +3022,6 @@ main.wrap>section+section::before{display:none}
 .hero-terms{max-width:34em;margin-top:var(--s-4);font-size:var(--t-small);line-height:1.5;color:var(--muted)}
 @media (max-width:960px){.hero .hero-terms{order:5;margin-top:var(--s-3)}.hero .plate-wrap{margin-top:var(--s-4)}}
 @media (min-width:600px) and (max-width:960px){.hero-cta{flex-wrap:nowrap}.hero-cta .btn{flex:1 1 0;justify-content:center}}
-@media (prefers-reduced-motion:no-preference){.hero-terms{animation:hero-rise-solid .45s var(--ease-out) .1s both}}
 /* the caption under the capture, one line: 01/04 · name · what it is ↗ */
 .pm-item{flex-wrap:nowrap;gap:var(--s-2);align-items:center;min-width:0;max-width:100%}
 .pm-item i{font-family:var(--font-body);font-size:var(--t-small);letter-spacing:0;text-transform:none;color:var(--muted);white-space:nowrap}
@@ -3531,10 +3665,6 @@ html[dir="rtl"] main:has(>#work)>section:not(.hero,.proof)>.kicker::after{align-
   .lang-offer{inset-inline-start:auto;inset-inline-end:calc(max(16px,env(safe-area-inset-right)) + 56px)}
 }
 @media (max-width:720px){
-  @supports (animation-timeline:scroll()){
-    .lang-offer{animation:offer-late linear both;animation-timeline:scroll(root);animation-range:0 600px}
-    @keyframes offer-late{from,99%{visibility:hidden;opacity:0}to{visibility:visible;opacity:1}}
-  }
   .footer{padding-bottom:calc(2 * var(--s-5))}
   .footer::before{bottom:var(--s-5)}
 }
@@ -3804,24 +3934,27 @@ html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display);font-wei
   .footer nav{grid-template-columns:repeat(5,max-content)}
 }
 
-/* ---- G3 · the plates register on hover and focus ---- */
-.proj .thumb::before{--arm:8px;--lw:1px;
+/* ---- G3 · the plates register on hover and focus ----
+   The four crop marks are drawn once, at their registered place (6px out,
+   12px arms) and stand a little wide at rest (scale 1.04 about the centre,
+   three quarters strong); on hover or focus they close in to it and darken,
+   by transform and opacity on the hover's clock. They used to grow by
+   inset and two registered lengths, a layout and a repaint every frame. */
+.proj .thumb::before{inset:-6px;--k:var(--crimson);opacity:.75;transform:scale(1.04);
   background:
-    linear-gradient(var(--k),var(--k)) 0 0/var(--arm) var(--lw),linear-gradient(var(--k),var(--k)) 0 0/var(--lw) var(--arm),
-    linear-gradient(var(--k),var(--k)) 100% 0/var(--arm) var(--lw),linear-gradient(var(--k),var(--k)) 100% 0/var(--lw) var(--arm),
-    linear-gradient(var(--k),var(--k)) 0 100%/var(--arm) var(--lw),linear-gradient(var(--k),var(--k)) 0 100%/var(--lw) var(--arm),
-    linear-gradient(var(--k),var(--k)) 100% 100%/var(--arm) var(--lw),linear-gradient(var(--k),var(--k)) 100% 100%/var(--lw) var(--arm);
+    linear-gradient(var(--k),var(--k)) 0 0/12px 1px,linear-gradient(var(--k),var(--k)) 0 0/1px 12px,
+    linear-gradient(var(--k),var(--k)) 100% 0/12px 1px,linear-gradient(var(--k),var(--k)) 100% 0/1px 12px,
+    linear-gradient(var(--k),var(--k)) 0 100%/12px 1px,linear-gradient(var(--k),var(--k)) 0 100%/1px 12px,
+    linear-gradient(var(--k),var(--k)) 100% 100%/12px 1px,linear-gradient(var(--k),var(--k)) 100% 100%/1px 12px;
   background-repeat:no-repeat}
 @media (prefers-reduced-motion:no-preference){
-  .proj .thumb{transition:border-color var(--t-enter),transform .24s var(--ease-out),box-shadow .24s var(--ease-out)}
-  .proj .thumb::before{transition:inset .24s var(--ease-out),--arm .24s var(--ease-out),--lw .24s var(--ease-out)}
+  .proj .thumb{transition:border-color var(--t-hover),transform var(--t-hover),box-shadow var(--t-hover)}
+  .proj .thumb::before{transition:transform var(--t-hover),opacity var(--t-hover)}
 }
-@property --arm{syntax:"<length>";inherits:false;initial-value:8px}
-@property --lw{syntax:"<length>";inherits:false;initial-value:1px}
-.proj:has(:focus-visible) .thumb::before{inset:-6px;--arm:14px;--lw:1.5px;--k:var(--crimson)}
+.proj:has(:focus-visible) .thumb::before{transform:none;opacity:1}
 .proj:has(:focus-visible) .thumb{transform:translateY(-3px);box-shadow:0 44px 70px -40px rgb(var(--shade) / calc(1 * var(--shade-k)))}
 @media (hover:hover){
-  .proj:hover .thumb::before{inset:-6px;--arm:14px;--lw:1.5px;--k:var(--crimson)}
+  .proj:hover .thumb::before{transform:none;opacity:1}
   .proj:hover .thumb{transform:translateY(-3px);box-shadow:0 44px 70px -40px rgb(var(--shade) / calc(1 * var(--shade-k)))}
 }
 
@@ -3835,10 +3968,13 @@ html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display);font-wei
 .capabilities[open]>summary .chev::before{background:var(--crimson)}
 .t-incl>summary::after,.t-incl[open]>summary::after{content:"";flex:none;width:14px;height:14px;font-size:0;color:var(--crimson-text);
   background:linear-gradient(currentColor,currentColor) 50% 50%/14px 2px no-repeat,linear-gradient(currentColor,currentColor) 50% 50%/2px 14px no-repeat}
-.t-incl[open]>summary::after{background-size:14px 2px,2px 0}
+/* open, the plus becomes a minus by its clip (the middle 2px row), not by
+   resizing its upright, which repainted it every frame */
+.t-incl>summary::after{clip-path:inset(0)}
+.t-incl[open]>summary::after{clip-path:inset(6px 0)}
 @media (prefers-reduced-motion:no-preference){
-  .capabilities>summary .chev::before,.capabilities>summary .chev::after{transition:transform var(--t-enter),opacity var(--t-enter),background-color var(--t-hover)}
-  .t-incl>summary::after{transition:background-size var(--t-enter)}
+  .capabilities>summary .chev::before,.capabilities>summary .chev::after{transition:transform var(--t-hover),opacity var(--t-hover),background-color var(--t-hover)}
+  .t-incl>summary::after{transition:clip-path var(--t-hover)}
 }
 @media (forced-colors:active){
   .capabilities>summary .chev::before,.capabilities>summary .chev::after{forced-color-adjust:none;background:CanvasText}
@@ -3892,7 +4028,7 @@ html[dir="rtl"] .prev-paid .ptl-zero{font-family:var(--font-ar-display);font-wei
 .mobile-menu nav a{font-size:clamp(22px,min(6.6vw,5.2svh),30px);min-height:48px;display:flex;align-items:center;line-height:1.2}
 .mobile-menu nav a[data-i18n="tarifs.navLink"]{font-family:var(--font-mono);font-weight:400;font-size:var(--t-small);letter-spacing:.04em;min-height:40px;color:var(--muted)}
 html[dir="rtl"] .mobile-menu nav a[data-i18n="tarifs.navLink"]{font-family:var(--font-ar-body);letter-spacing:0}
-html:has(.mobile-menu.open){overscroll-behavior:none}
+html.menu-open{overscroll-behavior:none}   /* (set with the menu, app.js: a :has() on the root restyled the page at every 'open' class) */
 @media (max-height:560px) and (min-width:480px){
   .mobile-menu{gap:var(--s-2)}
   .mobile-menu nav a{font-size:clamp(20px,6.4svh,26px);min-height:44px}
@@ -3909,6 +4045,11 @@ html:has(.mobile-menu.open){overscroll-behavior:none}
   html.js .navbar .lang.open>a:not([aria-current]){display:flex;position:absolute;inset-inline-end:-1px;top:calc(100% + 6px + (var(--n,1) - 1) * 50px);width:46px;min-width:46px;z-index:5;
     background:var(--void);border:1px solid var(--hairline-2);border-radius:var(--r-pill);box-shadow:var(--shadow-lift)}
 }
+/* the two other languages drop 6px into place (250) as the list opens */
+@media (max-width:720px) and (prefers-reduced-motion:no-preference){
+  html.js .navbar .lang.open>a:not([aria-current]){transition:opacity var(--m-hover) var(--m-ease-enter),transform var(--m-hover) var(--m-ease-enter)}
+  @starting-style{html.js .navbar .lang.open>a:not([aria-current]){opacity:0;transform:translateY(-6px)}}
+}
 
 /* ---- the bottom bar: 61px, and the estimate while the estimator is on screen ---- */
 .m-contact .m-price,.m-contact .m-estgo{display:none}
@@ -3919,15 +4060,19 @@ html:has(.mobile-menu.open){overscroll-behavior:none}
   .m-contact.est .m-main,.m-contact.est .wa-link{display:none}
   .m-contact.est .m-price{display:flex;flex-direction:column;justify-content:center;flex:1 1 auto;min-width:0;margin:0;gap:1px}
   .m-contact.est .m-estgo{display:inline-flex;flex:0 0 auto;font-size:14px;padding-inline:var(--s-3)}
+  /* the bar's two contents (the ways in; the estimate) swap in place: what
+     arrives fades in over 250 (what leaves goes at once, as the two cannot
+     share the row while one fades) */
+  @media (prefers-reduced-motion:no-preference){
+    .m-contact :is(.m-price,.m-estgo,.m-main,.wa-link){transition:opacity var(--m-hover) var(--m-ease-enter)}
+    @starting-style{.m-contact :is(.m-price,.m-estgo,.m-main,.wa-link){opacity:0}}
+  }
   .mp-n{font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.2;color:var(--ice);font-variant-numeric:tabular-nums;white-space:nowrap}
   html[dir="rtl"] .mp-n{font-family:var(--font-ar-display)}
   .mp-w{font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:.04em;line-height:1.2;color:var(--muted);white-space:nowrap}
   html[dir="rtl"] .mp-w{font-family:var(--font-ar-body);letter-spacing:0}
-  /* the toast sits above the bar while that is on */
-  body:has(.m-contact.on) .lang-offer{bottom:calc(61px + var(--s-3) + env(safe-area-inset-bottom))}
-}
-@media (max-width:720px){
-  .lang-offer{animation:none}   /* it no longer waits on the scroll: it shows once, for a few seconds (index.html) */
+  /* the toast rides above the bar while that is on (61px here) */
+  html.mbar-on .lang-offer{--mbar-h:61px}
 }
 
 /* ---- the estimator on a phone: its figure is in the bar, so the panel is not stuck under the navbar (it was 51% of the screen with it) ---- */
@@ -4000,8 +4145,8 @@ html:has(.mobile-menu.open){overscroll-behavior:none}
   html.js .ptl-more{display:inline-flex;align-items:center;gap:var(--s-3);min-height:44px;margin-top:var(--s-1);padding:0;background:none;border:0;cursor:pointer;
     font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted)}
   html.js .ptl-more::after{content:"";flex:none;width:14px;height:14px;
-    background:linear-gradient(var(--crimson-text),var(--crimson-text)) 50% 50%/14px 2px no-repeat,linear-gradient(var(--crimson-text),var(--crimson-text)) 50% 50%/2px 14px no-repeat;transition:background-size var(--t-enter)}
-  html.js .ptl-w.full .ptl-more::after{background-size:14px 2px,2px 0}
+    background:linear-gradient(var(--crimson-text),var(--crimson-text)) 50% 50%/14px 2px no-repeat,linear-gradient(var(--crimson-text),var(--crimson-text)) 50% 50%/2px 14px no-repeat;clip-path:inset(0);transition:clip-path var(--t-hover)}
+  html.js .ptl-w.full .ptl-more::after{clip-path:inset(6px 0)}
   html.js .ptl-w:not(.full) .ptl-s:nth-child(even){display:none}
   html.js .ptl-w:not(.full) .ptl-s:not(.ptl-build) .ptl-p{display:none}
   .ptl{gap:var(--s-3)}
@@ -4044,7 +4189,7 @@ html[dir="rtl"] .ptl-more{font-family:var(--font-ar-body);letter-spacing:0;text-
   html #work .work-grid>.proj.reveal{opacity:1;transform:none;animation:none}
   .proj .body .gain{margin-bottom:var(--s-2)}
   .rail-dots{display:flex;justify-content:center;gap:var(--s-2);margin-top:var(--s-1)}
-  .rail-dots i{display:block;width:20px;height:2px;border-radius:2px;background:color-mix(in srgb,var(--muted) 38%,transparent);transition:background var(--t-enter)}
+  .rail-dots i{display:block;width:20px;height:2px;border-radius:2px;background:color-mix(in srgb,var(--muted) 38%,transparent);transition:background-color var(--t-hover)}
   .rail-dots i.on{background:var(--crimson)}
   .work-foot{margin-top:var(--s-4)}
   .scene-lead{display:none}
@@ -4084,7 +4229,7 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   #services.svc-fold :is(.svc-row,.cap){cursor:pointer}
   #services.svc-fold :is(.svc-row,.cap) :is(.brief,.tags,.fam){cursor:auto}
   #services .svc-tog{display:block;position:absolute;z-index:1;inset-block-start:0;inset-inline-end:0;width:48px;height:56px;padding:0;background:none;border:0;cursor:pointer}
-  #services .svc-tog::before,#services .svc-tog::after{content:"";position:absolute;left:50%;top:calc(var(--s-3) + 11px);background:var(--crimson-text);border-radius:2px;transition:transform var(--t-enter),opacity var(--t-enter)}
+  #services .svc-tog::before,#services .svc-tog::after{content:"";position:absolute;left:50%;top:calc(var(--s-3) + 11px);background:var(--crimson-text);border-radius:2px;transition:transform var(--t-hover),opacity var(--t-hover)}
   #services .svc-tog::before{width:14px;height:2px;margin:-1px 0 0 -7px}
   #services .svc-tog::after{width:2px;height:14px;margin:-7px 0 0 -1px}
   #services .open>.svc-tog::after{transform:scaleY(0);opacity:0}
@@ -4096,6 +4241,21 @@ html[dir="rtl"] #services .cap h4{font-family:var(--font-ar-display)}
   .svc-lead{margin-bottom:var(--s-4)}
 }
 @media (prefers-reduced-motion:reduce){#services .svc-tog::before,#services .svc-tog::after{transition:none}}
+/* what a fold opens rises into place (the FAQ's rule, above): a service's
+   text and tags, the path's other steps */
+@media (max-width:960px) and (prefers-reduced-motion:no-preference){
+  #services.svc-fold .open :is(.brief,.tags,.fam){animation:m-rise var(--m-enter) var(--m-ease-enter) both}
+  #services.svc-fold .open .tags{animation-delay:var(--m-step)}
+  #services.svc-fold .open .fam{animation-delay:calc(2 * var(--m-step))}
+}
+@container (max-width:719px){
+  @media (prefers-reduced-motion:no-preference){
+    html.js .ptl-w.full :is(.ptl-s:nth-child(even),.ptl-s:not(.ptl-build) .ptl-p){animation:m-rise var(--m-enter) var(--m-ease-enter) both}
+    html.js .ptl-w.full .ptl-s:nth-child(n+3) .ptl-p{animation-delay:var(--m-step)}
+    html.js .ptl-w.full .ptl-s:nth-child(4){animation-delay:var(--m-step)}
+    html.js .ptl-w.full .ptl-s:nth-child(n+5) .ptl-p{animation-delay:calc(2 * var(--m-step))}
+  }
+}
 
 /* ---- the prices: one card at a time on a phone (Studio first), three abreast on a tablet ---- */
 .tier-tabs{display:none}
@@ -4328,13 +4488,30 @@ html[dir="rtl"] .fds-art{box-shadow:-6px 6px 0 var(--nsp-shadow)}
 html[dir="rtl"] .seal{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:13px}
 :where(.est-out){position:relative}   /* zero specificity: the sticky and static rules above still win (they keep the seal's containing block) */
 .form-success{position:relative}
-.seal.stamped,.form-success.show .seal{opacity:.92;animation:seal-stamp .32s steps(4) both}
-@keyframes seal-stamp{0%{opacity:0;transform:rotate(-12deg) scale(1.9)}70%{opacity:.95;transform:rotate(-12deg) scale(.94)}100%{opacity:.92;transform:rotate(-12deg) scale(1)}}
+/* four frames of 83, one eighth each: the stamp lands in half a beat. A
+   steps() easing cuts each keyframe interval, not the whole run, so the
+   first leg (to 75%, 250 ms) takes three cuts and the last (to 333) one */
+.seal.stamped,.form-success.show .seal{opacity:.92;animation:seal-stamp var(--m-enter) steps(3) both}
+.form-success.show .seal{animation-delay:var(--m-hover)}   /* after the message has begun to rise */
+@keyframes seal-stamp{0%{opacity:0;transform:rotate(-12deg) scale(1.9)}75%{opacity:.95;transform:rotate(-12deg) scale(.94);animation-timing-function:steps(1,end)}100%{opacity:.92;transform:rotate(-12deg) scale(1)}}
 @media (prefers-reduced-motion:reduce){.seal.stamped,.form-success.show .seal{animation:none}}
 .seal--sent{inset-block-start:0}
 
-/* the paper wipe (app.js "paper wipe"): a cream sheet, 0.4 s, from the reading side */
-.pw{position:fixed;inset:0;z-index:2147483000;background:#F1E8D4;border-inline-start:6px solid #0A1420;transform:translateX(101%);visibility:hidden;pointer-events:none}
-html[dir="rtl"] .pw{transform:translateX(-101%)}
-.pw.pw-go{visibility:visible;pointer-events:auto;transform:none;transition:transform .4s cubic-bezier(.7,0,.3,1)}
-@media (prefers-reduced-motion:reduce){.pw{display:none}}
+/* the page change: both pages opt in; the leaving page is lifted off like a
+   sheet of paper, its rule along its lower edge, and the arriving page is
+   already underneath. One stroke of 500 ms and no wait before the request.
+   A swap on the same page (theme, language) crossfades instead. Off with
+   reduced motion: the browser shows the next page at once. */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto;types:page}
+  html:active-view-transition-type(page)::view-transition-group(root){animation:none}   /* old and new share one box, so the group's own size-and-place animation shows nothing, and it is not one the compositor can run alone: off, and the old page's lift (500 ms) sets the length */
+  html:active-view-transition-type(page)::view-transition-old(root){z-index:1;mix-blend-mode:normal;box-shadow:0 6px 0 var(--m-edge);animation:m-lift var(--m-reveal) var(--m-ease-move) both}
+  html:active-view-transition-type(page)::view-transition-new(root){mix-blend-mode:normal;animation:none}
+  html:active-view-transition-type(swap)::view-transition-old(root){animation:m-out var(--m-quick) var(--m-ease-exit) both}
+  html:active-view-transition-type(swap)::view-transition-new(root){animation:m-in var(--m-hover) var(--m-ease-enter) both}
+}
+@keyframes m-lift{to{transform:translateY(-100%)}}
+/* while the theme crossfades (app.js), nothing eases on its own under it */
+html.m-swap *,html.m-swap *::before,html.m-swap *::after{transition:none!important}
+@keyframes m-out{to{opacity:0}}
+@keyframes m-in{from{opacity:0}}

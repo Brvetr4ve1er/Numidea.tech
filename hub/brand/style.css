@@ -5,9 +5,12 @@
    Numidea's own identity. The page around a book is the Studio's: paper,
    ink, the red seal, Archivo and Geist Mono, ink bars and hard shadows.
    Each plate keeps its book's own palette and faces inside its frame
-   (the book is the specimen, the page is the shelf). No script, nothing
-   moves; the faces are the Studio's files (hub/fonts/fonts.css) and the
-   main site's (assets/fonts).
+   (the book is the specimen, the page is the shelf). Nothing moves on its
+   own: the page changes by the paper lift, the controls answer the pointer
+   and the plates below the screen rise in as they arrive (book.js marks
+   them), all on the site's 90 BPM grid and none with reduced motion; the
+   faces are the Studio's files (hub/fonts/fonts.css) and the main site's
+   (assets/fonts).
 
    Contrast, measured on the painted pairs (WCAG AA, 4.5:1 text, 3:1 large):
      paper #D8CBB8: ink 10.39, muted #4F4238 6.07, red text #8A3127 5.16
@@ -28,6 +31,26 @@
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 
 :root{
+  /* motion: one tempo for the whole site, 90 BPM, the pulse the radio's
+     four tracks share (85 to 92 BPM). A beat is 667 ms; every duration,
+     delay and stagger is a whole number of its eighths (83 ms), and letters,
+     characters and long rows step by sixteenths (42 ms), so motions that
+     start together land together. Four curves, one per job. */
+  --m-beat:667ms;
+  --m-press:83ms;    /* 1/8: a press */
+  --m-step:83.333ms;     /* 1/8: one step of a stagger (three at most) */
+  --m-quick:167ms;   /* 1/4: something small leaving */
+  --m-hover:250ms;   /* 3/8: answering the pointer or focus; a panel leaving */
+  --m-enter:333ms;   /* 1/2: a panel, menu, sheet or dialog arriving */
+  --m-reveal:500ms;  /* 3/4: a block arriving on scroll, a slide, the page lift */
+  --m-draw:1000ms;   /* 1 1/2: a picture drawing itself */
+  --m-bar:2667ms;    /* 4 beats: the longest single piece (the sting) */
+  --m-ease-enter:cubic-bezier(.16,1,.3,1);  /* arriving, answering */
+  --m-ease-exit:cubic-bezier(.5,0,.75,0);   /* leaving */
+  --m-ease-move:cubic-bezier(.87,0,.13,1);  /* crossing the screen: wipes, the lift, slides */
+  --m-ease-snap:steps(1,end);               /* hard cuts: drawn frames, the night cut */
+  --m-edge:#211E1B;
+
   --paper:#D8CBB8;
   --cream:#F3ECE1;
   --ink:#211E1B;
@@ -59,17 +82,42 @@ ol,ul{padding:0;list-style:none}
 :focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .plate :focus-visible{outline-color:currentColor}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-.skip{position:absolute;inset-inline-start:8px;top:-60px;z-index:120;padding:12px 16px;background:var(--ink);color:var(--cream);font:500 13px var(--f-mono);text-decoration:none}
-.skip:focus{top:8px}
+.skip{position:absolute;inset-inline-start:8px;top:8px;z-index:120;padding:12px 16px;background:var(--ink);color:var(--cream);font:500 13px var(--f-mono);text-decoration:none;
+  transform:translateY(calc(-100% - 16px))}
+.skip:focus{transform:none}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gx)}
+
+/* the page change: both pages opt in; the leaving page is lifted off like a
+   sheet of paper, its rule along its lower edge, and the arriving page is
+   already underneath. One stroke of 500 ms and no wait before the request.
+   A swap on the same page (theme, language) crossfades instead. Off with
+   reduced motion: the browser shows the next page at once. */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto;types:page}
+  html:active-view-transition-type(page)::view-transition-group(root){animation:none}   /* old and new share one box, so the group's own size-and-place animation shows nothing, and it is not one the compositor can run alone: off, and the old page's lift (500 ms) sets the length */
+  html:active-view-transition-type(page)::view-transition-old(root){z-index:1;mix-blend-mode:normal;box-shadow:0 6px 0 var(--m-edge);animation:m-lift var(--m-reveal) var(--m-ease-move) both}
+  html:active-view-transition-type(page)::view-transition-new(root){mix-blend-mode:normal;animation:none}
+  html:active-view-transition-type(swap)::view-transition-old(root){animation:m-out var(--m-quick) var(--m-ease-exit) both}
+  html:active-view-transition-type(swap)::view-transition-new(root){animation:m-in var(--m-hover) var(--m-ease-enter) both}
+}
+@keyframes m-lift{to{transform:translateY(-100%)}}
+@keyframes m-out{to{opacity:0}}
+@keyframes m-in{from{opacity:0}}
+
+/* one voice for the pointer: colours and the underline answer in three
+   eighths of a beat on the enter curve, a press moves in one eighth */
+@media (prefers-reduced-motion:no-preference){
+  .skip{transition:transform var(--m-hover) var(--m-ease-enter)}
+  .bc a,.btn,.toc a,.toc a b,.foot__row a{transition:background-color var(--m-hover) var(--m-ease-enter),border-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter),text-decoration-color var(--m-hover) var(--m-ease-enter),transform var(--m-press)}
+}
 
 /* ---------------- the page around the book ---------------- */
 .bar{display:flex;align-items:center;min-height:56px}
 .bc{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px;font:500 12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .bc li{display:flex;align-items:center;min-height:44px}
 .bc li:not(:last-child)::after{content:"/";margin-left:12px}
-.bc a{display:flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none;--teal-text:var(--red-text)}
-.bc a:hover{text-decoration:underline}
+.bc a{display:flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:underline transparent;--teal-text:var(--red-text)}
+.bc a:hover{text-decoration-color:currentColor}
 .bc .wm{display:block;height:15px;width:auto;overflow:visible}
 .bc [aria-current]{color:var(--ink)}
 
@@ -87,6 +135,7 @@ ol,ul{padding:0;list-style:none}
 .facts dd{font-weight:500}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;margin-top:22px;padding:0 20px;border:2px solid var(--ink);background:var(--ink);color:var(--cream);font:500 13px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;box-shadow:var(--shadow-s)}
 .btn:hover{background:var(--red);border-color:var(--red)}
+.btn:active{transform:translate(1px,1px)}
 .btn--ghost{background:transparent;color:var(--ink)}
 .btn--ghost:hover{background:var(--ink);border-color:var(--ink);color:var(--cream)}
 .btns{display:flex;flex-wrap:wrap;gap:0 14px}
@@ -162,8 +211,8 @@ ul.dots li::before{content:"";position:absolute;inset-inline-start:0;top:.62em;w
 .foot > p{padding-top:clamp(24px,3vw,36px);border-top:2px solid var(--ink)}
 .foot p{max-width:46em;color:var(--muted);font-size:15px}
 .foot__row{display:flex;flex-wrap:wrap;align-items:center;gap:0 28px;margin-top:10px;font:500 12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
-.foot__row a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none}
-.foot__row a:hover{text-decoration:underline}
+.foot__row a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:underline transparent}
+.foot__row a:hover{text-decoration-color:currentColor}
 
 @media (max-width:960px){
   .head{grid-template-columns:minmax(0,1fr);align-items:start}
@@ -402,4 +451,28 @@ ul.dots li::before{content:"";position:absolute;inset-inline-start:0;top:.62em;w
 @media (max-width:1100px){.bk-ex .exmo{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){.bk-ex .meta div{grid-template-columns:minmax(0,1fr);gap:2px}.bk-ex .exmo{grid-template-columns:minmax(0,1fr)}.bk-ex .expost{max-height:none}}
 
+/* ---------- plates arrive ----------
+   book.js marks with data-reveal only the plates below the screen at load,
+   and adds is-in as each one comes 8% into view: the plate rises 12px and
+   fades in over three quarters of a beat, its bar is drawn across on the
+   move curve in the same stroke, and its number stamps down in the second
+   half (three eighths after three eighths), so the plate settles at 500 ms. */
+@media (prefers-reduced-motion:no-preference){
+  /* (the transitions belong to the way in only: on the hiding state they
+     played a hidden 500 ms exit on every plate below the screen at load) */
+  .plate[data-reveal].is-in{transition:opacity var(--m-reveal) var(--m-ease-enter),transform var(--m-reveal) var(--m-ease-enter)}
+  .plate[data-reveal]:not(.is-in){opacity:.001;transform:translateY(12px)}
+  .plate[data-reveal].is-in .plate__bar{transition:clip-path var(--m-reveal) var(--m-ease-move)}
+  .plate[data-reveal]:not(.is-in) .plate__bar{clip-path:inset(0 100% 0 0)}
+  .plate[data-reveal]:not(.is-in) .plate__bar:dir(rtl){clip-path:inset(0 0 0 100%)}
+  .plate[data-reveal].is-in .plate__n{animation:bk-stamp var(--m-hover) var(--m-ease-enter) var(--m-hover) both}
+}
+/* the Studio's seal (hub/style.css st-seal): down from 1.6 with a wobble,
+   here settling flat, as the numbers of the plates shown at load are */
+@keyframes bk-stamp{0%{transform:scale(1.6) rotate(-8deg)}33.333%{transform:scale(1.15) rotate(-5deg)}66.667%{transform:scale(1.02) rotate(-10deg)}83.333%{transform:scale(1) rotate(-7deg)}100%{transform:none}}
+
+/* ---------- motion preference: nothing eases, nothing moves on its own ---------- */
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+}
 @media print{.skip{display:none}}

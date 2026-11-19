@@ -92,7 +92,7 @@
 .case-alliance .ca-badge--site{top:46px;inset-inline-end:10px}
 .case-alliance .ca-badge--start{top:10px;inset-inline-start:10px;inset-inline-end:auto}
 .case-alliance .ca-badge--sand,.case-alliance .ca-badge--sand.is-seen{background:var(--c-bg)}
-.case-alliance .ca-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--c-font-disp);font-weight:800;font-size:13px;letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:background-color .2s}
+.case-alliance .ca-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--c-font-disp);font-weight:800;font-size:13px;letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:background-color var(--m-hover) var(--m-ease-enter)}
 .case-alliance .ca-btn:hover{background:var(--c-accent-2)}
 .case-alliance .ca-btn--block{display:flex;width:100%;font-size:14px;letter-spacing:0}
 .case-alliance .ca-pill{padding:3px 8px;border-radius:999px;background:var(--c-accent);color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;white-space:nowrap}
@@ -193,13 +193,13 @@
 .case-alliance .ca-calc__total b{font-family:var(--c-font-disp);font-weight:800;font-size:22px;line-height:1;color:var(--c-accent)}
 .case-alliance .ca-calc__total span{max-width:15em;font-family:var(--f-mono);font-size:var(--t-label);line-height:1.3;color:var(--ca-mist)}
 .case-alliance .ca-calc__dests{flex:none;display:flex;flex-wrap:wrap;gap:6px;padding:12px 12px 0}
-.case-alliance .ca-calc__dests button{min-height:44px;padding:0 14px;border:1px solid var(--c-dark);border-radius:999px;background:var(--ca-white);color:var(--c-dark);font-family:var(--c-font);font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s}
+.case-alliance .ca-calc__dests button{min-height:44px;padding:0 14px;border:1px solid var(--c-dark);border-radius:999px;background:var(--ca-white);color:var(--c-dark);font-family:var(--c-font);font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;transition:background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
 .case-alliance .ca-calc__dests button:hover{background:var(--c-bg)}
 .case-alliance .ca-calc__dests button[aria-selected="true"]{background:var(--c-dark);color:var(--c-accent)}
 .case-alliance .ca-calc__pax{flex:none;display:flex;align-items:center;gap:10px;padding:10px 12px 12px}
 .case-alliance .ca-calc__paxL{flex:1;min-width:0;font-size:13px;font-weight:700}
 .case-alliance .ca-calc__n{min-width:28px;text-align:center;font-family:var(--c-font-disp);font-weight:800;font-size:20px}
-.case-alliance .ca-step{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--c-dark);border-radius:50%;background:var(--ca-white);color:var(--c-dark);font-family:var(--c-font-disp);font-weight:800;font-size:18px;cursor:pointer;transition:background-color .2s}
+.case-alliance .ca-step{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--c-dark);border-radius:50%;background:var(--ca-white);color:var(--c-dark);font-family:var(--c-font-disp);font-weight:800;font-size:18px;cursor:pointer;transition:background-color var(--m-hover) var(--m-ease-enter)}
 .case-alliance .ca-step:hover{background:var(--c-bg)}
 .case-alliance .ca-step--plus{border-color:var(--c-dark);background:var(--c-dark);color:var(--c-accent)}
 .case-alliance .ca-step--plus:hover{background:var(--ca-navy-2)}
@@ -231,14 +231,14 @@
 /* ---------------- the scope card (the design's price card) ---------------- */
 .case-alliance .ca-scope{display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--c-dark);color:var(--c-on-dark)}
 .case-alliance .ca-scope__head{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.case-alliance .ca-scope__chip{padding:3px 8px;border-radius:999px;background:var(--c-bg);color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;white-space:nowrap;transition:background-color .3s}
+.case-alliance .ca-scope__chip{padding:3px 8px;border-radius:999px;background:var(--c-bg);color:var(--c-dark);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.2;letter-spacing:.12em;white-space:nowrap;transition:background-color var(--m-hover) var(--m-ease-enter)}
 /* every kind seen: the chip turns mint, as the design's did */
 .case-alliance .ca-scope:not(:has([data-scope]:not(.is-seen))) .ca-scope__chip{background:var(--c-accent)}
 .case-alliance .ca-scope__h{font-family:var(--c-font-disp);font-weight:800;font-size:clamp(22px,2.4vw,32px);line-height:1.08;text-wrap:balance}
 .case-alliance .ca-scope__note{font-size:var(--t-label);line-height:1.45;color:var(--ca-slate-l)}
 .case-alliance .ca-scope__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px 14px;padding-top:10px;border-top:1px solid var(--ca-rule)}
-.case-alliance .ca-scope__list li{display:flex;gap:8px;align-items:center;font-size:13px;line-height:1.25;transition:color .3s}
-.case-alliance .ca-scope__list li::before{content:"";width:14px;height:14px;flex:none;border:1.5px solid var(--c-accent);border-radius:50%;transition:background-color .3s}
+.case-alliance .ca-scope__list li{display:flex;gap:8px;align-items:center;font-size:13px;line-height:1.25;transition:color var(--m-hover) var(--m-ease-enter)}
+.case-alliance .ca-scope__list li::before{content:"";width:14px;height:14px;flex:none;border:1.5px solid var(--c-accent);border-radius:50%;transition:background-color var(--m-hover) var(--m-ease-enter)}
 /* a line not seen yet is paler, not faded (the design's .5 opacity gave
    3.98:1); its circle fills once seen */
 html.js .case-alliance .ca-scope__list li{color:var(--ca-slate-l)}

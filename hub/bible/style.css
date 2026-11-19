@@ -39,6 +39,26 @@
   unicode-range:U+30AF,U+30BB,U+30E4,U+30EB,U+30ED,U+591C}
 
 :root{
+  /* motion: one tempo for the whole site, 90 BPM, the pulse the radio's
+     four tracks share (85 to 92 BPM). A beat is 667 ms; every duration,
+     delay and stagger is a whole number of its eighths (83 ms), and letters,
+     characters and long rows step by sixteenths (42 ms), so motions that
+     start together land together. Four curves, one per job. */
+  --m-beat:667ms;
+  --m-press:83ms;    /* 1/8: a press */
+  --m-step:83.333ms;     /* 1/8: one step of a stagger (three at most) */
+  --m-quick:167ms;   /* 1/4: something small leaving */
+  --m-hover:250ms;   /* 3/8: answering the pointer or focus; a panel leaving */
+  --m-enter:333ms;   /* 1/2: a panel, menu, sheet or dialog arriving */
+  --m-reveal:500ms;  /* 3/4: a block arriving on scroll, a slide, the page lift */
+  --m-draw:1000ms;   /* 1 1/2: a picture drawing itself */
+  --m-bar:2667ms;    /* 4 beats: the longest single piece (the sting) */
+  --m-ease-enter:cubic-bezier(.16,1,.3,1);  /* arriving, answering */
+  --m-ease-exit:cubic-bezier(.5,0,.75,0);   /* leaving */
+  --m-ease-move:cubic-bezier(.87,0,.13,1);  /* crossing the screen: wipes, the lift, slides */
+  --m-ease-snap:steps(1,end);               /* hard cuts: drawn frames, the night cut */
+  --m-edge:#211E1B;
+
   --paper:#D8CBB8;
   --cream:#F3ECE1;
   --sand:#E8DFD1;
@@ -54,7 +74,7 @@
   --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --marker:"Permanent Marker","Segoe Print","Bradley Hand","Comic Sans MS",cursive;
   --jp:"Noto Sans JP","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
-  --ease:cubic-bezier(.16,1,.3,1);
+  --ease:var(--m-ease-enter);
 
   /* the page's measure and its gutters, never under a notch */
   --pad:clamp(20px,4vw,56px);
@@ -82,6 +102,8 @@ h1,h2,h3,p,ul,ol,figure,dl,dd{margin:0}
 ul,ol{padding:0;list-style:none}
 a{color:var(--red-text)}
 a:hover{color:var(--ink)}
+/* one voice for the pointer: colour and underline answer in three eighths of a beat */
+@media (prefers-reduced-motion:no-preference){a{transition:color var(--m-hover) var(--ease),text-decoration-color var(--m-hover) var(--ease)}}
 ::selection{background:var(--red);color:var(--cream)}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 button{font:inherit;color:inherit}
@@ -92,13 +114,31 @@ strong,b{font-weight:600}
 /* ---------- skip link: the first Tab stop, over everything once focused ---------- */
 .skip{position:fixed;left:var(--gx-l);top:12px;z-index:100;padding:10px 14px;background:var(--ink);color:var(--cream);
   font:600 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;
-  transform:translateY(-200%);transition:transform .25s var(--ease)}
+  transform:translateY(-200%);transition:transform var(--m-hover) var(--ease)}
 .skip:focus-visible{transform:none;outline-color:var(--red)}
+
+/* the page change: both pages opt in; the leaving page is lifted off like a
+   sheet of paper, its rule along its lower edge, and the arriving page is
+   already underneath. One stroke of 500 ms and no wait before the request.
+   A swap on the same page (theme, language) crossfades instead. Off with
+   reduced motion: the browser shows the next page at once. */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto;types:page}
+  html:active-view-transition-type(page)::view-transition-group(root){animation:none}   /* old and new share one box, so the group's own size-and-place animation shows nothing, and it is not one the compositor can run alone: off, and the old page's lift (500 ms) sets the length */
+  html:active-view-transition-type(page)::view-transition-old(root){z-index:1;mix-blend-mode:normal;box-shadow:0 6px 0 var(--m-edge);animation:m-lift var(--m-reveal) var(--m-ease-move) both}
+  html:active-view-transition-type(page)::view-transition-new(root){mix-blend-mode:normal;animation:none}
+  html:active-view-transition-type(swap)::view-transition-old(root){animation:m-out var(--m-quick) var(--m-ease-exit) both}
+  html:active-view-transition-type(swap)::view-transition-new(root){animation:m-in var(--m-hover) var(--m-ease-enter) both}
+}
+@keyframes m-lift{to{transform:translateY(-100%)}}
+@keyframes m-out{to{opacity:0}}
+@keyframes m-in{from{opacity:0}}
 
 /* ---------- the page ---------- */
 .page{max-width:1240px;margin:0 auto;padding:var(--pad) var(--gx-r) var(--pad) var(--gx-l);display:flex;flex-direction:column;gap:var(--gap)}
 .sec{display:flex;flex-direction:column;gap:28px}
 .sec:target{outline:none}
+.sec{scroll-margin-top:16px}   /* a jump lands 16px below the edge, as the brand books' plates do */
 .sh{display:flex;gap:10px 16px;align-items:baseline;flex-wrap:wrap}
 .num{font:500 13px var(--mono);letter-spacing:.2em}
 .sh h2{font:900 clamp(36px,5vw,64px)/.9 var(--display);text-transform:uppercase;letter-spacing:-.02em}
@@ -120,7 +160,8 @@ strong,b{font-weight:600}
 .cover{display:grid;grid-template-columns:1fr;gap:32px;align-items:end;border-bottom:3px solid var(--ink);padding-bottom:32px}
 .cover-copy{display:flex;flex-direction:column;gap:18px;container-type:inline-size}
 .back{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;min-height:44px;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red-text);text-decoration:none}
-.back:hover{color:var(--ink);text-decoration:underline}
+.back{text-decoration:underline transparent}
+.back:hover{color:var(--ink);text-decoration-color:currentColor}
 .chip-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font:500 12px/1.3 var(--mono);letter-spacing:.2em;text-transform:uppercase}
 .chip{background:var(--ink);color:var(--cream);padding:5px 8px}
 .chip-row span:not(.chip){letter-spacing:.14em}
@@ -184,13 +225,23 @@ strong,b{font-weight:600}
 /* the speech bubble, beside his head: typed by the script, hidden at rest */
 .bubble{position:absolute;left:12px;top:66px;z-index:3;width:max-content;max-width:min(240px,44%);padding:10px 14px;background:var(--cream);border:2px solid var(--ink);
   box-shadow:var(--shadow-s);font:400 clamp(15px,1.4vw,19px)/1.25 var(--marker);color:var(--ink);text-wrap:pretty;pointer-events:none;
-  opacity:0;transform:translateY(8px) rotate(-2deg);transition:opacity .2s var(--ease),transform .3s var(--ease)}
+  opacity:0;transform:translateY(8px) rotate(-2deg);transition:opacity var(--m-hover) var(--ease),transform var(--m-hover) var(--ease)}
 .bubble.on{opacity:1;transform:translateY(0) rotate(-2deg)}
+/* in with the first character, three eighths on the enter curve; out a step quicker, on the exit curve */
+.bubble:not(.on){transition-duration:var(--m-quick);transition-timing-function:var(--m-ease-exit)}
+/* the rest of the line, laid out but not yet shown: the box has its final size from the first character */
+.bubble .ghost{visibility:hidden}
 .bubble i{position:absolute;right:-9px;top:18px;width:14px;height:14px;background:var(--cream);border-top:2px solid var(--ink);border-right:2px solid var(--ink);transform:rotate(45deg)}
 .state{position:absolute;left:12px;top:12px;z-index:4;background:var(--ink);color:var(--cream);padding:6px 10px;display:flex;flex-direction:column;gap:2px;
   font:500 12px/1.3 var(--mono);letter-spacing:.16em;text-transform:uppercase}
 .state span{color:var(--paper)}
-.state b{font-size:13px;font-weight:600}
+.state b{display:block;font-size:13px;font-weight:600;transition:opacity var(--m-quick) var(--m-ease-exit)}   /* a dip out and back, on the exit curve */
+/* the label's box holds twenty characters with their tracking, the length
+   of the longest label the pointer brings ("Glance ← reading you"), so it
+   never resizes as he looks around; a new label comes in at the bottom of
+   a dip in its opacity (app.js) */
+.state b{min-width:calc(20ch + 20 * .16em)}
+.state b.swap{opacity:.4}
 .rig-said{margin-top:18px;min-height:1.5em;font-size:15px;line-height:1.4;color:var(--ink-2)}
 .rig-said q{quotes:"“" "”";color:var(--ink)}
 .rig-said q::before,.rig-said q::after{color:var(--ink-2)}
@@ -199,7 +250,7 @@ strong,b{font-weight:600}
 html:not(.js) .ctrls{display:none}
 .ctrl{min-height:48px;padding:0 12px;border:2px solid var(--ink);background:var(--cream);color:var(--ink);cursor:pointer;text-align:start;
   display:flex;justify-content:space-between;align-items:center;gap:8px;font:600 12px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;
-  transition:box-shadow .2s var(--ease),transform .2s var(--ease)}
+  transition:box-shadow var(--m-hover) var(--ease),transform var(--m-hover) var(--ease),background-color var(--m-hover) var(--ease),color var(--m-hover) var(--ease)}
 .ctrl small{font-size:12px;font-weight:500;color:var(--ink-2);letter-spacing:.1em;text-align:end}
 .ctrl:hover{box-shadow:var(--shadow-s);transform:translate(-1px,-1px)}
 .ctrl[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
@@ -255,7 +306,7 @@ html:not(.js) .ctrls{display:none}
 
 /* ---------- 03 · twelve faces ---------- */
 .faces{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.face{background:var(--cream);border:2px solid var(--ink);display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.face{background:var(--cream);border:2px solid var(--ink);display:flex;flex-direction:column;transition:transform var(--m-hover) var(--ease),box-shadow var(--m-hover) var(--ease)}
 .face .pic{aspect-ratio:1;background:var(--sand);border-bottom:2px solid var(--ink);overflow:hidden;padding-top:6%}
 .face .pic img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
 .face figcaption{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px}
@@ -345,7 +396,7 @@ html:not(.js) .ctrls{display:none}
 /* ---------- 08 · elsewhere ---------- */
 .outs{display:grid;grid-template-columns:1fr;gap:8px}
 .out{display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;min-height:52px;padding:8px 12px;border:2px solid var(--ink);background:var(--cream);color:var(--ink);text-decoration:none;
-  transition:box-shadow .2s var(--ease),transform .2s var(--ease)}
+  transition:box-shadow var(--m-hover) var(--ease),transform var(--m-hover) var(--ease),color var(--m-hover) var(--ease)}
 /* the name, the arrow at the end, the handle in full on its own line when
    the tile is too narrow for both (two lines; the tile stays 52px tall) */
 .out b{font-weight:600;font-size:15px;white-space:nowrap;order:1}
@@ -381,16 +432,31 @@ html:not(.js) .ctrls{display:none}
 .foot{border-top:3px solid var(--ink);padding-top:20px;display:flex;flex-direction:column;gap:20px}
 .foot-row{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;align-items:center;font:500 12px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase}
 .foot-row a{display:inline-flex;align-items:center;min-height:44px;color:var(--red-text);text-decoration:none}
-.foot-row a:hover{color:var(--ink);text-decoration:underline}
+.foot-row a{text-decoration:underline transparent}
+.foot-row a:hover{color:var(--ink);text-decoration-color:currentColor}
 .legal{display:flex;flex-wrap:wrap;gap:4px 18px}
 .legal b{text-transform:none;letter-spacing:.04em}
 .heart{color:var(--red-text)}
 .vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .foot-bio{max-width:64ch;font-size:15px;line-height:1.55;text-wrap:pretty}
 
+/* ---------- sections arrive ----------
+   book.js marks with data-reveal only the sections below the screen at
+   load and adds is-in as each one comes 8% into view: the section rises
+   12px and fades in over three quarters of a beat while its heading is
+   uncovered from the top, the number an eighth after it. */
+@media (prefers-reduced-motion:no-preference){
+  .sec[data-reveal]{transition:opacity var(--m-reveal) var(--ease),transform var(--m-reveal) var(--ease)}
+  .sec[data-reveal]:not(.is-in){opacity:.001;transform:translateY(12px)}
+  .sec[data-reveal] .sh h2{transition:clip-path var(--m-reveal) var(--ease)}
+  .sec[data-reveal] .sh .num{transition:clip-path var(--m-reveal) var(--ease) var(--m-step)}
+  .sec[data-reveal]:not(.is-in) .sh h2,.sec[data-reveal]:not(.is-in) .sh .num{clip-path:inset(0 0 100% 0)}
+}
+
 /* ---------- motion preference: nothing eases, nothing moves on its own ---------- */
 @media (prefers-reduced-motion:reduce){
-  .skip,.bubble,.ctrl,.face,.out{transition:none}
+  .skip,.bubble,.ctrl,.face,.out,a,.state b{transition:none}
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
 }
 @media print{.skip,.ctrls,.state{display:none}.rig{position:static}}
 

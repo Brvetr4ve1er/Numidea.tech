@@ -42,7 +42,9 @@
     "aside": "tired eyes. big ideas.",
     "mood": "/ TODAY’S MOOD",
     "live": "● LIVE",
-    "still": "● AT REST"
+    "still": "● AT REST",
+    "replay": "REPLAY",
+    "replayL": "Replay the intro"
   },
   "rig": {
     "alt": "Yasser, Numidea’s founder, with his coffee, and Kūro, his black cat",

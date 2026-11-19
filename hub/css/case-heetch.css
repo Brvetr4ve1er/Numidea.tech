@@ -91,10 +91,10 @@
 .case-heetch .ch-lab{position:absolute;inset-inline-start:8px;bottom:8px;z-index:2;max-width:calc(100% - 16px);padding:4px 9px;border-radius:12px;background:var(--ch-white);color:var(--ch-ink);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);line-height:1.25;letter-spacing:.06em;pointer-events:none}
 .case-heetch .ch-lab--ink{background:var(--ch-ink);color:var(--ch-white)}
 .case-heetch .ch-lab--top{top:10px;bottom:auto;inset-inline-start:10px;background:var(--c-accent);color:var(--c-on-accent);border-radius:999px}
-.case-heetch .ch-step{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--ch-edge-2);border-radius:50%;background:transparent;color:var(--c-on-dark);font-size:16px;cursor:pointer;transition:background-color .2s}
+.case-heetch .ch-step{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid var(--ch-edge-2);border-radius:50%;background:transparent;color:var(--c-on-dark);font-size:16px;cursor:pointer;transition:background-color var(--m-hover) var(--m-ease-enter)}
 .case-heetch .ch-step:hover{background:var(--ch-card-2)}
 :root[dir="rtl"] .case-heetch .ch-step span{display:inline-block;transform:scaleX(-1)}
-.case-heetch .ch-btn{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;background:var(--ch-ink);color:var(--ch-white);font-weight:700;font-size:14px;text-decoration:none;text-align:center;transition:background-color .2s}
+.case-heetch .ch-btn{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;background:var(--ch-ink);color:var(--ch-white);font-weight:700;font-size:14px;text-decoration:none;text-align:center;transition:background-color var(--m-hover) var(--m-ease-enter)}
 .case-heetch .ch-btn:hover{background:var(--ch-black)}
 
 /* ---------------- HT-00 · the cover ---------------- */
@@ -114,7 +114,7 @@
 .case-heetch .ch-type{display:flex;flex-direction:column;gap:10px;padding:14px;background:var(--c-accent);color:var(--ch-ink)}
 .case-heetch .ch-type .ch-k{padding-inline-end:76px}
 .case-heetch .ch-type__rows{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.case-heetch .ch-type__row{--w:calc(var(--v,.6) * 10);display:block;font-family:var(--ch-wide);font-weight:900;font-size:clamp(40px,4.4vw,62px);line-height:.86;text-align:center;white-space:nowrap;color:var(--ch-ink);transform-origin:center;transition:transform .5s var(--ease)}
+.case-heetch .ch-type__row{--w:calc(var(--v,.6) * 10);display:block;font-family:var(--ch-wide);font-weight:900;font-size:clamp(40px,4.4vw,62px);line-height:.86;text-align:center;white-space:nowrap;color:var(--ch-ink);transform-origin:center;transition:transform var(--m-reveal) var(--m-ease-enter)}
 .case-heetch .ch-type__row--a{transform:skewY(calc(var(--w) * 1.4deg)) scaleX(calc(1 - var(--w) * .006))}
 .case-heetch .ch-type__row--b{color:var(--ch-white);transform:scaleX(calc(1 + var(--w) * .012))}
 .case-heetch .ch-type__row--c{transform:skewY(calc(var(--w) * -1.4deg)) scaleX(calc(1 - var(--w) * .006))}
@@ -135,7 +135,9 @@
 .case-heetch .ch-post__pic img{position:absolute;inset:0;width:100%;height:100%}
 /* the pink wipe that crosses the poster as it changes */
 .case-heetch .ch-post__pic::after{content:"";position:absolute;inset:0;background:var(--c-accent);transform:scaleX(0);transform-origin:right center;pointer-events:none}
-.case-heetch .ch-post.is-active .ch-post__pic::after{animation:ch-wipe .3s var(--ease)}
+.case-heetch .ch-post.is-active .ch-post__pic::after{animation:ch-wipe var(--m-reveal) var(--m-ease-move)}
+/* the first poster is simply there: the wipe answers a change, never the page's load (hub/app.js 8) */
+.case-heetch .ch-post.is-initial .ch-post__pic::after{animation:none}
 @keyframes ch-wipe{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 .case-heetch .ch-post__bar{flex:none;display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--ch-black)}
 .case-heetch .ch-post__cap{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
@@ -150,7 +152,7 @@
 .case-heetch .ch-fs legend{float:left;width:100%;padding:0}
 .case-heetch .ch-fs legend + *{clear:both}
 .case-heetch .ch-pills{display:flex;flex-wrap:wrap;gap:5px}
-.case-heetch .ch-pills label{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--ch-ink);border-radius:999px;background:transparent;color:var(--ch-ink);font-weight:700;font-size:13px;white-space:nowrap;cursor:pointer;transition:background-color .2s,color .2s}
+.case-heetch .ch-pills label{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--ch-ink);border-radius:999px;background:transparent;color:var(--ch-ink);font-weight:700;font-size:13px;white-space:nowrap;cursor:pointer;transition:background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
 .case-heetch .ch-pills input:checked + label{background:var(--ch-ink);color:var(--c-accent)}
 .case-heetch .ch-pills input:focus-visible + label{outline:2px solid var(--ch-ink);outline-offset:2px}
 .case-heetch .ch-plan__out{margin-top:auto;display:flex;flex-direction:column;gap:5px;padding:12px;border-radius:12px;background:var(--ch-ink);color:var(--ch-white)}
@@ -212,7 +214,7 @@
 .case-heetch .ch-links > .ch-k{padding-inline-end:76px}
 .case-heetch .ch-links__h{font-family:var(--ch-head);font-weight:900;font-size:clamp(20px,2vw,26px);line-height:1;text-transform:uppercase;text-wrap:balance}
 .case-heetch .ch-links__list{margin-top:auto;display:flex;flex-direction:column;gap:6px}
-.case-heetch .ch-links__list a{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;border:1px solid var(--ch-edge-2);border-radius:12px;color:var(--c-on-dark);text-decoration:none;transition:background-color .2s,border-color .2s}
+.case-heetch .ch-links__list a{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;border:1px solid var(--ch-edge-2);border-radius:12px;color:var(--c-on-dark);text-decoration:none;transition:background-color var(--m-hover) var(--m-ease-enter),border-color var(--m-hover) var(--m-ease-enter)}
 .case-heetch .ch-links__list a:hover{background:var(--c-tile);border-color:var(--c-accent)}
 .case-heetch .ch-links__l{display:flex;align-items:center;gap:10px;min-width:0}
 .case-heetch .ch-links__ico{flex:none;width:28px;height:28px;display:grid;place-items:center;border-radius:6px;font-family:var(--f-mono);font-weight:700;font-size:var(--t-label)}
@@ -229,7 +231,7 @@
 .case-heetch .ch-end-card__note{font-family:var(--f-hand);font-size:16px;line-height:1.2}
 .case-heetch .ch-end-card__list{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:6px 14px;padding-top:10px;border-top:2px solid var(--ch-ink)}
 .case-heetch .ch-end-card__list li{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:500;line-height:1.25}
-.case-heetch .ch-end-card__list li::before{content:"";width:14px;height:14px;flex:none;border:2px solid var(--ch-ink);border-radius:50%;transition:background-color .3s}
+.case-heetch .ch-end-card__list li::before{content:"";width:14px;height:14px;flex:none;border:2px solid var(--ch-ink);border-radius:50%;transition:background-color var(--m-hover) var(--m-ease-enter)}
 /* the line is ticked once its kind has been seen */
 .case-heetch .ch-end-card__list li.is-seen::before{background:var(--ch-ink)}
 
