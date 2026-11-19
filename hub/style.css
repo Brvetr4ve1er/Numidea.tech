@@ -1391,6 +1391,10 @@ figure.st-tile{margin:0}
   .st-contact__place{top:0;bottom:auto;border-top:0;border-bottom:2px solid var(--cream)}
   .st-contact__aside{margin-top:6px}
 }
+/* the narrowest phones: the label stays one line, so it never comes down over the board and the word on it */
+@media (max-width:399px){
+  .st-contact__place{padding:4px 8px;font-size:10px;letter-spacing:.08em;white-space:nowrap}
+}
 /* on view, below the first screen only (hub/app.js 7b): the scene unrolls, the word stamps on the board, the
    aside writes itself, then the place label; done in 1.333 s */
 @media (prefers-reduced-motion:no-preference){
