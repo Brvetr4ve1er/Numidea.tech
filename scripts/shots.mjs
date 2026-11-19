@@ -65,7 +65,13 @@ export const PROJECTS = {
   // soft: a 0.6 px blur before the encode, the crane photo's grain being most of its bytes (the 1280 file was 61 KB at quality 56, over the 53 KB ceiling)
   // Fleet 7 round 4: scrolled past the crane heading (scroll 505), so the window is the client's nav, its four totals
   // and the first reference card (a photograph of a building), not its section title over a darkened photo
-  'bordjsteel-references': { capture: 'https://bordjsteelb2b.netlify.app/references', client: 'bordjsteel', sheet: null, scroll: 505 },
+  // 2026-11-19: the window at 505 opened on the client's nav cut by the frame and showed the grey seam between the white
+  // totals panel and the grey references list; it now sits on the list itself: the first reference card (UTEC, its
+  // photograph and its figures) whole, the next one's top under it, the fixed nav hidden
+  // 2026-11-19 (review): the list's cards are a photograph and a white half, so the frame read half empty beside the
+  // other cards' full-bleed captures: the window is the references page's header again, the crane under its heading,
+  // edge to edge, the fixed nav hidden (bare), so the card repeats neither the plate's home nor a pale strip of chrome
+  'bordjsteel-references': { capture: 'https://bordjsteelb2b.netlify.app/references', client: 'bordjsteel', sheet: null, bare: 'all' },
   almaflowclim:          { capture: 'https://almaflowclim.netlify.app',           client: 'almaflow',   sheet: 'almaflow/d1' },
   // a 1152×720 window (16:10 itself): at 1440×900 the hero ended at two thirds
   // and the last third was the next band's faint card tops under a chat bubble;
@@ -103,7 +109,10 @@ export const CROP = {
   // Fleet 7 round 3: the lead row repeated the plate's nav (a pale chrome strip over the dark photo): the window now
   // starts under the nav (y 67) and stops 4 px above the photo's foot (y 540), the crane under its heading and nothing else
   // Fleet 7 round 4: the whole 1440 width of the scrolled page (nav, totals, first card)
-  'bordjsteel-references': { x: 0, y: 0, w: 1440 },
+  // 2026-11-19: the references list, 60 px in from each side of the 1440 page (the cards span 91-1349)
+  // 2026-11-19 (review): the header under the client's nav (it is not fixed, so bare leaves it; it starts at y 68), its
+  // crane photo edge to edge to its foot (y 540): 756 wide, centred
+  'bordjsteel-references': { x: 342, y: 68, w: 756 },
   // Fleet 7 round 3: the headline, its lede and its two actions, zoomed (a 900 px window instead of the whole 1440 page:
   // at card size the 1440 frame's 18 px lede was 7 px); the hero's right card is cut at its middle, as any crop
   almaflowclim: { x: 100, y: 112, w: 900 },

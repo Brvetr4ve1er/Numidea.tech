@@ -595,9 +595,14 @@
     <!-- SIGNATURE OFFER — pinned -->
     <article class="preview reveal" id="apercu" aria-labelledby="prev-h">
       <div class="body">
-        <span class="tag" data-i18n="prev.tag">Offre signature</span>
-        <h3 id="prev-h" data-i18n="prev.name">L’Aperçu</h3>
-        <p class="promise" data-i18n="prev.promise">Zéro risque : vous voyez avant de payer.</p>
+        <!-- the offer's words in one group (2026-11-19): from 1100 it is centred against the stub beside it;
+             narrower it is display:contents, so its lines flow as before -->
+        <div class="prev-head">
+          <span class="tag" data-i18n="prev.tag">Offre signature</span>
+          <h3 id="prev-h" data-i18n="prev.name">L’Aperçu</h3>
+          <p class="promise" data-i18n="prev.promise">Zéro risque : vous voyez avant de payer.</p>
+          <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.</p>
+        </div>
         <!-- The path, from the first message to the decision, told once: the
              method's steps (its section left the page on 2026-10-26, an owner
              decision) and the Aperçu's own moments. It is the text, so it is
@@ -615,7 +620,6 @@
                this opens the other two and the sentences (app.js, styles.css) -->
           <button type="button" class="ptl-more js-only" aria-expanded="false"><span data-i18n="prev.more">Le détail des étapes</span></button>
         </div>
-        <p class="prev-terms" data-i18n="prev.terms">Gratuit et sans engagement · réservé aux entreprises immatriculées · 4 Aperçus par mois au maximum, tous clients confondus.</p>
         <!-- the one figure of the path, set beside the promise: what has been paid when the visitor decides (app.js writes it in the visitor's currency) -->
         <div class="prev-stub">
         <p class="prev-paid"><span class="ptl-d" data-i18n="prev.tl5d">Payé jusqu’ici :</span><b class="ptl-zero">0&nbsp;<span class="cur" data-i18n="price.cur">DA</span></b><span class="prev-out"><b data-i18n="svc.outcomeLabel">Résultat</b><span data-i18n="prev.outcome">Vous dites oui en connaissance de cause : vous avez déjà vu le résultat.</span></span></p>
@@ -636,6 +640,7 @@
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f1.name">Sites &amp; applications web</h3>
+          <img class="svc-spot" src="assets/illus/svc-sites-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f1.promise">Le choix évident.</p>
           <p class="brief" data-i18n="f1.brief">Sites et applications web sur mesure — rapides, bien référencés, pensés pour convertir, du front-end au cloud. Pas de modèle acheté puis maquillé : on dessine votre site de zéro.</p>
           <!-- only what the delivered builds use (F11): the rest waits for the owner to confirm it -->
@@ -647,6 +652,7 @@
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f2.name">Identité &amp; systèmes visuels</h3>
+          <img class="svc-spot" src="assets/illus/svc-identity-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f2.promise">La confiance avant le premier mot.</p>
           <p class="brief" data-i18n="f2.brief">Logos, couleurs, typographie, animation et une charte complète, documentée, prête à l’emploi : ce qui donne à une petite entreprise l’allure d’une maison établie.</p>
           <div class="tags"><span class="pill" data-i18n="tag.identity">Identité</span><span class="pill" data-i18n="tag.designSystems">Kits graphiques</span><span class="pill" data-i18n="tag.motion">Animation</span></div>
@@ -657,6 +663,7 @@
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f3.name">Automatisation &amp; pipelines</h3>
+          <img class="svc-spot" src="assets/illus/svc-auto-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f3.promise">Supprimez la corvée.</p>
           <p class="brief" data-i18n="f3.brief">Collecte de données sur le web, pipelines de données, génération de leads, automatisations, outils internes. Le travail répétitif et fragile qui dévore vos heures — on le fait tourner seul à 3 h du matin.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.apis">API</span><span class="pill">Claude</span></div>
@@ -667,6 +674,7 @@
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f4.name">Intelligence marché &amp; produit</h3>
+          <img class="svc-spot" src="assets/illus/svc-market-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f4.promise">Voir le marché clairement.</p>
           <p class="brief" data-i18n="f4.brief">Transformez les données publiques du web en base exploitable : veille concurrentielle, suivi des prix et des catalogues — collectées dans le respect des conditions de chaque site et du RGPD, structurées, interrogeables.</p>
           <div class="tags"><span class="pill">Python</span><span class="pill">Playwright</span><span class="pill" data-i18n="tag.maps">Cartes</span><span class="pill" data-i18n="tag.scoring">Scoring</span></div>
@@ -677,6 +685,7 @@
       <article class="svc-row reveal">
         <div>
           <h3 data-i18n="f5.name">Stratégie &amp; conseil croissance</h3>
+          <img class="svc-spot" src="assets/illus/svc-strategy-400.webp" width="400" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <p class="promise" data-i18n="f5.promise">De la donnée, pas des impressions.</p>
           <p class="brief" data-i18n="f5.brief">Audits marketing complets, analyse des tunnels de vente, positionnement concurrentiel, feuilles de route — honnêtes, ROI d’abord, par phases. On étudie votre secteur avant le premier appel.</p>
           <div class="tags"><span class="pill" data-i18n="tag.strategy">Stratégie</span><span class="pill" data-i18n="tag.funnels">Tunnels de vente</span><span class="pill" data-i18n="tag.audits">Audits</span></div>
@@ -1005,13 +1014,14 @@
         </ul>
       </div>
 
-      <!-- the right column: the drawn Yasser (hub/bible/art/pose-coffee.webp,
-           copied at web size) in a scene panel: a night ground, a ground line,
-           a hard offset shadow (Night Shift Poster). The real photo, when the
-           owner supplies one, replaces the <img> (the slot below stays). -->
+      <!-- the right column: a painted night plate (assets/illus/founder-night,
+           4:5), Yasser at the workshop window with his coffee and Kūro on the
+           sill, inside a frame with a hard offset shadow (Night Shift Poster).
+           The real photo, when the owner supplies one, replaces the <img>
+           (the slot below stays). -->
       <div class="fd-aside">
         <figure class="fd-plate fd-scene">
-          <div class="fds-art"><img src="assets/illus/yasser-coffee.webp" width="385" height="440" alt="Portrait dessiné de Yasser : cheveux longs noués, lunettes rondes, veste crème, un gobelet de café à la main." data-i18n-alt="founder.sceneAlt" loading="lazy" decoding="async"></div>
+          <div class="fds-art"><img src="assets/illus/founder-night-960.webp" srcset="assets/illus/founder-night-480.webp 480w, assets/illus/founder-night-960.webp 960w" sizes="(min-width:1100px) 36vw, (min-width:721px) 38vw, min(100vw, 560px)" width="960" height="1200" alt="Yasser à la fenêtre de l’atelier, la nuit, un café à la main ; Kūro sur le rebord." data-i18n-alt="founder.sceneAlt" loading="lazy" decoding="async"></div>
           <figcaption class="fdp-cap" data-i18n="founder.sceneCap">Yasser, à l’atelier. Ce café n’est pas le premier.</figcaption>
         </figure>
       </div>
@@ -1144,6 +1154,13 @@
         <span data-i18n="hero.cta2">Écrire sur WhatsApp</span>
       </a>
     </p>
+    <!-- Kūro's window (the Studio's FAQ shows the same drawing): the empty
+         left column under the two ways in, at 1100 and wider only (lazy and
+         display:none below, so nothing is fetched there). It stays in view
+         while open answers lengthen the list. -->
+    <figure class="faq-win">
+      <img src="hub/img/studio/night/kuro-window-600.webp" srcset="hub/img/studio/night/kuro-window-600.webp 600w, hub/img/studio/night/kuro-window-900.webp 900w" sizes="(min-width:1100px) 260px, 1px" width="900" height="1125" alt="Kūro assis sur une pile de papiers pliés près d’une fenêtre de nuit, à côté d’un tampon rouge et d’un café." data-i18n-alt="faq.winAlt" loading="lazy" decoding="async">
+    </figure>
   </section>
 
   <!-- ================= CONTACT ================= -->
@@ -1159,6 +1176,13 @@
           <div class="ch"><dt data-i18n="contact.chStudio">Studio</dt><dd data-i18n="contact.vStudio">Bordj Bou Arréridj · Algérie</dd></div>
           <div class="ch"><dt data-i18n="contact.chReply">Réponse</dt><dd><span data-i18n="contact.vReply">Le jour ouvré suivant · dimanche–jeudi, 9h–⁠18h (UTC+1) · <span class="nb">FR · EN · AR</span></span><small class="ch-note" data-i18n="contact.tzNote">Heure de Paris en hiver, 1 h de moins en été</small></dd></div>
         </dl>
+        <!-- the workshop door open at night under the details (W07, 2026-11-19), the Studio's contact painting cut
+             16:9 (assets/illus/porte-wide-*); its board is blank, the word on it is this page's text.
+             1100px and wider (display:none below, so nothing is fetched there). -->
+        <figure class="ct-door">
+          <img src="assets/illus/porte-wide-720.webp" srcset="assets/illus/porte-wide-720.webp 720w, assets/illus/porte-wide-1280.webp 1280w" sizes="(min-width:1100px) 520px, 1px" width="1280" height="720" alt="La porte de l’atelier ouverte la nuit : Yasser, dans l’encadrement, lève une pancarte ; Kūro attend sur le seuil." data-i18n-alt="contact.sceneAlt" loading="lazy" decoding="async">
+          <span class="ct-door__sign" aria-hidden="true" data-i18n="contact.sign">salut.</span>
+        </figure>
       </div>
       <div class="contact-main">
         <form class="form" id="contact-form" action="mailto:hamissemohamedyasser@gmail.com" method="post" enctype="text/plain">

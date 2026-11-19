@@ -253,9 +253,12 @@
 @media (max-width:599px),(max-height:500px) and (orientation:landscape){
   .case-heetch .st-case__track{--r:calc(var(--c) * 2)}
   .case-heetch .ch-k{letter-spacing:.06em}
-  .case-heetch .ch-cover{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,32%) minmax(0,1fr)}
-  .case-heetch .ch-cover__pic img{object-fit:cover;object-position:50% 38%}
-  .case-heetch .ch-cover__txt{padding:12px 14px;gap:6px}
+  /* the poster whole on its black ground (its logo and its promo line were cut, 2026-11-18), the text from the top */
+  .case-heetch .ch-cover{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,52%) minmax(0,1fr)}
+  .case-heetch .ch-cover__pic img{object-fit:contain;object-position:50% 50%}
+  .case-heetch .ch-cover__txt{padding:12px 14px;gap:12px;justify-content:flex-start}
+  .case-heetch .ch-end-card__list{flex:none}
+  .case-heetch .ch-end-card .ch-btn{margin-top:auto}
   .case-heetch .ch-cover__top{padding-inline-end:0}
   .case-heetch .ch-cover__h{font-size:22px}
   .case-heetch .ch-cover__s{font-size:var(--t-label);line-height:1.4}
@@ -268,3 +271,5 @@
   .case-heetch .ch-plan__r{border-top:1px solid var(--ch-edge)}
 }
 @media (max-width:599px){.case-heetch .ch-pal__sw li{min-width:0;overflow-wrap:anywhere}}
+/* a narrow phone: the poster gives the text the room its three tags need */
+@media (max-width:379px){.case-heetch .ch-cover{grid-template-rows:minmax(0,44%) minmax(0,1fr)}}

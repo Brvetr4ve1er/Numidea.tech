@@ -112,6 +112,27 @@ html.st-gutter:is(.st-stinging,.st-sting-pending){scrollbar-gutter:stable}
   html:active-view-transition-type(page)::view-transition-new(root){mix-blend-mode:normal;animation:none}
   html:active-view-transition-type(swap)::view-transition-old(root){animation:m-out var(--m-quick) var(--m-ease-exit) both}
   html:active-view-transition-type(swap)::view-transition-new(root){animation:m-in var(--m-hover) var(--m-ease-enter) both}
+  /* the bar stays put through a page change (2026-11-18): it is its own group, so the lifted sheet slides out
+     under it and only its words cross-fade; not while the sting's first frame covers the page (a named bar
+     would float over the cover) */
+  .st-nav{view-transition-name:st-nav}
+  html.st-sting-pending .st-nav,html.st-stinging .st-nav{view-transition-name:none}
+  html:active-view-transition-type(page)::view-transition-group(st-nav){animation-duration:var(--m-reveal);animation-timing-function:var(--m-ease-move)}
+  html:active-view-transition-type(page,swap)::view-transition-old(st-nav){animation:m-out var(--m-quick) var(--m-ease-exit) both}
+  html:active-view-transition-type(page,swap)::view-transition-new(st-nav){animation:m-in var(--m-hover) var(--m-ease-enter) both}
+  html:active-view-transition-type(page)::view-transition-old(site-nav){animation:m-out var(--m-quick) var(--m-ease-exit) both}   /* the home's nav, leaving for the Studio (no nav of that name here): on the exit curve, not the browser's default fade (2026-11-19) */
+  /* the viewer grows out of the picture pressed and goes back into it (hub/app.js 8) */
+  html:active-view-transition-type(zoom-in,zoom-out)::view-transition-group(lb-pic){animation-duration:var(--m-enter);animation-timing-function:var(--m-ease-move)}
+  html:active-view-transition-type(zoom-out)::view-transition-group(lb-pic){animation-duration:var(--m-hover)}
+  html:active-view-transition-type(zoom-in,zoom-out)::view-transition-old(lb-pic),html:active-view-transition-type(zoom-in,zoom-out)::view-transition-new(lb-pic){height:100%;object-fit:cover}
+  html:active-view-transition-type(zoom-in)::view-transition-old(root){animation:none}
+  html:active-view-transition-type(zoom-in)::view-transition-new(root){animation:m-in var(--m-enter) var(--m-ease-enter) both}
+  html:active-view-transition-type(zoom-out)::view-transition-new(root){animation:none}
+  html:active-view-transition-type(zoom-out)::view-transition-old(root){z-index:1;animation:m-out var(--m-hover) var(--m-ease-exit) both}
+  /* the viewer's zoom also captures the root group and the named nav; neither moves, so neither animates (they ran the browser's 250 ms ease) */
+  html:active-view-transition-type(zoom-in,zoom-out)::view-transition-group(root),html:active-view-transition-type(zoom-in,zoom-out)::view-transition-group(st-nav),
+  html:active-view-transition-type(zoom-in,zoom-out)::view-transition-old(st-nav),html:active-view-transition-type(zoom-in,zoom-out)::view-transition-new(st-nav){animation:none}
+  .st-lb.is-vt,.st-lb.is-vt::backdrop{transition:none}
 }
 @keyframes m-lift{to{transform:translateY(-100%)}}
 @keyframes m-out{to{opacity:0}}
@@ -318,11 +339,39 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-board.is-cut li:nth-child(odd) [data-cut]{transform:translateY(18px) rotate(4deg)}
 .st-board.is-cut li:nth-child(even) [data-cut]{transform:translateY(12px) rotate(-5deg)}
 .st-board.is-cut .st-chain__row--theirs li:not(:last-child)::after{border-top-style:dashed;border-top-color:var(--red)}
+/* (2026-11-18) armed by the script (not with reduced motion, not without it): the strike draws across each cut chip
+   (0-417 ms), the chips fall (0-833), then the direct line draws (833-1500), the builder stamps (1500-1750) and the
+   cut cables show (1500); without the script the board reads finished */
+@media (prefers-reduced-motion:no-preference){
+  .st-board.is-armed .st-chip[data-cut]{position:relative;text-decoration-line:none}
+  .st-board.is-armed .st-chip[data-cut]::before{content:"";position:absolute;inset-inline:10px;top:50%;height:3px;background:var(--red);transform:scaleX(0);transform-origin:0 50%;transition:transform var(--m-hover) var(--m-ease-enter)}
+  [dir="rtl"] .st-board.is-armed .st-chip[data-cut]::before{transform-origin:100% 50%}
+  .st-board.is-cut .st-chip[data-cut]::before{transform:none}
+  .st-chain__row--theirs li:nth-child(3) [data-cut]::before{transition-delay:var(--m-step)}
+  .st-chain__row--theirs li:nth-child(4) [data-cut]::before{transition-delay:calc(var(--m-step) * 2)}
+  .st-board.is-armed .st-chain__row--ours li:first-child::after{transform:scaleX(0);transform-origin:0 50%}
+  [dir="rtl"] .st-board.is-armed .st-chain__row--ours li:first-child::after{transform-origin:100% 50%}
+  .st-board.is-cut .st-chain__row--ours li:first-child::after{transform:none;transition:transform var(--m-beat) var(--m-ease-move) calc(var(--m-step) * 10)}
+  .st-board.is-cut .st-chain__row--ours li:last-child .st-chip{animation:st-kstamp var(--m-hover) var(--m-ease-enter) calc(var(--m-step) * 18) backwards}
+}
 .st-board__end{display:flex;align-items:flex-end;justify-content:flex-end;gap:10px;margin-top:-30px}
 .st-board__end .st-aside{font-size:24px;color:var(--red);transform:rotate(-4deg);margin-bottom:24px;align-self:auto}
 [dir="rtl"] .st-board__end .st-aside{transform:rotate(4deg)}
 .st-board__kuro{width:clamp(96px,10vw,140px);height:auto}
-@media (max-width:560px){.st-board__end{margin-top:0}}
+@media (max-width:560px){.st-board__end{margin-top:0;flex-wrap:wrap}.st-board__end .st-chain__cut{flex:0 0 100%}.st-board__end .st-aside{flex:1 1 0;min-width:0}}
+/* (2026-11-18) the right of the builder's row was empty paper: from 900 the end (Kūro, his line and the two cut
+   cables) sits there, on the board's floor (his bust's cut meets its bottom border), and the board loses its empty foot */
+.st-chain__cut{display:block;flex:none;color:var(--red);align-self:center}
+.st-chain__cut svg{display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.st-chain__cut .c{stroke-width:4;stroke-dasharray:8 4}
+.st-board:not(.is-cut) .st-chain__cut{opacity:0}
+.st-board.is-cut .st-chain__cut{transition:opacity var(--m-press) var(--m-ease-snap) calc(var(--m-beat) * 2.25)}
+@media (min-width:900px){
+  .st-board{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px}
+  .st-board > .st-chain:first-child{grid-column:1 / -1}
+  .st-board > .st-chain:nth-child(2){grid-column:1}
+  .st-board__end{grid-column:2;grid-row:2;align-self:end;margin:0 0 calc(-1 * clamp(20px,3vw,40px))}
+}
 :lang(ar) .st-chip{text-transform:none}
 
 /* ---------------- the pose actors (hub/app.js 3) ---------------- */
@@ -334,7 +383,7 @@ html[lang="ar"] .st-hero__mark,html[lang="ar"] .st-lab__mark{font-family:"Aref R
 .st-actor::after{content:"";position:absolute;left:12%;right:12%;bottom:-5px;height:10px;border-radius:50%;background:rgba(33,30,27,.22);z-index:-1}
 .st-actor--head{flex:none;width:clamp(110px,11vw,150px);aspect-ratio:295/640;margin-bottom:-46px;align-self:flex-end}
 .st-proof .st-actor--head{aspect-ratio:299/640}
-.st-actor--duo{width:min(100%,380px);aspect-ratio:673/520}
+.st-actor--duo{width:380px;max-width:100%;aspect-ratio:673/520}   /* a fixed width (its frame is fit-content, so a % width would resolve against nothing) */
 .st-actor--faq{position:absolute;inset-inline-end:0;bottom:-38px;width:clamp(84px,9vw,124px);aspect-ratio:286/640}
 @media (max-width:560px){.st-actor--head,.st-actor--faq{display:none}}
 
@@ -551,13 +600,14 @@ html.js .st-est .st-obtn:disabled:not([aria-pressed="true"]){opacity:.5;box-shad
 .st-est__note[hidden]{display:none}
 .st-est__nojs{font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
 html.js .st-est__nojs{display:none}
-.st-est__src{flex:1 1 100%;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.7;color:var(--on-dark-2)}
-.st-est__src a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-dark-2);text-underline-offset:3px}
-.st-est__src a:hover{color:var(--cream)}
+/* the market's sources, on the receipt under its button (E18, 2026-11-19): the one link that backs the figures above */
+.st-est__src{margin:-8px 0 0;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.7;color:var(--ink-2);text-align:center}
+.st-est__src a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink-2);text-underline-offset:3px}
+.st-est__src a:hover{color:var(--red-text)}
 .st-rc__mid{padding:10px 12px;border:2px dashed var(--teal);font-size:13px;line-height:1.45;color:var(--teal-text)}
-/* a type without the mid-range note keeps its place (unseen, and unread): Kūro and the markets below stay put as the type changes */
+/* a type without the mid-range note shows nothing there (is-off) */
 .st-rc__mid[hidden]{display:none}
-.st-rc__mid.is-off{visibility:hidden}
+.st-rc__mid.is-off{display:none}   /* no note, no hole: the band it kept read as an empty field above Kūro (2026-11-19) */
 /* ---------------- the radio (hub/app.js 15) ----------------
    A shelf under the two doors: the set (a paper body, a speaker grille, a
    night dial, Kuro asleep on top), then its keys and its four tracks. The
@@ -640,17 +690,24 @@ html.js .st-est__nojs{display:none}
 .st-reel__lead{font-size:var(--t-lead);line-height:1.45;color:var(--ink-2)}
 .st-reel__grid{display:contents;list-style:none;margin:0;padding:0}
 .st-reel__tile{min-width:0}
-.st-reel__tile--tall{grid-column:3;grid-row:1 / span 3}
-.st-reel__b{position:relative;display:flex;flex-direction:column;width:100%;height:100%;padding:0;border:2px solid var(--ink);background:var(--ink);color:var(--cream);box-shadow:var(--shadow);text-align:start;cursor:pointer;transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter)}
+.st-reel__tile--tall{grid-column:3;grid-row:1 / span 3;align-self:stretch}
+.st-reel__tile--tall .st-reel__b video{object-position:50% 35%}
+.st-reel__b{position:relative;display:flex;flex-direction:column;width:100%;height:100%;padding:0;border:2px solid var(--ink);background:var(--ink);color:var(--cream);box-shadow:var(--shadow);text-align:start;cursor:pointer;transition:transform var(--m-hover) var(--m-ease-enter),box-shadow var(--m-hover) var(--m-ease-enter)}
+/* a tile lifts like every card; a press answers in an eighth; the play mark shrinks away while the clip runs */
+.st-reel__b:active{transition-duration:var(--m-press)}
+@media (hover:hover){.st-reel__b:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--red)}.st-reel--dark .st-reel__b:hover{box-shadow:8px 8px 0 var(--red)}}
 .st-reel__b video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;background:var(--tile-dark);transition:opacity var(--m-quick) var(--m-ease-enter)}
 /* a clip that stops dips out before its poster comes back (hub/app.js 14) */
 .st-reel__b.is-stop video{opacity:0;transition-timing-function:var(--m-ease-exit)}
 .st-reel__tile--tall .st-reel__b video{flex:1;aspect-ratio:auto;min-height:0;height:100%}
+/* never taller than the screen under the nav (74 px) with a margin, so its focus ring is seen whole (2026-11-19: it
+   had grown to 952 px at 1440×900); the film is cut to the box (object-fit:cover) */
+.st-reel__tile--tall .st-reel__b{max-height:calc(100svh - 74px - 32px)}
 .st-reel__cap{display:flex;flex-direction:column;gap:2px;padding:10px 14px 12px;border-top:2px solid var(--ink);background:var(--cream);color:var(--ink);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em;line-height:1.4}
 .st-reel__cap b{font-family:var(--f-disp);font-weight:900;font-size:17px;letter-spacing:0;line-height:1.15}
 /* a play mark on the poster, gone while the clip runs */
-.st-reel__b::after{content:"";position:absolute;top:12px;inset-inline-end:12px;width:0;height:0;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--cream);filter:drop-shadow(2px 2px 0 var(--ink));transition:opacity var(--m-hover) var(--m-ease-enter)}
-.st-reel__b.is-on::after{opacity:0;transition:opacity var(--m-quick) var(--m-ease-exit)}   /* (the mark goes a step quicker than it comes back, on the exit curve) */
+.st-reel__b::after{content:"";position:absolute;top:12px;inset-inline-end:12px;width:0;height:0;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--cream);filter:drop-shadow(2px 2px 0 var(--ink));transition:opacity var(--m-hover) var(--m-ease-enter),transform var(--m-hover) var(--m-ease-enter)}
+.st-reel__b.is-on::after{opacity:0;transform:scale(.6);transition-duration:var(--m-quick);transition-timing-function:var(--m-ease-exit)}   /* (the mark goes a step quicker than it comes back, on the exit curve) */
 .st-reel__b.is-on,.st-reel__b[aria-pressed="true"]{box-shadow:var(--shadow-s)}
 .st-reel__b[aria-pressed="true"]{border-color:var(--red)}
 :lang(ar) .st-reel__title{letter-spacing:0;line-height:1.2}
@@ -713,6 +770,27 @@ html.js .st-est__nojs{display:none}
 .st-ls__panel :focus-visible,.st-ls__panel:focus-visible{outline-color:var(--red-text)}
 .st-ls__panel .st-label{color:var(--red-text)}
 .st-ls__panel + .st-ls__panel{margin-top:16px}
+/* the open lesson's own drawing beside it (2026-11-18), from 1000: a framed figure in a second column, its number
+   under it; the question and its answers keep the full width. Under 1000 the tabs carry the pictures; from 1000 the
+   tabs are words and numbers only, so one drawing is never shown twice on one screen (2026-11-19). */
+.st-ls__fig{display:none}
+@media (prefers-reduced-motion:no-preference){
+  .st-ls__panel.is-slide:not([hidden]){animation:m-slide var(--m-enter) var(--m-ease-enter) both}
+  [dir="rtl"] .st-ls__panel{--dir-k:-1}
+}
+@keyframes m-slide{from{opacity:0;transform:translateX(calc(var(--dir,1) * var(--dir-k,1) * 16px))}}
+@media (min-width:1000px){
+  .st-ls__panel:not([hidden]){display:grid;grid-template-columns:minmax(0,1fr) clamp(220px,24vw,300px);grid-template-rows:auto auto 1fr;column-gap:clamp(24px,3vw,44px);row-gap:18px;align-items:start;padding-bottom:clamp(18px,2vw,28px)}
+  .st-ls__panel > *{grid-column:1;min-width:0}
+  .st-ls__panel > .st-ls__q{grid-column:1 / -1}
+  .st-ls__fig{display:flex;flex-direction:column;gap:8px;grid-column:2;grid-row:1 / span 3;align-self:start;margin:0}
+  .st-ls__fig img{display:block;width:100%;height:auto;aspect-ratio:1;border:2px solid var(--ink);box-shadow:var(--shadow);background:#0F1E30}
+  .st-ls--jeu .st-ls__fig img{image-rendering:pixelated}
+  /* the open lesson's number and title, one line ("L1 · Se faire payer de l'étranger"), cut with an ellipsis */
+  .st-ls__fig figcaption{display:block;color:var(--ink-2)!important;letter-spacing:.12em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .st-ls__tab img{display:none}
+  :lang(ar) .st-ls__fig figcaption{letter-spacing:0}
+}
 .st-ls__h{margin:0;font-family:var(--f-disp);font-weight:900;font-size:var(--t-h3);line-height:1.05;letter-spacing:-.01em}
 .st-ls__d{font-size:var(--t-body);line-height:1.5;max-width:68ch}
 .st-pick{display:flex;flex-direction:column;gap:14px}
@@ -756,21 +834,44 @@ html:not(.js) .st-calc__out{display:none}
 :lang(ar) .st-pick__k{letter-spacing:0}
 
 /* ---------------- 07 brand ---------------- */
-.st-brand__row{display:flex;flex-wrap:wrap;align-items:center;gap:36px 56px}
-.st-layers{flex:1.2 1 440px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:8px}
-.st-layer{min-height:66px;border:0;outline:3px solid transparent;outline-offset:4px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.2em;cursor:pointer;transition:transform var(--m-hover) var(--m-ease-enter),outline-color var(--m-hover) var(--m-ease-enter)}
-.st-layer:hover{transform:scale(1.02)}
-.st-layer[aria-pressed="true"]{outline-color:var(--ink)}
-.st-layer:focus-visible{outline-color:var(--red)}
-.st-layer--0{width:34%}
-.st-layer--1{width:56%;background:var(--red)}
-.st-layer--2{width:78%;background:var(--teal)}
-.st-layer--3{width:100%;background:var(--stone);color:var(--ink)}
-:lang(ar) .st-layer{letter-spacing:0;font-size:16px}
-.st-water{width:100%;display:flex;align-items:center;gap:12px;margin:10px 0 12px}
+.st-brand__row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:36px 56px}
+/* the building in section (2026-11-18): the four layers are the drawing's four bands (the street line at 26.9%,
+   the floor slabs at 52.3% and 76%; re-cut 2026-11-19 from the unsquashed original with a sky margin, so the sign
+   no longer touches the frame), each a button over its band: a dashed frame, its name on a chip at its
+   foot; the one picked takes a red tint (a hard cut). The waterline lies on the painted street line. */
+.st-layers{position:relative;flex:1.2 1 440px;min-width:0;max-width:520px;aspect-ratio:4/5;display:grid;grid-template-rows:26.9fr 25.4fr 23.7fr 24fr;margin-inline:auto;background:#0F1E30 url(img/studio/brand/section-800.webp) center/cover no-repeat;background-image:image-set(url(img/studio/brand/section-800.webp) 1x,url(img/studio/brand/section-1200.webp) 2x);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-layer{position:relative;display:flex;align-items:flex-end;justify-content:flex-start;min-height:44px;padding:12px;border:0;outline:2px dashed color-mix(in srgb,var(--ink) 55%,transparent);outline-offset:-8px;background:transparent;color:var(--cream);cursor:pointer;transition:background-color var(--m-press) var(--m-ease-snap),outline-color var(--m-hover) var(--m-ease-enter)}
+.st-layer__l{display:inline-block;padding:4px 10px;background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.16em;line-height:1.4}
+.st-layer--0{align-items:flex-start}   /* (its name clear of the waterline at its foot) */
+.st-layer:hover{outline-color:var(--ink)}
+.st-layer[aria-pressed="true"]{background:color-mix(in srgb,var(--red) 22%,transparent);outline-color:var(--red)}
+.st-layer[aria-pressed="true"] .st-layer__l{background:var(--red)}
+.st-layer:focus-visible{outline:3px solid var(--red);outline-offset:-4px}
+:lang(ar) .st-layer__l{letter-spacing:0;font-size:14px}
+.st-water{position:absolute;inset-inline:0;top:26.9%;translate:0 -50%;z-index:1;display:flex;align-items:center;gap:8px;margin:0;padding-inline:8px;pointer-events:none}
 .st-water i{flex:1 1 16px;min-width:16px;border-top:2px dashed var(--teal)}
-.st-water span{flex:0 1 auto;max-width:78%;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;line-height:1.5;color:var(--teal-text);text-align:center}
-.st-brand__card{flex:1 1 340px;min-width:0;position:relative;min-height:300px;padding:26px 24px 140px;background:var(--floor);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-water span{flex:0 1 auto;max-width:92%;padding:2px 8px;background:var(--cream);border:1px solid var(--teal);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.04em;line-height:1.4;color:var(--teal-text);text-align:center}
+@media (max-width:560px){
+  .st-layers{background-image:image-set(url(img/studio/brand/section-480.webp) 1x,url(img/studio/brand/section-800.webp) 2x)}
+  /* a phone: the waterline's words stay on one line in the street's gap (at 13px they wrapped onto the drawing room) */
+  .st-water{gap:4px;padding-inline:4px}
+  .st-water i{min-width:8px;flex-basis:8px}
+  .st-water span{max-width:none;white-space:nowrap;padding:1px 5px;font-size:10px;letter-spacing:0}
+}
+/* a fold's cover screen is too narrow for one line even at 10px: there it may wrap */
+@media (max-width:359px){.st-water span{white-space:normal;max-width:92%}}
+/* its first arrival (below the screen only): the bands uncover top to bottom, a step apart */
+@media (prefers-reduced-motion:no-preference){
+  .st-layers.st-rv .st-layer::before{content:"";position:absolute;inset:0;background:var(--paper);pointer-events:none}
+  .st-layers.st-rv:not(.is-in) .st-water{opacity:0}
+  .st-layers.st-rv.is-in .st-layer::before{clip-path:inset(100% 0 0 0);animation:st-uncover var(--m-enter) var(--m-ease-move) calc(var(--d,0ms) + var(--m-quick) + var(--i) * var(--m-step)) backwards}
+  .st-layers.st-rv.is-in .st-water{animation:m-in var(--m-quick) var(--m-ease-enter) calc(var(--d,0ms) + var(--m-beat)) backwards}
+}
+@keyframes st-uncover{from{clip-path:inset(0 0 0 0)}}
+/* the card and the brand-book link stand at the panel's top in its own column (2026-11-19: centred, the card left
+   empty paper above and below it); the drawing already carries Yasser and Kūro, so no cut-out in the card */
+.st-brand__side{flex:1 1 340px;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(24px,3vw,36px)}
+.st-brand__card{align-self:stretch;position:relative;padding:26px 24px 30px;background:var(--floor);border:2px solid var(--ink);box-shadow:var(--shadow)}
 .st-brand__dl{display:flex;flex-direction:column;gap:28px}
 .st-brand__dl > div{display:flex;flex-direction:column;gap:12px}
 .st-brand__dl dt{letter-spacing:.18em}
@@ -778,8 +879,26 @@ html:not(.js) .st-calc__out{display:none}
 .st-brand__dl .st-h3l{font-size:clamp(30px,3.2vw,44px)}
 .st-brand__dl p{font-size:17.5px;line-height:1.6}
 html.js .st-brand__dl > div:not(.is-active){display:none}
-.st-brand__aside{position:absolute;inset-inline-start:24px;bottom:30px;font-size:22px;transform:rotate(-4deg)}
-.st-brand__face{position:absolute;inset-inline-end:0;bottom:0;width:150px;height:auto}
+.st-brand__aside{margin:28px 0 0;font-size:22px;transform:rotate(-4deg);transform-origin:0 50%}
+[dir="rtl"] .st-brand__aside{transform-origin:100% 50%}
+/* from 1100px the column beside the drawing is as tall as the drawing: the four layers are listed top to bottom in
+   the order of its bands (a legend), the picked one is the card, the three others rest as a label and a title
+   (2026-11-19: a lone card left a 560x400 empty field beside the lower half of the building) */
+@media (min-width:1100px){
+  .st-brand__row{flex-wrap:nowrap;align-items:stretch}
+  .st-brand__side{justify-content:space-between}
+  .st-brand__card{flex:1 1 auto;display:flex;flex-direction:column;padding:0;background:none;border:0;box-shadow:none}
+  .st-brand__dl{flex:1 1 auto;gap:10px}
+  html.js .st-brand__dl > div:not(.is-active){display:flex}
+  .st-brand__dl > div{gap:4px;padding:12px 16px;border:2px solid transparent;border-top:1px dashed color-mix(in srgb,var(--ink) 45%,transparent)}
+  .st-brand__dl > div:not(.is-active){cursor:pointer}
+  .st-brand__dl > div:not(.is-active) .st-h3l{font-size:22px;color:color-mix(in srgb,var(--ink) 72%,var(--paper))}
+  .st-brand__dl > div:not(.is-active) dd{gap:2px}
+  .st-brand__dl > div:not(.is-active) dd p{font-size:15px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media (hover:hover){.st-brand__dl > div:not(.is-active):hover .st-h3l{color:var(--ink)}}
+  .st-brand__dl > div.is-active{flex:1 1 auto;gap:12px;padding:24px 24px 26px;background:var(--floor);border:2px solid var(--ink);box-shadow:var(--shadow)}
+  .st-brand__aside{margin-top:26px}
+}
 
 /* ---------------- 08 tech ---------------- */
 .st-tech .st-head{margin-bottom:44px}
@@ -841,6 +960,8 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 .st-case__pips{display:flex;gap:2px}
 .st-case__pips i{flex:1;height:8px;background:currentColor;opacity:.25;transition:opacity var(--m-hover) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter)}
 .st-case__pips i.is-seen{opacity:1;background:var(--c-accent)}
+@media (prefers-reduced-motion:no-preference){.st-case__pips i.is-seen{animation:m-pip var(--m-hover) var(--m-ease-enter) backwards}.st-badge.is-seen{animation:st-kstamp var(--m-hover) var(--m-ease-enter) backwards}}
+@keyframes m-pip{from{transform:scale(.3)}}
 .st-case__tag{padding:5px 10px;background:var(--c-accent);color:var(--c-on-accent);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;white-space:nowrap}
 .st-case__nav{display:flex;gap:6px}
 /* a long tag ("Campagnes + réseaux") wraps in the bar instead of pushing it past a 320px screen */
@@ -1098,10 +1219,31 @@ figure.st-tile{margin:0}
 .st-modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .st-modes figure{display:flex;flex-direction:column;gap:6px}
 .st-modes img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:var(--floor);border:2px solid var(--ink)}
-.st-pos-m0{object-position:30% 45%}
+.st-pos-m0{object-position:85% 50%}   /* (Kūro asleep and Yasser's face, 2026-11-18) */
 .st-pos-m1{object-position:72% 35%}
 .st-pos-m2{object-position:62% 30%}
-.st-founder__floor{position:relative;display:flex;justify-content:center;padding-top:18px;border-bottom:2px solid var(--ink)}
+/* the duo's floor is a framed panel (2026-11-18): their feet on its bottom edge, a label on its top edge */
+/* the frame is as wide as the duo (2026-11-19: a full-width frame left its far side empty paper), centred under the photo */
+.st-founder__floor{position:relative;display:flex;justify-content:center;width:fit-content;max-width:100%;margin-inline:auto;padding:18px 18px 0;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-founder__floor .st-actor{margin-bottom:-2px}
+.st-founder__floorl{position:absolute;top:0;inset-inline-start:14px;translate:0 -55%;margin:0;padding:0 8px;background:var(--paper);color:var(--ink-2);letter-spacing:.14em}
+:lang(ar) .st-founder__floorl{letter-spacing:0}
+/* from 1100 the founder's heading sits inside the plate, on the drawing's empty paper at its left (the figures
+   are in the right third); in Arabic too, the drawing is not mirrored. It unmasks after the plate's entrance. */
+@media (min-width:1100px){
+  .st-founder__poster{display:grid;margin-bottom:clamp(36px,5vw,64px)}
+  .st-founder__poster > *{grid-area:1 / 1}
+  .st-founder__poster .st-plate{margin:0}
+  .st-founder__poster .st-head{position:relative;z-index:2;align-self:center;justify-self:start;max-width:50%;margin:0;padding-left:clamp(40px,5.6vw,88px);padding-bottom:44px}
+  [dir="rtl"] .st-founder__poster .st-head{justify-self:end;padding-right:0}
+  .st-founder__poster .st-h2{font-size:clamp(40px,4.4vw,64px)}
+}
+@media (min-width:1100px) and (prefers-reduced-motion:no-preference){
+  .st-founder__poster .st-plate.is-pre:not(.is-in) ~ .st-head .st-h2{clip-path:inset(0 100% 0 0)}
+  [dir="rtl"] .st-founder__poster .st-plate.is-pre:not(.is-in) ~ .st-head .st-h2{clip-path:inset(0 0 0 100%)}
+  .st-founder__poster .st-plate.is-in ~ .st-head .st-h2{animation:st-write var(--m-reveal) var(--m-ease-enter) calc(var(--m-reveal) * 2) backwards}
+  [dir="rtl"] .st-founder__poster .st-plate.is-in ~ .st-head .st-h2{animation-name:st-write-r}
+}
 .st-founder__copy{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:18px}
 .st-founder__copy .st-h3l{font-size:clamp(30px,3.6vw,50px)}
 .st-founder__role{font-size:var(--t-mono);letter-spacing:.16em}
@@ -1153,9 +1295,6 @@ figure.st-tile{margin:0}
 :lang(ar) .st-founder__eyebrow{letter-spacing:0}
 .st-founder__motto{font-family:"Permanent Marker","Comic Sans MS",cursive;font-size:var(--t-hand);color:var(--ink);transform:rotate(-1.5deg)}
 .st-founder__linkrow{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 20px}
-.st-founder__paw{flex:none;width:104px;height:auto;margin-inline-start:auto;margin-bottom:10px;transform:rotate(4deg);pointer-events:none;
-  filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 4px 6px rgba(33,30,27,.3))}
-[dir="rtl"] .st-founder__paw{transform:rotate(-4deg) scaleX(-1)}
 
 /* what I make: the old page's three roles, each drawing on its own sheet */
 .st-make{margin-top:clamp(44px,6vw,80px);padding-top:clamp(28px,4vw,44px);border-top:2px solid var(--ink)}
@@ -1165,8 +1304,11 @@ figure.st-tile{margin:0}
 .st-make__aside{font-size:var(--t-hand)}
 .st-make__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
 .st-make__card{display:flex;flex-direction:column;gap:10px;min-width:0}
-.st-make__fig{display:grid;place-items:center;aspect-ratio:5/4;min-height:0;overflow:hidden;padding:clamp(10px,1.6vw,18px);background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow-s)}
-.st-make__fig img{display:block;width:100%;height:100%;min-height:0;object-fit:contain}
+/* each pose stands on a drawn floor line (2026-11-19: the drawings end at the chair, and floating they read as
+   cut off): the picture sits on the sheet's bottom, the line runs under it edge to edge */
+.st-make__fig{position:relative;display:grid;place-items:center;aspect-ratio:5/4;min-height:0;overflow:hidden;padding:clamp(10px,1.6vw,18px) clamp(10px,1.6vw,18px) 22px;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow-s)}
+.st-make__fig::after{content:"";position:absolute;inset-inline:0;bottom:20px;height:2px;background:var(--ink)}
+.st-make__fig img{display:block;width:100%;height:100%;min-height:0;object-fit:contain;object-position:50% 100%}
 .st-make__role{margin-top:6px;font-family:var(--f-disp);font-weight:900;font-size:clamp(22px,2vw,28px);line-height:1;text-transform:uppercase}
 :lang(ar) .st-make__role{letter-spacing:0;line-height:1.3}
 .st-make__line{font-size:var(--t-body);line-height:1.45;color:var(--ink-2);text-wrap:pretty}
@@ -1178,6 +1320,19 @@ figure.st-tile{margin:0}
 
 /* ---------------- 12 faq ---------------- */
 .st-wrap--faq{max-width:1000px}
+/* Kūro's window beside the answers, from 1100 (below it, the phone figure by the heading) */
+.st-faq__win{display:none}
+@media (min-width:1100px){
+  .st-wrap--faq{max-width:1200px;display:grid;grid-template-columns:minmax(0,1fr) clamp(220px,22vw,300px);column-gap:clamp(28px,3vw,48px)}
+  .st-wrap--faq > .st-faq__head,.st-wrap--faq > .st-qa{grid-column:1}
+  .st-faq__head{padding-inline-end:0}
+  .st-actor--faq{display:none}
+  .st-faq__win{display:block;grid-column:2;grid-row:1 / span 2;position:sticky;top:96px;align-self:start;margin:0;aspect-ratio:4/5;overflow:hidden;border:2px solid var(--ink);box-shadow:var(--shadow);background:#0F1E30}
+  .st-faq__win img{display:block;width:100%;height:100%;object-fit:cover}
+}
+@media (prefers-reduced-motion:no-preference){
+  .st-faq__win.st-rv.is-in img{animation:m-unroll var(--m-beat) var(--m-ease-move) calc(var(--d,0ms) + var(--m-step)) backwards}
+}
 .st-faq__head{margin-bottom:36px;padding-inline-end:clamp(90px,10vw,130px)}
 .st-qa{border-bottom:2px solid var(--ink)}
 .st-qa__item{border-top:2px solid var(--ink)}
@@ -1207,42 +1362,91 @@ figure.st-tile{margin:0}
 .st-cta--red{background:var(--red);border-color:var(--red)}
 .st-cta__k{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;overflow-wrap:anywhere}
 .st-cta__l{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:600;font-size:18px}
-.st-contact__art{flex:1 1 280px;min-width:0;position:relative;display:flex;align-items:flex-end;justify-content:center;min-height:320px}
-.st-sign{position:relative;width:min(100%,360px)}
-.st-sign img{display:block;width:100%;height:auto}
-.st-sign__t{position:absolute;left:12%;right:12%;top:7%;height:20%;display:grid;place-items:center;font-family:var(--f-hand);font-size:clamp(30px,3.6vw,46px);color:var(--red-text);transform:rotate(-2deg)}
-.st-contact__kuro{position:absolute;inset-inline-start:0;bottom:-8px;width:110px;height:auto}
-@media (min-width:900px){.st-contact__art{padding-inline-end:104px}}
-.st-contact__wave{position:absolute;inset-inline-end:0;bottom:0;width:112px}
-.st-contact__wave img{display:block;width:100%;height:auto}
-.st-contact__aside{position:absolute;bottom:16px;inset-inline-end:28px;font-size:18px;color:var(--on-dark-2);transform:rotate(-3deg)}
-@media (max-width:560px){.st-contact__aside{position:static;align-self:flex-end}}
+/* the door is open (2026-11-18): a framed night scene beside the words, its board carrying the page's own
+   word ("SALUT."). The frame keeps the painting's 4:5 (under 560 a 4:3 cut keeps the board and Yasser's face), so
+   the board stays where the painting put it: x 36.5-64.3%, y 23.9-34.4% of the 4:5 file. */
+.st-contact__art{flex:1 1 280px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:14px}   /* centred under the words below 900, so no dark field beside the frame */
+.st-contact__scene{position:relative;container-type:inline-size;width:min(100%,448px);aspect-ratio:4/5;margin:0;border:2px solid var(--cream);box-shadow:6px 6px 0 var(--red);overflow:hidden;background:#0F1E30;--board-y:29.15%}
+.st-contact__scene img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.st-sign__t{position:absolute;left:50.4%;top:var(--board-y);translate:-50% -50%;rotate:-2deg;font-family:var(--f-hand);font-size:6.4cqi;line-height:1;white-space:nowrap;color:#7A2A21;text-transform:uppercase}   /* a deeper red than --red-text: 4.7:1 on the painted board, where the phone sets the word small */
+:lang(ar) .st-sign__t{text-transform:none;font-size:6cqi}
+.st-contact__place{position:absolute;left:0;bottom:0;margin:0;padding:6px 10px;background:#0F1E30;border-top:2px solid var(--cream);border-right:2px solid var(--cream);font-family:"Geist Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.16em;color:#D2B26A}
+:lang(ar) .st-contact__place span{font-family:"IBM Plex Sans Arabic",sans-serif;letter-spacing:0}
+.st-contact__aside{align-self:center;font-size:18px;color:var(--on-dark-2);transform:rotate(-3deg)}
+@media (min-width:900px){
+  .st-contact__card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);align-items:center}
+  .st-contact__scene{width:min(100%,560px)}
+}
+/* two buttons a row from 561 up; the e-mail card takes the whole second row instead of half of it */
+@media (min-width:561px){
+  .st-ctas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .st-ctas > li:nth-child(3){grid-column:1 / -1}
+}
+/* a phone: a square cut from 14% to 94% of the painting keeps the board, Yasser whole and Kūro on the step
+   (a 4:3 cut cannot hold the board and the cat at once); the brass label moves to the frame's top edge, over the
+   bare wall, so it never sits on the figures */
+@media (max-width:560px){
+  .st-contact__scene{width:100%;aspect-ratio:1/1;--board-y:18.9%}
+  .st-contact__scene img{object-position:50% 70%}
+  .st-contact__place{top:0;bottom:auto;border-top:0;border-bottom:2px solid var(--cream)}
+  .st-contact__aside{margin-top:6px}
+}
+/* on view, below the first screen only (hub/app.js 7b): the scene unrolls, the word stamps on the board, the
+   aside writes itself, then the place label; done in 1.333 s */
+@media (prefers-reduced-motion:no-preference){
+  .st-contact__art.is-pre:not(.is-in) :is(.st-contact__scene img,.st-sign__t,.st-contact__place){opacity:0}
+  .st-contact__art.is-pre:not(.is-in) .st-contact__aside{clip-path:inset(0 100% 0 0)}
+  [dir="rtl"] .st-contact__art.is-pre:not(.is-in) .st-contact__aside{clip-path:inset(0 0 0 100%)}
+  .st-contact__art.is-in .st-contact__scene img{animation:m-unroll var(--m-beat) var(--m-ease-move) var(--m-step) backwards}
+  .st-contact__art.is-in .st-sign__t{animation:st-kstamp var(--m-hover) var(--m-ease-enter) var(--m-reveal) backwards}
+  .st-contact__art.is-in .st-contact__aside{animation:st-write var(--m-beat) var(--m-ease-enter) var(--m-beat) backwards}
+  [dir="rtl"] .st-contact__art.is-in .st-contact__aside{animation-name:st-write-r}
+  .st-contact__art.is-in .st-contact__place{animation:m-in var(--m-quick) var(--m-ease-enter) calc(var(--m-step) * 10) backwards}
+}
+/* (shared) a picture unrolls from its top edge; a seal or a word stamps; a line writes itself from its start */
+@keyframes m-unroll{from{clip-path:inset(0 0 100% 0)}}
+@keyframes st-kstamp{0%{opacity:0;scale:1.6}60%{opacity:1;scale:.96}100%{opacity:1;scale:1}}
+@keyframes st-write{from{clip-path:inset(0 100% 0 0)}}
+@keyframes st-write-r{from{clip-path:inset(0 0 0 100%)}}
 
 /* ---------------- footer ---------------- */
 .st-foot{padding:0 0 36px;border-top:0}
-/* the colophon (okuzuke): one ruled box of four cells, captioned 奥付, a red hanko at the end */
-.st-foot__in{position:relative;display:grid;grid-template-columns:auto 1fr auto auto auto;align-items:stretch;border:2px solid var(--ink)}
+/* the town at night over the colophon (2026-11-18): an 8:1 painted strip on the box, one window lit (the
+   workshop, at x 79-86% of the strip). The window lights once: a navy cover over its glass cuts away (83 ms,
+   a hard cut) half a beat after the strip is on screen; without scripts and with reduced motion it is lit
+   from the start. On the Studio and the world Kūro sleeps on the sill, drawn into the strip itself
+   (skyline-kuro-*, 2026-11-19: a cut-out laid on top read as pasted on, an empty sill as scenery only); the
+   manual keeps the empty sill (skyline-*), where the live Kūro perches. Under
+   700 the strip is 3:1, cut to its end side (x 62.5-100%), so the window and the sill stay whole. */
+.st-foot__sky{position:relative;margin:0;aspect-ratio:8/1;overflow:hidden;border:2px solid var(--ink);border-bottom:0;background:#0F1E30;--wx:79.5%;--ww:5.3%}
+.st-foot__sky img{display:block;width:100%;height:100%;object-fit:cover;object-position:100% 100%}
+.st-foot__win{position:absolute;left:var(--wx);top:19.2%;width:var(--ww);height:48.5%;background:#0F1E30;opacity:0}
+.js .st-foot__sky:not(.is-lit) .st-foot__win{opacity:.86}
+.st-foot__sky.is-lit .st-foot__win{transition:opacity var(--m-press) var(--m-ease-snap) var(--m-reveal)}
+@media (max-width:699px){
+  .st-foot__sky{aspect-ratio:3/1;--wx:45.3%;--ww:14.1%}
+}
+@media (prefers-reduced-motion:reduce){.st-foot__win{display:none}}
+/* the colophon (okuzuke): one ruled box, captioned 奥付, a red hanko at the end. Three rows at every width:
+   the name and the line, the links across, the rights and the seal (the five-column row it had at 1100 and
+   wider squeezed the line to one word a line, 2026-11-18). */
+.st-foot__in{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:stretch;border:2px solid var(--ink)}
 .st-foot__in>*{display:flex;align-items:center;padding:16px 22px;border-inline-start:1px solid var(--ink);min-width:0}
 .st-foot__in>.st-foot__ok{position:absolute;top:0;inset-inline-start:14px;transform:translateY(-52%);padding:0 8px;border:0;background:var(--paper);font-size:var(--t-label);color:var(--ink);letter-spacing:.14em}
 .st-foot__in>.st-wm{border-inline-start:0}
 .st-wm--foot .st-wm__t{font-size:22px}
 .st-wm--foot .st-wm__kana{display:inline}
 .st-foot__line{display:block;font-size:var(--t-small);color:var(--ink-2)}
-.st-foot__sleep{display:inline-block;width:56px;vertical-align:middle;margin-inline-start:6px}
-.st-foot__sleep img{display:block;width:100%;height:auto}
 .st-foot__links{display:flex;flex-wrap:wrap;gap:0 18px;align-content:center}
 .st-foot__links a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;font-size:var(--t-small);text-underline-offset:3px}
 .st-foot__links a:hover{color:var(--red-text)}
-.st-foot__in>.st-foot__seal{flex:none;justify-content:center;width:44px;height:44px;box-sizing:content-box;margin:12px 0;margin-inline-start:22px;padding:0;border:2px solid var(--red);border-radius:4px;transform:rotate(-6deg);font-size:22px}
+.st-foot__in>.st-foot__seal{flex:none;justify-content:center;width:44px;height:44px;box-sizing:content-box;padding:0;border:2px solid var(--red);border-radius:4px;transform:rotate(-6deg);font-size:22px}
 .st-foot__in>.st-foot__rights{margin:0;border-inline-start:0}
-@media (max-width:1099px){
-  .st-foot__in{grid-template-columns:auto 1fr auto}
-  .st-foot__in>.st-foot__line{grid-column:2/-1}
-  .st-foot__in>.st-wm,.st-foot__in>.st-foot__line{grid-row:1}
-  .st-foot__in>.st-foot__links{grid-column:1/-1;grid-row:2;border-inline-start:0;border-block:1px solid var(--ink)}
-  .st-foot__in>.st-foot__rights{grid-column:1/3;grid-row:3}
-  .st-foot__in>.st-foot__seal{grid-column:3;grid-row:3;margin:12px 22px}
-}
+.st-foot__in>.st-foot__line{grid-column:2/-1}
+.st-foot__in>.st-wm,.st-foot__in>.st-foot__line{grid-row:1}
+.st-foot__in>.st-foot__links{grid-column:1/-1;grid-row:2;border-inline-start:0;border-block:1px solid var(--ink)}
+.st-foot__in>.st-foot__rights{grid-column:1/3;grid-row:3}
+.st-foot__in>.st-foot__seal{grid-column:3;grid-row:3;margin:12px 22px}
 @media (max-width:719px){
   .st-foot__in{grid-template-columns:1fr auto}
   .st-foot__in>*{padding:14px 16px}
@@ -1266,6 +1470,14 @@ figure.st-tile{margin:0}
 .st-rv.is-in{animation:m-reveal var(--m-reveal) var(--m-ease-enter) var(--d,0ms) backwards}
 /* revealed while the last page is still being lifted off: it waits for the lift, so the old page's motion and the new page's never run at once */
 html:active-view-transition-type(page) .st-rv.is-in{animation-play-state:paused}
+/* (2026-11-18) the section's seal stamps as its block arrives (hub/app.js 4: a seal below the screen only);
+   pictures of the world's dossiers and the Lab unroll from their top edge as their block rises */
+@media (prefers-reduced-motion:no-preference){
+  .st-kick .st-seal.is-pre{opacity:0}
+  .st-kick .st-seal.is-stamp{animation:st-kstamp var(--m-hover) var(--m-ease-enter) backwards}
+  .st-rv:not(.is-in) :is(.st-proj__poster,.st-tile) img{clip-path:inset(0 0 100% 0)}
+  .st-rv.is-in :is(.st-proj__poster,.st-tile) img{animation:m-unroll var(--m-beat) var(--m-ease-move) calc(var(--d,0ms) + var(--m-step)) backwards}
+}
 @keyframes m-reveal{from{opacity:0;translate:0 12px}}
 
 /* ---------------- 00 sting (hub/app.js 1) ----------------
@@ -1301,7 +1513,7 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
 .st-sting__bar--b{bottom:0;display:flex;align-items:center;padding:0 var(--gx)}
 .st-sting__hud{font-family:"Geist Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.2em;color:var(--cream);white-space:nowrap;clip-path:inset(0 100% 0 0);animation:st-hud var(--m-reveal) var(--m-ease-enter) 167ms forwards}
 .st-sting__block{position:absolute;left:52%;right:6%;top:17%;bottom:17%;background:var(--red);border:2px solid var(--ink);box-shadow:var(--shadow-l);overflow:hidden}
-.st-sting__block::after{content:"";position:absolute;left:0;right:0;bottom:8%;height:2px;background:var(--ink)}
+/* (no ground rule inside the panel: Yasser is a half figure standing on the panel's foot, its own 2px border; a rule at 8% crossed him at the waist, 2026-11-19) */
 .st-sting__y{position:absolute;inset:0;width:100%;height:92%;bottom:0;top:auto;object-fit:contain;object-position:center bottom;opacity:0}
 .st-sting__y--a{animation:st-fa var(--m-bar) var(--m-ease-snap) forwards}
 .st-sting__y--b{animation:st-fb var(--m-bar) var(--m-ease-snap) forwards}
@@ -1344,60 +1556,144 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
 .st-est__seal{position:absolute;inset-block-start:14px;inset-inline-end:14px;z-index:2;width:58px;height:58px;display:grid;place-items:center;background:var(--red);border:3px solid var(--ink);box-shadow:var(--shadow-s);font-family:var(--f-jp);font-weight:900;font-size:24px;line-height:1;color:var(--cream);transform:rotate(-8deg);pointer-events:none}
 .st-est__seal.is-stamp{animation:st-seal var(--m-hover) var(--m-ease-enter) both}
 
-/* ---------------- the two doors (2026-11-15) ----------------
-   The premise, then the buyer's door (the day: red scene) and the world's
-   door (the night: the home's Arcanum navy). Red is voice and action; the
-   brass is for the place alone (the coordinates). Characters sit inside the
-   scene with a hard shadow and a ground line. */
-.st-doors{padding-block:clamp(40px,5vw,72px) clamp(48px,6vw,88px);border-top:2px solid var(--ink)}
-.st-doors__top{display:flex;flex-direction:column;gap:18px;margin-bottom:clamp(28px,3.4vw,48px)}
-.st-doors__premise{max-width:30em;font-family:var(--f-disp);font-weight:800;font-size:clamp(22px,2.7vw,40px);line-height:1.14;letter-spacing:-.01em;text-wrap:balance}
-:lang(ar) .st-doors__premise{letter-spacing:0;line-height:1.4}
-.st-doors__row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.6vw,36px)}
-.st-door{display:flex;flex-direction:column;background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow)}
-.st-door__scene{position:relative;height:clamp(200px,20vw,280px);overflow:hidden;background:var(--red);border-bottom:2px solid var(--ink)}
-.st-door__scene::after{content:"";position:absolute;left:0;right:0;bottom:9%;height:2px;background:var(--ink)}
-.st-door__scene img{position:absolute;bottom:0;inset-inline-start:50%;height:96%;width:auto;max-width:none;transform:translateX(-50%)}
-[dir="rtl"] .st-door__scene img{transform:translateX(50%)}
-.st-door--night{background:#0F1E30;color:var(--cream)}
-.st-door--night .st-door__scene{background:#0F1E30;border-bottom-color:var(--cream)}
-.st-door--night .st-door__scene::after{background:var(--cream);opacity:.5}
-.st-door--night .st-door__scene img{height:auto;width:min(62%,300px)}
-.st-door__coord{position:absolute;inset-block-start:14px;inset-inline-start:16px;font-family:"Geist Mono",ui-monospace,monospace;font-size:13px;letter-spacing:.16em;color:#D2B26A}
-.st-door__body{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:clamp(18px,2.2vw,30px)}
-.st-door__k{color:var(--red-text)}
-.st-door--night .st-door__k{color:var(--on-dark)}
-.st-door__t{font-family:var(--f-disp);font-weight:900;font-size:clamp(30px,3.6vw,52px);line-height:.95;text-transform:uppercase;letter-spacing:-.015em}
-:lang(ar) .st-door__t{text-transform:none;letter-spacing:0;line-height:1.2}
-.st-door__t a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
-.st-door__t a:hover{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:4px;text-underline-offset:6px}
-.st-door__d{font-size:var(--t-card);line-height:1.55;max-width:32em}
-.st-door--night .st-btn--primary{background:var(--red);box-shadow:5px 5px 0 var(--cream)}
-.st-door__links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
-.st-door__links a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:2px solid currentColor;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
-:lang(ar) .st-door__links a{letter-spacing:0}
+/* ---------------- the doors: one street, three doors (2026-11-18) ----------------
+   One façade in one frame: a night cornice band (the name, the place in
+   brass), three bays side by side between ink pilasters, one ground line
+   under all three. Each bay: a framed painting (a link, hidden from AT and
+   Tab, that repeats the bay's button), then a plate: kicker, title, one
+   line, one button, a few quiet text links. The paintings keep their ground
+   and their figure at the bottom (object-position 50% 100%): only wall
+   goes above, never a side of the subject. Pictures are never mirrored. */
+.st-doors{padding-block:clamp(48px,6vw,96px);border-top:2px solid var(--ink)}
+.st-doors .st-head{margin-bottom:clamp(24px,3vw,40px)}
+.st-doors__t{font-size:clamp(34px,5vw,72px)}
+.st-doors__premise{font-family:var(--f-body);font-weight:400;font-size:var(--t-lead);line-height:1.55;letter-spacing:0;max-width:34em;color:var(--ink-2)}
+
+.st-street{border:2px solid var(--ink);box-shadow:var(--shadow-l);background:var(--cream)}
+.st-street__cornice{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;min-height:48px;margin:0;padding:8px clamp(14px,2vw,24px);background:#0F1E30;color:var(--cream);border-bottom:2px solid var(--ink)}
+.st-street__name{font-family:"Archivo","Arial Black",sans-serif;font-weight:900;font-size:clamp(14px,1.25vw,18px);letter-spacing:.06em;text-transform:uppercase}
+.st-street__name span{color:#E8695C;margin-inline-start:.4em}   /* the red lifted for the navy cornice: 5.3:1 on #0F1E30 (--red is 2.7:1 there) */
+.st-street__city{white-space:nowrap}
+/* in Arabic the brass line sits under the name, at the line's end (it is an ltr run, so text-align does it);
+   on a phone the place name goes, as on the fold's cover screen: the coordinates alone fit one line, and a
+   line never starts with its separator (2026-11-19) */
+[dir="rtl"] .st-street__coord{text-align:right}
+@media (max-width:419px){.st-street__city{display:none}}
+.st-street__coord{font-family:"Geist Mono",ui-monospace,monospace;font-size:var(--t-label);letter-spacing:.16em;color:#D2B26A}
+.st-street__row{display:grid;grid-template-columns:5fr 4fr 3fr;margin:0;padding:0;list-style:none}
+
+.st-bay{position:relative;display:flex;flex-direction:column;min-width:0}
+.st-bay + .st-bay{border-inline-start:2px solid var(--ink)}
+.st-bay--a{--ar:5/4;--glow:46% 52%}
+.st-bay--b{--ar:1/1;--glow:62% 62%}
+.st-bay--c{--ar:3/4;--glow:50% 58%}
+.st-bay__art{position:relative;display:block;aspect-ratio:var(--ar);overflow:hidden;background:#0F1E30}
+/* the doormat: a red bar on the ground line, up when the door is lit */
+.st-bay__art::before{content:"";position:absolute;z-index:1;inset-inline:0;bottom:0;height:8px;background:var(--red);transform:scaleY(0);transform-origin:50% 100%;transition:transform var(--m-quick) var(--m-ease-exit)}
+.st-bay__art img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+/* the light comes on: a warm glow over the opening, cut on and off */
+.st-bay__art::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--glow),rgba(255,200,120,.45),rgba(255,200,120,0) 55%);mix-blend-mode:screen;z-index:1;opacity:0;transition:opacity var(--m-press) var(--m-ease-snap)}
+/* the ground line under the painting: the plate's top edge, one 2px rule across the three bays */
+.st-bay__plate{position:relative;flex:1 1 auto;display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:clamp(16px,1.9vw,28px)}
+.st-bay__plate::before{content:"";position:absolute;inset-inline:0;top:0;height:2px;background:var(--ink);transform-origin:0 50%}
+[dir="rtl"] .st-bay__plate::before{transform-origin:100% 50%}
+.st-bay__plate > *{margin:0}
+.st-bay--b .st-bay__plate{background:#0F1E30;color:var(--cream)}
+.st-bay__k{color:var(--red-text)}
+.st-bay--b .st-bay__k{color:var(--on-dark)}
+.st-bay__t{font-family:var(--f-disp);font-weight:900;font-size:clamp(26px,2.5vw,40px);line-height:.98;letter-spacing:-.015em;text-transform:uppercase;text-wrap:balance;overflow-wrap:break-word}
+.st-bay__d{font-size:var(--t-card);line-height:1.5;max-width:30em;text-wrap:pretty}
+.st-bay__go{margin-top:4px!important}
+.st-bay--b .st-bay__go{border-color:var(--cream);color:var(--cream)}
+.st-arw{display:inline-block;margin-inline-start:.5em;transition:translate var(--m-quick) var(--m-ease-exit)}
+[dir="rtl"] .st-arw{transform:scaleX(-1)}
+.st-bay__more{display:flex;flex-wrap:wrap;gap:0 14px;margin:auto 0 0!important;padding:4px 0 0;list-style:none}
+.st-bay__more a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.08em;text-transform:uppercase;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.st-bay__more a[dir="ltr"]{text-transform:none}
+:lang(ar) .st-bay__t{text-transform:none;letter-spacing:0;line-height:1.25}
+:lang(ar) .st-bay__more a{letter-spacing:0}
+
+/* lit: the pointer on the picture or the button, keyboard focus anywhere in the bay, or the bay being left (is-going) */
+.st-bay:is(:has(.st-bay__art:hover),:has(.st-bay__go:hover),:has(:focus-visible),.is-going) .st-bay__art::before{transform:none;transition:transform var(--m-hover) var(--m-ease-enter)}
+.st-bay:is(:has(.st-bay__art:hover),:has(.st-bay__go:hover),:has(:focus-visible),.is-going) .st-bay__art::after{opacity:1}
+.st-bay:is(:has(.st-bay__art:hover),:has(.st-bay__go:hover),:has(.st-bay__go:focus-visible),.is-going) .st-arw{translate:6px 0;transition:translate var(--m-hover) var(--m-ease-enter)}
+[dir="rtl"] .st-bay:is(:has(.st-bay__art:hover),:has(.st-bay__go:hover),:has(.st-bay__go:focus-visible),.is-going) .st-arw{translate:-6px 0}
 @media (hover:hover){
-  .st-door__links a:hover{background:var(--ink);color:var(--cream)}
-  .st-door--night .st-door__links a:hover{background:var(--cream);color:#0F1E30}
+  .st-bay__more a:hover{text-decoration-thickness:3px;text-decoration-color:var(--red)}
+  .st-bay--b .st-bay__go:hover{background:var(--cream);color:#0F1E30}
 }
-.st-door--night :focus-visible{outline-color:var(--cream)}
-/* the third door (2026-11-16): a slim strip under the two, to the manual's page */
-.st-door3{grid-column:1 / -1;display:flex;align-items:center;gap:clamp(14px,2vw,28px);padding:clamp(14px,1.6vw,20px) clamp(16px,2vw,28px);background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow)}
-.st-door3__img{flex:none;width:clamp(72px,8vw,104px);height:auto;border:2px solid var(--ink);background:#0F1E30}
-.st-door3__body{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:6px}
-.st-door3__body p{margin:0}
-.st-door3__t{margin:0;font-family:var(--f-disp);font-weight:900;font-size:clamp(24px,2.6vw,36px);line-height:1;text-transform:uppercase;letter-spacing:-.015em}
-:lang(ar) .st-door3__t{text-transform:none;letter-spacing:0;line-height:1.25}
-.st-door3__t a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
-.st-door3__t a:hover{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:4px;text-underline-offset:6px}
-.st-door3__d{font-size:var(--t-card);line-height:1.5;max-width:48em}
-.st-door3__go{flex:none}
-@media (max-width:899px){
-  .st-door3{flex-wrap:wrap}
-  .st-door3__go{flex:1 1 100%}
+.st-bay__go:focus-visible,.st-bay__more a:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+.st-bay--b :focus-visible{outline-color:var(--cream)}
+
+/* the street arrives (only when it was below the screen: st-rv): the cornice drops in, the three
+   paintings roll up like shutters one step apart, the ground line draws, then the plates rise */
+@media (prefers-reduced-motion:no-preference){
+  .st-street.st-rv:not(.is-in) .st-street__cornice{opacity:0}
+  .st-street.st-rv:not(.is-in) .st-bay__art img{clip-path:inset(100% 0 0 0)}
+  .st-street.st-rv:not(.is-in) .st-bay__plate::before{transform:scaleX(0)}
+  .st-street.st-rv:not(.is-in) .st-bay__plate > *{opacity:0}
+  .st-street.st-rv.is-in .st-street__cornice{animation:st-drop var(--m-enter) var(--m-ease-enter) var(--d,0ms) backwards}
+  .st-street.st-rv.is-in .st-bay__art img{animation:st-shutter var(--m-beat) var(--m-ease-move) calc(var(--d,0ms) + var(--m-quick) + var(--i) * var(--m-step)) backwards}
+  .st-street.st-rv.is-in .st-bay__plate::before{animation:st-draw var(--m-reveal) var(--m-ease-enter) calc(var(--d,0ms) + var(--m-beat)) backwards}
+  .st-street.st-rv:not(.is-in) .st-street__row::after{transform:scaleX(0)}
+  .st-street.st-rv.is-in .st-street__row::after{animation:st-draw var(--m-reveal) var(--m-ease-enter) calc(var(--d,0ms) + var(--m-beat)) backwards}
+  .st-street.st-rv.is-in .st-bay__plate > *{animation:m-reveal var(--m-reveal) var(--m-ease-enter) calc(var(--d,0ms) + var(--m-beat) + var(--m-quick) + var(--i) * var(--m-step)) backwards}
 }
-/* a fold's cover screen: the picture would leave the title less room than its one word needs */
-@media (max-width:359px){.st-door3__img{display:none}}
+@keyframes st-drop{from{opacity:0;transform:translateY(-8px)}}
+@keyframes st-shutter{from{clip-path:inset(100% 0 0 0)}}
+@keyframes st-draw{from{transform:scaleX(0)}}
+
+/* from 1100 the three bays stand on one street: the paintings are the same height (5:4, 1:1, 3:4 on 5fr:4fr:3fr),
+   and one ink kerb line runs across all three at the same height, over the painted pavements (93% of the painting:
+   each plate's pavement edge is at 90.7-93.3%), so the shop, the arch and the window share one ground.
+   Each plate keeps its button right under its text; only the link line goes to the plate's foot, so the three link
+   lines end the street on one line (2026-11-19: the shared subgrid rows left a 60-110px hole above the buttons). */
+@media (min-width:1100px){
+  .st-street{container-type:inline-size}
+  .st-street__row{position:relative}
+  .st-street__row::after{content:"";position:absolute;z-index:2;inset-inline:0;top:calc(100cqw / 3 * .93);height:2px;background:var(--ink);pointer-events:none;transform-origin:0 50%}
+  [dir="rtl"] .st-street__row::after{transform-origin:100% 50%}
+  /* the 5:4 shop plate has a bare wall in its top fifth: lift the shop front to fill the bay (pivot on the ground line) */
+  .st-bay--a .st-bay__art img{scale:1.22;transform-origin:50% 100%}
+  /* the world's four links fit one line, so the three plates end on the same last line without dead paper */
+  .st-bay--b .st-bay__more{gap:0 10px}
+  .st-bay--b .st-bay__more a{letter-spacing:.03em}
+}
+/* 700 to 1099: the shop door on its own row (2:1, the bottom of its painting), the world and the manual side by side (4:5) */
+@media (max-width:1099px){
+  .st-street__row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .st-bay--a{grid-column:1 / -1;--ar:2/1}
+  .st-bay--b,.st-bay--c{--ar:4/5}
+  .st-bay--b{border-inline-start:0;border-top:2px solid var(--ink)}
+  .st-bay--c{border-top:2px solid var(--ink)}
+  /* the links follow the button: the shorter plate ends in paper, not in a hole between its button and its links */
+  .st-bay__more{margin-top:0!important}
+}
+/* under 700: one door after the other down the street, every painting 4:3 */
+@media (max-width:699px){
+  .st-street__row{grid-template-columns:minmax(0,1fr)}
+  .st-bay--a,.st-bay--c{--ar:4/3}
+  /* the arch needs its whole height: the world's door goes square (top of the arch to the step, Kūro whole),
+     and the manual's window is framed from its lintel to its sill instead of from the ground */
+  .st-bay--b{--ar:1/1}
+  .st-bay--b .st-bay__art img{object-position:50% 55%}
+  /* the manual's window from its lintel to its sill (the c-* plates are cut on the window, 2026-11-19) */
+  .st-bay--c .st-bay__art img{object-position:50% 18%}
+  /* the shop: in close on the counter, Yasser and the doorway fill the frame, the bare wall above the shutter goes */
+  .st-bay--a .st-bay__art img{scale:1.6;transform-origin:50% 52%}
+  .st-bay--c{border-inline-start:0}
+  .st-street{box-shadow:var(--shadow)}
+}
+/* a fold's cover screen: the cornice keeps the name and the coordinates, the plates tighten */
+@media (max-width:359px){
+  .st-street__name span,.st-street__city{display:none}
+  .st-bay__plate{padding:16px 14px}
+  .st-bay__go{padding:0 14px;letter-spacing:.08em}
+  .st-doors__t{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){
+  .st-bay .st-arw{translate:none!important}
+}
 
 /* nav and sheet: the world's link in red, a group label in the sheet */
 .st-nav__links .st-nav__world{display:none;color:var(--red-text);border:2px solid var(--red)}
@@ -1411,7 +1707,7 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
 /* start here, above the dossiers (night plate) and the see-also lines */
 .st-start{display:grid;gap:18px;padding:clamp(20px,2.6vw,36px);background:#0F1E30;color:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow);scroll-margin-top:90px}
 .st-start .st-kick{color:var(--on-dark)}
-.st-start__go a[dir="ltr"],.st-door__links a[dir="ltr"],.st-proj__see a[dir="ltr"]{text-transform:none}
+.st-start__go a[dir="ltr"],.st-proj__see a[dir="ltr"]{text-transform:none}
 .st-start :focus-visible,.st-start:focus-visible{outline-color:var(--cream)}
 .st-start__t{font-family:var(--f-disp);font-weight:900;font-size:clamp(26px,3.2vw,46px);line-height:1;text-transform:uppercase;letter-spacing:-.01em;margin-top:10px}
 :lang(ar) .st-start__t{text-transform:none;letter-spacing:0;line-height:1.25}
@@ -1452,7 +1748,6 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
 .st-proj__see{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px}
 .st-proj__see--case{margin-top:0}
 @media (max-width:900px){
-  .st-doors__row{grid-template-columns:1fr}
   .st-start__p{grid-template-columns:1fr}
 }
 
@@ -1465,9 +1760,9 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
   .st-rv{opacity:1;translate:none}
   .st-mood__replay{display:none}
-  .st-svc:hover,.st-svc:focus-within,.st-btn--primary:hover,.st-cta:hover,.st-tile:hover,.st-layer:hover{transform:none}
+  .st-svc:hover,.st-svc:focus-within,.st-btn--primary:hover,.st-cta:hover,.st-tile:hover,.st-layer:hover,.st-reel__b:hover{transform:none}
 }
-.st-brand__more{margin-top:clamp(28px,4vw,44px)}
+.st-brand__more{margin:0}
 main:focus{outline:none}
 
 /* =====================================================================
@@ -1612,8 +1907,9 @@ main:focus{outline:none}
   .st-preview__in{gap:24px}
   .st-preview__row{gap:20px}
   .st-preview__copy{gap:14px}
-  .st-preview__img{aspect-ratio:5/2;box-shadow:6px 6px 0 var(--ink)}
-  .st-preview__seal{width:84px;height:84px;border-width:3px;top:-8%}
+  .st-preview__img{aspect-ratio:16/9;object-position:50% 8%;box-shadow:6px 6px 0 var(--ink)}   /* (the head under the top edge, 2026-11-18) */
+  .st-preview__seal{width:84px;height:84px;border-width:3px;top:-8%;inset-inline-start:auto;inset-inline-end:-2%}   /* (over the shelves, not his hair) */
+  .st-pos-brain2{object-position:60% 12%}
   .st-preview__seal span:first-child{font-size:24px}
   .st-steps{grid-template-columns:1fr}
   .st-steps li,[dir="rtl"] .st-steps li{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:2px;padding:12px 0 12px}
@@ -1628,14 +1924,11 @@ main:focus{outline:none}
   .st-board__end .st-aside{margin-bottom:14px}
   .st-chip{padding:8px 12px}
   .st-wedge__close{margin-top:24px}
-  .st-layer{min-height:48px}
-  .st-water{margin:4px 0 6px}
   .st-brand__row{gap:24px}
-  .st-brand__card{min-height:0;padding:16px 14px 104px}
+  .st-brand__card{padding:16px 14px 22px}
   .st-brand__dl p{font-size:16px}
-  .st-brand__face{width:112px}
-  .st-brand__aside{inset-inline-start:16px;bottom:22px;font-size:20px}
-  .st-brand__more{margin-top:20px}
+  .st-brand__aside{margin-top:20px;font-size:18px}
+  .st-brand__side{gap:20px}
 }
 
 /* ---- the cases on a phone: the track is a deck of tiles, none wider than the screen ----
@@ -1743,7 +2036,7 @@ main:focus{outline:none}
   .st-proj .st-rowbar{padding-inline:14px;margin:0 0 14px}
   /* Behance: a shorter band, twelve covers in a row, Kūro on the plate's foot */
   .st-be{margin-bottom:20px;padding-bottom:30px}
-  .st-be__art img{aspect-ratio:16/10;object-fit:cover;object-position:50% 70%}
+  .st-be__art img{aspect-ratio:16/10;object-fit:cover;object-position:50% 55%}
   .st-be__copy{padding:14px}
   .st-be__copy .st-proj__sub{font-size:28px}
   .st-be__grid{margin-inline:0;padding:14px 14px 12px;scroll-padding-inline:14px;grid-auto-columns:min(62%,230px);gap:12px}
@@ -1757,7 +2050,7 @@ main:focus{outline:none}
   .st-tile img{max-width:none}
   .st-lab__grid .st-tile img{height:168px;width:auto}
   .st-diary{margin-top:28px;padding-bottom:0}
-  .st-diary__art img{aspect-ratio:2/1;object-fit:cover;object-position:50% 45%}
+  .st-diary__art img{aspect-ratio:2/1;object-fit:cover;object-position:50% 22%}
   .st-diary__copy{padding:14px 16px 18px;gap:10px}
   .st-diary__grid{grid-auto-columns:min(80%,300px);gap:12px;margin-top:12px}
   .st-lab__end{margin-top:16px}
@@ -1765,10 +2058,10 @@ main:focus{outline:none}
   /* the founder */
   .st-plate{margin-bottom:28px}
   .st-founder__row{gap:24px}
-  .st-founder__photo img{aspect-ratio:2/1}
+  .st-founder__photo img{aspect-ratio:4/3;object-position:78% 50%}   /* (his face and Kūro, 2026-11-18) */
   .st-modes{gap:8px}
   .st-founder__floor{padding-top:8px}
-  .st-actor--duo{width:min(100%,230px)}
+  .st-actor--duo{width:230px}
   .st-founder__copy{gap:12px}
   .st-team{grid-template-columns:repeat(2,minmax(0,1fr))}
   .st-team li{padding:10px}
@@ -1793,10 +2086,7 @@ main:focus{outline:none}
   .st-contact__copy{gap:14px}
   .st-ctas{grid-template-columns:1fr;gap:10px}
   .st-cta{min-height:68px}
-  .st-contact__art{min-height:200px;flex-basis:100%}
-  .st-sign{width:min(100%,280px)}
-  .st-contact__kuro{width:88px}
-  .st-contact__wave{width:92px}
+  .st-contact__art{flex-basis:100%}
 }
 @media (max-width:359px){
   .st-dr__face{width:56px;height:28px}
@@ -1969,7 +2259,7 @@ main:focus{outline:none}
 .st-man{border-top:0}
 .st-man .st-mny__scene{margin-bottom:0}
 /* the scene is a band here, not a full plate: the radio and the lessons start on the first screens */
-@media (min-width:700px){.st-man .st-mny__scene img{aspect-ratio:5 / 2;object-fit:cover;object-position:50% 46%}}
+@media (min-width:700px){.st-man .st-mny__scene img{aspect-ratio:1224 / 600;object-fit:cover;object-position:50% 30%}}   /* (heads clear the top edge, 2026-11-18) */
 .st-manual .st-nav__links .st-nav__world,.st-monde .st-nav__links .st-nav__world{display:inline-flex}
 /* six links here (three sets of lessons, the services, the radio, the Studio): a label never breaks in two, and the kana waits for the width that holds it */
 .st-manual .st-nav__links a,.st-monde .st-nav__links a{white-space:nowrap}
@@ -2127,7 +2417,7 @@ html.is-playing{scroll-behavior:auto}
    a sticker pops once when it is earned. */
 .st-jeu__key{margin-bottom:40px}
 .st-jeu__key img{aspect-ratio:16 / 9;object-fit:cover;object-position:50% 38%}
-@media (min-width:900px){.st-jeu__key img{aspect-ratio:21 / 9}}
+@media (min-width:900px){.st-jeu__key img{aspect-ratio:2 / 1;object-position:50% 15%}}
 .st-ls--jeu{--brass:#D2B26A}
 .st-ls--jeu .st-ls__head{align-items:center;margin-bottom:14px}
 .st-jeu__hud{margin:0;min-width:0;font-family:"Press Start 2P",var(--f-mono);font-size:12px;line-height:1.7;letter-spacing:.02em;color:var(--brass)}

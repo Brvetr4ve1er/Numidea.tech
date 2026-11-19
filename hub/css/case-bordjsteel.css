@@ -313,3 +313,5 @@ html.js .case-bordjsteel .cb-scope__list li.is-seen{opacity:1}
 
 /* a phone: a scope line may break inside a word rather than leave its tile */
 @media (max-width:599px){.case-bordjsteel .cb-scope__list li{overflow-wrap:anywhere}}
+/* a phone: the tile holds its figures from the top, no stretched gaps (2026-11-18) */
+@media (max-width:560px){.case-bordjsteel .cb-stats{justify-content:flex-start;align-content:start;min-height:0}}

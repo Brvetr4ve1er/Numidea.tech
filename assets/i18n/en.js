@@ -75,6 +75,7 @@ var I18N = {
   'team.fFn': 'Freelancers, case by case', 'team.fDo': 'A specialist joins the project for one well-defined part; the founder remains your only contact and is accountable for the delivery.',
   'faq.kicker': 'FAQ', 'faq.title': 'The questions <em>that matter.</em>',
   'faq.lead': 'What people ask before they start — answered straight.',
+  'faq.winAlt': 'Kūro sits on a stack of folded notes by a night window, beside a red stamp and a coffee.',
   'faq.ask': 'Another question?',
   'faq1.q': 'How long does a project take?', 'faq1.a': 'It depends on the scope: 2 to 4 weeks for a showcase site, 3 to 7 for a custom site and 8 to 16 for a web application. You get a firm timeline as soon as we have agreed the scope together.',
   'faq2.q': 'What does it cost?', 'faq2.a': 'Our packages start at 90,000 DZD for a showcase site (see Pricing for euros and dollars), and every project gets one fixed price once the scope is clear — no surprise fees. See also <a href="#apercu">the Preview</a>.',
@@ -202,6 +203,7 @@ var I18N = {
   'tarifs.desc': 'How much does a website cost in Algeria in 2026? Our packages from 90,000 DZD, an estimator, and typical rates in Algeria, France and the United States.',
   'tarifs.ogAlt': 'Numidea Labs — Price guide: “From 90,000 DZD.” Published prices, an online estimator, indicative ranges, over an engraving of the Arch of Trajan at Timgad',
   'tarifs.crumbAria': 'Breadcrumb', 'tarifs.kicker': 'Pricing\u00a0· 2026 guide',
+  'tarifs.seal': 'Published price', 'tarifs.console': 'DOURO·8\u00a0· The Studio’s console',
   'tarifs.h1': 'The price of a website <em>in\u00a0Algeria, in 2026.</em>',
   'tarifs.lead': 'Our three packages and maintenance, in dinars, euros or dollars; the estimator for what the packages do not price; then typical rates in\u00a0Algeria, France and the United States, sources included.',
   'tarifs.jTiers': 'Packages', 'tarifs.jEst': 'Estimator', 'tarifs.jMk': 'Markets', 'tarifs.jMd': 'Models', 'tarifs.jFaq': 'FAQ',
@@ -242,6 +244,7 @@ var I18N = {
   'c1.fam': 'Sites & design', 'c2.fam': 'Sites & design', 'c3.fam': 'Data & automation', 'c4.fam': 'Advisory & AI', 'c5.fam': 'Advisory & AI',
   'scene.lead': 'Each sheet shows a project’s key pages, its mobile version and its visual system — every screenshot taken from the live site.',
   'contact.tzNote': 'Paris time in winter, 1\u00a0h behind in summer',
+  'contact.sceneAlt': 'The workshop door open at night: Yasser, in the doorway, holds up a sign; Kūro waits on the step.', 'contact.sign': 'hi.',
   /* new 2026-11-11: the home leads to the Studio and the bible again and to WorkspaceHQ */
   'founder.studio': 'The studio, in detail <span aria-hidden="true">→</span>',
   'founder.bible': 'The character bible <span aria-hidden="true">→</span>',
@@ -251,7 +254,7 @@ var I18N = {
   'atelier.line': 'Numidea is a night workshop in Bordj Bou Arréridj where a builder and his black cat make your homepage before you pay, and every finished job opens a door to another world.',
   'atelier.cta': 'Enter the workshop <span aria-hidden="true">→</span>',
   'atelier.alt': 'Yasser at his workshop table at night, holding up a drawn panel; Kūro, the black cat, sits on a blueprint beside him, next to a coffee cup.',
-  'founder.sceneAlt': 'Drawn portrait of Yasser: long hair tied up, round glasses, a cream jacket, a coffee cup in his hand.',
+  'founder.sceneAlt': 'Yasser at the workshop window at night, coffee in hand; Kūro on the sill.',
   'founder.sceneCap': 'Yasser, at the workshop. This coffee is not the first.',
   'seal.est': 'Estimated', 'seal.sent': 'Sent',   /* the red seal stamps (estimator result, sent form) */
   'footer.studio': 'The Studio',

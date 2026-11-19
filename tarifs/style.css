@@ -37,9 +37,9 @@ html[dir="rtl"] h1.sec{letter-spacing:0}
    title is painted, and credited as painted, from the first frame). Arriving
    by a page change, it waits under the page being lifted off, then plays. */
 @media (prefers-reduced-motion:no-preference){
-  .t-hero>:is(.kicker,h1,.t-ans,.sec-lead,.tarifs-top),#pricing>.t-jump{animation:hero-rise-solid var(--m-reveal) var(--m-ease-enter) both}
+  .t-hero>:is(.kicker,h1,.t-receipt,.sec-lead,.tarifs-top),#pricing>.t-jump{animation:hero-rise-solid var(--m-reveal) var(--m-ease-enter) both}
   .t-hero>h1{animation-delay:var(--m-step)}
-  .t-hero>:is(.t-ans,.sec-lead){animation-delay:calc(2 * var(--m-step))}
+  .t-hero>:is(.t-receipt,.sec-lead){animation-delay:calc(2 * var(--m-step))}
   .t-hero>.tarifs-top,#pricing>.t-jump{animation-delay:calc(3 * var(--m-step))}
   html:active-view-transition :is(.t-hero>*,#pricing>.t-jump){animation-play-state:paused}
 }
@@ -50,7 +50,7 @@ html[dir="rtl"] h1.sec{letter-spacing:0}
   .t-hero>h1{grid-area:h}
   .t-hero>.sec-lead{grid-area:l}
   .t-hero>.tarifs-top{grid-area:c}
-  .t-hero>.t-ans{grid-area:a;align-self:center;margin:0}
+  .t-hero>.t-receipt{grid-area:a;align-self:center;margin:0}
 }
 /* the three answers: rows between hairlines, not three more boxes; each
    leads to the tier cards */
@@ -148,6 +148,73 @@ html[dir="rtl"] .t-jump a{letter-spacing:0;text-transform:none}
 .tarifs-next .btn{width:100%;justify-content:center}
 .tarifs-top{margin-top:var(--s-6);margin-bottom:0;max-width:640px}
 @media (max-width:559px){.tarifs-next{grid-template-columns:1fr}}
+
+/* ---- the answers on a receipt (W06a, 2026-11-19): cream paper in both
+   themes, ink and mono lines, dashed rules between the three ranges, the
+   lower edge torn in a zigzag (a mask), and the red seal of a published price
+   stamped on it once (the home's seal, four cuts of 83). Static with reduced
+   motion. ---- */
+/* overflow clipped: the stamp lands from 1.9 times its size, which widened a phone page for a frame */
+.t-receipt{position:relative;overflow:clip;margin:0 0 var(--s-6);padding:var(--s-4) var(--s-5) calc(var(--s-5) + 50px);background:#F3ECE1;color:#211E1B;
+  box-shadow:6px 6px 0 rgba(0,0,0,.28);
+  --zz:linear-gradient(135deg,#000 7px,#0000 0) 0 100%/14px 10px repeat-x,linear-gradient(225deg,#000 7px,#0000 0) 0 100%/14px 10px repeat-x,linear-gradient(#000,#000) 0 0/100% calc(100% - 9px) no-repeat;
+  -webkit-mask:var(--zz);mask:var(--zz)}
+html[dir="rtl"] .t-receipt{box-shadow:-6px 6px 0 rgba(0,0,0,.28)}
+/* in the hero's narrow second column (760-1099) the widest range and its currency need the receipt's side margins */
+@media screen and (min-width:760px) and (max-width:1099px){.t-receipt{padding-inline:var(--s-3)}.t-receipt .t-range b{font-size:20px}}
+.t-receipt .t-ans{margin:0;border-top:1px dashed rgba(33,30,27,.45)}
+.t-receipt .t-ans li{border-bottom:1px dashed rgba(33,30,27,.45)}
+.t-receipt :is(.t-ans-n,.t-time){color:#4A433B}
+.t-receipt .t-range,.t-receipt .t-range b{color:#211E1B}
+.t-receipt .t-range .cur{color:#4A433B}
+.t-receipt .t-ans a:focus-visible .t-range{color:#A3261C}
+.t-receipt .t-ans a:focus-visible{outline:2px solid #A3261C;outline-offset:2px}
+@media (hover:hover){.t-receipt .t-ans a:hover .t-range{color:#A3261C}}
+.t-seal{position:absolute;inset-block-end:16px;inset-inline-end:var(--s-5);display:grid;place-items:center;width:76px;height:76px;border-radius:50%;
+  background:#A9302A;box-shadow:inset 0 0 0 3px #A9302A,inset 0 0 0 5px #FFF6EE;color:#FFF6EE;font-family:var(--font-mono);font-weight:700;font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;line-height:1.15;text-align:center;padding:0 10px;transform:rotate(-12deg);opacity:.92;pointer-events:none}
+html[dir="rtl"] .t-seal{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:12px}
+@media (prefers-reduced-motion:no-preference){
+  .t-seal{animation:seal-stamp var(--m-enter) steps(3) calc(6 * var(--m-step)) both}
+  html:active-view-transition .t-seal{animation-play-state:paused}
+}
+/* the seal sits in the paper's foot, under the last rule, never over a figure */
+@media (max-width:599px){.t-receipt{padding-inline:var(--s-4);padding-bottom:calc(var(--s-4) + 46px)}.t-seal{width:64px;height:64px;font-size:9px;inset-inline-end:var(--s-4);inset-block-end:14px}}
+@media print{.t-receipt{-webkit-mask:none;mask:none;box-shadow:none;border:1px solid #000}.t-seal{animation:none}}
+
+/* ---- the Studio's console at the head of the models (W06b): a framed
+   square panel (the drawing's own ratio: a 4:3 cut lost Kūro's ears and the
+   console's feet, 2026-11-19), the mono caption under the picture, one link to
+   the Studio's price console ---- */
+.t-console{display:block;width:min(100%,280px);margin:0 0 var(--s-5);color:inherit;text-decoration:none}
+.t-console__art{display:block;aspect-ratio:1/1;overflow:hidden;background:#F1E8D4;border:2px solid var(--ice);box-shadow:6px 6px 0 var(--nsp-red)}
+html[dir="rtl"] .t-console__art{box-shadow:-6px 6px 0 var(--nsp-red)}
+.t-console__art img{display:block;width:100%;height:100%;object-fit:cover}
+.t-console__cap{display:inline-flex;align-items:center;min-height:44px;margin-top:var(--s-2);font-family:var(--font-mono);font-size:var(--t-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted);
+  text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--crimson-text) 45%,transparent);text-underline-offset:5px}
+html[dir="rtl"] .t-console__cap{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none;font-size:var(--t-small)}
+@media (hover:hover){.t-console:hover .t-console__cap{color:var(--crimson-text);text-decoration-color:currentColor}}
+.t-console:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+/* the lead no longer follows the h2 (the panel sits between them in the
+   source), so it gets its own foot: 32px plus the badge's 12px lift, so the
+   NOTRE MODÈLE tab never touches the lead's last line (2026-11-19) */
+#pricing .models>.sec-lead{margin-bottom:calc(var(--s-6) + 12px)}
+@media (min-width:1100px){
+  /* the panel floats at the plate's top right, from the 04 numeral down: the
+     rule stops at it and the heading starts right under the rule; 200px
+     wide, its caption on one line */
+  #pricing .models{display:grid;grid-template-columns:minmax(0,1fr) 200px;column-gap:var(--s-6);align-items:start}
+  #pricing .models>*{grid-column:1/-1}
+  #pricing .models>.t-pl{grid-column:1;grid-row:1}
+  #pricing .models>.t-console{grid-column:2;grid-row:1/span 3;justify-self:end;width:100%;margin:var(--sec-pad) 0 0;display:flex;flex-direction:column;align-items:flex-end}
+  #pricing .models>.t-console .t-console__art{width:100%}
+  #pricing .models>.t-console .t-console__cap{white-space:nowrap;letter-spacing:.06em}
+  #pricing .models>:is(h2.sec,.sec-lead){grid-column:1}
+  #pricing .models>h2.sec{grid-row:2;align-self:start}
+  #pricing .models>.sec-lead{grid-row:3;align-self:start}
+  #pricing .models>.md-grid{margin-top:var(--s-6)}
+}
+@media print{.t-console{display:none}}
 
 /* paper: the guide's address, the studio's email and WhatsApp number and
    the guide's edition close the printed copy; the screen has them in the

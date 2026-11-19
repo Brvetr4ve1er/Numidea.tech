@@ -18,7 +18,6 @@
  *   motion/sting-*.webp   the opening, landscape and portrait
  *   mascot/v2/grain.webp  the paper's grain, already laid on the paper colour
  *                         at the design's 32%: one opaque tile, no blend mode
- *   mascot/clean/y-sign   the one cutout the bible does not hold
  *   the two client logos (svg) vector logos, metadata stripped (a content
  *                         credential block of 40 kB rode inside each)
  * It is not part of `npm run build`: CI has no masters, and the committed
@@ -106,7 +105,6 @@ const PLAN = [
   ["studio/m/diorama.jpg", 1132, 759, 0],
   ["studio/m/props.jpg", 814, 546, 0],
   ["studio/m/sunset.jpg", 823, 552, 0],
-  ["mascot/clean/y-sign.png", 640, 543, 0],
 ];
 const WEBP_PASS = ['clients/bordj/l-cevital.webp', 'clients/bordj/l-condor.webp', 'clients/bordj/l-hyundai.webp', 'clients/bordj/l-mobilis.webp', 'clients/bordj/l-sonatrach.webp', 'clients/bordj/l-sonelgaz.webp'];
 

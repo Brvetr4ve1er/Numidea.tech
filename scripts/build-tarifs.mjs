@@ -241,6 +241,8 @@ const MARKET = `    <!-- ---------------- market comparison ----------------
     <div class="models" id="models">
       <span class="t-pl" aria-hidden="true"></span>
       <h2 class="sec font-swap-display" id="md-h" data-i18n="md.h">Comment un projet est chiffré</h2>
+      <!-- the Studio's price console, framed at the head of the models (W06b): one link to it -->
+      <a class="t-console" href="hub/#pricing"><span class="t-console__art"><img src="hub/img/studio/douro-kuro.webp" width="480" height="480" alt="" loading="lazy" decoding="async"></span><span class="t-console__cap" data-i18n="tarifs.console">@@tarifs.console@@</span></a>
       <p class="sec-lead" data-i18n="md.p">Il y a quatre façons de facturer un projet. Chacune est la norme quelque part.</p>
       <div class="md-grid">
         <article class="md-card md-ours">
@@ -344,7 +346,7 @@ const figures = (b, lang) => {
   const grp = (x) => x.replace(/\B(?=(\d{3})+(?!\d))/g, lang === 'en' ? ',' : ' ');
   return grp(n[0]) + (lang === 'en' ? '\u2060–\u2060' : '\u00a0–\u2060\u00a0') + grp(n[1]);
 };
-function answers(tiers, lang) {
+function answers(tiers, lang, dicts) {
   const rows = [...tiers.matchAll(/<article class="tier\b[\s\S]*?<\/article>/g)].map(([a]) => {
     const name = /<h3 data-i18n="([^"]+)">([^<]*)<\/h3>/.exec(a);
     const range = /<p class="t-range" (data-tier="[a-z]+")>([\s\S]*?)<\/p>/.exec(a);
@@ -354,7 +356,9 @@ function answers(tiers, lang) {
     return `        <li><a href="#pricing-tiers"><span class="t-ans-n" data-i18n="${name[1]}">${name[2]}</span> <span class="t-range" ${range[1]}>${fig}</span> <span class="t-time" data-i18n="${time[1]}">${time[2]}</span></a></li>`;
   });
   if (rows.length !== 3) throw new Error(`index.html: the tiers SLOT holds ${rows.length} tier cards (want 3)`);
-  return `      <ul class="t-ans">\n${rows.join('\n')}\n      </ul>`;
+  // the three answers on a receipt (W06a): cream paper, mono lines, a
+  // zigzag lower edge, and the red seal of a published price stamped once
+  return `      <div class="t-receipt">\n      <ul class="t-ans">\n${rows.join('\n')}\n      </ul>\n      <span class="t-seal" aria-hidden="true" data-i18n="tarifs.seal">${toMarkup(dicts.fr['tarifs.seal'])}</span>\n      </div>`;
 }
 
 /**
@@ -467,7 +471,7 @@ ${chrome(element(home, '<div class="mobile-menu"', 'div'), { pricing: 1, guide: 
     <div class="t-hero">
       <span class="kicker" data-i18n="tarifs.kicker">${toMarkup(fr['tarifs.kicker'])}</span>
       <h1 class="sec font-swap-display" id="pricing-h" data-i18n="tarifs.h1">${toMarkup(fr['tarifs.h1'])}</h1>
-${answers(tiers, lang)}
+${answers(tiers, lang, dicts)}
       <p class="sec-lead" data-i18n="tarifs.lead">${toMarkup(fr['tarifs.lead'])}</p>
       <p class="tarifs-next tarifs-top">
         <a class="btn btn-primary" href="./#apercu" data-i18n="hero.cta1">${toMarkup(fr['hero.cta1'])}</a>

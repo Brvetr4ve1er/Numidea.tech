@@ -441,10 +441,17 @@
 </main>
 
 <footer class="st-foot">
-  <div class="st-wrap"><div class="st-foot__in">
+  <div class="st-wrap">
+  <!-- the town at night above the colophon (2026-11-18): the rooftops of Bordj Bou Arréridj, one window lit, the
+       workshop; it lights once as the strip comes on screen (hub/app.js 4). Kūro sleeps on its sill, painted into the strip (2026-11-19: no cut-out laid on it; the manual keeps the empty sill for the live Kūro) -->
+  <figure class="st-foot__sky" aria-hidden="true" data-sky>
+    <img src="img/studio/night/skyline-kuro-2640.webp" srcset="img/studio/night/skyline-kuro-1320.webp 1320w, img/studio/night/skyline-kuro-2640.webp 2640w" sizes="(min-width:1400px) 1320px, 100vw" width="2640" height="330" alt="" loading="lazy" decoding="async">
+    <span class="st-foot__win"></span>
+  </figure>
+  <div class="st-foot__in">
     <span class="st-label st-foot__ok" aria-hidden="true">奥付</span>
     <a class="st-wm st-wm--foot" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
-    <p class="st-foot__line"><span data-i18n="footer.line"></span> <picture class="st-foot__sleep"><source media="(prefers-reduced-motion: reduce)" srcset="img/studio/loops/kuro-sleep-small-still.webp"><img src="img/studio/loops/kuro-sleep-small-still.webp" data-anim="img/studio/loops/kuro-sleep.webp" width="112" height="125" alt="" loading="lazy" decoding="async"></picture></p>
+    <p class="st-foot__line"><span data-i18n="footer.line"></span></p>
     <nav class="st-foot__links" data-i18n-aria="footer.nav">
       <a href="../" data-i18n="footer.site"></a>
       <a href="./" data-i18n="manual.nav.studio"></a>

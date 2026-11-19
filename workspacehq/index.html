@@ -33,6 +33,10 @@
 <!-- scripts run: the loops may play (style.css stops them without JS: no switch to pause them then) -->
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="style.css?v=202611180258">
+<!-- the live demo on standby is a 16:10 screen, not an 870px empty one
+     (E19); it takes its full height once the console boots (app.js replaces
+     the coin with the console's frame) -->
+<style>.demo-stage:has(>.demo-coin){height:auto;aspect-ratio:16/10;min-height:340px;max-height:clamp(560px,82vh,860px)}</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numidea Labs","item":"https://www.numedialab.dev/"},{"@type":"ListItem","position":2,"name":"br4vetr4veler","item":"https://www.numedialab.dev/hub/"},{"@type":"ListItem","position":3,"name":"WorkspaceHQ v3","item":"https://www.numedialab.dev/workspacehq/"}]}</script>
 </head>
 <body>

@@ -48,8 +48,6 @@ export const MASTERS = {
   'loops/kuro-sleep.webp': { w: 705, h: 785, alpha: true, sha256: '84266e5e61aed071a79f26dc042638c9cae4bea0af851f090e9479ed957a6fd6' },
   'loops/yasser-lost-still.png': { w: 1080, h: 994, alpha: true, sha256: '0727d5de5d8e22cb923ad5856863a69834ed8884f08c81ab88177f307bc287a7' },
   'loops/yasser-lost.webp': { w: 1080, h: 994, alpha: true, sha256: '4caa9e294bc3706db951eb3f4066ee4650d0af35c932de264fb605707d7f211f' },
-  'loops/yasser-wave-still.png': { w: 517, h: 963, alpha: true, sha256: '7f3a8b79633f2b007152a155162979db6f4f93bfbbb1fdbd1c1810fa5a7b158e' },
-  'loops/yasser-wave.webp': { w: 517, h: 963, alpha: true, sha256: '6df360d335acac4c1595988d876bcf16e465f36c96b7b242b321eee62d8d3b0b' },
   'make-artist.png': { w: 981, h: 804, alpha: true, sha256: '67d4396458868ca404e8859e07bd10dbc710725549bf99024154aa3798518358' },
   'make-designer.png': { w: 1036, h: 1023, alpha: true, sha256: '35994bc431654cc08c32aa9307690ecfb00ba01b1c1203fb9ac3df90bae7e630' },
   'make-developer.png': { w: 903, h: 776, alpha: true, sha256: '1777d5bb9baaef3cf694c42babacfb54d6fda02def5bf6666b7b5b0ab5a8139c' },
@@ -141,7 +139,6 @@ export const IMAGES = [
 export const LOOP_ENCODE = { quality: 80, effort: 6, alphaQuality: 100 };
 export const EDGE = 2;
 export const LOOPS = [
-  { name: 'yasser-wave', master: 'loops/yasser-wave.webp', still: 'loops/yasser-wave-still.png', long: 480, step: 2, alphaLevels: 4 },
   { name: 'yasser-lost', master: 'loops/yasser-lost.webp', still: 'loops/yasser-lost-still.png', long: 480, step: 2, alphaLevels: 4 },
   { name: 'kuro-sleep', master: 'loops/kuro-sleep.webp', still: 'loops/kuro-sleep-still.png', long: 480, step: 2, alphaLevels: 4 },
 ];

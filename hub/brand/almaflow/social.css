@@ -280,7 +280,6 @@
   .bk-af .cal__s:nth-child(n+3){border-top:1.5px solid var(--ig-line)}
 }
 @media (max-width:860px){
-  .bk-af .pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .bk-af .lands{grid-template-columns:minmax(0,1fr)}
   .bk-af .gestes{grid-template-columns:minmax(0,1fr)}
 }
@@ -293,6 +292,7 @@
   .bk-af .elab{max-width:270px}
 }
 @media (max-width:640px){
+  /* (above 640 px the 3 x 3 feed stays three across, as the feed itself is: in two columns the ninth post sat alone) */
   .bk-af .pgrid{grid-template-columns:minmax(0,1fr);max-width:460px;margin-inline:auto;width:100%}
   .bk-af .stories{grid-template-columns:minmax(0,1fr);max-width:320px;margin-inline:auto;width:100%}
   .bk-af .sp--ld{aspect-ratio:auto}

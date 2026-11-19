@@ -75,6 +75,7 @@ var I18N = {
   'team.fFn': 'Des freelances, au cas par cas', 'team.fDo': 'Un spécialiste rejoint le projet pour une partie précise ; le fondateur reste votre seul interlocuteur et répond de la livraison.',
   'faq.kicker': 'FAQ', 'faq.title': 'Les questions <em>qui comptent.</em>',
   'faq.lead': 'Ce qu’on nous demande avant de se lancer, et nos réponses sans détour.',
+  'faq.winAlt': 'Kūro assis sur une pile de papiers pliés près d’une fenêtre de nuit, à côté d’un tampon rouge et d’un café.',
   'faq.ask': 'Une autre question ?',
   'faq1.q': 'Combien de temps pour livrer ?', 'faq1.a': 'Cela dépend du périmètre : comptez 2 à 4 semaines pour un site vitrine, 3 à 7 pour un site sur mesure, 8 à 16 pour une application web. Le délai ferme est fixé dès que le projet est cadré ensemble.',
   'faq2.q': 'C’est combien ?', 'faq2.a': 'Nos fourchettes de prix sont publiées dans la section Tarifs : nos formules commencent à 90 000 DA pour un site vitrine (en euros et en dollars dans la même section). Le prix ferme est fixé une fois le périmètre clair : un forfait, sans frais cachés. Voir aussi <a href="#apercu">l’Aperçu</a>.',
@@ -202,6 +203,7 @@ var I18N = {
   'tarifs.desc': 'Combien coûte un site web en Algérie en 2026 ? Nos formules dès 90 000 DA, un estimateur, et les tarifs courants en Algérie, en France et aux États-Unis.',
   'tarifs.ogAlt': 'Numidea Labs — Guide des prix\u202f: «\u202fDès 90\u202f000 DA.\u202f» Prix publiés, estimateur en ligne, fourchettes indicatives, devant une gravure de l\'arc de Trajan à Timgad',
   'tarifs.crumbAria': 'Fil d\'Ariane', 'tarifs.kicker': 'Tarifs\u00a0· guide 2026',
+  'tarifs.seal': 'Prix publié', 'tarifs.console': 'DOURO·8\u00a0· La console du Studio',
   'tarifs.h1': 'Prix d’un site web <em>en\u00a0Algérie, en 2026.</em>',
   'tarifs.lead': 'Nos trois formules et la maintenance, en dinars, en euros ou en dollars ; l’estimateur pour ce que les formules ne chiffrent pas ; puis les tarifs courants en\u00a0Algérie, en France et aux États-Unis, sources à l’appui.',
   'tarifs.jTiers': 'Formules', 'tarifs.jEst': 'Estimateur', 'tarifs.jMk': 'Marchés', 'tarifs.jMd': 'Modèles', 'tarifs.jFaq': 'FAQ',
@@ -242,6 +244,8 @@ var I18N = {
   'c1.fam': 'Sites & design', 'c2.fam': 'Sites & design', 'c3.fam': 'Données & automatisation', 'c4.fam': 'Conseil & IA', 'c5.fam': 'Conseil & IA',
   'scene.lead': 'Les pages, le mobile et le système visuel de nos projets, capturés sur les sites en\u00a0ligne.',
   'contact.tzNote': 'Heure de Paris en hiver, 1\u00a0h de moins en été',
+  /* the open door under the contact's details (W07, 2026-11-19): the Studio's contact picture, its board's word in HTML */
+  'contact.sceneAlt': 'La porte de l’atelier ouverte la nuit\u202f: Yasser, dans l’encadrement, lève une pancarte\u202f; Kūro attend sur le seuil.', 'contact.sign': 'salut.',
   /* new 2026-11-11: the home leads to the Studio and the bible again (the bible is in English only) and to WorkspaceHQ */
   'founder.studio': 'Le studio, en détail <span aria-hidden="true">→</span>',
   'founder.bible': 'Le carnet du personnage, en anglais <span aria-hidden="true">→</span>',
@@ -251,7 +255,7 @@ var I18N = {
   'atelier.line': 'Numidea est un atelier de nuit à Bordj Bou Arréridj où un bâtisseur et son chat noir construisent votre page d’accueil avant que vous ne payiez, et où chaque projet livré ouvre une porte vers un autre monde.',
   'atelier.cta': 'Entrer dans l’atelier <span aria-hidden="true">→</span>',
   'atelier.alt': 'Yasser, à sa table d’atelier la nuit, tient une planche dessinée ; Kūro, le chat noir, est assis sur un plan à côté de lui, près d’un gobelet de café.',
-  'founder.sceneAlt': 'Portrait dessiné de Yasser : cheveux longs noués, lunettes rondes, veste crème, un gobelet de café à la main.',
+  'founder.sceneAlt': 'Yasser à la fenêtre de l’atelier, la nuit, un café à la main ; Kūro sur le rebord.',
   'founder.sceneCap': 'Yasser, à l’atelier. Ce café n’est pas le premier.',
   'seal.est': 'Estimé', 'seal.sent': 'Envoyé',   /* the red seal stamps (estimator result, sent form) */
   'footer.studio': 'Le Studio',

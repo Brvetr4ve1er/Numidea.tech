@@ -352,9 +352,10 @@
         "d": "Votre voix, votre service, votre réputation. Ce qu’on dit de vous quand vous n’êtes pas là."
       }
     ],
-    "aside": "l’iceberg, en mieux.",
+    "aside": "Le bâtiment, fondations comprises.",
     "pick": "Couches de la marque",
-    "more": "Notre propre marque, planche par planche →"
+    "more": "Notre propre marque, planche par planche →",
+    "sectionAlt": "Coupe de l’atelier : l’enseigne dans la rue, puis sous le trottoir l’atelier de dessin, la charpente et les machines, et les fondations où veille Kūro."
   },
   "tech": {
     "kicker": "/ 08 · LE WEB, SANS JARGON",
@@ -622,7 +623,8 @@
           "alt": "Yasser dessine sur une tablette graphique pendant que Kūro la traverse."
         }
       ]
-    }
+    },
+    "floor": "PAUSE CAFÉ · KŪRO SURVEILLE"
   },
   "faq": {
     "kicker": "/ 10 · QUESTIONS",
@@ -653,7 +655,8 @@
         "q": "@home:faq3.q",
         "a": "@home:faq3.a"
       }
-    ]
+    ],
+    "winAlt": "Kūro assis sur une pile de papiers pliés près d’une fenêtre de nuit, à côté d’un tampon rouge et d’un café."
   },
   "contact": {
     "kicker": "/ 11 · ON EN PARLE · PAR ÉCRIT",
@@ -668,8 +671,9 @@
     "mailK": "HAMISSEMOHAMEDYASSER@​GMAIL.COM",
     "mail": "Écrire un e-mail",
     "sign": "salut.",
-    "signAlt": "Yasser tient une pancarte",
-    "aside": "Kūro lit aussi les messages."
+    "aside": "Kūro lit aussi les messages.",
+    "place": "LA PORTE",
+    "sceneAlt": "La porte de l’atelier ouverte la nuit : Yasser, dans l’encadrement, lève une pancarte ; Kūro attend sur le seuil."
   },
   "doors": {
     "aria": "Trois chemins dans le studio",
@@ -682,8 +686,7 @@
       "go": "Demander un Aperçu",
       "preview": "L’Aperçu",
       "pricing": "Les prix",
-      "work": "Les travaux",
-      "contact": "Contact"
+      "work": "Les travaux"
     },
     "b": {
       "k": "02 · LA NUIT, ET AU-DELÀ",
@@ -696,8 +699,12 @@
       "k": "03 · LE MANUEL",
       "t": "J’apprends",
       "d": "Se faire payer de loin, travailler de partout, jouer juste : vingt-deux leçons courtes, quatre services à prix fixe, et la radio de l’atelier.",
-      "go": "Ouvrir le manuel"
-    }
+      "go": "Ouvrir le manuel",
+      "lessons": "Les leçons",
+      "nomad": "Nomade",
+      "radio": "La radio"
+    },
+    "title": "Trois portes. Laquelle est la vôtre ?"
   },
   "start": {
     "kicker": "/ COMMENCER ICI",

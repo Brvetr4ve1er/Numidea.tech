@@ -352,9 +352,10 @@
         "d": "Your voice, your service, your reputation. What people say about you when you’re not in the room."
       }
     ],
-    "aside": "the iceberg, but better.",
+    "aside": "The building, foundations included.",
     "pick": "Layers of the brand",
-    "more": "Our own brand, plate by plate →"
+    "more": "Our own brand, plate by plate →",
+    "sectionAlt": "A cross-section of the workshop: the sign on the street, then below the pavement the drawing room, the steel frame and machines, and the foundations where Kūro keeps watch."
   },
   "tech": {
     "kicker": "/ 08 · THE WEB, NO JARGON",
@@ -622,7 +623,8 @@
           "alt": "Yasser drawing on a pen display while Kūro walks across it."
         }
       ]
-    }
+    },
+    "floor": "COFFEE BREAK · KŪRO ON WATCH"
   },
   "faq": {
     "kicker": "/ 10 · QUESTIONS",
@@ -653,7 +655,8 @@
         "q": "@home:faq3.q",
         "a": "@home:faq3.a"
       }
-    ]
+    ],
+    "winAlt": "Kūro sits on a stack of folded notes by a night window, beside a red stamp and a coffee."
   },
   "contact": {
     "kicker": "/ 11 · LET’S TALK · IN WRITING",
@@ -668,8 +671,9 @@
     "mailK": "HAMISSEMOHAMEDYASSER@​GMAIL.COM",
     "mail": "Send an email",
     "sign": "hi.",
-    "signAlt": "Yasser holds up a sign",
-    "aside": "Kūro reads the messages too."
+    "aside": "Kūro reads the messages too.",
+    "place": "THE DOOR",
+    "sceneAlt": "The workshop door open at night: Yasser, in the doorway, holds up a sign; Kūro waits on the step."
   },
   "doors": {
     "aria": "Three ways into the studio",
@@ -682,8 +686,7 @@
       "go": "Ask for a Preview",
       "preview": "The Preview",
       "pricing": "Prices",
-      "work": "The work",
-      "contact": "Contact"
+      "work": "The work"
     },
     "b": {
       "k": "02 · THE NIGHT, AND BEYOND",
@@ -696,8 +699,12 @@
       "k": "03 · THE MANUAL",
       "t": "I’m learning",
       "d": "Getting paid from far away, working from anywhere, playing fair: twenty-two short lessons, four fixed-price services, and the workshop radio.",
-      "go": "Open the manual"
-    }
+      "go": "Open the manual",
+      "lessons": "The lessons",
+      "nomad": "Nomad",
+      "radio": "The radio"
+    },
+    "title": "Three doors. Which one is yours?"
   },
   "start": {
     "kicker": "/ START HERE",

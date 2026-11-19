@@ -243,7 +243,14 @@ html[dir="rtl"] .intro h1{font-family:var(--ar);font-weight:700;line-height:1.25
 .sh-h{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 .deliv{display:grid;gap:8px}
 .deliv li{position:relative;padding-inline-start:22px;font-size:15px;color:var(--ink)}
-.deliv li::before{content:"";position:absolute;inset-inline-start:2px;top:.62em;width:9px;height:9px;border:1.5px solid var(--teal);transform:rotate(45deg)}
+.deliv li::before{content:"";position:absolute;inset-inline-start:1px;top:.42em;width:12px;height:12px;border-radius:50%;border:2px solid var(--seal);box-shadow:inset 0 0 0 2px var(--paper),inset 0 0 0 6px var(--seal)}   /* a seal dot, not a diamond (W10) */
+/* the delivered seal beside the "online" chip: red is the voice (the home's
+   night red on Arcanum, the stamp ink on Daylight), 済 is "done" */
+:root{--seal:#FF5A4D}
+:root[data-theme="daylight"]{--seal:#C8372D}
+.sh-done{display:inline-flex;align-items:center;gap:8px;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--seal)}
+.sh-done__k{display:grid;place-items:center;width:30px;height:30px;border:2px solid var(--seal);border-radius:50%;font:900 15px/1 "Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;letter-spacing:0;transform:rotate(-8deg)}
+html[dir="rtl"] .sh-done{font-family:var(--ar);letter-spacing:0;text-transform:none;font-size:13px}
 
 /* framed captures */
 .frame,.phone{position:relative;display:block;border:1px solid var(--line-2);background:var(--paper);overflow:hidden;cursor:zoom-in}
@@ -463,6 +470,27 @@ html.viewing{overflow:hidden}
   @starting-style{.viewer[open]::backdrop{opacity:0}}
   .viewer.is-zoom img{animation:m-in var(--m-hover) var(--m-ease-enter)}
 }
+/* T02: with view transitions the capture grows out of the frame that was
+   pressed and closes back into it (scene/app.js names both lb-pic): 333 in,
+   250 out, on the move curve; a cropped frame and the whole capture
+   crossfade without stretching; the backdrop and the close button fade with
+   the morph. The dialog's own fade stands aside meanwhile (.is-vt). And T04:
+   a home card's capture lands in its sheet's frame during the page lift. */
+@media (prefers-reduced-motion:no-preference){
+  .viewer.is-vt,.viewer.is-vt::backdrop{transition:none}
+  html:active-view-transition-type(zoom-in,zoom-out)::view-transition-group(lb-pic){animation-duration:var(--m-enter);animation-timing-function:var(--m-ease-move)}
+  html:active-view-transition-type(zoom-out)::view-transition-group(lb-pic){animation-duration:var(--m-hover)}
+  html:active-view-transition-type(zoom-in,zoom-out)::view-transition-old(lb-pic),
+  html:active-view-transition-type(zoom-in,zoom-out)::view-transition-new(lb-pic){height:100%;object-fit:cover}
+  html:active-view-transition-type(zoom-in)::view-transition-old(root){animation:none}
+  html:active-view-transition-type(zoom-in)::view-transition-new(root){animation:m-in var(--m-enter) var(--m-ease-enter) both}
+  html:active-view-transition-type(zoom-out)::view-transition-new(root){animation:none}
+  html:active-view-transition-type(zoom-out)::view-transition-old(root){z-index:1;animation:m-out var(--m-hover) var(--m-ease-exit) both}
+  html:active-view-transition-type(zoom-in,zoom-out)::view-transition-group(root){animation:none}   /* the root does not move: no group animation on the browser's 250 ms ease */
+  html:active-view-transition-type(case)::view-transition-group(case-shot){animation-duration:var(--m-reveal);animation-timing-function:var(--m-ease-move)}
+  html:active-view-transition-type(case)::view-transition-old(case-shot),
+  html:active-view-transition-type(case)::view-transition-new(case-shot){height:100%;object-fit:cover}
+}
 @media (max-width:699px),(max-width:999px) and (max-height:560px){
   .viewer,.viewer.is-tall,.viewer-pane{width:100vw;max-width:none;height:100vh;max-height:none;margin:0;border:0;border-radius:0}
   @supports (height:1dvh){.viewer,.viewer.is-tall,.viewer-pane{height:100dvh;max-height:none}}
@@ -614,6 +642,19 @@ html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
   .sheet:not(.sh-card)>:is(.sh-pgs,.sh-pair,.sh-act,.sh-block){grid-row:auto}
 }
 
+/* ---- E07 (2026-11-19): from 1100px the phones fill the left column under
+   the client note, where the gains list left 300px of empty sheet, and the
+   visual system takes the whole width, its palette and its faces on one
+   line. The pair's wrapper flattens like the body's. ---- */
+@media (min-width:1100px){
+  .sheet:not(.sh-card) .sh-pair{display:contents}
+  .sheet:not(.sh-card) .gv-list{grid-row:4/span 2}
+  .sheet:not(.sh-card) .sh-pair>.sh-mob{grid-column:1/span 4;grid-row:5;margin-top:var(--s-6)}
+  .sheet:not(.sh-card) .sh-pair>.sh-sys{grid-column:1/-1;margin-top:var(--s-7)}
+  .sheet:not(.sh-card) .sh-sys .system{grid-template-columns:minmax(0,1fr) auto;column-gap:clamp(24px,3vw,48px);align-items:start}
+  .sheet:not(.sh-card) .sh-sys .swatches{grid-template-columns:repeat(auto-fit,minmax(112px,1fr))}
+}
+
 /* ---- a tablet (700 to 999px, upright): the sheet in the desktop's grid ----
    The sheet stood in one column here, the phones capped at 440px beside
    nothing, three screens a sheet. The 12 columns of the 1000px layout, split
@@ -659,6 +700,7 @@ html[dir="ltr"] [lang="ar"]{font-family:var(--ar);letter-spacing:0}
   html:active-view-transition-type(page)::view-transition-new(root){mix-blend-mode:normal;animation:none}
   html:active-view-transition-type(swap)::view-transition-old(root){animation:m-out var(--m-quick) var(--m-ease-exit) both}
   html:active-view-transition-type(swap)::view-transition-new(root){animation:m-in var(--m-hover) var(--m-ease-enter) both}
+  html:active-view-transition-type(page)::view-transition-old(site-nav),html:active-view-transition-type(page)::view-transition-old(st-nav){animation:m-out var(--m-quick) var(--m-ease-exit) both}   /* the leaving page's named nav when this page has none of that name: it would stay put on the browser's default fade (250 ms ease); it goes on the exit curve instead (2026-11-19) */
 }
 @keyframes m-lift{to{transform:translateY(-100%)}}
 @keyframes m-out{to{opacity:0}}

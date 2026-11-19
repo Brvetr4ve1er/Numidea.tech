@@ -62,18 +62,58 @@
       big.src = a.getAttribute('href');
       big.alt = img ? img.alt : '';
       dlg.classList.toggle('is-tall', !!(img && img.naturalHeight > img.naturalWidth));
-      root.classList.add('viewing');
-      dlg.showModal();
-      // (in the next frame: written here they laid the page out a second time inside the press)
-      requestAnimationFrame(function () { pane.scrollTop = 0; pane.scrollLeft = 0; });
+      opener = img;
+      var open = function () {
+        root.classList.add('viewing');
+        dlg.showModal();
+        // (in the next frame: written here they laid the page out a second time inside the press)
+        requestAnimationFrame(function () { pane.scrollTop = 0; pane.scrollLeft = 0; });
+      };
+      /* T02: the capture grows out of the frame that was pressed (a shared
+         element, lb-pic, 333 ms on the move curve) and closes back into it;
+         the backdrop fades in with it. Only when the frame is on screen and
+         the browser has view transitions with types; otherwise the dialog's
+         own fade. The big file is waited for a half beat at most. */
+      if (canMorph() && onScreen(img)) {
+        img.style.viewTransitionName = 'lb-pic';
+        var tr = document.startViewTransition({ types: ['zoom-in'], update: function () {
+          img.style.viewTransitionName = '';
+          dlg.classList.add('is-vt');
+          open();
+          big.style.viewTransitionName = 'lb-pic';
+          return Promise.race([big.decode ? big.decode().catch(function () {}) : null, new Promise(function (r) { setTimeout(r, M(4)); })]);
+        } });
+        tr.finished.finally(function () { big.style.viewTransitionName = ''; dlg.classList.remove('is-vt'); });
+      } else open();
     });
+    var opener = null;
+    var canMorph = function () { return !still.matches && document.startViewTransition && window.ViewTransition && 'types' in ViewTransition.prototype; };
+    var onScreen = function (el) { if (!el) return false; var r = el.getBoundingClientRect(); return r.width > 0 && r.bottom > 0 && r.top < innerHeight; };
+    // one way out for the button, the backdrop and Escape: back into the frame it came from
+    var closeLb = function () {
+      if (!dlg.open) return;
+      if (canMorph() && !zoomed && onScreen(opener) && big) {
+        big.style.viewTransitionName = 'lb-pic';
+        var o = opener;
+        var tr = document.startViewTransition({ types: ['zoom-out'], update: function () {
+          big.style.viewTransitionName = '';
+          dlg.classList.add('is-vt');
+          dlg.close();
+          o.style.viewTransitionName = 'lb-pic';
+        } });
+        tr.finished.finally(function () { o.style.viewTransitionName = ''; dlg.classList.remove('is-vt'); });
+      } else dlg.close();
+    };
+    var xForm = dlg.querySelector('form[method="dialog"]');
+    if (xForm) xForm.addEventListener('submit', function (ev) { ev.preventDefault(); closeLb(); });
+    dlg.addEventListener('cancel', function (ev) { ev.preventDefault(); closeLb(); });
     // a click on the backdrop closes it, and on a desk a click on the
     // fitted image too; on a phone the image zooms and the bare screen closes
     dlg.addEventListener('click', function (ev) {
       if (phone.matches) {
         if (ev.target === big) zoom(!zoomed, ev.clientX, ev.clientY);
-        else if (ev.target === pane || ev.target === dlg) dlg.close();
-      } else if (ev.target === dlg || ev.target === big) dlg.close();
+        else if (ev.target === pane || ev.target === dlg) closeLb();
+      } else if (ev.target === dlg || ev.target === big) closeLb();
     });
     /* the capture stays in the dialog until the dialog's exit (style.css,
        --m-hover) has played: emptied on 'close' it collapsed the dialog to a

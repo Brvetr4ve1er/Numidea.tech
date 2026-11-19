@@ -7,8 +7,11 @@
    a paw, lying down, asleep, a jump) on a layer that takes no click and is
    hidden from assistive tech. His ground is the top edge of real things on
    the page (the scene, the radio, this strip, the lessons' plate, the line
-   above the open lesson's question, the four cards, the kit, the last band,
-   the footer): "perches", measured from the layout, never drawn.
+   above the open lesson's question, the frame of the open lesson's drawing,
+   the four cards, the kit, the last band, the footer, the sill of the lit
+   window in the town over the footer): "perches", measured from the layout,
+   never drawn. He never stands over a lesson's drawing (the drawings show
+   him: two of him side by side would read as a glitch).
 
    Two ways he moves, and both answer the visitor:
    · on his own, once per event and for a few seconds at most: when a scroll
@@ -16,8 +19,10 @@
      door": he sinks behind one edge and rises behind another; he is the
      gate, the bible says so; when nobody can see him leave, only the rise
      is played), when a lesson is picked or answered (an answer gets its
-     reaction within a beat: where he stands if the trip is longer), when
+     reaction within a beat: where he stands if the trip is longer; a picked
+     lesson's trip waits the third of a beat its panel takes to slide in), when
      the radio starts or stops, when a card is pointed at. Then he sits still.
+     On the sill when the window lights, he looks up once.
    · in play ("Jouer avec Kūro"): the arrow keys or the pad walk him, Up
      leaps to the perch above, Down drops to the one below, Space hops.
      A leap is one honest parabola (one gravity, the landing exact); the
@@ -76,7 +81,10 @@
   /* ---------------- the perches ---------------- */
   // id, selector, where he likes to sit along it (0..1); the cards are four of one selector
   var DEF = [['scene', '.st-mny__scene', 0.5], ['radio', '.st-radio__set', 0.74], ['game', '.st-game__in', 0.94], ['plate', '.st-ls', 0.9], ['ask', '.st-ls__panel:not([hidden]) .st-ls__q', 0.94],
-    ['card', '.st-mny__card', 0.8], ['kit', '.st-mny__kit', 0.94], ['back', '.st-back', 0.56], ['foot', '.st-foot', 0.5]];
+    ['fig', '.st-ls__panel:not([hidden]) .st-ls__fig', 0.5], ['card', '.st-mny__card', 0.8], ['kit', '.st-mny__kit', 0.94], ['back', '.st-back', 0.56], ['foot', '.st-foot', 0.5], ['sill', '[data-sky] .st-foot__win', 0.5]];
+  // the sill's top line in the painted strip, as a share of its height (the art's measured geometry: the lit
+  // glass ends a little above it); narrower than he is, it is one spot under the window's middle
+  var SILL = 0.712, MANY = ['scene', 'plate', 'ask', 'fig', 'card'];
   var perches = [], W = 0, H = 0, docW = 0;
   var K = { p: null, x: 0, lift: 0, sink: 0, face: 1, cell: -1, pose: 'asleep' };   // Kūro: his perch, where along it, how high above it, how far sunk behind it, which way he faces
   var measure = function () {
@@ -85,8 +93,15 @@
     DEF.forEach(function (df) {
       [].forEach.call(d.querySelectorAll(df[1]), function (node, i) {
         var r = node.getBoundingClientRect();
+        if (df[0] === 'sill') {
+          var sk = node.parentNode.getBoundingClientRect(), cx = Math.round(r.left + sx + r.width / 2);
+          if (r.width && sk.height) out.push({ id: 'sill', el: node, x0: cx, x1: cx, y: Math.round(sk.top + sy + sk.height * SILL), at: 0.5 });
+          return;
+        }
         if (r.width < W * 0.9 || !r.height) return;
-        out.push({ id: df[0] === 'card' || df[0] === 'plate' || df[0] === 'ask' ? df[0] + i : df[0], el: node, x0: r.left + sx + inset, x1: r.right + sx - inset, y: Math.round(r.top + sy), at: df[2] });
+        // the kinds the page holds more than one of are numbered (three sets of lessons, three scenes, four cards):
+        // a perch is found again by its id, and two of one name sent him to the first of them, up the page
+        out.push({ id: MANY.indexOf(df[0]) > -1 ? df[0] + i : df[0], el: node, x0: r.left + sx + inset, x1: r.right + sx - inset, y: Math.round(r.top + sy), at: df[2] });
       });
     });
     out.sort(function (a, b) { return a.y - b.y || a.x0 - b.x0; });
@@ -106,15 +121,22 @@
     return best;
   };
   var clampX = function (p, x) { return Math.max(p.x0, Math.min(p.x1, x)); };
-  // is the air above this spot free of words and controls? (the layer takes no hit, so the page answers for itself)
+  // is the air above this spot free of words and controls? (the layer takes no hit, so the page answers for itself;
+  // the town's painted strip over the footer has no words in it, he may sit in front of it)
   var LEAF = 'h1,h2,h3,p,a,button,img,input,label,li,output,figcaption,svg,video';
   var free = function (p, x) {
     var cx = x - window.pageXOffset, top = p.y - window.pageYOffset - H * 0.7;
     if (top < 60 || p.y - window.pageYOffset > window.innerHeight) return false;
+    // never in front of the open lesson's drawing: his whole cell, above his feet, stays off every figure shown
+    var l = cx - W * AX, rr = cx + W * (1 - AX), tp = p.y - window.pageYOffset - H + BASE, bt = p.y - window.pageYOffset - 1, figs = d.querySelectorAll('.st-ls__fig');
+    for (var f = 0; f < figs.length; f++) {
+      var fr = figs[f].getBoundingClientRect();
+      if (fr.height && rr > fr.left && l < fr.right && bt > fr.top && tp < fr.bottom) return false;
+    }
     var pts = [[cx - W * 0.22, top + 6], [cx + W * 0.22, top + 6], [cx, top + H * 0.36], [cx - W * 0.3, p.y - window.pageYOffset - 12], [cx + W * 0.25, p.y - window.pageYOffset - 12]];
     for (var i = 0; i < pts.length; i++) {
       var hit = d.elementFromPoint(pts[i][0], pts[i][1]);
-      if (!hit || hit.closest(LEAF) || hit.closest('.st-nav,.st-pad,.st-rchip,dialog')) return false;
+      if (!hit || (hit.closest(LEAF) && !hit.closest('.st-foot__sky')) || hit.closest('.st-nav,.st-pad,.st-rchip,dialog')) return false;
     }
     return true;
   };
@@ -379,14 +401,17 @@
   var come = function (again) {
     if (playing || cur || queue.length || (!again && now() < busyUntil) || onScreen()) return;
     measure();
-    var mid = window.pageYOffset + window.innerHeight * 0.5, best = null, bx = null;
+    var mid = window.pageYOffset + window.innerHeight * 0.5, best = null, bx = null, sill = null, sx = null;
     perches.forEach(function (p) {
       var y = p.y - window.pageYOffset;
       if (y < 140 || y > window.innerHeight * 0.86) return;
       var x = seat(p);
+      if (x != null && p.id === 'sill') { sill = p; sx = x; }
       if (x != null && (!best || Math.abs(p.y - mid) < Math.abs(best.y - mid))) { best = p; bx = x; }
     });
-    if (best) arrive(best, bx, 'sit', best.id === 'back' || best.id === 'foot' ? yasser : null);
+    // the strip's top edge and the sill under its window are one place: there, he sits on the sill
+    if (best && best.id === 'foot' && sill) { best = sill; bx = sx; }
+    if (best) arrive(best, bx, 'sit', best.id === 'back' || best.id === 'foot' || best.id === 'sill' ? yasser : null);
   };
   window.addEventListener('scroll', function () { clearTimeout(scrollT); if (!playing) scrollT = setTimeout(come, M(4)); }, { passive: true });
 
@@ -395,9 +420,16 @@
   var saidTab = false;
   // by the lesson: on the plate's edge over the picked tab when that edge is in view, else on the line above the question
   var byLesson = function (id, how, after) { return arrive(nearestOf('plate'), tabX(id), how, after) || arrive(nearestOf('ask'), null, how, after); };
+  // the picked lesson's panel slides in first (a third of a beat, hub/style.css m-slide), then he goes: the two moves
+  // never overlap, and the plate is measured where it has come to rest; a second pick in that time replaces the first
+  var tabT = 0;
   d.addEventListener('numidea:tab', function (e) {
-    measure();
-    byLesson(e.detail.id, 'look', saidTab ? null : function () { saidTab = true; speak(t('life.k.tab')); });
+    var id = e.detail.id;
+    clearTimeout(tabT);
+    tabT = setTimeout(function () {
+      measure();
+      byLesson(id, 'look', saidTab ? null : function () { saidTab = true; speak(t('life.k.tab')); });
+    }, M(4));
   });
   var answered = function (detail) {
     measure();
@@ -425,6 +457,14 @@
     var p = perch('radio');
     if (e.detail.on) arrive(p, null, 'sit', function () { speak(t('life.k.radio')); });
     else if (K.p === p && !cur && !queue.length && K.pose !== 'asleep') push((K.pose === 'stand' ? [frames('sitdown', M(6))] : []).concat([frames('lie', M(8)), call(function () { pose('asleep'); })]));
+  });
+  // the town's window lights once (hub/app.js 4 says so as the strip shows; the cover is cut half a beat later, at the
+  // end of an eighth): on the sill and still, he looks up as it lights, once, for a beat, then sits again
+  d.addEventListener('numidea:window-lit', function () {
+    setTimeout(function () {
+      if (playing || !K.p || K.p.id !== 'sill' || cur || queue.length || (K.pose !== 'sit' && K.pose !== 'look')) return;
+      push([call(function () { pose('look'); }), wait(BEAT), call(function () { pose('sit'); })]);
+    }, M(7));
   });
   // a card pointed at for half a second (three quarters of a beat): he goes and sits on it (a mouse only)
   if (matchMedia('(hover:hover)').matches) [].forEach.call(d.querySelectorAll('.st-mny__card'), function (c, i) {
@@ -455,7 +495,7 @@
     var p;
     if (what === 'jump') push([arcTo(K.p, clampX(K.p, K.x + (held.right ? 96 : held.left ? -96 : 0)), 118)]);
     else if ((p = nearest(what === 'up'))) {
-      var x = clampX(p, K.x), then = call(function () { if (p.id === 'back' || p.id === 'foot') yasser(); });
+      var x = clampX(p, K.x), then = call(function () { if (p.id === 'back' || p.id === 'foot' || p.id === 'sill') yasser(); });
       // too far for a leap that stays on screen: the door, and the page travels there while he is behind the edge
       if (Math.abs(p.y - K.p.y) > window.innerHeight * 0.6) push([{ k: 'sink' }, { k: 'pan', top: scrollFor(p) }, { k: 'tele', p: p, x: x }, { k: 'rise' }, then]);
       else push([arcTo(p, x, what === 'up' ? 46 : 22), then]);
@@ -523,6 +563,11 @@
         var want = on && !!p && got.indexOf(s[0]) < 0;
         if (p) {
           n._x = p.x0 + (p.x1 - p.x0) * s[2]; n._y = p.y - 34 - s[3];
+          // never over the open lesson's drawing or its caption: on its nearer side, in the gap between the columns
+          [].forEach.call(d.querySelectorAll('.st-ls__fig'), function (f) {
+            var r = f.getBoundingClientRect(), L = r.left + window.pageXOffset, R = r.right + window.pageXOffset, T = r.top + window.pageYOffset;
+            if (r.height && n._x + 17 > L && n._x - 17 < R && n._y + 17 > T && n._y - 17 < T + r.height) n._x = n._x - L < R - n._x ? L - 23 : R + 23;
+          });
           n.style.transform = 'translate3d(' + (n._x - 17).toFixed(0) + 'px,' + (n._y - 17).toFixed(0) + 'px,0)';
         }
         if (want && n.hidden) n.style.setProperty('--i', k++);

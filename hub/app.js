@@ -599,6 +599,21 @@
        nothing on screen changes for the wait */
     lifted().then(function () { $$('[data-reveal]').forEach(function (el) { sio.observe(el); }); });
   }
+  /* the seals of the section kickers stamp a quarter beat after their block starts to rise (a seal below
+     the screen at the observer's first look only; one already on screen never hides) */
+  if (!reduce && IO) {
+    var kio2 = new IntersectionObserver(function (es) {
+      kio2.disconnect();
+      es.forEach(function (e) {
+        if (e.isIntersecting || e.boundingClientRect.top < (e.rootBounds ? e.rootBounds.height : innerHeight)) return;
+        var sl = e.target; sl.classList.add('is-pre');
+        once(sl, .6, function () { whenIn(sl.closest('[data-reveal]'), function (at) {
+          setTimeout(function () { sl.classList.remove('is-pre'); sl.classList.add('is-stamp'); }, Math.max(0, at - now()) + M(2));
+        }); });
+      });
+    });
+    lifted().then(function () { $$('.st-kick .st-seal').forEach(function (sl) { kio2.observe(sl); }); });
+  }
   /* the first drawing (the founder section's plate): three layers of one
      drawing. Once, when 35% of it is on screen, Kūro slides in, then Yasser
      (CSS: 1 s each, the second 0.5 s later: done in 1.5 s). Without
@@ -608,30 +623,53 @@
     plate.classList.add('is-pre');
     once(plate, .35, function () { plate.classList.add('is-in'); });
   }
-  /* the short animations (a footer sleep, a wave in the contact card): each
-     <img> holds its still and names its animated file in data-anim. Once
-     a third of it is on screen (not on a data-saving or 2G/3G connection: it keeps the still) the src becomes the animation, once: it plays
-     for less than five seconds (scripts/check.mjs 17b) and rests on the
-     frame it started from. With reduced motion nothing is observed and the
-     <picture>'s <source> keeps the still. */
-  var loops = $$('img[data-anim]');
-  // a connection that says it is saving data, or is slow, keeps the stills: two decorations at the page's end are not worth 176 kB of it
-  var thin = navigator.connection && (navigator.connection.saveData || /(^|-)[23]g$/.test(navigator.connection.effectiveType || ''));
-  if (loops.length && !reduce && IO && !thin) {
-    var lio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        lio.unobserve(e.target);
-        e.target.src = e.target.getAttribute('data-anim');
-      });
-    }, { threshold: .3 });
-    loops.forEach(function (im) { lio.observe(im); });
+  // the town over the footer: its one window lights once, half a beat after half the strip is on screen (style.css; lit from the start with reduced motion or without scripts)
+  var sky = $('[data-sky]');
+  if (sky) { if (reduce) sky.classList.add('is-lit'); else once(sky, .5, function () { sky.classList.add('is-lit'); emit('numidea:window-lit'); }); }
+
+  /* the contact's open door: if it is below the screen at the observer's first look it waits hidden and
+     plays once a little under half of it is on screen (style.css: unroll, stamp, the aside, the place);
+     a door already on screen is never hidden */
+  var cart2 = $('.st-contact__art');
+  if (cart2 && !reduce && IO) {
+    var cio = new IntersectionObserver(function (es) {
+      cio.disconnect();
+      if (es[0].isIntersecting) return;
+      cart2.classList.add('is-pre');
+      // a little under half of it on a wide screen; on a phone, where the tall frame is under the e-mail card, as soon
+      // as a sixth of it shows; and at once when the focus enters the contact (a keyboard visitor tabbing to its
+      // links never meets an empty frame, 2026-11-19)
+      var cgo = function () { cart2.classList.add('is-in'); };
+      once(cart2, matchMedia('(max-width:699px)').matches ? .15 : .4, cgo);
+      var csec = cart2.closest('section') || document.getElementById('contact');
+      if (csec) csec.addEventListener('focusin', cgo, { once: true });
+    });
+    lifted().then(function () { cio.observe(cart2); });
   }
+
+  /* the doors that leave the page (02 the world, 03 the manual): a plain
+     click lights the bay (the doormat up, the light on) and the browser
+     goes at once: no wait before the request (SPEC §0 decision 3; until
+     2026-11-19 the click was held 167 ms), so the lit bay rides the leaving
+     sheet as it lifts (style.css). Not with reduced motion, not for a click
+     that opens elsewhere. */
+  if (!reduce) $$('.st-bay--b, .st-bay--c').forEach(function (bay) {
+    bay.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a.st-bay__art, a.st-bay__go');
+      if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target) return;
+      bay.classList.add('is-going');
+    });
+  });
+  // back from the browser's cache: no door stays lit
+  window.addEventListener('pageshow', function () { $$('.st-bay.is-going').forEach(function (b) { b.classList.remove('is-going'); }); });
+
   // the wedge's cut: once the board is on screen, half a beat after its heading has started to come up (at once with reduced motion)
   var board = $('[data-wedge]');
   once(board, .12, function () {
     var cut = function () { board.classList.add('is-cut'); };
     if (reduce) { cut(); return; }
+    // armed: the strikes, the direct line and the builder's stamp wait for the cut (style.css)
+    board.classList.add('is-armed');
     whenIn(board.previousElementSibling, function (at) { setTimeout(cut, Math.max(0, at + M(6) - now())); });
   });
   // the stopwatch fills while its own card is in view: half of it on screen, a beat after the card has started to come up
@@ -800,7 +838,7 @@
     var kuro = $('[data-est-kuro]'), kImgs = $$('img', kuro), kLine = $('[data-est-line]');
     var seal = $('[data-est-seal]', est);
     var live = $('[data-est-live]', est), liveW = $('[data-est-live-w]', est);
-    var shown = null, tw = 0, tier = 0, padTo = 0;
+    var shown = null, tw = 0, tier = 0;
     var paint = function (lo, hi) {
       dz.textContent = range(lo, hi, 'DZD');
       if (live) live.textContent = dz.textContent;
@@ -820,17 +858,9 @@
         else ['lo', 'hi'].forEach(function (f) { td = document.createElement('td'); td.dir = 'ltr'; td.textContent = amt(ln[f]); tr.appendChild(td); });
         frag.appendChild(tr);
       });
-      /* the receipt keeps the length of the longest quote the same choices
-         give on any type (blank lines under the last), so the total, Kūro
-         and the markets below it stay put as the type changes */
-      var opts = st.opts, longest = q.lines.length;
-      order.forEach(function (k) { var mk2 = M[k]; if (!mk2) return; longest = Math.max(longest, quote(k, mk2.def, (mk2.incl || []).concat(opts.filter(function (o) { return (mk2.incl || []).indexOf(o) < 0; })), st.rush).lines.length); });
-      padTo = Math.max(padTo, longest);
-      for (var pi = q.lines.length; pi < padTo; pi++) {
-        var pr = document.createElement('tr'), pd = document.createElement('td');
-        pr.className = 'st-rc__pad'; pr.setAttribute('aria-hidden', 'true'); pd.colSpan = 3; pd.textContent = '\u00a0';
-        pr.appendChild(pd); frag.appendChild(pr);
-      }
+      /* the receipt prints only the lines it has: it grows as options are
+         added, as a till roll does (2026-11-19: the blank lines it used to
+         keep for the longest quote read as empty fields) */
       rowsEl.textContent = ''; rowsEl.appendChild(frag);
       loEl.textContent = amt(q.lo); hiEl.textContent = amt(q.hi);
       eu.textContent = range(q.lo, q.hi, 'EUR'); us.textContent = range(q.lo, q.hi, 'USD');
@@ -870,7 +900,7 @@
       what.textContent = t('pricing.types.' + st.type) + ' · ' + counted(m.u, st.n);
       inclEl.textContent = (m.fam === 'argent' ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, m.base_u)) + '. ' + t('pricing.beyond') + ' + ' + range(m.unit[0], m.unit[1], 'DZD') + ' / ' + unitN(m.u, 1);
       // a studio project whose range meets the mid band carries the mid-range note; the money services do not
-      // (one without it keeps its place, unseen and unread, style.css: Kūro and the markets below stay put as the type changes)
+      // (one without it shows nothing there: is-off, style.css)
       if (midEl) { var midOff = !!m.fam || q.lo > P.mid[1] || q.hi < P.mid[0]; midEl.hidden = false; midEl.classList.toggle('is-off', midOff); midEl.setAttribute('aria-hidden', String(midOff)); midEl.textContent = t('pricing.rc.mid').replace('{r}', pair(P.mid[0], P.mid[1], 'DZD')); }
       // pace and maintenance are a project's, not a call's
       if (paceBox) paceBox.hidden = !!m.noRush;
@@ -998,6 +1028,9 @@
       lcards.forEach(function (c) { var on = c.getAttribute('data-layer-card') === i; c.classList.toggle('is-active', on); if (on && rise) c.classList.add('is-rise'); });
     };
     layers.forEach(function (b) { b.addEventListener('click', function () { pick(b.getAttribute('data-layer'), true); }); });
+    // from 1100px the four layers are listed beside the drawing as a legend (style.css): a click on a resting row
+    // picks it, as its band does (pointer only; the keyboard has the four real buttons on the drawing)
+    lcards.forEach(function (c) { c.addEventListener('click', function () { if (!c.classList.contains('is-active')) pick(c.getAttribute('data-layer-card'), true); }); });
     pick('3');
   }
   var qas = $$('.st-qa button[aria-controls]');
@@ -1168,7 +1201,11 @@
         if (seen[k]) return; seen[k] = 1;
         $$('[data-kind="' + k + '"] [data-badge]', track).forEach(function (b) { b.classList.add('is-seen'); b.setAttribute('data-i18n', 'case.seen'); b.textContent = t('case.seen'); });
         $$('[data-pip="' + k + '"],[data-scope="' + k + '"]', cs).forEach(function (p) { p.classList.add('is-seen'); });
-        if (count) count.textContent = Object.keys(seen).length + '/' + total;
+        if (count) {
+          count.textContent = Object.keys(seen).length + '/' + total;
+          // the count rolls up once (one roll at a time: a fast drag cancels the last)
+          if (!reduce && count.animate) { if (count._roll) count._roll.cancel(); count._roll = count.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: M(3), easing: 'cubic-bezier(.16,1,.3,1)' }); }
+        }
       };
       if (count) count.textContent = '0/' + total;
       if (IO) {
@@ -1276,6 +1313,23 @@
       lb.setAttribute('aria-label', cap || lbImg.alt || t('case.zoom'));
       if (lbCap) { lbCap.textContent = cap + (setList.length > 1 ? (cap ? '  ·  ' : '') + (setAt + 1) + ' / ' + setList.length : ''); lbCap.hidden = !setList.length || !cap; }
     };
+    var canVT = function () { return !reduce && !!document.startViewTransition && !!window.ViewTransition && 'types' in ViewTransition.prototype; };
+    var onScreen = function (el) { if (!el) return false; var r = el.getBoundingClientRect(); return r.width > 0 && r.bottom > 0 && r.top < innerHeight; };
+    // closing goes back into the picture it came from (250 ms) when that picture is on the screen; the ✕, a click outside, Esc and a pull down all close here
+    var closeLb = function () {
+      if (!lb.open) return;
+      var th = opener && $('img', opener);
+      if (canVT() && onScreen(th)) {
+        try {
+          lbImg.style.viewTransitionName = 'lb-pic';
+          var tr = document.startViewTransition({ types: ['zoom-out'], update: function () { lbImg.style.viewTransitionName = ''; lb.classList.add('is-vt'); lb.close(); th.style.viewTransitionName = 'lb-pic'; } });
+          tr.finished.then(null, noop).then(function () { th.style.viewTransitionName = ''; lb.classList.remove('is-vt'); });
+          return;
+        } catch (x) { lbImg.style.viewTransitionName = ''; }
+      }
+      lb.close();
+    };
+    lb.addEventListener('cancel', function (e) { e.preventDefault(); closeLb(); });
     // previous and next: the picture fades out (167 ms) while the next decodes, and the next fades in (250 ms) once it can be painted whole
     var turn = 0, noop = function () {};
     var go = function (d) {
@@ -1292,6 +1346,13 @@
         (lbImg.decode ? lbImg.decode().catch(noop) : Promise.resolve()).then(function () { if (my === turn) lbImg.classList.remove('is-swap'); });
       });
     };
+    /* a press on a picture that peeks at the edge of a case track must not focus it: the focus would scroll the
+       track to bring it in between the press and the release, the release would land on another element and the
+       click would go to the track (2026-11-19: the first picture of each track and the far spines never opened by
+       mouse). The keyboard focuses it as before; closing the viewer gives the focus back to it (close, below). */
+    document.addEventListener('mousedown', function (e) {
+      if (e.button === 0 && e.target.closest && e.target.closest('[data-zoom]')) e.preventDefault();
+    });
     document.addEventListener('click', function (e) {
       var z = e.target.closest && e.target.closest('[data-zoom]');
       if (!z) return;
@@ -1302,6 +1363,21 @@
       lb.classList.toggle('st-lb--set', setList.length > 1);
       [lbPrev, lbNext].forEach(function (b) { if (b) b.hidden = setList.length < 2; });
       turn++; lbImg.classList.remove('is-swap');
+      /* the viewer grows out of the picture pressed (333 ms) where the browser can morph one element into
+         another (a view transition, style.css); a thumbnail off the screen, or reduced motion: the fade */
+      var th = $('img', z);
+      if (canVT() && onScreen(th)) {
+        try {
+          th.style.viewTransitionName = 'lb-pic';
+          var tr = document.startViewTransition({ types: ['zoom-in'], update: function () {
+            th.style.viewTransitionName = ''; lb.classList.add('is-vt'); show(z); lb.showModal();
+            lbImg.style.viewTransitionName = 'lb-pic';
+            return Promise.race([lbImg.decode ? lbImg.decode().catch(noop) : null, new Promise(function (r) { setTimeout(r, M(4)); })]);
+          } });
+          tr.finished.then(null, noop).then(function () { lbImg.style.viewTransitionName = ''; th.style.viewTransitionName = ''; lb.classList.remove('is-vt'); });
+          return;
+        } catch (x) { th.style.viewTransitionName = ''; }
+      }
       show(z);
       lb.showModal();
     });
@@ -1314,7 +1390,7 @@
       go((e.key === 'ArrowRight') !== rtl ? 1 : -1);
     });
     // (it fades as it goes, a step quicker than it came: style.css)
-    lb.addEventListener('click', function (e) { if (e.target === lb || e.target === lbImg || e.target.closest('[data-lb-close]')) lb.close(); });
+    lb.addEventListener('click', function (e) { if (e.target === lb || e.target === lbImg || e.target.closest('[data-lb-close]')) closeLb(); });
     // the focus goes back to the picture in the frame that starts the exit, not inside the press that closed it (a second forced layout there)
     lb.addEventListener('close', function () { var o = opener; opener = null; setList = []; if (o) requestAnimationFrame(function () { if (!lb.open) o.focus(); }); });
     // a touch swipes the viewer: sideways moves one picture (as the page reads: the other way in Arabic), a pull down closes it
@@ -1335,7 +1411,7 @@
       sw = null; lb.style.transform = ''; lb.style.opacity = ''; lb.style.transition = '';
       if (e.type === 'pointercancel') return;
       if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) go((dx < 0) !== (getComputedStyle(lb).direction === 'rtl') ? 1 : -1);
-      else if (dy > 80 && dy > Math.abs(dx) * 1.3) lb.close();
+      else if (dy > 80 && dy > Math.abs(dx) * 1.3) closeLb();
     };
     lb.addEventListener('pointerup', endSwipe);
     lb.addEventListener('pointercancel', endSwipe);
@@ -1475,9 +1551,13 @@
     try { done = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { done = []; }
     if (!Array.isArray(done)) done = [];
     // a lesson picked by a press rises into place (is-rise, style.css: 333 ms); the first one is simply there
+    // a lesson picked slides in from the side it lies on (16px, 333 ms: a lesson to the right comes from the right)
+    var shownAt = 0;
     var show = function (id, focus, rise) {
-      tabs.forEach(function (b) { var on = b.getAttribute('data-ls-tab') === id; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
-      panels.forEach(function (p) { var on = p.getAttribute('data-ls-panel') === id; p.hidden = !on; if (on && rise) p.classList.add('is-rise'); });
+      var at = 0;
+      tabs.forEach(function (b, i) { var on = b.getAttribute('data-ls-tab') === id; if (on) at = i; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
+      var dir = at >= shownAt ? 1 : -1; shownAt = at;
+      panels.forEach(function (p) { var on = p.getAttribute('data-ls-panel') === id; p.hidden = !on; if (on && rise) { p.style.setProperty('--dir', String(dir)); p.classList.add('is-slide'); } });
     };
     var stamps = function () {
       tabs.forEach(function (b) {
@@ -1485,7 +1565,12 @@
         $('[data-ls-stamp]', b).hidden = !on; $('[data-ls-done]', b).hidden = !on;
       });
       var n = tabs.filter(function (b) { return done.indexOf(b.getAttribute('data-ls-tab')) > -1; }).length;
-      if (count) count.textContent = String(n);
+      if (count && count.textContent !== String(n)) {
+        count.textContent = String(n);
+        // the stamp count rolls up (one roll at a time)
+        if (!reduce && count.animate && count._seen) { if (count._roll) count._roll.cancel(); count._roll = count.animate([{ opacity: 0, transform: 'translateY(40%)' }, { opacity: 1, transform: 'none' }], { duration: M(3), easing: 'cubic-bezier(.16,1,.3,1)' }); }
+      }
+      if (count) count._seen = true;
       $$('[data-ls-earn]', ls).forEach(function (x) { x.classList.toggle('is-earned', done.indexOf(x.getAttribute('data-ls-earn')) > -1); });
       $$('[data-ls-all]', ls).forEach(function (x) { x.hidden = n < tabs.length; });
       if (ls.hasAttribute('data-ls-bar')) ls.style.setProperty('--n', String(n));

@@ -129,6 +129,7 @@ strong,b{font-weight:600}
   html:active-view-transition-type(page)::view-transition-new(root){mix-blend-mode:normal;animation:none}
   html:active-view-transition-type(swap)::view-transition-old(root){animation:m-out var(--m-quick) var(--m-ease-exit) both}
   html:active-view-transition-type(swap)::view-transition-new(root){animation:m-in var(--m-hover) var(--m-ease-enter) both}
+  html:active-view-transition-type(page)::view-transition-old(site-nav),html:active-view-transition-type(page)::view-transition-old(st-nav){animation:m-out var(--m-quick) var(--m-ease-exit) both}   /* the leaving page's named nav when this page has none of that name: it would stay put on the browser's default fade (250 ms ease); it goes on the exit curve instead (2026-11-19) */
 }
 @keyframes m-lift{to{transform:translateY(-100%)}}
 @keyframes m-out{to{opacity:0}}
@@ -333,7 +334,9 @@ html:not(.js) .ctrls{display:none}
 .actor-fig{display:flex;flex-direction:column;gap:10px}
 .actor-box{position:relative;aspect-ratio:3/4;background:var(--sand);border:2px solid var(--ink);overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
 .actor-box .floor-line{position:absolute;left:0;right:0;bottom:0;height:9%;background:var(--floor);border-top:2px solid var(--ink)}
-.actor{position:relative;height:86%;max-width:94%;margin-bottom:5%;cursor:pointer;border:0;padding:0;background:none;display:block;-webkit-tap-highlight-color:transparent}
+/* the soles on the floor line: the band is 9% of a 3:4 box's height = 12% of its width, and a margin's % is of
+   the width, so the figure stands 11.5% up (2026-11-19: at 5% the shoes ran ~20 px under the line at 1100+) */
+.actor{position:relative;height:84%;max-width:94%;margin-bottom:11.5%;cursor:pointer;border:0;padding:0;background:none;display:block;-webkit-tap-highlight-color:transparent}
 .actor--wave{aspect-ratio:282/640}.actor--pointup{aspect-ratio:295/640}.actor--phone{aspect-ratio:286/640}
 .actor--sketch{aspect-ratio:304/640}.actor--win{aspect-ratio:299/640}.actor--duo{aspect-ratio:673/520}
 .actor img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0}
@@ -348,6 +351,15 @@ html:not(.js) .ctrls{display:none}
 .actor-fig .where{font:500 12px/1.3 var(--mono);letter-spacing:.14em;color:var(--red-text);text-transform:uppercase;white-space:nowrap}
 .actor-fig .line{font-size:14px;line-height:1.35}
 @media (min-width:640px){.actors{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}}
+/* six cards: three across on a wide screen, two full rows (four across left
+   two empty places under the second row); below that the auto-fill above
+   gives two or three across, full rows either way. The seated duo is a wide
+   picture: from 600 px it takes the card's whole width, standing on the
+   floor line, instead of a small letterboxed scene in a tall card. (Spanning
+   it over two places, the other proposal, leaves a hole: five single cards
+   never fill rows of two or three.) */
+@media (min-width:600px){.actor--duo{width:100%;max-width:none;height:auto;align-self:flex-end}}
+@media (min-width:1100px){section#toe ul.actors{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* ---------- 05 · Kūro: the ink band ---------- */
 .kuro{background:var(--ink);color:var(--cream);margin:0 calc(-1 * var(--gx-r)) 0 calc(-1 * var(--gx-l));padding:clamp(32px,5vw,64px) var(--gx-r) clamp(32px,5vw,64px) var(--gx-l)}
@@ -451,6 +463,13 @@ html:not(.js) .ctrls{display:none}
   .sec[data-reveal] .sh h2{transition:clip-path var(--m-reveal) var(--ease)}
   .sec[data-reveal] .sh .num{transition:clip-path var(--m-reveal) var(--ease) var(--m-step)}
   .sec[data-reveal]:not(.is-in) .sh h2,.sec[data-reveal]:not(.is-in) .sh .num{clip-path:inset(0 0 100% 0)}
+  /* the six full-body cards and the feed grid are pasted up one at a time
+     once the section is half risen (three eighths in), a sixteenth apart
+     (rows of more than four): each rises 12px from a slight tilt; the
+     twelfth post settles at 1208 ms. The way in only, as above. */
+  .sec[data-reveal]:not(.is-in) :is(.actors,.pgrid)>*{opacity:.001;transform:translateY(12px) rotate(-1.5deg)}
+  .sec[data-reveal].is-in :is(.actors,.pgrid)>*{transition:opacity var(--m-reveal) var(--m-ease-enter),transform var(--m-reveal) var(--m-ease-enter);transition-delay:calc(var(--m-hover) + var(--i,0) * var(--m-step) / 2)}
+  :is(.actors,.pgrid)>:nth-child(2){--i:1}:is(.actors,.pgrid)>:nth-child(3){--i:2}:is(.actors,.pgrid)>:nth-child(4){--i:3}:is(.actors,.pgrid)>:nth-child(5){--i:4}:is(.actors,.pgrid)>:nth-child(6){--i:5}:is(.actors,.pgrid)>:nth-child(7){--i:6}:is(.actors,.pgrid)>:nth-child(8){--i:7}:is(.actors,.pgrid)>:nth-child(9){--i:8}:is(.actors,.pgrid)>:nth-child(10){--i:9}:is(.actors,.pgrid)>:nth-child(11){--i:10}:is(.actors,.pgrid)>:nth-child(12){--i:11}
 }
 
 /* ---------- motion preference: nothing eases, nothing moves on its own ---------- */

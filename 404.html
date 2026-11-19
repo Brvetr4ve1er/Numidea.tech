@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PMF7RWVK"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-4JrU1s1R3yMLMsUV5Y4JpWDP9w7BsVHn3vIGleKXx4g=' 'sha256-nZEManJF3YtPbuTKDbxEiilWaYYTdjrn/MDaiy0g/9c='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-SGw6fs6rOZ7Ht23rkkAygArC7VHkAAQYJNvxKPXYXjY=' 'sha256-4JrU1s1R3yMLMsUV5Y4JpWDP9w7BsVHn3vIGleKXx4g=' 'sha256-hH1+2JbT++0v50sfF6JjvQA3iFE/NxtUhS8uLkVq5TI='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; media-src 'self'; frame-src 'self'; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action mailto:">
 <title>Cette page a pris la route — Numidea Labs</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A1420">
@@ -114,18 +114,21 @@
   .e404>main{position:relative}
   .e404 .sheet-frame{display:block;inset:calc(-1 * var(--s-5)) -12px calc(-1 * var(--s-5))}
   .e404 .dim-line{justify-content:center;margin:0 auto var(--s-4);max-width:20.4em}
-  /* The scene: Yasser's Facepalm pose (assets/illus/yasser-facepalm.webp) in a night panel (a hard
-     offset shadow, a ground line), with one line from Kuro under it, in red: red is voice. The
-     image is made and addressed by the script below, from the site root like the links (a relative
-     src would be fetched from the missing folder); with JavaScript off the panel is not drawn. */
-  .e404 .e404-scene{display:none;margin:var(--s-5) auto 0;width:min(100%,300px)}
+  /* The scene: the road out of town at night (assets/illus/road-404, 3:2), Yasser hiding his face
+     beside a blank road marker, Kūro on top of it, the workshop still lit far down the road; a
+     framed painting (a cream frame, the hard red shadow), with one line from Kūro under it, his
+     name in red: red is voice. The image is made and addressed by the script below, from the site
+     root like the links (a relative src would be fetched from the missing folder); with JavaScript
+     off the panel is not drawn. The files are cut to the painting (2026-11-19): the original's flat cream strip
+     under the ground line is gone, so the road and Yasser run to the frame's foot. */
+  .e404 .e404-scene{display:none;margin:var(--s-5) auto 0;width:min(100%,600px,max(300px,(100svh - 640px) * 1.5))}   /* on a laptop screen the way home stays in the first screen */
   html[data-scene] .e404 .e404-scene{display:block}
-  .e404 .e404-art{background:var(--nsp-panel);border:2px solid var(--nsp-ink);border-bottom:4px solid var(--nsp-paper);border-radius:4px 4px 0 0;
-    box-shadow:6px 6px 0 var(--nsp-shadow);padding:var(--s-4) var(--s-4) 0;display:flex;justify-content:center;align-items:flex-end;overflow:clip;min-height:170px}
-  html[dir="rtl"] .e404 .e404-art{box-shadow:-6px 6px 0 var(--nsp-shadow)}
-  .e404 .e404-art img{display:block;width:min(100%,220px);height:auto}
+  .e404 .e404-art{aspect-ratio:3/2;overflow:hidden;background:var(--nsp-panel);border:2px solid var(--ice);box-shadow:6px 6px 0 var(--nsp-red)}
+  html[dir="rtl"] .e404 .e404-art{box-shadow:-6px 6px 0 var(--nsp-red)}
+  .e404 .e404-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+  @media (max-width:699px){.e404 .e404-scene{width:min(100% - 32px,360px)}}   /* inset inside the page's frame lines, its red shadow included (2026-11-19) */
   .e404 .e404-kuro{margin:var(--s-4) 0 var(--s-5);font-size:var(--t-small);line-height:1.5;color:var(--ice)}
-  .e404 .e404-kuro b{font-family:var(--font-mono);font-weight:600;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--crimson-text);margin-inline-end:var(--s-2)}
+  .e404 .e404-kuro b{font-family:var(--font-mono);font-weight:600;letter-spacing:var(--ls-label);text-transform:uppercase;color:color-mix(in srgb,#FF5A4D,var(--ice) 28%);margin-inline-end:var(--s-2)}
   .e404 .e404-kuro>[lang]{display:none}
   html[lang="fr"] .e404 .e404-kuro>[lang="fr"],html[lang="en"] .e404 .e404-kuro>[lang="en"],html[lang="ar"] .e404 .e404-kuro>[lang="ar"]{display:inline}
   html[lang="ar"] .e404 .e404-kuro b{font-family:var(--font-ar-body);letter-spacing:0;text-transform:none}
@@ -146,9 +149,7 @@
     .e404{min-height:auto;place-items:start center;padding-block:24px 32px}
     .e404 .brand{position:static;transform:none;margin-bottom:var(--s-5)}
     .e404 .mark{font-size:clamp(64px,16vw,120px)}
-    .e404 .e404-scene{margin-top:var(--s-3);width:min(100%,220px)}
-    .e404 .e404-art{min-height:0;padding-top:var(--s-3)}
-    .e404 .e404-art img{width:150px}
+    .e404 .e404-scene{margin-top:var(--s-3);width:min(100%,300px)}
     .e404 .lines{margin-top:var(--s-4)}
     .e404 .ctas{margin-top:var(--s-5)}
   }
@@ -166,7 +167,8 @@
      in 500, an eighth of a beat after the one before (transform only: the
      numeral is painted, and credited as painted, from the first frame), and
      waits under the page being lifted off when the visitor arrives by a page
-     change. The drawing fades in (250) once it is decoded. */
+     change. The painting unrolls from its top edge (one beat, the move curve)
+     once it is decoded, then Kūro's line writes itself (500). */
   @media (prefers-reduced-motion:no-preference){
     .e404 :is(.dim-line,.mark,.lines,.e404-scene,.ctas){animation:hero-rise-solid var(--m-reveal) var(--m-ease-enter) both}
     .e404 .mark{animation-delay:var(--m-step)}
@@ -174,9 +176,13 @@
     .e404 .e404-scene{animation-delay:calc(3 * var(--m-step))}
     .e404 .ctas{animation-delay:calc(4 * var(--m-step))}
     html:active-view-transition .e404 :is(.dim-line,.mark,.lines,.e404-scene,.ctas){animation-play-state:paused}
-    .e404 .e404-art img{transition:opacity var(--m-hover) var(--m-ease-enter)}
+    .e404 .e404-art img.is-wait{clip-path:inset(0 0 100% 0)}
+    .e404 .e404-art img.is-on{animation:m-unroll var(--m-beat) var(--m-ease-move) backwards}
+    html[data-scene] .e404 .e404-kuro>[lang]{clip-path:inset(0 100% 0 0)}
+    html[dir="rtl"][data-scene] .e404 .e404-kuro>[lang]{clip-path:inset(0 0 0 100%)}
+    html[data-scene].e404-lit .e404 .e404-kuro>[lang]{clip-path:inset(0);transition:clip-path var(--m-reveal) var(--m-ease-enter) var(--m-beat)}
   }
-  .e404 .e404-art img.is-wait{opacity:0}
+  @keyframes m-unroll{from{clip-path:inset(0 0 100% 0)}}
 </style>
 <script>
 /* GitHub Pages serves this page for ANY missing URL, at any depth — relative
@@ -228,20 +234,25 @@
   d.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
   document.title = TITLE[lang];
   // the scene's image, made here from the site root like the links above (a src in the markup would resolve against the missing folder)
-  var ALT = { fr: 'Yasser, la main sur le visage', en: 'Yasser, hand over his face', ar: 'ياسر يضع يده على وجهه' };
+  var ALT = { fr: 'Une route vide la nuit à la sortie de la ville\u202f: Yasser se cache le visage près d’une borne, Kūro assis dessus, et au loin l’atelier encore allumé.',
+             en: 'An empty road out of town at night: Yasser hides his face beside a road marker, Kūro sits on top of it, and far off the workshop is still lit.',
+             ar: 'طريق خالٍ ليلاً عند مخرج المدينة: ياسر يخفي وجهه بجانب علامة الطريق، وكورو جالس فوقها، والورشة بعيداً ما زالت مضاءة.' };
   document.addEventListener('DOMContentLoaded', function () {
     var box = document.querySelector('.e404-art');
     if (!box) return;
     var im = new Image();
-    im.width = 447; im.height = 440; im.decoding = 'async';
-    im.alt = ALT[lang]; im.src = root + 'illus/yasser-facepalm.webp';
+    im.width = 1200; im.height = 800; im.decoding = 'async';
+    im.alt = ALT[lang];
+    im.srcset = root + 'illus/road-404-600.webp 600w, ' + root + 'illus/road-404-1200.webp 1200w';
+    im.sizes = '(max-width:699px) min(100vw - 32px, 360px), min(100vw - 32px, 600px)';
+    im.src = root + 'illus/road-404-1200.webp';
     // in its place at once (its box sized by width and height), unseen
     // until decoded, then faded in (styles above), never half-painted; if
     // decoding fails it is shown all the same
     im.className = 'is-wait';
     box.appendChild(im);
     d.setAttribute('data-scene', '');
-    var put = function () { im.className = ''; };
+    var put = function () { im.className = 'is-on'; d.classList.add('e404-lit'); };
     if (im.decode) im.decode().then(put, put); else put();
   });
   var bar = document.querySelector('meta[name="theme-color"]');

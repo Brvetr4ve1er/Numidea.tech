@@ -586,6 +586,53 @@
       revealEls.forEach(revealNow);
     }
 
+    /* The planche heads arrive as one phrase (T03), and Kūro's window in the
+       FAQ unrolls (T07), once each, when they come into view: a head below
+       the fold at load is marked hd-pre (its number, rule, title and lead
+       held; styles.css), then hd-in as it crosses 10% into the screen. A
+       head on screen at load, or the one the address names, is never
+       hidden. Nothing with reduced motion or without an observer. */
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      var vhH = window.innerHeight || document.documentElement.clientHeight;
+      var heads = [].slice.call(document.querySelectorAll('main.wrap>section:not(.hero):not(.proof)'))
+        .filter(function (sec) { return sec.querySelector(':scope>.kicker'); });
+      var win = document.querySelector('#faq>.faq-win');
+      var holds = heads.concat(win ? [win] : []);
+      var rH = holds.map(function (el) { return el.getBoundingClientRect(); });   // reads, then writes
+      var hio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          hio.unobserve(en.target);
+          var t = en.target;
+          if (t === win) { t.classList.remove('is-pre'); t.classList.add('is-in'); }
+          else { t.classList.remove('hd-pre'); t.classList.add('hd-in'); }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+      holds.forEach(function (el, i) {
+        if (rH[i].top < vhH * 0.9 || (location.hash && el.id && location.hash === '#' + el.id)) return;
+        el.classList.add(el === win ? 'is-pre' : 'hd-pre');
+        hio.observe(el);
+      });
+    }
+
+    /* The case picture flies from its card to its planche (T04): when the
+       page leaves for scene/#<case> with the card's capture on screen, the
+       capture is named case-shot for the page lift, and scene/ (its head
+       script) names its frame the same, so the browser moves one into the
+       other in 500 ms. Any other change is the plain lift. */
+    window.addEventListener('pageswap', function (e) {
+      if (!e.viewTransition || reduceMotion || !e.activation || !e.activation.entry) return;
+      var u;
+      try { u = new URL(e.activation.entry.url); } catch (x) { return; }
+      var m = /\/scene\/$/.test(u.pathname) && /^#(bordjsteel|almaflow)$/.exec(u.hash);
+      var img = m && document.querySelector('#w-' + m[1] + ' .thumb .shot');
+      if (!img) return;
+      var r = img.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight || !r.width) return;
+      img.style.viewTransitionName = 'case-shot';
+      try { sessionStorage.setItem('vt-case', m[1]); } catch (x) {}
+    });
+
 
     /* ---------- hero plate: four live client sites + the Glaive demo ----------
        Wipe, don't cross-fade. Two flat UIs dissolving through each other

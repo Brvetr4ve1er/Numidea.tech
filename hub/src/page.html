@@ -192,64 +192,85 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
 </section>
 
 <!-- ============================== 00b THE DOORS ==============================
-     The premise (2026-11-15), then two doors in the poster language: day (red,
-     the buyer's path) and night (the Arcanum navy, the world's path), and
-     under them a third, slimmer one (2026-11-16): the manual, its own page
-     (manuel.html: the lessons, the coaching services, the radio). The
-     characters sit inside their panels (hard shadow, a ground line); the two
-     base frames are the hero's own files, so nothing new is fetched. Brass is
-     for the place only (the coordinates on the night panel). -->
+     One street, three doors (2026-11-18): the workshop's façade in one
+     frame. A night cornice (the name; the place in brass), three bays
+     side by side between ink pilasters on one ground line, and under each
+     its plate. 01 the shop front by day (Yasser hands over the keys: the
+     client's door, the only red button), 02 the arched door ajar onto
+     another night (Kūro on the threshold: the world), 03 the lit window
+     (Kūro over the laptop: the manual). Bays 5 : 4 : 3 and pictures 5:4,
+     1:1, 3:4, so the three are one height at every width; each painting
+     keeps its ground and its figure at the bottom, only wall goes above.
+     The picture is a pointer alias of the bay's button (hidden from Tab
+     and from screen readers): one named link per door. -->
 <section class="st-doors" id="doors" aria-labelledby="doors-h">
   <div class="st-wrap">
-    <div class="st-doors__top" data-reveal>
-      <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">夜</span><span data-i18n="doors.kicker"></span></p>
-      <h2 class="st-doors__premise" id="doors-h" data-i18n="doors.premise"></h2>
+    <div class="st-head" data-reveal>
+      <div class="st-head__main">
+        <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">夜</span><span data-i18n="doors.kicker"></span></p>
+        <h2 class="st-h2 st-doors__t" id="doors-h" data-i18n="doors.title"></h2>
+      </div>
+      <p class="st-lead st-doors__premise" data-i18n="doors.premise"></p>
     </div>
-    <div class="st-doors__row" role="group" data-i18n-aria="doors.aria">
-      <article class="st-door st-door--day" data-reveal>
-        <div class="st-door__scene" aria-hidden="true">
-          <img src="bible/art/rig-y-base.webp" alt="" width="501" height="565" loading="lazy" decoding="async">
-        </div>
-        <div class="st-door__body">
-          <p class="st-label st-door__k" data-i18n="doors.a.k"></p>
-          <h3 class="st-door__t"><a href="#preview" data-i18n="doors.a.t"></a></h3>
-          <p class="st-door__d" data-i18n="doors.a.d"></p>
-          <a class="st-btn st-btn--primary st-door__go" href="#contact"><span data-i18n="doors.a.go"></span><span aria-hidden="true">&nbsp;→</span></a>
-          <ul class="st-door__links">
-            <li><a href="#preview" data-i18n="doors.a.preview"></a></li>
-            <li><a href="#work" data-i18n="doors.a.work"></a></li>
-            <li><a href="#pricing" data-i18n="doors.a.pricing"></a></li>
-            <li><a href="#contact" data-i18n="doors.a.contact"></a></li>
-          </ul>
-        </div>
-      </article>
-      <article class="st-door st-door--night" data-reveal>
-        <div class="st-door__scene" aria-hidden="true">
-          <img src="bible/art/rig-k-wide.webp" alt="" width="360" height="294" loading="lazy" decoding="async">
-          <span class="st-door__coord" dir="ltr">36°04′N 4°46′E</span>
-        </div>
-        <div class="st-door__body">
-          <p class="st-label st-door__k" data-i18n="doors.b.k"></p>
-          <h3 class="st-door__t"><a href="monde.html" data-i18n="doors.b.t"></a></h3>
-          <p class="st-door__d" data-i18n="doors.b.d"></p>
-          <a class="st-btn st-btn--primary st-door__go" href="monde.html"><span data-i18n="doors.b.go"></span><span aria-hidden="true">&nbsp;→</span></a>
-          <ul class="st-door__links">
-            <li><a href="monde.html#voidsplunker" dir="ltr">VOIDSPLUNKER.std</a></li>
-            <li><a href="monde.html#mercury" dir="ltr">MERCURY</a></li>
-            <li><a href="#case-traveler" dir="ltr">tr4veler.exe</a></li>
-            <li><a href="bible/" data-i18n="doors.b.bible"></a></li>
-          </ul>
-        </div>
-      </article>
-      <article class="st-door3" data-reveal>
-        <img class="st-door3__img" src="img/studio/money/ls-rate-240.webp" alt="" loading="lazy" decoding="async">
-        <div class="st-door3__body">
-          <p class="st-label st-door__k" data-i18n="doors.c.k"></p>
-          <h3 class="st-door3__t"><a href="manuel.html" data-i18n="doors.c.t"></a></h3>
-          <p class="st-door3__d" data-i18n="doors.c.d"></p>
-        </div>
-        <a class="st-btn st-btn--ghost st-door3__go" href="manuel.html"><span data-i18n="doors.c.go"></span><span aria-hidden="true">&nbsp;→</span></a>
-      </article>
+    <div class="st-street" data-reveal>
+      <p class="st-street__cornice" aria-hidden="true">
+        <span class="st-street__name" dir="ltr">Numidea Labs<span lang="ja">ヌミディア・ラボ</span></span>
+        <span class="st-street__coord" dir="ltr">36°04′N&#160;4°46′E <span class="st-street__city">· BORDJ BOU ARRÉRIDJ</span></span>
+      </p>
+      <ul class="st-street__row" data-i18n-aria="doors.aria">
+        <li class="st-bay st-bay--a" style="--i:0">
+          <a class="st-bay__art" href="#contact" tabindex="-1" aria-hidden="true">
+            <img src="img/studio/doors/a-1400.webp" srcset="img/studio/doors/a-700.webp 700w, img/studio/doors/a-1100.webp 1100w, img/studio/doors/a-1400.webp 1400w"
+                 sizes="(min-width:1100px) 42vw, (min-width:700px) 92vw, 147vw" alt="" width="1400" height="1120" loading="lazy" decoding="async">
+          </a>
+          <div class="st-bay__plate">
+            <p class="st-label st-bay__k" data-i18n="doors.a.k"></p>
+            <h3 class="st-bay__t" data-i18n="doors.a.t"></h3>
+            <p class="st-bay__d" data-i18n="doors.a.d"></p>
+            <a class="st-btn st-btn--primary st-bay__go" href="#contact"><span data-i18n="doors.a.go"></span><span class="st-arw" aria-hidden="true">→</span></a>
+            <ul class="st-bay__more">
+              <li><a href="#preview" data-i18n="doors.a.preview"></a></li>
+              <li><a href="#work" data-i18n="doors.a.work"></a></li>
+              <li><a href="#pricing" data-i18n="doors.a.pricing"></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="st-bay st-bay--b" style="--i:1">
+          <a class="st-bay__art" href="monde.html" tabindex="-1" aria-hidden="true">
+            <img src="img/studio/doors/b-1200.webp" srcset="img/studio/doors/b-600.webp 600w, img/studio/doors/b-900.webp 900w, img/studio/doors/b-1200.webp 1200w"
+                 sizes="(min-width:1100px) 34vw, (min-width:700px) 46vw, 92vw" alt="" width="1200" height="1500" loading="lazy" decoding="async">
+          </a>
+          <div class="st-bay__plate">
+            <p class="st-label st-bay__k" data-i18n="doors.b.k"></p>
+            <h3 class="st-bay__t" data-i18n="doors.b.t"></h3>
+            <p class="st-bay__d" data-i18n="doors.b.d"></p>
+            <a class="st-btn st-btn--ghost st-bay__go" href="monde.html"><span data-i18n="doors.b.go"></span><span class="st-arw" aria-hidden="true">→</span></a>
+            <ul class="st-bay__more">
+              <li><a href="monde.html#voidsplunker" dir="ltr">VOIDSPLUNKER.std</a></li>
+              <li><a href="monde.html#mercury" dir="ltr">MERCURY</a></li>
+              <li><a href="#case-traveler" dir="ltr">tr4veler.exe</a></li>
+              <li><a href="bible/" data-i18n="doors.b.bible"></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="st-bay st-bay--c" style="--i:2">
+          <a class="st-bay__art" href="manuel.html" tabindex="-1" aria-hidden="true">
+            <img src="img/studio/doors/c-1000.webp" srcset="img/studio/doors/c-480.webp 480w, img/studio/doors/c-700.webp 700w, img/studio/doors/c-1000.webp 1000w"
+                 sizes="(min-width:1100px) 25vw, (min-width:700px) 46vw, 92vw" alt="" width="1000" height="1333" loading="lazy" decoding="async">
+          </a>
+          <div class="st-bay__plate">
+            <p class="st-label st-bay__k" data-i18n="doors.c.k"></p>
+            <h3 class="st-bay__t" data-i18n="doors.c.t"></h3>
+            <p class="st-bay__d" data-i18n="doors.c.d"></p>
+            <a class="st-btn st-btn--ghost st-bay__go" href="manuel.html"><span data-i18n="doors.c.go"></span><span class="st-arw" aria-hidden="true">→</span></a>
+            <ul class="st-bay__more">
+              <li><a href="manuel.html#lessons" data-i18n="doors.c.lessons"></a></li>
+              <li><a href="manuel.html#nomade" data-i18n="doors.c.nomad"></a></li>
+              <li><a href="manuel.html#radio" data-i18n="doors.c.radio"></a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -288,6 +309,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <p class="st-label st-label--teal" data-i18n="wedge.oursR"></p>
       </div>
       <div class="st-board__end">
+        <span class="st-chain__cut" aria-hidden="true"><svg viewBox="0 0 120 32" width="120" height="32" focusable="false"><path class="c" d="M2 16H44M76 16H118"/><path d="M44 16l7-7M44 16h8M44 16l7 7M76 16l-7-7M76 16h-8M76 16l-7 7"/></svg></span>
         <p class="st-aside" data-i18n="wedge.aside"></p>
         <img class="st-board__kuro" src="bible/art/kuro-judge.webp" data-i18n-alt="wedge.kuro" loading="lazy" decoding="async">
       </div>
@@ -613,8 +635,8 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <p class="st-est__note"><span data-i18n="pricing.note"></span> <span data-i18n="pricing.running"></span></p>
         <p class="st-est__nojs" data-i18n="pricing.noJs"></p>
         <a class="st-btn st-btn--primary st-btn--block" href="#contact" data-i18n="pricing.cta"></a>
+        <p class="st-est__src"><a href="../tarifs/#market" data-i18n="pricing.sources"></a></p>
       </div>
-      <p class="st-est__src"><a href="../tarifs/#market" data-i18n="pricing.sources"></a></p>
     </div>
   </div>
 </section>
@@ -632,13 +654,18 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
       <p class="st-lead" data-i18n="brand.lead"></p>
     </div>
     <div class="st-brand__row">
-      <div class="st-layers" role="group" data-i18n-aria="brand.pick">
-        <button type="button" class="st-layer st-layer--0" data-layer="0" aria-pressed="false" aria-controls="brand-card" data-i18n="brand.layers.0.k"></button>
+      <!-- the building in section (2026-11-18): one drawing, the sign on the street above the line, then under the
+           pavement the drawing room, the steel and the machines, the foundations where Kūro keeps watch. The four
+           layers are the drawing's four bands (buttons over it), the street line is the waterline. -->
+      <div class="st-layers" role="group" data-i18n-aria="brand.pick" data-reveal>
+        <p class="st-sr" data-i18n="brand.sectionAlt"></p>
+        <button type="button" class="st-layer st-layer--0" data-layer="0" aria-pressed="false" aria-controls="brand-card" style="--i:0"><span class="st-layer__l" data-i18n="brand.layers.0.k"></span></button>
         <p class="st-water" aria-hidden="true"><i></i><span data-i18n="brand.water"></span><i></i></p>
-        <button type="button" class="st-layer st-layer--1" data-layer="1" aria-pressed="false" aria-controls="brand-card" data-i18n="brand.layers.1.k"></button>
-        <button type="button" class="st-layer st-layer--2" data-layer="2" aria-pressed="false" aria-controls="brand-card" data-i18n="brand.layers.2.k"></button>
-        <button type="button" class="st-layer st-layer--3" data-layer="3" aria-pressed="true" aria-controls="brand-card" data-i18n="brand.layers.3.k"></button>
+        <button type="button" class="st-layer st-layer--1" data-layer="1" aria-pressed="false" aria-controls="brand-card" style="--i:1"><span class="st-layer__l" data-i18n="brand.layers.1.k"></span></button>
+        <button type="button" class="st-layer st-layer--2" data-layer="2" aria-pressed="false" aria-controls="brand-card" style="--i:2"><span class="st-layer__l" data-i18n="brand.layers.2.k"></span></button>
+        <button type="button" class="st-layer st-layer--3" data-layer="3" aria-pressed="true" aria-controls="brand-card" style="--i:3"><span class="st-layer__l" data-i18n="brand.layers.3.k"></span></button>
       </div>
+      <div class="st-brand__side">
       <div class="st-brand__card" id="brand-card" aria-live="polite">
         <dl class="st-brand__dl">
           <div data-layer-card="0"><dt class="st-label st-label--red">/ 01 · <span data-i18n="brand.layers.0.k"></span></dt><dd><h3 class="st-h3l" data-i18n="brand.layers.0.t"></h3><p data-i18n="brand.layers.0.d"></p></dd></div>
@@ -647,10 +674,10 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           <div data-layer-card="3"><dt class="st-label st-label--red">/ 04 · <span data-i18n="brand.layers.3.k"></span></dt><dd><h3 class="st-h3l" data-i18n="brand.layers.3.t"></h3><p data-i18n="brand.layers.3.d"></p></dd></div>
         </dl>
         <p class="st-aside st-brand__aside" data-i18n="brand.aside"></p>
-        <img class="st-brand__face" src="bible/art/face-pointyou.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <p class="st-brand__more" data-reveal><a class="st-btn st-btn--ghost" href="brand/numidea/" data-i18n="brand.more"></a></p>
       </div>
     </div>
-    <p class="st-brand__more" data-reveal><a class="st-btn st-btn--ghost" href="brand/numidea/" data-i18n="brand.more"></a></p>
   </div>
 </section>
 
@@ -699,6 +726,8 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
     <!-- the first drawing (28 Oct): the paper and its linework, Kūro, Yasser; three layers of one
          drawing, one entrance when it is first on screen (hub/app.js 4), still in place otherwise.
          From 700 px the wide cut, below it the tall one. -->
+    <!-- from 1100 the heading sits in the drawing's empty paper, at its left (2026-11-18) -->
+    <div class="st-founder__poster">
     <figure class="st-plate" data-plate>
       <div class="st-plate__stage">
         <picture class="st-plate__l st-plate__l--bg">
@@ -720,6 +749,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
       <p class="st-kick"><span class="st-seal" aria-hidden="true">夜</span><span data-i18n="founder.kicker"></span></p>
       <h2 class="st-h2 st-h2--narrow" id="studio-h" data-i18n="founder.title"></h2>
     </div>
+    </div>
     <div class="st-founder__row">
       <div class="st-founder__art">
         <figure class="st-founder__photo"><img class="st-pos-desk3" src="img/studio/m/desk.webp" data-i18n-alt="founder.photo" loading="lazy" decoding="async"><span class="st-founder__disc" aria-hidden="true">夜</span></figure>
@@ -729,6 +759,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           <li><figure><img src="img/studio/m/clutter.webp" class="st-pos-m2" data-i18n-alt="founder.modesAlt.2" loading="lazy" decoding="async"><figcaption class="st-label" data-i18n="founder.modes.2"></figcaption></figure></li>
         </ul>
         <div class="st-founder__floor">
+          <p class="st-label st-founder__floorl" aria-hidden="true" data-i18n="founder.floor"></p>
           <button type="button" class="st-actor st-actor--duo" data-actor data-seq="4208,1708" data-i18n-aria="founder.duo">
             <img data-pf="a" src="bible/art/actor-duo-a.webp" alt="" loading="lazy" decoding="async">
             <img data-pf="b" src="bible/art/actor-duo-b.webp" alt="" loading="lazy" decoding="async">
@@ -745,7 +776,6 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <p class="st-body" data-i18n="founder.bio"></p>
         <div class="st-founder__linkrow">
           <p class="st-links"><a href="bible/" data-i18n="founder.bible"></a><a href="../assets/cv_yasser_hamisse_2026.pdf" data-i18n="founder.cv"></a></p>
-          <img class="st-founder__paw" src="img/studio/kuro-paw.webp" width="240" height="340" alt="" loading="lazy" decoding="async">
         </div>
         <p class="st-aside st-founder__quote" data-i18n="founder.quote"></p>
         <p class="st-aside st-founder__motto" lang="en" dir="ltr" data-i18n="founder.motto"></p>
@@ -804,6 +834,11 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         <img data-pf="b" src="bible/art/actor-phone-b.webp" alt="" loading="lazy" decoding="async">
       </button>
     </div>
+    <!-- Kūro's window (2026-11-18): from 1100 a framed night window beside the answers, Kūro on the folded
+         questions; it stays in view while the answers scroll (the phone figure above is for narrower screens) -->
+    <figure class="st-faq__win" data-reveal>
+      <img src="img/studio/night/kuro-window-900.webp" srcset="img/studio/night/kuro-window-360.webp 360w, img/studio/night/kuro-window-600.webp 600w, img/studio/night/kuro-window-900.webp 900w" sizes="300px" data-i18n-alt="faq.winAlt" width="900" height="1125" loading="lazy" decoding="async">
+    </figure>
     <div class="st-qa">
       <div class="st-qa__item"><h3><button type="button" aria-expanded="true" aria-controls="qa-0" id="qa-0-b"><span class="st-qa__n">01</span><span data-i18n="faq.items.0.q"></span><span class="st-qa__s" aria-hidden="true"></span></button></h3><section class="st-qa__a" id="qa-0" aria-labelledby="qa-0-b"><p data-i18n-html="faq.items.0.a"></p></section></div>
       <div class="st-qa__item"><h3><button type="button" aria-expanded="true" aria-controls="qa-1" id="qa-1-b"><span class="st-qa__n">02</span><span data-i18n="faq.items.1.q"></span><span class="st-qa__s" aria-hidden="true"></span></button></h3><section class="st-qa__a" id="qa-1" aria-labelledby="qa-1-b"><p data-i18n-html="faq.items.1.a"></p></section></div>
@@ -832,12 +867,17 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           <li><a class="st-cta st-cta--line" href="mailto:hamissemohamedyasser@gmail.com"><span class="st-cta__k" dir="ltr" data-i18n="contact.mailK"></span><span class="st-cta__l"><span data-i18n="contact.mail"></span><span aria-hidden="true">↗</span></span></a></li>
         </ul>
       </div>
+      <!-- the door is open (2026-11-18): the workshop's door at night, Yasser in the doorway holding up a blank
+           board, Kūro on the step. The board's word is the page's own text, laid on the painted board (style.css),
+           so it is translated, never drawn; the place in brass on the frame's foot. -->
       <div class="st-contact__art">
-        <div class="st-sign"><img src="img/mascot/clean/y-sign.webp" data-i18n-alt="contact.signAlt" loading="lazy" decoding="async"><span class="st-sign__t" aria-hidden="true" data-i18n="contact.sign"></span></div>
-        <img class="st-contact__kuro" src="bible/art/kuro-love.webp" alt="" loading="lazy" decoding="async">
-        <picture class="st-contact__wave"><source media="(prefers-reduced-motion: reduce)" srcset="img/studio/loops/yasser-wave-small-still.webp"><img src="img/studio/loops/yasser-wave-small-still.webp" data-anim="img/studio/loops/yasser-wave.webp" width="200" height="372" alt="" loading="lazy" decoding="async"></picture>
+        <figure class="st-contact__scene" data-contact-scene>
+          <img src="img/studio/doors/porte-1200.webp" srcset="img/studio/doors/porte-480.webp 480w, img/studio/doors/porte-800.webp 800w, img/studio/doors/porte-1200.webp 1200w" sizes="(min-width:1400px) 560px, (min-width:900px) 40vw, (min-width:561px) 448px, 92vw" data-i18n-alt="contact.sceneAlt" width="1200" height="1500" loading="lazy" decoding="async">
+          <span class="st-sign__t" aria-hidden="true" data-i18n="contact.sign"></span>
+          <p class="st-contact__place" aria-hidden="true" dir="ltr">36°04′N 4°46′E · <span data-i18n="contact.place"></span></p>
+        </figure>
+        <p class="st-aside st-contact__aside" data-i18n="contact.aside"></p>
       </div>
-      <p class="st-aside st-contact__aside" data-i18n="contact.aside"></p>
     </div>
   </div>
 </section>
@@ -845,10 +885,17 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
 </main>
 
 <footer class="st-foot">
-  <div class="st-wrap"><div class="st-foot__in">
+  <div class="st-wrap">
+  <!-- the town at night above the colophon (2026-11-18): the rooftops of Bordj Bou Arréridj, one window lit, the
+       workshop; it lights once as the strip comes on screen (hub/app.js 4). Kūro sleeps on its sill, painted into the strip (2026-11-19: no cut-out laid on it; the manual keeps the empty sill for the live Kūro) -->
+  <figure class="st-foot__sky" aria-hidden="true" data-sky>
+    <img src="img/studio/night/skyline-kuro-2640.webp" srcset="img/studio/night/skyline-kuro-1320.webp 1320w, img/studio/night/skyline-kuro-2640.webp 2640w" sizes="(min-width:1400px) 1320px, 100vw" width="2640" height="330" alt="" loading="lazy" decoding="async">
+    <span class="st-foot__win"></span>
+  </figure>
+  <div class="st-foot__in">
     <span class="st-label st-foot__ok" aria-hidden="true">奥付</span>
     <a class="st-wm st-wm--foot" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
-    <p class="st-foot__line"><span data-i18n="footer.line"></span> <picture class="st-foot__sleep"><source media="(prefers-reduced-motion: reduce)" srcset="img/studio/loops/kuro-sleep-small-still.webp"><img src="img/studio/loops/kuro-sleep-small-still.webp" data-anim="img/studio/loops/kuro-sleep.webp" width="112" height="125" alt="" loading="lazy" decoding="async"></picture></p>
+    <p class="st-foot__line"><span data-i18n="footer.line"></span></p>
     <nav class="st-foot__links" data-i18n-aria="footer.nav">
       <a href="../" data-i18n="footer.site"></a>
       <a href="manuel.html" data-i18n="nav.manual"></a>

@@ -7,10 +7,12 @@
    1. A "Plates" chip (up to 1023 px) that follows the reader and opens the
       list of plates in a dialog: the current plate is shown in the chip.
    2. On phones (up to 640 px) the social posts turn into what a feed shows:
-      the 3 x 3 grids are three-across thumbnails (each post is drawn at its
+      the 3 x 3 grids are three-across thumbnails (in the brand books up to
+      1023 px) (each post is drawn at its
       design width and scaled, so nothing is re-flowed), the stories and the
       reel are one swipe row, and a tap on a thumbnail opens the post large
-      in a dialog with its caption, previous and next, and a swipe.
+      in a dialog with its caption, previous and next, and a swipe; the
+      large post grows out of its thumbnail and goes back into it.
    3. Carousels (slides) are swipe rows; blocks marked data-fold fold
       behind one button on phones.
    4. Long jumps land: a jump in the page longer than two screens (the
@@ -33,6 +35,7 @@
   var M = function (n) { return Math.round(n * BEAT / 8); };
   var Q = function (ms) { var s = BEAT / 16; return Math.round(Math.round(ms / s) * s); };
   var EASE_ENTER = 'cubic-bezier(.16,1,.3,1)';
+  var EASE_EXIT = 'cubic-bezier(.5,0,.75,0)';
   var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   var rtl = function () { return getComputedStyle(root).direction === 'rtl'; };
   var FR = /^fr/i.test(root.lang || '');
@@ -115,7 +118,8 @@
   function prepare(node, kind) {
     var figs = [].slice.call(node.querySelectorAll('figure'));
     if (!figs.length) return;
-    var set = { node: node, kind: kind, cells: [] };
+    // a brand book's grid is a thumbnail feed on a tablet too (book.css); the bible's grid keeps its full posts there
+    var set = { node: node, kind: kind, cells: [], tab: kind === 'grid' && !!node.closest('.plate') };
     node.classList.add('pv-set', 'pv-set--' + kind);
     figs.forEach(function (fig) {
       var cell = el('div', 'pv-cell');
@@ -151,10 +155,11 @@
       else { n.removeAttribute('tabindex'); n.removeAttribute('role'); n.removeAttribute('aria-label'); }
     });
     sets.forEach(function (s) {
-      s.node.classList.toggle('pv-on', on);
+      var son = phone.matches || (s.tab && small.matches);
+      s.node.classList.toggle('pv-on', son);
       var dw = s.kind === 'grid' ? DW.grid : DW.row;
       s.cells.forEach(function (c) {
-        if (!on) { c.fig.style.removeProperty('--k'); c.cell.style.removeProperty('height'); c.fig.removeAttribute('aria-hidden'); return; }
+        if (!son) { c.fig.style.removeProperty('--k'); c.cell.style.removeProperty('height'); c.fig.removeAttribute('aria-hidden'); return; }
         c.fig.setAttribute('aria-hidden', 'true');
         c.fig.style.setProperty('--dw', dw + 'px');
         jobs.push({ c: c, dw: dw });
@@ -192,9 +197,30 @@
         else if (dy > 90 && dy > Math.abs(dx) * 1.5 && v.stage.scrollTop <= 0) dlg.close();
       }, { passive: true });
       dlg.addEventListener('touchcancel', function () { x0 = null; }, { passive: true });
+      // closing: the post shrinks back into its thumbnail while the ink fades
+      // (the stylesheet keeps the dialog drawn through its exit)
+      dlg.addEventListener('close', function () { var c = v.set && v.set.cells[v.i]; if (c) morph(v.stage.firstElementChild, c.cell, true); });
     }
     viewer.set = set; show(i, 0);
-    if (!viewer.dlg.open) viewer.dlg.showModal();
+    if (!viewer.dlg.open) { viewer.dlg.showModal(); morph(viewer.stage.firstElementChild, set.cells[i].cell, false); }
+  }
+  // The large post grows out of the thumbnail that was pressed (half a beat,
+  // enter curve) and goes back into it on closing (three eighths, exit
+  // curve), so the eye keeps which post it was. The post's top corner is
+  // mapped onto the thumbnail's (the thumbnail shows the post without its
+  // caption). Skipped with reduced motion, and when the thumbnail is off
+  // screen (after a run of swipes): then the plain fade alone.
+  function morph(shell, cell, back) {
+    if (reduce.matches || !shell || !shell.animate || !cell) return;
+    var a = cell.getBoundingClientRect();
+    if (!a.width || a.bottom <= 0 || a.top >= window.innerHeight) return;
+    var post = shell.querySelector('[role="img"]') || shell, s = shell.getBoundingClientRect(), p = post.getBoundingClientRect();
+    if (!p.width) return;
+    var k = a.width / p.width;
+    var at = 'translate(' + (a.left - p.left).toFixed(1) + 'px,' + (a.top - p.top).toFixed(1) + 'px) scale(' + k.toFixed(4) + ')';
+    shell.style.transformOrigin = (p.left - s.left).toFixed(1) + 'px ' + (p.top - s.top).toFixed(1) + 'px';
+    shell.animate(back ? [{ transform: 'none' }, { transform: at }] : [{ transform: at }, { transform: 'none' }],
+      { duration: back ? M(3) : M(4), easing: back ? EASE_EXIT : EASE_ENTER, fill: back ? 'forwards' : 'none' });
   }
   function go(n) { var c = viewer.set.cells.length; show((viewer.i + n + c) % c, n); }
   // dir: 1 for the next post, -1 for the previous one, 0 when the viewer opens.
@@ -334,7 +360,7 @@
       if (window.innerWidth === lastW) return;
       lastW = window.innerWidth; clearTimeout(t); t = setTimeout(fit, M(1));
     });
-    if (phone.addEventListener) phone.addEventListener('change', fit);
+    if (phone.addEventListener) { phone.addEventListener('change', fit); small.addEventListener('change', fit); }
   }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init); else init();
 })();

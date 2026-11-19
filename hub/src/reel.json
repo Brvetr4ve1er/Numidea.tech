@@ -11,9 +11,9 @@
       "ar": "الافتتاحية"
     },
     "what": {
-      "fr": "2,9 s · à la première visite",
-      "en": "2.9 s · on a first visit",
-      "ar": "2.9 ث · عند الزيارة الأولى"
+      "fr": "2,7 s · à chaque visite",
+      "en": "2.7 s · on every visit",
+      "ar": "2.7 ث · في كل زيارة"
     }
   },
   {
@@ -22,6 +22,7 @@
     "poster": "img/studio/reel/rig.webp",
     "w": 640,
     "h": 360,
+    "posterAt": 2.4,
     "name": {
       "fr": "Les personnages",
       "en": "The characters",
@@ -39,6 +40,7 @@
     "poster": "img/studio/reel/console.webp",
     "w": 640,
     "h": 360,
+    "posterAt": 0,
     "name": {
       "fr": "La calculatrice",
       "en": "The calculator",
@@ -73,6 +75,7 @@
     "poster": "img/studio/reel/wipe.webp",
     "w": 640,
     "h": 360,
+    "posterAt": 2.5,
     "name": {
       "fr": "Le passage",
       "en": "The page turn",

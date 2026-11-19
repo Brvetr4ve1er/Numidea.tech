@@ -108,8 +108,16 @@ const SMALL = { 1440: 720, 780: 416 };
 function shot(slug, file, alt, cls, w, h, kind, eager) {
   const src = `../assets/work/${slug}/${file}.webp`, small = `../assets/work/${slug}/${file}-${SMALL[w]}.webp`;
   for (const f of [src, small]) if (!existsSync(join(ROOT, 'assets/work', slug, basename(f)))) throw new Error('missing capture ' + f);
-  return `<a class="zoom ${cls}" href="${src}"><img src="${src}" srcset="${small} ${SMALL[w]}w, ${src} ${w}w" sizes="${SIZES[kind]}" alt="${esc(alt)}" width="${w}" height="${h}" decoding="async"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}></a>`;
+  return `<a class="zoom ${cls}" href="${src}"><img src="${src}" srcset="${small} ${SMALL[w]}w, ${src} ${w}w" sizes="${SIZES[kind]}" alt="${esc(alt)}" width="${w}" height="${h}" decoding="async"${eager === 'flight' ? ' fetchpriority="low"' : eager ? ' fetchpriority="high"' : ' loading="lazy"'}></a>`;
 }
+/* The frames the home's case pictures fly into (assets/app.js pageswap, the
+   head script's pagereveal below): loaded at once, at low priority, so the
+   frame is decoded when an arrival from the home card names it; a lazy one
+   would still be empty, and the plain lift would run instead. */
+const FLIGHT = { bordjsteel: 'd3', almaflow: 'd1' };
+/* A delivered sheet's seal beside its "online" chip: the 済 ("done") mark
+   in red, as the Studio stamps its pages, and the word (W10). AR: native review. */
+const DELIVERED = { fr: 'Livré', en: 'Delivered', ar: 'تم التسليم' };
 
 /* The pieces of a project's sheet that a card folds into "the full sheet"
    as well (facts, deliverables, what it gives, pages, phones, system):
@@ -143,7 +151,7 @@ function parts(p, kinds = { page: 'page', phone: 'phone' }) {
   label(main, 0, 'pg'); const mainAlt = altOf(main, 0, 'pg');
 
   const pages = rest.map((pg, j) => `<figure class="pg">
-            ${shot(p.slug, pg.file, altOf(pg, j + 1, 'pg'), 'frame', 1440, 900, kinds.page).replace('alt=', `${T(`${k}.pga${j + 1}`, '-alt')} alt=`)}
+            ${shot(p.slug, pg.file, altOf(pg, j + 1, 'pg'), 'frame', 1440, 900, kinds.page, FLIGHT[p.slug] === pg.file && 'flight').replace('alt=', `${T(`${k}.pga${j + 1}`, '-alt')} alt=`)}
             <figcaption><b ${T(`${k}.pg${j + 1}`)}>${esc(label(pg, j + 1, 'pg'))}</b><code>${esc(pg.path)}</code></figcaption>
           </figure>`).join('\n          ');
 
@@ -240,7 +248,8 @@ function sheet(p, i) {
       <header class="sh-head">
         <span class="sh-no"><span ${T('ui.sheet')}>${esc(ui('sheet'))}</span> ${n}</span>
         <h2 id="h-${p.slug}" dir="ltr">${esc(p.name)}</h2>
-        <span class="chip is-${p.status}" ${T(`${k}.status`)}>${esc(statusTxt)}</span>
+        <span class="chip is-${p.status}" ${T(`${k}.status`)}>${esc(statusTxt)}</span>${p.status === 'live' ? `
+        <span class="sh-done"><span class="sh-done__k" aria-hidden="true">済</span><span ${T('ui.delivered')}>${esc(put('ui.delivered', DELIVERED))}</span></span>` : ''}
         <a class="visit" href="${esc(p.url)}" title="${esc(fullHref(p.url))}"${ext ? ' target="_blank" rel="noopener"' : ''}><span ${T('ui.visit')}>${esc(visit)}</span> ${ext ? ARROW.ne : ARROW.e}</a>
       </header>
 
@@ -257,7 +266,7 @@ function sheet(p, i) {
         </div>
         <figure class="sh-main">
           <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span dir="ltr">${esc(shownHost(p.url))}</span></div>
-          ${shot(p.slug, main.file, mainAlt, 'frame', 1440, 900, 'main', i === 0).replace('alt=', `${T(`${k}.pga0`, '-alt')} alt=`)}
+          ${shot(p.slug, main.file, mainAlt, 'frame', 1440, 900, 'main', i === 0 || (FLIGHT[p.slug] === main.file && 'flight')).replace('alt=', `${T(`${k}.pga0`, '-alt')} alt=`)}
           <figcaption class="dims" aria-hidden="true"><span class="dim-w"><span>1440&nbsp;px</span></span><span class="dim-h">900</span></figcaption>
         </figure>
       </div>
@@ -461,6 +470,14 @@ if(l==='ar')document.write('\\x3clink rel="preload" as="font" type="font/woff2" 
 window.NUMIDEA_LANG=l;
 if(l!=='fr'){d.setAttribute('data-i18n-pending','');var r=function(){if(d.hasAttribute('data-i18n-pending')){d.removeAttribute('data-i18n-pending');d.lang='fr';d.dir='ltr';}};document.addEventListener('DOMContentLoaded',r);setTimeout(r,1500);}})();</script>
 <style>html[data-i18n-pending] body{display:none}</style>
+<!-- The case picture's flight (T04): arriving from a home card (assets/app.js
+     names the card's capture on pageswap and leaves the case in
+     sessionStorage), the sheet's matching frame takes the same name, so the
+     browser moves the capture into it during the lift. Only when the frame
+     is already decoded; otherwise, or from any other link, the plain lift. -->
+<script>addEventListener('pagereveal',function(e){var k=null;try{k=sessionStorage.getItem('vt-case');sessionStorage.removeItem('vt-case');}catch(x){}
+if(!e.viewTransition||!k||!/^(bordjsteel|almaflow)$/.test(k))return;var i=document.querySelector('#'+k+' a.zoom.frame img[src$="/'+${JSON.stringify(FLIGHT)}[k]+'.webp"]');
+if(!i||!i.complete||!i.naturalWidth)return;i.style.viewTransitionName='case-shot';try{e.viewTransition.types.add('case');}catch(x){}e.viewTransition.finished.finally(function(){i.style.viewTransitionName='';});});</script>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/cinzel-700-latin.woff2">

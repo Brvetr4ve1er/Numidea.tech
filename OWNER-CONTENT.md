@@ -617,6 +617,26 @@ translated from it.
   `hub/src/i18n/ar.json`: the `world` group («خلف باب الليل.», the title and
   description, the label, the line under the premise, the six names in the
   bar: «الفهرس», «الدفتر», «التصميم», «المختبر», «اليوميات»).
+- AR review (2026-11-19, the visual pass; **AR: native review**, none read
+  by a native speaker). The Studio, `hub/src/i18n/ar.json`: `doors.title`
+  («ثلاثة أبواب. أيّها بابك؟»), `doors.c.lessons` («الدروس»), `doors.c.nomad`
+  («الحياة الرحّالة»), `doors.c.radio` («الراديو»), `contact.place` («الباب»),
+  `contact.sceneAlt` («باب الورشة مفتوح ليلاً: ياسر عند العتبة يرفع لافتة،
+  وكورو ينتظر على الدرجة.»), `brand.aside` («المبنى، بأساساته.»),
+  `brand.sectionAlt` («مقطع للورشة: اللافتة في الشارع، ثم تحت الرصيف غرفة
+  الرسم، فالهيكل الحديدي والآلات، فالأساسات حيث يحرس كورو.»), `faq.winAlt`
+  («كورو جالس على كومة أوراق مطويّة قرب نافذة ليلية، بجانب ختم أحمر وفنجان
+  قهوة.»), `founder.floor` («استراحة قهوة · كورو يراقب»); the reel
+  (`hub/src/reel.json`): the opening's line «2.7 ث · في كل زيارة». The home
+  (`assets/i18n/ar.js`): `founder.sceneAlt` («ياسر عند نافذة الورشة ليلاً
+  وفي يده قهوة، وكورو على حافة النافذة.»), `faq.winAlt` (as the Studio's),
+  `tarifs.seal` («سعر منشور»), `tarifs.console` («DOURO·8 · منصّة
+  الاستوديو»); the 404's alt for the road scene (`404.html`, `ALT.ar`: «طريق
+  خالٍ ليلاً عند مخرج المدينة: ياسر يخفي وجهه بجانب علامة الطريق، وكورو
+  جالس فوقها، والورشة بعيداً ما زالت مضاءة.»); the sheets' seal
+  (`scripts/build-scene.mjs`, `ui.delivered`: «تم التسليم»). Removed keys:
+  `doors.a.contact`, `contact.signAlt`. Waiting for the new passage clip:
+  «تُرفع الصفحة والتالية تحتها» (not yet on the page).
 
 Open art items (2026-11-15): the white patch behind the Sign pose is cleared
 (transparent now; the old file is kept in the retouch folder of the session),
@@ -1983,3 +2003,114 @@ page on `www.numedialab.dev`. Old links and bookmarks keep working; a visitor
 or a reviewer can no longer read the site on the second address. The preview
 addresses Vercel makes for each change are left alone, so a change can still
 be looked at before it is published.
+
+## 37. The visual pass: the doors, the framed scenes, the transitions (2026-11-19)
+
+You asked to redesign "the brand or website section", which you found ugly,
+to fix the empty areas and the badly cropped or badly centred pictures, to
+give the weak sections a meaning or a drawing, to enhance the transitions,
+and to use the image service to expand the brand. The plan is in the
+session's notes (2026-11-18); this is what landed. Nothing is committed yet.
+
+**What changed on the Studio**
+- **The doors are one street with three doors.** The workshop's façade in one
+  frame: a navy cornice with the name and the coordinates, three bays on one
+  pavement (the shop by day with Yasser, the arched door at night with Kūro,
+  the lit window of the manual with Kūro over the laptop), one red button.
+  The heading is now a question: "Trois portes. Laquelle est la vôtre ?"; the
+  premise is the line beside it.
+- **The contact is the open door at night**: Yasser in the frame holds the
+  board, Kūro on the step; "SALUT." is written on the board by the page, so
+  it is translated. The three stickers are gone.
+- **The footer has the town at night** over the colophon, with one lit
+  window (the workshop) that lights once. The colophon's five-column bug on
+  wide screens (one word per line) is fixed.
+- **"Votre logo n'est pas votre marque." shows the building in section**:
+  the sign, the drawing room, the frame and machines, the foundations where
+  Kūro keeps watch; the four layers are its bands.
+- **Kūro's window** sits beside the questions (Studio and home, wide
+  screens only); the founder plate's heading moved into its empty paper; the
+  lessons each get a framed drawing; Kūro now stands beside LE BUILDER; the
+  Heetch cover and the stat tiles are no longer cut on a phone.
+- **The reel**: three posters re-taken, the console clip cropped to its
+  content, the opening re-recorded from today's intro (its line now says
+  "2,7 s · à chaque visite").
+
+**What changed on the home and its pages**: the founder's painted night
+plate (the photo slot stays for your real photograph), five small drawings
+for the services on wide screens, the 404's road at night, Kūro's window by
+the FAQ, better crops of the hero plate and the atelier scene on phones; the
+price guide's ranges on a receipt with a "Prix publié" seal and a panel
+for the Studio's console; a "Livré" seal on the live project sheets.
+
+**The brand books and the bible**: the post grids are thumbnails on a
+tablet (a tap opens the post), cards in swipe rows keep their own height,
+the Numidea cast stands on its floor, the Traveler wall and the bible's
+"Head to toe" fill whole rows.
+
+**Transitions.** Page changes are the page lift (the old paper wipes are
+gone). New: the bar stays put through it; a viewer grows out of the
+picture you pressed and shrinks back into it; the case pictures of Bordj
+Steel and AlmaFlow fly from the home into their sheet; pictures unroll; the
+seals stamp; lessons slide in from their side; the books' posts are pasted
+up one by one. All of it on the site's beat, nothing loops, nothing moves
+with reduced motion.
+
+**The art made for it, and its credits.** Ten scenes, painted in the site's
+style with Yasser and Kūro inside them (not cut-outs pasted on): B01-B03 the
+three doors, B04 the contact door, B05 the town at night, B06 the 404 road,
+B07 the home founder, B08 the building in section, B09 the five service
+drawings, B10 Kūro's window. Every take was looked at before it was cut;
+off-model takes were rejected and are listed with the files in the session's
+art folder. Spent: B01 355, B02 225, B03 355, B04 150, B05 205, B06 80,
+B07 130, B08 195, B09 305, B10 65, **2,065 credits in all** (the plan's hard
+stop was 2,000; the overrun is B09's sheet, which cost 205 instead of 145).
+No licence is chosen for these yet, like the rest of the art.
+
+**Decisions taken in the pass**
+- **H1 is dropped.** The plan proposed taking "Claude" off the home's
+  automation pill and the c5 brief; your decision 27 keeps that name, so
+  neither was touched.
+- The doors are painted with the characters inside; the plan's hover face
+  swap is dropped (there is no second frame), the lit doormat, glow and arrow
+  carry the hover.
+- The board at the contact and the 404 plaque are blank in the paintings;
+  the words are the page's.
+- The town strip is painted without Kūro, so he is never shown twice (the
+  sleeping picture sits on the sill on the Studio and the world's page; on
+  the manual the living Kūro takes the sill and looks up when the window
+  lights).
+- The tablet grids of the brand books are thumbnails, not full posts: full
+  posts three across at 768 px broke the type (16 new visual faults). The
+  bible's duo card takes its card's full width instead of spanning two.
+- The skyline is not on the price guide (it does not fit its themes).
+- The home's frames use the theme's own pale colour, not a true cream: the
+  themes' contract allows no new colour. Two optional colours
+  (`--frame-edge`, `--voice-text`) could be added if you want the cream.
+- The published-size ceiling (`scripts/check.mjs`) is raised to
+  42,428,949 bytes (+1,098,338): the ten scenes, the reel's re-takes and the
+  code, less the three stickers and the old 404 dunes.
+
+**What only you can do**
+- **Record the "passage" clip again.** It still shows the old two doors and
+  the paper wipe. A clean recording of a Studio-to-bible page change with the
+  new street at the top needs a real screen recorder (the automatic capture
+  drops the lift to one frame): about 2.8 s at 1280x720, then
+  `npm run motion:add -- <file> wipe2 "Le passage" "La page se soulève, la suivante est dessous" 2.5`,
+  swap the ids in `hub/src/reel.json` and delete the old `wipe.mp4` and
+  `wipe.webp`. English: "The page lifts; the next is underneath". The
+  characters' clip ("Les personnages", §36) is still on the list too.
+- **The contact door's façade colour.** The open door is set in dark navy
+  stone, not the cream plaster of the three doors. It reads as night, but it
+  is not the same building. Say if you want it painted again in the plaster
+  (about 75 credits).
+- **The Arabic** of this pass is listed in §8 (AR: native review).
+- Two small questions: should the red button's hard shadow be mirrored in
+  Arabic (it falls to the right in both directions now)? The Studio
+  founder's floor label is an ink label, not brass (brass is kept for
+  places, and brass text on cream is too faint): say if you prefer brass.
+- `yasser-coffee.webp` and `yasser-facepalm.webp` in `assets/illus/` are no
+  longer shown by the home or the 404: keep them or have them deleted.
+- E20 (the Bordj Steel references capture with its grey band) needs a new
+  capture of the live site.
+
