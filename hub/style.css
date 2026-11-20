@@ -558,6 +558,10 @@ html.js .st-est .st-obtn:disabled:not([aria-pressed="true"]){opacity:.5;box-shad
 .st-est__out .st-label--teal{color:var(--teal-text)}
 .st-rc__title{display:flex;flex-direction:column;gap:4px;padding-bottom:12px;padding-inline-end:72px;border-bottom:2px dashed var(--line);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.18em;color:var(--muted)}
 .st-rc__title b{font-family:"Archivo",sans-serif;font-weight:900;font-size:18px;letter-spacing:.06em;color:var(--ink)}
+/* the wordmark is Latin (dir=ltr) inside an Arabic head: it hangs from the head's start (the right) and, when a word
+   is wider than the head, runs into the seal's room at the end (the left), as it does in French, never past the card's edge */
+[dir="rtl"] .st-rc__title b{align-self:flex-start;width:fit-content;max-width:none;text-align:right}
+@media (max-width:419px){.st-rc__title b{font-size:16px}}
 .st-rc{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:var(--t-mono);line-height:1.35;font-variant-numeric:tabular-nums}
 .st-rc th,.st-rc td{padding:7px 0;border-bottom:1px dashed var(--line);vertical-align:baseline}
 .st-rc th{font-weight:400;text-align:start;padding-inline-end:10px}
@@ -754,7 +758,7 @@ html.js .st-est__nojs{display:none}
 .st-ls__lead{font-size:var(--t-lead);line-height:1.45;color:var(--on-dark);max-width:52ch}
 .st-ls__pass{font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.1em;color:var(--on-dark-2);white-space:nowrap}
 .st-ls__pass b{font-family:"Archivo",sans-serif;font-weight:900;font-size:44px;line-height:1;letter-spacing:0;color:var(--cream)}
-.st-ls__tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.st-ls__tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:16px}
 .st-ls__tab{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:6px;min-width:0;padding:8px 8px 12px;background:transparent;border:2px solid rgba(243,236,225,.28);color:var(--cream);font-family:var(--f-body);text-align:start;cursor:pointer;transition:border-color var(--m-hover) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter)}
 .st-ls__tab img{display:block;width:100%;height:auto;aspect-ratio:1}
 .st-ls__n{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.14em;color:var(--on-dark-2)}
@@ -1034,12 +1038,24 @@ html.js .st-speed__bar i:not(.is-on){transform:scaleX(0)}
 /* MERCURY's five posters (2026-11-11): each keeps its own shape, uncropped. One row on wide screens, every
    poster the same height (each item grows by its width/height ratio); two columns on phones. Each opens
    full size in the one viewer, as the set "mercury". */
-.st-proj__strip--posters{display:flex;align-items:flex-start;gap:clamp(10px,1.4vw,18px)}
-.st-proj__strip--posters li{flex:var(--r,1) 1 0;min-width:0}
+.st-proj__strip--posters{--g:clamp(10px,1.4vw,18px);display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--g)}
+/* each poster's basis is its share of the first row (the five ratios add up to 3.9672), so the five fill it and the
+   two reference sheets (06, 07, 2026-11-19) wrap under them, square, at the posters' height, from the start edge */
+.st-proj__strip--posters li{--u:calc((100% - 4 * var(--g) - 1px) / 3.9672);flex:var(--r,1) 1 calc(var(--r,1) * var(--u));min-width:0}
+.st-proj__strip--posters li:nth-child(n+6){flex:0 0 var(--u)}
 .st-proj__strip--posters li:nth-child(1){--r:1}
 .st-proj__strip--posters li:nth-child(2){--r:.6672}
 .st-proj__strip--posters li:nth-child(3),.st-proj__strip--posters li:nth-child(4){--r:.75}
 .st-proj__strip--posters li:nth-child(5){--r:.8}
+/* wide screens: the two reference sheets share their row half and half (2026-11-20; alone at the posters' width they
+   left three empty columns), each square sheet whole on a band of its own paper colour, sampled from the file's edge */
+@media (min-width:700px){
+  .st-proj__strip--posters li:nth-child(n+6){flex:1 1 0}
+  .st-proj__strip--posters li:nth-child(n+6) .st-proj__poster{background:var(--sheet)}
+  .st-proj__strip--posters li:nth-child(n+6) .st-proj__poster img{inline-size:100%;block-size:clamp(220px,25vw,380px);object-fit:contain}
+  .st-proj__strip--posters li:nth-child(6){--sheet:#E0CDAE}
+  .st-proj__strip--posters li:nth-child(7){--sheet:#F7E4BF}
+}
 .st-proj__zoom{display:block;color:inherit;text-decoration:none;border-radius:6px}
 .st-proj__zoom:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .st-proj__poster{aspect-ratio:auto;background:var(--ink);transition:transform var(--m-hover) var(--m-ease-enter),box-shadow var(--m-hover) var(--m-ease-enter)}
@@ -1196,7 +1212,8 @@ figure.st-tile{margin:0}
 .st-diary__copy{display:flex;flex-direction:column;gap:14px;padding:20px clamp(16px,3vw,32px) 24px}
 .st-diary__copy .st-h3l{max-width:12em;font-size:clamp(26px,5.4vw,40px);text-wrap:balance}
 .st-diary__grid{list-style:none;margin:clamp(10px,1.6vw,20px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.6vw,20px)}
-.st-diary__a{display:block;color:inherit;text-decoration:none;cursor:zoom-in}
+.st-diary__a,.st-lab__a{display:block;color:inherit;text-decoration:none;cursor:zoom-in}
+.st-lab__a:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
 .st-diary__tile img{aspect-ratio:3/2;object-fit:cover;height:auto}
 .st-diary__tile figcaption{position:static;display:block;padding:10px 12px;background:var(--ink);border-top:2px solid var(--cream);font-size:var(--t-label);line-height:1.3;letter-spacing:.1em;text-transform:uppercase;overflow-wrap:anywhere}
 .st-diary__tile figcaption span:first-child{color:var(--on-dark-2)}
@@ -1390,6 +1407,10 @@ figure.st-tile{margin:0}
   .st-contact__scene img{object-position:50% 70%}
   .st-contact__place{top:0;bottom:auto;border-top:0;border-bottom:2px solid var(--cream)}
   .st-contact__aside{margin-top:6px}
+}
+/* a 280-px phone: the label wrapped to two lines there and covered the board's word (sweep, 2026-11-19); one line, tighter */
+@media (max-width:340px){
+  .st-contact__place{white-space:nowrap;letter-spacing:.04em;padding-inline:8px}
 }
 /* on view, below the first screen only (hub/app.js 7b): the scene unrolls, the word stamps on the board, the
    aside writes itself, then the place label; done in 1.333 s */
@@ -1716,6 +1737,17 @@ html:active-view-transition .st-sting,html:active-view-transition .st-sting *{an
 .st-start__l b{display:inline-block;margin-bottom:8px;padding:3px 10px;background:var(--red);color:var(--cream);font-family:var(--f-mono);font-weight:600;font-size:var(--t-label);letter-spacing:.12em}
 :lang(ar) .st-start__l b{letter-spacing:0}
 .st-start__l > span{display:block}
+/* W1: the crew on the ledge (2026-11-19), a cream plate in an ink frame with the hard shadow; its file is 830 px, so never wider than 415 */
+.st-start__crew{margin:0;justify-self:start;inline-size:100%;max-inline-size:415px;background:var(--cream);border:2px solid var(--ink);box-shadow:6px 6px 0 rgb(0 0 0 / .55)}
+.st-start__crew img{display:block;inline-size:100%;block-size:auto;object-fit:cover;object-position:50% 100%}
+/* wide screens: the three layers stacked at the start, the crew beside them at the end (2026-11-20: under the three
+   columns it sat alone with 830 px of empty navy to its side) */
+@media (min-width:1000px){
+  .st-start{grid-template-columns:minmax(0,1fr) minmax(0,415px);column-gap:clamp(28px,3.4vw,48px)}
+  .st-start > *{grid-column:1 / -1}
+  .st-start > .st-start__p{grid-column:1;grid-template-columns:minmax(0,1fr);gap:16px;align-self:center;max-inline-size:72ch}
+  .st-start > .st-start__crew{grid-column:2;grid-row:2;align-self:center;justify-self:end}
+}
 /* the codex: the site's own names as entries that open one by one (native <details>, no script). A number, a name, a type
    tag; inside, three or four sentences and the link to where the thing lives. */
 .st-codex{display:grid;gap:12px;padding-top:20px;border-top:2px dashed rgba(243,236,225,.3)}
@@ -2260,11 +2292,11 @@ main:focus{outline:none}
 .st-man .st-mny__scene{margin-bottom:0}
 /* the scene is a band here, not a full plate: the radio and the lessons start on the first screens */
 @media (min-width:700px){.st-man .st-mny__scene img{aspect-ratio:1224 / 600;object-fit:cover;object-position:50% 30%}}   /* (heads clear the top edge, 2026-11-18) */
-.st-manual .st-nav__links .st-nav__world,.st-monde .st-nav__links .st-nav__world{display:inline-flex}
+.st-manual .st-nav__links .st-nav__world,.st-monde .st-nav__links .st-nav__world,.st-fab .st-nav__links .st-nav__world{display:inline-flex}
 /* six links here (three sets of lessons, the services, the radio, the Studio): a label never breaks in two, and the kana waits for the width that holds it */
-.st-manual .st-nav__links a,.st-monde .st-nav__links a{white-space:nowrap}
-@media (max-width:1439px){.st-manual .st-nav .st-wm__kana,.st-monde .st-nav .st-wm__kana{display:none}}
-@media (max-width:1239px){.st-manual .st-nav__links,.st-monde .st-nav__links{gap:2px}.st-manual .st-nav__links a,.st-monde .st-nav__links a{padding:0 5px}}   /* the French bar ran 23px over at 1160 */
+.st-manual .st-nav__links a,.st-monde .st-nav__links a,.st-fab .st-nav__links a{white-space:nowrap}
+@media (max-width:1439px){.st-manual .st-nav .st-wm__kana,.st-monde .st-nav .st-wm__kana,.st-fab .st-nav .st-wm__kana{display:none}}
+@media (max-width:1239px){.st-manual .st-nav__links,.st-monde .st-nav__links,.st-fab .st-nav__links{gap:2px}.st-manual .st-nav__links a,.st-monde .st-nav__links a,.st-fab .st-nav__links a{padding:0 5px}}   /* the French bar ran 23px over at 1160 */
 .st-manual .st-mny__kit{margin-bottom:0}
 .st-back{background:var(--floor);overflow:hidden}
 .st-back__in{display:flex;align-items:flex-end;justify-content:space-between;gap:24px 48px}
@@ -2522,6 +2554,8 @@ html.is-playing{scroll-behavior:auto}
   .st-ls--nmd .st-ls__t{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}   /* read, not drawn: the open lesson's page carries its title in full */
 }
 @media (max-width:359px){
+  .st-ls--crs[data-ls="brandc"] .st-ls__tabs{grid-template-columns:repeat(3,minmax(0,1fr))}   /* five a row spilt «ÉTAPE», «STEP» and «الخطوة» out of the tiles */
+  .st-ls--crs .st-ls__n{letter-spacing:.04em}   /* web3's four a row: «ÉTAPE» touched the tile's border */
   .st-nmd__w{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 }
 
@@ -2537,3 +2571,522 @@ html.is-playing{scroll-behavior:auto}
 .st-mondehead__lead .st-lead{flex:none;max-width:none}
 .st-mondehead__note{max-width:60ch;font-size:var(--t-small);line-height:1.55;color:var(--ink-2)}
 .st-monde .st-world{padding-top:clamp(20px,3vw,40px)}
+
+/* ---------------- the client courses (manual, 2026-11-19): "Le logo vient après" (#marque), "Le web3, sans fumée" (#web3) ----------------
+   The road book's shell again (.st-ls--nmd: the strip of stops, the HUD, the tabs), nine and eight stops wide
+   (--k, --k2 for half a row). Inside a stop: chips (several, or one of a radiogroup: inked when chosen, and a
+   tick, so the state is never colour alone), sorting rows, three sliders, the specimens, the 16-pixel test, the
+   six-question flow, the law cards, the six states of a transaction; at the end the brief, set as the console's
+   receipt on paper. With scripts, a block that waits for an answer ([data-show-if], a result line still empty)
+   is not drawn; without them everything is laid out and the controls are inert. Nothing moves by itself: what
+   changes is a cut; the seal stamps once on a press (st-seal), and not at all with reduced motion. */
+.st-crs__scene img{aspect-ratio:16 / 9;object-fit:cover;object-position:50% 45%}
+@media (min-width:900px){.st-crs__scene img{aspect-ratio:21 / 9}}
+.st-crs .st-mny__note{margin:0 0 10px}
+.st-crs__also{margin:14px 0 22px;font-size:var(--t-small);line-height:1.5}
+.st-crs__also a,.st-bay__buy a,.st-svc__prep a,.st-ls__more a,.st-crs__see a,.st-spec__card a,.st-fiche__est .st-fiche__go{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;color:var(--red-text);font-weight:700;text-underline-offset:3px}
+.st-bay__buy{margin:0;font-size:var(--t-small);line-height:1.45}
+.st-svc__prep{margin:6px 0 0;font-size:var(--t-small)}
+.st-ls__more{margin:0;font-size:var(--t-small);line-height:1.5;max-width:74ch}
+.st-ls--crs .st-nmd__book,.st-ls--crs .st-ls__tabs{grid-template-columns:repeat(var(--k,8),minmax(0,1fr))}
+.st-ls--crs .st-ls__t{font-size:13px}
+.st-crs__to{margin:0;align-self:flex-end;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em}
+.st-crs__to a{display:inline-flex;align-items:center;min-height:44px;color:var(--red-text);font-weight:600;text-underline-offset:3px}
+@media (min-width:1000px){
+  .st-ls--crs .st-ls__panel:not([hidden]){grid-template-rows:none}
+  .st-ls--crs .st-ls__fig{grid-row:1 / span 6}
+  .st-ls--crs .st-crs__to{justify-self:end}
+}
+/* the controls */
+.st-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 3px 3px 0}
+.st-crs .st-chip{min-height:44px;padding:8px 14px;border:2px solid var(--ink);background:var(--white);color:var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:var(--f-body);font-weight:600;font-size:var(--t-small);line-height:1.25;text-transform:none;text-align:start;white-space:normal;letter-spacing:0;cursor:pointer;transition:transform var(--m-press) var(--m-ease-enter),box-shadow var(--m-press) var(--m-ease-enter),background-color var(--m-hover) var(--m-ease-enter),color var(--m-hover) var(--m-ease-enter)}
+.st-crs .st-chip[aria-pressed="true"],.st-crs .st-chip[aria-checked="true"]{background:var(--ink);color:var(--cream);box-shadow:0 0 0 var(--ink);transform:translate(3px,3px)}
+.st-crs .st-chip[aria-pressed="true"]::before,.st-crs .st-chip[aria-checked="true"]::before{content:"✓\00a0"}
+.st-crs .st-chip:disabled{cursor:default;opacity:.7}
+:lang(ar) .st-crs .st-chip{font-size:15px}
+.st-chips--list{flex-direction:column;align-items:flex-start}
+.st-label--sub{color:var(--ink-2)!important}
+.st-calc__i--t{font-family:var(--f-body);font-size:16px}
+.st-calc__i--t::placeholder{color:var(--muted);opacity:1}
+.st-crs__fine{max-width:74ch;font-size:var(--t-small);line-height:1.5;color:var(--muted)}
+.st-crs__aside{max-width:74ch;font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
+.st-crs__aside .st-label{margin-inline-end:6px}
+.st-crs__sub{display:flex;flex-direction:column;gap:10px;padding-inline-start:14px;border-inline-start:3px solid var(--line)}
+html.js .st-crs [data-show-if]:not(.is-on){display:none}
+.st-crs__togs{display:flex;flex-wrap:wrap;gap:8px;padding:0 3px 3px 0}
+.st-crs__count:empty{display:none}
+.st-crs__ours{display:flex;flex-direction:column;gap:8px;padding:12px 14px;background:var(--white);border:2px solid var(--ink);font-size:var(--t-small);line-height:1.5}
+.st-crs__ours b{font-weight:700}
+.st-crs__scope{margin:0;padding:12px 14px;border:2px dashed var(--red);font-weight:600;font-size:var(--t-small);line-height:1.5;max-width:74ch}
+.st-crs__sup{display:flex;flex-direction:column;gap:10px}
+html.js [data-ds-has]:not(.is-on){display:none}
+/* sorting rows: the line, then its bins; a press says how the workshop sorts it (teal, never red for "not ours") */
+.st-bins{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.st-bins__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;align-items:center;padding:12px 14px;background:var(--paper);border:2px dashed var(--line)}
+.st-bins--4 .st-bins__row{grid-template-columns:minmax(0,1fr)}
+.st-bins__k{font-weight:600;font-size:var(--t-small);line-height:1.4}
+.st-bins__bs{display:grid;grid-template-columns:repeat(var(--b,2),minmax(0,auto));justify-content:start;gap:8px;padding:0 3px 3px 0}
+.st-bins__why{grid-column:1 / -1;font-size:var(--t-small);line-height:1.45;color:var(--teal-text)}
+html.js .st-bins__why:empty{display:none}
+.st-bins__row.is-on{border-style:solid;border-color:var(--ink)}
+.st-bins__row.is-match .st-bins__why::before{content:"印";display:inline-grid;place-items:center;width:22px;height:22px;margin-inline-end:8px;background:var(--red);color:var(--cream);font-family:var(--f-jp);font-weight:900;font-size:12px;line-height:1;vertical-align:-5px}
+.st-bins__ours{grid-column:1 / -1;margin:0;padding-inline-start:10px;border-inline-start:4px solid var(--red);font-size:var(--t-small);line-height:1.45}
+html.js .st-bins__row:not(.is-on) .st-bins__ours{display:none}
+.st-bins__score{font-family:var(--f-mono);font-weight:700;font-size:var(--t-mono);letter-spacing:.04em}
+.st-bins__score:empty{display:none}
+/* the person, the grid, the meter */
+.st-crs__card{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--white);border:2px solid var(--ink);box-shadow:var(--shadow-s)}
+.st-crs__card dl,.st-grid4{margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.st-crs__card dl > div,.st-grid4 > div{min-width:0;padding:8px 12px;border-inline-start:2px dashed var(--line)}
+.st-crs__card dl > div:first-child,.st-grid4 > div:first-child{border-inline-start:0;padding-inline-start:0}
+.st-crs__card dt,.st-grid4 dt,.st-mtest__family b{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;color:var(--red-text)}
+:lang(ar) .st-crs__card dt,:lang(ar) .st-grid4 dt,:lang(ar) .st-mtest__family b{letter-spacing:0}
+.st-crs__card dd,.st-grid4 dd{margin:4px 0 0;font-size:var(--t-small);line-height:1.4;overflow-wrap:anywhere}
+.st-crs__card dd.is-empty,.st-grid4 dd.is-empty{color:var(--muted)}
+.st-grid4{padding:12px 14px;background:var(--white);border:2px solid var(--ink)}
+.st-grid4__line{max-width:74ch;font-weight:700;font-size:var(--t-body);line-height:1.45}
+html.js .st-grid4__line:empty{display:none}
+.st-meter{font-weight:600;font-size:var(--t-small);line-height:1.45;color:var(--ink-2)}
+.st-meter[data-m="ok"]{color:var(--teal-text)}
+html.js .st-meter:empty{display:none}
+/* three sliders, the character in words, the nearest identity of the three */
+.st-tone{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 22px}
+.st-tone__ends{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-mono);font-size:var(--t-label);color:var(--muted)}
+.st-spec__you{font-family:var(--f-disp);font-weight:800;font-size:clamp(19px,2vw,24px);line-height:1.25}
+html.js .st-spec__you:empty{display:none}
+.st-spec{display:flex;flex-direction:column;gap:10px}
+.st-spec__card{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px 20px;padding:16px 18px;background:var(--sp-bg);color:var(--sp-fg);border:2px solid var(--ink);box-shadow:var(--shadow-s)}
+html.js .st-spec__card:not(.is-on){display:none}
+.st-spec__name{grid-column:1 / -1;font-weight:800;font-size:18px;letter-spacing:.02em}
+.st-spec__aa{font-family:var(--f-disp);font-weight:900;font-size:56px;line-height:1;color:var(--sp-ac)}
+.st-spec__sw{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 12px}
+.st-spec__sw li{display:flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:12px}
+.st-spec__sw i{width:22px;height:22px;background:var(--sw);border:1px solid currentColor}
+.st-spec__card figcaption{grid-column:1 / -1;font-size:var(--t-small);line-height:1.45}
+.st-spec__card a{color:inherit}
+.st-spec--alma .st-spec__name,.st-spec--alma .st-spec__aa{font-family:"Montserrat",var(--f-disp);font-weight:800}
+.st-spec--trav .st-spec__name,.st-spec--trav .st-spec__aa{font-family:"Archivo Condensed","Archivo",var(--f-disp);font-weight:900;text-transform:uppercase}
+.st-spec--numi .st-spec__aa{font-family:"Archivo",var(--f-disp)}
+.st-spec--numi .st-spec__name{font-family:var(--f-hand);font-weight:400}
+.st-spec__note{margin:0}
+/* the 16-pixel test: the marks follow the slider at once; each cell keeps its height, so nothing below moves */
+.st-mtest{display:flex;flex-direction:column;gap:10px}
+.st-mtest__cells{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
+.st-mtest__cell{margin:0;min-block-size:212px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px;background:var(--white);border:2px solid var(--ink)}
+.st-mtest__cell svg{display:block;inline-size:var(--mk,64px);block-size:var(--mk,64px);color:var(--ink)}
+.st-mtest__cell figcaption{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.06em}
+.st-mtest .mk-c{color:var(--teal)}
+.st-mtest.is-ink .mk-c{color:currentColor}
+.st-mtest__actual{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.st-mtest__pair{display:inline-flex;gap:12px;padding:8px 10px;background:var(--white);border:2px solid var(--ink);color:var(--ink)}
+.st-mtest__pair svg{display:block;inline-size:16px;block-size:16px}
+.st-mtest [data-mk-ink]{align-self:flex-start}
+.st-mtest__family{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.st-mtest__family li{display:flex;flex-direction:column;gap:4px;padding:10px 12px;background:var(--white);border:2px solid var(--ink);font-size:var(--t-small);line-height:1.35}
+/* B2: the fork, then one question at a time */
+.st-crs__road{margin:0}
+.st-crs__road img{display:block;width:100%;height:auto;border:2px solid var(--ink);background:#0F1E30}
+:root[dir="rtl"] .st-crs__road--ltr,:root:not([dir="rtl"]) .st-crs__road--rtl{display:none!important}
+.st-flow{display:flex;flex-direction:column;gap:12px;padding:16px;background:var(--white);border:2px solid var(--ink)}
+html.js .st-flow.is-off{display:none}
+.st-flow__q{margin:0;padding:0;border:0;min-width:0;display:flex;flex-direction:column;gap:10px}
+.st-flow__q legend{padding:0;margin-bottom:10px;font-weight:700;font-size:var(--t-body);line-height:1.35}
+html.js .st-flow__q:not(.is-on){display:none}
+.st-flow__bs{display:flex;flex-wrap:wrap;gap:10px;padding:0 3px 3px 0}
+html.js .st-flow__no{display:none}
+.st-flow__no{font-size:var(--t-small);color:var(--muted)}
+.st-flow__trail{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.st-flow__trail:empty{display:none}
+.st-flow__trail li{padding:2px 8px;border:1px solid var(--line);font-family:var(--f-mono);font-size:var(--t-label)}
+html.js .st-flow__end:not(.is-on){display:none}
+html:not(.js) .st-flow__end,html:not(.js) .st-flow__acts,html:not(.js) .st-flow__trail{display:none}
+.st-flow__end{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-inline-start:4px solid var(--teal);background:rgba(35,102,96,.08);font-size:var(--t-small);line-height:1.5}
+.st-flow__end:focus-visible{outline:2px solid var(--red-text);outline-offset:2px}
+.st-flow__v{font-family:var(--f-disp);font-weight:900;font-size:clamp(19px,2vw,24px);line-height:1.2}
+.st-flow__acts{margin:0}
+.st-flow__acts .st-btn{min-height:44px}
+html.js .st-flow__step:empty,html.js .st-flow [data-flow-step]:empty{display:none}
+/* B3: the requests */
+.st-pick--req .st-pick__p{display:flex;flex-direction:column;gap:12px}
+.st-pick--req .st-pick__p[hidden]{display:none}
+.st-req{margin:0;display:flex;flex-direction:column;gap:10px}
+.st-req dt{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;color:var(--teal-text)}
+:lang(ar) .st-req dt{letter-spacing:0}
+.st-req dd{margin:2px 0 0;display:flex;flex-direction:column;gap:6px}
+.st-req .st-mny__note{margin:0}
+.st-pick__more summary{display:inline-flex;align-items:center;min-height:44px;font-family:var(--f-mono);font-size:var(--t-label);font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.st-pick__more[open] summary{margin-bottom:8px}
+/* B4, the cards; B6, the law */
+.st-crs__cards{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:10px}
+.st-crs__cards > div{padding:12px 14px;background:var(--white);border:2px solid var(--ink)}
+.st-crs__cards dt{font-weight:700;font-size:var(--t-small)}
+.st-crs__cards dd{margin:4px 0 0;font-size:var(--t-small);line-height:1.45}
+.st-crs__alt{display:flex;flex-direction:column;gap:12px}
+.st-law{display:flex;flex-direction:column;gap:10px}
+.st-law__card{display:flex;flex-direction:column;gap:8px;padding:12px 14px;background:var(--white);border:2px solid var(--ink);font-size:var(--t-small);line-height:1.5}
+html.js .st-law__card:not(.is-on){display:none}
+.st-law__k{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;color:var(--red-text)}
+.st-law__card .st-mny__note{margin:0}
+/* B8: six states, one shown at a time (a cut) */
+.st-states{display:flex;flex-direction:column;gap:10px}
+.st-states__step:empty{display:none}
+.st-states__t{width:100%;border-collapse:collapse;background:var(--white);font-size:var(--t-small);line-height:1.4}
+.st-states__t th,.st-states__t td{padding:8px 10px;border:1px solid var(--line);text-align:start;vertical-align:top;overflow-wrap:anywhere}
+.st-states__t thead th{background:var(--ink);color:var(--cream);font-family:var(--f-mono);font-size:var(--t-label);font-weight:600;letter-spacing:.06em}
+html.js .st-states__t tbody tr:not(.is-on){display:none}
+.st-states__acts{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.st-states__acts > div{padding:12px 14px;background:var(--white);border:2px solid var(--ink)}
+.st-states__acts dt{font-weight:700;font-size:var(--t-small)}
+.st-states__acts dd{margin:4px 0 0;font-size:var(--t-small);line-height:1.45}
+/* the brief, set as the console's receipt on paper */
+.st-fiche{position:relative;display:flex;flex-direction:column;gap:14px;padding:clamp(18px,2.4vw,28px);background:var(--cream);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-fiche--paper{background:#FBF6EC}
+.st-fiche .st-rc__title{padding-inline-end:150px}
+.st-fiche__kuro{position:absolute;top:12px;inset-inline-end:76px;width:72px;height:auto}
+.st-fiche__rows{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}
+.st-fiche__rows > div{min-width:0;padding:8px 0;border-bottom:1px dashed var(--line)}
+.st-fiche__rows dt{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+:lang(ar) .st-fiche__rows dt{letter-spacing:0}
+.st-fiche__rows dd{margin:2px 0 0;font-size:var(--t-small);line-height:1.45;overflow-wrap:anywhere}
+/* a typed value in the other script than the page's (French typed on the Arabic page): isolated (hub/app.js fillIso)
+   and kept on whole lines, so a label and its answer never interleave when a line wraps */
+[dir="rtl"] .st-fiche__v.is-ltr,[dir="ltr"] .st-fiche__v.is-rtl{display:inline-block;max-width:100%;vertical-align:top}
+[dir="rtl"] .st-fiche__v.is-ltr{text-align:right}
+[dir="ltr"] .st-fiche__v.is-rtl{text-align:left}
+.st-fiche__rows dd.is-empty a,.st-fiche__go{display:inline-flex;align-items:center;min-height:32px;color:var(--red-text);font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.04em;text-underline-offset:3px}
+.st-fiche__notes{display:flex;flex-direction:column;gap:6px}
+.st-fiche__notes:empty{display:none}
+.st-fiche__hint{font-size:var(--t-small);line-height:1.45;color:var(--teal-text);overflow-wrap:anywhere}
+.st-fiche__dz{font-size:var(--t-small);line-height:1.45;font-weight:600}
+.st-fiche__legal{font-size:12px;line-height:1.45;color:var(--muted)}
+.st-fiche__est{display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:2px solid var(--ink)}
+.st-fiche__notes--legal{padding-top:10px;border-top:1px dashed var(--line)}
+.st-crs__mini{padding:12px 14px;background:var(--white);border:2px solid var(--ink)}
+.st-fiche__estk{margin:0}
+.st-fiche__estl{font-weight:600;font-size:var(--t-small);line-height:1.45}
+.st-fiche__none{font-family:var(--f-mono)}
+.st-fiche__fine{font-size:12px;line-height:1.45;color:var(--muted)}
+.st-fiche__est .st-rc{font-size:13px}
+.st-fiche__blank{margin:0;padding-inline-start:1.4em;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 24px;font-size:var(--t-small)}
+.st-fiche__blank li{padding:14px 0 4px;border-bottom:1px dotted var(--ink)}
+html.js .st-fiche__nojs,html.js .st-fiche__blank{display:none}
+html:not(.js) .st-fiche__raw,html:not(.js) [data-brief-copy],html:not(.js) [data-brief-print],html:not(.js) [data-brief-clear],.st-fiche__est:empty{display:none}
+.st-fiche__raw summary{display:inline-flex;align-items:center;min-height:44px;font-family:var(--f-mono);font-size:var(--t-label);font-weight:600;letter-spacing:.08em;cursor:pointer}
+.st-fiche__txt{width:100%;margin-top:6px;padding:8px;border:2px solid var(--ink);background:var(--white);color:var(--ink);font-family:var(--f-mono);font-size:13px;line-height:1.45;resize:vertical}
+.st-fiche__acts .st-btn{min-height:48px;padding:0 16px}
+.st-fiche__st{min-height:1.4em;font-weight:600;font-size:var(--t-small);color:var(--teal-text)}
+.st-fiche__keep{margin:0}
+.st-fiche__next{padding-top:10px;border-top:2px dashed var(--line);font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
+.st-fiche .st-est__seal[hidden]{display:none}
+/* by width */
+@media (max-width:1099px){
+  .st-ls--crs .st-ls__tabs{grid-template-columns:repeat(var(--k2,4),minmax(0,1fr))}
+  .st-tone{grid-template-columns:minmax(0,1fr)}
+  .st-states__acts{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:699px){
+  .st-ls--crs .st-nmd__book{grid-template-columns:repeat(var(--k2,4),minmax(0,1fr))}
+  .st-ls--crs[style*="--k2:5"] .st-nmd__book li:nth-child(5)::before{content:""}
+  .st-ls--crs[style*="--k2:5"] .st-nmd__book li:nth-child(6)::before{content:none}
+  .st-crs__card dl,.st-grid4,.st-mtest__family{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .st-crs__card dl > div:nth-child(3),.st-grid4 > div:nth-child(3){border-inline-start:0;padding-inline-start:0}
+  .st-bins__row{grid-template-columns:minmax(0,1fr)}
+  .st-bins__bs{grid-template-columns:repeat(var(--b,2),minmax(0,1fr))}
+  /* the four layers: as many columns as a whole word fits ("Identité", "Système" cut at 280 and from 420 to 600) */
+  .st-bins--4 .st-bins__bs{grid-template-columns:repeat(auto-fit,minmax(min(100%,116px),1fr))}
+  .st-fiche .st-rc__title{padding-inline-end:72px}
+  .st-fiche__kuro{display:none}
+  /* each state a card, the column's name above each cell */
+  .st-states__t thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%)}
+  .st-states__t tr{display:block;border:2px solid var(--ink)}
+  .st-states__t th,.st-states__t td{display:block;border:0;border-top:1px dashed var(--line)}
+  .st-states__t tbody th{border-top:0;font-weight:700}
+  .st-states__t td::before{content:attr(data-head);display:block;font-family:var(--f-mono);font-size:var(--t-label);color:var(--muted)}
+}
+@media (max-width:419px){
+  /* the brief's receipt: each line's name on its own row, its two figures under it */
+  .st-fiche__est .st-rc thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%)}
+  .st-fiche__est .st-rc tr{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 12px;border-bottom:1px dashed var(--line)}
+  .st-fiche__est .st-rc th,.st-fiche__est .st-rc td{border:0;padding:5px 0}
+  .st-fiche__est .st-rc tbody th,.st-fiche__est .st-rc tfoot th{flex:1 1 100%;padding-bottom:0}
+  .st-fiche__est .st-rc tfoot tr{border-bottom:0;border-top:2px solid var(--ink)}
+  .st-fiche__est .st-rc td{flex:0 0 auto}
+  .st-fiche__rows,.st-fiche__blank{grid-template-columns:minmax(0,1fr)}
+  .st-fiche__acts .st-btn{width:100%}
+  /* one choice per row in every language (the Arabic words are short enough to pair, the French are not) */
+  .st-crs .st-chip{flex:1 1 100%}
+  /* the Studio's three brand links: full width in every language */
+  .st-brand__more{display:grid;gap:8px}
+  .st-brand__more .st-btn{width:100%}
+  .st-spec__card{grid-template-columns:minmax(0,1fr)}
+  .st-spec__aa{font-size:44px}
+}
+/* ---------------- the making page (hub/fabrique.html, 2026-11-19) ----------------
+   Four scenes, each a framed plate with the studio's own visual and the owner's character on its ground line, then
+   two six-lesson sets in the manual's shell. Tokens only; the night navy is the doors' #0F1E30. Nothing moves on its
+   own: the one transition (the character on an open breakdown) is under no-preference, the rest are cuts. */
+.st-fabhead .st-h2{max-inline-size:14ch}
+.st-scenes{padding-top:clamp(28px,4vw,48px)}
+.st-scenes__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,3vw,40px);align-items:start}
+.st-scene{position:relative;display:flex;flex-direction:column;gap:16px;min-width:0;padding-bottom:18px;background:var(--floor);border:2px solid var(--ink);box-shadow:var(--shadow);scroll-margin-top:84px}
+.st-scene > :not(.st-svc__bar){margin-inline:16px}
+.st-scene__h{margin:0;font-family:var(--f-disp);font-weight:900;font-size:clamp(28px,3.1vw,46px);line-height:.95;letter-spacing:-.015em;text-transform:uppercase;text-wrap:balance;max-inline-size:14ch}
+.st-scene__fig{margin-block:0;container-type:inline-size;display:flex;flex-direction:column;gap:10px;min-width:0}
+/* the plate: a framed scene, cream paper or night navy, its ground line at about 9 % of the frame's height from the foot */
+.st-scene__plate{--g:7cqw;position:relative;min-block-size:77cqw;padding:52px 14px calc(var(--g) + 12px);border:2px solid var(--ink);box-shadow:var(--shadow-l);background:#0F1E30;color:var(--cream);overflow:hidden}
+.st-scene__plate::after{content:"";position:absolute;inset-inline:0;inset-block-end:var(--g);block-size:2px;background:rgb(243 236 225 / .5);pointer-events:none}
+.st-scene__plate--cream{background:var(--cream);color:var(--ink)}
+.st-scene__plate--cream::after{background:rgb(33 30 27 / .5)}
+.st-scene__plate--fly{overflow:visible}
+.st-scene__tool{position:absolute;z-index:3;inset-block-start:12px;inset-inline-start:12px;padding:5px 9px;background:var(--ink);color:var(--cream);border:1px solid rgb(243 236 225 / .45);font-family:"Geist Mono",ui-monospace,monospace;font-size:var(--t-label);line-height:1.3;letter-spacing:.04em}
+.st-scene__who{position:absolute;z-index:1;inset-block-end:calc(var(--g) + 1px);block-size:auto;pointer-events:none}
+.st-scene__who--y{inset-inline-end:3%;inline-size:40%}
+.st-scene__who--k{inset-inline-end:4%;inline-size:30%}
+.st-scene__who--r{inset-inline-start:4%;inline-size:30%}
+.st-scene__who--p{inset-inline-end:-6%;inline-size:30%}
+@media (prefers-reduced-motion:no-preference){
+  .st-scene__who{transition:transform var(--m-hover) var(--m-ease-enter)}
+  .st-scene:has(.st-scene__more[open]) .st-scene__who{transform:translateY(-6px) rotate(-2deg)}
+}
+/* the character's line: a speech card in ink; red is the voice, as a rule at inline-start (red on ink is 2.66:1, too low for the name) */
+.st-scene__line{position:relative;z-index:2;margin:-30px 14px 0 auto;inline-size:min(80%,30em);padding:11px 14px;background:var(--ink);color:var(--cream);border-inline-start:3px solid var(--red);box-shadow:3px 3px 0 var(--red);font-size:var(--t-card);line-height:1.4}
+.st-scene--start .st-scene__line{margin-inline:14px auto}
+/* the box never overlaps the plate by more than its floor band (--g, 7cqw of the figure): a character standing on the
+   floor keeps its feet on a narrow plate */
+.st-scene__line{margin-block-start:max(-30px,calc(2px - 7cqw))}
+.st-scene__line b{display:block;margin-bottom:2px;font-family:var(--f-mono);font-size:var(--t-label);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--on-dark)}
+.st-scene__cap{font-size:var(--t-small);line-height:1.45;color:var(--ink-2)}
+/* the breakdown */
+.st-scene__more{border-top:2px dashed var(--ink)}
+.st-scene__more > summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;font-family:var(--f-mono);font-size:var(--t-mono);font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;list-style:none}
+.st-scene__more > summary::-webkit-details-marker{display:none}
+.st-scene__more > summary::after{content:"+";flex:none;inline-size:28px;block-size:28px;display:grid;place-items:center;border:2px solid var(--ink);font-size:18px;line-height:1}
+.st-scene__more[open] > summary::after{content:"\2212";background:var(--ink);color:var(--cream)}
+.st-scene__more > :not(summary){margin:0 0 12px;font-size:var(--t-card);line-height:1.55}
+.st-scene__more[open]{padding:0 14px 6px;background:var(--cream);border:2px solid var(--ink);border-top-style:dashed}
+.st-scene__more .st-label{display:block;margin-bottom:2px;color:var(--red-text);letter-spacing:.12em}
+.st-scene__price b,.st-scene__lines b{font-family:var(--f-disp);font-weight:800;font-size:1.12em}
+.st-scene__lines{display:flex;flex-direction:column;gap:6px}
+.st-scene__lines li{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.st-scene__learn a{color:var(--ink);text-underline-offset:3px}
+.st-scene__ref{display:inline-flex;align-items:center;justify-content:center;min-inline-size:44px;min-block-size:44px;font-family:var(--f-mono);font-size:var(--t-label)}
+.st-scene__more .st-actions .st-btn{white-space:normal;text-align:center;line-height:1.3;padding-block:10px}
+/* scene 01: the artboards, beside Yasser */
+.st-scene__plate--side{display:flex;flex-direction:column}
+.st-artb{flex:1;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:auto 1fr 1fr;gap:8px;margin-inline-end:42%}
+.st-artb__a--48{grid-row:2 / 4}   /* the live mark has the room to reach 104 px */
+.st-artb__a{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px 4px 8px;background:var(--cream);color:var(--ink);overflow:hidden}
+.st-artb__a--240{grid-column:1 / -1;padding:18px 10px 10px}
+.st-artb__a--240 .wm{display:block;inline-size:min(240px,100%);block-size:auto}
+.st-artb__a--16,.st-artb__a--ink{min-block-size:clamp(70px,14cqw,96px)}
+.st-fav{display:block;inline-size:48px;block-size:48px;flex:none}
+.st-artb__a--48 .st-fav{inline-size:min(var(--mk,48px),100%);block-size:auto;aspect-ratio:1}
+.st-artb__a--16 .st-fav{inline-size:16px;block-size:16px}
+.st-artb__a--ink .st-fav rect{fill:currentColor}
+.st-artb__a--ink .st-fav path{fill:var(--cream)}
+.st-artb__l{font-family:var(--f-mono);font-size:12px;line-height:1.25;letter-spacing:.06em;text-align:center;color:var(--ink-2);overflow-wrap:break-word}
+.st-scale{display:flex;flex-wrap:wrap;align-items:center;gap:0 8px;margin-block:-4px 0;font-family:var(--f-mono);font-size:var(--t-mono)}
+.st-scale output{font-weight:600}
+.st-scale .st-calc__r{flex:1 1 100%}
+html:not(.js) .st-scale{display:none}
+/* scene 02: the Studio's own card three times (cream plate, so Kūro's indigo fur reads) */
+.st-scene__plate--low{padding-block-end:calc(var(--g) + 30cqw)}
+.st-scene__cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
+/* wide plates: the plate ends under the cards and Kūro crouches against the foot of the shortest one (the Arabic card,
+   always on his side), instead of alone in a cream band */
+@container (min-width:480px){
+  .st-scene__plate--cream{min-block-size:0;padding-block-end:calc(var(--g) + 11cqw)}
+  .st-scene__who--k{inline-size:19%}
+}
+.st-svc--spec{box-shadow:var(--shadow-s);transition:none}
+.st-svc--spec .st-svc__bar{padding:7px 9px;font-size:12px;letter-spacing:.06em}
+.st-svc--spec .st-svc__kanji{inline-size:24px;block-size:24px;font-size:12px}
+.st-svc--spec .st-svc__body{gap:8px;padding:10px 10px 12px}
+.st-svc--spec .st-h3{font-size:clamp(14px,3.1cqw,19px);line-height:1.05}
+.st-svc--spec .st-plus{gap:5px}
+.st-svc--spec .st-plus li{font-size:clamp(12px,2.2cqw,14px);line-height:1.3;gap:6px}
+.st-svc--spec:lang(ar) .st-plus li{font-size:clamp(13px,2.3cqw,15px)}
+/* each copy in its own language's faces, whatever the page's language */
+.st-svc--spec:lang(ar){--f-disp:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;--f-body:"IBM Plex Sans Arabic","Geist",sans-serif;--f-mono:"IBM Plex Sans Arabic","Geist Mono",sans-serif;font-family:var(--f-body)}
+.st-svc--spec:not(:lang(ar)){--f-disp:"Archivo","Arial Black",sans-serif;--f-body:"Geist",system-ui,sans-serif;--f-mono:"Geist Mono",ui-monospace,monospace;font-family:var(--f-body)}
+.st-svc--spec:lang(ar) .st-svc__bar{letter-spacing:0}
+/* scene 03: one master, four windows; left and width are physical on purpose (a picture is not mirrored in RTL) */
+.st-scene__plate:has(.st-crop__m){padding-block-end:calc(var(--g) + 24cqw)}
+@container (min-width:480px){
+  /* wide plates: the rat stands at the plate's end and Yasser's line rises beside it, so the band under the master holds
+     both instead of a lone rat */
+  .st-scene__plate:has(.st-crop__m){min-block-size:0;padding-block-end:calc(var(--g) + 17cqw)}
+  .st-scene__who--r{inset-inline-start:auto;inset-inline-end:4%;inline-size:23%}
+  /* it rises 14cqw into the band and is at least that tall plus 16 px, so it always ends below the plate (the caption
+     after it is never under the plate, whatever the line's length) */
+  .st-scene--start .st-scene__line{inline-size:min(68%,30em);margin-block-start:-14cqw;min-block-size:calc(14cqw + 16px)}
+}
+.st-crop__m{position:relative;overflow:hidden;border:2px solid var(--cream)}
+.st-crop__m img{display:block;inline-size:100%;block-size:auto}
+.st-crop__frame{position:absolute;inset-block:0;left:var(--x,0%);width:var(--w,100%);outline:3px solid var(--red);outline-offset:-3px;box-shadow:0 0 0 100vmax rgb(33 30 27 / .55);pointer-events:none}
+.st-crop:has([data-pick-b="1"][aria-pressed="true"]) .st-crop__frame{--x:13.33%;--w:45%}
+.st-crop:has([data-pick-b="2"][aria-pressed="true"]) .st-crop__frame{--x:45.83%;--w:45%}
+.st-crop:has([data-pick-b="3"][aria-pressed="true"]) .st-crop__frame{--x:52.08%;--w:31.67%}
+.st-crop__ui{display:flex;flex-direction:column;gap:8px}
+/* the crop figure's caption comes last in the markup (a figcaption is a first or last child) and is shown under the line, above the controls */
+.st-crop > .st-crop__ui,.st-crop > .st-crop__ps{order:1}
+.st-crop__ui .st-label{color:var(--red-text)}
+.st-crop__ps{min-height:0}
+/* with the script, the picked window is said once (the live region) and seen in the frame; without it, the four names are listed */
+html.js .st-crop__ps{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.st-crop__ps .st-pick__p{padding:6px 10px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.08em}
+html:not(.js) .st-crop__ui{display:none}
+html:not(.js) .st-crop__frame{display:none}
+/* scene 04: the site's own entrance curve over the reel's opening */
+.st-scene__plate:has(.st-ease){padding-block-end:calc(var(--g) + 12cqw)}   /* the pigeon flies over the still's corner; the band holds the ms ruler */
+.st-scene__plate:has(.st-ease) .st-scene__who--p{inline-size:24%}
+.st-ease{position:relative;border:2px solid var(--cream)}
+.st-ease__poster{display:block;inline-size:100%;block-size:auto;aspect-ratio:640 / 332;object-fit:cover;object-position:50% 0}   /* the still's foot strip (4 px type at this size) is cut off */
+.st-ease__g{position:absolute;inset-block-end:5%;inset-inline-start:3%;width:50%;height:36%;padding:14px 12px 20px 24px;background:var(--cream);color:var(--ink);border:2px solid var(--ink)}
+.st-ease__g svg{display:block;inline-size:100%;block-size:100%;overflow:visible}
+.st-ease__ax{fill:none;stroke:var(--ink);stroke-width:2;vector-effect:non-scaling-stroke}
+.st-ease__c{fill:none;stroke:var(--red);stroke-width:3;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.st-ease__g span{position:absolute;font-family:var(--f-mono);font-size:10px;line-height:1;letter-spacing:.06em;white-space:nowrap}
+.st-ease__p{left:6px;top:4px}
+.st-ease__t{right:8px;bottom:5px}
+.st-ease__start{left:36px;bottom:28px;color:var(--red-text)}   /* off the y axis (24 px in) */
+.st-ease__settle{right:12px;top:22px;color:var(--red-text)}
+.st-ease__ticks{position:absolute;z-index:2;inset-inline-start:14px;inset-block-end:calc(var(--g) + 10px);display:flex;flex-wrap:wrap;gap:4px 10px;max-inline-size:58%;margin:0;font-family:"Geist Mono",ui-monospace,monospace;font-size:11px;line-height:1.3;color:var(--cream)}
+.st-ease__ticks span:last-child{color:var(--on-dark-2)}
+/* the ticks are numbers (dir="ltr"), so their own inline start is always the left: in Arabic the pigeon stands on the left (the plate's inline end), and the ticks move to the right, off it */
+[dir="rtl"] .st-ease__ticks{inset-inline-start:auto;inset-inline-end:14px;justify-content:flex-end}
+/* the course head and the three tracks */
+.st-tracks__nav{display:flex;flex-wrap:wrap;gap:4px 20px;margin-bottom:22px;font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.1em;text-transform:uppercase}
+.st-tracks__nav a{display:inline-flex;align-items:center;min-block-size:44px;color:var(--ink);text-underline-offset:4px}
+.st-tracks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);align-items:stretch}
+.st-track{position:relative;display:flex;flex-direction:column;min-width:0;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow);overflow:hidden}
+.st-track::after{content:"";position:absolute;inset-inline:0;inset-block-end:16px;block-size:2px;background:rgb(33 30 27 / .35);pointer-events:none}
+.st-track__body{flex:1;display:flex;flex-direction:column;gap:12px;padding-block:18px 40px;padding-inline:18px 36%;min-block-size:240px}
+.st-track__body p{margin:0;font-size:var(--t-small);line-height:1.5}
+.st-track__t{margin:0;font-family:var(--f-disp);font-weight:800;font-size:clamp(19px,1.7vw,23px);line-height:1.12;text-wrap:balance}
+.st-track__go{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:auto!important}
+.st-track__go .st-btn{white-space:normal;text-align:center;line-height:1.25;min-height:48px;padding-block:8px}
+.st-track__also{display:inline-flex;align-items:center;min-block-size:44px;color:var(--ink);text-underline-offset:3px}
+.st-track__who{position:absolute;inset-inline-end:3%;inset-block-end:17px;inline-size:31%;block-size:auto;pointer-events:none}
+/* the two lesson sets: the manual's shell, text-only tabs (no pictures yet, P8) */
+.st-fabls .st-ls__tabs{grid-template-columns:repeat(6,minmax(0,1fr))}
+.st-ls--bare .st-ls__tab{min-block-size:64px;justify-content:flex-start;padding-inline-end:48px}
+@media (min-width:1000px){.st-ls--bare .st-ls__panel:not([hidden]){display:flex}}
+.st-ch__n{margin-inline-end:6px;font-family:var(--f-mono);font-size:var(--t-label);font-weight:600;letter-spacing:.12em;color:var(--red-text);vertical-align:middle}
+.st-ch__h{margin:0;font-family:var(--f-disp);font-weight:800;font-size:clamp(20px,2vw,26px);line-height:1.12;text-wrap:balance}
+.st-ch__more{border-top:2px dashed var(--ink)}
+.st-ch__more > summary{display:flex;align-items:center;gap:10px;min-height:48px;font-family:var(--f-mono);font-size:var(--t-mono);font-weight:600;letter-spacing:.1em;cursor:pointer;list-style:none}
+.st-ch__more > summary::-webkit-details-marker{display:none}
+.st-ch__more > summary::before{content:"+";flex:none;inline-size:24px;block-size:24px;display:grid;place-items:center;border:2px solid var(--ink);font-size:16px;line-height:1}
+.st-ch__more[open] > summary::before{content:"\2212";background:var(--ink);color:var(--cream)}
+.st-ch__more > p{margin:0 0 10px!important;max-width:74ch;font-size:var(--t-card);line-height:1.55}
+.st-ch__more b{font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.12em;text-transform:uppercase;color:var(--red-text)}
+/* the labs: the booking request, the receipt; three cells per state */
+.st-tlab{padding:14px;background:var(--white);border:2px solid var(--ink);box-shadow:var(--shadow-s)}
+.st-tlab__t{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.st-tlab__t b{font-family:var(--f-disp);font-weight:900;font-size:clamp(18px,1.7vw,22px);line-height:1.1}
+.st-tlab .st-pick__p{padding:12px;max-width:none}
+.st-tlab__k{margin:0 0 8px!important}
+.st-path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0}
+.st-path > div{min-width:0;padding:10px 12px;background:var(--cream);border:2px solid var(--ink)}
+.st-path dt{margin-bottom:4px;font-family:var(--f-mono);font-size:var(--t-label);letter-spacing:.1em;color:var(--muted)}
+.st-path dd{margin:0;font-size:var(--t-card);line-height:1.4;overflow-wrap:anywhere}
+.st-path code{font-family:"Geist Mono",ui-monospace,monospace;font-size:.92em;font-weight:600}
+.st-tlab__src{margin-top:10px!important;font-size:var(--t-small);line-height:1.5;color:var(--ink-2)}
+html:not(.js) .st-tlab .st-pick__p[hidden]{display:block}
+/* the web3 set's head: the owner's line and the two legal lines, on the night plate */
+.st-w3__notes{display:flex;flex-direction:column;gap:8px;margin:-10px 0 22px;padding:12px 16px;border-inline-start:3px solid var(--red);background:rgb(243 236 225 / .06)}
+.st-w3__notes p{margin:0;max-width:90ch}
+.st-w3__scope{font-weight:600;line-height:1.45;color:var(--cream)}
+.st-w3__notes .st-mny__note{color:var(--on-dark-2)}
+.st-fabls .st-jeu__all{background:var(--cream);color:var(--ink)}
+.st-fabls .st-ls > .st-jeu__refs{margin-top:14px;color:var(--on-dark-2)}
+.st-fabls .st-ls > .st-jeu__refs a{color:var(--cream)}
+.st-fabls + .st-fabls{border-top:0;padding-top:0}
+/* the capstone and the references */
+.st-fabend__in{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.st-fabend__in .st-h2{max-inline-size:18ch}
+.st-fabend__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:fab;inline-size:100%}
+.st-fabend__list li{counter-increment:fab;padding:16px 16px 18px;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow-s);font-size:var(--t-card);line-height:1.5}
+.st-fabend__list li::before{content:counter(fab,decimal-leading-zero);display:block;margin-bottom:6px;font-family:var(--f-mono);font-size:var(--t-label);font-weight:600;letter-spacing:.12em;color:var(--red-text)}
+.st-fabend__review{max-width:80ch;padding:14px 16px;border:2px dashed var(--ink);font-size:var(--t-card);line-height:1.55}
+.st-fabrefs__card{padding:clamp(18px,2.4vw,28px);background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.st-fabrefs .st-h3{margin:0 0 8px}
+.st-fabrefs__note{max-width:80ch;margin:0 0 14px;font-size:var(--t-small);color:var(--ink-2)}
+.st-fabrefs__list{list-style:decimal;margin:0;padding-inline-start:30px;display:flex;flex-direction:column;gap:4px;font-size:var(--t-small);line-height:1.5}
+.st-fabrefs__list li{scroll-margin-top:96px;overflow-wrap:anywhere;break-inside:avoid}
+@media (min-width:900px){.st-fabrefs__list{display:block;columns:2;column-gap:48px}.st-fabrefs__list li + li{margin-top:4px}}
+.st-fabrefs__list li::marker{font-family:var(--f-mono);font-size:var(--t-label);color:var(--muted)}
+.st-fabrefs__list a{display:inline-flex;align-items:center;min-block-size:44px;color:var(--ink);text-underline-offset:3px}
+.st-fabrefs__list li:target{background:rgb(163 65 53 / .1)}
+/* the Studio's line under its four cards */
+.st-services__how{margin:26px 0 0;font-family:var(--f-mono);font-size:var(--t-mono);letter-spacing:.06em}
+.st-services__how a{display:inline-flex;align-items:center;min-block-size:44px;color:var(--ink);text-underline-offset:4px}
+/* Arabic: labels without capitals or tracking */
+:lang(ar) .st-artb__l{font-size:13px}
+:lang(ar) .st-scene__more > summary,:lang(ar) .st-scene__line b,:lang(ar) .st-artb__l,:lang(ar) .st-ch__more > summary,:lang(ar) .st-ch__more b,:lang(ar) .st-tracks__nav,:lang(ar) .st-path dt,:lang(ar) .st-fabend__list li::before,:lang(ar) .st-crop__ps .st-pick__p{letter-spacing:0;text-transform:none}
+/* by width */
+@media (max-width:1099px){.st-fabls .st-ls__tabs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* phones: the text-only tab gives its title the full width (a 48px end gutter broke «الصلاحيات» mid-word at 390); the number row is as tall as the stamp, so the title starts under it */
+@media (max-width:599px){.st-ls--bare .st-ls__tab{padding-inline-end:6px}.st-ls--bare .st-ls__n{min-block-size:30px}}
+@media (max-width:359px){.st-fabls .st-ls__tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.st-scene__h{font-size:clamp(22px,8vw,28px)}}   /* «RECOGNIZABLE.» ran 31 px past its card at 280 */   /* three columns of 70px cut «Confiance» and «Requête» in two */
+@media (max-width:859px){
+  .st-scenes__grid{grid-template-columns:minmax(0,1fr);max-inline-size:600px;margin-inline:auto}
+  .st-fabend__list{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:759px){
+  .st-tracks{grid-template-columns:minmax(0,1fr)}
+  .st-track::after{display:none}
+  .st-track > .st-svc__bar{order:-2}
+  .st-track__who{position:static;order:-1;align-self:flex-end;inline-size:min(34%,150px);margin:12px 16px -2px;border-bottom:2px solid rgb(33 30 27 / .35)}
+  .st-track__body{padding:16px 18px 20px;min-block-size:0}
+}
+@media (max-width:599px){
+  .st-path{grid-template-columns:minmax(0,1fr)}
+  .st-scene > :not(.st-svc__bar){margin-inline:12px}
+}
+@container (max-width:479px){
+  .st-artb{margin-inline-end:0;gap:6px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}   /* the narrow cell keeps «réelle» whole */
+  /* the tiles take the plate's width; Yasser stands under them, on the floor, not on a tile */
+  .st-scene__plate--side{padding-block-end:calc(var(--g) + 36cqw)}
+  .st-artb__l{letter-spacing:0}
+  .st-scene__who--y{inline-size:26%}
+  .st-artb__a--16,.st-artb__a--ink{min-block-size:64px}
+  .st-scene__cards{grid-template-columns:minmax(0,1fr)}
+  .st-scene__line{inline-size:auto;margin-inline:10px}
+  .st-ease__g{position:relative;inset-inline-start:auto;inset-block-end:auto;width:auto;height:96px;border-width:2px 0 0;padding:12px 8px 18px 22px}
+  .st-ease__g span{font-size:9px}
+  .st-ease__start{left:32px;bottom:22px}
+  .st-scene__plate:has(.st-ease){padding-block-end:calc(var(--g) + 36cqw)}
+  .st-ease__ticks{max-inline-size:60%;font-size:10px;gap:2px 8px}
+}
+/* print: the brief alone, ink on white (hub/app.js 13b sets html.is-print-brief and the section's data-print) */
+@media print{
+  html.is-print-brief body > *:not(main),html.is-print-brief main > *:not([data-print]){display:none!important}
+  html.is-print-brief [data-print] > .st-wrap > *:not(.st-ls),html.is-print-brief [data-print] .st-ls > *:not(.st-ls__panels),
+  html.is-print-brief [data-print] .st-ls__panel:not([data-ls-panel="b8"]):not([data-ls-panel="w7"]){display:none!important}
+  html.is-print-brief [data-print] .st-ls__panel > *:not(.st-fiche){display:none!important}
+  html.is-print-brief [data-print] .st-ls,html.is-print-brief [data-print] .st-ls__panel{display:block!important;padding:0!important;border:0!important;box-shadow:none!important;background:#fff!important;color:#000!important}
+  html.is-print-brief,html.is-print-brief body,html.is-print-brief main,html.is-print-brief [data-print]{background:#fff!important;background-image:none!important}
+  html.is-print-brief .st-fiche{border:0;box-shadow:none;background:#fff;color:#000;padding:0}
+  html.is-print-brief .st-fiche__acts,html.is-print-brief .st-fiche__raw,html.is-print-brief .st-fiche__st,html.is-print-brief .st-fiche__kuro,html.is-print-brief .st-fiche .st-est__seal{display:none!important}
+  html.is-print-brief .st-fiche *{color:#000!important;box-shadow:none!important}
+  /* one A4 for a short brief (a page 2 held three lines, and the estimate's label sat apart from its value); a long one
+     breaks between whole blocks */
+  html.is-print-brief [data-print]{padding-block:0!important;border:0!important}
+  html.is-print-brief .st-fiche{gap:5px}
+  html.is-print-brief .st-fiche .st-rc__title{padding-inline-end:0}
+  html.is-print-brief .st-fiche__rows{gap:0 20px}
+  html.is-print-brief .st-fiche__rows > div{padding:2px 0;break-inside:avoid}
+  html.is-print-brief .st-fiche__rows dd,html.is-print-brief .st-fiche__hint,html.is-print-brief .st-fiche__dz,html.is-print-brief .st-fiche__estl,html.is-print-brief .st-fiche__next{font-size:11.5px;line-height:1.35}
+  html.is-print-brief .st-fiche__rows dt,html.is-print-brief .st-fiche__legal,html.is-print-brief .st-fiche__fine,html.is-print-brief .st-fiche__keep{font-size:10px;line-height:1.35}
+  html.is-print-brief .st-fiche__est{gap:5px;padding-top:8px;break-inside:avoid}
+  html.is-print-brief .st-fiche__est .st-rc{font-size:11px}
+  html.is-print-brief .st-fiche__est .st-rc th,html.is-print-brief .st-fiche__est .st-rc td{padding-block:2px}
+  html.is-print-brief .st-fiche__notes,html.is-print-brief .st-fiche__keep,html.is-print-brief .st-fiche__next{break-inside:avoid}
+  html.is-print-brief .st-fiche__keep{break-after:avoid}
+  /* on paper an empty field is a line to write on: its link to the step (underline, arrow) means nothing there */
+  html.is-print-brief .st-fiche__rows dd.is-empty a,html.is-print-brief .st-fiche__est .st-fiche__go{display:none!important}
+  html.is-print-brief .st-fiche__rows dd.is-empty{height:1.5em;border-bottom:1px solid #999}
+  @page{margin:10mm 12mm}
+}

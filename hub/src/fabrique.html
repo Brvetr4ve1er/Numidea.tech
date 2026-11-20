@@ -1,0 +1,953 @@
+<body class="st-fab">
+
+<a class="st-skip" href="#main" data-i18n="ui.skip"></a>
+
+<!-- ============================== LA FABRIQUE ==============================
+     hub/fabrique.html (2026-11-19): the owner's "Outside the Artboard", redrawn in the Studio's dress
+     (ATELIER.md; written by the scratch generator gen-fab.mjs, edit the text in hub/src/i18n). Its head is
+     the Studio's (re-addressed by scripts/build-hub.mjs); this file is its body: the four scenes, the
+     course head, the two six-lesson sets (the application, and the web3 engineering track, published as
+     education on the owner's decision of 2026-11-18), the capstone, the references, the way back. Same
+     sheet and script as the Studio. Every price comes from #hub-prices through hub/app.js 6; nothing here
+     restates one. The owner's characters are as drawn (P4); no third-party screenshot ships. -->
+<header class="st-nav">
+  <div class="st-wrap st-nav__in">
+    <a class="st-wm" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
+    <nav class="st-nav__links" data-i18n-aria="fab.nav.aria">
+      <a href="#scenes" data-i18n="fab.nav.scenes"></a>
+      <a href="#chantier" data-i18n="fab.nav.chantier"></a>
+      <a href="#chaine" data-i18n="fab.nav.chaine"></a>
+      <a class="st-nav__world" href="./" data-i18n="manual.nav.studio"></a>
+    </nav>
+    <div class="st-lang" role="group" data-i18n-aria="nav.lang">
+      <button type="button" data-lang="fr" aria-pressed="true" lang="fr" data-i18n-title="nav.langFr">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en" data-i18n-title="nav.langEn">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)">{{ayn}}</button>
+    </div>
+    <a class="st-nav__cta" href="./#contact" data-i18n="nav.cta"></a>
+    <button type="button" class="st-nav__menu" data-menu-open aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" data-i18n-aria="nav.menu"><span aria-hidden="true"><i></i><i></i><i></i></span></button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- the head: the label and the lead say in plain words what the page is; the heading is the world's -->
+<section class="st-sec st-mondehead st-fabhead" id="top" aria-labelledby="fab-h">
+  <div class="st-wrap">
+    <div class="st-head">
+      <div class="st-head__main">
+        <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">技</span><span data-i18n="fab.kicker"></span></p>
+        <h1 class="st-h2" id="fab-h" data-i18n="fab.title"></h1>
+      </div>
+      <div class="st-mondehead__lead">
+        <p class="st-lead" data-i18n="fab.lead"></p>
+        <p class="st-mondehead__note" data-i18n="fab.note"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== THE FOUR SCENES ==============================
+     Each: the bar (number, plain name, seal), the headline, the plate (a framed scene with the studio's own
+     visual and the character on its ground line), the character's line, then the breakdown in a <details>:
+     why, what you get (the owner's words), the published line it maps to and its price, the console. -->
+<section class="st-sec st-scenes" id="scenes" data-i18n-aria="fab.nav.scenes">
+  <div class="st-wrap"><div class="st-scenes__grid">
+    <article class="st-scene" id="marque" aria-labelledby="sc1-h">
+      <p class="st-svc__bar"><span data-i18n="fab.s.0.cat"></span><span class="st-svc__kanji" aria-hidden="true" lang="ja">印</span></p>
+      <h2 class="st-scene__h" id="sc1-h" data-i18n="fab.s.0.h"></h2>
+      <figure class="st-scene__fig">
+        <div class="st-scene__plate st-scene__plate--night st-scene__plate--side">
+          <span class="st-scene__tool"><span class="st-sr" data-i18n="fab.toolL"></span> <span dir="ltr">Adobe Illustrator</span></span>
+          <!-- the studio's own logo family on cream artboards: the wordmark (scripts/lib/wordmark.mjs), the favicon (assets/favicon.svg)
+               at 48 px (the slider under the plate sets it, 16 to 104 px), at 16 px (actual size, never scaled), and in one ink -->
+          <div class="st-artb" data-artb>
+            <div class="st-artb__a st-artb__a--240">{{wordmark}}<span class="st-artb__l" dir="auto" data-i18n="fab.s.0.sizes.0"></span></div>
+            <div class="st-artb__a st-artb__a--48">{{favicon}}<span class="st-artb__l" dir="ltr" data-artb-out data-i18n="fab.s.0.sizes.1"></span></div>
+            <div class="st-artb__a st-artb__a--16">{{favicon}}<span class="st-artb__l" dir="auto" data-i18n="fab.s.0.sizes.2"></span></div>
+            <div class="st-artb__a st-artb__a--ink">{{favicon}}<span class="st-artb__l" dir="auto" data-i18n="fab.s.0.sizes.3"></span></div>
+          </div>
+          <img class="st-scene__who st-scene__who--y" src="img/studio/atelier/yasser-traveller.webp" srcset="img/studio/atelier/yasser-traveller-300.webp 300w, img/studio/atelier/yasser-traveller.webp 600w" sizes="(max-width:599px) 50vw, 300px" alt="" loading="lazy" decoding="async">
+        </div>
+        <p class="st-scene__line"><b dir="ltr">Yasser</b> <span data-i18n="fab.s.0.line"></span></p>
+        <figcaption class="st-scene__cap" data-i18n="fab.s.0.vis"></figcaption>
+      </figure>
+      <p class="st-scale"><label for="fab-mk" data-i18n="fab.s.0.scale"></label> · <output for="fab-mk" dir="ltr" data-artb-o>48 px</output>
+        <input class="st-calc__r" id="fab-mk" type="range" min="16" max="104" step="8" value="48" data-artb-r></p>
+      <details class="st-scene__more">
+        <summary data-i18n="fab.open"></summary>
+        <p data-i18n="fab.s.0.why"></p>
+        <p><b class="st-label" data-i18n="fab.getsL"></b> <span data-i18n="fab.s.0.gets"></span></p>
+        <p class="st-scene__svc"><span class="st-label" data-i18n="fab.svcL"></span> <span data-i18n="services.items.2.gets.0"></span> · <span data-i18n="services.items.2.weeks"></span></p>
+        <p class="st-scene__price"><span class="st-label" data-i18n="fab.priceL"></span> <b dir="ltr" data-type-price="identite">{{type.identite}}</b> · <span data-type-units="identite">{{type.identiteU}}</span></p>
+        <p class="st-actions"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="identite" data-i18n="fab.s.0.go"></a></p>
+        <p class="st-scene__learn"><a href="manuel.html?ls=b9#marque" data-i18n="fab.s.0.learn"></a> <a class="st-scene__ref" href="#ref-wcag" dir="ltr">[2]</a></p>
+      </details>
+    </article>
+    <article class="st-scene" id="systeme" aria-labelledby="sc2-h">
+      <p class="st-svc__bar"><span data-i18n="fab.s.1.cat"></span><span class="st-svc__kanji" aria-hidden="true" lang="ja">道</span></p>
+      <h2 class="st-scene__h" id="sc2-h" data-i18n="fab.s.1.h"></h2>
+      <figure class="st-scene__fig">
+        <div class="st-scene__plate st-scene__plate--cream st-scene__plate--low">
+          <span class="st-scene__tool"><span class="st-sr" data-i18n="fab.toolL"></span> <span dir="ltr">Figma</span></span>
+          <!-- the Studio's own service card (THE MARK), three times at one width: French, English, Arabic. The build writes each
+               from services.items.2.* in its own dictionary (holes svc.<lang>.*), so the three cannot drift from the Studio's card -->
+          <div class="st-scene__cards">
+            <article class="st-svc st-svc--spec" lang="fr" dir="ltr">
+              <p class="st-svc__bar"><span dir="ltr">/ 03 · {{svc.fr.fam}}</span><span class="st-svc__kanji" aria-hidden="true">印</span></p>
+              <div class="st-svc__body">
+                <h3 class="st-h3">{{svc.fr.name}}</h3>
+                <ul class="st-plus"><li>{{svc.fr.ga}}</li><li>{{svc.fr.gb}}</li><li>{{svc.fr.gc}}</li></ul>
+              </div>
+            </article>
+            <article class="st-svc st-svc--spec" lang="en" dir="ltr">
+              <p class="st-svc__bar"><span dir="ltr">/ 03 · {{svc.en.fam}}</span><span class="st-svc__kanji" aria-hidden="true">印</span></p>
+              <div class="st-svc__body">
+                <h3 class="st-h3">{{svc.en.name}}</h3>
+                <ul class="st-plus"><li>{{svc.en.ga}}</li><li>{{svc.en.gb}}</li><li>{{svc.en.gc}}</li></ul>
+              </div>
+            </article>
+            <article class="st-svc st-svc--spec" lang="ar" dir="rtl">
+              <p class="st-svc__bar"><span dir="ltr">/ 03 · {{svc.ar.fam}}</span><span class="st-svc__kanji" aria-hidden="true">印</span></p>
+              <div class="st-svc__body">
+                <h3 class="st-h3">{{svc.ar.name}}</h3>
+                <ul class="st-plus"><li>{{svc.ar.ga}}</li><li>{{svc.ar.gb}}</li><li>{{svc.ar.gc}}</li></ul>
+              </div>
+            </article>
+          </div>
+          <img class="st-scene__who st-scene__who--k" src="img/studio/atelier/kuro-crouch.webp" alt="" loading="lazy" decoding="async">
+        </div>
+        <p class="st-scene__line"><b dir="ltr">Kūro</b> <span data-i18n="fab.s.1.line"></span></p>
+        <figcaption class="st-scene__cap" data-i18n="fab.s.1.vis"></figcaption>
+      </figure>
+      <details class="st-scene__more">
+        <summary data-i18n="fab.open"></summary>
+        <p><span data-i18n="fab.s.1.why"></span> <a class="st-scene__ref" href="#ref-figma" dir="ltr">[1]</a></p>
+        <p><b class="st-label" data-i18n="fab.getsL"></b> <span data-i18n="fab.s.1.gets"></span></p>
+        <p class="st-scene__svc"><span class="st-label" data-i18n="fab.svcL"></span> <span data-i18n="services.items.2.gets.1"></span></p>
+        <p class="st-scene__price"><span class="st-label" data-i18n="fab.priceL"></span> <b dir="ltr" data-opt-price="ds">{{opt.ds}}</b> <span data-i18n="fab.s.1.priceNote"></span></p>
+        <p class="st-actions"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="identite" data-est-pick="ds" data-i18n="fab.s.1.go"></a></p>
+      </details>
+    </article>
+    <article class="st-scene st-scene--start" id="campagne" aria-labelledby="sc3-h">
+      <p class="st-svc__bar"><span data-i18n="fab.s.2.cat"></span><span class="st-svc__kanji" aria-hidden="true" lang="ja">見</span></p>
+      <h2 class="st-scene__h" id="sc3-h" data-i18n="fab.s.2.h"></h2>
+      <figure class="st-scene__fig st-crop" data-pick>
+        <div class="st-scene__plate st-scene__plate--night st-scene__plate--low">
+          <span class="st-scene__tool"><span class="st-sr" data-i18n="fab.toolL"></span> <span dir="ltr">Adobe Photoshop · iPad</span></span>
+          <!-- one master, four windows: the Studio's sting still (hub/img/motion/sting-169.webp, cut to 960 and 640); the frame is
+               placed by CSS from the pressed button, in physical left/width (a picture is not mirrored in RTL) -->
+          <div class="st-crop__m">
+            <img src="img/studio/atelier/master-960.webp" srcset="img/studio/atelier/master-640.webp 640w, img/studio/atelier/master-960.webp 960w" sizes="(min-width:860px) 600px, 92vw" data-i18n-alt="fab.s.2.alt" loading="lazy" decoding="async">
+            <span class="st-crop__frame" aria-hidden="true"></span>
+          </div>
+          <img class="st-scene__who st-scene__who--r" src="img/studio/atelier/ratman-tag.webp" alt="" loading="lazy" decoding="async">
+        </div>
+        <p class="st-scene__line"><b dir="ltr">Rat</b> <span data-i18n="fab.s.2.line"></span></p>
+        <div class="st-crop__ui" role="group" aria-labelledby="crop-l">
+          <span class="st-label" id="crop-l" data-i18n="fab.s.2.crops.l"></span>
+          <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.s.2.crops.k.0"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.s.2.crops.k.1"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.s.2.crops.k.2"></button>
+            <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="fab.s.2.crops.k.3"></button>
+          </div>
+        </div>
+        <div class="st-pick__ps st-crop__ps" aria-live="polite">
+          <p class="st-pick__p" data-pick-p="0" data-i18n="fab.s.2.crops.k.0"></p>
+          <p class="st-pick__p" data-pick-p="1" data-i18n="fab.s.2.crops.k.1"></p>
+          <p class="st-pick__p" data-pick-p="2" data-i18n="fab.s.2.crops.k.2"></p>
+          <p class="st-pick__p" data-pick-p="3" data-i18n="fab.s.2.crops.k.3"></p>
+        </div>
+        <!-- the caption is the figure's last child (html-validate); style.css shows it above the controls -->
+        <figcaption class="st-scene__cap"><span data-i18n="fab.s.2.vis"></span></figcaption>
+      </figure>
+      <details class="st-scene__more">
+        <summary data-i18n="fab.open"></summary>
+        <p data-i18n="fab.s.2.why"></p>
+        <p><b class="st-label" data-i18n="fab.getsL"></b> <span data-i18n="fab.s.2.gets"></span></p>
+        <p class="st-scene__svc"><span class="st-label" data-i18n="fab.svcL"></span> <span data-i18n="services.items.2.gets.2"></span></p>
+        <!-- O3 (owner, 2026-11-18): the campaign master and its crops belong to the "Kit graphique complet", the identity's
+             option, so the price and the console are scene 02's -->
+        <p class="st-scene__price"><span class="st-label" data-i18n="fab.priceL"></span> <b dir="ltr" data-opt-price="ds">{{opt.ds}}</b> <span data-i18n="fab.s.2.priceNote"></span></p>
+        <p class="st-actions"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="identite" data-est-pick="ds" data-i18n="fab.s.2.go"></a></p>
+        <p class="st-scene__learn"><a href="manuel.html?ls=b5#marque" data-i18n="fab.s.2.learn"></a></p>
+      </details>
+    </article>
+    <article class="st-scene" id="mouvement" aria-labelledby="sc4-h">
+      <p class="st-svc__bar"><span data-i18n="fab.s.3.cat"></span><span class="st-svc__kanji" aria-hidden="true" lang="ja">動</span></p>
+      <h2 class="st-scene__h" id="sc4-h" data-i18n="fab.s.3.h"></h2>
+      <figure class="st-scene__fig">
+        <div class="st-scene__plate st-scene__plate--night st-scene__plate--low st-scene__plate--fly">
+          <span class="st-scene__tool"><span class="st-sr" data-i18n="fab.toolL"></span> <span dir="ltr">Adobe After Effects</span></span>
+          <!-- the site's own timing: the poster of the reel's opening, and over its lower third the entrance curve
+               --m-ease-enter: cubic-bezier(.16,1,.3,1) drawn in a 100×100 box (y down), with the tempo's steps of hub/style.css -->
+          <div class="st-ease">
+            <img class="st-ease__poster" src="img/studio/reel/sting.webp" data-i18n-alt="fab.s.3.alt" loading="lazy" decoding="async">
+            <div class="st-ease__g" aria-hidden="true">
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false"><path class="st-ease__ax" d="M0 0V100H100"/><path class="st-ease__c" d="M0 100C16 0 30 0 100 0"/></svg>
+              <span class="st-ease__p" data-i18n="fab.s.3.graph.p"></span>
+              <span class="st-ease__t" data-i18n="fab.s.3.graph.t"></span>
+              <span class="st-ease__start" data-i18n="fab.s.3.graph.start"></span>
+              <span class="st-ease__settle" data-i18n="fab.s.3.graph.settle"></span>
+            </div>
+          </div>
+          <p class="st-ease__ticks" dir="ltr" aria-hidden="true"><span>83</span><span>167</span><span>250</span><span>333</span><span>500</span><span>1 000</span><span>2 667</span><span>ms</span></p>
+          <img class="st-scene__who st-scene__who--p" src="img/studio/atelier/pigeon.webp" alt="" loading="lazy" decoding="async">
+        </div>
+        <p class="st-scene__line"><b dir="ltr">Techno Pigeon</b> <span data-i18n="fab.s.3.line"></span></p>
+        <figcaption class="st-scene__cap" data-i18n="fab.s.3.vis"></figcaption>
+      </figure>
+      <details class="st-scene__more">
+        <summary data-i18n="fab.open"></summary>
+        <p data-i18n="fab.s.3.why"></p>
+        <p><b class="st-label" data-i18n="fab.getsL"></b> <span data-i18n="fab.s.3.gets"></span></p>
+        <p class="st-scene__svc"><span class="st-label" data-i18n="fab.svcL"></span></p>
+        <ul class="st-scene__lines">
+          <li><span data-i18n="motion.svc.items.0.name"></span> <b dir="ltr" data-motion-price="logo">{{motion.logo}}</b></li>
+          <li><span data-i18n="motion.svc.items.1.name"></span> <b dir="ltr" data-motion-price="sec">{{motion.sec}}</b> <span data-i18n="motion.sec"></span></li>
+        </ul>
+        <p class="st-actions"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="motion" data-i18n="fab.s.3.go"></a></p>
+        <p class="st-scene__learn"><a href="./#reel" data-i18n="fab.s.3.reel"></a></p>
+      </details>
+    </article>
+  </div></div>
+</section>
+
+<!-- ============================== LEARN BY MAKING ==============================
+     One project, three tracks: the brand one is the manual's client course; the application and the
+     web3 engineering track are the two sets below. -->
+<section class="st-sec st-learn" id="apprendre" aria-labelledby="learn-h">
+  <div class="st-wrap">
+    <div class="st-head">
+      <div class="st-head__main">
+        <p class="st-kick"><span class="st-seal" aria-hidden="true" lang="ja">書</span><span data-i18n="fab.course.kicker"></span></p>
+        <h2 class="st-h2" id="learn-h" data-i18n="fab.course.title"></h2>
+      </div>
+      <p class="st-lead" data-i18n="fab.course.lead"></p>
+    </div>
+    <nav class="st-tracks__nav" data-i18n-aria="fab.course.navAria"><a href="manuel.html#marque" data-i18n="fab.course.brand.k"></a><a href="#chantier" data-i18n="fab.course.stack.k"></a><a href="#chaine" data-i18n="fab.course.web3.k"></a><a href="#projet" data-i18n="fab.course.capstone.nav"></a></nav>
+    <div class="st-tracks">
+      <article class="st-track">
+        <p class="st-svc__bar"><span data-i18n="fab.course.brand.k"></span><span class="st-svc__kanji" aria-hidden="true" lang="ja">印</span></p>
+        <div class="st-track__body">
+          <h3 class="st-track__t" data-i18n="fab.course.brand.t"></h3>
+          <p data-i18n="fab.course.brand.d"></p>
+          <p class="st-track__go"><a class="st-btn st-btn--ghost" href="manuel.html#marque" data-i18n="fab.course.brand.go"></a></p>
+        </div>
+        <img class="st-track__who" src="img/studio/atelier/yasser-traveller-sit.webp" alt="" loading="lazy" decoding="async">
+      </article>
+      <article class="st-track">
+        <p class="st-svc__bar"><span data-i18n="fab.course.stack.k"></span><span class="st-svc__kanji" aria-hidden="true" lang="ja">築</span></p>
+        <div class="st-track__body">
+          <h3 class="st-track__t" data-i18n="fab.course.stack.t"></h3>
+          <p data-i18n="fab.course.stack.d"></p>
+          <p class="st-track__go"><a class="st-btn st-btn--ghost" href="#chantier" data-i18n="fab.course.stack.go"></a></p>
+        </div>
+        <img class="st-track__who" src="img/studio/atelier/ratman-tag.webp" alt="" loading="lazy" decoding="async">
+      </article>
+      <article class="st-track">
+        <p class="st-svc__bar"><span data-i18n="fab.course.web3.k"></span><span class="st-svc__kanji" aria-hidden="true" lang="ja">証</span></p>
+        <div class="st-track__body">
+          <h3 class="st-track__t" data-i18n="fab.course.web3.t"></h3>
+          <p data-i18n="fab.course.web3.d"></p>
+          <p class="st-track__go"><a class="st-btn st-btn--ghost" href="#chaine" data-i18n="fab.course.web3.go"></a> <a class="st-track__also" href="manuel.html?ls=w8#web3" data-i18n="fab.course.web3.client"></a></p>
+        </div>
+        <img class="st-track__who" src="img/studio/atelier/pigeon-stand.webp" width="420" height="604" alt="" loading="lazy" decoding="async">
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LE CHANTIER ==============================
+     Six lessons in the manual's shell (hub/app.js 13, data-ls="chantier", stamps in
+     localStorage 'numidea-lessons-chantier'); text-only tabs until their pictures exist (P8). -->
+<section class="st-sec st-mny st-fabls" id="chantier" aria-labelledby="ch-h">
+  <div class="st-wrap">
+    <div class="st-ls st-ls--bare" data-ls="chantier">
+      <div class="st-ls__head">
+        <div>
+          <p class="st-label" data-i18n="fab.ch.hud"></p>
+          <h2 class="st-ls__title" id="ch-h" data-i18n="fab.nav.chantier"></h2>
+          <p class="st-ls__lead" data-i18n="fab.course.stack.t"></p>
+        </div>
+        <p class="st-ls__pass" data-ls-pass><b data-ls-count>0</b><span aria-hidden="true"> / 6</span><span class="st-sr"> / 6</span> <span data-i18n="money.ls.pass"></span></p>
+      </div>
+      <div class="st-ls__tabs" role="tablist" data-i18n-aria="fab.ch.tabs">
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-c1" aria-controls="ls-p-c1" aria-selected="true" data-ls-tab="c1">
+          <span class="st-ls__n" aria-hidden="true">L1</span>
+          <span class="st-ls__t" data-i18n="fab.ch.stops.0"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-c2" aria-controls="ls-p-c2" aria-selected="false" data-ls-tab="c2">
+          <span class="st-ls__n" aria-hidden="true">L2</span>
+          <span class="st-ls__t" data-i18n="fab.ch.stops.1"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-c3" aria-controls="ls-p-c3" aria-selected="false" data-ls-tab="c3">
+          <span class="st-ls__n" aria-hidden="true">L3</span>
+          <span class="st-ls__t" data-i18n="fab.ch.stops.2"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-c4" aria-controls="ls-p-c4" aria-selected="false" data-ls-tab="c4">
+          <span class="st-ls__n" aria-hidden="true">L4</span>
+          <span class="st-ls__t" data-i18n="fab.ch.stops.3"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-c5" aria-controls="ls-p-c5" aria-selected="false" data-ls-tab="c5">
+          <span class="st-ls__n" aria-hidden="true">L5</span>
+          <span class="st-ls__t" data-i18n="fab.ch.stops.4"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-c6" aria-controls="ls-p-c6" aria-selected="false" data-ls-tab="c6">
+          <span class="st-ls__n" aria-hidden="true">L6</span>
+          <span class="st-ls__t" data-i18n="fab.ch.stops.5"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+      </div>
+      <div class="st-ls__panels">
+        <div class="st-ls__panel" id="ls-p-c1" role="tabpanel" aria-labelledby="ls-t-c1" tabindex="0" data-ls-panel="c1">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L1</span> <span data-i18n="fab.ch.items.0.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.ch.items.0.h"></p>
+          <p class="st-ls__d" data-i18n="fab.ch.items.0.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.ch.items.0.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.ch.items.0.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.ch.items.0.pick.2.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="fab.ch.items.0.pick.3.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.ch.items.0.pick.0.k"></b><span data-i18n="fab.ch.items.0.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.ch.items.0.pick.1.k"></b><span data-i18n="fab.ch.items.0.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.ch.items.0.pick.2.k"></b><span data-i18n="fab.ch.items.0.pick.2.v"></span></p>
+            <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="fab.ch.items.0.pick.3.k"></b><span data-i18n="fab.ch.items.0.pick.3.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.ch.items.0.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.ch.items.0.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.ch.items.0.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.ch.items.0.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.0.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.ch.items.0.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.0.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.ch.items.0.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-c2" role="tabpanel" aria-labelledby="ls-t-c2" tabindex="0" data-ls-panel="c2">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L2</span> <span data-i18n="fab.ch.items.1.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.ch.items.1.h"></p>
+          <p class="st-ls__d" data-i18n="fab.ch.items.1.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.ch.items.1.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.ch.items.1.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.ch.items.1.pick.2.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.ch.items.1.pick.0.k"></b><span data-i18n="fab.ch.items.1.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.ch.items.1.pick.1.k"></b><span data-i18n="fab.ch.items.1.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.ch.items.1.pick.2.k"></b><span data-i18n="fab.ch.items.1.pick.2.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.ch.items.1.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.ch.items.1.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.ch.items.1.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.ch.items.1.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.1.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.ch.items.1.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.1.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.ch.items.1.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-c3" role="tabpanel" aria-labelledby="ls-t-c3" tabindex="0" data-ls-panel="c3">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L3</span> <span data-i18n="fab.ch.items.2.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.ch.items.2.h"></p>
+          <p class="st-ls__d" data-i18n="fab.ch.items.2.d"></p>
+          <div class="st-pick st-tlab" data-pick role="group" aria-labelledby="lab-c3">
+            <p class="st-tlab__t"><span class="st-label" id="lab-c3" data-i18n="fab.ch.items.2.lab.l"></span> <b data-i18n="fab.ch.items.2.lab.t"></b></p>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.ch.items.2.lab.k.0"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.ch.items.2.lab.k.1"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.ch.items.2.lab.k.2"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <div class="st-pick__p" data-pick-p="0"><p class="st-pick__k st-tlab__k" data-i18n="fab.ch.items.2.lab.k.0"></p><dl class="st-path">
+              <div><dt data-i18n="fab.ch.items.2.lab.cols.0"></dt><dd><code dir="ltr">POST /bookings</code></dd></div>
+              <div><dt data-i18n="fab.ch.items.2.lab.cols.1"></dt><dd><code dir="ltr">201 Created</code></dd></div>
+              <div><dt data-i18n="fab.ch.items.2.lab.cols.2"></dt><dd data-i18n="fab.ch.items.2.lab.see.0"></dd></div>
+            </dl></div>
+            <div class="st-pick__p" data-pick-p="1"><p class="st-pick__k st-tlab__k" data-i18n="fab.ch.items.2.lab.k.1"></p><dl class="st-path">
+              <div><dt data-i18n="fab.ch.items.2.lab.cols.0"></dt><dd><code dir="ltr">POST /bookings</code></dd></div>
+              <div><dt data-i18n="fab.ch.items.2.lab.cols.1"></dt><dd><code dir="ltr">400 Bad Request</code></dd></div>
+              <div><dt data-i18n="fab.ch.items.2.lab.cols.2"></dt><dd data-i18n="fab.ch.items.2.lab.see.1"></dd></div>
+            </dl></div>
+            <div class="st-pick__p" data-pick-p="2"><p class="st-pick__k st-tlab__k" data-i18n="fab.ch.items.2.lab.k.2"></p><dl class="st-path">
+              <div><dt data-i18n="fab.ch.items.2.lab.cols.0"></dt><dd><code dir="ltr">POST /bookings</code></dd></div>
+              <div><dt data-i18n="fab.ch.items.2.lab.cols.1"></dt><dd><code dir="ltr">409 Conflict</code></dd></div>
+              <div><dt data-i18n="fab.ch.items.2.lab.cols.2"></dt><dd data-i18n="fab.ch.items.2.lab.see.2"></dd></div>
+            </dl></div>
+            </div>
+            <p class="st-tlab__src" data-i18n="fab.ch.items.2.lab.src"></p>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.ch.items.2.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.ch.items.2.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.ch.items.2.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.ch.items.2.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.2.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.ch.items.2.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.2.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.ch.items.2.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-c4" role="tabpanel" aria-labelledby="ls-t-c4" tabindex="0" data-ls-panel="c4">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L4</span> <span data-i18n="fab.ch.items.3.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.ch.items.3.h"></p>
+          <p class="st-ls__d" data-i18n="fab.ch.items.3.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.ch.items.3.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.ch.items.3.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.ch.items.3.pick.2.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="fab.ch.items.3.pick.3.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.ch.items.3.pick.0.k"></b><span data-i18n="fab.ch.items.3.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.ch.items.3.pick.1.k"></b><span data-i18n="fab.ch.items.3.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.ch.items.3.pick.2.k"></b><span data-i18n="fab.ch.items.3.pick.2.v"></span></p>
+            <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="fab.ch.items.3.pick.3.k"></b><span data-i18n="fab.ch.items.3.pick.3.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.ch.items.3.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.ch.items.3.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.ch.items.3.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.ch.items.3.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.3.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.ch.items.3.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.3.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.ch.items.3.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-c5" role="tabpanel" aria-labelledby="ls-t-c5" tabindex="0" data-ls-panel="c5">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L5</span> <span data-i18n="fab.ch.items.4.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.ch.items.4.h"></p>
+          <p class="st-ls__d" data-i18n="fab.ch.items.4.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.ch.items.4.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.ch.items.4.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.ch.items.4.pick.2.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.ch.items.4.pick.0.k"></b><span data-i18n="fab.ch.items.4.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.ch.items.4.pick.1.k"></b><span data-i18n="fab.ch.items.4.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.ch.items.4.pick.2.k"></b><span data-i18n="fab.ch.items.4.pick.2.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.ch.items.4.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.ch.items.4.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.ch.items.4.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.ch.items.4.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.4.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.ch.items.4.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.4.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.ch.items.4.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-c6" role="tabpanel" aria-labelledby="ls-t-c6" tabindex="0" data-ls-panel="c6">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L6</span> <span data-i18n="fab.ch.items.5.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.ch.items.5.h"></p>
+          <p class="st-ls__d" data-i18n="fab.ch.items.5.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.ch.items.5.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.ch.items.5.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.ch.items.5.pick.2.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="fab.ch.items.5.pick.3.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.ch.items.5.pick.0.k"></b><span data-i18n="fab.ch.items.5.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.ch.items.5.pick.1.k"></b><span data-i18n="fab.ch.items.5.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.ch.items.5.pick.2.k"></b><span data-i18n="fab.ch.items.5.pick.2.v"></span></p>
+            <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="fab.ch.items.5.pick.3.k"></b><span data-i18n="fab.ch.items.5.pick.3.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.ch.items.5.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.ch.items.5.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.ch.items.5.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.ch.items.5.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.5.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.ch.items.5.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.ch.items.5.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.ch.items.5.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="st-jeu__all" data-ls-all hidden><p><b data-i18n="fab.ch.all.t"></b> <span data-i18n="fab.ch.all.d"></span></p>
+        <a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="app" data-i18n="fab.ch.all.go"></a></div>
+      <p class="st-jeu__refs"><span class="st-label" data-i18n="fab.course.refs.t"></span> <a href="#ref-mdn" dir="ltr">[3]</a> <a href="#ref-pg-tx" dir="ltr">[4]</a> <a href="#ref-pg-lock" dir="ltr">[5]</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LA CHAÎNE LOCALE ==============================
+     The upload's web3 engineering track, published as education (OWNER-ANSWERS.md P7, 2026-11-18), with the
+     owner's line that the studio does not build the chain part, and money.note1/note2. data-ls="chaine". -->
+<section class="st-sec st-mny st-fabls" id="chaine" aria-labelledby="w3-h">
+  <div class="st-wrap">
+    <div class="st-ls st-ls--bare" data-ls="chaine">
+      <div class="st-ls__head">
+        <div>
+          <p class="st-label" data-i18n="fab.w3.hud"></p>
+          <h2 class="st-ls__title" id="w3-h" data-i18n="fab.nav.chaine"></h2>
+          <p class="st-ls__lead" data-i18n="fab.w3.lead"></p>
+        </div>
+        <p class="st-ls__pass" data-ls-pass><b data-ls-count>0</b><span aria-hidden="true"> / 6</span><span class="st-sr"> / 6</span> <span data-i18n="money.ls.pass"></span></p>
+      </div>
+      <div class="st-w3__notes">
+        <p class="st-w3__scope" data-i18n="web3c.items.2.scope.line"></p>
+        <p class="st-mny__note" data-i18n="money.note1"></p>
+        <p class="st-mny__note" data-i18n="money.note2"></p>
+      </div>
+      <div class="st-ls__tabs" role="tablist" data-i18n-aria="fab.w3.tabs">
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k1" aria-controls="ls-p-k1" aria-selected="true" data-ls-tab="k1">
+          <span class="st-ls__n" aria-hidden="true">L1</span>
+          <span class="st-ls__t" data-i18n="fab.w3.stops.0"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k2" aria-controls="ls-p-k2" aria-selected="false" data-ls-tab="k2">
+          <span class="st-ls__n" aria-hidden="true">L2</span>
+          <span class="st-ls__t" data-i18n="fab.w3.stops.1"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k3" aria-controls="ls-p-k3" aria-selected="false" data-ls-tab="k3">
+          <span class="st-ls__n" aria-hidden="true">L3</span>
+          <span class="st-ls__t" data-i18n="fab.w3.stops.2"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k4" aria-controls="ls-p-k4" aria-selected="false" data-ls-tab="k4">
+          <span class="st-ls__n" aria-hidden="true">L4</span>
+          <span class="st-ls__t" data-i18n="fab.w3.stops.3"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k5" aria-controls="ls-p-k5" aria-selected="false" data-ls-tab="k5">
+          <span class="st-ls__n" aria-hidden="true">L5</span>
+          <span class="st-ls__t" data-i18n="fab.w3.stops.4"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k6" aria-controls="ls-p-k6" aria-selected="false" data-ls-tab="k6">
+          <span class="st-ls__n" aria-hidden="true">L6</span>
+          <span class="st-ls__t" data-i18n="fab.w3.stops.5"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+      </div>
+      <div class="st-ls__panels">
+        <div class="st-ls__panel" id="ls-p-k1" role="tabpanel" aria-labelledby="ls-t-k1" tabindex="0" data-ls-panel="k1">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L1</span> <span data-i18n="fab.w3.items.0.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.w3.items.0.h"></p>
+          <p class="st-ls__d" data-i18n="fab.w3.items.0.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.w3.items.0.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.w3.items.0.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.w3.items.0.pick.2.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.w3.items.0.pick.0.k"></b><span data-i18n="fab.w3.items.0.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.w3.items.0.pick.1.k"></b><span data-i18n="fab.w3.items.0.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.w3.items.0.pick.2.k"></b><span data-i18n="fab.w3.items.0.pick.2.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.w3.items.0.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.w3.items.0.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.w3.items.0.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.w3.items.0.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.0.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.w3.items.0.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.0.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.w3.items.0.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-k2" role="tabpanel" aria-labelledby="ls-t-k2" tabindex="0" data-ls-panel="k2">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L2</span> <span data-i18n="fab.w3.items.1.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.w3.items.1.h"></p>
+          <p class="st-ls__d" data-i18n="fab.w3.items.1.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.w3.items.1.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.w3.items.1.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.w3.items.1.pick.2.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="fab.w3.items.1.pick.3.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.w3.items.1.pick.0.k"></b><span data-i18n="fab.w3.items.1.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.w3.items.1.pick.1.k"></b><span data-i18n="fab.w3.items.1.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.w3.items.1.pick.2.k"></b><span data-i18n="fab.w3.items.1.pick.2.v"></span></p>
+            <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="fab.w3.items.1.pick.3.k"></b><span data-i18n="fab.w3.items.1.pick.3.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.w3.items.1.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.w3.items.1.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.w3.items.1.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.w3.items.1.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.1.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.w3.items.1.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.1.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.w3.items.1.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-k3" role="tabpanel" aria-labelledby="ls-t-k3" tabindex="0" data-ls-panel="k3">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L3</span> <span data-i18n="fab.w3.items.2.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.w3.items.2.h"></p>
+          <p class="st-ls__d" data-i18n="fab.w3.items.2.d"></p>
+          <div class="st-pick st-tlab" data-pick role="group" aria-labelledby="lab-k3">
+            <p class="st-tlab__t"><span class="st-label" id="lab-k3" data-i18n="fab.w3.items.2.lab.l"></span> <b data-i18n="fab.w3.items.2.lab.t"></b></p>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.w3.items.2.lab.k.0"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.w3.items.2.lab.k.1"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.w3.items.2.lab.k.2"></button>
+            <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="fab.w3.items.2.lab.k.3"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <div class="st-pick__p" data-pick-p="0"><p class="st-pick__k st-tlab__k" data-i18n="fab.w3.items.2.lab.k.0"></p><dl class="st-path">
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.0"></dt><dd data-i18n="fab.w3.items.2.lab.do.0"></dd></div>
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.1"></dt><dd data-i18n="fab.w3.items.2.lab.chain.0"></dd></div>
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.2"></dt><dd data-i18n="fab.w3.items.2.lab.see.0"></dd></div>
+            </dl></div>
+            <div class="st-pick__p" data-pick-p="1"><p class="st-pick__k st-tlab__k" data-i18n="fab.w3.items.2.lab.k.1"></p><dl class="st-path">
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.0"></dt><dd data-i18n="fab.w3.items.2.lab.do.1"></dd></div>
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.1"></dt><dd data-i18n="fab.w3.items.2.lab.chain.1"></dd></div>
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.2"></dt><dd data-i18n="fab.w3.items.2.lab.see.1"></dd></div>
+            </dl></div>
+            <div class="st-pick__p" data-pick-p="2"><p class="st-pick__k st-tlab__k" data-i18n="fab.w3.items.2.lab.k.2"></p><dl class="st-path">
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.0"></dt><dd data-i18n="fab.w3.items.2.lab.do.2"></dd></div>
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.1"></dt><dd data-i18n="fab.w3.items.2.lab.chain.2"></dd></div>
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.2"></dt><dd data-i18n="fab.w3.items.2.lab.see.2"></dd></div>
+            </dl></div>
+            <div class="st-pick__p" data-pick-p="3"><p class="st-pick__k st-tlab__k" data-i18n="fab.w3.items.2.lab.k.3"></p><dl class="st-path">
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.0"></dt><dd data-i18n="fab.w3.items.2.lab.do.3"></dd></div>
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.1"></dt><dd data-i18n="fab.w3.items.2.lab.chain.3"></dd></div>
+              <div><dt data-i18n="fab.w3.items.2.lab.cols.2"></dt><dd data-i18n="fab.w3.items.2.lab.see.3"></dd></div>
+            </dl></div>
+            </div>
+            <p class="st-tlab__src" data-i18n="fab.w3.items.2.lab.src"></p>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.w3.items.2.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.w3.items.2.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.w3.items.2.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.w3.items.2.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.2.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.w3.items.2.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.2.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.w3.items.2.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-k4" role="tabpanel" aria-labelledby="ls-t-k4" tabindex="0" data-ls-panel="k4">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L4</span> <span data-i18n="fab.w3.items.3.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.w3.items.3.h"></p>
+          <p class="st-ls__d" data-i18n="fab.w3.items.3.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.w3.items.3.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.w3.items.3.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.w3.items.3.pick.2.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="fab.w3.items.3.pick.3.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.w3.items.3.pick.0.k"></b><span data-i18n="fab.w3.items.3.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.w3.items.3.pick.1.k"></b><span data-i18n="fab.w3.items.3.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.w3.items.3.pick.2.k"></b><span data-i18n="fab.w3.items.3.pick.2.v"></span></p>
+            <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="fab.w3.items.3.pick.3.k"></b><span data-i18n="fab.w3.items.3.pick.3.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.w3.items.3.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.w3.items.3.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.w3.items.3.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.w3.items.3.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.3.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.w3.items.3.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.3.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.w3.items.3.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-k5" role="tabpanel" aria-labelledby="ls-t-k5" tabindex="0" data-ls-panel="k5">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L5</span> <span data-i18n="fab.w3.items.4.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.w3.items.4.h"></p>
+          <p class="st-ls__d" data-i18n="fab.w3.items.4.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.w3.items.4.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.w3.items.4.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.w3.items.4.pick.2.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="fab.w3.items.4.pick.3.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.w3.items.4.pick.0.k"></b><span data-i18n="fab.w3.items.4.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.w3.items.4.pick.1.k"></b><span data-i18n="fab.w3.items.4.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.w3.items.4.pick.2.k"></b><span data-i18n="fab.w3.items.4.pick.2.v"></span></p>
+            <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="fab.w3.items.4.pick.3.k"></b><span data-i18n="fab.w3.items.4.pick.3.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.w3.items.4.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.w3.items.4.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.w3.items.4.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.w3.items.4.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.4.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.w3.items.4.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.4.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.w3.items.4.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel" id="ls-p-k6" role="tabpanel" aria-labelledby="ls-t-k6" tabindex="0" data-ls-panel="k6">
+          <h3 class="st-ls__h"><span class="st-ch__n" dir="ltr">L6</span> <span data-i18n="fab.w3.items.5.t"></span></h3>
+          <p class="st-ch__h" data-i18n="fab.w3.items.5.h"></p>
+          <p class="st-ls__d" data-i18n="fab.w3.items.5.d"></p>
+          <div class="st-pick" data-pick>
+            <div class="st-pick__bs">
+            <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="fab.w3.items.5.pick.0.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="fab.w3.items.5.pick.1.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="fab.w3.items.5.pick.2.k"></button>
+            <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="fab.w3.items.5.pick.3.k"></button>
+            </div>
+            <div class="st-pick__ps" aria-live="polite">
+            <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="fab.w3.items.5.pick.0.k"></b><span data-i18n="fab.w3.items.5.pick.0.v"></span></p>
+            <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="fab.w3.items.5.pick.1.k"></b><span data-i18n="fab.w3.items.5.pick.1.v"></span></p>
+            <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="fab.w3.items.5.pick.2.k"></b><span data-i18n="fab.w3.items.5.pick.2.v"></span></p>
+            <p class="st-pick__p" data-pick-p="3"><b class="st-pick__k" data-i18n="fab.w3.items.5.pick.3.k"></b><span data-i18n="fab.w3.items.5.pick.3.v"></span></p>
+            </div>
+          </div>
+          <details class="st-ch__more">
+            <summary data-i18n="fab.ch.exL"></summary>
+            <p data-i18n="fab.w3.items.5.ex"></p>
+            <p><b data-i18n="fab.ch.tryL"></b> <span data-i18n="fab.w3.items.5.try"></span></p>
+            <p><b data-i18n="fab.ch.checkL"></b> <span data-i18n="fab.w3.items.5.check"></span></p>
+          </details>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="fab.w3.items.5.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.5.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="fab.w3.items.5.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="fab.w3.items.5.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok data-i18n="fab.w3.items.5.ok" hidden></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="st-jeu__all" data-ls-all hidden><p><b data-i18n="fab.w3.all.t"></b> <span data-i18n="fab.w3.all.d"></span></p>
+        <a class="st-btn st-btn--primary" href="manuel.html?ls=w8#web3" data-i18n="fab.w3.all.go"></a></div>
+      <p class="st-jeu__refs"><span class="st-label" data-i18n="fab.course.refs.t"></span> <a href="#ref-eth-dev" dir="ltr">[6]</a> <a href="#ref-eth-rpc" dir="ltr">[7]</a> <a href="#ref-eth-tx" dir="ltr">[8]</a> <a href="#ref-eth-wallets" dir="ltr">[9]</a> <a href="#ref-eth-sec" dir="ltr">[10]</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- the capstone -->
+<section class="st-sec st-fabend" id="projet" aria-labelledby="pj-h">
+  <div class="st-wrap st-fabend__in">
+    <p class="st-kick"><span class="st-seal" aria-hidden="true" lang="ja">築</span><span data-i18n="fab.course.kicker"></span></p>
+    <h2 class="st-h2" id="pj-h" data-i18n="fab.course.capstone.t"></h2>
+    <ol class="st-fabend__list">
+      <li data-i18n="fab.course.capstone.items.0"></li>
+      <li data-i18n="fab.course.capstone.items.1"></li>
+      <li data-i18n="fab.course.capstone.items.2"></li>
+    </ol>
+    <p class="st-fabend__review" data-i18n="fab.course.capstone.review"></p>
+  </div>
+</section>
+
+<!-- the references: links only, opened in a new tab -->
+<section class="st-sec st-fabrefs" id="refs" aria-labelledby="refs-h">
+  <div class="st-wrap"><div class="st-fabrefs__card">
+    <h2 class="st-h3" id="refs-h" data-i18n="fab.course.refs.t"></h2>
+    <p class="st-fabrefs__note" data-i18n="fab.course.refs.note"></p>
+    <ol class="st-fabrefs__list">
+      <li id="ref-figma"><cite lang="en" dir="ltr">Figma Help Center. Guide to auto layout.</cite> <a data-ref href="https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout-in-Figma" target="_blank" rel="noopener" dir="ltr">help.figma.com<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-wcag"><cite lang="en" dir="ltr">W3C WAI. Understanding SC 1.4.3: Contrast (Minimum), WCAG 2.2.</cite> <a data-ref href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank" rel="noopener" dir="ltr">w3.org<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-mdn"><cite lang="en" dir="ltr">MDN Web Docs. HTTP response status codes.</cite> <a data-ref href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status" target="_blank" rel="noopener" dir="ltr">developer.mozilla.org<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-pg-tx"><cite lang="en" dir="ltr">PostgreSQL 18 Documentation. 3.4 Transactions.</cite> <a data-ref href="https://www.postgresql.org/docs/current/tutorial-transactions.html" target="_blank" rel="noopener" dir="ltr">postgresql.org<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-pg-lock"><cite lang="en" dir="ltr">PostgreSQL 18 Documentation. 13.3 Explicit Locking.</cite> <a data-ref href="https://www.postgresql.org/docs/current/explicit-locking.html" target="_blank" rel="noopener" dir="ltr">postgresql.org<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-eth-dev"><cite lang="en" dir="ltr">ethereum.org. Development networks.</cite> <a data-ref href="https://ethereum.org/en/developers/docs/development-networks/" target="_blank" rel="noopener" dir="ltr">ethereum.org<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-eth-rpc"><cite lang="en" dir="ltr">ethereum.org. JSON-RPC API.</cite> <a data-ref href="https://ethereum.org/en/developers/docs/apis/json-rpc/" target="_blank" rel="noopener" dir="ltr">ethereum.org<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-eth-tx"><cite lang="en" dir="ltr">ethereum.org. Transactions.</cite> <a data-ref href="https://ethereum.org/en/developers/docs/transactions/" target="_blank" rel="noopener" dir="ltr">ethereum.org<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-eth-wallets"><cite lang="en" dir="ltr">ethereum.org. Ethereum wallets.</cite> <a data-ref href="https://ethereum.org/en/wallets/" target="_blank" rel="noopener" dir="ltr">ethereum.org<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-eth-sec"><cite lang="en" dir="ltr">ethereum.org. Smart contract security.</cite> <a data-ref href="https://ethereum.org/en/developers/docs/smart-contracts/security/" target="_blank" rel="noopener" dir="ltr">ethereum.org<span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+    </ol>
+  </div></div>
+</section>
+
+<!-- the way back: the Studio builds sites; the Aperçu is free -->
+<section class="st-sec st-back" aria-labelledby="back-h">
+  <div class="st-wrap st-back__in">
+    <div class="st-back__copy">
+      <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">築</span><span data-i18n="manual.back.k"></span></p>
+      <h2 class="st-h2" id="back-h" data-i18n="manual.back.t"></h2>
+      <p class="st-lead" data-i18n="manual.back.d"></p>
+      <div class="st-actions">
+        <a class="st-btn st-btn--primary" href="./#preview" data-i18n="manual.back.preview"></a>
+        <a class="st-btn st-btn--ghost" href="./" data-i18n="manual.back.go"></a>
+      </div>
+    </div>
+    <img class="st-back__img" src="bible/art/rig-y-base.webp" alt="" loading="lazy" decoding="async">
+  </div>
+</section>
+
+</main>
+
+<footer class="st-foot">
+  <div class="st-wrap">
+  <figure class="st-foot__sky" aria-hidden="true" data-sky>
+    <img src="img/studio/night/skyline-kuro-2640.webp" srcset="img/studio/night/skyline-kuro-1320.webp 1320w, img/studio/night/skyline-kuro-2640.webp 2640w" sizes="(min-width:1400px) 1320px, 100vw" width="2640" height="330" alt="" loading="lazy" decoding="async">
+    <span class="st-foot__win"></span>
+  </figure>
+  <div class="st-foot__in">
+    <span class="st-label st-foot__ok" aria-hidden="true">奥付</span>
+    <a class="st-wm st-wm--foot" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
+    <p class="st-foot__line"><span data-i18n="footer.line"></span></p>
+    <nav class="st-foot__links" data-i18n-aria="footer.nav">
+      <a href="../" data-i18n="footer.site"></a>
+      <a href="./" data-i18n="manual.nav.studio"></a>
+      <a href="manuel.html" data-i18n="nav.manual"></a>
+      <a href="monde.html" data-i18n="nav.world"></a>
+      <a href="bible/" data-i18n="footer.bible"></a>
+      <a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span class="st-sr" data-i18n="case.newTab"></span></a>
+      <a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">Behance <span class="st-sr" data-i18n="case.newTab"></span></a>
+    </nav>
+    <span class="st-seal st-seal--fill st-foot__seal" aria-hidden="true">印</span>
+    <p class="st-label st-foot__rights" data-i18n="footer.rights"></p>
+  </div></div>
+</footer>
+
+<!-- the sheet behind the Menu button (below 1160px) -->
+<dialog class="st-menu" id="menu" data-i18n-aria="fab.nav.aria">
+  <div class="st-menu__top">
+    <span class="st-label" data-i18n="nav.menu"></span>
+    <button type="button" class="st-menu__x" data-menu-close data-i18n-aria="nav.menuClose"><span aria-hidden="true">✕</span></button>
+  </div>
+  <nav class="st-menu__nav" data-i18n-aria="nav.menu">
+    <p class="st-menu__g st-label" data-i18n="fab.nav.fab"></p>
+    <a href="#scenes"><span class="st-menu__n" aria-hidden="true" lang="ja">技</span><span data-i18n="fab.nav.scenes"></span></a>
+    <a href="#apprendre"><span class="st-menu__n" aria-hidden="true" lang="ja">書</span><span data-i18n="fab.nav.course"></span></a>
+    <a href="#chantier"><span class="st-menu__n" aria-hidden="true" lang="ja">築</span><span data-i18n="fab.nav.chantier"></span></a>
+    <a href="#chaine"><span class="st-menu__n" aria-hidden="true" lang="ja">証</span><span data-i18n="fab.nav.chaine"></span></a>
+    <a href="#refs"><span class="st-menu__n" aria-hidden="true" lang="ja">見</span><span data-i18n="fab.nav.refs"></span></a>
+    <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupSite"></p>
+    <a class="st-menu__world" href="./"><span class="st-menu__n" aria-hidden="true" lang="ja">築</span><span data-i18n="manual.nav.studio"></span></a>
+    <a class="st-menu__world" href="manuel.html"><span class="st-menu__n" aria-hidden="true" lang="ja">金</span><span data-i18n="nav.manual"></span></a>
+    <a class="st-menu__world" href="monde.html"><span class="st-menu__n" aria-hidden="true" lang="ja">夜</span><span data-i18n="nav.world"></span></a>
+  </nav>
+  <div class="st-menu__foot">
+    <div class="st-lang" role="group" data-i18n-aria="nav.lang">
+      <button type="button" data-lang="fr" aria-pressed="true" lang="fr" data-i18n-title="nav.langFr">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en" data-i18n-title="nav.langEn">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)">{{ayn}}</button>
+    </div>
+    <a class="st-btn st-btn--primary" href="./#contact" data-i18n="nav.cta"></a>
+    <a class="st-btn st-btn--ghost" href="https://wa.me/213672412578" target="_blank" rel="noopener"><span data-i18n="contact.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+  </div>
+</dialog>
+
+<script src="app.js?v={{stamp}}" defer></script>
+<script src="../assets/carry.js?v={{stamp}}" defer></script>
+</body>
+</html>

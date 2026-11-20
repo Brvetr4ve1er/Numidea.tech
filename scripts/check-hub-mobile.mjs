@@ -13,10 +13,13 @@
  *              each (they moved it by 0.8 of a width, to mid-tile)
  *   rig        the bubble Yasser speaks in lies inside the screen
  *   menu       under 1160px the Menu button opens a sheet that holds the six
- *              sections, and closes with Escape
+ *              sections (and, since 2026-11-19, la fabrique as a seventh line,
+ *              not counted), and closes with Escape
  *   viewer     on a phone the viewer holds the picture, previous and next
  *              under it (not over it), and a swipe moves one picture (run on
  *              the world's page, hub/monde.html, where the diary is)
+ *   fabrique   la fabrique (hub/fabrique.html) is held to the overflow rule
+ *              too, at the same widths and in the same languages
  * Touch is driven with real touch events (CDP): synthesized scroll gestures
  * do nothing in the headless build.
  */
@@ -45,6 +48,14 @@ for (const lang of ['fr', 'en', 'ar']) {
     if (m.sw > m.iw) note(`${lang} ${w}: the page is ${m.sw}px wide on a ${m.iw}px screen`);
     if (m.wide.length) note(`${lang} ${w}: a case tile as wide as its track or wider: ${m.wide.slice(0, 3).join(', ')}`);
     nOk++;
+    // la fabrique (hub/fabrique.html, 2026-11-19): the same rule, every breakdown open (the widest state)
+    {
+      const q = await ctx.newPage();
+      await q.goto(`${srv.base}/hub/fabrique.html${lang === 'fr' ? '' : '?lang=' + lang}`, { waitUntil: 'load' }); await q.waitForTimeout(400);
+      const f = await q.evaluate(async () => { document.documentElement.style.scrollBehavior = 'auto'; document.querySelectorAll('details').forEach((d) => { d.open = true; }); for (let y = 0; y < document.documentElement.scrollHeight; y += 700) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 30)); } return { sw: document.documentElement.scrollWidth, iw: innerWidth }; });
+      if (f.sw > f.iw) note(`${lang} ${w}: la fabrique is ${f.sw}px wide on a ${f.iw}px screen`);
+      await q.close(); nOk++;
+    }
     if (w === 390) {
       // the rig's bubble
       await p.locator('.st-rig__y').tap(); await p.waitForTimeout(2200);
@@ -63,7 +74,7 @@ for (const lang of ['fr', 'en', 'ar']) {
       // the menu
       await p.evaluate(() => scrollTo(0, 0));
       await p.locator('[data-menu-open]').tap(); await p.waitForTimeout(300);
-      const mn = await p.evaluate(() => ({ open: document.getElementById('menu').open, links: document.querySelectorAll('#menu .st-menu__nav a:not(.st-menu__world)').length }));
+      const mn = await p.evaluate(() => ({ open: document.getElementById('menu').open, links: document.querySelectorAll('#menu .st-menu__nav a:not(.st-menu__world):not([href^="fabrique.html"])').length }));
       if (!mn.open || mn.links !== 6) note(`${lang} 390: the Menu button does not open the six sections (${JSON.stringify(mn)})`);
       await p.keyboard.press('Escape'); await p.waitForTimeout(200);
       if (await p.evaluate(() => document.getElementById('menu').open)) note(`${lang} 390: Escape does not close the menu`);

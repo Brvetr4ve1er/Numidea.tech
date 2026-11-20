@@ -24,7 +24,8 @@
     "groupSite": "I want a website",
     "groupWorld": "The world",
     "groupLearn": "Learn",
-    "manual": "The manual"
+    "manual": "The manual",
+    "fab": "The making"
   },
   "sting": {
     "hud": "02:00 · BORDJ BOU ARRÉRIDJ · NIGHT WORKSHOP",
@@ -142,7 +143,8 @@
         ],
         "weeks": "2–5 WEEKS",
         "aside": "more than a logo.",
-        "alt": "A sheet of Kūro stickers and merch"
+        "alt": "A sheet of Kūro stickers and merch",
+        "prep": "Prepare your brand brief"
       },
       {
         "fam": "THE MIND",
@@ -157,7 +159,8 @@
         "aside": "we read the numbers for you.",
         "alt": "Yasser reads a labyrinth plan, Kūro puzzled at his feet"
       }
-    ]
+    ],
+    "how": "See how we make a brand, a system, a campaign and a motion →"
   },
   "preview": {
     "kicker": "/ 03 · THE SIGNATURE OFFER · BEFORE YOU PAY",
@@ -274,7 +277,7 @@
     "note": "@home:price.estFine",
     "running": "Domain and hosting on top, billed yearly by the host, in your name.",
     "cta": "Get my quote",
-    "sources": "The market, with sources: the price guide →",
+    "sources": "The market, with sources: the price guide →",
     "noJs": "Starting estimate: a 3-page showcase site. The full grid is in the price guide.",
     "kuro": [
       "reasonable. Kūro approves.",
@@ -329,7 +332,7 @@
     "kicker": "/ 07 · BRAND, EXPLAINED",
     "title": "Your logo is not your brand.",
     "lead": "The logo is the visible part. The brand is everything underneath: what people feel before they even read your name.",
-    "water": "WHAT PEOPLE SEE ↑ · WHAT MAKES THEM BUY ↓",
+    "water": "WHAT PEOPLE SEE ↑ · WHAT MAKES THEM BUY ↓",
     "layers": [
       {
         "k": "LOGO",
@@ -354,8 +357,10 @@
     ],
     "aside": "The building, foundations included.",
     "pick": "Layers of the brand",
-    "more": "Our own brand, plate by plate →",
-    "sectionAlt": "A cross-section of the workshop: the sign on the street, then below the pavement the drawing room, the steel frame and machines, and the foundations where Kūro keeps watch."
+    "more": "Our own brand, plate by plate →",
+    "sectionAlt": "A cross-section of the workshop: the sign on the street, then below the pavement the drawing room, the steel frame and machines, and the foundations where Kūro keeps watch.",
+    "prep": "Prepare your brand in nine steps →",
+    "how": "The four scenes of the making page →"
   },
   "tech": {
     "kicker": "/ 08 · THE WEB, NO JARGON",
@@ -432,13 +437,15 @@
         "Kūro and 3 companions"
       ],
       "lang": "Act 2 · 10 s · silent, press play yourself",
-      "framesLabel": "Five posters from the project, open them full size",
+      "framesLabel": "Five posters and two sheets from the project, to open full size",
       "frames": [
         "GZANA poster, in red and black: a child with dreadlocks, a small suitcase in hand, seen from behind facing a masked woman in a red cloak and pearl necklaces, surrounded by hollow-eyed figures; in the margins, “No savior. No escape. Only choice.” and lines in Latin and Japanese.",
         "AUTOPHAGY poster, on worn paper: a gold-crowned skeleton holds a black-haired young man in a dance, before a gold disc, ruined columns and skulls.",
         "MERCURY RETROGRADE poster: Yasser with long hair and glasses, red scarf and satchel, floats leaning on a giant mechanical pencil, before an eclipse and orbiting planets, on black.",
         "MERCURY RETROGRADE poster, second version: Yasser in a torn red cloak, glasses and red headband, leaning on a giant mechanical pencil, inside the title’s circular seal.",
-        "TR4VELERS.EXE sheet, “Archetype 01”: a traveller with long red hair in a torn ivory gown and gold gauntlet, a sabre in hand, surrounded by her outfit pieces — coat, jacket, skirt, hood, gauntlet and boots — on dark red."
+        "TR4VELERS.EXE sheet, “Archetype 01”: a traveller with long red hair in a torn ivory gown and gold gauntlet, a sabre in hand, surrounded by her outfit pieces — coat, jacket, skirt, hood, gauntlet and boots — on dark red.",
+        "MERCURY's raven, reference sheet on old paper: standing in three-quarter view, a close-up of the head, and in profile.",
+        "MERCURY's rat, reference sheet on old paper: sitting with its nose raised, a close-up of the head, and walking in profile."
       ],
       "video": "Act 2 of MERCURY in ten seconds: Yasser in the red traveller’s outfit, with Kūro, the raven, the techno pigeon and Ratman, in front of the moon.",
       "fallback": "Your browser cannot play this video."
@@ -511,7 +518,7 @@
     "kicker": "/ THE LAB · UNCOMMISSIONED",
     "title": "What we make when nobody’s asking.",
     "lead": "Posters, illustration, experiments. Nobody ordered them; yet this is where the art direction of your projects is born.",
-    "bible": "The character bible →",
+    "bible": "The character bible →",
     "bibleD": "Yasser and Kūro, drawn in full: poses, faces, rules.",
     "diary": {
       "kicker": "STUDIO DIARY",
@@ -557,7 +564,13 @@
       "“HEARTSTEEL” illustration: a man in armour in a golden arch",
       "“CELT” poster: a winged black silhouette",
       "“DUSK RUNE” poster: a black silhouette and sticker labels",
-      "Poster: a circuit-board seal and a graffiti tag"
+      "Poster: a circuit-board seal and a graffiti tag",
+      "Ink poster on a red ground: Yasser walks along a station platform at night, a guitar case and brushes on his back, Kūro beside a puddle.",
+      "Green and yellow wash: Yasser listens to a radio on a rooftop at dawn, a dish antenna on his back, washing drying and a minaret in the distance.",
+      "Yasser in a long cream coat reads the plan of a maze at a drafting table on a terrace, Kūro walking across the drawings.",
+      "Yasser character sheet, second outfit: front view in a cream coat with a shoulder strap, profile, back, three expressions and details of the glasses, hair and pen.",
+      "Blue and yellow screenprint: a traveller in a varsity jacket stands in the tall grass of a plateau, facing a sun ringed by two blue halos, a pylon and silos on the horizon.",
+      "Blue and yellow screenprint: a figure with butterfly wings stands before a large octagonal window in a steel frame, a blue ring behind it."
     ]
   },
   "founder": {
@@ -594,8 +607,8 @@
     "deskAlt": "Yasser and Kūro at sunset",
     "stickers": "THE STICKERS",
     "stickersAlt": "A sheet of Kūro stickers and merch",
-    "bible": "The character bible →",
-    "cv": "The CV (PDF) ↓",
+    "bible": "The character bible →",
+    "cv": "The CV (PDF) ↓",
     "handle": "br4vetr4veler",
     "eyebrow": "ARTIST · DESIGNER · DEVELOPER",
     "motto": "form is a function of obsession.",
@@ -686,7 +699,8 @@
       "go": "Ask for a Preview",
       "preview": "The Preview",
       "pricing": "Prices",
-      "work": "The work"
+      "work": "The work",
+      "how": "How we work"
     },
     "b": {
       "k": "02 · THE NIGHT, AND BEYOND",
@@ -698,11 +712,14 @@
     "c": {
       "k": "03 · THE MANUAL",
       "t": "I’m learning",
-      "d": "Getting paid from far away, working from anywhere, playing fair: twenty-two short lessons, four fixed-price services, and the workshop radio.",
+      "d": "Getting paid from far away, preparing your brand, seeing clearly in web3, working from anywhere: thirty-eight short lessons, four fixed-price services, and the workshop radio.",
       "go": "Open the manual",
       "lessons": "The lessons",
       "nomad": "Nomad",
-      "radio": "The radio"
+      "radio": "The radio",
+      "buy": "Before you buy:",
+      "buyBrand": "your brand",
+      "buyWeb3": "web3"
     },
     "title": "Three doors. Which one is yours?"
   },
@@ -773,7 +790,7 @@
         "manuel": {
           "n": "The manual",
           "t": "KNOWLEDGE",
-          "d": "Twenty-two short lessons on earning a living from far away: money, the road, fair play. The lessons are free; the stamps have to be earned.",
+          "d": "Thirty-eight short lessons on earning a living from far away and buying better: money, the brand, web3, the road, fair play. The lessons are free; the stamps have to be earned.",
           "go": "Open the manual"
         },
         "traveler": {
@@ -792,6 +809,9 @@
           "go": "The character bible (in English)"
         }
       }
+    },
+    "crew": {
+      "alt": "On a stone ledge at Yasser's feet: a raven on a trunk, a pigeon on a stack of books, Kūro sitting, and a rat on a crate."
     }
   },
   "footer": {
@@ -804,7 +824,7 @@
   "case": {
     "prev": "Previous",
     "next": "Next",
-    "drag": "DRAG · ← →",
+    "drag": "DRAG · ← →",
     "close": "Close",
     "zoom": "Enlarge",
     "new": "NEW",
@@ -815,7 +835,7 @@
   },
   "money": {
     "title": "Earning from far away.",
-    "lead": "Getting paid from abroad, setting your rate, understanding crypto: six money lessons. Then a road book for working from anywhere, a master course on gamification, and four services to go further.",
+    "lead": "Getting paid from abroad, setting your rate, understanding crypto: five money lessons. Then two courses for buying better (your brand, web3), a road book for working from anywhere, a master course on gamification, and four services to go further.",
     "sceneAlt": "Yasser counts a few coins at his night desk while the little calculator prints a receipt; Kūro rests a paw on a coin",
     "svc": {
       "aria": "The four services",
@@ -857,10 +877,10 @@
       "go": "Book the kit on WhatsApp"
     },
     "ls": {
-      "kicker": "/ SIX LESSONS · MONEY",
+      "kicker": "/ FIVE LESSONS · MONEY",
       "title": "The money manual.",
       "lead": "One idea, one gesture, one question. Each right answer stamps your passport.",
-      "tabs": "The six lessons",
+      "tabs": "The five lessons",
       "pass": "stamps",
       "done": "lesson stamped",
       "q": "THE QUESTION",
@@ -1002,37 +1022,8 @@
             "Never: it is a scam",
             "Only the first six words"
           ],
-          "ok": "Yes. No support asks for it. Ever."
-        },
-        {
-          "t": "Web3 101",
-          "alt": "Kūro touches with one paw a cube linked to others by thin lines",
-          "d": "Web3 is a site that talks to a shared ledger instead of a private database.",
-          "pick": [
-            {
-              "k": "Blockchain",
-              "v": "A ledger copied on thousands of machines, where lines are added and never erased."
-            },
-            {
-              "k": "Smart contract",
-              "v": "A program published in that ledger. It runs by itself, and anyone can read its code."
-            },
-            {
-              "k": "Token and NFT",
-              "v": "A line of the ledger that says who owns what: an interchangeable unit, or a unique object."
-            },
-            {
-              "k": "Connecting your wallet",
-              "v": "The site reads your public address. It can move nothing until you have signed."
-            }
-          ],
-          "q": "A site asks you to “sign” a transaction you do not understand.",
-          "a": [
-            "I sign and we will see",
-            "I refuse until I know what it allows",
-            "I switch browsers"
-          ],
-          "ok": "Yes. A signature is an agreement: read before you sign."
+          "ok": "Yes. No support asks for it. Ever.",
+          "web3": "A web3 project? The client course helps you decide whether you need a blockchain →"
         }
       ]
     },
@@ -1040,12 +1031,13 @@
     "note2": "Rules change from one country to the next. In Algeria, law 25-10 of July 2025 bans buying, selling, holding and promoting crypto-assets: always check the law where you live."
   },
   "motion": {
-    "calc": "Price it →",
+    "calc": "Price it →",
     "sec": "per second",
     "line": {
       "k": "MOTION",
       "t": "And when it has to move: motion design, priced by the second.",
-      "reel": "See the reel ↓"
+      "reel": "See the reel ↓",
+      "how": "Timing, explained"
     },
     "svc": {
       "items": [
@@ -1066,7 +1058,7 @@
       "lead": "Six clips. The mouse or a finger starts them, and they stop when you leave.",
       "play": "Play the clip:",
       "aria": "The clips",
-      "price": "Price an animation →"
+      "price": "Price an animation →"
     }
   },
   "radio": {
@@ -1086,8 +1078,8 @@
   },
   "manual": {
     "ui": {
-      "title": "The nomad freelancer’s manual: 22 free lessons | Numidea Labs",
-      "desc": "Twenty-two short lessons: getting paid from abroad, setting your rate, working from anywhere, understanding gamification. Four fixed-price services."
+      "title": "The nomad freelancer’s manual: 38 free lessons | Numidea Labs",
+      "desc": "Thirty-eight short lessons: getting paid from abroad, setting your rate, preparing your brand, seeing web3 clearly, working from anywhere. Four services."
     },
     "kicker": "/ THE MANUAL",
     "nav": {
@@ -1097,7 +1089,9 @@
       "studio": "The Studio",
       "cta": "Book a call",
       "course": "Fair play",
-      "nomad": "Nomad"
+      "nomad": "Nomad",
+      "brand": "Brand",
+      "web3": "Web3"
     },
     "svc": {
       "kicker": "/ FOUR SERVICES · FIXED PRICE",
@@ -1109,7 +1103,7 @@
       "t": "The Studio builds it.",
       "d": "Sites, apps, automations and identities, designed and coded by the same hands. The Preview is free: you see your homepage before you pay.",
       "preview": "See the free Preview",
-      "go": "Go to the Studio →"
+      "go": "Go to the Studio →"
     }
   },
   "life": {
@@ -1176,7 +1170,7 @@
     },
     "cta": {
       "d": "A site, a course or a brand that plays fair can be built.",
-      "go": "Talk to the Studio →"
+      "go": "Talk to the Studio →"
     },
     "src": {
       "title": "The course’s sources",
@@ -1457,7 +1451,7 @@
     },
     "cta": {
       "d": "A site that answers your clients while you sleep in another time zone can be built.",
-      "go": "Talk to the Studio →"
+      "go": "Talk to the Studio →"
     },
     "src": {
       "title": "The road book’s sources",
@@ -1680,6 +1674,1763 @@
       "design": "Design",
       "lab": "The Lab",
       "diary": "Diary"
+    }
+  },
+  "fiche": {
+    "act": {
+      "wa": "Send on WhatsApp",
+      "form": "Fill in the contact form",
+      "copy": "Copy the brief",
+      "print": "Print",
+      "clear": "Clear my brief"
+    },
+    "st": {
+      "copied": "Brief copied. Paste it wherever you like.",
+      "copyFail": "Could not copy: the brief is selected, copy it yourself.",
+      "cleared": "Brief cleared on this device.",
+      "sent": "WhatsApp opens with your brief. Nothing is sent until you press Send."
+    },
+    "keep": "Your answers stay on this device. Nothing is sent until you press a button.",
+    "nextL": "What happens next",
+    "next": "@home:prev.tl2",
+    "nextP": "@home:prev.tl2p",
+    "studio": "@home:contact.vStudio",
+    "noJs": "Without JavaScript the brief does not fill itself in: print this page, answer by hand, or message us on WhatsApp.",
+    "empty": "not filled in yet",
+    "goStop": "to fill in at step {n} →",
+    "toBrief": "Go to my brief →",
+    "yes": "yes",
+    "no": "no",
+    "notYet": "not yet",
+    "to": "to",
+    "est": "INDICATIVE ESTIMATE",
+    "estNote": "A range, not a quote: the firm price follows the scoping call, the meeting where we fix the scope together, and it does not move after that.",
+    "cur": "Amounts in DZD (Algerian dinars).",
+    "when": {
+      "l": "By when?",
+      "opts": [
+        "No rush",
+        "In two months",
+        "In a month",
+        "In two weeks",
+        "A set date",
+        "I don’t know"
+      ],
+      "dateL": "The date, and why",
+      "datePh": "opening on…, before Ramadan"
+    },
+    "budget": {
+      "l": "Your budget, compared with this range",
+      "opts": [
+        "Below it",
+        "Within it",
+        "Above it",
+        "I don’t know"
+      ],
+      "none": "no published price for this route"
+    },
+    "srcL": "Sources:",
+    "newTab": "(new tab)",
+    "asideL": "Our workshop’s view",
+    "match": "Same as us.",
+    "other": "We would say: {b}.",
+    "raw": "The plain text"
+  },
+  "brandc": {
+    "kicker": "/ CLIENT COURSE · YOUR BRAND, BEFORE THE LOGO",
+    "title": "The logo comes later.",
+    "lead": "Nine steps to know what you want before you pay a designer: what a brand is, who it is for, the promise, the character, holding up very small, the files to receive, the proposal to read, the name to protect, then the count. Your answers fill in a brief you can send us, copy or print.",
+    "sceneAlt": "Night at the workshop: Yasser holds a blank sheet under the lamp, Kūro sits on a stack of colour swatches, a red stamp under his paw",
+    "hud": "/ NINE STEPS · ONE BRIEF AT THE END",
+    "tabs": "The nine steps of the brand course",
+    "book": "Your brief, box by box",
+    "n": "STEP",
+    "stops": [
+      "Layers",
+      "Audience",
+      "Promise",
+      "Character",
+      "Files",
+      "Proposal",
+      "Name",
+      "Brief",
+      "Small sizes"
+    ],
+    "items": [
+      {
+        "t": "The logo is not the brand",
+        "d": "A logo is a sign; the identity, the visual language around it (colours, letters, pictures); the system, the rules that keep it consistent; the brand, what people say about you when you are not in the room. For the UK’s Design Council, “your brand is more than a logo”: it is everything people associate with you. It asks whether you, your staff and your customers can describe it before you commission design.",
+        "biz": {
+          "l": "Your business, in one line",
+          "ph": "pastry shop, Bordj Bou Arréridj"
+        },
+        "sort": {
+          "aria": "Sort four items into the four layers",
+          "bins": [
+            "Logo",
+            "Identity",
+            "System",
+            "Brand"
+          ],
+          "rows": [
+            {
+              "k": "The drawn symbol and name",
+              "why": "The sign itself: that is the logo."
+            },
+            {
+              "k": "The colour palette",
+              "why": "The visual language: people know you without the logo."
+            },
+            {
+              "k": "The rule “never the logo on red”",
+              "why": "A rule that keeps everything consistent: the system."
+            },
+            {
+              "k": "What your clients tell their friends",
+              "why": "Reputation: the brand."
+            }
+          ],
+          "score": "{n} of 4 sorted the way we sort them",
+          "note": "This sorting is our workshop’s: it is how we divide the work."
+        },
+        "has": {
+          "t": "What you already have",
+          "chips": [
+            "A logo",
+            "An identity",
+            "Written rules",
+            "A clear brand",
+            "Nothing yet"
+          ]
+        },
+        "link": {
+          "l": "A link to what exists (social media page, site, photos)",
+          "ph": "a link, or “photos on request”"
+        },
+        "q": "A designer delivers a fine logo, alone, in one file. What do you have?",
+        "a": [
+          "A complete brand",
+          "A sign: the identity and the rules are still to do",
+          "A graphic system"
+        ],
+        "ok": "Yes. A sign is the start. The rest is decided first."
+      },
+      {
+        "t": "Who is it for?",
+        "d": "“Everyone” is not an audience. The UK’s Design Council puts the target audience in every brief (the document that explains the project to the designer). Describe one person: what they look for, where they find you, what makes them hesitate.",
+        "who": {
+          "t": "Who buys?",
+          "chips": [
+            "Individuals",
+            "Businesses",
+            "Institutions"
+          ]
+        },
+        "seek": {
+          "l": "They are looking for…",
+          "ph": "a cake ready at the time promised"
+        },
+        "where": {
+          "t": "Where do they find you?",
+          "chips": [
+            "Word of mouth",
+            "Social media",
+            "A search engine",
+            "The street, the sign",
+            "Trade fairs",
+            "A professional referral"
+          ]
+        },
+        "doubt": {
+          "l": "What makes them hesitate",
+          "ph": "an order that once arrived late for a party"
+        },
+        "card": {
+          "t": "THE PERSON",
+          "who": "Who",
+          "seek": "Looks for",
+          "where": "Finds us",
+          "doubt": "Hesitates",
+          "empty": "to fill in"
+        },
+        "q": "You like two logo routes (the designer’s first proposals) equally. How do you choose?",
+        "a": [
+          "I ask my family",
+          "I take the one that speaks best to the person in my brief",
+          "I take the more colourful one"
+        ],
+        "ok": "Yes. Judge against the brief, not by taste: that is the Design Council’s advice."
+      },
+      {
+        "t": "The promise and the proof",
+        "d": "A promise says what a client gets from you. A proof makes it believable: a written deadline, a figure you can show, a signed review. Here a brief starts there, before the first line is drawn: that is our method, not a rule.",
+        "promise": {
+          "l": "With us, you get…",
+          "ph": "made-to-order cakes ready at the agreed time"
+        },
+        "ex": "For example: “made-to-order cakes ready at the agreed time, or refunded”; “a written quote that does not move, fitting included”. These are examples, not lines to copy.",
+        "proofT": "What proves it",
+        "proofs": [
+          "A written deadline",
+          "A figure to show",
+          "A signed client review",
+          "A written guarantee",
+          "Photos of the work"
+        ],
+        "proofL": "The proof, in one line",
+        "proofPh": "kneaded every morning, in view of the shop window",
+        "meter": {
+          "none": "For now, it is a slogan.",
+          "weak": "A promise. The proof is missing.",
+          "ok": "A promise that holds."
+        },
+        "vague": "“{w}” cannot be proved on its own: replace it with something a client can observe. For example: a deadline, a figure, a photo.",
+        "vagueWords": "best|number one|no. 1|quality|passion|excellence|leader",
+        "rule": "The workshop’s rule: replace every adjective with a fact a client can observe.",
+        "grid": {
+          "t": "Your positioning, as a grid",
+          "k": [
+            "Audience",
+            "Need",
+            "Promise",
+            "Proof"
+          ],
+          "whoIn": [
+            "individuals",
+            "businesses",
+            "institutions"
+          ],
+          "line": "For {who} looking for {seek}: {promise}. The proof: {proof}.",
+          "empty": "to fill in",
+          "note": "The grid is our workshop’s: audience, need, promise, proof. The sentence under it goes into your brief."
+        },
+        "q": "Which promise can be proved?",
+        "a": [
+          "“The best quality in the region”",
+          "“Delivered within 48 h, or delivery is free”",
+          "“A lifelong passion”"
+        ],
+        "ok": "Yes. A deadline can be checked. “Best” cannot."
+      },
+      {
+        "t": "The character",
+        "d": "Do not tell the designer “I want blue”: the UK’s Design Council advises describing the goal, not the solution. Say what people should feel, and let them choose the means. Three sliders are enough.",
+        "sliders": [
+          {
+            "l": "Mood",
+            "lo": "Calm",
+            "hi": "Lively",
+            "steps": [
+              "very calm",
+              "rather calm",
+              "in between",
+              "rather lively",
+              "very lively"
+            ]
+          },
+          {
+            "l": "Line",
+            "lo": "Handmade",
+            "hi": "Precise",
+            "steps": [
+              "very handmade",
+              "rather handmade",
+              "in between",
+              "rather precise",
+              "very precise"
+            ]
+          },
+          {
+            "l": "Light",
+            "lo": "Light",
+            "hi": "Dark",
+            "steps": [
+              "very light",
+              "rather light",
+              "in between",
+              "rather dark",
+              "very dark"
+            ]
+          }
+        ],
+        "spec": {
+          "you": "Your character: {v}",
+          "t": "The closest of our three identities",
+          "feel": [
+            "AlmaFlowClim: clear, clean, cool. Two colours for cold and heat, a round and confident typeface.",
+            "tr4veler.exe: night, ink, one colour that shouts. Tight capitals, seals, a terminal’s tone.",
+            "Numidea Labs: paper, ink, a seal red. A heavy letter, a marker note."
+          ],
+          "go": [
+            "Open the AlmaFlowClim brand book",
+            "Open the tr4veler.exe brand book",
+            "Open the Numidea Labs brand book"
+          ],
+          "note": "These are three identities made in this workshop: they show a mood, not what you will receive. Your identity starts from your brief."
+        },
+        "voice": {
+          "l": "Three words people should say about you",
+          "ph": "reliable, simple, local"
+        },
+        "q": "What do you tell the designer?",
+        "a": [
+          "“I want blue and a round typeface”",
+          "“We should come across as calm and precise, like a good doctor”",
+          "“Do what the competitor did, but better”"
+        ],
+        "ok": "Yes. The goal, not the means: they find the means."
+      },
+      {
+        "t": "What you receive",
+        "d": "An identity is a set of files, and each one has a job. Open them one by one: they are the ones to look for in any proposal.",
+        "files": {
+          "t": "What each file is for",
+          "pick": [
+            {
+              "k": "Vector (SVG, PDF)",
+              "v": "A drawing made of shapes, not dots: for the printer, the sign, the banner. According to the web’s reference documentation (MDN), an SVG vector image renders at any size without loss of quality, unlike a PNG or a JPEG."
+            },
+            {
+              "k": "Transparent PNG",
+              "v": "An image with no background, to place the logo on a document or a photo. It is a pixel image: we deliver it large enough for screens, and keep the vector for the rest."
+            },
+            {
+              "k": "The versions",
+              "v": "Colour, one colour, black, white; long and square. For us, that is what stops the logo being squashed to fit somewhere."
+            },
+            {
+              "k": "The guidelines",
+              "v": "The rule book: sizes, margins, colours, what is not allowed. It lets someone else make a consistent visual without calling you. Complete guidelines also give each colour a role (text, surface, accent, alert) and a reading order (title, details, action): that is our list. Under the W3C’s accessibility rules (WCAG 2.2), body text needs a contrast of at least 4.5:1 against its background, and 3:1 when large; text that is part of a logo has no contrast requirement."
+            },
+            {
+              "k": "Fonts and their licences",
+              "v": "A font has a licence. The SIL OFL, a free licence for fonts, allows use in a logo and in print according to its own FAQ. For a paid font, ask who holds the licence and what it covers."
+            },
+            {
+              "k": "The rights, in writing",
+              "v": "The guide by WIPO (the World Intellectual Property Organization) and INAPI for Algeria (2004) says it: the creator of a logo first holds its copyright; it advises settling this in the initial agreement, or having the right formally assigned to your company. In France each right transferred must be named in the deed (Intellectual Property Code, art. L131-3)."
+            },
+            {
+              "k": "The campaign master and its formats",
+              "v": "One master file in separate layers (background, subject, text), then the formats cut from it, for example a square, a vertical story, a banner. With us, the master is kept and only what the frame shows changes; one page of rules says what may move and what may not."
+            }
+          ]
+        },
+        "q": "Your printer asks for the logo for a 3-metre banner. You send…",
+        "a": [
+          "a phone photo of the logo",
+          "the vector file (SVG or PDF)",
+          "the PNG from your social media page"
+        ],
+        "ok": "Yes. A vector stays sharp at any size; a pixel image does not."
+      },
+      {
+        "t": "Reading a proposal",
+        "d": "Before you sign, read what is missing as much as what is written. The UK’s Design Council advises asking the designer “Have you told me all the costs?” and “When does ownership of the design pass from the designer to us?”. The lines you mark “to ask” go into your brief, including for us.",
+        "bins": {
+          "aria": "Sort eight proposal lines",
+          "k": [
+            "Fine",
+            "To ask"
+          ]
+        },
+        "rows": [
+          {
+            "k": "“Logo delivered as a JPEG, one file.”",
+            "why": "No vector: ask for the SVG or PDF, and the versions."
+          },
+          {
+            "k": "“Three questions about your customers before drawing.”",
+            "why": "A good sign. The Design Council advises asking yourself whether the designer asked the right questions."
+          },
+          {
+            "k": "“Price: all included.” No list.",
+            "why": "Ask for the list: “Have you told me all the costs?”",
+            "ours": "With us: the base identity includes the logo (full, compact and one-ink), the colours, the type and the tone of voice. The “Full design kit” adds the guidelines, reusable components, the animated social media kit and the campaign master."
+          },
+          {
+            "k": "Nothing about rights.",
+            "why": "Ask when the rights pass to you, and which ones, in writing.",
+            "ours": "With us: once the project is paid, you receive the vector sources and a written assignment of the rights that names the use, the place and the duration. We keep the right to show the work."
+          },
+          {
+            "k": "“Fonts under the OFL licence, usable for the logo.”",
+            "why": "Clear: the licence is named, and it covers a logo.",
+            "ours": "With us: fonts and photos follow the terms of their own licence."
+          },
+          {
+            "k": "“A logo delivered in one day, with no questions about your customers.”",
+            "why": "Our workshop’s view: ask what is delivered and what the drawing is based on."
+          },
+          {
+            "k": "“Schedule: brief, routes, choice, finishing, delivery, each with a date.”",
+            "why": "A good sign: these are the stages the Design Council describes.",
+            "ours": "With us: two first routes, then three rounds of changes at each stage."
+          },
+          {
+            "k": "“Colours: midnight blue and coral.” No roles, no contrast.",
+            "why": "Ask what each colour is for, and whether each text and background pair reaches 4.5:1, the W3C’s threshold for body text (WCAG 2.2)."
+          }
+        ],
+        "score": "{n} of 8 sorted the way we sort them",
+        "q": "A proposal says “Price: all included”, with no list. You…",
+        "a": [
+          "sign: it is all included",
+          "ask for the list of what is delivered",
+          "ask for a discount"
+        ],
+        "ok": "Yes. Without a list, “all included” cannot be checked."
+      },
+      {
+        "t": "The name, and whose it is",
+        "d": "A drawn logo is not yet protected as a trademark: a mark is registered, country by country, with the national office, or through the Madrid System that WIPO runs. Pick a country to see whom to ask and what the official texts say.",
+        "name": {
+          "l": "Your brand’s name",
+          "ph": "e.g. Atelier Hodna"
+        },
+        "pick": [
+          {
+            "k": "Algeria",
+            "v": "The office is INAPI; a mark lasts ten years, renewable. According to INPI’s sheet on Algeria (June 2025), INAPI itself examines whether the name is free, and a filer with no domicile in Algeria goes through an agent (someone who files in their name). The fees are on INAPI’s page: check them on the day you file.",
+            "more": "Also, according to the same sheet: registration takes about two years on average, a mark unused for more than three years is lost, and .dz names are reserved for entities established in Algeria or holders of a mark valid in Algeria."
+          },
+          {
+            "k": "France",
+            "v": "The office is INPI. A mark lasts ten years, renewable without limit, and must be used. INPI’s fee schedule applicable from 2 July 2026: filing €190 for one class (a category of goods or services), €40 per extra class, renewal €290 for one class. INPI’s search for earlier logos (marks already filed that look like yours) costs €532 for one class."
+          },
+          {
+            "k": "United Arab Emirates",
+            "v": "Registration is with the Ministry of Economy and Tourism. Its page lists AED 750 to apply, AED 750 for publication and AED 5,000 for registration, AED 6,500 in all, then 30 days for objections after publication. A foreign owner goes through an agent (someone who files in their name)."
+          },
+          {
+            "k": "Elsewhere",
+            "v": "WIPO points to each national office, and to the Madrid System for several countries in one application. The question to ask the office: is this name free in my class (my category of goods or services)?"
+          }
+        ],
+        "checks": {
+          "t": "Where your name stands",
+          "k": [
+            "Searched with the office",
+            "Domain name checked",
+            "Reads and sounds right in Arabic, French and English"
+          ]
+        },
+        "checkSrc": "The list comes from the WIPO and INAPI guide: easy to read, say and remember, no unfortunate meaning in your languages, domain checked.",
+        "ours": "With us, the Studio writes it beside its calculator:",
+        "rights": "And for an identity, once paid: the vector sources and a written assignment of the rights (use, place and duration named); we keep the right to show the work; fonts and photos follow their own licence.",
+        "q": "Your logo is drawn and paid for. Is it protected as a trademark in Algeria?",
+        "a": [
+          "Yes, automatically",
+          "No: it has to be filed with INAPI",
+          "Yes, if it is posted on your social media"
+        ],
+        "ok": "Yes. Filing is a separate step, country by country."
+      },
+      {
+        "t": "The brief",
+        "d": "Last boxes: where your brand will live, by when, with what budget. The brief does the count with our published prices, then it is ready to go. Nothing leaves until you press.",
+        "where": {
+          "t": "Where your brand will live",
+          "note": "Each place is a “deliverable”: somewhere the brand appears (sign, box, page…). Our identity prices are counted in deliverables.",
+          "chips": [
+            "Shop sign",
+            "Business card",
+            "Invoices and quotes",
+            "Packaging",
+            "Social media",
+            "Website",
+            "Vehicle",
+            "Work clothes",
+            "Indoor signage",
+            "Sales deck"
+          ]
+        },
+        "count": "{n} places ticked",
+        "over": "Beyond 8 deliverables our calculator stops: the rest is priced when we scope.",
+        "social": {
+          "l": "For social media, you want…",
+          "k": [
+            "Templates I fill in myself",
+            "Someone who posts for me every week",
+            "I don’t know"
+          ],
+          "see": "See what it looks like",
+          "none": "no published offer: to talk about"
+        },
+        "opts": {
+          "t": "Extras",
+          "ds": "Full design kit",
+          "motion": "Animated logo (package up to 5 seconds)",
+          "base": "The base identity: the logo (full, compact, one ink), the colours, the type, the tone of voice. Two first routes, then three rounds of changes per stage.",
+          "dsHas": "includes: the guidelines, reusable components, the animated social media kit, the campaign master and its formats."
+        },
+        "rcNote": "The count takes one deliverable per place ticked. What counts as a deliverable is confirmed when we scope.",
+        "under": "Your budget is below this estimate. The calculator starts at {r} for 1 or 2 deliverables: tell us what matters first.",
+        "who": {
+          "l": "Who decides on your side?",
+          "ph": "Nadia, the manager"
+        },
+        "pace": {
+          "l": "Pace",
+          "std": "Standard",
+          "rush": "Accelerated, +25% on the price",
+          "note": "The estimate then shows the shorter weeks."
+        },
+        "q": "Before the first call, what should you have to hand?",
+        "a": [
+          "Nothing, the designer handles it all",
+          "This brief, and one person who decides",
+          "Ten logos you like, without saying why"
+        ],
+        "ok": "Yes. One brief, one person: the Design Council advises a single point of contact."
+      },
+      {
+        "t": "Holding up at 16 pixels",
+        "d": "Your brand will also live very small: the browser tab, the profile picture, the stamp. Slide down to 16 pixels: the thin lines of a detailed mark disappear, the silhouette of a compact mark stays. With us, an identity is delivered as a family, from the full logo to a one-ink version: that is our workshop’s method, not a rule.",
+        "lab": {
+          "l": "Display size",
+          "out": "{n} px",
+          "fine": "Detailed mark",
+          "compact": "Compact mark",
+          "ink": "One ink",
+          "actual": "At actual size, 16 px",
+          "note": "Two marks drawn for the exercise: neither ours nor a client’s."
+        },
+        "family": {
+          "t": "A logo family (our method)",
+          "k": [
+            "16 px",
+            "48 px",
+            "240 px",
+            "One ink"
+          ],
+          "v": [
+            "The silhouette alone",
+            "The compact mark",
+            "The full logo, with the name",
+            "Solid shapes, one colour"
+          ]
+        },
+        "small": {
+          "t": "Where your brand must hold up small",
+          "chips": [
+            "The browser tab (the site’s icon, the “favicon”)",
+            "An app icon",
+            "The profile picture",
+            "A stamp or an engraving, in one colour",
+            "Embroidery",
+            "Nowhere, I think"
+          ]
+        },
+        "q": "Your logo has thin letters and a gradient. It must fit in the browser tab. You ask for…",
+        "a": [
+          "the same logo, scaled down",
+          "a compact version in solid shapes, checked at 16 pixels",
+          "a more colourful logo"
+        ],
+        "ok": "Yes. A family, not one file: the small version is drawn, not shrunk."
+      }
+    ],
+    "brief": {
+      "title": "BRAND BRIEF",
+      "hello": "Hello Numidea Labs, here is my brand brief (course “The logo comes later”):",
+      "l": {
+        "biz": "Business",
+        "link": "What exists",
+        "has": "I already have",
+        "who": "Who for",
+        "promise": "Promise",
+        "proof": "Proof",
+        "tone": "Character",
+        "near": "Closest to",
+        "voice": "Three words",
+        "where": "Deliverables",
+        "social": "Social media",
+        "opts": "Extras",
+        "name": "Name",
+        "country": "Country to file in",
+        "checks": "Where the name stands",
+        "ask": "To clarify before signing",
+        "when": "By when",
+        "budget": "Budget",
+        "decides": "Who decides",
+        "pace": "Pace",
+        "positioning": "Positioning",
+        "small": "Must hold up small"
+      },
+      "hintWho": "“Everyone” does not help a designer: describe one person.",
+      "hintProof": "A promise without proof is still a slogan.",
+      "typeLine": "Visual identity",
+      "motionLine": "Animated logo, separately",
+      "hintRush": "Your date is closer than the estimate: say so when we scope. An accelerated pace exists (+25% on the price)."
+    },
+    "all": {
+      "t": "Nine of nine.",
+      "d": "Your brief is ready, and the drawing of Kūro stamping it is yours, in A4.",
+      "go": "Download the drawing"
+    },
+    "cta": {
+      "d": "Your brief is the start of an identity. The Studio draws it.",
+      "go": "See the brand work at the Studio →"
+    },
+    "src": {
+      "title": "The course’s sources",
+      "note": "The advice on commissioning design comes from the Design Council; the trademark rules from the offices (INAPI, INPI, the UAE ministry, WIPO); the rights from the texts cited. The sorting, the promise-and-proof method and the workshop’s examples are our practice, and the course says so. Nothing here is legal advice. The positioning grid, the logo family and the 16-pixel test are our method; the contrast threshold comes from the W3C."
+    }
+  },
+  "web3c": {
+    "kicker": "/ CLIENT COURSE · WEB3, FROM THE CLIENT’S SIDE",
+    "title": "Web3, without the smoke.",
+    "lead": "Eight steps to know whether your project needs a blockchain, what goes on the chain and what does not, what it will really cost, what the law says where your users live, and how to spot a scam. Sometimes a chain is the right tool; this course helps you tell when. Your answers fill in a brief to send us, copy or print. This is education: no investment advice, no signals, no promise of gain.",
+    "sceneAlt": "Yasser studies a chain of three glowing cubes through a magnifying glass; Kūro swats the smoke away, and beside them plain labelled cardboard boxes appear: each tool in its place",
+    "hud": "/ EIGHT STEPS · ONE BRIEF AT THE END",
+    "tabs": "The eight steps of the web3 course",
+    "book": "Your brief, box by box",
+    "n": "STEP",
+    "stops": [
+      "Words",
+      "Chain?",
+      "Need",
+      "Costs",
+      "Scams",
+      "Law",
+      "Brief",
+      "Chain and database"
+    ],
+    "items": [
+      {
+        "t": "The words",
+        "d": "Web3 is a site that talks to a shared ledger instead of a private database. Before you open the words, write your idea in one sentence, without any of them.",
+        "goal": {
+          "l": "My idea, in one sentence",
+          "ph": "that my loyal customers are rewarded"
+        },
+        "pick": [
+          {
+            "k": "Blockchain",
+            "v": "A ledger copied on many machines, where lines are added without rewriting the history. That is how NIST, the US standards agency, describes it."
+          },
+          {
+            "k": "Wallet",
+            "v": "An app or a device that keeps your keys. It does not hold the tokens: they stay on the network (ethereum.org, a community documentation site)."
+          },
+          {
+            "k": "Token and NFT",
+            "v": "A line of the ledger that says who owns what: an interchangeable unit, or a unique object. What an NFT holder gets depends on what its creator set up (ethereum.org)."
+          },
+          {
+            "k": "Connecting your wallet",
+            "v": "The site reads your public address; it can move nothing without your signature. But a signature can be a spending approval: according to ethereum.org it does not expire, disconnecting does not remove it, you have to revoke it. Connecting, signing a message and signing a transaction are three different requests: step 4 tells them apart."
+          },
+          {
+            "k": "Key and recovery phrase",
+            "v": "The private key signs; the phrase recreates it. NIST puts it plainly: lose the key, lose the asset. The European authorities: never share it, whoever has it takes control."
+          },
+          {
+            "k": "Smart contract",
+            "v": "A program published in the ledger. It runs as programmed when a transaction calls it, and its deployed code is public in the ledger. According to ethereum.org, once deployed it usually cannot be patched."
+          },
+          {
+            "k": "Stablecoin",
+            "v": "A token designed to track a currency. The European authorities warn it may not stay so stable, especially when markets are under stress."
+          },
+          {
+            "k": "Network fees",
+            "v": "Every action pays the network, and the amount moves with demand. According to ethereum.org, the fee is paid whether the transaction succeeds or fails."
+          }
+        ],
+        "more": "Four more words",
+        "crypto": "Wallets, recovery phrases and irreversible transfers are also in the Crypto 101 lesson of the money manual.",
+        "cryptoGo": "Open Crypto 101",
+        "q": "A site asks you to “sign” a transaction you do not understand.",
+        "a": [
+          "I sign and we will see",
+          "I refuse until I know what it allows",
+          "I switch browsers"
+        ],
+        "ok": "Yes. A signature is an agreement, and a spending approval stays valid until you revoke it.",
+        "alt": "Kūro touches with one paw a cube linked to others by thin lines"
+      },
+      {
+        "t": "Do you need a chain?",
+        "d": "In its 2018 overview, NIST reproduces a six-question flowchart from the US Department of Homeland Security: at each “no”, the flowchart suggests an ordinary tool. NIST’s conclusion: use it “only in appropriate situations”. Answer for your project, not for the technology.",
+        "fork": {
+          "q": "First: do you want to build something on a chain (a ledger, a token, an NFT, a DAO), or to accept a payment in crypto?",
+          "build": "Build on a chain",
+          "pay": "Accept a payment",
+          "payT": "A payment, not a chain.",
+          "payD": "The flowchart does not apply to your case: step 3 opens on “Accept crypto”."
+        },
+        "flow": {
+          "aria": "Six questions, one at a time",
+          "yes": "Yes",
+          "no": "No",
+          "back": "Previous question",
+          "restart": "Start again",
+          "step": "Question {i} of 6",
+          "qs": [
+            {
+              "q": "Do you need one shared place where data stays consistent for everyone?",
+              "no": "Email or a spreadsheet"
+            },
+            {
+              "q": "Do several organisations need to write to it?",
+              "no": "A database",
+              "why": "The flowchart adds a caveat: an auditing need (proving nobody tampered with the data) leads back to the next questions."
+            },
+            {
+              "q": "Once written, will this data never be updated or deleted?",
+              "no": "A database",
+              "why": "A blockchain does not let you rewrite history."
+            },
+            {
+              "q": "Will no personal or sensitive data be written to it, even encrypted?",
+              "no": "An encrypted database",
+              "why": "A public chain makes what is written on it visible: names, emails and lists stay in a database (our workshop’s rule, step 4)."
+            },
+            {
+              "q": "Are those who write having a hard time deciding who controls the data?",
+              "no": "A managed database",
+              "why": "With no trust issue over who runs it, a traditional database should suffice, says NIST."
+            },
+            {
+              "q": "Do you want a tamper-proof log of every write?",
+              "no": "A database"
+            }
+          ],
+          "noT": "No blockchain needed.",
+          "noD": "To consider, per the flowchart: {tool}.",
+          "yesT": "Maybe a use case.",
+          "yesD": "Six yeses: NIST says “may”, not “yes”. The rest of the course matters for you."
+        },
+        "q": "Only one company, yours, writes to the ledger. According to the flowchart…",
+        "a": [
+          "you need a private blockchain",
+          "the flowchart suggests a database",
+          "you need one NFT per customer"
+        ],
+        "ok": "Yes. One writer: the flowchart suggests a database."
+      },
+      {
+        "t": "What you really want",
+        "d": "People often ask for a technology when they want a result. Pick what you were offered, or what you thought of asking for: here is what people usually want, and the ordinary route. This table is our workshop’s view; the legal facts carry their source.",
+        "pick": [
+          {
+            "k": "“An NFT for my members”",
+            "want": "Members-only access, a badge, a membership card.",
+            "route": "Accounts and a members’ area on a site, a printable card with a code.",
+            "fact": "In the EU, the European authorities say a unique NFT is outside MiCA, but a series or collection may fall within it.",
+            "adds": "According to ethereum.org, NFTs are used among other things for ticketing and gated access, and only their holder can sell or swap them. What a token adds to a membership card, in our view: the member holds it themselves and can pass it on.",
+            "resell": {
+              "l": "Should your members be able to resell or transfer their card?",
+              "k": [
+                "Yes",
+                "No",
+                "I don’t know"
+              ]
+            },
+            "chain": [
+              "The contract (the smart contract) and its security review",
+              "The artwork and its metadata (the record that describes each token)",
+              "The page where tokens are created",
+              "The terms: what the holder actually gets, since that depends on the creator (ethereum.org)",
+              "Monitoring your official channels against fake pages (the FBI described some in 2023)"
+            ]
+          },
+          {
+            "k": "“My own token”",
+            "want": "Bring customers back, reward loyalty.",
+            "route": "A points programme in a database.",
+            "fact": "In the EU, non-transferable loyalty points are outside MiCA, according to the European authorities.",
+            "chain": [
+              "The contract and its security review: according to ethereum.org, a layer, not a guarantee",
+              "The admin-key plan: several signers rather than one (ethereum.org)",
+              "The incident plan and emergency stop (ethereum.org)",
+              "The legal side in each of the users’ countries (step 7)"
+            ]
+          },
+          {
+            "k": "“Accept crypto”",
+            "want": "Get paid by clients abroad.",
+            "want2": "Or: your buyers hold crypto and want to pay with it.",
+            "route": "A card or bank-transfer payment, not crypto.",
+            "fact": "The text also specifies: the law bans using virtual assets as a means of payment. And according to the FTC, the US consumer authority, a crypto payment is generally final: no refund as with a card.",
+            "site": {
+              "l": "Do you already have a website?",
+              "k": [
+                "Not yet",
+                "Yes"
+              ],
+              "no": "If you do not have a website yet:",
+              "yes": "Adding a payment to an existing site: priced when we scope, no published price."
+            },
+            "dzGo": "From Algeria, the ways to get paid from abroad are in the manual’s “Getting paid” lesson.",
+            "uae": "In Dubai: the question for VARA (Dubai’s Virtual Assets Regulatory Authority) and for your lawyer is whether you, or a licensed provider, may receive this payment."
+          },
+          {
+            "k": "“Our records on the blockchain”",
+            "want": "Prove nobody tampered with the data.",
+            "route": "A database with an access log and signed exports.",
+            "fact": "In the flowchart NIST reproduces, if there is no trust issue over who holds the data, “a traditional database should suffice”; an auditing need, for its part, leads back to the flowchart’s next questions."
+          },
+          {
+            "k": "“A DAO for our community”",
+            "want": "Members vote on decisions (the idea of a DAO: an organisation that votes on the chain).",
+            "route": "A members’ area with votes, written statutes, an association’s legal form.",
+            "fact": "According to ethereum.org, “currently Wyoming, Vermont, and the Virgin Islands have DAO laws in some form”. Elsewhere, assume no legal status: ask a lawyer.",
+            "chain": [
+              "How votes work and who carries out decisions",
+              "The shared treasury’s contract and its signers",
+              "The written rules",
+              "The legal form, country by country (ethereum.org)"
+            ]
+          },
+          {
+            "k": "Something else, or I don’t know",
+            "want": "To pin down together.",
+            "route": "Your sentence from step 1 and your answers from step 2 are enough to start.",
+            "fact": ""
+          }
+        ],
+        "wantL": "What people usually want",
+        "routeL": "The ordinary route (our view)",
+        "factL": "What the texts say",
+        "addsL": "What a chain adds",
+        "chainL": "If you do go on a chain, a proposal should list (our list, from the sources cited):",
+        "planL": "To plan for, in my brief",
+        "oursL": "With us, the closest route",
+        "oursNone": "No published price: we talk first.",
+        "scope": {
+          "line": "We do not build the chain part (contracts, tokens, wallets); we build the ordinary solution, and we help you decide."
+        },
+        "q": "You want to reward loyal customers. The simplest route?",
+        "a": [
+          "Launch your own token",
+          "A points programme in a database",
+          "An NFT with every purchase"
+        ],
+        "ok": "Yes. Points, a database, and nothing to explain about wallets."
+      },
+      {
+        "t": "The costs people forget",
+        "d": "The price of a web3 project does not stop at the code. Each card is a budget line a proposal should show, even without a figure: we publish no price for a smart contract or an audit, and we found no official audit price.",
+        "pick": [
+          {
+            "k": "The audit",
+            "v": "A security review of the smart contract (the program published in the ledger) by specialists. According to ethereum.org it is one layer of protection that will not catch every bug, and a deployed contract usually cannot be patched."
+          },
+          {
+            "k": "Network fees",
+            "v": "Every action your users take pays the network, whether it succeeds or fails, and the amount moves with demand (ethereum.org)."
+          },
+          {
+            "k": "Admin keys",
+            "v": "Who can change or stop the contract? According to ethereum.org, a single holder is a single point of failure; several signers reduce the risk. And a lost key is a lost asset (NIST)."
+          },
+          {
+            "k": "After launch",
+            "v": "Monitoring, an incident plan, an emergency stop decided in advance: ethereum.org lists them as good practice. They are planned and paid for after going live."
+          },
+          {
+            "k": "Legal",
+            "v": "A lawyer’s opinion in every country where your users live. Step 7 shows why."
+          },
+          {
+            "k": "User support",
+            "v": "Our workshop’s view: people new to wallets ask questions, and fake pages copy the real ones (the FBI described some in 2023). Someone has to answer and warn."
+          }
+        ],
+        "lines": {
+          "t": "My brief plans for these lines",
+          "k": [
+            "Audit",
+            "Network fees",
+            "Key plan",
+            "After launch",
+            "Lawyer",
+            "Support"
+          ]
+        },
+        "pay": {
+          "d": "To receive a crypto payment there is no contract or token to build: these are the lines to plan for, asked as questions.",
+          "pick": [
+            {
+              "k": "Who receives it",
+              "v": "You, or a licensed provider? And who converts it into money? That is the question for the regulator and your lawyer (step 7)."
+            },
+            {
+              "k": "If the price falls",
+              "v": "Between the offer and the payment, if the value falls, who loses? Write it down before the first payment."
+            },
+            {
+              "k": "Refunds",
+              "v": "According to the FTC, a crypto payment is generally final: how will you refund a client?"
+            },
+            {
+              "k": "Accounting",
+              "v": "How is it recorded? A question for your accountant, before the first payment."
+            }
+          ],
+          "lines": {
+            "t": "My brief plans for these lines",
+            "k": [
+              "Who receives it",
+              "Price falls",
+              "Refunds",
+              "Accountant"
+            ]
+          }
+        },
+        "q": "An auditor has reviewed your smart contract. You are…",
+        "a": [
+          "safe forever",
+          "better protected, with no guarantee: an audit does not catch every bug",
+          "excused from an incident plan"
+        ],
+        "ok": "Yes. An audit is a layer, not a guarantee."
+      },
+      {
+        "t": "The scams",
+        "d": "If you launch anything in web3, your users may be targeted. The authorities describe the same signs: guaranteed profit, urgency, a request for the recovery phrase, payment in crypto only, a link that looks like the real one. Sort these six messages.",
+        "bins": {
+          "aria": "Sort six messages",
+          "k": [
+            "Scam",
+            "Nothing wrong"
+          ]
+        },
+        "rows": [
+          {
+            "k": "“Official support: to unlock your account, send your recovery phrase.”",
+            "why": "Impersonation. The European authorities: never share your phrase."
+          },
+          {
+            "k": "“Surprise mint (token creation) tonight only! Connect your wallet here.” The link looks like the real one.",
+            "why": "The FBI described these fake launches: the wallet connects to a contract that drains it."
+          },
+          {
+            "k": "“Guaranteed return of 3% a day.”",
+            "why": "The FTC says it plainly: only scammers guarantee profits."
+          },
+          {
+            "k": "“To reserve the property, pay the deposit in crypto to this address.”",
+            "why": "“Only scammers demand payment in cryptocurrency,” writes the FTC."
+          },
+          {
+            "k": "“We have recovered your lost funds. Pay the recovery fee.”",
+            "why": "Fake recovery targets past victims (European authorities, SEC)."
+          },
+          {
+            "k": "“Reminder: we will never ask for your recovery phrase.”",
+            "why": "This is the message you should send your own users."
+          }
+        ],
+        "score": "{n} of 6 sorted right",
+        "warn": {
+          "t": "For my users",
+          "k": "I plan to warn them about fake sites and fake support"
+        },
+        "q": "A confirmed transaction to a scammer…",
+        "a": [
+          "is cancelled by the bank",
+          "cannot be recalled: recovery is nearly impossible",
+          "is refunded within 30 days"
+        ],
+        "ok": "Yes. Europol: a completed transaction cannot be recalled."
+      },
+      {
+        "t": "The law, where your users live",
+        "d": "The law decides before the design. Tick where your users, or your company, are: each card says what an official text says, and whom to ask. Nothing here is legal advice.",
+        "where": {
+          "t": "My users, or my company, are…",
+          "chips": [
+            "in Algeria",
+            "in the European Union",
+            "in France",
+            "in Dubai",
+            "in ADGM, Abu Dhabi (my company)",
+            "elsewhere"
+          ]
+        },
+        "cards": [
+          "The text also specifies: law no. 25-10 of 24 July 2025 (Official Journal no. 48) bans issuing, using and trading virtual assets, and creating or running exchange platforms, when they serve as a means of payment or an investment instrument. “This ban includes activities related to cryptocurrency mining.” Penalty (art. 31 bis): two months to one year in prison and a fine of 200,000 to 1,000,000 DZD, or either one. Before any project: a lawyer in Algeria.",
+          "The MiCA regulation (the EU regulation on markets in crypto-assets) covers e-money tokens, asset-referenced tokens and other crypto-assets, utility tokens among them; according to the European authorities, NFTs in a series or collection may fall within it. According to ESMA (the European Securities and Markets Authority), providers authorised under MiCA are listed in its register: check the provider there. Whom to ask: the country’s financial regulator.",
+          "Since 1 July 2026, according to the AMF (France’s financial markets authority), only crypto-asset service providers authorised under MiCA (PSCA) may serve clients in France; the AMF publishes their white list. An unauthorised provider faces two years in prison and a €30,000 fine. This concerns crypto-asset service providers, not every NFT project: is yours one? A question for the AMF or a lawyer.",
+          "VARA (Dubai’s Virtual Assets Regulatory Authority) regulates virtual assets in Dubai, outside the DIFC (the Dubai International Financial Centre). Its 2024 rules: only a VARA-licensed provider, or someone acting for it with approval, may market them; the advert must say they may lose their value in full or in part, and never promise safety or a return.",
+          "In ADGM (Abu Dhabi Global Market), a company doing virtual-asset business needs a licence from the FSRA, its financial services regulator, according to ADGM’s 2023 brochure. The rules may have changed since: check with the FSRA.",
+          "Ask the financial regulator of the country where your users live, and a local lawyer. Elsewhere in the Emirates: ask the competent regulator and a local lawyer."
+        ],
+        "lawyer": {
+          "l": "Has a lawyer read the project?",
+          "k": [
+            "Yes",
+            "Not yet",
+            "No"
+          ]
+        },
+        "q": "You want to advertise a token in Dubai. Who may do it?",
+        "a": [
+          "Any influencer",
+          "A VARA-licensed provider, or someone acting for it with its approval",
+          "Nobody needs approval"
+        ],
+        "ok": "Yes. And the advert must say the value can be lost, in full or in part."
+      },
+      {
+        "t": "The brief",
+        "d": "Your answers fit on one page. Fill in these last boxes, then send it: it opens our first exchange. Nothing leaves until you press.",
+        "has": {
+          "t": "What you already have",
+          "chips": [
+            "A website",
+            "An app",
+            "An online payment method",
+            "A community",
+            "Nothing"
+          ],
+          "linkL": "A link, or one line about what exists",
+          "linkPh": "the site’s address, the number of members…"
+        },
+        "size": {
+          "l": "How many users at the start?",
+          "k": [
+            "Under 100",
+            "100 to 1,000",
+            "Over 1,000",
+            "I don’t know"
+          ]
+        },
+        "keys": {
+          "l": "Who will hold the keys?",
+          "k": [
+            "Your users",
+            "A provider",
+            "You",
+            "Not decided"
+          ]
+        },
+        "zero": {
+          "l": "If the token were worth zero tomorrow, what would your users lose?",
+          "ph": "nothing: the points cannot be bought"
+        },
+        "who": {
+          "l": "Who decides on your side?",
+          "ph": "Karim, the partner"
+        },
+        "q": "Your brief says “not yet” to the lawyer question. Before paying for development…",
+        "a": [
+          "we launch and see",
+          "we have the law of the users’ countries checked",
+          "we rename the token"
+        ],
+        "ok": "Yes. The law first, the code after."
+      },
+      {
+        "t": "What goes on the chain, and what stays with you",
+        "d": "A public chain lets anyone check a record, and makes everything written to it visible: our workshop’s rule is to put on it only the minimum to be checked, keep names, emails and lists in your database, and build a site that works without a wallet. According to ethereum.org, a transaction that is sent first gets an identifier (the “hash”), then waits to be included in a block; only then does its receipt say “success” or “failure”. Follow an attendance receipt, state by state.",
+        "states": {
+          "aria": "Six states of an attendance receipt",
+          "step": "State {i} of 6",
+          "cols": [
+            "In your database (private)",
+            "On the chain (public)",
+            "What the visitor sees"
+          ],
+          "k": [
+            "No wallet",
+            "Approval request",
+            "Sent",
+            "Confirmed",
+            "Failed",
+            "Node unavailable"
+          ],
+          "rows": [
+            [
+              "The name, the email, the booking",
+              "Nothing",
+              "“Your seat is booked.”"
+            ],
+            [
+              "The booking",
+              "Nothing yet: reading your address is not signing",
+              "“Your wallet is asking you to approve. Read what it allows.”"
+            ],
+            [
+              "The booking",
+              "A transaction identifier (the hash), no receipt",
+              "“Sent. Waiting for the result.”"
+            ],
+            [
+              "The booking",
+              "A receipt with status “success”, and the receipt’s public identifier: nothing personal",
+              "“Attendance receipt verified.”"
+            ],
+            [
+              "The booking",
+              "A receipt with status “failure”: nothing changed, but the network fee is paid (ethereum.org)",
+              "“The operation failed. Your booking still stands.”"
+            ],
+            [
+              "The booking",
+              "No answer from the node (the server through which the site reads the chain)",
+              "“Verification unavailable for now. You can still book.”"
+            ]
+          ]
+        },
+        "acts": {
+          "t": "Three requests from the wallet",
+          "k": [
+            "Connecting",
+            "Signing a message",
+            "Signing a transaction"
+          ],
+          "v": [
+            "The site reads your public address: according to ethereum.org, it is like a login.",
+            "Not a transaction, but some signatures are spending approvals: read before you accept (step 1).",
+            "According to ethereum.org, a signed instruction that changes the ledger’s state: sent to the network, with fees."
+          ]
+        },
+        "dev": "Before any launch, ask for a demonstration on a development network, which ethereum.org describes as a local chain made for testing an application. With made-up data, never your customers’: that is our rule.",
+        "screens": {
+          "t": "Screens the proposal must design",
+          "chips": [
+            "The site without a wallet",
+            "The approval request, and a refusal",
+            "Sent, waiting",
+            "Confirmed",
+            "Failed",
+            "Node unavailable",
+            "A demonstration on a development network"
+          ]
+        },
+        "q": "Right after sending, the site shows the transaction’s identifier (the hash). The operation is…",
+        "a": [
+          "finished and verified",
+          "sent, not yet confirmed: the receipt is needed",
+          "cancelled"
+        ],
+        "ok": "Yes. The hash says “sent”. The receipt says whether it worked."
+      }
+    ],
+    "brief": {
+      "title": "WEB3 BRIEF",
+      "hello": "Hello Numidea Labs, here is my web3 brief (course “Web3, without the smoke”):",
+      "l": {
+        "goal": "My idea",
+        "has": "I already have",
+        "when": "By when",
+        "budget": "Budget",
+        "size": "Users at the start",
+        "fork": "Build or get paid",
+        "flow": "The six questions",
+        "verdict": "The flowchart’s verdict",
+        "request": "Starting request",
+        "route": "Ordinary route",
+        "site": "Existing website",
+        "resell": "Resale by members",
+        "plan": "To plan for on the chain",
+        "ours": "At Numidea Labs",
+        "lines": "Budget lines planned",
+        "missing": "Lines not planned",
+        "warn": "Warn users",
+        "where": "Users",
+        "lawyer": "Lawyer",
+        "keys": "Keys",
+        "zero": "If the token were worth zero",
+        "decides": "Who decides",
+        "screens": "Screens to design"
+      },
+      "hintWallet": "Plan for a site that works without a wallet: tick it at step 4.",
+      "hintJargon": "Your sentence talks about the technology. Say what your users gain too.",
+      "dz": "Users in Algeria: to see with a lawyer first. The text also specifies: the law bans virtual assets as a means of payment or an investment instrument, mining included.",
+      "noPrice": "The Studio publishes no price for web3 work: the brief is for talking it through."
+    },
+    "all": {
+      "t": "Eight of eight.",
+      "d": "Your brief is ready, and the wallpaper of Kūro clearing the smoke is yours.",
+      "go": "Download the wallpaper"
+    },
+    "cta": {
+      "d": "A well-built database, a members’ area, an ordinary payment: the Studio builds them.",
+      "go": "Price a project with the Studio’s console →"
+    },
+    "src": {
+      "title": "The course’s sources",
+      "note": "The legal facts come from the texts and the regulators (the Algerian Official Journal, the European authorities, ESMA, the AMF, VARA, ADGM); the six-question flowchart from NIST; the scams from the FTC, the SEC, the FBI, Europol and the European authorities; the technical words from ethereum.org, a community documentation site. The ordinary routes, the “to plan for” lists and user support are our workshop’s view. Nothing here is legal or investment advice. A transaction’s path and development networks come from ethereum.org; the rule “the minimum on the chain” is ours."
+    }
+  },
+  "fab": {
+    "ui": {
+      "title": "Identity, design system, campaign, motion: how we work | Numidea Labs",
+      "desc": "Four scenes from our design work, what you get at our published prices, and two six-lesson builds: an application and a verifiable receipt."
+    },
+    "nav": {
+      "aria": "Sections of the making page",
+      "scenes": "The scenes",
+      "course": "Learn",
+      "chantier": "The build",
+      "refs": "References",
+      "fab": "The making",
+      "chaine": "The local chain"
+    },
+    "kicker": "/ THE MAKING · FOUR SCENES",
+    "title": "Outside the artboard.",
+    "lead": "Four scenes from the way we work: the brand, the design system, the campaign, the motion. Open each breakdown to see the decision, why it matters, and what you get at our published prices.",
+    "note": "The pictures come from our own work; the tools named are the workshop’s. The characters come from the workshop’s world.",
+    "open": "Open the breakdown",
+    "getsL": "What you get",
+    "svcL": "In our services:",
+    "priceL": "Published price:",
+    "toolL": "Tool",
+    "s": [
+      {
+        "cat": "01 / BRAND IDENTITY",
+        "h": "Make it work at 16 pixels.",
+        "line": "Your mark has to survive the favicon, the box and the storefront.",
+        "vis": "Our logo, the serif lockup that signs the home page and the price guide, at 240, 48 and 16 pixels, then in one ink.",
+        "sizes": [
+          "240 px",
+          "48 px",
+          "16 px, actual size",
+          "One ink"
+        ],
+        "why": "On one artboard we compare the full mark, a compact variant and a one-colour version without changing the brand’s silhouette. Here, ours: at 16 pixels it is the icon of this tab.",
+        "gets": "Primary and compact marks, colour and type rules, SVG and print exports.",
+        "go": "Price an identity with the console →",
+        "learn": "Prepare your brand before you buy: the 16-pixel test, step 5 of the course →",
+        "scale": "Display size"
+      },
+      {
+        "cat": "02 / DESIGN SYSTEMS",
+        "h": "Change the rule once.",
+        "line": "If a longer label breaks the card, we haven’t finished the card.",
+        "vis": "The same Studio card in French, English and Arabic: one rule, three title lengths.",
+        "why": "Auto layout controls padding and spacing as content changes; according to Figma’s help, the layout adjusts when elements are added, removed or resized. A component set gives the same pattern reusable states.",
+        "gets": "Responsive components, layout rules, and a prototype your team can test.",
+        "priceNote": "as an option of the visual identity",
+        "go": "Price the identity with the full graphic kit →"
+      },
+      {
+        "cat": "03 / CAMPAIGN ARTWORK",
+        "h": "Give the campaign layers.",
+        "line": "Need a new crop? Keep the master. Change what the mask reveals.",
+        "vis": "One master, four windows: pick a format and the frame moves over the same picture.",
+        "alt": "The master drawing: Yasser, a coffee in hand, on a rooftop; Kūro sitting on the low wall",
+        "crops": {
+          "l": "Format",
+          "k": [
+            "Master 16:9",
+            "Post 4:5 · Kūro",
+            "Post 4:5 · Yasser",
+            "Story 9:16"
+          ]
+        },
+        "why": "Layer masks let us revise the crop and preserve the artwork underneath. Separating type, texture and subject also makes new formats easier to build.",
+        "gets": "A layered campaign master and crops for posts, stories and banners.",
+        "go": "Price the identity with the kit and the campaign →",
+        "priceNote": "in the Full design kit, as an option of the visual identity",
+        "learn": "What to ask for in a proposal: the master and its formats, step 6 of the course →"
+      },
+      {
+        "cat": "04 / MOTION IDENTITY",
+        "h": "Make the timing recognizable.",
+        "line": "Watch where I slow down. That’s where you look.",
+        "vis": "On the Studio’s title card, this site’s entrance curve: a fast start, a long settle, on a tempo of 90 beats per minute.",
+        "graph": {
+          "t": "Time",
+          "p": "Position",
+          "start": "start",
+          "settle": "settle"
+        },
+        "alt": "The Studio’s opening: the name NUMIDEA LABS, the red seal and Yasser in his frame",
+        "why": "The speed graph is where we decide how rapidly motion accelerates and how gently it settles. That pacing can carry through a logo sting and a set of social loops.",
+        "gets": "Logo reveal, social loops and reusable timing rules.",
+        "go": "Price an animation with the console →",
+        "reel": "See the opening and the other clips in the Studio’s reel →"
+      }
+    ],
+    "course": {
+      "kicker": "/ LEARN BY MAKING · ONE PROJECT",
+      "title": "Learn by making.",
+      "lead": "One project: give a neighbourhood bookshop an identity, build the app that books its workshops, and, as an option, an attendance receipt people can verify. Brand has its full course on the manual; the application and the receipt are here, in six lessons each.",
+      "navAria": "The three tracks",
+      "brand": {
+        "k": "BRAND & DESIGN",
+        "t": "An identity that survives real formats.",
+        "d": "Audience and proof, the 16-pixel test, the logo family, colour roles, the campaign master: nine steps, and a brief to send us.",
+        "go": "Open the brand course →"
+      },
+      "stack": {
+        "k": "FULL-STACK ENGINEERING",
+        "t": "A booking flow you can test, deploy and explain.",
+        "d": "Six lessons, below: the request, the data, the contract, the last seat, permissions, the release.",
+        "go": "Go to the six lessons ↓"
+      },
+      "web3": {
+        "k": "WEB3 ENGINEERING",
+        "t": "A verifiable attendance receipt, on a local chain.",
+        "d": "Six lessons, below: trust, the wallet, reading and sending, the contract’s rules, events, a site that works without a wallet. Education, on a local chain.",
+        "go": "Go to the six lessons ↓",
+        "client": "The client’s side: step 4 of the web3 course →"
+      },
+      "capstone": {
+        "t": "Capstone: the bookshop workshop",
+        "nav": "CAPSTONE",
+        "items": [
+          "Identity. A compact mark tested at 16 pixels, a type and colour sheet, a workshop card in two formats, and a short handoff guide.",
+          "Application. A responsive booking flow, its schema, API examples, and a demo with two people competing for the last seat.",
+          "Verification. The screens of a read-only attendance receipt, on a development network and with synthetic data: the normal flow, and a node outage."
+        ],
+        "review": "Review criteria: a visitor recognizes the event and finds the booking action. Concurrent requests never oversell the last seat. The verification screen shows the actual result and stays understandable during an outage."
+      },
+      "refs": {
+        "t": "Course references",
+        "note": "Read on 18 November 2026. What is not cited there is our workshop’s method, and the lesson says so."
+      }
+    },
+    "ch": {
+      "hud": "/ SIX LESSONS · ONE BOOKING FLOW",
+      "tabs": "The six lessons of the build",
+      "stops": [
+        "Request",
+        "Data",
+        "Contract",
+        "Last seat",
+        "Permissions",
+        "Release"
+      ],
+      "exL": "Worked example",
+      "tryL": "Try it",
+      "checkL": "Check your work",
+      "items": [
+        {
+          "t": "Browser to server",
+          "h": "Follow one request.",
+          "d": "The browser sends a request with a method, an address and headers. The server returns a status and often a body; according to MDN, the web’s reference documentation, statuses fall into five classes, from 100 to 599. The interface translates those results into states a person understands.",
+          "pick": [
+            {
+              "k": "Loading",
+              "v": "The request has gone and nothing has come back: a waiting state that does not block the page."
+            },
+            {
+              "k": "Empty",
+              "v": "A 200 with an empty list is a success. The screen says “No workshops yet”, not “error”."
+            },
+            {
+              "k": "Success",
+              "v": "A 200 with workshops: the list renders."
+            },
+            {
+              "k": "Error",
+              "v": "A 500, or no answer: a separate message and a way to retry. According to MDN, a 503 means the server is temporarily unavailable."
+            }
+          ],
+          "ex": "A workshop page requests an event list. A valid empty list should render a helpful empty state. An unexpected server error needs a separate message.",
+          "try": "Draw loading, empty, success and error versions of the event list. Match each version to a network condition.",
+          "check": "An empty 200 response becomes an empty state. A failed request becomes an error state with a way to retry where appropriate.",
+          "q": "The workshop list comes back empty, with a 200 status. The screen shows…",
+          "a": [
+            "an error message",
+            "a helpful empty state: “No workshops yet”",
+            "an endless spinner"
+          ],
+          "ok": "Yes. An empty 200 is a success: say there is nothing, not that it failed."
+        },
+        {
+          "t": "Schema and relationships",
+          "h": "Make the data tell the truth.",
+          "d": "Give each entity a stable identifier, link them with foreign keys, and let the database enforce what it can enforce. Keep the display name separate from the identifier. That is our workshop’s method.",
+          "pick": [
+            {
+              "k": "Room",
+              "v": "id · name. A room hosts several workshops."
+            },
+            {
+              "k": "Workshop",
+              "v": "id · title · capacity · room_id. The title may change, the identifier never."
+            },
+            {
+              "k": "Booking",
+              "v": "id · workshop_id · name · state. It points to the workshop’s identifier, not to its title."
+            }
+          ],
+          "ex": "Workshop records have an ID and a capacity. Booking records reference the workshop ID. A renamed workshop keeps its existing bookings.",
+          "try": "Sketch a schema for a room that hosts several events and an event that accepts many bookings.",
+          "check": "Room, workshop, booking: two one-to-many relationships. The booking stores workshop_id, so it stays attached when the workshop title changes.",
+          "q": "A workshop changes its title. Its bookings…",
+          "a": [
+            "are lost",
+            "stay attached, through its identifier",
+            "must be created again"
+          ],
+          "ok": "Yes. Link by identifier, never by the display name."
+        },
+        {
+          "t": "API contracts",
+          "h": "Make every outcome legible.",
+          "d": "A contract states the accepted input and the response for each meaningful outcome. Validate on the server and give clients stable error identifiers. Run three possible requests: the server’s response changes the interface.",
+          "lab": {
+            "t": "Can I book that seat?",
+            "l": "Three possible requests",
+            "k": [
+              "Valid booking",
+              "Missing input",
+              "Workshop full"
+            ],
+            "cols": [
+              "Request",
+              "Response",
+              "What the visitor sees"
+            ],
+            "see": [
+              "“Your seat is reserved.”",
+              "“Enter your name to continue.”",
+              "“That workshop is full. See other dates.”"
+            ],
+            "src": "According to MDN: 201, the request succeeded and a new resource was created; 400, the server will not process a request perceived as a client error; 409, the request conflicts with the current state of the server."
+          },
+          "ex": "POST /bookings accepts a workshop identifier and a name. A successful creation, malformed input and a full workshop need distinct handling.",
+          "try": "Write three response examples and the corresponding interface treatment.",
+          "check": "A success shows the reservation. Invalid input focuses the relevant field. A capacity conflict explains what happened and leaves the person able to browse other times.",
+          "q": "No seats are left. The server answers…",
+          "a": [
+            "201 Created",
+            "409 Conflict, and the screen offers other dates",
+            "200 OK, saying nothing"
+          ],
+          "ok": "Yes. The conflict is said, and the person keeps a way out."
+        },
+        {
+          "t": "Transactions and retries",
+          "h": "Protect the last seat.",
+          "d": "According to the PostgreSQL documentation, a transaction bundles multiple steps into a single, all-or-nothing operation. Concurrent requests still need a rule: SELECT … FOR UPDATE locks the workshop’s row, and other transactions that want it wait until the first one ends. That only holds if every write path follows the same rule.",
+          "pick": [
+            {
+              "k": "Begin",
+              "v": "BEGIN: the transaction opens. Its changes stay invisible to others until it commits."
+            },
+            {
+              "k": "Lock",
+              "v": "SELECT … FOR UPDATE on the workshop’s row: the second request waits here."
+            },
+            {
+              "k": "Check",
+              "v": "Read the remaining seats again, now that nobody else can change them."
+            },
+            {
+              "k": "Finish",
+              "v": "INSERT then COMMIT, or ROLLBACK: the booking exists in full, or not at all."
+            }
+          ],
+          "ex": "Two people request the final seat. Both requests reach the API. One locks the workshop, confirms capacity and commits. The second checks capacity after it acquires the lock.",
+          "try": "Write a test that sends two booking requests for one remaining seat. Run it against a local database.",
+          "check": "Exactly one new booking commits; the other request returns a capacity conflict. Repeating a completed request with the same idempotency key follows the documented replay behaviour.",
+          "q": "Two people ask for the last seat at the same moment. With the row lock…",
+          "a": [
+            "both bookings go through",
+            "only one goes through; the other gets a capacity conflict",
+            "both fail"
+          ],
+          "ok": "Yes. The second waits for the lock, reads again, and finds the workshop full."
+        },
+        {
+          "t": "Sessions and authorization",
+          "h": "Check who can do what.",
+          "d": "Authentication establishes identity. Authorization checks whether that identity can perform the current operation on the specific resource. Our rule: that check runs on the server, on every request.",
+          "pick": [
+            {
+              "k": "Visitor",
+              "v": "Sees the public workshops. Sees no bookings."
+            },
+            {
+              "k": "Participant",
+              "v": "Sees public data and their own bookings, not anyone else’s."
+            },
+            {
+              "k": "Organizer",
+              "v": "Edits their own workshops, not another organizer’s."
+            }
+          ],
+          "ex": "A signed-in organizer can edit their own workshop. A participant only sees their own booking details and public event data.",
+          "try": "Make a permission matrix for anonymous visitors, participants and organizers. Turn each cell into a test case.",
+          "check": "Include an organizer trying to edit a different organizer’s event. A valid session alone does not grant permission for that record.",
+          "q": "A signed-in organizer tries to edit someone else’s workshop. The server…",
+          "a": [
+            "accepts: they are signed in",
+            "declines: their session gives them no right on that workshop",
+            "asks for their password again"
+          ],
+          "ok": "Yes. Being signed in says who you are, not what you may do."
+        },
+        {
+          "t": "Release and observability",
+          "h": "Ship a release you can diagnose.",
+          "d": "A release needs a known configuration, a repeatable build, a smoke test and a rollback plan. Logs should help explain requests without collecting secrets or unnecessary private data. That is our workshop’s list.",
+          "pick": [
+            {
+              "k": "Build",
+              "v": "Run the checks: nothing ships if one fails."
+            },
+            {
+              "k": "Stage",
+              "v": "The smoke test: the workshop list and one test booking."
+            },
+            {
+              "k": "Deploy",
+              "v": "Release a known version, by its commit identifier."
+            },
+            {
+              "k": "Watch",
+              "v": "Verify, and roll back if needed, following each failure by its request ID."
+            }
+          ],
+          "ex": "Deploy the booking flow to staging. Check the event list and one test booking, validate database changes and correlate failures by request ID.",
+          "try": "Write a pre-release checklist and demonstrate a rollback on a disposable staging deployment.",
+          "check": "Record the working build, expected migration state and smoke-test results. Confirm the previous build remains compatible with the database or prepare a tested recovery plan.",
+          "q": "Before releasing, what do you keep at hand?",
+          "a": [
+            "nothing: we will fix it live",
+            "the working build, the expected database state and a tested rollback",
+            "a screenshot of the page"
+          ],
+          "ok": "Yes. A version you can put back beats a fix made live."
+        }
+      ],
+      "all": {
+        "t": "Six of six.",
+        "d": "The build is stamped. Next is yours: the Studio builds custom web applications.",
+        "go": "Price an application with the console →"
+      }
+    },
+    "w3": {
+      "hud": "/ SIX LESSONS · ONE ATTENDANCE RECEIPT",
+      "lead": "For builders: prototype a verifiable attendance receipt on a development network (ethereum.org: a chain designed for local development), with synthetic data. This is education, not an offer.",
+      "tabs": "The six lessons of the local chain",
+      "stops": [
+        "Trust",
+        "Wallet",
+        "Read, send",
+        "Rules",
+        "Events",
+        "No wallet"
+      ],
+      "items": [
+        {
+          "t": "Trust boundaries",
+          "h": "Decide what needs public verification.",
+          "d": "A public chain can let independent parties inspect a shared record. It also adds visibility, cost and operational complexity. Our workshop rule: ordinary application data stays in the database, and only the minimum to verify goes on the chain.",
+          "pick": [
+            {
+              "k": "Database",
+              "v": "Bookings and contacts: names, email addresses, guest lists."
+            },
+            {
+              "k": "Chain",
+              "v": "A public receipt identifier, nothing personal."
+            },
+            {
+              "k": "Verifier",
+              "v": "Reads the proof and its status, writes nothing."
+            }
+          ],
+          "ex": "Attendance receipts could be independently verified. Names, email addresses, guest lists and support notes stay in the booking system.",
+          "try": "List the data you need for a proof. Remove anything that could identify a person without their consent.",
+          "check": "Only the minimum public reference goes on the chain. No email address, and nothing guessed from one.",
+          "q": "What goes on the chain for an attendance receipt?",
+          "a": [
+            "the participant’s name and email",
+            "a public receipt identifier, nothing personal",
+            "the whole guest list"
+          ],
+          "ok": "Yes. The minimum to verify; the rest stays in the database."
+        },
+        {
+          "t": "Wallets and signing",
+          "h": "Read what the wallet is asking.",
+          "d": "A wallet helps people manage signing; a signature authorizes a specific payload under an account key. Connecting, signing a message and signing a transaction are three different actions; ethereum.org calls a transaction a cryptographically signed instruction from an account.",
+          "pick": [
+            {
+              "k": "Connect",
+              "v": "The site reads the public address chosen: ethereum.org says it is like a login you can use across many apps."
+            },
+            {
+              "k": "Preview",
+              "v": "The screen shows the intended action and the network, before any request."
+            },
+            {
+              "k": "Sign",
+              "v": "The person approves this request, and nothing else."
+            },
+            {
+              "k": "Verify",
+              "v": "The site checks the result and the network used."
+            }
+          ],
+          "ex": "The receipt demo reads a wallet address for a local exercise. It requests a write only when the learner explicitly chooses to issue a demo receipt.",
+          "try": "Sketch separate screens for connection, review, approval and cancellation. Use a fresh development wallet, on the local chain.",
+          "check": "The review shows the intended action and network. A declined request leaves the interface usable. The app never asks for a recovery phrase or a private key.",
+          "q": "An app asks for your recovery phrase to “verify” your wallet. That is…",
+          "a": [
+            "normal, to connect",
+            "a warning sign: never give it",
+            "needed to sign a message"
+          ],
+          "ok": "Yes. Whoever has the phrase has the wallet: give it to no one."
+        },
+        {
+          "t": "Reads and writes",
+          "h": "Show the difference between a read and a submission.",
+          "d": "ethereum.org’s JSON-RPC documentation: a read (eth_call) runs without creating a transaction on the chain. A write follows a transaction’s life: sending returns its identifier (the hash), and the receipt, which says success or failure, is not available while the transaction is pending. Follow a receipt, state by state.",
+          "lab": {
+            "t": "Follow a receipt",
+            "l": "Four states",
+            "k": [
+              "Approval request",
+              "Sent",
+              "Confirmed",
+              "Node down"
+            ],
+            "cols": [
+              "Action",
+              "Evidence on the chain",
+              "What the visitor sees"
+            ],
+            "do": [
+              "Review the issuance",
+              "Send the transaction",
+              "Read the receipt and the state",
+              "Read-only lookup"
+            ],
+            "chain": [
+              "None yet",
+              "A transaction hash, no receipt",
+              "A receipt with status “success”, under the demo’s rule",
+              "No answer from the node"
+            ],
+            "see": [
+              "“Waiting for wallet approval.”",
+              "“Submitted. Waiting for the result.”",
+              "“Attendance receipt verified.”",
+              "“Verification unavailable. You can still book.”"
+            ],
+            "src": "ethereum.org, JSON-RPC API: the receipt is not available for pending transactions, and its status is 1 (success) or 0 (failure)."
+          },
+          "ex": "Read whether a receipt ID exists. When issuing one, show the demo transaction hash and update the status after checking the receipt.",
+          "try": "Design status screens for awaiting approval, submitted, failed and confirmed.",
+          "check": "A hash alone means the action was submitted. The confirmed view relies on a successful receipt and the confirmation rule chosen for the demo.",
+          "q": "Right after sending, the site shows the transaction hash. The operation is…",
+          "a": [
+            "finished and verified",
+            "sent, not confirmed yet: it needs the receipt",
+            "cancelled"
+          ],
+          "ok": "Yes. The hash says “sent”. The receipt says whether it worked."
+        },
+        {
+          "t": "Contracts and tests",
+          "h": "Turn the contract into explicit rules.",
+          "d": "A smart contract is code deployed to a network; ethereum.org notes that deployed contract code usually cannot be changed to patch security flaws. Our method: define who may act, what changes and what is announced before wiring a front end, then test the intended and the rejected actions locally.",
+          "pick": [
+            {
+              "k": "Issuer",
+              "v": "One authorized account issues the demo receipts."
+            },
+            {
+              "k": "Rule",
+              "v": "A receipt ID is used only once."
+            },
+            {
+              "k": "State",
+              "v": "The contract stores the new ID."
+            },
+            {
+              "k": "Event",
+              "v": "A successful issue announces the receipt reference."
+            }
+          ],
+          "ex": "Only the demo issuer may record a synthetic attendance ID. Duplicate IDs are rejected. A successful issue emits an event.",
+          "try": "Write local tests for issuance, duplicate rejection and an unauthorized account, with synthetic IDs.",
+          "check": "A valid call creates one receipt. Invalid calls create none and leave prior state intact.",
+          "q": "An unauthorized account tries to issue a receipt. The contract…",
+          "a": [
+            "issues it anyway",
+            "refuses, and the state stays as it was",
+            "issues an empty receipt"
+          ],
+          "ok": "Yes. A refused action leaves no trace in the state."
+        },
+        {
+          "t": "Events and indexing",
+          "h": "Build a useful timeline from events.",
+          "d": "Contract events can feed an application index. Our workshop method: keep the chain and the event’s position with each indexed row, make processing repeatable, and plan for the latest blocks being reorganized, under the chosen chain’s own rule.",
+          "pick": [
+            {
+              "k": "Event",
+              "v": "The contract emits it."
+            },
+            {
+              "k": "Fetcher",
+              "v": "Reads a range of blocks."
+            },
+            {
+              "k": "Index",
+              "v": "Inserts or updates the event’s row."
+            },
+            {
+              "k": "Interface",
+              "v": "Shows the indexed state."
+            }
+          ],
+          "ex": "A receipt page shows a searchable list of demo issuance events. The indexer records the latest processed block and can rebuild the view.",
+          "try": "Replay the same batch twice, then simulate dropping a recent block from the source history.",
+          "check": "The second run creates no duplicates. Rebuilt data matches the history kept after the simulated change.",
+          "q": "The same batch of events is replayed twice. The index…",
+          "a": [
+            "holds every event twice",
+            "stays the same: one row per event",
+            "empties"
+          ],
+          "ok": "Yes. A repeatable process gives the same index on every run."
+        },
+        {
+          "t": "The hybrid capstone",
+          "h": "Keep the booking app useful without a wallet.",
+          "d": "Build the normal experience first, then a separate proof-verification path with clear failure states. Our rule: the proof degrades gracefully when the node is down; ethereum.org notes that an app must connect to a node to read the chain.",
+          "pick": [
+            {
+              "k": "Booking",
+              "v": "An off-chain record, in the database."
+            },
+            {
+              "k": "Issuer",
+              "v": "The local-chain demo."
+            },
+            {
+              "k": "Verifier",
+              "v": "A read-only proof lookup."
+            },
+            {
+              "k": "Interface",
+              "v": "The result, and its limits."
+            }
+          ],
+          "ex": "A workshop organizer issues demo receipts locally. A visitor books without a wallet and can verify an anonymized receipt later.",
+          "try": "Demo the full flow, then disconnect the node. Show the booking flow and the verification state during the outage.",
+          "check": "Booking still works. Verification says the network is unavailable and never claims a proof was checked.",
+          "q": "The node stops answering. The visitor…",
+          "a": [
+            "can no longer book",
+            "books anyway; verification says it is unavailable",
+            "sees “receipt verified”"
+          ],
+          "ok": "Yes. The proof is an extra; the booking does not depend on it."
+        }
+      ],
+      "all": {
+        "t": "Six of six.",
+        "d": "The receipt is stamped. On the client’s side, the manual’s web3 course helps decide whether a chain is needed; we build the ordinary route.",
+        "go": "The web3 course, client’s side →"
+      }
     }
   }
 }

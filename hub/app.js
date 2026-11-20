@@ -18,6 +18,9 @@
   10 · the sheet behind the Menu button and the dock (a phone's foot bar)
   11 · the rows that swipe on a phone: their place and their bar
   12 · each case's own faces, and its layout, as it nears the screen
+  13 · the lessons; 13b · the manual's two client courses and their briefs;
+       13c · la fabrique (hub/fabrique.html: the 16-px slider, the carried
+       estimate; its two lesson sets and its pickers are 13's)
    The rule of the page: nothing moves for longer than five seconds on its
    own, and nothing loops; every duration and wait is on the site's one
    tempo (90 BPM: BEAT, M() and Q() below, the stylesheet's --m-* tokens). Each motion answers an input or plays once when
@@ -78,6 +81,7 @@
     $$('[data-i18n-alt]').forEach(function (n) { var v = d[n.getAttribute('data-i18n-alt')]; if (v != null) n.alt = v; });
     $$('[data-i18n-aria]').forEach(function (n) { var v = d[n.getAttribute('data-i18n-aria')]; if (v != null) n.setAttribute('aria-label', v); });
     $$('[data-i18n-title]').forEach(function (n) { var v = d[n.getAttribute('data-i18n-title')]; if (v != null) n.title = v; });
+    $$('[data-i18n-ph]').forEach(function (n) { var v = d[n.getAttribute('data-i18n-ph')]; if (v != null) n.placeholder = v; });
     // the title and the description are the page's own: the manual names its keys on <html data-ui="manual.ui">
     var ui = root.getAttribute('data-ui') || 'ui';
     if (d[ui + '.title']) document.title = d[ui + '.title'];
@@ -738,6 +742,8 @@
      writes them in each language. */
   var est = $('[data-est]');
   var P = null;
+  // the model's functions, for the manual's client courses (13b): their briefs quote with the console's own quote()
+  var priceKit = null;
   try { P = JSON.parse($('#hub-prices').textContent); } catch (e) {}
   // (the section names its price model M, as the home's port does, and scripts/check.mjs reads it by that name: the tempo comes in as M8)
   if (P) (function (M8) {
@@ -819,11 +825,24 @@
       var MT = M.motion;
       var motionPrice = { logo: range(MT.base[0], MT.base[1], 'DZD'), sec: '+\u00a0' + range(MT.unit[0], MT.unit[1], 'DZD'), anim: '+\u00a0' + range(O.anim.add[0], O.anim.add[1], 'DZD') };
       $$('[data-motion-price]').forEach(function (n) { var v = motionPrice[n.getAttribute('data-motion-price')]; if (v && n.textContent !== v) n.textContent = v; });
+      // la fabrique's figures: a type's package and what it holds ([data-type-price]), an option's addition ([data-opt-price])
+      $$('[data-type-price]').forEach(function (n) { var m = M[n.getAttribute('data-type-price')]; if (!m) return; var v = range(m.base[0], m.base[1], 'DZD'); if (n.textContent !== v) n.textContent = v; });
+      // and what the package holds, apart, so the Arabic reads in its own order
+      $$('[data-type-units]').forEach(function (n) { var m = M[n.getAttribute('data-type-units')]; if (!m) return; var v = counted(m.u, m.base_u); if (n.textContent !== v) n.textContent = v; });
+      $$('[data-opt-price]').forEach(function (n) { var o = O[n.getAttribute('data-opt-price')]; if (!o) return; var v = '+\u00a0' + range(o.add[0], o.add[1], 'DZD'); if (n.textContent !== v) n.textContent = v; });
       $$('[data-money-wa]').forEach(function (a) {
         var w = a.getAttribute('data-money-wa'), kit = w === 'kit', i = Number(w), key = kit ? 'kit' : ['call', 'setup', 'pack', 'guides'][i];
         a.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(t('money.svc.waMsg').replace('{s}', t(kit ? 'money.kit.k' : 'money.svc.items.' + i + '.name') + ' (' + moneyPrice(key) + ')'));
       });
     };
+    // a receipt line's label, as the console prints it (the briefs of 13b print the same)
+    var lineLabel = function (ln, m) {
+      return ln.k === 'base' ? (m.fam === 'argent' ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, ln.n))
+        : ln.k === 'extra' ? '+ ' + counted(m.u, ln.n)
+        : ln.k === 'opt' ? t('pricing.o.' + ln.o)
+        : ln.k === 'studio' ? t('pricing.rc.studio') : ln.k === 'kit' ? t('pricing.rc.kit') : t('pricing.rc.rush');
+    };
+    priceKit = { quote: quote, range: range, pair: pair, amt: amt, counted: counted, wkN: wkN, lineLabel: lineLabel, M: M, O: O, mid: P.mid };
     money();
     if (!est) { onLang.push(money); return; }
 
@@ -849,10 +868,7 @@
       q.lines.forEach(function (ln) {
         var tr = document.createElement('tr'), th = document.createElement('th'), td;
         th.scope = 'row';
-        th.textContent = ln.k === 'base' ? (m.fam === 'argent' ? t('pricing.rc.call') : t('pricing.rc.base') + ' ' + counted(m.u, ln.n))
-          : ln.k === 'extra' ? '+ ' + counted(m.u, ln.n)
-          : ln.k === 'opt' ? t('pricing.o.' + ln.o)
-          : ln.k === 'studio' ? t('pricing.rc.studio') : ln.k === 'kit' ? t('pricing.rc.kit') : t('pricing.rc.rush');
+        th.textContent = lineLabel(ln, m);
         tr.appendChild(th);
         if (ln.incl) { td = document.createElement('td'); td.colSpan = 2; td.textContent = t('pricing.included'); tr.appendChild(td); }
         else ['lo', 'hi'].forEach(function (f) { td = document.createElement('td'); td.dir = 'ltr'; td.textContent = amt(ln[f]); tr.appendChild(td); });
@@ -1004,18 +1020,26 @@
     });
     care.addEventListener('click', function () { st.care = !st.care; care.setAttribute('aria-pressed', String(st.care)); render(false); });
     setType('vitrine'); render(false);
+    // a type, an option (or the kit) and a size, set on the console as a card asks ([data-est-go]) or as another page carried it
+    var goEst = function (k, pick, wantN, said) {
+      var m = M[k];
+      if (!m) return;
+      st.opts = pick === 'kit' ? m.kit.needs.slice() : pick && O[pick] ? [pick] : [];
+      setType(k);
+      if (pick === 'kit') { st.n = m.kit.at; size.value = st.n; }
+      if (wantN >= m.min && wantN <= m.max) { st.n = wantN; size.value = st.n; }   // [data-est-size]: the size a card stands for
+      render(said);
+    };
     $$('[data-est-go]').forEach(function (a) {
-      a.addEventListener('click', function () {
-        var k = a.getAttribute('data-est-go'), pick = a.getAttribute('data-est-pick'), m = M[k];
-        if (!m) return;
-        st.opts = pick === 'kit' ? m.kit.needs.slice() : pick && O[pick] ? [pick] : [];
-        setType(k);
-        if (pick === 'kit') { st.n = m.kit.at; size.value = st.n; }
-        var wantN = Number(a.getAttribute('data-est-size'));
-        if (wantN >= m.min && wantN <= m.max) { st.n = wantN; size.value = st.n; }   // [data-est-size]: the size a card stands for
-        render(true);
-      });
+      a.addEventListener('click', function () { goEst(a.getAttribute('data-est-go'), a.getAttribute('data-est-pick'), Number(a.getAttribute('data-est-size')), true); });
     });
+    // la fabrique's console links ([data-est-carry], 13c) leave the estimate in sessionStorage 'numidea-est': read once and
+    // taken out, so a plain visit afterwards starts on Vitrine; with storage blocked, the link still lands on #pricing
+    try {
+      var carried = JSON.parse(sessionStorage.getItem('numidea-est') || 'null');
+      sessionStorage.removeItem('numidea-est');
+      if (carried && M[carried.k]) goEst(carried.k, carried.pick || null, Number(carried.n), false);
+    } catch (e) {}
     onLang.push(function () { var n = st.n; setType(st.type); st.n = n; size.value = n; render(false); money(); });
   })(M);
 
@@ -1527,7 +1551,7 @@
   });
 
   /* ---------------- 13 · the lessons ----------------
-     The money manual: six lessons as tabs ([data-ls-tab] shows
+     The money manual: five lessons as tabs (Web3 101 grew into the client course #web3, 13b) ([data-ls-tab] shows
      [data-ls-panel]; the arrow keys, Home and End walk the tabs, as a
      tablist does). In a lesson: [data-pick] shows one explanation at a time
      ([data-pick-b] picks [data-pick-p]); [data-calc] works a figure out of
@@ -1545,6 +1569,23 @@
      ([data-ls-earn="<id>"] gets is-earned), how far it is (--n on the set,
      for a bar) and something for the whole set ([data-ls-all]). Without scripts every panel is laid out and no question shows
      (style.css). Nothing here moves on its own; everything answers a press. */
+  // each set's show(), by its name ('' for the money set): 13b opens a stop from the brief, B1 opens Crypto 101
+  var LS = {};
+  // one explanation at a time ([data-pick]: [data-pick-b] picks [data-pick-p]), in a lesson or outside one (la fabrique's crop picker)
+  var wirePick = function (pk) {
+    var bs = $$('[data-pick-b]', pk), ps = $$('[data-pick-p]', pk);
+    var pick = function (k) {
+      bs.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-pick-b') === k)); });
+      ps.forEach(function (x) { x.hidden = x.getAttribute('data-pick-p') !== k; });
+    };
+    // a press says so (numidea:pick: 13b writes a course's field from it); the first pick('0') below says nothing
+    bs.forEach(function (b) { b.addEventListener('click', function () { pick(b.getAttribute('data-pick-b')); emit('numidea:pick', { el: pk, i: b.getAttribute('data-pick-b') }); }); });
+    pk._pick = pick;
+    pick('0');
+  };
+  // a stop asked for in the address (la fabrique links to manuel.html?ls=b9#marque): that set opens on it, without focus
+  var askedLs = null;
+  try { askedLs = new URLSearchParams(location.search).get('ls'); } catch (e) {}
   $$('[data-ls]').forEach(function (ls) {
     var tabs = $$('[data-ls-tab]', ls), panels = $$('[data-ls-panel]', ls), count = $('[data-ls-count]', ls);
     var KEY = 'numidea-lessons' + (ls.getAttribute('data-ls') ? '-' + ls.getAttribute('data-ls') : ''), done = [];
@@ -1588,15 +1629,7 @@
     panels.forEach(function (p) {
       var id = p.getAttribute('data-ls-panel');
       // one explanation at a time
-      $$('[data-pick]', p).forEach(function (pk) {
-        var bs = $$('[data-pick-b]', pk), ps = $$('[data-pick-p]', pk);
-        var pick = function (k) {
-          bs.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-pick-b') === k)); });
-          ps.forEach(function (x) { x.hidden = x.getAttribute('data-pick-p') !== k; });
-        };
-        bs.forEach(function (b) { b.addEventListener('click', function () { pick(b.getAttribute('data-pick-b')); }); });
-        pick('0');
-      });
+      $$('[data-pick]', p).forEach(wirePick);
       // a figure from the visitor's own numbers
       $$('[data-calc]', p).forEach(function (c) {
         var kind = c.getAttribute('data-calc');
@@ -1656,10 +1689,541 @@
         });
       });
     });
-    show(tabs[0].getAttribute('data-ls-tab')); stamps();
+    show(askedLs && tabs.some(function (b) { return b.getAttribute('data-ls-tab') === askedLs; }) ? askedLs : tabs[0].getAttribute('data-ls-tab')); stamps();
+    LS[ls.getAttribute('data-ls') || ''] = show;
+    // "Aller à ma fiche" and the like: a link to a stop opens its tab
+    $$('[data-ls-go]', ls).forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); show(a.getAttribute('data-ls-go'), true, true); }); });
   });
+  $$('[data-pick]').filter(function (pk) { return !pk.closest('[data-ls]'); }).forEach(wirePick);
+  // B1's way to Crypto 101: the money set opens on it, then the link's own jump
+  $$('[data-crypto-go]').forEach(function (a) { a.addEventListener('click', function () { if (LS['']) LS['']('crypto', false, true); }); });
   // a level's reference ([3]) opens the list of sources it points into (not every browser opens a closed <details> for a link to something inside it)
   $$('.st-jeu__refs a').forEach(function (a) { a.addEventListener('click', function () { var t = document.getElementById(a.getAttribute('href').slice(1)), d = t && t.closest('details'); if (d) d.open = true; }); });
+
+  /* ---------------- 13b · the client courses and their briefs ----------------
+     The manual's two client courses (#marque "Le logo vient après", #web3 "Le web3, sans fumée"; COURSE.md, 2026-11-19)
+     run in the lessons' shell (13) and add the brief: each control that names a field (data-bf) writes it into one
+     object per course, localStorage 'numidea-brief-<set>' ({ v: 1, f: { field: value } }, choices as indices, text as
+     typed), on this device only. The last stop shows the brief as a receipt (the fiche), written here with textContent:
+     an empty row is a link back to the stop that fills it ("à remplir à l'étape n"). Prices come from section 6's own
+     quote() (priceKit): an identity by the supports ticked, a web3 brief by the ordinary route its request maps to, and
+     no price where the studio publishes none. The brief leaves only through the visitor's press: WhatsApp (?text=),
+     the home page's form (sessionStorage 'numidea-prefill', read by assets/app.js), the clipboard, or print. The
+     controls: chips (several, aria-pressed), one-of groups (radiogroup, roving tabindex, the arrows, Home and End),
+     text fields, three sliders, sorting rows (bins), toggles, the six-question flow, the law cards, the 16-pixel test
+     and the six states of a transaction. Every result region is in the page from the start, empty; one status line per
+     control is live. Nothing moves by itself: what changes changes at once (a cut), the seal stamps once on a press. */
+  $$('[data-brief]').forEach(function (fiche) {
+    var set = fiche.getAttribute('data-brief'), course = fiche.closest('[data-ls]'), sec = fiche.closest('.st-crs');
+    if (!course || !sec) return;
+    var B = set === 'brandc', KEY = 'numidea-brief-' + set, st = { v: 1, f: {} };
+    try { var s0 = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s0 && s0.v === 1 && s0.f && typeof s0.f === 'object') st = s0; } catch (e) {}
+    var F = st.f, saveT = 0, restores = [], hooks = [];
+    var save = function () { clearTimeout(saveT); saveT = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }, M(4)); };
+    var has = function (v) { return v != null && v !== '' && !(Array.isArray(v) && !v.length); };
+    var after = {};   // what a field sets off (the fork: "a payment" fills the request)
+    var put = function (f, v) { if (has(v)) F[f] = v; else delete F[f]; if (after[f]) after[f](v); save(); refresh(); };
+    // a string in the page's language: the dictionary, else the page itself (a French visitor's #hub-fr holds only what is not in the markup)
+    var tx = function (k) { var v = t(k); if (v) return v; var el = sec.querySelector('[data-i18n="' + k + '"]'); return el ? el.textContent : ''; };
+    var IT = set + '.items.';
+    var colon = function () { return lang === 'fr' ? ' : ' : ': '; };
+    var sep = ' · ';
+    var cm = function () { return lang === 'ar' ? '، ' : ', '; };
+    var bf = function (f) { return sec.querySelector('[data-bf="' + f + '"]'); };
+    // what a chip of field f says (index v), read from the page
+    var lab = function (f, v) { var g = bf(f); if (!g) return ''; var b = g.querySelector('[data-v="' + v + '"],[data-pick-b="' + v + '"]'); return b ? b.textContent.trim() : ''; };
+    var labs = function (f) { return (F[f] || []).map(function (v) { return lab(f, v); }).filter(Boolean); };
+    var tabs = $$('[data-ls-tab]', course);
+    var panelOf = function (f) { var el = bf(f); var p = el && el.closest('[data-ls-panel]'); return p ? p.getAttribute('data-ls-panel') : null; };
+    var stopN = function (id) { for (var i = 0; i < tabs.length; i++) if (tabs[i].getAttribute('data-ls-tab') === id) return i + 1; return 0; };
+    var lastId = tabs[tabs.length - 1].getAttribute('data-ls-tab');
+    var go = function (id) { if (LS[set]) LS[set](id, true, true); };
+
+    // the controls start disabled (a page without this script shows them, inert)
+    $$('[disabled]', sec).forEach(function (el) { if (!el.closest('[data-ls-q]')) el.disabled = false; });
+    root.classList.add('has-brief');
+
+    /* ---- chips, several at once ---- */
+    $$('[data-chips]:not([data-chips="one"])', sec).forEach(function (g) {
+      var f = g.getAttribute('data-bf'), none = g.hasAttribute('data-none') ? Number(g.getAttribute('data-none')) : -1, bs = $$('[data-v]', g);
+      var paint = function () { var a = F[f] || []; bs.forEach(function (b) { b.setAttribute('aria-pressed', String(a.indexOf(Number(b.getAttribute('data-v'))) > -1)); }); };
+      bs.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = Number(b.getAttribute('data-v')), a = (F[f] || []).slice(), i = a.indexOf(v);
+          if (i > -1) a.splice(i, 1); else if (v === none) a = [v]; else { a.push(v); a = a.filter(function (x) { return x !== none; }); }
+          a.sort(function (x, y) { return x - y; });
+          put(f, a); paint();
+        });
+      });
+      restores.push(paint);
+    });
+    /* ---- one of several: a radiogroup ---- */
+    $$('[data-chips="one"]', sec).forEach(function (g) {
+      var f = g.getAttribute('data-bf'), keep = !g.hasAttribute('data-nostore'), rs = $$('[role="radio"]', g), cur = null;
+      var paint = function (v) {
+        cur = v;
+        rs.forEach(function (r, i) { var on = Number(r.getAttribute('data-v')) === v; r.setAttribute('aria-checked', String(on)); r.tabIndex = on || (v == null && i === 0) ? 0 : -1; });
+      };
+      var choose = function (v, focus) {
+        paint(v);
+        if (focus) rs.forEach(function (r) { if (Number(r.getAttribute('data-v')) === v) r.focus(); });
+        if (keep) put(f, v); else hooks.forEach(function (h) { h(f, v); });
+      };
+      rs.forEach(function (r, i) {
+        r.addEventListener('click', function () { choose(Number(r.getAttribute('data-v'))); });
+        r.addEventListener('keydown', function (e) {
+          var rtl = root.getAttribute('dir') === 'rtl', n = rs.length;
+          var to = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1
+            : e.key === 'ArrowRight' ? i + (rtl ? -1 : 1) : e.key === 'ArrowLeft' ? i + (rtl ? 1 : -1)
+            : e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowUp' ? i - 1 : null;
+          if (to === null) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); choose(Number(r.getAttribute('data-v'))); } return; }
+          e.preventDefault(); choose(Number(rs[(to + n) % n].getAttribute('data-v')), true);
+        });
+      });
+      g._choose = choose;
+      restores.push(function () { paint(keep ? (F[f] != null ? F[f] : null) : cur); });
+    });
+    /* ---- text ---- */
+    $$('input[type="text"][data-bf]', sec).forEach(function (inp) {
+      var f = inp.getAttribute('data-bf');
+      inp.addEventListener('input', function () { put(f, inp.value.trim().slice(0, 140)); });
+      restores.push(function () { inp.value = F[f] || ''; });
+    });
+    /* ---- toggles ---- */
+    $$('[data-toggle][data-bf]', sec).forEach(function (b) {
+      var f = b.getAttribute('data-bf');
+      b.addEventListener('click', function () { put(f, !F[f] || null); b.setAttribute('aria-pressed', String(!!F[f])); });
+      restores.push(function () { b.setAttribute('aria-pressed', String(!!F[f])); });
+    });
+    /* ---- sorting rows: a press marks the row and says how the workshop sorts it ---- */
+    $$('[data-bins]', sec).forEach(function (ol) {
+      var f = ol.getAttribute('data-bf'), rows = $$('[data-bin-row]', ol), score = ol.parentNode.querySelector('[data-bin-score]');
+      var paint = function () {
+        var a = F[f] || [], n = 0, any = false;
+        rows.forEach(function (row, r) {
+          var ok = Number(row.getAttribute('data-bin-ok')), b = a[r] != null ? a[r] : -1, why = $('[data-bin-why]', row);
+          $$('[data-bin]', row).forEach(function (x) { x.setAttribute('aria-pressed', String(Number(x.getAttribute('data-bin')) === b)); });
+          row.classList.toggle('is-on', b > -1); row.classList.toggle('is-match', b === ok); row.classList.toggle('is-off', b > -1 && b !== ok);
+          if (b > -1) { any = true; if (b === ok) n++; }
+          var okLab = (($('[data-bin="' + ok + '"]', row) || {}).textContent || '').trim();
+          why.textContent = b < 0 ? '' : (b === ok ? tx('fiche.match') : tx('fiche.other').replace('{b}', okLab)) + ' ' + tx(why.getAttribute('data-why-k'));
+        });
+        if (score) { var s = any ? tx(score.getAttribute('data-score-k')).replace('{n}', n) : ''; if (score.textContent !== s) score.textContent = s; }
+      };
+      rows.forEach(function (row, r) {
+        $$('[data-bin]', row).forEach(function (x) {
+          x.addEventListener('click', function () {
+            var a = (F[f] || rows.map(function () { return -1; })).slice();
+            while (a.length < rows.length) a.push(-1);
+            a[r] = Number(x.getAttribute('data-bin'));
+            put(f, a); paint();
+          });
+        });
+      });
+      restores.push(paint); onLang.push(paint);
+    });
+    /* ---- three sliders, the character in the visitor's words, the nearest of the studio's three identities ---- */
+    var tone = $('[data-tone]', sec);
+    if (tone) {
+      var rg = $$('input[type="range"]', tone), you = $('[data-spec-you]', sec), cards = $$('[data-spec]', sec), PTS = [[1, 4, 1], [4, 2, 4], [2, 0, 2]], near = 2;
+      var word = function (i, v) { return tx(IT + '3.sliders.' + i + '.steps.' + v); };
+      var paintT = function (said) {
+        var v = F.tone || [2, 2, 2];
+        rg.forEach(function (r, i) { r.value = v[i]; r.setAttribute('aria-valuetext', word(i, v[i])); var o = $('[data-tone-o="' + i + '"]', tone); if (o) o.textContent = word(i, v[i]); });
+        var best = near, bd = 1e9;
+        PTS.forEach(function (p, k) { var d = 0; for (var j = 0; j < 3; j++) d += (p[j] - v[j]) * (p[j] - v[j]); if (d < bd || (d === bd && k === near)) { if (d < bd) best = k; bd = d; } });
+        near = best;
+        cards.forEach(function (c) { c.classList.toggle('is-on', Number(c.getAttribute('data-spec')) === near); });
+        if (said || F.tone) you.textContent = tx(IT + '3.spec.you').replace('{v}', v.map(function (x, i) { return word(i, x); }).join(sep));
+        else you.textContent = '';
+      };
+      rg.forEach(function (r) { r.addEventListener('input', function () { put('tone', rg.map(function (x) { return Number(x.value); })); paintT(true); }); });
+      restores.push(function () { paintT(false); }); onLang.push(function () { paintT(false); });
+      tone._near = function () { return F.tone ? cards[near].querySelector('.st-spec__name').textContent : ''; };
+    }
+    /* ---- the 16-pixel test: the marks follow the hand, at once ---- */
+    var mk = $('[data-marktest]', sec);
+    if (mk) {
+      var mr = $('input[type="range"]', mk), mo = $('[data-mk-out]', mk), ink = $('[data-mk-ink]', mk);
+      var size = function () { var n = Number(mr.value); mk.style.setProperty('--mk', n + 'px'); var s = tx(IT + '8.lab.out').replace('{n}', n); mo.textContent = s; mr.setAttribute('aria-valuetext', s); };
+      mr.addEventListener('input', size); size(); onLang.push(size);
+      ink.addEventListener('click', function () { var on = !mk.classList.contains('is-ink'); mk.classList.toggle('is-ink', on); ink.setAttribute('aria-pressed', String(on)); });
+    }
+    /* ---- the six states of a transaction (writes nothing) ---- */
+    var stt = $('[data-states]', sec);
+    if (stt) {
+      var srows = $$('[data-state]', stt), sline = $('[data-state-step]', stt), sg = $('[data-chips="one"]', stt), sAt = 0;
+      var heads = function () { var hs = $$('thead th', stt); srows.forEach(function (r) { $$('td', r).forEach(function (td, c) { td.setAttribute('data-head', hs[c + 1] ? hs[c + 1].textContent : ''); }); }); };
+      heads(); onLang.push(heads);
+      var paintS = function (i, said) {
+        sAt = i;
+        srows.forEach(function (r) { r.classList.toggle('is-on', Number(r.getAttribute('data-state')) === i); });
+        if (said) sline.textContent = tx(IT + '7.states.step').replace('{i}', i + 1) + sep + srows[i].lastElementChild.textContent;
+      };
+      hooks.push(function (f, v) { if (f === 'state') paintS(v, true); });
+      sg._choose(0); sline.textContent = '';
+      onLang.push(function () { if (sline.textContent) paintS(sAt, true); });
+    }
+    /* ---- the picker that writes a field (the request, the country): on a press only (13 emits numidea:pick) ---- */
+    document.addEventListener('numidea:pick', function (e) {
+      var el = e.detail && e.detail.el; if (!el || !sec.contains(el) || !el.hasAttribute('data-bf')) return;
+      put(el.getAttribute('data-bf'), Number(e.detail.i));
+    });
+    $$('[data-pick][data-bf]', sec).forEach(function (pk) { restores.push(function () { var f = pk.getAttribute('data-bf'); if (pk._pick) pk._pick(F[f] != null ? String(F[f]) : '0'); }); });
+    /* ---- the fork and the six questions ---- */
+    var flow = $('[data-flow]', sec), QS = flow ? $$('[data-flow-q]', flow) : [];
+    var verdict = function () {
+      if (F.fork === 1) return { k: 'pay' };
+      var a = F.flow || [], no = a.indexOf(0);
+      if (no > -1) return { k: 'no', i: no };
+      if (a.length >= QS.length && QS.length) return { k: 'maybe' };
+      return null;
+    };
+    var vText = function (v) {
+      if (!v) return ['', ''];
+      if (v.k === 'pay') return [tx(IT + '1.fork.payT'), tx(IT + '1.fork.payD')];
+      if (v.k === 'maybe') return [tx(IT + '1.flow.yesT'), tx(IT + '1.flow.yesD')];
+      var w = t(IT + '1.flow.qs.' + v.i + '.why');
+      return [tx(IT + '1.flow.noT'), tx(IT + '1.flow.noD').replace('{tool}', tx(IT + '1.flow.qs.' + v.i + '.no')) + (w ? ' ' + w : '')];
+    };
+    if (flow) {
+      var fstep = $('[data-flow-step]', flow), fend = $('[data-flow-end]', flow), trail = $('[data-flow-trail]', flow);
+      var fback = $('[data-flow-back]', flow), frest = $('[data-flow-restart]', flow), forkG = $('[data-fork]', sec);
+      var paintF = function (said, focus) {
+        var a = F.flow || [], v = verdict(), at = v ? -1 : a.length, vt = vText(v);
+        flow.classList.toggle('is-off', F.fork === 1);
+        QS.forEach(function (q, i) { q.classList.toggle('is-on', i === at); });
+        trail.textContent = '';
+        a.forEach(function (x, i) { var li = document.createElement('li'); li.textContent = 'Q' + (i + 1) + ' ' + (x ? tx('fiche.yes') : tx('fiche.no')); trail.appendChild(li); });
+        $('[data-flow-v]', fend).textContent = vt[0]; $('[data-flow-d]', fend).textContent = vt[1];
+        fend.classList.toggle('is-on', !!v);
+        fback.disabled = !a.length; frest.disabled = !a.length;
+        if (said) fstep.textContent = v ? vt[0] + ' ' + vt[1] : tx(IT + '1.flow.step').replace('{i}', at + 1);
+        if (focus) { if (v) { fend.tabIndex = -1; fend.focus(); } else if (QS[at]) QS[at].focus(); }
+      };
+      QS.forEach(function (q, i) {
+        $$('[data-flow-a]', q).forEach(function (b) {
+          b.addEventListener('click', function () { var a = (F.flow || []).slice(0, i); a.push(Number(b.getAttribute('data-flow-a'))); put('flow', a); paintF(true, true); });
+        });
+      });
+      fback.addEventListener('click', function () { var a = (F.flow || []).slice(0, -1); put('flow', a); paintF(true, true); });
+      frest.addEventListener('click', function () { put('flow', null); paintF(true, true); });
+      restores.push(function () { paintF(false); }); onLang.push(function () { paintF(!!fstep.textContent); });
+      // "a payment" skips the tree and opens step 3 on "Accepter la crypto" (the visitor goes on at their pace)
+      after.fork = function (v) {
+        if (v === 1) { F.request = 2; var pk = $('[data-pick][data-bf="request"]', sec); if (pk && pk._pick) pk._pick('2'); }
+        setTimeout(function () { paintF(true); }, 0);
+      };
+    }
+    /* ---- where the law cards show: France also shows the EU's ---- */
+    var law = $('[data-law]', sec);
+    var lawPaint = function () { if (!law) return; var w = F.where || []; $$('[data-law-card]', law).forEach(function (c) { var i = Number(c.getAttribute('data-law-card')); c.classList.toggle('is-on', w.indexOf(i) > -1 || (i === 1 && w.indexOf(2) > -1)); }); };
+    /* ---- the route a web3 request maps to, and its published price ---- */
+    var PK = priceKit;
+    var routeQ = function () {
+      if (B || F.request == null) return null;
+      var v = verdict();
+      if (v && v.k === 'maybe') return { none: tx('web3c.brief.noPrice'), maybe: true };
+      var r = F.request;
+      if (r === 5) return { none: tx(IT + '2.oursNone') };
+      if (r === 2 && F.site !== 0) return { none: tx(IT + '2.pick.2.site.yes') };
+      if (!PK) return null;
+      var type = r === 3 ? 'auto' : r === 2 ? 'vitrine' : 'app', n = r === 3 ? 3 : r === 2 ? 5 : 6, q = PK.quote(type, n, r === 2 ? ['pay'] : [], false);
+      return { type: type, n: n, q: q, pre: r === 2 ? tx(IT + '2.pick.2.site.no') : '', line: t('pricing.types.' + type) + sep + PK.counted(PK.M[type].u, n) + sep + PK.pair(q.lo, q.hi, 'DZD') };
+    };
+    var routeText = function (rq) { return !rq ? '' : rq.none ? rq.none : (rq.pre ? rq.pre + ' ' : '') + rq.line; };
+    /* ---- show-if: a block shown while a field matches ("request:!2", "where:0", "request:0,1,4,-", "priced:1") ---- */
+    var showIf = function () {
+      $$('[data-show-if]', sec).forEach(function (el) {
+        var m = /^(\w+):(!?)(.*)$/.exec(el.getAttribute('data-show-if')); if (!m) return;
+        var v = m[1] === 'priced' ? (routeQ() && routeQ().q ? 1 : 0) : F[m[1]], want = m[3].split(','), hit;
+        hit = want.some(function (w) { return w === '-' ? v == null : Array.isArray(v) ? v.indexOf(Number(w)) > -1 : v === Number(w); });
+        if (m[2]) hit = v != null && !hit;
+        el.classList.toggle('is-on', !!hit);
+      });
+    };
+    /* ---- the live parts of the stops: the person, the grid, the meter, the supports' count and receipt, the routes ---- */
+    // a typed value set inside a sentence of the other script is isolated (U+2068 FSI ... U+2069 PDI): French typed on the
+    // Arabic page, or Arabic on the French one, keeps its own order and does not drag the template's colon or words with it
+    var iso = function (v) { return v ? '\u2068' + v + '\u2069' : v; };
+    // on the page, each isolated value becomes its own <bdi> (the marks stay in the text that leaves)
+    var fillIso = function (el, s) {
+      el.textContent = '';
+      String(s).split(/(\u2068[^\u2069]*\u2069)/).forEach(function (part) {
+        if (!part) return;
+        if (part.charAt(0) !== '\u2068') { el.appendChild(document.createTextNode(part)); return; }
+        // its first strong letter names its direction; a value of the other script than the page's is kept on whole lines (style.css)
+        var v = part.slice(1, -1), m = /[A-Za-z\u00C0-\u024F]|[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/.exec(v), b = document.createElement('bdi');
+        b.className = 'st-fiche__v' + (m ? (/[A-Za-z\u00C0-\u024F]/.test(m[0]) ? ' is-ltr' : ' is-rtl') : ''); b.textContent = v; el.appendChild(b);
+      });
+    };
+    var gridLine = function () {
+      if (F.who == null || !F.seek || !F.promise || !F.proof) return '';
+      return tx(IT + '2.grid.line').replace('{who}', tx(IT + '2.grid.whoIn.' + F.who)).replace('{seek}', iso(F.seek)).replace('{promise}', iso(F.promise)).replace('{proof}', iso(F.proof));
+    };
+    var vague = function (s) {
+      if (!s) return '';
+      var words = tx(IT + '2.vagueWords').split('|').filter(Boolean).map(function (w) { return w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); });
+      try { var m = new RegExp('(^|[^\\p{L}])(' + words.join('|') + ')(?=$|[^\\p{L}])', 'iu').exec(s); return m ? m[2] : ''; } catch (e) { return ''; }
+    };
+    var live = function () {
+      var card = $('[data-person]', sec);
+      if (card) $$('[data-person-f]', card).forEach(function (dd) {
+        var f = dd.getAttribute('data-person-f'), v = f === 'who' ? (F.who != null ? lab('who', F.who) : '') : f === 'where' ? labs('where').join(cm()) : F[f] || '';
+        dd.textContent = v || tx(IT + '1.card.empty'); dd.classList.toggle('is-empty', !v);
+      });
+      var grid = $('[data-grid]', sec);
+      if (grid) {
+        $$('[data-grid-cell]', grid).forEach(function (dd) { var f = dd.getAttribute('data-grid-cell'), v = f === 'who' ? (F.who != null ? lab('who', F.who) : '') : F[f] || ''; dd.textContent = v || tx(IT + '2.grid.empty'); dd.classList.toggle('is-empty', !v); });
+        fillIso($('[data-grid-line]', sec), gridLine());
+      }
+      var meter = $('[data-meter]', sec);
+      if (meter) {
+        var w = vague(F.promise), m = !F.promise ? '' : w && !F.proof ? 'none' : !F.proof ? 'weak' : 'ok';
+        var s = m ? tx(IT + '2.meter.' + m) : '';
+        if (w) s += ' ' + tx(IT + '2.vague').replace('{w}', w);
+        if (meter.textContent !== s) meter.textContent = s;
+        meter.setAttribute('data-m', m);
+      }
+      var cnt = $('[data-sup-count]', sec);
+      if (cnt) { var n = (F.supports || []).length, s2 = n ? tx(IT + '7.count').replace('{n}', n) : ''; if (cnt.textContent !== s2) cnt.textContent = s2; }
+      var dsHas = $('[data-ds-has]', sec); if (dsHas) dsHas.classList.toggle('is-on', !!F.ds);
+      var mini = $('[data-mini-rc]', sec); if (mini) estA(mini, false);
+      $$('[data-route-out]', sec).forEach(function (o) {
+        var i = Number(o.getAttribute('data-route-out')), keep = F.request, s3;
+        F.request = i; s3 = routeText(routeQ()); F.request = keep;
+        if (F.request == null) delete F.request;
+        if (o.textContent !== s3) o.textContent = s3;
+      });
+      lawPaint();
+    };
+    /* ---- the estimate: a receipt on the console's own lines, then the notes ---- */
+    var table = function (q, m) {
+      var tb = document.createElement('table'); tb.className = 'st-rc';
+      var head = document.createElement('thead'), hr = document.createElement('tr');
+      ['pricing.rc.line', 'pricing.rc.min', 'pricing.rc.max'].forEach(function (k) { var th = document.createElement('th'); th.scope = 'col'; th.textContent = t(k); hr.appendChild(th); });
+      head.appendChild(hr); tb.appendChild(head);
+      var body = document.createElement('tbody');
+      q.lines.forEach(function (ln) {
+        var tr = document.createElement('tr'), th = document.createElement('th'); th.scope = 'row'; th.textContent = PK.lineLabel(ln, m); tr.appendChild(th);
+        ['lo', 'hi'].forEach(function (f) { var td = document.createElement('td'); td.dir = 'ltr'; td.textContent = PK.amt(ln[f]); tr.appendChild(td); });
+        body.appendChild(tr);
+      });
+      tb.appendChild(body);
+      var foot = document.createElement('tfoot'), fr = document.createElement('tr'), fth = document.createElement('th');
+      fth.scope = 'row'; fth.textContent = t('pricing.rc.total') + ' · ' + t('pricing.cur'); fr.appendChild(fth);
+      ['lo', 'hi'].forEach(function (f) { var td = document.createElement('td'); td.dir = 'ltr'; td.textContent = PK.amt(q[f]); fr.appendChild(td); });
+      foot.appendChild(fr); tb.appendChild(foot);
+      return tb;
+    };
+    var para = function (cls, s) { var p = document.createElement('p'); p.className = cls; p.textContent = s; return p; };
+    var weeks = function (q) { return (q.wLo === q.wHi ? String(q.wHi) : q.wLo + '–' + q.wHi) + ' ' + PK.wkN(q.wHi); };
+    // course A: the identity for the supports ticked (1 to 8), the kit and the pace; the animated logo apart, never added
+    var quoteA = function () {
+      var n = (F.supports || []).length; if (!n || !PK) return null;
+      return { n: n, q: PK.quote('identite', Math.max(1, Math.min(8, n)), F.ds ? ['ds'] : [], F.rush === 1) };
+    };
+    var estA = function (box, full) {
+      box.textContent = '';
+      var A = quoteA();
+      box.appendChild(para('st-label st-fiche__estk', tx('fiche.est')));
+      if (!A) { box.appendChild(para('st-fiche__none', '—')); return; }
+      box.appendChild(para('st-fiche__estl', tx('brandc.brief.typeLine') + sep + PK.counted(PK.M.identite.u, Math.min(8, A.n)) + sep + weeks(A.q)));
+      box.appendChild(table(A.q, PK.M.identite));
+      if (A.n > 8) box.appendChild(para('st-fiche__hint', tx(IT + '7.over')));
+      if (F.motion) {
+        var mq = PK.quote('motion', 5, [], F.rush === 1);
+        box.appendChild(para('st-fiche__estl', tx('brandc.brief.motionLine') + sep + tx(IT + '7.opts.motion') + sep + weeks(mq)));
+        box.appendChild(table(mq, PK.M.motion));
+      }
+      if (full) {
+        var bl = budgetLine(A.q); if (bl) box.appendChild(para('st-fiche__hint', bl));
+        box.appendChild(para('st-fiche__fine', tx('fiche.estNote')));
+        box.appendChild(para('st-fiche__fine', tx(IT + '7.rcNote')));
+      }
+      box.appendChild(para('st-fiche__fine', tx('fiche.cur')));
+    };
+    var budgetLine = function (q) {
+      if (F.budget === 0 && B) { var q1 = PK.quote('identite', 1, [], false); return tx(IT + '7.under').replace('{r}', PK.pair(q1.lo, q1.hi, 'DZD')); }
+      if ((F.budget === 1 || F.budget === 2) && q.lo <= PK.mid[1] && q.hi >= PK.mid[0]) return t('pricing.rc.mid').replace('{r}', PK.pair(PK.mid[0], PK.mid[1], 'DZD'));
+      return '';
+    };
+    // course B: the route's price, or the line that says there is none
+    var estB = function (box) {
+      box.textContent = '';
+      var rq = routeQ();
+      box.appendChild(para('st-label st-fiche__estk', tx('fiche.est')));
+      if (!rq) { box.appendChild(para('st-fiche__none', '—')); return; }
+      if (rq.none) { box.appendChild(para('st-fiche__estl', rq.none)); if (rq.maybe) box.appendChild(para('st-fiche__estl', tx(IT + '2.scope.line'))); return; }
+      box.appendChild(para('st-fiche__estl', (rq.pre ? rq.pre + ' ' : '') + rq.line + sep + weeks(rq.q)));
+      box.appendChild(table(rq.q, PK.M[rq.type]));
+      // no budget line here: its mid-range note offers the coaching call, which web3 does not offer (owner, W1/W3),
+      // and the sent text has none either
+      box.appendChild(para('st-fiche__fine', tx('fiche.estNote')));
+      box.appendChild(para('st-fiche__fine', tx('fiche.cur')));
+      var a = document.createElement('a'); a.href = './#pricing'; a.className = 'st-fiche__go'; a.textContent = tx('web3c.cta.go'); box.appendChild(a);
+    };
+    /* ---- the fiche's rows: [label key, value, the field whose stop fills it] ---- */
+    var whenText = function () { if (F.when == null) return ''; var s = lab('when', F.when); return F.when === 4 && F.date ? s + colon() + iso(F.date) : s; };
+    var rowsA = function () {
+      var A = quoteA(), sup = labs('supports'), soc = F.social != null ? lab('social', F.social) + (F.social === 1 ? ' (' + tx(IT + '7.social.none') + ')' : '') : '';
+      var who = []; if (F.who != null) who.push(lab('who', F.who)); if (F.seek) who.push(tx(IT + '1.card.seek') + colon() + iso(F.seek)); if (F.where) who.push(tx(IT + '1.card.where') + colon() + labs('where').join(cm())); if (F.doubt) who.push(tx(IT + '1.card.doubt') + colon() + iso(F.doubt));
+      var ask = []; $$('[data-bins][data-bf="flags"] [data-bin-row]', sec).forEach(function (row, r) { if ((F.flags || [])[r] === 1) ask.push($('.st-bins__k', row).textContent.trim()); });
+      var opts = []; if (F.motion) opts.push(tx(IT + '7.opts.motion')); if (F.ds) opts.push(tx(IT + '7.opts.ds') + ' (' + tx(IT + '7.opts.dsHas') + ')');
+      var bud = F.budget != null ? lab('budget', F.budget) + (A ? ' (' + tx('fiche.est').toLowerCase() + ' ' + PK.pair(A.q.lo, A.q.hi, 'DZD') + ')' : '') : '';
+      return [
+        ['biz', iso(F.biz), 'biz', 1], ['link', iso(F.link), 'link', 1], ['has', labs('has').join(cm()), 'has', 1],
+        ['who', who.join(sep), 'who'], ['promise', iso(F.promise), 'promise'], ['proof', F.proof ? (F.proofType != null ? '(' + lab('proofType', F.proofType) + ') ' : '') + iso(F.proof) : '', 'proof'],
+        ['positioning', gridLine(), 'promise'], ['tone', F.tone ? F.tone.map(function (x, i) { return tx(IT + '3.sliders.' + i + '.steps.' + x); }).join(sep) : '', 'tone'],
+        ['near', tone && tone._near ? tone._near() : '', 'tone'], ['voice', iso(F.voice), 'voice'], ['small', labs('small').join(cm()), 'small'],
+        ['where', sup.length ? '(' + sup.length + ') ' + sup.join(cm()) : '', 'supports'], ['social', soc, 'supports', 0, !(F.supports || []).length || (F.supports || []).indexOf(4) < 0],
+        ['opts', opts.join(sep), 'supports', 0, !opts.length], ['name', iso(F.name), 'name'], ['country', F.country != null ? lab('country', F.country) : '', 'country'], ['checks', labs('checks').join(cm()), 'checks'],
+        ['ask', ask.join(sep), 'flags'], ['when', whenText(), 'when', 1], ['budget', bud, 'budget', 1], ['decides', iso(F.decides), 'decides', 1], ['pace', F.rush != null ? lab('rush', F.rush) : '', 'rush']
+      ];
+    };
+    var rowsB = function () {
+      var v = verdict(), vt = vText(v), rq = routeQ(), r = F.request, chain = r === 0 || r === 1 || r === 4 || r == null;
+      var lf = r === 2 ? 'plines' : 'lines', lkeys = $$('[data-bf="' + lf + '"] [data-v]', sec).map(function (b) { return b.textContent.trim(); });
+      var got = (F[lf] || []).map(function (i) { return lkeys[i]; }), miss = F[lf] ? lkeys.filter(function (x, i) { return F[lf].indexOf(i) < 0; }) : [];
+      var plan = r === 0 || r === 1 || r === 4 ? labs('plan' + r).join(sep) : '';
+      var ours = [routeText(rq)]; if (rq) ours.push(tx(IT + '2.scope.line'));
+      var hint = []; if (F.goal && /\b(blockchain|token|jeton|nft|crypto|dao|smart contract|web3)\b|رمز|بلوكشين|كريبتو/i.test(F.goal)) hint.push(tx('web3c.brief.hintJargon'));
+      var scr = labs('screens').join(cm());
+      var bud = !rq || !rq.q ? (rq ? tx('fiche.budget.none') : '') : F.budget != null ? lab('budget', F.budget) + ' (' + tx('fiche.est').toLowerCase() + ' ' + PK.pair(rq.q.lo, rq.q.hi, 'DZD') + ')' : '';
+      var flowS = (F.flow || []).map(function (x, i) { return 'Q' + (i + 1) + ' ' + (x ? tx('fiche.yes') : tx('fiche.no')); }).join(sep);
+      return [
+        ['goal', F.goal ? iso(F.goal) + (hint.length ? ' (' + hint[0] + ')' : '') : '', 'goal', 1], ['has', [labs('has').join(cm()), iso(F.link)].filter(Boolean).join(sep), 'has', 1], ['size', F.size != null ? lab('size', F.size) : '', 'size'],
+        ['fork', F.fork != null ? lab('fork', F.fork) : '', 'fork'], ['flow', flowS, 'flow', 0, F.fork === 1], ['verdict', vt[0] ? vt[0] + ' ' + vt[1] : '', 'flow'],
+        ['request', r != null ? lab('request', r) : '', 'request'], ['route', r != null ? tx(IT + '2.pick.' + r + '.route') : '', 'request'],
+        ['site', r === 2 && F.site != null ? lab('site', F.site) : '', 'site', 0, r !== 2], ['resell', r === 0 && F.resell != null ? lab('resell', F.resell) : '', 'resell', 0, r !== 0],
+        ['plan', plan, 'plan' + r, 0, !(r === 0 || r === 1 || r === 4)], ['screens', scr, 'screens'],
+        ['ours', ours.filter(Boolean).join(' — '), 'request'], ['lines', got.join(cm()), lf], ['missing', miss.join(cm()), lf, 0, !miss.length],
+        ['warn', F.warn ? tx('fiche.yes') : F.spot || F.warn === false ? tx('fiche.no') : '', 'warn'], ['where', labs('where').join(cm()), 'where'], ['lawyer', F.lawyer != null ? lab('lawyer', F.lawyer) : '', 'lawyer'],
+        ['keys', F.keys != null ? lab('keys', F.keys) : '', 'keys', 0, !(r == null || r === 0 || r === 1 || r === 3 || r === 4)], ['zero', iso(F.zero), 'zero', 0, !chain],
+        ['when', whenText(), 'when', 1], ['budget', bud, 'budget', 1, !!rq && !rq.q], ['decides', iso(F.decides), 'decides', 1]
+      ];
+    };
+    /* ---- render: the rows, the estimate, the text that leaves, the two links ---- */
+    var out = $('[data-brief-out]', fiche), notes = $('[data-brief-notes]', fiche), estBox = $('[data-brief-est]', fiche), legalBox = $('[data-brief-legal]', fiche) || null, txt = $('[data-brief-txt]', fiche);
+    var wa = $('[data-brief-wa]', fiche), form = $('[data-brief-form]', fiche), status = $('[data-brief-status]', fiche);
+    var text = '', CAP = 6000;
+    var render = function () {
+      var rows = B ? rowsA() : rowsB(), frag = document.createDocumentFragment(), lines = { top: [], rest: [] };
+      rows.forEach(function (row) {
+        var k = row[0], v = row[1], skip = row[4];
+        if (skip && !v) return;
+        var div = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
+        dt.textContent = tx(set + '.brief.l.' + k);
+        if (v) { var bdi = document.createElement('bdi'); fillIso(bdi, v); dd.appendChild(bdi); (row[3] ? lines.top : lines.rest).push([k, '— ' + dt.textContent + colon() + v]); }
+        else {
+          var id = panelOf(row[2]) || lastId, a = document.createElement('a');
+          a.href = '#ls-t-' + id; a.className = 'st-fiche__go'; a.textContent = tx('fiche.goStop').replace('{n}', stopN(id));
+          a.addEventListener('click', function (e) { e.preventDefault(); go(id); });
+          dd.appendChild(a); dd.className = 'is-empty';
+        }
+        div.appendChild(dt); div.appendChild(dd); frag.appendChild(div);
+      });
+      // hints, plain and muted
+      var hints = [];
+      if (B) {
+        if (F.who == null || /tout le monde|everyone|الجميع/i.test(F.seek || '')) hints.push(tx('brandc.brief.hintWho'));
+        if (F.promise && !F.proof) hints.push(tx('brandc.brief.hintProof'));
+        var Aq = quoteA(); if (Aq && (F.when === 3 || F.when === 4) && Aq.q.wLo > 2) hints.push(tx('brandc.brief.hintRush'));
+      } else {
+        // a chain request (or the tree's "maybe") with no screen for a visitor without a wallet
+        var rr = F.request, vv = verdict();
+        if ((rr === 0 || rr === 1 || rr === 4 || (rr == null && vv && vv.k === 'maybe')) && (F.screens || []).indexOf(0) < 0) hints.push(tx('web3c.brief.hintWallet'));
+      }
+      out.textContent = ''; out.appendChild(frag);
+      notes.textContent = ''; if (legalBox) legalBox.textContent = '';
+      hints.forEach(function (h) { notes.appendChild(para('st-fiche__hint', h)); });
+      // the Algeria line whenever "en Algérie" is ticked, then the two legal lines (web3)
+      var legal = [];
+      if (!B) {
+        if ((F.where || []).indexOf(0) > -1) { legal.push(tx('money.note2')); legal.push(tx('web3c.brief.dz')); }
+        legal.push(tx('money.note1')); legal.push(tx('money.note2'));
+        legal.forEach(function (s, i) { (legalBox || notes).appendChild(para(i < legal.length - 2 ? 'st-fiche__dz' : 'st-fiche__legal', s)); });
+      }
+      if (B) estA(estBox, true); else estB(estBox);
+      // the text: the studio's triage first (the business, what exists, when, budget, who decides), then the rest in order, then the estimate
+      var estL = '';
+      if (B) { var A2 = quoteA(); if (A2) { estL = tx('fiche.est') + colon() + tx('brandc.brief.typeLine') + cm() + PK.counted(PK.M.identite.u, Math.min(8, A2.n)) + colon() + PK.pair(A2.q.lo, A2.q.hi, 'DZD') + cm() + weeks(A2.q) + '.'; var bl2 = budgetLine(A2.q); if (bl2) estL += ' ' + bl2; if (F.motion) { var mq2 = PK.quote('motion', 5, [], F.rush === 1); estL += ' ' + tx('brandc.brief.motionLine') + colon() + PK.pair(mq2.lo, mq2.hi, 'DZD') + '.'; } } }
+      else { var rq2 = routeQ(); if (rq2) estL = tx('fiche.est') + colon() + (rq2.q ? (rq2.pre ? rq2.pre + ' ' : '') + rq2.line + cm() + weeks(rq2.q) + '.' : rq2.none); }
+      if (estL && lang !== 'ar') estL = estL.charAt(0) + estL.slice(1, tx('fiche.est').length).toLowerCase() + estL.slice(tx('fiche.est').length);
+      var order = ['biz', 'goal', 'link', 'has', 'when', 'budget', 'decides'];
+      var top = lines.top.sort(function (a, b) { return order.indexOf(a[0]) - order.indexOf(b[0]); }).map(function (x) { return x[1]; });
+      var rest = lines.rest.map(function (x) { return x[1]; });
+      // the text carries each legal line once (the printed brief repeats money.note2 above the Algeria line)
+      var tail = (estL ? ['— ' + estL] : []).concat(legal.filter(function (s, i) { return legal.indexOf(s) === i; }).map(function (s) { return '— ' + s; }));
+      var hello = tx(set + '.brief.hello'), body = top.concat(rest), cut = false;
+      var build = function () { return body.concat(cut ? ['…'] : []).concat(tail).join('\n'); };
+      var over = function () { return encodeURIComponent(hello + '\n' + build()).length > CAP; };
+      // both outputs are URLs: the cap is on the encoded length (Arabic percent-encodes to several times its length).
+      // Over it, course rows go from the end (the studio's triage rows last), and at the very end the first row is shortened;
+      // the printed brief stays whole
+      while (over() && body.length > 1) { body.pop(); cut = true; }
+      while (over() && body.length && body[0].length > 24) { body[0] = body[0].slice(0, -8); cut = true; }
+      text = build();
+      txt.value = text;
+      wa.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(hello + '\n' + text);
+      form.href = (lang === 'fr' ? '../' : '../' + lang + '/') + '#contact';
+    };
+    var refresh = function () { showIf(); live(); render(); };
+    /* ---- the actions ---- */
+    var seal = $('[data-brief-seal]', fiche);
+    var stamp = function (how) {
+      seal.hidden = false;
+      if (!reduce) { if (seal.getAnimations && seal.classList.contains('is-stamp')) seal.getAnimations().forEach(function (a) { a.cancel(); a.play(); }); else seal.classList.add('is-stamp'); }
+      emit('numidea:brief', { set: set, how: how });
+    };
+    var say = function (k) { status.textContent = ''; status.textContent = tx(k); };
+    wa.addEventListener('click', function () { render(); stamp('wa'); say('fiche.st.sent'); });
+    form.addEventListener('click', function () { render(); try { sessionStorage.setItem('numidea-prefill', text); } catch (e) {} stamp('form'); });
+    $('[data-brief-copy]', fiche).addEventListener('click', function () {
+      render();
+      var fallback = function () { var d = txt.closest('details'); if (d) d.open = true; txt.focus(); txt.select(); say('fiche.st.copyFail'); };
+      stamp('copy');
+      try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { say('fiche.st.copied'); }, fallback); else fallback(); } catch (e) { fallback(); }
+    });
+    $('[data-brief-print]', fiche).addEventListener('click', function () {
+      render(); stamp('print'); go(lastId);
+      var done = function () { root.classList.remove('is-print-brief'); sec.removeAttribute('data-print'); removeEventListener('afterprint', done); };
+      root.classList.add('is-print-brief'); sec.setAttribute('data-print', set);
+      addEventListener('afterprint', done);
+      setTimeout(function () { try { print(); } catch (e) {} setTimeout(done, M(12)); }, 0);
+    });
+    $('[data-brief-clear]', fiche).addEventListener('click', function () {
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      clearTimeout(saveT); st = { v: 1, f: {} }; F = st.f;
+      restores.forEach(function (fn) { fn(); }); refresh(); say('fiche.st.cleared');
+    });
+    restores.forEach(function (fn) { fn(); });
+    refresh();
+    onLang.push(refresh);
+  });
+
+  /* ---------------- 13c · la fabrique ----------------
+     hub/fabrique.html only (each part looks for its markup). The 16-pixel slider of scene 01 sets --mk on the artboards:
+     the live mark follows the hand at once, a cut, and the 16 px one never moves. A console link ([data-est-carry]) leaves
+     the estimate it stands for in sessionStorage 'numidea-est' and navigates as usual; the Studio's section 6 reads it
+     once. The crop picker and the two lesson sets are 13's; the character's lift on an open breakdown is the sheet's. */
+  $$('[data-artb]').forEach(function (ab) {
+    var sc = ab.closest('.st-scene'), r = sc && $('[data-artb-r]', sc), o = sc && $('[data-artb-o]', sc), lab = $('[data-artb-out]', ab);
+    if (!r) return;
+    var size = function () {
+      var n = Number(r.value), s = n + ' px';
+      ab.style.setProperty('--mk', n + 'px');
+      if (o.textContent !== s) o.textContent = s;
+      if (lab.textContent !== s) lab.textContent = s;
+      r.setAttribute('aria-valuetext', s);
+    };
+    r.addEventListener('input', size); size(); onLang.push(size);
+  });
+  $$('[data-est-carry]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      try { sessionStorage.setItem('numidea-est', JSON.stringify({ k: a.getAttribute('data-est-carry'), pick: a.getAttribute('data-est-pick') || null, n: Number(a.getAttribute('data-est-size')) || 0 })); } catch (e) {}
+    });
+  });
 
   /* ---------------- 14 · the reel ----------------
      The motion section's clips ([data-reel], a button around a muted
@@ -1884,6 +2448,7 @@
     var own = $('.st-own'); if (own) targets.push([own, 'whq']);
     var con = $('.st-est'); if (con) targets.push([con, 'console']);
     var jeu = $('.st-ls--jeu'); if (jeu) targets.push([jeu, 'whq']);   // the course's HUD face, the arcade one
+    $$('[data-spec-faces]').forEach(function (el) { targets.push([el, el.getAttribute('data-spec-faces')]); });   // the brand course's specimens
     if (!IO) { targets.forEach(function (t) { load(t[1]); }); return; }
     var c = navigator.connection, lean = !!(c && (c.saveData || /(^|-)2g$/.test(c.effectiveType || '')));
     // the layouts ahead: once the faces are in (at once on a lean link, or after two beats if they are slow), one block per moment at rest

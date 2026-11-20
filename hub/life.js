@@ -451,6 +451,8 @@
     else push(trip(g, 'none', react()));
   };
   d.addEventListener('numidea:lesson', function (e) { answered(e.detail); });
+  // a client course's brief sent, copied or printed (hub/app.js 13b): if he is in view, the stamp's word (the first of life.k.right), nothing new
+  d.addEventListener('numidea:brief', function () { if (!playing && onScreen()) speak(t('life.k.right').split('|')[0]); });
   d.addEventListener('numidea:radio', function (e) {
     if (playing) return;
     measure();

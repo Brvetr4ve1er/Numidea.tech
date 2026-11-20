@@ -111,6 +111,14 @@ the choice recorded in `scripts/legal-data.mjs` (`ip.licence`) will cover them
 with his illustrations. Until he decides, nothing here grants a right to reuse
 them.
 
+## La fabrique's pictures — `hub/img/studio/atelier/` (2026-11-19)
+
+The five character cut-outs (`yasser-traveller*.webp`, `kuro-crouch.webp`, `ratman-tag.webp`, `pigeon.webp`) are the owner's own drawings from his upload "Outside the Artboard", cleaned and resized; `master-640/960.webp` are cut from the Studio's own sting still. No third-party screenshot ships: the upload's four documentation captures (Illustrator, Figma, Photoshop, After Effects) are not in the repository. The page's references are links only. The same "no licence chosen yet" note as above applies.
+
+## The client courses' pictures and the owner's placed artworks (2026-11-19)
+
+`hub/img/studio/brandc/` and `hub/img/studio/web3c/` (the manual's two client courses: two scenes and their `-800` twins, the tab pictures, the brief's reward sheet, the wallpaper and the road) were made for the site in November 2026 from the founder's characters, like the money and nomad art above. The reward sheet's only letters are this site's own: the wordmark drawn from Cinzel's outlines (`scripts/lib/wordmark.mjs`) and the seal 印 drawn from the Studio's Noto Sans JP subset, both under the SIL Open Font License listed above. The owner's own drawings placed on 2026-11-19 (`hub/img/mercury/companion-raven*.webp` and `companion-rat*.webp`, `hub/img/studio/world/crew-*.webp`, `hub/img/studio/lab/c08*`, `y-model2*` and `p21*` to `p24*`, `hub/img/studio/atelier/pigeon-stand.webp`) are his, as the illustrations above. No third-party picture is added. The same "no licence chosen yet" note applies.
+
 ## Third-party skills — `.claude/skills/`
 
 Tooling for the studio's creative work, never deployed (`NOT_DEPLOYED` in

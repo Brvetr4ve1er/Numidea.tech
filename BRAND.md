@@ -1933,7 +1933,7 @@ Page changes are the cross-document page lift (500 ms); the JavaScript paper wip
 
 **The market in the calculator.** Three bars (Algeria, France, United States) from the price guide's sourced table (`MARKET`, `assets/app.js` 14), each in its own currency on one logarithmic scale, with the estimate laid across in red. A type without a sourced row shows none.
 
-## Three pages, three readers (2026-11-16, the world's page 2026-11-18)
+## Three pages, three readers (2026-11-16, the world's page 2026-11-18; la fabrique, a fourth, 2026-11-19)
 
 The Studio (`/hub/`) is the client's page and reads in a buyer's order, proof before price: the opening, the doors, the problem, what we do, the Aperçu, client work, then the method and the prices, the brand, the web, then the studio, the questions and the contact. The motion reel sits under the motion line of the services: it shows a service. Nothing on it sells to another reader: its calculator prices client projects only, and motion is one line of the services list with its reel in the Lab.
 
@@ -1941,7 +1941,15 @@ The manual (`/hub/manuel.html`) is the learner's page: the lessons first, which 
 
 The world (`/hub/monde.html`) is the page of whoever came for the characters: the codex, the personal dossiers 06 to 08, the Lab and the diary, under one plain line that says nothing there is a client's. It was the Studio's back half until 2026-11-18; the Studio's second door, its bar and its footer lead to it, and it leads back with the same band as the manual. It sells nothing.
 
-A new block goes on the page of the reader it is for. If it is for none of the three, it is not for the Studio.
+La fabrique (`/hub/fabrique.html`, 2026-11-19) is the page of a client who wants to see how the work is made: four scenes, each with what it delivers at the published price and a link to the console; then a short course built around one project (the application's six lessons and the web3 engineering track's six, the latter published as education with the owner's line that the studio does not build the chain part). It sells only what the Studio sells, at the Studio's prices, and leads back to the console. The Studio links to it from its day door, under its four service cards, from the brand section, the motion line, its menu and its footer.
+
+A new block goes on the page of the reader it is for. If it is for none of the four, it is not for the Studio.
+
+**The two client courses (manual, 2026-11-19).** The manual carries two courses written for buyers, after the money lessons: `#marque` "Le logo vient après" (nine stops) and `#web3` "Le web3, sans fumée" (eight stops), in the lessons' shell (`data-ls`). They are the manual's only blocks that end in a sale, and they end in it the same way: a brief. The web3 course routes to ordinary work only (a site, an application, card or transfer payment, an automation) and says so in the owner's sentence (`web3c.items.2.scope.line`): the studio does not build the chain part. Its crypto screens carry `money.note1` and `money.note2` by key.
+
+**The brief rule.** A course's last stop is a brief laid out like the console's receipt, filled only from the visitor's own answers; every row links back to the stop that filled it, and an empty answer prints as a blank, never as a guess. Its price comes from the calculator's own `quote()` (through `priceKit`), never typed: a brief whose answers end in "maybe chain" prints no price, only the scope sentence, and offers no 1:1 call. The brief leaves the device only when the visitor presses (WhatsApp, the home page's contact form, copy, print); answers stay in `localStorage` (`numidea-brief-<set>`) and are cleared by its own button. Each legal line is printed once in the sent text; the sent text is capped at 6 000 encoded characters (rows drop from the end), the printed brief stays whole.
+
+**The owner's own drawing style stays on two pages.** The owner's hand-drawn characters as he drew them (the traveller Yasser, the crouching Kūro, Ratman, Techno Pigeon, MERCURY's reference sheets, the crew on the ledge, the Lab's new pieces) appear on the world page and on la fabrique only. The Studio, the manual and the home keep the house scenes; a character of the owner's style that is not in the bible (Ratman, Techno Pigeon) is a speaker in Latin letters, never a codex entry. Which rat is canon (MERCURY's grey rat or the tan Ratman) is the owner's open question (OWNER-CONTENT §40): until he answers, the two never share a page.
 
 ## The world's voice (2026-11-16)
 
@@ -1988,6 +1996,8 @@ The site has one source of sound, the workshop radio on the manual page, and it 
 A lesson is one idea, one gesture and one question, in that order: two or three sentences, then something to press or type (one explanation at a time, or a figure worked out of the visitor's own numbers), then a question with three answers. A right answer stamps the lesson with the seal; a wrong one says so and lets the reader try again. Stamps stay on the visitor's device and are sent nowhere.
 
 **What a lesson may say.** A figure in a lesson is either the visitor's own input or carries its source beside it. A rule that changes by country, bank or service is not stated as fact: the lesson says what to check and with whom. No provider is named unless its own page has been read for the reader's country. Anything about money that could be read as advice carries the two notes (education, not advice; the law where you live).
+
+**On la fabrique (2026-11-19).** Two six-lesson sets in the same shell (`data-ls="chantier"` and `data-ls="chaine"`), with text-only tabs (`st-ls--bare`) until their pictures exist; their stops add a worked example, an exercise and a check in a closed `<details>`, so the visible part stays two or three sentences. A stop may be opened from the address (`?ls=<panel id>`), which is how la fabrique links into the manual's client courses.
 
 **How it looks.** Lessons sit on a night plate (the navy of the night panels), as tabs with one small picture each, Kūro in every picture; the open lesson is a cream page. Keys press down 3px like the console's. Without scripts every lesson is laid out in full and the questions are not shown.
 

@@ -160,6 +160,7 @@ for (const lang of ['fr', 'ar']) for (const size of Object.keys(SIZES))
   result.pages[`hub ${lang} ${size}`] = await measure('/hub/index.html', { lang, size });
 for (const size of Object.keys(SIZES)) result.pages[`hub manual fr ${size}`] = await measure('/hub/manuel.html', { lang: 'fr', size });
 for (const size of Object.keys(SIZES)) result.pages[`hub world fr ${size}`] = await measure('/hub/monde.html', { lang: 'fr', size });
+for (const size of Object.keys(SIZES)) result.pages[`hub fabrique fr ${size}`] = await measure('/hub/fabrique.html', { lang: 'fr', size });
 for (const [name, path] of [['hub bible', '/hub/bible/index.html'], ['workspacehq', '/workspacehq/index.html'], ['404', '/404.html']])
   for (const size of Object.keys(SIZES)) result.pages[`${name} ${size}`] = await measure(path, { size });
 await b.close(); srv?.close();

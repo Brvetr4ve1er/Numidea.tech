@@ -231,7 +231,14 @@ const run=async(label,path,o={})=>{
   // ع is drawn since 2ad9e7d, and contact.vReply lost its <span lang="ar">ع</span>
   // in cac515f, so no French or English page asks for an Arabic file any
   // more: one that does fails the run ('arfont'; report-only until then).
-  const arFont=await p.evaluate(()=>({lang:document.documentElement.lang,n:performance.getEntriesByType('resource').filter(r=>/\/assets\/fonts\/ibm-plex-sans-arabic-[^/]*\.woff2/.test(r.name)).length}));
+  // A page that sets real Arabic copy in another language's page (la
+  // fabrique's design-system scene shows the MARK card in French, English
+  // and Arabic, 2026-11-19) needs the face for that copy: 'ar' counts the
+  // Arabic letters inside [lang="ar"] outside the language switch, and 20 or
+  // more of them is content, not a stray glyph, so the files are reported, not failed.
+  const arFont=await p.evaluate(()=>({lang:document.documentElement.lang,n:performance.getEntriesByType('resource').filter(r=>/\/assets\/fonts\/ibm-plex-sans-arabic-[^/]*\.woff2/.test(r.name)).length,
+    ar:[...document.querySelectorAll('body [lang="ar"]')].filter(e=>!e.closest('[data-lang]')&&!e.parentElement.closest('[lang="ar"]')).reduce((t,e)=>t+(e.textContent.match(/[\u0600-\u06FF]/g)||[]).length,0)}));
+  const arCopy=arFont.lang!=='ar'&&arFont.n&&arFont.ar>=20;
   const {errs,bad,csp,waived}=W;
   const issues=[];
   if(m.cls>clsMax)issues.push('cls');if(ax.length)issues.push('axe');if(m.of.length||m.hscroll)issues.push('overflow');
@@ -239,7 +246,7 @@ const run=async(label,path,o={})=>{
   if(m.hidden)issues.push('unrevealed');if(m.imgs)issues.push('img');if(m.small)issues.push('tap');
   if(csp.length)issues.push('csp');if(broke.length)issues.push('act');if(stuck.length)issues.push('loop');
   if(lcpBudget&&!(lcp>0&&lcp<=lcpBudget))issues.push('lcp');
-  if(arFont.lang!=='ar'&&arFont.n)issues.push('arfont');
+  if(arFont.lang!=='ar'&&arFont.n&&!arCopy)issues.push('arfont');
   if(lede&&!(m.ledeTop!==null&&m.ledeTop<h))issues.push('lede');
   const line=`cls ${m.cls.toFixed(4)}  lcp ${Math.round(lcp)}ms${lcpBudget?'/'+lcpBudget:''}  axe ${ax.join(',')||0}  of ${m.of.length+(m.hscroll?'+H':'')}  unrev ${m.hidden}  tap<24 ${m.small}  img ${m.imgs}  anim ${anim}  js ${errs.length}${waived?' (+'+waived+' waived)':''}  net ${bad.length}  3p ${third}  csp ${csp.length}${loops.length?`  loops ${loops.length-stuck.length}/${loops.length}`:''}${arFont.lang!=='ar'?`  arfont ${arFont.n}`:''}${lede?`  lede ${m.ledeTop}/${h}`:''}  fonts ${(m.fontBytes/1024).toFixed(0)}kB`;
   await p.close();
@@ -251,7 +258,7 @@ const run=async(label,path,o={})=>{
   rows.push({label,lcp,...m,anim,ax,errs,bad,third,csp,issues});
   console.log((issues.length?'FAIL ':'  ok ')+label.padEnd(26),line);
   if(ax.length)for(const n of axr.nodes)console.log('      axe:',n);
-  if(arFont.lang!=='ar'&&arFont.n)console.log('   arfont:',`${arFont.n} Arabic font file(s) fetched by a page in "${arFont.lang}"`);
+  if(arFont.lang!=='ar'&&arFont.n)console.log('   arfont:',`${arFont.n} Arabic font file(s) fetched by a page in "${arFont.lang}"`+(arCopy?` for ${arFont.ar} Arabic letters of marked copy (allowed)`:''));
   if(errs.length)console.log('       js:',errs.join(' | '));
   if(bad.length)console.log('      net:',bad.join(' | '));
   if(csp.length)console.log('      csp:',csp.join(' | '));
@@ -525,6 +532,9 @@ await run('hub manual ar','/hub/manuel.html',{...D,lang:'ar'});
 // the world beside the Studio (hub/monde.html, 2026-11-18): the codex, the personal dossiers, the Lab, the diary; same sheet and script
 await run('hub world fr','/hub/monde.html',{...D,lang:'fr'});
 await run('hub world ar','/hub/monde.html',{...D,lang:'ar'});
+// la fabrique (hub/fabrique.html, 2026-11-19): the four scenes and the two lesson sets; same sheet and script
+await run('hub fabrique fr','/hub/fabrique.html',{...D,lang:'fr'});
+await run('hub fabrique ar','/hub/fabrique.html',{...D,lang:'ar'});
 await run('hub bible','/hub/bible/index.html',D);
 // the three brand books (hub/brand/): static plate sets, one paper page each
 for(const b of ['almaflow','traveler','numidea','exploration']) await run('hub brand '+b,'/hub/brand/'+b+'/index.html',D);
@@ -568,6 +578,10 @@ await run('hub world fr m','/hub/monde.html',{lang:'fr',w:390,h:844});
 await run('hub world ar m','/hub/monde.html',{lang:'ar',w:390,h:844});
 await run('hub world en m','/hub/monde.html',{lang:'en',w:390,h:844});
 await run('hub world fr xs','/hub/monde.html',{lang:'fr',w:280,h:653});
+await run('hub fabrique fr m','/hub/fabrique.html',{lang:'fr',w:390,h:844});
+await run('hub fabrique ar m','/hub/fabrique.html',{lang:'ar',w:390,h:844});
+await run('hub fabrique en m','/hub/fabrique.html',{lang:'en',w:390,h:844});
+await run('hub fabrique fr xs','/hub/fabrique.html',{lang:'fr',w:280,h:653});
 await run('hub bible m','/hub/bible/index.html',{w:390,h:844});
 for(const b of ['almaflow','traveler','numidea','exploration']) await run('hub brand '+b+' m','/hub/brand/'+b+'/index.html',{w:390,h:844});
 for(const l of ['fr','en','ar']) await run('scene '+l+' m','/scene/index.html',{lang:l,w:390,h:844});

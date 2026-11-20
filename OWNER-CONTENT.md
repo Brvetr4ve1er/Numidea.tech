@@ -18,7 +18,7 @@ what the Studio page changed from your design).
 | 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11 and 2026-11-14 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14 and 2026-11-19 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all; on 2026-11-19 the two client courses, la fabrique and the alt texts of the owner's placed artworks, §38 to §41) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
@@ -136,9 +136,9 @@ item 6 can cover it.
 
 ## 8. Arabic native review
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
-2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14 and 2026-11-15 awaits native review** (the lists are at the end of this section,
+2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-15 and 2026-11-19 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14" and "Written or changed on 2026-11-15"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19" and "Also written on 2026-11-19"); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -648,6 +648,34 @@ The Studio has no contact form (WhatsApp, the Aperçu and e-mail only), so the
 sent-form seal exists on the home's form only; the estimator seal is on the
 home, the price guide and the Studio. The real photograph of Yasser (section 3)
 still replaces the drawn portrait where the home's founder card keeps its slot.
+
+Written or changed on 2026-11-19 (the manual's two client courses, §38; none
+read by a native speaker; every string is **AR: native review**). In
+`hub/src/i18n/ar.json`: the whole of the groups `fiche` (the brief's shared
+controls), `brandc` ("Le logo vient après") and `web3c` ("Le web3, sans
+fumée"), 739 strings, and the changed keys `money.lead`, `money.ls.kicker`,
+`money.ls.tabs`, `manual.ui.title`, `manual.ui.desc`, `manual.nav.brand`,
+`manual.nav.web3`, `doors.c.d`, `doors.c.buy`, `doors.c.buyBrand`,
+`doors.c.buyWeb3`, `brand.prep`, `services.items.2.prep`,
+`money.ls.items.4.web3`, `start.codex.e.manuel.d`. New with your answers of
+2026-11-18: `brandc.items.5.rows.{2,3,4,6}.ours`, `brandc.items.6.rights`,
+`brandc.items.7.opts.{base,dsHas}`, `web3c.items.2.scope.line`. Please read
+the brand course with a shop owner, not only for grammar; the positioning
+sentence (`brandc.items.2.grid.line`, «لمن يبحث عن {seek} ({who}): …») is
+built so the buyer chip needs no agreement: check that it reads naturally.
+
+Also written on 2026-11-19, for la fabrique (§39) and your artworks (§40), none
+read by a native speaker, every string **AR: native review**. In
+`hub/src/i18n/ar.json`: the whole group `fab` (357 strings, 146 of them
+written in that pass: all of `fab.w3.*`, the web3 engineering track, plus
+`fab.ui.desc`, `fab.nav.chaine`, `fab.s.0.scale`, `fab.course.lead`,
+`fab.course.web3.{d,go,client}` and `fab.ch.all.go`); the Studio's changed keys
+`doors.a.how`, `services.how`, `brand.how`, `motion.line.how` and `nav.fab`;
+and for your artworks `proof.mc.framesLabel` (changed), `proof.mc.frames.5`,
+`proof.mc.frames.6`, `start.crew.alt` and `lab.pieces.30` to `lab.pieces.35`.
+`fab.ui.title` (the page's search title) is unchanged in Arabic; only the
+French was shortened on integration (§41). Each string is read in
+`hub/src/i18n/ar.json` under its key.
 
 ## 8b. The Google tag and consent (2026-11-14)
 The site loads the owner's Google Tag Manager container (GTM-PMF7RWVK) on every
@@ -1299,7 +1327,7 @@ cards, the kit strip and the calculator all read them from there.
 - **What I did not know and left out:** how many guides there are and their
   titles; whether the calls are in French, English or Arabic; how the client
   pays for a call. The page promises none of these.
-- **Crypto:** it is taught (lessons 1, 5 and 6) and it is a topic of the call
+- **Crypto:** it is taught (lessons 1 and 5, and the client course "Le web3, sans fumée", §38) and it is a topic of the call
   and of the setup session. The page says, in three languages, that this is
   education and not financial advice, with no trading signals, no management
   of funds and no promise of gain, and it names Algeria's law 25-10 of July
@@ -2114,3 +2142,198 @@ No licence is chosen for these yet, like the rest of the art.
 - E20 (the Bordj Steel references capture with its grey band) needs a new
   capture of the live site.
 
+## 38. The two client courses: "Le logo vient après" and "Le web3, sans fumée" (2026-11-19)
+
+The manual (`hub/manuel.html`) now carries two courses for clients, after the
+money lessons: **#marque** "Le logo vient après" (nine stops) and **#web3**
+"Le web3, sans fumée" (eight stops). Each ends in a brief (the fiche): the
+visitor's answers fill a one-page brief set as the Studio's receipt, with an
+estimate from the calculator's own prices, and it leaves only when the
+visitor presses: WhatsApp, the home page's contact form (carried as the
+price guide's estimate is), copy, or print. Answers stay on the device. The
+money set drops "Web3 101" (L6), which grew into the web3 course: the manual
+now counts 38 lessons (5 + 9 + 8 + 8 + 8). The Studio links in from the third
+door ("Avant d'acheter : la marque · le web3"), the brand section (a button)
+and the MARK service card.
+
+**Your answers of 2026-11-18, as published**
+- **Course B is published on your decision of 2026-11-18, without a
+  lawyer's review** (W4, law 25-10). You take the legal responsibility, as for
+  the coaching. `money.note1` and `money.note2` are printed by key under the
+  plate, in the payment panel, on the Algeria card and on the brief.
+- **What the studio builds in web3 (W1): the ordinary routes only.** The
+  course says, on step 3 and on every brief that carries a route: « Nous ne
+  construisons pas la partie chaîne (contrats, jetons, portefeuilles) ; nous
+  construisons la solution ordinaire, et nous vous aidons à décider. » A brief
+  whose six questions end in "maybe" prints no price; the 1:1 call is not
+  offered for web3 (W3).
+- **Ownership of an identity (B1): sources + written rights.** Step 6 (the
+  rights row) and step 8 say: once paid, the vector sources and a written
+  assignment of the rights naming use, place and duration; the studio keeps
+  the right to show the work; fonts and photos follow their own licence.
+- **Package and rounds (B2/B3): base + kit, three rounds.** The base identity
+  is the logo (full, compact, one ink: O2), colours, type and tone of voice;
+  the "Kit graphique complet" adds the guidelines, reusable components, the
+  animated social kit and the campaign master (O3). Two first routes, then
+  three rounds of changes per stage. The kit toggle is shown on step 9, with
+  its contents under it; its price is the calculator's `ds` option.
+- Everything else is the spec's safe default (B4-B14, W2, W5-W7, X1-X4): no
+  VARA disclaimer is published (W7); the form subject stays "Estimation" (X4).
+
+**What I could not do, or did differently**
+- **Two tab pictures (3b, 4b) were not drawn.** Steps 5 (16 pixels) and 4
+  (chain and base) use crops of the two course scenes instead
+  (`brandc/bk-9.webp`: Kūro's paw on the red stamp; `web3c/wk-8.webp`: the
+  three cubes beside the cardboard boxes). Say if you want them drawn.
+- **The A4 reward** (`brandc/fiche-kuro.webp`): the generated "NUMIDEA LABS"
+  lettering and the generated seal were painted out with the paper's colour
+  and replaced by the site's wordmark (the Cinzel paths of
+  `scripts/lib/wordmark.mjs`) and a true 印 from the Studio's own Japanese
+  face. No drawn letters remain.
+- **The send cap.** WhatsApp and the form's mail both travel as URLs, so the
+  text is capped at 6 000 encoded characters; a fully filled Arabic brief
+  loses its last rows in the text (the printed brief stays whole). It was not
+  tried on a real phone: please send one Arabic brief to yourself.
+- The vague words of step 3 differ in number per language, so the
+  dictionaries hold them as one string split by `|`.
+- The published-size ceiling in `scripts/check.mjs` is not raised here (the
+  integrator does it): the two courses add about 1.7 MB (two scenes and their
+  -800 twins, 16 tab pictures, the reward, the wallpaper and the road, the
+  manual's markup and three dictionaries).
+- The Arabic is listed in §8.
+
+## 39. La fabrique: your "Outside the Artboard" as a Studio page (2026-11-19)
+
+`hub/fabrique.html`, "Hors du plan de travail.", built from your upload and the
+spec ATELIER.md. Four scenes (brand identity, design systems, campaign artwork,
+motion identity), each a framed plate with the studio's own visual and one of
+your characters, your line for that character, then a breakdown: why, what you
+get (your words), the published service line it maps to, the published price
+(from the calculator, never typed) and a button that opens the console on that
+type. Then "Apprendre en fabriquant": the brand track links to the manual's
+course; the application's six lessons ("Le chantier", with the booking lab) and
+the web3 engineering track's six ("La chaîne locale", with the receipt lab) are
+on the page.
+
+**Decisions taken by default (your answers of 2026-11-18, "Defaults taken"; you may overrule)**
+- P1: Adobe Illustrator, Figma, Adobe Photoshop on iPad and Adobe After Effects
+  are printed as small labels on the four plates, as your own statement of the
+  tools you use. Nothing else names a tool, except the references (Figma's own
+  help page is source [1] of scene 02).
+- P2: each scene prints your "what you get" as written, then the published line
+  and its price. Scene 03 (the campaign) has no published price: "Pas de prix
+  publié à part : cela se chiffre au cadrage", and its button opens the contact.
+  Scene 02 prints the "Kit graphique complet" option's price (+ 60 000 – 140 000
+  DA) as an option of the identity.
+- P4: the traveller Yasser and the crouching Kūro are used as drawn, on la
+  fabrique only; Kūro's plate is cream so his fur reads. P5: Ratman and Techno
+  Pigeon appear only as speakers, in Latin letters, no codex entry. P6: Kūro's
+  line is yours, translated faithfully.
+- P7: the web3 engineering track is published as education (all six of the
+  upload's lessons, including contracts and tests, events and indexing), under
+  your line "Nous ne construisons pas la partie chaîne (contrats, jetons,
+  portefeuilles) ; nous construisons la solution ordinaire, et nous vous aidons
+  à décider." and `money.note1` / `money.note2`. Its facts name ethereum.org;
+  what is not cited is labelled the workshop's method. Its all-done line leads
+  to the manual's web3 course, not to a price.
+- P8: the twelve tabs have no pictures (text only). P9: no new seal glyph.
+- The four documentation screenshots of the upload (Illustrator, Figma,
+  Photoshop, After Effects) are not used anywhere: the plates show the studio's
+  own wordmark and favicon (with a 16-to-104-pixel slider), the Studio's own
+  service card in three languages, the sting still with four crop windows, and
+  this site's entrance curve over the reel's opening.
+
+**Art.** `hub/img/studio/atelier/`: five cut-outs from your PNGs (01, 03, 05, 07,
+08; halo cleaned, never upscaled) and two cuts of the Studio's own sting still.
+298 736 bytes. `scripts/check.mjs` TOTAL raised by 831 752 bytes for the page
+(the courses' own 1.7 MB are still outside it, see §38).
+
+**Arabic.** Every Arabic string of the page (357 under `fab`, 146 written in this
+pass) awaits a native reader.
+
+
+
+## 40. Your own artworks, placed (2026-11-19)
+
+The art director's picks from your folders (ten pieces, nineteen files in
+`hub/img`, 2 332 646 bytes; `scripts/check.mjs` TOTAL raised by 2 350 646 with
+their markup and alt text) are on the site:
+
+- **The world page (`hub/monde.html`).** MERCURY's poster strip gains two
+  reference sheets under the five posters, `06 · RAVEN · REFERENCE` and
+  `07 · RAT · REFERENCE`, opening full size in the viewer with the posters.
+  "Trois couches, un seul atelier." gains a framed strip of the crew on the
+  ledge (a crop of your "HOME" poster with none of its drawn text). The Lab
+  wall gains six tiles after A07: A08 (the cartographer), Y06 (Yasser, model
+  02, shown as a study; the bible's `rig-y-base` stays canon), P21 (last
+  transmission), P22 (the listener), P23 and P24 (the two halo screenprints).
+  Each opens its large file in the viewer, as the set "lab".
+- **La fabrique (`hub/fabrique.html`).** The web3 track card shows the techno
+  pigeon standing (`atelier/pigeon-stand.webp`, cut out); scene 04 keeps the
+  flying pigeon.
+
+**Your question to answer: which rat is canon?** The grey rat of MERCURY (your
+sheet SytXzOiUb8, the act-2 poster's rat in the satchel, now on the world page)
+or the tan Ratman on la fabrique (`atelier/ratman-tag.webp`, the full-stack
+card)? Nothing is decided: the two never appear on the same page, and the
+world page's caption says "RAT", not "Ratman", until you answer.
+
+**Arabic.** The ten new alt texts and the strip's new label are written in
+Arabic and await a native reader.
+
+## 41. The three pieces together: the courses, la fabrique and your artworks (2026-11-19)
+
+The three passes of 2026-11-19 (§38 to §40) are one change set. In short, what
+is now on the site and what was decided for you:
+
+- **The two client courses (manual, §38).** "Le logo vient après" (`#marque`,
+  nine stops) and "Le web3, sans fumée" (`#web3`, eight stops), each ending in
+  a brief priced by the calculator itself. Your answers of 2026-11-18 are
+  applied: **web3 is published on your decision of 2026-11-18, without a
+  lawyer's review** (W4, law 25-10; `money.note1` and `money.note2` stay on
+  every crypto screen); the studio builds the ordinary routes only and says it
+  in your sentence (W1), a "maybe chain" brief prints no price and the 1:1
+  call is not offered for web3 (W3); an identity is handed over as vector
+  sources with a written assignment of the rights (B1); base identity plus the
+  "Kit graphique complet", two first routes and three rounds per stage (B2/B3).
+- **La fabrique (`hub/fabrique.html`, §39).** Four scenes from your "Outside
+  the Artboard", each with what it delivers at the published price, and two
+  six-lesson sets ("Le chantier" and "La chaîne locale", the web3 engineering
+  track published as education). The defaults taken for you (O1 to O5, P1 to
+  P9) are listed in §39 and your answers file; you may overrule any of them.
+- **Your artworks (§40).** Nineteen files placed on the world page (MERCURY's
+  two reference sheets, the crew strip, six new Lab tiles) and the standing
+  pigeon on la fabrique.
+
+**Your questions still open**
+- **Which rat is canon** (§40): MERCURY's grey rat or the tan Ratman. Until you
+  answer they never share a page and the world page says "RAT".
+- **The courses' other questions were left at the spec's safe defaults**
+  (B4 to B14, W2, W5 to W7, X1 to X4): among them, no VARA disclaimer is
+  published (W7) and the form subject stays "Estimation" (X4). Say if any
+  should change.
+- The two course tab pictures that were not drawn (3b, 4b, §38) and the twelve
+  text-only tabs of la fabrique (P8, IMPROVEMENTS A14).
+- The Arabic of all three passes (§8): none of it has been read by a native
+  speaker.
+- A fully filled Arabic brief loses its last rows in the sent text (the 6 000
+  character cap, §38): please send one to yourself from a phone.
+
+**Changed on integration**
+- La fabrique's French search title was 79 characters, over the validator's 70:
+  it is now « Identité, design system, campagne, motion : la méthode | Numidea
+  Labs » (English and Arabic unchanged). Its scenes section is named by its own
+  label (« Les scènes »), not by the page heading, and the crop scene's caption
+  is the figure's last element (shown in the same place).
+- In Arabic, the reel's tempo numbers sat on the pigeon (contrast 3.4:1); they
+  move to the other side. On a 280-pixel phone the Studio's contact label wrapped
+  over the board's word « salut. »; it stays on one line.
+- On a phone, la fabrique's lesson tabs (text only) cut a word in two
+  (« الصلاحيات » at 390 pixels, « Confiance » at 280): the title now takes the
+  tab's whole width, and under 360 pixels the six tabs sit in two columns.
+- The audit no longer fails a French or English page for loading the Arabic
+  face when the page shows real Arabic copy (la fabrique's MARK card in three
+  languages); a stray Arabic glyph still fails it.
+- `scripts/check.mjs` TOTAL raised to the measured published set, for the
+  courses' art and markup (which §38 left outside it), la fabrique and the
+  artworks.
