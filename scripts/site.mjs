@@ -12,7 +12,7 @@
  *               (`vercel pull`, which `vercel build` needs) exist where the
  *               mirrors build, so check.mjs must accept them
  */
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -34,12 +34,20 @@ export const THEMES = ['arcanum', 'daylight'];
    field; until then nothing may link to it and it is not deployed */
 export const LEGAL_PUBLISHED = existsSync(join(ROOT, 'legal/index.html'));
 
+/* La Librairie Lanterne (hub/lanterne/, 2026-11-21): the shelf and one page per atlas, written by build-hub.mjs
+   (scripts/lib/lanterne.mjs). An atlas is a page once its data file exists (hub/src/lanterne/atlases/<slug>.json) and
+   its book is on the shelf (hub/src/lanterne/shelf.json); the second web3 volume is on no shelf (owner decision L9).
+   hub/manuel.html stays an entry: the old manual's address, now a forwarding stub (noindex). */
+const LANT_SRC = join(ROOT, 'hub/src/lanterne');
+export const LANTERNE_ATLASES = (() => { try { return JSON.parse(readFileSync(join(LANT_SRC, 'shelf.json'), 'utf8')).shelves.flatMap((s) => s.books.map((b) => b.slug)).filter((slug) => existsSync(join(LANT_SRC, 'atlases', slug + '.json'))); } catch (e) { return []; } })();
+export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.map((s) => `hub/lanterne/${s}.html`)];
+
 /* the landing page is three static pages, one per language: index.html
    (French, the template) and en/, ar/ written from it by build-lang.mjs;
    the price guide likewise: tarifs/ and en/tarifs/, ar/tarifs/, written by
    build-tarifs.mjs */
 export const PAGES = ['index.html', 'en/index.html', 'ar/index.html', 'tarifs/index.html', 'en/tarifs/index.html', 'ar/tarifs/index.html',
-  '404.html', 'hub/index.html', 'hub/manuel.html', 'hub/monde.html', 'hub/fabrique.html', 'hub/bible/index.html', 'hub/brand/almaflow/index.html', 'hub/brand/traveler/index.html', 'hub/brand/numidea/index.html', 'hub/brand/exploration/index.html',
+  '404.html', 'hub/index.html', 'hub/manuel.html', ...LANTERNE_PAGES, 'hub/monde.html', 'hub/fabrique.html', 'hub/bible/index.html', 'hub/brand/almaflow/index.html', 'hub/brand/traveler/index.html', 'hub/brand/numidea/index.html', 'hub/brand/exploration/index.html',
   'scene/index.html', 'workspacehq/index.html']
   .concat(LEGAL_PUBLISHED ? ['legal/index.html'] : []);
 export const EXTRA_PAGES = ['workspacehq/embed/trailer.html', 'workspacehq/embed/walkthrough.html', 'workspacehq/embed/console.html'];
@@ -52,6 +60,8 @@ export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', '404.html', 'robots.t
 // which ignores case: the embed's export spells its notes readme.md
 export const DEPLOY_SKIP = ['README.md', '_ds_manifest.json', '.DS_Store'];
 export const isDeploySkipped = (name) => DEPLOY_SKIP.some((s) => s.toLowerCase() === String(name).toLowerCase());
-export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '.vercel', 'node_modules', '_site', 'audit', 'campaign', 'knowledge-base', 'scripts', 'shop', 'social',
+export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '.vercel', 'node_modules', '_site', 'audit',
+  // the second volume of « Le web3, sans fumée » (its nine modules, their labs, art and strings), kept for its own pass, not published (L9)
+  'lanterne-later', 'campaign', 'knowledge-base', 'scripts', 'shop', 'social',
   'legal-preview', 'legal', 'BRAND.md', 'README.md', 'RELEASE.md', 'IMPROVEMENTS.md', 'LICENSE', 'NOTICE.md', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
   'netlify.toml', 'vercel.json', '.gitattributes', '.gitignore', '.nvmrc', '.graphifyignore', 'graphify-out'];

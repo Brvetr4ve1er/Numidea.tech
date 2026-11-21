@@ -255,7 +255,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           </div>
         </li>
         <li class="st-bay st-bay--c" style="--i:2">
-          <a class="st-bay__art" href="manuel.html" tabindex="-1" aria-hidden="true">
+          <a class="st-bay__art" href="lanterne/" tabindex="-1" aria-hidden="true">
             <img src="img/studio/doors/c-1000.webp" srcset="img/studio/doors/c-480.webp 480w, img/studio/doors/c-700.webp 700w, img/studio/doors/c-1000.webp 1000w"
                  sizes="(min-width:1100px) 25vw, (min-width:700px) 46vw, 92vw" alt="" width="1000" height="1333" loading="lazy" decoding="async">
           </a>
@@ -263,12 +263,12 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
             <p class="st-label st-bay__k" data-i18n="doors.c.k"></p>
             <h3 class="st-bay__t" data-i18n="doors.c.t"></h3>
             <p class="st-bay__d" data-i18n="doors.c.d"></p>
-            <p class="st-bay__buy"><span data-i18n="doors.c.buy"></span> <a href="manuel.html#marque" data-i18n="doors.c.buyBrand"></a> · <a href="manuel.html#web3" data-i18n="doors.c.buyWeb3"></a></p>
-            <a class="st-btn st-btn--ghost st-bay__go" href="manuel.html"><span data-i18n="doors.c.go"></span><span class="st-arw" aria-hidden="true">→</span></a>
+            <p class="st-bay__buy"><span data-i18n="doors.c.buy"></span> <a href="{{lant.to.marque}}" data-i18n="doors.c.buyBrand"></a> · <a href="{{lant.to.web3}}" data-i18n="doors.c.buyWeb3"></a></p>
+            <a class="st-btn st-btn--ghost st-bay__go" href="lanterne/"><span data-i18n="doors.c.go"></span><span class="st-arw" aria-hidden="true">→</span></a>
             <ul class="st-bay__more">
-              <li><a href="manuel.html#lessons" data-i18n="doors.c.lessons"></a></li>
-              <li><a href="manuel.html#nomade" data-i18n="doors.c.nomad"></a></li>
-              <li><a href="manuel.html#radio" data-i18n="doors.c.radio"></a></li>
+              <li><a href="{{lant.to.argent}}" data-i18n="doors.c.lessons"></a></li>
+              <li><a href="{{lant.to.route}}" data-i18n="doors.c.nomad"></a></li>
+              <li><a href="lanterne/#radio" data-i18n="doors.c.radio"></a></li>
             </ul>
           </div>
         </li>
@@ -342,6 +342,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           <h3 class="st-h3" data-i18n="services.items.0.name"></h3>
           <p data-i18n="services.items.0.line"></p>
           <ul class="st-plus"><li data-i18n="services.items.0.gets.0"></li><li data-i18n="services.items.0.gets.1"></li><li data-i18n="services.items.0.gets.2"></li></ul>
+          <p class="st-svc__see"><a href="#carte-web" data-i18n="carte.see"></a></p>
           <p class="st-label st-label--teal" data-i18n="services.items.0.weeks"></p>
         </div>
         <p class="st-aside st-svc__aside" data-i18n="services.items.0.aside"></p>
@@ -353,6 +354,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           <h3 class="st-h3" data-i18n="services.items.1.name"></h3>
           <p data-i18n="services.items.1.line"></p>
           <ul class="st-plus"><li data-i18n="services.items.1.gets.0"></li><li data-i18n="services.items.1.gets.1"></li><li data-i18n="services.items.1.gets.2"></li></ul>
+          <p class="st-svc__see"><a href="#pricing" data-est-go="auto" data-i18n="carte.seeEst"></a></p>
           <p class="st-label st-label--teal" data-i18n="services.items.1.weeks"></p>
         </div>
         <p class="st-aside st-svc__aside" data-i18n="services.items.1.aside"></p>
@@ -364,7 +366,8 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           <h3 class="st-h3" data-i18n="services.items.2.name"></h3>
           <p data-i18n="services.items.2.line"></p>
           <ul class="st-plus"><li data-i18n="services.items.2.gets.0"></li><li data-i18n="services.items.2.gets.1"></li><li data-i18n="services.items.2.gets.2"></li></ul>
-          <p class="st-svc__prep"><a href="manuel.html#marque" data-i18n="services.items.2.prep"></a></p>
+          <p class="st-svc__see"><a href="#carte-marque" data-i18n="carte.see"></a></p>
+          <p class="st-svc__prep"><a href="{{lant.to.marque}}" data-i18n="services.items.2.prep"></a></p>
           <p class="st-label st-label--teal" data-i18n="services.items.2.weeks"></p>
         </div>
         <p class="st-aside st-svc__aside" data-i18n="services.items.2.aside"></p>
@@ -376,6 +379,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
           <h3 class="st-h3" data-i18n="services.items.3.name"></h3>
           <p data-i18n="services.items.3.line"></p>
           <ul class="st-plus"><li data-i18n="services.items.3.gets.0"></li><li data-i18n="services.items.3.gets.1"></li><li data-i18n="services.items.3.gets.2"></li></ul>
+          <p class="st-svc__see"><a href="#carte-pitch" data-i18n="carte.see"></a></p>
           <p class="st-label st-label--teal" data-i18n="services.items.3.weeks"></p>
         </div>
         <p class="st-aside st-svc__aside" data-i18n="services.items.3.aside"></p>
@@ -383,40 +387,10 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
     </div>
     <!-- la fabrique (2026-11-19): how the work is made, scene by scene, at these same prices -->
     <p class="st-services__how" data-reveal><a href="fabrique.html#scenes" data-i18n="services.how"></a></p>
-    <!-- Motion (2026-11-16): one line of the list. Its three figures are the
-         price model's (the motion type and the "anim" option of a web
-         project); the console prices it, the reel is just under it (#reel). -->
-    <div class="st-svcmot" id="motion" data-reveal>
-      <p class="st-label st-label--red st-svcmot__k">/ 05 · <span data-i18n="motion.line.k"></span></p>
-      <p class="st-svcmot__t" data-i18n="motion.line.t"></p>
-      <ul class="st-svcmot__p">
-        <li><span data-i18n="motion.svc.items.0.name"></span> <b dir="ltr" data-motion-price="logo">{{motion.logo}}</b></li>
-        <li><span data-i18n="motion.svc.items.1.name"></span> <b dir="ltr" data-motion-price="sec">{{motion.sec}}</b> <span data-i18n="motion.sec"></span></li>
-        <li><span data-i18n="motion.svc.items.2.name"></span> <b dir="ltr" data-motion-price="anim">{{motion.anim}}</b></li>
-      </ul>
-      <p class="st-svcmot__go">
-        <a class="st-btn st-btn--ghost" href="#pricing" data-est-go="motion" data-i18n="motion.calc"></a>
-        <a class="st-svcmot__reel" href="#reel" data-i18n="motion.line.reel"></a>
-        <a class="st-svcmot__reel" href="fabrique.html#mouvement" data-i18n="motion.line.how"></a>
-      </p>
-    </div>
-    <!-- The reel (under the motion line since 2026-11-18, when the Lab left for the world's page): one tile per clip of
-         hub/src/reel.json, written here by the build. A clip is a poster until
-         the pointer rests on it or it is pressed; then it plays, and stops when
-         the pointer leaves (hub/app.js 14). Nothing plays on its own, no clip
-         has the loop attribute, and the file is not fetched before that first
-         play (preload="none"). -->
-    <div class="st-reel" id="reel">
-      <div class="st-reel__head">
-        <p class="st-label" data-i18n="motion.reel.kicker"></p>
-        <h3 class="st-reel__title" data-i18n="motion.reel.title"></h3>
-        <p class="st-reel__lead" data-i18n="motion.reel.lead"></p>
-        <p class="st-reel__go"><a class="st-btn st-btn--primary" href="#pricing" data-est-go="motion" data-i18n="motion.reel.price"></a></p>
-      </div>
-      <ul class="st-reel__grid" data-i18n-aria="motion.reel.aria">
-{{reel}}
-      </ul>
-    </div>
+    <!-- La carte (2026-11-21): the catalogue under the four families, written by the build (scripts/lib/carte.mjs).
+         It replaced the motion line and the reel: the motion card carries id="motion" and an empty #reel, so old links
+         land; the reel's clips are in la fabrique (fabrique.html#mouvement). -->
+    {{carte}}
 
   </div>
 </section>
@@ -681,7 +655,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
         </dl>
         <p class="st-aside st-brand__aside" data-i18n="brand.aside"></p>
       </div>
-      <p class="st-brand__more" data-reveal><a class="st-btn st-btn--primary" href="manuel.html#marque" data-i18n="brand.prep"></a> <a class="st-btn st-btn--ghost" href="brand/numidea/" data-i18n="brand.more"></a> <a class="st-btn st-btn--ghost" href="fabrique.html#marque" data-i18n="brand.how"></a></p>
+      <p class="st-brand__more" data-reveal><a class="st-btn st-btn--primary" href="{{lant.to.marque}}" data-i18n="brand.prep"></a> <a class="st-btn st-btn--ghost" href="brand/numidea/" data-i18n="brand.more"></a> <a class="st-btn st-btn--ghost" href="fabrique.html#marque" data-i18n="brand.how"></a></p>
       </div>
     </div>
   </div>
@@ -904,7 +878,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
     <p class="st-foot__line"><span data-i18n="footer.line"></span></p>
     <nav class="st-foot__links" data-i18n-aria="footer.nav">
       <a href="../" data-i18n="footer.site"></a>
-      <a href="manuel.html" data-i18n="nav.manual"></a>
+      <a href="lanterne/" data-i18n="nav.manual"></a>
       <a href="fabrique.html" data-i18n="nav.fab"></a>
       <a href="monde.html" data-i18n="nav.world"></a>
       <a href="bible/" data-i18n="footer.bible"></a>
@@ -936,7 +910,7 @@ addEventListener('pagereveal',function(e){window.stReveal=e.viewTransition?e.vie
     <a class="st-menu__world" href="monde.html#voidsplunker"><span class="st-menu__n" aria-hidden="true">06</span><span dir="ltr">VOIDSPLUNKER.std</span></a>
     <a class="st-menu__world" href="monde.html#mercury"><span class="st-menu__n" aria-hidden="true">07</span><span dir="ltr">MERCURY</span></a>
     <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupLearn"></p>
-    <a class="st-menu__world" href="manuel.html"><span class="st-menu__n" aria-hidden="true" lang="ja">金</span><span data-i18n="nav.manual"></span></a>
+    <a class="st-menu__world" href="lanterne/"><span class="st-menu__n" aria-hidden="true" lang="ja">金</span><span data-i18n="nav.manual"></span></a>
   </nav>
   <div class="st-menu__foot">
     <div class="st-lang" role="group" data-i18n-aria="nav.lang">

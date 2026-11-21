@@ -38,7 +38,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { serve, launch } from './lib/serve.mjs';
-import { ROOT } from './site.mjs';
+import { ROOT, LANTERNE_PAGES } from './site.mjs';
 
 const REMOTE = (process.env.METRICS_BASE || '').trim().replace(/\/+$/, '');
 const OUT = process.env.METRICS_OUT || join(ROOT, '.tmp/metrics.json');
@@ -158,7 +158,7 @@ for (const lang of ['fr', 'en', 'ar']) for (const size of Object.keys(SIZES))
   result.pages[`scene ${lang} ${size}`] = await measure('/scene/index.html', { lang, size });
 for (const lang of ['fr', 'ar']) for (const size of Object.keys(SIZES))
   result.pages[`hub ${lang} ${size}`] = await measure('/hub/index.html', { lang, size });
-for (const size of Object.keys(SIZES)) result.pages[`hub manual fr ${size}`] = await measure('/hub/manuel.html', { lang: 'fr', size });
+for (const p of LANTERNE_PAGES) for (const size of Object.keys(SIZES)) result.pages[`hub ${p.slice(4, -5)} fr ${size}`] = await measure('/' + p, { lang: 'fr', size });
 for (const size of Object.keys(SIZES)) result.pages[`hub world fr ${size}`] = await measure('/hub/monde.html', { lang: 'fr', size });
 for (const size of Object.keys(SIZES)) result.pages[`hub fabrique fr ${size}`] = await measure('/hub/fabrique.html', { lang: 'fr', size });
 for (const [name, path] of [['hub bible', '/hub/bible/index.html'], ['workspacehq', '/workspacehq/index.html'], ['404', '/404.html']])

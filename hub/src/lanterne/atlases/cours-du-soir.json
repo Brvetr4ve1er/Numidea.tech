@@ -1,0 +1,28 @@
+{
+  "_note": "« Le cours du soir », the owner's Field Atlas (SPEC §4.1). Structure and art slots only; the copy is under lant.at.cds.* in hub/src/i18n. asDrawn: the owner's compositions stand as he built them (L13: the no-doubles rule does not apply to this atlas). right = the right answer's index in display order (the owner's 0,1,2,0… pattern re-authored, content unchanged). ex = the exercise kind of hub/lanterne.js's kit. keep = the keepsake's drawing: a cut-out id named after the object drawn, or 'plate' (the district's poster in miniature), one drawing each (L7). The cover is his hero composition.",
+  "slug": "cours-du-soir",
+  "key": "cds",
+  "store": "numidea-lanterne-cours-du-soir",
+  "asDrawn": true,
+  "app": false,
+  "accent": "#F0B05A",
+  "cover": { "plate": "bookstall", "lead": "yasser", "companion": "kuro", "prop": "ring" },
+  "caseArt": "paper",
+  "acts": [
+    { "id": "a1", "districts": ["home", "fields", "audience"] },
+    { "id": "a2", "districts": ["identity", "architecture", "launch", "growth", "observer"] },
+    { "id": "side", "side": true, "districts": ["wire", "ash"] }
+  ],
+  "districts": {
+    "home":         { "guide": "yasser", "plate": "home",         "lead": "yasser", "companion": "kuro",   "prop": "cup",       "right": 1, "ex": "compose",       "keep": "paper",     "accent": "#e6ab63" },
+    "fields":       { "guide": "pigeon", "plate": "fields",       "lead": "pigeon", "companion": "ratman", "prop": "paper",     "right": 2, "ex": "observe",       "keep": "recorder",  "accent": "#cfb572" },
+    "audience":     { "guide": "kuro",   "plate": "audience",     "lead": "kuro",   "companion": "pigeon", "prop": "recorder",  "right": 0, "ex": "focus",         "keep": "plate",     "accent": "#b7ce9b" },
+    "identity":     { "guide": "yasser", "plate": "identity",     "lead": "yasser", "companion": "kuro",   "prop": "paper",     "right": 2, "ex": "scrub",         "keep": "plate",     "accent": "#e4a46d" },
+    "architecture": { "guide": "ratman", "plate": "architecture", "lead": "ratman", "companion": "pigeon", "prop": "ring",      "right": 1, "ex": "ab",            "keep": "plate",     "accent": "#89c8c3" },
+    "launch":       { "guide": "pigeon", "plate": "launch",       "lead": "pigeon", "companion": "yasser", "prop": "star",      "right": 0, "ex": "machineLaunch", "keep": "star",      "accent": "#f0b45f" },
+    "growth":       { "guide": "raven",  "plate": "growth",       "lead": "raven",  "companion": "kuro",   "prop": "recorder",  "right": 0, "ex": "funnel",        "keep": "plate",     "accent": "#a5c486" },
+    "observer":     { "guide": "raven",  "plate": "observer",     "lead": "raven",  "companion": "pigeon", "prop": "eyeflower", "right": 2, "ex": "toggles",       "keep": "eyeflower", "accent": "#88dfd4" },
+    "wire":         { "guide": "kuro",   "plate": "wire",         "lead": "kuro",   "companion": "raven",  "prop": "feather",   "right": 1, "ex": "path",          "keep": "feather",   "accent": "#a8b8ed" },
+    "ash":          { "guide": "yasser", "plate": "ash",          "lead": "yasser", "companion": "kuro",   "prop": "ring",      "right": 2, "ex": "machineAsh",    "keep": "ring",      "accent": "#e29a7a" }
+  }
+}

@@ -108,7 +108,7 @@ var I18N = {
   'form.copy': 'نسخ رسالتي',
   'form.copied': 'نُسخت رسالتك. الصقها في بريد إلكتروني جديد إلى العنوان أعلاه.',
   'form.copyFail': 'تعذّر النسخ: رسالتك محدَّدة، انسخها بنفسك.',
-  'form.subjPrev': 'Numidea Labs · معاينة · ', 'form.subjEst': 'Numidea Labs · تقدير · ', 'form.subj': 'Numidea Labs · تواصل · ',
+  'form.subjPrev': 'Numidea Labs · معاينة · ', 'form.subjEst': 'Numidea Labs · تقدير · ', 'form.subj': 'Numidea Labs · تواصل · ', 'form.subjBriefB': 'Numidea Labs · بطاقة العلامة · ', 'form.subjBriefW': 'Numidea Labs · بطاقة الويب3 · ',
   'founder.frPill': 'الفرنسية <bdi>C2</bdi>', 'founder.enPill': 'الإنجليزية <bdi>C1</bdi>',
   'theme.arcanum': 'أركانوم', 'theme.daylight': 'نهاري', 'theme.toArcanum': 'التبديل إلى أركانوم (داكن)', 'theme.toDaylight': 'التبديل إلى النهاري (فاتح)',
   'ui.newTab': ' (يفتح في تبويب جديد)',

@@ -105,7 +105,7 @@ var I18N = {
   'form.copy': 'Copier mon message',
   'form.copied': 'Message copié. Collez-le dans un nouvel email, à l’adresse ci-dessus.',
   'form.copyFail': 'La copie n’a pas fonctionné : votre message est sélectionné, copiez-le vous-même.',
-  'form.subjPrev': 'Numidea Labs · Aperçu · ', 'form.subjEst': 'Numidea Labs · Estimation · ', 'form.subj': 'Numidea Labs · Contact · ',
+  'form.subjPrev': 'Numidea Labs · Aperçu · ', 'form.subjEst': 'Numidea Labs · Estimation · ', 'form.subj': 'Numidea Labs · Contact · ', 'form.subjBriefB': 'Numidea Labs · Fiche de marque · ', 'form.subjBriefW': 'Numidea Labs · Fiche web3 · ',
   'founder.frPill': 'FR C2', 'founder.enPill': 'EN C1',
   'theme.arcanum': 'Arcanum', 'theme.daylight': 'Daylight', 'theme.toArcanum': 'Passer en Arcanum (sombre)', 'theme.toDaylight': 'Passer en Daylight (clair)',
   'ui.newTab': ' (nouvel onglet)',

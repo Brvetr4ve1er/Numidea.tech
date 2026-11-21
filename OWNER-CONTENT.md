@@ -18,7 +18,7 @@ what the Studio page changed from your design).
 | 5 | A studio email on its own domain | Personal Gmail in use; it stays for now (owner, 2026-10-30) | everywhere one address appears |
 | 6 | Clients' permission to appear in paid ads | Not asked yet | campaign kit (not in this repo) |
 | 7 | Nomara Voyages: client or not? | Unconfirmed | `index.html` work grid, client logo strip |
-| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14 and 2026-11-19 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all; on 2026-11-19 the two client courses, la fabrique and the alt texts of the owner's placed artworks, §38 to §41) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
+| 8 | Arabic native review | Pending; every Arabic string added or changed on 2026-10-31, 2026-11-03, 2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-19 and 2026-11-21 (the recovery's new Studio, brand-book and home keys; the theme toggle's two labels; the Studio page and its five cases above all; on 2026-11-19 the two client courses, la fabrique and the alt texts of the owner's placed artworks, §38 to §41; on 2026-11-21 the courses' critique fixes and the web3 course's nine modules, 1,770 strings, §42) is listed in section 8 and awaits it | `assets/i18n/ar.js`, `scripts/scene-data.mjs`, `scripts/build-og.mjs`, `404.html` |
 | 9 | Clients' own domains | None verifies | `scripts/verify-domains.mjs` |
 | 10 | Hub fan art | No fan art on the site since 2026-10-28 (still in git history). Not live: nothing has deployed since 2026-10-25, GitHub Actions being blocked on billing (RELEASE.md, "Outage and fallback") | git history of `hub/` |
 | 11 | Supabase lead store | Off on purpose | `index.html`, `scripts/legal-data.mjs` |
@@ -136,9 +136,9 @@ item 6 can cover it.
 
 ## 8. Arabic native review
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
-2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-15 and 2026-11-19 awaits native review** (the lists are at the end of this section,
+2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-15, 2026-11-19 and 2026-11-21 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19" and "Also written on 2026-11-19"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19", "Also written on 2026-11-19" and "Written or changed on 2026-11-21"); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -676,6 +676,52 @@ and for your artworks `proof.mc.framesLabel` (changed), `proof.mc.frames.5`,
 `fab.ui.title` (the page's search title) is unchanged in Arabic; only the
 French was shortened on integration (§41). Each string is read in
 `hub/src/i18n/ar.json` under its key.
+
+Written or changed on 2026-11-21 (the courses after the critique and the web3
+course in nine modules, §42), none read by a native speaker, every string
+**AR: native review**: 1,770 strings in `hub/src/i18n/ar.json`. They are
+(1) the whole group `web3c.mods` (the nine modules: 33 stops, their labs,
+misconceptions, questions, bridges and questions for the provider) and the
+shell's groups `web3c.path`, `web3c.chap`, `web3c.carnet`, `web3c.dock`,
+`web3c.deeper`, `web3c.x` and `web3c.brief.l.asks`, 1,438 strings written in
+the integration; (2) the keys whose French changed and whose Arabic was
+rewritten from it: `web3c.lead`, `web3c.hud`, `web3c.tabs`, `web3c.src.note`,
+and the lesson count (38 → 71) in `manual.ui.title`, `manual.ui.desc`,
+`doors.c.d` and `start.codex.e.manuel.d`; (3) the critique pass's 272 keys
+(`fiche.*`, `brandc.*` and `web3c.*` outside the modules: the decision row,
+the requests, the card-payment questions, the invented cases, the wrong-answer
+lines, the act labels) and the nine module pictures' and two case cards'
+alternative texts (`web3c.mods.N.alt`, `brandc.case.alt`, `web3c.case.alt`).
+Conventions for the reviewer: Modern Standard Arabic; a technical term carries
+its Latin form in brackets on first use, isolated (`<bdi>`, which the build
+turns into FSI/PDI); chain names are transliterated (بيتكوين، إيثريوم،
+سولانا); project, library and standard names stay in Latin, as the published
+web3c Arabic does. The words the published course already used were kept
+(سلسلة، سلسلة الكتل، رمز، سجل، محفظة، المفتاح الخاص، عبارة الاسترداد، العقدة،
+العقد الذكي، العملة المستقرة، رسوم، توقيع، التعدين، احتيال، المُصدِر); the new
+ones to confirm include مدقّق (validator), إثبات العمل / إثبات الحصّة, الطبقة
+الأولى / الثانية, تجميع (rollup), البذرة (seed), المحلِّل (ENS resolver), الغاز
+(gas), البقشيش (tip), الاستحقاق التدريجي (vesting), فترة الانتظار (cliff), صانع
+السوق الآلي (AMM), الانزلاق (slippage), عامل الصحة, التصفية (liquidation),
+القرض الفوري (flash loan), إعادة الدخول (reentrancy), الفيضان (overflow),
+الاختبار العشوائي (fuzzing), الجسر (bridge) and الأوراكل (oracle). The
+lab's pseudo-code (module 9, step 1) is written in Arabic words (سحب() …).
+
+Also written or changed on 2026-11-21, **the Librairie Lanterne and la carte** (§43, §44), all new, all for a
+native reader. In `hub/src/i18n/ar.json`, under `lant.*`: the shop's name « مكتبة الفانوس » (`lant.shelf.name`),
+the engine and shelf lines (`lant.ui.*` 95, `lant.shelf.*` 58, `lant.cast.*` 14, `lant.stub.*` 4), « Le cours du
+soir » (`lant.at.cds.*`, 236, ported from the prototype), the money book (`lant.at.argent.*`, 61), the road book
+(`lant.at.route.*`, 80) and the game book (`lant.at.jeu.*`, 79); the plural lines carry all six Arabic forms. The
+shelf's hero picture now has its own description (`lant.shelf.heroAlt`: « مكتبة الفانوس ليلًا: تحت المظلة المخططة
+بالأحمر والكريمي، كتاب كبير مفتوح على المنضدة وفانوس مضاء؛ ياسر جالس يقرأ أطلسًا قرب الكشك، وكورو نائم على
+المنضدة، وأبراج المدينة تحت سماء مرصّعة بالنجوم. »), and the act plates of the three books theirs
+(`lant.at.<book>.plate.*`). Changed keys that pointed at the manual now point at the Librairie: `nav.manual`,
+`doors.c.*`, `start.codex.e.manuel.*`, `kuro.d/go`, `radio.d`, `life.lead`, `life.y.*`, `world.mercuryLant`,
+`fab.course.capstone.lant`, `fab.w3.all.d`. In `hub/src/carte.i18n.json`, the whole of la carte (253 lines: the
+tabs, the 18 cards, the tiers, the market lines, the bundles, the sources). Words to confirm: أطلس (atlas), حيّ
+(district), جواز السفر (passport), تذكار (keepsake), السجلّ (journal), الحقيبة (sac), الطريق الجانبي (side route), and
+the guides' names kept in Latin letters (Raven, Techno Pigeon, Ratman). The money and road books reuse the money and
+nomad courses' reviewed answers word for word for their right answers.
 
 ## 8b. The Google tag and consent (2026-11-14)
 The site loads the owner's Google Tag Manager container (GTM-PMF7RWVK) on every
@@ -2337,3 +2383,258 @@ is now on the site and what was decided for you:
 - `scripts/check.mjs` TOTAL raised to the measured published set, for the
   courses' art and markup (which §38 left outside it), la fabrique and the
   artworks.
+
+## 42. The courses after the critique, and the web3 course in nine modules (2026-11-21)
+
+Two passes on the manual's client courses (§38), integrated together. Nothing
+is committed or deployed yet; the cache-bust stamp waits for `npm run bump`.
+
+**The critique, and what changed.** A critique of the two courses found that
+the web3 course's verdict did not carry forward, that the brand brief printed
+the exercise's own sentences back, that some answers needed to set a price were
+never asked, and that the opening of each stop explained before it posed a
+problem. What changed:
+- **The web3 verdict carries forward.** A new decision row (« Je prends la
+  route ordinaire / J'en parle d'abord avec vous / Je garde l'idée de chaîne
+  (ou de paiement en crypto) ») folds the chain material on an ordinary route
+  (it stays published); keys and « si le jeton valait zéro » are asked only
+  for a chain kept, and chain rows print only then.
+- **The brand brief asks in writing.** « À clarifier avant de signer » became
+  « Ce que je demanderai par écrit »: one request per real gap the visitor
+  flagged, never the exercise's sentence.
+- **The questions a price needs:** keep / refresh / redo the current logo; the
+  visitor's own logo in the 16-pixel test (read on the device, never sent);
+  scripts on the sign (Arabic, Latin, Tifinagh); two brands liked and why; an
+  optional ceiling; what comes first; who looks after it after delivery; an
+  optional first name. With an existing site, the route reads « à chiffrer au
+  cadrage, pas de prix publié »: no new price was added. For a card payment,
+  six questions labelled as our list (currency, usual amount, deposit or full,
+  refund rule, where the customer pays, who receives).
+- **Euros and dollars on both briefs** (your Q1: yes), from the calculator's
+  own rates, under every DZD total.
+- **Two invented cases tell the story:** Pâtisserie Hodna (Nadia) in the brand
+  course and Samia's gym in the web3 course, each in a closed block labelled
+  « exemple inventé » on every stop, with a finished case brief. Their pictures
+  are the two case cards below.
+- **Less friction:** a next-stop button after each stamp, a phone bar with the
+  position and the brief's count, right answers at varied places with one
+  explanation per wrong answer, typed fields kept when the page closes, and the
+  last stop reopens with « Vous étiez à l'étape n ».
+- Your legal lines stay where they were: `money.note1`, `money.note2` and the
+  law 25-10 line, by key, on every crypto screen and on the brief.
+
+**The web3 course in nine modules, on your decision of 2026-11-21.** You chose
+to expand the course with your nine-module curriculum, each topic « short
+explanation + one diagram or small interactive + one check question ». As
+published:
+- **Two ways in**, under the plate: « J'ai un projet à préparer » keeps the
+  eight-step buyer path and its brief; « Je veux comprendre le web3 » opens the
+  modules. The choice writes nothing into the brief. With no choice, the page
+  opens on the buyer path as before.
+- **Nine modules, 33 stops:** 1 « Fondations : d'où vient le web3 », 2 « Sous
+  le capot d'une chaîne », 3 « Portefeuilles, clés et identité », 4 « Jetons,
+  normes et règles d'émission », 5 « Smart contracts et développement »,
+  6 « Applications et infrastructure », 7 « La DeFi, expliquée », 8 « DAO et
+  gouvernance », 9 « Sécurité, audits et ponts entre chaînes ». Each stop: a short explanation,
+  one hands-on diagram (a « lab »), the common misconception and what is true,
+  its sources, the brief one press away, and one question. A sommaire with a
+  picture per module, and a carnet of nine seals that ink as modules are done
+  (on this device only).
+- **The lab rule.** A lab runs in the page and sends nothing: no network
+  call, no real chain, no real wallet, no key that leaves memory, nothing
+  written into the brief. Its numbers are worked out in the browser or carry
+  their source; where the real thing cannot run in a browser (the curves these
+  chains use), the lab says so. No lab invites anyone to buy, swap, lend or
+  stake; the ones that show money mechanics carry « Ce schéma montre un
+  mécanisme, pas une offre ni un rendement ». Without scripts each lab shows a
+  still state with the same numbers. Nothing moves on its own; with reduced
+  motion nothing moves at all.
+- **Questions for the provider.** Each module ends with a bridge to the buyer
+  step it explains and two question chips; ticked, they print in the brief as
+  « Mes questions pour le prestataire ».
+- The manual now counts 71 lessons (it said 38).
+
+**The names policy.** Education only: no coin, token, exchange, wallet or
+provider is recommended, and none is named as something to use. A project,
+chain, tool or library is named only in the stops where the curriculum needs it,
+introduced as an example taken from its own documentation (« par exemple »,
+« selon sa documentation »), and under the line « Les outils et les chaînes
+cités sont des exemples tirés de leur propre documentation, pas des
+recommandations ». The table of which name may appear in which stop is the
+course's names law, and some names are never printed anywhere in the course:
+among them staking and lending services, stablecoin issuers, layer-2 networks,
+and every wallet and exchange brand. The buyer path's new lines and the brief's
+questions name no project. It was checked on the built French page and, key by
+key, on the English and Arabic translations.
+
+**Magnific credits spent: 715.** Eleven generations (Nano Banana 2.1, 2k,
+65 credits each): the nine module headers, one rejected take of module 9 (four
+sieves where the lesson says five), and the two case cards in one picture. Cap
+900; balance 2,522 → 1,807. Every picture was retouched locally to remove
+letter-like marks (no credits). The carnet's reward drawing (Kūro stamping the
+last seal) was not made: 75 credits were budgeted for it.
+
+**Your questions still open**
+- **Q2: what one « support » delivers**, **Q3: a published floor for payment
+  on an existing site**, **Q6: a maintenance offer from the studio**. Until you
+  answer, the briefs ask and print no figure for them.
+- **Q4: may the courses follow Nadia and Samia?** They are published as
+  invented examples, labelled as such on every stop and in the pictures' alt
+  text. Say if you want them removed.
+- **The carnet reward picture** (above): make it, or keep the carnet without
+  a downloadable drawing (today: nine of nine shows a line and a print button).
+- **The manual's size.** The modules bring the manual to about 10,700 HTML
+  tags (2.9 times the committed page; the specification's gate was 1.6 times)
+  and about 1.08 MB (211 kB compressed). The specification's fallback is to
+  move the nine modules to their own page (`hub/web3.html`, X6): say if you
+  want it. Until then the plate, the two ways in and the sommaire put the buyer
+  path's first stop about two and a half screens down on a phone.
+- **Art details to confirm:** the cuff pattern on Yasser's coat can read as
+  « H: » at full size (kept to match the published scene); the brass pipe nuts
+  in module 7's header are nuts, not coins; Kūro looks away from the rope in
+  module 9's header (the alt says so).
+- **The new seal kanji** of the carnet render in the system's fallback
+  Japanese face: the Studio's Noto Sans JP subset was not re-cut.
+- **The Arabic** (§8): none of it has been read by a native speaker.
+
+**Changed on integration**
+- The art is placed with its width and height (`srcset` by file width) and its
+  alt text in three languages.
+- About 1,470 French-only strings of the nine modules and the shell, and the
+  four keys whose French had changed, were translated into English and Arabic;
+  the three dictionaries hold the same keys (3,933 each).
+- A templated line of a lab (« Bloc 10 · frais de base … », « Mois écoulés … »)
+  was written once in French when the page was generated; it is now written
+  again in the page's language when the labs load, with English and Arabic
+  number formats; module 8's legal lab and module 6's block-tag line likewise.
+- The bridges and misconception cards were HTML landmarks without a unique
+  name (42 validator errors): they are plain blocks now.
+- Opened at a module's address (`#web3-m1`), the page swapped chapters and
+  scrolled in the same frame, which read as a layout shift of the whole screen
+  (CLS 1.0 in the audit): the scroll now waits one frame more.
+- Two gates learned the course's new shapes: the audit no longer counts a
+  module's header picture inside a chapter not shown as a reveal that never
+  fired, and the layout scanner treats the course's dock (« Ma fiche → »,
+  stuck to the bottom of the course) as a floating layer, as it does the fixed
+  ones.
+- `scripts/check.mjs` TOTAL raised to the measured published set,
+  51,651,557 bytes (+4,214,942), for both passes' art, markup and dictionaries.
+
+## 43. « La carte »: the services catalogue, at the prices you approved (2026-11-21)
+
+The Studio's reel is gone from `#services`: in its place, under the four families, « La carte » lists 18 services in
+five families (Marque, Web & écrans, Réseaux & motion, Print & objets, Pitch & conseil), each with what you get, the
+lead time, the price, a mockup made from the studio's real work, and what the same work costs elsewhere (eleven
+numbered sources, all read on 2026-11-21). The reel's six clips moved to la fabrique, scene 04 (`fabrique.html#mouvement`);
+nothing was deleted, and old links to `#motion` and `#reel` land on the motion card.
+
+**Prices approved by you on 2026-11-21** (they live in `assets/app.js`, `DESIGN`, beside the estimator's model; the
+page is written from there, nothing is typed in the markup):
+
+| Card | Figures (DA) | Lead time |
+|---|---|---|
+| A1 Logo | Essentiel 45 000 · ★ Signature 70 000 | 1–2 weeks |
+| A3 Charte (aussi) | set of 12 SVG icons 30 000 | — |
+| A4 Mascotte & illustration | illustration 12 000 · ★ mascot 55 000 | 1–3 weeks |
+| B1 Landing page | ★ 35 000 · + 8 000 / screen | 1 week |
+| B2 Site · 5 écrans | ★ **67 000** (the model's own sum, 35 000 + 4 × 8 000) · + 8 000 / screen | 1–2 weeks |
+| B3 App & tableau de bord | ★ 120 000 · + 12 000 / screen | 2–3 weeks |
+| C1 Kit réseaux sociaux | 40 000 · ★ animated 65 000 · 30 000 / month | 1–2 weeks |
+| C2 Créas publicitaires | ★ 12 000 – 25 000 · + 8 000 – 15 000 / concept | 3–5 days |
+| C4 Modèle d'e-mail | ★ 30 000 – 60 000 · + 10 000 – 20 000 / layout | 1 week |
+| D1 Packaging & étiquettes | ★ 1 product 45 000 · range of 3 75 000 · + 15 000 / product | 1–3 weeks |
+| D2 Print & papeterie | card 8 000 · flyer 12 000 · ★ pack 30 000 · menu 20 000 · brochure 28 000 | 3–5 days |
+| D3 Stickers & merch | ★ sheet of 6 25 000 · t-shirt or tote 12 000 – 30 000 | 1 week |
+| E1 Pitch deck | 4 000 / slide · ★ 12 slides 48 000 · + master 75 000 | 1–2 weeks |
+| E2 Infographie | ★ 15 000 – 35 000 | 1 week |
+| E3 Audit UX | express 25 000 · ★ journey 60 000 | 1 week |
+| E4 L'atelier au mois | ★ 65 000 / month · quarter 180 000 | per request (below) |
+| Bundle « Lancement de marque » | from 190 000 (190 000 – 360 000) | — |
+| Bundle « Lancement produit » | 185 000 | — |
+
+A2 Identité, A3 Charte and C3 Motion read the estimator's own figures (identité, option `ds`, motion, option `anim`),
+and « On le construit aussi » the start prices of vitrine, sur mesure and boutique. No « brouillon » tag is printed.
+
+**Defaults taken where you did not answer (each reversible, say the word):**
+- Q3: the line « Remboursé sur le développement s'il est commandé sous 60 jours » stays on B1–B3 and E3.
+- Q4/Q12: the monthly plan does not print « 1er jet en 48 h »; it prints « un délai par demande, convenu au cadrage ».
+- Q2: the charte alone (A3) is asked for on WhatsApp, not in the console.
+- Q5: print and packaging are FR/AR by default, as on the D1 label.
+- Q9: Bordj Steel stays on A1 until you say Amanatkom is a client.
+- Q10: the old reel clips are in la fabrique, scene 04.
+- Q11: the infographic stays at 15 000 – 35 000.
+- Q13: no Kūro turnaround is drawn; A4 shows Yasser's four poses with Kūro beside.
+
+The Arabic of la carte (hub/src/carte.i18n.json) waits for your native review, like every Arabic string.
+
+## 44. La Librairie Lanterne: the learning side as a night bookshop (2026-11-21)
+
+The manual (`hub/manuel.html`) became **La Librairie Lanterne** / The Lantern Bookshop / « مكتبة الفانوس »
+(`hub/lanterne/`), built from the specification you approved. Each course is a book on the shelf, and each book an
+atlas you play district by district: a diorama, a short dossier with a situation and three answers, a field exercise,
+a journal note and a keepsake. Progress stays in the visitor's browser; nothing leaves the page. Nothing is committed
+or deployed yet; the cache-bust stamp waits for `npm run bump`.
+
+**Your answers of 2026-11-21: « go with the defaults » (L1–L13), and what was done with each.**
+- L1: the Arabic name is « مكتبة الفانوس » (in the native-review list below).
+- L2: the address is `/hub/lanterne/`; `hub/manuel.html` is now a forwarding page (no index, kept at least twelve
+  months). Every old address was tested: `#radio`, `#game` (now the night round), `#services` (now the counter),
+  `#lessons` and `?ls=pay…crypto`, `#nomade` and `?ls=n1…n8`, `#jeu` and `?ls=g1…g8`, the source anchors and `?lang=`,
+  with and without script.
+- L3: la fabrique keeps its lesson sets and capstone; the capstone now links to « Le cours du soir », and both pages
+  link to each other.
+- L4: the guide is named Ratman; the tan Ratman cut-out stays where you placed it in « Le cours du soir ».
+- L5: the money and road books follow Selma, an illustrator in Bordj Bou Arréridj, and « Le jeu juste » the
+  Lantern's own loyalty card; both are labelled « exemple inventé », and every number comes from the courses' own
+  questions or calculator defaults.
+- L6: your plates are shown at most at their natural size (607 px wide), never enlarged. Send originals of at least
+  1 214 px to sharpen them on large screens.
+- L7: keepsakes as specified (the drawn objects and the poster miniatures), renamable later.
+- L8: the traveller Yasser cut-out appears only in « Le cours du soir » and « Le carnet de route ».
+- L9: **the web3 course's second volume (the nine modules) is held for a later release.** The shelf shows it
+  « bientôt », with no link. Its chapters, lab script, strings and module headers moved, untouched, to
+  `lanterne-later/web3-modules/` (not published); nothing was deleted. What §42 says about the nine modules applies
+  when that volume is published.
+- L10: the money book has no reward of its own; its keepsakes count in the shared passport.
+- L11: Kūro's page life (the seven seals) runs on the shelf only.
+- L12: BRAND.md now says your own drawing style also lives on the Librairie.
+- L13: your Field Atlas compositions are kept as built (the doubles included), behind one switch in
+  `hub/src/lanterne/atlases/cours-du-soir.json` (`asDrawn`).
+
+**What is on the shelf in this state.** « Le cours du soir » (your Field Atlas, ten districts), « Gagner sa vie de
+loin » (five), « Le carnet de route » (eight) and « Le jeu juste » (eight levels, with its pixel level icons in the
+list) are built and played end to end (French and Arabic; English checked page by page). **The two client courses, « Le logo vient
+après » (marque) and « Le web3, sans fumée » (volume 1), are not yet atlases**: their books read « bientôt », and old
+links to `#marque`, `#web3`, `?ls=b…` and `?ls=w…` land on the shelf. Those two courses were published on the
+manual before; until their atlases exist, they are not on the site. Their art is ready (four act plates and their
+small files in `hub/img/lanterne/plates/`, the courses' own pictures in `hub/img/studio/brandc` and `web3c`) and is
+listed, not refused, by the build while the books wait. **Decide before publishing:** wait for the two atlases, or
+publish without them for a time.
+
+**The critique fixes (§42).** The fixes to the brand and web3 courses (the verdict that carries forward, the brief's
+written requests, the case blocks, the card-payment path) are in `hub/src/manuel.html`, the source the two atlases
+will be cut from; they reach the site with those atlases. A second review of 44 points was made on the old manual;
+the points about the phone layout of the course bar, the stop pictures on phones and the page weight are answered by
+the atlas layout; the points about the nine modules wait with volume 2; the points about the brand and web3 buyer
+path (for example, the brief's hand-off opening with two greetings) wait for the two atlases.
+
+**New art for the Librairie, made with Magnific** (folder « numidea labs / Site art 2026-11 Librairie Lanterne »):
+thirteen act plates in your screenprint family (no lettering, no people or animals, so your cut-outs can stand on
+them) and the shelf's night key art, « lanterne-nuit » (Yasser reading by the stall, Kūro asleep on the counter, on
+model with the character bible). Each was checked at full size; on the key art, a stray white mark on Yasser's sleeve
+patch that read as a « 2 » was painted out. **Magnific credits spent: 985** (13 × 65 + 75, plus one retake of the
+brand book's second plate); about 637 left on the account. The plates are cut, never enlarged.
+
+**La carte, corrected while checking the whole site.** On a phone the Studio page used to slide down to la carte as it
+opened; it now opens at the top. The market sources under la carte are numbered 1 to 11, so the small numbers on the
+cards point at a visible line. In Arabic la carte's small lines are one size larger, and on phones its small links are
+full-size targets. No price or word changed.
+
+**Open for you:**
+- the two client atlases (above), and when to publish;
+- your plates' originals at 1 214 px or more (L6);
+- four keepsake objects you may want to draw yourself (a pass, a seal, a key, a lens; L7);
+- the dioramas of the money, road and game books stand your cut-out objects (cup, feather, ring, paper…) as props;
+  the specification asked for each stop's own tab drawing there, but those drawings are square pictures that would
+  read as boxes on a plate, so they are the keepsakes instead. Say if you prefer them on the plates;
+- the Arabic of the whole Librairie, in §8 below the 2026-11-21 lists.

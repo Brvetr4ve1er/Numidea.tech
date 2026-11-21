@@ -77,8 +77,9 @@
  * versions produced confident false failures:
  *  - tap targets apply the 2.5.8 spacing exception: under 24px fails only if
  *    its 24px clear zone collides with another target's
- *  - "unrevealed" skips display:none and waits 1.8s, since reveals run 1s
- *    plus a stagger delay
+ *  - "unrevealed" skips display:none, its own or an ancestor's (no layout box:
+ *    a web3 module chapter not shown, 2026-11-21), and waits 1.8s, since
+ *    reveals run 1s plus a stagger delay
  * axe "incomplete" results (things axe could not decide, e.g. an unresolved
  * aria-labelledby) are printed as warnings: they need a look, not a failure.
  *
@@ -98,7 +99,7 @@ import {watchCsp} from './lib/csp-watch.mjs';
 import {loopState} from './lib/loop-state.mjs';
 import {deployFiles} from './lib/deploy-files.mjs';
 import {stage404} from './lib/stage-404.mjs';
-import {ROOT,BASE,PAGES_BASE,THEMES,LEGAL_PUBLISHED} from './site.mjs';
+import {ROOT,BASE,PAGES_BASE,THEMES,LEGAL_PUBLISHED,LANTERNE_PAGES} from './site.mjs';
 const REMOTE=(process.env.AUDIT_BASE||'').trim().replace(/\/+$/,'');
 const ONLY=process.env.AUDIT_ONLY?new RegExp(process.env.AUDIT_ONLY):null;
 // a missing URL gets 404.html with status 404, as on every host
@@ -174,7 +175,7 @@ const run=async(label,path,o={})=>{
       while(a){const s=getComputedStyle(a);if(/hidden|clip|auto|scroll/.test(s.overflowX)||s.clipPath!=='none'){c=true;break}a=a.parentElement}
       if(!c)of.push(e.tagName+'.'+String(e.className).slice(0,24))}
     // unrevealed content after a full scroll = a reveal gate that never fired
-    const hidden=[...document.querySelectorAll('.reveal,[data-reveal]')].filter(e=>getComputedStyle(e).display!=='none'&&parseFloat(getComputedStyle(e).opacity)<0.5).length;
+    const hidden=[...document.querySelectorAll('.reveal,[data-reveal]')].filter(e=>getComputedStyle(e).display!=='none'&&e.getClientRects().length&&parseFloat(getComputedStyle(e).opacity)<0.5).length;
     // tap targets under 24px (WCAG 2.5.8)
     // WCAG 2.5.8: under 24px fails only if its 24px clear zone collides
     const TG=[...document.querySelectorAll('a[href],button,input,select,textarea,summary,label.echip,label.eopt')].filter(e=>{
@@ -527,8 +528,12 @@ const D={lcpBudget:DESKTOP_LCP};
 await run('hub fr','/hub/index.html',{...D,lang:'fr'});
 await run('hub ar','/hub/index.html',{...D,lang:'ar'});
 // the manual beside the Studio (hub/manuel.html, 2026-11-16): the lessons, the coaching services, the radio; same sheet and script
-await run('hub manual fr','/hub/manuel.html',{...D,lang:'fr'});
-await run('hub manual ar','/hub/manuel.html',{...D,lang:'ar'});
+// the Librairie Lanterne (hub/lanterne/, 2026-11-21) took the manual's place: the shelf and the atlases (hub/manuel.html is a stub)
+await run('hub lanterne fr','/hub/lanterne/',{...D,lang:'fr'});
+await run('hub lanterne ar','/hub/lanterne/',{...D,lang:'ar'});
+for (const p of LANTERNE_PAGES.slice(1)) { await run('hub atlas '+p.slice(13,-5)+' fr','/'+p,{...D,lang:'fr'}); await run('hub atlas '+p.slice(13,-5)+' ar','/'+p,{...D,lang:'ar'}); }
+// the web3 course's nine modules (2026-11-21, web3x/SPEC.md): one module chapter open, its lab script loaded
+
 // the world beside the Studio (hub/monde.html, 2026-11-18): the codex, the personal dossiers, the Lab, the diary; same sheet and script
 await run('hub world fr','/hub/monde.html',{...D,lang:'fr'});
 await run('hub world ar','/hub/monde.html',{...D,lang:'ar'});
@@ -570,10 +575,13 @@ await run('hub en m','/hub/index.html',{lang:'en',w:390,h:844});
 // a fold's cover screen (2026-11-14, the mobile pass): the layout may not be wider than the screen
 await run('hub fr xs','/hub/index.html',{lang:'fr',w:280,h:653});
 await run('hub ar xs','/hub/index.html',{lang:'ar',w:280,h:653});
-await run('hub manual fr m','/hub/manuel.html',{lang:'fr',w:390,h:844});
-await run('hub manual ar m','/hub/manuel.html',{lang:'ar',w:390,h:844});
-await run('hub manual en m','/hub/manuel.html',{lang:'en',w:390,h:844});
-await run('hub manual fr xs','/hub/manuel.html',{lang:'fr',w:280,h:653});
+await run('hub lanterne fr m','/hub/lanterne/',{lang:'fr',w:390,h:844});
+await run('hub lanterne ar m','/hub/lanterne/',{lang:'ar',w:390,h:844});
+await run('hub lanterne en m','/hub/lanterne/',{lang:'en',w:390,h:844});
+await run('hub lanterne fr xs','/hub/lanterne/',{lang:'fr',w:280,h:653});
+for (const p of LANTERNE_PAGES.slice(1)) { await run('hub atlas '+p.slice(13,-5)+' ar m','/'+p,{lang:'ar',w:390,h:844}); await run('hub atlas '+p.slice(13,-5)+' fr xs','/'+p,{lang:'fr',w:280,h:653}); }
+
+
 await run('hub world fr m','/hub/monde.html',{lang:'fr',w:390,h:844});
 await run('hub world ar m','/hub/monde.html',{lang:'ar',w:390,h:844});
 await run('hub world en m','/hub/monde.html',{lang:'en',w:390,h:844});

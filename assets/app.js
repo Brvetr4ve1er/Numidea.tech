@@ -100,6 +100,33 @@
        coaching call and may be paid in three parts (drafted 2026-11-16 on the
        owner's "rules that favour the mid range"; OWNER-CONTENT.md). */
     var MID_RANGE = [180000, 450000];
+    /* The design services of the Studio's « La carte » (hub/index.html #carte, 2026-11-21): fixed figures in dinars
+       (a pair is a low–high range) and their lead times (weeks or days, [low, high]), approved by the owner on
+       2026-11-21 (OWNER-CONTENT.md: B2 « Site · 5 écrans » is the model's own sum, 35 000 + 4 × 8 000). Not types of
+       the estimator: scripts/build-hub.mjs reads them (through #hub-prices too) and writes every card's tag, tier and
+       WhatsApp line from them; nothing is typed in the markup, and check.mjs 8c re-reads each figure from here.
+       creditDays: the mockup or audit fee is refunded on a build ordered within that many days. The monthly plan has
+       no lead time: one per request, agreed when it is scoped (the owner's default, 2026-11-21). */
+    var DESIGN = {
+      logo:   { essentiel: 45000, signature: 70000, weeks: [1, 2] },
+      illu:   { spot: 12000, mascotte: 55000, weeks: [1, 3] },
+      icons:  { set12: 30000 },
+      ui:     { landing: 35000, site5: 67000, app10: 120000, ecranWeb: 8000, ecranApp: 12000,
+                weeksLanding: [1, 1], weeksSite: [1, 2], weeksApp: [2, 3], creditDays: 60 },
+      social: { kit: 40000, anime: 65000, mois: 30000, weeks: [1, 2] },
+      ads:    { set: [12000, 25000], concept: [8000, 15000], days: [3, 5] },
+      email:  { master: [30000, 60000], layout: [10000, 20000], weeks: [1, 1] },
+      pack:   { ref1: 45000, ref3: 75000, ref: 15000, weeks: [1, 3] },
+      print:  { carte: 8000, flyer: 12000, menu: 20000, plaquette: 28000, papeterie: 30000, days: [3, 5] },
+      stick:  { planche6: 25000, tshirt: [12000, 30000], weeks: [1, 1] },
+      deck:   { slide: 4000, deck12: 48000, master: 75000, weeks: [1, 2] },
+      info:   { one: [15000, 35000], weeks: [1, 1] },
+      audit:  { express: 25000, parcours: 60000, weeks: [1, 1] },
+      mois:   { mois: 65000, trimestre: 180000 },
+      // the two bundles (formules): each below the sum of its three lines at the carte's own prices
+      f_marque:  { price: [190000, 360000] },
+      f_produit: { price: [185000, 185000] }
+    };
     // does option o apply to type key? Its own list (only) decides, else the type's (opts); a type without a list takes every option that has none
     var applies = function (o, key) {
       var p = PRICE_OPTS[o], m = PRICE_MODEL[key];
@@ -188,7 +215,7 @@
       return q;
     }
 
-    return { PRICE_MODEL: PRICE_MODEL, PRICE_OPTS: PRICE_OPTS, quote: quote, tally: tally, roundTo: roundTo, RUSH_PRICE: RUSH_PRICE, MID_RANGE: MID_RANGE, applies: applies };
+    return { PRICE_MODEL: PRICE_MODEL, PRICE_OPTS: PRICE_OPTS, quote: quote, tally: tally, roundTo: roundTo, RUSH_PRICE: RUSH_PRICE, MID_RANGE: MID_RANGE, applies: applies, DESIGN: DESIGN };
   })();
 
   var DEFAULT_LANG = 'fr';
@@ -1072,14 +1099,27 @@
        ms after load; within 3 s of load, or the page is the visitor's. */
     if (msgBox) {
       var carried = null;
-      try { carried = sessionStorage.getItem(HANDOFF); if (carried !== null) sessionStorage.removeItem(HANDOFF); } catch (e) {}
+      // a course's fiche (hub/manuel.html) says what it is and whose: 'numidea-prefill-kind' ("brief:brandc" or
+      // "brief:web3c") and 'numidea-prefill-name' (the fiche's first name), read and cleared with the text (rev1, 2026-11-21)
+      var carriedKind = '', carriedName = '';
+      try {
+        carried = sessionStorage.getItem(HANDOFF); if (carried !== null) sessionStorage.removeItem(HANDOFF);
+        carriedKind = sessionStorage.getItem(HANDOFF + '-kind') || ''; carriedName = sessionStorage.getItem(HANDOFF + '-name') || '';
+        sessionStorage.removeItem(HANDOFF + '-kind'); sessionStorage.removeItem(HANDOFF + '-name');
+      } catch (e) {}
       /* The guide's scope arrives as a bare line ("Site sur mesure · 8 pages
          — 180 000 – 420 000 DA"): a greeting (price.estHello) goes above it,
          so the message opens as a message and the visitor's lines follow
          naturally; the subject logic reads the first line (way 'carried').
          Until the dictionaries carry the key, the scope stands alone. */
       var hello = DICT['price.estHello'] != null ? plain(DICT['price.estHello']) : '';   // t() would hand back the key
-      if (carried) prefillWith('carried', (hello ? hello + '\n' : '') + carried);
+      // a fiche opens with its own greeting and names its course on its first line: no second greeting above it
+      var brief = /^brief:(brandc|web3c)$/.exec(carriedKind);
+      if (carried && brief) {
+        prefillWith('brief-' + brief[1], carried);
+        var nameIn = document.getElementById('f-name');
+        if (nameIn && carriedName && !nameIn.value.trim()) nameIn.value = carriedName.slice(0, 80);
+      } else if (carried) prefillWith('carried', (hello ? hello + '\n' : '') + carried);
       if (carried && location.hash === '#contact') {
         var settled = null, landed = false;
         var land = function () {
@@ -1180,7 +1220,7 @@
            estimator's scope gets the visitor's lines under it, but a message
            rewritten from the first line is the visitor's own. */
         var way = prefill.text && msg.indexOf(prefill.text.split('\n')[0].trim()) === 0 ? prefill.kind : '';
-        var subject = t(way === 'prev' || way === 'tier' ? 'form.subjPrev' : way === 'est' || way === 'carried' ? 'form.subjEst' : 'form.subj') + name;
+        var subject = t(way === 'prev' || way === 'tier' ? 'form.subjPrev' : way === 'est' || way === 'carried' ? 'form.subjEst' : way === 'brief-brandc' ? 'form.subjBriefB' : way === 'brief-web3c' ? 'form.subjBriefW' : 'form.subj') + name;
         var src = leadSource();
         var body = name + ' <' + email + '>\n\n' + msg
           + '\n\n--\nnumidealabs · ' + (document.documentElement.getAttribute('lang') || 'fr')

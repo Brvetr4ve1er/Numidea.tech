@@ -20,7 +20,9 @@
   12 · each case's own faces, and its layout, as it nears the screen
   13 · the lessons; 13b · the manual's two client courses and their briefs;
        13c · la fabrique (hub/fabrique.html: the 16-px slider, the carried
-       estimate; its two lesson sets and its pickers are 13's)
+       estimate; its two lesson sets and its pickers are 13's); 13e · the web3
+       course's shell (two ways in, its chapters, the dock; its labs load
+       from hub/web3x.js)
    The rule of the page: nothing moves for longer than five seconds on its
    own, and nothing loops; every duration and wait is on the site's one
    tempo (90 BPM: BEAT, M() and Q() below, the stylesheet's --m-* tokens). Each motion answers an input or plays once when
@@ -89,6 +91,7 @@
     var ol = $('meta[property="og:locale"]'); if (ol) ol.setAttribute('content', LOCALE[l]);
     $$('.st-lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === l)); });
     onLang.forEach(function (fn) { fn(l); });
+    emit('numidea:lang', { lang: l });   // hub/radio.js and hub/lanterne.js repaint their own lines
   }
   // a shared ?lang= link stays truthful after a switch, and the canonical with it
   function syncUrl(l) {
@@ -101,17 +104,26 @@
       if (c) { var cu = new URL(c.href); if (l === 'fr') cu.searchParams.delete('lang'); else cu.searchParams.set('lang', l); c.href = cu.href; if (og) og.setAttribute('content', cu.href); }
     } catch (e) {}
   }
-  var loading = null;
+  /* one queue per language, and only the language asked for last is applied: a press of FR while EN's dictionary
+     was still on its way used to take EN's queue, and EN landed after FR (the page left in English) */
+  var loading = {}, wanted = null;
   function withDicts(l, fn) {
-    if (window.HUB_I18N && window.HUB_I18N[l]) { fn(); return; }
-    if (loading && loading.l === l) { loading.push(fn); return; }
-    loading = [fn]; loading.l = l;
+    wanted = l;
+    var go = function () { if (wanted === l) fn(); };
+    if (window.HUB_I18N && window.HUB_I18N[l]) { go(); return; }
+    if (loading[l]) { loading[l].push(go); return; }
+    loading[l] = [go];
     var busy = $$('.st-lang button');
     busy.forEach(function (b) { b.setAttribute('aria-busy', 'true'); });
     var s = document.createElement('script');
     var me = $('script[src*="app.js"]');
-    s.src = 'i18n.' + l + '.js' + ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0];
-    s.onload = s.onerror = function () { busy.forEach(function (b) { b.removeAttribute('aria-busy'); }); var q = loading; loading = null; if (window.HUB_I18N && window.HUB_I18N[l]) q.forEach(function (f) { f(); }); };
+    // a page of the Librairie names its own dictionary (hub/lanterne/i18n/<page>.<lang>.js) on <html data-dict>
+    s.src = (root.getAttribute('data-dict') || 'i18n.') + l + '.js' + ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0];
+    s.onload = s.onerror = function () {
+      var q = loading[l]; delete loading[l];
+      if (!Object.keys(loading).length) busy.forEach(function (b) { b.removeAttribute('aria-busy'); });
+      if (window.HUB_I18N && window.HUB_I18N[l]) q.forEach(function (f) { f(); });
+    };
     document.head.appendChild(s);
   }
   /* Arabic sets the page in its own faces: they are asked for before the
@@ -139,7 +151,7 @@
     b.addEventListener('click', function () {
       var l = b.getAttribute('data-lang');
       try { localStorage.setItem('numidea-lang', l); } catch (e) {}
-      withDicts(l, function () { faces(l).then(function () { swap(function () { apply(l); syncUrl(l); }); }); });
+      withDicts(l, function () { faces(l).then(function () { if (wanted === l) swap(function () { if (wanted === l) { apply(l); syncUrl(l); } }); }); });
     });
   });
   /* While a swap runs the page is its picture, and a pointer lands on the
@@ -1583,6 +1595,49 @@
     pk._pick = pick;
     pick('0');
   };
+  // a figure from the visitor's own numbers ([data-calc]), in a lesson or outside one (an atlas of the Librairie, hub/lanterne/)
+  var wireCalc = function (c) {
+    var kind = c.getAttribute('data-calc');
+    // a kind this section does not know is left in its still state (web3x/SPEC.md §4.1: the web3 modules' "fee" is
+    // hub/web3x.js's to wire; before this, an unknown kind fell into treso's branch and threw at load)
+    if (!/^(rate|funnel|quote|zones|week|treso)$/.test(kind)) return;
+    var val = function (f) { var v = Number($('[data-f="' + f + '"]', c).value); return isFinite(v) && v > 0 ? v : 0; };
+    var out = function (k, v) { var o = $('[data-o="' + k + '"]', c); if (o && o.textContent !== v) o.textContent = v; };
+    var num = function (f) { var v = Number($('[data-f="' + f + '"]', c).value); return isFinite(v) ? v : 0; };   // may be zero or negative (a UTC offset)
+    var wrap = function (k, hide) { var w = $('[data-o-wrap="' + k + '"]', c); if (w && w.hidden !== hide) w.hidden = hide; };
+    var dec = function (n) { return (Math.round(n * 10) / 10).toString().replace('.', lang === 'en' ? '.' : ','); };
+    var grp = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, lang === 'en' ? ',' : ' '); };
+    var work = function () {
+      if (kind === 'rate') {
+        var days = Math.max(1, val('days')), tax = Math.min(90, val('tax')) / 100;
+        var day = (val('net') + val('costs')) / (1 - tax) / days;
+        out('days', String(days)); out('tax', String(Math.round(tax * 100))); out('day', grp(day)); out('hour', grp(day / 7));
+      } else if (kind === 'funnel') {
+        var want = Math.max(1, Math.round(val('want'))), reply = Math.max(1, Math.round(val('reply'))), close = Math.max(1, Math.round(val('close'))), msgs = Math.ceil(want * 10000 / (reply * close));
+        out('want', String(want)); out('reply', String(reply)); out('close', String(close));
+        out('msgs', grp(msgs)); out('week', grp(Math.ceil(msgs * 12 / 52)));
+      } else if (kind === 'quote') {
+        var qd = Math.max(1, val('days')), price = Math.round(val('rate') * qd * (100 + val('rev')) / 100);
+        out('days', String(qd)); out('rev', String(val('rev'))); out('price', grp(price)); out('dep', grp(Math.round(price * 2 / 5)));
+      } else if (kind === 'zones') {
+        // the client's 9-to-18 day, seen on the visitor's clock, is 9 - d to 18 - d (d: their offset minus the visitor's, taken the short way round the globe)
+        var me = num('me'), them = num('them'), dz = ((them - me + 12) % 24 + 24) % 24 - 12, over = Math.max(0, 9 - Math.abs(dz));
+        var utc = function (n) { return 'UTC' + (n < 0 ? '\u2212' : '+') + Math.abs(n); };
+        out('me', utc(me)); out('them', utc(them)); out('gap', String(Math.abs(dz))); out('over', String(over));
+        wrap('win', over <= 0); wrap('none', over > 0);
+        if (over > 0) { out('from', Math.max(9, 9 - dz) + ':00'); out('to', Math.min(18, 18 - dz) + ':00'); }
+      } else if (kind === 'week') {
+        var yr = Math.round(val('days') * val('bill') * (52 - val('off')) / 100);
+        out('days', String(val('days'))); out('bill', String(val('bill'))); out('off', String(val('off'))); out('year', grp(yr)); out('month', dec(yr / 12));
+      } else {
+        var gap = val('spend') - val('inc'), fine = gap <= 0;
+        $('[data-o-wrap="months"]', c).hidden = fine; $('[data-o-wrap="fine"]', c).hidden = !fine;
+        if (!fine) { var mth = val('save') / gap; out('months', mth >= 100 ? '99+' : (Math.round(mth * 10) / 10).toString().replace('.', lang === 'en' ? '.' : ',')); }
+      }
+    };
+    $$('[data-f]', c).forEach(function (i) { i.addEventListener('input', work); });
+    work(); onLang.push(work);
+  };
   // a stop asked for in the address (la fabrique links to manuel.html?ls=b9#marque): that set opens on it, without focus
   var askedLs = null;
   try { askedLs = new URLSearchParams(location.search).get('ls'); } catch (e) {}
@@ -1599,6 +1654,10 @@
       tabs.forEach(function (b, i) { var on = b.getAttribute('data-ls-tab') === id; if (on) at = i; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
       var dir = at >= shownAt ? 1 : -1; shownAt = at;
       panels.forEach(function (p) { var on = p.getAttribute('data-ls-panel') === id; p.hidden = !on; if (on && rise) { p.style.setProperty('--dir', String(dir)); p.classList.add('is-slide'); } });
+      // the stop shown, for the set itself (a course keeps its closing line for the last stop) and for 13b (the place kept, the phone's bar)
+      ls.classList.toggle('is-last', at === tabs.length - 1);
+      ls._at = id;
+      emit('numidea:stop', { set: ls.getAttribute('data-ls') || '', id: id });
     };
     var stamps = function () {
       tabs.forEach(function (b) {
@@ -1613,6 +1672,8 @@
       }
       if (count) count._seen = true;
       $$('[data-ls-earn]', ls).forEach(function (x) { x.classList.toggle('is-earned', done.indexOf(x.getAttribute('data-ls-earn')) > -1); });
+      // a stamped stop shows the way to the next one ([data-ls-next], the courses)
+      panels.forEach(function (p) { var nx = $('[data-ls-next]', p); if (nx) nx.hidden = done.indexOf(p.getAttribute('data-ls-panel')) < 0; });
       $$('[data-ls-all]', ls).forEach(function (x) { x.hidden = n < tabs.length; });
       if (ls.hasAttribute('data-ls-bar')) ls.style.setProperty('--n', String(n));
     };
@@ -1631,70 +1692,49 @@
       // one explanation at a time
       $$('[data-pick]', p).forEach(wirePick);
       // a figure from the visitor's own numbers
-      $$('[data-calc]', p).forEach(function (c) {
-        var kind = c.getAttribute('data-calc');
-        var val = function (f) { var v = Number($('[data-f="' + f + '"]', c).value); return isFinite(v) && v > 0 ? v : 0; };
-        var out = function (k, v) { var o = $('[data-o="' + k + '"]', c); if (o && o.textContent !== v) o.textContent = v; };
-        var num = function (f) { var v = Number($('[data-f="' + f + '"]', c).value); return isFinite(v) ? v : 0; };   // may be zero or negative (a UTC offset)
-        var wrap = function (k, hide) { var w = $('[data-o-wrap="' + k + '"]', c); if (w && w.hidden !== hide) w.hidden = hide; };
-        var dec = function (n) { return (Math.round(n * 10) / 10).toString().replace('.', lang === 'en' ? '.' : ','); };
-        var grp = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, lang === 'en' ? ',' : ' '); };
-        var work = function () {
-          if (kind === 'rate') {
-            var days = Math.max(1, val('days')), tax = Math.min(90, val('tax')) / 100;
-            var day = (val('net') + val('costs')) / (1 - tax) / days;
-            out('days', String(days)); out('tax', String(Math.round(tax * 100))); out('day', grp(day)); out('hour', grp(day / 7));
-          } else if (kind === 'funnel') {
-            var want = Math.max(1, Math.round(val('want'))), reply = Math.max(1, Math.round(val('reply'))), close = Math.max(1, Math.round(val('close'))), msgs = Math.ceil(want * 10000 / (reply * close));
-            out('want', String(want)); out('reply', String(reply)); out('close', String(close));
-            out('msgs', grp(msgs)); out('week', grp(Math.ceil(msgs * 12 / 52)));
-          } else if (kind === 'quote') {
-            var qd = Math.max(1, val('days')), price = Math.round(val('rate') * qd * (100 + val('rev')) / 100);
-            out('days', String(qd)); out('rev', String(val('rev'))); out('price', grp(price)); out('dep', grp(Math.round(price * 2 / 5)));
-          } else if (kind === 'zones') {
-            // the client's 9-to-18 day, seen on the visitor's clock, is 9 - d to 18 - d (d: their offset minus the visitor's, taken the short way round the globe)
-            var me = num('me'), them = num('them'), dz = ((them - me + 12) % 24 + 24) % 24 - 12, over = Math.max(0, 9 - Math.abs(dz));
-            var utc = function (n) { return 'UTC' + (n < 0 ? '\u2212' : '+') + Math.abs(n); };
-            out('me', utc(me)); out('them', utc(them)); out('gap', String(Math.abs(dz))); out('over', String(over));
-            wrap('win', over <= 0); wrap('none', over > 0);
-            if (over > 0) { out('from', Math.max(9, 9 - dz) + ':00'); out('to', Math.min(18, 18 - dz) + ':00'); }
-          } else if (kind === 'week') {
-            var yr = Math.round(val('days') * val('bill') * (52 - val('off')) / 100);
-            out('days', String(val('days'))); out('bill', String(val('bill'))); out('off', String(val('off'))); out('year', grp(yr)); out('month', dec(yr / 12));
-          } else {
-            var gap = val('spend') - val('inc'), fine = gap <= 0;
-            $('[data-o-wrap="months"]', c).hidden = fine; $('[data-o-wrap="fine"]', c).hidden = !fine;
-            if (!fine) { var mth = val('save') / gap; out('months', mth >= 100 ? '99+' : (Math.round(mth * 10) / 10).toString().replace('.', lang === 'en' ? '.' : ',')); }
-          }
-        };
-        $$('[data-f]', c).forEach(function (i) { i.addEventListener('input', work); });
-        work(); onLang.push(work);
-      });
-      // the question
-      var ok = $('[data-ls-ok]', p), no = $('[data-ls-no]', p), as = $$('[data-ls-a]', p);
-      as.forEach(function (a) {
-        a.addEventListener('click', function () {
-          var right = a.getAttribute('data-ls-a') === 'ok';
-          as.forEach(function (x) { x.classList.remove('is-right', 'is-wrong'); x.setAttribute('aria-pressed', String(x === a)); });
-          a.classList.add(right ? 'is-right' : 'is-wrong');
-          ok.hidden = !right; no.hidden = right;
-          emit('numidea:lesson', { id: id, right: right, first: right && done.indexOf(id) < 0 });
-          if (right && done.indexOf(id) < 0) {
-            done.push(id);
-            try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
-            stamps();
-            var sp = $('[data-ls-tab="' + id + '"] [data-ls-stamp]', ls);
-            if (sp && !reduce) { sp.classList.remove('is-stamp'); void sp.offsetWidth; sp.classList.add('is-stamp'); }
-          }
+      $$('[data-calc]', p).forEach(wireCalc);
+      // the question (a stop may hold two, one shown at a time: B2's tree or its payment fork). A wrong answer shows
+      // its own line where the markup gives one ([data-ls-w] on the answer, [data-ls-no="<w>"] on the line), else the
+      // set's shared line; [data-ls-say] names what Kūro says for the first right answer (hub/life.js)
+      $$('[data-ls-q]', p).forEach(function (q) {
+        var ok = $('[data-ls-ok]', q), nos = $$('[data-ls-no]', q), as = $$('[data-ls-a]', q), say = q.getAttribute('data-ls-say');
+        as.forEach(function (a) {
+          a.addEventListener('click', function () {
+            var right = a.getAttribute('data-ls-a') === 'ok', w = a.getAttribute('data-ls-w') || '';
+            as.forEach(function (x) { x.classList.remove('is-right', 'is-wrong'); x.setAttribute('aria-pressed', String(x === a)); });
+            a.classList.add(right ? 'is-right' : 'is-wrong');
+            ok.hidden = !right;
+            nos.forEach(function (n) { n.hidden = right || (n.getAttribute('data-ls-no') || '') !== w; });
+            emit('numidea:lesson', { id: id, right: right, first: right && done.indexOf(id) < 0, say: right && say ? say : null });
+            if (right && done.indexOf(id) < 0) {
+              done.push(id);
+              try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
+              stamps();
+              var sp = $('[data-ls-tab="' + id + '"] [data-ls-stamp]', ls);
+              if (sp && !reduce) { sp.classList.remove('is-stamp'); void sp.offsetWidth; sp.classList.add('is-stamp'); }
+            }
+          });
         });
       });
     });
     show(askedLs && tabs.some(function (b) { return b.getAttribute('data-ls-tab') === askedLs; }) ? askedLs : tabs[0].getAttribute('data-ls-tab')); stamps();
-    LS[ls.getAttribute('data-ls') || ''] = show;
+    // a set inside a chapter of the web3 course opens that chapter first (13e sets LS._open)
+    LS[ls.getAttribute('data-ls') || ''] = function (id, focus, rise) { if (LS._open) LS._open(ls.getAttribute('data-ls') || ''); show(id, focus, rise); };
     // "Aller à ma fiche" and the like: a link to a stop opens its tab
-    $$('[data-ls-go]', ls).forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); show(a.getAttribute('data-ls-go'), true, true); }); });
+    // (the tab takes the focus; the stop's top is brought into view at once: a cut, no scrolling animation). A link to
+    // another set's stop ([data-ls-go-set]: the web3 modules and the buyer path) is 13e's
+    $$('[data-ls-go]:not([data-ls-go-set])', ls).forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var to = a.getAttribute('data-ls-go'), pn = $('[data-ls-panel="' + to + '"]', ls);
+        show(to, true, true); emit('numidea:tab', { id: to });
+        var top = matchMedia('(max-width:699px)').matches ? pn : $('.st-ls__tabs', ls);
+        if (top && top.scrollIntoView) top.scrollIntoView({ block: 'start', behavior: 'auto' });
+      });
+    });
   });
   $$('[data-pick]').filter(function (pk) { return !pk.closest('[data-ls]'); }).forEach(wirePick);
+  $$('[data-calc]').filter(function (c) { return !c.closest('[data-ls]'); }).forEach(wireCalc);
   // B1's way to Crypto 101: the money set opens on it, then the link's own jump
   $$('[data-crypto-go]').forEach(function (a) { a.addEventListener('click', function () { if (LS['']) LS['']('crypto', false, true); }); });
   // a level's reference ([3]) opens the list of sources it points into (not every browser opens a closed <details> for a link to something inside it)
@@ -1703,30 +1743,46 @@
   /* ---------------- 13b · the client courses and their briefs ----------------
      The manual's two client courses (#marque "Le logo vient après", #web3 "Le web3, sans fumée"; COURSE.md, 2026-11-19)
      run in the lessons' shell (13) and add the brief: each control that names a field (data-bf) writes it into one
-     object per course, localStorage 'numidea-brief-<set>' ({ v: 1, f: { field: value } }, choices as indices, text as
-     typed), on this device only. The last stop shows the brief as a receipt (the fiche), written here with textContent:
-     an empty row is a link back to the stop that fills it ("à remplir à l'étape n"). Prices come from section 6's own
-     quote() (priceKit): an identity by the supports ticked, a web3 brief by the ordinary route its request maps to, and
-     no price where the studio publishes none. The brief leaves only through the visitor's press: WhatsApp (?text=),
-     the home page's form (sessionStorage 'numidea-prefill', read by assets/app.js), the clipboard, or print. The
-     controls: chips (several, aria-pressed), one-of groups (radiogroup, roving tabindex, the arrows, Home and End),
-     text fields, three sliders, sorting rows (bins), toggles, the six-question flow, the law cards, the 16-pixel test
-     and the six states of a transaction. Every result region is in the page from the start, empty; one status line per
-     control is live. Nothing moves by itself: what changes changes at once (a cut), the seal stamps once on a press. */
+     object per course, localStorage 'numidea-brief-<set>' ({ v: 1, f: { field: value }, at: <the stop last seen> },
+     choices as indices, text as typed), on this device only; what is typed is written at once when the page is left.
+     The last stop shows the brief as a receipt (the fiche), written here with textContent: an empty row is a link back
+     to the stop that fills it ("à remplir à l'étape n"). Prices come from section 6's own quote() (priceKit): an
+     identity by the supports ticked, a web3 brief by the ordinary route its request maps to, and no price where the
+     studio publishes none; the euro and dollar lines are the console's own (range(), the same rate, the "≈" kept).
+     The brief leaves only through the visitor's press: WhatsApp (?text=), the home page's form (sessionStorage
+     'numidea-prefill', read by assets/app.js), the clipboard, or print. The controls: chips (several, aria-pressed),
+     one-of groups (radiogroup, roving tabindex, the arrows, Home and End), text fields, three sliders, sorting rows
+     (bins), toggles, the six-question flow, the law cards, the 16-pixel test (the visitor's own logo too, read on the
+     device and sent nowhere) and the six states of a transaction. Every result region is in the page from the start,
+     empty; one status line per control is live. Nothing moves by itself: what changes changes at once (a cut), the
+     seal stamps once on a press.
+     The critique pass of 2026-11-21 (crit-courses/PLAN.md): the web3 tree's verdict carries on (chainOn, foldChain:
+     the chain lists and stop 4 fold, the fiche prints chain rows only for a chain kept), an existing site is priced
+     when we scope, a card payment has its own questions, the brand fiche prints the visitor's requests and no house
+     identity, nothing looks chosen that the store does not hold, and the place is kept (st.at). */
+  // the page's bar, measured: the phone's course bar sticks right under it (style.css, --nav-h)
+  var navBar = $('.st-nav'), navTall = function () { if (navBar) root.style.setProperty('--nav-h', Math.round(navBar.getBoundingClientRect().height) + 'px'); };
+  if ($('[data-crs-bar]')) { navTall(); addEventListener('resize', navTall); }
   $$('[data-brief]').forEach(function (fiche) {
-    var set = fiche.getAttribute('data-brief'), course = fiche.closest('[data-ls]'), sec = fiche.closest('.st-crs');
+    // on an atlas of the Librairie (hub/lanterne/marque.html, web3.html) the page is the course, its districts the stops
+    var set = fiche.getAttribute('data-brief'), course = fiche.closest('[data-ls]') || fiche.closest('[data-lt-course]'), sec = fiche.closest('.st-crs') || course;
     if (!course || !sec) return;
     var B = set === 'brandc', KEY = 'numidea-brief-' + set, st = { v: 1, f: {} };
     try { var s0 = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s0 && s0.v === 1 && s0.f && typeof s0.f === 'object') st = s0; } catch (e) {}
-    var F = st.f, saveT = 0, restores = [], hooks = [];
-    var save = function () { clearTimeout(saveT); saveT = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }, M(4)); };
+    var F = st.f, saveT = 0, restores = [], hooks = [], paints = {};
+    var flush = function () { clearTimeout(saveT); saveT = 0; try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+    var save = function () { clearTimeout(saveT); saveT = setTimeout(flush, M(4)); };
+    // what was typed just before leaving is written at once (a page hidden or left may never run the timer)
+    addEventListener('pagehide', function () { if (saveT) flush(); });
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden' && saveT) flush(); });
     var has = function (v) { return v != null && v !== '' && !(Array.isArray(v) && !v.length); };
     var after = {};   // what a field sets off (the fork: "a payment" fills the request)
-    var put = function (f, v) { if (has(v)) F[f] = v; else delete F[f]; if (after[f]) after[f](v); save(); refresh(); };
+    var painted = function (f, fn) { (paints[f] = paints[f] || []).push(fn); restores.push(fn); };
+    var put = function (f, v) { if (has(v)) F[f] = v; else delete F[f]; if (after[f]) after[f](v); save(); (paints[f] || []).forEach(function (fn) { fn(); }); refresh(); };
     // a string in the page's language: the dictionary, else the page itself (a French visitor's #hub-fr holds only what is not in the markup)
     var tx = function (k) { var v = t(k); if (v) return v; var el = sec.querySelector('[data-i18n="' + k + '"]'); return el ? el.textContent : ''; };
     var IT = set + '.items.';
-    var colon = function () { return lang === 'fr' ? ' : ' : ': '; };
+    var colon = function () { return lang === 'fr' ? ' : ' : ': '; };
     var sep = ' · ';
     var cm = function () { return lang === 'ar' ? '، ' : ', '; };
     var bf = function (f) { return sec.querySelector('[data-bf="' + f + '"]'); };
@@ -1736,15 +1792,19 @@
     var tabs = $$('[data-ls-tab]', course);
     var panelOf = function (f) { var el = bf(f); var p = el && el.closest('[data-ls-panel]'); return p ? p.getAttribute('data-ls-panel') : null; };
     var stopN = function (id) { for (var i = 0; i < tabs.length; i++) if (tabs[i].getAttribute('data-ls-tab') === id) return i + 1; return 0; };
-    var lastId = tabs[tabs.length - 1].getAttribute('data-ls-tab');
-    var go = function (id) { if (LS[set]) LS[set](id, true, true); };
+    var stopT = function (id) { var b = tabs[stopN(id) - 1], x = b && ($('.st-ls__t', b) || $('.list__n', b)); return x ? x.textContent.trim() : ''; };
+    var firstId = tabs[0].getAttribute('data-ls-tab'), lastId = tabs[tabs.length - 1].getAttribute('data-ls-tab');
+    var go = function (id) { if (LS[set]) LS[set](id, true, true); else if (window.lanterne && window.lanterne.open) window.lanterne.open(id); };
 
     // the controls start disabled (a page without this script shows them, inert)
-    $$('[disabled]', sec).forEach(function (el) { if (!el.closest('[data-ls-q]')) el.disabled = false; });
+    $$('[disabled]', sec).forEach(function (el) { if (!el.closest('[data-ls-q]') && !el.closest('[data-x]')) el.disabled = false; });
+    // a group is a brief field only when it names one and sits outside a lab and the path start (web3x/SPEC.md §4.1:
+    // a group without data-bf wrote F["null"])
+    var field = function (g) { return g.hasAttribute('data-bf') && !g.closest('[data-x],[data-wpath]'); };
     root.classList.add('has-brief');
 
-    /* ---- chips, several at once ---- */
-    $$('[data-chips]:not([data-chips="one"])', sec).forEach(function (g) {
+    /* ---- chips, several at once (a field may have two groups: the country at step 1 and at step 7) ---- */
+    $$('[data-chips]:not([data-chips="one"])', sec).filter(field).forEach(function (g) {
       var f = g.getAttribute('data-bf'), none = g.hasAttribute('data-none') ? Number(g.getAttribute('data-none')) : -1, bs = $$('[data-v]', g);
       var paint = function () { var a = F[f] || []; bs.forEach(function (b) { b.setAttribute('aria-pressed', String(a.indexOf(Number(b.getAttribute('data-v'))) > -1)); }); };
       bs.forEach(function (b) {
@@ -1752,36 +1812,40 @@
           var v = Number(b.getAttribute('data-v')), a = (F[f] || []).slice(), i = a.indexOf(v);
           if (i > -1) a.splice(i, 1); else if (v === none) a = [v]; else { a.push(v); a = a.filter(function (x) { return x !== none; }); }
           a.sort(function (x, y) { return x - y; });
-          put(f, a); paint();
+          put(f, a);
         });
       });
-      restores.push(paint);
+      painted(f, paint);
     });
-    /* ---- one of several: a radiogroup ---- */
-    $$('[data-chips="one"]', sec).forEach(function (g) {
+    /* ---- one of several: a radiogroup ([data-default]: the choice the page counts with until another is pressed) ---- */
+    $$('[data-chips="one"]', sec).filter(field).forEach(function (g) {
       var f = g.getAttribute('data-bf'), keep = !g.hasAttribute('data-nostore'), rs = $$('[role="radio"]', g), cur = null;
+      var def = g.hasAttribute('data-default') ? Number(g.getAttribute('data-default')) : null;
+      var vis = function () { return rs.filter(function (r) { return !r.hidden; }); };
       var paint = function (v) {
         cur = v;
-        rs.forEach(function (r, i) { var on = Number(r.getAttribute('data-v')) === v; r.setAttribute('aria-checked', String(on)); r.tabIndex = on || (v == null && i === 0) ? 0 : -1; });
+        var shown = v == null ? def : v, any = false;
+        rs.forEach(function (r) { var on = !r.hidden && Number(r.getAttribute('data-v')) === shown; if (on) any = true; r.setAttribute('aria-checked', String(on)); r.tabIndex = on ? 0 : -1; });
+        if (!any && vis()[0]) vis()[0].tabIndex = 0;
       };
       var choose = function (v, focus) {
         paint(v);
         if (focus) rs.forEach(function (r) { if (Number(r.getAttribute('data-v')) === v) r.focus(); });
         if (keep) put(f, v); else hooks.forEach(function (h) { h(f, v); });
       };
-      rs.forEach(function (r, i) {
+      rs.forEach(function (r) {
         r.addEventListener('click', function () { choose(Number(r.getAttribute('data-v'))); });
         r.addEventListener('keydown', function (e) {
-          var rtl = root.getAttribute('dir') === 'rtl', n = rs.length;
+          var rtl = root.getAttribute('dir') === 'rtl', vs = vis(), n = vs.length, i = vs.indexOf(r);
           var to = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1
             : e.key === 'ArrowRight' ? i + (rtl ? -1 : 1) : e.key === 'ArrowLeft' ? i + (rtl ? 1 : -1)
             : e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowUp' ? i - 1 : null;
           if (to === null) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); choose(Number(r.getAttribute('data-v'))); } return; }
-          e.preventDefault(); choose(Number(rs[(to + n) % n].getAttribute('data-v')), true);
+          e.preventDefault(); choose(Number(vs[(to + n) % n].getAttribute('data-v')), true);
         });
       });
       g._choose = choose;
-      restores.push(function () { paint(keep ? (F[f] != null ? F[f] : null) : cur); });
+      painted(f, function () { paint(keep ? (F[f] != null ? F[f] : null) : cur); });
     });
     /* ---- text ---- */
     $$('input[type="text"][data-bf]', sec).forEach(function (inp) {
@@ -1796,7 +1860,7 @@
       restores.push(function () { b.setAttribute('aria-pressed', String(!!F[f])); });
     });
     /* ---- sorting rows: a press marks the row and says how the workshop sorts it ---- */
-    $$('[data-bins]', sec).forEach(function (ol) {
+    $$('[data-bins]', sec).filter(field).forEach(function (ol) {
       var f = ol.getAttribute('data-bf'), rows = $$('[data-bin-row]', ol), score = ol.parentNode.querySelector('[data-bin-score]');
       var paint = function () {
         var a = F[f] || [], n = 0, any = false;
@@ -1813,16 +1877,19 @@
       rows.forEach(function (row, r) {
         $$('[data-bin]', row).forEach(function (x) {
           x.addEventListener('click', function () {
-            var a = (F[f] || rows.map(function () { return -1; })).slice();
+            var a = (F[f] || rows.map(function () { return -1; })).slice(), b = Number(x.getAttribute('data-bin'));
             while (a.length < rows.length) a.push(-1);
-            a[r] = Number(x.getAttribute('data-bin'));
+            a[r] = b;
             put(f, a); paint();
+            // a scam sorted as "nothing wrong": Kūro names it (hub/life.js)
+            if (f === 'spot' && b !== Number(row.getAttribute('data-bin-ok')) && Number(row.getAttribute('data-bin-ok')) === 0) emit('numidea:kuro', { k: 'web3c.kuro.hook' });
           });
         });
       });
       restores.push(paint); onLang.push(paint);
     });
-    /* ---- three sliders, the character in the visitor's words, the nearest of the studio's three identities ---- */
+    /* ---- three sliders, the character in the visitor's words, the nearest of the studio's three identities (on the
+       page only: the fiche carries the visitor's words, not a house identity) ---- */
     var tone = $('[data-tone]', sec);
     if (tone) {
       var rg = $$('input[type="range"]', tone), you = $('[data-spec-you]', sec), cards = $$('[data-spec]', sec), PTS = [[1, 4, 1], [4, 2, 4], [2, 0, 2]], near = 2;
@@ -1839,15 +1906,38 @@
       };
       rg.forEach(function (r) { r.addEventListener('input', function () { put('tone', rg.map(function (x) { return Number(x.value); })); paintT(true); }); });
       restores.push(function () { paintT(false); }); onLang.push(function () { paintT(false); });
-      tone._near = function () { return F.tone ? cards[near].querySelector('.st-spec__name').textContent : ''; };
     }
-    /* ---- the 16-pixel test: the marks follow the hand, at once ---- */
+    /* ---- the 16-pixel test: the marks follow the hand, at once; the visitor's own logo beside them, read here and kept nowhere ---- */
     var mk = $('[data-marktest]', sec);
     if (mk) {
       var mr = $('input[type="range"]', mk), mo = $('[data-mk-out]', mk), ink = $('[data-mk-ink]', mk);
       var size = function () { var n = Number(mr.value); mk.style.setProperty('--mk', n + 'px'); var s = tx(IT + '8.lab.out').replace('{n}', n); mo.textContent = s; mr.setAttribute('aria-valuetext', s); };
       mr.addEventListener('input', size); size(); onLang.push(size);
       ink.addEventListener('click', function () { var on = !mk.classList.contains('is-ink'); mk.classList.toggle('is-ink', on); ink.setAttribute('aria-pressed', String(on)); });
+      var own = $('[data-mk-own]', mk), ownCell = $('[data-mk-own-cell]', mk), ownSlot = $('[data-mk-own-slot]', mk), own16 = $('[data-mk-own-16]', mk), ownClear = $('[data-mk-own-clear]', mk), ownSt = $('[data-mk-own-st]', mk);
+      if (own && ownCell && window.FileReader) {
+        var ownOff = function () { ownSlot.textContent = ''; own16.textContent = ''; ownCell.hidden = true; own16.hidden = true; ownClear.hidden = true; own.value = ''; };
+        var ownAlt = function () { $$('img', ownCell).concat($$('img', own16)).forEach(function (im) { im.alt = tx(IT + '8.own.alt'); }); };
+        own.addEventListener('change', function () {
+          var file = own.files && own.files[0]; ownSt.textContent = '';
+          if (!file) { ownOff(); return; }
+          var fr = new FileReader();
+          fr.onload = function () {
+            var probe = new Image();
+            probe.onload = function () {
+              ownSlot.textContent = ''; own16.textContent = '';
+              [ownSlot, own16].forEach(function (slot) { var im = document.createElement('img'); im.src = String(fr.result); im.decoding = 'async'; slot.appendChild(im); });
+              ownAlt(); ownCell.hidden = false; own16.hidden = false; ownClear.hidden = false;
+            };
+            probe.onerror = function () { ownOff(); ownSt.textContent = tx(IT + '8.own.bad'); };
+            probe.src = String(fr.result);
+          };
+          fr.onerror = function () { ownOff(); ownSt.textContent = tx(IT + '8.own.bad'); };
+          fr.readAsDataURL(file);
+        });
+        ownClear.addEventListener('click', function () { ownOff(); ownSt.textContent = ''; own.focus(); });
+        onLang.push(ownAlt);
+      }
     }
     /* ---- the six states of a transaction (writes nothing) ---- */
     var stt = $('[data-states]', sec);
@@ -1864,12 +1954,21 @@
       sg._choose(0); sline.textContent = '';
       onLang.push(function () { if (sline.textContent) paintS(sAt, true); });
     }
-    /* ---- the picker that writes a field (the request, the country): on a press only (13 emits numidea:pick) ---- */
+    /* ---- the picker that writes a field (the request, the country): on a press only (13 emits numidea:pick). Until
+       then no line looks chosen and no panel shows: a line says to pick one ---- */
     document.addEventListener('numidea:pick', function (e) {
       var el = e.detail && e.detail.el; if (!el || !sec.contains(el) || !el.hasAttribute('data-bf')) return;
       put(el.getAttribute('data-bf'), Number(e.detail.i));
     });
-    $$('[data-pick][data-bf]', sec).forEach(function (pk) { restores.push(function () { var f = pk.getAttribute('data-bf'); if (pk._pick) pk._pick(F[f] != null ? String(F[f]) : '0'); }); });
+    $$('[data-pick][data-bf]', sec).forEach(function (pk) {
+      var f = pk.getAttribute('data-bf'), hint = $('[data-pick-hint]', pk);
+      painted(f, function () {
+        var v = F[f];
+        if (v != null) { if (pk._pick) pk._pick(String(v)); }
+        else { $$('[data-pick-b]', pk).forEach(function (b) { b.setAttribute('aria-pressed', 'false'); }); $$('[data-pick-p]', pk).forEach(function (x) { x.hidden = true; }); }
+        if (hint) hint.hidden = v != null;
+      });
+    });
     /* ---- the fork and the six questions ---- */
     var flow = $('[data-flow]', sec), QS = flow ? $$('[data-flow-q]', flow) : [];
     var verdict = function () {
@@ -1886,24 +1985,38 @@
       var w = t(IT + '1.flow.qs.' + v.i + '.why');
       return [tx(IT + '1.flow.noT'), tx(IT + '1.flow.noD').replace('{tool}', tx(IT + '1.flow.qs.' + v.i + '.no')) + (w ? ' ' + w : '')];
     };
+    /* ---- what the verdict carries on (web3). A chain is "kept" when the visitor says so at the last stop, or when the
+       tree says "maybe" and nothing was decided against it; the chain parts fold once the route is ordinary: the tree
+       said no, the members do not resell, the users are in Algeria, the request is a payment, or the visitor decided ---- */
+    var algeria = function () { return (F.where || []).indexOf(0) > -1; };
+    var chainOn = function () { var v = verdict(); return !B && (F.decision === 2 || (F.decision == null && !!v && v.k === 'maybe')); };
+    var foldChain = function () { var v = verdict(); return !chainOn() && (F.decision === 0 || F.decision === 1 || (!!v && v.k === 'no') || F.resell === 1 || algeria() || F.request === 2); };
+    var hasSite = function () { return F.site === 1 || (F.site == null && (F.has || []).indexOf(0) > -1); };
+    var folds = $$('[data-chain-fold]', sec), folded = null;
+    var foldPaint = function () { var fc = foldChain(); if (fc === folded) return; folded = fc; folds.forEach(function (d) { d.open = !fc; }); };
     if (flow) {
       var fstep = $('[data-flow-step]', flow), fend = $('[data-flow-end]', flow), trail = $('[data-flow-trail]', flow);
-      var fback = $('[data-flow-back]', flow), frest = $('[data-flow-restart]', flow), forkG = $('[data-fork]', sec);
+      var fback = $('[data-flow-back]', flow), frest = $('[data-flow-restart]', flow);
       var paintF = function (said, focus) {
         var a = F.flow || [], v = verdict(), at = v ? -1 : a.length, vt = vText(v);
         flow.classList.toggle('is-off', F.fork === 1);
         QS.forEach(function (q, i) { q.classList.toggle('is-on', i === at); });
         trail.textContent = '';
-        a.forEach(function (x, i) { var li = document.createElement('li'); li.textContent = 'Q' + (i + 1) + ' ' + (x ? tx('fiche.yes') : tx('fiche.no')); trail.appendChild(li); });
+        a.forEach(function (x, i) { var li = document.createElement('li'); li.textContent = '\u2066Q' + (i + 1) + '\u2069' + colon() + (x ? tx('fiche.yes') : tx('fiche.no')); trail.appendChild(li); });
         $('[data-flow-v]', fend).textContent = vt[0]; $('[data-flow-d]', fend).textContent = vt[1];
         fend.classList.toggle('is-on', !!v);
         fback.disabled = !a.length; frest.disabled = !a.length;
+        // the verdict is said once to the eye (the card); the live line still announces it
         if (said) fstep.textContent = v ? vt[0] + ' ' + vt[1] : tx(IT + '1.flow.step').replace('{i}', at + 1);
+        fstep.classList.toggle('st-sr', !!v);
         if (focus) { if (v) { fend.tabIndex = -1; fend.focus(); } else if (QS[at]) QS[at].focus(); }
       };
       QS.forEach(function (q, i) {
         $$('[data-flow-a]', q).forEach(function (b) {
-          b.addEventListener('click', function () { var a = (F.flow || []).slice(0, i); a.push(Number(b.getAttribute('data-flow-a'))); put('flow', a); paintF(true, true); });
+          b.addEventListener('click', function () {
+            var a = (F.flow || []).slice(0, i), ans = Number(b.getAttribute('data-flow-a')); a.push(ans); put('flow', a); paintF(true, true);
+            if (ans === 0) emit('numidea:kuro', { k: 'web3c.kuro.base' });
+          });
         });
       });
       fback.addEventListener('click', function () { var a = (F.flow || []).slice(0, -1); put('flow', a); paintF(true, true); });
@@ -1911,33 +2024,47 @@
       restores.push(function () { paintF(false); }); onLang.push(function () { paintF(!!fstep.textContent); });
       // "a payment" skips the tree and opens step 3 on "Accepter la crypto" (the visitor goes on at their pace)
       after.fork = function (v) {
-        if (v === 1) { F.request = 2; var pk = $('[data-pick][data-bf="request"]', sec); if (pk && pk._pick) pk._pick('2'); }
+        // reqAuto: the request was set by this fork, not chosen (the fiche then prints the fork's own words, rev1)
+        if (v === 1) { if (F.request !== 2) F.reqAuto = 1; F.request = 2; (paints.request || []).forEach(function (fn) { fn(); }); }
         setTimeout(function () { paintF(true); }, 0);
       };
+      after.request = function () { delete F.reqAuto; };
+      // a lawyer who has read the project is the "Avocat" line of the chain's budget
+      after.lawyer = function (v) { if (v !== 0) return; var a = (F.lines || []).slice(); if (a.indexOf(4) < 0) { a.push(4); a.sort(function (x, y) { return x - y; }); F.lines = a; (paints.lines || []).forEach(function (fn) { fn(); }); } };
     }
     /* ---- where the law cards show: France also shows the EU's ---- */
     var law = $('[data-law]', sec);
     var lawPaint = function () { if (!law) return; var w = F.where || []; $$('[data-law-card]', law).forEach(function (c) { var i = Number(c.getAttribute('data-law-card')); c.classList.toggle('is-on', w.indexOf(i) > -1 || (i === 1 && w.indexOf(2) > -1)); }); };
-    /* ---- the route a web3 request maps to, and its published price ---- */
+    /* ---- the route a web3 request maps to, and its published price: none for a chain kept, none for work added to
+       a site that exists (a member area, points, a payment: priced when we scope), the calculator's otherwise ---- */
     var PK = priceKit;
     var routeQ = function () {
       if (B || F.request == null) return null;
-      var v = verdict();
-      if (v && v.k === 'maybe') return { none: tx('web3c.brief.noPrice'), maybe: true };
+      if (chainOn()) return { none: tx('web3c.brief.noPrice'), maybe: true };
       var r = F.request;
       if (r === 5) return { none: tx(IT + '2.oursNone') };
       if (r === 2 && F.site !== 0) return { none: tx(IT + '2.pick.2.site.yes') };
+      if ((r === 0 || r === 1 || r === 4) && hasSite()) return { none: tx(IT + '2.siteAdd') };
       if (!PK) return null;
       var type = r === 3 ? 'auto' : r === 2 ? 'vitrine' : 'app', n = r === 3 ? 3 : r === 2 ? 5 : 6, q = PK.quote(type, n, r === 2 ? ['pay'] : [], false);
       return { type: type, n: n, q: q, pre: r === 2 ? tx(IT + '2.pick.2.site.no') : '', line: t('pricing.types.' + type) + sep + PK.counted(PK.M[type].u, n) + sep + PK.pair(q.lo, q.hi, 'DZD') };
     };
     var routeText = function (rq) { return !rq ? '' : rq.none ? rq.none : (rq.pre ? rq.pre + ' ' : '') + rq.line; };
-    /* ---- show-if: a block shown while a field matches ("request:!2", "where:0", "request:0,1,4,-", "priced:1") ---- */
+    /* ---- show-if: a block shown while a field matches ("request:0,1,2,4", "where:0", "fork:0,-", "priced:1"), or while
+       the page's own reading does ("mode:site|card|crypto": whose costs step 5 shows; "chain:1": a chain kept;
+       "fold:1": the chain parts folded) ---- */
+    var READ = {
+      priced: function () { var rq = routeQ(); return rq && rq.q ? 1 : 0; },
+      mode: function () { return F.request === 2 ? (F.decision === 2 ? 'crypto' : 'card') : 'site'; },
+      chain: function () { return chainOn() && F.request !== 2 ? 1 : 0; },
+      // the card route folds the chain parts too, and says so (rev1: the line was missing on the pay route)
+      fold: function () { return foldChain() ? 1 : 0; }
+    };
     var showIf = function () {
       $$('[data-show-if]', sec).forEach(function (el) {
         var m = /^(\w+):(!?)(.*)$/.exec(el.getAttribute('data-show-if')); if (!m) return;
-        var v = m[1] === 'priced' ? (routeQ() && routeQ().q ? 1 : 0) : F[m[1]], want = m[3].split(','), hit;
-        hit = want.some(function (w) { return w === '-' ? v == null : Array.isArray(v) ? v.indexOf(Number(w)) > -1 : v === Number(w); });
+        var v = READ[m[1]] ? READ[m[1]]() : F[m[1]], want = m[3].split(','), hit;
+        hit = want.some(function (w) { return w === '-' ? v == null : Array.isArray(v) ? v.indexOf(Number(w)) > -1 : v != null && String(v) === w; });
         if (m[2]) hit = v != null && !hit;
         el.classList.toggle('is-on', !!hit);
       });
@@ -1945,16 +2072,17 @@
     /* ---- the live parts of the stops: the person, the grid, the meter, the supports' count and receipt, the routes ---- */
     // a typed value set inside a sentence of the other script is isolated (U+2068 FSI ... U+2069 PDI): French typed on the
     // Arabic page, or Arabic on the French one, keeps its own order and does not drag the template's colon or words with it
-    var iso = function (v) { return v ? '\u2068' + v + '\u2069' : v; };
-    // on the page, each isolated value becomes its own <bdi> (the marks stay in the text that leaves)
+    var iso = function (v) { return v ? '⁨' + v + '⁩' : v; };
+    // on the page, each isolated value becomes its own <bdi>; the text that leaves carries none of the marks (they show
+    // as boxes in some mail clients)
     var fillIso = function (el, s) {
       el.textContent = '';
-      String(s).split(/(\u2068[^\u2069]*\u2069)/).forEach(function (part) {
+      String(s).split(/(⁨[^⁩]*⁩)/).forEach(function (part) {
         if (!part) return;
-        if (part.charAt(0) !== '\u2068') { el.appendChild(document.createTextNode(part)); return; }
+        if (part.charAt(0) !== '⁨') { el.appendChild(document.createTextNode(part)); return; }
         // its first strong letter names its direction; a value of the other script than the page's is kept on whole lines (style.css)
-        var v = part.slice(1, -1), m = /[A-Za-z\u00C0-\u024F]|[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/.exec(v), b = document.createElement('bdi');
-        b.className = 'st-fiche__v' + (m ? (/[A-Za-z\u00C0-\u024F]/.test(m[0]) ? ' is-ltr' : ' is-rtl') : ''); b.textContent = v; el.appendChild(b);
+        var v = part.slice(1, -1), m = /[A-Za-zÀ-ɏ]|[֐-ࣿיִ-﷿ﹰ-﻿]/.exec(v), b = document.createElement('bdi');
+        b.className = 'st-fiche__v' + (m ? (/[A-Za-zÀ-ɏ]/.test(m[0]) ? ' is-ltr' : ' is-rtl') : ''); b.textContent = v; el.appendChild(b);
       });
     };
     var gridLine = function () {
@@ -1966,6 +2094,7 @@
       var words = tx(IT + '2.vagueWords').split('|').filter(Boolean).map(function (w) { return w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); });
       try { var m = new RegExp('(^|[^\\p{L}])(' + words.join('|') + ')(?=$|[^\\p{L}])', 'iu').exec(s); return m ? m[2] : ''; } catch (e) { return ''; }
     };
+    var meterWas = null, ready = false;
     var live = function () {
       var card = $('[data-person]', sec);
       if (card) $$('[data-person-f]', card).forEach(function (dd) {
@@ -1984,9 +2113,21 @@
         if (w) s += ' ' + tx(IT + '2.vague').replace('{w}', w);
         if (meter.textContent !== s) meter.textContent = s;
         meter.setAttribute('data-m', m);
+        // the meter turning to "slogan" under the visitor's hand: Kūro says so, once per turn (hub/life.js)
+        if (ready && m === 'none' && meterWas !== 'none') emit('numidea:kuro', { k: 'brandc.kuro.slogan' });
+        meterWas = m;
       }
+      var sup = F.supports || [];
       var cnt = $('[data-sup-count]', sec);
-      if (cnt) { var n = (F.supports || []).length, s2 = n ? tx(IT + '7.count').replace('{n}', n) : ''; if (cnt.textContent !== s2) cnt.textContent = s2; }
+      if (cnt) { var n = sup.length, s2 = n ? tx(IT + '7.count').replace('{n}', n) : ''; if (cnt.textContent !== s2) cnt.textContent = s2; }
+      // "le plus important d'abord": one of the supports ticked, asked from two up
+      var fb = $('[data-first]', sec);
+      if (fb) {
+        if (F.first != null && sup.indexOf(F.first) < 0) { delete F.first; save(); }
+        fb.hidden = sup.length < 2;
+        $$('[role="radio"]', fb).forEach(function (r) { r.hidden = sup.indexOf(Number(r.getAttribute('data-v'))) < 0; });
+        (paints.first || []).forEach(function (fn) { fn(); });
+      }
       var dsHas = $('[data-ds-has]', sec); if (dsHas) dsHas.classList.toggle('is-on', !!F.ds);
       var mini = $('[data-mini-rc]', sec); if (mini) estA(mini, false);
       $$('[data-route-out]', sec).forEach(function (o) {
@@ -1995,9 +2136,9 @@
         if (F.request == null) delete F.request;
         if (o.textContent !== s3) o.textContent = s3;
       });
-      lawPaint();
+      lawPaint(); foldPaint();
     };
-    /* ---- the estimate: a receipt on the console's own lines, then the notes ---- */
+    /* ---- the estimate: a receipt on the console's own lines, the console's euro and dollar lines, then the notes ---- */
     var table = function (q, m) {
       var tb = document.createElement('table'); tb.className = 'st-rc';
       var head = document.createElement('thead'), hr = document.createElement('tr');
@@ -2017,6 +2158,17 @@
       return tb;
     };
     var para = function (cls, s) { var p = document.createElement('p'); p.className = cls; p.textContent = s; return p; };
+    // an estimate line may break after a range's dash (rev1, 2026-11-21: at 280 px "450 000 – 1 200 000 DA" ran past the card), never inside a figure or before its currency
+    var paraEst = function (s) { return para('st-fiche__estl', String(s).split('\u00a0\u2013\u2060\u00a0').join('\u00a0\u2013 ').split('\u2060\u2013\u2060').join('\u2013\u200b')); };
+    // the same two lines as under the console's receipt (section 6): its label, its range(), its rate
+    var fxRows = function (box, q) {
+      [['pricing.eu', 'EUR'], ['pricing.us', 'USD']].forEach(function (x) {
+        var p = document.createElement('p'), l = document.createElement('span'), o = document.createElement('span');
+        p.className = 'st-rc__fx'; l.className = 'st-label st-label--teal'; l.textContent = t(x[0]); o.className = 'st-rc__fxv'; o.dir = 'ltr'; o.textContent = PK.range(q.lo, q.hi, x[1]);
+        p.appendChild(l); p.appendChild(o); box.appendChild(p);
+      });
+    };
+    var fxText = function (q) { return '≈ ' + PK.range(q.lo, q.hi, 'EUR') + sep + '≈ ' + PK.range(q.lo, q.hi, 'USD'); };
     var weeks = function (q) { return (q.wLo === q.wHi ? String(q.wHi) : q.wLo + '–' + q.wHi) + ' ' + PK.wkN(q.wHi); };
     // course A: the identity for the supports ticked (1 to 8), the kit and the pace; the animated logo apart, never added
     var quoteA = function () {
@@ -2029,23 +2181,25 @@
       box.appendChild(para('st-label st-fiche__estk', tx('fiche.est')));
       if (!A) { box.appendChild(para('st-fiche__none', '—')); return; }
       box.appendChild(para('st-fiche__estl', tx('brandc.brief.typeLine') + sep + PK.counted(PK.M.identite.u, Math.min(8, A.n)) + sep + weeks(A.q)));
-      box.appendChild(table(A.q, PK.M.identite));
+      box.appendChild(table(A.q, PK.M.identite)); fxRows(box, A.q);
       if (A.n > 8) box.appendChild(para('st-fiche__hint', tx(IT + '7.over')));
       if (F.motion) {
         var mq = PK.quote('motion', 5, [], F.rush === 1);
         box.appendChild(para('st-fiche__estl', tx('brandc.brief.motionLine') + sep + tx(IT + '7.opts.motion') + sep + weeks(mq)));
-        box.appendChild(table(mq, PK.M.motion));
+        box.appendChild(table(mq, PK.M.motion)); fxRows(box, mq);
       }
       if (full) {
-        var bl = budgetLine(A.q); if (bl) box.appendChild(para('st-fiche__hint', bl));
+        // on the page only: these lines speak to the visitor, and in a message they read as a second price
+        var bl = budgetLine(A); if (bl) box.appendChild(para('st-fiche__hint', bl));
         box.appendChild(para('st-fiche__fine', tx('fiche.estNote')));
         box.appendChild(para('st-fiche__fine', tx(IT + '7.rcNote')));
       }
-      box.appendChild(para('st-fiche__fine', tx('fiche.cur')));
+      box.appendChild(para('st-fiche__fine', tx('fiche.cur') + ' ' + tx('fiche.fx')));
     };
-    var budgetLine = function (q) {
-      if (F.budget === 0 && B) { var q1 = PK.quote('identite', 1, [], false); return tx(IT + '7.under').replace('{r}', PK.pair(q1.lo, q1.hi, 'DZD')); }
-      if ((F.budget === 1 || F.budget === 2) && q.lo <= PK.mid[1] && q.hi >= PK.mid[0]) return t('pricing.rc.mid').replace('{r}', PK.pair(PK.mid[0], PK.mid[1], 'DZD'));
+    var budgetLine = function (A) {
+      var q = A.q;
+      if (F.budget === 0 && B) { if (A.n <= 2 && !F.ds && F.rush !== 1) return tx(IT + '7.underFloor'); var q1 = PK.quote('identite', 1, [], false); return tx(IT + '7.under').replace('{r}', PK.pair(q1.lo, q1.hi, 'DZD')); }
+      if ((F.budget === 1 || F.budget === 2) && q.lo <= PK.mid[1] && q.hi >= PK.mid[0]) return tx('fiche.midL') + colon() + t('pricing.rc.mid').replace('{r}', PK.pair(PK.mid[0], PK.mid[1], 'DZD'));
       return '';
     };
     // course B: the route's price, or the line that says there is none
@@ -2055,130 +2209,212 @@
       box.appendChild(para('st-label st-fiche__estk', tx('fiche.est')));
       if (!rq) { box.appendChild(para('st-fiche__none', '—')); return; }
       if (rq.none) { box.appendChild(para('st-fiche__estl', rq.none)); if (rq.maybe) box.appendChild(para('st-fiche__estl', tx(IT + '2.scope.line'))); return; }
-      box.appendChild(para('st-fiche__estl', (rq.pre ? rq.pre + ' ' : '') + rq.line + sep + weeks(rq.q)));
-      box.appendChild(table(rq.q, PK.M[rq.type]));
+      box.appendChild(paraEst((rq.pre ? rq.pre + ' ' : '') + rq.line + sep + weeks(rq.q)));
+      box.appendChild(table(rq.q, PK.M[rq.type])); fxRows(box, rq.q);
       // no budget line here: its mid-range note offers the coaching call, which web3 does not offer (owner, W1/W3),
       // and the sent text has none either
       box.appendChild(para('st-fiche__fine', tx('fiche.estNote')));
-      box.appendChild(para('st-fiche__fine', tx('fiche.cur')));
+      box.appendChild(para('st-fiche__fine', tx('fiche.cur') + ' ' + tx('fiche.fx')));
       var a = document.createElement('a'); a.href = './#pricing'; a.className = 'st-fiche__go'; a.textContent = tx('web3c.cta.go'); box.appendChild(a);
     };
-    /* ---- the fiche's rows: [label key, value, the field whose stop fills it] ---- */
+    /* ---- the fiche's rows: [label key, value, the field whose stop fills it, where it stands in the text that
+       leaves (1 the studio's triage, 2 a row that sets the price, 0 the rest), true to leave the row out while it is
+       empty] ---- */
     var whenText = function () { if (F.when == null) return ''; var s = lab('when', F.when); return F.when === 4 && F.date ? s + colon() + iso(F.date) : s; };
+    var JARGON = /\b(blockchain|tokens?|jetons?|nfts?|crypto|daos?|smart contracts?|web3)\b|رمز|بلوكشين|كريبتو/i;
     var rowsA = function () {
-      var A = quoteA(), sup = labs('supports'), soc = F.social != null ? lab('social', F.social) + (F.social === 1 ? ' (' + tx(IT + '7.social.none') + ')' : '') : '';
+      var A = quoteA(), supA = F.supports || [], sup = labs('supports'), soc = F.social != null ? lab('social', F.social) + (F.social === 1 ? ' (' + tx(IT + '7.social.none') + ')' : '') : '';
       var who = []; if (F.who != null) who.push(lab('who', F.who)); if (F.seek) who.push(tx(IT + '1.card.seek') + colon() + iso(F.seek)); if (F.where) who.push(tx(IT + '1.card.where') + colon() + labs('where').join(cm())); if (F.doubt) who.push(tx(IT + '1.card.doubt') + colon() + iso(F.doubt));
-      var ask = []; $$('[data-bins][data-bf="flags"] [data-bin-row]', sec).forEach(function (row, r) { if ((F.flags || [])[r] === 1) ask.push($('.st-bins__k', row).textContent.trim()); });
+      // what the visitor will ask for in writing: one request per line marked "à demander" that the workshop too would ask
+      // about (never the exercise's own sentence, never a line the workshop calls a good sign)
+      var ask = []; $$('[data-bins][data-bf="flags"] [data-bin-row]', sec).forEach(function (row, r) { if ((F.flags || [])[r] === 1 && row.getAttribute('data-bin-ok') === '1') { var q = tx(IT + '5.rows.' + r + '.ask'); if (q) ask.push(q); } });
       var opts = []; if (F.motion) opts.push(tx(IT + '7.opts.motion')); if (F.ds) opts.push(tx(IT + '7.opts.ds') + ' (' + tx(IT + '7.opts.dsHas') + ')');
       var bud = F.budget != null ? lab('budget', F.budget) + (A ? ' (' + tx('fiche.est').toLowerCase() + ' ' + PK.pair(A.q.lo, A.q.hi, 'DZD') + ')' : '') : '';
+      var logo = (F.has || []).indexOf(0) > -1, refs = [F.ref1, F.ref2].filter(Boolean).map(iso).join(sep);
       return [
-        ['biz', iso(F.biz), 'biz', 1], ['link', iso(F.link), 'link', 1], ['has', labs('has').join(cm()), 'has', 1],
+        ['me', iso(F.me), 'me', 1, true], ['biz', iso(F.biz), 'biz', 1], ['link', iso(F.link), 'link', 1], ['has', labs('has').join(cm()), 'has', 1],
+        ['keep', logo && F.keep != null ? lab('keep', F.keep) : '', 'keep', 2, !logo],
         ['who', who.join(sep), 'who'], ['promise', iso(F.promise), 'promise'], ['proof', F.proof ? (F.proofType != null ? '(' + lab('proofType', F.proofType) + ') ' : '') + iso(F.proof) : '', 'proof'],
         ['positioning', gridLine(), 'promise'], ['tone', F.tone ? F.tone.map(function (x, i) { return tx(IT + '3.sliders.' + i + '.steps.' + x); }).join(sep) : '', 'tone'],
-        ['near', tone && tone._near ? tone._near() : '', 'tone'], ['voice', iso(F.voice), 'voice'], ['small', labs('small').join(cm()), 'small'],
-        ['where', sup.length ? '(' + sup.length + ') ' + sup.join(cm()) : '', 'supports'], ['social', soc, 'supports', 0, !(F.supports || []).length || (F.supports || []).indexOf(4) < 0],
-        ['opts', opts.join(sep), 'supports', 0, !opts.length], ['name', iso(F.name), 'name'], ['country', F.country != null ? lab('country', F.country) : '', 'country'], ['checks', labs('checks').join(cm()), 'checks'],
-        ['ask', ask.join(sep), 'flags'], ['when', whenText(), 'when', 1], ['budget', bud, 'budget', 1], ['decides', iso(F.decides), 'decides', 1], ['pace', F.rush != null ? lab('rush', F.rush) : '', 'rush']
+        ['voice', iso(F.voice), 'voice'], ['refs', refs, 'ref1', 0, true], ['small', labs('small').join(cm()), 'small'],
+        ['where', sup.length ? '(' + sup.length + ') ' + sup.join(cm()) : '', 'supports', 2], ['first', F.first != null && supA.indexOf(F.first) > -1 ? lab('supports', F.first) : '', 'first', 2, supA.length < 2],
+        ['social', soc, 'supports', 2, !supA.length || supA.indexOf(4) < 0],
+        ['opts', opts.join(sep), 'supports', 2, !opts.length], ['name', iso(F.name), 'name'], ['scripts', labs('scripts').join(cm()), 'scripts', 2], ['country', F.country != null ? lab('country', F.country) : '', 'country'], ['checks', labs('checks').join(cm()), 'checks'],
+        ['ask', ask.join(sep), 'flags', 2], ['when', whenText(), 'when', 1], ['budget', bud, 'budget', 1], ['budgetMax', iso(F.budgetMax), 'budgetMax', 1, true], ['decides', iso(F.decides), 'decides', 1],
+        ['after', F.after != null ? lab('after', F.after) : '', 'after', 2], ['pace', F.rush != null ? lab('rush', F.rush) : '', 'rush', 2, F.rush == null]
       ];
     };
     var rowsB = function () {
-      var v = verdict(), vt = vText(v), rq = routeQ(), r = F.request, chain = r === 0 || r === 1 || r === 4 || r == null;
-      var lf = r === 2 ? 'plines' : 'lines', lkeys = $$('[data-bf="' + lf + '"] [data-v]', sec).map(function (b) { return b.textContent.trim(); });
+      var v = verdict(), vt = vText(v), rq = routeQ(), r = F.request, pay = r === 2, on = chainOn();
+      var chain = on && !pay, card = pay && !on;
+      // the chain's budget lines (or the crypto payment's), only for a chain kept
+      var lf = pay ? 'plines' : 'lines', lkeys = $$('[data-bf="' + lf + '"] [data-v]', sec).map(function (b) { return b.textContent.trim(); });
       var got = (F[lf] || []).map(function (i) { return lkeys[i]; }), miss = F[lf] ? lkeys.filter(function (x, i) { return F[lf].indexOf(i) < 0; }) : [];
       var plan = r === 0 || r === 1 || r === 4 ? labs('plan' + r).join(sep) : '';
       var ours = [routeText(rq)]; if (rq) ours.push(tx(IT + '2.scope.line'));
-      var hint = []; if (F.goal && /\b(blockchain|token|jeton|nft|crypto|dao|smart contract|web3)\b|رمز|بلوكشين|كريبتو/i.test(F.goal)) hint.push(tx('web3c.brief.hintJargon'));
       var scr = labs('screens').join(cm());
       var bud = !rq || !rq.q ? (rq ? tx('fiche.budget.none') : '') : F.budget != null ? lab('budget', F.budget) + ' (' + tx('fiche.est').toLowerCase() + ' ' + PK.pair(rq.q.lo, rq.q.hi, 'DZD') + ')' : '';
-      var flowS = (F.flow || []).map(function (x, i) { return 'Q' + (i + 1) + ' ' + (x ? tx('fiche.yes') : tx('fiche.no')); }).join(sep);
+      // the question's tag is its own isolate with a colon (rev1: on the Arabic page "Q1 yes" read "yes Q1")
+      var flowS = (F.flow || []).map(function (x, i) { return iso('Q' + (i + 1)) + colon() + (x ? tx('fiche.yes') : tx('fiche.no')); }).join(sep);
+      var siteQ = r === 0 || r === 1 || r === 2 || r === 4;
+      // the questions for the vendor ticked in the nine modules (ask1 … ask9), in module order, as the page words them
+      var asks = []; for (var am = 1; am <= 9; am++) asks = asks.concat(labs('ask' + am));
       return [
-        ['goal', F.goal ? iso(F.goal) + (hint.length ? ' (' + hint[0] + ')' : '') : '', 'goal', 1], ['has', [labs('has').join(cm()), iso(F.link)].filter(Boolean).join(sep), 'has', 1], ['size', F.size != null ? lab('size', F.size) : '', 'size'],
-        ['fork', F.fork != null ? lab('fork', F.fork) : '', 'fork'], ['flow', flowS, 'flow', 0, F.fork === 1], ['verdict', vt[0] ? vt[0] + ' ' + vt[1] : '', 'flow'],
-        ['request', r != null ? lab('request', r) : '', 'request'], ['route', r != null ? tx(IT + '2.pick.' + r + '.route') : '', 'request'],
-        ['site', r === 2 && F.site != null ? lab('site', F.site) : '', 'site', 0, r !== 2], ['resell', r === 0 && F.resell != null ? lab('resell', F.resell) : '', 'resell', 0, r !== 0],
-        ['plan', plan, 'plan' + r, 0, !(r === 0 || r === 1 || r === 4)], ['screens', scr, 'screens'],
-        ['ours', ours.filter(Boolean).join(' — '), 'request'], ['lines', got.join(cm()), lf], ['missing', miss.join(cm()), lf, 0, !miss.length],
-        ['warn', F.warn ? tx('fiche.yes') : F.spot || F.warn === false ? tx('fiche.no') : '', 'warn'], ['where', labs('where').join(cm()), 'where'], ['lawyer', F.lawyer != null ? lab('lawyer', F.lawyer) : '', 'lawyer'],
-        ['keys', F.keys != null ? lab('keys', F.keys) : '', 'keys', 0, !(r == null || r === 0 || r === 1 || r === 3 || r === 4)], ['zero', iso(F.zero), 'zero', 0, !chain],
-        ['when', whenText(), 'when', 1], ['budget', bud, 'budget', 1, !!rq && !rq.q], ['decides', iso(F.decides), 'decides', 1]
+        ['me', iso(F.me), 'me', 1, true], ['goal', iso(F.goal), 'goal', 1], ['has', [labs('has').join(cm()), iso(F.link)].filter(Boolean).join(sep), 'has', 1], ['size', F.size != null ? lab('size', F.size) : '', 'size'],
+        ['fork', F.fork != null ? lab('fork', F.fork) : '', 'fork'], ['flow', F.fork === 1 ? '' : flowS, 'flow', 0, F.fork === 1], ['verdict', vt[0] ? (v && v.k === 'pay' ? vt[0] : vt[0] + ' ' + vt[1]) : '', 'flow'],
+        ['request', r != null ? (r === 2 && F.fork === 1 && F.reqAuto ? lab('fork', 1) : lab('request', r)) : '', 'request', 2], ['route', r != null ? tx(IT + '2.pick.' + r + '.route') : '', 'request', 2],
+        ['site', siteQ && F.site != null ? lab('site', F.site) : '', 'site', 2, !siteQ], ['resell', r === 0 && F.resell != null ? lab('resell', F.resell) : '', 'resell', 0, r !== 0],
+        ['decision', F.decision != null ? lab('decision', F.decision) : '', 'decision', 2],
+        ['ours', ours.filter(Boolean).join(' — '), 'request', 2],
+        // the ordinary route's own lines
+        ['olines', !pay ? labs('olines').join(cm()) : '', 'olines', 2, pay],
+        // a card payment's answers
+        ['cardCur', card ? labs('cardCur').join(cm()) : '', 'cardCur', 2, !card], ['cardAmt', card ? iso(F.cardAmt) : '', 'cardAmt', 2, !card],
+        ['cardDep', card && F.cardDep != null ? lab('cardDep', F.cardDep) : '', 'cardDep', 2, !card], ['cardRefund', card && F.cardRefund != null ? lab('cardRefund', F.cardRefund) : '', 'cardRefund', 2, !card],
+        ['cardPages', card ? labs('cardPages').join(cm()) : '', 'cardPages', 2, !card], ['cardPayee', card ? iso(F.cardPayee) : '', 'cardPayee', 2, !card],
+        // the chain's rows, only for a chain kept (the third decision, or the tree's "maybe")
+        ['plan', chain ? plan : '', 'plan' + r, 2, !(chain && (r === 0 || r === 1 || r === 4))], ['screens', chain ? scr : '', 'screens', 0, !chain],
+        ['lines', on ? got.join(cm()) : '', lf, 2, !on], ['missing', on ? miss.join(cm()) : '', lf, 0, !on || !miss.length],
+        ['warn', F.warn ? tx('fiche.yes') : F.spot || F.warn === false ? tx('fiche.no') : '', 'warn'], ['where', labs('where').join(cm()), 'where', 2], ['lawyer', F.lawyer != null ? lab('lawyer', F.lawyer) : '', 'lawyer'],
+        ['keys', chain && F.keys != null ? lab('keys', F.keys) : '', 'keys', 0, !chain], ['zero', chain ? iso(F.zero) : '', 'zero', 0, !chain],
+        ['first', iso(F.first), 'first', 2, true],
+        ['when', whenText(), 'when', 1], ['budget', bud, 'budget', 1, !!rq && !rq.q], ['budgetMax', iso(F.budgetMax), 'budgetMax', 1, true], ['decides', iso(F.decides), 'decides', 1],
+        ['after', F.after != null ? lab('after', F.after) : '', 'after', 2],
+        // optional, last: the first row the length cap drops (web3x/SPEC.md §2.6)
+        ['asks', asks.join(sep), 'ask1', 0, true]
       ];
     };
-    /* ---- render: the rows, the estimate, the text that leaves, the two links ---- */
+    // the triage rows (the business or the idea, the date, the budget where the route has a price): the seal waits for them
+    var triage = function () {
+      if (B) return !!(F.biz && F.when != null && F.budget != null);
+      var rq = routeQ(); return !!(F.goal && F.when != null && (F.budget != null || !(rq && rq.q)));
+    };
+    var today = function () { try { return new Intl.DateTimeFormat(lang === 'ar' ? 'ar-DZ-u-nu-latn' : lang === 'en' ? 'en-GB' : 'fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date()); } catch (e) { return ''; } };
+    /* ---- render: whose fiche and its one sentence, the rows, the estimate, the text that leaves, the two links ---- */
     var out = $('[data-brief-out]', fiche), notes = $('[data-brief-notes]', fiche), estBox = $('[data-brief-est]', fiche), legalBox = $('[data-brief-legal]', fiche) || null, txt = $('[data-brief-txt]', fiche);
     var wa = $('[data-brief-wa]', fiche), form = $('[data-brief-form]', fiche), status = $('[data-brief-status]', fiche);
-    var text = '', CAP = 6000;
+    var whoEl = $('[data-brief-who]', fiche), leadEl = $('[data-brief-lead]', fiche);
+    var allEl = $('[data-brief-all="' + set + '"]', course), allGo = $('[data-brief-all-go="' + set + '"]', course);
+    var bar = $('[data-crs-bar]', course), count = { n: 0, t: 0 };
+    var barPaint = function () {
+      if (!bar) return;
+      var id = course._at || firstId;
+      // the stop's short name, as the strip of stops has it; "3 / 9" keeps its order on the Arabic page (an isolate)
+      var w = $('[data-ls-earn="' + id + '"] .st-nmd__w', course);
+      $('[data-crs-bar-t]', bar).textContent = '\u2066' + stopN(id) + ' / ' + tabs.length + '\u2069' + sep + (w ? w.textContent.trim() : stopT(id));
+      // the arrow follows the reading direction; under 360 px the count alone ("9/20"), the full words stay its name
+      var go = $('[data-crs-bar-go]', bar), arr = root.getAttribute('dir') === 'rtl' ? ' ◂' : ' ▸', gl = document.createElement('span'), gs = document.createElement('span');
+      gl.className = 'st-crs__barL'; gl.textContent = tx('fiche.bar').replace('{n}', count.n).replace('{t}', count.t) + arr;
+      gs.className = 'st-crs__barS'; gs.setAttribute('aria-hidden', 'true'); gs.textContent = '\u2066' + count.n + '/' + count.t + '\u2069' + arr;
+      go.textContent = ''; go.appendChild(gl); go.appendChild(gs);
+      bar.hidden = false;
+    };
+    var text = '', hello = '', CAP = 6000;
     var render = function () {
-      var rows = B ? rowsA() : rowsB(), frag = document.createDocumentFragment(), lines = { top: [], rest: [] };
+      var rows = B ? rowsA() : rowsB(), frag = document.createDocumentFragment(), lines = { top: [], mid: [], rest: [] };
+      // the visitor's own sentence heads the fiche: the positioning (A), the route without the chain (B), else the idea
+      var lk = '', lv = '', headRow = '';
+      if (B) { lv = gridLine(); lk = 'brandc.brief.lead'; headRow = 'positioning'; }
+      else if (F.request != null && F.request !== 5 && !chainOn()) { lk = 'web3c.brief.lead'; lv = tx(IT + '2.pick.' + F.request + '.route'); headRow = 'route'; }
+      else if (F.goal) { lk = 'web3c.brief.leadIdea'; lv = iso(F.goal); headRow = 'goal'; }
+      count.n = 0; count.t = 0;
       rows.forEach(function (row) {
         var k = row[0], v = row[1], skip = row[4];
         if (skip && !v) return;
         var div = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
         dt.textContent = tx(set + '.brief.l.' + k);
-        if (v) { var bdi = document.createElement('bdi'); fillIso(bdi, v); dd.appendChild(bdi); (row[3] ? lines.top : lines.rest).push([k, '— ' + dt.textContent + colon() + v]); }
-        else {
+        count.t++;
+        if (v) { count.n++; var bdi = document.createElement('bdi'); fillIso(bdi, v); dd.appendChild(bdi); (row[3] === 1 ? lines.top : row[3] === 2 ? lines.mid : lines.rest).push([k, '— ' + dt.textContent + colon() + v]); }
+        // a row the head already says is not drawn a second time (it still leaves with the text, where there is no head)
+        if (v && lv && k === headRow) return;
+        if (!v) {
           var id = panelOf(row[2]) || lastId, a = document.createElement('a');
-          a.href = '#ls-t-' + id; a.className = 'st-fiche__go'; a.textContent = tx('fiche.goStop').replace('{n}', stopN(id));
+          a.href = (LS[set] ? '#ls-t-' : '#') + id; a.className = 'st-fiche__go'; a.textContent = tx('fiche.goStop').replace('{n}', stopN(id));
           a.addEventListener('click', function (e) { e.preventDefault(); go(id); });
           dd.appendChild(a); dd.className = 'is-empty';
         }
         div.appendChild(dt); div.appendChild(dd); frag.appendChild(div);
       });
-      // hints, plain and muted
+      // whose it is, and when; then the visitor's own sentence, set large
+      if (whoEl) fillIso(whoEl, (F.me ? iso(F.me) + sep : '') + today());
+      if (leadEl) {
+        leadEl.hidden = !lv;
+        $('[data-brief-lead-l]', leadEl).textContent = lv ? tx(lk) : '';
+        fillIso($('[data-brief-lead-v]', leadEl), lv);
+      }
+      // hints, plain and muted: for the visitor, on the page only
       var hints = [];
       if (B) {
         if (F.who == null || /tout le monde|everyone|الجميع/i.test(F.seek || '')) hints.push(tx('brandc.brief.hintWho'));
         if (F.promise && !F.proof) hints.push(tx('brandc.brief.hintProof'));
         var Aq = quoteA(); if (Aq && (F.when === 3 || F.when === 4) && Aq.q.wLo > 2) hints.push(tx('brandc.brief.hintRush'));
       } else {
-        // a chain request (or the tree's "maybe") with no screen for a visitor without a wallet
-        var rr = F.request, vv = verdict();
-        if ((rr === 0 || rr === 1 || rr === 4 || (rr == null && vv && vv.k === 'maybe')) && (F.screens || []).indexOf(0) < 0) hints.push(tx('web3c.brief.hintWallet'));
+        if (F.goal && JARGON.test(F.goal)) hints.push(tx('web3c.brief.hintJargon'));
+        // a chain kept with no screen for a visitor without a wallet
+        if (chainOn() && F.request !== 2 && (F.screens || []).indexOf(0) < 0) hints.push(tx('web3c.brief.hintWallet'));
       }
       out.textContent = ''; out.appendChild(frag);
       notes.textContent = ''; if (legalBox) legalBox.textContent = '';
       hints.forEach(function (h) { notes.appendChild(para('st-fiche__hint', h)); });
-      // the Algeria line whenever "en Algérie" is ticked, then the two legal lines (web3)
-      var legal = [];
+      // the Algeria line whenever "en Algérie" is ticked, then the two legal lines (web3). On screen money.note2 shows
+      // once, right above the Algeria line; the printed brief keeps it in both places, as specified
+      var legal = [], dz = !B && algeria();
       if (!B) {
-        if ((F.where || []).indexOf(0) > -1) { legal.push(tx('money.note2')); legal.push(tx('web3c.brief.dz')); }
+        if (dz) { legal.push(tx('money.note2')); legal.push(tx('web3c.brief.dz')); }
         legal.push(tx('money.note1')); legal.push(tx('money.note2'));
-        legal.forEach(function (s, i) { (legalBox || notes).appendChild(para(i < legal.length - 2 ? 'st-fiche__dz' : 'st-fiche__legal', s)); });
+        legal.forEach(function (s, i) { var p = para(i < legal.length - 2 ? 'st-fiche__dz' : 'st-fiche__legal', s); if (dz && i === legal.length - 1) p.classList.add('is-dup'); (legalBox || notes).appendChild(p); });
       }
       if (B) estA(estBox, true); else estB(estBox);
-      // the text: the studio's triage first (the business, what exists, when, budget, who decides), then the rest in order, then the estimate
+      // the text: the studio's triage first (who, the business, what exists, when, budget, who decides), then the rest in
+      // order, then the estimate with its euro and dollar range
       var estL = '';
-      if (B) { var A2 = quoteA(); if (A2) { estL = tx('fiche.est') + colon() + tx('brandc.brief.typeLine') + cm() + PK.counted(PK.M.identite.u, Math.min(8, A2.n)) + colon() + PK.pair(A2.q.lo, A2.q.hi, 'DZD') + cm() + weeks(A2.q) + '.'; var bl2 = budgetLine(A2.q); if (bl2) estL += ' ' + bl2; if (F.motion) { var mq2 = PK.quote('motion', 5, [], F.rush === 1); estL += ' ' + tx('brandc.brief.motionLine') + colon() + PK.pair(mq2.lo, mq2.hi, 'DZD') + '.'; } } }
-      else { var rq2 = routeQ(); if (rq2) estL = tx('fiche.est') + colon() + (rq2.q ? (rq2.pre ? rq2.pre + ' ' : '') + rq2.line + cm() + weeks(rq2.q) + '.' : rq2.none); }
+      if (B) { var A2 = quoteA(); if (A2) { estL = tx('fiche.est') + colon() + tx('brandc.brief.typeLine') + cm() + PK.counted(PK.M.identite.u, Math.min(8, A2.n)) + colon() + PK.pair(A2.q.lo, A2.q.hi, 'DZD') + ' (' + fxText(A2.q) + ')' + cm() + weeks(A2.q) + '.'; if (F.motion) { var mq2 = PK.quote('motion', 5, [], F.rush === 1); estL += ' ' + tx('brandc.brief.motionLine') + colon() + PK.pair(mq2.lo, mq2.hi, 'DZD') + ' (' + fxText(mq2) + ').'; } } }
+      else { var rq2 = routeQ(); if (rq2) estL = tx('fiche.est') + colon() + (rq2.q ? (rq2.pre ? rq2.pre + ' ' : '') + rq2.line + ' (' + fxText(rq2.q) + ')' + cm() + weeks(rq2.q) + '.' : rq2.none); }
       if (estL && lang !== 'ar') estL = estL.charAt(0) + estL.slice(1, tx('fiche.est').length).toLowerCase() + estL.slice(tx('fiche.est').length);
-      var order = ['biz', 'goal', 'link', 'has', 'when', 'budget', 'decides'];
-      var top = lines.top.sort(function (a, b) { return order.indexOf(a[0]) - order.indexOf(b[0]); }).map(function (x) { return x[1]; });
-      var rest = lines.rest.map(function (x) { return x[1]; });
+      var order = ['me', 'biz', 'goal', 'link', 'has', 'when', 'budget', 'budgetMax', 'decides'];
+      var top = lines.top.sort(function (a, b) { return order.indexOf(a[0]) - order.indexOf(b[0]); });
       // the text carries each legal line once (the printed brief repeats money.note2 above the Algeria line)
       var tail = (estL ? ['— ' + estL] : []).concat(legal.filter(function (s, i) { return legal.indexOf(s) === i; }).map(function (s) { return '— ' + s; }));
-      var hello = tx(set + '.brief.hello'), body = top.concat(rest), cut = false;
-      var build = function () { return body.concat(cut ? ['…'] : []).concat(tail).join('\n'); };
+      var body = top.concat(lines.mid, lines.rest), cut = false;
+      hello = tx(set + '.brief.hello');
+      var plain = function (s) { return s.replace(/[⁨⁩]/g, ''); };
+      var build = function () { return plain(body.map(function (x) { return x[1]; }).concat(cut ? ['…'] : []).concat(tail).join('\n')); };
       var over = function () { return encodeURIComponent(hello + '\n' + build()).length > CAP; };
       // both outputs are URLs: the cap is on the encoded length (Arabic percent-encodes to several times its length).
-      // Over it, course rows go from the end (the studio's triage rows last), and at the very end the first row is shortened;
-      // the printed brief stays whole
+      // Over it, the promise and the proof go first where the positioning sentence already says them, then course rows
+      // from the end (the rows that set a price before the studio's triage rows, which go last), and at the very end the
+      // first row is shortened; the printed brief stays whole
+      if (over() && body.some(function (x) { return x[0] === 'positioning'; })) { body = body.filter(function (x) { return x[0] !== 'promise' && x[0] !== 'proof'; }); cut = true; }
       while (over() && body.length > 1) { body.pop(); cut = true; }
-      while (over() && body.length && body[0].length > 24) { body[0] = body[0].slice(0, -8); cut = true; }
+      while (over() && body.length && body[0][1].length > 24) { body[0][1] = body[0][1].slice(0, -8); cut = true; }
       text = build();
       txt.value = text;
       wa.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(hello + '\n' + text);
-      form.href = (lang === 'fr' ? '../' : '../' + lang + '/') + '#contact';
+      var up = course.hasAttribute('data-lt-course') ? '../../' : '../'; form.href = (lang === 'fr' ? up : up + lang + '/') + '#contact';
+      // the reward's words follow the fiche: how many lines it has, how many it still lacks (the drawing is never held back)
+      if (allEl) {
+        var miss2 = count.t - count.n;
+        allEl.textContent = miss2 ? tx('fiche.all.more').replace('{n}', count.n).replace('{t}', count.t).replace('{m}', miss2) : tx('fiche.all.full');
+        if (allGo) allGo.hidden = !miss2;
+      }
+      barPaint();
+      fiche._n = count.n - (rows.some(function (x) { return x[0] === 'asks' && x[1]; }) ? 1 : 0);
+      emit('numidea:fichen', { set: set, n: fiche._n });
     };
     var refresh = function () { showIf(); live(); render(); };
     /* ---- the actions ---- */
     var seal = $('[data-brief-seal]', fiche);
     var stamp = function (how) {
-      seal.hidden = false;
-      if (!reduce) { if (seal.getAnimations && seal.classList.contains('is-stamp')) seal.getAnimations().forEach(function (a) { a.cancel(); a.play(); }); else seal.classList.add('is-stamp'); }
+      // the seal lands only on a fiche that has its triage rows
+      var ok = triage();
+      seal.hidden = !ok;
+      if (ok && !reduce) { if (seal.getAnimations && seal.classList.contains('is-stamp')) seal.getAnimations().forEach(function (a) { a.cancel(); a.play(); }); else seal.classList.add('is-stamp'); }
       emit('numidea:brief', { set: set, how: how });
     };
-    var say = function (k) { status.textContent = ''; status.textContent = tx(k); };
+    var say = function (k) { status.textContent = ''; status.textContent = tx(k) + (triage() || k === 'fiche.st.cleared' ? '' : ' ' + tx('fiche.sealWait')); };
     wa.addEventListener('click', function () { render(); stamp('wa'); say('fiche.st.sent'); });
-    form.addEventListener('click', function () { render(); try { sessionStorage.setItem('numidea-prefill', text); } catch (e) {} stamp('form'); });
+    // the form's message opens as WhatsApp's does: the greeting that names the course, then the fiche
+    form.addEventListener('click', function () { render(); try { sessionStorage.setItem('numidea-prefill', hello + '\n' + text); } catch (e) {} stamp('form'); });
     $('[data-brief-copy]', fiche).addEventListener('click', function () {
       render();
       var fallback = function () { var d = txt.closest('details'); if (d) d.open = true; txt.focus(); txt.select(); say('fiche.st.copyFail'); };
@@ -2194,13 +2430,250 @@
     });
     $('[data-brief-clear]', fiche).addEventListener('click', function () {
       try { localStorage.removeItem(KEY); } catch (e) {}
-      clearTimeout(saveT); st = { v: 1, f: {} }; F = st.f;
+      clearTimeout(saveT); saveT = 0; st = { v: 1, f: {} }; F = st.f; folded = null; seal.hidden = true;
       restores.forEach(function (fn) { fn(); }); refresh(); say('fiche.st.cleared');
+    });
+    /* ---- the place kept: the stop last seen opens again on a return, and a line under the HUD says so ---- */
+    var resume = $('[data-crs-resume]', course), asked = null;
+    try { asked = new URLSearchParams(location.search).get('ls'); } catch (e) {}
+    var resumePaint = function () { if (!resume || resume.hidden) return; $('[data-crs-resume-t]', resume).textContent = tx('fiche.resume').replace('{n}', stopN(st.at)).replace('{title}', stopT(st.at)); };
+    if (st.at && st.at !== firstId && stopN(st.at) && !(asked && stopN(asked))) {
+      if (LS[set]) LS[set](st.at);
+      if (resume) {
+        resume.hidden = false; resumePaint(); onLang.push(resumePaint);
+        $('[data-crs-resume-go]', resume).addEventListener('click', function () {
+          var id = st.at, pn = $('[data-ls-panel="' + id + '"]', course); go(id);
+          var top = matchMedia('(max-width:699px)').matches ? pn : $('.st-ls__tabs', course);
+          if (top && top.scrollIntoView) top.scrollIntoView({ block: 'start', behavior: 'auto' });
+          resume.hidden = true;
+        });
+      }
+    }
+    document.addEventListener('numidea:stop', function (e) {
+      if (!e.detail || e.detail.set !== set) return;
+      if (st.at !== e.detail.id) { if (resume && ready) resume.hidden = true; st.at = e.detail.id; save(); }
+      barPaint();
     });
     restores.forEach(function (fn) { fn(); });
     refresh();
+    ready = true;
     onLang.push(refresh);
   });
+
+  /* ---------------- 13e · the web3 course's shell ----------------
+     "Le web3, sans fumée" in nine modules (web3x/SPEC.md, 2026-11-21): the buyer path is one chapter (#web3-achat,
+     the set web3c and its fiche), the nine modules are the others (#web3-m1 … #web3-m9, sets web3m1 … web3m9, each its
+     own stamps). With this script one chapter shows at a time (a cut; .is-on), the sommaire above them counts the
+     stamps and inks a module's seal in it and in the carnet when its stops are all stamped; without it every chapter is
+     laid out in order and the sommaire is a list of links. The two ways in ([data-wpath]) are a radiogroup of their
+     own, kept in localStorage 'numidea-web3-path' ({ v: 1, p: 0 | 1, last, fiche }), never in the brief: 0 keeps the
+     buyer path, 1 opens module 1 (or the last opened). The dock ([data-fdock]) carries the fiche one press away from
+     every chapter (hidden while the fiche is on screen), the way on ([data-next]) follows the visitor's sequence (the
+     buyer's only once the fiche has been seen), a link to another set's stop ([data-ls-go-set]) opens its chapter and
+     its tab, and an address that names a chapter, a tab or a line inside one opens it, scrolls to it and focuses it
+     (on load and on hashchange: the browser's own jump finds a hidden target and does nothing). The labs are
+     hub/web3x.js's, injected the first time a module opens, or once the page is idle. Nothing moves by itself; with
+     reduced motion every scroll is a jump. */
+  (function () {
+    var sec = $('#web3'), chaps = sec ? $$('[data-chap]', sec) : [];
+    if (!chaps.length) return;
+    var PKEY = 'numidea-web3-path', ps = { v: 1 };
+    try { var p0 = JSON.parse(localStorage.getItem(PKEY) || 'null'); if (p0 && p0.v === 1) ps = p0; } catch (e) {}
+    var psave = function () { try { localStorage.setItem(PKEY, JSON.stringify(ps)); } catch (e) {} };
+    var byId = {}; chaps.forEach(function (c) { byId[c.getAttribute('data-chap')] = c; });
+    var setOf = function (id) { return id === 'achat' ? 'web3c' : 'web3' + id; };
+    var chapOfSet = function (set) { return set === 'web3c' ? 'achat' : /^web3m\d$/.test(set) ? set.slice(4) : null; };
+    var title = function (id) { var h = $('#web3-' + id + '-h'); return h ? h.textContent.trim() : ''; };
+    var cur = (chaps.filter(function (c) { return c.classList.contains('is-on'); })[0] || chaps[0]).getAttribute('data-chap');
+    var goLinks = $$('[data-chap-go]', sec);
+    // the labs' script, once (the stamp the page's own scripts carry)
+    var xOn = false;
+    var loadX = function () {
+      if (xOn) return; xOn = true;
+      window.NUMIDEA_W3X = { t: t, lang: function () { return lang; }, onLang: function (fn) { onLang.push(fn); }, reduce: reduce, emit: emit, M: M, root: sec };
+      var s = document.createElement('script'), me = $('script[src*="app.js"]');
+      s.src = 'web3x.js' + ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0];
+      s.defer = true; document.head.appendChild(s);
+    };
+    var top = function (el, jump) { if (el && el.scrollIntoView) el.scrollIntoView({ block: 'start', behavior: reduce || jump ? 'instant' : 'smooth' }); };
+    var paintCur = function () { goLinks.forEach(function (a) { if (a.getAttribute('data-chap-go') === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); }); sec.setAttribute('data-chap-on', cur); };
+    var openChap = function (id, o) {
+      o = o || {};
+      if (!byId[id]) return;
+      if (id !== cur) {
+        chaps.forEach(function (c) { c.classList.toggle('is-on', c.getAttribute('data-chap') === id); });
+        cur = id;
+        if (id !== 'achat') { ps.last = id; psave(); loadX(); }
+        paintCur(); paintNext();
+        emit('numidea:chap', { id: id });
+      }
+      if (o.scroll) top(byId[id]);
+      if (o.focus) { var h = $('#web3-' + id + '-h'); if (h) h.focus({ preventScroll: true }); }
+    };
+    LS._open = function (set) { var c = chapOfSet(set); if (c) openChap(c); };
+    // a stop of a set, from anywhere: its chapter, its tab (focused), the tabs' top in view (the stop's own on a phone)
+    var openStop = function (set, id) {
+      if (!LS[set]) return;
+      LS[set](id, true, true); emit('numidea:tab', { id: id });
+      var ls = $('[data-ls="' + set + '"]', sec), pn = ls && $('[data-ls-panel="' + id + '"]', ls);
+      var to = matchMedia('(max-width:699px)').matches ? pn : ls && $('.st-ls__tabs', ls);
+      if (to && to.scrollIntoView) to.scrollIntoView({ block: 'start', behavior: 'auto' });
+    };
+    sec.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a || !sec.contains(a)) return;
+      if (a.hasAttribute('data-ls-go-set')) { e.preventDefault(); openStop(a.getAttribute('data-ls-go-set'), a.getAttribute('data-ls-go')); return; }
+      if (a.hasAttribute('data-chap-go')) {
+        e.preventDefault();
+        var id = a.getAttribute('data-chap-go');
+        openChap(id, { scroll: true, focus: true });
+        try { history.replaceState(history.state, '', '#web3-' + id); } catch (x) {}
+        return;
+      }
+      if (a.hasAttribute('data-fdock')) { e.preventDefault(); openStop('web3c', 'w7'); return; }
+      // any other link to a line inside a hidden chapter opens that chapter first, then the link's own jump
+      var tg = null; try { tg = document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))); } catch (x) {}
+      var c = tg && tg.closest('[data-chap]');
+      if (c && !c.classList.contains('is-on')) openChap(c.getAttribute('data-chap'));
+    }, true);
+
+    /* ---- the two ways in ---- */
+    var wp = $('[data-wpathk]', sec), say = $('[data-wpath-say]', sec), rs = wp ? $$('[role="radio"]', wp) : [];
+    var paintPath = function () { rs.forEach(function (r) { var on = ps.p != null && Number(r.getAttribute('data-v')) === ps.p; r.setAttribute('aria-checked', String(on)); r.tabIndex = on || (ps.p == null && r === rs[0]) ? 0 : -1; }); };
+    var choosePath = function (v, focus) {
+      ps.p = v; psave(); paintPath();
+      var id = v === 1 ? (ps.last && byId[ps.last] && ps.last !== 'achat' ? ps.last : 'm1') : 'achat';
+      openChap(id);
+      if (say) { say.textContent = ''; say.textContent = t('web3c.path.say').replace('{c}', title(id)); }
+      if (focus) rs.forEach(function (r) { if (Number(r.getAttribute('data-v')) === v) r.focus(); });
+    };
+    rs.forEach(function (r, i) {
+      r.disabled = false;
+      r.addEventListener('click', function () { choosePath(Number(r.getAttribute('data-v'))); });
+      r.addEventListener('keydown', function (e) {
+        var rtl = root.getAttribute('dir') === 'rtl', n = rs.length;
+        var to = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1
+          : e.key === 'ArrowRight' ? i + (rtl ? -1 : 1) : e.key === 'ArrowLeft' ? i + (rtl ? 1 : -1)
+          : e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowUp' ? i - 1 : null;
+        if (to === null) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); choosePath(Number(r.getAttribute('data-v'))); } return; }
+        e.preventDefault(); choosePath(Number(rs[(to + n) % n].getAttribute('data-v')), true);
+      });
+    });
+    paintPath();
+
+    /* ---- the way on: the visitor's sequence (SPEC §2.5) ---- */
+    var SEQ = [['achat', 'm1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9', 'achat'], ['m1', 'm2', 'm3', 'achat', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9', 'achat']];
+    var nexts = $$('[data-next]', sec);
+    var paintNext = function () {
+      var seq = SEQ[ps.p === 1 ? 1 : 0];
+      nexts.forEach(function (box) {
+        var id = box.getAttribute('data-next'), to = seq[seq.indexOf(id) + 1];
+        box.textContent = '';
+        if (!to || (id === 'achat' && !ps.fiche)) return;
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'st-btn st-btn--primary';
+        b.textContent = t('web3c.chap.next').replace('{c}', title(to));
+        b.addEventListener('click', function () { openChap(to, { scroll: true, focus: true }); });
+        var back = document.createElement('a'); back.href = '#w-chaps-h'; back.className = 'st-next__back'; back.textContent = t('web3c.chap.back');
+        back.addEventListener('click', function (e) { e.preventDefault(); top($('[data-chaps]', sec)); var h = $('#w-chaps-h'); if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); } });
+        box.appendChild(b); box.appendChild(back);
+      });
+    };
+    document.addEventListener('numidea:stop', function (e) { if (e.detail && e.detail.set === 'web3c' && e.detail.id === 'w7' && !ps.fiche) { ps.fiche = 1; psave(); paintNext(); } });
+
+    /* ---- counts, seals, the carnet ---- */
+    var stampsOf = function (set) {
+      var ls = $('[data-ls="' + set + '"]', sec); if (!ls) return [0, 0];
+      var ids = $$('[data-ls-tab]', ls).map(function (b) { return b.getAttribute('data-ls-tab'); }), d = [];
+      try { d = JSON.parse(localStorage.getItem('numidea-lessons-' + set) || '[]'); } catch (e) {}
+      if (!Array.isArray(d)) d = [];
+      return [ids.filter(function (x) { return d.indexOf(x) > -1; }).length, ids.length];
+    };
+    var doneMods = null, total = $('[data-chaps-total]', sec), left = $('[data-carnet-left]', sec), all = $('[data-carnet-all]', sec);
+    var paintCounts = function () {
+      var s = 0, n = 0, m = 0, now = [];
+      $$('[data-chap-n]', sec).forEach(function (x) {
+        var set = x.getAttribute('data-chap-n'), c = stampsOf(set), a = x.closest('a');
+        x.textContent = t('web3c.chap.count').replace('{a}', c[0]).replace('{b}', c[1]);
+        if (set === 'web3c') return;
+        s += c[0]; n += c[1];
+        var done = c[1] > 0 && c[0] === c[1], M = set.slice(5);
+        if (done) { m++; now.push(M); }
+        if (a) { a.classList.toggle('is-done', done); var sr = $('[data-chap-done]', a); if (sr) sr.hidden = !done; var mn = $('[data-chap-min]', a); if (mn) mn.textContent = t('web3c.chap.time').replace('{n}', a.getAttribute('data-min')); }
+        var cell = $('[data-carnet-m="' + M + '"]', sec);
+        if (cell) { cell.classList.toggle('is-done', done); var cs = $('[data-carnet-done]', cell); if (cs) cs.hidden = !done; }
+      });
+      if (total) total.textContent = t('web3c.chap.total').replace('{s}', s).replace('{n}', n).replace('{m}', m);
+      if (left) left.textContent = m < 9 ? t('web3c.carnet.left').replace('{n}', 9 - m) : '';
+      if (all) all.hidden = m < 9;
+      // a module just completed says so once (life.js may answer)
+      if (doneMods) now.forEach(function (M) { if (doneMods.indexOf(M) < 0) emit('numidea:module', { m: Number(M) }); });
+      doneMods = now;
+    };
+    document.addEventListener('numidea:lesson', function () { setTimeout(paintCounts, 0); });
+    var prog = $('[data-chaps-prog]', sec);
+    if (prog && matchMedia('(min-width: 600px)').matches) prog.open = true;
+
+    /* ---- the dock: "Ma fiche · n cases remplies →", hidden while the fiche is on screen ---- */
+    var dock = $('[data-fdock]', sec), dockT = dock && $('[data-fdock-t]', dock), fiche = $('[data-brief="web3c"]', sec), fichN = fiche && fiche._n != null ? fiche._n : 0;
+    var paintDock = function () { if (dockT) dockT.textContent = fichN ? t('web3c.dock.go').replace('{n}', fichN) : t('web3c.dock.empty'); };
+    document.addEventListener('numidea:fichen', function (e) { if (e.detail && e.detail.set === 'web3c') { fichN = e.detail.n; paintDock(); } });
+    if (dock && fiche && IO) new IntersectionObserver(function (es) { es.forEach(function (x) { dock.classList.toggle('is-off', x.isIntersecting); }); }).observe(fiche);
+    // under 680 px the dock is a bar above the radio's small control: its height, while it shows
+    var rc = $('.st-rchip');
+    var rch = function () { root.style.setProperty('--rchip-h', rc && !rc.hidden && rc.offsetHeight ? rc.offsetHeight + 'px' : '0px'); };
+    if (rc && window.MutationObserver) new MutationObserver(rch).observe(rc, { attributes: true, attributeFilter: ['hidden', 'class'] });
+    rch();
+
+    /* ---- print: one module, or the carnet ---- */
+    var printAs = function (cls, id, box) {
+      // a closed list prints closed: what the page prints opens for it, and closes again after
+      var shut = box ? $$('details:not([open])', box) : [];
+      var done = function () { root.classList.remove(cls); root.removeAttribute('data-print-mod'); shut.forEach(function (d) { d.open = false; }); shut = []; removeEventListener('afterprint', done); };
+      shut.forEach(function (d) { d.open = true; });
+      root.classList.add(cls); if (id) root.setAttribute('data-print-mod', id);
+      addEventListener('afterprint', done);
+      setTimeout(function () { try { print(); } catch (e) {} setTimeout(done, M(12)); }, 0);
+    };
+    $$('[data-print-mod]', sec).forEach(function (b) { b.addEventListener('click', function () { var id = b.getAttribute('data-print-mod'); openChap(id); printAs('is-print-mod', id, byId[id]); }); });
+    $$('[data-carnet-print]', sec).forEach(function (b) { b.addEventListener('click', function () { printAs('is-print-carnet', null, $('[data-chaps]', sec)); }); });
+
+    /* ---- an address that names a place inside the course ---- */
+    // jump: on load the page lands at once, as the browser's own jump would; a later change of address may glide
+    // on load the scroll waits for the frame after the chapter cut is painted: a layout change and a scroll in one
+    // frame read as a layout shift (the whole screen), two frames apart they are a cut, then a jump
+    var after = function (jump, f) { requestAnimationFrame(jump ? function () { requestAnimationFrame(f); } : f); };
+    var land = function (raw, scroll, jump) {
+      var id = ''; try { id = decodeURIComponent(raw || ''); } catch (e) {}
+      if (!id) return false;
+      if (id === 'web3-fiche') { openChap('achat'); if (LS.web3c) LS.web3c('w7', true, false); if (scroll) after(jump, function () { top(fiche, jump); }); return true; }
+      var el = document.getElementById(id);
+      if (!el || !sec.contains(el)) return false;
+      var c = el.closest('[data-chap]'), cid = c && c.getAttribute('data-chap');
+      // a line outside the chapters (the buyer path's sources): its list opens, and it is brought into view once the
+      // chapter shown is settled (the chapters above it change height)
+      if (!cid) { var d0 = el.closest('details'); if (d0) d0.open = true; if (scroll) after(jump, function () { top(el, jump); }); return false; }
+      openChap(cid);
+      var tab = el.hasAttribute('data-ls-tab') ? el : null, pn = el.closest('[data-ls-panel]'), set = setOf(cid);
+      if (tab && LS[set]) LS[set](tab.getAttribute('data-ls-tab'), true, false);
+      else if (pn && LS[set]) LS[set](pn.getAttribute('data-ls-panel'), false, false);
+      var d = el.closest('details'); if (d) d.open = true;
+      if (scroll) after(jump, function () { top(el, jump); if (el === c || el.id === 'web3-' + cid) { var h = $('#web3-' + cid + '-h'); if (h) h.focus({ preventScroll: true }); } });
+      return true;
+    };
+    addEventListener('hashchange', function () { land(location.hash.slice(1), true, false); });
+    // a stop named by ?ls= (§13 already showed its tab) opens its chapter
+    var askedC = null; try { askedC = new URLSearchParams(location.search).get('ls'); } catch (e) {}
+    var askedT = askedC && $('[data-ls-tab="' + askedC + '"]', sec);
+    if (!land(location.hash.slice(1), true, true)) {
+      if (askedT) openChap(askedT.closest('[data-chap]').getAttribute('data-chap'));
+      else if (ps.p === 1) openChap(ps.last && byId[ps.last] && ps.last !== 'achat' ? ps.last : 'm1');
+    }
+    paintCur(); paintNext(); paintCounts(); paintDock();
+    onLang.push(function () { paintNext(); paintCounts(); paintDock(); if (say && say.textContent) say.textContent = t('web3c.path.say').replace('{c}', title(cur)); });
+    // a learner's first module opens at once: the labs' script comes when the page is idle
+    var idle = window.requestIdleCallback || function (f) { setTimeout(f, M(16)); };
+    if (document.readyState === 'complete') idle(loadX); else addEventListener('load', function () { idle(loadX); });
+  })();
 
   /* ---------------- 13c · la fabrique ----------------
      hub/fabrique.html only (each part looks for its markup). The 16-pixel slider of scene 01 sets --mk on the artboards:
@@ -2279,104 +2752,139 @@
     addEventListener('pagehide', function () { if (live) stop(live); });
   })();
 
-  /* ---------------- 15 · the radio ----------------
-     The workshop radio ([data-radio], its tracks in #hub-radio). Nothing is
-     fetched and nothing sounds until a press: the <audio> element is made
-     on the first one. Play and pause, previous and next, a track picked by
-     name, the volume; a track that ends hands over to the next. The track,
-     the place in it and the volume are kept on this device ('numidea-radio')
-     so the next visit takes up where this one stopped, once play is pressed.
-     While it is on and its shelf is out of sight, a small control follows at
-     the foot of the screen ([data-radio-chip]); its last key turns the radio
-     off. Lock-screen keys where the browser has them (Media Session). The
-     only writes without a press are the clock and the bar while it plays. */
+  /* ---------------- 14b · la carte ----------------
+     The services catalogue (#carte, 2026-11-21, written by scripts/lib/carte.mjs). Without this the five families
+     read as one long menu, every tag printed. With it: a tab strip (an ARIA tablist, a roving tabindex, the arrows
+     reversed in RTL), one family shown at a time, #carte-<family> or #carte-<card> opening its tab on load and on a
+     link; a card's tag prints once, the first time the card is seen (it rises, its mockup unrolls, the tag drops from
+     its string, the seal stamps: hub/css/carte.css), never again in the visit, and a card already on screen when the
+     family opens is shown printed; under reduced motion nothing moves. The phone track counts its cards (1 / 4). The
+     motion card plays the Studio's opening once on a press, never on its own, then shows its poster again. The
+     WhatsApp lines are baked in French; they follow the page's language. */
   (function () {
-    var box = $('[data-radio]'), list = null;
-    try { list = JSON.parse($('#hub-radio').textContent); } catch (e) {}
-    if (!box || !list || !list.length) return;
-    var chip = $('[data-radio-chip]');
-    var KEY = 'numidea-radio', st = { i: 0, t: 0, v: 0.6 };
-    try { var kept = JSON.parse(localStorage.getItem(KEY) || '{}'); if (kept && typeof kept === 'object') { if (kept.i >= 0 && kept.i < list.length) st.i = kept.i; if (kept.t >= 0) st.t = kept.t; if (kept.v >= 0 && kept.v <= 1) st.v = kept.v; } } catch (e) {}
-    var me = $('script[src*="app.js"]'), ver = ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0];
-    var audio = null, started = false, seen = true, saved = 0;
-    var plays = $$('[data-radio-play]'), titles = $$('[data-radio-title]'), picks = $$('[data-radio-pick]', box), vol = $('[data-radio-vol]', box);
-    var stateEl = $('[data-radio-state]', box), timeEl = $('[data-radio-time]', box), durEl = $('[data-radio-dur]', box), bar = $('[data-radio-bar]', box);
-    var mmss = function (s) { s = Math.max(0, Math.floor(s)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); };
-    var set = function (el, v) { if (el && el.textContent !== v) el.textContent = v; };
-    var on = function () { return !!audio && !audio.paused; };
-    var keep = function () { try { localStorage.setItem(KEY, JSON.stringify({ i: st.i, t: audio ? Math.floor(audio.currentTime) : st.t, v: st.v })); } catch (e) {} };
-    var paint = function () {
-      var name = t('radio.tracks.' + list[st.i].id + '.name'), playing = on();
-      titles.forEach(function (n) { set(n, name); });
-      set(durEl, mmss(list[st.i].dur));
-      picks.forEach(function (b, i) { b.setAttribute('aria-pressed', String(i === st.i)); });
-      plays.forEach(function (b) {
-        b.setAttribute('aria-pressed', String(playing)); b.setAttribute('aria-label', t(playing ? 'radio.pause' : 'radio.play'));
-        $('[data-radio-ico-play]', b).toggleAttribute('hidden', playing); $('[data-radio-ico-pause]', b).toggleAttribute('hidden', !playing);
+    var root = document.getElementById('carte');
+    if (!root) return;
+    var strip = $('.crt__strip', root), tabs = $$('.crt__tab', root), panels = $$('.crt__panel', root), lines = $$('.crt__line', root);
+    var seen = {};
+    strip.hidden = false;
+    var inView = function (el) { var r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; };
+    // (is-play goes once the print is over, and from a family as it is hidden: a panel shown again replays nothing)
+    var play = function (c) {
+      if (c.classList.contains('is-done')) return;
+      c.classList.remove('is-pre'); c.classList.add('is-play', 'is-done');
+      setTimeout(function () { c.classList.remove('is-play'); }, M(24));
+    };
+    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { play(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.25 }) : null;
+    var arm = function (panel, cut) {
+      var g = panel.getAttribute('data-g');
+      if (seen[g]) return;
+      seen[g] = 1;
+      panel.classList.toggle('is-cut', !!cut);
+      $$('.cc', panel).forEach(function (c) {
+        if (reduce) { c.classList.add('is-done'); return; }
+        if (cut) { play(c); return; }   // a tab chosen: its cards rise and print now
+        if (inView(c)) { c.classList.add('is-done'); return; }   // on screen already: shown as it is, never hidden
+        c.classList.add('is-pre');
+        if (io) io.observe(c); else play(c);
       });
-      var key = playing ? 'radio.onair' : started ? 'radio.paused' : 'radio.idle';
-      stateEl.setAttribute('data-i18n', key); set(stateEl, t(key));
-      if (box.classList.contains('is-on') !== playing) emit('numidea:radio', { on: playing });
-      box.classList.toggle('is-on', playing);
-      if (chip) chip.hidden = !(started && !seen);
     };
-    var tick = function () {
-      var c = audio.currentTime || 0, d = audio.duration || list[st.i].dur;
-      set(timeEl, mmss(c)); bar.style.setProperty('--p', Math.min(1, c / d).toFixed(4));
-      if (c - saved > 5 || c < saved) { saved = c; keep(); }
+    var select = function (g, focus, cut) {
+      tabs.forEach(function (b) {
+        var on = b.getAttribute('data-g') === g;
+        b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1;
+        // the strip scrolls sideways to its tab, the page never moves (scrollIntoView scrolled a phone's page down to la carte on load)
+        if (on) {
+          if (focus) b.focus();
+          var sc = b.parentNode, br = b.getBoundingClientRect(), pr = sc.getBoundingClientRect();
+          if (sc.scrollWidth > sc.clientWidth && (br.left < pr.left || br.right > pr.right)) sc.scrollBy({ left: br.left < pr.left ? br.left - pr.left : br.right - pr.right, behavior: reduce ? 'auto' : 'smooth' });
+        }
+      });
+      lines.forEach(function (p) { p.hidden = p.getAttribute('data-g') !== g; });
+      panels.forEach(function (p) {
+        p.hidden = p.getAttribute('data-g') !== g;
+        if (p.hidden) $$('.cc.is-play', p).forEach(function (c) { c.classList.remove('is-play'); });
+      });
+      arm($('#carte-' + g, root), cut);
     };
-    var session = function () {
-      if (!('mediaSession' in navigator) || !window.MediaMetadata) return;
-      try {
-        navigator.mediaSession.metadata = new MediaMetadata({ title: t('radio.tracks.' + list[st.i].id + '.name'), artist: 'Numidea Labs', album: t('radio.title') });
-        navigator.mediaSession.setActionHandler('play', function () { audio.play(); });
-        navigator.mediaSession.setActionHandler('pause', function () { audio.pause(); });
-        navigator.mediaSession.setActionHandler('nexttrack', function () { go(1, true); });
-        navigator.mediaSession.setActionHandler('previoustrack', function () { go(-1, true); });
-      } catch (e) {}
-    };
-    var load = function (i, at) {
-      st.i = (i + list.length) % list.length; saved = at || 0;
-      audio.src = list[st.i].src + ver;
-      if (at > 0) audio.addEventListener('loadedmetadata', function once() { audio.removeEventListener('loadedmetadata', once); if (at < (audio.duration || 1e9) - 3) audio.currentTime = at; });
-      set(timeEl, mmss(at || 0)); bar.style.setProperty('--p', '0');
-      session(); paint();
-    };
-    var ensure = function () {
-      if (audio) return;
-      audio = new Audio(); audio.preload = 'none'; audio.volume = st.v;
-      audio.addEventListener('timeupdate', tick);
-      audio.addEventListener('play', paint); audio.addEventListener('pause', function () { keep(); paint(); });
-      audio.addEventListener('ended', function () { load(st.i + 1, 0); audio.play().catch(function () {}); });
-      audio.addEventListener('error', function () { paint(); });
-    };
-    var play = function () { var p = audio.play(); if (p && p.catch) p.catch(function () { paint(); }); };
-    var toggle = function () {
-      ensure();
-      if (!started) { started = true; load(st.i, st.t); play(); return; }
-      if (audio.paused) play(); else audio.pause();
-    };
-    var go = function (d, keepPlaying) {
-      ensure();
-      var was = started && !audio.paused;
-      started = true; load(st.i + d, 0);
-      if (was || keepPlaying) play(); else keep();
-    };
-    plays.forEach(function (b) { b.disabled = false; b.addEventListener('click', toggle); });
-    $$('[data-radio-next]').forEach(function (b) { b.disabled = false; b.addEventListener('click', function () { go(1, true); }); });
-    $$('[data-radio-prev]').forEach(function (b) { b.disabled = false; b.addEventListener('click', function () { go(-1, true); }); });
-    picks.forEach(function (b, i) { b.disabled = false; b.addEventListener('click', function () { ensure(); started = true; load(i, 0); play(); }); });
-    vol.disabled = false; vol.value = String(Math.round(st.v * 100));
-    vol.addEventListener('input', function () { st.v = Math.min(1, Math.max(0, Number(vol.value) / 100)); if (audio) audio.volume = st.v; keep(); });
-    $$('[data-radio-off]').forEach(function (b) {
-      b.addEventListener('click', function () { if (audio) { audio.pause(); keep(); } started = false; paint(); });
+    var pick = function (g) { select(g, false, true); try { history.replaceState(null, '', '#carte-' + g); } catch (e) {} };
+    tabs.forEach(function (b, i) {
+      b.addEventListener('click', function () { pick(b.getAttribute('data-g')); });
+      b.addEventListener('keydown', function (e) {
+        var k = e.key, n = tabs.length, j = -1, rtl = root.matches(':dir(rtl)');
+        if (k === 'ArrowRight') j = rtl ? i - 1 : i + 1; else if (k === 'ArrowLeft') j = rtl ? i + 1 : i - 1;
+        else if (k === 'Home') j = 0; else if (k === 'End') j = n - 1; else return;
+        e.preventDefault(); j = (j + n) % n;
+        select(tabs[j].getAttribute('data-g'), true, true);
+        try { history.replaceState(null, '', '#carte-' + tabs[j].getAttribute('data-g')); } catch (er) {}
+      });
     });
-    if (chip && IO) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; if (started) paint(); }).observe(box);
-    addEventListener('pagehide', function () { if (audio && started) keep(); });
-    // the kept track's name and length, without a write when they are the baked ones
-    paint();
-    onLang.push(function () { paint(); if (started) session(); });
+    // #carte-<family>, #carte-<card>, or an old anchor inside a card (#motion, #reel): the family that holds it
+    var familyOf = function (h) {
+      var el = h && document.getElementById(h), p = el && root.contains(el) ? el.closest('.crt__panel') : null;
+      return p ? p.getAttribute('data-g') : null;
+    };
+    var fromHash = function () { return familyOf(decodeURIComponent(location.hash.slice(1))); };
+    var g0 = fromHash();
+    select(g0 || 'marque', false, false);
+    if (g0) { var tgt = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (tgt) tgt.scrollIntoView({ block: 'start' }); }
+    addEventListener('hashchange', function () { var g = fromHash(); if (g) select(g, false, true); });
+    // a link to a family or a card (the four family cards, A1's next step): open it, then go there
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#carte-"], a[data-goto]');
+      if (!a) return;
+      var id = a.hasAttribute('data-goto') ? 'carte-' + a.getAttribute('data-goto') : a.getAttribute('href').slice(1), g = familyOf(id);
+      if (!g) return;
+      e.preventDefault();
+      select(g, false, true);
+      try { history.replaceState(null, '', '#' + id); } catch (er) {}
+      document.getElementById(id).scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
+    });
+    // Tab into a card the phone track still holds off screen: it prints now (an unprinted card is transparent) and the
+    // track brings it to its snap point (the browser's own focus scroll left it a sliver in, and the snap pulled it back)
+    root.addEventListener('focusin', function (e) {
+      var c = e.target.closest && e.target.closest('.cc'), grid = c && c.parentNode;
+      if (!c || !grid.classList.contains('crt__grid')) return;
+      if (c.classList.contains('is-pre')) { if (io) io.unobserve(c); play(c); }
+      if (grid.scrollWidth <= grid.clientWidth) return;
+      var cr = c.getBoundingClientRect(), gr = grid.getBoundingClientRect();
+      if (cr.left < gr.left - 1 || cr.right > gr.right + 1) grid.scrollBy({ left: root.matches(':dir(rtl)') ? cr.right - gr.right : cr.left - gr.left, behavior: reduce ? 'auto' : 'smooth' });
+    });
+    // the phone track's counter
+    $$('.crt__grid', root).forEach(function (grid) {
+      var out = $('.crt__count span', grid.parentNode);
+      if (!out) return;
+      grid.addEventListener('scroll', function () {
+        var w = grid.firstElementChild.getBoundingClientRect().width || 1;
+        out.textContent = String(Math.min(grid.children.length, Math.round(Math.abs(grid.scrollLeft) / w) + 1));
+      }, { passive: true });
+    });
+    // the motion card: a press plays the opening once (the link opens the file without scripts)
+    $$('[data-play]', root).forEach(function (b) {
+      var film = b.closest('.film'), v = $('video', film), poster = $('img', film);
+      var end = function () { v.hidden = true; poster.hidden = false; film.classList.remove('is-on'); };
+      b.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!v.getAttribute('src')) v.src = b.getAttribute('href');
+        v.hidden = false; poster.hidden = true; film.classList.add('is-on');
+        try { v.currentTime = 0; } catch (er) {}
+        var p = v.play();
+        if (p && p.catch) p.catch(end);
+      });
+      v.addEventListener('ended', function () { end(); b.focus({ preventScroll: true }); });
+    });
+    // the WhatsApp lines in the page's language
+    var wa = function () {
+      $$('[data-carte-wa]', root).forEach(function (a) { var v = t(a.getAttribute('data-carte-wa')); if (v) a.href = 'https://wa.me/213672412578?text=' + encodeURIComponent(v); });
+    };
+    if (lang !== 'fr') wa();
+    onLang.push(wa);
   })();
+
+  /* ---------------- 15 · the radio ----------------
+     Moved to hub/radio.js on 2026-11-21 (the Librairie Lanterne: the radio rides on every page of the
+     Librairie, some of which do not load this file). */
 
   /* ---------------- 12 · each case's faces, and its layout ----------------
      hub/fonts/lazy-<slug>.css holds a case's own faces (the WorkspaceHQ
@@ -2425,7 +2933,7 @@
     var sheet = function (href) { var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l); };
     var load = function (n) {
       if (!n || done[n]) return null; done[n] = 1;
-      var href = 'fonts/lazy-' + n + '.css' + v;
+      var href = (document.body.hasAttribute('data-lt-atlas') ? '../' : '') + 'fonts/lazy-' + n + '.css' + v;   // an atlas sits a level down (hub/lanterne/)
       if (!window.FontFace || !document.fonts || !document.fonts.add || !window.fetch) { sheet(href); return null; }
       var base = new URL(href, location.href);
       return fetch(href).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(function (css) {

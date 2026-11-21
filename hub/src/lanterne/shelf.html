@@ -1,0 +1,265 @@
+<body class="lt lt-shelf" data-lanterne-shelf>
+
+<a class="skip" href="#rayons" data-i18n="lant.shelf.navAtlases"></a>
+
+<!-- ============================== LA LIBRAIRIE LANTERNE ==============================
+     hub/lanterne/ (2026-11-21, scratchpad lantern/SPEC.md §2): the shop's interior, the learning side's
+     front door. Its head is the Studio's (hub/src/page.html, re-addressed a level down by
+     scripts/lib/lanterne.mjs); this file is its body. The {{lant.*}} holes are written by the build from
+     hub/src/lanterne/shelf.json, art.json and the atlas files: the mast, the key art, the books on their
+     three shelves (a book's counts, keepsakes and resume line come from its atlas, never typed), the
+     passport. Then the shop's own blocks, as they were on the old manual: the workshop radio (hub/radio.js),
+     the night round (hub/life.js: Kūro's page-life lives on this page only, L11), the counter's four
+     services and the kit (prices from the home's price model, rewritten by hub/app.js 6 in the page's
+     language), the way back to the Studio, the footer and its skyline. hub/lanterne.js reads the
+     atlases' progress (on this device only) into the books and the passport. -->
+{{lant.shelf.mast}}
+
+<main id="main" tabindex="-1">
+<div class="lt-wrap">
+  <section class="hero hero--shelf" id="top" aria-labelledby="hero-h">
+    <div class="hero__copy">
+      <p class="k k--amber" data-i18n="lant.shelf.heroK"></p>
+      <h1 class="hero__h" id="hero-h"><span data-i18n="lant.shelf.heroT1"></span> <em data-i18n="lant.shelf.heroT2"></em></h1>
+      <p class="hero__pitch" data-i18n="lant.shelf.lore"></p>
+      <p class="hero__case" data-i18n="lant.shelf.fiction"></p>
+      <a class="btn btn--amber btn--down" href="#rayons" data-i18n="lant.shelf.heroCta"></a>
+    </div>
+    <div class="hero__stage">
+      {{lant.shelf.hero}}
+    </div>
+  </section>
+
+  <!-- the books: three shelves; a book not yet on its atlas reads « bientôt » -->
+  <section class="sec rayons" id="rayons" aria-labelledby="rayons-k" tabindex="-1">
+    <p class="k" id="rayons-k" data-i18n="lant.shelf.rayonsK"></p>
+    {{lant.shelf.rayons}}
+  </section>
+
+  <!-- the passport: every atlas's keepsakes in one album; an unearned one is an empty frame, no name -->
+  <section class="sec" id="passeport" aria-labelledby="pass-h">
+    <div class="heading" data-lt-pass-head>
+      <div><p class="k" data-i18n="lant.shelf.passK"></p><h2 id="pass-h" data-i18n="lant.shelf.passH"></h2></div>
+      {{lant.shelf.passTotal}}
+    </div>
+    <p class="sec__lead" data-i18n="lant.shelf.passLead"></p>
+    {{lant.shelf.passport}}
+    <p class="sec__act js-only"><button type="button" class="btn" data-lt-print><span data-i18n="lant.shelf.passPrint"></span></button></p>
+  </section>
+</div>
+
+<!-- ============================== RADIO ==============================
+     The workshop radio, a shelf under the page's head. Its tracks are the
+     list in hub/src/radio.json; nothing is fetched and nothing plays until
+     the visitor presses (hub/app.js 15). Once it is on and this shelf has
+     scrolled away, a small control follows at the foot of the screen
+     ([data-radio-chip], below). Without scripts the keys stay disabled. -->
+<section class="st-radio" id="radio" aria-labelledby="radio-h" data-radio>
+  <div class="st-wrap st-radio__in">
+    <div class="st-radio__set">
+      <img class="st-radio__kuro" src="../img/studio/loops/kuro-sleep-still.webp" width="258" height="287" alt="" decoding="async">
+      <span class="st-radio__grille" aria-hidden="true"></span>
+      <div class="st-radio__dial">
+        <p class="st-radio__state"><span class="st-radio__led" aria-hidden="true"></span><span data-radio-state data-i18n="radio.idle"></span></p>
+        <p class="st-radio__now" data-radio-title>{{radioFirst}}</p>
+        <p class="st-radio__time" dir="ltr"><span data-radio-time>0:00</span> / <span data-radio-dur>{{radioDur}}</span></p>
+        <span class="st-radio__bar" aria-hidden="true"><i data-radio-bar></i></span>
+      </div>
+    </div>
+    <div class="st-radio__ctl">
+      <h2 class="st-radio__h" id="radio-h" data-i18n="radio.title"></h2>
+      <p class="st-radio__note" data-i18n="radio.note"></p>
+      <div class="st-radio__keys">
+        <button type="button" class="st-radio__k" data-radio-prev data-i18n-aria="radio.prev" disabled><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4L9 12l11 8zM4 4h3v16H4z"/></svg></button>
+        <button type="button" class="st-radio__k st-radio__k--play" data-radio-play aria-pressed="false" data-i18n-aria="radio.play" disabled><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path data-radio-ico-play d="M7 4l13 8-13 8z"/><path data-radio-ico-pause d="M6 4h4v16H6zM14 4h4v16h-4z" hidden/></svg></button>
+        <button type="button" class="st-radio__k" data-radio-next data-i18n-aria="radio.next" disabled><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11 8-11 8zM17 4h3v16h-3z"/></svg></button>
+        <p class="st-radio__vol"><label class="st-label" for="radio-vol" data-i18n="radio.vol"></label><input type="range" id="radio-vol" min="0" max="100" step="5" value="60" data-radio-vol disabled></p>
+      </div>
+      <div class="st-radio__list" role="group" data-i18n-aria="radio.pick">
+{{radioPicks}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== THE NIGHT ROUND ==============================
+     Kūro lives on this page (hub/life.js): he comes to a perch in view when
+     a scroll ends, answers a lesson and the radio, and can be played (the
+     keys, or the pad at the screen's foot): seven seals, then the night
+     drawing (#prize). The button is disabled until the script is ready;
+     without scripts the strip is not shown, and with reduced motion it says
+     the game is off (style.css). -->
+<section class="st-game" id="ronde" aria-labelledby="game-h" data-game>
+  <div class="st-wrap"><div class="st-game__in">
+    <div class="st-game__copy">
+      <p class="st-label st-label--red" data-i18n="life.kicker"></p>
+      <h2 class="st-game__h" id="game-h" data-i18n="life.title"></h2>
+      <p class="st-game__d" data-i18n="life.lead"></p>
+    </div>
+    <div class="st-game__act">
+      <p class="st-game__count"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">印</span><b data-game-count>0</b><span aria-hidden="true">&nbsp;/&nbsp;7</span><span class="st-sr"> / 7</span> <span data-i18n="life.seals"></span></p>
+      <button type="button" class="st-btn st-btn--primary" data-game-play aria-pressed="false" disabled data-i18n="life.play"></button>
+      <button type="button" class="st-btn st-btn--ghost" data-game-prize hidden data-i18n="life.again"></button>
+      <p class="st-game__keys st-label" data-i18n="life.keys"></p>
+      <p class="st-game__rm" data-i18n="life.rm"></p>
+    </div>
+  </div></div>
+</section>
+
+<section class="st-sec st-mny" id="comptoir" aria-labelledby="msvc-h">
+  <div class="st-wrap">
+    <div class="st-head">
+      <div class="st-head__main">
+        <p class="st-kick"><span class="st-seal" aria-hidden="true" lang="ja">話</span><span data-i18n="manual.svc.kicker"></span></p>
+        <h2 class="st-h2" id="msvc-h" data-i18n="manual.svc.title"></h2>
+      </div>
+      <p class="st-lead" data-i18n="manual.svc.lead"></p>
+    </div>
+    <ul class="st-mny__svc" data-i18n-aria="money.svc.aria">
+      <li class="st-mny__card">
+        <p class="st-mny__bar"><span>/ 01 · <span data-i18n="money.svc.items.0.fam"></span></span><span class="st-mny__kanji" aria-hidden="true" lang="ja">話</span></p>
+        <div class="st-mny__body">
+          <h3 class="st-mny__name" data-i18n="money.svc.items.0.name"></h3>
+          <p class="st-mny__price"><b dir="ltr" data-money-price="call">{{money.call}}</b></p>
+          <p class="st-mny__meta st-label" data-i18n="money.svc.items.0.meta"></p>
+          <p class="st-mny__line" data-i18n="money.svc.items.0.line"></p>
+          <p class="st-mny__act">
+            <a class="st-btn st-btn--primary" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="0"><span data-i18n="money.svc.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </div>
+      </li>
+      <li class="st-mny__card">
+        <p class="st-mny__bar"><span>/ 02 · <span data-i18n="money.svc.items.1.fam"></span></span><span class="st-mny__kanji" aria-hidden="true" lang="ja">設</span></p>
+        <div class="st-mny__body">
+          <h3 class="st-mny__name" data-i18n="money.svc.items.1.name"></h3>
+          <p class="st-mny__price"><b dir="ltr" data-money-price="setup">{{money.setup}}</b></p>
+          <p class="st-mny__meta st-label" data-i18n="money.svc.items.1.meta"></p>
+          <p class="st-mny__line" data-i18n="money.svc.items.1.line"></p>
+          <p class="st-mny__act">
+            <a class="st-btn st-btn--primary" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="1"><span data-i18n="money.svc.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </div>
+      </li>
+      <li class="st-mny__card">
+        <p class="st-mny__bar"><span>/ 03 · <span data-i18n="money.svc.items.2.fam"></span></span><span class="st-mny__kanji" aria-hidden="true" lang="ja">始</span></p>
+        <div class="st-mny__body">
+          <h3 class="st-mny__name" data-i18n="money.svc.items.2.name"></h3>
+          <p class="st-mny__price"><b dir="ltr" data-money-price="pack">{{money.pack}}</b></p>
+          <p class="st-mny__meta st-label" data-i18n="money.svc.items.2.meta"></p>
+          <p class="st-mny__line" data-i18n="money.svc.items.2.line"></p>
+          <p class="st-mny__act">
+            <a class="st-btn st-btn--primary" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="2"><span data-i18n="money.svc.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </div>
+      </li>
+      <li class="st-mny__card">
+        <p class="st-mny__bar"><span>/ 04 · <span data-i18n="money.svc.items.3.fam"></span></span><span class="st-mny__kanji" aria-hidden="true" lang="ja">書</span></p>
+        <div class="st-mny__body">
+          <h3 class="st-mny__name" data-i18n="money.svc.items.3.name"></h3>
+          <p class="st-mny__price"><b dir="ltr" data-money-price="guideOne">{{money.guideOne}}</b> <span data-i18n="money.svc.each"></span><br><b dir="ltr" data-money-price="guides">{{money.guides}}</b> <span data-i18n="money.svc.all"></span></p>
+          <p class="st-mny__meta st-label" data-i18n="money.svc.items.3.meta"></p>
+          <p class="st-mny__line" data-i18n="money.svc.items.3.line"></p>
+          <p class="st-mny__act">
+            <a class="st-btn st-btn--primary" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="3"><span data-i18n="money.svc.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+          </p>
+        </div>
+      </li>
+    </ul>
+    <div class="st-mny__kit">
+      <p class="st-mny__kitk" data-i18n="money.kit.k"></p>
+      <p class="st-mny__kitl"><span data-i18n="money.kit.line"></span> <b dir="ltr" data-money-price="kit">{{money.kit}}</b> <span class="st-mny__was"><span data-i18n="money.kit.was"></span> <s dir="ltr" data-money-price="kitWas">{{money.kitWas}}</s></span></p>
+      <a class="st-btn st-btn--on" href="https://wa.me/213672412578" target="_blank" rel="noopener" data-money-wa="kit"><span data-i18n="money.kit.go"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- the way back: the Studio builds sites; the Aperçu is free -->
+<section class="st-sec st-back" aria-labelledby="back-h">
+  <div class="st-wrap st-back__in">
+    <div class="st-back__copy">
+      <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">築</span><span data-i18n="manual.back.k"></span></p>
+      <h2 class="st-h2" id="back-h" data-i18n="manual.back.t"></h2>
+      <p class="st-lead" data-i18n="manual.back.d"></p>
+      <div class="st-actions">
+        <a class="st-btn st-btn--primary" href="../#preview" data-i18n="manual.back.preview"></a>
+        <a class="st-btn st-btn--ghost" href="../" data-i18n="manual.back.go"></a>
+      </div>
+    </div>
+    <img class="st-back__img" src="../bible/art/rig-y-base.webp" alt="" loading="lazy" decoding="async">
+  </div>
+</section>
+
+</main>
+
+<footer class="st-foot">
+  <div class="st-wrap">
+  <!-- the town at night above the colophon (2026-11-18): the rooftops of Bordj Bou Arréridj, one window lit, the
+       workshop; it lights once as the strip comes on screen (hub/app.js 4); on this page the live Kūro (life.js) uses the sill as a perch, so the sleeping one is not drawn here -->
+  <figure class="st-foot__sky" aria-hidden="true" data-sky>
+    <img src="../img/studio/night/skyline-2640.webp" srcset="../img/studio/night/skyline-1320.webp 1320w, ../img/studio/night/skyline-2640.webp 2640w" sizes="(min-width:1400px) 1320px, 100vw" width="2640" height="330" alt="" loading="lazy" decoding="async">
+    <span class="st-foot__win"></span>
+  </figure>
+  <div class="st-foot__in">
+    <span class="st-label st-foot__ok" aria-hidden="true">奥付</span>
+    <a class="st-wm st-wm--foot" href="../../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
+    <p class="st-foot__line"><span data-i18n="footer.line"></span></p>
+    <nav class="st-foot__links" data-i18n-aria="footer.nav">
+      <a href="../../" data-i18n="footer.site"></a>
+      <a href="../" data-i18n="manual.nav.studio"></a>
+      <a href="../fabrique.html" data-i18n="nav.fab"></a>
+      <a href="../bible/" data-i18n="footer.bible"></a>
+      <a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span class="st-sr" data-i18n="case.newTab"></span></a>
+      <a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">Behance <span class="st-sr" data-i18n="case.newTab"></span></a>
+    </nav>
+    <span class="st-seal st-seal--fill st-foot__seal" aria-hidden="true">印</span>
+    <p class="st-label st-foot__rights" data-i18n="footer.rights"></p>
+  </div></div>
+</footer>
+
+<!-- the radio's small control: shown only once the radio is on and its shelf is out of sight (hub/app.js 15) -->
+<div class="st-rchip" data-radio-chip role="group" data-i18n-aria="radio.chip" hidden>
+  <button type="button" class="st-rchip__b" data-radio-play aria-pressed="false" data-i18n-aria="radio.play"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path data-radio-ico-play d="M7 4l13 8-13 8z"/><path data-radio-ico-pause d="M6 4h4v16H6zM14 4h4v16h-4z" hidden/></svg></button>
+  <span class="st-rchip__t" data-radio-title>{{radioFirst}}</span>
+  <button type="button" class="st-rchip__b" data-radio-next data-i18n-aria="radio.next"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11 8-11 8zM17 4h3v16h-3z"/></svg></button>
+  <button type="button" class="st-rchip__b" data-radio-off data-i18n-aria="radio.off"><svg class="st-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="3"/></svg></button>
+</div>
+<script type="application/json" id="hub-radio">{{lant.radio}}</script>
+
+<!-- Kūro's layer (hub/life.js): it takes no click and says nothing to assistive tech; the sheet is the stylesheet's -->
+<div class="st-life" data-life aria-hidden="true" hidden>
+  <span class="st-kuro" data-life-kuro><i></i></span>
+  <span class="st-say" data-life-say></span>
+  <span class="st-say st-say--y" data-life-say-y></span>
+</div>
+<!-- the pad, shown while he is played: hold left or right, press the others -->
+<div class="st-pad" data-pad role="group" tabindex="-1" data-i18n-aria="life.pad" hidden>
+  <p class="st-pad__count"><span aria-hidden="true" lang="ja">印</span> <b data-game-count>0</b><span aria-hidden="true">&nbsp;/&nbsp;7</span></p>
+  <div class="st-pad__keys">
+    <button type="button" class="st-pad__k" data-pad-k="left" data-i18n-aria="life.left"><span aria-hidden="true">◀</span></button>
+    <button type="button" class="st-pad__k" data-pad-k="right" data-i18n-aria="life.right"><span aria-hidden="true">▶</span></button>
+    <button type="button" class="st-pad__k" data-pad-k="up" data-i18n-aria="life.up"><span aria-hidden="true">▲</span></button>
+    <button type="button" class="st-pad__k" data-pad-k="down" data-i18n-aria="life.down"><span aria-hidden="true">▼</span></button>
+    <button type="button" class="st-pad__k st-pad__k--a" data-pad-k="jump" data-i18n-aria="life.jump"><span aria-hidden="true">A</span></button>
+  </div>
+  <button type="button" class="st-pad__x" data-pad-exit data-i18n-aria="life.stop"><span aria-hidden="true">✕</span></button>
+</div>
+<dialog class="st-prize" id="prize" aria-labelledby="prize-h">
+  <figure class="st-prize__fig">
+    <img src="../img/studio/life/night.webp" srcset="../img/studio/life/night-800.webp 800w, ../img/studio/life/night.webp 1600w" sizes="(max-width:900px) 94vw, 860px" data-i18n-alt="life.prize.alt" loading="lazy" decoding="async">
+    <figcaption>
+      <p class="st-label st-label--red" data-i18n="life.prize.k"></p>
+      <h2 class="st-prize__h" id="prize-h" data-i18n="life.prize.title"></h2>
+      <p class="st-prize__d" data-i18n="life.prize.line"></p>
+    </figcaption>
+  </figure>
+  <button type="button" class="st-prize__x" data-prize-close data-i18n-aria="life.prize.close"><span aria-hidden="true">✕</span></button>
+</dialog>
+
+{{lant.shelf.data}}
+<script src="../app.js?v={{stamp}}" defer></script>
+<script src="../radio.js?v={{stamp}}" defer></script>
+<script src="../lanterne.js?v={{stamp}}" defer></script>
+<script src="../life.js?v={{stamp}}" defer></script>
+<script src="../../assets/carry.js?v={{stamp}}" defer></script>
+</body>
+</html>

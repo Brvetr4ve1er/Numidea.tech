@@ -17,7 +17,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { ROOT, BASE, LANGS, PAGES } from './site.mjs';
+import { ROOT, BASE, LANGS, PAGES, LANTERNE_PAGES } from './site.mjs';
 
 /* The pages that exist once per language, static: a French page and its
    English and Arabic versions one folder down (en/, ar/). The landing page's
@@ -35,14 +35,15 @@ export const LANG_FOLDERS = [...new Set(Object.keys(STATIC).map((p) => frOf(p).r
 // pages whose language follows ?lang= (an inline dictionary, page-i18n.js;
 // the Studio's hub/i18n.js); a link to one of them from en/ or ar/ carries
 // ?lang= (build-lang.mjs)
-export const MULTILINGUAL = new Set(['scene/index.html', 'legal/index.html', 'hub/index.html', 'hub/manuel.html', 'hub/monde.html', 'hub/fabrique.html']);
+// the old manual (hub/manuel.html) is a noindex stub since 2026-11-21: the Librairie's pages take its place
+export const MULTILINGUAL = new Set(['scene/index.html', 'legal/index.html', 'hub/index.html', ...LANTERNE_PAGES, 'hub/monde.html', 'hub/fabrique.html']);
 
 const url = (page) => BASE + page.replace(/index\.html$/, '');
 const xhtml = (l, href) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${href}"/>`;
 // pages: the published set; check.mjs passes PAGES plus legal/ to check the
 // legal page's entry before it is published
 export function renderSitemap(pages = PAGES) {
-  const rows = pages.filter((p) => p !== '404.html').map((p) => {
+  const rows = pages.filter((p) => p !== '404.html' && p !== 'hub/manuel.html').map((p) => {   // the old manual is a noindex stub (2026-11-21)
     const loc = url(p);
     if (STATIC[p]) {
       const v = versions(p);

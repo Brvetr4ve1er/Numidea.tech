@@ -1,0 +1,286 @@
+{
+  "_note": "« Le logo vient après. » (SPEC §4.2): the brand course, nine districts in two acts, ending in the brand fiche. Structure and art slots only; copy is under lant.at.marque.* or names the course's existing keys (keys map; f is the course's own line per answer, in answer order). right = the answer the course marked ok. course = the fiche's set (hub/app.js 13b binds the page as that course). done = the district's exercise condition (lanterne.js: touch, seen:, sel:, text:, vis:, range:). Case: Nadia, Pâtisserie Hodna, an invented example. Keepsakes: the stops' own tab drawings. Props: the owner's cut-out objects. Reward: the A4 Kūro drawing (_sac).",
+  "slug": "marque",
+  "key": "marque",
+  "store": "numidea-lanterne-marque",
+  "app": true,
+  "course": "brandc",
+  "accent": "#A34135",
+  "keys": {
+    "kicker": "brandc.kicker",
+    "pitch": "brandc.lead",
+    "coverAlt": "brandc.sceneAlt"
+  },
+  "cover": {
+    "src": "img/studio/brandc/scene.webp",
+    "srcset": "img/studio/brandc/scene-800.webp 800w, img/studio/brandc/scene.webp 1600w"
+  },
+  "caseArt": "img/studio/brandc/case-hodna.webp",
+  "acts": [
+    {
+      "id": "a1",
+      "plate": "marque-a1",
+      "districts": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b9"
+      ]
+    },
+    {
+      "id": "a2",
+      "plate": "marque-a2",
+      "districts": [
+        "b5",
+        "b6",
+        "b7",
+        "b8"
+      ]
+    }
+  ],
+  "districts": {
+    "b1": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "raven",
+      "prop": "paper",
+      "right": 1,
+      "ex": "bins",
+      "done": "seen:[data-bins] [data-bin-row]",
+      "ask": "brief",
+      "keep": "img/studio/brandc/bk-1.webp",
+      "keys": {
+        "name": "brandc.stops.0",
+        "sub": "brandc.items.0.t",
+        "scene": "brandc.items.0.t",
+        "lore": "brandc.case.s.0",
+        "q": "brandc.items.0.q",
+        "a": "brandc.items.0.a",
+        "f": [
+          "brandc.items.0.no.0",
+          "brandc.items.0.ok",
+          "brandc.items.0.no.1"
+        ],
+        "ex.t": "lant.ui.ex.bins.t",
+        "ex.brief": "lant.ui.ex.bins.brief",
+        "alt": "lant.at.marque.plate.a1"
+      }
+    },
+    "b2": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "kuro",
+      "prop": "recorder",
+      "right": 1,
+      "ex": "fiche",
+      "done": "touch",
+      "ask": "brief",
+      "keep": "img/studio/brandc/bk-2.webp",
+      "keys": {
+        "name": "brandc.stops.1",
+        "sub": "brandc.items.1.t",
+        "scene": "brandc.items.1.t",
+        "lore": "brandc.case.s.1",
+        "q": "brandc.items.1.q",
+        "a": "brandc.items.1.a",
+        "f": [
+          "brandc.items.1.no.0",
+          "brandc.items.1.ok",
+          "brandc.items.1.no.1"
+        ],
+        "ex.t": "lant.ui.ex.fiche.t",
+        "ex.brief": "lant.ui.ex.fiche.brief",
+        "alt": "lant.at.marque.plate.a1"
+      }
+    },
+    "b3": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "kuro",
+      "prop": "eyeflower",
+      "right": 1,
+      "ex": "fiche",
+      "done": "touch",
+      "ask": "brief",
+      "keep": "img/studio/brandc/bk-3.webp",
+      "keys": {
+        "name": "brandc.stops.2",
+        "sub": "brandc.items.2.t",
+        "scene": "brandc.items.2.t",
+        "lore": "brandc.case.s.2",
+        "q": "brandc.items.2.q",
+        "a": "brandc.items.2.a",
+        "f": [
+          "brandc.items.2.no.0",
+          "brandc.items.2.ok",
+          "brandc.items.2.no.1"
+        ],
+        "ex.t": "lant.ui.ex.fiche.t",
+        "ex.brief": "lant.ui.ex.fiche.brief",
+        "alt": "lant.at.marque.plate.a1"
+      }
+    },
+    "b4": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "pigeon",
+      "prop": "feather",
+      "right": 1,
+      "ex": "fiche",
+      "done": "touch",
+      "ask": "brief",
+      "keep": "img/studio/brandc/bk-4.webp",
+      "keys": {
+        "name": "brandc.stops.3",
+        "sub": "brandc.items.3.t",
+        "scene": "brandc.items.3.t",
+        "lore": "brandc.case.s.3",
+        "q": "brandc.items.3.q",
+        "a": "brandc.items.3.a",
+        "f": [
+          "brandc.items.3.no.0",
+          "brandc.items.3.ok",
+          "brandc.items.3.no.1"
+        ],
+        "ex.t": "lant.ui.ex.fiche.t",
+        "ex.brief": "lant.ui.ex.fiche.brief",
+        "alt": "lant.at.marque.plate.a1"
+      }
+    },
+    "b9": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "raven",
+      "prop": "star",
+      "right": 1,
+      "ex": "marktest",
+      "done": "range:16",
+      "ask": "brief",
+      "keep": "img/studio/brandc/bk-9.webp",
+      "keys": {
+        "name": "brandc.stops.8",
+        "sub": "brandc.items.8.t",
+        "scene": "brandc.items.8.t",
+        "lore": "brandc.case.s.8",
+        "q": "brandc.items.8.q",
+        "a": "brandc.items.8.a",
+        "f": [
+          "brandc.items.8.no.0",
+          "brandc.items.8.ok",
+          "brandc.items.8.no.1"
+        ],
+        "ex.t": "lant.ui.ex.marktest.t",
+        "ex.brief": "lant.ui.ex.marktest.brief",
+        "alt": "lant.at.marque.plate.a1"
+      }
+    },
+    "b5": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "kuro",
+      "prop": "paper",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/brandc/bk-5.webp",
+      "keys": {
+        "name": "brandc.stops.4",
+        "sub": "brandc.items.4.t",
+        "scene": "brandc.items.4.t",
+        "lore": "brandc.case.s.4",
+        "q": "brandc.items.4.q",
+        "a": "brandc.items.4.a",
+        "f": [
+          "brandc.items.4.no.0",
+          "brandc.items.4.ok",
+          "brandc.items.4.no.1"
+        ],
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "alt": "lant.at.marque.plate.a2"
+      }
+    },
+    "b6": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": "paper",
+      "right": 1,
+      "ex": "bins",
+      "done": "seen:[data-bins] [data-bin-row]",
+      "ask": "brief",
+      "keep": "img/studio/brandc/bk-6.webp",
+      "keys": {
+        "name": "brandc.stops.5",
+        "sub": "brandc.items.5.t",
+        "scene": "brandc.items.5.t",
+        "lore": "brandc.case.s.5",
+        "q": "brandc.items.5.q",
+        "a": "brandc.items.5.a",
+        "f": [
+          "brandc.items.5.no.0",
+          "brandc.items.5.ok",
+          "brandc.items.5.no.1"
+        ],
+        "ex.t": "lant.ui.ex.bins.t",
+        "ex.brief": "lant.ui.ex.bins.brief",
+        "alt": "lant.at.marque.plate.a2"
+      }
+    },
+    "b7": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "kuro",
+      "prop": "ring",
+      "right": 1,
+      "ex": "fiche",
+      "done": "touch",
+      "ask": "brief",
+      "keep": "img/studio/brandc/bk-7.webp",
+      "keys": {
+        "name": "brandc.stops.6",
+        "sub": "brandc.items.6.t",
+        "scene": "brandc.items.6.t",
+        "lore": "brandc.case.s.6",
+        "q": "brandc.items.6.q",
+        "a": "brandc.items.6.a",
+        "f": [
+          "brandc.items.6.no.0",
+          "brandc.items.6.ok",
+          "brandc.items.6.no.1"
+        ],
+        "ex.t": "lant.ui.ex.fiche.t",
+        "ex.brief": "lant.ui.ex.fiche.brief",
+        "alt": "lant.at.marque.plate.a2"
+      }
+    },
+    "b8": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "pigeon",
+      "prop": "cup",
+      "right": 1,
+      "ex": "fiche",
+      "done": "touch",
+      "ask": "brief",
+      "keep": "img/studio/brandc/bk-8.webp",
+      "keys": {
+        "name": "brandc.stops.7",
+        "sub": "brandc.items.7.t",
+        "scene": "brandc.items.7.t",
+        "lore": "brandc.case.s.7",
+        "q": "brandc.items.7.q",
+        "a": "brandc.items.7.a",
+        "f": [
+          "brandc.items.7.no.0",
+          "brandc.items.7.ok",
+          "brandc.items.7.no.1"
+        ],
+        "ex.t": "lant.ui.ex.fiche.t",
+        "ex.brief": "lant.ui.ex.fiche.brief",
+        "alt": "lant.at.marque.plate.a2"
+      }
+    }
+  }
+}

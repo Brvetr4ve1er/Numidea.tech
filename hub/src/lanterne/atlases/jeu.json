@@ -1,0 +1,216 @@
+{
+  "_note": "« Le jeu juste » (SPEC §4.7): eight levels as districts in three acts, every level asks after its reading (pick). Copy under lant.at.jeu.* or the course's existing keys. Case: the Lantern's own loyalty card, an invented example (L5). Keepsakes: the eight stickers (jeu.st.*). Reward: the sticker sheet (_sac). Its rules bind the whole Librairie's game layer.",
+  "slug": "jeu",
+  "key": "jeu",
+  "store": "numidea-lanterne-jeu",
+  "app": true,
+  "accent": "#6B4E8A",
+  "keys": {
+    "kicker": "jeu.kicker",
+    "pitch": "jeu.lead",
+    "coverAlt": "jeu.keyAlt"
+  },
+  "cover": {
+    "src": "img/studio/jeu/key.webp",
+    "srcset": "img/studio/jeu/key-800.webp 800w, img/studio/jeu/key.webp 1600w"
+  },
+  "caseArt": "star",
+  "acts": [
+    {
+      "id": "j1",
+      "plate": "jeu-a1",
+      "districts": [
+        "g1",
+        "g2",
+        "g3"
+      ]
+    },
+    {
+      "id": "j2",
+      "plate": "jeu-a2",
+      "districts": [
+        "g4",
+        "g5"
+      ]
+    },
+    {
+      "id": "j3",
+      "plate": "jeu-a3",
+      "districts": [
+        "g6",
+        "g7",
+        "g8"
+      ]
+    }
+  ],
+  "districts": {
+    "g1": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "pigeon",
+      "prop": "star",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/jeu/st-1.webp",
+      "icon": "img/studio/jeu/lv-1.webp",
+      "keys": {
+        "sub": "jeu.items.0.t",
+        "q": "jeu.items.0.q",
+        "a": "jeu.items.0.a",
+        "scene": "jeu.items.0.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "keep": "jeu.st.0",
+        "alt": "lant.at.jeu.plate.j1"
+      }
+    },
+    "g2": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "raven",
+      "prop": "ring",
+      "right": 0,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/jeu/st-2.webp",
+      "icon": "img/studio/jeu/lv-2.webp",
+      "keys": {
+        "sub": "jeu.items.1.t",
+        "q": "jeu.items.1.q",
+        "a": "jeu.items.1.a",
+        "scene": "jeu.items.1.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "keep": "jeu.st.1",
+        "alt": "lant.at.jeu.plate.j1"
+      }
+    },
+    "g3": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "kuro",
+      "prop": "recorder",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/jeu/st-3.webp",
+      "icon": "img/studio/jeu/lv-3.webp",
+      "keys": {
+        "sub": "jeu.items.2.t",
+        "q": "jeu.items.2.q",
+        "a": "jeu.items.2.a",
+        "scene": "jeu.items.2.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "keep": "jeu.st.2",
+        "alt": "lant.at.jeu.plate.j1"
+      }
+    },
+    "g4": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "kuro",
+      "prop": "paper",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/jeu/st-4.webp",
+      "icon": "img/studio/jeu/lv-4.webp",
+      "keys": {
+        "sub": "jeu.items.3.t",
+        "q": "jeu.items.3.q",
+        "a": "jeu.items.3.a",
+        "scene": "jeu.items.3.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "keep": "jeu.st.3",
+        "alt": "lant.at.jeu.plate.j2"
+      }
+    },
+    "g5": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "raven",
+      "prop": "feather",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/jeu/st-5.webp",
+      "icon": "img/studio/jeu/lv-5.webp",
+      "keys": {
+        "sub": "jeu.items.4.t",
+        "q": "jeu.items.4.q",
+        "a": "jeu.items.4.a",
+        "scene": "jeu.items.4.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "keep": "jeu.st.4",
+        "alt": "lant.at.jeu.plate.j2"
+      }
+    },
+    "g6": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": "eyeflower",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/jeu/st-6.webp",
+      "icon": "img/studio/jeu/lv-6.webp",
+      "keys": {
+        "sub": "jeu.items.5.t",
+        "q": "jeu.items.5.q",
+        "a": "jeu.items.5.a",
+        "scene": "jeu.items.5.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "keep": "jeu.st.5",
+        "alt": "lant.at.jeu.plate.j3"
+      }
+    },
+    "g7": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "pigeon",
+      "prop": "cup",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/jeu/st-7.webp",
+      "icon": "img/studio/jeu/lv-7.webp",
+      "keys": {
+        "sub": "jeu.items.6.t",
+        "q": "jeu.items.6.q",
+        "a": "jeu.items.6.a",
+        "scene": "jeu.items.6.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "keep": "jeu.st.6",
+        "alt": "lant.at.jeu.plate.j3"
+      }
+    },
+    "g8": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "raven",
+      "prop": "star",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/jeu/st-8.webp",
+      "icon": "img/studio/jeu/lv-8.webp",
+      "keys": {
+        "sub": "jeu.items.7.t",
+        "q": "jeu.items.7.q",
+        "a": "jeu.items.7.a",
+        "scene": "jeu.items.7.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "keep": "jeu.st.7",
+        "alt": "lant.at.jeu.plate.j3"
+      }
+    }
+  }
+}

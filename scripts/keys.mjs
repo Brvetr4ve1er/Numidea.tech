@@ -157,7 +157,7 @@ import { watchCsp } from './lib/csp-watch.mjs';
 import { loopState } from './lib/loop-state.mjs';
 import { loadDicts } from './lib/i18n.mjs';
 import { STATIC_LANG, TARIFS_LANG } from './build-sitemap.mjs';
-import { ROOT, PAGES } from './site.mjs';
+import { ROOT, PAGES, LANTERNE_PAGES } from './site.mjs';
 
 /* langs: the languages a page has (`only`: why it has just one); tests: its
    own keyboard paths; noSkip: why it has no skip link. The home page is one
@@ -180,7 +180,10 @@ const SPEC = {
   'ar/tarifs/index.html': { langs: ['ar'], tests: GUIDE_TESTS, only: 'the Arabic guide (one language per page)' },
   'scene/index.html': { langs: ['fr', 'ar'], tests: ['viewer'] },
   'hub/index.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['studio', 'hits'] },
-  'hub/manuel.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['hits'] },
+  // the stub forwards ?lang= with the rest, so what a reader lands on is the Librairie in the language asked for
+  'hub/manuel.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: [], only: 'the old manual, a forwarding stub since 2026-11-21 (it sends every old address, ?lang= kept, to the Librairie)' },
+  // La Librairie Lanterne (2026-11-21): the shelf and each published atlas
+  ...Object.fromEntries(LANTERNE_PAGES.map((p) => [p, { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['hits'] }])),
   'hub/monde.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['hits'] },
   'hub/fabrique.html': { langs: ['fr', 'en', 'ar'], base: 'fr', tests: ['hits'] },
   'hub/bible/index.html': { langs: ['en'], tests: ['rig', 'hits'], only: "English only (the character bible, a project of the studio)" },
@@ -1326,8 +1329,8 @@ if (pages.includes('hub/index.html')) {
     const p = await c.newPage();
     await p.goto(url('hub/index.html', 'fr'), { waitUntil: 'load' });
     await p.waitForFunction(() => !document.querySelector('.st-sting') && !document.documentElement.classList.contains('st-sting-pending'), null, { timeout: 8000 }).catch(() => {});
-    await p.evaluate(() => { const a = [...document.querySelectorAll('a[href="manuel.html"]')].find((x) => x.getClientRects().length); if (a) a.click(); else location.href = 'manuel.html'; });
-    await p.waitForURL(/manuel/); await wait(800);
+    await p.evaluate(() => { const a = [...document.querySelectorAll('a[href="lanterne/"]')].find((x) => x.getClientRects().length); if (a) a.click(); else location.href = 'lanterne/'; });
+    await p.waitForURL(/lanterne/); await wait(800);
     await p.emulateMedia({ reducedMotion: 'reduce' });
     await p.goBack({ waitUntil: 'commit' });
     const restored = await p.evaluate(() => new Promise((r) => { if (document.readyState === 'complete') r(true); else addEventListener('load', () => r(true)); })).catch(() => false);
@@ -1371,7 +1374,7 @@ if (pages.includes('index.html') && pages.includes('tarifs/index.html')) {
     const bb = bf ? await launch({ ignoreDefaultArgs: ['--disable-back-forward-cache'] }) : b;
     let ran = 0, n = 0;
     // (and two arrivals that opt in by their own head only: the home, and a brand book)
-    for (const [from, sel, to] of [['/', 'a[href$="tarifs/"]', /tarifs/], ['/hub/', 'a[href="manuel.html"]', /manuel/], ['/tarifs/', 'a[href="../"]', /^https?:\/\/[^/]+\/$/], ['/hub/', 'a[href="brand/almaflow/"]', /almaflow/]]) {
+    for (const [from, sel, to] of [['/', 'a[href$="tarifs/"]', /tarifs/], ['/hub/', 'a[href="lanterne/"]', /lanterne/], ['/tarifs/', 'a[href="../"]', /^https?:\/\/[^/]+\/$/], ['/hub/', 'a[href="brand/almaflow/"]', /almaflow/]]) {
       const c = await bb.newContext({ viewport: { width: 1280, height: 900 } });
       await c.addInitScript(() => { try { sessionStorage.setItem('numidea-sting', '1'); } catch (e) {} addEventListener('pagereveal', (e) => { try { sessionStorage.setItem('__vt', e.viewTransition ? '1' : '0'); } catch (x) {} }); });
       const p = await c.newPage();

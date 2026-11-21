@@ -81,7 +81,7 @@
         <p class="st-scene__svc"><span class="st-label" data-i18n="fab.svcL"></span> <span data-i18n="services.items.2.gets.0"></span> · <span data-i18n="services.items.2.weeks"></span></p>
         <p class="st-scene__price"><span class="st-label" data-i18n="fab.priceL"></span> <b dir="ltr" data-type-price="identite">{{type.identite}}</b> · <span data-type-units="identite">{{type.identiteU}}</span></p>
         <p class="st-actions"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="identite" data-i18n="fab.s.0.go"></a></p>
-        <p class="st-scene__learn"><a href="manuel.html?ls=b9#marque" data-i18n="fab.s.0.learn"></a> <a class="st-scene__ref" href="#ref-wcag" dir="ltr">[2]</a></p>
+        <p class="st-scene__learn"><a href="{{lant.to.marque.b9}}" data-i18n="fab.s.0.learn"></a> <a class="st-scene__ref" href="#ref-wcag" dir="ltr">[2]</a></p>
       </details>
     </article>
     <article class="st-scene" id="systeme" aria-labelledby="sc2-h">
@@ -171,7 +171,7 @@
              option, so the price and the console are scene 02's -->
         <p class="st-scene__price"><span class="st-label" data-i18n="fab.priceL"></span> <b dir="ltr" data-opt-price="ds">{{opt.ds}}</b> <span data-i18n="fab.s.2.priceNote"></span></p>
         <p class="st-actions"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="identite" data-est-pick="ds" data-i18n="fab.s.2.go"></a></p>
-        <p class="st-scene__learn"><a href="manuel.html?ls=b5#marque" data-i18n="fab.s.2.learn"></a></p>
+        <p class="st-scene__learn"><a href="{{lant.to.marque.b5}}" data-i18n="fab.s.2.learn"></a></p>
       </details>
     </article>
     <article class="st-scene" id="mouvement" aria-labelledby="sc4-h">
@@ -210,6 +210,21 @@
         <p class="st-actions"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="motion" data-i18n="fab.s.3.go"></a></p>
         <p class="st-scene__learn"><a href="./#reel" data-i18n="fab.s.3.reel"></a></p>
       </details>
+      <!-- The reel (moved here from the Studio on 2026-11-21, when la carte took its place): one tile per clip of
+           hub/src/reel.json, written by the build. A clip is a poster until the pointer rests on it or it is pressed;
+           then it plays, and stops when the pointer leaves (hub/app.js 14). Nothing plays on its own, no clip has the
+           loop attribute, and no file is fetched before that first play (preload="none"). -->
+      <div class="st-reel st-reel--fab" id="bobine">
+        <div class="st-reel__head">
+          <p class="st-label" data-i18n="motion.reel.kicker"></p>
+          <h3 class="st-reel__title" data-i18n="motion.reel.title"></h3>
+          <p class="st-reel__lead" data-i18n="motion.reel.lead"></p>
+          <p class="st-reel__go"><a class="st-btn st-btn--primary" href="./#pricing" data-est-carry="motion" data-i18n="motion.reel.price"></a></p>
+        </div>
+        <ul class="st-reel__grid" data-i18n-aria="motion.reel.aria">
+{{reel}}
+        </ul>
+      </div>
     </article>
   </div></div>
 </section>
@@ -226,14 +241,14 @@
       </div>
       <p class="st-lead" data-i18n="fab.course.lead"></p>
     </div>
-    <nav class="st-tracks__nav" data-i18n-aria="fab.course.navAria"><a href="manuel.html#marque" data-i18n="fab.course.brand.k"></a><a href="#chantier" data-i18n="fab.course.stack.k"></a><a href="#chaine" data-i18n="fab.course.web3.k"></a><a href="#projet" data-i18n="fab.course.capstone.nav"></a></nav>
+    <nav class="st-tracks__nav" data-i18n-aria="fab.course.navAria"><a href="{{lant.to.marque}}" data-i18n="fab.course.brand.k"></a><a href="#chantier" data-i18n="fab.course.stack.k"></a><a href="#chaine" data-i18n="fab.course.web3.k"></a><a href="#projet" data-i18n="fab.course.capstone.nav"></a></nav>
     <div class="st-tracks">
       <article class="st-track">
         <p class="st-svc__bar"><span data-i18n="fab.course.brand.k"></span><span class="st-svc__kanji" aria-hidden="true" lang="ja">印</span></p>
         <div class="st-track__body">
           <h3 class="st-track__t" data-i18n="fab.course.brand.t"></h3>
           <p data-i18n="fab.course.brand.d"></p>
-          <p class="st-track__go"><a class="st-btn st-btn--ghost" href="manuel.html#marque" data-i18n="fab.course.brand.go"></a></p>
+          <p class="st-track__go"><a class="st-btn st-btn--ghost" href="{{lant.to.marque}}" data-i18n="fab.course.brand.go"></a></p>
         </div>
         <img class="st-track__who" src="img/studio/atelier/yasser-traveller-sit.webp" alt="" loading="lazy" decoding="async">
       </article>
@@ -251,7 +266,7 @@
         <div class="st-track__body">
           <h3 class="st-track__t" data-i18n="fab.course.web3.t"></h3>
           <p data-i18n="fab.course.web3.d"></p>
-          <p class="st-track__go"><a class="st-btn st-btn--ghost" href="#chaine" data-i18n="fab.course.web3.go"></a> <a class="st-track__also" href="manuel.html?ls=w8#web3" data-i18n="fab.course.web3.client"></a></p>
+          <p class="st-track__go"><a class="st-btn st-btn--ghost" href="#chaine" data-i18n="fab.course.web3.go"></a> <a class="st-track__also" href="{{lant.to.web3.w8}}" data-i18n="fab.course.web3.client"></a></p>
         </div>
         <img class="st-track__who" src="img/studio/atelier/pigeon-stand.webp" width="420" height="604" alt="" loading="lazy" decoding="async">
       </article>
@@ -836,7 +851,7 @@
         </div>
       </div>
       <div class="st-jeu__all" data-ls-all hidden><p><b data-i18n="fab.w3.all.t"></b> <span data-i18n="fab.w3.all.d"></span></p>
-        <a class="st-btn st-btn--primary" href="manuel.html?ls=w8#web3" data-i18n="fab.w3.all.go"></a></div>
+        <a class="st-btn st-btn--primary" href="{{lant.to.web3.w8}}" data-i18n="fab.w3.all.go"></a></div>
       <p class="st-jeu__refs"><span class="st-label" data-i18n="fab.course.refs.t"></span> <a href="#ref-eth-dev" dir="ltr">[6]</a> <a href="#ref-eth-rpc" dir="ltr">[7]</a> <a href="#ref-eth-tx" dir="ltr">[8]</a> <a href="#ref-eth-wallets" dir="ltr">[9]</a> <a href="#ref-eth-sec" dir="ltr">[10]</a></p>
     </div>
   </div>
@@ -853,6 +868,8 @@
       <li data-i18n="fab.course.capstone.items.2"></li>
     </ol>
     <p class="st-fabend__review" data-i18n="fab.course.capstone.review"></p>
+    <!-- the same Lantern project, told as the Librairie's first atlas (L3: both pages link to each other) -->
+    <p class="st-fabend__lant"><a class="st-btn st-btn--ghost" href="{{lant.to.coursdusoir}}"><span data-i18n="fab.course.capstone.lant"></span><span class="st-arw" aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
@@ -907,7 +924,7 @@
     <nav class="st-foot__links" data-i18n-aria="footer.nav">
       <a href="../" data-i18n="footer.site"></a>
       <a href="./" data-i18n="manual.nav.studio"></a>
-      <a href="manuel.html" data-i18n="nav.manual"></a>
+      <a href="lanterne/" data-i18n="nav.manual"></a>
       <a href="monde.html" data-i18n="nav.world"></a>
       <a href="bible/" data-i18n="footer.bible"></a>
       <a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span class="st-sr" data-i18n="case.newTab"></span></a>
@@ -933,7 +950,7 @@
     <a href="#refs"><span class="st-menu__n" aria-hidden="true" lang="ja">見</span><span data-i18n="fab.nav.refs"></span></a>
     <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupSite"></p>
     <a class="st-menu__world" href="./"><span class="st-menu__n" aria-hidden="true" lang="ja">築</span><span data-i18n="manual.nav.studio"></span></a>
-    <a class="st-menu__world" href="manuel.html"><span class="st-menu__n" aria-hidden="true" lang="ja">金</span><span data-i18n="nav.manual"></span></a>
+    <a class="st-menu__world" href="lanterne/"><span class="st-menu__n" aria-hidden="true" lang="ja">金</span><span data-i18n="nav.manual"></span></a>
     <a class="st-menu__world" href="monde.html"><span class="st-menu__n" aria-hidden="true" lang="ja">夜</span><span data-i18n="nav.world"></span></a>
   </nav>
   <div class="st-menu__foot">

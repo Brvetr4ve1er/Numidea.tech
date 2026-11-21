@@ -1,0 +1,370 @@
+{
+  "_note": "The Librairie Lanterne art registry (SPEC §3.3, §5): one file per drawing, its natural size, and the cast each plate paints (the no-doubles rule for new pairings is checked against it by scripts/lib/lanterne.mjs). Paths are relative to hub/. The owner plates are shown at most at their natural size (L6). Act plates paint no one (lb/art README): any cut-out may stand on them.",
+  "plates": {
+    "home": {
+      "src": "img/lanterne/plates/home.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser",
+        "kuro",
+        "pigeon",
+        "raven",
+        "rat",
+        "cup"
+      ],
+      "owner": true
+    },
+    "fields": {
+      "src": "img/lanterne/plates/fields.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser",
+        "raven",
+        "pigeon",
+        "kuro",
+        "rat"
+      ],
+      "owner": true
+    },
+    "audience": {
+      "src": "img/lanterne/plates/audience.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser",
+        "kuro",
+        "raven",
+        "pigeon",
+        "rat"
+      ],
+      "owner": true
+    },
+    "identity": {
+      "src": "img/lanterne/plates/identity.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser",
+        "kuro",
+        "cup"
+      ],
+      "owner": true
+    },
+    "architecture": {
+      "src": "img/lanterne/plates/architecture.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser",
+        "raven",
+        "pigeon",
+        "kuro",
+        "rat"
+      ],
+      "owner": true
+    },
+    "launch": {
+      "src": "img/lanterne/plates/launch.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser",
+        "raven",
+        "pigeon",
+        "kuro",
+        "rat",
+        "cup"
+      ],
+      "owner": true
+    },
+    "growth": {
+      "src": "img/lanterne/plates/growth.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser",
+        "raven",
+        "pigeon",
+        "kuro",
+        "rat"
+      ],
+      "owner": true
+    },
+    "observer": {
+      "src": "img/lanterne/plates/observer.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser"
+      ],
+      "owner": true
+    },
+    "wire": {
+      "src": "img/lanterne/plates/wire.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser",
+        "kuro"
+      ],
+      "owner": true
+    },
+    "ash": {
+      "src": "img/lanterne/plates/ash.webp",
+      "w": 607,
+      "h": 810,
+      "paints": [
+        "yasser"
+      ],
+      "owner": true
+    },
+    "argent-a1": {
+      "src": "img/lanterne/plates/argent-a1.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/argent-a1-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "argent-a2": {
+      "src": "img/lanterne/plates/argent-a2.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/argent-a2-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "marque-a1": {
+      "src": "img/lanterne/plates/marque-a1.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/marque-a1-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "marque-a2": {
+      "src": "img/lanterne/plates/marque-a2.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/marque-a2-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "web3-a1": {
+      "src": "img/lanterne/plates/web3-a1.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/web3-a1-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "web3-a2": {
+      "src": "img/lanterne/plates/web3-a2.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/web3-a2-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "web3-a3": {
+      "src": "img/lanterne/plates/web3-a3.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/web3-a3-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "route-a1": {
+      "src": "img/lanterne/plates/route-a1.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/route-a1-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "route-a2": {
+      "src": "img/lanterne/plates/route-a2.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/route-a2-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "route-a3": {
+      "src": "img/lanterne/plates/route-a3.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/route-a3-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "jeu-a1": {
+      "src": "img/lanterne/plates/jeu-a1.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/jeu-a1-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "jeu-a2": {
+      "src": "img/lanterne/plates/jeu-a2.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/jeu-a2-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    },
+    "jeu-a3": {
+      "src": "img/lanterne/plates/jeu-a3.webp",
+      "w": 1200,
+      "h": 1600,
+      "paints": [],
+      "small": {
+        "src": "img/lanterne/plates/jeu-a3-600.webp",
+        "w": 600,
+        "h": 800
+      }
+    }
+  },
+  "keys": {
+    "bookstall": {
+      "src": "img/lanterne/keys/bookstall.webp",
+      "w": 1200,
+      "h": 800,
+      "paints": [],
+      "owner": true
+    },
+    "lanterne-nuit": {
+      "src": "img/lanterne/keys/lanterne-nuit.webp",
+      "w": 1600,
+      "h": 900,
+      "paints": [
+        "yasser",
+        "kuro"
+      ],
+      "small": {
+        "src": "img/lanterne/keys/lanterne-nuit-800.webp",
+        "w": 800,
+        "h": 450
+      }
+    }
+  },
+  "cut": {
+    "yasser": {
+      "src": "img/lanterne/cast/yasser-traveller.webp",
+      "w": 379,
+      "h": 440,
+      "who": "yasser"
+    },
+    "kuro": {
+      "src": "img/lanterne/cast/kuro.webp",
+      "w": 392,
+      "h": 377,
+      "who": "kuro"
+    },
+    "raven": {
+      "src": "img/lanterne/cast/raven.webp",
+      "w": 276,
+      "h": 245,
+      "who": "raven"
+    },
+    "pigeon": {
+      "src": "img/lanterne/cast/pigeon.webp",
+      "w": 229,
+      "h": 245,
+      "who": "pigeon"
+    },
+    "pigeonStand": {
+      "src": "img/studio/atelier/pigeon-stand.webp",
+      "w": 420,
+      "h": 604,
+      "who": "pigeon"
+    },
+    "ratman": {
+      "src": "img/lanterne/cast/ratman.webp",
+      "w": 280,
+      "h": 207,
+      "who": "rat"
+    },
+    "paper": {
+      "src": "img/lanterne/props/paper.webp",
+      "w": 238,
+      "h": 245,
+      "who": "paper"
+    },
+    "recorder": {
+      "src": "img/lanterne/props/recorder.webp",
+      "w": 229,
+      "h": 245,
+      "who": "recorder"
+    },
+    "ring": {
+      "src": "img/lanterne/props/ring.webp",
+      "w": 280,
+      "h": 149,
+      "who": "ring"
+    },
+    "star": {
+      "src": "img/lanterne/props/star.webp",
+      "w": 253,
+      "h": 245,
+      "who": "star"
+    },
+    "eyeflower": {
+      "src": "img/lanterne/props/eye-flower.webp",
+      "w": 225,
+      "h": 245,
+      "who": "eyeflower"
+    },
+    "feather": {
+      "src": "img/lanterne/props/feather.webp",
+      "w": 218,
+      "h": 245,
+      "who": "feather"
+    },
+    "cup": {
+      "src": "img/lanterne/props/cup.webp",
+      "w": 280,
+      "h": 225,
+      "who": "cup"
+    }
+  }
+}

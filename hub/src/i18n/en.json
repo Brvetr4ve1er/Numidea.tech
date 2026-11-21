@@ -24,7 +24,7 @@
     "groupSite": "I want a website",
     "groupWorld": "The world",
     "groupLearn": "Learn",
-    "manual": "The manual",
+    "manual": "The Bookshop",
     "fab": "The making"
   },
   "sting": {
@@ -710,10 +710,10 @@
       "bible": "The bible"
     },
     "c": {
-      "k": "03 · THE MANUAL",
+      "k": "03 · THE BOOKSHOP",
       "t": "I’m learning",
-      "d": "Getting paid from far away, preparing your brand, seeing clearly in web3, working from anywhere: thirty-eight short lessons, four fixed-price services, and the workshop radio.",
-      "go": "Open the manual",
+      "d": "Getting paid from far away, preparing your brand, seeing clearly in web3, working from anywhere: {atlases} atlases, {services} fixed-price services, and the workshop radio.",
+      "go": "Enter the Bookshop",
       "lessons": "The lessons",
       "nomad": "Nomad",
       "radio": "The radio",
@@ -755,8 +755,8 @@
         "kuro": {
           "n": "Kūro",
           "t": "BLACK CAT",
-          "d": "The workshop’s cat. He is its gate and its quality check: he judges every commit, then falls asleep on the keyboard. On the manual he lives on the page and comes to sit by whatever you are reading.",
-          "go": "Kūro, alive, on the manual"
+          "d": "The workshop’s cat. He is its gate and its quality check: he judges every commit, then falls asleep on the keyboard. In the Bookshop he sleeps on the counter and comes to sit by whatever you are reading.",
+          "go": "Kūro, alive, in the Bookshop"
         },
         "atelier": {
           "n": "The night workshop",
@@ -784,14 +784,14 @@
         "radio": {
           "n": "The radio",
           "t": "SIGNAL",
-          "d": "The workshop’s set, on the manual. Four instrumentals made for working nights. It never plays by itself: you have to switch it on.",
+          "d": "The workshop’s set, in the Bookshop. Four instrumentals made for working nights. It never plays by itself: you have to switch it on.",
           "go": "Switch on the workshop radio"
         },
         "manuel": {
-          "n": "The manual",
-          "t": "KNOWLEDGE",
-          "d": "Thirty-eight short lessons on earning a living from far away and buying better: money, the brand, web3, the road, fair play. The lessons are free; the stamps have to be earned.",
-          "go": "Open the manual"
+          "n": "The Lantern Bookshop",
+          "t": "PLACE",
+          "d": "The night bookshop of the Numidea world. Every book in it is an atlas you play district by district: money, the brand, web3, the road, fair play, and the Lantern’s own case. The lessons are free; the keepsakes have to be earned.",
+          "go": "Enter the Bookshop"
         },
         "traveler": {
           "t": "WORLD",
@@ -1031,14 +1031,7 @@
     "note2": "Rules change from one country to the next. In Algeria, law 25-10 of July 2025 bans buying, selling, holding and promoting crypto-assets: always check the law where you live."
   },
   "motion": {
-    "calc": "Price it →",
     "sec": "per second",
-    "line": {
-      "k": "MOTION",
-      "t": "And when it has to move: motion design, priced by the second.",
-      "reel": "See the reel ↓",
-      "how": "Timing, explained"
-    },
     "svc": {
       "items": [
         {
@@ -1055,7 +1048,7 @@
     "reel": {
       "kicker": "/ THE REEL",
       "title": "Hover over it.",
-      "lead": "Six clips. The mouse or a finger starts them, and they stop when you leave.",
+      "lead": "Five clips. The mouse or a finger starts them, and they stop when you leave.",
       "play": "Play the clip:",
       "aria": "The clips",
       "price": "Price an animation →"
@@ -1078,8 +1071,8 @@
   },
   "manual": {
     "ui": {
-      "title": "The nomad freelancer’s manual: 38 free lessons | Numidea Labs",
-      "desc": "Thirty-eight short lessons: getting paid from abroad, setting your rate, preparing your brand, seeing web3 clearly, working from anywhere. Four services."
+      "title": "The nomad freelancer’s manual: 71 free lessons | Numidea Labs",
+      "desc": "71 short lessons: getting paid from abroad, setting your rate, preparing your brand, seeing web3 clearly, working from anywhere. Four services."
     },
     "kicker": "/ THE MANUAL",
     "nav": {
@@ -1109,7 +1102,7 @@
   "life": {
     "kicker": "/ THE NIGHT ROUND",
     "title": "Kūro lives on this page.",
-    "lead": "He joins you while you read, judges your answers and falls asleep on the radio. Take the pad: seven seals are hidden between the radio, the lessons and the services. Find them all and a drawing is waiting.",
+    "lead": "He joins you between the shelves and falls asleep on the radio. Take the pad: seven seals are hidden between the radio, the books, the passport and the counter. Find them all and a drawing is waiting.",
     "seals": "seals",
     "play": "Play with Kūro",
     "again": "See the drawing again",
@@ -1142,9 +1135,9 @@
       "done": "You have them all. Take a walk."
     },
     "y": {
-      "none": "No stamp yet? The lessons are further up.",
-      "some": "{n} of 6. Keep going, the lessons are further up.",
-      "all": "Six stamps out of six. Respect."
+      "none": "No keepsake yet? The atlases are up the page.",
+      "some": "{n} keepsakes. Keep going…",
+      "all": "Every keepsake. Respect."
     }
   },
   "jeu": {
@@ -1486,7 +1479,7 @@
           "rev": "Margin for the unexpected",
           "price": "the price to announce",
           "dep": "at the order, if you ask for 40%",
-          "unit": "In whatever currency you type. To find your day rate: lesson 3 of the money manual, above."
+          "unit": "In whatever currency you type. To find your day rate:"
         },
         "q": "The project takes three days more than planned, and the scope has not changed. Who pays for those three days?",
         "a": [
@@ -1674,7 +1667,8 @@
       "design": "Design",
       "lab": "The Lab",
       "diary": "Diary"
-    }
+    },
+    "mercuryLant": "MERCURY has two side routes in the Bookshop"
   },
   "fiche": {
     "act": {
@@ -1691,7 +1685,6 @@
       "sent": "WhatsApp opens with your brief. Nothing is sent until you press Send."
     },
     "keep": "Your answers stay on this device. Nothing is sent until you press a button.",
-    "nextL": "What happens next",
     "next": "@home:prev.tl2",
     "nextP": "@home:prev.tl2p",
     "studio": "@home:contact.vStudio",
@@ -1734,12 +1727,46 @@
     "asideL": "Our workshop’s view",
     "match": "Same as us.",
     "other": "We would say: {b}.",
-    "raw": "The plain text"
+    "raw": "The plain text",
+    "fx": "≈: rounded conversions, at the same rate as the Studio’s calculator.",
+    "nextStop": "NEXT",
+    "bar": "Brief: {n} of {t}",
+    "resume": "You were at step {n} · {title}.",
+    "resumeGo": "Pick up there →",
+    "case": "invented example",
+    "name": {
+      "l": "Your first name (optional)",
+      "ph": "so we know whom to answer"
+    },
+    "budgetMax": {
+      "l": "Your ceiling, if you have one (optional)",
+      "ph": "up to … DZD, € or $"
+    },
+    "first": {
+      "l": "What matters most, first",
+      "note": "If the budget does not cover everything, this is where we start."
+    },
+    "after": {
+      "l": "After delivery, who looks after it?",
+      "k": [
+        "Me",
+        "Someone on my team",
+        "I would like to talk about it with the studio"
+      ]
+    },
+    "all": {
+      "more": "Your brief has {n} lines of {t}: {m} are missing.",
+      "full": "Your brief is complete: all that is left is to send it.",
+      "go": "Complete my brief →"
+    },
+    "yasser": "Yasser, at the studio:",
+    "sealWait": "The seal waits for the essentials: the business or the idea, the date, the budget.",
+    "midL": "Good to know"
   },
   "brandc": {
     "kicker": "/ CLIENT COURSE · YOUR BRAND, BEFORE THE LOGO",
     "title": "The logo comes later.",
-    "lead": "Nine steps to know what you want before you pay a designer: what a brand is, who it is for, the promise, the character, holding up very small, the files to receive, the proposal to read, the name to protect, then the count. Your answers fill in a brief you can send us, copy or print.",
+    "lead": "A logo paid for twice costs more than an hour of thinking. Nine steps, and you will know what to ask for before you pay a designer: your answers fill in a brief that goes to the studio at the end, if you want it to.",
     "sceneAlt": "Night at the workshop: Yasser holds a blank sheet under the lamp, Kūro sits on a stack of colour swatches, a red stamp under his paw",
     "hud": "/ NINE STEPS · ONE BRIEF AT THE END",
     "tabs": "The nine steps of the brand course",
@@ -1759,7 +1786,7 @@
     "items": [
       {
         "t": "The logo is not the brand",
-        "d": "A logo is a sign; the identity, the visual language around it (colours, letters, pictures); the system, the rules that keep it consistent; the brand, what people say about you when you are not in the room. For the UK’s Design Council, “your brand is more than a logo”: it is everything people associate with you. It asks whether you, your staff and your customers can describe it before you commission design.",
+        "d": "A logo is delivered, and nothing changes: a logo is only a sign. Around it come the identity (colours, letters, pictures), the system (the rules that keep it consistent) and the brand: what people say about you when you are not in the room. For the Design Council, the UK’s design body, “your brand is more than a logo”: first sort what you have.",
         "biz": {
           "l": "Your business, in one line",
           "ph": "pastry shop, Bordj Bou Arréridj"
@@ -1813,11 +1840,25 @@
           "A sign: the identity and the rules are still to do",
           "A graphic system"
         ],
-        "ok": "Yes. A sign is the start. The rest is decided first."
+        "ok": "Yes. A sign is the start. The rest is decided first.",
+        "keep": {
+          "l": "Your current logo",
+          "k": [
+            "I’m keeping it",
+            "I’m refreshing it",
+            "I’m redoing it",
+            "I don’t know"
+          ],
+          "note": "Not sure? Step 5 lets you see your own logo at 16 pixels."
+        },
+        "no": [
+          "No. The brand is what people say about you: a file does not hold that.",
+          "No. A system is written rules: a single file gives none."
+        ]
       },
       {
         "t": "Who is it for?",
-        "d": "“Everyone” is not an audience. The UK’s Design Council puts the target audience in every brief (the document that explains the project to the designer). Describe one person: what they look for, where they find you, what makes them hesitate.",
+        "d": "“Everyone” is not an audience, and a logo made for everyone speaks to no one. The Design Council puts the target audience in every brief (the document that explains the project to the designer). Describe one person: what they want to get, where they find you, what makes them hesitate.",
         "who": {
           "t": "Who buys?",
           "chips": [
@@ -1827,7 +1868,7 @@
           ]
         },
         "seek": {
-          "l": "They are looking for…",
+          "l": "What they want to get",
           "ph": "a cake ready at the time promised"
         },
         "where": {
@@ -1848,7 +1889,7 @@
         "card": {
           "t": "THE PERSON",
           "who": "Who",
-          "seek": "Looks for",
+          "seek": "Wants",
           "where": "Finds us",
           "doubt": "Hesitates",
           "empty": "to fill in"
@@ -1859,11 +1900,15 @@
           "I take the one that speaks best to the person in my brief",
           "I take the more colourful one"
         ],
-        "ok": "Yes. Judge against the brief, not by taste: that is the Design Council’s advice."
+        "ok": "Yes. Judge against the brief, not by taste: that is the Design Council’s advice.",
+        "no": [
+          "Not quite. Your family is not your customer: judge against the brief, not by taste.",
+          "No. Colour is a means: the question is whom the route speaks to."
+        ]
       },
       {
         "t": "The promise and the proof",
-        "d": "A promise says what a client gets from you. A proof makes it believable: a written deadline, a figure you can show, a signed review. Here a brief starts there, before the first line is drawn: that is our method, not a rule.",
+        "d": "“The best quality”: your competitors say it too. A promise says what a client gets from you; a proof makes it believable: a written deadline, a figure to show, a signed review. Here a brief starts there: that is our method, not a rule.",
         "promise": {
           "l": "With us, you get…",
           "ph": "made-to-order cakes ready at the agreed time"
@@ -1900,7 +1945,7 @@
             "businesses",
             "institutions"
           ],
-          "line": "For {who} looking for {seek}: {promise}. The proof: {proof}.",
+          "line": "For {who}. What they want: {seek}. Our promise: {promise}. The proof: {proof}.",
           "empty": "to fill in",
           "note": "The grid is our workshop’s: audience, need, promise, proof. The sentence under it goes into your brief."
         },
@@ -1910,11 +1955,15 @@
           "“Delivered within 48 h, or delivery is free”",
           "“A lifelong passion”"
         ],
-        "ok": "Yes. A deadline can be checked. “Best” cannot."
+        "ok": "Yes. A deadline can be checked. “Best” cannot.",
+        "no": [
+          "No. “Best” cannot be observed: no customer can check it.",
+          "No. Passion cannot be shown: it takes a fact a customer can observe."
+        ]
       },
       {
         "t": "The character",
-        "d": "Do not tell the designer “I want blue”: the UK’s Design Council advises describing the goal, not the solution. Say what people should feel, and let them choose the means. Three sliders are enough.",
+        "d": "“I want blue”: and the designer has nothing left to look for. The Design Council advises describing the goal, not the solution. Say what people should feel, with three sliders: the designer chooses the means.",
         "sliders": [
           {
             "l": "Mood",
@@ -1975,14 +2024,26 @@
         "q": "What do you tell the designer?",
         "a": [
           "“I want blue and a round typeface”",
-          "“We should come across as calm and precise, like a good doctor”",
+          "“We should come across as generous and careful, like a table laid for a celebration”",
           "“Do what the competitor did, but better”"
         ],
-        "ok": "Yes. The goal, not the means: they find the means."
+        "ok": "Yes. The goal, not the means: they find the means.",
+        "no": [
+          "No. That is already the solution: state the goal, the designer chooses the means.",
+          "No. Copying a competitor means being mistaken for them: say what people should feel with you."
+        ],
+        "refs": {
+          "l": [
+            "A brand I like, and why (optional)",
+            "A second one, and why"
+          ],
+          "ph": "the name, then what you like: the colours, the tone, the packaging…",
+          "note": "Two are enough, if you say why: the “why” is what the designer uses."
+        }
       },
       {
         "t": "What you receive",
-        "d": "An identity is a set of files, and each one has a job. Open them one by one: they are the ones to look for in any proposal.",
+        "d": "Your printer asks for the logo for a 3-metre banner, and all you have is a JPEG. An identity is a set of files, and each one has a job. Open them one by one: they are the ones to look for in any proposal.",
         "files": {
           "t": "What each file is for",
           "pick": [
@@ -2000,7 +2061,7 @@
             },
             {
               "k": "The guidelines",
-              "v": "The rule book: sizes, margins, colours, what is not allowed. It lets someone else make a consistent visual without calling you. Complete guidelines also give each colour a role (text, surface, accent, alert) and a reading order (title, details, action): that is our list. Under the W3C’s accessibility rules (WCAG 2.2), body text needs a contrast of at least 4.5:1 against its background, and 3:1 when large; text that is part of a logo has no contrast requirement."
+              "v": "The rule book: sizes, margins, colours, what is not allowed. It lets someone else make a consistent visual without calling you. Complete guidelines also give each colour a role (text, surface, accent, alert) and a reading order (title, details, action): that is our list. The W3C’s accessibility rules (WCAG 2.2) require a minimum contrast between text and its background: ask for a role per colour, and text that stays readable."
             },
             {
               "k": "Fonts and their licences",
@@ -2008,7 +2069,7 @@
             },
             {
               "k": "The rights, in writing",
-              "v": "The guide by WIPO (the World Intellectual Property Organization) and INAPI for Algeria (2004) says it: the creator of a logo first holds its copyright; it advises settling this in the initial agreement, or having the right formally assigned to your company. In France each right transferred must be named in the deed (Intellectual Property Code, art. L131-3)."
+              "v": "The guide by WIPO (the World Intellectual Property Organization) and INAPI for Algeria (2004) says it: the creator of a logo first holds its copyright; it advises settling this in the initial agreement, or having the right formally assigned to your company. In France, under the Intellectual Property Code, each right transferred must be named in the deed: ask for the assignment in writing."
             },
             {
               "k": "The campaign master and its formats",
@@ -2016,17 +2077,21 @@
             }
           ]
         },
-        "q": "Your printer asks for the logo for a 3-metre banner. You send…",
+        "q": "For her second shop, the printer asks Nadia (our example) for the logo for a 3-metre banner. She sends…",
         "a": [
           "a phone photo of the logo",
           "the vector file (SVG or PDF)",
-          "the PNG from your social media page"
+          "the PNG from her social media page"
         ],
-        "ok": "Yes. A vector stays sharp at any size; a pixel image does not."
+        "ok": "Yes. A vector stays sharp at any size; a pixel image does not.",
+        "no": [
+          "No. A photo is made of dots: enlarged to 3 metres, it blurs.",
+          "No. A PNG is a pixel image, made for the screen: not for a banner."
+        ]
       },
       {
         "t": "Reading a proposal",
-        "d": "Before you sign, read what is missing as much as what is written. The UK’s Design Council advises asking the designer “Have you told me all the costs?” and “When does ownership of the design pass from the designer to us?”. The lines you mark “to ask” go into your brief, including for us.",
+        "d": "“All included”, says the quote; and you do not know what “all” contains. The Design Council advises asking “Have you told me all the costs?” and “When does ownership of the design pass from the designer to us?”. Sort these eight lines: the ones you mark “to ask” become your written requests in the brief.",
         "bins": {
           "aria": "Sort eight proposal lines",
           "k": [
@@ -2037,7 +2102,8 @@
         "rows": [
           {
             "k": "“Logo delivered as a JPEG, one file.”",
-            "why": "No vector: ask for the SVG or PDF, and the versions."
+            "why": "No vector: ask for the SVG or PDF, and the versions.",
+            "ask": "The SVG/PDF files and every version of the logo"
           },
           {
             "k": "“Three questions about your customers before drawing.”",
@@ -2046,12 +2112,14 @@
           {
             "k": "“Price: all included.” No list.",
             "why": "Ask for the list: “Have you told me all the costs?”",
-            "ours": "With us: the base identity includes the logo (full, compact and one-ink), the colours, the type and the tone of voice. The “Full design kit” adds the guidelines, reusable components, the animated social media kit and the campaign master."
+            "ours": "With us: the base identity includes the logo (full, compact and one-ink), the colours, the type and the tone of voice. The “Full design kit” adds the guidelines, reusable components, the animated social media kit and the campaign master.",
+            "ask": "The written list of what is delivered"
           },
           {
             "k": "Nothing about rights.",
             "why": "Ask when the rights pass to you, and which ones, in writing.",
-            "ours": "With us: once the project is paid, you receive the vector sources and a written assignment of the rights that names the use, the place and the duration. We keep the right to show the work."
+            "ours": "With us: once the project is paid, you receive the vector sources and a written assignment of the rights that names the use, the place and the duration. We keep the right to show the work.",
+            "ask": "The assignment of rights in writing (use, place, duration)"
           },
           {
             "k": "“Fonts under the OFL licence, usable for the logo.”",
@@ -2060,7 +2128,8 @@
           },
           {
             "k": "“A logo delivered in one day, with no questions about your customers.”",
-            "why": "Our workshop’s view: ask what is delivered and what the drawing is based on."
+            "why": "Our workshop’s view: ask what is delivered and what the drawing is based on.",
+            "ask": "At least one conversation about my customers before drawing"
           },
           {
             "k": "“Schedule: brief, routes, choice, finishing, delivery, each with a date.”",
@@ -2069,7 +2138,8 @@
           },
           {
             "k": "“Colours: midnight blue and coral.” No roles, no contrast.",
-            "why": "Ask what each colour is for, and whether each text and background pair reaches 4.5:1, the W3C’s threshold for body text (WCAG 2.2)."
+            "why": "Ask what each colour is for, and for text that stays readable on its background: the W3C’s accessibility rules (WCAG 2.2) set a minimum contrast.",
+            "ask": "A role for each colour, and text that stays readable"
           }
         ],
         "score": "{n} of 8 sorted the way we sort them",
@@ -2079,14 +2149,18 @@
           "ask for the list of what is delivered",
           "ask for a discount"
         ],
-        "ok": "Yes. Without a list, “all included” cannot be checked."
+        "ok": "Yes. Without a list, “all included” cannot be checked.",
+        "no": [
+          "No. Without a list you do not know what “all” contains.",
+          "No. A discount on unknown contents still does not say what you receive."
+        ]
       },
       {
         "t": "The name, and whose it is",
-        "d": "A drawn logo is not yet protected as a trademark: a mark is registered, country by country, with the national office, or through the Madrid System that WIPO runs. Pick a country to see whom to ask and what the official texts say.",
+        "d": "Your logo is drawn and paid for: it is not yet protected as a trademark. A mark is registered, country by country, with the national office, or through the Madrid System that WIPO runs. Pick a country to see whom to ask and what the official texts say.",
         "name": {
           "l": "Your brand’s name",
-          "ph": "e.g. Atelier Hodna"
+          "ph": "e.g. Pâtisserie Hodna"
         },
         "pick": [
           {
@@ -2124,11 +2198,25 @@
           "No: it has to be filed with INAPI",
           "Yes, if it is posted on your social media"
         ],
-        "ok": "Yes. Filing is a separate step, country by country."
+        "ok": "Yes. Filing is a separate step, country by country.",
+        "scripts": {
+          "t": "Scripts on the sign",
+          "k": [
+            "Arabic",
+            "Latin",
+            "Tifinagh"
+          ],
+          "note": "Each script has to be drawn: say so before the quote."
+        },
+        "pickHint": "Pick the country to file in: its card shows, and the brief records it.",
+        "no": [
+          "No. Filing is a separate step: nothing is automatic.",
+          "No. Posting is not filing: a mark is registered with the office."
+        ]
       },
       {
         "t": "The brief",
-        "d": "Last boxes: where your brand will live, by when, with what budget. The brief does the count with our published prices, then it is ready to go. Nothing leaves until you press.",
+        "d": "Last boxes: where your brand will live, by when, with what budget. The brief does the count with our published prices; nothing leaves until you press.",
         "where": {
           "t": "Where your brand will live",
           "note": "Each place is a “deliverable”: somewhere the brand appears (sign, box, page…). Our identity prices are counted in deliverables.",
@@ -2162,10 +2250,11 @@
           "ds": "Full design kit",
           "motion": "Animated logo (package up to 5 seconds)",
           "base": "The base identity: the logo (full, compact, one ink), the colours, the type, the tone of voice. Two first routes, then three rounds of changes per stage.",
-          "dsHas": "includes: the guidelines, reusable components, the animated social media kit, the campaign master and its formats."
+          "dsHas": "includes: the guidelines, reusable components, the animated social media kit, the campaign master and its formats.",
+          "dsWhy": "Our view: if someone else will make your visuals afterwards, the full design kit keeps them from reinventing the brand."
         },
         "rcNote": "The count takes one deliverable per place ticked. What counts as a deliverable is confirmed when we scope.",
-        "under": "Your budget is below this estimate. The calculator starts at {r} for 1 or 2 deliverables: tell us what matters first.",
+        "under": "Your budget is below this estimate. The calculator starts at {r} for 1 or 2 deliverables: give your ceiling, and what matters first.",
         "who": {
           "l": "Who decides on your side?",
           "ph": "Nadia, the manager"
@@ -2182,11 +2271,16 @@
           "This brief, and one person who decides",
           "Ten logos you like, without saying why"
         ],
-        "ok": "Yes. One brief, one person: the Design Council advises a single point of contact."
+        "ok": "Yes. One brief, one person: the Design Council advises a single point of contact.",
+        "underFloor": "Your budget is below this estimate, which is already the calculator’s first price: give your ceiling, and what matters first.",
+        "no": [
+          "No. Without your answers, the first call is spent asking this brief’s questions.",
+          "Close. Two brands are enough, with the reason: that is the box at step 4."
+        ]
       },
       {
         "t": "Holding up at 16 pixels",
-        "d": "Your brand will also live very small: the browser tab, the profile picture, the stamp. Slide down to 16 pixels: the thin lines of a detailed mark disappear, the silhouette of a compact mark stays. With us, an identity is delivered as a family, from the full logo to a one-ink version: that is our workshop’s method, not a rule.",
+        "d": "Your logo looks fine on the sign, and cannot be read in the browser tab. Slide down to 16 pixels: the thin lines disappear, the compact silhouette stays. With us, an identity is delivered as a family, from the full logo to a one-ink version: that is our workshop’s method, not a rule.",
         "lab": {
           "l": "Display size",
           "out": "{n} px",
@@ -2228,7 +2322,19 @@
           "a compact version in solid shapes, checked at 16 pixels",
           "a more colourful logo"
         ],
-        "ok": "Yes. A family, not one file: the small version is drawn, not shrunk."
+        "ok": "Yes. A family, not one file: the small version is drawn, not shrunk.",
+        "own": {
+          "l": "Test your own logo",
+          "note": "The file stays on this device: it is neither sent nor kept.",
+          "cap": "Your logo",
+          "clear": "Remove my logo",
+          "alt": "Your logo, at the chosen size",
+          "bad": "This file does not open as an image: try a PNG, a JPEG or an SVG."
+        },
+        "no": [
+          "No. Scaled down, its thin lines disappear: you have just seen it at 16 pixels.",
+          "No. Colour does not save details that are too thin: the shape is what holds."
+        ]
       }
     ],
     "brief": {
@@ -2242,7 +2348,6 @@
         "promise": "Promise",
         "proof": "Proof",
         "tone": "Character",
-        "near": "Closest to",
         "voice": "Three words",
         "where": "Deliverables",
         "social": "Social media",
@@ -2250,23 +2355,31 @@
         "name": "Name",
         "country": "Country to file in",
         "checks": "Where the name stands",
-        "ask": "To clarify before signing",
+        "ask": "What I will ask for in writing",
         "when": "By when",
         "budget": "Budget",
         "decides": "Who decides",
         "pace": "Pace",
         "positioning": "Positioning",
-        "small": "Must hold up small"
+        "small": "Must hold up small",
+        "me": "First name",
+        "keep": "Current logo",
+        "refs": "Brands I like",
+        "scripts": "Scripts",
+        "first": "First",
+        "budgetMax": "Ceiling",
+        "after": "After delivery"
       },
       "hintWho": "“Everyone” does not help a designer: describe one person.",
       "hintProof": "A promise without proof is still a slogan.",
       "typeLine": "Visual identity",
       "motionLine": "Animated logo, separately",
-      "hintRush": "Your date is closer than the estimate: say so when we scope. An accelerated pace exists (+25% on the price)."
+      "hintRush": "Your date is closer than the estimate: say so when we scope. An accelerated pace exists (+25% on the price).",
+      "lead": "Your brand, in one sentence"
     },
     "all": {
       "t": "Nine of nine.",
-      "d": "Your brief is ready, and the drawing of Kūro stamping it is yours, in A4.",
+      "d": "The drawing of Kūro stamping your brief is yours, in A4.",
       "go": "Download the drawing"
     },
     "cta": {
@@ -2275,16 +2388,52 @@
     },
     "src": {
       "title": "The course’s sources",
-      "note": "The advice on commissioning design comes from the Design Council; the trademark rules from the offices (INAPI, INPI, the UAE ministry, WIPO); the rights from the texts cited. The sorting, the promise-and-proof method and the workshop’s examples are our practice, and the course says so. Nothing here is legal advice. The positioning grid, the logo family and the 16-pixel test are our method; the contrast threshold comes from the W3C."
+      "note": "The advice on commissioning design comes from the Design Council; the trademark rules from the offices (INAPI, INPI, the UAE ministry, WIPO); the rights from the texts cited. The sorting, the promise-and-proof method and the workshop’s examples are our practice, and the course says so. Nothing here is legal advice. The positioning grid, the logo family and the 16-pixel test are our method; the contrast rule comes from the W3C. Pâtisserie Hodna is an invented example."
+    },
+    "acts": [
+      "1–5 · WHAT YOU WANT",
+      "6–9 · WHAT YOU BUY"
+    ],
+    "case": {
+      "t": "At Pâtisserie Hodna",
+      "s": [
+        "Nadia runs Pâtisserie Hodna in Bordj Bou Arréridj. Her nephew drew the logo in one evening; she opens a second shop before Ramadan and wants “a more professional logo”. She sorts what she has: a logo, nothing else. Keep it or redo it? She ticks “I don’t know”: step 5 will help.",
+        "Her customer: a mother ordering a wedding cake. What she wants to get: the cake in the photo, on time. She finds the shop by word of mouth and on social media. What makes her hesitate: “will it look like the photo?”",
+        "Nadia first writes “the best quality”: the meter answers “slogan”. She rewrites: “your cake ready at the time promised”, and her proof: “a photo of every order, sent before delivery”. The grid gives her sentence back: the first one a customer can check.",
+        "Her sliders: rather lively, very handmade, rather light. Her three words: generous, careful, festive. She does not say “I want pink”: she says what people should feel.",
+        "For the second shop the printer asks for the logo for a 3-metre banner. She only has a JPEG: she notes that she needs the vector file and the versions.",
+        "Someone else offers her: “logo in one day, JPEG, all included”. She marks three lines “to ask”: the vector files, the list of what is delivered, the rights in writing.",
+        "The name: “Hodna”. The country to file in: Algeria, so INAPI. On the sign she wants Arabic and Latin: she ticks both scripts.",
+        "Her brief: sign, packaging, social media; packaging first; a set date, before Ramadan; she is the one who decides. Her finished brief is under yours.",
+        "Nadia loads her nephew’s logo: at 16 pixels the thin letters disappear. She has her answer to step 1: she will have this logo redone, with a compact version."
+      ],
+      "fiche": {
+        "t": "Nadia’s finished brief",
+        "rows": [
+          "Business: pastry shop, Bordj Bou Arréridj",
+          "Current logo: I’m redoing it",
+          "Positioning: For individuals. What they want: the cake in the photo, on time. Our promise: your cake ready at the time promised. The proof: a photo of every order, sent before delivery.",
+          "Character: rather lively · very handmade · rather light",
+          "Scripts: Arabic, Latin",
+          "Deliverables: (3) Sign, Packaging, Social media · First: the packaging",
+          "What I will ask for in writing: the SVG/PDF files and every version of the logo · the written list of what is delivered · the assignment of rights in writing",
+          "By when: before Ramadan · Who decides: Nadia, the manager"
+        ]
+      },
+      "alt": "Invented example: in her pastry shop, Nadia compares a small hand-drawn cake sketch with a real tiered cake; Kūro, sitting on the counter, looks at the sketch."
+    },
+    "kuro": {
+      "slogan": "Slogan.",
+      "vector": "Vector."
     }
   },
   "web3c": {
     "kicker": "/ CLIENT COURSE · WEB3, FROM THE CLIENT’S SIDE",
     "title": "Web3, without the smoke.",
-    "lead": "Eight steps to know whether your project needs a blockchain, what goes on the chain and what does not, what it will really cost, what the law says where your users live, and how to spot a scam. Sometimes a chain is the right tool; this course helps you tell when. Your answers fill in a brief to send us, copy or print. This is education: no investment advice, no signals, no promise of gain.",
+    "lead": "You were sold a chain; perhaps all you wanted was loyal customers. Two ways to follow this course. You have a project: eight steps to tell the tool from the result, and leave with a brief that can be priced. You want to understand: nine modules, from the foundations to security, with a diagram to work with at every step. Sometimes a chain is the right tool; this course helps you tell when. This is education: no investment advice, no signals, no promise of gain.",
     "sceneAlt": "Yasser studies a chain of three glowing cubes through a magnifying glass; Kūro swats the smoke away, and beside them plain labelled cardboard boxes appear: each tool in its place",
-    "hud": "/ EIGHT STEPS · ONE BRIEF AT THE END",
-    "tabs": "The eight steps of the web3 course",
+    "hud": "/ A BUYER PATH · NINE MODULES · ONE BRIEF",
+    "tabs": "The eight steps of the buyer path",
     "book": "Your brief, box by box",
     "n": "STEP",
     "stops": [
@@ -2300,7 +2449,7 @@
     "items": [
       {
         "t": "The words",
-        "d": "Web3 is a site that talks to a shared ledger instead of a private database. Before you open the words, write your idea in one sentence, without any of them.",
+        "d": "You were told about tokens, NFTs, wallets: before the words, your idea. Write it in one sentence, without any of them, then open them one by one. Web3 is a site that talks to a shared ledger instead of a private database.",
         "goal": {
           "l": "My idea, in one sentence",
           "ph": "that my loyal customers are rewarded"
@@ -2349,15 +2498,23 @@
           "I switch browsers"
         ],
         "ok": "Yes. A signature is an agreement, and a spending approval stays valid until you revoke it.",
-        "alt": "Kūro touches with one paw a cube linked to others by thin lines"
+        "alt": "Kūro touches with one paw a cube linked to others by thin lines",
+        "where": {
+          "t": "And first: where are your users, or your company?"
+        },
+        "lawFirst": "The law decides before the design: step 7 tells you what to ask a lawyer.",
+        "no": [
+          "No. A signature can approve spending, and according to ethereum.org that approval does not expire by itself.",
+          "No. The browser changes nothing: it is the request you need to understand."
+        ]
       },
       {
         "t": "Do you need a chain?",
-        "d": "In its 2018 overview, NIST reproduces a six-question flowchart from the US Department of Homeland Security: at each “no”, the flowchart suggests an ordinary tool. NIST’s conclusion: use it “only in appropriate situations”. Answer for your project, not for the technology.",
+        "d": "You were told “put it on the blockchain”: six questions are enough to know whether that is true. In its 2018 overview NIST, the US standards agency, reproduces a flowchart from the US Department of Homeland Security: at each “no”, the flowchart suggests an ordinary tool. Its conclusion: use it “only in appropriate situations”.",
         "fork": {
-          "q": "First: do you want to build something on a chain (a ledger, a token, an NFT, a DAO), or to accept a payment in crypto?",
+          "q": "First: do you want to build something on a chain (a ledger, a token, an NFT, a DAO), or to get paid (card, transfer or crypto)?",
           "build": "Build on a chain",
-          "pay": "Accept a payment",
+          "pay": "Get paid",
           "payT": "A payment, not a chain.",
           "payD": "The flowchart does not apply to your case: step 3 opens on “Accept crypto”."
         },
@@ -2384,12 +2541,12 @@
               "why": "A blockchain does not let you rewrite history."
             },
             {
-              "q": "Will no personal or sensitive data be written to it, even encrypted?",
+              "q": "Can everything written to it be seen by all: nothing personal or sensitive, even encrypted?",
               "no": "An encrypted database",
               "why": "A public chain makes what is written on it visible: names, emails and lists stay in a database (our workshop’s rule, step 4)."
             },
             {
-              "q": "Are those who write having a hard time deciding who controls the data?",
+              "q": "Do the organisations that write struggle to agree on which of them will hold the data?",
               "no": "A managed database",
               "why": "With no trust issue over who runs it, a traditional database should suffice, says NIST."
             },
@@ -2403,17 +2560,35 @@
           "yesT": "Maybe a use case.",
           "yesD": "Six yeses: NIST says “may”, not “yes”. The rest of the course matters for you."
         },
-        "q": "Only one company, yours, writes to the ledger. According to the flowchart…",
+        "q": "Only Samia’s gym (our example) writes to its points ledger. According to the flowchart…",
         "a": [
           "you need a private blockchain",
           "the flowchart suggests a database",
           "you need one NFT per customer"
         ],
-        "ok": "Yes. One writer: the flowchart suggests a database."
+        "ok": "Yes. One writer: the flowchart suggests a database.",
+        "frame": "People often ask for a technology when they want a result.",
+        "no": [
+          "No. To “do several organisations need to write to it?” the answer is no: the flowchart stops there, at a database.",
+          "No. The flowchart never suggests a token: at each “no”, an ordinary tool."
+        ],
+        "payq": {
+          "q": "You only want to be paid by your customers. The six-question flowchart…",
+          "a": [
+            "applies: you must answer all six",
+            "does not apply: a payment is not a ledger to build",
+            "says to create a token"
+          ],
+          "ok": "Yes. The question becomes: by card or by transfer, and under which law.",
+          "no": [
+            "No. The flowchart is for deciding on a shared ledger; a payment is not one.",
+            "No. The flowchart never suggests a token."
+          ]
+        }
       },
       {
         "t": "What you really want",
-        "d": "People often ask for a technology when they want a result. Pick what you were offered, or what you thought of asking for: here is what people usually want, and the ordinary route. This table is our workshop’s view; the legal facts carry their source.",
+        "d": "You were offered an NFT, a token, a DAO: behind each request there is a result people really want. Pick yours: here is what people usually want, and the ordinary route. This table is our workshop’s view; the legal facts carry their source.",
         "pick": [
           {
             "k": "“An NFT for my members”",
@@ -2503,17 +2678,25 @@
         "scope": {
           "line": "We do not build the chain part (contracts, tokens, wallets); we build the ordinary solution, and we help you decide."
         },
-        "q": "You want to reward loyal customers. The simplest route?",
+        "q": "Samia (our example) wants to reward her loyal members. The simplest route?",
         "a": [
-          "Launch your own token",
+          "Launch her own token",
           "A points programme in a database",
           "An NFT with every purchase"
         ],
-        "ok": "Yes. Points, a database, and nothing to explain about wallets."
+        "ok": "Yes. Points, a database, and nothing to explain about wallets.",
+        "pickHint": "Pick the request closest to yours: its ordinary route shows, and the brief records it.",
+        "siteAdd": "Adding points or a members’ area to your existing site: priced when we scope, no published price.",
+        "chainFold": "If you go on a chain anyway",
+        "chainNote": "These lines only go into your brief if you keep the chain idea, at the last step.",
+        "no": [
+          "No. A token needs a contract, wallets and a lawyer’s opinion: none of that rewards any better.",
+          "No. Each one created pays network fees, according to ethereum.org, and her members would have to open a wallet."
+        ]
       },
       {
         "t": "The costs people forget",
-        "d": "The price of a web3 project does not stop at the code. Each card is a budget line a proposal should show, even without a figure: we publish no price for a smart contract or an audit, and we found no official audit price.",
+        "d": "The quote talks about the code, and forgets what gets paid for afterwards. Each card is a budget line a proposal should show, even without a figure. The cards follow your route: ordinary, payment, or chain.",
         "pick": [
           {
             "k": "The audit",
@@ -2579,19 +2762,111 @@
               "Refunds",
               "Accountant"
             ]
+          },
+          "keep": "You are keeping the idea of being paid in crypto: these are the lines to plan for."
+        },
+        "q": "A quote prices the development only. You…",
+        "a": [
+          "sign: the rest is surely included",
+          "ask for the lines that come after launch, even without a figure",
+          "ask for a discount"
+        ],
+        "ok": "Yes. A complete proposal also shows what gets paid for afterwards.",
+        "chain": {
+          "d": "We publish no price for a smart contract or an audit, and we found no official audit price."
+        },
+        "ord": {
+          "t": "The ordinary route: the lines people forget (our list)",
+          "pick": [
+            {
+              "k": "Hosting and the domain name",
+              "v": "Who pays for them each year, and in whose name are they registered?"
+            },
+            {
+              "k": "Accounts and data",
+              "v": "Where are your members’ names and emails kept, and who has access?"
+            },
+            {
+              "k": "Updates",
+              "v": "Who fixes and updates after launch, and for how long?"
+            },
+            {
+              "k": "Content",
+              "v": "Who writes the texts and supplies the photos before launch?"
+            },
+            {
+              "k": "Support",
+              "v": "Who answers members who cannot log in?"
+            }
+          ],
+          "lines": {
+            "t": "My brief plans for these lines",
+            "k": [
+              "Hosting and domain",
+              "Members’ data",
+              "Updates",
+              "Content",
+              "Support"
+            ]
           }
         },
-        "q": "An auditor has reviewed your smart contract. You are…",
-        "a": [
-          "safe forever",
-          "better protected, with no guarantee: an audit does not catch every bug",
-          "excused from an incident plan"
-        ],
-        "ok": "Yes. An audit is a layer, not a guarantee."
+        "chainFold": "If you go on a chain anyway: six more lines",
+        "card": {
+          "d": "For a card or bank-transfer payment there is no chain and no token. These six questions settle the work: this is our list, and your answers go into the brief.",
+          "cur": {
+            "t": "In which currency do your customers pay?",
+            "k": [
+              "Dinars (DZD)",
+              "Euros",
+              "Dollars",
+              "Dirhams (AED)",
+              "Another one"
+            ]
+          },
+          "amt": {
+            "l": "The usual amount of one payment",
+            "ph": "a booking deposit, a monthly subscription…"
+          },
+          "dep": {
+            "t": "Deposit or full payment?",
+            "k": [
+              "A deposit",
+              "Full payment",
+              "Both",
+              "I don’t know"
+            ]
+          },
+          "refund": {
+            "t": "Your refund and cancellation rule",
+            "k": [
+              "It is written",
+              "It is still to be written",
+              "I don’t know"
+            ]
+          },
+          "pages": {
+            "t": "Where does the customer pay?",
+            "k": [
+              "On a booking page",
+              "In a basket",
+              "Through a payment link I send",
+              "I don’t know"
+            ]
+          },
+          "payee": {
+            "l": "Who receives the money?",
+            "ph": "my company, on its business account"
+          },
+          "price": "The price: that of a site with payment if you do not have one yet; when we scope, with no published price, for an existing site (step 3)."
+        },
+        "no": [
+          "No. Ask for it in writing: hosting, updates and support are paid for afterwards.",
+          "No. A discount does not say who pays for hosting or who updates."
+        ]
       },
       {
         "t": "The scams",
-        "d": "If you launch anything in web3, your users may be targeted. The authorities describe the same signs: guaranteed profit, urgency, a request for the recovery phrase, payment in crypto only, a link that looks like the real one. Sort these six messages.",
+        "d": "An urgent message, a link that looks like the real one: you, or your users, may be targeted. The authorities describe the same signs: guaranteed profit, urgency, a request for the recovery phrase, payment in crypto only, a link that looks like the real one. Sort these six messages.",
         "bins": {
           "aria": "Sort six messages",
           "k": [
@@ -2636,11 +2911,15 @@
           "cannot be recalled: recovery is nearly impossible",
           "is refunded within 30 days"
         ],
-        "ok": "Yes. Europol: a completed transaction cannot be recalled."
+        "ok": "Yes. Europol: a completed transaction cannot be recalled.",
+        "no": [
+          "No. Europol says it: a completed transaction cannot be recalled, bank or not.",
+          "No. According to the FTC, a crypto payment is generally final: no deadline brings it back."
+        ]
       },
       {
         "t": "The law, where your users live",
-        "d": "The law decides before the design. Tick where your users, or your company, are: each card says what an official text says, and whom to ask. Nothing here is legal advice.",
+        "d": "A project can be banned before it is designed: the law decides before the design. Tick where your users, or your company, are: each card says what an official text says, and whom to ask. Nothing here is legal advice.",
         "where": {
           "t": "My users, or my company, are…",
           "chips": [
@@ -2674,11 +2953,15 @@
           "A VARA-licensed provider, or someone acting for it with its approval",
           "Nobody needs approval"
         ],
-        "ok": "Yes. And the advert must say the value can be lost, in full or in part."
+        "ok": "Yes. And the advert must say the value can be lost, in full or in part.",
+        "no": [
+          "No. VARA’s 2024 rules reserve such advertising for a licensed provider, or someone acting for it with its approval.",
+          "No. It takes a VARA licence, or the approval of a licensed provider."
+        ]
       },
       {
         "t": "The brief",
-        "d": "Your answers fit on one page. Fill in these last boxes, then send it: it opens our first exchange. Nothing leaves until you press.",
+        "d": "Your answers fit on one page. State your decision, fill in the last boxes, then send it: it opens our first exchange. Nothing leaves until you press.",
         "has": {
           "t": "What you already have",
           "chips": [
@@ -2715,7 +2998,7 @@
         },
         "who": {
           "l": "Who decides on your side?",
-          "ph": "Karim, the partner"
+          "ph": "Samia, the manager"
         },
         "q": "Your brief says “not yet” to the lawyer question. Before paying for development…",
         "a": [
@@ -2723,11 +3006,26 @@
           "we have the law of the users’ countries checked",
           "we rename the token"
         ],
-        "ok": "Yes. The law first, the code after."
+        "ok": "Yes. The law first, the code after.",
+        "decision": {
+          "l": "Your decision",
+          "k": [
+            "I take the ordinary route",
+            "I want to talk it over with you first",
+            "I keep the chain idea (or the crypto payment)"
+          ]
+        },
+        "first": {
+          "ph": "the members’ area before the points"
+        },
+        "no": [
+          "No. The law may ban the project: better to know before paying.",
+          "No. Changing the name does not answer the lawyer question."
+        ]
       },
       {
         "t": "What goes on the chain, and what stays with you",
-        "d": "A public chain lets anyone check a record, and makes everything written to it visible: our workshop’s rule is to put on it only the minimum to be checked, keep names, emails and lists in your database, and build a site that works without a wallet. According to ethereum.org, a transaction that is sent first gets an identifier (the “hash”), then waits to be included in a block; only then does its receipt say “success” or “failure”. Follow an attendance receipt, state by state.",
+        "d": "On a public chain, everything written is visible to all. Our workshop’s rule: put on it only the minimum to be checked, keep names, emails and lists in your database, and build a site that works without a wallet. Follow one example state by state, an attendance receipt (the proof that someone came to a class): a transaction that is sent first gets an identifier, then its receipt says “success” or “failure”, according to ethereum.org.",
         "states": {
           "aria": "Six states of an attendance receipt",
           "step": "State {i} of 6",
@@ -2809,7 +3107,13 @@
           "sent, not yet confirmed: the receipt is needed",
           "cancelled"
         ],
-        "ok": "Yes. The hash says “sent”. The receipt says whether it worked."
+        "ok": "Yes. The hash says “sent”. The receipt says whether it worked.",
+        "fold": "If one day you go on a chain anyway: what gets written there, state by state",
+        "foldNote": "Your route is the ordinary one: this part stays folded, and none of it goes into your brief.",
+        "no": [
+          "No. The hash only says “sent”: there is no receipt yet.",
+          "No. Nothing is cancelled: the transaction is waiting to be included in a block."
+        ]
       }
     ],
     "brief": {
@@ -2838,16 +3142,31 @@
         "keys": "Keys",
         "zero": "If the token were worth zero",
         "decides": "Who decides",
-        "screens": "Screens to design"
+        "screens": "Screens to design",
+        "me": "First name",
+        "decision": "My decision",
+        "olines": "Lines planned (ordinary route)",
+        "cardCur": "Payment currency",
+        "cardAmt": "Usual amount",
+        "cardDep": "Deposit or full",
+        "cardRefund": "Refund and cancellation",
+        "cardPages": "Where the customer pays",
+        "cardPayee": "Who receives the money",
+        "first": "First",
+        "budgetMax": "Ceiling",
+        "after": "After delivery",
+        "asks": "My questions for the provider"
       },
       "hintWallet": "Plan for a site that works without a wallet: tick it at step 4.",
       "hintJargon": "Your sentence talks about the technology. Say what your users gain too.",
-      "dz": "Users in Algeria: to see with a lawyer first. The text also specifies: the law bans virtual assets as a means of payment or an investment instrument, mining included.",
-      "noPrice": "The Studio publishes no price for web3 work: the brief is for talking it through."
+      "dz": "Users in Algeria: talk to a lawyer first. The text also specifies: the law bans virtual assets as a means of payment or an investment instrument, mining included.",
+      "noPrice": "The Studio publishes no price for web3 work: the brief is for talking it through.",
+      "lead": "Your idea, without the chain",
+      "leadIdea": "Your idea"
     },
     "all": {
       "t": "Eight of eight.",
-      "d": "Your brief is ready, and the wallpaper of Kūro clearing the smoke is yours.",
+      "d": "The wallpaper of Kūro clearing the smoke is yours.",
       "go": "Download the wallpaper"
     },
     "cta": {
@@ -2856,7 +3175,59 @@
     },
     "src": {
       "title": "The course’s sources",
-      "note": "The legal facts come from the texts and the regulators (the Algerian Official Journal, the European authorities, ESMA, the AMF, VARA, ADGM); the six-question flowchart from NIST; the scams from the FTC, the SEC, the FBI, Europol and the European authorities; the technical words from ethereum.org, a community documentation site. The ordinary routes, the “to plan for” lists and user support are our workshop’s view. Nothing here is legal or investment advice. A transaction’s path and development networks come from ethereum.org; the rule “the minimum on the chain” is ours."
+      "note": "The legal facts come from the texts and the regulators (the Algerian Official Journal, the European authorities, ESMA, the AMF, VARA, ADGM, the CFTC, the SEC, Wyoming’s laws); the six-question flowchart and the wallets from NIST; the standards from the texts themselves (NIST FIPS, BIP, EIP and ERC, W3C); the scams from the FTC, the SEC, the FBI, Europol and the European authorities; the technical words from ethereum.org, a community documentation site, and from each cited tool’s own documentation. Tools and chains are named as examples, never as recommendations. The ordinary routes, the “to plan for” lists, the questions for the provider and user support are our studio’s view; the “minimum on the chain” rule is ours. Nothing here is legal advice or investment advice."
+    },
+    "acts": [
+      "1–2 · SORTING",
+      "3–5 · THE ORDINARY ROUTE",
+      "6–8 · PROTECTING YOURSELF"
+    ],
+    "case": {
+      "t": "At Samia’s gym",
+      "s": [
+        "Samia runs a women’s gym in Sétif: 800 members, a website already online. A supplier pitched her “an NFT for your members”. Her sentence, with none of those words: “that my loyal members are rewarded”. Her members are in Algeria: she ticks it here.",
+        "Samia answers the six questions. At the second, “Do several organisations need to write to it?”, she answers no: only her gym writes. The verdict lands: no blockchain needed, a database.",
+        "She was offered “An NFT for my members”. What she wants: to reward loyalty. Her members have no need to resell their card, and she already has a website: the ordinary route is to add points and a members’ area to it, priced when we scope.",
+        "For her ordinary route, Samia ticks three lines: her members’ data, updates, support. No audit and no network fees: there is no contract.",
+        "The same supplier comes back by private message: “Surprise mint tonight, connect your wallet here.” Samia recognises the urgency and the link that looks like the real one: she does not click.",
+        "Samia ticked “in Algeria” back at step 1: the Algeria card shows here. Her ordinary route, points in a database, goes through no virtual asset; for any other idea, the question to put to a lawyer is written on the card.",
+        "Her decision: the ordinary route. Her brief fits in a few lines: loyalty points and a members’ area on her existing site, priced when we scope. Her finished brief is under yours.",
+        "Samia is not going on a chain: for her this step stays folded. She keeps one rule from it: her members’ names and emails stay in her database."
+      ],
+      "fiche": {
+        "t": "Samia’s finished brief",
+        "rows": [
+          "My idea: that my loyal members are rewarded",
+          "I already have: a website",
+          "The flowchart’s verdict: no blockchain needed",
+          "Ordinary route: loyalty points and a members’ area, added to the existing site",
+          "My decision: I take the ordinary route",
+          "At Numidea Labs: priced when we scope, no published price",
+          "Users: in Algeria",
+          "By when: in two months · Who decides: Samia, the manager"
+        ]
+      },
+      "alt": "Invented example: at her gym’s front desk, Samia looks at a loyalty card with two boxes stamped; a small glowing cube is set aside on the counter, and Kūro keeps a paw on the stamp."
+    },
+    "kuro": {
+      "base": "Database.",
+      "hook": "Hook."
+    },
+    "path": {
+      "l": "What brings you here?",
+      "k": [
+        "I have a project to prepare",
+        "I want to understand web3"
+      ],
+      "d": [
+        "Eight steps, about ten minutes, a brief to send us at the end. The modules stay open if a question stops you.",
+        "Nine modules, thirty-three steps, a diagram to work with at each one. Your brief stays one click away, and each module can add its questions to it."
+      ],
+      "say": "The course opens on: {c}."
+    },
+    "dock": {
+      "go": "My brief · {n} boxes filled →",
+      "empty": "My brief →"
     }
   },
   "fab": {
@@ -2946,7 +3317,7 @@
         "why": "The speed graph is where we decide how rapidly motion accelerates and how gently it settles. That pacing can carry through a logo sting and a set of social loops.",
         "gets": "Logo reveal, social loops and reusable timing rules.",
         "go": "Price an animation with the console →",
-        "reel": "See the opening and the other clips in the Studio’s reel →"
+        "reel": "See the opening on the services menu →"
       }
     ],
     "course": {
@@ -2981,7 +3352,8 @@
           "Application. A responsive booking flow, its schema, API examples, and a demo with two people competing for the last seat.",
           "Verification. The screens of a read-only attendance receipt, on a development network and with synthetic data: the normal flow, and a node outage."
         ],
-        "review": "Review criteria: a visitor recognizes the event and finds the booking action. Concurrent requests never oversell the last seat. The verification screen shows the actual result and stays understandable during an outage."
+        "review": "Review criteria: a visitor recognizes the event and finds the booking action. Concurrent requests never oversell the last seat. The verification screen shows the actual result and stays understandable during an outage.",
+        "lant": "The project told: The night class"
       },
       "refs": {
         "t": "Course references",
@@ -3428,9 +3800,1099 @@
       ],
       "all": {
         "t": "Six of six.",
-        "d": "The receipt is stamped. On the client’s side, the manual’s web3 course helps decide whether a chain is needed; we build the ordinary route.",
+        "d": "The receipt is stamped. On the client’s side, the Bookshop’s web3 course helps decide whether a chain is needed; we build the ordinary route.",
         "go": "The web3 course, client’s side →"
       }
+    }
+  },
+  "lant": {
+    "ui": {
+      "skip": "Go to the district",
+      "library": "The Bookshop",
+      "journal": "Journal",
+      "sac": "Kit",
+      "motion": "Motion",
+      "motionHint": "The scene follows the mouse. Press to stop it.",
+      "lang": "Language",
+      "open": "Open the atlas",
+      "resume": "Resume: {q}",
+      "pickK": "Mission select",
+      "districtsH": "The districts",
+      "listLabel": "Districts",
+      "hud": {
+        "one": "{n} of {N} district done",
+        "other": "{n} of {N} districts done"
+      },
+      "hudSide": "side route: {m} / {M}",
+      "dossierK": "District brief · {act} · {i} / {N}",
+      "with": "with {g}",
+      "rule": "The rule",
+      "situation": "The situation",
+      "right": "Right",
+      "wrong": "Not quite",
+      "idle": "Choose a response to see what happens. A wrong answer costs nothing: try again.",
+      "toEx": "Try the field exercise",
+      "keep": "In your kit: {s}",
+      "exK": "Field exercise",
+      "badgeOpen": "Open",
+      "badgeDone": "Done",
+      "exIdle": "The exercise waits for your first move.",
+      "noJs": "Without JavaScript the exercise stays at rest; the brief and the journal note still read.",
+      "readJournal": "Read the case journal",
+      "next": "Next district: {q}",
+      "first": "Back to the first district",
+      "prev": "Previous district",
+      "nextShort": "Next district",
+      "go": "Go to district",
+      "acts": "Acts",
+      "state": {
+        "answered": "situation solved",
+        "done": "done"
+      },
+      "live": "District {i} of {N}: {q}",
+      "done": "District done. {s} goes into your kit.",
+      "stamp": "Done",
+      "zoom": "See the poster full size",
+      "close": "Close",
+      "journalK": "Lantern Bookshop · an invented bookshop",
+      "journalH": "Case journal",
+      "journalCount": {
+        "one": "{n}/{N} case note · side route {m}/{M}",
+        "other": "{n}/{N} case notes · side route {m}/{M}"
+      },
+      "journalIdle": "Solve a district all the way, the situation then the exercise, to add the crew’s decision to Lantern’s record.",
+      "journalEmpty": "Visit this district and clear it to record it here.",
+      "print": "Print my journal",
+      "sacK": "Field kit",
+      "sacH": "Inventory",
+      "sacLead": "Every completed district adds a keepsake to the kit. Progress stays in this browser when it keeps it; nothing leaves here.",
+      "sacCount": {
+        "one": "{n} keepsake of {N}",
+        "other": "{n} keepsakes of {N}"
+      },
+      "unknown": "Keepsake not earned yet",
+      "side": "side route",
+      "footerBack": "Back to the Bookshop",
+      "studio": "The Studio",
+      "rightNext": "Right. Do the field exercise to add it to the journal",
+      "wa": "WhatsApp",
+      "skipEx": "I’ll skip the exercise",
+      "skipNote": "exercise not done",
+      "leaveEmpty": "Leave this box empty",
+      "menuLabel": "Atlas menu",
+      "back": "The Bookshop",
+      "fiche": "My brief",
+      "soonK": "Coming to the Bookshop",
+      "soonD": "This atlas is on its way to the shelves. Meanwhile, the other books are open.",
+      "toRead": "Read before you answer",
+      "ex": {
+        "pick": {
+          "t": "Read each explanation",
+          "brief": "Open each explanation once. The exercise is done when you have read them all."
+        },
+        "calc": {
+          "t": "The sum, with your own numbers",
+          "brief": "The starting figures are the lesson’s. Change one: the result follows, and the exercise is done. Nothing is sent."
+        },
+        "pickLeft": "Explanations read: {n} of {N}.",
+        "pickDone": "Every explanation is read.",
+        "calcDone": "The result follows your numbers. The sum stays in this browser.",
+        "fiche": {
+          "t": "Fill in your box of the brief",
+          "brief": "Answer for yourself: each answer fills its box of the brief, on this device only. One answer is enough to do the exercise; nothing is required."
+        },
+        "bins": {
+          "t": "Sort the lines",
+          "brief": "Put each line in a box: the workshop’s reason shows under each one. The exercise is done when every line is placed."
+        },
+        "marktest": {
+          "t": "The 16-pixel test",
+          "brief": "Shrink the two marks down to 16 pixels, the size of a browser tab. Your own logo can join them: it is read here and sent nowhere."
+        },
+        "flow": {
+          "t": "The six-question tree",
+          "brief": "Answer yes or no until the tree gives its verdict, or take the “getting paid” branch. The exercise is done at the verdict."
+        },
+        "states": {
+          "t": "The six states of a transaction",
+          "brief": "Step from one state to the next and read what each one means. The exercise is done once all six have been seen. Nothing is written into the brief."
+        },
+        "law": {
+          "t": "The law cards",
+          "brief": "Choose where your users are: each country’s card opens. The exercise is done as soon as one card is open."
+        },
+        "ficheDone": "Noted: the brief keeps your answer, on this device only."
+      },
+      "journalCountMain": {
+        "one": "{n}/{N} case note",
+        "other": "{n}/{N} case notes"
+      }
+    },
+    "cast": {
+      "yasser": "Yasser",
+      "kuro": "Kūro",
+      "raven": "Raven",
+      "pigeon": "Techno Pigeon",
+      "ratman": "Ratman",
+      "paper": "a sheet of paper",
+      "recorder": "a tape recorder",
+      "ring": "a golden ring",
+      "star": "a star",
+      "eyeflower": "an eye flower",
+      "feather": "a feather",
+      "cup": "a mug",
+      "front": "in front: {list}",
+      "and": " and "
+    },
+    "shelf": {
+      "title": "The Lantern Bookshop · free lessons | Numidea Labs",
+      "desc": "The night bookshop of the world of Numidea: every course is an atlas played district by district. Free lessons, keepsakes to earn.",
+      "name": "The Lantern Bookshop",
+      "navAtlases": "The atlases",
+      "navPassport": "The passport",
+      "navComptoir": "The counter",
+      "navRonde": "The night round",
+      "cta": "Book a call",
+      "heroK": "/ THE BOOKSHOP · THE WORLD OF NUMIDEA",
+      "heroT1": "The Lantern",
+      "heroT2": "Bookshop.",
+      "lore": "The Lantern is a night bookshop in the world of Numidea. The workshop crew built the booking for its night class here; the bookseller kept their field notebooks, and they became atlases. Each atlas is a course: you pick a district, settle a situation, do the exercise, and the decision goes into the case journal. The lessons are free; the keepsakes are earned. Nothing leaves here until you press.",
+      "fiction": "The Lantern is an invented bookshop: it exists only at night, on this site.",
+      "heroCta": "Pick an atlas",
+      "heroAlt": "The Lantern Bookshop at night: under the red-and-cream striped awning, a giant open book on the counter and a lit lantern; Yasser sits reading an atlas by the stall, Kūro sleeps on the counter, the town’s towers under a starry sky.",
+      "rayonsK": "/ THE SHELVES",
+      "shelf1": "For your projects",
+      "shelf2": "Earning from far away",
+      "shelf3": "Master course",
+      "count": {
+        "one": "{n} / {N} district",
+        "other": "{n} / {N} districts"
+      },
+      "open": "Open the atlas",
+      "resume": "Resume: {q}",
+      "moving": "Moving in soon",
+      "with": "with {g}",
+      "soon": "soon",
+      "vol1": "Vol. 1 · The buyer’s route",
+      "vol2": "Vol. 2 · The nine modules",
+      "kept": "Latest keepsakes",
+      "passK": "/ THE PASSPORT",
+      "passH": "The Bookshop passport",
+      "passLead": "The keepsakes earned in every atlas, together. They stay in this browser.",
+      "passRow": "{n} of {N}",
+      "passTotal": {
+        "one": "{n} keepsake of {N}",
+        "other": "{n} keepsakes of {N}"
+      },
+      "clear": "Clear my progress in this atlas",
+      "clearAsk": "Clear for good? Briefs and seals stay.",
+      "clearYes": "Yes, clear",
+      "clearNo": "Keep",
+      "passPrint": "Print my passport",
+      "shopK": "/ IN THE SHOP",
+      "lantPitch": "Lantern Bookshop has a night class to fill. Follow Yasser and the crew as they take it from a handwritten brief to a working booking system.",
+      "menuLabel": "Bookshop menu",
+      "comptoirK": "/ THE COUNTER",
+      "world": "The world",
+      "fab": "The workshop floor",
+      "web3Vol2": "The nine modules · soon",
+      "web3Path": "What brings you here?",
+      "bookK": "Book",
+      "notesK": "Read before digital money"
+    },
+    "at": {
+      "cds": {
+        "title": "The night class.",
+        "title1": "The night",
+        "title2": "class.",
+        "sub": "A field atlas",
+        "kicker": "/ THE LANTERN CASE · FROM BRIEF TO LAUNCH",
+        "kind": "THE LANTERN CASE · FROM BRIEF TO LAUNCH",
+        "pitch": "Lantern Bookshop has a night class to fill. Follow Yasser and the crew as they take it from a handwritten brief to a working booking system.",
+        "caseLabel": "At the Lantern · an invented bookshop",
+        "search": "The night class · The Lantern Bookshop | Numidea Labs",
+        "desc": "The Lantern case in ten districts: from a handwritten brief to a working booking system. A free field atlas.",
+        "coverAlt": "The Numidea bookstall under a blue sky, a striped awning and a large open book; in front: Yasser sitting, Kūro and a golden ring.",
+        "act": {
+          "a1": "Act I · Find the path",
+          "a2": "Act II · Build and release",
+          "side": "Side route · MERCURY"
+        },
+        "actShort": {
+          "a1": "Act I",
+          "a2": "Act II",
+          "side": "MERCURY"
+        },
+        "conclusion": "Lantern can take bookings, confirm one seat at a time, and offer a public receipt lookup. The next test is whether clearer session details get more visitors to the form.",
+        "d": {
+          "home": {
+            "name": "Home",
+            "sub": "The Argent Workshop",
+            "alt": "Numidea Labs poster “HOME · YASSER & KURO”: Yasser standing in the workshop among a lamp, books and plans; Kūro on a pile of books, a second cat asleep, a pigeon, a raven and a rat.",
+            "lore": "An envelope from Lantern Bookshop lands at the Argent Workshop. Its owner is opening a night printmaking class and is tired of counting seats in messages. Kūro settles on the only slip that matters: the date of the first class.",
+            "rule": "A project brief can start with one problem, one person, and one result.",
+            "q": "Lantern’s owner asks for “something digital” before the first night class. Where should Yasser start?",
+            "a": [
+              "Order a new logo immediately.",
+              "Ask where a customer gets stuck.",
+              "List every feature a competitor has."
+            ],
+            "f": [
+              "A logo might help. First find out whether the friction is recognition, information, or the way an order gets handled.",
+              "Start with a recent example and an outcome you can observe. The right tool comes after that.",
+              "A feature list skips the person who needs to use it. Ask about a real visit or order first."
+            ],
+            "keep": "The Brief",
+            "scene": "An envelope from Lantern",
+            "handoff": "Start with a first class, limited seats, and bookings buried in messages.",
+            "decision": "Brief agreed: visitors should see the session details and reserve one seat without messaging.",
+            "ex": {
+              "t": "Write a three-part brief",
+              "brief": "Match the visitor’s task, their difficulty and the result we want to observe.",
+              "slots": [
+                "Visitor task",
+                "Friction",
+                "Observable result"
+              ],
+              "choices": [
+                "Check the session date and price",
+                "A visitor must message to confirm a seat",
+                "Reserve a seat without messaging"
+              ],
+              "pick": "Choose a detail",
+              "check": "Read my brief",
+              "empty": "Fill all three parts. A useful brief names the task, where it gets hard, and how you’ll know it improved.",
+              "ok": "A visitor needs the date and price, but must message to confirm a seat. We’ll test whether they can book straight from the event page.",
+              "bad": "Match the event you can observe at the end to the result. The friction is what interrupts the task today."
+            }
+          },
+          "fields": {
+            "name": "Fields",
+            "sub": "The survey routes",
+            "alt": "Poster “FIELDS · YASSER & THE CREW”: Yasser in a field of tall grass, a raven on his shoulder, a pigeon in flight; at his feet Kūro, another cat and a rat among books and maps.",
+            "lore": "Pigeon takes the brief to Lantern and watches two people try to join the night class. Their routes differ. Both stop before choosing a seat.",
+            "rule": "Discovery turns a guess into a testable observation.",
+            "q": "You suspect visitors leave because the class date or price is hard to find. What can you collect first?",
+            "a": [
+              "Count how many colors are on the homepage.",
+              "Rewrite the event page before watching anyone.",
+              "Watch two people try to find the class date and price."
+            ],
+            "f": [
+              "Color is easy to count, but it won’t tell you if someone found the session details.",
+              "A rewrite could bury the same information again. Find where the user expects it first.",
+              "Observe where they look and what they ask. This gives you a concrete place to investigate."
+            ],
+            "keep": "The Field Notes",
+            "scene": "Two routes to the same stall",
+            "handoff": "Carry the brief into two observed visits.",
+            "decision": "Field evidence: put the class date and price beside the booking action.",
+            "ex": {
+              "t": "Field journal",
+              "brief": "Watch two customers before deciding what needs to move.",
+              "phone": "Watch phone visitor",
+              "desk": "Watch desktop visitor",
+              "obsPhone": "Phone visitor opens the class page, scrolls past the poster, and looks for the date in the footer.",
+              "obsDesk": "Desktop visitor finds the date but opens a message window to ask for the price and seat availability.",
+              "one": "One observation helps you form a question. Watch the other visit before making a decision.",
+              "ok": "Both visitors wanted class details before committing. Test putting the date and price beside Book."
+            }
+          },
+          "audience": {
+            "name": "Audience",
+            "sub": "The Listening District",
+            "alt": "Poster “AUDIENCE”: Yasser in profile, surrounded by hands holding out icons (“research”, “trust”, “accessibility”, “experience”); at his feet Kūro, a raven, a pigeon and a rat.",
+            "lore": "Pigeon’s field notes put the date and price above the booking button. At the Listening District, Kūro shadows a visitor testing the new form without a mouse.",
+            "rule": "A path works when the people who need it can complete it.",
+            "q": "Lantern’s new form works with a mouse. A keyboard user can’t tell where they are. What changes?",
+            "a": [
+              "Add visible focus and walk the form with Tab.",
+              "Add another animated banner.",
+              "Make the submit button larger only."
+            ],
+            "f": [
+              "Check every field, action and error message in order. You can observe exactly where the journey breaks.",
+              "It won’t tell them which control has focus.",
+              "Size helps some users. They still need a visible focus state throughout the form."
+            ],
+            "keep": "The “AUDIENCE” poster",
+            "scene": "The route through the form",
+            "handoff": "Use the new event layout and test it from the first control to Book.",
+            "decision": "Access check: visible focus follows the booking order through the entire form.",
+            "ex": {
+              "t": "Keyboard walkthrough",
+              "brief": "Follow the booking form one control at a time and see why focus visibility matters.",
+              "fields": [
+                "Event",
+                "Name",
+                "Email",
+                "Book"
+              ],
+              "here": "focus here",
+              "enable": "Enable visible focus",
+              "step": "Advance keyboard focus",
+              "enabled": "Focus is now visible. Step through the controls to check their order.",
+              "hidden": "Focus moved, but the visitor cannot see which control is active. Enable a visible indicator.",
+              "at": "Focus is on {f}.",
+              "ok": "All fields reached in order. The visitor can see where they are and reach Book."
+            }
+          },
+          "identity": {
+            "name": "Identity",
+            "sub": "The Print Foundry",
+            "alt": "Poster “IDENTITY”: Yasser among the pieces of an identity (“LOGO”, “TYPE”, “VOICE”, “SYSTEM”), Kūro at his feet, a mug and four other characters.",
+            "lore": "Yasser draws a folded-book mark for Lantern. It has to feel like the shop on the window, the event page, and the tiny tab a visitor returns to after comparing dates.",
+            "rule": "Make the identity usable across surfaces with a consistent family of marks.",
+            "q": "The sign reads well, but the logo turns into a blob in a tiny browser tab. Which asset belongs there?",
+            "a": [
+              "The full wordmark and the tagline.",
+              "A different unrelated icon.",
+              "A compact mark with the same outer shape."
+            ],
+            "f": [
+              "The details compete at small size. Keep them for placements with enough space.",
+              "It might read, but it loses the connection to the identity the visitor already recognises.",
+              "A deliberate small version keeps the strongest cues and drops detail that cannot survive at that size."
+            ],
+            "keep": "The “IDENTITY” poster",
+            "scene": "A mark for the shop and the tab",
+            "handoff": "Carry the recognisable bookshop shape into the usable booking flow.",
+            "decision": "Design proof: keep the folded-book silhouette at favicon size.",
+            "ex": {
+              "t": "Favicon stress test",
+              "brief": "Shrink two versions of a fictional book mark. Compare what you can still recognize.",
+              "detailed": "Detailed",
+              "compact": "Compact",
+              "size": "Preview size",
+              "hint": "Slide toward 16 pixels and watch what happens to the inner lines.",
+              "ok": "At favicon size, the compact version keeps the visible book shape. The detailed version loses its fine lines."
+            }
+          },
+          "architecture": {
+            "name": "Architecture",
+            "sub": "The Systems District",
+            "alt": "Poster “ARCHITECTURE”: Yasser leaning on a giant pencil in the middle of a maze (“backend”, “logic”, “automation”, “structure”); a raven, a pigeon, Kūro and a rat.",
+            "lore": "Ratman follows the booking form’s copper line to the relay. The page is ready to take bookings. The relay still has to decide who gets the last seat.",
+            "rule": "The server must handle contention for a limited resource before it confirms a booking.",
+            "q": "Two customers request the last seat at the same time. Which system should decide who gets it?",
+            "a": [
+              "Confirm both and send a correction later.",
+              "The server checks and updates capacity as one protected operation.",
+              "Each browser checks its copy of the seat count."
+            ],
+            "f": [
+              "That pushes a preventable conflict onto the customers.",
+              "Only one request should complete the reservation. The other receives a clear “full” response.",
+              "Both browsers might have the same stale count. The decision needs one authoritative write path."
+            ],
+            "keep": "The “ARCHITECTURE” poster",
+            "scene": "One seat, one confirmation",
+            "handoff": "Connect the booking form and its capacity relay.",
+            "decision": "Relay rule: check and reserve the last seat in one protected server operation.",
+            "ex": {
+              "t": "The last seat",
+              "brief": "Run the same two requests through competing capacity rules. See what each visitor gets.",
+              "va": "Visitor A",
+              "vb": "Visitor B",
+              "wait": "Waiting",
+              "conf": "Confirmed",
+              "full": "Full",
+              "both": "Check capacity in both browsers",
+              "one": "Use one protected server reservation",
+              "bothMsg": "Oversold. Both browsers saw the same old seat count and issued a confirmation.",
+              "oneMsg": "Exactly one seat was booked. A single protected operation checks capacity and records the booking before confirmation.",
+              "more": "Run the other rule too, to compare."
+            }
+          },
+          "launch": {
+            "name": "Launch",
+            "sub": "The Logistics Yard",
+            "alt": "Poster “LAUNCH”: Yasser mid-leap through orange flames (“deploy”, “ship”, “release”, “iterate”); below, a raven, a pigeon, Kūro, a rat and a mug.",
+            "lore": "Pigeon carries Lantern’s new site to the Logistics Yard. The booking relay passed its capacity test. Now a staging run has to make it all the way to the confirmation.",
+            "rule": "Test a release and keep a known recovery path.",
+            "q": "Lantern is about to publish its new booking flow. What is the best final rehearsal?",
+            "a": [
+              "Place a test booking on staging and confirm the rollback plan.",
+              "Open the event page and stop when it loads.",
+              "Release and wait for customer messages."
+            ],
+            "f": [
+              "Check the meaningful task end to end and know what you will restore if the new release fails.",
+              "Loading is useful. It doesn’t tell you if a visitor can reserve a seat and see a confirmation.",
+              "Run the core journey yourself while the recovery path is still easy to use."
+            ],
+            "keep": "The Dispatch Stamp",
+            "scene": "The rehearsal at the yard",
+            "handoff": "Carry the working relay into staging and test the complete booking.",
+            "decision": "Release decision: keep the working build live until the staging confirmation passes.",
+            "ex": {
+              "t": "Release rehearsal",
+              "brief": "Make a staging booking, then decide what to do about the failing release.",
+              "r0": "Live: previous release · Staging: new release",
+              "stage": "Run a staging booking",
+              "r1": "Staging: booking confirmation fails · Live: previous release",
+              "stageMsg": "The homepage loads, but the booking fails at confirmation. The exercise begins with the previous release still available.",
+              "promote": "Promote the new release",
+              "r2a": "Live: new release untested",
+              "r2b": "Live: booking failing",
+              "promoteMsg": "Customers now reach a broken order flow. Restore the last working release.",
+              "keepB": "Keep or restore last working release",
+              "r3": "Live: previous release · Bookings working",
+              "keepEarly": "You protected the live path. Run a staging booking to see what would have failed.",
+              "ok": "Live bookings work while you repair the staging build. Re-run the full booking before promoting it."
+            }
+          },
+          "growth": {
+            "name": "Growth",
+            "sub": "The Signal Gardens",
+            "alt": "Poster “GROWTH”: Yasser surrounded by cards (“SEO”, “ANALYTICS”, “CONTENT”, “OPTIMIZATION”) and the crew legend in hand lettering (“KURO”, “RAVEN”, “PIGEON”, “RAT”); all four at the foot of the plinth.",
+            "lore": "Lantern opens the booking page after the confirmation fix. Raven watches 100 fictional visits. Only 40 people reach the form, which brings Pigeon’s field notes back into focus.",
+            "rule": "Choose a signal that reflects the task you are improving.",
+            "q": "More people visit the booking page, but completed bookings barely change. What do you compare?",
+            "a": [
+              "Visits to the page versus completed bookings.",
+              "The total likes on the launch post.",
+              "The number of posts you wrote."
+            ],
+            "f": [
+              "Compare the share that finishes, then inspect the biggest drop-off step before changing it.",
+              "Attention can grow without the booking journey improving.",
+              "That describes your output, not whether visitors could book."
+            ],
+            "keep": "The “GROWTH” poster",
+            "scene": "The missing sixty",
+            "handoff": "After the confirmation fix, compare the live booking stages.",
+            "decision": "Growth lead: 60 of 100 visits stopped before the form. Test whether the date, price, and booking action are clear.",
+            "ex": {
+              "t": "Find the drop-off",
+              "brief": "Inspect a fictional booking funnel. Which step loses the most people?",
+              "fiction": "Fictional funnel",
+              "rows": [
+                "Visitors",
+                "Started booking",
+                "Booked"
+              ],
+              "tips": [
+                "Every person who reached the page.",
+                "60 of 100 did not start. Check whether the offer and the next action are clear.",
+                "8 of 40 did not complete. That’s a smaller loss than the 60 visitors lost before the form."
+              ]
+            }
+          },
+          "observer": {
+            "name": "Observer",
+            "sub": "The Proof Observatory",
+            "alt": "Poster “01 / THE OBSERVER · THE NEUTRAL EYE”: a large open eye in the night sky, above a figure in a red coat on a hill.",
+            "lore": "After the class, a visitor asks for a receipt that someone else can verify. Raven opens a window in the Observatory. The attendee list stays in Lantern’s locked drawer.",
+            "rule": "Separate public verification from private customer records. This simulation uses fictional receipts.",
+            "q": "A visitor wants to verify an attendance receipt publicly. What belongs in that record?",
+            "a": [
+              "A crowd photo and the whole list of attendees.",
+              "Their email and booking notes.",
+              "A minimal opaque receipt identifier."
+            ],
+            "f": [
+              "That publishes much more than the verifier needs.",
+              "Those details are unnecessary for this proof and can reveal private information.",
+              "The public lookup can answer whether the demo issuer recorded the receipt. Contact details stay in the booking system."
+            ],
+            "keep": "The Observer Token",
+            "scene": "A window and a locked drawer",
+            "handoff": "Create an optional receipt lookup after attendance.",
+            "decision": "Proof boundary: publish only an opaque receipt reference. Keep attendee details private.",
+            "ex": {
+              "t": "Public proof bench",
+              "brief": "Choose which fields the fictional public archive can see. Run a receipt lookup with your choices.",
+              "fiction": "Fictional receipts",
+              "recs": [
+                "Opaque receipt ID",
+                "Customer email",
+                "Booking notes",
+                "Guest list"
+              ],
+              "priv": "Private",
+              "pub": "Public",
+              "group": "Public or private data",
+              "pickMsg": "Select what should be visible, then run the lookup.",
+              "run": "Run fictional public lookup",
+              "none": "Lookup can’t work without a public receipt reference.",
+              "ok": "Receipt found. The verifier can check the reference while customer details stay private.",
+              "over": "The archive would expose details it doesn’t need. Keep only the opaque receipt ID public."
+            }
+          },
+          "wire": {
+            "name": "Moonlit Wire",
+            "sub": "MERCURY · The Crossing",
+            "alt": "MERCURY poster: the traveller in a red coat walks a power line under the full moon, Kūro follows on the wire, the town and its arches below.",
+            "lore": "Kūro follows Raven out into MERCURY. The crossing is a rehearsal for Lantern’s new receipt screen. Each stepping point offers one action and one visible result.",
+            "rule": "A complex flow becomes easier when the next safe step is clear.",
+            "q": "A visitor opens Lantern’s receipt screen for the first time. What should it make easy?",
+            "a": [
+              "Pick a theme before starting.",
+              "Complete one real task and see a clear result.",
+              "Unlock every setting at once."
+            ],
+            "f": [
+              "A visual choice can wait until the visitor understands the task.",
+              "Give the visitor a short successful path. They can discover advanced controls after they know what the tool does.",
+              "That gives a beginner more decisions without a reason to make them."
+            ],
+            "keep": "The Crossing",
+            "scene": "The short way across",
+            "handoff": "Rehearse the receipt screen with Kūro, one meaningful step at a time.",
+            "decision": "Wayfinding rule: one clear action, followed by a result the visitor can see.",
+            "ex": {
+              "t": "Kūro’s crossing",
+              "brief": "Advance Kūro by giving him a clear next step. There is no timer.",
+              "landings": [
+                "Begin",
+                "Try one task",
+                "See the result",
+                "Crossed"
+              ],
+              "here": "Kūro is here",
+              "step": "Take the next marked step",
+              "jump": "Jump to advanced settings",
+              "msgs": [
+                "",
+                "One clear action at a time.",
+                "A visible result tells you what just happened.",
+                "Kūro crossed. A short path with visible feedback helps visitors know how to proceed."
+              ],
+              "jumpMsg": "Kūro stays put. The next step is unclear, and a settings detour doesn’t show how the tool works."
+            }
+          },
+          "ash": {
+            "name": "Ash Field",
+            "sub": "MERCURY · The Return",
+            "alt": "Poster “04 / MERCURY · WANDER”: the traveller in a red coat walks through a field of dry grass.",
+            "lore": "The Observatory signal drops beyond the wire. Yasser returns across the ash field with one rule for Lantern: a failed proof lookup must never close the booking desk.",
+            "rule": "A lost connection should preserve the work the visitor can still do.",
+            "q": "The proof service goes offline while the booking system remains up. What should the site do?",
+            "a": [
+              "Declare every proof valid.",
+              "Close the entire site.",
+              "Keep bookings open and show that proof lookup is unavailable."
+            ],
+            "f": [
+              "A status the system cannot verify should not be shown as verified.",
+              "An optional dependency should not automatically stop an independent task.",
+              "Separate flows keep the useful part of the experience available. Say exactly what could not be checked."
+            ],
+            "keep": "The Return Token",
+            "scene": "The light that stays on",
+            "handoff": "Cut the Observatory connection and see if Lantern can still take bookings.",
+            "decision": "Outage rule: keep bookings available and say when receipt verification is unavailable.",
+            "ex": {
+              "t": "Outage drill",
+              "brief": "Disconnect one service and check which parts of the experience still work.",
+              "bookOk": "Booking · Available",
+              "proofOk": "Proof lookup · Available",
+              "proofOff": "Proof lookup · Unavailable",
+              "bookDone": "Booking · Confirmed",
+              "cut": "Disconnect the proof service",
+              "cutMsg": "Raven lost the proof signal. The booking path still has its own working connection.",
+              "book": "Try booking",
+              "okMsg": "Booking succeeded. The receipt could not be verified while the proof service was offline.",
+              "normal": "Booking succeeds in normal conditions. Now disconnect proof and test again.",
+              "plug": "Reconnect proof",
+              "plugMsg": "Verification is available again. Ask for a new lookup before showing a result."
+            }
+          }
+        }
+      },
+      "marque": {
+        "kind": "CLIENT COURSE · YOUR BRAND, BEFORE THE LOGO",
+        "title1": "The logo",
+        "title2": "comes later.",
+        "search": "The logo comes later · Lantern Bookshop | Numidea Labs",
+        "desc": "Nine districts to prepare your brand before you pay a designer: audience, promise, character, files, name, and a brief for the Studio.",
+        "conclusion": "Nadia’s brief is complete; yours is too, box by box.",
+        "act": {
+          "a1": "Act I · What you want",
+          "a2": "Act II · What you buy"
+        },
+        "actShort": {
+          "a1": "Act I",
+          "a2": "Act II"
+        },
+        "plate": {
+          "a1": "A pastry shop on a street corner at night: a lit window of cakes on stands, a striped awning, a cream signboard still blank, a small table with an open sketchbook.",
+          "a2": "A print shop: a roller press unrolls a large blank cream banner across the floor, stacks of paper, colour swatch fans, a light table with a blank sheet, rolled posters in a basket."
+        },
+        "d": {
+          "b1": {
+            "rule": "A logo is a sign: the brand, the identity and their rules are decided before it.",
+            "handoff": "Nadia knows what she has: a logo, nothing else. Now: who is she remaking it for?",
+            "decision": "A logo alone is a sign; the rest is decided first.",
+            "keep": "The “undefined” box"
+          },
+          "b2": {
+            "rule": "A design route is judged against the person in the brief, not by taste.",
+            "handoff": "Her customer has a face; now she needs a promise that customer can check.",
+            "decision": "Pick the route that speaks to the person in my brief.",
+            "keep": "The “undefined” box"
+          },
+          "b3": {
+            "rule": "A promise counts if a customer can check it: a deadline, a fact, a proof.",
+            "handoff": "The promise holds; now to tell the designer what people should feel.",
+            "decision": "A promise that can be checked, with its proof.",
+            "keep": "The “undefined” box"
+          },
+          "b4": {
+            "rule": "Tell the designer the goal, what people should feel; the designer chooses the means.",
+            "handoff": "The character is said; Nadia now tries her logo in a browser tab.",
+            "decision": "Say what people should feel, not the colour or the typeface.",
+            "keep": "The “undefined” box"
+          },
+          "b9": {
+            "rule": "A brand is a family: the small version is drawn, not shrunk.",
+            "handoff": "The logo will be remade, with a compact version; the printer already wants the file for the banner.",
+            "decision": "A compact version in solid shapes, seen at 16 pixels.",
+            "keep": "The “undefined” box"
+          },
+          "b5": {
+            "rule": "To print large you need the vector file: it stays sharp at every size.",
+            "handoff": "She knows which files to ask for; a proposal arrives, “all included”.",
+            "decision": "Ask for the vector file (SVG or PDF) and the versions.",
+            "keep": "The “undefined” box"
+          },
+          "b6": {
+            "rule": "“All included” can only be checked against a written list of what is delivered.",
+            "handoff": "The proposal is read; the name is left, and who owns it.",
+            "decision": "Ask in writing for the list of what is delivered.",
+            "keep": "The “undefined” box"
+          },
+          "b7": {
+            "rule": "A paid-for logo is not a registered trademark: registration is separate, country by country.",
+            "handoff": "The name has its country of registration; now everything comes together on the brief.",
+            "decision": "Register the name with INAPI for Algeria.",
+            "keep": "The “undefined” box"
+          },
+          "b8": {
+            "rule": "Before the first call: the brief filled in, and one person who decides.",
+            "handoff": "Nadia’s brief is ready to go, whenever she wants.",
+            "decision": "Keep the brief at hand, and one person who decides.",
+            "keep": "The “undefined” box"
+          }
+        },
+        "caseLabel": "At Pâtisserie Hodna · an invented example"
+      },
+      "argent": {
+        "kind": "LESSONS · MONEY",
+        "title1": "Earning",
+        "title2": "from far away.",
+        "pitch": "Getting paid from abroad, reading the fees, setting a rate, keeping enough cash, guarding your keys: the money side of remote work, district by district.",
+        "caseLabel": "At Selma’s · an invented example",
+        "search": "Earning from far away · Lantern Bookshop | Numidea Labs",
+        "desc": "Getting paid from abroad, comparing fees, setting your rate, keeping cash in hand and guarding your keys: a free atlas, not financial advice.",
+        "conclusion": "Selma knows which way the money comes, what it costs her, what to charge and how much to keep aside.",
+        "act": {
+          "a1": "Act I · Getting paid",
+          "a2": "Act II · Keeping the books"
+        },
+        "actShort": {
+          "a1": "Act I",
+          "a2": "Act II"
+        },
+        "plate": {
+          "a1": "A post-office arcade at dusk: a long wooden counter with sealed envelopes and string-tied parcels, a brass letter scale, empty pigeon lofts on the roof.",
+          "a2": "A counting room at night: a wooden desk with closed ledgers and an open notebook of blank lines, a small iron strongbox, a calendar of empty squares, a lit lantern and the towers through the window."
+        },
+        "toComptoir": "To talk it through one to one, the fixed-price services are at the Bookshop’s counter.",
+        "toComptoirGo": "Go to the counter",
+        "d": {
+          "pay": {
+            "name": "Route",
+            "lore": "Selma is an illustrator in Bordj Bou Arréridj; in the evenings she teaches the Lantern’s printmaking class. A publisher abroad wants to pay her for her illustrations. She does not yet know which way the money will travel.",
+            "rule": "Before the price, the route: which way the money comes in, and what that passage costs.",
+            "f": {
+              "0": "The rate matters, but it comes later. First the route: how your bank or the service receives the money, and at what cost.",
+              "1": "Yes. The route first, the price after.",
+              "2": "The invoice matters for a transfer, not its colour. Look at the route: the delay, the fees, and what your bank accepts."
+            },
+            "handoff": "The publisher is waiting for an answer: bank transfer, platform, marketplace or crypto?",
+            "decision": "The route first, the price second.",
+            "keep": "The “Route” stamp"
+          },
+          "bank": {
+            "name": "Exchange",
+            "lore": "To receive the publisher’s money, two services show her “0 fees”. Selma distrusts a zero that round.",
+            "rule": "A “0 fees” is checked in three places: the exchange, the transfer, the card and the withdrawal.",
+            "f": {
+              "0": "Yes. A rate worse than the market is a fee that does not say its name.",
+              "1": "The logo says nothing about the price. The cost hides in the exchange rate applied: compare it with the market rate on the same day.",
+              "2": "The follower count says nothing about what you pay. Look at the rate applied: its gap with the market is the real price."
+            },
+            "handoff": "The service chosen, what to charge per day is still open.",
+            "decision": "Compare the rate applied, not the poster.",
+            "keep": "The “Exchange” stamp"
+          },
+          "rate": {
+            "name": "Rate",
+            "lore": "The publisher asks for a day rate. Selma starts from the calculator’s figures before putting in her own.",
+            "rule": "A rate is worked out: what you want to keep, plus your costs, divided by the days actually billed.",
+            "f": {
+              "0": "Not all 22: some days go to prospecting, quotes, admin and time off. Divide by the days billed.",
+              "1": "Yes. Divide by the days billed, not the days worked.",
+              "2": "You cannot bill more days than you work. Fewer are left: prospecting, quotes and time off take their share."
+            },
+            "handoff": "The rate set, the publisher says he pays at 60 days.",
+            "decision": "Divide by the days billed, not the days worked.",
+            "keep": "The “Rate” stamp"
+          },
+          "treso": {
+            "name": "Cash",
+            "lore": "The publisher pays at 60 days. Selma checks how many months she can last if nothing comes in until then.",
+            "rule": "Cash in hand is the number of months you last if nothing comes in as planned.",
+            "f": {
+              "0": "He will pay, but in two months. Until then you have to last: the client’s delay becomes your cash need.",
+              "1": "Yes. The client’s payment delay becomes your need for cash.",
+              "2": "One more expense shortens your cash runway. Before saying yes, keep enough to last at least those two months."
+            },
+            "handoff": "The books in order, a message from “support” lands in her inbox.",
+            "decision": "The client’s delay becomes my cash need.",
+            "keep": "The “Cash” stamp"
+          },
+          "crypto": {
+            "name": "Keys",
+            "lore": "A message signed “support” arrives, looking official. It mentions the wallet Selma opened to have a look.",
+            "rule": "In crypto, what you own is the key: the recovery phrase is given to no one.",
+            "f": {
+              "0": "No genuine support ever asks for it. Whoever reads your recovery phrase takes everything: it is a scam.",
+              "1": "Yes. No support asks for it. Ever.",
+              "2": "Not whole, not in pieces: the phrase recreates your keys, and no support asks for it. Ever."
+            },
+            "handoff": "Selma keeps her phrase to herself, and her books in order.",
+            "decision": "My recovery phrase goes to no one.",
+            "keep": "The “Keys” stamp"
+          }
+        }
+      },
+      "route": {
+        "title1": "The road",
+        "title2": "book.",
+        "caseLabel": "Selma on the road · an invented example",
+        "search": "The road book · Lantern Bookshop | Numidea Labs",
+        "desc": "Finding clients, pricing, living with time zones, protecting your files and preparing to leave: a free atlas for working from anywhere.",
+        "conclusion": "Selma comes home with her books kept and a full passport.",
+        "act": {
+          "r1": "Act I · Finding and pricing",
+          "r2": "Act II · Working from elsewhere",
+          "r3": "Act III · Lasting the year"
+        },
+        "actShort": {
+          "r1": "Act I",
+          "r2": "Act II",
+          "r3": "Act III"
+        },
+        "plate": {
+          "r1": "A rooftop café terrace at dusk: a small table with an open notebook of blank pages, a phone and a glass of tea, string lights, the sea and white houses below.",
+          "r2": "A railway station hall at night: two round clocks without numerals showing different times, a bench, a luggage trolley with a backpack, a wall socket with its cable, tall arched windows.",
+          "r3": "A guesthouse room at dawn: an arched window onto the sea, a closed booklet and a plant on the ledge, a calendar of empty squares on the wall, a packed backpack by the door."
+        },
+        "toKit": "The Nomad kit and the fixed-price services are at the Bookshop’s counter.",
+        "d": {
+          "n1": {
+            "lore": "Selma leaves Bordj for a season and takes her work along. To pay for the road she needs three clients a month; she starts by writing to people.",
+            "rule": "Clients can be counted: the ones you want, divided by the share who reply, then by the share who sign.",
+            "f": {
+              "0": "Yes. One signature per 40 messages, so 120 messages for 3 clients. Or a better message, or a better offer: both rates can be worked on.",
+              "1": "Cutting prices does not make more people reply. Count: one signature per 40 messages, so 120 messages for 3 clients, or a better rate.",
+              "2": "Waiting does not fill the month. Clients answer messages: at this pace, 120 for 3 signatures, or a better message."
+            },
+            "handoff": "A first client replies: he wants a price.",
+            "decision": "One signature per 40 messages: aim for 120, or write better.",
+            "keep": "The “Clients” stamp"
+          },
+          "n2": {
+            "lore": "The first client wants a figure that will not move. Selma counts her days before she answers.",
+            "rule": "A project price: the day rate, times the days estimated, plus a margin for the unforeseen.",
+            "f": {
+              "0": "If the price was fixed and the scope unchanged, the overrun is not the client’s: that is what the margin is for.",
+              "1": "Yes, if the price was firm. It is the Studio’s rule: “if the work overruns, the difference is on us”. If the scope changes, that is a new quote.",
+              "2": "Splitting the overrun goes back on a fixed price. With the same scope, the margin pays for the unforeseen."
+            },
+            "handoff": "The price accepted, it still has to go in the quote.",
+            "decision": "The margin pays for the unforeseen; the fixed price does not move.",
+            "keep": "The “Price” stamp"
+          },
+          "n3": {
+            "lore": "Before starting, Selma writes her quote: what is included, and what is not.",
+            "rule": "A signed quote answers the awkward questions in advance: the scope, the deposit, the revisions, the ownership, the deadline.",
+            "f": {
+              "0": "Not that one: at the Studio, two rounds per stage are included. The third is priced separately.",
+              "1": "Yes. Two rounds per stage are included; further ones are quoted separately.",
+              "2": "It is not refused: the Studio’s quote prices it separately, beyond the two rounds included per stage."
+            },
+            "handoff": "The quote signed, the kick-off call has to fit a client six time zones further west.",
+            "decision": "Two rounds per stage, the rest priced apart: it is in the quote.",
+            "keep": "The “Quote” stamp"
+          },
+          "n4": {
+            "lore": "Selma is at UTC+1, her client at UTC−5. She looks for the hour where their two days meet.",
+            "rule": "Calls go in the hours the two days share; the rest is done in writing.",
+            "f": {
+              "0": "At 10:00 your time it is 4:00 for your client: his day has not begun. Look for the hours your two days share.",
+              "1": "Yes. 16:00 for you is 10:00 for your client: the hour falls inside both days.",
+              "2": "At 23:00 your time, your day is over. Put the call in the shared hours: 16:00 for you, 10:00 for him."
+            },
+            "handoff": "The call set, Selma takes the train again, the laptop and the drive in the same bag.",
+            "decision": "16:00 for me, 10:00 for him.",
+            "keep": "The “Zones” stamp"
+          },
+          "n5": {
+            "lore": "On the night train her whole office fits in one bag: the laptop, the backup drive, the cables.",
+            "rule": "Three copies, on two devices, one of them kept outside the bag.",
+            "f": {
+              "0": "A password guards access, not the files that left with the bag. What was missing was a copy kept elsewhere.",
+              "1": "Yes. That is the “1” in 3-2-1: one copy outside the bag, online or with someone you trust.",
+              "2": "A second laptop in the same bag would go with the first. What was missing was a copy outside the bag."
+            },
+            "handoff": "The copies safe, Selma has to log in at the airport.",
+            "decision": "Three copies, two devices, one elsewhere.",
+            "keep": "The “Bag” stamp"
+          },
+          "n6": {
+            "lore": "At the airport, Selma has to open her work email before boarding.",
+            "rule": "On the road your accounts are worth more than your kit: a network you control, two-step verification, one password per account.",
+            "f": {
+              "0": "ANSSI and the NCSC both advise avoiding networks you do not control. Go through your phone’s mobile network.",
+              "1": "Yes. The mobile network rather than a network you do not control: that is the NCSC’s advice, and ANSSI’s.",
+              "2": "A public computer is no more yours than public Wi-Fi. The safest is still your phone’s hotspot."
+            },
+            "handoff": "Landed, Selma adds up her week.",
+            "decision": "The phone’s network rather than public Wi-Fi.",
+            "keep": "The “Security” stamp"
+          },
+          "n7": {
+            "lore": "On the guesthouse terrace, Selma counts her days: five worked, but how many billed?",
+            "rule": "A year has 52 weeks, but you bill only part of them: count your billed days before promising yourself an income.",
+            "f": {
+              "0": "Not all five: prospecting, quotes, admin and learning take days too. At 60%, that makes 3 billed days.",
+              "1": "Yes. The other two days are real: prospecting, quotes, paperwork, learning. Your day rate is what pays for them.",
+              "2": "Fewer than five, but not that few: 60% of 5 days is 3 billed days."
+            },
+            "handoff": "The season ends; before the next trip, the days of stay are still to be counted.",
+            "decision": "My rate also pays for the days not billed.",
+            "keep": "The “Year” stamp"
+          },
+          "n8": {
+            "lore": "For the next season, Selma plans the Schengen area, with one day out in the middle.",
+            "rule": "Before the ticket, four files: the stay, taxes, health, the bank. The questions here, the answers from those who give them.",
+            "f": {
+              "0": "One day out erases nothing: you count 180 days back from each day of the stay.",
+              "1": "Yes. You count back 180 days from each day of your stay: leaving for a day erases nothing. The Commission’s calculator does the count for you.",
+              "2": "The counter does not pause: it looks at the 180 days before, on each day of the stay."
+            },
+            "handoff": "The book is full: Selma heads home to Bordj.",
+            "decision": "Count over 180 days, with the Commission’s calculator.",
+            "keep": "The “Leaving” stamp"
+          }
+        },
+        "toRate": "the “Rate” district of “Earning from far away”"
+      },
+      "jeu": {
+        "title1": "Fair",
+        "title2": "play.",
+        "caseLabel": "The Lantern’s card · an invented example",
+        "search": "Fair play · Lantern Bookshop | Numidea Labs",
+        "desc": "Gamification without the smoke: what it is, what research says, what it brings, when it harms, and this site’s own rules. A free atlas.",
+        "conclusion": "The Lantern has its card: eight boxes, a voice, a drawing at the end. Nothing forces it.",
+        "act": {
+          "j1": "Act I · Understanding",
+          "j2": "Act II · The mechanics",
+          "j3": "Act III · The price and the limit"
+        },
+        "actShort": {
+          "j1": "Act I",
+          "j2": "Act II",
+          "j3": "Act III"
+        },
+        "plate": {
+          "j1": "A small arcade at night: two game cabinets with dark screens under a striped awning, a shelf of soft toys, a checkerboard floor, warm lantern light.",
+          "j2": "A corner of the Bookshop’s stall: a cork board of cream loyalty cards, a rubber stamp and an inkpad, a small trophy cup, a sheet of star stickers, under the striped awning.",
+          "j3": "A reading room at night: one armchair under a lamp, a closed handheld console on a shelf among books, an abstract framed print on the wall, a doorway open onto the towers."
+        },
+        "d": {
+          "g1": {
+            "name": "Level 1",
+            "lore": "The Lantern’s bookseller wants the night-class students to come back. Before talking loyalty cards, she looks up what gamification means.",
+            "rule": "Gamification lends a game’s spring to an activity that stays the real thing.",
+            "f": {
+              "0": "A whole game is a game, not gamification: gamification borrows a game’s spring for an activity that is not one.",
+              "1": "Yes. The course is still a course; the bar lends it one of a game’s springs: seeing that you are moving forward.",
+              "2": "A mascot alone is decoration. If you take the game away and nothing useful remains, it was not gamification."
+            },
+            "handoff": "A loyalty card, then? Which need it would feed is still open.",
+            "decision": "The class stays a class; it borrows one spring from games."
+          },
+          "g2": {
+            "name": "Level 2",
+            "lore": "The card would show the sessions already attended. The bookseller wonders what that is for.",
+            "rule": "A good game feeds three needs: feeling capable, free, connected.",
+            "f": {
+              "0": "Yes: it shows the road already covered. It is competence made visible.",
+              "1": "Freedom is choosing your path and your pace. A progress bar mostly shows the way already done: that is competence.",
+              "2": "Connection is playing with others. A progress bar shows what you have already done: it feeds the need to feel capable."
+            },
+            "handoff": "The need found, the bookseller wants to know whether it really works.",
+            "decision": "The card shows the way done: it serves competence."
+          },
+          "g3": {
+            "name": "Level 3",
+            "lore": "Before paying the printer, the bookseller reads what the studies say.",
+            "rule": "Real, modest effects that depend on context: nothing more to promise.",
+            "f": {
+              "0": "The studies find small but real effects, not all equally solid, and dependent on context. No serious person promises “every time”.",
+              "1": "Yes: real, modest effects that depend on the context. Nobody serious promises more.",
+              "2": "The studies do find effects, small but real, when gamification is designed for its audience."
+            },
+            "handoff": "Cautious, she moves on to the mechanics, one by one.",
+            "decision": "Real, modest effects: promise nothing more."
+          },
+          "g4": {
+            "name": "Level 4",
+            "lore": "The printer offers two card designs for the same number of sessions. The bookseller hesitates.",
+            "rule": "You pick one or two mechanics for a purpose, not ten for decoration.",
+            "f": {
+              "0": "The same effort, but nothing has started. The ten-box card with two already stamped is finished more often: that is endowed progress.",
+              "1": "Yes. The same effort, but you have already started: that is the endowed progress effect.",
+              "2": "Nunes and Drèze found a difference: the card that starts at 2 of 10 is finished more often, and faster."
+            },
+            "handoff": "The card drawn, what it says about the Lantern remains.",
+            "decision": "A card that starts with two boxes stamped."
+          },
+          "g5": {
+            "name": "Level 5",
+            "lore": "A card is also a voice. The bookseller wonders what hers will say about the Lantern.",
+            "rule": "Play gives a brand a voice, a world and a reason to come back; it serves the message, it does not replace it.",
+            "f": {
+              "0": "This level is a practitioners’ reading: what a brand gains first is a character people recognise, not data.",
+              "1": "Yes. The rest may follow, but character is what brings people back.",
+              "2": "Clicks may follow, but what brings people back is character: a voice, a world, a ritual."
+            },
+            "handoff": "Before launching her card, the bookseller looks at real cases.",
+            "decision": "The Lantern keeps its voice: that is what brings people back."
+          },
+          "g6": {
+            "name": "Level 6",
+            "lore": "Someone quotes impressive figures to the bookseller. She asks where they come from.",
+            "rule": "Read where a figure comes from: a published study, a company, or a brand campaign.",
+            "f": {
+              "0": "Starbucks’s figure comes from the company itself: useful, to be read as such. The scientific paper is Foldit.",
+              "1": "Yes. The others are company or campaign figures: useful, and to be read as such.",
+              "2": "The speed camera lottery is a famous but fragile case, from a campaign. The scientific paper is Foldit."
+            },
+            "handoff": "The figures read, the bookseller looks for where it breaks.",
+            "decision": "Read where a figure comes from before believing it."
+          },
+          "g7": {
+            "name": "Level 7",
+            "lore": "The bookseller was thinking of promising a discount at the end of the card. First she checks what makes such projects fail.",
+            "rule": "Play can demotivate, push, trap: most failures come from the design.",
+            "f": {
+              "0": "Gartner does not say people dislike playing: it forecast failures mostly because of poor design.",
+              "1": "Yes. It is not the game that fails, it is the game badly thought out for its goal.",
+              "2": "Gartner does not point at the technology; it points at poor design."
+            },
+            "handoff": "The rules of her card are still to be written.",
+            "decision": "No pressure, no reward promised in advance."
+          },
+          "g8": {
+            "name": "Level 8",
+            "lore": "The bookseller writes her card’s rules by looking at how this site plays.",
+            "rule": "Nothing starts by itself, the price does not play, a drawing rather than a discount, nothing leaves here, no pressure.",
+            "f": {
+              "0": "No discount here: seven seals open a drawing. No reward is traded for a purchase.",
+              "1": "Yes. That is our rule: we reward with something to look at, never with pressure to buy.",
+              "2": "There is no account and no ranking: the seals stay in your browser, and they open a drawing."
+            },
+            "handoff": "The card is ready.",
+            "decision": "The Lantern’s card gives a print from the class, never a discount."
+          }
+        }
+      },
+      "web3": {
+        "title1": "Web3,",
+        "title2": "without the smoke.",
+        "pitch": "You were sold a chain; perhaps all you wanted was loyal customers. Eight steps to tell the tool from the result, and leave with a brief that can be priced. Sometimes a chain is the right tool; this course helps you tell when. This is education: no investment advice, no signals, no promise of gain.",
+        "search": "Web3, without the smoke · Lantern Bookshop | Numidea Labs",
+        "desc": "Eight districts to find out whether you need a blockchain before you pay: the words, the six-question tree, costs, scams, the law, a brief.",
+        "conclusion": "Samia keeps the ordinary route; your brief says which is yours.",
+        "act": {
+          "a1": "Act I · Sorting",
+          "a2": "Act II · The ordinary route",
+          "a3": "Act III · Staying safe"
+        },
+        "actShort": {
+          "a1": "Act I",
+          "a2": "Act II",
+          "a3": "Act III"
+        },
+        "plate": {
+          "a1": "A small women’s gym at closing time, empty: lockers, rolled mats, a reception counter with a board of stamped loyalty cards and, set apart at the end of the counter, a small glowing teal cube.",
+          "a2": "A records room: a card-index cabinet with an open drawer and, on the workbench beside it, a chain of small cream blocks linked by brass rings, the only thing glowing teal, among a ruler, a screwdriver and a stapler.",
+          "a3": "A narrow alley at night: a stall under a too-bright blank banner, a fishing hook hanging on a line above it, wisps of smoke; at the far end, a closed arched wooden gate under a brass lamp."
+        },
+        "d": {
+          "w1": {
+            "rule": "Signing means agreeing: you do not sign what you do not understand.",
+            "handoff": "Samia has written her idea without jargon; now: does she need a chain?",
+            "decision": "Do not sign until I know what it authorises.",
+            "keep": "The “undefined” box"
+          },
+          "w2": {
+            "rule": "If only one party writes to the register, a database is enough.",
+            "handoff": "No chain; now to say what she really wants.",
+            "decision": "One writer: a database.",
+            "keep": "The “undefined” box"
+          },
+          "w3": {
+            "rule": "Start from the result you want, then take the simplest route that gets there.",
+            "handoff": "The route is chosen; now to see what would go on a chain, and what stays with her.",
+            "decision": "Points in a database, not a token.",
+            "keep": "The “undefined” box"
+          },
+          "w8": {
+            "rule": "The hash says “sent”; only the receipt says whether it worked.",
+            "handoff": "Her members’ data stays in her database; now to count what is paid for afterwards.",
+            "decision": "Wait for the receipt, not just the hash.",
+            "keep": "The “undefined” box"
+          },
+          "w4": {
+            "rule": "A complete proposal also shows what is paid for after launch.",
+            "handoff": "The after-launch lines are noted; the supplier comes back by private message.",
+            "decision": "Ask for the after-launch lines, even without figures.",
+            "keep": "The “undefined” box"
+          },
+          "w5": {
+            "rule": "A completed transaction cannot be called back: urgency and a look-alike link are the signs.",
+            "handoff": "Samia did not click; the law is left, where her members are.",
+            "decision": "Do not click: a completed transaction does not come back.",
+            "keep": "The “undefined” box"
+          },
+          "w6": {
+            "rule": "The law that counts is the law where your users are: in Dubai, VARA.",
+            "handoff": "The law card is read; everything comes together on the brief.",
+            "decision": "For a token in Dubai: a VARA-licensed provider, or its consent.",
+            "keep": "The “undefined” box"
+          },
+          "w7": {
+            "rule": "The law first, the code second.",
+            "handoff": "Samia’s brief is ready to go, whenever she wants.",
+            "decision": "Have the law of the users’ countries checked before paying for development.",
+            "keep": "The “undefined” box"
+          }
+        },
+        "caseLabel": "At Samia’s gym · an invented example"
+      }
+    },
+    "stub": {
+      "title": "The manual is now the Lantern Bookshop | Numidea Labs",
+      "desc": "The Numidea Labs manual has moved: its courses are now the atlases of the Lantern Bookshop. You are being taken there.",
+      "t": "The manual has moved: its courses are now the atlases of the Lantern Bookshop.",
+      "go": "Enter the Bookshop"
     }
   }
 }

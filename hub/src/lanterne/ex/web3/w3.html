@@ -1,0 +1,122 @@
+<!-- cut from hub/src/manuel.html (« web3 », web3c stop w3, 2026-11-21, SPEC §4.3): the stop's reading and its fiche controls; the question is the atlas's situation (hub/src/lanterne/atlases/web3.json) -->
+<h4 class="st-ls__h" data-i18n="web3c.items.2.t"></h4>
+<p class="st-ls__d" data-i18n="web3c.items.2.d"></p>
+<div class="st-pick st-pick--req" data-pick data-bf="request">
+<p class="st-crs__fine st-pick__hint" data-pick-hint data-i18n="web3c.items.2.pickHint"></p>
+<div class="st-pick__bs">
+  <button type="button" class="st-pick__b" data-pick-b="0" aria-pressed="true" data-i18n="web3c.items.2.pick.0.k"></button>
+  <button type="button" class="st-pick__b" data-pick-b="1" aria-pressed="false" data-i18n="web3c.items.2.pick.1.k"></button>
+  <button type="button" class="st-pick__b" data-pick-b="2" aria-pressed="false" data-i18n="web3c.items.2.pick.2.k"></button>
+  <button type="button" class="st-pick__b" data-pick-b="3" aria-pressed="false" data-i18n="web3c.items.2.pick.3.k"></button>
+  <button type="button" class="st-pick__b" data-pick-b="4" aria-pressed="false" data-i18n="web3c.items.2.pick.4.k"></button>
+  <button type="button" class="st-pick__b" data-pick-b="5" aria-pressed="false" data-i18n="web3c.items.2.pick.5.k"></button>
+</div>
+<div class="st-crs__sub" data-show-if="request:0,1,2,4">
+  <p class="st-label" id="w-site-l" data-i18n="web3c.items.2.pick.2.site.l"></p>
+  <div class="st-chips" role="radiogroup" aria-labelledby="w-site-l" data-chips="one" data-bf="site">
+    <!-- [html-validate-disable-block prefer-native-element: a styled radiogroup (COURSE.md 3.3): role=radio, roving tabindex, the arrows] -->
+    <button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="0" data-v="0" disabled data-i18n="web3c.items.2.pick.2.site.k.0"></button>
+    <button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="1" disabled data-i18n="web3c.items.2.pick.2.site.k.1"></button>
+  </div>
+</div>
+<div class="st-pick__ps">
+  <div class="st-pick__p" data-pick-p="0">
+    <b class="st-pick__k" data-i18n="web3c.items.2.pick.0.k"></b>
+    <dl class="st-req">
+      <div><dt data-i18n="web3c.items.2.wantL"></dt><dd><p data-i18n="web3c.items.2.pick.0.want"></p></dd></div>
+      <div><dt data-i18n="web3c.items.2.routeL"></dt><dd data-i18n="web3c.items.2.pick.0.route"></dd></div>
+      <div><dt data-i18n="web3c.items.2.factL"></dt><dd data-i18n="web3c.items.2.pick.0.fact"></dd></div>
+      <div><dt data-i18n="web3c.items.2.addsL"></dt><dd data-i18n="web3c.items.2.pick.0.adds"></dd></div>
+    </dl>
+    <p class="st-label" id="w-resell-l" data-i18n="web3c.items.2.pick.0.resell.l"></p>
+    <div class="st-chips" role="radiogroup" aria-labelledby="w-resell-l" data-chips="one" data-bf="resell">
+      <!-- [html-validate-disable-block prefer-native-element: a styled radiogroup (COURSE.md 3.3): role=radio, roving tabindex, the arrows] -->
+      <button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="0" data-v="0" disabled data-i18n="web3c.items.2.pick.0.resell.k.0"></button>
+      <button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="1" disabled data-i18n="web3c.items.2.pick.0.resell.k.1"></button>
+      <button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="2" disabled data-i18n="web3c.items.2.pick.0.resell.k.2"></button>
+    </div>
+    <details class="st-crs__fold" data-chain-fold open><summary data-i18n="web3c.items.2.chainFold"></summary>
+    <p class="st-label" data-i18n="web3c.items.2.chainL"></p>
+    <p class="st-label st-label--sub" id="w-plan0-l" data-i18n="web3c.items.2.planL"></p>
+    <div class="st-chips st-chips--list" role="group" aria-labelledby="w-plan0-l" data-chips data-bf="plan0">
+      <button type="button" class="st-chip" data-v="0" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.0.chain.0"></button>
+      <button type="button" class="st-chip" data-v="1" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.0.chain.1"></button>
+      <button type="button" class="st-chip" data-v="2" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.0.chain.2"></button>
+      <button type="button" class="st-chip" data-v="3" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.0.chain.3"></button>
+      <button type="button" class="st-chip" data-v="4" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.0.chain.4"></button>
+    </div>
+    <p class="st-crs__fine" data-i18n="web3c.items.2.chainNote"></p>
+    </details>
+    <div class="st-crs__ours"><p><b data-i18n="web3c.items.2.oursL"></b> <span data-route-out="0">{{route.app}}</span></p></div>
+  </div>
+  <div class="st-pick__p" data-pick-p="1">
+    <b class="st-pick__k" data-i18n="web3c.items.2.pick.1.k"></b>
+    <dl class="st-req">
+      <div><dt data-i18n="web3c.items.2.wantL"></dt><dd><p data-i18n="web3c.items.2.pick.1.want"></p></dd></div>
+      <div><dt data-i18n="web3c.items.2.routeL"></dt><dd data-i18n="web3c.items.2.pick.1.route"></dd></div>
+      <div><dt data-i18n="web3c.items.2.factL"></dt><dd data-i18n="web3c.items.2.pick.1.fact"></dd></div>
+    </dl>
+    <details class="st-crs__fold" data-chain-fold open><summary data-i18n="web3c.items.2.chainFold"></summary>
+    <p class="st-label" data-i18n="web3c.items.2.chainL"></p>
+    <p class="st-label st-label--sub" id="w-plan1-l" data-i18n="web3c.items.2.planL"></p>
+    <div class="st-chips st-chips--list" role="group" aria-labelledby="w-plan1-l" data-chips data-bf="plan1">
+      <button type="button" class="st-chip" data-v="0" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.1.chain.0"></button>
+      <button type="button" class="st-chip" data-v="1" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.1.chain.1"></button>
+      <button type="button" class="st-chip" data-v="2" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.1.chain.2"></button>
+      <button type="button" class="st-chip" data-v="3" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.1.chain.3"></button>
+    </div>
+    <p class="st-crs__fine" data-i18n="web3c.items.2.chainNote"></p>
+    </details>
+    <div class="st-crs__ours"><p><b data-i18n="web3c.items.2.oursL"></b> <span data-route-out="1">{{route.app}}</span></p></div>
+  </div>
+  <div class="st-pick__p" data-pick-p="2">
+    <b class="st-pick__k" data-i18n="web3c.items.2.pick.2.k"></b>
+    <dl class="st-req">
+      <div><dt data-i18n="web3c.items.2.wantL"></dt><dd><p data-i18n="web3c.items.2.pick.2.want"></p><p data-i18n="web3c.items.2.pick.2.want2"></p></dd></div>
+      <div><dt data-i18n="web3c.items.2.routeL"></dt><dd data-i18n="web3c.items.2.pick.2.route"></dd></div>
+      <div><dt data-i18n="web3c.items.2.factL"></dt><dd><p class="st-mny__note" data-i18n="money.note2"></p><p data-i18n="web3c.items.2.pick.2.fact"></p><p data-i18n="web3c.items.2.pick.2.uae"></p><p class="st-crs__sub" data-show-if="where:0" data-i18n="web3c.items.2.pick.2.dzGo"></p></dd></div>
+    </dl>
+    <div class="st-crs__ours"><p><b data-i18n="web3c.items.2.oursL"></b> <span data-route-out="2">{{route.pay}}</span></p></div>
+  </div>
+  <div class="st-pick__p" data-pick-p="3">
+    <b class="st-pick__k" data-i18n="web3c.items.2.pick.3.k"></b>
+    <dl class="st-req">
+      <div><dt data-i18n="web3c.items.2.wantL"></dt><dd><p data-i18n="web3c.items.2.pick.3.want"></p></dd></div>
+      <div><dt data-i18n="web3c.items.2.routeL"></dt><dd data-i18n="web3c.items.2.pick.3.route"></dd></div>
+      <div><dt data-i18n="web3c.items.2.factL"></dt><dd data-i18n="web3c.items.2.pick.3.fact"></dd></div>
+    </dl>
+    <div class="st-crs__ours"><p><b data-i18n="web3c.items.2.oursL"></b> <span data-route-out="3">{{route.auto}}</span></p></div>
+  </div>
+  <div class="st-pick__p" data-pick-p="4">
+    <b class="st-pick__k" data-i18n="web3c.items.2.pick.4.k"></b>
+    <dl class="st-req">
+      <div><dt data-i18n="web3c.items.2.wantL"></dt><dd><p data-i18n="web3c.items.2.pick.4.want"></p></dd></div>
+      <div><dt data-i18n="web3c.items.2.routeL"></dt><dd data-i18n="web3c.items.2.pick.4.route"></dd></div>
+      <div><dt data-i18n="web3c.items.2.factL"></dt><dd data-i18n="web3c.items.2.pick.4.fact"></dd></div>
+    </dl>
+    <details class="st-crs__fold" data-chain-fold open><summary data-i18n="web3c.items.2.chainFold"></summary>
+    <p class="st-label" data-i18n="web3c.items.2.chainL"></p>
+    <p class="st-label st-label--sub" id="w-plan4-l" data-i18n="web3c.items.2.planL"></p>
+    <div class="st-chips st-chips--list" role="group" aria-labelledby="w-plan4-l" data-chips data-bf="plan4">
+      <button type="button" class="st-chip" data-v="0" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.4.chain.0"></button>
+      <button type="button" class="st-chip" data-v="1" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.4.chain.1"></button>
+      <button type="button" class="st-chip" data-v="2" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.4.chain.2"></button>
+      <button type="button" class="st-chip" data-v="3" aria-pressed="false" disabled data-i18n="web3c.items.2.pick.4.chain.3"></button>
+    </div>
+    <p class="st-crs__fine" data-i18n="web3c.items.2.chainNote"></p>
+    </details>
+    <div class="st-crs__ours"><p><b data-i18n="web3c.items.2.oursL"></b> <span data-route-out="4">{{route.app}}</span></p></div>
+  </div>
+  <div class="st-pick__p" data-pick-p="5">
+    <b class="st-pick__k" data-i18n="web3c.items.2.pick.5.k"></b>
+    <dl class="st-req">
+      <div><dt data-i18n="web3c.items.2.wantL"></dt><dd><p data-i18n="web3c.items.2.pick.5.want"></p></dd></div>
+      <div><dt data-i18n="web3c.items.2.routeL"></dt><dd data-i18n="web3c.items.2.pick.5.route"></dd></div>
+    </dl>
+    <div class="st-crs__ours"><p><b data-i18n="web3c.items.2.oursL"></b> <span data-route-out="5">{{route.none}}</span></p></div>
+  </div>
+</div>
+</div>
+<p class="st-crs__scope" data-i18n="web3c.items.2.scope.line"></p>
+<p class="st-jeu__refs"><span class="st-label" data-i18n="web3c.src.title"></span> <a href="#wsrc-jo48" dir="ltr">[1]</a> <a href="#wsrc-nist" dir="ltr">[2]</a> <a href="#wsrc-ftc" dir="ltr">[3]</a> <a href="#wsrc-esas-mica" dir="ltr">[4]</a> <a href="#wsrc-fbi" dir="ltr">[9]</a> <a href="#wsrc-vara" dir="ltr">[12]</a> <a href="#wsrc-eth-sec" dir="ltr">[17]</a> <a href="#wsrc-eth-nft" dir="ltr">[18]</a> <a href="#wsrc-eth-dao" dir="ltr">[19]</a></p>
+<p class="st-crs__to"><a href="#w7" data-lt-go="w7" data-i18n="fiche.toBrief"></a></p>

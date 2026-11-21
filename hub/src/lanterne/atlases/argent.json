@@ -1,0 +1,133 @@
+{
+  "_note": "« Gagner sa vie de loin » (SPEC §4.5): the money set, five districts in two acts. Structure and art slots only; copy is under lant.at.argent.* or names the course's existing keys (keys map). right = the right answer's index as the course authored it (data-ls-a=\"ok\"). Case: Selma, an invented example (L5). Keepsakes: the stops' own tab drawings. Leads: pay stands the standing pigeon (hub/img/studio/atelier/pigeon-stand.webp, by path), bank the flying one (SPEC §4.5, §5.1). Props: the owner's cut-out objects (the tab drawings are square opaque pictures and stay keepsakes). No set reward (L10).",
+  "slug": "argent",
+  "key": "argent",
+  "store": "numidea-lanterne-argent",
+  "app": true,
+  "accent": "#C98A2E",
+  "keys": {
+    "kicker": "money.ls.kicker",
+    "coverAlt": "money.sceneAlt"
+  },
+  "cover": {
+    "src": "img/studio/money/scene.webp",
+    "srcset": "img/studio/money/scene-640.webp 640w, img/studio/money/scene.webp 1200w"
+  },
+  "caseArt": "paper",
+  "acts": [
+    {
+      "id": "a1",
+      "plate": "argent-a1",
+      "districts": [
+        "pay",
+        "bank"
+      ]
+    },
+    {
+      "id": "a2",
+      "plate": "argent-a2",
+      "districts": [
+        "rate",
+        "treso",
+        "crypto"
+      ]
+    }
+  ],
+  "districts": {
+    "pay": {
+      "guide": "pigeon",
+      "lead": "pigeonStand",
+      "companion": "kuro",
+      "prop": "paper",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/money/ls-pay.webp",
+      "keys": {
+        "sub": "money.ls.items.0.t",
+        "q": "money.ls.items.0.q",
+        "a": "money.ls.items.0.a",
+        "scene": "money.ls.items.0.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "alt": "lant.at.argent.plate.a1"
+      }
+    },
+    "bank": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "raven",
+      "prop": "ring",
+      "right": 0,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/money/ls-bank.webp",
+      "keys": {
+        "sub": "money.ls.items.1.t",
+        "q": "money.ls.items.1.q",
+        "a": "money.ls.items.1.a",
+        "scene": "money.ls.items.1.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "alt": "lant.at.argent.plate.a1"
+      }
+    },
+    "rate": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "kuro",
+      "prop": "cup",
+      "right": 1,
+      "ex": "calc:rate",
+      "ask": "brief",
+      "keep": "img/studio/money/ls-rate.webp",
+      "keys": {
+        "sub": "money.ls.items.2.t",
+        "q": "money.ls.items.2.q",
+        "a": "money.ls.items.2.a",
+        "scene": "money.ls.items.2.t",
+        "ex.t": "lant.ui.ex.calc.t",
+        "ex.brief": "lant.ui.ex.calc.brief",
+        "alt": "lant.at.argent.plate.a2"
+      }
+    },
+    "treso": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "pigeon",
+      "prop": "ring",
+      "right": 1,
+      "ex": "calc:treso",
+      "ask": "brief",
+      "keep": "img/studio/money/ls-treso.webp",
+      "keys": {
+        "sub": "money.ls.items.3.t",
+        "q": "money.ls.items.3.q",
+        "a": "money.ls.items.3.a",
+        "scene": "money.ls.items.3.t",
+        "ex.t": "lant.ui.ex.calc.t",
+        "ex.brief": "lant.ui.ex.calc.brief",
+        "alt": "lant.at.argent.plate.a2"
+      }
+    },
+    "crypto": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "kuro",
+      "prop": "eyeflower",
+      "right": 1,
+      "ex": "pick",
+      "ask": "brief",
+      "keep": "img/studio/money/ls-crypto.webp",
+      "keys": {
+        "sub": "money.ls.items.4.t",
+        "q": "money.ls.items.4.q",
+        "a": "money.ls.items.4.a",
+        "scene": "money.ls.items.4.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "alt": "lant.at.argent.plate.a2"
+      }
+    }
+  }
+}

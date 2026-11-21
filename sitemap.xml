@@ -64,25 +64,151 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/"/>
   </url>
   <url>
-    <loc>https://www.numedialab.dev/hub/manuel.html</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/manuel.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/manuel.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/manuel.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/manuel.html"/>
+    <loc>https://www.numedialab.dev/hub/lanterne/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/"/>
   </url>
   <url>
-    <loc>https://www.numedialab.dev/hub/manuel.html?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/manuel.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/manuel.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/manuel.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/manuel.html"/>
+    <loc>https://www.numedialab.dev/hub/lanterne/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/"/>
   </url>
   <url>
-    <loc>https://www.numedialab.dev/hub/manuel.html?lang=ar</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/manuel.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/manuel.html?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/manuel.html?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/manuel.html"/>
+    <loc>https://www.numedialab.dev/hub/lanterne/?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/marque.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/marque.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/marque.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/marque.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/marque.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/marque.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/marque.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/marque.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/marque.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/marque.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/marque.html?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/marque.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/marque.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/marque.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/marque.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/web3.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/web3.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/web3.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/web3.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/web3.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/web3.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/web3.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/web3.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/web3.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/web3.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/web3.html?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/web3.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/web3.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/web3.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/web3.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/cours-du-soir.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/cours-du-soir.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/cours-du-soir.html?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/argent.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/argent.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/argent.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/argent.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/argent.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/argent.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/argent.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/argent.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/argent.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/argent.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/argent.html?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/argent.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/argent.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/argent.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/argent.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/route.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/route.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/route.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/route.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/route.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/route.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/route.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/route.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/route.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/route.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/route.html?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/route.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/route.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/route.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/route.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/jeu.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/jeu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/jeu.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/jeu.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/jeu.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/jeu.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/jeu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/jeu.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/jeu.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/jeu.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/jeu.html?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/jeu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/jeu.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/jeu.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/jeu.html"/>
   </url>
   <url>
     <loc>https://www.numedialab.dev/hub/monde.html</loc>

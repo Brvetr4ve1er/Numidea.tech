@@ -1,0 +1,1514 @@
+{
+  "fr": {
+    "carte": {
+      "k": "/ 05 · LA CARTE · {n} SERVICES",
+      "h": "Ce qu’on dessine, et combien.",
+      "lead": "Chaque service avec ce que vous recevez, le délai et le prix, en dinars, en euros et en dollars. Sous chaque prix, ce que le même travail coûte ailleurs, avec la source.",
+      "tabs": "Familles de services",
+      "g": {
+        "marque": {
+          "n": "Marque",
+          "line": "Le signe, puis les règles qui le tiennent debout."
+        },
+        "web": {
+          "n": "Web & écrans",
+          "line": "Dessiné écran par écran, prêt à coder."
+        },
+        "reseaux": {
+          "n": "Réseaux & motion",
+          "line": "Ce qui défile, ce qui bouge, ce qui part en pub."
+        },
+        "print": {
+          "n": "Print & objets",
+          "line": "Ce qu’on tient en main, ce qu’on colle, ce qu’on garde."
+        },
+        "pitch": {
+          "n": "Pitch & conseil",
+          "line": "Lire les chiffres, puis les montrer."
+        }
+      },
+      "est": "Chiffrer dans la console →",
+      "wa": "Demander sur WhatsApp ↗",
+      "work": "Voir le travail →",
+      "kuro": "Voir la fiche de Kūro →",
+      "tiersCap": "Formules et prix",
+      "leadSr": "(recommandé)",
+      "from": "dès",
+      "upTo": "jusqu’à {p}",
+      "month": "/ mois",
+      "perSlide": "/ slide",
+      "mid": "Appel conseil offert · paiement en 3 fois",
+      "lt": {
+        "w1": "{a} sem.",
+        "w": "{a}–{b} sem.",
+        "d": "{a}–{b} jours",
+        "ask": "un délai par demande, convenu au cadrage"
+      },
+      "credit": "Remboursé sur le développement s’il est commandé sous {d} jours.",
+      "also": "Aussi : {x}",
+      "ref": "source {n}",
+      "play": "▶ Voir l’ouverture",
+      "playSr": "Lire l’ouverture du Studio, 2,7 secondes, une fois (MP4, {kb} ko)",
+      "waMsg": "Bonjour Numidea, je voudrais : {s} ({p}).",
+      "see": "Voir les services ↓",
+      "seeEst": "Chiffrer dans la console ↓",
+      "form": {
+        "k": "/ FORMULES",
+        "h": "Deux formules, moins cher qu’à la carte.",
+        "alc": "À la carte",
+        "price": "La formule",
+        "cta": "Demander cette formule ↗",
+        "save": "{p} de moins qu’à la carte",
+        "marque": {
+          "name": "Lancement de marque",
+          "l": [
+            "Identité + charte",
+            "Kit réseaux sociaux",
+            "Pack papeterie"
+          ]
+        },
+        "produit": {
+          "name": "Lancement produit",
+          "l": [
+            "Logo Signature",
+            "Packaging · 3 références",
+            "Kit réseaux animé"
+          ]
+        }
+      },
+      "foot": "Pas sûr de ce qu’il vous faut ? Écrivez-nous : réponse le jour ouvré suivant.",
+      "footA": "Le contact →",
+      "src": {
+        "h": "Sources des prix « Ailleurs », relevées le 21 novembre 2026.",
+        "fx": "Conversions au taux de la Banque d’Algérie du 10 novembre 2026 : 1 € ≈ {e}, 1 $ ≈ {u}."
+      },
+      "elsewhere": "Ailleurs, {w}",
+      "blanche": {
+        "bar": "Hors carte",
+        "name": "Carte blanche",
+        "pr": "Pas dans la carte ? Décrivez-le, on vous répond avec un prix.",
+        "gets": [
+          "Signalétique",
+          "Menu de ramadan",
+          "Faire-part"
+        ],
+        "tag": "Votre idée",
+        "fig": "Sur demande",
+        "reply": "réponse le jour ouvré suivant",
+        "q": "Votre idée ici.",
+        "capK": "Sur demande",
+        "capW": "Ce qui n’est pas sur la carte",
+        "wa": "Bonjour Numidea, je voudrais : (votre idée)"
+      },
+      "build": {
+        "bar": "Le code",
+        "name": "On le construit aussi",
+        "pr": "La maquette validée, on code le site. Les prix sont ceux de la console.",
+        "t": [
+          "Site vitrine",
+          "Site sur mesure",
+          "Boutique en ligne"
+        ],
+        "tagL": "Dès · site vitrine",
+        "capK": "La console",
+        "capW": "Les prix du code",
+        "rcH": "CONSOLE · 印",
+        "rcF": "LE DÉTAIL DANS LA CONSOLE",
+        "alt": "Un reçu de la console : les prix de départ d’un site vitrine, d’un site sur mesure et d’une boutique"
+      },
+      "items": {
+        "logo": {
+          "name": "Logo",
+          "pr": "Un signe qu’on lit à 16 px comme sur une enseigne, en lettres latines et arabes.",
+          "gets": [
+            "2 ou 3 pistes, 2 ou 3 tours",
+            "Couleur, monochrome, favicon",
+            "SVG, PNG, PDF · droits cédés"
+          ],
+          "t": [
+            "Essentiel · 2 pistes",
+            "Signature · bilingue"
+          ],
+          "next": "Pour {p} de plus : l’identité (palette, typo, 2 supports) →",
+          "cap": {
+            "k": "Client",
+            "w": "Bordj Steel"
+          },
+          "alt": "Le logo de Bordj Steel sur une plaque, en icône d’appli et en favicon d’onglet",
+          "mk": "en France, un logo seul chez un freelance : {v}"
+        },
+        "identite": {
+          "name": "Identité visuelle",
+          "pr": "Logo, couleurs, typo, ton de voix : les règles qui tiennent la marque debout.",
+          "gets": [
+            "Logo et déclinaisons",
+            "Palette écran et print",
+            "1 ou 2 typographies, 2 supports"
+          ],
+          "t": [
+            "Identité · 2 supports",
+            "Complète · 5 supports",
+            "Identité + charte"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "AlmaFlowClim"
+          },
+          "alt": "Deux cartes de visite et la palette d’AlmaFlowClim",
+          "mk": "en France, une identité complète chez un freelance : {v}"
+        },
+        "charte": {
+          "name": "Charte & design system",
+          "pr": "Pour une marque qui a déjà son logo : le livre qui l’empêche de dériver.",
+          "gets": [
+            "Règles du logo, couleurs, typo, images",
+            "Composants réutilisables · PDF ou web"
+          ],
+          "t": [
+            "Charte & composants"
+          ],
+          "also": "set de 12 icônes SVG, {p}",
+          "cap": {
+            "k": "Client",
+            "w": "Alliance Travel"
+          },
+          "alt": "La page « Les couleurs » de la charte d’Alliance Travel",
+          "mk": "en France, une charte graphique chez un freelance : {v}"
+        },
+        "mascotte": {
+          "name": "Mascotte & illustration",
+          "pr": "Un personnage qui porte votre marque là où un logo ne va pas : stickers, emballage, page 404.",
+          "gets": [
+            "Fiche personnage : face, profil, dos",
+            "3 expressions · droits commerciaux"
+          ],
+          "t": [
+            "Illustration ponctuelle",
+            "Mascotte"
+          ],
+          "cap": {
+            "k": "Maison",
+            "w": "la bible des personnages"
+          },
+          "alt": "La fiche de Yasser, le personnage de l’atelier : quatre poses en pied, et Kūro le chat",
+          "mk": "aux États-Unis, un personnage chez un freelance : {v}"
+        },
+        "landing": {
+          "name": "Landing page",
+          "pr": "Une page qui vend une seule chose, dessinée pour le bureau et le téléphone.",
+          "gets": [
+            "1 page, bureau + mobile, 2 tours",
+            "Fichier Figma, prêt pour le développeur"
+          ],
+          "t": [
+            "Landing · 1 page",
+            "Écran en plus"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "Alliance Travel"
+          },
+          "alt": "La page d’accueil d’Alliance Travel sur un ordinateur et un téléphone",
+          "mk": "aux États-Unis, une landing simple : {v}"
+        },
+        "ui": {
+          "name": "Site · 5 écrans",
+          "pr": "Votre site dessiné page par page et cliquable, avant de payer une ligne de code.",
+          "gets": [
+            "5 écrans, bureau + mobile",
+            "Prototype cliquable, mini guide de style"
+          ],
+          "t": [
+            "Site · 5 écrans",
+            "Écran en plus"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "Bordj Steel"
+          },
+          "alt": "Trois pages du site de Bordj Steel et sa version mobile",
+          "mk": "aux États-Unis, le design d’un petit site de 5 à 8 pages : {v}"
+        },
+        "app": {
+          "name": "App & tableau de bord",
+          "pr": "Les écrans de votre appli, avec les états vides, de chargement et d’erreur que le développeur ne devra pas inventer.",
+          "gets": [
+            "10 écrans + leurs états",
+            "Prototype cliquable, composants Figma"
+          ],
+          "t": [
+            "App · 10 écrans",
+            "Écran en plus"
+          ],
+          "cap": {
+            "k": "Projet de l’atelier",
+            "w": "WorkspaceHQ"
+          },
+          "alt": "Le tableau de bord de WorkspaceHQ sur un ordinateur et un téléphone",
+          "mk": "aux États-Unis, une app MVP de 10 à 20 écrans : {v}"
+        },
+        "social": {
+          "name": "Kit réseaux sociaux",
+          "pr": "Des modèles que vous remplissez vous-même : chaque post à votre image, même un jour de rush.",
+          "gets": [
+            "9 modèles : post, carrousel, story",
+            "Figma et Canva, styles FR/AR"
+          ],
+          "t": [
+            "Kit · 9 modèles",
+            "Kit animé · + 3 animés",
+            "Visuels du mois · 12 posts"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "Bordj Steel"
+          },
+          "alt": "Les publications de Bordj Steel en grille de profil et en story",
+          "mk": "en France, un kit animé de 5 modèles : {v} HT"
+        },
+        "ads": {
+          "name": "Créas publicitaires",
+          "pr": "Une idée, tous les formats, prêtes à publier et à tester.",
+          "gets": [
+            "1 concept, texte FR/AR",
+            "Formats 4:5, 1:1 et 9:16 · variantes"
+          ],
+          "t": [
+            "Jeu de pubs · 3 formats",
+            "Concept en plus"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "Alliance Travel"
+          },
+          "alt": "La campagne Azerbaïdjan d’Alliance Travel en trois formats, en français et en arabe",
+          "mk": "aux États-Unis, un jeu de pubs chez un freelance : {v}"
+        },
+        "motion": {
+          "name": "Motion design",
+          "pr": "Votre logo prend vie en cinq secondes ; une vidéo se chiffre à la seconde. Rien ne tourne en boucle.",
+          "gets": [
+            "3 formats : 16:9, 1:1, 9:16",
+            "MP4 et version transparente"
+          ],
+          "t": [
+            "Logo animé · 5 s",
+            "Vidéo animée · 30 s",
+            "Animations du site"
+          ],
+          "cap": {
+            "k": "Maison",
+            "w": "l’ouverture du Studio"
+          },
+          "proof": "Le rythme, expliqué →",
+          "alt": "L’ouverture animée du Studio, image d’attente",
+          "mk": "en France, un logo animé de 3 à 5 s : {v} HT"
+        },
+        "email": {
+          "name": "Modèle d’e-mail",
+          "pr": "Une mise en page d’e-mail qui s’affiche bien partout et se réutilise chaque semaine.",
+          "gets": [
+            "Modèle responsive, codé et testé",
+            "Installé dans votre outil d’envoi"
+          ],
+          "t": [
+            "Modèle maître",
+            "Mise en page en plus"
+          ],
+          "cap": {
+            "k": "Exemple",
+            "w": "aux couleurs de Numidea"
+          },
+          "alt": "Exemple : une lettre d’information aux couleurs de Numidea Labs, sur ordinateur et sur téléphone",
+          "mk": "sur Dribbble, un modèle d’e-mail sur mesure (un freelance) : {v}"
+        },
+        "pack": {
+          "name": "Packaging & étiquettes",
+          "pr": "Une étiquette qui vend en rayon et s’imprime juste du premier coup.",
+          "gets": [
+            "Sur le gabarit de votre imprimeur",
+            "Mentions obligatoires FR/AR, 2 tours"
+          ],
+          "t": [
+            "1 référence",
+            "Gamme · 3 références",
+            "Référence en plus"
+          ],
+          "note": "Impression non comprise.",
+          "cap": {
+            "k": "Exemple",
+            "w": "gabarit d’étiquette"
+          },
+          "alt": "Exemple : une étiquette d’huile d’olive sur son gabarit d’imprimeur, mentions en français et en arabe",
+          "mk": "en Algérie, un packaging produit en agence : {v}"
+        },
+        "papeterie": {
+          "name": "Print & papeterie",
+          "pr": "Cartes, flyers, menus : ce qu’on vous tend et qu’on garde.",
+          "gets": [
+            "Fichiers prêts pour votre imprimeur",
+            "En français et en arabe"
+          ],
+          "t": [
+            "Carte de visite",
+            "Flyer ou affiche",
+            "Pack papeterie"
+          ],
+          "also": "menu ≤ 4 p. {p} · plaquette 4 p. {q}",
+          "cap": {
+            "k": "Client",
+            "w": "Alliance Travel"
+          },
+          "alt": "Deux affiches d’Alliance Travel : Charm el-Cheikh et Istanbul",
+          "mk": "en France, un flyer ou une affiche chez un freelance : {v}"
+        },
+        "stick": {
+          "name": "Stickers & merch",
+          "pr": "Des visuels qu’on a vraiment envie de coller sur son ordinateur.",
+          "gets": [
+            "Fichiers de découpe prêts",
+            "Un fichier par méthode d’impression"
+          ],
+          "t": [
+            "Planche de 6 stickers",
+            "Design t-shirt ou tote"
+          ],
+          "cap": {
+            "k": "Maison",
+            "w": "Kūro"
+          },
+          "alt": "Une planche de six stickers de Kūro",
+          "mk": "aux États-Unis, un design de t-shirt chez un freelance : {v}"
+        },
+        "deck": {
+          "name": "Pitch deck",
+          "pr": "Vos chiffres et votre histoire, mis en page pour qu’un investisseur comprenne en trois minutes.",
+          "gets": [
+            "Structure, design et graphiques, 2 tours",
+            "Le récit reste le vôtre"
+          ],
+          "t": [
+            "Refonte",
+            "Deck · 12 slides",
+            "Deck + modèle maître"
+          ],
+          "cap": {
+            "k": "Exemple",
+            "w": "aux couleurs de Numidea"
+          },
+          "alt": "Exemple : une slide de Numidea Labs avec ses prix de départ en graphique",
+          "mk": "aux États-Unis, un deck sur mesure de 15 à 20 slides : {v}"
+        },
+        "info": {
+          "name": "Infographie",
+          "pr": "Vos chiffres transformés en une image qu’on lit et qu’on partage.",
+          "gets": [
+            "Graphiques redessinés, icônes",
+            "Versions web et print, fichier source"
+          ],
+          "t": [
+            "Une infographie"
+          ],
+          "cap": {
+            "k": "Exemple",
+            "w": "aux couleurs de Numidea"
+          },
+          "alt": "Exemple : le prix d’une identité visuelle sur trois marchés, en infographie",
+          "mk": "aux États-Unis, une infographie à l’unité, prix d’entrée : {v}"
+        },
+        "audit": {
+          "name": "Audit UX & conversion",
+          "pr": "Où vos visiteurs partent, pourquoi, et les trois corrections qui rapportent d’abord.",
+          "gets": [
+            "Rapport priorisé, appel de 60 min",
+            "Parcours : maquettes des 3 corrections"
+          ],
+          "t": [
+            "Audit express · 10 écrans",
+            "Audit parcours"
+          ],
+          "cap": {
+            "k": "Projet de l’atelier",
+            "w": "Glaive"
+          },
+          "alt": "Trois points numérotés sur la boutique Glaive, et un rapport",
+          "mk": "aux États-Unis, l’audit d’un parcours : {v}"
+        },
+        "mois": {
+          "name": "L’atelier au mois",
+          "pr": "Un designer sous la main : une demande à la fois, autant que le mois en contient.",
+          "gets": [
+            "Une demande active à la fois, retouches comprises",
+            "Arrêt possible chaque mois"
+          ],
+          "t": [
+            "Au mois",
+            "Trimestre · 3 mois"
+          ],
+          "save": "Trimestre : {p} de moins · appel conseil offert · paiement en 3 fois",
+          "cap": {
+            "k": "Exemple",
+            "w": "aux couleurs de Numidea"
+          },
+          "alt": "Exemple : un mois d’atelier, une demande par semaine",
+          "mk": "en France, un abonnement design : dès {v} / mois"
+        }
+      },
+      "mock": {
+        "px48": "48 px",
+        "px16": "16 px",
+        "fromLogo": "prélevée sur le logo",
+        "page": "PAGE 10 / 21",
+        "sheet": "FICHE PERSONNAGE · YASSER",
+        "poses": "4 POSES",
+        "fr": "4:5 · FR",
+        "arf": "4:5 · ع",
+        "mailT": "La carte est en ligne",
+        "mailP": "Chaque service avec son prix et son délai, en dinars, en euros et en dollars.",
+        "mailB": "Voir la carte",
+        "inbox": "Reçus",
+        "cut": "COUPE - - -",
+        "bleed": "FOND PERDU 3 mm",
+        "tpl": "GABARIT · EXEMPLE · 280 × 170 mm",
+        "sldK": "PRIX DE DÉPART · EN DA",
+        "sldH": "Un site, dès {p}.",
+        "sldS": "Source : la console",
+        "bars": [
+          "Vitrine",
+          "Sur mesure",
+          "Boutique",
+          "App"
+        ],
+        "igH": "IDENTITÉ VISUELLE · 3 MARCHÉS",
+        "igF": "ÉCHELLE LOG.",
+        "dz": "DZ",
+        "frk": "FR",
+        "us": "US",
+        "report": "RAPPORT",
+        "calH": "UN MOIS D’ATELIER",
+        "calEx": "EXEMPLE",
+        "calF": "UNE DEMANDE À LA FOIS · LIVRÉE, PUIS LA SUIVANTE",
+        "wk": [
+          "SEM. 1",
+          "SEM. 2",
+          "SEM. 3",
+          "SEM. 4"
+        ],
+        "wkW": [
+          "Post",
+          "Flyer",
+          "Bannière",
+          "Menu"
+        ]
+      }
+    }
+  },
+  "en": {
+    "carte": {
+      "k": "/ 05 · THE MENU · {n} SERVICES",
+      "h": "What we design, and what it costs.",
+      "lead": "Every service with what you get, how long it takes and what it costs, in dinars, euros and dollars. Under each price, what the same work costs elsewhere, with the source.",
+      "tabs": "Service families",
+      "g": {
+        "marque": {
+          "n": "Brand",
+          "line": "The sign, then the rules that keep it standing."
+        },
+        "web": {
+          "n": "Web & screens",
+          "line": "Drawn screen by screen, ready to code."
+        },
+        "reseaux": {
+          "n": "Social & motion",
+          "line": "What scrolls by, what moves, what runs as an ad."
+        },
+        "print": {
+          "n": "Print & objects",
+          "line": "What you hold, what you stick on, what you keep."
+        },
+        "pitch": {
+          "n": "Pitch & advice",
+          "line": "Read the numbers, then show them."
+        }
+      },
+      "est": "Price it in the console →",
+      "wa": "Ask on WhatsApp ↗",
+      "work": "See the work →",
+      "kuro": "See Kūro’s sheet →",
+      "tiersCap": "Options and prices",
+      "leadSr": "(recommended)",
+      "from": "from",
+      "upTo": "up to {p}",
+      "month": "/ month",
+      "perSlide": "/ slide",
+      "mid": "Free advice call · pay in 3 parts",
+      "lt": {
+        "w1": "{a} week",
+        "w": "{a}–{b} weeks",
+        "d": "{a}–{b} days",
+        "ask": "a lead time per request, agreed when we scope it"
+      },
+      "credit": "Refunded on the build if you order it within {d} days.",
+      "also": "Also: {x}",
+      "ref": "source {n}",
+      "play": "▶ Watch the opening",
+      "playSr": "Play the Studio’s opening, 2.7 seconds, once (MP4, {kb} kB)",
+      "waMsg": "Hello Numidea, I would like: {s} ({p}).",
+      "see": "See the services ↓",
+      "seeEst": "Price it in the console ↓",
+      "form": {
+        "k": "/ BUNDLES",
+        "h": "Two bundles, cheaper than à la carte.",
+        "alc": "À la carte",
+        "price": "The bundle",
+        "cta": "Ask for this bundle ↗",
+        "save": "{p} less than à la carte",
+        "marque": {
+          "name": "Brand launch",
+          "l": [
+            "Identity + guidelines",
+            "Social media kit",
+            "Stationery pack"
+          ]
+        },
+        "produit": {
+          "name": "Product launch",
+          "l": [
+            "Signature logo",
+            "Packaging · 3 products",
+            "Animated social kit"
+          ]
+        }
+      },
+      "foot": "Not sure what you need? Write to us: we answer the next working day.",
+      "footA": "Contact →",
+      "src": {
+        "h": "Sources of the “Elsewhere” prices, read on 21 November 2026.",
+        "fx": "Conversions at the Bank of Algeria rate of 10 November 2026: €1 ≈ {e}, $1 ≈ {u}."
+      },
+      "elsewhere": "Elsewhere, {w}",
+      "blanche": {
+        "bar": "Off the menu",
+        "name": "Carte blanche",
+        "pr": "Not on the menu? Describe it, we answer with a price.",
+        "gets": [
+          "Signage",
+          "A Ramadan menu",
+          "Announcement cards"
+        ],
+        "tag": "Your idea",
+        "fig": "On request",
+        "reply": "answer the next working day",
+        "q": "Your idea here.",
+        "capK": "On request",
+        "capW": "What is not on the menu",
+        "wa": "Hello Numidea, I would like: (your idea)"
+      },
+      "build": {
+        "bar": "The code",
+        "name": "We build it too",
+        "pr": "Once the mockup is approved, we code the site. The prices are the console’s.",
+        "t": [
+          "Showcase site",
+          "Custom site",
+          "Online shop"
+        ],
+        "tagL": "From · showcase site",
+        "capK": "The console",
+        "capW": "The prices of the code",
+        "rcH": "CONSOLE · 印",
+        "rcF": "THE DETAIL IS IN THE CONSOLE",
+        "alt": "A console receipt: the starting prices of a showcase site, a custom site and a shop"
+      },
+      "items": {
+        "logo": {
+          "name": "Logo",
+          "pr": "A mark that reads at 16 px and on a shop sign, in Latin and Arabic script.",
+          "gets": [
+            "2 or 3 directions, 2 or 3 rounds",
+            "Colour, one colour, favicon",
+            "SVG, PNG, PDF · rights assigned"
+          ],
+          "t": [
+            "Essential · 2 directions",
+            "Signature · bilingual"
+          ],
+          "next": "For {p} more: the identity (palette, type, 2 items) →",
+          "cap": {
+            "k": "Client",
+            "w": "Bordj Steel"
+          },
+          "alt": "Bordj Steel’s logo on a plate, as an app icon and as a browser-tab favicon",
+          "mk": "in France, a logo alone from a freelancer: {v}"
+        },
+        "identite": {
+          "name": "Visual identity",
+          "pr": "Logo, colours, type, tone of voice: the rules that keep the brand standing.",
+          "gets": [
+            "Logo and its variants",
+            "Screen and print palette",
+            "1 or 2 typefaces, 2 items"
+          ],
+          "t": [
+            "Identity · 2 items",
+            "Complete · 5 items",
+            "Identity + guidelines"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "AlmaFlowClim"
+          },
+          "alt": "Two business cards and AlmaFlowClim’s palette",
+          "mk": "in France, a complete identity from a freelancer: {v}"
+        },
+        "charte": {
+          "name": "Guidelines & design system",
+          "pr": "For a brand that already has its logo: the book that keeps it from drifting.",
+          "gets": [
+            "Logo rules, colours, type, pictures",
+            "Reusable components · PDF or web"
+          ],
+          "t": [
+            "Guidelines & components"
+          ],
+          "also": "a set of 12 SVG icons, {p}",
+          "cap": {
+            "k": "Client",
+            "w": "Alliance Travel"
+          },
+          "alt": "The “Colours” page of Alliance Travel’s brand guidelines",
+          "mk": "in France, brand guidelines from a freelancer: {v}"
+        },
+        "mascotte": {
+          "name": "Mascot & illustration",
+          "pr": "A character who carries your brand where a logo cannot go: stickers, packaging, a 404 page.",
+          "gets": [
+            "Character sheet: front, side, back",
+            "3 expressions · commercial rights"
+          ],
+          "t": [
+            "One-off illustration",
+            "Mascot"
+          ],
+          "cap": {
+            "k": "In-house",
+            "w": "the character bible"
+          },
+          "alt": "The sheet of Yasser, the workshop’s character: four full-length poses, and Kūro the cat",
+          "mk": "in the United States, a character from a freelancer: {v}"
+        },
+        "landing": {
+          "name": "Landing page",
+          "pr": "One page that sells one thing, designed for desktop and phone.",
+          "gets": [
+            "1 page, desktop + mobile, 2 rounds",
+            "A Figma file, ready for the developer"
+          ],
+          "t": [
+            "Landing · 1 page",
+            "Extra screen"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "Alliance Travel"
+          },
+          "alt": "Alliance Travel’s home page on a laptop and a phone",
+          "mk": "in the United States, a simple landing page: {v}"
+        },
+        "ui": {
+          "name": "Site · 5 screens",
+          "pr": "Your site drawn page by page and clickable, before you pay for a line of code.",
+          "gets": [
+            "5 screens, desktop + mobile",
+            "Clickable prototype, short style guide"
+          ],
+          "t": [
+            "Site · 5 screens",
+            "Extra screen"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "Bordj Steel"
+          },
+          "alt": "Three pages of Bordj Steel’s site and its mobile version",
+          "mk": "in the United States, the design of a small site of 5 to 8 pages: {v}"
+        },
+        "app": {
+          "name": "App & dashboard",
+          "pr": "Your app’s screens, with the empty, loading and error states the developer will not have to invent.",
+          "gets": [
+            "10 screens + their states",
+            "Clickable prototype, Figma components"
+          ],
+          "t": [
+            "App · 10 screens",
+            "Extra screen"
+          ],
+          "cap": {
+            "k": "The workshop’s project",
+            "w": "WorkspaceHQ"
+          },
+          "alt": "WorkspaceHQ’s dashboard on a laptop and a phone",
+          "mk": "in the United States, an MVP app of 10 to 20 screens: {v}"
+        },
+        "social": {
+          "name": "Social media kit",
+          "pr": "Templates you fill in yourself: every post in your image, even on a rush day.",
+          "gets": [
+            "9 templates: post, carousel, story",
+            "Figma and Canva, FR/AR styles"
+          ],
+          "t": [
+            "Kit · 9 templates",
+            "Animated kit · + 3 animated",
+            "Visuals of the month · 12 posts"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "Bordj Steel"
+          },
+          "alt": "Bordj Steel’s posts as a profile grid and as a story",
+          "mk": "in France, an animated kit of 5 templates: {v} before tax"
+        },
+        "ads": {
+          "name": "Ad creatives",
+          "pr": "One idea, every format, ready to publish and to test.",
+          "gets": [
+            "1 concept, FR/AR copy",
+            "4:5, 1:1 and 9:16 formats · variants"
+          ],
+          "t": [
+            "Ad set · 3 formats",
+            "Extra concept"
+          ],
+          "cap": {
+            "k": "Client",
+            "w": "Alliance Travel"
+          },
+          "alt": "Alliance Travel’s Azerbaijan campaign in three formats, in French and in Arabic",
+          "mk": "in the United States, an ad set from a freelancer: {v}"
+        },
+        "motion": {
+          "name": "Motion design",
+          "pr": "Your logo comes alive in five seconds; a video is priced by the second. Nothing loops.",
+          "gets": [
+            "3 formats: 16:9, 1:1, 9:16",
+            "MP4 and a transparent version"
+          ],
+          "t": [
+            "Animated logo · 5 s",
+            "Animated video · 30 s",
+            "The site’s animations"
+          ],
+          "cap": {
+            "k": "In-house",
+            "w": "the Studio’s opening"
+          },
+          "proof": "The rhythm, explained →",
+          "alt": "The Studio’s animated opening, its poster frame",
+          "mk": "in France, an animated logo of 3 to 5 s: {v} before tax"
+        },
+        "email": {
+          "name": "E-mail template",
+          "pr": "An e-mail layout that displays well everywhere and is reused every week.",
+          "gets": [
+            "Responsive template, coded and tested",
+            "Installed in your sending tool"
+          ],
+          "t": [
+            "Master template",
+            "Extra layout"
+          ],
+          "cap": {
+            "k": "Example",
+            "w": "in Numidea’s colours"
+          },
+          "alt": "Example: a newsletter in Numidea Labs’ colours, on a computer and on a phone",
+          "mk": "on Dribbble, a custom e-mail template (one freelancer): {v}"
+        },
+        "pack": {
+          "name": "Packaging & labels",
+          "pr": "A label that sells on the shelf and prints right the first time.",
+          "gets": [
+            "On your printer’s template",
+            "Mandatory FR/AR wording, 2 rounds"
+          ],
+          "t": [
+            "1 product",
+            "Range · 3 products",
+            "Extra product"
+          ],
+          "note": "Printing not included.",
+          "cap": {
+            "k": "Example",
+            "w": "a label template"
+          },
+          "alt": "Example: an olive-oil label on its printer’s template, wording in French and Arabic",
+          "mk": "in Algeria, a product packaging from an agency: {v}"
+        },
+        "papeterie": {
+          "name": "Print & stationery",
+          "pr": "Cards, flyers, menus: what people hand you and keep.",
+          "gets": [
+            "Files ready for your printer",
+            "In French and in Arabic"
+          ],
+          "t": [
+            "Business card",
+            "Flyer or poster",
+            "Stationery pack"
+          ],
+          "also": "menu ≤ 4 p. {p} · 4-page brochure {q}",
+          "cap": {
+            "k": "Client",
+            "w": "Alliance Travel"
+          },
+          "alt": "Two Alliance Travel posters: Sharm el-Sheikh and Istanbul",
+          "mk": "in France, a flyer or a poster from a freelancer: {v}"
+        },
+        "stick": {
+          "name": "Stickers & merch",
+          "pr": "Pictures people actually want to stick on their laptop.",
+          "gets": [
+            "Cut files ready",
+            "One file per printing method"
+          ],
+          "t": [
+            "Sheet of 6 stickers",
+            "T-shirt or tote design"
+          ],
+          "cap": {
+            "k": "In-house",
+            "w": "Kūro"
+          },
+          "alt": "A sheet of six Kūro stickers",
+          "mk": "in the United States, a t-shirt design from a freelancer: {v}"
+        },
+        "deck": {
+          "name": "Pitch deck",
+          "pr": "Your numbers and your story, laid out so an investor understands in three minutes.",
+          "gets": [
+            "Structure, design and charts, 2 rounds",
+            "The story stays yours"
+          ],
+          "t": [
+            "Redesign",
+            "Deck · 12 slides",
+            "Deck + master template"
+          ],
+          "cap": {
+            "k": "Example",
+            "w": "in Numidea’s colours"
+          },
+          "alt": "Example: a Numidea Labs slide charting its starting prices",
+          "mk": "in the United States, a custom deck of 15 to 20 slides: {v}"
+        },
+        "info": {
+          "name": "Infographic",
+          "pr": "Your numbers turned into a picture people read and share.",
+          "gets": [
+            "Redrawn charts, icons",
+            "Web and print versions, source file"
+          ],
+          "t": [
+            "One infographic"
+          ],
+          "cap": {
+            "k": "Example",
+            "w": "in Numidea’s colours"
+          },
+          "alt": "Example: the price of a visual identity on three markets, as an infographic",
+          "mk": "in the United States, a single infographic, entry price: {v}"
+        },
+        "audit": {
+          "name": "UX & conversion audit",
+          "pr": "Where your visitors leave, why, and the three fixes that pay first.",
+          "gets": [
+            "Prioritised report, a 60-minute call",
+            "Journey: mockups of the 3 fixes"
+          ],
+          "t": [
+            "Express audit · 10 screens",
+            "Journey audit"
+          ],
+          "cap": {
+            "k": "The workshop’s project",
+            "w": "Glaive"
+          },
+          "alt": "Three numbered points on the Glaive shop, and a report",
+          "mk": "in the United States, the audit of one journey: {v}"
+        },
+        "mois": {
+          "name": "The workshop by the month",
+          "pr": "A designer at hand: one request at a time, as many as the month holds.",
+          "gets": [
+            "One active request at a time, changes included",
+            "You can stop any month"
+          ],
+          "t": [
+            "By the month",
+            "Quarter · 3 months"
+          ],
+          "save": "Quarter: {p} less · free advice call · pay in 3 parts",
+          "cap": {
+            "k": "Example",
+            "w": "in Numidea’s colours"
+          },
+          "alt": "Example: a month at the workshop, one request a week",
+          "mk": "in France, a design subscription: from {v} / month"
+        }
+      },
+      "mock": {
+        "px48": "48 px",
+        "px16": "16 px",
+        "fromLogo": "sampled from the logo",
+        "page": "PAGE 10 / 21",
+        "sheet": "CHARACTER SHEET · YASSER",
+        "poses": "4 POSES",
+        "fr": "4:5 · FR",
+        "arf": "4:5 · ع",
+        "mailT": "The menu is online",
+        "mailP": "Every service with its price and lead time, in dinars, euros and dollars.",
+        "mailB": "See the menu",
+        "inbox": "Inbox",
+        "cut": "CUT - - -",
+        "bleed": "BLEED 3 mm",
+        "tpl": "TEMPLATE · EXAMPLE · 280 × 170 mm",
+        "sldK": "STARTING PRICES · IN DZD",
+        "sldH": "A site, from {p}.",
+        "sldS": "Source: the console",
+        "bars": [
+          "Showcase",
+          "Custom",
+          "Shop",
+          "App"
+        ],
+        "igH": "VISUAL IDENTITY · 3 MARKETS",
+        "igF": "LOG SCALE",
+        "dz": "DZ",
+        "frk": "FR",
+        "us": "US",
+        "report": "REPORT",
+        "calH": "A MONTH AT THE WORKSHOP",
+        "calEx": "EXAMPLE",
+        "calF": "ONE REQUEST AT A TIME · DELIVERED, THEN THE NEXT",
+        "wk": [
+          "WEEK 1",
+          "WEEK 2",
+          "WEEK 3",
+          "WEEK 4"
+        ],
+        "wkW": [
+          "Post",
+          "Flyer",
+          "Banner",
+          "Menu"
+        ]
+      }
+    }
+  },
+  "ar": {
+    "carte": {
+      "k": "/ 05 · القائمة · {n} خدمة",
+      "h": "ما نصمّمه، وبكم.",
+      "lead": "كل خدمة مع ما تستلمه، والمدة، والسعر بالدينار واليورو والدولار. وتحت كل سعر ما يكلّفه العمل نفسه في أماكن أخرى، مع المصدر.",
+      "tabs": "عائلات الخدمات",
+      "g": {
+        "marque": {
+          "n": "العلامة",
+          "line": "العلامة أولًا، ثم القواعد التي تُبقيها قائمة."
+        },
+        "web": {
+          "n": "الويب والشاشات",
+          "line": "مرسومة شاشةً شاشة، جاهزة للبرمجة."
+        },
+        "reseaux": {
+          "n": "التواصل والحركة",
+          "line": "ما يمرّ في الشاشة، وما يتحرك، وما يصير إعلانًا."
+        },
+        "print": {
+          "n": "الطباعة والأشياء",
+          "line": "ما يُمسك باليد، وما يُلصق، وما يُحتفظ به."
+        },
+        "pitch": {
+          "n": "العرض والاستشارة",
+          "line": "نقرأ الأرقام، ثم نعرضها."
+        }
+      },
+      "est": "احسب السعر في الحاسبة ←",
+      "wa": "اطلب عبر واتساب ↗",
+      "work": "شاهد العمل ←",
+      "kuro": "شاهد بطاقة كورو ←",
+      "tiersCap": "الباقات والأسعار",
+      "leadSr": "(موصى بها)",
+      "from": "ابتداءً من",
+      "upTo": "حتى {p}",
+      "month": "/ شهريًا",
+      "perSlide": "لكل شريحة",
+      "mid": "مكالمة استشارة مجانية · الدفع على 3 دفعات",
+      "lt": {
+        "w1": "أسبوع واحد",
+        "w": "{a}–{b} أسابيع",
+        "d": "{a}–{b} أيام",
+        "ask": "مدة لكل طلب، نتّفق عليها عند التحديد"
+      },
+      "credit": "يُخصم من سعر البرمجة إذا طُلبت خلال {d} يومًا.",
+      "also": "أيضًا: {x}",
+      "ref": "المصدر {n}",
+      "play": "▶ شاهد الافتتاح",
+      "playSr": "شغّل افتتاح الاستوديو، 2.7 ثانية، مرة واحدة (MP4، {kb} ك.ب)",
+      "waMsg": "مرحبًا نوميديا، أريد: {s} ({p}).",
+      "see": "شاهد الخدمات ↓",
+      "seeEst": "احسب السعر في الحاسبة ↓",
+      "form": {
+        "k": "/ باقات",
+        "h": "باقتان، أرخص من الطلب منفردًا.",
+        "alc": "منفردة",
+        "price": "الباقة",
+        "cta": "اطلب هذه الباقة ↗",
+        "save": "أقل بـ {p} من الطلب منفردًا",
+        "marque": {
+          "name": "إطلاق علامة",
+          "l": [
+            "هوية + دليل",
+            "عُدّة مواقع التواصل",
+            "حزمة القرطاسية"
+          ]
+        },
+        "produit": {
+          "name": "إطلاق منتج",
+          "l": [
+            "شعار توقيع",
+            "تغليف · 3 مراجع",
+            "عُدّة تواصل متحركة"
+          ]
+        }
+      },
+      "foot": "لست متأكدًا مما تحتاجه؟ راسلنا: نردّ في يوم العمل التالي.",
+      "footA": "التواصل ←",
+      "src": {
+        "h": "مصادر أسعار «في السوق»، جُمعت في 21 نوفمبر 2026.",
+        "fx": "التحويل بسعر بنك الجزائر ليوم 10 نوفمبر 2026: 1 € ≈ {e}، 1 $ ≈ {u}."
+      },
+      "elsewhere": "في السوق، {w}",
+      "blanche": {
+        "bar": "خارج القائمة",
+        "name": "ورقة بيضاء",
+        "pr": "ليس في القائمة؟ صِفه لنا، ونردّ عليك بسعر.",
+        "gets": [
+          "لافتات",
+          "قائمة رمضان",
+          "بطاقات دعوة"
+        ],
+        "tag": "فكرتك",
+        "fig": "حسب الطلب",
+        "reply": "الردّ في يوم العمل التالي",
+        "q": "فكرتك هنا.",
+        "capK": "طلب خاص",
+        "capW": "ما ليس في القائمة",
+        "wa": "مرحبًا نوميديا، أريد: (فكرتك)"
+      },
+      "build": {
+        "bar": "البرمجة",
+        "name": "ونبنيه أيضًا",
+        "pr": "بعد اعتماد التصميم، نبرمج الموقع. الأسعار هي أسعار الحاسبة.",
+        "t": [
+          "موقع تعريفي",
+          "موقع مُفصّل",
+          "متجر إلكتروني"
+        ],
+        "tagL": "ابتداءً من · موقع تعريفي",
+        "capK": "الحاسبة",
+        "capW": "أسعار البرمجة",
+        "rcH": "الحاسبة · 印",
+        "rcF": "السعر كاملًا في الحاسبة",
+        "alt": "إيصال من الحاسبة: أسعار البداية لموقع تعريفي وموقع مُفصّل ومتجر"
+      },
+      "items": {
+        "logo": {
+          "name": "الشعار",
+          "pr": "علامة تُقرأ بحجم 16 بكسل كما تُقرأ على لافتة، بالحروف اللاتينية والعربية.",
+          "gets": [
+            "مقترحان أو ثلاثة، وجولتا مراجعة أو ثلاث",
+            "بالألوان، بلون واحد، وأيقونة للموقع",
+            "SVG وPNG وPDF · الحقوق لك"
+          ],
+          "t": [
+            "أساسي · مقترحان",
+            "توقيع · ثنائي اللغة"
+          ],
+          "next": "مقابل {p} إضافية: الهوية (ألوان، خطوط، حاملان) ←",
+          "cap": {
+            "k": "عميل",
+            "w": "Bordj Steel"
+          },
+          "alt": "شعار Bordj Steel على لوحة، وكأيقونة تطبيق، وكأيقونة في تبويب المتصفح",
+          "mk": "في فرنسا، شعار فقط لدى مستقل: {v}"
+        },
+        "identite": {
+          "name": "الهوية البصرية",
+          "pr": "الشعار والألوان والخط ونبرة الكلام: القواعد التي تُبقي العلامة قائمة.",
+          "gets": [
+            "الشعار وتنويعاته",
+            "ألوان للشاشة وللطباعة",
+            "خط أو خطان، وحاملان"
+          ],
+          "t": [
+            "هوية · حاملان",
+            "كاملة · 5 حوامل",
+            "هوية + دليل"
+          ],
+          "cap": {
+            "k": "عميل",
+            "w": "AlmaFlowClim"
+          },
+          "alt": "بطاقتا زيارة ولوحة ألوان AlmaFlowClim",
+          "mk": "في فرنسا، هوية كاملة لدى مستقل: {v}"
+        },
+        "charte": {
+          "name": "دليل الهوية ونظام التصميم",
+          "pr": "لعلامة لها شعارها: الدليل الذي يمنعها من الانحراف.",
+          "gets": [
+            "قواعد الشعار والألوان والخطوط والصور",
+            "مكوّنات قابلة لإعادة الاستعمال · PDF أو ويب"
+          ],
+          "t": [
+            "دليل ومكوّنات"
+          ],
+          "also": "12 أيقونة SVG، {p}",
+          "cap": {
+            "k": "عميل",
+            "w": "Alliance Travel"
+          },
+          "alt": "صفحة «الألوان» من دليل هوية Alliance Travel",
+          "mk": "في فرنسا، دليل هوية لدى مستقل: {v}"
+        },
+        "mascotte": {
+          "name": "شخصية ورسوم",
+          "pr": "شخصية تحمل علامتك حيث لا يصل الشعار: ملصقات، تغليف، صفحة 404.",
+          "gets": [
+            "بطاقة الشخصية: أمام، جانب، خلف",
+            "ثلاثة تعابير · حقوق تجارية"
+          ],
+          "t": [
+            "رسم منفرد",
+            "شخصية مميزة"
+          ],
+          "cap": {
+            "k": "من الورشة",
+            "w": "دليل الشخصيات"
+          },
+          "alt": "بطاقة ياسر، شخصية الورشة: أربع وقفات كاملة، والقط كورو",
+          "mk": "في الولايات المتحدة، شخصية لدى مستقل: {v}"
+        },
+        "landing": {
+          "name": "صفحة هبوط",
+          "pr": "صفحة تبيع شيئًا واحدًا، مصمّمة للحاسوب والهاتف.",
+          "gets": [
+            "صفحة واحدة، حاسوب + هاتف، جولتا مراجعة",
+            "ملف Figma جاهز للمطوّر"
+          ],
+          "t": [
+            "صفحة هبوط",
+            "شاشة إضافية"
+          ],
+          "cap": {
+            "k": "عميل",
+            "w": "Alliance Travel"
+          },
+          "alt": "الصفحة الرئيسية لـ Alliance Travel على حاسوب وهاتف",
+          "mk": "في الولايات المتحدة، صفحة هبوط بسيطة: {v}"
+        },
+        "ui": {
+          "name": "موقع · 5 شاشات",
+          "pr": "موقعك مرسومًا صفحةً صفحة وقابلًا للنقر، قبل أن تدفع ثمن سطر برمجة.",
+          "gets": [
+            "5 شاشات، حاسوب + هاتف",
+            "نموذج تفاعلي ودليل أسلوب مختصر"
+          ],
+          "t": [
+            "موقع · 5 شاشات",
+            "شاشة إضافية"
+          ],
+          "cap": {
+            "k": "عميل",
+            "w": "Bordj Steel"
+          },
+          "alt": "ثلاث صفحات من موقع Bordj Steel ونسخته للهاتف",
+          "mk": "في الولايات المتحدة، تصميم موقع صغير من 5 إلى 8 صفحات: {v}"
+        },
+        "app": {
+          "name": "تطبيق ولوحة تحكم",
+          "pr": "شاشات تطبيقك، مع حالات الفراغ والتحميل والخطأ التي لن يضطر المطوّر لاختراعها.",
+          "gets": [
+            "10 شاشات وحالاتها",
+            "نموذج تفاعلي ومكوّنات Figma"
+          ],
+          "t": [
+            "تطبيق · 10 شاشات",
+            "شاشة إضافية"
+          ],
+          "cap": {
+            "k": "مشروع الورشة",
+            "w": "WorkspaceHQ"
+          },
+          "alt": "لوحة تحكم WorkspaceHQ على حاسوب وهاتف",
+          "mk": "في الولايات المتحدة، تطبيق أولي من 10 إلى 20 شاشة: {v}"
+        },
+        "social": {
+          "name": "عُدّة مواقع التواصل",
+          "pr": "قوالب تملؤها بنفسك: كل منشور يشبهك، حتى في أيام الضغط.",
+          "gets": [
+            "9 قوالب: منشور، دوّار، قصة",
+            "Figma وCanva، بأنماط عربية وفرنسية"
+          ],
+          "t": [
+            "العُدّة · 9 قوالب",
+            "عُدّة متحركة · + 3",
+            "تصاميم الشهر · 12 منشورًا"
+          ],
+          "cap": {
+            "k": "عميل",
+            "w": "Bordj Steel"
+          },
+          "alt": "منشورات Bordj Steel في شبكة الحساب وفي قصة",
+          "mk": "في فرنسا، عُدّة متحركة من 5 قوالب: {v} دون رسوم"
+        },
+        "ads": {
+          "name": "تصاميم إعلانية",
+          "pr": "فكرة واحدة بكل المقاسات، جاهزة للنشر والاختبار.",
+          "gets": [
+            "فكرة واحدة، نص عربي وفرنسي",
+            "مقاسات 4:5 و1:1 و9:16 · نسخ بديلة"
+          ],
+          "t": [
+            "مجموعة إعلانات · 3 مقاسات",
+            "فكرة إضافية"
+          ],
+          "cap": {
+            "k": "عميل",
+            "w": "Alliance Travel"
+          },
+          "alt": "حملة أذربيجان لـ Alliance Travel بثلاثة مقاسات، بالفرنسية والعربية",
+          "mk": "في الولايات المتحدة، مجموعة إعلانات لدى مستقل: {v}"
+        },
+        "motion": {
+          "name": "موشن ديزاين",
+          "pr": "شعارك يتحرك في خمس ثوانٍ، والفيديو يُسعَّر بالثانية. لا شيء يدور بلا نهاية.",
+          "gets": [
+            "ثلاثة مقاسات: 16:9، 1:1، 9:16",
+            "MP4 ونسخة بخلفية شفافة"
+          ],
+          "t": [
+            "شعار متحرك · 5 ث",
+            "فيديو متحرك · 30 ث",
+            "حركة الموقع"
+          ],
+          "cap": {
+            "k": "من الورشة",
+            "w": "افتتاح الاستوديو"
+          },
+          "proof": "الإيقاع، مشروحًا ←",
+          "alt": "صورة افتتاح الاستوديو المتحرك",
+          "mk": "في فرنسا، شعار متحرك من 3 إلى 5 ث: {v} دون رسوم"
+        },
+        "email": {
+          "name": "قالب بريد إلكتروني",
+          "pr": "تصميم رسالة يظهر جيدًا في كل مكان، وتعيد استعماله كل أسبوع.",
+          "gets": [
+            "قالب متجاوب، مبرمج ومُختبَر",
+            "مُثبَّت في أداة الإرسال لديك"
+          ],
+          "t": [
+            "القالب الرئيسي",
+            "تخطيط إضافي"
+          ],
+          "cap": {
+            "k": "مثال",
+            "w": "بألوان نوميديا"
+          },
+          "alt": "مثال: نشرة بألوان نوميديا لابس على الحاسوب والهاتف",
+          "mk": "على Dribbble، قالب بريد مخصّص (مستقل واحد): {v}"
+        },
+        "pack": {
+          "name": "تغليف وملصقات",
+          "pr": "ملصق يبيع على الرف ويُطبع صحيحًا من أول مرة.",
+          "gets": [
+            "على قالب مطبعتك",
+            "البيانات الإلزامية بالعربية والفرنسية، جولتا مراجعة"
+          ],
+          "t": [
+            "مرجع واحد",
+            "تشكيلة · 3 مراجع",
+            "مرجع إضافي"
+          ],
+          "note": "الطباعة غير مشمولة.",
+          "cap": {
+            "k": "مثال",
+            "w": "قالب ملصق"
+          },
+          "alt": "مثال: ملصق زيت زيتون على قالب المطبعة، بالبيانات بالفرنسية والعربية",
+          "mk": "في الجزائر، تغليف منتج لدى وكالة: {v}"
+        },
+        "papeterie": {
+          "name": "مطبوعات وقرطاسية",
+          "pr": "بطاقات ومنشورات وقوائم: ما يُسلَّم باليد ويُحتفظ به.",
+          "gets": [
+            "ملفات جاهزة لمطبعتك",
+            "بالفرنسية والعربية"
+          ],
+          "t": [
+            "بطاقة زيارة",
+            "منشور أو ملصق",
+            "حزمة القرطاسية"
+          ],
+          "also": "قائمة ≤ 4 ص {p} · كتيّب 4 ص {q}",
+          "cap": {
+            "k": "عميل",
+            "w": "Alliance Travel"
+          },
+          "alt": "ملصقان لـ Alliance Travel: شرم الشيخ وإسطنبول",
+          "mk": "في فرنسا، منشور أو ملصق لدى مستقل: {v}"
+        },
+        "stick": {
+          "name": "ملصقات ومنتجات",
+          "pr": "رسومات يرغب الناس فعلًا في لصقها على حواسيبهم.",
+          "gets": [
+            "ملفات قصّ جاهزة",
+            "ملف لكل طريقة طباعة"
+          ],
+          "t": [
+            "لوحة من 6 ملصقات",
+            "تصميم قميص أو حقيبة"
+          ],
+          "cap": {
+            "k": "من الورشة",
+            "w": "كورو"
+          },
+          "alt": "لوحة من ستة ملصقات لكورو",
+          "mk": "في الولايات المتحدة، تصميم قميص لدى مستقل: {v}"
+        },
+        "deck": {
+          "name": "عرض المستثمرين",
+          "pr": "أرقامك وقصتك، منسّقة ليفهمها المستثمر في ثلاث دقائق.",
+          "gets": [
+            "الهيكل والتصميم والرسوم البيانية، جولتا مراجعة",
+            "القصة تبقى قصتك"
+          ],
+          "t": [
+            "إعادة تصميم",
+            "عرض · 12 شريحة",
+            "عرض + قالب رئيسي"
+          ],
+          "cap": {
+            "k": "مثال",
+            "w": "بألوان نوميديا"
+          },
+          "alt": "مثال: شريحة لنوميديا لابس بأسعار البداية في رسم بياني",
+          "mk": "في الولايات المتحدة، عرض مخصّص من 15 إلى 20 شريحة: {v}"
+        },
+        "info": {
+          "name": "إنفوغرافيك",
+          "pr": "أرقامك في صورة تُقرأ وتُشارَك.",
+          "gets": [
+            "رسوم بيانية وأيقونات معاد رسمها",
+            "نسخ للويب وللطباعة والملف المصدر"
+          ],
+          "t": [
+            "إنفوغرافيك واحد"
+          ],
+          "cap": {
+            "k": "مثال",
+            "w": "بألوان نوميديا"
+          },
+          "alt": "مثال: سعر الهوية البصرية في ثلاثة أسواق، في إنفوغرافيك",
+          "mk": "في الولايات المتحدة، إنفوغرافيك منفرد، سعر البداية: {v}"
+        },
+        "audit": {
+          "name": "تدقيق تجربة الاستخدام",
+          "pr": "أين يغادر زوّارك ولماذا، وأول ثلاثة تصحيحات تعود بالربح.",
+          "gets": [
+            "تقرير مرتّب حسب الأولوية، مكالمة 60 دقيقة",
+            "المسار: تصاميم التصحيحات الثلاثة"
+          ],
+          "t": [
+            "تدقيق سريع · 10 شاشات",
+            "تدقيق المسار"
+          ],
+          "cap": {
+            "k": "مشروع الورشة",
+            "w": "Glaive"
+          },
+          "alt": "ثلاث نقاط مرقّمة على متجر Glaive، وتقرير",
+          "mk": "في الولايات المتحدة، تدقيق مسار واحد: {v}"
+        },
+        "mois": {
+          "name": "الورشة بالشهر",
+          "pr": "مصمّم في متناولك: طلب واحد في كل مرة، بقدر ما يتّسع له الشهر.",
+          "gets": [
+            "طلب نشط واحد في كل مرة، التعديلات مشمولة",
+            "يمكنك التوقف كل شهر"
+          ],
+          "t": [
+            "شهريًا",
+            "ربع سنة · 3 أشهر"
+          ],
+          "save": "ربع السنة: أقل بـ {p} · مكالمة استشارة مجانية · الدفع على 3 دفعات",
+          "cap": {
+            "k": "مثال",
+            "w": "بألوان نوميديا"
+          },
+          "alt": "مثال: شهر في الورشة، طلب واحد كل أسبوع",
+          "mk": "في فرنسا، اشتراك تصميم: ابتداءً من {v} شهريًا"
+        }
+      },
+      "mock": {
+        "px48": "48 px",
+        "px16": "16 px",
+        "fromLogo": "من الشعار",
+        "page": "صفحة 10 من 21",
+        "sheet": "بطاقة الشخصية · ياسر",
+        "poses": "4 وقفات",
+        "fr": "4:5 · FR",
+        "arf": "4:5 · ع",
+        "mailT": "قائمة الخدمات صارت متاحة",
+        "mailP": "كل خدمة بسعرها ومدّتها، بالدينار واليورو والدولار.",
+        "mailB": "شاهد القائمة",
+        "inbox": "الوارد",
+        "cut": "خط القص - - -",
+        "bleed": "هامش 3 مم",
+        "tpl": "قالب · مثال · 280 × 170 مم",
+        "sldK": "أسعار البداية · بالدينار",
+        "sldH": "موقع، ابتداءً من {p}.",
+        "sldS": "المصدر: الحاسبة",
+        "bars": [
+          "تعريفي",
+          "مُفصّل",
+          "متجر",
+          "تطبيق"
+        ],
+        "igH": "هوية بصرية · 3 أسواق",
+        "igF": "سلّم لوغاريتمي",
+        "dz": "الجزائر",
+        "frk": "فرنسا",
+        "us": "أمريكا",
+        "report": "التقرير",
+        "calH": "شهر في الورشة",
+        "calEx": "مثال",
+        "calF": "طلب واحد في كل مرة · يُسلَّم ثم التالي",
+        "wk": [
+          "الأسبوع 1",
+          "الأسبوع 2",
+          "الأسبوع 3",
+          "الأسبوع 4"
+        ],
+        "wkW": [
+          "منشور",
+          "منشور ورقي",
+          "لافتة",
+          "قائمة"
+        ]
+      }
+    }
+  }
+}

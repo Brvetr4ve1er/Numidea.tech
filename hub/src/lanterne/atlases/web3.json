@@ -1,0 +1,263 @@
+{
+  "_note": "« Le web3, sans fumée. » vol. 1 · Le parcours acheteur (SPEC §4.3): eight districts in three acts, ending in the web3 fiche. Copy under lant.at.web3.* or the course's existing keys (f: the course's line per answer). course = the fiche's set (hub/app.js 13b). Volume 2 (the nine modules) is not published (L9): no district links into it. Case: Samia, an invented example. Ratman stands here (no plate paints a rat, L4). Keepsakes: ls-web3 (w1) and the stops' tab drawings. Reward: the wallpaper (_sac). money.note1/note2 under the hero (_hero).",
+  "slug": "web3",
+  "key": "web3",
+  "store": "numidea-lanterne-web3",
+  "app": true,
+  "course": "web3c",
+  "accent": "#236660",
+  "keys": {
+    "kicker": "web3c.kicker",
+    "coverAlt": "web3c.sceneAlt"
+  },
+  "cover": {
+    "src": "img/studio/web3c/scene.webp",
+    "srcset": "img/studio/web3c/scene-800.webp 800w, img/studio/web3c/scene.webp 1600w"
+  },
+  "caseArt": "img/studio/web3c/case-samia.webp",
+  "acts": [
+    {
+      "id": "a1",
+      "plate": "web3-a1",
+      "districts": [
+        "w1",
+        "w2"
+      ]
+    },
+    {
+      "id": "a2",
+      "plate": "web3-a2",
+      "districts": [
+        "w3",
+        "w8",
+        "w4"
+      ]
+    },
+    {
+      "id": "a3",
+      "plate": "web3-a3",
+      "districts": [
+        "w5",
+        "w6",
+        "w7"
+      ]
+    }
+  ],
+  "districts": {
+    "w1": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "kuro",
+      "prop": "feather",
+      "right": 1,
+      "ex": "pick",
+      "ask": "brief",
+      "keep": "img/studio/money/ls-web3.webp",
+      "keys": {
+        "name": "web3c.stops.0",
+        "sub": "web3c.items.0.t",
+        "scene": "web3c.items.0.t",
+        "lore": "web3c.case.s.0",
+        "q": "web3c.items.0.q",
+        "a": "web3c.items.0.a",
+        "f": [
+          "web3c.items.0.no.0",
+          "web3c.items.0.ok",
+          "web3c.items.0.no.1"
+        ],
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "alt": "lant.at.web3.plate.a1"
+      }
+    },
+    "w2": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": "ring",
+      "right": 1,
+      "ex": "flow",
+      "done": "text:[data-flow-v]|vis:[data-show-if=\"fork:1\"]",
+      "ask": "brief",
+      "keep": "img/studio/web3c/wk-2.webp",
+      "keys": {
+        "name": "web3c.stops.1",
+        "sub": "web3c.items.1.t",
+        "scene": "web3c.items.1.t",
+        "lore": "web3c.case.s.1",
+        "q": "web3c.items.1.q",
+        "a": "web3c.items.1.a",
+        "f": [
+          "web3c.items.1.no.0",
+          "web3c.items.1.ok",
+          "web3c.items.1.no.1"
+        ],
+        "ex.t": "lant.ui.ex.flow.t",
+        "ex.brief": "lant.ui.ex.flow.brief",
+        "alt": "lant.at.web3.plate.a1"
+      }
+    },
+    "w3": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "kuro",
+      "prop": "star",
+      "right": 1,
+      "ex": "fiche",
+      "done": "touch",
+      "ask": "brief",
+      "keep": "img/studio/web3c/wk-3.webp",
+      "keys": {
+        "name": "web3c.stops.2",
+        "sub": "web3c.items.2.t",
+        "scene": "web3c.items.2.t",
+        "lore": "web3c.case.s.2",
+        "q": "web3c.items.2.q",
+        "a": "web3c.items.2.a",
+        "f": [
+          "web3c.items.2.no.0",
+          "web3c.items.2.ok",
+          "web3c.items.2.no.1"
+        ],
+        "ex.t": "lant.ui.ex.fiche.t",
+        "ex.brief": "lant.ui.ex.fiche.brief",
+        "alt": "lant.at.web3.plate.a2"
+      }
+    },
+    "w8": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "kuro",
+      "prop": "eyeflower",
+      "right": 1,
+      "ex": "states",
+      "done": "seen:[data-states] [data-state]",
+      "ask": "after",
+      "keep": "img/studio/web3c/wk-8.webp",
+      "keys": {
+        "name": "web3c.stops.7",
+        "sub": "web3c.items.7.t",
+        "scene": "web3c.items.7.t",
+        "lore": "web3c.case.s.7",
+        "q": "web3c.items.7.q",
+        "a": "web3c.items.7.a",
+        "f": [
+          "web3c.items.7.no.0",
+          "web3c.items.7.ok",
+          "web3c.items.7.no.1"
+        ],
+        "ex.t": "lant.ui.ex.states.t",
+        "ex.brief": "lant.ui.ex.states.brief",
+        "alt": "lant.at.web3.plate.a2"
+      }
+    },
+    "w4": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "pigeon",
+      "prop": "paper",
+      "right": 1,
+      "ex": "fiche",
+      "done": "touch",
+      "ask": "brief",
+      "keep": "img/studio/web3c/wk-4.webp",
+      "keys": {
+        "name": "web3c.stops.3",
+        "sub": "web3c.items.3.t",
+        "scene": "web3c.items.3.t",
+        "lore": "web3c.case.s.3",
+        "q": "web3c.items.3.q",
+        "a": "web3c.items.3.a",
+        "f": [
+          "web3c.items.3.no.0",
+          "web3c.items.3.ok",
+          "web3c.items.3.no.1"
+        ],
+        "ex.t": "lant.ui.ex.fiche.t",
+        "ex.brief": "lant.ui.ex.fiche.brief",
+        "alt": "lant.at.web3.plate.a2"
+      }
+    },
+    "w5": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "raven",
+      "prop": "recorder",
+      "right": 1,
+      "ex": "bins",
+      "done": "seen:[data-bins] [data-bin-row]",
+      "ask": "brief",
+      "keep": "img/studio/web3c/wk-5.webp",
+      "keys": {
+        "name": "web3c.stops.4",
+        "sub": "web3c.items.4.t",
+        "scene": "web3c.items.4.t",
+        "lore": "web3c.case.s.4",
+        "q": "web3c.items.4.q",
+        "a": "web3c.items.4.a",
+        "f": [
+          "web3c.items.4.no.0",
+          "web3c.items.4.ok",
+          "web3c.items.4.no.1"
+        ],
+        "ex.t": "lant.ui.ex.bins.t",
+        "ex.brief": "lant.ui.ex.bins.brief",
+        "alt": "lant.at.web3.plate.a3"
+      }
+    },
+    "w6": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": "paper",
+      "right": 1,
+      "ex": "law",
+      "done": "sel:[data-law-card].is-on|touch",
+      "ask": "brief",
+      "keep": "img/studio/web3c/wk-6.webp",
+      "keys": {
+        "name": "web3c.stops.5",
+        "sub": "web3c.items.5.t",
+        "scene": "web3c.items.5.t",
+        "lore": "web3c.case.s.5",
+        "q": "web3c.items.5.q",
+        "a": "web3c.items.5.a",
+        "f": [
+          "web3c.items.5.no.0",
+          "web3c.items.5.ok",
+          "web3c.items.5.no.1"
+        ],
+        "ex.t": "lant.ui.ex.law.t",
+        "ex.brief": "lant.ui.ex.law.brief",
+        "alt": "lant.at.web3.plate.a3"
+      }
+    },
+    "w7": {
+      "guide": "kuro",
+      "lead": "kuro",
+      "companion": "raven",
+      "prop": "cup",
+      "right": 1,
+      "ex": "fiche",
+      "done": "touch",
+      "ask": "brief",
+      "keep": "img/studio/web3c/wk-7.webp",
+      "keys": {
+        "name": "web3c.stops.6",
+        "sub": "web3c.items.6.t",
+        "scene": "web3c.items.6.t",
+        "lore": "web3c.case.s.6",
+        "q": "web3c.items.6.q",
+        "a": "web3c.items.6.a",
+        "f": [
+          "web3c.items.6.no.0",
+          "web3c.items.6.ok",
+          "web3c.items.6.no.1"
+        ],
+        "ex.t": "lant.ui.ex.fiche.t",
+        "ex.brief": "lant.ui.ex.fiche.brief",
+        "alt": "lant.at.web3.plate.a3"
+      }
+    }
+  }
+}

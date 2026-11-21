@@ -54,7 +54,7 @@
  * build (it is only listed while a case's fragment is still missing). The output is stable: keys sorted,
  * no dates, so two runs leave no diff.
  */
-import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdirSync } from 'node:fs';
 import { join, dirname, relative } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { BASE } from './site.mjs';
@@ -63,6 +63,8 @@ import { withGtag } from './lib/gtag.mjs';
 import { loadDicts } from './lib/i18n.mjs';
 import { AYN } from './lib/ayn.mjs';
 import { WORDMARK } from './lib/wordmark.mjs';
+import { lanterne } from './lib/lanterne.mjs';
+import { carte, CARTE_HOSTS } from './lib/carte.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const HUB = join(ROOT, 'hub'), SRC = join(HUB, 'src');
@@ -157,8 +159,19 @@ for (const names of CASES) {
   }
   for (const n of names) if (existsSync(join(HUB, 'css', `case-${n}.css`))) { caseCss.push(`css/case-${n}.css`); break; }
 }
+/* plural sets (the Librairie's counts, 2026-11-21): Arabic has forms French and English do not (Intl.PluralRules:
+   zero one two few many other); those languages take their own .other there, so the three keep one set of keys, and
+   every Arabic set a French one/other set opens must be complete */
+/* La carte (2026-11-21, scripts/lib/carte.mjs): its words, { fr, en, ar } with keys carte.*, as a case's are */
+{
+  const all = JSON.parse(readFileSync(join(SRC, 'carte.i18n.json'), 'utf8'));
+  for (const l of LANGS) { if (!all[l]) fail(`hub/src/carte.i18n.json: no "${l}" block`); else Object.assign(DICT[l], resolve(l, flatten(all[l]), 'hub/src/carte.i18n.json')); }
+}
+for (const k of Object.keys(DICT.ar)) { const m = /^(.*)\.(zero|two|few|many)$/.exec(k); if (m) for (const l of ['fr', 'en']) if (DICT[l][k] == null && DICT[l][m[1] + '.other'] != null) DICT[l][k] = DICT[l][m[1] + '.other']; }
 for (const k of new Set(LANGS.flatMap((l) => Object.keys(DICT[l]))))
   for (const l of LANGS) if (DICT[l][k] == null) fail(`key ${k}: missing in ${l}`);
+for (const k of Object.keys(DICT.fr)) if (/\.other$/.test(k) && DICT.fr[k.replace(/other$/, 'one')] != null && /^lant\./.test(k))
+  for (const c of ['zero', 'one', 'two', 'few', 'many', 'other']) if (DICT.ar[k.replace(/other$/, c)] == null) fail(`key ${k.replace(/other$/, c)}: the Arabic plural set is incomplete`);
 
 /* ---------------- prices: the home's own model ---------------- */
 const APP = readFileSync(join(ROOT, 'assets/app.js'), 'utf8');
@@ -175,6 +188,8 @@ const PRICES = {
   rush: [Number(rushP), Number(rushW)], fx: { EUR: FX.EUR, USD: FX.USD }, retainer: RETAINER, mid: ESTIMATE.MID_RANGE,
   // what the same project costs on three markets (the price guide's sourced table, assets/app.js 14): [low, high, open-ended]
   market: new Function(`return ${grab(/var MARKET = (\{[\s\S]*?\n    \});/, 'MARKET')[1]}`)(),
+  // the design services' approved figures and lead times (la carte, 2026-11-21): the page reads them from here too
+  design: ESTIMATE.DESIGN,
 };
 /* The figures as the home's estimator writes them (assets/app.js 12a):
    French and Arabic group with a narrow no-break space and put the currency
@@ -223,7 +238,8 @@ const MM = ESTIMATE.PRICE_MODEL.motion;
 const MOTION = {
   logo: f0(MM.base[0], MM.base[1], 'DZD'), sec: `+\u00a0${f0(MM.unit[0], MM.unit[1], 'DZD')}`, anim: `+\u00a0${f0(MO.anim.add[0], MO.anim.add[1], 'DZD')}`,
 };
-const REEL_TILES = REEL.map((c) => `      <li class="st-reel__tile${c.tall ? ' st-reel__tile--tall' : ''}">
+// a clip marked "studio": false (MERCURY, act 2: a personal film, services/SPEC.md §7) stays on the world page, out of the Studio's reel
+const REEL_TILES = REEL.filter((c) => c.studio !== false).map((c) => `      <li class="st-reel__tile${c.tall ? ' st-reel__tile--tall' : ''}">
         <button type="button" class="st-reel__b" data-reel aria-pressed="false">
           <video muted playsinline preload="none" width="${c.w}" height="${c.h}" poster="${c.poster}" aria-hidden="true" tabindex="-1"><source src="${c.src}" type="video/mp4"></video>
           <span class="st-reel__cap"><span class="st-sr" data-i18n="motion.reel.play"></span> <b data-i18n="motion.reel.items.${c.id}.name"></b><span data-i18n="motion.reel.items.${c.id}.what"></span></span>
@@ -261,9 +277,18 @@ const GENERATED = new Set([...FONT_FILES.map(([f]) => f.replace(/^hub\//, '')), 
 /* the client courses (manual, 2026-11-19): the templates and lines hub/app.js 13b writes itself (a row's verdict, a
    score, the fiche's labels and hints, the estimate's labels); what the fiche prints from a chip or a heading is read
    from the page, so it is not repeated here */
-const RUNTIME_CRS = /^(fiche\.|(brandc|web3c)\.(brief\.|items\.\d+\.(sort\.score|score|count|over|rcNote|under|meter\.|vague$|vagueWords$|sliders\.\d+\.steps\.\d+|social\.none|pace\.note|flow\.(step|noT|noD|yesT|yesD|qs\.\d+\.(no|why))|fork\.(payT|payD)|spec\.(t|you)$|pick\.2\.site\.(no|yes)|grid\.(line|empty|whoIn\.\d+)|lab\.out|states\.step|(sort\.)?rows\.\d+\.why|opts\.dsHas|scope\.line|oursNone))|money\.note[12]$|pricing\.rc\.(line|min|max|total)$)/;
+const RUNTIME_CRS = /^(fiche\.|pricing\.(eu|us)$|(brandc|web3c)\.(brief\.|kuro\.|items\.\d+\.(sort\.score|score|count|over|rcNote|under|underFloor|siteAdd|own\.(alt|bad)|rows\.\d+\.ask|meter\.|vague$|vagueWords$|sliders\.\d+\.steps\.\d+|social\.none|pace\.note|flow\.(step|noT|noD|yesT|yesD|qs\.\d+\.(no|why))|fork\.(payT|payD)|spec\.(t|you)$|pick\.2\.site\.(no|yes)|grid\.(line|empty|whoIn\.\d+)|lab\.out|states\.step|(sort\.)?rows\.\d+\.why|opts\.dsHas|scope\.line|oursNone))|money\.note[12]$|pricing\.rc\.(line|min|max|total)$)/;
+/* the web3 expansion's shell (2026-11-21, web3x/SPEC.md §4.9): what app.js 13e and hub/web3x.js write themselves (the
+   path's line, the sommaire's counts and minutes, the way on, the dock, the carnet, the module done line, the one lab
+   built so far). The labs' other strings are named by no markup yet and are left out of #hub-fr: web3x.js will write
+   them (W3X_LATER; the spec moves them to a lazy dictionary when the labs are built) */
+const RUNTIME_W3X = /^web3c\.(path\.say|chap\.(count|total|time|next|back|here)|dock\.(go|empty)|carnet\.(left|seal|all\.)|x\.(step|noCrypto|on|off|done)|mods\.\d+\.(done|items\.\d+\.lab\.hash\.bits))$/;
+const W3X_LATER = /^web3c\.mods\.\d+\.items\.\d+\.lab\./;
 const RUNTIME_OLD = /^(rig\.|sting\.|case\.|hero\.(live|still)$|pricing\.(units\.|unitsN\.|wkN$|types\.|o\.|rc\.(base|studio|rush|kit|call|mid)$|beyond$|kuro|cur$|included$)|money\.(kit\.k$|svc\.waMsg$|svc\.items\.\d+\.name$)|life\.(k|y)\.|radio\.(play|pause|onair|idle|paused)$|radio\.tracks\.|process\.steps\.\d+\.m$|contact\.previewMsg$)/;
-const RUNTIME = { test: (k) => RUNTIME_OLD.test(k) || RUNTIME_CRS.test(k) };
+/* the phase-1 labs of modules 1–9 (2026-11-21, web3x/SPEC.md §4.9): hub/web3x.js writes their lines itself (results,
+   counts, templates, a label that flips), so the whole lab subtree of those modules is runtime, and x.reset */
+const RUNTIME_W3X_M123 = /^web3c\.(mods\.[0-8]\.items\.\d+\.lab\.|x\.reset$)/;
+const RUNTIME = { test: (k) => RUNTIME_OLD.test(k) || RUNTIME_CRS.test(k) || RUNTIME_W3X.test(k) || RUNTIME_W3X_M123.test(k) };
 const sorted = (o) => Object.fromEntries(Object.keys(o).sort().map((k) => [k, o[k]]));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const attr = (s) => esc(s).replace(/"/g, '&quot;');
@@ -296,7 +321,10 @@ const headFor = (file, ui, crumb) => {
   return swap(h, `{"@type":"ListItem","position":2,"name":"Studio","item":"{{base}}hub/${file}"}]}`,
     `{"@type":"ListItem","position":2,"name":"Studio","item":"{{base}}hub/"},{"@type":"ListItem","position":3,"name":"${crumb}","item":"{{base}}hub/${file}"}]}`, 1, 'the breadcrumb');
 };
-let manual = headFor('manuel.html', 'manual.ui', 'Manuel') + readFileSync(join(SRC, 'manuel.html'), 'utf8');
+/* La Librairie Lanterne (2026-11-21, scripts/lib/lanterne.mjs): the learning side moved to hub/lanterne/ (the shelf and
+   one page per atlas); hub/manuel.html is now a stub that sends every old address to its new home. hub/src/manuel.html
+   is no longer built: it stays only as the courses' source until each is cut into its atlas. */
+let manual = '';
 /* The world (hub/monde.html, 2026-11-18): the same head again, and
    hub/src/monde.html as its body: the codex, the personal dossiers 06 to
    08, the Lab and the diary, which were the Studio's until then. */
@@ -309,7 +337,10 @@ let fab = headFor('fabrique.html', 'fab.ui', 'La fabrique') + readFileSync(join(
    markup (data-i18n-html). The home's Arabic wraps Latin names in <bdi>; a
    text key gets the same isolation as Unicode (FSI ... PDI), so no tag is ever
    printed. Anything else with a '<' is refused. */
-const htmlKeys = new Set([...(html + manual + monde + fab).matchAll(/\sdata-i18n-html="([^"]+)"/g)].map((m) => m[1]));
+const LANT = lanterne({ HUB, SRC, DICT, LANGS, fail, notes, esc, pageSrc, headEnd, swap, RADIO, RUNTIME_OLD, RUNTIME });
+if (LANT) { manual = LANT.out.find((o) => o.name === 'manuel.html').html; for (const g of LANT.generated) GENERATED.add(g); }
+const LPAGES = LANT ? LANT.out.filter((o) => o.page) : [];
+const htmlKeys = new Set([...(html + manual + monde + fab + LPAGES.map((o) => o.html).join('')).matchAll(/\sdata-i18n-html="([^"]+)"/g)].map((m) => m[1]));
 for (const l of LANGS)
   for (const [k, v] of Object.entries(DICT[l])) {
     if (htmlKeys.has(k) || !v.includes('<')) continue;
@@ -343,6 +374,8 @@ const ROUTE = {
   'route.pay': esc(DICT.fr['web3c.items.2.pick.2.site.yes'] ?? (fail('web3c.items.2.pick.2.site.yes: missing in fr'), '')),
   'route.none': esc(DICT.fr['web3c.items.2.oursNone'] ?? (fail('web3c.items.2.oursNone: missing in fr'), '')),
 };
+/* La carte (2026-11-21): the services catalogue, every figure from the model above, every line in the three languages */
+const CARTE = carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB });
 const waPreview = 'https://wa.me/213672412578?text=' + encodeURIComponent(DICT.fr['contact.previewMsg']);
 const holes = {
   base: BASE, stamp, ayn: AYN, waPreview: attr(waPreview),
@@ -354,7 +387,9 @@ const holes = {
   // the manual carries the client courses' runtime strings too (the Studio and the world do not need them)
   frManual: JSON.stringify(sorted(Object.fromEntries(Object.entries(DICT.fr).filter(([k]) => RUNTIME.test(k))))).replace(/</g, '\\u003c'),
   lazyFonts: [...CASES.map((c) => c[0]), 'whq', 'console'].map((n) => `<link rel="stylesheet" href="fonts/lazy-${n}.css?v=${stamp}">`).join(''),
-  caseCss: caseCss.map((h) => `<link rel="stylesheet" href="${h}?v=${stamp}">`).join('\n'),
+  // the Studio's own sheets beyond style.css: the cases' and la carte's (hub/css/carte.css); the pages beside it drop the hole
+  caseCss: [...caseCss, 'css/carte.css'].map((h) => `<link rel="stylesheet" href="${h}?v=${stamp}">`).join('\n'),
+  carte: CARTE.html,
   ...Object.fromEntries(Object.entries(EST).map(([k, v]) => [`est.${k}`, esc(v)])),
   estRows: EST_ROWS,
   radio: JSON.stringify(RADIO.map((tr) => ({ id: tr.id, src: tr.src, dur: tr.dur }))).replace(/</g, '\\u003c'),
@@ -366,11 +401,12 @@ const holes = {
   ...Object.fromEntries(Object.entries(MONEY).map(([k, v]) => [`money.${k}`, esc(v)])),
   ...FAB,
   ...ROUTE,
+  ...(LANT ? LANT.holes : {}),
 };
-const used = new Set();
+const used = new Set(), PAGE_KEYS = {};
 // holes, then the dictionary's French: the same steps for the Studio and for the manual
 function fill(html, name) {
-  html = html.replace(/\{\{([a-zA-Z.]+)\}\}/g, (all, k) => { if (k === 'fr' && name === 'manuel.html') k = 'frManual'; if (holes[k] == null) { fail(`${name}: unknown hole {{${k}}}`); return all; } return holes[k]; });
+  html = html.replace(/\{\{([a-zA-Z][a-zA-Z0-9.]*)\}\}/g, (all, k) => { if (k === 'fr' && name === 'manuel.html') k = 'frManual'; if (holes[k] == null) { fail(`${name}: unknown hole {{${k}}}`); return all; } return holes[k]; });
   // a template line that is all hole (caseCss with no case css yet) leaves no blank line
   html = html.replace(/\n\n(?=<script type="application\/ld\+json">)/, '\n');
   const mine = new Set();
@@ -385,13 +421,16 @@ function fill(html, name) {
   for (const [a, to] of [['alt', 'alt'], ['aria', 'aria-label'], ['title', 'title'], ['ph', 'placeholder']])
     html = html.replace(new RegExp(`(\\sdata-i18n-${a}="([^"]+)")`, 'g'), (all, whole, k) => `${whole} ${to}="${attr(fr(k, `data-i18n-${a}`))}"`);
   for (const m of html.matchAll(/\sdata-i18n(?:-html)?="([^"]+)"/g)) if (!mine.has(m[1])) fail(`${name}: an element with data-i18n="${m[1]}" is not empty in the template (the build fills it)`);
+  PAGE_KEYS[name] = mine;
   return html;
 }
 html = fill(html, 'page.html');
 manual = fill(manual, 'manuel.html');
 monde = fill(monde, 'monde.html');
 fab = fill(fab, 'fabrique.html');
-for (const k of Object.keys(DICT.fr)) if (!used.has(k) && !RUNTIME.test(k) && !/^cases\./.test(k))
+for (const o of LPAGES) o.html = fill(o.html, o.name);
+// (la carte's WhatsApp lines are named by data-carte-wa, which hub/app.js 14b reads)
+for (const k of Object.keys(DICT.fr)) if (!used.has(k) && !RUNTIME.test(k) && !/^cases\./.test(k) && !W3X_LATER.test(k) && !/^carte\.(items\.[a-z]+|blanche|form\.[a-z]+)\.wa$/.test(k))
   notes.push(`key ${k} is in the dictionaries but no markup names it (app.js may)`);
 
 /* ---------------- images: sizes from the files ---------------- */
@@ -421,9 +460,23 @@ const REF_HOSTS = new Set(['doi.org', 'arxiv.org', 'www.sec.gov', 's203.q4cdn.co
   'www.designcouncil.org.uk', 'www.wipo.int', 'wipo.int', 'www.inpi.fr', 'www.inapi.dz', 'www.moet.gov.ae', 'www.legifrance.gouv.fr', 'openfontlicense.org', 'www.w3.org', 'developer.mozilla.org',
   'www.joradp.dz', 'nvlpubs.nist.gov', 'consumer.ftc.gov', 'www.esma.europa.eu', 'www.amf-france.org', 'www.investor.gov', 'www.ic3.gov', 'www.europol.europa.eu', 'rulebooks.vara.ae', 'www.vara.ae', 'assets.adgm.com', 'ethereum.org',
   // la fabrique's references (2026-11-19, ATELIER.md 5.5): the auto-layout guide and PostgreSQL's documentation
-  'help.figma.com', 'www.postgresql.org']);
+  'help.figma.com', 'www.postgresql.org',
+  // the web3 expansion's nine source lists (2026-11-21, web3x/SPEC.md §6: every URL fetched on 2026-11-20/21; documentation
+  // pages, standards, regulators, the projects' own docs as cited, never a product or trading page)
+  'a16zfrontier.com', 'aave.com', 'bitcoin.org', 'blog.ethereum.org', 'cosmwasm.github.io', 'csrc.nist.gov', 'developer.bitcoin.org',
+  'developers.tron.network', 'developers.uniswap.org', 'docs.anza.xyz', 'docs.arweave.org', 'docs.chain.link', 'docs.coordinape.com',
+  'docs.cosmos.network', 'docs.dydx.xyz', 'docs.ens.domains', 'docs.ethers.org', 'docs.filecoin.io', 'docs.ipfs.tech', 'docs.layerzero.network',
+  'docs.openzeppelin.com', 'docs.pyth.network', 'docs.safe.global', 'docs.snapshot.box', 'docs.soliditylang.org', 'docs.tally.xyz',
+  'docs.vyperlang.org', 'docs.walletconnect.com', 'eips.ethereum.org', 'ethereum.github.io', 'getfoundry.sh', 'github.com', 'hardhat.org',
+  'home.cern', 'ibcprotocol.dev', 'lamport.azurewebsites.net', 'move-book.com', 'raw.githubusercontent.com', 'remix-ide.readthedocs.io',
+  'specs.walletconnect.com', 'thegraph.com', 'viem.sh', 'vitalik.eth.limo', 'wagmi.sh', 'www.anchor-lang.com', 'www.cftc.gov', 'www.getfoundry.sh',
+  'www.lifewithalacrity.com', 'www.solana-program.com', 'wyoleg.gov',
+  // la carte's market lines (2026-11-21, services/prices.md §2: each page fetched on 2026-11-21)
+  ...CARTE_HOSTS]);
 // a page's pictures (sizes from the files) and the rest of its markup's rules: the same for the Studio and for the manual
-function rules(html) {
+function rules(html, dir = HUB) {
+const localFile = (u) => { const p = u.split(/[?#]/)[0]; return p ? join(dir, decodeURI(p)) : null; };
+const gen = (v) => { const p = v.split(/[?#]/)[0]; return GENERATED.has(relative(HUB, join(dir, p.endsWith('/') || p === '' ? p + 'index.html' : p)).replace(/\\/g, '/')); };
 const refHrefs = new Set([...html.matchAll(/<a\b[^>]*\sdata-ref\s[^>]*\bhref="([^"]+)"/g)].map((m) => m[1]));
 html = html.replace(/<img\b([^>]*)>/g, (all, a) => {
   const src = (/\ssrc="([^"]+)"/.exec(a) || [])[1];
@@ -452,7 +505,7 @@ for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|data-anim|poster)="(
     }
     continue;
   }
-  if (/^(mailto:|#|data:)/.test(v) || v === '') continue;
+  if (/^(mailto:|#|data:|\?)/.test(v) || v === '') continue;   // a query alone (?lang=en) is this very page
   if (/^https?:\/\//.test(v)) {
     const host = new URL(v).host;
     if (a !== 'href') fail(`${a}="${v}": a third-party request`);
@@ -462,8 +515,8 @@ for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|data-anim|poster)="(
   }
   const file = localFile(v);
   // './' and './#preview' are the Studio itself, from the manual beside it
-  if (v.endsWith('/') || /^\.\/#/.test(v)) { if (!existsSync(join(file, 'index.html'))) fail(`${a}="${v}": no page there`); continue; }
-  if (/^i18n\.(?:'\+l\+'\.)?js\b/.test(v) || GENERATED.has(v.split(/[?#]/)[0])) continue;   // written below
+  if (v.endsWith('/') || /^\.\/#/.test(v) || /^\.\.\/#/.test(v)) { if (!existsSync(join(file, 'index.html')) && !gen(v.replace(/#.*$/, '') + 'index.html')) fail(`${a}="${v}": no page there`); continue; }
+  if (/^i18n\.(?:'\+l\+'\.)?js\b/.test(v) || GENERATED.has(v.split(/[?#]/)[0]) || gen(v)) continue;   // written below
   if (!existsSync(file)) fail(`${a}="${v}": no such file`); else refs.add(relative(ROOT, file));
 }
 // (the wordmark's accent group is the one exception: lib/wordmark.mjs draws it so)
@@ -477,6 +530,7 @@ html = rules(html);
 manual = rules(manual);
 monde = rules(monde);
 fab = rules(fab);
+for (const o of LPAGES) o.html = rules(o.html, join(HUB, 'lanterne'));
 // the stylesheets' own pictures count as referenced
 for (const css of ['style.css', ...(existsSync(join(HUB, 'css')) ? readdirSync(join(HUB, 'css')) : []).filter((f) => f.endsWith('.css')).map((f) => `css/${f}`)]) {
   const p = join(HUB, css);
@@ -491,13 +545,28 @@ if (existsSync(join(HUB, 'bible/index.html')))
   for (const m of readFileSync(join(HUB, 'bible/index.html'), 'utf8').matchAll(/"\.\.\/img\/([^"?#]+)"/g)) refs.add(`hub/img/${m[1]}`);
 const walk = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [relative(ROOT, p)]; });
 const unref = existsSync(join(HUB, 'img')) ? walk(join(HUB, 'img')).filter((f) => !refs.has(f) && !refs.has(f.replace(/\.full\.webp$/, '.webp'))) : [];
-if (unref.length) (casesIn === CASES.length ? fail : (m) => notes.push(m))(`${unref.length} file${unref.length === 1 ? '' : 's'} in hub/img that nothing references${casesIn < CASES.length ? ` (${casesIn} of ${CASES.length} cases in)` : ''}: ${unref.slice(0, 6).join(', ')}${unref.length > 6 ? ', …' : ''}`);
+// while a book of the Librairie still waits for its atlas file (the migration's steps, SPEC §6.1), the courses' art it will
+// carry is listed, not refused, as a missing case's is
+const lantAll = !LANT || LANT.live.length === LANT.books.length;
+if (unref.length) (casesIn === CASES.length && lantAll ? fail : (m) => notes.push(m))(`${unref.length} file${unref.length === 1 ? '' : 's'} in hub/img that nothing references${casesIn < CASES.length ? ` (${casesIn} of ${CASES.length} cases in)` : ''}${lantAll ? '' : ` (${LANT.live.length} of ${LANT.books.length} atlases of the Librairie in)`}: ${unref.slice(0, 6).join(', ')}${unref.length > 6 ? ', …' : ''}`);
 
 /* ---------------- outputs ---------------- */
-const page = withCsp(withGtag(html), cspKind('hub/index.html'));
-const manualPage = withCsp(withGtag(manual), cspKind('hub/manuel.html'));
-const mondePage = withCsp(withGtag(monde), cspKind('hub/monde.html'));
-const fabPage = withCsp(withGtag(fab), cspKind('hub/fabrique.html'));
+// a template hole that fills with nothing leaves its indentation on a line of its own: html-validate's
+// no-trailing-whitespace reads it as an error, so those lines go blank (before the CSP hashes are taken)
+const tidy = (s) => s.replace(/^[ \t]+$/gm, '');
+const page = withCsp(withGtag(tidy(html)), cspKind('hub/index.html'));
+const manualPage = withCsp(withGtag(tidy(manual)), cspKind('hub/manuel.html'));
+const mondePage = withCsp(withGtag(tidy(monde)), cspKind('hub/monde.html'));
+const fabPage = withCsp(withGtag(tidy(fab)), cspKind('hub/fabrique.html'));
+const lantPages = LPAGES.map((o) => [o.file, withCsp(withGtag(tidy(o.html)), cspKind(o.file))]);
+/* each page of the Librairie gets its own English and Arabic dictionary (hub/lanterne/i18n/<page>.<lang>.js): the keys its
+   markup names and the ones its scripts write (scripts/lib/lanterne.mjs), so an English reader of one atlas does not
+   load the Studio's whole dictionary; French is baked, and its runtime lines ride in the page's #hub-fr block */
+const lantDicts = LPAGES.flatMap((o) => {
+  const keys = new Set([...(PAGE_KEYS[o.name] || []), ...LANT.runtime[o.page]]);
+  for (const k of [...keys]) if (/\.other$/.test(k)) for (const c of ['zero', 'one', 'two', 'few', 'many']) if (DICT.fr[k.replace(/other$/, c)] != null) keys.add(k.replace(/other$/, c));
+  return ['en', 'ar'].map((l) => [`hub/lanterne/i18n/${o.page}.${l}.js`, `/* GENERATED by scripts/build-hub.mjs (scripts/lib/lanterne.mjs): the ${l} dictionary of hub/lanterne/${o.page}.html alone. */\nwindow.HUB_I18N = window.HUB_I18N || {};\nwindow.HUB_I18N.${l} = ${JSON.stringify(sorted(Object.fromEntries([...keys].filter((k) => DICT[l][k] != null).map((k) => [k, DICT[l][k]]))))};\n`]);
+});
 const i18n = `/* GENERATED by scripts/build-hub.mjs from hub/src/i18n and hub/src/cases:
    the Studio's three dictionaries (French too, for a switch back), flat
    keys, and nothing else. Loaded by the head script for an EN or AR visitor
@@ -510,12 +579,13 @@ if (errors.length) {
 }
 for (const n of notes) console.log(`  · ${n}`);
 // one dictionary file per language: the head script and a switch fetch only the language asked for (the three in one file were 161 kB held in front of the first paint)
-const perLang = LANGS.map((l) => [`hub/i18n.${l}.js`, `/* GENERATED by scripts/build-hub.mjs: the Studio's ${l} dictionary alone (hub/i18n.js holds the three). */\nwindow.HUB_I18N = window.HUB_I18N || {};\nwindow.HUB_I18N.${l} = ${JSON.stringify(sorted(DICT[l]))};\n`]);
-const OUT = [['hub/index.html', page], ['hub/manuel.html', manualPage], ['hub/monde.html', mondePage], ['hub/fabrique.html', fabPage], ['hub/i18n.js', i18n], ...perLang, ...FONT_FILES];
+const perLang = LANGS.map((l) => [`hub/i18n.${l}.js`, `/* GENERATED by scripts/build-hub.mjs: the Studio's ${l} dictionary alone (hub/i18n.js holds the three). */\nwindow.HUB_I18N = window.HUB_I18N || {};\nwindow.HUB_I18N.${l} = ${JSON.stringify(sorted(Object.fromEntries(Object.entries(DICT[l]).filter(([k]) => !/^lant\./.test(k)))))};\n`]);
+const OUT = [['hub/index.html', page], ['hub/manuel.html', manualPage], ['hub/monde.html', mondePage], ['hub/fabrique.html', fabPage], ['hub/i18n.js', i18n], ...perLang, ...FONT_FILES, ...lantPages, ...lantDicts];
 if (process.argv.includes('--check')) {
   const stale = OUT.filter(([f, s]) => !existsSync(join(ROOT, f)) || readFileSync(join(ROOT, f), 'utf8') !== s).map(([f]) => f);
-  console.log(stale.length ? `✗ ${stale.join(', ')} differ from hub/src (run: node scripts/build-hub.mjs)` : '✓ hub/index.html, hub/manuel.html, hub/monde.html, hub/fabrique.html and hub/i18n.js match hub/src');
+  console.log(stale.length ? `✗ ${stale.join(', ')} differ from hub/src (run: node scripts/build-hub.mjs)` : `✓ hub/index.html, hub/manuel.html (the stub), hub/monde.html, hub/fabrique.html, the Librairie (${lantPages.length} pages and their dictionaries) and hub/i18n.js match hub/src`);
   process.exit(stale.length ? 1 : 0);
 }
+mkdirSync(join(HUB, 'lanterne', 'i18n'), { recursive: true });
 for (const [f, s] of OUT) writeFileSync(join(ROOT, f), s);
-console.log(`✓ hub/index.html (${(page.length / 1000).toFixed(1)} kB, ${casesIn} of ${CASES.length} cases), hub/manuel.html (${(manualPage.length / 1000).toFixed(1)} kB), hub/monde.html (${(mondePage.length / 1000).toFixed(1)} kB), hub/fabrique.html (${(fabPage.length / 1000).toFixed(1)} kB) and hub/i18n.js (${Object.keys(DICT.fr).length} keys × 3)`);
+console.log(`✓ hub/index.html (${(page.length / 1000).toFixed(1)} kB, ${casesIn} of ${CASES.length} cases), hub/manuel.html (${(manualPage.length / 1000).toFixed(1)} kB), hub/monde.html (${(mondePage.length / 1000).toFixed(1)} kB), hub/fabrique.html (${(fabPage.length / 1000).toFixed(1)} kB) the Librairie (${lantPages.map(([f, x]) => `${f.slice(13)} ${(x.length / 1000).toFixed(1)} kB`).join(', ')}) and hub/i18n.js (${Object.keys(DICT.fr).length} keys × 3)`);

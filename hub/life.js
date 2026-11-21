@@ -1,5 +1,5 @@
 /* ============================================================
-   Numidea Labs — Kūro lives on the manual (hub/manuel.html)
+   Numidea Labs — Kūro lives on the shelf of the Librairie Lanterne (hub/lanterne/; the manual until 2026-11-21)
    vanilla, no deps; loaded after app.js, on that page only
 
    One sprite (hub/img/studio/life/kuro.webp: 47 cells cut from five short
@@ -48,7 +48,8 @@
   'use strict';
   var d = document, root = d.documentElement, body = d.body;
   var layer = d.querySelector('[data-life]'), strip = d.querySelector('[data-game]');
-  if (!layer || !strip || !window.requestAnimationFrame) return;
+  // the Librairie's shelf only (hub/lanterne/, L11): the page says so on its body, whatever its file is called
+  if (!layer || !strip || !body.hasAttribute('data-lanterne-shelf') || !window.requestAnimationFrame) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   // the site's tempo (the stylesheets' --m-* tokens): 90 BPM, a beat of 667 ms;
@@ -80,7 +81,7 @@
 
   /* ---------------- the perches ---------------- */
   // id, selector, where he likes to sit along it (0..1); the cards are four of one selector
-  var DEF = [['scene', '.st-mny__scene', 0.5], ['radio', '.st-radio__set', 0.74], ['game', '.st-game__in', 0.94], ['plate', '.st-ls', 0.9], ['ask', '.st-ls__panel:not([hidden]) .st-ls__q', 0.94],
+  var DEF = [['scene', '.st-mny__scene, .hero--shelf .hero__art', 0.5], ['radio', '.st-radio__set', 0.74], ['game', '.st-game__in', 0.94], ['plate', '.st-ls, .book__cover', 0.9], ['ask', '.st-ls__panel:not([hidden]) .st-ls__q, [data-lt-pass-head]', 0.94],
     ['fig', '.st-ls__panel:not([hidden]) .st-ls__fig', 0.5], ['card', '.st-mny__card', 0.8], ['kit', '.st-mny__kit', 0.94], ['back', '.st-back', 0.56], ['foot', '.st-foot', 0.5], ['sill', '[data-sky] .st-foot__win', 0.5]];
   // the sill's top line in the painted strip, as a share of its height (the art's measured geometry: the lit
   // glass ends a little above it); narrower than he is, it is one spot under the window's middle
@@ -136,7 +137,7 @@
     var pts = [[cx - W * 0.22, top + 6], [cx + W * 0.22, top + 6], [cx, top + H * 0.36], [cx - W * 0.3, p.y - window.pageYOffset - 12], [cx + W * 0.25, p.y - window.pageYOffset - 12]];
     for (var i = 0; i < pts.length; i++) {
       var hit = d.elementFromPoint(pts[i][0], pts[i][1]);
-      if (!hit || (hit.closest(LEAF) && !hit.closest('.st-foot__sky')) || hit.closest('.st-nav,.st-pad,.st-rchip,dialog')) return false;
+      if (!hit || (hit.closest(LEAF) && !hit.closest('.st-foot__sky')) || hit.closest('.st-nav,.st-pad,.st-rchip,.st-fdock,dialog')) return false;
     }
     return true;
   };
@@ -198,8 +199,10 @@
     var img = d.querySelector('.st-back__img');
     if (!sayY || !img || !img.offsetWidth) return;
     var n = 0;
-    try { n = (JSON.parse(localStorage.getItem('numidea-lessons') || '[]') || []).length; } catch (e) {}
-    sayY.textContent = (n >= 6 ? t('life.y.all') : n ? t('life.y.some') : t('life.y.none')).replace('{n}', String(n));
+    // the keepsakes of every atlas on the shelf (#lant-data: one key per atlas, SPEC §2.3)
+    var all = 0;
+    try { JSON.parse(d.getElementById('lant-data').textContent).books.forEach(function (b) { var S = null; try { S = JSON.parse(localStorage.getItem(b.store) || 'null'); } catch (e) {} all += b.ids.length; b.ids.forEach(function (id) { var r = S && S.d && S.d[id]; if (r && r.a && r.x) n++; }); }); } catch (e) {}
+    sayY.textContent = (all && n >= all ? t('life.y.all') : n ? t('life.y.some') : t('life.y.none')).replace('{n}', String(n));
     var r = img.getBoundingClientRect(), w = sayY.offsetWidth;
     sayY.style.transform = 'translate3d(' + Math.max(8, Math.min(docW - w - 8, r.left + window.pageXOffset + r.width * 0.5 - w * 0.5)).toFixed(0) + 'px,' + (r.top + window.pageYOffset + r.height * 0.1).toFixed(0) + 'px,0) translateY(-100%)';
     sayY.classList.add('is-on');
@@ -436,7 +439,8 @@
     var right = detail.right;
     // a hop for a right answer, a paw for a wrong one, wherever he is when it starts
     var react = function (going) {
-      if (right) return [arcTo(null, null, 54), call(function () { if (!going) pose('sit'); speak(pick(detail.first ? 'life.k.right' : 'life.k.again')); })];
+      // a course's stop may name his word for its first right answer (detail.say, hub/app.js 13: "Vectoriel.")
+      if (right) return [arcTo(null, null, 54), call(function () { if (!going) pose('sit'); speak(detail.first && detail.say && t(detail.say) ? t(detail.say) : pick(detail.first ? 'life.k.right' : 'life.k.again')); })];
       return [call(function () { if (K.pose === 'stand') queue.unshift(frames('sitdown', M(3))); }), frames('paw', M(6)), frames('paw', M(6), true), call(function () { pose('sit'); speak(pick('life.k.wrong')); })];
     };
     if (playing) { if (right) speak(pick('life.k.right')); return; }
@@ -453,6 +457,9 @@
   d.addEventListener('numidea:lesson', function (e) { answered(e.detail); });
   // a client course's brief sent, copied or printed (hub/app.js 13b): if he is in view, the stamp's word (the first of life.k.right), nothing new
   d.addEventListener('numidea:brief', function () { if (!playing && onScreen()) speak(t('life.k.right').split('|')[0]); });
+  // a course's turn he names in one word (hub/app.js 13b: the meter reads "slogan", the tree says no chain, a scam sorted
+  // as harmless): if he is in view he says it where he is, in the pose he has, nothing new
+  d.addEventListener('numidea:kuro', function (e) { var k = e.detail && e.detail.k, w = k ? t(k) : ''; if (w && !playing && onScreen()) speak(w); });
   d.addEventListener('numidea:radio', function (e) {
     if (playing) return;
     measure();

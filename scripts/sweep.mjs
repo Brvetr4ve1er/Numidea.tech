@@ -52,7 +52,7 @@ import {existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {serve,launch} from './lib/serve.mjs';
 import {loopState} from './lib/loop-state.mjs';
-import {ROOT,THEMES} from './site.mjs';
+import {ROOT,THEMES,LANTERNE_PAGES} from './site.mjs';
 const srv=await serve();
 const B=srv.base;
 
@@ -95,7 +95,8 @@ RUNS.push({theme:'arcanum',pname:'404',path:'/404.html',lang:'ar',w:1280,h:900})
 // hub/: one paper palette (the character bible, 56f29c1: no void-theme), on the desktop pass above and here
 // the Studio (hub/: French, English and Arabic by its own switch) and the character bible (hub/bible/), desktop and phone
 for(const [pname,path,lang,w,h] of [['hub','/hub/index.html','fr',1280,900],['hub-ar','/hub/index.html','ar',1280,900],['hub-bible','/hub/bible/index.html','en',1280,900],
-  ['hub-manual','/hub/manuel.html','fr',1280,900],['hub-manual@280','/hub/manuel.html','fr',280,653],['hub-manual-ar@390','/hub/manuel.html','ar',390,844],
+  ['hub-lanterne','/hub/lanterne/','fr',1280,900],['hub-lanterne@280','/hub/lanterne/','fr',280,653],['hub-lanterne-ar@390','/hub/lanterne/','ar',390,844],
+  ...LANTERNE_PAGES.slice(1).flatMap((p)=>{const n='hub-atlas-'+p.slice(13,-5);return [[n,'/'+p,'fr',1280,900],[n+'@280','/'+p,'fr',280,653],[n+'-ar@390','/'+p,'ar',390,844]];}),
   ['hub-world','/hub/monde.html','fr',1280,900],['hub-world@280','/hub/monde.html','fr',280,653],['hub-world-ar@390','/hub/monde.html','ar',390,844],
   ['hub-fabrique','/hub/fabrique.html','fr',1280,900],['hub-fabrique@280','/hub/fabrique.html','fr',280,653],['hub-fabrique-ar@390','/hub/fabrique.html','ar',390,844],
   ['hub@280','/hub/index.html','fr',280,653],['hub@390','/hub/index.html','fr',390,844],['hub-ar@390','/hub/index.html','ar',390,844],['hub-bible@390','/hub/bible/index.html','en',390,844]])

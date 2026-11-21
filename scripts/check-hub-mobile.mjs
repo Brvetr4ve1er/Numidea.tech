@@ -20,11 +20,15 @@
  *              the world's page, hub/monde.html, where the diary is)
  *   fabrique   la fabrique (hub/fabrique.html) is held to the overflow rule
  *              too, at the same widths and in the same languages
+ *   lanterne   the Librairie's shelf and each atlas (hub/lanterne/, 2026-11-21),
+ *              a district open (it turns with the width), the same rule, and
+ *              the district's name within one screen (scratchpad lantern/SPEC.md §3.10)
  * Touch is driven with real touch events (CDP): synthesized scroll gestures
  * do nothing in the headless build.
  */
 import { launch, serve } from './lib/serve.mjs';
 import { devices } from 'playwright';
+import { LANTERNE_PAGES } from './site.mjs';
 
 const srv = await serve(undefined, { compress: true });
 const browser = await launch();
@@ -54,6 +58,27 @@ for (const lang of ['fr', 'en', 'ar']) {
       await q.goto(`${srv.base}/hub/fabrique.html${lang === 'fr' ? '' : '?lang=' + lang}`, { waitUntil: 'load' }); await q.waitForTimeout(400);
       const f = await q.evaluate(async () => { document.documentElement.style.scrollBehavior = 'auto'; document.querySelectorAll('details').forEach((d) => { d.open = true; }); for (let y = 0; y < document.documentElement.scrollHeight; y += 700) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 30)); } return { sw: document.documentElement.scrollWidth, iw: innerWidth }; });
       if (f.sw > f.iw) note(`${lang} ${w}: la fabrique is ${f.sw}px wide on a ${f.iw}px screen`);
+      await q.close(); nOk++;
+    }
+    // La Librairie Lanterne (2026-11-21): the shelf and each atlas, a district open (one per width, turning), held to the
+    // overflow rule, and the open district's name within one screen of its section's top (SPEC §3.10)
+    for (const page of LANTERNE_PAGES) {
+      const q = await ctx.newPage();
+      await q.goto(`${srv.base}/${page.replace(/index\.html$/, '')}${lang === 'fr' ? '' : '?lang=' + lang}`, { waitUntil: 'load' }); await q.waitForTimeout(500);
+      const f = await q.evaluate(async (i) => {
+        document.documentElement.style.scrollBehavior = 'auto';
+        const go = [...document.querySelectorAll('.list__btn[data-lt-go]')], pick = go.length ? go[i % go.length] : null;
+        if (pick) { pick.click(); await new Promise((r) => setTimeout(r, 300)); }
+        const cur = document.querySelector('.district.is-current'), h = cur && cur.querySelector('.dossier__h');
+        if (cur) cur.scrollIntoView();
+        const name = cur && (cur.querySelector('.dio__name').getClientRects().length ? cur.querySelector('.dio__name') : h);
+        for (let y = 0; y < document.documentElement.scrollHeight; y += 700) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 30)); }
+        if (cur) cur.scrollIntoView();
+        const nr = name ? name.getBoundingClientRect() : null;
+        return { sw: document.documentElement.scrollWidth, iw: innerWidth, id: cur && cur.id, nameIn: !nr || (nr.top >= -1 && nr.bottom <= innerHeight) };
+      }, [280, 320, 360, 390, 430].indexOf(w) * 3 + ['fr', 'en', 'ar'].indexOf(lang));
+      if (f.sw > f.iw) note(`${lang} ${w}: ${page}${f.id ? '#' + f.id : ''} is ${f.sw}px wide on a ${f.iw}px screen`);
+      if (!f.nameIn) note(`${lang} ${w}: ${page}#${f.id}: the district's name is not within one screen of its top`);
       await q.close(); nOk++;
     }
     if (w === 390) {

@@ -15,7 +15,8 @@
  * text, inside a p, li or dd, is the sentence's and exempt, as in audit.mjs;
  * a stretched link counts at the size of the box its ::after fills).
  * Text in a fixed layer (the phone contact bar .m-contact, the back-to-top
- * button) lies over the page on purpose, as the bar does over whatever
+ * button; and since 2026-11-21 a layer stuck to the bottom of its section,
+ * the web3 course's dock .st-fdock) lies over the page on purpose, as the bar does over whatever
  * scrolls under it: it is compared for OVERLAP with the other fixed text
  * only. Content of closed <details> is skipped (it keeps stale layout
  * boxes). Each issue is named by its page first ("index …", "hub …").
@@ -26,7 +27,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { serve, launch } from './lib/serve.mjs';
-import { ROOT } from './site.mjs';
+import { ROOT, LANTERNE_PAGES } from './site.mjs';
 const srv = await serve();
 // [page, path, width, what it is set to (localStorage), how a row names it]
 const combos=[];
@@ -45,8 +46,9 @@ for(const w of [1440,1024,768,390]){
  combos.push(['bible','/hub/bible/',w,{},`bible ${w}`]);
 }
 // the manual beside the Studio (hub/manuel.html, 2026-11-16), same sheet
-for(const w of [1440,768,390,360]) combos.push(['hub','/hub/manuel.html',w,{'numidea-lang':'fr'},`manual ${w}`]);
-combos.push(['hub','/hub/manuel.html',390,{'numidea-lang':'ar'},'manual 390/ar']);
+// the Librairie Lanterne took the manual's place (2026-11-21): the shelf and two atlases' worth of pages
+for(const p of LANTERNE_PAGES) for(const w of [1440,768,390,360]) combos.push(['hub','/'+p,w,{'numidea-lang':'fr'},`${p.slice(13)} ${w}`]);
+for(const p of LANTERNE_PAGES) combos.push(['hub','/'+p,390,{'numidea-lang':'ar'},`${p.slice(13)} 390/ar`]);
 // the world beside the Studio (hub/monde.html, 2026-11-18), same sheet
 for(const w of [1440,1024,768,390,360]) combos.push(['hub','/hub/monde.html',w,{'numidea-lang':'fr'},`world ${w}`]);
 combos.push(['hub','/hub/monde.html',390,{'numidea-lang':'ar'},'world 390/ar']);
@@ -90,7 +92,7 @@ for(const [page,path,w,init,label] of combos){
   // reached the bottom of the page)
   const folded=e=>{for(let a=e;a&&a.parentElement;a=a.parentElement){const d=a.parentElement;if(d.tagName==='DETAILS'&&!d.open&&!(a.tagName==='SUMMARY'&&a===d.querySelector(':scope>summary')))return true}return false};
   // the fixed layer an element is in (position:fixed on it or an ancestor), or null
-  const fixedOf=e=>{for(let a=e;a&&a!==document.body;a=a.parentElement)if(getComputedStyle(a).position==='fixed')return a;return null};
+  const fixedOf=e=>{for(let a=e;a&&a!==document.body;a=a.parentElement){const st=getComputedStyle(a);if(st.position==='fixed'||(st.position==='sticky'&&st.bottom!=='auto'))return a}return null};
   const sel=e=>{let s=e.tagName.toLowerCase();if(e.id)s+='#'+e.id;else if(e.classList.length)s+='.'+[...e.classList].slice(0,2).join('.');const sec=e.closest('section,header,footer,aside,.vista');return (sec?(sec.id||sec.className.split(' ')[0]):'body')+' '+s};
   // text leaf boxes
   const texts=[];const tw=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;

@@ -24,7 +24,7 @@
     "groupSite": "Je veux un site",
     "groupWorld": "Le monde",
     "groupLearn": "Apprendre",
-    "manual": "Le manuel",
+    "manual": "La Librairie",
     "fab": "La fabrique"
   },
   "sting": {
@@ -710,10 +710,10 @@
       "bible": "La bible"
     },
     "c": {
-      "k": "03 · LE MANUEL",
+      "k": "03 · LA LIBRAIRIE",
       "t": "J’apprends",
-      "d": "Se faire payer de loin, préparer sa marque, voir clair dans le web3, travailler de partout : trente-huit leçons courtes, quatre services à prix fixe, et la radio de l’atelier.",
-      "go": "Ouvrir le manuel",
+      "d": "Se faire payer de loin, préparer sa marque, voir clair dans le web3, travailler de partout : {atlases} atlas, {services} services à prix fixe, et la radio de l’atelier.",
+      "go": "Ouvrir la Librairie",
       "lessons": "Les leçons",
       "nomad": "Nomade",
       "radio": "La radio",
@@ -755,8 +755,8 @@
         "kuro": {
           "n": "Kūro",
           "t": "CHAT NOIR",
-          "d": "Le chat de l’atelier. Il en est la porte et le contrôle qualité : il juge chaque commit, puis s’endort sur le clavier. Sur le manuel, il vit sur la page et vient s’asseoir près de ce que vous lisez.",
-          "go": "Kūro, vivant, sur le manuel"
+          "d": "Le chat de l’atelier. Il en est la porte et le contrôle qualité : il juge chaque commit, puis s’endort sur le clavier. Dans la Librairie, il dort sur le comptoir et vient s’asseoir près de ce que vous lisez.",
+          "go": "Kūro, vivant, dans la Librairie"
         },
         "atelier": {
           "n": "L’atelier de nuit",
@@ -784,14 +784,14 @@
         "radio": {
           "n": "La radio",
           "t": "SIGNAL",
-          "d": "Le poste de l’atelier, sur le manuel. Quatre instrumentaux faits pour les nuits de travail. Elle ne joue jamais seule : il faut l’allumer.",
+          "d": "Le poste de l’atelier, dans la Librairie. Quatre instrumentaux faits pour les nuits de travail. Elle ne joue jamais seule : il faut l’allumer.",
           "go": "Allumer la radio de l’atelier"
         },
         "manuel": {
-          "n": "Le manuel",
-          "t": "SAVOIR",
-          "d": "Trente-huit leçons courtes pour gagner sa vie de loin et mieux acheter : l’argent, la marque, le web3, la route, le jeu juste. Les leçons sont gratuites ; les tampons, eux, se gagnent.",
-          "go": "Ouvrir le manuel"
+          "n": "La Librairie Lanterne",
+          "t": "LIEU",
+          "d": "La librairie de nuit du monde de Numidea. Chaque livre y est un atlas qu’on joue quartier par quartier : l’argent, la marque, le web3, la route, le jeu juste, et le cas de la Lanterne elle-même. Les leçons sont gratuites ; les souvenirs se gagnent.",
+          "go": "Entrer dans la Librairie"
         },
         "traveler": {
           "t": "MONDE",
@@ -1031,14 +1031,7 @@
     "note2": "Les règles changent d’un pays à l’autre. En Algérie, la loi 25-10 de juillet 2025 interdit l’achat, la vente, la détention et la promotion des crypto-actifs : vérifiez toujours la loi là où vous vivez."
   },
   "motion": {
-    "calc": "Chiffrer →",
     "sec": "la seconde",
-    "line": {
-      "k": "LE MOUVEMENT",
-      "t": "Et quand il faut que ça bouge : du motion design, chiffré à la seconde.",
-      "reel": "Voir la bobine ↓",
-      "how": "Le rythme, expliqué"
-    },
     "svc": {
       "items": [
         {
@@ -1055,7 +1048,7 @@
     "reel": {
       "kicker": "/ LA BOBINE",
       "title": "Passez dessus.",
-      "lead": "Six clips. La souris ou le doigt les lance, ils s’arrêtent quand vous partez.",
+      "lead": "Cinq clips. La souris ou le doigt les lance, ils s’arrêtent quand vous partez.",
       "play": "Lire le clip :",
       "aria": "Les clips",
       "price": "Chiffrer une animation →"
@@ -1078,8 +1071,8 @@
   },
   "manual": {
     "ui": {
-      "title": "Manuel du freelance nomade : 38 leçons gratuites | Numidea Labs",
-      "desc": "Trente-huit leçons courtes : se faire payer de l’étranger, fixer son tarif, préparer sa marque, voir clair dans le web3, travailler de partout. Quatre services."
+      "title": "Manuel du freelance nomade : 71 leçons gratuites | Numidea Labs",
+      "desc": "71 leçons courtes : se faire payer de l’étranger, fixer son tarif, préparer sa marque, voir clair dans le web3, travailler de partout. Quatre services."
     },
     "kicker": "/ LE MANUEL",
     "nav": {
@@ -1109,7 +1102,7 @@
   "life": {
     "kicker": "/ LA RONDE DE NUIT",
     "title": "Kūro habite cette page.",
-    "lead": "Il vous rejoint quand vous lisez, il juge vos réponses, il s’endort sur la radio. Prenez la manette : sept sceaux sont cachés entre la radio, les leçons et les services. Trouvez-les tous, un dessin vous attend.",
+    "lead": "Il vous rejoint entre les rayons et s’endort sur la radio. Prenez la manette : sept sceaux sont cachés entre la radio, les livres, le passeport et le comptoir. Trouvez-les tous, un dessin vous attend.",
     "seals": "sceaux",
     "play": "Jouer avec Kūro",
     "again": "Revoir le dessin",
@@ -1142,9 +1135,9 @@
       "done": "Tu les as tous. Balade-toi."
     },
     "y": {
-      "none": "Pas encore de tampon ? Les leçons sont plus haut.",
-      "some": "{n} sur 6. Continue, les leçons sont plus haut.",
-      "all": "Six tampons sur six. Respect."
+      "none": "Pas encore de souvenir ? Les atlas sont plus haut.",
+      "some": "{n} souvenirs. Continue…",
+      "all": "Tous les souvenirs. Respect."
     }
   },
   "jeu": {
@@ -1486,7 +1479,7 @@
           "rev": "Marge pour l’imprévu",
           "price": "le prix à annoncer",
           "dep": "à la commande, si vous demandez 40 %",
-          "unit": "Dans la monnaie que vous tapez. Pour trouver votre tarif journalier : la leçon 3 du manuel de l’argent, plus haut."
+          "unit": "Dans la monnaie que vous tapez. Pour trouver votre tarif journalier :"
         },
         "q": "Le projet prend trois jours de plus que prévu, et le périmètre n’a pas changé. Qui paie ces trois jours ?",
         "a": [
@@ -1674,7 +1667,8 @@
       "design": "Design",
       "lab": "Le Lab",
       "diary": "Journal"
-    }
+    },
+    "mercuryLant": "MERCURY a deux chemins de traverse dans la Librairie"
   },
   "fiche": {
     "act": {
@@ -1691,7 +1685,6 @@
       "sent": "WhatsApp s’ouvre avec votre fiche. Rien n’est parti tant que vous n’appuyez pas sur Envoyer."
     },
     "keep": "Vos réponses restent sur cet appareil. Rien n’est envoyé tant que vous n’appuyez pas sur un bouton.",
-    "nextL": "Ensuite",
     "next": "@home:prev.tl2",
     "nextP": "@home:prev.tl2p",
     "studio": "@home:contact.vStudio",
@@ -1734,12 +1727,46 @@
     "asideL": "Notre avis d’atelier",
     "match": "Comme nous.",
     "other": "Nous, plutôt : {b}.",
-    "raw": "Le texte brut"
+    "raw": "Le texte brut",
+    "fx": "≈ : conversions arrondies, au même taux que le calculateur du Studio.",
+    "nextStop": "LA SUITE",
+    "bar": "Fiche : {n} sur {t}",
+    "resume": "Vous étiez à l’étape {n} · {title}.",
+    "resumeGo": "Reprendre →",
+    "case": "exemple inventé",
+    "name": {
+      "l": "Votre prénom (facultatif)",
+      "ph": "pour savoir à qui répondre"
+    },
+    "budgetMax": {
+      "l": "Votre plafond, si vous en avez un (facultatif)",
+      "ph": "jusqu’à … DA, € ou $"
+    },
+    "first": {
+      "l": "Le plus important d’abord",
+      "note": "Si le budget ne couvre pas tout, c’est par là qu’on commence."
+    },
+    "after": {
+      "l": "Après la livraison, qui s’en occupe ?",
+      "k": [
+        "Moi",
+        "Quelqu’un de mon équipe",
+        "Je voudrais en parler avec le studio"
+      ]
+    },
+    "all": {
+      "more": "Votre fiche a {n} lignes sur {t} : il en manque {m}.",
+      "full": "Votre fiche est complète : il ne reste qu’à l’envoyer.",
+      "go": "Compléter ma fiche →"
+    },
+    "yasser": "Yasser, au studio :",
+    "sealWait": "Le sceau attend l’essentiel : l’activité ou l’idée, la date, le budget.",
+    "midL": "Bon à savoir"
   },
   "brandc": {
     "kicker": "/ COURS CLIENT · LA MARQUE, AVANT LE LOGO",
     "title": "Le logo vient après.",
-    "lead": "Neuf étapes pour savoir ce que vous voulez avant de payer un designer : ce qu’est une marque, pour qui, la promesse, le caractère, la tenue en tout petit, les fichiers à recevoir, la proposition à lire, le nom à protéger, puis le compte. Vos réponses remplissent une fiche que vous pouvez nous envoyer, copier ou imprimer.",
+    "lead": "Un logo payé deux fois coûte plus cher qu’une heure de réflexion. Neuf étapes, et vous saurez quoi demander avant de payer un designer : vos réponses remplissent une fiche qui part au studio à la fin, si vous le voulez.",
     "sceneAlt": "La nuit, à l’atelier : Yasser tient une feuille vierge sous la lampe, Kūro assis sur une pile de nuanciers, un tampon rouge sous la patte",
     "hud": "/ NEUF ÉTAPES · UNE FICHE À LA FIN",
     "tabs": "Les neuf étapes du cours sur la marque",
@@ -1759,7 +1786,7 @@
     "items": [
       {
         "t": "Le logo n’est pas la marque",
-        "d": "Un logo est un signe ; l’identité, le langage visuel autour (couleurs, lettres, images) ; le système, les règles qui le gardent cohérent ; la marque, ce qu’on dit de vous quand vous n’êtes pas là. Pour le Design Council, l’organisme britannique du design, « votre marque est plus qu’un logo » : c’est tout ce que les gens associent à vous. Il demande si vous, votre équipe et vos clients savez la décrire avant de commander un design.",
+        "d": "On vous livre un logo, et rien ne change : c’est qu’un logo n’est qu’un signe. Autour de lui, il y a l’identité (couleurs, lettres, images), le système (les règles qui la gardent cohérente) et la marque : ce qu’on dit de vous quand vous n’êtes pas là. Pour le Design Council, l’organisme britannique du design, « votre marque est plus qu’un logo » : rangez d’abord ce que vous avez.",
         "biz": {
           "l": "Votre activité, en une ligne",
           "ph": "pâtisserie, Bordj Bou Arréridj"
@@ -1813,11 +1840,25 @@
           "Un signe : l’identité et les règles restent à faire",
           "Un système graphique"
         ],
-        "ok": "Oui. Un signe, c’est le début. Le reste se décide avant."
+        "ok": "Oui. Un signe, c’est le début. Le reste se décide avant.",
+        "keep": {
+          "l": "Votre logo actuel",
+          "k": [
+            "Je le garde",
+            "Je le rafraîchis",
+            "Je le refais",
+            "Je ne sais pas"
+          ],
+          "note": "Pas sûr ? L’étape 5 vous laisse voir votre propre logo à 16 pixels."
+        },
+        "no": [
+          "Non. La marque, c’est ce qu’on dit de vous : un fichier ne le contient pas.",
+          "Non. Un système, ce sont des règles écrites : un fichier seul n’en donne aucune."
+        ]
       },
       {
         "t": "Pour qui ?",
-        "d": "« Tout le monde » n’est pas un public. Le Design Council, l’organisme britannique du design, place le public visé dans tout brief (le document qui présente le projet au designer). Décrivez une personne : ce qu’elle cherche, où elle vous trouve, ce qui la fait hésiter.",
+        "d": "« Tout le monde » n’est pas un public, et un logo fait pour tout le monde ne parle à personne. Le Design Council place le public visé dans tout brief (le document qui présente le projet au designer). Décrivez une personne : ce qu’elle veut obtenir, où elle vous trouve, ce qui la fait hésiter.",
         "who": {
           "t": "Qui achète ?",
           "chips": [
@@ -1827,7 +1868,7 @@
           ]
         },
         "seek": {
-          "l": "Elle ou il cherche…",
+          "l": "Ce qu’elle ou il veut obtenir",
           "ph": "un gâteau prêt à l’heure promise"
         },
         "where": {
@@ -1848,7 +1889,7 @@
         "card": {
           "t": "LA PERSONNE",
           "who": "Qui",
-          "seek": "Cherche",
+          "seek": "Veut",
           "where": "Nous trouve",
           "doubt": "Hésite",
           "empty": "à remplir"
@@ -1859,11 +1900,15 @@
           "Je prends celle qui parle le mieux à la personne de ma fiche",
           "Je prends la plus colorée"
         ],
-        "ok": "Oui. On juge contre le brief, pas au goût : c’est le conseil du Design Council."
+        "ok": "Oui. On juge contre le brief, pas au goût : c’est le conseil du Design Council.",
+        "no": [
+          "Pas tout à fait. Votre famille n’est pas votre cliente : on juge contre la fiche, pas au goût.",
+          "Non. La couleur est un moyen : la question est de savoir à qui la piste parle."
+        ]
       },
       {
         "t": "La promesse et la preuve",
-        "d": "Une promesse dit ce que le client obtient chez vous. Une preuve la rend croyable : un délai écrit, un chiffre que vous pouvez montrer, un avis signé. Chez nous, un brief commence par là, avant le premier trait : c’est notre méthode, pas une règle.",
+        "d": "« La meilleure qualité » : vos concurrents le disent aussi. Une promesse dit ce que le client obtient chez vous ; une preuve la rend croyable : un délai écrit, un chiffre à montrer, un avis signé. Chez nous, un brief commence par là : c’est notre méthode, pas une règle.",
         "promise": {
           "l": "Chez nous, vous obtenez…",
           "ph": "des gâteaux de commande prêts à l’heure dite"
@@ -1900,7 +1945,7 @@
             "des entreprises",
             "des institutions"
           ],
-          "line": "Pour {who} qui cherchent {seek} : {promise}. La preuve : {proof}.",
+          "line": "Pour {who}. Ce qu’ils veulent : {seek}. Notre promesse : {promise}. La preuve : {proof}.",
           "empty": "à remplir",
           "note": "La grille vient de notre atelier : public, besoin, promesse, preuve. La phrase en dessous part dans votre fiche."
         },
@@ -1910,11 +1955,15 @@
           "« Livré sous 48 h, ou la livraison est offerte »",
           "« Une passion depuis toujours »"
         ],
-        "ok": "Oui. Un délai se vérifie. « Meilleur » ne se vérifie pas."
+        "ok": "Oui. Un délai se vérifie. « Meilleur » ne se vérifie pas.",
+        "no": [
+          "Non. « Meilleure » ne se constate pas : aucun client ne peut le vérifier.",
+          "Non. La passion ne se montre pas : il faut un fait qu’un client peut constater."
+        ]
       },
       {
         "t": "Le caractère",
-        "d": "Ne dites pas au designer « je veux du bleu » : le Design Council, l’organisme britannique du design, conseille de décrire le but, pas la solution. Dites ce qu’on doit ressentir, il choisit les moyens. Trois curseurs suffisent.",
+        "d": "« Je veux du bleu » : et le designer n’a plus rien à chercher. Le Design Council conseille de décrire le but, pas la solution. Dites ce qu’on doit ressentir, avec trois curseurs : il choisit les moyens.",
         "sliders": [
           {
             "l": "Ambiance",
@@ -1975,14 +2024,26 @@
         "q": "Que dire au designer ?",
         "a": [
           "« Je veux du bleu et une police ronde »",
-          "« On doit nous trouver calmes et précis, comme un bon médecin »",
+          "« On doit nous trouver généreux et soignés, comme une table de fête »",
           "« Faites comme le concurrent, en mieux »"
         ],
-        "ok": "Oui. Le but, pas les moyens : il trouve les moyens."
+        "ok": "Oui. Le but, pas les moyens : il trouve les moyens.",
+        "no": [
+          "Non. C’est déjà la solution : dites le but, il choisit les moyens.",
+          "Non. Copier un concurrent, c’est se confondre avec lui : dites ce qu’on doit ressentir chez vous."
+        ],
+        "refs": {
+          "l": [
+            "Une marque que j’aime, et pourquoi (facultatif)",
+            "Une deuxième, et pourquoi"
+          ],
+          "ph": "le nom, puis ce qui vous plaît : les couleurs, le ton, l’emballage…",
+          "note": "Deux suffisent, si vous dites pourquoi : c’est le « pourquoi » qui sert au designer."
+        }
       },
       {
         "t": "Ce que vous recevez",
-        "d": "Une identité, ce sont des fichiers, et chacun sert à quelque chose. Ouvrez-les un par un : ce sont ceux à retrouver dans toute proposition.",
+        "d": "Votre imprimeur demande le logo pour une bâche de 3 mètres, et vous n’avez qu’un JPEG. Une identité, ce sont des fichiers, et chacun sert à quelque chose. Ouvrez-les un par un : ce sont ceux à retrouver dans toute proposition.",
         "files": {
           "t": "À quoi sert chaque fichier",
           "pick": [
@@ -2000,7 +2061,7 @@
             },
             {
               "k": "La charte",
-              "v": "Le livret des règles : tailles, marges, couleurs, ce qui est interdit. Il permet à quelqu’un d’autre de faire un visuel cohérent sans vous appeler. Une charte complète donne aussi un rôle à chaque couleur (texte, fond, accent, alerte) et un ordre de lecture (titre, détails, action) : c’est notre liste. Selon les règles d’accessibilité du W3C (WCAG 2.2), un texte courant demande un contraste d’au moins 4,5:1 avec son fond, et 3:1 en grand ; le texte d’un logo n’a pas d’exigence de contraste."
+              "v": "Le livret des règles : tailles, marges, couleurs, ce qui est interdit. Il permet à quelqu’un d’autre de faire un visuel cohérent sans vous appeler. Une charte complète donne aussi un rôle à chaque couleur (texte, fond, accent, alerte) et un ordre de lecture (titre, détails, action) : c’est notre liste. Les règles d’accessibilité du W3C (WCAG 2.2) demandent un contraste minimal entre un texte et son fond : demandez un rôle par couleur, et un texte qui reste lisible."
             },
             {
               "k": "Les polices et leurs licences",
@@ -2008,7 +2069,7 @@
             },
             {
               "k": "Les droits, par écrit",
-              "v": "Le guide de l’OMPI (l’Organisation mondiale de la propriété intellectuelle) et de l’INAPI pour l’Algérie (2004) le rappelle : le créateur d’un logo est d’abord titulaire du droit d’auteur ; il conseille de régler ce point dans l’accord initial, ou de faire céder officiellement le droit à votre entreprise. En France, chaque droit cédé doit être nommé dans l’acte (code de la propriété intellectuelle, art. L131-3)."
+              "v": "Le guide de l’OMPI (l’Organisation mondiale de la propriété intellectuelle) et de l’INAPI pour l’Algérie (2004) le rappelle : le créateur d’un logo est d’abord titulaire du droit d’auteur ; il conseille de régler ce point dans l’accord initial, ou de faire céder officiellement le droit à votre entreprise. En France, selon le code de la propriété intellectuelle, chaque droit cédé doit être nommé dans l’acte : demandez la cession par écrit."
             },
             {
               "k": "Le master de campagne et ses formats",
@@ -2016,17 +2077,21 @@
             }
           ]
         },
-        "q": "Votre imprimeur demande le logo pour une bâche de 3 mètres. Vous envoyez…",
+        "q": "Pour sa deuxième boutique, l’imprimeur de Nadia (notre exemple) demande le logo pour une bâche de 3 mètres. Elle envoie…",
         "a": [
           "la photo du logo prise au téléphone",
           "le fichier vectoriel (SVG ou PDF)",
-          "le PNG de votre page de réseau social"
+          "le PNG de sa page de réseau social"
         ],
-        "ok": "Oui. Un vectoriel reste net à toutes les tailles ; une image en pixels, non."
+        "ok": "Oui. Un vectoriel reste net à toutes les tailles ; une image en pixels, non.",
+        "no": [
+          "Non. Une photo est faite de points : agrandie à 3 mètres, elle devient floue.",
+          "Non. Un PNG est une image en pixels, faite pour l’écran : pas pour une bâche."
+        ]
       },
       {
         "t": "Lire une proposition",
-        "d": "Avant de signer, lisez ce qui manque autant que ce qui est écrit. Le Design Council, l’organisme britannique du design, conseille de demander au designer « M’avez-vous indiqué tous les coûts ? » et « Quand la propriété du design nous revient-elle ? ». Les lignes que vous marquez « à demander » partent dans votre fiche, y compris pour nous.",
+        "d": "« Tout compris », dit le devis ; et vous ne savez pas ce que « tout » contient. Le Design Council conseille de demander « M’avez-vous indiqué tous les coûts ? » et « Quand la propriété du design nous revient-elle ? ». Triez ces huit lignes : celles que vous marquez « à demander » deviennent vos demandes écrites dans la fiche.",
         "bins": {
           "aria": "Trier huit lignes de proposition",
           "k": [
@@ -2037,7 +2102,8 @@
         "rows": [
           {
             "k": "« Logo livré en JPEG, un fichier. »",
-            "why": "Pas de vectoriel : demandez le SVG ou le PDF, et les versions."
+            "why": "Pas de vectoriel : demandez le SVG ou le PDF, et les versions.",
+            "ask": "Les fichiers SVG/PDF et toutes les versions du logo"
           },
           {
             "k": "« Trois questions sur vos clients avant de dessiner. »",
@@ -2046,12 +2112,14 @@
           {
             "k": "« Prix : tout compris. » Sans liste.",
             "why": "Demandez la liste : « M’avez-vous indiqué tous les coûts ? »",
-            "ours": "Chez nous : l’identité de base comprend le logo (complet, compact et en une seule encre), les couleurs, la typographie et le ton de voix. Le « Kit graphique complet » ajoute la charte, des composants réutilisables, le kit réseaux sociaux animé et le master de campagne."
+            "ours": "Chez nous : l’identité de base comprend le logo (complet, compact et en une seule encre), les couleurs, la typographie et le ton de voix. Le « Kit graphique complet » ajoute la charte, des composants réutilisables, le kit réseaux sociaux animé et le master de campagne.",
+            "ask": "La liste écrite de ce qui est livré"
           },
           {
             "k": "Rien sur les droits.",
             "why": "Demandez quand les droits vous reviennent, et lesquels, par écrit.",
-            "ours": "Chez nous : une fois le projet payé, vous recevez les sources vectorielles et une cession des droits écrite, qui nomme l’usage, le lieu et la durée. Nous gardons le droit de montrer le travail."
+            "ours": "Chez nous : une fois le projet payé, vous recevez les sources vectorielles et une cession des droits écrite, qui nomme l’usage, le lieu et la durée. Nous gardons le droit de montrer le travail.",
+            "ask": "La cession des droits par écrit (usage, lieu, durée)"
           },
           {
             "k": "« Polices sous licence OFL, utilisables pour le logo. »",
@@ -2060,7 +2128,8 @@
           },
           {
             "k": "« Un logo livré en un jour, sans aucune question sur vos clients. »",
-            "why": "Notre avis d’atelier : demandez ce qui est livré et sur quoi le dessin s’appuie."
+            "why": "Notre avis d’atelier : demandez ce qui est livré et sur quoi le dessin s’appuie.",
+            "ask": "Au moins un échange sur mes clients avant de dessiner"
           },
           {
             "k": "« Calendrier : brief, pistes, choix, finitions, livraison, avec une date chacun. »",
@@ -2069,7 +2138,8 @@
           },
           {
             "k": "« Couleurs : bleu nuit et corail. » Sans rôle ni contraste.",
-            "why": "Demandez à quoi sert chaque couleur, et si chaque paire texte et fond atteint 4,5:1, le seuil du W3C pour un texte courant (WCAG 2.2)."
+            "why": "Demandez à quoi sert chaque couleur, et un texte qui reste lisible sur son fond : les règles d’accessibilité du W3C (WCAG 2.2) fixent un contraste minimal.",
+            "ask": "Un rôle pour chaque couleur, et un texte qui reste lisible"
           }
         ],
         "score": "{n} sur 8 comme nous les trions",
@@ -2079,14 +2149,18 @@
           "demandez la liste de ce qui est livré",
           "demandez une remise"
         ],
-        "ok": "Oui. Sans liste, « tout compris » ne se vérifie pas."
+        "ok": "Oui. Sans liste, « tout compris » ne se vérifie pas.",
+        "no": [
+          "Non. Sans liste, vous ne savez pas ce que « tout » contient.",
+          "Non. Une remise sur un contenu inconnu ne dit toujours pas ce que vous recevez."
+        ]
       },
       {
         "t": "Le nom, et à qui il est",
-        "d": "Un logo dessiné n’est pas encore protégé comme marque : une marque se dépose, pays par pays, auprès de l’office national, ou par le système de Madrid que gère l’OMPI. Choisissez un pays pour voir à qui demander et ce que disent les textes officiels.",
+        "d": "Votre logo est dessiné et payé : il n’est pas encore protégé comme marque. Une marque se dépose, pays par pays, auprès de l’office national, ou par le système de Madrid que gère l’OMPI. Choisissez un pays pour voir à qui demander et ce que disent les textes officiels.",
         "name": {
           "l": "Le nom de votre marque",
-          "ph": "ex. Atelier Hodna"
+          "ph": "ex. Pâtisserie Hodna"
         },
         "pick": [
           {
@@ -2124,11 +2198,25 @@
           "Non : il faut le déposer à l’INAPI",
           "Oui, s’il est publié sur vos réseaux"
         ],
-        "ok": "Oui. Le dépôt est une démarche à part, pays par pays."
+        "ok": "Oui. Le dépôt est une démarche à part, pays par pays.",
+        "scripts": {
+          "t": "Écritures sur l’enseigne",
+          "k": [
+            "Arabe",
+            "Latin",
+            "Tifinagh"
+          ],
+          "note": "Chaque écriture se dessine : dites-le avant le devis."
+        },
+        "pickHint": "Choisissez le pays du dépôt : sa carte s’affiche, et la fiche le note.",
+        "no": [
+          "Non. Le dépôt est une démarche à part : rien n’est automatique.",
+          "Non. Publier n’est pas déposer : la marque se dépose auprès de l’office."
+        ]
       },
       {
         "t": "La fiche",
-        "d": "Dernières cases : où votre marque va vivre, pour quand, avec quel budget. La fiche fait le compte avec nos prix publiés, puis elle est prête à partir. Rien ne part tant que vous n’appuyez pas.",
+        "d": "Dernières cases : où votre marque va vivre, pour quand, avec quel budget. La fiche fait le compte avec nos prix publiés ; rien ne part tant que vous n’appuyez pas.",
         "where": {
           "t": "Où votre marque va vivre",
           "note": "Chaque endroit est un « support » : un endroit où la marque apparaît (enseigne, boîte, page…). Nos prix d’identité se comptent en supports.",
@@ -2162,10 +2250,11 @@
           "ds": "Kit graphique complet",
           "motion": "Logo animé (forfait jusqu’à 5 secondes)",
           "base": "L’identité de base : le logo (complet, compact, une encre), les couleurs, la typographie, le ton de voix. Deux premières pistes, puis trois séries de retouches par étape.",
-          "dsHas": "contient : la charte, des composants réutilisables, le kit réseaux sociaux animé, le master de campagne et ses formats."
+          "dsHas": "contient : la charte, des composants réutilisables, le kit réseaux sociaux animé, le master de campagne et ses formats.",
+          "dsWhy": "Notre avis : si quelqu’un d’autre fera vos visuels ensuite, le kit graphique complet évite qu’il réinvente la marque."
         },
         "rcNote": "Le calcul compte un support par endroit coché. Ce qui compte pour un support se confirme au cadrage.",
-        "under": "Votre budget est sous cette estimation. Le calculateur commence à {r} pour 1 ou 2 supports : dites-nous ce qui compte d’abord.",
+        "under": "Votre budget est sous cette estimation. Le calculateur commence à {r} pour 1 ou 2 supports : indiquez votre plafond, et ce qui compte d’abord.",
         "who": {
           "l": "Qui décide chez vous ?",
           "ph": "Nadia, la gérante"
@@ -2182,11 +2271,16 @@
           "Cette fiche, et une personne qui décide",
           "Dix logos qu’on aime, sans dire pourquoi"
         ],
-        "ok": "Oui. Une fiche, un interlocuteur : le Design Council conseille un seul point de contact."
+        "ok": "Oui. Une fiche, un interlocuteur : le Design Council conseille un seul point de contact.",
+        "underFloor": "Votre budget est sous cette estimation, qui est déjà le premier prix du calculateur : indiquez votre plafond, et ce qui compte d’abord.",
+        "no": [
+          "Non. Sans vos réponses, le premier appel sert à poser les questions de cette fiche.",
+          "Presque. Deux marques suffisent, avec la raison : c’est la case de l’étape 4."
+        ]
       },
       {
         "t": "Tenir à 16 pixels",
-        "d": "Votre marque vivra aussi en tout petit : l’onglet du navigateur, la photo de profil, le tampon. Faites glisser jusqu’à 16 pixels : les traits fins d’une marque détaillée disparaissent, la silhouette d’une marque compacte reste. Chez nous, une identité se livre en famille, du logo complet à la version en une seule encre : c’est notre méthode d’atelier, pas une règle.",
+        "d": "Votre logo est beau sur l’enseigne, et illisible dans l’onglet du navigateur. Faites glisser jusqu’à 16 pixels : les traits fins disparaissent, la silhouette compacte reste. Chez nous, une identité se livre en famille, du logo complet à la version en une seule encre : c’est notre méthode d’atelier, pas une règle.",
         "lab": {
           "l": "Taille d’affichage",
           "out": "{n} px",
@@ -2228,7 +2322,19 @@
           "une version compacte en formes pleines, vue à 16 pixels",
           "un logo plus coloré"
         ],
-        "ok": "Oui. Une famille, pas un seul fichier : la petite version se dessine, elle ne se réduit pas."
+        "ok": "Oui. Une famille, pas un seul fichier : la petite version se dessine, elle ne se réduit pas.",
+        "own": {
+          "l": "Testez votre propre logo",
+          "note": "Le fichier reste sur cet appareil : il n’est ni envoyé ni gardé.",
+          "cap": "Votre logo",
+          "clear": "Retirer mon logo",
+          "alt": "Votre logo, à la taille choisie",
+          "bad": "Ce fichier ne s’ouvre pas comme une image : essayez un PNG, un JPEG ou un SVG."
+        },
+        "no": [
+          "Non. Réduit, ses traits fins disparaissent : vous venez de le voir à 16 pixels.",
+          "Non. La couleur ne sauve pas des détails trop fins : c’est la forme qui tient."
+        ]
       }
     ],
     "brief": {
@@ -2242,7 +2348,6 @@
         "promise": "Promesse",
         "proof": "Preuve",
         "tone": "Caractère",
-        "near": "Proche de",
         "voice": "Trois mots",
         "where": "Supports",
         "social": "Réseaux sociaux",
@@ -2250,23 +2355,31 @@
         "name": "Nom",
         "country": "Pays du dépôt",
         "checks": "Où en est le nom",
-        "ask": "À clarifier avant de signer",
+        "ask": "Ce que je demanderai par écrit",
         "when": "Pour quand",
         "budget": "Budget",
         "decides": "Qui décide",
         "pace": "Rythme",
         "positioning": "Positionnement",
-        "small": "Doit tenir en petit"
+        "small": "Doit tenir en petit",
+        "me": "Prénom",
+        "keep": "Logo actuel",
+        "refs": "Marques que j’aime",
+        "scripts": "Écritures",
+        "first": "D’abord",
+        "budgetMax": "Plafond",
+        "after": "Après la livraison"
       },
       "hintWho": "« Tout le monde » n’aide pas le designer : décrivez une personne.",
       "hintProof": "Une promesse sans preuve reste un slogan.",
       "typeLine": "Identité visuelle",
       "motionLine": "Logo animé, à part",
-      "hintRush": "Votre date est plus proche que l’estimation : dites-le au cadrage. Le rythme accéléré existe (+25 % sur le prix)."
+      "hintRush": "Votre date est plus proche que l’estimation : dites-le au cadrage. Le rythme accéléré existe (+25 % sur le prix).",
+      "lead": "Votre marque, en une phrase"
     },
     "all": {
       "t": "Neuf sur neuf.",
-      "d": "Votre fiche est prête, et le dessin de Kūro qui la tamponne est à vous, au format A4.",
+      "d": "Le dessin de Kūro qui tamponne votre fiche est à vous, au format A4.",
       "go": "Télécharger le dessin"
     },
     "cta": {
@@ -2275,16 +2388,52 @@
     },
     "src": {
       "title": "Les sources du cours",
-      "note": "Les conseils pour commander un design viennent du Design Council ; les règles de marque, des offices (INAPI, INPI, ministère émirien, OMPI) ; les droits, des textes cités. Les classements, la méthode promesse et preuve, et les exemples de l’atelier sont notre pratique, et le cours le dit. Rien ici n’est un conseil juridique. La grille de positionnement, la famille de logo et le test des 16 pixels sont notre méthode ; le seuil de contraste vient du W3C."
+      "note": "Les conseils pour commander un design viennent du Design Council ; les règles de marque, des offices (INAPI, INPI, ministère émirien, OMPI) ; les droits, des textes cités. Les classements, la méthode promesse et preuve, et les exemples de l’atelier sont notre pratique, et le cours le dit. Rien ici n’est un conseil juridique. La grille de positionnement, la famille de logo et le test des 16 pixels sont notre méthode ; la règle de contraste vient du W3C. La Pâtisserie Hodna est un exemple inventé."
+    },
+    "acts": [
+      "1–5 · CE QUE VOUS VOULEZ",
+      "6–9 · CE QUE VOUS ACHETEZ"
+    ],
+    "case": {
+      "t": "Chez la Pâtisserie Hodna",
+      "s": [
+        "Nadia tient la Pâtisserie Hodna, à Bordj Bou Arréridj. Son neveu a dessiné le logo en une soirée ; elle ouvre une deuxième boutique avant Ramadan et veut « un logo plus pro ». Elle range ce qu’elle a : un logo, rien d’autre. Le garder ou le refaire ? Elle coche « je ne sais pas » : l’étape 5 l’aidera.",
+        "Sa cliente : une mère qui commande le gâteau d’un mariage. Ce qu’elle veut obtenir : le gâteau de la photo, à l’heure. Elle trouve la pâtisserie par le bouche-à-oreille et les réseaux sociaux. Ce qui la fait hésiter : « est-ce que ce sera comme sur la photo ? »",
+        "Nadia écrit d’abord « la meilleure qualité » : le compteur répond « slogan ». Elle réécrit : « votre gâteau prêt à l’heure promise », et sa preuve : « une photo de chaque commande, envoyée avant la livraison ». La grille lui rend sa phrase : la première qu’une cliente peut vérifier.",
+        "Ses curseurs : plutôt animée, très fait main, plutôt claire. Ses trois mots : généreuse, soignée, de fête. Elle ne dit pas « je veux du rose » : elle dit ce qu’on doit ressentir.",
+        "Pour la deuxième boutique, l’imprimeur lui demande le logo pour une bâche de 3 mètres. Elle n’a qu’un JPEG : elle note qu’il lui faut le vectoriel et les versions.",
+        "On lui propose ailleurs : « logo en un jour, JPEG, tout compris ». Elle marque trois lignes « à demander » : les fichiers vectoriels, la liste de ce qui est livré, les droits par écrit.",
+        "Le nom : « Hodna ». Le pays du dépôt : l’Algérie, donc l’INAPI. Sur l’enseigne, elle veut l’arabe et le latin : elle coche les deux écritures.",
+        "Sa fiche : enseigne, emballage, réseaux sociaux ; l’emballage d’abord ; une date précise, avant Ramadan ; c’est elle qui décide. Sa fiche terminée est sous la vôtre.",
+        "Nadia charge le logo de son neveu : à 16 pixels, les lettres fines disparaissent. Elle tient sa réponse de l’étape 1 : ce logo, elle le fait refaire, avec une version compacte."
+      ],
+      "fiche": {
+        "t": "La fiche de Nadia, terminée",
+        "rows": [
+          "Activité : pâtisserie, Bordj Bou Arréridj",
+          "Logo actuel : je le refais",
+          "Positionnement : Pour des particuliers. Ce qu’ils veulent : le gâteau de la photo, à l’heure. Notre promesse : votre gâteau prêt à l’heure promise. La preuve : une photo de chaque commande, envoyée avant la livraison.",
+          "Caractère : plutôt animée · très fait main · plutôt claire",
+          "Écritures : arabe, latin",
+          "Supports : (3) Enseigne, Emballage, Réseaux sociaux · D’abord : l’emballage",
+          "Ce que je demanderai par écrit : les fichiers SVG/PDF et toutes les versions du logo · la liste écrite de ce qui est livré · la cession des droits par écrit",
+          "Pour quand : avant Ramadan · Qui décide : Nadia, la gérante"
+        ]
+      },
+      "alt": "Exemple inventé : Nadia, dans sa pâtisserie, compare un petit dessin de gâteau fait à la main avec une vraie pièce montée ; Kūro, assis sur le comptoir, regarde le dessin."
+    },
+    "kuro": {
+      "slogan": "Slogan.",
+      "vector": "Vectoriel."
     }
   },
   "web3c": {
     "kicker": "/ COURS CLIENT · LE WEB3, CÔTÉ CLIENT",
     "title": "Le web3, sans fumée.",
-    "lead": "Huit étapes pour savoir si votre projet a besoin d’une blockchain, ce qui va sur la chaîne et ce qui n’y va pas, ce qu’il coûtera vraiment, ce que dit la loi là où vivent vos utilisateurs, et comment repérer une arnaque. Parfois une chaîne est le bon outil ; ce cours aide à savoir quand. Vos réponses remplissent une fiche à nous envoyer, copier ou imprimer. C’est de l’éducation : aucun conseil en placement, aucun signal, aucune promesse de gain.",
+    "lead": "On vous a vendu une chaîne ; vous vouliez peut-être juste des clients fidèles. Deux façons de suivre ce cours. Vous avez un projet : huit étapes pour trier l’outil du résultat, et repartir avec une fiche qu’on peut chiffrer. Vous voulez comprendre : neuf modules, des fondations à la sécurité, avec un schéma à manipuler à chaque étape. Parfois une chaîne est le bon outil ; ce cours aide à savoir quand. C’est de l’éducation : aucun conseil en placement, aucun signal, aucune promesse de gain.",
     "sceneAlt": "Yasser examine à la loupe une chaîne de trois cubes lumineux ; Kūro chasse la fumée d’un coup de patte, et l’on voit à côté de simples boîtes en carton étiquetées : chaque outil à sa place",
-    "hud": "/ HUIT ÉTAPES · UNE FICHE À LA FIN",
-    "tabs": "Les huit étapes du cours sur le web3",
+    "hud": "/ UN PARCOURS ACHETEUR · NEUF MODULES · UNE FICHE",
+    "tabs": "Les huit étapes du parcours acheteur",
     "book": "Votre fiche, case par case",
     "n": "ÉTAPE",
     "stops": [
@@ -2300,7 +2449,7 @@
     "items": [
       {
         "t": "Les mots",
-        "d": "Le web3, c’est un site qui parle à un registre partagé au lieu d’une base de données privée. Avant d’ouvrir les mots, écrivez votre idée en une phrase, sans aucun d’eux.",
+        "d": "On vous a parlé de jetons, de NFT, de portefeuilles : avant les mots, votre idée. Écrivez-la en une phrase, sans aucun d’eux, puis ouvrez-les un par un. Le web3, c’est un site qui parle à un registre partagé au lieu d’une base de données privée.",
         "goal": {
           "l": "Mon idée, en une phrase",
           "ph": "que mes clients fidèles soient récompensés"
@@ -2349,15 +2498,23 @@
           "Je change de navigateur"
         ],
         "ok": "Oui. Une signature est un accord, et une autorisation de dépense reste valable jusqu’à ce que vous la révoquiez.",
-        "alt": "Kūro touche du bout de la patte un cube relié à d’autres par des fils"
+        "alt": "Kūro touche du bout de la patte un cube relié à d’autres par des fils",
+        "where": {
+          "t": "Et d’abord : où sont vos utilisateurs, ou votre entreprise ?"
+        },
+        "lawFirst": "La loi décide avant le design : l’étape 7 vous dit quoi demander à un avocat.",
+        "no": [
+          "Non. Une signature peut autoriser une dépense, et selon ethereum.org cette autorisation n’expire pas seule.",
+          "Non. Le navigateur n’y change rien : c’est la demande qu’il faut comprendre."
+        ]
       },
       {
         "t": "Faut-il une chaîne ?",
-        "d": "Le NIST reprend, dans son guide de 2018, un arbre de six questions du département américain de la Sécurité intérieure : à chaque « non », l’arbre propose un outil ordinaire. Le NIST conclut : à utiliser « seulement dans les situations appropriées ». Répondez pour votre projet, pas pour la technique.",
+        "d": "On vous a dit « mets-le sur la blockchain » : six questions suffisent pour savoir si c’est vrai. Le NIST, l’agence américaine des normes, reprend dans son guide de 2018 un arbre du département américain de la Sécurité intérieure : à chaque « non », l’arbre propose un outil ordinaire. Sa conclusion : à utiliser « seulement dans les situations appropriées ».",
         "fork": {
-          "q": "D’abord : vous voulez construire quelque chose sur une chaîne (registre, jeton, NFT, DAO), ou accepter un paiement en crypto ?",
+          "q": "D’abord : vous voulez construire quelque chose sur une chaîne (registre, jeton, NFT, DAO), ou être payé (carte, virement ou crypto) ?",
           "build": "Construire sur une chaîne",
-          "pay": "Accepter un paiement",
+          "pay": "Être payé",
           "payT": "Un paiement, pas une chaîne.",
           "payD": "L’arbre ne s’applique pas à votre cas : l’étape 3 s’ouvre sur « Accepter la crypto »."
         },
@@ -2384,12 +2541,12 @@
               "why": "Une blockchain ne permet pas de réécrire l’historique."
             },
             {
-              "q": "Aucune donnée personnelle ou sensible n’y sera écrite, même chiffrée ?",
+              "q": "Ce qui y sera écrit peut-il être vu de tous : rien de personnel ni de sensible, même chiffré ?",
               "no": "Une base de données chiffrée",
               "why": "Une chaîne publique rend visible ce qu’on y écrit : noms, courriels et listes restent dans une base (notre règle d’atelier, étape 4)."
             },
             {
-              "q": "Ceux qui écrivent ont-ils du mal à décider qui contrôle les données ?",
+              "q": "Les organisations qui écrivent peinent-elles à s’accorder sur celle qui tiendra les données ?",
               "no": "Une base de données gérée",
               "why": "Sans problème de confiance sur qui la tient, une base classique devrait suffire, dit le NIST."
             },
@@ -2403,17 +2560,35 @@
           "yesT": "Peut-être un cas d’usage.",
           "yesD": "Six oui : le NIST dit « peut-être », pas « oui ». La suite du cours compte pour vous."
         },
-        "q": "Une seule entreprise, la vôtre, écrit dans le registre. Selon l’arbre…",
+        "q": "Seule la salle de Samia (notre exemple) écrit dans son registre de points. Selon l’arbre…",
         "a": [
           "il faut une blockchain privée",
           "l’arbre propose une base de données",
           "il faut un NFT par client"
         ],
-        "ok": "Oui. Un seul qui écrit : l’arbre propose une base de données."
+        "ok": "Oui. Un seul qui écrit : l’arbre propose une base de données.",
+        "frame": "On demande souvent une technique alors qu’on veut un résultat.",
+        "no": [
+          "Non. À « plusieurs organisations doivent-elles y écrire ? », la réponse est non : l’arbre s’arrête là, sur une base de données.",
+          "Non. L’arbre ne propose jamais un jeton : à chaque « non », un outil ordinaire."
+        ],
+        "payq": {
+          "q": "Vous voulez seulement être payé par vos clients. L’arbre des six questions…",
+          "a": [
+            "s’applique : il faut répondre aux six",
+            "ne s’applique pas : un paiement n’est pas un registre à construire",
+            "dit de créer un jeton"
+          ],
+          "ok": "Oui. La question devient : par carte ou par virement, et sous quelle loi.",
+          "no": [
+            "Non. L’arbre sert à décider d’un registre partagé ; un paiement n’en est pas un.",
+            "Non. L’arbre ne propose jamais un jeton."
+          ]
+        }
       },
       {
         "t": "Ce que vous voulez vraiment",
-        "d": "On demande souvent une technique alors qu’on veut un résultat. Choisissez ce qu’on vous a proposé, ou ce que vous pensiez demander : voici ce qu’on veut d’habitude, et la route ordinaire. Ce tableau est notre avis d’atelier ; les faits de loi ont leur source.",
+        "d": "On vous a proposé un NFT, un jeton, une DAO : derrière chaque demande, il y a un résultat qu’on veut vraiment. Choisissez la vôtre : voici ce qu’on veut d’habitude, et la route ordinaire. Ce tableau est notre avis d’atelier ; les faits de loi ont leur source.",
         "pick": [
           {
             "k": "« Un NFT pour mes membres »",
@@ -2503,17 +2678,25 @@
         "scope": {
           "line": "Nous ne construisons pas la partie chaîne (contrats, jetons, portefeuilles) ; nous construisons la solution ordinaire, et nous vous aidons à décider."
         },
-        "q": "Vous voulez récompenser vos clients fidèles. La route la plus simple ?",
+        "q": "Samia (notre exemple) veut récompenser ses adhérentes fidèles. La route la plus simple ?",
         "a": [
-          "Lancer votre propre jeton",
+          "Lancer son propre jeton",
           "Un programme de points dans une base de données",
           "Un NFT à chaque achat"
         ],
-        "ok": "Oui. Des points, une base, et rien à expliquer sur les portefeuilles."
+        "ok": "Oui. Des points, une base, et rien à expliquer sur les portefeuilles.",
+        "pickHint": "Choisissez la demande qui ressemble à la vôtre : sa route ordinaire s’affiche, et la fiche la note.",
+        "siteAdd": "Ajouter des points ou un espace membres à votre site existant : à chiffrer au cadrage, pas de prix publié.",
+        "chainFold": "Si vous allez quand même sur une chaîne",
+        "chainNote": "Ces lignes ne partent dans votre fiche que si vous gardez l’idée de chaîne, à la dernière étape.",
+        "no": [
+          "Non. Un jeton demande un contrat, des portefeuilles et un avis d’avocat : rien de cela ne récompense mieux.",
+          "Non. Chaque création paie des frais de réseau, selon ethereum.org, et ses adhérentes devraient ouvrir un portefeuille."
+        ]
       },
       {
         "t": "Les coûts qu’on oublie",
-        "d": "Le prix d’un projet web3 ne s’arrête pas au code. Chaque carte est une ligne de budget qu’une proposition devrait montrer, même sans chiffre : nous ne publions aucun prix de smart contract ni d’audit, et nous n’avons trouvé aucun prix officiel d’audit.",
+        "d": "Le devis parle du code, et oublie ce qui se paie après. Chaque carte est une ligne de budget qu’une proposition devrait montrer, même sans chiffre. Les cartes suivent votre route : ordinaire, paiement, ou chaîne.",
         "pick": [
           {
             "k": "L’audit",
@@ -2579,19 +2762,111 @@
               "Remboursement",
               "Comptable"
             ]
+          },
+          "keep": "Vous gardez l’idée d’être payé en crypto : voici les lignes à prévoir."
+        },
+        "q": "Un devis ne chiffre que le développement. Vous…",
+        "a": [
+          "signez : le reste est sûrement compris",
+          "demandez les lignes d’après la mise en ligne, même sans chiffre",
+          "demandez une remise"
+        ],
+        "ok": "Oui. Une proposition complète montre aussi ce qui se paie après.",
+        "chain": {
+          "d": "Nous ne publions aucun prix de smart contract ni d’audit, et nous n’avons trouvé aucun prix officiel d’audit."
+        },
+        "ord": {
+          "t": "La route ordinaire : les lignes qu’on oublie (notre liste)",
+          "pick": [
+            {
+              "k": "L’hébergement et le nom de domaine",
+              "v": "Qui les paie chaque année, et à quel nom sont-ils enregistrés ?"
+            },
+            {
+              "k": "Les comptes et les données",
+              "v": "Où sont gardés les noms et les courriels de vos membres, et qui y a accès ?"
+            },
+            {
+              "k": "Les mises à jour",
+              "v": "Qui corrige et met à jour après la mise en ligne, et pendant combien de temps ?"
+            },
+            {
+              "k": "Les contenus",
+              "v": "Qui écrit les textes et fournit les photos avant le lancement ?"
+            },
+            {
+              "k": "Le support",
+              "v": "Qui répond aux membres qui n’arrivent pas à se connecter ?"
+            }
+          ],
+          "lines": {
+            "t": "Ma fiche prévoit ces lignes",
+            "k": [
+              "Hébergement et domaine",
+              "Données des membres",
+              "Mises à jour",
+              "Contenus",
+              "Support"
+            ]
           }
         },
-        "q": "Un auditeur a relu votre smart contract. Vous êtes…",
-        "a": [
-          "à l’abri pour toujours",
-          "mieux protégé, sans garantie : un audit ne trouve pas tous les bugs",
-          "dispensé de plan d’incident"
-        ],
-        "ok": "Oui. L’audit est une couche, pas une garantie."
+        "chainFold": "Si vous allez quand même sur une chaîne : six lignes de plus",
+        "card": {
+          "d": "Pour un paiement par carte ou par virement, il n’y a ni chaîne ni jeton. Ces six questions fixent le travail : c’est notre liste, et vos réponses partent dans la fiche.",
+          "cur": {
+            "t": "En quelle monnaie vos clients paient-ils ?",
+            "k": [
+              "Dinars (DA)",
+              "Euros",
+              "Dollars",
+              "Dirhams (AED)",
+              "Une autre"
+            ]
+          },
+          "amt": {
+            "l": "Le montant habituel d’un paiement",
+            "ph": "un acompte de réservation, un abonnement mensuel…"
+          },
+          "dep": {
+            "t": "Acompte ou paiement complet ?",
+            "k": [
+              "Un acompte",
+              "Le paiement complet",
+              "Les deux",
+              "Je ne sais pas"
+            ]
+          },
+          "refund": {
+            "t": "Votre règle de remboursement et d’annulation",
+            "k": [
+              "Elle est écrite",
+              "Elle reste à écrire",
+              "Je ne sais pas"
+            ]
+          },
+          "pages": {
+            "t": "Où le client paie-t-il ?",
+            "k": [
+              "Sur une page de réservation",
+              "Dans un panier",
+              "Par un lien de paiement que j’envoie",
+              "Je ne sais pas"
+            ]
+          },
+          "payee": {
+            "l": "Qui reçoit l’argent ?",
+            "ph": "mon entreprise, sur son compte professionnel"
+          },
+          "price": "Le prix : celui d’un site avec paiement si vous n’en avez pas encore ; au cadrage, sans prix publié, pour un site existant (étape 3)."
+        },
+        "no": [
+          "Non. Demandez-le par écrit : l’hébergement, les mises à jour et le support se paient après.",
+          "Non. Une remise ne dit pas qui paie l’hébergement ni qui met à jour."
+        ]
       },
       {
         "t": "Les arnaques",
-        "d": "Si vous lancez quelque chose en web3, vos utilisateurs peuvent être visés. Les autorités décrivent les mêmes signes : profit garanti, urgence, demande de phrase de récupération, paiement en crypto seulement, lien qui ressemble au vrai. Triez ces six messages.",
+        "d": "Un message pressant, un lien qui ressemble au vrai : vous, ou vos utilisateurs, pouvez être visés. Les autorités décrivent les mêmes signes : profit garanti, urgence, demande de phrase de récupération, paiement en crypto seulement, lien qui ressemble au vrai. Triez ces six messages.",
         "bins": {
           "aria": "Trier six messages",
           "k": [
@@ -2636,11 +2911,15 @@
           "ne se rappelle pas : la récupération est presque impossible",
           "se rembourse sous 30 jours"
         ],
-        "ok": "Oui. Europol : une transaction faite ne se rappelle pas."
+        "ok": "Oui. Europol : une transaction faite ne se rappelle pas.",
+        "no": [
+          "Non. Europol le rappelle : une transaction faite ne se rappelle pas, banque ou non.",
+          "Non. Selon la FTC, un paiement en crypto est en général définitif : aucun délai ne le ramène."
+        ]
       },
       {
         "t": "La loi, là où sont vos utilisateurs",
-        "d": "La loi décide avant le design. Cochez où sont vos utilisateurs, ou votre entreprise : chaque carte dit ce que dit un texte officiel, et à qui poser la question. Rien ici n’est un conseil juridique.",
+        "d": "Un projet peut être interdit avant d’être dessiné : la loi décide avant le design. Cochez où sont vos utilisateurs, ou votre entreprise : chaque carte dit ce que dit un texte officiel, et à qui poser la question. Rien ici n’est un conseil juridique.",
         "where": {
           "t": "Mes utilisateurs, ou mon entreprise, sont…",
           "chips": [
@@ -2674,11 +2953,15 @@
           "Un prestataire agréé par la VARA, ou quelqu’un pour son compte avec son accord",
           "Personne n’a besoin d’accord"
         ],
-        "ok": "Oui. Et l’annonce doit dire que la valeur peut être perdue, en tout ou en partie."
+        "ok": "Oui. Et l’annonce doit dire que la valeur peut être perdue, en tout ou en partie.",
+        "no": [
+          "Non. Les règles de la VARA de 2024 réservent cette publicité à un prestataire agréé, ou à quelqu’un pour son compte avec son accord.",
+          "Non. Il faut l’agrément de la VARA, ou l’accord d’un prestataire agréé."
+        ]
       },
       {
         "t": "La fiche",
-        "d": "Vos réponses tiennent sur une page. Complétez ces dernières cases, puis envoyez-la : elle ouvre notre premier échange. Rien ne part tant que vous n’appuyez pas.",
+        "d": "Vos réponses tiennent sur une page. Dites votre décision, complétez les dernières cases, puis envoyez-la : elle ouvre notre premier échange. Rien ne part tant que vous n’appuyez pas.",
         "has": {
           "t": "Ce que vous avez déjà",
           "chips": [
@@ -2715,7 +2998,7 @@
         },
         "who": {
           "l": "Qui décide chez vous ?",
-          "ph": "Karim, l’associé"
+          "ph": "Samia, la gérante"
         },
         "q": "Votre fiche dit « pas encore » à la question de l’avocat. Avant de payer un développement…",
         "a": [
@@ -2723,11 +3006,26 @@
           "on fait vérifier la loi des pays des utilisateurs",
           "on change le nom du jeton"
         ],
-        "ok": "Oui. La loi d’abord, le code ensuite."
+        "ok": "Oui. La loi d’abord, le code ensuite.",
+        "decision": {
+          "l": "Votre décision",
+          "k": [
+            "Je prends la route ordinaire",
+            "J’en parle d’abord avec vous",
+            "Je garde l’idée de chaîne (ou de paiement en crypto)"
+          ]
+        },
+        "first": {
+          "ph": "l’espace membres avant les points"
+        },
+        "no": [
+          "Non. La loi peut interdire le projet : mieux vaut le savoir avant de payer.",
+          "Non. Changer le nom ne répond pas à la question de l’avocat."
+        ]
       },
       {
         "t": "Ce qui va sur la chaîne, et ce qui reste chez vous",
-        "d": "Une chaîne publique laisse n’importe qui vérifier un enregistrement, et rend visible tout ce qu’on y écrit : notre règle d’atelier est d’y mettre le minimum à vérifier, de garder noms, courriels et listes dans votre base, et de faire un site qui marche sans portefeuille. Selon ethereum.org, une transaction envoyée reçoit d’abord un identifiant (le « hash »), puis attend d’être inscrite dans un bloc ; ce n’est qu’ensuite que son reçu dit « réussite » ou « échec ». Suivez un reçu de présence, état par état.",
+        "d": "Sur une chaîne publique, tout ce qu’on écrit est visible de tous. Notre règle d’atelier : y mettre le minimum à vérifier, garder noms, courriels et listes dans votre base, et faire un site qui marche sans portefeuille. Suivez un exemple état par état, un reçu de présence (la preuve qu’une personne est venue à un cours) : une transaction envoyée reçoit d’abord un identifiant, puis son reçu dit « réussite » ou « échec », selon ethereum.org.",
         "states": {
           "aria": "Six états d’un reçu de présence",
           "step": "État {i} sur 6",
@@ -2809,7 +3107,13 @@
           "envoyée, pas encore confirmée : il faut le reçu",
           "annulée"
         ],
-        "ok": "Oui. Le hash dit « envoyé ». Le reçu dit si c’est réussi."
+        "ok": "Oui. Le hash dit « envoyé ». Le reçu dit si c’est réussi.",
+        "fold": "Si un jour vous allez quand même sur une chaîne : ce qui s’y écrit, état par état",
+        "foldNote": "Votre route est ordinaire : cette partie reste pliée, et rien d’elle ne part dans votre fiche.",
+        "no": [
+          "Non. Le hash dit seulement « envoyé » : il n’y a pas encore de reçu.",
+          "Non. Rien n’est annulé : la transaction attend d’être inscrite dans un bloc."
+        ]
       }
     ],
     "brief": {
@@ -2838,16 +3142,31 @@
         "keys": "Clés",
         "zero": "Si le jeton valait zéro",
         "decides": "Qui décide",
-        "screens": "Écrans à prévoir"
+        "screens": "Écrans à prévoir",
+        "me": "Prénom",
+        "decision": "Ma décision",
+        "olines": "Lignes prévues (route ordinaire)",
+        "cardCur": "Monnaie du paiement",
+        "cardAmt": "Montant habituel",
+        "cardDep": "Acompte ou complet",
+        "cardRefund": "Remboursement et annulation",
+        "cardPages": "Où le client paie",
+        "cardPayee": "Qui reçoit l’argent",
+        "first": "D’abord",
+        "budgetMax": "Plafond",
+        "after": "Après la livraison",
+        "asks": "Mes questions pour le prestataire"
       },
       "hintWallet": "Prévoyez un site qui marche sans portefeuille : cochez-le à l’étape 4.",
       "hintJargon": "Votre phrase parle de la technique. Dites aussi ce que vos utilisateurs y gagnent.",
       "dz": "Utilisateurs en Algérie : à voir avec un avocat avant tout. Le texte précise aussi : la loi interdit les actifs virtuels comme moyen de paiement ou instrument d’investissement, minage compris.",
-      "noPrice": "Le Studio ne publie aucun prix pour un travail web3 : la fiche sert à en parler."
+      "noPrice": "Le Studio ne publie aucun prix pour un travail web3 : la fiche sert à en parler.",
+      "lead": "Votre idée, sans la chaîne",
+      "leadIdea": "Votre idée"
     },
     "all": {
       "t": "Huit sur huit.",
-      "d": "Votre fiche est prête, et le fond d’écran de Kūro qui dissipe la fumée est à vous.",
+      "d": "Le fond d’écran de Kūro qui dissipe la fumée est à vous.",
       "go": "Télécharger le fond d’écran"
     },
     "cta": {
@@ -2856,7 +3175,59 @@
     },
     "src": {
       "title": "Les sources du cours",
-      "note": "Les faits de loi viennent des textes et des régulateurs (Journal officiel algérien, autorités européennes, ESMA, AMF, VARA, ADGM) ; l’arbre des six questions, du NIST ; les arnaques, de la FTC, de la SEC, du FBI, d’Europol et des autorités européennes ; les mots techniques, d’ethereum.org, site de documentation communautaire. Les routes ordinaires, les listes « à prévoir » et le support aux utilisateurs sont notre avis d’atelier. Rien ici n’est un conseil juridique ni un conseil en placement. Le chemin d’une transaction et les réseaux de développement viennent d’ethereum.org ; la règle « le minimum sur la chaîne » est la nôtre."
+      "note": "Les faits de loi viennent des textes et des régulateurs (Journal officiel algérien, autorités européennes, ESMA, AMF, VARA, ADGM, CFTC, SEC, lois du Wyoming) ; l’arbre des six questions et les portefeuilles, du NIST ; les normes, des textes eux-mêmes (NIST FIPS, BIP, EIP et ERC, W3C) ; les arnaques, de la FTC, de la SEC, du FBI, d’Europol et des autorités européennes ; les mots techniques, d’ethereum.org, site de documentation communautaire, et de la documentation propre à chaque outil cité. Les outils et les chaînes sont nommés comme exemples, jamais comme recommandations. Les routes ordinaires, les listes « à prévoir », les questions pour le prestataire et le support aux utilisateurs sont notre avis d’atelier ; la règle « le minimum sur la chaîne » est la nôtre. Rien ici n’est un conseil juridique ni un conseil en placement."
+    },
+    "acts": [
+      "1–2 · LE TRI",
+      "3–5 · LA ROUTE ORDINAIRE",
+      "6–8 · SE PROTÉGER"
+    ],
+    "case": {
+      "t": "Chez la salle de Samia",
+      "s": [
+        "Samia tient une salle de sport pour femmes à Sétif : 800 adhérentes, un site déjà en ligne. Un fournisseur lui a proposé « un NFT pour tes membres ». Sa phrase, sans aucun de ces mots : « que mes adhérentes fidèles soient récompensées ». Ses adhérentes sont en Algérie : elle le coche ici.",
+        "Samia répond aux six questions. À la deuxième, « Plusieurs organisations doivent-elles y écrire ? », elle répond non : seule sa salle écrit. Le verdict tombe : pas besoin de blockchain, une base de données.",
+        "On lui a proposé « Un NFT pour mes membres ». Ce qu’elle veut : récompenser la fidélité. Ses adhérentes n’ont pas à revendre leur carte, et elle a déjà un site : la route ordinaire est d’y ajouter des points et un espace membres, à chiffrer au cadrage.",
+        "Pour sa route ordinaire, Samia coche trois lignes : les données de ses adhérentes, les mises à jour, le support. Ni audit ni frais de réseau : il n’y a pas de contrat.",
+        "Le même fournisseur revient par message privé : « Mint surprise ce soir, connectez votre portefeuille ici. » Samia reconnaît l’urgence et le lien qui ressemble au vrai : elle ne clique pas.",
+        "Samia a coché « en Algérie » dès l’étape 1 : la carte Algérie s’affiche ici. Sa route ordinaire, des points dans une base, ne passe par aucun actif virtuel ; pour toute autre idée, la question à poser à un avocat est écrite sur la carte.",
+        "Sa décision : la route ordinaire. Sa fiche tient en quelques lignes : des points de fidélité et un espace membres sur son site existant, à chiffrer au cadrage. Sa fiche terminée est sous la vôtre.",
+        "Samia ne va pas sur une chaîne : pour elle, cette étape reste pliée. Elle en garde une règle : les noms et les courriels de ses adhérentes restent dans sa base."
+      ],
+      "fiche": {
+        "t": "La fiche de Samia, terminée",
+        "rows": [
+          "Mon idée : que mes adhérentes fidèles soient récompensées",
+          "J’ai déjà : un site",
+          "Verdict de l’arbre : pas besoin de blockchain",
+          "Route ordinaire : des points de fidélité et un espace membres, ajoutés au site existant",
+          "Ma décision : je prends la route ordinaire",
+          "Chez Numidea Labs : à chiffrer au cadrage, pas de prix publié",
+          "Utilisatrices : en Algérie",
+          "Pour quand : dans deux mois · Qui décide : Samia, la gérante"
+        ]
+      },
+      "alt": "Exemple inventé : Samia, à l’accueil de sa salle de sport, regarde une carte de fidélité où deux cases sont tamponnées ; un petit cube lumineux est posé à l’écart sur le comptoir, et Kūro garde la patte sur le tampon."
+    },
+    "kuro": {
+      "base": "Base.",
+      "hook": "Hameçon."
+    },
+    "path": {
+      "l": "Vous venez pour quoi ?",
+      "k": [
+        "J’ai un projet à préparer",
+        "Je veux comprendre le web3"
+      ],
+      "d": [
+        "Huit étapes, environ dix minutes, une fiche à nous envoyer à la fin. Les modules restent ouverts si une question vous arrête.",
+        "Neuf modules, trente-trois étapes, un schéma à manipuler à chacune. Votre fiche reste à un clic, et chaque module peut y ajouter ses questions."
+      ],
+      "say": "Le cours s’ouvre sur : {c}."
+    },
+    "dock": {
+      "go": "Ma fiche · {n} cases remplies →",
+      "empty": "Ma fiche →"
     }
   },
   "fab": {
@@ -2946,7 +3317,7 @@
         "why": "La courbe de vitesse, c’est là qu’on décide à quelle vitesse un mouvement accélère et avec quelle douceur il se pose. Ce rythme peut porter un logo animé et une série de courtes boucles pour les réseaux.",
         "gets": "Un logo animé, des boucles pour les réseaux, et des règles de rythme réutilisables.",
         "go": "Chiffrer une animation avec la console →",
-        "reel": "Voir l’ouverture et les autres clips dans la bobine du Studio →"
+        "reel": "Voir l’ouverture sur la carte des services →"
       }
     ],
     "course": {
@@ -2981,7 +3352,8 @@
           "Application. Un parcours de réservation adaptatif, son schéma, des exemples d’API, et une démonstration où deux personnes se disputent la dernière place.",
           "Vérification. Les écrans d’un reçu de présence en lecture seule, sur un réseau de développement et avec des données inventées : le parcours normal, et une panne du nœud."
         ],
-        "review": "Critères : un visiteur reconnaît l’atelier et trouve le bouton de réservation. Deux demandes simultanées ne vendent jamais deux fois la dernière place. L’écran de vérification montre le vrai résultat et reste compréhensible pendant une panne."
+        "review": "Critères : un visiteur reconnaît l’atelier et trouve le bouton de réservation. Deux demandes simultanées ne vendent jamais deux fois la dernière place. L’écran de vérification montre le vrai résultat et reste compréhensible pendant une panne.",
+        "lant": "Le projet raconté : Le cours du soir"
       },
       "refs": {
         "t": "Références du cours",
@@ -3428,9 +3800,1100 @@
       ],
       "all": {
         "t": "Six sur six.",
-        "d": "Le reçu est tamponné. Côté client, le cours web3 du manuel aide à décider s’il faut une chaîne ; nous, nous construisons la route ordinaire.",
+        "d": "Le reçu est tamponné. Côté client, le cours web3 de la Librairie aide à décider s’il faut une chaîne ; nous, nous construisons la route ordinaire.",
         "go": "Le cours web3, côté client →"
       }
+    }
+  },
+  "lant": {
+    "ui": {
+      "skip": "Aller au quartier",
+      "library": "La Librairie",
+      "journal": "Journal",
+      "sac": "Sac",
+      "motion": "Mouvement",
+      "motionHint": "Le décor suit la souris. Appuyez pour l’arrêter.",
+      "lang": "Langue",
+      "open": "Ouvrir l’atlas",
+      "resume": "Reprendre : {q}",
+      "pickK": "Choisir un quartier",
+      "districtsH": "Les quartiers",
+      "listLabel": "Les quartiers",
+      "hud": {
+        "one": "{n} quartier fait sur {N}",
+        "other": "{n} quartiers faits sur {N}"
+      },
+      "hudSide": "chemin de traverse : {m} / {M}",
+      "dossierK": "Le dossier · {act} · {i} / {N}",
+      "with": "avec {g}",
+      "rule": "La règle",
+      "situation": "La situation",
+      "right": "Juste",
+      "wrong": "Pas tout à fait",
+      "idle": "Choisissez une réponse. Une erreur ne coûte rien : on peut réessayer.",
+      "toEx": "Faire l’exercice de terrain",
+      "keep": "Dans votre sac : {s}",
+      "exK": "L’exercice de terrain",
+      "badgeOpen": "Ouvert",
+      "badgeDone": "Fait",
+      "exIdle": "L’exercice attend votre premier geste.",
+      "noJs": "Sans JavaScript, l’exercice reste au repos ; le dossier et la note du journal se lisent quand même.",
+      "readJournal": "Lire le journal",
+      "next": "Quartier suivant : {q}",
+      "first": "Revenir au premier quartier",
+      "prev": "Quartier précédent",
+      "nextShort": "Quartier suivant",
+      "go": "Aller au quartier",
+      "acts": "Les actes",
+      "state": {
+        "answered": "situation résolue",
+        "done": "fait"
+      },
+      "live": "Quartier {i} sur {N} : {q}",
+      "done": "Quartier fait. {s} rejoint votre sac.",
+      "stamp": "Fait",
+      "zoom": "Voir l’affiche en grand",
+      "close": "Fermer",
+      "journalK": "La Lanterne · librairie inventée",
+      "journalH": "Le journal de bord",
+      "journalCount": {
+        "one": "{n} / {N} note · chemin de traverse {m} / {M}",
+        "other": "{n} / {N} notes · chemin de traverse {m} / {M}"
+      },
+      "journalIdle": "Faites un quartier jusqu’au bout, la situation puis l’exercice, pour inscrire la décision de l’équipe au journal.",
+      "journalEmpty": "Faites ce quartier pour l’inscrire au journal.",
+      "print": "Imprimer mon journal",
+      "sacK": "Le sac · inventaire",
+      "sacH": "Le sac",
+      "sacLead": "Chaque quartier fait ajoute un souvenir au sac. Vos progrès restent dans ce navigateur, s’il les garde ; rien ne part d’ici.",
+      "sacCount": {
+        "one": "{n} souvenir sur {N}",
+        "other": "{n} souvenirs sur {N}"
+      },
+      "unknown": "Souvenir pas encore gagné",
+      "side": "chemin de traverse",
+      "footerBack": "Retour à la Librairie",
+      "studio": "Le Studio",
+      "rightNext": "Juste. Faites l’exercice de terrain pour l’inscrire au journal",
+      "wa": "WhatsApp",
+      "skipEx": "Je passe l’exercice",
+      "skipNote": "exercice non fait",
+      "leaveEmpty": "Laisser cette case vide",
+      "menuLabel": "Menu de l’atlas",
+      "back": "La Librairie",
+      "fiche": "Ma fiche",
+      "soonK": "Bientôt dans la Librairie",
+      "soonD": "Cet atlas arrive sur les rayons. En attendant, les autres livres sont ouverts.",
+      "toRead": "Lire avant de répondre",
+      "ex": {
+        "pick": {
+          "t": "Lire chaque explication",
+          "brief": "Ouvrez chaque explication une fois. L’exercice est fait quand vous les avez toutes lues."
+        },
+        "calc": {
+          "t": "Le calcul, avec vos chiffres",
+          "brief": "Les chiffres de départ sont ceux de la leçon. Changez-en un : le résultat suit, et l’exercice est fait. Rien n’est envoyé."
+        },
+        "pickLeft": "Explications lues : {n} sur {N}.",
+        "pickDone": "Toutes les explications sont lues.",
+        "calcDone": "Le résultat suit vos chiffres. Le calcul reste dans ce navigateur.",
+        "fiche": {
+          "t": "Remplir sa case de la fiche",
+          "brief": "Répondez pour vous : chaque réponse remplit sa case de la fiche, sur cet appareil seulement. Une réponse suffit pour faire l’exercice ; rien n’est obligatoire."
+        },
+        "bins": {
+          "t": "Trier les lignes",
+          "brief": "Placez chaque ligne dans une case : la raison de l’atelier s’affiche sous chacune. L’exercice est fait quand toutes sont placées."
+        },
+        "marktest": {
+          "t": "Le test des 16 pixels",
+          "brief": "Réduisez les deux marques jusqu’à 16 pixels, la taille d’un onglet. Votre propre logo peut s’y ajouter : il est lu ici et envoyé nulle part."
+        },
+        "flow": {
+          "t": "L’arbre des six questions",
+          "brief": "Répondez par oui ou non jusqu’au verdict de l’arbre, ou prenez la branche « être payé ». L’exercice est fait au verdict."
+        },
+        "states": {
+          "t": "Les six états d’une transaction",
+          "brief": "Passez d’un état à l’autre et lisez ce que chacun veut dire. L’exercice est fait quand les six ont été vus. Rien n’est écrit dans la fiche."
+        },
+        "law": {
+          "t": "La carte des lois",
+          "brief": "Choisissez où sont vos utilisateurs : la carte de chaque pays s’ouvre. L’exercice est fait dès qu’une carte est ouverte."
+        },
+        "ficheDone": "Noté : la fiche garde votre réponse, sur cet appareil seulement."
+      },
+      "journalCountMain": {
+        "one": "{n} / {N} note",
+        "other": "{n} / {N} notes"
+      }
+    },
+    "cast": {
+      "yasser": "Yasser",
+      "kuro": "Kūro",
+      "raven": "Raven",
+      "pigeon": "Techno Pigeon",
+      "ratman": "Ratman",
+      "paper": "une feuille",
+      "recorder": "un magnétophone",
+      "ring": "un anneau doré",
+      "star": "une étoile",
+      "eyeflower": "une fleur à l’œil",
+      "feather": "une plume",
+      "cup": "une tasse",
+      "front": "devant : {list}",
+      "and": " et "
+    },
+    "shelf": {
+      "title": "La Librairie Lanterne · leçons gratuites | Numidea Labs",
+      "desc": "La librairie de nuit du monde de Numidea : chaque cours est un atlas qu’on joue quartier par quartier. Leçons gratuites, souvenirs à gagner.",
+      "name": "La Librairie Lanterne",
+      "navAtlases": "Les atlas",
+      "navPassport": "Le passeport",
+      "navComptoir": "Le comptoir",
+      "navRonde": "La ronde",
+      "cta": "Réserver un appel",
+      "heroK": "/ LA LIBRAIRIE · MONDE DE NUMIDEA",
+      "heroT1": "La Librairie",
+      "heroT2": "Lanterne.",
+      "lore": "La Lanterne est une librairie de nuit, dans le monde de Numidea. L’équipe de l’atelier y a construit la réservation du cours du soir ; la libraire a gardé leurs carnets de terrain, et ils sont devenus des atlas. Chaque atlas est un cours : on choisit un quartier, on tranche une situation, on fait l’exercice, et la décision s’inscrit au journal de bord. Les leçons sont gratuites ; les souvenirs se gagnent. Rien ne sort d’ici tant que vous n’appuyez pas.",
+      "fiction": "La Lanterne est une librairie inventée : elle n’existe que la nuit, sur ce site.",
+      "heroCta": "Choisir un atlas",
+      "heroAlt": "La Librairie Lanterne la nuit : sous l’auvent rayé rouge et crème, un grand livre ouvert sur le comptoir et une lanterne allumée ; Yasser lit un atlas assis devant l’étal, Kūro dort sur le comptoir, les tours de la ville sous un ciel étoilé.",
+      "rayonsK": "/ LES RAYONS",
+      "shelf1": "Pour vos projets",
+      "shelf2": "Gagner sa vie de loin",
+      "shelf3": "Maître-cours",
+      "count": {
+        "one": "{n} / {N} quartier",
+        "other": "{n} / {N} quartiers"
+      },
+      "open": "Ouvrir l’atlas",
+      "resume": "Reprendre : {q}",
+      "moving": "Déménage ici bientôt",
+      "with": "avec {g}",
+      "soon": "bientôt",
+      "vol1": "Vol. 1 · Le parcours acheteur",
+      "vol2": "Vol. 2 · Les neuf modules",
+      "kept": "Derniers souvenirs",
+      "passK": "/ LE PASSEPORT",
+      "passH": "Le passeport de la Librairie",
+      "passLead": "Les souvenirs gagnés dans chaque atlas, réunis ici. Ils restent dans ce navigateur.",
+      "passRow": "{n} sur {N}",
+      "passTotal": {
+        "one": "{n} souvenir sur {N}",
+        "other": "{n} souvenirs sur {N}"
+      },
+      "clear": "Effacer mes progrès dans cet atlas",
+      "clearAsk": "Effacer pour de bon ? Les fiches et les sceaux ne bougent pas.",
+      "clearYes": "Oui, effacer",
+      "clearNo": "Garder",
+      "passPrint": "Imprimer mon passeport",
+      "shopK": "/ DANS LA BOUTIQUE",
+      "lantPitch": "La Librairie Lanterne a un cours du soir à remplir. Suivez Yasser et l’équipe, d’une enveloppe écrite à la main jusqu’à une réservation qui marche.",
+      "menuLabel": "Menu de la Librairie",
+      "comptoirK": "/ LE COMPTOIR",
+      "world": "Le monde",
+      "fab": "La fabrique",
+      "web3Vol2": "Les neuf modules · bientôt",
+      "web3Path": "Vous venez pour quoi ?",
+      "bookK": "Livre",
+      "notesK": "À lire avant la monnaie numérique"
+    },
+    "at": {
+      "cds": {
+        "title": "Le cours du soir.",
+        "title1": "Le cours",
+        "title2": "du soir.",
+        "sub": "Un atlas de terrain",
+        "kicker": "/ LE CAS DE LA LANTERNE · DU BRIEF AU LANCEMENT",
+        "kind": "LE CAS DE LA LANTERNE · DU BRIEF AU LANCEMENT",
+        "pitch": "La Librairie Lanterne a un cours du soir à remplir. Suivez Yasser et l’équipe, d’une enveloppe écrite à la main jusqu’à une réservation qui marche.",
+        "caseLabel": "Chez la Lanterne · librairie inventée",
+        "search": "Le cours du soir · La Librairie Lanterne | Numidea Labs",
+        "desc": "Le cas de la Lanterne en dix quartiers : du brief écrit à la main à une réservation qui marche. Un atlas de terrain, gratuit.",
+        "coverAlt": "L’étal de livres de Numidea sous un ciel bleu, un auvent rayé et un grand livre ouvert ; devant : Yasser assis, Kūro et un anneau doré.",
+        "act": {
+          "a1": "Acte I · Trouver le chemin",
+          "a2": "Acte II · Construire et livrer",
+          "side": "Chemin de traverse · MERCURY"
+        },
+        "actShort": {
+          "a1": "Acte I",
+          "a2": "Acte II",
+          "side": "MERCURY"
+        },
+        "conclusion": "La Lanterne prend des réservations, confirme une place à la fois et propose une recherche publique de reçu. Prochain test : des détails de séance plus clairs amènent-ils plus de visiteurs au formulaire ?",
+        "d": {
+          "home": {
+            "name": "Chez nous",
+            "sub": "L’atelier d’Argent",
+            "alt": "Affiche « HOME · YASSER & KURO » de Numidea Labs : Yasser debout dans l’atelier, entre une lampe, des livres et des plans ; Kūro sur une pile de livres, un deuxième chat endormi, un pigeon, un corbeau et un rat.",
+            "lore": "Une enveloppe de la Librairie Lanterne arrive à l’atelier d’Argent. La libraire ouvre un cours du soir de gravure et en a assez de compter les places dans ses messages. Kūro s’installe sur le seul papier qui compte : la date du premier cours.",
+            "rule": "Un brief de projet peut commencer par un problème, une personne et un résultat.",
+            "q": "Avant le premier cours du soir, la libraire demande « quelque chose de numérique ». Par où Yasser commence-t-il ?",
+            "a": [
+              "Commander tout de suite un nouveau logo.",
+              "Demander où un client reste bloqué.",
+              "Lister toutes les fonctions d’un concurrent."
+            ],
+            "f": [
+              "Un logo aidera peut-être. Cherchez d’abord si la gêne vient de la reconnaissance, de l’information ou de la façon dont une commande est traitée.",
+              "Partez d’un exemple récent et d’un résultat qu’on peut observer. Le bon outil vient après.",
+              "Une liste de fonctions oublie la personne qui doit s’en servir. Demandez d’abord une vraie visite, une vraie commande."
+            ],
+            "keep": "Le brief",
+            "scene": "Une enveloppe de la Lanterne",
+            "handoff": "Au départ : un premier cours, des places comptées, et des réservations noyées dans les messages.",
+            "decision": "Brief validé : le visiteur voit les détails de la séance et réserve une place sans envoyer de message.",
+            "ex": {
+              "t": "Écrire un brief en trois parties",
+              "brief": "Reliez la tâche du visiteur, sa difficulté et le résultat qu’on veut observer.",
+              "slots": [
+                "La tâche du visiteur",
+                "La gêne",
+                "Le résultat observable"
+              ],
+              "choices": [
+                "Vérifier la date et le prix de la séance",
+                "Le visiteur doit écrire pour confirmer une place",
+                "Réserver une place sans écrire"
+              ],
+              "pick": "Choisir un détail",
+              "check": "Vérifier mon brief",
+              "empty": "Remplissez les trois parties. Un brief utile nomme la tâche, l’endroit où elle coince, et comment on saura qu’elle s’est améliorée.",
+              "ok": "Le visiteur a besoin de la date et du prix, mais doit écrire pour confirmer une place. On va tester s’il peut réserver directement depuis la page du cours.",
+              "bad": "Mettez au résultat ce qu’on pourra observer à la fin. La gêne, c’est ce qui interrompt la tâche aujourd’hui."
+            }
+          },
+          "fields": {
+            "name": "Le terrain",
+            "sub": "Les routes d’enquête",
+            "alt": "Affiche « FIELDS · YASSER & THE CREW » : Yasser dans un champ d’herbes hautes, un corbeau sur l’épaule, un pigeon en vol ; à ses pieds Kūro, un autre chat et un rat parmi des livres et des cartes.",
+            "lore": "Techno Pigeon porte le brief à la Lanterne et regarde deux personnes essayer de s’inscrire au cours du soir. Leurs chemins diffèrent. Toutes deux s’arrêtent avant de choisir une place.",
+            "rule": "L’enquête change une intuition en observation qu’on peut tester.",
+            "q": "Vous soupçonnez que les visiteurs partent parce que la date ou le prix du cours sont difficiles à trouver. Que pouvez-vous recueillir d’abord ?",
+            "a": [
+              "Compter les couleurs de la page d’accueil.",
+              "Réécrire la page du cours avant d’avoir regardé qui que ce soit.",
+              "Regarder deux personnes chercher la date et le prix du cours."
+            ],
+            "f": [
+              "Les couleurs se comptent facilement, mais elles ne disent pas si quelqu’un a trouvé les détails de la séance.",
+              "Une réécriture pourrait enterrer la même information une fois de plus. Cherchez d’abord où la personne l’attend.",
+              "Observez où elles regardent et ce qu’elles demandent. Vous tenez un endroit précis où enquêter."
+            ],
+            "keep": "Les notes de terrain",
+            "scene": "Deux chemins vers le même étal",
+            "handoff": "Porter le brief jusqu’à deux visites observées.",
+            "decision": "Constat de terrain : mettre la date et le prix du cours à côté du bouton de réservation.",
+            "ex": {
+              "t": "Carnet de terrain",
+              "brief": "Regardez deux clients avant de décider ce qui doit bouger.",
+              "phone": "Suivre le visiteur sur téléphone",
+              "desk": "Suivre le visiteur sur ordinateur",
+              "obsPhone": "Sur téléphone : il ouvre la page du cours, fait défiler l’affiche et cherche la date dans le pied de page.",
+              "obsDesk": "Sur ordinateur : il trouve la date, mais ouvre une fenêtre de message pour demander le prix et s’il reste des places.",
+              "one": "Une observation aide à poser une question. Regardez l’autre visite avant de décider.",
+              "ok": "Les deux voulaient les détails du cours avant de s’engager. Testez la date et le prix à côté de « Réserver »."
+            }
+          },
+          "audience": {
+            "name": "Le public",
+            "sub": "Le quartier qui écoute",
+            "alt": "Affiche « AUDIENCE » : Yasser de profil, entouré de mains qui tendent des icônes (« research », « trust », « accessibility », « experience ») ; à ses pieds Kūro, un corbeau, un pigeon et un rat.",
+            "lore": "Grâce aux notes de Techno Pigeon, la date et le prix passent au-dessus du bouton de réservation. Dans le quartier qui écoute, Kūro suit une visiteuse qui essaie le nouveau formulaire sans souris.",
+            "rule": "Un parcours marche quand les personnes qui en ont besoin peuvent aller au bout.",
+            "q": "Le nouveau formulaire de la Lanterne marche à la souris. Au clavier, on ne sait plus où l’on est. Qu’est-ce qui change ?",
+            "a": [
+              "Rendre le focus visible et parcourir le formulaire avec Tab.",
+              "Ajouter une bannière animée de plus.",
+              "Agrandir seulement le bouton d’envoi."
+            ],
+            "f": [
+              "Vérifiez chaque champ, chaque action et chaque message d’erreur dans l’ordre. Vous voyez exactement où le parcours casse.",
+              "Elle ne dira pas quel champ a le focus.",
+              "La taille aide certaines personnes. Il leur faut quand même un focus visible dans tout le formulaire."
+            ],
+            "keep": "L’affiche « AUDIENCE »",
+            "scene": "Le chemin à travers le formulaire",
+            "handoff": "Prendre la nouvelle mise en page et la tester du premier champ jusqu’à « Réserver ».",
+            "decision": "Contrôle d’accès : un focus visible suit l’ordre de la réservation dans tout le formulaire.",
+            "ex": {
+              "t": "Le parcours au clavier",
+              "brief": "Suivez le formulaire de réservation champ par champ et voyez pourquoi un focus visible compte.",
+              "fields": [
+                "Séance",
+                "Nom",
+                "E-mail",
+                "Réserver"
+              ],
+              "here": "focus ici",
+              "enable": "Rendre le focus visible",
+              "step": "Avancer le focus (Tab)",
+              "enabled": "Le focus est visible. Avancez champ par champ pour vérifier l’ordre.",
+              "hidden": "Le focus a bougé, mais la visiteuse ne voit pas quel champ est actif. Rendez l’indicateur visible.",
+              "at": "Le focus est sur « {f} ».",
+              "ok": "Tous les champs atteints dans l’ordre. La visiteuse voit où elle est et arrive à « Réserver »."
+            }
+          },
+          "identity": {
+            "name": "L’identité",
+            "sub": "La fonderie",
+            "alt": "Affiche « IDENTITY » : Yasser au milieu des pièces d’une identité (« LOGO », « TYPE », « VOICE », « SYSTEM »), Kūro à ses pieds, une tasse et quatre autres personnages.",
+            "lore": "Yasser dessine pour la Lanterne une marque en forme de livre plié. Elle doit rester la librairie sur la vitrine, sur la page du cours, et dans le minuscule onglet où le visiteur revient après avoir comparé les dates.",
+            "rule": "Une identité sert partout quand elle a une famille de marques cohérente.",
+            "q": "L’enseigne se lit bien, mais le logo devient une tache dans le petit onglet du navigateur. Que faut-il mettre là ?",
+            "a": [
+              "Le logotype complet et le slogan.",
+              "Une autre icône, sans rapport.",
+              "Une marque compacte, avec la même silhouette."
+            ],
+            "f": [
+              "En petit, les détails se battent entre eux. Gardez-les pour les endroits qui ont de la place.",
+              "Elle se lirait peut-être, mais elle perd le lien avec l’identité que le visiteur reconnaît déjà.",
+              "Une petite version voulue garde les signes les plus forts et laisse tomber les détails qui ne survivent pas à cette taille."
+            ],
+            "keep": "L’affiche « IDENTITY »",
+            "scene": "Une marque pour la boutique et pour l’onglet",
+            "handoff": "Porter la silhouette reconnaissable de la librairie jusque dans la réservation.",
+            "decision": "Preuve de design : la silhouette du livre plié tient à la taille d’un favicon.",
+            "ex": {
+              "t": "Le test du favicon",
+              "brief": "Réduisez deux versions d’une marque de livre fictive. Comparez ce qu’on reconnaît encore.",
+              "detailed": "Détaillée",
+              "compact": "Compacte",
+              "size": "Taille d’aperçu",
+              "hint": "Glissez vers 16 pixels et regardez ce que deviennent les traits intérieurs.",
+              "ok": "À la taille d’un favicon, la version compacte garde la forme du livre. La détaillée perd ses traits fins."
+            }
+          },
+          "architecture": {
+            "name": "L’architecture",
+            "sub": "Le quartier des systèmes",
+            "alt": "Affiche « ARCHITECTURE » : Yasser appuyé sur un grand crayon au centre d’un labyrinthe (« backend », « logic », « automation », « structure ») ; un corbeau, un pigeon, Kūro et un rat.",
+            "lore": "Ratman suit le fil de cuivre du formulaire jusqu’au relais. La page est prête à prendre des réservations. Le relais doit encore décider qui aura la dernière place.",
+            "rule": "Quand la ressource est limitée, le serveur tranche avant de confirmer une réservation.",
+            "q": "Deux clients demandent la dernière place au même moment. Quel système doit décider qui l’obtient ?",
+            "a": [
+              "Confirmer les deux et envoyer une correction plus tard.",
+              "Le serveur vérifie et met à jour la capacité en une seule opération protégée.",
+              "Chaque navigateur vérifie sa copie du nombre de places."
+            ],
+            "f": [
+              "C’est reporter sur les clients un conflit qu’on pouvait éviter.",
+              "Une seule demande doit aller au bout de la réservation. L’autre reçoit une réponse claire : « complet ».",
+              "Les deux navigateurs peuvent avoir le même compte périmé. La décision a besoin d’un seul chemin d’écriture qui fait foi."
+            ],
+            "keep": "L’affiche « ARCHITECTURE »",
+            "scene": "Une place, une confirmation",
+            "handoff": "Relier le formulaire de réservation à son relais de capacité.",
+            "decision": "Règle du relais : vérifier et réserver la dernière place en une seule opération protégée, côté serveur.",
+            "ex": {
+              "t": "La dernière place",
+              "brief": "Faites passer les deux mêmes demandes par deux règles de capacité. Voyez ce que reçoit chaque visiteur.",
+              "va": "Visiteur A",
+              "vb": "Visiteur B",
+              "wait": "En attente",
+              "conf": "Confirmé",
+              "full": "Complet",
+              "both": "Vérifier dans les deux navigateurs",
+              "one": "Une seule réservation protégée, côté serveur",
+              "bothMsg": "Surréservé. Les deux navigateurs ont vu le même vieux compte et ont confirmé.",
+              "oneMsg": "Une seule place réservée. Une opération protégée vérifie la capacité et enregistre la réservation avant de confirmer.",
+              "more": "Lancez aussi l’autre règle, pour comparer."
+            }
+          },
+          "launch": {
+            "name": "Le lancement",
+            "sub": "La cour des expéditions",
+            "alt": "Affiche « LAUNCH » : Yasser en plein saut dans des flammes orange (« deploy », « ship », « release », « iterate ») ; en bas un corbeau, un pigeon, Kūro, un rat et une tasse.",
+            "lore": "Techno Pigeon porte le nouveau site de la Lanterne à la cour des expéditions. Le relais a passé son test de capacité. Reste un essai en préproduction, qui doit aller jusqu’à la confirmation.",
+            "rule": "On teste une mise en ligne, et on garde un chemin de retour connu.",
+            "q": "La Lanterne va publier sa nouvelle réservation. Quelle est la meilleure dernière répétition ?",
+            "a": [
+              "Faire une réservation d’essai en préproduction et confirmer le plan de retour.",
+              "Ouvrir la page du cours et s’arrêter quand elle s’affiche.",
+              "Publier et attendre les messages des clients."
+            ],
+            "f": [
+              "Vérifiez la tâche qui compte, de bout en bout, et sachez ce que vous remettrez si la nouvelle version échoue.",
+              "Qu’elle s’affiche, c’est utile. Ça ne dit pas si un visiteur peut réserver une place et voir une confirmation.",
+              "Faites le parcours principal vous-même, tant que le retour en arrière est encore facile."
+            ],
+            "keep": "Le tampon d’expédition",
+            "scene": "La répétition dans la cour",
+            "handoff": "Emmener le relais qui marche en préproduction et tester la réservation complète.",
+            "decision": "Décision de mise en ligne : la version qui marche reste en ligne tant que la confirmation ne passe pas en préproduction.",
+            "ex": {
+              "t": "La répétition",
+              "brief": "Faites une réservation en préproduction, puis décidez quoi faire de la version qui échoue.",
+              "r0": "En ligne : version précédente · Préproduction : nouvelle version",
+              "stage": "Réserver en préproduction",
+              "r1": "Préproduction : la confirmation échoue · En ligne : version précédente",
+              "stageMsg": "La page d’accueil s’affiche, mais la réservation échoue à la confirmation. L’exercice commence avec la version précédente toujours en ligne.",
+              "promote": "Mettre la nouvelle version en ligne",
+              "r2a": "En ligne : nouvelle version, non testée",
+              "r2b": "En ligne : la réservation échoue",
+              "promoteMsg": "Les clients tombent sur une réservation cassée. Remettez la dernière version qui marche.",
+              "keepB": "Garder ou remettre la dernière version qui marche",
+              "r3": "En ligne : version précédente · les réservations marchent",
+              "keepEarly": "Vous avez protégé ce qui est en ligne. Réservez en préproduction pour voir ce qui aurait échoué.",
+              "ok": "Les réservations en ligne marchent pendant que vous réparez la préproduction. Refaites la réservation complète avant de la mettre en ligne."
+            }
+          },
+          "growth": {
+            "name": "La croissance",
+            "sub": "Les jardins du signal",
+            "alt": "Affiche « GROWTH » : Yasser entouré de fiches (« SEO », « ANALYTICS », « CONTENT », « OPTIMIZATION ») et la légende de l’équipe écrite à la main (« KURO », « RAVEN », « PIGEON », « RAT ») ; les quatre au pied du socle.",
+            "lore": "La Lanterne ouvre la page de réservation une fois la confirmation réparée. Raven regarde 100 visites fictives. Seules 40 personnes arrivent au formulaire, et les notes de terrain de Techno Pigeon reviennent au premier plan.",
+            "rule": "Choisissez un signal qui reflète la tâche que vous améliorez.",
+            "q": "Plus de monde visite la page de réservation, mais les réservations terminées bougent à peine. Que comparez-vous ?",
+            "a": [
+              "Les visites de la page et les réservations terminées.",
+              "Le total de « j’aime » sur la publication de lancement.",
+              "Le nombre de publications que vous avez écrites."
+            ],
+            "f": [
+              "Comparez la part qui va au bout, puis examinez l’étape qui perd le plus de monde avant d’y toucher.",
+              "L’attention peut grandir sans que la réservation s’améliore.",
+              "Ça décrit votre travail, pas si les visiteurs ont pu réserver."
+            ],
+            "keep": "L’affiche « GROWTH »",
+            "scene": "Les soixante qui manquent",
+            "handoff": "Après la réparation de la confirmation, comparer les étapes de la réservation en ligne.",
+            "decision": "Piste de croissance : 60 visites sur 100 se sont arrêtées avant le formulaire. Tester si la date, le prix et le bouton de réservation sont clairs.",
+            "ex": {
+              "t": "Trouver la fuite",
+              "brief": "Examinez un parcours de réservation fictif. Quelle étape perd le plus de monde ?",
+              "fiction": "Parcours fictif",
+              "rows": [
+                "Visiteurs",
+                "Réservation commencée",
+                "Réservé"
+              ],
+              "tips": [
+                "Toutes les personnes arrivées sur la page.",
+                "60 sur 100 n’ont pas commencé. Vérifiez si l’offre et l’action suivante sont claires.",
+                "8 sur 40 ne sont pas allés au bout. C’est une perte plus petite que les 60 visiteurs perdus avant le formulaire."
+              ]
+            }
+          },
+          "observer": {
+            "name": "L’observateur",
+            "sub": "L’observatoire des preuves",
+            "alt": "Affiche « 01 / THE OBSERVER · THE NEUTRAL EYE » : un grand œil ouvert dans le ciel de nuit, au-dessus d’une silhouette en manteau rouge sur une colline.",
+            "lore": "Après le cours, une participante demande un reçu que quelqu’un d’autre puisse vérifier. Raven ouvre une fenêtre dans l’Observatoire. La liste des participants reste dans le tiroir fermé à clé de la Lanterne.",
+            "rule": "Séparez la vérification publique des fiches clients privées. Cette simulation utilise des reçus fictifs.",
+            "q": "Une personne veut faire vérifier publiquement un reçu de présence. Qu’est-ce qui a sa place dans cet enregistrement ?",
+            "a": [
+              "Une photo de la salle et la liste complète des participants.",
+              "Son e-mail et ses notes de réservation.",
+              "Un identifiant de reçu minimal et opaque."
+            ],
+            "f": [
+              "C’est publier bien plus que ce dont la personne qui vérifie a besoin.",
+              "Ces détails ne servent pas à cette preuve et peuvent révéler des informations privées.",
+              "La recherche publique peut dire si l’émetteur de démonstration a enregistré le reçu. Les coordonnées restent dans le système de réservation."
+            ],
+            "keep": "L’insigne de l’observateur",
+            "scene": "Une fenêtre et un tiroir fermé à clé",
+            "handoff": "Créer, après le cours, une recherche de reçu facultative.",
+            "decision": "Limite de la preuve : publier seulement une référence de reçu opaque. Les détails des participants restent privés.",
+            "ex": {
+              "t": "Le banc des preuves",
+              "brief": "Choisissez les champs que l’archive publique fictive peut voir. Lancez une recherche de reçu avec vos choix.",
+              "fiction": "Reçus fictifs",
+              "recs": [
+                "Identifiant de reçu opaque",
+                "E-mail du client",
+                "Notes de réservation",
+                "Liste des invités"
+              ],
+              "priv": "Privé",
+              "pub": "Public",
+              "group": "Données publiques ou privées",
+              "pickMsg": "Choisissez ce qui doit être visible, puis lancez la recherche.",
+              "run": "Lancer la recherche publique fictive",
+              "none": "La recherche ne peut pas marcher sans une référence de reçu publique.",
+              "ok": "Reçu trouvé. La personne qui vérifie peut contrôler la référence, et les détails du client restent privés.",
+              "over": "L’archive exposerait des détails dont elle n’a pas besoin. Ne laissez public que l’identifiant de reçu opaque."
+            }
+          },
+          "wire": {
+            "name": "Le fil sous la lune",
+            "sub": "MERCURY, la traversée",
+            "alt": "Affiche de MERCURY : le voyageur au manteau rouge marche sur un fil électrique sous la pleine lune, Kūro le suit sur le fil, la ville et ses arches en contrebas.",
+            "lore": "Kūro suit Raven jusque dans MERCURY. La traversée est une répétition du nouvel écran de reçu de la Lanterne. Chaque point d’appui offre une action et un résultat visible.",
+            "rule": "Un parcours compliqué devient plus simple quand le prochain pas sûr est clair.",
+            "q": "Quelqu’un ouvre pour la première fois l’écran de reçu de la Lanterne. Qu’est-ce qu’il doit rendre facile ?",
+            "a": [
+              "Choisir un thème avant de commencer.",
+              "Faire une vraie tâche et voir un résultat clair.",
+              "Débloquer tous les réglages d’un coup."
+            ],
+            "f": [
+              "Un choix visuel peut attendre que la personne comprenne la tâche.",
+              "Offrez un chemin court qui réussit. Les réglages avancés se découvrent une fois qu’on sait à quoi sert l’outil.",
+              "Ça donne à un débutant plus de décisions, sans raison de les prendre."
+            ],
+            "keep": "La traversée",
+            "scene": "Le chemin court pour traverser",
+            "handoff": "Répéter l’écran de reçu avec Kūro, un pas utile à la fois.",
+            "decision": "Règle d’orientation : une action claire, suivie d’un résultat que la personne voit.",
+            "ex": {
+              "t": "La traversée de Kūro",
+              "brief": "Faites avancer Kūro en lui donnant un prochain pas clair. Il n’y a pas de chrono.",
+              "landings": [
+                "Départ",
+                "Une tâche",
+                "Le résultat",
+                "Traversé"
+              ],
+              "here": "Kūro est ici",
+              "step": "Faire le pas suivant",
+              "jump": "Sauter aux réglages avancés",
+              "msgs": [
+                "",
+                "Une action claire à la fois.",
+                "Un résultat visible dit ce qui vient de se passer.",
+                "Kūro a traversé. Un chemin court, avec un retour visible, aide à savoir comment continuer."
+              ],
+              "jumpMsg": "Kūro ne bouge pas. Le prochain pas n’est pas clair, et un détour par les réglages ne montre pas comment marche l’outil."
+            }
+          },
+          "ash": {
+            "name": "Le champ de cendres",
+            "sub": "MERCURY, le retour",
+            "alt": "Affiche « 04 / MERCURY · WANDER » : le voyageur au manteau rouge marche dans un champ d’herbes sèches.",
+            "lore": "Au-delà du fil, le signal de l’Observatoire se perd. Yasser revient par le champ de cendres avec une règle pour la Lanterne : une recherche de preuve qui échoue ne doit jamais fermer le guichet des réservations.",
+            "rule": "Une connexion perdue doit laisser intact ce que la personne peut encore faire.",
+            "q": "Le service de preuve tombe, le système de réservation reste debout. Que doit faire le site ?",
+            "a": [
+              "Déclarer toutes les preuves valides.",
+              "Fermer tout le site.",
+              "Garder les réservations ouvertes et dire que la recherche de preuve est indisponible."
+            ],
+            "f": [
+              "Un état que le système ne peut pas vérifier ne doit pas s’afficher comme vérifié.",
+              "Une dépendance facultative ne doit pas arrêter d’office une tâche indépendante.",
+              "Des parcours séparés gardent disponible la partie utile. Dites exactement ce qui n’a pas pu être vérifié."
+            ],
+            "keep": "L’insigne du retour",
+            "scene": "La lumière qui reste allumée",
+            "handoff": "Couper la liaison avec l’Observatoire et voir si la Lanterne prend encore des réservations.",
+            "decision": "Règle de panne : garder les réservations ouvertes et dire quand la vérification des reçus est indisponible.",
+            "ex": {
+              "t": "L’exercice de panne",
+              "brief": "Débranchez un service et vérifiez ce qui marche encore.",
+              "bookOk": "Réservation · disponible",
+              "proofOk": "Recherche de preuve · disponible",
+              "proofOff": "Recherche de preuve · indisponible",
+              "bookDone": "Réservation · confirmée",
+              "cut": "Débrancher le service de preuve",
+              "cutMsg": "Raven a perdu le signal de preuve. La réservation garde sa propre connexion, qui marche.",
+              "book": "Essayer de réserver",
+              "okMsg": "Réservation réussie. Le reçu n’a pas pu être vérifié tant que le service de preuve était hors ligne.",
+              "normal": "En temps normal, la réservation passe. Débranchez maintenant la preuve et réessayez.",
+              "plug": "Rebrancher la preuve",
+              "plugMsg": "La vérification est de nouveau disponible. Demandez une nouvelle recherche avant d’afficher un résultat."
+            }
+          }
+        }
+      },
+      "marque": {
+        "kind": "COURS CLIENT · LA MARQUE, AVANT LE LOGO",
+        "title1": "Le logo",
+        "title2": "vient après.",
+        "search": "Le logo vient après · Librairie Lanterne | Numidea Labs",
+        "desc": "Neuf quartiers pour préparer sa marque avant de payer un designer : public, promesse, caractère, fichiers, nom, et une fiche pour le Studio.",
+        "conclusion": "La fiche de Nadia est complète ; la vôtre aussi, case par case.",
+        "act": {
+          "a1": "Acte I · Ce que vous voulez",
+          "a2": "Acte II · Ce que vous achetez"
+        },
+        "actShort": {
+          "a1": "Acte I",
+          "a2": "Acte II"
+        },
+        "plate": {
+          "a1": "Une pâtisserie au coin d’une rue la nuit : une vitrine éclairée de gâteaux sur présentoirs, un auvent rayé, une enseigne crème encore vide, une petite table avec un carnet de croquis ouvert.",
+          "a2": "Un atelier d’imprimerie : une presse à rouleau déroule une grande bannière crème vierge sur le sol, des piles de papier, des nuanciers, une table lumineuse avec une feuille blanche, des affiches roulées dans un panier."
+        },
+        "d": {
+          "b1": {
+            "rule": "Un logo est un signe : la marque, l’identité et leurs règles se décident avant lui.",
+            "handoff": "Nadia sait ce qu’elle a : un logo, rien d’autre. Reste à savoir pour qui elle le refait.",
+            "decision": "Un logo seul est un signe ; le reste se décide avant.",
+            "keep": "La case « undefined »"
+          },
+          "b2": {
+            "rule": "Une piste se juge contre la personne de la fiche, pas au goût.",
+            "handoff": "Sa cliente a un visage ; il lui faut maintenant une promesse qu’elle peut vérifier.",
+            "decision": "Choisir la piste qui parle à la personne de ma fiche.",
+            "keep": "La case « undefined »"
+          },
+          "b3": {
+            "rule": "Une promesse compte si un client peut la vérifier : un délai, un fait, une preuve.",
+            "handoff": "La promesse tient ; reste à dire au designer ce qu’on doit ressentir.",
+            "decision": "Une promesse qui se vérifie, avec sa preuve.",
+            "keep": "La case « undefined »"
+          },
+          "b4": {
+            "rule": "Au designer, on dit le but, ce qu’on doit ressentir ; il choisit les moyens.",
+            "handoff": "Le caractère est dit ; Nadia essaie maintenant son logo dans un onglet de navigateur.",
+            "decision": "Dire ce qu’on doit ressentir, pas la couleur ni la police.",
+            "keep": "La case « undefined »"
+          },
+          "b9": {
+            "rule": "Une marque est une famille : la petite version se dessine, elle ne se réduit pas.",
+            "handoff": "Le logo sera refait, avec une version compacte ; l’imprimeur demande déjà le fichier de la bâche.",
+            "decision": "Une version compacte en formes pleines, vue à 16 pixels.",
+            "keep": "La case « undefined »"
+          },
+          "b5": {
+            "rule": "Pour imprimer en grand, il faut le fichier vectoriel : il reste net à toutes les tailles.",
+            "handoff": "Elle sait quels fichiers réclamer ; une proposition arrive, « tout compris ».",
+            "decision": "Demander le vectoriel (SVG ou PDF) et les versions.",
+            "keep": "La case « undefined »"
+          },
+          "b6": {
+            "rule": "« Tout compris » ne se vérifie qu’avec la liste écrite de ce qui est livré.",
+            "handoff": "La proposition est lue ; reste le nom, et à qui il est.",
+            "decision": "Demander par écrit la liste de ce qui est livré.",
+            "keep": "La case « undefined »"
+          },
+          "b7": {
+            "rule": "Un logo payé n’est pas une marque déposée : le dépôt se fait à part, pays par pays.",
+            "handoff": "Le nom a son pays de dépôt ; il reste à tout réunir sur la fiche.",
+            "decision": "Déposer le nom à l’INAPI pour l’Algérie.",
+            "keep": "La case « undefined »"
+          },
+          "b8": {
+            "rule": "Avant le premier appel : la fiche remplie, et une seule personne qui décide.",
+            "handoff": "La fiche de Nadia est prête à partir, quand elle le voudra.",
+            "decision": "Garder la fiche sous la main, et une personne qui décide.",
+            "keep": "La case « undefined »"
+          }
+        },
+        "caseLabel": "Chez la Pâtisserie Hodna · exemple inventé"
+      },
+      "argent": {
+        "kind": "LEÇONS · L’ARGENT",
+        "title1": "Gagner sa vie",
+        "title2": "de loin.",
+        "pitch": "Se faire payer de l’étranger, lire les frais, fixer un tarif, tenir sa trésorerie, garder ses clés : l’argent du travail à distance, quartier par quartier.",
+        "caseLabel": "Chez Selma · exemple inventé",
+        "search": "Gagner sa vie de loin · Librairie Lanterne | Numidea Labs",
+        "desc": "Être payé de l’étranger, comparer les frais, fixer son tarif, tenir sa trésorerie et garder ses clés : un atlas gratuit, sans conseil financier.",
+        "conclusion": "Selma sait par où passe l’argent, ce qu’il lui coûte, combien demander et combien garder de côté.",
+        "act": {
+          "a1": "Acte I · Être payé",
+          "a2": "Acte II · Tenir ses comptes"
+        },
+        "actShort": {
+          "a1": "Acte I",
+          "a2": "Acte II"
+        },
+        "plate": {
+          "a1": "Une arcade de poste au crépuscule : un long comptoir en bois chargé d’enveloppes scellées et de colis ficelés, une balance à lettres en laiton, des pigeonniers vides sur le toit.",
+          "a2": "Une pièce de comptes la nuit : un bureau en bois avec des registres fermés et un carnet ouvert aux lignes vierges, un petit coffre en fer, un calendrier aux cases vides, une lanterne allumée et, par la fenêtre, les tours."
+        },
+        "toComptoir": "Pour en parler à deux, les services à prix fixe sont au comptoir de la Librairie.",
+        "toComptoirGo": "Aller au comptoir",
+        "d": {
+          "pay": {
+            "name": "Route",
+            "lore": "Selma est illustratrice à Bordj Bou Arréridj ; le soir, elle donne le cours de gravure de la Lanterne. Un éditeur étranger veut la payer pour ses illustrations. Elle ne sait pas encore par où l’argent passera.",
+            "rule": "Avant le prix, la route : par où l’argent arrive, et ce que ce passage coûte.",
+            "f": {
+              "0": "Le taux compte, mais il vient après. D’abord la route : comment votre banque ou le service reçoit l’argent, et à quel prix.",
+              "1": "Oui. La route d’abord, le prix ensuite.",
+              "2": "La facture compte pour un virement, pas sa couleur. Regardez la route : le délai, les frais, et ce que votre banque accepte."
+            },
+            "handoff": "L’éditeur attend une réponse : virement, plateforme, place de marché ou crypto ?",
+            "decision": "La route d’abord, le prix ensuite.",
+            "keep": "Le tampon « Route »"
+          },
+          "bank": {
+            "name": "Change",
+            "lore": "Pour recevoir l’argent de l’éditeur, deux services lui affichent « 0 frais ». Selma se méfie d’un zéro trop rond.",
+            "rule": "Un « 0 frais » se vérifie à trois endroits : le change, le transfert, la carte et le retrait.",
+            "f": {
+              "0": "Oui. Un taux moins bon que le marché est un frais qui ne dit pas son nom.",
+              "1": "Le logo ne dit rien du prix. Le coût se cache dans le taux de change appliqué : comparez-le au taux du marché le même jour.",
+              "2": "Le nombre d’abonnés ne dit rien de ce que vous payez. Regardez le taux appliqué : l’écart avec le marché est le vrai prix."
+            },
+            "handoff": "Le service choisi, reste à savoir combien demander par jour.",
+            "decision": "Comparer le taux appliqué, pas l’affiche.",
+            "keep": "Le tampon « Change »"
+          },
+          "rate": {
+            "name": "Tarif",
+            "lore": "L’éditeur demande un prix par jour. Selma part des chiffres du calculateur avant de mettre les siens.",
+            "rule": "Un tarif se calcule : ce qu’on veut garder, plus ses charges, divisé par les jours réellement facturés.",
+            "f": {
+              "0": "Pas les 22 : une partie des jours part en prospection, en devis, en administratif et en congés. Divisez par les jours facturés.",
+              "1": "Oui. Divisez par les jours facturés, pas par les jours travaillés.",
+              "2": "On ne facture pas plus de jours qu’on n’en travaille. Il en reste moins : la prospection, les devis et les congés en prennent une partie."
+            },
+            "handoff": "Le tarif posé, l’éditeur annonce qu’il paie à 60 jours.",
+            "decision": "Diviser par les jours facturés, pas par les jours travaillés.",
+            "keep": "Le tampon « Tarif »"
+          },
+          "treso": {
+            "name": "Trésorerie",
+            "lore": "L’éditeur paie à 60 jours. Selma regarde combien de mois elle tient si rien ne rentre d’ici là.",
+            "rule": "La trésorerie, c’est le nombre de mois qu’on tient si plus rien ne rentre comme prévu.",
+            "f": {
+              "0": "Il paiera, mais dans deux mois. D’ici là, il faut tenir : le délai du client devient votre besoin de trésorerie.",
+              "1": "Oui. Le délai de paiement du client devient votre besoin de trésorerie.",
+              "2": "Une dépense de plus raccourcit la trésorerie. Avant de dire oui, gardez de quoi tenir au moins ces deux mois."
+            },
+            "handoff": "Les comptes tenus, un message du « support » arrive dans sa boîte.",
+            "decision": "Le délai du client devient mon besoin de trésorerie.",
+            "keep": "Le tampon « Trésorerie »"
+          },
+          "crypto": {
+            "name": "Clés",
+            "lore": "Un message signé « support » arrive, l’air officiel. Il parle du portefeuille que Selma a ouvert pour voir.",
+            "rule": "En crypto, ce qu’on possède, c’est la clé : la phrase de récupération ne se donne à personne.",
+            "f": {
+              "0": "Aucun support sérieux ne la demande. Qui lit votre phrase de récupération prend tout : c’est une arnaque.",
+              "1": "Oui. Aucun support ne la demande. Jamais.",
+              "2": "Ni entière, ni en morceaux : la phrase recrée vos clés, et aucun support ne la demande. Jamais."
+            },
+            "handoff": "Selma garde sa phrase pour elle, et ses comptes en ordre.",
+            "decision": "Ma phrase de récupération ne se donne à personne.",
+            "keep": "Le tampon « Clés »"
+          }
+        }
+      },
+      "route": {
+        "title1": "Le carnet",
+        "title2": "de route.",
+        "caseLabel": "Selma sur la route · exemple inventé",
+        "search": "Le carnet de route · Librairie Lanterne | Numidea Labs",
+        "desc": "Trouver ses clients, chiffrer, tenir le décalage horaire, protéger ses fichiers et préparer un départ : un atlas gratuit pour travailler de partout.",
+        "conclusion": "Selma rentre avec ses comptes tenus et un passeport plein.",
+        "act": {
+          "r1": "Acte I · Trouver et chiffrer",
+          "r2": "Acte II · Travailler d’ailleurs",
+          "r3": "Acte III · Tenir l’année"
+        },
+        "actShort": {
+          "r1": "Acte I",
+          "r2": "Acte II",
+          "r3": "Acte III"
+        },
+        "plate": {
+          "r1": "Une terrasse de café sur un toit au crépuscule : une petite table avec un carnet ouvert aux pages blanches, un téléphone et un verre de thé, des guirlandes lumineuses, la mer et les maisons blanches en contrebas.",
+          "r2": "Le hall d’une gare la nuit : deux horloges rondes sans chiffres qui marquent des heures différentes, un banc, un chariot à bagages avec un sac à dos, une prise murale et son câble, de hautes fenêtres en arc.",
+          "r3": "Une chambre d’auberge à l’aube : une fenêtre en arc ouverte sur la mer, un livret fermé et une plante sur le rebord, un calendrier aux cases vides au mur, un sac à dos bouclé près de la porte."
+        },
+        "toKit": "Le Kit nomade et les services à prix fixe sont au comptoir de la Librairie.",
+        "d": {
+          "n1": {
+            "lore": "Selma quitte Bordj pour une saison et emporte son travail. Pour payer la route, il lui faut trois clients par mois ; elle commence par écrire.",
+            "rule": "Les clients se comptent : ceux qu’on veut, divisés par la part qui répond, puis par la part qui signe.",
+            "f": {
+              "0": "Oui. Une signature pour 40 messages, donc 120 messages pour 3 clients. Ou un meilleur message, ou une meilleure offre : les deux taux se travaillent.",
+              "1": "Baisser les prix ne fait pas répondre plus de monde. Comptez : une signature pour 40 messages, donc 120 messages pour 3 clients, ou un meilleur taux.",
+              "2": "Attendre ne remplit pas le mois. Les clients répondent à des messages : à ce rythme, 120 pour 3 signatures, ou un meilleur message."
+            },
+            "handoff": "Un premier client répond : il veut un prix.",
+            "decision": "Une signature pour 40 messages : viser 120, ou mieux écrire.",
+            "keep": "Le tampon « Clients »"
+          },
+          "n2": {
+            "lore": "Le premier client veut un chiffre qui ne bouge plus. Selma compte ses jours avant de répondre.",
+            "rule": "Un prix de projet : le tarif journalier, fois les jours estimés, plus une marge pour l’imprévu.",
+            "f": {
+              "0": "Si le prix était ferme et le périmètre inchangé, l’écart n’est pas pour le client : c’est à cela que sert la marge.",
+              "1": "Oui, si le prix était ferme. C’est la règle du Studio : « si le travail déborde, l’écart est pour nous ». Si c’est le périmètre qui change, c’est un nouveau devis.",
+              "2": "Partager l’écart, c’est revenir sur un prix ferme. À périmètre égal, c’est la marge qui paie l’imprévu."
+            },
+            "handoff": "Le prix accepté, il reste à l’écrire au devis.",
+            "decision": "La marge paie l’imprévu ; le prix ferme ne bouge pas.",
+            "keep": "Le tampon « Prix »"
+          },
+          "n3": {
+            "lore": "Avant de commencer, Selma écrit son devis : ce qui est compris, et ce qui ne l’est pas.",
+            "rule": "Un devis signé répond d’avance aux questions qui fâchent : le périmètre, l’acompte, les retouches, la propriété, le délai.",
+            "f": {
+              "0": "Pas celle-là : au Studio, deux séries par étape sont comprises. La troisième est chiffrée à part.",
+              "1": "Oui. Deux séries par étape sont comprises ; les suivantes sont chiffrées à part.",
+              "2": "Elle n’est pas refusée : le devis du Studio la chiffre à part, au-delà des deux séries comprises par étape."
+            },
+            "handoff": "Le devis signé, l’appel de lancement est à caler avec un client six fuseaux plus à l’ouest.",
+            "decision": "Deux séries par étape, les suivantes à part : c’est écrit au devis.",
+            "keep": "Le tampon « Devis »"
+          },
+          "n4": {
+            "lore": "Selma est à UTC+1, son client à UTC−5. Elle cherche l’heure où leurs deux journées se croisent.",
+            "rule": "Les appels se placent dans les heures que les deux journées partagent ; le reste se fait par écrit.",
+            "f": {
+              "0": "À 10 h chez vous, il est 4 h chez votre client : sa journée n’a pas commencé. Cherchez les heures que vos deux journées partagent.",
+              "1": "Oui. 16 h chez vous, c’est 10 h chez votre client : l’heure tombe dans les deux journées.",
+              "2": "À 23 h chez vous, votre journée est finie. Placez l’appel dans les heures communes : 16 h chez vous, 10 h chez lui."
+            },
+            "handoff": "L’appel calé, Selma reprend le train, l’ordinateur et le disque dans le même sac.",
+            "decision": "16 h chez moi, 10 h chez lui.",
+            "keep": "Le tampon « Fuseaux »"
+          },
+          "n5": {
+            "lore": "Dans le train de nuit, tout son bureau tient dans un sac : l’ordinateur, le disque de sauvegarde, les câbles.",
+            "rule": "Trois copies, sur deux appareils, dont une gardée hors du sac.",
+            "f": {
+              "0": "Un mot de passe protège l’accès, pas les fichiers partis avec le sac. Il manquait une copie gardée ailleurs.",
+              "1": "Oui. C’est le « 1 » de 3-2-1 : une copie hors du sac, en ligne ou chez quelqu’un de confiance.",
+              "2": "Un deuxième ordinateur dans le même sac partirait avec le premier. Il manquait une copie hors du sac."
+            },
+            "handoff": "Les copies à l’abri, Selma doit se connecter à l’aéroport.",
+            "decision": "Trois copies, deux supports, une ailleurs.",
+            "keep": "Le tampon « Sac »"
+          },
+          "n6": {
+            "lore": "À l’aéroport, Selma doit ouvrir sa messagerie de travail avant l’embarquement.",
+            "rule": "En voyage, les comptes valent plus que le matériel : un réseau qu’on maîtrise, la double validation, un mot de passe par compte.",
+            "f": {
+              "0": "L’ANSSI comme le NCSC conseillent d’éviter les réseaux qu’on ne maîtrise pas. Passez par le réseau mobile de votre téléphone.",
+              "1": "Oui. Le réseau mobile plutôt qu’un réseau que vous ne maîtrisez pas : c’est le conseil du NCSC comme celui de l’ANSSI.",
+              "2": "Un ordinateur en libre-service n’est pas plus à vous qu’un Wi-Fi public. Le plus sûr reste le partage de connexion de votre téléphone."
+            },
+            "handoff": "Arrivée, Selma fait le compte de sa semaine.",
+            "decision": "Le réseau du téléphone plutôt que le Wi-Fi public.",
+            "keep": "Le tampon « Sécurité »"
+          },
+          "n7": {
+            "lore": "Sur la terrasse de la pension, Selma compte ses jours : cinq de travail, mais combien facturés ?",
+            "rule": "Une année compte 52 semaines, mais on n’en facture qu’une partie : comptez vos jours facturés avant de vous promettre un revenu.",
+            "f": {
+              "0": "Pas les cinq : la prospection, les devis, l’administratif et l’apprentissage prennent aussi des jours. À 60 %, cela fait 3 jours facturés.",
+              "1": "Oui. Les deux autres jours existent bel et bien : prospection, devis, administratif, apprentissage. C’est votre tarif journalier qui les paie.",
+              "2": "Moins que cinq, mais pas à ce point : 60 % de 5 jours, cela fait 3 jours facturés."
+            },
+            "handoff": "La saison s’achève ; avant le prochain départ, il reste à compter les jours de séjour.",
+            "decision": "Mon tarif paie aussi les jours non facturés.",
+            "keep": "Le tampon « Année »"
+          },
+          "n8": {
+            "lore": "Pour la saison suivante, Selma prévoit l’espace Schengen, avec une journée de sortie au milieu.",
+            "rule": "Avant le billet, quatre dossiers : le séjour, les impôts, la santé, la banque. Les questions ici, les réponses auprès de qui les donne.",
+            "f": {
+              "0": "Sortir une journée n’efface rien : on compte 180 jours en arrière depuis chaque jour du séjour.",
+              "1": "Oui. On compte 180 jours en arrière depuis chaque jour du séjour : sortir une journée n’efface rien. La calculatrice de la Commission fait le compte pour vous.",
+              "2": "Le compteur ne se met pas en pause : il regarde les 180 jours précédents, à chaque jour du séjour."
+            },
+            "handoff": "Le carnet est plein : Selma rentre à Bordj.",
+            "decision": "Compter sur 180 jours, avec la calculatrice de la Commission.",
+            "keep": "Le tampon « Départ »"
+          }
+        },
+        "toRate": "le quartier « Tarif » de « Gagner sa vie de loin »"
+      },
+      "jeu": {
+        "title1": "Le jeu",
+        "title2": "juste.",
+        "caseLabel": "La carte de la Lanterne · exemple inventé",
+        "search": "Le jeu juste · Librairie Lanterne | Numidea Labs",
+        "desc": "La gamification sans poudre aux yeux : ce que c’est, ce que dit la recherche, ce que ça rapporte, quand ça abîme, et les règles de ce site. Un atlas gratuit.",
+        "conclusion": "La Lanterne a sa carte : huit cases, une voix, un dessin à la fin. Rien ne la force.",
+        "act": {
+          "j1": "Acte I · Comprendre",
+          "j2": "Acte II · Les mécaniques",
+          "j3": "Acte III · Le prix et la limite"
+        },
+        "actShort": {
+          "j1": "Acte I",
+          "j2": "Acte II",
+          "j3": "Acte III"
+        },
+        "plate": {
+          "j1": "Une petite salle d’arcade la nuit : deux bornes de jeu aux écrans éteints sous un auvent rayé, une étagère de peluches, un sol en damier, la lumière chaude d’une lanterne.",
+          "j2": "Un coin de l’étal de la Librairie : un tableau de liège couvert de cartes de fidélité crème, un tampon et un encreur, une petite coupe, une planche d’autocollants en étoile, sous l’auvent rayé.",
+          "j3": "Un salon de lecture la nuit : un fauteuil sous une lampe, une console de jeu portable fermée sur une étagère parmi des livres, une gravure abstraite encadrée au mur, une porte ouverte sur les tours."
+        },
+        "d": {
+          "g1": {
+            "name": "Niveau 1",
+            "lore": "La libraire de la Lanterne veut que les élèves du cours du soir reviennent. Avant de parler de carte de fidélité, elle cherche ce que le mot gamification veut dire.",
+            "rule": "La gamification prête un ressort du jeu à une activité qui reste la vraie.",
+            "f": {
+              "0": "Un jeu complet est un jeu, pas de la gamification : celle-ci emprunte un ressort du jeu pour une activité qui n’en est pas un.",
+              "1": "Oui. Le cours reste un cours ; la barre lui prête un ressort du jeu : voir qu’on avance.",
+              "2": "Une mascotte seule est un habillage. Si on retire le jeu et qu’il ne reste rien d’utile, ce n’était pas de la gamification."
+            },
+            "handoff": "Une carte de fidélité, alors ? Reste à savoir quel besoin elle nourrirait.",
+            "decision": "Le cours reste un cours ; on lui prête un ressort du jeu."
+          },
+          "g2": {
+            "name": "Niveau 2",
+            "lore": "La carte montrerait les séances déjà suivies. La libraire se demande à quoi cela sert.",
+            "rule": "Un bon jeu nourrit trois besoins : se sentir capable, libre, relié.",
+            "f": {
+              "0": "Oui : elle montre le chemin déjà fait. C’est de la compétence rendue visible.",
+              "1": "La liberté, c’est choisir son chemin et son rythme. Une barre de progression montre surtout le chemin déjà fait : c’est la compétence.",
+              "2": "Le lien, c’est jouer avec d’autres. Une barre de progression montre ce qu’on a déjà fait : elle nourrit le besoin de se sentir capable."
+            },
+            "handoff": "Le besoin trouvé, la libraire veut savoir si ça marche vraiment.",
+            "decision": "La carte montre le chemin fait : elle sert la compétence."
+          },
+          "g3": {
+            "name": "Niveau 3",
+            "lore": "Avant de payer l’imprimeur, la libraire lit ce que disent les études.",
+            "rule": "Des effets réels et modestes, qui dépendent du contexte : rien de plus à promettre.",
+            "f": {
+              "0": "Les études trouvent des effets petits mais réels, pas tous aussi solides, et qui dépendent du contexte. Personne de sérieux ne promet « à tous les coups ».",
+              "1": "Oui : des effets réels et modestes, qui dépendent du contexte. Personne de sérieux ne promet davantage.",
+              "2": "Les études trouvent bien des effets, petits mais réels, quand la gamification est conçue pour son public."
+            },
+            "handoff": "Prudente, elle passe aux mécaniques, une à une.",
+            "decision": "Des effets réels et modestes : ne rien promettre de plus."
+          },
+          "g4": {
+            "name": "Niveau 4",
+            "lore": "L’imprimeur propose deux maquettes de carte pour le même nombre de séances. La libraire hésite.",
+            "rule": "On choisit une ou deux mécaniques pour un but, pas dix pour décorer.",
+            "f": {
+              "0": "Le même effort, mais rien n’est commencé. La carte de dix cases dont deux tamponnées est plus souvent terminée : c’est l’avance offerte.",
+              "1": "Oui. Le même effort, mais on a déjà commencé : c’est l’effet de progression offerte.",
+              "2": "Nunes et Drèze trouvent une différence : la carte qui commence à 2 sur 10 est plus souvent terminée, et plus vite."
+            },
+            "handoff": "La carte dessinée, reste ce qu’elle dit de la Lanterne.",
+            "decision": "Une carte qui commence avec deux cases tamponnées."
+          },
+          "g5": {
+            "name": "Niveau 5",
+            "lore": "Une carte, c’est aussi une voix. La libraire se demande ce que la sienne dira de la Lanterne.",
+            "rule": "Le jeu donne à une marque une voix, un monde et une raison de revenir ; il sert le message, il ne le remplace pas.",
+            "f": {
+              "0": "Ce niveau est une lecture de praticiens : ce qu’une marque gagne d’abord, c’est un caractère qu’on reconnaît, pas des données.",
+              "1": "Oui. Le reste peut suivre, mais c’est le caractère qui fait revenir.",
+              "2": "Les clics peuvent suivre, mais ce qui fait revenir, c’est le caractère : une voix, un monde, un rituel."
+            },
+            "handoff": "Avant de lancer sa carte, la libraire regarde des cas réels.",
+            "decision": "La Lanterne garde sa voix : c’est elle qui fait revenir."
+          },
+          "g6": {
+            "name": "Niveau 6",
+            "lore": "On cite à la libraire des chiffres impressionnants. Elle demande d’où ils viennent.",
+            "rule": "Lire d’où vient un chiffre : une étude publiée, une entreprise, ou une campagne de marque.",
+            "f": {
+              "0": "Le chiffre de Starbucks vient de l’entreprise elle-même : utile, à lire comme tel. La publication scientifique, c’est Foldit.",
+              "1": "Oui. Les autres sont des chiffres d’entreprise ou de campagne : utiles, à lire comme tels.",
+              "2": "La loterie des radars est un cas célèbre mais fragile, venu d’une campagne. La publication scientifique, c’est Foldit."
+            },
+            "handoff": "Les chiffres lus, la libraire cherche où ça casse.",
+            "decision": "Lire d’où vient un chiffre avant de le croire."
+          },
+          "g7": {
+            "name": "Niveau 7",
+            "lore": "La libraire pensait promettre une réduction à la fin de la carte. Elle vérifie d’abord ce qui fait échouer ces projets.",
+            "rule": "Le jeu peut démotiver, pousser, piéger : la plupart des échecs viennent de la conception.",
+            "f": {
+              "0": "Gartner ne dit pas que les gens n’aiment pas jouer : il prévoit des échecs surtout à cause d’une mauvaise conception.",
+              "1": "Oui. Ce n’est pas le jeu qui échoue, c’est le jeu mal pensé pour son but.",
+              "2": "Ce n’est pas la technologie que Gartner pointe, c’est une mauvaise conception."
+            },
+            "handoff": "Il reste à écrire les règles de sa carte.",
+            "decision": "Pas de pression, pas de récompense promise d’avance."
+          },
+          "g8": {
+            "name": "Niveau 8",
+            "lore": "La libraire écrit les règles de sa carte en regardant comment ce site joue.",
+            "rule": "Rien ne démarre seul, le prix ne joue pas, un dessin plutôt qu’une remise, rien ne sort d’ici, pas de pression.",
+            "f": {
+              "0": "Pas de remise ici : sept sceaux ouvrent un dessin. Aucune récompense ne s’échange contre un achat.",
+              "1": "Oui. C’est notre règle : on récompense par quelque chose à regarder, jamais par une pression à acheter.",
+              "2": "Il n’y a ni compte ni classement : les sceaux restent dans votre navigateur, et ils ouvrent un dessin."
+            },
+            "handoff": "La carte est prête.",
+            "decision": "La carte de la Lanterne donne un tirage du cours, jamais une remise."
+          }
+        }
+      },
+      "web3": {
+        "title1": "Le web3,",
+        "title2": "sans fumée.",
+        "pitch": "On vous a vendu une chaîne ; vous vouliez peut-être juste des clients fidèles. Huit étapes pour trier l’outil du résultat, et repartir avec une fiche qu’on peut chiffrer. Parfois une chaîne est le bon outil ; ce cours aide à savoir quand. C’est de l’éducation : aucun conseil en placement, aucun signal, aucune promesse de gain.",
+        "search": "Le web3, sans fumée · Librairie Lanterne | Numidea Labs",
+        "desc": "Huit quartiers pour savoir s’il faut une blockchain avant de payer : les mots, l’arbre des six questions, les coûts, les arnaques, la loi, une fiche.",
+        "conclusion": "Samia garde la route ordinaire ; votre fiche dit la vôtre.",
+        "act": {
+          "a1": "Acte I · Le tri",
+          "a2": "Acte II · La route ordinaire",
+          "a3": "Acte III · Se protéger"
+        },
+        "actShort": {
+          "a1": "Acte I",
+          "a2": "Acte II",
+          "a3": "Acte III"
+        },
+        "plate": {
+          "a1": "Une petite salle de sport pour femmes à la fermeture, vide : des casiers, des tapis roulés, un comptoir d’accueil avec un tableau de cartes de fidélité tamponnées et, à part au bout du comptoir, un petit cube turquoise lumineux.",
+          "a2": "Une salle d’archives : un meuble à fiches au tiroir ouvert et, sur l’établi voisin, une chaîne de petits blocs crème reliés par des anneaux de laiton, seuls à luire en turquoise, parmi une règle, un tournevis et une agrafeuse.",
+          "a3": "Une ruelle la nuit : un étal sous une bannière vierge trop lumineuse, un hameçon pendu à un fil au-dessus, des volutes de fumée ; au fond, une porte en bois cintrée et fermée sous une lampe de laiton."
+        },
+        "d": {
+          "w1": {
+            "rule": "Signer, c’est donner son accord : on ne signe pas ce qu’on ne comprend pas.",
+            "handoff": "Samia a écrit son idée sans jargon ; reste à savoir s’il lui faut une chaîne.",
+            "decision": "Ne pas signer tant que je ne sais pas ce que ça autorise.",
+            "keep": "La case « undefined »"
+          },
+          "w2": {
+            "rule": "Si un seul écrit dans le registre, une base de données suffit.",
+            "handoff": "Pas de chaîne ; reste à dire ce qu’elle veut vraiment.",
+            "decision": "Un seul qui écrit : une base de données.",
+            "keep": "La case « undefined »"
+          },
+          "w3": {
+            "rule": "On part du résultat voulu, puis on prend la route la plus simple qui y mène.",
+            "handoff": "La route est choisie ; reste à savoir ce qui irait sur une chaîne, et ce qui reste chez elle.",
+            "decision": "Des points dans une base de données, pas un jeton.",
+            "keep": "La case « undefined »"
+          },
+          "w8": {
+            "rule": "Le hash dit « envoyé » ; seul le reçu dit si l’opération a réussi.",
+            "handoff": "Les données des adhérentes restent dans sa base ; reste à compter ce qui se paie après.",
+            "decision": "Attendre le reçu, pas seulement le hash.",
+            "keep": "La case « undefined »"
+          },
+          "w4": {
+            "rule": "Une proposition complète montre aussi ce qui se paie après la mise en ligne.",
+            "handoff": "Les lignes d’après sont notées ; le fournisseur revient par message privé.",
+            "decision": "Demander les lignes d’après la mise en ligne, même sans chiffre.",
+            "keep": "La case « undefined »"
+          },
+          "w5": {
+            "rule": "Une transaction faite ne se rappelle pas : l’urgence et le lien qui imite le vrai sont des signaux.",
+            "handoff": "Samia n’a pas cliqué ; reste la loi, là où sont ses adhérentes.",
+            "decision": "Ne pas cliquer : une transaction faite ne revient pas.",
+            "keep": "La case « undefined »"
+          },
+          "w6": {
+            "rule": "La loi qui compte est celle des pays où sont vos utilisateurs : à Dubaï, la VARA.",
+            "handoff": "La carte de la loi est lue ; tout se réunit sur la fiche.",
+            "decision": "Pour un jeton à Dubaï : un prestataire agréé par la VARA, ou son accord.",
+            "keep": "La case « undefined »"
+          },
+          "w7": {
+            "rule": "La loi d’abord, le code ensuite.",
+            "handoff": "La fiche de Samia est prête à partir, quand elle le voudra.",
+            "decision": "Faire vérifier la loi des pays des utilisateurs avant de payer un développement.",
+            "keep": "La case « undefined »"
+          }
+        },
+        "caseLabel": "Chez la salle de Samia · exemple inventé"
+      }
+    },
+    "book": {},
+    "stub": {
+      "title": "Le manuel est devenu la Librairie Lanterne | Numidea Labs",
+      "desc": "Le manuel de Numidea Labs a déménagé : ses cours sont maintenant les atlas de la Librairie Lanterne. Vous y êtes conduit.",
+      "t": "Le manuel a déménagé : ses cours sont maintenant les atlas de la Librairie Lanterne.",
+      "go": "Entrer dans la Librairie"
     }
   }
 }

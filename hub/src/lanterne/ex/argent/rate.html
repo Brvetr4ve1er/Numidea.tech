@@ -1,0 +1,15 @@
+<!-- cut verbatim from hub/src/manuel.html (« argent », 2026-11-21, SPEC §6.2): the stop's reading and its exercise; the question is the atlas's situation (hub/src/lanterne/atlases/argent.json) -->
+<p class="st-ls__d" data-i18n="money.ls.items.2.d"></p>
+<div class="st-calc" data-calc="rate">
+  <div class="st-calc__f">
+    <label class="st-calc__l" for="rate-net" data-i18n="money.ls.items.2.f.net"></label><input class="st-calc__i" id="rate-net" type="number" inputmode="numeric" min="0" step="1000" value="100000" data-f="net">
+    <label class="st-calc__l" for="rate-costs" data-i18n="money.ls.items.2.f.costs"></label><input class="st-calc__i" id="rate-costs" type="number" inputmode="numeric" min="0" step="1000" value="20000" data-f="costs">
+    <p class="st-calc__l"><label for="rate-days" data-i18n="money.ls.items.2.f.days"></label> · <output for="rate-days" data-o="days">12</output></p><input class="st-calc__r" id="rate-days" type="range" min="4" max="22" step="1" value="12" data-f="days">
+    <p class="st-calc__l"><label for="rate-tax" data-i18n="money.ls.items.2.f.tax"></label> · <output for="rate-tax" data-o="tax">20</output>&nbsp;%</p><input class="st-calc__r" id="rate-tax" type="range" min="0" max="50" step="5" value="20" data-f="tax">
+  </div>
+  <div class="st-calc__out" aria-live="polite">
+    <p><output class="st-calc__big" dir="ltr" data-o="day">12 500</output> <span data-i18n="money.ls.items.2.f.day"></span></p>
+    <p><output class="st-calc__mid" dir="ltr" data-o="hour">1 786</output> <span data-i18n="money.ls.items.2.f.hour"></span></p>
+    <p class="st-calc__unit" data-i18n="money.ls.items.2.f.unit"></p>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+{
+  "_note": "The shelf's registry (SPEC §2.1): three shelves, one book per course. A book is published when hub/src/lanterne/atlases/<slug>.json exists (until then the shelf shows it « bientôt », with no link); its districts, counts and keepsakes come from that file, never from here. ids lists the course's stop ids (the old ?ls= ids, kept as district ids) so a book not yet moved still has its passport row; the build fails when an atlas file's districts differ from it. store is the atlas's key; migrate is the old manual's stamp key, read once (§3.5). title, kind and line are existing keys (kind loses its slash form, line keeps the lead's first sentence: both derived by the build in each language). The web3 book's second volume is not published (owner decision L9): it reads « bientôt », no link.",
+  "shelves": [
+    { "id": "shelf1", "books": [
+      { "slug": "marque", "key": "marque", "title": "brandc.title", "kind": "lant.at.marque.kind", "line": "brandc.lead", "guide": "kuro",
+        "cover": { "src": "img/studio/brandc/scene-800.webp" }, "accent": "#A34135",
+        "store": "numidea-lanterne-marque", "migrate": "numidea-lessons-brandc",
+        "ids": ["b1", "b2", "b3", "b4", "b9", "b5", "b6", "b7", "b8"] },
+      { "slug": "web3", "key": "web3", "title": "web3c.title", "kind": "web3c.kicker", "line": "web3c.lead", "guide": "raven",
+        "cover": { "src": "img/studio/web3c/scene-800.webp" }, "accent": "#236660",
+        "store": "numidea-lanterne-web3", "migrate": "numidea-lessons-web3c",
+        "ids": ["w1", "w2", "w3", "w8", "w4", "w5", "w6", "w7"], "vol2": true, "notes": ["money.note2"] },
+      { "slug": "cours-du-soir", "key": "cds", "title": "lant.at.cds.title", "kind": "lant.at.cds.kind", "line": "lant.at.cds.pitch", "guide": "yasser",
+        "cover": "composite", "accent": "#F0B05A",
+        "store": "numidea-lanterne-cours-du-soir",
+        "ids": ["home", "fields", "audience", "identity", "architecture", "launch", "growth", "observer", "wire", "ash"] }
+    ] },
+    { "id": "shelf2", "notes": ["money.note1", "money.note2"], "books": [
+      { "slug": "argent", "key": "argent", "title": "money.title", "kind": "lant.at.argent.kind", "line": "money.lead", "guide": "pigeon",
+        "cover": { "src": "img/studio/money/scene-640.webp" }, "accent": "#C98A2E",
+        "store": "numidea-lanterne-argent", "migrate": "numidea-lessons",
+        "ids": ["pay", "bank", "rate", "treso", "crypto"] },
+      { "slug": "route", "key": "route", "title": "nomade.title", "kind": "nomade.kicker", "line": "nomade.lead", "guide": "pigeon",
+        "cover": { "src": "img/studio/nomade/scene-800.webp" }, "accent": "#3F6E8C",
+        "store": "numidea-lanterne-route", "migrate": "numidea-lessons-nomade",
+        "ids": ["n1", "n2", "n3", "n4", "n5", "n6", "n7", "n8"] }
+    ] },
+    { "id": "shelf3", "books": [
+      { "slug": "jeu", "key": "jeu", "title": "jeu.title", "kind": "jeu.kicker", "line": "jeu.lead", "guide": "kuro",
+        "cover": { "src": "img/studio/jeu/key-800.webp" }, "accent": "#6B4E8A",
+        "store": "numidea-lanterne-jeu", "migrate": "numidea-lessons-jeu",
+        "ids": ["g1", "g2", "g3", "g4", "g5", "g6", "g7", "g8"] }
+    ] }
+  ]
+}

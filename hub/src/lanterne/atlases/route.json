@@ -1,0 +1,208 @@
+{
+  "_note": "« Le carnet de route » (SPEC §4.6): eight districts in three acts. Copy under lant.at.route.* or the course's existing keys. Case: Selma on the road, an invented example (L5); the traveller Yasser cut-out walks this road (L8). Keepsakes: the stops' own tab drawings, named after the passport's labels. Reward: the phone wallpaper (_sac).",
+  "slug": "route",
+  "key": "route",
+  "store": "numidea-lanterne-route",
+  "app": true,
+  "accent": "#3F6E8C",
+  "keys": {
+    "kicker": "nomade.kicker",
+    "pitch": "nomade.lead",
+    "coverAlt": "nomade.sceneAlt"
+  },
+  "cover": {
+    "src": "img/studio/nomade/scene.webp",
+    "srcset": "img/studio/nomade/scene-800.webp 800w, img/studio/nomade/scene.webp 1600w"
+  },
+  "caseArt": "feather",
+  "acts": [
+    {
+      "id": "r1",
+      "plate": "route-a1",
+      "districts": [
+        "n1",
+        "n2",
+        "n3"
+      ]
+    },
+    {
+      "id": "r2",
+      "plate": "route-a2",
+      "districts": [
+        "n4",
+        "n5",
+        "n6"
+      ]
+    },
+    {
+      "id": "r3",
+      "plate": "route-a3",
+      "districts": [
+        "n7",
+        "n8"
+      ]
+    }
+  ],
+  "districts": {
+    "n1": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "yasser",
+      "prop": "paper",
+      "right": 0,
+      "ex": "calc:funnel",
+      "ask": "brief",
+      "keep": "img/studio/nomade/nm-1.webp",
+      "keys": {
+        "sub": "nomade.items.0.t",
+        "q": "nomade.items.0.q",
+        "a": "nomade.items.0.a",
+        "scene": "nomade.items.0.t",
+        "ex.t": "lant.ui.ex.calc.t",
+        "ex.brief": "lant.ui.ex.calc.brief",
+        "name": "nomade.stops.0",
+        "alt": "lant.at.route.plate.r1"
+      }
+    },
+    "n2": {
+      "guide": "yasser",
+      "lead": "yasser",
+      "companion": "kuro",
+      "prop": "cup",
+      "right": 1,
+      "ex": "calc:quote",
+      "ask": "brief",
+      "keep": "img/studio/nomade/nm-2.webp",
+      "keys": {
+        "sub": "nomade.items.1.t",
+        "q": "nomade.items.1.q",
+        "a": "nomade.items.1.a",
+        "scene": "nomade.items.1.t",
+        "ex.t": "lant.ui.ex.calc.t",
+        "ex.brief": "lant.ui.ex.calc.brief",
+        "name": "nomade.stops.1",
+        "alt": "lant.at.route.plate.r1"
+      }
+    },
+    "n3": {
+      "guide": "yasser",
+      "lead": "yasser",
+      "companion": "pigeon",
+      "prop": "paper",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/nomade/nm-3.webp",
+      "keys": {
+        "sub": "nomade.items.2.t",
+        "q": "nomade.items.2.q",
+        "a": "nomade.items.2.a",
+        "scene": "nomade.items.2.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "name": "nomade.stops.2",
+        "alt": "lant.at.route.plate.r1"
+      }
+    },
+    "n4": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": "recorder",
+      "right": 1,
+      "ex": "calc:zones",
+      "ask": "brief",
+      "keep": "img/studio/nomade/nm-4.webp",
+      "keys": {
+        "sub": "nomade.items.3.t",
+        "q": "nomade.items.3.q",
+        "a": "nomade.items.3.a",
+        "scene": "nomade.items.3.t",
+        "ex.t": "lant.ui.ex.calc.t",
+        "ex.brief": "lant.ui.ex.calc.brief",
+        "name": "nomade.stops.3",
+        "alt": "lant.at.route.plate.r2"
+      }
+    },
+    "n5": {
+      "guide": "yasser",
+      "lead": "yasser",
+      "companion": "kuro",
+      "prop": "recorder",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/nomade/nm-5.webp",
+      "keys": {
+        "sub": "nomade.items.4.t",
+        "q": "nomade.items.4.q",
+        "a": "nomade.items.4.a",
+        "scene": "nomade.items.4.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "name": "nomade.stops.4",
+        "alt": "lant.at.route.plate.r2"
+      }
+    },
+    "n6": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": "eyeflower",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/nomade/nm-6.webp",
+      "keys": {
+        "sub": "nomade.items.5.t",
+        "q": "nomade.items.5.q",
+        "a": "nomade.items.5.a",
+        "scene": "nomade.items.5.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "name": "nomade.stops.5",
+        "alt": "lant.at.route.plate.r2"
+      }
+    },
+    "n7": {
+      "guide": "yasser",
+      "lead": "yasser",
+      "companion": "kuro",
+      "prop": "star",
+      "right": 1,
+      "ex": "calc:week",
+      "ask": "brief",
+      "keep": "img/studio/nomade/nm-7.webp",
+      "keys": {
+        "sub": "nomade.items.6.t",
+        "q": "nomade.items.6.q",
+        "a": "nomade.items.6.a",
+        "scene": "nomade.items.6.t",
+        "ex.t": "lant.ui.ex.calc.t",
+        "ex.brief": "lant.ui.ex.calc.brief",
+        "name": "nomade.stops.6",
+        "alt": "lant.at.route.plate.r3"
+      }
+    },
+    "n8": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "yasser",
+      "prop": "feather",
+      "right": 1,
+      "ex": "pick",
+      "ask": "after",
+      "keep": "img/studio/nomade/nm-8.webp",
+      "keys": {
+        "sub": "nomade.items.7.t",
+        "q": "nomade.items.7.q",
+        "a": "nomade.items.7.a",
+        "scene": "nomade.items.7.t",
+        "ex.t": "lant.ui.ex.pick.t",
+        "ex.brief": "lant.ui.ex.pick.brief",
+        "name": "nomade.stops.7",
+        "alt": "lant.at.route.plate.r3"
+      }
+    }
+  }
+}
