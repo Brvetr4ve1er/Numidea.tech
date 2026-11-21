@@ -3432,5 +3432,716 @@
         "go": "Le cours web3, côté client →"
       }
     }
+  },
+  "bank": {
+    "ui": {
+      "title": "La banque en ligne, sans piège : le cours | Numidea Labs",
+      "desc": "Un cours gratuit et interactif pour utiliser votre banque en ligne et votre carte sans tomber dans les arnaques. Huit modules, sans compte."
+    },
+    "nav": {
+      "aria": "Le cours de banque en ligne",
+      "map": "Le parcours",
+      "m1": "01 Débuter",
+      "m5": "05 Arnaques",
+      "m8": "08 Le bilan",
+      "refs": "Sources",
+      "course": "Le cours banque"
+    },
+    "cur": "DA",
+    "hero": {
+      "kicker": "/ COURS GRATUIT · LA BANQUE EN LIGNE",
+      "title": "La banque en ligne, sans piège.",
+      "lead": "Huit modules pour utiliser votre compte, votre appli et votre carte sans donner les clés à un escroc. Des gestes, des simulateurs, une question par leçon.",
+      "note": "Exemples d’abord algériens (CCP, BaridiMob, Edahabia, CIB), réflexes valables partout. Ce qui dépend du pays est signalé « Chez nous, ailleurs ». C’est de l’éducation, pas un conseil : règles et numéros changent d’une banque à l’autre, vérifiez-les auprès de la vôtre.",
+      "sceneAlt": "La nuit, Yasser regarde son téléphone ; Kūro, le chat noir, écarte d’une patte une bulle rouge en forme d’hameçon.",
+      "start": "Commencer le module 1",
+      "quiz": "Aller droit au quiz"
+    },
+    "hud": {
+      "title": "Votre carnet",
+      "rankL": "Rang",
+      "ranks": [
+        "Débutant",
+        "Attentif",
+        "Vigilant",
+        "Gardien",
+        "Inarnaquable"
+      ],
+      "next": "XP avant le rang suivant",
+      "max": "Rang maximal. Les escrocs vont s’ennuyer.",
+      "seals": "Les huit sceaux",
+      "soon": "bientôt",
+      "local": "Votre progression reste dans ce navigateur. Rien n’est envoyé.",
+      "reset": "Tout effacer sur cet appareil",
+      "sure": "Oui, tout effacer",
+      "xp": "XP",
+      "rankUp": "Nouveau rang",
+      "pill": "Votre progression"
+    },
+    "map": {
+      "kicker": "/ LE PARCOURS",
+      "title": "Huit modules, un réflexe par leçon.",
+      "lead": "Trois modules sont ouverts : le départ, les arnaques et le bilan. Les cinq autres arrivent.",
+      "open": "Ouvrir",
+      "mods": [
+        {
+          "t": "Débuter avec la banque en ligne",
+          "l": [
+            "Guichet, site ou appli",
+            "Ouvrir son accès",
+            "Lire son tableau de bord",
+            "Les alertes"
+          ]
+        },
+        {
+          "t": "L’argent au quotidien",
+          "l": [
+            "Virements entre vos comptes",
+            "Payer quelqu’un sans erreur",
+            "Factures et prélèvements",
+            "Le chèque, en sécurité"
+          ]
+        },
+        {
+          "t": "Des défenses solides",
+          "l": [
+            "Phrases de passe",
+            "La double vérification",
+            "Empreinte et visage",
+            "Votre numéro et votre e-mail"
+          ]
+        },
+        {
+          "t": "Appareils et connexions sûrs",
+          "l": [
+            "Le Wi-Fi public",
+            "Les mises à jour",
+            "Fausses applis, faux sites",
+            "Ordinateurs partagés"
+          ]
+        },
+        {
+          "t": "Reconnaître les arnaques",
+          "l": [
+            "Phishing, smishing, vishing",
+            "L’urgence et la peur",
+            "Les familles d’arnaques",
+            "Raccrocher, rappeler"
+          ]
+        },
+        {
+          "t": "Achats en ligne et carte",
+          "l": [
+            "Débit, crédit, virtuelle",
+            "Portefeuilles numériques",
+            "Payer sans piège",
+            "Bloquer, plafonner"
+          ]
+        },
+        {
+          "t": "Surveiller, réagir, récupérer",
+          "l": [
+            "Relire ses relevés",
+            "Le plan d’urgence",
+            "Contester une opération",
+            "Protéger ses proches"
+          ]
+        },
+        {
+          "t": "Le bilan et vos réflexes",
+          "l": [
+            "Le grand quiz",
+            "Régler son téléphone",
+            "La carte d’urgence"
+          ]
+        }
+      ]
+    },
+    "common": {
+      "whereL": "CHEZ NOUS, AILLEURS",
+      "widgetDone": "Exercice réussi : +50 XP.",
+      "real": "Fiable",
+      "scam": "Arnaque",
+      "ctx": "Contexte",
+      "right": "Bien vu.",
+      "miss": "Raté.",
+      "score": "bonnes réponses",
+      "restart": "Rejouer",
+      "hud": "Chaque bonne réponse : un tampon et 100 XP. Chaque exercice réussi : 50 XP de plus.",
+      "channels": {
+        "sms": "SMS",
+        "app": "Appli",
+        "call": "Appel",
+        "mail": "E-mail",
+        "chat": "Messagerie"
+      }
+    },
+    "m1": {
+      "kicker": "/ MODULE 01 · DÉBUTER",
+      "title": "Débuter avec la banque en ligne.",
+      "lead": "Guichet, site, appli : trois portes vers le même argent. Apprenez à lire ce que l’appli vous montre, et à la faire parler avant qu’un escroc ne le fasse.",
+      "sceneAlt": "À la poste, une longue file au guichet ; Yasser, adossé au mur, fait la même opération sur son téléphone, Kūro sur l’épaule.",
+      "tabs": "Les quatre leçons du module 1",
+      "l": [
+        {
+          "t": "Guichet, site ou appli ?",
+          "alt": "Kūro hésite entre une petite banque, un ordinateur portable et un téléphone.",
+          "d": "Votre argent est au même endroit ; seule la porte change. Chacune a ses forces et son point faible. Touchez une porte.",
+          "pick": [
+            {
+              "k": "Le guichet",
+              "v": "Une personne en face, une pièce d’identité, un reçu papier. Lent et limité aux heures d’ouverture, mais c’est là qu’on règle ce que l’appli ne sait pas faire. Le point faible : la file, et l’inconnu « serviable » qui propose de vous aider au distributeur."
+            },
+            {
+              "k": "Le site web",
+              "v": "Grand écran, relevés faciles à lire et à télécharger. Le point faible : un faux site qui imite le vrai. Tapez l’adresse vous-même ou gardez-la en favori ; n’y arrivez jamais par un lien reçu."
+            },
+            {
+              "k": "L’appli",
+              "v": "Tout dans la poche : solde, virements, alertes, blocage de carte. Le point faible : un téléphone perdu sans verrouillage, ou une fausse appli. Installez-la seulement depuis le store officiel, par le lien du site de votre banque."
+            }
+          ],
+          "where": "En Algérie, Algérie Poste propose le guichet, un espace web et l’appli BaridiMob, et chaque banque a son appli. Ailleurs, certaines banques n’existent qu’en ligne, sans aucun guichet.",
+          "q": "Un SMS vous envoie un lien « pour accéder à votre espace bancaire ». Vous :",
+          "a": [
+            "Cliquez, c’est plus rapide",
+            "Ouvrez l’appli ou tapez l’adresse vous-même",
+            "Répondez au SMS pour vérifier"
+          ],
+          "ok": "Oui. Vous choisissez la porte ; un lien reçu la choisit pour vous."
+        },
+        {
+          "t": "Ouvrir son accès sans se faire piéger",
+          "alt": "Kūro tient une carte d’identité verte à côté d’un téléphone qui attend un selfie.",
+          "d": "Créer un accès en ligne demande de prouver qui vous êtes : c’est le « KYC », connaître son client. C’est normal. Ce qui ne l’est pas, c’est qu’un inconnu s’en mêle. Six étapes ci-dessous ; deux sont des pièges : touchez-les.",
+          "traps": [
+            {
+              "t": "Télécharger l’appli depuis le store officiel, par le lien du site de la banque."
+            },
+            {
+              "t": "Recevoir l’appli par WhatsApp, « plus rapide que le store ».",
+              "why": "Une appli hors du store officiel peut être un faux qui lit vos codes."
+            },
+            {
+              "t": "Montrer sa pièce d’identité au guichet, ou la photographier dans l’appli officielle."
+            },
+            {
+              "t": "Un « conseiller » vous appelle pour finir l’inscription et demande le code reçu par SMS.",
+              "why": "Le code reçu par SMS ne se donne à personne. Algérie Poste rappelle qu’elle ne le demande jamais."
+            },
+            {
+              "t": "Choisir un mot de passe long, utilisé nulle part ailleurs."
+            },
+            {
+              "t": "Relier sa carte et vérifier le numéro de téléphone enregistré."
+            }
+          ],
+          "safe": "Étape normale.",
+          "found": "pièges trouvés",
+          "where": "Selon la banque et le pays, l’identité se vérifie au guichet, en vidéo ou par selfie. Peu importe la méthode : elle se fait dans l’appli ou l’agence officielle, jamais pendant un appel que vous n’avez pas demandé.",
+          "q": "Pendant l’inscription, quelqu’un qui connaît votre nom appelle pour « aider » et demande le code reçu. C’est :",
+          "a": [
+            "Le service client, c’est pratique",
+            "Une arnaque : je raccroche",
+            "Normal, il connaît mon nom"
+          ],
+          "ok": "Oui. Connaître votre nom ne prouve rien : les escrocs l’ont souvent."
+        },
+        {
+          "t": "Lire son tableau de bord",
+          "alt": "Kūro examine à la loupe un écran avec deux barres de longueurs différentes et un sablier.",
+          "d": "Deux soldes, des lignes « en attente » : l’écran le plus regardé est aussi le plus mal lu. Touchez chaque zone du téléphone.",
+          "views": [
+            "Compte",
+            "Carte de crédit"
+          ],
+          "hint": "Touchez une zone de l’écran.",
+          "acc": {
+            "bal": "Solde du compte",
+            "avail": "Disponible",
+            "shop": "Boutique en ligne",
+            "atm": "Retrait au distributeur",
+            "pend": "en attente",
+            "inT": "Virement reçu"
+          },
+          "cred": {
+            "limit": "Plafond",
+            "due": "Dû",
+            "avail": "Crédit disponible"
+          },
+          "tips": {
+            "bal": "Le solde du compte compte tout ce qui est passé. Il ne retire pas encore ce qui est en route.",
+            "avail": "Le disponible, c’est ce que vous pouvez vraiment dépenser : le solde moins les opérations en attente. 48 500 − 5 800 − 1 500 = 41 200 DA.",
+            "pend": "En attente : le commerçant a réservé la somme, elle n’est pas encore débitée. Elle peut changer, ou disparaître si l’achat est annulé. Une attente que vous ne reconnaissez pas est un signal : signalez-la tout de suite.",
+            "inT": "Un virement reçu que vous n’attendiez pas ? Ne renvoyez jamais d’argent « en retour » : c’est le début de l’arnaque au trop-perçu (module 5).",
+            "limit": "Le plafond est le maximum que la banque vous prête.",
+            "due": "Le dû est ce que vous avez déjà dépensé à crédit, à rembourser.",
+            "cavail": "Le crédit disponible, c’est le plafond moins le dû : ce que vous pouvez encore emprunter. Ce n’est pas votre argent."
+          },
+          "where": "Les cartes de crédit sont rares en Algérie : les cartes Edahabia et CIB débitent directement votre compte. Ailleurs, la carte de crédit est courante ; l’onglet « Carte de crédit » montre comment la lire.",
+          "q": "Solde 48 500 DA, deux opérations en attente pour 7 300 DA. Combien pouvez-vous dépenser sans risque ?",
+          "a": [
+            "48 500 DA",
+            "41 200 DA",
+            "55 800 DA"
+          ],
+          "ok": "Oui. Le disponible, pas le solde."
+        },
+        {
+          "t": "Les alertes, vos yeux sur le compte",
+          "alt": "Kūro, oreilles dressées, à côté d’un téléphone qui vibre sous une cloche dorée.",
+          "d": "Une alerte arrive en quelques secondes ; un relevé, des semaines plus tard. Allumez les alertes et regardez le téléphone réagir.",
+          "alerts": [
+            {
+              "k": "Argent reçu",
+              "n": "Virement reçu : +12 000 DA."
+            },
+            {
+              "k": "Paiement ou retrait",
+              "n": "Paiement carte : −2 300 DA, boutique en ligne."
+            },
+            {
+              "k": "Solde bas",
+              "n": "Votre solde est passé sous le seuil choisi."
+            },
+            {
+              "k": "Nouvel appareil connecté",
+              "n": "Nouvelle connexion depuis un appareil inconnu. Pas vous ? Appelez votre banque."
+            },
+            {
+              "k": "Numéro ou mot de passe modifié",
+              "n": "Le numéro de téléphone lié au compte a été modifié."
+            }
+          ],
+          "low": "Seuil du solde bas",
+          "meter": "alertes allumées",
+          "empty": "Rien ne vous prévient. Allumez une alerte.",
+          "rule": "Une vraie alerte informe. Elle ne demande jamais de code et ne contient pas de lien à suivre.",
+          "where": "Les alertes proposées dépendent de votre banque : SMS, notification de l’appli ou e-mail. Cherchez « Alertes » ou « Notifications » dans l’appli, ou demandez au guichet.",
+          "q": "Une « alerte » vous demande de cliquer pour annuler un paiement que vous n’avez pas fait. C’est :",
+          "a": [
+            "Une vraie alerte, je clique vite",
+            "Un piège : j’ouvre l’appli moi-même pour vérifier",
+            "Un bug, j’ignore"
+          ],
+          "ok": "Oui. Une alerte informe ; elle ne demande ni clic ni code."
+        }
+      ]
+    },
+    "m5": {
+      "kicker": "/ MODULE 05 · LES ARNAQUES",
+      "title": "Reconnaître les arnaques.",
+      "lead": "L’escroc ne pirate presque jamais la banque : il vous pirate vous, avec de la peur, de la hâte ou un cadeau. Entraînez l’œil et l’oreille.",
+      "sceneAlt": "La nuit, Yasser tient à distance un téléphone qui sonne ; une silhouette sort de l’écran et Kūro, le poil hérissé, crache dessus.",
+      "tabs": "Les quatre leçons du module 5",
+      "l": [
+        {
+          "t": "Phishing, smishing, vishing",
+          "alt": "Kūro, méfiant, devant une enveloppe, une bulle de discussion et un combiné, chacun pendu à un hameçon rouge.",
+          "d": "Le même hameçon sous trois formes : un e-mail (phishing), un SMS (smishing), un appel (vishing). Triez la boîte de réception : fiable ou arnaque ?",
+          "inbox": [
+            {
+              "f": "AlgeriePoste",
+              "b": "Votre carte Edahabia sera suspendue aujourd’hui. Mettez à jour vos données : edahabia-maj.info",
+              "why": "Urgence, lien vers un site inconnu, « mettez à jour vos données ». Algérie Poste ne réclame pas les données de votre carte."
+            },
+            {
+              "f": "Votre appli bancaire",
+              "b": "Nouvelle connexion depuis un appareil inconnu. Si ce n’était pas vous, contactez le service client.",
+              "why": "Elle informe, sans lien ni code demandé. Vérifiez quand même en ouvrant l’appli vous-même."
+            },
+            {
+              "f": "« Gendarmerie nationale »",
+              "b": "Votre compte sert à un réseau criminel. Pour le protéger, lisez-moi le code que vous allez recevoir par SMS.",
+              "why": "Aucun gendarme ne demande un code bancaire. La DGSN alerte sur ce scénario précis : faux policiers, faux gendarmes, codes volés."
+            },
+            {
+              "f": "Service Concours",
+              "b": "Félicitations ! Vous avez gagné 50 000 DA. Réglez 500 DA de frais de dossier pour recevoir votre gain.",
+              "why": "Un gain à un concours où vous n’avez pas joué, et des frais à payer d’abord : c’est le schéma du faux gain."
+            },
+            {
+              "f": "Votre banque",
+              "ctx": "Vous venez de payer 3 200 DA en ligne.",
+              "b": "Code 482913 pour valider votre paiement de 3 200 DA. Ne le communiquez à personne.",
+              "why": "Vous avez lancé ce paiement, le montant correspond, et le message dit de ne pas partager le code. Il se tape sur la page de paiement, jamais à une personne."
+            },
+            {
+              "f": "Algérie Poste Officiel ✓",
+              "b": "Pour activer le paiement en ligne, envoyez une photo recto verso de votre carte.",
+              "why": "Une page de réseau social n’active rien, et une photo de la carte suffit pour s’en servir. La DGSN demande de ne jamais l’envoyer."
+            }
+          ],
+          "where": "Partout, les escrocs imitent l’institution la plus connue du pays. Ailleurs, ce sera un faux message de la poste, des impôts ou d’un livreur ; le schéma ne change pas.",
+          "q": "Quel point commun entre ces arnaques ?",
+          "a": [
+            "Elles viennent toutes de l’étranger",
+            "Elles poussent à donner un code, une donnée de carte, ou à cliquer",
+            "Elles sont toujours pleines de fautes"
+          ],
+          "ok": "Oui. Et elles sont de mieux en mieux écrites : ne comptez pas sur les fautes."
+        },
+        {
+          "t": "L’urgence et la peur",
+          "alt": "Kūro reste assis, impassible, entre un réveil qui sonne et un gyrophare rouge.",
+          "d": "La peur coupe la réflexion : c’est pour cela que l’escroc vous presse. Touchez chaque morceau du message qui vous met la pression.",
+          "msg": [
+            {
+              "t": "URGENT :"
+            },
+            {
+              "t": "votre compte"
+            },
+            {
+              "t": "sera bloqué dans 2 heures."
+            },
+            {
+              "t": "Opération suspecte détectée."
+            },
+            {
+              "t": "Confirmez votre identité"
+            },
+            {
+              "t": "maintenant"
+            },
+            {
+              "t": "sur ce lien,"
+            },
+            {
+              "t": "sinon votre solde sera perdu."
+            }
+          ],
+          "meter": "Pression repérée",
+          "calm": "Ce morceau-là est neutre.",
+          "done": "Cinq leviers repérés. Respirez : rien de vrai ne se décide en deux heures.",
+          "where": "Ce message reprend les mots contre lesquels alerte la DGSN : une « vérification », un « problème urgent », un compte qui « risque d’être bloqué ». Les mêmes leviers circulent dans toutes les langues.",
+          "q": "Un message dit que votre compte sera bloqué dans une heure. Le bon premier geste ?",
+          "a": [
+            "Agir vite, comme demandé",
+            "Ne rien toucher dans le message et joindre la banque par son canal officiel",
+            "Transférer le message à un ami"
+          ],
+          "ok": "Oui. Une vraie banque vous laisse le temps d’appeler."
+        },
+        {
+          "t": "Les grandes familles d’arnaques",
+          "alt": "Kūro soulève un masque en carton souriant ; derrière, une main sombre vise un portefeuille.",
+          "d": "Les histoires changent, les ficelles restent. Touchez une arnaque, puis ce qui la trahit.",
+          "pairs": [
+            {
+              "a": "Le faux gain",
+              "b": "Payer des frais pour recevoir un prix"
+            },
+            {
+              "a": "Le faux support technique",
+              "b": "Installer une appli pour « réparer » votre compte"
+            },
+            {
+              "a": "L’arnaque sentimentale",
+              "b": "Un amour en ligne qui a toujours une urgence d’argent"
+            },
+            {
+              "a": "Le trop-perçu",
+              "b": "On vous paie trop, puis on vous demande de rendre la différence"
+            },
+            {
+              "a": "Le faux livreur",
+              "b": "Un petit paiement pour « débloquer » un colis"
+            }
+          ],
+          "colA": "L’arnaque",
+          "colB": "Ce qui la trahit",
+          "done": "Cinq sur cinq. Vous voyez la ficelle avant le cadeau.",
+          "no": "Pas cette paire. Réessayez.",
+          "where": "Selon le pays, le faux livreur se fait passer pour la poste, un transporteur ou la douane. Le trop-perçu vise souvent ceux qui vendent en ligne.",
+          "q": "Un acheteur vous vire 15 000 DA de trop et demande que vous lui rendiez 10 000 DA. Vous :",
+          "a": [
+            "Rendez la différence, c’est honnête",
+            "Ne renvoyez rien et vérifiez avec la banque que le virement est réel et définitif",
+            "Lui envoyez une photo de votre carte"
+          ],
+          "ok": "Oui. Son virement peut être faux ou annulé ; votre remboursement, lui, serait bien réel."
+        },
+        {
+          "t": "La règle d’or : raccrocher, rappeler",
+          "alt": "Kūro appuie sur le bouton rouge pour raccrocher et tient une carte bancaire.",
+          "d": "Vous ne pouvez pas vérifier qui vous appelle. Vous pouvez vérifier qui vous appelez. Jouez l’appel.",
+          "who": {
+            "caller": "L’appelant",
+            "you": "Vous",
+            "now": "Vous avez raccroché."
+          },
+          "turns": [
+            {
+              "say": "Bonjour, service sécurité de votre banque. Un paiement de 38 000 DA est en cours sur votre carte. Vous le confirmez ?",
+              "opts": [
+                {
+                  "t": "Non ! Qu’est-ce que je dois faire ?",
+                  "w": "Vous restez en ligne avec un inconnu, affolé : c’est exactement ce qu’il veut."
+                },
+                {
+                  "t": "Je raccroche et j’appelle moi-même ma banque."
+                },
+                {
+                  "t": "Prouvez que vous êtes ma banque.",
+                  "w": "Il connaît peut-être déjà votre nom et les derniers chiffres de votre carte : ce ne sera pas une preuve."
+                }
+              ]
+            },
+            {
+              "say": "Si vous raccrochez, le paiement passera ! Donnez-moi juste le code reçu par SMS, je l’annule.",
+              "opts": [
+                {
+                  "t": "D’accord, voici le code.",
+                  "w": "Ce code n’annule rien : il valide le paiement de l’escroc."
+                },
+                {
+                  "t": "Je raccroche."
+                }
+              ]
+            },
+            {
+              "say": "Quel numéro appelez-vous maintenant ?",
+              "opts": [
+                {
+                  "t": "Celui qui vient de m’appeler",
+                  "w": "Un numéro affiché se falsifie, et rappeler peut retomber sur l’escroc."
+                },
+                {
+                  "t": "Celui que l’appelant m’a dicté",
+                  "w": "C’est son numéro, pas celui de votre banque."
+                },
+                {
+                  "t": "Celui au dos de ma carte ou dans l’appli officielle"
+                }
+              ]
+            }
+          ],
+          "end": "Parfait. Attendez une minute avant de rappeler, ou appelez depuis un autre téléphone : certains escrocs gardent la ligne ouverte.",
+          "where": "Pour Algérie Poste, le service client cité par l’entreprise est le 1530. Ailleurs, le numéro officiel est imprimé au dos de votre carte et sur le site de votre banque.",
+          "q": "L’appel affiche le vrai numéro de votre banque. Vous pouvez faire confiance ?",
+          "a": [
+            "Oui, le numéro est le bon",
+            "Non : un numéro affiché se falsifie, je raccroche et je rappelle moi-même",
+            "Oui, s’il connaît mon adresse"
+          ],
+          "ok": "Oui. L’affichage peut mentir ; le numéro que vous composez, non."
+        }
+      ]
+    },
+    "m8": {
+      "kicker": "/ MODULE 08 · LE BILAN",
+      "title": "Le bilan et vos réflexes.",
+      "lead": "Un quiz pour vérifier l’œil, une liste pour régler votre téléphone, et une carte à garder pour le jour où ça arrive.",
+      "sceneAlt": "Le matin, Yasser accroche une petite carte au frigo ; Kūro, une médaille d’or au cou, est assis sur la table.",
+      "tabs": "Les trois leçons du module 8",
+      "l": [
+        {
+          "t": "Le grand quiz : vrai ou faux ?",
+          "alt": "Kūro en juge entre deux téléphones, l’un coché en vert, l’autre barré de rouge.",
+          "d": "Douze messages tirés de la vraie vie. Pour chacun : fiable ou arnaque ? Votre meilleur score est gardé sur cet appareil.",
+          "startB": "Commencer le quiz",
+          "nextB": "Message suivant",
+          "streak": "Série",
+          "best": "Meilleur score",
+          "tiers": [
+            "Les escrocs comptent sur la vitesse. Rejouez lentement, en lisant le contexte.",
+            "Très bon œil. Relisez ceux qui vous ont eu.",
+            "Douze sur douze. Rien ne vous échappe."
+          ],
+          "items": [
+            {
+              "f": "Livraison Express",
+              "b": "Votre colis est bloqué. Payez 150 DA de frais ici : colis-dz-suivi.com",
+              "why": "Faux livreur : un petit montant pour obtenir les données de votre carte."
+            },
+            {
+              "f": "Votre appli bancaire",
+              "ctx": "Vous venez d’envoyer 5 000 DA à Amine.",
+              "b": "Virement de 5 000 DA envoyé à Amine B.",
+              "why": "Vous l’avez fait, le montant et le nom correspondent."
+            },
+            {
+              "f": "Service client",
+              "b": "Pour sécuriser votre compte, installez l’appli d’assistance que je vous envoie, je vais prendre la main à distance.",
+              "why": "Faux support : une appli de contrôle à distance donne votre téléphone à l’escroc."
+            },
+            {
+              "f": "Votre banque",
+              "b": "Votre relevé mensuel est disponible. Ouvrez votre appli pour le consulter.",
+              "why": "Aucun lien, aucune donnée demandée : il vous renvoie vers l’appli."
+            },
+            {
+              "f": "Sarah",
+              "b": "Je suis bloquée à l’aéroport, j’ai besoin de 30 000 DA tout de suite, je te rembourse demain.",
+              "why": "Arnaque sentimentale, ou compte d’un proche piraté : appelez la personne sur son numéro habituel."
+            },
+            {
+              "f": "AlgeriePoste",
+              "b": "Remboursement de 2 750 DA en attente. Saisissez votre numéro de carte et votre CVV pour le recevoir.",
+              "why": "On ne donne jamais son CVV pour recevoir de l’argent."
+            },
+            {
+              "f": "Votre appli bancaire",
+              "ctx": "Vous venez de bloquer votre carte dans l’appli.",
+              "b": "Votre carte a été bloquée à votre demande.",
+              "why": "C’est la confirmation de votre propre geste."
+            },
+            {
+              "f": "« Police »",
+              "b": "Votre carte a servi à une fraude. Envoyez-nous une photo recto verso pour l’enquête.",
+              "why": "La police n’enquête pas avec une photo de votre carte. La DGSN met en garde contre ce scénario."
+            },
+            {
+              "f": "Recrutement Rapide",
+              "b": "Travail à domicile : 8 000 DA par jour. Il suffit de recevoir des virements sur votre compte et de les renvoyer.",
+              "why": "Vous deviendriez une « mule » : votre compte fait passer l’argent d’un autre, et c’est vous qu’on poursuit."
+            },
+            {
+              "f": "Votre banque",
+              "b": "Rappel : nous ne vous demanderons jamais votre code, votre mot de passe ni le code reçu par SMS.",
+              "why": "Un message de prévention, sans lien ni demande."
+            },
+            {
+              "f": "Concours Anniversaire",
+              "b": "Vous êtes le 1000e visiteur ! Répondez avec votre numéro de carte pour réclamer votre cadeau.",
+              "why": "Un cadeau qui demande un numéro de carte n’est pas un cadeau."
+            },
+            {
+              "f": "Votre opérateur",
+              "ctx": "Vous n’avez rien demandé.",
+              "b": "Votre carte SIM va être remplacée. Si vous n’êtes pas à l’origine de cette demande, contactez votre opérateur.",
+              "why": "Un vrai signal d’alerte : quelqu’un tente peut-être de prendre votre numéro. Appelez vite l’opérateur, sur son numéro officiel."
+            }
+          ],
+          "where": "Ces messages sont inventés pour l’exercice, sur le modèle des arnaques signalées en Algérie et ailleurs. Aucun numéro, nom ou lien n’est réel.",
+          "q": "Dans le doute devant un message, la règle la plus sûre ?",
+          "a": [
+            "Répondre pour demander si c’est vrai",
+            "Ne pas utiliser le message : passer par l’appli ou le numéro officiel",
+            "Cliquer, puis fermer vite la page"
+          ],
+          "ok": "Oui. Le message n’est jamais le chemin."
+        },
+        {
+          "t": "Régler votre téléphone, pas à pas",
+          "alt": "Kūro tourne une clé dans un cadenas posé sur un téléphone, une clé de sécurité à côté.",
+          "d": "Huit réglages, dix minutes. Cochez ce qui est fait ; la liste reste sur cet appareil.",
+          "items": [
+            {
+              "t": "Verrouillage de l’écran",
+              "h": "Code à 6 chiffres ou plus, empreinte ou visage. Un téléphone perdu ouvert est un portefeuille ouvert."
+            },
+            {
+              "t": "Appli officielle seulement",
+              "h": "Installée depuis le store officiel, par le lien du site de la banque. Supprimez toute version reçue par message."
+            },
+            {
+              "t": "Un mot de passe unique",
+              "h": "Long, utilisé nulle part ailleurs. Un gestionnaire de mots de passe s’en souvient pour vous."
+            },
+            {
+              "t": "La double vérification",
+              "h": "Code par SMS ou, mieux, appli d’authentification quand la banque le propose."
+            },
+            {
+              "t": "Les alertes allumées",
+              "h": "Argent reçu, paiements, nouvel appareil connecté (leçon 1.4)."
+            },
+            {
+              "t": "Numéro et e-mail à jour",
+              "h": "Ce sont les clés de secours du compte. Protégez l’e-mail avec sa propre double vérification."
+            },
+            {
+              "t": "Aucun code en clair",
+              "h": "Pas de code de carte ni de mot de passe dans les notes, les SMS, ou en photo de la carte."
+            },
+            {
+              "t": "Le numéro de blocage noté",
+              "h": "Sur votre carte d’urgence (leçon suivante), pas seulement dans le téléphone."
+            }
+          ],
+          "prog": "réglages faits",
+          "done": "Huit sur huit : votre téléphone est réglé.",
+          "where": "Les réglages offerts dépendent de la banque. Ailleurs, l’appli propose parfois une clé de sécurité physique ou des codes de secours : activez-les.",
+          "q": "Quel réglage protège tous les autres si vous perdez votre téléphone ?",
+          "a": [
+            "Le fond d’écran",
+            "Le verrouillage de l’écran",
+            "La sonnerie"
+          ],
+          "ok": "Oui. Sans lui, tout le reste s’ouvre."
+        },
+        {
+          "t": "Votre carte d’urgence",
+          "alt": "Kūro tient dans la gueule une petite carte crème marquée d’un sceau rouge.",
+          "d": "Le jour où ça arrive, on réfléchit mal. Remplissez cette carte maintenant, imprimez-la, rangez-la hors du téléphone. Rien de ce que vous tapez ne quitte votre appareil.",
+          "f": {
+            "name": "Votre prénom",
+            "bank1": "Banque ou service 1",
+            "tel1": "Numéro pour bloquer la carte",
+            "bank2": "Banque ou service 2",
+            "tel2": "Numéro pour bloquer la carte",
+            "last4": "4 derniers chiffres de la carte",
+            "police": "Police ou gendarmerie la plus proche",
+            "op": "Service client de votre opérateur",
+            "trust": "Une personne de confiance"
+          },
+          "ph": {
+            "name": "facultatif",
+            "bank1": "ex. Algérie Poste",
+            "tel1": "ex. 1530 (Algérie Poste)",
+            "bank2": "facultatif",
+            "tel2": "facultatif",
+            "last4": "1234",
+            "police": "numéro ou adresse",
+            "op": "numéro",
+            "trust": "nom et téléphone"
+          },
+          "warn4": "Jamais le numéro entier, le code secret ou le CVV.",
+          "card": {
+            "title": "CARTE D’URGENCE",
+            "of": "de",
+            "block": "Bloquer",
+            "ending": "carte finissant par",
+            "police": "Police / gendarmerie",
+            "op": "Opérateur",
+            "trust": "Confiance",
+            "stepsT": "Si on vous a piégé, dans cet ordre :",
+            "steps": [
+              "Bloquer la carte : appli, numéro ci-dessus ou guichet.",
+              "Changer les mots de passe depuis un appareil sûr.",
+              "Appeler la banque sur son numéro officiel.",
+              "Porter plainte, même sans perte d’argent.",
+              "Surveiller le compte et les alertes chaque jour."
+            ],
+            "never": "Personne de sérieux ne vous demandera un code."
+          },
+          "print": "Imprimer la carte",
+          "keep": "Garder sur cet appareil",
+          "forget": "Effacer",
+          "fold": "Imprimée, la carte se découpe et se plie en deux : elle tient dans un portefeuille.",
+          "src1530": "1530 : numéro du service client d’Algérie Poste, tel que cité dans la presse en 2024 et 2026. Vérifiez-le au dos de votre carte.",
+          "where": "Ailleurs, ajoutez le numéro national de signalement des fraudes de votre pays et, s’il existe, le service qui bloque les cartes de toutes les banques.",
+          "q": "Où ranger la carte d’urgence ?",
+          "a": [
+            "En photo sur le téléphone",
+            "Imprimée, hors du téléphone, avec vos papiers",
+            "Dans un SMS envoyé à soi-même"
+          ],
+          "ok": "Oui. Le jour où le téléphone est perdu ou piraté, elle est encore là."
+        }
+      ]
+    },
+    "fin": {
+      "t": "Trois modules sur huit : bravo.",
+      "d": "Les cinq suivants arrivent : virements, mots de passe, appareils, achats en ligne, et que faire quand ça arrive. Votre carnet vous attendra ici."
+    },
+    "refs": {
+      "kicker": "/ SOURCES",
+      "title": "D’où viennent les faits.",
+      "lead": "Les numéros et les règles cités viennent de ces pages, lues le 21 novembre 2026. Les messages des exercices sont inventés.",
+      "newTab": "(nouvel onglet)"
+    }
   }
 }

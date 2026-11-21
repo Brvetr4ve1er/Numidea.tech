@@ -1,0 +1,1111 @@
+<body class="st-bq">
+
+<a class="st-skip" href="#main" data-i18n="ui.skip"></a>
+
+<!-- ============================== LA BANQUE EN LIGNE ==============================
+     hub/banque.html (2026-11-21): a free course on safe online banking, for Algerian readers first and anyone else
+     (the owner's decision of 2026-11-21). Written by the scratch generator gen-bank.mjs; edit the text in
+     hub/src/i18n (the "bank" group). Its head is the Studio's (re-addressed by scripts/build-hub.mjs) plus
+     css/banque.css; this file is its body: the hero and the logbook, the path, modules 1, 5 and 8 in the lessons'
+     shell (hub/app.js 13: data-ls="bank1|bank5|bank8"), the sources, the way back. The exercises, the XP and the
+     ranks are hub/banque.js; progress stays in this browser (localStorage 'numidea-bank', 'numidea-lessons-bank*').
+     The messages in the exercises are invented; the facts named come from the sources at the end. -->
+<header class="st-nav">
+  <div class="st-wrap st-nav__in">
+    <a class="st-wm" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
+    <nav class="st-nav__links" data-i18n-aria="bank.nav.aria">
+      <a href="#parcours" data-i18n="bank.nav.map"></a>
+      <a href="#m1" data-i18n="bank.nav.m1"></a>
+      <a href="#m5" data-i18n="bank.nav.m5"></a>
+      <a href="#m8" data-i18n="bank.nav.m8"></a>
+      <a class="st-nav__world" href="./" data-i18n="manual.nav.studio"></a>
+    </nav>
+    <div class="st-lang" role="group" data-i18n-aria="nav.lang">
+      <button type="button" data-lang="fr" aria-pressed="true" lang="fr" data-i18n-title="nav.langFr">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en" data-i18n-title="nav.langEn">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)">{{ayn}}</button>
+    </div>
+    <a class="st-nav__cta" href="./#contact" data-i18n="nav.cta"></a>
+    <button type="button" class="st-nav__menu" data-menu-open aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" data-i18n-aria="nav.menu"><span aria-hidden="true"><i></i><i></i><i></i></span></button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- the hero: the promise, the picture with its shield drawn over it, and the logbook (rank, XP, the eight seals) -->
+<section class="st-sec bq-hero" id="top" aria-labelledby="bq-h">
+  <div class="st-wrap bq-hero__in">
+    <div class="bq-hero__copy">
+      <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">銀</span><span data-i18n="bank.hero.kicker"></span></p>
+      <h1 class="bq-hero__h" id="bq-h" data-bq-words data-i18n="bank.hero.title"></h1>
+      <p class="st-lead" data-i18n="bank.hero.lead"></p>
+      <div class="st-actions">
+        <a class="st-btn st-btn--primary" href="#m1" data-i18n="bank.hero.start"></a>
+        <a class="st-btn st-btn--ghost" href="#m8" data-bq-go="k81" data-i18n="bank.hero.quiz"></a>
+      </div>
+      <p class="bq-hero__note" data-i18n="bank.hero.note"></p>
+    </div>
+    <figure class="bq-hero__fig">
+      <img src="img/studio/bank/scene.webp" srcset="img/studio/bank/scene-800.webp 800w, img/studio/bank/scene.webp 1600w" sizes="(min-width:1100px) 640px, 100vw" data-i18n-alt="bank.hero.sceneAlt" fetchpriority="high" decoding="async">
+      <svg class="bq-shield" viewBox="0 0 120 140" aria-hidden="true" focusable="false"><path class="bq-shield__o" d="M60 6 110 24v40c0 34-22 58-50 70C32 122 10 98 10 64V24z" pathLength="100"/><path class="bq-shield__c" d="M36 70l17 17 33-36" pathLength="100"/></svg>
+    </figure>
+    <aside class="bq-hud" id="carnet" aria-labelledby="hud-h" data-bq-hud>
+      <p class="st-label" id="hud-h" data-i18n="bank.hud.title"></p>
+      <div class="bq-hud__rank">
+        <span class="bq-hud__badge" aria-hidden="true" lang="ja" data-bq-badge>初</span>
+        <div><p class="bq-hud__rl" data-i18n="bank.hud.rankL"></p><p class="bq-hud__rn"><span class="bq-rank" data-rank="0" data-i18n="bank.hud.ranks.0"></span><span class="bq-rank" data-rank="1" hidden data-i18n="bank.hud.ranks.1"></span><span class="bq-rank" data-rank="2" hidden data-i18n="bank.hud.ranks.2"></span><span class="bq-rank" data-rank="3" hidden data-i18n="bank.hud.ranks.3"></span><span class="bq-rank" data-rank="4" hidden data-i18n="bank.hud.ranks.4"></span></p></div>
+        <p class="bq-hud__xp"><bdi class="bq-num" dir="ltr"><b data-bq-xp>0</b></bdi> <span class="bq-hud__u" data-i18n="bank.hud.xp"></span></p>
+      </div>
+      <div class="bq-hud__bar" aria-hidden="true"><i></i></div>
+      <p class="bq-hud__next"><span data-bq-next-wrap><bdi class="bq-num" dir="ltr"><b data-bq-next>300</b></bdi> <span data-i18n="bank.hud.next"></span></span><span data-bq-max hidden data-i18n="bank.hud.max"></span></p>
+      <p class="st-label bq-hud__sl" data-i18n="bank.hud.seals"></p>
+      <ol class="bq-seals">
+        <li><a class="bq-seal" href="#m1" data-bq-seal="m1"><span class="bq-seal__k" aria-hidden="true" lang="ja">始</span><span class="bq-seal__n" dir="ltr">01</span><span class="st-sr" data-i18n="bank.map.mods.0.t"></span></a></li>
+        <li><span class="bq-seal is-soon"><span class="bq-seal__k" aria-hidden="true" lang="ja">日</span><span class="bq-seal__n" dir="ltr">02</span><span class="bq-seal__soon" data-i18n="bank.hud.soon"></span></span></li>
+        <li><span class="bq-seal is-soon"><span class="bq-seal__k" aria-hidden="true" lang="ja">守</span><span class="bq-seal__n" dir="ltr">03</span><span class="bq-seal__soon" data-i18n="bank.hud.soon"></span></span></li>
+        <li><span class="bq-seal is-soon"><span class="bq-seal__k" aria-hidden="true" lang="ja">機</span><span class="bq-seal__n" dir="ltr">04</span><span class="bq-seal__soon" data-i18n="bank.hud.soon"></span></span></li>
+        <li><a class="bq-seal" href="#m5" data-bq-seal="m5"><span class="bq-seal__k" aria-hidden="true" lang="ja">詐</span><span class="bq-seal__n" dir="ltr">05</span><span class="st-sr" data-i18n="bank.map.mods.4.t"></span></a></li>
+        <li><span class="bq-seal is-soon"><span class="bq-seal__k" aria-hidden="true" lang="ja">買</span><span class="bq-seal__n" dir="ltr">06</span><span class="bq-seal__soon" data-i18n="bank.hud.soon"></span></span></li>
+        <li><span class="bq-seal is-soon"><span class="bq-seal__k" aria-hidden="true" lang="ja">救</span><span class="bq-seal__n" dir="ltr">07</span><span class="bq-seal__soon" data-i18n="bank.hud.soon"></span></span></li>
+        <li><a class="bq-seal" href="#m8" data-bq-seal="m8"><span class="bq-seal__k" aria-hidden="true" lang="ja">極</span><span class="bq-seal__n" dir="ltr">08</span><span class="st-sr" data-i18n="bank.map.mods.7.t"></span></a></li>
+      </ol>
+      <p class="bq-hud__local" data-i18n="bank.hud.local"></p>
+      <p class="bq-hud__reset"><button type="button" class="bq-again" data-bq-reset data-i18n="bank.hud.reset"></button><button type="button" class="bq-again bq-again--red" data-bq-sure hidden data-i18n="bank.hud.sure"></button></p>
+    </aside>
+  </div>
+</section>
+
+<!-- the path: eight modules, three open -->
+<section class="st-sec bq-path" id="parcours" aria-labelledby="path-h">
+  <div class="st-wrap">
+    <div class="st-head">
+      <div class="st-head__main">
+        <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">道</span><span data-i18n="bank.map.kicker"></span></p>
+        <h2 class="st-h2" id="path-h" data-i18n="bank.map.title"></h2>
+      </div>
+      <p class="st-lead" data-i18n="bank.map.lead"></p>
+    </div>
+    <ol class="bq-map">
+      <li class="bq-map__m" data-bq-card="m1" style="--i:0">
+        <p class="bq-map__n" dir="ltr" aria-hidden="true">01</p>
+        <span class="bq-map__seal" aria-hidden="true" lang="ja">始</span>
+        <h3 class="bq-map__t" data-i18n="bank.map.mods.0.t"></h3>
+        <ul class="bq-map__l"><li data-i18n="bank.map.mods.0.l.0"></li><li data-i18n="bank.map.mods.0.l.1"></li><li data-i18n="bank.map.mods.0.l.2"></li><li data-i18n="bank.map.mods.0.l.3"></li></ul>
+        <a class="bq-map__go" href="#m1"><span data-i18n="bank.map.open"></span><span class="st-sr" data-i18n="bank.map.mods.0.t"></span><span aria-hidden="true">&nbsp;→</span></a>
+      </li>
+      <li class="bq-map__m is-soon" style="--i:1">
+        <p class="bq-map__n" dir="ltr" aria-hidden="true">02</p>
+        <span class="bq-map__seal" aria-hidden="true" lang="ja">日</span>
+        <h3 class="bq-map__t" data-i18n="bank.map.mods.1.t"></h3>
+        <ul class="bq-map__l"><li data-i18n="bank.map.mods.1.l.0"></li><li data-i18n="bank.map.mods.1.l.1"></li><li data-i18n="bank.map.mods.1.l.2"></li><li data-i18n="bank.map.mods.1.l.3"></li></ul>
+        <p class="bq-map__soon" data-i18n="bank.hud.soon"></p>
+      </li>
+      <li class="bq-map__m is-soon" style="--i:2">
+        <p class="bq-map__n" dir="ltr" aria-hidden="true">03</p>
+        <span class="bq-map__seal" aria-hidden="true" lang="ja">守</span>
+        <h3 class="bq-map__t" data-i18n="bank.map.mods.2.t"></h3>
+        <ul class="bq-map__l"><li data-i18n="bank.map.mods.2.l.0"></li><li data-i18n="bank.map.mods.2.l.1"></li><li data-i18n="bank.map.mods.2.l.2"></li><li data-i18n="bank.map.mods.2.l.3"></li></ul>
+        <p class="bq-map__soon" data-i18n="bank.hud.soon"></p>
+      </li>
+      <li class="bq-map__m is-soon" style="--i:3">
+        <p class="bq-map__n" dir="ltr" aria-hidden="true">04</p>
+        <span class="bq-map__seal" aria-hidden="true" lang="ja">機</span>
+        <h3 class="bq-map__t" data-i18n="bank.map.mods.3.t"></h3>
+        <ul class="bq-map__l"><li data-i18n="bank.map.mods.3.l.0"></li><li data-i18n="bank.map.mods.3.l.1"></li><li data-i18n="bank.map.mods.3.l.2"></li><li data-i18n="bank.map.mods.3.l.3"></li></ul>
+        <p class="bq-map__soon" data-i18n="bank.hud.soon"></p>
+      </li>
+      <li class="bq-map__m" data-bq-card="m5" style="--i:4">
+        <p class="bq-map__n" dir="ltr" aria-hidden="true">05</p>
+        <span class="bq-map__seal" aria-hidden="true" lang="ja">詐</span>
+        <h3 class="bq-map__t" data-i18n="bank.map.mods.4.t"></h3>
+        <ul class="bq-map__l"><li data-i18n="bank.map.mods.4.l.0"></li><li data-i18n="bank.map.mods.4.l.1"></li><li data-i18n="bank.map.mods.4.l.2"></li><li data-i18n="bank.map.mods.4.l.3"></li></ul>
+        <a class="bq-map__go" href="#m5"><span data-i18n="bank.map.open"></span><span class="st-sr" data-i18n="bank.map.mods.4.t"></span><span aria-hidden="true">&nbsp;→</span></a>
+      </li>
+      <li class="bq-map__m is-soon" style="--i:5">
+        <p class="bq-map__n" dir="ltr" aria-hidden="true">06</p>
+        <span class="bq-map__seal" aria-hidden="true" lang="ja">買</span>
+        <h3 class="bq-map__t" data-i18n="bank.map.mods.5.t"></h3>
+        <ul class="bq-map__l"><li data-i18n="bank.map.mods.5.l.0"></li><li data-i18n="bank.map.mods.5.l.1"></li><li data-i18n="bank.map.mods.5.l.2"></li><li data-i18n="bank.map.mods.5.l.3"></li></ul>
+        <p class="bq-map__soon" data-i18n="bank.hud.soon"></p>
+      </li>
+      <li class="bq-map__m is-soon" style="--i:6">
+        <p class="bq-map__n" dir="ltr" aria-hidden="true">07</p>
+        <span class="bq-map__seal" aria-hidden="true" lang="ja">救</span>
+        <h3 class="bq-map__t" data-i18n="bank.map.mods.6.t"></h3>
+        <ul class="bq-map__l"><li data-i18n="bank.map.mods.6.l.0"></li><li data-i18n="bank.map.mods.6.l.1"></li><li data-i18n="bank.map.mods.6.l.2"></li><li data-i18n="bank.map.mods.6.l.3"></li></ul>
+        <p class="bq-map__soon" data-i18n="bank.hud.soon"></p>
+      </li>
+      <li class="bq-map__m" data-bq-card="m8" style="--i:7">
+        <p class="bq-map__n" dir="ltr" aria-hidden="true">08</p>
+        <span class="bq-map__seal" aria-hidden="true" lang="ja">極</span>
+        <h3 class="bq-map__t" data-i18n="bank.map.mods.7.t"></h3>
+        <ul class="bq-map__l"><li data-i18n="bank.map.mods.7.l.0"></li><li data-i18n="bank.map.mods.7.l.1"></li><li data-i18n="bank.map.mods.7.l.2"></li></ul>
+        <a class="bq-map__go" href="#m8"><span data-i18n="bank.map.open"></span><span class="st-sr" data-i18n="bank.map.mods.7.t"></span><span aria-hidden="true">&nbsp;→</span></a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================== MODULE 01 ============================== -->
+<section class="st-sec bq-mod" id="m1" aria-labelledby="m1-h" data-bq-mod="m1">
+  <div class="st-wrap">
+    <header class="bq-mod__head">
+      <div class="bq-mod__copy">
+        <p class="bq-mod__num" aria-hidden="true" dir="ltr">01</p>
+        <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">始</span><span data-i18n="bank.m1.kicker"></span></p>
+        <h2 class="st-h2 bq-mod__h" id="m1-h" data-i18n="bank.m1.title"></h2>
+        <p class="st-lead" data-i18n="bank.m1.lead"></p>
+      </div>
+      <figure class="bq-mod__fig"><img src="img/studio/bank/m1.webp" srcset="img/studio/bank/m1-800.webp 800w, img/studio/bank/m1.webp 1600w" sizes="(min-width:1100px) 560px, 100vw" data-i18n-alt="bank.m1.sceneAlt" loading="lazy" decoding="async"></figure>
+    </header>
+    <div class="st-ls bq-ls" data-ls="bank1" data-ls-bar style="--k:4">
+      <div class="st-ls__head">
+        <div>
+          <p class="st-label" data-i18n="bank.common.hud"></p>
+        </div>
+        <p class="st-ls__pass" data-ls-pass><b data-ls-count>0</b><span aria-hidden="true"> / 4</span><span class="st-sr"> / 4</span> <span data-i18n="money.ls.pass"></span></p>
+      </div>
+      <div class="bq-ls__bar" aria-hidden="true"><i></i></div>
+      <div class="st-ls__tabs" role="tablist" data-i18n-aria="bank.m1.tabs">
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k11" aria-controls="ls-p-k11" aria-selected="true" data-ls-tab="k11">
+          <img src="img/studio/bank/l1-1-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">1.1</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m1.l.0.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k12" aria-controls="ls-p-k12" aria-selected="false" data-ls-tab="k12">
+          <img src="img/studio/bank/l1-2-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">1.2</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m1.l.1.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k13" aria-controls="ls-p-k13" aria-selected="false" data-ls-tab="k13">
+          <img src="img/studio/bank/l1-3-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">1.3</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m1.l.2.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k14" aria-controls="ls-p-k14" aria-selected="false" data-ls-tab="k14">
+          <img src="img/studio/bank/l1-4-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">1.4</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m1.l.3.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+      </div>
+      <div class="st-ls__panels">
+        <div class="st-ls__panel bq-p" id="ls-p-k11" role="tabpanel" aria-labelledby="ls-t-k11" tabindex="0" data-ls-panel="k11">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l1-1.webp" srcset="img/studio/bank/l1-1-240.webp 240w, img/studio/bank/l1-1.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m1.l.0.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">1.1</span> <span data-i18n="bank.m1.l.0.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m1.l.0.d"></p>
+            </div>
+          </div>
+          <div class="bq-w" data-bq="doors" data-bq-id="k11">
+            <div class="st-pick bq-doors" data-pick>
+              <div class="st-pick__bs">
+              <button type="button" class="st-pick__b bq-door" data-pick-b="0" aria-pressed="true"><span class="bq-door__ic" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M3 9l9-5 9 5M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20h18"/></svg></span><span data-i18n="bank.m1.l.0.pick.0.k"></span></button>
+              <button type="button" class="st-pick__b bq-door" data-pick-b="1" aria-pressed="false"><span class="bq-door__ic" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="4" y="5" width="16" height="11"/><path d="M2 19h20"/></svg></span><span data-i18n="bank.m1.l.0.pick.1.k"></span></button>
+              <button type="button" class="st-pick__b bq-door" data-pick-b="2" aria-pressed="false"><span class="bq-door__ic" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg></span><span data-i18n="bank.m1.l.0.pick.2.k"></span></button>
+              </div>
+              <div class="st-pick__ps" aria-live="polite">
+              <p class="st-pick__p" data-pick-p="0"><b class="st-pick__k" data-i18n="bank.m1.l.0.pick.0.k"></b><span data-i18n="bank.m1.l.0.pick.0.v"></span></p>
+              <p class="st-pick__p" data-pick-p="1"><b class="st-pick__k" data-i18n="bank.m1.l.0.pick.1.k"></b><span data-i18n="bank.m1.l.0.pick.1.v"></span></p>
+              <p class="st-pick__p" data-pick-p="2"><b class="st-pick__k" data-i18n="bank.m1.l.0.pick.2.k"></b><span data-i18n="bank.m1.l.0.pick.2.v"></span></p>
+              </div>
+            </div>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m1.l.0.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m1.l.0.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m1.l.0.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m1.l.0.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m1.l.0.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m1.l.0.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel bq-p" id="ls-p-k12" role="tabpanel" aria-labelledby="ls-t-k12" tabindex="0" data-ls-panel="k12">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l1-2.webp" srcset="img/studio/bank/l1-2-240.webp 240w, img/studio/bank/l1-2.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m1.l.1.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">1.2</span> <span data-i18n="bank.m1.l.1.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m1.l.1.d"></p>
+            </div>
+          </div>
+          <div class="bq-w" data-bq="traps" data-bq-id="k12">
+            <ol class="bq-steps">
+              <li><button type="button" class="bq-step" data-trap="0" aria-pressed="false"><span class="bq-step__n" aria-hidden="true">1</span><span class="bq-step__t" data-i18n="bank.m1.l.1.traps.0.t"></span></button><p class="bq-step__why bq-step__why--ok" hidden data-i18n="bank.m1.l.1.safe"></p></li>
+              <li><button type="button" class="bq-step" data-trap="1" aria-pressed="false"><span class="bq-step__n" aria-hidden="true">2</span><span class="bq-step__t" data-i18n="bank.m1.l.1.traps.1.t"></span></button><p class="bq-step__why" hidden data-i18n="bank.m1.l.1.traps.1.why"></p></li>
+              <li><button type="button" class="bq-step" data-trap="0" aria-pressed="false"><span class="bq-step__n" aria-hidden="true">3</span><span class="bq-step__t" data-i18n="bank.m1.l.1.traps.2.t"></span></button><p class="bq-step__why bq-step__why--ok" hidden data-i18n="bank.m1.l.1.safe"></p></li>
+              <li><button type="button" class="bq-step" data-trap="1" aria-pressed="false"><span class="bq-step__n" aria-hidden="true">4</span><span class="bq-step__t" data-i18n="bank.m1.l.1.traps.3.t"></span></button><p class="bq-step__why" hidden data-i18n="bank.m1.l.1.traps.3.why"></p></li>
+              <li><button type="button" class="bq-step" data-trap="0" aria-pressed="false"><span class="bq-step__n" aria-hidden="true">5</span><span class="bq-step__t" data-i18n="bank.m1.l.1.traps.4.t"></span></button><p class="bq-step__why bq-step__why--ok" hidden data-i18n="bank.m1.l.1.safe"></p></li>
+              <li><button type="button" class="bq-step" data-trap="0" aria-pressed="false"><span class="bq-step__n" aria-hidden="true">6</span><span class="bq-step__t" data-i18n="bank.m1.l.1.traps.5.t"></span></button><p class="bq-step__why bq-step__why--ok" hidden data-i18n="bank.m1.l.1.safe"></p></li>
+            </ol>
+            <p class="bq-meter"><b data-bq-n>0</b><span aria-hidden="true"> / 2</span><span class="st-sr"> / 2</span> <span data-i18n="bank.m1.l.1.found"></span></p>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m1.l.1.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m1.l.1.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m1.l.1.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m1.l.1.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m1.l.1.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m1.l.1.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel bq-p" id="ls-p-k13" role="tabpanel" aria-labelledby="ls-t-k13" tabindex="0" data-ls-panel="k13">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l1-3.webp" srcset="img/studio/bank/l1-3-240.webp 240w, img/studio/bank/l1-3.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m1.l.2.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">1.3</span> <span data-i18n="bank.m1.l.2.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m1.l.2.d"></p>
+            </div>
+          </div>
+          <div class="bq-w bq-dash" data-bq="dash" data-bq-id="k13">
+            <div class="bq-seg" role="group" data-i18n-aria="bank.m1.l.2.t">
+              <button type="button" class="bq-seg__b" data-view="0" aria-pressed="true" data-i18n="bank.m1.l.2.views.0"></button>
+              <button type="button" class="bq-seg__b" data-view="1" aria-pressed="false" data-i18n="bank.m1.l.2.views.1"></button>
+            </div>
+            <div class="bq-dash__row">
+              <div class="bq-phone">
+                <div class="bq-phone__screen">
+                  <div class="bq-pane" data-pane="0">
+                    <button type="button" class="bq-hot bq-hot--big" data-tip="bal" aria-pressed="false"><span class="bq-hot__k" data-i18n="bank.m1.l.2.acc.bal"></span><span class="bq-hot__v"><bdi class="bq-num" dir="ltr"><span data-count="48500">48 500</span></bdi> <span data-i18n="bank.cur"></span></span></button>
+                    <button type="button" class="bq-hot bq-hot--avail" data-tip="avail" aria-pressed="false"><span class="bq-hot__k" data-i18n="bank.m1.l.2.acc.avail"></span><span class="bq-hot__v"><bdi class="bq-num" dir="ltr"><span data-count="41200">41 200</span></bdi> <span data-i18n="bank.cur"></span></span></button>
+                    <ul class="bq-tx">
+                      <li><button type="button" class="bq-hot bq-hot--row" data-tip="pend" aria-pressed="false"><span class="bq-tx__n"><span data-i18n="bank.m1.l.2.acc.shop"></span><span class="bq-tx__tag" data-i18n="bank.m1.l.2.acc.pend"></span></span><span class="bq-hot__v"><bdi class="bq-num" dir="ltr">−<span data-count="5800">5 800</span></bdi> <span data-i18n="bank.cur"></span></span></button></li>
+                      <li><button type="button" class="bq-hot bq-hot--row" data-tip="pend" aria-pressed="false"><span class="bq-tx__n"><span data-i18n="bank.m1.l.2.acc.atm"></span><span class="bq-tx__tag" data-i18n="bank.m1.l.2.acc.pend"></span></span><span class="bq-hot__v"><bdi class="bq-num" dir="ltr">−<span data-count="1500">1 500</span></bdi> <span data-i18n="bank.cur"></span></span></button></li>
+                      <li><button type="button" class="bq-hot bq-hot--row bq-hot--in" data-tip="inT" aria-pressed="false"><span class="bq-tx__n"><span data-i18n="bank.m1.l.2.acc.inT"></span></span><span class="bq-hot__v"><bdi class="bq-num" dir="ltr">+<span data-count="12000">12 000</span></bdi> <span data-i18n="bank.cur"></span></span></button></li>
+                    </ul>
+                  </div>
+                  <div class="bq-pane" data-pane="1" hidden>
+                    <button type="button" class="bq-hot bq-hot--big" data-tip="limit" aria-pressed="false"><span class="bq-hot__k" data-i18n="bank.m1.l.2.cred.limit"></span><span class="bq-hot__v"><bdi class="bq-num" dir="ltr"><span data-count="100000">100 000</span></bdi> <span data-i18n="bank.cur"></span></span></button>
+                    <div class="bq-credit" aria-hidden="true"><i class="bq-credit__due"></i></div>
+                    <button type="button" class="bq-hot bq-hot--row bq-hot--due" data-tip="due" aria-pressed="false"><span class="bq-hot__k" data-i18n="bank.m1.l.2.cred.due"></span><span class="bq-hot__v"><bdi class="bq-num" dir="ltr"><span data-count="23000">23 000</span></bdi> <span data-i18n="bank.cur"></span></span></button>
+                    <button type="button" class="bq-hot bq-hot--row" data-tip="cavail" aria-pressed="false"><span class="bq-hot__k" data-i18n="bank.m1.l.2.cred.avail"></span><span class="bq-hot__v"><bdi class="bq-num" dir="ltr"><span data-count="77000">77 000</span></bdi> <span data-i18n="bank.cur"></span></span></button>
+                  </div>
+                </div>
+              </div>
+              <div class="bq-tip" aria-live="polite">
+                <p class="bq-tip__p bq-tip__p--hint" data-tip-p="hint" data-i18n="bank.m1.l.2.hint"></p>
+                <p class="bq-tip__p" data-tip-p="bal" hidden data-i18n="bank.m1.l.2.tips.bal"></p>
+                <p class="bq-tip__p" data-tip-p="avail" hidden data-i18n="bank.m1.l.2.tips.avail"></p>
+                <p class="bq-tip__p" data-tip-p="pend" hidden data-i18n="bank.m1.l.2.tips.pend"></p>
+                <p class="bq-tip__p" data-tip-p="inT" hidden data-i18n="bank.m1.l.2.tips.inT"></p>
+                <p class="bq-tip__p" data-tip-p="limit" hidden data-i18n="bank.m1.l.2.tips.limit"></p>
+                <p class="bq-tip__p" data-tip-p="due" hidden data-i18n="bank.m1.l.2.tips.due"></p>
+                <p class="bq-tip__p" data-tip-p="cavail" hidden data-i18n="bank.m1.l.2.tips.cavail"></p>
+              </div>
+            </div>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m1.l.2.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m1.l.2.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m1.l.2.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m1.l.2.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m1.l.2.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m1.l.2.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel bq-p" id="ls-p-k14" role="tabpanel" aria-labelledby="ls-t-k14" tabindex="0" data-ls-panel="k14">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l1-4.webp" srcset="img/studio/bank/l1-4-240.webp 240w, img/studio/bank/l1-4.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m1.l.3.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">1.4</span> <span data-i18n="bank.m1.l.3.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m1.l.3.d"></p>
+            </div>
+          </div>
+          <div class="bq-w bq-alerts" data-bq="alerts" data-bq-id="k14">
+            <div class="bq-alerts__set">
+              <ul class="bq-sws">
+                <li><button type="button" class="bq-sw" role="switch" aria-checked="false" data-al="0"><span class="bq-sw__t" data-i18n="bank.m1.l.3.alerts.0.k"></span><span class="bq-sw__k" aria-hidden="true"></span></button></li>
+                <li><button type="button" class="bq-sw" role="switch" aria-checked="false" data-al="1"><span class="bq-sw__t" data-i18n="bank.m1.l.3.alerts.1.k"></span><span class="bq-sw__k" aria-hidden="true"></span></button></li>
+                <li><button type="button" class="bq-sw" role="switch" aria-checked="false" data-al="2"><span class="bq-sw__t" data-i18n="bank.m1.l.3.alerts.2.k"></span><span class="bq-sw__k" aria-hidden="true"></span></button></li>
+                <li><button type="button" class="bq-sw" role="switch" aria-checked="false" data-al="3"><span class="bq-sw__t" data-i18n="bank.m1.l.3.alerts.3.k"></span><span class="bq-sw__k" aria-hidden="true"></span></button></li>
+                <li><button type="button" class="bq-sw" role="switch" aria-checked="false" data-al="4"><span class="bq-sw__t" data-i18n="bank.m1.l.3.alerts.4.k"></span><span class="bq-sw__k" aria-hidden="true"></span></button></li>
+              </ul>
+              <label class="bq-range" for="bq-low"><span data-i18n="bank.m1.l.3.low"></span> <span class="bq-range__v"><bdi class="bq-num" dir="ltr"><output data-al-out for="bq-low">5 000</output></bdi> <span data-i18n="bank.cur"></span></span></label>
+              <input class="bq-range__i" id="bq-low" type="range" min="1000" max="20000" step="1000" value="5000" data-al-low>
+              <p class="bq-meter"><b data-bq-n>0</b><span aria-hidden="true"> / 5</span><span class="st-sr"> / 5</span> <span data-i18n="bank.m1.l.3.meter"></span></p>
+              <div class="bq-gauge" aria-hidden="true"><i></i></div>
+            </div>
+            <div class="bq-phone bq-phone--lock">
+              <div class="bq-phone__screen">
+                <p class="bq-lock__time" aria-hidden="true"><bdi class="bq-num" dir="ltr">09:41</bdi></p>
+                <ol class="bq-notes" aria-live="polite">
+                  <li class="bq-note" data-note="0" hidden><span class="bq-note__ic" aria-hidden="true">↓</span><span><b data-i18n="bank.m1.l.3.alerts.0.k"></b><span data-i18n="bank.m1.l.3.alerts.0.n"></span></span></li>
+                  <li class="bq-note" data-note="1" hidden><span class="bq-note__ic" aria-hidden="true">↑</span><span><b data-i18n="bank.m1.l.3.alerts.1.k"></b><span data-i18n="bank.m1.l.3.alerts.1.n"></span></span></li>
+                  <li class="bq-note" data-note="2" hidden><span class="bq-note__ic" aria-hidden="true">!</span><span><b data-i18n="bank.m1.l.3.alerts.2.k"></b><span data-i18n="bank.m1.l.3.alerts.2.n"></span></span></li>
+                  <li class="bq-note" data-note="3" hidden><span class="bq-note__ic" aria-hidden="true">◎</span><span><b data-i18n="bank.m1.l.3.alerts.3.k"></b><span data-i18n="bank.m1.l.3.alerts.3.n"></span></span></li>
+                  <li class="bq-note" data-note="4" hidden><span class="bq-note__ic" aria-hidden="true">✎</span><span><b data-i18n="bank.m1.l.3.alerts.4.k"></b><span data-i18n="bank.m1.l.3.alerts.4.n"></span></span></li>
+                </ol>
+                <p class="bq-notes__empty" data-al-empty data-i18n="bank.m1.l.3.empty"></p>
+              </div>
+            </div>
+            <p class="bq-rule" data-i18n="bank.m1.l.3.rule"></p>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m1.l.3.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m1.l.3.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m1.l.3.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m1.l.3.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m1.l.3.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m1.l.3.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== MODULE 05 ============================== -->
+<section class="st-sec bq-mod" id="m5" aria-labelledby="m5-h" data-bq-mod="m5">
+  <div class="st-wrap">
+    <header class="bq-mod__head">
+      <div class="bq-mod__copy">
+        <p class="bq-mod__num" aria-hidden="true" dir="ltr">05</p>
+        <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">詐</span><span data-i18n="bank.m5.kicker"></span></p>
+        <h2 class="st-h2 bq-mod__h" id="m5-h" data-i18n="bank.m5.title"></h2>
+        <p class="st-lead" data-i18n="bank.m5.lead"></p>
+      </div>
+      <figure class="bq-mod__fig"><img src="img/studio/bank/m5.webp" srcset="img/studio/bank/m5-800.webp 800w, img/studio/bank/m5.webp 1600w" sizes="(min-width:1100px) 560px, 100vw" data-i18n-alt="bank.m5.sceneAlt" loading="lazy" decoding="async"></figure>
+    </header>
+    <div class="st-ls bq-ls" data-ls="bank5" data-ls-bar style="--k:4">
+      <div class="st-ls__head">
+        <div>
+          <p class="st-label" data-i18n="bank.common.hud"></p>
+        </div>
+        <p class="st-ls__pass" data-ls-pass><b data-ls-count>0</b><span aria-hidden="true"> / 4</span><span class="st-sr"> / 4</span> <span data-i18n="money.ls.pass"></span></p>
+      </div>
+      <div class="bq-ls__bar" aria-hidden="true"><i></i></div>
+      <div class="st-ls__tabs" role="tablist" data-i18n-aria="bank.m5.tabs">
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k51" aria-controls="ls-p-k51" aria-selected="true" data-ls-tab="k51">
+          <img src="img/studio/bank/l5-1-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">5.1</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m5.l.0.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k52" aria-controls="ls-p-k52" aria-selected="false" data-ls-tab="k52">
+          <img src="img/studio/bank/l5-2-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">5.2</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m5.l.1.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k53" aria-controls="ls-p-k53" aria-selected="false" data-ls-tab="k53">
+          <img src="img/studio/bank/l5-3-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">5.3</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m5.l.2.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k54" aria-controls="ls-p-k54" aria-selected="false" data-ls-tab="k54">
+          <img src="img/studio/bank/l5-4-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">5.4</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m5.l.3.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+      </div>
+      <div class="st-ls__panels">
+        <div class="st-ls__panel bq-p" id="ls-p-k51" role="tabpanel" aria-labelledby="ls-t-k51" tabindex="0" data-ls-panel="k51">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l5-1.webp" srcset="img/studio/bank/l5-1-240.webp 240w, img/studio/bank/l5-1.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m5.l.0.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">5.1</span> <span data-i18n="bank.m5.l.0.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m5.l.0.d"></p>
+            </div>
+          </div>
+          <div class="bq-w bq-inbox" data-bq="inbox" data-bq-id="k51">
+            <ol class="bq-inbox__list">
+              <li class="bq-card" data-card>
+            <div class="bq-msg bq-msg--sms">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span data-i18n="bank.common.channels.sms"></span></span><b class="bq-msg__from" data-i18n="bank.m5.l.0.inbox.0.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m5.l.0.inbox.0.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m5.l.0.inbox.0.why"></span></p>
+              </li>
+              <li class="bq-card" data-card>
+            <div class="bq-msg bq-msg--app">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg><span data-i18n="bank.common.channels.app"></span></span><b class="bq-msg__from" data-i18n="bank.m5.l.0.inbox.1.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m5.l.0.inbox.1.b"></p>
+            </div>
+            <div class="bq-vote" data-v="real">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m5.l.0.inbox.1.why"></span></p>
+              </li>
+              <li class="bq-card" data-card>
+            <div class="bq-msg bq-msg--call">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3l3 4-2 2c1 3 4 6 7 7l2-2 4 3-2 4C10 21 3 14 3 5z"/></svg><span data-i18n="bank.common.channels.call"></span></span><b class="bq-msg__from" data-i18n="bank.m5.l.0.inbox.2.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m5.l.0.inbox.2.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m5.l.0.inbox.2.why"></span></p>
+              </li>
+              <li class="bq-card" data-card>
+            <div class="bq-msg bq-msg--mail">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg><span data-i18n="bank.common.channels.mail"></span></span><b class="bq-msg__from" data-i18n="bank.m5.l.0.inbox.3.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m5.l.0.inbox.3.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m5.l.0.inbox.3.why"></span></p>
+              </li>
+              <li class="bq-card" data-card>
+            <div class="bq-msg bq-msg--sms">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span data-i18n="bank.common.channels.sms"></span></span><b class="bq-msg__from" data-i18n="bank.m5.l.0.inbox.4.f"></b></p>
+              <p class="bq-msg__ctx"><span class="st-label" data-i18n="bank.common.ctx"></span> <span data-i18n="bank.m5.l.0.inbox.4.ctx"></span></p>
+              <p class="bq-msg__b" data-i18n="bank.m5.l.0.inbox.4.b"></p>
+            </div>
+            <div class="bq-vote" data-v="real">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m5.l.0.inbox.4.why"></span></p>
+              </li>
+              <li class="bq-card" data-card>
+            <div class="bq-msg bq-msg--chat">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="11" r="8"/><path d="M8 18l-3 3 1-5"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg><span data-i18n="bank.common.channels.chat"></span></span><b class="bq-msg__from" data-i18n="bank.m5.l.0.inbox.5.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m5.l.0.inbox.5.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m5.l.0.inbox.5.why"></span></p>
+              </li>
+            </ol>
+            <p class="bq-meter"><b data-bq-n>0</b><span aria-hidden="true"> / 6</span><span class="st-sr"> / 6</span> <span data-i18n="bank.common.score"></span></p>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m5.l.0.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m5.l.0.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m5.l.0.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m5.l.0.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m5.l.0.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m5.l.0.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel bq-p" id="ls-p-k52" role="tabpanel" aria-labelledby="ls-t-k52" tabindex="0" data-ls-panel="k52">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l5-2.webp" srcset="img/studio/bank/l5-2-240.webp 240w, img/studio/bank/l5-2.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m5.l.1.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">5.2</span> <span data-i18n="bank.m5.l.1.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m5.l.1.d"></p>
+            </div>
+          </div>
+          <div class="bq-w bq-press" data-bq="press" data-bq-id="k52">
+            <div class="bq-sms">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span data-i18n="bank.common.channels.sms"></span></span><b class="bq-msg__from" dir="ltr">+213 5•• •• •• ••</b></p>
+              <p class="bq-sms__b"><button type="button" class="bq-word" data-flag="1" aria-pressed="false" data-i18n="bank.m5.l.1.msg.0.t"></button> <button type="button" class="bq-word" data-flag="0" aria-pressed="false" data-i18n="bank.m5.l.1.msg.1.t"></button> <button type="button" class="bq-word" data-flag="1" aria-pressed="false" data-i18n="bank.m5.l.1.msg.2.t"></button> <button type="button" class="bq-word" data-flag="1" aria-pressed="false" data-i18n="bank.m5.l.1.msg.3.t"></button> <button type="button" class="bq-word" data-flag="0" aria-pressed="false" data-i18n="bank.m5.l.1.msg.4.t"></button> <button type="button" class="bq-word" data-flag="1" aria-pressed="false" data-i18n="bank.m5.l.1.msg.5.t"></button> <button type="button" class="bq-word" data-flag="0" aria-pressed="false" data-i18n="bank.m5.l.1.msg.6.t"></button> <button type="button" class="bq-word" data-flag="1" aria-pressed="false" data-i18n="bank.m5.l.1.msg.7.t"></button></p>
+            </div>
+            <div class="bq-press__m">
+              <p class="bq-meter"><span data-i18n="bank.m5.l.1.meter"></span> <b data-bq-n>0</b><span aria-hidden="true"> / 5</span><span class="st-sr"> / 5</span></p>
+              <div class="bq-gauge bq-gauge--heat" aria-hidden="true"><i></i></div>
+              <p class="bq-press__fb" aria-live="polite"><span data-press-calm hidden data-i18n="bank.m5.l.1.calm"></span><span data-press-done hidden data-i18n="bank.m5.l.1.done"></span></p>
+            </div>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m5.l.1.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m5.l.1.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m5.l.1.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m5.l.1.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m5.l.1.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m5.l.1.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel bq-p" id="ls-p-k53" role="tabpanel" aria-labelledby="ls-t-k53" tabindex="0" data-ls-panel="k53">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l5-3.webp" srcset="img/studio/bank/l5-3-240.webp 240w, img/studio/bank/l5-3.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m5.l.2.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">5.3</span> <span data-i18n="bank.m5.l.2.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m5.l.2.d"></p>
+            </div>
+          </div>
+          <div class="bq-w bq-pairs" data-bq="pairs" data-bq-id="k53">
+            <div class="bq-pairs__cols">
+              <div class="bq-pairs__col">
+                <p class="st-label" data-i18n="bank.m5.l.2.colA"></p>
+                <button type="button" class="bq-pair bq-pair--a" data-pa="0" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.0.a"></button>
+                <button type="button" class="bq-pair bq-pair--a" data-pa="1" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.1.a"></button>
+                <button type="button" class="bq-pair bq-pair--a" data-pa="2" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.2.a"></button>
+                <button type="button" class="bq-pair bq-pair--a" data-pa="3" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.3.a"></button>
+                <button type="button" class="bq-pair bq-pair--a" data-pa="4" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.4.a"></button>
+              </div>
+              <div class="bq-pairs__col">
+                <p class="st-label" data-i18n="bank.m5.l.2.colB"></p>
+                <button type="button" class="bq-pair bq-pair--b" data-pb="3" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.3.b"></button>
+                <button type="button" class="bq-pair bq-pair--b" data-pb="0" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.0.b"></button>
+                <button type="button" class="bq-pair bq-pair--b" data-pb="4" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.4.b"></button>
+                <button type="button" class="bq-pair bq-pair--b" data-pb="1" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.1.b"></button>
+                <button type="button" class="bq-pair bq-pair--b" data-pb="2" aria-pressed="false" data-i18n="bank.m5.l.2.pairs.2.b"></button>
+              </div>
+            </div>
+            <p class="bq-meter"><b data-bq-n>0</b><span aria-hidden="true"> / 5</span><span class="st-sr"> / 5</span></p>
+            <p class="bq-pairs__fb" aria-live="polite"><span data-pairs-no hidden data-i18n="bank.m5.l.2.no"></span><span data-pairs-done hidden data-i18n="bank.m5.l.2.done"></span></p>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m5.l.2.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m5.l.2.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m5.l.2.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m5.l.2.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m5.l.2.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m5.l.2.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel bq-p" id="ls-p-k54" role="tabpanel" aria-labelledby="ls-t-k54" tabindex="0" data-ls-panel="k54">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l5-4.webp" srcset="img/studio/bank/l5-4-240.webp 240w, img/studio/bank/l5-4.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m5.l.3.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">5.4</span> <span data-i18n="bank.m5.l.3.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m5.l.3.d"></p>
+            </div>
+          </div>
+          <div class="bq-w bq-call" data-bq="call" data-bq-id="k54">
+            <div class="bq-call__bar"><span class="bq-call__dot" aria-hidden="true"></span><b data-i18n="bank.m5.l.3.who.caller"></b><span class="bq-call__no" dir="ltr" aria-hidden="true">+213 •• •• •• ••</span></div>
+            <div class="bq-call__log">
+              <div class="bq-turn" data-turn="0">
+                <p class="bq-bub bq-bub--them"><span class="st-sr" data-i18n="bank.m5.l.3.who.caller"></span><span data-i18n="bank.m5.l.3.turns.0.say"></span></p>
+                <div class="bq-opts">
+                  <button type="button" class="bq-opt" data-opt="0" data-i18n="bank.m5.l.3.turns.0.opts.0.t"></button>
+                  <button type="button" class="bq-opt" data-opt="ok" data-i18n="bank.m5.l.3.turns.0.opts.1.t"></button>
+                  <button type="button" class="bq-opt" data-opt="2" data-i18n="bank.m5.l.3.turns.0.opts.2.t"></button>
+                </div>
+                <p class="bq-opt__w" data-w="0" hidden data-i18n="bank.m5.l.3.turns.0.opts.0.w"></p>
+                <p class="bq-opt__w" data-w="2" hidden data-i18n="bank.m5.l.3.turns.0.opts.2.w"></p>
+                <p class="bq-bub bq-bub--me" data-mine hidden><span class="st-sr" data-i18n="bank.m5.l.3.who.you"></span><span data-i18n="bank.m5.l.3.turns.0.opts.1.t"></span></p>
+              </div>
+              <div class="bq-turn" data-turn="1" hidden>
+                <p class="bq-bub bq-bub--them"><span class="st-sr" data-i18n="bank.m5.l.3.who.caller"></span><span data-i18n="bank.m5.l.3.turns.1.say"></span></p>
+                <div class="bq-opts">
+                  <button type="button" class="bq-opt" data-opt="0" data-i18n="bank.m5.l.3.turns.1.opts.0.t"></button>
+                  <button type="button" class="bq-opt" data-opt="ok" data-i18n="bank.m5.l.3.turns.1.opts.1.t"></button>
+                </div>
+                <p class="bq-opt__w" data-w="0" hidden data-i18n="bank.m5.l.3.turns.1.opts.0.w"></p>
+                <p class="bq-bub bq-bub--me" data-mine hidden><span class="st-sr" data-i18n="bank.m5.l.3.who.you"></span><span data-i18n="bank.m5.l.3.turns.1.opts.1.t"></span></p>
+              </div>
+              <div class="bq-turn" data-turn="2" hidden>
+                <p class="bq-bub bq-bub--narr"><span data-i18n="bank.m5.l.3.turns.2.say"></span></p>
+                <div class="bq-opts">
+                  <button type="button" class="bq-opt" data-opt="0" data-i18n="bank.m5.l.3.turns.2.opts.0.t"></button>
+                  <button type="button" class="bq-opt" data-opt="1" data-i18n="bank.m5.l.3.turns.2.opts.1.t"></button>
+                  <button type="button" class="bq-opt" data-opt="ok" data-i18n="bank.m5.l.3.turns.2.opts.2.t"></button>
+                </div>
+                <p class="bq-opt__w" data-w="0" hidden data-i18n="bank.m5.l.3.turns.2.opts.0.w"></p>
+                <p class="bq-opt__w" data-w="1" hidden data-i18n="bank.m5.l.3.turns.2.opts.1.w"></p>
+                <p class="bq-bub bq-bub--me" data-mine hidden><span class="st-sr" data-i18n="bank.m5.l.3.who.you"></span><span data-i18n="bank.m5.l.3.turns.2.opts.2.t"></span></p>
+              </div>
+              <div class="bq-call__end" data-call-end hidden>
+                <p class="bq-hang" data-i18n="bank.m5.l.3.who.now"></p>
+                <p data-i18n="bank.m5.l.3.end"></p>
+                <button type="button" class="bq-again" data-call-again data-i18n="bank.common.restart"></button>
+              </div>
+            </div>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m5.l.3.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m5.l.3.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m5.l.3.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m5.l.3.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m5.l.3.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m5.l.3.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== MODULE 08 ============================== -->
+<section class="st-sec bq-mod" id="m8" aria-labelledby="m8-h" data-bq-mod="m8">
+  <div class="st-wrap">
+    <header class="bq-mod__head">
+      <div class="bq-mod__copy">
+        <p class="bq-mod__num" aria-hidden="true" dir="ltr">08</p>
+        <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">極</span><span data-i18n="bank.m8.kicker"></span></p>
+        <h2 class="st-h2 bq-mod__h" id="m8-h" data-i18n="bank.m8.title"></h2>
+        <p class="st-lead" data-i18n="bank.m8.lead"></p>
+      </div>
+      <figure class="bq-mod__fig"><img src="img/studio/bank/m8.webp" srcset="img/studio/bank/m8-800.webp 800w, img/studio/bank/m8.webp 1600w" sizes="(min-width:1100px) 560px, 100vw" data-i18n-alt="bank.m8.sceneAlt" loading="lazy" decoding="async"></figure>
+    </header>
+    <div class="st-ls bq-ls" data-ls="bank8" data-ls-bar style="--k:3">
+      <div class="st-ls__head">
+        <div>
+          <p class="st-label" data-i18n="bank.common.hud"></p>
+        </div>
+        <p class="st-ls__pass" data-ls-pass><b data-ls-count>0</b><span aria-hidden="true"> / 3</span><span class="st-sr"> / 3</span> <span data-i18n="money.ls.pass"></span></p>
+      </div>
+      <div class="bq-ls__bar" aria-hidden="true"><i></i></div>
+      <div class="st-ls__tabs" role="tablist" data-i18n-aria="bank.m8.tabs">
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k81" aria-controls="ls-p-k81" aria-selected="true" data-ls-tab="k81">
+          <img src="img/studio/bank/l8-1-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">8.1</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m8.l.0.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k82" aria-controls="ls-p-k82" aria-selected="false" data-ls-tab="k82">
+          <img src="img/studio/bank/l8-2-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">8.2</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m8.l.1.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+        <button type="button" class="st-ls__tab" role="tab" id="ls-t-k83" aria-controls="ls-p-k83" aria-selected="false" data-ls-tab="k83">
+          <img src="img/studio/bank/l8-3-240.webp" alt="" loading="lazy" decoding="async">
+          <span class="st-ls__n" aria-hidden="true"><bdi class="bq-num" dir="ltr">8.3</bdi></span>
+          <span class="st-ls__t" data-i18n="bank.m8.l.2.t"></span>
+          <span class="st-ls__stamp" data-ls-stamp aria-hidden="true" lang="ja" hidden>印</span><span class="st-sr" data-ls-done data-i18n="money.ls.done" hidden></span>
+        </button>
+      </div>
+      <div class="st-ls__panels">
+        <div class="st-ls__panel bq-p" id="ls-p-k81" role="tabpanel" aria-labelledby="ls-t-k81" tabindex="0" data-ls-panel="k81">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l8-1.webp" srcset="img/studio/bank/l8-1-240.webp 240w, img/studio/bank/l8-1.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m8.l.0.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">8.1</span> <span data-i18n="bank.m8.l.0.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m8.l.0.d"></p>
+            </div>
+          </div>
+          <div class="bq-w bq-quiz" data-bq="quiz" data-bq-id="k81">
+            <div class="bq-quiz__start" data-qz-start>
+              <p class="bq-quiz__big" aria-hidden="true"><bdi class="bq-num" dir="ltr">12</bdi></p>
+              <p class="bq-quiz__best"><span data-i18n="bank.m8.l.0.best"></span> <bdi class="bq-num" dir="ltr"><b data-qz-best>0</b> / 12</bdi></p>
+              <button type="button" class="st-btn st-btn--primary" data-qz-go data-i18n="bank.m8.l.0.startB"></button>
+            </div>
+            <div class="bq-quiz__run" data-qz-run hidden>
+              <div class="bq-quiz__hud">
+                <span><bdi class="bq-num" dir="ltr"><b data-qz-i>1</b> / 12</bdi></span>
+                <span class="bq-quiz__streak"><span data-i18n="bank.m8.l.0.streak"></span> <b data-qz-streak>0</b></span>
+                <span><b data-qz-score>0</b> <span data-i18n="bank.common.score"></span></span>
+              </div>
+              <div class="bq-gauge" aria-hidden="true"><i></i></div>
+              <article class="bq-qi" data-qi="0" hidden>
+            <div class="bq-msg bq-msg--sms">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span data-i18n="bank.common.channels.sms"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.0.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.0.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.0.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="1" hidden>
+            <div class="bq-msg bq-msg--app">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg><span data-i18n="bank.common.channels.app"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.1.f"></b></p>
+              <p class="bq-msg__ctx"><span class="st-label" data-i18n="bank.common.ctx"></span> <span data-i18n="bank.m8.l.0.items.1.ctx"></span></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.1.b"></p>
+            </div>
+            <div class="bq-vote" data-v="real">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.1.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="2" hidden>
+            <div class="bq-msg bq-msg--call">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3l3 4-2 2c1 3 4 6 7 7l2-2 4 3-2 4C10 21 3 14 3 5z"/></svg><span data-i18n="bank.common.channels.call"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.2.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.2.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.2.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="3" hidden>
+            <div class="bq-msg bq-msg--mail">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg><span data-i18n="bank.common.channels.mail"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.3.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.3.b"></p>
+            </div>
+            <div class="bq-vote" data-v="real">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.3.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="4" hidden>
+            <div class="bq-msg bq-msg--chat">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="11" r="8"/><path d="M8 18l-3 3 1-5"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg><span data-i18n="bank.common.channels.chat"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.4.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.4.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.4.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="5" hidden>
+            <div class="bq-msg bq-msg--sms">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span data-i18n="bank.common.channels.sms"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.5.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.5.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.5.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="6" hidden>
+            <div class="bq-msg bq-msg--app">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg><span data-i18n="bank.common.channels.app"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.6.f"></b></p>
+              <p class="bq-msg__ctx"><span class="st-label" data-i18n="bank.common.ctx"></span> <span data-i18n="bank.m8.l.0.items.6.ctx"></span></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.6.b"></p>
+            </div>
+            <div class="bq-vote" data-v="real">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.6.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="7" hidden>
+            <div class="bq-msg bq-msg--call">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3l3 4-2 2c1 3 4 6 7 7l2-2 4 3-2 4C10 21 3 14 3 5z"/></svg><span data-i18n="bank.common.channels.call"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.7.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.7.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.7.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="8" hidden>
+            <div class="bq-msg bq-msg--mail">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg><span data-i18n="bank.common.channels.mail"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.8.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.8.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.8.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="9" hidden>
+            <div class="bq-msg bq-msg--sms">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span data-i18n="bank.common.channels.sms"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.9.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.9.b"></p>
+            </div>
+            <div class="bq-vote" data-v="real">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.9.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="10" hidden>
+            <div class="bq-msg bq-msg--chat">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="11" r="8"/><path d="M8 18l-3 3 1-5"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg><span data-i18n="bank.common.channels.chat"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.10.f"></b></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.10.b"></p>
+            </div>
+            <div class="bq-vote" data-v="scam">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.10.why"></span></p>
+              </article>
+              <article class="bq-qi" data-qi="11" hidden>
+            <div class="bq-msg bq-msg--sms">
+              <p class="bq-msg__top"><span class="bq-msg__ch"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span data-i18n="bank.common.channels.sms"></span></span><b class="bq-msg__from" data-i18n="bank.m8.l.0.items.11.f"></b></p>
+              <p class="bq-msg__ctx"><span class="st-label" data-i18n="bank.common.ctx"></span> <span data-i18n="bank.m8.l.0.items.11.ctx"></span></p>
+              <p class="bq-msg__b" data-i18n="bank.m8.l.0.items.11.b"></p>
+            </div>
+            <div class="bq-vote" data-v="real">
+              <button type="button" class="bq-vote__b bq-vote__b--real" data-vote="real" aria-pressed="false" data-i18n="bank.common.real"></button>
+              <button type="button" class="bq-vote__b bq-vote__b--scam" data-vote="scam" aria-pressed="false" data-i18n="bank.common.scam"></button>
+            </div>
+            <p class="bq-verdict" aria-live="polite" data-verdict hidden><b class="bq-verdict__ok" data-vr-ok hidden data-i18n="bank.common.right"></b><b class="bq-verdict__no" data-vr-no hidden data-i18n="bank.common.miss"></b> <span data-i18n="bank.m8.l.0.items.11.why"></span></p>
+              </article>
+              <button type="button" class="st-btn st-btn--primary bq-quiz__next" data-qz-next hidden data-i18n="bank.m8.l.0.nextB"></button>
+            </div>
+            <div class="bq-quiz__end" data-qz-end hidden>
+              <p class="bq-quiz__final"><bdi class="bq-num" dir="ltr"><b data-qz-final>0</b> / 12</bdi> <span data-i18n="bank.common.score"></span></p>
+              <p class="bq-quiz__tier" data-tier="0" hidden data-i18n="bank.m8.l.0.tiers.0"></p>
+              <p class="bq-quiz__tier" data-tier="1" hidden data-i18n="bank.m8.l.0.tiers.1"></p>
+              <p class="bq-quiz__tier" data-tier="2" hidden data-i18n="bank.m8.l.0.tiers.2"></p>
+              <p class="bq-quiz__best"><span data-i18n="bank.m8.l.0.best"></span> <bdi class="bq-num" dir="ltr"><b data-qz-best>0</b> / 12</bdi></p>
+              <button type="button" class="bq-again" data-qz-again data-i18n="bank.common.restart"></button>
+            </div>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m8.l.0.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m8.l.0.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m8.l.0.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m8.l.0.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m8.l.0.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m8.l.0.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel bq-p" id="ls-p-k82" role="tabpanel" aria-labelledby="ls-t-k82" tabindex="0" data-ls-panel="k82">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l8-2.webp" srcset="img/studio/bank/l8-2-240.webp 240w, img/studio/bank/l8-2.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m8.l.1.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">8.2</span> <span data-i18n="bank.m8.l.1.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m8.l.1.d"></p>
+            </div>
+          </div>
+          <div class="bq-w bq-check" data-bq="check" data-bq-id="k82">
+            <div class="bq-ring" aria-hidden="true">
+              <svg viewBox="0 0 120 120" focusable="false"><circle class="bq-ring__bg" cx="60" cy="60" r="52"/><circle class="bq-ring__fg" cx="60" cy="60" r="52" pathLength="100"/></svg>
+              <p class="bq-ring__n"><bdi class="bq-num" dir="ltr"><b data-bq-n>0</b>/8</bdi></p>
+            </div>
+            <div class="bq-check__list">
+              <p class="bq-meter"><b data-bq-n>0</b><span aria-hidden="true"> / 8</span><span class="st-sr"> / 8</span> <span data-i18n="bank.m8.l.1.prog"></span></p>
+              <ul>
+                <li><label class="bq-ck"><input type="checkbox" data-ck="0"><span class="bq-ck__box" aria-hidden="true"></span><span class="bq-ck__txt"><b data-i18n="bank.m8.l.1.items.0.t"></b><span data-i18n="bank.m8.l.1.items.0.h"></span></span></label></li>
+                <li><label class="bq-ck"><input type="checkbox" data-ck="1"><span class="bq-ck__box" aria-hidden="true"></span><span class="bq-ck__txt"><b data-i18n="bank.m8.l.1.items.1.t"></b><span data-i18n="bank.m8.l.1.items.1.h"></span></span></label></li>
+                <li><label class="bq-ck"><input type="checkbox" data-ck="2"><span class="bq-ck__box" aria-hidden="true"></span><span class="bq-ck__txt"><b data-i18n="bank.m8.l.1.items.2.t"></b><span data-i18n="bank.m8.l.1.items.2.h"></span></span></label></li>
+                <li><label class="bq-ck"><input type="checkbox" data-ck="3"><span class="bq-ck__box" aria-hidden="true"></span><span class="bq-ck__txt"><b data-i18n="bank.m8.l.1.items.3.t"></b><span data-i18n="bank.m8.l.1.items.3.h"></span></span></label></li>
+                <li><label class="bq-ck"><input type="checkbox" data-ck="4"><span class="bq-ck__box" aria-hidden="true"></span><span class="bq-ck__txt"><b data-i18n="bank.m8.l.1.items.4.t"></b><span data-i18n="bank.m8.l.1.items.4.h"></span></span></label></li>
+                <li><label class="bq-ck"><input type="checkbox" data-ck="5"><span class="bq-ck__box" aria-hidden="true"></span><span class="bq-ck__txt"><b data-i18n="bank.m8.l.1.items.5.t"></b><span data-i18n="bank.m8.l.1.items.5.h"></span></span></label></li>
+                <li><label class="bq-ck"><input type="checkbox" data-ck="6"><span class="bq-ck__box" aria-hidden="true"></span><span class="bq-ck__txt"><b data-i18n="bank.m8.l.1.items.6.t"></b><span data-i18n="bank.m8.l.1.items.6.h"></span></span></label></li>
+                <li><label class="bq-ck"><input type="checkbox" data-ck="7"><span class="bq-ck__box" aria-hidden="true"></span><span class="bq-ck__txt"><b data-i18n="bank.m8.l.1.items.7.t"></b><span data-i18n="bank.m8.l.1.items.7.h"></span></span></label></li>
+              </ul>
+              <p class="bq-check__done" data-ck-done hidden data-i18n="bank.m8.l.1.done"></p>
+            </div>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m8.l.1.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m8.l.1.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m8.l.1.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m8.l.1.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m8.l.1.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m8.l.1.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+        <div class="st-ls__panel bq-p" id="ls-p-k83" role="tabpanel" aria-labelledby="ls-t-k83" tabindex="0" data-ls-panel="k83">
+          <div class="bq-p__top">
+            <figure class="bq-p__fig"><img src="img/studio/bank/l8-3.webp" srcset="img/studio/bank/l8-3-240.webp 240w, img/studio/bank/l8-3.webp 480w" sizes="(min-width:900px) 180px, 112px" data-i18n-alt="bank.m8.l.2.alt" loading="lazy" decoding="async"></figure>
+            <div class="bq-p__txt">
+              <h3 class="st-ls__h"><span class="bq-p__n" dir="ltr">8.3</span> <span data-i18n="bank.m8.l.2.t"></span></h3>
+              <p class="st-ls__d" data-i18n="bank.m8.l.2.d"></p>
+            </div>
+          </div>
+          <div class="bq-w bq-em" data-bq="ecard" data-bq-id="k83">
+            <form class="bq-form" data-ec-form autocomplete="off">
+              <div class="bq-field"><label for="bq-f-name" data-i18n="bank.m8.l.2.f.name"></label><input id="bq-f-name" name="name" type="text" maxlength="40" autocomplete="given-name" data-ec="name" data-i18n-ph="bank.m8.l.2.ph.name"></div>
+              <div class="bq-field"><label for="bq-f-bank1" data-i18n="bank.m8.l.2.f.bank1"></label><input id="bq-f-bank1" name="bank1" type="text" maxlength="40" autocomplete="off" data-ec="bank1" data-i18n-ph="bank.m8.l.2.ph.bank1"></div>
+              <div class="bq-field"><label for="bq-f-tel1" data-i18n="bank.m8.l.2.f.tel1"></label><input id="bq-f-tel1" name="tel1" type="tel" maxlength="24" autocomplete="off" data-ec="tel1" data-i18n-ph="bank.m8.l.2.ph.tel1"></div>
+              <div class="bq-field"><label for="bq-f-bank2" data-i18n="bank.m8.l.2.f.bank2"></label><input id="bq-f-bank2" name="bank2" type="text" maxlength="40" autocomplete="off" data-ec="bank2" data-i18n-ph="bank.m8.l.2.ph.bank2"></div>
+              <div class="bq-field"><label for="bq-f-tel2" data-i18n="bank.m8.l.2.f.tel2"></label><input id="bq-f-tel2" name="tel2" type="tel" maxlength="24" autocomplete="off" data-ec="tel2" data-i18n-ph="bank.m8.l.2.ph.tel2"></div>
+              <div class="bq-field bq-field--short"><label for="bq-f-last4" data-i18n="bank.m8.l.2.f.last4"></label><input id="bq-f-last4" name="last4" type="text" maxlength="4" autocomplete="off" data-ec="last4" data-i18n-ph="bank.m8.l.2.ph.last4" inputmode="numeric" pattern="[0-9]{4}"><span class="bq-field__warn" data-i18n="bank.m8.l.2.warn4"></span></div>
+              <div class="bq-field"><label for="bq-f-police" data-i18n="bank.m8.l.2.f.police"></label><input id="bq-f-police" name="police" type="text" maxlength="60" autocomplete="off" data-ec="police" data-i18n-ph="bank.m8.l.2.ph.police"></div>
+              <div class="bq-field"><label for="bq-f-op" data-i18n="bank.m8.l.2.f.op"></label><input id="bq-f-op" name="op" type="tel" maxlength="24" autocomplete="off" data-ec="op" data-i18n-ph="bank.m8.l.2.ph.op"></div>
+              <div class="bq-field"><label for="bq-f-trust" data-i18n="bank.m8.l.2.f.trust"></label><input id="bq-f-trust" name="trust" type="text" maxlength="60" autocomplete="off" data-ec="trust" data-i18n-ph="bank.m8.l.2.ph.trust"></div>
+              <div class="bq-form__acts">
+                <button type="button" class="st-btn st-btn--primary" data-ec-print data-i18n="bank.m8.l.2.print"></button>
+                <label class="bq-keep"><input type="checkbox" data-ec-keep> <span data-i18n="bank.m8.l.2.keep"></span></label>
+                <button type="button" class="bq-again" data-ec-clear data-i18n="bank.m8.l.2.forget"></button>
+              </div>
+              <p class="bq-form__note" data-i18n="bank.m8.l.2.fold"></p>
+              <p class="bq-form__note" data-i18n="bank.m8.l.2.src1530"></p>
+            </form>
+            <div class="bq-ecard" data-ec-card>
+              <div class="bq-ecard__face">
+                <p class="bq-ecard__h"><span class="bq-ecard__seal" aria-hidden="true" lang="ja">救</span><b data-i18n="bank.m8.l.2.card.title"></b></p>
+                <p class="bq-ecard__of"><span data-i18n="bank.m8.l.2.card.of"></span> <span data-out="name">—</span></p>
+                <p class="bq-ecard__row"><span class="bq-ecard__k" data-i18n="bank.m8.l.2.card.block"></span><span class="bq-ecard__v" data-out="bank1">—</span></p>
+                <p class="bq-ecard__tel"><bdi class="bq-num" dir="ltr"><span data-out="tel1">—</span></bdi></p>
+                <p class="bq-ecard__row"><span class="bq-ecard__k" data-i18n="bank.m8.l.2.card.block"></span><span class="bq-ecard__v" data-out="bank2">—</span></p>
+                <p class="bq-ecard__tel bq-ecard__tel--2"><bdi class="bq-num" dir="ltr"><span data-out="tel2">—</span></bdi></p>
+                <p class="bq-ecard__row"><span class="bq-ecard__k" data-i18n="bank.m8.l.2.card.ending"></span><bdi class="bq-num" dir="ltr">•••• <span data-out="last4">—</span></bdi></p>
+                <p class="bq-ecard__row"><span class="bq-ecard__k" data-i18n="bank.m8.l.2.card.police"></span><span class="bq-ecard__v" data-out="police">—</span></p>
+                <p class="bq-ecard__row"><span class="bq-ecard__k" data-i18n="bank.m8.l.2.card.op"></span><span class="bq-ecard__v" data-out="op">—</span></p>
+                <p class="bq-ecard__row"><span class="bq-ecard__k" data-i18n="bank.m8.l.2.card.trust"></span><span class="bq-ecard__v" data-out="trust">—</span></p>
+              </div>
+              <div class="bq-ecard__back">
+                <p class="bq-ecard__k" data-i18n="bank.m8.l.2.card.stepsT"></p>
+                <ol><li data-i18n="bank.m8.l.2.card.steps.0"></li><li data-i18n="bank.m8.l.2.card.steps.1"></li><li data-i18n="bank.m8.l.2.card.steps.2"></li><li data-i18n="bank.m8.l.2.card.steps.3"></li><li data-i18n="bank.m8.l.2.card.steps.4"></li></ol>
+                <p class="bq-ecard__never" data-i18n="bank.m8.l.2.card.never"></p>
+              </div>
+            </div>
+            <p class="bq-done" data-bq-done hidden><span class="bq-done__seal" aria-hidden="true">✓</span><span data-i18n="bank.common.widgetDone"></span></p>
+          </div>
+          <aside class="bq-where"><p class="bq-where__l"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span data-i18n="bank.common.whereL"></span></p><p data-i18n="bank.m8.l.2.where"></p></aside>
+          <div class="st-ls__q" data-ls-q>
+            <p class="st-ls__ask"><span class="st-label" data-i18n="money.ls.q"></span><span data-i18n="bank.m8.l.2.q"></span></p>
+            <div class="st-ls__as">
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m8.l.2.a.0"></button>
+            <button type="button" class="st-ls__a" data-ls-a="ok" data-i18n="bank.m8.l.2.a.1"></button>
+            <button type="button" class="st-ls__a" data-ls-a data-i18n="bank.m8.l.2.a.2"></button>
+            </div>
+            <div class="st-ls__fb" aria-live="polite">
+              <p class="st-ls__ok" data-ls-ok hidden data-i18n="bank.m8.l.2.ok"></p>
+              <p class="st-ls__no" data-ls-no data-i18n="money.ls.wrong" hidden></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- the end of the open modules: shown by hub/banque.js once the eleven lessons are stamped -->
+<section class="st-sec bq-fin" aria-labelledby="fin-h" data-bq-fin hidden>
+  <div class="st-wrap bq-fin__in">
+    <span class="bq-fin__seal" aria-hidden="true" lang="ja">極</span>
+    <div><h2 class="st-h2" id="fin-h" data-i18n="bank.fin.t"></h2><p class="st-lead" data-i18n="bank.fin.d"></p></div>
+  </div>
+</section>
+
+<!-- the sources: every number and rule the course names comes from one of these -->
+<section class="st-sec st-fabrefs bq-refs" id="refs" aria-labelledby="refs-h">
+  <div class="st-wrap"><div class="st-fabrefs__card">
+    <p class="st-kick"><span data-i18n="bank.refs.kicker"></span></p>
+    <h2 class="st-h3" id="refs-h" data-i18n="bank.refs.title"></h2>
+    <p class="st-fabrefs__note" data-i18n="bank.refs.lead"></p>
+    <ol class="st-fabrefs__list">
+      <li id="ref-dgsn"><cite lang="fr" dir="ltr">Observ’Algérie, 25 octobre 2026. Arnaques bancaires en Algérie : la DGSN alerte sur le vol des codes.</cite> <a data-ref href="https://observalgerie.com/2026/10/25/faits-divers/arnaques-bancaires-en-algerie-la-dgsn-alerte-sur-le-vol-des-codes/" target="_blank" rel="noopener" dir="ltr">observalgerie.com<span class="st-sr" data-i18n="bank.refs.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-otp"><cite lang="fr" dir="ltr">Algérie360. DGSN : arnaques électroniques, banques et codes OTP.</cite> <a data-ref href="https://www.algerie360.com/dgsn-arnaques-electroniques-banques-otp/" target="_blank" rel="noopener" dir="ltr">algerie360.com<span class="st-sr" data-i18n="bank.refs.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-aps"><cite lang="fr" dir="ltr">APS, 15 novembre 2025. Algérie Poste met en garde ses clients contre le partage de toute information personnelle liée à la carte classique.</cite> <a data-ref href="https://www.aps.dz/fr/algerie/education-et-technologie/mi0k8xv1-algerie-poste-met-en-garde-ses-clients-contre-le-partage-de-toute-information-personnelle-liee-a-la-carte-classique" target="_blank" rel="noopener" dir="ltr">aps.dz<span class="st-sr" data-i18n="bank.refs.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-edahabia"><cite lang="fr" dir="ltr">Algérie360, 17 septembre 2024. Carte Edahabia : que faire en cas de perte ou de vol.</cite> <a data-ref href="https://www.algerie360.com/carte-edahabia-que-faire-en-cas-de-perte-ou-de-vol/" target="_blank" rel="noopener" dir="ltr">algerie360.com<span class="st-sr" data-i18n="bank.refs.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+      <li id="ref-baridimob"><cite lang="fr" dir="ltr">Algérie360, 5 septembre 2026. Compte BaridiMob piraté : les 3 gestes d’urgence.</cite> <a data-ref href="https://www.algerie360.com/compte-baridimob-pirate-voici-les-3-gestes-durgence-a-faire-immediatement/" target="_blank" rel="noopener" dir="ltr">algerie360.com<span class="st-sr" data-i18n="bank.refs.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a></li>
+    </ol>
+  </div></div>
+</section>
+
+<!-- the way back: the Studio builds sites; the Aperçu is free -->
+<section class="st-sec st-back" aria-labelledby="back-h">
+  <div class="st-wrap st-back__in">
+    <div class="st-back__copy">
+      <p class="st-kick"><span class="st-seal st-seal--red" aria-hidden="true" lang="ja">築</span><span data-i18n="manual.back.k"></span></p>
+      <h2 class="st-h2" id="back-h" data-i18n="manual.back.t"></h2>
+      <p class="st-lead" data-i18n="manual.back.d"></p>
+      <div class="st-actions">
+        <a class="st-btn st-btn--primary" href="./#preview" data-i18n="manual.back.preview"></a>
+        <a class="st-btn st-btn--ghost" href="./" data-i18n="manual.back.go"></a>
+      </div>
+    </div>
+    <img class="st-back__img" src="bible/art/rig-y-base.webp" alt="" loading="lazy" decoding="async">
+  </div>
+</section>
+
+</main>
+
+<!-- the logbook in a corner once the hero is out of sight, and the rank-up line -->
+<a class="bq-pill" href="#carnet" data-bq-pill hidden><span class="bq-pill__k" aria-hidden="true" lang="ja">印</span><span class="bq-pill__r"><span class="bq-rank" data-rank="0" data-i18n="bank.hud.ranks.0"></span><span class="bq-rank" data-rank="1" hidden data-i18n="bank.hud.ranks.1"></span><span class="bq-rank" data-rank="2" hidden data-i18n="bank.hud.ranks.2"></span><span class="bq-rank" data-rank="3" hidden data-i18n="bank.hud.ranks.3"></span><span class="bq-rank" data-rank="4" hidden data-i18n="bank.hud.ranks.4"></span></span><bdi class="bq-num" dir="ltr"><b data-bq-xp>0</b></bdi><span class="st-sr" data-i18n="bank.hud.pill"></span></a>
+<div class="bq-toast" role="status" data-bq-toast><p class="bq-toast__in" data-bq-toast-in hidden><span class="bq-toast__seal" aria-hidden="true" lang="ja">昇</span><span data-i18n="bank.hud.rankUp"></span> <b><span class="bq-rank" data-rank="0" data-i18n="bank.hud.ranks.0"></span><span class="bq-rank" data-rank="1" hidden data-i18n="bank.hud.ranks.1"></span><span class="bq-rank" data-rank="2" hidden data-i18n="bank.hud.ranks.2"></span><span class="bq-rank" data-rank="3" hidden data-i18n="bank.hud.ranks.3"></span><span class="bq-rank" data-rank="4" hidden data-i18n="bank.hud.ranks.4"></span></b></p></div>
+
+<footer class="st-foot">
+  <div class="st-wrap">
+  <figure class="st-foot__sky" aria-hidden="true" data-sky>
+    <img src="img/studio/night/skyline-kuro-2640.webp" srcset="img/studio/night/skyline-kuro-1320.webp 1320w, img/studio/night/skyline-kuro-2640.webp 2640w" sizes="(min-width:1400px) 1320px, 100vw" width="2640" height="330" alt="" loading="lazy" decoding="async">
+    <span class="st-foot__win"></span>
+  </figure>
+  <div class="st-foot__in">
+    <span class="st-label st-foot__ok" aria-hidden="true">奥付</span>
+    <a class="st-wm st-wm--foot" href="../" data-i18n-aria="nav.home" dir="ltr"><span class="st-wm__t"><span>NUMIDEA</span> <span class="st-wm__l">LABS</span></span><span class="st-wm__kana" aria-hidden="true">ヌミディア・ラボ</span></a>
+    <p class="st-foot__line"><span data-i18n="footer.line"></span></p>
+    <nav class="st-foot__links" data-i18n-aria="footer.nav">
+      <a href="../" data-i18n="footer.site"></a>
+      <a href="./" data-i18n="manual.nav.studio"></a>
+      <a href="manuel.html" data-i18n="nav.manual"></a>
+      <a href="monde.html" data-i18n="nav.world"></a>
+      <a href="bible/" data-i18n="footer.bible"></a>
+      <a href="https://www.instagram.com/stick_itty/" target="_blank" rel="noopener">Instagram <span class="st-sr" data-i18n="case.newTab"></span></a>
+      <a href="https://www.behance.net/br4vetr4aveler1" target="_blank" rel="noopener">Behance <span class="st-sr" data-i18n="case.newTab"></span></a>
+    </nav>
+    <span class="st-seal st-seal--fill st-foot__seal" aria-hidden="true">印</span>
+    <p class="st-label st-foot__rights" data-i18n="footer.rights"></p>
+  </div></div>
+</footer>
+
+<!-- the sheet behind the Menu button (below 1160px) -->
+<dialog class="st-menu" id="menu" data-i18n-aria="bank.nav.aria">
+  <div class="st-menu__top">
+    <span class="st-label" data-i18n="nav.menu"></span>
+    <button type="button" class="st-menu__x" data-menu-close data-i18n-aria="nav.menuClose"><span aria-hidden="true">✕</span></button>
+  </div>
+  <nav class="st-menu__nav" data-i18n-aria="nav.menu">
+    <p class="st-menu__g st-label" data-i18n="bank.nav.course"></p>
+    <a href="#carnet"><span class="st-menu__n" aria-hidden="true" lang="ja">印</span><span data-i18n="bank.hud.title"></span></a>
+    <a href="#parcours"><span class="st-menu__n" aria-hidden="true" lang="ja">道</span><span data-i18n="bank.nav.map"></span></a>
+    <a href="#m1"><span class="st-menu__n" aria-hidden="true" lang="ja">始</span><span data-i18n="bank.nav.m1"></span></a>
+    <a href="#m5"><span class="st-menu__n" aria-hidden="true" lang="ja">詐</span><span data-i18n="bank.nav.m5"></span></a>
+    <a href="#m8"><span class="st-menu__n" aria-hidden="true" lang="ja">極</span><span data-i18n="bank.nav.m8"></span></a>
+    <a href="#refs"><span class="st-menu__n" aria-hidden="true" lang="ja">見</span><span data-i18n="bank.nav.refs"></span></a>
+    <p class="st-menu__g st-menu__g--night st-label" data-i18n="nav.groupSite"></p>
+    <a class="st-menu__world" href="./"><span class="st-menu__n" aria-hidden="true" lang="ja">築</span><span data-i18n="manual.nav.studio"></span></a>
+    <a class="st-menu__world" href="manuel.html"><span class="st-menu__n" aria-hidden="true" lang="ja">金</span><span data-i18n="nav.manual"></span></a>
+    <a class="st-menu__world" href="fabrique.html"><span class="st-menu__n" aria-hidden="true" lang="ja">技</span><span data-i18n="fab.nav.fab"></span></a>
+  </nav>
+  <div class="st-menu__foot">
+    <div class="st-lang" role="group" data-i18n-aria="nav.lang">
+      <button type="button" data-lang="fr" aria-pressed="true" lang="fr" data-i18n-title="nav.langFr">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en" data-i18n-title="nav.langEn">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false" aria-label="العربية (ع)">{{ayn}}</button>
+    </div>
+    <a class="st-btn st-btn--primary" href="./#contact" data-i18n="nav.cta"></a>
+    <a class="st-btn st-btn--ghost" href="https://wa.me/213672412578" target="_blank" rel="noopener"><span data-i18n="contact.wa"></span><span class="st-sr" data-i18n="case.newTab"></span><span aria-hidden="true">&nbsp;↗</span></a>
+  </div>
+</dialog>
+
+<script src="app.js?v={{stamp}}" defer></script>
+<script src="banque.js?v={{stamp}}" defer></script>
+<script src="../assets/carry.js?v={{stamp}}" defer></script>
+</body>
+</html>
