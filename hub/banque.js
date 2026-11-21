@@ -358,7 +358,6 @@
       window.print();
       setTimeout(off, 1000);
     });
-    $('form', w) && $('form', w).addEventListener('submit', function (e) { e.preventDefault(); });
     draw();
   };
 
