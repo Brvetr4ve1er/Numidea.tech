@@ -3432,5 +3432,716 @@
         "go": "The web3 course, client’s side →"
       }
     }
+  },
+  "bank": {
+    "ui": {
+      "title": "Online banking without the traps: the course | Numidea Labs",
+      "desc": "A free, interactive course on using online banking and your card without falling for scams. Eight modules, no sign-up."
+    },
+    "nav": {
+      "aria": "The online banking course",
+      "map": "The path",
+      "m1": "01 Start",
+      "m5": "05 Scams",
+      "m8": "08 Capstone",
+      "refs": "Sources",
+      "course": "The banking course"
+    },
+    "cur": "DA",
+    "hero": {
+      "kicker": "/ FREE COURSE · ONLINE BANKING",
+      "title": "Online banking, without the traps.",
+      "lead": "Eight modules to use your account, your app and your card without handing the keys to a scammer. Hands-on gestures, simulators, one question per lesson.",
+      "note": "Algerian examples first (CCP, BaridiMob, Edahabia, CIB), habits that work anywhere. What depends on the country is marked “Here and elsewhere”. This is education, not advice: rules and numbers change from bank to bank, so check them with yours.",
+      "sceneAlt": "At night, Yasser looks at his phone; Kūro the black cat swats away a red, hook-shaped message bubble.",
+      "start": "Start module 1",
+      "quiz": "Jump to the quiz"
+    },
+    "hud": {
+      "title": "Your logbook",
+      "rankL": "Rank",
+      "ranks": [
+        "Beginner",
+        "Alert",
+        "Vigilant",
+        "Guardian",
+        "Scam-proof"
+      ],
+      "next": "XP to the next rank",
+      "max": "Top rank. Scammers will be bored.",
+      "seals": "The eight seals",
+      "soon": "soon",
+      "local": "Your progress stays in this browser. Nothing is sent.",
+      "reset": "Erase everything on this device",
+      "sure": "Yes, erase it all",
+      "xp": "XP",
+      "rankUp": "New rank",
+      "pill": "Your progress"
+    },
+    "map": {
+      "kicker": "/ THE PATH",
+      "title": "Eight modules, one habit per lesson.",
+      "lead": "Three modules are open: the start, the scams and the capstone. The other five are on their way.",
+      "open": "Open",
+      "mods": [
+        {
+          "t": "Getting started with online banking",
+          "l": [
+            "Counter, website or app",
+            "Opening your access",
+            "Reading your dashboard",
+            "Alerts"
+          ]
+        },
+        {
+          "t": "Everyday digital money",
+          "l": [
+            "Transfers between your accounts",
+            "Paying someone without mistakes",
+            "Bills and direct debits",
+            "Cheques, safely"
+          ]
+        },
+        {
+          "t": "Strong account defenses",
+          "l": [
+            "Passphrases",
+            "Two-factor authentication",
+            "Fingerprint and face",
+            "Your number and email"
+          ]
+        },
+        {
+          "t": "Safe devices and connections",
+          "l": [
+            "Public Wi-Fi",
+            "Updates",
+            "Fake apps, fake sites",
+            "Shared computers"
+          ]
+        },
+        {
+          "t": "Recognising scams",
+          "l": [
+            "Phishing, smishing, vishing",
+            "Urgency and fear",
+            "Families of scams",
+            "Hang up, call back"
+          ]
+        },
+        {
+          "t": "Shopping online and your card",
+          "l": [
+            "Debit, credit, virtual",
+            "Digital wallets",
+            "Checking out safely",
+            "Lock and limit"
+          ]
+        },
+        {
+          "t": "Monitor, respond, recover",
+          "l": [
+            "Reading statements",
+            "The emergency plan",
+            "Disputing a charge",
+            "Protecting family"
+          ]
+        },
+        {
+          "t": "Capstone and safe habits",
+          "l": [
+            "The big quiz",
+            "Setting up your phone",
+            "The emergency card"
+          ]
+        }
+      ]
+    },
+    "common": {
+      "whereL": "HERE AND ELSEWHERE",
+      "widgetDone": "Exercise done: +50 XP.",
+      "real": "Genuine",
+      "scam": "Scam",
+      "ctx": "Context",
+      "right": "Well spotted.",
+      "miss": "Missed.",
+      "score": "right answers",
+      "restart": "Play again",
+      "hud": "Each right answer: a stamp and 100 XP. Each exercise done: 50 XP more.",
+      "channels": {
+        "sms": "Text",
+        "app": "App",
+        "call": "Call",
+        "mail": "Email",
+        "chat": "Messenger"
+      }
+    },
+    "m1": {
+      "kicker": "/ MODULE 01 · GETTING STARTED",
+      "title": "Getting started with online banking.",
+      "lead": "Counter, website, app: three doors to the same money. Learn to read what the app shows you, and to make it talk before a scammer does.",
+      "sceneAlt": "At the post office, a long queue at the counter; Yasser leans on the wall and does the same task on his phone, Kūro on his shoulder.",
+      "tabs": "The four lessons of module 1",
+      "l": [
+        {
+          "t": "Counter, website or app?",
+          "alt": "Kūro hesitates between a tiny bank, a laptop and a phone.",
+          "d": "Your money is in one place; only the door changes. Each has its strengths and its weak spot. Tap a door.",
+          "pick": [
+            {
+              "k": "The counter",
+              "v": "A person in front of you, an ID, a paper receipt. Slow and tied to opening hours, but it is where you fix what the app can’t. The weak spot: the queue, and the “helpful” stranger offering to help at the cash machine."
+            },
+            {
+              "k": "The website",
+              "v": "A big screen, statements easy to read and download. The weak spot: a fake site that copies the real one. Type the address yourself or bookmark it; never arrive through a link you were sent."
+            },
+            {
+              "k": "The app",
+              "v": "Everything in your pocket: balance, transfers, alerts, card lock. The weak spot: a lost phone with no screen lock, or a fake app. Install it only from the official store, through the link on your bank’s site."
+            }
+          ],
+          "where": "In Algeria, Algérie Poste offers the counter, a web space and the BaridiMob app, and each bank has its own app. Elsewhere, some banks exist only online, with no counter at all.",
+          "q": "A text sends you a link “to access your bank account”. You:",
+          "a": [
+            "Tap it, it’s quicker",
+            "Open the app or type the address yourself",
+            "Reply to the text to check"
+          ],
+          "ok": "Yes. You choose the door; a link you were sent chooses it for you."
+        },
+        {
+          "t": "Opening your access without a trap",
+          "alt": "Kūro holds up a green ID card beside a phone waiting for a selfie.",
+          "d": "Opening online access means proving who you are: that’s “KYC”, know your customer. That is normal. What isn’t normal is a stranger stepping in. Six steps below; two are traps: tap them.",
+          "traps": [
+            {
+              "t": "Download the app from the official store, through the link on the bank’s site."
+            },
+            {
+              "t": "Get the app sent over WhatsApp, “faster than the store”.",
+              "why": "An app from outside the official store can be a fake that reads your codes."
+            },
+            {
+              "t": "Show your ID at the counter, or photograph it inside the official app."
+            },
+            {
+              "t": "An “adviser” calls to finish your sign-up and asks for the code you got by text.",
+              "why": "The code you get by text is for no one. Algérie Poste reminds customers it never asks for it."
+            },
+            {
+              "t": "Choose a long password you use nowhere else."
+            },
+            {
+              "t": "Link your card and check the phone number on file."
+            }
+          ],
+          "safe": "A normal step.",
+          "found": "traps found",
+          "where": "Depending on the bank and the country, identity is checked at the counter, on video or by selfie. Whatever the method, it happens in the official app or branch, never during a call you didn’t ask for.",
+          "q": "During sign-up, someone who knows your name calls to “help” and asks for the code you received. It is:",
+          "a": [
+            "Customer service, how handy",
+            "A scam: I hang up",
+            "Fine, they know my name"
+          ],
+          "ok": "Yes. Knowing your name proves nothing: scammers often have it."
+        },
+        {
+          "t": "Reading your dashboard",
+          "alt": "Kūro inspects a screen with two bars of different lengths and an hourglass through a magnifying glass.",
+          "d": "Two balances, “pending” lines: the most-viewed screen is also the most misread. Tap each part of the phone.",
+          "views": [
+            "Account",
+            "Credit card"
+          ],
+          "hint": "Tap a part of the screen.",
+          "acc": {
+            "bal": "Account balance",
+            "avail": "Available",
+            "shop": "Online shop",
+            "atm": "Cash machine withdrawal",
+            "pend": "pending",
+            "inT": "Transfer received"
+          },
+          "cred": {
+            "limit": "Credit limit",
+            "due": "Balance owed",
+            "avail": "Available credit"
+          },
+          "tips": {
+            "bal": "The account balance counts everything that has gone through. It doesn’t yet take off what’s on its way.",
+            "avail": "Available is what you can really spend: the balance minus pending transactions. 48,500 − 5,800 − 1,500 = 41,200 DA.",
+            "pend": "Pending: the merchant has reserved the amount, it isn’t taken yet. It can change, or vanish if the purchase is cancelled. A pending line you don’t recognise is a warning: report it right away.",
+            "inT": "A transfer you weren’t expecting? Never send money “back”: that’s how the overpayment scam starts (module 5).",
+            "limit": "The limit is the most the bank will lend you.",
+            "due": "What you owe is what you have already spent on credit, to be paid back.",
+            "cavail": "Available credit is the limit minus what you owe: what you can still borrow. It isn’t your money."
+          },
+          "where": "Credit cards are rare in Algeria: Edahabia and CIB cards take money straight from your account. Elsewhere credit cards are common; the “Credit card” tab shows how to read one.",
+          "q": "Balance 48,500 DA, two pending transactions worth 7,300 DA. How much can you safely spend?",
+          "a": [
+            "48,500 DA",
+            "41,200 DA",
+            "55,800 DA"
+          ],
+          "ok": "Yes. The available amount, not the balance."
+        },
+        {
+          "t": "Alerts, your eyes on the account",
+          "alt": "Kūro, ears up, beside a phone buzzing under a golden bell.",
+          "d": "An alert arrives in seconds; a statement, weeks later. Switch alerts on and watch the phone react.",
+          "alerts": [
+            {
+              "k": "Money received",
+              "n": "Transfer received: +12,000 DA."
+            },
+            {
+              "k": "Payment or withdrawal",
+              "n": "Card payment: −2,300 DA, online shop."
+            },
+            {
+              "k": "Low balance",
+              "n": "Your balance dropped below your chosen threshold."
+            },
+            {
+              "k": "New device signed in",
+              "n": "New sign-in from an unknown device. Not you? Call your bank."
+            },
+            {
+              "k": "Number or password changed",
+              "n": "The phone number linked to the account was changed."
+            }
+          ],
+          "low": "Low-balance threshold",
+          "meter": "alerts on",
+          "empty": "Nothing warns you. Switch an alert on.",
+          "rule": "A real alert informs. It never asks for a code and has no link to follow.",
+          "where": "The alerts on offer depend on your bank: text, app notification or email. Look for “Alerts” or “Notifications” in the app, or ask at the counter.",
+          "q": "An “alert” asks you to tap to cancel a payment you didn’t make. It is:",
+          "a": [
+            "A real alert, I tap fast",
+            "A trap: I open the app myself to check",
+            "A bug, I ignore it"
+          ],
+          "ok": "Yes. An alert informs; it asks for no tap and no code."
+        }
+      ]
+    },
+    "m5": {
+      "kicker": "/ MODULE 05 · SCAMS",
+      "title": "Recognising scams.",
+      "lead": "Scammers almost never hack the bank: they hack you, with fear, hurry or a gift. Train your eyes and ears.",
+      "sceneAlt": "At night, Yasser holds a ringing phone at arm’s length; a shadowy figure rises from the screen and Kūro, fur on end, hisses at it.",
+      "tabs": "The four lessons of module 5",
+      "l": [
+        {
+          "t": "Phishing, smishing, vishing",
+          "alt": "Kūro, wary, faces an envelope, a chat bubble and a phone handset, each hanging from a red hook.",
+          "d": "One hook, three shapes: an email (phishing), a text (smishing), a call (vishing). Sort the inbox: genuine or scam?",
+          "inbox": [
+            {
+              "f": "AlgeriePoste",
+              "b": "Your Edahabia card will be suspended today. Update your details: edahabia-maj.info",
+              "why": "Urgency, a link to an unknown site, “update your details”. Algérie Poste does not ask for your card details."
+            },
+            {
+              "f": "Your banking app",
+              "b": "New sign-in from an unknown device. If this wasn’t you, contact customer service.",
+              "why": "It informs, with no link and no code requested. Still, check by opening the app yourself."
+            },
+            {
+              "f": "“National Gendarmerie”",
+              "b": "Your account is being used by a criminal ring. To protect it, read me the code you’re about to receive by text.",
+              "why": "No gendarme asks for a bank code. The DGSN warns about this exact script: fake police, fake gendarmes, stolen codes."
+            },
+            {
+              "f": "Prize Department",
+              "b": "Congratulations! You won 50,000 DA. Pay a 500 DA processing fee to receive your prize.",
+              "why": "A prize from a contest you never entered, and a fee to pay first: the fake-prize pattern."
+            },
+            {
+              "f": "Your bank",
+              "ctx": "You just paid 3,200 DA online.",
+              "b": "Code 482913 to confirm your 3,200 DA payment. Don’t share it with anyone.",
+              "why": "You started this payment, the amount matches, and the text says not to share the code. It goes into the payment page, never to a person."
+            },
+            {
+              "f": "Algérie Poste Official ✓",
+              "b": "To activate online payment, send a photo of both sides of your card.",
+              "why": "A social media page activates nothing, and a photo of the card is enough to use it. The DGSN says never to send one."
+            }
+          ],
+          "where": "Everywhere, scammers copy the best-known institution in the country. Elsewhere it will be a fake message from the post, the tax office or a courier; the pattern stays the same.",
+          "q": "What do these scams have in common?",
+          "a": [
+            "They all come from abroad",
+            "They push you to give a code or card details, or to tap a link",
+            "They’re always full of typos"
+          ],
+          "ok": "Yes. And they are better written every year: don’t count on typos."
+        },
+        {
+          "t": "Urgency and fear",
+          "alt": "Kūro sits unmoved between a ringing alarm clock and a flashing red light.",
+          "d": "Fear switches off thinking: that’s why scammers rush you. Tap every piece of the message that pressures you.",
+          "msg": [
+            {
+              "t": "URGENT:"
+            },
+            {
+              "t": "your account"
+            },
+            {
+              "t": "will be blocked in 2 hours."
+            },
+            {
+              "t": "Suspicious activity detected."
+            },
+            {
+              "t": "Confirm your identity"
+            },
+            {
+              "t": "right now"
+            },
+            {
+              "t": "on this link,"
+            },
+            {
+              "t": "or your balance will be lost."
+            }
+          ],
+          "meter": "Pressure spotted",
+          "calm": "That piece is neutral.",
+          "done": "Five levers spotted. Breathe: nothing real gets decided in two hours.",
+          "where": "This message uses the very words the DGSN warns about: a “check”, an “urgent problem”, an account “at risk of being blocked”. The same levers travel in every language.",
+          "q": "A message says your account will be blocked in an hour. The right first move?",
+          "a": [
+            "Act fast, as asked",
+            "Touch nothing in the message and reach the bank through its official channel",
+            "Forward it to a friend"
+          ],
+          "ok": "Yes. A real bank gives you time to call."
+        },
+        {
+          "t": "The big families of scams",
+          "alt": "Kūro lifts a smiling cardboard mask; behind it, a shadowy hand reaches for a wallet.",
+          "d": "The stories change, the strings stay. Tap a scam, then the sign that gives it away.",
+          "pairs": [
+            {
+              "a": "The fake prize",
+              "b": "Paying a fee to receive a prize"
+            },
+            {
+              "a": "Fake tech support",
+              "b": "Installing an app to “fix” your account"
+            },
+            {
+              "a": "The romance scam",
+              "b": "An online love who always has a money emergency"
+            },
+            {
+              "a": "The overpayment",
+              "b": "You’re paid too much, then asked to send back the difference"
+            },
+            {
+              "a": "The fake courier",
+              "b": "A small payment to “release” a parcel"
+            }
+          ],
+          "colA": "The scam",
+          "colB": "The giveaway",
+          "done": "Five out of five. You see the string before the gift.",
+          "no": "Not that pair. Try again.",
+          "where": "Depending on the country, the fake courier poses as the post office, a delivery firm or customs. The overpayment scam often targets people selling online.",
+          "q": "A buyer overpays you by 15,000 DA and asks you to send back 10,000 DA. You:",
+          "a": [
+            "Send back the difference, it’s only fair",
+            "Send nothing and check with the bank that the transfer is real and final",
+            "Send them a photo of your card"
+          ],
+          "ok": "Yes. Their transfer may be fake or reversed; your refund would be very real."
+        },
+        {
+          "t": "The golden rule: hang up, call back",
+          "alt": "Kūro presses the red hang-up button while holding a bank card.",
+          "d": "You can’t check who is calling you. You can check who you call. Play the call.",
+          "who": {
+            "caller": "The caller",
+            "you": "You",
+            "now": "You hung up."
+          },
+          "turns": [
+            {
+              "say": "Hello, this is your bank’s security team. A 38,000 DA payment is going through on your card. Do you confirm it?",
+              "opts": [
+                {
+                  "t": "No! What should I do?",
+                  "w": "You stay on the line with a stranger, panicking: exactly what they want."
+                },
+                {
+                  "t": "I’ll hang up and call my bank myself."
+                },
+                {
+                  "t": "Prove you’re my bank.",
+                  "w": "They may already know your name and your card’s last digits: that won’t be proof."
+                }
+              ]
+            },
+            {
+              "say": "If you hang up, the payment goes through! Just give me the code you got by text and I’ll cancel it.",
+              "opts": [
+                {
+                  "t": "Okay, here’s the code.",
+                  "w": "That code cancels nothing: it confirms the scammer’s payment."
+                },
+                {
+                  "t": "I’m hanging up."
+                }
+              ]
+            },
+            {
+              "say": "Which number do you call now?",
+              "opts": [
+                {
+                  "t": "The one that just called me",
+                  "w": "A caller ID can be faked, and calling back may reach the scammer again."
+                },
+                {
+                  "t": "The one the caller gave me",
+                  "w": "That’s their number, not your bank’s."
+                },
+                {
+                  "t": "The one on the back of my card or in the official app"
+                }
+              ]
+            }
+          ],
+          "end": "Perfect. Wait a minute before calling, or use another phone: some scammers keep the line open.",
+          "where": "For Algérie Poste, the customer service number the company gives is 1530. Elsewhere, the official number is printed on the back of your card and on your bank’s website.",
+          "q": "The call shows your bank’s real number. Can you trust it?",
+          "a": [
+            "Yes, it’s the right number",
+            "No: caller IDs can be faked, I hang up and call back myself",
+            "Yes, if they know my address"
+          ],
+          "ok": "Yes. The display can lie; the number you dial can’t."
+        }
+      ]
+    },
+    "m8": {
+      "kicker": "/ MODULE 08 · CAPSTONE",
+      "title": "Capstone and safe habits.",
+      "lead": "A quiz to test your eye, a list to set up your phone, and a card to keep for the day it happens.",
+      "sceneAlt": "In the morning, Yasser pins a small card to the fridge; Kūro, a gold medal round his neck, sits on the table.",
+      "tabs": "The three lessons of module 8",
+      "l": [
+        {
+          "t": "The big quiz: genuine or fake?",
+          "alt": "Kūro as judge between two phones, one with a green tick, one with a red cross.",
+          "d": "Twelve messages from real life. For each: genuine or scam? Your best score is kept on this device.",
+          "startB": "Start the quiz",
+          "nextB": "Next message",
+          "streak": "Streak",
+          "best": "Best score",
+          "tiers": [
+            "Scammers count on speed. Play again slowly, reading the context.",
+            "Very sharp eye. Reread the ones that got you.",
+            "Twelve out of twelve. Nothing gets past you."
+          ],
+          "items": [
+            {
+              "f": "Express Delivery",
+              "b": "Your parcel is held. Pay a 150 DA fee here: colis-dz-suivi.com",
+              "why": "Fake courier: a tiny amount to get your card details."
+            },
+            {
+              "f": "Your banking app",
+              "ctx": "You just sent 5,000 DA to Amine.",
+              "b": "Transfer of 5,000 DA sent to Amine B.",
+              "why": "You did it, the amount and name match."
+            },
+            {
+              "f": "Customer service",
+              "b": "To secure your account, install the support app I’m sending you, I’ll take over remotely.",
+              "why": "Fake support: a remote-control app hands your phone to the scammer."
+            },
+            {
+              "f": "Your bank",
+              "b": "Your monthly statement is ready. Open your app to view it.",
+              "why": "No link, no details asked: it sends you to the app."
+            },
+            {
+              "f": "Sarah",
+              "b": "I’m stuck at the airport, I need 30,000 DA right now, I’ll pay you back tomorrow.",
+              "why": "A romance scam, or a friend’s hacked account: call the person on their usual number."
+            },
+            {
+              "f": "AlgeriePoste",
+              "b": "A 2,750 DA refund is waiting. Enter your card number and CVV to receive it.",
+              "why": "You never give your CVV to receive money."
+            },
+            {
+              "f": "Your banking app",
+              "ctx": "You just locked your card in the app.",
+              "b": "Your card has been locked at your request.",
+              "why": "It confirms what you just did."
+            },
+            {
+              "f": "“Police”",
+              "b": "Your card was used in a fraud. Send us a photo of both sides for the investigation.",
+              "why": "Police don’t investigate with a photo of your card. The DGSN warns about this script."
+            },
+            {
+              "f": "Fast Hiring",
+              "b": "Work from home: 8,000 DA a day. Just receive transfers into your account and send them on.",
+              "why": "You’d become a “money mule”: your account moves someone else’s money, and you’re the one prosecuted."
+            },
+            {
+              "f": "Your bank",
+              "b": "Reminder: we will never ask for your PIN, your password or the code you get by text.",
+              "why": "A prevention message, with no link and no request."
+            },
+            {
+              "f": "Anniversary Giveaway",
+              "b": "You’re our 1000th visitor! Reply with your card number to claim your gift.",
+              "why": "A gift that asks for a card number is not a gift."
+            },
+            {
+              "f": "Your mobile operator",
+              "ctx": "You didn’t ask for anything.",
+              "b": "Your SIM card is about to be replaced. If you didn’t request this, contact your operator.",
+              "why": "A genuine warning: someone may be trying to take over your number. Call your operator fast, on its official number."
+            }
+          ],
+          "where": "These messages are made up for the exercise, modelled on scams reported in Algeria and elsewhere. No number, name or link is real.",
+          "q": "When in doubt about a message, the safest rule?",
+          "a": [
+            "Reply to ask if it’s real",
+            "Don’t use the message: go through the app or the official number",
+            "Tap, then close the page fast"
+          ],
+          "ok": "Yes. The message is never the way in."
+        },
+        {
+          "t": "Set up your phone, step by step",
+          "alt": "Kūro turns a key in a padlock on a phone, a security key beside it.",
+          "d": "Eight settings, ten minutes. Tick what’s done; the list stays on this device.",
+          "items": [
+            {
+              "t": "Screen lock",
+              "h": "A 6-digit-plus code, fingerprint or face. A lost, unlocked phone is an open wallet."
+            },
+            {
+              "t": "Official app only",
+              "h": "Installed from the official store, through the bank’s site. Delete any copy you got by message."
+            },
+            {
+              "t": "A unique password",
+              "h": "Long, used nowhere else. A password manager remembers it for you."
+            },
+            {
+              "t": "Two-step verification",
+              "h": "A code by text or, better, an authenticator app when the bank offers it."
+            },
+            {
+              "t": "Alerts switched on",
+              "h": "Money in, payments, new device signed in (lesson 1.4)."
+            },
+            {
+              "t": "Number and email up to date",
+              "h": "They are your account’s spare keys. Protect the email with its own two-step verification."
+            },
+            {
+              "t": "No codes in plain sight",
+              "h": "No card PIN or password in notes, texts, or a photo of the card."
+            },
+            {
+              "t": "The blocking number written down",
+              "h": "On your emergency card (next lesson), not only in the phone."
+            }
+          ],
+          "prog": "settings done",
+          "done": "Eight out of eight: your phone is set.",
+          "where": "The settings on offer depend on the bank. Elsewhere, apps sometimes offer a physical security key or backup codes: turn them on.",
+          "q": "Which setting protects all the others if you lose your phone?",
+          "a": [
+            "The wallpaper",
+            "The screen lock",
+            "The ringtone"
+          ],
+          "ok": "Yes. Without it, everything else opens."
+        },
+        {
+          "t": "Your emergency card",
+          "alt": "Kūro holds a small cream card with a red seal in his mouth.",
+          "d": "On the day it happens, you won’t think clearly. Fill in this card now, print it, keep it away from your phone. Nothing you type leaves your device.",
+          "f": {
+            "name": "Your first name",
+            "bank1": "Bank or service 1",
+            "tel1": "Number to block the card",
+            "bank2": "Bank or service 2",
+            "tel2": "Number to block the card",
+            "last4": "Last 4 digits of the card",
+            "police": "Nearest police or gendarmerie",
+            "op": "Your mobile operator’s helpline",
+            "trust": "Someone you trust"
+          },
+          "ph": {
+            "name": "optional",
+            "bank1": "e.g. Algérie Poste",
+            "tel1": "e.g. 1530 (Algérie Poste)",
+            "bank2": "optional",
+            "tel2": "optional",
+            "last4": "1234",
+            "police": "number or address",
+            "op": "number",
+            "trust": "name and phone"
+          },
+          "warn4": "Never the full number, the PIN or the CVV.",
+          "card": {
+            "title": "EMERGENCY CARD",
+            "of": "of",
+            "block": "Block",
+            "ending": "card ending",
+            "police": "Police / gendarmerie",
+            "op": "Operator",
+            "trust": "Trusted person",
+            "stepsT": "If you’ve been tricked, in this order:",
+            "steps": [
+              "Block the card: app, number above, or counter.",
+              "Change passwords from a safe device.",
+              "Call the bank on its official number.",
+              "File a complaint, even if no money was lost.",
+              "Watch the account and alerts every day."
+            ],
+            "never": "No one genuine will ever ask you for a code."
+          },
+          "print": "Print the card",
+          "keep": "Keep on this device",
+          "forget": "Clear",
+          "fold": "Once printed, cut it out and fold it in half: it fits in a wallet.",
+          "src1530": "1530: Algérie Poste’s customer service number, as reported in the press in 2024 and 2026. Check it on the back of your card.",
+          "where": "Elsewhere, add your country’s national fraud-reporting number and, where one exists, the service that blocks cards from every bank.",
+          "q": "Where should the emergency card live?",
+          "a": [
+            "As a photo on the phone",
+            "Printed, away from the phone, with your papers",
+            "In a text sent to yourself"
+          ],
+          "ok": "Yes. On the day the phone is lost or hacked, it’s still there."
+        }
+      ]
+    },
+    "fin": {
+      "t": "Three modules out of eight: well done.",
+      "d": "The next five are coming: transfers, passwords, devices, shopping online, and what to do when it happens. Your logbook will wait for you here."
+    },
+    "refs": {
+      "kicker": "/ SOURCES",
+      "title": "Where the facts come from.",
+      "lead": "The numbers and rules quoted come from these pages, read on 21 November 2026. The exercise messages are made up.",
+      "newTab": "(new tab)"
+    }
   }
 }

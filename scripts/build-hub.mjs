@@ -9,6 +9,8 @@
  *   hub/src/monde.html           the world's body (the codex, the personal
  *                                dossiers, the Lab, the diary); its head is
  *                                the Studio's too, re-addressed here
+ *   hub/src/banque.html          the online banking course's body (2026-11-21: the hero and logbook, the path,
+ *                                modules 1, 5 and 8, the sources; its own sheet css/banque.css and script banque.js)
  *   hub/src/fabrique.html        la fabrique's body (2026-11-19: the four scenes
  *                                of the owner's "Outside the Artboard", two
  *                                six-lesson sets, the references); its head is
@@ -255,7 +257,7 @@ const FONT_FILES = [
   ['hub/fonts/lazy-console.css', FONT_HEAD('the screen face of the price console') + '@font-face { font-family: "VT323"; font-style: normal; font-weight: 400; font-display: swap;\n  src: url("../../workspacehq/fonts/VT323.woff2") format("woff2"); }\n'],
 ];
 
-const GENERATED = new Set([...FONT_FILES.map(([f]) => f.replace(/^hub\//, '')), 'manuel.html', 'monde.html', 'fabrique.html']);
+const GENERATED = new Set([...FONT_FILES.map(([f]) => f.replace(/^hub\//, '')), 'manuel.html', 'monde.html', 'fabrique.html', 'banque.html']);
 
 /* ---------------- the page ---------------- */
 /* the client courses (manual, 2026-11-19): the templates and lines hub/app.js 13b writes itself (a row's verdict, a
@@ -305,11 +307,16 @@ let monde = headFor('monde.html', 'world.ui', 'Le monde') + readFileSync(join(SR
    "Outside the Artboard" as four scenes (what you get, at the published price), then the application's six lessons and
    the web3 engineering track's six, published as education (OWNER-ANSWERS.md, 2026-11-18). */
 let fab = headFor('fabrique.html', 'fab.ui', 'La fabrique') + readFileSync(join(SRC, 'fabrique.html'), 'utf8');
+/* The banking course (hub/banque.html, 2026-11-21): the same head again with one more sheet (css/banque.css: the
+   exercises, the logbook, the emergency card's print), and hub/src/banque.html as its body; its script is hub/banque.js */
+const bqHead = headFor('banque.html', 'bank.ui', 'La banque en ligne');
+if (bqHead.split('</head>').length !== 2) fail("the banking course's head: no single </head>");
+let bq = bqHead.replace('</head>', '<link rel="stylesheet" href="css/banque.css?v={{stamp}}">\n</head>') + readFileSync(join(SRC, 'banque.html'), 'utf8');
 /* Markup in a dictionary value is allowed only where the page applies it as
    markup (data-i18n-html). The home's Arabic wraps Latin names in <bdi>; a
    text key gets the same isolation as Unicode (FSI ... PDI), so no tag is ever
    printed. Anything else with a '<' is refused. */
-const htmlKeys = new Set([...(html + manual + monde + fab).matchAll(/\sdata-i18n-html="([^"]+)"/g)].map((m) => m[1]));
+const htmlKeys = new Set([...(html + manual + monde + fab + bq).matchAll(/\sdata-i18n-html="([^"]+)"/g)].map((m) => m[1]));
 for (const l of LANGS)
   for (const [k, v] of Object.entries(DICT[l])) {
     if (htmlKeys.has(k) || !v.includes('<')) continue;
@@ -391,6 +398,7 @@ html = fill(html, 'page.html');
 manual = fill(manual, 'manuel.html');
 monde = fill(monde, 'monde.html');
 fab = fill(fab, 'fabrique.html');
+bq = fill(bq, 'banque.html');
 for (const k of Object.keys(DICT.fr)) if (!used.has(k) && !RUNTIME.test(k) && !/^cases\./.test(k))
   notes.push(`key ${k} is in the dictionaries but no markup names it (app.js may)`);
 
@@ -421,7 +429,9 @@ const REF_HOSTS = new Set(['doi.org', 'arxiv.org', 'www.sec.gov', 's203.q4cdn.co
   'www.designcouncil.org.uk', 'www.wipo.int', 'wipo.int', 'www.inpi.fr', 'www.inapi.dz', 'www.moet.gov.ae', 'www.legifrance.gouv.fr', 'openfontlicense.org', 'www.w3.org', 'developer.mozilla.org',
   'www.joradp.dz', 'nvlpubs.nist.gov', 'consumer.ftc.gov', 'www.esma.europa.eu', 'www.amf-france.org', 'www.investor.gov', 'www.ic3.gov', 'www.europol.europa.eu', 'rulebooks.vara.ae', 'www.vara.ae', 'assets.adgm.com', 'ethereum.org',
   // la fabrique's references (2026-11-19, ATELIER.md 5.5): the auto-layout guide and PostgreSQL's documentation
-  'help.figma.com', 'www.postgresql.org']);
+  'help.figma.com', 'www.postgresql.org',
+  // the banking course's sources (2026-11-21): the Algerian press and agency pages that report Algérie Poste's and the DGSN's warnings
+  'observalgerie.com', 'www.algerie360.com', 'www.aps.dz']);
 // a page's pictures (sizes from the files) and the rest of its markup's rules: the same for the Studio and for the manual
 function rules(html) {
 const refHrefs = new Set([...html.matchAll(/<a\b[^>]*\sdata-ref\s[^>]*\bhref="([^"]+)"/g)].map((m) => m[1]));
@@ -477,6 +487,7 @@ html = rules(html);
 manual = rules(manual);
 monde = rules(monde);
 fab = rules(fab);
+bq = rules(bq);
 // the stylesheets' own pictures count as referenced
 for (const css of ['style.css', ...(existsSync(join(HUB, 'css')) ? readdirSync(join(HUB, 'css')) : []).filter((f) => f.endsWith('.css')).map((f) => `css/${f}`)]) {
   const p = join(HUB, css);
@@ -498,6 +509,7 @@ const page = withCsp(withGtag(html), cspKind('hub/index.html'));
 const manualPage = withCsp(withGtag(manual), cspKind('hub/manuel.html'));
 const mondePage = withCsp(withGtag(monde), cspKind('hub/monde.html'));
 const fabPage = withCsp(withGtag(fab), cspKind('hub/fabrique.html'));
+const bqPage = withCsp(withGtag(bq), cspKind('hub/banque.html'));
 const i18n = `/* GENERATED by scripts/build-hub.mjs from hub/src/i18n and hub/src/cases:
    the Studio's three dictionaries (French too, for a switch back), flat
    keys, and nothing else. Loaded by the head script for an EN or AR visitor
@@ -511,11 +523,11 @@ if (errors.length) {
 for (const n of notes) console.log(`  · ${n}`);
 // one dictionary file per language: the head script and a switch fetch only the language asked for (the three in one file were 161 kB held in front of the first paint)
 const perLang = LANGS.map((l) => [`hub/i18n.${l}.js`, `/* GENERATED by scripts/build-hub.mjs: the Studio's ${l} dictionary alone (hub/i18n.js holds the three). */\nwindow.HUB_I18N = window.HUB_I18N || {};\nwindow.HUB_I18N.${l} = ${JSON.stringify(sorted(DICT[l]))};\n`]);
-const OUT = [['hub/index.html', page], ['hub/manuel.html', manualPage], ['hub/monde.html', mondePage], ['hub/fabrique.html', fabPage], ['hub/i18n.js', i18n], ...perLang, ...FONT_FILES];
+const OUT = [['hub/index.html', page], ['hub/manuel.html', manualPage], ['hub/monde.html', mondePage], ['hub/fabrique.html', fabPage], ['hub/banque.html', bqPage], ['hub/i18n.js', i18n], ...perLang, ...FONT_FILES];
 if (process.argv.includes('--check')) {
   const stale = OUT.filter(([f, s]) => !existsSync(join(ROOT, f)) || readFileSync(join(ROOT, f), 'utf8') !== s).map(([f]) => f);
-  console.log(stale.length ? `✗ ${stale.join(', ')} differ from hub/src (run: node scripts/build-hub.mjs)` : '✓ hub/index.html, hub/manuel.html, hub/monde.html, hub/fabrique.html and hub/i18n.js match hub/src');
+  console.log(stale.length ? `✗ ${stale.join(', ')} differ from hub/src (run: node scripts/build-hub.mjs)` : '✓ hub/index.html, hub/manuel.html, hub/monde.html, hub/fabrique.html, hub/banque.html and hub/i18n.js match hub/src');
   process.exit(stale.length ? 1 : 0);
 }
 for (const [f, s] of OUT) writeFileSync(join(ROOT, f), s);
-console.log(`✓ hub/index.html (${(page.length / 1000).toFixed(1)} kB, ${casesIn} of ${CASES.length} cases), hub/manuel.html (${(manualPage.length / 1000).toFixed(1)} kB), hub/monde.html (${(mondePage.length / 1000).toFixed(1)} kB), hub/fabrique.html (${(fabPage.length / 1000).toFixed(1)} kB) and hub/i18n.js (${Object.keys(DICT.fr).length} keys × 3)`);
+console.log(`✓ hub/index.html (${(page.length / 1000).toFixed(1)} kB, ${casesIn} of ${CASES.length} cases), hub/manuel.html (${(manualPage.length / 1000).toFixed(1)} kB), hub/monde.html (${(mondePage.length / 1000).toFixed(1)} kB), hub/fabrique.html (${(fabPage.length / 1000).toFixed(1)} kB), hub/banque.html (${(bqPage.length / 1000).toFixed(1)} kB) and hub/i18n.js (${Object.keys(DICT.fr).length} keys × 3)`);
