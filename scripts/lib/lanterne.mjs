@@ -12,7 +12,7 @@
  *                            through its "keys" map)
  *   ex/<slug>/<id>.html      a district's exercise markup (the courses' existing labs, cut verbatim), set in its
  *                            board; without one, the board is the kit's (hub/lanterne.js) or its resting line
- *   ex/<slug>/_<slot>.html   an atlas's own blocks: _hero (under the hero's copy: the legal lines), _sac (the set's
+ *   ex/<slug>/_<slot>.html   an atlas's own blocks: _hero (under the hero, on paper: the legal lines), _sac (the set's
  *                            reward, inside the sac), _sources (the references), _end (before the footer)
  *
  * and hub/manuel.html, the old manual's address, as a forwarding stub (§1.4). The pages share the Studio's head
@@ -213,7 +213,7 @@ export function lanterne(ctx) {
             </figure>
             <button type="button" class="dio__zoom js-only" data-lt-zoom="${up(pl.src)}"><span data-i18n="lant.ui.zoom"></span></button>
           </div>
-          <div class="dossier">
+          <div class="dossier${after ? ' dossier--after' : ''}">
             <p class="k" data-lt-dossier-k>${esc(fr('lant.ui.dossierK').replace('{act}', fr(ak(A, `actShort.${act.id}`))).replace('{i}', i + 1).replace('{N}', ids.length))}</p>
             <h3 class="dossier__h" id="${id}-h" tabindex="-1" data-i18n="${dk(A, id, 'name')}"></h3>
             <p class="dossier__sub"><span data-i18n="${dk(A, id, 'sub')}"></span> · <span data-lt-with="${d.guide}">${esc(fr('lant.ui.with').replace('{g}', fr(castName(d.guide))))}</span></p>
@@ -221,6 +221,7 @@ export function lanterne(ctx) {
             <div class="rule"><p class="k" data-i18n="lant.ui.rule"></p><p class="rule__t" data-i18n="${dk(A, id, 'rule')}"></p></div>
             ${after ? '' : sit(id)}
             <p class="keep" hidden><img ${ksAttrs(A, id, 48)} alt="" loading="lazy"><span data-lt-keep></span></p>
+            ${after ? `<div class="dossier__ex"><p class="k" data-i18n="lant.ui.exK"></p><p class="dossier__ext" data-i18n="${dk(A, id, 'ex.t')}"></p><p class="dossier__exb" data-i18n="${dk(A, id, 'ex.brief')}"></p></div>` : ''}
             <a class="to-ex" href="#${id}-ex" data-i18n="${after ? 'lant.ui.toRead' : 'lant.ui.toEx'}"></a>
           </div>
         </div>
@@ -311,12 +312,12 @@ export function lanterne(ctx) {
       <p class="hero__pitch" data-i18n="${ak(A, 'pitch')}"></p>
       <p class="hero__case" data-i18n="${ak(A, 'caseLabel')}"></p>
       <a class="btn btn--amber btn--down" href="#quartiers" data-lt-hero-cta><span data-i18n="lant.ui.open"></span></a>
-      ${part('_hero')}
     </div>
     <div class="hero__stage">
       ${cover}
     </div>
   </section>
+  ${part('_hero')}
 
   <section class="world" id="quartiers" aria-labelledby="world-h" tabindex="-1">
     <div class="heading">
@@ -482,12 +483,34 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
 
   /* ================= the old manual's address: a forwarding stub (§1.4) ================= */
   const pub = Object.fromEntries(live.map((b) => [b.slug, 1]));
-  const router = `(function(){var P=${JSON.stringify(pub)},s=location.search,h=location.hash.slice(1),q=new URLSearchParams(s),ls=q.get('ls')||'',l=q.get('lang');
+  /* every other id of the old page (a fiche's field or heading, a lab's input, a shelf section's heading) goes where it
+     lives now: the district that holds it on its atlas (the atlas opens a district named in the address), or the same id
+     on the shelf or on an atlas outside its districts (rev2: they all landed on the shelf's top). Read from the old
+     page's source (hub/src/manuel.html) and the pages just built; the source lists and the tabs keep their rules below */
+  const oldIds = existsSync(join(SRC, 'manuel.html')) ? new Set([...readFileSync(join(SRC, 'manuel.html'), 'utf8').matchAll(/\sid="([^"]+)"/g)].map((m) => m[1])) : new Set();
+  const OWN = /^(bsrc-|wsrc-|nsrc-|src-s\d|m\d+src-|ls-[tp]-|hub-fr$|hub-prices$|hub-radio$|main$|menu$)/;
+  const lives = {};
+  for (const o of out) {
+    const slug = o.file === 'hub/lanterne/index.html' ? '' : o.file.slice(13, -5);
+    const h = o.html.replace(/\{\{([^}]+)\}\}/g, (all, k) => (typeof holes[k] === 'string' ? holes[k] : ''));
+    const ds = [...h.matchAll(/<section class="district" id="([^"]+)"/g)].map((m) => [m.index, m[1]]);
+    const end = ds.length ? h.indexOf('id="journal"', ds[ds.length - 1][0]) : -1;
+    for (const m of h.matchAll(/\sid="([^"]+)"/g)) {
+      if (!oldIds.has(m[1]) || OWN.test(m[1])) continue;
+      const inD = ds.length && m.index >= ds[0][0] && m.index < end ? ds.filter(([at]) => at <= m.index).pop()[1] : null;
+      (lives[m[1]] = lives[m[1]] || new Set()).add(`${slug}#${inD || m[1]}`);
+    }
+  }
+  const M = Object.fromEntries(Object.entries(lives).filter(([, v]) => v.size === 1).map(([k, v]) => [k, [...v][0]]).sort());
+  for (const [k, v] of Object.entries(lives)) if (v.size > 1) notes.push(`the stub: the old id #${k} lives in ${v.size} places now (${[...v].join(', ')}): it lands on the shelf`);
+  const router = `(function(){var P=${JSON.stringify(pub)},M=${JSON.stringify(M)},s=location.search,h=location.hash.slice(1),q=new URLSearchParams(s),ls=q.get('ls')||'',l=q.get('lang');
 var of=function(id){return /^b[1-9]$/.test(id)?'marque':/^w[1-8]$/.test(id)?'web3':/^n[1-8]$/.test(id)?'route':/^g[1-8]$/.test(id)?'jeu':/^(pay|bank|rate|treso|crypto)$/.test(id)?'argent':/^m[1-9][0-9]$/.test(id)?'web3':'';};
-var S={lessons:'argent',marque:'marque',web3:'web3',nomade:'route',jeu:'jeu'},R={radio:'#radio',game:'#ronde',services:'#comptoir'},to='',at='';
+var S={lessons:'argent',marque:'marque',web3:'web3',nomade:'route',jeu:'jeu'},R={radio:'#radio','hub-radio':'#radio',game:'#ronde',services:'#comptoir'},to='',at='',k=h.replace(/^ls-[tp]-/,''),H=h.replace(/-h$/,'');
 if(ls&&of(ls)){to=of(ls);at=/^m/.test(ls)?'':ls;}
-else if(S[h]){to=S[h];}
-else if(/^ls-t-/.test(h)&&of(h.slice(5))){to=of(h.slice(5));at=/^ls-t-m/.test(h)?'':h.slice(5);}
+else if(M[h]){to=M[h].split('#')[0];at=M[h].split('#')[1];}
+else if(S[h]||S[H]){to=S[h]||S[H];}
+else if(k!==h&&of(k)){to=of(k);at=/^m/.test(k)?'':k;}
+else if(of(h)){to=of(h);at=/^m/.test(h)?'':h;}
 else if(/^web3-m[1-9]$/.test(h)){to='web3';}
 else if(/^bsrc-/.test(h)){to='marque';at=h;}else if(/^wsrc-/.test(h)){to='web3';at=h;}else if(/^m[1-9]src-/.test(h)){to='web3';}
 else if(/^nsrc-/.test(h)){to='route';at=h;}else if(/^src-s[0-9]+$/.test(h)){to='jeu';at=h;}

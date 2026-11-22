@@ -67,8 +67,8 @@
     },
     "g2": {
       "guide": "kuro",
-      "lead": "kuro",
-      "companion": "raven",
+      "lead": "pigeonStand",
+      "companion": "kuro",
       "prop": "ring",
       "right": 0,
       "ex": "pick",
@@ -193,8 +193,8 @@
     },
     "g8": {
       "guide": "kuro",
-      "lead": "kuro",
-      "companion": "raven",
+      "lead": "ratman",
+      "companion": "kuro",
       "prop": "star",
       "right": 1,
       "ex": "pick",

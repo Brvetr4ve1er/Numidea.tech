@@ -54,6 +54,7 @@
   },
   {
     "id": "stamp",
+    "retired": "2026-11-22: it shows the old manual page (now the Librairie). Off the reel until it is re-recorded on an atlas",
     "src": "img/studio/reel/stamp.mp4",
     "poster": "img/studio/reel/stamp.webp",
     "w": 640,

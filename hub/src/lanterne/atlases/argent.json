@@ -93,8 +93,8 @@
     },
     "treso": {
       "guide": "ratman",
-      "lead": "ratman",
-      "companion": "pigeon",
+      "lead": "pigeonStand",
+      "companion": "ratman",
       "prop": "ring",
       "right": 1,
       "ex": "calc:treso",

@@ -1840,8 +1840,10 @@
           var to = e.key === 'Home' ? 0 : e.key === 'End' ? n - 1
             : e.key === 'ArrowRight' ? i + (rtl ? -1 : 1) : e.key === 'ArrowLeft' ? i + (rtl ? 1 : -1)
             : e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowUp' ? i - 1 : null;
-          if (to === null) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); choose(Number(r.getAttribute('data-v'))); } return; }
-          e.preventDefault(); choose(Number(vs[(to + n) % n].getAttribute('data-v')), true);
+          // a choice by key says so as a press does (a 'change' from the radio), so what listens for presses counts it (rev2)
+          var said = function (x) { try { x.dispatchEvent(new Event('change', { bubbles: true })); } catch (er) {} };
+          if (to === null) { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); choose(Number(r.getAttribute('data-v'))); said(r); } return; }
+          e.preventDefault(); var nx = vs[(to + n) % n]; choose(Number(nx.getAttribute('data-v')), true); said(nx);
         });
       });
       g._choose = choose;
@@ -1993,7 +1995,20 @@
     var foldChain = function () { var v = verdict(); return !chainOn() && (F.decision === 0 || F.decision === 1 || (!!v && v.k === 'no') || F.resell === 1 || algeria() || F.request === 2); };
     var hasSite = function () { return F.site === 1 || (F.site == null && (F.has || []).indexOf(0) > -1); };
     var folds = $$('[data-chain-fold]', sec), folded = null;
-    var foldPaint = function () { var fc = foldChain(); if (fc === folded) return; folded = fc; folds.forEach(function (d) { d.open = !fc; }); };
+    /* a stop whose whole exercise sits in a chain fold (web3 w8, the six states) is closed with its reason once the route
+       is ordinary: the course tells that visitor to skip it, so the atlas must not stay one district short (rev2). The
+       atlas page reads it (hub/lanterne.js); one that has not bound yet finds it in window.lanternePending */
+    var foldDone = function () {
+      var at = document.body.getAttribute('data-lt-atlas'); if (!at) return;
+      folds.forEach(function (d) {
+        var b = d.classList.contains('st-crs__fold--stop') && d.closest('[data-lt-id]'); if (!b) return;
+        var id = b.getAttribute('data-lt-id'), k = 'lant.at.' + at + '.d.' + id + '.foldNote';
+        var m = t(k); if (!m || m === k) return;
+        var x = { atlas: at, id: id, msg: m, done: true, skip: k };
+        if (window.lanterne && window.lanterne.tell) emit('numidea:exercise', x); else (window.lanternePending = window.lanternePending || []).push(x);
+      });
+    };
+    var foldPaint = function () { var fc = foldChain(); if (fc === folded) return; folded = fc; folds.forEach(function (d) { d.open = !fc; }); if (fc) foldDone(); };
     if (flow) {
       var fstep = $('[data-flow-step]', flow), fend = $('[data-flow-end]', flow), trail = $('[data-flow-trail]', flow);
       var fback = $('[data-flow-back]', flow), frest = $('[data-flow-restart]', flow);
@@ -2215,7 +2230,7 @@
       // and the sent text has none either
       box.appendChild(para('st-fiche__fine', tx('fiche.estNote')));
       box.appendChild(para('st-fiche__fine', tx('fiche.cur') + ' ' + tx('fiche.fx')));
-      var a = document.createElement('a'); a.href = './#pricing'; a.className = 'st-fiche__go'; a.textContent = tx('web3c.cta.go'); box.appendChild(a);
+      var a = document.createElement('a'); a.href = (course.hasAttribute('data-lt-course') ? '../' : './') + '#pricing'; a.className = 'st-fiche__go'; a.textContent = tx('web3c.cta.go'); box.appendChild(a);
     };
     /* ---- the fiche's rows: [label key, value, the field whose stop fills it, where it stands in the text that
        leaves (1 the studio's triage, 2 a row that sets the price, 0 the rest), true to leave the row out while it is
@@ -2413,8 +2428,16 @@
     };
     var say = function (k) { status.textContent = ''; status.textContent = tx(k) + (triage() || k === 'fiche.st.cleared' ? '' : ' ' + tx('fiche.sealWait')); };
     wa.addEventListener('click', function () { render(); stamp('wa'); say('fiche.st.sent'); });
-    // the form's message opens as WhatsApp's does: the greeting that names the course, then the fiche
-    form.addEventListener('click', function () { render(); try { sessionStorage.setItem('numidea-prefill', hello + '\n' + text); } catch (e) {} stamp('form'); });
+    // the form's message opens as WhatsApp's does: the greeting that names the course, then the fiche. The kind and the
+    // fiche's first name ride with it (assets/app.js reads them): the form then adds no second greeting and fills its Nom
+    form.addEventListener('click', function () {
+      render();
+      try {
+        sessionStorage.setItem('numidea-prefill', hello + '\n' + text); sessionStorage.setItem('numidea-prefill-kind', 'brief:' + set);
+        if (F.me && String(F.me).trim()) sessionStorage.setItem('numidea-prefill-name', String(F.me).trim()); else sessionStorage.removeItem('numidea-prefill-name');
+      } catch (e) {}
+      stamp('form');
+    });
     $('[data-brief-copy]', fiche).addEventListener('click', function () {
       render();
       var fallback = function () { var d = txt.closest('details'); if (d) d.open = true; txt.focus(); txt.select(); say('fiche.st.copyFail'); };

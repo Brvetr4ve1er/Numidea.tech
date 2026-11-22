@@ -150,8 +150,8 @@
     },
     "b9": {
       "guide": "kuro",
-      "lead": "kuro",
-      "companion": "raven",
+      "lead": "pigeonStand",
+      "companion": "kuro",
       "prop": "star",
       "right": 1,
       "ex": "marktest",
@@ -230,8 +230,8 @@
     },
     "b7": {
       "guide": "raven",
-      "lead": "raven",
-      "companion": "kuro",
+      "lead": "ratman",
+      "companion": "raven",
       "prop": "ring",
       "right": 1,
       "ex": "fiche",

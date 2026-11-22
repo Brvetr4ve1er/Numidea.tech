@@ -72,8 +72,8 @@
     },
     "w2": {
       "guide": "raven",
-      "lead": "raven",
-      "companion": "pigeon",
+      "lead": "pigeonStand",
+      "companion": "raven",
       "prop": "ring",
       "right": 1,
       "ex": "flow",

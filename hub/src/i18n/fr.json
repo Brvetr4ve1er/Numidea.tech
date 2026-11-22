@@ -1048,7 +1048,7 @@
     "reel": {
       "kicker": "/ LA BOBINE",
       "title": "Passez dessus.",
-      "lead": "Cinq clips. La souris ou le doigt les lance, ils s’arrêtent quand vous partez.",
+      "lead": "Quatre clips. La souris ou le doigt les lance, ils s’arrêtent quand vous partez.",
       "play": "Lire le clip :",
       "aria": "Les clips",
       "price": "Chiffrer une animation →"
@@ -1554,7 +1554,7 @@
           },
           {
             "k": "L’appel vidéo",
-            "v": "Un appel à deux demande peu. Zoom recommande 600 kbit/s dans chaque sens pour une vidéo de bonne qualité, et 1,2 Mbit/s en 720p. Google Meet compte jusqu’à 1,7 Mbit/s par participant en 720p, et baisse la définition si le débit manque. Ce sont les chiffres des éditeurs : testez votre connexion avant l’appel, pas pendant."
+            "v": "Un appel à deux demande peu. Zoom recommande 600 kbit/s dans chaque sens pour une vidéo de bonne qualité, et 1,2 Mbit/s en 720p ; en appel de groupe, 1 Mbit/s en envoi et 600 kbit/s en réception, et en 720p 2,6 Mbit/s en envoi et 1,8 Mbit/s en réception. Google Meet compte jusqu’à 1,7 Mbit/s par participant en 720p, et baisse la définition si le débit manque. Ce sont les chiffres des éditeurs : testez votre connexion avant l’appel, pas pendant."
           },
           {
             "k": "La connexion de secours",
@@ -3175,7 +3175,7 @@
     },
     "src": {
       "title": "Les sources du cours",
-      "note": "Les faits de loi viennent des textes et des régulateurs (Journal officiel algérien, autorités européennes, ESMA, AMF, VARA, ADGM, CFTC, SEC, lois du Wyoming) ; l’arbre des six questions et les portefeuilles, du NIST ; les normes, des textes eux-mêmes (NIST FIPS, BIP, EIP et ERC, W3C) ; les arnaques, de la FTC, de la SEC, du FBI, d’Europol et des autorités européennes ; les mots techniques, d’ethereum.org, site de documentation communautaire, et de la documentation propre à chaque outil cité. Les outils et les chaînes sont nommés comme exemples, jamais comme recommandations. Les routes ordinaires, les listes « à prévoir », les questions pour le prestataire et le support aux utilisateurs sont notre avis d’atelier ; la règle « le minimum sur la chaîne » est la nôtre. Rien ici n’est un conseil juridique ni un conseil en placement."
+      "note": "Les faits de loi viennent des textes et des régulateurs (Journal officiel algérien, autorités européennes, ESMA, AMF, VARA, ADGM, SEC) ; l’arbre des six questions et les portefeuilles, du NIST ; les arnaques, de la FTC, de la SEC, du FBI, d’Europol et des autorités européennes ; les mots techniques, d’ethereum.org, site de documentation communautaire. Les outils et les chaînes sont nommés comme exemples, jamais comme recommandations. Les routes ordinaires, les listes « à prévoir », les questions pour le prestataire et le support aux utilisateurs sont notre avis d’atelier ; la règle « le minimum sur la chaîne » est la nôtre. Rien ici n’est un conseil juridique ni un conseil en placement."
     },
     "acts": [
       "1–2 · LE TRI",
@@ -4425,55 +4425,55 @@
             "rule": "Un logo est un signe : la marque, l’identité et leurs règles se décident avant lui.",
             "handoff": "Nadia sait ce qu’elle a : un logo, rien d’autre. Reste à savoir pour qui elle le refait.",
             "decision": "Un logo seul est un signe ; le reste se décide avant.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Couches »"
           },
           "b2": {
             "rule": "Une piste se juge contre la personne de la fiche, pas au goût.",
             "handoff": "Sa cliente a un visage ; il lui faut maintenant une promesse qu’elle peut vérifier.",
             "decision": "Choisir la piste qui parle à la personne de ma fiche.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Public »"
           },
           "b3": {
             "rule": "Une promesse compte si un client peut la vérifier : un délai, un fait, une preuve.",
             "handoff": "La promesse tient ; reste à dire au designer ce qu’on doit ressentir.",
             "decision": "Une promesse qui se vérifie, avec sa preuve.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Promesse »"
           },
           "b4": {
             "rule": "Au designer, on dit le but, ce qu’on doit ressentir ; il choisit les moyens.",
             "handoff": "Le caractère est dit ; Nadia essaie maintenant son logo dans un onglet de navigateur.",
             "decision": "Dire ce qu’on doit ressentir, pas la couleur ni la police.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Caractère »"
           },
           "b9": {
             "rule": "Une marque est une famille : la petite version se dessine, elle ne se réduit pas.",
             "handoff": "Le logo sera refait, avec une version compacte ; l’imprimeur demande déjà le fichier de la bâche.",
             "decision": "Une version compacte en formes pleines, vue à 16 pixels.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Petit format »"
           },
           "b5": {
             "rule": "Pour imprimer en grand, il faut le fichier vectoriel : il reste net à toutes les tailles.",
             "handoff": "Elle sait quels fichiers réclamer ; une proposition arrive, « tout compris ».",
             "decision": "Demander le vectoriel (SVG ou PDF) et les versions.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Fichiers »"
           },
           "b6": {
             "rule": "« Tout compris » ne se vérifie qu’avec la liste écrite de ce qui est livré.",
             "handoff": "La proposition est lue ; reste le nom, et à qui il est.",
             "decision": "Demander par écrit la liste de ce qui est livré.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Proposition »"
           },
           "b7": {
             "rule": "Un logo payé n’est pas une marque déposée : le dépôt se fait à part, pays par pays.",
             "handoff": "Le nom a son pays de dépôt ; il reste à tout réunir sur la fiche.",
             "decision": "Déposer le nom à l’INAPI pour l’Algérie.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Nom »"
           },
           "b8": {
             "rule": "Avant le premier appel : la fiche remplie, et une seule personne qui décide.",
             "handoff": "La fiche de Nadia est prête à partir, quand elle le voudra.",
             "decision": "Garder la fiche sous la main, et une personne qui décide.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Fiche »"
           }
         },
         "caseLabel": "Chez la Pâtisserie Hodna · exemple inventé"
@@ -4840,49 +4840,50 @@
             "rule": "Signer, c’est donner son accord : on ne signe pas ce qu’on ne comprend pas.",
             "handoff": "Samia a écrit son idée sans jargon ; reste à savoir s’il lui faut une chaîne.",
             "decision": "Ne pas signer tant que je ne sais pas ce que ça autorise.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Mots »"
           },
           "w2": {
             "rule": "Si un seul écrit dans le registre, une base de données suffit.",
             "handoff": "Pas de chaîne ; reste à dire ce qu’elle veut vraiment.",
             "decision": "Un seul qui écrit : une base de données.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Chaîne ? »"
           },
           "w3": {
             "rule": "On part du résultat voulu, puis on prend la route la plus simple qui y mène.",
             "handoff": "La route est choisie ; reste à savoir ce qui irait sur une chaîne, et ce qui reste chez elle.",
             "decision": "Des points dans une base de données, pas un jeton.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Besoin »"
           },
           "w8": {
             "rule": "Le hash dit « envoyé » ; seul le reçu dit si l’opération a réussi.",
             "handoff": "Les données des adhérentes restent dans sa base ; reste à compter ce qui se paie après.",
             "decision": "Attendre le reçu, pas seulement le hash.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Chaîne et base »",
+            "foldNote": "exercice plié : votre route est ordinaire, sans chaîne"
           },
           "w4": {
             "rule": "Une proposition complète montre aussi ce qui se paie après la mise en ligne.",
             "handoff": "Les lignes d’après sont notées ; le fournisseur revient par message privé.",
             "decision": "Demander les lignes d’après la mise en ligne, même sans chiffre.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Coûts »"
           },
           "w5": {
             "rule": "Une transaction faite ne se rappelle pas : l’urgence et le lien qui imite le vrai sont des signaux.",
             "handoff": "Samia n’a pas cliqué ; reste la loi, là où sont ses adhérentes.",
             "decision": "Ne pas cliquer : une transaction faite ne revient pas.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Arnaques »"
           },
           "w6": {
             "rule": "La loi qui compte est celle des pays où sont vos utilisateurs : à Dubaï, la VARA.",
             "handoff": "La carte de la loi est lue ; tout se réunit sur la fiche.",
             "decision": "Pour un jeton à Dubaï : un prestataire agréé par la VARA, ou son accord.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Loi »"
           },
           "w7": {
             "rule": "La loi d’abord, le code ensuite.",
             "handoff": "La fiche de Samia est prête à partir, quand elle le voudra.",
             "decision": "Faire vérifier la loi des pays des utilisateurs avant de payer un développement.",
-            "keep": "La case « undefined »"
+            "keep": "La case « Fiche »"
           }
         },
         "caseLabel": "Chez la salle de Samia · exemple inventé"

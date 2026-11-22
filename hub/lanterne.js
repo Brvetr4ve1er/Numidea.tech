@@ -215,7 +215,8 @@
         var n = $('[data-lt-note="' + id + '"]'); if (!n) return;
         n.setAttribute('data-done', String(done(id)));
         var dec = $('.note__dec', n), sk = S.d[id] && S.d[id].s;
-        if (dec) dec.textContent = t(dec.getAttribute('data-i18n')) + (sk ? ' (' + t('lant.ui.skipNote') + ')' : '');
+        // a skipped exercise says so, with its own reason when one was given (a chain fold on an ordinary route)
+        if (dec) dec.textContent = t(dec.getAttribute('data-i18n')) + (sk ? ' (' + t(typeof sk === 'string' ? sk : 'lant.ui.skipNote') + ')' : '');
       });
       var c = counts(), con = $('[data-lt-conclusion]'), fin = c.n === c.N;
       con.textContent = fin ? t(A.k.conclusion) : t('lant.ui.journalIdle');
@@ -277,7 +278,8 @@
       if (msg) $('[data-lt-result]', s).textContent = msg;
       touch(id);
       if (!ok) return;
-      var r = rec(id), was = r.x; r.x = 1; if (skipped) r.s = 1; else delete r.s; save(); nextStep(id);
+      var r = rec(id), was = r.x; if (was && skipped && !r.s) return;   // an exercise done stays done, not skipped
+      r.x = 1; if (skipped) r.s = typeof skipped === 'string' ? skipped : 1; else delete r.s; save(); nextStep(id);
       var badge = $('[data-lt-badge]', s); badge.textContent = t('lant.ui.badgeDone'); badge.setAttribute('data-lt-v', 'done');
       if (!was) emit('numidea:exercise', { atlas: A.slug, id: id, done: true, via: 'lanterne' });
       step(id);
@@ -476,10 +478,13 @@
           return !!q && (k === 'sel' || (k === 'text' ? !!q.textContent.trim() : !q.closest('[hidden]')));
         };
         var chk = function (e) { setTimeout(function () { if (!cleared() && conds.some(function (c) { return ok(c, e); })) tell(id, t('lant.ui.ex.ficheDone'), true); }, 0); };
+        // a row already on when the page opens has been shown (the six states open on the first): it counts as seen
+        conds.forEach(function (c) { var m = /^seen:(.+)$/.exec(c); if (m) $$(m[1], board).forEach(function (r, n) { if (r.classList.contains('is-on')) seenR[n] = 1; }); });
         ['click', 'input', 'change'].forEach(function (ev) { board.addEventListener(ev, chk); });
       }
     });
-    d.addEventListener('numidea:exercise', function (e) { var x = e.detail || {}; if (x.via !== 'lanterne' && x.atlas === A.slug && ids.indexOf(x.id) > -1) tell(x.id, x.msg || '', x.done !== false); });
+    var heard = function (x) { if (x && x.via !== 'lanterne' && x.atlas === A.slug && ids.indexOf(x.id) > -1) { tell(x.id, x.msg || '', x.done !== false, x.skip || false); if (x.skip) renderJournal(); } };
+    d.addEventListener('numidea:exercise', function (e) { heard(e.detail); });
 
     d.addEventListener('click', function (e) {
       var go = e.target.closest('[data-lt-go]');
@@ -508,6 +513,9 @@
     renderAll();
     /* a district asked for in the address opens and comes into view, without taking the focus from the page start */
     if (ids.indexOf(h0) > -1) sec(h0).scrollIntoView({ block: 'start' });
+    // what hub/app.js reported before this script bound (it runs first: a fiche restored on an ordinary route), once the
+    // page stands
+    (window.lanternePending || []).forEach(heard); window.lanternePending = [];
   }
 
   /* ================= the shelf ================= */

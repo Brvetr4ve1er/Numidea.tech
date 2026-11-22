@@ -119,10 +119,14 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
     const dash = en ? '⁠–⁠' : ' –⁠ ';
     const sym = (c) => (c === 'DZD' ? DICT[l]['pricing.cur'] : c === 'EUR' ? '€' : '$');
     const tidy = (n) => { const g = n >= 10000 ? 500 : n >= 1000 ? 100 : 10; return Math.max(g, Math.round(n / g) * g); };
-    const pair = (a, b, c) => { const v = a === b ? grp(a) : grp(a) + dash + grp(b); return en && c !== 'DZD' ? sym(c) + v : v + '\u00a0' + sym(c); };   // (the currency never wraps away from its figure)
+    // (the currency never wraps away from its figure). Arabic reads one order everywhere, the tag's: the figures in their
+    // own left-to-right isolate, then « دج » after them in the right-to-left line (rev2: the tiers and the bundles put
+    // the currency first, the tag last)
+    const ar = l === 'ar';
+    const pair = (a, b, c) => { const v = a === b ? grp(a) : grp(a) + dash + grp(b); return en && c !== 'DZD' ? sym(c) + v : ar ? LRI + v.replace(/ /g, '\u00a0') + PDI + '\u00a0' + sym(c) : v + '\u00a0' + sym(c); };
     const fill = (s, o) => s.replace(/\{(\w+)\}/g, (all, k) => (o[k] != null ? o[k] : all));
     const da = (f) => pair(f.lo, f.hi, 'DZD');
-    const iso = (s) => LRI + s.replace(/ /g, '\u00a0') + PDI;   // and in one piece: the line never breaks inside a figure
+    const iso = (s) => (ar ? s : LRI + s + PDI).replace(/ /g, '\u00a0');   // and in one piece: the line never breaks inside a figure (Arabic's pair isolates its own figures)
     return { grp, pair, tidy, fill, da, iso, conv: (n) => `≈ ${pair(tidy(n / FX.EUR), tidy(n / FX.EUR), 'EUR')} · ${pair(tidy(n / FX.USD), tidy(n / FX.USD), 'USD')}` };
   };
   const leadText = (l, lt) => {
@@ -131,6 +135,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
     if (lt.d) return f.fill(take(l, 'carte.lt.d'), { a: lt.d[0], b: lt.d[1] });
     return lt.w[0] === lt.w[1] ? f.fill(take(l, 'carte.lt.w1'), { a: lt.w[0] }) : f.fill(take(l, 'carte.lt.w'), { a: lt.w[0], b: lt.w[1] });
   };
+  const plainWa = (s) => s.replace(/[\u2066-\u2069]/g, '');
   const tierFig = (l, x) => { const f = F(l); return (x.plus ? '+ ' : '') + f.da(x) + (x.month ? ' ' + take(l, 'carte.month') : '') + (x.per ? ' ' + take(l, 'carte.perSlide') : ''); };
   const leadOf = (c) => c.tiers.find((x) => x.lead) || c.tiers[0];
   const tagKeys = (k, tier, lt, nameKey) => {
@@ -151,7 +156,8 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
     if (c.save) set(`${k}.save`, (l) => F(l).fill(get(l, `${k}.save`), { p: F(l).iso(F(l).da(c.save)) }));
     if (c.also) set(`${k}.also`, (l) => F(l).fill(take(l, 'carte.also'), { x: F(l).fill(get(l, `${k}.also`), { p: F(l).iso(F(l).da(c.also[0])), q: c.also[1] ? F(l).iso(F(l).da(c.also[1])) : '' }) }));
     if (c.rule) set(`${k}.rule`, (l) => F(l).fill(take(l, 'carte.credit'), { d: DESIGN.ui.creditDays }));
-    set(`${k}.wa`, (l) => F(l).fill(take(l, 'carte.waMsg'), { s: get(l, `${k}.name`) === get(l, `${k}.t.${li}`) ? get(l, `${k}.name`) : `${get(l, `${k}.name`)}, ${get(l, `${k}.t.${li}`)}`, p: tierFig(l, lead) }));
+    // (a WhatsApp line is plain text: the Arabic comma, and no isolate marks in it)
+    set(`${k}.wa`, (l) => plainWa(F(l).fill(take(l, 'carte.waMsg'), { s: get(l, `${k}.name`) === get(l, `${k}.t.${li}`) ? get(l, `${k}.name`) : `${get(l, `${k}.name`)}${l === 'ar' ? '، ' : ', '}${get(l, `${k}.t.${li}`)}`, p: tierFig(l, lead) })));
   }
   BUILD.tiers.forEach((x, i) => set(`carte.build.t.${i}.fig`, (l) => `${take(l, 'carte.from')} ${F(l).da(fig(x.lo, x.lo))}`));
   tagKeys('carte.build', BUILD.tiers[0], BUILD.lt, 'carte.build.tagL');
@@ -170,7 +176,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
     set(`${k}.fig`, (l) => F(l).da(f.price));
     set(`${k}.from`, (l) => F(l).grp(f.price.lo));
     set(`${k}.save`, (l) => F(l).fill(take(l, 'carte.form.save'), { p: F(l).iso(F(l).da(fig(f.saving, f.saving))) }));
-    set(`${k}.wa`, (l) => F(l).fill(take(l, 'carte.waMsg'), { s: get(l, `${k}.name`), p: `${take(l, 'carte.from')} ${F(l).da(fig(f.price.lo, f.price.lo))}` }));
+    set(`${k}.wa`, (l) => plainWa(F(l).fill(take(l, 'carte.waMsg'), { s: get(l, `${k}.name`), p: `${take(l, 'carte.from')} ${F(l).da(fig(f.price.lo, f.price.lo))}` })));
   }
   tmpl.add('carte.waMsg'); tmpl.add('carte.from');
 
@@ -355,7 +361,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
         <span class="tag__stamp">印</span>
       </div>`;
   const cap = (kind, who, link = '') => `<div class="cc__cap"><span class="cc__capk" data-i18n="${kind}"></span><b class="cc__capw" data-i18n="${who}"></b>${link}</div>`;
-  const rowsOf = (k, tiers, c = {}) => tiers.map((x, i) => `<tr${x.lead ? ' class="is-lead"' : ''}><td>${x.lead ? '<span aria-hidden="true">★ </span>' : ''}${x.lead && c.leadPick ? `<a class="tt__go" href="#pricing" data-est-go="${c.est[0]}" data-est-size="${c.est[1]}" data-est-pick="${c.leadPick}"><span data-i18n="${k}.t.${i}"></span></a>` : `<span data-i18n="${k}.t.${i}"></span>`}${x.lead ? ' <span class="st-sr" data-i18n="carte.leadSr"></span>' : ''}</td><td><bdi dir="ltr" ${hook(x)} data-i18n="${k}.t.${i}.fig"></bdi></td></tr>`).join('');
+  const rowsOf = (k, tiers, c = {}) => tiers.map((x, i) => `<tr${x.lead ? ' class="is-lead"' : ''}><td>${x.lead ? '<span aria-hidden="true">★ </span>' : ''}${x.lead && c.leadPick ? `<a class="tt__go" href="#pricing" data-est-go="${c.est[0]}" data-est-size="${c.est[1]}" data-est-pick="${c.leadPick}"><span data-i18n="${k}.t.${i}"></span></a>` : `<span data-i18n="${k}.t.${i}"></span>`}${x.lead ? ' <span class="st-sr" data-i18n="carte.leadSr"></span>' : ''}</td><td><bdi ${hook(x)} data-i18n="${k}.t.${i}.fig"></bdi></td></tr>`).join('');
   const card = (c, i) => {
     const st = `--i:${Math.min(i, 3)}`;
     if (c.blanche) return `<article class="cc cc--blanche" style="${st}" aria-labelledby="cc-blanche-h">
@@ -380,7 +386,7 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
       ${cap('carte.build.capK', 'carte.build.capW')}
       <div class="cc__head"><h5 class="cc__n" id="cc-build-h" data-i18n="carte.build.name"></h5><p class="cc__p" data-i18n="carte.build.pr"></p></div>
       <ul class="cc__gets"></ul>
-      <div class="cc__tiers"><table class="tt"><caption class="st-sr" data-i18n="carte.tiersCap"></caption><tbody>${BUILD.tiers.map((x, j) => `<tr${x.lead ? ' class="is-lead"' : ''}><td data-i18n="carte.build.t.${j}"></td><td><bdi dir="ltr" ${hook(x)} data-i18n="carte.build.t.${j}.fig"></bdi></td></tr>`).join('')}</tbody></table></div>
+      <div class="cc__tiers"><table class="tt"><caption class="st-sr" data-i18n="carte.tiersCap"></caption><tbody>${BUILD.tiers.map((x, j) => `<tr${x.lead ? ' class="is-lead"' : ''}><td data-i18n="carte.build.t.${j}"></td><td><bdi ${hook(x)} data-i18n="carte.build.t.${j}.fig"></bdi></td></tr>`).join('')}</tbody></table></div>
       <div class="cc__foot"><a class="st-btn st-btn--primary" href="#pricing" data-est-go="vitrine" data-est-size="5" data-i18n="carte.est"></a></div>
     </article>`;
     const k = `carte.items.${c.id}`, lead = leadOf(c);
@@ -394,7 +400,9 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
       `<p class="cc__mk"><span data-i18n="${k}.mk"></span> <a href="#carte-src-${c.srcN}" class="cc__ref" data-i18n-aria="carte.items.${c.id}.refA" dir="ltr">${c.srcN}</a></p>`,
     ].join('');
     const primary = c.cta === 'est'
-      ? `<a class="st-btn st-btn--primary" href="#pricing" data-est-go="${c.est[0]}" data-est-size="${c.est[1]}" data-i18n="carte.est"></a>`
+      // the card's main button opens the console on what its tag shows: the lead tier's pick too (rev2: the tag said
+      // « Identité + charte » and the button opened the identity alone)
+      ? `<a class="st-btn st-btn--primary" href="#pricing" data-est-go="${c.est[0]}" data-est-size="${c.est[1]}"${c.leadPick ? ` data-est-pick="${c.leadPick}"` : ''} data-i18n="carte.est"></a>`
       : waBtn(`${k}.wa`);
     const sec = c.proof ? `<a class="cc__sec" href="${c.proof}" data-i18n="${c.proofK || 'carte.work'}"></a>` : '';
     const anchors = (c.anchors || []).map((a) => `<span id="${a}" class="cc__anchor"></span>`).join('');
@@ -434,9 +442,9 @@ export function carte({ ESTIMATE, PRICES, DICT, LANGS, fail, esc, attr, HUB }) {
       <div class="fm__strip" aria-hidden="true">${f.strip.map(strip).join('')}</div>
       <div class="fm__p"><span data-i18n="carte.form.price"></span><b><span class="fm__from" data-i18n="carte.from"></span> <bdi dir="ltr" ${hook(f.price)} data-i18n="${k}.from"></bdi> <small data-i18n="pricing.cur"></small></b></div>
       <p class="fm__save" data-price="calc:${f.id}-saving" data-lo="${f.saving}" data-hi="${f.saving}" data-i18n="${k}.save"></p>
-      <table class="tt fm__t"><caption class="st-sr" data-i18n="carte.tiersCap"></caption><tbody>${f.lines.map((x, i) => `<tr><td data-i18n="${k}.l.${i}"></td><td><bdi dir="ltr" ${hook(x)} data-i18n="${k}.l.${i}.fig"></bdi></td></tr>`).join('')}
-        <tr class="fm__sum"><td data-i18n="carte.form.alc"></td><td><s><bdi dir="ltr" data-sum="${f.sum.src}" data-lo="${f.sum.lo}" data-hi="${f.sum.hi}" data-i18n="${k}.sum"></bdi></s></td></tr>
-        <tr class="fm__sum fm__sum--f"><td data-i18n="carte.form.price"></td><td><bdi dir="ltr" ${hook(f.price)} data-i18n="${k}.fig"></bdi></td></tr></tbody></table>
+      <table class="tt fm__t"><caption class="st-sr" data-i18n="carte.tiersCap"></caption><tbody>${f.lines.map((x, i) => `<tr><td data-i18n="${k}.l.${i}"></td><td><bdi ${hook(x)} data-i18n="${k}.l.${i}.fig"></bdi></td></tr>`).join('')}
+        <tr class="fm__sum"><td data-i18n="carte.form.alc"></td><td><s><bdi data-sum="${f.sum.src}" data-lo="${f.sum.lo}" data-hi="${f.sum.hi}" data-i18n="${k}.sum"></bdi></s></td></tr>
+        <tr class="fm__sum fm__sum--f"><td data-i18n="carte.form.price"></td><td><bdi ${hook(f.price)} data-i18n="${k}.fig"></bdi></td></tr></tbody></table>
       ${f.price.lo >= MID[0] && f.price.lo <= MID[1] ? '<p class="cc__mid" data-i18n="carte.mid"></p>' : ''}
       ${waBtn(`${k}.wa`, 'st-btn st-btn--ghost', 'carte.form.cta')}
     </article>`;

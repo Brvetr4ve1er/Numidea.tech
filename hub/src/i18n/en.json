@@ -1048,7 +1048,7 @@
     "reel": {
       "kicker": "/ THE REEL",
       "title": "Hover over it.",
-      "lead": "Five clips. The mouse or a finger starts them, and they stop when you leave.",
+      "lead": "Four clips. The mouse or a finger starts them, and they stop when you leave.",
       "play": "Play the clip:",
       "aria": "The clips",
       "price": "Price an animation →"
@@ -1554,7 +1554,7 @@
           },
           {
             "k": "The video call",
-            "v": "A one-to-one call needs little. Zoom recommends 600 kbps each way for high-quality video, and 1.2 Mbps for 720p. Google Meet counts up to 1.7 Mbps per participant at 720p, and lowers the definition when bandwidth is short. These are the vendors’ own figures: test your connection before the call, not during it."
+            "v": "A one-to-one call needs little. Zoom recommends 600 kbps each way for high-quality video, and 1.2 Mbps for 720p; on a group call, 1 Mbps up and 600 kbps down, and at 720p 2.6 Mbps up and 1.8 Mbps down. Google Meet counts up to 1.7 Mbps per participant at 720p, and lowers the definition when bandwidth is short. These are the vendors’ own figures: test your connection before the call, not during it."
           },
           {
             "k": "The backup connection",
@@ -3175,7 +3175,7 @@
     },
     "src": {
       "title": "The course’s sources",
-      "note": "The legal facts come from the texts and the regulators (the Algerian Official Journal, the European authorities, ESMA, the AMF, VARA, ADGM, the CFTC, the SEC, Wyoming’s laws); the six-question flowchart and the wallets from NIST; the standards from the texts themselves (NIST FIPS, BIP, EIP and ERC, W3C); the scams from the FTC, the SEC, the FBI, Europol and the European authorities; the technical words from ethereum.org, a community documentation site, and from each cited tool’s own documentation. Tools and chains are named as examples, never as recommendations. The ordinary routes, the “to plan for” lists, the questions for the provider and user support are our studio’s view; the “minimum on the chain” rule is ours. Nothing here is legal advice or investment advice."
+      "note": "The legal facts come from the texts and the regulators (the Algerian Official Journal, the European authorities, ESMA, the AMF, VARA, ADGM, the SEC); the six-question flowchart and the wallets from NIST; the scams from the FTC, the SEC, the FBI, Europol and the European authorities; the technical words from ethereum.org, a community documentation site. Tools and chains are named as examples, never as recommendations. The ordinary routes, the “to plan for” lists, the questions for the provider and user support are our studio’s view; the “minimum on the chain” rule is ours. Nothing here is legal advice or investment advice."
     },
     "acts": [
       "1–2 · SORTING",
@@ -4425,55 +4425,55 @@
             "rule": "A logo is a sign: the brand, the identity and their rules are decided before it.",
             "handoff": "Nadia knows what she has: a logo, nothing else. Now: who is she remaking it for?",
             "decision": "A logo alone is a sign; the rest is decided first.",
-            "keep": "The “undefined” box"
+            "keep": "The “Layers” box"
           },
           "b2": {
             "rule": "A design route is judged against the person in the brief, not by taste.",
             "handoff": "Her customer has a face; now she needs a promise that customer can check.",
             "decision": "Pick the route that speaks to the person in my brief.",
-            "keep": "The “undefined” box"
+            "keep": "The “Audience” box"
           },
           "b3": {
             "rule": "A promise counts if a customer can check it: a deadline, a fact, a proof.",
             "handoff": "The promise holds; now to tell the designer what people should feel.",
             "decision": "A promise that can be checked, with its proof.",
-            "keep": "The “undefined” box"
+            "keep": "The “Promise” box"
           },
           "b4": {
             "rule": "Tell the designer the goal, what people should feel; the designer chooses the means.",
             "handoff": "The character is said; Nadia now tries her logo in a browser tab.",
             "decision": "Say what people should feel, not the colour or the typeface.",
-            "keep": "The “undefined” box"
+            "keep": "The “Character” box"
           },
           "b9": {
             "rule": "A brand is a family: the small version is drawn, not shrunk.",
             "handoff": "The logo will be remade, with a compact version; the printer already wants the file for the banner.",
             "decision": "A compact version in solid shapes, seen at 16 pixels.",
-            "keep": "The “undefined” box"
+            "keep": "The “Small sizes” box"
           },
           "b5": {
             "rule": "To print large you need the vector file: it stays sharp at every size.",
             "handoff": "She knows which files to ask for; a proposal arrives, “all included”.",
             "decision": "Ask for the vector file (SVG or PDF) and the versions.",
-            "keep": "The “undefined” box"
+            "keep": "The “Files” box"
           },
           "b6": {
             "rule": "“All included” can only be checked against a written list of what is delivered.",
             "handoff": "The proposal is read; the name is left, and who owns it.",
             "decision": "Ask in writing for the list of what is delivered.",
-            "keep": "The “undefined” box"
+            "keep": "The “Proposal” box"
           },
           "b7": {
             "rule": "A paid-for logo is not a registered trademark: registration is separate, country by country.",
             "handoff": "The name has its country of registration; now everything comes together on the brief.",
             "decision": "Register the name with INAPI for Algeria.",
-            "keep": "The “undefined” box"
+            "keep": "The “Name” box"
           },
           "b8": {
             "rule": "Before the first call: the brief filled in, and one person who decides.",
             "handoff": "Nadia’s brief is ready to go, whenever she wants.",
             "decision": "Keep the brief at hand, and one person who decides.",
-            "keep": "The “undefined” box"
+            "keep": "The “Brief” box"
           }
         },
         "caseLabel": "At Pâtisserie Hodna · an invented example"
@@ -4840,49 +4840,50 @@
             "rule": "Signing means agreeing: you do not sign what you do not understand.",
             "handoff": "Samia has written her idea without jargon; now: does she need a chain?",
             "decision": "Do not sign until I know what it authorises.",
-            "keep": "The “undefined” box"
+            "keep": "The “Words” box"
           },
           "w2": {
             "rule": "If only one party writes to the register, a database is enough.",
             "handoff": "No chain; now to say what she really wants.",
             "decision": "One writer: a database.",
-            "keep": "The “undefined” box"
+            "keep": "The “Chain?” box"
           },
           "w3": {
             "rule": "Start from the result you want, then take the simplest route that gets there.",
             "handoff": "The route is chosen; now to see what would go on a chain, and what stays with her.",
             "decision": "Points in a database, not a token.",
-            "keep": "The “undefined” box"
+            "keep": "The “Need” box"
           },
           "w8": {
             "rule": "The hash says “sent”; only the receipt says whether it worked.",
             "handoff": "Her members’ data stays in her database; now to count what is paid for afterwards.",
             "decision": "Wait for the receipt, not just the hash.",
-            "keep": "The “undefined” box"
+            "keep": "The “Chain and database” box",
+            "foldNote": "exercise folded: your route is the ordinary one, with no chain"
           },
           "w4": {
             "rule": "A complete proposal also shows what is paid for after launch.",
             "handoff": "The after-launch lines are noted; the supplier comes back by private message.",
             "decision": "Ask for the after-launch lines, even without figures.",
-            "keep": "The “undefined” box"
+            "keep": "The “Costs” box"
           },
           "w5": {
             "rule": "A completed transaction cannot be called back: urgency and a look-alike link are the signs.",
             "handoff": "Samia did not click; the law is left, where her members are.",
             "decision": "Do not click: a completed transaction does not come back.",
-            "keep": "The “undefined” box"
+            "keep": "The “Scams” box"
           },
           "w6": {
             "rule": "The law that counts is the law where your users are: in Dubai, VARA.",
             "handoff": "The law card is read; everything comes together on the brief.",
             "decision": "For a token in Dubai: a VARA-licensed provider, or its consent.",
-            "keep": "The “undefined” box"
+            "keep": "The “Law” box"
           },
           "w7": {
             "rule": "The law first, the code second.",
             "handoff": "Samia’s brief is ready to go, whenever she wants.",
             "decision": "Have the law of the users’ countries checked before paying for development.",
-            "keep": "The “undefined” box"
+            "keep": "The “Brief” box"
           }
         },
         "caseLabel": "At Samia’s gym · an invented example"
