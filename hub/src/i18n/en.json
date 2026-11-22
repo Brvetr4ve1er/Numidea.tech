@@ -4548,7 +4548,7 @@
             "f": {
               "0": "He will pay, but in two months. Until then you have to last: the client’s delay becomes your cash need.",
               "1": "Yes. The client’s payment delay becomes your need for cash.",
-              "2": "One more expense shortens your cash runway. Before saying yes, keep enough to last at least those two months."
+              "2": "One more expense eats into your cash cushion. Before saying yes, keep enough to last at least those two months."
             },
             "handoff": "The books in order, a message from “support” lands in her inbox.",
             "decision": "The client’s delay becomes my cash need.",

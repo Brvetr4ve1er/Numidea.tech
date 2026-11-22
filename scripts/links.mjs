@@ -86,6 +86,8 @@ const BLOCKS = {
   'clutch.co/': 'Cloudflare challenge: 403 "Just a moment…" (cf-mitigated: challenge)',
   '*.tumblr.com/': '403 "Checking your browser…", a JavaScript check in front of every blog',
   'www.ftc.gov/': 'answers 404 to this script for every page, its home page too (seen 2026-11-16): a wall, not a missing page',
+  'consumer.ftc.gov/': 'the same wall as www.ftc.gov: 404 to this script for every page, its home page too (seen 2026-11-22)',
+  'www.legifrance.gouv.fr/': 'answers 403 to scripts (seen 2026-11-21 and 2026-11-22, from two runs): a wall, not a missing page',
   'www.sec.gov/': 'answers 403 to a client that does not declare a contact in its user agent (the SEC’s fair-access rule)',
   'www.bank-of-algeria.dz/': 'serves its certificate without the DigiCert intermediate: browsers complete the chain, Node and curl refuse it ("unable to verify the first certificate")',
 };
