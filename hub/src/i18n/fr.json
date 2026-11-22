@@ -7342,6 +7342,163 @@
       "desc": "Le manuel de Numidea Labs a déménagé : ses cours sont maintenant les atlas de la Librairie Lanterne. Vous y êtes conduit.",
       "t": "Le manuel a déménagé : ses cours sont maintenant les atlas de la Librairie Lanterne.",
       "go": "Entrer dans la Librairie"
+    },
+    "tools": {
+      "title": "La boîte à outils · Librairie Lanterne | Numidea Labs",
+      "desc": "Les services dont parlent nos atlas : à quoi ils servent, pour qui, ce qu’il faut vérifier, l’option gratuite. Les liens partenaires sont marqués.",
+      "kicker": "/ OUTILS · LA BOÎTE",
+      "h1a": "La boîte",
+      "h1b": "à outils.",
+      "mast": "La boîte à outils",
+      "lead": "Les services dont parlent nos atlas, au même endroit : à quoi ils servent, pour qui, ce qu’il faut vérifier avant, et l’option gratuite quand il y en a une.",
+      "nav": {
+        "disc": "Transparence",
+        "how": "Comment on choisit",
+        "cats": "Les rayons",
+        "menu": "Menu de la boîte à outils"
+      },
+      "disc": {
+        "k": "Publicité · liens partenaires :",
+        "t": "Si un lien devient un jour un lien partenaire, son bouton portera l’étiquette « Publicité · lien partenaire » : si vous ouvrez un compte par ce lien, le service pourra nous verser une commission. Vérifiez toujours le prix et les conditions sur le site du service.",
+        "none": "tous les boutons et les liens de cette page mènent à l’adresse officielle du service, et aucun ne nous rapporte quoi que ce soit.",
+        "noneK": "Aucun lien partenaire pour l’instant :",
+        "some": "les boutons marqués « Publicité · lien partenaire » passent par nos liens partenaires ; si vous ouvrez un compte par l’un d’eux, le service peut nous verser une commission. Les liens sans étiquette ne nous rapportent rien. Vérifiez le prix sur le site du service."
+      },
+      "tag": "Publicité · lien partenaire",
+      "hideNote": "Lien partenaire indisponible dans votre région",
+      "go": "Aller sur",
+      "f": {
+        "who": "Pour qui",
+        "check": "À vérifier d’abord",
+        "free": "L’option gratuite",
+        "risk": "Risque",
+        "alt": "L’autre voie, sans lien partenaire"
+      },
+      "cat": {
+        "pay": "Se faire payer, la banque",
+        "crypto": "Crypto-actifs",
+        "site": "Un site et son adresse",
+        "design": "Design",
+        "secu": "Sécurité",
+        "travel": "Voyage et vie nomade",
+        "learn": "Apprendre",
+        "cryptoNote": "Ces trois cartes sont là pour comprendre et vérifier, pas pour s’inscrire : commencez par la leçon gratuite. Un lien partenaire y porterait toujours l’étiquette « Publicité · lien partenaire » ; il est masqué, selon le fuseau horaire de votre appareil, dans les régions que le service exclut.",
+        "siteNote": "Un nom de domaine à vous se paie en général ; le DNS et certains hébergements peuvent être gratuits. Pour vendre en ligne depuis l’Algérie, la loi 18-05 demande un site en « .com.dz » hébergé en Algérie."
+      },
+      "app": {
+        "wise": {
+          "desc": "Envoyer de l’argent à l’étranger et, selon le pays où vous vivez, garder un solde en plusieurs devises.",
+          "who": "La diaspora et le Golfe. Un résident d’Algérie ne peut pas y garder d’argent : l’Algérie n’est pas sur la liste de Wise. Envoyé vers l’Algérie, l’argent arrive en dinars.",
+          "check": "Le prix de l’envoi vers votre pays : pour les devises peu courantes, Wise le calcule au cas par cas."
+        },
+        "revolut": {
+          "desc": "Un compte en ligne et sa carte.",
+          "who": "Les résidents des pays où Revolut ouvre des comptes. Pour un résident d’Algérie, ce n’est pas confirmé : vérifiez avant.",
+          "check": "Les frais de votre formule, et que Revolut ouvre bien des comptes dans votre pays de résidence.",
+          "hide": "Lien partenaire indisponible dans votre région : l’ouverture d’un compte pour un résident d’Algérie n’est pas confirmée."
+        },
+        "paypal": {
+          "desc": "Payer en ligne, et recevoir de l’argent là où votre compte le permet.",
+          "who": "Ce qu’un compte peut faire dépend du pays. En Algérie, PayPal publie des frais de retrait ; vérifiez dans votre propre compte si vous pouvez recevoir, pas seulement envoyer.",
+          "check": "Les frais de réception et de conversion, et le chemin du retrait vers votre banque."
+        },
+        "payoneer": {
+          "desc": "Recevoir l’argent de clients et de plateformes à l’étranger.",
+          "who": "Les freelances. Payoneer ne nomme l’Algérie sur aucune des pages que nous avons lues : vérifiez à l’inscription, avec une adresse en Algérie, avant de compter dessus.",
+          "check": "Ses frais publiés : 29,95 USD par an si vous recevez moins de 6 000 USD en 12 mois, et de 1,2 % à 4 % au retrait vers une banque."
+        },
+        "binance": {
+          "desc": "Une plateforme d’échange de crypto-actifs.",
+          "who": "Pas pour l’UE, l’EEE, le Royaume-Uni, les États-Unis, Singapour ni Hong Kong : Binance interdit d’y faire sa promotion. Sa liste de pays interdits n’a pas pu être lue : vérifiez-la.",
+          "check": "Sa liste de pays interdits et la loi de votre pays, avant tout dépôt."
+        },
+        "bybit": {
+          "desc": "Une plateforme d’échange de crypto-actifs.",
+          "who": "Bybit exclut notamment les États-Unis, la Chine continentale, Hong Kong, Singapour, le Canada, l’Iran et la Corée du Nord ; ses conditions du 16 octobre 2026 ajoutent l’Australie et la France.",
+          "check": "Sa page « Service Restricted Countries » et la loi de votre pays, avant tout dépôt."
+        },
+        "redotpay": {
+          "desc": "Une application de paiement et sa carte, liées aux crypto-actifs.",
+          "who": "RedotPay publie ses restrictions : pas d’accès depuis certains pays (la Libye, par exemple), pas de carte émise au Maroc, en Turquie, en Inde ni en Indonésie, pas de livraison en Égypte, au Maroc ni en Tunisie.",
+          "check": "Ses listes de restrictions (accès, émission et livraison de la carte) et la loi de votre pays."
+        },
+        "hostinger": {
+          "desc": "Un hébergeur web qui vend aussi des noms de domaine.",
+          "who": "La diaspora et le Golfe ; depuis l’Algérie, le paiement par carte n’est pas vérifié.",
+          "check": "Le prix au renouvellement, pas seulement celui de la première période."
+        },
+        "namecheap": {
+          "desc": "Un registraire de noms de domaine.",
+          "who": "La diaspora et le Golfe ; depuis l’Algérie, ce n’est pas vérifié.",
+          "check": "Le prix du domaine au renouvellement, pas seulement la première année."
+        },
+        "envato": {
+          "desc": "Des modèles, des images et des vidéos à télécharger, par abonnement.",
+          "who": "Les créateurs de la diaspora et du Golfe ; payer depuis l’Algérie n’est pas vérifié.",
+          "check": "La licence de chaque élément, avant de l’utiliser pour un client ou dans une vidéo publiée."
+        },
+        "proton": {
+          "desc": "Courriel, stockage et gestionnaire de mots de passe chiffrés, avec des offres gratuites.",
+          "who": "Tout le monde : il existe des offres gratuites.",
+          "check": "Ce que couvre l’offre gratuite, avant de payer."
+        },
+        "airalo": {
+          "desc": "Des eSIM de données mobiles pour voyager.",
+          "who": "Les voyageurs : résidents d’Algérie qui partent, diaspora, Golfe.",
+          "check": "Que votre téléphone accepte une eSIM, et le prix du forfait pour votre destination."
+        },
+        "safetywing": {
+          "desc": "Une assurance voyage pour les nomades.",
+          "who": "La diaspora et le Golfe ; pour un résident d’Algérie, l’éligibilité n’est pas vérifiée.",
+          "check": "Ce que la police couvre et exclut, et si elle convient à votre visa."
+        },
+        "coursera": {
+          "desc": "Des cours en ligne, des spécialisations et des certificats.",
+          "who": "Tout le monde en ligne ; payer depuis l’Algérie n’est pas vérifié.",
+          "check": "Le prix, et ce que vaut le certificat là où vous cherchez du travail, avant de vous abonner."
+        }
+      },
+      "risk": {
+        "crypto": "Pour apprendre, pas un conseil. Vous pouvez perdre tout ce que vous y mettez. Vérifiez la loi là où vous vivez : en Algérie, la loi 25-10 de juillet 2025 interdit d’acheter, de détenir, d’utiliser et de promouvoir les crypto-actifs."
+      },
+      "free": {
+        "bank": "Pour un résident d’Algérie : un compte en devises dans votre banque, avec la déclaration de projet faite avant d’être payé. C’est la voie officielle ; demandez à la banque ce que coûte un virement reçu.",
+        "web3": "Apprendre sans ouvrir de compte :",
+        "githubPages": "pour héberger un site statique",
+        "cloudflare": "pour le DNS, avec une offre gratuite",
+        "canva": "son offre gratuite, avec vos propres photos",
+        "bitwarden": "son offre gratuite, ou le gestionnaire de mots de passe de votre téléphone",
+        "sim": "Une carte SIM locale à l’arrivée.",
+        "insurer": "L’assureur que votre banque ou votre consulat indique pour le visa.",
+        "duolingo": "gratuit, pour apprendre une langue"
+      },
+      "how": {
+        "h": "Comment on choisit",
+        "t": "On ne met ici que des services dont on a lu les pages officielles, sauf mention contraire sur la carte (« Pages officielles non lues »). Chaque carte dit pour qui c’est, ce qu’il faut vérifier, et quand et où nous avons lu ses conditions. Elle donne d’abord l’option sans lien partenaire, gratuite quand il y en a une. Dans chaque rayon, l’ordre est alphabétique : il ne dépend jamais de ce qu’un lien rapporte."
+      },
+      "legal": "Ceci n’est pas un conseil financier. Les conditions changent : vérifiez-les chez le fournisseur. Chaque carte dit le jour et la page où nous les avons lues.",
+      "in": {
+        "k": "La boîte à outils",
+        "pay": "Les services pour se faire payer, avec leurs limites pays par pays →",
+        "bank": "Les comptes en ligne, et ce qu’il faut vérifier avant d’en ouvrir un →",
+        "n5": "Les eSIM de données, dans la boîte à outils →",
+        "n8": "L’assurance voyage, dans la boîte à outils →",
+        "w3": "Voir la boîte à outils (avec ses avertissements) →"
+      },
+      "shelf": {
+        "k": "La boîte à outils",
+        "t": "Les services dont parlent les atlas, au même endroit, chacun avec son option gratuite. Les liens partenaires y sont marqués.",
+        "go": "Ouvrir la boîte à outils"
+      },
+      "official": "Site officiel :",
+      "read": "Conditions lues le",
+      "readAt": "sur",
+      "on": {
+        "d20261121": "21 nov. 2026"
+      },
+      "unreadK": "Pages officielles non lues : tout ce qui suit reste à vérifier.",
+      "unread": "Conditions non lues : le site n’a pas laissé lire ses pages.",
+      "noProg": "Pas de programme partenaire : ce lien reste un lien simple, il ne nous rapporte rien."
     }
   }
 }

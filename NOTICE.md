@@ -126,6 +126,16 @@ Since the Librairie of 2026-11-21 the nine module headers and `web3x.js` sit, un
 
 `hub/img/lanterne/` holds the owner's own Field Atlas, as he drew and composed it (`plates/` home, fields, audience, identity, architecture, launch, growth, observer, wire, ash; `keys/bookstall.webp`; the five cut-outs in `cast/`; the seven objects in `props/`), and fourteen pictures made for the site in November 2026 in his screenprint family, like the course art above: thirteen act plates (`plates/argent-*`, `marque-*`, `web3-*`, `route-*`, `jeu-*`, with their `-600` twins) and the shelf's night key art (`keys/lanterne-nuit*.webp`, drawn on model from the character bible). The fourteen carry no lettering (the owner's plates keep their drawn words). The same "no licence chosen yet" note as above applies.
 
+## Names of the apps in « La boîte à outils » — their owners' trademarks (2026-11-22)
+
+`hub/lanterne/outils.html` names fourteen services (Airalo, Binance, Bybit, Coursera, Envato, Hostinger, Namecheap,
+Payoneer, PayPal, Proton, RedotPay, Revolut, SafetyWing, Wise) and, as free options, GitHub Pages, Cloudflare, Canva,
+Bitwarden and Duolingo. These names are trademarks of their owners, used only to name their services; CC0 grants
+nothing over them. **No brand artwork is used**: no logo, icon or screenshot is copied into the repository and no
+brand colour is used; each card's tile is the name set as text in the site's own face (Archivo, OFL, above), its coloured
+foot the colour of its shelf. Naming a service is
+not an endorsement by its owner, and the page discloses which buttons are partner links.
+
 ## Third-party skills — `.claude/skills/`
 
 Tooling for the studio's creative work, never deployed (`NOT_DEPLOYED` in

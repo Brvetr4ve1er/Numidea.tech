@@ -682,10 +682,38 @@
     });
   }
 
+  /* ================= la boîte à outils (2026-11-22) =================
+     The markup's links are the apps' plain addresses. An app whose partner link is set (DATA.tools, from apps.json) gets it on
+     its logo and button, rel="sponsored noopener", the tag shown and the partner's host next to the button (the visible
+     destination matches the link), unless the France gate is still closed (DATA.p2: a visitor reading in French or in a
+     French time zone, PLAN.md P2), or the visitor's time zone (read here, never sent) is one its programme excludes, or
+     cannot be read: then the plain link stays (with its one-line note for a region). The disclosure swaps to its
+     « partner links » state only once one is on. */
+  function tools() {
+    var tz = '', on = 0;
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var inZone = function (list) { return list.some(function (z) { return z.slice(-1) === '/' ? tz.indexOf(z) === 0 : tz === z; }); };
+    var gate = !!DATA.p2 && (DATA.p2.lang.indexOf(lang) > -1 || inZone(DATA.p2.tz));
+    DATA.tools.forEach(function (a) {
+      var card = $('[data-tl-app="' + a.id + '"]');
+      if (gate || !card || a.ref.indexOf('https://') !== 0) return;
+      if (a.hide.length && (!tz || inZone(a.hide))) { $('[data-tl-note]', card).hidden = false; return; }
+      var u = a.ref, x = null;
+      try { x = new URL(u); if (a.sub) { x.searchParams.set(a.sub, 'outils-' + a.id + '-' + lang); u = x.href; } } catch (e) {}
+      $$('[data-tl-go]', card).forEach(function (l) { l.href = u; l.rel = 'sponsored noopener'; });
+      $$('[data-tl-tag]', card).forEach(function (n) { n.hidden = false; });
+      if (x) $$('.tl-host', card).forEach(function (n) { n.textContent = x.host.replace(/^www\./, ''); });
+      $$('.tl-act__k', card).forEach(function (n) { n.hidden = true; });   /* « Site officiel : » no longer says where it goes */
+      on++;
+    });
+    $$('[data-tl-none]').forEach(function (n) { n.hidden = on > 0; });
+    $$('[data-tl-some]').forEach(function (n) { n.hidden = on === 0; });
+  }
+
   ready(function () {
     rules = new Intl.PluralRules(lang);
     langLinks(); chrome();
-    if (DATA.books) shelf(); else atlas();
+    if (DATA.tools) tools(); else if (DATA.books) shelf(); else atlas();
     root.setAttribute('data-lt-ready', lang);
   });
 })();

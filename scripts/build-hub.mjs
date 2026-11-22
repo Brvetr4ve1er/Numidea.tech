@@ -480,6 +480,9 @@ function rules(html, dir = HUB) {
 const localFile = (u) => { const p = u.split(/[?#]/)[0]; return p ? join(dir, decodeURI(p)) : null; };
 const gen = (v) => { const p = v.split(/[?#]/)[0]; return GENERATED.has(relative(HUB, join(dir, p.endsWith('/') || p === '' ? p + 'index.html' : p)).replace(/\\/g, '/')); };
 const refHrefs = new Set([...html.matchAll(/<a\b[^>]*\sdata-ref\s[^>]*\bhref="([^"]+)"/g)].map((m) => m[1]));
+// the toolbox's links (hub/lanterne/outils.html, 2026-11-22): an <a data-app> to an app's or a free option's plain official
+// address, from hub/src/lanterne/apps.json (never a partner link: hub/lanterne.js puts those on, after its region check)
+const appHrefs = new Set([...html.matchAll(/<a\b[^>]*>/g)].filter((m) => /\sdata-app[\s>]/.test(m[0])).map((m) => (/\shref="([^"]+)"/.exec(m[0]) || [])[1]).filter(Boolean));
 html = html.replace(/<img\b([^>]*)>/g, (all, a) => {
   const src = (/\ssrc="([^"]+)"/.exec(a) || [])[1];
   if (!src) { fail(`<img${a.slice(0, 60)}>: no src`); return all; }
@@ -512,6 +515,7 @@ for (const m of html.matchAll(/\s(src|srcset|href|data-zoom|data-anim|poster)="(
     const host = new URL(v).host;
     if (a !== 'href') fail(`${a}="${v}": a third-party request`);
     else if (REF_HOSTS.has(host) && refHrefs.has(v)) continue;   // a source in a reference list
+    else if (LANT && LANT.appHosts.has(host) && appHrefs.has(v)) continue;   // an app's official address, in the toolbox
     else if (!ALLOW.has(host)) fail(`href="${v}": ${host} is not on the allow-list (the home's client sites, wa.me, Behance, DeviantArt, Instagram)`);
     continue;
   }

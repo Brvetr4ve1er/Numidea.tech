@@ -7341,6 +7341,163 @@
       "desc": "The Numidea Labs manual has moved: its courses are now the atlases of the Lantern Bookshop. You are being taken there.",
       "t": "The manual has moved: its courses are now the atlases of the Lantern Bookshop.",
       "go": "Enter the Bookshop"
+    },
+    "tools": {
+      "title": "The toolbox · Lantern Bookshop | Numidea Labs",
+      "desc": "The services our atlases mention: what they do, who they are for, what to check, the free option. Partner links are marked.",
+      "kicker": "/ TOOLS · THE BOX",
+      "h1a": "The",
+      "h1b": "toolbox.",
+      "mast": "The toolbox",
+      "lead": "The services our atlases mention, in one place: what they are for, who they are for, what to check first, and the free option when there is one.",
+      "nav": {
+        "disc": "Disclosure",
+        "how": "How we choose",
+        "cats": "The shelves",
+        "menu": "Toolbox menu"
+      },
+      "disc": {
+        "k": "Ad · partner links:",
+        "t": "If a link ever becomes a partner link, its button will carry the tag “Ad · partner link”: if you open an account through it, the service may pay us a commission. Always check the price and terms on the service’s own site.",
+        "none": "every button and link on this page goes to the service’s official address, and none of them earns us anything.",
+        "noneK": "No partner links for now:",
+        "some": "buttons tagged “Ad · partner link” go through our partner links; if you open an account through one, the service may pay us a commission. Links without a tag earn us nothing. Check the price on the service’s own site."
+      },
+      "tag": "Ad · partner link",
+      "hideNote": "Partner link unavailable in your region",
+      "go": "Go to",
+      "f": {
+        "who": "Who it is for",
+        "check": "Check first",
+        "free": "The free option",
+        "risk": "Risk",
+        "alt": "The other route, no partner link"
+      },
+      "cat": {
+        "pay": "Getting paid, banking",
+        "crypto": "Crypto-assets",
+        "site": "A site and its address",
+        "design": "Design",
+        "secu": "Security",
+        "travel": "Travel and nomad life",
+        "learn": "Learning",
+        "cryptoNote": "These three cards are here to understand and check, not to sign up: start with the free lesson. A partner link here would always carry the tag “Ad · partner link”; it is hidden, based on your device’s time zone, in the regions the service excludes.",
+        "siteNote": "A domain name of your own usually costs money; DNS and some hosting can be free. To sell online from Algeria, law 18-05 asks for a “.com.dz” site hosted in Algeria."
+      },
+      "app": {
+        "wise": {
+          "desc": "Send money abroad and, depending on where you live, hold a balance in several currencies.",
+          "who": "The diaspora and the Gulf. An Algeria resident cannot hold money there: Algeria is not on Wise’s list. Sent to Algeria, the money arrives in dinars.",
+          "check": "The price of sending to your country: for less common currencies, Wise sets it case by case."
+        },
+        "revolut": {
+          "desc": "An online account and its card.",
+          "who": "Residents of the countries where Revolut opens accounts. For an Algeria resident it is not confirmed: check first.",
+          "check": "Your plan’s fees, and that Revolut does open accounts in your country of residence.",
+          "hide": "Partner link unavailable in your region: an account for an Algeria resident is not confirmed."
+        },
+        "paypal": {
+          "desc": "Pay online, and receive money where your account allows it.",
+          "who": "What an account can do depends on the country. In Algeria, PayPal publishes withdrawal fees; check in your own account whether you can receive, not only send.",
+          "check": "The receiving and conversion fees, and the route for withdrawing to your bank."
+        },
+        "payoneer": {
+          "desc": "Receive money from clients and platforms abroad.",
+          "who": "Freelancers. Payoneer names Algeria on none of the pages we read: check at sign-up, with an Algerian address, before relying on it.",
+          "check": "Its published fees: USD 29.95 a year if you receive less than USD 6,000 in 12 months, and 1.2% to 4% to withdraw to a bank."
+        },
+        "binance": {
+          "desc": "A crypto-asset exchange.",
+          "who": "Not for the EU, the EEA, the UK, the United States, Singapore or Hong Kong: Binance forbids promoting it there. Its list of prohibited countries could not be read: check it.",
+          "check": "Its list of prohibited countries and the law where you live, before any deposit."
+        },
+        "bybit": {
+          "desc": "A crypto-asset exchange.",
+          "who": "Bybit excludes, among others, the United States, mainland China, Hong Kong, Singapore, Canada, Iran and North Korea; its terms of 16 October 2026 add Australia and France.",
+          "check": "Its “Service Restricted Countries” page and the law where you live, before any deposit."
+        },
+        "redotpay": {
+          "desc": "A payment app and its card, tied to crypto-assets.",
+          "who": "RedotPay publishes its restrictions: no access from some countries (Libya, for one), no card issued in Morocco, Turkey, India or Indonesia, no delivery to Egypt, Morocco or Tunisia.",
+          "check": "Its restriction lists (access, card issuing and delivery) and the law where you live."
+        },
+        "hostinger": {
+          "desc": "A web host that also sells domain names.",
+          "who": "The diaspora and the Gulf; paying by card from Algeria is not verified.",
+          "check": "The renewal price, not only the first term’s."
+        },
+        "namecheap": {
+          "desc": "A domain name registrar.",
+          "who": "The diaspora and the Gulf; from Algeria it is not verified.",
+          "check": "The domain’s renewal price, not only the first year’s."
+        },
+        "envato": {
+          "desc": "Templates, images and videos to download, by subscription.",
+          "who": "Creators in the diaspora and the Gulf; paying from Algeria is not verified.",
+          "check": "Each item’s licence, before you use it for a client or in a published video."
+        },
+        "proton": {
+          "desc": "Encrypted email, storage and password manager, with free plans.",
+          "who": "Everyone: there are free plans.",
+          "check": "What the free plan covers, before you pay."
+        },
+        "airalo": {
+          "desc": "Mobile-data eSIMs for travelling.",
+          "who": "Travellers: Algeria residents going abroad, the diaspora, the Gulf.",
+          "check": "That your phone takes an eSIM, and the plan’s price for where you are going."
+        },
+        "safetywing": {
+          "desc": "Travel insurance for nomads.",
+          "who": "The diaspora and the Gulf; for an Algeria resident, eligibility is not verified.",
+          "check": "What the policy covers and excludes, and whether it suits your visa."
+        },
+        "coursera": {
+          "desc": "Online courses, specializations and certificates.",
+          "who": "Everyone online; paying from Algeria is not verified.",
+          "check": "The price, and what the certificate is worth where you look for work, before you subscribe."
+        }
+      },
+      "risk": {
+        "crypto": "For learning, not advice. You can lose everything you put in. Check the law where you live: in Algeria, law 25-10 of July 2025 bans buying, holding, using and promoting crypto-assets."
+      },
+      "free": {
+        "bank": "For an Algeria resident: a foreign-currency account at your bank, with the project declaration filed before you are paid. It is the official route; ask the bank what an incoming transfer costs.",
+        "web3": "Learn without opening an account:",
+        "githubPages": "to host a static site",
+        "cloudflare": "for DNS, with a free plan",
+        "canva": "its free plan, with your own photos",
+        "bitwarden": "its free plan, or your phone’s built-in password manager",
+        "sim": "A local SIM card on arrival.",
+        "insurer": "The insurer your bank or consulate lists for the visa.",
+        "duolingo": "free, to learn a language"
+      },
+      "how": {
+        "h": "How we choose",
+        "t": "We only list services whose official pages we have read, unless the card says otherwise (“Official pages not read”). Each card says who it is for, what to check, and when and where we read its terms. It gives the option without a partner link first, free when there is one. On each shelf the order is alphabetical: it never depends on what a link earns."
+      },
+      "legal": "This is not financial advice. Terms change: check them with the provider. Each card gives the day and the page where we read them.",
+      "in": {
+        "k": "The toolbox",
+        "pay": "The services for getting paid, with their limits country by country →",
+        "bank": "Online accounts, and what to check before opening one →",
+        "n5": "Data eSIMs, in the toolbox →",
+        "n8": "Travel insurance, in the toolbox →",
+        "w3": "See the toolbox (with its warnings) →"
+      },
+      "shelf": {
+        "k": "The toolbox",
+        "t": "The services the atlases mention, in one place, each with its free option. Partner links there are marked.",
+        "go": "Open the toolbox"
+      },
+      "official": "Official site:",
+      "read": "Terms read on",
+      "readAt": "at",
+      "on": {
+        "d20261121": "21 Nov 2026"
+      },
+      "unreadK": "Official pages not read: everything below is still to be checked.",
+      "unread": "Terms not read: the site would not let us read its pages.",
+      "noProg": "No partner programme: this link stays a plain link and earns us nothing."
     }
   }
 }

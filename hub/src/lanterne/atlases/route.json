@@ -142,6 +142,10 @@
         "ex.brief": "lant.ui.ex.pick.brief",
         "name": "nomade.stops.4",
         "alt": "lant.at.route.plate.r2"
+      },
+      "tools": {
+        "k": "lant.tools.in.n5",
+        "at": "tl-travel"
       }
     },
     "n6": {
@@ -202,6 +206,10 @@
         "ex.brief": "lant.ui.ex.pick.brief",
         "name": "nomade.stops.7",
         "alt": "lant.at.route.plate.r3"
+      },
+      "tools": {
+        "k": "lant.tools.in.n8",
+        "at": "tl-travel"
       }
     }
   }

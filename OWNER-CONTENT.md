@@ -737,6 +737,17 @@ an 8-bit checksum, the 24-word row of BIP-39's table, not to BIP-39 for 24 words
 Arabic side by side, are in the working list `ar-w3m.md` kept with this pass's notes. Words to confirm: المجلّد
 (volume), وحدة (module), المخطّط (the lab, « le schéma »), and سامية as in volume 1.
 
+Also written on 2026-11-22, **the toolbox** (« La boîte à outils », §46), all new, all for a native reader. In
+`hub/src/i18n/ar.json`: 95 new keys under `lant.tools.*`: the page's name « صندوق الأدوات », its title, description,
+kicker and lead, the menu and shelf names, the disclosure (`disc.k` « إعلان · روابط شركاء », `disc.t`, `disc.none`), the
+partner tag (`tag` « إعلان · رابط شريك »), the region notes (`hideNote`, `app.revolut.hide`), the crypto risk line
+(`risk.crypto`, naming law 25-10), the shelves' notes (`cat.cryptoNote`; `cat.siteNote`, naming law 18-05 and
+« .com.dz »), each app's three lines (`app.<id>.desc`, `.who`, `.check`), the free options (`free.*`), « Comment on
+choisit » (`how.*`), the legal line (`legal`, with its date) and the lines that lead to the page from the atlases and the
+shelf (`in.*`, `shelf.*`). Brand names stay in Latin letters inside `<bdi>`. The full strings, French and Arabic side
+by side, are in the working list `ar-toolbox.md` kept with this pass's notes. Points to read first: the disclosure and
+the tag (they must read clearly as advertising), the risk line and the law 25-10 and 18-05 wording.
+
 ## 8b. The Google tag and consent (2026-11-14)
 The site loads the owner's Google Tag Manager container (GTM-PMF7RWVK) on every
 page with Google Consent Mode **denied for good** and no cookie bar: Google gets
@@ -2736,3 +2747,163 @@ its square. No word changed.
 - the carnet's reward drawing: make it (75 credits budgeted in §42), or keep the carnet as it is;
 - the readings above;
 - the Arabic (§8, « Written or changed on 2026-11-22 »): none of it has been read by a native speaker.
+
+## 46. « La boîte à outils »: the Librairie's tools page, with partner buttons (2026-11-22)
+
+**What it is.** A new page of the Librairie, `hub/lanterne/outils.html` (with `?lang=en` and `?lang=ar`): « La boîte à
+outils » / "The toolbox" / « صندوق الأدوات ». It gathers the services the atlases talk about, 14 apps on seven shelves
+(Se faire payer, la banque: Payoneer, PayPal, Revolut, Wise · Crypto-actifs: Binance, Bybit, RedotPay · Un site et son
+adresse: Hostinger, Namecheap · Design: Envato · Sécurité: Proton · Voyage et vie nomade: Airalo, SafetyWing ·
+Apprendre: Coursera). Each card: the app's name as a tile (text in the Studio's face, **no brand logo or artwork**),
+what it is, who it is for, what to check first, the free option (GitHub Pages, Cloudflare, Canva's free plan, Bitwarden,
+a local SIM, the insurer your bank or consulate names, Duolingo, a foreign-currency account at your bank with the project
+declaration made before you are paid, or the web3 atlas for the crypto apps) and its button. Alphabetical within each shelf, never by what a link earns. The disclosure
+box is at the top of the page, always visible: « Publicité · liens partenaires : certains boutons de cette page passent par nos liens partenaires ; si vous ouvrez un compte avec, le service peut nous verser une commission. Le prix et les conditions sont les mêmes pour vous. Les liens sans étiquette ne nous rapportent rien. » The page ends with « Comment on
+choisit » and « Ceci n’est pas un conseil financier. Les conditions changent : vérifiez-les chez le fournisseur. Dernière vérification : 22 novembre 2026. » Ways in: the shelf's counter, every atlas's menu, and a line in the
+districts that name a kind of tool (argent: getting paid, the bank; route: eSIM, travel insurance; web3 and its modules:
+« Voir la boîte à outils (avec ses avertissements) → »). Nothing is committed or deployed yet; the cache-bust stamp
+waits for `npm run bump`.
+
+**Your decision of 2026-11-21: crypto apps with referral buttons.** You asked for Binance, Bybit and RedotPay on the
+page with referral buttons **after being told twice** that Algeria's law 25-10 (JO n°48 of 24 July 2025, art. 6 bis)
+bans buying, holding, using and promoting crypto-assets, with a penalty of 2 months to 1 year in prison and/or
+200,000 to 1,000,000 DA (art. 31 bis). This is recorded as your decision. What the page does about it: every crypto
+card always shows the risk line « Pour apprendre, pas un conseil. Vous pouvez perdre tout ce que vous y mettez. Vérifiez la loi là où vous vivez : en Algérie, la loi 25-10 de juillet 2025 interdit d’acheter, de détenir, d’utiliser et de promouvoir les crypto-actifs. », and the crypto shelf says where its partner links are never shown. **As you
+decided, the crypto partner links are not hidden from visitors in Algeria**; hiding them there is one line per app
+(`"Africa/Algiers"` in its `hideTz`) if you change your mind.
+
+**The region rule.** The page's links are always the plain official address. A partner link is put on by the page's
+script only after it reads the visitor's time zone on the device (nothing is sent). Binance, Bybit and RedotPay never
+show their partner link in Europe, the Americas, the Atlantic zones (Iceland included), Singapore, Hong Kong, Cyprus,
+the French overseas zones, an unknown zone (UTC) or the countries each programme excludes; there the visitor gets the
+plain link and « Lien partenaire indisponible dans votre région ». Revolut's partner link is not shown in Algeria
+(« Lien partenaire indisponible dans votre région : l’ouverture d’un compte pour un résident d’Algérie n’est pas confirmée. »). Without script every link is plain.
+
+**Revolut and PayPal: affiliate programmes only.** Their personal invite links may not be posted publicly, so only their
+affiliate programmes may ever go on a button, never a personal invite link; the same holds for Payoneer's
+refer-a-friend link and Airalo's Airmoney code. The build refuses such a link. No official PayPal affiliate programme
+was found, so PayPal's button stays plain.
+
+**Today no button is a partner link.** You have not sent any referral or affiliate link yet, so every `"ref"` in
+`hub/src/lanterne/apps.json` is empty and every button goes to the app's plain official address with no tag; the
+disclosure's last line says so (« Pour l’instant, aucun bouton de cette page n’est un lien partenaire : tous mènent à l’adresse officielle du service. ») and hides itself once a partner link is live for the visitor. Nothing was invented:
+no placeholder code, no example link.
+
+### The links still to provide
+
+#### Where things stand
+
+- **No referral or affiliate link has been sent yet.** Every app's `"ref"` in `apps.json` is `""`, so every button on the
+  page goes to the app's plain official address with no partner tag. The disclosure box says so on its last line
+  (« Pour l'instant, aucun bouton de cette page n'est un lien partenaire »). That line hides itself once a partner link is
+  live for the visitor.
+- **Crypto apps (Binance, Bybit, RedotPay): the owner's decision of 2026-11-21**, recorded in PLAN.md addendum A2. The owner
+  made it after being told twice that Algeria's law 25-10 (JO n°48 of 24 July 2025, art. 6 bis) bans promoting virtual
+  assets, with a penalty of 2 months to 1 year in prison and/or 200,000 to 1,000,000 DA (art. 31 bis). The page shows the
+  risk line on every crypto card, and that line names law 25-10. It also hides the partner link in the regions each
+  programme excludes. **It does not hide it for visitors in Algeria (Africa/Algiers), as the owner decided.**
+  `crypto-programmes.md` still opens with "REJECTED: law 25-10. Never use". The owner's later decision overrides that
+  header for this page only.
+
+#### How to put a link on (for every app)
+
+1. Join the programme named below and get the link it gives you.
+2. Open `hub/src/lanterne/apps.json` and find the app's entry (`"id": "<app>"`).
+3. Paste the link into `"ref": ""`, as a full `https://…` address.
+4. Set `"programme": { … "joined": true … }`.
+5. If the network's dashboard names a sub-ID parameter (for example `subId1` on Impact, `pubref` on Partnerize), put its
+   name in `"sub"`. The page then adds `outils-<app>-<lang>` to each click, for example `outils-wise-fr`. That value
+   says only which page, app and language the click came from. It never carries anything about the visitor. The research
+   did not find any network's parameter name, so check it in the dashboard first.
+6. Run `node scripts/build-hub.mjs`, then `node scripts/check.mjs`, then publish as usual.
+7. On the day it goes live, open the partner link and the plain link side by side. Check that the price and terms really
+   are the same, because the disclosure says « Le prix et les conditions sont les mêmes pour vous » (PLAN.md §2.3: only
+   say this after checking).
+
+The build refuses a link that matches the app's `"forbid"` patterns, which catch personal invite links. It also refuses a
+crypto app's link if `hideTz` has lost any of the regions it must exclude.
+
+#### Rules that hold for every link (PLAN.md §2.5, rules.md §4)
+
+- **Revolut and PayPal: only through their AFFILIATE programmes, never a personal invite link.** Their personal
+  invite-a-friend links may not be posted publicly. Revolut's referral terms say "individuals you know"; that quote is
+  UNVERIFIED because revolut.com returned 403. The same rule applies to Payoneer's refer-a-friend link and to Airalo's
+  Airmoney referral code.
+- No self-made coupon codes; use only codes the programme issues. No paid ads on brand keywords. No paid ads at all for
+  Wise or SafetyWing, since both ban them.
+- No referral messages by email or SMS without prior consent (law 18-05 art. 31-32).
+- Proton: link Mail, Drive or Pass only, never a VPN (PLAN.md §2.5). Its `forbid` refuses a link containing "vpn".
+- Re-read each programme's terms before you paste its link, and every 3 months after that. Update « Dernière
+  vérification » (`lant.tools.legal`) and `"checked"` in apps.json when you do.
+
+#### Per app: which programme, where to get the link, where to paste it
+
+Every link goes in `hub/src/lanterne/apps.json` → that app's `"ref"`.
+
+##### Getting paid, banking
+
+| App | Programme to join | Where to apply / get the link | Notes from the research |
+|---|---|---|---|
+| Payoneer | Payoneer Partner Program (business partner programme) | https://www.payoneer.com/become-a-partner/ (also https://www.payoneer.com/marketing-affiliate-partners/) | Terms are "confirmed during onboarding". **Not** the refer-a-friend link. Never turn on its stablecoin feature (law 25-10). Whether Algeria residents can withdraw is UNVERIFIED. |
+| PayPal | **None yet.** No current, official PayPal affiliate programme was found (2026-11-21). | Leave `ref` empty. Paste a link only if PayPal publishes an official affiliate programme and you join it. | Never the personal invitation link. The build refuses `invite`, `py.pl` and `/refer`. |
+| Revolut | Revolut Affiliate Program (Retail or Business, through Impact) | https://www.revolut.com/become-a-revolut-affiliate/ (onboarding guide: https://www.revolut.com/affiliate-onboarding-guide/) | Affiliate only. The build refuses `/referral`, `revolut.me` and `invite`. The partner link is not shown to visitors in Africa/Algiers, who see the plain link and a note. All revolut.com facts are UNVERIFIED (403). Never mention its crypto features. |
+| Wise | Wise Affiliate Program (Partnerize) | https://wise.com/gb/affiliate-program/ (guidelines: https://wise.com/partner/guidelines) | No paid ads without written consent. No voucher sites. No "Wise" domains or social handles. Pays a CPA from £10 per new user who completes a cross-currency transfer. |
+
+##### Crypto-assets (owner's decision, see above)
+
+| App | Programme to join | Where to apply / get the link | Notes from the research |
+|---|---|---|---|
+| Binance | Binance Affiliate Program (**not** the personal Referral link) | Apply: https://www.binance.com/en/activity/affiliate/register. Starter guide: https://www.binance.com/en/support/faq/binance-affiliate-program-starter-guide-cbf9ab9a11fa44a293d44607803c6c2d. Links are made in "Referral Pro". | Needs a 30% commission rate or a review of your social profiles. KYC required. You may not target the EU/EEA, UK, US, Singapore, Hong Kong or prohibited countries. No search-engine ads. |
+| Bybit | Bybit Affiliate Program | https://affiliates.bybit.com ("Apply"). FAQ: https://www.bybit.com/en/help-center/article/Bybit-Affiliate-Program-General-FAQ | Websites are explicitly in scope. Pays in crypto through your Bybit account. France is excluded (Platform Terms, 16 Oct 2026). Current affiliate T&C UNVERIFIED (JavaScript-only page). |
+| RedotPay | RedotPay Affiliate Program | https://affiliates.redotpay.com/login/?mode=register. Terms: https://www.redotpay.com/terms/affiliate | KYC required. "May require a licence" (cl. 4.4(a)). You must tell prospects about the referral and payment arrangement (Sch. 1 para 1.3): the page's disclosure and tag do this. Pays in stablecoins. |
+
+These three keep `"hideTz"`: Europe/, America/, Atlantic/ (Iceland included), Singapore, Hong Kong, Cyprus, the French
+overseas zones, Etc/UTC (zone unknown), plus each programme's own exclusions (Binance: Israel, Japan, Iran, Syria, North
+Korea; Bybit: mainland China, Uzbekistan, Sudan, Australia and others; RedotPay: Libya, Morocco, Turkey, India,
+Indonesia, Egypt, Tunisia). Don't shorten these lists. The build fails if a core region is missing.
+
+##### A site and its address
+
+| App | Programme to join | Where to apply / get the link | Notes from the research |
+|---|---|---|---|
+| Hostinger | Hostinger Affiliate Program (own platform) | https://www.hostinger.com/affiliates. Agreement: https://www.hostinger.com/legal/affiliate-program-agreement | Up to 40%, on plans of 12 months or more only. Payout minimum $500 by wire or $100 by PayPal, after 3 approved sales. No commission if refunded within 45 days. Balances may be held up to 180 days. No brand bidding. Disclosure in the first line of influencer posts. It may reject an application "for any reason". |
+| Namecheap | Namecheap Affiliate Program (Impact or CJ) | https://www.namecheap.com/affiliates/ (FAQ: https://www.namecheap.com/support/knowledgebase/article.aspx/9996/55/affiliate-programs-faq/) | Rates UNVERIFIED (403). Only coupon codes the affiliate platforms issue. |
+
+Free options shown (no programme, no link to add): GitHub Pages, Cloudflare.
+
+##### Design
+
+| App | Programme | Where | Notes |
+|---|---|---|---|
+| Envato | Envato Affiliate Program (Impact) | https://www.envato.com/affiliates/ | Read terms point 11 B-D and the licence page first. Not for friends and family. Free option shown: Canva's free plan, with no link (Canva's affiliate route is reported closed). |
+
+##### Security
+
+| App | Programme | Where | Notes |
+|---|---|---|---|
+| Proton | Proton Affiliate Program (partners.proton.me, TUNE) | https://proton.me/partners/affiliates (FAQ: https://proton.me/partners/faq) | Mail, Drive or Pass only, **no VPN**. No brand bidding, no "Proton" in ad text. Disclosure required. Payout by bank transfer, minimum $100. Free option shown: Bitwarden (no affiliate programme). |
+
+##### Travel and nomad life
+
+| App | Programme | Where | Notes |
+|---|---|---|---|
+| Airalo | Airalo Affiliate Program (Impact) | https://partners.airalo.com/solutions/affiliates | 10% standard. Minimum payout $15. **Not** the Airmoney referral code; the build refuses `airmoney` and `referral`. Free option shown: a local SIM on arrival. |
+| SafetyWing | SafetyWing Ambassador Program | https://safetywing.com/ambassador | About 10% of the premium. **No paid advertising.** Use only the materials SafetyWing provides. Whether Algeria residents can buy is UNVERIFIED. |
+
+##### Learning
+
+| App | Programme | Where | Notes |
+|---|---|---|---|
+| Coursera | Coursera Affiliate Program (Impact) | https://www.coursera.org/about/affiliates | 15-45%. "Degrees and Certificate purchases excluded". Coursera is US-based, so Impact will probably ask for a non-US tax form (W-8BEN). Free option shown: Duolingo (no affiliate programme). |
+
+#### Before the first link goes live (PLAN.md §0 and §6)
+
+- P2: read law 2023-451 (France) on Légifrance and decide whether FR pages may carry partner links at all.
+- A payout route that works for an Algeria resident: Impact wires in DZD. Ask the bank what an incoming wire costs and
+  file the project declaration before the first payment (reg. 21-01).
+- Add a line to the privacy page: a partner's site may set its own cookies after you click; the page itself sets none.
+- Have a native speaker review the Arabic: the working list `ar-toolbox.md` kept with this pass's notes (§8).
+
+**Open for you:** join the programmes above and send the links (or paste them yourself, as described); the crypto
+decision for visitors in Algeria (kept as you decided); law 2023-451 for the French pages; a payout route; the privacy
+page's partner-cookie line; the Arabic (§8, « Also written on 2026-11-22, the toolbox »).

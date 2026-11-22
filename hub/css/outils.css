@@ -1,0 +1,123 @@
+/* « La boîte à outils » (hub/lanterne/outils.html, 2026-11-22): the Librairie's tools page. Loaded after hub/style.css and
+   hub/css/lanterne.css, whose tokens and blocks it uses (the mast, the menu, .k, .btn, the foot); it styles only its own
+   (.tl-*). The Field Atlas's printed board: hard ink lines, offset hard shadows, no radius. Each app's logo is its name set
+   as a wordmark tile in the Studio's face (Archivo 900, as the Studio's own mark), never the brand's artwork; the tile's
+   strip is its shelf's colour. Logical properties only (RTL); nothing moves but the buttons' press (lanterne.css). */
+.tl{--tl-acc:var(--amber)}
+.tl-cat[id=tl-pay]{--tl-acc:#C98A2E}.tl-cat[id=tl-crypto]{--tl-acc:#236660}.tl-cat[id=tl-site]{--tl-acc:#A34135}
+.tl-cat[id=tl-design]{--tl-acc:#6B4E8A}.tl-cat[id=tl-secu]{--tl-acc:#0F1E30}.tl-cat[id=tl-travel]{--tl-acc:#3F6E8C}.tl-cat[id=tl-learn]{--tl-acc:#B5762A}
+
+/* the head: the atlas's navy block, one column, no art */
+.tl-hero{margin:24px 0 28px;padding:clamp(22px,4vw,56px);background:var(--navy);color:var(--cream);border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);display:grid;gap:14px;container-type:inline-size}
+.tl-hero__h{font-size:clamp(44px,11cqi,112px);line-height:.88;letter-spacing:-.055em}
+.tl-hero__h span,.tl-hero__h em{display:block}
+.tl-hero__h em{font-style:normal;color:var(--amber)}
+:lang(ar) .tl-hero__h{font-size:clamp(42px,10cqi,96px);line-height:1.15}
+:lang(en) .tl-hero__h span,:lang(en) .tl-hero__h em{display:inline}
+.tl-hero__lead{max-width:62ch;font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--on-navy-2)}
+
+/* the disclosure: first thing under the head, always visible, never folded */
+.tl-disc{display:grid;gap:8px;margin:0 0 28px;padding:16px clamp(16px,2.4vw,24px);background:var(--cream);border:3px solid var(--ink);border-inline-start-width:12px;border-inline-start-color:var(--amber);box-shadow:var(--shadow-s);font-size:16px;line-height:1.55}
+.tl-disc__k{font-weight:900;font-family:var(--f-disp);letter-spacing:-.01em}
+:lang(ar) .tl-disc__k{font-weight:700;letter-spacing:0}
+.tl-disc__rule{padding-top:8px;border-top:1px dashed rgba(33,30,27,.4);font-size:15px;line-height:1.55;color:var(--muted)}
+
+/* the shelves' index */
+.tl-toc{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:0 0 8px}
+.tl-toc__ul{display:flex;flex-wrap:wrap;gap:8px}
+.tl-toc__ul a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;background:var(--cream);border:1px solid var(--ink);font-weight:700;font-size:14px;text-decoration:none}
+.tl-toc__ul a:hover{background:var(--ink);color:var(--cream)}
+
+/* a shelf */
+.tl-cat{margin-top:44px;scroll-margin-top:16px}
+.tl-cat__head{display:grid;gap:8px;border-top:2px solid var(--ink);padding:18px 0 16px}
+.tl-cat__h{font-size:clamp(30px,4.2vw,48px)}
+.tl-cat__h::before{content:"";display:inline-block;width:.42em;height:.42em;margin-inline-end:.3em;background:var(--tl-acc);border:2px solid var(--ink);vertical-align:.08em}
+.tl-cat__note{max-width:76ch;font-size:15px;line-height:1.55;color:var(--muted)}
+.tl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:20px;align-items:start}
+
+/* a card (2026-11-22, rev3): the name plate, what it is, who for, what to check; then the option without a partner link FIRST,
+   as heavy as the app's own button (PLAN.md §2.5, §6.6: a ghost button each, no amber call to action on a card), then the
+   app's button, then the day and page its terms were read. A lone last card on a shelf spans the row, its text in two
+   columns. The crypto cards (.tl-card--quiet) end on a plain text link to the official address: the free lesson is the
+   only button there, and the amber one. */
+.tl-grid>.tl-card:last-child:nth-child(odd){grid-column:1/-1}
+.tl-card{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:16px;padding:18px;background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow);scroll-margin-top:16px;container-type:inline-size}
+/* the plate: the app's name set as a wordmark (never its artwork), its number, its shelf's strip; the same at every width */
+.tl-logo{position:relative;display:grid;align-content:center;justify-items:start;gap:6px;min-height:84px;padding:10px 14px 20px;background:var(--paper);color:var(--ink);border:2px solid var(--ink);box-shadow:var(--shadow-s);text-decoration:none;container-type:inline-size;overflow:hidden}
+.tl-logo::after{content:"";position:absolute;inset-inline:0;bottom:0;height:8px;background:var(--tl-acc);border-top:2px solid var(--ink)}
+.tl-logo__i{font:700 11px/1 var(--f-mono);letter-spacing:.1em;color:var(--red-text)}
+.tl-logo__n{font-family:"Archivo","Arial Black",sans-serif;font-weight:900;font-size:min(38px,calc(90cqi / var(--len,6)));line-height:1;letter-spacing:-.01em;text-transform:uppercase;white-space:nowrap;text-align:start}
+.tl-logo__tag{position:absolute;inset-inline-end:0;top:0;padding:3px 6px;background:var(--ink);color:var(--cream);font:700 10px/1.2 var(--f-mono);letter-spacing:.04em}
+:lang(ar) .tl-logo__tag{font-family:var(--f-body);letter-spacing:0}
+.tl-card__body{display:grid;gap:16px;min-width:0}
+.tl-card__main,.tl-card__side{display:grid;align-content:start;gap:12px;min-width:0}
+@container (min-width:860px){
+  .tl-card__body{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px}
+}
+/* the plate already shows the name: the heading stays for readers and the outline, set in the Latin display face in
+   every language (a brand name, as the plate), not twice on screen */
+.tl-card__h{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;font-family:"Archivo","Arial Black",sans-serif}
+.tl-card__d{font-size:16px;line-height:1.5;font-weight:600}
+.tl-unread{padding:8px 10px;border:2px dashed var(--red-text);font-size:14px;line-height:1.45;font-weight:700;color:var(--red-text)}
+.tl-risk{padding:10px 12px;background:var(--retry);border:2px solid var(--retry-line);font-size:14px;line-height:1.5}
+.tl-risk__k{display:inline-block;margin-inline-end:6px;font:700 12px/1.4 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--red-text)}
+:lang(ar) .tl-risk__k{font-family:var(--f-body);letter-spacing:0;font-size:13px}
+.tl-facts{display:grid;gap:8px;margin:0}
+.tl-facts div{display:grid;gap:2px;padding-top:8px;border-top:1px dashed rgba(33,30,27,.4)}
+.tl-facts dt{font:700 12px/1.4 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+:lang(ar) .tl-facts dt{font-family:var(--f-body);letter-spacing:0;font-size:13px;text-transform:none}
+.tl-facts dd{margin:0;font-size:15px;line-height:1.5}
+/* the option without a partner link: first, boxed, its own button */
+.tl-alt{display:grid;gap:10px;padding:12px 14px 14px;background:var(--paper);border:2px solid var(--ink)}
+.tl-alt__k{font:700 12px/1.4 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+:lang(ar) .tl-alt__k{font-family:var(--f-body);letter-spacing:0;font-size:13px;text-transform:none}
+.tl-free{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:15px;line-height:1.5}
+.tl-free--t{display:block;font-weight:600}
+.tl-free__go{font-size:15px}
+.tl-free__go--in{flex-wrap:wrap;column-gap:.35em;row-gap:0}
+.tl-free__go--in::after{content:"→"}
+.tl-free__go--in:dir(rtl)::after{content:"←"}
+.tl-free__n{font-weight:900}
+.tl-free__t{flex:1 1 14ch;min-width:0}
+.tl-card--quiet .tl-free__go{background:var(--amber);color:#241B16}
+/* the app's own button: the same ghost button as the free option's, never bigger or brighter */
+.tl-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.tl-go{flex-direction:column;align-items:flex-start;gap:4px;min-height:48px}
+.tl-go__tag{padding:2px 6px;background:var(--ink);color:var(--cream);font:700 11px/1.3 var(--f-mono);letter-spacing:.04em}
+:lang(ar) .tl-go__tag{font-family:var(--f-body);letter-spacing:0;font-size:12px}
+.tl-host{font:600 13px/1.3 var(--f-mono);color:var(--muted);overflow-wrap:anywhere}
+/* the crypto shelf: a plain text link to the official address */
+.tl-act--quiet{gap:4px 8px;font-size:15px}
+.tl-act__k{font:700 12px/1.4 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+:lang(ar) .tl-act__k{font-family:var(--f-body);letter-spacing:0;font-size:13px;text-transform:none}
+.tl-link{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-height:44px;color:var(--ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.tl-link .tl-host{font-size:14px;color:inherit}
+.tl-link .tl-go__tag{text-decoration:none}
+.tl-note{font-size:14px;font-weight:700;color:var(--red-text)}
+.tl-read{font-size:13px;line-height:1.5;color:var(--muted)}
+.tl-read a{display:inline-block;max-width:100%;padding-block:14px;margin-block:-14px;font:600 13px/1.3 var(--f-mono);color:inherit;overflow-wrap:anywhere}
+.tl-read--no{font-weight:700;color:var(--red-text)}
+
+/* how we choose, and the last line */
+.tl-how{display:grid;gap:12px;margin-top:56px;padding:clamp(18px,3vw,32px);background:var(--cream);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.tl-how__h{font-size:clamp(28px,3.4vw,40px)}
+.tl-how__t{max-width:76ch;font-size:16px;line-height:1.6}
+.tl-legal{max-width:76ch;padding-top:12px;border-top:1px solid var(--ink);font-size:14px;line-height:1.5;color:var(--muted)}
+
+/* narrow screens */
+@media (max-width:600px){
+  .tl-card{gap:14px;padding:14px;box-shadow:5px 5px 0 var(--ink)}
+  .tl-logo{min-height:76px;padding:10px 12px 18px}
+  .tl-hero{box-shadow:5px 5px 0 var(--ink)}
+}
+@media (max-width:359px){
+  .tl-card{padding:12px}
+  .tl-toc__ul a{padding:0 10px;font-size:13px}
+  .tl-disc{font-size:15px}
+}
+@media print{
+  .tl-toc,.tl-logo{display:none}
+  .tl-card,.tl-how,.tl-disc{box-shadow:none;break-inside:avoid}
+  .tl-card__h{position:static;width:auto;height:auto;clip:auto;clip-path:none}
+}

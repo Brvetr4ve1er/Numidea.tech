@@ -265,6 +265,10 @@
         "k": "web3c.deeper.5",
         "to": "web3-modules",
         "at": "m83"
+      },
+      "tools": {
+        "k": "lant.tools.in.w3",
+        "at": "tl-crypto"
       }
     },
     "w7": {

@@ -589,6 +589,7 @@ html.js .ks--seal:not([data-earned=true]) .ks__seal,html:not(.js) .ks--seal .ks_
 .more{margin:12px 0 0;font-size:15px}
 .more .k{display:inline;margin-inline-end:6px}
 .more a{display:inline-block;padding-block:11px;margin-block:-11px;font-weight:800;color:var(--red-text)}
+.more--tools{margin-bottom:12px}
 .lt-bridge{margin:14px 0 26px;padding:14px 16px;background:var(--cream);border:1px solid var(--ink);display:grid;gap:8px}
 .lt-tofiche{margin-top:20px}
 .book__vols--two{gap:6px;margin:10px 0 4px}
@@ -650,3 +651,5 @@ html.js .ks--seal:not([data-earned=true]) .ks__seal,html:not(.js) .ks--seal .ks_
 html.motion-off{scroll-behavior:auto}
 /* the law the legal line names, one tap from every module head (review 2026-11-22): module 8's source [19] */
 .legal__ref a{display:inline-block;padding-block:12px;font-weight:700;color:inherit}
+/* the toolbox's way in, beside the kit (2026-11-22): on paper, not red */
+.st-mny__kit.lt-tools-in{background:var(--cream);color:var(--ink)}.lt-tools-in :focus-visible{outline-color:var(--teal)}

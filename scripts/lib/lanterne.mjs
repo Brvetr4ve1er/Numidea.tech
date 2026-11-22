@@ -10,6 +10,10 @@
  *                            the exercise kind, the keepsake), never copy: copy is in hub/src/i18n under
  *                            lant.at.<key>.* (a district's or an atlas's key may name an existing key instead,
  *                            through its "keys" map)
+ *   apps.json                « La boîte à outils » (2026-11-22): the apps, their plain official address, the owner's
+ *                            partner URL (ref, empty until he joins a programme), the regions where it is never shown;
+ *                            built into hub/lanterne/outils.html (copy under lant.tools.*), partner links put on by
+ *                            hub/lanterne.js after the region check only, so no partner link is ever in the markup
  *   ex/<slug>/<id>.html      a district's exercise markup (the courses' existing labs, cut verbatim), set in its
  *                            board; without one, the board is the kit's (hub/lanterne.js) or its resting line
  *   ex/<slug>/_<slot>.html   an atlas's own blocks: _hero (under the hero, on paper: the legal lines), _sac (the set's
@@ -53,6 +57,9 @@ export function lanterne(ctx) {
   for (const f of existsSync(join(LS, 'atlases')) ? readdirSync(join(LS, 'atlases')) : [])
     if (!books.some((b) => `${b.slug}.json` === f)) notes.push(`hub/src/lanterne/atlases/${f}: on no shelf, not built (volume 2 waits for its own pass, L9)`);
   const live = books.filter((b) => ATLAS[b.slug]);
+  /* the toolbox's registry (hub/src/lanterne/apps.json): checked here, its page built after the shelf */
+  const TOOLS = existsSync(join(LS, 'apps.json')) ? json(join(LS, 'apps.json')) : null;
+  const toolIds = new Set(TOOLS ? [...TOOLS.categories.map((c) => 'tl-' + c.id), ...TOOLS.apps.map((a) => 'tl-app-' + a.id)] : []);
   for (const b of books) if (!ATLAS[b.slug]) notes.push(`the Librairie: « ${b.slug} » has no atlas file yet (hub/src/lanterne/atlases/${b.slug}.json): its book reads « bientôt »`);
   const fr = (k) => DICT.fr[k];
   const need = (k, where) => { if (fr(k) == null) fail(`the Librairie, ${where}: no key ${k} in hub/src/i18n/fr.json`); return k; };
@@ -222,6 +229,9 @@ export function lanterne(ctx) {
               </div>`;
       const more = d.more && ATLAS[d.more.to] && live.some((x) => x.slug === d.more.to)
         ? `<p class="more"><span class="k" data-i18n="${need(d.more.l || 'web3c.x.deeperL', `${P} ${id}`)}"></span> <a href="${d.more.to}.html#${d.more.at}" data-i18n="${need(d.more.k, `${P} ${id}`)}"></a></p>` : '';
+      /* a district that names a kind of tool points to its shelf in the toolbox ("tools": { "k": its line, "at": "tl-<shelf>" }) */
+      if (d.tools && (!TOOLS || !toolIds.has(d.tools.at))) fail(`hub/src/lanterne/atlases/${P}.json ${id}: tools.at "${d.tools.at}" is not a shelf or an app of the toolbox (hub/src/lanterne/apps.json)`);
+      const toolsLine = d.tools && TOOLS ? `<p class="more more--tools"><span class="k" data-i18n="lant.tools.in.k"></span> <a href="outils.html#${d.tools.at}" data-i18n="${need(d.tools.k, `${P} ${id}`)}"></a></p>` : '';
       return `
       <section class="district" id="${id}" data-act="${act.id}"${A.course ? ` data-ls-panel="${id}"` : ''} aria-labelledby="${id}-h"${d.accent ? ` style="--accent:${d.accent}"` : ''}>
         <div class="stage${wide ? ' stage--wide' : ''}">
@@ -238,7 +248,7 @@ export function lanterne(ctx) {
             <p class="dossier__sub"><span data-i18n="${dk(A, id, 'sub')}"></span> · <span data-lt-with="${d.guide}">${esc(fr('lant.ui.with').replace('{g}', fr(castName(d.guide))))}</span></p>
             <p class="dossier__lore" data-i18n="${dk(A, id, 'lore')}"></p>
             <div class="rule"><p class="k" data-i18n="lant.ui.rule"></p><p class="rule__t" data-i18n="${dk(A, id, 'rule')}"></p></div>
-            ${more}
+            ${more}${toolsLine}
             ${after ? '' : sit(id)}
             <p class="keep" hidden>${ksImg(A, id, 48)}<span data-lt-keep></span></p>
             ${after ? `<div class="dossier__ex"><p class="k" data-i18n="lant.ui.exK"></p><p class="dossier__ext" data-i18n="${dk(A, id, 'ex.t')}"></p><p class="dossier__exb" data-i18n="${dk(A, id, 'ex.brief')}"></p></div>` : ''}
@@ -340,7 +350,7 @@ export function lanterne(ctx) {
   </nav>
   <button type="button" class="motion js-only" data-lt-motion aria-pressed="true" data-i18n-title="lant.ui.motionHint"><span class="motion__dot" aria-hidden="true"></span><span data-i18n="lant.ui.motion"></span></button>
   ${langSwitch()}
-  ${menu([['./', 'lant.ui.library'], ['#journal', 'lant.ui.journal'], ['#sac', 'lant.ui.sac'], ...(A.mast || []), ['./#comptoir', 'lant.shelf.cta'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
+  ${menu([['./', 'lant.ui.library'], ['#journal', 'lant.ui.journal'], ['#sac', 'lant.ui.sac'], ...(A.mast || []), ['./#comptoir', 'lant.shelf.cta'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
 </header>
 <main id="main" class="lt-wrap${A.course || A.brief ? ' st-crs' : ''}"${A.course ? ` data-lt-course="${A.course}"` : ''}${A.brief ? ` data-lt-brief="${A.brief}"` : ''}>
   <section class="hero" id="hero" aria-labelledby="hero-h">
@@ -525,7 +535,7 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
   </nav>
   ${langSwitch()}
   <a class="btn btn--amber mast__cta" href="#comptoir" data-i18n="lant.shelf.cta"></a>
-  ${menu([['#rayons', 'lant.shelf.navAtlases'], ['#passeport', 'lant.shelf.navPassport'], ['#radio', 'radio.title'], ['#comptoir', 'lant.shelf.navComptoir'], ['#ronde', 'lant.shelf.navRonde'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
+  ${menu([['#rayons', 'lant.shelf.navAtlases'], ['#passeport', 'lant.shelf.navPassport'], ['#radio', 'radio.title'], ['#comptoir', 'lant.shelf.navComptoir'], ...(TOOLS ? [['outils.html', 'lant.tools.mast']] : []), ['#ronde', 'lant.shelf.navRonde'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio'], ['../fabrique.html', 'nav.fab'], ['../monde.html', 'nav.world']])}
 </header>`;
     holes['lant.shelf.hero'] = `<div class="hero__art hero__art--key" dir="ltr" role="img" data-i18n-aria="lant.shelf.heroAlt"><img class="hero__back" src="${up(k1.src)}" srcset="${up(k1.small.src)} ${k1.small.w}w, ${up(k1.src)} ${k1.w}w" sizes="(max-width:1010px) 94vw, 58vw" width="${k1.w}" height="${k1.h}" alt="" fetchpriority="high" decoding="async"></div>`;
     holes['lant.shelf.rayons'] = rayons;
@@ -542,6 +552,149 @@ ${scripts([...(A.app ? ['../app.js'] : []), '../radio.js', '../lanterne.js', '..
     const named = new Set(client.books.flatMap((b) => Object.values(b.d).flatMap((x) => [x.name, x.keep])));
     runtime[page] = lantRuntime((k) => k.startsWith('lant.shelf.') || named.has(k) || RUNTIME_OLD.test(k));
   }
+  /* ================= la boîte à outils (2026-11-22, scratchpad courses-biz/PLAN.md §6.6, addendum A1, A2) =================
+     one card per app, on its shelf (a category), alphabetical within it (never by what a link earns, §2.5): its name as a
+     wordmark plate (no brand artwork), one line on what it is, who it is for, what to check first, then the option without a
+     partner link FIRST and at the same weight as the app's own button (§2.5, §6.6: a ghost button each, never the amber
+     call to action), then the app's button, and the day and page where its terms were read. On the crypto shelf the free
+     lesson is the only button and the app is a plain text link to its official address (the owner's decision A2 keeps the
+     link; the card does not sell it). Every link in the markup is the app's plain official address (rel="noopener", no tag): a reader without
+     scripts, a crawler and a visitor in a hidden region never get a partner link. Only the apps whose "ref" is set are in
+     the page's data, and hub/lanterne.js puts that link on (rel="sponsored noopener", the tag shown) after its region check
+     (the visitor's time zone, read on the device, never sent). */
+  const appHosts = new Set();
+  if (TOOLS) {
+    const at = 'hub/src/lanterne/apps.json', page = 'outils';
+    const cats = TOOLS.categories, FREE = Object.fromEntries((TOOLS.free || []).map((f) => [f.id, f]));
+    const httpsUrl = (u) => { try { const x = new URL(u); return x.protocol === 'https:' && !/\s/.test(u) ? x : null; } catch (e) { return null; } };
+    const seen = new Set();
+    for (const a of TOOLS.apps) {
+      const w = `${at} ${a.id}`;
+      if (seen.has(a.id)) fail(`${w}: two apps with this id`); seen.add(a.id);
+      if (!cats.some((c) => c.id === a.category)) fail(`${w}: category "${a.category}" is not one of the shelves`);
+      const u = httpsUrl(a.url); if (!u) fail(`${w}: url "${a.url}" is not an https address`); else appHosts.add(u.host);
+      if (!['affiliate', 'referral', 'none'].includes(a.kind)) fail(`${w}: kind "${a.kind}" is not affiliate, referral or none`);
+      if (typeof a.ref !== 'string') fail(`${w}: ref is a string (empty until the owner pastes his link)`);
+      if (a.ref) {
+        if (a.kind === 'none') fail(`${w}: a ref on an app without a programme (kind none)`);
+        if (!httpsUrl(a.ref)) fail(`${w}: ref "${a.ref}" is not an https address`);
+        for (const p of a.forbid || []) if (new RegExp(p, 'i').test(a.ref)) fail(`${w}: ref matches "${p}": a personal invite link, whose terms forbid posting it publicly (only the programme's affiliate link may go here)`);
+        if (!a.programme || !a.programme.joined) notes.push(`${w}: a ref is set while programme.joined is false`);
+      }
+      /* the EU/EEA, the UK, the US and their outlying zones, Singapore, Hong Kong (A2; Binance's own rule): Ceuta is Spain,
+         the Canaries, Madeira and the Azores are Atlantic/, Svalbard is Arctic/, Midway, Wake and Johnston are the US */
+      if (a.category === 'crypto') for (const z of ['Europe/', 'America/', 'Atlantic/', 'Arctic/', 'Africa/Ceuta', 'Asia/Singapore', 'Asia/Hong_Kong', 'Asia/Nicosia', 'Asia/Famagusta', 'Indian/Reunion', 'Indian/Mayotte', 'Pacific/Honolulu', 'Pacific/Guam', 'Pacific/Saipan', 'Pacific/Pago_Pago', 'Pacific/Midway', 'Pacific/Wake', 'Pacific/Johnston', 'US/', 'GB', 'Eire', 'Singapore', 'Hongkong', 'Etc/', 'UTC']) if (!(a.hideTz || []).includes(z)) fail(`${w}: a crypto app's partner link must stay hidden in ${z} (hideTz)`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(a.checked || '')) fail(`${w}: checked is the day its terms were read (YYYY-MM-DD)`);
+      else if (!a.unread && a.kind !== 'none') { need(`lant.tools.on.d${a.checked.replace(/-/g, '')}`, w); const t = a.programme && httpsUrl(a.programme.terms || ''); if (!t) fail(`${w}: programme.terms is the https page its terms were read on`); else appHosts.add(t.host); }
+      if (!Array.isArray(a.hideTz) || a.hideTz.some((z) => !/^[A-Za-z_]+(\/([A-Za-z0-9_+-]+\/?)*)?$|^[A-Z][A-Za-z0-9_-]*$/.test(z))) fail(`${w}: hideTz is a list of IANA zone names or prefixes ending in /`);
+      if (a.category === 'crypto' && !a.risk) fail(`${w}: a crypto app shows its risk line (risk)`);
+      for (const k of ['desc', 'who', 'check']) need((a.keys || {})[k] || `(${k})`, w);
+      if (a.risk) need(a.risk, w); if (a.hideNote) need(a.hideNote, w);
+      for (const f of [].concat(a.free || [])) if (!FREE[f]) fail(`${w}: free option "${f}" is not in the free list`);
+    }
+    for (const f of TOOLS.free || []) { need(f.key, `${at} free ${f.id}`); if (f.url) { const u = httpsUrl(f.url); if (!u) fail(`${at} free ${f.id}: url is not https`); else appHosts.add(u.host); } if (f.to && !ATLAS[f.to]) fail(`${at} free ${f.id}: atlas "${f.to}" is not published`); }
+    for (const c of cats) { need(c.key, at); if (c.note) need(c.note, at); }
+    const P2 = TOOLS.p2; if (!P2 || typeof P2.cleared !== 'boolean' || !Array.isArray(P2.lang) || !Array.isArray(P2.tz)) fail(`${at}: p2 is the France gate { cleared, lang, tz } (PLAN.md §0 P2)`);
+    const ext = (u) => ` href="${esc(u)}" target="_blank" rel="noopener" data-app`;
+    const host = (u) => new URL(u).host.replace(/^www\./, '');
+    /* the option without a partner link: a ghost button when it has an address (as heavy as the app's own), else its line */
+    const freeLine = (id) => { const f = FREE[id];
+      if (f.to) return `<p class="tl-free"><a class="btn tl-free__go tl-free__go--in" href="${f.to}.html"><span data-i18n="${f.key}"></span> <span class="tl-free__n" data-i18n="${need(books.find((b) => b.slug === f.to).title, at)}"></span></a></p>`;
+      if (f.url) return `<p class="tl-free"><a class="btn tl-free__go"${ext(f.url)}><bdi>${esc(f.name)}</bdi><span class="sr" data-i18n="case.newTab"></span><span aria-hidden="true"> ↗</span></a> <span class="tl-free__t" data-i18n="${f.key}"></span></p>`;
+      return `<p class="tl-free tl-free--t" data-i18n="${f.key}"></p>`; };
+    const termsAt = (u) => { const x = new URL(u), p = x.pathname.replace(/\/$/, ''); return x.host.replace(/^www\./, '') + (p.length > 30 ? p.slice(0, 28).replace(/[/-][^/-]*$/, '') + '/…' : p); };
+    const read = (a) => a.unread ? `<p class="tl-read tl-read--no" data-i18n="lant.tools.unread"></p>`
+      : a.kind === 'none' ? `<p class="tl-read" data-i18n="lant.tools.noProg"></p>`
+      : `<p class="tl-read"><span data-i18n="lant.tools.read"></span> <span data-i18n="lant.tools.on.d${a.checked.replace(/-/g, '')}"></span> <span data-i18n="lant.tools.readAt"></span> <a${ext(a.programme.terms)}><bdi dir="ltr">${esc(termsAt(a.programme.terms))}</bdi><span class="sr" data-i18n="case.newTab"></span></a></p>`;
+    const card = (a, n) => { const quiet = a.category === 'crypto', fr0 = [].concat(a.free || []), paid = fr0.some((id) => FREE[id].paid); return `
+        <li class="tl-card${quiet ? ' tl-card--quiet' : ''}" id="tl-app-${a.id}" data-tl-app="${a.id}">
+          <a class="tl-logo"${ext(a.url)} data-tl-go tabindex="-1" aria-hidden="true" style="--len:${Math.max(4, a.name.length)}"><span class="tl-logo__i" dir="ltr">/ ${String(n + 1).padStart(2, '0')}</span><span class="tl-logo__n" dir="ltr">${esc(a.name)}</span><span class="tl-logo__tag" data-tl-tag hidden data-i18n="lant.tools.tag"></span></a>
+          <div class="tl-card__body">
+            <div class="tl-card__main">
+              <h3 class="tl-card__h"><bdi dir="ltr">${esc(a.name)}</bdi></h3>
+              <p class="tl-card__d" data-i18n="${a.keys.desc}"></p>${a.unread ? `
+              <p class="tl-unread" data-i18n="lant.tools.unreadK"></p>` : ''}${a.risk ? `
+              <p class="tl-risk"><b class="tl-risk__k" data-i18n="lant.tools.f.risk"></b> <span data-i18n="${a.risk}"></span></p>` : ''}
+              <dl class="tl-facts">
+                <div><dt data-i18n="lant.tools.f.who"></dt><dd data-i18n="${a.keys.who}"></dd></div>
+                <div><dt data-i18n="lant.tools.f.check"></dt><dd data-i18n="${a.keys.check}"></dd></div>
+              </dl>
+            </div>
+            <div class="tl-card__side">
+              <div class="tl-alt">
+                <p class="tl-alt__k" data-i18n="${paid ? 'lant.tools.f.alt' : 'lant.tools.f.free'}"></p>${fr0.map(freeLine).join('')}
+              </div>
+              ${quiet ? `<p class="tl-act tl-act--quiet"><span class="tl-act__k" data-i18n="lant.tools.official"></span> <a class="tl-link"${ext(a.url)} data-tl-go><span class="tl-go__tag" data-tl-tag hidden data-i18n="lant.tools.tag"></span><bdi class="tl-host" dir="ltr">${esc(host(a.url))}</bdi><span class="sr"> (<bdi>${esc(a.name)}</bdi>)</span><span class="sr" data-i18n="case.newTab"></span><span aria-hidden="true"> ↗</span></a></p>`
+              : `<p class="tl-act"><a class="btn tl-go"${ext(a.url)} data-tl-go><span class="tl-go__tag" data-tl-tag hidden data-i18n="lant.tools.tag"></span><span class="tl-go__t"><span data-i18n="lant.tools.go"></span> <bdi>${esc(a.name)}</bdi><span class="sr" data-i18n="case.newTab"></span><span aria-hidden="true"> ↗</span></span></a><span class="tl-host" dir="ltr">${esc(host(a.url))}</span></p>`}
+              <p class="tl-note" data-tl-note hidden data-i18n="${a.hideNote || 'lant.tools.hideNote'}"></p>
+              ${read(a)}
+            </div>
+          </div>
+        </li>`; };
+    const byName = (x, y) => x.name.localeCompare(y.name, 'en', { sensitivity: 'base' });
+    const shelves = cats.map((c) => { const apps = TOOLS.apps.filter((a) => a.category === c.id).sort(byName); return apps.length ? `
+    <section class="tl-cat" id="tl-${c.id}" aria-labelledby="tl-${c.id}-h">
+      <div class="tl-cat__head"><h2 class="tl-cat__h" id="tl-${c.id}-h" data-i18n="${c.key}"></h2>${c.note ? `<p class="tl-cat__note" data-i18n="${c.note}"></p>` : ''}</div>
+      <ul class="tl-grid">${apps.map(card).join('')}
+      </ul>
+    </section>` : ''; }).join('');
+    const data = { tools: TOOLS.apps.filter((a) => a.ref && httpsUrl(a.ref)).map((a) => ({ id: a.id, ref: a.ref, sub: a.sub || '', hide: a.hideTz || [] })) };
+    if (!P2.cleared && data.tools.length) data.p2 = { lang: P2.lang, tz: P2.tz };
+    let head = headFor('outils.html', 'lant.tools', page, [['La Librairie Lanterne', ''], [fr('lant.tools.mast'), 'outils.html']]);
+    head = swap(head, '<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">', '<link rel="stylesheet" href="../css/lanterne.css?v={{stamp}}">\n<link rel="stylesheet" href="../css/outils.css?v={{stamp}}">', 1, "the toolbox's sheet");
+    const html = `${head}
+<body class="lt lt-tools" data-lt-tools>
+<a class="skip" href="#tl-rayons" data-i18n="lant.tools.nav.cats"></a>
+<header class="mast lt-wrap">
+  <a class="mast__word" href="../" dir="ltr" data-i18n-aria="nav.home">Numidea Labs</a>
+  <a class="mast__back" href="./" data-i18n="lant.ui.library"></a>
+  <p class="mast__title" data-i18n="lant.tools.mast"></p>
+  <nav class="mast__nav" data-i18n-aria="lant.tools.nav.menu">
+    <a href="#tl-disc" data-i18n="lant.tools.nav.disc"></a>
+    <a href="#tl-how" data-i18n="lant.tools.nav.how"></a>
+  </nav>
+  ${langSwitch()}
+  ${menu([['./', 'lant.ui.library'], ['#tl-disc', 'lant.tools.nav.disc'], ...cats.map((c) => ['#tl-' + c.id, c.key]), ['#tl-how', 'lant.tools.nav.how'], ['./#comptoir', 'lant.shelf.cta'], [WA, 'lant.ui.wa'], ['../', 'lant.ui.studio']])}
+</header>
+<main id="main" class="lt-wrap tl">
+  <section class="tl-hero" aria-labelledby="tl-h">
+    <p class="k k--amber" data-i18n="lant.tools.kicker"></p>
+    <h1 class="tl-hero__h" id="tl-h"><span data-i18n="lant.tools.h1a"></span> <em data-i18n="lant.tools.h1b"></em></h1>
+    <p class="tl-hero__lead" data-i18n="lant.tools.lead"></p>
+  </section>
+  <!-- the disclosure, at the top and always visible (law 18-05 art. 30, the EU brief, the FTC: PLAN.md §2.3). It leads with
+       the state of the page: no partner link (true without scripts, and until one is on for this visitor), then the rule
+       for later. Once hub/lanterne.js puts a partner link on, it swaps to the other state (data-tl-some). No « same
+       price » line: no programme's tracked price has been compared with its direct price (§2.3). -->
+  <aside class="tl-disc" id="tl-disc" data-i18n-aria="lant.tools.nav.disc">
+    <p class="tl-disc__t" data-tl-none><b class="tl-disc__k" data-i18n="lant.tools.disc.noneK"></b> <span data-i18n="lant.tools.disc.none"></span></p>
+    <p class="tl-disc__t" data-tl-some hidden><b class="tl-disc__k" data-i18n="lant.tools.disc.k"></b> <span data-i18n="lant.tools.disc.some"></span></p>
+    <p class="tl-disc__rule" data-tl-none data-i18n="lant.tools.disc.t"></p>
+  </aside>
+  <nav class="tl-toc" id="tl-rayons" aria-labelledby="tl-toc-k" tabindex="-1">
+    <p class="k" id="tl-toc-k" data-i18n="lant.tools.nav.cats"></p>
+    <ul class="tl-toc__ul">${cats.map((c) => `<li><a href="#tl-${c.id}" data-i18n="${c.key}"></a></li>`).join('')}</ul>
+  </nav>${shelves}
+  <section class="tl-how" id="tl-how" aria-labelledby="tl-how-h">
+    <h2 class="tl-how__h" id="tl-how-h" data-i18n="lant.tools.how.h"></h2>
+    <p class="tl-how__t" data-i18n="lant.tools.how.t"></p>
+    <p class="tl-legal" data-i18n="lant.tools.legal"></p>
+  </section>
+</main>
+<footer class="foot lt-foot lt-wrap">
+  <a href="./" class="mast__back" data-i18n="lant.ui.footerBack"></a>
+  <a href="../" data-i18n="lant.ui.studio"></a>
+  <span data-i18n="footer.line"></span>
+</footer>
+${dataBlock(data)}
+${scripts(['../lanterne.js', '../../assets/carry.js'])}
+</body>
+</html>
+`;
+    out.push({ file: 'hub/lanterne/outils.html', name: 'lanterne/outils.html', page, html });
+    runtime[page] = new Set();
+  }
+
   /* the French runtime strings each page writes itself (the rest is baked) */
   for (const { page } of out) holes[`lantFr.${page.replace(/[^a-z]/g, '')}`] = JSON.stringify(Object.fromEntries([...runtime[page]].filter((k) => !(lazyFr[page] && k in lazyFr[page])).sort().map((k) => [k, DICT.fr[k]]))).replace(/</g, '\\u003c');
   const files = Object.entries(lazyFr).map(([page, o]) => [`hub/lanterne/i18n/${page}.fr.js`, `/* GENERATED by scripts/build-hub.mjs (scripts/lib/lanterne.mjs): the French lines the labs of hub/lanterne/${page}.html write themselves, fetched with them (hub/lanterne.js). */\nwindow.LANT_XFR = ${JSON.stringify(o).replace(/</g, '\\u003c')};\n`]);
@@ -615,6 +768,6 @@ if(l==='en'||l==='ar')u+='?lang='+l;if(at)u+='#'+at;location.replace(u);})();`;
 `;
   out.push({ file: 'hub/manuel.html', name: 'manuel.html', page: null, html: stub });
 
-  const generated = ['lanterne/index.html', ...live.map((b) => `lanterne/${b.slug}.html`), ...out.filter((o) => o.page).flatMap((o) => ['en', 'ar'].map((l) => `lanterne/i18n/${o.page}.${l}.js`)), ...files.map(([f]) => f.slice(4))];
-  return { out, holes, runtime, generated, files, live: live.map((b) => b.slug), books, ATLAS };
+  const generated = ['lanterne/index.html', ...live.map((b) => `lanterne/${b.slug}.html`), ...(TOOLS ? ['lanterne/outils.html'] : []), ...out.filter((o) => o.page).flatMap((o) => ['en', 'ar'].map((l) => `lanterne/i18n/${o.page}.${l}.js`)), ...files.map(([f]) => f.slice(4))];
+  return { out, holes, runtime, generated, files, live: live.map((b) => b.slug), books, ATLAS, appHosts };
 }

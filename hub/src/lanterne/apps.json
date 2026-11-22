@@ -1,0 +1,708 @@
+{
+  "_note": "« La boîte à outils » (hub/lanterne/outils.html, 2026-11-22; scratchpad courses-biz/PLAN.md §6.6, addendum A1 and A2): one entry per app. The page is built from this file by scripts/lib/lanterne.mjs; the copy is in hub/src/i18n under lant.tools.* (keys). url is the app's plain official address: the page's links always carry it, so a reader without scripts, a crawler or a visitor in a hidden region never gets a partner link. ref is the owner's referral or affiliate URL, empty until the owner joins the programme (see the owner's to-do, scratchpad tools/LINKS-TODO.md): only then does hub/lanterne.js put it on the app's logo and button, with rel=\"sponsored noopener\", the « Publicité · lien partenaire » tag and the partner's host next to the button, after the France gate (p2) and the region check. kind: what may go in ref (affiliate: only the programme's own affiliate link, never a personal invite link; none: no programme, the link stays plain and the build refuses a ref). sub: the programme's sub-ID parameter (none is published in the research, so empty; when set, the click carries outils-<id>-<lang>, the page's facts, never the visitor's). hideTz: IANA time-zone names (a name ending in / is a prefix) where the partner link is not shown: the plain link and the line « Lien partenaire indisponible dans votre région » instead; for an app with a hideTz list, a visitor whose zone cannot be read (none, Etc/*, UTC) counts as hidden. The check reads only the device's time zone, so the page says « selon le fuseau horaire de votre appareil », never that it is certain. hideTzPartial: the list is known to be incomplete. forbid: patterns refused in ref (the personal invite links whose terms forbid public posting); the build fails on a match. risk: the warning every crypto card shows. free: the option(s) without a partner link, ids of the free list below (paid: true when that option costs money, so the card says « L'autre voie, sans lien partenaire » rather than « L'option gratuite »). checked: the day each programme's terms were read, at programme.terms (shown on the card); unread: true when the service's official pages could not be read (the card says so). p2: the France gate (PLAN.md §0 P2 and §2.3): until the owner reads law 2023-451 and sets cleared to true, no partner link is put on for a visitor reading in French or in a French time zone, whatever ref holds. Crypto apps (Binance, Bybit, RedotPay): the owner's decision of 2026-11-21, taken after being told twice that Algeria's law 25-10 (JO n°48 of 24 July 2025, art. 6 bis) bans promoting virtual assets (PLAN.md addendum A2, which overrides the « REJECTED » banner of crypto-programmes.md for this page); the regions each programme excludes are from crypto-programmes.md, the rest of the facts from programmes.md and rules.md (FETCHED; UNVERIFIED facts are written as « non vérifié »). On the page the crypto cards lead with the free lesson and end on a plain text link, never a button. Last checked: 2026-11-22 (terms read 2026-11-21).",
+  "checked": "2026-11-21",
+  "p2": {
+    "cleared": false,
+    "note": "PLAN.md §0 P2: law 2023-451 (France) not yet read. While cleared is false, hub/lanterne.js shows no partner link to a visitor reading the page in French (lang) or in a French time zone (tz: metropolitan France and the overseas zones), whatever ref holds. The owner sets cleared to true only after reading the law and deciding.",
+    "lang": [
+      "fr"
+    ],
+    "tz": [
+      "Europe/Paris",
+      "America/Cayenne",
+      "America/Guadeloupe",
+      "America/Martinique",
+      "America/St_Barthelemy",
+      "America/Marigot",
+      "America/Miquelon",
+      "Indian/Reunion",
+      "Indian/Mayotte",
+      "Indian/Kerguelen",
+      "Pacific/Tahiti",
+      "Pacific/Noumea",
+      "Pacific/Marquesas",
+      "Pacific/Gambier",
+      "Pacific/Wallis"
+    ]
+  },
+  "categories": [
+    {
+      "id": "pay",
+      "key": "lant.tools.cat.pay"
+    },
+    {
+      "id": "crypto",
+      "key": "lant.tools.cat.crypto",
+      "note": "lant.tools.cat.cryptoNote"
+    },
+    {
+      "id": "site",
+      "key": "lant.tools.cat.site",
+      "note": "lant.tools.cat.siteNote"
+    },
+    {
+      "id": "design",
+      "key": "lant.tools.cat.design"
+    },
+    {
+      "id": "secu",
+      "key": "lant.tools.cat.secu"
+    },
+    {
+      "id": "travel",
+      "key": "lant.tools.cat.travel"
+    },
+    {
+      "id": "learn",
+      "key": "lant.tools.cat.learn"
+    }
+  ],
+  "apps": [
+    {
+      "id": "wise",
+      "name": "Wise",
+      "category": "pay",
+      "url": "https://wise.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Wise Affiliate Program (Partnerize)",
+        "joined": false,
+        "terms": "https://wise.com/gb/affiliate-program/"
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": "bank",
+      "forbid": [],
+      "keys": {
+        "desc": "lant.tools.app.wise.desc",
+        "who": "lant.tools.app.wise.who",
+        "check": "lant.tools.app.wise.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "revolut",
+      "name": "Revolut",
+      "category": "pay",
+      "url": "https://www.revolut.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Revolut Affiliate Program (Impact)",
+        "joined": false,
+        "terms": "https://www.revolut.com/become-a-revolut-affiliate/",
+        "note": "Only the affiliate programme: the personal referral link may not be posted publicly. Every revolut.com page returned 403 in the research (programmes.md row 29 and §3: SNIPPET / UNVERIFIED), so the card says its pages were not read."
+      },
+      "sub": "",
+      "hideTz": [
+        "Africa/Algiers"
+      ],
+      "hideNote": "lant.tools.app.revolut.hide",
+      "risk": "",
+      "free": "bank",
+      "forbid": [
+        "/referral",
+        "revolut\\.me",
+        "invite"
+      ],
+      "keys": {
+        "desc": "lant.tools.app.revolut.desc",
+        "who": "lant.tools.app.revolut.who",
+        "check": "lant.tools.app.revolut.check"
+      },
+      "checked": "2026-11-21",
+      "unread": true
+    },
+    {
+      "id": "paypal",
+      "name": "PayPal",
+      "category": "pay",
+      "url": "https://www.paypal.com/",
+      "ref": "",
+      "kind": "none",
+      "programme": {
+        "name": "",
+        "joined": false,
+        "note": "No programme in the research (PayPal is not among the 29 programmes of programmes.md), so kind is none: the build refuses any ref. The personal invitation link may never be posted publicly. Set kind to affiliate only after an official PayPal affiliate programme is read and joined."
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": "bank",
+      "forbid": [
+        "invite",
+        "py\\.pl",
+        "/refer"
+      ],
+      "keys": {
+        "desc": "lant.tools.app.paypal.desc",
+        "who": "lant.tools.app.paypal.who",
+        "check": "lant.tools.app.paypal.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "payoneer",
+      "name": "Payoneer",
+      "category": "pay",
+      "url": "https://www.payoneer.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Payoneer Partner Program",
+        "joined": false,
+        "terms": "https://www.payoneer.com/become-a-partner/",
+        "note": "A business partner programme; never the refer-a-friend link."
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": "bank",
+      "forbid": [
+        "refer-a-friend"
+      ],
+      "keys": {
+        "desc": "lant.tools.app.payoneer.desc",
+        "who": "lant.tools.app.payoneer.who",
+        "check": "lant.tools.app.payoneer.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "binance",
+      "name": "Binance",
+      "category": "crypto",
+      "url": "https://www.binance.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Binance Affiliate Program",
+        "joined": false,
+        "terms": "https://www.binance.com/en/support/faq/binance-affiliate-program-starter-guide-cbf9ab9a11fa44a293d44607803c6c2d"
+      },
+      "sub": "",
+      "hideTz": [
+        "Europe/",
+        "Europe/London",
+        "America/",
+        "Atlantic/",
+        "Atlantic/Reykjavik",
+        "Asia/Singapore",
+        "Asia/Hong_Kong",
+        "Asia/Nicosia",
+        "Asia/Famagusta",
+        "Indian/Reunion",
+        "Indian/Mayotte",
+        "Pacific/Honolulu",
+        "Pacific/Guam",
+        "Pacific/Saipan",
+        "Pacific/Pago_Pago",
+        "Pacific/Tahiti",
+        "Pacific/Noumea",
+        "Pacific/Marquesas",
+        "Pacific/Gambier",
+        "Pacific/Wallis",
+        "US/",
+        "Canada/",
+        "Brazil/",
+        "Mexico/",
+        "Chile/",
+        "Cuba",
+        "Jamaica",
+        "Navajo",
+        "GB",
+        "GB-Eire",
+        "Eire",
+        "Iceland",
+        "Portugal",
+        "Poland",
+        "Singapore",
+        "Hongkong",
+        "Africa/Ceuta",
+        "Arctic/",
+        "Pacific/Midway",
+        "Pacific/Wake",
+        "Pacific/Johnston",
+        "Pacific/Samoa",
+        "CET",
+        "EET",
+        "MET",
+        "WET",
+        "EST",
+        "MST",
+        "HST",
+        "EST5EDT",
+        "CST6CDT",
+        "MST7MDT",
+        "PST8PDT",
+        "Etc/",
+        "UTC",
+        "GMT",
+        "UCT",
+        "Universal",
+        "Zulu",
+        "Greenwich",
+        "Asia/Jerusalem",
+        "Asia/Tel_Aviv",
+        "Israel",
+        "Asia/Tokyo",
+        "Japan",
+        "Asia/Tehran",
+        "Iran",
+        "Asia/Pyongyang",
+        "Asia/Damascus"
+      ],
+      "risk": "lant.tools.risk.crypto",
+      "free": "web3",
+      "forbid": [],
+      "keys": {
+        "desc": "lant.tools.app.binance.desc",
+        "who": "lant.tools.app.binance.who",
+        "check": "lant.tools.app.binance.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "bybit",
+      "name": "Bybit",
+      "category": "crypto",
+      "url": "https://www.bybit.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Bybit Affiliate Program",
+        "joined": false,
+        "terms": "https://www.bybit.com/en/help-center/article/Bybit-Affiliate-Program-General-FAQ"
+      },
+      "sub": "",
+      "hideTz": [
+        "Europe/",
+        "Europe/London",
+        "America/",
+        "Atlantic/",
+        "Atlantic/Reykjavik",
+        "Asia/Singapore",
+        "Asia/Hong_Kong",
+        "Asia/Nicosia",
+        "Asia/Famagusta",
+        "Indian/Reunion",
+        "Indian/Mayotte",
+        "Pacific/Honolulu",
+        "Pacific/Guam",
+        "Pacific/Saipan",
+        "Pacific/Pago_Pago",
+        "Pacific/Tahiti",
+        "Pacific/Noumea",
+        "Pacific/Marquesas",
+        "Pacific/Gambier",
+        "Pacific/Wallis",
+        "US/",
+        "Canada/",
+        "Brazil/",
+        "Mexico/",
+        "Chile/",
+        "Cuba",
+        "Jamaica",
+        "Navajo",
+        "GB",
+        "GB-Eire",
+        "Eire",
+        "Iceland",
+        "Portugal",
+        "Poland",
+        "Singapore",
+        "Hongkong",
+        "Africa/Ceuta",
+        "Arctic/",
+        "Pacific/Midway",
+        "Pacific/Wake",
+        "Pacific/Johnston",
+        "Pacific/Samoa",
+        "CET",
+        "EET",
+        "MET",
+        "WET",
+        "EST",
+        "MST",
+        "HST",
+        "EST5EDT",
+        "CST6CDT",
+        "MST7MDT",
+        "PST8PDT",
+        "Etc/",
+        "UTC",
+        "GMT",
+        "UCT",
+        "Universal",
+        "Zulu",
+        "Greenwich",
+        "Asia/Shanghai",
+        "Asia/Urumqi",
+        "Asia/Chongqing",
+        "Asia/Chungking",
+        "Asia/Harbin",
+        "Asia/Kashgar",
+        "PRC",
+        "Asia/Pyongyang",
+        "Asia/Tehran",
+        "Iran",
+        "Asia/Tashkent",
+        "Asia/Samarkand",
+        "Africa/Khartoum",
+        "Asia/Damascus",
+        "Australia/",
+        "Antarctica/Macquarie",
+        "Indian/Christmas",
+        "Indian/Cocos"
+      ],
+      "risk": "lant.tools.risk.crypto",
+      "free": "web3",
+      "forbid": [],
+      "keys": {
+        "desc": "lant.tools.app.bybit.desc",
+        "who": "lant.tools.app.bybit.who",
+        "check": "lant.tools.app.bybit.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "redotpay",
+      "name": "RedotPay",
+      "category": "crypto",
+      "url": "https://www.redotpay.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "RedotPay Affiliate Program",
+        "joined": false,
+        "terms": "https://www.redotpay.com/terms/affiliate"
+      },
+      "sub": "",
+      "hideTz": [
+        "Europe/",
+        "Europe/London",
+        "America/",
+        "Atlantic/",
+        "Atlantic/Reykjavik",
+        "Asia/Singapore",
+        "Asia/Hong_Kong",
+        "Asia/Nicosia",
+        "Asia/Famagusta",
+        "Indian/Reunion",
+        "Indian/Mayotte",
+        "Pacific/Honolulu",
+        "Pacific/Guam",
+        "Pacific/Saipan",
+        "Pacific/Pago_Pago",
+        "Pacific/Tahiti",
+        "Pacific/Noumea",
+        "Pacific/Marquesas",
+        "Pacific/Gambier",
+        "Pacific/Wallis",
+        "US/",
+        "Canada/",
+        "Brazil/",
+        "Mexico/",
+        "Chile/",
+        "Cuba",
+        "Jamaica",
+        "Navajo",
+        "GB",
+        "GB-Eire",
+        "Eire",
+        "Iceland",
+        "Portugal",
+        "Poland",
+        "Singapore",
+        "Hongkong",
+        "Africa/Ceuta",
+        "Arctic/",
+        "Pacific/Midway",
+        "Pacific/Wake",
+        "Pacific/Johnston",
+        "Pacific/Samoa",
+        "CET",
+        "EET",
+        "MET",
+        "WET",
+        "EST",
+        "MST",
+        "HST",
+        "EST5EDT",
+        "CST6CDT",
+        "MST7MDT",
+        "PST8PDT",
+        "Etc/",
+        "UTC",
+        "GMT",
+        "UCT",
+        "Universal",
+        "Zulu",
+        "Greenwich",
+        "Africa/Tripoli",
+        "Libya",
+        "Africa/Casablanca",
+        "Africa/El_Aaiun",
+        "Asia/Kolkata",
+        "Asia/Calcutta",
+        "Asia/Jakarta",
+        "Asia/Makassar",
+        "Asia/Jayapura",
+        "Asia/Pontianak",
+        "Africa/Cairo",
+        "Egypt",
+        "Africa/Tunis",
+        "Asia/Istanbul",
+        "Turkey"
+      ],
+      "risk": "lant.tools.risk.crypto",
+      "free": "web3",
+      "forbid": [],
+      "keys": {
+        "desc": "lant.tools.app.redotpay.desc",
+        "who": "lant.tools.app.redotpay.who",
+        "check": "lant.tools.app.redotpay.check"
+      },
+      "checked": "2026-11-21",
+      "hideTzPartial": "Partial: crypto-programmes.md §3.3 counts 35 KYC-unsupported countries and 38 location-based access restrictions but names only Libya, Morocco, Turkey, India, Indonesia, Egypt and Tunisia. Read the two help-centre lists in a browser (helpcenter.redotpay.com) and add every zone before pasting a ref."
+    },
+    {
+      "id": "hostinger",
+      "name": "Hostinger",
+      "category": "site",
+      "url": "https://www.hostinger.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Hostinger Affiliate Program",
+        "joined": false,
+        "terms": "https://www.hostinger.com/legal/affiliate-program-agreement"
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": [
+        "github-pages",
+        "cloudflare"
+      ],
+      "forbid": [],
+      "keys": {
+        "desc": "lant.tools.app.hostinger.desc",
+        "who": "lant.tools.app.hostinger.who",
+        "check": "lant.tools.app.hostinger.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "namecheap",
+      "name": "Namecheap",
+      "category": "site",
+      "url": "https://www.namecheap.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Namecheap Affiliate Program (Impact or CJ)",
+        "joined": false,
+        "terms": "https://www.namecheap.com/support/knowledgebase/article.aspx/9996/55/affiliate-programs-faq/"
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": [
+        "cloudflare"
+      ],
+      "forbid": [],
+      "keys": {
+        "desc": "lant.tools.app.namecheap.desc",
+        "who": "lant.tools.app.namecheap.who",
+        "check": "lant.tools.app.namecheap.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "envato",
+      "name": "Envato",
+      "category": "design",
+      "url": "https://www.envato.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Envato Affiliate Program (Impact)",
+        "joined": false,
+        "terms": "https://www.envato.com/affiliates/"
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": "canva",
+      "forbid": [],
+      "keys": {
+        "desc": "lant.tools.app.envato.desc",
+        "who": "lant.tools.app.envato.who",
+        "check": "lant.tools.app.envato.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "proton",
+      "name": "Proton",
+      "category": "secu",
+      "url": "https://proton.me/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Proton Affiliate Program (partners.proton.me)",
+        "joined": false,
+        "terms": "https://proton.me/partners/affiliates",
+        "note": "Mail, Drive and Pass only: never a VPN link (PLAN.md §2.5)."
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": "bitwarden",
+      "forbid": [
+        "vpn"
+      ],
+      "keys": {
+        "desc": "lant.tools.app.proton.desc",
+        "who": "lant.tools.app.proton.who",
+        "check": "lant.tools.app.proton.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "airalo",
+      "name": "Airalo",
+      "category": "travel",
+      "url": "https://www.airalo.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Airalo Affiliate Program (Impact)",
+        "joined": false,
+        "terms": "https://partners.airalo.com/solutions/affiliates",
+        "note": "Only the affiliate programme, never the Airmoney referral code."
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": "sim",
+      "forbid": [
+        "airmoney",
+        "referral"
+      ],
+      "keys": {
+        "desc": "lant.tools.app.airalo.desc",
+        "who": "lant.tools.app.airalo.who",
+        "check": "lant.tools.app.airalo.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "safetywing",
+      "name": "SafetyWing",
+      "category": "travel",
+      "url": "https://safetywing.com/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "SafetyWing Ambassador Program",
+        "joined": false,
+        "terms": "https://safetywing.com/ambassador",
+        "note": "No paid advertising, only the materials SafetyWing provides."
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": "insurer",
+      "forbid": [],
+      "keys": {
+        "desc": "lant.tools.app.safetywing.desc",
+        "who": "lant.tools.app.safetywing.who",
+        "check": "lant.tools.app.safetywing.check"
+      },
+      "checked": "2026-11-21"
+    },
+    {
+      "id": "coursera",
+      "name": "Coursera",
+      "category": "learn",
+      "url": "https://www.coursera.org/",
+      "ref": "",
+      "kind": "affiliate",
+      "programme": {
+        "name": "Coursera Affiliate Program (Impact)",
+        "joined": false,
+        "terms": "https://www.coursera.org/about/affiliates"
+      },
+      "sub": "",
+      "hideTz": [],
+      "risk": "",
+      "free": "duolingo",
+      "forbid": [],
+      "keys": {
+        "desc": "lant.tools.app.coursera.desc",
+        "who": "lant.tools.app.coursera.who",
+        "check": "lant.tools.app.coursera.check"
+      },
+      "checked": "2026-11-21"
+    }
+  ],
+  "free": [
+    {
+      "id": "bank",
+      "name": "",
+      "key": "lant.tools.free.bank",
+      "paid": true
+    },
+    {
+      "id": "web3",
+      "to": "web3",
+      "key": "lant.tools.free.web3"
+    },
+    {
+      "id": "github-pages",
+      "name": "GitHub Pages",
+      "url": "https://pages.github.com/",
+      "key": "lant.tools.free.githubPages"
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "url": "https://www.cloudflare.com/",
+      "key": "lant.tools.free.cloudflare"
+    },
+    {
+      "id": "canva",
+      "name": "Canva",
+      "url": "https://www.canva.com/",
+      "key": "lant.tools.free.canva"
+    },
+    {
+      "id": "bitwarden",
+      "name": "Bitwarden",
+      "url": "https://bitwarden.com/",
+      "key": "lant.tools.free.bitwarden"
+    },
+    {
+      "id": "sim",
+      "name": "",
+      "key": "lant.tools.free.sim",
+      "paid": true
+    },
+    {
+      "id": "insurer",
+      "name": "",
+      "key": "lant.tools.free.insurer",
+      "paid": true
+    },
+    {
+      "id": "duolingo",
+      "name": "Duolingo",
+      "url": "https://www.duolingo.com/",
+      "key": "lant.tools.free.duolingo"
+    }
+  ]
+}

@@ -41,7 +41,9 @@ export const LEGAL_PUBLISHED = existsSync(join(ROOT, 'legal/index.html'));
    hub/manuel.html stays an entry: the old manual's address, now a forwarding stub (noindex). */
 const LANT_SRC = join(ROOT, 'hub/src/lanterne');
 export const LANTERNE_ATLASES = (() => { try { return JSON.parse(readFileSync(join(LANT_SRC, 'shelf.json'), 'utf8')).shelves.flatMap((s) => s.books.map((b) => b.slug)).filter((slug) => existsSync(join(LANT_SRC, 'atlases', slug + '.json'))); } catch (e) { return []; } })();
-export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.map((s) => `hub/lanterne/${s}.html`)];
+/* « La boîte à outils » (2026-11-22): the Librairie's tools page, built from hub/src/lanterne/apps.json once it exists */
+export const LANTERNE_TOOLS = existsSync(join(LANT_SRC, 'apps.json')) ? ['hub/lanterne/outils.html'] : [];
+export const LANTERNE_PAGES = ['hub/lanterne/index.html', ...LANTERNE_ATLASES.map((s) => `hub/lanterne/${s}.html`), ...LANTERNE_TOOLS];
 
 /* the landing page is three static pages, one per language: index.html
    (French, the template) and en/, ar/ written from it by build-lang.mjs;

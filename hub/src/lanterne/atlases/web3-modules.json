@@ -404,6 +404,10 @@
         "keep": "lant.at.w3m.keep",
         "ex.t": "lant.at.w3m.ex.t",
         "ex.brief": "lant.at.w3m.ex.brief"
+      },
+      "tools": {
+        "k": "lant.tools.in.w3",
+        "at": "tl-crypto"
       }
     },
     "m32": {
@@ -491,6 +495,10 @@
         "keep": "lant.at.w3m.keep",
         "ex.t": "lant.at.w3m.ex.t",
         "ex.brief": "lant.at.w3m.ex.brief"
+      },
+      "tools": {
+        "k": "lant.tools.in.w3",
+        "at": "tl-crypto"
       }
     },
     "m41": {
