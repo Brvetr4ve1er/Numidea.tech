@@ -940,7 +940,7 @@
       s.e721.forEach(function (h, i) { set('o721-' + i, H(h)); });
       [1, 7].forEach(function (t) { s.e1155[t].forEach(function (v, i) { set('e1155-' + t + '-' + i, grpS(v)); }); });
       s.spl.forEach(function (v, i) { set('spl-' + i, grpS(v)); });
-      o(root, 'uri').textContent = 'https://exemple.org/nft/1' + (s.uri ? '-v2' : '') + '.json';
+      o(root, 'uri').textContent = 'https://example.org/nft/1' + (s.uri ? '-v2' : '') + '.json';
       root.setAttribute('data-uri', s.uri ? '1' : '0'); btn(root, 'uri').setAttribute('aria-pressed', String(s.uri));
       o(root, 'shown').textContent = unitsS(RAW, [18, 6, 0][dec]);
     };
