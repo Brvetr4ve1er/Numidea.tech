@@ -1,0 +1,79 @@
+<!-- cut from the old manual (hub/manuel.html #web3, volume 2, via lanterne-later/web3-modules/chapters.html) on 2026-11-22: stop m71: its lab (hub/web3x.js binds it, lazily), its misconception card and its references; the explanation is the dossier's rule, the question the atlas's situation -->
+<div class="st-wlab st-amm" data-lab="amm" data-x role="group" aria-labelledby="m71-lab-h" data-front="">
+<p class="st-wlab__h" id="m71-lab-h"><b data-i18n="web3c.mods.6.items.0.lab.l"></b></p>
+<p class="st-amm__pool"><span data-tpl="web3c.mods.6.items.0.lab.pool" data-tpl-a="100" data-tpl-b="10 000" data-o="pool">Réserve d’exemple : 100 jetons A · 10 000 jetons B</span> · <span data-i18n="web3c.mods.6.items.0.lab.spot"></span></p>
+<div class="st-amm__fig">
+<p class="st-wplot__name" data-i18n="web3c.mods.6.items.0.lab.ay"></p>
+<div class="st-wplot" dir="ltr">
+<div class="st-wplot__y"><span>25 000</span><span>12 500</span><span>0</span></div>
+<svg class="st-wplot__svg" viewBox="0 0 320 180" preserveAspectRatio="none" role="img" aria-labelledby="m71-out" focusable="false">
+<path class="st-wplot__grid" d="M4 4V176H316"/>
+<path class="st-wplot__line" data-o="curve" d="M4 4L11.8 19.6L19.6 32.7L27.4 43.7L35.2 53.1L43 61.3L50.8 68.5L58.6 74.8L66.4 80.4L74.2 85.5L82 90L89.8 94.1L97.6 97.8L105.4 101.2L113.2 104.3L121 107.2L128.8 109.8L136.6 112.3L144.4 114.6L152.2 116.7L160 118.7L167.8 120.5L175.6 122.3L183.4 123.9L191.2 125.4L199 126.9L206.8 128.2L214.6 129.5L222.4 130.7L230.2 131.9L238 133L245.8 134L253.6 135L261.4 136L269.2 136.9L277 137.8L284.8 138.6L292.6 139.4L300.4 140.2L308.2 140.9L316 141.6"/>
+<path class="st-wplot__dotS" d="M123 107.9h0.01"/>
+<path class="st-wplot__dotS" d="M140.5 113.4h0.01"/>
+<path class="st-wplot__dotS" d="M218.5 130.1h0.01"/>
+<path class="st-wplot__dot0" data-o="dot0" d="M121 107.2h0.01"/>
+<path class="st-wplot__dot" data-o="dot" d="M140.5 113.4h0.01"/>
+</svg>
+<div class="st-wplot__x"><span>40</span><span>120</span><span>200</span></div>
+</div>
+<p class="st-wplot__name st-wplot__name--x" data-i18n="web3c.mods.6.items.0.lab.ax"></p>
+</div>
+<div class="st-amm__in">
+<p class="st-calc__l"><label data-tpl="web3c.mods.6.items.0.lab.in" data-tpl-n="10" for="m71-in" data-o="inL">J’apporte : 10 A</label></p>
+<input class="st-wlab__range" id="m71-in" type="range" min="0" max="60" step="1" value="10" data-f="in" disabled>
+</div>
+<ul class="st-amm__out">
+<li><b data-tpl="web3c.mods.6.items.0.lab.out" data-tpl-b="906,61" id="m71-out" data-o="out">Vous recevez : 906,61 B (frais de 0,3 % compris)</b></li>
+<li><span data-tpl="web3c.mods.6.items.0.lab.avg" data-tpl-p="90,66" data-o="avg">Prix moyen obtenu : 90,66 B par A</span></li>
+<li><span data-tpl="web3c.mods.6.items.0.lab.impact" data-tpl-p="9,09" data-o="impact">Impact de prix : 9,09 % (hors frais)</span></li>
+</ul>
+<div class="st-amm__tol">
+<p class="st-calc__l"><label data-tpl="web3c.mods.6.items.0.lab.tol" data-tpl-p="0,5" for="m71-tol" data-o="tolL">Tolérance de glissement : 0,5 %</label></p>
+<input class="st-wlab__range" id="m71-tol" type="range" min="0.5" max="20" step="0.5" value="0.5" data-f="tol" disabled>
+<div class="st-wlab__acts"><button type="button" class="st-chip st-wlab__act" data-act="front" disabled data-i18n="web3c.mods.6.items.0.lab.front"></button></div>
+</div>
+<p class="st-wlab__say" data-o="say" aria-live="polite"></p>
+<p class="st-crs__fine st-mech" data-i18n="web3c.x.mech"></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.6.items.0.lab.fake"></p>
+<table class="st-wtab st-wlab__still">
+<caption class="st-label" data-i18n="web3c.mods.6.items.0.lab.still"></caption>
+<tbody>
+<tr><th scope="row"><span data-tpl="web3c.mods.6.items.0.lab.in" data-tpl-n="1">J’apporte : 1 A</span></th><td><span data-tpl="web3c.mods.6.items.0.lab.out" data-tpl-b="98,72">Vous recevez : 98,72 B (frais de 0,3 % compris)</span></td><td><span data-tpl="web3c.mods.6.items.0.lab.impact" data-tpl-p="0,99">Impact de prix : 0,99 % (hors frais)</span></td></tr>
+<tr><th scope="row"><span data-tpl="web3c.mods.6.items.0.lab.in" data-tpl-n="10">J’apporte : 10 A</span></th><td><span data-tpl="web3c.mods.6.items.0.lab.out" data-tpl-b="906,61">Vous recevez : 906,61 B (frais de 0,3 % compris)</span></td><td><span data-tpl="web3c.mods.6.items.0.lab.impact" data-tpl-p="9,09">Impact de prix : 9,09 % (hors frais)</span></td></tr>
+<tr><th scope="row"><span data-tpl="web3c.mods.6.items.0.lab.in" data-tpl-n="50">J’apporte : 50 A</span></th><td><span data-tpl="web3c.mods.6.items.0.lab.out" data-tpl-b="3 326,66">Vous recevez : 3 326,66 B (frais de 0,3 % compris)</span></td><td><span data-tpl="web3c.mods.6.items.0.lab.impact" data-tpl-p="33,33">Impact de prix : 33,33 % (hors frais)</span></td></tr>
+</tbody>
+</table>
+<p class="st-crs__fine st-wlab__nojs" data-i18n="web3c.x.noJs"></p>
+</div>
+<figure class="st-wlab st-wfig st-book" aria-labelledby="m71-b-h">
+<figcaption class="st-wlab__h" id="m71-b-h"><b data-i18n="web3c.mods.6.items.0.lab.book.l"></b></figcaption>
+<ol class="st-book__lv">
+<li class="is-fill"><svg class="st-book__bar" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect x="0" y="0" width="25" height="10"/></svg><span data-tpl="web3c.mods.6.items.0.lab.book.offer" data-tpl-q="5" data-tpl-p="100">demande 5 A à 100 B</span></li>
+<li class="is-fill"><svg class="st-book__bar" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect x="0" y="0" width="25" height="10"/></svg><span data-tpl="web3c.mods.6.items.0.lab.book.offer" data-tpl-q="5" data-tpl-p="98">demande 5 A à 98 B</span></li>
+<li><svg class="st-book__bar" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect x="0" y="0" width="50" height="10"/></svg><span data-tpl="web3c.mods.6.items.0.lab.book.offer" data-tpl-q="10" data-tpl-p="95">demande 10 A à 95 B</span></li>
+<li><svg class="st-book__bar" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect x="0" y="0" width="100" height="10"/></svg><span data-tpl="web3c.mods.6.items.0.lab.book.offer" data-tpl-q="20" data-tpl-p="90">demande 20 A à 90 B</span></li>
+</ol>
+<p><span data-tpl="web3c.mods.6.items.0.lab.book.sale" data-tpl-q="10" data-tpl-b="990" data-tpl-n="2">Je vends 10 A : je reçois 990 B, sur 2 niveaux du carnet.</span></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.6.items.0.lab.book.cap"></p>
+<p class="st-crs__fine st-mech" data-i18n="web3c.x.mech"></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.6.items.0.lab.fake"></p>
+</figure>
+<figure class="st-wlab st-wfig st-lp" aria-labelledby="m71-l-h">
+<figcaption class="st-wlab__h" id="m71-l-h"><b data-i18n="web3c.mods.6.items.0.lab.lp.l"></b></figcaption>
+<p class="st-lp__keys"><span class="st-lp__k st-lp__k--keep" data-i18n="web3c.mods.6.items.0.lab.lp.keep"></span> <span class="st-lp__k st-lp__k--pool" data-i18n="web3c.mods.6.items.0.lab.lp.pool"></span></p>
+<ul class="st-lp__rows">
+<li><b data-tpl="web3c.mods.6.items.0.lab.lp.move" data-tpl-r="0,25">Le prix de A change : × 0,25</b><svg class="st-lp__bars" viewBox="0 0 100 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="st-lp__keep" x="0" y="1" width="25.0" height="9"/><rect class="st-lp__pool" x="0" y="12" width="20.0" height="9"/></svg><span data-tpl="web3c.mods.6.items.0.lab.lp.gap" data-tpl-p="20">Écart : 20 %</span></li>
+<li><b data-tpl="web3c.mods.6.items.0.lab.lp.move" data-tpl-r="0,5">Le prix de A change : × 0,5</b><svg class="st-lp__bars" viewBox="0 0 100 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="st-lp__keep" x="0" y="1" width="30.0" height="9"/><rect class="st-lp__pool" x="0" y="12" width="28.3" height="9"/></svg><span data-tpl="web3c.mods.6.items.0.lab.lp.gap" data-tpl-p="5,7">Écart : 5,7 %</span></li>
+<li><b data-tpl="web3c.mods.6.items.0.lab.lp.move" data-tpl-r="2">Le prix de A change : × 2</b><svg class="st-lp__bars" viewBox="0 0 100 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="st-lp__keep" x="0" y="1" width="60.0" height="9"/><rect class="st-lp__pool" x="0" y="12" width="56.6" height="9"/></svg><span data-tpl="web3c.mods.6.items.0.lab.lp.gap" data-tpl-p="5,7">Écart : 5,7 %</span></li>
+<li><b data-tpl="web3c.mods.6.items.0.lab.lp.move" data-tpl-r="4">Le prix de A change : × 4</b><svg class="st-lp__bars" viewBox="0 0 100 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect class="st-lp__keep" x="0" y="1" width="100.0" height="9"/><rect class="st-lp__pool" x="0" y="12" width="80.0" height="9"/></svg><span data-tpl="web3c.mods.6.items.0.lab.lp.gap" data-tpl-p="20">Écart : 20 %</span></li>
+</ul>
+<p class="st-crs__fine" data-i18n="web3c.mods.6.items.0.lab.lp.cap"></p>
+<p class="st-crs__fine st-mech" data-i18n="web3c.x.mech"></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.6.items.0.lab.fake"></p>
+</figure>
+<div class="st-myth">
+<p><b class="st-label" data-i18n="web3c.x.mythL"></b> <span data-i18n="web3c.mods.6.items.0.myth.k"></span></p>
+<p><b class="st-label" data-i18n="web3c.x.trueL"></b> <span data-i18n="web3c.mods.6.items.0.myth.v"></span></p>
+</div>
+<p class="st-jeu__refs"><span class="st-label" data-i18n="web3c.src.title"></span> <a href="#m7src-uni-how" dir="ltr">[1]</a> <a href="#m7src-dydx-book" dir="ltr">[2]</a> <a href="#m7src-uni-pricing" dir="ltr">[3]</a> <a href="#m7src-uni-returns" dir="ltr">[4]</a></p>

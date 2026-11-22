@@ -1,0 +1,65 @@
+<!-- cut from the old manual (hub/manuel.html #web3, volume 2, via lanterne-later/web3-modules/chapters.html) on 2026-11-22: stop m64: its lab (hub/web3x.js binds it, lazily), its misconception card and its references; the explanation is the dossier's rule, the question the atlas's situation -->
+<div class="st-wlab st-orc" data-lab="oracle" data-x role="group" aria-labelledby="m64-lab-h" data-ops="7" data-liar="0">
+<p class="st-wlab__h" id="m64-lab-h"><b data-i18n="web3c.mods.5.items.3.lab.orc.l"></b></p>
+<div class="st-chips st-wlab__radios st-orc__opsk" role="radiogroup" aria-labelledby="m64-lab-h" data-f="ops">
+<!-- [html-validate-disable-block prefer-native-element: a styled radiogroup (COURSE.md 3.3): role=radio, roving tabindex, the arrows] -->
+<button type="button" class="st-chip" role="radio" aria-checked="true" tabindex="0" data-v="0" disabled><span data-tpl="web3c.mods.5.items.3.lab.orc.ops" data-tpl-n="7">Opérateurs : 7</span></button>
+<button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="1" disabled><span data-tpl="web3c.mods.5.items.3.lab.orc.ops" data-tpl-n="1">Opérateurs : 1</span></button>
+</div>
+<ol class="st-orc__ops" aria-hidden="true"><li class="st-orc__op1"><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4.5a2 2 0 0 1 4 0v9.3a4 4 0 1 1-4 0z"/><path d="M12 9v6.5"/></svg></li><li><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4.5a2 2 0 0 1 4 0v9.3a4 4 0 1 1-4 0z"/><path d="M12 9v6.5"/></svg></li><li><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4.5a2 2 0 0 1 4 0v9.3a4 4 0 1 1-4 0z"/><path d="M12 9v6.5"/></svg></li><li><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4.5a2 2 0 0 1 4 0v9.3a4 4 0 1 1-4 0z"/><path d="M12 9v6.5"/></svg></li><li><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4.5a2 2 0 0 1 4 0v9.3a4 4 0 1 1-4 0z"/><path d="M12 9v6.5"/></svg></li><li><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4.5a2 2 0 0 1 4 0v9.3a4 4 0 1 1-4 0z"/><path d="M12 9v6.5"/></svg></li><li><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4.5a2 2 0 0 1 4 0v9.3a4 4 0 1 1-4 0z"/><path d="M12 9v6.5"/></svg></li></ol>
+<div class="st-orc__rs">
+<div class="st-orc__r"><p class="st-calc__l"><label data-tpl="web3c.mods.5.items.3.lab.orc.dev" data-tpl-p="2" for="m64-dev" data-o="devL">Seuil d’écart : 2 %</label></p><input class="st-wlab__range" id="m64-dev" type="range" min="0.5" max="10" step="0.5" value="2" data-f="dev" disabled></div>
+<div class="st-orc__r"><p class="st-calc__l"><label data-tpl="web3c.mods.5.items.3.lab.orc.hb" data-tpl-m="30" for="m64-hb" data-o="hbL">Battement : 30 minutes</label></p><input class="st-wlab__range" id="m64-hb" type="range" min="10" max="60" step="10" value="30" data-f="hb" disabled></div>
+<div class="st-orc__r"><p class="st-calc__l"><label data-tpl="web3c.mods.5.items.3.lab.orc.age" data-tpl-m="60" for="m64-age" data-o="ageL">Âge maximal accepté par le contrat : 60 minutes</label></p><input class="st-wlab__range" id="m64-age" type="range" min="10" max="120" step="10" value="60" data-f="age" disabled></div>
+<div class="st-orc__r"><p class="st-calc__l"><label data-tpl="web3c.mods.5.items.3.lab.orc.conf" data-tpl-p="5" for="m64-conf" data-o="confL">Refuser si l’incertitude dépasse 5 %</label></p><input class="st-wlab__range" id="m64-conf" type="range" min="0.5" max="10" step="0.5" value="5" data-f="conf" disabled></div>
+</div>
+<div class="st-wlab__acts">
+<button type="button" class="st-chip st-wlab__act" data-act="tick" disabled data-i18n="web3c.mods.5.items.3.lab.orc.tick"></button>
+<button type="button" class="st-chip st-wlab__act" data-act="liar" aria-pressed="false" disabled data-i18n="web3c.mods.5.items.3.lab.orc.liar"></button>
+<button type="button" class="st-chip st-wlab__act" data-act="reset" disabled data-i18n="web3c.x.reset"></button>
+</div>
+<div class="st-orc__read">
+<p class="st-orc__out" data-tpl="web3c.mods.5.items.3.lab.orc.out" data-tpl-v="16,5" data-o="out">Dehors : 16,5 °C</p>
+<p class="st-orc__on" data-tpl="web3c.mods.5.items.3.lab.orc.on" data-tpl-v="16,5" data-o="on">Sur la chaîne : 16,5 °C</p>
+<p class="st-orc__why" data-o="why">mise à jour : écart dépassé</p>
+<p class="st-orc__no" data-o="stale" data-i18n="web3c.mods.5.items.3.lab.orc.stale" hidden></p>
+<p class="st-orc__no" data-o="wide" data-i18n="web3c.mods.5.items.3.lab.orc.wide" hidden></p>
+</div>
+<figure class="st-orc__fig">
+<div class="st-wplot" dir="ltr">
+<div class="st-wplot__y"><span data-o="ymax">20 °C</span><span data-o="ymin">15 °C</span></div>
+<svg class="st-wplot__svg" viewBox="0 0 320 180" preserveAspectRatio="none" role="img" aria-labelledby="m64-sum" focusable="false">
+<path class="st-wplot__grid" d="M4 4V176H316"/>
+<path class="st-wplot__band" data-o="band" d="M4 72.8L32.4 62.1L60.7 78L89.1 78.3L117.5 92.1L145.8 92.1L174.2 105.8L202.5 89L230.9 97.6L259.3 108.6L287.6 106.9L316 119.9L316 130.9L287.6 115.8L259.3 114.1L230.9 107.2L202.5 98.6L174.2 115.5L145.8 105.1L117.5 104.4L89.1 88.6L60.7 88.3L32.4 70.4L4 72.8Z"/>
+<path class="st-wplot__out" data-o="outP" d="M4 72.8L32.4 69.4L60.7 83.1L89.1 83.1L117.5 100.3L145.8 96.9L174.2 110.6L202.5 96.9L230.9 100.3L259.3 114.1L287.6 110.6L316 124.4"/>
+<path class="st-wplot__on" data-o="onP" d="M4 72.8H32.4V72.8H60.7V72.8H89.1V83.5H117.5V98.3H145.8V98.3H174.2V110.6H202.5V93.8H230.9V93.8H259.3V111.3H287.6V111.3H316V125.4"/>
+</svg>
+<div class="st-wplot__x"></div>
+</div>
+<figcaption class="st-wplot__sum" id="m64-sum" data-o="sum">Dehors : 16,5 °C · Sur la chaîne : 16,5 °C</figcaption>
+</figure>
+<p class="st-wlab__say" data-o="say" aria-live="polite"></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.5.items.3.lab.orc.agg"></p>
+<p class="st-crs__fine" data-i18n="web3c.x.mock"></p>
+<ul class="st-orc__still st-wlab__still">
+<li><span dir="ltr">10 min</span> pas de mise à jour · <span dir="ltr">20 min</span> pas de mise à jour · <span dir="ltr">30 min</span> mise à jour : battement écoulé · <span dir="ltr">40 min</span> mise à jour : écart dépassé · <span dir="ltr">50 min</span> pas de mise à jour · <span dir="ltr">60 min</span> mise à jour : écart dépassé · <span dir="ltr">70 min</span> mise à jour : écart dépassé · <span dir="ltr">80 min</span> pas de mise à jour · <span dir="ltr">90 min</span> mise à jour : écart dépassé · <span dir="ltr">100 min</span> pas de mise à jour · <span dir="ltr">110 min</span> mise à jour : écart dépassé</li>
+<li><b data-i18n="web3c.mods.5.items.3.lab.orc.liar"></b> · <span data-tpl="web3c.mods.5.items.3.lab.orc.ops" data-tpl-n="1">Opérateurs : 1</span> → <span data-tpl="web3c.mods.5.items.3.lab.orc.on" data-tpl-v="80,0">Sur la chaîne : 80,0 °C</span> · <span data-tpl="web3c.mods.5.items.3.lab.orc.ops" data-tpl-n="7">Opérateurs : 7</span> → <span data-tpl="web3c.mods.5.items.3.lab.orc.on" data-tpl-v="18,0">Sur la chaîne : 18,0 °C</span></li>
+</ul>
+<p class="st-crs__fine st-wlab__nojs" data-i18n="web3c.x.noJs"></p>
+</div>
+<figure class="st-wlab st-wfig st-idx" aria-labelledby="m64-i-h">
+<figcaption class="st-wlab__h" id="m64-i-h"><b data-i18n="web3c.mods.5.items.3.lab.idx.l"></b></figcaption>
+<p><span class="st-label" data-i18n="web3c.mods.5.items.3.lab.idx.addr"></span> <bdi dir="ltr">0x1a2b…c3d4</bdi></p>
+<ol class="st-idx__two">
+<li><b data-i18n="web3c.mods.5.items.3.lab.idx.scan"></b> · <span data-tpl="web3c.mods.5.items.3.lab.idx.read" data-tpl-n="500" data-tpl-t="463">Blocs lus : 500 sur 500 · transferts trouvés : 463</span></li>
+<li><b data-i18n="web3c.mods.5.items.3.lab.idx.build"></b> · <span data-i18n="web3c.mods.5.items.3.lab.idx.built"></span></li>
+<li><b data-i18n="web3c.mods.5.items.3.lab.idx.fast"></b> · <span data-tpl="web3c.mods.5.items.3.lab.idx.one" data-tpl-t="463">Une lecture dans l’index · transferts trouvés : 463</span></li>
+</ol>
+<ul class="st-idx__parts"><li data-i18n="web3c.mods.5.items.3.lab.idx.parts.0"></li><li data-i18n="web3c.mods.5.items.3.lab.idx.parts.1"></li><li data-i18n="web3c.mods.5.items.3.lab.idx.parts.2"></li></ul>
+<p class="st-crs__fine" data-i18n="web3c.mods.5.items.3.lab.idx.mock"></p>
+</figure>
+<div class="st-myth">
+<p><b class="st-label" data-i18n="web3c.x.mythL"></b> <span data-i18n="web3c.mods.5.items.3.myth.k"></span></p>
+<p><b class="st-label" data-i18n="web3c.x.trueL"></b> <span data-i18n="web3c.mods.5.items.3.myth.v"></span></p>
+</div>
+<p class="st-jeu__refs"><span class="st-label" data-i18n="web3c.src.title"></span> <a href="#m6src-thegraph-about" dir="ltr">[18]</a> <a href="#m6src-thegraph-manifest" dir="ltr">[19]</a> <a href="#m6src-eth-oracles" dir="ltr">[20]</a> <a href="#m6src-chainlink-arch" dir="ltr">[21]</a> <a href="#m6src-pyth-core" dir="ltr">[22]</a></p>

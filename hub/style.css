@@ -3384,7 +3384,7 @@ html.js .st-webs:not([data-web="0"]) [data-w="0"],html.js .st-webs:not([data-web
 .st-merk__root{flex-basis:220px;border-color:var(--ink);border-width:3px}
 .st-merk__leaf{flex:1 1 150px;max-inline-size:220px;align-items:stretch;text-align:start}
 .st-merk__leaf .st-label{color:var(--muted)}
-.st-merk__in{inline-size:100%;min-inline-size:0;font-size:13px}
+.st-merk__in{inline-size:100%;min-inline-size:0;font-size:13px;line-height:1.35;resize:none;field-sizing:content;overflow-wrap:anywhere}
 .st-merk__tag{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
 .st-merk__chg,.st-merk__chgw{display:none;font-family:var(--f-mono);font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--red-text);text-transform:uppercase}
 .st-merk__chgw{display:inline}
@@ -3789,7 +3789,9 @@ html.js .st-dapp.is-live .st-dapp__steps li.is-on{color:var(--ink);font-weight:6
 /* 6.2 · ask a node */
 .st-rpc__p{display:flex;flex-direction:column;gap:6px;padding:10px;background:var(--cream);border:2px solid var(--ink)}
 .st-rpc__code{padding:6px 8px;background:#0F1E30;color:var(--cream);text-align:start}
-.st-rpc__code code{font-family:"Geist Mono",ui-monospace,monospace;font-size:12px;overflow-wrap:anywhere}
+.st-rpc__code{overflow-x:auto}
+/* the JSON keeps its words whole (it broke inside « eth_blockNumber » at 390): one line that scrolls, review 2026-11-22 */
+.st-rpc__code code{font-family:"Geist Mono",ui-monospace,monospace;font-size:12px;white-space:pre}
 .st-rpc__dec{font-family:var(--f-mono);font-weight:600;font-size:13px;overflow-wrap:anywhere;text-align:start}
 .st-rpc__dec:empty{display:none}
 .st-rpc__still{margin:0;padding-inline-start:18px;font-size:12.5px}
@@ -3868,14 +3870,23 @@ html.js .st-rpc.is-live .st-rpc__strip li:not(.is-tag) .st-rpc__tags{visibility:
   .st-dapp__w--sl{order:1}.st-dapp__site{order:0}.st-dapp__lib{order:2}.st-dapp__w--pn{order:3}.st-dapp__node{order:4}.st-dapp__w--ww{order:5}.st-dapp__wallet{order:6}
   .st-dapp[data-path="read"] .st-dapp__w--sl,.st-dapp[data-path="read"] .st-dapp__w--pn,.st-dapp[data-path="write"] .st-dapp__w--sl,.st-dapp[data-path="write"] .st-dapp__w--ww{inline-size:4px}
   .st-bfee__vals{grid-template-columns:repeat(5,minmax(0,1fr));row-gap:4px}
-  .st-ipfs__nodes{gap:4px}
-  .st-ipfs__nodes li{padding:8px 2px}
+  /* m63 (review 2026-11-22): three nodes side by side left each « Épingler » wider than its card at 390; on phones one
+     node per row, the button at the row's end */
+  .st-ipfs__nodes{grid-template-columns:minmax(0,1fr);gap:6px}
+  .st-ipfs__nodes li{flex-direction:row;flex-wrap:wrap;justify-content:flex-start;gap:6px 10px;padding:8px}
   .st-ipfs__disc{inline-size:44px;block-size:44px}
+  .st-crs .st-ipfs__pin{flex:0 0 auto;margin-inline-start:auto}
+  /* m21: one operation per row, its input the row's width, so the amount the lab asks you to edit stays in view */
+  .st-merk__leaves{flex-direction:column;align-items:stretch}
+  .st-merk__row > .st-merk__leaf{flex:none;max-inline-size:none}
+  /* m24: the base chain's box takes its own row under the arrow (its label stood five lines tall at 390) */
+  .st-routes__fig{flex-wrap:wrap}
+  .st-routes__road{flex:1 1 100%}
+  .st-merk__leaf .st-label{letter-spacing:.06em;overflow-wrap:anywhere}
+  .st-merk__in{font-size:16px}
 }
 @media (max-width:359px){
-  .st-ipfs__nodes{grid-template-columns:minmax(0,1fr)}
-  .st-ipfs__nodes li{flex-direction:row;flex-wrap:wrap;justify-content:flex-start;gap:6px 10px;padding:8px}
-  .st-crs .st-ipfs__pin{flex:1 0 100%;justify-content:center}
+  .st-crs .st-ipfs__pin{flex:1 0 100%;justify-content:center;margin-inline-start:0}
   .st-rpc__strip{gap:2px}
   .st-led__form{grid-template-columns:minmax(0,1fr)}
   .st-led__mint{grid-template-columns:minmax(0,1fr)}
@@ -4272,7 +4283,8 @@ html.js .st-trap.is-live[data-tab="0"] [data-p="0"],html.js .st-trap.is-live[dat
 /* the estimate line breaks after a range's dash (app.js paraEst); a figure is never cut by the card's border */
 .st-fiche__estl{overflow-wrap:break-word}
 /* 1.1: every node's copy of the message, in full (two lines in a smaller face, never an ellipsis) */
-.st-webs__copy{overflow:visible;text-overflow:clip;white-space:normal;overflow-wrap:anywhere;font-size:11px;line-height:1.25}
+.st-webs__copy{overflow:visible;text-overflow:clip;white-space:normal;overflow-wrap:anywhere;font-size:12px;line-height:1.25}
+:lang(ar) .st-webs__copy{font-size:13px}
 .st-webs__node{align-items:flex-start}
 .st-webs__dot{margin-block-start:3px}
 /* 1.4: each digest on its own line under its name, left to right */
@@ -4281,7 +4293,7 @@ html.js .st-trap.is-live[data-tab="0"] [data-p="0"],html.js .st-trap.is-live[dat
 .st-crs .st-rpc .st-chip{overflow-wrap:anywhere;max-inline-size:100%}
 /* 6.4: the four sliders never wider than the lab */
 .st-orc__rs{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
-.st-orc__r{min-inline-size:0}
+.st-orc__r{min-inline-size:0;justify-content:space-between}  /* a label on two lines no longer lifts its neighbours' sliders */
 .st-orc__r .st-calc__l{overflow-wrap:break-word}
 .st-orc__r .st-wlab__range{inline-size:100%;min-inline-size:0}
 /* 5.4: a block's value is one unbreakable figure */
@@ -4329,7 +4341,10 @@ html.js .st-trap.is-live[data-tab="0"] [data-p="0"],html.js .st-trap.is-live[dat
   .st-b39__words{grid-template-columns:minmax(0,1fr)}
   .st-b39__bits{overflow-wrap:anywhere}
   /* 5.4: ten values, five a row, in a smaller face */
-  .st-bfee__vals{font-size:10px;letter-spacing:-.03em;column-gap:0}
+  /* (review 2026-11-22: with no column gap they ran together, « 11,2512,66 »): four a row, 6 px apart */
+  .st-bfee__vals{grid-template-columns:repeat(4,minmax(0,1fr));font-size:11px;letter-spacing:0;column-gap:6px}
+  /* 3.1: the grid's cells keep a margin round their words */
+  .st-wkeys__c{padding:5px 6px;font-size:12px;line-height:1.3;hyphens:auto}
   /* 6.2: the method chips in a smaller face */
   .st-crs .st-rpc .st-chip{font-family:var(--f-mono);font-size:12.5px;padding-inline:10px}
   /* the course bar: the count alone, the words stay its name */

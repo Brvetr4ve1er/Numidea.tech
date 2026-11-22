@@ -1,0 +1,66 @@
+<!-- cut from the old manual (hub/manuel.html #web3, volume 2, via lanterne-later/web3-modules/chapters.html) on 2026-11-22: stop m62: its lab (hub/web3x.js binds it, lazily), its misconception card and its references; the explanation is the dossier's rule, the question the atlas's situation -->
+<div class="st-wlab st-rpc" data-lab="rpc" data-x role="group" aria-labelledby="m62-lab-h" data-who="0" data-down="0" data-arch="0">
+<p class="st-wlab__h" id="m62-lab-h"><b data-i18n="web3c.mods.5.items.1.lab.l"></b></p>
+<section class="st-rpc__p" aria-labelledby="m62-m-l">
+<p class="st-label" id="m62-m-l" data-i18n="web3c.mods.5.items.1.lab.method"></p>
+<div class="st-chips st-wlab__radios" role="radiogroup" aria-labelledby="m62-m-l" data-f="method">
+<!-- [html-validate-disable-block prefer-native-element: a styled radiogroup (COURSE.md 3.3): role=radio, roving tabindex, the arrows] -->
+<button type="button" class="st-chip" role="radio" aria-checked="true" tabindex="0" data-v="0" disabled dir="ltr" lang="en">eth_blockNumber</button>
+<button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="1" disabled dir="ltr" lang="en">eth_getBalance</button>
+</div>
+<p class="st-label" data-i18n="web3c.mods.5.items.1.lab.req"></p>
+<p class="st-rpc__code" dir="ltr" tabindex="0"><code data-o="req">{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":83}</code></p>
+<p class="st-label" data-i18n="web3c.mods.5.items.1.lab.res"></p>
+<p class="st-rpc__code" dir="ltr" tabindex="0"><code data-o="res">{"id":83,"jsonrpc":"2.0","result":"0x4b7"}</code></p>
+<div class="st-wlab__acts"><button type="button" class="st-chip st-wlab__act" data-act="decode" disabled data-i18n="web3c.mods.5.items.1.lab.decode"></button></div>
+<p class="st-rpc__dec" dir="ltr" data-o="dec"></p>
+<ul class="st-wlab__still st-rpc__still"><li dir="ltr"><code>{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x407d73…7100c1", "latest"],"id":1}</code></li><li dir="ltr"><code>{"id":1,"jsonrpc":"2.0","result":"0x0234c8a3397aab58"}</code></li><li data-i18n="web3c.mods.5.items.1.lab.dec.block"></li><li data-i18n="web3c.mods.5.items.1.lab.dec.bal"></li></ul>
+</section>
+<section class="st-rpc__p" aria-labelledby="m62-t-l">
+<p class="st-label" id="m62-t-l" data-i18n="web3c.mods.5.items.1.lab.tags.l"></p>
+<div class="st-chips st-wlab__radios" role="radiogroup" aria-labelledby="m62-t-l" data-f="tag">
+<!-- [html-validate-disable-block prefer-native-element: a styled radiogroup (COURSE.md 3.3): role=radio, roving tabindex, the arrows] -->
+<button type="button" class="st-chip" role="radio" aria-checked="true" tabindex="0" data-v="0" disabled dir="ltr" lang="en">latest</button>
+<button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="1" disabled dir="ltr" lang="en">safe</button>
+<button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="2" disabled dir="ltr" lang="en">finalized</button>
+</div>
+<ol class="st-rpc__strip" dir="ltr" aria-hidden="true"><li data-blk="0" class="is-past"><span class="st-rpc__tags"></span></li><li data-blk="1" class="is-past"><span class="st-rpc__tags"></span></li><li data-blk="2" class="is-past"><span class="st-rpc__tags"><span data-t="2">finalized</span></span></li><li data-blk="3" class="is-past"><span class="st-rpc__tags"></span></li><li data-blk="4" class="is-past"><span class="st-rpc__tags"></span></li><li data-blk="5" class="is-past"><span class="st-rpc__tags"></span></li><li data-blk="6" class="is-past"><span class="st-rpc__tags"></span></li><li data-blk="7" class="is-past"><span class="st-rpc__tags"><span data-t="1">safe</span></span></li><li data-blk="8" class="is-past"><span class="st-rpc__tags"></span></li><li data-blk="9" class="is-tag"><span class="st-rpc__tags"><span data-t="0">latest</span></span></li></ol>
+<p class="st-rpc__tagv" data-o="tagv">le dernier bloc proposé</p>
+<p class="st-crs__fine" data-i18n="web3c.mods.5.items.1.lab.tags.cap"></p>
+</section>
+<section class="st-rpc__p" aria-labelledby="m62-a-l">
+<p class="st-label" id="m62-a-l" data-i18n="web3c.mods.5.items.1.lab.arch.l"></p>
+<div class="st-chips st-wlab__radios" role="radiogroup" aria-labelledby="m62-a-l" data-f="arch">
+<!-- [html-validate-disable-block prefer-native-element: a styled radiogroup (COURSE.md 3.3): role=radio, roving tabindex, the arrows] -->
+<button type="button" class="st-chip" role="radio" aria-checked="true" tabindex="0" data-v="0" disabled data-i18n="web3c.mods.5.items.1.lab.arch.k.0"></button>
+<button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="1" disabled data-i18n="web3c.mods.5.items.1.lab.arch.k.1"></button>
+</div>
+<p class="st-calc__l"><label data-tpl="web3c.mods.5.items.1.lab.arch.back" data-tpl-n="0" for="m62-back" data-o="backL">Solde il y a 0 blocs</label></p>
+<input class="st-wlab__range" id="m62-back" type="range" min="0" max="1000" step="1" value="0" data-f="back" disabled>
+<p class="st-rpc__ends"><span data-i18n="web3c.mods.5.items.1.lab.arch.now"></span><span data-i18n="web3c.mods.5.items.1.lab.arch.gen"></span></p>
+<p class="st-rpc__arch" data-o="arch">Réponse : le nœud a gardé cet état.</p>
+<p class="st-rpc__disk"><span class="st-rpc__gauge" aria-hidden="true"><i></i></span> <span data-o="disk">disque : état récent</span></p>
+<p class="st-wlab__still st-rpc__no" data-i18n="web3c.mods.5.items.1.lab.arch.fail"></p>
+</section>
+<section class="st-rpc__p" aria-labelledby="m62-w-l">
+<p class="st-label" id="m62-w-l" data-i18n="web3c.mods.5.items.1.lab.who.l"></p>
+<div class="st-chips st-wlab__radios" role="radiogroup" aria-labelledby="m62-w-l" data-f="who">
+<!-- [html-validate-disable-block prefer-native-element: a styled radiogroup (COURSE.md 3.3): role=radio, roving tabindex, the arrows] -->
+<button type="button" class="st-chip" role="radio" aria-checked="true" tabindex="0" data-v="0" disabled data-i18n="web3c.mods.5.items.1.lab.who.k.0"></button>
+<button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="1" disabled data-i18n="web3c.mods.5.items.1.lab.who.k.1"></button>
+</div>
+<div class="st-rpc__who" aria-hidden="true"><span class="st-rpc__bx"><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M9 20h6M12 16v4"/></svg></span><span class="st-rpc__ln"></span><span class="st-rpc__bx st-rpc__prov"><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="3.5" width="16" height="7" rx="1"/><rect x="4" y="13.5" width="16" height="7" rx="1"/><path d="M7.5 7h.01M7.5 17h.01"/></svg></span><span class="st-rpc__ln st-rpc__ln--2"></span><span class="st-rpc__bx"><svg class="st-wic st-wic--s st-wic--teal" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="3.5" width="16" height="7" rx="1"/><rect x="4" y="13.5" width="16" height="7" rx="1"/><path d="M7.5 7h.01M7.5 17h.01"/></svg></span></div>
+<p class="st-rpc__whoT" data-o="whoT">Personne d’autre : vous vérifiez vous-même.</p>
+<div class="st-wlab__acts"><button type="button" class="st-chip st-wlab__act" data-act="down" aria-pressed="false" disabled data-i18n="web3c.mods.5.items.1.lab.who.down"></button></div>
+<p class="st-rpc__no" data-o="downL" data-i18n="web3c.items.7.states.rows.5.2" hidden></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.5.items.1.lab.who.names"></p>
+</section>
+<p class="st-wlab__say" data-o="say" aria-live="polite"></p>
+<p class="st-crs__fine" data-i18n="web3c.x.mock"></p>
+<p class="st-crs__fine st-wlab__nojs" data-i18n="web3c.x.noJs"></p>
+</div>
+<div class="st-myth">
+<p><b class="st-label" data-i18n="web3c.x.mythL"></b> <span data-i18n="web3c.mods.5.items.1.myth.k"></span></p>
+<p><b class="st-label" data-i18n="web3c.x.trueL"></b> <span data-i18n="web3c.mods.5.items.1.myth.v"></span></p>
+</div>
+<p class="st-jeu__refs"><span class="st-label" data-i18n="web3c.src.title"></span> <a href="#m6src-eth-nodes" dir="ltr">[10]</a> <a href="#m6src-eth-naas" dir="ltr">[11]</a> <a href="#m6src-eth-rpc" dir="ltr">[12]</a></p>

@@ -23,6 +23,9 @@
 @font-face { font-family: "Noto Sans JP"; font-style: normal; font-weight: 700 900; font-display: swap;
   src: url("noto-sans-jp-700-900-studio.woff2") format("woff2");
   unicode-range: U+30A1-30A3, U+30C7, U+30CC, U+30DC, U+30DF, U+30E9, U+30FB, U+30AF, U+30BB, U+30E4, U+30EB, U+30ED, U+4E0D, U+4EBA, U+4FA1, U+52D5, U+5370, U+54C1, U+554F, U+58F2, U+591C, U+5FC3, U+6280, U+6599, U+65C5, U+66F8, U+6A5F, U+7121, U+76F4, U+77E5, U+7BC9, U+898B, U+8A3C, U+8A71, U+8DF3, U+901F, U+904A, U+9053, U+975E, U+306E; }
+@font-face { font-family: "Noto Sans JP"; font-style: normal; font-weight: 700 900; font-display: swap;
+  src: url("noto-sans-jp-700-900-seals.woff2") format("woff2");
+  unicode-range: U+584A, U+5951, U+5E02, U+672D, U+76FE, U+7BC0, U+7DB2, U+8B70, U+9375; }
 @font-face { font-family: "Reem Kufi"; font-style: normal; font-weight: 600; font-display: swap;
   src: url("reem-kufi-600-arabic.woff2") format("woff2");
   unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }

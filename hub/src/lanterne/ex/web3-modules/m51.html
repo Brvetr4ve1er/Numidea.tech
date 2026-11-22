@@ -1,0 +1,55 @@
+<!-- cut from the old manual (hub/manuel.html #web3, volume 2, via lanterne-later/web3-modules/chapters.html) on 2026-11-22: stop m51: its lab (hub/web3x.js binds it, lazily), its misconception card and its references; the explanation is the dossier's rule, the question the atlas's situation -->
+<div class="st-wlab st-evm" data-lab="evm" data-x role="group" aria-labelledby="m51-lab-h" data-at="0">
+<p class="st-wlab__h" id="m51-lab-h"><b data-i18n="web3c.mods.4.items.0.lab.evm.l"></b></p>
+<div class="st-evm__in" role="group" aria-labelledby="m51-n-l">
+<p class="st-label" id="m51-n-l" data-i18n="web3c.mods.4.items.0.lab.evm.nums"></p>
+<p class="st-evm__n"><label for="m51-a" dir="ltr">a</label><input class="st-calc__i st-wnum" id="m51-a" type="number" value="2" data-f="a" min="0" max="99" step="1" inputmode="numeric" disabled></p>
+<p class="st-evm__n"><label for="m51-b" dir="ltr">b</label><input class="st-calc__i st-wnum" id="m51-b" type="number" value="3" data-f="b" min="0" max="99" step="1" inputmode="numeric" disabled></p>
+<p class="st-evm__n"><label for="m51-c" dir="ltr">c</label><input class="st-calc__i st-wnum" id="m51-c" type="number" value="4" data-f="c" min="0" max="99" step="1" inputmode="numeric" disabled></p>
+<button type="button" class="st-chip st-wlab__act" data-act="again" disabled data-i18n="web3c.mods.4.items.0.lab.evm.again"></button>
+</div>
+<p class="st-crs__fine" data-i18n="web3c.mods.4.items.0.lab.evm.same"></p>
+<div class="st-evm__fig">
+<section class="st-evm__col" aria-labelledby="m51-prog"><p class="st-label" id="m51-prog" data-i18n="web3c.mods.4.items.0.lab.evm.prog"></p>
+<ol class="st-evm__prog" dir="ltr"><li data-op="0">PUSH1 2</li><li data-op="1">PUSH1 3</li><li data-op="2">ADD</li><li data-op="3">PUSH1 4</li><li data-op="4">MUL</li></ol></section>
+<section class="st-evm__col" aria-labelledby="m51-stack"><p class="st-label" id="m51-stack" data-i18n="web3c.mods.4.items.0.lab.evm.stack"></p>
+<ol class="st-evm__stack" dir="ltr" data-o="stack"></ol>
+<p class="st-evm__gas" data-tpl="web3c.mods.4.items.0.lab.evm.gas" data-tpl-g="0" data-o="gas" dir="ltr">gas : 0</p></section>
+</div>
+<div class="st-wlab__acts">
+<button type="button" class="st-chip st-wlab__act" data-act="prev" disabled data-i18n="web3c.x.prev"></button>
+<button type="button" class="st-chip st-wlab__act" data-act="next" disabled data-i18n="web3c.x.next"></button>
+<button type="button" class="st-chip st-wlab__act" data-act="restart" disabled data-i18n="web3c.x.restart"></button>
+</div>
+<p class="st-wlab__say" data-o="say" aria-live="polite"></p>
+<div class="st-evm__mem">
+<p class="st-evm__box"><span class="st-label" data-i18n="web3c.mods.4.items.0.lab.evm.mem"></span> <bdi dir="ltr" data-o="mem">—</bdi></p>
+<p class="st-evm__box st-evm__box--store"><span class="st-label" data-i18n="web3c.mods.4.items.0.lab.evm.store"></span> <bdi dir="ltr" data-o="store">—</bdi></p>
+<button type="button" class="st-chip st-wlab__act" data-act="endTx" disabled data-i18n="web3c.mods.4.items.0.lab.evm.endTx"></button>
+</div>
+<p class="st-crs__fine" data-i18n="web3c.mods.4.items.0.lab.evm.costs"></p>
+<table class="st-wtab st-evm__still st-wlab__still">
+<thead><tr><td></td><th scope="col" data-i18n="web3c.mods.4.items.0.lab.evm.prog"></th><th scope="col" data-i18n="web3c.mods.4.items.0.lab.evm.stack"></th><th scope="col" dir="ltr">gas</th></tr></thead>
+<tbody>
+<tr><th scope="row" dir="ltr">1</th><td dir="ltr"><code>PUSH1 2</code></td><td dir="ltr"><code>[2]</code></td><td dir="ltr">3</td></tr>
+<tr><th scope="row" dir="ltr">2</th><td dir="ltr"><code>PUSH1 3</code></td><td dir="ltr"><code>[2, 3]</code></td><td dir="ltr">6</td></tr>
+<tr><th scope="row" dir="ltr">3</th><td dir="ltr"><code>ADD</code></td><td dir="ltr"><code>[5]</code></td><td dir="ltr">9</td></tr>
+<tr><th scope="row" dir="ltr">4</th><td dir="ltr"><code>PUSH1 4</code></td><td dir="ltr"><code>[5, 4]</code></td><td dir="ltr">12</td></tr>
+<tr><th scope="row" dir="ltr">5</th><td dir="ltr"><code>MUL</code></td><td dir="ltr"><code>[20]</code></td><td dir="ltr">17</td></tr>
+</tbody>
+</table>
+<p class="st-wlab__still" data-tpl="web3c.mods.4.items.0.lab.evm.done" data-tpl-r="20" data-tpl-g="17">Résultat : 20 · gas : 17</p>
+<p class="st-crs__fine st-wlab__nojs" data-i18n="web3c.x.noJs"></p>
+</div>
+<figure class="st-wlab st-wfig st-lanes" aria-labelledby="m51-l-h">
+<figcaption class="st-wlab__h" id="m51-l-h"><b data-i18n="web3c.mods.4.items.0.lab.lanes.l"></b></figcaption>
+<ol class="st-lanes__tx"><li><b data-tpl="web3c.mods.4.items.0.lab.lanes.tx" data-tpl-n="1">Transaction 1</b><span class="st-lanes__a st-lanes__a--w"><span data-i18n="web3c.mods.4.items.0.lab.lanes.w"></span> · <span data-tpl="web3c.mods.4.items.0.lab.lanes.acct" data-tpl-c="A">compte A</span></span></li><li><b data-tpl="web3c.mods.4.items.0.lab.lanes.tx" data-tpl-n="2">Transaction 2</b><span class="st-lanes__a st-lanes__a--w"><span data-i18n="web3c.mods.4.items.0.lab.lanes.w"></span> · <span data-tpl="web3c.mods.4.items.0.lab.lanes.acct" data-tpl-c="A">compte A</span></span></li><li><b data-tpl="web3c.mods.4.items.0.lab.lanes.tx" data-tpl-n="3">Transaction 3</b><span class="st-lanes__a st-lanes__a--r"><span data-i18n="web3c.mods.4.items.0.lab.lanes.r"></span> · <span data-tpl="web3c.mods.4.items.0.lab.lanes.acct" data-tpl-c="B">compte B</span></span></li><li><b data-tpl="web3c.mods.4.items.0.lab.lanes.tx" data-tpl-n="4">Transaction 4</b><span class="st-lanes__a st-lanes__a--w"><span data-i18n="web3c.mods.4.items.0.lab.lanes.w"></span> · <span data-tpl="web3c.mods.4.items.0.lab.lanes.acct" data-tpl-c="C">compte C</span></span></li><li><b data-tpl="web3c.mods.4.items.0.lab.lanes.tx" data-tpl-n="5">Transaction 5</b><span class="st-lanes__a st-lanes__a--r"><span data-i18n="web3c.mods.4.items.0.lab.lanes.r"></span> · <span data-tpl="web3c.mods.4.items.0.lab.lanes.acct" data-tpl-c="B">compte B</span></span></li></ol>
+<ol class="st-lanes__l"><li><span class="st-label" data-tpl="web3c.mods.4.items.0.lab.lanes.lane" data-tpl-n="1">Voie 1</span><span class="st-lanes__row"><span class="st-lanes__t" dir="ltr">T1</span><span class="st-lanes__t" dir="ltr">T2</span></span></li><li><span class="st-label" data-tpl="web3c.mods.4.items.0.lab.lanes.lane" data-tpl-n="2">Voie 2</span><span class="st-lanes__row"><span class="st-lanes__t" dir="ltr">T3</span></span></li><li><span class="st-label" data-tpl="web3c.mods.4.items.0.lab.lanes.lane" data-tpl-n="3">Voie 3</span><span class="st-lanes__row"><span class="st-lanes__t" dir="ltr">T4</span></span></li><li><span class="st-label" data-tpl="web3c.mods.4.items.0.lab.lanes.lane" data-tpl-n="4">Voie 4</span><span class="st-lanes__row"><span class="st-lanes__t" dir="ltr">T5</span></span></li></ol>
+<p data-tpl="web3c.mods.4.items.0.lab.lanes.say" data-tpl-t="5" data-tpl-l="4">5 transactions sur 4 voie(s) : celles qui écrivent le même compte passent l’une après l’autre.</p>
+<p class="st-crs__fine" data-i18n="web3c.mods.4.items.0.lab.lanes.rule"></p>
+</figure>
+<div class="st-myth">
+<p><b class="st-label" data-i18n="web3c.x.mythL"></b> <span data-i18n="web3c.mods.4.items.0.myth.k"></span></p>
+<p><b class="st-label" data-i18n="web3c.x.trueL"></b> <span data-i18n="web3c.mods.4.items.0.myth.v"></span></p>
+</div>
+<p class="st-jeu__refs"><span class="st-label" data-i18n="web3c.src.title"></span> <a href="#m5src-eth-evm" dir="ltr">[1]</a> <a href="#m5src-eth-opcodes" dir="ltr">[2]</a> <a href="#m5src-anza-runtime" dir="ltr">[3]</a> <a href="#m5src-agave-svm" dir="ltr">[4]</a> <a href="#m5src-move-foreword" dir="ltr">[5]</a> <a href="#m5src-cosmwasm" dir="ltr">[6]</a></p>

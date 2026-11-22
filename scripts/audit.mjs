@@ -532,7 +532,8 @@ await run('hub ar','/hub/index.html',{...D,lang:'ar'});
 await run('hub lanterne fr','/hub/lanterne/',{...D,lang:'fr'});
 await run('hub lanterne ar','/hub/lanterne/',{...D,lang:'ar'});
 for (const p of LANTERNE_PAGES.slice(1)) { await run('hub atlas '+p.slice(13,-5)+' fr','/'+p,{...D,lang:'fr'}); await run('hub atlas '+p.slice(13,-5)+' ar','/'+p,{...D,lang:'ar'}); }
-// the web3 course's nine modules (2026-11-21, web3x/SPEC.md): one module chapter open, its lab script loaded
+// the web3 course's nine modules (2026-11-21, web3x/SPEC.md) are an atlas since 2026-11-22 (hub/lanterne/web3-modules.html, in
+// LANTERNE_PAGES above): its labs' script loads when an exercise comes near
 
 // the world beside the Studio (hub/monde.html, 2026-11-18): the codex, the personal dossiers, the Lab, the diary; same sheet and script
 await run('hub world fr','/hub/monde.html',{...D,lang:'fr'});

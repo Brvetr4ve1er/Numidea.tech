@@ -1,5 +1,5 @@
 {
-  "_note": "« Le web3, sans fumée. » vol. 1 · Le parcours acheteur (SPEC §4.3): eight districts in three acts, ending in the web3 fiche. Copy under lant.at.web3.* or the course's existing keys (f: the course's line per answer). course = the fiche's set (hub/app.js 13b). Volume 2 (the nine modules) is not published (L9): no district links into it. Case: Samia, an invented example. Ratman stands here (no plate paints a rat, L4). Keepsakes: ls-web3 (w1) and the stops' tab drawings. Reward: the wallpaper (_sac). money.note1/note2 under the hero (_hero).",
+  "_note": "« Le web3, sans fumée. » vol. 1 · Le parcours acheteur (SPEC §4.3): eight districts in three acts, ending in the web3 fiche. Copy under lant.at.web3.* or the course's existing keys (f: the course's line per answer). course = the fiche's set (hub/app.js 13b). Volume 2 (the nine modules, web3-modules.json) is published (2026-11-22): each district's « Pour comprendre » line (web3c.deeper.<i>, more) opens the module district that explains it, and vol. 2's bridges come back here. Case: Samia, an invented example. Ratman stands here (no plate paints a rat, L4). Keepsakes: ls-web3 (w1) and the stops' tab drawings. Reward: the wallpaper (_sac). money.note1/note2 under the hero (_hero).",
   "slug": "web3",
   "key": "web3",
   "store": "numidea-lanterne-web3",
@@ -68,6 +68,11 @@
         "ex.t": "lant.ui.ex.pick.t",
         "ex.brief": "lant.ui.ex.pick.brief",
         "alt": "lant.at.web3.plate.a1"
+      },
+      "more": {
+        "k": "web3c.deeper.0",
+        "to": "web3-modules",
+        "at": "m14"
       }
     },
     "w2": {
@@ -95,6 +100,11 @@
         "ex.t": "lant.ui.ex.flow.t",
         "ex.brief": "lant.ui.ex.flow.brief",
         "alt": "lant.at.web3.plate.a1"
+      },
+      "more": {
+        "k": "web3c.deeper.1",
+        "to": "web3-modules",
+        "at": "m13"
       }
     },
     "w3": {
@@ -122,6 +132,11 @@
         "ex.t": "lant.ui.ex.fiche.t",
         "ex.brief": "lant.ui.ex.fiche.brief",
         "alt": "lant.at.web3.plate.a2"
+      },
+      "more": {
+        "k": "web3c.deeper.2",
+        "to": "web3-modules",
+        "at": "m41"
       }
     },
     "w8": {
@@ -149,6 +164,11 @@
         "ex.t": "lant.ui.ex.states.t",
         "ex.brief": "lant.ui.ex.states.brief",
         "alt": "lant.at.web3.plate.a2"
+      },
+      "more": {
+        "k": "web3c.deeper.7",
+        "to": "web3-modules",
+        "at": "m61"
       }
     },
     "w4": {
@@ -176,6 +196,11 @@
         "ex.t": "lant.ui.ex.fiche.t",
         "ex.brief": "lant.ui.ex.fiche.brief",
         "alt": "lant.at.web3.plate.a2"
+      },
+      "more": {
+        "k": "web3c.deeper.3",
+        "to": "web3-modules",
+        "at": "m54"
       }
     },
     "w5": {
@@ -203,6 +228,11 @@
         "ex.t": "lant.ui.ex.bins.t",
         "ex.brief": "lant.ui.ex.bins.brief",
         "alt": "lant.at.web3.plate.a3"
+      },
+      "more": {
+        "k": "web3c.deeper.4",
+        "to": "web3-modules",
+        "at": "m34"
       }
     },
     "w6": {
@@ -230,6 +260,11 @@
         "ex.t": "lant.ui.ex.law.t",
         "ex.brief": "lant.ui.ex.law.brief",
         "alt": "lant.at.web3.plate.a3"
+      },
+      "more": {
+        "k": "web3c.deeper.5",
+        "to": "web3-modules",
+        "at": "m83"
       }
     },
     "w7": {
@@ -257,7 +292,13 @@
         "ex.t": "lant.ui.ex.fiche.t",
         "ex.brief": "lant.ui.ex.fiche.brief",
         "alt": "lant.at.web3.plate.a3"
+      },
+      "more": {
+        "k": "web3c.deeper.6",
+        "to": "web3-modules",
+        "at": "m31"
       }
     }
-  }
+  },
+  "runtime": "^web3c\\.mods\\.\\d\\.ask\\.chips\\.\\d$"
 }

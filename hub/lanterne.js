@@ -44,11 +44,11 @@
     var S = store.get(b.store);
     if (!S || S.v !== 1 || typeof S.d !== 'object' || !S.d) {
       S = { v: 1, d: {}, last: null };
-      var old = b.migrate ? store.get(b.migrate) : null;
-      if (Array.isArray(old)) {
-        old.forEach(function (id) { if (b.ids.indexOf(id) > -1) S.d[id] = { a: 1, x: 1, m: 1 }; });
-        if (Object.keys(S.d).length) store.set(b.store, S);
-      }
+      [].concat(b.migrate || []).forEach(function (k) {
+        var old = store.get(k);
+        if (Array.isArray(old)) old.forEach(function (id) { if (b.ids.indexOf(id) > -1) S.d[id] = { a: 1, x: 1, m: 1 }; });
+      });
+      if (Object.keys(S.d).length) store.set(b.store, S);
     }
     return S;
   }
@@ -80,7 +80,14 @@
       var md = $('meta[name="description"]'); if (ui && md && D[ui + '.desc']) md.setAttribute('content', D[ui + '.desc']);
     }
     $$('[data-i18n-label]').forEach(function (n) { var v = D[n.getAttribute('data-i18n-label')]; if (v != null) n.setAttribute('label', v); });
+    tpls();
   }
+  var tpls = function () { $$('[data-lt-tpl]').forEach(function (n) { if (has(n.getAttribute('data-lt-tpl'))) n.textContent = t(n.getAttribute('data-lt-tpl'), { n: n.getAttribute('data-lt-n') }); }); };
+  /* a keepsake's picture, or its act's seal (web3 vol. 2: the module's seal, a glyph) */
+  var ksNode = function (x, alt) {
+    if (x.seal) { var g = el('span', 'ks__seal', x.seal); g.setAttribute('lang', 'ja'); g.setAttribute('aria-hidden', 'true'); return g; }
+    var im = el('img'); im.src = x.ks; im.alt = alt || ''; return im;
+  };
   function ready(cb) {
     var have = function () { return lang === 'fr' || !!(window.HUB_I18N && window.HUB_I18N[lang]); };
     var go = function () {
@@ -141,7 +148,22 @@
       });
       n.addEventListener('pointerleave', function () { reset(n); });
     });
-    d.addEventListener('click', function (e) { if (e.target.closest('[data-lt-print]')) window.print(); });
+    d.addEventListener('click', function (e) {
+      if (e.target.closest('[data-lt-print]')) { window.print(); return; }
+      var pa = e.target.closest('[data-lt-print-act]'), ps = e.target.closest('[data-lt-print-sac]');
+      if (!pa && !ps) return;
+      /* one act's districts (its head, its dossiers, its labs as they stand) or the carnet alone, then the page as it was */
+      root.setAttribute('data-lt-printing', pa ? 'act' : 'sac');
+      if (pa) $$('[data-act="' + pa.getAttribute('data-lt-print-act') + '"],[data-lt-acthead="' + pa.getAttribute('data-lt-print-act') + '"]').forEach(function (n) { n.classList.add('is-print'); });
+      var undo = function () { root.removeAttribute('data-lt-printing'); $$('.is-print').forEach(function (n) { n.classList.remove('is-print'); }); removeEventListener('afterprint', undo); };
+      addEventListener('afterprint', undo); window.print(); setTimeout(undo, 1000);
+    });
+    /* a reference inside a closed list (a module's sources) opens it first, then the browser's own jump */
+    d.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]'); if (!a || a.hasAttribute('data-lt-go')) return;
+      var tg = null; try { tg = d.getElementById(decodeURIComponent(a.getAttribute('href').slice(1))); } catch (x) {}
+      var dt = tg && (tg.tagName === 'DETAILS' ? tg : tg.closest('details')); if (dt) dt.open = true;
+    }, true);
   }
 
   /* ================= an atlas ================= */
@@ -157,6 +179,7 @@
     var save = function () { store.set(A.store, S); };
     var rec = function (id) { return S.d[id] || (S.d[id] = {}); };
     var done = function (id) { return isDone(S, id); };
+    var actDone = function (a) { return a.districts.every(done); };
     /* last is written only by an answer or an exercise action, never by a look */
     var touch = function (id) { S.last = id; save(); };
     var chosen = {}; try { chosen = JSON.parse(sessionStorage.getItem(A.store + '-session') || '{}') || {}; } catch (e) {}
@@ -190,8 +213,9 @@
       if (hs) hs.textContent = t('lant.ui.hudSide', { m: c.m, M: c.M });
       if (roll) once(hm, 'is-rolling');
       $('[data-lt-journal-count]').textContent = tp(sideIds.length ? 'lant.ui.journalCount' : 'lant.ui.journalCountMain', c.n, c);
-      var all = c.n + c.m;
-      $('[data-lt-sac-count]').textContent = tp('lant.ui.sacCount', all, { n: all, N: ids.length });
+      var all = c.n + c.m, sealed = A.acts.filter(actDone).length;
+      if (A.carnet) $('[data-lt-sac-count]').textContent = tp('lant.ui.sacCount', sealed, { n: sealed, N: A.acts.length });
+      else $('[data-lt-sac-count]').textContent = tp('lant.ui.sacCount', all, { n: all, N: ids.length });
     }
     function renderCase() {
       $('[data-lt-case-act]').textContent = t(A.k.act[actOf(cur).id]);
@@ -224,6 +248,17 @@
     }
     function renderSac() {
       ids.forEach(function (id) { var n = $('[data-lt-ks="' + id + '"]'); if (n) n.setAttribute('data-earned', String(done(id))); });
+      /* the carnet: an act's seal is inked once each of its districts is done; its stamps counted; its done line */
+      if (A.carnet) {
+        var left = 0;
+        A.acts.forEach(function (a) {
+          var n = a.districts.filter(done).length, all = n === a.districts.length, c = $('[data-lt-seal="' + a.id + '"]'), f = $('[data-lt-actfoot="' + a.id + '"] [data-lt-act-done]');
+          if (!all) left++;
+          if (c) { c.setAttribute('data-earned', String(all)); $('[data-lt-seal-n]', c).textContent = t('web3c.chap.count', { a: n, b: a.districts.length }); }
+          if (f) f.hidden = !all;
+        });
+        var lf = $('[data-lt-carnet-left]'); if (lf) lf.textContent = left ? t('web3c.carnet.left', { n: left }) : '';
+      }
       /* the set's own reward (the wallpaper, the sticker sheet…) shows once every district is done */
       $$('[data-lt-all]').forEach(function (x) { x.hidden = !ids.every(done); });
     }
@@ -300,6 +335,10 @@
       if (ids.indexOf(id) < 0) id = ids[0];
       var prev = cur; cur = id;
       $$('.district').forEach(function (s) { s.classList.toggle('is-current', s.id === id); });
+      var aid = actOf(id).id;
+      $$('[data-lt-acthead],[data-lt-actfoot]').forEach(function (n) { n.classList.toggle('is-current', (n.getAttribute('data-lt-acthead') || n.getAttribute('data-lt-actfoot')) === aid); });
+      // the journal's folded acts (web3 vol. 2): the act on show open, the others closed
+      $$('[data-lt-jmod]').forEach(function (n) { n.open = n.getAttribute('data-lt-jmod') === aid; });
       var s = sec(id);
       $$('img[loading=lazy]', s).forEach(function (im) { im.loading = 'eager'; });
       renderDossier(id); renderList(); renderCase(); buildBoard(id);
@@ -501,21 +540,93 @@
       if (z) { var dlg = $('[data-lt-zoom-dialog]'), im = $('[data-lt-zoom-img]', dlg); im.src = z.getAttribute('data-lt-zoom'); im.alt = $('figure.dio', z.closest('.district')).getAttribute('aria-label'); if (dlg.showModal) dlg.showModal(); }
     });
     var sel = $('[data-lt-jump]'); if (sel) sel.addEventListener('change', function () { show(sel.value, { focus: true, push: true }); });
-    window.addEventListener('popstate', function () { var id = location.hash.slice(1); if (ids.indexOf(id) > -1 && id !== cur) show(id, {}); });
+    var actHash = function (h) { var m = /^act-(.+?)(-head)?$/.exec(h), a = m && A.acts.filter(function (x) { return x.id === m[1]; })[0]; return a ? a.districts[0] : null; };
+    window.addEventListener('popstate', function () { var id = location.hash.slice(1); id = actHash(id) || id; if (ids.indexOf(id) > -1 && id !== cur) show(id, {}); });
     /* the districts not on show still hold the build's French lines (their dossier kicker, guide, next call): each is
        written in the page's language once, so nothing French waits in a hidden district of an English or Arabic page */
     var renderAll = function () { ids.forEach(function (id) { if (id !== cur) renderDossier(id); }); };
     d.addEventListener('numidea:lang', function (e) { lang = (e.detail && e.detail.lang) || lang; rules = new Intl.PluralRules(lang); applyDict(); renderHud(false); renderJournal(); show(cur, {}); renderAll(); });
 
-    var h0 = location.hash.slice(1), start = ids.indexOf(h0) > -1 ? h0 : (resumeOf(S, A.acts) || ids[0]);
+    var h0 = location.hash.slice(1); h0 = actHash(h0) || h0;
+    /* a line inside a district (#m93-steal) opens that district, then comes into view below */
+    var inD = null;
+    if (h0 && ids.indexOf(h0) < 0) { try { var e0 = d.getElementById(decodeURIComponent(h0)), s0 = e0 && e0.closest('.district'); if (s0 && ids.indexOf(s0.id) > -1) inD = s0.id; } catch (e) {} }
+    var start = ids.indexOf(h0) > -1 ? h0 : (inD || resumeOf(S, A.acts) || ids[0]);
     renderHud(false); renderJournal(); renderSac();
     show(start, { replace: ids.indexOf(h0) > -1 });
     renderAll();
     /* a district asked for in the address opens and comes into view, without taking the focus from the page start */
     if (ids.indexOf(h0) > -1) sec(h0).scrollIntoView({ block: 'start' });
+    /* any other line asked for in the address (a module's source, #m5src-…, inside a closed list it opens; a question
+       for the vendor in the journal, #w-ask3-l) comes into view at once, not by a glide: a glide passed the first
+       district's exercise, which fetched the labs, whose live state is shorter than their still one, and the line ended
+       above the screen (review 2026-11-22: −850 px at 390). It is placed again once the fonts and the page have settled,
+       unless the visitor has moved meanwhile; the labs are watched only from there */
+    else if (h0) {
+      var tg = null; try { tg = d.getElementById(decodeURIComponent(h0)); } catch (e) {}
+      if (tg && (inD || !tg.closest('.district'))) {
+        var dt = tg.closest('details'), moved = false;
+        if (dt) dt.open = true;
+        var land = function () { if (!moved) tg.scrollIntoView({ block: 'center', behavior: 'instant' }); };
+        land();
+        ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach(function (ev) { window.addEventListener(ev, function () { moved = true; }, { once: true, passive: true }); });
+        if (d.fonts && d.fonts.ready) d.fonts.ready.then(land);
+        window.addEventListener('load', land); setTimeout(land, 900); setTimeout(land, 2400);
+        d.addEventListener('numidea:labs-live', land);
+      }
+    }
+    chips(); labs();
     // what hub/app.js reported before this script bound (it runs first: a fiche restored on an ordinary route), once the
     // page stands
     (window.lanternePending || []).forEach(heard); window.lanternePending = [];
+  }
+
+  /* the questions for the vendor (web3 vol. 2: [data-bf][data-chips] in the journal): ticked, they go to the vol. 1 fiche's
+     own store ('numidea-brief-<set>', the format hub/app.js 13b reads: { v: 1, f: { ask1: [0, 1] } }), read again before
+     each write so nothing typed in the fiche elsewhere is lost; only where hub/app.js is not the page's */
+  function chips() {
+    var m = $('[data-lt-brief]'); if (!m || app) return;
+    var KEY = 'numidea-brief-' + m.getAttribute('data-lt-brief');
+    var get = function () { var x = store.get(KEY); return x && x.v === 1 && x.f && typeof x.f === 'object' ? x : { v: 1, f: {} }; };
+    $$('[data-bf][data-chips]', m).forEach(function (g) {
+      var f = g.getAttribute('data-bf'), bs = $$('[data-v]', g);
+      var paint = function () { var a = get().f[f] || []; bs.forEach(function (b) { b.setAttribute('aria-pressed', String(a.indexOf(Number(b.getAttribute('data-v'))) > -1)); }); };
+      bs.forEach(function (b) {
+        b.disabled = false;
+        b.addEventListener('click', function () {
+          var st = get(), v = Number(b.getAttribute('data-v')), a = (st.f[f] || []).slice(), i = a.indexOf(v);
+          if (i > -1) a.splice(i, 1); else a.push(v);
+          a.sort(function (x, y) { return x - y; });
+          if (a.length) st.f[f] = a; else delete st.f[f];
+          store.set(KEY, st); paint();
+        });
+      });
+      paint();
+    });
+  }
+  /* the labs' script (web3 vol. 2: hub/web3x.js, 137 kB) is fetched only when an exercise comes near the screen or is
+     touched, with its French lines (i18n/<page>.fr.js); without it every lab keeps its still state, and « Je passe
+     l'exercice » still counts. It reports a lab's end state as numidea:exercise. */
+  function labs() {
+    var L = DATA.labs; if (!L) return;
+    var me = $('script[src*="lanterne.js"]'), ver = ((me && /\?v=\d+/.exec(me.getAttribute('src'))) || [''])[0], on = false, io = null;
+    var add = function (src, cb) { var x = d.createElement('script'); x.src = src + ver; x.onload = x.onerror = cb || null; d.head.appendChild(x); };
+    var go = function () {
+      if (on) return; on = true; if (io) io.disconnect();
+      var hooks = [];
+      d.addEventListener('numidea:lang', function () { hooks.forEach(function (fn) { try { fn(); } catch (e) {} }); });
+      var run = function () {
+        var X = window.LANT_XFR || {}; for (var k in X) if (FR[k] == null) FR[k] = X[k];
+        window.NUMIDEA_W3X = { t: function (k) { return t(k); }, lang: function () { return lang; }, onLang: function (fn) { hooks.push(fn); },
+          reduce: function () { return !motionOn(); }, emit: emit, root: $('main'), atlas: DATA.slug, said: function () { return t('lant.ui.ex.labDone'); } };
+        add(L.script, function () { setTimeout(function () { emit('numidea:labs-live', {}); }, 60); });
+      };
+      if (L.fr && !(window.HUB_I18N && window.HUB_I18N[lang] && lang !== 'fr')) add(L.fr, run); else run();
+    };
+    var near = $$('.terrain');
+    if ('IntersectionObserver' in window) { io = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) go(); }, { rootMargin: '300px 0px' }); near.forEach(function (n) { io.observe(n); }); }
+    else go();
+    ['pointerdown', 'focusin'].forEach(function (ev) { d.addEventListener(ev, function (e) { if (e.target.closest && e.target.closest('.terrain')) go(); }, true); });
   }
 
   /* ================= the shelf ================= */
@@ -531,19 +642,33 @@
         var bar = $('[data-lt-bar]', card); if (bar) bar.style.setProperty('--p', String(got.length / b.ids.length));
         var r = resumeOf(S, b.acts), ga = $('[data-lt-book-go]', card);
         if (r && ga) { ga.firstElementChild.textContent = t('lant.shelf.resume', { q: t(b.d[r].name) }); ga.setAttribute('href', b.slug + '.html#' + r); }
+        // a card with two volumes has no « Ouvrir » button: its vol. 1 link takes the resume address
+        var v1 = $('[data-lt-path="0"]', card); if (r && v1 && !ga) v1.setAttribute('href', b.slug + '.html#' + r);
         var ks = $('[data-lt-keeps]', card);
-        if (got.length && ks) { ks.hidden = false; got.slice(-3).forEach(function (id) { var im = el('img'); im.src = b.d[id].ks; im.alt = t(b.d[id].keep); im.width = 32; im.height = 32; ks.appendChild(im); }); }
+        if (got.length && ks) { ks.hidden = false; got.slice(-3).forEach(function (id) { var im = ksNode(b.d[id], t(b.d[id].keep)); im.width = 32; im.height = 32; ks.appendChild(im); }); }
+      }
+      /* a second volume shows on its first's card (web3: the nine modules): its own count, and the same resume rule */
+      var vl = b.in && b.live && $('[data-lt-vol="' + b.slug + '"]');
+      if (vl) {
+        var vn = $('[data-lt-count]', vl); if (vn) vn.textContent = tp('lant.shelf.count', b.ids.length, { n: got.length, N: b.ids.length });
+        var r2 = resumeOf(S, b.acts); if (r2) vl.setAttribute('href', b.slug + '.html#' + r2);
       }
       var row = $('[data-lt-pass="' + b.slug + '"]'); if (!row) return;
       $('[data-lt-pass-n]', row).textContent = t('lant.shelf.passRow', { n: got.length, N: b.ids.length });
       got.forEach(function (id) {
         var f = $('[data-lt-pass-ks="' + id + '"]', row); if (!f) return;
         f.setAttribute('data-earned', 'true'); f.textContent = '';
-        var im = el('img'); im.src = b.d[id].ks; im.alt = ''; f.appendChild(im);
+        f.appendChild(ksNode(b.d[id], ''));
         var nm = t(b.d[id].keep); f.title = nm; f.appendChild(el('span', 'sr', nm));
       });
     });
     var tot = $('[data-lt-pass-total]'); if (tot) tot.textContent = tp('lant.shelf.passTotal', earned, { n: earned, N: total });
+    /* « Vous venez pour quoi ? »: the way chosen is kept as the manual's start kept it (numidea-web3-path, { v: 1, p }) */
+    d.addEventListener('click', function (e) {
+      var w = e.target.closest('[data-lt-path]'); if (!w) return;
+      var ps = store.get('numidea-web3-path'); if (!ps || ps.v !== 1) ps = { v: 1 };
+      ps.p = Number(w.getAttribute('data-lt-path')); store.set('numidea-web3-path', ps);
+    });
     d.addEventListener('click', function (e) {
       var c = e.target.closest('[data-lt-clear]'); if (!c) return;
       var b = DATA.books.filter(function (x) { return x.slug === c.getAttribute('data-lt-clear'); })[0], p = c.parentNode;

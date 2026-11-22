@@ -127,6 +127,27 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/web3.html"/>
   </url>
   <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/web3-modules.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/web3-modules.html?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html"/>
+  </url>
+  <url>
+    <loc>https://www.numedialab.dev/hub/lanterne/web3-modules.html?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.numedialab.dev/hub/lanterne/web3-modules.html"/>
+  </url>
+  <url>
     <loc>https://www.numedialab.dev/hub/lanterne/cours-du-soir.html</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.numedialab.dev/hub/lanterne/cours-du-soir.html?lang=en"/>

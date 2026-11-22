@@ -118,6 +118,9 @@ html.js .note-nojs,html.js .board__nojs{display:none}
 /* layout */
 .layout{display:grid;grid-template-columns:212px minmax(0,1fr);gap:18px;align-items:start}
 .list{position:sticky;top:14px;display:grid;gap:6px}
+/* a list taller than the screen (web3 vol. 2: 33 districts) scrolls within itself, so a district reached by Tab below
+   the fold comes into view (sticky, it stayed pinned with its foot off-screen); padding keeps rings and shadows in */
+@media (min-width:1011px){.list{max-height:calc(100vh - 28px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:4px 10px 10px 4px;margin:-4px -10px -10px -4px}}
 .list__act{font:700 12px/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 0 2px}
 .list__act--side{color:var(--teal-text)}
 :lang(ar) .list__act{letter-spacing:0;text-transform:none;font-family:var(--f-body);font-size:13px}
@@ -334,7 +337,9 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
 .rayons>.k{margin-bottom:6px}
 .rayon{margin-top:34px}
 .rayon__h{font-size:clamp(32px,4.2vw,58px);margin-bottom:18px}
-.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:22px;align-items:stretch;padding-inline:6px}
+/* align-items:start (review 2026-11-22): the web3 card's two-volume chooser made the row tall and its neighbours
+   stretched to it with 240 px of blank above their button; books of their own heights stand on the plank */
+.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:22px;align-items:start;padding-inline:6px}
 .book{display:flex;flex-direction:column;background:var(--cream);border:2px solid var(--ink);border-inline-start:14px solid var(--spine);box-shadow:var(--shadow);min-width:0}
 .book__cover{display:block;aspect-ratio:16/9;overflow:hidden;border-bottom:2px solid var(--ink);background:var(--navy);position:relative}
 .book__cover>img:first-child{width:100%;height:100%;object-fit:cover}
@@ -417,8 +422,8 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
   .mini__b{min-width:44px;min-height:44px;display:grid;place-items:center;background:var(--cream);border:1px solid var(--ink)}
   .mini__arrow::before{content:"›";font:900 22px/1 var(--f-disp)}
   .mini__arrow--prev::before{content:"‹"}
-  .mini__arrow:dir(rtl)::before{content:"‹"}
-  .mini__arrow--prev:dir(rtl)::before{content:"›"}
+  /* no :dir(rtl) swap: ‹ and › are mirrored by the bidi algorithm in right-to-left text, so a swap pointed both inward
+     (review 2026-11-22) */
   .mini__pos{font:700 14px var(--f-mono);min-width:56px;text-align:center}
   .jump{flex:1;min-width:0}
   .jump select{width:100%;min-height:44px;padding:6px 8px;background:var(--cream);border:1px solid var(--ink);font-weight:700}
@@ -530,3 +535,118 @@ html:not(.js) .ks img,html:not(.js) .ks__d,html:not(.js) .ks__n{display:none}
    share its row and the atlas's mast keeps two rows, as the shelf's does (rev2: three, 164 px) */
 @media (max-width:300px){.mast__back{font-size:0;min-width:44px;justify-content:center}.mast__back::before{font-size:20px;margin:0}}
 @media (max-width:340px){.hero__h,.hero--shelf .hero__h{font-size:clamp(34px,12.5vw,50px)}:lang(ar) .hero__h{font-size:clamp(32px,11.5vw,44px)}}
+
+/* ---------- « Le web3, sans fumée » vol. 2 (2026-11-22): the module header alone in its frame, the cast on the paper beside
+   it (house art takes no cut-out, SPEC §3.3); an act's head and closing lines with the district on show; the carnet ---------- */
+/* review 2026-11-22: the landscape plate sits beside the dossier as the other atlases' portrait plates do (it stood over a
+   dossier capped at 78ch, a 240 px strip empty at its side); the cast stands on the plate's lower corner, overlapping
+   its frame, never on a strip of bare paper; the caption names the district (the module's title is the act head's) */
+.stage--wide{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+.dio--wide{position:relative;max-width:calc(var(--pw) + 4px);margin-bottom:14px}
+.dio__paper{position:absolute;z-index:3;right:-10px;bottom:-14px;display:flex;align-items:flex-end;gap:2px;height:clamp(84px,9.5vw,140px);pointer-events:none}
+[dir=rtl] .dio__paper{right:auto;left:-10px;flex-direction:row-reverse}
+.stage--wide .dio__name{display:block;font:800 18px/1.25 var(--f-body)}
+.stage--wide .dio__cap strong{display:none}
+@media (min-width:1011px){.stage--wide .dio-wrap{position:sticky;top:14px}}  /* the plate stays beside a long rule */
+@media (max-width:1010px){.stage--wide{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.dio__paper .dio__lead,.dio__paper .dio__comp{position:static;max-width:none;width:auto;object-fit:contain}
+.dio__paper .dio__lead{height:min(100%,var(--nh))}
+.dio__paper .dio__comp{height:min(64%,var(--nh))}
+html.js .acthead:not(.is-current),html.js .actfoot:not(.is-current){display:none}
+.acthead{margin:0 0 16px;padding:14px 18px;background:var(--cream);border:2px solid var(--ink);border-inline-start:8px solid var(--teal)}
+.acthead__k{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font:700 12px var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
+:lang(ar) .acthead__k{letter-spacing:0;font-family:var(--f-body);font-size:13px}
+.acthead__seal{width:40px;height:40px;font-size:20px}
+.acthead__min{color:var(--muted)}
+.acthead__h{font:900 clamp(22px,2.3vw,30px)/1.1 var(--f-disp);letter-spacing:-.02em;margin:8px 0 6px}
+:lang(ar) .acthead__h{font-weight:700;letter-spacing:0;line-height:1.35}
+.acthead__lead{max-width:72ch;margin:0}
+.acthead .legal{margin-top:10px}
+.actfoot{margin:18px 0 0;display:grid;gap:8px;max-width:78ch;font-size:14px}
+.actfoot__done{font-size:15px;border-inline-start:5px solid var(--teal);padding-inline-start:12px}
+.actfoot__acts{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+/* inline-block, not inline-flex: as a flex item the bare « 3 · » between the link's two spans lost its spaces (review
+   2026-11-22); the padding keeps the 44 px target */
+.actfoot__acts .lnk{display:inline-block;padding-block:12px;line-height:20px}
+.ks__seal{display:grid;place-items:center;width:56px;height:56px;background:var(--red);color:var(--cream);font:900 30px/1 var(--f-jp);border-radius:4px}
+.keep .ks__seal{width:44px;height:44px;font-size:24px;flex:none}
+.book__keeps .ks__seal{width:32px;height:32px;font-size:18px}
+.pass__ks .ks__seal{width:56px;height:56px}
+.sac--carnet{grid-template-columns:repeat(3,minmax(0,1fr));max-width:640px}
+.ks--seal .ks__frame{width:72px;height:72px}
+:lang(ar) .ks__d{font-size:13px;letter-spacing:0}
+.sac--carnet .ks{padding-inline:6px;min-width:0}
+.sac--carnet .ks__n{max-width:100%;overflow-wrap:anywhere;hyphens:auto}
+html.js .sac--carnet .ks.ks--seal .ks__d,html.js .sac--carnet .ks.ks--seal .ks__n,html:not(.js) .sac--carnet .ks.ks--seal .ks__d,html:not(.js) .sac--carnet .ks.ks--seal .ks__n{display:block}
+.carnet__left{margin-top:10px;font:700 13px var(--f-mono);color:var(--muted)}
+.note__l{font:700 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+:lang(ar) .note__l{letter-spacing:0;font-family:var(--f-body);font-size:13px}
+.note__decw{font-size:14px;color:var(--teal-text)}
+.note__decw .note__l{color:var(--teal-text)}
+html.js .note:not([data-done=true]) .note__decw{display:none}
+html.js .ks--seal:not([data-earned=true]) .ks__seal,html:not(.js) .ks--seal .ks__seal{display:none}
+.ks__c{font:700 13px var(--f-mono);color:var(--muted)}
+.more{margin:12px 0 0;font-size:15px}
+.more .k{display:inline;margin-inline-end:6px}
+.more a{display:inline-block;padding-block:11px;margin-block:-11px;font-weight:800;color:var(--red-text)}
+.lt-bridge{margin:14px 0 26px;padding:14px 16px;background:var(--cream);border:1px solid var(--ink);display:grid;gap:8px}
+.lt-tofiche{margin-top:20px}
+.book__vols--two{gap:6px;margin:10px 0 4px}
+.book__path{font:700 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+:lang(ar) .book__path{letter-spacing:0;font-family:var(--f-body);font-size:13px}
+.book__vol{display:grid;gap:2px;padding:8px 10px;min-height:44px;border:1px solid var(--ink);background:var(--cream);color:inherit;text-decoration:none}
+.book__vol:hover{background:#F6E2BF}
+.book__vol span{font-weight:400;font-size:13px;color:var(--muted)}
+@media (max-width:650px){
+  .stage--wide{grid-template-columns:1fr}
+  .stage--wide .dio__name{font:900 clamp(30px,9vw,40px)/.95 var(--f-disp);letter-spacing:-.05em;margin-bottom:6px}
+  :lang(ar) .stage--wide .dio__name{font-weight:700;letter-spacing:0;line-height:1.25}
+  .dio__paper{height:clamp(64px,19vw,96px);right:-6px;bottom:-12px}
+  [dir=rtl] .dio__paper{left:-6px}
+  .sac--carnet{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
+}
+@media print{
+  html[data-lt-printing] #quartiers{display:block!important}
+  html[data-lt-printing] #quartiers>*:not(.layout),html[data-lt-printing] .list,html[data-lt-printing] #journal,html[data-lt-printing] #sources,html[data-lt-printing] .legal--hero{display:none!important}
+  html[data-lt-printing=act] .district:not(.is-print),html[data-lt-printing=act] .acthead:not(.is-print),html[data-lt-printing=act] .actfoot,html[data-lt-printing=sac] #quartiers{display:none!important}
+  html[data-lt-printing=act] .district.is-print,html[data-lt-printing=act] .acthead.is-print{display:block!important;break-inside:avoid-page}
+  html[data-lt-printing=act] .dio__paper,html[data-lt-printing=act] .sit,html[data-lt-printing=act] .terrain__act{display:none!important}
+  html[data-lt-printing=sac] #sac{display:block!important}
+}
+/* a lab inside the field exercise sat in four nested frames (terrain, board, lab, figure: 96 px of padding and border at
+   280); on phones the outer three give back their padding so a lab's own figure keeps its width (review 2026-11-22) */
+@media (max-width:480px){
+  .terrain{padding:14px 10px}
+  .board[data-lt-ex^="web3x:"]{padding:8px}
+  .board[data-lt-ex^="web3x:"] .st-wlab{padding:10px 8px}
+}
+
+/* the cover at desktop (review 2026-11-22): a long two-sentence title (vol. 2, « Le web3, sans fumée. Les neuf modules. »)
+   steps down so the copy column is not five lines tall, and a scene cover (one painting, no cut-outs) fills the hero's
+   height instead of sitting at its foot under an empty navy block; it keeps at least its own 16:9 height and is cropped
+   at the sides only, Yasser's side kept */
+@media (min-width:1011px){
+  .hero__h--long{font-size:clamp(40px,11.5cqi,92px)}
+  :lang(ar) .hero__h--long{font-size:clamp(38px,10.5cqi,84px)}
+  .hero__stage:has(> .hero__art--scene){align-self:stretch;display:flex;container-type:inline-size}
+  .hero__stage > .hero__art--scene{aspect-ratio:auto;width:100%;min-height:calc(100cqw * 905 / 1600)}
+  .hero__art--scene .hero__back{object-fit:cover;object-position:64% 50%}
+}
+/* the carnet at desktop: the nine seals in one row across the section, as the other atlases' bags run (review 2026-11-22:
+   a 640 px 3 × 3 grid left 685 px empty beside it); 3 × 3 stays for tablets and phones */
+@media (min-width:900px){.sac--carnet{grid-template-columns:repeat(9,minmax(0,1fr));max-width:none}}
+/* the journal's folded acts (web3 vol. 2): the act's title is the fold's handle */
+.notes__mod{border-top:1px solid var(--line)}
+.notes__mod>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;cursor:pointer;list-style:none}
+.notes__mod>summary::-webkit-details-marker{display:none}
+.notes__mod>summary::after{content:"+";flex:none;display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--ink);background:var(--cream);font:900 18px/1 var(--f-disp)}
+.notes__mod[open]>summary::after{content:"\2212"}
+.notes__mod>summary .notes__act{margin:12px 0}
+.notes__mod[open]>.notes{margin-bottom:14px}
+/* a passport row of more than 16 stamps (web3 vol. 2: 33) runs eleven to a line at desktop, three full lines, not
+   16 + 16 + 1 */
+@media (min-width:1011px){.pass__grid--many{display:grid;grid-template-columns:repeat(11,72px);justify-content:start}}
+/* the Mouvement toggle stops the page's glide too (hub/style.css sets it under no-preference only) */
+html.motion-off{scroll-behavior:auto}
+/* the law the legal line names, one tap from every module head (review 2026-11-22): module 8's source [19] */
+.legal__ref a{display:inline-block;padding-block:12px;font-weight:700;color:inherit}

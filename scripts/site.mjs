@@ -36,7 +36,8 @@ export const LEGAL_PUBLISHED = existsSync(join(ROOT, 'legal/index.html'));
 
 /* La Librairie Lanterne (hub/lanterne/, 2026-11-21): the shelf and one page per atlas, written by build-hub.mjs
    (scripts/lib/lanterne.mjs). An atlas is a page once its data file exists (hub/src/lanterne/atlases/<slug>.json) and
-   its book is on the shelf (hub/src/lanterne/shelf.json); the second web3 volume is on no shelf (owner decision L9).
+   its book is on the shelf (hub/src/lanterne/shelf.json); the second web3 volume (the nine modules, web3-modules) is a
+   book of its own there since 2026-11-22 (owner decision: publish it), shown on the web3 card as its second volume.
    hub/manuel.html stays an entry: the old manual's address, now a forwarding stub (noindex). */
 const LANT_SRC = join(ROOT, 'hub/src/lanterne');
 export const LANTERNE_ATLASES = (() => { try { return JSON.parse(readFileSync(join(LANT_SRC, 'shelf.json'), 'utf8')).shelves.flatMap((s) => s.books.map((b) => b.slug)).filter((slug) => existsSync(join(LANT_SRC, 'atlases', slug + '.json'))); } catch (e) { return []; } })();
@@ -61,7 +62,8 @@ export const DEPLOY = ['index.html', 'en', 'ar', 'tarifs', '404.html', 'robots.t
 export const DEPLOY_SKIP = ['README.md', '_ds_manifest.json', '.DS_Store'];
 export const isDeploySkipped = (name) => DEPLOY_SKIP.some((s) => s.toLowerCase() === String(name).toLowerCase());
 export const NOT_DEPLOYED = ['.git', '.github', '.claude', '.tmp', '.netlify', '.vercel', 'node_modules', '_site', 'audit',
-  // the second volume of « Le web3, sans fumée » (its nine modules, their labs, art and strings), kept for its own pass, not published (L9)
+  // what is left of the second volume's holding folder (« Le web3, sans fumée », the nine modules): published since 2026-11-22 as
+  // hub/lanterne/web3-modules.html, its labs (hub/web3x.js), art and strings moved back; only the verbatim cut (chapters.html) and its README stay
   'lanterne-later', 'campaign', 'knowledge-base', 'scripts', 'shop', 'social',
   'legal-preview', 'legal', 'BRAND.md', 'README.md', 'RELEASE.md', 'IMPROVEMENTS.md', 'LICENSE', 'NOTICE.md', 'OWNER-CONTENT.md', 'package.json', 'package-lock.json',
   'netlify.toml', 'vercel.json', '.gitattributes', '.gitignore', '.nvmrc', '.graphifyignore', 'graphify-out'];

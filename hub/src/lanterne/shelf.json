@@ -1,5 +1,5 @@
 {
-  "_note": "The shelf's registry (SPEC §2.1): three shelves, one book per course. A book is published when hub/src/lanterne/atlases/<slug>.json exists (until then the shelf shows it « bientôt », with no link); its districts, counts and keepsakes come from that file, never from here. ids lists the course's stop ids (the old ?ls= ids, kept as district ids) so a book not yet moved still has its passport row; the build fails when an atlas file's districts differ from it. store is the atlas's key; migrate is the old manual's stamp key, read once (§3.5). title, kind and line are existing keys (kind loses its slash form, line keeps the lead's first sentence: both derived by the build in each language). The web3 book's second volume is not published (owner decision L9): it reads « bientôt », no link.",
+  "_note": "The shelf's registry (SPEC §2.1): three shelves, one book per course. A book is published when hub/src/lanterne/atlases/<slug>.json exists (until then the shelf shows it « bientôt », with no link); its districts, counts and keepsakes come from that file, never from here. ids lists the course's stop ids (the old ?ls= ids, kept as district ids) so a book not yet moved still has its passport row; the build fails when an atlas file's districts differ from it. store is the atlas's key; migrate is the old manual's stamp key, read once (§3.5). title, kind and line are existing keys (kind loses its slash form, line keeps the lead's first sentence: both derived by the build in each language). The web3 book has two volumes (owner decision of 2026-11-22: volume 2, the nine modules, is published): the second is a book of its own for the build, the passport and the counts (\"in\": \"web3\"), shown on the web3 card as its second volume, not as a card; migrate may list several old keys (the nine modules' stamps).",
   "shelves": [
     { "id": "shelf1", "notes": ["money.note2"], "books": [
       { "slug": "marque", "key": "marque", "title": "brandc.title", "kind": "lant.at.marque.kind", "line": "brandc.lead", "guide": "kuro",
@@ -10,6 +10,10 @@
         "cover": { "src": "img/studio/web3c/scene-800.webp" }, "accent": "#236660",
         "store": "numidea-lanterne-web3", "migrate": "numidea-lessons-web3c",
         "ids": ["w1", "w2", "w3", "w8", "w4", "w5", "w6", "w7"], "vol2": true },
+      { "slug": "web3-modules", "key": "w3m", "in": "web3", "title": "lant.at.w3m.book", "kind": "lant.at.w3m.kicker", "line": "lant.at.w3m.pitch", "guide": "raven",
+        "cover": { "src": "img/studio/web3c/mod-1-640.webp" }, "accent": "#236660",
+        "store": "numidea-lanterne-web3-modules", "migrate": ["numidea-lessons-web3m1", "numidea-lessons-web3m2", "numidea-lessons-web3m3", "numidea-lessons-web3m4", "numidea-lessons-web3m5", "numidea-lessons-web3m6", "numidea-lessons-web3m7", "numidea-lessons-web3m8", "numidea-lessons-web3m9"],
+        "ids": ["m11", "m12", "m13", "m14", "m21", "m22", "m23", "m24", "m31", "m32", "m33", "m34", "m41", "m42", "m43", "m51", "m52", "m53", "m54", "m61", "m62", "m63", "m64", "m71", "m72", "m73", "m74", "m81", "m82", "m83", "m91", "m92", "m93"] },
       { "slug": "cours-du-soir", "key": "cds", "title": "lant.at.cds.title", "kind": "lant.at.cds.kind", "line": "lant.at.cds.pitch", "guide": "yasser",
         "cover": "composite", "accent": "#F0B05A",
         "store": "numidea-lanterne-cours-du-soir",

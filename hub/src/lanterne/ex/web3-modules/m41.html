@@ -1,0 +1,54 @@
+<!-- cut from the old manual (hub/manuel.html #web3, volume 2, via lanterne-later/web3-modules/chapters.html) on 2026-11-22: stop m41: its lab (hub/web3x.js binds it, lazily), its misconception card and its references; the explanation is the dossier's rule, the question the atlas's situation -->
+<div class="st-wlab st-bal" data-lab="balances" data-x role="group" aria-labelledby="m41-lab-h">
+<p class="st-wlab__h" id="m41-lab-h"><b data-i18n="web3c.mods.3.items.0.lab.l"></b></p>
+<div class="st-bal__fig">
+<section class="st-bal__p st-bal__chain" aria-labelledby="m41-chain">
+<p class="st-label" id="m41-chain" data-i18n="web3c.mods.3.items.0.lab.chain"></p>
+<div class="st-bal__acct"><svg class="st-wic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="7" r="3.5"/><path d="M4.5 20c.8-4.2 3.6-6.5 7.5-6.5s6.7 2.3 7.5 6.5"/></svg><b data-i18n="web3c.mods.3.items.0.lab.acct"></b>
+<p class="st-bal__eth" data-tpl="web3c.mods.3.items.0.lab.eth" data-tpl-v="1,0" data-o="eth">ETH : 1,0 (fictif)</p>
+<span class="st-bal__fee" data-o="fee" hidden><svg class="st-wic st-wic--s" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/></svg><span data-i18n="web3c.mods.3.items.0.lab.fee"></span></span>
+</div>
+</section>
+<section class="st-bal__p st-bal__ctr" aria-labelledby="m41-ctr">
+<p class="st-label" id="m41-ctr" data-i18n="web3c.mods.3.items.0.lab.contract"></p>
+<table class="st-ltab"><caption data-i18n="web3c.mods.3.items.0.lab.rowsL"></caption>
+<tbody><tr><th scope="row" data-i18n="web3c.mods.3.items.0.lab.holders.0"></th><td><bdi dir="ltr" data-o="t0">120</bdi></td></tr><tr><th scope="row" data-i18n="web3c.mods.3.items.0.lab.holders.1"></th><td><bdi dir="ltr" data-o="t1">40</bdi></td></tr><tr><th scope="row" data-i18n="web3c.mods.3.items.0.lab.holders.2"></th><td><bdi dir="ltr" data-o="t2">0</bdi></td></tr></tbody></table>
+<p class="st-crs__fine" data-i18n="web3c.x.ex"></p>
+</section>
+<section class="st-bal__p st-bal__weth" aria-labelledby="m41-weth">
+<p class="st-label" id="m41-weth" data-i18n="web3c.mods.3.items.0.lab.weth"></p>
+<table class="st-ltab"><tbody><tr data-o="wrow" hidden><th scope="row" data-i18n="web3c.mods.3.items.0.lab.holders.0"></th><td><bdi dir="ltr" data-o="weth">0,0 WETH</bdi></td></tr></tbody></table>
+<p class="st-bal__none" data-o="wnone" aria-hidden="true">—</p>
+</section>
+</div>
+<div class="st-wlab__acts">
+<button type="button" class="st-chip st-wlab__act" data-act="eth" disabled data-i18n="web3c.mods.3.items.0.lab.sendEth"></button>
+<button type="button" class="st-chip st-wlab__act" data-act="tok" disabled data-i18n="web3c.mods.3.items.0.lab.sendTok"></button>
+</div>
+<div class="st-bal__wrap">
+<p class="st-calc__l"><label data-tpl="web3c.mods.3.items.0.lab.wrapL" data-tpl-v="0,5" for="m41-wrap" data-o="wrapL">ETH à envelopper : 0,5</label></p>
+<input class="st-wlab__range" id="m41-wrap" type="range" min="0" max="10" step="1" value="5" data-f="wrap" disabled>
+<div class="st-wlab__acts"><button type="button" class="st-chip st-wlab__act" data-act="wrap" disabled data-i18n="web3c.mods.3.items.0.lab.wrap"></button><button type="button" class="st-chip st-wlab__act" data-act="unwrap" disabled data-i18n="web3c.mods.3.items.0.lab.unwrap"></button></div>
+</div>
+<div class="st-wlab__acts">
+<button type="button" class="st-chip st-wlab__act" data-act="empty" disabled data-i18n="web3c.mods.3.items.0.lab.empty"></button>
+<button type="button" class="st-chip st-wlab__act" data-act="reset" disabled data-i18n="web3c.x.reset"></button>
+</div>
+<p class="st-wlab__say" data-o="say" aria-live="polite"></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.3.items.0.lab.sol"></p>
+<p class="st-crs__fine" data-i18n="web3c.x.mock"></p>
+<table class="st-wtab st-wlab__still">
+<tbody>
+<tr><th scope="row" data-i18n="web3c.mods.3.items.0.lab.sendEth"></th><td data-i18n="web3c.mods.3.items.0.lab.say.eth"></td></tr>
+<tr><th scope="row" data-i18n="web3c.mods.3.items.0.lab.sendTok"></th><td data-i18n="web3c.mods.3.items.0.lab.say.tok"></td></tr>
+<tr><th scope="row" data-i18n="web3c.mods.3.items.0.lab.wrap"></th><td><span data-tpl="web3c.mods.3.items.0.lab.say.wrap" data-tpl-v="0,5">0,5 ETH dans le contrat WETH, et autant de jetons WETH dans sa table : 1 pour 1.</span></td></tr>
+<tr><th scope="row" data-i18n="web3c.mods.3.items.0.lab.empty"></th><td data-i18n="web3c.mods.3.items.0.lab.blocked"></td></tr>
+</tbody>
+</table>
+<p class="st-crs__fine st-wlab__nojs" data-i18n="web3c.x.noJs"></p>
+</div>
+<div class="st-myth">
+<p><b class="st-label" data-i18n="web3c.x.mythL"></b> <span data-i18n="web3c.mods.3.items.0.myth.k"></span></p>
+<p><b class="st-label" data-i18n="web3c.x.trueL"></b> <span data-i18n="web3c.mods.3.items.0.myth.v"></span></p>
+</div>
+<p class="st-jeu__refs"><span class="st-label" data-i18n="web3c.src.title"></span> <a href="#m4src-eth-ether" dir="ltr">[1]</a> <a href="#m4src-eth-weth" dir="ltr">[2]</a> <a href="#m4src-spl-token" dir="ltr">[3]</a> <a href="#m4src-oz-erc20" dir="ltr">[4]</a></p>

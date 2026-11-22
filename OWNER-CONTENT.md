@@ -136,9 +136,9 @@ item 6 can cover it.
 
 ## 8. Arabic native review
 **Every Arabic string added or changed on 2026-10-31, 2026-11-03,
-2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-15, 2026-11-19 and 2026-11-21 awaits native review** (the lists are at the end of this section,
+2026-11-06, 2026-11-07, 2026-11-08, 2026-11-11, 2026-11-14, 2026-11-15, 2026-11-19, 2026-11-21 and 2026-11-22 awaits native review** (the lists are at the end of this section,
 "Written on 2026-10-31", "Written or changed on 2026-11-03", "Written or
-changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19", "Also written on 2026-11-19" and "Written or changed on 2026-11-21"); nothing Arabic written by the fix fleets has been
+changed on 2026-11-06", "Written or changed on 2026-11-07", "Written or changed on 2026-11-08", "Written or changed on 2026-11-11", "Written or changed on 2026-11-14", "Written or changed on 2026-11-15", "Written or changed on 2026-11-19", "Also written on 2026-11-19", "Written or changed on 2026-11-21" and "Written or changed on 2026-11-22"); nothing Arabic written by the fix fleets has been
 read by a native speaker.
 
 The Arabic copy was written for this site and needs a native speaker's pass.
@@ -722,6 +722,20 @@ tabs, the 18 cards, the tiers, the market lines, the bundles, the sources). Word
 (district), جواز السفر (passport), تذكار (keepsake), السجلّ (journal), الحقيبة (sac), الطريق الجانبي (side route), and
 the guides' names kept in Latin letters (Raven, Techno Pigeon, Ratman). The money and road books reuse the money and
 nomad courses' reviewed answers word for word for their right answers.
+
+Written or changed on 2026-11-22, **the web3 course's volume 2 as a Librairie atlas** (§45), all for a native reader.
+In `hub/src/i18n/ar.json`: 45 new keys, the atlas's own lines under `lant.at.w3m.*` (the book's name « الويب 3، بلا
+دخان · المجلّد 2 », its two-line title, kicker, pitch, search title, description, conclusion, keepsake line, the field
+exercise's title and brief, and one lore line per district, `lant.at.w3m.d.m11.lore` … `m93.lore`, each Samia's
+question to herself) and `lant.ui.ex.labDone` (« أُنجز المخطّط حتى نهايته. لم يغادر شيء هذا المتصفّح. »). The nine
+modules' own strings (`web3c.mods`, `.x`, `.chap`, `.carnet`, `.deeper`) come back from `lanterne-later/` as the
+2026-11-21 list above describes them, with four strings changed after the day-of-publishing fact check (§45):
+`web3c.mods.1.items.1.d` and `web3c.mods.6.items.3.d` (« جزءاً من الوديعة أو الوديعة كلها », after
+ethereum.org's "some or all"), `web3c.mods.6.items.2.d` (an algorithmic stablecoin « لا يدعمها أي أصل آخر », after
+ethereum.org's "aren't backed by any other asset") and `web3c.mods.2.items.1.lab.lucky` (the 1-in-256 figure given to
+an 8-bit checksum, the 24-word row of BIP-39's table, not to BIP-39 for 24 words). The full strings, in French and
+Arabic side by side, are in the working list `ar-w3m.md` kept with this pass's notes. Words to confirm: المجلّد
+(volume), وحدة (module), المخطّط (the lab, « le schéma »), and سامية as in volume 1.
 
 ## 8b. The Google tag and consent (2026-11-14)
 The site loads the owner's Google Tag Manager container (GTM-PMF7RWVK) on every
@@ -2638,3 +2652,87 @@ full-size targets. No price or word changed.
   the specification asked for each stop's own tab drawing there, but those drawings are square pictures that would
   read as boxes on a plate, so they are the keepsakes instead. Say if you prefer them on the plates;
 - the Arabic of the whole Librairie, in §8 below the 2026-11-21 lists.
+
+## 45. The web3 course's volume 2, the nine modules, published in the Librairie (2026-11-22)
+
+**Your decision of 2026-11-22: publish the nine modules now.** The volume held back by L9 (§44) is the Librairie's
+seventh atlas, « Le web3, sans fumée · vol. 2 — Les neuf modules » (`hub/lanterne/web3-modules.html`, with
+`?lang=en` and `?lang=ar`). Nothing is committed or deployed yet; the cache-bust stamp waits for `npm run bump`.
+
+**What the visitor gets.** 33 districts in nine acts, one act per module (1 Fondations … 9 Sécurité, audits et ponts
+entre chaînes), on the same atlas engine as the other books. Each act opens with its module header (your nine
+pictures of §42, shown alone in their frame, never enlarged, no parallax) and a head: the module's seal, « MODULE n »,
+its minutes, title and lead, then your two legal lines `money.note1` and `money.note2`. Raven, Techno Pigeon and
+Ratman stand beside the headers on the paper (never Yasser or Kūro, who are painted in every header). Each district:
+the stop's title, a lore line (Samia's question to herself, an invented case labelled as such, stating no fact), the
+stop's explanation, its situation with three answers, then the field exercise: the stop's hands-on diagram, its
+misconception card (« Idée reçue » / « En fait ») and its references. A district is done when its situation is
+answered right and its diagram is taken to its last state (or « Je passe l'exercice »; without script, the situation
+alone). The carnet of nine seals is the bag; a seal inks when its module is complete. Each module still ends with its
+bridge to the buyer step it explains (volume 1, `web3.html#wN`) and its two questions for the provider, which print in
+volume 1's fiche. Volume 1 and volume 2 link to each other; on the shelf the web3 book's « bientôt » is gone and two
+ways in replace it: « J'ai un projet à préparer » (volume 1) and « Je veux comprendre le web3 » (volume 2, with its own
+count out of 33). Every old address of the modules on the manual (`#web3-mN`, `?ls=mNN`, the source anchors, the old
+lab anchors) lands on its district.
+
+**Lesson counts, as printed.** The Studio's third door: 7 atlases; the shelf's total: 81; the book: 33. Each is
+computed by the build from the atlases, not typed.
+
+**The defaults taken from the volume's specification (web3x SPEC):**
+- **X5, the names policy:** published as written. A project, chain or tool is named only in the stops its table
+  allows, as an example from its own documentation, the author of a formula or the subject of an official case, with
+  « Les outils et les chaînes cités sont des exemples tirés de leur propre documentation, pas des recommandations »
+  under every module that names one. The site's check (`npm run check`, with the list in `scripts/lib/w3m-names.mjs`)
+  fails on any watched name outside its stops and on any name of the never-list, in all three languages. **You
+  approve this exact list**; it has not changed since §42.
+- **X7, module 7 (DeFi) and law 25-10:** published, with `money.note1`/`money.note2` under its head, « Ce schéma
+  montre un mécanisme, pas une offre ni un rendement » under every diagram, the « explique » line at its end, abstract
+  tokens A and B and no rate, yield or price figure. You took the legal responsibility on 2026-11-18; **you may want a
+  lawyer to read module 7 first.**
+- **X8, the counts:** computed, as above (the older `manual.ui.*` strings that said 71 are no longer printed anywhere).
+- **X10, the seal glyphs:** the nine kanji (網 塊 鍵 札 契 節 市 議 盾) are cut from the same Noto Sans JP version as the
+  Studio's subset, into their own small file (4,360 bytes, `hub/fonts/noto-sans-jp-700-900-seals.woff2`); the
+  Studio's existing font file is unchanged. The §42 note that they rendered in a fallback face is answered.
+
+**X9, the dated facts, re-read today (2026-11-22) at their primary sources.** All still hold: Hoodi and Sepolia as
+ethereum.org's test networks (Hoodi the recommended one); CCIP's design (now « CCIP 2.0 »; no committee size is
+printed); ENS (its v1 registrar page now says ENSv2 has launched; the stop teaches only the stable ideas, so nothing
+changes); Slither (no detector count printed); Pectra (7 May 2025; 32 to 2,048 ETH); Aave's liquidation rule (the whole
+debt at a health factor of 0.95 or below, or under $2,000; otherwise half at most); partial history expiry (EF, 8 July
+2025). A further 63 spot checks across the nine modules, and a number-by-number comparison of the three languages,
+found **four sentences to correct**, changed in French, English and Arabic:
+1. Module 2, step 2 (`web3c.mods.1.items.1.d`): cheating can destroy « une partie du dépôt, voire tout le dépôt »
+   (ethereum.org: "some or all" of the stake); it said « une partie ».
+2. Module 7, step 4 (`web3c.mods.6.items.3.d`): the same correction.
+3. Module 7, step 3 (`web3c.mods.6.items.2.d`): an algorithmic stablecoin « n’est adossé à aucun autre actif »
+   (ethereum.org: "aren't backed by any other asset"); it said « peu ou pas de garantie ».
+4. Module 3, step 2, the recovery-phrase diagram (`web3c.mods.2.items.1.lab.lucky`): BIP-39 states « une erreur sur
+   256 » without a word count; the 8-bit checksum it implies is the 24-word row of its table. « 1 sur 16 pour 12 mots »
+   was already right.
+
+Read only through a summary (sec.gov refused a direct download): the SEC's TerraUSD press release. Not re-read word for
+word today: Pyth's "refuse stale data" sentence, ERC-1155 and the Solana token model. Readings left to you, with no
+change made: « Wagmi construite sur Viem » (its docs say Wagmi uses Viem, by the same team); the Solana parallelism
+sentence says slightly more than Anza's own wording; the « Aave V3 » label comes from the specification, the help page
+names no version; module 1, step 3 points to module 6, step 2 for history expiry, and that stop does not mention it.
+
+**Not made:** the carnet's reward drawing (Kūro stamping the last seal, §42). Nine of nine shows « Neuf sur neuf. » and
+the carnet's print button, with no download; the line that promised the drawing is left out.
+
+**Size.** The page is 799,613 bytes (about 127 kB compressed), about 8,600 HTML elements; the diagrams' script
+(`hub/web3x.js`, 144 kB, 43 kB compressed) loads only when an exercise comes near, and the French lab lines only with
+it (`hub/lanterne/i18n/web3-modules.fr.js`, 79 kB). A phone's first view is about 524 kB in French and 693 kB in
+Arabic; the Arabic desktop view (1440 px, its 1,600 px cover) is about 771 kB, over the 700 kB first-view aim.
+`scripts/check.mjs` TOTAL raised to the measured published set, 58,901,462 bytes (+3,797,697).
+
+**Changed on integration.** The site's gates found four small things on the new page and its links, all fixed: the
+« Pour comprendre » link of volume 1 now has a full-size target on phones; the journal's « Idée reçue / En fait »
+labels, the carnet's « MODULE » line (13 px in Arabic) and the first diagram's node copies (12 px, 13 px in Arabic)
+reach the site's type floors; on a 360 px phone the carnet's « Infrastructure » breaks with a hyphen instead of leaving
+its square. No word changed.
+
+**Open for you:**
+- the names list (X5) and a lawyer's reading of module 7 (X7), if you want one;
+- the carnet's reward drawing: make it (75 credits budgeted in §42), or keep the carnet as it is;
+- the readings above;
+- the Arabic (§8, « Written or changed on 2026-11-22 »): none of it has been read by a native speaker.

@@ -2273,7 +2273,9 @@
       var flowS = (F.flow || []).map(function (x, i) { return iso('Q' + (i + 1)) + colon() + (x ? tx('fiche.yes') : tx('fiche.no')); }).join(sep);
       var siteQ = r === 0 || r === 1 || r === 2 || r === 4;
       // the questions for the vendor ticked in the nine modules (ask1 … ask9), in module order, as the page words them
-      var asks = []; for (var am = 1; am <= 9; am++) asks = asks.concat(labs('ask' + am));
+      // (2026-11-22: the modules are their own atlas, hub/lanterne/web3-modules.html; on the fiche's page a chip's words come
+      // from the dictionary, web3c.mods.<m>.ask.chips.<v>)
+      var asks = []; for (var am = 1; am <= 9; am++) asks = asks.concat((F['ask' + am] || []).map(function (v) { return lab('ask' + am, v) || tx('web3c.mods.' + (am - 1) + '.ask.chips.' + v); }).filter(Boolean));
       return [
         ['me', iso(F.me), 'me', 1, true], ['goal', iso(F.goal), 'goal', 1], ['has', [labs('has').join(cm()), iso(F.link)].filter(Boolean).join(sep), 'has', 1], ['size', F.size != null ? lab('size', F.size) : '', 'size'],
         ['fork', F.fork != null ? lab('fork', F.fork) : '', 'fork'], ['flow', F.fork === 1 ? '' : flowS, 'flow', 0, F.fork === 1], ['verdict', vt[0] ? (v && v.k === 'pay' ? vt[0] : vt[0] + ' ' + vt[1]) : '', 'flow'],

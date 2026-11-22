@@ -1,0 +1,75 @@
+<!-- cut from the old manual (hub/manuel.html #web3, volume 2, via lanterne-later/web3-modules/chapters.html) on 2026-11-22: stop m72: its lab (hub/web3x.js binds it, lazily), its misconception card and its references; the explanation is the dossier's rule, the question the atlas's situation -->
+<div class="st-wlab st-hf" data-lab="hf" data-x role="group" aria-labelledby="m72-lab-h">
+<p class="st-wlab__h" id="m72-lab-h"><b data-i18n="web3c.mods.6.items.1.lab.hf.l"></b></p>
+<ul class="st-hf__fix"><li data-i18n="web3c.mods.6.items.1.lab.hf.coll"></li><li data-i18n="web3c.mods.6.items.1.lab.hf.thr"></li></ul>
+<div class="st-hf__in">
+<p class="st-calc__l"><label data-tpl="web3c.mods.6.items.1.lab.hf.debt" data-tpl-n="6 000" for="m72-debt" data-o="debtL">J’emprunte : 6 000 unités</label></p>
+<input class="st-wlab__range" id="m72-debt" type="range" min="0" max="8000" step="100" value="6000" data-f="debt" disabled>
+<p class="st-calc__l"><label data-tpl="web3c.mods.6.items.1.lab.hf.move" data-tpl-p="0" for="m72-move" data-o="moveL">La valeur de la garantie bouge : 0 %</label></p>
+<input class="st-wlab__range" id="m72-move" type="range" min="-60" max="40" step="5" value="0" data-f="move" disabled>
+</div>
+<div class="st-hf__read">
+<p class="st-hf__num"><b data-tpl="web3c.mods.6.items.1.lab.hf.hf" data-tpl-h="1,33" data-o="hf">Facteur de santé : 1,33</b> <span class="st-hf__state" data-o="state" data-i18n="web3c.mods.6.items.1.lab.hf.safe"></span></p>
+<div class="st-hf__g" dir="ltr">
+<p class="st-label st-sr" data-i18n="web3c.mods.6.items.1.lab.hf.gaugeL"></p>
+<div class="st-hf__gauge" style="--hf:0.4444444444444444" aria-hidden="true"><span class="st-hf__fill"></span><span class="st-hf__one"></span></div>
+<p class="st-hf__ticks"><span>0</span><span>1</span><span>2</span><span>3</span></p>
+</div>
+</div>
+<p class="st-hf__risk" data-o="risk" data-i18n="web3c.mods.6.items.1.lab.hf.risk" hidden></p>
+<div class="st-hf__liq" data-o="liq" hidden>
+<svg class="st-hf__liqfig" viewBox="0 0 120 40" aria-hidden="true" focusable="false"><rect x="2" y="8" width="34" height="24"/><path d="M40 20H78M70 13l8 7-8 7"/><circle cx="98" cy="14" r="6"/><path d="M86 36c1.5-7 6-10 12-10s10.5 3 12 10"/></svg>
+<p data-i18n="web3c.mods.6.items.1.lab.hf.liq"></p>
+</div>
+<p class="st-wlab__say" data-o="say" aria-live="polite"></p>
+<div class="st-hf__rule">
+<p class="st-label" id="m72-rule-l" data-i18n="web3c.mods.6.items.1.lab.hf.rule.l"></p>
+<div class="st-chips st-wlab__radios" role="radiogroup" aria-labelledby="m72-rule-l" data-f="rule">
+<!-- [html-validate-disable-block prefer-native-element: a styled radiogroup (COURSE.md 3.3): role=radio, roving tabindex, the arrows] -->
+<button type="button" class="st-chip" role="radio" aria-checked="true" tabindex="0" data-v="0" disabled data-i18n="web3c.mods.6.items.1.lab.hf.rule.k.0"></button>
+<button type="button" class="st-chip" role="radio" aria-checked="false" tabindex="-1" data-v="1" disabled data-i18n="web3c.mods.6.items.1.lab.hf.rule.k.1"></button>
+</div>
+<p class="st-hf__rv" data-o="rule" data-i18n="web3c.mods.6.items.1.lab.hf.rule.v.0"></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.6.items.1.lab.hf.rule.cap"></p>
+</div>
+<p class="st-crs__fine st-mech" data-i18n="web3c.x.mech"></p>
+<p class="st-crs__fine" data-i18n="web3c.x.mock"></p>
+<ul class="st-hf__still st-wlab__still">
+<li><span data-tpl="web3c.mods.6.items.1.lab.hf.move" data-tpl-p="0">La valeur de la garantie bouge : 0 %</span> → <b data-tpl="web3c.mods.6.items.1.lab.hf.hf" data-tpl-h="1,33">Facteur de santé : 1,33</b> <div class="st-hf__gauge" style="--hf:0.4444444444444444" aria-hidden="true"><span class="st-hf__fill"></span><span class="st-hf__one"></span></div></li>
+<li><span data-tpl="web3c.mods.6.items.1.lab.hf.move" data-tpl-p="−25">La valeur de la garantie bouge : −25 %</span> → <b data-tpl="web3c.mods.6.items.1.lab.hf.hf" data-tpl-h="1,00">Facteur de santé : 1,00</b> <div class="st-hf__gauge st-hf__gauge--one" style="--hf:0.3333333333333333" aria-hidden="true"><span class="st-hf__fill"></span><span class="st-hf__one"></span></div></li>
+</ul>
+<p class="st-crs__fine st-wlab__nojs" data-i18n="web3c.x.noJs"></p>
+</div>
+<figure class="st-wlab st-wfig st-wrate" aria-labelledby="m72-r-h">
+<figcaption class="st-wlab__h" id="m72-r-h"><b data-i18n="web3c.mods.6.items.1.lab.rate.l"></b></figcaption>
+<div class="st-wrate__fig">
+<p class="st-wplot__name" data-i18n="web3c.mods.6.items.1.lab.rate.y"></p>
+<div class="st-wplot" dir="ltr">
+<div class="st-wplot__y"></div>
+<svg class="st-wplot__svg" viewBox="0 0 320 180" preserveAspectRatio="none" role="img" aria-labelledby="m72-r-cap" focusable="false">
+<path class="st-wplot__grid" d="M4 4V176H316"/>
+<path class="st-wplot__line" d="M4 176L10.2 175.7L16.5 175.5L22.7 175.2L29 175L35.2 174.7L41.4 174.4L47.7 174.2L53.9 173.9L60.2 173.7L66.4 173.4L72.6 173.1L78.9 172.9L85.1 172.6L91.4 172.4L97.6 172.1L103.8 171.8L110.1 171.6L116.3 171.3L122.6 171L128.8 170.8L135 170.5L141.3 170.3L147.5 170L153.8 169.7L160 169.5L166.2 169.2L172.5 169L178.7 168.7L185 168.4L191.2 168.2L197.4 167.9L203.7 167.7L209.9 167.4L216.2 167.1L222.4 166.9L228.6 166.6L234.9 166.4L241.1 166.1L247.4 165.8L253.6 165.6L259.8 149.9L266.1 134.3L272.3 118.7L278.6 103L284.8 87.4L291 71.8L297.3 56.1L303.5 40.5L309.8 24.8L316 9.2"/>
+<path class="st-wplot__guide" d="M253.6 4V176"/>
+</svg>
+<div class="st-wplot__x"><span>0 %</span><span>50 %</span><span>100 %</span></div>
+</div>
+<p class="st-wplot__name st-wplot__name--x"><span data-i18n="web3c.mods.6.items.1.lab.rate.x"></span> · <span class="st-wrate__opt" data-i18n="web3c.mods.6.items.1.lab.rate.opt"></span> <bdi dir="ltr">80 %</bdi></p>
+</div>
+<p class="st-crs__fine" id="m72-r-cap" data-i18n="web3c.mods.6.items.1.lab.rate.cap"></p>
+<p class="st-crs__fine st-mech" data-i18n="web3c.x.mech"></p>
+</figure>
+<figure class="st-wlab st-wfig st-flash" aria-labelledby="m72-f-h">
+<figcaption class="st-wlab__h" id="m72-f-h"><b data-i18n="web3c.mods.6.items.1.lab.flash.l"></b></figcaption>
+<div class="st-flash__tx">
+<p class="st-label" data-i18n="web3c.mods.6.items.1.lab.flash.tx"></p>
+<ol class="st-flash__steps"><li data-i18n="web3c.mods.6.items.1.lab.flash.steps.0"></li><li data-i18n="web3c.mods.6.items.1.lab.flash.steps.1"></li><li data-i18n="web3c.mods.6.items.1.lab.flash.steps.2"></li><li data-i18n="web3c.mods.6.items.1.lab.flash.steps.3"></li></ol>
+</div>
+<p class="st-flash__no"><b data-i18n="web3c.mods.6.items.1.lab.flash.forget"></b> · <span data-i18n="web3c.mods.6.items.1.lab.flash.rolled"></span></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.6.items.1.lab.flash.fee"></p>
+<p class="st-crs__fine st-mech" data-i18n="web3c.x.mech"></p>
+</figure>
+<div class="st-myth">
+<p><b class="st-label" data-i18n="web3c.x.mythL"></b> <span data-i18n="web3c.mods.6.items.1.myth.k"></span></p>
+<p><b class="st-label" data-i18n="web3c.x.trueL"></b> <span data-i18n="web3c.mods.6.items.1.myth.v"></span></p>
+</div>
+<p class="st-jeu__refs"><span class="st-label" data-i18n="web3c.src.title"></span> <a href="#m7src-aave-liq" dir="ltr">[5]</a> <a href="#m7src-aave-v3-paper" dir="ltr">[6]</a> <a href="#m7src-aave-v4-liq" dir="ltr">[7]</a> <a href="#m7src-aave-rate" dir="ltr">[8]</a> <a href="#m7src-aave-flash" dir="ltr">[9]</a></p>

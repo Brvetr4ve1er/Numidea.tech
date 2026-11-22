@@ -1,0 +1,53 @@
+<!-- cut from the old manual (hub/manuel.html #web3, volume 2, via lanterne-later/web3-modules/chapters.html) on 2026-11-22: stop m54: its lab (hub/web3x.js binds it, lazily), its misconception card and its references; the explanation is the dossier's rule, the question the atlas's situation -->
+<div class="st-wlab st-fee" data-lab="fee" data-calc="fee" data-x role="group" aria-labelledby="m54-lab-h" data-under="0">
+<p class="st-wlab__h" id="m54-lab-h"><b data-i18n="web3c.mods.4.items.3.lab.fee.l"></b></p>
+<div class="st-fee__in">
+<p class="st-fee__f"><label for="m54-gas" data-i18n="web3c.mods.4.items.3.lab.fee.gas"></label><input class="st-calc__i st-wnum" id="m54-gas" type="number" value="21000" data-f="gas" min="0" step="1" inputmode="numeric" disabled></p>
+<div class="st-wlab__acts st-fee__pre"><button type="button" class="st-chip st-wlab__act" data-act="preset" data-v="21000" disabled data-i18n="web3c.mods.4.items.3.lab.fee.presets.0"></button><button type="button" class="st-chip st-wlab__act" data-act="preset" data-v="65000" disabled data-i18n="web3c.mods.4.items.3.lab.fee.presets.1"></button></div>
+<p class="st-fee__f"><label for="m54-base" data-i18n="web3c.mods.4.items.3.lab.fee.base"></label><input class="st-calc__i st-wnum" id="m54-base" type="number" value="10" data-f="base" min="0" step="any" inputmode="decimal" disabled></p>
+<p class="st-fee__f"><label for="m54-tip" data-i18n="web3c.mods.4.items.3.lab.fee.tip"></label><input class="st-calc__i st-wnum" id="m54-tip" type="number" value="2" data-f="tip" min="0" step="any" inputmode="decimal" disabled></p>
+<p class="st-fee__f"><label for="m54-max" data-i18n="web3c.mods.4.items.3.lab.fee.max"></label><input class="st-calc__i st-wnum" id="m54-max" type="number" value="12" data-f="max" min="0" step="any" inputmode="decimal" disabled></p>
+</div>
+<div class="st-fee__rc" data-o="rc">
+<p data-tpl="web3c.mods.4.items.3.lab.fee.paidTip" data-tpl-t="2" data-o="paidTip">Pourboire payé : 2 gwei par unité</p>
+<p class="st-fee__total" data-tpl="web3c.mods.4.items.3.lab.fee.total" data-tpl-g="252 000" data-tpl-e="0,000252" data-o="total">Total : 252 000 gwei, soit 0,000252 ETH</p>
+<p class="st-fee__burnt" data-tpl="web3c.mods.4.items.3.lab.fee.burnt" data-tpl-b="210 000" data-o="burnt">Brûlé : 210 000 gwei</p>
+<p data-tpl="web3c.mods.4.items.3.lab.fee.val" data-tpl-v="42 000" data-o="val">Au producteur du bloc : 42 000 gwei</p>
+<p data-tpl="web3c.mods.4.items.3.lab.fee.back" data-tpl-r="0" data-o="back">Rendu : 0 gwei</p>
+</div>
+<p class="st-fee__under" data-o="under" data-i18n="web3c.mods.4.items.3.lab.fee.under" hidden></p>
+<div class="st-wlab__acts"><button type="button" class="st-chip st-wlab__act" data-act="ex" disabled data-i18n="web3c.mods.4.items.3.lab.fee.ex"></button></div>
+<p class="st-wlab__say" data-o="say" aria-live="polite"></p>
+<p class="st-crs__fine" data-i18n="web3c.mods.4.items.3.lab.fee.gwei"></p>
+<p class="st-crs__fine st-wlab__still" data-i18n="web3c.mods.4.items.3.lab.fee.exSay"></p>
+<p class="st-crs__fine st-wlab__nojs" data-i18n="web3c.x.noJs"></p>
+</div>
+<figure class="st-wlab st-wfig st-bfee" aria-labelledby="m54-b-h">
+<figcaption class="st-wlab__h" id="m54-b-h"><b data-i18n="web3c.mods.4.items.3.lab.block.l"></b></figcaption>
+<p class="st-crs__fine"><span data-i18n="web3c.mods.4.items.3.lab.block.start"></span> · <span data-i18n="web3c.mods.4.items.3.lab.block.target"></span></p>
+<div class="st-wplot" dir="ltr">
+<div class="st-wplot__y"></div>
+<svg class="st-wplot__svg" viewBox="0 0 320 180" preserveAspectRatio="none" role="img" aria-labelledby="m54-b-sum" focusable="false">
+<path class="st-wplot__grid" d="M4 4V176H316"/>
+<path class="st-wplot__bars" d="M7.0 176V87.6H32.2V176ZM38.2 176V76.6H63.4V176ZM69.4 176V64.1H94.6V176ZM100.6 176V50.2H125.8V176ZM131.8 176V34.4H157.0V176ZM163.0 176V16.7H188.2V176ZM194.2 176V36.6H219.4V176ZM225.4 176V54.1H250.6V176ZM256.6 176V69.3H281.8V176ZM287.8 176V82.6H313.0V176Z"/>
+</svg>
+<div class="st-wplot__x"><span>1</span><span>10</span></div>
+</div>
+<p class="st-bfee__vals" dir="ltr"><span data-num>10</span><span data-num>11,25</span><span data-num>12,66</span><span data-num>14,24</span><span data-num>16,02</span><span data-num>18,02</span><span data-num>15,77</span><span data-num>13,8</span><span data-num>12,07</span><span data-num>10,56</span></p>
+<p class="st-wplot__sum" data-tpl="web3c.mods.4.items.3.lab.block.say" data-tpl-n="10" data-tpl-b="10,563183502" data-tpl-d="@web3c.mods.4.items.3.lab.block.down" id="m54-b-sum">Bloc 10 · frais de base : 10,563183502 gwei (en baisse)</p>
+</figure>
+<figure class="st-wlab st-wfig st-opt" aria-labelledby="m54-o-h">
+<figcaption class="st-wlab__h" id="m54-o-h"><b data-i18n="web3c.mods.4.items.3.lab.opt.l"></b></figcaption>
+<table class="st-wtab"><tbody>
+<tr><th scope="row" data-i18n="web3c.mods.4.items.3.lab.opt.k.0"></th><td data-i18n="web3c.mods.4.items.3.lab.opt.v.0"></td></tr>
+<tr><th scope="row" data-i18n="web3c.mods.4.items.3.lab.opt.k.1"></th><td data-i18n="web3c.mods.4.items.3.lab.opt.v.1"></td></tr>
+<tr><th scope="row" data-i18n="web3c.mods.4.items.3.lab.opt.k.2"></th><td data-i18n="web3c.mods.4.items.3.lab.opt.v.2"></td></tr>
+</tbody></table>
+<p class="st-crs__fine" data-i18n="web3c.mods.4.items.3.lab.opt.cap"></p>
+<p class="st-opt__dry"><b data-i18n="web3c.mods.4.items.3.lab.dry.go"></b> · <span data-i18n="web3c.mods.4.items.3.lab.dry.say"></span></p>
+</figure>
+<div class="st-myth">
+<p><b class="st-label" data-i18n="web3c.x.mythL"></b> <span data-i18n="web3c.mods.4.items.3.myth.k"></span></p>
+<p><b class="st-label" data-i18n="web3c.x.trueL"></b> <span data-i18n="web3c.mods.4.items.3.myth.v"></span></p>
+</div>
+<p class="st-jeu__refs"><span class="st-label" data-i18n="web3c.src.title"></span> <a href="#m5src-eth-gas" dir="ltr">[18]</a> <a href="#m5src-eip1559" dir="ltr">[19]</a> <a href="#m5src-eth-opcodes" dir="ltr">[2]</a> <a href="#m5src-eip2929" dir="ltr">[20]</a> <a href="#m5src-sol-contracts" dir="ltr">[21]</a> <a href="#m5src-eth-forks" dir="ltr">[22]</a></p>

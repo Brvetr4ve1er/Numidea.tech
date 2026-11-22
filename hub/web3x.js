@@ -1,10 +1,14 @@
 /* ============================================================
-   Numidea Labs — the web3 course's labs (hub/manuel.html #web3, the nine
-   modules of web3x/SPEC.md, 2026-11-21). Loaded by hub/app.js 13e only, the
-   first time a module opens or once the page is idle; without it every lab
-   stays in its still state (its figure, its facts, its controls disabled)
-   and the tabs, stamps and questions of every set still work (they are
-   app.js 13's).
+   Numidea Labs — the web3 course's labs (the nine modules of web3x/SPEC.md,
+   2026-11-21; since 2026-11-22 the Librairie's atlas « Le web3, sans fumée »
+   vol. 2, hub/lanterne/web3-modules.html). Loaded by hub/lanterne.js only,
+   when an exercise comes near the screen or is touched (window.NUMIDEA_W3X
+   is its bridge: t, lang, onLang, reduce, emit, root, atlas); without it
+   every lab stays in its still state (its figure, its facts, its controls
+   disabled) and the districts' questions still work, « Je passe
+   l'exercice » too. Each lab reports its end state once, as
+   numidea:exercise { atlas, id, done: true } (END, below), which the atlas
+   counts as the district's field exercise.
    Each lab is one function in LABS, by the kind its root names
    ([data-lab="<kind>"]): LABS[kind] = function (root, api) { … }. A root
    whose kind has no function yet stays as the page drew it (the shell's
@@ -83,7 +87,10 @@
 
   /* ---------------- the api a lab gets ---------------- */
   var api = {
-    t: A.t, lang: A.lang, onLang: A.onLang, reduce: A.reduce, hashKit: hashKit,
+    t: A.t, lang: A.lang, onLang: A.onLang, hashKit: hashKit,
+    // read at each use (review 2026-11-22): the page's Mouvement toggle cuts the labs' motion too, not only the system's
+    // reduced-motion setting read once at load
+    get reduce() { return typeof A.reduce === 'function' ? !!A.reduce() : !!A.reduce; },
     // a live line says one thing per change (emptied first, so the same words are said again)
     say: function (el, text) { if (!el) return; if (el.textContent !== text) { el.textContent = ''; el.textContent = text; } },
     // a number in the page's language: U+202F groups and a comma in French, a comma group in English, Western digits in Arabic
@@ -273,7 +280,7 @@
     });
   };
   // a lab goes live: its controls enabled (but those it keeps off), its still-state parts hidden by .is-live
-  var live = function (root) { $$('button[disabled],input[disabled]', root).forEach(function (el) { el.disabled = false; }); root.classList.add('is-live'); fillTpl(root); A.onLang(function () { fillTpl(root); }); };
+  var live = function (root) { $$('button[disabled],input[disabled],textarea[disabled]', root).forEach(function (el) { el.disabled = false; }); root.classList.add('is-live'); fillTpl(root); A.onLang(function () { fillTpl(root); }); };
   var btn = function (root, n) { return $('[data-act="' + n + '"]', root); };
   var noCrypto = function (root) { var n = o(root, 'nocrypto'); if (n) n.hidden = false; };
   var sha = function (s) { return hashKit.sha256(s); };
@@ -442,8 +449,13 @@
       return prep().then(render);
     };
     live(root);
-    if (!subtle) { noCrypto(root); $$('button,input', root).forEach(function (x) { x.disabled = true; }); return; }
-    ins.forEach(function (x) { x.addEventListener('input', function () { render(); }); });
+    if (!subtle) { noCrypto(root); $$('button,input,textarea', root).forEach(function (x) { x.disabled = true; }); return; }
+    /* an operation is one line (a textarea only so that it wraps on a phone, where the amount is the part to edit):
+       Enter adds no line, a pasted line break becomes a space */
+    ins.forEach(function (x) {
+      x.addEventListener('keydown', function (e) { if (e.key === 'Enter') e.preventDefault(); });
+      x.addEventListener('input', function () { if (/[\r\n]/.test(x.value)) x.value = x.value.replace(/[\r\n]+/g, ' '); render(); });
+    });
     btn(root, 'odd').addEventListener('click', function () {
       odd = !odd; btn(root, 'odd').textContent = api.t(K + (odd ? 'rm5' : 'add5'));
       // the proof's sentence counts two digests: it is offered on the four-operation tree only
@@ -836,7 +848,9 @@
     var r2 = function (v) { return Math.round(v * 100) / 100; };
     var oracle = {
       SEED: 20261121,
-      init: function () { return { t: 0, out: 18, on: 18, last: 0, agg: 18, spread: 0, why: -1, hist: [{ out: 18, on: 18, agg: 18, spread: 0 }], k: 0 }; },
+      // the chart opens on twelve flat readings (the hour before), so its lines show from the first view (review
+      // 2026-11-22: one point drew nothing, an empty frame)
+      init: function () { var h = []; for (var i = 0; i < 12; i++) h.push({ out: 18, on: 18, agg: 18, spread: 0 }); return { t: 0, out: 18, on: 18, last: 0, agg: 18, spread: 0, why: -1, hist: h, k: 0 }; },
       // the k-th tick's draws, the same whatever the settings: one for the walk, seven for the readings
       draws: function (k) { var r = xs(oracle.SEED + k * 7919), u = function () { return r() / 4294967296; }, w = u(), n = []; for (var i = 0; i < 7; i++) n.push(u()); return { w: w, n: n }; },
       tick: function (s, o) {
@@ -1779,18 +1793,95 @@
     paint();
   };
   /* /W3X-M789 */
+  /* ---------------- the end of each lab (the Librairie, 2026-11-22: lantern/SPEC.md §3.6) ----------------
+     A district of the atlas is done when its question is answered right and its lab has reached its end state: what the
+     lab is there to show has been shown once. Read from the visitor's own presses (a lab's controls: [data-act] buttons,
+     [data-f] radios and inputs) and from what the lab drew, after each press and again once its digests have come
+     back; said once, as numidea:exercise. A radio a lab sets by itself (no press before it) does not count. */
+  var END = (function () {
+    var acts = function () { var a = [].slice.call(arguments); return function (h) { return a.every(function (x) { return h.has('act:' + x); }); }; };
+    return {
+      webs: function (h) { return ['0', '1', '2'].every(function (w) { return h.has('act:ev@' + w); }); },     // an event in each of the three webs
+      trust: function (h, r) { var g = o(r, 'ring'); return !!g && g.classList.contains('is-full'); },     // the four points of trust found
+      gossip: acts('go', 'tamper', 'central'),                                                            // a line sent, a copy faked, the one server
+      hash: function (h) { return h.has('in') && (h.has('f:alg') || h.has('act:cmp')); },                // a word changed, another function
+      merkle: function (h, r) { if ($('[data-link="0"].is-broken', r)) h.flag('broken'); return h.has('flag:broken') && h.has('act:prove'); },
+      consensus: acts('mine', 'vote', 'plus', 'round'),                                                   // the four ways, each run once
+      bins: function (h, r) { var rs = $$('[data-bin-row]', r); return rs.length > 0 && rs.every(function (x) { return x.classList.contains('is-on'); }); },
+      routes: function (h) { return h.all('route'); },                                                    // the five routes
+      bip39: function (h) { return h.has('f:alt') && h.has('act:seed'); },                                // a word changed, a seed made
+      vc: function (h) { return h.has('act:issue') && h.has('act:show') && (h.has('act:edit') || h.has('act:hide')); },
+      balances: acts('eth', 'tok', 'wrap', 'unwrap'),
+      ledgers: function (h) { return h.all('tab') && (h.has('act:send') || h.has('act:batch')); },        // every standard, a transfer
+      supply: function (h) { return h.all('model') && h.has('in'); },
+      evm: function (h) { return h.ended(''); },                                                          // the program run to its last step
+      vyper: function (h) { return h.allActs('vy'); },
+      pipeline: function (h, r) { return h.has('act:go') && !!$('[data-f="st"] [data-v="4"][aria-checked="true"]', r); },   // through the gate
+      fee: function (h) { return h.has('in') || h.has('act:preset') || h.has('act:ex'); },
+      dapp: function (h) { return h.has('act:read') && h.has('act:send') && (h.has('act:accept') || h.has('act:reject')); },
+      rpc: function (h) { return h.all('method'); },
+      ipfs: acts('add', 'get', 'pin', 'gc'),
+      oracle: acts('tick', 'liar'),
+      amm: function (h) { return h.has('in') && h.has('act:front'); },
+      hf: function (h) { return h.has('in:debt') && h.has('in:move'); },
+      stable: acts('run0', 'gap', 'run2'),
+      stack: acts('add', 'shock'),
+      dao: function (h) { return h.ended(''); },                                                          // the vote carried to the transfer
+      votes: function (h) { return h.all('tab'); },                                                       // the four rules
+      legal: function (h) { return h.any(); },                                                            // a card read (Algeria's is open)
+      traps: function (h) { return h.all('tab'); },                                                       // every trap
+      sieve: function (h) { return h.has('act:on') && h.has('act:go'); },                                 // a net taken off, the code sent through
+      bridge: function (h, r) { var g = btn(r, 'go'); if (g && g.disabled && h.any()) h.flag('broken'); return h.has('flag:broken'); }
+    };
+  })();
+  var track = function (root, kind) {
+    var end = END[kind], dist = root.closest && root.closest('.district'), id = dist && dist.id;
+    if (!end || !id || !A.atlas) return;
+    var log = {}, init = {}, fin = false, user = 0;
+    $$('[role="radio"][aria-checked="true"]', root).forEach(function (r) { var g = r.closest('[data-f]'); if (g) log['f:' + g.getAttribute('data-f') + ':' + r.getAttribute('data-v')] = 1; });
+    for (var k0 in log) init[k0] = 1;
+    var h = {
+      has: function (k) { if (log[k] && !init[k]) return true; for (var x in log) if ((x.indexOf(k + ':') === 0 || x.indexOf(k + '@') === 0) && !init[x]) return true; return false; },
+      flag: function (k) { log['flag:' + k] = 1; },
+      any: function () { return Object.keys(log).some(function (k) { return !init[k] && !/^flag:/.test(k); }); },
+      all: function (f) { var rs = $$('[data-f="' + f + '"] [role="radio"]', root); return rs.length > 0 && rs.every(function (r) { return log['f:' + f + ':' + r.getAttribute('data-v')]; }); },
+      allActs: function (n) { var bs = $$('[data-act="' + n + '"]', root); return bs.length > 0 && bs.every(function (b) { return log['act:' + n + ':' + b.getAttribute('data-v')]; }); },
+      ended: function (pre) { var b = btn(root, pre + 'next'); return !!b && b.disabled && !!log['act:' + pre + 'next']; }
+    };
+    var check = function () {
+      if (fin) return;
+      var ok = false; try { ok = end(h, root); } catch (e) {}
+      if (ok) { fin = true; A.emit('numidea:exercise', { atlas: A.atlas, id: id, done: true, msg: A.said ? A.said() : '' }); }
+    };
+    var later = function () { check(); setTimeout(check, 400); setTimeout(check, 1600); };
+    ['pointerdown', 'keydown'].forEach(function (ev) { root.addEventListener(ev, function () { user = Date.now(); }, true); });
+    root.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-act]');
+      if (b && root.contains(b)) {
+        var n = b.getAttribute('data-act'), v = b.getAttribute('data-v'), ctx = root.getAttribute('data-web') || root.getAttribute('data-tab');
+        log['act:' + n] = 1; if (v != null) log['act:' + n + ':' + v] = 1; if (ctx != null) log['act:' + n + '@' + ctx] = 1;
+      }
+      later();
+    });
+    root.addEventListener('input', function (e) { log['in'] = 1; var f = e.target.getAttribute && e.target.getAttribute('data-f'); if (f) log['in:' + f] = 1; later(); });
+    document.addEventListener('numidea:one', function (e) {
+      var x = e.detail; if (!x || !x.el || !root.contains(x.el) || Date.now() - user > 1500) return;
+      log['f:' + x.f + ':' + x.i] = 1; later();
+    });
+  };
+
   /* ---------------- wiring: each root once, its kind's function if it has one ---------------- */
   var wire = function () {
     $$('[data-lab]', A.root || document).forEach(function (root) {
       var kind = root.getAttribute('data-lab'), fn = LABS[kind];
       if (!fn || root._lab) return;
       root._lab = true;
-      try { fn(root, api); } catch (e) { root._lab = false; }
+      try { fn(root, api); track(root, kind); } catch (e) { root._lab = false; }
     });
   };
   wire();
   // every templated line of the course, inside a lab or in a still figure beside it, in the page's language
-  var course = typeof document.getElementById === 'function' ? document.getElementById('web3') : null;
+  var course = A.root || (typeof document.getElementById === 'function' ? document.getElementById('web3') : null);
   // a bare number baked in French ([data-num], a still figure's labels): written in the page's format, while untouched
   var fillNum = function (root) {
     $$('[data-num]', root).forEach(function (el) {

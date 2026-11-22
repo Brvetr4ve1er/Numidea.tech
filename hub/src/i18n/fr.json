@@ -3228,7 +3228,2337 @@
     "dock": {
       "go": "Ma fiche · {n} cases remplies →",
       "empty": "Ma fiche →"
-    }
+    },
+    "mods": [
+      {
+        "t": "Fondations : d’où vient le web3",
+        "short": "Fondations",
+        "lead": "Avant les mots techniques : ce qui change entre le web qu’on lit, celui où l’on publie et celui où l’on possède. Puis les trois outils de cryptographie qui font tout le reste.",
+        "alt": "Une rue de nuit en trois vitrines : un panneau d’affichage qu’on lit, un kiosque où chacun épingle sa note sous l’œil d’un gardien, et un marché où chacun tient sa petite clé de laiton devant un grand registre recopié sur plusieurs tables ; Yasser passe, son gobelet à la main, et Kūro regarde depuis un auvent.",
+        "done": "Module 1 terminé : le sceau du réseau est dans votre carnet.",
+        "bridge": {
+          "d": "Écrivez votre idée sans les mots du web3, puis passez l’arbre des six questions du NIST : ce sont les étapes 1 et 2 du parcours acheteur.",
+          "go": "Ouvrir l’étape 1 →"
+        },
+        "ask": {
+          "t": "Si un prestataire vous propose une blockchain",
+          "chips": [
+            "Quelle donnée doit être partagée entre plusieurs organisations, et pourquoi pas une base de données ?",
+            "À qui ferons-nous encore confiance : aux développeurs, au code, aux opérateurs ?"
+          ]
+        },
+        "items": [
+          {
+            "t": "Web1, Web2, Web3 : qui garde quoi",
+            "d": "Le web est né au CERN, où Tim Berners-Lee en écrit la première proposition en mars 1989. Selon ethereum.org, le Web 1.0 (1990–⁠2004) était fait surtout de sites statiques qu’on lisait ; le Web 2.0 a laissé chacun publier, mais la plateforme garde les comptes, les données et les règles. Le web3 désigne des applications dont certains registres vivent sur une blockchain publique : l’utilisateur tient sa propre clé, et ce qu’il possède est écrit dans un registre qu’aucune entreprise ne tient seule. ethereum.org cite une formule de 2020 : « Web1 était en lecture seule, Web2 est en lecture-écriture, Web3 sera en lecture-écriture-possession » (notre traduction). Ce sont des étiquettes, pas des versions : les trois existent côte à côte, et ethereum.org note que le web3 dépend encore surtout d’une infrastructure centralisée.",
+            "lab": {
+              "l": "Où vit votre message ?",
+              "post": {
+                "l": "Votre message (il ne quitte pas la page)",
+                "ph": "Ouverture samedi, 9 h"
+              },
+              "webL": "Le web",
+              "web": [
+                "Web1",
+                "Web2",
+                "Web3"
+              ],
+              "where": [
+                "Sur le serveur de l’entreprise qui publie le site. Vous lisez ; vous ne publiez pas.",
+                "Dans la base de données de la plateforme. Votre compte est chez elle.",
+                "Une ligne dans un registre copié sur de nombreux nœuds, liée à votre clé. Un site ordinaire l’affiche."
+              ],
+              "evL": "Il se passe quelque chose",
+              "ev": [
+                "Je modifie le message",
+                "La plateforme ferme mon compte",
+                "La plateforme ferme",
+                "Le site qui l’affiche tombe"
+              ],
+              "res": [
+                [
+                  "Impossible : en Web1, seul l’éditeur du site modifie la page.",
+                  "Vous n’avez pas de compte : vous ne faisiez que lire.",
+                  "La page disparaît avec l’entreprise.",
+                  "La page n’est plus lisible."
+                ],
+                [
+                  "Modifié, selon les règles de la plateforme.",
+                  "Le message disparaît avec le compte.",
+                  "Le message disparaît avec la plateforme.",
+                  "Le message reste en base, mais personne ne le voit."
+                ],
+                [
+                  "Une nouvelle ligne s’ajoute ; l’ancienne reste dans l’historique.",
+                  "Pas de compte à fermer : la ligne reste liée à votre clé.",
+                  "Le registre continue tant que d’autres nœuds le tiennent.",
+                  "La ligne reste dans le registre, mais le site qui l’affichait est parti : il en faut un autre. Le web3 dépend encore de serveurs ordinaires (ethereum.org)."
+                ]
+              ],
+              "keyL": "votre clé",
+              "nodesL": "nœuds",
+              "serverL": "serveur",
+              "dbL": "base de la plateforme",
+              "siteL": "site qui affiche",
+              "gone": "disparu"
+            },
+            "q": "Dans la formule citée par ethereum.org, qu’ajoute le Web3 à « lecture-écriture » ?",
+            "a": [
+              "La possession : « lecture-écriture-possession »",
+              "Des pages plus rapides",
+              "La fin des serveurs"
+            ],
+            "ok": "Oui. La possession, écrite dans un registre partagé. Les serveurs, eux, restent.",
+            "no": {
+              "1": "La vitesse ne fait pas partie de la définition.",
+              "2": "ethereum.org dit que le web3 dépend encore d’une infrastructure centralisée."
+            },
+            "myth": {
+              "k": "Le web3 remplace le web : il n’y a plus de serveurs.",
+              "v": "Une application web3 est le plus souvent un site ordinaire qui lit et écrit aussi dans un registre partagé. Seuls certains enregistrements passent sur la chaîne."
+            }
+          },
+          {
+            "t": "Quatre promesses, et leurs petites lignes",
+            "d": "Quatre mots reviennent sans cesse. Décentralisé : aucune entreprise seule ne fait tourner le réseau ; mais le NIST, l’agence américaine des normes, juge « pas strictement vraie » l’idée que personne ne contrôle une blockchain. Sans tiers de confiance : selon ethereum.org, le système repose sur des incitations plutôt que sur un intermédiaire ; le NIST rappelle qu’on fait encore confiance à la cryptographie, au code, aux développeurs, et au fait que la plupart des participants ne s’entendent pas en secret. Sans permission : n’importe qui peut lire, écrire et produire des blocs sans demander d’accord ; c’est une propriété du logiciel, pas une autorisation légale. Identité souveraine : l’idée, posée par Christopher Allen en 2016, qu’une personne contrôle sa propre identité numérique au lieu de la louer à une plateforme.",
+            "lab": {
+              "l": "Qui faut-il encore croire ?",
+              "left": "Avec un intermédiaire",
+              "right": "Sur une chaîne publique",
+              "you": "Vous",
+              "friend": "Votre amie",
+              "bank": "La banque",
+              "ttp": "tiers de confiance",
+              "find": "Touchez les quatre points de confiance cachés du schéma « Sur une chaîne publique ».",
+              "pts": [
+                {
+                  "k": "La cryptographie",
+                  "v": "Le NIST : on fait confiance aux techniques cryptographiques utilisées."
+                },
+                {
+                  "k": "Le code des contrats",
+                  "v": "Le NIST : on fait confiance au fonctionnement correct, sans bug, des smart contracts."
+                },
+                {
+                  "k": "Les développeurs",
+                  "v": "Le NIST : on fait confiance aux développeurs du logiciel."
+                },
+                {
+                  "k": "Pas d’entente secrète",
+                  "v": "Le NIST : on fait confiance au fait que la plupart des utilisateurs ne s’entendent pas en secret."
+                }
+              ],
+              "count": "Points de confiance trouvés : {n} sur 4",
+              "pillarsL": "Les quatre mots, promesse et petite ligne",
+              "promiseL": "La promesse",
+              "fineL": "La petite ligne",
+              "pillars": [
+                {
+                  "k": "Décentralisé",
+                  "promise": "Aucune entreprise seule ne fait tourner le réseau.",
+                  "fine": "Le NIST : dire que personne ne contrôle une blockchain n’est « pas strictement vrai ». Utilisateurs, producteurs de blocs et développeurs la pilotent."
+                },
+                {
+                  "k": "Sans tiers de confiance",
+                  "promise": "ethereum.org : des incitations et des mécanismes économiques au lieu d’intermédiaires de confiance.",
+                  "fine": "Le NIST : la confiance se déplace ; elle ne disparaît pas."
+                },
+                {
+                  "k": "Sans permission",
+                  "promise": "ethereum.org : tout le monde peut participer, personne n’est exclu.",
+                  "fine": "C’est une propriété du logiciel, pas une autorisation légale."
+                },
+                {
+                  "k": "Identité souveraine",
+                  "promise": "Christopher Allen, 2016 : chacun contrôle sa propre identité numérique.",
+                  "fine": "Des normes comme les DID du W3C essaient de la construire (module 3, étape 3). Contrôler une clé ne prouve pas qui l’on est."
+                }
+              ]
+            },
+            "q": "Le NIST note qu’une blockchain sans permission n’a pas de tiers de confiance qui valide les transactions. Est-elle pour autant « sans confiance » ?",
+            "a": [
+              "Oui : plus rien n’est à croire",
+              "Seuls les mineurs sont à croire",
+              "Non : on croit encore la cryptographie, le code, les développeurs, et que la plupart des participants ne s’entendent pas"
+            ],
+            "ok": "Oui. La confiance se déplace, elle ne disparaît pas (NIST IR 8202, section 7.7).",
+            "no": {
+              "0": "Le NIST parle d’une mauvaise interprétation.",
+              "1": "La liste du NIST va bien au-delà des producteurs de blocs."
+            },
+            "myth": {
+              "k": "Sans confiance veut dire sûr : personne ne peut tricher.",
+              "v": "Bugs de contrat, logiciel défaillant et entente restent des risques : le NIST les liste."
+            }
+          },
+          {
+            "t": "Un registre tenu par beaucoup",
+            "d": "Un registre, c’est une liste d’opérations, tenue d’habitude par une seule organisation : le NIST rappelle qu’il faut alors lui faire confiance pour ne pas le perdre, ne pas le modifier, ne rien y oublier. Un registre distribué est tenu par de nombreux ordinateurs indépendants, les nœuds, et chaque nœud complet vérifie tout et garde sa propre copie du registre (NIST) ; certains logiciels peuvent effacer l’historique le plus ancien (module 6, étape 2). L’article de Bitcoin (2008) donne la recette : les nouvelles opérations sont diffusées à tous les nœuds, chacun les range dans un bloc, et les autres n’acceptent ce bloc que si tout y est valide ; ils le montrent en construisant le bloc suivant sur son empreinte. Un nœud peut partir et revenir : il rattrape ce qu’il a manqué. Tous les registres distribués ne sont pas publics : certains sont réservés à des membres autorisés (NIST).",
+            "lab": {
+              "l": "Le réseau qui se répète",
+              "node": "Nœud {n}",
+              "tip": "empreinte",
+              "lines": [
+                "Lina → Amine : 3 billets",
+                "Amine → Sara : 1 billet",
+                "Sara → Lina : 2 billets"
+              ],
+              "newLine": "Yasser → Lina : 1 billet",
+              "tampered": "Lina → Amine : 30 billets",
+              "go": "Diffuser une opération",
+              "tamper": "Trafiquer la copie du nœud 4",
+              "unplug": "Débrancher le nœud 6",
+              "plug": "Rebrancher le nœud 6",
+              "central": "Un seul serveur central",
+              "ring": "Revenir au réseau",
+              "valid": "valide ✓",
+              "odd": "ne correspond plus",
+              "off": "débranché",
+              "say": {
+                "agree": "{a} nœuds sur {n} d’accord.",
+                "odd": "La copie du nœud 4 ne correspond plus : le réseau garde l’historique commun.",
+                "missed": "Le nœud 6 est débranché : il manque {k} ligne(s).",
+                "caught": "Le nœud 6 a rattrapé {k} ligne(s) manquée(s).",
+                "central": "Un seul serveur : la ligne modifiée devient la vérité pour tout le monde, et rien ne permet de le voir."
+              },
+              "simpl": "Simplifié : l’empreinte est un SHA-256 de la copie, calculé dans votre navigateur."
+            },
+            "q": "Un nœud modifie en secret une ancienne ligne de sa propre copie. Que se passe-t-il ?",
+            "a": [
+              "Toutes les copies se mettent à jour",
+              "Sa copie ne correspond plus aux autres, et le réseau garde l’historique commun",
+              "Le registre s’arrête"
+            ],
+            "ok": "Oui. Les blocs sont liés par leurs empreintes : une modification se voit (le NIST écrit « tamper evident »).",
+            "no": {
+              "0": "Chaque nœud garde et vérifie sa propre copie.",
+              "2": "Les autres nœuds continuent : l’article de Bitcoin décrit un réseau qui demande très peu de structure."
+            },
+            "myth": {
+              "k": "Distribué veut dire que les données sont découpées en morceaux.",
+              "v": "Chaque nœud complet garde sa propre copie : c’est répliqué, pas découpé (NIST), même si certains nœuds élaguent le plus ancien."
+            }
+          },
+          {
+            "t": "Empreinte, clé, signature",
+            "d": "Trois outils font presque tout le travail. Une fonction de hachage fait une empreinte de taille fixe de n’importe quelle donnée : la même entrée donne toujours la même empreinte, le moindre changement en donne une autre, et l’on ne peut pas revenir de l’empreinte à la donnée (norme FIPS 180-4 du NIST). Bitcoin utilise SHA-256 ; Ethereum utilise Keccak-256, la version d’origine de Keccak, qui donne d’autres résultats que la norme finale SHA3-256 (Yellow Paper d’Ethereum, FIPS 202). Une paire de clés, c’est une clé privée gardée secrète et une clé publique tirée d’elle : selon ethereum.org, on ne peut pas retrouver la clé privée à partir de la publique, et une adresse Ethereum est faite des 20 derniers octets de l’empreinte Keccak-256 de la clé publique. Une signature se fait avec la clé privée et se vérifie par n’importe qui avec la clé publique (FIPS 186-5) : elle prouve quelle clé a signé et que rien n’a changé, mais elle ne cache rien.",
+            "lab": {
+              "hash": {
+                "l": "Tapez un mot",
+                "ph": "abc",
+                "algL": "Fonction",
+                "alg": [
+                  "SHA-256",
+                  "Keccak-256 (Ethereum)",
+                  "SHA3-256 (norme du NIST)"
+                ],
+                "cmp": "Comparer Keccak-256 et SHA3-256",
+                "bits": "Bits changés depuis la dernière version : {n} sur 256",
+                "same": "Même mot, deux empreintes différentes : Ethereum n’utilise pas la norme SHA-3 finale."
+              },
+              "sign": {
+                "l": "Signer, puis vérifier",
+                "keys": "Fabriquer mes clés de démonstration",
+                "msg": "Message",
+                "msgPh": "Je livre le 12 mars",
+                "sign": "Signer",
+                "verify": "Vérifier",
+                "stranger": "Vérifier avec la clé d’un inconnu",
+                "ok": "Signature valide ✓ : c’est bien cette clé, et le message n’a pas changé.",
+                "badMsg": "Signature refusée ✗ : le message a changé depuis la signature.",
+                "badKey": "Signature refusée ✗ : ce n’est pas la clé publique du signataire.",
+                "need": "Fabriquez d’abord les clés, puis signez.",
+                "pubL": "Clé publique (début)",
+                "sigL": "Signature (début)",
+                "altL": "Si le message change après la signature",
+                "msgEdit": "Je livre le 15 mars"
+              }
+            },
+            "q": "Vous changez une virgule dans un contrat de dix pages et recalculez son empreinte SHA-256. La nouvelle empreinte…",
+            "a": [
+              "change d’un seul caractère",
+              "reste la même, la longueur n’a pas changé",
+              "est différente, sans qu’on puisse prévoir comment"
+            ],
+            "ok": "Oui. Selon FIPS 180-4, tout changement donne, avec une très forte probabilité, une autre empreinte.",
+            "no": {
+              "0": "La taille de la modification ne dit rien de la taille du changement d’empreinte.",
+              "1": "L’empreinte dépend de chaque bit, pas de la longueur."
+            },
+            "myth": {
+              "k": "Hacher et signer, c’est chiffrer : ma transaction est privée.",
+              "v": "Une empreinte ne se « déchiffre » pas, et une signature prouve l’auteur sans rien cacher : les transactions signées sont publiques."
+            }
+          }
+        ]
+      },
+      {
+        "t": "Sous le capot d’une chaîne",
+        "short": "Mécanique",
+        "lead": "Ce qu’il y a dans un bloc, comment des milliers de machines se mettent d’accord sans chef, ce qu’on sacrifie pour aller vite, et ce que veulent dire « couche 1 » et « couche 2 ».",
+        "alt": "Sur l’établi de nuit, une chaîne de blocs crème reliés par des anneaux de laiton ; l’un est ouvert comme une boîte et montre un petit arbre d’étiquettes de papier. Kūro marche en équilibre sur la chaîne, Yasser l’examine à la loupe.",
+        "done": "Module 2 terminé : le sceau du bloc est dans votre carnet.",
+        "bridge": {
+          "d": "Sur votre fiche, la question n’est pas « quelle chaîne ? » mais « en faut-il une ? » : c’est l’étape 2 du parcours acheteur.",
+          "go": "Ouvrir l’étape 2 →"
+        },
+        "ask": {
+          "t": "Si une chaîne précise vous est proposée",
+          "chips": [
+            "Sur quelle chaîne, et qui peut encore la vérifier avec un ordinateur ordinaire ?",
+            "S’il y a une couche 2 : combien de temps pour revenir à la chaîne de base, et qui l’opère ?"
+          ]
+        },
+        "items": [
+          {
+            "t": "Ce qu’il y a dans un bloc",
+            "d": "Un bloc a deux parties : un petit en-tête et une liste d’opérations. Chez Bitcoin, l’en-tête fait exactement 80 octets : une version, l’empreinte de l’en-tête précédent, une « racine de Merkle » qui résume toutes les opérations, une date, une cible de difficulté et un nombre appelé nonce (documentation des développeurs de Bitcoin). Comme chaque en-tête contient l’empreinte du précédent, les blocs forment une chaîne : modifiez une ancienne opération, et le lien suivant ne correspond plus. L’arbre de Merkle se construit en hachant les opérations deux par deux, puis les empreintes deux par deux, jusqu’à une seule racine. Son grand avantage, selon l’article de Bitcoin : un portefeuille léger vérifie qu’une opération est dans un bloc avec quelques empreintes et l’en-tête, sans tout télécharger.",
+            "lab": {
+              "l": "L’arbre et la chaîne",
+              "leaf": "Opération {n}",
+              "leaves": [
+                "Lina → Amine : 3 billets",
+                "Amine → Sara : 1 billet",
+                "Sara → Karim : 2 billets",
+                "Karim → Lina : 1 billet"
+              ],
+              "leaf5": "Yasser → Sara : 1 billet",
+              "parent": "Empreinte des deux",
+              "root": "Racine",
+              "changed": "modifié",
+              "add5": "Ajouter une 5e opération",
+              "rm5": "Revenir à quatre",
+              "odd": "Nombre impair : la dernière empreinte est associée à sa propre copie, comme chez Bitcoin.",
+              "prove": "Prouver l’opération 3",
+              "proved": "Deux empreintes et la racine de l’en-tête suffisent : vous n’avez vu ni l’opération 1, ni la 2, ni la 4.",
+              "block": "Bloc {n}",
+              "prev": "Précédent",
+              "rootL": "Racine",
+              "nonce": "Nonce",
+              "intact": "Chaîne intacte.",
+              "broken": "Lien cassé : l’empreinte du bloc 1 a changé, le bloc 2 attend l’ancienne.",
+              "reset": "Rétablir",
+              "simpl": "Simplifié : Bitcoin hache deux fois, sur des octets dans un ordre particulier ; ici on hache une fois, sur du texte, pour suivre."
+            },
+            "q": "Pour vérifier qu’un paiement est dans un bloc de quatre opérations, un portefeuille léger a besoin…",
+            "a": [
+              "des quatre opérations",
+              "de ce paiement, des empreintes voisines sur sa branche et de l’en-tête du bloc",
+              "de toute la chaîne depuis 2009"
+            ],
+            "ok": "Oui. C’est la vérification par « branche de Merkle » de l’article de Bitcoin (section 8).",
+            "no": {
+              "0": "C’est justement ce que l’arbre évite.",
+              "2": "Seule la suite des en-têtes est nécessaire, et elle est petite : 80 octets par en-tête."
+            },
+            "myth": {
+              "k": "Une blockchain ne peut jamais être modifiée.",
+              "v": "Le NIST dit d’une blockchain qu’elle rend les modifications visibles et difficiles (« tamper evident and tamper resistant ») : plus difficiles à mesure que des blocs s’ajoutent, pas physiquement impossibles."
+            }
+          },
+          {
+            "t": "Se mettre d’accord sans chef",
+            "d": "Des milliers de machines doivent choisir le prochain bloc, et personne ne décide pour elles. Preuve de travail (Bitcoin ; Ethereum jusqu’en 2022) : on hache l’en-tête encore et encore en changeant le nonce, jusqu’à tomber sous une cible ; trouver coûte cher, vérifier ne prend qu’un hachage (article de Bitcoin). Preuve d’enjeu (Ethereum depuis le 15 septembre 2022) : des validateurs déposent au moins 32 ETH en garantie (jusqu’à 2 048 depuis la mise à jour Pectra de mai 2025), proposent des blocs à tour de rôle par créneaux de 12 secondes et votent ; tricher peut détruire une partie du dépôt, voire tout le dépôt (ethereum.org). Preuve d’enjeu déléguée, par exemple chez TRON : les détenteurs élisent un petit groupe fixe de producteurs, 27 selon sa documentation. Consensus byzantin classique, par exemple CometBFT : un groupe connu de validateurs vote par tours et valide un bloc quand plus des deux tiers sont d’accord ; il reste sûr tant que moins d’un tiers est défaillant.",
+            "lab": {
+              "l": "Quatre façons de choisir le prochain bloc",
+              "tabs": [
+                "Travail",
+                "Enjeu",
+                "Enjeu délégué",
+                "Byzantin"
+              ],
+              "pow": {
+                "zeros": "Zéros demandés au début de l’empreinte",
+                "block": "bloc d’exemple",
+                "mine": "Miner",
+                "stop": "Arrêter",
+                "tries": "Essais : {n}",
+                "found": "Trouvé au nonce {n} : {h}",
+                "verify": "Vérifier",
+                "verified": "Un seul hachage suffit pour vérifier ✓",
+                "note": "Le nombre d’essais est mesuré dans votre navigateur ; il change à chaque fois."
+              },
+              "pos": {
+                "deposit": "dépôt",
+                "slot": "Créneau suivant",
+                "slotSay": "Créneau {s} · bloc proposé par le nœud {n}",
+                "cheat": "Le nœud 4 signe deux blocs dans le même créneau",
+                "slashed": "Nœud 4 : une partie du dépôt est détruite, et il est exclu.",
+                "cutL": "taille de la perte : exemple",
+                "vote": "Faire voter",
+                "final": "Votes : {p} % des dépôts · finalisé à partir des deux tiers",
+                "done": "Finalisé ✓"
+              },
+              "dpos": {
+                "votes": "Il vous reste {n} voix sur 10",
+                "cand": "Candidat {n}",
+                "prod": "Les trois premiers produisent les blocs, chacun son tour.",
+                "note": "TRON, cité comme exemple de cette conception : 27 producteurs élus, un créneau toutes les 3 secondes, selon sa documentation."
+              },
+              "bft": {
+                "faulty": "Validateurs défaillants : {n} sur 10",
+                "round": "Lancer un tour",
+                "commit": "Bloc validé : {v} votes sur 10, plus des deux tiers.",
+                "fail": "Pas de validation : {v} votes, il en faut 7. On passe au tour suivant."
+              }
+            },
+            "q": "Sur Ethereum, que devrait abandonner un attaquant pour annuler un bloc finalisé ?",
+            "a": [
+              "Au moins un tiers de tout l’ETH déposé en garantie",
+              "Rien, juste du temps",
+              "La récompense d’un bloc"
+            ],
+            "ok": "Oui. Selon ethereum.org, annuler un bloc finalisé coûterait au moins un tiers de tout l’ETH déposé.",
+            "no": {
+              "1": "La finalité repose sur des dépôts.",
+              "2": "C’est très loin du seuil donné par ethereum.org."
+            },
+            "myth": {
+              "k": "Déposer en garantie (« staker »), c’est un livret d’épargne.",
+              "v": "En preuve d’enjeu, le dépôt est une caution qui peut être détruite en cas de tricherie (ethereum.org). Ce cours décrit le mécanisme et ne promet aucun rendement."
+            }
+          },
+          {
+            "t": "Le trilemme : deux sur trois",
+            "d": "Le « trilemme » est une règle empirique, telle que la formule Vitalik Buterin, cofondateur d’Ethereum ; ce n’est pas une démonstration. Il définit trois buts : passer à l’échelle (traiter plus d’opérations qu’un ordinateur portable ordinaire ne peut en vérifier), rester décentralisé (sans dépendre d’un petit groupe de grands acteurs), rester sûr (résister même si une grande part des nœuds attaque). Selon lui, des techniques « simples » n’en obtiennent que deux : les chaînes où chacun vérifie tout sont sûres et décentralisées, mais ne passent pas à l’échelle ; celles tenues par 10 à 100 nœuds sont rapides et sûres, mais moins décentralisées ; plusieurs petites chaînes reliées par des ponts passent à l’échelle, mais chacune est plus facile à attaquer. Il soutient que des techniques plus avancées peuvent obtenir les trois : c’est son argument, pas un fait établi. La question utile pour vous : qui peut encore vérifier cette chaîne avec un ordinateur ordinaire ?",
+            "lab": {
+              "l": "Choisissez deux sommets",
+              "corners": [
+                "Sûr",
+                "À l’échelle",
+                "Décentralisé"
+              ],
+              "aria": "Trois façons de faire une chaîne : à chacune, le côté du triangle qu’elle garde",
+              "bins": [
+                "Sûr et décentralisé",
+                "Sûr et à l’échelle",
+                "À l’échelle et décentralisé"
+              ],
+              "rows": [
+                {
+                  "k": "Chaque participant vérifie chaque opération",
+                  "why": "Ce qu’elle cède : l’échelle. Elle ne traite pas plus que ce qu’un portable ordinaire peut vérifier."
+                },
+                {
+                  "k": "10 à 100 gros nœuds s’accordent entre eux",
+                  "why": "Ce qu’elle cède : la décentralisation. Elle dépend d’un petit groupe de grands acteurs."
+                },
+                {
+                  "k": "Beaucoup de petites chaînes reliées par des ponts",
+                  "why": "Ce qu’elle cède : la sécurité. Chaque petite chaîne est plus facile à attaquer."
+                }
+              ],
+              "score": "{n} sur 3 au bon côté",
+              "shard": "Le partitionnement (sharding) : l’argument de Buterin est que des techniques avancées visent les trois. Son avis, cité.",
+              "given": "Le sommet cédé : {c}"
+            },
+            "q": "Une chaîne tourne sur une vingtaine de gros serveurs et traite beaucoup d’opérations par seconde. Selon la grille de Buterin, que sacrifie-t-elle le plus probablement ?",
+            "a": [
+              "La sécurité",
+              "Rien",
+              "La décentralisation"
+            ],
+            "ok": "Oui. Il décrit ces chaînes comme reposant sur « un petit nombre de nœuds (souvent 10 à 100) ».",
+            "no": {
+              "0": "Dans ses exemples, cette famille garde l’échelle et la sécurité.",
+              "1": "Avec des techniques simples, dit-il, on n’en obtient que deux."
+            },
+            "myth": {
+              "k": "Le trilemme est une loi de la nature : une chaîne qui promet les trois ment.",
+              "v": "C’est la règle empirique d’un auteur pour les conceptions simples, et le même auteur soutient qu’on peut la dépasser. Jugez une promesse en demandant qui peut encore vérifier la chaîne."
+            }
+          },
+          {
+            "t": "Couche 1, couche 2",
+            "d": "Une couche 1 est une chaîne de base, avec ses propres validateurs et son propre consensus : Bitcoin, Ethereum ou Solana en sont des exemples. Une couche 2 fait le travail ailleurs mais s’appuie sur la couche 1 pour sa sécurité. Les rollups exécutent les opérations hors de la chaîne, puis y publient les données : les rollups « optimistes » supposent le lot correct et laissent environ sept jours pour prouver une fraude ; les rollups « ZK » publient une preuve mathématique que la chaîne vérifie, sans cette attente (ethereum.org). Les canaux d’état bloquent des fonds une fois sur la chaîne, puis les deux parties échangent des mises à jour signées et ne reviennent qu’à la fermeture ; Lightning, chez Bitcoin, en est un exemple selon ses spécifications. Une chaîne latérale (sidechain) a son propre consensus et un pont : ethereum.org ne la compte pas comme couche 2, car elle n’hérite pas de la sécurité d’Ethereum.",
+            "lab": {
+              "l": "Cinq routes pour cent petits transferts",
+              "aria": "Choisissez une route",
+              "k": [
+                "Sur la couche 1",
+                "Rollup optimiste",
+                "Rollup ZK",
+                "Chaîne latérale",
+                "Canal d’état"
+              ],
+              "cols": [
+                "Comment passent cent petits transferts",
+                "Revenir à la chaîne de base",
+                "Si l’opérateur triche"
+              ],
+              "rows": [
+                [
+                  "Cent opérations font la queue à la porte, une par une.",
+                  "Vous y êtes déjà.",
+                  "Pas d’opérateur à part : ce sont les règles de la chaîne."
+                ],
+                [
+                  "Regroupées en un lot ; la liste est publiée à la porte.",
+                  "Environ sept jours de délai de contestation (ethereum.org).",
+                  "Un observateur prouve la fraude pendant le délai."
+                ],
+                [
+                  "Regroupées en un lot, avec une preuve de validité vérifiée à la porte.",
+                  "Pas de délai, selon ethereum.org.",
+                  "Le contrat de la couche 1 refuse une preuve fausse."
+                ],
+                [
+                  "Sur une autre route, avec ses propres gardes, reliée par un pont.",
+                  "Par le pont.",
+                  "Seuls ses propres validateurs et le pont font barrage : la sécurité de la couche 1 ne la couvre pas."
+                ],
+                [
+                  "Deux personnes échangent des mises à jour signées ; seules l’ouverture et la fermeture passent la porte.",
+                  "À la fermeture du canal.",
+                  "L’autre partie doit être en ligne pour contester."
+                ]
+              ],
+              "step": "Route {i} sur 5 · {v}",
+              "note": "Aucun chiffre de frais ni de vitesse ici : ils changent, et aucun n’a été vérifié.",
+              "road": "la chaîne de base (couche 1)"
+            },
+            "q": "Laquelle de ces solutions ethereum.org ne compte-t-il pas comme couche 2, parce qu’elle garde sa propre sécurité ?",
+            "a": [
+              "Une chaîne latérale",
+              "Un rollup optimiste",
+              "Un rollup ZK"
+            ],
+            "ok": "Oui. Selon ethereum.org, les chaînes latérales n’héritent pas des propriétés de sécurité d’Ethereum.",
+            "no": {
+              "1": "Il tire sa sécurité d’Ethereum.",
+              "2": "Lui aussi tire sa sécurité d’Ethereum."
+            },
+            "myth": {
+              "k": "Tout ce qui se présente comme « extension d’Ethereum » a la sécurité d’Ethereum.",
+              "v": "Chaînes latérales, plasma et validiums assurent leur propre sécurité (ethereum.org). Et sur un rollup optimiste, revenir à la chaîne de base peut prendre une semaine."
+            }
+          }
+        ]
+      },
+      {
+        "t": "Portefeuilles, clés et identité",
+        "short": "Clés",
+        "lead": "Un portefeuille ne contient pas de jetons : il garde des clés. Qui les tient, comment on les recrée, ce qu’un nom ou un identifiant prouve vraiment, et comment lire une demande avant de signer.",
+        "alt": "Yasser, au bureau de nuit, lève une clé de laiton dans la lumière de la lampe ; près de lui un petit coffre fermé et un carnet fermé sous un presse-papier, que Kūro garde de la patte. Un téléphone éteint est posé sur la table.",
+        "done": "Module 3 terminé : le sceau de la clé est dans votre carnet.",
+        "bridge": {
+          "d": "Votre fiche demande qui détiendra les clés de votre projet : c’est l’étape 8 du parcours acheteur. Et l’étape 6 trie les messages d’arnaque que vos utilisateurs recevront.",
+          "go": "Ouvrir la question des clés →"
+        },
+        "ask": {
+          "t": "Pour les clés et les signatures",
+          "chips": [
+            "Qui détient les clés d’administration, combien de signataires faut-il, et que se passe-t-il si l’un d’eux les perd ?",
+            "Que verront mes utilisateurs avant de signer, et pourront-ils refuser sans rien perdre ?"
+          ]
+        },
+        "items": [
+          {
+            "t": "Qui tient les clés, et sont-elles en ligne ?",
+            "d": "Un portefeuille ne contient pas de jetons : c’est un logiciel ou un appareil qui garde et utilise vos clés, et les enregistrements restent sur la chaîne (ethereum.org). Deux questions classent tous les portefeuilles. Qui tient les clés ? Dans un portefeuille non dépositaire, c’est vous : le NIST écrit que l’utilisateur est alors « entièrement responsable » de ses clés, et qu’une clé perdue fait perdre les jetons associés. Dans un portefeuille dépositaire, une entreprise les garde pour vous : on peut récupérer l’accès, mais on lui fait confiance, et une fuite chez elle peut vous coûter. Est-il en ligne ? Un portefeuille « chaud » est connecté et pratique ; un portefeuille « froid » reste hors ligne, et il faut une action physique pour signer (NIST IR 8301).",
+            "lab": {
+              "l": "Deux questions, une grille",
+              "aria": "Rangez chaque portefeuille : qui tient les clés, et est-il en ligne",
+              "colL": "Qui tient les clés ?",
+              "rowL": "En ligne ?",
+              "bins": [
+                "Moi · en ligne",
+                "Moi · hors ligne",
+                "Une entreprise · en ligne",
+                "Une entreprise · hors ligne"
+              ],
+              "rows": [
+                {
+                  "k": "Une extension de navigateur",
+                  "why": "Vous tenez la clé, sur un appareil connecté. Si vous la perdez, personne ne la recrée sans votre phrase. Avant chaque signature : relire la demande."
+                },
+                {
+                  "k": "Une application de téléphone",
+                  "why": "Vous tenez la clé, sur un appareil connecté. Le téléphone perdu, il reste la phrase de récupération. Avant chaque signature : relire la demande."
+                },
+                {
+                  "k": "Un compte sur une plateforme d’échange",
+                  "why": "La plateforme tient les clés : elle peut vous rendre l’accès, et une fuite chez elle peut vous coûter (NIST). Ce qu’elle garde hors ligne de son côté est son affaire."
+                },
+                {
+                  "k": "Un appareil matériel dédié",
+                  "why": "Vous tenez la clé, dans une puce qui ne la laisse pas sortir ; il faut appuyer sur l’appareil pour signer (NIST). Il signe ce que vous acceptez : relisez quand même."
+                },
+                {
+                  "k": "Une phrase de récupération écrite sur papier, dans un tiroir",
+                  "why": "Une sauvegarde hors ligne de votre clé. Le NIST le rappelle : le papier peut être perdu, volé ou détruit."
+                }
+              ],
+              "score": "{n} sur 5 rangés comme nous",
+              "shared": "Deux clés sur trois, deux à vous et une chez une entreprise : le NIST parle de garde partielle ou collaborative. Elle se range entre les deux colonnes."
+            },
+            "q": "Votre compte permet de récupérer l’accès par un lien envoyé par courriel. Qu’est-ce que cela vous dit ?",
+            "a": [
+              "Vous détenez les clés privées",
+              "C’est un portefeuille froid",
+              "Une entreprise détient les clés pour vous : vous lui confiez la garde"
+            ],
+            "ok": "Oui. Selon le NIST, la sécurité et la récupération du compte sont alors « entièrement gérées par le prestataire ».",
+            "no": {
+              "0": "Avec vos propres clés, personne ne peut les réinitialiser pour vous.",
+              "1": "Chaud ou froid, c’est être en ligne ou non, pas qui tient les clés."
+            },
+            "myth": {
+              "k": "Mes jetons sont rangés dans l’application.",
+              "v": "Ils restent sur la chaîne ; le portefeuille garde les clés et vous montre une fenêtre dessus (ethereum.org). Et un appareil matériel protège la clé, mais signe ce que vous acceptez : le NIST demande de relire chaque opération."
+            }
+          },
+          {
+            "t": "Douze mots, un arbre de clés",
+            "d": "Une phrase de récupération est un grand nombre aléatoire écrit en mots. La norme BIP-39 prend de 128 à 256 bits au hasard, ajoute une courte somme de contrôle tirée de leur empreinte SHA-256, coupe le tout en morceaux de 11 bits, et chaque morceau choisit un mot dans une liste fixe de 2 048 : on obtient 12 à 24 mots, dont le dernier sert en partie de contrôle. Les mots, plus une phrase de passe facultative, passent par 2 048 tours d’une fonction appelée PBKDF2 pour donner une « graine » : chaque phrase de passe différente donne un autre portefeuille, valide lui aussi. La norme BIP-32 fait pousser de cette graine tout un arbre de clés : une seule sauvegarde restaure tous les comptes, et la fuite d’une seule sauvegarde les livre tous. L’abstraction de compte (norme ERC-4337) prend une autre voie : le compte est un smart contract avec ses propres règles, par exemple une récupération par des proches de confiance, sans changer le protocole d’Ethereum.",
+            "lab": {
+              "l": "Des mots qui sont des nombres",
+              "warn": "Ne tapez jamais une vraie phrase de récupération sur un site, celui-ci compris. Cette démo n’accepte aucune phrase tapée : elle part de la phrase de test publique de la norme, marquée TEST, et ne laisse changer qu’un mot à la fois, parmi deux mots fixés.",
+              "test": "TEST",
+              "word": "Mot {n}",
+              "idx": "n° {i}",
+              "swap": "Changer ce mot",
+              "altL": "Remplacer le mot {n} par :",
+              "back": "Remettre « {w} »",
+              "one": "Un seul mot change à la fois : en changer un remet les autres à la phrase de test.",
+              "sumOk": "Somme de contrôle : valide ✓",
+              "sumBad": "Somme de contrôle : invalide ✗. Le dernier mot ne correspond plus au reste.",
+              "lucky": "Ce changement passe la somme de contrôle par hasard : avec 12 mots, elle ne fait que 4 bits, et environ un changement sur 16 passe (la norme BIP-39 annonce une erreur sur 256 : c’est le chiffre d’une somme de contrôle de 8 bits, celle des phrases de 24 mots selon son tableau).",
+              "pass": {
+                "l": "Phrase de passe d’exemple (fixée : rien à taper)",
+                "k": [
+                  "aucune",
+                  "« atelier »"
+                ]
+              },
+              "seedOnly": "La graine n’est calculée que pour la phrase de test intacte.",
+              "seed": "Faire la graine",
+              "seedL": "Graine (début)",
+              "other": "Une autre phrase de passe : un autre portefeuille.",
+              "treeL": "L’arbre de clés (étiquettes d’exemple)",
+              "tree": {
+                "seed": "graine",
+                "eth": "60′ · Ethereum",
+                "btc": "0′ · Bitcoin",
+                "sol": "501′ · Solana",
+                "acct": "compte 0′",
+                "addr": "adresse {n}",
+                "xpub": "clé publique étendue"
+              },
+              "xpub": "Clé publique étendue : elle peut fabriquer des adresses de réception, pas dépenser (BIP-32, l’exemple de la boutique en ligne).",
+              "aa": "Compte-contrat (ERC-4337)",
+              "aaSteps": [
+                "Vous envoyez une « UserOperation », pas une transaction ordinaire.",
+                "Un « bundler » la regroupe avec d’autres.",
+                "Le contrat EntryPoint appelle votre compte.",
+                "Votre compte applique ses propres règles : par exemple, deux gardiens sur trois peuvent remplacer la clé.",
+                "Un « paymaster », facultatif, peut payer les frais à votre place."
+              ],
+              "noTree": "Pas de vrai calcul de clés ici : les navigateurs ne proposent pas la courbe utilisée par ces chaînes."
+            },
+            "q": "Votre téléphone se casse. Qu’est-ce qui restaure tous les comptes de votre portefeuille HD sur un nouvel appareil ?",
+            "a": [
+              "Votre compte de magasin d’applications",
+              "La phrase de récupération, plus la phrase de passe si vous en aviez mis une",
+              "Votre adresse publique"
+            ],
+            "ok": "Oui. Le NIST : tous les comptes d’un portefeuille HD se récupèrent d’un coup avec la phrase. Et la phrase de passe fait partie de la graine (BIP-39).",
+            "no": {
+              "0": "Les clés n’y ont jamais été.",
+              "2": "On ne retrouve pas une clé privée à partir d’informations publiques (ethereum.org)."
+            },
+            "myth": {
+              "k": "Les douze mots sont un mot de passe que je peux changer s’il fuit.",
+              "v": "Les mots sont la clé elle-même : après une fuite, il faut tout déplacer vers une nouvelle phrase, et l’ancienne reste valable pour toujours. ethereum.org : ne la gardez pas sur un ordinateur ; écrivez-la et rangez-la."
+            }
+          },
+          {
+            "t": "Un identifiant, une attestation, un nom",
+            "d": "Un identifiant décentralisé (DID) est une norme du W3C de juillet 2022 : une chaîne de texte en trois parties, par exemple did:example:123456789abcdefghi, qui renvoie à un document listant les clés qui prouvent qui contrôle cet identifiant ; selon le W3C, beaucoup de méthodes utilisent une blockchain, pas toutes. Une attestation vérifiable (norme du W3C, version 2.0 de mai 2025) est un certificat signé : un émetteur, par exemple une école, signe des affirmations sur vous, vous la gardez, et un vérificateur, par exemple un employeur, contrôle la signature sans appeler l’école. ENS, le service de noms d’Ethereum, relie des noms lisibles comme alice.eth à des adresses, en deux temps : un registre indique un résolveur, qui répond. Aucun de ces outils ne prouve qui est une personne au sens courant : un DID prouve le contrôle de clés, un nom est une étiquette, et les faits sur une personne valent ce que vaut leur émetteur (notre lecture des rôles du W3C).",
+            "lab": {
+              "vc": {
+                "l": "Émettre, garder, présenter",
+                "issuer": "Émetteur : une école",
+                "holder": "Détenteur : vous",
+                "verifier": "Vérificateur : un employeur",
+                "fields": {
+                  "name": "Nom",
+                  "deg": "Diplôme",
+                  "year": "Année",
+                  "grade": "Mention"
+                },
+                "vals": {
+                  "name": "Sara B.",
+                  "deg": "Licence de design",
+                  "year": "2025",
+                  "grade": "Bien"
+                },
+                "issue": "Émettre",
+                "show": "Présenter",
+                "edit": "Changer l’année",
+                "hide": "Cacher la mention",
+                "ok": "Vérifiée ✓ : signée par l’école, rien n’a changé.",
+                "bad": "Refusée ✗ : la carte a été modifiée après la signature.",
+                "hidden": "Refusée ✗ : une signature simple couvre toute la carte. La norme du W3C nomme la divulgation sélective (ne montrer que certains champs) comme un but : elle demande des signatures spéciales.",
+                "need": "Émettez d’abord la carte."
+              },
+              "ens": {
+                "l": "Chercher un nom, dans les deux sens",
+                "pick": "Un nom",
+                "names": [
+                  "alice.eth",
+                  "atelier.eth",
+                  "support.eth"
+                ],
+                "resolve": "Résoudre",
+                "s1": "1. Le registre indique le résolveur de ce nom.",
+                "s2": "2. Le résolveur répond : {a}",
+                "inbox": "Reçu de {a} · affiché comme « support.eth » (nom inverse)",
+                "check": "Vérifier dans les deux sens",
+                "match": "Les deux sens concordent : le nom peut s’afficher.",
+                "mismatch": "Les adresses ne correspondent pas : on affiche l’adresse brute, comme l’exigent les docs d’ENS.",
+                "fake": "Noms et adresses inventés pour la démo."
+              }
+            },
+            "q": "Un écran de portefeuille affiche « support.eth » à côté d’une adresse. Selon les docs d’ENS, que doit faire l’application avant d’afficher ce nom ?",
+            "a": [
+              "Chercher le nom dans l’autre sens et confirmer qu’il renvoie à la même adresse, sinon afficher l’adresse brute",
+              "Rien : ENS vérifie tous les noms",
+              "Écrire au propriétaire du nom"
+            ],
+            "ok": "Oui. Les docs d’ENS disent « must verify » : sinon, on affiche l’adresse d’origine.",
+            "no": {
+              "1": "Un enregistrement inverse seul n’est qu’une partie d’un nom principal.",
+              "2": "La vérification se fait sur les enregistrements de la chaîne ; un courriel ne prouve rien."
+            },
+            "myth": {
+              "k": "Un DID ou un nom en .eth prouve qui est quelqu’un.",
+              "v": "Un DID prouve le contrôle de clés, un nom est une étiquette enregistrée. Et tout ce qui est écrit sur une chaîne publique est public : les données personnelles restent dans une base (étapes 2 et 4 du parcours acheteur)."
+            }
+          },
+          {
+            "t": "Lire avant de signer",
+            "d": "Notre lecture des sources : les pertes viennent surtout d’une personne qui accepte quelque chose, pas d’une cryptographie cassée. Première règle, selon ethereum.org : aucun service, aucun support, aucun site légitime ne vous demandera votre phrase de récupération. Deuxième règle : savoir ce qu’une signature accorde. Une « autorisation » (approve, norme ERC-20) laisse un contrat retirer de votre compte plusieurs fois, jusqu’à une limite ; une autorisation illimitée reste valable tant que vous ne la révoquez pas, même après « déconnexion », et la révoquer coûte des frais (guide d’ethereum.org). Un simple message signé peut aussi fixer une autorisation (norme ERC-2612), et depuis mai 2025 une signature peut confier un compte Ethereum à du code : la norme EIP-7702 dit elle-même qu’il n’existe « aucune façon sûre » pour un site de le demander. Troisième règle : regarder avant de signer ; un portefeuille peut simuler l’opération sans l’envoyer, ce qui donne un aperçu, pas une garantie (notre lecture). Quatrième règle, pour l’argent partagé : un multisig demande m clés sur n, par exemple 2 sur 3.",
+            "lab": {
+              "l": "Cinq demandes, une par une",
+              "aria": "Pour chaque demande du portefeuille d’exemple : signer ou refuser",
+              "popup": "Portefeuille d’exemple · aucune vraie clé",
+              "bins": [
+                "Signer",
+                "Refuser"
+              ],
+              "inspect": "Inspecter",
+              "rows": [
+                {
+                  "k": "« Se connecter à exemple.app » : un message en clair, aucun montant.",
+                  "dec": "Un message lisible, aucune transaction, aucun montant : signer ici ne déplace rien.",
+                  "why": "Rien ne bouge : c’est une connexion."
+                },
+                {
+                  "k": "« Autoriser : dépenses illimitées de vos jetons par 0x7a3f…c91e »",
+                  "dec": "approve(0x7a3f…c91e, 115792089237316195423570985008687907853269984665640564039457584007913129639935) : le plus grand nombre possible. Autorisation après signature : illimitée.",
+                  "why": "Une autorisation illimitée reste valable jusqu’à ce que vous la révoquiez."
+                },
+                {
+                  "k": "Une signature de « données structurées » : spender, value: max, deadline",
+                  "dec": "C’est un permit (norme ERC-2612) : aucune transaction, mais une autorisation de dépense.",
+                  "why": "Un message signé peut fixer une autorisation."
+                },
+                {
+                  "k": "« Mettre à niveau votre compte » (une autorisation de type 7702)",
+                  "dec": "La norme EIP-7702 : le code autorisé a « un accès sans restriction au compte », et il n’existe « aucune façon sûre » pour un site de le proposer.",
+                  "why": "C’est confier tout le compte à du code."
+                },
+                {
+                  "k": "« Envoyer à 0x51c3…9e2A », l’adresse de votre amie, croyez-vous",
+                  "dec": "Votre amie : 0x51c3 8d07 41aa … 9e2A · La demande : 0x51c3 f2e9 07bd … 9e2A. Même début, même fin, milieu différent.",
+                  "why": "Comparez l’adresse en entier, pas les premiers et derniers caractères."
+                }
+              ],
+              "score": "{n} sur 5 décidées comme nous",
+              "grants": {
+                "l": "Mes autorisations (exemple)",
+                "rows": [
+                  "Jeton A · 0x7a3f…c91e · illimitée",
+                  "Jeton B · 0x0d42…77f0 · 50 unités"
+                ],
+                "revoke": "Révoquer",
+                "revoked": "Révoquée. C’est une transaction : elle coûte des frais de réseau."
+              },
+              "msig": {
+                "l": "Compte multisig 2 sur 3",
+                "steal": "Un voleur a la clé A",
+                "stalled": "Demande bloquée : 1 signature sur les 2 requises.",
+                "ok": "Avec les clés A et B : 2 sur 2 requises, la demande passe.",
+                "keys": [
+                  "Clé A · téléphone",
+                  "Clé B · coffre",
+                  "Clé C · prestataire"
+                ]
+              }
+            },
+            "q": "Vous avez donné à un site une autorisation illimitée sur un jeton, puis appuyé sur « déconnecter ». Que peut encore faire le site ?",
+            "a": [
+              "Rien : se déconnecter retire l’accès",
+              "Il devra vous redemander à la prochaine visite",
+              "Dépenser ce jeton jusqu’à la limite tant que vous ne révoquez pas, et révoquer coûte des frais"
+            ],
+            "ok": "Oui. L’autorisation est sur la chaîne, pas dans votre navigateur (ERC-20 et guide d’ethereum.org).",
+            "no": {
+              "0": "Le guide d’ethereum.org dit que l’autorisation reste.",
+              "1": "L’autorisation est écrite sur la chaîne, pas dans la session du site."
+            },
+            "myth": {
+              "k": "Seul l’envoi d’argent est risqué ; signer un message est sans danger.",
+              "v": "Un message signé peut fixer une autorisation (ERC-2612), et depuis mai 2025 une autorisation peut confier un compte à du code (EIP-7702). Chaque signature est une décision."
+            }
+          }
+        ]
+      },
+      {
+        "t": "Jetons, normes et règles d’émission",
+        "short": "Jetons",
+        "lead": "La différence entre l’actif d’une chaîne et un jeton écrit par quelqu’un, les normes qui permettent aux applications de les lire, et les règles qui décident combien il en existe. Des règles, jamais une valeur.",
+        "alt": "Un guichet de nuit où une petite presse imprime des tickets vierges de trois sortes : une pile de tickets identiques, un ticket unique marqué d’un sceau rouge, un plateau mélangé. Kūro les trie dans des casiers ; une fiche de registre lignée est punaisée au mur.",
+        "done": "Module 4 terminé : le sceau du ticket est dans votre carnet.",
+        "bridge": {
+          "d": "Si l’on vous propose un NFT pour vos membres ou votre propre jeton, l’étape 3 du parcours acheteur dit ce qu’on veut d’habitude, et la route ordinaire. L’étape 8 vous demande ce qui se passerait si le jeton valait zéro demain.",
+          "go": "Ouvrir l’étape 3 →"
+        },
+        "ask": {
+          "t": "Si un jeton ou un NFT est prévu",
+          "chips": [
+            "Où est le contrat du jeton, et puis-je le lire : qui peut en créer, en détruire, en geler ?",
+            "Où sont l’image et les données de chaque NFT, et qui les garde ?"
+          ]
+        },
+        "items": [
+          {
+            "t": "Actif natif ou jeton : où vit le solde ?",
+            "d": "Chaque chaîne a un actif inscrit dans ses propres règles : sur Ethereum, l’ether (ETH). Selon ethereum.org, seul le protocole crée l’ether, et c’est le seul moyen accepté pour payer les frais. Un jeton est autre chose : un solde tenu à l’intérieur d’un programme, un smart contract que quelqu’un a déployé, et ses règles (qui peut en créer, en détruire, en geler) sont écrites dans ce programme ; selon OpenZeppelin, la façon de créer les jetons doit être ajoutée par le contrat. L’ETH ne suit pas la norme des jetons, plus récente que lui : les applications qui ne parlent qu’elle passent par l’ETH « enveloppé » (WETH), un contrat qui garde l’ETH et émet autant de jetons ; Solana fait de même avec le SOL enveloppé. La vraie question n’est pas « coin ou jeton ? » : ce solde est-il tenu par les règles de la chaîne, ou par un programme qu’il faut lire ?",
+            "lab": {
+              "l": "Où vit le solde ?",
+              "chain": "Le registre de la chaîne",
+              "contract": "Un contrat de jeton",
+              "acct": "Votre compte",
+              "eth": "ETH : {v} (fictif)",
+              "rowsL": "adresse → solde",
+              "holders": [
+                "Vous",
+                "Lina",
+                "Amine"
+              ],
+              "sendEth": "Envoyer 0,2 ETH",
+              "sendTok": "Envoyer 50 jetons",
+              "fee": "frais payés en ETH",
+              "wrap": "Envelopper",
+              "wrapL": "ETH à envelopper : {v}",
+              "unwrap": "Désenvelopper",
+              "weth": "Contrat WETH",
+              "empty": "Compte sans ETH",
+              "blocked": "Pas d’ETH pour payer les frais : rien ne part, même pas les jetons.",
+              "sol": "Même principe sur Solana : le SOL enveloppé, avec la « Native Mint » du programme de jetons.",
+              "say": {
+                "eth": "L’ETH a bougé sur votre compte ; les frais aussi viennent de là.",
+                "tok": "Votre compte n’a pas changé : une ligne du contrat a bougé. Les frais, eux, viennent de l’ETH.",
+                "wrap": "{v} ETH dans le contrat WETH, et autant de jetons WETH dans sa table : 1 pour 1."
+              },
+              "low": "Pas assez d’ETH sur le compte pour envoyer 0,2 ETH.",
+              "lowTok": "Plus assez de jetons sur votre ligne du contrat."
+            },
+            "q": "On vous dit : « ce jeton est sur Ethereum, donc il a les mêmes règles que l’ETH ». C’est…",
+            "a": [
+              "Faux : un jeton suit les règles de son propre contrat, qu’il faut lire",
+              "Vrai : tout ce qui est sur Ethereum suit les règles d’Ethereum",
+              "Vrai, sauf pour les NFT"
+            ],
+            "ok": "Oui. L’ETH est créé par le protocole ; un jeton, par son contrat (ethereum.org, OpenZeppelin).",
+            "no": {
+              "1": "La chaîne exécute le code du jeton, mais ses règles d’émission sont écrites par son émetteur.",
+              "2": "Les NFT aussi sont émis par un contrat : la différence est natif ou contrat, pas interchangeable ou unique."
+            },
+            "myth": {
+              "k": "« Coin » et « jeton » sont des catégories techniques fixes.",
+              "v": "Ce sont des mots d’usage. Ce qu’on peut vérifier : créé par le protocole, ou tenu par un contrat. Et l’ETH n’est pas un jeton ERC-20 (ethereum.org)."
+            }
+          },
+          {
+            "t": "Les normes : une même prise pour tous les jetons",
+            "d": "Une norme de jeton est une liste commune de fonctions et d’événements, pour que portefeuilles et applications lisent des jetons qu’ils n’ont jamais vus. ERC-20 est la norme d’Ethereum pour les jetons interchangeables : chaque unité vaut l’autre, et le contrat garde un solde par adresse. ERC-721 est la norme des jetons uniques (NFT) : chaque jeton a son numéro, et le contrat note quelle adresse possède chaque numéro. ERC-1155 permet à un seul contrat de gérer plusieurs types, interchangeables et uniques, et d’en transférer plusieurs d’un coup. Sur Solana, un programme de jetons commun tient une fiche « mint » par jeton et un compte de jeton par détenteur. Une norme dit à quoi ressemble l’interface, pas qu’un jeton est utile, sûr ou honnête ; et ERC-721 ne stocke pas l’image d’un NFT : il donne un lien, facultatif, qui « peut » changer, selon le texte de la norme.",
+            "lab": {
+              "l": "Même transfert, quatre registres",
+              "tabs": [
+                "ERC-20",
+                "ERC-721",
+                "ERC-1155",
+                "SPL (Solana)"
+              ],
+              "cols": {
+                "erc20": [
+                  "adresse",
+                  "solde"
+                ],
+                "erc721": [
+                  "numéro",
+                  "propriétaire",
+                  "lien (tokenURI)"
+                ],
+                "erc1155": [
+                  "type",
+                  "adresse",
+                  "quantité"
+                ]
+              },
+              "spl": {
+                "mint": "Fiche « mint »",
+                "supply": "offre",
+                "dec": "décimales",
+                "mintAuth": "autorité de création",
+                "freezeAuth": "autorité de gel",
+                "acct": "Compte de jeton",
+                "owner": "détenteur",
+                "amount": "montant"
+              },
+              "holders": [
+                "Lina",
+                "Amine",
+                "Sara"
+              ],
+              "from": "De",
+              "to": "À",
+              "amount": "Quantité",
+              "id": "Numéro",
+              "send": "Transférer",
+              "batch": "Transfert groupé : type 1 et type 7",
+              "event": "Événement émis",
+              "dec": {
+                "l": "Valeur de decimals",
+                "k": [
+                  "18",
+                  "6",
+                  "0"
+                ],
+                "say": "decimals : {d}",
+                "raw": "Entier stocké",
+                "shown": "Ce qu’un portefeuille affiche",
+                "cap": "Le contrat stocke un entier ; l’affichage dépend de decimals."
+              },
+              "uri": {
+                "change": "Changer le lien",
+                "cap": "Le numéro et le propriétaire n’ont pas bougé ; l’image montrée, si. La norme dit que le lien « MAY be mutable »."
+              },
+              "fungible": "interchangeable",
+              "unique": "unique",
+              "same": "« De » et « À » sont la même adresse : rien à transférer.",
+              "lowBal": "Solde insuffisant : le contrat refuse le transfert.",
+              "notOwner": "Ce numéro n’appartient pas à l’adresse « De » : le contrat refuse."
+            },
+            "q": "Un NFT ERC-721 « contient » son image, gravée pour toujours dans la chaîne. C’est…",
+            "a": [
+              "Vrai, c’est la définition d’un NFT",
+              "Vrai seulement sur Solana",
+              "Pas forcément : la norme donne un lien (tokenURI), facultatif, qui peut changer"
+            ],
+            "ok": "Oui. La norme le dit : les métadonnées sont facultatives, et le lien peut changer.",
+            "no": {
+              "0": "La norme identifie le NFT par son contrat et son numéro ; l’image passe par un lien.",
+              "1": "Rien dans la documentation de Solana citée ne dit que l’image est dans le jeton."
+            },
+            "myth": {
+              "k": "Un jeton conforme à une norme est un jeton vérifié ou approuvé.",
+              "v": "Une norme est une interface : n’importe qui peut déployer un contrat qui répond à balanceOf et transfer. Elle ne dit rien de l’émetteur ni de la qualité du code."
+            }
+          },
+          {
+            "t": "Combien il en existe, et qui en reçoit quand",
+            "d": "La « tokenomics », ce sont les règles qui décident combien d’unités existent, comment il en apparaît ou en disparaît, qui en reçoit et quand, et ce que la détention permet. L’offre peut être plafonnée : le code de Bitcoin divise par deux l’émission nouvelle tous les 210 000 blocs, et bitcoin.org écrit que seuls 21 millions de bitcoins seront créés. Elle peut être émise en continu : Ethereum paie ses validateurs en ETH nouveau. Ou réduite par destruction : Ethereum brûle la part de base de chaque frais, si bien que l’offre nette peut monter ou baisser (ethereum.org). Pour un jeton, tout cela est du code ordinaire : un plafond, une fonction de création, une fonction de destruction, un contrat d’acquisition (vesting) qui libère des unités avec le temps, souvent après une période où rien n’est libéré (le « cliff »). Les droits de vote, eux, suivent souvent le solde, par délégation. Lire ces règles, c’est lire des règles, pas prédire une valeur.",
+            "lab": {
+              "l": "Le tableau des règles",
+              "unitsL": "unités",
+              "timeL": "temps",
+              "supply": {
+                "l": "Modèle d’offre",
+                "k": [
+                  "Plafond et division par deux",
+                  "Émission continue",
+                  "Émission et destruction"
+                ],
+                "height": "Hauteur de bloc : {h}",
+                "subsidy": "Émission par bloc à cette hauteur : {s}",
+                "cap": "21 millions, selon bitcoin.org ; le calcul du code arrive juste en dessous.",
+                "issue": "Émission par période (exemple) : {n}",
+                "use": "Usage du réseau (exemple) : {n} %",
+                "net": "Offre nette sur la période : {s}",
+                "sum0": "Unités créées jusqu’à cette hauteur : {u}",
+                "after": "Après 20 périodes : {u} unités (exemple, départ à {s})"
+              },
+              "vest": {
+                "l": "Acquisition (vesting)",
+                "total": "Unités promises (exemple)",
+                "cliff": "Cliff : {n} mois",
+                "dur": "Durée : {n} mois",
+                "at": "Au mois {m} : {u} libérées, {b} encore bloquées",
+                "late": "Dépôt tardif",
+                "lateSay": "Déposées au mois {m} : une partie est libérée d’un coup, « comme si elles avaient été bloquées depuis le début » (OpenZeppelin).",
+                "free": "libéré",
+                "locked": "encore bloqué"
+              },
+              "vote": {
+                "l": "Voix et délégation",
+                "holder": "Détenteur {n}",
+                "deleg": "Déléguer",
+                "quorum": "Quorum (exemple) : {p} % de l’offre",
+                "count": "Voix actives : {v} sur {t}",
+                "note": "Seules les voix déléguées comptent : c’est la règle d’OpenZeppelin (ERC20Votes)."
+              }
+            },
+            "q": "Une équipe annonce « 30 % des jetons pour l’équipe, acquisition sur 4 ans, cliff d’un an ». Au 6e mois, l’équipe peut disposer de…",
+            "a": [
+              "30 % des jetons",
+              "Rien de cette part, si le contrat applique un cliff d’un an",
+              "Un huitième de ses 30 %, car 6 mois sur 48"
+            ],
+            "ok": "Oui. Avant la fin du cliff, rien n’est libéré (OpenZeppelin). La vraie question : où est ce contrat, et puis-je le lire ?",
+            "no": {
+              "0": "Avec un cliff, rien n’est libéré avant sa fin.",
+              "2": "Ce serait une acquisition linéaire sans cliff."
+            },
+            "myth": {
+              "k": "Une offre fixe ou décroissante fait monter un jeton.",
+              "v": "Les règles d’offre disent combien d’unités existent ; elles ne disent rien de la demande ni de la valeur, et ce cours ne parle pas de valeur. Une annonce d’acquisition ne tient que si un contrat, que vous pouvez lire, l’applique."
+            }
+          }
+        ]
+      },
+      {
+        "t": "Smart contracts et développement",
+        "short": "Contrats",
+        "lead": "Où s’exécute un smart contract, dans quelles langues on l’écrit, comment on le teste avant de risquer quoi que ce soit, et ce que coûte chaque instruction.",
+        "alt": "Dans l’atelier, une armoire-automate vitrée laisse voir ses engrenages ; un rouleau de papier y entre. Yasser lit un plan, un tournevis à la main ; sur l’établi, une copie miniature de la machine sert d’essai, et Kūro surveille les rouages.",
+        "done": "Module 5 terminé : le sceau du contrat est dans votre carnet.",
+        "bridge": {
+          "d": "Votre fiche liste les lignes de budget qu’on oublie : audit, frais de réseau, plan des clés, après-lancement. C’est l’étape 5 du parcours acheteur.",
+          "go": "Ouvrir l’étape 5 →"
+        },
+        "ask": {
+          "t": "Si un smart contract est prévu",
+          "chips": [
+            "Sur quel réseau de test le contrat aura-t-il été essayé, et qui l’aura relu avant le réseau principal ?",
+            "Combien de gas chaque action de mes utilisateurs consomme-t-elle, et qui paie les frais ?"
+          ]
+        },
+        "items": [
+          {
+            "t": "La machine que tous les nœuds font tourner",
+            "d": "Une chaîne qui exécute des programmes a besoin d’une « machine virtuelle » : une définition exacte et commune de la façon dont le code tourne, pour que des milliers d’ordinateurs obtiennent le même résultat avec les mêmes données. Celle d’Ethereum, l’EVM, est une machine à pile qui lit de petites instructions (opcodes) une par une et travaille sur des nombres de 256 bits ; selon ethereum.org, pour une entrée donnée, elle produit une sortie déterministe. Sa mémoire s’efface entre les transactions ; son stockage, lui, reste. Le moteur de Solana, appelé SVM dans la spécification d’Anza, demande à chaque transaction de déclarer d’avance les comptes qu’elle lira et écrira : celles qui n’écrivent pas les mêmes comptes peuvent tourner en parallèle. Move, un langage né en 2018 dans le projet Libra, traite les actifs comme des valeurs qu’on ne peut ni copier ni jeter sans le permettre (étape 2) ; CosmWasm fait tourner des contrats compilés en WebAssembly sur les chaînes du Cosmos SDK.",
+            "lab": {
+              "evm": {
+                "l": "La machine à pile",
+                "prog": "Programme",
+                "stack": "Pile",
+                "gas": "gas : {g}",
+                "done": "Résultat : {r} · gas : {g}",
+                "again": "Recommencer avec d’autres nombres",
+                "same": "Mêmes instructions, mêmes nombres : même résultat, sur chaque nœud.",
+                "mem": "Mémoire",
+                "store": "Stockage",
+                "endTx": "Fin de la transaction",
+                "memSay": "La mémoire s’est vidée ; le stockage a gardé sa valeur.",
+                "costs": "Coûts lus dans la table d’ethereum.org : PUSH1 3, ADD 3, MUL 5.",
+                "nums": "Les trois nombres du programme"
+              },
+              "lanes": {
+                "l": "Les voies de Solana",
+                "tx": "Transaction {n}",
+                "r": "lit",
+                "w": "écrit",
+                "acct": "compte {c}",
+                "plan": "Planifier",
+                "lane": "Voie {n}",
+                "say": "{t} transactions sur {l} voie(s) : celles qui écrivent le même compte passent l’une après l’autre.",
+                "rule": "Simplifié : deux transactions se gênent quand l’une écrit un compte que l’autre lit ou écrit."
+              }
+            },
+            "q": "Pourquoi tous les nœuds d’Ethereum obtiennent-ils le même résultat en exécutant un contrat ?",
+            "a": [
+              "Parce qu’un serveur central leur envoie le résultat",
+              "Parce que l’EVM est déterministe : même état et même entrée, même résultat",
+              "Parce qu’ils votent sur le résultat après coup"
+            ],
+            "ok": "Oui. ethereum.org : pour une entrée donnée, l’EVM produit une sortie déterministe.",
+            "no": {
+              "0": "Chaque client contient sa propre EVM et exécute le code.",
+              "2": "Le consensus ordonne les blocs ; le résultat de leur exécution découle des règles."
+            },
+            "myth": {
+              "k": "Un smart contract tourne sur un ordinateur quelque part, comme un serveur web.",
+              "v": "Chaque nœud qui valide le bloc l’exécute : c’est pour cela qu’il doit être déterministe, et que chaque pas coûte du gas. Et le code de l’EVM ne tourne pas tel quel sur Solana ni sur CosmWasm."
+            }
+          },
+          {
+            "t": "Les langues des contrats",
+            "d": "Les langages de contrats se compilent en instructions de machine virtuelle. Sur l’EVM, Solidity est, selon ethereum.org, un langage à accolades influencé surtout par C++, typé statiquement ; Vyper est un langage proche de Python qui a volontairement moins de fonctions que Solidity, pour rendre les contrats plus sûrs et plus faciles à auditer. Sa documentation liste ce qu’il ne propose pas, dont les modificateurs, l’héritage de classes, l’assembleur en ligne, la récursion et les boucles sans fin ; récursion et boucles sans fin sont exclues parce qu’elles empêchent de borner le gas. Sur Solana, le programme de jetons est écrit en Rust, et le cadre Anchor sert à écrire des programmes ; les contrats CosmWasm s’écrivent aussi en Rust. En Move, une valeur sans la capacité (« ability ») copy ne peut tout simplement pas être dupliquée. Une langue ne rend pas un contrat sûr à elle seule : elle change les erreurs faciles ou difficiles à faire.",
+            "lab": {
+              "vy": {
+                "l": "Ce que Vyper ne propose pas",
+                "k": [
+                  "Modificateurs",
+                  "Héritage de classes",
+                  "Assembleur en ligne",
+                  "Surcharge de fonctions",
+                  "Surcharge d’opérateurs",
+                  "Appels récursifs",
+                  "Boucles de longueur infinie",
+                  "Virgule fixe binaire"
+                ],
+                "gas": "Absent par choix : cela empêcherait de fixer un plafond de gas.",
+                "read": "Absent par choix : les buts de Vyper sont la sécurité, la simplicité du langage et du compilateur, et un code lisible par un humain."
+              },
+              "bound": {
+                "l": "Borner le gas d’une boucle",
+                "n": "Nombre de tours : {n}",
+                "max": "Gas maximal : {n} × {c} = {g} (coût d’un tour : exemple)",
+                "inf": "Boucle sans borne",
+                "infSay": "Gas maximal : ∞, impossible à borner. C’est la raison donnée par Vyper."
+              },
+              "move": {
+                "l": "Une pièce en Move",
+                "coin": "Pièce",
+                "abil": [
+                  "copy",
+                  "drop",
+                  "key",
+                  "store"
+                ],
+                "abilV": [
+                  "peut être dupliquée",
+                  "peut être jetée",
+                  "peut être une unité de stockage",
+                  "peut être rangée dans une autre valeur"
+                ],
+                "dup": "Dupliquer",
+                "drop": "Jeter",
+                "noCopy": "Refusé : pas d’ability copy.",
+                "noDrop": "Refusé : pas d’ability drop. Une valeur sans abilities ne peut être ni jetée, ni copiée, ni stockée (The Move Book).",
+                "dupOk": "Dupliquée : la capacité copy le permet.",
+                "dropOk": "Jetée : la capacité drop le permet."
+              }
+            },
+            "q": "Vyper n’a ni héritage de classes ni modificateurs. Pourquoi ?",
+            "a": [
+              "Parce que c’est un langage inachevé",
+              "Parce que l’EVM ne permet pas l’héritage",
+              "Par choix, pour un code plus lisible et plus facile à auditer"
+            ],
+            "ok": "Oui. Selon ethereum.org et sa propre documentation, Vyper a volontairement moins de fonctions, pour la sécurité et l’audit.",
+            "no": {
+              "0": "Sa documentation présente ces absences comme un choix.",
+              "1": "Vyper explique ces absences par ses propres buts ; ce n’est pas une limite de la machine."
+            },
+            "myth": {
+              "k": "Choisissez la langue « sûre », et le contrat est sûr.",
+              "v": "Une langue retire certaines erreurs ; restent les erreurs de logique, les mauvaises permissions et les hypothèses fausses (module 9). Et Solidity n’est pas « le JavaScript des blockchains » : ethereum.org le dit influencé surtout par C++, et typé statiquement."
+            }
+          },
+          {
+            "t": "Du brouillon au réseau réel",
+            "d": "Un développeur n’envoie presque jamais un contrat directement sur un vrai réseau. Il l’écrit, le compile, le teste sur une fausse chaîne qui tourne sur son ordinateur, l’essaie sur un réseau de test public, et seulement ensuite le déploie pour de vrai. Hardhat et Foundry, par exemple, sont des environnements qui compilent, testent et déploient ; Foundry réunit Forge (compiler, tester, déployer), Cast (ligne de commande), Anvil (un nœud local) et Chisel (une console Solidity). Remix tourne dans le navigateur sans installation, avec une chaîne bac à sable et dix comptes fictifs chargés chacun de 100 ETH fictifs. OpenZeppelin Contracts est une bibliothèque de briques vérifiées par la communauté, à utiliser telles qu’installées, sans les copier ni les modifier, selon sa propre documentation. Les outils changent souvent ; pour vous, c’est l’ordre qui compte : tests en local, réseau de test public, relecture, puis réseau principal.",
+            "lab": {
+              "l": "Du brouillon au réseau réel",
+              "aria": "Les cinq étapes d’un contrat",
+              "st": [
+                "Écrire",
+                "Compiler",
+                "Tester en local",
+                "Réseau de test public",
+                "Réseau principal"
+              ],
+              "what": [
+                "Le code est écrit dans un éditeur ; Remix, par exemple, le fait dans le navigateur.",
+                "Le code devient des instructions de la machine virtuelle ; Hardhat ou Forge, par exemple, le font.",
+                "Sur une chaîne locale, un bloc par transaction, des soldes fictifs ; Anvil ou la machine de Remix, par exemple.",
+                "Une chaîne publique d’essai ; ethereum.org cite Sepolia et Hoodi.",
+                "La vraie chaîne : ce qui est déployé y reste."
+              ],
+              "stake": [
+                "rien en jeu",
+                "rien en jeu",
+                "argent fictif",
+                "argent fictif",
+                "argent réel"
+              ],
+              "local": {
+                "accts": "10 comptes · 100 ETH fictifs chacun",
+                "send": "Envoyer une transaction",
+                "blocks": "Blocs : {n}",
+                "reset": "Réinitialiser",
+                "banner": "Rien ici n’est une vraie chaîne."
+              },
+              "gate": {
+                "tests": "Tests passés",
+                "review": "Relu par quelqu’un d’autre",
+                "go": "Passer au réseau principal",
+                "wait": "Cochez d’abord les tests et la relecture.",
+                "ok": "Prêt pour le réseau principal, dans notre ordre conseillé.",
+                "note": "Notre ordre conseillé (avis d’atelier), d’après les outils cités."
+              }
+            },
+            "q": "Sur un réseau de développement local, un développeur a 100 ETH sur chacun de ses 10 comptes. Il est…",
+            "a": [
+              "Sur une chaîne d’essai : ces soldes sont fictifs, créés pour tester",
+              "Riche : ces ETH valent ceux du réseau principal",
+              "En train de miner de l’ETH"
+            ],
+            "ok": "Oui. Remix et ethereum.org décrivent des comptes remplis d’avance, pour tester.",
+            "no": {
+              "1": "Ces soldes n’existent que dans le bac à sable.",
+              "2": "Le réseau local remplit des soldes pour les tests ; il ne mine rien de réel."
+            },
+            "myth": {
+              "k": "Les jetons de test sont de la « crypto gratuite ».",
+              "v": "Ce sont des valeurs d’essai sans lien avec le réseau principal ; méfiez-vous de qui en vend (étape 6 du parcours acheteur). Et utiliser OpenZeppelin ne veut pas dire que le contrat est audité : la bibliothèque est vérifiée, pas le code du projet autour."
+            }
+          },
+          {
+            "t": "Le gas, ou le prix de chaque instruction",
+            "d": "Chaque instruction qu’un contrat exécute coûte une quantité de « gas », une unité de travail : selon ethereum.org, additionner coûte 3, et un simple transfert d’ETH utilise 21 000 ; selon la norme EIP-2929, lire un emplacement de stockage pour la première fois dans une transaction coûte 2 100, puis 100. Le frais est le gas utilisé multiplié par un prix par unité, et depuis EIP-1559 (août 2021) ce prix a deux parts : des frais de base fixés par le réseau et brûlés, et un pourboire qui va au producteur du bloc. Les frais de base bougent d’au plus 12,5 % par bloc : ils montent quand les blocs sont plus qu’à moitié pleins, baissent sinon. Vous fixez un maximum ; ce qui n’est pas utilisé est rendu. Si une transaction manque de gas, ses changements sont annulés, mais le gas fourni est consommé (ethereum.org). Optimiser, c’est obtenir le même résultat avec des instructions moins chères, par exemple lire une valeur une fois et la garder, ou la déclarer constante.",
+            "lab": {
+              "fee": {
+                "l": "La calculette des frais",
+                "gas": "Gas utilisé",
+                "presets": [
+                  "Transfert simple : 21 000",
+                  "Contrat : 65 000 (exemple)"
+                ],
+                "base": "Frais de base (gwei)",
+                "tip": "Pourboire maximal (gwei)",
+                "max": "Frais maximal (gwei)",
+                "paidTip": "Pourboire payé : {t} gwei par unité",
+                "total": "Total : {g} gwei, soit {e} ETH",
+                "burnt": "Brûlé : {b} gwei",
+                "val": "Au producteur du bloc : {v} gwei",
+                "back": "Rendu : {r} gwei",
+                "under": "Le frais maximal est sous les frais de base : la transaction ne peut pas entrer dans ce bloc.",
+                "ex": "L’exemple d’ethereum.org",
+                "exSay": "21 000 × (10 + 2) = 252 000 gwei, soit 0,000252 ETH.",
+                "gwei": "Un gwei est un milliardième d’ETH. Aucun prix en monnaie ici."
+              },
+              "block": {
+                "l": "Le bloc qui se remplit",
+                "fill": "Remplissage du bloc : {p} %",
+                "target": "cible : la moitié",
+                "next": "Bloc suivant",
+                "say": "Bloc {n} · frais de base : {b} gwei ({d})",
+                "up": "en hausse",
+                "down": "en baisse",
+                "flat": "stable",
+                "start": "Départ : 10 gwei (exemple)"
+              },
+              "opt": {
+                "l": "Optimiser une lecture",
+                "k": [
+                  "Lire le stockage 10 fois",
+                  "Lire une fois, garder en mémoire",
+                  "Valeur déclarée constante"
+                ],
+                "v": [
+                  "2 100 + 9 × 100 = 3 000 gas de lecture",
+                  "2 100 gas de lecture",
+                  "0 gas de lecture de stockage : le compilateur ne lui réserve pas d’emplacement (Solidity)"
+                ],
+                "cap": "Coûts de lecture seulement ; la mémoire et l’exécution autour ne sont pas comptées ici."
+              },
+              "dry": {
+                "go": "Panne sèche",
+                "say": "Plafond de gas trop bas : changements annulés, et le gas fourni est consommé."
+              }
+            },
+            "q": "Votre transaction manque de gas (out of gas). Que se passe-t-il ?",
+            "a": [
+              "Rien n’est fait et rien n’est payé",
+              "Elle attend que vous ajoutiez du gas",
+              "Les changements sont annulés, mais le gas consommé est payé"
+            ],
+            "ok": "Oui. ethereum.org : l’EVM annule les changements, mais tout le gas fourni est consommé.",
+            "no": {
+              "0": "Le gas consommé est payé.",
+              "1": "Les changements sont annulés ; il faudrait une nouvelle transaction."
+            },
+            "myth": {
+              "k": "Le gas est un frais que l’application ou le portefeuille choisit.",
+              "v": "C’est la mesure de travail du réseau : les frais de base sont fixés par le protocole et brûlés, le pourboire va au producteur du bloc. Une transaction qui échoue n’est pas gratuite, et un maximum élevé n’est pas payé en entier : le reste est rendu."
+            }
+          }
+        ]
+      },
+      {
+        "t": "Applications et infrastructure",
+        "short": "Infrastructure",
+        "lead": "Une « dApp » est surtout un site ordinaire. Ce module montre comment il parle au portefeuille et à la chaîne, d’où il lit ses données, où vont les fichiers, et comment une information du monde réel entre dans un contrat.",
+        "alt": "Un central de nuit : des armoires à voyants reliées par des câbles à une petite vitrine éclairée ; un classeur aux étiquettes vierges, une girouette et un thermomètre sur le toit. Yasser branche un cordon, Kūro est assis sur un câble.",
+        "done": "Module 6 terminé : le sceau du nœud est dans votre carnet.",
+        "bridge": {
+          "d": "Votre fiche liste les écrans que la proposition doit dessiner, dont le site sans portefeuille et le nœud indisponible : c’est l’étape 4 du parcours acheteur.",
+          "go": "Ouvrir l’étape 4 →"
+        },
+        "ask": {
+          "t": "Pour le site et ses données",
+          "chips": [
+            "Par quel nœud le site lira-t-il la chaîne, et que voit l’utilisateur quand ce nœud est en panne ?",
+            "Où seront stockés les fichiers, et qui les garde après la fin de notre contrat ?"
+          ]
+        },
+        "items": [
+          {
+            "t": "Le site, la bibliothèque, le portefeuille",
+            "d": "Ce qui est nouveau dans une dApp, c’est que son JavaScript parle à la chaîne par une bibliothèque, et au portefeuille du visiteur par une interface commune. Les portefeuilles de navigateur exposent un objet défini par la norme EIP-1193 : le site appelle request(…), le portefeuille répond, ou refuse avec l’erreur 4001, « User Rejected Request ». Des bibliothèques comme ethers.js ou Viem, par exemple, enveloppent cela : ethers sépare un « Provider » en lecture seule d’un « Signer » qui agit pour un compte ; Viem sépare un client public (lire) d’un client portefeuille (envoyer, signer). Wagmi est une bibliothèque de « hooks » React construite sur Viem. WalletConnect relie un site à un portefeuille sur un autre appareil, par un QR code ou un lien, avec des messages chiffrés. À retenir : lire la chaîne ne demande aucun portefeuille ; seule la signature en demande un, et c’est le portefeuille, pas le site, qui tient les clés et vous demande.",
+            "lab": {
+              "l": "Lire sans portefeuille, signer avec",
+              "site": "Le site",
+              "lib": "La bibliothèque",
+              "pub": "client public (lire)",
+              "wal": "client portefeuille (signer)",
+              "node": "nœud (simulé)",
+              "wallet": "portefeuille (simulé, aucune clé réelle)",
+              "read": "Lire le numéro de bloc",
+              "readSay": "Réponse du nœud : 0x4b7, soit le bloc 1207. Aucun portefeuille n’a été sollicité.",
+              "send": "Envoyer",
+              "ask": "Le site demande d’envoyer une transaction. Accepter ?",
+              "accept": "Accepter",
+              "reject": "Refuser",
+              "rejected": "Vous avez refusé. Rien n’a été envoyé.",
+              "accepted": "Envoyé (simulé) : le site affiche l’identifiant de la transaction. Pour la suite, voyez l’étape 4 du parcours acheteur.",
+              "acct": "Changer de compte",
+              "acctSay": "Le portefeuille a signalé accountsChanged : le site affiche la nouvelle adresse.",
+              "addr": "Adresse affichée : {a}",
+              "mobile": {
+                "l": "Sur téléphone",
+                "steps": [
+                  "Le site affiche un QR code ou un lien.",
+                  "Le téléphone le lit, ou ouvre le portefeuille.",
+                  "Le portefeuille montre une proposition de session.",
+                  "Vous acceptez : les messages passent, chiffrés, entre le site et le téléphone."
+                ],
+                "noQr": "Aucun vrai QR code ici."
+              }
+            },
+            "q": "Un site affiche votre solde après « Connecter le portefeuille ». A-t-il pu dépenser vos fonds ?",
+            "a": [
+              "Non, pas sans une demande que le portefeuille vous montre et que vous acceptez",
+              "Oui : se connecter donne accès au portefeuille",
+              "Oui, si le site utilise une bibliothèque connue"
+            ],
+            "ok": "Oui. Lire ne demande aucune signature ; une écriture passe par le portefeuille, qui vous demande. Mais lisez chaque demande : certaines signatures valent autorisation (module 3, étape 4).",
+            "no": {
+              "1": "Se connecter partage une adresse publique ; chaque écriture est une demande à part.",
+              "2": "La bibliothèque ne tient pas les clés ; le portefeuille, si."
+            },
+            "myth": {
+              "k": "Connecter son portefeuille, c’est ouvrir son argent au site.",
+              "v": "Se connecter partage une adresse publique ; chaque signature ou transaction est une demande séparée. Et WalletConnect n’est pas un portefeuille : c’est un protocole de connexion entre un site et un portefeuille."
+            }
+          },
+          {
+            "t": "Le nœud : qui répond quand le site demande",
+            "d": "Un nœud est un ordinateur qui fait tourner le logiciel de la chaîne : il télécharge les blocs, les vérifie et garde l’état actuel. Sites et portefeuilles lui posent des questions par une interface standard, JSON-RPC : « quel est le dernier bloc ? », « quel est le solde de cette adresse ? ». Selon ethereum.org, un nœud complet vérifie chaque bloc mais ne garde que l’état récent, en général les 128 derniers blocs ; un nœud d’archive garde tout depuis le début, ce qui se compte en téraoctets ; un nœud léger ne télécharge que les en-têtes. Faire tourner son propre nœud, c’est vérifier soi-même, sans révéler à un tiers les adresses qu’on consulte. Beaucoup d’applications passent par des entreprises de nœuds en service : ethereum.org en liste une trentaine, dont Alchemy, Infura et QuickNode, et note qu’on centralise alors cette partie du produit. Pour votre projet, « par quel nœud lit-on, et que se passe-t-il quand il tombe ? » est une question de conception.",
+            "lab": {
+              "l": "Demandez au nœud",
+              "method": "Méthode",
+              "req": "Ce que le site envoie",
+              "res": "Ce que le nœud répond (exemple d’ethereum.org)",
+              "decode": "Décoder",
+              "dec": {
+                "block": "0x4b7 = bloc 1207",
+                "bal": "0x0234c8a3397aab58 = 158 972 490 234 375 000 wei = 0,158972490234375 ETH"
+              },
+              "tags": {
+                "l": "Quel bloc ?",
+                "k": [
+                  "latest",
+                  "safe",
+                  "finalized"
+                ],
+                "v": [
+                  "le dernier bloc proposé",
+                  "le dernier bloc jugé « sûr » (safe head)",
+                  "le dernier bloc finalisé"
+                ],
+                "cap": "Positions choisies pour l’exemple, pas les écarts réels entre ces blocs."
+              },
+              "arch": {
+                "l": "Nœud complet ou d’archive ?",
+                "k": [
+                  "Nœud complet",
+                  "Nœud d’archive"
+                ],
+                "back": "Solde il y a {n} blocs",
+                "now": "maintenant",
+                "gen": "depuis le premier bloc",
+                "fail": "Erreur (simulée) : état non conservé. Un nœud complet ne garde que les blocs récents.",
+                "ok": "Réponse : le nœud a gardé cet état.",
+                "disk": [
+                  "disque : état récent",
+                  "disque : des téraoctets"
+                ]
+              },
+              "who": {
+                "l": "Qui voit votre question ?",
+                "k": [
+                  "Mon propre nœud",
+                  "Un fournisseur de nœuds"
+                ],
+                "mine": "Personne d’autre : vous vérifiez vous-même.",
+                "prov": "Le fournisseur voit l’adresse demandée, et votre site dépend de lui.",
+                "down": "Le fournisseur tombe",
+                "names": "Alchemy, Infura et QuickNode : exemples cités par ethereum.org, dans l’ordre de sa liste."
+              }
+            },
+            "q": "Votre site lit la chaîne uniquement par un fournisseur. Le jour où ce fournisseur est en panne…",
+            "a": [
+              "La chaîne s’arrête",
+              "Votre site ne peut plus lire la chaîne, sauf s’il a une autre source",
+              "Rien ne change : les données sont dans le navigateur"
+            ],
+            "ok": "Oui. ethereum.org le dit : un service de nœuds centralise cette partie de votre produit.",
+            "no": {
+              "0": "La chaîne tourne sur beaucoup de nœuds ; c’est votre accès qui tombe.",
+              "2": "Le navigateur demande à un nœud à chaque fois."
+            },
+            "myth": {
+              "k": "Un fournisseur de nœuds, c’est « la blockchain ».",
+              "v": "Ce sont les nœuds d’une entreprise qui répondent pour vous ; n’importe quel nœud peut vérifier les données. Et tous les nœuds ne répondent pas aux questions anciennes : il faut un nœud d’archive."
+            }
+          },
+          {
+            "t": "Les fichiers : une empreinte et un gardien",
+            "d": "Une blockchain est un mauvais endroit pour des fichiers : selon ethereum.org, chaque nœud devrait tout stocker, et les frais rendraient cela prohibitif. On garde donc d’habitude une courte empreinte sur la chaîne, et le fichier ailleurs. IPFS retrouve un fichier par ce qu’il contient, pas par où il est : son adresse, le CID, est construite à partir de son empreinte, si bien que le moindre changement donne un autre CID. Mais IPFS ne promet pas de garder quoi que ce soit : selon sa documentation, un fichier reste disponible tant qu’un nœud le garde (l’« épingle »), et le reste peut être effacé pour faire de la place. Filecoin ajoute un paiement : les fournisseurs de stockage bloquent une garantie et doivent prouver chaque jour qu’ils ont toujours les données. Arweave se présente comme « payer une fois, stocker pour toujours » : c’est sa promesse, selon sa documentation, pas un fait sur l’avenir.",
+            "lab": {
+              "fp": {
+                "l": "L’empreinte",
+                "ph": "Le texte de votre fichier",
+                "cap": "L’empreinte SHA-256, l’ingrédient d’un CID. Un vrai CID ajoute le codec et un encodage : il ne ressemble pas à ce hash brut."
+              },
+              "keep": {
+                "l": "Où est le fichier ?",
+                "node": "Nœud {n}",
+                "add": "Ajouter le fichier",
+                "pin": "Épingler",
+                "gc": "Faire le ménage (garbage collection)",
+                "get": "Chercher par empreinte",
+                "found": "Trouvé sur le nœud {n}.",
+                "lost": "Introuvable : même empreinte, plus de fichier.",
+                "gcSay": "Ménage fait : les copies non épinglées ont disparu.",
+                "added": "Fichier ajouté sur le nœud A : son empreinte suffit pour le demander."
+              },
+              "cmp": {
+                "l": "Trois promesses",
+                "who": "Qui garde le fichier ?",
+                "prom": "Quelle promesse, selon sa documentation ?",
+                "k": [
+                  "IPFS",
+                  "Filecoin",
+                  "Arweave"
+                ],
+                "whoV": [
+                  "Les nœuds qui l’épinglent, s’il y en a.",
+                  "Des fournisseurs payés, qui bloquent une garantie.",
+                  "Les nœuds du réseau, financés par une dotation."
+                ],
+                "promV": [
+                  "Aucune garantie que le contenu reste disponible.",
+                  "Des preuves chaque jour ; la garantie est brûlée après des échecs répétés.",
+                  "« Payer une fois, stocker pour toujours » : sa promesse."
+                ]
+              },
+              "nft": {
+                "l": "Le NFT et son image",
+                "row": "Jeton n° 1 · propriétaire : Lina",
+                "img": "image",
+                "broken": "Image introuvable. Le jeton, lui, existe toujours."
+              }
+            },
+            "q": "Une image a été « mise sur IPFS ». Sera-t-elle disponible pour toujours ?",
+            "a": [
+              "Oui, IPFS est permanent",
+              "Oui, si son CID est sur la blockchain",
+              "Pas forcément : elle reste disponible tant qu’au moins un nœud la garde (l’épingle)"
+            ],
+            "ok": "Oui. La documentation d’IPFS le dit : il ne garantit pas que le contenu reste disponible.",
+            "no": {
+              "0": "La documentation d’IPFS dit le contraire.",
+              "1": "La chaîne garde l’étiquette, pas le fichier ; sans nœud qui le garde, le CID ne mène à rien."
+            },
+            "myth": {
+              "k": "« Sur IPFS » veut dire « stocké pour toujours », ou « sur la blockchain ».",
+              "v": "IPFS, c’est un adressage plus un stockage volontaire : la durée dépend de qui épingle ou paie. Et un CID n’est pas le SHA-256 brut du fichier : il enveloppe une empreinte avec un codec."
+            }
+          },
+          {
+            "t": "Trouver vite, croire prudemment",
+            "d": "Deux problèmes vivent au bord de chaque application sur une chaîne. Le premier : une chaîne est faite pour écrire et vérifier, pas pour chercher ; The Graph, par exemple, le dit, et sans index une question oblige à parcourir la chaîne bloc par bloc. Un indexeur lit les événements une fois et les range dans une base qu’on interroge ; chez The Graph, un « subgraph » décrit quels contrats et quels événements indexer. Le second : selon ethereum.org, un contrat n’accède pas par défaut aux informations hors de la chaîne. Un oracle les y apporte, et réintroduit de la confiance : même un fournisseur « réputé » peut tricher ou être piraté. Chainlink, par exemple, met à jour une donnée quand elle s’écarte au-delà d’un seuil ou quand un délai (« heartbeat ») est passé ; Pyth, par exemple, laisse l’application aller chercher une donnée signée, avec un intervalle de confiance, et recommande de refuser une donnée trop ancienne. Dans tous les cas, le contrat doit vérifier si la donnée est fraîche et sûre.",
+            "lab": {
+              "idx": {
+                "l": "Chercher, avec ou sans index",
+                "addr": "Adresse",
+                "addrs": [
+                  "0x1a2b…c3d4",
+                  "0x5e6f…a7b8",
+                  "0x9c0d…e1f2"
+                ],
+                "scan": "Chercher sans index",
+                "build": "Construire l’index",
+                "fast": "Chercher avec index",
+                "read": "Blocs lus : {n} sur 500 · transferts trouvés : {t}",
+                "one": "Une lecture dans l’index · transferts trouvés : {t}",
+                "built": "Index construit : 500 blocs lus une fois.",
+                "parts": [
+                  "manifeste : quels contrats lire",
+                  "schéma : quelles données garder",
+                  "mappings : comment traduire chaque événement"
+                ],
+                "mock": "500 blocs d’exemple, générés dans la page."
+              },
+              "orc": {
+                "l": "Une donnée du dehors : la température",
+                "ops": "Opérateurs : {n}",
+                "out": "Dehors : {v} °C",
+                "on": "Sur la chaîne : {v} °C",
+                "dev": "Seuil d’écart : {p} %",
+                "hb": "Battement : {m} minutes",
+                "tick": "Avancer de 10 minutes",
+                "why": [
+                  "mise à jour : écart dépassé",
+                  "mise à jour : battement écoulé",
+                  "pas de mise à jour"
+                ],
+                "liar": "Un opérateur ment (80 °C)",
+                "agg": "Valeur retenue : la médiane (exemple de calcul, pas la méthode d’un réseau précis).",
+                "age": "Âge maximal accepté par le contrat : {m} minutes",
+                "stale": "Donnée trop ancienne : le contrat refuse.",
+                "conf": "Refuser si l’incertitude dépasse {p} %",
+                "wide": "Incertitude trop large : le contrat refuse."
+              }
+            },
+            "q": "Un contrat a besoin d’une donnée du monde réel, une température. Que fait-il ?",
+            "a": [
+              "Il la reçoit d’un oracle, et doit vérifier qu’elle est récente et fiable",
+              "Il la télécharge lui-même sur un site web",
+              "Les validateurs la devinent par consensus"
+            ],
+            "ok": "Oui. Un contrat n’accède pas seul au monde extérieur (ethereum.org) ; l’oracle est une entrée de confiance, à vérifier.",
+            "no": {
+              "1": "Par défaut, un contrat n’accède pas aux informations hors de la chaîne.",
+              "2": "Le consensus ordonne les transactions ; il ne va pas chercher de données."
+            },
+            "myth": {
+              "k": "Une donnée écrite sur une blockchain est vraie.",
+              "v": "La chaîne garantit que la donnée a été enregistrée telle qu’envoyée, pas que le monde lui ressemble. Et un index n’est pas la chaîne : c’est une base construite à partir d’elle, qui peut prendre du retard."
+            }
+          }
+        ]
+      },
+      {
+        "t": "La DeFi, expliquée",
+        "short": "DeFi",
+        "lead": "La DeFi, ce sont des programmes publics qui font ce que font des banques ou des bourses : échanger, prêter, emprunter. Ce module montre comment ils calculent, pas s’il faut s’en servir. Rien ici n’invite à échanger, prêter ou placer quoi que ce soit.",
+        "alt": "Deux grands réservoirs de verre reliés par un tuyau, chacun avec son flotteur, sur un établi de nuit ; Kūro compare les niveaux, le nez contre la vitre, et Yasser note sur un carnet. Ni pièce, ni billet, ni écran.",
+        "done": "Module 7 terminé : le sceau du marché est dans votre carnet.",
+        "bridge": {
+          "d": "Si l’on vous propose d’accepter de la crypto en paiement, l’étape 3 du parcours acheteur montre la route ordinaire, et l’étape 7 ce que dit la loi là où sont vos utilisateurs.",
+          "go": "Ouvrir l’étape 3 →"
+        },
+        "ask": {
+          "t": "Si votre projet touche un échange, un prêt ou un jeton stable",
+          "chips": [
+            "Qui porte le risque si le prix bouge, et qu’en dit la loi du pays de mes utilisateurs ?",
+            "Quels contrats extérieurs le projet utilisera-t-il, et que se passe-t-il s’ils sont piratés ?"
+          ]
+        },
+        "items": [
+          {
+            "t": "L’échange sans guichet",
+            "d": "Un échange décentralisé (DEX) est un programme qui échange un jeton contre un autre sans qu’une entreprise garde les fonds. Un carnet d’ordres liste des offres par prix et les fait se rencontrer, comme une bourse ; certaines chaînes, par exemple dYdX selon sa documentation, tiennent ce carnet dans leurs nœuds. Un teneur de marché automatique (AMM) n’a pas d’offres : il garde une réserve de deux jetons, et une formule fixe le prix ; dans la plus connue, décrite par Uniswap, le produit des deux soldes ne doit pas baisser (x × y = k), si bien qu’un gros échange déplace plus le prix. Le glissement est l’écart entre le prix vu et le prix obtenu ; une tolérance que vous fixez annule l’échange au-delà. Ceux qui déposent les deux jetons touchent des frais, mais si le prix bouge ils peuvent finir avec moins que s’ils avaient gardé leurs jetons : c’est la « perte impermanente » (Uniswap).",
+            "lab": {
+              "l": "La courbe x · y = k",
+              "pool": "Réserve d’exemple : {a} jetons A · {b} jetons B",
+              "in": "J’apporte : {n} A",
+              "out": "Vous recevez : {b} B (frais de 0,3 % compris)",
+              "spot": "Prix affiché avant : 100 B par A",
+              "avg": "Prix moyen obtenu : {p} B par A",
+              "impact": "Impact de prix : {p} % (hors frais)",
+              "tol": "Tolérance de glissement : {p} %",
+              "front": "Quelqu’un passe avant vous",
+              "cancel": "Échange annulé : le prix a trop bougé.",
+              "fill": "Échange fait, dans votre tolérance.",
+              "book": {
+                "l": "Carnet d’ordres",
+                "offer": "demande {q} A à {p} B",
+                "cap": "Ici, le prix vient des offres ; dans l’AMM, de la formule.",
+                "sale": "Je vends {q} A : je reçois {b} B, sur {n} niveaux du carnet."
+              },
+              "lp": {
+                "l": "Fournisseur de liquidité",
+                "move": "Le prix de A change : × {r}",
+                "keep": "Si j’avais gardé",
+                "pool": "Dans la réserve (sans frais)",
+                "gap": "Écart : {p} %",
+                "cap": "Les frais de la réserve ne sont pas comptés : ils dépendent du volume, que ce schéma ne connaît pas."
+              },
+              "fake": "Jetons A et B inventés : aucun vrai marché.",
+              "none": "Choisissez d’abord une quantité à apporter.",
+              "got": "Au nouveau prix, votre échange donnerait {b} B.",
+              "ax": "A dans la réserve",
+              "ay": "B dans la réserve",
+              "still": "Trois échanges sur la même réserve"
+            },
+            "q": "Dans une réserve x · y = k, vous échangez une quantité égale à 10 % de la réserve. Le prix obtenu…",
+            "a": [
+              "est exactement le prix affiché",
+              "est fixé par un teneur de marché qui accepte votre ordre",
+              "est moins bon que le prix affiché, et d’autant plus que l’échange est gros par rapport à la réserve"
+            ],
+            "ok": "Oui. C’est l’impact de prix décrit par Uniswap : la démo montre environ 9 % pour 10 % de la réserve.",
+            "no": {
+              "0": "La formule déplace le prix pendant l’échange.",
+              "1": "Un AMM n’a pas de contrepartie qui pose des offres : on échange contre la réserve."
+            },
+            "myth": {
+              "k": "La perte impermanente n’arrive que quand le prix baisse.",
+              "v": "Elle arrive dans les deux sens : un doublement et une division par deux donnent la même perte, et elle ne disparaît que si le prix revient (Uniswap). Et la tolérance de glissement n’est pas un frais : c’est une limite, et l’échange échoue si elle est dépassée."
+            }
+          },
+          {
+            "t": "Prêter, emprunter, être liquidé",
+            "d": "Un protocole de prêt est une réserve commune : certains déposent, d’autres empruntent. Sans étude de dossier, l’emprunteur dépose d’abord une garantie qui vaut plus que le prêt. Le protocole surveille un nombre, appelé facteur de santé chez Aave par exemple : la valeur de la garantie, réduite par un seuil fixé pour chaque actif, divisée par ce qui est dû. S’il passe sous 1, n’importe qui peut rembourser une partie de la dette et prendre une partie de la garantie avec une remise : c’est une liquidation, faite par des robots qui font la course (Aave). Les taux ne se négocient pas : une formule les fait monter à mesure que la réserve est empruntée. Un prêt flash se prend sans garantie, à condition de le rendre, avec des frais, avant la fin de la même transaction ; sinon tout est annulé. Des attaquants s’en servent aussi (module 9).",
+            "lab": {
+              "hf": {
+                "l": "La jauge de santé",
+                "coll": "Garantie déposée : 10 000 unités (exemple)",
+                "thr": "Seuil de liquidation : 80 % (l’exemple d’Aave)",
+                "debt": "J’emprunte : {n} unités",
+                "move": "La valeur de la garantie bouge : {p} %",
+                "hf": "Facteur de santé : {h}",
+                "safe": "au-dessus de 1",
+                "risk": "Sous 1 : liquidation possible. N’importe qui peut la lancer, et les robots se dépêchent.",
+                "liq": "Un liquidateur rembourse une partie de la dette et prend une partie de la garantie.",
+                "rule": {
+                  "l": "Règle de liquidation",
+                  "k": [
+                    "Aave V2",
+                    "Aave V3"
+                  ],
+                  "v": [
+                    "La moitié de la dette au plus, à chaque fois.",
+                    "Jusqu’à toute la dette si le facteur de santé est à 0,95 ou moins, ou si la position est petite (seuil fixé par Aave) ; sinon la moitié au plus."
+                  ],
+                  "cap": "Les règles d’Aave, citées comme exemple : d’autres protocoles en ont d’autres. Ces seuils changent d’une version à l’autre : lisez la documentation du jour."
+                },
+                "gaugeL": "Jauge, de 0 à 3"
+              },
+              "rate": {
+                "l": "Le taux suit l’utilisation",
+                "u": "Part de la réserve empruntée : {u} %",
+                "opt": "niveau cible (exemple)",
+                "y": "plus cher →",
+                "cap": "La forme à deux pentes d’Aave, dessinée sans chiffre de taux : paramètres d’exemple, pas ceux d’un vrai marché.",
+                "x": "Part de la réserve empruntée"
+              },
+              "flash": {
+                "l": "Un prêt flash, pas à pas",
+                "steps": [
+                  "Emprunter 1 000 unités, sans garantie.",
+                  "S’en servir, dans la même transaction.",
+                  "Rendre 1 000 unités, plus 0,5 de frais (0,05 %).",
+                  "Fin de la transaction : tout est réglé."
+                ],
+                "forget": "Oublier de rendre",
+                "rolled": "Tout est annulé : le prêt n’a jamais eu lieu.",
+                "fee": "Frais de 0,05 % au déploiement, modifiables par vote (Aave V3).",
+                "tx": "Une seule transaction"
+              }
+            },
+            "q": "Dans un protocole de prêt décentralisé, qui déclenche la liquidation quand la garantie ne suffit plus ?",
+            "a": [
+              "N’importe qui, dès que le facteur de santé passe sous 1, en remboursant une partie de la dette contre une partie de la garantie",
+              "Un employé du protocole, après vous avoir prévenu",
+              "Personne : la garantie protège de toute liquidation"
+            ],
+            "ok": "Oui. Aave : les liquidations sont « sans permission », n’importe quel participant peut les lancer.",
+            "no": {
+              "1": "Il n’y a pas d’employé : la règle est dans le contrat.",
+              "2": "La garantie est justement ce qui est pris lors d’une liquidation."
+            },
+            "myth": {
+              "k": "Un prêt flash, c’est de l’argent gratuit.",
+              "v": "Il doit être rendu avec des frais dans la même transaction, sinon rien n’a lieu ; il permet seulement d’utiliser un gros montant le temps d’une transaction, d’où son rôle dans des attaques (module 9). Et « surgaranti » ne veut pas dire que l’emprunteur ne perd rien : la liquidation prend sa garantie."
+            }
+          },
+          {
+            "t": "Les jetons « stables », et ce qui les tient",
+            "d": "Un stablecoin est un jeton conçu pour suivre une valeur stable, en général le dollar américain. Qu’est-ce qui le tient à cette valeur, et qui faut-il croire ? Selon ethereum.org, un stablecoin adossé à une monnaie est émis par une entreprise qui dit garder des réserves et rembourser 1 pour 1 : on croit l’entreprise et ses audits. Un stablecoin adossé à de la crypto est créé par des contrats contre des dépôts qui valent plus que les jetons émis ; si la garantie baisse trop vite, elle est liquidée. Un stablecoin algorithmique n’est adossé à aucun autre actif et tient sa valeur par des règles qui créent ou détruisent des jetons : selon ethereum.org, il faut alors croire l’algorithme, ou savoir le lire. Selon une plainte de la SEC (l’autorité américaine des marchés), TerraUSD, un stablecoin algorithmique, a perdu son ancrage en mai 2022 et est tombé près de zéro.",
+            "lab": {
+              "l": "Qu’est-ce qui tient la valeur ?",
+              "k": [
+                "Adossé à une monnaie",
+                "Adossé à de la crypto",
+                "Algorithmique"
+              ],
+              "trustL": "Qui faut-il croire ?",
+              "trust": [
+                "L’émetteur, et ses audits.",
+                "Les contrats, et le prix de la garantie.",
+                "L’algorithme, et la confiance du marché."
+              ],
+              "res": "Réserve : {r} unités · jetons : {t}",
+              "vault": "Garantie : {c} · jetons : {t}",
+              "sister": "Jetons sœurs émis : {s}",
+              "drop": "La garantie crypto perd : {p} %",
+              "warn": "Encore couverte, mais proche de la liquidation.",
+              "under": "Plus couverte : la garantie vaut moins que les jetons.",
+              "run": "Tout le monde veut sortir",
+              "gap": "Réserve incomplète (exemple : 70 %)",
+              "paid": "Remboursés : {n} sur 100",
+              "empty": "Réserve vide : les derniers ne sont pas remboursés.",
+              "spiral": "L’algorithme émet des jetons sœurs, qui perdent de leur valeur : l’ancrage casse.",
+              "cap": "Ce schéma simplifie. En mai 2022, selon la SEC, un stablecoin algorithmique a perdu son ancrage et est tombé près de zéro.",
+              "rule": "Garantie de 200 pour 100 jetons : la règle approximative citée par ethereum.org, pas une constante.",
+              "peg": "Valeur visée",
+              "val": "Valeur d’un jeton sœur"
+            },
+            "q": "Un stablecoin « adossé à une monnaie » garde sa valeur parce que…",
+            "a": [
+              "le code de la blockchain l’empêche de bouger",
+              "un émetteur dit garder des réserves et rembourser 1 pour 1 : il faut croire cet émetteur et ses audits",
+              "l’État dont il suit la monnaie le garantit"
+            ],
+            "ok": "Oui. ethereum.org le dit : quelqu’un doit émettre les jetons, et il faut des audits pour vérifier les réserves.",
+            "no": {
+              "0": "Aucune règle de chaîne ne fixe le prix d’un jeton.",
+              "2": "L’émetteur est une entreprise ; ethereum.org cite « quelqu’un doit émettre les jetons » comme contrepartie."
+            },
+            "myth": {
+              "k": "Stable veut dire sans risque.",
+              "v": "Chaque conception déplace le risque : vers un émetteur, vers le prix d’une garantie, ou vers un algorithme. « Stable » décrit un but, pas une garantie : un grand stablecoin algorithmique s’est effondré en mai 2022 (plainte de la SEC, 2023)."
+            }
+          },
+          {
+            "t": "D’où vient le rendement ?",
+            "d": "Un « rendement » vient toujours de quelque part : d’où ? Staker, en preuve d’enjeu, c’est bloquer l’actif natif pour faire tourner un validateur : le protocole récompense le bon travail et détruit une partie du dépôt, voire tout le dépôt, en cas de tricherie prouvée (ethereum.org). Le staking liquide confie le dépôt à un service qui donne un reçu, un jeton ; selon ethereum.org, le protocole ne connaît pas ce jeton, et l’on dépend en plus du service (contrats, opérateurs, gouvernance). Le restaking engage un dépôt déjà bloqué pour sécuriser d’autres services, avec d’autres pénalités : les risques s’empilent (ethereum.org). Un agrégateur de rendement est un coffre qui, selon notre lecture, place les dépôts dans d’autres protocoles ; la norme ERC-4626, qui cite les agrégateurs, décrit ces coffres en « parts ». Les contrats perpétuels permettent de parier sur la hausse ou la baisse d’un prix sans échéance ; pour rester près du prix de référence, un camp paie régulièrement l’autre.",
+            "lab": {
+              "l": "La pile des dépendances",
+              "layers": [
+                "Actif natif",
+                "Staker",
+                "Passer par un service de staking liquide",
+                "Restaker",
+                "Déposer le reçu dans un coffre"
+              ],
+              "add": "Ajouter la couche :",
+              "deps": [
+                [
+                  "La chaîne et ses règles"
+                ],
+                [
+                  "Mon validateur, en ligne",
+                  "Les récompenses du protocole",
+                  "La pénalité si je triche (slashing)"
+                ],
+                [
+                  "Les contrats du service",
+                  "Ses opérateurs",
+                  "Sa gouvernance",
+                  "Le prix du reçu, qui peut s’écarter"
+                ],
+                [
+                  "Les services en plus (AVS)",
+                  "Leurs conditions de pénalité",
+                  "Le délai de sortie"
+                ],
+                [
+                  "Les stratégies du coffre",
+                  "Ses frais",
+                  "Le contrat du coffre"
+                ]
+              ],
+              "count": "Ce dont je dépends maintenant : {n}",
+              "shock": "Un incident en bas de la pile",
+              "shockSay": "La pénalité remonte : chaque couche au-dessus en subit l’effet (ethereum.org).",
+              "perp": {
+                "l": "Perp : qui paie qui ?",
+                "gap": "Prix du contrat par rapport au prix de référence : {p} %",
+                "up": "Au-dessus : les positions à la hausse (longs) paient les positions à la baisse (shorts).",
+                "down": "En dessous : les positions à la baisse (shorts) paient les positions à la hausse (longs).",
+                "flat": "Égal : personne ne paie.",
+                "src": "Le mécanisme de financement, selon la documentation de dYdX, citée comme exemple."
+              },
+              "depsL": "Ce dont je dépends"
+            },
+            "q": "Un produit annonce un rendement nettement plus élevé que celui du staking de base. La première question à poser :",
+            "a": [
+              "D’où vient exactement ce supplément, et quels risques j’ajoute pour l’obtenir ?",
+              "Combien de temps l’offre dure-t-elle ?",
+              "Le jeton reçu est-il un ERC-20 ?"
+            ],
+            "ok": "Oui. C’est le conseil d’ethereum.org : demandez d’où vient exactement le rendement en plus.",
+            "no": {
+              "1": "L’urgence n’est pas une information ; c’est un signe d’arnaque (étape 6 du parcours acheteur).",
+              "2": "Être un jeton standard ne dit rien de l’origine du rendement."
+            },
+            "myth": {
+              "k": "Un jeton de staking liquide, c’est la même chose que staker.",
+              "v": "Le protocole ne connaît pas ce jeton : vous détenez une créance sur un service, pas un livret d’épargne. Le restaking ne réutilise pas un dépôt gratuitement : il ajoute des conditions de pénalité. Et un perp n’est pas l’actif : c’est un contrat avec des paiements réguliers."
+            }
+          }
+        ]
+      },
+      {
+        "t": "DAO et gouvernance",
+        "short": "DAO",
+        "lead": "Une DAO, c’est un groupe qui décide par des règles écrites dans du code, souvent avec un trésor commun. Ce module montre comment on vote, qui exécute, et ce que dit le droit, là où il dit quelque chose.",
+        "alt": "Une table ronde de nuit : une urne aux bulletins vierges, un coffre à cinq serrures dont deux clés sont déjà tournées. Yasser tient la troisième clé, hésitant ; Kūro est assis sur l’urne.",
+        "done": "Module 8 terminé : le sceau du conseil est dans votre carnet.",
+        "bridge": {
+          "d": "Si votre projet est « une DAO pour notre communauté », l’étape 3 du parcours acheteur liste ce qu’une proposition devrait prévoir, et l’étape 7 la loi des pays de vos membres.",
+          "go": "Ouvrir l’étape 3 →"
+        },
+        "ask": {
+          "t": "Si une DAO est prévue",
+          "chips": [
+            "Où se fait le vote, où est l’argent, et qui exécute la décision ?",
+            "Quelle forme juridique, dans quel pays, et qui répond si une autorité poursuit le groupe ?"
+          ]
+        },
+        "items": [
+          {
+            "t": "Du vote au virement",
+            "d": "Dans une DAO, montrez du doigt trois choses : où l’on vote, où est l’argent, et qui ou quoi exécute la décision. Le vote hors chaîne consiste à signer un message avec son portefeuille, sans frais ni transaction, et un service compte les signatures ; Snapshot, par exemple, fonctionne ainsi, et fige le pouvoir de vote à un bloc donné pour qu’on ne vote pas deux fois en déplaçant ses jetons. Mais ce vote ne déplace rien : quelqu’un doit encore l’exécuter. Le vote sur la chaîne est une transaction vers un contrat « Governor » ; si la proposition passe, il peut l’exécuter, souvent après un délai (timelock) qui, selon OpenZeppelin, laisse partir ceux qui ne sont pas d’accord. Le trésor est souvent dans un compte multisignature, par exemple Safe : il n’envoie des fonds qu’une fois qu’un nombre fixé de ses propriétaires a confirmé, disons 3 sur 5. « La DAO a voté » et « l’argent a bougé » sont deux événements, et la confiance se loge dans le second.",
+            "lab": {
+              "l": "Du vote au virement",
+              "mode": {
+                "l": "Où vote-t-on ?",
+                "k": [
+                  "Hors chaîne (signatures)",
+                  "Sur la chaîne (Governor)"
+                ]
+              },
+              "st": [
+                "Proposition",
+                "Vote",
+                "Résultat",
+                "Attente",
+                "Exécution"
+              ],
+              "member": "Membre {n} · {v} voix",
+              "choice": [
+                "Pour",
+                "Contre",
+                "Abstention"
+              ],
+              "sig": "Signature : aucun frais.",
+              "tx": "Transaction : frais de réseau (non chiffrés).",
+              "move": "Envoyer mes jetons à un autre compte, puis revoter",
+              "moved": "Le second vote compte 0 : le pouvoir de vote est figé au bloc de départ.",
+              "tally": "Pour : {f} · Contre : {c} · Abstention : {a}",
+              "gap": "Le vote ne déplace rien : il faut que 3 signataires sur 5 exécutent.",
+              "signer": "Signataire {n}",
+              "thr": "Seuil : {t} sur 5",
+              "short": "Seuil non atteint : {n} sur {t}.",
+              "exec": "Exécuté : le trésor a envoyé les fonds.",
+              "tooHigh": "Refusé par le contrat : le seuil ne peut pas dépasser le nombre de propriétaires.",
+              "zero": "Refusé par le contrat : le seuil ne peut pas être 0.",
+              "wait": "Délai d’attente : 2 jours (exemple).",
+              "leave": "Sortir avant l’exécution",
+              "left": "Vous êtes parti avant l’exécution : c’est à cela que sert le délai.",
+              "end": {
+                "money": "Où est l’argent",
+                "who": "Qui exécute",
+                "when": "Quand peut-on partir",
+                "v": [
+                  [
+                    "Dans le multisig.",
+                    "Les signataires, au seuil fixé.",
+                    "Avant que les signataires n’exécutent."
+                  ],
+                  [
+                    "Dans le contrat de délai (timelock).",
+                    "Le contrat, après le délai.",
+                    "Pendant le délai."
+                  ]
+                ]
+              },
+              "prop": "Proposition : envoyer 10 000 unités du trésor à un prestataire (exemple).",
+              "press": "Appuyez sur un membre pour changer son vote.",
+              "member2": "Membre 1, second compte · 0 voix",
+              "passed": "Proposition adoptée.",
+              "rejected": "Proposition rejetée : rien à exécuter.",
+              "signed": "Confirmé : {n} sur {t}"
+            },
+            "q": "Une DAO vote « oui » sur une plateforme de vote hors chaîne. Que se passe-t-il pour l’argent du trésor ?",
+            "a": [
+              "Il part automatiquement à la fin du vote",
+              "Rien, tant que quelqu’un n’exécute pas : souvent les signataires d’un multisig, selon un seuil comme 3 sur 5",
+              "Il est bloqué un an par la loi"
+            ],
+            "ok": "Oui. Une signature hors chaîne n’exécute rien ; ethereum.org décrit des signataires qui exécutent ensuite la volonté de la communauté.",
+            "no": {
+              "0": "Des signatures hors chaîne n’exécutent aucune transaction.",
+              "2": "Aucune règle de ce genre n’existe."
+            },
+            "myth": {
+              "k": "Une DAO est un contrat qui tourne tout seul.",
+              "v": "La plupart des montages réels ont des personnes à l’étape d’exécution (signataires, administrateur du délai, gardien), et la confiance se loge là. Le vote hors chaîne n’est pas faux pour autant : il est vérifiable, il n’exécute simplement rien."
+            }
+          },
+          {
+            "t": "Même vote, quatre règles",
+            "d": "La règle la plus simple : un jeton, une voix ; qui détient plus de jetons pèse plus. La délégation permet de prêter son pouvoir de vote à quelqu’un qui suit les propositions, comme un représentant (ethereum.org) ; sur certains contrats, il faut même se déléguer à soi-même pour que ses jetons comptent (OpenZeppelin). Le vote quadratique laisse montrer à quel point on tient à une question sans que les plus riches gagnent tout : n voix coûtent n² crédits, donc chaque voix en plus coûte plus que la précédente, et dix voix coûtent cent crédits. Vitalik Buterin le rappelle : cela ne marche que si une personne ne peut pas facilement se créer beaucoup de comptes. La gouvernance « liée à l’âme » (soulbound) est l’idée de donner le droit de vote par des jetons non transférables, liés à la participation plutôt qu’à l’argent : c’est une proposition, avec une norme minimale (ERC-5192), pas un système éprouvé.",
+            "lab": {
+              "l": "Même vote, quatre règles",
+              "tabs": [
+                "Un jeton, une voix",
+                "Délégation",
+                "Quadratique",
+                "Non transférable"
+              ],
+              "member": "Membre {n}",
+              "bal": "{b} jetons",
+              "pref": [
+                "Pour",
+                "Contre"
+              ],
+              "care": "Combien j’y tiens : {s} sur 5",
+              "big": "Part du plus gros détenteur : {p} %",
+              "deleg": "Déléguer à la déléguée",
+              "self": "Me déléguer à moi-même",
+              "zeroV": "0 voix tant qu’il ne s’est pas délégué",
+              "cred": "Crédits : {c} sur 100",
+              "votes": "Voix : {v} · coût : {c}",
+              "split": "Le gros détenteur crée 10 comptes",
+              "splitSay": "Dix comptes, dix fois 100 crédits : le mécanisme retombe dans un achat de voix linéaire, comme Buterin le prévient.",
+              "give": "Donner mon badge",
+              "refused": "Transfert refusé : jeton lié à ce compte (ERC-5192).",
+              "result": "Résultat : {r}",
+              "pass": "adoptée",
+              "fail": "rejetée",
+              "sbt": "Une idée en discussion (Buterin, 2022), avec une norme minimale ; pas un système éprouvé.",
+              "cmp": "Les quatre résultats, pour les mêmes préférences",
+              "score": "Pour : {f} · Contre : {c}",
+              "less": "moins",
+              "more": "plus"
+            },
+            "q": "Le vote quadratique ne marche bien qu’à une condition. Laquelle ?",
+            "a": [
+              "Que tout le monde ait le même nombre de jetons",
+              "Que le vote se fasse sur la chaîne",
+              "Qu’une personne ne puisse pas facilement se créer beaucoup de comptes"
+            ],
+            "ok": "Oui. Sinon, écrit Buterin, le mécanisme retombe dans un achat de voix linéaire.",
+            "no": {
+              "0": "Il est fait justement pour des intensités inégales, pas pour des avoirs égaux.",
+              "1": "La formule marche de la même façon hors chaîne ; Snapshot, par exemple, la propose."
+            },
+            "myth": {
+              "k": "Détenir des jetons de gouvernance, c’est diriger.",
+              "v": "La participation et la délégation décident de qui vote vraiment, et avec un jeton, une voix, le pouvoir suit les soldes. Les jetons non transférables ne règlent pas tout : l’identité et l’équité restent des questions ouvertes."
+            }
+          },
+          {
+            "t": "Le droit ne disparaît pas avec le code",
+            "d": "Du code ne rend pas un groupe invisible à la loi. Aux États-Unis, dans l’affaire Ooki DAO, un tribunal a jugé qu’une DAO était une « personne » au sens de la loi sur les marchés de matières premières et l’a condamnée à une amende, selon la CFTC, l’autorité américaine de ces marchés. Une « enveloppe juridique » est une forme ordinaire dans laquelle la DAO s’inscrit, pour signer des contrats, payer des gens et limiter la responsabilité de ses membres : le Wyoming a créé la « DAO LLC » en 2021, et une association à but non lucratif décentralisée (DUNA) en 2024, d’au moins 100 membres. Payer des contributeurs pose les questions de toute organisation ; l’impôt et le droit du travail dépendent du pays : demandez à un comptable ou à un avocat. La « décentralisation progressive » est un guide écrit par un investisseur (a16z, 2020), pas une loi : commencer en équipe, puis céder le contrôle par étapes.",
+            "lab": {
+              "l": "Qui répond si ça tourne mal ?",
+              "cards": [
+                "Sans forme juridique",
+                "Une DAO LLC du Wyoming",
+                "Une DUNA du Wyoming"
+              ],
+              "dz": "En Algérie",
+              "dzLine": "Nous n’avons trouvé aucune forme algérienne pour une DAO. Ailleurs, ne supposez aucun statut juridique : demandez à un avocat.",
+              "evL": "Il se passe quelque chose",
+              "ev": [
+                "Signer un bail",
+                "Payer un contributeur",
+                "Une autorité poursuit le groupe",
+                "Personne ne vote pendant un an"
+              ],
+              "res": [
+                [
+                  "Dépend du pays : à demander à un avocat.",
+                  "Dépend du pays : à demander à un comptable ou à un avocat.",
+                  "Aux États-Unis, la CFTC a obtenu une amende contre Ooki DAO, jugée « personne » au sens de la loi ; un ordre administratif antérieur de la CFTC (2022) tenait déjà ses fondateurs pour responsables, notamment comme membres de la DAO.",
+                  "Rien de prévu : cela dépend du pays."
+                ],
+                [
+                  "Notre lecture : une LLC est une société, qui signe en son nom. À vérifier avec un avocat.",
+                  "Dépend de l’impôt : à demander à un comptable.",
+                  "La société répond. La loi permet aussi aux statuts et aux contrats de définir, réduire ou supprimer certaines obligations : lisez-les.",
+                  "La loi du Wyoming prévoit la dissolution si la DAO n’a approuvé aucune proposition ni rien fait pendant un an."
+                ],
+                [
+                  "Notre lecture : une association signe en son nom. À vérifier avec un avocat.",
+                  "Dépend de l’impôt : à demander à un comptable.",
+                  "Dépend du cas : à demander à un avocat.",
+                  "Non étudié ici : à demander à un avocat."
+                ]
+              ],
+              "size": {
+                "l": "Le groupe compte",
+                "k": [
+                  "40 membres",
+                  "150 membres"
+                ],
+                "no": "Pas de DUNA : il faut au moins 100 membres, selon la loi du Wyoming de 2024.",
+                "ok": "Assez de membres pour une DUNA ; le reste de la loi s’applique."
+              },
+              "us": "Faits de droit américain, cités pour information : rien ici n’est un conseil juridique.",
+              "prog": {
+                "l": "Décentraliser par étapes",
+                "steps": [
+                  "Un produit utile",
+                  "Une communauté qui participe",
+                  "Un contrôle partagé"
+                ],
+                "team": "Pouvoir de l’équipe",
+                "cap": "Un guide d’investisseur, pas une loi ; l’auteur dit lui-même que ses dernières étapes ne sont pas éprouvées."
+              },
+              "pay": {
+                "l": "Payer les gens",
+                "vest": "Mois écoulés : {m} sur 48 · libéré : {p} %",
+                "peer": "Répartir 100 points entre les autres",
+                "left": "Points restants : {n}",
+                "src": "Deux outils cités comme exemples : un contrat d’acquisition linéaire (OpenZeppelin) et la répartition entre pairs (Coordinape)."
+              }
+            },
+            "q": "Un groupe s’organise en DAO « pour ne dépendre d’aucune loi ». Dans l’affaire Ooki DAO, selon la CFTC, le tribunal américain…",
+            "a": [
+              "a jugé la DAO « personne » au sens de la loi, et l’a condamnée à une amende",
+              "a jugé qu’une DAO, n’étant pas une personne, ne peut pas être poursuivie",
+              "a jugé que seul le code peut être poursuivi, pas les membres"
+            ],
+            "ok": "Oui. Une décision qui fait date, selon la CFTC. C’est le droit américain ; ailleurs, demandez à un avocat.",
+            "no": {
+              "1": "Le tribunal a jugé l’inverse.",
+              "2": "Une décision antérieure tenait aussi les fondateurs pour responsables, comme membres."
+            },
+            "myth": {
+              "k": "« Le code fait loi » : aucune loi ne s’applique.",
+              "v": "Tribunaux et législateurs traitent déjà les DAO comme des entités ou des associations. Et une loi d’un État américain ne vaut pas partout : ailleurs, rien ne se suppose, et en Algérie les crypto-actifs sont interdits (loi 25-10)."
+            }
+          }
+        ]
+      },
+      {
+        "t": "Sécurité, audits et ponts entre chaînes",
+        "short": "Sécurité",
+        "lead": "Un contrat déployé ne se corrige pas comme un site. Ce module montre les failles connues, comment on les cherche, et pourquoi les ponts entre chaînes sont une cible.",
+        "alt": "Un pont de cordes entre deux îlots de nuit ; Yasser examine à la loupe une corde effilochée, Kūro assis à ses pieds, sous une lanterne pendue au poteau du pont. Au premier plan, cinq tamis empilés laissent passer quelques graviers.",
+        "done": "Module 9 terminé : le sceau du bouclier est dans votre carnet.",
+        "bridge": {
+          "d": "Votre fiche prévoit-elle un audit et un plan d’incident ? C’est l’étape 5 du parcours acheteur ; l’étape 6 prépare vos utilisateurs aux arnaques.",
+          "go": "Ouvrir l’étape 5 →"
+        },
+        "ask": {
+          "t": "Pour la sécurité",
+          "chips": [
+            "Quelles couches de sécurité sont prévues (tests, fuzzing, analyse statique, audit, prime aux bugs), et qui paie si un bug apparaît après le lancement ?",
+            "Si le projet utilise un pont : qui signe ses messages, et combien de clés faudrait-il voler pour le vider ?"
+          ]
+        },
+        "items": [
+          {
+            "t": "Cinq pièges connus",
+            "d": "Les mêmes erreurs reviennent souvent (notre lecture des guides de Solidity et d’ethereum.org). La réentrance : un contrat qui paie avant de mettre à jour ses comptes peut être rappelé et payer encore ; selon ethereum.org, c’est ainsi qu’en 2016 3,6 millions d’ETH ont quitté « The DAO » ; la parade, selon Solidity : mettre à jour d’abord, payer ensuite. Le débordement : avant Solidity 0.8.0, un calcul au-delà du maximum repartait de zéro, et sous zéro repartait du maximum, sans erreur ; depuis, l’opération est annulée par défaut, sauf dans un bloc « unchecked ». L’ordre des transactions (MEV) : qui ordonne le bloc voit les transactions en attente et peut glisser les siennes juste avant et après la vôtre, un « sandwich ». L’oracle manipulé : un prix lu dans une seule réserve se pousse le temps d’une transaction, avec un prêt flash. Le contrôle d’accès : une fonction d’administrateur ouverte à tous, ou une clé qui a tous les pouvoirs.",
+            "lab": {
+              "l": "Cinq pièges, pas à pas",
+              "tabs": [
+                "Réentrance",
+                "Débordement",
+                "Sandwich",
+                "Oracle manipulé",
+                "Contrôle d’accès"
+              ],
+              "re": {
+                "vault": "Coffre : {v} (votre part : {s})",
+                "caller": "Contrat appelant",
+                "code": [
+                  "1. envoyer ma part",
+                  "2. mettre ma part à 0"
+                ],
+                "fixed": [
+                  "1. mettre ma part à 0",
+                  "2. envoyer ma part"
+                ],
+                "fix": "Ordre corrigé : vérifier, modifier, puis payer",
+                "back": "L’appelant rappelle « retirer » avant la ligne 2.",
+                "stop": "Le rappel trouve une part à 0 : rien ne sort.",
+                "fact": "En 2016, 3,6 millions d’ETH ont été retirés d’un contrat de cette façon (ethereum.org).",
+                "paid": "Le coffre paie 1 : il reste {v}.",
+                "end": "Le coffre est vide, pour une part de 1.",
+                "zeroPaid": "Votre part passe à 0, puis le coffre paie 1 : il reste {v}. L’appelant rappelle « retirer »."
+              },
+              "of": {
+                "dial": "Compteur sur 8 bits : {n}",
+                "mode": {
+                  "k": [
+                    "Avant 0.8.0, ou bloc unchecked",
+                    "Depuis 0.8.0 (par défaut)"
+                  ],
+                  "l": "Selon la version de Solidity"
+                },
+                "plus": "+ 1",
+                "minus": "− 1",
+                "wrap": "Débordement : le compteur revient à {n}, sans erreur.",
+                "revert": "Transaction annulée : le débordement est refusé."
+              },
+              "sw": {
+                "mine": "J’échange 10 A",
+                "bot": "Un robot place un ordre avant et un après",
+                "alone": "Sans robot : vous recevez 909,09 B.",
+                "with": "Avec le robot : vous recevez 828,16 B ; il finit avec 5,97 A pour 5 A apportés.",
+                "tol": "Avec une tolérance de 0,5 % : votre échange est annulé au lieu d’être servi à ce prix.",
+                "cap": "Réserve d’exemple de 100 A et 10 000 B, sans frais : calcul d’exemple.",
+                "s0": "Le robot voit votre échange en attente et achète avant vous avec 5 A : il reçoit {b} B.",
+                "s1": "Votre échange de 10 A passe ensuite, à un prix moins bon : {b} B.",
+                "s2": "Le robot revend ses {b} B juste après : il récupère {a} A.",
+                "rtol": "Résultat : vous n’avez rien échangé, et le robot récupère {a} A pour 5 A : il ne gagne rien.",
+                "tolB": "Tolérance de 0,5 %",
+                "res": "Résultats"
+              },
+              "or": {
+                "price": "Prix lu par le contrat de prêt : {p}",
+                "limit": "Limite d’emprunt : {l}",
+                "attack": "Prêt flash géant, puis gros échange dans la réserve",
+                "steps": [
+                  "Le prix lu triple, le temps d’une transaction.",
+                  "L’attaquant emprunte au-delà de ce qu’il devrait.",
+                  "Il rend le prêt flash et part."
+                ],
+                "safe": "Oracle : plusieurs sources, ou moyenne dans le temps",
+                "held": "Le prix lu bouge à peine : l’attaque échoue.",
+                "twap": "Moyenne sur 30 blocs, dont un seul poussé (règle d’exemple)."
+              },
+              "ac": {
+                "fns": [
+                  "retirer()",
+                  "mettre en pause()",
+                  "créer des jetons()"
+                ],
+                "locked": "réservé",
+                "open": "ouvert à tous",
+                "anyone": "Appeler en tant que n’importe qui",
+                "minted": "Jetons créés par un inconnu : la fonction n’était pas protégée.",
+                "steal": "Une seule clé de propriétaire est volée",
+                "all": "Tout s’ouvre : une seule clé avait tous les pouvoirs.",
+                "msig": "Rôles et multisig 3 sur 5",
+                "none": "Une clé volée n’ouvre rien : il en faut 3 sur 5.",
+                "refused": "Refusé : la fonction est réservée à un rôle."
+              },
+              "pseudo": "Pseudo-code en français : aucun vrai contrat."
+            },
+            "q": "Dans la démo de réentrance, quelle modification empêche l’attaque ?",
+            "a": [
+              "Envoyer l’argent plus vite",
+              "Interdire les retraits de plus de 1",
+              "Mettre la part à zéro avant d’envoyer l’argent : vérifier, modifier, puis interagir"
+            ],
+            "ok": "Oui. C’est l’ordre « Checks-Effects-Interactions » de la documentation de Solidity.",
+            "no": {
+              "0": "La vitesse n’y est pour rien ; c’est l’ordre qui compte.",
+              "1": "L’attaquant rentre plusieurs fois avec le même petit retrait."
+            },
+            "myth": {
+              "k": "Un contrat audité ou populaire ne peut pas avoir ces bugs.",
+              "v": "Les mêmes erreurs reviennent ; l’audit est une couche (étape suivante). Et Solidity 0.8 n’a pas rendu tout calcul sûr : les blocs unchecked et les contrats plus anciens débordent toujours."
+            }
+          },
+          {
+            "t": "Cinq filets, aucun parfait",
+            "d": "Comme un contrat déployé se change difficilement, la sécurité se fait par couches, chacune attrapant une partie de ce qui a échappé à la précédente. Les tests unitaires vérifient chaque fonction sur des exemples choisis. Le fuzzing lance de nombreuses entrées au hasard et signale quand une règle est cassée ; Foundry, par exemple, fait 256 essais par test par défaut. L’analyse statique lit le code sans l’exécuter et repère des motifs connus, comme la réentrance ; Slither, par exemple, est un outil libre qui fait tourner une suite de détecteurs. La vérification formelle prouve que le code respecte des règles écrites en mathématiques, mais ne prouve que ce que disent les règles. Les audits sont des relectures par des experts extérieurs, et les primes aux bugs paient ceux qui signalent une faille au lieu de l’exploiter ; selon ethereum.org, un audit ne trouve pas tous les bugs. Aucune couche n’est une garantie.",
+            "lab": {
+              "l": "Le filet à cinq mailles",
+              "layers": [
+                "Tests unitaires",
+                "Fuzzing",
+                "Analyse statique",
+                "Vérification formelle",
+                "Audit et prime aux bugs"
+              ],
+              "bugs": [
+                "division par zéro",
+                "mauvaise adresse d’administrateur",
+                "cas limite à 0",
+                "erreur d’arrondi",
+                "débordement dans un bloc unchecked",
+                "réentrance",
+                "contrôle d’accès oublié",
+                "mauvais rôle",
+                "prix lu sur une seule réserve",
+                "erreur de conception",
+                "règle mal écrite",
+                "bug inconnu"
+              ],
+              "go": "Lancer",
+              "on": "Couche active",
+              "caught": "Attrapés : {a} · passés : {p}",
+              "bin": "Déployé : on ne corrige plus",
+              "split": "Répartition d’exemple : en vrai, chaque couche attrape plus ou moins.",
+              "rule": "« Règle mal écrite » passe la vérification formelle : elle prouve ce que dit la règle.",
+              "fuzz": {
+                "l": "Un petit fuzzer, dans la page",
+                "fn": "retirer(montant), avec un bug caché",
+                "go": "Fuzzer 256 fois",
+                "fail": "Échec à l’essai n° {i}, avec montant = {v}.",
+                "pass": "256 essais sans échec.",
+                "note": "256 : le nombre d’essais par défaut de Foundry, cité comme exemple. Dans cette démo, les limites (0, 1, le maximum) sont toujours essayées."
+              },
+              "cap": "Chaque maille réduit le risque ; aucune ne le supprime.",
+              "bag": "Les douze bugs, avant le filet"
+            },
+            "q": "Un contrat a été formellement vérifié. Cela garantit…",
+            "a": [
+              "qu’il respecte les règles écrites dans la spécification ; si une règle est fausse ou manque, le bug passe",
+              "qu’il n’a aucun bug",
+              "qu’aucun audit n’est nécessaire"
+            ],
+            "ok": "Oui. ethereum.org : la vérification formelle ne contrôle que la conformité à la spécification.",
+            "no": {
+              "1": "Elle ne vérifie que la spécification.",
+              "2": "ethereum.org présente ces couches comme complémentaires ; aucune n’est une solution miracle."
+            },
+            "myth": {
+              "k": "Audité veut dire sûr.",
+              "v": "ethereum.org : les audits ne trouveront pas tous les bugs. Et plus de tests ne veut pas dire zéro bug : les tests unitaires ne testent que ce qui est écrit."
+            }
+          },
+          {
+            "t": "Les ponts entre chaînes",
+            "d": "Pour passer un jeton ou un message d’une chaîne à une autre, il faut un pont. La conception courante, « verrouiller puis créer », bloque le jeton dans un contrat sur la chaîne A, et un contrat sur B crée un jeton qui le représente (ethereum.org). Tout dépend de qui dit à B que le verrouillage a eu lieu. Dans un pont « de confiance », un groupe extérieur signe ce message : si assez de ses clés sont volées, de faux messages vident les fonds bloqués. Un pont à client léger, dont IBC est un exemple selon ethereum.org, laisse B vérifier elle-même A : pas de nouveau groupe à croire dans ce mode, mais c’est plus dur à construire. LayerZero, par exemple, laisse chaque application choisir ses vérificateurs ; Chainlink CCIP s’appuie par défaut sur un comité d’opérateurs indépendants, et permet d’en exiger d’autres (selon leurs documentations). Selon ethereum.org, les ponts comptent pour les trois plus gros piratages de la DeFi.",
+            "lab": {
+              "l": "Traverser le pont",
+              "a": "Chaîne A",
+              "b": "Chaîne B",
+              "vault": "Coffre bloqué sur A : {n}",
+              "wrapped": "Jetons représentés sur B : {n}",
+              "inv": "Coffre sur A = jetons sur B : {a} = {b}",
+              "broken": "L’égalité est cassée : des jetons sur B ne représentent plus rien.",
+              "go": "Passer 10 jetons",
+              "back": "Revenir avec 10 jetons",
+              "goSay": "Verrouiller sur A, puis créer sur B.",
+              "backSay": "Détruire sur B, puis débloquer sur A.",
+              "mode": {
+                "l": "Qui signe le message ?",
+                "k": [
+                  "Un pont de confiance (signataires)",
+                  "Des vérificateurs choisis par l’application",
+                  "Un client léger (la chaîne vérifie)"
+                ]
+              },
+              "thr": "Seuil : {t} signataires sur 9 (valeur de démo)",
+              "steal": "Clés volées : {n}",
+              "fake": "Faux message accepté : B crée des jetons sans rien de bloqué, et le coffre de A se vide.",
+              "req": "Vérificateurs requis compromis : {n} sur 2",
+              "reqSay": "Voler un vérificateur facultatif ne suffit pas : tous les vérificateurs requis doivent être d’accord.",
+              "light": "Pas de clés extérieures à voler ; le risque passe dans le code du client léger.",
+              "bug": "Une faille dans le contrat du pont",
+              "bugSay": "Une seule faille suffit, quel que soit le mode : ethereum.org cite le pont Wormhole.",
+              "names": "LayerZero, CCIP et IBC sont cités comme exemples de conceptions, pas comme recommandations. Selon sa documentation, IBC permet aussi des modes à attestations ; CCIP est décrit dans sa version 2.0.",
+              "refused": "Message faux refusé : il manque des signatures.",
+              "reqL": "Requis",
+              "optL": "Facultatifs",
+              "sigL": "Les neuf signataires",
+              "fresh": "Nouveau pont pour ce mode : tout est remis à zéro."
+            },
+            "q": "Sur un pont « verrouiller puis créer », le jeton reçu sur la chaîne B vaut quelque chose parce que…",
+            "a": [
+              "la chaîne B le garantit elle-même, quoi qu’il arrive sur A",
+              "l’original est censé être bloqué sur A ; si le message du pont est falsifié ou le contrat piraté, le jeton reçu peut ne plus rien représenter",
+              "la banque centrale de la chaîne l’imprime"
+            ],
+            "ok": "Oui. Le jeton reçu représente ce qui est bloqué sur A (ethereum.org) : il vaut ce que vaut le pont.",
+            "no": {
+              "0": "Le jeton reçu n’est qu’une représentation de ce qui est bloqué sur A.",
+              "2": "Une chaîne n’a pas de banque centrale."
+            },
+            "myth": {
+              "k": "Un pont déplace le jeton.",
+              "v": "Rien ne traverse : un côté bloque ou détruit, l’autre crée, et une règle de vérification les relie. Et un protocole de messages connu ne rend pas un pont sûr : tout dépend de la configuration choisie et des bugs du contrat."
+            }
+          }
+        ]
+      }
+    ],
+    "x": {
+      "mech": "Ce schéma montre un mécanisme, pas une offre ni un rendement.",
+      "rules": "Ce graphique montre des règles, pas une valeur. Aucune courbe ici ne dit ce qu’un jeton vaut.",
+      "deps": "Ce schéma montre des dépendances, pas un rendement. Aucun chiffre ici n’est une offre.",
+      "mock": "Exemple dans la page : aucune vraie chaîne, aucun portefeuille, rien n’est envoyé.",
+      "names": "Les outils et les chaînes cités sont des exemples tirés de leur propre documentation, pas des recommandations.",
+      "explains": "Ce module explique ; il ne recommande rien.",
+      "noCrypto": "Votre navigateur ne propose pas ce calcul ici (il faut une page sécurisée, en https). Le schéma montre le résultat attendu.",
+      "p256": "Clés de démonstration sur la courbe P-256 du NIST : les chaînes citées utilisent d’autres courbes, que les navigateurs ne proposent pas.",
+      "gone": "Faites pour cette démo, gardées en mémoire, effacées quand vous quittez la page.",
+      "ex": "exemple",
+      "ours": "notre avis d’atelier",
+      "mythL": "Idée reçue",
+      "trueL": "En fait",
+      "bridgeL": "Pour votre fiche",
+      "deeperL": "Pour comprendre",
+      "askL": "Ajouter à mes questions pour le prestataire",
+      "askNote": "Cochées, elles s’ajoutent à votre fiche, dans « Mes questions pour le prestataire ». Notre liste, d’après les sources du module.",
+      "prev": "← Pas précédent",
+      "next": "Pas suivant →",
+      "restart": "Recommencer",
+      "step": "Pas {i} sur {n} · {s}",
+      "reset": "Remettre à zéro",
+      "on": "oui",
+      "off": "non",
+      "noJs": "Sans JavaScript, le schéma s’affiche à l’arrêt et les boutons ne font rien ; le texte dit tout.",
+      "done": "Module terminé.",
+      "wip": "Le schéma à manipuler de cette étape arrive bientôt. L’explication ci-dessus suffit pour répondre à la question."
+    },
+    "carnet": {
+      "t": "Mon carnet de sceaux",
+      "d": "Un sceau par module terminé, sur cet appareil seulement. Rien d’autre à gagner que vos sceaux.",
+      "left": "{n} à venir",
+      "seal": "Module {n} : {t}",
+      "alt": "Kūro tamponne la dernière des neuf cases d’un carnet crème ouvert ; huit empreintes de sceau rouges sont déjà posées.",
+      "all": {
+        "t": "Neuf sur neuf.",
+        "d": "Le carnet est complet, et le dessin de Kūro qui tamponne la dernière case est à vous.",
+        "go": "Télécharger le dessin",
+        "print": "Imprimer mon carnet"
+      }
+    },
+    "chap": {
+      "t": "Le sommaire",
+      "buy": {
+        "t": "Parcours acheteur",
+        "d": "Huit étapes · la fiche à envoyer"
+      },
+      "prog": {
+        "t": "Le programme",
+        "d": "Neuf modules, du web qu’on lit aux ponts entre chaînes. Chacun se lit seul, dans l’ordre que vous voulez."
+      },
+      "mod": "MODULE",
+      "count": "{a} / {b}",
+      "total": "{s} étapes sur {n} · {m} modules sur 9",
+      "here": "(ouvert)",
+      "time": "environ {n} min",
+      "next": "Suite : {c} →",
+      "back": "← Le sommaire",
+      "print": "Imprimer ce module",
+      "noJs": "Sans JavaScript, tout le cours s’affiche à la suite : le sommaire mène à chaque module."
+    },
+    "deeper": [
+      "Clés, empreintes et signatures : module 1, étape 4 →",
+      "Ce qu’est un registre partagé : module 1, étape 3 →",
+      "Jetons, NFT et règles d’émission : module 4 →",
+      "Les frais de réseau, calculés : module 5, étape 4 →",
+      "Lire une demande avant de signer : module 3, étape 4 →",
+      "Les formes juridiques des DAO : module 8, étape 3 →",
+      "Qui tient les clés, et comment on les recrée : module 3, étapes 1 et 2 →",
+      "Comment un site parle au portefeuille et à la chaîne : module 6 →"
+    ]
   },
   "fab": {
     "ui": {
@@ -3921,7 +6251,8 @@
           "t": "La carte des lois",
           "brief": "Choisissez où sont vos utilisateurs : la carte de chaque pays s’ouvre. L’exercice est fait dès qu’une carte est ouverte."
         },
-        "ficheDone": "Noté : la fiche garde votre réponse, sur cet appareil seulement."
+        "ficheDone": "Noté : la fiche garde votre réponse, sur cet appareil seulement.",
+        "labDone": "Schéma mené jusqu’au bout. Rien n’est sorti de ce navigateur."
       },
       "journalCountMain": {
         "one": "{n} / {N} note",
@@ -4887,6 +7218,122 @@
           }
         },
         "caseLabel": "Chez la salle de Samia · exemple inventé"
+      },
+      "w3m": {
+        "book": "Le web3, sans fumée · vol. 2",
+        "title1": "Le web3, sans fumée.",
+        "title2": "Les neuf modules.",
+        "kicker": "/ VOL. 2 · COMPRENDRE LE WEB3, MODULE PAR MODULE",
+        "pitch": "Du web qu’on lit aux ponts entre chaînes : chaque quartier explique une idée, la met dans un schéma à manipuler et démonte une idée reçue, ses sources dans la phrase. C’est de l’éducation : aucun conseil en placement, aucun signal, aucune promesse de gain.",
+        "search": "Le web3, les neuf modules · Librairie Lanterne | Numidea Labs",
+        "desc": "Le web3 module par module, pour comprendre sans acheter : fondations, blocs, clés, jetons, contrats, infrastructure, DeFi, DAO, sécurité. Un schéma par étape.",
+        "conclusion": "Samia a ses dix-huit questions pour le prestataire. Les vôtres sont dans votre fiche.",
+        "keep": "Un tampon vers le sceau du module",
+        "ex": {
+          "t": "Le schéma à manipuler",
+          "brief": "Manipulez le schéma jusqu’à son dernier état : l’exercice est alors fait. Rien ne sort de ce navigateur. Ensuite, la situation, juste en dessous."
+        },
+        "d": {
+          "m11": {
+            "lore": "Samia relit le devis : « une solution web3 ». Elle se demande ce qui change, au juste, par rapport à son site d’aujourd’hui."
+          },
+          "m12": {
+            "lore": "On lui promet « sans intermédiaire ». Samia se demande à qui elle devrait encore faire confiance."
+          },
+          "m13": {
+            "lore": "Samia se demande comment un registre tenu par des inconnus pourrait rester juste."
+          },
+          "m14": {
+            "lore": "Son prestataire parle de signatures et d’empreintes ; Samia veut savoir ce que ces mots prouvent vraiment."
+          },
+          "m21": {
+            "lore": "Samia se demande ce qu’on range, concrètement, dans un « bloc »."
+          },
+          "m22": {
+            "lore": "Sans chef, qui décide de la prochaine page du registre ? Samia note la question."
+          },
+          "m23": {
+            "lore": "On lui vante une chaîne rapide, sûre et décentralisée à la fois ; Samia se demande ce qui a été sacrifié."
+          },
+          "m24": {
+            "lore": "Pour cent petits paiements d’adhérentes, Samia se demande quelle route on lui propose, et pourquoi."
+          },
+          "m31": {
+            "lore": "Si ses adhérentes avaient un portefeuille, Samia se demande qui en garderait les clés."
+          },
+          "m32": {
+            "lore": "Douze mots pour tout récupérer ? Samia veut comprendre avant qu’une adhérente lui en parle."
+          },
+          "m33": {
+            "lore": "Samia se demande si une attestation de séances pourrait se vérifier sans qu’on l’appelle."
+          },
+          "m34": {
+            "lore": "Une fenêtre demande de « signer ». Samia se demande ce qu’une adhérente accepterait en cliquant."
+          },
+          "m41": {
+            "lore": "Samia se demande où vivrait, exactement, le solde de points d’une adhérente."
+          },
+          "m42": {
+            "lore": "Le prestataire cite des « normes de jetons » ; Samia veut savoir à quoi elles servent."
+          },
+          "m43": {
+            "lore": "Samia se demande qui déciderait combien de jetons existent, et quand on en reçoit."
+          },
+          "m51": {
+            "lore": "Samia se demande ce que veut dire « un programme que tout le réseau exécute »."
+          },
+          "m52": {
+            "lore": "Le devis nomme un langage ; Samia se demande si ce choix la concerne."
+          },
+          "m53": {
+            "lore": "Samia veut savoir par quelles étapes un contrat passe avant d’être mis en service."
+          },
+          "m54": {
+            "lore": "On lui parle de « frais de gas » ; Samia se demande qui les paierait, ses adhérentes ou elle."
+          },
+          "m61": {
+            "lore": "Samia se demande ce que son site deviendrait s’il devait parler à un portefeuille."
+          },
+          "m62": {
+            "lore": "Qui répond quand le site interroge la chaîne ? Samia note la question pour son prestataire."
+          },
+          "m63": {
+            "lore": "Les photos des cours seraient « sur la chaîne », lui dit-on ; Samia se demande où elles seraient vraiment."
+          },
+          "m64": {
+            "lore": "Samia se demande comment une chaîne apprendrait ce qui se passe hors d’elle."
+          },
+          "m71": {
+            "lore": "On lui parle d’échanges « sans guichet » ; Samia veut comprendre le mécanisme avant d’écouter la suite."
+          },
+          "m72": {
+            "lore": "Samia se demande ce que veut dire « être liquidé » quand on emprunte sur une chaîne."
+          },
+          "m73": {
+            "lore": "Samia se demande ce qui tient vraiment un jeton dit « stable »."
+          },
+          "m74": {
+            "lore": "On lui parle de rendement ; Samia veut savoir d’où il viendrait."
+          },
+          "m81": {
+            "lore": "Une DAO pour gérer les cotisations ? Samia se demande comment un vote deviendrait un virement."
+          },
+          "m82": {
+            "lore": "Samia se demande si toutes les règles de vote donnent le même résultat."
+          },
+          "m83": {
+            "lore": "Samia se demande qui répondrait devant la loi si un vote tournait mal."
+          },
+          "m91": {
+            "lore": "Samia veut connaître les pièges déjà connus avant qu’on lui parle d’audit."
+          },
+          "m92": {
+            "lore": "Le prestataire promet « un code audité » ; Samia se demande ce qu’un audit attrape, et ce qu’il laisse passer."
+          },
+          "m93": {
+            "lore": "Pour passer des jetons d’une chaîne à l’autre, on lui propose un pont ; Samia se demande ce qui le tient."
+          }
+        }
       }
     },
     "book": {},

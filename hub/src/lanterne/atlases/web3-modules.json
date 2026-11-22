@@ -1,0 +1,1111 @@
+{
+  "_note": "« Le web3, sans fumée. » vol. 2 · Les neuf modules (SPEC §4.4; web3x/SPEC.md): 33 districts in 9 acts, one act per module, its header the act's plate (house art, shown alone: no cut-out on it, no parallax; a guide and a companion stand on the paper beside it, a distinct pair per district, never Yasser or Kūro, whom every header paints). A district is a stop: the explanation is the rule, the lab the field exercise (hub/web3x.js, loaded lazily, reports numidea:exercise at the lab's end state), the misconception card closes it, the question follows it (ask: after). Keepsake per act: the module's seal in the carnet (seal glyphs web3x X10). The journal's note is the misconception and its answer, each labelled (noteLabels: « Idée reçue », « En fait »), and the case strip's second line is Samia's question (caseHand: lore), so a misconception never reads as a fact; per act, the bridge to the buyer path and the two questions for the vendor (numidea-brief-web3c, ask1…ask9). No app.js: the chips are lanterne.js's. Case: Samia, an invented example (vol. 1's). money.note1/note2 under the hero and under each module's head (web3x X7).",
+  "slug": "web3-modules",
+  "key": "w3m",
+  "store": "numidea-lanterne-web3-modules",
+  "app": false,
+  "brief": "web3c",
+  "labs": {
+    "script": "web3x.js"
+  },
+  "carnet": true,
+  "accent": "#236660",
+  "mast": [
+    [
+      "web3.html#w7",
+      "web3c.dock.empty"
+    ]
+  ],
+  "runtime": "^(web3c\\.(mods\\.\\d+\\.(items\\.\\d+\\.lab\\.|done$)|x\\.|chap\\.(time|mod|count)$|carnet\\.)|fiche\\.(match|other)$|lant\\.ui\\.ex\\.labDone$)",
+  "lazyFr": "^(web3c\\.(mods\\.\\d+\\.items\\.\\d+\\.lab\\.|x\\.)|fiche\\.(match|other)$)",
+  "keys": {
+    "kicker": "lant.at.w3m.kicker",
+    "coverAlt": "web3c.sceneAlt",
+    "caseLabel": "lant.at.web3.caseLabel",
+    "act.m1": "web3c.mods.0.t",
+    "act.m2": "web3c.mods.1.t",
+    "act.m3": "web3c.mods.2.t",
+    "act.m4": "web3c.mods.3.t",
+    "act.m5": "web3c.mods.4.t",
+    "act.m6": "web3c.mods.5.t",
+    "act.m7": "web3c.mods.6.t",
+    "act.m8": "web3c.mods.7.t",
+    "act.m9": "web3c.mods.8.t",
+    "actShort.m1": "web3c.mods.0.short",
+    "actShort.m2": "web3c.mods.1.short",
+    "actShort.m3": "web3c.mods.2.short",
+    "actShort.m4": "web3c.mods.3.short",
+    "actShort.m5": "web3c.mods.4.short",
+    "actShort.m6": "web3c.mods.5.short",
+    "actShort.m7": "web3c.mods.6.short",
+    "actShort.m8": "web3c.mods.7.short",
+    "actShort.m9": "web3c.mods.8.short"
+  },
+  "cover": {
+    "src": "img/studio/web3c/scene.webp",
+    "srcset": "img/studio/web3c/scene-800.webp 800w, img/studio/web3c/scene.webp 1600w"
+  },
+  "caseArt": "img/studio/web3c/case-samia.webp",
+  "acts": [
+    {
+      "id": "m1",
+      "plate": "mod-1",
+      "seal": "網",
+      "districts": [
+        "m11",
+        "m12",
+        "m13",
+        "m14"
+      ]
+    },
+    {
+      "id": "m2",
+      "plate": "mod-2",
+      "seal": "塊",
+      "districts": [
+        "m21",
+        "m22",
+        "m23",
+        "m24"
+      ]
+    },
+    {
+      "id": "m3",
+      "plate": "mod-3",
+      "seal": "鍵",
+      "districts": [
+        "m31",
+        "m32",
+        "m33",
+        "m34"
+      ]
+    },
+    {
+      "id": "m4",
+      "plate": "mod-4",
+      "seal": "札",
+      "districts": [
+        "m41",
+        "m42",
+        "m43"
+      ]
+    },
+    {
+      "id": "m5",
+      "plate": "mod-5",
+      "seal": "契",
+      "districts": [
+        "m51",
+        "m52",
+        "m53",
+        "m54"
+      ]
+    },
+    {
+      "id": "m6",
+      "plate": "mod-6",
+      "seal": "節",
+      "districts": [
+        "m61",
+        "m62",
+        "m63",
+        "m64"
+      ]
+    },
+    {
+      "id": "m7",
+      "plate": "mod-7",
+      "seal": "市",
+      "districts": [
+        "m71",
+        "m72",
+        "m73",
+        "m74"
+      ]
+    },
+    {
+      "id": "m8",
+      "plate": "mod-8",
+      "seal": "議",
+      "districts": [
+        "m81",
+        "m82",
+        "m83"
+      ]
+    },
+    {
+      "id": "m9",
+      "plate": "mod-9",
+      "seal": "盾",
+      "districts": [
+        "m91",
+        "m92",
+        "m93"
+      ]
+    }
+  ],
+  "districts": {
+    "m11": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:webs",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.0.items.0.t",
+        "sub": "web3c.mods.0.t",
+        "scene": "web3c.mods.0.items.0.t",
+        "rule": "web3c.mods.0.items.0.d",
+        "q": "web3c.mods.0.items.0.q",
+        "a": "web3c.mods.0.items.0.a",
+        "f": [
+          "web3c.mods.0.items.0.ok",
+          "web3c.mods.0.items.0.no.1",
+          "web3c.mods.0.items.0.no.2"
+        ],
+        "handoff": "web3c.mods.0.items.0.myth.k",
+        "decision": "web3c.mods.0.items.0.myth.v",
+        "alt": "web3c.mods.0.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m12": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "raven",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:trust",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.0.items.1.t",
+        "sub": "web3c.mods.0.t",
+        "scene": "web3c.mods.0.items.1.t",
+        "rule": "web3c.mods.0.items.1.d",
+        "q": "web3c.mods.0.items.1.q",
+        "a": "web3c.mods.0.items.1.a",
+        "f": [
+          "web3c.mods.0.items.1.no.0",
+          "web3c.mods.0.items.1.no.1",
+          "web3c.mods.0.items.1.ok"
+        ],
+        "handoff": "web3c.mods.0.items.1.myth.k",
+        "decision": "web3c.mods.0.items.1.myth.v",
+        "alt": "web3c.mods.0.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m13": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "ratman",
+      "prop": null,
+      "right": 1,
+      "ex": "web3x:gossip",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.0.items.2.t",
+        "sub": "web3c.mods.0.t",
+        "scene": "web3c.mods.0.items.2.t",
+        "rule": "web3c.mods.0.items.2.d",
+        "q": "web3c.mods.0.items.2.q",
+        "a": "web3c.mods.0.items.2.a",
+        "f": [
+          "web3c.mods.0.items.2.no.0",
+          "web3c.mods.0.items.2.ok",
+          "web3c.mods.0.items.2.no.2"
+        ],
+        "handoff": "web3c.mods.0.items.2.myth.k",
+        "decision": "web3c.mods.0.items.2.myth.v",
+        "alt": "web3c.mods.0.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m14": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "ratman",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:hash",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.0.items.3.t",
+        "sub": "web3c.mods.0.t",
+        "scene": "web3c.mods.0.items.3.t",
+        "rule": "web3c.mods.0.items.3.d",
+        "q": "web3c.mods.0.items.3.q",
+        "a": "web3c.mods.0.items.3.a",
+        "f": [
+          "web3c.mods.0.items.3.no.0",
+          "web3c.mods.0.items.3.no.1",
+          "web3c.mods.0.items.3.ok"
+        ],
+        "handoff": "web3c.mods.0.items.3.myth.k",
+        "decision": "web3c.mods.0.items.3.myth.v",
+        "alt": "web3c.mods.0.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m21": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 1,
+      "ex": "web3x:merkle",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.1.items.0.t",
+        "sub": "web3c.mods.1.t",
+        "scene": "web3c.mods.1.items.0.t",
+        "rule": "web3c.mods.1.items.0.d",
+        "q": "web3c.mods.1.items.0.q",
+        "a": "web3c.mods.1.items.0.a",
+        "f": [
+          "web3c.mods.1.items.0.no.0",
+          "web3c.mods.1.items.0.ok",
+          "web3c.mods.1.items.0.no.2"
+        ],
+        "handoff": "web3c.mods.1.items.0.myth.k",
+        "decision": "web3c.mods.1.items.0.myth.v",
+        "alt": "web3c.mods.1.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m22": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:consensus",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.1.items.1.t",
+        "sub": "web3c.mods.1.t",
+        "scene": "web3c.mods.1.items.1.t",
+        "rule": "web3c.mods.1.items.1.d",
+        "q": "web3c.mods.1.items.1.q",
+        "a": "web3c.mods.1.items.1.a",
+        "f": [
+          "web3c.mods.1.items.1.ok",
+          "web3c.mods.1.items.1.no.1",
+          "web3c.mods.1.items.1.no.2"
+        ],
+        "handoff": "web3c.mods.1.items.1.myth.k",
+        "decision": "web3c.mods.1.items.1.myth.v",
+        "alt": "web3c.mods.1.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m23": {
+      "guide": "pigeon",
+      "lead": "pigeonStand",
+      "companion": "ratman",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:bins",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.1.items.2.t",
+        "sub": "web3c.mods.1.t",
+        "scene": "web3c.mods.1.items.2.t",
+        "rule": "web3c.mods.1.items.2.d",
+        "q": "web3c.mods.1.items.2.q",
+        "a": "web3c.mods.1.items.2.a",
+        "f": [
+          "web3c.mods.1.items.2.no.0",
+          "web3c.mods.1.items.2.no.1",
+          "web3c.mods.1.items.2.ok"
+        ],
+        "handoff": "web3c.mods.1.items.2.myth.k",
+        "decision": "web3c.mods.1.items.2.myth.v",
+        "alt": "web3c.mods.1.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m24": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "raven",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:routes",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.1.items.3.t",
+        "sub": "web3c.mods.1.t",
+        "scene": "web3c.mods.1.items.3.t",
+        "rule": "web3c.mods.1.items.3.d",
+        "q": "web3c.mods.1.items.3.q",
+        "a": "web3c.mods.1.items.3.a",
+        "f": [
+          "web3c.mods.1.items.3.ok",
+          "web3c.mods.1.items.3.no.1",
+          "web3c.mods.1.items.3.no.2"
+        ],
+        "handoff": "web3c.mods.1.items.3.myth.k",
+        "decision": "web3c.mods.1.items.3.myth.v",
+        "alt": "web3c.mods.1.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m31": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "ratman",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:bins",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.2.items.0.t",
+        "sub": "web3c.mods.2.t",
+        "scene": "web3c.mods.2.items.0.t",
+        "rule": "web3c.mods.2.items.0.d",
+        "q": "web3c.mods.2.items.0.q",
+        "a": "web3c.mods.2.items.0.a",
+        "f": [
+          "web3c.mods.2.items.0.no.0",
+          "web3c.mods.2.items.0.no.1",
+          "web3c.mods.2.items.0.ok"
+        ],
+        "handoff": "web3c.mods.2.items.0.myth.k",
+        "decision": "web3c.mods.2.items.0.myth.v",
+        "alt": "web3c.mods.2.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m32": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 1,
+      "ex": "web3x:bip39",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.2.items.1.t",
+        "sub": "web3c.mods.2.t",
+        "scene": "web3c.mods.2.items.1.t",
+        "rule": "web3c.mods.2.items.1.d",
+        "q": "web3c.mods.2.items.1.q",
+        "a": "web3c.mods.2.items.1.a",
+        "f": [
+          "web3c.mods.2.items.1.no.0",
+          "web3c.mods.2.items.1.ok",
+          "web3c.mods.2.items.1.no.2"
+        ],
+        "handoff": "web3c.mods.2.items.1.myth.k",
+        "decision": "web3c.mods.2.items.1.myth.v",
+        "alt": "web3c.mods.2.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m33": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:vc",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.2.items.2.t",
+        "sub": "web3c.mods.2.t",
+        "scene": "web3c.mods.2.items.2.t",
+        "rule": "web3c.mods.2.items.2.d",
+        "q": "web3c.mods.2.items.2.q",
+        "a": "web3c.mods.2.items.2.a",
+        "f": [
+          "web3c.mods.2.items.2.ok",
+          "web3c.mods.2.items.2.no.1",
+          "web3c.mods.2.items.2.no.2"
+        ],
+        "handoff": "web3c.mods.2.items.2.myth.k",
+        "decision": "web3c.mods.2.items.2.myth.v",
+        "alt": "web3c.mods.2.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m34": {
+      "guide": "pigeon",
+      "lead": "pigeonStand",
+      "companion": "raven",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:bins",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.2.items.3.t",
+        "sub": "web3c.mods.2.t",
+        "scene": "web3c.mods.2.items.3.t",
+        "rule": "web3c.mods.2.items.3.d",
+        "q": "web3c.mods.2.items.3.q",
+        "a": "web3c.mods.2.items.3.a",
+        "f": [
+          "web3c.mods.2.items.3.no.0",
+          "web3c.mods.2.items.3.no.1",
+          "web3c.mods.2.items.3.ok"
+        ],
+        "handoff": "web3c.mods.2.items.3.myth.k",
+        "decision": "web3c.mods.2.items.3.myth.v",
+        "alt": "web3c.mods.2.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m41": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "raven",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:balances",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.3.items.0.t",
+        "sub": "web3c.mods.3.t",
+        "scene": "web3c.mods.3.items.0.t",
+        "rule": "web3c.mods.3.items.0.d",
+        "q": "web3c.mods.3.items.0.q",
+        "a": "web3c.mods.3.items.0.a",
+        "f": [
+          "web3c.mods.3.items.0.ok",
+          "web3c.mods.3.items.0.no.1",
+          "web3c.mods.3.items.0.no.2"
+        ],
+        "handoff": "web3c.mods.3.items.0.myth.k",
+        "decision": "web3c.mods.3.items.0.myth.v",
+        "alt": "web3c.mods.3.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m42": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "ratman",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:ledgers",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.3.items.1.t",
+        "sub": "web3c.mods.3.t",
+        "scene": "web3c.mods.3.items.1.t",
+        "rule": "web3c.mods.3.items.1.d",
+        "q": "web3c.mods.3.items.1.q",
+        "a": "web3c.mods.3.items.1.a",
+        "f": [
+          "web3c.mods.3.items.1.no.0",
+          "web3c.mods.3.items.1.no.1",
+          "web3c.mods.3.items.1.ok"
+        ],
+        "handoff": "web3c.mods.3.items.1.myth.k",
+        "decision": "web3c.mods.3.items.1.myth.v",
+        "alt": "web3c.mods.3.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m43": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 1,
+      "ex": "web3x:supply",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.3.items.2.t",
+        "sub": "web3c.mods.3.t",
+        "scene": "web3c.mods.3.items.2.t",
+        "rule": "web3c.mods.3.items.2.d",
+        "q": "web3c.mods.3.items.2.q",
+        "a": "web3c.mods.3.items.2.a",
+        "f": [
+          "web3c.mods.3.items.2.no.0",
+          "web3c.mods.3.items.2.ok",
+          "web3c.mods.3.items.2.no.2"
+        ],
+        "handoff": "web3c.mods.3.items.2.myth.k",
+        "decision": "web3c.mods.3.items.2.myth.v",
+        "alt": "web3c.mods.3.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m51": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 1,
+      "ex": "web3x:evm",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.4.items.0.t",
+        "sub": "web3c.mods.4.t",
+        "scene": "web3c.mods.4.items.0.t",
+        "rule": "web3c.mods.4.items.0.d",
+        "q": "web3c.mods.4.items.0.q",
+        "a": "web3c.mods.4.items.0.a",
+        "f": [
+          "web3c.mods.4.items.0.no.0",
+          "web3c.mods.4.items.0.ok",
+          "web3c.mods.4.items.0.no.2"
+        ],
+        "handoff": "web3c.mods.4.items.0.myth.k",
+        "decision": "web3c.mods.4.items.0.myth.v",
+        "alt": "web3c.mods.4.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m52": {
+      "guide": "pigeon",
+      "lead": "pigeonStand",
+      "companion": "ratman",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:vyper",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.4.items.1.t",
+        "sub": "web3c.mods.4.t",
+        "scene": "web3c.mods.4.items.1.t",
+        "rule": "web3c.mods.4.items.1.d",
+        "q": "web3c.mods.4.items.1.q",
+        "a": "web3c.mods.4.items.1.a",
+        "f": [
+          "web3c.mods.4.items.1.no.0",
+          "web3c.mods.4.items.1.no.1",
+          "web3c.mods.4.items.1.ok"
+        ],
+        "handoff": "web3c.mods.4.items.1.myth.k",
+        "decision": "web3c.mods.4.items.1.myth.v",
+        "alt": "web3c.mods.4.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m53": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "raven",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:pipeline",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.4.items.2.t",
+        "sub": "web3c.mods.4.t",
+        "scene": "web3c.mods.4.items.2.t",
+        "rule": "web3c.mods.4.items.2.d",
+        "q": "web3c.mods.4.items.2.q",
+        "a": "web3c.mods.4.items.2.a",
+        "f": [
+          "web3c.mods.4.items.2.ok",
+          "web3c.mods.4.items.2.no.1",
+          "web3c.mods.4.items.2.no.2"
+        ],
+        "handoff": "web3c.mods.4.items.2.myth.k",
+        "decision": "web3c.mods.4.items.2.myth.v",
+        "alt": "web3c.mods.4.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m54": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "raven",
+      "prop": null,
+      "right": 2,
+      "ex": "calc:fee",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.4.items.3.t",
+        "sub": "web3c.mods.4.t",
+        "scene": "web3c.mods.4.items.3.t",
+        "rule": "web3c.mods.4.items.3.d",
+        "q": "web3c.mods.4.items.3.q",
+        "a": "web3c.mods.4.items.3.a",
+        "f": [
+          "web3c.mods.4.items.3.no.0",
+          "web3c.mods.4.items.3.no.1",
+          "web3c.mods.4.items.3.ok"
+        ],
+        "handoff": "web3c.mods.4.items.3.myth.k",
+        "decision": "web3c.mods.4.items.3.myth.v",
+        "alt": "web3c.mods.4.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m61": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "ratman",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:dapp",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.5.items.0.t",
+        "sub": "web3c.mods.5.t",
+        "scene": "web3c.mods.5.items.0.t",
+        "rule": "web3c.mods.5.items.0.d",
+        "q": "web3c.mods.5.items.0.q",
+        "a": "web3c.mods.5.items.0.a",
+        "f": [
+          "web3c.mods.5.items.0.ok",
+          "web3c.mods.5.items.0.no.1",
+          "web3c.mods.5.items.0.no.2"
+        ],
+        "handoff": "web3c.mods.5.items.0.myth.k",
+        "decision": "web3c.mods.5.items.0.myth.v",
+        "alt": "web3c.mods.5.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m62": {
+      "guide": "pigeon",
+      "lead": "pigeonStand",
+      "companion": "raven",
+      "prop": null,
+      "right": 1,
+      "ex": "web3x:rpc",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.5.items.1.t",
+        "sub": "web3c.mods.5.t",
+        "scene": "web3c.mods.5.items.1.t",
+        "rule": "web3c.mods.5.items.1.d",
+        "q": "web3c.mods.5.items.1.q",
+        "a": "web3c.mods.5.items.1.a",
+        "f": [
+          "web3c.mods.5.items.1.no.0",
+          "web3c.mods.5.items.1.ok",
+          "web3c.mods.5.items.1.no.2"
+        ],
+        "handoff": "web3c.mods.5.items.1.myth.k",
+        "decision": "web3c.mods.5.items.1.myth.v",
+        "alt": "web3c.mods.5.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m63": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:ipfs",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.5.items.2.t",
+        "sub": "web3c.mods.5.t",
+        "scene": "web3c.mods.5.items.2.t",
+        "rule": "web3c.mods.5.items.2.d",
+        "q": "web3c.mods.5.items.2.q",
+        "a": "web3c.mods.5.items.2.a",
+        "f": [
+          "web3c.mods.5.items.2.no.0",
+          "web3c.mods.5.items.2.no.1",
+          "web3c.mods.5.items.2.ok"
+        ],
+        "handoff": "web3c.mods.5.items.2.myth.k",
+        "decision": "web3c.mods.5.items.2.myth.v",
+        "alt": "web3c.mods.5.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m64": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "ratman",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:oracle",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.5.items.3.t",
+        "sub": "web3c.mods.5.t",
+        "scene": "web3c.mods.5.items.3.t",
+        "rule": "web3c.mods.5.items.3.d",
+        "q": "web3c.mods.5.items.3.q",
+        "a": "web3c.mods.5.items.3.a",
+        "f": [
+          "web3c.mods.5.items.3.ok",
+          "web3c.mods.5.items.3.no.1",
+          "web3c.mods.5.items.3.no.2"
+        ],
+        "handoff": "web3c.mods.5.items.3.myth.k",
+        "decision": "web3c.mods.5.items.3.myth.v",
+        "alt": "web3c.mods.5.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m71": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:amm",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.6.items.0.t",
+        "sub": "web3c.mods.6.t",
+        "scene": "web3c.mods.6.items.0.t",
+        "rule": "web3c.mods.6.items.0.d",
+        "q": "web3c.mods.6.items.0.q",
+        "a": "web3c.mods.6.items.0.a",
+        "f": [
+          "web3c.mods.6.items.0.no.0",
+          "web3c.mods.6.items.0.no.1",
+          "web3c.mods.6.items.0.ok"
+        ],
+        "handoff": "web3c.mods.6.items.0.myth.k",
+        "decision": "web3c.mods.6.items.0.myth.v",
+        "alt": "web3c.mods.6.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m72": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "ratman",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:hf",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.6.items.1.t",
+        "sub": "web3c.mods.6.t",
+        "scene": "web3c.mods.6.items.1.t",
+        "rule": "web3c.mods.6.items.1.d",
+        "q": "web3c.mods.6.items.1.q",
+        "a": "web3c.mods.6.items.1.a",
+        "f": [
+          "web3c.mods.6.items.1.ok",
+          "web3c.mods.6.items.1.no.1",
+          "web3c.mods.6.items.1.no.2"
+        ],
+        "handoff": "web3c.mods.6.items.1.myth.k",
+        "decision": "web3c.mods.6.items.1.myth.v",
+        "alt": "web3c.mods.6.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m73": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "raven",
+      "prop": null,
+      "right": 1,
+      "ex": "web3x:stable",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.6.items.2.t",
+        "sub": "web3c.mods.6.t",
+        "scene": "web3c.mods.6.items.2.t",
+        "rule": "web3c.mods.6.items.2.d",
+        "q": "web3c.mods.6.items.2.q",
+        "a": "web3c.mods.6.items.2.a",
+        "f": [
+          "web3c.mods.6.items.2.no.0",
+          "web3c.mods.6.items.2.ok",
+          "web3c.mods.6.items.2.no.2"
+        ],
+        "handoff": "web3c.mods.6.items.2.myth.k",
+        "decision": "web3c.mods.6.items.2.myth.v",
+        "alt": "web3c.mods.6.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m74": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "raven",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:stack",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.6.items.3.t",
+        "sub": "web3c.mods.6.t",
+        "scene": "web3c.mods.6.items.3.t",
+        "rule": "web3c.mods.6.items.3.d",
+        "q": "web3c.mods.6.items.3.q",
+        "a": "web3c.mods.6.items.3.a",
+        "f": [
+          "web3c.mods.6.items.3.ok",
+          "web3c.mods.6.items.3.no.1",
+          "web3c.mods.6.items.3.no.2"
+        ],
+        "handoff": "web3c.mods.6.items.3.myth.k",
+        "decision": "web3c.mods.6.items.3.myth.v",
+        "alt": "web3c.mods.6.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m81": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 1,
+      "ex": "web3x:dao",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.7.items.0.t",
+        "sub": "web3c.mods.7.t",
+        "scene": "web3c.mods.7.items.0.t",
+        "rule": "web3c.mods.7.items.0.d",
+        "q": "web3c.mods.7.items.0.q",
+        "a": "web3c.mods.7.items.0.a",
+        "f": [
+          "web3c.mods.7.items.0.no.0",
+          "web3c.mods.7.items.0.ok",
+          "web3c.mods.7.items.0.no.2"
+        ],
+        "handoff": "web3c.mods.7.items.0.myth.k",
+        "decision": "web3c.mods.7.items.0.myth.v",
+        "alt": "web3c.mods.7.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m82": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "raven",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:votes",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.7.items.1.t",
+        "sub": "web3c.mods.7.t",
+        "scene": "web3c.mods.7.items.1.t",
+        "rule": "web3c.mods.7.items.1.d",
+        "q": "web3c.mods.7.items.1.q",
+        "a": "web3c.mods.7.items.1.a",
+        "f": [
+          "web3c.mods.7.items.1.no.0",
+          "web3c.mods.7.items.1.no.1",
+          "web3c.mods.7.items.1.ok"
+        ],
+        "handoff": "web3c.mods.7.items.1.myth.k",
+        "decision": "web3c.mods.7.items.1.myth.v",
+        "alt": "web3c.mods.7.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m83": {
+      "guide": "pigeon",
+      "lead": "pigeonStand",
+      "companion": "ratman",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:legal",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.7.items.2.t",
+        "sub": "web3c.mods.7.t",
+        "scene": "web3c.mods.7.items.2.t",
+        "rule": "web3c.mods.7.items.2.d",
+        "q": "web3c.mods.7.items.2.q",
+        "a": "web3c.mods.7.items.2.a",
+        "f": [
+          "web3c.mods.7.items.2.ok",
+          "web3c.mods.7.items.2.no.1",
+          "web3c.mods.7.items.2.no.2"
+        ],
+        "handoff": "web3c.mods.7.items.2.myth.k",
+        "decision": "web3c.mods.7.items.2.myth.v",
+        "alt": "web3c.mods.7.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m91": {
+      "guide": "raven",
+      "lead": "raven",
+      "companion": "ratman",
+      "prop": null,
+      "right": 2,
+      "ex": "web3x:traps",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.8.items.0.t",
+        "sub": "web3c.mods.8.t",
+        "scene": "web3c.mods.8.items.0.t",
+        "rule": "web3c.mods.8.items.0.d",
+        "q": "web3c.mods.8.items.0.q",
+        "a": "web3c.mods.8.items.0.a",
+        "f": [
+          "web3c.mods.8.items.0.no.0",
+          "web3c.mods.8.items.0.no.1",
+          "web3c.mods.8.items.0.ok"
+        ],
+        "handoff": "web3c.mods.8.items.0.myth.k",
+        "decision": "web3c.mods.8.items.0.myth.v",
+        "alt": "web3c.mods.8.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m92": {
+      "guide": "ratman",
+      "lead": "ratman",
+      "companion": "pigeon",
+      "prop": null,
+      "right": 0,
+      "ex": "web3x:sieve",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.8.items.1.t",
+        "sub": "web3c.mods.8.t",
+        "scene": "web3c.mods.8.items.1.t",
+        "rule": "web3c.mods.8.items.1.d",
+        "q": "web3c.mods.8.items.1.q",
+        "a": "web3c.mods.8.items.1.a",
+        "f": [
+          "web3c.mods.8.items.1.ok",
+          "web3c.mods.8.items.1.no.1",
+          "web3c.mods.8.items.1.no.2"
+        ],
+        "handoff": "web3c.mods.8.items.1.myth.k",
+        "decision": "web3c.mods.8.items.1.myth.v",
+        "alt": "web3c.mods.8.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    },
+    "m93": {
+      "guide": "pigeon",
+      "lead": "pigeon",
+      "companion": "raven",
+      "prop": null,
+      "right": 1,
+      "ex": "web3x:bridge",
+      "ask": "after",
+      "keep": "seal",
+      "keys": {
+        "name": "web3c.mods.8.items.2.t",
+        "sub": "web3c.mods.8.t",
+        "scene": "web3c.mods.8.items.2.t",
+        "rule": "web3c.mods.8.items.2.d",
+        "q": "web3c.mods.8.items.2.q",
+        "a": "web3c.mods.8.items.2.a",
+        "f": [
+          "web3c.mods.8.items.2.no.0",
+          "web3c.mods.8.items.2.ok",
+          "web3c.mods.8.items.2.no.2"
+        ],
+        "handoff": "web3c.mods.8.items.2.myth.k",
+        "decision": "web3c.mods.8.items.2.myth.v",
+        "alt": "web3c.mods.8.alt",
+        "keep": "lant.at.w3m.keep",
+        "ex.t": "lant.at.w3m.ex.t",
+        "ex.brief": "lant.at.w3m.ex.brief"
+      }
+    }
+  },
+  "caseHand": "lore",
+  "noteLabels": {
+    "hand": "web3c.x.mythL",
+    "dec": "web3c.x.trueL"
+  }
+}
