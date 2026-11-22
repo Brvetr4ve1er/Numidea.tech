@@ -3558,6 +3558,14 @@
       ]
     },
     "common": {
+      "run": {
+        "step": "Étape",
+        "next": "Continuer",
+        "rewind": "Rembobiner et rejouer",
+        "last": "Dernière étape : la question qui vaut le tampon.",
+        "fake": "Page piégée",
+        "replay": "Rejouer l’appel"
+      },
       "whereL": "CHEZ NOUS, AILLEURS",
       "widgetDone": "Exercice réussi : +50 XP.",
       "real": "Fiable",
@@ -3731,89 +3739,209 @@
     "m5": {
       "kicker": "/ MODULE 05 · LES ARNAQUES",
       "title": "Reconnaître les arnaques.",
-      "lead": "L’escroc ne pirate presque jamais la banque : il vous pirate vous, avec de la peur, de la hâte ou un cadeau. Entraînez l’œil et l’oreille.",
+      "lead": "L’escroc ne pirate presque jamais la banque : il vous pirate vous, avec de la peur, de la hâte ou un cadeau. Ici, pas de cours à lire d’abord : vous jouez, vous voyez ce qui arrive, puis on explique.",
       "sceneAlt": "La nuit, Yasser tient à distance un téléphone qui sonne ; une silhouette sort de l’écran et Kūro, le poil hérissé, crache dessus.",
       "tabs": "Les quatre leçons du module 5",
       "l": [
         {
-          "t": "Phishing, smishing, vishing",
+          "t": "Le lien piégé",
           "alt": "Kūro, méfiant, devant une enveloppe, une bulle de discussion et un combiné, chacun pendu à un hameçon rouge.",
-          "d": "Le même hameçon sous trois formes : un e-mail (phishing), un SMS (smishing), un appel (vishing). Triez la boîte de réception : fiable ou arnaque ?",
-          "inbox": [
+          "d": "Un SMS arrive. Avant toute explication : que faites-vous ?",
+          "steps": [
             {
-              "f": "AlgeriePoste",
-              "b": "Votre carte Edahabia sera suspendue aujourd’hui. Mettez à jour vos données : edahabia-maj.info",
-              "why": "Urgence, lien vers un site inconnu, « mettez à jour vos données ». Algérie Poste ne réclame pas les données de votre carte."
+              "ask": "Ce SMS arrive à 21 h. Votre premier geste ?",
+              "sms": {
+                "f": "AlgeriePoste",
+                "b": "Votre carte Edahabia sera suspendue aujourd’hui. Mettez à jour vos données : edahabia-maj.info"
+              },
+              "o": [
+                {
+                  "t": "Je touche le lien pour vérifier.",
+                  "fb": "Vous voilà sur une page qui ressemble à la vraie. Elle demande le numéro de la carte, sa date et son code : tout ce que vous tapez part chez l’escroc."
+                },
+                {
+                  "t": "Je réponds « STOP ».",
+                  "fb": "Répondre prouve que votre numéro est actif. Vous recevrez plus de messages, pas moins."
+                },
+                {
+                  "t": "Je ne touche à rien et j’ouvre moi-même l’appli officielle.",
+                  "fb": "Oui. Si votre carte avait un vrai problème, l’appli ou le guichet le dirait. Le lien, lui, ne mène que chez l’expéditeur."
+                }
+              ],
+              "page": {
+                "h": "Mise à jour de votre carte",
+                "f": [
+                  "Numéro de carte",
+                  "Date d’expiration",
+                  "Code reçu par SMS"
+                ],
+                "go": "Valider",
+                "alt": "Une fausse page : la barre d’adresse affiche edahabia-maj.info et le formulaire demande le numéro de carte, la date et le code reçu par SMS."
+              }
             },
             {
-              "f": "Votre appli bancaire",
-              "b": "Nouvelle connexion depuis un appareil inconnu. Si ce n’était pas vous, contactez le service client.",
-              "why": "Elle informe, sans lien ni code demandé. Vérifiez quand même en ouvrant l’appli vous-même."
+              "ask": "Ce lien ressemble à celui de la poste. Touchez le morceau qui dit vraiment à qui appartient le site.",
+              "o": [
+                {
+                  "fb": "« https:// » et le cadenas disent seulement que la connexion est chiffrée, pas qui est au bout. Un escroc a aussi son cadenas."
+                },
+                {
+                  "fb": "C’est un décor : n’importe qui peut écrire ce qu’il veut au début d’une adresse."
+                },
+                {
+                  "fb": "Oui. Le propriétaire, c’est le nom juste avant le premier « / » : verif-compte.info. Tout ce qui est à sa gauche, il l’a choisi pour vous tromper."
+                },
+                {
+                  "fb": "Ce qui suit le « / » est une page du site, choisie par son propriétaire. Elle ne dit pas qui il est."
+                }
+              ],
+              "rule": "La règle : trouvez le premier « / » seul, et lisez le nom juste avant. C’est lui le propriétaire."
             },
             {
-              "f": "« Gendarmerie nationale »",
-              "b": "Votre compte sert à un réseau criminel. Pour le protéger, lisez-moi le code que vous allez recevoir par SMS.",
-              "why": "Aucun gendarme ne demande un code bancaire. La DGSN alerte sur ce scénario précis : faux policiers, faux gendarmes, codes volés."
+              "ask": "Plus dur. Votre banque, MaBanque (inventée pour l’exercice), a pour site mabanque.dz. Fiable ou piège ?",
+              "o": [
+                {
+                  "why": "Le nom avant le premier « / » est mabanque.dz : c’est bien elle."
+                },
+                {
+                  "why": "Le vrai propriétaire est securite-client.com. « mabanque.dz » n’est qu’un décor à gauche."
+                },
+                {
+                  "why": "« aide. » est une sous-partie choisie par le propriétaire, et le propriétaire est mabanque.dz."
+                },
+                {
+                  "why": "Un tiret et un .com : c’est un autre nom, que n’importe qui a pu enregistrer."
+                },
+                {
+                  "why": "Juste avant le premier « / », on lit dz-verification.net. Ce n’est pas mabanque.dz."
+                }
+              ],
+              "done": "Même devant un lien fiable, le geste le plus sûr reste de taper l’adresse vous-même ou d’ouvrir l’appli."
             },
-            {
-              "f": "Service Concours",
-              "b": "Félicitations ! Vous avez gagné 50 000 DA. Réglez 500 DA de frais de dossier pour recevoir votre gain.",
-              "why": "Un gain à un concours où vous n’avez pas joué, et des frais à payer d’abord : c’est le schéma du faux gain."
-            },
-            {
-              "f": "Votre banque",
-              "ctx": "Vous venez de payer 3 200 DA en ligne.",
-              "b": "Code 482913 pour valider votre paiement de 3 200 DA. Ne le communiquez à personne.",
-              "why": "Vous avez lancé ce paiement, le montant correspond, et le message dit de ne pas partager le code. Il se tape sur la page de paiement, jamais à une personne."
-            },
-            {
-              "f": "Algérie Poste Officiel ✓",
-              "b": "Pour activer le paiement en ligne, envoyez une photo recto verso de votre carte.",
-              "why": "Une page de réseau social n’active rien, et une photo de la carte suffit pour s’en servir. La DGSN demande de ne jamais l’envoyer."
-            }
+            {}
           ],
           "where": "Partout, les escrocs imitent l’institution la plus connue du pays. Ailleurs, ce sera un faux message de la poste, des impôts ou d’un livreur ; le schéma ne change pas.",
-          "q": "Quel point commun entre ces arnaques ?",
+          "q": "Le même piège arrive par e-mail, par SMS ou par appel. Quel est son point commun ?",
           "a": [
-            "Elles viennent toutes de l’étranger",
-            "Elles poussent à donner un code, une donnée de carte, ou à cliquer",
-            "Elles sont toujours pleines de fautes"
+            "Ils viennent tous de l’étranger",
+            "Ils poussent à donner un code, une donnée de carte, ou à cliquer",
+            "Ils sont toujours pleins de fautes"
           ],
-          "ok": "Oui. Et elles sont de mieux en mieux écrites : ne comptez pas sur les fautes."
+          "ok": "Oui. Et ils sont de mieux en mieux écrits : ne comptez pas sur les fautes."
         },
         {
           "t": "L’urgence et la peur",
           "alt": "Kūro reste assis, impassible, entre un réveil qui sonne et un gyrophare rouge.",
-          "d": "La peur coupe la réflexion : c’est pour cela que l’escroc vous presse. Touchez chaque morceau du message qui vous met la pression.",
-          "msg": [
+          "d": "Deux messages arrivent en même temps. Lequel vous ferait agir sans réfléchir ?",
+          "steps": [
             {
-              "t": "URGENT :"
+              "ask": "Lequel vous pousse à agir tout de suite ?",
+              "two": [
+                {
+                  "f": "Votre banque",
+                  "b": "Votre relevé de novembre est disponible dans votre espace client."
+                },
+                {
+                  "f": "Votre banque",
+                  "b": "URGENT : votre compte sera bloqué dans 2 heures. Confirmez maintenant."
+                }
+              ],
+              "o": [
+                {
+                  "t": "Le message A",
+                  "fb": "A ne fixe aucun délai et ne menace de rien : vous pouvez le lire demain. Regardez B."
+                },
+                {
+                  "t": "Le message B",
+                  "fb": "B. Et c’est voulu : la peur et le compte à rebours coupent la réflexion. A vous laisse du temps, B vous l’enlève."
+                }
+              ]
             },
             {
-              "t": "votre compte"
+              "ask": "Maintenant, démontez B. Touchez chaque morceau qui vous met la pression.",
+              "msg": [
+                {
+                  "t": "URGENT :"
+                },
+                {
+                  "t": "votre compte"
+                },
+                {
+                  "t": "sera bloqué dans 2 heures."
+                },
+                {
+                  "t": "Opération suspecte détectée."
+                },
+                {
+                  "t": "Confirmez votre identité"
+                },
+                {
+                  "t": "maintenant"
+                },
+                {
+                  "t": "sur ce lien,"
+                },
+                {
+                  "t": "sinon votre solde sera perdu."
+                }
+              ],
+              "meter": "Pression repérée",
+              "calm": "Ce morceau-là est neutre. Cherchez ce qui fait peur ou presse.",
+              "done": "Cinq leviers repérés. Respirez : rien de vrai ne se décide en deux heures."
             },
             {
-              "t": "sera bloqué dans 2 heures."
+              "ask": "Changez de camp : jouez l’escroc. Composez le message qui fera agir votre cible sans réfléchir.",
+              "slots": [
+                {
+                  "l": "Qui écrit ?",
+                  "o": [
+                    {
+                      "t": "Un numéro inconnu"
+                    },
+                    {
+                      "t": "Un ami"
+                    },
+                    {
+                      "t": "« Votre banque »"
+                    }
+                  ]
+                },
+                {
+                  "l": "Ce qu’il annonce",
+                  "o": [
+                    {
+                      "t": "Bonjour, comment ça va ?"
+                    },
+                    {
+                      "t": "Opération suspecte sur votre compte"
+                    },
+                    {
+                      "t": "Vous avez gagné 50 000 DA"
+                    }
+                  ]
+                },
+                {
+                  "l": "Le délai",
+                  "o": [
+                    {
+                      "t": "Quand vous voulez"
+                    },
+                    {
+                      "t": "Avant ce soir"
+                    },
+                    {
+                      "t": "Dans 10 minutes, sinon blocage"
+                    }
+                  ]
+                }
+              ],
+              "meter": "Pression sur la cible",
+              "preview": "Votre message",
+              "more": "Votre cible a encore le temps de réfléchir. Serrez la vis.",
+              "done": "Message parfait… pour un escroc. Vous venez d’utiliser ses trois leviers : l’autorité, la peur ou l’appât, et le compte à rebours. Ce sont exactement eux qu’il faut repérer."
             },
-            {
-              "t": "Opération suspecte détectée."
-            },
-            {
-              "t": "Confirmez votre identité"
-            },
-            {
-              "t": "maintenant"
-            },
-            {
-              "t": "sur ce lien,"
-            },
-            {
-              "t": "sinon votre solde sera perdu."
-            }
+            {}
           ],
-          "meter": "Pression repérée",
-          "calm": "Ce morceau-là est neutre.",
-          "done": "Cinq leviers repérés. Respirez : rien de vrai ne se décide en deux heures.",
           "where": "Ce message reprend les mots contre lesquels alerte la DGSN : une « vérification », un « problème urgent », un compte qui « risque d’être bloqué ». Les mêmes leviers circulent dans toutes les langues.",
           "q": "Un message dit que votre compte sera bloqué dans une heure. Le bon premier geste ?",
           "a": [
@@ -3826,98 +3954,174 @@
         {
           "t": "Les grandes familles d’arnaques",
           "alt": "Kūro soulève un masque en carton souriant ; derrière, une main sombre vise un portefeuille.",
-          "d": "Les histoires changent, les ficelles restent. Touchez une arnaque, puis ce qui la trahit.",
-          "pairs": [
+          "d": "Vous vendez votre ancien téléphone 25 000 DA en ligne. Un acheteur vous écrit…",
+          "steps": [
             {
-              "a": "Le faux gain",
-              "b": "Payer des frais pour recevoir un prix"
+              "ask": "Votre appli affiche le virement. L’acheteur écrit aussitôt. Que faites-vous ?",
+              "acct": {
+                "l": "Solde affiché",
+                "in": "Virement reçu : + 40 000 DA (en attente)"
+              },
+              "chat": "Oups, j’ai envoyé 40 000 au lieu de 25 000 ! Vous pouvez me rendre les 15 000 DA ? C’est urgent, svp 🙏",
+              "who": "L’acheteur",
+              "o": [
+                {
+                  "t": "Je lui renvoie 15 000 DA, c’est honnête.",
+                  "fb": "Son virement était annulable, ou faux : il a disparu. Vos 15 000 DA, eux, sont bien partis. Et il n’a jamais voulu le téléphone."
+                },
+                {
+                  "t": "Je lui envoie le téléphone tout de suite, pour être gentil.",
+                  "fb": "Si son virement est annulé ensuite, vous perdez le téléphone et l’argent."
+                },
+                {
+                  "t": "J’attends que ma banque confirme que l’argent est vraiment là, et définitif.",
+                  "fb": "Oui. « En attente » n’est pas « à vous ». Un acheteur honnête qui s’est trompé accepte d’attendre ; l’escroc, lui, insiste."
+                }
+              ],
+              "ledger": [
+                {
+                  "t": "Vous envoyez 15 000 DA à l’acheteur"
+                },
+                {
+                  "t": "Virement de 40 000 DA annulé"
+                },
+                {
+                  "t": "L’acheteur ne répond plus"
+                }
+              ]
             },
             {
-              "a": "Le faux support technique",
-              "b": "Installer une appli pour « réparer » votre compte"
+              "ask": "Le trop-perçu n’est qu’une famille. Touchez une arnaque, puis ce qui la trahit.",
+              "pairs": [
+                {
+                  "a": "Le faux gain",
+                  "b": "Payer des frais pour recevoir un prix"
+                },
+                {
+                  "a": "Le faux support technique",
+                  "b": "Installer une appli pour « réparer » votre compte"
+                },
+                {
+                  "a": "L’arnaque sentimentale",
+                  "b": "Un amour en ligne qui a toujours une urgence d’argent"
+                },
+                {
+                  "a": "Le trop-perçu",
+                  "b": "On vous paie trop, puis on vous demande de rendre la différence"
+                },
+                {
+                  "a": "Le faux livreur",
+                  "b": "Un petit paiement pour « débloquer » un colis"
+                }
+              ],
+              "colA": "L’arnaque",
+              "colB": "Ce qui la trahit",
+              "done": "Cinq sur cinq. Vous voyez la ficelle avant le cadeau.",
+              "no": "Pas cette paire. Réessayez."
             },
             {
-              "a": "L’arnaque sentimentale",
-              "b": "Un amour en ligne qui a toujours une urgence d’argent"
+              "ask": "Regardez les cinq ficelles. Qu’ont-elles toutes en commun ?",
+              "o": [
+                {
+                  "t": "Elles viennent toujours d’inconnus",
+                  "fb": "Pas toujours : l’arnaque sentimentale vient de quelqu’un que vous croyez connaître."
+                },
+                {
+                  "t": "Vous payez, installez ou rendez quelque chose avant de recevoir",
+                  "fb": "Oui. Frais, appli, remboursement, colis : la victime agit d’abord, et la promesse n’arrive jamais."
+                },
+                {
+                  "t": "Elles sont pleines de fautes",
+                  "fb": "Elles sont de mieux en mieux écrites. La ficelle, elle, ne change pas."
+                }
+              ]
             },
-            {
-              "a": "Le trop-perçu",
-              "b": "On vous paie trop, puis on vous demande de rendre la différence"
-            },
-            {
-              "a": "Le faux livreur",
-              "b": "Un petit paiement pour « débloquer » un colis"
-            }
+            {}
           ],
-          "colA": "L’arnaque",
-          "colB": "Ce qui la trahit",
-          "done": "Cinq sur cinq. Vous voyez la ficelle avant le cadeau.",
-          "no": "Pas cette paire. Réessayez.",
           "where": "Selon le pays, le faux livreur se fait passer pour la poste, un transporteur ou la douane. Le trop-perçu vise souvent ceux qui vendent en ligne.",
-          "q": "Un acheteur vous vire 15 000 DA de trop et demande que vous lui rendiez 10 000 DA. Vous :",
+          "q": "Un SMS : « Votre colis est bloqué, payez 150 DA de frais ici. » Vous n’attendez aucun colis. Vous :",
           "a": [
-            "Rendez la différence, c’est honnête",
-            "Ne renvoyez rien et vérifiez avec la banque que le virement est réel et définitif",
-            "Lui envoyez une photo de votre carte"
+            "Payez, ce n’est que 150 DA",
+            "Ne payez rien : le lien sert à récupérer votre carte, pas à livrer un colis",
+            "Répondez pour demander de quel colis il s’agit"
           ],
-          "ok": "Oui. Son virement peut être faux ou annulé ; votre remboursement, lui, serait bien réel."
+          "ok": "Oui. Le montant est petit pour que vous ne réfléchissiez pas ; c’est le numéro de votre carte qui intéresse l’escroc."
         },
         {
           "t": "La règle d’or : raccrocher, rappeler",
           "alt": "Kūro appuie sur le bouton rouge pour raccrocher et tient une carte bancaire.",
-          "d": "Vous ne pouvez pas vérifier qui vous appelle. Vous pouvez vérifier qui vous appelez. Jouez l’appel.",
-          "who": {
-            "caller": "L’appelant",
-            "you": "Vous",
-            "now": "Vous avez raccroché."
-          },
-          "turns": [
+          "d": "Votre téléphone sonne. Chaque réponse change la suite : jouez l’appel jusqu’au bout.",
+          "steps": [
             {
-              "say": "Bonjour, service sécurité de votre banque. Un paiement de 38 000 DA est en cours sur votre carte. Vous le confirmez ?",
-              "opts": [
-                {
-                  "t": "Non ! Qu’est-ce que je dois faire ?",
-                  "w": "Vous restez en ligne avec un inconnu, affolé : c’est exactement ce qu’il veut."
+              "ask": "Vous décrochez. Choisissez vos répliques : il existe plusieurs chemins, et un seul piège.",
+              "who": {
+                "caller": "L’appelant"
+              },
+              "acct": "Votre compte",
+              "nodes": {
+                "n0": {
+                  "say": "Bonjour, service sécurité de votre banque. Un paiement de 38 000 DA est en cours sur votre carte. Vous le confirmez ?",
+                  "o": [
+                    {
+                      "t": "Non ! Qu’est-ce que je dois faire ?"
+                    },
+                    {
+                      "t": "Prouvez d’abord que vous êtes ma banque."
+                    },
+                    {
+                      "t": "Je raccroche et j’appelle moi-même ma banque."
+                    }
+                  ]
                 },
-                {
-                  "t": "Je raccroche et j’appelle moi-même ma banque."
+                "n1": {
+                  "say": "Pas de panique, je l’annule. Vous allez recevoir un code par SMS : lisez-le-moi.",
+                  "sms": "Code 482913 pour valider le paiement de 38 000 DA. Ne le communiquez à personne.",
+                  "o": [
+                    {
+                      "t": "Voici le code : 482913."
+                    },
+                    {
+                      "t": "Le SMS dit « valider », et de ne le donner à personne. Je raccroche."
+                    }
+                  ]
                 },
-                {
-                  "t": "Prouvez que vous êtes ma banque.",
-                  "w": "Il connaît peut-être déjà votre nom et les derniers chiffres de votre carte : ce ne sera pas une preuve."
+                "n2": {
+                  "say": "Bien sûr. Vous êtes Yasser B., votre carte finit par 4417, et vous avez payé 3 200 DA hier.",
+                  "note": "Il en sait beaucoup. Est-ce une preuve ?",
+                  "o": [
+                    {
+                      "t": "D’accord, vous êtes bien ma banque."
+                    },
+                    {
+                      "t": "Ça ne prouve rien : ces infos se volent ou s’achètent. Je raccroche."
+                    }
+                  ]
+                },
+                "n3": {
+                  "say": "Vous avez raccroché. Quel numéro appelez-vous maintenant ?",
+                  "o": [
+                    {
+                      "t": "Celui qui vient de m’appeler",
+                      "w": "Un numéro affiché se falsifie, et rappeler peut retomber sur l’escroc."
+                    },
+                    {
+                      "t": "Celui que l’appelant m’a dicté",
+                      "w": "C’est son numéro, pas celui de votre banque."
+                    },
+                    {
+                      "t": "Celui au dos de ma carte ou dans l’appli officielle"
+                    }
+                  ]
                 }
-              ]
+              },
+              "lose": {
+                "h": "Paiement de 38 000 DA validé.",
+                "why": "Le code n’annulait rien : il signait le paiement de l’escroc. Une fois validé, le récupérer est long et incertain."
+              },
+              "win": "Parfait. Attendez une minute avant de rappeler, ou appelez depuis un autre téléphone : certains escrocs gardent la ligne ouverte."
             },
-            {
-              "say": "Si vous raccrochez, le paiement passera ! Donnez-moi juste le code reçu par SMS, je l’annule.",
-              "opts": [
-                {
-                  "t": "D’accord, voici le code.",
-                  "w": "Ce code n’annule rien : il valide le paiement de l’escroc."
-                },
-                {
-                  "t": "Je raccroche."
-                }
-              ]
-            },
-            {
-              "say": "Quel numéro appelez-vous maintenant ?",
-              "opts": [
-                {
-                  "t": "Celui qui vient de m’appeler",
-                  "w": "Un numéro affiché se falsifie, et rappeler peut retomber sur l’escroc."
-                },
-                {
-                  "t": "Celui que l’appelant m’a dicté",
-                  "w": "C’est son numéro, pas celui de votre banque."
-                },
-                {
-                  "t": "Celui au dos de ma carte ou dans l’appli officielle"
-                }
-              ]
-            }
+            {}
           ],
-          "end": "Parfait. Attendez une minute avant de rappeler, ou appelez depuis un autre téléphone : certains escrocs gardent la ligne ouverte.",
           "where": "Pour Algérie Poste, le service client cité par l’entreprise est le 1530. Ailleurs, le numéro officiel est imprimé au dos de votre carte et sur le site de votre banque.",
           "q": "L’appel affiche le vrai numéro de votre banque. Vous pouvez faire confiance ?",
           "a": [

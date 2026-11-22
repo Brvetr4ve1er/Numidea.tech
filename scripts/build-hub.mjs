@@ -10,7 +10,7 @@
  *                                dossiers, the Lab, the diary); its head is
  *                                the Studio's too, re-addressed here
  *   hub/src/banque.html          the online banking course's body (2026-11-21: the hero and logbook, the path,
- *                                modules 1, 5 and 8, the sources; its own sheet css/banque.css and script banque.js)
+ *                                modules 1, 5 and 8, the sources; its own sheets css/banque.css and css/banque-run.css, and script banque.js)
  *   hub/src/fabrique.html        la fabrique's body (2026-11-19: the four scenes
  *                                of the owner's "Outside the Artboard", two
  *                                six-lesson sets, the references); its head is
@@ -311,7 +311,7 @@ let fab = headFor('fabrique.html', 'fab.ui', 'La fabrique') + readFileSync(join(
    exercises, the logbook, the emergency card's print), and hub/src/banque.html as its body; its script is hub/banque.js */
 const bqHead = headFor('banque.html', 'bank.ui', 'La banque en ligne');
 if (bqHead.split('</head>').length !== 2) fail("the banking course's head: no single </head>");
-let bq = bqHead.replace('</head>', '<link rel="stylesheet" href="css/banque.css?v={{stamp}}">\n</head>') + readFileSync(join(SRC, 'banque.html'), 'utf8');
+let bq = bqHead.replace('</head>', '<link rel="stylesheet" href="css/banque.css?v={{stamp}}">\n<link rel="stylesheet" href="css/banque-run.css?v={{stamp}}">\n</head>') + readFileSync(join(SRC, 'banque.html'), 'utf8');
 /* Markup in a dictionary value is allowed only where the page applies it as
    markup (data-i18n-html). The home's Arabic wraps Latin names in <bdi>; a
    text key gets the same isolation as Unicode (FSI ... PDI), so no tag is ever

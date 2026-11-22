@@ -1,8 +1,9 @@
 /* hub/banque.js: the banking course's exercises, XP and ranks (hub/banque.html, 2026-11-21). Loaded after
    hub/app.js, which already runs the lessons' shell (tabs, the question, the stamps in localStorage
    'numidea-lessons-bank1|5|8') and the language switch. This file adds:
-   - the eleven exercises ([data-bq] blocks): the doors, the traps, the dashboard, the alerts, the inbox, the
-     pressure words, the pairs, the call, the quiz, the checklist and the emergency card;
+   - the exercises ([data-bq] blocks): the doors, the traps, the dashboard, the alerts, the quiz, the checklist
+     and the emergency card, and module 5's step runs (ON.run: one step at a time, try first, then why;
+     the steps are STEP.pick, sort, tap, pairs, build and call);
    - the logbook: 100 XP a stamp, 50 an exercise done, 10 a right answer in the quiz's best run; five ranks;
      a seal per module once its lessons are all stamped; a pill in the corner and a rank-up line.
    Every word on screen is the page's own (data-i18n, swapped by app.js); this script only shows, hides and
@@ -202,22 +203,75 @@
       });
     });
   };
-  // 5.1 the inbox: judge all six
-  ON.inbox = function (w) {
-    var n = $('[data-bq-n]', w), cards = $$('[data-card]', w), done = 0, ok = 0;
-    cards.forEach(function (c) { judge(c, function (right) { done++; if (right) ok++; n.textContent = String(ok); if (done === cards.length) win(w); }); });
+  // a number that runs from where it is to where it goes (a balance, in the runs)
+  var runTo = function (el, to, ms) {
+    if (!el) return;
+    var from = +el.getAttribute('data-now') || +el.getAttribute('data-bal'); el.setAttribute('data-now', String(to));
+    if (reduce) { el.textContent = grp(to); return; }
+    var t0 = performance.now(), dur = ms || 700;
+    el.classList.toggle('is-down', to < from);
+    var step = function (t) { var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = grp(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
   };
-  // 5.2 the pressure words: tap the five levers
-  ON.press = function (w) {
-    var n = $('[data-bq-n]', w), gauge = $('.bq-gauge', w), calm = $('[data-press-calm]', w), dn = $('[data-press-done]', w);
-    var flags = $$('[data-flag="1"]', w).length, hit = 0;
-    $$('.bq-word', w).forEach(function (b) {
+  var balReset = function (el) { if (!el) return; el.removeAttribute('data-now'); el.classList.remove('is-down'); el.textContent = grp(+el.getAttribute('data-bal')); };
+  var focusIn = function (el) { if (el) setTimeout(function () { try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } }, 30); };
+
+  // the step handlers: each calls ok() once its step is done
+  var STEP = {};
+  // choose; a wrong answer says why (and may show what it costs), a right one says why and opens the way on
+  STEP.pick = function (s, ok) {
+    var os = $$('[data-o]', s), fbs = $$('[data-fb]', s), rule = $('[data-fb-ok]', s), bal = $('[data-bal]', s), timers = [];
+    var lock = function (on) { os.forEach(function (o) { if (!o.classList.contains('is-wrong') && !o.classList.contains('is-right')) o.disabled = on; }); };
+    os.forEach(function (o) {
+      o.addEventListener('click', function () {
+        var i = o.getAttribute('data-o'), right = o.hasAttribute('data-ok');
+        fbs.forEach(function (f) { f.hidden = f.getAttribute('data-fb') !== i; });
+        os.forEach(function (x) { x.setAttribute('aria-pressed', String(x === o)); });
+        if (right) {
+          o.classList.add('is-right'); os.forEach(function (x) { if (x !== o) x.disabled = true; });
+          if (rule) rule.hidden = false;
+          ok(); return;
+        }
+        o.classList.add('is-wrong'); o.disabled = true;
+        var fx = o.getAttribute('data-fx'), el = fx && $('[data-fx-el="' + fx + '"]', s);
+        if (!el) { var nx = os.filter(function (x) { return !x.disabled; })[0]; focusIn(nx); return; }
+        el.hidden = false; lock(true);
+        var lines = $$('[data-seq]', el);
+        lines.forEach(function (l, k) {
+          var go = function () { l.hidden = false; l.classList.add('is-in'); if (l.hasAttribute('data-to')) runTo(bal, +l.getAttribute('data-to')); };
+          if (reduce) go(); else timers.push(setTimeout(go, 500 + k * 1100));
+        });
+        focusIn($('[data-rewind]', el));
+      });
+    });
+    $$('[data-fx-el]', s).forEach(function (el) {
+      $$('[data-seq]', el).forEach(function (l) { l.hidden = true; });
+      var rw = $('[data-rewind]', el);
+      if (rw) rw.addEventListener('click', function () {
+        timers.forEach(clearTimeout); timers = [];
+        el.hidden = true; $$('[data-seq]', el).forEach(function (l) { l.hidden = true; l.classList.remove('is-in'); });
+        balReset(bal); lock(false);
+        fbs.forEach(function (f) { f.hidden = true; });
+        focusIn(os.filter(function (x) { return !x.disabled; })[0]);
+      });
+    });
+  };
+  // genuine or trap, each card once, the verdict and why
+  STEP.sort = function (s, ok) {
+    var cards = $$('[data-card]', s), n = 0, dn = $('[data-st-done]', s);
+    cards.forEach(function (c) { judge(c, function () { n++; if (n === cards.length) { if (dn) dn.hidden = false; ok(); } }); });
+  };
+  // tap the levers in a message
+  STEP.tap = function (s, ok) {
+    var n = $('[data-bq-n]', s), gauge = $('.bq-gauge', s), calm = $('[data-press-calm]', s), dn = $('[data-press-done]', s);
+    var flags = $$('[data-flag="1"]', s).length, hit = 0;
+    $$('.bq-word', s).forEach(function (b) {
       b.addEventListener('click', function () {
         if (b.getAttribute('data-flag') === '1') {
           if (b.classList.contains('is-hit')) return;
           b.classList.add('is-hit'); b.setAttribute('aria-pressed', 'true'); hit++;
           n.textContent = String(hit); setP(gauge, hit / flags); calm.hidden = true;
-          if (hit === flags) { dn.hidden = false; win(w); }
+          if (hit === flags) { dn.hidden = false; ok(); }
         } else {
           b.classList.remove('is-calm'); void b.offsetWidth; b.classList.add('is-calm');
           if (hit < flags) calm.hidden = false;
@@ -225,10 +279,10 @@
       });
     });
   };
-  // 5.3 the pairs: a scam, then what gives it away
-  ON.pairs = function (w) {
-    var n = $('[data-bq-n]', w), no = $('[data-pairs-no]', w), dn = $('[data-pairs-done]', w), a = null, got = 0;
-    var as = $$('[data-pa]', w), bs = $$('[data-pb]', w);
+  // a scam, then what gives it away
+  STEP.pairs = function (s, ok) {
+    var n = $('[data-bq-n]', s), no = $('[data-pairs-no]', s), dn = $('[data-pairs-done]', s), a = null, got = 0;
+    var as = $$('[data-pa]', s), bs = $$('[data-pb]', s);
     as.forEach(function (b) {
       b.addEventListener('click', function () {
         if (b.classList.contains('is-matched')) return;
@@ -242,7 +296,7 @@
         if (a.getAttribute('data-pa') === b.getAttribute('data-pb')) {
           [a, b].forEach(function (x) { x.classList.add('is-matched'); x.setAttribute('aria-pressed', 'false'); x.setAttribute('aria-disabled', 'true'); });
           a = null; got++; n.textContent = String(got); no.hidden = true;
-          if (got === as.length) { dn.hidden = false; win(w); }
+          if (got === as.length) { dn.hidden = false; ok(); }
           else { var nx = as.filter(function (x) { return !x.classList.contains('is-matched'); })[0]; if (nx) nx.focus(); }
         } else {
           b.classList.remove('is-no'); void b.offsetWidth; b.classList.add('is-no'); no.hidden = false;
@@ -251,31 +305,94 @@
       });
     });
   };
-  // 5.4 the call: the right line moves the call on, a wrong one says why
-  ON.call = function (w) {
-    var turns = $$('[data-turn]', w), end = $('[data-call-end]', w);
-    var reset = function () {
-      turns.forEach(function (t, i) {
-        t.hidden = i > 0; $('[data-mine]', t).hidden = true; $('.bq-opts', t).hidden = false;
-        $$('.bq-opt', t).forEach(function (o) { o.classList.remove('is-wrong'); o.disabled = false; });
-        $$('[data-w]', t).forEach(function (p) { p.hidden = true; });
+  // play the scammer: one line per slot, the pressure adds up, five or more and the message "works"
+  STEP.build = function (s, ok) {
+    var slots = $$('[data-slot]', s), n = $('[data-bq-n]', s), gauge = $('.bq-gauge', s), more = $('[data-build-more]', s), dn = $('[data-build-done]', s), fin = false;
+    var sync = function () {
+      var sum = 0, all = true;
+      slots.forEach(function (sl) {
+        var on = $('[aria-pressed="true"]', sl), out = $('[data-out="' + sl.getAttribute('data-slot') + '"]', s);
+        if (on) { sum += +on.getAttribute('data-w'); out.setAttribute('data-i18n', on.getAttribute('data-i18n')); out.textContent = on.textContent; out.classList.add('is-set'); }
+        else all = false;
       });
-      end.hidden = true; w.classList.remove('is-over');
+      n.textContent = String(sum); setP(gauge, sum / 6);
+      var win5 = all && sum >= 5;
+      more.hidden = !all || win5; dn.hidden = !win5;
+      if (win5 && !fin) { fin = true; ok(); }
     };
-    turns.forEach(function (t, i) {
-      $$('.bq-opt', t).forEach(function (o) {
-        o.addEventListener('click', function () {
-          var k = o.getAttribute('data-opt');
-          $$('[data-w]', t).forEach(function (p) { p.hidden = p.getAttribute('data-w') !== k; });
-          if (k !== 'ok') { o.classList.remove('is-wrong'); void o.offsetWidth; o.classList.add('is-wrong'); return; }
-          $('.bq-opts', t).hidden = true; $('[data-mine]', t).hidden = false;
-          var nx = turns[i + 1];
-          if (nx) { nx.hidden = false; var f = $('.bq-opt', nx); if (f) f.focus(); }
-          else { end.hidden = false; w.classList.add('is-over'); win(w); $('[data-call-again]', w).focus(); }
-        });
+    slots.forEach(function (sl) {
+      var os = $$('.bq-slot__o', sl);
+      os.forEach(function (o) {
+        o.addEventListener('click', function () { os.forEach(function (x) { x.setAttribute('aria-pressed', String(x === o)); }); sync(); });
       });
     });
-    $('[data-call-again]', w).addEventListener('click', function () { reset(); $('.bq-opt', turns[0]).focus(); });
+  };
+  // the call: each reply moves to another turn; the trap drains the account, the right path ends it
+  STEP.call = function (s, ok) {
+    var c = $('[data-call]', s), nodes = $$('[data-node]', s), bal = $('[data-bal]', s), timer = null;
+    var node = function (id) { return $('[data-node="' + id + '"]', s); };
+    var reset = function () {
+      clearTimeout(timer);
+      nodes.forEach(function (n) { n.hidden = n.getAttribute('data-node') !== 'n0'; var o = $('.bq-opts', n); if (o) o.hidden = false; });
+      $$('[data-mine]', s).forEach(function (m) { m.remove(); });
+      $$('.bq-opt', s).forEach(function (o) { o.classList.remove('is-wrong'); o.disabled = false; });
+      $$('[data-w]', s).forEach(function (p) { p.hidden = true; });
+      c.classList.remove('is-over', 'is-lost'); balReset(bal);
+      focusIn($('.bq-opt', node('n0')));
+    };
+    $$('.bq-opt', s).forEach(function (o) {
+      o.addEventListener('click', function () {
+        var n = o.closest('[data-node]'), go = o.getAttribute('data-go'), j = o.getAttribute('data-j');
+        $$('[data-w]', n).forEach(function (p) { p.hidden = p.getAttribute('data-w') !== j; });
+        if (!go) { o.classList.add('is-wrong'); o.disabled = true; return; }
+        $$('[data-w]', n).forEach(function (p) { p.hidden = true; });
+        $('.bq-opts', n).hidden = true;
+        var me = document.createElement('p'); me.className = 'bq-bub bq-bub--me'; me.setAttribute('data-mine', '');
+        var sp = document.createElement('span'); sp.setAttribute('data-i18n', o.getAttribute('data-i18n')); sp.textContent = o.textContent; me.appendChild(sp);
+        n.appendChild(me);
+        var nx = node(go); nx.hidden = false;
+        if (go === 'lose') { c.classList.add('is-over', 'is-lost'); timer = setTimeout(function () { runTo(bal, 10500, 1100); }, reduce ? 0 : 350); focusIn($('[data-call-again]', nx)); }
+        else if (go === 'win') { c.classList.add('is-over'); ok(); focusIn($('[data-call-again]', nx)); }
+        else focusIn($('.bq-opt', nx));
+        if (!reduce && nx.scrollIntoView) { var r = nx.getBoundingClientRect(); if (r.bottom > innerHeight) nx.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+      });
+    });
+    $$('[data-call-again]', s).forEach(function (b) { b.addEventListener('click', reset); });
+  };
+  // a run: one step at a time; "Continue" opens once the step is done; reaching the question is the exercise done
+  ON.run = function (w) {
+    var steps = $$('[data-step]', w), dots = $$('.bq-run__dots li', w), next = $('[data-run-next]', w), ix = $('[data-run-i]', w);
+    var last = steps.length - 1, cur = 0, done = {}, seen = {}, again = !!st.w[w.getAttribute('data-bq-id')];
+    $$('[data-bal]', w).forEach(function (el) { onLang.push(function () { el.textContent = grp(+(el.getAttribute('data-now') || el.getAttribute('data-bal'))); }); });
+    var show = function (i, move) {
+      cur = i;
+      steps.forEach(function (s, k) { s.hidden = k !== i; if (k === i && move && !reduce) { s.classList.remove('is-in'); void s.offsetWidth; s.classList.add('is-in'); } });
+      seen[i] = 1;
+      dots.forEach(function (d, k) { d.classList.toggle('is-on', k <= i); d.classList.toggle('is-done', !!done[k] && !!seen[k] && k !== i); });
+      ix.textContent = String(i + 1);
+      next.hidden = i === last; next.disabled = !done[i];
+      if (i === last) win(w);
+      if (move) {
+        var a = $('.bq-st__ask, .bq-st__kick', steps[i]);
+        if (a) { a.tabIndex = -1; focusIn(a); }
+        var r = w.getBoundingClientRect(); if (r.top < 0) w.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
+      }
+    };
+    steps.forEach(function (s, k) {
+      var f = STEP[s.getAttribute('data-st')];
+      var ok = function () {
+        if (done[k]) return; done[k] = 1;
+        if (k === cur) { next.disabled = false; dots[k] && dots[k].classList.add('is-done'); bump(next); }
+      };
+      if (f) f(s, ok); else ok();
+      if (again) done[k] = 1;
+    });
+    next.addEventListener('click', function () { if (done[cur] && cur < last) show(cur + 1, true); });
+    // the dots walk back to any step already seen (and forward, once the run was finished before)
+    dots.forEach(function (d, k) {
+      d.addEventListener('click', function () { if (k <= cur || again) show(k, true); });
+    });
+    show(0, false);
   };
   // 8.1 the quiz: twelve, one at a time, a streak, the best run kept
   ON.quiz = function (w) {

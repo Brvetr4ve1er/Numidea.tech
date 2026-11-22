@@ -3558,6 +3558,14 @@
       ]
     },
     "common": {
+      "run": {
+        "step": "Step",
+        "next": "Continue",
+        "rewind": "Rewind and replay",
+        "last": "Last step: the question that earns the stamp.",
+        "fake": "Trap page",
+        "replay": "Replay the call"
+      },
       "whereL": "HERE AND ELSEWHERE",
       "widgetDone": "Exercise done: +50 XP.",
       "real": "Genuine",
@@ -3731,49 +3739,89 @@
     "m5": {
       "kicker": "/ MODULE 05 · SCAMS",
       "title": "Recognising scams.",
-      "lead": "Scammers almost never hack the bank: they hack you, with fear, hurry or a gift. Train your eyes and ears.",
+      "lead": "Scammers almost never hack the bank: they hack you, with fear, hurry or a gift. No reading first here: you play, you see what happens, then we explain.",
       "sceneAlt": "At night, Yasser holds a ringing phone at arm’s length; a shadowy figure rises from the screen and Kūro, fur on end, hisses at it.",
       "tabs": "The four lessons of module 5",
       "l": [
         {
-          "t": "Phishing, smishing, vishing",
+          "t": "The trapped link",
           "alt": "Kūro, wary, faces an envelope, a chat bubble and a phone handset, each hanging from a red hook.",
-          "d": "One hook, three shapes: an email (phishing), a text (smishing), a call (vishing). Sort the inbox: genuine or scam?",
-          "inbox": [
+          "d": "A text arrives. Before any explanation: what do you do?",
+          "steps": [
             {
-              "f": "AlgeriePoste",
-              "b": "Your Edahabia card will be suspended today. Update your details: edahabia-maj.info",
-              "why": "Urgency, a link to an unknown site, “update your details”. Algérie Poste does not ask for your card details."
+              "ask": "This text arrives at 9 pm. Your first move?",
+              "sms": {
+                "f": "AlgeriePoste",
+                "b": "Your Edahabia card will be suspended today. Update your details: edahabia-maj.info"
+              },
+              "o": [
+                {
+                  "t": "I tap the link to check.",
+                  "fb": "You land on a page that looks like the real one. It asks for the card number, its date and its code: everything you type goes to the scammer."
+                },
+                {
+                  "t": "I reply “STOP”.",
+                  "fb": "Replying proves your number is live. You’ll get more messages, not fewer."
+                },
+                {
+                  "t": "I touch nothing and open the official app myself.",
+                  "fb": "Yes. If your card had a real problem, the app or the counter would say so. The link only leads to whoever sent it."
+                }
+              ],
+              "page": {
+                "h": "Update your card",
+                "f": [
+                  "Card number",
+                  "Expiry date",
+                  "Code received by text"
+                ],
+                "go": "Confirm",
+                "alt": "A fake page: the address bar shows edahabia-maj.info and the form asks for the card number, the date and the code received by text."
+              }
             },
             {
-              "f": "Your banking app",
-              "b": "New sign-in from an unknown device. If this wasn’t you, contact customer service.",
-              "why": "It informs, with no link and no code requested. Still, check by opening the app yourself."
+              "ask": "This link looks like the post office’s. Tap the piece that really says who owns the site.",
+              "o": [
+                {
+                  "fb": "“https://” and the padlock only say the connection is encrypted, not who is at the other end. Scammers have padlocks too."
+                },
+                {
+                  "fb": "That’s scenery: anyone can write whatever they like at the start of an address."
+                },
+                {
+                  "fb": "Yes. The owner is the name right before the first “/”: verif-compte.info. Everything to its left was chosen to fool you."
+                },
+                {
+                  "fb": "What follows the “/” is a page on the site, chosen by its owner. It doesn’t say who they are."
+                }
+              ],
+              "rule": "The rule: find the first single “/”, and read the name just before it. That’s the owner."
             },
             {
-              "f": "“National Gendarmerie”",
-              "b": "Your account is being used by a criminal ring. To protect it, read me the code you’re about to receive by text.",
-              "why": "No gendarme asks for a bank code. The DGSN warns about this exact script: fake police, fake gendarmes, stolen codes."
+              "ask": "Harder. Your bank, MaBanque (made up for the exercise), lives at mabanque.dz. Genuine or trap?",
+              "o": [
+                {
+                  "why": "The name before the first “/” is mabanque.dz: it’s really your bank."
+                },
+                {
+                  "why": "The real owner is securite-client.com. “mabanque.dz” is just scenery on the left."
+                },
+                {
+                  "why": "“aide.” is a sub-part chosen by the owner, and the owner is mabanque.dz."
+                },
+                {
+                  "why": "A hyphen and a .com: it’s a different name, one anybody could have registered."
+                },
+                {
+                  "why": "Right before the first “/” you read dz-verification.net. That isn’t mabanque.dz."
+                }
+              ],
+              "done": "Even with a genuine link, the safest move is still to type the address yourself or open the app."
             },
-            {
-              "f": "Prize Department",
-              "b": "Congratulations! You won 50,000 DA. Pay a 500 DA processing fee to receive your prize.",
-              "why": "A prize from a contest you never entered, and a fee to pay first: the fake-prize pattern."
-            },
-            {
-              "f": "Your bank",
-              "ctx": "You just paid 3,200 DA online.",
-              "b": "Code 482913 to confirm your 3,200 DA payment. Don’t share it with anyone.",
-              "why": "You started this payment, the amount matches, and the text says not to share the code. It goes into the payment page, never to a person."
-            },
-            {
-              "f": "Algérie Poste Official ✓",
-              "b": "To activate online payment, send a photo of both sides of your card.",
-              "why": "A social media page activates nothing, and a photo of the card is enough to use it. The DGSN says never to send one."
-            }
+            {}
           ],
           "where": "Everywhere, scammers copy the best-known institution in the country. Elsewhere it will be a fake message from the post, the tax office or a courier; the pattern stays the same.",
-          "q": "What do these scams have in common?",
+          "q": "The same trap comes by email, text or call. What do they share?",
           "a": [
             "They all come from abroad",
             "They push you to give a code or card details, or to tap a link",
@@ -3784,36 +3832,116 @@
         {
           "t": "Urgency and fear",
           "alt": "Kūro sits unmoved between a ringing alarm clock and a flashing red light.",
-          "d": "Fear switches off thinking: that’s why scammers rush you. Tap every piece of the message that pressures you.",
-          "msg": [
+          "d": "Two messages arrive at once. Which one would make you act without thinking?",
+          "steps": [
             {
-              "t": "URGENT:"
+              "ask": "Which one pushes you to act right now?",
+              "two": [
+                {
+                  "f": "Your bank",
+                  "b": "Your November statement is ready in your customer area."
+                },
+                {
+                  "f": "Your bank",
+                  "b": "URGENT: your account will be blocked in 2 hours. Confirm now."
+                }
+              ],
+              "o": [
+                {
+                  "t": "Message A",
+                  "fb": "A sets no deadline and threatens nothing: you can read it tomorrow. Look at B."
+                },
+                {
+                  "t": "Message B",
+                  "fb": "B. And that’s the point: fear and a countdown switch off thinking. A gives you time, B takes it away."
+                }
+              ]
             },
             {
-              "t": "your account"
+              "ask": "Now take B apart. Tap every piece that puts pressure on you.",
+              "msg": [
+                {
+                  "t": "URGENT:"
+                },
+                {
+                  "t": "your account"
+                },
+                {
+                  "t": "will be blocked in 2 hours."
+                },
+                {
+                  "t": "Suspicious activity detected."
+                },
+                {
+                  "t": "Confirm your identity"
+                },
+                {
+                  "t": "right now"
+                },
+                {
+                  "t": "on this link,"
+                },
+                {
+                  "t": "or your balance will be lost."
+                }
+              ],
+              "meter": "Pressure spotted",
+              "calm": "That piece is neutral. Look for what scares or rushes you.",
+              "done": "Five levers spotted. Breathe: nothing real gets decided in two hours."
             },
             {
-              "t": "will be blocked in 2 hours."
+              "ask": "Switch sides: play the scammer. Build the message that makes your target act without thinking.",
+              "slots": [
+                {
+                  "l": "Who’s writing?",
+                  "o": [
+                    {
+                      "t": "An unknown number"
+                    },
+                    {
+                      "t": "A friend"
+                    },
+                    {
+                      "t": "“Your bank”"
+                    }
+                  ]
+                },
+                {
+                  "l": "What it says",
+                  "o": [
+                    {
+                      "t": "Hi, how are you?"
+                    },
+                    {
+                      "t": "Suspicious activity on your account"
+                    },
+                    {
+                      "t": "You’ve won 50,000 DA"
+                    }
+                  ]
+                },
+                {
+                  "l": "The deadline",
+                  "o": [
+                    {
+                      "t": "Whenever you like"
+                    },
+                    {
+                      "t": "Before tonight"
+                    },
+                    {
+                      "t": "In 10 minutes, or it’s blocked"
+                    }
+                  ]
+                }
+              ],
+              "meter": "Pressure on the target",
+              "preview": "Your message",
+              "more": "Your target still has time to think. Turn the screw.",
+              "done": "A perfect message… for a scammer. You just used their three levers: authority, fear or bait, and a countdown. Those are exactly what to look out for."
             },
-            {
-              "t": "Suspicious activity detected."
-            },
-            {
-              "t": "Confirm your identity"
-            },
-            {
-              "t": "right now"
-            },
-            {
-              "t": "on this link,"
-            },
-            {
-              "t": "or your balance will be lost."
-            }
+            {}
           ],
-          "meter": "Pressure spotted",
-          "calm": "That piece is neutral.",
-          "done": "Five levers spotted. Breathe: nothing real gets decided in two hours.",
           "where": "This message uses the very words the DGSN warns about: a “check”, an “urgent problem”, an account “at risk of being blocked”. The same levers travel in every language.",
           "q": "A message says your account will be blocked in an hour. The right first move?",
           "a": [
@@ -3826,98 +3954,174 @@
         {
           "t": "The big families of scams",
           "alt": "Kūro lifts a smiling cardboard mask; behind it, a shadowy hand reaches for a wallet.",
-          "d": "The stories change, the strings stay. Tap a scam, then the sign that gives it away.",
-          "pairs": [
+          "d": "You’re selling your old phone online for 25,000 DA. A buyer writes to you…",
+          "steps": [
             {
-              "a": "The fake prize",
-              "b": "Paying a fee to receive a prize"
+              "ask": "Your app shows the transfer. The buyer writes straight away. What do you do?",
+              "acct": {
+                "l": "Balance shown",
+                "in": "Transfer received: + 40,000 DA (pending)"
+              },
+              "chat": "Oops, I sent 40,000 instead of 25,000! Can you send me back the 15,000 DA? It’s urgent, please 🙏",
+              "who": "The buyer",
+              "o": [
+                {
+                  "t": "I send back 15,000 DA, it’s only fair.",
+                  "fb": "Their transfer could be reversed, or was fake: it vanished. Your 15,000 DA really did leave. And they never wanted the phone."
+                },
+                {
+                  "t": "I send the phone right away, to be nice.",
+                  "fb": "If their transfer is reversed later, you lose the phone and the money."
+                },
+                {
+                  "t": "I wait until my bank confirms the money is really there, and final.",
+                  "fb": "Yes. “Pending” isn’t “yours”. An honest buyer who made a mistake will wait; a scammer insists."
+                }
+              ],
+              "ledger": [
+                {
+                  "t": "You send the buyer 15,000 DA"
+                },
+                {
+                  "t": "40,000 DA transfer reversed"
+                },
+                {
+                  "t": "The buyer stops answering"
+                }
+              ]
             },
             {
-              "a": "Fake tech support",
-              "b": "Installing an app to “fix” your account"
+              "ask": "The overpayment is just one family. Tap a scam, then the sign that gives it away.",
+              "pairs": [
+                {
+                  "a": "The fake prize",
+                  "b": "Paying a fee to receive a prize"
+                },
+                {
+                  "a": "Fake tech support",
+                  "b": "Installing an app to “fix” your account"
+                },
+                {
+                  "a": "The romance scam",
+                  "b": "An online love who always has a money emergency"
+                },
+                {
+                  "a": "The overpayment",
+                  "b": "You’re paid too much, then asked to send back the difference"
+                },
+                {
+                  "a": "The fake courier",
+                  "b": "A small payment to “release” a parcel"
+                }
+              ],
+              "colA": "The scam",
+              "colB": "The giveaway",
+              "done": "Five out of five. You see the string before the gift.",
+              "no": "Not that pair. Try again."
             },
             {
-              "a": "The romance scam",
-              "b": "An online love who always has a money emergency"
+              "ask": "Look at the five strings. What do they all share?",
+              "o": [
+                {
+                  "t": "They always come from strangers",
+                  "fb": "Not always: the romance scam comes from someone you think you know."
+                },
+                {
+                  "t": "You pay, install or send something back before you receive anything",
+                  "fb": "Yes. Fee, app, refund, parcel: the victim acts first, and the promise never arrives."
+                },
+                {
+                  "t": "They’re full of typos",
+                  "fb": "They’re better written every year. The string doesn’t change."
+                }
+              ]
             },
-            {
-              "a": "The overpayment",
-              "b": "You’re paid too much, then asked to send back the difference"
-            },
-            {
-              "a": "The fake courier",
-              "b": "A small payment to “release” a parcel"
-            }
+            {}
           ],
-          "colA": "The scam",
-          "colB": "The giveaway",
-          "done": "Five out of five. You see the string before the gift.",
-          "no": "Not that pair. Try again.",
           "where": "Depending on the country, the fake courier poses as the post office, a delivery firm or customs. The overpayment scam often targets people selling online.",
-          "q": "A buyer overpays you by 15,000 DA and asks you to send back 10,000 DA. You:",
+          "q": "A text: “Your parcel is held, pay a 150 DA fee here.” You aren’t expecting a parcel. You:",
           "a": [
-            "Send back the difference, it’s only fair",
-            "Send nothing and check with the bank that the transfer is real and final",
-            "Send them a photo of your card"
+            "Pay, it’s only 150 DA",
+            "Pay nothing: the link is there to get your card, not to deliver a parcel",
+            "Reply to ask which parcel it is"
           ],
-          "ok": "Yes. Their transfer may be fake or reversed; your refund would be very real."
+          "ok": "Yes. The amount is small so you won’t think twice; your card number is what the scammer wants."
         },
         {
           "t": "The golden rule: hang up, call back",
           "alt": "Kūro presses the red hang-up button while holding a bank card.",
-          "d": "You can’t check who is calling you. You can check who you call. Play the call.",
-          "who": {
-            "caller": "The caller",
-            "you": "You",
-            "now": "You hung up."
-          },
-          "turns": [
+          "d": "Your phone rings. Every answer changes what happens next: play the call to the end.",
+          "steps": [
             {
-              "say": "Hello, this is your bank’s security team. A 38,000 DA payment is going through on your card. Do you confirm it?",
-              "opts": [
-                {
-                  "t": "No! What should I do?",
-                  "w": "You stay on the line with a stranger, panicking: exactly what they want."
+              "ask": "You pick up. Choose your lines: there are several paths, and one trap.",
+              "who": {
+                "caller": "The caller"
+              },
+              "acct": "Your account",
+              "nodes": {
+                "n0": {
+                  "say": "Hello, this is your bank’s security team. A 38,000 DA payment is going through on your card. Do you confirm it?",
+                  "o": [
+                    {
+                      "t": "No! What should I do?"
+                    },
+                    {
+                      "t": "First prove you’re my bank."
+                    },
+                    {
+                      "t": "I’ll hang up and call my bank myself."
+                    }
+                  ]
                 },
-                {
-                  "t": "I’ll hang up and call my bank myself."
+                "n1": {
+                  "say": "Don’t panic, I’ll cancel it. You’re about to get a code by text: read it to me.",
+                  "sms": "Code 482913 to confirm the 38,000 DA payment. Don’t share it with anyone.",
+                  "o": [
+                    {
+                      "t": "Here’s the code: 482913."
+                    },
+                    {
+                      "t": "The text says “confirm”, and not to give it to anyone. I’m hanging up."
+                    }
+                  ]
                 },
-                {
-                  "t": "Prove you’re my bank.",
-                  "w": "They may already know your name and your card’s last digits: that won’t be proof."
+                "n2": {
+                  "say": "Of course. You’re Yasser B., your card ends in 4417, and you paid 3,200 DA yesterday.",
+                  "note": "They know a lot. Is that proof?",
+                  "o": [
+                    {
+                      "t": "Okay, you really are my bank."
+                    },
+                    {
+                      "t": "That proves nothing: details like these get stolen or sold. I’m hanging up."
+                    }
+                  ]
+                },
+                "n3": {
+                  "say": "You hung up. Which number do you call now?",
+                  "o": [
+                    {
+                      "t": "The one that just called me",
+                      "w": "A caller ID can be faked, and calling back may reach the scammer again."
+                    },
+                    {
+                      "t": "The one the caller gave me",
+                      "w": "That’s their number, not your bank’s."
+                    },
+                    {
+                      "t": "The one on the back of my card or in the official app"
+                    }
+                  ]
                 }
-              ]
+              },
+              "lose": {
+                "h": "38,000 DA payment confirmed.",
+                "why": "The code cancelled nothing: it signed the scammer’s payment. Once confirmed, getting it back is slow and uncertain."
+              },
+              "win": "Perfect. Wait a minute before calling, or use another phone: some scammers keep the line open."
             },
-            {
-              "say": "If you hang up, the payment goes through! Just give me the code you got by text and I’ll cancel it.",
-              "opts": [
-                {
-                  "t": "Okay, here’s the code.",
-                  "w": "That code cancels nothing: it confirms the scammer’s payment."
-                },
-                {
-                  "t": "I’m hanging up."
-                }
-              ]
-            },
-            {
-              "say": "Which number do you call now?",
-              "opts": [
-                {
-                  "t": "The one that just called me",
-                  "w": "A caller ID can be faked, and calling back may reach the scammer again."
-                },
-                {
-                  "t": "The one the caller gave me",
-                  "w": "That’s their number, not your bank’s."
-                },
-                {
-                  "t": "The one on the back of my card or in the official app"
-                }
-              ]
-            }
+            {}
           ],
-          "end": "Perfect. Wait a minute before calling, or use another phone: some scammers keep the line open.",
           "where": "For Algérie Poste, the customer service number the company gives is 1530. Elsewhere, the official number is printed on the back of your card and on your bank’s website.",
           "q": "The call shows your bank’s real number. Can you trust it?",
           "a": [
